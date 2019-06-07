@@ -5,7 +5,6 @@
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
-    "css",
     "es",
     "lib",
     "umd"
@@ -17,18 +16,28 @@
     "start": "nwb serve-react-demo",
     "test": "nwb test-react",
     "test:coverage": "nwb test-react --coverage",
-    "test:watch": "nwb test-react --server"
+    "test:watch": "nwb test-react --server",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@styled-system/theme-get": "5.0.5",
     "styled-system": "5.0.5"
   },
   "peerDependencies": {
     "react": "16.x"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.5",
     "@emotion/core": "10.0.10",
     "@emotion/styled": "10.0.11",
+    "@storybook/addon-actions": "^5.1.3",
+    "@storybook/addon-knobs": "5.1.3",
+    "@storybook/addon-links": "^5.1.3",
+    "@storybook/addons": "^5.1.3",
+    "@storybook/react": "^5.1.3",
     "babel-eslint": "10.0.1",
+    "babel-loader": "^8.0.6",
     "emotion-theming": "10.0.10",
     "eslint": "5.16.0",
     "eslint-config-react-app": "4.0.1",
@@ -39,6 +48,7 @@
     "eslint-plugin-react": "7.13.0",
     "eslint-plugin-react-hooks": "1.6.0",
     "nwb": "0.23.x",
+    "prop-types": "15.7.2",
     "react": "16.8.6",
     "react-dom": "16.8.6"
   },
