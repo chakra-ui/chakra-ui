@@ -216,40 +216,40 @@ const theme = {
       900: "#002C5C"
     },
     whatsapp: {
-      50: "#E3F7F5",
-      100: "#C7F0EB",
-      200: "#90E2D7",
-      300: "#67D8C9",
-      400: "#2ECAB5",
+      50: "#e2f7f4",
+      100: "#c3f0e9",
+      200: "#a0e7dc",
+      300: "#76dccd",
+      400: "#43cfba",
       500: "#00BFA5",
-      600: "#00A08B",
-      700: "#128C7E",
-      800: "#075E54",
-      900: "#064D45"
+      600: "#00ac92",
+      700: "#009780",
+      800: "#007d6a",
+      900: "#005a4c"
     },
     twitter: {
-      50: "#D5EDFC",
-      100: "#B8E1F9",
-      200: "#90D0F7",
-      300: "#78C6F6",
-      400: "#5ABAF5",
+      50: "#e5f4fd",
+      100: "#c8e9fb",
+      200: "#a8dcfa",
+      300: "#83cdf7",
+      400: "#57bbf5",
       500: "#1DA1F2",
-      600: "#1884C7",
-      700: "#1676B1",
-      800: "#115681",
-      900: "#0D3F5E"
+      600: "#1a94da",
+      700: "#1681bf",
+      800: "#136b9e",
+      900: "#0d4d71"
     },
     telegram: {
-      50: "#E7F4FA",
-      100: "#B9DEF1",
-      200: "#A2D3EC",
-      300: "#73BEE3",
-      400: "#45A8D9",
+      50: "#e3f2f9",
+      100: "#c5e4f3",
+      200: "#a2d4ec",
+      300: "#7ac1e4",
+      400: "#47a9da",
       500: "#0088CC",
-      600: "#0070A7",
-      700: "#005C89",
-      800: "#004C71",
-      900: "#003E5D"
+      600: "#007ab8",
+      700: "#006ba1",
+      800: "#005885",
+      900: "#003f5e"
     }
   },
   letterSpacings: {
@@ -297,6 +297,27 @@ const theme = {
     "6xl": "4rem"
   },
   sizes: {
+    "0": "0",
+    auto: "auto",
+    xs: "20rem",
+    sm: "24rem",
+    md: "28rem",
+    lg: "32rem",
+    xl: "36rem",
+    "2xl": "42rem",
+    "3xl": "48rem",
+    "4xl": "56rem",
+    "5xl": "64rem",
+    "6xl": "72rem",
+    full: "100%",
+    screenWidth: "100vw",
+    screenHeight: "100vh",
+    container: {
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px"
+    },
     button: {
       lg: {
         height: 40,
@@ -321,22 +342,22 @@ const theme = {
       }
     },
     checkbox: {
-      md: "20px",
-      sm: "16px",
-      xs: "12px"
+      md: "1.25rem",
+      sm: "1rem",
+      xs: "0.75rem"
     },
     spinner: {
-      xl: "40px",
-      lg: "28px",
-      md: "20px",
-      sm: "16px",
-      xs: "12px"
+      xl: "2.5rem",
+      lg: "1.75rem",
+      md: "1.25rem",
+      sm: "1rem",
+      xs: "0.75rem"
     },
     avatar: {
-      xs: "24px",
-      sm: "32px",
-      md: "56px",
-      lg: "72px"
+      xs: "1.5rem",
+      sm: "2rem",
+      md: "3.5rem",
+      lg: "4.5rem"
     },
     input: {
       lg: {
@@ -376,32 +397,24 @@ const theme = {
       }
     },
     closeButton: {
-      xs: "0.25rem",
       sm: "0.5rem",
-      md: "0.75rem",
+      md: "0.8rem",
       lg: "1.25rem",
-      xl: "2.25rem"
+      xl: "1.5rem",
+      "2xl": "2.25rem"
     }
   },
-  borderWidths: { sm: "1px", md: "2px", lg: "3px" },
-  borders: { none: 0, normal: "1px solid", thick: "2px solid" },
+  borders: { none: 0, "1px": "1px solid", "2px": "2px solid" },
   shadows: {
-    top: "inset 0 1px #E2E8F0",
-    bottom: "inset 0 -1px #E2E8F0",
-    left: "inset 1px 0 #E2E8F0",
-    right: "inset -1px 0 #E2E8F0",
-    all: "inset 0 0 0 1px #E2E8F0",
-    sm: "0 2px 5px 0 rgba(26, 32, 44, 0.1), 0 1px 1px 0 rgba(0, 0, 0, .07)",
-    md: "0 7px 14px 0 rgba(26, 32, 44, 0.1), 0 3px 6px 0 rgba(0, 0, 0, .07)",
-    lg: "0 15px 35px 0 rgba(26, 32, 44, 0.1), 0 5px 15px 0 rgba(0, 0, 0, .07)",
+    sm: "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
+    md: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+    lg:
+      "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
     xl:
-      "0 50px 100px 0 rgba(26, 32, 44, 0.1), 0 15px 35px 0 rgba(26, 32, 44, 0.1), 0 5px 15px 0 rgba(0, 0, 0, .07)",
-    inner: "inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)",
+      "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+    "2xl": "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
     focusring: "0 0 0 3px rgba(66, 153, 225, 0.5)",
-    menu:
-      "rgba(26, 32, 44, 0.05) 0px 0px 0px 1px,rgba(26, 32, 44, 0.1) 0px 3px 6px, rgba(26, 32, 44, 0.2) 0px 9px 24px;",
-    none: "none",
-    modal: "0 7px 14px 0 rgba(60, 66, 87, 0.1), 0 3px 6px 0 rgba(0, 0, 0, 0.07)"
+    none: "none"
   },
   space: [
     "0",
@@ -422,30 +435,7 @@ const theme = {
     "12rem",
     "14rem",
     "16rem"
-  ],
-  maxWidths: {
-    "2xs": "16rem",
-    xs: "20rem",
-    sm: "24rem",
-    md: "28rem",
-    lg: "32rem",
-    xl: "36rem",
-    "2xl": "42rem",
-    "3xl": "48rem",
-    "4xl": "56rem",
-    "5xl": "64rem",
-    "6xl": "72rem",
-    full: "100%"
-  },
-  minWidths: { "0": "0", full: "100%" },
-  maxHeights: { full: "100%", screen: "100vh" },
-  minHeights: { "0": "0", full: "100%", screen: "100vh" },
-  appearance: {
-    modalBackdrop: {
-      light: "rgba(15, 15, 15, 0.6)",
-      dark: "rgba(82, 95, 127, 0.25)"
-    }
-  }
+  ]
 };
 
 export default theme;
