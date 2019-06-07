@@ -1,7 +1,7 @@
 {
   "name": "chakra-ui",
-  "version": "1.0.0",
-  "description": "chakra-ui React component",
+  "version": "0.2.3",
+  "description": "Responsive and accessible React UI components built with React and Emotion",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
@@ -19,20 +19,43 @@
     "test:coverage": "nwb test-react --coverage",
     "test:watch": "nwb test-react --server"
   },
-  "dependencies": {},
+  "dependencies": {
+    "styled-system": "5.0.5"
+  },
   "peerDependencies": {
     "react": "16.x"
   },
   "devDependencies": {
+    "@emotion/core": "10.0.10",
+    "@emotion/styled": "10.0.11",
+    "babel-eslint": "10.0.1",
+    "emotion-theming": "10.0.10",
+    "eslint": "5.16.0",
+    "eslint-config-react-app": "4.0.1",
+    "eslint-plugin-flowtype": "3.9.1",
+    "eslint-plugin-import": "2.17.3",
+    "eslint-plugin-jest": "22.6.4",
+    "eslint-plugin-jsx-a11y": "6.2.1",
+    "eslint-plugin-react": "7.13.0",
+    "eslint-plugin-react-hooks": "1.6.0",
     "nwb": "0.23.x",
     "react": "16.8.6",
     "react-dom": "16.8.6"
   },
-  "author": "",
-  "homepage": "",
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
   "license": "MIT",
-  "repository": "",
+  "homepage": "https://github.com/segunadebayo/chakra-ui",
+  "repository": "https://github.com/segunadebayo/chakra-ui",
   "keywords": [
-    "react-component"
+    "react",
+    "ui",
+    "design-system",
+    "react-components",
+    "uikit",
+    "accessible",
+    "components",
+    "emotion",
+    "library",
+    "design-system"
   ]
 }

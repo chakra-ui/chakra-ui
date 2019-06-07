@@ -1,9 +1,3 @@
-import React, {Component} from 'react'
-
-export default class extends Component {
-  render() {
-    return <div>
-      <h2>Welcome to React components</h2>
-    </div>
-  }
-}
+export { default as theme } from "./theme";
+export { default as ThemeProvider } from "./ThemeProvider";
+export * from "./Layout";
