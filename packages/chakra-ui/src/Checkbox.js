@@ -146,4 +146,10 @@ const Checkbox = forwardRef(
   }
 );
 
+Checkbox.defaultProps = {
+  size: "md",
+  color: "blue",
+  mode: "light"
+};
+
 export default Checkbox;
