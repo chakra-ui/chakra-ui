@@ -13,3 +13,11 @@ export { default as CloseButton } from "./CloseButton";
 export { default as ActionButtons } from "./ActionButtons";
 
 export { default as Badge } from "./Badge";
+
+export { default as Checkbox } from "./Checkbox";
+export { default as Radio } from "./Radio";
+export { default as Slider } from "./Slider";
+
+export { default as Input } from "./Input";
+export { default as SliderInput } from "./SliderInput";
+export { default as NumberInput } from "./NumberInput";

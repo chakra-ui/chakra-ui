@@ -1,0 +1,48 @@
+/** @jsx jsx */
+import { jsx } from "@emotion/core";
+import { Flex, Box } from "./Layout";
+import NumberInput from "./NumberInput";
+import Slider from "./Slider";
+import { useState, useRef } from "react";
+
+const SliderInput = ({
+  defaultValue,
+  isDisabled,
+  min,
+  max,
+  mode = "light",
+  size,
+  inputWidth = "72px",
+  step,
+  onChange,
+  value: valueProp
+}) => {
+  const [value, setValue] = useState(defaultValue || 0);
+  const { current: isControlled } = useRef(valueProp !== undefined);
+
+  const handleChange = value => {
+    onChange && onChange(value);
+    !isControlled && setValue(value);
+  };
+
+  const sharedProps = {
+    min,
+    max,
+    step,
+    size,
+    isDisabled,
+    mode,
+    value: isControlled ? valueProp : value,
+    onChange: handleChange
+  };
+
+  return (
+    <Flex alignItems="center">
+      <Slider {...sharedProps} />
+      <Box ml={4} flex="0 0 auto" width={inputWidth}>
+        <NumberInput {...sharedProps} />
+      </Box>
+    </Flex>
+  );
+};
+export default SliderInput;
