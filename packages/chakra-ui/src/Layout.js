@@ -56,6 +56,11 @@ const transform = style({
   cssProperty: "transform"
 });
 
+const transition = style({
+  prop: "transition",
+  cssProperty: "transition"
+});
+
 const otherProps = compose(
   textDecoration,
   appearance,
@@ -64,7 +69,8 @@ const otherProps = compose(
   whiteSpace,
   userSelect,
   pointerEvents,
-  cursor
+  cursor,
+  transition
 );
 
 export const Box = styled.div`

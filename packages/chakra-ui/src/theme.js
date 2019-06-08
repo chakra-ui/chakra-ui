@@ -342,9 +342,9 @@ const theme = {
       }
     },
     checkbox: {
-      md: "1.25rem",
-      sm: "1rem",
-      xs: "0.75rem"
+      lg: "20px",
+      md: "16px",
+      sm: "14px"
     },
     spinner: {
       xl: "2.5rem",

@@ -1,12 +1,16 @@
 module.exports = {
-  type: 'react-component',
+  type: "react-component",
   npm: {
     esModules: true,
     umd: {
-      global: 'ChakraUI',
+      global: "ChakraUI",
       externals: {
-        react: 'React'
+        react: "React",
+        "react-dom": "ReactRouter"
       }
     }
+  },
+  babel: {
+    plugins: ["babel-plugin-emotion"]
   }
-}
+};
