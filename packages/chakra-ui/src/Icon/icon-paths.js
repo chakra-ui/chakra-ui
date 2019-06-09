@@ -128,7 +128,7 @@ export default {
       </g>
     )
   },
-  chevronRight: {
+  "chevron-right": {
     path: (
       <path
         fill="currentColor"
@@ -136,7 +136,7 @@ export default {
       />
     )
   },
-  chevronLeft: {
+  "chevron-left": {
     path: (
       <path
         fill="currentColor"
@@ -144,7 +144,7 @@ export default {
       />
     )
   },
-  chevronDown: {
+  "chevron-down": {
     path: (
       <path
         fill="currentColor"
@@ -152,7 +152,7 @@ export default {
       />
     )
   },
-  chevronUp: {
+  "chevron-up": {
     path: (
       <path
         fill="currentColor"
@@ -160,7 +160,7 @@ export default {
       />
     )
   },
-  arrowForward: {
+  "arrow-forward": {
     path: (
       <path
         fill="currentColor"
@@ -168,7 +168,7 @@ export default {
       />
     )
   },
-  arrowUp: {
+  "arrow-up": {
     path: (
       <path
         fill="currentColor"
@@ -176,7 +176,7 @@ export default {
       />
     )
   },
-  arrowDown: {
+  "arrow-down": {
     path: (
       <path
         fill="currentColor"
@@ -185,7 +185,7 @@ export default {
       />
     )
   },
-  arrowBack: {
+  "arrow-back": {
     path: (
       <path
         fill="currentColor"
@@ -193,7 +193,7 @@ export default {
       />
     )
   },
-  externalLink: {
+  "external-link": {
     path: (
       <g
         fill="none"
@@ -215,7 +215,7 @@ export default {
       </g>
     )
   },
-  plusSquare: {
+  "plus-square": {
     path: (
       <g
         fill="none"
@@ -460,7 +460,7 @@ export default {
       />
     )
   },
-  arrowUpDown: {
+  "arrow-up-down": {
     path: (
       <path
         fill="currentColor"

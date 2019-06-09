@@ -362,14 +362,16 @@ const theme = {
     input: {
       lg: {
         fontSize: 16,
-        padding: "0 14px",
+        paddingLeft: 14,
+        paddingRight: 14,
         height: 40,
         lineHeight: "24px",
         borderRadius: 4
       },
       md: {
         fontSize: 14,
-        padding: "0 12px",
+        paddingLeft: 12,
+        paddingRight: 12,
         height: 32,
         lineHeight: "20px",
         borderRadius: 3
@@ -378,7 +380,8 @@ const theme = {
         fontSize: 12,
         height: 24,
         lineHeight: "16px",
-        padding: "0 8px",
+        paddingLeft: 8,
+        paddingRight: 8,
         borderRadius: 2
       }
     },

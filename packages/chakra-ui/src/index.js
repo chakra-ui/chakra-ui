@@ -13,6 +13,8 @@ export { default as CloseButton } from "./CloseButton";
 export { default as ActionButtons } from "./ActionButtons";
 
 export { default as Badge } from "./Badge";
+export { default as Avatar } from "./Avatar";
+export * from "./Avatar";
 
 export { default as Checkbox } from "./Checkbox";
 export { default as Radio } from "./Radio";
@@ -21,3 +23,4 @@ export { default as Slider } from "./Slider";
 export { default as Input } from "./Input";
 export { default as SliderInput } from "./SliderInput";
 export { default as NumberInput } from "./NumberInput";
+export { default as FormControl } from "./FormControl";

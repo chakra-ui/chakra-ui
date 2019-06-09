@@ -1,76 +1,63 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import { cloneElement } from "react";
-import styled from "@emotion/styled";
-import { Text } from "./Text";
+import Text from "./Text";
 import { Box } from "./Layout";
-import { Badge } from "./Badge";
 
 const Label = ({
   children,
   className,
   isInvalid,
-  isRequired,
+  isOptional,
+  optionalText = "(Optional)",
   isReadOnly,
   ...rest
 }) => {
   return (
-    <Text
+    <Box
       fontSize="md"
-      p="8px 12px 4px 0"
-      fontWeight="semibold"
+      pr="12px"
+      pb="4px"
+      fontWeight="medium"
       verticalAlign="middle"
       display="inline-block"
       as="label"
       {...rest}
     >
       {children}
-      {!isRequired && (
-        <Badge color="gray" ml={2}>
-          Optional
-        </Badge>
+      {!isOptional && (
+        <Box opacity="50%" as="small" fontSize="84%" ml={1}>
+          {optionalText}
+        </Box>
       )}
-    </Text>
+    </Box>
   );
 };
 
-const StyledFormControl = styled(Box)`
-  &.form-control--selected {
-    padding: 12px;
-    padding-top: 4px;
-    background-color: #e5f5f8;
-    margin-left: -12px;
-    margin-right: -12px;
-    transition: background-color 0.25s;
-  }
-
-  .form-control__help {
-    float: right;
-  }
-`;
-
-/* To Do:
-  IN dark mode, change the red hue for error Text 
-*/
-
 const FormControl = ({
   children,
-  "aria-label": ariaLabel,
   label,
-  className,
   isInvalid,
-  isSelected,
   isRequired,
   helpText,
   htmlFor,
+  mode = "light",
   validationText,
-  errorId,
   ...rest
 }) => {
+  const textColor = { light: "inherit", dark: "alpha.800" };
+  const validationTextColor = {
+    light: isInvalid ? "red.500" : "green.500",
+    dark: isInvalid ? "red.300" : "green.200"
+  };
   return (
-    <StyledFormControl {...rest}>
+    <Box {...rest}>
       {label && (
-        <Label isRequired={isRequired} htmlFor={htmlFor}>
+        <Label
+          isOptional={isRequired}
+          htmlFor={htmlFor}
+          color={textColor[mode]}
+        >
           {label}
         </Label>
       )}
@@ -79,10 +66,11 @@ const FormControl = ({
         <Text
           as="span"
           fontSize="xs"
-          color="gray.600"
+          color={textColor[mode]}
+          opacity="75%"
           pb="4px"
           pt="8px"
-          aria-labelledby={htmlFor}
+          css={{ float: "right" }}
         >
           {helpText}
         </Text>
@@ -93,22 +81,16 @@ const FormControl = ({
           id: htmlFor,
           isInvalid,
           isRequired,
-          "aria-labelledby": `${htmlFor}_message`
+          mode
         })}
       </Box>
 
       {validationText && (
-        <Text
-          mt={2}
-          fontSize="xs"
-          as="small"
-          id={`${htmlFor}_message`}
-          color={isInvalid ? "red.500" : "green.500"}
-        >
+        <Text mt={2} fontSize="xs" as="small" color={validationTextColor[mode]}>
           {validationText}
         </Text>
       )}
-    </StyledFormControl>
+    </Box>
   );
 };
 
