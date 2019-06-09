@@ -14,6 +14,7 @@ let hoverSelector = "&:not([aria-disabled=true]):not(:focus):hover",
 
 export const themedStyle = props => ({
   light: {
+    backgroundColor: "#fff",
     [hoverSelector]: {
       borderColor: themeGet(`colors.gray.300`)(props)
     },
@@ -39,27 +40,26 @@ export const themedStyle = props => ({
 });
 
 const variantStyle = props => ({
-  flushed: css({
+  flushed: {
     borderWidth: 0,
     borderBottomWidth: 1,
     borderRadius: 0,
-    padding: 0,
     boxShadow: "none",
     [focusSelector]: {
-      boxShadow: `0 1px 0 0 ${themeGet(`colors.blue.500`)(props)}`,
+      boxShadow: `0 1px 0 0 ${themeGet(`colors.blue.300`)(props)}`,
       borderColor: themeGet(`colors.blue.300`)(props)
     },
     [invalidSelector]: {
       borderColor: `${themeGet(`colors.red.500`)(props)} !important`,
       boxShadow: `0 1px 0 0 ${themeGet(`colors.red.500`)(props)} !important`
     }
-  }),
-  unstyled: css({
+  },
+  unstyled: {
     backgroundColor: "transparent !important",
     borderColor: "transparent !important",
     boxShadow: "none !important",
     padding: 0
-  })
+  }
 });
 
 export const formControlStyle = props =>
@@ -67,7 +67,7 @@ export const formControlStyle = props =>
     alignItems: "center",
     position: "relative",
     width: "100%",
-    transition: "all 0.3s",
+    transition: "all 0.2s",
     borderWidth: 1,
     ...themeGet(`sizes.input.${props.inputSize}`)(props),
     ...themedStyle(props)[props.mode],

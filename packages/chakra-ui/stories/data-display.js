@@ -1,6 +1,7 @@
 import { withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
+import Avatar, { AvatarGroup, MoreIndicator } from "../src/Avatar";
 import Badge from "../src/Badge";
 import { Box } from "../src/Layout";
 
@@ -20,7 +21,10 @@ stories.add("Badge", () => {
           <Badge color={color} mr={2}>
             {color}
           </Badge>
-          <Badge color={color} variant="solid">
+          <Badge color={color} variant="solid" mr={2}>
+            {color}
+          </Badge>
+          <Badge color={color} variant="outline">
             {color}
           </Badge>
           <div />
@@ -29,6 +33,29 @@ stories.add("Badge", () => {
     </React.Fragment>
   );
 });
+
+stories.add("Avatar Group", () => (
+  <AvatarGroup size="md">
+    <Avatar
+      name="Segun Adebayo"
+      src="https://zeit.co/api/www/avatar/?u=rauchg&s=60"
+    />
+    <Avatar
+      name="Kola Tiolu"
+      // src="https://zeit.co/api/www/avatar/?u=leo&s=60"
+    />
+    <MoreIndicator label="+4" />
+  </AvatarGroup>
+));
+
+stories.add("Avatars", () => (
+  <Avatar
+    name="Evil Rabbit"
+    badge={<Box borderRadius="round" size="100%" bg="green.500" />}
+    // size="fill"
+    src="https://zeit.co/api/www/avatar/?u=rauchg&s=60"
+  />
+));
 
 // stories.add("Tags", () => {
 //   return (

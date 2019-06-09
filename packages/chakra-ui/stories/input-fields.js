@@ -10,10 +10,10 @@ import SliderInput from "../src/SliderInput";
 import NumberInput from "../src/NumberInput";
 // import InputAddon from "../src/InputAddon";
 import { Box } from "../src/Layout";
-// import Select from "../src/Select";
+import Select from "../src/Select";
 import Slider from "../src/Slider";
 // import { SliderInput, NumberInput } from "../src/Input";
-import Text from "../src/Text";
+import FormControl from "../src/FormControl";
 // import Textarea, { ExpandingTextarea } from "../src/Textarea";
 
 const stories = storiesOf("Input Fields", module);
@@ -22,43 +22,33 @@ stories.addDecorator(withKnobs);
 stories.add("Input", () => (
   <Box maxWidth="md" mx="auto" mt={6}>
     <Box p="24px" maxWidth="md" mx="auto" mt={6}>
-      <Text textTransform="uppercase" fontSize="sm" fontWeight="medium" mb={2}>
-        Light Mode
-      </Text>
-      <Input
-        placeholder={text("placeholder", "Here is a sample placeholder")}
-        variant={select("variant", ["", "flushed", "unstyled"], "")}
-        size={select("size", ["sm", "md", "lg"], "md")}
-        isReadOnly={boolean("isReadOnly", false)}
-        isInvalid={boolean("isInvalid", false)}
-        isDisabled={boolean("isDisabled", false)}
-      />
-      <Input
-        mt={4}
-        as="button"
-        children={text("placeholder", "Here is a sample placeholder")}
-      />
+      <FormControl label="What's your first name" htmlFor="firstname">
+        <Input
+          placeholder={text("placeholder", "Here is a sample placeholder")}
+          variant={select("variant", ["", "flushed", "unstyled"], "")}
+          size={select("size", ["sm", "md", "lg"], "md")}
+          isReadOnly={boolean("isReadOnly", false)}
+          isInvalid={boolean("isInvalid", false)}
+          isDisabled={boolean("isDisabled", false)}
+        />
+      </FormControl>
     </Box>
 
     <Box p="24px" bg="gray.800" maxWidth="md" mx="auto" mt={6}>
-      <Text
-        textTransform="uppercase"
-        fontSize="sm"
-        fontWeight="medium"
-        color="alpha.600"
-        mb={2}
-      >
-        Dark Mode
-      </Text>
-      <Input
+      <FormControl
         mode="dark"
-        placeholder={text("Placeholder", "Here is a sample placeholder")}
-        variant={select("Variant", ["", "flushed", "unstyled"], "")}
-        size={select("Size", ["sm", "md", "lg"], "md")}
-        isReadOnly={boolean("isReadOnly", false)}
-        isInvalid={boolean("isInvalid", false)}
-        isDisabled={boolean("isDisabled", false)}
-      />
+        label="What's your first name"
+        htmlFor="firstname"
+      >
+        <Input
+          placeholder={text("Placeholder", "Here is a sample placeholder")}
+          variant={select("Variant", ["", "flushed", "unstyled"], "")}
+          size={select("Size", ["sm", "md", "lg"], "md")}
+          isReadOnly={boolean("isReadOnly", false)}
+          isInvalid={boolean("isInvalid", false)}
+          isDisabled={boolean("isDisabled", false)}
+        />
+      </FormControl>
     </Box>
   </Box>
 ));
@@ -154,47 +144,47 @@ stories.add("Input", () => (
 //   </Box>
 // ));
 
-// stories.add("Select", () => (
-//   <Box>
-//     <Box className="testing" p="24px" maxWidth="md" mx="auto" mt={6}>
-//       <Select
-//         placeholder={text("Placeholder", "Select")}
-//         variant={select("Variant", ["", "flushed", "unstyled"], "")}
-//         size={select("Size", ["sm", "md", "lg"], "md")}
-//         isReadOnly={boolean("isReadOnly", false)}
-//         isInvalid={boolean("isInvalid", false)}
-//         isDisabled={boolean("isDisabled", false)}
-//       >
-//         <option value="opt1">Option 1</option>
-//         <option value="opt2">Option 2</option>
-//         <option value="opt3">Option 3</option>
-//       </Select>
-//     </Box>
+stories.add("Select", () => (
+  <Box>
+    <Box className="testing" p="24px" maxWidth="md" mx="auto" mt={6}>
+      <Select
+        placeholder={text("Placeholder", "Select")}
+        variant={select("Variant", ["", "flushed", "unstyled"], "")}
+        size={select("Size", ["sm", "md", "lg"], "md")}
+        isReadOnly={boolean("isReadOnly", false)}
+        isInvalid={boolean("isInvalid", false)}
+        isDisabled={boolean("isDisabled", false)}
+      >
+        <option value="opt1">Option 1</option>
+        <option value="opt2">Option 2</option>
+        <option value="opt3">Option 3</option>
+      </Select>
+    </Box>
 
-//     <Box
-//       p="24px"
-//       className="testing"
-//       bg="gray.800"
-//       maxWidth="md"
-//       mx="auto"
-//       mt={6}
-//     >
-//       <Select
-//         mode="dark"
-//         placeholder={text("Placeholder", "Select")}
-//         variant={select("Variant", ["", "flushed", "unstyled"], "")}
-//         size={select("Size", ["sm", "md", "lg"], "md")}
-//         isReadOnly={boolean("isReadOnly", false)}
-//         isInvalid={boolean("isInvalid", false)}
-//         isDisabled={boolean("isDisabled", false)}
-//       >
-//         <option value="opt1">Option 1</option>
-//         <option value="opt2">Option 2</option>
-//         <option value="opt3">Option 3</option>
-//       </Select>
-//     </Box>
-//   </Box>
-// ));
+    <Box
+      p="24px"
+      className="testing"
+      bg="gray.800"
+      maxWidth="md"
+      mx="auto"
+      mt={6}
+    >
+      <Select
+        mode="dark"
+        placeholder={text("Placeholder", "Select")}
+        variant={select("Variant", ["", "flushed", "unstyled"], "")}
+        size={select("Size", ["sm", "md", "lg"], "md")}
+        isReadOnly={boolean("isReadOnly", false)}
+        isInvalid={boolean("isInvalid", false)}
+        isDisabled={boolean("isDisabled", false)}
+      >
+        <option value="opt1">Option 1</option>
+        <option value="opt2">Option 2</option>
+        <option value="opt3">Option 3</option>
+      </Select>
+    </Box>
+  </Box>
+));
 
 stories.add("Number Input", () => (
   <Box className="testing" mx="auto" mt={6}>

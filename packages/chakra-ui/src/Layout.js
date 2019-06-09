@@ -87,6 +87,7 @@ export const Box = styled.div`
 `;
 
 export const Flex = props => <Box display="flex" {...props} />;
+export const Absolute = props => <Box position="absolute" {...props} />;
 
 export const Grid = styled(Box)`
   ${grid}
