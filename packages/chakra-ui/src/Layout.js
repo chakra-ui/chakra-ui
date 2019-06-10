@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import styled from "@emotion/styled";
+import { forwardRef } from "react";
 import {
   color,
   flexbox,
@@ -86,8 +87,13 @@ export const Box = styled.div`
   ${otherProps}
 `;
 
-export const Flex = props => <Box display="flex" {...props} />;
-export const Absolute = props => <Box position="absolute" {...props} />;
+export const Flex = forwardRef((props, ref) => (
+  <Box display="flex" ref={ref} {...props} />
+));
+
+export const Absolute = forwardRef((props, ref) => (
+  <Box position="absolute" ref={ref} {...props} />
+));
 
 export const Grid = styled(Box)`
   ${grid}

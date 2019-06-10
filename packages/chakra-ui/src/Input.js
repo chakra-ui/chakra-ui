@@ -73,14 +73,20 @@ export const formControlStyle = props =>
     ...themedStyle(props)[props.mode],
     paddingBottom: 1, // To correct the text alignment
     [invalidSelector]: {
-      borderColor: `${themeGet("colors.red.500")(props)} !important`
+      borderColor:
+        props.mode === "dark"
+          ? `${themeGet("colors.red.400")(props)} !important`
+          : `${themeGet("colors.red.500")(props)} !important`
     },
     [focusSelector]: {
-      borderColor:
-        props.mode === "light"
-          ? themeGet(`colors.blue.300`)(props)
-          : themeGet(`colors.blue.600`)(props),
-      boxShadow: themeGet(`shadows.focusring`)(props)
+      borderColor: themeGet(`colors.blue.300`)(props),
+      boxShadow: themeGet(`shadows.focusring`)(props),
+      [invalidSelector]: {
+        boxShadow:
+          props.mode === "dark"
+            ? `0 0 0 1px ${themeGet(`colors.red.400`)(props)}`
+            : `0 0 0 1px ${themeGet(`colors.red.500`)(props)}`
+      }
     },
     ...variantStyle(props)[props.variant],
     "&[readonly]": {
@@ -90,45 +96,41 @@ export const formControlStyle = props =>
     }
   });
 
-const StyledInput = styled(Flex)(formControlStyle);
+export const StyledInput = styled(Flex)(formControlStyle);
 
-const Input = forwardRef(
-  (
-    {
-      size,
-      as,
-      "aria-label": ariaLabel,
-      id: ariaId,
-      isDisabled,
-      isInvalid,
-      isFocused,
-      isReadOnly,
-      isRequired,
-      variant,
-      mode = "light",
-      ...rest
-    },
-    ref
-  ) => {
-    return (
-      <StyledInput
-        inputSize={size}
-        ref={ref}
-        as={as}
-        aria-label={ariaLabel}
-        id={ariaId}
-        readOnly={isReadOnly}
-        disabled={isDisabled}
-        mode={mode}
-        variant={variant}
-        aria-invalid={isInvalid}
-        aria-required={isRequired}
-        aria-disabled={isDisabled}
-        {...rest}
-      />
-    );
-  }
-);
+const Input = forwardRef((props, ref) => {
+  const {
+    size,
+    as,
+    "aria-label": ariaLabel,
+    id: ariaId,
+    isDisabled,
+    isInvalid,
+    isFocused,
+    isReadOnly,
+    isRequired,
+    variant,
+    mode = "light",
+    ...rest
+  } = props;
+  return (
+    <StyledInput
+      inputSize={size}
+      ref={ref}
+      as={as}
+      aria-label={ariaLabel}
+      id={ariaId}
+      readOnly={isReadOnly}
+      disabled={isDisabled}
+      mode={mode}
+      variant={variant}
+      aria-invalid={isInvalid}
+      aria-required={isRequired}
+      aria-disabled={isDisabled}
+      {...rest}
+    />
+  );
+});
 
 Input.defaultProps = {
   size: "md",
