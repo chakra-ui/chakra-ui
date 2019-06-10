@@ -6,17 +6,25 @@ import { forwardRef } from "react";
 import Input from "./Input";
 
 const Select = forwardRef(
-  ({ children, mode = "light", placeholder, ...rest }, ref) => {
+  (
+    { children, mode = "light", placeholder, wrapperProps, flex, ...rest },
+    ref
+  ) => {
     let themedColor = mode === "dark" ? "alpha.800" : "inherit";
     let opacity = rest.isReadOnly || rest.isDisabled ? 0.5 : 1;
 
     return (
-      <Box position="relative" color={themedColor}>
+      <Box
+        position="relative"
+        color={themedColor}
+        flex={flex}
+        {...wrapperProps}
+      >
         <Input
           as="select"
           appearance="none"
           ref={ref}
-          style={{ paddingRight: 24, ...rest.style }}
+          style={{ paddingRight: 24, paddingBottom: "unset", ...rest.style }}
           mode={mode}
           {...rest}
         >
@@ -29,6 +37,7 @@ const Select = forwardRef(
           top="50%"
           pointerEvents="none"
           opacity={opacity}
+          style={{ zIndex: 2 }}
           transform="translateY(-50%)"
         >
           <Icon name="chevron-down" color="currentColor" size="18px" />

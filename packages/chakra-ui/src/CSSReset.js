@@ -6,7 +6,6 @@ const CSSReset = () => (
     styles={theme => css`
       /* Normalize CSS */
       html {
-        line-height: 1.15;
         -webkit-font-smoothing: antialiased;
         -webkit-text-size-adjust: 100%;
       }
@@ -231,7 +230,7 @@ const CSSReset = () => (
           "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
           "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
         line-height: 1.5;
-        font-size: 14px;
+        font-size: 0.875rem;
         color: ${theme.colors.gray[800]};
       }
 

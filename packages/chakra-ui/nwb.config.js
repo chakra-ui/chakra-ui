@@ -6,7 +6,7 @@ module.exports = {
       global: "ChakraUI",
       externals: {
         react: "React",
-        "react-dom": "ReactRouter"
+        "react-dom": "ReactDOM"
       }
     }
   },

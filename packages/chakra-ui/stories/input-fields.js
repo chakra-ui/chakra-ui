@@ -1,20 +1,20 @@
 import { boolean, select, text, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React, { useRef } from "react";
+import CharacterCounter from "../src/CharacterCounter";
 import { Component } from "../src/Component";
-// import CharacterCounter from "../src/CharacterCounter";
-// import { FormControl } from "../src/FormControl";
+import FormControl from "../src/FormControl";
 // import GoogleAddress from "../src/GoogleAddress";
 import Input from "../src/Input";
-import SliderInput from "../src/SliderInput";
-import NumberInput from "../src/NumberInput";
-// import InputAddon from "../src/InputAddon";
 import { Box } from "../src/Layout";
+import NumberInput from "../src/NumberInput";
 import Select from "../src/Select";
 import Slider from "../src/Slider";
-// import { SliderInput, NumberInput } from "../src/Input";
-import FormControl from "../src/FormControl";
-// import Textarea, { ExpandingTextarea } from "../src/Textarea";
+import SliderInput from "../src/SliderInput";
+import Textarea, { ExpandingTextarea } from "../src/Textarea";
+import InputAddon from "../src/InputAddon";
+import InputGroup from "../src/InputGroup";
+import Button from "../src/Button";
 
 const stories = storiesOf("Input Fields", module);
 stories.addDecorator(withKnobs);
@@ -22,24 +22,24 @@ stories.addDecorator(withKnobs);
 stories.add("Input", () => (
   <Box maxWidth="md" mx="auto" mt={6}>
     <Box p="24px" maxWidth="md" mx="auto" mt={6}>
-      <FormControl label="What's your first name" htmlFor="firstname">
+      <FormControl
+        // label="What's your first name"
+        id="firstname"
+        isInvalid={boolean("isInvalid", true)}
+        validationText="Enter a valid message"
+      >
         <Input
           placeholder={text("placeholder", "Here is a sample placeholder")}
           variant={select("variant", ["", "flushed", "unstyled"], "")}
           size={select("size", ["sm", "md", "lg"], "md")}
           isReadOnly={boolean("isReadOnly", false)}
-          isInvalid={boolean("isInvalid", false)}
           isDisabled={boolean("isDisabled", false)}
         />
       </FormControl>
     </Box>
 
     <Box p="24px" bg="gray.800" maxWidth="md" mx="auto" mt={6}>
-      <FormControl
-        mode="dark"
-        label="What's your first name"
-        htmlFor="firstname"
-      >
+      <FormControl mode="dark" label="What's your first name" id="firstname">
         <Input
           placeholder={text("Placeholder", "Here is a sample placeholder")}
           variant={select("Variant", ["", "flushed", "unstyled"], "")}
@@ -53,26 +53,37 @@ stories.add("Input", () => (
   </Box>
 ));
 
-// stories.add("Label + Input", () => (
-//   <Box className="testing" maxWidth="md" mx="auto" mt={6}>
-//     <FormControl
-//       label={text("Label", "How much you wan buy am?")}
-//       help={text("Help", "Ensure its in USD")}
-//       htmlFor="boo"
-//       isRequired={boolean("isRequired", false)}
-//       isSelected={boolean("isSelected", false)}
-//       isInvalid={boolean("isInvalid", false)}
-//       validationMessage={text(
-//         "validationMessage",
-//         "You gotta enter something!"
-//       )}
-//     >
-//       <InputAddon text="$" position="left">
-//         <Input placeholder={text("Placeholder", "Enter completion")} />
-//       </InputAddon>
-//     </FormControl>
-//   </Box>
-// ));
+stories.add("Label + Input", () => (
+  <Box p={3} maxWidth="md" mx="auto" mt={6}>
+    <FormControl
+      label={text("Label", "How much you wan buy am?")}
+      helpText={text("Help", "Ensure its in USD")}
+      id="boo"
+      isRequired={boolean("isRequired", false)}
+      isSelected={boolean("isSelected", false)}
+      isInvalid={boolean("isInvalid", true)}
+      validationText={text("validationText", "You gotta enter something!")}
+      // mode="dark"
+    >
+      <InputAddon text="$" position="right">
+        <Input placeholder={text("Placeholder", "Enter completion")} />
+      </InputAddon>
+    </FormControl>
+  </Box>
+));
+
+stories.add("Input Group", () => (
+  <Box mx="auto" maxWidth="md" mt={3}>
+    <InputGroup size="md">
+      <Select minWidth="90px">
+        <option value="dollars">Dollars</option>
+        <option value="naira">Naira</option>
+      </Select>
+      <Input flex="1" />
+      <Button color="cyan">Submit</Button>
+    </InputGroup>
+  </Box>
+));
 
 // stories.add("Address Input", () => (
 //   <GoogleAddress value="Araromi Street" onChange={v => console.log(v)}>
@@ -89,60 +100,46 @@ stories.add("Input", () => (
 //   </GoogleAddress>
 // ));
 
-// stories.add("Textarea", () => (
-//   <Box className="testing" maxWidth="md" mx="auto" mt={6}>
-//     <Box p="24px" maxWidth="md" mx="auto" mt={6}>
-//       <Text textTransform="uppercase" fontSize="sm" fontWeight="medium" mb={2}>
-//         Light Mode
-//       </Text>
-//       <Textarea
-//         placeholder={text("Placeholder", "Here is a sample placeholder")}
-//         variant={select("Variant", ["", "flushed", "unstyled"], "")}
-//         size={select("Size", ["sm", "md", "lg"], "md")}
-//         isReadOnly={boolean("isReadOnly", false)}
-//         isInvalid={boolean("isInvalid", false)}
-//         isDisabled={boolean("isDisabled", false)}
-//       />
-//     </Box>
+stories.add("Textarea", () => (
+  <Box className="testing" maxWidth="md" mx="auto" mt={6}>
+    <Box p="24px" maxWidth="md" mx="auto" mt={6}>
+      <Textarea
+        placeholder={text("Placeholder", "Here is a sample placeholder")}
+        variant={select("Variant", ["", "flushed", "unstyled"], "")}
+        size={select("Size", ["sm", "md", "lg"], "md")}
+        isReadOnly={boolean("isReadOnly", false)}
+        isInvalid={boolean("isInvalid", false)}
+        isDisabled={boolean("isDisabled", false)}
+      />
+    </Box>
 
-//     <Box p="24px" bg="gray.800" maxWidth="md" mx="auto" mt={6}>
-//       <Text
-//         textTransform="uppercase"
-//         fontSize="sm"
-//         fontWeight="medium"
-//         color="alpha.600"
-//         mb={2}
-//       >
-//         Dark Mode
-//       </Text>
-//       <Textarea
-//         mode="dark"
-//         placeholder={text("Placeholder", "Here is a sample placeholder")}
-//         variant={select("Variant", ["flushed", "unstyled"], "")}
-//         size={select("Size", ["sm", "md", "lg"], "md")}
-//         isReadOnly={boolean("isReadOnly", false)}
-//         isInvalid={boolean("isInvalid", false)}
-//         isDisabled={boolean("isDisabled", false)}
-//       />
-//     </Box>
-//   </Box>
-// ));
+    <Box p="24px" bg="gray.800" maxWidth="md" mx="auto" mt={6}>
+      <Textarea
+        mode="dark"
+        placeholder={text("Placeholder", "Here is a sample placeholder")}
+        variant={select("Variant", ["flushed", "unstyled"], "")}
+        size={select("Size", ["sm", "md", "lg"], "md")}
+        isReadOnly={boolean("isReadOnly", false)}
+        isInvalid={boolean("isInvalid", false)}
+        isDisabled={boolean("isDisabled", false)}
+      />
+    </Box>
+  </Box>
+));
 
-// stories.add("Character Counter", () => (
-//   <Box className="testing" maxWidth="md" mx="auto" mt={6}>
-//     <CharacterCounter
-//       countDown
-//       defaultValue="This counts down from 50"
-//       max={50}
-//     />
-//   </Box>
-// ));
+stories.add("Character Counter", () => (
+  <Box className="testing" maxWidth="md" mx="auto" mt={6}>
+    <FormControl label="What's your first name">
+      <CharacterCounter maxLength={20} defaultValue="Hello World" />
+    </FormControl>
+  </Box>
+));
 
-// stories.add("Expanding Textarea", () => (
-//   <Box className="testing" maxWidth="md" mx="auto" mt={6}>
-//     <ExpandingTextarea placeholder="It will measure the placeholder as well" />
-//   </Box>
-// ));
+stories.add("Expanding Textarea", () => (
+  <Box className="testing" maxWidth="md" mx="auto" mt={6}>
+    <ExpandingTextarea placeholder="It will measure the placeholder as well" />
+  </Box>
+));
 
 stories.add("Select", () => (
   <Box>

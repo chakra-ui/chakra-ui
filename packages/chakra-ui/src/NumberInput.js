@@ -141,7 +141,7 @@ const NumberInput = forwardRef(
             mode={mode}
             aria-disabled={isDisabled}
           >
-            <Icon name="chevronUp" size={iconSize} color="currentColor" />
+            <Icon name="chevron-up" size={iconSize} color="currentColor" />
           </Segment>
           <Segment
             onClick={isDisabled ? undefined : handleDecrement}
@@ -150,7 +150,7 @@ const NumberInput = forwardRef(
             mode={mode}
             aria-disabled={isDisabled}
           >
-            <Icon name="chevronDown" size={iconSize} color="currentColor" />
+            <Icon name="chevron-down" size={iconSize} color="currentColor" />
           </Segment>
         </Flex>
       </Flex>

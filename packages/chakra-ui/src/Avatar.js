@@ -3,7 +3,7 @@ import { jsx } from "@emotion/core";
 import { cloneElement, Children, useState } from "react";
 import { Flex, Box, Absolute } from "./Layout";
 import propTypes from "prop-types";
-import { string2Hex } from "./__utils";
+import { string2Hex } from "./utils";
 import Color from "color";
 
 export const MoreIndicator = ({ src, size, label, ...props }) => (
