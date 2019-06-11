@@ -5,6 +5,8 @@ import Button from "../src/Button";
 import { Box } from "../src/Layout";
 import CloseButton from "../src/CloseButton";
 import ActionButtons from "../src/ActionButtons";
+import Link from "../src/Link";
+import Text from "../src/Text";
 
 const stories = storiesOf("Button & Links", module);
 stories.addDecorator(withKnobs);
@@ -58,5 +60,19 @@ stories.add("Close Button", () => (
 stories.add("Action Buttons", () => (
   <Box mt={3} maxWidth="md" mx="auto">
     <ActionButtons />
+  </Box>
+));
+
+stories.add("Link", () => (
+  <Box mt={3} maxWidth="md" mx="auto">
+    <Link>This is a link</Link>
+    <br />
+    <Text>
+      This is the way we add{" "}
+      <Link fontWeight="semibold" href="www.google.com" color="green">
+        a link
+      </Link>{" "}
+      within a text
+    </Text>
   </Box>
 ));

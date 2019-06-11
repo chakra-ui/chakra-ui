@@ -79,7 +79,10 @@ export const formControlStyle = props =>
           : `${themeGet("colors.red.500")(props)} !important`
     },
     [focusSelector]: {
-      borderColor: themeGet(`colors.blue.300`)(props),
+      borderColor:
+        props.mode === "dark"
+          ? themeGet(`colors.blue.600`)(props)
+          : themeGet(`colors.blue.300`)(props),
       boxShadow: themeGet(`shadows.focusring`)(props),
       [invalidSelector]: {
         boxShadow:
