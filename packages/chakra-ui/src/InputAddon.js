@@ -5,6 +5,7 @@ import { oneOf } from "prop-types";
 import { cloneElement } from "react";
 import { StyledInput } from "./Input";
 import { Box, Flex } from "./Layout";
+import { useUIMode } from "./ThemeProvider";
 
 const AddonWrapper = styled(Box)`
   &.input-addon__left {
@@ -55,10 +56,10 @@ const InputAddon = ({
   isInvalid,
   variant,
   id,
-  mode = "dark",
   position = "left",
   ...rest
 }) => {
+  const mode = useUIMode()
   let isRight = position === "right";
   return (
     <Flex as="label" className="input-addon">

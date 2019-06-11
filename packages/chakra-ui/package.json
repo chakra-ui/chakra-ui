@@ -21,8 +21,12 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@reach/dialog": "0.2.9",
+    "@reach/portal": "0.2.1",
     "@styled-system/theme-get": "5.0.5",
     "color": "3.1.2",
+    "react-focus-lock": "1.19.1",
+    "react-spring": "8.0.23",
     "styled-system": "5.0.5"
   },
   "peerDependencies": {

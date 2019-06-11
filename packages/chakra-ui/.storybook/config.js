@@ -1,15 +1,15 @@
 import React from "react";
 import { configure, addDecorator } from "@storybook/react";
-import { ThemeProvider } from "emotion-theming";
 import theme from "../src/theme";
 import CSSReset from "../src/CSSReset";
+import ThemeProvider from "../src/ThemeProvider";
 
 function loadStories() {
   require("../stories");
 }
 
 addDecorator(story => (
-  <ThemeProvider theme={theme}>
+  <ThemeProvider theme={theme} mode="light">
     <React.Fragment>
       <CSSReset />
       {story()}

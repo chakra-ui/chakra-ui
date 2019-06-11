@@ -7,6 +7,7 @@ import { forwardRef } from "react";
 import Icon from "./Icon";
 import { Box } from "./Layout";
 import Spinner from "./Spinner";
+import { useUIMode } from "./ThemeProvider";
 
 /* 
   Let's start with the Button Styles.
@@ -83,10 +84,16 @@ const ghostColorStyle = props =>
     //Adjust the interaction for gray button
     ...(props.buttonColor === "gray" && {
       [hoverSelector]: {
-        backgroundColor: themeGet(`colors.gray.100`)(props)
+        backgroundColor:
+          props.mode === "dark"
+            ? themeGet(`colors.alpha.100`)(props)
+            : themeGet(`colors.gray.100`)(props)
       },
       [activeSelector]: {
-        backgroundColor: themeGet(`colors.gray.200`)(props)
+        backgroundColor:
+          props.mode === "dark"
+            ? themeGet(`colors.alpha.200`)(props)
+            : themeGet(`colors.gray.200`)(props)
       }
     }),
     // Find a better solution for this?
@@ -98,7 +105,13 @@ const ghostColorStyle = props =>
 const outlineColorStyle = props =>
   css(ghostColorStyle(props), {
     borderWidth: 1,
-    borderColor: themeGet(`colors.${props.buttonColor}.200`)(props)
+    borderColor: themeGet(`colors.${props.buttonColor}.200`)(props),
+    ...(props.buttonColor === "gray" && {
+      borderColor:
+        props.mode === "dark"
+          ? themeGet(`colors.alpha.400`)(props)
+          : themeGet(`colors.${props.buttonColor}.200`)(props)
+    })
   });
 
 // Style for link variant
@@ -188,6 +201,8 @@ const Button = forwardRef((props, ref) => {
     ...rest
   } = props;
 
+  const mode = useUIMode();
+
   return (
     <StyledButton
       disabled={isDisabled || isLoading}
@@ -195,6 +210,7 @@ const Button = forwardRef((props, ref) => {
       as={as}
       ref={ref}
       type={type}
+      mode={mode}
       isFullWidth={isFullWidth}
       buttonVariant={variant}
       buttonSize={size}

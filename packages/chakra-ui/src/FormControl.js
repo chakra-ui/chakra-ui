@@ -4,6 +4,7 @@ import { cloneElement } from "react";
 import Text from "./Text";
 import { Box } from "./Layout";
 import VisuallyHidden from "./VisuallyHidden";
+import { useUIMode } from "./ThemeProvider";
 
 export const Label = ({
   children,
@@ -58,10 +59,11 @@ const FormControl = props => {
     hideLabel,
     helpText,
     id,
-    mode = "light",
     validationText,
     ...rest
   } = props;
+
+  const mode = useUIMode();
 
   const textColor = { light: "inherit", dark: "alpha.800" };
   const validationTextColor = {
@@ -99,8 +101,7 @@ const FormControl = props => {
         {cloneElement(children, {
           id,
           isInvalid,
-          isRequired,
-          mode
+          isRequired
         })}
       </Box>
 

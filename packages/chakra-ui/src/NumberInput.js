@@ -4,6 +4,7 @@ import Input from "./Input";
 import { Flex, Box } from "./Layout";
 import Icon from "./Icon";
 import { themeGet } from "@styled-system/theme-get";
+import { useUIMode } from "./ThemeProvider";
 
 let disabledSelector = "&[aria-disabled=true]",
   activeSelector = "&:not([aria-disabled=true]):active",
@@ -66,11 +67,11 @@ const NumberInput = forwardRef(
       step,
       value,
       isDisabled,
-      mode = "light",
       ...rest
     },
     ref
   ) => {
+    const mode = useUIMode();
     const [val, setVal] = useState(defaultValue || 0);
     const isControlled = Boolean(value);
     const iconSize = size === "sm" ? "11px" : "15px";
