@@ -5,6 +5,7 @@ import { themeGet } from "@styled-system/theme-get";
 import propTypes from "prop-types";
 import { forwardRef } from "react";
 import { Flex } from "./Layout";
+import { useUIMode } from "./ThemeProvider";
 
 // Just so I don't repeat this :)
 let hoverSelector = "&:not([aria-disabled=true]):not(:focus):hover",
@@ -14,6 +15,7 @@ let hoverSelector = "&:not([aria-disabled=true]):not(:focus):hover",
 
 export const themedStyle = props => ({
   light: {
+    color: themeGet(`colors.gray.800`)(props),
     backgroundColor: "#fff",
     [hoverSelector]: {
       borderColor: themeGet(`colors.gray.300`)(props)
@@ -113,9 +115,9 @@ const Input = forwardRef((props, ref) => {
     isReadOnly,
     isRequired,
     variant,
-    mode = "light",
     ...rest
   } = props;
+  const mode = useUIMode();
   return (
     <StyledInput
       inputSize={size}

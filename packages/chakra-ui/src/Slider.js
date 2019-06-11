@@ -3,6 +3,7 @@ import { jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import { themeGet } from "@styled-system/theme-get";
 import { useState, useRef, forwardRef } from "react";
+import { useUIMode } from "./ThemeProvider";
 
 /* TO DO: Unify all the Themed Helpers */
 
@@ -139,7 +140,6 @@ const Slider = forwardRef(
       isDisabled,
       max,
       maxLabel,
-      mode,
       min,
       minLabel,
       size,
@@ -150,6 +150,7 @@ const Slider = forwardRef(
     },
     ref
   ) => {
+    const mode = useUIMode();
     const [val, setVal] = useState(defaultValue || 0);
     const { current: isControlled } = useRef(value !== undefined);
 
@@ -199,7 +200,6 @@ const Slider = forwardRef(
 Slider.defaultProps = {
   isDisabled: false,
   defaultValue: 50,
-  mode: "light",
   size: "md",
   color: "blue",
   min: 0,

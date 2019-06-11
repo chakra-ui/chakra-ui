@@ -4,19 +4,20 @@ import { Flex, Box } from "./Layout";
 import NumberInput from "./NumberInput";
 import Slider from "./Slider";
 import { useState, useRef } from "react";
+import { useUIMode } from "./ThemeProvider";
 
 const SliderInput = ({
   defaultValue,
   isDisabled,
   min,
   max,
-  mode = "light",
   size,
   inputWidth = "72px",
   step,
   onChange,
   value: valueProp
 }) => {
+  const mode = useUIMode();
   const [value, setValue] = useState(defaultValue || 0);
   const { current: isControlled } = useRef(valueProp !== undefined);
 
