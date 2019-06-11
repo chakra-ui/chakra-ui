@@ -23,9 +23,9 @@ stories.add("Input", () => (
   <Box maxWidth="md" mx="auto" mt={6}>
     <Box p="24px" maxWidth="md" mx="auto" mt={6}>
       <FormControl
-        // label="What's your first name"
+        label="What's your first name"
         id="firstname"
-        isInvalid={boolean("isInvalid", true)}
+        isInvalid={boolean("isInvalid", false)}
         validationText="Enter a valid message"
       >
         <Input

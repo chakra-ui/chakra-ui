@@ -354,10 +354,16 @@ const theme = {
       xs: "0.75rem"
     },
     avatar: {
-      xs: "1.5rem",
+      xs: "1.25rem",
       sm: "2rem",
-      md: "3.5rem",
-      lg: "4.5rem"
+      md: "3.25rem",
+      lg: "4.5rem",
+      xl: "5.25rem"
+    },
+    progressbar: {
+      lg: "1rem",
+      md: "0.75rem",
+      sm: "0.5rem"
     },
     input: {
       lg: {

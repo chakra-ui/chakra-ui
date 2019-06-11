@@ -348,7 +348,7 @@ export default {
       </React.Fragment>
     )
   },
-  dragHandle: {
+  "drag-handle": {
     viewBox: "0 0 10 10",
     path: (
       <path
@@ -365,7 +365,7 @@ export default {
       />
     )
   },
-  notAllowed: {
+  "not-allowed": {
     path: (
       <path
         fill="currentColor"
@@ -373,7 +373,7 @@ export default {
       />
     )
   },
-  triangleDown: {
+  "triangle-down": {
     path: (
       <path
         fill="currentColor"
@@ -381,7 +381,7 @@ export default {
       />
     )
   },
-  triangleUp: {
+  "triangle-up": {
     path: (
       <path
         fill="currentColor"

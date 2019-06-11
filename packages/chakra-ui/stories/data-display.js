@@ -4,6 +4,15 @@ import React from "react";
 import Avatar, { AvatarGroup, MoreIndicator } from "../src/Avatar";
 import Badge from "../src/Badge";
 import { Box } from "../src/Layout";
+import {
+  StatGroup,
+  StatItem,
+  StatLabel,
+  StatNumber,
+  StatHelpText,
+  StatChangeArrow
+} from "../src/Stat";
+import Progress from "../src/Progress";
 
 const stories = storiesOf("Data Display", module);
 stories.addDecorator(withKnobs);
@@ -98,39 +107,39 @@ stories.add("Avatars", () => (
 //   );
 // });
 
-// stories.add("Stat Display", () => {
-//   return (
-//     <StatItem>
-//       <StatLabel>Collected Fees</StatLabel>
-//       <StatNumber>£0.00</StatNumber>
-//       {/* <StatHelpText>Feb 12 - Feb 28</StatHelpText> */}
-//     </StatItem>
-//   );
-// });
+stories.add("Stat Display", () => {
+  return (
+    <StatItem>
+      <StatLabel>Collected Fees</StatLabel>
+      <StatNumber>£0.00</StatNumber>
+      <StatHelpText>Feb 12 - Feb 28</StatHelpText>
+    </StatItem>
+  );
+});
 
-// stories.add("Stat Display with Indicators", () => {
-//   return (
-//     <StatGroup>
-//       <StatItem>
-//         <StatLabel>Sent</StatLabel>
-//         <StatNumber>345,670</StatNumber>
-//         <StatHelpText>
-//           <StatChangeArrow type="increase" />
-//           23.36%
-//         </StatHelpText>
-//       </StatItem>
+stories.add("Stat Display with Indicators", () => {
+  return (
+    <StatGroup>
+      <StatItem>
+        <StatLabel>Sent</StatLabel>
+        <StatNumber>345,670</StatNumber>
+        <StatHelpText>
+          <StatChangeArrow type="increase" />
+          23.36%
+        </StatHelpText>
+      </StatItem>
 
-//       <StatItem>
-//         <StatLabel>Clicked</StatLabel>
-//         <StatNumber>45</StatNumber>
-//         <StatHelpText>
-//           <StatChangeArrow type="decrease" />
-//           9.05%
-//         </StatHelpText>
-//       </StatItem>
-//     </StatGroup>
-//   );
-// });
+      <StatItem>
+        <StatLabel>Clicked</StatLabel>
+        <StatNumber>45</StatNumber>
+        <StatHelpText>
+          <StatChangeArrow type="decrease" />
+          9.05%
+        </StatHelpText>
+      </StatItem>
+    </StatGroup>
+  );
+});
 
 // stories.add("Accordion", () => {
 //   return (
@@ -150,25 +159,22 @@ stories.add("Avatars", () => (
 //   );
 // });
 
-// stories.add("Progress", () => {
-//   return (
-//     <Box maxWidth="400px" mx="auto" mt={8}>
-//       <Progress appearance="success" value={63} showLabel />
-//       <br />
-//       <Progress appearance="danger" value={34} showLabel />
-//       <br />
-//       <Component initialState={{ done: false }}>
-//         {({ state, setState }) => (
-//           <Progress value={state.done ? 100 : 25}>
-//             <Link appearance="white" onClick={() => setState({ done: true })}>
-//               {state.done ? "Done!" : "Click me"}
-//             </Link>
-//           </Progress>
-//         )}
-//       </Component>
-//     </Box>
-//   );
-// });
+stories.add("Progress", () => {
+  return (
+    <Box maxWidth="400px" bg="gray.800" mx="auto" mt={8} p={3}>
+      <Progress size="sm" color="green" value={63} mode="dark" />
+      <br />
+      <Progress
+        size="sm"
+        color="cyan"
+        value={34}
+        mode="dark"
+        borderRadius="round"
+      />
+      <br />
+    </Box>
+  );
+});
 
 // stories.add("Steps", () => {
 //   return (
