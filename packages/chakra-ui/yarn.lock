@@ -9170,6 +9170,13 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-animate-height@2.0.9:
+  version "2.0.9"
+  resolved "https://registry.yarnpkg.com/react-animate-height/-/react-animate-height-2.0.9.tgz#25a0608a4cb40eb3e52eac3ba01c091cb69acf31"
+  dependencies:
+    classnames "^2.2.5"
+    prop-types "^15.6.1"
+
 react-clientside-effect@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/react-clientside-effect/-/react-clientside-effect-1.2.0.tgz#db823695f75e9616a5e4dd6d908e5ea627fb2516"

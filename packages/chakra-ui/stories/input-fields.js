@@ -1,10 +1,10 @@
+/* eslint-disable no-console */
 import { boolean, select, text, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import CharacterCounter from "../src/CharacterCounter";
 import { Component } from "../src/Component";
 import FormControl from "../src/FormControl";
-// import GoogleAddress from "../src/GoogleAddress";
 import Input from "../src/Input";
 import { Box } from "../src/Layout";
 import NumberInput from "../src/NumberInput";
@@ -16,6 +16,7 @@ import InputAddon from "../src/InputAddon";
 import InputGroup from "../src/InputGroup";
 import Button from "../src/Button";
 import { UIModeProvider } from "../src/ThemeProvider";
+import GoogleAddress from "../src/GoogleAddress";
 
 const stories = storiesOf("Input Fields", module);
 stories.addDecorator(withKnobs);
@@ -46,6 +47,19 @@ stories.add("Input", () => (
   />
 ));
 
+stories.add("Address Input", () => (
+  <GoogleAddress onChange={v => console.log(v)}>
+    {({ ref, onChange }) => (
+      <Input
+        ref={ref}
+        defaultValue="Araromi Street"
+        onChange={onChange}
+        placeholder="Enter Address"
+      />
+    )}
+  </GoogleAddress>
+));
+
 stories.add("Label + Input", () => (
   <FormControl
     label={text("Label", "How much you wan buy am?")}
@@ -71,21 +85,6 @@ stories.add("Input Group", () => (
     <Button color="cyan">Submit</Button>
   </InputGroup>
 ));
-
-// stories.add("Address Input", () => (
-//   <GoogleAddress value="Araromi Street" onChange={v => console.log(v)}>
-//     {({ inputRef, value, onChange }) => (
-//       <Input
-//         ref={inputRef}
-//         defaultValue={value}
-//         onChange={onChange}
-//         label="Address"
-//         id="address"
-//         placeholder="Enter Address"
-//       />
-//     )}
-//   </GoogleAddress>
-// ));
 
 stories.add("Textarea", () => (
   <Textarea

@@ -17,7 +17,7 @@ export const themedStyle = props => ({
   light: {
     color: themeGet(`colors.gray.800`)(props),
     backgroundColor: "#fff",
-    [hoverSelector]: {
+  [hoverSelector]: {
       borderColor: themeGet(`colors.gray.300`)(props)
     },
     [disabledSelector]: {
