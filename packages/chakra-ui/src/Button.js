@@ -47,6 +47,31 @@ let hoverSelector = '&:not([aria-disabled="true"]):hover',
   disabledSelector = '&[aria-disabled="true"]',
   focusSelector = "&:focus";
 
+const themedSolidColors = props => {
+  return {
+    light: {
+      color: "inherit",
+      backgroundColor: themeGet(`colors.gray.100`)(props),
+      [hoverSelector]: {
+        backgroundColor: themeGet(`colors.gray.200`)(props)
+      },
+      [activeSelector]: {
+        backgroundColor: themeGet(`colors.gray.300`)(props)
+      }
+    },
+    dark: {
+      color: themeGet(`colors.alpha.900`)(props),
+      backgroundColor: themeGet(`colors.alpha.200`)(props),
+      [hoverSelector]: {
+        backgroundColor: themeGet(`colors.alpha.300`)(props)
+      },
+      [activeSelector]: {
+        backgroundColor: themeGet(`colors.alpha.400`)(props)
+      }
+    }
+  };
+};
+
 // Color styled for contained buttons
 const solidColorStyle = props =>
   css({
@@ -58,17 +83,31 @@ const solidColorStyle = props =>
     [activeSelector]: {
       backgroundColor: themeGet(`colors.${props.buttonColor}.700`)(props)
     },
-    ...(props.buttonColor === "gray" && {
+    ...(props.buttonColor === "gray" && themedSolidColors(props)[props.mode])
+  });
+
+const themedGhostButton = props => {
+  return {
+    light: {
       color: "inherit",
-      backgroundColor: themeGet(`colors.gray.100`)(props),
       [hoverSelector]: {
-        backgroundColor: themeGet(`colors.gray.200`)(props)
+        backgroundColor: themeGet(`colors.gray.100`)(props)
       },
       [activeSelector]: {
-        backgroundColor: themeGet(`colors.gray.300`)(props)
+        backgroundColor: themeGet(`colors.gray.200`)(props)
       }
-    })
-  });
+    },
+    dark: {
+      color: themeGet(`colors.alpha.900`)(props),
+      [hoverSelector]: {
+        backgroundColor: themeGet(`colors.alpha.200`)(props)
+      },
+      [activeSelector]: {
+        backgroundColor: themeGet(`colors.alpha.300`)(props)
+      }
+    }
+  };
+};
 
 // Color style for ghost style
 const ghostColorStyle = props =>
@@ -81,24 +120,7 @@ const ghostColorStyle = props =>
     [activeSelector]: {
       backgroundColor: themeGet(`colors.${props.buttonColor}.100`)(props)
     },
-    //Adjust the interaction for gray button
-    ...(props.buttonColor === "gray" && {
-      [hoverSelector]: {
-        backgroundColor:
-          props.mode === "dark"
-            ? themeGet(`colors.alpha.100`)(props)
-            : themeGet(`colors.gray.100`)(props)
-      },
-      [activeSelector]: {
-        backgroundColor:
-          props.mode === "dark"
-            ? themeGet(`colors.alpha.200`)(props)
-            : themeGet(`colors.gray.200`)(props)
-      }
-    }),
-    // Find a better solution for this?
-    // Need to change the label color to black if the bgColor is a light color
-    ...(["gray", "yellow"].includes(props.buttonColor) && { color: "inherit" })
+    ...(props.buttonColor === "gray" && themedGhostButton(props)[props.mode])
   });
 
 // Style for outline button

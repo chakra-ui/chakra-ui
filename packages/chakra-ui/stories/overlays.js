@@ -14,6 +14,13 @@ import { Component } from "../src/Component";
 import { UIModeProvider } from "../src/ThemeProvider";
 import { Box } from "../src/Layout";
 import Drawer from "../src/Drawer";
+import Popover from "../src/Popover";
+import {
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter
+} from "../src/PopoverComponents";
+import Tooltip from "../src/Tooltip";
 
 const stories = storiesOf("Overlays", module);
 stories.addDecorator(story => {
@@ -98,37 +105,37 @@ stories.add("Drawer", () => {
   );
 });
 
-// stories.add("Popover", () => (
-//   <>
-//     <Popover
-//       trigger={<Button>Trigger</Button>}
-//       usePortal
-//       // trapFocus
-//       showCloseButton
-//     >
-//       {props => (
-//         <>
-//           <PopoverHeader>Header</PopoverHeader>
-//           <PopoverBody>
-//             <Button variant="solid" color="blue" onClick={props.onClose}>
-//               Close
-//             </Button>
-//           </PopoverBody>
-//           <PopoverFooter>This is the footer</PopoverFooter>
-//         </>
-//       )}
-//     </Popover>
-//     <Button variant="solid" color="green">
-//       Content Inside
-//     </Button>
-//   </>
-// ));
-// stories.add("Tooltip", () => (
-//   <>
-//     <Tooltip label="Welcome home" placement="right" showArrow>
-//       <Button variant="solid" color="blue">
-//         Close
-//       </Button>
-//     </Tooltip>
-//   </>
-// ));
+stories.add("Popover", () => (
+  <>
+    <Popover
+      trigger={<Button>Trigger</Button>}
+      usePortal
+      placement="right"
+      // trapFocus
+      showCloseButton
+    >
+      {props => (
+        <>
+          <PopoverHeader>Header</PopoverHeader>
+          <PopoverBody>
+            <Button color="blue" onClick={props.onClose}>
+              Close
+            </Button>
+          </PopoverBody>
+          <PopoverFooter>This is the footer</PopoverFooter>
+        </>
+      )}
+    </Popover>
+    <Button color="green">Content Inside</Button>
+  </>
+));
+
+stories.add("Tooltip", () => (
+  <>
+    <Tooltip label="Welcome home" placement="right" closeOnClick>
+      <Button variant="solid" color="blue">
+        Close
+      </Button>
+    </Tooltip>
+  </>
+));

@@ -331,18 +331,18 @@ const CSSReset = () => (
       }
 
       .pac-container .pac-item {
-        color: ${theme.colors.gray["800"]} !important;
+        color: inherit;
         padding: 4px 16px;
         border: none;
-        font-size: 90%;
+        font-size: inherit;
 
         &:hover {
-          background-color: ${theme.colors.gray["200"]};
+          background-color: ${theme.colors.gray["100"]};
           cursor: pointer;
         }
 
         &.pac-item-selected {
-          background-color: ${theme.colors.gray["200"]};
+          background-color: ${theme.colors.gray["100"]};
         }
 
         .pac-item-query {
@@ -352,7 +352,7 @@ const CSSReset = () => (
         }
 
         .pac-matched {
-          font-weight: ${theme.fontWeights.semibold};
+          font-weight: inherit;
         }
       }
     `}

@@ -13,6 +13,7 @@ import {
   StatChangeArrow
 } from "../src/Stat";
 import Progress from "../src/Progress";
+import { AccordionItem } from "../src/Accordion";
 
 const stories = storiesOf("Data Display", module);
 stories.addDecorator(withKnobs);
@@ -141,23 +142,23 @@ stories.add("Stat Display with Indicators", () => {
   );
 });
 
-// stories.add("Accordion", () => {
-//   return (
-//     <AccordionItem title="Curious what lorem ipsum text is?" defaultOpen>
-//       <p>
-//         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-//         tempor incididunt ut labore et dolore magna aliqua.
-//       </p>
-//       <p>
-//         Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-//         ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-//         reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-//         pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-//         qui officia deserunt mollit anim id est laborum
-//       </p>
-//     </AccordionItem>
-//   );
-// });
+stories.add("Accordion", () => {
+  return (
+    <AccordionItem title="Curious what lorem ipsum text is?" defaultOpen>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </p>
+      <p>
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+        ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+        qui officia deserunt mollit anim id est laborum
+      </p>
+    </AccordionItem>
+  );
+});
 
 stories.add("Progress", () => {
   return (

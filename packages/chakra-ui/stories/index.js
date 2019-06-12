@@ -5,3 +5,4 @@ import "./controls";
 import "./input-fields";
 import "./messaging-and-alert";
 import "./overlays";
+import "./lists";

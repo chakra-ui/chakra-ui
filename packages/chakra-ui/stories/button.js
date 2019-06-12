@@ -7,12 +7,28 @@ import CloseButton from "../src/CloseButton";
 import ActionButtons from "../src/ActionButtons";
 import Link from "../src/Link";
 import Text from "../src/Text";
+import { UIModeProvider } from "../src/ThemeProvider";
 
 const stories = storiesOf("Button & Links", module);
 stories.addDecorator(withKnobs);
+stories.addDecorator(story => {
+  return (
+    <>
+      <Box maxWidth="lg" mx="auto" mt={6} p={6}>
+        {story()}
+      </Box>
+      <br />
+      <UIModeProvider value="dark">
+        <Box bg="gray.800" maxWidth="lg" mx="auto" mt={6} p={6}>
+          {story()}
+        </Box>
+      </UIModeProvider>
+    </>
+  );
+});
 
 stories.add("Button", () => (
-  <Box mt={3} maxWidth="md" mx="auto">
+  <Box>
     {[
       "blue",
       "green",
@@ -34,7 +50,7 @@ stories.add("Button", () => (
         variant={select(
           "variant",
           ["ghost", "outline", "solid", "link", "unstyled"],
-          "solid"
+          "outline"
         )}
         size={select("size", ["sm", "md", "lg"], "md")}
         isLoading={boolean("isLoading?", false)}
@@ -50,7 +66,7 @@ stories.add("Button", () => (
 ));
 
 stories.add("Close Button", () => (
-  <Box mt={3} maxWidth="md" mx="auto">
+  <Box>
     {["sm", "md", "lg", "xl", "2xl"].map(size => (
       <CloseButton size={size} mr={4} />
     ))}
@@ -58,13 +74,13 @@ stories.add("Close Button", () => (
 ));
 
 stories.add("Action Buttons", () => (
-  <Box mt={3} maxWidth="md" mx="auto">
+  <Box>
     <ActionButtons />
   </Box>
 ));
 
 stories.add("Link", () => (
-  <Box mt={3} maxWidth="md" mx="auto">
+  <Box>
     <Link>This is a link</Link>
     <br />
     <Text>
