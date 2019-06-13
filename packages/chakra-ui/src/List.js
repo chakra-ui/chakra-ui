@@ -4,11 +4,10 @@ import { oneOf } from "prop-types";
 import { Children, Fragment } from "react";
 import { Box } from "./Layout";
 
-const unstyledStyle = css`
-  list-style: none !important;
-  padding-left: 0 !important;
+const unStyled = css`
   margin-top: 0;
   margin-bottom: 0;
+  list-style: none !important;
 `;
 
 const List = ({
@@ -16,22 +15,23 @@ const List = ({
   ordered,
   type,
   children,
-  isStyled,
+  styled,
   showDivider,
   spacing,
   ...rest
 }) => {
   const setDisplay = () => {
     if (inline) return "inline-block";
-    if (ordered || isStyled) return "list-item";
+    if (ordered || styled) return "list-item";
     return "block";
   };
 
   return (
     <Box
-      css={isStyled === false && unstyledStyle}
       as={ordered ? "ol" : "ul"}
-      mb={3}
+      pl={styled ? "40px" : rest.pl || 0}
+      mb={styled ? 3 : rest.mb || 0}
+      {...styled === false && { css: unStyled }}
       {...rest}
     >
       {Children.map(children, (child, index) => {
