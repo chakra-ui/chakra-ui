@@ -21,7 +21,7 @@ stories.add("Inline List", () => (
 ));
 
 stories.add("Styled Ordered List", () => (
-  <List ordered isStyled>
+  <List ordered styled spacing={4}>
     <span>ooooooo</span>
     <span>ahhhhh</span>
     <span>Woah!</span>
@@ -29,7 +29,7 @@ stories.add("Styled Ordered List", () => (
 ));
 
 stories.add("Styled List", () => (
-  <List isStyled>
+  <List styled>
     <span>ooooooo</span>
     <span>ahhhhh</span>
     <span>Woah!</span>
@@ -37,7 +37,7 @@ stories.add("Styled List", () => (
 ));
 
 stories.add("Styled List with Spacing", () => (
-  <List inline showDivider>
+  <List inline showDivider spacing={4}>
     <span>ooooooo</span>
     <span>ahhhhh</span>
     <span>Woah!</span>
