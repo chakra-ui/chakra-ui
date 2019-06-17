@@ -1,6 +1,6 @@
 import React from "react";
 
-export default {
+const iconPaths = {
   search: {
     path: (
       <path
@@ -489,3 +489,5 @@ export default {
     viewBox: "0 0 31 31"
   }
 };
+
+export default iconPaths;

@@ -3,6 +3,7 @@ import { jsx } from "@emotion/core";
 import { forwardRef } from "react";
 import Icon from "./Icon";
 import Button from "./Button";
+import VisuallyHidden from "./VisuallyHidden";
 
 const IconButton = forwardRef(
   ({ icon, isRound, "aria-label": ariaLabel, ...rest }, ref) => {
@@ -18,12 +19,12 @@ const IconButton = forwardRef(
 
     return (
       <Button
-        style={{ padding: 0 }}
+        css={{ padding: 0 }}
         borderRadius={isRound ? "round" : "md"}
-        aria-label={ariaLabel}
         ref={ref}
         {...iconButtonProps}
       >
+        {ariaLabel && <VisuallyHidden>{ariaLabel}</VisuallyHidden>}
         <Icon name={icon} color="currentColor" aria-hidden />
       </Button>
     );

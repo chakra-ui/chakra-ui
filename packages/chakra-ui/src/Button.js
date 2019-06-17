@@ -3,7 +3,7 @@ import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import { themeGet } from "@styled-system/theme-get";
 import propTypes from "prop-types";
-import { forwardRef } from "react";
+import React, { forwardRef } from "react";
 import Icon from "./Icon";
 import { Box } from "./Layout";
 import Spinner from "./Spinner";
@@ -293,5 +293,53 @@ Button.propTypes = {
 
 Button.displayName = "Button";
 
+const StyledButtonGroup = styled(Box)`
+  &[data-attached] {
+    button:focus {
+      position: relative;
+      z-index: 1;
+    }
+
+    > button:first-of-type {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    > button:last-of-type {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    > button:not(:first-of-type):not(:last-of-type) {
+      border-radius: 0;
+    }
+  }
+`;
+
+const ButtonGroup = ({ size, isAttached, spacing = 2, children, ...rest }) => {
+  return (
+    <StyledButtonGroup
+      display="inline-block"
+      data-attached={isAttached ? "" : undefined}
+      {...rest}
+    >
+      {React.Children.map(children, (child, idx) =>
+        React.cloneElement(child, {
+          size,
+          ...(idx + 1 !== React.Children.count(children) &&
+            !isAttached && { mr: spacing })
+        })
+      )}
+    </StyledButtonGroup>
+  );
+};
+
 export default Button;
-export { baseStyle, variantStyle, focusStyle, disabledStyle, sizeStyle };
+export {
+  ButtonGroup,
+  baseStyle,
+  variantStyle,
+  focusStyle,
+  disabledStyle,
+  sizeStyle
+};

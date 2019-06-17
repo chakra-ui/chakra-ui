@@ -1,9 +1,9 @@
 /** @jsx jsx */
-import { jsx } from "@emotion/core";
+import { jsx, ThemeContext } from "@emotion/core";
 import styled from "@emotion/styled";
 import propTypes from "prop-types";
-import iconPaths from "./icon-paths";
-import { Box } from "../Layout";
+import { useContext } from "react";
+import { Box } from "./Layout";
 
 const Svg = styled(Box)`
   flex-shrink: 0;
@@ -14,7 +14,9 @@ const Svg = styled(Box)`
 `;
 
 const Icon = ({ size, name, color, role, ...rest }) => {
+  const { icons: iconPaths } = useContext(ThemeContext);
   const iconFallback = iconPaths["question-outline"]; // Fallback in case you pass the wrong key
+
   const iconPath =
     iconPaths[name] == null ? iconFallback.path : iconPaths[name].path;
   const iconViewBox =
@@ -47,4 +49,3 @@ Icon.propTypes = {
 };
 
 export default Icon;
-export { iconPaths };

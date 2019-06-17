@@ -2,7 +2,7 @@
 import { jsx, ThemeContext } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
 import { useContext } from "react";
-import Icon, { iconPaths } from "../src/Icon";
+import Icon from "../src/Icon";
 import { Box, Flex } from "../src/Layout";
 import Text from "../src/Text";
 
@@ -36,8 +36,9 @@ stories.add("Colors", () => {
   return <Colors />;
 });
 
-stories.add("Icons", () =>
-  Object.keys(iconPaths).map(icon => (
+const Icons = () => {
+  const { icons: iconPaths } = useContext(ThemeContext);
+  return Object.keys(iconPaths).map(icon => (
     <Flex
       border="normal"
       borderColor="gray.100"
@@ -54,5 +55,7 @@ stories.add("Icons", () =>
         {icon}
       </Text>
     </Flex>
-  ))
-);
+  ));
+};
+
+stories.add("Icons", () => <Icons />);

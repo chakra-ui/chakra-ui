@@ -88,6 +88,12 @@ stories.add("Radio", () => (
   </React.Fragment>
 ));
 
+// stories.add("ChoiceCard", () => (
+//   <ChoiceCardGroup type="radio" autoSelect>
+//     <ChoiceCard />
+//   </ChoiceCardGroup>
+// ));
+
 // stories.add("Inline radio buttons ", () => (
 //   <RadioGroup
 //     name="ki"
