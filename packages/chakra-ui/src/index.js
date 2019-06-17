@@ -3,7 +3,7 @@ export { default as ThemeProvider } from "./ThemeProvider";
 export * from "./Layout";
 export { default as CSSReset } from "./CSSReset";
 export { default as Text } from "./Text";
-export { default as Icon, iconPaths } from "./Icon";
+export { default as Icon } from "./Icon";
 export { default as Spinner, Spinner2 } from "./Spinner";
 export { default as VisuallyHidden } from "./VisuallyHidden";
 
@@ -21,6 +21,13 @@ export { default as Radio } from "./Radio";
 export { default as Slider } from "./Slider";
 
 export { default as Input } from "./Input";
+export { default as Select } from "./Select";
 export { default as SliderInput } from "./SliderInput";
 export { default as NumberInput } from "./NumberInput";
 export { default as FormControl } from "./FormControl";
+
+export { default as Drawer } from "./Drawer";
+export * from "./DialogComponents";
+export { default as Modal } from "./Modal";
+export { default as Popover } from "./Popover";
+export { default as Tooltip } from "./Tooltip";

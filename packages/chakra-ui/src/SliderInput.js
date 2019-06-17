@@ -15,7 +15,8 @@ const SliderInput = ({
   inputWidth = "72px",
   step,
   onChange,
-  value: valueProp
+  value: valueProp,
+  ...rest
 }) => {
   const mode = useUIMode();
   const [value, setValue] = useState(defaultValue || 0);
@@ -38,7 +39,7 @@ const SliderInput = ({
   };
 
   return (
-    <Flex alignItems="center">
+    <Flex alignItems="center" {...rest}>
       <Slider {...sharedProps} />
       <Box ml={4} flex="0 0 auto" width={inputWidth}>
         <NumberInput {...sharedProps} />

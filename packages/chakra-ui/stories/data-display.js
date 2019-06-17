@@ -14,6 +14,9 @@ import {
 } from "../src/Stat";
 import Progress from "../src/Progress";
 import { AccordionItem } from "../src/Accordion";
+import Rover from "../src/Rover";
+import Button, { ButtonGroup } from "../src/Button";
+import IconButton from "../src/IconButton";
 
 const stories = storiesOf("Data Display", module);
 stories.addDecorator(withKnobs);
@@ -115,6 +118,96 @@ stories.add("Stat Display", () => {
       <StatNumber>£0.00</StatNumber>
       <StatHelpText>Feb 12 - Feb 28</StatHelpText>
     </StatItem>
+  );
+});
+
+const RadioGroup = ({
+  children,
+  checkedColor = "cyan",
+  unCheckedColor = "gray",
+  checkedVariant = "solid",
+  unCheckedVariant = "solid",
+  defaultValue,
+  value,
+  onChange
+}) => {
+  const [val, setVal] = React.useState(defaultValue || "");
+  const { current: isControlled } = React.useRef(value != null);
+
+  const clones = React.Children.map(children, child => {
+    const valueToCheck = isControlled ? value : val;
+    const isChecked = child.props.value === valueToCheck;
+    const color = isChecked ? checkedColor : unCheckedColor;
+    const variant = isChecked ? checkedVariant : unCheckedVariant;
+
+    return React.cloneElement(child, {
+      color,
+      variant,
+      "aria-checked": isChecked,
+      onClick: () => {
+        isControlled
+          ? onChange && onChange(child.props.value)
+          : setVal(child.props.value);
+      }
+    });
+  });
+
+  const handleIndexChange = index => {
+    React.Children.forEach(children, (child, idx) => {
+      if (index === idx) {
+        setVal(child.props.value);
+      }
+    });
+  };
+
+  const getDefaultIndex = () => {
+    let result = null;
+    React.Children.forEach(children, (child, idx) => {
+      const valueToCheck = isControlled ? value : val;
+
+      if (valueToCheck === child.props.value) {
+        result = idx;
+      }
+    });
+    return result;
+  };
+
+  return (
+    <Rover
+      as={ButtonGroup}
+      role="radiogroup"
+      focusableElements={[IconButton, Button]}
+      loop={true}
+      onIndexChange={handleIndexChange}
+      defaultIndex={getDefaultIndex()}
+      size="lg"
+      isAttached
+    >
+      {clones}
+    </Rover>
+  );
+};
+
+stories.add("Rover", () => {
+  return (
+    <>
+      <RadioGroup>
+        <Button>All</Button>
+        <IconButton
+          role="radio"
+          aria-label="Phone"
+          icon="phone"
+          value="phone"
+        />
+        <IconButton role="radio" aria-label="Add" icon="add" value="add" />
+        <IconButton
+          role="radio"
+          aria-label="Email"
+          icon="email"
+          value="email"
+        />
+      </RadioGroup>
+    </>
   );
 });
 

@@ -1,3 +1,5 @@
+import iconPaths from "./IconPaths";
+
 const theme = {
   breakpoints: ["640px", "768px", "1024px", "1280px"],
   zIndices: {
@@ -452,7 +454,8 @@ const theme = {
     "12rem",
     "14rem",
     "16rem"
-  ]
+  ],
+  icons: iconPaths
 };
 
 export default theme;
