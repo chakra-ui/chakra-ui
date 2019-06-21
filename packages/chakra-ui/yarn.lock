@@ -1353,6 +1353,10 @@
   dependencies:
     object-assign "^4.1.1"
 
+"@styled-system/css@5.0.10":
+  version "5.0.10"
+  resolved "https://registry.yarnpkg.com/@styled-system/css/-/css-5.0.10.tgz#c5f59d6752a59a53e49cbce00d85a98fbe7d157b"
+
 "@styled-system/flexbox@^5.0.5":
   version "5.0.5"
   resolved "https://registry.yarnpkg.com/@styled-system/flexbox/-/flexbox-5.0.5.tgz#2a4a30c76eb6d4f9252ee640a2df5e229c60433b"

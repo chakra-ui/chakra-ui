@@ -256,7 +256,15 @@ stories.add("Accordion", () => {
 stories.add("Progress", () => {
   return (
     <Box maxWidth="400px" bg="gray.800" mx="auto" mt={8} p={3}>
-      <Progress size="sm" color="green" value={63} mode="dark" />
+      <Progress
+        borderRadius="round"
+        size="sm"
+        color="green"
+        value={63}
+        mode="dark"
+        hasStripe
+        isAnimated
+      />
       <br />
       <Progress
         size="sm"

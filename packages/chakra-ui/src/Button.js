@@ -243,6 +243,7 @@ const Button = forwardRef((props, ref) => {
     >
       {leftIcon && !isLoading && (
         <Icon
+          focusable="false"
           mr={iconSpacing}
           name={leftIcon}
           color="currentColor"
@@ -266,6 +267,7 @@ const Button = forwardRef((props, ref) => {
         : children}
       {rightIcon && !isLoading && (
         <Icon
+          focusable="false"
           ml={iconSpacing}
           name={rightIcon}
           color="currentColor"

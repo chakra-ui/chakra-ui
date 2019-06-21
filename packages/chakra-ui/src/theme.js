@@ -282,9 +282,12 @@ const theme = {
     black: 900
   },
   fonts: {
-    display: "Graphik",
+    heading:
+      '-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
     body:
-      '-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
+      '-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+    monospace:
+      'SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace'
   },
   fontSizes: {
     xs: "0.75rem",
@@ -415,6 +418,34 @@ const theme = {
       lg: "1.25rem",
       xl: "1.5rem",
       "2xl": "2.25rem"
+    },
+    switch: {
+      sm: {
+        width: "1.375rem",
+        height: "0.75rem"
+      },
+      md: {
+        width: "1.875rem",
+        height: "1rem"
+      },
+      lg: {
+        width: "2.875rem",
+        height: "1.5rem"
+      }
+    },
+    tab: {
+      sm: {
+        padding: "0.25rem 1rem",
+        fontSize: "0.85rem"
+      },
+      md: {
+        fontSize: "1rem",
+        padding: "0.5rem 1rem"
+      },
+      lg: {
+        fontSize: "1.15rem",
+        padding: "0.75rem 1rem"
+      }
     }
   },
   borders: { none: 0, "1px": "1px solid", "2px": "2px solid" },

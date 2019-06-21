@@ -17,7 +17,7 @@ export const themedStyle = props => ({
   light: {
     color: themeGet(`colors.gray.800`)(props),
     backgroundColor: "#fff",
-  [hoverSelector]: {
+    [hoverSelector]: {
       borderColor: themeGet(`colors.gray.300`)(props)
     },
     [disabledSelector]: {
@@ -47,6 +47,8 @@ const variantStyle = props => ({
     borderBottomWidth: 1,
     borderRadius: 0,
     boxShadow: "none",
+    padding: 0,
+    backgroundColor: "transparent",
     [focusSelector]: {
       boxShadow: `0 1px 0 0 ${themeGet(`colors.blue.300`)(props)}`,
       borderColor: themeGet(`colors.blue.300`)(props)
@@ -108,7 +110,7 @@ const Input = forwardRef((props, ref) => {
     size,
     as,
     "aria-label": ariaLabel,
-    id: ariaId,
+    id,
     isDisabled,
     isInvalid,
     isFocused,
@@ -124,7 +126,7 @@ const Input = forwardRef((props, ref) => {
       ref={ref}
       as={as}
       aria-label={ariaLabel}
-      id={ariaId}
+      id={id}
       readOnly={isReadOnly}
       disabled={isDisabled}
       mode={mode}
