@@ -83,13 +83,13 @@ const Checkbox = forwardRef(
     {
       id,
       name,
-      color = "blue",
-      mode = "light",
+      color,
+      mode,
       isChecked,
-      size = "md",
+      size,
       isDisabled,
       onChange,
-      inline,
+      inline = true,
       indeterminate,
       children,
       wrapperProps,
@@ -103,12 +103,12 @@ const Checkbox = forwardRef(
     return (
       <Flex
         as="label"
-        display="inline-flex"
+        display={inline ? "inline-flex" : "flex"}
         verticalAlign="top"
         userSelect="none"
-        htmlFor={id}
         alignItems="center"
         cursor={isDisabled ? "not-allowed" : "pointer"}
+        {...wrapperProps}
       >
         <VisuallyHidden
           as="input"
@@ -116,6 +116,8 @@ const Checkbox = forwardRef(
           data-indeterminate={indeterminate ? "" : undefined}
           id={id}
           ref={ref}
+          name={name}
+          onChange={onChange}
           checked={isChecked}
           disabled={isDisabled}
           {...rest}
@@ -126,8 +128,7 @@ const Checkbox = forwardRef(
           borderRadius="md"
           size={`checkbox.${size}`}
           color={`${color}.500`}
-          // as="span"
-          aria-hidden="true"
+          aria-hidden
         >
           {indeterminate ? <Checkline /> : <Checkmark />}
         </StyledCheckbox>
@@ -149,7 +150,8 @@ const Checkbox = forwardRef(
 Checkbox.defaultProps = {
   size: "md",
   color: "blue",
-  mode: "light"
+  mode: "light",
+  inline: true
 };
 
 export default Checkbox;

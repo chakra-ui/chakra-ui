@@ -12,6 +12,7 @@ const Rover = forwardRef(
     {
       loop,
       defaultIndex,
+      index: controlledIndex,
       orientation,
       role = "group",
       onKeyDown,
@@ -19,6 +20,7 @@ const Rover = forwardRef(
       as: Comp = "div",
       children,
       focusableElements,
+      appendProps,
       ...rest
     },
     ref
@@ -55,6 +57,7 @@ const Rover = forwardRef(
 
     let count = focusableChildren.length;
     const focusableNodes = useRef([]);
+    const isControlled = controlledIndex != null;
 
     const [activeIndex, setActiveIndex] = useState(() => {
       if (defaultIndex && defaultIndex + 1 <= count) return defaultIndex;
@@ -68,13 +71,15 @@ const Rover = forwardRef(
     };
 
     const focusNextItem = () => {
-      let nextFocusableIndex = (activeIndex + 1) % count;
+      let actualIndex = isControlled ? controlledIndex : activeIndex;
+      let nextFocusableIndex = (actualIndex + 1) % count;
       if (nextFocusableIndex === 0 && !loop) return;
       updateIndex(nextFocusableIndex);
     };
 
     const focusPrevItem = () => {
-      let prevFocusableIndex = (activeIndex - 1 + count) % count;
+      let actualIndex = isControlled ? controlledIndex : activeIndex;
+      let prevFocusableIndex = (actualIndex - 1 + count) % count;
       if (prevFocusableIndex + 1 === count && !loop) return;
       updateIndex(prevFocusableIndex);
     };
@@ -116,7 +121,8 @@ const Rover = forwardRef(
     const clones = Children.map(children, child => {
       if (!isFocusableChild(child)) return child;
       let focusableChildIndex = focusableChildren.indexOf(child);
-      let isSelected = focusableChildIndex === activeIndex;
+      let actualIndex = isControlled ? controlledIndex : activeIndex;
+      let isSelected = focusableChildIndex === actualIndex;
 
       const handleClick = event => {
         if (!isSelected) updateIndex(focusableChildIndex);
@@ -132,7 +138,13 @@ const Rover = forwardRef(
     });
 
     return (
-      <Comp role={role} ref={ref} onKeyDown={handleKeyDown} {...rest}>
+      <Comp
+        role={role}
+        ref={ref}
+        aria-orientation={orientation}
+        onKeyDown={handleKeyDown}
+        {...rest}
+      >
         {clones}
       </Comp>
     );

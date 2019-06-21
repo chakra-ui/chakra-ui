@@ -23,6 +23,7 @@
   "dependencies": {
     "@reach/dialog": "0.2.9",
     "@reach/portal": "0.2.1",
+    "@styled-system/css": "5.0.10",
     "@styled-system/theme-get": "5.0.5",
     "color": "3.1.2",
     "react-animate-height": "2.0.9",

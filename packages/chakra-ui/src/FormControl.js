@@ -22,6 +22,7 @@ export const Label = ({
       verticalAlign="middle"
       display="inline-block"
       as="label"
+      css={{ "&[for]": { cursor: "pointer" } }}
       {...rest}
     >
       {children}

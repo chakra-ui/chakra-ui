@@ -3,24 +3,50 @@ import React from "react";
 import Checkbox from "../src/Checkbox";
 import { Box } from "../src/Layout";
 import Radio from "../src/Radio";
+import Switch from "../src/Switch";
+import Text from "../src/Text";
+import { Label } from "../src/FormControl";
+import { UIModeProvider } from "../src/ThemeProvider";
+import List from "../src/List";
 
 const stories = storiesOf("Controls", module);
 
-stories.addDecorator(story => (
-  <Box maxWidth="md" mx="auto" mt={4}>
-    {story()}
-  </Box>
-));
+stories.addDecorator(story => {
+  return (
+    <>
+      <Box maxWidth="lg" mx="auto" mt={6} p={6}>
+        {story("light")}
+      </Box>
 
-// stories.add("Switch", () => (
-//   // eslint-disable-next-line no-console
-//   <Switch onChange={e => console.log(e.target.checked)} color="green">
-//     <Text fontWeight="semibold">Dark Mode</Text>
-//     <Text color="gray.600" mt={1}>
-//       Activate dark mode for this application
-//     </Text>
-//   </Switch>
-// ));
+      <br />
+      <UIModeProvider value="dark">
+        <Box bg="gray.800" maxWidth="lg" mx="auto" mt={6} p={6}>
+          {story("dark")}
+        </Box>
+      </UIModeProvider>
+    </>
+  );
+});
+
+stories.add("Switch", mode => (
+  <List inline>
+    <Switch
+      size="sm"
+      onChange={e => console.log(e.target.checked)}
+      color="green"
+    />
+    <Switch
+      size="md"
+      onChange={e => console.log(e.target.checked)}
+      color="blue"
+    />
+    <Switch
+      size="lg"
+      onChange={e => console.log(e.target.checked)}
+      color="cyan"
+    />
+  </List>
+));
 
 stories.add("Checkbox", () => (
   <React.Fragment>

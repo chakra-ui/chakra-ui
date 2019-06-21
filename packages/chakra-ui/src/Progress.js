@@ -1,7 +1,31 @@
-import { number, oneOf } from "prop-types";
-import React from "react";
+/** @jsx jsx */
+import { jsx, keyframes, css } from "@emotion/core";
+import { number, oneOf, bool } from "prop-types";
 import { Box } from "./Layout";
 import VisuallyHidden from "./VisuallyHidden";
+
+const stripe = keyframes`
+  from { background-position: 1rem 0}
+  to { background-position: 0 0 }
+`;
+
+const stripeAnimation = css`
+  animation: ${stripe} 1s linear infinite;
+`;
+
+const stripeStyle = css`
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 1rem 1rem;
+`;
 
 const Progress = ({
   color = "blue",
@@ -10,6 +34,8 @@ const Progress = ({
   max = 100,
   size = "md",
   mode,
+  hasStripe,
+  isAnimated,
   borderRadius,
   ...rest
 }) => {
@@ -28,11 +54,15 @@ const Progress = ({
         bg={`${color}.500`}
         aria-valuemax={max}
         aria-valuemin={min}
-        aria-valuenow={value.toString()}
+        aria-valuenow={value}
         role="progressbar"
         borderRadius={borderRadius}
         transition="all 0.3s"
         width={`${percent}%`}
+        css={[
+          hasStripe && stripeStyle,
+          hasStripe && isAnimated && stripeAnimation
+        ]}
       >
         <VisuallyHidden>{`${percent}%`}</VisuallyHidden>
       </Box>
@@ -41,9 +71,10 @@ const Progress = ({
 };
 
 Progress.propTypes = {
-  type: oneOf(["circle", "line"]),
   size: oneOf(["md", "sm", "lg"]),
-  value: number
+  value: number,
+  hasStripe: bool,
+  isAnimated: bool
 };
 
 export default Progress;
