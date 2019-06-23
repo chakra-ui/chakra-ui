@@ -5,7 +5,9 @@ import { themeGet } from "@styled-system/theme-get";
 import { useState, useRef, forwardRef } from "react";
 import { useUIMode } from "./ThemeProvider";
 
-/* TO DO: Unify all the Themed Helpers */
+/* TO DO: Unify all the Themed Helpers
+  Change the Slider to normal `divs` to make it simple
+*/
 
 const themedThumbProps = props => ({
   light: {

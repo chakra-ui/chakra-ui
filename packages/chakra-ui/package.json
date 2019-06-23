@@ -21,6 +21,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@reach/auto-id": "0.2.0",
     "@reach/dialog": "0.2.9",
     "@reach/portal": "0.2.1",
     "@styled-system/css": "5.0.10",

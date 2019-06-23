@@ -1,12 +1,20 @@
+/** @jsx jsx */
+import { jsx, css } from "@emotion/core";
 import styled from "@emotion/styled";
 import { boolean, select, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import Breadcrumbs, { BreadcrumbItem } from "../src/Breadcrumb";
-import Button from "../src/Button";
 import Icon from "../src/Icon";
-import { Box } from "../src/Layout";
-import Tabs, { Tab, TabList, TabPanel, TabPanels } from "../src/Tabs";
+import Button from "../src/Button";
+import { Box, Flex } from "../src/Layout";
+import Tabs, {
+  Tab as BaseTab,
+  TabList as BaseTabList,
+  TabPanel,
+  TabPanels
+} from "../src/Tabs";
+import { useTabStyle, useTabListStyle } from "../src/TabStyle";
 
 const stories = storiesOf("Navigation", module);
 stories.addDecorator(withKnobs);
@@ -18,7 +26,7 @@ stories.addDecorator(story => (
 
 const Content = styled.div`
   align-items: center;
-  /* background-color: rgb(244, 245, 247); */
+  background-color: rgb(244, 245, 247);
   color: rgb(107, 119, 140);
   display: flex;
   flex-direction: column;
@@ -30,75 +38,100 @@ const Content = styled.div`
   padding: 32px;
 `;
 
+const Tab = React.forwardRef((props, ref) => {
+  const tabStyle = useTabStyle();
+  return <BaseTab ref={ref} {...props} css={tabStyle} />;
+});
+
+const TabList = React.forwardRef((props, ref) => {
+  const css = useTabListStyle();
+  return <BaseTabList ref={ref} {...props} css={css} />;
+});
+
 stories.add("Tabs", () => {
   return (
-    <Tabs id="quick-tab" isManual>
-      <TabList bg="#fff" gutter="12px" orientation="horizontal">
+    <Tabs size="md" color="pink">
+      <TabList>
         <Tab>
           <Icon name="phone" size="1em" mr={2} />
-          Contacts
+          Settings
         </Tab>
-        <Tab>Tab 2</Tab>
-        <Tab>Tab 3</Tab>
+        <Tab isDisabled>Billings</Tab>
+        <Tab>Preferences</Tab>
+        <Tab>Shut Down</Tab>
       </TabList>
 
       <TabPanels>
         <TabPanel>
-          <Content>One</Content>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled
-          <Button>Sample Button</Button>
+          <Content>Settings</Content>
         </TabPanel>
         <TabPanel>
-          <Content>Two</Content>
+          <Content>Billings</Content>
         </TabPanel>
         <TabPanel>
-          <Content>Three</Content>
+          <Content>Preferences</Content>
+        </TabPanel>
+        <TabPanel>
+          <Content>Shut Down</Content>
         </TabPanel>
       </TabPanels>
     </Tabs>
   );
 });
 
-stories.add("Tablist", () => {
-  return (
-    <Tabs defaultIndex={1} isManual={true}>
-      <TabList
-        variant={select(
-          "variant",
-          [
-            "solid-rounded",
-            "enclosed-colored",
-            "soft-rounded",
-            "line",
-            "contained",
-            "enclosed"
-          ],
-          "enclosed-colored"
-        )}
-        align={select("alignment", ["center", "left", "right"], "left")}
-        size={select("size", ["sm", "md", "lg"], "md")}
-        isFitted={boolean("isFitted?", false)}
-        bg="#fff"
-        gutter="12px"
-        orientation={select(
-          "orientation",
-          ["horizontal", "vertical"],
-          "horizontal"
-        )}
-        onSelectTab={index => console.log(index)}
-      >
-        <Tab>Account</Tab>
-        <Tab>Notifications</Tab>
-        <Tab>Security</Tab>
-      </TabList>
-      {/* <Box p={3} borderWidth="1px">
-        Testing
-      </Box> */}
-    </Tabs>
-  );
+stories.add("Tablist Only", () => {
+  const props = {
+    variant: select(
+      "variant",
+      [
+        "solid-rounded",
+        "enclosed-colored",
+        "soft-rounded",
+        "line",
+        "contained",
+        "enclosed"
+      ],
+      "soft-rounded"
+    ),
+    align: select("alignment", ["start", "center", "end"], "center"),
+    size: select("size", ["sm", "md", "lg"], "md"),
+    isFitted: boolean("isFitted?", false),
+    gutter: "12px",
+    orientation: select("orientation", ["horizontal", "vertical"], "horizontal")
+  };
+
+  const TabEx = () => {
+    const [index, setIndex] = React.useState(2);
+    return (
+      <>
+        <input
+          type="range"
+          max="4"
+          min="0"
+          value={index}
+          onChange={e => setIndex(Number(e.target.value))}
+        />
+        <Tabs
+          {...props}
+          color="red"
+          index={index}
+          // defaultIndex={2}
+          isManual={true}
+          onChange={setIndex}
+        >
+          <TabList>
+            <Tab>Tab 1</Tab>
+            <Tab>Tab 2</Tab>
+            <Tab>Tab 3</Tab>
+            <Tab>Tab 4</Tab>
+            <Tab>Tab 5</Tab>
+          </TabList>
+        </Tabs>
+      </>
+    );
+  };
+
+  return <TabEx />;
 });
 
 stories.add("Breadcrumbs", () => {
