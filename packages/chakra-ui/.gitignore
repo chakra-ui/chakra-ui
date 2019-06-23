@@ -6,3 +6,5 @@
 /umd
 npm-debug.log*
 .env
+*.log
+yarn.lock

@@ -28,11 +28,11 @@ const Alert = ({
 
   const variantProps = {
     subtle: { bg: colorProps.bg },
-    outline: { borderWidth: 1 },
+    "left-accent": { borderWidth: 1 },
     card: { borderRadius: "md", boxShadow: "sm" }
   };
 
-  const showLeftBorder = variant === "outline" || variant === "card";
+  const showLeftBorder = variant === "left-accent" || variant === "card";
 
   return (
     <Flex
@@ -89,7 +89,7 @@ Alert.defaultProps = {
 
 Alert.propTypes = {
   status: oneOf(["error", "success", "warning", "info"]),
-  variant: oneOf(["subtle", "outline", "card"]),
+  variant: oneOf(["subtle", "solid-bg", "left-accent", "top-accent", "card"]),
   type: oneOf(["assertive", "polite"])
 };
 

@@ -1,5 +1,7 @@
 /** @jsx jsx */
-import css from "@styled-system/css";
+import { css, ThemeContext } from "@emotion/core";
+import { useContext } from "react";
+import { TabContext } from "./Tabs";
 
 const isDisabled = "&[aria-disabled=true]",
   isSelected = "&[aria-selected=true]",
@@ -7,7 +9,24 @@ const isDisabled = "&[aria-disabled=true]",
   isHovered = "&:not([aria-disabled=true]):hover",
   isFocused = "&:not([aria-disabled=true]):focus";
 
-const disabledStyle = {
+const colorPicker = (color, value) => props => {
+  const tabColor = props.theme.colors[color];
+  return tabColor && tabColor[value];
+};
+
+export const baseStyle = {
+  display: "flex",
+  cursor: "pointer",
+  alignItems: "center",
+  justifyContent: "center",
+  transition: "all 0.2s",
+  [isFocused]: {
+    zIndex: "1",
+    boxShadow: `0 0 0px 2px rgba(66, 153, 225, 0.6)`
+  }
+};
+
+export const disabledStyle = {
   [isDisabled]: {
     opacity: 0.4,
     cursor: "not-allowed"
@@ -17,21 +36,24 @@ const disabledStyle = {
 const lineStyle = props => {
   return {
     tabList: css({
-      borderBottom: "2px",
+      borderBottomWidth: 2,
       borderColor: "inherit"
     }),
     tab: css({
-      borderBottom: "2px",
+      borderBottomWidth: 2,
       borderBottomColor: "transparent",
-      mb: "-2px",
+      marginBottom: -2,
       [isSelected]: {
-        color: "blue.600",
+        color: colorPicker(props.color, 600)(props),
         borderBottomColor: "currentColor"
       },
       [isActive]: {
-        bg: "gray.200"
+        backgroundColor: colorPicker("gray", 200)(props)
       },
-      ...disabledStyle
+      [isDisabled]: {
+        opacity: 0.4,
+        cursor: "not-allowed"
+      }
     })
   };
 };
@@ -43,14 +65,13 @@ const containedStyle = props => {
         borderLeftWidth: 1
       },
       [isSelected]: {
-        bg: "gray.100"
-      },
-      ...disabledStyle
+        backgroundColor: colorPicker("gray", 100)(props)
+      }
     }),
     tabList: css({
-      bg: "white",
+      backgroundColor: "#fff",
       borderWidth: 1,
-      borderRadius: "md",
+      borderRadius: props.theme.radii["md"],
       overflow: "hidden"
     })
   };
@@ -60,19 +81,19 @@ const enclosedStyle = props => {
   return {
     tab: css({
       borderRadius: "4px 4px 0 0",
-      borderWidth: "1px",
+      borderWidth: 1,
       borderColor: "transparent",
       borderBottomColor: "inherit",
-      mb: "-1px",
+      marginBottom: "-1px",
       [isSelected]: {
-        color: "blue.600",
+        color: colorPicker(props.color, 600)(props),
         borderColor: "inherit",
-        borderBottomColor: "white"
+        borderBottomColor: "#fff"
       }
     }),
     tabList: css({
-      mb: "-1px",
-      borderBottom: "1px",
+      marginBottom: -1,
+      borderBottomWidth: 1,
       borderColor: "inherit"
     })
   };
@@ -81,24 +102,24 @@ const enclosedStyle = props => {
 const enclosedColoredStyle = props => {
   return {
     tab: css({
-      borderWidth: "1px",
-      bg: "gray.50",
+      borderWidth: 1,
+      backgroundColor: colorPicker("gray", 50)(props),
       borderBottomColor: "inherit",
-      mb: "-1px",
+      marginBottom: -1,
       "&:not(:last-child)": {
-        mr: "-1px"
+        marginRight: "-1px"
       },
       [isSelected]: {
-        bg: "white",
-        color: "blue.600",
+        backgroundColor: "#fff",
+        color: colorPicker(props.color, 600)(props),
         borderColor: "inherit",
         borderTopColor: "currentColor",
-        borderBottomColor: "white"
+        borderBottomColor: "#fff"
       }
     }),
     tabList: css({
-      mb: "-1px",
-      borderBottom: "1px",
+      marginBottom: -1,
+      borderBottomWidth: 1,
       borderColor: "inherit"
     })
   };
@@ -107,12 +128,12 @@ const enclosedColoredStyle = props => {
 const softRoundedStyle = props => {
   return {
     tab: css({
-      borderRadius: "round",
-      fontWeight: "semibold",
-      color: "gray.500",
+      borderRadius: props.theme.radii["round"],
+      fontWeight: props.theme.fontWeights["semibold"],
+      color: colorPicker("gray", 600)(props),
       [isSelected]: {
-        color: "inherit",
-        bg: "gray.100"
+        color: colorPicker(props.color, 700)(props),
+        backgroundColor: colorPicker(props.color, 100)(props)
       }
     }),
     tabList: css({})
@@ -122,12 +143,12 @@ const softRoundedStyle = props => {
 const solidRoundedStyle = props => {
   return {
     tab: css({
-      borderRadius: "round",
-      fontWeight: "semibold",
-      color: "gray.500",
+      borderRadius: props.theme.radii["round"],
+      fontWeight: props.theme.fontWeights["semibold"],
+      color: colorPicker("gray", 600)(props),
       [isSelected]: {
-        color: "white",
-        bg: "blue.500"
+        color: "#fff",
+        backgroundColor: colorPicker(props.color, 600)(props)
       }
     }),
     tabList: css({})
@@ -156,11 +177,11 @@ export const variantStyle = props => {
 // TO DO: Add support for vertical orientation
 export const orientationStyle = props => {
   const alignmentOptions = {
-    right: "flex-end",
+    end: "flex-end",
     center: "center",
-    left: "flex-start"
+    start: "flex-start"
   };
-  switch (props["aria-orientation"]) {
+  switch (props.orientation) {
     case "horizontal":
       return css({
         alignItems: "center",
@@ -174,4 +195,30 @@ export const orientationStyle = props => {
     default:
       break;
   }
+};
+
+export const useTabStyle = () => {
+  const theme = useContext(ThemeContext);
+  const { variant, color, size, isFitted } = useContext(TabContext);
+  const tabStyle = css`
+    ${baseStyle}
+    ${disabledStyle}
+    ${theme.sizes.tab[size]}
+    ${variantStyle({ variant, color, theme }).tab}
+    ${isFitted && { flex: 1 }}
+  `;
+
+  return tabStyle;
+};
+
+export const useTabListStyle = () => {
+  const theme = useContext(ThemeContext);
+  const { variant, align, orientation } = useContext(TabContext);
+
+  const tabStyle = css`
+    ${variantStyle({ variant, theme }).tabList}
+    ${orientationStyle({ align, orientation })}
+  `;
+
+  return tabStyle;
 };

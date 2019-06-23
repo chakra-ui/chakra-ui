@@ -9,6 +9,7 @@ const IconButton = forwardRef(
   ({ icon, isRound, "aria-label": ariaLabel, ...rest }, ref) => {
     // Since I'm reusing the Button component, I need to remove some props
     // before passing it to IconButton
+    
     const {
       isFullWidth,
       leftIcon,

@@ -1,115 +1,90 @@
 /** @jsx jsx */
-import { jsx, css } from "@emotion/core";
-import styled from "@emotion/styled";
-import { themeGet } from "@styled-system/theme-get";
+import { jsx } from "@emotion/core";
 import propTypes from "prop-types";
 import {
   Children,
   cloneElement,
+  createContext,
   forwardRef,
+  useContext,
   useRef,
   useState,
   useEffect
 } from "react";
 import { Box, Flex } from "./Layout";
-import { orientationStyle, variantStyle } from "./TabStyle";
+import { useId } from "@reach/auto-id";
 import { makeId } from "./utils";
 
-const StyledTab = styled(Flex)(props => ({
-  cursor: "pointer",
-  alignItems: "center",
-  justifyContent: "center",
-  transition: "all 0.2s",
-  ...themeGet(`sizes.tab.${props.tabSize}`)(props),
-  "&[data-fitted]": {
-    flex: 1
-  },
-  "&:not([aria-disabled=true]):focus": {
-    zIndex: "1",
-    boxShadow: `0 0 0px 2px rgba(66, 153, 225, 0.6)`
-  }
-}));
+const Tab = forwardRef((props, ref) => {
+  const { isSelected, isDisabled, id, size, ...rest } = props;
 
-const Tab = forwardRef(
-  ({ isSelected, isDisabled, isFitted, id, size, ...rest }, ref) => {
-    return (
-      <StyledTab
-        ref={ref}
-        role="tab"
-        tabSize={size}
-        tabIndex={isSelected ? 0 : -1}
-        id={`tab:${id}`}
-        data-fitted={isFitted ? "" : undefined}
-        as="button"
-        type="button"
-        aria-selected={isSelected}
-        aria-disabled={isDisabled}
-        aria-controls={`panel:${id}`}
-        {...rest}
-      />
-    );
-  }
-);
+  return (
+    <Box
+      ref={ref}
+      role="tab"
+      tabIndex={isSelected ? 0 : -1}
+      id={`tab:${id}`}
+      as="button"
+      type="button"
+      disabled={isDisabled}
+      aria-selected={isSelected}
+      aria-disabled={isDisabled}
+      aria-controls={`panel:${id}`}
+      {...rest}
+    />
+  );
+});
 
-const StyledTabList = styled(Flex)`
-  ${props => variantStyle(props).tabList}
-  ${orientationStyle}
-`;
+////////////////////////////////////////////////////////////////////////
 
 const TabList = forwardRef((props, ref) => {
+  const { children, ...rest } = props;
+
   const {
-    children,
-    index: selectedIndex,
-    onChange,
-    manualIndex,
-    setManualIndex,
-    orientation,
-    onFocusPanel,
-    isManual,
-    align,
-    color,
-    size,
-    isFitted,
     id,
-    ...rest
-  } = props;
+    index: selectedIndex,
+    manualIndex,
+    onManualTabChange,
+    isManual,
+    onChangeTab,
+    onFocusPanel,
+    orientation
+  } = useContext(TabContext);
 
-  const isFocusableChild = child =>
-    child.type === Tab && !child.props.isDisabled;
+  const allNodes = useRef([]);
 
-  const getFocusableChildren = children => {
-    let focusableChildren = [];
-    Children.forEach(
-      children,
-      child => isFocusableChild(child) && focusableChildren.push(child)
-    );
-    return focusableChildren;
-  };
+  const focusableIndexes = Children.map(children, (child, index) =>
+    child.props.isDisabled === true ? null : index
+  ).filter(index => index != null);
 
-  let focusableChildren = getFocusableChildren(children);
-  let count = focusableChildren.length;
-  const focusableNodes = useRef([]);
+  const enabledSelectedIndex = focusableIndexes.indexOf(selectedIndex);
+  const count = focusableIndexes.length;
 
   const updateIndex = index => {
-    onChange && onChange(index);
-    focusableNodes.current[index] && focusableNodes.current[index].focus();
+    const childIndex = focusableIndexes[index];
+    allNodes.current[childIndex].focus();
+    onChangeTab && onChangeTab(childIndex);
   };
 
   const handleKeyDown = event => {
-    if (event.key === "ArrowLeft") {
-      let prevFocusableIndex = (selectedIndex - 1 + count) % count;
-      updateIndex(prevFocusableIndex);
-    }
     if (event.key === "ArrowRight") {
-      let nextFocusableIndex = (selectedIndex + 1) % count;
-      updateIndex(nextFocusableIndex);
+      const nextIndex = (enabledSelectedIndex + 1) % count;
+      updateIndex(nextIndex);
     }
+
+    if (event.key === "ArrowLeft") {
+      const nextIndex = (enabledSelectedIndex - 1 + count) % count;
+      updateIndex(nextIndex);
+    }
+
     if (event.key === "Home") {
       updateIndex(0);
     }
+
     if (event.key === "End") {
-      updateIndex(focusableChildren.length - 1);
+      updateIndex(count - 1);
     }
+
     if (event.key === "ArrowDown") {
       event.preventDefault();
       onFocusPanel && onFocusPanel();
@@ -117,52 +92,202 @@ const TabList = forwardRef((props, ref) => {
   };
 
   const clones = Children.map(children, (child, index) => {
-    if (!isFocusableChild(child)) return child;
-    let focusableChildIndex = focusableChildren.indexOf(child);
-    let isSelected = isManual
-      ? focusableChildIndex === manualIndex
-      : focusableChildIndex === selectedIndex;
+    let isSelected = isManual ? index === manualIndex : index === selectedIndex;
 
-    const handleClick = event => {
-      isManual && setManualIndex(focusableChildIndex);
-      updateIndex(focusableChildIndex);
-      child.props.onClick && child.props.onClick(event);
+    const handleClick = () => {
+      onManualTabChange(index);
+      onChangeTab(index);
     };
 
     return cloneElement(child, {
-      ref: node => (focusableNodes.current[focusableChildIndex] = node),
+      ref: node => (allNodes.current[index] = node),
       isSelected,
       onClick: handleClick,
-      id: makeId(id, index),
-      css: variantStyle(props).tab,
-      size,
-      isFitted
+      id: makeId(id, index)
     });
   });
 
   return (
-    <StyledTabList
+    <Flex
       onKeyDown={handleKeyDown}
       ref={ref}
       role="tablist"
-      aria-orientation="horizontal"
+      aria-orientation={orientation}
       {...rest}
     >
       {clones}
-    </StyledTabList>
+    </Flex>
   );
 });
 
-TabList.defaultProps = {
-  variant: "line",
-  size: "md"
+////////////////////////////////////////////////////////////////////////
+
+const TabPanel = ({ children, isSelected, selectedPanelRef, id, ...rest }) => {
+  return (
+    <Box
+      ref={isSelected ? selectedPanelRef : undefined}
+      role="tabpanel"
+      tabIndex={-1}
+      aria-labelledby={`tab:${id}`}
+      hidden={!isSelected}
+      id={`panel:${id}`}
+      css={{ outline: "none" }}
+      {...rest}
+    >
+      {children}
+    </Box>
+  );
 };
 
-TabList.propTypes = {
+////////////////////////////////////////////////////////////////////////
+
+const TabPanels = forwardRef(({ children, ...rest }, ref) => {
+  const {
+    index: selectedIndex,
+    selectedPanelRef,
+    id,
+    isManual,
+    manualIndex
+  } = useContext(TabContext);
+
+  const clones = Children.map(children, (child, index) => {
+    return cloneElement(child, {
+      isSelected: isManual ? index === manualIndex : index === selectedIndex,
+      selectedPanelRef,
+      id: makeId(id, index)
+    });
+  });
+
+  return (
+    <Box tabIndex="-1" ref={ref} {...rest}>
+      {clones}
+    </Box>
+  );
+});
+
+////////////////////////////////////////////////////////////////////////
+
+export const TabContext = createContext();
+
+const Tabs = forwardRef(
+  (
+    {
+      children,
+      onChange,
+      index: controlledIndex,
+      defaultIndex,
+      isManual,
+      color,
+      align,
+      size,
+      orientation,
+      variant,
+      isFitted,
+      ...props
+    },
+    ref
+  ) => {
+    const isControlled = controlledIndex != null;
+    const selectedPanelRef = useRef(null);
+
+    const getInitialIndex = () => {
+      if (!isManual) {
+        return defaultIndex || 0;
+      } else {
+        return controlledIndex || defaultIndex || 0;
+      }
+    };
+
+    const getActualIdx = () => {
+      if (isManual) {
+        return selectedIndex;
+      } else {
+        return isControlled ? controlledIndex : selectedIndex;
+      }
+    };
+
+    const [selectedIndex, setSelectedIndex] = useState(getInitialIndex);
+    const [manualIndex, setManualIndex] = useState(
+      controlledIndex || defaultIndex || 0
+    );
+
+    let actualIdx = getActualIdx();
+    let manualIdx = isControlled ? controlledIndex : manualIndex;
+
+    const onChangeTab = index => {
+      if (!isControlled) {
+        setSelectedIndex(index);
+      }
+
+      if (isControlled && isManual) {
+        setSelectedIndex(index);
+      }
+
+      if (!isManual) {
+        onChange && onChange(index);
+      }
+    };
+
+    const onManualTabChange = index => {
+      if (!isControlled) {
+        setManualIndex(index);
+      }
+
+      if (isManual) {
+        onChange && onChange(index);
+      }
+    };
+
+    useEffect(() => {
+      console.log({ selectedIndex, manualIndex, controlledIndex });
+    });
+
+    const onFocusPanel = () => {
+      if (selectedPanelRef.current) selectedPanelRef.current.focus();
+    };
+
+    const id = useId();
+
+    const context = {
+      id,
+      index: actualIdx,
+      manualIndex: manualIdx,
+      onManualTabChange,
+      isManual,
+      onChangeTab,
+      selectedPanelRef,
+      onFocusPanel,
+      color,
+      size,
+      align,
+      variant,
+      isFitted,
+      orientation
+    };
+
+    return (
+      <TabContext.Provider value={context}>
+        <Box ref={ref} {...props}>
+          {children}
+        </Box>
+      </TabContext.Provider>
+    );
+  }
+);
+
+Tabs.defaultProps = {
+  size: "sm",
+  variant: "line",
+  align: "center",
+  orientation: "horizontal",
+  color: "blue"
+};
+
+Tabs.propTypes = {
   /**
    * The alignment of the tabs
    * */
-  align: propTypes.oneOf(["left", "right", "center"]),
+  align: propTypes.oneOf(["start", "center", "end"]),
   /**
    * If `true`, tabs will stretch to width of the tablist
    * */
@@ -174,110 +299,7 @@ TabList.propTypes = {
   /**
    * The size of the tab (affects the font-size and padding)
    * */
-  size: propTypes.oneOf(["sm", "md", "lg"])
-};
-
-const TabPanel = ({ children, isSelected, selectedPanelRef, id, ...rest }) => {
-  const { onSelectTab, onFocusPanel, ...htmlProps } = rest;
-  return (
-    <Box
-      ref={isSelected ? selectedPanelRef : undefined}
-      role="tabpanel"
-      tabIndex={-1}
-      aria-labelledby={`tab:${id}`}
-      hidden={!isSelected}
-      id={`panel:${id}`}
-      css={{ "&:focus": { outline: "0" } }}
-      {...htmlProps}
-    >
-      {children}
-    </Box>
-  );
-};
-
-const TabPanels = forwardRef(function TabPanels(
-  {
-    children,
-    index: selectedIndex,
-    selectedPanelRef,
-    id,
-    tabPanelStyle,
-    ...rest
-  },
-  ref
-) {
-  const clones = Children.map(children, (child, index) =>
-    cloneElement(child, {
-      isSelected: index === selectedIndex,
-      selectedPanelRef,
-      id: makeId(id, index),
-      style: tabPanelStyle
-    })
-  );
-
-  return (
-    <Box role="tabpanel" tabIndex="-1" ref={ref} {...rest}>
-      {clones}
-    </Box>
-  );
-});
-
-// ======================== TAB COMPONENT =======================
-
-const Tabs = forwardRef(function Tabs(
-  {
-    children,
-    onChange,
-    index: controlledIndex,
-    defaultIndex,
-    id,
-    isManual,
-    ...props
-  },
-  ref
-) {
-  const isControlled = controlledIndex != null;
-  const selectedPanelRef = useRef(null);
-  const [focusIndex, setFocusIndex] = useState(defaultIndex || 0);
-  const [manualIndex, setManualIndex] = useState(defaultIndex || 0);
-
-  let actualIdx = isControlled ? controlledIndex : focusIndex;
-  let manualIdx = isControlled ? controlledIndex : manualIndex;
-
-  const clones = Children.map(children, child => {
-    if (child.type === TabList) {
-      return cloneElement(child, {
-        index: actualIdx,
-        manualIndex: manualIdx,
-        setManualIndex: setManualIndex,
-        isManual,
-        id,
-        onChange: index => {
-          if (!isControlled) setFocusIndex(index);
-          onChange && onChange(index);
-        },
-        onFocusPanel: () => {
-          if (selectedPanelRef.current) selectedPanelRef.current.focus();
-        }
-      });
-    }
-
-    if (child.type === TabPanels) {
-      return cloneElement(child, {
-        index: isManual ? manualIdx : actualIdx,
-        selectedPanelRef,
-        id
-      });
-    }
-  });
-  return (
-    <Box ref={ref} {...props}>
-      {clones}
-    </Box>
-  );
-});
-
-Tabs.propTypes = {
+  size: propTypes.oneOf(["sm", "md", "lg"]),
   /**
    * If `true`, the tabs will be manually activated and
    * display its panel by pressing Space or Enter.
