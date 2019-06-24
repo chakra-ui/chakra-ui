@@ -65,9 +65,11 @@ const Radio = forwardRef(
       isDisabled,
       isChecked,
       id,
+      name,
       mode,
       children,
       color,
+      onChange,
       wrapperProps,
       inline,
       size,
@@ -94,9 +96,11 @@ const Radio = forwardRef(
           as="input"
           type="radio"
           id={id}
+          name={name}
           ref={ref}
           checked={isChecked}
           disabled={isDisabled}
+          onChange={onChange}
           {...rest}
         />
         <StyledRadio

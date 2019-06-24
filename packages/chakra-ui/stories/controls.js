@@ -8,6 +8,8 @@ import Text from "../src/Text";
 import { Label } from "../src/FormControl";
 import { UIModeProvider } from "../src/ThemeProvider";
 import List from "../src/List";
+import RadioGroup, { RadioButtonGroup } from "../src/RadioGroup";
+import Button from "../src/Button";
 
 const stories = storiesOf("Controls", module);
 
@@ -114,24 +116,50 @@ stories.add("Radio", () => (
   </React.Fragment>
 ));
 
+stories.add("Radio Button Group Ex", () => {
+  const Radio = React.forwardRef((props, ref) => {
+    const { isChecked, isDisabled, ...rest } = props;
+    return (
+      <Button
+        ref={ref}
+        color={isChecked ? "red" : "gray"}
+        aria-checked={isChecked}
+        role="radio"
+        isDisabled={isDisabled}
+        {...rest}
+      />
+    );
+  });
+
+  return (
+    <RadioButtonGroup>
+      <Radio value="rad1">Radio 1</Radio>
+      <Radio value="rad2" isDisabled>
+        Radio 2
+      </Radio>
+      <Radio value="rad3">Radio 3</Radio>
+    </RadioButtonGroup>
+  );
+});
+
 // stories.add("ChoiceCard", () => (
 //   <ChoiceCardGroup type="radio" autoSelect>
 //     <ChoiceCard />
 //   </ChoiceCardGroup>
 // ));
 
-// stories.add("Inline radio buttons ", () => (
-//   <RadioGroup
-//     name="ki"
-//     inline
-//     // spacing={2}
-//     defaultValue="female"
-//     onChange={e => console.log(e.target.value)}
-//   >
-//     <Radio value="male">Male</Radio>
-//     <Radio value="female">Female</Radio>
-//   </RadioGroup>
-// ));
+stories.add("Inline radio buttons ", () => (
+  <RadioGroup
+    // name="ki"
+    // inline
+    // spacing={2}
+    defaultValue="male"
+    onChange={value => console.log(value)}
+  >
+    <Radio value="male">Male</Radio>
+    <Radio value="female">Female</Radio>
+  </RadioGroup>
+));
 
 // stories.add("Disabled radio buttons ", () => (
 //   <RadioGroup
