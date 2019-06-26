@@ -10,6 +10,7 @@ import { Box } from "../src/Layout";
 import NumberInput from "../src/NumberInput";
 import Select from "../src/Select";
 import Slider from "../src/Slider";
+import SliderV2 from "../src/SliderV2";
 import SliderInput from "../src/SliderInput";
 import Textarea, { ExpandingTextarea } from "../src/Textarea";
 import InputAddon from "../src/InputAddon";
@@ -155,11 +156,30 @@ stories.add("Slider", () => (
   />
 ));
 
+stories.add("Slider V2", () => (
+  <>
+    <SliderV2
+      defaultValue={130}
+      step={10}
+      min={0}
+      max={100}
+      onChange={i => console.log(i)}
+    />
+    <Slider
+      defaultValue={130}
+      step={10}
+      min={0}
+      max={100}
+      onChange={i => console.log(i)}
+    />
+  </>
+));
+
 stories.add("Slider Input", () => (
   <SliderInput
     max={50}
     defaultValue={25}
-    min={10}
+    min={0}
     size={select("Size", ["sm", "md", "lg"], "md")}
     isDisabled={boolean("isDisabled", false)}
   />

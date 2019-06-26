@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import { themeGet } from "@styled-system/theme-get";
-import { useState, useRef, forwardRef } from "react";
+import { forwardRef, useRef, useState } from "react";
 import { useUIMode } from "./ThemeProvider";
 
 /* TO DO: Unify all the Themed Helpers

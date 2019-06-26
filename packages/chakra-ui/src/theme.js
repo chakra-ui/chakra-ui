@@ -400,16 +400,16 @@ const theme = {
     },
     slider: {
       lg: {
-        thumb: 16,
-        trackHeight: 4
+        thumb: "16px",
+        trackHeight: "4px"
       },
       md: {
-        thumb: 14,
-        trackHeight: 4
+        thumb: "14px",
+        trackHeight: "4px"
       },
       sm: {
-        thumb: 10,
-        trackHeight: 2
+        thumb: "10px",
+        trackHeight: "2px"
       }
     },
     closeButton: {
