@@ -1,35 +1,98 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { cloneElement } from "react";
-import Text from "../Text";
+import { useId } from "@reach/auto-id";
+import { createContext, useContext } from "react";
 import { Box } from "../Layout";
-import VisuallyHidden from "../VisuallyHidden";
+import Text from "../Text";
 import { useUIMode } from "../ThemeProvider";
 
-export const Label = ({
-  children,
-  isOptional,
-  optionalText = "(Optional)",
-  ...rest
-}) => {
+export const useFormControlProps = props => {
+  const context = useFormControlContext();
+  if (!context) {
+    return props;
+  }
+  const keys = Object.keys(context);
+  return keys.reduce((acc, prop) => {
+    acc[prop] = props[prop];
+
+    if (context) {
+      /** Giving precedence to `props` over `context` */
+      if (props[prop] == null) {
+        acc[prop] = context[prop];
+      }
+    }
+
+    return acc;
+  }, {});
+};
+
+const Message = props => {
+  return (
+    <Text lineHeight="none" iconSize="12px" mt={2} fontSize="sm" {...props} />
+  );
+};
+
+export const ErrorMessage = props => {
+  const { mode, id } = useFormControlProps(props);
+  const color = { light: "red.500", dark: "red.300" };
+  return (
+    <Message
+      id={`${id}-error`}
+      leftIcon="warning"
+      color={color[mode]}
+      {...props}
+    />
+  );
+};
+
+export const ValidMessage = props => {
+  const { mode, id } = useFormControlProps(props);
+  const color = { light: "green.500", dark: "green.200" };
+  return (
+    <Message
+      id={`${id}-valid`}
+      leftIcon="check-circle"
+      color={color[mode]}
+      {...props}
+    />
+  );
+};
+
+export const HelperMessage = props => {
+  const { mode, id } = useFormControlProps(props);
+  const color = { light: "gray.500", dark: "alpha.600" };
+  return <Message id={`${id}-helper`} color={color[mode]} {...props} />;
+};
+
+export const RequiredIndicator = props => {
+  const mode = useUIMode();
+  const color = { light: "red.500", dark: "red.300" };
+  return <Box as="span" ml={1} color={color[mode]} {...props} />;
+};
+
+export const FormLabel = ({ children, ...props }) => {
+  const { id, isRequired, isDisabled, mode } = useFormControlProps(props);
+  const color = { light: "inherit", dark: "alpha.800" };
+
   return (
     <Box
       fontSize="md"
       pr="12px"
       pb="4px"
+      opacity={isDisabled ? "0.4" : "1"}
+      color={color[mode]}
+      id={`${id}-label`}
+      htmlFor={id}
       fontWeight="medium"
       textAlign="left"
       verticalAlign="middle"
       display="inline-block"
       as="label"
-      css={{ "&[for]": { cursor: "pointer" } }}
-      {...rest}
+      {...props}
     >
       {children}
-      {isOptional && (
-        <Box opacity="50%" fontSize="84%" ml={1}>
-          {optionalText}
-        </Box>
+      {isRequired && (
+        <RequiredIndicator aria-hidden="true">*</RequiredIndicator>
       )}
     </Box>
   );
@@ -44,81 +107,45 @@ export const ValidationText = ({ children, color, ...props }) => {
       leftIcon="warning"
       fontSize="sm"
       color={color}
+      {...props}
     >
       {children}
     </Text>
   );
 };
 
-const FormControl = props => {
-  const {
-    children,
-    label,
-    isInvalid,
-    isOptional,
-    isRequired,
-    hideLabel,
-    helpText,
-    id,
-    validationText,
-    ...rest
-  } = props;
+const FormControlContext = createContext();
 
+export const useFormControlContext = () => {
+  const context = useContext(FormControlContext);
+  return context;
+};
+
+const FormControl = ({
+  id,
+  name = "form-control",
+  children,
+  isInvalid,
+  isRequired,
+  isDisabled,
+  ...rest
+}) => {
   const mode = useUIMode();
+  const fallbackId = `${name}-${useId()}`;
 
-  const textColor = { light: "inherit", dark: "alpha.800" };
-  const validationTextColor = {
-    light: isInvalid ? "red.500" : "inherit",
-    dark: isInvalid ? "red.400" : "alpha.700"
+  const childContext = {
+    name,
+    id: id || fallbackId,
+    isRequired,
+    isDisabled,
+    isInvalid,
+    mode
   };
 
-  const _label =
-    typeof label === "string" ? (
-      <Label color={textColor[mode]} isOptional={isOptional} htmlFor={id}>
-        {label}
-      </Label>
-    ) : (
-      label
-    );
-
   return (
-    <Box {...rest}>
-      {hideLabel ? <VisuallyHidden>{_label}</VisuallyHidden> : _label}
-
-      {helpText && (
-        <Text
-          as="span"
-          fontSize="sm"
-          color={textColor[mode]}
-          opacity="75%"
-          py="4px"
-          css={{ float: "right" }}
-        >
-          {helpText}
-        </Text>
-      )}
-
-      <Box style={{ clear: "right" }}>
-        {cloneElement(children, {
-          id,
-          isInvalid,
-          isRequired
-        })}
-      </Box>
-
-      {validationText && (
-        <Text
-          display="flex"
-          lineHeight="none"
-          mt={2}
-          leftIcon="warning"
-          fontSize="sm"
-          color={validationTextColor[mode]}
-        >
-          {validationText}
-        </Text>
-      )}
-    </Box>
+    <FormControlContext.Provider value={childContext}>
+      <Box {...rest}>{children}</Box>
+    </FormControlContext.Provider>
   );
 };
 

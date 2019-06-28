@@ -5,7 +5,7 @@ import { useTheme, useUIMode } from "../ThemeProvider";
 // Just so I don't repeat this :)
 let hover = "&:not([aria-disabled=true]):not(:focus):hover",
   disabled = "&[aria-disabled=true]",
-  focus = "&:focus",
+  focus = "&:not([aria-invalid=true]):focus",
   invalid = "&[aria-invalid=true]";
 
 export const themedStyle = props => {
@@ -75,7 +75,7 @@ const variantStyle = props => {
     case "flushed":
       return flushedStyle(props);
     case "unstyled":
-      return unStyledStyle(props);
+      return unStyledStyle;
     default:
       break;
   }
@@ -96,24 +96,18 @@ const invalidStyle = props => {
     [invalid]: {
       borderColor:
         mode === "dark"
-          ? `${theme.colors.red[400]} !important`
+          ? `${theme.colors.red[300]} !important`
           : `${theme.colors.red[500]} !important`
     }
   });
 };
 
 const focusStyle = props => {
-  const { mode, theme } = props;
+  const { theme } = props;
   return css({
     [focus]: {
       borderColor: theme.colors.blue[300],
-      boxShadow: theme.shadows.focusring,
-      [invalid]: {
-        boxShadow:
-          mode === "dark"
-            ? `0 0 0 1px ${theme.colors.red[400]}`
-            : `0 0 0 1px ${theme.colors.red[500]}`
-      }
+      boxShadow: theme.shadows.focusring
     }
   });
 };

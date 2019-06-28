@@ -10,10 +10,10 @@ function loadStories() {
 
 addDecorator(story => (
   <ThemeProvider theme={theme} mode="light">
-    <React.Fragment>
+    <>
       <CSSReset />
       {story()}
-    </React.Fragment>
+    </>
   </ThemeProvider>
 ));
 

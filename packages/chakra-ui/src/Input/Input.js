@@ -4,29 +4,30 @@ import propTypes from "prop-types";
 import { forwardRef } from "react";
 import { Box } from "../Layout";
 import useInputStyle from "./InputStyle";
+import { useFormControlProps } from "../FormControl";
 
 const Input = forwardRef((props, ref) => {
   const {
     size,
     as,
     "aria-label": ariaLabel,
-    id,
-    isDisabled,
-    isInvalid,
     isFocused,
     isReadOnly,
-    isRequired,
     variant,
     css,
     ...rest
   } = props;
 
   const inputStyle = useInputStyle(props);
+  const { id, name, isDisabled, isInvalid, isRequired } = useFormControlProps(
+    props
+  );
 
   return (
     <Box
       ref={ref}
       as={as}
+      name={name}
       aria-label={ariaLabel}
       id={id}
       readOnly={isReadOnly}
