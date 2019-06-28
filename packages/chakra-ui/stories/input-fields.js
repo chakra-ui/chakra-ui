@@ -2,19 +2,24 @@
 import { boolean, select, text, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
+import Button from "../src/Button";
 import CharacterCounter from "../src/CharacterCounter";
 import { Component } from "../src/Component";
+import FormControl, {
+  ErrorMessage,
+  FormLabel,
+  HelperMessage,
+  ValidMessage
+} from "../src/FormControl";
 import Input from "../src/Input";
+import InputAddon from "../src/InputAddon";
+import InputGroup from "../src/InputGroup";
 import { Box } from "../src/Layout";
 import NumberInput from "../src/NumberInput";
 import Select from "../src/Select";
 import Slider from "../src/Slider";
 import SliderInput from "../src/SliderInput";
 import Textarea, { ExpandingTextarea } from "../src/Textarea";
-import InputAddon from "../src/InputAddon";
-import InputGroup from "../src/InputGroup";
-import FormControl from "../src/FormControl";
-import Button from "../src/Button";
 import { UIModeProvider } from "../src/ThemeProvider";
 
 const stories = storiesOf("Input Fields", module);
@@ -46,18 +51,29 @@ stories.add("Input", () => (
   />
 ));
 
+stories.add("Error Message", () => (
+  <FormControl isRequired isInvalid>
+    <FormLabel>Enter First Name</FormLabel>
+    <Input placeholder="Enter first name" />
+    <Select placeholder="Enter first name" mt={2} />
+    <ErrorMessage>The email you entered is invalid</ErrorMessage>
+    <ValidMessage>Nice! The email you entered is valid</ValidMessage>
+    <HelperMessage>Ensure your email contains @ sign</HelperMessage>
+  </FormControl>
+));
+
 stories.add("Label + Input", () => (
   <FormControl
-    label={text("Label", "How much you wan buy am?")}
-    helpText={text("Help", "Ensure its in USD")}
     id="boo"
     isRequired={boolean("isRequired", false)}
-    isInvalid={boolean("isInvalid", true)}
-    validationText={text("validationText", "You gotta enter something!")}
+    isInvalid={boolean("isInvalid", false)}
+    // validationText={text("validationText", "You gotta enter something!")}
   >
-    <InputAddon text="$" position="right">
+    <FormLabel>{text("Label", "How much you wan buy am?")}</FormLabel>
+    <InputAddon text="$" position="left">
       <Input placeholder={text("Placeholder", "Enter completion")} />
     </InputAddon>
+    <HelperMessage>{text("Help", "Ensure its in USD")}</HelperMessage>
   </FormControl>
 ));
 

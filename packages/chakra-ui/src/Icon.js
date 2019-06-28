@@ -41,7 +41,8 @@ const Icon = ({ size, name, color, role, ...rest }) => {
 };
 
 Icon.defaultProps = {
-  size: "1em"
+  size: "1em",
+  color: "currentColor"
 };
 
 Icon.propTypes = {

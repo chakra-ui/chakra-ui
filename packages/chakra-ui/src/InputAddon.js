@@ -46,11 +46,13 @@ const Addon = props => {
   let positionStyle =
     position === "left"
       ? css`
+          margin-right: -1px;
           border-bottom-right-radius: 0;
           border-top-right-radius: 0;
         `
       : css`
           order: 1;
+          margin-left: -1px;
           border-bottom-left-radius: 0;
           border-top-left-radius: 0;
         `;

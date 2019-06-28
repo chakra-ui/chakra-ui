@@ -1,12 +1,11 @@
 import React, { forwardRef, useRef, useState } from "react";
 import Input from "./Input";
 import { Box } from "./Layout";
-import Textarea from "./Textarea";
 
 const CharacterCounter = forwardRef(
   (
     {
-      useInput,
+      component: Comp = Input,
       defaultValue,
       value: valueProp,
       countDown,
@@ -22,8 +21,6 @@ const CharacterCounter = forwardRef(
   ) => {
     const [value, setValue] = useState(defaultValue || "");
     const { current: isControlled } = useRef(valueProp != null);
-
-    const Comp = useInput ? Input : Textarea;
     const realValue = isControlled ? valueProp : value;
 
     const errorCondition = () => {

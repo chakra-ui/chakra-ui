@@ -1,6 +1,6 @@
 import React from "react";
 import propTypes from "prop-types";
-import { Box } from "./Layout";
+import { Box, Flex } from "./Layout";
 import Icon from "./Icon";
 
 const Text = ({
@@ -12,31 +12,41 @@ const Text = ({
   iconSize,
   iconColor,
   ...props
-}) => (
-  <Box as={as} {...props}>
-    {leftIcon && (
-      <Icon
-        mr={iconSpacing}
-        name={leftIcon}
-        color={iconColor}
-        size={iconSize}
-      />
-    )}
-    {children}
-    {rightIcon && (
-      <Icon
-        ml={iconSpacing}
-        name={rightIcon}
-        color={iconColor}
-        size={iconSize}
-      />
-    )}
-  </Box>
-);
+}) => {
+  if (!leftIcon && !rightIcon) {
+    return (
+      <Box as={as} {...props}>
+        {children}
+      </Box>
+    );
+  }
+
+  return (
+    <Flex alignItems="center" {...props}>
+      {leftIcon && (
+        <Icon
+          aria-hidden
+          mr={iconSpacing}
+          name={leftIcon}
+          color={iconColor}
+          size={iconSize}
+        />
+      )}
+      <Box as={as}>{children}</Box>
+      {rightIcon && (
+        <Icon
+          aria-hidden
+          ml={iconSpacing}
+          name={rightIcon}
+          color={iconColor}
+          size={iconSize}
+        />
+      )}
+    </Flex>
+  );
+};
 
 Text.defaultProps = {
-  iconSize: "1em",
-  iconColor: "currentColor",
   iconSpacing: 2,
   as: "p"
 };

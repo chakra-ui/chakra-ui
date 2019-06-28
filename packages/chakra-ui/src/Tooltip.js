@@ -82,7 +82,7 @@ const Tooltip = ({
       </Reference>
       <Popper placement={placement}>
         {({ ref: popperRef, style, arrowProps, placement }) => (
-          <PopoverTransition duration={100} isOpen={open}>
+          <PopoverTransition duration={50} isOpen={open}>
             {styles => (
               <Portal>
                 <StyledTooltip
@@ -97,7 +97,8 @@ const Tooltip = ({
                   color={textColor}
                   css={{
                     ...style,
-                    transform: `${style.transform} scale(${styles.scale})`,
+                    transform: `${style.transform}`,
+                    // transform: `${style.transform} scale(${styles.scale})`,
                     opacity: styles.opacity
                   }}
                   data-placement={placement}
