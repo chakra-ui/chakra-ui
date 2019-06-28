@@ -22,6 +22,7 @@ const CloseButton = ({
   isDisabled,
   color,
   icon = "close",
+  "aria-label": ariaLabel = "Close",
   onClick,
   ...rest
 }) => {
@@ -36,12 +37,16 @@ const CloseButton = ({
       tabindex="0"
       borderRadius="round"
       as="button"
-      color={color}
       css={baseStyle}
       {...rest}
     >
-      <Icon name={icon} aria-hidden="true" size={`closeButton.${size}`} />
-      <VisuallyHidden>Close</VisuallyHidden>
+      <Icon
+        color={color}
+        name={icon}
+        aria-hidden
+        size={`closeButton.${size}`}
+      />
+      <VisuallyHidden>{ariaLabel}</VisuallyHidden>
     </Flex>
   );
 };

@@ -4,20 +4,18 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 import CharacterCounter from "../src/CharacterCounter";
 import { Component } from "../src/Component";
-import FormControl from "../src/FormControl";
 import Input from "../src/Input";
 import { Box } from "../src/Layout";
 import NumberInput from "../src/NumberInput";
 import Select from "../src/Select";
 import Slider from "../src/Slider";
-import SliderV2 from "../src/SliderV2";
 import SliderInput from "../src/SliderInput";
 import Textarea, { ExpandingTextarea } from "../src/Textarea";
 import InputAddon from "../src/InputAddon";
 import InputGroup from "../src/InputGroup";
+import FormControl from "../src/FormControl";
 import Button from "../src/Button";
 import { UIModeProvider } from "../src/ThemeProvider";
-import GoogleAddress from "../src/GoogleAddress";
 
 const stories = storiesOf("Input Fields", module);
 stories.addDecorator(withKnobs);
@@ -46,19 +44,6 @@ stories.add("Input", () => (
     isReadOnly={boolean("isReadOnly", false)}
     isDisabled={boolean("isDisabled", false)}
   />
-));
-
-stories.add("Address Input", () => (
-  <GoogleAddress onChange={v => console.log(v)}>
-    {({ ref, onChange }) => (
-      <Input
-        ref={ref}
-        defaultValue="Araromi Street"
-        onChange={onChange}
-        placeholder="Enter Address"
-      />
-    )}
-  </GoogleAddress>
 ));
 
 stories.add("Label + Input", () => (
@@ -154,25 +139,6 @@ stories.add("Slider", () => (
     size={select("Size", ["sm", "md", "lg"], "md")}
     isDisabled={boolean("isDisabled", false)}
   />
-));
-
-stories.add("Slider V2", () => (
-  <>
-    <SliderV2
-      defaultValue={130}
-      step={10}
-      min={0}
-      max={100}
-      onChange={i => console.log(i)}
-    />
-    <Slider
-      defaultValue={130}
-      step={10}
-      min={0}
-      max={100}
-      onChange={i => console.log(i)}
-    />
-  </>
 ));
 
 stories.add("Slider Input", () => (

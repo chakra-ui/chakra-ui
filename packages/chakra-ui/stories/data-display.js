@@ -2,7 +2,7 @@ import { withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import Avatar, { AvatarGroup, MoreIndicator } from "../src/Avatar";
-import Badge from "../src/Badge";
+import Badge from "../src/Badge/Badge";
 import { Box } from "../src/Layout";
 import {
   StatGroup,
@@ -13,10 +13,11 @@ import {
   StatChangeArrow
 } from "../src/Stat";
 import Progress from "../src/Progress";
-import { AccordionItem } from "../src/Accordion";
+import Accordion from "../src/Accordion";
 import Rover from "../src/Rover";
 import Button, { ButtonGroup } from "../src/Button";
 import IconButton from "../src/IconButton";
+import Rating from "../src/Rating";
 
 const stories = storiesOf("Data Display", module);
 stories.addDecorator(withKnobs);
@@ -69,6 +70,8 @@ stories.add("Avatars", () => (
     src="https://zeit.co/api/www/avatar/?u=rauchg&s=60"
   />
 ));
+
+stories.add("Rating", () => <Rating />);
 
 // stories.add("Tags", () => {
 //   return (
@@ -237,7 +240,7 @@ stories.add("Stat Display with Indicators", () => {
 
 stories.add("Accordion", () => {
   return (
-    <AccordionItem title="Curious what lorem ipsum text is?" defaultOpen>
+    <Accordion title="Curious what lorem ipsum text is?" defaultOpen>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua.
@@ -249,7 +252,7 @@ stories.add("Accordion", () => {
         pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
         qui officia deserunt mollit anim id est laborum
       </p>
-    </AccordionItem>
+    </Accordion>
   );
 });
 

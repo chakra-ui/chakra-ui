@@ -15,7 +15,7 @@ const Svg = styled(Box)`
 
 const Icon = ({ size, name, color, role, ...rest }) => {
   const { icons: iconPaths } = useContext(ThemeContext);
-  const iconFallback = iconPaths["question-outline"]; // Fallback in case you pass the wrong key
+  const iconFallback = iconPaths["question-outline"]; // Fallback in case you pass the wrong name
 
   const iconPath =
     iconPaths[name] == null ? iconFallback.path : iconPaths[name].path;

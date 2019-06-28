@@ -3,49 +3,63 @@ import { jsx, css } from "@emotion/core";
 import styled from "@emotion/styled";
 import { oneOf } from "prop-types";
 import { cloneElement } from "react";
-import { StyledInput } from "./Input";
 import { Box, Flex } from "./Layout";
 import { useUIMode } from "./ThemeProvider";
+import useInputStyle from "./Input/InputStyle";
 
-const AddonWrapper = styled(Box)`
-  &.input-addon__left {
+const InputWrapper = styled(Box)`
+  &[data-position="left"] {
     margin-right: -1px;
     z-index: 1;
   }
 
-  &.input-addon__right {
+  &[data-position="right"] {
     margin-left: -1px;
     z-index: 1;
   }
 
-  &.input-addon__left > * {
+  &[data-position="right"] > * {
     border-bottom-right-radius: 0 !important;
     border-top-right-radius: 0 !important;
   }
 
-  &.input-addon__right > * {
+  &[data-position="left"] > * {
     border-bottom-left-radius: 0 !important;
     border-top-left-radius: 0 !important;
   }
 `;
 
-const Addon = ({ variant, size, mode, children, ...props }) => {
+const Addon = props => {
+  const { variant, size, position, ...rest } = props;
+  const mode = useUIMode();
+
+  const inputStyle = useInputStyle(props);
+
+  let customStyle = theme => ({
+    flex: "0 0 auto",
+    whiteSpace: "nowrap",
+    width: "auto",
+    background:
+      mode === "dark" ? theme.colors.alpha[300] : theme.colors.gray[100]
+  });
+
+  let positionStyle =
+    position === "left"
+      ? css`
+          border-bottom-right-radius: 0;
+          border-top-right-radius: 0;
+        `
+      : css`
+          order: 1;
+          border-bottom-left-radius: 0;
+          border-top-left-radius: 0;
+        `;
+
   return (
-    <StyledInput
-      whiteSpace="nowrap"
-      flex="0 0 auto"
-      css={theme => ({
-        width: "auto",
-        background:
-          mode === "dark" ? theme.colors.alpha[300] : theme.colors.gray[100]
-      })}
-      inputSize={size}
-      variant={variant}
-      mode={mode}
-      {...props}
-    >
-      {children}
-    </StyledInput>
+    <Box
+      css={theme => css(inputStyle, customStyle(theme), positionStyle)}
+      {...rest}
+    />
   );
 };
 
@@ -59,49 +73,20 @@ const InputAddon = ({
   position = "left",
   ...rest
 }) => {
-  const mode = useUIMode()
-  let isRight = position === "right";
   return (
-    <Flex as="label" className="input-addon">
-      {position === "left" && (
-        <Addon
-          size={size}
-          variant={variant}
-          mode={mode}
-          css={css`
-            border-bottom-right-radius: 0;
-            border-top-right-radius: 0;
-          `}
-        >
-          {text}
-        </Addon>
-      )}
-      <AddonWrapper
-        flex="1"
-        className={isRight ? "input-addon__left" : "input-addon__right"}
-      >
+    <Flex as="label">
+      <Addon size={size} variant={variant} position={position}>
+        {text}
+      </Addon>
+      <InputWrapper flex="1" data-position={position}>
         {cloneElement(children, {
           size,
           id,
-          mode,
           variant,
           isInvalid,
           ...rest
         })}
-      </AddonWrapper>
-      {position === "right" && (
-        <Addon
-          size={size}
-          variant={variant}
-          mode={mode}
-          css={css`
-            border-bottom-left-radius: 0;
-            border-top-left-radius: 0;
-          `}
-        >
-          {text}
-        </Addon>
-      )}
+      </InputWrapper>
     </Flex>
   );
 };

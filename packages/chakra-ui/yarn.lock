@@ -975,6 +975,13 @@
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
 
+"@reach/alert@^0.1.2":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@reach/alert/-/alert-0.1.5.tgz#4da79add0055fa4295f51e5295ed3b80257e9153"
+  dependencies:
+    "@reach/component-component" "^0.1.3"
+    "@reach/visually-hidden" "^0.1.4"
+
 "@reach/auto-id@0.2.0":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@reach/auto-id/-/auto-id-0.2.0.tgz#97f9e48fe736aa5c6f4f32cf73c1f19d005f8550"
@@ -1012,6 +1019,87 @@
 "@reach/utils@^0.2.3":
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/@reach/utils/-/utils-0.2.3.tgz#820f6a6af4301b4c5065cfc04bb89e6a3d1d723f"
+
+"@reach/visually-hidden@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@reach/visually-hidden/-/visually-hidden-0.1.4.tgz#0dc4ecedf523004337214187db70a46183bd945b"
+
+"@react-spring/addons@^9.0.0-beta.24":
+  version "9.0.0-beta.24"
+  resolved "https://registry.yarnpkg.com/@react-spring/addons/-/addons-9.0.0-beta.24.tgz#0ea2db82a70e0680a45a687ae4863a4051be5b70"
+  dependencies:
+    "@babel/runtime" "^7.3.1"
+    "@react-spring/animated" "^9.0.0-beta.24"
+    "@react-spring/core" "^9.0.0-beta.24"
+    use-memo-one "^1.1.0"
+
+"@react-spring/animated@^9.0.0-beta.24":
+  version "9.0.0-beta.24"
+  resolved "https://registry.yarnpkg.com/@react-spring/animated/-/animated-9.0.0-beta.24.tgz#1c2be973ff1ffe85d7147505714fc04a9f9e118f"
+  dependencies:
+    "@babel/runtime" "^7.3.1"
+    "@react-spring/shared" "^9.0.0-beta.24"
+
+"@react-spring/core@^9.0.0-beta.24":
+  version "9.0.0-beta.24"
+  resolved "https://registry.yarnpkg.com/@react-spring/core/-/core-9.0.0-beta.24.tgz#d673cde948a97842130a8a9009bcdf1a7de812c1"
+  dependencies:
+    "@babel/runtime" "^7.3.1"
+    "@react-spring/animated" "^9.0.0-beta.24"
+    "@react-spring/shared" "^9.0.0-beta.24"
+    use-memo-one "^1.1.0"
+
+"@react-spring/konva@^9.0.0-beta.24":
+  version "9.0.0-beta.24"
+  resolved "https://registry.yarnpkg.com/@react-spring/konva/-/konva-9.0.0-beta.24.tgz#82bb9944ef4f4fa50915aec8e09790f8fe46d90e"
+  dependencies:
+    "@babel/runtime" "^7.3.1"
+    "@react-spring/animated" "^9.0.0-beta.24"
+    "@react-spring/core" "^9.0.0-beta.24"
+    "@react-spring/shared" "^9.0.0-beta.24"
+
+"@react-spring/native@^9.0.0-beta.24":
+  version "9.0.0-beta.24"
+  resolved "https://registry.yarnpkg.com/@react-spring/native/-/native-9.0.0-beta.24.tgz#3a46cd8bfffaa88356e8a51d05f8491d849e731b"
+  dependencies:
+    "@babel/runtime" "^7.3.1"
+    "@react-spring/animated" "^9.0.0-beta.24"
+    "@react-spring/core" "^9.0.0-beta.24"
+    "@react-spring/shared" "^9.0.0-beta.24"
+
+"@react-spring/shared@^9.0.0-beta.24":
+  version "9.0.0-beta.24"
+  resolved "https://registry.yarnpkg.com/@react-spring/shared/-/shared-9.0.0-beta.24.tgz#a363dbb0a978478bbf16837f6a438f64be65aa43"
+  dependencies:
+    "@babel/runtime" "^7.3.1"
+    tiny-invariant "^1.0.4"
+
+"@react-spring/three@^9.0.0-beta.24":
+  version "9.0.0-beta.24"
+  resolved "https://registry.yarnpkg.com/@react-spring/three/-/three-9.0.0-beta.24.tgz#6f839684fe33f69f96cc3137f023933701a7e5e7"
+  dependencies:
+    "@babel/runtime" "^7.3.1"
+    "@react-spring/animated" "^9.0.0-beta.24"
+    "@react-spring/core" "^9.0.0-beta.24"
+    "@react-spring/shared" "^9.0.0-beta.24"
+
+"@react-spring/web@^9.0.0-beta.24":
+  version "9.0.0-beta.24"
+  resolved "https://registry.yarnpkg.com/@react-spring/web/-/web-9.0.0-beta.24.tgz#3271814b99b29367a296aced8268be08c296ab05"
+  dependencies:
+    "@babel/runtime" "^7.3.1"
+    "@react-spring/animated" "^9.0.0-beta.24"
+    "@react-spring/core" "^9.0.0-beta.24"
+    "@react-spring/shared" "^9.0.0-beta.24"
+
+"@react-spring/zdog@^9.0.0-beta.24":
+  version "9.0.0-beta.24"
+  resolved "https://registry.yarnpkg.com/@react-spring/zdog/-/zdog-9.0.0-beta.24.tgz#3ea5d7443752aada978ec0d4e2111ed669124777"
+  dependencies:
+    "@babel/runtime" "^7.3.1"
+    "@react-spring/animated" "^9.0.0-beta.24"
+    "@react-spring/core" "^9.0.0-beta.24"
+    "@react-spring/shared" "^9.0.0-beta.24"
 
 "@storybook/addon-actions@^5.1.3":
   version "5.1.3"
@@ -1514,9 +1602,26 @@
   version "8.10.49"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.10.49.tgz#f331afc5efed0796798e5591d6e0ece636969b7b"
 
+"@types/prop-types@*":
+  version "15.7.1"
+  resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.1.tgz#f1a11e7babb0c3cad68100be381d1e064c68f1f6"
+
 "@types/q@^1.5.1":
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.2.tgz#690a1475b84f2a884fd07cd797c00f5f31356ea8"
+
+"@types/react-dom@^16.8.3":
+  version "16.8.4"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.8.4.tgz#7fb7ba368857c7aa0f4e4511c4710ca2c5a12a88"
+  dependencies:
+    "@types/react" "*"
+
+"@types/react@*", "@types/react@^16.8.10":
+  version "16.8.22"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.8.22.tgz#7f18bf5ea0c1cad73c46b6b1c804a3ce0eec6d54"
+  dependencies:
+    "@types/prop-types" "*"
+    csstype "^2.2.0"
 
 "@types/unist@*", "@types/unist@^2.0.0", "@types/unist@^2.0.2":
   version "2.0.3"
@@ -4427,7 +4532,7 @@ csso@^3.5.1:
   dependencies:
     css-tree "1.0.0-alpha.29"
 
-csstype@^2.5.2, csstype@^2.5.7:
+csstype@^2.2.0, csstype@^2.5.2, csstype@^2.5.7:
   version "2.6.5"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.6.5.tgz#1cd1dff742ebf4d7c991470ae71e12bb6751e034"
 
@@ -9388,6 +9493,19 @@ react-spring@8.0.23:
     "@babel/runtime" "^7.3.1"
     prop-types "^15.5.8"
 
+react-spring@^9.0.0-beta.20:
+  version "9.0.0-beta.24"
+  resolved "https://registry.yarnpkg.com/react-spring/-/react-spring-9.0.0-beta.24.tgz#7dda51e3d50aa741b25c55e9923e9dcab069c81a"
+  dependencies:
+    "@babel/runtime" "^7.3.1"
+    "@react-spring/addons" "^9.0.0-beta.24"
+    "@react-spring/core" "^9.0.0-beta.24"
+    "@react-spring/konva" "^9.0.0-beta.24"
+    "@react-spring/native" "^9.0.0-beta.24"
+    "@react-spring/three" "^9.0.0-beta.24"
+    "@react-spring/web" "^9.0.0-beta.24"
+    "@react-spring/zdog" "^9.0.0-beta.24"
+
 react-style-singleton@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/react-style-singleton/-/react-style-singleton-1.1.1.tgz#b2b698765519da812b80f55ab3c5fc5d849a2e63"
@@ -10872,6 +10990,10 @@ tiny-emitter@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/tiny-emitter/-/tiny-emitter-2.1.0.tgz#1d1a56edfc51c43e863cbb5382a72330e3555423"
 
+tiny-invariant@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/tiny-invariant/-/tiny-invariant-1.0.4.tgz#346b5415fd93cb696b0c4e8a96697ff590f92463"
+
 tinycolor2@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/tinycolor2/-/tinycolor2-1.4.1.tgz#f4fad333447bc0b07d4dc8e9209d8f39a8ac77e8"
@@ -10923,6 +11045,15 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     extend-shallow "^3.0.2"
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
+
+toasted-notes@2.1.6:
+  version "2.1.6"
+  resolved "https://registry.yarnpkg.com/toasted-notes/-/toasted-notes-2.1.6.tgz#8e828dbbe2f5c52b7cf98d01fb3052ad167e26b5"
+  dependencies:
+    "@reach/alert" "^0.1.2"
+    "@types/react" "^16.8.10"
+    "@types/react-dom" "^16.8.3"
+    react-spring "^9.0.0-beta.20"
 
 toggle-selection@^1.0.6:
   version "1.0.6"
@@ -11222,6 +11353,10 @@ url@^0.11.0:
   dependencies:
     punycode "1.3.2"
     querystring "0.2.0"
+
+use-memo-one@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/use-memo-one/-/use-memo-one-1.1.0.tgz#9392ec84881af047f22aef4bcb9cd1c333899613"
 
 use@^3.1.0:
   version "3.1.1"

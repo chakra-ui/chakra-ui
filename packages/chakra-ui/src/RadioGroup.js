@@ -78,6 +78,8 @@ export const RadioButtonGroup = ({
     };
 
     const getTabIndex = () => {
+      // If is there's no value, typically a radio group remains
+      // unchecked but the first enabled radio is focusable
       if (actualValue == null) {
         return isFirstChild ? 0 : -1;
       } else {
@@ -118,7 +120,7 @@ const RadioGroup = ({
   children,
   ...rest
 }) => {
-  const isControlled = controlledValue != null;
+  const { current: isControlled } = useRef(controlledValue != null);
   const [value, setValue] = useState(defaultValue || null);
   const actualValue = isControlled ? controlledValue : value;
 

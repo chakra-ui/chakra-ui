@@ -24,7 +24,6 @@ const Select = forwardRef(
           appearance="none"
           ref={ref}
           style={{ paddingRight: 24, paddingBottom: "unset", ...rest.style }}
-          mode={mode}
           {...rest}
         >
           {placeholder && <option value="">{placeholder}</option>}

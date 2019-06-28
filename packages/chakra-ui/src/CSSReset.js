@@ -317,45 +317,6 @@ const CSSReset = () => (
         content: attr(placeholder);
         display: block; /* For Firefox */
       }
-
-      /* ==================================================================== */
-      /* Google Maps Styling
-      /* ==================================================================== */
-      .pac-container {
-        font-family: inherit;
-        border-radius: 4px;
-      }
-
-      .pac-container .pac-item .pac-icon {
-        background-image: none;
-        display: none;
-      }
-
-      .pac-container .pac-item {
-        color: inherit;
-        padding: 4px 16px;
-        border: none;
-        font-size: inherit;
-
-        &:hover {
-          background-color: ${theme.colors.gray["100"]};
-          cursor: pointer;
-        }
-
-        &.pac-item-selected {
-          background-color: ${theme.colors.gray["100"]};
-        }
-
-        .pac-item-query {
-          padding-right: 4px;
-          font-size: inherit;
-          color: ${theme.colors.gray["800"]};
-        }
-
-        .pac-matched {
-          font-weight: inherit;
-        }
-      }
     `}
   />
 );

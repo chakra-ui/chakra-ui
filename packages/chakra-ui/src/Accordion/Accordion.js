@@ -2,12 +2,12 @@
 import { jsx } from "@emotion/core";
 import { oneOf } from "prop-types";
 import { forwardRef, useRef, useState } from "react";
-import AnimateHeight from "./AnimateHeight";
-import Icon from "./Icon";
-import { Box, Flex } from "./Layout";
-import { genId } from "./utils";
+import AnimateHeight from "../AnimateHeight";
+import Icon from "../Icon";
+import { Box, Flex } from "../Layout";
+import { genId } from "../utils";
 
-const AccordionItem = ({
+const Accordion = ({
   title,
   defaultOpen,
   isDisabled,
@@ -61,6 +61,8 @@ const AccordionItem = ({
   );
 };
 
+/////////////////////////////////////////////////////////////
+
 const AccordionHeader = ({
   isExpanded,
   isDisabled,
@@ -113,6 +115,8 @@ AccordionHeader.propTypes = {
   size: oneOf(["xs", "sm", "md", "lg", "xl"])
 };
 
+/////////////////////////////////////////////////////////////
+
 const AccordionPanel = forwardRef(
   ({ id, isExpanded, children, duration, headerId, height, ...rest }, ref) => {
     return (
@@ -130,4 +134,5 @@ const AccordionPanel = forwardRef(
     );
   }
 );
-export { AccordionHeader, AccordionPanel, AccordionItem };
+export default Accordion;
+export { AccordionHeader, AccordionPanel };

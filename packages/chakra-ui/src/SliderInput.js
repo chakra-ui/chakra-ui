@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/core";
 import { Flex, Box } from "./Layout";
 import NumberInput from "./NumberInput";
-import Slider from "./SliderV2";
+import Slider from "./Slider";
 import { useState, useRef } from "react";
 import { useUIMode } from "./ThemeProvider";
 
