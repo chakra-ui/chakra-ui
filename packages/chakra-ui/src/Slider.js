@@ -1,215 +1,220 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import styled from "@emotion/styled";
-import { themeGet } from "@styled-system/theme-get";
-import { forwardRef, useRef, useState } from "react";
-import { useUIMode } from "./ThemeProvider";
+import { forwardRef, useRef, useState, useCallback } from "react";
+import { Box } from "./Layout";
+import useSliderStyle from "./SliderStyle";
 
-/* TO DO: Unify all the Themed Helpers
-  Change the Slider to normal `divs` to make it simple
-*/
+function valueToPercent(value, min, max) {
+  return ((value - min) * 100) / (max - min);
+}
 
-const themedThumbProps = props => ({
-  light: {
-    borderWidth: 1,
-    borderColor: themeGet(`colors.gray.200`)(props)
-  },
-  dark: {}
-});
+function percentToValue(percent, min, max) {
+  return (max - min) * percent + min;
+}
 
-const thumbStyle = props => ({
-  width: themeGet(`sizes.slider.${props.sliderSize}.thumb`, 16)(props),
-  height: themeGet(`sizes.slider.${props.sliderSize}.thumb`, 16)(props),
-  borderRadius: themeGet(`radii.round`)(props),
-  backgroundColor: "#fff",
-  top: -1,
-  ...themedThumbProps(props)[props.mode],
-  boxShadow: themeGet(`shadows.sm`)(props),
-  transition: "transform 0.2s",
-  "&:active": {
-    transform: "scale(1.15)"
+function makeValuePrecise(value, step) {
+  const stepDecimalPart = step.toString().split(".")[1];
+  const stepPrecision = stepDecimalPart ? stepDecimalPart.length : 0;
+  return Number(value.toFixed(stepPrecision));
+}
+
+function roundValueToStep(value, step) {
+  return makeValuePrecise(Math.round(value / step) * step, step);
+}
+
+function clampValue(val, min, max) {
+  if (val > max) {
+    return max;
   }
-});
-
-const sliderThumbFocusedStyle = props => ({
-  boxShadow: themeGet("shadows.focusring")(props),
-  borderColor: themeGet(`colors.blue.300`)(props)
-});
-
-const sliderThumbDisabledStyle = props => ({
-  backgroundColor: themeGet("colors.gray.300")(props)
-});
-
-const firefoxStyle = props => ({
-  "&::-moz-focus-outer": {
-    border: 0
-  },
-  "&:focus::-moz-range-thumb": {
-    ...sliderThumbFocusedStyle(props)
-  },
-  "&:disabled::-moz-range-thumb": {
-    ...sliderThumbDisabledStyle(props)
-  },
-  "&::-moz-range-thumb": {
-    appearance: "none",
-    ...thumbStyle(props)
+  if (val < min) {
+    return min;
   }
-});
-
-const IEStyle = props => ({
-  "&:focus::-ms-thumb": {
-    ...sliderThumbFocusedStyle(props)
-  },
-  "&:disabled::-ms-thumb": {
-    ...sliderThumbDisabledStyle(props)
-  },
-  "&::-ms-thumb": {
-    appearance: "none",
-    marginTop: 0,
-    ...thumbStyle(props)
-  }
-});
-
-const chromeStyle = props => ({
-  "&:focus::-webkit-slider-thumb": {
-    ...sliderThumbFocusedStyle(props)
-  },
-  "&:disabled::-webkit-slider-thumb": {
-    ...sliderThumbDisabledStyle(props)
-  },
-  "&::-webkit-slider-thumb": {
-    appearance: "none",
-    ...thumbStyle(props)
-  }
-});
-
-const generateGradient = (props, color = "currentColor") => {
-  return `linear-gradient(
-    90deg,
-    ${color} 0%,
-    ${color} ${props.trackPercent}%,
-    transparent ${props.trackPercent}%,
-    transparent 100%
-  )`;
-};
-
-const themedProps = props => ({
-  light: {
-    backgroundColor: themeGet(`colors.gray.200`)(props),
-    "&:disabled": {
-      cursor: "not-allowed",
-      opacity: 0.7,
-      backgroundImage: generateGradient(
-        props,
-        themeGet(`colors.gray.400`)(props)
-      )
-    }
-  },
-  dark: {
-    backgroundColor: themeGet(`colors.alpha.300`)(props),
-    "&:disabled": {
-      cursor: "not-allowed",
-      opacity: 0.7,
-      backgroundImage: generateGradient(
-        props,
-        themeGet(`colors.alpha.500`)(props)
-      )
-    }
-  }
-});
-
-const StyledSlider = styled("input")(props => ({
-  appearance: "none",
-  width: "100%",
-  height: themeGet(`sizes.slider.${props.sliderSize}.trackHeight`, 4)(props),
-  outline: "none",
-  transition: "all 0.2s",
-  borderRadius: themeGet(`radii.sm`)(props),
-  cursor: "pointer",
-  color: props.theme.colors[props.sliderColor]["500"],
-  backgroundImage: generateGradient(props),
-  ...themedProps(props)[props.mode],
-  ...chromeStyle(props),
-  ...firefoxStyle(props),
-  ...IEStyle(props)
-}));
+  return val;
+}
 
 const Slider = forwardRef(
   (
     {
-      value,
+      value: controlledValue,
       defaultValue,
-      isDisabled,
-      max,
-      maxLabel,
-      min,
-      minLabel,
-      size,
-      color,
-      step,
       onChange,
+      onMouseDown,
+      isDisabled,
+      max = 100,
+      min = 0,
+      step = 1,
+      "aria-labelledby": ariaLabelledBy,
+      "aria-label": ariaLabel,
+      "aria-valuetext": ariaValueText,
+      orientation = "horizontal",
+      getAriaValueText,
+      size = "md",
+      color = "blue",
       ...rest
     },
     ref
   ) => {
-    const mode = useUIMode();
-    const [val, setVal] = useState(defaultValue || 0);
-    const { current: isControlled } = useRef(value !== undefined);
+    const { current: isControlled } = useRef(controlledValue != null);
+    const [value, setValue] = useState(defaultValue || 0);
 
-    const handleChange = event => {
-      !isControlled && setVal(event.target.value);
-      onChange && onChange(event.target.value);
-    };
+    const derivedValue = isControlled ? controlledValue : value;
+    let actualValue = clampValue(derivedValue, min, max);
 
-    const getPercentValue = (value, min, max) => {
-      let percent = 0;
-      if (min < max && value > min) {
-        percent = (((value - min) / (max - min)) * 100).toFixed(2);
+    const trackPercent = valueToPercent(actualValue, min, max);
+    const {
+      trackStyle,
+      filledTrackStyle,
+      thumbStyle,
+      rootStyle
+    } = useSliderStyle({ trackPercent, orientation, size, color });
+
+    const trackRef = useRef(null);
+    const thumbRef = useRef(null);
+
+    const getNewValue = event => {
+      const { left, width } = trackRef.current.getBoundingClientRect();
+      const { clientX } = event;
+      let diffX = clientX - left;
+      let percent = diffX / width;
+      let newValue = percentToValue(percent, min, max);
+
+      if (step) {
+        newValue = roundValueToStep(newValue, step);
       }
-      return percent;
+
+      newValue = clampValue(newValue, min, max);
+
+      return newValue;
     };
 
-    const trackPercent = isControlled
-      ? getPercentValue(value, min, max)
-      : getPercentValue(val, min, max);
+    const updateValue = useCallback(
+      newValue => {
+        if (!isControlled) {
+          setValue(newValue);
+        }
+        if (onChange) {
+          onChange(newValue);
+        }
+      },
+      [isControlled, onChange]
+    );
 
-    const sliderValue = isControlled ? value : val;
+    const handleKeyDown = event => {
+      let flag = false;
+      let newValue;
+      const tenPercents = (max - min) / 10;
+
+      switch (event.key) {
+        case "ArrowLeft":
+        case "ArrowDown":
+          newValue = actualValue - step;
+          flag = true;
+          break;
+        case "ArrowRight":
+        case "ArrowUp":
+          newValue = actualValue + step;
+          flag = true;
+          break;
+        case "PageDown":
+          newValue = actualValue - tenPercents;
+          flag = true;
+          break;
+        case "PageUp":
+          newValue = actualValue + tenPercents;
+          flag = true;
+          break;
+        case "Home":
+          newValue = min;
+          flag = true;
+          break;
+        case "End":
+          newValue = max;
+          flag = true;
+          break;
+        default:
+          return;
+      }
+
+      if (flag) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      if (step) {
+        newValue = roundValueToStep(newValue, step);
+      }
+      newValue = clampValue(newValue, min, max);
+      updateValue(newValue);
+    };
+
+    const handleMouseUp = event => {
+      document.body.removeEventListener("mousemove", handleMouseMove);
+      document.body.removeEventListener("mouseup", handleMouseUp);
+    };
+
+    // TODO: Optimize this mouseMove event (maybe we can throttle it)
+
+    const handleMouseMove = event => {
+      let newValue = getNewValue(event);
+      updateValue(newValue);
+    };
+
+    const handleMouseDown = event => {
+      if (isDisabled) {
+        return;
+      }
+
+      if (onMouseDown) {
+        onMouseDown(event);
+      }
+
+      event.preventDefault();
+
+      let newValue = getNewValue(event);
+      if (newValue !== actualValue) {
+        updateValue(newValue);
+      }
+
+      document.body.addEventListener("mousemove", handleMouseMove);
+      document.body.addEventListener("mouseup", handleMouseUp);
+
+      thumbRef.current.focus();
+    };
+
+    const valueText = getAriaValueText
+      ? getAriaValueText(actualValue)
+      : ariaValueText;
 
     return (
-      <StyledSlider
-        type="range"
-        min={min}
-        aria-valuemin={min}
-        max={max}
-        aria-valuemax={max}
-        mode={mode}
-        step={step}
+      <Box
+        role="presentation"
+        tabIndex="-1"
+        onMouseDown={handleMouseDown}
+        css={rootStyle}
+        py={3}
+        aria-disabled={isDisabled}
         ref={ref}
-        sliderColor={color}
-        sliderSize={size}
-        value={sliderValue}
-        aria-valuenow={sliderValue}
-        aria-orientation="horizontal"
-        disabled={isDisabled}
-        onChange={handleChange}
-        trackPercent={trackPercent}
         {...rest}
-      />
+      >
+        <Box data-slider-track="" ref={trackRef} css={trackStyle} />
+        <Box
+          data-slider-thumb=""
+          ref={thumbRef}
+          css={thumbStyle}
+          role="slider"
+          tabIndex={isDisabled ? undefined : 0}
+          aria-valuemin={min}
+          aria-valuetext={valueText}
+          aria-orientation={orientation}
+          aria-valuenow={actualValue}
+          aria-valuemax={max}
+          aria-labelledby={ariaLabelledBy}
+          onKeyDown={handleKeyDown}
+        />
+        <Box data-slider-filled-track="" css={filledTrackStyle} />
+        <input type="hidden" value={actualValue} name={name} />
+      </Box>
     );
   }
 );
-
-Slider.defaultProps = {
-  isDisabled: false,
-  defaultValue: 50,
-  size: "md",
-  color: "blue",
-  min: 0,
-  max: 100,
-  step: 1,
-  onChange: () => {}
-};
-
-Slider.displayName = "Slider";
 
 export default Slider;

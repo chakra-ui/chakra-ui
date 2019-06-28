@@ -8,6 +8,14 @@ const centered = css({
   transform: `translateY(-50%)`
 });
 
+const disabledStyle = css({
+  "&[aria-disabled=true]": {
+    opacity: 0.6,
+    cursor: "default",
+    pointerEvents: "none"
+  }
+});
+
 const thumbStyle = ({ thumbSize, trackPercent, theme }) => {
   return css(centered, {
     zIndex: 1,
@@ -24,7 +32,7 @@ const thumbStyle = ({ thumbSize, trackPercent, theme }) => {
       boxShadow: theme.shadows.focusring,
       borderColor: theme.colors.blue[300]
     },
-    "&[aria-disabled=true]": {
+    "[aria-disabled=true] &": {
       backgroundColor: theme.colors.gray[300]
     },
     ":active": {
@@ -33,7 +41,7 @@ const thumbStyle = ({ thumbSize, trackPercent, theme }) => {
   });
 };
 
-const filledTrackStyle = ({ trackHeight, theme, trackPercent }) =>
+const filledTrackStyle = ({ trackHeight, theme, mode, trackPercent }) =>
   css(centered, {
     height: trackHeight,
     backgroundColor: theme.colors.blue[500],
@@ -45,7 +53,7 @@ const themedTrackStyle = theme => ({
   light: {
     backgroundColor: theme.colors.gray[200],
     "[aria-disabled=true] &": {
-      backgroundColor: theme.colors.gray[400]
+      backgroundColor: theme.colors.gray[300]
     }
   },
   dark: {
@@ -63,7 +71,7 @@ const trackStyle = ({ trackHeight, theme, mode }) =>
     ...themedTrackStyle(theme)[mode]
   });
 
-const sliderRootStyle = css({
+const rootStyle = css(disabledStyle, {
   width: "100%",
   display: "inline-block",
   position: "relative",
@@ -86,7 +94,7 @@ const useSliderStyle = props => {
     mode
   };
   return {
-    rootStyle: sliderRootStyle,
+    rootStyle,
     trackStyle: trackStyle(_props),
     filledTrackStyle: filledTrackStyle(_props),
     thumbStyle: thumbStyle(_props)

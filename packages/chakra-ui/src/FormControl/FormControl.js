@@ -1,10 +1,10 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import { cloneElement } from "react";
-import Text from "./Text";
-import { Box } from "./Layout";
-import VisuallyHidden from "./VisuallyHidden";
-import { useUIMode } from "./ThemeProvider";
+import Text from "../Text";
+import { Box } from "../Layout";
+import VisuallyHidden from "../VisuallyHidden";
+import { useUIMode } from "../ThemeProvider";
 
 export const Label = ({
   children,

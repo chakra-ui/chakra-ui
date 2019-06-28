@@ -30,7 +30,8 @@
     "react-animate-height": "2.0.9",
     "react-focus-lock": "1.19.1",
     "react-spring": "8.0.23",
-    "styled-system": "5.0.5"
+    "styled-system": "5.0.5",
+    "toasted-notes": "2.1.6"
   },
   "peerDependencies": {
     "react": "16.x",

@@ -8,8 +8,7 @@ import {
   forwardRef,
   useContext,
   useRef,
-  useState,
-  useEffect
+  useState
 } from "react";
 import { Box, Flex } from "./Layout";
 import { useId } from "@reach/auto-id";
@@ -95,6 +94,10 @@ const TabList = forwardRef((props, ref) => {
     let isSelected = isManual ? index === manualIndex : index === selectedIndex;
 
     const handleClick = () => {
+      // Hack for Safari. Buttons don't receive focus on click on Safari
+      // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#Clicking_and_focus
+      allNodes.current[index].focus();
+
       onManualTabChange(index);
       onChangeTab(index);
     };
@@ -237,10 +240,6 @@ const Tabs = forwardRef(
         onChange && onChange(index);
       }
     };
-
-    useEffect(() => {
-      console.log({ selectedIndex, manualIndex, controlledIndex });
-    });
 
     const onFocusPanel = () => {
       if (selectedPanelRef.current) selectedPanelRef.current.focus();

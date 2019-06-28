@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from "react";
+import React, { forwardRef, useState, useRef } from "react";
 import styled from "@emotion/styled";
 import Input from "./Input";
 import { Flex, Box } from "./Layout";
@@ -11,7 +11,7 @@ let disabledSelector = "&[aria-disabled=true]",
   firstChildSelector = "&:first-of-type",
   lastChildSelector = "&:last-of-type";
 
-const getThemedProps = props => ({
+const getThemedStyle = props => ({
   light: {
     [activeSelector]: {
       backgroundColor: themeGet(`colors.gray.200`)(props)
@@ -45,7 +45,7 @@ const Segment = styled(Box)(props => ({
   cursor: "pointer",
   transition: "all 0.3s",
   borderLeftWidth: 1,
-  ...getThemedProps(props)[props.mode],
+  ...getThemedStyle(props)[props.mode],
   [firstChildSelector]: {
     borderTopRightRadius: 1
   },
@@ -73,8 +73,8 @@ const NumberInput = forwardRef(
   ) => {
     const mode = useUIMode();
     const [val, setVal] = useState(defaultValue || 0);
-    const isControlled = Boolean(value);
-    const iconSize = size === "sm" ? "11px" : "15px";
+    const { current: isControlled } = useRef(value != null);
+    const derivedValue = isControlled ? value : val;
 
     const handleIncrement = () => {
       const func = () => {
@@ -83,7 +83,7 @@ const NumberInput = forwardRef(
       };
 
       if (max) {
-        isControlled ? value < max && func() : val < max && func();
+        derivedValue < max && func();
       } else {
         func();
       }
@@ -96,17 +96,19 @@ const NumberInput = forwardRef(
       };
 
       if (min) {
-        isControlled ? value > min && func() : val > min && func();
+        derivedValue > min && func();
       } else {
         func();
       }
     };
 
     const handleChange = event => {
-      let value = Number(event.currentTarget.value);
-      setVal(value);
+      const value = Number(event.currentTarget.value);
+      !isControlled && setVal(value);
       onChange && onChange(value);
     };
+
+    const iconSize = size === "sm" ? "11px" : "15px";
 
     return (
       <Flex alignItems="stretch" position="relative">
