@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import { forwardRef } from "react";
-import Icon from "./Icon";
-import Button from "./Button";
-import VisuallyHidden from "./VisuallyHidden";
+import Icon from "../Icon";
+import Button from ".";
+import VisuallyHidden from "../VisuallyHidden";
 
 const IconButton = forwardRef(
   ({ icon, isRound, "aria-label": ariaLabel, ...rest }, ref) => {

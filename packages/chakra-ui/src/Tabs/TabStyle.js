@@ -6,7 +6,7 @@ import { TabContext } from "./Tabs";
 const isDisabled = "&[aria-disabled=true]",
   isSelected = "&[aria-selected=true]",
   isActive = "&:not([aria-disabled=true]):active",
-  isHovered = "&:not([aria-disabled=true]):hover",
+  // isHovered = "&:not([aria-disabled=true]):hover",
   isFocused = "&:not([aria-disabled=true]):focus";
 
 const colorPicker = (color, value) => props => {

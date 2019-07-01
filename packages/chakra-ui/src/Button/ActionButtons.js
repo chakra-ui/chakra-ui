@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { Box, Flex } from "./Layout";
+import { Box, Flex } from "../Layout";
 import Button from "./Button";
 
 const ActionButtons = ({
@@ -17,7 +17,7 @@ const ActionButtons = ({
 }) => {
   return (
     <Flex alignItems="center" {...rest}>
-      <Button size={size} variant="outline" onClick={onCancel} type="button">
+      <Button size={size} variant="subtle" onClick={onCancel} type="button">
         {cancelText}
       </Button>
       <Box size={spacing} />

@@ -1,20 +1,20 @@
 /** @jsx jsx */
-import { jsx, css } from "@emotion/core";
+import { jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import { boolean, select, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import Breadcrumbs, { BreadcrumbItem } from "../src/Breadcrumb";
 import Icon from "../src/Icon";
-import Button from "../src/Button";
-import { Box, Flex } from "../src/Layout";
+import { Box } from "../src/Layout";
 import Tabs, {
   Tab as BaseTab,
   TabList as BaseTabList,
   TabPanel,
-  TabPanels
+  TabPanels,
+  useTabListStyle,
+  useTabStyle
 } from "../src/Tabs";
-import { useTabStyle, useTabListStyle } from "../src/TabStyle";
 
 const stories = storiesOf("Navigation", module);
 stories.addDecorator(withKnobs);

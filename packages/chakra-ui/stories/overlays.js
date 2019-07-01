@@ -8,8 +8,7 @@ import {
 } from "../src/DialogComponents";
 import FormControl from "../src/FormControl";
 import Input from "../src/Input";
-import ActionButtons from "../src/ActionButtons";
-import Button from "../src/Button";
+import Button, { ActionButtons } from "../src/Button";
 import { Component } from "../src/Component";
 import { UIModeProvider } from "../src/ThemeProvider";
 import { Box } from "../src/Layout";
