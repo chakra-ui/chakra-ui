@@ -12,7 +12,7 @@ const Modal = ({
   size = "md",
   initialFocusRef
 }) => {
-  const mode = useUIMode();
+  const {mode} = useUIMode();
   return (
     <ModalTransition isOpen={isOpen}>
       {styles => (

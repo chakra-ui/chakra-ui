@@ -25,24 +25,14 @@ import Select from "../src/Select";
 import Slider from "../src/Slider";
 import SliderInput from "../src/Slider/SliderInput";
 import Textarea, { ExpandingTextarea } from "../src/Textarea";
-import { UIModeProvider } from "../src/ThemeProvider";
 
 const stories = storiesOf("Input Fields", module);
 stories.addDecorator(withKnobs);
 stories.addDecorator(story => {
   return (
-    <>
-      <Box maxWidth="lg" mx="auto" mt={6} p={6}>
-        {story()}
-      </Box>
-
-      <br />
-      <UIModeProvider value="dark">
-        <Box bg="gray.800" maxWidth="lg" mx="auto" mt={6} p={6}>
-          {story()}
-        </Box>
-      </UIModeProvider>
-    </>
+    <Box maxWidth="lg" mx="auto" mt={6} p={6}>
+      {story()}
+    </Box>
   );
 });
 

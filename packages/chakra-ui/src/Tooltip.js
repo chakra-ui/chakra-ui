@@ -53,7 +53,7 @@ const Tooltip = ({
 
   const open = isControlled ? controlledIsOpen : isOpen;
 
-  const mode = useUIMode();
+  const {mode} = useUIMode();
   const bgFromUIMode = mode === "dark" ? "white" : "gray.700";
   const colorFromUIMode = mode === "dark" ? "gray.900" : "alpha.900";
 

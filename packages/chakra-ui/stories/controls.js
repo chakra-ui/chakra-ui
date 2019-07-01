@@ -6,24 +6,14 @@ import { Box } from "../src/Layout";
 import List from "../src/List";
 import Radio, { RadioButtonGroup, RadioGroup } from "../src/Radio";
 import Switch from "../src/Switch";
-import { UIModeProvider } from "../src/ThemeProvider";
 
 const stories = storiesOf("Controls", module);
 
 stories.addDecorator(story => {
   return (
-    <>
-      <Box maxWidth="lg" mx="auto" mt={6} p={6}>
-        {story("light")}
-      </Box>
-
-      <br />
-      <UIModeProvider value="dark">
-        <Box bg="gray.800" maxWidth="lg" mx="auto" mt={6} p={6}>
-          {story("dark")}
-        </Box>
-      </UIModeProvider>
-    </>
+    <Box maxWidth="lg" mx="auto" mt={6} p={6}>
+      {story("light")}
+    </Box>
   );
 });
 

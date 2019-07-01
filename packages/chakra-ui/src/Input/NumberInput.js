@@ -71,7 +71,7 @@ const NumberInput = forwardRef(
     },
     ref
   ) => {
-    const mode = useUIMode();
+    const { mode } = useUIMode();
     const [val, setVal] = useState(defaultValue || 0);
     const { current: isControlled } = useRef(value != null);
     const derivedValue = isControlled ? value : val;

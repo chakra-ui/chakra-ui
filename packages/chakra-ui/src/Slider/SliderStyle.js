@@ -80,7 +80,7 @@ const rootStyle = css(disabledStyle, {
 
 const useSliderStyle = props => {
   const theme = useTheme();
-  const mode = useUIMode();
+  const {mode} = useUIMode();
 
   const { trackPercent, size, color } = props;
   const { trackHeight, thumb: thumbSize } = theme.sizes.slider[size];

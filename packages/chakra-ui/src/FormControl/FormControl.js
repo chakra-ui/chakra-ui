@@ -65,7 +65,7 @@ export const HelperMessage = props => {
 };
 
 export const RequiredIndicator = props => {
-  const mode = useUIMode();
+  const { mode } = useUIMode();
   const color = { light: "red.500", dark: "red.300" };
   return <Box as="span" ml={1} color={color[mode]} {...props} />;
 };
@@ -130,7 +130,7 @@ const FormControl = ({
   isDisabled,
   ...rest
 }) => {
-  const mode = useUIMode();
+  const { mode } = useUIMode();
   const fallbackId = `${name}-${useId()}`;
 
   const childContext = {

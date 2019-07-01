@@ -1,26 +1,35 @@
 /** @jsx jsx */
-import { jsx, ThemeContext } from "@emotion/core";
-import { ThemeProvider as EmotionProvider } from "emotion-theming";
-import { createContext, useContext } from "react";
+import { jsx, ThemeContext, Global, css } from "@emotion/core";
+import { ThemeProvider as EmotionThemeProvider } from "emotion-theming";
+import { useContext } from "react";
+import useDarkMode from "use-dark-mode";
 import theme from "./theme";
 
-const UIModeContext = createContext("light");
-
 export const useUIMode = () => {
-  const mode = useContext(UIModeContext);
-  if (mode === undefined) {
-    throw new Error("useUIMode must be used within a UIModeContext Provider");
-  }
-  return mode;
+  const { value, ...rest } = useDarkMode(false);
+  const mode = value ? "light" : "dark";
+  return { mode, ...rest };
 };
 
-export const UIModeProvider = UIModeContext.Provider;
-
-const ThemeProvider = ({ mode, theme, children }) => {
+const ThemeProvider = ({ theme, children }) => {
+  const { mode } = useUIMode();
   return (
-    <EmotionProvider theme={theme}>
-      <UIModeContext.Provider value={mode}>{children}</UIModeContext.Provider>
-    </EmotionProvider>
+    <EmotionThemeProvider theme={theme}>
+      <div>
+        {mode === "dark" && (
+          <Global
+            styles={theme =>
+              css`
+                body {
+                  background-color: ${theme.colors.gray[800]};
+                }
+              `
+            }
+          />
+        )}
+        {children}
+      </div>
+    </EmotionThemeProvider>
   );
 };
 
