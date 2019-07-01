@@ -1,2 +1,2 @@
-import Input from "./Input";
-export default Input;
+export { default } from "./Input";
+export { default as NumberInput } from "./NumberInput";

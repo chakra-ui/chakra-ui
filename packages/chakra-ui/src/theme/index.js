@@ -31,7 +31,7 @@ const boxShadows = {
   xl:
     "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
   "2xl": "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
-  focusring: "0 0 0 2px rgba(66, 153, 225, 0.4)",
+  focusring: "0 0 0 3px rgba(66, 153, 225, 0.6)",
   modal: {
     dark: "0 7px 14px 0 rgba(60, 66, 87, 0.1), 0 3px 6px 0 rgba(0, 0, 0, 0.07)",
     light:

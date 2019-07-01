@@ -1,10 +1,10 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { Flex, Box } from "./Layout";
-import NumberInput from "./NumberInput";
+import { useRef, useState } from "react";
+import NumberInput from "../Input/NumberInput";
+import { Box, Flex } from "../Layout";
+import { useUIMode } from "../ThemeProvider";
 import Slider from "./Slider";
-import { useState, useRef } from "react";
-import { useUIMode } from "./ThemeProvider";
 
 const SliderInput = ({
   defaultValue,

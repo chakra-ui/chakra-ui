@@ -1,10 +1,15 @@
 /* eslint-disable no-console */
+import styled from "@emotion/styled";
 import { boolean, select, text, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import Button, { ActionButtons, IconButton, ButtonGroup } from "../src/Button";
+import Button from "../src/Button";
 import CharacterCounter from "../src/CharacterCounter";
 import { Component } from "../src/Component";
+import EditableText, {
+  EditableInput,
+  EditablePreview
+} from "../src/EditableText";
 import FormControl, {
   ErrorMessage,
   FormLabel,
@@ -15,17 +20,12 @@ import Input from "../src/Input";
 import InputAddon from "../src/InputAddon";
 import InputGroup from "../src/InputGroup";
 import { Box } from "../src/Layout";
-import NumberInput from "../src/NumberInput";
+import NumberInput from "../src/Input/NumberInput";
 import Select from "../src/Select";
 import Slider from "../src/Slider";
-import SliderInput from "../src/SliderInput";
+import SliderInput from "../src/Slider/SliderInput";
 import Textarea, { ExpandingTextarea } from "../src/Textarea";
 import { UIModeProvider } from "../src/ThemeProvider";
-import EditableText, {
-  EditablePreview,
-  EditableInput
-} from "../src/EditableText";
-import styled from "@emotion/styled";
 
 const stories = storiesOf("Input Fields", module);
 stories.addDecorator(withKnobs);

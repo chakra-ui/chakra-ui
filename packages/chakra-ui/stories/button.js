@@ -72,11 +72,7 @@ stories.add("Close Button", () => (
   </Box>
 ));
 
-stories.add("Action Buttons", () => (
-  <Box>
-    <ActionButtons />
-  </Box>
-));
+stories.add("Action Buttons", () => <ActionButtons />);
 
 stories.add("Link", () => (
   <Box>
