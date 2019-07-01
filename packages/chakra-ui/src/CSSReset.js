@@ -308,15 +308,6 @@ const CSSReset = () => (
         font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
           monospace;
       }
-
-      /* ==================================================================== */
-      /* Contenteditable placeholders.
-      /* ==================================================================== */
-
-      [contenteditable]:empty:before {
-        content: attr(placeholder);
-        display: block; /* For Firefox */
-      }
     `}
   />
 );

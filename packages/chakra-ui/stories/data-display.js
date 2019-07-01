@@ -15,8 +15,7 @@ import {
 import Progress from "../src/Progress";
 import Accordion from "../src/Accordion";
 import Rover from "../src/Rover";
-import Button, { ButtonGroup } from "../src/Button";
-import IconButton from "../src/IconButton";
+import Button, { ButtonGroup, IconButton } from "../src/Button";
 import Rating from "../src/Rating";
 
 const stories = storiesOf("Data Display", module);

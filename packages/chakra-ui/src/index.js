@@ -8,9 +8,8 @@ export { default as Spinner, Spinner2 } from "./Spinner";
 export { default as VisuallyHidden } from "./VisuallyHidden";
 
 export { default as Button } from "./Button";
-export { default as IconButton } from "./IconButton";
+export * from "./Button";
 export { default as CloseButton } from "./CloseButton";
-export { default as ActionButtons } from "./ActionButtons";
 
 export { default as Badge } from "./Badge";
 export { default as Avatar } from "./Avatar";

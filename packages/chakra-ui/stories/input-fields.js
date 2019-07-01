@@ -2,7 +2,7 @@
 import { boolean, select, text, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import Button from "../src/Button";
+import Button, { ActionButtons, IconButton, ButtonGroup } from "../src/Button";
 import CharacterCounter from "../src/CharacterCounter";
 import { Component } from "../src/Component";
 import FormControl, {
@@ -21,6 +21,11 @@ import Slider from "../src/Slider";
 import SliderInput from "../src/SliderInput";
 import Textarea, { ExpandingTextarea } from "../src/Textarea";
 import { UIModeProvider } from "../src/ThemeProvider";
+import EditableText, {
+  EditablePreview,
+  EditableInput
+} from "../src/EditableText";
+import styled from "@emotion/styled";
 
 const stories = storiesOf("Input Fields", module);
 stories.addDecorator(withKnobs);
@@ -165,4 +170,17 @@ stories.add("Slider Input", () => (
     size={select("Size", ["sm", "md", "lg"], "md")}
     isDisabled={boolean("isDisabled", false)}
   />
+));
+
+const StyledInput = styled(EditableInput)`
+  &:focus {
+    color: red;
+  }
+`;
+
+stories.add("Editable Text", () => (
+  <EditableText textAlign="center" defaultValue="testing" fontSize="2xl">
+    <EditablePreview />
+    <StyledInput />
+  </EditableText>
 ));

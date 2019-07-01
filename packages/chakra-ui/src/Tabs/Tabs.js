@@ -10,9 +10,9 @@ import {
   useRef,
   useState
 } from "react";
-import { Box, Flex } from "./Layout";
+import { Box, Flex } from "../Layout";
 import { useId } from "@reach/auto-id";
-import { makeId } from "./utils";
+import { makeId } from "../utils";
 
 const Tab = forwardRef((props, ref) => {
   const { isSelected, isDisabled, id, size, ...rest } = props;

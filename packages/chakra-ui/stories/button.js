@@ -1,10 +1,9 @@
 import { boolean, select, text, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import Button from "../src/Button";
+import Button, { ActionButtons } from "../src/Button";
 import { Box } from "../src/Layout";
 import CloseButton from "../src/CloseButton";
-import ActionButtons from "../src/ActionButtons";
 import Link from "../src/Link";
 import Text from "../src/Text";
 import { UIModeProvider } from "../src/ThemeProvider";
