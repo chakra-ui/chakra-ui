@@ -12,10 +12,10 @@ export * from "./Button";
 export { default as CloseButton } from "./CloseButton";
 
 export { default as Badge } from "./Badge";
-export { default as Avatar } from "./Avatar";
-export * from "./Avatar";
+export { default as Avatar } from "./Avatar/Avatar";
+export * from "./Avatar/Avatar";
 
-export { default as Checkbox } from "./Checkbox";
+export { default as Checkbox } from "./Checkbox/Checkbox";
 export { default as Radio } from "./Radio";
 export { default as Slider } from "./Slider/Slider";
 
@@ -27,7 +27,7 @@ export { default as FormControl } from "./FormControl";
 
 export { default as Drawer } from "./Drawer";
 export * from "./DialogComponents";
-export { default as Modal } from "./Modal";
+export { default as Modal } from "./Modal/Modal";
 export { default as Popover } from "./Popover";
 export { default as Tooltip } from "./Tooltip";
 

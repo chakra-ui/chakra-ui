@@ -1,15 +1,12 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
+import Button from "../src/Button";
 import Checkbox from "../src/Checkbox";
 import { Box } from "../src/Layout";
-import Radio from "../src/Radio";
-import Switch from "../src/Switch";
-import Text from "../src/Text";
-import { Label } from "../src/FormControl";
-import { UIModeProvider } from "../src/ThemeProvider";
 import List from "../src/List";
-import RadioGroup, { RadioButtonGroup } from "../src/RadioGroup";
-import Button from "../src/Button";
+import Radio, { RadioButtonGroup, RadioGroup } from "../src/Radio";
+import Switch from "../src/Switch";
+import { UIModeProvider } from "../src/ThemeProvider";
 
 const stories = storiesOf("Controls", module);
 

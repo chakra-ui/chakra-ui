@@ -7,3 +7,4 @@ import "./messaging-and-alert";
 import "./overlays";
 import "./lists";
 import "./navigation";
+import "./menu";

@@ -1,9 +1,8 @@
 /** @jsx jsx */
-import { jsx, css } from "@emotion/core";
+import { css, jsx } from "@emotion/core";
 import propTypes from "prop-types";
 import Icon from "./Icon";
 import { Flex } from "./Layout";
-import VisuallyHidden from "./VisuallyHidden";
 
 const baseStyle = css({
   transition: "all 0.2s",
@@ -34,6 +33,7 @@ const CloseButton = ({
       aria-disabled={isDisabled}
       disabled={isDisabled}
       onClick={onClick}
+      aria-label={ariaLabel}
       tabindex="0"
       borderRadius="round"
       as="button"
@@ -46,7 +46,6 @@ const CloseButton = ({
         aria-hidden
         size={`closeButton.${size}`}
       />
-      <VisuallyHidden>{ariaLabel}</VisuallyHidden>
     </Flex>
   );
 };

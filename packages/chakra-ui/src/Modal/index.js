@@ -1,26 +1,8 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import {
-  DialogContent as ModalContent,
-  DialogOverlay as ModalOverlay
-} from "./DialogComponents";
-import CloseButton from "./CloseButton";
-import { Transition } from "react-spring/renderprops";
-import { useUIMode } from "./ThemeProvider";
-
-export const ModalTransition = ({ isOpen, duration = 150, children }) => {
-  return (
-    <Transition
-      items={isOpen}
-      from={{ opacity: 0, y: 10 }}
-      enter={{ opacity: 1, y: 0 }}
-      leave={{ opacity: 0, y: -10 }}
-      config={{ duration }}
-    >
-      {isOpen => isOpen && (styles => children(styles))}
-    </Transition>
-  );
-};
+import CloseButton from "../CloseButton";
+import { useUIMode } from "../ThemeProvider";
+import { ModalTransition, ModalOverlay, ModalContent } from "./components";
 
 const Modal = ({
   isOpen,
@@ -66,3 +48,4 @@ const Modal = ({
 };
 
 export default Modal;
+export * from "./components";

@@ -1,6 +1,13 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import { Transition } from "react-spring/renderprops";
+import {
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalOverlay,
+  ModalContent
+} from "../Modal";
 
 const DrawerTransition = ({
   isOpen,
@@ -71,4 +78,11 @@ const DrawerTransition = ({
   );
 };
 
-export default DrawerTransition;
+export {
+  DrawerTransition,
+  ModalHeader as DrawerHeader,
+  ModalFooter as DrawerFooter,
+  ModalBody as DrawerBody,
+  ModalOverlay as DrawerOverlay,
+  ModalContent as DrawerContent
+};
