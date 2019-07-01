@@ -30,7 +30,7 @@ const EditableText = ({
 
   const inputRef = useRef(null);
 
-  const mode = useUIMode();
+  const { mode } = useUIMode();
 
   const handleFocus = event => {
     if (!isDisabled) {

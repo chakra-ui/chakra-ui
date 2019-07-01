@@ -189,7 +189,7 @@ const focusStyle = props => {
 
 const useButtonStyle = props => {
   const theme = useTheme();
-  const mode = useUIMode();
+  const { mode } = useUIMode();
 
   const _props = { ...props, theme, mode };
   return css`

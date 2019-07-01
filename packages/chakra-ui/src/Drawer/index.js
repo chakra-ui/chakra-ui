@@ -15,7 +15,7 @@ const Drawer = ({
   showCloseButton,
   placement = "right"
 }) => {
-  const mode = useUIMode();
+  const { mode } = useUIMode();
   return (
     <DrawerTransition {...{ isOpen, placement, isFullHeight }}>
       {({ styles, transform, placements }) => (

@@ -18,7 +18,7 @@ const SliderInput = ({
   value: valueProp,
   ...rest
 }) => {
-  const mode = useUIMode();
+  const {mode} = useUIMode();
   const [value, setValue] = useState(defaultValue || 0);
   const { current: isControlled } = useRef(valueProp !== undefined);
 

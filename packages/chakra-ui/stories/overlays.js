@@ -5,7 +5,6 @@ import FormControl from "../src/FormControl";
 import Input from "../src/Input";
 import Button, { ActionButtons } from "../src/Button";
 import { Component } from "../src/Component";
-import { UIModeProvider } from "../src/ThemeProvider";
 import { Box } from "../src/Layout";
 import Drawer, { DrawerHeader, DrawerBody, DrawerFooter } from "../src/Drawer";
 import Popover from "../src/Popover";
@@ -19,17 +18,9 @@ import Tooltip from "../src/Tooltip";
 const stories = storiesOf("Overlays", module);
 stories.addDecorator(story => {
   return (
-    <>
-      <Box maxWidth="lg" mx="auto" mt={6} p={6}>
-        {story()}
-      </Box>
-      <br />
-      <UIModeProvider value="dark">
-        <Box bg="gray.800" maxWidth="lg" mx="auto" mt={6} p={6}>
-          {story()}
-        </Box>
-      </UIModeProvider>
-    </>
+    <Box maxWidth="lg" mx="auto" mt={6} p={6}>
+      {story()}
+    </Box>
   );
 });
 

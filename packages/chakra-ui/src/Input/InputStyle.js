@@ -127,7 +127,7 @@ const sizeStyle = props => {
 
 const useInputStyle = props => {
   const theme = useTheme();
-  const mode = useUIMode();
+  const { mode } = useUIMode();
 
   const _props = { ...props, theme, mode };
 

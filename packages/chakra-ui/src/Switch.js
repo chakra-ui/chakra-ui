@@ -61,7 +61,7 @@ const Switch = forwardRef(
     },
     ref
   ) => {
-    const mode = useUIMode();
+    const {mode} = useUIMode();
     return (
       <Box as="label" display="inline-block" verticalAlign="middle">
         <VisuallyHidden

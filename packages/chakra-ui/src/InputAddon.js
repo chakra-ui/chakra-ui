@@ -31,7 +31,7 @@ const InputWrapper = styled(Box)`
 
 const Addon = props => {
   const { variant, size, position, ...rest } = props;
-  const mode = useUIMode();
+  const {mode} = useUIMode();
 
   const inputStyle = useInputStyle(props);
 
