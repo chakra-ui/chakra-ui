@@ -124,7 +124,7 @@ const outlineStyle = props => {
 
   return css(ghostStyle(props), {
     borderWidth: 1,
-    borderColor: theme.colors[color][200],
+    borderColor: theme.colors[color][500],
     ...(color === "gray" && {
       borderColor:
         mode === "dark" ? theme.colors.alpha[400] : theme.colors[color][200]

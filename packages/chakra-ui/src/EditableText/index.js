@@ -226,7 +226,7 @@ EditableText.propTypes = {
    */
   placeholder: propTypes.string,
   /** The content of the EditableText
-   *  Ideally only `EditablePreview` and `EdiatableInput` should
+   *  Ideally only `EditablePreview` and `EditableInput` should
    *  be the children (but you add other elements too)
    */
   children: propTypes.node

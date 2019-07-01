@@ -1,10 +1,10 @@
 import React, { forwardRef, useState, useRef } from "react";
 import styled from "@emotion/styled";
 import Input from "./Input";
-import { Flex, Box } from "./Layout";
-import Icon from "./Icon";
+import { Flex, Box } from "../Layout";
+import Icon from "../Icon";
 import { themeGet } from "@styled-system/theme-get";
-import { useUIMode } from "./ThemeProvider";
+import { useUIMode } from "../ThemeProvider";
 
 let disabledSelector = "&[aria-disabled=true]",
   activeSelector = "&:not([aria-disabled=true]):active",

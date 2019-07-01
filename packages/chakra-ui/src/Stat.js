@@ -68,7 +68,6 @@ const StatGroup = props => {
       flexWrap="wrap"
       justifyContent="space-around"
       alignItems="flex-start"
-      className="stat-display"
       pt={3}
       pl={2}
       {...props}

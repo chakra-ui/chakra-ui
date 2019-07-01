@@ -17,11 +17,11 @@ export * from "./Avatar";
 
 export { default as Checkbox } from "./Checkbox";
 export { default as Radio } from "./Radio";
-export { default as Slider } from "./Slider";
+export { default as Slider } from "./Slider/Slider";
 
 export { default as Input } from "./Input";
 export { default as Select } from "./Select";
-export { default as SliderInput } from "./SliderInput";
+export { default as SliderInput } from "./Slider/SliderInput";
 export { default as NumberInput } from "./NumberInput";
 export { default as FormControl } from "./FormControl";
 
@@ -30,3 +30,6 @@ export * from "./DialogComponents";
 export { default as Modal } from "./Modal";
 export { default as Popover } from "./Popover";
 export { default as Tooltip } from "./Tooltip";
+
+export { default as EditableText } from "./EditableText";
+export * from "./EditableText";
