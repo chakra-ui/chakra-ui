@@ -5,10 +5,11 @@ import {
   DialogContent as Content,
   DialogOverlay as Overlay
 } from "@reach/dialog";
-import { Box, Flex } from "./Layout";
+import { Transition } from "react-spring/renderprops";
 import { themeGet } from "@styled-system/theme-get";
+import { Box, Flex } from "../Layout";
 
-const DialogHeader = ({ children, onClose, ...rest }) => {
+const ModalHeader = ({ children, onClose, ...rest }) => {
   return (
     <Box
       px="20px"
@@ -25,7 +26,7 @@ const DialogHeader = ({ children, onClose, ...rest }) => {
   );
 };
 
-const DialogFooter = ({ children, ...rest }) => {
+const ModalFooter = ({ children, ...rest }) => {
   return (
     <Flex
       px="20px"
@@ -40,11 +41,11 @@ const DialogFooter = ({ children, ...rest }) => {
   );
 };
 
-const DialogBody = props => {
+const ModalBody = props => {
   return <Box px="20px" flex="1" {...props} />;
 };
 
-const DialogOverlay = styled(Overlay)({
+const ModalOverlay = styled(Overlay)({
   backgroundColor: "rgba(15, 15, 15, 0.6)",
   bottom: 0,
   left: 0,
@@ -54,7 +55,7 @@ const DialogOverlay = styled(Overlay)({
   position: "fixed"
 });
 
-const DialogContent = styled(Content)(props => ({
+const ModalContent = styled(Content)(props => ({
   width: "100%",
   position: "relative",
   display: "flex",
@@ -65,4 +66,25 @@ const DialogContent = styled(Content)(props => ({
   color: props.mode === "dark" ? themeGet(`colors.alpha.800`)(props) : "inherit"
 }));
 
-export { DialogHeader, DialogFooter, DialogBody, DialogOverlay, DialogContent };
+const ModalTransition = ({ isOpen, duration = 150, children }) => {
+  return (
+    <Transition
+      items={isOpen}
+      from={{ opacity: 0, y: 10 }}
+      enter={{ opacity: 1, y: 0 }}
+      leave={{ opacity: 0, y: -10 }}
+      config={{ duration }}
+    >
+      {isOpen => isOpen && (styles => children(styles))}
+    </Transition>
+  );
+};
+
+export {
+  ModalHeader,
+  ModalTransition,
+  ModalFooter,
+  ModalBody,
+  ModalOverlay,
+  ModalContent
+};

@@ -3,8 +3,8 @@ import { jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import { themeGet } from "@styled-system/theme-get";
 import { forwardRef } from "react";
-import { Box, Flex } from "./Layout";
-import VisuallyHidden from "./VisuallyHidden";
+import { Box, Flex } from "../Layout";
+import VisuallyHidden from "../VisuallyHidden";
 
 const RadioDot = styled(Box)`
   opacity: 0;

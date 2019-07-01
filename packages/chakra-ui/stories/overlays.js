@@ -1,18 +1,13 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import Modal from "../src/Modal";
-import {
-  DialogHeader,
-  DialogBody,
-  DialogFooter
-} from "../src/DialogComponents";
+import Modal, { ModalHeader, ModalBody, ModalFooter } from "../src/Modal";
 import FormControl from "../src/FormControl";
 import Input from "../src/Input";
 import Button, { ActionButtons } from "../src/Button";
 import { Component } from "../src/Component";
 import { UIModeProvider } from "../src/ThemeProvider";
 import { Box } from "../src/Layout";
-import Drawer from "../src/Drawer";
+import Drawer, { DrawerHeader, DrawerBody, DrawerFooter } from "../src/Drawer";
 import Popover from "../src/Popover";
 import {
   PopoverHeader,
@@ -48,19 +43,19 @@ stories.add("Modal", () => {
             mode="dark"
             onClose={() => setState({ isOpen: false })}
           >
-            <DialogHeader onClose={() => setState({ isOpen: false })}>
+            <ModalHeader onClose={() => setState({ isOpen: false })}>
               Create your account
-            </DialogHeader>
+            </ModalHeader>
 
-            <DialogBody pb={6}>
+            <ModalBody pb={6}>
               <FormControl label="First name" mb={4}>
                 <Input placeholder="Type here..." />
               </FormControl>
-            </DialogBody>
+            </ModalBody>
 
-            <DialogFooter>
+            <ModalFooter>
               <ActionButtons onCancel={() => setState({ isOpen: false })} />
-            </DialogFooter>
+            </ModalFooter>
           </Modal>
           <Button onClick={() => setState({ isOpen: true })}>Open Modal</Button>
         </>
@@ -79,21 +74,21 @@ stories.add("Drawer", () => {
             placement="bottom"
             onClose={() => setState({ isOpen: false })}
           >
-            <DialogHeader
+            <DrawerHeader
               showCloseButton
               onClose={() => setState({ isOpen: false })}
             >
               Create your account
-            </DialogHeader>
+            </DrawerHeader>
 
-            <DialogBody pb={6}>
+            <DrawerBody pb={6}>
               <FormControl label="First name">
                 <Input placeholder="Type here..." />
               </FormControl>
-            </DialogBody>
-            <DialogFooter>
+            </DrawerBody>
+            <DrawerFooter>
               <ActionButtons onCancel={() => setState({ isOpen: false })} />
-            </DialogFooter>
+            </DrawerFooter>
           </Drawer>
           <Button onClick={() => setState({ isOpen: true })}>
             Open Drawer

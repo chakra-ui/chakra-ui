@@ -2,7 +2,7 @@ import { withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import Accordion from "../src/Accordion";
-import Avatar, { AvatarGroup, MoreIndicator } from "../src/Avatar";
+import Avatar, { AvatarGroup } from "../src/Avatar";
 import Badge from "../src/Badge";
 import { Box } from "../src/Layout";
 import Progress from "../src/Progress";
@@ -15,6 +15,12 @@ import {
   StatLabel,
   StatNumber
 } from "../src/Stat";
+import AvatarItem, {
+  AvatarText,
+  AvatarSubtext,
+  AvatarTextGroup
+} from "../src/Avatar/AvatarItem";
+import styled from "@emotion/styled";
 
 const stories = storiesOf("Data Display", module);
 stories.addDecorator(withKnobs);
@@ -55,17 +61,41 @@ stories.add("Avatar Group", () => (
       name="Kola Tiolu"
       // src="https://zeit.co/api/www/avatar/?u=leo&s=60"
     />
-    <MoreIndicator label="+4" />
+    {/* <MoreIndicator label="+4" /> */}
   </AvatarGroup>
 ));
 
+stories.add("Avatar Item", () => (
+  <AvatarItem>
+    <Avatar
+      name="sage"
+      size="md"
+      src="https://www.dropbox.com/s/nd8z3hxuo3ahauk/segun_adebayo.jpg?dl=1"
+    />
+    <AvatarTextGroup fontSize="md">
+      <AvatarText fontWeight="semibold" display="inline-block">
+        Segun Adebayo
+      </AvatarText>
+      <Badge fontSize="xs" ml={1} color="green">
+        New
+      </Badge>
+      <AvatarSubtext>segun@gmail.com</AvatarSubtext>
+    </AvatarTextGroup>
+  </AvatarItem>
+));
+
 stories.add("Avatars", () => (
-  <Avatar
-    name="Evil Rabbit"
-    badge={<Box borderRadius="round" size="100%" bg="green.500" />}
-    // size="fill"
-    src="https://zeit.co/api/www/avatar/?u=rauchg&s=60"
-  />
+  <>
+    {["sm", "md", "lg", "xl", "xxl"].map(size => (
+      <Avatar
+        size={size}
+        name="Evil Rabbit"
+        badge={<Box borderRadius="round" size="100%" bg="green.500" />}
+        // size="fill"
+        src="https://zeit.co/api/www/avatar/?u=rauchg&s=60"
+      />
+    ))}
+  </>
 ));
 
 stories.add("Rating", () => <Rating />);

@@ -1,10 +1,10 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { Box } from "./Layout";
+import { Box } from "../Layout";
 import { Children, cloneElement, useState, useRef } from "react";
-import { genId } from "./utils";
+import { genId } from "../utils";
 
-export const RadioButtonGroup = ({
+const RadioButtonGroup = ({
   id,
   name,
   children,
@@ -109,6 +109,8 @@ export const RadioButtonGroup = ({
   );
 };
 
+///////////////////////////////////////////////////////////
+
 const RadioGroup = ({
   id,
   onChange,
@@ -157,4 +159,6 @@ const RadioGroup = ({
   );
 };
 
-export default RadioGroup;
+///////////////////////////////////////////////////////////
+
+export { RadioGroup, RadioButtonGroup };
