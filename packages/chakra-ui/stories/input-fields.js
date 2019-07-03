@@ -159,7 +159,10 @@ stories.add("Slider Input", () => (
     min={0}
     size={select("Size", ["sm", "md", "lg"], "md")}
     isDisabled={boolean("isDisabled", false)}
-  />
+  >
+    <Slider />
+    <NumberInput wrapperProps={{ ml: 4, flex: "0 0 auto", minWidth: 80 }} />
+  </SliderInput>
 ));
 
 const StyledInput = styled(EditableInput)`

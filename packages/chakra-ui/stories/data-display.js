@@ -21,6 +21,9 @@ import AvatarItem, {
   AvatarTextGroup
 } from "../src/Avatar/AvatarItem";
 import styled from "@emotion/styled";
+import List from "../src/List";
+import Tag from "../src/Tag";
+import Icon from "../src/Icon";
 
 const stories = storiesOf("Data Display", module);
 stories.addDecorator(withKnobs);
@@ -100,17 +103,37 @@ stories.add("Avatars", () => (
 
 stories.add("Rating", () => <Rating />);
 
-// stories.add("Tags", () => {
-//   return (
-//     <List spacing={4}>
-//       <Tag color="green">Green</Tag>
-//       <Tag color="red">Red</Tag>
-//       <Tag color="gray">Gray</Tag>
-//       <Tag color="pink">Pink</Tag>
-//       <Tag color="blue">Blue</Tag>
-//     </List>
-//   );
-// });
+stories.add("Tags", () => {
+  return (
+    <List spacing={4}>
+      <Tag
+        fontWeight="semibold"
+        isRound
+        color="green"
+        leftElement={<Icon name="check" />}
+      >
+        Green
+      </Tag>
+      <Tag
+        color="red"
+        isRound
+        leftElement={
+          <Avatar
+            src="https://www.dropbox.com/s/nd8z3hxuo3ahauk/segun_adebayo.jpg?dl=1"
+            size="sm"
+          />
+        }
+      >
+        Segun
+      </Tag>
+      <Tag isClosable color="gray">
+        Gray
+      </Tag>
+      <Tag color="pink">Pink</Tag>
+      <Tag color="blue">Blue</Tag>
+    </List>
+  );
+});
 
 // stories.add("Tags + Multiline", () => {
 //   return (

@@ -20,7 +20,15 @@ const getInitials = name => {
   }
 };
 
-const Avatar = ({ size, showOutline, name, badge, src, ...rest }) => {
+const Avatar = ({
+  size,
+  showOutline,
+  name,
+  stackIndex,
+  badge,
+  src,
+  ...rest
+}) => {
   const [showImage, setShowImage] = useState(false);
 
   let showBorderProps = showOutline && {
@@ -113,8 +121,6 @@ const Avatar = ({ size, showOutline, name, badge, src, ...rest }) => {
 Avatar.defaultProps = {
   size: "md"
 };
-
-Avatar.chakraName = "Avatar";
 
 Avatar.propTypes = {
   size: propTypes.oneOf(["xs", "sm", "md", "lg", "xl", "xxl", "fill"])

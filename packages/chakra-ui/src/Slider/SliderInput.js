@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { useRef, useState } from "react";
+import { useRef, useState, cloneElement, Children } from "react";
 import NumberInput from "../Input/NumberInput";
 import { Box, Flex } from "../Layout";
 import { useUIMode } from "../theme";
@@ -16,9 +16,10 @@ const SliderInput = ({
   step,
   onChange,
   value: valueProp,
+  children,
   ...rest
 }) => {
-  const {mode} = useUIMode();
+  const { mode } = useUIMode();
   const [value, setValue] = useState(defaultValue || 0);
   const { current: isControlled } = useRef(valueProp !== undefined);
 
@@ -40,10 +41,7 @@ const SliderInput = ({
 
   return (
     <Flex alignItems="center" {...rest}>
-      <Slider {...sharedProps} />
-      <Box ml={4} flex="0 0 auto" width={inputWidth}>
-        <NumberInput {...sharedProps} />
-      </Box>
+      {Children.map(children, child => cloneElement(child, sharedProps))}
     </Flex>
   );
 };
