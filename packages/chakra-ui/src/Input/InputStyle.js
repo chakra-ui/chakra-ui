@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { css } from "@emotion/core";
-import { useTheme, useUIMode } from "../ThemeProvider";
+import { useTheme, useUIMode } from "../theme";
 
 // Just so I don't repeat this :)
 let hover = "&:not([aria-disabled=true]):not(:focus):hover",

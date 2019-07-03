@@ -1,5 +1,6 @@
 export { default as theme } from "./theme";
-export { default as ThemeProvider } from "./ThemeProvider";
+export * from "./theme";
+
 export * from "./Layout";
 export { default as CSSReset } from "./CSSReset";
 export { default as Text } from "./Text";

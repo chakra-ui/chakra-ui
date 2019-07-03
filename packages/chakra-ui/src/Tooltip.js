@@ -8,7 +8,7 @@ import { assignRef, genId } from "./utils";
 import { Box } from "./Layout";
 import { PopoverTransition, popperStyle } from "./PopoverComponents";
 import { useDisclosure } from "./hooks";
-import { useUIMode } from "./ThemeProvider";
+import { useUIMode } from "./theme";
 
 const StyledTooltip = styled(Box)`
   ${popperStyle}
@@ -53,7 +53,7 @@ const Tooltip = ({
 
   const open = isControlled ? controlledIsOpen : isOpen;
 
-  const {mode} = useUIMode();
+  const { mode } = useUIMode();
   const bgFromUIMode = mode === "dark" ? "white" : "gray.700";
   const colorFromUIMode = mode === "dark" ? "gray.900" : "alpha.900";
 

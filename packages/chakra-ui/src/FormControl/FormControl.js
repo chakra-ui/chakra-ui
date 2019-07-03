@@ -4,7 +4,7 @@ import { useId } from "@reach/auto-id";
 import { createContext, useContext } from "react";
 import { Box } from "../Layout";
 import Text from "../Text";
-import { useUIMode } from "../ThemeProvider";
+import { useUIMode } from "../theme";
 
 export const useFormControlProps = props => {
   const context = useFormControlContext();
