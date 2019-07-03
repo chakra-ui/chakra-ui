@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { css } from "@emotion/core";
-import { useTheme, useUIMode } from "../ThemeProvider";
+import { useTheme, useUIMode } from "../theme";
 
 const centered = css({
   position: "absolute",

@@ -3,7 +3,7 @@ import { jsx } from "@emotion/core";
 import { useRef, useState } from "react";
 import NumberInput from "../Input/NumberInput";
 import { Box, Flex } from "../Layout";
-import { useUIMode } from "../ThemeProvider";
+import { useUIMode } from "../theme";
 import Slider from "./Slider";
 
 const SliderInput = ({

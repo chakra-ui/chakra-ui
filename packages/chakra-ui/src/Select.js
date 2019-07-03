@@ -4,7 +4,7 @@ import { Absolute, Box } from "./Layout";
 import Icon from "./Icon";
 import { forwardRef } from "react";
 import Input from "./Input";
-import { useUIMode } from "./ThemeProvider";
+import { useUIMode } from "./theme";
 
 const Select = forwardRef(
   ({ children, placeholder, wrapperProps, flex, ...rest }, ref) => {

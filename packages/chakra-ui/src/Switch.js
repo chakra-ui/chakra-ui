@@ -5,7 +5,7 @@ import { themeGet } from "@styled-system/theme-get";
 import { forwardRef } from "react";
 import { Box } from "./Layout";
 import VisuallyHidden from "./VisuallyHidden";
-import { useUIMode } from "./ThemeProvider";
+import { useUIMode } from "./theme";
 
 const Knob = styled(Box)`
   background: white;
@@ -61,7 +61,7 @@ const Switch = forwardRef(
     },
     ref
   ) => {
-    const {mode} = useUIMode();
+    const { mode } = useUIMode();
     return (
       <Box as="label" display="inline-block" verticalAlign="middle">
         <VisuallyHidden

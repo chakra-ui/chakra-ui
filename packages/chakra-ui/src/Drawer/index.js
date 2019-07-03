@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/core";
 import { oneOf } from "prop-types";
 import CloseButton from "../CloseButton";
-import { useUIMode } from "../ThemeProvider";
+import { useUIMode } from "../theme";
 import { DrawerTransition, DrawerOverlay, DrawerContent } from "./components";
 
 const Drawer = ({

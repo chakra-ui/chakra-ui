@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/core";
 import toaster from "toasted-notes";
 import Alert from "./Alert";
-import ThemeProvider, { useTheme } from "./ThemeProvider";
+import { useTheme, ThemeProvider } from "./theme";
 
 export function useToast() {
   const theme = useTheme();
