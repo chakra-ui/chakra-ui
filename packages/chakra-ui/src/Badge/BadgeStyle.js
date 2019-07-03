@@ -30,7 +30,7 @@ const subtleStyle = ({ theme: { colors }, color }) => {
 
   const darkModePrimary = colors[color][200];
   const alphaColors = generateAlphaColors(darkModePrimary);
-  let darkModeBg = alphaColors[200];
+  let darkModeBg = alphaColors[300];
 
   return {
     light: {

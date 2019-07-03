@@ -4,7 +4,7 @@ import propTypes from "prop-types";
 import { Box } from "../Layout";
 import useBadgeStyle from "./BadgeStyle";
 
-const Badge = props => {
+const Badge = ({ css, ...props }) => {
   const badgeStyle = useBadgeStyle(props);
   return (
     <Box
@@ -16,7 +16,7 @@ const Badge = props => {
       fontWeight="bold"
       whiteSpace="nowrap"
       verticalAlign="middle"
-      css={badgeStyle}
+      css={[badgeStyle, css]}
       {...props}
     />
   );

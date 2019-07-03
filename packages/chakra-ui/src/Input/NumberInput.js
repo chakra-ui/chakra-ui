@@ -67,6 +67,7 @@ const NumberInput = forwardRef(
       step,
       value,
       isDisabled,
+      wrapperProps,
       ...rest
     },
     ref
@@ -111,7 +112,7 @@ const NumberInput = forwardRef(
     const iconSize = size === "sm" ? "11px" : "15px";
 
     return (
-      <Flex alignItems="stretch" position="relative">
+      <Flex alignItems="stretch" position="relative" {...wrapperProps}>
         <Input
           size={size}
           type="number"
