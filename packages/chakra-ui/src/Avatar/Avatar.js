@@ -1,9 +1,10 @@
 /** @jsx jsx */
-import { jsx } from "@emotion/core";
-import Color from "color";
+import { css, jsx } from "@emotion/core";
 import propTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { Box } from "../Layout";
+import { useTheme, useUIMode } from "../theme";
+import { isDarkColor } from "../theme/colors_utils";
 import { string2Hex } from "../utils";
 import { AvatarBadge } from "./components";
 
@@ -20,24 +21,64 @@ const getInitials = name => {
   }
 };
 
+const useAvatarStyle = props => {
+  const { sizes, colors } = useTheme();
+  const { mode } = useUIMode();
+  const { size, name, showBorder } = props;
+
+  const _size = size === "fill" ? "100%" : sizes.avatar[size];
+
+  const backgroundColor = name ? string2Hex(name) : colors.gray[400];
+  const color = name
+    ? isDarkColor(backgroundColor)
+      ? "#fff"
+      : colors.gray[800]
+    : "#fff";
+
+  const sizeStyle = css({
+    width: _size,
+    height: _size
+  });
+
+  const borderStyle = css({
+    border: "2px solid",
+    borderColor: mode === "dark" ? "#121212" : "#fff"
+  });
+
+  const baseStyle = css({
+    display: "inline-flex",
+    borderRadius: "9999px",
+    alignItems: "center",
+    justifyContent: "center",
+    position: "relative"
+  });
+
+  const colorStyle = css({
+    backgroundColor,
+    color
+  });
+
+  return css`
+    ${baseStyle}
+    ${sizeStyle}
+    ${showBorder && borderStyle}
+    ${colorStyle}
+  `;
+};
+
 const Avatar = ({
   size,
-  showOutline,
+  showBorder,
   name,
   stackIndex,
   badge,
   src,
+  css,
   ...rest
 }) => {
   const [showImage, setShowImage] = useState(false);
 
-  let showBorderProps = showOutline && {
-    border: "2px",
-    borderColor: "#fff"
-  };
-  let avatarSize = size === "fill" ? "100%" : `avatar.${size}`;
-  let bgColor = name ? string2Hex(name) : "gray.400";
-  let color = name ? (Color(bgColor).isDark() ? "#fff" : "gray.800") : "#fff";
+  const avatarStyle = useAvatarStyle({ name, size, showBorder });
 
   useEffect(() => {
     const img = new Image();
@@ -101,15 +142,11 @@ const Avatar = ({
 
   return (
     <Box
-      display="inline-flex"
-      bg={bgColor}
-      color={color}
-      borderRadius="round"
-      alignItems="center"
-      justifyContent="center"
-      position="relative"
-      size={avatarSize}
-      {...showBorderProps}
+      // bg={bgColor}
+      // color={color}
+      // size={avatarSize}
+      // {...showBorderProps}
+      css={[avatarStyle, css]}
       {...rest}
     >
       {renderChildren()}

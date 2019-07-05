@@ -2,9 +2,10 @@
 import { jsx } from "@emotion/core";
 import { Reference } from "react-popper";
 import { assignRef } from "../utils";
-import { useMenuContext } from "./MenuContext";
+import { useMenuContext } from "./Menu";
+import Button from "../Button";
 
-export const MenuButton = ({ as: Comp = "button", ...props }) => {
+export const MenuButton = props => {
   const {
     state: { isOpen },
     focusOnLastItem,
@@ -32,7 +33,7 @@ export const MenuButton = ({ as: Comp = "button", ...props }) => {
   return (
     <Reference>
       {({ ref: referenceRef }) => (
-        <Comp
+        <Button
           {...props}
           aria-haspopup="menu"
           aria-expanded={isOpen}

@@ -4,7 +4,7 @@ import Icon from "../Icon";
 import { Box } from "../Layout";
 import useBadgeStyle from "../Badge/BadgeStyle";
 
-let tabSize = "32px";
+let tabSize = "24px";
 
 const style = css`
   display: flex;
@@ -13,11 +13,10 @@ const style = css`
   transition: 0.2s;
   [data-tag-close-icon] {
     opacity: 0.5;
-    transition: 0.2s;
   }
 
   &:focus {
-    box-shadow: rgb(255, 86, 48) 0px 0px 0px 2px;
+    box-shadow: inset rgb(255, 86, 48) 0px 0px 0px 2px;
     > [data-tag-close-icon] {
       opacity: 1;
     }
@@ -65,24 +64,23 @@ const LeftElemWrapper = props => {
   return <Box css={style2} {...props} />;
 };
 
-const Tag = props => {
-  const {
-    appearance,
-    size,
-    color,
-    isRound,
-    leftElement,
-    isClosable,
-    onClose,
-    isSelected,
-    isInteractive,
-    closeIconLabel,
-    children,
-    ...rest
-  } = props;
-
+const Tag = ({
+  appearance,
+  size,
+  variant = "subtle",
+  color,
+  isRound,
+  leftElement,
+  isClosable,
+  onClose,
+  isSelected,
+  isInteractive,
+  closeIconLabel,
+  children,
+  ...rest
+}) => {
   const borderRadius = isRound ? "round" : rest.borderRadius || "sm";
-  const tagStyle = useBadgeStyle({ ...props, variant: "subtle" });
+  const tagStyle = useBadgeStyle({ color, variant });
 
   return (
     <Box
@@ -107,7 +105,8 @@ const Tag = props => {
         <CloseButton
           aria-label={closeIconLabel || `Remove ${children}`}
           ml="-6px"
-          size={tabSize}
+          width="24px"
+          alignSelf="stretch"
           borderRadius={borderRadius}
         />
       )}

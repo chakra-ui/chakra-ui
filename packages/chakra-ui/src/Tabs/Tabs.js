@@ -13,9 +13,11 @@ import {
 import { Box, Flex } from "../Layout";
 import { useId } from "@reach/auto-id";
 import { makeId } from "../utils";
+import { useTabStyle, useTabListStyle } from "./TabStyle";
 
 const Tab = forwardRef((props, ref) => {
-  const { isSelected, isDisabled, id, size, ...rest } = props;
+  const { isSelected, isDisabled, id, size, css, ...rest } = props;
+  const tabStyle = useTabStyle();
 
   return (
     <Box
@@ -29,6 +31,7 @@ const Tab = forwardRef((props, ref) => {
       aria-selected={isSelected}
       aria-disabled={isDisabled}
       aria-controls={`panel:${id}`}
+      css={[tabStyle, css]}
       {...rest}
     />
   );
@@ -37,7 +40,7 @@ const Tab = forwardRef((props, ref) => {
 ////////////////////////////////////////////////////////////////////////
 
 const TabList = forwardRef((props, ref) => {
-  const { children, ...rest } = props;
+  const { children, css, ...rest } = props;
 
   const {
     id,
@@ -49,6 +52,8 @@ const TabList = forwardRef((props, ref) => {
     onFocusPanel,
     orientation
   } = useContext(TabContext);
+
+  const tabListStyle = useTabListStyle();
 
   const allNodes = useRef([]);
 
@@ -116,6 +121,7 @@ const TabList = forwardRef((props, ref) => {
       ref={ref}
       role="tablist"
       aria-orientation={orientation}
+      css={[tabListStyle, css]}
       {...rest}
     >
       {clones}

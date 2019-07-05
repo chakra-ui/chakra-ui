@@ -1,5 +1,6 @@
+export { default } from "./Menu";
 export * from "./MenuButton";
-export * from "./MenuContext";
+export * from "./Menu";
 export * from "./MenuDivider";
 export * from "./MenuList";
 export * from "./MenuItem";

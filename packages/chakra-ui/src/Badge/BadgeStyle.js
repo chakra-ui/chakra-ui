@@ -1,21 +1,17 @@
-import { useTheme, useUIMode } from "../theme";
-import {
-  isDarkColor,
-  addOpacity,
-  generateAlphaColors
-} from "../theme/colors_utils";
 import { css } from "@emotion/core";
+import { useTheme, useUIMode } from "../theme";
+import { addOpacity, generateAlphaColors } from "../theme/colors_utils";
 
 const solidStyle = ({ theme: { colors }, color }) => {
   let lightModeBg = colors[color][500];
-  let lightModeColor = isDarkColor(lightModeBg) ? "#fff" : colors.gray[800];
+  // let lightModeColor = isDarkColor(lightModeBg) ? "#fff" : colors.gray[800];
   let darkModeBg = addOpacity(lightModeBg, 0.6);
   let darkModeColor = colors.alpha[800];
 
   return {
     light: {
       backgroundColor: lightModeBg,
-      color: lightModeColor
+      color: "#fff"
     },
     dark: {
       backgroundColor: darkModeBg,

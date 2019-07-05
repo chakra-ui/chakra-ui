@@ -3,7 +3,7 @@ import { jsx } from "@emotion/core";
 import { Popper } from "react-popper";
 import { Box } from "../Layout";
 import { assignRef } from "../utils";
-import { useMenuContext } from "./MenuContext";
+import { useMenuContext } from "./Menu";
 
 export const MenuList = props => {
   const {
@@ -79,6 +79,7 @@ export const MenuList = props => {
         <Box
           maxWidth="2xs"
           boxShadow="md"
+          bg="#fff"
           borderRadius="md"
           role="menu"
           ref={node => {
