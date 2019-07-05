@@ -4,7 +4,7 @@ import { Children, cloneElement, forwardRef, useState } from "react";
 import Icon from "../Icon";
 import { Box } from "../Layout";
 import { genId } from "../utils";
-import { useMenuContext } from "./MenuContext";
+import { useMenuContext } from "./Menu";
 import { MenuGroup } from "./MenuGroup";
 import { StyledItem } from "./MenuItem";
 

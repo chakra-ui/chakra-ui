@@ -2,7 +2,7 @@ import React from "react";
 import { configure, addDecorator } from "@storybook/react";
 import { ThemeProvider, useUIMode, UIModeProvider } from "../src/theme";
 import CSSReset from "../src/CSSReset";
-import { Checkbox, Absolute } from "../src";
+import { Checkbox, Absolute, Button } from "../src";
 
 function loadStories() {
   require("../stories");
@@ -15,7 +15,10 @@ const AppProvider = ({ children }) => {
       <CSSReset />
       {children}
       <Absolute bottom="24px" right="24px">
-        <Checkbox isChecked={mode === "dark"} onChange={toggle} />
+        <Button onClick={toggle}>
+          {mode === "dark" ? "Light Mode" : "Dark Mode"}
+        </Button>
+        {/* <Checkbox isChecked={mode === "dark"} onChange={toggle} /> */}
       </Absolute>
     </ThemeProvider>
   );

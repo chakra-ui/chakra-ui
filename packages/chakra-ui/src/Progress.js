@@ -3,6 +3,7 @@ import { jsx, keyframes, css } from "@emotion/core";
 import { number, oneOf, bool } from "prop-types";
 import { Box } from "./Layout";
 import VisuallyHidden from "./VisuallyHidden";
+import { useUIMode } from "./theme/Providers";
 
 const stripe = keyframes`
   from { background-position: 1rem 0}
@@ -33,12 +34,12 @@ const Progress = ({
   min = 0,
   max = 100,
   size = "md",
-  mode,
   hasStripe,
   isAnimated,
   borderRadius,
   ...rest
 }) => {
+  const { mode } = useUIMode();
   const percent = (value / max) * 100;
   return (
     <Box

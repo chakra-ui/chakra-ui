@@ -7,14 +7,7 @@ import React from "react";
 import Breadcrumbs, { BreadcrumbItem } from "../src/Breadcrumb";
 import Icon from "../src/Icon";
 import { Box } from "../src/Layout";
-import Tabs, {
-  Tab as BaseTab,
-  TabList as BaseTabList,
-  TabPanel,
-  TabPanels,
-  useTabListStyle,
-  useTabStyle
-} from "../src/Tabs";
+import Tabs, { Tab, TabList, TabPanel, TabPanels } from "../src/Tabs";
 
 const stories = storiesOf("Navigation", module);
 stories.addDecorator(withKnobs);
@@ -37,16 +30,6 @@ const Content = styled.div`
   border-radius: 3px;
   padding: 32px;
 `;
-
-const Tab = React.forwardRef((props, ref) => {
-  const tabStyle = useTabStyle();
-  return <BaseTab ref={ref} {...props} css={tabStyle} />;
-});
-
-const TabList = React.forwardRef((props, ref) => {
-  const css = useTabListStyle();
-  return <BaseTabList ref={ref} {...props} css={css} />;
-});
 
 stories.add("Tabs", () => {
   return (

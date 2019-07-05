@@ -133,7 +133,7 @@ const Menu = forwardRef(
   }
 );
 
-function useMenuContext() {
+export function useMenuContext() {
   const context = useContext(MenuContext);
   if (context === undefined) {
     throw new Error(
@@ -143,4 +143,4 @@ function useMenuContext() {
   return context;
 }
 
-export { useMenuContext, Menu };
+export default Menu;

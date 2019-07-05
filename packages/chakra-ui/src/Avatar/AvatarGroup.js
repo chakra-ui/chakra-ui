@@ -13,11 +13,12 @@ const AvatarGroup = ({ size, children, spacing = -3, ...rest }) => {
         ? cloneElement(child, { size, ml: spacing })
         : child;
     }
+
     let isFirstAvatar = index === 0;
     return cloneElement(child, {
       ml: isFirstAvatar ? 0 : spacing,
       size,
-      showOutline: true,
+      showBorder: true,
       css: { zIndex: count - index }
     });
   });

@@ -6,7 +6,7 @@ import styled from "@emotion/styled";
 import { Flex, Box } from "../Layout";
 import Icon from "../Icon";
 import { themeGet } from "@styled-system/theme-get";
-import { useMenuContext } from "./MenuContext";
+import { useMenuContext } from "./Menu";
 
 export const StyledItem = styled(Flex)`
   width: 100%;

@@ -3,8 +3,15 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 import Accordion from "../src/Accordion";
 import Avatar, { AvatarGroup } from "../src/Avatar";
+import AvatarItem, {
+  AvatarSubtext,
+  AvatarText,
+  AvatarTextGroup
+} from "../src/Avatar/AvatarItem";
 import Badge from "../src/Badge";
+import Icon from "../src/Icon";
 import { Box } from "../src/Layout";
+import List from "../src/List";
 import Progress from "../src/Progress";
 import Rating from "../src/Rating";
 import {
@@ -15,15 +22,7 @@ import {
   StatLabel,
   StatNumber
 } from "../src/Stat";
-import AvatarItem, {
-  AvatarText,
-  AvatarSubtext,
-  AvatarTextGroup
-} from "../src/Avatar/AvatarItem";
-import styled from "@emotion/styled";
-import List from "../src/List";
 import Tag from "../src/Tag";
-import Icon from "../src/Icon";
 
 const stories = storiesOf("Data Display", module);
 stories.addDecorator(withKnobs);
@@ -109,18 +108,28 @@ stories.add("Tags", () => {
       <Tag
         fontWeight="semibold"
         isRound
-        color="green"
-        leftElement={<Icon name="check" />}
+        color="cyan"
+        leftElement={<Icon name="add" size="12px" />}
+      >
+        Green
+      </Tag>
+      <Tag
+        fontWeight="semibold"
+        isRound
+        variant="solid"
+        color="cyan"
+        isClosable
       >
         Green
       </Tag>
       <Tag
         color="red"
         isRound
+        isClosable
         leftElement={
           <Avatar
             src="https://www.dropbox.com/s/nd8z3hxuo3ahauk/segun_adebayo.jpg?dl=1"
-            size="sm"
+            size="xs"
           />
         }
       >
@@ -218,24 +227,17 @@ stories.add("Accordion", () => {
 
 stories.add("Progress", () => {
   return (
-    <Box maxWidth="400px" bg="gray.800" mx="auto" mt={8} p={3}>
+    <Box maxWidth="400px" mx="auto" mt={8} p={3}>
       <Progress
         borderRadius="round"
         size="sm"
         color="green"
         value={63}
-        mode="dark"
         hasStripe
         isAnimated
       />
       <br />
-      <Progress
-        size="sm"
-        color="cyan"
-        value={34}
-        mode="dark"
-        borderRadius="round"
-      />
+      <Progress size="sm" color="cyan" value={34} borderRadius="round" />
       <br />
     </Box>
   );
