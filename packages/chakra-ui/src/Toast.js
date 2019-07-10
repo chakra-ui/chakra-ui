@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/core";
 import toaster from "toasted-notes";
 import Alert from "./Alert";
-import { useTheme, ThemeProvider } from "./theme";
+import { useTheme, ThemeProvider, UIModeProvider } from "./theme";
 
 export function useToast() {
   const theme = useTheme();
@@ -34,20 +34,22 @@ export function useToast() {
     toaster.notify(
       ({ onClose, id }) => (
         <ThemeProvider theme={theme}>
-          <Alert
-            isClosable
-            onClose={onClose}
-            id={String(id)}
-            title={title}
-            status={status}
-            width="100%"
-            variant={variant}
-            showIcon={showIcon}
-            textAlign="left"
-            m={2}
-          >
-            {subtitle}
-          </Alert>
+          <UIModeProvider>
+            <Alert
+              isClosable
+              onClose={onClose}
+              id={String(id)}
+              title={title}
+              status={status}
+              width="100%"
+              variant={variant}
+              showIcon={showIcon}
+              textAlign="left"
+              m={2}
+            >
+              {subtitle}
+            </Alert>
+          </UIModeProvider>
         </ThemeProvider>
       ),
       options

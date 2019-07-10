@@ -2,11 +2,11 @@
 import { jsx } from "@emotion/core";
 import { Children, cloneElement, forwardRef, useState } from "react";
 import Icon from "../Icon";
-import { Box } from "../Layout";
+import { Box, Flex } from "../Layout";
 import { genId } from "../utils";
 import { useMenuContext } from "./Menu";
 import { MenuGroup } from "./MenuGroup";
-import { StyledItem } from "./MenuItem";
+import { useMenuItemStyle } from "./MenuItem";
 
 export const MenuItemOption = forwardRef(
   (
@@ -17,6 +17,7 @@ export const MenuItemOption = forwardRef(
       type,
       onBlur,
       onFocus,
+      css,
       "aria-checked": ariaChecked,
       ...props
     },
@@ -57,9 +58,12 @@ export const MenuItemOption = forwardRef(
       focusAtIndex(-1);
     };
 
+    const menuItemStyle = useMenuItemStyle();
+
     return (
-      <StyledItem
+      <Flex
         ref={ref}
+        css={[menuItemStyle, css]}
         as="button"
         minHeight="32px"
         alignItems="center"
@@ -77,12 +81,17 @@ export const MenuItemOption = forwardRef(
         {...props}
       >
         <Box size="1em" ml="16px" mr="-4px" aria-hidden>
-          <Icon name="check" color="currentColor" size="1em" />
+          <Icon
+            name="check"
+            color="currentColor"
+            size="1em"
+            data-menuitem-icon=""
+          />
         </Box>
         <Box textAlign="left" as="span" mx="16px" flex="1">
           {children}
         </Box>
-      </StyledItem>
+      </Flex>
     );
   }
 );
@@ -100,24 +109,26 @@ export const MenuOptionsGroup = ({
   children,
   type = "radio",
   title,
-  value,
+  value: valueProp,
   name,
   onChange
 }) => {
-  const [val, setVal] = useState(value || "");
+  const [value, setValue] = useState(valueProp || "");
 
-  const handleChange = value => {
+  const handleChange = _value => {
     if (type === "radio") {
-      setVal(value);
-      onChange && onChange(value);
+      setValue(_value);
+      onChange && onChange(_value);
     } else {
-      let newVal = val.includes(value)
-        ? val.filter(i => i !== value)
-        : [...val, value];
-      setVal(newVal);
-      onChange && onChange(newVal);
+      let newValue = value.includes(_value)
+        ? value.filter(i => i !== _value)
+        : [...value, _value];
+
+      setValue(newValue);
+      onChange && onChange(newValue);
     }
   };
+
   return (
     <MenuGroup title={title}>
       {Children.map(children, child => {
@@ -125,11 +136,11 @@ export const MenuOptionsGroup = ({
           type === "radio"
             ? {
                 name: name || genId("radio"),
-                "aria-checked": child.props.value === val
+                "aria-checked": child.props.value === value
               }
             : {
                 name: child.props.name,
-                "aria-checked": val.includes(child.props.value)
+                "aria-checked": value.includes(child.props.value)
               };
         return cloneElement(child, {
           type,

@@ -5,42 +5,40 @@ import { useTheme, useUIMode } from "../theme";
 // Just so I don't repeat this :)
 let hover = "&:not([aria-disabled=true]):not(:focus):hover",
   disabled = "&[aria-disabled=true]",
-  focus = "&:not([aria-invalid=true]):focus",
+  focus =
+    "&:not([aria-invalid=true]):focus, &:not([aria-invalid=true]):focus-within",
   invalid = "&[aria-invalid=true]";
 
 export const themedStyle = props => {
-  const { theme, mode } = props;
+  const { gray, alpha } = props.theme.colors;
 
-  if (mode === "light") {
-    return {
-      color: theme.colors.gray[800],
+  return {
+    light: {
+      color: gray[800],
       backgroundColor: "#fff",
       [hover]: {
-        borderColor: theme.colors.gray[30]
+        borderColor: gray[30]
       },
       [disabled]: {
-        backgroundColor: theme.colors.gray[100],
+        backgroundColor: gray[100],
         boxShadow: "none !important",
-        color: theme.colors.gray[500],
+        color: gray[500],
         cursor: "not-allowed"
       }
-    };
-  }
-
-  if (mode === "dark") {
-    return {
-      color: theme.colors.alpha[800],
-      borderColor: theme.colors.alpha[200],
-      backgroundColor: theme.colors.alpha[200],
+    },
+    dark: {
+      color: alpha[800],
+      borderColor: alpha[200],
+      backgroundColor: alpha[50],
       [hover]: {
-        borderColor: theme.colors.alpha[30]
+        borderColor: alpha[30]
       },
       [disabled]: {
-        color: theme.colors.alpha[500],
+        color: alpha[500],
         cursor: "not-allowed"
       }
-    };
-  }
+    }
+  };
 };
 
 const flushedStyle = props => {
@@ -92,21 +90,24 @@ const baseStyle = css({
 
 const invalidStyle = props => {
   const { mode, theme } = props;
+
+  const borderColor = {
+    dark: theme.colors.red[300],
+    light: theme.colors.red[500]
+  };
+
   return css({
     [invalid]: {
-      borderColor:
-        mode === "dark"
-          ? `${theme.colors.red[300]} !important`
-          : `${theme.colors.red[500]} !important`
+      borderColor: borderColor[mode]
     }
   });
 };
 
 const focusStyle = props => {
   const { theme } = props;
+
   return css({
     [focus]: {
-      borderColor: theme.colors.blue[300],
       boxShadow: theme.shadows.focusring
     }
   });
@@ -137,7 +138,7 @@ const useInputStyle = props => {
     invalidStyle(_props),
     sizeStyle(_props),
     focusStyle(_props),
-    themedStyle(_props),
+    themedStyle(_props)[mode],
     variantStyle(_props),
     {
       paddingBottom: 1

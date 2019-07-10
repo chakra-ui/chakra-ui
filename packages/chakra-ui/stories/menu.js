@@ -9,14 +9,17 @@ import Menu, {
   MenuList
 } from "../src/Menu";
 import { MenuItemOption, MenuOptionsGroup } from "../src/Menu/MenuOption";
+import { Box } from "../src/Layout";
 
-const stories = storiesOf("Menu", module);
+const stories = storiesOf("Menu", module).addDecorator(story => (
+  <Box maxWidth="md" mx="auto" mt={4}>
+    {story()}
+  </Box>
+));
 
 stories.add("Menu without icons", () => (
   <Menu autoSelect>
-    <MenuButton color="blue" appearance="ghost" as={Button}>
-      Trigger
-    </MenuButton>
+    <MenuButton color="blue">Trigger</MenuButton>
     <MenuList minWidth="240px">
       <MenuGroup title="Group 1">
         <MenuItem icon="add">Share...</MenuItem>
@@ -53,9 +56,7 @@ stories.add("MenuList", () => (
 
 stories.add("MenuItem Radio", () => (
   <Menu autoSelect closeOnOutsideClick>
-    <MenuButton color="blue" appearance="ghost" as={Button}>
-      MenuItem
-    </MenuButton>
+    <MenuButton color="blue">MenuItem</MenuButton>
     <MenuList minWidth="240px">
       <MenuOptionsGroup value="move" title="Group 1" type="radio">
         <MenuItemOption value="share">Share...</MenuItemOption>

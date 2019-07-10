@@ -40,7 +40,7 @@ stories.add("Button", () => (
         variant={select(
           "variant",
           ["ghost", "outline", "solid", "link", "unstyled"],
-          "outline"
+          "solid"
         )}
         size={select("size", ["sm", "md", "lg"], "md")}
         isLoading={boolean("isLoading?", false)}
