@@ -3,12 +3,6 @@ import colors from "./colors";
 import sizes from "./sizes";
 import typography from "./typography";
 
-const brand = {
-  primaryColor: "blue",
-  secondaryColor: "green",
-  primaryFont: "sans-serif"
-};
-
 const spacing = [
   "0",
   "0.25rem",
@@ -47,6 +41,7 @@ const boxShadows = {
 };
 
 const theme = {
+  primaryColor: "blue",
   breakpoints: ["640px", "768px", "1024px", "1280px"],
   zIndices: {
     hide: -1,

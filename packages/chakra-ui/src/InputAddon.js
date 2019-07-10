@@ -31,7 +31,7 @@ const InputWrapper = styled(Box)`
 
 const Addon = props => {
   const { variant, size, position, ...rest } = props;
-  const {mode} = useUIMode();
+  const { mode } = useUIMode();
 
   const inputStyle = useInputStyle(props);
 
@@ -40,7 +40,7 @@ const Addon = props => {
     whiteSpace: "nowrap",
     width: "auto",
     background:
-      mode === "dark" ? theme.colors.alpha[300] : theme.colors.gray[100]
+      mode === "dark" ? theme.colors.alpha[200] : theme.colors.gray[100]
   });
 
   let positionStyle =
@@ -49,12 +49,14 @@ const Addon = props => {
           margin-right: -1px;
           border-bottom-right-radius: 0;
           border-top-right-radius: 0;
+          border-right-color: transparent;
         `
       : css`
           order: 1;
           margin-left: -1px;
           border-bottom-left-radius: 0;
           border-top-left-radius: 0;
+          border-left-color: transparent;
         `;
 
   return (

@@ -1,5 +1,6 @@
 import { css } from "@emotion/core";
 import { useTheme, useUIMode } from "../theme";
+import { addBlack, isDarkColor } from "../theme/colors_utils";
 
 // Just so I don't repeat this :)
 let hover = '&:not([aria-disabled="true"]):hover',
@@ -34,47 +35,72 @@ const unstyledStyle = css({
   textAlign: "inherit"
 });
 
-const themedSolidStyle = props => {
-  const { theme } = props;
+/////////////////////////////////////////////////////////
+
+const solidGrayStyle = props => {
+  const { alpha, gray } = props.theme.colors;
+
   return {
     light: {
       color: "inherit",
-      backgroundColor: theme.colors.gray[100],
+      backgroundColor: gray[100],
       [hover]: {
-        backgroundColor: theme.colors.gray[200]
+        backgroundColor: gray[200]
       },
       [active]: {
-        backgroundColor: theme.colors.gray[300]
+        backgroundColor: gray[300]
       }
     },
     dark: {
-      color: theme.colors.alpha[900],
-      backgroundColor: theme.colors.alpha[200],
+      color: "inherit",
+      backgroundColor: alpha[300],
       [hover]: {
-        backgroundColor: theme.colors.alpha[300]
+        backgroundColor: alpha[400]
       },
       [active]: {
-        backgroundColor: theme.colors.alpha[400]
+        backgroundColor: alpha[500]
       }
     }
   };
 };
 
-// Color styled for contained buttons
 const solidStyle = props => {
-  const { theme, color, mode } = props;
-  return css({
-    color: "#fff",
-    backgroundColor: theme.colors[color][500],
-    [hover]: {
-      backgroundColor: theme.colors[color][600]
+  const {
+    theme: { colors },
+    color
+  } = props;
+  const _color = colors[color];
+  const bgColor = { light: _color[500], dark: _color[200] };
+
+  if (color === "gray") {
+    return solidGrayStyle(props);
+  }
+
+  return {
+    light: {
+      backgroundColor: bgColor.light,
+      color: "#fff",
+      ":hover": {
+        backgroundColor: _color[600]
+      },
+      ":active": {
+        backgroundColor: _color[700]
+      }
     },
-    [active]: {
-      backgroundColor: theme.colors[color][700]
-    },
-    ...(color === "gray" && themedSolidStyle(props)[mode])
-  });
+    dark: {
+      backgroundColor: bgColor.dark,
+      color: isDarkColor(bgColor.dark) ? colors.alpha[800] : colors.gray[800],
+      ":hover": {
+        backgroundColor: addBlack(bgColor.dark, 0.1)
+      },
+      ":active": {
+        backgroundColor: addBlack(bgColor.dark, 0.2)
+      }
+    }
+  };
 };
+
+//////////////////////////////////////////////////////////////
 
 const themedGhostStyle = props => {
   const { theme } = props;
@@ -149,9 +175,10 @@ const linkStyle = ({ theme, color }) =>
 
 // Finally, a function to determine which style to use
 const variantStyle = props => {
-  switch (props.variant) {
+  const { variant, mode } = props;
+  switch (variant) {
     case "solid":
-      return solidStyle(props);
+      return solidStyle(props)[mode];
     case "outline":
       return outlineStyle(props);
     case "ghost":

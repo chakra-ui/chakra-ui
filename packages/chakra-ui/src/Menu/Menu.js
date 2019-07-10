@@ -11,6 +11,7 @@ import {
 import { Manager } from "react-popper";
 import { usePrevious } from "../hooks";
 import { genId, getFocusables } from "../utils";
+import { useUIMode } from "../theme";
 
 const MenuContext = createContext();
 
@@ -28,6 +29,8 @@ const Menu = forwardRef(
     },
     ref
   ) => {
+    const { mode } = useUIMode();
+
     const [state, setState] = useState({
       isOpen: isOpen || false,
       index: -1
@@ -122,7 +125,8 @@ const Menu = forwardRef(
       openMenu,
       autoSelect,
       closeOnOutsideClick,
-      placement
+      placement,
+      mode
     };
 
     return (

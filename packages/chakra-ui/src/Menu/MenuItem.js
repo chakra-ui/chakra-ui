@@ -1,53 +1,84 @@
 /** @jsx jsx */
-import { jsx } from "@emotion/core";
+import { css, jsx } from "@emotion/core";
+import { func, node, oneOfType, string } from "prop-types";
 import { forwardRef } from "react";
-import { func, string, oneOfType, node } from "prop-types";
-import styled from "@emotion/styled";
-import { Flex, Box } from "../Layout";
 import Icon from "../Icon";
-import { themeGet } from "@styled-system/theme-get";
+import { Box, Flex } from "../Layout";
+import { useTheme, useUIMode } from "../theme";
 import { useMenuContext } from "./Menu";
 
-export const StyledItem = styled(Flex)`
-  width: 100%;
-  flex: 0 0 auto;
-  user-select: none;
-  transition: background-color 220ms, color 220ms;
+const baseStyle = css({
+  width: "100%",
+  flex: " 0 0 auto",
+  userSelect: "none",
+  transition: "background-color 220ms, color 220ms"
+});
 
-  &:not([aria-disabled]):active {
-    background-color: ${props => themeGet("colors.gray.200")(props)};
-  }
+const interactionStyle = ({ theme, mode }) => {
+  const { gray, alpha } = theme.colors;
 
-  &:focus,
-  &[aria-expanded="true"] {
-    background-color: ${props => themeGet("colors.gray.100")(props)};
-  }
+  const _focusColor = { light: gray[100], dark: alpha[100] };
+  const _activeColor = { light: gray[200], dark: alpha[200] };
 
-  &[role="menuitemradio"],
-  &[role="menuitemcheckbox"] {
-    svg {
-      display: none;
+  return css({
+    "&:not([aria-disabled]):active": {
+      backgroundColor: _activeColor[mode]
+    },
+    "&:focus, &[aria-expanded=true]": {
+      backgroundColor: _focusColor[mode]
     }
-    &[aria-checked="true"] {
-      color: ${props => themeGet("colors.blue.600")(props)};
-      svg {
-        display: block;
+  });
+};
+
+const disabledStyle = css({
+  "&[aria-disabled]": {
+    opacity: 0.5,
+    cursor: "not-allowed"
+  }
+});
+
+const menuItemRadioStyle = ({ theme, mode }) => {
+  const checkedColor = {
+    light: theme.colors.blue[600],
+    dark: theme.colors.blue[200]
+  };
+
+  return css({
+    "&[role=menuitemradio], &[role=menuitemcheckbox]": {
+      "[data-menuitem-icon]": {
+        display: "none"
+      },
+
+      "&[aria-checked=true]": {
+        color: checkedColor[mode],
+
+        "[data-menuitem-icon]": {
+          display: "block"
+        }
       }
     }
-  }
+  });
+};
 
-  &[aria-disabled] {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-`;
+export const useMenuItemStyle = () => {
+  const theme = useTheme();
+  const { mode } = useUIMode();
+  const props = { theme, mode };
+
+  return css`
+    ${baseStyle}
+    ${interactionStyle(props)}
+    ${disabledStyle}
+    ${menuItemRadioStyle(props)}
+  `;
+};
 
 export const MenuItem = forwardRef(
   (
     {
       isDisabled,
       icon,
-      as,
+      css,
       children,
       label,
       hasSubmenu,
@@ -88,17 +119,19 @@ export const MenuItem = forwardRef(
       focusAtIndex(nextIndex);
     };
 
-    const onMouseLeave = event => {
+    const onMouseLeave = () => {
       focusAtIndex(-1);
     };
 
+    const menuItemStyle = useMenuItemStyle();
+
     return (
-      <StyledItem
+      <Flex
         ref={ref}
         minHeight="32px"
         alignItems="center"
-        as={as}
         onClick={onClick}
+        css={[menuItemStyle, css]}
         role={role}
         tabIndex={-1}
         disabled={isDisabled}
@@ -130,6 +163,7 @@ export const MenuItem = forwardRef(
             color="currentColor"
             flex="0 0 auto"
             mr="16px"
+            opacity={0.8}
             whiteSpace="nowrap"
             data-menuitem-label=""
           >
@@ -137,7 +171,7 @@ export const MenuItem = forwardRef(
             {hasSubmenu && <Icon name="chevronRight" size="1.5em" />}
           </Box>
         )}
-      </StyledItem>
+      </Flex>
     );
   }
 );

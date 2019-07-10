@@ -13,7 +13,6 @@ import Icon from "../src/Icon";
 import { Box } from "../src/Layout";
 import List from "../src/List";
 import Progress from "../src/Progress";
-import Rating from "../src/Rating";
 import {
   StatChangeArrow,
   StatGroup,
@@ -99,8 +98,6 @@ stories.add("Avatars", () => (
     ))}
   </>
 ));
-
-stories.add("Rating", () => <Rating />);
 
 stories.add("Tags", () => {
   return (

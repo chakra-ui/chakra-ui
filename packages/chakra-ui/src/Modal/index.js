@@ -8,31 +8,42 @@ const Modal = ({
   isOpen,
   onClose,
   children,
-  showCloseButton,
+  hasCloseButton,
   size = "md",
+  isCentered,
   initialFocusRef
 }) => {
-  const {mode} = useUIMode();
+  const { mode } = useUIMode();
+  const centeredStyle = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
+  };
   return (
     <ModalTransition isOpen={isOpen}>
       {styles => (
         <ModalOverlay
+          onClick={() => {}}
           initialFocusRef={initialFocusRef}
-          css={{ opacity: styles.opacity }}
+          css={[
+            {
+              opacity: styles.opacity
+            },
+            isCentered && centeredStyle
+          ]}
           onDismiss={onClose}
         >
           <ModalContent
             mode={mode}
-            css={theme => ({
-              maxWidth: theme.sizes[size],
-              top: 40,
-              margin: "0 auto",
-              borderRadius: 4,
+            css={({ sizes, radii }) => ({
+              ...(!isCentered && { top: 40, margin: "0 auto" }),
+              maxWidth: sizes[size],
+              borderRadius: radii.md,
               transform: `translate3d(0px, ${styles.y}px, 0px)`
             })}
           >
             {children}
-            {showCloseButton && (
+            {hasCloseButton && (
               <CloseButton
                 onClick={onClose}
                 position="absolute"

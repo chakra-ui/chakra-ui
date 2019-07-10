@@ -45,7 +45,7 @@ const ThemeProvider = ({ theme, children }) => {
             styles={theme =>
               css`
                 body {
-                  background-color: #121212;
+                  background-color: #202124;
                   color: rgba(255, 255, 255, 0.87);
                 }
               `

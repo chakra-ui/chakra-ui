@@ -75,16 +75,16 @@ const NumberInput = forwardRef(
     const { mode } = useUIMode();
     const [val, setVal] = useState(defaultValue || 0);
     const { current: isControlled } = useRef(value != null);
-    const derivedValue = isControlled ? value : val;
+    const _value = isControlled ? value : val;
 
     const handleIncrement = () => {
       const func = () => {
-        onChange && onChange(Number(value) + 1);
+        onChange && onChange(Number(_value) + 1);
         !isControlled && setVal(val + 1);
       };
 
       if (max) {
-        derivedValue < max && func();
+        _value < max && func();
       } else {
         func();
       }
@@ -97,7 +97,7 @@ const NumberInput = forwardRef(
       };
 
       if (min) {
-        derivedValue > min && func();
+        _value > min && func();
       } else {
         func();
       }
@@ -139,8 +139,8 @@ const NumberInput = forwardRef(
           height="calc(100% - 2px)"
         >
           <Segment
-            role="button"
             onClick={isDisabled ? undefined : handleIncrement}
+            role="button"
             tabindex="-1"
             mode={mode}
             aria-disabled={isDisabled}

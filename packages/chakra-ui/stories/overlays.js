@@ -31,7 +31,6 @@ stories.add("Modal", () => {
         <>
           <Modal
             isOpen={state.isOpen}
-            mode="dark"
             onClose={() => setState({ isOpen: false })}
           >
             <ModalHeader onClose={() => setState({ isOpen: false })}>
@@ -62,7 +61,7 @@ stories.add("Drawer", () => {
         <>
           <Drawer
             isOpen={state.isOpen}
-            placement="bottom"
+            placement="left"
             onClose={() => setState({ isOpen: false })}
           >
             <DrawerHeader

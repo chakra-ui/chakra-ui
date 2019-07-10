@@ -1,9 +1,10 @@
 /** @jsx jsx */
-import { jsx } from "@emotion/core";
+import { jsx, css } from "@emotion/core";
 import { Popper } from "react-popper";
 import { Box } from "../Layout";
 import { assignRef } from "../utils";
 import { useMenuContext } from "./Menu";
+import { generateDarkElevation } from "../theme/colors_utils";
 
 export const MenuList = props => {
   const {
@@ -18,7 +19,8 @@ export const MenuList = props => {
     buttonId,
     menuRef,
     placement,
-    closeOnOutsideClick
+    closeOnOutsideClick,
+    mode
   } = useMenuContext();
 
   const handleKeyDown = event => {
@@ -73,13 +75,26 @@ export const MenuList = props => {
     }
   };
 
+  const menuListStyle = theme => {
+    const darkElevation = generateDarkElevation("#202124");
+    const elevation = {
+      light: { boxShadow: theme.shadows.md },
+      dark: darkElevation[300]
+    };
+
+    return css`
+      color: inherit;
+      ${elevation[mode]};
+    `;
+  };
+
   return (
     <Popper placement={placement}>
       {({ ref: popperRef, style }) => (
         <Box
           maxWidth="2xs"
-          boxShadow="md"
-          bg="#fff"
+          // boxShadow="md"
+          css={menuListStyle}
           borderRadius="md"
           role="menu"
           ref={node => {
