@@ -1,19 +1,13 @@
 {
-  "name": "@chakra/leadspree",
-  "version": "0.0.0",
-  "description": "> TODO: description",
-  "author": "Segun Adebayo <sage@adebayosegun.com>",
-  "homepage": "",
-  "license": "MIT",
-  "main": "lib/leadspree.js",
-  "directories": {
-    "lib": "lib",
-    "test": "__tests__"
-  },
-  "files": [
-    "lib"
-  ],
+  "name": "create-next-example-app",
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "9.0.0",
+    "react": "16.8.6",
+    "react-dom": "16.8.6"
   }
 }
