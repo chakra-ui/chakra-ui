@@ -1,9 +1,18 @@
-import { configure } from '@storybook/react';
+import React from "react";
+import { configure, addDecorator } from "@storybook/react";
+import { UIModeProvider, ThemeProvider, theme, CSSReset } from "@chakra/ui";
 
-// automatically import all files ending in *.stories.js
-const req = require.context('../stories', true, /\.stories\.js$/);
 function loadStories() {
-  req.keys().forEach(filename => req(filename));
+  require("../stories");
 }
+
+addDecorator(story => (
+  <UIModeProvider value="light">
+    <ThemeProvider theme={theme}>
+      <CSSReset />
+      {story()}
+    </ThemeProvider>
+  </UIModeProvider>
+));
 
 configure(loadStories, module);

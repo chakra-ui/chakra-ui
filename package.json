@@ -19,6 +19,7 @@
   },
   "scripts": {
     "bootstrap": "lerna bootstrap --hoist",
-    "build:ui": "npm run build --prefix packages/chakra-ui"
+    "build:chakra-ui": "npm run build --prefix packages/chakra-ui",
+    "build:ui-story": "npm run storybook --prefix packages/leadspree"
   }
 }

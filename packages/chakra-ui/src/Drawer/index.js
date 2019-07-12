@@ -13,6 +13,7 @@ const Drawer = ({
   isFullHeight,
   initialFocusRef,
   showCloseButton,
+  hideOverlay,
   placement = "right"
 }) => {
   const { mode } = useUIMode();
@@ -22,6 +23,7 @@ const Drawer = ({
         <DrawerOverlay
           initialFocusRef={initialFocusRef}
           onDismiss={onClose}
+          hideOverlay={hideOverlay}
           css={{ opacity: styles.opacity }}
         >
           <DrawerContent

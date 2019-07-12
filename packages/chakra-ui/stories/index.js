@@ -8,3 +8,4 @@ import "./overlays";
 import "./lists";
 import "./navigation";
 import "./menu";
+import "./color-picker";

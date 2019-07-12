@@ -10,7 +10,7 @@
     "umd"
   ],
   "scripts": {
-    "build": "nwb build-react-component",
+    "build": "nwb build-react-component --no-demo",
     "clean": "nwb clean-module && nwb clean-demo",
     "prepublishOnly": "npm run build",
     "start": "nwb serve-react-demo",
@@ -18,7 +18,8 @@
     "test:coverage": "nwb test-react --coverage",
     "test:watch": "nwb test-react --server",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "build:watch": "nodemon -w src -x 'rm .babelrc &> /dev/null; nwb build-react-component --no-demo'"
   },
   "dependencies": {
     "@reach/auto-id": "0.2.0",
@@ -49,6 +50,7 @@
     "babel-loader": "^8.0.6",
     "babel-plugin-emotion": "10.0.9",
     "emotion-theming": "10.0.10",
+    "nodemon": "1.19.1",
     "nwb": "0.23.x",
     "prop-types": "15.7.2",
     "react": "16.8.6",
