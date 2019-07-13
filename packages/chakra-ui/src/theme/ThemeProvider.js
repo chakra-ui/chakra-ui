@@ -1,21 +1,36 @@
 /** @jsx jsx */
 import { jsx, ThemeContext, Global, css } from "@emotion/core";
 import { ThemeProvider as EmotionThemeProvider } from "emotion-theming";
-import { useContext, createContext } from "react";
+import { useContext, createContext, useState } from "react";
 import useDarkMode from "use-dark-mode";
 import theme from "./theme";
 
 ///////////////////////////////////////////////////
 
+// This context handles the color mode (light or dark) of the UI
+
 const UIModeContext = createContext();
 
 const UIModeProvider = ({ value: overideValue, children }) => {
-  const { value, ...rest } = useDarkMode(false);
+  const [manualMode, setManualMode] = useState(overideValue);
+
+  const manualToggle = () => {
+    if (manualMode === "light") {
+      setManualMode("dark");
+    }
+
+    if (manualMode === "dark") {
+      setManualMode("light");
+    }
+  };
+
+  const { value, toggle } = useDarkMode(false);
   const mode = value ? "light" : "dark";
 
   const childContext = overideValue
-    ? { mode: overideValue }
-    : { mode, ...rest };
+    ? { mode: manualMode, toggle: manualToggle }
+    : { mode, toggle };
+
   return (
     <UIModeContext.Provider value={childContext}>
       {children}
@@ -24,6 +39,7 @@ const UIModeProvider = ({ value: overideValue, children }) => {
 };
 
 const DarkMode = props => <UIModeProvider value="dark" {...props} />;
+const LightMode = props => <UIModeProvider value="light" {...props} />;
 
 const useUIMode = () => {
   const context = useContext(UIModeContext);
@@ -70,4 +86,11 @@ const useTheme = () => {
   return theme;
 };
 
-export { ThemeProvider, UIModeProvider, useTheme, useUIMode, DarkMode };
+export {
+  ThemeProvider,
+  UIModeProvider,
+  useTheme,
+  useUIMode,
+  DarkMode,
+  LightMode
+};

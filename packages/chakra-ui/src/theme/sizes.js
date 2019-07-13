@@ -1,15 +1,15 @@
 const baseSize = 8; //8px
 
 //14px is the root font-size
-const getRemValue = pxValue => `${pxValue / 14}rem`;
+const getRem = pxValue => `${pxValue / 14}rem`;
 
 const avatarSizes = {
-  xs: getRemValue(baseSize * 2),
-  sm: getRemValue(baseSize * 3),
-  md: getRemValue(baseSize * 4),
-  lg: getRemValue(baseSize * 5),
-  xl: getRemValue(baseSize * 8),
-  xxl: getRemValue(baseSize * 12)
+  xs: getRem(baseSize * 2),
+  sm: getRem(baseSize * 3),
+  md: getRem(baseSize * 4),
+  lg: getRem(baseSize * 5),
+  xl: getRem(baseSize * 8),
+  xxl: getRem(baseSize * 12)
 };
 
 const sizes = {
@@ -37,25 +37,32 @@ const sizes = {
     xl: "1280px"
   },
   button: {
+    xl: {
+      height: 48,
+      fontSize: 16,
+      paddingLeft: 32,
+      paddingRight: 32,
+      minWidth: 48
+    },
     lg: {
       height: 40,
       fontSize: 16,
-      paddingLeft: 16,
-      paddingRight: 16,
+      paddingLeft: 24,
+      paddingRight: 24,
       minWidth: 40
     },
     md: {
       height: 32,
       fontSize: 14,
-      paddingLeft: 12,
-      paddingRight: 12,
+      paddingLeft: 16,
+      paddingRight: 16,
       minWidth: 32
     },
     sm: {
       height: 24,
       fontSize: 14,
-      paddingLeft: 8,
-      paddingRight: 8,
+      paddingLeft: 12,
+      paddingRight: 12,
       minWidth: 24
     }
   },

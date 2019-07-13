@@ -35,8 +35,9 @@ const unstyledStyle = css({
   textAlign: "inherit"
 });
 
-/////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
 
+//Styled for the solid variant and gray color button
 const solidGrayStyle = props => {
   const { alpha, gray } = props.theme.colors;
 
@@ -64,6 +65,7 @@ const solidGrayStyle = props => {
   };
 };
 
+//Styled for the solid variant and any other color of button
 const solidStyle = props => {
   const {
     theme: { colors },
@@ -80,20 +82,20 @@ const solidStyle = props => {
     light: {
       backgroundColor: bgColor.light,
       color: "#fff",
-      ":hover": {
+      [hover]: {
         backgroundColor: _color[600]
       },
-      ":active": {
+      [active]: {
         backgroundColor: _color[700]
       }
     },
     dark: {
       backgroundColor: bgColor.dark,
       color: isDarkColor(bgColor.dark) ? colors.alpha[800] : colors.gray[800],
-      ":hover": {
+      [hover]: {
         backgroundColor: addBlack(bgColor.dark, 0.1)
       },
-      ":active": {
+      [active]: {
         backgroundColor: addBlack(bgColor.dark, 0.2)
       }
     }
@@ -102,6 +104,7 @@ const solidStyle = props => {
 
 //////////////////////////////////////////////////////////////
 
+// Styled for the gray color, ghost variant button
 const themedGhostStyle = props => {
   const { theme } = props;
 
@@ -127,7 +130,7 @@ const themedGhostStyle = props => {
   };
 };
 
-// Color style for ghost style
+// Style for ghost style
 const ghostStyle = props => {
   const { color, mode, theme } = props;
 
@@ -144,7 +147,7 @@ const ghostStyle = props => {
   });
 };
 
-// Style for outline button
+// Style for outline variant of the button
 const outlineStyle = props => {
   const { theme, color, mode } = props;
 
@@ -158,7 +161,7 @@ const outlineStyle = props => {
   });
 };
 
-// Style for link variant
+// Style for link variant of the button
 const linkStyle = ({ theme, color }) =>
   css({
     padding: 0,
@@ -192,12 +195,14 @@ const variantStyle = props => {
   }
 };
 
+// Size styles of the button
 const sizeStyle = props =>
   css({
     ...props.theme.sizes.button[props.size],
     ...(props.isFullWidth && { width: "100%" })
   });
 
+// Disabled styles of the button
 const disabledStyle = css({
   [disabled]: {
     opacity: 0.5,
@@ -206,6 +211,7 @@ const disabledStyle = css({
   }
 });
 
+// Focus styles of the button
 const focusStyle = props => {
   return css({
     [focus]: {
@@ -214,6 +220,7 @@ const focusStyle = props => {
   });
 };
 
+// The button style hook to generate the button css
 const useButtonStyle = props => {
   const theme = useTheme();
   const { mode } = useUIMode();

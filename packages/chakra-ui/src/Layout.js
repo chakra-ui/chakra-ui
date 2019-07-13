@@ -13,79 +13,36 @@ import {
   position,
   shadow,
   typography,
-  style,
-  compose
+  system
 } from "styled-system";
+import shouldForwardProp from "@styled-system/should-forward-prop";
 
-const textDecoration = style({
-  prop: "textDecoration",
-  cssProperty: "textDecoration"
+const otherProps = system({
+  textDecoration: true,
+  appearance: true,
+  textTransform: true,
+  transform: true,
+  whiteSpace: true,
+  userSelect: true,
+  pointerEvents: true,
+  cursor: true,
+  transition: true
 });
 
-const appearance = style({
-  prop: "appearance",
-  cssProperty: "appearance"
-});
-
-const cursor = style({
-  prop: "cursor",
-  cssProperty: "cursor"
-});
-
-const pointerEvents = style({
-  prop: "pointerEvents",
-  cssProperty: "pointerEvents"
-});
-
-const userSelect = style({
-  prop: "userSelect",
-  cssProperty: "userSelect"
-});
-
-const whiteSpace = style({
-  prop: "whiteSpace",
-  cssProperty: "whiteSpace"
-});
-
-const textTransform = style({
-  prop: "textTransform",
-  cssProperty: "textTransform"
-});
-
-const transform = style({
-  prop: "transform",
-  cssProperty: "transform"
-});
-
-const transition = style({
-  prop: "transition",
-  cssProperty: "transition"
-});
-
-const otherProps = compose(
-  textDecoration,
-  appearance,
-  textTransform,
-  transform,
-  whiteSpace,
-  userSelect,
-  pointerEvents,
-  cursor,
-  transition
+export const Box = styled("div", {
+  shouldForwardProp
+})(
+  layout,
+  color,
+  space,
+  background,
+  border,
+  position,
+  shadow,
+  typography,
+  flexbox,
+  otherProps
 );
-
-export const Box = styled.div`
-  ${layout}
-  ${color}
-  ${space}
-  ${background}
-  ${border}
-  ${position}
-  ${shadow}
-  ${typography}
-  ${flexbox}
-  ${otherProps}
-`;
 
 export const Flex = forwardRef((props, ref) => (
   <Box display="flex" ref={ref} {...props} />

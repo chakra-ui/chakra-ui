@@ -5,4 +5,4 @@ export {
   useTheme,
   useUIMode,
   DarkMode
-} from "./Providers";
+} from "./ThemeProvider";
