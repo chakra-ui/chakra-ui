@@ -1,31 +1,22 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import { forwardRef } from "react";
-import Icon from "../Icon";
 import Button from ".";
-import VisuallyHidden from "../VisuallyHidden";
+import Icon from "../Icon";
 
 const IconButton = forwardRef(
   ({ icon, isRound, "aria-label": ariaLabel, ...rest }, ref) => {
-    // Since I'm reusing the Button component, I need to remove some props
-    // before passing it to IconButton
-    
-    const {
-      isFullWidth,
-      leftIcon,
-      rightIcon,
-      loadingText,
-      ...iconButtonProps
-    } = rest;
+    // Remove some propsß before passing it to IconButton
+    const { isFullWidth, leftIcon, rightIcon, loadingText, ...props } = rest;
 
     return (
       <Button
         css={{ padding: 0 }}
         borderRadius={isRound ? "round" : "md"}
         ref={ref}
-        {...iconButtonProps}
+        aria-label={ariaLabel}
+        {...props}
       >
-        {ariaLabel && <VisuallyHidden>{ariaLabel}</VisuallyHidden>}
         <Icon name={icon} color="currentColor" aria-hidden />
       </Button>
     );

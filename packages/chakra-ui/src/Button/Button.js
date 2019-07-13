@@ -120,6 +120,7 @@ const StyledButtonGroup = styled(Box)`
 
 export const ButtonGroup = ({
   size,
+  color,
   isAttached,
   spacing = 2,
   children,
@@ -134,6 +135,7 @@ export const ButtonGroup = ({
       {Children.map(children, (child, index) =>
         cloneElement(child, {
           size,
+          color,
           ...(index + 1 !== Children.count(children) &&
             !isAttached && { mr: spacing })
         })

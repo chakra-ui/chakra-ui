@@ -1,2 +1,8 @@
 export { default } from "./theme";
-export * from "./Providers";
+export {
+  ThemeProvider,
+  UIModeProvider,
+  useTheme,
+  useUIMode,
+  DarkMode
+} from "./Providers";

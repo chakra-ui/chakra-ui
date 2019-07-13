@@ -8,13 +8,14 @@ import { useUIMode } from "./theme";
 
 const Select = forwardRef(
   ({ children, placeholder, wrapperProps, flex, ...rest }, ref) => {
-    let mode = useUIMode();
+    let { mode } = useUIMode();
     let themedColor = mode === "dark" ? "alpha.800" : "inherit";
     let opacity = rest.isReadOnly || rest.isDisabled ? 0.5 : 1;
 
     return (
       <Box
         position="relative"
+        width="100%"
         color={themedColor}
         flex={flex}
         {...wrapperProps}

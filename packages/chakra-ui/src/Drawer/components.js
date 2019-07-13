@@ -78,11 +78,18 @@ const DrawerTransition = ({
   );
 };
 
+const DrawerOverlay = ({ hideOverlay, ...rest }) => (
+  <ModalOverlay
+    css={hideOverlay && { backgroundColor: "transparent" }}
+    {...rest}
+  />
+);
+
 export {
   DrawerTransition,
   ModalHeader as DrawerHeader,
   ModalFooter as DrawerFooter,
   ModalBody as DrawerBody,
-  ModalOverlay as DrawerOverlay,
+  DrawerOverlay,
   ModalContent as DrawerContent
 };

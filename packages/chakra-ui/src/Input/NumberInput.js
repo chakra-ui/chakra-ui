@@ -125,7 +125,6 @@ const NumberInput = forwardRef(
           value={isControlled ? value : val}
           min={min}
           max={max}
-          mode={mode}
           isDisabled={isDisabled}
           {...rest}
         />
