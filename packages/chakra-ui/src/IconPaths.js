@@ -28,8 +28,8 @@ const iconPaths = {
   sun: {
     path: (
       <g
-        strokeLinejoin="round"
-        strokeLinecap="round"
+        strokeLinejoin="full"
+        strokeLinecap="full"
         strokeWidth="2"
         fill="none"
         stroke="currentColor"
@@ -149,7 +149,7 @@ const iconPaths = {
       <g
         fill="none"
         stroke="currentColor"
-        strokeLinecap="round"
+        strokeLinecap="full"
         strokeWidth="2"
       >
         <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
@@ -226,7 +226,7 @@ const iconPaths = {
       <g
         fill="none"
         stroke="currentColor"
-        strokeLinecap="round"
+        strokeLinecap="full"
         strokeWidth="2"
       >
         <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
@@ -248,7 +248,7 @@ const iconPaths = {
       <g
         fill="none"
         stroke="currentColor"
-        strokeLinecap="round"
+        strokeLinecap="full"
         strokeWidth="2"
       >
         <rect height="18" width="18" rx="2" ry="2" x="3" y="3" />
@@ -459,13 +459,13 @@ const iconPaths = {
     path: (
       <g stroke="currentColor" strokeWidth="1.5">
         <path
-          strokeLinecap="round"
+          strokeLinecap="full"
           fill="none"
           d="M9,9a3,3,0,1,1,4,2.829,1.5,1.5,0,0,0-1,1.415V14.25"
         />
         <path
           fill="none"
-          strokeLinecap="round"
+          strokeLinecap="full"
           d="M12,17.25a.375.375,0,1,0,.375.375A.375.375,0,0,0,12,17.25h0"
         />
         <circle fill="none" strokeMiterlimit="10" cx="12" cy="12" r="11.25" />

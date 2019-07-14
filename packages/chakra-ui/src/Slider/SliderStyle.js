@@ -29,7 +29,7 @@ const thumbStyle = ({ thumbSize, trackPercent, theme }) => {
     borderColor: "transparent",
     transition: "transform 0.2s",
     "&:focus": {
-      boxShadow: theme.shadows.focusring,
+      boxShadow: theme.shadows.outline,
       borderColor: theme.colors.blue[300]
     },
     "[aria-disabled=true] &": {

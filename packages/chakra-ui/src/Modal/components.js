@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 import { DialogContent, DialogOverlay } from "@reach/dialog";
 import { Transition } from "react-spring/renderprops";
 import { Box, Flex } from "../Layout";
-import { generateDarkElevation } from "../theme/colors_utils";
+import { generateDarkElevation } from "../theme/colors.utils";
 
 const ModalHeader = ({ children, onClose, ...rest }) => {
   return (
@@ -58,7 +58,7 @@ export const modalStyle = theme => {
     light: {
       backgroundColor: "#fff",
       color: "inherit",
-      boxShadow: theme.shadows.modal.light
+      boxShadow: theme.shadows["2xl"]
     },
     dark: generateDarkElevation()[800]
   };

@@ -108,7 +108,7 @@ const focusStyle = props => {
 
   return css({
     [focus]: {
-      boxShadow: theme.shadows.focusring
+      boxShadow: theme.shadows.outline
     }
   });
 };

@@ -6,7 +6,7 @@ const MoreIndicator = ({ src, size, label, ...props }) => (
   <Flex
     bg="gray.200"
     color="gray.800"
-    borderRadius="round"
+    borderRadius="full"
     alignItems="center"
     justifyContent="center"
     border="2px"
@@ -33,7 +33,7 @@ const AvatarBadge = props => {
       bg="white"
       border="2px"
       borderColor="white"
-      borderRadius="round"
+      borderRadius="full"
       {...props}
     />
   );

@@ -22,6 +22,7 @@ import {
   StatNumber
 } from "../src/Stat";
 import Tag from "../src/Tag";
+import PseudoBox from "../src/PseudoBox";
 
 const stories = storiesOf("Data Display", module);
 stories.addDecorator(withKnobs);
@@ -49,6 +50,68 @@ stories.add("Badge", () => {
         </React.Fragment>
       ))}
     </React.Fragment>
+  );
+});
+
+const Button2 = props => {
+  return (
+    <PseudoBox
+      as="button"
+      py={2}
+      px={4}
+      bg="green.400"
+      color="white"
+      cursor="pointer"
+      userSelect="none"
+      mt={2}
+      borderRadius="full"
+      transition="all 0.2s"
+      _hover={{ bg: "green.500", roundedTl: "md" }}
+      _active={{ bg: "green.600" }}
+      _focus={{ boxShadow: "outline" }}
+      _disabled={{ opacity: "40%" }}
+      {...props}
+    />
+  );
+};
+
+stories.add("Box and PseudoBox", () => {
+  return (
+    <>
+      <Box
+        color="white"
+        wordBreak="truncate"
+        bg={{ base: "green.500", md: "red.500" }}
+        p={3}
+      >
+        This is me testing borderRadius. This is me testing borderRadius. This
+        is me testing borderRadius
+      </Box>
+
+      <Button2 disabled>Sade</Button2>
+
+      <PseudoBox
+        as="button"
+        display="inline-flex"
+        py={2}
+        px={4}
+        ml={4}
+        borderRadius="md"
+        color="white"
+        transition="all 0.2s"
+        bg="blue.500"
+        // width="full"
+        fontWeight="bold"
+        disabled
+        aria-selected="true"
+        _hover={{ bg: "blue.600" }}
+        _active={{ bg: "blue.700" }}
+        _focus={{ boxShadow: "outline" }}
+        _disabled={{ opacity: "40%", cursor: "not-allowed", boxShadow: "none" }}
+      >
+        Segun
+      </PseudoBox>
+    </>
   );
 });
 
@@ -91,7 +154,7 @@ stories.add("Avatars", () => (
       <Avatar
         size={size}
         name="Evil Rabbit"
-        badge={<Box borderRadius="round" size="100%" bg="green.500" />}
+        badge={<Box borderRadius="full" size="100%" bg="green.500" />}
         // size="fill"
         src="https://zeit.co/api/www/avatar/?u=rauchg&s=60"
       />
@@ -226,7 +289,7 @@ stories.add("Progress", () => {
   return (
     <Box maxWidth="400px" mx="auto" mt={8} p={3}>
       <Progress
-        borderRadius="round"
+        borderRadius="full"
         size="sm"
         color="green"
         value={63}
@@ -234,7 +297,7 @@ stories.add("Progress", () => {
         isAnimated
       />
       <br />
-      <Progress size="sm" color="cyan" value={34} borderRadius="round" />
+      <Progress size="sm" color="cyan" value={34} borderRadius="full" />
       <br />
     </Box>
   );

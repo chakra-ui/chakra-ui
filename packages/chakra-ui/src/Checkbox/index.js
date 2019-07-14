@@ -70,7 +70,7 @@ const StyledCheckbox = styled(Box)`
   }
 
   input[type="checkbox"]:focus + & {
-    box-shadow: ${themeGet("shadows.focusring")};
+    box-shadow: ${themeGet("shadows.outline")};
   }
 
   input[type="checkbox"]:focus:not(:checked) + & {

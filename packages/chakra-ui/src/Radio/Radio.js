@@ -40,7 +40,7 @@ const StyledRadio = styled(Box)`
   }
 
   input[type="radio"]:focus + & {
-    box-shadow: ${themeGet("shadows.focusring")};
+    box-shadow: ${themeGet("shadows.outline")};
   }
 
   input[type="radio"]:checked:disabled + & {
@@ -108,12 +108,12 @@ const Radio = forwardRef(
           color={`${color}.500`}
           border="1px"
           borderColor={themedBorderColor[mode]}
-          borderRadius="round"
+          borderRadius="full"
           size={`checkbox.${size}`}
         >
           <RadioDot
             as="span"
-            borderRadius="round"
+            borderRadius="full"
             css={theme => ({
               width: `calc(${theme.sizes.checkbox[size]}/ 2)`,
               height: `calc(${theme.sizes.checkbox[size]}/ 2)`

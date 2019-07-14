@@ -4,7 +4,7 @@ import { Popper } from "react-popper";
 import { Box } from "../Layout";
 import { assignRef } from "../utils";
 import { useMenuContext } from "./Menu";
-import { generateDarkElevation } from "../theme/colors_utils";
+import { generateDarkElevation } from "../theme/colors.utils";
 
 export const MenuList = props => {
   const {

@@ -1,6 +1,6 @@
 import { css } from "@emotion/core";
 import { useTheme, useUIMode } from "../theme";
-import { addBlack, isDarkColor } from "../theme/colors_utils";
+import { addBlack, isDarkColor } from "../theme/colors.utils";
 
 // Just so I don't repeat this :)
 let hover = '&:not([aria-disabled="true"]):hover',
@@ -215,7 +215,7 @@ const disabledStyle = css({
 const focusStyle = props => {
   return css({
     [focus]: {
-      boxShadow: props.theme.shadows.focusring
+      boxShadow: props.theme.shadows.outline
     }
   });
 };

@@ -35,7 +35,7 @@ const CloseButton = ({
       onClick={onClick}
       aria-label={ariaLabel}
       tabindex="0"
-      borderRadius="round"
+      borderRadius="full"
       as="button"
       css={baseStyle}
       {...rest}

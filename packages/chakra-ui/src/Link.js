@@ -20,7 +20,7 @@ const baseStyle = css({
 const focusStyle = props =>
   css({
     [focusSelector]: {
-      boxShadow: themeGet(`shadows.focusring`)(props)
+      boxShadow: themeGet(`shadows.outline`)(props)
     }
   });
 

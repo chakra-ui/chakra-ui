@@ -1,6 +1,6 @@
 import { css } from "@emotion/core";
 import { useTheme, useUIMode } from "../theme";
-import { addOpacity, generateAlphaColors } from "../theme/colors_utils";
+import { addOpacity, generateAlphaColors } from "../theme/colors.utils";
 
 const solidStyle = ({ theme: { colors }, color }) => {
   let lightModeBg = colors[color][500];

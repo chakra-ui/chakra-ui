@@ -88,7 +88,7 @@ const AccordionHeader = ({
       px={1}
       css={theme => ({
         "&:focus": {
-          boxShadow: theme.shadows.focusring
+          boxShadow: theme.shadows.outline
         }
       })}
       {...rest}

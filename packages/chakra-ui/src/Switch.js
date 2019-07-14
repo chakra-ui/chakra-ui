@@ -43,7 +43,7 @@ const Track = styled(Box)`
   }
 
   input[type="checkbox"]:focus + & {
-    box-shadow: ${themeGet("shadows.focusring")};
+    box-shadow: ${themeGet("shadows.outline")};
   }
 `;
 
@@ -75,14 +75,14 @@ const Switch = forwardRef(
           {...rest}
         />
         <Track
-          borderRadius="round"
+          borderRadius="full"
           switchColor={color}
           switchSize={size}
           mode={mode}
           width={`switch.${size}.width`}
           height={`switch.${size}.height`}
         >
-          <Knob borderRadius="round" size={`switch.${size}.height`} />
+          <Knob borderRadius="full" size={`switch.${size}.height`} />
         </Track>
       </Box>
     );
