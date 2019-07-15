@@ -3,7 +3,7 @@ import { css, jsx } from "@emotion/core";
 import propTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { Box } from "../Layout";
-import { useTheme, useUIMode } from "../theme";
+import { useTheme, useUIMode } from "../ThemeProvider";
 import { isDarkColor } from "../theme/colors.utils";
 import { string2Hex } from "../utils";
 import { AvatarBadge } from "./components";

@@ -1,11 +1,6 @@
-export {
-  default as theme,
-  ThemeProvider,
-  UIModeProvider,
-  useTheme,
-  useUIMode,
-  DarkMode
-} from "./theme";
+export { default as theme } from "./theme";
+export { default as ThemeProvider } from "./ThemeProvider";
+export * from "./ThemeProvider";
 
 export { default as Accordion } from "./Accordion";
 export * from "./Accordion";

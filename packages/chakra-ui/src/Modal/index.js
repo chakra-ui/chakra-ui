@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import CloseButton from "../CloseButton";
-import { useUIMode } from "../theme";
+import { useUIMode } from "../ThemeProvider";
 import { ModalTransition, ModalOverlay, ModalContent } from "./components";
 
 const Modal = ({

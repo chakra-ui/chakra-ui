@@ -6,7 +6,7 @@ import { SketchPicker } from "react-color";
 import Icon from "../Icon";
 import { Flex, Box } from "../Layout";
 import Input from "../Input";
-import { useUIMode } from "../theme";
+import { useUIMode } from "../ThemeProvider";
 import Color from "color";
 
 const GradientSwatch = ({ gradient, angle, startColor, endColor, ...rest }) => {

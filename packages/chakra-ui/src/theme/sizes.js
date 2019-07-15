@@ -12,7 +12,7 @@ const avatarSizes = {
   xxl: getRem(baseSize * 12)
 };
 
-const _sizes = {
+const baseSizes = {
   px: "1px",
   "0": "0",
   auto: "auto",
@@ -38,7 +38,7 @@ const _sizes = {
   screenWidth: "100vw"
 };
 
-const _maxWidths = {
+const maxWidths = {
   xs: "20rem",
   sm: "24rem",
   md: "28rem",
@@ -51,37 +51,14 @@ const _maxWidths = {
   "6xl": "72rem"
 };
 
-const _container = {
+const containers = {
   sm: "640px",
   md: "768px",
   lg: "1024px",
   xl: "1280px"
 };
 
-const sizes = {
-  "0": "0",
-  auto: "auto",
-  "3xs": "12rem",
-  "2xs": "16rem",
-  xs: "20rem",
-  sm: "24rem",
-  md: "28rem",
-  lg: "32rem",
-  xl: "36rem",
-  "2xl": "42rem",
-  "3xl": "48rem",
-  "4xl": "56rem",
-  "5xl": "64rem",
-  "6xl": "72rem",
-  full: "100%",
-  screenWidth: "100vw",
-  screenHeight: "100vh",
-  container: {
-    sm: "640px",
-    md: "768px",
-    lg: "1024px",
-    xl: "1280px"
-  },
+const components = {
   button: {
     xl: {
       height: 48,
@@ -205,6 +182,13 @@ const sizes = {
       padding: "0.75rem 1rem"
     }
   }
+};
+
+const sizes = {
+  ...baseSizes,
+  ...components,
+  ...maxWidths,
+  containers
 };
 
 export default sizes;

@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 import { oneOf } from "prop-types";
 import { cloneElement } from "react";
 import { Box, Flex } from "./Layout";
-import { useUIMode } from "./theme";
+import { useUIMode } from "./ThemeProvider";
 import useInputStyle from "./Input/InputStyle";
 
 const InputWrapper = styled(Box)`

@@ -13,7 +13,7 @@ import {
   PopoverCloseButton
 } from "./PopoverComponents";
 import { assignRef, genId } from "./utils";
-import { useUIMode } from "./theme";
+import { useUIMode } from "./ThemeProvider";
 
 const Popover = ({
   isOpen: controlledIsOpen,

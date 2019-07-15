@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { css } from "@emotion/core";
-import { useTheme } from "../theme";
+import { useTheme } from "../ThemeProvider";
 
 const statusColors = {
   error: "red",

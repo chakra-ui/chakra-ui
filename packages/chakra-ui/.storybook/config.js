@@ -1,11 +1,17 @@
+import { addDecorator, configure } from "@storybook/react";
 import React from "react";
-import { configure, addDecorator } from "@storybook/react";
-import { ThemeProvider, useUIMode, UIModeProvider } from "../src/theme";
+import { Button, Fixed } from "../src";
 import CSSReset from "../src/CSSReset";
-import { Checkbox, Box, Button } from "../src";
+import ThemeProvider, { UIModeProvider, useUIMode } from "../src/ThemeProvider";
+
+// function loadStories() {
+//   require("../stories");
+// }
+
+const req = require.context("../src", true, /examples\.js$/);
 
 function loadStories() {
-  require("../stories");
+  req.keys().forEach(filename => req(filename));
 }
 
 const AppProvider = ({ children }) => {
@@ -14,11 +20,11 @@ const AppProvider = ({ children }) => {
     <ThemeProvider>
       <CSSReset />
       {children}
-      <Box position="fixed" bottom="24px" right="24px" zIndex={2}>
+      <Fixed bottom="24px" right="24px" zIndex={2}>
         <Button onClick={toggle} leftIcon={mode === "dark" ? "sun" : "moon"}>
           {mode === "dark" ? "Light" : "Dark"}
         </Button>
-      </Box>
+      </Fixed>
     </ThemeProvider>
   );
 };

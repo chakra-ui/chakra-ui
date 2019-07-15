@@ -11,7 +11,7 @@ import {
 import { Manager } from "react-popper";
 import { usePrevious } from "../hooks";
 import { genId, getFocusables } from "../utils";
-import { useUIMode } from "../theme";
+import { useUIMode } from "../ThemeProvider";
 
 const MenuContext = createContext();
 

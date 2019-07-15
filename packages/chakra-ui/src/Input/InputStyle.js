@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { css } from "@emotion/core";
-import { useTheme, useUIMode } from "../theme";
+import { useTheme, useUIMode } from "../ThemeProvider";
 
 // Just so I don't repeat this :)
 let hover = "&:not([aria-disabled=true]):not(:focus):hover",
@@ -17,7 +17,7 @@ export const themedStyle = props => {
       color: gray[800],
       backgroundColor: "#fff",
       [hover]: {
-        borderColor: gray[30]
+        borderColor: gray[50]
       },
       [disabled]: {
         backgroundColor: gray[100],

@@ -4,7 +4,7 @@ import Input from "./Input";
 import { Flex, Box } from "../Layout";
 import Icon from "../Icon";
 import { themeGet } from "@styled-system/theme-get";
-import { useUIMode } from "../theme";
+import { useUIMode } from "../ThemeProvider";
 
 let disabledSelector = "&[aria-disabled=true]",
   activeSelector = "&:not([aria-disabled=true]):active",

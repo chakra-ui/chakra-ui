@@ -4,12 +4,16 @@ import css from "@styled-system/css";
 import Box from "../Box";
 import { config } from "../Box/styled-system.config";
 
+/**
+ * PseudoBox is an interactive wrapper that composes `Box`
+ * to provide props for the common pseudo-selectors for ease of styling
+ */
+
 // The selectors are based on WAI-ARIA speficiations
-// It's also a way to get users to embrace accessibility :)
-const hover = "&:not([aria-disabled=true]):hover, &:not(:disabled):hover";
-const active = "&:not([aria-disabled=true]):active, &:not(:disabled):active";
+const hover = "&:hover:not([aria-disabled=true]):not(:focus)";
+const active = "&:active:not([aria-disabled=true])";
 const focus = "&:focus";
-const disabled = "&[aria-disabled=true], &:disabled";
+const disabled = "&[aria-disabled=true]";
 const selected = "&[aria-selected=true]";
 const invalid = "&[aria-invalid=true]";
 const readOnly = "&[aria-readonly=true], &[readonly]";
@@ -17,6 +21,7 @@ const firstChild = "&:first-of-type";
 const lastChild = "&:last-of-type";
 const expanded = "&[aria-expanded=true]";
 const grabbed = "&[aria-grabbed=true]";
+const placeholder = "&::placeholder";
 
 const PseudoBox = styled(Box)(
   ({
@@ -33,12 +38,13 @@ const PseudoBox = styled(Box)(
     _expanded,
     _readOnly,
     _firstChild,
-    _lastChild
+    _lastChild,
+    _placeholder
   }) => {
     return css({
-      [hover]: tx(_hover),
-      [focus]: tx(_focus),
       [disabled]: tx(_disabled),
+      [focus]: tx(_focus),
+      [hover]: tx(_hover),
       [active]: tx(_active),
       [selected]: tx(_selected),
       [invalid]: tx(_invalid),
@@ -48,6 +54,7 @@ const PseudoBox = styled(Box)(
       [readOnly]: tx(_readOnly),
       [firstChild]: tx(_firstChild),
       [lastChild]: tx(_lastChild),
+      [placeholder]: tx(_placeholder),
       "&:before": tx(_before),
       "&:after": tx(_after),
       "&:focus-within": tx(_focusWithin)

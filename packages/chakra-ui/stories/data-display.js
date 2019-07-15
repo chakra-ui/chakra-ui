@@ -23,6 +23,7 @@ import {
 } from "../src/Stat";
 import Tag from "../src/Tag";
 import PseudoBox from "../src/PseudoBox";
+import Embed from "../src/Embed";
 
 const stories = storiesOf("Data Display", module);
 stories.addDecorator(withKnobs);
@@ -88,7 +89,9 @@ stories.add("Box and PseudoBox", () => {
         is me testing borderRadius
       </Box>
 
-      <Button2 disabled>Sade</Button2>
+      <Button2 disabled aria-disabled>
+        Sade
+      </Button2>
 
       <PseudoBox
         as="button"
@@ -103,6 +106,7 @@ stories.add("Box and PseudoBox", () => {
         // width="full"
         fontWeight="bold"
         disabled
+        aria-disabled
         aria-selected="true"
         _hover={{ bg: "blue.600" }}
         _active={{ bg: "blue.700" }}
@@ -111,6 +115,14 @@ stories.add("Box and PseudoBox", () => {
       >
         Segun
       </PseudoBox>
+
+      <Embed aspectRatio="16:9">
+        <iframe
+          title="test"
+          src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0"
+          allowFullScreen
+        />
+      </Embed>
     </>
   );
 });

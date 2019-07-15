@@ -15,3 +15,7 @@ export const Absolute = forwardRef((props, ref) => (
 export const Grid = forwardRef((props, ref) => (
   <Box display="grid" ref={ref} {...props} />
 ));
+
+export const Fixed = forwardRef((props, ref) => (
+  <Box position="fixed" ref={ref} {...props} />
+));

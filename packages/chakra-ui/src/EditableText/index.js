@@ -3,7 +3,7 @@ import { css, jsx } from "@emotion/core";
 import propTypes from "prop-types";
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { Box } from "../Layout";
-import { useUIMode } from "../theme";
+import { useUIMode } from "../ThemeProvider";
 
 const EditableContext = createContext();
 

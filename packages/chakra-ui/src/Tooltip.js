@@ -8,7 +8,7 @@ import { assignRef, genId } from "./utils";
 import { Box } from "./Layout";
 import { PopoverTransition, popperStyle } from "./PopoverComponents";
 import { useDisclosure } from "./hooks";
-import { useUIMode } from "./theme";
+import { useUIMode } from "./ThemeProvider";
 
 const StyledTooltip = styled(Box)`
   ${popperStyle}

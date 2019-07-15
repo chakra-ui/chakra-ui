@@ -1,5 +1,5 @@
 import { css } from "@emotion/core";
-import { useTheme, useUIMode } from "../theme";
+import { useTheme, useUIMode } from "../ThemeProvider";
 import { addBlack, isDarkColor } from "../theme/colors.utils";
 
 // Just so I don't repeat this :)

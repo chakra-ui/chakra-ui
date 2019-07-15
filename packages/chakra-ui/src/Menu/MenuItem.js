@@ -4,7 +4,7 @@ import { func, node, oneOfType, string } from "prop-types";
 import { forwardRef } from "react";
 import Icon from "../Icon";
 import { Box, Flex } from "../Layout";
-import { useTheme, useUIMode } from "../theme";
+import { useTheme, useUIMode } from "../ThemeProvider";
 import { useMenuContext } from "./Menu";
 
 const baseStyle = css({

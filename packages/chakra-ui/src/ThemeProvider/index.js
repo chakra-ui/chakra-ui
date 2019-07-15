@@ -1,11 +1,9 @@
 /** @jsx jsx */
 import { jsx, ThemeContext, Global, css } from "@emotion/core";
 import { ThemeProvider as EmotionThemeProvider } from "emotion-theming";
-import { useContext, createContext, useState } from "react";
+import { useContext, createContext, useState, Fragment } from "react";
 import useDarkMode from "use-dark-mode";
-import theme from "./theme";
-
-///////////////////////////////////////////////////
+import theme from "../theme";
 
 // This context handles the color mode (light or dark) of the UI
 
@@ -49,13 +47,11 @@ const useUIMode = () => {
   return context;
 };
 
-///////////////////////////////////////////////////
-
 const ThemeProvider = ({ theme, children }) => {
   const { mode } = useUIMode();
   return (
     <EmotionThemeProvider theme={theme}>
-      <div>
+      <Fragment>
         {mode === "dark" && (
           <Global
             styles={theme =>
@@ -69,7 +65,7 @@ const ThemeProvider = ({ theme, children }) => {
           />
         )}
         {children}
-      </div>
+      </Fragment>
     </EmotionThemeProvider>
   );
 };
@@ -86,11 +82,6 @@ const useTheme = () => {
   return theme;
 };
 
-export {
-  ThemeProvider,
-  UIModeProvider,
-  useTheme,
-  useUIMode,
-  DarkMode,
-  LightMode
-};
+export default ThemeProvider;
+
+export { UIModeProvider, useTheme, useUIMode, DarkMode, LightMode };
