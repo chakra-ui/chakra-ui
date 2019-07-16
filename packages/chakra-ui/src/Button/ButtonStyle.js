@@ -1,193 +1,220 @@
-import { css } from "@emotion/core";
-import { useTheme, useUIMode } from "../ThemeProvider";
-import { addBlack, isDarkColor } from "../theme/colors.utils";
+import { addOpacity } from "../theme/colors.utils";
 
-// Just so I don't repeat this :)
-let hover = '&:not([aria-disabled="true"]):hover',
-  active = '&:not([aria-disabled="true"]):active',
-  disabled = '&[aria-disabled="true"]',
-  focus = "&:focus";
+const get = (color, hue) => `${color}.${hue}`;
 
-// This is the base style all buttons
-const baseStyle = css({
-  display: "inline-flex",
-  alignItems: "center",
-  justifyContent: "center",
-  transition: "all 250ms",
-  userSelect: "none",
-  position: "relative",
-  whiteSpace: "nowrap",
-  verticalAlign: "middle",
-  lineHeight: "1.2"
+const grayGhostStyle = {
+  light: {
+    color: "inherit",
+    _hover: {
+      bg: "gray.100"
+    },
+    _active: {
+      bg: "gray.200"
+    }
+  },
+  dark: {
+    color: "alpha.900",
+    _hover: {
+      bg: "alpha.200"
+    },
+    _active: {
+      bg: "alpha.300"
+    }
+  }
+};
+
+const ghostVariantProps = ({ color, mode, theme }) => {
+  const _color = theme.colors[color][200];
+  let result;
+  if (color === "gray") {
+    result = grayGhostStyle[mode];
+  }
+
+  result = {
+    light: {
+      color: get(color, 500),
+      bg: "transparent",
+      _hover: {
+        bg: get(color, 50)
+      },
+      _active: {
+        bg: get(color, 100)
+      }
+    },
+    dark: {
+      color: get(color, 200),
+      bg: "transparent",
+      _hover: {
+        bg: addOpacity(_color, 0.12)
+      },
+      _active: {
+        bg: addOpacity(_color, 0.24)
+      }
+    }
+  };
+
+  return result[mode];
+};
+
+////////////////////////////////////////////////////////////
+
+const outlineVariantProps = ({ color, mode }) => {
+  const borderColor = get(color, 500);
+  const _borderColor = { light: "gray.200", dark: "alpha.300" };
+
+  return {
+    borderWidth: 1,
+    borderColor: color === "gray" ? _borderColor[mode] : borderColor,
+    ...ghostVariantProps({ color, mode })
+  };
+};
+
+////////////////////////////////////////////////////////////
+
+const graySolidStyle = {
+  light: {
+    bg: "gray.100",
+    _hover: {
+      bg: "gray.200"
+    },
+    _active: {
+      bg: "gray.300"
+    }
+  },
+  dark: {
+    bg: "alpha.300",
+    _hover: {
+      bg: "alpha.400"
+    },
+    _active: {
+      bg: "alpha.500"
+    }
+  }
+};
+
+const solidVariantProps = ({ color, mode }) => {
+  let result;
+  if (color === "gray") {
+    result = graySolidStyle;
+  }
+
+  result = {
+    light: {
+      bg: get(color, 500),
+      color: "white",
+      _hover: {
+        bg: get(color, 600)
+      },
+      _active: {
+        bg: get(color, 700)
+      }
+    },
+    dark: {
+      bg: get(color, 200),
+      color: "gray.800",
+      _hover: {
+        bg: get(color, 300)
+      },
+      _active: {
+        bg: get(color, 300)
+      }
+    }
+  };
+
+  return result[mode];
+};
+
+////////////////////////////////////////////////////////////
+
+const linkVariantProps = ({ color }) => ({
+  p: 0,
+  height: "auto",
+  lineHeight: "normal",
+  color: get(color, 600),
+  _hover: {
+    textDecoration: "underline"
+  },
+  _active: {
+    color: get(color, 700)
+  }
 });
 
-// For unstyled buttons
-const unstyledStyle = css({
+////////////////////////////////////////////////////////////
+
+const disabledProps = {
+  _disabled: {
+    opacity: "40%",
+    cursor: "not-allowed",
+    boxShadow: "none"
+  }
+};
+
+////////////////////////////////////////////////////////////
+
+const sizes = {
+  xl: {
+    height: "16",
+    fontSize: "lg",
+    px: 6,
+    minWidth: "16"
+  },
+  lg: {
+    height: "12",
+    fontSize: "lg",
+    px: 4,
+    minWidth: "12"
+  },
+  md: {
+    height: "10",
+    fontSize: "md",
+    px: 3,
+    minWidth: "10"
+  },
+  sm: {
+    height: "8",
+    fontSize: "md",
+    px: 2,
+    minWidth: "8"
+  }
+};
+
+const sizeProps = ({ size }) => sizes[size];
+
+////////////////////////////////////////////////////////////
+
+const focusProps = {
+  _focus: {
+    boxShadow: "outline"
+  }
+};
+
+////////////////////////////////////////////////////////////
+
+const unstyledStyle = {
   userSelect: "inherit",
-  background: "none",
+  bg: "none",
   border: 0,
   color: "inherit",
   display: "inline",
   font: "inherit",
   lineHeight: "inherit",
-  margin: 0,
-  padding: 0,
+  m: 0,
+  p: 0,
   textAlign: "inherit"
-});
-
-//////////////////////////////////////////////////////////////
-
-//Styled for the solid variant and gray color button
-const solidGrayStyle = props => {
-  const { alpha, gray } = props.theme.colors;
-
-  return {
-    light: {
-      color: "inherit",
-      backgroundColor: gray[100],
-      [hover]: {
-        backgroundColor: gray[200]
-      },
-      [active]: {
-        backgroundColor: gray[300]
-      }
-    },
-    dark: {
-      color: "inherit",
-      backgroundColor: alpha[300],
-      [hover]: {
-        backgroundColor: alpha[400]
-      },
-      [active]: {
-        backgroundColor: alpha[500]
-      }
-    }
-  };
 };
 
-//Styled for the solid variant and any other color of button
-const solidStyle = props => {
-  const {
-    theme: { colors },
-    color
-  } = props;
-  const _color = colors[color];
-  const bgColor = { light: _color[500], dark: _color[200] };
+////////////////////////////////////////////////////////////
 
-  if (color === "gray") {
-    return solidGrayStyle(props);
-  }
-
-  return {
-    light: {
-      backgroundColor: bgColor.light,
-      color: "#fff",
-      [hover]: {
-        backgroundColor: _color[600]
-      },
-      [active]: {
-        backgroundColor: _color[700]
-      }
-    },
-    dark: {
-      backgroundColor: bgColor.dark,
-      color: isDarkColor(bgColor.dark) ? colors.alpha[800] : colors.gray[800],
-      [hover]: {
-        backgroundColor: addBlack(bgColor.dark, 0.1)
-      },
-      [active]: {
-        backgroundColor: addBlack(bgColor.dark, 0.2)
-      }
-    }
-  };
-};
-
-//////////////////////////////////////////////////////////////
-
-// Styled for the gray color, ghost variant button
-const themedGhostStyle = props => {
-  const { theme } = props;
-
-  return {
-    light: {
-      color: "inherit",
-      [hover]: {
-        backgroundColor: theme.colors.gray[100]
-      },
-      [active]: {
-        backgroundColor: theme.colors.gray[200]
-      }
-    },
-    dark: {
-      color: theme.colors.alpha[900],
-      [hover]: {
-        backgroundColor: theme.colors.alpha[200]
-      },
-      [active]: {
-        backgroundColor: theme.colors.alpha[300]
-      }
-    }
-  };
-};
-
-// Style for ghost style
-const ghostStyle = props => {
-  const { color, mode, theme } = props;
-
-  return css({
-    color: theme.colors[props.color][500],
-    backgroundColor: "transparent",
-    [hover]: {
-      backgroundColor: theme.colors[color][50]
-    },
-    [active]: {
-      backgroundColor: theme.colors[color][100]
-    },
-    ...(color === "gray" && themedGhostStyle(props)[mode])
-  });
-};
-
-// Style for outline variant of the button
-const outlineStyle = props => {
-  const { theme, color, mode } = props;
-
-  return css(ghostStyle(props), {
-    borderWidth: 1,
-    borderColor: theme.colors[color][500],
-    ...(color === "gray" && {
-      borderColor:
-        mode === "dark" ? theme.colors.alpha[400] : theme.colors[color][200]
-    })
-  });
-};
-
-// Style for link variant of the button
-const linkStyle = ({ theme, color }) =>
-  css({
-    padding: 0,
-    height: "auto",
-    lineHeight: "normal",
-    color: theme.colors[color][600],
-    [hover]: {
-      textDecoration: "underline"
-    },
-    [active]: {
-      color: theme.colors[color][700]
-    }
-  });
-
-// Finally, a function to determine which style to use
-const variantStyle = props => {
-  const { variant, mode } = props;
-  switch (variant) {
+const variantProps = props => {
+  switch (props.variant) {
     case "solid":
-      return solidStyle(props)[mode];
-    case "outline":
-      return outlineStyle(props);
+      return solidVariantProps(props);
     case "ghost":
-      return ghostStyle(props);
+      return ghostVariantProps(props);
     case "link":
-      return linkStyle(props);
+      return linkVariantProps(props);
+    case "outline":
+      return outlineVariantProps(props);
     case "unstyled":
       return unstyledStyle;
     default:
@@ -195,44 +222,29 @@ const variantStyle = props => {
   }
 };
 
-// Size styles of the button
-const sizeStyle = props =>
-  css({
-    ...props.theme.sizes.button[props.size],
-    ...(props.isFullWidth && { width: "100%" })
-  });
+////////////////////////////////////////////////////////////
 
-// Disabled styles of the button
-const disabledStyle = css({
-  [disabled]: {
-    opacity: 0.5,
-    cursor: "not-allowed",
-    boxShadow: "none"
-  }
-});
-
-// Focus styles of the button
-const focusStyle = props => {
-  return css({
-    [focus]: {
-      boxShadow: props.theme.shadows.outline
-    }
-  });
+const baseProps = {
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  transition: "all 250ms",
+  userSelect: "none",
+  position: "relative",
+  whiteSpace: "nowrap",
+  verticalAlign: "middle"
 };
 
-// The button style hook to generate the button css
-const useButtonStyle = props => {
-  const theme = useTheme();
-  const { mode } = useUIMode();
+////////////////////////////////////////////////////////////
 
-  const _props = { ...props, theme, mode };
-  return css`
-    ${baseStyle}
-    ${disabledStyle}
-    ${focusStyle(_props)}
-    ${sizeStyle(_props)}
-    ${variantStyle(_props)}
-  `;
+const buttonStyle = props => {
+  return {
+    ...baseProps,
+    ...sizeProps(props),
+    ...focusProps,
+    ...disabledProps,
+    ...variantProps(props)
+  };
 };
 
-export default useButtonStyle;
+export default buttonStyle;

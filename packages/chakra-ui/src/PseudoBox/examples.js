@@ -1,7 +1,8 @@
+/** @jsx jsx */
+import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
-import React from "react";
-import Box from "../Box";
 import PseudoBox from ".";
+import Box from "../Box";
 
 const stories = storiesOf("PseudoBox", module);
 
@@ -17,7 +18,6 @@ stories.add("Button", () => {
       as="button"
       py={2}
       px={4}
-      cursor="pointer"
       userSelect="none"
       rounded="md"
       transition="all 0.2s"
@@ -30,6 +30,21 @@ stories.add("Button", () => {
       _disabled={{ opacity: "40%" }}
     >
       Button
+    </PseudoBox>
+  );
+});
+
+stories.add("Into", () => {
+  return (
+    <PseudoBox
+      bg="green.400"
+      // as="input"
+      position="relative"
+      fontWeight="semibold"
+      // placeholder="Testing"
+      _after={{ content: `'to'`, ml: 3 }}
+    >
+      Testing
     </PseudoBox>
   );
 });
@@ -52,6 +67,8 @@ stories.add("Input", () => {
       transition="all 0.2s"
       bg="white"
       borderColor="gray.200"
+      // css={{ fontSize: 90 }}
+      _placeholder={{ color: "red.500" }}
       _hover={{ borderColor: "gray.300" }}
       _focus={{ boxShadow: "outline", borderColor: "blue.500" }}
       _disabled={{ opacity: "40%", bg: "gray.100" }}

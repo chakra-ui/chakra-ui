@@ -5,7 +5,9 @@ import { forwardRef } from "react";
 import Icon from "../Icon";
 import { Box } from "../Layout";
 import Spinner from "../Spinner";
-import useButtonStyle from "./ButtonStyle";
+import buttonStyle from "./ButtonStyle";
+import PseudoBox from "../PseudoBox";
+import { useUIMode, useTheme } from "../ThemeProvider";
 
 const Button = forwardRef(
   (
@@ -23,23 +25,26 @@ const Button = forwardRef(
       iconSpacing,
       type,
       size,
-      css,
       ...rest
     },
     ref
   ) => {
-    const buttonStyle = useButtonStyle({ color, variant, size, isFullWidth });
+    const { mode } = useUIMode();
+    const theme = useTheme();
+    const buttonProps = buttonStyle({ color, variant, size, mode, theme });
+    const _isDisabled = isDisabled || isLoading;
 
     return (
-      <Box
-        disabled={isDisabled || isLoading}
-        aria-disabled={isDisabled || isLoading}
+      <PseudoBox
+        disabled={_isDisabled}
+        aria-disabled={_isDisabled}
         ref={ref}
         as={Comp}
         type={type}
         borderRadius="md"
         fontWeight="semibold"
-        css={[buttonStyle, css]}
+        width={isFullWidth ? "full" : undefined}
+        {...buttonProps}
         {...rest}
       >
         {leftIcon && !isLoading && (
@@ -75,7 +80,7 @@ const Button = forwardRef(
             size="1em"
           />
         )}
-      </Box>
+      </PseudoBox>
     );
   }
 );

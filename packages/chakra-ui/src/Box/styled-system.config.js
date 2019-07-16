@@ -60,15 +60,6 @@ export const config = {
   backgroundAttachment: true
 };
 
-// shorthand alias
-config["roundedT"] = config.roundedTop;
-config["roundedB"] = config.roundedBottom;
-config["roundedL"] = config.roundedLeft;
-config["roundedR"] = config.roundedRight;
-config["roundedTr"] = config.roundedTopRight;
-config["roundedTl"] = config.roundedTopLeft;
-config["roundedBr"] = config.roundedBottomRight;
-config["roundedBl"] = config.roundedBottomLeft;
 config.bgAttachment = config.backgroundAttachment;
 
 const extraConfig = system(config);

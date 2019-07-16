@@ -21,7 +21,12 @@ const AppProvider = ({ children }) => {
       <CSSReset />
       {children}
       <Fixed bottom="24px" right="24px" zIndex={2}>
-        <Button onClick={toggle} leftIcon={mode === "dark" ? "sun" : "moon"}>
+        <Button
+          variant="ghost"
+          color="red"
+          onClick={toggle}
+          leftIcon={mode === "dark" ? "sun" : "moon"}
+        >
           {mode === "dark" ? "Light" : "Dark"}
         </Button>
       </Fixed>

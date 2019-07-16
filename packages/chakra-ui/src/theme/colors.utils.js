@@ -101,22 +101,3 @@ export const generateDarkElevation = color => {
     }
   };
 };
-
-export const generateStateColors = surfaceColor => {
-  const _color = surfaceColor || "#fff";
-  const _alphaColors = generateAlphaColors(_color);
-
-  return {
-    idle: { backgroundColor: "transparent" },
-    hover: { backgroundColor: _alphaColors[50] },
-    active: { backgroundColor: addOpacity(surfaceColor, 0.1) },
-    focused: { backgroundColor: _alphaColors[200] },
-    dragged: {
-      backgroundColor: _alphaColors[200],
-      boxShadow:
-        "0 8px 10px 1px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.20)"
-    },
-    disabled: { backgroundColor: _alphaColors[200], opacity: 0.4 },
-    selected: { backgroundColor: _alphaColors[100], color: _color }
-  };
-};

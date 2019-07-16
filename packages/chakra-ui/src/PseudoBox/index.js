@@ -10,7 +10,7 @@ import { config } from "../Box/styled-system.config";
  */
 
 // The selectors are based on WAI-ARIA speficiations
-const hover = "&:hover:not([aria-disabled=true]):not(:focus)";
+const hover = "&:hover:not([aria-disabled=true])";
 const active = "&:active:not([aria-disabled=true])";
 const focus = "&:focus";
 const disabled = "&[aria-disabled=true]";
@@ -21,12 +21,10 @@ const firstChild = "&:first-of-type";
 const lastChild = "&:last-of-type";
 const expanded = "&[aria-expanded=true]";
 const grabbed = "&[aria-grabbed=true]";
-const placeholder = "&::placeholder";
 
 const PseudoBox = styled(Box)(
   ({
     _after,
-    _before,
     _focus,
     _selected,
     _focusWithin,
@@ -36,6 +34,7 @@ const PseudoBox = styled(Box)(
     _disabled,
     _grabbed,
     _expanded,
+    _before,
     _readOnly,
     _firstChild,
     _lastChild,
@@ -48,16 +47,15 @@ const PseudoBox = styled(Box)(
       [active]: tx(_active),
       [selected]: tx(_selected),
       [invalid]: tx(_invalid),
-      [selected]: tx(_selected),
       [expanded]: tx(_expanded),
       [grabbed]: tx(_grabbed),
       [readOnly]: tx(_readOnly),
       [firstChild]: tx(_firstChild),
       [lastChild]: tx(_lastChild),
-      [placeholder]: tx(_placeholder),
       "&:before": tx(_before),
       "&:after": tx(_after),
-      "&:focus-within": tx(_focusWithin)
+      "&:focus-within": tx(_focusWithin),
+      "&::placeholder": _placeholder
     });
   }
 );
@@ -76,6 +74,9 @@ const transformAlias = (prop, propValue) => {
     if (property) {
       result[property] = propValue;
     }
+    if (config[prop] == true) {
+      result[prop] = propValue;
+    }
   } else {
     result[prop] = propValue;
   }
@@ -85,8 +86,7 @@ const transformAlias = (prop, propValue) => {
 const tx = props => {
   let result = {};
   for (let prop in props) {
-    let _propValue = props[prop];
-    result = { ...result, ...transformAlias(prop, _propValue) };
+    result = { ...result, ...transformAlias(prop, props[prop]) };
   }
   return result;
 };
