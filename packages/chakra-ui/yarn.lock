@@ -987,9 +987,21 @@
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
 
-"@reach/alert@^0.1.2":
+"@reach/alert-dialog@0.2.9":
+  version "0.2.9"
+  resolved "https://registry.yarnpkg.com/@reach/alert-dialog/-/alert-dialog-0.2.9.tgz#c8008d2d2f1c53a40f24320dd160c18fc631e91e"
+  integrity sha512-1E74GlV3Bb5TMnym9Nipjcioz6lo/4a3XITrfT2SlWA7ITSNTE1I8F8jQZcoEAldVxlmxrFic/imLxewhr0j1A==
+  dependencies:
+    "@reach/auto-id" "0.2.0"
+    "@reach/component-component" "^0.1.3"
+    "@reach/dialog" "^0.2.9"
+    "@reach/utils" "^0.2.3"
+    invariant "^2.2.4"
+
+"@reach/alert@0.1.5", "@reach/alert@^0.1.2":
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/@reach/alert/-/alert-0.1.5.tgz#4da79add0055fa4295f51e5295ed3b80257e9153"
+  integrity sha512-Ow+SB7rokGWxmm+AdOpf4eo29OaEYDqlJ1Kc9qulVX2cKjYiHQqAvkiCkSaIPkQbbyNmEXJ0c/rVpzPVvCVIAw==
   dependencies:
     "@reach/component-component" "^0.1.3"
     "@reach/visually-hidden" "^0.1.4"
@@ -1002,7 +1014,7 @@
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/@reach/component-component/-/component-component-0.1.3.tgz#5d156319572dc38995b246f81878bc2577c517e5"
 
-"@reach/dialog@0.2.9":
+"@reach/dialog@0.2.9", "@reach/dialog@^0.2.9":
   version "0.2.9"
   resolved "https://registry.yarnpkg.com/@reach/dialog/-/dialog-0.2.9.tgz#6375ec4adc1e22838aeede15f57d5eb5ac0e571c"
   dependencies:

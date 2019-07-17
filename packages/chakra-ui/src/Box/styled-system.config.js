@@ -41,6 +41,7 @@ export const config = {
   textTransform: true,
   appearance: true,
   transform: true,
+  transformOrigin: true,
   whiteSpace: true,
   userSelect: true,
   pointerEvents: true,

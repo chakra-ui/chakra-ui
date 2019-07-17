@@ -1,30 +1,25 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { oneOf } from "prop-types";
-import { forwardRef, useRef, useState } from "react";
-import AnimateHeight from "../AnimateHeight";
-import Icon from "../Icon";
-import { Box, Flex } from "../Layout";
+import { Children, cloneElement, forwardRef, useRef, useState } from "react";
+import propTypes from "prop-types";
+import Box from "../Box";
+import Collapse from "../Collapse";
+import PseudoBox from "../PseudoBox";
 import { genId } from "../utils";
 
 const Accordion = ({
-  title,
-  defaultOpen,
-  isDisabled,
-  onOpenChange,
-  size,
   isOpen,
-  showIcon = true,
+  defaultIsOpen,
+  onOpenChange,
   children,
   ...rest
 }) => {
-  const [isExpanded, setIsExpanded] = useState(defaultOpen || false);
+  const [isExpanded, setIsExpanded] = useState(defaultIsOpen || false);
   const { current: isControlled } = useRef(isOpen != null);
+  let _isExpanded = isControlled ? isOpen : isExpanded;
 
-  let actualExpanded = isControlled ? isOpen : isExpanded;
-
-  const handleToggle = () => {
-    onOpenChange && onOpenChange();
+  const onToggle = () => {
+    onOpenChange && onOpenChange(!_isExpanded);
     !isControlled && setIsExpanded(!isExpanded);
   };
 
@@ -32,105 +27,92 @@ const Accordion = ({
   const panelId = genId("panel");
 
   return (
-    <Box {...rest} border="1px" borderColor="gray.200">
-      {title && (
-        <AccordionHeader
-          id={headerId}
-          showIcon={showIcon}
-          panelId={panelId}
-          isExpanded={actualExpanded}
-          onClick={handleToggle}
-          size={size}
-          fontWeight="semibold"
-        >
-          {title}
-        </AccordionHeader>
-      )}
-
-      <AccordionPanel
-        id={panelId}
-        headerId={headerId}
-        isExpanded={actualExpanded}
-        duration={200}
-        pl={showIcon ? 7 : 3}
-        pr={3}
-      >
-        {children}
-      </AccordionPanel>
+    <Box {...rest}>
+      {Children.map(children, child => {
+        return cloneElement(child, {
+          headerId,
+          panelId,
+          onToggle,
+          isExpanded: _isExpanded
+        });
+      })}
     </Box>
   );
 };
 
+Accordion.propTypes = {
+  /**
+   * If `true`, component is in controlled mode and you'll need
+   * to pass `onOpenChange` handle collapsing behavior
+   */
+  isOpen: propTypes.bool,
+  /**
+   * If `true`, accordion will be open on initial mount
+   */
+  defaultIsOpen: propTypes.bool,
+  /**
+   * The callback when the accordion opens and closes
+   * @param {Boolean} isOpen - the next state of the accordion
+   */
+  onOpenChange: propTypes.func,
+  /**
+   * The content of the accordion, must be `AccordionHeader` and `AccordionPanel`
+   */
+  children: propTypes.node.isRequired
+};
+
 /////////////////////////////////////////////////////////////
 
+/**
+ * AccordionHeader component composes `PseudoBox`, this means you can use
+ * the `_expanded`, `_disabled`, `_hover`, etc. props to style them
+ */
 const AccordionHeader = ({
   isExpanded,
   isDisabled,
   size,
   panelId,
-  showIcon,
-  children,
-  isFocused,
+  headerId,
+  onToggle,
   ...rest
 }) => {
   return (
-    <Flex
+    <PseudoBox
+      display="flex"
       alignItems="center"
       width="100%"
       position="relative"
       borderRadius="sm"
       transition="all 0.2s"
-      aria-expanded={isExpanded}
-      aria-disabled={isDisabled}
-      aria-controls={panelId}
       as="button"
-      py={2}
-      px={1}
-      css={theme => ({
-        "&:focus": {
-          boxShadow: theme.shadows.outline
-        }
-      })}
+      disabled={isDisabled}
+      aria-disabled={isDisabled}
+      aria-expanded={isExpanded}
+      onClick={onToggle}
+      id={headerId}
+      aria-controls={panelId}
       {...rest}
-    >
-      {showIcon && (
-        <Icon
-          size="24px"
-          color="blue.500"
-          name="chevron-right"
-          css={{
-            transform: `rotate(${isExpanded ? "90deg" : "0"})`,
-            transformOrigin: "center",
-            transition: "transform 0.2s"
-          }}
-          mr={1}
-        />
-      )}
-      {children}
-    </Flex>
+    />
   );
-};
-
-AccordionHeader.propTypes = {
-  size: oneOf(["xs", "sm", "md", "lg", "xl"])
 };
 
 /////////////////////////////////////////////////////////////
 
+/**
+ * AccordionPanel component composes `Collapse` to provide the height animation
+ */
 const AccordionPanel = forwardRef(
-  ({ id, isExpanded, children, duration, headerId, height, ...rest }, ref) => {
+  ({ isExpanded, onToggle, headerId, panelId, ...rest }, ref) => {
     return (
-      <AnimateHeight isOpen={isExpanded} duration={duration}>
-        <Box
-          mb={5}
-          ref={ref}
-          aria-labelledby={headerId}
-          role="region"
-          {...rest}
-        >
-          {children}
-        </Box>
-      </AnimateHeight>
+      <Collapse
+        role="region"
+        id={panelId}
+        aria-labelledby={headerId}
+        ref={ref}
+        aria-hidden={!isExpanded}
+        isOpen={isExpanded}
+        {...rest}
+      />
     );
   }
 );

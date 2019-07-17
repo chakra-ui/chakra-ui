@@ -233,7 +233,7 @@ const CSSReset = () => {
             "Noto Color Emoji";
           line-height: 1.5;
           font-size: 0.875rem;
-          text-align: left;
+          /* text-align: left; */
           color: ${theme.colors.gray[800]};
         }
 

@@ -22,8 +22,7 @@ const AppProvider = ({ children }) => {
       {children}
       <Fixed bottom="24px" right="24px" zIndex={2}>
         <Button
-          variant="ghost"
-          color="red"
+          variant="outline"
           onClick={toggle}
           leftIcon={mode === "dark" ? "sun" : "moon"}
         >

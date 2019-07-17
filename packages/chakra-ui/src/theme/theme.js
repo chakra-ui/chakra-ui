@@ -73,7 +73,12 @@ const opacity = {
   "100%": "1"
 };
 
-const borders = { none: 0, "1px": "1px solid", "2px": "2px solid" };
+const borders = {
+  none: 0,
+  "1px": "1px solid",
+  "2px": "2px solid",
+  "4px": "4px solid"
+};
 
 const theme = {
   breakpoints,

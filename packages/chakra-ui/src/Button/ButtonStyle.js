@@ -1,6 +1,4 @@
-import { addOpacity } from "../theme/colors.utils";
-
-const get = (color, hue) => `${color}.${hue}`;
+import { addOpacity, get } from "../theme/colors.utils";
 
 const grayGhostStyle = {
   light: {
@@ -27,45 +25,46 @@ const ghostVariantProps = ({ color, mode, theme }) => {
   const _color = theme.colors[color][200];
   let result;
   if (color === "gray") {
-    result = grayGhostStyle[mode];
+    result = grayGhostStyle;
+  } else {
+    result = {
+      light: {
+        color: get(color, 500),
+        bg: "transparent",
+        _hover: {
+          bg: get(color, 50)
+        },
+        _active: {
+          bg: get(color, 100)
+        }
+      },
+      dark: {
+        color: get(color, 200),
+        bg: "transparent",
+        _hover: {
+          bg: addOpacity(_color, 0.12)
+        },
+        _active: {
+          bg: addOpacity(_color, 0.24)
+        }
+      }
+    };
   }
-
-  result = {
-    light: {
-      color: get(color, 500),
-      bg: "transparent",
-      _hover: {
-        bg: get(color, 50)
-      },
-      _active: {
-        bg: get(color, 100)
-      }
-    },
-    dark: {
-      color: get(color, 200),
-      bg: "transparent",
-      _hover: {
-        bg: addOpacity(_color, 0.12)
-      },
-      _active: {
-        bg: addOpacity(_color, 0.24)
-      }
-    }
-  };
 
   return result[mode];
 };
 
 ////////////////////////////////////////////////////////////
 
-const outlineVariantProps = ({ color, mode }) => {
+const outlineVariantProps = props => {
+  const { color, mode } = props;
   const borderColor = get(color, 500);
   const _borderColor = { light: "gray.200", dark: "alpha.300" };
 
   return {
-    borderWidth: 1,
+    border: "1px",
     borderColor: color === "gray" ? _borderColor[mode] : borderColor,
-    ...ghostVariantProps({ color, mode })
+    ...ghostVariantProps(props)
   };
 };
 

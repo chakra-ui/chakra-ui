@@ -1,5 +1,7 @@
 import Color from "color";
 
+export const get = (color, hue) => `${color}.${hue}`;
+
 export const addOpacity = (color, opacity) =>
   Color(color)
     .fade(1 - opacity)
@@ -31,6 +33,21 @@ export const generateAlphaColors = color => ({
   100: addOpacity(color, 0.08),
   50: addOpacity(color, 0.04)
 });
+
+export const colorEmphasis = (color, emphasis) => {
+  switch (emphasis) {
+    case "high":
+      return color;
+    case "medium":
+      return generateAlphaColors(color)[700];
+    case "low":
+      return generateAlphaColors(color)[500];
+    case "lowest":
+      return generateAlphaColors(color)[300];
+    default:
+      return;
+  }
+};
 
 export const generateDarkElevation = color => {
   let _baseDark = color || "#121212";
