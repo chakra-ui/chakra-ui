@@ -2,7 +2,7 @@
 import styled from "@emotion/styled";
 import css from "@styled-system/css";
 import Box from "../Box";
-import { config } from "../Box/styled-system.config";
+import { tx } from "../Box/styled-system.config";
 
 /**
  * PseudoBox is an interactive wrapper that composes `Box`
@@ -10,10 +10,11 @@ import { config } from "../Box/styled-system.config";
  */
 
 // The selectors are based on WAI-ARIA speficiations
-const hover = "&:hover:not([aria-disabled=true])";
+const hover = "&:hover:not([aria-disabled=true]):not(:focus)";
 const active = "&:active:not([aria-disabled=true])";
 const focus = "&:focus";
 const disabled = "&[aria-disabled=true]";
+const checked = "&[aria-checked=true]";
 const selected = "&[aria-selected=true]";
 const invalid = "&[aria-invalid=true]";
 const readOnly = "&[aria-readonly=true], &[readonly]";
@@ -38,7 +39,8 @@ const PseudoBox = styled(Box)(
     _readOnly,
     _firstChild,
     _lastChild,
-    _placeholder
+    _placeholder,
+    _checked
   }) => {
     return css({
       [disabled]: tx(_disabled),
@@ -52,6 +54,7 @@ const PseudoBox = styled(Box)(
       [readOnly]: tx(_readOnly),
       [firstChild]: tx(_firstChild),
       [lastChild]: tx(_lastChild),
+      [checked]: tx(_checked),
       "&:before": tx(_before),
       "&:after": tx(_after),
       "&:focus-within": tx(_focusWithin),
@@ -59,36 +62,5 @@ const PseudoBox = styled(Box)(
     });
   }
 );
-
-// Create an issue on @styled-system/css to allow custom alias to be passed to the `css` function
-// In the meantime, let's transform the custom alias
-const transformAlias = (prop, propValue) => {
-  const configKeys = Object.keys(config);
-  let result = {};
-
-  if (configKeys.includes(prop)) {
-    const { properties, property } = config[prop];
-    if (properties) {
-      properties.forEach(_cssProp => (result[_cssProp] = propValue));
-    }
-    if (property) {
-      result[property] = propValue;
-    }
-    if (config[prop] == true) {
-      result[prop] = propValue;
-    }
-  } else {
-    result[prop] = propValue;
-  }
-  return result;
-};
-
-const tx = props => {
-  let result = {};
-  for (let prop in props) {
-    result = { ...result, ...transformAlias(prop, props[prop]) };
-  }
-  return result;
-};
 
 export default PseudoBox;

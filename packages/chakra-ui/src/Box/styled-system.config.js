@@ -66,3 +66,34 @@ config.bgAttachment = config.backgroundAttachment;
 const extraConfig = system(config);
 
 export default extraConfig;
+
+// Create an issue on @styled-system/css to allow custom alias to be passed to the `css` function
+// In the meantime, let's transform the custom alias
+const transformAlias = (prop, propValue) => {
+  const configKeys = Object.keys(config);
+  let result = {};
+
+  if (configKeys.includes(prop)) {
+    const { properties, property } = config[prop];
+    if (properties) {
+      properties.forEach(_cssProp => (result[_cssProp] = propValue));
+    }
+    if (property) {
+      result[property] = propValue;
+    }
+    if (config[prop] == true) {
+      result[prop] = propValue;
+    }
+  } else {
+    result[prop] = propValue;
+  }
+  return result;
+};
+
+export const tx = props => {
+  let result = {};
+  for (let prop in props) {
+    result = { ...result, ...transformAlias(prop, props[prop]) };
+  }
+  return result;
+};

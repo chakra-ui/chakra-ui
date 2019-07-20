@@ -5,7 +5,7 @@ import { oneOf } from "prop-types";
 import Icon from "../Icon";
 import { Box } from "../Layout";
 import Text from "../Text";
-import useAlertStyle, { useIconStyle } from "./AlertStyle";
+import useAlertStyle, { useIconStyle } from "./styles";
 import { createContext, useContext } from "react";
 
 const AlertTitle = props => <Text as="h2" fontWeight="bold" {...props} />;
@@ -60,7 +60,13 @@ Alert.defaultProps = {
 };
 
 Alert.propTypes = {
+  /**
+   * The status of the alert
+   */
   status: oneOf(["error", "success", "warning", "info"]),
+  /**
+   * The variant of the alert style to use.
+   */
   variant: oneOf(["subtle", "solid", "left-accent", "top-accent", "card"])
 };
 

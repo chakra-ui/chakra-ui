@@ -63,14 +63,6 @@ const iconPaths = {
       />
     )
   },
-  check: {
-    path: (
-      <path
-        fill="currentColor"
-        d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
-      />
-    )
-  },
   "check-circle": {
     path: (
       <path
@@ -146,12 +138,7 @@ const iconPaths = {
   },
   edit: {
     path: (
-      <g
-        fill="none"
-        stroke="currentColor"
-        strokeLinecap="full"
-        strokeWidth="2"
-      >
+      <g fill="none" stroke="currentColor" strokeLinecap="full" strokeWidth="2">
         <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
         <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
       </g>
@@ -223,12 +210,7 @@ const iconPaths = {
   },
   "external-link": {
     path: (
-      <g
-        fill="none"
-        stroke="currentColor"
-        strokeLinecap="full"
-        strokeWidth="2"
-      >
+      <g fill="none" stroke="currentColor" strokeLinecap="full" strokeWidth="2">
         <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
         <path d="M15 3h6v6" />
         <path d="M10 14L21 3" />
@@ -245,12 +227,7 @@ const iconPaths = {
   },
   "plus-square": {
     path: (
-      <g
-        fill="none"
-        stroke="currentColor"
-        strokeLinecap="full"
-        strokeWidth="2"
-      >
+      <g fill="none" stroke="currentColor" strokeLinecap="full" strokeWidth="2">
         <rect height="18" width="18" rx="2" ry="2" x="3" y="3" />
         <path d="M12 8v8" />
         <path d="M8 12h8" />
@@ -497,24 +474,13 @@ const iconPaths = {
     ),
     viewBox: "0 0 16 16"
   },
-  checkboard: {
+  check: {
     path: (
-      <g>
-        <rect x="6" width="7" height="6" />
-        <rect x="19" width="7" height="6" />
-        <rect x="26" y="6" width="5" height="7" />
-        <rect y="6" width="6" height="7" />
-        <rect x="6" y="13" width="7" height="6" />
-        <rect x="13" y="6" width="6" height="7" />
-        <rect x="19" y="13" width="7" height="6" />
-        <rect x="26" y="19" width="5" height="6" />
-        <rect x="19" y="25" width="7" height="6" />
-        <rect x="13" y="19" width="6" height="6" />
-        <rect x="6" y="25" width="7" height="6" />
-        <rect y="19" width="6" height="6" />
+      <g fill="currentColor">
+        <polygon points="5.5 11.9993304 14 3.49933039 12.5 2 5.5 8.99933039 1.5 4.9968652 0 6.49933039" />
       </g>
     ),
-    viewBox: "0 0 31 31"
+    viewBox: "0 0 14 14"
   }
 };
 

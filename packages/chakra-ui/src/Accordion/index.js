@@ -74,6 +74,7 @@ const AccordionHeader = ({
   panelId,
   headerId,
   onToggle,
+  children,
   ...rest
 }) => {
   return (
@@ -92,7 +93,11 @@ const AccordionHeader = ({
       id={headerId}
       aria-controls={panelId}
       {...rest}
-    />
+    >
+      {typeof children === "function"
+        ? children({ isExpanded, isDisabled })
+        : children}
+    </PseudoBox>
   );
 };
 

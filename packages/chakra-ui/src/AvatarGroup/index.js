@@ -2,8 +2,7 @@
 import { jsx } from "@emotion/core";
 import { Children, cloneElement } from "react";
 import { Flex } from "../Layout";
-import Avatar from "./Avatar";
-import { MoreIndicator } from "./components";
+import Avatar, { MoreIndicator } from "../Avatar";
 
 const AvatarGroup = ({ size, children, spacing = -3, ...rest }) => {
   let count = Children.count(children);

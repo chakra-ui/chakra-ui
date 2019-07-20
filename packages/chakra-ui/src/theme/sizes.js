@@ -59,36 +59,6 @@ const containers = {
 };
 
 const components = {
-  button: {
-    xl: {
-      height: 48,
-      fontSize: 16,
-      paddingLeft: 32,
-      paddingRight: 32,
-      minWidth: 48
-    },
-    lg: {
-      height: 40,
-      fontSize: 16,
-      paddingLeft: 24,
-      paddingRight: 24,
-      minWidth: 40
-    },
-    md: {
-      height: 32,
-      fontSize: 14,
-      paddingLeft: 16,
-      paddingRight: 16,
-      minWidth: 32
-    },
-    sm: {
-      height: 24,
-      fontSize: 14,
-      paddingLeft: 12,
-      paddingRight: 12,
-      minWidth: 24
-    }
-  },
   checkbox: {
     lg: "20px",
     md: "16px",

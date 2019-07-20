@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/core";
 import propTypes from "prop-types";
 import { Box } from "../Layout";
-import useBadgeStyle from "./BadgeStyle";
+import useBadgeStyle from "./styles";
 
 const Badge = ({ css, ...props }) => {
   const badgeStyle = useBadgeStyle(props);

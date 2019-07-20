@@ -4,9 +4,8 @@ import propTypes from "prop-types";
 import { useEffect, useState } from "react";
 import Box from "../Box";
 
-const Image = ({ src, onLoad, onError, fallbackSrc, alt, ...props }) => {
+export const useHasImageLoaded = ({ src = "", onLoad, onError }) => {
   const [hasLoaded, setHasLoaded] = useState(false);
-  const _src = hasLoaded ? src : fallbackSrc;
 
   useEffect(() => {
     const img = new Image();
@@ -21,7 +20,13 @@ const Image = ({ src, onLoad, onError, fallbackSrc, alt, ...props }) => {
     };
   }, [src, onLoad, onError]);
 
-  return <Box as="img" src={_src} {...props} />;
+  return hasLoaded;
+};
+
+// I had to rename this because it clashed with the `new Image()` call in the hook above
+const $Image = ({ src, onLoad, onError, fallbackSrc, alt, ...props }) => {
+  const hasLoaded = useHasImageLoaded({ src, onLoad, onError });
+  return <Box as="img" src={hasLoaded ? src : fallbackSrc} {...props} />;
 };
 
 Image.propTypes = {
@@ -48,4 +53,4 @@ Image.propTypes = {
   onError: propTypes.func
 };
 
-export default Image;
+export default $Image;
