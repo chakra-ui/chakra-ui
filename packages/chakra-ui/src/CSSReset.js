@@ -1,7 +1,25 @@
 /** @jsx jsx */
 import { jsx, Global, css } from "@emotion/core";
+import { useUIMode } from "./ThemeProvider";
+
+const getThemedStyle = ({ colors }) => {
+  return {
+    light: {
+      color: colors.gray[800],
+      bg: "transparent",
+      borderColor: colors.gray[200]
+    },
+    dark: {
+      color: colors.alpha[900],
+      bg: colors.gray[900],
+      borderColor: colors.alpha[200]
+    }
+  };
+};
 
 const CSSReset = () => {
+  const { mode } = useUIMode();
+
   return (
     <Global
       styles={theme => css`
@@ -233,8 +251,8 @@ const CSSReset = () => {
             "Noto Color Emoji";
           line-height: 1.5;
           font-size: 0.875rem;
-          /* text-align: left; */
-          color: ${theme.colors.gray[800]};
+          color: ${getThemedStyle(theme)[mode]["color"]};
+          background-color: ${getThemedStyle(theme)[mode]["bg"]};
         }
 
         *,
@@ -242,7 +260,7 @@ const CSSReset = () => {
         *::after {
           border-width: 0;
           border-style: solid;
-          border-color: ${theme.colors.gray[200]};
+          border-color: ${getThemedStyle(theme)[mode]["borderColor"]};
         }
 
         img {

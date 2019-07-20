@@ -2,11 +2,11 @@ import { withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import Box from "../Box";
-import Avatar, { MoreIndicator } from ".";
+import Avatar, { MoreIndicator, AvatarBadge } from ".";
 import AvatarGroup from "../AvatarGroup";
 import AvatarItem, {
   AvatarText,
-  AvatarTextGroup,
+  AvatarContent,
   AvatarSubtext
 } from "./AvatarItem";
 import Badge from "../Badge";
@@ -21,12 +21,13 @@ stories.addDecorator(story => (
 
 stories.add("Avatars", () => (
   <>
-    {["sm", "md", "lg", "xl", "xxl"].map(size => (
+    {["sm", "md", "lg", "xl", "2xl"].map(size => (
       <Avatar
+        mr={2}
         size={size}
         name="Evil Rabbit"
-        badge={<Box borderRadius="full" size="100%" bg="green.500" />}
-        // src="https://zeit.co/api/www/avatar/?u=rauchg&s=60"
+        badge={<AvatarBadge size="1.25em" bg="green.500" />}
+        src="https://zeit.co/api/www/avatar/?u=rauchg&s=60"
       />
     ))}
   </>
@@ -49,18 +50,18 @@ stories.add("Avatar Group", () => (
 stories.add("Avatar Item", () => (
   <AvatarItem>
     <Avatar
-      name="sage"
+      name="Segun Adebayo"
       size="md"
       src="https://www.dropbox.com/s/nd8z3hxuo3ahauk/segun_adebayo.jpg?dl=1"
     />
-    <AvatarTextGroup fontSize="md">
-      <AvatarText fontWeight="semibold" display="inline-block">
+    <AvatarContent fontSize="md">
+      <AvatarText>
         Segun Adebayo
+        <Badge fontSize="0.8em" ml={1} color="green">
+          New
+        </Badge>
       </AvatarText>
-      <Badge fontSize="xs" ml={1} color="green">
-        New
-      </Badge>
       <AvatarSubtext>segun@gmail.com</AvatarSubtext>
-    </AvatarTextGroup>
+    </AvatarContent>
   </AvatarItem>
 ));

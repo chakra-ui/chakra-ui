@@ -4,19 +4,14 @@ import { Box, Flex } from "../Layout";
 import Text from "../Text";
 
 const AvatarText = props => (
-  <Text wordBreak={props.truncate ? "truncate" : undefined} {...props} />
+  <Text fontWeight="semibold" wordBreak="truncate" {...props} />
 );
 
 const AvatarSubtext = props => (
-  <Text
-    fontSize="0.85em"
-    color="gray.500"
-    wordBreak={props.truncate ? "truncate" : undefined}
-    {...props}
-  />
+  <Text fontSize="0.85em" color="gray.500" wordBreak="truncate" {...props} />
 );
 
-const AvatarTextGroup = props => (
+const AvatarContent = props => (
   <Box
     maxWidth="full"
     minWidth="0"
@@ -37,4 +32,4 @@ const AvatarItem = props => (
 );
 
 export default AvatarItem;
-export { AvatarText, AvatarSubtext, AvatarTextGroup };
+export { AvatarText, AvatarSubtext, AvatarContent };

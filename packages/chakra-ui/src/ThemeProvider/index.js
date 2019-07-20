@@ -1,7 +1,7 @@
 /** @jsx jsx */
-import { jsx, ThemeContext, Global, css } from "@emotion/core";
-import { ThemeProvider as EmotionThemeProvider } from "emotion-theming";
-import { useContext, createContext, useState, Fragment } from "react";
+import { jsx, ThemeContext } from "@emotion/core";
+import { ThemeProvider } from "emotion-theming";
+import { createContext, useContext, useState } from "react";
 import useDarkMode from "use-dark-mode";
 import theme from "../theme";
 
@@ -47,41 +47,22 @@ const useUIMode = () => {
   return context;
 };
 
-const ThemeProvider = ({ theme, children }) => {
-  const { mode } = useUIMode();
-  return (
-    <EmotionThemeProvider theme={theme}>
-      <Fragment>
-        {mode === "dark" && (
-          <Global
-            styles={theme =>
-              css`
-                body {
-                  background-color: #202124;
-                  color: rgba(255, 255, 255, 0.87);
-                }
-              `
-            }
-          />
-        )}
-        {children}
-      </Fragment>
-    </EmotionThemeProvider>
-  );
+const ChakraProvider = ({ theme, children }) => {
+  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 };
 
-ThemeProvider.defaultProps = {
+ChakraProvider.defaultProps = {
   theme
 };
 
 const useTheme = () => {
   const theme = useContext(ThemeContext);
   if (theme === undefined) {
-    throw new Error("useTheme must be used within a ThemeProvider");
+    throw new Error("useTheme must be used within a ChakraProvider");
   }
   return theme;
 };
 
-export default ThemeProvider;
+export default ChakraProvider;
 
 export { UIModeProvider, useTheme, useUIMode, DarkMode, LightMode };

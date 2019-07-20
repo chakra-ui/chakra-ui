@@ -17,26 +17,27 @@ function string2Hex(str) {
   return color;
 }
 
+export const avatarSizes = {
+  xs: 5,
+  sm: 6,
+  md: 10,
+  lg: 12,
+  xl: 16,
+  "2xl": 24
+};
+
 const useAvatarStyle = props => {
   const { colors } = useTheme();
   const { mode } = useUIMode();
   const { size, name, showBorder } = props;
 
-  const _sizes = {
-    xs: 5,
-    sm: 6,
-    md: 10,
-    lg: 12,
-    xl: 16,
-    "2xl": 24
-  };
-
   const bg = name ? string2Hex(name) : colors.gray[400];
   const color = name ? (isDarkColor(bg) ? "#fff" : "gray.800") : "#fff";
+  const borderColor = { light: "#fff", dark: "gray.900" };
 
   const baseProps = {
     display: "inline-flex",
-    borderRadius: "9999px",
+    rounded: "full",
     alignItems: "center",
     justifyContent: "center",
     position: "relative"
@@ -44,12 +45,12 @@ const useAvatarStyle = props => {
 
   return {
     ...baseProps,
-    size: _sizes[size],
+    size: avatarSizes[size],
     bg,
     color,
     ...(showBorder && {
       border: "2px",
-      borderColor: mode === "dark" ? "#121212" : "#fff"
+      borderColor: borderColor[mode]
     })
   };
 };

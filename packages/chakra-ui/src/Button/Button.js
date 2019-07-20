@@ -5,7 +5,7 @@ import { forwardRef } from "react";
 import Icon from "../Icon";
 import { Box } from "../Layout";
 import Spinner from "../Spinner";
-import buttonStyle from "./ButtonStyle";
+import buttonStyle from "./styles";
 import PseudoBox from "../PseudoBox";
 import { useUIMode, useTheme } from "../ThemeProvider";
 

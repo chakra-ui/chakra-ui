@@ -2,10 +2,14 @@
 import { jsx } from "@emotion/core";
 import propTypes from "prop-types";
 import { Box } from "../Layout";
-import useBadgeStyle from "./styles";
+import badgeStyle from "./styles";
+import { useTheme, useUIMode } from "../ThemeProvider";
 
-const Badge = ({ css, ...props }) => {
-  const badgeStyle = useBadgeStyle(props);
+const Badge = ({ color, variant, ...props }) => {
+  const { mode } = useUIMode();
+  const theme = useTheme();
+  const badgeStyleProps = badgeStyle({ color, variant, mode, theme });
+
   return (
     <Box
       display="inline-block"
@@ -16,7 +20,7 @@ const Badge = ({ css, ...props }) => {
       fontWeight="bold"
       whiteSpace="nowrap"
       verticalAlign="middle"
-      css={[badgeStyle, css]}
+      {...badgeStyleProps}
       {...props}
     />
   );
