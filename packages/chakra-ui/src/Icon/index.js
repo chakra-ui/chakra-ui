@@ -3,7 +3,7 @@ import { jsx, ThemeContext } from "@emotion/core";
 import styled from "@emotion/styled";
 import propTypes from "prop-types";
 import { useContext } from "react";
-import { Box } from "./Layout";
+import Box from "../Box";
 
 const Svg = styled(Box)`
   flex-shrink: 0;

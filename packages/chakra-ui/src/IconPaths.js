@@ -337,8 +337,8 @@ const iconPaths = {
             y2="17.783%"
             id="a"
           >
-            <stop stop-color="currentColor" offset="0%" />
-            <stop stop-color="#fff" stop-opacity="0" offset="100%" />
+            <stop stopColor="currentColor" offset="0%" />
+            <stop stopColor="#fff" stopOpacity="0" offset="100%" />
           </linearGradient>
         </defs>
         <g transform="translate(2)" fill="none">
@@ -481,6 +481,13 @@ const iconPaths = {
       </g>
     ),
     viewBox: "0 0 14 14"
+  },
+  minus: {
+    path: (
+      <g fill="currentColor">
+        <rect height="4" width="20" x="2" y="10" />
+      </g>
+    )
   }
 };
 

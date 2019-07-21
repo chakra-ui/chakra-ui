@@ -6,13 +6,13 @@ const getThemedStyle = ({ colors }) => {
   return {
     light: {
       color: colors.gray[800],
-      bg: "transparent",
+      bg: undefined,
       borderColor: colors.gray[200]
     },
     dark: {
       color: colors.alpha[900],
       bg: colors.gray[900],
-      borderColor: colors.alpha[200]
+      borderColor: colors.alpha[400]
     }
   };
 };

@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import { jsx, keyframes, css } from "@emotion/core";
 import { number, oneOf, bool } from "prop-types";
-import { Box } from "./Layout";
-import VisuallyHidden from "./VisuallyHidden";
-import { useUIMode } from "./ThemeProvider";
+import { Box } from "../Layout";
+import VisuallyHidden from "../VisuallyHidden";
+import { useUIMode } from "../ThemeProvider";
 
 const stripe = keyframes`
   from { background-position: 1rem 0}

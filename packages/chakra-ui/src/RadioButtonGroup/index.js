@@ -17,7 +17,7 @@ const RadioButtonGroup = ({
 }) => {
   const isControlled = controlledValue != null;
   const [value, setValue] = useState(defaultValue || null);
-  const actualValue = isControlled ? controlledValue : value;
+  const _value = isControlled ? controlledValue : value;
 
   const allNodes = useRef([]);
 
@@ -29,9 +29,8 @@ const RadioButtonGroup = ({
 
   const updateIndex = index => {
     const childValue = focusableValues[index];
-
-    const realIndex = allValues.indexOf(childValue);
-    allNodes.current[realIndex].focus();
+    const _index = allValues.indexOf(childValue);
+    allNodes.current[_index].focus();
 
     !isControlled && setValue(childValue);
     onChange && onChange(childValue);
@@ -39,7 +38,7 @@ const RadioButtonGroup = ({
 
   const handleKeyDown = event => {
     const count = focusableValues.length;
-    let enabledCheckedIndex = focusableValues.indexOf(actualValue);
+    let enabledCheckedIndex = focusableValues.indexOf(_value);
 
     if (enabledCheckedIndex === -1) {
       enabledCheckedIndex = 0;
@@ -71,16 +70,15 @@ const RadioButtonGroup = ({
       ? { marginRight: spacing }
       : { marginBottom: spacing };
 
-    const isChecked = child.props.value === actualValue;
+    const isChecked = child.props.value === _value;
 
     const handleClick = () => {
       setValue(child.props.value);
     };
 
     const getTabIndex = () => {
-      // If is there's no value, typically a radio group remains
-      // unchecked but the first enabled radio is focusable
-      if (actualValue == null) {
+      // If a RadioGroup has no radio selected the first enabled radio should be focusable
+      if (_value == null) {
         return isFirstChild ? 0 : -1;
       } else {
         return isChecked ? 0 : -1;
@@ -109,56 +107,4 @@ const RadioButtonGroup = ({
   );
 };
 
-///////////////////////////////////////////////////////////
-
-const RadioGroup = ({
-  id,
-  onChange,
-  name,
-  defaultValue,
-  inline,
-  value: controlledValue,
-  spacing = 4,
-  children,
-  ...rest
-}) => {
-  const { current: isControlled } = useRef(controlledValue != null);
-  const [value, setValue] = useState(defaultValue || null);
-  const actualValue = isControlled ? controlledValue : value;
-
-  const handleChange = event => {
-    const val = event.target.value;
-    setValue(val);
-    onChange && onChange(val);
-  };
-
-  const _name = name || genId("radio");
-
-  const clones = Children.map(children, (child, index) => {
-    const isLastChild = children.length === index + 1;
-    const spacingProps = inline ? { mr: spacing } : { mb: spacing };
-
-    return (
-      <Box
-        display={inline ? "inline-block" : "block"}
-        {...!isLastChild && spacingProps}
-      >
-        {cloneElement(child, {
-          name: _name,
-          onChange: handleChange,
-          isChecked: child.props.value === actualValue
-        })}
-      </Box>
-    );
-  });
-
-  return (
-    <Box role="radiogroup" aria-labelledby={id} {...rest}>
-      {clones}
-    </Box>
-  );
-};
-
-///////////////////////////////////////////////////////////
-
-export { RadioGroup, RadioButtonGroup };
+export default RadioButtonGroup;

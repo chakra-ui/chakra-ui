@@ -1,4 +1,7 @@
 {
   "extends": ["react-app", "eslint:recommended", "plugin:jsx-a11y/recommended"],
-  "plugins": ["jsx-a11y", "import"]
+  "plugins": ["jsx-a11y", "import"],
+  "rules": {
+    "no-console": "off"
+  }
 }

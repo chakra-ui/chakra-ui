@@ -4,6 +4,7 @@ export * from "./ThemeProvider";
 
 export { default as Accordion } from "./Accordion";
 export * from "./Accordion";
+export { default as Collapse } from "./Collapse";
 
 export { default as Alert } from "./Alert";
 export * from "./Alert";
@@ -24,6 +25,7 @@ export { default as Spinner, Spinner2 } from "./Spinner";
 export { default as VisuallyHidden } from "./VisuallyHidden";
 
 export { default as Button } from "./Button";
+export { default as ButtonGroup } from "./ButtonGroup";
 export { default as ActionButtons } from "./ActionButtons";
 export { default as CloseButton } from "./CloseButton";
 
@@ -33,6 +35,8 @@ export * from "./Avatar";
 
 export { default as Checkbox } from "./Checkbox";
 export { default as Radio } from "./Radio";
+export { default as RadioGroup } from "./RadioGroup";
+export { default as RadioButtonGroup } from "./RadioButtonGroup";
 
 export { default as Input, NumberInput } from "./Input";
 export { default as Select } from "./Select";

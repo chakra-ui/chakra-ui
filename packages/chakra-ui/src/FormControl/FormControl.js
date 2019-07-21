@@ -33,33 +33,36 @@ const Message = props => {
 };
 
 export const ErrorMessage = props => {
-  const { mode, id } = useFormControlProps(props);
+  const { mode } = useUIMode();
+  const { id } = useFormControlProps(props);
   const color = { light: "red.500", dark: "red.300" };
   return (
     <Message
-      id={`${id}-error`}
       leftIcon="warning"
       color={color[mode]}
       {...props}
+      id={`${id}-error`}
     />
   );
 };
 
 export const ValidMessage = props => {
-  const { mode, id } = useFormControlProps(props);
+  const { mode } = useUIMode();
+  const { id } = useFormControlProps(props);
   const color = { light: "green.500", dark: "green.200" };
   return (
     <Message
-      id={`${id}-valid`}
       leftIcon="check-circle"
       color={color[mode]}
       {...props}
+      id={`${id}-valid`}
     />
   );
 };
 
 export const HelperMessage = props => {
-  const { mode, id } = useFormControlProps(props);
+  const { mode } = useUIMode();
+  const { id } = useFormControlProps(props);
   const color = { light: "gray.500", dark: "alpha.600" };
   return <Message id={`${id}-helper`} color={color[mode]} {...props} />;
 };
@@ -67,11 +70,14 @@ export const HelperMessage = props => {
 export const RequiredIndicator = props => {
   const { mode } = useUIMode();
   const color = { light: "red.500", dark: "red.300" };
-  return <Box as="span" ml={1} color={color[mode]} {...props} />;
+  return (
+    <Box as="span" ml={1} color={color[mode]} aria-hidden="true" {...props} />
+  );
 };
 
 export const FormLabel = ({ children, ...props }) => {
-  const { id, isRequired, isDisabled, mode } = useFormControlProps(props);
+  const { mode } = useUIMode();
+  const { id, isRequired, isDisabled } = useFormControlProps(props);
   const color = { light: "inherit", dark: "alpha.800" };
 
   return (
@@ -91,9 +97,7 @@ export const FormLabel = ({ children, ...props }) => {
       {...props}
     >
       {children}
-      {isRequired && (
-        <RequiredIndicator aria-hidden="true">*</RequiredIndicator>
-      )}
+      {isRequired && <RequiredIndicator children="*" />}
     </Box>
   );
 };

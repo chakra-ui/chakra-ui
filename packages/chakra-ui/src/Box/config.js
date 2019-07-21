@@ -45,6 +45,7 @@ export const config = {
   whiteSpace: true,
   userSelect: true,
   pointerEvents: true,
+  boxSizing: true,
   cursor: true,
   resize: true,
   transition: true,

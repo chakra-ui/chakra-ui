@@ -11,6 +11,8 @@ const InputBox = styled(Box)(
     _disabled,
     _focus,
     _checked,
+    _child = { opacity: 0 },
+    _checkedAndChild = { opacity: 1 },
     _checkedAndDisabled,
     _checkedAndFocus,
     _checkedAndHover
@@ -22,29 +24,20 @@ const InputBox = styled(Box)(
       focus = `input[type=${type}]:focus + &`,
       hover = `input[type=${type}]:hover:not(:disabled):not(:checked) + &`,
       checked = `input[type=${type}]:checked + &`,
-      invalid = `input[type=${type}]:invalid + &`;
+      invalid = `input[type=${type}][aria-invalid=true] + &`;
 
     return css({
       [focus]: tx(_focus),
       [hover]: tx(_hover),
-      [disabled]: {
-        ...tx(_disabled),
-        "& ~ *": {
-          ...tx(_disabled)
-        }
-      },
+      [disabled]: tx(_disabled),
       [invalid]: tx(_invalid),
       [checkedAndDisabled]: tx(_checkedAndDisabled),
       [checkedAndFocus]: tx(_checkedAndFocus),
       [checkedAndHover]: tx(_checkedAndHover),
-      "& > *": {
-        opacity: 0
-      },
+      "& > *": tx(_child),
       [checked]: {
         ...tx(_checked),
-        "& > *": {
-          opacity: 1
-        }
+        "& > *": tx(_checkedAndChild)
       }
     });
   }
@@ -55,7 +48,6 @@ InputBox.defaultProps = {
   alignItems: "center",
   justifyContent: "center",
   transition: "all 120ms",
-  cursor: "pointer",
   flexShrink: "0",
   "aria-hidden": "true"
 };

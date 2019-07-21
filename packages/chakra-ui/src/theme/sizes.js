@@ -59,11 +59,6 @@ const containers = {
 };
 
 const components = {
-  checkbox: {
-    lg: "20px",
-    md: "16px",
-    sm: "14px"
-  },
   spinner: {
     xl: "2.5rem",
     lg: "1.75rem",

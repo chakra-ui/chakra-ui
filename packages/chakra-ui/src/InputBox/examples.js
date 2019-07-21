@@ -16,13 +16,14 @@ const Checkbox = props => {
         bg="white"
         border="2px"
         rounded="md"
+        color="white"
         borderColor="inherit"
         _focus={{ boxShadow: "outline" }}
         _hover={{ borderColor: "gray.300" }}
         _disabled={{ opacity: "40%" }}
         _checked={{ bg: "green.500", borderColor: "green.500" }}
       >
-        <Icon name="check" size="10px" color="white" />
+        <Icon name="check" size="10px" />
       </InputBox>
       <Box as="span" ml={2} verticalAlign="center" userSelect="none">
         This is a Checkbox
