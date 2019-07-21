@@ -1,56 +1,39 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import styled from "@emotion/styled";
 import propTypes from "prop-types";
-import { cloneElement, Children } from "react";
+import { Children, cloneElement } from "react";
 import { Box } from "../Layout";
 
-const StyledButtonGroup = styled(Box)`
-  &[data-attached] {
-    button:focus {
-      position: relative;
-      z-index: 1;
-    }
-
-    > button:first-of-type {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-    }
-
-    > button:last-of-type {
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-    }
-
-    > button:not(:first-of-type):not(:last-of-type) {
-      border-radius: 0;
-    }
-  }
-`;
-
-export const ButtonGroup = ({
-  size,
-  color,
+const ButtonGroup = ({
+  size = "md",
+  color = "gray",
+  variant = "solid",
   isAttached,
   spacing = 2,
   children,
   ...rest
 }) => {
+  const clones = Children.map(children, (child, index) => {
+    const isFirst = index === 0;
+    const isLast = index === Children.count(children) - 1;
+
+    return cloneElement(child, {
+      size: size || child.props.size,
+      color: child.props.color || color,
+      variant: child.props.variant || variant,
+      _focus: { boxShadow: "outline", zIndex: 1 },
+
+      ...(!isLast && !isAttached && { mr: spacing }),
+      ...(isFirst && isAttached && { roundedRight: 0 }),
+      ...(isLast && isAttached && { roundedLeft: 0 }),
+      ...(!isFirst && !isLast && isAttached && { rounded: 0 })
+    });
+  });
+
   return (
-    <StyledButtonGroup
-      display="inline-block"
-      data-attached={isAttached ? "" : undefined}
-      {...rest}
-    >
-      {Children.map(children, (child, index) =>
-        cloneElement(child, {
-          size: child.props.size || size,
-          color: child.props.color || color,
-          ...(index + 1 !== Children.count(children) &&
-            !isAttached && { mr: spacing })
-        })
-      )}
-    </StyledButtonGroup>
+    <Box display="inline-block" {...rest}>
+      {clones}
+    </Box>
   );
 };
 

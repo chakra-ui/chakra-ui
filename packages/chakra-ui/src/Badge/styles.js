@@ -16,7 +16,7 @@ const solidStyle = ({ theme: { colors }, color }) => {
 
 const subtleStyle = ({ theme: { colors }, color }) => {
   const alphaColors = generateAlphaColors(colors[color][200]);
-  const darkModeBg = alphaColors[300];
+  const darkModeBg = alphaColors[400];
 
   return {
     light: {

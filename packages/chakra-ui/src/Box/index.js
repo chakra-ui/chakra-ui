@@ -13,7 +13,7 @@ import {
   space,
   typography
 } from "styled-system";
-import extraConfig from "./styled-system.config";
+import extraConfig from "./config";
 
 const wordBreakOptions = {
   normal: {

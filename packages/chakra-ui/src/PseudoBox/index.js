@@ -2,7 +2,7 @@
 import styled from "@emotion/styled";
 import css from "@styled-system/css";
 import Box from "../Box";
-import { tx } from "../Box/styled-system.config";
+import { tx } from "../Box/config";
 
 /**
  * PseudoBox is an interactive wrapper that composes `Box`
