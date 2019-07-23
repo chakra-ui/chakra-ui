@@ -1,17 +1,3 @@
-const baseSize = 8; // => 8px
-
-// 14px is the root font-size
-const getRem = pxValue => `${pxValue / 14}rem`;
-
-const avatarSizes = {
-  xs: getRem(baseSize * 2),
-  sm: getRem(baseSize * 3),
-  md: getRem(baseSize * 4),
-  lg: getRem(baseSize * 5),
-  xl: getRem(baseSize * 8),
-  xxl: getRem(baseSize * 12)
-};
-
 const baseSizes = {
   px: "1px",
   "0": "0",
@@ -66,7 +52,6 @@ const components = {
     sm: "1rem",
     xs: "0.75rem"
   },
-  avatar: avatarSizes,
   progressbar: {
     lg: "1rem",
     md: "0.75rem",

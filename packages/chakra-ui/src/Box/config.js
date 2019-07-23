@@ -33,12 +33,29 @@ export const config = {
     property: "borderBottomLeftRadius",
     scale: "radii"
   },
+  borderBottomColor: {
+    property: "borderBottomColor",
+    scale: "colors"
+  },
+  borderTopColor: {
+    property: "borderTopColor",
+    scale: "colors"
+  },
+  borderLeftColor: {
+    property: "borderLeftColor",
+    scale: "colors"
+  },
+  borderRightColor: {
+    property: "borderRightColor",
+    scale: "colors"
+  },
   rounded: {
     property: "borderRadius",
     scale: "radii"
   },
   textDecoration: true,
   textTransform: true,
+  overflow: true,
   appearance: true,
   transform: true,
   transformOrigin: true,

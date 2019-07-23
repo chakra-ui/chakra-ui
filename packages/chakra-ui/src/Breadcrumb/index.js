@@ -2,10 +2,9 @@
 import { jsx } from "@emotion/core";
 import { oneOf } from "prop-types";
 import { Children, cloneElement, Fragment } from "react";
-import Icon from "./Icon";
-import { Box, Flex } from "./Layout";
-import Link from "./Link";
-// import Truncate from "./Truncate";
+import Icon from "../Icon";
+import { Box, Flex } from "../Layout";
+import Link from "../Link";
 
 export const BreadcrumbItem = ({
   size,

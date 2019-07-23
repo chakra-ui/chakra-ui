@@ -1,19 +1,19 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import styled from "@emotion/styled";
-import { forwardRef, useRef, useState, useLayoutEffect } from "react";
-import Input from "./Input";
-import { themeGet } from "@styled-system/theme-get";
-
-const StyledTextarea = styled(Input)(props => ({
-  paddingTop: 8,
-  paddingBottom: 8,
-  lineHeight: themeGet(`lineHeights.short`)(props),
-  minHeight: 80
-}));
+import { forwardRef, useLayoutEffect, useRef, useState } from "react";
+import Input from "../Input";
 
 const Textarea = forwardRef((props, ref) => {
-  return <StyledTextarea ref={ref} as="textarea" {...props} />;
+  return (
+    <Input
+      py="8px"
+      minHeight="80px"
+      lineHeight="short"
+      ref={ref}
+      as="textarea"
+      {...props}
+    />
+  );
 });
 
 export default Textarea;

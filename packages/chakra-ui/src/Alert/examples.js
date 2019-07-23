@@ -12,7 +12,7 @@ const stories = storiesOf("Alert", module).addDecorator(story => (
 
 stories.add("Subtle", () => {
   return (
-    <Alert variant="left-accent">
+    <Alert status="error" variant="left-accent">
       <AlertIcon size={5} />
       <Box flex="1">
         <AlertTitle>Holy Smokes!</AlertTitle>
@@ -24,7 +24,7 @@ stories.add("Subtle", () => {
 
 stories.add("Solid", () => {
   return (
-    <Alert variant="solid">
+    <Alert status="error" variant="solid">
       <AlertIcon />
       <Box flex="1">
         <AlertTitle>Holy Smokes</AlertTitle>

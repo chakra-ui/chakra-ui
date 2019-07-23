@@ -38,7 +38,8 @@ export { default as Radio } from "./Radio";
 export { default as RadioGroup } from "./RadioGroup";
 export { default as RadioButtonGroup } from "./RadioButtonGroup";
 
-export { default as Input, NumberInput } from "./Input";
+export { default as Input } from "./Input";
+export { default as NumberInput } from "./NumberInput";
 export { default as Select } from "./Select";
 
 export { default as Slider } from "./Slider";

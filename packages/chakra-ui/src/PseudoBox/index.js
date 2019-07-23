@@ -22,6 +22,8 @@ const firstChild = "&:first-of-type";
 const lastChild = "&:last-of-type";
 const expanded = "&[aria-expanded=true]";
 const grabbed = "&[aria-grabbed=true]";
+const notFirstChild = "&:not(:first-child)";
+const notLastChild = "&:not(:last-child)";
 
 const PseudoBox = styled(Box)(
   ({
@@ -38,6 +40,8 @@ const PseudoBox = styled(Box)(
     _before,
     _readOnly,
     _firstChild,
+    _notFirstChild,
+    _notLastChild,
     _lastChild,
     _placeholder,
     _checked
@@ -53,6 +57,8 @@ const PseudoBox = styled(Box)(
       [grabbed]: tx(_grabbed),
       [readOnly]: tx(_readOnly),
       [firstChild]: tx(_firstChild),
+      [notFirstChild]: tx(_notFirstChild),
+      [notLastChild]: tx(_notLastChild),
       [lastChild]: tx(_lastChild),
       [checked]: tx(_checked),
       "&:before": tx(_before),
