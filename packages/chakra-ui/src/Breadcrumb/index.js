@@ -1,85 +1,80 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { oneOf } from "prop-types";
-import { Children, cloneElement, Fragment } from "react";
-import Icon from "../Icon";
-import { Box, Flex } from "../Layout";
-import Link from "../Link";
+import { node, oneOf, oneOfType, string } from "prop-types";
+import { Children, cloneElement } from "react";
+import Box from "../Box";
 
 export const BreadcrumbItem = ({
-  size,
   isCurrent,
-  color = "blue.600",
   separator,
   as,
-  ...rest
-}) => {
-  return (
-    <Flex as="li" fontSize={size} display="inline-flex" alignItems="center">
-      <Link
-        appearance={isCurrent ? "unstyled" : "blue"}
-        aria-current={isCurrent ? "page" : undefined}
-        as={isCurrent ? "span" : as}
-        fontWeight="medium"
-        {...rest}
-      />
-      {!isCurrent && (
-        <Fragment>
-          {separator === "arrow" && (
-            <Icon name="chevronRight" size="1.25em" color="gray.200" mx={1} />
-          )}
-          {separator === "slash" && (
-            <Box
-              as="span"
-              minWidth="1.25em"
-              verticalAlign="middle"
-              textAlign="center"
-              mx={1}
-              fontSize="1em"
-              fontWeight="semibold"
-              color="gray.200"
-            >
-              /
-            </Box>
-          )}
-        </Fragment>
-      )}
-    </Flex>
-  );
-};
-
-BreadcrumbItem.defaultProps = {
-  size: "sm",
-  separator: "arrow"
-};
-
-BreadcrumbItem.propTypes = {
-  size: oneOf(["sm", "md", "lg"]),
-  status: oneOf(["disabled", "selected"]),
-  separator: oneOf(["arrow", "slash"])
-};
-
-const Breadcrumbs = ({
   children,
-  role = "navigation",
-  ariaLabel = "Breadcrumb",
-  size,
-  separator,
   ...rest
 }) => {
-  const clones = Children.map(children, (child, index) => {
-    const isLastChild = index + 1 === Children.count(children);
-    return cloneElement(child, {
-      isCurrent: isLastChild,
-      size,
-      separator
-    });
-  });
   return (
-    <Box as="ol" role={role} aria-label={ariaLabel} {...rest}>
-      {clones}
+    <Box
+      as="li"
+      aria-current={isCurrent ? "page" : undefined}
+      display="inline-flex"
+      alignItems="center"
+      {...rest}
+    >
+      {cloneElement(
+        Children.only(children),
+        isCurrent && { "aria-current": "page" }
+      )}
+      {!isCurrent && (
+        <Box
+          aria-hidden
+          as="span"
+          verticalAlign="middle"
+          textAlign="center"
+          mx="0.5em"
+          fontSize="1em"
+          fontWeight="semibold"
+          color="gray.200"
+          children={separator}
+        />
+      )}
     </Box>
   );
 };
 
-export default Breadcrumbs;
+BreadcrumbItem.defaultProps = {
+  separator: "/"
+};
+
+BreadcrumbItem.propTypes = {
+  separator: oneOfType([string, node])
+};
+
+/* 
+<Link
+  appearance={isCurrent ? "unstyled" : "blue"}
+  as={isCurrent ? "span" : as}
+  fontWeight="medium"
+  {...rest}
+/>
+*/
+
+const Breadcrumb = ({ children, separator, ...rest }) => {
+  const clones = Children.map(children, (child, index) => {
+    const isLastChild = index + 1 === Children.count(children);
+    return cloneElement(child, {
+      isCurrent: isLastChild,
+      separator
+    });
+  });
+  return (
+    <Box as="nav" aria-label="Breadcrumb" {...rest}>
+      <Box as="ol">{clones}</Box>
+    </Box>
+  );
+};
+
+BreadcrumbItem.propTypes = {
+  size: oneOf(["sm", "md", "lg"]),
+  separator: oneOfType([string, node])
+};
+
+export default Breadcrumb;

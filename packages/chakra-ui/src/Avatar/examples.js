@@ -4,12 +4,6 @@ import React from "react";
 import Box from "../Box";
 import Avatar, { MoreIndicator, AvatarBadge } from ".";
 import AvatarGroup from "../AvatarGroup";
-import AvatarItem, {
-  AvatarText,
-  AvatarContent,
-  AvatarSubtext
-} from "./AvatarItem";
-import Badge from "../Badge";
 
 const stories = storiesOf("Avatar", module);
 stories.addDecorator(withKnobs);
@@ -45,23 +39,4 @@ stories.add("Avatar Group", () => (
     />
     <MoreIndicator label="+4" />
   </AvatarGroup>
-));
-
-stories.add("Avatar Item", () => (
-  <AvatarItem>
-    <Avatar
-      name="Segun Adebayo"
-      size="md"
-      src="https://www.dropbox.com/s/nd8z3hxuo3ahauk/segun_adebayo.jpg?dl=1"
-    />
-    <AvatarContent fontSize="md">
-      <AvatarText>
-        Segun Adebayo
-        <Badge fontSize="0.8em" ml={1} color="green">
-          New
-        </Badge>
-      </AvatarText>
-      <AvatarSubtext>segun@gmail.com</AvatarSubtext>
-    </AvatarContent>
-  </AvatarItem>
 ));
