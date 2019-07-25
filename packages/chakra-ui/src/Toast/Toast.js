@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import toaster from "toasted-notes";
-import Alert from "./Alert";
-import ThemeProvider, { useTheme, UIModeProvider } from "./ThemeProvider";
+import Alert from "../Alert";
+import ThemeProvider, { useTheme, UIModeProvider } from "../ThemeProvider";
 
 export function useToast() {
   const theme = useTheme();

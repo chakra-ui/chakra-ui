@@ -81,21 +81,18 @@ const graySolidStyle = {
     }
   },
   dark: {
-    bg: "alpha.300",
+    bg: "alpha.200",
     _hover: {
-      bg: "alpha.400"
+      bg: "alpha.300"
     },
     _active: {
-      bg: "alpha.500"
+      bg: "alpha.400"
     }
   }
 };
 
 const solidVariantProps = ({ color, mode }) => {
   let result;
-  if (color === "gray") {
-    result = graySolidStyle;
-  }
 
   result = {
     light: {
@@ -119,6 +116,10 @@ const solidVariantProps = ({ color, mode }) => {
       }
     }
   };
+
+  if (color === "gray") {
+    result = graySolidStyle;
+  }
 
   return result[mode];
 };
@@ -154,25 +155,25 @@ const sizes = {
   xl: {
     height: "16",
     fontSize: "lg",
-    px: 6,
+    px: 8,
     minWidth: "16"
   },
   lg: {
     height: "12",
     fontSize: "lg",
-    px: 4,
+    px: 6,
     minWidth: "12"
   },
   md: {
     height: "10",
     fontSize: "md",
-    px: 3,
+    px: 5,
     minWidth: "10"
   },
   sm: {
     height: "8",
     fontSize: "md",
-    px: 2,
+    px: 4,
     minWidth: "8"
   }
 };

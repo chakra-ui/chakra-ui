@@ -11,20 +11,21 @@ const useLinkStyle = ({ color, isUnstyled }) => ({
     boxShadow: "outline"
   },
   _disabled: {
-    color: "gray.400",
+    opacity: "40%",
     cursor: "not-allowed",
     textDecoration: "none"
   },
   _hover: {
-    color: `${color}.600`,
     textDecoration: "underline"
   },
   _active: {
-    color: `${color}.400`
+    opacity: "80%"
   },
   ...(isUnstyled && {
     color: "inherit",
-    textDecoration: "none"
+    cursor: "default",
+    textDecoration: "none",
+    _hover: { textDecoration: "none" }
   })
 });
 
@@ -32,7 +33,8 @@ const Link = ({ isDisabled, color = "blue", isUnstyled, onClick, ...rest }) => {
   const styledProps = useLinkStyle({ color, isUnstyled });
   return (
     <PseudoBox
-      tabIndex={isDisabled ? -1 : 0}
+      as="a"
+      tabIndex={isDisabled ? -1 : undefined}
       aria-disabled={isDisabled}
       borderRadius="sm"
       onClick={isDisabled ? e => e.preventDefault() : onClick}

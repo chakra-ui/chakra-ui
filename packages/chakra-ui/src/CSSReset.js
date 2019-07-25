@@ -12,7 +12,7 @@ const getThemedStyle = ({ colors }) => {
     dark: {
       color: colors.alpha[900],
       bg: colors.gray[900],
-      borderColor: colors.alpha[400]
+      borderColor: colors.alpha[300]
     }
   };
 };
@@ -27,6 +27,7 @@ const CSSReset = () => {
         html {
           -webkit-font-smoothing: antialiased;
           -webkit-text-size-adjust: 100%;
+          text-rendering: optimizelegibility;
         }
 
         body {
@@ -250,7 +251,7 @@ const CSSReset = () => {
             "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
             "Noto Color Emoji";
           line-height: 1.5;
-          font-size: 0.875rem;
+          font-size: 1rem;
           color: ${getThemedStyle(theme)[mode]["color"]};
           background-color: ${getThemedStyle(theme)[mode]["bg"]};
         }

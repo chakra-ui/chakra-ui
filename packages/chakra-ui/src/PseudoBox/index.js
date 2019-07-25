@@ -10,7 +10,7 @@ import { tx } from "../Box/config";
  */
 
 // The selectors are based on WAI-ARIA speficiations
-const hover = "&:hover:not([aria-disabled=true]):not(:focus)";
+const hover = "&:hover:not([aria-disabled=true])";
 const active = "&:active:not([aria-disabled=true])";
 const focus = "&:focus";
 const disabled = "&[aria-disabled=true]";

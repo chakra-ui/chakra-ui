@@ -13,12 +13,7 @@ stories.addDecorator(story => {
 });
 
 stories.add("Default", () => (
-  <Input
-    placeholder="Here is a sample placeholder"
-    variant="filled"
-    isReadOnly
-    size="md"
-  />
+  <Input placeholder="Here is a sample placeholder" size="md" />
 ));
 
 stories.add("Readonly", () => (

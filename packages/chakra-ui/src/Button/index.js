@@ -50,6 +50,7 @@ const Button = forwardRef(
         {leftIcon && !isLoading && (
           <Icon
             focusable="false"
+            ml={-1}
             mr={iconSpacing}
             name={leftIcon}
             color="currentColor"

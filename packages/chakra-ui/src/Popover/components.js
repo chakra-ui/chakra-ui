@@ -1,38 +1,36 @@
 /** @jsx jsx */
-import { jsx, css } from "@emotion/core";
-import styled from "@emotion/styled";
+import { css, jsx } from "@emotion/core";
+import { forwardRef } from "react";
 import { Transition } from "react-spring/renderprops";
-import { Box } from "./Layout";
-import CloseButton from "./CloseButton";
+import CloseButton from "../CloseButton";
+import { Box } from "../Layout";
 
 export const PopoverTransition = ({
   isOpen,
   duration = 200,
   children,
   ...rest
-}) => {
-  return (
-    <Transition
-      items={isOpen}
-      from={{
-        opacity: 0.01,
-        scale: 0.75
-      }}
-      enter={{
-        opacity: 1,
-        scale: 1
-      }}
-      leave={{
-        opacity: 0,
-        scale: 0.75
-      }}
-      config={{ duration, ...rest.config }}
-      {...rest}
-    >
-      {isOpen => isOpen && (style => children(style))}
-    </Transition>
-  );
-};
+}) => (
+  <Transition
+    items={isOpen}
+    from={{
+      opacity: 0.01,
+      scale: 0.75
+    }}
+    enter={{
+      opacity: 1,
+      scale: 1
+    }}
+    leave={{
+      opacity: 0,
+      scale: 0.75
+    }}
+    config={{ duration, ...rest.config }}
+    {...rest}
+  >
+    {isOpen => isOpen && (style => children(style))}
+  </Transition>
+);
 
 export const popperStyle = css`
   > [data-arrow] {
@@ -112,41 +110,45 @@ export const popperStyle = css`
   }
 `;
 
-export const PopoverWrapper = styled(Box)`
-  width: 100%;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  ${popperStyle};
-`;
+export const PopoverContent = forwardRef(({ css, ...props }, ref) => (
+  <Box
+    width="100%"
+    position="relative"
+    display="flex"
+    flexDirection="column"
+    ref={ref}
+    css={[popperStyle, css]}
+    {...props}
+  />
+));
 
 export const PopoverCloseButton = ({ onClick, ...props }) => (
   <CloseButton
-    size="md"
+    size="6"
     onClick={onClick}
     position="absolute"
-    top="8px"
-    right="8px"
+    rounded="md"
+    top="12px"
+    right="12px"
+    p="6px"
     {...props}
   />
 );
 
-export const PopoverHeader = ({ ...props }) => {
-  return <Box px="12px" boxShadow="bottom" py="8px" as="header" {...props} />;
-};
+export const PopoverHeader = ({ ...props }) => (
+  <Box px="12px" boxShadow="bottom" py="8px" as="header" {...props} />
+);
 
-export const PopoverFooter = ({ ...props }) => {
-  return <Box px="12px" boxShadow="top" py="8px" as="footer" {...props} />;
-};
+export const PopoverFooter = ({ ...props }) => (
+  <Box px="12px" boxShadow="top" py="8px" as="footer" {...props} />
+);
 
-export const PopoverBody = ({ isScrollable, ...props }) => {
-  return (
-    <Box
-      flex="1"
-      px="12px"
-      py="8px"
-      {...isScrollable && { overflow: "hidden auto" }}
-      {...props}
-    />
-  );
-};
+export const PopoverBody = ({ isScrollable, ...props }) => (
+  <Box
+    flex="1"
+    px="12px"
+    py="8px"
+    {...isScrollable && { overflow: "hidden auto" }}
+    {...props}
+  />
+);

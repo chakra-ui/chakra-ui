@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-// import propTypes from "prop-types";
 import { Children, cloneElement, useState, forwardRef } from "react";
 import { SketchPicker } from "react-color";
 import Icon from "../Icon";
@@ -16,6 +15,8 @@ const GradientSwatch = ({ gradient, angle, startColor, endColor, ...rest }) => {
   return <ColorSwatch gradient={_gradient} {...rest} />;
 };
 
+const transparencyBgImage = `url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==)`;
+
 const ColorSwatch = forwardRef(
   ({ isRound, color, gradient, children, isSelected, ...rest }, ref) => {
     let _borderRadius = isRound ? "round" : "sm";
@@ -25,7 +26,7 @@ const ColorSwatch = forwardRef(
         size="24px"
         flex="0 0 auto"
         alignItems="center"
-        backgroundImage="url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==)"
+        backgroundImage={transparencyBgImage}
         backgroundRepeat="repeat"
         justifyContent="center"
         position="relative"

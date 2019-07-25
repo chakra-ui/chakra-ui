@@ -1,19 +1,24 @@
 /** @jsx jsx */
 import { useTheme, useUIMode } from "../ThemeProvider";
 
-const outlinedStyle = ({ _focusBorderColor, mode }) => {
+const outlinedStyle = ({ _focusBorderColor, theme, mode }) => {
   const bg = { light: "white", dark: "alpha.50" };
-  const hoverColor = { light: "gray.300", dark: "alpha.100" };
+  const borderColor = { light: "inherit", dark: "alpha.50" };
+  const hoverColor = { light: "gray.300", dark: "alpha.200" };
   const invalidColor = { light: "red.500", dark: "red.300" };
   const focusColor = {
     light: `${_focusBorderColor}.500`,
-    dark: `${_focusBorderColor}.300`
+    dark: `${_focusBorderColor}.700`
+  };
+  const boxShadow = {
+    light: theme.colors[_focusBorderColor][500],
+    dark: theme.colors[_focusBorderColor][700]
   };
 
   return {
     ...readOnly,
-    border: "2px",
-    borderColor: "inherit",
+    border: "1px",
+    borderColor: borderColor[mode],
     bg: bg[mode],
     _hover: {
       borderColor: hoverColor[mode]
@@ -23,7 +28,8 @@ const outlinedStyle = ({ _focusBorderColor, mode }) => {
       cursor: "not-allowed"
     },
     _focus: {
-      borderColor: focusColor[mode]
+      borderColor: focusColor[mode],
+      boxShadow: `0 0 0 1px ${boxShadow[mode]}`
     },
     _invalid: {
       borderColor: invalidColor[mode]
@@ -154,8 +160,8 @@ const useInputStyle = props => {
   return {
     ...baseProps,
     ...sizeProps(_props),
-    ...variantProps(_props),
-    pb: "1px"
+    ...variantProps(_props)
+    // pb: "1px"
   };
 };
 

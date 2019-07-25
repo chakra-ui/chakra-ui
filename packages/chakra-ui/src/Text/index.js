@@ -1,7 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
-import { Box, Flex } from "./Layout";
-import Icon from "./Icon";
+import { Box, Flex } from "../Layout";
+import Icon from "../Icon";
 
 const Text = ({
   as,

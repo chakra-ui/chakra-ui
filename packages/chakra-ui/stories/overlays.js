@@ -12,7 +12,7 @@ import {
   PopoverHeader,
   PopoverBody,
   PopoverFooter
-} from "../src/PopoverComponents";
+} from "../src/Popover/components";
 import Tooltip from "../src/Tooltip";
 
 const stories = storiesOf("Overlays", module);

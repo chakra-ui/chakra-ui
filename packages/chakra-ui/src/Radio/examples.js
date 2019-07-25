@@ -15,7 +15,7 @@ stories.addDecorator(story => {
 
 stories.add("Default", () => (
   <>
-    <Radio value="male" defaultChecked name="bee">
+    <Radio value="male" size="lg" defaultChecked name="bee">
       Male
     </Radio>
     <Radio ml={3} value="female" name="bee" defaultChecked>

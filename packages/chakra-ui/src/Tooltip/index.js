@@ -4,11 +4,11 @@ import styled from "@emotion/styled";
 import Portal from "@reach/portal";
 import { cloneElement, useRef } from "react";
 import { Manager, Popper, Reference } from "react-popper";
-import { assignRef, genId } from "./utils";
-import { Box } from "./Layout";
-import { PopoverTransition, popperStyle } from "./PopoverComponents";
-import { useDisclosure } from "./hooks";
-import { useUIMode } from "./ThemeProvider";
+import { assignRef, genId } from "../utils";
+import { Box } from "../Layout";
+import { PopoverTransition, popperStyle } from "../Popover/components";
+import { useDisclosure } from "../hooks";
+import { useUIMode } from "../ThemeProvider";
 
 const StyledTooltip = styled(Box)`
   ${popperStyle}

@@ -26,7 +26,6 @@ export { default as VisuallyHidden } from "./VisuallyHidden";
 
 export { default as Button } from "./Button";
 export { default as ButtonGroup } from "./ButtonGroup";
-export { default as ActionButtons } from "./ActionButtons";
 export { default as CloseButton } from "./CloseButton";
 
 export { default as Badge } from "./Badge";

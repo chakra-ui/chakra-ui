@@ -7,8 +7,8 @@ import {
   ColorItem,
   ColorSwatch,
   GradientSwatch
-} from "../src/ColorPicker";
-import { Box } from "../src/Layout";
+} from "../ColorPicker";
+import Box from "../Box";
 
 const stories = storiesOf("Color Picker", module);
 

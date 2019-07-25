@@ -64,7 +64,7 @@ Input.defaultProps = {
   size: "md",
   as: "input",
   variant: "outline",
-  _focusBorderColor: "cyan"
+  _focusBorderColor: "blue"
 };
 
 Input.propTypes = {
