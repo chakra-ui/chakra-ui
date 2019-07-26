@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import Portal from "@reach/portal";
-import { cloneElement, useRef } from "react";
+import { cloneElement, useRef, Children } from "react";
 import { Manager, Popper, Reference } from "react-popper";
 import { assignRef, genId } from "../utils";
 import { Box } from "../Layout";
@@ -10,7 +10,7 @@ import { PopoverTransition, popperStyle } from "../Popover/components";
 import { useDisclosure } from "../hooks";
 import { useUIMode } from "../ThemeProvider";
 
-const StyledTooltip = styled(Box)`
+const TooltipContent = styled(Box)`
   ${popperStyle}
 `;
 
@@ -18,28 +18,28 @@ const Tooltip = ({
   bg,
   color,
   label,
-  delay = 100,
+  timeout = 100,
   children,
   showArrow,
   placement = "auto",
   closeOnClick,
-  defaultIsOpen,
+  defaultOpen,
   isOpen: controlledIsOpen,
   onOpenChange,
   ...rest
 }) => {
-  const { isOpen, onClose, onOpen } = useDisclosure(defaultIsOpen || false);
+  const { isOpen, onClose, onOpen } = useDisclosure(defaultOpen || false);
   const { current: isControlled } = useRef(controlledIsOpen != null);
 
   const openWithDelay = () => {
-    setTimeout(onOpen, delay);
+    setTimeout(onOpen, timeout);
   };
 
   const closeWithDelay = () => {
-    setTimeout(onClose, delay);
+    setTimeout(onClose, timeout);
   };
 
-  let tooltipId = genId("tooltip");
+  const tooltipId = genId("tooltip");
 
   const handleOpen = () => {
     !isControlled && openWithDelay();
@@ -51,20 +51,20 @@ const Tooltip = ({
     onOpenChange && onOpenChange();
   };
 
-  const open = isControlled ? controlledIsOpen : isOpen;
+  const _isOpen = isControlled ? controlledIsOpen : isOpen;
 
   const { mode } = useUIMode();
-  const bgFromUIMode = mode === "dark" ? "white" : "gray.700";
-  const colorFromUIMode = mode === "dark" ? "gray.900" : "alpha.900";
+  const _bg = mode === "dark" ? "gray.300" : "gray.700";
+  const _color = mode === "dark" ? "gray.900" : "alpha.900";
 
-  const bgColor = bg || bgFromUIMode;
-  const textColor = color || colorFromUIMode;
+  const bgColor = bg || _bg;
+  const textColor = color || _color;
 
   return (
     <Manager>
       <Reference>
         {({ ref: referenceRef }) =>
-          cloneElement(children, {
+          cloneElement(Children.only(children), {
             "aria-labelledby": tooltipId,
             ref: node => {
               assignRef(referenceRef, node);
@@ -82,10 +82,10 @@ const Tooltip = ({
       </Reference>
       <Popper placement={placement}>
         {({ ref: popperRef, style, arrowProps, placement }) => (
-          <PopoverTransition duration={50} isOpen={open}>
+          <PopoverTransition duration={50} isOpen={_isOpen}>
             {styles => (
               <Portal>
-                <StyledTooltip
+                <TooltipContent
                   ref={popperRef}
                   px="8px"
                   py="2px"
@@ -98,7 +98,6 @@ const Tooltip = ({
                   css={{
                     ...style,
                     transform: `${style.transform}`,
-                    // transform: `${style.transform} scale(${styles.scale})`,
                     opacity: styles.opacity
                   }}
                   data-placement={placement}
@@ -116,7 +115,7 @@ const Tooltip = ({
                       style={arrowProps.style}
                     />
                   )}
-                </StyledTooltip>
+                </TooltipContent>
               </Portal>
             )}
           </PopoverTransition>

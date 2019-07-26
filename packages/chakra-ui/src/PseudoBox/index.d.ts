@@ -1,5 +1,5 @@
 import * as StyledSystem from "styled-system";
-import * as Emotion from "@emotion/styled";
+import { StyledComponent } from "@emotion/styled";
 import { BoxProps } from "../Box";
 
 export interface PseudoBoxProps extends React.HTMLAttributes<{}>, BoxProps {
@@ -38,6 +38,6 @@ export interface PseudoBoxProps extends React.HTMLAttributes<{}>, BoxProps {
   _checked: BoxProps;
 }
 
-declare const PseudoBox: Emotion.StyledComponent<PseudoBoxProps, {}, {}>;
+declare const PseudoBox: StyledComponent<PseudoBoxProps, {}, {}>;
 
 export default PseudoBox;

@@ -66,7 +66,7 @@ const Popover = ({
 
   const bg = rest.bg || rest.background || rest.backgroundColor || _bgColor;
   const color = rest.color || _color;
-  const popperId = genId("popper");
+  const popoverId = genId("popper");
   const Wrapper = usePortal ? Portal : Fragment;
 
   return (
@@ -75,7 +75,7 @@ const Popover = ({
         {({ ref: referenceRef }) =>
           cloneElement(trigger, {
             "aria-haspopup": "true",
-            "aria-controls": popperId,
+            "aria-controls": popoverId,
             ref: node => {
               triggerRef.current = node;
               assignRef(referenceRef, node);
@@ -92,15 +92,13 @@ const Popover = ({
         <Popper placement={placement}>
           {({ ref, style: popperStyle, placement, arrowProps }) => (
             <PopoverTransition duration={100} isOpen={isOpen}>
-              {({ scale, opacity }) => (
+              {styles => (
                 <FocusLock
                   returnFocus
                   onActivation={() => {
-                    return (
-                      initialFocusRef &&
-                      initialFocusRef.current &&
-                      initialFocusRef.current.focus()
-                    );
+                    if (initialFocusRef && initialFocusRef.current) {
+                      initialFocusRef.current.focus();
+                    }
                   }}
                 >
                   <PopoverContent
@@ -114,15 +112,17 @@ const Popover = ({
                     data-placement={placement}
                     borderRadius="lg"
                     boxShadow="lg"
-                    id={popperId}
+                    id={popoverId}
                     aria-hidden={isOpen}
                     {...rest}
                     tabIndex="-1"
                     onBlur={handleBlur}
                     css={{
                       ...popperStyle,
-                      transform: `${popperStyle.transform} scale(${scale})`,
-                      opacity
+                      transform: `${popperStyle.transform} scale(${
+                        styles.scale
+                      })`,
+                      opacity: styles.opacity
                     }}
                     onKeyDown={event => {
                       event.stopPropagation();
@@ -180,3 +180,8 @@ Popover.propTypes = {
 Popover.displayName = "Popover";
 
 export default Popover;
+export {
+  PopoverTransition,
+  PopoverContent,
+  PopoverCloseButton
+} from "./components";

@@ -41,7 +41,7 @@ const ModalOverlay = forwardRef((props, ref) => (
     left="0"
     right="0"
     overflowY="auto"
-    bg="rgba(82,95,127,0.25)"
+    bg="rgba(0,0,0,0.5)"
     ref={ref}
     {...props}
   />

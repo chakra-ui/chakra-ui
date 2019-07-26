@@ -155,25 +155,25 @@ const sizes = {
   xl: {
     height: "16",
     fontSize: "lg",
-    px: 8,
+    px: 6,
     minWidth: "16"
   },
   lg: {
     height: "12",
     fontSize: "lg",
-    px: 6,
+    px: 5,
     minWidth: "12"
   },
   md: {
     height: "10",
     fontSize: "md",
-    px: 5,
+    px: 4,
     minWidth: "10"
   },
   sm: {
     height: "8",
     fontSize: "md",
-    px: 4,
+    px: 3,
     minWidth: "8"
   }
 };

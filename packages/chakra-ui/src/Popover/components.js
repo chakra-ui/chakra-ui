@@ -135,11 +135,11 @@ export const PopoverCloseButton = ({ onClick, ...props }) => (
   />
 );
 
-export const PopoverHeader = ({ ...props }) => (
+export const PopoverHeader = props => (
   <Box px="12px" boxShadow="bottom" py="8px" as="header" {...props} />
 );
 
-export const PopoverFooter = ({ ...props }) => (
+export const PopoverFooter = props => (
   <Box px="12px" boxShadow="top" py="8px" as="footer" {...props} />
 );
 
