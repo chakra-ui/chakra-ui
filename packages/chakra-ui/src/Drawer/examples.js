@@ -26,7 +26,7 @@ stories.add("Default", () => {
           placement="left"
           onClose={() => setIsOpen(false)}
         >
-          <DrawerHeader showCloseButton onClose={() => setIsOpen(false)}>
+          <DrawerHeader>
             Create your account
           </DrawerHeader>
 
@@ -35,6 +35,7 @@ stories.add("Default", () => {
               <Input placeholder="Type here..." />
             </FormControl>
           </DrawerBody>
+          
           <DrawerFooter>
             <Button variant="outline" mr={3} onClick={() => setIsOpen(false)}>
               Cancel

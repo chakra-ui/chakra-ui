@@ -35,7 +35,7 @@ stories.add("Button", () => {
 });
 
 stories.add("Input", () => {
-  const isDisabled = false;
+  const isDisabled = true;
   return (
     <PseudoBox
       as="input"

@@ -180,8 +180,4 @@ Popover.propTypes = {
 Popover.displayName = "Popover";
 
 export default Popover;
-export {
-  PopoverTransition,
-  PopoverContent,
-  PopoverCloseButton
-} from "./components";
+export * from "./components";

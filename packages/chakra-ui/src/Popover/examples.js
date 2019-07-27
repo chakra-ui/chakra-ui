@@ -1,8 +1,8 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
+import Popover, { PopoverBody, PopoverFooter, PopoverHeader } from ".";
 import Button from "../Button";
 import { Box } from "../Layout";
-import Popover, { PopoverBody, PopoverFooter, PopoverHeader } from "../Popover";
 
 const stories = storiesOf("Popover", module);
 stories.addDecorator(story => {

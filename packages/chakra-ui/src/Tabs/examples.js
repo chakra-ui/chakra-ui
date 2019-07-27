@@ -95,10 +95,10 @@ stories.add("Tablist Only (Manual)", () => {
         <Tabs
           {...props}
           color="green"
-          // index={index}
+          index={index}
           defaultIndex={2}
           isManual
-          // onChange={setIndex}
+          onChange={setIndex}
         >
           <TabList>
             <Tab>Tab 1</Tab>

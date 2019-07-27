@@ -20,7 +20,7 @@ stories.add("Default", () => (
       Disabled and Checked
     </Checkbox>
     <Box ml={3} mt={3}>
-      <Checkbox color="green" isFullWidth defaultChecked>
+      <Checkbox color="pink" isFullWidth defaultChecked>
         Checkbox 1
       </Checkbox>
       <Checkbox isInvalid mt={2}>

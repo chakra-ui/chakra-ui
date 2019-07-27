@@ -3,7 +3,7 @@ import { css, jsx } from "@emotion/core";
 import { forwardRef } from "react";
 import { Transition } from "react-spring/renderprops";
 import CloseButton from "../CloseButton";
-import { Box } from "../Layout";
+import Box from "../Box";
 
 export const PopoverTransition = ({
   isOpen,
