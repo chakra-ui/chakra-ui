@@ -1,68 +1,64 @@
 /** @jsx jsx */
-import { css, jsx } from "@emotion/core";
+import { jsx } from "@emotion/core";
+import useBadgeStyle from "../Badge/styles";
 import Icon from "../Icon";
-import { Box } from "../Layout";
-import useBadgeStyle from "../Badge/BadgeStyle";
+import Box from "../Box";
 
 let tabSize = "24px";
 
-const style = css`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: 0.2s;
-  [data-tag-close-icon] {
-    opacity: 0.5;
-  }
+// const styleProps = {
+//   display: "flex",
+//   justifyContent: "center",
+//   alignItems: "center",
+//   transition: "0.2s",
+//   "[data-tag-close-icon]": {
+//     opacity: 0.5
+//   },
 
-  &:focus {
-    box-shadow: inset rgb(255, 86, 48) 0px 0px 0px 2px;
-    > [data-tag-close-icon] {
-      opacity: 1;
-    }
-  }
+//   "&:focus": {
+//     boxShadow: "inset rgb(255, 86, 48) 0px 0px 0px 2px",
+//     "> [data-tag-close-icon]": {
+//       opacity: 1
+//     }
+//   },
 
-  &:hover {
-    background: rgba(0, 0, 0, 0.04);
-    > [data-tag-close-icon] {
-      opacity: 0.8;
-    }
-  }
+//   "&:hover": {
+//     background: "rgba(0, 0, 0, 0.04)",
+//     "> [data-tag-close-icon]": {
+//       opacity: 0.8
+//     }
+//   },
 
-  :active {
-    background: rgba(0, 0, 0, 0.14);
-    > [data-tag-close-icon] {
-      opacity: 1;
-    }
-  }
-`;
+//   "&:active": {
+//     background: "rgba(0, 0, 0, 0.14)",
+//     "> [data-tag-close-icon]": {
+//       opacity: 1
+//     }
+//   }
+// };
 
-const style2 = css`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: 0.2s;
-`;
+const CloseButton = props => (
+  <Box
+    as="button"
+    display="flex"
+    justifyContent="center"
+    alignItems="center"
+    transition="0.2s"
+    {...props}
+  >
+    <Icon size="8px" name="close" focusable="false" data-tag-close-icon="" />
+  </Box>
+);
 
-const CloseButton = props => {
-  return (
-    <Box as="button" css={style} {...props}>
-      <Icon size="8px" name="close" focusable="false" data-tag-close-icon="" />
-    </Box>
-  );
-};
-
-const textStyle = css`
-  max-width: 160px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  padding: 2px 0px;
-`;
-
-const LeftElemWrapper = props => {
-  return <Box css={style2} {...props} />;
-};
+const LeftElemWrapper = props => (
+  <Box
+    display="flex"
+    justifyContent="center"
+    alignItems="center"
+    transition="0.2s"
+    {...props}
+  />
+);
 
 const Tag = ({
   appearance,
@@ -75,12 +71,12 @@ const Tag = ({
   onClose,
   isSelected,
   isInteractive,
-  closeIconLabel,
+  closeLabel,
   children,
   ...rest
 }) => {
   const borderRadius = isRound ? "round" : rest.borderRadius || "sm";
-  const tagStyle = useBadgeStyle({ color, variant });
+  const tagStyleProps = useBadgeStyle({ color, variant });
 
   return (
     <Box
@@ -89,21 +85,28 @@ const Tag = ({
       minHeight={tabSize}
       borderRadius={borderRadius}
       lineHeight="1"
-      css={tagStyle}
       maxWidth="100%"
+      {...tagStyleProps}
       {...rest}
     >
       {leftElement && (
-        <LeftElemWrapper mr="-8px" size={tabSize} icon="phone">
+        <LeftElemWrapper mr="-8px" size={tabSize}>
           {leftElement}
         </LeftElemWrapper>
       )}
-      <Box mx="8px" css={textStyle} as="span">
+      <Box
+        mx="8px"
+        maxWidth="160px"
+        overflow="hidden"
+        wordBreak="truncate"
+        p="2px 0px"
+        as="span"
+      >
         {children}
       </Box>
       {isClosable && (
         <CloseButton
-          aria-label={closeIconLabel || `Remove ${children}`}
+          aria-label={closeLabel}
           ml="-6px"
           width="24px"
           alignSelf="stretch"

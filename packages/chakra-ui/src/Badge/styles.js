@@ -1,4 +1,5 @@
 import { addOpacity, generateAlphaColors, get } from "../theme/colors.utils";
+import { useTheme, useUIMode } from "../ThemeProvider";
 
 const solidStyle = ({ theme: { colors }, color }) => {
   const darkModeBg = addOpacity(colors[color][500], 0.6);
@@ -58,8 +59,12 @@ const variantProps = props => {
   }
 };
 
-const badgeStyle = props => {
-  return variantProps(props);
+const useBadgeStyle = props => {
+  const theme = useTheme();
+  const { mode } = useUIMode();
+  const _props = { ...props, theme, mode };
+  
+  return variantProps(_props);
 };
 
-export default badgeStyle;
+export default useBadgeStyle;
