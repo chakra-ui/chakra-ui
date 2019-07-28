@@ -57,46 +57,6 @@ const components = {
     md: "0.75rem",
     sm: "0.5rem"
   },
-  input: {
-    lg: {
-      fontSize: 16,
-      paddingLeft: 14,
-      paddingRight: 14,
-      height: 40,
-      lineHeight: "24px",
-      borderRadius: 4
-    },
-    md: {
-      fontSize: 14,
-      paddingLeft: 12,
-      paddingRight: 12,
-      height: 32,
-      lineHeight: "20px",
-      borderRadius: 3
-    },
-    sm: {
-      fontSize: 12,
-      height: 24,
-      lineHeight: "16px",
-      paddingLeft: 8,
-      paddingRight: 8,
-      borderRadius: 2
-    }
-  },
-  slider: {
-    lg: {
-      thumb: "16px",
-      trackHeight: "4px"
-    },
-    md: {
-      thumb: "14px",
-      trackHeight: "4px"
-    },
-    sm: {
-      thumb: "10px",
-      trackHeight: "2px"
-    }
-  },
   closeButton: {
     sm: "0.5rem",
     md: "0.8rem",

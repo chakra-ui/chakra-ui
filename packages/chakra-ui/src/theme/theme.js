@@ -80,6 +80,15 @@ const borders = {
   "4px": "4px solid"
 };
 
+const borderWidths = {
+  xl: "2rem",
+  lg: "1rem",
+  md: "0.5rem",
+  sm: "0.25rem",
+  xs: "0.125rem",
+  none: 0
+};
+
 const theme = {
   breakpoints,
   zIndices,

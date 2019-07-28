@@ -3,117 +3,118 @@ import { jsx } from "@emotion/core";
 import useBadgeStyle from "../Badge/styles";
 import Icon from "../Icon";
 import Box from "../Box";
+import Center from "../Center";
+import PseudoBox from "../PseudoBox";
+import { createContext, useContext } from "react";
 
-let tabSize = "24px";
+const tagSizes = {
+  sm: {
+    minHeight: "20px",
+    minWidth: "20px",
+    fontSize: "sm",
+    px: "8px"
+  },
+  md: {
+    minHeight: "24px",
+    minWidth: "24px",
+    fontSize: "sm",
+    px: "8px"
+  },
+  lg: {
+    minHeight: "32px",
+    minWidth: "32px",
+    px: "12px"
+  }
+};
 
-// const styleProps = {
-//   display: "flex",
-//   justifyContent: "center",
-//   alignItems: "center",
-//   transition: "0.2s",
-//   "[data-tag-close-icon]": {
-//     opacity: 0.5
-//   },
+const TagContext = createContext();
+const useTagContext = () => {
+  return useContext(TagContext);
+};
 
-//   "&:focus": {
-//     boxShadow: "inset rgb(255, 86, 48) 0px 0px 0px 2px",
-//     "> [data-tag-close-icon]": {
-//       opacity: 1
-//     }
-//   },
+export const TagElement = ({ placement, ...props }) => {
+  const margin = { sm: "-4px", md: "-4px", lg: "-8px" };
+  const sizes = { sm: "20px", md: "24px", lg: "24px" };
+  const { size } = useTagContext();
 
-//   "&:hover": {
-//     background: "rgba(0, 0, 0, 0.04)",
-//     "> [data-tag-close-icon]": {
-//       opacity: 0.8
-//     }
-//   },
-
-//   "&:active": {
-//     background: "rgba(0, 0, 0, 0.14)",
-//     "> [data-tag-close-icon]": {
-//       opacity: 1
-//     }
-//   }
-// };
-
-const CloseButton = props => (
-  <Box
-    as="button"
-    display="flex"
-    justifyContent="center"
-    alignItems="center"
-    transition="0.2s"
-    {...props}
-  >
-    <Icon size="8px" name="close" focusable="false" data-tag-close-icon="" />
-  </Box>
-);
-
-const LeftElemWrapper = props => (
-  <Box
-    display="flex"
-    justifyContent="center"
-    alignItems="center"
-    transition="0.2s"
-    {...props}
-  />
-);
-
-const Tag = ({
-  appearance,
-  size,
-  variant = "subtle",
-  color,
-  isRound,
-  leftElement,
-  isClosable,
-  onClose,
-  isSelected,
-  isInteractive,
-  closeLabel,
-  children,
-  ...rest
-}) => {
-  const borderRadius = isRound ? "round" : rest.borderRadius || "sm";
-  const tagStyleProps = useBadgeStyle({ color, variant });
+  const _placement = {
+    left: { ml: margin[size] },
+    right: { mr: margin[size] }
+  };
 
   return (
-    <Box
-      display="inline-flex"
+    <Center
+      transition="all 0.2s"
+      size={sizes[size]}
+      {..._placement[placement]}
+      {...props}
+    />
+  );
+};
+
+export const TagCloseButton = props => {
+  const margin = { sm: "-8px", md: "-8px", lg: "-12px" };
+  const { size } = useTagContext();
+
+  return (
+    <PseudoBox
+      display="flex"
       alignItems="center"
-      minHeight={tabSize}
-      borderRadius={borderRadius}
-      lineHeight="1"
-      maxWidth="100%"
-      {...tagStyleProps}
-      {...rest}
+      justifyContent="center"
+      as="button"
+      transition="all 0.2s"
+      mr={margin[size]}
+      width={tagSizes[size]["minWidth"]}
+      alignSelf="stretch"
+      rounded="full"
+      opacity="0.5"
+      _focus={{
+        boxShadow: "outline",
+        bg: "rgba(0, 0, 0, 0.14)"
+      }}
+      _hover={{
+        opacity: "0.8"
+      }}
+      _active={{
+        opacity: "1"
+      }}
+      {...props}
     >
-      {leftElement && (
-        <LeftElemWrapper mr="-8px" size={tabSize}>
-          {leftElement}
-        </LeftElemWrapper>
-      )}
-      <Box
-        mx="8px"
-        maxWidth="160px"
-        overflow="hidden"
-        wordBreak="truncate"
-        p="2px 0px"
-        as="span"
-      >
-        {children}
-      </Box>
-      {isClosable && (
-        <CloseButton
-          aria-label={closeLabel}
-          ml="-6px"
-          width="24px"
-          alignSelf="stretch"
-          borderRadius={borderRadius}
-        />
-      )}
-    </Box>
+      <Icon size="18px" name="small-close" focusable="false" />
+    </PseudoBox>
+  );
+};
+
+export const TagLabel = props => {
+  return (
+    <Box
+      maxWidth="160px"
+      overflow="hidden"
+      wordBreak="truncate"
+      as="span"
+      {...props}
+    />
+  );
+};
+
+const Tag = ({ variant = "subtle", size = "lg", color, ...rest }) => {
+  const tagStyleProps = useBadgeStyle({ color, variant });
+  const sizeProps = tagSizes[size];
+
+  return (
+    <TagContext.Provider value={{ size }}>
+      <PseudoBox
+        display="inline-flex"
+        alignItems="center"
+        minHeight="24px"
+        maxWidth="100%"
+        rounded="md"
+        fontWeight="medium"
+        {...sizeProps}
+        {...tagStyleProps}
+        {...rest}
+      />
+    </TagContext.Provider>
   );
 };
 

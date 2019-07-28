@@ -19,6 +19,10 @@ export const assignRef = (ref, value) => {
   }
 };
 
+export const mergeRefs = (refs, value) => {
+  refs.forEach(ref => assignRef(ref, value));
+};
+
 const focusableElList = [
   "a[href]",
   "area[href]",

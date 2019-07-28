@@ -22,8 +22,8 @@ const firstChild = "&:first-of-type";
 const lastChild = "&:last-of-type";
 const expanded = "&[aria-expanded=true]";
 const grabbed = "&[aria-grabbed=true]";
-const notFirstChild = "&:not(:first-child)";
-const notLastChild = "&:not(:last-child)";
+const notFirstChild = "&:not(:first-of-type)";
+const notLastChild = "&:not(:last-of-type)";
 
 const PseudoBox = styled(Box)(
   ({

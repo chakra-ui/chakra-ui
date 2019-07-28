@@ -177,7 +177,6 @@ Popover.propTypes = {
   interaction: oneOf(["hover", "click"]),
   placement: oneOf(placementOptions)
 };
-Popover.displayName = "Popover";
 
 export default Popover;
 export * from "./components";

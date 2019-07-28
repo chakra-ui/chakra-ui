@@ -8,10 +8,11 @@ const typography = {
     widest: "0.1em"
   },
   lineHeights: {
+    normal: "normal",
     none: "1",
     shorter: "1.25",
     short: "1.375",
-    normal: "1.5",
+    base: "1.5",
     tall: "1.625",
     taller: "2"
   },

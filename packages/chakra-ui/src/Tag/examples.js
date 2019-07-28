@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
 import List from "../List";
-import Tag from ".";
+import Tag, { TagElement, TagLabel, TagCloseButton } from ".";
 import Icon from "../Icon";
 import Avatar from "../Avatar";
 
@@ -10,42 +10,72 @@ const stories = storiesOf("Tag", module);
 
 stories.add("Default", () => {
   return (
-    <List spacing={4}>
-      <Tag
-        fontWeight="semibold"
-        isRound
-        color="cyan"
-        leftElement={<Icon name="add" size="12px" />}
-      >
-        Green
-      </Tag>
-      <Tag
-        fontWeight="semibold"
-        isRound
-        variant="solid"
-        color="cyan"
-        isClosable
-      >
-        Green
-      </Tag>
-      <Tag
-        color="red"
-        isRound
-        isClosable
-        leftElement={
+    <List spacing={4} inline>
+      {["sm", "md", "lg"].map(size => (
+        <Tag size={size} color="gray">
+          <TagLabel>Gray</TagLabel>
+        </Tag>
+      ))}
+    </List>
+  );
+});
+
+stories.add("with left icon", () => {
+  return (
+    <List spacing={4} inline>
+      {["sm", "md", "lg"].map(size => (
+        <Tag size={size} color="cyan">
+          <TagElement placement="left">
+            <Icon name="add" size="12px" />
+          </TagElement>
+          <TagLabel>Green</TagLabel>
+        </Tag>
+      ))}
+    </List>
+  );
+});
+
+stories.add("with right icon", () => {
+  return (
+    <List spacing={4} inline>
+      {["sm", "md", "lg"].map(size => (
+        <Tag size={size} color="cyan">
+          <TagLabel>Green</TagLabel>
+          <TagElement placement="right">
+            <Icon name="check" size="12px" />
+          </TagElement>
+        </Tag>
+      ))}
+    </List>
+  );
+});
+
+stories.add("with close button", () => {
+  return (
+    <List spacing={4} inline>
+      {["sm", "md", "lg"].map(size => (
+        <Tag size={size} rounded="full" variant="solid" color="cyan">
+          <TagLabel>Green</TagLabel>
+          <TagCloseButton />
+        </Tag>
+      ))}
+    </List>
+  );
+});
+
+stories.add("with custom element", () => {
+  return (
+    <List spacing={4} inline>
+      <Tag color="red" rounded="full">
+        <TagElement placement="left">
           <Avatar
             src="https://www.dropbox.com/s/nd8z3hxuo3ahauk/segun_adebayo.jpg?dl=1"
             size="xs"
+            name="Segun Adebayo"
           />
-        }
-      >
-        Segun
+        </TagElement>
+        <TagLabel>Segun</TagLabel>
       </Tag>
-      <Tag isClosable color="gray">
-        Gray
-      </Tag>
-      <Tag color="pink">Pink</Tag>
-      <Tag color="blue">Blue</Tag>
     </List>
   );
 });

@@ -21,7 +21,7 @@ const wordBreakOptions = {
     overflowWrap: "normal"
   },
   words: {
-    overflowWrap: "break-word"
+    wordBreak: "break-word"
   },
   all: {
     wordBreak: "break-all"

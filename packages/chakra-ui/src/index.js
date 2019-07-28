@@ -56,5 +56,5 @@ export * from "./Modal";
 export { default as Popover } from "./Popover";
 export { default as Tooltip } from "./Tooltip";
 
-export { default as EditableText } from "./EditableText";
-export * from "./EditableText";
+export { default as Editable } from "./Editable";
+export * from "./Editable";

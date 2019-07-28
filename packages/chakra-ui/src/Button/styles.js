@@ -172,7 +172,7 @@ const sizes = {
   },
   sm: {
     height: "8",
-    fontSize: "md",
+    fontSize: "sm",
     px: 3,
     minWidth: "8"
   }

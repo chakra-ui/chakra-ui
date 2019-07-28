@@ -1,42 +1,48 @@
 /** @jsx jsx */
-import { css, jsx } from "@emotion/core";
+import { jsx } from "@emotion/core";
 import propTypes from "prop-types";
 import { createContext, useContext, useEffect, useRef, useState } from "react";
-import { Box } from "../Layout";
-import { useUIMode } from "../ThemeProvider";
+import PseudoBox from "../PseudoBox";
+import Box from "../Box";
 
 const EditableContext = createContext();
 
-const EditableText = ({
-  value: controlledValue,
+const Editable = ({
+  value: valueProp,
   defaultValue,
   isDisabled,
   onChange,
-  isEditing: IsEditing,
-  onEdit,
+  isEditing: isEditingProp,
   onCancel,
   onSubmit,
-  selectAllOnFocus,
+  selectAllOnFocus = true,
+  submitOnBlur,
+  isPreviewFocusable,
   placeholder = "Click to edit...",
   children,
   ...rest
 }) => {
-  const [isEditing, setIsEditing] = useState(IsEditing && !isDisabled);
-  const { current: isControlled } = useRef(controlledValue != null);
+  const [isEditing, setIsEditing] = useState(isEditingProp && !isDisabled);
+  const { current: isControlled } = useRef(valueProp != null);
 
   const [value, setValue] = useState(defaultValue || "");
-  const derivedValue = isControlled ? controlledValue : value;
-  const [previousValue, setPreviousValue] = useState(derivedValue);
+  const _value = isControlled ? valueProp : value;
+  const [previousValue, setPreviousValue] = useState(_value);
 
   const inputRef = useRef(null);
 
-  const { mode } = useUIMode();
-
-  const handleFocus = event => {
+  const onRequestEdit = event => {
     if (!isDisabled) {
       setIsEditing(true);
     }
   };
+
+  useEffect(() => {
+    if (isEditing && inputRef.current) {
+      inputRef.current.focus();
+      selectAllOnFocus && inputRef.current.select();
+    }
+  }, [isEditing, selectAllOnFocus]);
 
   const handleCancel = () => {
     setIsEditing(false);
@@ -73,125 +79,142 @@ const EditableText = ({
     }
   };
 
-  useEffect(() => {
-    if (isEditing) {
-      inputRef.current && inputRef.current.focus();
-
-      if (selectAllOnFocus) {
-        const { length } = inputRef.current.value;
-        inputRef.current.setSelectionRange(0, length);
-      }
+  const handleFocus = event => {
+    if (selectAllOnFocus) {
+      inputRef.current.select();
     }
-
-    onEdit && onEdit(isEditing, derivedValue);
-  }, [isEditing, selectAllOnFocus, derivedValue, onEdit]);
+  };
 
   const childContext = {
-    ref: inputRef,
+    inputRef,
     isEditing,
     isDisabled,
     placeholder,
-    onFocus: handleFocus,
-    onBlur: handleSubmit,
-    value: derivedValue,
+    onRequestEdit,
+    submitOnBlur,
+    isPreviewFocusable,
+    value: _value,
     onKeyDown: handleKeyDown,
-    onChange: handleChange
+    onChange: handleChange,
+    onSubmit: handleSubmit,
+    onCancel: handleCancel,
+    onFocus: handleFocus
   };
 
   return (
-    <Box color={mode === "dark" ? "alpha.900" : rest.color} {...rest}>
-      <EditableContext.Provider value={childContext}>
-        {children}
-      </EditableContext.Provider>
-    </Box>
+    <EditableContext.Provider value={childContext}>
+      <Box {...rest}>{children}</Box>
+    </EditableContext.Provider>
   );
 };
 
-const sharedStyle = css`
-  font-size: inherit;
-  font-weight: inherit;
-  text-align: inherit;
-  background: transparent;
-  transition: all 0.2s;
-  border-radius: 3px;
-  padding: 0 3px;
-  margin: 0px -3px;
-`;
+const sharedProps = {
+  fontSize: "inherit",
+  fontWeight: "inherit",
+  textAlign: "inherit",
+  bg: "transparent",
+  transition: "all 0.2s",
+  borderRadius: "md",
+  px: "3px",
+  mx: "-3px"
+};
 
 export const EditablePreview = props => {
-  const { isEditing, isDisabled, value, onFocus, placeholder } = useContext(
-    EditableContext
-  );
-  const tabIndex = isEditing || isDisabled ? null : 0;
+  const {
+    isEditing,
+    isDisabled,
+    value,
+    onRequestEdit,
+    placeholder,
+    isPreviewFocusable
+  } = useContext(EditableContext);
   const hasValue = value != null && value !== "";
 
-  const style = css`
-    ${sharedStyle}
-    cursor: text;
-    display: inline-block;
-    ${!hasValue &&
-      css`
-        opacity: 0.6;
-      `}
-  `;
+  const getTabIndex = () => {
+    if ((!isEditing || !isDisabled) && isPreviewFocusable) {
+      return 0;
+    }
+
+    return null;
+  };
+
+  const styleProps = {
+    ...sharedProps,
+    cursor: "text",
+    display: "inline-block",
+    opacity: !hasValue ? 0.6 : undefined
+  };
 
   if (isEditing) {
     return null;
   }
 
   return (
-    <Box
+    <PseudoBox
       as="span"
-      css={style}
-      data-disabled={isDisabled}
+      aria-disabled={isDisabled}
+      tabIndex={getTabIndex()}
+      onFocus={onRequestEdit}
+      {...styleProps}
       {...props}
-      tabIndex={tabIndex}
-      onFocus={onFocus}
     >
       {hasValue ? value : placeholder}
-    </Box>
+    </PseudoBox>
   );
 };
 
 export const EditableInput = props => {
   const {
-    ref,
+    inputRef,
     isEditing,
     onChange,
     onKeyDown,
     value,
-    onBlur,
+    onSubmit,
+    submitOnBlur,
     placeholder
   } = useContext(EditableContext);
 
-  const style = css`
-    ${sharedStyle};
-    width: 100%;
-    ::placeholder {
-      opacity: 0.6;
+  const styleProps = {
+    ...sharedProps,
+    width: "full",
+    _placeholder: {
+      opacity: "0.6"
     }
-  `;
+  };
 
   if (!isEditing) {
     return null;
   }
 
   return (
-    <Box
+    <PseudoBox
       as="input"
-      ref={ref}
-      css={style}
-      {...props}
-      onBlur={onBlur}
+      ref={inputRef}
+      onBlur={() => {
+        submitOnBlur && onSubmit();
+      }}
       value={value}
       placeholder={placeholder}
       onChange={onChange}
       onKeyDown={onKeyDown}
+      {...styleProps}
+      {...props}
     />
   );
 };
 
-EditableText.propTypes = {
+export const EditableControls = ({ children }) => {
+  const { onCancel, onSubmit, isEditing, onRequestEdit } = useContext(
+    EditableContext
+  );
+
+  return typeof children === "function"
+    ? children({ isEditing, onSubmit, onCancel, onRequestEdit })
+    : children;
+};
+
+Editable.propTypes = {
   /** Text value of the controlled input */
   value: propTypes.string,
   /** Default text value of uncontrolled input. */
@@ -225,11 +248,11 @@ EditableText.propTypes = {
    * @default "Click to Edit"
    */
   placeholder: propTypes.string,
-  /** The content of the EditableText
+  /** The content of the Editable
    *  Ideally only `EditablePreview` and `EditableInput` should
    *  be the children (but you add other elements too)
    */
   children: propTypes.node
 };
 
-export default EditableText;
+export default Editable;
