@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import { Children, cloneElement } from "react";
-import { Flex } from "./Layout";
+import Flex from "./Flex";
 
 const InputGroup = ({ children, size, ...rest }) => {
   const getClonedProps = (child, index) => {

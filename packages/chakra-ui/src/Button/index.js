@@ -3,11 +3,11 @@ import { jsx } from "@emotion/core";
 import propTypes from "prop-types";
 import { forwardRef } from "react";
 import Icon from "../Icon";
-import { Box } from "../Layout";
 import Spinner from "../Spinner";
 import buttonStyle from "./styles";
 import PseudoBox from "../PseudoBox";
 import { useUIMode, useTheme } from "../ThemeProvider";
+import Box from "../Box";
 
 const Button = forwardRef(
   (

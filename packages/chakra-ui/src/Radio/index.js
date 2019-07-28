@@ -3,10 +3,11 @@ import { jsx } from "@emotion/core";
 import { forwardRef } from "react";
 import propTypes from "prop-types";
 import InputBox from "../InputBox";
-import { Box, Flex } from "../Layout";
 import { useUIMode } from "../ThemeProvider";
 import VisuallyHidden from "../VisuallyHidden";
 import checkboxStyles from "../Checkbox/styles";
+import Flex from "../Flex";
+import Box from "../Box";
 
 const Radio = forwardRef(
   (

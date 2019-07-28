@@ -2,9 +2,9 @@
 import { jsx } from "@emotion/core";
 import { forwardRef } from "react";
 import InputBox from "../InputBox";
-import { Box } from "../Layout";
 import { useTheme, useUIMode } from "../ThemeProvider";
 import VisuallyHidden from "../VisuallyHidden";
+import Box from "../Box";
 
 const Switch = forwardRef(
   (

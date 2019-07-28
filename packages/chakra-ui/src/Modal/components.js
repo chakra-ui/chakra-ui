@@ -3,8 +3,10 @@ import { jsx } from "@emotion/core";
 import { DialogContent, DialogOverlay } from "@reach/dialog";
 import { forwardRef } from "react";
 import { Transition } from "react-spring/renderprops";
-import { Box, Fixed, Flex } from "../Layout";
 import { useTheme, useUIMode } from "../ThemeProvider";
+import Box from "../Box";
+import Flex from "../Flex";
+import Fixed from "../Fixed";
 
 const ModalHeader = props => (
   <Box

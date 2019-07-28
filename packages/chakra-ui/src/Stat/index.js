@@ -1,8 +1,9 @@
 import { oneOf } from "prop-types";
 import React from "react";
 import Icon from "../Icon";
-import { Box, Flex } from "../Layout";
 import Text from "../Text";
+import Box from "../Box";
+import Flex from "../Flex";
 
 const StatLabel = props => (
   <Text fontWeight="medium" fontSize="sm" {...props} />

@@ -2,8 +2,8 @@ import { withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import Box from "../Box";
-import Avatar, { MoreIndicator, AvatarBadge } from ".";
-import AvatarGroup from "../AvatarGroup";
+import Avatar, { AvatarBadge } from ".";
+import AvatarGroup, { MoreIndicator } from "../AvatarGroup";
 
 const stories = storiesOf("Avatar", module);
 stories.addDecorator(withKnobs);

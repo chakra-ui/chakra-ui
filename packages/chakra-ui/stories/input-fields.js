@@ -19,12 +19,12 @@ import FormControl, {
 import Input from "../src/Input";
 import InputAddon from "../src/InputAddon";
 import InputGroup from "../src/InputGroup";
-import { Box } from "../src/Layout";
 import NumberInput from "../src/Input/NumberInput";
 import Select from "../src/Select";
 import Slider from "../src/Slider";
 import SliderInput from "../src/Slider/SliderInput";
 import Textarea, { ExpandingTextarea } from "../src/Textarea";
+import Box from "../src/Box";
 
 const stories = storiesOf("Input Fields", module);
 stories.addDecorator(withKnobs);

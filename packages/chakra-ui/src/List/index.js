@@ -2,7 +2,7 @@
 import { css, jsx } from "@emotion/core";
 import { oneOf } from "prop-types";
 import { Children, Fragment } from "react";
-import { Box } from "../Layout";
+import Box from "../Box";
 
 const unStyled = css`
   margin-top: 0;

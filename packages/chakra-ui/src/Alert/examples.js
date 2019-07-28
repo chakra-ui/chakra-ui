@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
-import Alert, { AlertIcon, AlertTitle, AlertBody } from "./Alert";
+import Alert, { AlertIcon, AlertTitle, AlertBody } from ".";
 import Box from "../Box";
 
 const stories = storiesOf("Alert", module).addDecorator(story => (

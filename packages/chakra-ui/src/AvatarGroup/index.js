@@ -1,8 +1,33 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import { Children, cloneElement } from "react";
-import { Flex } from "../Layout";
-import Avatar, { MoreIndicator } from "../Avatar";
+import Avatar from "../Avatar";
+import { avatarSizes } from "../Avatar/styles";
+import Flex from "../Flex";
+import { useUIMode } from "../ThemeProvider";
+
+export const MoreIndicator = ({ size, label, ...props }) => {
+  const borderColor = { light: "#fff", dark: "gray.900" };
+  const bg = { light: "gray.200", dark: "alpha.400" };
+
+  const { mode } = useUIMode();
+
+  return (
+    <Flex
+      bg={bg[mode]}
+      color="inherit"
+      rounded="full"
+      alignItems="center"
+      justifyContent="center"
+      border="2px"
+      borderColor={borderColor[mode]}
+      size={avatarSizes[size]}
+      {...props}
+    >
+      {label}
+    </Flex>
+  );
+};
 
 const AvatarGroup = ({ size, children, spacing = -3, ...rest }) => {
   let count = Children.count(children);

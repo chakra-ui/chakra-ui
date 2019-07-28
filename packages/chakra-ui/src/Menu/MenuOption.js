@@ -2,11 +2,12 @@
 import { jsx } from "@emotion/core";
 import { Children, cloneElement, forwardRef, useState } from "react";
 import Icon from "../Icon";
-import { Box, Flex } from "../Layout";
 import { genId } from "../utils";
 import { useMenuContext } from ".";
 import { MenuGroup } from "./MenuGroup";
 import { useMenuItemStyle } from "./MenuItem";
+import Flex from "../Flex";
+import Box from "../Box";
 
 export const MenuItemOption = forwardRef(
   (

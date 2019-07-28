@@ -6,7 +6,6 @@ import { cloneElement, useEffect, useRef, Fragment } from "react";
 import FocusLock from "react-focus-lock";
 import { Manager, Popper, Reference } from "react-popper";
 import { useDisclosure } from "../hooks";
-import { Box } from "../Layout";
 import {
   PopoverTransition,
   PopoverContent,
@@ -14,6 +13,7 @@ import {
 } from "./components";
 import { assignRef, genId } from "../utils";
 import { useUIMode } from "../ThemeProvider";
+import Box from "../Box";
 
 const Popover = ({
   isOpen: controlledIsOpen,

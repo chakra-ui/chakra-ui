@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/core";
 import propTypes from "prop-types";
 import { Children, cloneElement } from "react";
-import { Box } from "../Layout";
+import Box from "../Box";
 
 const ButtonGroup = ({
   size = "md",

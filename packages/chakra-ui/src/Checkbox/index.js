@@ -2,12 +2,13 @@
 import { jsx } from "@emotion/core";
 import { forwardRef } from "react";
 import propTypes from "prop-types";
-import { Box, Flex } from "../Layout";
 import VisuallyHidden from "../VisuallyHidden";
 import InputBox from "../InputBox";
 import Icon from "../Icon";
 import checkboxStyles from "./styles";
 import { useUIMode } from "../ThemeProvider";
+import Flex from "../Flex";
+import Box from "../Box";
 
 const Checkbox = forwardRef(
   (

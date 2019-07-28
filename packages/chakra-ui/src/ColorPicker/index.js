@@ -3,10 +3,11 @@ import { jsx, css } from "@emotion/core";
 import { Children, cloneElement, useState, forwardRef } from "react";
 import { SketchPicker } from "react-color";
 import Icon from "../Icon";
-import { Flex, Box } from "../Layout";
 import Input from "../Input";
 import { useUIMode } from "../ThemeProvider";
 import Color from "color";
+import Flex from "../Flex";
+import Box from "../Box";
 
 const GradientSwatch = ({ gradient, angle, startColor, endColor, ...rest }) => {
   const _gradient =

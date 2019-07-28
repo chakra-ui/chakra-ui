@@ -1,7 +1,8 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { Box, Flex } from "../Layout";
 import Button from "../Button/";
+import Box from "../Box";
+import Flex from "../Flex";
 
 const ActionButtons = ({
   submitText,

@@ -10,7 +10,7 @@ import { genId } from "../utils";
 const Accordion = ({
   isOpen,
   defaultIsOpen,
-  onOpenChange,
+  onChange,
   children,
   ...rest
 }) => {
@@ -19,7 +19,7 @@ const Accordion = ({
   let _isExpanded = isControlled ? isOpen : isExpanded;
 
   const onToggle = () => {
-    onOpenChange && onOpenChange(!_isExpanded);
+    onChange && onChange(!_isExpanded);
     !isControlled && setIsExpanded(!isExpanded);
   };
 
@@ -43,7 +43,7 @@ const Accordion = ({
 Accordion.propTypes = {
   /**
    * If `true`, component is in controlled mode and you'll need
-   * to pass `onOpenChange` handle collapsing behavior
+   * to pass `onChange` handle collapsing behavior
    */
   isOpen: propTypes.bool,
   /**
@@ -54,7 +54,7 @@ Accordion.propTypes = {
    * The callback when the accordion opens and closes
    * @param {Boolean} isOpen - the next state of the accordion
    */
-  onOpenChange: propTypes.func,
+  onChange: propTypes.func,
   /**
    * The content of the accordion, must be `AccordionHeader` and `AccordionPanel`
    */

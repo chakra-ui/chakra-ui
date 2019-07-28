@@ -8,6 +8,18 @@ import {
 import { MarginRightProps } from "styled-system";
 import { PseudoBoxProps } from "../PseudoBox";
 
+export interface ICommonProps {
+  /**
+   * The size of the button. Use the sizes in `theme.sizes.button`
+   */
+  size?: "sm" | "md" | "lg";
+  /**
+   * If `true`, the button will show a spinner.
+   */
+  isLoading?: boolean;
+
+}
+
 interface IButton {
   /**
    * The color of the button. Use the colors passed in `theme.colors`.
@@ -22,10 +34,6 @@ interface IButton {
    */
   isDisabled?: boolean;
   /**
-   * If `true`, the button will show a spinner.
-   */
-  isLoading?: boolean;
-  /**
    * The label to show in the button when `isLoading` is true
    * If no text is passed, it only shows the spinner
    */
@@ -38,10 +46,6 @@ interface IButton {
    * The html button type to use.
    */
   type?: "button" | "reset" | "submit";
-  /**
-   * The size of the button. Use the sizes in `theme.sizes.button`
-   */
-  size?: "sm" | "md" | "lg";
   /**
    * The content of the button.
    */
@@ -63,7 +67,7 @@ interface IButton {
   iconSpacing?: MarginRightProps;
 }
 
-export type ButtonProps = IButton &
+export type ButtonProps = IButton & ICommonProps &
   PseudoBoxProps &
   RefAttributes<HTMLButtonElement>;
 

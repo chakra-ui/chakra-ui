@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import propTypes from "prop-types";
-import { Box } from "../Layout";
 import { Children, cloneElement, useState, useRef } from "react";
 import { genId } from "../utils";
+import Box from "../Box";
 
 const RadioGroup = ({
   id,

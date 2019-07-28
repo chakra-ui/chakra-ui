@@ -1,33 +1,11 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import propTypes from "prop-types";
-import { Box, Flex, Absolute } from "../Layout";
 import useAvatarStyle, { avatarSizes } from "./styles";
 import { useHasImageLoaded } from "../Image";
 import { useTheme, useUIMode } from "../ThemeProvider";
-
-export const MoreIndicator = ({ src, size, label, ...props }) => {
-  const borderColor = { light: "#fff", dark: "gray.900" };
-  const bg = { light: "gray.200", dark: "alpha.400" };
-
-  const { mode } = useUIMode();
-
-  return (
-    <Flex
-      bg={bg[mode]}
-      color="inherit"
-      rounded="full"
-      alignItems="center"
-      justifyContent="center"
-      border="2px"
-      borderColor={borderColor[mode]}
-      size={avatarSizes[size]}
-      {...props}
-    >
-      {label}
-    </Flex>
-  );
-};
+import Absolute from "../Absolute";
+import Box from "../Box";
 
 export const AvatarBadge = props => {
   const { mode } = useUIMode();
@@ -62,7 +40,7 @@ const getInitials = name => {
   }
 };
 
-const AvatarName = ({ name, size, ...props }) => {
+const AvatarName = ({ name, ...props }) => {
   return (
     <Box
       textAlign="center"

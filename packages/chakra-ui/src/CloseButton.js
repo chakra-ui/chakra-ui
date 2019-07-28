@@ -52,7 +52,7 @@ const CloseButton = ({
 };
 
 CloseButton.defaultProps = {
-  size: "md"
+  size: 4
 };
 
 CloseButton.propTypes = {

@@ -3,9 +3,10 @@ import { jsx, css } from "@emotion/core";
 import styled from "@emotion/styled";
 import { oneOf } from "prop-types";
 import { cloneElement } from "react";
-import { Box, Flex } from "../Layout";
 import { useUIMode } from "../ThemeProvider";
 import useInputStyle from "../Input/styles";
+import Box from "../Box";
+import Flex from "../Flex";
 
 const InputWrapper = styled(Box)`
   &[data-position="left"] {

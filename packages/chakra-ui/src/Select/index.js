@@ -1,10 +1,11 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { Absolute, Box } from "../Layout";
 import Icon from "../Icon";
 import { forwardRef } from "react";
 import Input from "../Input";
 import { useUIMode } from "../ThemeProvider";
+import Box from "../Box";
+import Absolute from "../Absolute";
 
 const Select = forwardRef(
   ({ children, placeholder, wrapperProps, flex, ...rest }, ref) => {

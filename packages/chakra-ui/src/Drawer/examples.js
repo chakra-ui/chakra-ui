@@ -4,7 +4,8 @@ import Drawer, { DrawerBody, DrawerFooter, DrawerHeader } from ".";
 import Button from "../Button";
 import FormControl from "../FormControl";
 import Input from "../Input";
-import { Box } from "../Layout";
+import Box from "../Box";
+import { DrawerCloseButton } from "./components";
 
 const stories = storiesOf("Drawer", module);
 stories.addDecorator(story => {
@@ -26,16 +27,15 @@ stories.add("Default", () => {
           placement="left"
           onClose={() => setIsOpen(false)}
         >
-          <DrawerHeader>
-            Create your account
-          </DrawerHeader>
+          <DrawerCloseButton onClick={() => {setIsOpen(false); console.log('hello')}} />
+          <DrawerHeader>Create your account</DrawerHeader>
 
           <DrawerBody pb={6}>
             <FormControl label="First name">
               <Input placeholder="Type here..." />
             </FormControl>
           </DrawerBody>
-          
+
           <DrawerFooter>
             <Button variant="outline" mr={3} onClick={() => setIsOpen(false)}>
               Cancel

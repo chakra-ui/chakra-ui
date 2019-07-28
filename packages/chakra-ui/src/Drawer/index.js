@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import { oneOf } from "prop-types";
-import CloseButton from "../CloseButton";
 import { DrawerContent, DrawerOverlay, DrawerTransition } from "./components";
 
 const Drawer = ({
@@ -11,7 +10,6 @@ const Drawer = ({
   size = "lg",
   isFullHeight,
   initialFocusRef,
-  showCloseButton,
   hideOverlay,
   placement = "right"
 }) => {
@@ -33,14 +31,6 @@ const Drawer = ({
             })}
           >
             {children}
-            {showCloseButton && (
-              <CloseButton
-                onClick={onClose}
-                position="absolute"
-                top="8px"
-                right="12px"
-              />
-            )}
           </DrawerContent>
         </DrawerOverlay>
       )}
@@ -67,3 +57,4 @@ Drawer.propTypes = {
 
 export default Drawer;
 export * from "./components";
+

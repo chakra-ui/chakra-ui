@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Box } from "./Layout";
+import Box from "./Box";
 
 const VisuallyHidden = styled(Box)`
   border: 0px;

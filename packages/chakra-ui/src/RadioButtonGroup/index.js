@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { Box } from "../Layout";
 import { Children, cloneElement, useState, useRef } from "react";
 import { genId } from "../utils";
+import Box from "../Box";
 
 const RadioButtonGroup = ({
   id,

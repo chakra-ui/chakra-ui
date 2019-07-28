@@ -5,10 +5,10 @@ import Portal from "@reach/portal";
 import { cloneElement, useRef, Children } from "react";
 import { Manager, Popper, Reference } from "react-popper";
 import { assignRef, genId } from "../utils";
-import { Box } from "../Layout";
 import { PopoverTransition, popperStyle } from "../Popover/components";
 import { useDisclosure } from "../hooks";
 import { useUIMode } from "../ThemeProvider";
+import Box from "../Box";
 
 const TooltipContent = styled(Box)`
   ${popperStyle}
