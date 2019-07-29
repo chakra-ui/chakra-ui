@@ -12,8 +12,8 @@ const sizes = {
   xs: "sm"
 };
 
-const Heading = ({ size, ...props }) => (
-  <Box fontSize={sizes[size]} {...props} />
+const Heading = ({ size = "md", ...props }) => (
+  <Box fontSize={sizes[size]} fontWeight="bold" {...props} />
 );
 
 Heading.propTypes = {

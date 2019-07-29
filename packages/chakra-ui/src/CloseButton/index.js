@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import propTypes from "prop-types";
-import Icon from "./Icon";
-import PseudoBox from "./PseudoBox";
-import { useUIMode } from "./ThemeProvider";
+import Icon from "../Icon";
+import PseudoBox from "../PseudoBox";
+import { useUIMode } from "../ThemeProvider";
 
 const baseProps = ({ mode }) => {
   const hover = { light: "gray.100", dark: "alpha.100" };

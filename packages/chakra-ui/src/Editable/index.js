@@ -103,7 +103,16 @@ const Editable = ({
 
   return (
     <EditableContext.Provider value={childContext}>
-      <Box {...rest}>{children}</Box>
+      <Box {...rest}>
+        {typeof children === "function"
+          ? children({
+              isEditing,
+              onSubmit: handleSubmit,
+              onCancel: handleCancel,
+              onRequestEdit
+            })
+          : children}
+      </Box>
     </EditableContext.Provider>
   );
 };
@@ -202,16 +211,6 @@ export const EditableInput = props => {
       {...props}
     />
   );
-};
-
-export const EditableControls = ({ children }) => {
-  const { onCancel, onSubmit, isEditing, onRequestEdit } = useContext(
-    EditableContext
-  );
-
-  return typeof children === "function"
-    ? children({ isEditing, onSubmit, onCancel, onRequestEdit })
-    : children;
 };
 
 Editable.propTypes = {

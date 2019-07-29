@@ -2,7 +2,7 @@
 import { useTheme, useUIMode } from "../ThemeProvider";
 
 const outlinedStyle = ({ _focusBorderColor, theme, mode }) => {
-  const bg = { light: "white", dark: "alpha.50" };
+  const bg = { light: "white", dark: "gray.900" };
   const borderColor = { light: "inherit", dark: "alpha.50" };
   const hoverColor = { light: "gray.300", dark: "alpha.200" };
   const invalidColor = { light: "red.500", dark: "red.300" };
@@ -141,7 +141,7 @@ const sizes = {
     rounded: "md"
   },
   sm: {
-    fontSize: "md",
+    fontSize: "sm",
     px: 2,
     height: "8",
     lineHeight: "16px",

@@ -8,7 +8,7 @@ import {
   createContext,
   useContext
 } from "react";
-import { Box } from "../Layout";
+import Box from "../Box";
 import useSliderStyle from "./styles";
 import PseudoBox from "../PseudoBox";
 import { mergeRefs } from "../utils";

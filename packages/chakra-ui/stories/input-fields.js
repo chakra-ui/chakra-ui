@@ -94,12 +94,6 @@ stories.add("Textarea", () => (
   />
 ));
 
-stories.add("Character Counter", () => (
-  <FormControl label="What's your first name">
-    <CharacterCounter maxLength={20} defaultValue="Hello World" />
-  </FormControl>
-));
-
 stories.add("Expanding Textarea", () => (
   <ExpandingTextarea placeholder="It will measure the placeholder as well" />
 ));
@@ -117,63 +111,4 @@ stories.add("Select", () => (
     <option value="opt2">Option 2</option>
     <option value="opt3">Option 3</option>
   </Select>
-));
-
-stories.add("Number Input", () => (
-  <NumberInput
-    size={select("Size", ["sm", "md", "lg"], "md")}
-    isDisabled={boolean("isDisabled", false)}
-    defaultValue={30}
-    // value={30}
-    // min={20}
-    max={35}
-    // onChange={value => console.log(value)}
-  />
-));
-
-const ControlledSlider = props => {
-  return (
-    <Component initialState={{ value: 40 }}>
-      {({ state, setState }) => (
-        <Slider
-          value={state.value}
-          onChange={value => setState({ value })}
-          {...props}
-        />
-      )}
-    </Component>
-  );
-};
-
-stories.add("Slider", () => (
-  <ControlledSlider
-    size={select("Size", ["sm", "md", "lg"], "md")}
-    isDisabled={boolean("isDisabled", false)}
-  />
-));
-
-stories.add("Slider Input", () => (
-  <SliderInput
-    max={50}
-    defaultValue={25}
-    min={0}
-    size={select("Size", ["sm", "md", "lg"], "md")}
-    isDisabled={boolean("isDisabled", false)}
-  >
-    <Slider />
-    <NumberInput wrapperProps={{ ml: 4, flex: "0 0 auto", minWidth: 80 }} />
-  </SliderInput>
-));
-
-const StyledInput = styled(EditableInput)`
-  &:focus {
-    color: red;
-  }
-`;
-
-stories.add("Editable Text", () => (
-  <EditableText textAlign="center" defaultValue="testing" fontSize="2xl">
-    <EditablePreview />
-    <StyledInput />
-  </EditableText>
 ));

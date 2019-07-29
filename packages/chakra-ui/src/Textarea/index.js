@@ -18,33 +18,37 @@ const Textarea = forwardRef((props, ref) => {
 
 export default Textarea;
 
-export const ExpandingTextarea = ({
-  minHeight = "39px",
-  onChange,
-  ...props
-}) => {
-  const [height, setHeight] = useState(0);
-  const inputRef = useRef();
+export const ExpandingTextarea = forwardRef(
+  ({ minHeight = "39px", onInput, ...props }, ref) => {
+    const [height, setHeight] = useState(0);
+    const ownRef = useRef();
 
-  useLayoutEffect(() => {
-    setHeight(inputRef.current.scrollHeight);
-  }, []);
+    const textareaRef = ref || ownRef;
 
-  const handleDefaultChange = event => {
-    setTimeout(() => {
-      setHeight("auto");
-      setHeight(inputRef.current.scrollHeight);
-    }, 0);
-    onChange && onChange(event);
-  };
+    useLayoutEffect(() => {
+      if (textareaRef.current) {
+        setHeight(textareaRef.current.scrollHeight);
+      }
+    }, [textareaRef]);
 
-  return (
-    <Textarea
-      rows="1"
-      onInput={handleDefaultChange}
-      style={{ height, resize: "none", overflow: "hidden", minHeight }}
-      ref={inputRef}
-      {...props}
-    />
-  );
-};
+    const handleInput = event => {
+      if (textareaRef.current) {
+        setTimeout(() => {
+          setHeight("auto");
+          setHeight(textareaRef.current.scrollHeight);
+        }, 0);
+      }
+      onInput && onInput(event);
+    };
+
+    return (
+      <Textarea
+        rows="1"
+        onInput={handleInput}
+        css={{ height, resize: "none", overflow: "hidden", minHeight }}
+        ref={textareaRef}
+        {...props}
+      />
+    );
+  }
+);

@@ -250,4 +250,5 @@ const ColorInput = ({ value: valueProp, onChange }) => {
   );
 };
 
-export { ColorInput, ColorPicker, ColorList, ColorSwatch, GradientSwatch };
+export default ColorPicker;
+export { ColorInput, ColorList, ColorSwatch, GradientSwatch };

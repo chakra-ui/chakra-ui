@@ -13,7 +13,6 @@ const Input = forwardRef((props, ref) => {
     as,
     "aria-label": ariaLabel,
     isReadOnly,
-    onFocus,
     _focusBorderColor,
     ...rest
   } = props;
@@ -33,12 +32,6 @@ const Input = forwardRef((props, ref) => {
       as={as}
       name={name}
       id={id}
-      onFocus={event => {
-        if (_ref.current && isReadOnly) {
-          _ref.current.select();
-        }
-        onFocus && onFocus(event);
-      }}
       readOnly={isReadOnly}
       disabled={isDisabled}
       aria-label={ariaLabel}

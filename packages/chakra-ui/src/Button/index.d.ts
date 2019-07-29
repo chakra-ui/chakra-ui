@@ -17,7 +17,6 @@ export interface ICommonProps {
    * If `true`, the button will show a spinner.
    */
   isLoading?: boolean;
-
 }
 
 interface IButton {
@@ -67,7 +66,8 @@ interface IButton {
   iconSpacing?: MarginRightProps;
 }
 
-export type ButtonProps = IButton & ICommonProps &
+export type ButtonProps = IButton &
+  ICommonProps &
   PseudoBoxProps &
   RefAttributes<HTMLButtonElement>;
 

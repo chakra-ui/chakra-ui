@@ -19,9 +19,12 @@ stories.add("Default", () => (
 stories.add("Readonly", () => (
   <Input
     placeholder="Here is a sample placeholder"
-    variant="filled"
-    isReadOnly
-    value="Testing Readonly"
+    variant="outline"
     size="md"
+    _focusBorderColor="cyan"
+    // variant="filled"
+    // isReadOnly
+    // value="Testing Readonly"
+    // size="md"
   />
 ));

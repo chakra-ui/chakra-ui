@@ -1,7 +1,7 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import Button from "../Button";
-import { Box } from "../Layout";
+import Box from "../Box";
 import Tooltip from ".";
 
 const stories = storiesOf("Tooltip", module);

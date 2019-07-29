@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { jsx, keyframes, css } from "@emotion/core";
 import styled from "@emotion/styled";
-import Icon from "./Icon";
-import Box from "./Box";
+import Icon from "../Icon";
+import Box from "../Box";
 
 const spin = keyframes`
   0% {
