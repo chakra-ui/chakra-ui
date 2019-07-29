@@ -27,7 +27,7 @@ function makeValuePrecise(value, step) {
   return Number(value.toFixed(stepPrecision));
 }
 
-function roundValueToStep(value, step) {
+export function roundValueToStep(value, step) {
   return makeValuePrecise(Math.round(value / step) * step, step);
 }
 

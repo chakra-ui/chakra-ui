@@ -1,72 +1,75 @@
-import React, { forwardRef, useState, useRef } from "react";
-import styled from "@emotion/styled";
-import Input from "../Input";
-import Icon from "../Icon";
-import { themeGet } from "@styled-system/theme-get";
-import { useUIMode } from "../ThemeProvider";
-import Box from "../Box";
+import React, { forwardRef, useRef, useState } from "react";
 import Flex from "../Flex";
+import Icon from "../Icon";
+import Input from "../Input";
+import PseudoBox from "../PseudoBox";
+import { useUIMode } from "../ThemeProvider";
+import { roundValueToStep } from "../Slider";
 
-let disabledSelector = "&[aria-disabled=true]",
-  activeSelector = "&:not([aria-disabled=true]):active",
-  firstChildSelector = "&:first-of-type",
-  lastChildSelector = "&:last-of-type";
-
-const getThemedStyle = props => ({
+const themedProps = {
   light: {
-    [activeSelector]: {
-      backgroundColor: themeGet(`colors.gray.200`)(props)
+    borderColor: "inherit",
+    _active: {
+      bg: "gray.200"
     },
-    [lastChildSelector]: {
-      borderBottomRightRadius: 3,
-      marginTop: -1,
+    _lastChild: {
+      roundedBottomRight: 3,
+      mt: -1,
       borderTopWidth: 1
     }
   },
   dark: {
-    color: themeGet(`colors.alpha.800`)(props),
-    borderColor: themeGet(`colors.alpha.300`)(props),
-    [lastChildSelector]: {
-      borderBottomRightRadius: 3,
-      marginTop: -1,
+    color: "alpha.800",
+    borderColor: "alpha.300",
+    _lastChild: {
+      roundedBottomRight: 3,
+      mt: -1,
       borderTopWidth: 1
     },
-    [activeSelector]: {
-      backgroundColor: themeGet(`colors.alpha.300`)(props)
+    _active: {
+      bg: "alpha.300"
     }
   }
+};
+
+const styleProps = ({ mode }) => ({
+  borderLeft: "1px",
+  _firstChild: {
+    roundedTopRight: 1
+  },
+  _disabled: {
+    opacity: 0.4,
+    cursor: "not-allowed"
+  },
+  ...themedProps[mode]
 });
 
-const Segment = styled(Box)(props => ({
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  flex: "1 1 0",
-  backfaceVisibility: "hidden",
-  cursor: "pointer",
-  transition: "all 0.3s",
-  borderLeftWidth: 1,
-  ...getThemedStyle(props)[props.mode],
-  [firstChildSelector]: {
-    borderTopRightRadius: 1
-  },
-  [disabledSelector]: {
-    opacity: 0.5,
-    cursor: "not-allowed"
-  }
-}));
+const Segment = ({ isDisabled, mode, ...props }) => (
+  <PseudoBox
+    display="flex"
+    justifyContent="center"
+    alignItems="center"
+    flex="1"
+    cursor="pointer"
+    transition="all 0.3s"
+    role="button"
+    tabindex="-1"
+    aria-disabled={isDisabled}
+    {...styleProps({ mode })}
+    {...props}
+  />
+);
 
 const NumberInput = forwardRef(
   (
     {
-      defaultValue,
       size,
-      currency,
       onChange,
       min,
       max,
-      step,
-      value,
+      step = 1,
+      defaultValue,
+      value: valueProp,
       isDisabled,
       wrapperProps,
       ...rest
@@ -75,39 +78,42 @@ const NumberInput = forwardRef(
   ) => {
     const { mode } = useUIMode();
     const [val, setVal] = useState(defaultValue || 0);
-    const { current: isControlled } = useRef(value != null);
-    const _value = isControlled ? value : val;
+
+    const { current: isControlled } = useRef(valueProp != null);
+    const _value = isControlled ? valueProp : val;
+
+    const getNextValue = nextVal => {
+      return roundValueToStep(nextVal, step);
+    };
 
     const handleIncrement = () => {
-      const func = () => {
-        onChange && onChange(Number(_value) + 1);
-        !isControlled && setVal(val + 1);
-      };
-
-      if (max) {
-        _value < max && func();
-      } else {
-        func();
+      const nextValue = getNextValue(_value + step);
+      if (max == null) {
+        !isControlled && setVal(nextValue);
+        onChange && onChange(nextValue);
+      }
+      if (max != null && max >= nextValue) {
+        !isControlled && setVal(nextValue);
+        onChange && onChange(nextValue);
       }
     };
 
     const handleDecrement = () => {
-      const func = () => {
-        onChange && onChange(Number(value) - 1);
-        !isControlled && setVal(val - 1);
-      };
-
-      if (min) {
-        _value > min && func();
-      } else {
-        func();
+      const nextValue = getNextValue(_value - step);
+      if (min == null) {
+        !isControlled && setVal(nextValue);
+        onChange && onChange(nextValue);
+      }
+      if (min != null && min <= nextValue) {
+        !isControlled && setVal(nextValue);
+        onChange && onChange(nextValue);
       }
     };
 
     const handleChange = event => {
-      const value = Number(event.currentTarget.value);
-      !isControlled && setVal(value);
-      onChange && onChange(value);
+      const newValue = Number(event.target.value);
+      !isControlled && setVal(newValue);
+      onChange && onChange(newValue);
     };
 
     const iconSize = size === "sm" ? "11px" : "15px";
@@ -120,18 +126,19 @@ const NumberInput = forwardRef(
           role="spinbutton"
           aria-valuemin={min}
           aria-valuemax={max}
-          aria-valuenow={isControlled ? value : val}
+          aria-valuenow={_value}
           ref={ref}
           onChange={handleChange}
-          value={isControlled ? value : val}
+          value={val}
           min={min}
           max={max}
+          step={step}
           isDisabled={isDisabled}
           {...rest}
         />
         <Flex
           flexDirection="column"
-          aria-hidden="true"
+          aria-hidden
           width="24px"
           m="1px"
           position="absolute"
@@ -140,19 +147,13 @@ const NumberInput = forwardRef(
         >
           <Segment
             onClick={isDisabled ? undefined : handleIncrement}
-            role="button"
-            tabindex="-1"
             mode={mode}
-            aria-disabled={isDisabled}
           >
             <Icon name="chevron-up" size={iconSize} color="currentColor" />
           </Segment>
           <Segment
             onClick={isDisabled ? undefined : handleDecrement}
-            role="button"
-            tabindex="-1"
             mode={mode}
-            aria-disabled={isDisabled}
           >
             <Icon name="chevron-down" size={iconSize} color="currentColor" />
           </Segment>
