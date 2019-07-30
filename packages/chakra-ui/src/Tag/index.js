@@ -32,7 +32,7 @@ const useTagContext = () => {
   return useContext(TagContext);
 };
 
-export const TagElement = ({ placement, ...props }) => {
+export const TagAddon = ({ placement, ...props }) => {
   const margin = { sm: "-4px", md: "-4px", lg: "-8px" };
   const sizes = { sm: "20px", md: "24px", lg: "24px" };
   const { size } = useTagContext();
