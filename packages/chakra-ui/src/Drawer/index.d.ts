@@ -4,11 +4,11 @@ interface IDrawer {
   /**
    * If `true`, the drawer is shown.
    */
-  isOpen: boolean;
+  isOpen?: boolean;
   /**
    * Callback invoked when user closes the drawer.
    */
-  onClose: () => void;
+  onClose?: () => void;
   /**
    * Callback invoked when user closes the drawer.
    */
@@ -16,25 +16,50 @@ interface IDrawer {
   /**
    * The size of the drawer.
    */
-  size: string;
+  size?:
+    | "xs"
+    | "sm"
+    | "md"
+    | "lg"
+    | "xl"
+    | "2xl"
+    | "3xl"
+    | "4xl"
+    | "5xl"
+    | "6xl"
+    | "full";
   /**
    *  If `true`, the drawer fills the height of the viewport by default.
    */
-  isFullHeight: boolean;
+  isFullHeight?: boolean;
   /**
    * The ref to the initial element to receiver focus when the drawer opens.
    */
-  initialFocusRef: React.Ref<{}>;
+  initialFocusRef?: React.Ref<{}>;
   /**
    *  If `true`, show the drawer overlay by default.
    */
-  hideOverlay: boolean;
+  hideOverlay?: boolean;
   /**
    *  Set the position of the drawer.
    */
-  placement: "top" | "left" | "bottom" | "right";
+  placement?: "top" | "left" | "bottom" | "right";
+}
+
+interface IDrawerTransition {
+  isOpen: boolean;
+  children: ReactNode;
+  duration: number;
+  placement: string;
+  isFullHeight: boolean;
 }
 
 export type DrawerProps = IDrawer;
 
+export type DrawerTransitionProps = IDrawerTransition;
+
 declare const Drawer: FC<DrawerProps>;
+
+export const DrawerTransition: FC<DrawerTransitionProps>;
+
+export default Drawer;
