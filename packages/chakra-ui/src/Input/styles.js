@@ -2,18 +2,15 @@
 import { useTheme, useUIMode } from "../ThemeProvider";
 
 const outlinedStyle = ({ _focusBorderColor, theme, mode }) => {
-  const bg = { light: "white", dark: "gray.900" };
+  const bg = { light: "white", dark: "alpha.100" };
   const borderColor = { light: "inherit", dark: "alpha.50" };
   const hoverColor = { light: "gray.300", dark: "alpha.200" };
   const invalidColor = { light: "red.500", dark: "red.300" };
-  const focusColor = {
-    light: `${_focusBorderColor}.500`,
-    dark: `${_focusBorderColor}.700`
-  };
-  const boxShadow = {
-    light: theme.colors[_focusBorderColor][500],
-    dark: theme.colors[_focusBorderColor][700]
-  };
+  // const focusColor = {
+  //   light: `${_focusBorderColor}.500`,
+  //   dark: `${_focusBorderColor}.500`
+  // };
+  const boxShadow = theme.colors[_focusBorderColor][500];
 
   return {
     ...readOnly,
@@ -28,8 +25,8 @@ const outlinedStyle = ({ _focusBorderColor, theme, mode }) => {
       cursor: "not-allowed"
     },
     _focus: {
-      borderColor: focusColor[mode],
-      boxShadow: `0 0 0 1px ${boxShadow[mode]}`
+      borderColor: `${_focusBorderColor}.500`,
+      boxShadow: `0 0 0 1px ${boxShadow}`
     },
     _invalid: {
       borderColor: invalidColor[mode]
@@ -121,11 +118,10 @@ const baseProps = {
   display: "flex",
   alignItems: "center",
   position: "relative",
-  width: "100%",
   transition: "all 0.2s"
 };
 
-const sizes = {
+export const inputSizes = {
   lg: {
     fontSize: "lg",
     px: 4,
@@ -149,7 +145,7 @@ const sizes = {
   }
 };
 
-const sizeProps = props => sizes[props.size];
+const sizeProps = props => inputSizes[props.size];
 
 const useInputStyle = props => {
   const theme = useTheme();
@@ -158,6 +154,7 @@ const useInputStyle = props => {
   const _props = { ...props, theme, mode };
 
   return {
+    width: props.isFullWidth ? "100%" : undefined,
     ...baseProps,
     ...sizeProps(_props),
     ...variantProps(_props)

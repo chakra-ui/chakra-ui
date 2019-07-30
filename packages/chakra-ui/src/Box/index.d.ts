@@ -13,10 +13,78 @@ import {
   FontSizeProps as _FontSizeProps,
   FontWeightProps as _FontWeightProps,
   LineHeightProps as _LineHeightProps,
-  LetterSpacingProps as _LetterSpacingProps,
+  BorderRadiusProps,
+  BorderColorProps,
+  LetterSpacingProps as _LetterSpacingProps
 } from "styled-system";
 import { StyledComponent } from "@emotion/styled";
-import { RefAttributes, AriaAttributes, HTMLAttributes } from "react";
+import {
+  RefAttributes,
+  AriaAttributes,
+  HTMLAttributes,
+  ElementType
+} from "react";
+import {
+  TextDecorationProperty,
+  TextTransformProperty,
+  OverflowXProperty,
+  OverflowYProperty,
+  AppearanceProperty,
+  TransformProperty,
+  TransformOriginProperty,
+  WhiteSpaceProperty,
+  UserSelectProperty,
+  PointerEventsProperty,
+  CursorProperty,
+  ResizeProperty,
+  TransitionProperty,
+  ObjectFitProperty,
+  ObjectPositionProperty,
+  BackgroundAttachmentProperty
+} from "csstype";
+
+interface ICustomConfig {
+  // Border radius shorthand
+  rounded?: BorderRadiusProps;
+  roundedTop?: BorderRadiusProps;
+  roundedBottom?: BorderRadiusProps;
+  roundedLeft?: BorderRadiusProps;
+  roundedRight?: BorderRadiusProps;
+  roundedTopRight?: BorderRadiusProps;
+  roundedTopLeft?: BorderRadiusProps;
+  roundedBottomRight?: BorderRadiusProps;
+  roundedBottomLeft?: BorderRadiusProps;
+
+  // Custom border color
+  borderBottomColor?: BorderColorProps;
+  borderTopColor?: BorderColorProps;
+  borderRightColor?: BorderColorProps;
+  borderLeftColor?: BorderColorProps;
+
+  // CSS properties
+  textDecoration?: TextDecorationProperty;
+  textTransform?: TextTransformProperty;
+  overflowX?: OverflowXProperty;
+  overflowY?: OverflowYProperty;
+  appearance?: AppearanceProperty;
+  transform?: TransformProperty;
+  transformOrigin?: TransformOriginProperty;
+  whiteSpace?: WhiteSpaceProperty;
+  userSelect?: UserSelectProperty;
+  pointerEvents?: PointerEventsProperty;
+  boxSizing?: BoxSizingProperty;
+  cursor?: CursorProperty;
+  resize?: ResizeProperty;
+  transition?: TransitionProperty;
+  objectFit?: ObjectFitProperty;
+  objectPosition?: ObjectPositionProperty;
+  backgroundAttachment?: BackgroundAttachmentProperty;
+  bgAttachment?: BackgroundAttachmentProperty;
+
+  // SVG color properties
+  fill?: ColorProps;
+  stroke?: ColorProps;
+}
 
 type FontSizeProps =
   | {
@@ -64,29 +132,28 @@ type LetterSpacingProps =
     }
   | { letterSpacing: _LetterSpacingProps };
 
-export interface BoxProps
-  extends AriaAttributes,
-    RefAttributes<HTMLElement>,
-    HTMLAttributes<HTMLDivElement>,
-    LayoutProps,
-    ColorProps,
-    SpaceProps,
-    BordersProps,
-    BackgroundProps,
-    PositionProps,
-    TypographyProps,
-    FlexboxProps,
-    ShadowProps,
-    OpacityProps,
-    FontSizeProps,
-    FontWeightProps,
-    LetterSpacingProps,
-    LineHeightProps,
-    GridProps {
-  wordBreak: "normal" | "words" | "all" | "truncate";
-  as: string | React.ReactElement;
-  textTransform: "uppercase" | "lowercase" | "capitalize" | "normal-case";
-}
+export type BoxProps = AriaAttributes &
+  RefAttributes<HTMLElement> &
+  HTMLAttributes<HTMLDivElement> &
+  LayoutProps &
+  ColorProps &
+  SpaceProps &
+  BordersProps &
+  BackgroundProps &
+  PositionProps &
+  TypographyProps &
+  FlexboxProps &
+  ShadowProps &
+  OpacityProps &
+  FontSizeProps &
+  FontWeightProps &
+  LetterSpacingProps &
+  LineHeightProps &
+  GridProps &
+  ICustomConfig & {
+    wordBreak: "normal" | "words" | "all" | "truncate";
+    as: ElementType;
+  };
 
 declare const Box: StyledComponent<BoxProps, {}, {}>;
 

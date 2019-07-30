@@ -1,103 +1,51 @@
 /** @jsx jsx */
-import { jsx, css } from "@emotion/core";
-import styled from "@emotion/styled";
+import { jsx } from "@emotion/core";
 import { oneOf } from "prop-types";
-import { cloneElement } from "react";
-import { useUIMode } from "../ThemeProvider";
-import useInputStyle from "../Input/styles";
 import Box from "../Box";
-import Flex from "../Flex";
+import useInputStyle from "../Input/styles";
+import { useUIMode } from "../ThemeProvider";
 
-const InputWrapper = styled(Box)`
-  &[data-position="left"] {
-    margin-right: -1px;
-    z-index: 1;
-  }
-
-  &[data-position="right"] {
-    margin-left: -1px;
-    z-index: 1;
-  }
-
-  &[data-position="right"] > * {
-    border-bottom-right-radius: 0 !important;
-    border-top-right-radius: 0 !important;
-  }
-
-  &[data-position="left"] > * {
-    border-bottom-left-radius: 0 !important;
-    border-top-left-radius: 0 !important;
-  }
-`;
-
-const Addon = props => {
-  const { variant, size, position, ...rest } = props;
+const InputAddon = ({ placement = "left", size = "md", ...props }) => {
   const { mode } = useUIMode();
+  const bg = { dark: "alpha.300", light: "gray.100" };
+  const _placement = {
+    left: {
+      mr: "-1px",
+      roundedRight: 0,
+      borderRightColor: "transparent"
+    },
+    right: {
+      order: 1,
+      // ml: "-1px",
+      roundedLeft: 0,
+      borderLeftColor: "transparent"
+    }
+  };
 
-  const inputStyle = useInputStyle(props);
-
-  let customStyle = theme => ({
+  let styleProps = {
+    ...useInputStyle({ size, variant: "outline", _focusBorderColor: "blue" }),
     flex: "0 0 auto",
     whiteSpace: "nowrap",
-    width: "auto",
-    background:
-      mode === "dark" ? theme.colors.alpha[200] : theme.colors.gray[100]
-  });
-
-  let positionStyle =
-    position === "left"
-      ? css`
-          margin-right: -1px;
-          border-bottom-right-radius: 0;
-          border-top-right-radius: 0;
-          border-right-color: transparent;
-        `
-      : css`
-          order: 1;
-          margin-left: -1px;
-          border-bottom-left-radius: 0;
-          border-top-left-radius: 0;
-          border-left-color: transparent;
-        `;
+    bg: bg[mode],
+    ..._placement[placement]
+  };
 
   return (
     <Box
-      css={theme => css(inputStyle, customStyle(theme), positionStyle)}
-      {...rest}
+      {...styleProps}
+      {...props}
+      css={{ "input:focus + &": { zIndex: -1 } }}
     />
   );
 };
 
-const InputAddon = ({
-  children,
-  text,
-  size = "md",
-  isInvalid,
-  variant,
-  id,
-  position = "left",
-  ...rest
-}) => {
-  return (
-    <Flex as="label">
-      <Addon size={size} variant={variant} position={position}>
-        {text}
-      </Addon>
-      <InputWrapper flex="1" data-position={position}>
-        {cloneElement(children, {
-          size,
-          id,
-          variant,
-          isInvalid,
-          ...rest
-        })}
-      </InputWrapper>
-    </Flex>
-  );
-};
-
 InputAddon.propTypes = {
-  position: oneOf(["left", "right"])
+  placement: oneOf(["left", "right"])
 };
 
 export default InputAddon;
+
+/* 
+  <InputAppend/>
+  <InputPrepend/>
+*/

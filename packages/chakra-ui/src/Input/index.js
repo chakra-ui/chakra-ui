@@ -1,43 +1,45 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import propTypes from "prop-types";
-import { forwardRef, useRef } from "react";
+import { forwardRef } from "react";
 import { useFormControlProps } from "../FormControl";
 import PseudoBox from "../PseudoBox";
 import useInputStyle from "./styles";
 
 const Input = forwardRef((props, ref) => {
   const {
+    type,
     size,
     variant,
     as,
     "aria-label": ariaLabel,
     isReadOnly,
+    isFullWidth,
+    isDisabled,
+    isInvalid,
+    isSpellCheckEnabled,
+    isRequired,
     _focusBorderColor,
     ...rest
   } = props;
 
   const inputStyleProps = useInputStyle(props);
-  const { id, name, isDisabled, isInvalid, isRequired } = useFormControlProps(
-    props
-  );
-
-  const ownRef = useRef();
-
-  const _ref = ref || ownRef;
+  const formControl = useFormControlProps(props);
 
   return (
     <PseudoBox
-      ref={_ref}
+      ref={ref}
       as={as}
+      type={type}
       name={name}
-      id={id}
-      readOnly={isReadOnly}
-      disabled={isDisabled}
+      id={formControl.id}
+      readOnly={formControl.isReadOnly}
+      disabled={formControl.isDisabled}
       aria-label={ariaLabel}
-      aria-invalid={isInvalid}
-      aria-required={isRequired}
-      aria-disabled={isDisabled}
+      aria-invalid={formControl.isInvalid}
+      aria-required={formControl.isRequired}
+      aria-disabled={formControl.isDisabled}
+      spellCheck={isSpellCheckEnabled}
       {...inputStyleProps}
       {...rest}
     />
@@ -48,13 +50,13 @@ Input.defaultProps = {
   size: "md",
   as: "input",
   variant: "outline",
+  isFullWidth: true,
   _focusBorderColor: "blue"
 };
 
 Input.propTypes = {
   size: propTypes.oneOf(["md", "sm", "lg"]),
   type: propTypes.oneOf(["text", "email", "number", "password", "search"]),
-  state: propTypes.oneOf(["success", "error", "warning"]),
   variant: propTypes.oneOf(["outline", "unstyled", "flushed", "filled"])
 };
 

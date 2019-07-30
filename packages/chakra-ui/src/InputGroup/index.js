@@ -1,54 +1,88 @@
 /** @jsx jsx */
-import { css, jsx } from "@emotion/core";
-import { Children, cloneElement } from "react";
-import Flex from "../Flex";
+import { jsx } from "@emotion/core";
+import {
+  Children,
+  cloneElement,
+  forwardRef,
+  useState,
+  useRef,
+  useLayoutEffect
+} from "react";
+import Center from "../Center";
+import Box from "../Box";
+import { inputSizes } from "../Input/styles";
+import { useTheme } from "../ThemeProvider";
+import Input from "../Input";
 
-const InputGroup = ({ children, size, ...rest }) => {
-  const getClonedProps = (child, index) => {
-    const focusStyle = css({
-      "&:focus": {
-        zIndex: 1,
-        position: "relative"
-      }
-    });
+export const InputInnerAddon = forwardRef(
+  ({ size, placement = "left", ...props }, ref) => {
+    const { height, fontSize } = inputSizes[size];
+    const placementProp = { [placement]: "0" };
+    return (
+      <Center
+        ref={ref}
+        position="absolute"
+        height={height}
+        fontSize={fontSize}
+        top="0"
+        zIndex={1}
+        {...placementProp}
+        {...props}
+      />
+    );
+  }
+);
 
-    const flex = child.props.flex || "0 0 auto";
-    const isFirstChild = index === 0;
-    const isLastChild = index + 1 === Children.count(children);
+const useAddonWidth = () => {
+  const [width, setWidth] = useState(null);
+  const ref = useRef();
 
-    let _css;
-    if (isFirstChild) {
-      _css = {
-        marginRight: -1,
-        borderBottomRightRadius: 0,
-        borderTopRightRadius: 0
-      };
+  useLayoutEffect(() => {
+    if (ref.current) {
+      const { clientWidth } = ref.current;
+      setWidth(clientWidth);
     }
+  }, []);
 
-    if (isLastChild) {
-      _css = {
-        borderBottomLeftRadius: 0,
-        borderTopLeftRadius: 0
-      };
-    }
+  return [ref, width];
+};
 
-    if (!isFirstChild && !isLastChild) {
-      _css = { marginRight: -1, borderRadius: 0 };
-    }
-
-    return {
-      size,
-      flex,
-      css: css(_css, focusStyle)
-    };
-  };
+const InputGroup = ({ children, size = "md", ...rest }) => {
+  const { sizes } = useTheme();
+  const { height } = inputSizes[size];
+  const [ref, width] = useAddonWidth();
 
   return (
-    <Flex {...rest}>
-      {Children.map(children, (child, index) => {
-        return cloneElement(child, getClonedProps(child, index));
+    <Box position="relative" {...rest}>
+      {Children.map(children, child => {
+        const {
+          props: { placement, pr, pl },
+          type
+        } = child;
+
+        if (type === Input) {
+          return cloneElement(child, {
+            size,
+            pl: pl || sizes[height],
+            pr: pr || `${width}px`
+          });
+        }
+
+        if (type === InputInnerAddon) {
+          return placement === "right"
+            ? cloneElement(child, {
+                size,
+                ref
+              })
+            : cloneElement(child, {
+                size,
+                width: height
+              });
+        }
+
+        return child;
       })}
-    </Flex>
+    </Box>
   );
 };
 

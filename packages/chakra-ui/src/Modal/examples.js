@@ -1,10 +1,10 @@
 import { storiesOf } from "@storybook/react";
 import React, { useState } from "react";
+import Box from "../Box";
 import Button from "../Button";
 import FormControl, { FormLabel } from "../FormControl";
 import Input from "../Input";
 import Modal, { ModalBody, ModalFooter, ModalHeader } from "../Modal";
-import Box from "../Box";
 
 const stories = storiesOf("Modal", module);
 stories.addDecorator(story => {
