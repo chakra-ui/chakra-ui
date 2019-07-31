@@ -27,13 +27,16 @@ stories.add("Default", () => {
           placement="left"
           onClose={() => setIsOpen(false)}
         >
-          <DrawerCloseButton onClick={() => {setIsOpen(false); console.log('hello')}} />
+          <DrawerCloseButton
+            onClick={() => {
+              setIsOpen(false);
+              console.log("hello");
+            }}
+          />
           <DrawerHeader>Create your account</DrawerHeader>
 
-          <DrawerBody pb={6}>
-            <FormControl label="First name">
-              <Input placeholder="Type here..." />
-            </FormControl>
+          <DrawerBody>
+            <Input placeholder="Type here..." />
           </DrawerBody>
 
           <DrawerFooter>

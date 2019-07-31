@@ -2,7 +2,6 @@
 import { jsx } from "@emotion/core";
 import { ModalTransition } from "../Modal/components";
 import { AlertDialogContent, AlertDialogOverlay } from "./components";
-import "@reach/dialog/styles.css";
 
 const AlertDialog = ({
   isOpen,
@@ -23,7 +22,14 @@ const AlertDialog = ({
       {styles => (
         <AlertDialogOverlay
           leastDestructiveRef={leastDestructiveRef}
-          css={{ opacity: styles.opacity }}
+          css={{
+            opacity: styles.opacity,
+            ...(isCentered && {
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center"
+            })
+          }}
           onDismiss={onClose}
           {...isCentered && centeredProps}
         >
@@ -31,7 +37,7 @@ const AlertDialog = ({
             maxWidth={size}
             rounded="md"
             transform={`translate3d(0px, ${styles.y}px, 0px)`}
-            {...isCentered && { top: 40, mx: "auto" }}
+            {...!isCentered && { top: 40, mx: "auto" }}
             {...rest}
           >
             {children}

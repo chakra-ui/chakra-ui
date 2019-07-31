@@ -1,16 +1,19 @@
 /** @jsx jsx */
 import { useTheme, useUIMode } from "../ThemeProvider";
 
-const outlinedStyle = ({ _focusBorderColor, theme, mode }) => {
+const outlinedStyle = ({
+  _focusBorderColor = "blue",
+  theme: { colors },
+  mode
+}) => {
   const bg = { light: "white", dark: "alpha.100" };
   const borderColor = { light: "inherit", dark: "alpha.50" };
   const hoverColor = { light: "gray.300", dark: "alpha.200" };
+
+  const boxShadow = colors[_focusBorderColor][500];
+
   const invalidColor = { light: "red.500", dark: "red.300" };
-  // const focusColor = {
-  //   light: `${_focusBorderColor}.500`,
-  //   dark: `${_focusBorderColor}.500`
-  // };
-  const boxShadow = theme.colors[_focusBorderColor][500];
+  const invalidBoxShadow = { light: colors.red[500], dark: colors.red[300] };
 
   return {
     ...readOnly,
@@ -29,7 +32,8 @@ const outlinedStyle = ({ _focusBorderColor, theme, mode }) => {
       boxShadow: `0 0 0 1px ${boxShadow}`
     },
     _invalid: {
-      borderColor: invalidColor[mode]
+      borderColor: invalidColor[mode],
+      boxShadow: `0 0 0 1px ${invalidBoxShadow[mode]}`
     }
   };
 };

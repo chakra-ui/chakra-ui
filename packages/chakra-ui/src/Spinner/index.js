@@ -1,8 +1,9 @@
 /** @jsx jsx */
-import { jsx, keyframes, css } from "@emotion/core";
-import styled from "@emotion/styled";
-import Icon from "../Icon";
+import { css, jsx, keyframes } from "@emotion/core";
 import Box from "../Box";
+import Icon from "../Icon";
+import { forwardRef } from "react";
+import VisuallyHidden from "../VisuallyHidden";
 
 const spin = keyframes`
   0% {
@@ -13,19 +14,30 @@ const spin = keyframes`
   }
 `;
 
-const StyledSpinner = styled(Box)`
-  border: ${props => `${props.thickness} solid`};
-  border-color: currentColor;
-  border-bottom-color: transparent;
-  border-left-color: transparent;
-  border-radius: 50%;
-  width: ${props => props.spinnerSize};
-  height: ${props => props.spinnerSize};
-  animation: ${spin} ${props => props.speed} linear infinite;
-`;
+const sizes = {
+  xs: "12px",
+  sm: "16px",
+  md: "24px",
+  lg: "32px",
+  xl: "48px"
+};
 
-const Spinner = ({ size, ...props }) => (
-  <StyledSpinner spinnerSize={size} {...props} />
+const Spinner = forwardRef(
+  ({ size, loadingText = "Loading...", thickness, speed, ...props }, ref) => (
+    <Box
+      ref={ref}
+      border={`${props.thickness} solid`}
+      borderColor="currentColor"
+      borderBottomColor="transparent"
+      borderLeftColor="transparent"
+      rounded="full"
+      animation={`${spin} ${speed} linear infinite`}
+      size={sizes[size]}
+      {...props}
+    >
+      {loadingText && <VisuallyHidden>{loadingText}</VisuallyHidden>}
+    </Box>
+  )
 );
 
 Spinner.defaultProps = {

@@ -10,9 +10,8 @@ import Fixed from "../Fixed";
 
 const ModalHeader = props => (
   <Box
-    px="20px"
-    pt="20px"
-    pb="14px"
+    px={6}
+    py={4}
     as="header"
     position="relative"
     fontSize="xl"
@@ -22,17 +21,10 @@ const ModalHeader = props => (
 );
 
 const ModalFooter = props => (
-  <Flex
-    px="20px"
-    pt="14px"
-    pb="20px"
-    as="footer"
-    justifyContent="flex-end"
-    {...props}
-  />
+  <Flex px={6} py={4} as="footer" justifyContent="flex-end" {...props} />
 );
 
-const ModalBody = props => <Box px="20px" flex="1" {...props} />;
+const ModalBody = props => <Box px={6} py={2} flex="1" {...props} />;
 
 const ModalOverlay = forwardRef((props, ref) => (
   <Fixed
@@ -76,7 +68,6 @@ const ModalContent = forwardRef((props, ref) => {
       position="relative"
       display="flex"
       flexDirection="column"
-      p="unset"
       ref={ref}
       {...styleProps}
       {...props}

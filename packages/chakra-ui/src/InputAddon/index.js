@@ -16,14 +16,13 @@ const InputAddon = ({ placement = "left", size = "md", ...props }) => {
     },
     right: {
       order: 1,
-      // ml: "-1px",
       roundedLeft: 0,
       borderLeftColor: "transparent"
     }
   };
 
-  let styleProps = {
-    ...useInputStyle({ size, variant: "outline", _focusBorderColor: "blue" }),
+  const styleProps = {
+    ...useInputStyle({ size, variant: "outline" }),
     flex: "0 0 auto",
     whiteSpace: "nowrap",
     bg: bg[mode],
@@ -43,9 +42,8 @@ InputAddon.propTypes = {
   placement: oneOf(["left", "right"])
 };
 
-export default InputAddon;
+const InputLeftAddon = props => <InputAddon placement="left" {...props} />;
+const InputRightAddon = props => <InputAddon placement="right" {...props} />;
 
-/* 
-  <InputAppend/>
-  <InputPrepend/>
-*/
+export { InputLeftAddon, InputRightAddon };
+export default InputAddon;

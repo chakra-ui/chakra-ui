@@ -33,7 +33,7 @@ export { default as IconButton } from "./IconButton";
 export { default as Image } from "./Image";
 export { default as Input } from "./Input";
 export { default as InputAddon } from "./InputAddon";
-export { default as InputBox } from "./InputBox";
+export { default as ControlBox } from "./ControlBox";
 
 export { default as KeyboardKey } from "./KeyboardKey";
 

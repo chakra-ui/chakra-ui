@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import propTypes from "prop-types";
 import Icon from "../Icon";
 import PseudoBox from "../PseudoBox";
 import { useUIMode } from "../ThemeProvider";
@@ -20,8 +19,15 @@ const baseProps = ({ mode }) => {
   };
 };
 
+const sizes = {
+  md: {
+    button: "32px",
+    icon: "12px"
+  }
+};
+
 const CloseButton = ({
-  size,
+  size = "md",
   isDisabled,
   color,
   icon = "close",
@@ -30,6 +36,8 @@ const CloseButton = ({
   ...rest
 }) => {
   const { mode } = useUIMode();
+  const _size = sizes[size];
+
   return (
     <PseudoBox
       display="inline-flex"
@@ -42,21 +50,13 @@ const CloseButton = ({
       tabindex="0"
       rounded="full"
       as="button"
-      size={size}
+      size={_size.button}
       {...baseProps({ mode })}
       {...rest}
     >
-      <Icon color={color} name={icon} aria-hidden size="100%" />
+      <Icon color={color} name={icon} aria-hidden size={_size.icon} />
     </PseudoBox>
   );
-};
-
-CloseButton.defaultProps = {
-  size: 4
-};
-
-CloseButton.propTypes = {
-  size: propTypes.oneOf(["sm", "md", "lg", "xl", "2xl"])
 };
 
 export default CloseButton;

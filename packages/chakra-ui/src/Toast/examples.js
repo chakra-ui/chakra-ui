@@ -13,7 +13,7 @@ stories.addDecorator(story => {
   );
 });
 
-stories.add("Toast", () => {
+stories.add("Default", () => {
   const Toaster = () => {
     const toast = useToast();
     return (

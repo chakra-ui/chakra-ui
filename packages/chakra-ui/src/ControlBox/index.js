@@ -3,7 +3,7 @@ import css from "@styled-system/css";
 import Box from "../Box";
 import { tx } from "../Box/config";
 
-const InputBox = styled(Box)(
+const ControlBox = styled(Box)(
   ({
     type = "checkbox",
     _hover,
@@ -43,7 +43,7 @@ const InputBox = styled(Box)(
   }
 );
 
-InputBox.defaultProps = {
+ControlBox.defaultProps = {
   display: "inline-flex",
   alignItems: "center",
   justifyContent: "center",
@@ -52,4 +52,4 @@ InputBox.defaultProps = {
   "aria-hidden": "true"
 };
 
-export default InputBox;
+export default ControlBox;

@@ -2,7 +2,7 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 import Box from "../Box";
 import Checkbox from "../Checkbox";
-import { ErrorMessage } from "../FormControl";
+import FormValidationText from "../FormValidationText";
 
 const stories = storiesOf("Checkbox", module);
 
@@ -26,7 +26,9 @@ stories.add("Default", () => (
       <Checkbox isInvalid mt={2}>
         Checkbox 2
       </Checkbox>
-      <ErrorMessage id="err">This is not valid</ErrorMessage>
+      <FormValidationText isInvalid id="err">
+        This is not valid
+      </FormValidationText>
     </Box>
 
     <br />

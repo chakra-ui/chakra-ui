@@ -2,16 +2,16 @@
 import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
 import VisuallyHidden from "../VisuallyHidden";
-import InputBox from ".";
+import ControlBox from ".";
 import Box from "../Box";
 import Icon from "../Icon";
-const stories = storiesOf("InputBox", module);
+const stories = storiesOf("ControlBox", module);
 
 const Checkbox = props => {
   return (
     <Box as="label" display="flex" alignItems="center" cursor="pointer">
       <VisuallyHidden type="checkbox" as="input" {...props} />
-      <InputBox
+      <ControlBox
         size="16px"
         bg="white"
         border="2px"
@@ -24,7 +24,7 @@ const Checkbox = props => {
         _checked={{ bg: "green.500", borderColor: "green.500" }}
       >
         <Icon name="check" size="10px" />
-      </InputBox>
+      </ControlBox>
       <Box as="span" ml={2} verticalAlign="center" userSelect="none">
         This is a Checkbox
       </Box>
@@ -36,7 +36,7 @@ const Radio = props => {
   return (
     <Box as="label" display="flex" alignItems="center" cursor="pointer">
       <VisuallyHidden type="radio" as="input" {...props} />
-      <InputBox
+      <ControlBox
         size="16px"
         bg="white"
         border="2px"
@@ -49,7 +49,7 @@ const Radio = props => {
         _checked={{ bg: "green.500", borderColor: "green.500" }}
       >
         <Box size="8px" bg="white" rounded="full" />
-      </InputBox>
+      </ControlBox>
       <Box as="span" ml={2} verticalAlign="center" userSelect="none">
         This is a Radio
       </Box>

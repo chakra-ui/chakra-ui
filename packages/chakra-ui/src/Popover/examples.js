@@ -19,8 +19,8 @@ stories.add("Default", () => (
       trigger={<Button>Trigger</Button>}
       usePortal
       placement="bottom"
+      showCloseButton
       // showArrow
-      // showCloseButton
     >
       {({ onClose }) => (
         <>

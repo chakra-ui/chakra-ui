@@ -14,7 +14,7 @@ import { PseudoBoxProps } from "../PseudoBox";
 
 type InputElemType = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 
-interface IProps {
+export interface IInputProps {
   /**
    * The standard HTML input autocomplete attribute.
    *
@@ -87,10 +87,6 @@ interface IProps {
    */
   isRequired?: boolean;
   /**
-   * If `true`, spell checking will be applied.
-   */
-  isSpellCheckEnabled?: boolean;
-  /**
    * If `true`, the input element will span the full width of it's parent
    */
   isFullWidth?: boolean;
@@ -133,7 +129,9 @@ interface IProps {
   _focusBorderColor?: string;
 }
 
-export type InputProps = IProps & PseudoBoxProps & RefAttributes<ElementType>;
+export type InputProps = IInputProps &
+  PseudoBoxProps &
+  RefAttributes<InputElemType>;
 
 declare const Input: ForwardRefExoticComponent<InputProps>;
 

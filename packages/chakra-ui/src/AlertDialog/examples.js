@@ -2,10 +2,13 @@
 import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
 import { useRef, useState } from "react";
-import Button from "../Button";
 import AlertDialog from ".";
-import { AlertDialogHeader, AlertDialogBody } from "./components";
-import Box from "../Box";
+import Button from "../Button";
+import {
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader
+} from "./components";
 
 const stories = storiesOf("AlertDialog", module);
 
@@ -30,14 +33,14 @@ const SampleDialog = () => {
           in our database, we're actually deleting something.
         </AlertDialogBody>
 
-        <Box mt={4}>
+        <AlertDialogFooter>
           <Button ref={cancelRef} onClick={close}>
             Nevermind
           </Button>
-          <Button color="blue" onClick={close} ml={3}>
+          <Button color="red" onClick={close} ml={3}>
             Yes, delete
           </Button>
-        </Box>
+        </AlertDialogFooter>
       </AlertDialog>
     </div>
   );

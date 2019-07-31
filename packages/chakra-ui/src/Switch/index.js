@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import { forwardRef } from "react";
-import InputBox from "../InputBox";
+import ControlBox from "../ControlBox";
 import { useTheme, useUIMode } from "../ThemeProvider";
 import VisuallyHidden from "../VisuallyHidden";
 import Box from "../Box";
@@ -77,14 +77,14 @@ const Switch = forwardRef(
           checked={isChecked}
           disabled={isDisabled}
         />
-        <InputBox {...stylesProps}>
+        <ControlBox {...stylesProps}>
           <Box
             bg="white"
             transition="transform 250ms"
             rounded="full"
             size={height}
           />
-        </InputBox>
+        </ControlBox>
       </Box>
     );
   }

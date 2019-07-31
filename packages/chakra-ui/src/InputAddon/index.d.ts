@@ -1,39 +1,26 @@
 import { FC } from "react";
+import { IInputProps } from "../Input";
 
 interface IInputAddon {
   /**
-   * The content of the input addon
+   * The content of the `InputAddon`
    */
-  children?: ReactNode;
+  children: ReactNode;
   /**
-   * The addon text of the input addon
+   * The size of the addon is inherited from the `InputGroup` via `cloneElement`.
    */
-  text?: string;
+  size?: Pick<IInputProps, "size">;
   /**
-   * The size of the input addon
+   * The position the addon should appear relative to the `Input`.
+   * We added `InputLeftAddon` and `InputRightAddon` so you might not need to pass this
    */
-  size?: string;
-  /**
-   * If `true` set the form control to the invalid state.
-   */
-  isInvalid?: boolean;
-  /**
-   * The variant of the input addon
-   */
-  variant?: string;
-  /**
-   * The id of the input addon
-   */
-  id?: string;
-  /**
-   * The position of the input addon.
-   * Possible values: `left` or `right`.
-   */
-  position?: "left" | "right";
+  placement?: "left" | "right";
 }
 
 export type InputAddonProps = IInputAddon & BoxProps;
 
 declare const InputAddon: FC<InputAddonProps>;
 
-export const InputAddon;
+export default InputAddon;
+export const InputLeftAddon: FC<InputAddonProps>;
+export const InputRightAddon: FC<InputAddonProps>;

@@ -57,6 +57,7 @@ export const config = {
   textTransform: true,
   overflowX: true,
   overflowY: true,
+  animation: true,
   appearance: true,
   transform: true,
   transformOrigin: true,

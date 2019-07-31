@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/core";
 import { forwardRef } from "react";
 import propTypes from "prop-types";
-import InputBox from "../InputBox";
+import ControlBox from "../ControlBox";
 import { useUIMode } from "../ThemeProvider";
 import VisuallyHidden from "../VisuallyHidden";
 import checkboxStyles from "../Checkbox/styles";
@@ -63,9 +63,9 @@ const Radio = forwardRef(
           checked={isChecked}
           disabled={isDisabled}
         />
-        <InputBox {...styleProps} type="radio" rounded="full">
+        <ControlBox {...styleProps} type="radio" rounded="full">
           <Box bg="currentColor" as="span" rounded="full" size="50%" />
-        </InputBox>
+        </ControlBox>
         {children && (
           <Box
             ml={2}

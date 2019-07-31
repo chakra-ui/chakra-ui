@@ -43,6 +43,24 @@ export const HelperMessage: FC<BoxProps>;
 export const RequiredIndicator: FC<BoxProps>;
 export const ValidationText: FC<BoxProps>;
 
+/**
+ * FormControl provides context such as `id`, `isInvalid`, `isRequired`, `isDisabled` to it's children.
+ * This context is used by:
+ * - `FormLabel`
+ * - `FormHelperText`,
+ * - `FormValidationText`,
+ * - `Input`
+ *
+ * @example
+ * ```jsx
+ * <FormControl>
+ *   <FormLabel htmlFor="my-input">Email address</FormLabel>
+ *   <Input id="my-input" aria-describedby="my-helper-text" />
+ *   <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText>
+ * </FormControl>
+ * ```
+ *
+ */
 declare const FormControl: FC<FormControlProps>;
 
 export default FormControl;

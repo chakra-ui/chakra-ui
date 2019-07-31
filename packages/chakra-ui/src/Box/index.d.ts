@@ -1,160 +1,100 @@
-import {
-  LayoutProps,
-  ColorProps,
-  SpaceProps,
-  BordersProps,
-  BackgroundProps,
-  PositionProps,
-  TypographyProps,
-  FlexboxProps,
-  ShadowProps,
-  OpacityProps,
-  GridProps,
-  FontSizeProps as _FontSizeProps,
-  FontWeightProps as _FontWeightProps,
-  LineHeightProps as _LineHeightProps,
-  BorderRadiusProps,
-  BorderColorProps,
-  LetterSpacingProps as _LetterSpacingProps
-} from "styled-system";
-import { StyledComponent } from "@emotion/styled";
-import {
-  RefAttributes,
-  AriaAttributes,
-  HTMLAttributes,
-  ElementType
-} from "react";
-import {
-  TextDecorationProperty,
-  TextTransformProperty,
-  OverflowXProperty,
-  OverflowYProperty,
-  AppearanceProperty,
-  TransformProperty,
-  TransformOriginProperty,
-  WhiteSpaceProperty,
-  UserSelectProperty,
-  PointerEventsProperty,
-  CursorProperty,
-  ResizeProperty,
-  TransitionProperty,
-  ObjectFitProperty,
-  ObjectPositionProperty,
-  BackgroundAttachmentProperty
-} from "csstype";
+import * as StyledSystem from "styled-system";
+import * as Emotion from "@emotion/styled";
+import * as React from "react";
+import * as CSS from "csstype";
 
 interface ICustomConfig {
   // Border radius shorthand
-  rounded?: BorderRadiusProps;
-  roundedTop?: BorderRadiusProps;
-  roundedBottom?: BorderRadiusProps;
-  roundedLeft?: BorderRadiusProps;
-  roundedRight?: BorderRadiusProps;
-  roundedTopRight?: BorderRadiusProps;
-  roundedTopLeft?: BorderRadiusProps;
-  roundedBottomRight?: BorderRadiusProps;
-  roundedBottomLeft?: BorderRadiusProps;
+  rounded?: StyledSystem.BorderRadiusProps;
+  roundedTop?: StyledSystem.BorderRadiusProps;
+  roundedBottom?: StyledSystem.BorderRadiusProps;
+  roundedLeft?: StyledSystem.BorderRadiusProps;
+  roundedRight?: StyledSystem.BorderRadiusProps;
+  roundedTopRight?: StyledSystem.BorderRadiusProps;
+  roundedTopLeft?: StyledSystem.BorderRadiusProps;
+  roundedBottomRight?: StyledSystem.BorderRadiusProps;
+  roundedBottomLeft?: StyledSystem.BorderRadiusProps;
 
   // Custom border color
-  borderBottomColor?: BorderColorProps;
-  borderTopColor?: BorderColorProps;
-  borderRightColor?: BorderColorProps;
-  borderLeftColor?: BorderColorProps;
+  borderBottomColor?: StyledSystem.BorderColorProps;
+  borderTopColor?: StyledSystem.BorderColorProps;
+  borderRightColor?: StyledSystem.BorderColorProps;
+  borderLeftColor?: StyledSystem.BorderColorProps;
 
   // CSS properties
-  textDecoration?: TextDecorationProperty;
-  textTransform?: TextTransformProperty;
-  overflowX?: OverflowXProperty;
-  overflowY?: OverflowYProperty;
-  appearance?: AppearanceProperty;
-  transform?: TransformProperty;
-  transformOrigin?: TransformOriginProperty;
-  whiteSpace?: WhiteSpaceProperty;
-  userSelect?: UserSelectProperty;
-  pointerEvents?: PointerEventsProperty;
-  boxSizing?: BoxSizingProperty;
-  cursor?: CursorProperty;
-  resize?: ResizeProperty;
-  transition?: TransitionProperty;
-  objectFit?: ObjectFitProperty;
-  objectPosition?: ObjectPositionProperty;
-  backgroundAttachment?: BackgroundAttachmentProperty;
-  bgAttachment?: BackgroundAttachmentProperty;
+  textDecoration?: StyledSystem.ResponsiveValue<CSS.TextDecorationProperty>;
+  textTransform?: StyledSystem.ResponsiveValue<CSS.TextTransformProperty>;
+  overflowX?: StyledSystem.ResponsiveValue<CSS.OverflowXProperty>;
+  overflowY?: StyledSystem.ResponsiveValue<CSS.OverflowYProperty>;
+  appearance?: StyledSystem.ResponsiveValue<CSS.AppearanceProperty>;
+  transform?: StyledSystem.ResponsiveValue<CSS.TransformProperty>;
+  transformOrigin?: StyledSystem.ResponsiveValue<CSS.TransformOriginProperty>;
+  whiteSpace?: StyledSystem.ResponsiveValue<CSS.WhiteSpaceProperty>;
+  animation?: StyledSystem.ResponsiveValue<CSS.AnimationProperty>;
+  userSelect?: StyledSystem.ResponsiveValue<CSS.UserSelectProperty>;
+  pointerEvents?: StyledSystem.ResponsiveValue<CSS.PointerEventsProperty>;
+  boxSizing?: StyledSystem.ResponsiveValue<CSS.BoxSizingProperty>;
+  cursor?: StyledSystem.ResponsiveValue<CSS.CursorProperty>;
+  resize?: StyledSystem.ResponsiveValue<CSS.ResizeProperty>;
+  transition?: StyledSystem.ResponsiveValue<CSS.TransitionProperty>;
+  objectFit?: StyledSystem.ResponsiveValue<CSS.ObjectFitProperty>;
+  objectPosition?: StyledSystem.ResponsiveValue<CSS.ObjectPositionProperty>;
+  backgroundAttachment?: StyledSystem.ResponsiveValue<
+    CSS.BackgroundAttachmentProperty
+  >;
+  bgAttachment?: StyledSystem.ResponsiveValue<CSS.BackgroundAttachmentProperty>;
 
   // SVG color properties
-  fill?: ColorProps;
-  stroke?: ColorProps;
+  fill?: StyledSystem.ColorProps;
+  stroke?: StyledSystem.ColorProps;
 }
 
-type FontSizeProps =
-  | {
-      fontSize:
-        | "xs"
-        | "sm"
-        | "base"
-        | "lg"
-        | "xl"
-        | "2xl"
-        | "3xl"
-        | "4xl"
-        | "5xl";
-    }
-  | { fontSize: _FontSizeProps };
+interface FontSizeProps {
+  fontSize: "xs" | "sm" | "base" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl";
+}
 
-type FontWeightProps =
-  | {
-      fontWeight:
-        | "hairline"
-        | "thin"
-        | "light"
-        | "normal"
-        | "medium"
-        | "semibold"
-        | "bold"
-        | "extrabold"
-        | "black";
-    }
-  | { fontSize: _FontWeightProps };
+interface FontWeightProps {
+  fontWeight?:
+    | "hairline"
+    | "thin"
+    | "light"
+    | "normal"
+    | "medium"
+    | "semibold"
+    | "bold"
+    | "extrabold"
+    | "black";
+}
 
-type LineHeightProps =
-  | { lineHeight: "none" | "shorter" | "short" | "normal" | "tall" | "taller" }
-  | { lineHeight: _LineHeightProps };
+interface LineHeightProps {
+  lineHeight: "none" | "shorter" | "short" | "normal" | "tall" | "taller";
+}
 
-type LetterSpacingProps =
-  | {
-      letterSpacing:
-        | "tigther"
-        | "tight"
-        | "normal"
-        | "wide"
-        | "wider"
-        | "widest";
-    }
-  | { letterSpacing: _LetterSpacingProps };
+interface LetterSpacingProps {
+  letterSpacing: "tighter" | "tight" | "normal" | "wide" | "wider" | "widest";
+}
 
-export type BoxProps = AriaAttributes &
-  RefAttributes<HTMLElement> &
-  HTMLAttributes<HTMLDivElement> &
-  LayoutProps &
-  ColorProps &
-  SpaceProps &
-  BordersProps &
-  BackgroundProps &
-  PositionProps &
-  TypographyProps &
-  FlexboxProps &
-  ShadowProps &
-  OpacityProps &
+export type BoxProps = React.AriaAttributes &
+  React.RefAttributes<HTMLElement> &
+  React.HTMLAttributes<HTMLDivElement> &
+  StyledSystem.LayoutProps &
+  StyledSystem.ColorProps &
+  StyledSystem.SpaceProps &
+  StyledSystem.BordersProps &
+  StyledSystem.BackgroundProps &
+  StyledSystem.PositionProps &
+  StyledSystem.FlexboxProps &
+  StyledSystem.ShadowProps &
+  StyledSystem.OpacityProps &
+  StyledSystem.TypographyProps &
   FontSizeProps &
-  FontWeightProps &
   LetterSpacingProps &
   LineHeightProps &
-  GridProps &
   ICustomConfig & {
     wordBreak: "normal" | "words" | "all" | "truncate";
-    as: ElementType;
+    as: React.ReactType;
   };
 
-declare const Box: StyledComponent<BoxProps, {}, {}>;
+declare const Box: Emotion.StyledComponent<BoxProps, {}, {}>;
 
 export default Box;

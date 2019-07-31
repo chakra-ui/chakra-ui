@@ -3,7 +3,7 @@ import { jsx } from "@emotion/core";
 import { forwardRef } from "react";
 import propTypes from "prop-types";
 import VisuallyHidden from "../VisuallyHidden";
-import InputBox from "../InputBox";
+import ControlBox from "../ControlBox";
 import Icon from "../Icon";
 import checkboxStyles from "./styles";
 import { useUIMode } from "../ThemeProvider";
@@ -65,17 +65,17 @@ const Checkbox = forwardRef(
           disabled={isDisabled}
           aria-invalid={isInvalid}
         />
-        <InputBox {...styleProps}>
+        <ControlBox {...styleProps}>
           <Icon
             name={isIndeterminate ? "minus" : "check"}
             size={checkSize}
             color={checkColor}
           />
-        </InputBox>
+        </ControlBox>
         {children && (
           <Box
             ml={2}
-            transform="translateY(-1px)"
+            // transform="translateY(-1px)"
             fontSize={size}
             userSelect="none"
             opacity={isDisabled ? 0.32 : 1}

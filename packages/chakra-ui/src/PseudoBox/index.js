@@ -4,13 +4,9 @@ import css from "@styled-system/css";
 import Box from "../Box";
 import { tx } from "../Box/config";
 
-/**
- * PseudoBox is an interactive wrapper that composes `Box`
- * to provide props for the common pseudo-selectors for ease of styling
- */
-
 // The selectors are based on WAI-ARIA speficiations
-const hover = "&:hover:not([aria-disabled=true]):not(:focus)";
+const hover =
+  "&:hover:not([aria-disabled=true]):not(:focus):not([aria-invalid=true])";
 const active = "&:active:not([aria-disabled=true])";
 const focus = "&:focus";
 const disabled = "&[aria-disabled=true]";

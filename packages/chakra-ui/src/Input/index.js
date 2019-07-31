@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/core";
 import propTypes from "prop-types";
 import { forwardRef } from "react";
-import { useFormControlProps } from "../FormControl";
+import { useFormControl } from "../FormControl";
 import PseudoBox from "../PseudoBox";
 import useInputStyle from "./styles";
 
@@ -13,18 +13,18 @@ const Input = forwardRef((props, ref) => {
     variant,
     as,
     "aria-label": ariaLabel,
+    "aria-describedby": ariaDescribedby,
     isReadOnly,
     isFullWidth,
     isDisabled,
     isInvalid,
-    isSpellCheckEnabled,
     isRequired,
     _focusBorderColor,
     ...rest
   } = props;
 
   const inputStyleProps = useInputStyle(props);
-  const formControl = useFormControlProps(props);
+  const formControl = useFormControl(props);
 
   return (
     <PseudoBox
@@ -32,14 +32,13 @@ const Input = forwardRef((props, ref) => {
       as={as}
       type={type}
       name={name}
-      id={formControl.id}
       readOnly={formControl.isReadOnly}
       disabled={formControl.isDisabled}
       aria-label={ariaLabel}
       aria-invalid={formControl.isInvalid}
       aria-required={formControl.isRequired}
       aria-disabled={formControl.isDisabled}
-      spellCheck={isSpellCheckEnabled}
+      aria-describedby={ariaDescribedby}
       {...inputStyleProps}
       {...rest}
     />

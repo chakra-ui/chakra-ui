@@ -6,7 +6,7 @@ import {
   ModalFooter,
   ModalBody,
   ModalOverlay,
-  ModalContent,
+  ModalContent
 } from "../Modal";
 import CloseButton from "../CloseButton";
 
@@ -15,7 +15,7 @@ const DrawerTransition = ({
   children,
   duration = 200,
   placement,
-  isFullHeight,
+  isFullHeight
 }) => {
   let placements = {
     bottom: {
@@ -23,44 +23,44 @@ const DrawerTransition = ({
       height: isFullHeight ? "100vh" : "auto",
       bottom: 0,
       left: 0,
-      right: 0,
+      right: 0
     },
     top: {
       maxWidth: "100%",
       height: isFullHeight ? "100vh" : "auto",
       top: 0,
       left: 0,
-      right: 0,
+      right: 0
     },
     left: {
       height: "100vh",
       left: 0,
-      top: 0,
+      top: 0
     },
     right: {
       right: 0,
       top: 0,
-      height: "100vh",
-    },
+      height: "100vh"
+    }
   };
 
   let transitionOptions = {
     bottom: {
       offset: "100%",
-      transform: y => `translateY(${y})`,
+      transform: y => `translateY(${y})`
     },
     top: {
       offset: "-100%",
-      transform: y => `translateY(${y})`,
+      transform: y => `translateY(${y})`
     },
     left: {
       offset: "-100%",
-      transform: x => `translateX(${x})`,
+      transform: x => `translateX(${x})`
     },
     right: {
       offset: "100%",
-      transform: x => `translateX(${x})`,
-    },
+      transform: x => `translateX(${x})`
+    }
   };
 
   const { transform, offset } = transitionOptions[placement];
@@ -80,15 +80,21 @@ const DrawerTransition = ({
 };
 
 const DrawerOverlay = ({ hideOverlay, ...rest }) => (
-  <ModalOverlay
-    css={hideOverlay && { backgroundColor: "transparent" }}
-    {...rest}
-  />
+  <ModalOverlay {...hideOverlay && { bg: "transparent" }} {...rest} />
 );
 
-const DrawerCloseButton = ({ onClick, ...rest }) => (
-  <CloseButton onClick={onClick} position="fixed" zIndex="1" top="8px" right="12px" {...rest} />
-);
+const DrawerCloseButton = ({ onClick, ...rest }) => {
+  return (
+    <CloseButton
+      onClick={onClick}
+      position="fixed"
+      zIndex="1"
+      top="8px"
+      right="12px"
+      {...rest}
+    />
+  );
+};
 
 export {
   DrawerTransition,
@@ -97,5 +103,5 @@ export {
   ModalFooter as DrawerFooter,
   ModalBody as DrawerBody,
   DrawerOverlay,
-  ModalContent as DrawerContent,
+  ModalContent as DrawerContent
 };
