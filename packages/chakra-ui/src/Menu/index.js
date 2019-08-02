@@ -18,6 +18,7 @@ import { useUIMode } from "../ThemeProvider";
 import usePrevious from "../usePrevious";
 import { getFocusables, mergeRefs } from "../utils";
 import { useMenuItemStyle, useMenuListStyle } from "./styles";
+import Divider from "../Divider";
 
 const MenuContext = createContext();
 
@@ -321,6 +322,7 @@ const MenuItem = forwardRef(
 
     return (
       <PseudoBox
+        as="button"
         ref={ref}
         minHeight="32px"
         alignItems="center"
@@ -377,25 +379,9 @@ MenuItem.propTypes = {
   role: string
 };
 
-MenuItem.defaultProps = {
-  as: "button",
-  role: "menuitem",
-  onSelect: () => {}
-};
-
 //////////////////////////////////////////////////////////////////////////////////////////
 
-const MenuDivider = props => (
-  <Box
-    my="8px"
-    role="separator"
-    border="0"
-    borderBottom="1px"
-    opacity="60%"
-    borderColor="inherit"
-    {...props}
-  />
-);
+const MenuDivider = props => <Divider orientation="horizontal" {...props} />;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 

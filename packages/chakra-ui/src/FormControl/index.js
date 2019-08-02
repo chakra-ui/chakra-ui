@@ -2,7 +2,6 @@
 import { jsx } from "@emotion/core";
 import { createContext, useContext } from "react";
 import Box from "../Box";
-import { useUIMode } from "../ThemeProvider";
 
 export const useFormControl = props => {
   const context = useFormControlContext();
