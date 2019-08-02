@@ -1,37 +1,43 @@
-import { ReactNode, RefAttributes, ForwardRefExoticComponent } from "react";
-import { MarginLeftProps } from "styled-system";
+import * as React from "react";
+import * as StyledSystem from "styled-system";
 import { BoxProps } from "../Box";
+import { IAvatar } from "../Avatar";
 
 interface IMoreIndicator {
-  size: string;
-  label: ReactNode;
+  size?: IAvatar["size"];
+  label: React.ReactNode;
 }
 
 interface IAvatarGroup {
   /**
    * The size of the avatar group.
    */
-  size?: string;
+  size?: IAvatar["size"];
   /**
    * The children of the avatar group.
+   *
+   * Ideally should be `Avatar` and `MoreIndicator` components
    */
-  children: ReactNode;
+  children: React.ReactNode;
   /**
-   * The space between the individual avatars in the group.
+   * The space between the avatars in the group.
    */
-  spacing?: MarginLeftProps;
+  spacing?: StyledSystem.MarginLeftProps;
 }
 
 export type MoreIndicatorProps = IMoreIndicator &
   BoxProps &
-  RefAttributes<HTMLDivElement>;
+  React.RefAttributes<HTMLDivElement>;
 
 export type AvatarGroupProps = IAvatarGroup &
   BoxProps &
-  RefAttributes<HTMLDivElement>;
+  React.RefAttributes<HTMLDivElement>;
 
-export const MoreIndicator: ForwardRefExoticComponent<MoreIndicatorProps>;
+export const MoreIndicator: React.ForwardRefExoticComponent<MoreIndicatorProps>;
 
-declare const AvatarGroup: ForwardRefExoticComponent<AvatarGroupProps>;
+/**
+ * AvatarGroup is a wrapper to render a collection of evenly spaced avatars.
+ */
+declare const AvatarGroup: React.ForwardRefExoticComponent<AvatarGroupProps>;
 
 export default AvatarGroup;

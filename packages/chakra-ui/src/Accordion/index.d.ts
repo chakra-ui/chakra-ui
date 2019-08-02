@@ -24,7 +24,7 @@ interface IAccordion {
    * The callback fired when the accordion is expanded/collapsed.
    *  @param {Boolean} isOpen - the next state of the accordion
    */
-  onChange?: (isOpen: boolean) => void;
+  onOpenChange?: (isOpen: boolean) => void;
   /**
    * The content of the accordion.
    * The children must be the `AccordionHeader` and `AccordionPanel` components.

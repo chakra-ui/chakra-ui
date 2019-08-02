@@ -20,12 +20,35 @@ stories.add("Default", () => {
       <Button
         onClick={() =>
           toast({
-            title: "My primary message for the user.",
-            duration: 5000,
-            position: "top",
-            subtitle: "Details to report to the user.",
-            variant: "solid",
-            status: "success"
+            title: "Account created.",
+            description: "We've created your account for you.",
+            status: "success",
+            duration: 9000,
+            isClosable: true
+          })
+        }
+      >
+        Show Success Toast
+      </Button>
+    );
+  };
+
+  return <Toaster />;
+});
+
+stories.add("Custom Component", () => {
+  const Toaster = () => {
+    const toast = useToast();
+    return (
+      <Button
+        onClick={() =>
+          toast({
+            position: "bottom-left",
+            render: () => (
+              <Box m={3} color="white" p={3} bg="blue.500">
+                Hello World
+              </Box>
+            )
           })
         }
       >

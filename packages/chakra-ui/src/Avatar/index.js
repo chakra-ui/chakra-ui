@@ -9,7 +9,7 @@ import Box from "../Box";
 
 export const AvatarBadge = props => {
   const { mode } = useUIMode();
-  const borderColor = { light: "white", dark: "gray.900" };
+  const borderColor = { light: "white", dark: "gray.800" };
 
   return (
     <Absolute
@@ -19,7 +19,7 @@ export const AvatarBadge = props => {
       transform="translate(25%, 25%)"
       bottom="0"
       right="0"
-      border="2px"
+      border="0.2em solid"
       borderColor={borderColor[mode]}
       rounded="full"
       {...props}
@@ -28,15 +28,12 @@ export const AvatarBadge = props => {
 };
 
 const getInitials = name => {
-  if (name) {
-    let initials = name.split(" ");
-    if (initials.length > 1) {
-      initials = `${initials[0].charAt(0)}${initials[1].charAt(0)}`;
-    } else {
-      initials = initials[0].charAt(0);
-    }
+  let [firstName, lastName] = name.split(" ");
 
-    return initials;
+  if (firstName & lastName) {
+    return `${firstName.charAt(0)}${lastName.charAt(0)}`;
+  } else {
+    return firstName.charAt(0);
   }
 };
 
@@ -48,7 +45,7 @@ const AvatarName = ({ name, ...props }) => {
       fontWeight="medium"
       {...props}
     >
-      {getInitials(name)}
+      {name ? getInitials(name) : null}
     </Box>
   );
 };
@@ -68,9 +65,9 @@ const Avatar = ({ size, showBorder, name, badge, src, ...rest }) => {
   const avatarProps = useAvatarStyle({ name, size, showBorder });
   const hasLoaded = useHasImageLoaded({ src });
 
-  const { sizes } = useTheme();
-  const sizeValue = avatarSizes[size];
-  const _size = sizes[sizeValue];
+  const theme = useTheme();
+  const sizeKey = avatarSizes[size];
+  const _size = theme.sizes[sizeKey];
 
   const renderChildren = () => {
     if (src && hasLoaded) {
@@ -88,21 +85,27 @@ const Avatar = ({ size, showBorder, name, badge, src, ...rest }) => {
 
     if (src && !hasLoaded) {
       if (name) {
-        return <AvatarName size={size} name={name} />;
+        return <AvatarName size={_size} name={name} />;
       } else {
         return <DefaultAvatar />;
       }
     }
 
     if (!src && name) {
-      return <AvatarName size={size} name={name} />;
+      return <AvatarName size={_size} name={name} />;
     }
 
     return <DefaultAvatar />;
   };
 
   return (
-    <Box fontSize={`calc(${_size} / 2.5)`} {...avatarProps} {...rest}>
+    <Box
+      fontSize={`calc(${_size} / 2.5)`}
+      lineHeight={_size}
+      verticalAlign="bottom"
+      {...avatarProps}
+      {...rest}
+    >
       {renderChildren()}
       {badge}
     </Box>
@@ -114,27 +117,10 @@ Avatar.defaultProps = {
 };
 
 Avatar.propTypes = {
-  /**
-   * The size (height and width) of the avatar
-   */
-  size: propTypes.oneOf(["xs", "sm", "md", "lg", "xl", "xxl", "fill"]),
-  /**
-   * If `true`, the Avatar will show a border around it
-   */
+  size: propTypes.oneOf(["xs", "sm", "md", "lg", "xl", "2xl"]),
   showBorder: propTypes.bool,
-  /**
-   * The name of the avatar.
-   * if image is loaded, this will be used as the `alt` attr of the image
-   * If image is not loaded, this will be used to create the initials
-   */
   name: propTypes.string.isRequired,
-  /**
-   * The badge to show at the bottom right of the Avatar
-   */
   badge: propTypes.node,
-  /**
-   * The url for the Avatar
-   */
   src: propTypes.string
 };
 

@@ -1,6 +1,6 @@
 import { BoxProps } from "../Box";
 import { IconProps } from "../Icon";
-import { FC } from "react";
+import React from "react";
 
 interface IAlert {
   /**
@@ -10,20 +10,20 @@ interface IAlert {
   /**
    * The variant of the alert style to use.
    */
-  variant?: "subtle" | "solid" | "left-accent" | "top-accent" | "card";
+  variant?: "subtle" | "solid" | "left-accent" | "top-accent";
 }
 
-export const AlertTitle: FC<BoxProps>;
+export const AlertTitle: React.FC<BoxProps>;
 
-export const AlertBody: FC<BoxProps>;
+export const AlertBody: React.FC<BoxProps>;
 
-export const AlertIcon: FC<IconProps>;
+export const AlertIcon: React.FC<IconProps>;
 
 export type AlertProps = IAlert & BoxProps;
 
 /**
  * Alerts are used to communicate a state that affects a system, feature or page
  */
-declare const Alert: FC<AlertProps>;
+declare const Alert: React.ForwardRefExoticComponent<AlertProps>;
 
 export default Alert;

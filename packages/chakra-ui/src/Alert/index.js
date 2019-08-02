@@ -2,13 +2,15 @@
 import { jsx } from "@emotion/core";
 import ReachAlert from "@reach/alert";
 import { oneOf } from "prop-types";
-import Icon from "../Icon";
-import Text from "../Text";
-import useAlertStyle, { useIconStyle } from "./styles";
 import { createContext, useContext } from "react";
 import Box from "../Box";
+import Icon from "../Icon";
+import { generateStripe } from "../theme/colors.utils";
+import useAlertStyle, { useIconStyle } from "./styles";
 
-const AlertTitle = props => <Text as="h2" fontWeight="bold" {...props} />;
+const AlertTitle = props => (
+  <Box fontWeight="bold" lineHeight="normal" {...props} />
+);
 const AlertDescription = props => <Box {...props} />;
 const AlertContext = createContext();
 
@@ -33,7 +35,7 @@ const AlertIcon = props => {
     <Icon
       mt="2px"
       mr={3}
-      size={6}
+      size={5}
       name={statusIcons[status]}
       {...iconStyleProps}
       {...props}
@@ -41,22 +43,29 @@ const AlertIcon = props => {
   );
 };
 
-const Alert = ({ status, variant, ...rest }) => {
+const Alert = ({ status = "info", variant = "subtle", hasStripe, ...rest }) => {
   const alertStyleProps = useAlertStyle({
     variant,
     color: statusColors[status]
   });
 
+  const stripeStyle = generateStripe({
+    size: "8rem",
+    color: "rgba(255, 255, 255, 0.05)"
+  });
+
+  const context = { status, variant };
+
   return (
-    <AlertContext.Provider value={{ status, variant }}>
-      <Box as={ReachAlert} position="relative" {...alertStyleProps} {...rest} />
+    <AlertContext.Provider value={context}>
+      <Box
+        as={ReachAlert}
+        css={hasStripe && stripeStyle}
+        {...alertStyleProps}
+        {...rest}
+      />
     </AlertContext.Provider>
   );
-};
-
-Alert.defaultProps = {
-  status: "info",
-  variant: "subtle"
 };
 
 Alert.propTypes = {

@@ -146,7 +146,7 @@ const ColorList = ({
 //////////////////////////////////////////////////////////////////
 
 const customCSS = ({ theme, mode }) => {
-  const { gray, alpha, blue } = theme.colors;
+  const { gray, whiteAlpha, blue } = theme.colors;
 
   const color = { light: gray[800], dark: whiteAlpha[800] };
   const borderColor = { light: gray[200], dark: whiteAlpha[200] };

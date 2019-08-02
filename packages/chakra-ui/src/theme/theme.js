@@ -86,6 +86,7 @@ const borderWidths = {
   md: "0.5rem",
   sm: "0.25rem",
   xs: "0.125rem",
+  "2xs": "0.0625rem",
   none: 0
 };
 

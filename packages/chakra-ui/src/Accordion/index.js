@@ -8,13 +8,13 @@ import PseudoBox from "../PseudoBox";
 import { genId } from "../utils";
 
 const Accordion = forwardRef(
-  ({ isOpen, defaultIsOpen, onChange, children, ...rest }, ref) => {
+  ({ isOpen, defaultIsOpen, onOpenChange, children, ...rest }, ref) => {
     const [isExpanded, setIsExpanded] = useState(defaultIsOpen || false);
     const { current: isControlled } = useRef(isOpen != null);
     let _isExpanded = isControlled ? isOpen : isExpanded;
 
     const onToggle = () => {
-      onChange && onChange(!_isExpanded);
+      onOpenChange && onOpenChange(!_isExpanded);
       !isControlled && setIsExpanded(!isExpanded);
     };
 
@@ -39,7 +39,7 @@ const Accordion = forwardRef(
 Accordion.propTypes = {
   isOpen: propTypes.bool,
   defaultIsOpen: propTypes.bool,
-  onChange: propTypes.func,
+  onOpenChange: propTypes.func,
   children: propTypes.node.isRequired
 };
 

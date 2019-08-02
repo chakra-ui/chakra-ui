@@ -1,8 +1,12 @@
 import { useState } from "react";
 
-const copyToClipboard = content => {
+/**
+ *
+ * @param {any} value - The content to add to clipboard
+ */
+const copyToClipboard = value => {
   const el = document.createElement("textarea");
-  el.value = content;
+  el.value = value;
   el.setAttribute("readonly", "");
   el.style.position = "absolute";
   el.style.left = "-9999px";
@@ -21,6 +25,7 @@ const copyToClipboard = content => {
     document.getSelection().addRange(selected);
   }
 };
+
 
 const useClipboard = value => {
   const [hasCopied, setHasCopied] = useState(false);

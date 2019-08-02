@@ -5,7 +5,6 @@ import { oneOf } from "prop-types";
 import { cloneElement, useEffect, useRef, Fragment } from "react";
 import FocusLock from "react-focus-lock";
 import { Manager, Popper, Reference } from "react-popper";
-import { useDisclosure } from "../hooks";
 import {
   PopoverTransition,
   PopoverContent,
@@ -14,6 +13,7 @@ import {
 import { assignRef, genId } from "../utils";
 import { useUIMode } from "../ThemeProvider";
 import Box from "../Box";
+import useDisclosure from "../useDisclosure";
 
 const Popover = ({
   isOpen: controlledIsOpen,
@@ -155,6 +155,7 @@ const Popover = ({
     </Manager>
   );
 };
+
 export const placementOptions = [
   "left",
   "right",

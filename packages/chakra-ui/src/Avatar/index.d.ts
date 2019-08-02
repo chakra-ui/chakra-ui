@@ -1,40 +1,42 @@
-import { ReactNode, FC } from "react";
+import * as React from "react";
 import { BoxProps } from "../Box";
 
-interface IAvatarName {
+export interface IAvatar {
   /**
-   * Used to get user initials, which is the default display mode of the avatar.
+   * The name of the person in the avatar.
+   *
+   * - if `src` has loaded, the name will be used as the `alt` attribute of the `img`
+   * - If `src` is not loaded, the name will be used to create the initials
    */
   name: string;
-}
-
-interface IAvatar extends IAvatarName {
   /**
    * The size of the avatar.
    */
-  size?: string;
+  size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
   /**
-   * If `true` show a border around the avatar.
+   * If `true`, the `Avatar` will show a border around it.
+   *
+   * Best for a group of avatars
    */
   showBorder?: boolean;
   /**
-   * If passed, displays a badge at the bottom right corner of the avatar.
+   * The badge at the bottom right corner of the avatar.
    */
-  badge?: ReactNode;
+  badge?: React.ReactNode;
   /**
-   * Image source of the avatar.
+   * The image url of the `Avatar`
    */
   src?: string;
 }
 
-export type AvatarNameProps = IAvatarName & BoxProps;
+export type AvatarNameProps = Pick<IAvatar, "name"> & BoxProps;
 
 export type AvatarProps = IAvatar & BoxProps;
 
-export const AvatarBadge: FC<BoxProps>;
+export const AvatarBadge: React.FC<BoxProps>;
 
-export const AvatarName: FC<AvatarNameProps>;
+export const AvatarName: React.FC<AvatarNameProps>;
 
-declare const Avatar: FC<AvatarProps>;
+declare const Avatar: React.FC<AvatarProps>;
 
 export default Avatar;

@@ -20,6 +20,7 @@ export { default as CloseButton } from "./CloseButton";
 export { default as Collapse } from "./Collapse";
 export { default as ColorPicker } from "./ColorPicker";
 export * from "./ColorPicker";
+export { default as ControlBox } from "./ControlBox";
 export { default as CSSReset } from "./CSSReset";
 
 export { default as Drawer } from "./Drawer";
@@ -36,7 +37,6 @@ export * from "./FormControl";
 
 export { default as Grid } from "./Grid";
 
-export * from "./hooks";
 export { default as Heading } from "./Heading";
 
 export { default as Icon } from "./Icon";
@@ -44,7 +44,6 @@ export { default as IconButton } from "./IconButton";
 export { default as Image } from "./Image";
 export { default as Input } from "./Input";
 export { default as InputAddon } from "./InputAddon";
-export { default as ControlBox } from "./ControlBox";
 
 export { default as KeyboardKey } from "./KeyboardKey";
 

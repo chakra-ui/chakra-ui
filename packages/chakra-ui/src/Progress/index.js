@@ -4,6 +4,7 @@ import { number, oneOf, bool } from "prop-types";
 import VisuallyHidden from "../VisuallyHidden";
 import { useUIMode } from "../ThemeProvider";
 import Box from "../Box";
+import { generateStripe } from "../theme/colors.utils";
 
 const stripe = keyframes`
   from { background-position: 1rem 0}
@@ -14,19 +15,7 @@ const stripeAnimation = css`
   animation: ${stripe} 1s linear infinite;
 `;
 
-const stripeStyle = css`
-  background-image: linear-gradient(
-    45deg,
-    rgba(255, 255, 255, 0.15) 25%,
-    transparent 25%,
-    transparent 50%,
-    rgba(255, 255, 255, 0.15) 50%,
-    rgba(255, 255, 255, 0.15) 75%,
-    transparent 75%,
-    transparent
-  );
-  background-size: 1rem 1rem;
-`;
+export const stripeStyle = generateStripe({});
 
 const Progress = ({
   color = "blue",
