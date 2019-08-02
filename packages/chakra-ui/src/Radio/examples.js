@@ -1,5 +1,5 @@
 import { storiesOf } from "@storybook/react";
-import React from "react";
+import React, { Fragment } from "react";
 import Radio from ".";
 import Box from "../Box";
 import RadioGroup from "../RadioGroup";
@@ -14,14 +14,14 @@ stories.addDecorator(story => {
 });
 
 stories.add("Default", () => (
-  <>
+  <Fragment>
     <Radio value="male" defaultChecked name="bee">
       Male
     </Radio>
     <Radio ml={3} value="female" name="bee" defaultChecked>
       Female
     </Radio>
-  </>
+  </Fragment>
 ));
 
 stories.add("Inline Radio ", () => (

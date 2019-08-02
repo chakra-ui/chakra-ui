@@ -1,8 +1,7 @@
 import { storiesOf } from "@storybook/react";
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import Drawer, { DrawerBody, DrawerFooter, DrawerHeader } from ".";
 import Button from "../Button";
-import FormControl from "../FormControl";
 import Input from "../Input";
 import Box from "../Box";
 import { DrawerCloseButton } from "./components";
@@ -20,7 +19,7 @@ stories.add("Default", () => {
   const SampleDrawer = () => {
     const [isOpen, setIsOpen] = useState(false);
     return (
-      <>
+      <Fragment>
         <Drawer
           isOpen={isOpen}
           size="sm"
@@ -49,7 +48,7 @@ stories.add("Default", () => {
           </DrawerFooter>
         </Drawer>
         <Button onClick={() => setIsOpen(true)}>Open Drawer</Button>
-      </>
+      </Fragment>
     );
   };
 

@@ -18,7 +18,8 @@
     "test:coverage": "nwb test-react --coverage",
     "test:watch": "nwb test-react --server",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "build-watch": "nodemon -w src -x 'rm .babelrc &> /dev/null; nwb build-react-component --no-demo'"
   },
   "dependencies": {
     "@reach/alert": "0.1.5",
@@ -63,6 +64,7 @@
     "eslint-plugin-jsx-a11y": "6.2.1",
     "eslint-plugin-react": "7.13.0",
     "eslint-plugin-react-hooks": "1.6.0",
+    "nodemon": "1.19.1",
     "nwb": "0.23.x",
     "prop-types": "15.7.2",
     "react": "16.8.6",

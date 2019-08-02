@@ -3,7 +3,7 @@ import { jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import { boolean, select, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
-import React from "react";
+import React, { Fragment } from "react";
 import Icon from "../Icon";
 import Box from "../Box";
 import Tabs, { Tab, TabList, TabPanel, TabPanels } from ".";
@@ -84,7 +84,7 @@ stories.add("Tablist Only (Manual)", () => {
   const TabEx = () => {
     const [index, setIndex] = React.useState(2);
     return (
-      <>
+      <Fragment>
         <input
           type="range"
           max="4"
@@ -108,7 +108,7 @@ stories.add("Tablist Only (Manual)", () => {
             <Tab>Tab 5</Tab>
           </TabList>
         </Tabs>
-      </>
+      </Fragment>
     );
   };
 

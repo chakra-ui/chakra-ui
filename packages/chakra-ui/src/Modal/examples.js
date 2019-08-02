@@ -1,5 +1,5 @@
 import { storiesOf } from "@storybook/react";
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import Box from "../Box";
 import Button from "../Button";
 import FormControl from "../FormControl";
@@ -20,7 +20,7 @@ stories.add("Default", () => {
   const SampleModal = () => {
     const [isOpen, setIsOpen] = useState(false);
     return (
-      <>
+      <Fragment>
         <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
           <ModalHeader onClose={() => setIsOpen(false)}>
             Create your account
@@ -43,7 +43,7 @@ stories.add("Default", () => {
           </ModalFooter>
         </Modal>
         <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
-      </>
+      </Fragment>
     );
   };
 

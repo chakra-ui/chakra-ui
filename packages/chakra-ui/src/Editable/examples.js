@@ -1,5 +1,5 @@
 import { storiesOf } from "@storybook/react";
-import React from "react";
+import React, { Fragment } from "react";
 import Editable, { EditableInput, EditablePreview } from ".";
 import Box from "../Box";
 import Button from "../Button";
@@ -35,13 +35,13 @@ const ControlButtons = ({ isEditing, onSubmit, onCancel, onRequestEdit }) => (
 stories.add("Default", () => (
   <Editable textAlign="center" defaultValue="testing" fontSize="2xl">
     {props => (
-      <>
+      <Fragment>
         <Flex>
           <EditablePreview flex="1" wordBreak="words" />
           <EditableInput flex="1" />
         </Flex>
         <ControlButtons {...props} />
-      </>
+      </Fragment>
     )}
   </Editable>
 ));

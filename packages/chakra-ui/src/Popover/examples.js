@@ -1,5 +1,5 @@
 import { storiesOf } from "@storybook/react";
-import React from "react";
+import React, {Fragment} from "react";
 import Popover, { PopoverBody, PopoverFooter, PopoverHeader } from ".";
 import Button from "../Button";
 import Box from "../Box";
@@ -14,7 +14,7 @@ stories.addDecorator(story => {
 });
 
 stories.add("Default", () => (
-  <>
+  <Fragment>
     <Popover
       trigger={<Button>Trigger</Button>}
       usePortal
@@ -23,7 +23,7 @@ stories.add("Default", () => (
       // showArrow
     >
       {({ onClose }) => (
-        <>
+        <Fragment>
           <PopoverHeader>Header</PopoverHeader>
           <PopoverBody>
             <Button color="blue" onClick={onClose}>
@@ -31,9 +31,9 @@ stories.add("Default", () => (
             </Button>
           </PopoverBody>
           <PopoverFooter>This is the footer</PopoverFooter>
-        </>
+        </Fragment>
       )}
     </Popover>
     <Button color="green">Content Inside</Button>
-  </>
+  </Fragment>
 ));

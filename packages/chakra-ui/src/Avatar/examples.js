@@ -1,5 +1,5 @@
 import { storiesOf } from "@storybook/react";
-import React from "react";
+import React, { Fragment } from "react";
 import Box from "../Box";
 import Avatar, { AvatarBadge } from ".";
 import AvatarGroup, { MoreIndicator } from "../AvatarGroup";
@@ -12,7 +12,7 @@ stories.addDecorator(story => (
 ));
 
 stories.add("Default", () => (
-  <>
+  <Fragment>
     {["sm", "md", "lg", "xl", "2xl"].map(size => (
       <Avatar
         mr={2}
@@ -22,7 +22,7 @@ stories.add("Default", () => (
         src="https://vignette.wikia.nocookie.net/naruto/images/b/bb/Itachi.png/revision/latest/scale-to-width-down/300?cb=20160125182202"
       />
     ))}
-  </>
+  </Fragment>
 ));
 
 stories.add("Avatar Group", () => (
