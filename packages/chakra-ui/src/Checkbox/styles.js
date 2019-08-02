@@ -20,11 +20,11 @@ const interactionProps = ({ color, mode }) => {
     },
     _checkedAndDisabled: {
       borderColor: isDarkMode ? "transparent" : "gray.200",
-      bg: isDarkMode ? "alpha.300" : "gray.200",
-      color: isDarkMode ? "alpha.500" : "gray.500"
+      bg: isDarkMode ? "whiteAlpha.300" : "gray.200",
+      color: isDarkMode ? "whiteAlpha.500" : "gray.500"
     },
     _disabled: {
-      bg: isDarkMode ? "alpha.100" : "gray.100",
+      bg: isDarkMode ? "whiteAlpha.100" : "gray.100",
       borderColor: isDarkMode ? "transparent" : "gray.100"
     },
     _focus: {

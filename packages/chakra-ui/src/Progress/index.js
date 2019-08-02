@@ -46,7 +46,7 @@ const Progress = ({
       className="progress"
       height={`progressbar.${size}`}
       borderRadius={borderRadius}
-      bg={mode === "dark" ? "alpha.300" : "gray.100"}
+      bg={mode === "dark" ? "whiteAlpha.300" : "gray.100"}
       overflow="hidden"
       {...rest}
     >

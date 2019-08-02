@@ -1,18 +1,31 @@
 import * as StyledSystem from "styled-system";
-import { StyledComponent } from "@emotion/styled";
+import * as Emotion from "@emotion/styled";
 import { BoxProps } from "../Box";
 
 interface IPseudoBoxProps {
   /**
    * Styles for CSS selector `&:after`
+   *
+   * NOTE:When using this, ensure the `content` is wrapped in a backtick.
+   * @example
+   * ```jsx
+   * <PseudoBox _after={{content:`"FontAwesomeIcon"` }}/>
+   * ```
    */
   _after: BoxProps;
   /**
-   * Styles for CSS selector `&:after`
+   * Styles for CSS selector `&:before`
+   *
+   * NOTE:When using this, ensure the `content` is wrapped in a backtick.
+   * @example
+   * ```jsx
+   * <PseudoBox _before={{content:`"FontAwesomeIcon"` }}/>
+   * ```
    */
   _before: BoxProps;
   /**
    * Styles for CSS selector `&:focus`
+   *
    */
   _focus: BoxProps;
   /**
@@ -40,8 +53,13 @@ interface IPseudoBoxProps {
    */
   _invalid: BoxProps;
   /**
-   * Styles to apply when the ARIA attribute `aria-disabled` is `true`
-   * - CSS selector `&[aria-disabled=true]`
+   * Styles to apply when this element is disabled. The passed styles are applied to these CSS selectors:
+   * - `&[aria-disabled=true]`
+   * - `&:disabled`
+   * - `&:disabled:focus`
+   * - `&:disabled:hover`
+   * - `&:focus[aria-disabled=true]`
+   * - `&:hover[aria-disabled=true]`
    */
   _disabled: BoxProps;
   /**
@@ -90,8 +108,15 @@ export type PseudoBoxProps = IPseudoBoxProps & BoxProps;
 
 /**
  * PseudoBox is an interactive wrapper that composes `Box`
- * to provide props for the common CSS pseudo-selectors for ease of styling
+ * and converts common CSS pseudo-selectors to props for ease of styling.
+ *
+ * For example, to style `:hover` use `_hover`
+ *
+ * @example
+ * ```jsx
+ * <PseudoBox _hover={...} _focus={...}/>
+ * ```
  */
-declare const PseudoBox: StyledComponent<PseudoBoxProps, {}, {}>;
+declare const PseudoBox: Emotion.StyledComponent<PseudoBoxProps, {}, {}>;
 
 export default PseudoBox;

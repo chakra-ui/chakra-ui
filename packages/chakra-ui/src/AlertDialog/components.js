@@ -9,16 +9,11 @@ import {
 import css from "@styled-system/css";
 import { forwardRef } from "react";
 import Box from "../Box";
-import Heading from "../Heading";
 import { modalContentStyle } from "../Modal";
 import { useUIMode } from "../ThemeProvider";
 
-const AlertDialogHeader = ({ children, ...props }) => (
-  <Box py={4} px={6} as={AlertDialogLabel} {...props}>
-    <Heading as="h2" lineHeight="normal">
-      {children}
-    </Heading>
-  </Box>
+const AlertDialogHeader = props => (
+  <Box py={4} px={6} as={AlertDialogLabel} {...props} />
 );
 
 const AlertDialogBody = props => (

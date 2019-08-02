@@ -1,5 +1,5 @@
 import { BoxProps } from "../Box";
-import { FC } from "react";
+import * as React from "react";
 
 interface IIcon {
   /**
@@ -20,8 +20,10 @@ interface IIcon {
   role?: "presentation" | "img";
 }
 
-export type IconProps = IIcon & BoxProps;
+export type IconProps = IIcon &
+  BoxProps &
+  Pick<React.ReactSVGElement<HTMLOrSVGElement>, "focusable">;
 
-declare const Icon: FC<IconProps>;
+declare const Icon: React.FC<IconProps>;
 
 export default Icon;

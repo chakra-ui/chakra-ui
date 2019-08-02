@@ -8,7 +8,7 @@ import Text from "../Text";
 export const FormHelperText = forwardRef((props, ref) => {
   const { mode } = useUIMode();
   const formControl = useFormControl(props);
-  const color = { light: "gray.500", dark: "alpha.600" };
+  const color = { light: "gray.500", dark: "whiteAlpha.600" };
 
   return (
     <Text

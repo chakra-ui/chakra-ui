@@ -5,7 +5,7 @@ import { useUIMode } from "../ThemeProvider";
 
 const Keyboard = props => {
   const { mode } = useUIMode();
-  const bg = { light: "gray.100", dark: "alpha.50" };
+  const bg = { light: "gray.100", dark: "whiteAlpha.50" };
   return (
     <Box
       as="kbd"

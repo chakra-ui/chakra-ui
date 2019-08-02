@@ -5,11 +5,11 @@ import Box from "../Box";
 import { tx } from "../Box/config";
 
 // The selectors are based on WAI-ARIA speficiations
-const hover =
-  "&:hover:not([aria-disabled=true]):not(:focus):not([aria-invalid=true])";
-const active = "&:active:not([aria-disabled=true])";
+const hover = "&:hover";
+const active = "&:active";
 const focus = "&:focus";
-const disabled = "&[aria-disabled=true]";
+const disabled =
+  "&[aria-disabled=true], &:disabled, &:disabled:focus, &:disabled:hover, &:focus[aria-disabled=true], &:hover[aria-disabled=true]";
 const checked = "&[aria-checked=true]";
 const selected = "&[aria-selected=true]";
 const invalid = "&[aria-invalid=true]";
@@ -43,10 +43,10 @@ const PseudoBox = styled(Box)(
     _checked
   }) => {
     return css({
-      [disabled]: tx(_disabled),
-      [focus]: tx(_focus),
       [hover]: tx(_hover),
+      [focus]: tx(_focus),
       [active]: tx(_active),
+      [disabled]: tx(_disabled),
       [selected]: tx(_selected),
       [invalid]: tx(_invalid),
       [expanded]: tx(_expanded),

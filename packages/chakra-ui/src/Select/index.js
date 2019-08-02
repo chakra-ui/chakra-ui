@@ -10,7 +10,7 @@ import Absolute from "../Absolute";
 const Select = forwardRef(
   ({ children, placeholder, wrapperProps, flex, ...rest }, ref) => {
     let { mode } = useUIMode();
-    let themedColor = mode === "dark" ? "alpha.800" : "inherit";
+    let themedColor = mode === "dark" ? "whiteAlpha.800" : "inherit";
     let opacity = rest.isReadOnly || rest.isDisabled ? 0.5 : 1;
 
     return (

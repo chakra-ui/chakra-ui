@@ -13,21 +13,40 @@ stories.addDecorator(story => (
 ));
 
 stories.add("Default", () => {
+  return <Badge color="green">Success</Badge>;
+});
+
+stories.add("Solid Badges", () => {
   return (
     <React.Fragment>
-      {["purple", "green", "red", "orange", "gray", "cyan"].map(color => (
-        <React.Fragment>
-          <Badge color={color} mr={2}>
-            {color}
-          </Badge>
-          <Badge color={color} variant="solid" mr={2}>
-            {color}
-          </Badge>
-          <Badge color={color} variant="outline">
-            {color}
-          </Badge>
-          <div />
-        </React.Fragment>
+      {["gray", "green", "red", "orange", "purple", "teal"].map(color => (
+        <Badge color={color} variant="solid" mr={2}>
+          {color}
+        </Badge>
+      ))}
+    </React.Fragment>
+  );
+});
+
+stories.add("Subtle Badges", () => {
+  return (
+    <React.Fragment>
+      {["gray", "green", "red", "orange", "purple", "teal"].map(color => (
+        <Badge color={color} mr={2}>
+          {color}
+        </Badge>
+      ))}
+    </React.Fragment>
+  );
+});
+
+stories.add("Outline Badges", () => {
+  return (
+    <React.Fragment>
+      {["gray", "green", "red", "orange", "purple", "teal"].map(color => (
+        <Badge color={color} variant="outline" mr={2}>
+          {color}
+        </Badge>
       ))}
     </React.Fragment>
   );

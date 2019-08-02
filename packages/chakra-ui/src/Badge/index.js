@@ -3,12 +3,14 @@ import { jsx } from "@emotion/core";
 import propTypes from "prop-types";
 import useBadgeStyle from "./styles";
 import Box from "../Box";
+import { forwardRef } from "react";
 
-const Badge = ({ color, variant, ...props }) => {
+const Badge = forwardRef(({ color, variant, ...props }, ref) => {
   const badgeStyleProps = useBadgeStyle({ color, variant });
 
   return (
     <Box
+      ref={ref}
       display="inline-block"
       px={1}
       textTransform="uppercase"
@@ -21,14 +23,14 @@ const Badge = ({ color, variant, ...props }) => {
       {...props}
     />
   );
-};
+});
 
 Badge.propTypes = {
   variant: propTypes.oneOf(["solid", "subtle", "outline"])
 };
 
 Badge.defaultProps = {
-  color: "red",
+  color: "gray",
   variant: "subtle"
 };
 

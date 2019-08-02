@@ -8,7 +8,7 @@ import { useUIMode } from "../ThemeProvider";
 
 export const MoreIndicator = ({ size, label, ...props }) => {
   const borderColor = { light: "#fff", dark: "gray.900" };
-  const bg = { light: "gray.200", dark: "alpha.400" };
+  const bg = { light: "gray.200", dark: "whiteAlpha.400" };
 
   const { mode } = useUIMode();
 

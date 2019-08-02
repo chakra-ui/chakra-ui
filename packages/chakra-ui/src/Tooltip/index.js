@@ -55,7 +55,7 @@ const Tooltip = ({
 
   const { mode } = useUIMode();
   const _bg = mode === "dark" ? "gray.300" : "gray.700";
-  const _color = mode === "dark" ? "gray.900" : "alpha.900";
+  const _color = mode === "dark" ? "gray.900" : "whiteAlpha.900";
 
   const bgColor = bg || _bg;
   const textColor = color || _color;

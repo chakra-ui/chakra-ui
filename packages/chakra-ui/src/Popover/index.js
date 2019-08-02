@@ -62,7 +62,7 @@ const Popover = ({
   const { mode } = useUIMode();
 
   const _bgColor = mode === "light" ? "white" : "gray.700";
-  const _color = mode === "light" ? "gray.900" : "alpha.900";
+  const _color = mode === "light" ? "gray.900" : "whiteAlpha.900";
 
   const bg = rest.bg || rest.background || rest.backgroundColor || _bgColor;
   const color = rest.color || _color;

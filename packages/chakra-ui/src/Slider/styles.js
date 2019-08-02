@@ -47,9 +47,9 @@ const themedTrackStyle = {
     }
   },
   dark: {
-    bg: "alpha.200",
+    bg: "whiteAlpha.200",
     _disabled: {
-      bg: "alpha.300"
+      bg: "whiteAlpha.300"
     }
   }
 };

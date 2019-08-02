@@ -19,15 +19,15 @@ const themedProps = {
     }
   },
   dark: {
-    color: "alpha.800",
-    borderColor: "alpha.300",
+    color: "whiteAlpha.800",
+    borderColor: "whiteAlpha.300",
     _lastChild: {
       roundedBottomRight: 3,
       mt: -1,
       borderTopWidth: 1
     },
     _active: {
-      bg: "alpha.300"
+      bg: "whiteAlpha.300"
     }
   }
 };

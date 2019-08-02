@@ -2,30 +2,32 @@
 import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
 import { useRef, useState } from "react";
-import AlertDialog from ".";
-import Button from "../Button";
-import {
+import AlertDialog, {
   AlertDialogBody,
   AlertDialogFooter,
   AlertDialogHeader
-} from "./components";
+} from ".";
+import Button from "../Button";
+import Heading from "../Heading";
 
 const stories = storiesOf("AlertDialog", module);
 
 const SampleDialog = () => {
-  const [open, setOpen] = useState();
-  const close = () => setOpen(false);
+  const [isOpen, setIsOpen] = useState();
+  const onClose = () => setIsOpen(false);
   const cancelRef = useRef();
 
   return (
     <div>
-      <Button onClick={() => setOpen(true)}>Delete something</Button>
+      <Button onClick={() => setIsOpen(true)}>Delete something</Button>
       <AlertDialog
-        isOpen={open}
+        isOpen={isOpen}
         leastDestructiveRef={cancelRef}
-        onClose={close}
+        onClose={onClose}
       >
-        <AlertDialogHeader>Please Confirm!</AlertDialogHeader>
+        <AlertDialogHeader>
+          <Heading as="h2">Please Confirm!</Heading>
+        </AlertDialogHeader>
 
         <AlertDialogBody>
           Are you sure you want to delete something? This action is permanent,
@@ -34,10 +36,10 @@ const SampleDialog = () => {
         </AlertDialogBody>
 
         <AlertDialogFooter>
-          <Button ref={cancelRef} onClick={close}>
+          <Button ref={cancelRef} onClick={onClose}>
             Nevermind
           </Button>
-          <Button color="red" onClick={close} ml={3}>
+          <Button color="red" onClick={onClose} ml={3}>
             Yes, delete
           </Button>
         </AlertDialogFooter>

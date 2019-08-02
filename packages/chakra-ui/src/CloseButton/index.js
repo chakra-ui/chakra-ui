@@ -5,11 +5,11 @@ import PseudoBox from "../PseudoBox";
 import { useUIMode } from "../ThemeProvider";
 
 const baseProps = ({ mode }) => {
-  const hover = { light: "gray.100", dark: "alpha.100" };
   return {
     transition: "all 0.2s",
     flex: "0 0 auto",
-    _hover: { bg: hover[mode] },
+    _hover: { bg: "blackAlpha.100" },
+    _active: { bg: "blackAlpha.200" },
     _disabled: {
       cursor: "not-allowed"
     },
@@ -20,9 +20,17 @@ const baseProps = ({ mode }) => {
 };
 
 const sizes = {
+  lg: {
+    button: "40px",
+    icon: "16px"
+  },
   md: {
     button: "32px",
     icon: "12px"
+  },
+  sm: {
+    button: "24px",
+    icon: "10px"
   }
 };
 
@@ -48,13 +56,19 @@ const CloseButton = ({
       onClick={onClick}
       aria-label={ariaLabel}
       tabindex="0"
-      rounded="full"
+      rounded="md"
       as="button"
       size={_size.button}
       {...baseProps({ mode })}
       {...rest}
     >
-      <Icon color={color} name={icon} aria-hidden size={_size.icon} />
+      <Icon
+        color={color}
+        focusable="false"
+        name={icon}
+        aria-hidden
+        size={_size.icon}
+      />
     </PseudoBox>
   );
 };

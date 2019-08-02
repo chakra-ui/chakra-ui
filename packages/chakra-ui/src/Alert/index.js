@@ -9,7 +9,7 @@ import { createContext, useContext } from "react";
 import Box from "../Box";
 
 const AlertTitle = props => <Text as="h2" fontWeight="bold" {...props} />;
-const AlertBody = props => <Box {...props} />;
+const AlertDescription = props => <Box {...props} />;
 const AlertContext = createContext();
 
 const statusIcons = {
@@ -17,6 +17,13 @@ const statusIcons = {
   warning: "warning-2",
   success: "check-circle",
   error: "warning"
+};
+
+const statusColors = {
+  error: "red",
+  warning: "orange",
+  info: "blue",
+  success: "green"
 };
 
 const AlertIcon = props => {
@@ -32,13 +39,6 @@ const AlertIcon = props => {
       {...props}
     />
   );
-};
-
-const statusColors = {
-  error: "red",
-  warning: "orange",
-  info: "blue",
-  success: "green"
 };
 
 const Alert = ({ status, variant, ...rest }) => {
@@ -71,4 +71,4 @@ Alert.propTypes = {
 };
 
 export default Alert;
-export { AlertTitle, AlertBody, AlertIcon };
+export { AlertTitle, AlertDescription, AlertIcon };

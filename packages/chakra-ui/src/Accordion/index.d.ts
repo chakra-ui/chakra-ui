@@ -17,13 +17,14 @@ interface IAccordion {
    */
   isOpen?: boolean;
   /**
-   * If `true`, expands the accordion by default.
+   * If `true`, expands the accordion by on initial mount.
    */
   defaultIsOpen?: boolean;
   /**
    * The callback fired when the accordion is expanded/collapsed.
+   *  @param {Boolean} isOpen - the next state of the accordion
    */
-  onChange?: () => void;
+  onChange?: (isOpen: boolean) => void;
   /**
    * The content of the accordion.
    * The children must be the `AccordionHeader` and `AccordionPanel` components.
@@ -47,10 +48,21 @@ export type AccordionHeaderProps = IAccordionHeader &
 
 export type AccordionPanelProps = RefAttributes<HTMLDivElement> & BoxProps;
 
+/**
+ * Accordions allow users to expand and collapse sections of content.
+ * It composes `Box` component.
+ */
 declare const Accordion: FC<AccordionProps>;
 
+/**
+ * AccordionHeader component composes `PseudoBox`, this means you can use
+ * the `_expanded`, `_disabled`, `_hover`, etc. props to style them
+ */
 export const AccordionHeader: FC<AccordionHeaderProps>;
 
+/**
+ * AccordionPanel component composes `Collapse` to provide the height animation
+ */
 export const AccordionPanel: ForwardRefExoticComponent<AccordionPanelProps>;
 
 export default Accordion;

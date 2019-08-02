@@ -148,10 +148,10 @@ const ColorList = ({
 const customCSS = ({ theme, mode }) => {
   const { gray, alpha, blue } = theme.colors;
 
-  const color = { light: gray[800], dark: alpha[800] };
-  const borderColor = { light: gray[200], dark: alpha[200] };
-  const backgroundColor = { light: "#fff", dark: alpha[50] };
-  const hoverBorderColor = { light: gray[300], dark: alpha[300] };
+  const color = { light: gray[800], dark: whiteAlpha[800] };
+  const borderColor = { light: gray[200], dark: whiteAlpha[200] };
+  const backgroundColor = { light: "#fff", dark: whiteAlpha[50] };
+  const hoverBorderColor = { light: gray[300], dark: whiteAlpha[300] };
   const focusBorderColor = blue[500];
 
   return css`

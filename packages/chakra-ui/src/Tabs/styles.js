@@ -94,7 +94,7 @@ const enclosedStyle = ({ color, mode, theme }) => {
 };
 
 const enclosedColoredStyle = ({ color, mode }) => {
-  const bg = { light: "gray.50", dark: "alpha.50" };
+  const bg = { light: "gray.50", dark: "whiteAlpha.50" };
   const _selectedColor = { light: `${color}.600`, dark: `${color}.300` };
   const _selectedBg = { light: `#fff`, dark: `gray.900` };
 

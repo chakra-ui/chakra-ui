@@ -7,7 +7,7 @@ import { useUIMode } from "../ThemeProvider";
 
 const InputAddon = ({ placement = "left", size = "md", ...props }) => {
   const { mode } = useUIMode();
-  const bg = { dark: "alpha.300", light: "gray.100" };
+  const bg = { dark: "whiteAlpha.300", light: "gray.100" };
   const _placement = {
     left: {
       mr: "-1px",

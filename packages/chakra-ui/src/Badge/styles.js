@@ -10,7 +10,7 @@ const solidStyle = ({ theme: { colors }, color }) => {
     },
     dark: {
       bg: darkModeBg,
-      color: "alpha.800"
+      color: "whiteAlpha.800"
     }
   };
 };

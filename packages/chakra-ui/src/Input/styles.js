@@ -6,9 +6,9 @@ const outlinedStyle = ({
   theme: { colors },
   mode
 }) => {
-  const bg = { light: "white", dark: "alpha.100" };
-  const borderColor = { light: "inherit", dark: "alpha.50" };
-  const hoverColor = { light: "gray.300", dark: "alpha.200" };
+  const bg = { light: "white", dark: "whiteAlpha.100" };
+  const borderColor = { light: "inherit", dark: "whiteAlpha.50" };
+  const hoverColor = { light: "gray.300", dark: "whiteAlpha.200" };
 
   const boxShadow = colors[_focusBorderColor][500];
 
@@ -47,8 +47,8 @@ const readOnly = {
 };
 
 const filledStyle = ({ _focusBorderColor, mode }) => {
-  const bg = { light: "gray.100", dark: "alpha.50" };
-  const hoverColor = { light: "gray.200", dark: "alpha.100" };
+  const bg = { light: "gray.100", dark: "whiteAlpha.50" };
+  const hoverColor = { light: "gray.200", dark: "whiteAlpha.100" };
   const invalidColor = { light: "red.500", dark: "red.300" };
   const focusColor = {
     light: `${_focusBorderColor}.500`,

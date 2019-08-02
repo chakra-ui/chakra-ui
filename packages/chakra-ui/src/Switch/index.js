@@ -38,7 +38,7 @@ const Switch = forwardRef(
       justifyContent: "flex-start",
       width,
       height,
-      bg: mode === "dark" ? "alpha.400" : "gray.300",
+      bg: mode === "dark" ? "whiteAlpha.400" : "gray.300",
       boxSizing: "content-box",
       p: "2px",
       _checked: {

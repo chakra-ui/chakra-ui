@@ -23,28 +23,36 @@ const sizes = {
 };
 
 const Spinner = forwardRef(
-  ({ size, loadingText = "Loading...", thickness, speed, ...props }, ref) => (
-    <Box
-      ref={ref}
-      border={`${props.thickness} solid`}
-      borderColor="currentColor"
-      borderBottomColor="transparent"
-      borderLeftColor="transparent"
-      rounded="full"
-      animation={`${spin} ${speed} linear infinite`}
-      size={sizes[size]}
-      {...props}
-    >
-      {loadingText && <VisuallyHidden>{loadingText}</VisuallyHidden>}
-    </Box>
-  )
-);
+  (
+    {
+      size = "md",
+      loadingText = "Loading...",
+      thickness = "2px",
+      speed = "0.45s",
+      ...props
+    },
+    ref
+  ) => {
+    const _size = sizes[size] || size;
 
-Spinner.defaultProps = {
-  speed: "0.35s",
-  size: "16px",
-  thickness: "2px"
-};
+    return (
+      <Box
+        ref={ref}
+        display="inline-block"
+        border={`${thickness} solid`}
+        borderColor="currentColor"
+        borderBottomColor="transparent"
+        borderLeftColor="transparent"
+        rounded="full"
+        animation={`${spin} ${speed} linear infinite`}
+        size={_size}
+        {...props}
+      >
+        {loadingText && <VisuallyHidden>{loadingText}</VisuallyHidden>}
+      </Box>
+    );
+  }
+);
 
 const spinCSS = speed => css`
   animation: ${spin} ${speed || "1s"} linear infinite;

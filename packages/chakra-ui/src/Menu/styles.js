@@ -33,8 +33,8 @@ const baseProps = {
 };
 
 const interactionProps = ({ mode }) => {
-  const _focusColor = { light: "gray.100", dark: "alpha.100" };
-  const _activeColor = { light: "gray.200", dark: "alpha.200" };
+  const _focusColor = { light: "gray.100", dark: "whiteAlpha.100" };
+  const _activeColor = { light: "gray.200", dark: "whiteAlpha.200" };
 
   return {
     _active: {

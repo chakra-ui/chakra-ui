@@ -10,9 +10,9 @@ const getThemedStyle = ({ colors }) => {
       borderColor: colors.gray[200]
     },
     dark: {
-      color: colors.alpha[900],
+      color: colors.whiteAlpha[900],
       bg: colors.gray[800],
-      borderColor: colors.alpha[300]
+      borderColor: colors.whiteAlpha[300]
     }
   };
 };

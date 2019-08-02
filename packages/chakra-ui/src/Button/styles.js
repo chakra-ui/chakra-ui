@@ -11,12 +11,12 @@ const grayGhostStyle = {
     }
   },
   dark: {
-    color: "alpha.900",
+    color: "whiteAlpha.900",
     _hover: {
-      bg: "alpha.200"
+      bg: "whiteAlpha.200"
     },
     _active: {
-      bg: "alpha.300"
+      bg: "whiteAlpha.300"
     }
   }
 };
@@ -59,7 +59,7 @@ const ghostVariantProps = ({ color, mode, theme }) => {
 const outlineVariantProps = props => {
   const { color, mode } = props;
   const borderColor = get(color, 500);
-  const _borderColor = { light: "gray.200", dark: "alpha.300" };
+  const _borderColor = { light: "gray.200", dark: "whiteAlpha.300" };
 
   return {
     border: "1px",
@@ -81,12 +81,12 @@ const graySolidStyle = {
     }
   },
   dark: {
-    bg: "alpha.200",
+    bg: "whiteAlpha.200",
     _hover: {
-      bg: "alpha.300"
+      bg: "whiteAlpha.300"
     },
     _active: {
-      bg: "alpha.400"
+      bg: "whiteAlpha.400"
     }
   }
 };

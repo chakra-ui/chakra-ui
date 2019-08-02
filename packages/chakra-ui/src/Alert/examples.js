@@ -1,8 +1,9 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
-import Alert, { AlertIcon, AlertTitle, AlertBody } from ".";
+import Alert, { AlertIcon, AlertTitle, AlertDescription } from ".";
 import Box from "../Box";
+import CloseButton from "../CloseButton";
 
 const stories = storiesOf("Alert", module).addDecorator(story => (
   <Box maxWidth="md" mx="auto" mt={4}>
@@ -16,7 +17,7 @@ stories.add("Subtle", () => {
       <AlertIcon size={5} />
       <Box flex="1">
         <AlertTitle>Holy Smokes!</AlertTitle>
-        <AlertBody>Something just happened!</AlertBody>
+        <AlertDescription>Something just happened!</AlertDescription>
       </Box>
     </Alert>
   );
@@ -28,8 +29,9 @@ stories.add("Solid", () => {
       <AlertIcon />
       <Box flex="1">
         <AlertTitle>Holy Smokes</AlertTitle>
-        <AlertBody>Something just happened!</AlertBody>
+        <AlertDescription>Something just happened!</AlertDescription>
       </Box>
+      <CloseButton position="absolute" right="8px" top="8px" />
     </Alert>
   );
 });
