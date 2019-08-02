@@ -6,9 +6,9 @@ import { cloneElement, useRef, Children } from "react";
 import { Manager, Popper, Reference } from "react-popper";
 import { assignRef, genId } from "../utils";
 import { PopoverTransition, popperStyle } from "../Popover/components";
-import { useDisclosure } from "../hooks";
 import { useUIMode } from "../ThemeProvider";
 import Box from "../Box";
+import useDisclosure from "../useDisclosure";
 
 const TooltipContent = styled(Box)`
   ${popperStyle}
