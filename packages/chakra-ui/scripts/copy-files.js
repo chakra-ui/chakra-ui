@@ -1,5 +1,4 @@
-// Adapted from https://github.com/mui-org/material-ui/blob/master/scripts/copy-files.js
-
+/* eslint-disable no-console */
 const path = require("path");
 const fse = require("fs-extra");
 const glob = require("glob");
@@ -7,8 +6,6 @@ const glob = require("glob");
 const packagePath = process.cwd();
 const buildPath = path.join(packagePath, "./lib");
 const srcPath = path.join(packagePath, "./src");
-
-console.log(packagePath);
 
 async function includeFileInBuild(file) {
   const sourcePath = path.resolve(packagePath, file);
@@ -36,7 +33,7 @@ async function createModulePackages({ from, to }) {
     directoryPackages.map(async directoryPackage => {
       const packageJson = {
         sideEffects: false,
-        module: path.join("../es", directoryPackage, "index.js"),
+        module: path.join("../esm", directoryPackage, "index.js"),
         typings: "./index.d.ts"
       };
       const packageJsonPath = path.join(to, directoryPackage, "package.json");
@@ -105,7 +102,7 @@ async function prepend(file, string) {
 }
 
 async function addLicense(packageData) {
-  const license = `/** @license Chakra-UI v${packageData.version}
+  const license = `/** @license Chakra UI v${packageData.version}
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -113,10 +110,10 @@ async function addLicense(packageData) {
 `;
   await Promise.all(
     [
-      "./lib/index.js",
+      "./index.js",
       "./es/index.js",
-      "./umd/chakra-ui.development.js",
-      "./umd/chakra-ui.production.min.js"
+      "./umd/chakra-ui.min.js",
+      "./umd/chakra-ui.js"
     ].map(async file => {
       try {
         await prepend(path.resolve(buildPath, file), license);
@@ -133,16 +130,21 @@ async function addLicense(packageData) {
 
 async function run() {
   try {
-    // const packageData = await createPackageFile();
+    const packageData = await createPackageFile();
 
-    // await Promise.all(["./README.md"].map(file => includeFileInBuild(file)));
+    await Promise.all(
+      [
+        // use enhanced readme from workspace root for `chakra-ui`
+        "./README.md"
+      ].map(file => includeFileInBuild(file))
+    );
 
-    // await addLicense(packageData);
+    await addLicense(packageData);
 
     // TypeScript
     await typescriptCopy({ from: srcPath, to: buildPath });
 
-    // await createModulePackages({ from: srcPath, to: buildPath });
+    await createModulePackages({ from: srcPath, to: buildPath });
   } catch (err) {
     console.error(err);
     process.exit(1);
