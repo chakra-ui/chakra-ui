@@ -29,6 +29,18 @@
       "pre-commit": "lint-staged"
     }
   },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix"
+    ],
+    "*.ts": [
+      "tslint -c tslint.json"
+    ],
+    "**/*.+(js|jsx|ts|tsx|d.ts|md|mdx)": [
+      "prettier --write",
+      "git add"
+    ]
+  },
   "dependencies": {
     "@reach/alert": "0.1.5",
     "@reach/alert-dialog": "0.2.9",
