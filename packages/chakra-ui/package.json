@@ -5,14 +5,8 @@
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
   "sideEffects": false,
-  "types": "index.d.ts",
-  "files": [
-    "es",
-    "lib",
-    "umd"
-  ],
   "scripts": {
-    "build": "yarn build:cjs && yarn build:esm && yarn build:es && yarn copy-ts",
+    "build": "yarn build:cjs && yarn build:esm && yarn copy-ts",
     "prebuild": "rimraf dist",
     "build:cjs": "cross-env NODE_ENV=production BABEL_ENV=cjs babel ./src --out-dir ./dist --ignore \"**/examples.js\"",
     "build:esm": "cross-env NODE_ENV=production BABEL_ENV=esm babel ./src --out-dir ./dist/esm --ignore \"**/examples.js\"",
