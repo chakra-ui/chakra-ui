@@ -1,6 +1,6 @@
-import { FC } from "react";
+import * as React from "react";
 import { BoxProps } from "../Box";
 
-declare const KeyboardKey: FC<BoxProps>;
+declare const KeyboardKey: React.FC<BoxProps>;
 
 export default KeyboardKey;

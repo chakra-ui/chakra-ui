@@ -1,4 +1,4 @@
-import { ReactNode, FC } from "react";
+import * as React from "react";
 import { BoxProps } from "../Box";
 import { PseudoBoxProps } from "../PseudoBox";
 
@@ -52,15 +52,15 @@ interface IEditable {
    *  Ideally only `EditablePreview` and `EditableInput` should
    *  be the children (but you add other elements too)
    */
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
 export type EditableProps = IEditable & BoxProps;
 
-export const EditablePreview: FC<PseudoBoxProps>;
+export const EditablePreview: React.FC<PseudoBoxProps>;
 
-export const EditableInput: FC<PseudoBoxProps>;
+export const EditableInput: React.FC<PseudoBoxProps>;
 
-declare const Editable: FC<EditableProps>;
+declare const Editable: React.FC<EditableProps>;
 
 export default Editable;

@@ -8,17 +8,16 @@ import Box from "../Box";
 import Absolute from "../Absolute";
 
 const Select = forwardRef(
-  ({ children, placeholder, wrapperProps, flex, ...rest }, ref) => {
-    let { mode } = useUIMode();
-    let themedColor = mode === "dark" ? "whiteAlpha.800" : "inherit";
-    let opacity = rest.isReadOnly || rest.isDisabled ? 0.5 : 1;
+  ({ children, placeholder, wrapperProps, ...rest }, ref) => {
+    const { mode } = useUIMode();
+    const themedColor = mode === "dark" ? "whiteAlpha.800" : "inherit";
+    const opacity = rest.isReadOnly || rest.isDisabled ? 0.5 : 1;
 
     return (
       <Box
         position="relative"
         width="100%"
         color={themedColor}
-        flex={flex}
         {...wrapperProps}
       >
         <Input

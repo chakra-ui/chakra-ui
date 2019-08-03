@@ -1,8 +1,8 @@
 import { BoxProps } from "../Box";
-import { RefAttributes, ForwardRefExoticComponent } from "react";
+import * as React from "react";
 
-export type GridProps = BoxProps & RefAttributes<HTMLDivElement>
+export type GridProps = BoxProps & React.RefAttributes<HTMLDivElement>;
 
-declare const Grid: ForwardRefExoticComponent<GridProps>;
+declare const Grid: React.ForwardRefExoticComponent<GridProps>;
 
 export default Grid;

@@ -1,5 +1,5 @@
 import { BoxProps } from "../Box";
-import { ForwardRefExoticComponent, RefAttributes } from "react";
+import * as React from "react";
 
 interface ICollapse {
   isOpen?: boolean;
@@ -10,8 +10,10 @@ interface ICollapse {
   collapsedHeight?: number;
 }
 
-export type CollapseProps = ICollapse & BoxProps & RefAttributes<HTMLDivElement>;
+export type CollapseProps = ICollapse &
+  BoxProps &
+  React.RefAttributes<HTMLDivElement>;
 
-declare const Collapse: ForwardRefExoticComponent<CollapseProps>;
+declare const Collapse: React.ForwardRefExoticComponent<CollapseProps>;
 
 export default Collapse;

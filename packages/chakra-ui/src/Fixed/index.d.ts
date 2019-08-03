@@ -1,8 +1,8 @@
 import { BoxProps } from "../Box";
-import { RefAttributes, ForwardRefExoticComponent } from "react";
+import * as React from "react";
 
-export type FixedProps = BoxProps & RefAttributes<HTMLDivElement>
+export type FixedProps = BoxProps & React.RefAttributes<HTMLDivElement>;
 
-declare const Fixed: ForwardRefExoticComponent<FixedProps>;
+declare const Fixed: React.ForwardRefExoticComponent<FixedProps>;
 
 export default Fixed;

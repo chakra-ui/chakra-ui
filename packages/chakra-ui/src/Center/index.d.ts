@@ -1,8 +1,8 @@
-import { ForwardRefExoticComponent, RefAttributes } from "react";
+import * as React from "react";
 import { BoxProps } from "../Box";
 
-type CenterProps = BoxProps & RefAttributes<HTMLDivElement>;
+type CenterProps = BoxProps & React.RefAttributes<HTMLDivElement>;
 
-declare const Center: ForwardRefExoticComponent<CenterProps>;
+declare const Center: React.ForwardRefExoticComponent<CenterProps>;
 
 export default Center;

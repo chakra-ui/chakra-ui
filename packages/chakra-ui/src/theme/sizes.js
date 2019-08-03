@@ -45,25 +45,6 @@ const containers = {
 };
 
 const components = {
-  spinner: {
-    xl: "2.5rem",
-    lg: "1.75rem",
-    md: "1.25rem",
-    sm: "1rem",
-    xs: "0.75rem"
-  },
-  progressbar: {
-    lg: "1rem",
-    md: "0.75rem",
-    sm: "0.5rem"
-  },
-  closeButton: {
-    sm: "0.5rem",
-    md: "0.8rem",
-    lg: "1.25rem",
-    xl: "1.5rem",
-    "2xl": "2.25rem"
-  },
   switch: {
     sm: {
       width: "1.375rem",

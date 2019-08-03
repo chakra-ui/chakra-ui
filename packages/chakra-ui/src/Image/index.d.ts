@@ -1,5 +1,5 @@
 import { BoxProps } from "../Box";
-import { FC } from "react";
+import * as React from "react";
 
 interface IImage {
   /**
@@ -27,6 +27,6 @@ interface IImage {
 
 export type ImageProps = IImage & BoxProps;
 
-declare const Image: FC<ImageProps>;
+declare const Image: React.FC<ImageProps>;
 
 export default Image;

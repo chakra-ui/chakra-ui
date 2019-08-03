@@ -1,5 +1,5 @@
 import * as React from "react";
-import { IInputProps } from "../Input";
+import { IInput } from "../Input";
 import { BoxProps } from "../Box";
 
 interface IInputAddon {
@@ -10,7 +10,7 @@ interface IInputAddon {
   /**
    * The size of the addon is inherited from the `InputGroup` via `cloneElement`.
    */
-  size?: IInputProps["size"];
+  size?: IInput["size"];
   /**
    * The position the addon should appear relative to the `Input`.
    * We added `InputLeftAddon` and `InputRightAddon` so you might not need to pass this

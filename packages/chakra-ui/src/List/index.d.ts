@@ -1,5 +1,5 @@
 import { BoxProps } from "../Box";
-import { FC, ReactNode } from "react";
+import * as React from "react";
 
 interface IList {
   /**
@@ -17,7 +17,7 @@ interface IList {
   /**
    * The contents of the list.
    */
-  children?: ReactNode;
+  children?: React.ReactNode;
   /**
    * If `true` add extra styles to the list.
    */
@@ -34,6 +34,6 @@ interface IList {
 
 export type ListProps = IList & BoxProps;
 
-declare const List: FC<ListProps>;
+declare const List: React.FC<ListProps>;
 
 export default List;

@@ -1,4 +1,4 @@
-import { FC, ReactNode, ReactElement } from "react";
+import * as React from "react";
 
 interface IDrawer {
   /**
@@ -12,7 +12,7 @@ interface IDrawer {
   /**
    * Callback invoked when user closes the drawer.
    */
-  children: ReactNode;
+  children: React.ReactNode;
   /**
    * The size of the drawer.
    */
@@ -48,7 +48,7 @@ interface IDrawer {
 
 interface IDrawerTransition {
   isOpen: boolean;
-  children: ReactNode;
+  children: React.ReactNode;
   duration: number;
   placement: string;
   isFullHeight: boolean;
@@ -58,8 +58,8 @@ export type DrawerProps = IDrawer;
 
 export type DrawerTransitionProps = IDrawerTransition;
 
-declare const Drawer: FC<DrawerProps>;
+declare const Drawer: React.FC<DrawerProps>;
 
-export const DrawerTransition: FC<DrawerTransitionProps>;
+export const DrawerTransition: React.FC<DrawerTransitionProps>;
 
 export default Drawer;

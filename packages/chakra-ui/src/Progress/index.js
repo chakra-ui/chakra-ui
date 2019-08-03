@@ -5,6 +5,7 @@ import VisuallyHidden from "../VisuallyHidden";
 import { useUIMode } from "../ThemeProvider";
 import Box from "../Box";
 import { generateStripe } from "../theme/colors.utils";
+import { valueToPercent } from "../Slider/index";
 
 const stripe = keyframes`
   from { background-position: 1rem 0}
@@ -17,6 +18,12 @@ const stripeAnimation = css`
 
 export const stripeStyle = generateStripe({});
 
+const progressbarSizes = {
+  lg: "1rem",
+  md: "0.75rem",
+  sm: "0.5rem"
+};
+
 const Progress = ({
   color = "blue",
   value = 63,
@@ -25,16 +32,14 @@ const Progress = ({
   size = "md",
   hasStripe,
   isAnimated,
-  borderRadius,
   ...rest
 }) => {
   const { mode } = useUIMode();
-  const percent = (value / max) * 100;
+  const percent = valueToPercent(value, min, max);
   return (
     <Box
       className="progress"
-      height={`progressbar.${size}`}
-      borderRadius={borderRadius}
+      height={progressbarSizes[size]}
       bg={mode === "dark" ? "whiteAlpha.300" : "gray.100"}
       overflow="hidden"
       {...rest}
@@ -46,7 +51,7 @@ const Progress = ({
         aria-valuemin={min}
         aria-valuenow={value}
         role="progressbar"
-        borderRadius={borderRadius}
+        borderRadius="full"
         transition="all 0.3s"
         width={`${percent}%`}
         css={[

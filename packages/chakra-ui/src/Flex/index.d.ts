@@ -1,8 +1,8 @@
 import { BoxProps } from "../Box";
-import { RefAttributes, ForwardRefExoticComponent } from "react";
+import * as React from "react";
 
-export type FlexProps = BoxProps & RefAttributes<HTMLDivElement>
+export type FlexProps = BoxProps & React.RefAttributes<HTMLDivElement>;
 
-declare const Flex: ForwardRefExoticComponent<FlexProps>;
+declare const Flex: React.ForwardRefExoticComponent<FlexProps>;
 
 export default Flex;

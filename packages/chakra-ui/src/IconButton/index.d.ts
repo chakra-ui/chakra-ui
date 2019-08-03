@@ -1,4 +1,4 @@
-import { ForwardRefExoticComponent, RefAttributes } from "react";
+import * as React from "react";
 import { ButtonProps } from "../Button";
 
 interface IIconButton extends ButtonProps {
@@ -17,8 +17,8 @@ interface IIconButton extends ButtonProps {
   "aria-label": string;
 }
 
-export type IconButtonProps = IIconButton & RefAttributes<HTMLDivElement>;
+export type IconButtonProps = IIconButton & React.RefAttributes<HTMLDivElement>;
 
-declare const IconButton: ForwardRefExoticComponent<IconButtonProps>;
+declare const IconButton: React.ForwardRefExoticComponent<IconButtonProps>;
 
 export default IconButton;

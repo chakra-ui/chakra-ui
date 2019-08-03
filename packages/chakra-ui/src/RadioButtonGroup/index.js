@@ -12,7 +12,7 @@ const RadioButtonGroup = ({
   value: controlledValue,
   onChange,
   spacing = "12px",
-  inline,
+  isInline,
   ...rest
 }) => {
   const isControlled = controlledValue != null;
@@ -66,9 +66,7 @@ const RadioButtonGroup = ({
     const isLastChild = children.length === index + 1;
     const isFirstChild = index === 0;
 
-    const spacingProps = inline
-      ? { marginRight: spacing }
-      : { marginBottom: spacing };
+    const spacingProps = isInline ? { mr: spacing } : { mb: spacing };
 
     const isChecked = child.props.value === _value;
 
@@ -91,7 +89,7 @@ const RadioButtonGroup = ({
       onClick: handleClick,
       tabIndex: getTabIndex(),
       isChecked,
-      ...(inline && !isLastChild && { css: spacingProps })
+      ...(!isLastChild && spacingProps)
     });
   });
 

@@ -1,4 +1,4 @@
-import { ReactNode, RefAttributes, ForwardRefExoticComponent } from "react";
+import * as React from "react";
 import { BoxProps } from "../Box";
 
 interface ICheckbox {
@@ -61,13 +61,13 @@ interface ICheckbox {
   /**
    * The children is the label to be displayed to the right of the checkbox.
    */
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
 export type CheckboxProps = ICheckbox &
-  RefAttributes<HTMLDivElement> &
+  React.RefAttributes<HTMLDivElement> &
   BoxProps;
 
-declare const Checkbox: ForwardRefExoticComponent<CheckboxProps>;
+declare const Checkbox: React.ForwardRefExoticComponent<CheckboxProps>;
 
 export default Checkbox;

@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import CloseButton from "../CloseButton";
 import { useUIMode } from "../ThemeProvider";
 import { ModalTransition, ModalOverlay, ModalContent } from "./components";
 
@@ -8,10 +7,10 @@ const Modal = ({
   isOpen,
   onClose,
   children,
-  hasCloseButton,
   size = "md",
   isCentered,
-  initialFocusRef
+  initialFocusRef,
+  ...rest
 }) => {
   const { mode } = useUIMode();
   const centeredStyle = {
@@ -41,16 +40,9 @@ const Modal = ({
               borderRadius: radii.md,
               transform: `translate3d(0px, ${styles.y}px, 0px)`
             })}
+            {...rest}
           >
             {children}
-            {hasCloseButton && (
-              <CloseButton
-                onClick={onClose}
-                position="absolute"
-                top="8px"
-                right="12px"
-              />
-            )}
           </ModalContent>
         </ModalOverlay>
       )}

@@ -13,11 +13,11 @@ import useSliderStyle from "./styles";
 import PseudoBox from "../PseudoBox";
 import { mergeRefs } from "../utils";
 
-function valueToPercent(value, min, max) {
+export function valueToPercent(value, min, max) {
   return ((value - min) * 100) / (max - min);
 }
 
-function percentToValue(percent, min, max) {
+export function percentToValue(percent, min, max) {
   return (max - min) * percent + min;
 }
 

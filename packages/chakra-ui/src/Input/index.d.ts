@@ -1,20 +1,9 @@
-import {
-  ReactElement,
-  RefAttributes,
-  InputHTMLAttributes,
-  ForwardRefExoticComponent,
-  ElementType,
-  SyntheticEvent,
-  ChangeEventHandler,
-  FocusEventHandler,
-  KeyboardEventHandler,
-  AriaAttributes
-} from "react";
+import * as React from "react";
 import { PseudoBoxProps } from "../PseudoBox";
 
 type InputElemType = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 
-export interface IInputProps {
+export interface IInput {
   /**
    * The standard HTML input autocomplete attribute.
    *
@@ -113,12 +102,12 @@ export interface IInputProps {
   /**
    * The component to use in place of `input`
    */
-  as?: ElementType;
+  as?: React.ReactType;
   /**
    * Accessibility label to use, in scenarios where the input as no visible label
    * A11y: It's useful for screen readers
    */
-  "aria-label"?: AriaAttributes["aria-label"];
+  "aria-label"?: React.AriaAttributes["aria-label"];
 
   /**
    * The border color when the input is focused.
@@ -129,10 +118,10 @@ export interface IInputProps {
   _focusBorderColor?: string;
 }
 
-export type InputProps = IInputProps &
+export type InputProps = IInput &
   PseudoBoxProps &
-  RefAttributes<InputElemType>;
+  React.RefAttributes<InputElemType>;
 
-declare const Input: ForwardRefExoticComponent<InputProps>;
+declare const Input: React.ForwardRefExoticComponent<InputProps>;
 
 export default Input;

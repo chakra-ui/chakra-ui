@@ -6,6 +6,7 @@ import FormControl from "../FormControl";
 import Input from "../Input";
 import Modal, { ModalBody, ModalFooter, ModalHeader } from "../Modal";
 import FormLabel from "../FormLabel";
+import CloseButton from "../CloseButton";
 
 const stories = storiesOf("Modal", module);
 stories.addDecorator(story => {
@@ -19,12 +20,18 @@ stories.addDecorator(story => {
 stories.add("Default", () => {
   const SampleModal = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const close = () => setIsOpen(false);
     return (
       <Fragment>
-        <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-          <ModalHeader onClose={() => setIsOpen(false)}>
-            Create your account
-          </ModalHeader>
+        <Modal isOpen={isOpen} onClose={close}>
+          <ModalHeader onClose={close}>Create your account</ModalHeader>
+
+          <CloseButton
+            onClick={close}
+            position="absolute"
+            top="8px"
+            right="12px"
+          />
 
           <ModalBody pb={6}>
             <FormControl mb={4}>
@@ -34,10 +41,10 @@ stories.add("Default", () => {
           </ModalBody>
 
           <ModalFooter>
-            <Button variant="outline" mr={3} onClick={() => setIsOpen(false)}>
+            <Button variant="outline" mr={3} onClick={close}>
               Cancel
             </Button>
-            <Button color="blue" onClick={() => setIsOpen(false)}>
+            <Button color="blue" onClick={close}>
               Save
             </Button>
           </ModalFooter>

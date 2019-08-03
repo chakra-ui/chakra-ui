@@ -1,14 +1,8 @@
-import {
-  RefAttributes,
-  ForwardRefExoticComponent,
-  RefForwardingComponent,
-  FunctionComponent,
-  ReactNode
-} from "react";
-import { MarginRightProps } from "styled-system";
+import * as React from "react";
+import * as StyledSystem from "styled-system";
 import { PseudoBoxProps } from "../PseudoBox";
 
-export interface ICommonProps {
+export interface IButton {
   /**
    * The size of the button. Use the sizes in `theme.sizes.button`
    */
@@ -17,9 +11,6 @@ export interface ICommonProps {
    * If `true`, the button will show a spinner.
    */
   isLoading?: boolean;
-}
-
-interface IButton {
   /**
    * The color of the button. Use the colors passed in `theme.colors`.
    */
@@ -48,7 +39,7 @@ interface IButton {
   /**
    * The content of the button.
    */
-  children: ReactNode;
+  children: React.ReactNode;
   /**
    * If added, the button will show an icon before the button's label.
    * Use the icon key in `theme.iconPath`
@@ -63,14 +54,13 @@ interface IButton {
    * The space between the button icon and label.
    * Use the styled-system tokens or add custom values as a string
    */
-  iconSpacing?: MarginRightProps;
+  iconSpacing?: StyledSystem.MarginRightProps;
 }
 
 export type ButtonProps = IButton &
-  ICommonProps &
   PseudoBoxProps &
-  RefAttributes<HTMLButtonElement>;
+  React.RefAttributes<HTMLButtonElement>;
 
-declare const Button: ForwardRefExoticComponent<ButtonProps>;
+declare const Button: React.ForwardRefExoticComponent<ButtonProps>;
 
 export default Button;

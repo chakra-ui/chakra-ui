@@ -6,6 +6,7 @@ import Box from "../Box";
 import FormHelperText from "../FormHelperText";
 import FormLabel from "../FormLabel";
 import Input from "../Input";
+import Select from "../Select";
 import { InputLeftAddon } from "../InputAddon";
 import InputGroup from "../InputGroup";
 import FormValidationText from "../FormValidationText";
@@ -20,6 +21,13 @@ stories.add("Default", () => (
   <FormControl isRequired>
     <FormLabel htmlFor="fname">First name</FormLabel>
     <Input id="fname" placeholder="First name" />
+  </FormControl>
+));
+
+stories.add("with select", () => (
+  <FormControl isInvalid>
+    <FormLabel htmlFor="fname">First name</FormLabel>
+    <Select id="fname" placeholder="First name" />
   </FormControl>
 ));
 
