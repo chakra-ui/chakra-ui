@@ -55,7 +55,7 @@ export { default as RadioButtonGroup } from "./RadioButtonGroup";
 
 export { default as Select } from "./Select";
 export { default as Slider } from "./Slider";
-export { default as Stat } from "./Stat";
+export * from "./Stat";
 export { default as Switch } from "./Switch";
 
 export { default as Tabs } from "./Tabs";

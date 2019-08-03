@@ -1,10 +1,10 @@
-/coverage
-/demo/dist
-/es
-/lib
-/node_modules
-/umd
+coverage
+es
+dist
+node_modules
+umd
 npm-debug.log*
 .env
 *.log
 yarn.lock
+.rpt2_cache

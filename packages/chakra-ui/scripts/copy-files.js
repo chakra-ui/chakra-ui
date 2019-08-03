@@ -4,7 +4,7 @@ const fse = require("fs-extra");
 const glob = require("glob");
 
 const packagePath = process.cwd();
-const buildPath = path.join(packagePath, "./lib");
+const buildPath = path.join(packagePath, "./dist");
 const srcPath = path.join(packagePath, "./src");
 
 async function includeFileInBuild(file) {
@@ -33,7 +33,7 @@ async function createModulePackages({ from, to }) {
     directoryPackages.map(async directoryPackage => {
       const packageJson = {
         sideEffects: false,
-        module: path.join("../es", directoryPackage, "index.js"),
+        module: path.join("../esm", directoryPackage, "index.js"),
         typings: "./index.d.ts"
       };
       const packageJsonPath = path.join(to, directoryPackage, "package.json");
@@ -81,7 +81,7 @@ async function createPackageFile() {
     ...packageDataOther,
     private: false,
     main: "./index.js",
-    module: "./es/index.js",
+    module: "./esm/index.js",
     typings: "./index.d.ts"
   };
   const targetPath = path.resolve(buildPath, "./package.json");
@@ -111,7 +111,7 @@ async function addLicense(packageData) {
   await Promise.all(
     [
       "./index.js",
-      "./es/index.js",
+      "./esm/index.js",
       "./umd/chakra-ui.min.js",
       "./umd/chakra-ui.js"
     ].map(async file => {
@@ -130,21 +130,21 @@ async function addLicense(packageData) {
 
 async function run() {
   try {
-    // const packageData = await createPackageFile();
+    const packageData = await createPackageFile();
 
-    // await Promise.all(
-    //   [
-    //     // use enhanced readme from workspace root for `chakra-ui`
-    //     "./README.md"
-    //   ].map(file => includeFileInBuild(file))
-    // );
+    await Promise.all(
+      [
+        // use enhanced readme from workspace root for `chakra-ui`
+        "./README.md"
+      ].map(file => includeFileInBuild(file))
+    );
 
-    // await addLicense(packageData);
+    await addLicense(packageData);
 
     // TypeScript
     await typescriptCopy({ from: srcPath, to: buildPath });
 
-    // await createModulePackages({ from: srcPath, to: buildPath });
+    await createModulePackages({ from: srcPath, to: buildPath });
   } catch (err) {
     console.error(err);
     process.exit(1);
