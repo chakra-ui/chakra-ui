@@ -1,4 +1,3 @@
-/** @jsx jsx */
 import { useTheme, useUIMode } from "../ThemeProvider";
 
 const outlinedStyle = ({
