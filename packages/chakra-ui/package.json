@@ -1,6 +1,6 @@
 {
   "name": "chakra-ui",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Responsive and accessible React UI components built with React and Emotion",
   "main": "lib/index.js",
   "module": "es/index.js",
