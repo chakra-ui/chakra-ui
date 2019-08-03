@@ -83,7 +83,7 @@ async function createPackageFile() {
   const newPackageData = {
     ...packageDataOther,
     private: false,
-    main: "./lib/index.js",
+    main: "./index.js",
     module: "./es/index.js",
     typings: "./index.d.ts"
   };
