@@ -130,21 +130,21 @@ async function addLicense(packageData) {
 
 async function run() {
   try {
-    const packageData = await createPackageFile();
+    // const packageData = await createPackageFile();
 
-    await Promise.all(
-      [
-        // use enhanced readme from workspace root for `chakra-ui`
-        "./README.md"
-      ].map(file => includeFileInBuild(file))
-    );
+    // await Promise.all(
+    //   [
+    //     // use enhanced readme from workspace root for `chakra-ui`
+    //     "./README.md"
+    //   ].map(file => includeFileInBuild(file))
+    // );
 
-    await addLicense(packageData);
+    // await addLicense(packageData);
 
     // TypeScript
     await typescriptCopy({ from: srcPath, to: buildPath });
 
-    await createModulePackages({ from: srcPath, to: buildPath });
+    // await createModulePackages({ from: srcPath, to: buildPath });
   } catch (err) {
     console.error(err);
     process.exit(1);
