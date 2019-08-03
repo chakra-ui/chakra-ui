@@ -20,9 +20,7 @@ interface IIcon {
   role?: "presentation" | "img";
 }
 
-export type IconProps = IIcon &
-  BoxProps &
-  Pick<React.ReactSVGElement<HTMLOrSVGElement>, "focusable">;
+export type IconProps = IIcon & BoxProps;
 
 declare const Icon: React.FC<IconProps>;
 

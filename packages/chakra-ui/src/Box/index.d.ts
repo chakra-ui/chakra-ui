@@ -28,7 +28,9 @@ interface ICustomConfig {
   overflowY?: StyledSystem.ResponsiveValue<CSS.OverflowYProperty>;
   appearance?: StyledSystem.ResponsiveValue<CSS.AppearanceProperty>;
   transform?: StyledSystem.ResponsiveValue<CSS.TransformProperty>;
-  transformOrigin?: StyledSystem.ResponsiveValue<CSS.TransformOriginProperty>;
+  transformOrigin?: StyledSystem.ResponsiveValue<
+    CSS.TransformOriginProperty<string>
+  >;
   whiteSpace?: StyledSystem.ResponsiveValue<CSS.WhiteSpaceProperty>;
   animation?: StyledSystem.ResponsiveValue<CSS.AnimationProperty>;
   userSelect?: StyledSystem.ResponsiveValue<CSS.UserSelectProperty>;
@@ -38,7 +40,9 @@ interface ICustomConfig {
   resize?: StyledSystem.ResponsiveValue<CSS.ResizeProperty>;
   transition?: StyledSystem.ResponsiveValue<CSS.TransitionProperty>;
   objectFit?: StyledSystem.ResponsiveValue<CSS.ObjectFitProperty>;
-  objectPosition?: StyledSystem.ResponsiveValue<CSS.ObjectPositionProperty>;
+  objectPosition?: StyledSystem.ResponsiveValue<
+    CSS.ObjectPositionProperty<string>
+  >;
   backgroundAttachment?: StyledSystem.ResponsiveValue<
     CSS.BackgroundAttachmentProperty
   >;
