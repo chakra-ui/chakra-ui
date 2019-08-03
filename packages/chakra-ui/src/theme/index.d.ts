@@ -5,6 +5,10 @@ interface IIcon {
   viewBox?: string;
 }
 
-export interface Theme extends StyledSystem.Theme {
+export interface ITheme extends StyledSystem.Theme {
   icons: IIcon;
 }
+
+declare const theme: ITheme;
+
+export default theme;

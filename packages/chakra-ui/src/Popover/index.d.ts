@@ -1,7 +1,7 @@
-import * as PopperJS from "popper.js";
+import * as React from "react";
+import * as ReactPopper from "react-popper";
 import StyledSystem from "styled-system";
 import { BoxProps } from "../Box";
-import * as React from "react";
 import { PseudoBoxProps } from "../PseudoBox";
 
 interface IPopover {
@@ -9,7 +9,7 @@ interface IPopover {
   defaultOpen?: boolean;
   maxWidth?: StyledSystem.MaxWidthProps;
   trigger?: React.ReactNode;
-  placement?: PopperJS.Placement;
+  placement?: ReactPopper.PopperProps["placement"];
   children: React.ReactNode;
   showArrow?: boolean;
   showCloseButton?: boolean;

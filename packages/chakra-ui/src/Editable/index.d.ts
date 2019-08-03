@@ -13,13 +13,11 @@ interface IEditable {
   defaultValue?: string;
   /**
    * Whether the text can be edited.
-   * @default false
    */
   isDisabled?: boolean;
   /**
    * Whether the component should start with the edit mode active
    * If `true`, the input is shown by default.
-   * @default false
    */
   isEditing?: boolean;
   /**
@@ -40,17 +38,16 @@ interface IEditable {
   onEdit?: () => void;
   /**
    * If `true`, the input's text will be highlighted on focus.
-   * @default false
    */
   selectAllOnFocus?: boolean;
   /**
    * Placeholder text when the value is empty.
-   * @default "Click to Edit"
    */
   placeholder?: string;
-  /** The content of the EditableText
-   *  Ideally only `EditablePreview` and `EditableInput` should
-   *  be the children (but you add other elements too)
+  /**
+   * The content of the EditableText
+   * Ideally only `EditablePreview` and `EditableInput` should
+   * be the children (but you add other elements too)
    */
   children: React.ReactNode;
 }

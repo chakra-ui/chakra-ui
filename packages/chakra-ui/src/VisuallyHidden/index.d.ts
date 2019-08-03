@@ -3,4 +3,4 @@ import { BoxProps } from "../Box";
 
 declare const VisuallyHidden: React.FC<BoxProps>;
 
-export const VisuallyHidden;
+export default VisuallyHidden;

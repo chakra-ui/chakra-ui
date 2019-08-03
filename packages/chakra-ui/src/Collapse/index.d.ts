@@ -1,13 +1,13 @@
-import { BoxProps } from "../Box";
 import * as React from "react";
+import { BoxProps } from "../Box";
 
-interface ICollapse {
+export interface ICollapse {
   isOpen?: boolean;
   animateOpacity?: boolean;
-  onAnimationEnd?(props: { newHeight: number }): void;
-  onAnimationStart?(props: { newHeight: number }): void;
   duration?: number;
   collapsedHeight?: number;
+  onAnimationEnd?(props: { newHeight: number }): void;
+  onAnimationStart?(props: { newHeight: number }): void;
 }
 
 export type CollapseProps = ICollapse &

@@ -1,7 +1,8 @@
 import * as StyledSystem from "styled-system";
 import * as Emotion from "@emotion/styled";
 import * as React from "react";
-import * as CSS from "csstype";
+
+type CSS = Emotion.CSSObject;
 
 interface ICustomConfig {
   // Border radius shorthand
@@ -22,42 +23,38 @@ interface ICustomConfig {
   borderLeftColor?: StyledSystem.BorderColorProps;
 
   // CSS properties
-  textDecoration?: StyledSystem.ResponsiveValue<CSS.TextDecorationProperty>;
-  textTransform?: StyledSystem.ResponsiveValue<CSS.TextTransformProperty>;
-  overflowX?: StyledSystem.ResponsiveValue<CSS.OverflowXProperty>;
-  overflowY?: StyledSystem.ResponsiveValue<CSS.OverflowYProperty>;
-  appearance?: StyledSystem.ResponsiveValue<CSS.AppearanceProperty>;
-  transform?: StyledSystem.ResponsiveValue<CSS.TransformProperty>;
-  transformOrigin?: StyledSystem.ResponsiveValue<
-    CSS.TransformOriginProperty<string>
-  >;
-  whiteSpace?: StyledSystem.ResponsiveValue<CSS.WhiteSpaceProperty>;
-  animation?: StyledSystem.ResponsiveValue<CSS.AnimationProperty>;
-  userSelect?: StyledSystem.ResponsiveValue<CSS.UserSelectProperty>;
-  pointerEvents?: StyledSystem.ResponsiveValue<CSS.PointerEventsProperty>;
-  boxSizing?: StyledSystem.ResponsiveValue<CSS.BoxSizingProperty>;
-  cursor?: StyledSystem.ResponsiveValue<CSS.CursorProperty>;
-  resize?: StyledSystem.ResponsiveValue<CSS.ResizeProperty>;
-  transition?: StyledSystem.ResponsiveValue<CSS.TransitionProperty>;
-  objectFit?: StyledSystem.ResponsiveValue<CSS.ObjectFitProperty>;
-  objectPosition?: StyledSystem.ResponsiveValue<
-    CSS.ObjectPositionProperty<string>
-  >;
+  textDecoration?: StyledSystem.ResponsiveValue<CSS["textDecoration"]>;
+  textTransform?: StyledSystem.ResponsiveValue<CSS["textTransform"]>;
+  overflowX?: StyledSystem.ResponsiveValue<CSS["overflowX"]>;
+  overflowY?: StyledSystem.ResponsiveValue<CSS["overflowY"]>;
+  appearance?: StyledSystem.ResponsiveValue<CSS["appearance"]>;
+  transform?: StyledSystem.ResponsiveValue<CSS["transform"]>;
+  transformOrigin?: StyledSystem.ResponsiveValue<CSS["transformOrigin"]>;
+  whiteSpace?: StyledSystem.ResponsiveValue<CSS["whiteSpace"]>;
+  animation?: StyledSystem.ResponsiveValue<CSS["animation"]>;
+  userSelect?: StyledSystem.ResponsiveValue<CSS["userSelect"]>;
+  pointerEvents?: StyledSystem.ResponsiveValue<CSS["pointerEvents"]>;
+  boxSizing?: StyledSystem.ResponsiveValue<CSS["boxSizing"]>;
+  cursor?: StyledSystem.ResponsiveValue<CSS["cursor"]>;
+  resize?: StyledSystem.ResponsiveValue<CSS["resize"]>;
+  transition?: StyledSystem.ResponsiveValue<CSS["transition"]>;
+  objectFit?: StyledSystem.ResponsiveValue<CSS["objectFit"]>;
+  objectPosition?: StyledSystem.ResponsiveValue<CSS["objectPosition"]>;
   backgroundAttachment?: StyledSystem.ResponsiveValue<
-    CSS.BackgroundAttachmentProperty
+    CSS["backgroundAttachment"]
   >;
-  bgAttachment?: StyledSystem.ResponsiveValue<CSS.BackgroundAttachmentProperty>;
+  bgAttachment?: StyledSystem.ResponsiveValue<CSS["backgroundAttachment"]>;
 
   // SVG color properties
   fill?: StyledSystem.ColorProps;
   stroke?: StyledSystem.ColorProps;
 }
 
-interface FontSizeProps {
+interface IFontSize {
   fontSize: "xs" | "sm" | "base" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl";
 }
 
-interface FontWeightProps {
+interface IFontWeight {
   fontWeight?:
     | "hairline"
     | "thin"
@@ -70,11 +67,11 @@ interface FontWeightProps {
     | "black";
 }
 
-interface LineHeightProps {
+interface ILineHeight {
   lineHeight: "none" | "shorter" | "short" | "normal" | "tall" | "taller";
 }
 
-interface LetterSpacingProps {
+interface ILetterSpacing {
   letterSpacing: "tighter" | "tight" | "normal" | "wide" | "wider" | "widest";
 }
 
@@ -91,9 +88,9 @@ export type BoxProps = React.AriaAttributes &
   StyledSystem.ShadowProps &
   StyledSystem.OpacityProps &
   StyledSystem.TypographyProps &
-  FontSizeProps &
-  LetterSpacingProps &
-  LineHeightProps &
+  IFontSize &
+  ILetterSpacing &
+  ILineHeight &
   ICustomConfig & {
     wordBreak: "normal" | "words" | "all" | "truncate";
     as: React.ReactType;

@@ -6,24 +6,28 @@
   "module": "dist/esm/index.js",
   "sideEffects": false,
   "scripts": {
-    "build": "yarn build:cjs && yarn build:esm && yarn build:copy-types",
     "prebuild": "rimraf dist",
+    "build": "yarn build:cjs && yarn build:esm && yarn build:copy-types",
     "build:cjs": "cross-env NODE_ENV=production BABEL_ENV=cjs babel ./src --out-dir ./dist --ignore \"**/examples.js\"",
     "build:esm": "cross-env NODE_ENV=production BABEL_ENV=esm babel ./src --out-dir ./dist/esm --ignore \"**/examples.js\"",
     "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel ./src --out-dir ./dist/es --ignore \"**/examples.js\"",
     "build:umd": "cross-env NODE_ENV=production-umd rollup -c",
     "build:copy-types": "node ./scripts/copy-files.js",
-    "release": "yarn build && npm version patch && npm run publish",
-    "prepublishOnly": "npm run build",
+    "version": "npm run build",
+    "postversion": "git push && git push --tags && npm publish",
     "lint": "eslint src",
     "tslint": "tslint -c tslint.json 'src/**/*.ts'",
     "prettier": "prettier \"**/*.+(js|jsx|ts|tsx|d.ts|md|mdx)\"",
     "format": "npm run prettier -- --write",
-    "validate": "npm run lint && npm run prettier -- --list-different",
-    "precommit": "npm run validate",
+    "validate": "npm run lint && npm run prettier -- --list-different && npm run tslint",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "build-watch": "nodemon -w src -x 'rm .babelrc &> /dev/null; yarn build'"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "dependencies": {
     "@reach/alert": "0.1.5",
@@ -105,6 +109,7 @@
     "rollup-plugin-node-resolve": "5.2.0",
     "rollup-plugin-terser": "5.1.1",
     "tslint": "5.18.0",
+    "tslint-config-prettier": "1.18.0",
     "typescript": "3.5.3"
   },
   "author": "Segun Adebayo <sage@adebayosegun.com>",

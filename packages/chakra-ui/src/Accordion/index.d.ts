@@ -22,7 +22,6 @@ interface IAccordion {
   defaultIsOpen?: boolean;
   /**
    * The callback fired when the accordion is expanded/collapsed.
-   *  @param {Boolean} isOpen - the next state of the accordion
    */
   onOpenChange?: (isOpen: boolean) => void;
   /**

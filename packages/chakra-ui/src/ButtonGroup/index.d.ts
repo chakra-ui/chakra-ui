@@ -10,7 +10,7 @@ export interface IButtonGroup {
   /**
    * If `true`, the borderRadius of button that are direct children will be altered
    * to look flushed together
-   * */
+   */
   isAttached?: boolean;
   spacing?: StyledSystem.MarginRightProps;
   children: React.ReactNode;

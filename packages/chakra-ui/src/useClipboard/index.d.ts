@@ -7,4 +7,6 @@ interface IClipboard<T> {
 /**
  * `useClipboard` is a custom hook to handle copying content to clipboard
  */
-export default function useClipboard<T>(value: T): IClipboard<T>;
+declare function useClipboard<T>(value: T): IClipboard<T>;
+
+export default useClipboard;

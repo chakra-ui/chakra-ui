@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as PopperJS from "popper.js";
+import * as ReactPopper from "react-popper";
 import { BoxProps } from "../Box";
 
 interface IRenderProps {
@@ -18,7 +18,7 @@ export interface IMenu {
   autoSelect?: boolean;
   closeOnBlur?: boolean;
   closeOnSelect?: boolean;
-  placement?: PopperJS.Placement;
+  placement?: ReactPopper.PopperProps["placement"];
 }
 
 export type MenuProps = IMenu & ChildrenProp;
@@ -38,11 +38,11 @@ export const MenuList: React.FC<MenuListProps>;
 
 interface IMenuItem {
   isDisabled?: boolean;
+  role?: "menuitem" | "menuitemradio" | "menuitemcheckbox";
   onClick?: React.KeyboardEventHandler;
   onMouseLeave?: React.MouseEventHandler;
   onKeyDown?: React.KeyboardEventHandler;
   onMouseMove?: React.MouseEventHandler;
-  role?: "menuitem" | "menuitemradio" | "menuitemcheckbox";
 }
 export type MenuItemProps = IMenuItem &
   BoxProps &

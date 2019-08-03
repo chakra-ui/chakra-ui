@@ -1,15 +1,16 @@
 {
   "defaultSeverity": "error",
-  "extends": ["dtslint/dtslint.json", "tslint:recommended"],
+  "extends": [
+    "dtslint/dtslint.json",
+    "tslint:latest",
+    "tslint-config-prettier"
+  ],
   "jsRules": {},
   "rules": {
-    "ordered-imports": false,
     "deprecation": true,
-    "no-empty-interface": false,
+    "ordered-imports": false,
     "no-unnecessary-callback-wrapper": false,
-    "no-unnecessary-generics": false,
-    "semicolon": [true, "always", "ignore-bound-class-methods"],
-    "interface-name": false
+    "no-unnecessary-generics": false
   },
   "rulesDirectory": []
 }
