@@ -8,3 +8,4 @@ stories
 .env
 .gitignore
 *.log
+.rpt2_cache

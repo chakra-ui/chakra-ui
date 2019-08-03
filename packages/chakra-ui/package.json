@@ -18,7 +18,7 @@
     "build:esm": "cross-env NODE_ENV=production BABEL_ENV=esm babel ./src --out-dir ./dist/esm --ignore \"**/examples.js\"",
     "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel ./src --out-dir ./dist/es --ignore \"**/examples.js\"",
     "build:umd": "cross-env NODE_ENV=production-umd rollup -c",
-    "release": "yarn build && npm publish dist --tag latest",
+    "release": "yarn build && npm version patch && npm publish",
     "prepublishOnly": "npm run build",
     "start": "nwb serve-react-demo",
     "copy-ts": "node ./scripts/copy-files.js",
