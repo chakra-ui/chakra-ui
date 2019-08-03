@@ -33,7 +33,7 @@ async function createModulePackages({ from, to }) {
     directoryPackages.map(async directoryPackage => {
       const packageJson = {
         sideEffects: false,
-        module: path.join("../esm", directoryPackage, "index.js"),
+        module: path.join("../es", directoryPackage, "index.js"),
         typings: "./index.d.ts"
       };
       const packageJsonPath = path.join(to, directoryPackage, "package.json");
