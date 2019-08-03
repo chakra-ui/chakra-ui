@@ -46,7 +46,8 @@ export type AccordionHeaderProps = IAccordionHeader &
   PseudoBoxProps &
   RenderProp;
 
-export type AccordionPanelProps = React.RefAttributes<HTMLDivElement> & BoxProps;
+export type AccordionPanelProps = React.RefAttributes<HTMLDivElement> &
+  BoxProps;
 
 /**
  * Accordions allow users to expand and collapse sections of content.
@@ -63,6 +64,8 @@ export const AccordionHeader: React.FC<AccordionHeaderProps>;
 /**
  * AccordionPanel component composes `Collapse` to provide the height animation
  */
-export const AccordionPanel: React.ForwardRefExoticComponent<AccordionPanelProps>;
+export const AccordionPanel: React.ForwardRefExoticComponent<
+  AccordionPanelProps
+>;
 
 export default Accordion;

@@ -113,7 +113,7 @@ const Avatar = ({ size, showBorder, name, badge, src, ...rest }) => {
 };
 
 Avatar.defaultProps = {
-  size: "md"
+  size: "md",
 };
 
 Avatar.propTypes = {
@@ -121,7 +121,7 @@ Avatar.propTypes = {
   showBorder: propTypes.bool,
   name: propTypes.string.isRequired,
   badge: propTypes.node,
-  src: propTypes.string
+  src: propTypes.string,
 };
 
 export default Avatar;

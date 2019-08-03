@@ -11,26 +11,26 @@ import {
   position,
   shadow,
   space,
-  typography
+  typography,
 } from "styled-system";
 import extraConfig from "./config";
 
 const wordBreakOptions = {
   normal: {
     wordBreak: "normal",
-    overflowWrap: "normal"
+    overflowWrap: "normal",
   },
   words: {
-    wordBreak: "break-word"
+    wordBreak: "break-word",
   },
   all: {
-    wordBreak: "break-all"
+    wordBreak: "break-all",
   },
   truncate: {
     overflow: "hidden",
     textOverflow: "ellipsis",
-    whiteSpace: "nowrap"
-  }
+    whiteSpace: "nowrap",
+  },
 };
 
 const wordBreak = props => {
@@ -42,7 +42,7 @@ const wordBreak = props => {
 };
 
 const Box = styled("div", {
-  shouldForwardProp
+  shouldForwardProp,
 })(
   wordBreak,
   layout,
@@ -55,7 +55,7 @@ const Box = styled("div", {
   shadow,
   typography,
   flexbox,
-  extraConfig
+  extraConfig,
 );
 
 export default Box;

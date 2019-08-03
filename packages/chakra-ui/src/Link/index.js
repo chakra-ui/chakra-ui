@@ -8,25 +8,25 @@ const useLinkStyle = ({ color, isUnstyled }) => ({
   color: `${color}.500`,
   cursor: "pointer",
   _focus: {
-    boxShadow: "outline"
+    boxShadow: "outline",
   },
   _disabled: {
     opacity: "40%",
     cursor: "not-allowed",
-    textDecoration: "none"
+    textDecoration: "none",
   },
   _hover: {
-    textDecoration: "underline"
+    textDecoration: "underline",
   },
   _active: {
-    opacity: "80%"
+    opacity: "80%",
   },
   ...(isUnstyled && {
     color: "inherit",
     cursor: "default",
     textDecoration: "none",
-    _hover: { textDecoration: "none" }
-  })
+    _hover: { textDecoration: "none" },
+  }),
 });
 
 const Link = ({ isDisabled, color = "blue", isUnstyled, onClick, ...rest }) => {

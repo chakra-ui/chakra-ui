@@ -76,7 +76,7 @@ const Tooltip = ({
               children.props.onClick && children.props.onClick(event);
             },
             onFocus: handleOpen,
-            onBlur: handleClose
+            onBlur: handleClose,
           })
         }
       </Reference>
@@ -98,7 +98,7 @@ const Tooltip = ({
                   css={{
                     ...style,
                     transform: `${style.transform}`,
-                    opacity: styles.opacity
+                    opacity: styles.opacity,
                   }}
                   data-placement={placement}
                   fontSize="sm"

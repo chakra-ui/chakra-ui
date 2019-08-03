@@ -5,7 +5,7 @@ import { useRef, useState } from "react";
 import AlertDialog, {
   AlertDialogBody,
   AlertDialogFooter,
-  AlertDialogHeader
+  AlertDialogHeader,
 } from ".";
 import Button from "../Button";
 import Heading from "../Heading";

@@ -12,13 +12,13 @@ const InputAddon = ({ placement = "left", size = "md", ...props }) => {
     left: {
       mr: "-1px",
       roundedRight: 0,
-      borderRightColor: "transparent"
+      borderRightColor: "transparent",
     },
     right: {
       order: 1,
       roundedLeft: 0,
-      borderLeftColor: "transparent"
-    }
+      borderLeftColor: "transparent",
+    },
   };
 
   const styleProps = {
@@ -26,7 +26,7 @@ const InputAddon = ({ placement = "left", size = "md", ...props }) => {
     flex: "0 0 auto",
     whiteSpace: "nowrap",
     bg: bg[mode],
-    ..._placement[placement]
+    ..._placement[placement],
   };
 
   return (
@@ -39,7 +39,7 @@ const InputAddon = ({ placement = "left", size = "md", ...props }) => {
 };
 
 InputAddon.propTypes = {
-  placement: oneOf(["left", "right"])
+  placement: oneOf(["left", "right"]),
 };
 
 const InputLeftAddon = props => <InputAddon placement="left" {...props} />;

@@ -5,7 +5,7 @@ import Menu, {
   MenuDivider,
   MenuGroup,
   MenuItem,
-  MenuList
+  MenuList,
 } from ".";
 // import { MenuItemOption, MenuOptionsGroup } from "./MenuOption";
 import Box from "../Box";

@@ -12,19 +12,19 @@ const tagSizes = {
     minHeight: "20px",
     minWidth: "20px",
     fontSize: "sm",
-    px: "8px"
+    px: "8px",
   },
   md: {
     minHeight: "24px",
     minWidth: "24px",
     fontSize: "sm",
-    px: "8px"
+    px: "8px",
   },
   lg: {
     minHeight: "32px",
     minWidth: "32px",
-    px: "12px"
-  }
+    px: "12px",
+  },
 };
 
 const TagContext = createContext();
@@ -39,7 +39,7 @@ export const TagAddon = ({ placement, ...props }) => {
 
   const _placement = {
     left: { ml: margin[size] },
-    right: { mr: margin[size] }
+    right: { mr: margin[size] },
   };
 
   return (
@@ -70,13 +70,13 @@ export const TagCloseButton = props => {
       opacity="0.5"
       _focus={{
         boxShadow: "outline",
-        bg: "rgba(0, 0, 0, 0.14)"
+        bg: "rgba(0, 0, 0, 0.14)",
       }}
       _hover={{
-        opacity: "0.8"
+        opacity: "0.8",
       }}
       _active={{
-        opacity: "1"
+        opacity: "1",
       }}
       {...props}
     >

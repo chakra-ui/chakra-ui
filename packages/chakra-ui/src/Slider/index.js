@@ -6,7 +6,7 @@ import {
   useState,
   useCallback,
   createContext,
-  useContext
+  useContext,
 } from "react";
 import Box from "../Box";
 import useSliderStyle from "./styles";
@@ -57,13 +57,13 @@ export const SliderThumb = forwardRef((props, ref) => {
     size,
     color,
     value,
-    ariaLabelledBy
+    ariaLabelledBy,
   } = useSliderContext();
   const { thumbStyle } = useSliderStyle({
     trackPercent,
     orientation,
     size,
-    color
+    color,
   });
   return (
     <PseudoBox
@@ -150,7 +150,7 @@ const Slider = forwardRef(
       children,
       ...rest
     },
-    ref
+    ref,
   ) => {
     const { current: isControlled } = useRef(controlledValue != null);
     const [value, setValue] = useState(defaultValue || 0);
@@ -164,7 +164,7 @@ const Slider = forwardRef(
       trackPercent,
       orientation,
       size,
-      color
+      color,
     });
 
     const trackRef = useRef();
@@ -197,7 +197,7 @@ const Slider = forwardRef(
           onChange(newValue);
         }
       },
-      [isControlled, onChange]
+      [isControlled, onChange],
     );
 
     const handleThumbKeyDown = event => {
@@ -294,7 +294,7 @@ const Slider = forwardRef(
       min,
       max,
       valueText,
-      value: actualValue
+      value: actualValue,
     };
 
     return (
@@ -319,7 +319,7 @@ const Slider = forwardRef(
         </Box>
       </SliderContext.Provider>
     );
-  }
+  },
 );
 
 export default Slider;

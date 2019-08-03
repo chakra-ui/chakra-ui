@@ -22,7 +22,7 @@ const RadioButtonGroup = ({
   const allNodes = useRef([]);
 
   const focusableValues = Children.map(children, child =>
-    child.props.isDisabled === true ? null : child.props.value
+    child.props.isDisabled === true ? null : child.props.value,
   ).filter(val => val != null);
 
   const allValues = Children.map(children, child => child.props.value);
@@ -89,7 +89,7 @@ const RadioButtonGroup = ({
       onClick: handleClick,
       tabIndex: getTabIndex(),
       isChecked,
-      ...(!isLastChild && spacingProps)
+      ...(!isLastChild && spacingProps),
     });
   });
 

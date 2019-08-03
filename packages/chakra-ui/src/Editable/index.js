@@ -98,7 +98,7 @@ const Editable = ({
     onChange: handleChange,
     onSubmit: handleSubmit,
     onCancel: handleCancel,
-    onFocus: handleFocus
+    onFocus: handleFocus,
   };
 
   return (
@@ -109,7 +109,7 @@ const Editable = ({
               isEditing,
               onSubmit: handleSubmit,
               onCancel: handleCancel,
-              onRequestEdit
+              onRequestEdit,
             })
           : children}
       </Box>
@@ -125,7 +125,7 @@ const sharedProps = {
   transition: "all 0.2s",
   borderRadius: "md",
   px: "3px",
-  mx: "-3px"
+  mx: "-3px",
 };
 
 export const EditablePreview = props => {
@@ -135,7 +135,7 @@ export const EditablePreview = props => {
     value,
     onRequestEdit,
     placeholder,
-    isPreviewFocusable
+    isPreviewFocusable,
   } = useContext(EditableContext);
   const hasValue = value != null && value !== "";
 
@@ -151,7 +151,7 @@ export const EditablePreview = props => {
     ...sharedProps,
     cursor: "text",
     display: "inline-block",
-    opacity: !hasValue ? 0.6 : undefined
+    opacity: !hasValue ? 0.6 : undefined,
   };
 
   if (isEditing) {
@@ -181,15 +181,15 @@ export const EditableInput = props => {
     value,
     onSubmit,
     submitOnBlur,
-    placeholder
+    placeholder,
   } = useContext(EditableContext);
 
   const styleProps = {
     ...sharedProps,
     width: "full",
     _placeholder: {
-      opacity: "0.6"
-    }
+      opacity: "0.6",
+    },
   };
 
   if (!isEditing) {
@@ -251,7 +251,7 @@ Editable.propTypes = {
    *  Ideally only `EditablePreview` and `EditableInput` should
    *  be the children (but you add other elements too)
    */
-  children: propTypes.node
+  children: propTypes.node,
 };
 
 export default Editable;

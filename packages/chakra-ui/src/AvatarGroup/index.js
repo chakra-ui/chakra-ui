@@ -43,7 +43,7 @@ const AvatarGroup = ({ size, children, spacing = -3, ...rest }) => {
       ml: isFirstAvatar ? 0 : spacing,
       size,
       showBorder: true,
-      css: { zIndex: count - index }
+      css: { zIndex: count - index },
     });
   });
 

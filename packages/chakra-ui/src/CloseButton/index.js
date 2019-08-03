@@ -11,27 +11,27 @@ const baseProps = ({ mode }) => {
     _hover: { bg: "blackAlpha.100" },
     _active: { bg: "blackAlpha.200" },
     _disabled: {
-      cursor: "not-allowed"
+      cursor: "not-allowed",
     },
     _focus: {
-      boxShadow: "outline"
-    }
+      boxShadow: "outline",
+    },
   };
 };
 
 const sizes = {
   lg: {
     button: "40px",
-    icon: "16px"
+    icon: "16px",
   },
   md: {
     button: "32px",
-    icon: "12px"
+    icon: "12px",
   },
   sm: {
     button: "24px",
-    icon: "10px"
-  }
+    icon: "10px",
+  },
 };
 
 const CloseButton = ({

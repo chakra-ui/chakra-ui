@@ -5,17 +5,18 @@ export const useMenuListStyle = () => {
   const elevation = {
     light: {
       bg: "#fff",
-      boxShadow: "0 7px 14px 0 rgba(0,0,0, 0.1), 0 3px 6px 0 rgba(0, 0, 0, .07)"
+      boxShadow:
+        "0 7px 14px 0 rgba(0,0,0, 0.1), 0 3px 6px 0 rgba(0, 0, 0, .07)",
     },
     dark: {
       bg: "gray.800",
-      boxShadow: `rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.2) 0px 5px 10px, rgba(0, 0, 0, 0.4) 0px 15px 40px`
-    }
+      boxShadow: `rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.2) 0px 5px 10px, rgba(0, 0, 0, 0.4) 0px 15px 40px`,
+    },
   };
 
   return {
     color: "inherit",
-    ...elevation[mode]
+    ...elevation[mode],
   };
 };
 
@@ -29,7 +30,7 @@ const baseProps = {
   width: "full",
   flex: " 0 0 auto",
   userSelect: "none",
-  transition: "background-color 220ms, color 220ms"
+  transition: "background-color 220ms, color 220ms",
 };
 
 const interactionProps = ({ mode }) => {
@@ -38,15 +39,15 @@ const interactionProps = ({ mode }) => {
 
   return {
     _active: {
-      bg: _activeColor[mode]
+      bg: _activeColor[mode],
     },
     _focus: {
-      bg: _focusColor[mode]
+      bg: _focusColor[mode],
     },
     _disabled: {
       opacity: 0.4,
-      cursor: "not-allowed"
-    }
+      cursor: "not-allowed",
+    },
   };
 };
 
@@ -57,6 +58,6 @@ export const useMenuItemStyle = () => {
 
   return {
     ...baseProps,
-    ...interactionProps(props)
+    ...interactionProps(props),
   };
 };

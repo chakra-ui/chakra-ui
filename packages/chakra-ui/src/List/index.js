@@ -31,7 +31,7 @@ const List = ({
       as={ordered ? "ol" : "ul"}
       pl={styled ? "40px" : rest.pl || 0}
       mb={styled ? 3 : rest.mb || 0}
-      {...styled === false && { css: unStyled }}
+      {...(styled === false && { css: unStyled })}
       {...rest}
     >
       {Children.map(children, (child, index) => {
@@ -45,7 +45,7 @@ const List = ({
               as="li"
               px={inline ? 2 : 0}
               display={setDisplay()}
-              {...!showDivider && spacingProps}
+              {...(!showDivider && spacingProps)}
             >
               {child}
             </Box>
@@ -67,7 +67,7 @@ const List = ({
 };
 
 List.propTypes = {
-  type: oneOf(["bullet", "number", "none"])
+  type: oneOf(["bullet", "number", "none"]),
 };
 
 export default List;

@@ -15,7 +15,7 @@ const ControlBox = styled(Box)(
     _checkedAndChild = { opacity: 1 },
     _checkedAndDisabled,
     _checkedAndFocus,
-    _checkedAndHover
+    _checkedAndHover,
   }) => {
     const checkedAndDisabled = `input[type=${type}]:checked:disabled + &`,
       checkedAndHover = `input[type=${type}]:checked:hover:not(:disabled) + &`,
@@ -37,10 +37,10 @@ const ControlBox = styled(Box)(
       "& > *": tx(_child),
       [checked]: {
         ...tx(_checked),
-        "& > *": tx(_checkedAndChild)
-      }
+        "& > *": tx(_checkedAndChild),
+      },
     });
-  }
+  },
 );
 
 ControlBox.defaultProps = {
@@ -49,7 +49,7 @@ ControlBox.defaultProps = {
   justifyContent: "center",
   transition: "all 120ms",
   flexShrink: "0",
-  "aria-hidden": "true"
+  "aria-hidden": "true",
 };
 
 export default ControlBox;

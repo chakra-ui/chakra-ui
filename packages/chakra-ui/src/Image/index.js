@@ -33,7 +33,7 @@ Img.propTypes = {
   fallbackSrc: propTypes.string,
   alt: propTypes.string.isRequired,
   onLoad: propTypes.func,
-  onError: propTypes.func
+  onError: propTypes.func,
 };
 
 export default Img;

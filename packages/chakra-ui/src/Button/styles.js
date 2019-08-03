@@ -4,21 +4,21 @@ const grayGhostStyle = {
   light: {
     color: "inherit",
     _hover: {
-      bg: "gray.100"
+      bg: "gray.100",
     },
     _active: {
-      bg: "gray.200"
-    }
+      bg: "gray.200",
+    },
   },
   dark: {
     color: "whiteAlpha.900",
     _hover: {
-      bg: "whiteAlpha.200"
+      bg: "whiteAlpha.200",
     },
     _active: {
-      bg: "whiteAlpha.300"
-    }
-  }
+      bg: "whiteAlpha.300",
+    },
+  },
 };
 
 const ghostVariantProps = ({ color, mode, theme }) => {
@@ -32,22 +32,22 @@ const ghostVariantProps = ({ color, mode, theme }) => {
         color: get(color, 500),
         bg: "transparent",
         _hover: {
-          bg: get(color, 50)
+          bg: get(color, 50),
         },
         _active: {
-          bg: get(color, 100)
-        }
+          bg: get(color, 100),
+        },
       },
       dark: {
         color: get(color, 200),
         bg: "transparent",
         _hover: {
-          bg: addOpacity(_color, 0.12)
+          bg: addOpacity(_color, 0.12),
         },
         _active: {
-          bg: addOpacity(_color, 0.24)
-        }
-      }
+          bg: addOpacity(_color, 0.24),
+        },
+      },
     };
   }
 
@@ -64,7 +64,7 @@ const outlineVariantProps = props => {
   return {
     border: "1px",
     borderColor: color === "gray" ? _borderColor[mode] : borderColor,
-    ...ghostVariantProps(props)
+    ...ghostVariantProps(props),
   };
 };
 
@@ -74,21 +74,21 @@ const graySolidStyle = {
   light: {
     bg: "gray.100",
     _hover: {
-      bg: "gray.200"
+      bg: "gray.200",
     },
     _active: {
-      bg: "gray.300"
-    }
+      bg: "gray.300",
+    },
   },
   dark: {
     bg: "whiteAlpha.200",
     _hover: {
-      bg: "whiteAlpha.300"
+      bg: "whiteAlpha.300",
     },
     _active: {
-      bg: "whiteAlpha.400"
-    }
-  }
+      bg: "whiteAlpha.400",
+    },
+  },
 };
 
 const solidVariantProps = ({ color, mode }) => {
@@ -99,22 +99,22 @@ const solidVariantProps = ({ color, mode }) => {
       bg: get(color, 500),
       color: "white",
       _hover: {
-        bg: get(color, 600)
+        bg: get(color, 600),
       },
       _active: {
-        bg: get(color, 700)
-      }
+        bg: get(color, 700),
+      },
     },
     dark: {
       bg: get(color, 200),
       color: "gray.800",
       _hover: {
-        bg: get(color, 300)
+        bg: get(color, 300),
       },
       _active: {
-        bg: get(color, 300)
-      }
-    }
+        bg: get(color, 300),
+      },
+    },
   };
 
   if (color === "gray") {
@@ -132,11 +132,11 @@ const linkVariantProps = ({ color }) => ({
   lineHeight: "normal",
   color: get(color, 600),
   _hover: {
-    textDecoration: "underline"
+    textDecoration: "underline",
   },
   _active: {
-    color: get(color, 700)
-  }
+    color: get(color, 700),
+  },
 });
 
 ////////////////////////////////////////////////////////////
@@ -145,8 +145,8 @@ const disabledProps = {
   _disabled: {
     opacity: "40%",
     cursor: "not-allowed",
-    boxShadow: "none"
-  }
+    boxShadow: "none",
+  },
 };
 
 ////////////////////////////////////////////////////////////
@@ -156,26 +156,26 @@ const sizes = {
     height: "16",
     fontSize: "lg",
     px: 6,
-    minWidth: "16"
+    minWidth: "16",
   },
   lg: {
     height: "12",
     fontSize: "lg",
     px: 5,
-    minWidth: "12"
+    minWidth: "12",
   },
   md: {
     height: "10",
     fontSize: "md",
     px: 4,
-    minWidth: "10"
+    minWidth: "10",
   },
   sm: {
     height: "8",
     fontSize: "sm",
     px: 3,
-    minWidth: "8"
-  }
+    minWidth: "8",
+  },
 };
 
 const sizeProps = ({ size }) => sizes[size];
@@ -184,8 +184,8 @@ const sizeProps = ({ size }) => sizes[size];
 
 const focusProps = {
   _focus: {
-    boxShadow: "outline"
-  }
+    boxShadow: "outline",
+  },
 };
 
 ////////////////////////////////////////////////////////////
@@ -200,7 +200,7 @@ const unstyledStyle = {
   lineHeight: "inherit",
   m: 0,
   p: 0,
-  textAlign: "inherit"
+  textAlign: "inherit",
 };
 
 ////////////////////////////////////////////////////////////
@@ -232,7 +232,7 @@ const baseProps = {
   userSelect: "none",
   position: "relative",
   whiteSpace: "nowrap",
-  verticalAlign: "middle"
+  verticalAlign: "middle",
 };
 
 ////////////////////////////////////////////////////////////
@@ -243,7 +243,7 @@ const buttonStyle = props => {
     ...sizeProps(props),
     ...focusProps,
     ...disabledProps,
-    ...variantProps(props)
+    ...variantProps(props),
   };
 };
 

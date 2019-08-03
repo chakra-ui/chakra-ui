@@ -13,7 +13,7 @@ const InputElement = forwardRef(
       disablePointerEvents = false,
       ...props
     },
-    ref
+    ref,
   ) => {
     const { height, fontSize } = inputSizes[size];
     const placementProp = { [placement]: "0" };
@@ -27,14 +27,14 @@ const InputElement = forwardRef(
         top="0"
         zIndex={1}
         ref={ref}
-        {...disablePointerEvents && { pointerEvents: "none" }}
+        {...(disablePointerEvents && { pointerEvents: "none" })}
         {...placementProp}
         {...props}
       >
         {children}
       </Center>
     );
-  }
+  },
 );
 
 const InputLeftElement = forwardRef((props, ref) => (

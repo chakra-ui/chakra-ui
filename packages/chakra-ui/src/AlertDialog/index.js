@@ -15,7 +15,7 @@ const AlertDialog = ({
   const centeredProps = {
     display: "flex",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   };
   return (
     <ModalTransition isOpen={isOpen}>
@@ -27,17 +27,17 @@ const AlertDialog = ({
             ...(isCentered && {
               display: "flex",
               alignItems: "center",
-              justifyContent: "center"
-            })
+              justifyContent: "center",
+            }),
           }}
           onDismiss={onClose}
-          {...isCentered && centeredProps}
+          {...(isCentered && centeredProps)}
         >
           <AlertDialogContent
             maxWidth={size}
             rounded="md"
             transform={`translate3d(0px, ${styles.y}px, 0px)`}
-            {...!isCentered && { top: 40, mx: "auto" }}
+            {...(!isCentered && { top: 40, mx: "auto" })}
             {...rest}
           >
             {children}

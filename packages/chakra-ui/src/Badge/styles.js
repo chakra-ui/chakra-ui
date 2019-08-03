@@ -6,12 +6,12 @@ const solidStyle = ({ theme: { colors }, color }) => {
   return {
     light: {
       bg: get(color, 500),
-      color: "white"
+      color: "white",
     },
     dark: {
       bg: darkModeBg,
-      color: "whiteAlpha.800"
-    }
+      color: "whiteAlpha.800",
+    },
   };
 };
 
@@ -22,12 +22,12 @@ const subtleStyle = ({ theme: { colors }, color }) => {
   return {
     light: {
       bg: get(color, 100),
-      color: get(color, 800)
+      color: get(color, 800),
     },
     dark: {
       bg: darkModeBg,
-      color: get(color, 200)
-    }
+      color: get(color, 200),
+    },
   };
 };
 
@@ -36,12 +36,12 @@ const outlineStyle = ({ theme: { colors }, color }) => {
   return {
     light: {
       boxShadow: `inset 0 0 0px 1px ` + colors[color][500],
-      color: get(color, 500)
+      color: get(color, 500),
     },
     dark: {
       boxShadow: `inset 0 0 0px 1px ` + darkModeColor,
-      color: darkModeColor
-    }
+      color: darkModeColor,
+    },
   };
 };
 
@@ -63,7 +63,7 @@ const useBadgeStyle = props => {
   const theme = useTheme();
   const { mode } = useUIMode();
   const _props = { ...props, theme, mode };
-  
+
   return variantProps(_props);
 };
 

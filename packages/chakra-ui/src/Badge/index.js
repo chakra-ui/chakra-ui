@@ -26,12 +26,12 @@ const Badge = forwardRef(({ color, variant, ...props }, ref) => {
 });
 
 Badge.propTypes = {
-  variant: propTypes.oneOf(["solid", "subtle", "outline"])
+  variant: propTypes.oneOf(["solid", "subtle", "outline"]),
 };
 
 Badge.defaultProps = {
   color: "gray",
-  variant: "subtle"
+  variant: "subtle",
 };
 
 export default Badge;

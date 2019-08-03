@@ -26,7 +26,6 @@ const copyToClipboard = value => {
   }
 };
 
-
 const useClipboard = value => {
   const [hasCopied, setHasCopied] = useState(false);
 

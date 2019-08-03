@@ -13,3 +13,5 @@ interface ICloseButton {
 export type CloseButtonProps = ICloseButton & PseudoBoxProps;
 
 declare const CloseButton: React.FC<CloseButtonProps>;
+
+export default CloseButton;

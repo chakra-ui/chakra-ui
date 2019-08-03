@@ -21,7 +21,7 @@ const IconButton = forwardRef(
         <Icon name={icon} color="currentColor" aria-hidden />
       </Button>
     );
-  }
+  },
 );
 
 IconButton.displayName = "IconButton";
@@ -42,7 +42,7 @@ IconButton.propTypes = {
   /**
    * A11y: A label that describes the button
    */
-  "aria-label": propTypes.string.isRequired
+  "aria-label": propTypes.string.isRequired,
 };
 IconButton.defaultProps = Button.defaultProps;
 

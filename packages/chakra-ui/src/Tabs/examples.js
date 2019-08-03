@@ -70,15 +70,19 @@ stories.add("Tablist Only (Manual)", () => {
         "enclosed-colored",
         "soft-rounded",
         "line",
-        "contained"
+        "contained",
       ],
-      "enclosed"
+      "enclosed",
     ),
     align: select("alignment", ["start", "center", "end"], "center"),
     size: select("size", ["sm", "md", "lg"], "md"),
     isFitted: boolean("isFitted?", false),
     gutter: "12px",
-    orientation: select("orientation", ["horizontal", "vertical"], "horizontal")
+    orientation: select(
+      "orientation",
+      ["horizontal", "vertical"],
+      "horizontal",
+    ),
   };
 
   const TabEx = () => {

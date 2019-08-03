@@ -7,13 +7,13 @@ const getThemedStyle = ({ colors }) => {
     light: {
       color: colors.gray[800],
       bg: undefined,
-      borderColor: colors.gray[200]
+      borderColor: colors.gray[200],
     },
     dark: {
       color: colors.whiteAlpha[900],
       bg: colors.gray[800],
-      borderColor: colors.whiteAlpha[300]
-    }
+      borderColor: colors.whiteAlpha[300],
+    },
   };
 };
 

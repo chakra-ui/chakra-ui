@@ -21,7 +21,7 @@ const space = [
   "10rem",
   "12rem",
   "14rem",
-  "16rem"
+  "16rem",
 ];
 
 const shadows = {
@@ -32,7 +32,7 @@ const shadows = {
     "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
   "2xl": "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
   outline: "0 0 0 3px rgba(66, 153, 225, 0.6)",
-  none: "none"
+  none: "none",
 };
 
 const breakpoints = ["640px", "768px", "1024px", "1280px"];
@@ -53,7 +53,7 @@ const zIndices = {
   "5": 50,
   "6": 60,
   "7": 70,
-  "8": 80
+  "8": 80,
 };
 
 const radii = {
@@ -61,7 +61,7 @@ const radii = {
   sm: "0.125rem",
   md: "0.25rem",
   lg: "0.5rem",
-  full: "9999px"
+  full: "9999px",
 };
 
 const opacity = {
@@ -70,14 +70,14 @@ const opacity = {
   "40%": "0.4",
   "60%": "0.6",
   "80%": "0.8",
-  "100%": "1"
+  "100%": "1",
 };
 
 const borders = {
   none: 0,
   "1px": "1px solid",
   "2px": "2px solid",
-  "4px": "4px solid"
+  "4px": "4px solid",
 };
 
 // const borderWidths = {
@@ -101,7 +101,7 @@ const theme = {
   sizes,
   shadows,
   space,
-  icons
+  icons,
 };
 
 export default theme;

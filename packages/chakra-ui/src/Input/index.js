@@ -9,6 +9,7 @@ import useInputStyle from "./styles";
 const Input = forwardRef((props, ref) => {
   const {
     type,
+    name,
     size,
     variant,
     as,
@@ -50,13 +51,13 @@ Input.defaultProps = {
   as: "input",
   variant: "outline",
   isFullWidth: true,
-  _focusBorderColor: "blue"
+  _focusBorderColor: "blue",
 };
 
 Input.propTypes = {
   size: propTypes.oneOf(["md", "sm", "lg"]),
   type: propTypes.oneOf(["text", "email", "number", "password", "search"]),
-  variant: propTypes.oneOf(["outline", "unstyled", "flushed", "filled"])
+  variant: propTypes.oneOf(["outline", "unstyled", "flushed", "filled"]),
 };
 
 export default Input;

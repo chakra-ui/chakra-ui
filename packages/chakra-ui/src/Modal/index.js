@@ -16,7 +16,7 @@ const Modal = ({
   const centeredStyle = {
     display: "flex",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   };
   return (
     <ModalTransition isOpen={isOpen}>
@@ -26,9 +26,9 @@ const Modal = ({
           initialFocusRef={initialFocusRef}
           css={[
             {
-              opacity: styles.opacity
+              opacity: styles.opacity,
             },
-            isCentered && centeredStyle
+            isCentered && centeredStyle,
           ]}
           onDismiss={onClose}
         >
@@ -38,7 +38,7 @@ const Modal = ({
               ...(!isCentered && { top: 40, margin: "0 auto" }),
               maxWidth: sizes[size],
               borderRadius: radii.md,
-              transform: `translate3d(0px, ${styles.y}px, 0px)`
+              transform: `translate3d(0px, ${styles.y}px, 0px)`,
             })}
             {...rest}
           >

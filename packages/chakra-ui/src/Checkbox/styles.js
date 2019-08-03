@@ -5,7 +5,7 @@ const baseProps = {
   border: "2px",
   rounded: "md",
   borderColor: "inherit",
-  transition: "background-color 120ms, box-shadow 250ms"
+  transition: "background-color 120ms, box-shadow 250ms",
 };
 
 const interactionProps = ({ color, mode }) => {
@@ -16,37 +16,37 @@ const interactionProps = ({ color, mode }) => {
     _checked: {
       bg: get(color, _color),
       borderColor: get(color, _color),
-      color: isDarkMode ? "gray.900" : undefined
+      color: isDarkMode ? "gray.900" : undefined,
     },
     _checkedAndDisabled: {
       borderColor: isDarkMode ? "transparent" : "gray.200",
       bg: isDarkMode ? "whiteAlpha.300" : "gray.200",
-      color: isDarkMode ? "whiteAlpha.500" : "gray.500"
+      color: isDarkMode ? "whiteAlpha.500" : "gray.500",
     },
     _disabled: {
       bg: isDarkMode ? "whiteAlpha.100" : "gray.100",
-      borderColor: isDarkMode ? "transparent" : "gray.100"
+      borderColor: isDarkMode ? "transparent" : "gray.100",
     },
     _focus: {
-      boxShadow: "outline"
+      boxShadow: "outline",
     },
     _invalid: {
-      borderColor: isDarkMode ? "red.300" : "red.500"
-    }
+      borderColor: isDarkMode ? "red.300" : "red.500",
+    },
   };
 };
 
 const sizes = {
   lg: 5,
   md: 4,
-  sm: 3
+  sm: 3,
 };
 
 const checkboxStyles = props => {
   return {
     ...baseProps,
     ...interactionProps(props),
-    size: sizes[props.size]
+    size: sizes[props.size],
   };
 };
 

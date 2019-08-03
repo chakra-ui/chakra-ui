@@ -8,13 +8,13 @@ const leftAccent = props => {
     light: {
       ...subtle(props).light,
       borderLeft: "4px",
-      borderColor: `${color}.500`
+      borderColor: `${color}.500`,
     },
     dark: {
       ...subtle(props).dark,
       borderLeft: "4px",
-      borderColor: `${color}.200`
-    }
+      borderColor: `${color}.200`,
+    },
   };
 };
 
@@ -24,20 +24,20 @@ const topAccent = props => {
     light: {
       ...subtle(props).light,
       borderTop: "4px",
-      borderColor: `${color}.500`
+      borderColor: `${color}.500`,
     },
     dark: {
       ...subtle(props).dark,
       borderTop: "4px",
-      borderColor: `${color}.200`
-    }
+      borderColor: `${color}.200`,
+    },
   };
 };
 
 const solid = ({ color }) => {
   return {
     light: { bg: `${color}.500`, color: "white" },
-    dark: { bg: `${color}.200`, color: "gray.900" }
+    dark: { bg: `${color}.200`, color: "gray.900" },
   };
 };
 
@@ -45,9 +45,9 @@ const subtle = ({ color, theme: { colors } }) => {
   let darkBg = colors[color][200];
   return {
     light: {
-      bg: `${color}.50`
+      bg: `${color}.50`,
     },
-    dark: { bg: colorEmphasis(darkBg, "lowest") }
+    dark: { bg: colorEmphasis(darkBg, "lowest") },
   };
 };
 
@@ -73,7 +73,7 @@ const baseProps = {
   overflow: "hidden",
   pl: 4,
   pr: 4,
-  py: 3
+  py: 3,
 };
 
 const useAlertStyle = props => {
@@ -83,7 +83,7 @@ const useAlertStyle = props => {
 
   return {
     ...baseProps,
-    ...statusStyleProps(_props)[mode]
+    ...statusStyleProps(_props)[mode],
   };
 };
 
@@ -92,7 +92,7 @@ export const useIconStyle = ({ variant, color }) => {
   if (["left-accent", "top-accent", "subtle"].includes(variant)) {
     let result = {
       light: { color: `${color}.500` },
-      dark: { color: `${color}.200` }
+      dark: { color: `${color}.200` },
     };
 
     return result[mode];

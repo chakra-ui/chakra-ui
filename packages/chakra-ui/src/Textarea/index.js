@@ -50,5 +50,5 @@ export const ExpandingTextarea = forwardRef(
         {...props}
       />
     );
-  }
+  },
 );

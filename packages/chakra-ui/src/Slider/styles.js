@@ -4,7 +4,7 @@ import { useTheme, useUIMode } from "../ThemeProvider";
 const centeredProps = {
   position: "absolute",
   top: "50%",
-  transform: `translateY(-50%)`
+  transform: `translateY(-50%)`,
 };
 
 const thumbStyle = ({ thumbSize, trackPercent, theme }) => {
@@ -20,14 +20,14 @@ const thumbStyle = ({ thumbSize, trackPercent, theme }) => {
     borderColor: "transparent",
     transition: "transform 0.2s",
     _focus: {
-      boxShadow: "outline"
+      boxShadow: "outline",
     },
     _disabled: {
-      backgroundColor: "gray.300"
+      backgroundColor: "gray.300",
     },
     _active: {
-      transform: `translateY(-50%) scale(1.15)`
-    }
+      transform: `translateY(-50%) scale(1.15)`,
+    },
   };
 };
 
@@ -36,28 +36,28 @@ const filledTrackStyle = ({ trackHeight, trackPercent }) => ({
   height: trackHeight,
   bg: "blue.500",
   width: `${trackPercent}%`,
-  rounded: "sm"
+  rounded: "sm",
 });
 
 const themedTrackStyle = {
   light: {
     bg: "gray.200",
     _disabled: {
-      bg: "gray.300"
-    }
+      bg: "gray.300",
+    },
   },
   dark: {
     bg: "whiteAlpha.200",
     _disabled: {
-      bg: "whiteAlpha.300"
-    }
-  }
+      bg: "whiteAlpha.300",
+    },
+  },
 };
 
 const trackStyle = ({ trackHeight, theme, mode }) => ({
   height: trackHeight,
   borderRadius: "sm",
-  ...themedTrackStyle[mode]
+  ...themedTrackStyle[mode],
 });
 
 const rootStyle = {
@@ -68,23 +68,23 @@ const rootStyle = {
   _disabled: {
     opacity: 0.6,
     cursor: "default",
-    pointerEvents: "none"
-  }
+    pointerEvents: "none",
+  },
 };
 
 const sizes = {
   lg: {
     thumb: "16px",
-    trackHeight: "4px"
+    trackHeight: "4px",
   },
   md: {
     thumb: "14px",
-    trackHeight: "4px"
+    trackHeight: "4px",
   },
   sm: {
     thumb: "10px",
-    trackHeight: "2px"
-  }
+    trackHeight: "2px",
+  },
 };
 
 const useSliderStyle = props => {
@@ -100,13 +100,13 @@ const useSliderStyle = props => {
     theme,
     trackPercent,
     color,
-    mode
+    mode,
   };
   return {
     rootStyle,
     trackStyle: trackStyle(_props),
     filledTrackStyle: filledTrackStyle(_props),
-    thumbStyle: thumbStyle(_props)
+    thumbStyle: thumbStyle(_props),
   };
 };
 

@@ -37,13 +37,13 @@ const RadioGroup = ({
     return (
       <Box
         display={isInline ? "inline-block" : "block"}
-        {...!isLastRadio && spacingProps}
+        {...(!isLastRadio && spacingProps)}
       >
         {cloneElement(child, {
           size,
           name: _name,
           onChange: _onChange,
-          isChecked: child.props.value === _value
+          isChecked: child.props.value === _value,
         })}
       </Box>
     );
@@ -63,7 +63,7 @@ RadioGroup.propTypes = {
   value: propTypes.oneOfType([
     propTypes.string,
     propTypes.number,
-    propTypes.object
+    propTypes.object,
   ]),
   /**
    * The initial selected value of the Radio Group
@@ -71,7 +71,7 @@ RadioGroup.propTypes = {
   defaultValue: propTypes.oneOfType([
     propTypes.string,
     propTypes.number,
-    propTypes.object
+    propTypes.object,
   ]),
   /**
    * Function fired when a radio button is selected
@@ -81,7 +81,7 @@ RadioGroup.propTypes = {
    *
    * @param {string} value - The `value` of the selected radio button
    * */
-  onChange: propTypes.func
+  onChange: propTypes.func,
 };
 
 export default RadioGroup;

@@ -26,7 +26,7 @@ const Switch = forwardRef(
       children,
       ...rest
     },
-    ref
+    ref,
   ) => {
     const { mode } = useUIMode();
     const theme = useTheme();
@@ -42,20 +42,20 @@ const Switch = forwardRef(
       boxSizing: "content-box",
       p: "2px",
       _checked: {
-        bg: `${color}.500`
+        bg: `${color}.500`,
       },
       _child: {
-        transform: `translateX(0)`
+        transform: `translateX(0)`,
       },
       _checkedAndChild: {
-        transform: `translateX(calc(${width} - ${height}))`
+        transform: `translateX(calc(${width} - ${height}))`,
       },
       _focus: {
-        boxShadow: "outline"
+        boxShadow: "outline",
       },
       _disabled: {
-        opacity: 0.5
-      }
+        opacity: 0.5,
+      },
     };
 
     return (
@@ -87,12 +87,12 @@ const Switch = forwardRef(
         </ControlBox>
       </Box>
     );
-  }
+  },
 );
 
 Switch.defaultProps = {
   color: "blue",
-  size: "md"
+  size: "md",
 };
 
 export default Switch;

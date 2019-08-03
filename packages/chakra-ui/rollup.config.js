@@ -15,20 +15,20 @@ export default [
         format: "umd",
         globals: {
           react: "React",
-          "react-dom": "ReactDOM"
-        }
-      }
+          "react-dom": "ReactDOM",
+        },
+      },
     ],
     external: [
       "react",
       "react-dom",
       "@emotion/core",
       "@emotion/styled",
-      "emotion-theming"
+      "emotion-theming",
     ],
     plugins: [
       babel({
-        exclude: "node_modules/**"
+        exclude: "node_modules/**",
       }),
       resolve(),
       commonjs({
@@ -42,18 +42,18 @@ export default [
             "oneOf",
             "node",
             "string",
-            "bool"
+            "bool",
           ],
           "node_modules/@react-spring/shared/index.js": [
             "is",
             "createInterpolator",
             "useForceUpdate",
             "useOnce",
-            "usePrev"
-          ]
-        }
+            "usePrev",
+          ],
+        },
       }),
-      production && terser()
-    ]
-  }
+      production && terser(),
+    ],
+  },
 ];

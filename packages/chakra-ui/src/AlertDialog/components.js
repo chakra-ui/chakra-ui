@@ -4,7 +4,7 @@ import {
   AlertDialogContent as IAlertDialogContent,
   AlertDialogDescription,
   AlertDialogLabel,
-  AlertDialogOverlay as IAlertDialogOverlay
+  AlertDialogOverlay as IAlertDialogOverlay,
 } from "@reach/alert-dialog";
 import css from "@styled-system/css";
 import { forwardRef } from "react";
@@ -34,7 +34,7 @@ const AlertDialogOverlay = props => (
       bottom: "0",
       zIndex: "1",
       overflowY: "auto",
-      bg: "rgba(16,22,26,.7)"
+      bg: "rgba(16,22,26,.7)",
     })}
     {...props}
   />
@@ -62,5 +62,5 @@ export {
   AlertDialogBody,
   AlertDialogFooter,
   AlertDialogOverlay,
-  AlertDialogContent
+  AlertDialogContent,
 };

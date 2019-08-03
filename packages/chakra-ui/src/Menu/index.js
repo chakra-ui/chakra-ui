@@ -8,7 +8,7 @@ import {
   useContext,
   useEffect,
   useRef,
-  useState
+  useState,
 } from "react";
 import { Manager, Popper, Reference } from "react-popper";
 import Box from "../Box";
@@ -28,13 +28,13 @@ const Menu = ({
   autoSelect,
   closeOnBlur = true,
   closeOnSelect = true,
-  placement
+  placement,
 }) => {
   const { mode } = useUIMode();
 
   const [state, setState] = useState({
     isOpen: isOpen || false,
-    index: -1
+    index: -1,
   });
 
   const menuId = `menu-${useId()}`;
@@ -47,8 +47,8 @@ const Menu = ({
   useEffect(() => {
     let focusables = getFocusables(menuRef.current).filter(node =>
       ["menuitem", "menuitemradio", "menuitemcheckbox"].includes(
-        node.getAttribute("role")
-      )
+        node.getAttribute("role"),
+      ),
     );
     focusableItems.current = menuRef.current ? focusables : [];
     initTabIndex();
@@ -72,7 +72,7 @@ const Menu = ({
 
   const initTabIndex = () => {
     focusableItems.current.forEach(
-      (node, index) => index === 0 && node.setAttribute("tabindex", 0)
+      (node, index) => index === 0 && node.setAttribute("tabindex", 0),
     );
   };
 
@@ -128,7 +128,7 @@ const Menu = ({
     closeOnSelect,
     closeOnBlur,
     placement,
-    mode
+    mode,
   };
 
   return (
@@ -146,7 +146,7 @@ export function useMenuContext() {
   const context = useContext(MenuContext);
   if (context === undefined) {
     throw new Error(
-      "useMenuContext must be used within a MenuContext Provider"
+      "useMenuContext must be used within a MenuContext Provider",
     );
   }
   return context;
@@ -164,7 +164,7 @@ const MenuButton = forwardRef(({ as: Comp = "button", ...props }, ref) => {
     buttonId,
     autoSelect,
     openMenu,
-    buttonRef
+    buttonRef,
   } = useMenuContext();
 
   return (
@@ -216,7 +216,7 @@ const MenuList = ({ onKeyDown, onBlur, ...props }) => {
     buttonId,
     menuRef,
     placement,
-    closeOnBlur
+    closeOnBlur,
   } = useMenuContext();
 
   const handleKeyDown = event => {
@@ -244,7 +244,7 @@ const MenuList = ({ onKeyDown, onBlur, ...props }) => {
       event.stopPropagation();
       event.preventDefault();
       let foundNode = focusableItems.current.find(item =>
-        item.textContent.toLowerCase().startsWith(event.key)
+        item.textContent.toLowerCase().startsWith(event.key),
       );
       if (foundNode) {
         nextIndex = focusableItems.current.indexOf(foundNode);
@@ -309,13 +309,13 @@ const MenuItem = forwardRef(
       role = "menuitem",
       ...props
     },
-    ref
+    ref,
   ) => {
     const {
       focusableItems,
       focusAtIndex,
       closeOnSelect,
-      closeMenu
+      closeMenu,
     } = useMenuContext();
 
     const styleProps = useMenuItemStyle();
@@ -368,7 +368,7 @@ const MenuItem = forwardRef(
         {...props}
       />
     );
-  }
+  },
 );
 
 MenuItem.propTypes = {
@@ -376,7 +376,7 @@ MenuItem.propTypes = {
   onKeyDown: func,
   onClick: func,
   onMouseMove: func,
-  role: string
+  role: string,
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////

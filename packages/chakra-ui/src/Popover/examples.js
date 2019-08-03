@@ -1,5 +1,5 @@
 import { storiesOf } from "@storybook/react";
-import React, {Fragment} from "react";
+import React, { Fragment } from "react";
 import Popover, { PopoverBody, PopoverFooter, PopoverHeader } from ".";
 import Button from "../Button";
 import Box from "../Box";

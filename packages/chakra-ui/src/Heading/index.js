@@ -9,7 +9,7 @@ const sizes = {
   lg: "2xl",
   md: "xl",
   sm: "md",
-  xs: "sm"
+  xs: "sm",
 };
 
 const Heading = ({ size = "md", ...props }) => (
@@ -17,7 +17,7 @@ const Heading = ({ size = "md", ...props }) => (
 );
 
 Heading.propTypes = {
-  size: propTypes.oneOf(["2xl", "xl", "lg", "md", "sm", "xs"])
+  size: propTypes.oneOf(["2xl", "xl", "lg", "md", "sm", "xs"]),
 };
 
 export default Heading;

@@ -12,7 +12,7 @@ export interface IBadge {
   variant: "solid" | "subtle" | "outline";
 }
 
-export type BadgeProps = IBadge & BoxProps
+export type BadgeProps = IBadge & BoxProps;
 
 /**
  * The Badge component is used for state, general text, and number labels.

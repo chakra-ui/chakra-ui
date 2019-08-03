@@ -28,19 +28,19 @@ const Accordion = forwardRef(
             headerId,
             panelId,
             onToggle,
-            isExpanded: _isExpanded
+            isExpanded: _isExpanded,
           });
         })}
       </Box>
     );
-  }
+  },
 );
 
 Accordion.propTypes = {
   isOpen: propTypes.bool,
   defaultIsOpen: propTypes.bool,
   onOpenChange: propTypes.func,
-  children: propTypes.node.isRequired
+  children: propTypes.node.isRequired,
 };
 
 /////////////////////////////////////////////////////////////
@@ -57,7 +57,7 @@ const AccordionHeader = forwardRef(
       children,
       ...rest
     },
-    ref
+    ref,
   ) => (
     <PseudoBox
       ref={ref}
@@ -80,7 +80,7 @@ const AccordionHeader = forwardRef(
         ? children({ isExpanded, isDisabled })
         : children}
     </PseudoBox>
-  )
+  ),
 );
 
 /////////////////////////////////////////////////////////////
@@ -96,7 +96,7 @@ const AccordionPanel = forwardRef(
       isOpen={isExpanded}
       {...rest}
     />
-  )
+  ),
 );
 export default Accordion;
 export { AccordionHeader, AccordionPanel };

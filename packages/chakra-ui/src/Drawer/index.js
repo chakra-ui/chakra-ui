@@ -11,7 +11,7 @@ const Drawer = ({
   isFullHeight,
   initialFocusRef,
   hideOverlay,
-  placement = "right"
+  placement = "right",
 }) => {
   return (
     <DrawerTransition {...{ isOpen, placement, isFullHeight }}>
@@ -27,7 +27,7 @@ const Drawer = ({
               maxWidth: theme.sizes[size],
               position: "fixed",
               transform: transform(styles.offset),
-              ...placements[placement]
+              ...placements[placement],
             })}
           >
             {children}
@@ -50,11 +50,10 @@ Drawer.propTypes = {
     "4xl",
     "5xl",
     "6xl",
-    "full"
+    "full",
   ]),
-  placement: oneOf(["top", "left", "right", "bottom"])
+  placement: oneOf(["top", "left", "right", "bottom"]),
 };
 
 export default Drawer;
 export * from "./components";
-

@@ -27,7 +27,7 @@ const Button = forwardRef(
       size,
       ...rest
     },
-    ref
+    ref,
   ) => {
     const { mode } = useUIMode();
     const theme = useTheme();
@@ -83,7 +83,7 @@ const Button = forwardRef(
         )}
       </PseudoBox>
     );
-  }
+  },
 );
 
 Button.propTypes = {
@@ -139,7 +139,7 @@ Button.propTypes = {
    * Use the styled-system tokens or add custom values as a string
    * @ignore
    */
-  iconSpacing: propTypes.oneOfType([propTypes.number, propTypes.string])
+  iconSpacing: propTypes.oneOfType([propTypes.number, propTypes.string]),
 };
 
 Button.defaultProps = {
@@ -148,7 +148,7 @@ Button.defaultProps = {
   variant: "solid",
   type: "button",
   iconSpacing: 2,
-  as: "button"
+  as: "button",
 };
 
 export default Button;

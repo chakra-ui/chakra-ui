@@ -4,17 +4,21 @@
 
 # **Welcome to Chakra UI ⚡️**
 
-- Works out of the box. Chakra UI contains a set of polished React components that work out of the box.
+- Works out of the box. Chakra UI contains a set of polished React components
+  that work out of the box.
 
-- Flexible & composable. Chakra UI components are built on top of a React UI Primitive for endless composability.
+- Flexible & composable. Chakra UI components are built on top of a React UI
+  Primitive for endless composability.
 
-- Accessible. Chakra UI components follows the WAI-ARIA guidelines specifications.
+- Accessible. Chakra UI components follows the WAI-ARIA guidelines
+  specifications.
 
 - Dark Mode 😍: All components work in dark mode compatible.
 
 ## Install and use components
 
-⚡️Chakra UI is made up of multiple components and tools which you can import one by one. All you need to do is install the `chakra-ui` package:
+⚡️Chakra UI is made up of multiple components and tools which you can import
+one by one. All you need to do is install the `chakra-ui` package:
 
 ```sh
 $ yarn add chakra-ui
@@ -22,7 +26,9 @@ $ yarn add chakra-ui
 $ npm install --save chakra-ui
 ```
 
-A working version, assuming you are using something like [Create React App](https://github.com/facebookincubator/create-react-app), might look like this:
+A working version, assuming you are using something like
+[Create React App](https://github.com/facebookincubator/create-react-app), might
+look like this:
 
 ```js
 import React from "react";
@@ -31,7 +37,7 @@ import { Button } from "chakra-ui";
 
 ReactDOM.render(
   <Button>I just consumed some ⚡️Chakra!</Button>,
-  document.getElementById("root")
+  document.getElementById("root"),
 );
 ```
 

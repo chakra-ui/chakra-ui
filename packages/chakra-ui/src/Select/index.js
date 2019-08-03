@@ -43,7 +43,7 @@ const Select = forwardRef(
         </Absolute>
       </Box>
     );
-  }
+  },
 );
 
 export default Select;

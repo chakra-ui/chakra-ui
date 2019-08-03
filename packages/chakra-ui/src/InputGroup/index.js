@@ -25,7 +25,7 @@ const InputGroup = ({ children, size = "md", ...props }) => {
           return cloneElement(child, {
             size,
             pl: child.props.pl || pl,
-            pr: child.props.pr || pr
+            pr: child.props.pr || pr,
           });
         }
         return cloneElement(child, { size });

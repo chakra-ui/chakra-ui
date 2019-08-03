@@ -12,23 +12,23 @@ if (process.env.BABEL_ENV === "es") {
       {
         modules: ["esm", "production-umd"].includes(process.env.BABEL_ENV)
           ? false
-          : "commonjs"
-      }
-    ]
+          : "commonjs",
+      },
+    ],
   ];
 }
 
 const defaultAlias = {
-  "chakra-ui": "./src"
+  "chakra-ui": "./src",
 };
 
 const productionPlugins = [
   [
     "babel-plugin-transform-react-remove-prop-types",
     {
-      mode: "unsafe-wrap"
-    }
-  ]
+      mode: "unsafe-wrap",
+    },
+  ],
 ];
 
 module.exports = {
@@ -37,36 +37,36 @@ module.exports = {
     ["@babel/plugin-proposal-object-rest-spread", { loose: true }],
     "@babel/plugin-transform-runtime",
     // for IE 11 support
-    "@babel/plugin-transform-object-assign"
+    "@babel/plugin-transform-object-assign",
   ],
   ignore: [/@babel[\\|/]runtime/], // Fix a Windows issue.
   env: {
     cjs: {
-      plugins: productionPlugins
+      plugins: productionPlugins,
     },
     esm: {
       plugins: [
         ...productionPlugins,
-        ["@babel/plugin-transform-runtime", { useESModules: true }]
-      ]
+        ["@babel/plugin-transform-runtime", { useESModules: true }],
+      ],
     },
     es: {
       plugins: [
         ...productionPlugins,
-        ["@babel/plugin-transform-runtime", { useESModules: true }]
-      ]
+        ["@babel/plugin-transform-runtime", { useESModules: true }],
+      ],
     },
     production: {
       plugins: [
         ...productionPlugins,
-        ["@babel/plugin-transform-runtime", { useESModules: true }]
-      ]
+        ["@babel/plugin-transform-runtime", { useESModules: true }],
+      ],
     },
     "production-umd": {
       plugins: [
         ...productionPlugins,
-        ["@babel/plugin-transform-runtime", { useESModules: true }]
-      ]
+        ["@babel/plugin-transform-runtime", { useESModules: true }],
+      ],
     },
     test: {
       sourceMaps: "both",
@@ -75,10 +75,10 @@ module.exports = {
           "babel-plugin-module-resolver",
           {
             root: ["./"],
-            alias: defaultAlias
-          }
-        ]
-      ]
-    }
-  }
+            alias: defaultAlias,
+          },
+        ],
+      ],
+    },
+  },
 };

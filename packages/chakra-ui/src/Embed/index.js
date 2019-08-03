@@ -9,7 +9,7 @@ const aspectRatios = {
   "9:16": 16 / 9,
   "4:3": 3 / 4,
   "1.85:1": 1 / 1.85,
-  "1:1": 1
+  "1:1": 1,
 };
 
 const generatePadding = ratio => {
@@ -36,16 +36,23 @@ const Embed = styled(Box)(({ aspectRatio }) => ({
     top: 0,
     bottom: 0,
     left: 0,
-    border: 0
-  }
+    border: 0,
+  },
 }));
 
 Embed.propTypes = {
-  aspectRatio: propTypes.oneOf(["21:9", "16:9", "9:16", "4:3", "1.85:1", "1:1"])
+  aspectRatio: propTypes.oneOf([
+    "21:9",
+    "16:9",
+    "9:16",
+    "4:3",
+    "1.85:1",
+    "1:1",
+  ]),
 };
 
 Embed.defaultProps = {
-  aspectRatio: "4:3"
+  aspectRatio: "4:3",
 };
 
 export default Embed;

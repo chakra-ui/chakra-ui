@@ -30,14 +30,14 @@ stories.add("Default", () => (
       "linkedin",
       "facebook",
       "messenger",
-      "telegram"
+      "telegram",
     ].map(color => (
       <Button
         m={3}
         variant={select(
           "variant",
           ["ghost", "outline", "solid", "link", "unstyled"],
-          "solid"
+          "solid",
         )}
         size={select("size", ["sm", "md", "lg"], "md")}
         isLoading={boolean("isLoading?", false)}

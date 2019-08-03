@@ -8,7 +8,7 @@ export const BreadcrumbItem = ({ isCurrent, separator, children, ...rest }) => {
   const currentProps = {
     "aria-current": "page",
     isUnstyled: true,
-    as: "span"
+    as: "span",
   };
   return (
     <Box as="li" display="inline-flex" alignItems="center" {...rest}>
@@ -31,11 +31,11 @@ export const BreadcrumbItem = ({ isCurrent, separator, children, ...rest }) => {
 };
 
 BreadcrumbItem.defaultProps = {
-  separator: "/"
+  separator: "/",
 };
 
 BreadcrumbItem.propTypes = {
-  separator: oneOfType([string, node])
+  separator: oneOfType([string, node]),
 };
 
 const Breadcrumb = ({ children, separator, ...rest }) => {
@@ -52,7 +52,7 @@ const Breadcrumb = ({ children, separator, ...rest }) => {
 
 BreadcrumbItem.propTypes = {
   size: oneOf(["sm", "md", "lg"]),
-  separator: oneOfType([string, node])
+  separator: oneOfType([string, node]),
 };
 
 export default Breadcrumb;

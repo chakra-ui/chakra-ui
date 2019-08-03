@@ -65,11 +65,11 @@ export function useToast() {
     description,
     status,
     variant = "solid",
-    isClosable
+    isClosable,
   }) {
     const options = {
       position,
-      duration
+      duration,
     };
 
     if (render) {
@@ -79,7 +79,7 @@ export function useToast() {
             {render({ onClose, id })}
           </ChakraProvider>
         ),
-        options
+        options,
       );
     }
 
@@ -94,12 +94,12 @@ export function useToast() {
               description,
               status,
               variant,
-              isClosable
+              isClosable,
             }}
           />
         </ChakraProvider>
       ),
-      options
+      options,
     );
   }
 

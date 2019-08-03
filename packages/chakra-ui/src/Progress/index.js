@@ -21,7 +21,7 @@ export const stripeStyle = generateStripe({});
 const progressbarSizes = {
   lg: "1rem",
   md: "0.75rem",
-  sm: "0.5rem"
+  sm: "0.5rem",
 };
 
 const Progress = ({
@@ -56,7 +56,7 @@ const Progress = ({
         width={`${percent}%`}
         css={[
           hasStripe && stripeStyle,
-          hasStripe && isAnimated && stripeAnimation
+          hasStripe && isAnimated && stripeAnimation,
         ]}
       >
         <VisuallyHidden>{`${percent}%`}</VisuallyHidden>
@@ -69,7 +69,7 @@ Progress.propTypes = {
   size: oneOf(["md", "sm", "lg"]),
   value: number,
   hasStripe: bool,
-  isAnimated: bool
+  isAnimated: bool,
 };
 
 export default Progress;

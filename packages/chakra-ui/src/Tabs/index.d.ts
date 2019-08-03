@@ -5,7 +5,7 @@ import { FlexProps } from "../Flex";
 export interface ITabs {
   /**
    * The alignment of the tabs
-   * */
+   */
   align?: "start" | "center" | "end";
   /**
    * If `true`, tabs will stretch to width of the tablist.

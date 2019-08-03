@@ -12,15 +12,15 @@ export const baseProps = {
   transition: "all 0.2s",
   _focus: {
     zIndex: "1",
-    boxShadow: "outline"
-  }
+    boxShadow: "outline",
+  },
 };
 
 export const disabledProps = {
   _disabled: {
     opacity: 0.4,
-    cursor: "not-allowed"
-  }
+    cursor: "not-allowed",
+  },
 };
 
 const lineStyle = ({ color, mode }) => {
@@ -28,7 +28,7 @@ const lineStyle = ({ color, mode }) => {
   return {
     tabList: {
       borderBottom: "2px",
-      borderColor: "inherit"
+      borderColor: "inherit",
     },
     tab: {
       borderBottom: "2px",
@@ -36,16 +36,16 @@ const lineStyle = ({ color, mode }) => {
       mb: "-2px",
       _selected: {
         color: _color[mode],
-        borderColor: "currentColor"
+        borderColor: "currentColor",
       },
       _active: {
-        bg: "gray.200"
+        bg: "gray.200",
       },
       _disabled: {
         opacity: 0.4,
-        cursor: "not-allowed"
-      }
-    }
+        cursor: "not-allowed",
+      },
+    },
   };
 };
 
@@ -53,18 +53,18 @@ const containedStyle = props => {
   return {
     tab: {
       _notFirstChild: {
-        borderLeftWidth: 1
+        borderLeftWidth: 1,
       },
       _selected: {
-        bg: "gray.100"
-      }
+        bg: "gray.100",
+      },
     },
     tabList: {
       bg: "#fff",
       borderWidth: "1px",
       rounded: "md",
-      overflow: "hidden"
-    }
+      overflow: "hidden",
+    },
   };
 };
 
@@ -82,14 +82,14 @@ const enclosedStyle = ({ color, mode, theme }) => {
       _selected: {
         color: _selectedColor[mode],
         borderColor: "inherit",
-        borderBottomColor: _selectedBg[mode]
-      }
+        borderBottomColor: _selectedBg[mode],
+      },
     },
     tabList: {
       mb: "-1px",
       borderBottom: "1px",
-      borderColor: "inherit"
-    }
+      borderColor: "inherit",
+    },
   };
 };
 
@@ -105,21 +105,21 @@ const enclosedColoredStyle = ({ color, mode }) => {
       bg: bg[mode],
       mb: "-1px",
       _notLastChild: {
-        mr: "-1px"
+        mr: "-1px",
       },
       _selected: {
         bg: _selectedBg[mode],
         color: _selectedColor[mode],
         borderColor: "inherit",
         borderTopColor: "currentColor",
-        borderBottomColor: "transparent"
-      }
+        borderBottomColor: "transparent",
+      },
     },
     tabList: {
       mb: "-1px",
       borderBottom: "1px",
-      borderColor: "inherit"
-    }
+      borderColor: "inherit",
+    },
   };
 };
 
@@ -131,10 +131,10 @@ const softRoundedStyle = ({ color }) => {
       color: "gray.600",
       _selected: {
         color: `${color}.700`,
-        bg: `${color}.100`
-      }
+        bg: `${color}.100`,
+      },
     },
-    tabList: {}
+    tabList: {},
   };
 };
 
@@ -150,10 +150,10 @@ const solidRoundedStyle = ({ color, mode }) => {
       color: _color[mode],
       _selected: {
         color: _selectedColor[mode],
-        bg: _selectedBg[mode]
-      }
+        bg: _selectedBg[mode],
+      },
     },
-    tabList: {}
+    tabList: {},
   };
 };
 
@@ -181,18 +181,18 @@ export const orientationStyle = ({ align, orientation }) => {
   const alignments = {
     end: "flex-end",
     center: "center",
-    start: "flex-start"
+    start: "flex-start",
   };
   switch (orientation) {
     case "horizontal":
       return {
         alignItems: "center",
         justifyContent: alignments[align],
-        maxWidth: "full"
+        maxWidth: "full",
       };
     case "vertical":
       return {
-        flexDirection: "column"
+        flexDirection: "column",
       };
     default:
       return {};
@@ -209,7 +209,7 @@ export const useTabStyle = () => {
     ...disabledProps,
     ...theme.sizes.tab[size],
     ...variantStyle({ variant, color, theme, mode }).tab,
-    ...(isFitted && { flex: 1 })
+    ...(isFitted && { flex: 1 }),
   };
 };
 
@@ -219,6 +219,6 @@ export const useTabListStyle = () => {
 
   return {
     ...variantStyle({ variant, theme }).tabList,
-    ...orientationStyle({ align, orientation })
+    ...orientationStyle({ align, orientation }),
   };
 };

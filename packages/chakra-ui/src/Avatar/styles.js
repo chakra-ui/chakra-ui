@@ -23,7 +23,7 @@ export const avatarSizes = {
   md: 10,
   lg: 12,
   xl: 16,
-  "2xl": 24
+  "2xl": 24,
 };
 
 const useAvatarStyle = props => {
@@ -40,7 +40,7 @@ const useAvatarStyle = props => {
     rounded: "full",
     alignItems: "center",
     justifyContent: "center",
-    position: "relative"
+    position: "relative",
   };
 
   return {
@@ -50,8 +50,8 @@ const useAvatarStyle = props => {
     color,
     ...(showBorder && {
       border: "2px",
-      borderColor: borderColor[mode]
-    })
+      borderColor: borderColor[mode],
+    }),
   };
 };
 

@@ -30,7 +30,7 @@ const Radio = forwardRef(
       children,
       ...rest
     },
-    ref
+    ref,
   ) => {
     const { mode } = useUIMode();
     const styleProps = checkboxStyles({ color, size, mode });
@@ -78,12 +78,12 @@ const Radio = forwardRef(
         )}
       </Flex>
     );
-  }
+  },
 );
 
 Radio.defaultProps = {
   size: "md",
-  color: "blue"
+  color: "blue",
 };
 
 Radio.propTypes = {
@@ -127,7 +127,7 @@ Radio.propTypes = {
    * The value to be used in the radio button.
    * This is the value that will be returned on form submission.
    */
-  value: propTypes.oneOfType([propTypes.string, propTypes.number])
+  value: propTypes.oneOfType([propTypes.string, propTypes.number]),
 };
 
 export default Radio;

@@ -15,15 +15,15 @@ export const PopoverTransition = ({
     items={isOpen}
     from={{
       opacity: 0.01,
-      scale: 0.75
+      scale: 0.75,
     }}
     enter={{
       opacity: 1,
-      scale: 1
+      scale: 1,
     }}
     leave={{
       opacity: 0,
-      scale: 0.75
+      scale: 0.75,
     }}
     config={{ duration, ...rest.config }}
     {...rest}
@@ -148,7 +148,7 @@ export const PopoverBody = ({ isScrollable, ...props }) => (
     flex="1"
     px="12px"
     py="8px"
-    {...isScrollable && { overflow: "hidden auto" }}
+    {...(isScrollable && { overflow: "hidden auto" })}
     {...props}
   />
 );

@@ -19,7 +19,7 @@ const sizes = {
   sm: "1rem",
   md: "1.5rem",
   lg: "2rem",
-  xl: "3rem"
+  xl: "3rem",
 };
 
 const Spinner = forwardRef(
@@ -31,7 +31,7 @@ const Spinner = forwardRef(
       speed = "0.45s",
       ...props
     },
-    ref
+    ref,
   ) => {
     const _size = sizes[size] || size;
 
@@ -51,7 +51,7 @@ const Spinner = forwardRef(
         {loadingText && <VisuallyHidden>{loadingText}</VisuallyHidden>}
       </Box>
     );
-  }
+  },
 );
 
 const spinCSS = speed => css`
@@ -64,7 +64,7 @@ export default Spinner;
 export const Spinner2 = ({
   color = "rgba(164, 164, 164, 1)",
   size = "24px",
-  speed
+  speed,
 }) => (
   <Box display="inline-block">
     <Icon color={color} name="spinner" size={size} css={spinCSS(speed)} />

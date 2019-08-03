@@ -8,7 +8,7 @@ import {
   forwardRef,
   useContext,
   useRef,
-  useState
+  useState,
 } from "react";
 import { useId } from "@reach/auto-id";
 import { makeId } from "../utils";
@@ -52,7 +52,7 @@ const TabList = forwardRef((props, ref) => {
     isManual,
     onChangeTab,
     onFocusPanel,
-    orientation
+    orientation,
   } = useContext(TabContext);
 
   const tabListStyleProps = useTabListStyle();
@@ -60,7 +60,7 @@ const TabList = forwardRef((props, ref) => {
   const allNodes = useRef([]);
 
   const focusableIndexes = Children.map(children, (child, index) =>
-    child.props.isDisabled === true ? null : index
+    child.props.isDisabled === true ? null : index,
   ).filter(index => index != null);
 
   const enabledSelectedIndex = focusableIndexes.indexOf(selectedIndex);
@@ -113,7 +113,7 @@ const TabList = forwardRef((props, ref) => {
       ref: node => (allNodes.current[index] = node),
       isSelected,
       onClick: handleClick,
-      id: makeId(id, index)
+      id: makeId(id, index),
     });
   });
 
@@ -158,14 +158,14 @@ const TabPanels = forwardRef(({ children, ...rest }, ref) => {
     selectedPanelRef,
     id,
     isManual,
-    manualIndex
+    manualIndex,
   } = useContext(TabContext);
 
   const clones = Children.map(children, (child, index) => {
     return cloneElement(child, {
       isSelected: isManual ? index === manualIndex : index === selectedIndex,
       selectedPanelRef,
-      id: makeId(id, index)
+      id: makeId(id, index),
     });
   });
 
@@ -196,7 +196,7 @@ const Tabs = forwardRef(
       isFitted,
       ...props
     },
-    ref
+    ref,
   ) => {
     const isControlled = controlledIndex != null;
     const selectedPanelRef = useRef(null);
@@ -219,7 +219,7 @@ const Tabs = forwardRef(
 
     const [selectedIndex, setSelectedIndex] = useState(getInitialIndex);
     const [manualIndex, setManualIndex] = useState(
-      controlledIndex || defaultIndex || 0
+      controlledIndex || defaultIndex || 0,
     );
 
     let actualIdx = getActualIdx();
@@ -269,7 +269,7 @@ const Tabs = forwardRef(
       align,
       variant,
       isFitted,
-      orientation
+      orientation,
     };
 
     return (
@@ -279,7 +279,7 @@ const Tabs = forwardRef(
         </Box>
       </TabContext.Provider>
     );
-  }
+  },
 );
 
 Tabs.defaultProps = {
@@ -287,7 +287,7 @@ Tabs.defaultProps = {
   variant: "line",
   align: "center",
   orientation: "horizontal",
-  color: "blue"
+  color: "blue",
 };
 
 Tabs.propTypes = {
@@ -322,7 +322,7 @@ Tabs.propTypes = {
   /**
    * Callback when the index (controlled or un-controlled) changes
    */
-  onChange: propTypes.func
+  onChange: propTypes.func,
 };
 
 export default Tabs;

@@ -2,17 +2,17 @@ import * as React from "react";
 import { BoxProps } from "../Box";
 
 export interface ITooltip {
-  bg?: string,
-  color?: string,
-  label?: string,
-  timeout?: number,
-  children?: React.ReactNode,
-  showArrow?: boolean,
-  placement?:string,
-  closeOnClick?: () => void,
-  defaultOpen?: string,
-  isOpen?: boolean,
-  onOpenChange?: () =>  void,
+  bg?: string;
+  color?: string;
+  label?: string;
+  timeout?: number;
+  children?: React.ReactNode;
+  showArrow?: boolean;
+  placement?: string;
+  closeOnClick?: () => void;
+  defaultOpen?: string;
+  isOpen?: boolean;
+  onOpenChange?: () => void;
 }
 
 export type TooltipProps = ITooltip & BoxProps;

@@ -18,14 +18,14 @@ const statusIcons = {
   info: "info",
   warning: "warning-2",
   success: "check-circle",
-  error: "warning"
+  error: "warning",
 };
 
 const statusColors = {
   error: "red",
   warning: "orange",
   info: "blue",
-  success: "green"
+  success: "green",
 };
 
 const AlertIcon = props => {
@@ -46,12 +46,12 @@ const AlertIcon = props => {
 const Alert = ({ status = "info", variant = "subtle", hasStripe, ...rest }) => {
   const alertStyleProps = useAlertStyle({
     variant,
-    color: statusColors[status]
+    color: statusColors[status],
   });
 
   const stripeStyle = generateStripe({
     size: "8rem",
-    color: "rgba(255, 255, 255, 0.05)"
+    color: "rgba(255, 255, 255, 0.05)",
   });
 
   const context = { status, variant };
@@ -76,7 +76,7 @@ Alert.propTypes = {
   /**
    * The variant of the alert style to use.
    */
-  variant: oneOf(["subtle", "solid", "left-accent", "top-accent", "card"])
+  variant: oneOf(["subtle", "solid", "left-accent", "top-accent", "card"]),
 };
 
 export default Alert;

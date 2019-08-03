@@ -52,7 +52,7 @@ const ThemeProvider = ({ theme, children }) => {
 };
 
 ThemeProvider.defaultProps = {
-  theme
+  theme,
 };
 
 const useTheme = () => {

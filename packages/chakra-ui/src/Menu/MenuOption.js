@@ -21,7 +21,7 @@ export const MenuItemOption = forwardRef(
       isChecked,
       ...props
     },
-    ref
+    ref,
   ) => {
     const { focusableItems, focusAtIndex } = useMenuContext();
 
@@ -95,7 +95,7 @@ export const MenuItemOption = forwardRef(
         </Box>
       </Flex>
     );
-  }
+  },
 );
 
 MenuItemOption.displayName = "MenuItemOption";
@@ -113,7 +113,7 @@ export const MenuOptionsGroup = ({
   title,
   value: valueProp,
   name,
-  onChange
+  onChange,
 }) => {
   const [value, setValue] = useState(valueProp || "");
 
@@ -138,17 +138,17 @@ export const MenuOptionsGroup = ({
           type === "radio"
             ? {
                 name: name || genId("radio"),
-                isChecked: child.props.value === value
+                isChecked: child.props.value === value,
               }
             : {
                 name: child.props.name,
-                isChecked: value.includes(child.props.value)
+                isChecked: value.includes(child.props.value),
               };
         return cloneElement(child, {
           type,
           key: child.props.value,
           onSelect: () => handleChange(child.props.value),
-          ...typeProps
+          ...typeProps,
         });
       })}
     </MenuGroup>

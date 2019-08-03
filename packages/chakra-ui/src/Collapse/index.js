@@ -15,7 +15,7 @@ const Collapse = forwardRef(
       collapsedHeight = 0,
       ...rest
     },
-    ref
+    ref,
   ) => {
     return (
       <AnimateHeight
@@ -28,7 +28,7 @@ const Collapse = forwardRef(
         <Box ref={ref} {...rest} />
       </AnimateHeight>
     );
-  }
+  },
 );
 
 export default Collapse;

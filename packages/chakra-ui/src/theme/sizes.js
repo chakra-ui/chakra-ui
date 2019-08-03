@@ -21,7 +21,7 @@ const baseSizes = {
   "64": "16rem",
   full: "100%",
   screenHeight: "100vh",
-  screenWidth: "100vw"
+  screenWidth: "100vw",
 };
 
 const maxWidths = {
@@ -34,52 +34,52 @@ const maxWidths = {
   "3xl": "48rem",
   "4xl": "56rem",
   "5xl": "64rem",
-  "6xl": "72rem"
+  "6xl": "72rem",
 };
 
 const containers = {
   sm: "640px",
   md: "768px",
   lg: "1024px",
-  xl: "1280px"
+  xl: "1280px",
 };
 
 const components = {
   switch: {
     sm: {
       width: "1.375rem",
-      height: "0.75rem"
+      height: "0.75rem",
     },
     md: {
       width: "1.875rem",
-      height: "1rem"
+      height: "1rem",
     },
     lg: {
       width: "2.875rem",
-      height: "1.5rem"
-    }
+      height: "1.5rem",
+    },
   },
   tab: {
     sm: {
       padding: "0.25rem 1rem",
-      fontSize: "0.85rem"
+      fontSize: "0.85rem",
     },
     md: {
       fontSize: "1rem",
-      padding: "0.5rem 1rem"
+      padding: "0.5rem 1rem",
     },
     lg: {
       fontSize: "1.15rem",
-      padding: "0.75rem 1rem"
-    }
-  }
+      padding: "0.75rem 1rem",
+    },
+  },
 };
 
 const sizes = {
   ...baseSizes,
   ...components,
   ...maxWidths,
-  containers
+  containers,
 };
 
 export default sizes;

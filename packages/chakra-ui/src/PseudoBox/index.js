@@ -40,7 +40,7 @@ const PseudoBox = styled(Box)(
     _notLastChild,
     _lastChild,
     _placeholder,
-    _checked
+    _checked,
   }) => {
     return css({
       [hover]: tx(_hover),
@@ -60,9 +60,9 @@ const PseudoBox = styled(Box)(
       "&:before": tx(_before),
       "&:after": tx(_after),
       "&:focus-within": tx(_focusWithin),
-      "&::placeholder": _placeholder
+      "&::placeholder": _placeholder,
     });
-  }
+  },
 );
 
 export default PseudoBox;

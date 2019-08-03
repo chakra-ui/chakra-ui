@@ -1,7 +1,18 @@
 {
-  "extends": ["react-app", "eslint:recommended", "plugin:jsx-a11y/recommended"],
+  "extends": [
+    "eslint:recommended",
+    "react-app",
+    "plugin:jsx-a11y/recommended",
+    "eslint-config-prettier"
+  ],
   "plugins": ["jsx-a11y", "import"],
   "rules": {
     "no-console": "off"
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "env": {
+    "browser": true
   }
 }

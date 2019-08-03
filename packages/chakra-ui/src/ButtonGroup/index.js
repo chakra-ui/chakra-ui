@@ -26,7 +26,7 @@ const ButtonGroup = ({
       ...(!isLast && !isAttached && { mr: spacing }),
       ...(isFirst && isAttached && { roundedRight: 0 }),
       ...(isLast && isAttached && { roundedLeft: 0 }),
-      ...(!isFirst && !isLast && isAttached && { rounded: 0 })
+      ...(!isFirst && !isLast && isAttached && { rounded: 0 }),
     });
   });
 
@@ -46,7 +46,7 @@ ButtonGroup.propTypes = {
    * */
   isAttached: propTypes.bool,
   spacing: propTypes.oneOfType([propTypes.string, propTypes.number]),
-  children: propTypes.node.isRequired
+  children: propTypes.node.isRequired,
 };
 
 export default ButtonGroup;

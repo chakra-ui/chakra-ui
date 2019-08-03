@@ -24,7 +24,7 @@ stories.add("Default", () => {
             description: "We've created your account for you.",
             status: "success",
             duration: 9000,
-            isClosable: true
+            isClosable: true,
           })
         }
       >
@@ -48,7 +48,7 @@ stories.add("Custom Component", () => {
               <Box m={3} color="white" p={3} bg="blue.500">
                 Hello World
               </Box>
-            )
+            ),
           })
         }
       >

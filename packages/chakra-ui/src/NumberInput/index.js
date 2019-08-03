@@ -10,13 +10,13 @@ const themedProps = {
   light: {
     borderColor: "inherit",
     _active: {
-      bg: "gray.200"
+      bg: "gray.200",
     },
     _lastChild: {
       roundedBottomRight: 3,
       mt: -1,
-      borderTopWidth: 1
-    }
+      borderTopWidth: 1,
+    },
   },
   dark: {
     color: "whiteAlpha.800",
@@ -24,24 +24,24 @@ const themedProps = {
     _lastChild: {
       roundedBottomRight: 3,
       mt: -1,
-      borderTopWidth: 1
+      borderTopWidth: 1,
     },
     _active: {
-      bg: "whiteAlpha.300"
-    }
-  }
+      bg: "whiteAlpha.300",
+    },
+  },
 };
 
 const styleProps = ({ mode }) => ({
   borderLeft: "1px",
   _firstChild: {
-    roundedTopRight: 1
+    roundedTopRight: 1,
   },
   _disabled: {
     opacity: 0.4,
-    cursor: "not-allowed"
+    cursor: "not-allowed",
   },
-  ...themedProps[mode]
+  ...themedProps[mode],
 });
 
 const Segment = ({ isDisabled, mode, ...props }) => (
@@ -74,7 +74,7 @@ const NumberInput = forwardRef(
       wrapperProps,
       ...rest
     },
-    ref
+    ref,
   ) => {
     const { mode } = useUIMode();
     const [val, setVal] = useState(defaultValue || 0);
@@ -160,7 +160,7 @@ const NumberInput = forwardRef(
         </Flex>
       </Flex>
     );
-  }
+  },
 );
 
 export default NumberInput;

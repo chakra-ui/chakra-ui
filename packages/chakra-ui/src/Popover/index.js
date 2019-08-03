@@ -8,7 +8,7 @@ import { Manager, Popper, Reference } from "react-popper";
 import {
   PopoverTransition,
   PopoverContent,
-  PopoverCloseButton
+  PopoverCloseButton,
 } from "./components";
 import { assignRef, genId } from "../utils";
 import { useUIMode } from "../ThemeProvider";
@@ -83,7 +83,7 @@ const Popover = ({
             onClick: event => {
               handleClick();
               trigger.props.onClick && trigger.props.onClick(event);
-            }
+            },
           })
         }
       </Reference>
@@ -119,10 +119,8 @@ const Popover = ({
                     onBlur={handleBlur}
                     css={{
                       ...popperStyle,
-                      transform: `${popperStyle.transform} scale(${
-                        styles.scale
-                      })`,
-                      opacity: styles.opacity
+                      transform: `${popperStyle.transform} scale(${styles.scale})`,
+                      opacity: styles.opacity,
                     }}
                     onKeyDown={event => {
                       event.stopPropagation();
@@ -171,12 +169,12 @@ export const placementOptions = [
   "top-end",
   "top-start",
   "auto-start",
-  "auto-end"
+  "auto-end",
 ];
 
 Popover.propTypes = {
   interaction: oneOf(["hover", "click"]),
-  placement: oneOf(placementOptions)
+  placement: oneOf(placementOptions),
 };
 
 export default Popover;

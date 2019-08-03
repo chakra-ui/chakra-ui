@@ -3,55 +3,55 @@ import { system } from "styled-system";
 export const config = {
   roundedTop: {
     properties: ["borderTopLeftRadius", "borderTopRightRadius"],
-    scale: "radii"
+    scale: "radii",
   },
   roundedBottom: {
     properties: ["borderBottomLeftRadius", "borderBottomRightRadius"],
-    scale: "radii"
+    scale: "radii",
   },
   roundedLeft: {
     properties: ["borderTopLeftRadius", "borderBottomLeftRadius"],
-    scale: "radii"
+    scale: "radii",
   },
   roundedRight: {
     properties: ["borderTopRightRadius", "borderBottomRightRadius"],
-    scale: "radii"
+    scale: "radii",
   },
   roundedTopRight: {
     property: "borderTopRightRadius",
-    scale: "radii"
+    scale: "radii",
   },
   roundedTopLeft: {
     property: "borderTopLeftRadius",
-    scale: "radii"
+    scale: "radii",
   },
   roundedBottomRight: {
     property: "borderBottomRightRadius",
-    scale: "radii"
+    scale: "radii",
   },
   roundedBottomLeft: {
     property: "borderBottomLeftRadius",
-    scale: "radii"
+    scale: "radii",
   },
   borderBottomColor: {
     property: "borderBottomColor",
-    scale: "colors"
+    scale: "colors",
   },
   borderTopColor: {
     property: "borderTopColor",
-    scale: "colors"
+    scale: "colors",
   },
   borderLeftColor: {
     property: "borderLeftColor",
-    scale: "colors"
+    scale: "colors",
   },
   borderRightColor: {
     property: "borderRightColor",
-    scale: "colors"
+    scale: "colors",
   },
   rounded: {
     property: "borderRadius",
-    scale: "radii"
+    scale: "radii",
   },
   textDecoration: true,
   textTransform: true,
@@ -70,15 +70,15 @@ export const config = {
   transition: true,
   fill: {
     property: "fill",
-    scale: "colors"
+    scale: "colors",
   },
   stroke: {
     property: "stroke",
-    scale: "colors"
+    scale: "colors",
   },
   objectFit: true,
   objectPosition: true,
-  backgroundAttachment: true
+  backgroundAttachment: true,
 };
 
 config.bgAttachment = config.backgroundAttachment;
@@ -101,7 +101,7 @@ const transformAlias = (prop, propValue) => {
     if (property) {
       result[property] = propValue;
     }
-    if (config[prop] == true) {
+    if (config[prop] === true) {
       result[prop] = propValue;
     }
   } else {

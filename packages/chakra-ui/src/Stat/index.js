@@ -25,12 +25,12 @@ const StatNumber = props => (
 const arrowOptions = {
   increase: {
     name: "triangle-up",
-    color: "green.400"
+    color: "green.400",
   },
   decrease: {
     name: "triangle-down",
-    color: "red.400"
-  }
+    color: "red.400",
+  },
 };
 
 const StatArrow = ({ type = "increase", "aria-label": ariaLabel, ...rest }) => (
@@ -45,7 +45,7 @@ const StatArrow = ({ type = "increase", "aria-label": ariaLabel, ...rest }) => (
 );
 
 StatArrow.propTypes = {
-  type: oneOf(["increase", "decrease"])
+  type: oneOf(["increase", "decrease"]),
 };
 
 const Stat = props => <Box flex="1" pr={4} position="relative" {...props} />;

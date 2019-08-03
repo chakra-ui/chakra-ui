@@ -42,11 +42,11 @@ const Icon = ({ size, name, color, role, ...rest }) => {
 
 Icon.defaultProps = {
   size: "1em",
-  color: "currentColor"
+  color: "currentColor",
 };
 
 Icon.propTypes = {
-  role: propTypes.oneOf(["presentation", "img"])
+  role: propTypes.oneOf(["presentation", "img"]),
 };
 
 export default Icon;

@@ -14,17 +14,17 @@ export const FormValidationText = forwardRef(
 
     const invalidColor = {
       light: "red.500",
-      dark: "red.300"
+      dark: "red.300",
     };
     const invalidProps = {
       icon: "warning",
-      color: invalidColor[mode]
+      color: invalidColor[mode],
     };
 
     const validColor = { light: "green.500", dark: "green.200" };
     const validProps = {
       icon: "check-circle",
-      color: validColor[mode]
+      color: validColor[mode],
     };
 
     const validationProps = formControl.isInvalid ? invalidProps : validProps;
@@ -42,7 +42,7 @@ export const FormValidationText = forwardRef(
         <Text lineHeight="normal">{children}</Text>
       </Flex>
     );
-  }
+  },
 );
 
 export default FormValidationText;

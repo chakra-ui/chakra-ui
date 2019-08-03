@@ -34,7 +34,7 @@ const Checkbox = forwardRef(
       checkSize,
       ...rest
     },
-    ref
+    ref,
   ) => {
     const { mode } = useUIMode();
     const styleProps = checkboxStyles({ color, size, mode });
@@ -85,13 +85,13 @@ const Checkbox = forwardRef(
         )}
       </Flex>
     );
-  }
+  },
 );
 
 Checkbox.defaultProps = {
   size: "md",
   color: "blue",
-  checkSize: "10px"
+  checkSize: "10px",
 };
 
 Checkbox.propTypes = {
@@ -154,7 +154,7 @@ Checkbox.propTypes = {
   /**
    * The children is the label to be displayed to the right of the checkbox.
    */
-  children: propTypes.oneOfType([propTypes.node, propTypes.node])
+  children: propTypes.oneOfType([propTypes.node, propTypes.node]),
   // iconColor,
   // checkSize
 };

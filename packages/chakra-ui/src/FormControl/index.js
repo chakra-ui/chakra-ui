@@ -41,7 +41,7 @@ const FormControl = ({
     isRequired,
     isDisabled,
     isInvalid,
-    isReadOnly
+    isReadOnly,
   };
 
   return (
