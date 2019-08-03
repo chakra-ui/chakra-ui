@@ -18,8 +18,6 @@ export { default as Center } from "./Center";
 export { default as Checkbox } from "./Checkbox";
 export { default as CloseButton } from "./CloseButton";
 export { default as Collapse } from "./Collapse";
-export { default as ColorPicker } from "./ColorPicker";
-export * from "./ColorPicker";
 export { default as ControlBox } from "./ControlBox";
 export { default as CSSReset } from "./CSSReset";
 

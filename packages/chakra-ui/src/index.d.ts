@@ -13,7 +13,6 @@ export { default as ButtonGroup } from "./ButtonGroup";
 export { default as Center } from "./Center";
 export { default as Checkbox } from "./Checkbox";
 export { default as Collapse } from "./Collapse";
-export { default as ColorPicker } from "./ColorPicker";
 
 export { default as Drawer } from "./Drawer";
 
