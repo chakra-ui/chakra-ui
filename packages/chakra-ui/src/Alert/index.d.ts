@@ -1,8 +1,12 @@
 import { BoxProps } from "../Box";
 import { IconProps } from "../Icon";
-import React from "react";
+import * as React from "react";
 
-interface IAlert {
+export interface IAlert {
+  /**
+   * The id of the alert
+   */
+  id?: string;
   /**
    * The status of the alert
    */
@@ -15,7 +19,7 @@ interface IAlert {
 
 export const AlertTitle: React.FC<BoxProps>;
 
-export const AlertBody: React.FC<BoxProps>;
+export const AlertDescription: React.FC<BoxProps>;
 
 export const AlertIcon: React.FC<IconProps>;
 

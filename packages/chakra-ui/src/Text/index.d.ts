@@ -1,6 +1,6 @@
 import { BoxProps } from "../Box";
-import { FC } from "react";
+import * as React from "react";
 
-declare const Text: FC<BoxProps>;
+declare const Text: React.FC<BoxProps>;
 
 export default Text;

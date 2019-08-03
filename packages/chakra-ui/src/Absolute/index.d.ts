@@ -1,8 +1,8 @@
 import { BoxProps } from "../Box";
-import { ForwardRefExoticComponent, RefAttributes } from "react";
+import * as React from "react";
 
-export type AbsoluteProps = BoxProps & RefAttributes<HTMLDivElement>
+export type AbsoluteProps = BoxProps & React.RefAttributes<HTMLDivElement>
 
-declare const Absolute: ForwardRefExoticComponent<AbsoluteProps>;
+declare const Absolute: React.ForwardRefExoticComponent<AbsoluteProps>;
 
 export default Absolute;

@@ -1,4 +1,4 @@
-import { ReactNode, FC, RefAttributes, ForwardRefExoticComponent } from "react";
+import * as React from "react";
 import { BoxProps } from "../Box";
 import { PseudoBoxProps } from "../PseudoBox";
 
@@ -8,8 +8,8 @@ interface IRenderProps {
 }
 
 type RenderProp =
-  | { children: (props: IRenderProps) => ReactNode }
-  | { childern: ReactNode };
+  | { children: (props: IRenderProps) => React.ReactNode }
+  | { childern: React.ReactNode };
 
 interface IAccordion {
   /**
@@ -29,7 +29,7 @@ interface IAccordion {
    * The content of the accordion.
    * The children must be the `AccordionHeader` and `AccordionPanel` components.
    */
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
 interface IAccordionHeader {
@@ -46,23 +46,23 @@ export type AccordionHeaderProps = IAccordionHeader &
   PseudoBoxProps &
   RenderProp;
 
-export type AccordionPanelProps = RefAttributes<HTMLDivElement> & BoxProps;
+export type AccordionPanelProps = React.RefAttributes<HTMLDivElement> & BoxProps;
 
 /**
  * Accordions allow users to expand and collapse sections of content.
  * It composes `Box` component.
  */
-declare const Accordion: FC<AccordionProps>;
+declare const Accordion: React.FC<AccordionProps>;
 
 /**
  * AccordionHeader component composes `PseudoBox`, this means you can use
  * the `_expanded`, `_disabled`, `_hover`, etc. props to style them
  */
-export const AccordionHeader: FC<AccordionHeaderProps>;
+export const AccordionHeader: React.FC<AccordionHeaderProps>;
 
 /**
  * AccordionPanel component composes `Collapse` to provide the height animation
  */
-export const AccordionPanel: ForwardRefExoticComponent<AccordionPanelProps>;
+export const AccordionPanel: React.ForwardRefExoticComponent<AccordionPanelProps>;
 
 export default Accordion;

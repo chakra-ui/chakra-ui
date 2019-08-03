@@ -1,6 +1,6 @@
-import { ForwardRefExoticComponent } from "react";
+import * as React from "react";
 import { InputProps } from "../Input";
 
-declare const Textarea: ForwardRefExoticComponent<InputProps>;
+declare const Textarea: React.ForwardRefExoticComponent<InputProps>;
 
 export default Textarea;

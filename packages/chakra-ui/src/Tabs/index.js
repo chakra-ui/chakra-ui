@@ -42,7 +42,7 @@ const Tab = forwardRef((props, ref) => {
 ////////////////////////////////////////////////////////////////////////
 
 const TabList = forwardRef((props, ref) => {
-  const { children, css, ...rest } = props;
+  const { children, ...rest } = props;
 
   const {
     id,
