@@ -7,7 +7,7 @@
   "sideEffects": false,
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "yarn build:cjs && yarn build:esm && yarn build:copy-types",
+    "build": "npm run build:cjs && npm run build:esm && npm run build:copy-types",
     "build:cjs": "cross-env NODE_ENV=production BABEL_ENV=cjs babel ./src --out-dir ./dist --ignore \"**/examples.js\"",
     "build:esm": "cross-env NODE_ENV=production BABEL_ENV=esm babel ./src --out-dir ./dist/esm --ignore \"**/examples.js\"",
     "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel ./src --out-dir ./dist/es --ignore \"**/examples.js\"",
@@ -22,7 +22,7 @@
     "validate": "npm run lint && npm run prettier -- --list-different && npm run tslint",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "build-watch": "nodemon -w src -x 'rm .babelrc &> /dev/null; yarn build'"
+    "build-watch": "nodemon -w src -x 'rm .babelrc &> /dev/null; npm run build'"
   },
   "husky": {
     "hooks": {
