@@ -57,6 +57,8 @@ const themedTrackStyle = {
 const trackStyle = ({ trackHeight, theme, mode }) => ({
   height: trackHeight,
   borderRadius: "sm",
+  width: "100%",
+  ...centeredProps,
   ...themedTrackStyle[mode],
 });
 

@@ -14,7 +14,7 @@ const themedProps = {
     },
     _lastChild: {
       roundedBottomRight: 3,
-      mt: -1,
+      mt: "-1px",
       borderTopWidth: 1,
     },
   },
@@ -23,7 +23,7 @@ const themedProps = {
     borderColor: "whiteAlpha.300",
     _lastChild: {
       roundedBottomRight: 3,
-      mt: -1,
+      mt: "-1px",
       borderTopWidth: 1,
     },
     _active: {
@@ -129,7 +129,7 @@ const NumberInput = forwardRef(
           aria-valuenow={_value}
           ref={ref}
           onChange={handleChange}
-          value={val}
+          value={_value}
           min={min}
           max={max}
           step={step}

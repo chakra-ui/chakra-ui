@@ -124,7 +124,7 @@ export const PopoverContent = forwardRef(({ css, ...props }, ref) => (
 
 export const PopoverCloseButton = ({ onClick, ...props }) => (
   <CloseButton
-    size="6"
+    size="sm"
     onClick={onClick}
     position="absolute"
     rounded="md"
