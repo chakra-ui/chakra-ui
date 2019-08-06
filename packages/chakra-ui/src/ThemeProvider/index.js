@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import { jsx, ThemeContext } from "@emotion/core";
-import Emotion from "emotion-theming";
+import { ThemeProvider as EmotionThemeProvider } from "emotion-theming";
 import { useContext } from "react";
 import theme from "../theme";
 
 const ThemeProvider = ({ theme, children }) => (
-  <Emotion.ThemeProvider theme={theme}>{children}</Emotion.ThemeProvider>
+  <EmotionThemeProvider theme={theme}>{children}</EmotionThemeProvider>
 );
 
 ThemeProvider.defaultProps = {
