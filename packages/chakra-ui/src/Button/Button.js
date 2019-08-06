@@ -6,7 +6,8 @@ import Icon from "../Icon";
 import Spinner from "../Spinner";
 import buttonStyle from "./styles";
 import PseudoBox from "../PseudoBox";
-import { useUIMode, useTheme } from "../ThemeProvider";
+import { useTheme } from "../ThemeProvider";
+import { useColorMode } from "../ColorModeProvider";
 import Box from "../Box";
 
 const Button = forwardRef(
@@ -29,7 +30,7 @@ const Button = forwardRef(
     },
     ref,
   ) => {
-    const { mode } = useUIMode();
+    const { mode } = useColorMode();
     const theme = useTheme();
     const buttonProps = buttonStyle({ color, variant, size, mode, theme });
     const _isDisabled = isDisabled || isLoading;

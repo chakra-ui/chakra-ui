@@ -2,7 +2,8 @@
 import { jsx } from "@emotion/core";
 import { forwardRef } from "react";
 import ControlBox from "../ControlBox";
-import { useTheme, useUIMode } from "../ThemeProvider";
+import { useTheme } from "../ThemeProvider";
+import { useColorMode } from "../ColorModeProvider";
 import VisuallyHidden from "../VisuallyHidden";
 import Box from "../Box";
 
@@ -28,7 +29,7 @@ const Switch = forwardRef(
     },
     ref,
   ) => {
-    const { mode } = useUIMode();
+    const { mode } = useColorMode();
     const theme = useTheme();
 
     let { width, height } = theme.sizes.switch[size];

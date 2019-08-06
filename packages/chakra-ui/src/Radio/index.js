@@ -3,7 +3,7 @@ import { jsx } from "@emotion/core";
 import { forwardRef } from "react";
 import propTypes from "prop-types";
 import ControlBox from "../ControlBox";
-import { useUIMode } from "../ThemeProvider";
+import { useColorMode } from "../ColorModeProvider";
 import VisuallyHidden from "../VisuallyHidden";
 import checkboxStyles from "../Checkbox/styles";
 import Flex from "../Flex";
@@ -32,7 +32,7 @@ const Radio = forwardRef(
     },
     ref,
   ) => {
-    const { mode } = useUIMode();
+    const { mode } = useColorMode();
     const styleProps = checkboxStyles({ color, size, mode });
 
     return (

@@ -11,7 +11,7 @@ import {
   PopoverCloseButton,
 } from "./components";
 import { assignRef, genId } from "../utils";
-import { useUIMode } from "../ThemeProvider";
+import { useColorMode } from "../ColorModeProvider";
 import Box from "../Box";
 import useDisclosure from "../useDisclosure";
 
@@ -59,7 +59,7 @@ const Popover = ({
     }
   };
 
-  const { mode } = useUIMode();
+  const { mode } = useColorMode();
 
   const _bgColor = mode === "light" ? "white" : "gray.700";
   const _color = mode === "light" ? "gray.900" : "whiteAlpha.900";

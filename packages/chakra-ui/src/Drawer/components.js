@@ -9,7 +9,7 @@ import {
   ModalContent,
 } from "../Modal";
 import CloseButton from "../CloseButton";
-import { useUIMode } from "../ThemeProvider";
+import { useColorMode } from "../ColorModeProvider";
 
 const DrawerTransition = ({
   isOpen,
@@ -85,7 +85,7 @@ const DrawerOverlay = ({ hideOverlay, ...rest }) => (
 );
 
 const DrawerCloseButton = ({ onClick, ...rest }) => {
-  const { mode } = useUIMode();
+  const { mode } = useColorMode();
   const hoverColor = { light: "blackAlpha.100", dark: "whiteAlpha.100" };
   const activeColor = { light: "blackAlpha.200", dark: "whiteAlpha.200" };
 

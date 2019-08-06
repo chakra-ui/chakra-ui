@@ -6,7 +6,7 @@ import VisuallyHidden from "../VisuallyHidden";
 import ControlBox from "../ControlBox";
 import Icon from "../Icon";
 import checkboxStyles from "./styles";
-import { useUIMode } from "../ThemeProvider";
+import { useColorMode } from "../ColorModeProvider";
 import Flex from "../Flex";
 import Box from "../Box";
 
@@ -36,7 +36,7 @@ const Checkbox = forwardRef(
     },
     ref,
   ) => {
-    const { mode } = useUIMode();
+    const { mode } = useColorMode();
     const styleProps = checkboxStyles({ color, size, mode });
 
     return (

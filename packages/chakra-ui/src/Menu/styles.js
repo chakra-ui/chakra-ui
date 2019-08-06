@@ -1,7 +1,8 @@
-import { useTheme, useUIMode } from "../ThemeProvider";
+import { useTheme } from "../ThemeProvider";
+import { useColorMode } from "../ColorModeProvider";
 
 export const useMenuListStyle = () => {
-  const { mode } = useUIMode();
+  const { mode } = useColorMode();
   const elevation = {
     light: {
       bg: "#fff",
@@ -53,7 +54,7 @@ const interactionProps = ({ mode }) => {
 
 export const useMenuItemStyle = () => {
   const theme = useTheme();
-  const { mode } = useUIMode();
+  const { mode } = useColorMode();
   const props = { theme, mode };
 
   return {

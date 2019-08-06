@@ -2,7 +2,7 @@
 import { ThemeContext } from "@emotion/core";
 import { useContext } from "react";
 import { TabContext } from ".";
-import { useUIMode } from "../ThemeProvider";
+import { useColorMode } from "../ColorModeProvider";
 
 export const baseProps = {
   display: "flex",
@@ -202,7 +202,7 @@ export const orientationStyle = ({ align, orientation }) => {
 export const useTabStyle = () => {
   const theme = useContext(ThemeContext);
   const { variant, color, size, isFitted } = useContext(TabContext);
-  const { mode } = useUIMode();
+  const { mode } = useColorMode();
 
   return {
     ...baseProps,

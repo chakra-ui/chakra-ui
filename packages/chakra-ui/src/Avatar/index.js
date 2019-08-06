@@ -3,12 +3,13 @@ import { jsx } from "@emotion/core";
 import propTypes from "prop-types";
 import useAvatarStyle, { avatarSizes } from "./styles";
 import { useHasImageLoaded } from "../Image";
-import { useTheme, useUIMode } from "../ThemeProvider";
+import { useTheme } from "../ThemeProvider";
+import { useColorMode } from "../ColorModeProvider";
 import Absolute from "../Absolute";
 import Box from "../Box";
 
 export const AvatarBadge = props => {
-  const { mode } = useUIMode();
+  const { mode } = useColorMode();
   const borderColor = { light: "white", dark: "gray.800" };
 
   return (

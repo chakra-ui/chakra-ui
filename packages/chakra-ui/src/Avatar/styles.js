@@ -1,4 +1,5 @@
-import { useTheme, useUIMode } from "../ThemeProvider";
+import { useTheme } from "../ThemeProvider";
+import { useColorMode } from "../ColorModeProvider";
 import { isDarkColor } from "../theme/colors.utils";
 
 // Found this on StackOverflow :)
@@ -28,7 +29,7 @@ export const avatarSizes = {
 
 const useAvatarStyle = props => {
   const { colors } = useTheme();
-  const { mode } = useUIMode();
+  const { mode } = useColorMode();
   const { size, name, showBorder } = props;
 
   const bg = name ? string2Hex(name) : colors.gray[400];

@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { colorEmphasis } from "../theme/colors.utils";
-import { useTheme, useUIMode } from "../ThemeProvider";
+import { useTheme } from "../ThemeProvider";
+import { useColorMode } from "../ColorModeProvider";
 
 const leftAccent = props => {
   const { color } = props;
@@ -77,7 +78,7 @@ const baseProps = {
 };
 
 const useAlertStyle = props => {
-  const { mode } = useUIMode();
+  const { mode } = useColorMode();
   const theme = useTheme();
   const _props = { ...props, theme };
 
@@ -88,7 +89,7 @@ const useAlertStyle = props => {
 };
 
 export const useIconStyle = ({ variant, color }) => {
-  const { mode } = useUIMode();
+  const { mode } = useColorMode();
   if (["left-accent", "top-accent", "subtle"].includes(variant)) {
     let result = {
       light: { color: `${color}.500` },

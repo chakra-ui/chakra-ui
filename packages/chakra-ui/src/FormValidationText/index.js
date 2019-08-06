@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { useUIMode } from "../ThemeProvider";
+import { useColorMode } from "../ColorModeProvider";
 import { useFormControl } from "../FormControl";
 import Icon from "../Icon";
 import Flex from "../Flex";
@@ -9,7 +9,7 @@ import { forwardRef } from "react";
 
 export const FormValidationText = forwardRef(
   ({ children, icon, ...props }, ref) => {
-    const { mode } = useUIMode();
+    const { mode } = useColorMode();
     const formControl = useFormControl(props);
 
     const invalidColor = {

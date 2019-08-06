@@ -2,7 +2,8 @@
 import { jsx } from "@emotion/core";
 import toaster from "toasted-notes";
 import Alert, { AlertIcon, AlertTitle, AlertDescription } from "../Alert";
-import ThemeProvider, { useTheme, UIModeProvider } from "../ThemeProvider";
+import ThemeProvider, { useTheme } from "../ThemeProvider";
+import ColorModeProvider from "../src/ColorModeProvider";
 import Box from "../Box";
 import CloseButton from "../CloseButton";
 
@@ -46,11 +47,12 @@ const Toast = ({
     </Alert>
   );
 };
+
 const ChakraProvider = ({ theme, children }) => {
   return (
-    <ThemeProvider theme={theme}>
-      <UIModeProvider>{children}</UIModeProvider>
-    </ThemeProvider>
+    <ColorModeProvider>
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+    </ColorModeProvider>
   );
 };
 

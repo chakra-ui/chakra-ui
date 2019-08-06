@@ -4,13 +4,13 @@ import { Children, cloneElement } from "react";
 import Avatar from "../Avatar";
 import { avatarSizes } from "../Avatar/styles";
 import Flex from "../Flex";
-import { useUIMode } from "../ThemeProvider";
+import { useColorMode } from "../ColorModeProvider";
 
 export const MoreIndicator = ({ size, label, ...props }) => {
   const borderColor = { light: "#fff", dark: "gray.900" };
   const bg = { light: "gray.200", dark: "whiteAlpha.400" };
 
-  const { mode } = useUIMode();
+  const { mode } = useColorMode();
 
   return (
     <Flex

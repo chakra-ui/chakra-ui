@@ -4,7 +4,9 @@ import css from "@styled-system/css";
 import Box from "../Box";
 import { tx } from "../Box/config";
 
-// The selectors are based on WAI-ARIA speficiations
+/**
+ * The selectors are based on [WAI-ARIA state properties](https://www.w3.org/WAI/PF/aria-1.1/states_and_properties) and common CSS Selectors
+ */
 const hover = "&:hover";
 const active = "&:active";
 const focus = "&:focus";
@@ -13,6 +15,7 @@ const disabled =
 const checked = "&[aria-checked=true]";
 const selected = "&[aria-selected=true]";
 const invalid = "&[aria-invalid=true]";
+const pressed = "&[aria-pressed=true]";
 const readOnly = "&[aria-readonly=true], &[readonly]";
 const firstChild = "&:first-of-type";
 const lastChild = "&:last-of-type";
@@ -32,6 +35,7 @@ const PseudoBox = styled(Box)(
     _active,
     _disabled,
     _grabbed,
+    _pressed,
     _expanded,
     _before,
     _readOnly,
@@ -57,6 +61,7 @@ const PseudoBox = styled(Box)(
       [notLastChild]: tx(_notLastChild),
       [lastChild]: tx(_lastChild),
       [checked]: tx(_checked),
+      [pressed]: tx(_pressed),
       "&:before": tx(_before),
       "&:after": tx(_after),
       "&:focus-within": tx(_focusWithin),

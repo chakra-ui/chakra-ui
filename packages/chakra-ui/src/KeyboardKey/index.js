@@ -1,10 +1,10 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import Box from "../Box";
-import { useUIMode } from "../ThemeProvider";
+import { useColorMode } from "../ColorModeProvider";
 
 const Keyboard = props => {
-  const { mode } = useUIMode();
+  const { mode } = useColorMode();
   const bg = { light: "gray.100", dark: "whiteAlpha.50" };
   return (
     <Box

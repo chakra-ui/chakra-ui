@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, Global, css } from "@emotion/core";
-import { useUIMode } from "../ThemeProvider";
+import { useColorMode } from "../ColorModeProvider";
 
 const getThemedStyle = ({ colors }) => {
   return {
@@ -18,7 +18,7 @@ const getThemedStyle = ({ colors }) => {
 };
 
 const CSSReset = () => {
-  const { mode } = useUIMode();
+  const { mode } = useColorMode();
 
   return (
     <Global

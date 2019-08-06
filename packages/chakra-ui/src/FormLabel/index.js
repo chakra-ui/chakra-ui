@@ -3,10 +3,10 @@ import { jsx } from "@emotion/core";
 import { forwardRef } from "react";
 import Box from "../Box";
 import { useFormControl } from "../FormControl";
-import { useUIMode } from "../ThemeProvider";
+import { useColorMode } from "../ColorModeProvider";
 
 export const RequiredIndicator = props => {
-  const { mode } = useUIMode();
+  const { mode } = useColorMode();
   const color = { light: "red.500", dark: "red.300" };
   return (
     <Box

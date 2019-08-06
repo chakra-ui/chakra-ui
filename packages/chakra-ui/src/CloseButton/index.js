@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/core";
 import Icon from "../Icon";
 import PseudoBox from "../PseudoBox";
-import { useUIMode } from "../ThemeProvider";
+import { useColorMode } from "../ColorModeProvider";
 
 const baseProps = ({ mode }) => {
   return {
@@ -43,7 +43,7 @@ const CloseButton = ({
   onClick,
   ...rest
 }) => {
-  const { mode } = useUIMode();
+  const { mode } = useColorMode();
   const _size = sizes[size];
 
   return (

@@ -1,5 +1,6 @@
 /** @jsx jsx */
-import { useTheme, useUIMode } from "../ThemeProvider";
+import { useTheme } from "../ThemeProvider";
+import { useColorMode } from "../ColorModeProvider";
 
 const centeredProps = {
   position: "absolute",
@@ -91,7 +92,7 @@ const sizes = {
 
 const useSliderStyle = props => {
   const theme = useTheme();
-  const { mode } = useUIMode();
+  const { mode } = useColorMode();
 
   const { trackPercent, size, color } = props;
   const { trackHeight, thumb: thumbSize } = sizes[size];

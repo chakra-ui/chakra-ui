@@ -2,7 +2,8 @@ import { addDecorator, configure } from "@storybook/react";
 import React from "react";
 import { Button, Fixed } from "../src";
 import CSSReset from "../src/CSSReset";
-import ThemeProvider, { UIModeProvider, useUIMode } from "../src/ThemeProvider";
+import ColorModeProvider, { useColorMode } from "../src/ColorModeProvider";
+import ThemeProvider from "../src/ThemeProvider";
 
 // function loadStories() {
 //   require("../stories");
@@ -15,7 +16,7 @@ function loadStories() {
 }
 
 const AppProvider = ({ children }) => {
-  const { mode, toggle } = useUIMode();
+  const { mode, toggle } = useColorMode();
   return (
     <ThemeProvider>
       <CSSReset />
@@ -34,9 +35,9 @@ const AppProvider = ({ children }) => {
 };
 
 addDecorator(story => (
-  <UIModeProvider>
+  <ColorModeProvider>
     <AppProvider>{story()}</AppProvider>
-  </UIModeProvider>
+  </ColorModeProvider>
 ));
 
 configure(loadStories, module);

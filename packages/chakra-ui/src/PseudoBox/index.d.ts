@@ -37,6 +37,11 @@ interface IPseudoBoxProps {
    */
   _active: BoxProps;
   /**
+   * Styles for CSS Selector `&[aria-pressed=true]`
+   * Typically used to style the current "pressed" state of toggle buttons
+   */
+  _pressed: BoxProps;
+  /**
    * Styles to apply when the ARIA attribute `aria-selected` is `true`
    * - CSS selector `&[aria-selected=true]`
    */

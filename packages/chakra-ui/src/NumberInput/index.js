@@ -3,7 +3,7 @@ import Flex from "../Flex";
 import Icon from "../Icon";
 import Input from "../Input";
 import PseudoBox from "../PseudoBox";
-import { useUIMode } from "../ThemeProvider";
+import { useColorMode } from "../ColorModeProvider";
 import { roundValueToStep } from "../Slider";
 
 const themedProps = {
@@ -76,7 +76,7 @@ const NumberInput = forwardRef(
     },
     ref,
   ) => {
-    const { mode } = useUIMode();
+    const { mode } = useColorMode();
     const [val, setVal] = useState(defaultValue || 0);
 
     const { current: isControlled } = useRef(valueProp != null);

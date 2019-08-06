@@ -14,7 +14,7 @@ import { Manager, Popper, Reference } from "react-popper";
 import Box from "../Box";
 import PseudoBox from "../PseudoBox";
 import Text from "../Text";
-import { useUIMode } from "../ThemeProvider";
+import { useColorMode } from "../ColorModeProvider";
 import usePrevious from "../usePrevious";
 import { getFocusables, mergeRefs } from "../utils";
 import { useMenuItemStyle, useMenuListStyle } from "./styles";
@@ -30,7 +30,7 @@ const Menu = ({
   closeOnSelect = true,
   placement,
 }) => {
-  const { mode } = useUIMode();
+  const { mode } = useColorMode();
 
   const [state, setState] = useState({
     isOpen: isOpen || false,

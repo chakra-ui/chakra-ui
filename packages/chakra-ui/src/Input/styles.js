@@ -1,4 +1,5 @@
-import { useTheme, useUIMode } from "../ThemeProvider";
+import { useTheme } from "../ThemeProvider";
+import { useColorMode } from "../ColorModeProvider";
 
 const outlinedStyle = ({
   _focusBorderColor = "blue",
@@ -152,7 +153,7 @@ const sizeProps = props => inputSizes[props.size];
 
 const useInputStyle = props => {
   const theme = useTheme();
-  const { mode } = useUIMode();
+  const { mode } = useColorMode();
 
   const _props = { ...props, theme, mode };
 

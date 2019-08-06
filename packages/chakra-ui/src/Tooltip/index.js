@@ -6,7 +6,7 @@ import { cloneElement, useRef, Children } from "react";
 import { Manager, Popper, Reference } from "react-popper";
 import { assignRef, genId } from "../utils";
 import { PopoverTransition, popperStyle } from "../Popover/components";
-import { useUIMode } from "../ThemeProvider";
+import { useColorMode } from "../ColorModeProvider";
 import Box from "../Box";
 import useDisclosure from "../useDisclosure";
 
@@ -53,7 +53,7 @@ const Tooltip = ({
 
   const _isOpen = isControlled ? controlledIsOpen : isOpen;
 
-  const { mode } = useUIMode();
+  const { mode } = useColorMode();
   const _bg = mode === "dark" ? "gray.300" : "gray.700";
   const _color = mode === "dark" ? "gray.900" : "whiteAlpha.900";
 

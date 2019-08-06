@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { useUIMode } from "../ThemeProvider";
+import { useColorMode } from "../ColorModeProvider";
 import { ModalTransition, ModalOverlay, ModalContent } from "./components";
 
 const Modal = ({
@@ -12,7 +12,7 @@ const Modal = ({
   initialFocusRef,
   ...rest
 }) => {
-  const { mode } = useUIMode();
+  const { mode } = useColorMode();
   const centeredStyle = {
     display: "flex",
     alignItems: "center",

@@ -3,7 +3,8 @@ import { jsx } from "@emotion/core";
 import { DialogContent, DialogOverlay } from "@reach/dialog";
 import { forwardRef } from "react";
 import { Transition } from "react-spring/renderprops";
-import { useTheme, useUIMode } from "../ThemeProvider";
+import { useTheme } from "../ThemeProvider";
+import { useColorMode } from "../ColorModeProvider";
 import Box from "../Box";
 import Flex from "../Flex";
 import Fixed from "../Fixed";
@@ -59,7 +60,7 @@ export const modalContentStyle = ({ mode }) => {
 };
 
 const ModalContent = forwardRef((props, ref) => {
-  const { mode } = useUIMode();
+  const { mode } = useColorMode();
   const theme = useTheme();
   const styleProps = modalContentStyle({ mode, theme });
   return (

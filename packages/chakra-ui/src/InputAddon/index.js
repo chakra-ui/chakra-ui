@@ -3,10 +3,10 @@ import { jsx } from "@emotion/core";
 import { oneOf } from "prop-types";
 import Box from "../Box";
 import useInputStyle from "../Input/styles";
-import { useUIMode } from "../ThemeProvider";
+import { useColorMode } from "../ColorModeProvider";
 
 const InputAddon = ({ placement = "left", size = "md", ...props }) => {
-  const { mode } = useUIMode();
+  const { mode } = useColorMode();
   const bg = { dark: "whiteAlpha.300", light: "gray.100" };
   const _placement = {
     left: {

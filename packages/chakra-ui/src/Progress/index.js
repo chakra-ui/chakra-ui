@@ -2,7 +2,7 @@
 import { jsx, keyframes, css } from "@emotion/core";
 import { number, oneOf, bool } from "prop-types";
 import VisuallyHidden from "../VisuallyHidden";
-import { useUIMode } from "../ThemeProvider";
+import { useColorMode } from "../ColorModeProvider";
 import Box from "../Box";
 import { generateStripe } from "../theme/colors.utils";
 import { valueToPercent } from "../Slider/index";
@@ -34,7 +34,7 @@ const Progress = ({
   isAnimated,
   ...rest
 }) => {
-  const { mode } = useUIMode();
+  const { mode } = useColorMode();
   const percent = valueToPercent(value, min, max);
   return (
     <Box

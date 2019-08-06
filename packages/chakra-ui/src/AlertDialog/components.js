@@ -10,7 +10,7 @@ import css from "@styled-system/css";
 import { forwardRef } from "react";
 import Box from "../Box";
 import { modalContentStyle } from "../Modal";
-import { useUIMode } from "../ThemeProvider";
+import { useColorMode } from "../ColorModeProvider";
 
 const AlertDialogHeader = props => (
   <Box py={4} px={6} as={AlertDialogLabel} {...props} />
@@ -41,7 +41,7 @@ const AlertDialogOverlay = props => (
 );
 
 const AlertDialogContent = forwardRef((props, ref) => {
-  const { mode } = useUIMode();
+  const { mode } = useColorMode();
   const styleProps = modalContentStyle({ mode });
   return (
     <Box
