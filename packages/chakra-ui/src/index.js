@@ -3,9 +3,12 @@ export { default as Accordion } from "./Accordion";
 export * from "./Accordion";
 export { default as Alert } from "./Alert";
 export * from "./Alert";
+export { default as AlertDialog } from "./AlertDialog";
+export * from "./AlertDialog";
 export { default as Avatar } from "./Avatar";
 export * from "./Avatar";
 export { default as AvatarGroup } from "./AvatarGroup";
+export * from "./AvatarGroup";
 
 export { default as Badge } from "./Badge";
 export { default as Box } from "./Box";
@@ -19,8 +22,11 @@ export { default as Checkbox } from "./Checkbox";
 export { default as CloseButton } from "./CloseButton";
 export { default as Collapse } from "./Collapse";
 export { default as ControlBox } from "./ControlBox";
+export { default as ColorModeProvider } from "./ColorModeProvider";
+export * from "./ColorModeProvider";
 export { default as CSSReset } from "./CSSReset";
 
+export { default as Divider } from "./Divider";
 export { default as Drawer } from "./Drawer";
 export * from "./Drawer";
 
@@ -32,6 +38,9 @@ export { default as Fixed } from "./Fixed";
 export { default as Flex } from "./Flex";
 export { default as FormControl } from "./FormControl";
 export * from "./FormControl";
+export { default as FormHelperText } from "./FormHelperText";
+export { default as FormLabel } from "./FormLabel";
+export { default as FormValidationText } from "./FormValidationText";
 
 export { default as Grid } from "./Grid";
 
@@ -82,5 +91,9 @@ export { default as Tooltip } from "./Tooltip";
 export { default as theme } from "./theme";
 export { default as ThemeProvider } from "./ThemeProvider";
 export * from "./ThemeProvider";
+
+export { default as useClipboard } from "./useClipboard";
+export { default as useDisclosure } from "./useDisclosure";
+export { default as usePrevious } from "./usePrevious";
 
 export { default as VisuallyHidden } from "./VisuallyHidden";

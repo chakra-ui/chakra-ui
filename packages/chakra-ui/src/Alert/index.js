@@ -5,7 +5,7 @@ import { oneOf } from "prop-types";
 import { createContext, useContext } from "react";
 import Box from "../Box";
 import Icon from "../Icon";
-import { generateStripe } from "../theme/colors.utils";
+import { generateStripe } from "../theme/colors-utils";
 import useAlertStyle, { useIconStyle } from "./styles";
 
 const AlertTitle = props => (

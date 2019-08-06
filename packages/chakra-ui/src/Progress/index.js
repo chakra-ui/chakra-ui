@@ -4,8 +4,8 @@ import { number, oneOf, bool } from "prop-types";
 import VisuallyHidden from "../VisuallyHidden";
 import { useColorMode } from "../ColorModeProvider";
 import Box from "../Box";
-import { generateStripe } from "../theme/colors.utils";
-import { valueToPercent } from "../Slider/index";
+import { generateStripe } from "../theme/colors-utils";
+import { valueToPercent } from "../Slider";
 
 const stripe = keyframes`
   from { background-position: 1rem 0}

@@ -1,6 +1,6 @@
 import { useTheme } from "../ThemeProvider";
 import { useColorMode } from "../ColorModeProvider";
-import { isDarkColor } from "../theme/colors.utils";
+import { isDarkColor } from "../theme/colors-utils";
 
 // Found this on StackOverflow :)
 function string2Hex(str) {
@@ -40,6 +40,7 @@ const useAvatarStyle = props => {
     display: "inline-flex",
     rounded: "full",
     alignItems: "center",
+    flexShrink: "0",
     justifyContent: "center",
     position: "relative",
   };

@@ -1,4 +1,4 @@
-import { addOpacity, generateAlphaColors, get } from "../theme/colors.utils";
+import { addOpacity, generateAlphaColors, get } from "../theme/colors-utils";
 import { useTheme } from "../ThemeProvider";
 import { useColorMode } from "../ColorModeProvider";
 

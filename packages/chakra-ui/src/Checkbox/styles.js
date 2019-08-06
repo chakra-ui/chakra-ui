@@ -1,4 +1,4 @@
-import { get } from "../theme/colors.utils";
+import { get } from "../theme/colors-utils";
 
 const baseProps = {
   userSelect: "none",

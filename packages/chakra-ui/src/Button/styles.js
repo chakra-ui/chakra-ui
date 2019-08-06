@@ -1,4 +1,4 @@
-import { addOpacity, get } from "../theme/colors.utils";
+import { addOpacity, get } from "../theme/colors-utils";
 
 const grayGhostStyle = {
   light: {
