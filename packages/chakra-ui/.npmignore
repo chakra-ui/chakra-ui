@@ -1,9 +1,0 @@
-node_modules
-tests
-demo
-src
-stories
-.storybook
-.env
-.gitignore
-*.log
