@@ -13,7 +13,9 @@
     "@mdx-js/mdx": "^1.1.6",
     "@mdx-js/react": "^1.1.6",
     "@next/mdx": "^9.0.3",
-    "next": "9.0.3"
+    "next": "9.0.3",
+    "prism-react-renderer": "^0.1.7",
+    "react-live": "^2.1.2"
   },
   "devDependencies": {
     "@emotion/core": "10.0.10",
