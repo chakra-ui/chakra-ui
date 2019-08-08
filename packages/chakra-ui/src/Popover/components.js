@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import { forwardRef } from "react";
-import { Transition } from "react-spring/renderprops";
+import { Transition } from "react-spring/renderprops.cjs";
 import CloseButton from "../CloseButton";
 import Box from "../Box";
 

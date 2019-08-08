@@ -1,25 +1,45 @@
 {
   "name": "root",
   "private": true,
-  "devDependencies": {
-    "babel-eslint": "10.0.2",
-    "eslint": "6.0.1",
-    "eslint-config-react-app": "4.0.1",
-    "eslint-plugin-flowtype": "3.11.1",
-    "eslint-plugin-import": "2.18.0",
-    "eslint-plugin-jest": "22.7.2",
-    "eslint-plugin-jsx-a11y": "6.2.3",
-    "eslint-plugin-react": "7.14.2",
-    "eslint-plugin-react-hooks": "1.6.1",
+  "dependencies": {
+    "@emotion/core": "10.0.10",
+    "@emotion/styled": "10.0.11",
+    "@testing-library/react": "8.0.7",
+    "@testing-library/react-hooks": "1.1.0",
+    "emotion-theming": "10.0.10",
     "lerna": "^3.15.0",
-    "postinstall": "0.4.2",
     "prettier": "1.18.2",
-    "react": "16.8.6",
-    "react-dom": "16.8.6"
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "typescript": "3.5.3"
   },
   "scripts": {
+    "clean": "lerna clean --yes",
     "bootstrap": "lerna bootstrap --hoist",
-    "build:chakra-ui": "npm run build --prefix packages/chakra-ui",
-    "build:ui-story": "npm run storybook --prefix packages/leadspree"
+    "storybook": "lerna run --scope @chakra-ui/core storybook --stream",
+    "docs:dev": "lerna run --scope @chakra-ui/docs dev --stream"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "1.x",
+    "@typescript-eslint/parser": "1.x",
+    "babel-eslint": "10.0.1",
+    "dtslint": "0.9.0",
+    "eslint": "6.1.0",
+    "eslint-config-prettier": "6.0.0",
+    "eslint-config-react-app": "4.0.1",
+    "eslint-plugin-flowtype": "3.9.1",
+    "eslint-plugin-import": "2.17.3",
+    "eslint-plugin-jest": "22.6.4",
+    "eslint-plugin-jsx-a11y": "6.2.1",
+    "eslint-plugin-react": "7.14.3",
+    "eslint-plugin-react-hooks": "1.6.0",
+    "husky": "3.0.2",
+    "jest": "24.8.0",
+    "lint-staged": "9.2.1",
+    "nodemon": "1.19.1",
+    "rimraf": "2.6.3",
+    "tslint": "5.18.0",
+    "tslint-config-prettier": "1.18.0"
   }
 }

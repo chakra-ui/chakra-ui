@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/core";
 import { DialogContent, DialogOverlay } from "@reach/dialog";
 import { forwardRef } from "react";
-import { Transition } from "react-spring/renderprops";
+import { Transition } from "react-spring/renderprops.cjs";
 import { useTheme } from "../ThemeProvider";
 import { useColorMode } from "../ColorModeProvider";
 import Box from "../Box";

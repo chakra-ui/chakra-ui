@@ -1,28 +1,20 @@
-let defaultPresets;
+const BABEL_ENV = process.env.BABEL_ENV;
+const isBuilding = BABEL_ENV !== undefined && BABEL_ENV !== "cjs";
 
-// We release a ES version of Material-UI.
-// It's something that matches the latest official supported features of JavaScript.
-// Nothing more (stage-1, etc), nothing less (require, etc).
-if (process.env.BABEL_ENV === "es") {
-  defaultPresets = [];
-} else {
-  defaultPresets = [
-    [
-      "@babel/preset-env",
-      {
-        modules: ["esm", "production-umd"].includes(process.env.BABEL_ENV)
-          ? false
-          : "commonjs",
-      },
-    ],
-  ];
-}
+const presets = [
+  [
+    "@babel/preset-env",
+    {
+      loose: true,
+      modules: isBuilding ? false : "commonjs",
+    },
+  ],
+  "@babel/preset-react",
+];
 
-const defaultAlias = {
-  "chakra-ui": "./src",
-};
-
-const productionPlugins = [
+const plugins = [
+  "@babel/plugin-proposal-object-rest-spread",
+  "@babel/plugin-transform-runtime",
   [
     "babel-plugin-transform-react-remove-prop-types",
     {
@@ -32,53 +24,6 @@ const productionPlugins = [
 ];
 
 module.exports = {
-  presets: defaultPresets.concat(["@babel/preset-react"]),
-  plugins: [
-    ["@babel/plugin-proposal-object-rest-spread", { loose: true }],
-    "@babel/plugin-transform-runtime",
-    // for IE 11 support
-    "@babel/plugin-transform-object-assign",
-  ],
-  ignore: [/@babel[\\|/]runtime/], // Fix a Windows issue.
-  env: {
-    cjs: {
-      plugins: productionPlugins,
-    },
-    esm: {
-      plugins: [
-        ...productionPlugins,
-        ["@babel/plugin-transform-runtime", { useESModules: true }],
-      ],
-    },
-    es: {
-      plugins: [
-        ...productionPlugins,
-        ["@babel/plugin-transform-runtime", { useESModules: true }],
-      ],
-    },
-    production: {
-      plugins: [
-        ...productionPlugins,
-        ["@babel/plugin-transform-runtime", { useESModules: true }],
-      ],
-    },
-    "production-umd": {
-      plugins: [
-        ...productionPlugins,
-        ["@babel/plugin-transform-runtime", { useESModules: true }],
-      ],
-    },
-    test: {
-      sourceMaps: "both",
-      plugins: [
-        [
-          "babel-plugin-module-resolver",
-          {
-            root: ["./"],
-            alias: defaultAlias,
-          },
-        ],
-      ],
-    },
-  },
+  presets: presets,
+  plugins: plugins,
 };

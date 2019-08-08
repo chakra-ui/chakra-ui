@@ -33,8 +33,8 @@ async function createModulePackages({ from, to }) {
     directoryPackages.map(async directoryPackage => {
       const packageJson = {
         sideEffects: false,
-        module: path.join("../esm", directoryPackage, "index.js"),
-        typings: "./index.d.ts",
+        module: path.join("../es", directoryPackage, "index.js"),
+        typings: "index.d.ts",
       };
       const packageJsonPath = path.join(to, directoryPackage, "package.json");
 
@@ -80,9 +80,9 @@ async function createPackageFile() {
   const newPackageData = {
     ...packageDataOther,
     private: false,
-    main: "./index.js",
-    module: "./esm/index.js",
-    typings: "./index.d.ts",
+    main: "index.js",
+    module: "es/index.js",
+    typings: "index.d.ts",
   };
   const targetPath = path.resolve(buildPath, "./package.json");
 
@@ -110,8 +110,8 @@ async function addLicense(packageData) {
 `;
   await Promise.all(
     [
-      "./index.js",
-      "./esm/index.js",
+      "index.js",
+      "es/index.js",
       "./umd/chakra-ui.min.js",
       "./umd/chakra-ui.js",
     ].map(async file => {

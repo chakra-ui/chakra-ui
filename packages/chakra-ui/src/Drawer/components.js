@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { Transition } from "react-spring/renderprops";
+import { Transition } from "react-spring/renderprops.cjs";
 import {
   ModalHeader,
   ModalFooter,
