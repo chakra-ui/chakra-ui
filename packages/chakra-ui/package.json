@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/core",
-  "version": "0.1.0",
+  "version": "0.1.1-alpha.0",
   "description": "Responsive and accessible React UI components built with React and Emotion",
   "main": "dist/index.js",
   "module": "dist/es/index.js",
@@ -61,6 +61,7 @@
     "use-dark-mode": "2.3.1"
   },
   "devDependencies": {
+    "rimraf": "2.6.3",
     "@babel/cli": "7.5.5",
     "@babel/core": "7.5.5",
     "@babel/plugin-proposal-class-properties": "7.5.5",
@@ -90,11 +91,11 @@
     "rollup-plugin-terser": "5.1.1"
   },
   "peerDependencies": {
-    "react": "16.x",
-    "react-dom": "16.x",
     "@emotion/core": "10.x",
     "@emotion/styled": "10.x",
-    "emotion-theming": "10.x"
+    "emotion-theming": "10.x",
+    "react": "16.x",
+    "react-dom": "16.x"
   },
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "license": "MIT",
