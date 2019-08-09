@@ -75,8 +75,7 @@ interface ILetterSpacing {
   letterSpacing: "tighter" | "tight" | "normal" | "wide" | "wider" | "widest";
 }
 
-export type BoxProps = React.AriaAttributes &
-  React.RefAttributes<HTMLElement> &
+export type BoxProps = React.RefAttributes<HTMLElement> &
   React.HTMLAttributes<HTMLDivElement> &
   StyledSystem.LayoutProps &
   StyledSystem.ColorProps &
@@ -93,7 +92,7 @@ export type BoxProps = React.AriaAttributes &
   ILineHeight &
   ICustomConfig & {
     wordBreak: "normal" | "words" | "all" | "truncate";
-    as: React.ReactType;
+    as: React.ElementType;
   };
 
 declare const Box: Emotion.StyledComponent<BoxProps, {}, {}>;

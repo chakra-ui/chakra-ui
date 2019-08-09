@@ -1,0 +1,33 @@
+# Alert
+
+Alerts are used to communicate a state that affects a system, feature or page.
+Alert utilized React Context and exports 3 components.
+
+- AlertIcon: The icon associated with the status of an alert. This can be
+  overriden by passing an `icon` prop
+
+- AlertTitle: The title of the alert. It composes the `Box` component
+
+- AlertDescription: The description of the alert. It also composes the `Box`
+  component
+
+## Usage
+
+```jsx
+<Alert hasStripe status="error" variant="solid" justifyContent="center">
+  <AlertTitle display="inline-block" mr={2}>
+    Your browser is outdated!
+  </AlertTitle>
+  <AlertDescription display="inline-block">
+    Your Chakra experience may be degraded.
+  </AlertDescription>
+  <CloseButton position="absolute" right="8px" top="8px" />
+</Alert>
+```
+
+## Props
+
+| Name    | Type                                           | Default  | Description                            |
+| ------- | ---------------------------------------------- | -------- | -------------------------------------- |
+| status  | `error`, `success`, `warning`, `info`          | `info`   | The status of the alert                |
+| variant | `subtle`, `solid`, `left-accent`, `top-accent` | `subtle` | The variant of the alert style to use. |

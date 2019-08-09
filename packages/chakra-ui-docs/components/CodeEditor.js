@@ -2,11 +2,11 @@ import React from "react";
 import * as Chakra from "@chakra-ui/core";
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
 
-const CodeBlock = ({
+const CodeEditor = ({
   code,
   isReadonly,
   padding = 20,
-  style = { fontFamily: "Dank Mono", fontSize: 14 },
+  style = { fontFamily: "Dank Mono", fontSize: 14, marginBottom: 40 },
   theme,
   ...props
 }) => {
@@ -32,4 +32,4 @@ const CodeBlock = ({
   );
 };
 
-export default CodeBlock;
+export default CodeEditor;

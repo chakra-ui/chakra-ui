@@ -25,7 +25,7 @@ export type MenuProps = IMenu & ChildrenProp;
 declare const Menu: React.FC<MenuProps>;
 export default Menu;
 
-export type MenuButtonProps = { as?: React.ReactType } & React.RefAttributes<
+export type MenuButtonProps = { as?: React.ElementType } & React.RefAttributes<
   HTMLButtonElement
 >;
 export const MenuButton: React.ForwardRefExoticComponent<MenuButtonProps>;

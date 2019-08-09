@@ -18,7 +18,12 @@
     "clean": "lerna clean --yes",
     "bootstrap": "lerna bootstrap --hoist",
     "storybook": "lerna run --scope @chakra-ui/core storybook --stream",
-    "docs:dev": "lerna run --scope @chakra-ui/docs dev --stream"
+    "docs:dev": "lerna run --scope @chakra-ui/docs dev --stream",
+    "docs:build": "lerna run --scope @chakra-ui/docs build --stream",
+    "docs:start": "lerna run --scope @chakra-ui/docs start --stream",
+    "core:build": "lerna run --scope @chakra-ui/core build --stream",
+    "release": "lerna publish",
+    "release:core": "lerna exec --scope=@chakra-ui/core npm run publish"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "1.x",

@@ -1,18 +1,21 @@
+/** @jsx jsx */
 import {
   Box,
   CSSReset,
   Heading,
   KeyboardKey,
   LightMode,
+  PseudoBox,
   Text,
   ThemeProvider,
-  PseudoBox,
+  ColorModeProvider,
 } from "@chakra-ui/core";
-import React, { forwardRef } from "react";
-import CodeBlock from "../components/CodeBlock";
+import { jsx } from "@emotion/core";
 import NextLink from "next/link";
-import PrismHighlight from "./PrismHighlight";
 import theme from "prism-react-renderer/themes/shadesOfPurple";
+import { forwardRef } from "react";
+import CodeEditor from "./CodeEditor";
+import PrismHighlight from "./PrismHighlight";
 
 const Code = props => (
   <Box
@@ -45,7 +48,7 @@ const Pre = props => (
 );
 
 const Table = props => (
-  <Box as="table" textAlign="left" width="full" {...props} />
+  <Box as="table" textAlign="left" mt="32px" width="full" {...props} />
 );
 
 const THead = props => (
@@ -78,11 +81,7 @@ const PreComponent = ({ className, ...props }) => {
 
   if (isJSX) {
     return (
-      <CodeBlock
-        theme={theme}
-        code={childrenProps.children}
-        {...props}
-      ></CodeBlock>
+      <CodeEditor theme={theme} code={childrenProps.children} {...props} />
     );
   }
 
@@ -112,8 +111,8 @@ const Link = forwardRef((props, ref) => (
 ));
 
 const MDXComponents = {
-  h1: props => <Heading as="h1" size="xl" my={3} {...props} />,
-  h2: props => <Heading as="h2" size="lg" my={2} {...props} />,
+  h1: props => <Heading as="h1" size="xl" my={5} {...props} />,
+  h2: props => <Heading as="h2" size="lg" my={4} {...props} />,
   inlineCode: Code,
   pre: PreComponent,
   kbd: KeyboardKey,
@@ -126,16 +125,31 @@ const MDXComponents = {
       <Link {...props} />
     </NextLink>
   ),
-  p: props => <Text lineHeight="tall" {...props} />,
+  p: props => <Text as="p" mt={4} lineHeight="tall" {...props} />,
+  ul: props => <Box as="ul" pl="16px" {...props} />,
+  blockquote: props => (
+    <Box
+      bg="yellow.100"
+      borderLeftWidth="4px"
+      as="blockquote"
+      px={5}
+      py={2}
+      mt={5}
+      my={7}
+      borderColor="yellow.400"
+      css={{ "> *:first-child": { marginTop: 0 } }}
+      {...props}
+    />
+  ),
 };
 
 const ChakraProvider = ({ children, theme }) => {
   return (
     <ThemeProvider theme={theme}>
-      <LightMode>
+      <ColorModeProvider value="light">
         <CSSReset />
         {children}
-      </LightMode>
+      </ColorModeProvider>
     </ThemeProvider>
   );
 };

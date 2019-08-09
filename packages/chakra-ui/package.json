@@ -5,6 +5,9 @@
   "main": "dist/index.js",
   "module": "dist/es/index.js",
   "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "npm run build:cjs && npm run build:es && npm run build:copy-types",
