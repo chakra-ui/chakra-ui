@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/core",
-  "version": "0.1.1-alpha.0",
+  "version": "0.1.1",
   "description": "Responsive and accessible React UI components built with React and Emotion",
   "main": "dist/index.js",
   "module": "dist/es/index.js",
@@ -61,7 +61,6 @@
     "use-dark-mode": "2.3.1"
   },
   "devDependencies": {
-    "rimraf": "2.6.3",
     "@babel/cli": "7.5.5",
     "@babel/core": "7.5.5",
     "@babel/plugin-proposal-class-properties": "7.5.5",
@@ -84,6 +83,7 @@
     "fs-extra": "8.1.0",
     "glob": "7.1.4",
     "path": "0.12.7",
+    "rimraf": "2.6.3",
     "rollup": "1.18.0",
     "rollup-plugin-babel": "4.3.3",
     "rollup-plugin-commonjs": "10.0.2",
