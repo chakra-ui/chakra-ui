@@ -1,29 +1,33 @@
 import React from "react";
-import {
-  Button,
-  ThemeProvider,
-  LightMode,
-  CSSReset,
-  Heading
-} from "@chakra-ui/core";
-
+import * as Chakra from "@chakra-ui/core";
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
-import theme from "prism-react-renderer/themes/shadesOfPurple";
 
-const CodeBlock = ({ value }) => {
+const CodeBlock = ({
+  code,
+  isReadonly,
+  padding = 20,
+  style = { fontFamily: "Dank Mono", fontSize: 14 },
+  theme,
+  ...props
+}) => {
   return (
     <LiveProvider
-      disabled={false}
+      disabled={isReadonly}
       theme={theme}
-      scope={{ ThemeProvider, LightMode, CSSReset, Heading, Button }}
-      code={value}
+      scope={{ ...Chakra }}
+      code={code}
+      {...props}
     >
-      <LiveEditor
-        // padding={30}
-        style={{ fontFamily: "Dank Mono", fontSize: 12 }}
+      <Chakra.Box
+        as={LivePreview}
+        my={5}
+        p={3}
+        border="1px"
+        borderColor="inherit"
+        rounded="md"
       />
-      <LiveError />
-      <LivePreview />
+      <Chakra.Box as={LiveError} fontSize="sm" px={3} py={4} bg="red.50" />
+      <LiveEditor padding={padding} style={style} />
     </LiveProvider>
   );
 };

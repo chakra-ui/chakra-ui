@@ -1,18 +1,66 @@
-import CodeBlock from "../components/CodeBlock";
+import Head from "next/head";
 
-<CodeBlock
-  value={`
-  <ThemeProvider>
-    <LightMode>
-      <CSSReset />
-      <Heading>This one is magic!</Heading>
-    </LightMode>
-  </ThemeProvider>
-`}
-/>
+<Head key="button">
+  <title key="tti">Button Component</title>
+</Head>
 
-`yarn install chakra-ui`
+# Button
 
-This is MDX! 🚨
+Accessible Button component that enables users to trigger an action or event,
+such as submitting a [Form](/docs/form/), opening a [Dialog](/docs/dialog/),
+canceling an action, or performing a delete operation. It follows the
+[WAI-ARIA Button Pattern](https://www.w3.org/TR/wai-aria-practices/#button).
 
-<h1>Welcome home</h1>
+<br />
+
+## Installation
+
+```bash
+npm install @chakra-ui/core
+```
+
+## Usage
+
+```jsx
+function Example() {
+  return <Button>Button</Button>;
+}
+```
+
+<br />
+
+## Accessibility
+
+- Button has `role` button.
+- When Button has focus, <kbd>Space</kbd> and <kbd>Enter</kbd> activates it.
+
+<br />
+
+## Composition
+
+Button uses [PseudoBox](/page2/) and all it's styles are composed as props. This
+means you can override every style of the Button.
+
+```jsx
+function Example() {
+  return (
+    <Button height="48px" width="200px" border="2px" borderColor="green.500">
+      Button
+    </Button>
+  );
+}
+```
+
+<br />
+
+## Props
+
+| Name          | Type                                              | Default | Description                                                                                               |
+| ------------- | ------------------------------------------------- | ------- | --------------------------------------------------------------------------------------------------------- |
+| `aria-label`  | `string`                                          |         | The label of the button                                                                                   |
+| `color`       | `string`                                          |         | The color of the button. Use the colors passed in `theme.colors`.                                         |
+| `variant`     | `outline`, `ghost`, `unstyled` , `link` , `solid` | `solid` | The variant of the button style to use.                                                                   |
+| `isDisabled`  | `boolean`                                         |         | If `true`, the button will be disabled.                                                                   |
+| `isLoading`   | `boolean`                                         |         | If `true`, the button will show a spinner.                                                                |
+| `loadingText` | `string`                                          |         | The label to show in the button when `isLoading` is true. If no text is passed, it only shows the spinner |
+| `size`        | `sm`, `md`, `lg`                                  | `md`    | The size of the button.                                                                                   |
