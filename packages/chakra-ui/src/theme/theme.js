@@ -35,7 +35,7 @@ const shadows = {
   none: "none",
 };
 
-const breakpoints = ["640px", "768px", "1024px", "1280px"];
+const breakpoints = ["30em", "48em", "62em", "80em"];
 // aliases
 breakpoints.sm = breakpoints[0];
 breakpoints.md = breakpoints[1];

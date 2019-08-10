@@ -1,3 +1,5 @@
+// TODO: Let the spacing a follow multiples of 8
+
 const baseSizes = {
   px: "1px",
   "0": "0",
@@ -25,16 +27,18 @@ const baseSizes = {
 };
 
 const maxWidths = {
-  xs: "20rem",
-  sm: "24rem",
-  md: "28rem",
-  lg: "32rem",
-  xl: "36rem",
-  "2xl": "42rem",
-  "3xl": "48rem",
-  "4xl": "56rem",
-  "5xl": "64rem",
-  "6xl": "72rem",
+  "3xs": "12rem",
+  "2xs": "14rem",
+  xs: "16rem",
+  sm: "20rem",
+  md: "24rem",
+  lg: "28rem",
+  xl: "32rem",
+  "2xl": "36rem",
+  "3xl": "42rem",
+  "4xl": "48rem",
+  "5xl": "56rem",
+  "6xl": "64rem",
 };
 
 const containers = {

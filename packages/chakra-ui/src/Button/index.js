@@ -10,6 +10,23 @@ import { useTheme } from "../ThemeProvider";
 import { useColorMode } from "../ColorModeProvider";
 import Box from "../Box";
 
+const ButtonIcon = ({ icon, ...props }) => {
+  if (typeof icon === "string") {
+    return (
+      <Icon focusable="false" name={icon} color="currentColor" {...props} />
+    );
+  }
+  return (
+    <Box
+      as={icon}
+      data-custom-icon
+      focusable="false"
+      color="currentColor"
+      {...props}
+    />
+  );
+};
+
 const Button = forwardRef(
   (
     {
@@ -49,14 +66,7 @@ const Button = forwardRef(
         {...rest}
       >
         {leftIcon && !isLoading && (
-          <Icon
-            focusable="false"
-            ml={-1}
-            mr={iconSpacing}
-            name={leftIcon}
-            color="currentColor"
-            size="1em"
-          />
+          <ButtonIcon ml={-1} mr={iconSpacing} icon={leftIcon} />
         )}
         {isLoading && (
           <Spinner
@@ -74,13 +84,7 @@ const Button = forwardRef(
             )
           : children}
         {rightIcon && !isLoading && (
-          <Icon
-            focusable="false"
-            ml={iconSpacing}
-            name={rightIcon}
-            color="currentColor"
-            size="1em"
-          />
+          <ButtonIcon ml={iconSpacing} icon={rightIcon} />
         )}
       </PseudoBox>
     );

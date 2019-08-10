@@ -36,6 +36,20 @@ stories.add("Generic", () => {
   );
 });
 
+stories.add("Responsive Styles", () => {
+  return (
+    <Box
+      p={5}
+      fontSize="sm"
+      width={["full", "full", "50%"]}
+      color="white"
+      bg="green.500"
+    >
+      Box
+    </Box>
+  );
+});
+
 stories.add("Cards", () => (
   <Box maxWidth="340px" mx="auto">
     <Box mt={5} boxShadow="0 0 0 1px #e3e8ee" height="16">

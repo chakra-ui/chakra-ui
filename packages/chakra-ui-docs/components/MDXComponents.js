@@ -4,7 +4,6 @@ import {
   CSSReset,
   Heading,
   KeyboardKey,
-  LightMode,
   PseudoBox,
   Text,
   ThemeProvider,
@@ -12,7 +11,7 @@ import {
 } from "@chakra-ui/core";
 import { jsx } from "@emotion/core";
 import NextLink from "next/link";
-import theme from "prism-react-renderer/themes/shadesOfPurple";
+import theme from "prism-react-renderer/themes/nightOwl";
 import { forwardRef } from "react";
 import CodeEditor from "./CodeEditor";
 import PrismHighlight from "./PrismHighlight";
@@ -76,8 +75,22 @@ const TData = props => (
 
 const PreComponent = ({ className, ...props }) => {
   const childrenProps = props.children.props;
-  const language = childrenProps.className.split("-")[1];
-  const isJSX = childrenProps && childrenProps.className === "language-jsx";
+  const language =
+    childrenProps.className && childrenProps.className.split("-")[1];
+  const isJSX = language && language === "jsx";
+  const isJsxCodeOnly = language && language === "jsxCodeOnly";
+
+  if (isJsxCodeOnly) {
+    return (
+      <CodeEditor
+        disabled
+        theme={theme}
+        language="jsx"
+        code={childrenProps.children}
+        {...props}
+      />
+    );
+  }
 
   if (isJSX) {
     return (
@@ -113,10 +126,12 @@ const Link = forwardRef((props, ref) => (
 const MDXComponents = {
   h1: props => <Heading as="h1" size="xl" my={5} {...props} />,
   h2: props => <Heading as="h2" size="lg" my={4} {...props} />,
+  h3: props => <Heading as="h3" my={4} {...props} />,
   inlineCode: Code,
   pre: PreComponent,
   kbd: KeyboardKey,
   br: props => <Box height="24px" {...props} />,
+  hr: props => <Box as="hr" height="px" my={8} bg="gray.200" {...props} />,
   table: Table,
   th: THead,
   td: TData,
@@ -137,7 +152,7 @@ const MDXComponents = {
       mt={5}
       my={7}
       borderColor="yellow.400"
-      css={{ "> *:first-child": { marginTop: 0 } }}
+      css={{ "> *:first-of-type": { marginTop: 0 } }}
       {...props}
     />
   ),

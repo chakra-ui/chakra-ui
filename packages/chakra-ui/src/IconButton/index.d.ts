@@ -1,7 +1,12 @@
 import * as React from "react";
 import { ButtonProps } from "../Button";
 
-interface IIconButton extends ButtonProps {
+type PropsFromButton = Pick<
+  ButtonProps,
+  "size" | "variant" | "color" | "isLoading" | "type"
+>;
+
+interface IIconButton extends PropsFromButton {
   /**
    * The icon to be used. Refer to the [Icons](/components/icons/) section
    * of the docs for the available icon options.

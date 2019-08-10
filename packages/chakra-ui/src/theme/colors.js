@@ -240,4 +240,16 @@ const colors = {
   },
 };
 
+colors.red = colors.red[500];
+colors.green = colors.green[500];
+colors.gray = colors.gray[500];
+colors.orange = colors.orange[500];
+colors.yellow = colors.yellow[500];
+colors.green = colors.green[500];
+colors.teal = colors.teal[500];
+colors.blue = colors.blue[500];
+colors.cyan = colors.cyan[500];
+colors.purple = colors.purple[500];
+colors.pink = colors.pink[500];
+
 export default colors;

@@ -4,7 +4,7 @@ import { PseudoBoxProps } from "../PseudoBox";
 
 export interface IButton {
   /**
-   * The size of the button. Use the sizes in `theme.sizes.button`
+   * The size of the button
    */
   size?: "sm" | "md" | "lg";
   /**
@@ -12,7 +12,9 @@ export interface IButton {
    */
   isLoading?: boolean;
   /**
-   * The color of the button. Use the colors passed in `theme.colors`.
+   * The color of the button. Use the color keys passed in `theme.colors`.
+   * @example
+   * color="green" | "purple" | "orange"
    */
   color?: string;
   /**

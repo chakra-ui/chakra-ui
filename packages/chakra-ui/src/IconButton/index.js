@@ -4,6 +4,7 @@ import { forwardRef } from "react";
 import propTypes from "prop-types";
 import Icon from "../Icon";
 import Button from "../Button";
+import Box from "../Box";
 
 const IconButton = forwardRef(
   ({ icon, isRound, "aria-label": ariaLabel, ...rest }, ref) => {
@@ -18,7 +19,16 @@ const IconButton = forwardRef(
         aria-label={ariaLabel}
         {...props}
       >
-        <Icon name={icon} color="currentColor" aria-hidden />
+        {typeof icon === "string" ? (
+          <Icon
+            name={icon}
+            focusable="false"
+            color="currentColor"
+            aria-hidden
+          />
+        ) : (
+          <Box as={icon} aria-hidden focusable="false" color="currentColor" />
+        )}
       </Button>
     );
   },

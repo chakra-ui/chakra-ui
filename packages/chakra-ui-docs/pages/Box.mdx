@@ -1,0 +1,84 @@
+# Box
+
+Box is the most abstract component on top of which all other Chakra UI
+components are built. By default, it renders a div element
+
+The Box component is the most fundamental component in Chakra UI. It is
+primitive used to construct layouts and compose components. In most cases you
+can use a `Box` instead of a div element.
+
+**The Box component is useful because it helps with 3 common use cases:**
+
+- Create responsive layouts without writing CSS.
+- Provide a shorthand way to define styles (`bg` instead of `backgroundColor`).
+- Compose new component and allow for override using the `as` prop.
+
+---
+
+## You don’t need `className`
+
+With Chakra UI, you don’t deal with CSS classes through the className property.
+Instead, you write CSS properties directly onto your Chakra UI components — in
+most cases it will just work.
+
+Here's how it works:
+
+```jsx
+<Box
+  p={5}
+  width={["100%", "50%", "25%", "15%"]}
+  color={["white", "yellow.300", "papayawhip"]}
+  bg="green.500"
+>
+  Box
+</Box>
+```
+
+## You don’t need to write media queries
+
+With Chakra UI, Use array values to quickly and ergonomically add mobile-first
+responsive styles to specific properties. This works on all style props and the
+sx prop. See the Styled System docs for more.
+
+```jsxCodeOnly
+<Box
+  width={[
+    "100%",  // Extra small devices (portrait phones, less than 480px)
+    "50%",  // Small devices (landscape phones, 480px and up)
+    "25%",  // Medium devices (tablets, 768px and up)
+    "15%"   // Large devices (desktops, 992px and up)
+  ]}
+/>
+```
+
+## Usage
+
+```jsx
+<Box>
+  Box can be used to create both{" "}
+  <Box as="span" bg="green.100">
+    inline
+  </Box>
+  and
+  <Box bg="blue.100">block-level elements,</Box>
+  <Box bg="purple.100" width={["100%", "75%", 1 / 2]}>
+    elements with fixed or responsive width and height,
+  </Box>
+  <Box bg="yellow.50" p={4} mt={2}>
+    and more!
+  </Box>
+</Box>
+```
+
+### `as` prop
+
+You can use the `as` prop to change the element render, just like
+styled-components.
+
+```jsx
+// import { Box } from "@chakra-ui/Box";
+
+function Example() {
+  return <Box as="button">Button</Box>;
+}
+```
