@@ -2,7 +2,8 @@
 import { jsx } from "@emotion/core";
 import Icon from "../Icon";
 import PseudoBox from "../PseudoBox";
-import { useColorMode } from "../ColorModeProvider";
+import { useColorMode, ColorModeContext } from "../ColorModeProvider";
+import { useContext } from "react";
 
 const baseProps = ({ mode }) => {
   return {
@@ -43,6 +44,7 @@ const CloseButton = ({
   onClick,
   ...rest
 }) => {
+  const context = useContext(ColorModeContext);
   const { mode } = useColorMode();
   const _size = sizes[size];
 
@@ -55,7 +57,6 @@ const CloseButton = ({
       disabled={isDisabled}
       onClick={onClick}
       aria-label={ariaLabel}
-      tabindex="0"
       rounded="md"
       as="button"
       size={_size.button}

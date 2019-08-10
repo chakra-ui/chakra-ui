@@ -20,7 +20,7 @@ const ColorModeProvider = ({ value: overideValue, children }) => {
   };
 
   const { value, toggle } = useDarkMode(false);
-  const mode = value ? "light" : "dark";
+  const mode = value ? "dark" : "light";
 
   const childContext = overideValue
     ? { mode: manualMode, toggle: manualToggle }
