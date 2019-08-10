@@ -136,7 +136,7 @@ const MDXComponents = {
   th: THead,
   td: TData,
   a: ({ href, ...props }) => (
-    <NextLink href={href}>
+    <NextLink href={href} passHref>
       <Link {...props} />
     </NextLink>
   ),

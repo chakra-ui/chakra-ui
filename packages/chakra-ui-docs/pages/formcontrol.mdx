@@ -1,0 +1,77 @@
+import Head from "next/head";
+
+<Head key="form-control">
+  <title key="tti">Form Control Component</title>
+</Head>
+
+# Form Control
+
+FormControl is an accessible component used with a collection of other
+components, such as [FormLabel](/formlabel), [FormHelperText](/formhelptext),
+[Select](/select), [Input](/input), etc, to compose new form components.
+`FormControl` uses <a href="https://reactjs.org/docs/context.html" target="__blank">React
+Context</a> to pass down props, such as `isInvalid`, `isDisabled` to its children.
+
+## Installation
+
+```bash
+npm install @chakra-ui/core
+```
+
+## Usage
+
+```jsx
+function Example() {
+  return (
+    <FormControl isInvalid>
+      <FormLabel htmlFor="fname">First name</FormLabel>
+      <Input id="fname" placeholder="First name" />
+      <FormValidationText id="url-error">
+        First name is invalid
+      </FormValidationText>
+    </FormControl>
+  );
+}
+```
+
+## Compostion
+
+FormControls is used with other components such as, [Input](/input),
+[Select](/select), [FormLabel](/formlabel),
+[FormValidationText](/formvalidationtext), [FormHelperText](/formhelpertext),
+[InputAddon](/inputaddon), etc, to compose new form components.
+
+### Input Example
+
+```jsx
+function Example() {
+  return (
+    <FormControl isRequired>
+      <FormLabel htmlFor="fname">First name</FormLabel>
+      <Input id="fname" placeholder="First name" />
+    </FormControl>
+  );
+}
+```
+
+### Select Example
+
+```jsx
+function Example() {
+  return (
+    <FormControl>
+      <FormLabel htmlFor="country">Country</FormLabel>
+      <Select id="country" placeholder="Select country" />
+    </FormControl>
+  );
+}
+```
+
+## Props
+
+| Name         | Type      | Default | Description                                                            |
+| ------------ | --------- | ------- | ---------------------------------------------------------------------- |
+| `isInvalid`  | `boolean` | `false` | If `true`, the form control passes the invalid state to its children.  |
+| `isRequired` | `boolean` | `false` | If `true`, the form control passes the required state to its children. |
+| `isDisabled` | `boolean` | `false` | If `true`, the form control passes the disabled state to its children. |
+| `isReadOnly` | `boolean` | `false` | If `true`, the form control passes the readonly state to its children. |

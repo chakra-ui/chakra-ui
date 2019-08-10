@@ -2,6 +2,15 @@ import React from "react";
 import { Box, Flex, Heading, IconButton, List } from "@chakra-ui/core";
 import NavigationLink from "./NavigationLink";
 
+const componentsRegister = {
+  "alert": "Alert",
+  "box": "Box",
+  "button": "Button",
+  "controlbox": "ControlBox",
+  "formcontrol": "FormControl",
+  "pseudobox": "PseudBox"
+}
+
 export default function NavigationBox() {
   return (
     <Box
@@ -37,7 +46,7 @@ export default function NavigationBox() {
               px={6}
               py={1}
               as="a"
-              // href="/"
+              href="/"
               passHref
               display="block"
               color="gray.600"
@@ -94,58 +103,22 @@ export default function NavigationBox() {
           </Heading>
 
           <List type="none">
-            <NavigationLink
-              as="a"
-              // href="/"
-              passHref
-              color="gray.600"
-              display="block"
-              textDecoration="none"
-              _hover={{ bg: "gray.200" }}
-              px={6}
-              py={1}
-            >
-              Installation
-            </NavigationLink>
-            <NavigationLink
-              as="a"
-              display="block"
-              color="gray.600"
-              textDecoration="none"
-              _hover={{ bg: "gray.200" }}
-              // href="/"
-              passHref
-              px={6}
-              py={1}
-            >
-              Theming
-            </NavigationLink>
-            <NavigationLink
-              as="a"
-              // href="/"
-              passHref
-              display="block"
-              color="gray.600"
-              textDecoration="none"
-              _hover={{ bg: "gray.200" }}
-              px={6}
-              py={1}
-            >
-              Responsive design
-            </NavigationLink>
-            <NavigationLink
-              // href="/"
-              passHref
-              as="a"
-              display="block"
-              color="gray.600"
-              textDecoration="none"
-              _hover={{ bg: "gray.200" }}
-              px={6}
-              py={1}
-            >
-              Pseudo styles
-            </NavigationLink>
+            {Object.keys(componentsRegister).map(component => (
+              <NavigationLink
+                px={6}
+                py={1}
+                as="a"
+                href={`/${component}`}
+                passHref
+                display="block"
+                color="gray.600"
+                textDecoration="none"
+                textTransform="capitalize"
+                _hover={{ bg: "gray.200" }}
+              >
+                {componentsRegister[component]}
+              </NavigationLink>
+            ))}
           </List>
         </Box>
       </Box>

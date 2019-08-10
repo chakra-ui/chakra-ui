@@ -6,7 +6,6 @@ const CodeEditor = ({
   code,
   padding = 20,
   style = {
-    fontFamily: "Dank Mono",
     fontSize: 14,
     marginBottom: 40,
     marginTop: 24,
