@@ -6,7 +6,7 @@ const CodeBlock = ({
   code,
   isReadonly,
   padding = 20,
-  style = { fontFamily: "Dank Mono", fontSize: 14 },
+  style = { fontSize: 14 },
   theme,
   ...props
 }) => {
