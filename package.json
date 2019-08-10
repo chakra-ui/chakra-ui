@@ -16,7 +16,7 @@
   },
   "scripts": {
     "clean": "lerna clean --yes",
-    "bootstrap": "lerna bootstrap --hoist",
+    "bootstrap": "npm run clean && lerna bootstrap --hoist",
     "storybook": "lerna run --scope @chakra-ui/core storybook --stream",
     "docs:dev": "lerna run --scope @chakra-ui/docs dev --stream",
     "docs:build": "lerna run --scope @chakra-ui/docs build --stream",
