@@ -1,0 +1,102 @@
+# Heading
+
+Headings are used to create a primary area of interest in an interface with
+large type. Headlines establish the first-level typographical hierarchy for
+sections throughout the interface.
+
+Heading composes `Box` so you can use all the style props and add responsive
+styles as well. It renders an `<h2>` tag by default.
+
+## Size
+
+The level of headline you select should provide the appropriate hierarchy and
+visual coherency within the interface.
+
+```jsx
+<>
+  <Heading as="h1" size="2xl">
+    Heading 1
+  </Heading>
+  <Heading as="h2" size="xl">
+    Heading 2
+  </Heading>
+  <Heading as="h3" size="lg">
+    Heading 3
+  </Heading>
+  <Heading as="h4" size="md">
+    Heading 4
+  </Heading>
+  <Heading as="h5" size="sm">
+    Heading 5
+  </Heading>
+  <Heading as="h6" size="xs">
+    Heading 6
+  </Heading>
+</>
+```
+
+> If you use the `size` prop, the `Heading` component will automatically
+> decrease in size for smaller screens. However you can pass the typography
+> props (fontSize, lineHeight, etc) for more granular control.
+
+## Installation
+
+```bash
+  npm i @chakra-ui/core --save
+
+  # or
+
+  yarn add @chakra-ui/core
+```
+
+Then import
+
+```bash
+  import { Heading } from "@chakra-ui/core"
+```
+
+## Usage
+
+```jsx
+<>
+  <Heading as="h1" lineHeight="shorter" size="2xl">
+    Modern online and offline payments for Africa
+  </Heading>
+  <Text mt="24px" fontSize="xl">
+    Paystack helps businesses in Africa get paid by anyone, anywhere in the
+    world
+  </Text>
+  <Button size="lg" color="green" mt="24px">
+    Create a free account
+  </Button>
+</>
+```
+
+## Props
+
+| Name   | Type                                 | Default | Description              |
+| ------ | ------------------------------------ | ------- | ------------------------ |
+| `size` | `2xl`, `xl` , `lg`, `md`, `sm`, `xs` | `md`    | The size of the heading. |
+
+## Composition
+
+You can override the size of the Heading component by passing the `fontSize`
+prop. No need to write `css` or `styled(...)` 😅
+
+```jsx
+<Heading size="lg" fontSize="50px">
+  I'm overriding this heading
+</Heading>
+```
+
+## Guidelines
+
+- Keep headings to single sentence and avoid using punctuation such as periods,
+  commas, or semicolons
+- In most cases, write in sentence case (first word capitalized, the rest is
+  lowercase)
+- The most important heading has the rank 1 (`<h1>`), the least important
+  heading rank 6 (`<h6>`).
+- Skipping heading ranks can be confusing and should be avoided where possible:
+  Make sure that a `<h2>` is not followed directly by an `<h4>`, for example. It
+  should be `<h2>` then `<h3>`

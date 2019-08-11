@@ -1,0 +1,82 @@
+# Getting Started
+
+## Adding Chakra to an existing app
+
+You can install Chakra UI via npm or yarn. It relies on `emotion` and
+`emotion-theming` (as well as React) being available in whatever project you are
+working on.
+
+```bash
+  # Using npm
+  npm install @chakra-ui/core @emotion/core @emotion/styled emotion-theming
+
+
+  yarn add @chakra-ui/core @emotion/core @emotion/styled emotion-theming
+```
+
+## Configuring the theme
+
+At the root of your application, you should tell your app which theme to use. In
+most cases, you will want to use the default theme.
+
+```jsxCodeOnly
+import { Button, theme, ChakraProvider } from "@chakra-ui/core";
+
+const App = () => (
+  <ChakraProvider theme={theme}>
+    <Button color="green">Click me</Button>
+  </ChakraProvider>
+);
+```
+
+## Using components
+
+Simply import components by name from the @chakra-ui/core package, as
+demonstrated above.
+
+```bash
+import {Button} from "@chakra-ui/core"
+```
+
+## Injecting global styles
+
+Sometimes you may need to apply global styles to your page. Here is how you can
+do this with the utilities provided by Chakra UI.
+
+## Adding Icons
+
+You can use custom icons from standard libraries like [react-icons](#) or you
+can add the icon paths into the theme object.
+
+Here's how the icon aspect of the theme object looks.
+
+```js
+// Theme object
+export default {
+  icons: {
+    search: {
+      // This is can be the <path/> or <g> elements for the svg. Note the "fill=currentColor"
+      path: (
+        <path
+          fill="currentColor"
+          d="M23.384,21.619,16.855,15.09a9.284,9.284,0,1,0-1.768,1.768l6.529,6.529a1.266,1.266,0,0,0,1.768,0A1.251,1.251,0,0,0,23.384,21.619ZM2.75,9.5a6.75,6.75,0,1,1,6.75,6.75A6.758,6.758,0,0,1,2.75,9.5Z"
+        />
+      ),
+      // This is the viewBox of the icon.
+      viewBox: "0 0 24 24",
+    },
+  },
+};
+```
+
+Once you add the icons, you can then use them within the `Icon` component, like
+this;
+
+```jsx
+<Icon name="search" color="red.500" />
+```
+
+## Contributing
+
+Please see our [contribution guidelines](google.com) to learn how you can
+contribute to thise project.
