@@ -10,6 +10,7 @@ const CodeEditor = ({
     marginBottom: 40,
     marginTop: 24,
     overflow: "auto",
+    fontFamily: `SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace`,
   },
   theme,
   disabled,
@@ -53,7 +54,7 @@ const CodeEditor = ({
           textTransform="uppercase"
           rounded="0"
           fontSize="xs"
-          color="purple"
+          variantColor="purple"
           height="24px"
           top={0}
           right={0}

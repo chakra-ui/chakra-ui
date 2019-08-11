@@ -11,7 +11,12 @@ const PrismHighlight = ({
     {({ className, style, tokens, getLineProps, getTokenProps }) => (
       <Pre
         className={className}
-        style={{ ...style, overflow: "auto", lineHeight: "inherit" }}
+        style={{
+          ...style,
+          overflow: "auto",
+          lineHeight: "inherit",
+          fontFamily: `SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace`,
+        }}
       >
         {tokens.map((line, i) => (
           <div {...getLineProps({ line, key: i })}>

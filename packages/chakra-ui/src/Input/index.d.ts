@@ -31,7 +31,7 @@ export interface IInput {
   /**
    * The type attribute of the `input` element
    */
-  type?: "email" | "number" | "password" | "search" | "tel" | "text" | "url";
+  type?: React.InputHTMLAttributes<HTMLInputElement>["type"];
   /**
    * Standard `input` min attribute, to be used with `type="number"`
    */

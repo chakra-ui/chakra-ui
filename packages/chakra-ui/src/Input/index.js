@@ -56,7 +56,6 @@ Input.defaultProps = {
 
 Input.propTypes = {
   size: propTypes.oneOf(["md", "sm", "lg"]),
-  type: propTypes.oneOf(["text", "email", "number", "password", "search"]),
   variant: propTypes.oneOf(["outline", "unstyled", "flushed", "filled"]),
 };
 

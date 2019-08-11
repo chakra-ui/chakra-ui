@@ -1,4 +1,6 @@
-import { addOpacity, get } from "../theme/colors-utils";
+import { addOpacity } from "../theme/colors-utils";
+import { useColorMode } from "../ColorModeProvider";
+import { useTheme } from "../ThemeProvider";
 
 const grayGhostStyle = {
   light: {
@@ -21,25 +23,25 @@ const grayGhostStyle = {
   },
 };
 
-const ghostVariantProps = ({ color, mode, theme }) => {
-  const _color = theme.colors[color][200];
+const ghostVariantProps = ({ variantColor: color, mode, theme }) => {
+  const _color = theme.colors[color] && theme.colors[color][200];
   let result;
   if (color === "gray") {
     result = grayGhostStyle;
   } else {
     result = {
       light: {
-        color: get(color, 500),
+        color: `${color}.500`,
         bg: "transparent",
         _hover: {
-          bg: get(color, 50),
+          bg: `${color}.50`,
         },
         _active: {
-          bg: get(color, 100),
+          bg: `${color}.100`,
         },
       },
       dark: {
-        color: get(color, 200),
+        color: `${color}.200`,
         bg: "transparent",
         _hover: {
           bg: addOpacity(_color, 0.12),
@@ -57,13 +59,12 @@ const ghostVariantProps = ({ color, mode, theme }) => {
 ////////////////////////////////////////////////////////////
 
 const outlineVariantProps = props => {
-  const { color, mode } = props;
-  const borderColor = get(color, 500);
-  const _borderColor = { light: "gray.200", dark: "whiteAlpha.300" };
+  const { variantColor: color, mode } = props;
+  const borderColor = { light: "gray.200", dark: "whiteAlpha.300" };
 
   return {
     border: "1px",
-    borderColor: color === "gray" ? _borderColor[mode] : borderColor,
+    borderColor: color === "gray" ? borderColor[mode] : "current",
     ...ghostVariantProps(props),
   };
 };
@@ -91,53 +92,55 @@ const graySolidStyle = {
   },
 };
 
-const solidVariantProps = ({ color, mode }) => {
-  let result;
-
-  result = {
+const solidVariantProps = ({ variantColor: color, mode }) => {
+  let style = {
     light: {
-      bg: get(color, 500),
+      bg: `${color}.500`,
       color: "white",
       _hover: {
-        bg: get(color, 600),
+        bg: `${color}.600`,
       },
       _active: {
-        bg: get(color, 700),
+        bg: `${color}.700`,
       },
     },
     dark: {
-      bg: get(color, 200),
+      bg: `${color}.200`,
       color: "gray.800",
       _hover: {
-        bg: get(color, 300),
+        bg: `${color}.300`,
       },
       _active: {
-        bg: get(color, 300),
+        bg: `${color}.400`,
       },
     },
   };
 
   if (color === "gray") {
-    result = graySolidStyle;
+    style = graySolidStyle;
   }
 
-  return result[mode];
+  return style[mode];
 };
 
 ////////////////////////////////////////////////////////////
 
-const linkVariantProps = ({ color }) => ({
-  p: 0,
-  height: "auto",
-  lineHeight: "normal",
-  color: get(color, 600),
-  _hover: {
-    textDecoration: "underline",
-  },
-  _active: {
-    color: get(color, 700),
-  },
-});
+const linkVariantProps = ({ variantColor: color, mode }) => {
+  const _color = { light: `${color}.500`, dark: `${color}.200` };
+  const _activeColor = { light: `${color}.700`, dark: `${color}.500` };
+  return {
+    p: 0,
+    height: "auto",
+    lineHeight: "normal",
+    color: _color[mode],
+    _hover: {
+      textDecoration: "underline",
+    },
+    _active: {
+      color: _activeColor[mode],
+    },
+  };
+};
 
 ////////////////////////////////////////////////////////////
 
@@ -152,29 +155,29 @@ const disabledProps = {
 ////////////////////////////////////////////////////////////
 
 const sizes = {
-  xl: {
-    height: "16",
+  lg: {
+    height: 9,
+    minWidth: 9,
     fontSize: "lg",
     px: 6,
-    minWidth: "16",
-  },
-  lg: {
-    height: "12",
-    fontSize: "lg",
-    px: 5,
-    minWidth: "12",
   },
   md: {
-    height: "10",
+    height: 8,
+    minWidth: 8,
     fontSize: "md",
     px: 4,
-    minWidth: "10",
   },
   sm: {
-    height: "8",
+    height: 7,
+    minWidth: 7,
     fontSize: "sm",
     px: 3,
-    minWidth: "8",
+  },
+  xs: {
+    height: 6,
+    minWidth: 6,
+    fontSize: "sm",
+    px: 2,
   },
 };
 
@@ -233,18 +236,23 @@ const baseProps = {
   position: "relative",
   whiteSpace: "nowrap",
   verticalAlign: "middle",
+  lineHeight: "1.2",
 };
 
 ////////////////////////////////////////////////////////////
 
-const buttonStyle = props => {
+const useButtonStyle = props => {
+  const { mode } = useColorMode();
+  const theme = useTheme();
+
+  const _props = { ...props, mode, theme };
   return {
     ...baseProps,
-    ...sizeProps(props),
+    ...sizeProps(_props),
     ...focusProps,
     ...disabledProps,
-    ...variantProps(props),
+    ...variantProps(_props),
   };
 };
 
-export default buttonStyle;
+export default useButtonStyle;

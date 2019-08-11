@@ -1,6 +1,5 @@
-import React from "react";
-import { useTheme } from "src/ThemeProvider";
-import { useColorMode } from "src/ColorModeProvider";
+import { useTheme } from "../ThemeProvider";
+import { useColorMode } from "../ColorModeProvider";
 
 const baseProps = {
   transition: `all 0.15s ease-out`,
@@ -20,29 +19,32 @@ const unstyledProps = {
   color: "inherit",
 };
 
-const niceBorderProps = ({ color, mode }) => {
+const underlineProps = ({ variantColor: color, mode }) => {
   return {
-    color: `${color}.500`,
+    color: color ? `${color}.500` : "inherit",
     borderBottom: "1px",
-    borderColor: `${color}.200`,
+    borderColor: color ? `${color}.200` : "gray.200",
     _hover: {
-      borderColor: `${color}.700`,
+      borderColor: color ? `${color}.400` : "gray.400",
     },
   };
 };
 
-const niceBgProps = ({ color, mode }) => {
+const bgUnderlineProps = ({ variantColor: color, mode }) => {
   return {
-    bg: `${color}.50`,
+    bg: color ? `${color}.50` : "gray.100",
     borderBottom: "1px",
     borderColor: `blackAlpha.200`,
-    _hover: { bg: `${color}.100`, borderColor: "gray.300" },
+    _hover: {
+      bg: color ? `${color}.100` : "gray.200",
+      borderColor: "gray.300",
+    },
   };
 };
 
-const basicProps = ({ color, mode }) => {
+const basicProps = ({ variantColor: color, mode }) => {
   return {
-    color: `${color}.500`,
+    color: color ? `${color}.500` : "gray.500",
     _hover: {
       textDecoration: "underline",
     },
@@ -56,10 +58,10 @@ const variantProps = props => {
   switch (props.variant) {
     case "unstyled":
       return unstyledProps;
-    case "nice-border":
-      return niceBorderProps(props);
-    case "nice-bg":
-      return niceBgProps(props);
+    case "underline":
+      return underlineProps(props);
+    case "bg-underline":
+      return bgUnderlineProps(props);
     case "basic":
       return basicProps(props);
     default:

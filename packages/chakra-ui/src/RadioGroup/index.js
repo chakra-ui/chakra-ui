@@ -5,6 +5,12 @@ import { Children, cloneElement, useState, useRef } from "react";
 import { genId } from "../utils";
 import Box from "../Box";
 
+/* 
+  TODO:
+  - Calling focus() on the radiogroup should focus on the selected option or first enabled option
+  
+*/
+
 const RadioGroup = ({
   id,
   onChange,

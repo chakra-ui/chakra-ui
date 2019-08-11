@@ -1,18 +1,8 @@
 {
-  "env": {
-    "browser": true,
-    "es6": true
-  },
-  "extends": ["plugin:jsx-a11y/recommended", "eslint-config-prettier"],
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "ecmaVersion": 2018,
-    "sourceType": "module"
-  },
-  "plugins": ["react", "jsx-a11y", "import", "jest", "react-hooks"],
+  "extends": ["react-app", "plugin:jsx-a11y/recommended"],
+  "plugins": ["jsx-a11y"],
   "rules": {
+    // "jsx-a11y/rule-name": 2,
     "no-console": "off"
   }
 }

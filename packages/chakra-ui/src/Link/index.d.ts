@@ -4,10 +4,10 @@ import * as Emotion from "@emotion/styled";
 import { PseudoBoxProps } from "../PseudoBox";
 
 export interface ILink {
+  variant?: "bg-underline" | "underline" | "unstyled" | "basic";
+  variantColor?: string;
   isDisabled?: boolean;
-  color?: string;
-  isUnstyled?: boolean;
-  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 }
 
 export type LinkProps = ILink & PseudoBoxProps;

@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import { Children, cloneElement, useState, useRef } from "react";
-import { genId } from "../utils";
+import { useId } from "@reach/auto-id";
 import Box from "../Box";
 
 const RadioButtonGroup = ({
@@ -85,7 +85,7 @@ const RadioButtonGroup = ({
 
     return cloneElement(child, {
       ref: node => (allNodes.current[index] = node),
-      name: name || genId("radio"),
+      name: name || `radio-${useId()}`,
       onClick: handleClick,
       tabIndex: getTabIndex(),
       isChecked,
