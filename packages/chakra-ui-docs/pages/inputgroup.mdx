@@ -1,0 +1,99 @@
+import Head from "next/head";
+
+<Head key="input-group">
+  <title key="tti">Input Group Component</title>
+</Head>
+
+# Input Group
+
+The InputGroup is a wrapper component used for the composition of input elements
+with addons, icons or other elements on either side of it.
+
+## Installation
+
+```bash
+npm install @chakra-ui/core
+```
+
+## Usage
+
+```jsx
+function Example() {
+  return (
+    <InputGroup size="md">
+      <InputLeftAddon>+234</InputLeftAddon>
+      <Input roundedLeft="0" placeholder="Welcome" />
+    </InputGroup>
+  );
+}
+```
+
+## Compostion
+
+Place one [addon-on](/inputaddon) or [Button](/button) on either side of an [Input](/input). You may also place one on
+both sides of an input as well as have a combination of , [Icon](/icon) or button
+
+### With left addon
+
+```jsx
+function Example() {
+  return (
+    <InputGroup size="md">
+      <InputLeftAddon>+234</InputLeftAddon>
+      <Input roundedLeft="0" placeholder="Welcome" />
+    </InputGroup>
+  );
+}
+```
+
+### With right addon
+
+```jsx
+function Example() {
+  return (
+  <InputGroup size="md">
+    <InputRightAddon>.com</InputRightAddon>
+    <Input roundedRight="0" placeholder="Welcome" />
+  </InputGroup>
+  );
+}
+```
+
+### With left icon
+
+```jsx
+function Example() {
+  return (
+    <InputGroup size={size}>
+      <InputLeftElement>
+        <Icon name="phone" size="1em" />
+      </InputLeftElement>
+      <Input placeholder="Welcome" />
+    </InputGroup>
+  );
+}
+```
+
+### With right icon
+
+```jsx
+function Example() {
+  return (
+    <InputGroup size={size}>
+      <InputRightElement>
+        <Icon name="check" size="1em" />
+      </InputRightElement>
+      <Input placeholder="Welcome" />
+    </InputGroup>
+  );
+}
+```
+
+## Props
+
+| Name         | Type      | Default | Description                                                            |
+| ------------ | --------- | ------- | ---------------------------------------------------------------------- |
+| `isInvalid`  | `boolean` | `false` | If `true`, the form control passes the invalid state to its children.  |
+| `isRequired` | `boolean` | `false` | If `true`, the form control passes the required state to its children. |
+| `isDisabled` | `boolean` | `false` | If `true`, the form control passes the disabled state to its children. |
+| `isReadOnly` | `boolean` | `false` | If `true`, the form control passes the readonly state to its children. |

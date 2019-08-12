@@ -8,7 +8,8 @@ const componentsRegister = {
   "button": "Button",
   "controlbox": "ControlBox",
   "formcontrol": "FormControl",
-  "pseudobox": "PseudBox"
+  "inputgroup": "InputGroup",
+  "pseudobox": "PseudBox",
 }
 
 export default function NavigationBox() {
