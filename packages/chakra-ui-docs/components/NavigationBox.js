@@ -77,6 +77,14 @@ const componentLinks = [
     label: "PseudoBox",
     href: "/pseudobox",
   },
+  {
+    label: "AlertDialog",
+    href: "/alertdialog",
+  },
+  {
+    label: "Avatar",
+    href: "/avatar",
+  },
 ];
 
 const NavGroupHeading = props => (

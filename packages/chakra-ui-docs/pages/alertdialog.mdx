@@ -1,0 +1,64 @@
+# Alert Dialog
+
+Interrupt the user with a mandatory acknowledgement or decision.
+
+A modal dialog that interrupts the user's workflow to get a response, usually
+some sort of confirmation. This is different than a typical Dialog in that it
+requires some user response, like "Save", or "Cancel", etc.
+
+> When using AlertDialog ensure you provide the `leastDestructiveRef` props.
+> Based on WAI-ARIA specifications, focus should be places on the least
+> destructive element when the dialog opens, to prevent users from accidentally
+> taking the destructive action
+
+# Usage
+
+```jsx
+function AlertDialogExample() {
+  const [isOpen, setIsOpen] = React.useState();
+  const onClose = () => setIsOpen(false);
+  const cancelRef = React.useRef();
+
+  return (
+    <div>
+      <Button variantColor="red" onClick={() => setIsOpen(true)}>
+        Delete Customer
+      </Button>
+      <AlertDialog
+        isOpen={isOpen}
+        leastDestructiveRef={cancelRef}
+        onClose={onClose}
+        isCentered
+      >
+        <AlertDialogHeader fontSize="lg" fontWeight="bold">
+          Delete Customer
+        </AlertDialogHeader>
+
+        <AlertDialogBody>
+          Are you sure? You can't undo this action afterwards.
+        </AlertDialogBody>
+
+        <AlertDialogFooter>
+          <Button ref={cancelRef} onClick={onClose}>
+            Cancel
+          </Button>
+          <Button variantColor="red" onClick={onClose} ml={3}>
+            Delete
+          </Button>
+        </AlertDialogFooter>
+      </AlertDialog>
+    </div>
+  );
+}
+```
+
+## Accessibility
+
+- AlertDialog has role `alertdialog`, and `aria-modal` set to true.
+- When the dialog opens, focus is automatically set to the least destructive
+  element.
+- When the dialog opens, the content in the `AlertDialogHeader` and
+  `AlertDialogBody` are announced by screen readers via `aria-labelledby` and
+  `aria-describedby` attributes.
+- Clicking on the overlay closes the AlertDialog.
+- Pressing <kbd>esc</kbd> closes the dialog.

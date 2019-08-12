@@ -9,21 +9,21 @@ import { createContext, useContext } from "react";
 
 const tagSizes = {
   sm: {
-    minHeight: "20px",
-    minWidth: "20px",
+    minHeight: 5,
+    minWidth: 5,
     fontSize: "sm",
-    px: "8px",
+    px: 2,
   },
   md: {
-    minHeight: "24px",
-    minWidth: "24px",
+    minHeight: 6,
+    minWidth: 6,
     fontSize: "sm",
-    px: "8px",
+    px: 2,
   },
   lg: {
-    minHeight: "32px",
-    minWidth: "32px",
-    px: "12px",
+    minHeight: 7,
+    minWidth: 7,
+    px: 3,
   },
 };
 
@@ -33,8 +33,8 @@ const useTagContext = () => {
 };
 
 export const TagAddon = ({ placement, ...props }) => {
-  const margin = { sm: "-4px", md: "-4px", lg: "-8px" };
-  const sizes = { sm: "20px", md: "24px", lg: "24px" };
+  const margin = { sm: -1, md: -1, lg: -2 };
+  const sizes = { sm: 5, md: 6, lg: 6 };
   const { size } = useTagContext();
 
   const _placement = {
@@ -53,21 +53,21 @@ export const TagAddon = ({ placement, ...props }) => {
 };
 
 export const TagCloseButton = props => {
-  const margin = { sm: "-8px", md: "-8px", lg: "-12px" };
+  const margin = { sm: -2, md: -2, lg: -3 };
   const { size } = useTagContext();
 
   return (
     <PseudoBox
+      as="button"
       display="flex"
       alignItems="center"
       justifyContent="center"
-      as="button"
       transition="all 0.2s"
-      mr={margin[size]}
-      width={tagSizes[size]["minWidth"]}
       alignSelf="stretch"
       rounded="full"
       opacity="0.5"
+      mr={margin[size]}
+      width={tagSizes[size]["minWidth"]}
       _focus={{
         boxShadow: "outline",
         bg: "rgba(0, 0, 0, 0.14)",
@@ -88,9 +88,10 @@ export const TagCloseButton = props => {
 export const TagLabel = props => {
   return (
     <Box
-      maxWidth="160px"
+      maxWidth={14}
       overflow="hidden"
       wordBreak="truncate"
+      lineHeight="1.2"
       as="span"
       {...props}
     />
@@ -106,7 +107,7 @@ const Tag = ({ variant = "subtle", size = "lg", color, ...rest }) => {
       <PseudoBox
         display="inline-flex"
         alignItems="center"
-        minHeight="24px"
+        minHeight={6}
         maxWidth="100%"
         rounded="md"
         fontWeight="medium"

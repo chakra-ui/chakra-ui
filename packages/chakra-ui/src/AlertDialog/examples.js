@@ -39,7 +39,7 @@ const SampleDialog = () => {
           <Button ref={cancelRef} onClick={onClose}>
             Nevermind
           </Button>
-          <Button color="red" onClick={onClose} ml={3}>
+          <Button variantColor="red" onClick={onClose} ml={3}>
             Yes, delete
           </Button>
         </AlertDialogFooter>

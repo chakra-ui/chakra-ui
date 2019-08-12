@@ -40,8 +40,8 @@ export default ({ Component, pageProps }) => {
             <Flex
               px="16px"
               zIndex="1"
-              bg="white"
               minHeight="60px"
+              bg="white"
               position="fixed"
               alignItems="center"
               borderBottomWidth="1px"
@@ -67,7 +67,14 @@ export default ({ Component, pageProps }) => {
                 </Box>
               </Flex>
             </Flex>
-            <Box maxWidth="700px" mx="auto" mt="120px" mb="80px" px="16px">
+            <Box
+              as="main"
+              maxWidth="700px"
+              mx="auto"
+              mt="120px"
+              mb="80px"
+              px="16px"
+            >
               <Component {...pageProps} />
             </Box>
           </Box>
