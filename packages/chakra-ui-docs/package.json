@@ -21,6 +21,7 @@
   "devDependencies": {
     "@emotion/core": "10.0.10",
     "@emotion/styled": "10.0.11",
-    "emotion-theming": "10.0.10"
+    "emotion-theming": "10.0.10",
+    "now": "^16.1.1"
   }
 }

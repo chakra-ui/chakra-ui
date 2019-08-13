@@ -5,7 +5,7 @@ import useLinkStyle from "./styles";
 
 const Link = ({
   isDisabled,
-  variantColor,
+  variantColor = "blue",
   variant = "basic",
   onClick,
   ...rest

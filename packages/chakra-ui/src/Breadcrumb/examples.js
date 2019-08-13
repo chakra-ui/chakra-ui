@@ -15,7 +15,7 @@ stories.add("Default", () => (
       <Link href="/about">About</Link>
     </BreadcrumbItem>
 
-    <BreadcrumbItem isCurrent>
+    <BreadcrumbItem isActive>
       <Link href="/current">Current</Link>
     </BreadcrumbItem>
   </Breadcrumb>

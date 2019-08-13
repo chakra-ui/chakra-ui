@@ -18,6 +18,7 @@ export { default as Button } from "./Button";
 export { default as ButtonGroup } from "./ButtonGroup";
 
 export { default as Center } from "./Center";
+export { default as Code } from "./Code";
 export { default as Checkbox } from "./Checkbox";
 export { default as CloseButton } from "./CloseButton";
 export { default as Collapse } from "./Collapse";

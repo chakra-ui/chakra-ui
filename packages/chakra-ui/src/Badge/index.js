@@ -14,7 +14,7 @@ const Badge = forwardRef(({ variantColor, variant, ...props }, ref) => {
       display="inline-block"
       px={1}
       textTransform="uppercase"
-      fontSize="sm"
+      fontSize="xs"
       borderRadius="sm"
       fontWeight="bold"
       whiteSpace="nowrap"

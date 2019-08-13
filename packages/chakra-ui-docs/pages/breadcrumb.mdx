@@ -1,0 +1,120 @@
+# Breadcrumb
+
+Indicate the current page’s location within a navigational hierarchy that
+automatically adds separators.
+
+Chakra UI exports two components to create a Breadcrumb:
+
+- **Breadcrumb**:The container for wrapping the list of `BreadcrumbItem`
+- **BreadcrumbItem**: The breadcrumb item in the list
+
+## Installation
+
+```js
+import { Breadcrumb, BreadcrumbItem } from "@chakra-ui/core";
+```
+
+## Usage
+
+Add `isActive` prop to active `BreadcrumbItem`. Behind the scenes, we use
+React's `cloneElement` to override the rendered `a` and change it to a `span`.
+
+```jsx
+<Breadcrumb>
+  <BreadcrumbItem>
+    <Link href="/google">Home</Link>
+  </BreadcrumbItem>
+
+  <BreadcrumbItem>
+    <Link href="/about">About</Link>
+  </BreadcrumbItem>
+
+  <BreadcrumbItem isActive>
+    <Link href="/contact">Contact</Link>
+  </BreadcrumbItem>
+</Breadcrumb>
+```
+
+> You don't need to pass the `Link` component to the active breadcrumb but if
+> you do, we'll replace the rendered component.
+>
+> **This works too: `<BreadcrumbItem isActive>Contact</BreadcrumbItem>`**
+
+## Separators
+
+You can change the separator used in the breadcrumb. Passing a string, like `-`
+or a React Element works.
+
+```jsx
+<>
+  <Breadcrumb separator="-">
+    <BreadcrumbItem>
+      <Link href="/">Home</Link>
+    </BreadcrumbItem>
+
+    <BreadcrumbItem>
+      <Link href="/about">About</Link>
+    </BreadcrumbItem>
+
+    <BreadcrumbItem isActive>
+      <Link href="/contact">Contact</Link>
+    </BreadcrumbItem>
+  </Breadcrumb>
+
+  <Breadcrumb separator={<Icon name="chevron-right" />}>
+    <BreadcrumbItem>
+      <Link href="/">Home</Link>
+    </BreadcrumbItem>
+
+    <BreadcrumbItem>
+      <Link href="/about">About</Link>
+    </BreadcrumbItem>
+
+    <BreadcrumbItem isActive>
+      <Link href="/contact">Contact</Link>
+    </BreadcrumbItem>
+  </Breadcrumb>
+</>
+```
+
+## Composition
+
+`Breadcrumb` composes `Box` so you can pass all `Box` props to change the style
+of the breadcrumbs. Let's say we need to increase the `fontSize` of the
+breadcrumbs.
+
+```jsx
+<Breadcrumb fontSize="lg">
+  <BreadcrumbItem>
+    <Link href="/google">Home</Link>
+  </BreadcrumbItem>
+
+  <BreadcrumbItem>
+    <Link href="/about">About</Link>
+  </BreadcrumbItem>
+
+  <BreadcrumbItem isActive>
+    <Link href="/current">Current</Link>
+  </BreadcrumbItem>
+</Breadcrumb>
+```
+
+## Accessibility
+
+- The Breadcrumbs are rendered in a `nav` to denote that it's a navigation
+  landmark.
+- The Breadcrumb `nav` as `aria-label` set to `breadcrumb`.
+- The current link is passed `aria-current` set to `page` to denote that it's
+  the active page.
+- The separator has `role=presentation` to denote that its for presentation
+  purposes.
+
+---
+
+## Props
+
+| Name           | Type                          | Default | Description                                                           |
+| -------------- | ----------------------------- | ------- | --------------------------------------------------------------------- |
+| separator      | `string` or `React.ReactNode` | `/`     | The visual separator between the breadcrumb item.                     |
+| separatorColor | `string`                      |         | The color of the visual separator between the breadcrumb item.        |
+| isActive       | `boolean`                     |         | Used to indicate the active breadcrumb that matched the current page. |

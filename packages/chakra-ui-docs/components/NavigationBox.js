@@ -10,7 +10,14 @@ import {
 import NavLink from "./NavLink";
 import componentRegister from "./component-register";
 
-const NavLinks = ({ links, ...props }) => {
+const stringToUrl = (str, path = "/") => {
+  return `${path}${str
+    .toLowerCase()
+    .split(" ")
+    .join("-")}`;
+};
+
+const NavLinks = ({ links, path, ...props }) => {
   return (
     <List {...props}>
       {links.map(link => (
@@ -19,7 +26,7 @@ const NavLinks = ({ links, ...props }) => {
           key={link.label}
           py={1}
           as="a"
-          href={link.href}
+          href={stringToUrl(link, path)}
           passHref
           display="block"
           textDecoration="none"
@@ -27,7 +34,7 @@ const NavLinks = ({ links, ...props }) => {
           transition="all 0.2s"
           _hover={{ bg: "gray.100" }}
         >
-          {link.label}
+          {link}
         </NavLink>
       ))}
     </List>
@@ -35,22 +42,10 @@ const NavLinks = ({ links, ...props }) => {
 };
 
 const topLinks = [
-  {
-    label: "Installation",
-    href: "/",
-  },
-  {
-    label: "Theming",
-    href: "/",
-  },
-  {
-    label: "Responsive design",
-    href: "/",
-  },
-  {
-    label: "Pseudo styles",
-    href: "/",
-  },
+  "Installation",
+  "Theming",
+  "Responsive design",
+  "Pseudo styles",
 ];
 
 const NavGroupHeading = props => (
