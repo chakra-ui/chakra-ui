@@ -46,7 +46,7 @@ const Button = forwardRef(
     ref,
   ) => {
     const buttonStyleProps = useButtonStyle({
-      variantColor,
+      color: variantColor,
       variant,
       size,
     });

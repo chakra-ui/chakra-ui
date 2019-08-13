@@ -8,6 +8,7 @@ import {
   useColorMode,
 } from "@chakra-ui/core";
 import NavLink from "./NavLink";
+import componentRegister from "./component-register";
 
 const NavLinks = ({ links, ...props }) => {
   return (
@@ -49,41 +50,6 @@ const topLinks = [
   {
     label: "Pseudo styles",
     href: "/",
-  },
-];
-
-const componentLinks = [
-  {
-    label: "Alert",
-    href: "/alert",
-  },
-  {
-    label: "Box",
-    href: "/box",
-  },
-  {
-    label: "Button",
-    href: "/button",
-  },
-  {
-    label: "ControlBox",
-    href: "/controlbox",
-  },
-  {
-    label: "FormControl",
-    href: "/formcontrol",
-  },
-  {
-    label: "PseudoBox",
-    href: "/pseudobox",
-  },
-  {
-    label: "AlertDialog",
-    href: "/alertdialog",
-  },
-  {
-    label: "Avatar",
-    href: "/avatar",
   },
 ];
 
@@ -136,7 +102,7 @@ export default function NavigationBox() {
 
         <Box pb="16px" mb="16px">
           <NavGroupHeading>Components</NavGroupHeading>
-          <NavLinks links={componentLinks} />
+          <NavLinks links={componentRegister} />
         </Box>
       </Box>
     </Box>

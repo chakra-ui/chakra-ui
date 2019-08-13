@@ -19,18 +19,19 @@ function string2Hex(str) {
 }
 
 export const avatarSizes = {
+  "2xs": 4,
   xs: 5,
-  sm: 6,
-  md: 10,
-  lg: 12,
-  xl: 16,
-  "2xl": 24,
+  sm: 7,
+  md: 9,
+  lg: 10,
+  xl: 12,
+  "2xl": 13,
+  full: "full",
 };
 
-const useAvatarStyle = props => {
+const useAvatarStyle = ({ size, name, showBorder }) => {
   const { colors } = useTheme();
   const { mode } = useColorMode();
-  const { size, name, showBorder } = props;
 
   const bg = name ? string2Hex(name) : colors.gray[400];
   const color = name ? (isDarkColor(bg) ? "#fff" : "gray.800") : "#fff";

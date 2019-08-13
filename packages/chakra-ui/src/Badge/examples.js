@@ -20,7 +20,7 @@ stories.add("Solid Badges", () => {
   return (
     <React.Fragment>
       {["gray", "green", "red", "orange", "purple", "teal"].map(color => (
-        <Badge color={color} variant="solid" mr={2}>
+        <Badge variantColor={color} variant="solid" mr={2}>
           {color}
         </Badge>
       ))}
@@ -32,7 +32,7 @@ stories.add("Subtle Badges", () => {
   return (
     <React.Fragment>
       {["gray", "green", "red", "orange", "purple", "teal"].map(color => (
-        <Badge color={color} mr={2}>
+        <Badge variantColor={color} mr={2}>
           {color}
         </Badge>
       ))}
@@ -44,7 +44,7 @@ stories.add("Outline Badges", () => {
   return (
     <React.Fragment>
       {["gray", "green", "red", "orange", "purple", "teal"].map(color => (
-        <Badge color={color} variant="outline" mr={2}>
+        <Badge variantColor={color} variant="outline" mr={2}>
           {color}
         </Badge>
       ))}

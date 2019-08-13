@@ -12,7 +12,7 @@ export interface IAvatar {
   /**
    * The size of the avatar.
    */
-  size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
+  size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
   /**
    * If `true`, the `Avatar` will show a border around it.
    *

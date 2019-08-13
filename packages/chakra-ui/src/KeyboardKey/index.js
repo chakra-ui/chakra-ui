@@ -14,10 +14,9 @@ const Keyboard = props => {
       border="1px"
       borderColor="inherit"
       borderBottomWidth="3px"
-      fontSize="0.85em"
+      fontSize="0.8em"
       fontWeight="bold"
       lineHeight="normal"
-      py="0.2em"
       px="0.4em"
       whiteSpace="nowrap"
       {...props}

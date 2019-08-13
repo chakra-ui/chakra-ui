@@ -1,9 +1,38 @@
-# Badges
+# Badge
 
-Badges are used to highlight an item's status for quick recognition. Lozenges
-are either 'subtle', 'solid' or 'outlines' and use color to indicate meanings
-that users can learn and recognize across products.
+Badges are used to highlight an item's status for quick recognition. Badges have
+3 variants: `subtle`, `solid` or `outlines`.
 
-Using the color system can help guide the usage for badges, and help keep a
-consistent visual language.
+You can pass the `variantColor` prop to customize the color of the Badge and get
+a consistent visual language.
 
+## Usage
+
+```js
+import { Badge } from "@chakra-ui/core";
+```
+
+```jsx
+<List isInline>
+  <Badge>Default</Badge>
+  <Badge variantColor="green">Success</Badge>
+  <Badge variantColor="red">Removed</Badge>
+  <Badge variantColor="purple">New</Badge>
+</List>
+```
+
+## Badge Variants
+
+```jsx
+<List isInline>
+  <Badge variant="outline" variantColor="green">
+    Default
+  </Badge>
+  <Badge variant="solid" variantColor="green">
+    Success
+  </Badge>
+  <Badge variant="subtle" variantColor="green">
+    Removed
+  </Badge>
+</List>
+```

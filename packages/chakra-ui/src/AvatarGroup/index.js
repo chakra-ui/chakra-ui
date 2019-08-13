@@ -6,8 +6,8 @@ import { avatarSizes } from "../Avatar/styles";
 import Flex from "../Flex";
 import { useColorMode } from "../ColorModeProvider";
 
-export const MoreIndicator = ({ size, label, ...props }) => {
-  const borderColor = { light: "#fff", dark: "gray.900" };
+export const MoreAvatarIndicator = ({ size, label, ...props }) => {
+  const borderColor = { light: "#fff", dark: "gray.800" };
   const bg = { light: "gray.200", dark: "whiteAlpha.400" };
 
   const { mode } = useColorMode();
@@ -33,7 +33,7 @@ const AvatarGroup = ({ size, children, spacing = -3, ...rest }) => {
   let count = Children.count(children);
   const clones = Children.map(children, (child, index) => {
     if (child.type !== Avatar) {
-      return child.type === MoreIndicator
+      return child.type === MoreAvatarIndicator
         ? cloneElement(child, { size, ml: spacing })
         : child;
     }
