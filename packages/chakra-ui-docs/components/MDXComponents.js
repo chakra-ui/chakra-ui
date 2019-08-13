@@ -127,7 +127,7 @@ const HeadingWithLink = ({ children, ...props }) => {
 
 const MDXComponents = {
   h1: props => <Heading as="h1" size="xl" my={5} {...props} />,
-  h2: props => <HeadingWithLink as="h2" size="lg" my={4} {...props} />,
+  h2: props => <HeadingWithLink as="h2" size="lg" mb={3} mt={7} {...props} />,
   h3: props => <HeadingWithLink as="h3" my={4} {...props} />,
   inlineCode: props => (
     <Code variantColor="yellow" fontSize="0.84em" {...props} />

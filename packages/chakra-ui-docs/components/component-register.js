@@ -3,6 +3,7 @@ const componentRegister = [
   "Box",
   "Button",
   "ControlBox",
+  "Checkbox",
   "FormControl",
   "PseudoBox",
   "AlertDialog",

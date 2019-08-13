@@ -30,8 +30,8 @@ const Checkbox = forwardRef(
       onFocus,
       isIndeterminate,
       children,
-      checkColor,
-      checkSize,
+      iconColor,
+      iconSize,
       ...rest
     },
     ref,
@@ -68,8 +68,8 @@ const Checkbox = forwardRef(
         <ControlBox {...styleProps}>
           <Icon
             name={isIndeterminate ? "minus" : "check"}
-            size={checkSize}
-            color={checkColor}
+            size={iconSize}
+            color={iconColor}
           />
         </ControlBox>
         {children && (
@@ -91,7 +91,7 @@ const Checkbox = forwardRef(
 Checkbox.defaultProps = {
   size: "md",
   color: "blue",
-  checkSize: "10px",
+  iconSize: "10px",
 };
 
 Checkbox.propTypes = {
@@ -154,9 +154,7 @@ Checkbox.propTypes = {
   /**
    * The children is the label to be displayed to the right of the checkbox.
    */
-  children: propTypes.oneOfType([propTypes.node, propTypes.node]),
-  // iconColor,
-  // checkSize
+  children: propTypes.oneOfType([propTypes.string, propTypes.node]),
 };
 
 export default Checkbox;
