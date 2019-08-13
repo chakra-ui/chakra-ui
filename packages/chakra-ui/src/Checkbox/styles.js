@@ -36,13 +36,13 @@ const interactionProps = ({ color, mode }) => {
   };
 };
 
-const sizes = {
-  lg: 5,
-  md: 4,
-  sm: "auto",
-};
-
 const useCheckboxStyle = props => {
+  const sizes = {
+    lg: 5,
+    md: 4,
+    sm: props.type === "radio" ? 3 : "auto",
+  };
+
   return {
     ...baseProps,
     ...(props.size && { rounded: "sm" }),

@@ -2,13 +2,12 @@
 import { jsx } from "@emotion/core";
 import propTypes from "prop-types";
 import { Children, cloneElement, useState, useRef } from "react";
-import { genId } from "../utils";
+import { useId } from "@reach/auto-id";
 import Box from "../Box";
 
 /* 
   TODO:
   - Calling focus() on the radiogroup should focus on the selected option or first enabled option
-  
 */
 
 const RadioGroup = ({
@@ -19,7 +18,7 @@ const RadioGroup = ({
   defaultValue,
   isInline,
   value: valueProp,
-  spacing = 4,
+  spacing = 2,
   children,
   ...rest
 }) => {
@@ -34,7 +33,8 @@ const RadioGroup = ({
   };
 
   // If no name is passed, we'll generate a random, unique name
-  const _name = name || genId("radio");
+  const fallbackName = `radio-${useId()}`;
+  const _name = name || fallbackName;
 
   const clones = Children.map(children, (child, index) => {
     const isLastRadio = children.length === index + 1;
@@ -46,7 +46,7 @@ const RadioGroup = ({
         {...(!isLastRadio && spacingProps)}
       >
         {cloneElement(child, {
-          size,
+          size: size || child.props.size,
           name: _name,
           onChange: _onChange,
           isChecked: child.props.value === _value,

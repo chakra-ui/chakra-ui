@@ -79,77 +79,29 @@ The checkbox comes with 3 sizes
 
 ```jsx
 function IndeterminateExample() {
-  const parentValue = "PARENT";
-  const child1Value = "CHILD1";
-  const child2Value = "CHILD2";
+  const [checkedItems, setCheckedItems] = React.useState([false, false]);
 
-  const getCheckedChildrenCount = checkedItems => {
-    const childItems = Object.keys(checkedItems).filter(i => i !== parentValue);
-    return childItems.reduce(
-      (count, i) => (checkedItems[i] ? count + 1 : count),
-      0,
-    );
-  };
-
-  const getIsParentIndeterminate = checkedItems => {
-    const checkedChildrenCount = getCheckedChildrenCount(checkedItems);
-    return checkedChildrenCount > 0 && checkedChildrenCount < 2;
-  };
-
-  const [checkedItems, setCheckedItems] = React.useState({
-    [parentValue]: false,
-    [child1Value]: false,
-    [child2Value]: false,
-  });
-
-  const onChange = event => {
-    const itemValue = event.target.value;
-
-    if (itemValue === parentValue) {
-      const newCheckedState = !checkedItems[parentValue];
-      setCheckedItems(
-        Object.keys(checkedItems).reduce(
-          (items, i) => ({ ...items, [i]: newCheckedState }),
-          {},
-        ),
-      );
-    } else {
-      const newCheckedItems = {
-        ...checkedItems,
-        [itemValue]: !checkedItems[itemValue],
-      };
-      setCheckedItems({
-        ...newCheckedItems,
-        // If all children would be unchecked, also uncheck the parent
-        [parentValue]: getCheckedChildrenCount(newCheckedItems) > 0,
-      });
-    }
-  };
+  const allChecked = checkedItems.every(Boolean);
+  const isIndeterminate = checkedItems.some(Boolean) && !allChecked;
 
   return (
     <>
       <Checkbox
-        isChecked={checkedItems[parentValue]}
-        isIndeterminate={getIsParentIndeterminate(checkedItems)}
-        onChange={onChange}
-        value={parentValue}
-        name="parent"
+        isChecked={allChecked}
+        isIndeterminate={isIndeterminate}
+        onChange={e => setCheckedItems([e.target.checked, e.target.checked])}
         children="Parent Checkbox"
       />
       <List pl={6} mt={1} spacing={1}>
         <Checkbox
-          isChecked={checkedItems[child1Value]}
-          onChange={onChange}
+          isChecked={checkedItems[0]}
+          onChange={e => setCheckedItems([e.target.checked, checkedItems[1]])}
           children="Child Checkbox 1"
-          value={child1Value}
-          name="child-1"
         />
         <Checkbox
-          isChecked={checkedItems[child2Value]}
-          onChange={onChange}
+          isChecked={checkedItems[1]}
+          onChange={e => setCheckedItems([checkedItems[0], e.target.checked])}
           children="Child Checkbox 2"
-          value={child2Value}
-          name="child-2"
         />
       </List>
     </>

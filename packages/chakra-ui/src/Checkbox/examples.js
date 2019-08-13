@@ -2,6 +2,7 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 import Box from "../Box";
 import Checkbox from "../Checkbox";
+import List from "../List";
 import FormValidationText from "../FormValidationText";
 
 const stories = storiesOf("Checkbox", module);
@@ -39,3 +40,45 @@ stories.add("Default", () => (
     <br />
   </React.Fragment>
 ));
+
+stories.add("disabled checkbox", () => (
+  <React.Fragment>
+    <Checkbox isDisabled>Disabled </Checkbox>
+    <Checkbox isChecked isDisabled>
+      Disabled
+    </Checkbox>
+    <br />
+  </React.Fragment>
+));
+
+function IndeterminateExample() {
+  const [checkedItems, setCheckedItems] = React.useState([true, false]);
+
+  const allChecked = checkedItems.every(Boolean);
+  const isIndeterminate = checkedItems.some(Boolean) && !allChecked;
+
+  return (
+    <>
+      <Checkbox
+        isChecked={allChecked}
+        isIndeterminate={isIndeterminate}
+        onChange={e => setCheckedItems([e.target.checked, e.target.checked])}
+        children="Parent Checkbox"
+      />
+      <List pl={6} mt={1} spacing={1}>
+        <Checkbox
+          isChecked={checkedItems[0]}
+          onChange={e => setCheckedItems([e.target.checked, checkedItems[1]])}
+          children="Child Checkbox 1"
+        />
+        <Checkbox
+          isChecked={checkedItems[1]}
+          onChange={e => setCheckedItems([checkedItems[0], e.target.checked])}
+          children="Child Checkbox 2"
+        />
+      </List>
+    </>
+  );
+}
+
+stories.add("indeterminate checkbox", () => <IndeterminateExample />);

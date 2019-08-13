@@ -5,7 +5,7 @@ import propTypes from "prop-types";
 import ControlBox from "../ControlBox";
 import { useColorMode } from "../ColorModeProvider";
 import VisuallyHidden from "../VisuallyHidden";
-import checkboxStyles from "../Checkbox/styles";
+import useCheckboxStyle from "../Checkbox/styles";
 import Flex from "../Flex";
 import Box from "../Box";
 
@@ -33,7 +33,7 @@ const Radio = forwardRef(
     ref,
   ) => {
     const { mode } = useColorMode();
-    const styleProps = checkboxStyles({ color, size, mode });
+    const styleProps = useCheckboxStyle({ color, size, mode, type: "radio" });
 
     return (
       <Flex

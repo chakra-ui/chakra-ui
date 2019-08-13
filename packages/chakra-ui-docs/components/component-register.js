@@ -10,6 +10,8 @@ const componentRegister = [
   "Avatar",
   "AvatarGroup",
   "Badge",
+  "Heading",
   "Breadcrumb",
+  "Radio",
 ];
 export default componentRegister;

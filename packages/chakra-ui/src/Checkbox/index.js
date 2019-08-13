@@ -1,14 +1,14 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { forwardRef } from "react";
 import propTypes from "prop-types";
-import VisuallyHidden from "../VisuallyHidden";
-import ControlBox from "../ControlBox";
-import Icon from "../Icon";
-import checkboxStyles from "./styles";
-import { useColorMode } from "../ColorModeProvider";
-import Flex from "../Flex";
+import { forwardRef } from "react";
 import Box from "../Box";
+import { useColorMode } from "../ColorModeProvider";
+import ControlBox from "../ControlBox";
+import Flex from "../Flex";
+import Icon from "../Icon";
+import VisuallyHidden from "../VisuallyHidden";
+import checkboxStyles from "./styles";
 
 const Checkbox = forwardRef(
   (
@@ -64,6 +64,7 @@ const Checkbox = forwardRef(
           checked={isChecked}
           disabled={isDisabled}
           aria-invalid={isInvalid}
+          data-indeterminate={isIndeterminate}
         />
         <ControlBox {...styleProps}>
           <Icon
@@ -75,7 +76,6 @@ const Checkbox = forwardRef(
         {children && (
           <Box
             ml={2}
-            // transform="translateY(-1px)"
             fontSize={size}
             userSelect="none"
             opacity={isDisabled ? 0.32 : 1}
