@@ -43,8 +43,9 @@ const bgUnderlineProps = ({ variantColor: color, mode }) => {
 };
 
 const basicProps = ({ variantColor: color, mode }) => {
+  const _color = { light: `${color}.600`, dark: `${color}.200` };
   return {
-    color: color ? `${color}.500` : "gray.500",
+    color: color ? _color[mode] : "inherit",
     _hover: {
       textDecoration: "underline",
     },

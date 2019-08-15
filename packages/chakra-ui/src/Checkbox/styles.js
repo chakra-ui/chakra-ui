@@ -36,18 +36,19 @@ const interactionProps = ({ color, mode }) => {
   };
 };
 
-const sizes = {
-  lg: 5,
-  md: 4,
-  sm: 3,
-};
+const useCheckboxStyle = props => {
+  const sizes = {
+    lg: 5,
+    md: 4,
+    sm: props.type === "radio" ? 3 : "auto",
+  };
 
-const checkboxStyles = props => {
   return {
     ...baseProps,
+    ...(props.size && { rounded: "sm" }),
     ...interactionProps(props),
     size: sizes[props.size],
   };
 };
 
-export default checkboxStyles;
+export default useCheckboxStyle;

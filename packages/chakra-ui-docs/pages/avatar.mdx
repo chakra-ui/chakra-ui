@@ -1,33 +1,79 @@
 # Avatars
 
-Use round avatars to quickly identify users. Use rounded square avatars to help
-identify large product entities like projects, spaces, groups, rooms, or
-repositories.
+The Avatar component is used to represent users.
 
-![Avatar Parts](https://craft.atlassian.design/uploads/guidelines/product/avatars/avatar-anatomy.png)
+The `Avatar` package export 2 Components:
 
-The Avatar export 2 Components:
+- `Avatar`: This displays the image that represents the user.
+- `AvatarBadge`: In some products, you might need show a badge on the right
+  corner of the avatar. For instance, an avatar can show if the user is online.
 
-- `Avatar`: This houses the image that represents the user or entity. When an
-  image hasn't been uploaded, a default image will be displayed. For users that
-  haven't uploaded an image, you can display their initials instead.
+## Usage
 
-- `AvatarBadge`: In some products, you can display a badge on the avatar. For
-  instance, an avatar can show if the user is online.
+```js
+import { Avatar } from "@chakra-ui/core";
+```
 
-## Style
+```jsx
+<List isInline>
+  <Avatar name="Dan Abrahmov" src="http://bit.ly/dan-abramov" />
+  <Avatar name="Uchiha Itachi" src="http://bit.ly/uchiha-itachi" />
+  <Avatar name="Kent Dodds" src="http://bit.ly/kent-c-dodds" />
+  <Avatar name="Ryan Florence" src="http://bit.ly/ryan-florence" />
+  <Avatar name="Prosper Otemuyiwa" src="http://bit.ly/prosper-baba" />
+  <Avatar name="Christian Nwamba" src="http://bit.ly/code-beast" />
+</List>
+```
 
-Avatars are available in 6 sizes.
+## Avatar Sizes
 
-## Default user avatars
+The Avatar component comes in 7 sizes
 
-When no image is available for a user avatar, user initials are used in place of
-an image.
+```jsx
+<List isInline>
+  <Avatar size="2xs" name="Dan Abrahmov" src="http://bit.ly/dan-abramov" />
+  <Avatar size="xs" name="Uchiha Itachi" src="http://bit.ly/uchiha-itachi" />
+  <Avatar size="sm" name="Kent Dodds" src="http://bit.ly/kent-c-dodds" />
+  <Avatar size="md" name="Ryan Florence" src="http://bit.ly/ryan-florence" />
+  <Avatar size="lg" name="Prosper Otemuyiwa" src="http://bit.ly/prosper-baba" />
+  <Avatar size="xl" name="Christian Nwamba" src="http://bit.ly/code-beast" />
+  <Avatar size="2xl" name="Segun Adebayo" src="http://bit.ly/sage-adebayo" />
+</List>
+```
 
-If the initials cannot be rendered (such as names that do not use latin
-characters), a default silhouette is shown instead.
+## Avatar Fallbacks
 
-### Invalid avatars
+If there was an error loading the image `src` of the avatar, we do two things:
 
-When an avatar is unavailable (for example, due to an image error) a default
-avatar is shown.
+- If there's a `name` prop, we use it to generate the initials and a random
+  background color.
+- If there's no `name` prop, we use a default avatar
+
+```jsx
+<List isInline>
+  <Avatar name="Oshigaki Kisame" src="http://bit.ly/broken-link" />
+  <Avatar name="Sasuke Uchiha" src="http://bit.ly/broken-link" />
+  <Avatar src="http://bit.ly/broken-link" />
+</List>
+```
+
+## Avatar with badge
+
+```jsx
+<Avatar badge={<AvatarBadge size="1.25em" bg="green.500" />} />
+```
+
+> The `em` size of the `AvatarBadge` helps us size the circle relative to the
+> avatar size
+
+## Props
+
+The Avatar component composes `Box` component so you can pass props for `Box`.
+
+| Name         | Type                                       | Default | Description                                                                       |
+| ------------ | ------------------------------------------ | ------- | --------------------------------------------------------------------------------- |
+| `size`       | `2xs`, `xs`, `sm`, `md`, `lg`, `xl`, `2xl` | `md`    | The size of the avatar                                                            |
+| `showBorder` | `boolean`                                  | `false` | If `true`, the `Avatar` will show a border around it. Best for a group of avatars |
+| `name`       | `string`                                   |         | The name of the user in the avatar                                                |
+| `src`        | `string`                                   |         | The image url of the `Avatar`                                                     |
+| `badge`      | `React.ReactNode`                          |         | The badge at the bottom right corner of the Avatar.                               |

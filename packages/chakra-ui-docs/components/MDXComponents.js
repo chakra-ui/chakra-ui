@@ -8,6 +8,7 @@ import {
   Text,
   ThemeProvider,
   ColorModeProvider,
+  Code,
 } from "@chakra-ui/core";
 import { jsx } from "@emotion/core";
 import NextLink from "next/link";
@@ -15,18 +16,6 @@ import theme from "prism-react-renderer/themes/nightOwl";
 import { forwardRef } from "react";
 import CodeEditor from "./CodeEditor";
 import PrismHighlight from "./PrismHighlight";
-
-const Code = props => (
-  <Box
-    as="code"
-    fontFamily="mono"
-    fontSize="0.84em"
-    px={1}
-    color="purple.500"
-    bg="gray.50"
-    {...props}
-  />
-);
 
 const Pre = props => (
   <Box
@@ -138,9 +127,11 @@ const HeadingWithLink = ({ children, ...props }) => {
 
 const MDXComponents = {
   h1: props => <Heading as="h1" size="xl" my={5} {...props} />,
-  h2: props => <HeadingWithLink as="h2" size="lg" my={4} {...props} />,
+  h2: props => <HeadingWithLink as="h2" size="lg" mb={3} mt={7} {...props} />,
   h3: props => <HeadingWithLink as="h3" my={4} {...props} />,
-  inlineCode: Code,
+  inlineCode: props => (
+    <Code variantColor="yellow" fontSize="0.84em" {...props} />
+  ),
   pre: PreComponent,
   kbd: KeyboardKey,
   br: props => <Box height="24px" {...props} />,
@@ -154,7 +145,8 @@ const MDXComponents = {
     </NextLink>
   ),
   p: props => <Text as="p" mt={4} lineHeight="tall" {...props} />,
-  ul: props => <Box as="ul" pl="16px" {...props} />,
+  ul: props => <Box as="ul" pt="8px" pl="16px" {...props} />,
+  li: props => <Box as="li" pb="4px" {...props} />,
   blockquote: props => (
     <Box
       bg="yellow.100"

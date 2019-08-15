@@ -1,9 +1,65 @@
-# Badges
+# Badge
 
-Badges are used to highlight an item's status for quick recognition. Lozenges
-are either 'subtle', 'solid' or 'outlines' and use color to indicate meanings
-that users can learn and recognize across products.
+Badges are used to highlight an item's status for quick recognition. They come
+in 3 variants: `subtle`, `solid`, and `outline`.
 
-Using the color system can help guide the usage for badges, and help keep a
-consistent visual language.
+You can pass the `variantColor` prop to customize the color of the Badge.
+`variantColor` can be any **color key** that exists in the `theme.colors`.
+[Learn more about theming](/theme).
 
+## Usage
+
+```js
+import { Badge } from "@chakra-ui/core";
+```
+
+```jsx
+<List isInline>
+  <Badge>Default</Badge>
+  <Badge variantColor="green">Success</Badge>
+  <Badge variantColor="red">Removed</Badge>
+  <Badge variantColor="purple">New</Badge>
+</List>
+```
+
+## Badge Variants
+
+```jsx
+<List isInline>
+  <Badge variant="outline" variantColor="green">
+    Default
+  </Badge>
+  <Badge variant="solid" variantColor="green">
+    Success
+  </Badge>
+  <Badge variant="subtle" variantColor="green">
+    Removed
+  </Badge>
+</List>
+```
+
+```jsx
+<Flex>
+  <Avatar src="https://bit.ly/sage-adebayo" />
+  <Box ml="3">
+    <Text fontWeight="bold">
+      Segun Adebayo
+      <Badge ml="1" variantColor="green">
+        New
+      </Badge>
+    </Text>
+    <Text fontSize="sm">UI Engineer</Text>
+  </Box>
+</Flex>
+```
+
+## Props
+
+The Badge component composes `Box` component so you can pass props for `Box`.
+
+> Pro Tip: You can use the `fontSize` prop to change the size of the Badge.
+
+| Name           | Type                         | Default  | Description                           |
+| -------------- | ---------------------------- | -------- | ------------------------------------- |
+| `variant`      | `solid`, `subtle`, `outline` | `subtle` | The style variant of the badge        |
+| `variantColor` | `keyof theme.colors`         | `gray`   | The color scheme to use for the badge |

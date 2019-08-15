@@ -47,6 +47,7 @@ const PseudoBox = styled(Box)(
     _lastChild,
     _placeholder,
     _checked,
+    _mixed,
   }) => {
     return css({
       [hover]: tx(_hover),

@@ -2,7 +2,7 @@ import { storiesOf } from "@storybook/react";
 import React, { Fragment } from "react";
 import Box from "../Box";
 import Avatar, { AvatarBadge } from ".";
-import AvatarGroup, { MoreIndicator } from "../AvatarGroup";
+import AvatarGroup, { MoreAvatarIndicator } from "../AvatarGroup";
 
 const stories = storiesOf("Avatar", module);
 stories.addDecorator(story => (
@@ -13,7 +13,7 @@ stories.addDecorator(story => (
 
 stories.add("Default", () => (
   <Fragment>
-    {["sm", "md", "lg", "xl", "2xl"].map(size => (
+    {["xs", "sm", "md", "lg", "xl", "2xl"].map(size => (
       <Avatar
         mr={2}
         size={size}
@@ -35,6 +35,6 @@ stories.add("Avatar Group", () => (
       name="Uchiha Sasuke"
       src="https://vignette.wikia.nocookie.net/naruto/images/2/21/Sasuke_Part_1.png/revision/latest?cb=20170716092103"
     />
-    <MoreIndicator label="+4" />
+    <MoreAvatarIndicator label="+4" />
   </AvatarGroup>
 ));

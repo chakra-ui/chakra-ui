@@ -23,7 +23,7 @@ const grayGhostStyle = {
   },
 };
 
-const ghostVariantProps = ({ variantColor: color, mode, theme }) => {
+const ghostVariantProps = ({ color, mode, theme }) => {
   const _color = theme.colors[color] && theme.colors[color][200];
   let result;
   if (color === "gray") {
@@ -59,7 +59,7 @@ const ghostVariantProps = ({ variantColor: color, mode, theme }) => {
 ////////////////////////////////////////////////////////////
 
 const outlineVariantProps = props => {
-  const { variantColor: color, mode } = props;
+  const { color, mode } = props;
   const borderColor = { light: "gray.200", dark: "whiteAlpha.300" };
 
   return {
@@ -92,7 +92,7 @@ const graySolidStyle = {
   },
 };
 
-const solidVariantProps = ({ variantColor: color, mode }) => {
+const solidVariantProps = ({ color, mode }) => {
   let style = {
     light: {
       bg: `${color}.500`,
@@ -125,7 +125,7 @@ const solidVariantProps = ({ variantColor: color, mode }) => {
 
 ////////////////////////////////////////////////////////////
 
-const linkVariantProps = ({ variantColor: color, mode }) => {
+const linkVariantProps = ({ color, mode }) => {
   const _color = { light: `${color}.500`, dark: `${color}.200` };
   const _activeColor = { light: `${color}.700`, dark: `${color}.500` };
   return {

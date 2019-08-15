@@ -8,8 +8,16 @@ import {
   useColorMode,
 } from "@chakra-ui/core";
 import NavLink from "./NavLink";
+import componentRegister from "./component-register";
 
-const NavLinks = ({ links, ...props }) => {
+const stringToUrl = (str, path = "/") => {
+  return `${path}${str
+    .toLowerCase()
+    .split(" ")
+    .join("-")}`;
+};
+
+const NavLinks = ({ links, path, ...props }) => {
   return (
     <List {...props}>
       {links.map(link => (
@@ -18,7 +26,7 @@ const NavLinks = ({ links, ...props }) => {
           key={link.label}
           py={1}
           as="a"
-          href={link.href}
+          href={stringToUrl(link, path)}
           passHref
           display="block"
           textDecoration="none"
@@ -26,7 +34,7 @@ const NavLinks = ({ links, ...props }) => {
           transition="all 0.2s"
           _hover={{ bg: "gray.100" }}
         >
-          {link.label}
+          {link}
         </NavLink>
       ))}
     </List>
@@ -34,61 +42,10 @@ const NavLinks = ({ links, ...props }) => {
 };
 
 const topLinks = [
-  {
-    label: "Installation",
-    href: "/",
-  },
-  {
-    label: "Theming",
-    href: "/",
-  },
-  {
-    label: "Responsive design",
-    href: "/",
-  },
-  {
-    label: "Pseudo styles",
-    href: "/",
-  },
-];
-
-const componentLinks = [
-  {
-    label: "Alert",
-    href: "/alert",
-  },
-  {
-    label: "Box",
-    href: "/box",
-  },
-  {
-    label: "Button",
-    href: "/button",
-  },
-  {
-    label: "ControlBox",
-    href: "/controlbox",
-  },
-  {
-    label: "FormControl",
-    href: "/formcontrol",
-  },
-  {
-    label: "PseudoBox",
-    href: "/pseudobox",
-  },
-  {
-    label: "InputGroup",
-    href: "/inputgroup",
-  },
-  {
-    label: "AlertDialog",
-    href: "/alertdialog",
-  },
-  {
-    label: "Avatar",
-    href: "/avatar",
-  },
+  "Installation",
+  "Theming",
+  "Responsive design",
+  "Pseudo styles",
 ];
 
 const NavGroupHeading = props => (
@@ -140,7 +97,7 @@ export default function NavigationBox() {
 
         <Box pb="16px" mb="16px">
           <NavGroupHeading>Components</NavGroupHeading>
-          <NavLinks links={componentLinks} />
+          <NavLinks links={componentRegister} />
         </Box>
       </Box>
     </Box>

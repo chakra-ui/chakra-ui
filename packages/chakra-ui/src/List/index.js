@@ -11,8 +11,8 @@ const unStyled = css`
 `;
 
 const List = ({
-  inline,
-  ordered,
+  isInline,
+  isOrdered,
   type,
   children,
   styled,
@@ -21,14 +21,14 @@ const List = ({
   ...rest
 }) => {
   const setDisplay = () => {
-    if (inline) return "inline-block";
-    if (ordered || styled) return "list-item";
+    if (isInline) return "inline-block";
+    if (isOrdered || styled) return "list-item";
     return "block";
   };
 
   return (
     <Box
-      as={ordered ? "ol" : "ul"}
+      as={isOrdered ? "ol" : "ul"}
       pl={styled ? "40px" : rest.pl || 0}
       mb={styled ? 3 : rest.mb || 0}
       {...(styled === false && { css: unStyled })}
@@ -37,13 +37,13 @@ const List = ({
       {Children.map(children, (child, index) => {
         let isLastChild = children.length === index + 1;
         let spacingProps =
-          inline && !isLastChild ? { mr: spacing } : { mb: spacing };
+          isInline && !isLastChild ? { mr: spacing } : { mb: spacing };
         return (
           <Fragment>
             <Box
               key={index}
               as="li"
-              px={inline ? 2 : 0}
+              px={isInline ? 2 : 0}
               display={setDisplay()}
               {...(!showDivider && spacingProps)}
             >

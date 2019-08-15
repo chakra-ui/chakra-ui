@@ -5,8 +5,8 @@ import useBadgeStyle from "./styles";
 import Box from "../Box";
 import { forwardRef } from "react";
 
-const Badge = forwardRef(({ color, variant, ...props }, ref) => {
-  const badgeStyleProps = useBadgeStyle({ color, variant });
+const Badge = forwardRef(({ variantColor, variant, ...props }, ref) => {
+  const badgeStyleProps = useBadgeStyle({ color: variantColor, variant });
 
   return (
     <Box
@@ -14,7 +14,7 @@ const Badge = forwardRef(({ color, variant, ...props }, ref) => {
       display="inline-block"
       px={1}
       textTransform="uppercase"
-      fontSize="sm"
+      fontSize="xs"
       borderRadius="sm"
       fontWeight="bold"
       whiteSpace="nowrap"
@@ -30,7 +30,7 @@ Badge.propTypes = {
 };
 
 Badge.defaultProps = {
-  color: "gray",
+  variantColor: "gray",
   variant: "subtle",
 };
 

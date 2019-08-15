@@ -17,13 +17,13 @@ const ControlBox = styled(Box)(
     _checkedAndFocus,
     _checkedAndHover,
   }) => {
-    const checkedAndDisabled = `input[type=${type}]:checked:disabled + &`,
-      checkedAndHover = `input[type=${type}]:checked:hover:not(:disabled) + &`,
-      checkedAndFocus = `input[type=${type}]:checked:focus + &`,
+    const checkedAndDisabled = `input[type=${type}]:checked:disabled + &, input[type=${type}][data-indeterminate=true]:disabled + &`,
+      checkedAndHover = `input[type=${type}]:checked:hover:not(:disabled) + &, input[type=${type}][data-indeterminate=true]:hover:not(:disabled) + &`,
+      checkedAndFocus = `input[type=${type}]:checked:focus + &, input[type=${type}][data-indeterminate=true]:focus + &`,
       disabled = `input[type=${type}]:disabled + &`,
       focus = `input[type=${type}]:focus + &`,
       hover = `input[type=${type}]:hover:not(:disabled):not(:checked) + &`,
-      checked = `input[type=${type}]:checked + &`,
+      checked = `input[type=${type}]:checked + &, input[type=${type}][data-indeterminate=true] + &`,
       invalid = `input[type=${type}][aria-invalid=true] + &`;
 
     return css({

@@ -3,7 +3,8 @@ import { useTheme } from "../ThemeProvider";
 import { useColorMode } from "../ColorModeProvider";
 
 const solidStyle = ({ theme: { colors }, color }) => {
-  const darkModeBg = addOpacity(colors[color][500], 0.6);
+  const _color = colors[color] && colors[color][500];
+  const darkModeBg = addOpacity(_color, 0.6);
   return {
     light: {
       bg: get(color, 500),
@@ -17,7 +18,8 @@ const solidStyle = ({ theme: { colors }, color }) => {
 };
 
 const subtleStyle = ({ theme: { colors }, color }) => {
-  const alphaColors = generateAlphaColors(colors[color][200]);
+  const _color = colors[color] && colors[color][200];
+  const alphaColors = generateAlphaColors(_color);
   const darkModeBg = alphaColors[300];
 
   return {
@@ -33,10 +35,12 @@ const subtleStyle = ({ theme: { colors }, color }) => {
 };
 
 const outlineStyle = ({ theme: { colors }, color }) => {
-  let darkModeColor = addOpacity(colors[color][200], 0.8);
+  const _color = colors[color] && colors[color][200];
+  const darkModeColor = addOpacity(_color, 0.8);
+  const boxShadowColor = colors[color] && colors[color][500];
   return {
     light: {
-      boxShadow: `inset 0 0 0px 1px ` + colors[color][500],
+      boxShadow: `inset 0 0 0px 1px ` + boxShadowColor,
       color: get(color, 500),
     },
     dark: {

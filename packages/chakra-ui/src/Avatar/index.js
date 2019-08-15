@@ -31,7 +31,7 @@ export const AvatarBadge = props => {
 const getInitials = name => {
   let [firstName, lastName] = name.split(" ");
 
-  if (firstName & lastName) {
+  if (firstName && lastName) {
     return `${firstName.charAt(0)}${lastName.charAt(0)}`;
   } else {
     return firstName.charAt(0);
@@ -63,7 +63,7 @@ const DefaultAvatar = () => (
 );
 
 const Avatar = ({ size, showBorder, name, badge, src, ...rest }) => {
-  const avatarProps = useAvatarStyle({ name, size, showBorder });
+  const avatarStyleProps = useAvatarStyle({ name, size, showBorder });
   const hasLoaded = useHasImageLoaded({ src });
 
   const theme = useTheme();
@@ -104,7 +104,7 @@ const Avatar = ({ size, showBorder, name, badge, src, ...rest }) => {
       fontSize={`calc(${_size} / 2.5)`}
       lineHeight={_size}
       verticalAlign="bottom"
-      {...avatarProps}
+      {...avatarStyleProps}
       {...rest}
     >
       {renderChildren()}
@@ -118,7 +118,7 @@ Avatar.defaultProps = {
 };
 
 Avatar.propTypes = {
-  size: propTypes.oneOf(["xs", "sm", "md", "lg", "xl", "2xl"]),
+  size: propTypes.oneOf(["2xs", "xs", "sm", "md", "lg", "xl", "2xl"]),
   showBorder: propTypes.bool,
   name: propTypes.string.isRequired,
   badge: propTypes.node,
