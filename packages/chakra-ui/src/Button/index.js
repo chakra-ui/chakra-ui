@@ -4,10 +4,8 @@ import propTypes from "prop-types";
 import { forwardRef } from "react";
 import Icon from "../Icon";
 import Spinner from "../Spinner";
-import buttonStyle from "./styles";
+import useButtonStyle from "./styles";
 import PseudoBox from "../PseudoBox";
-import { useTheme } from "../ThemeProvider";
-import { useColorMode } from "../ColorModeProvider";
 import Box from "../Box";
 
 const ButtonIcon = ({ icon, ...props }) => {
@@ -35,7 +33,7 @@ const Button = forwardRef(
       isFullWidth,
       children,
       as: Comp,
-      color,
+      variantColor,
       leftIcon,
       rightIcon,
       variant,
@@ -47,9 +45,11 @@ const Button = forwardRef(
     },
     ref,
   ) => {
-    const { mode } = useColorMode();
-    const theme = useTheme();
-    const buttonProps = buttonStyle({ color, variant, size, mode, theme });
+    const buttonStyleProps = useButtonStyle({
+      variantColor,
+      variant,
+      size,
+    });
     const _isDisabled = isDisabled || isLoading;
 
     return (
@@ -62,7 +62,7 @@ const Button = forwardRef(
         borderRadius="md"
         fontWeight="semibold"
         width={isFullWidth ? "full" : undefined}
-        {...buttonProps}
+        {...buttonStyleProps}
         {...rest}
       >
         {leftIcon && !isLoading && (
@@ -84,18 +84,27 @@ const Button = forwardRef(
             )
           : children}
         {rightIcon && !isLoading && (
-          <ButtonIcon ml={iconSpacing} icon={rightIcon} />
+          <ButtonIcon mr={-1} ml={iconSpacing} icon={rightIcon} />
         )}
       </PseudoBox>
     );
   },
 );
 
+Button.defaultProps = {
+  variantColor: "gray",
+  variant: "solid",
+  size: "md",
+  type: "button",
+  iconSpacing: 2,
+  as: "button",
+};
+
 Button.propTypes = {
   /**
    * The color of the button. Use the colors passed in `theme.colors`.
    */
-  color: propTypes.string,
+  variantColor: propTypes.string,
   /**
    * The variant of the button style to use.
    */
@@ -124,36 +133,33 @@ Button.propTypes = {
   /**
    * The size of the button. Use the sizes in `theme.sizes.button`
    */
-  size: propTypes.oneOf(["sm", "md", "lg"]),
+  size: propTypes.oneOf(["xs", "sm", "md", "lg"]),
   /**
    * The content of the button.
    */
   children: propTypes.node.isRequired,
   /**
    * If added, the button will show an icon before the button's label.
-   * Use the icon key in `theme.iconPath`
+   * Use the icon key in `theme.icons`
    */
-  leftIcon: propTypes.string,
+  leftIcon: propTypes.oneOfType([
+    propTypes.string,
+    propTypes.func,
+    propTypes.object,
+  ]),
   /**
    * If added, the button will show an icon after the button's label.
-   * Use the icon key in `theme.iconPath`
+   * Use the icon key in `theme.icons`
    */
-  rightIcon: propTypes.string,
+  rightIcon: propTypes.oneOfType([
+    propTypes.string,
+    propTypes.func,
+    propTypes.object,
+  ]),
   /**
    * The space between the button icon and label.
-   * Use the styled-system tokens or add custom values as a string
-   * @ignore
    */
   iconSpacing: propTypes.oneOfType([propTypes.number, propTypes.string]),
-};
-
-Button.defaultProps = {
-  color: "gray",
-  size: "md",
-  variant: "solid",
-  type: "button",
-  iconSpacing: 2,
-  as: "button",
 };
 
 export default Button;

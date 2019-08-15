@@ -4,7 +4,6 @@ import { storiesOf } from "@storybook/react";
 import Alert, { AlertIcon, AlertTitle, AlertDescription } from ".";
 import Box from "../Box";
 import CloseButton from "../CloseButton";
-import ColorModeProvider from "../ColorModeProvider";
 
 const stories = storiesOf("Alert", module);
 
@@ -18,9 +17,7 @@ stories.add("Default", () => {
       <AlertDescription display="inline-block">
         Your Chakra experience may be degraded.
       </AlertDescription>
-      {/* <ColorModeProvider>
-        <CloseButton position="absolute" right="8px" top="8px" />
-      </ColorModeProvider> */}
+      <CloseButton position="absolute" right="8px" top="8px" />
     </Alert>
   );
 });

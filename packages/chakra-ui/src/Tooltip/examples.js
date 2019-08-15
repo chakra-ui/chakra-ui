@@ -2,6 +2,7 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 import Button from "../Button";
 import Box from "../Box";
+import Icon from "../Icon";
 import Tooltip from ".";
 
 const stories = storiesOf("Tooltip", module);
@@ -18,5 +19,15 @@ stories.add("Default", () => (
     <Button variant="solid" color="blue">
       Close
     </Button>
+  </Tooltip>
+));
+
+stories.add("with a string", () => (
+  <Tooltip label="Welcome home">This is a sample</Tooltip>
+));
+
+stories.add("with icon", () => (
+  <Tooltip label="Welcome home" placement="bottom">
+    <Icon name="phone" />
   </Tooltip>
 ));

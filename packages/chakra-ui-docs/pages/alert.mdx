@@ -1,33 +1,131 @@
 # Alert
 
 Alerts are used to communicate a state that affects a system, feature or page.
-Alert utilized React Context and exports 3 components.
+This component exports 4 Alert related components:
 
-- AlertIcon: The icon associated with the status of an alert. This can be
-  overriden by passing an `icon` prop
+- `Alert`: The wrapper for alert components. It composes the `Flex` component.
 
-- AlertTitle: The title of the alert. It composes the `Box` component
+- `AlertIcon`: The visual indicator for the alert. It composes the `Icon`
+  component and changes the icon based on the `status` passed.
 
-- AlertDescription: The description of the alert. It also composes the `Box`
-  component
+- `AlertTitle`: The title of the alert. It composes the `Box` component, meaning
+  you can pass all `Box` props to this component
+
+- `AlertDescription`: The description of the alert. It also composes the `Box`
+  component.
 
 ## Usage
 
 ```jsx
-<Alert hasStripe status="error" variant="solid" justifyContent="center">
-  <AlertTitle display="inline-block" mr={2}>
-    Your browser is outdated!
-  </AlertTitle>
-  <AlertDescription display="inline-block">
-    Your Chakra experience may be degraded.
+<Alert status="error">
+  <AlertIcon />
+  <AlertTitle mr={2}>Your browser is outdated!</AlertTitle>
+  <AlertDescription>Your Chakra experience may be degraded.</AlertDescription>
+  <CloseButton position="absolute" right="8px" top="8px" />
+</Alert>
+```
+
+## Status
+
+Alerts can have different statuses, so we've added the `status` prop.
+
+```jsx
+<List spacing={3}>
+  <Alert status="error">
+    <AlertIcon />
+    There was an error processes your request
+  </Alert>
+
+  <Alert status="success">
+    <AlertIcon />
+    Data uploaded to the server. Fire on!
+  </Alert>
+
+  <Alert status="warning">
+    <AlertIcon />
+    Seems your account is about expire, upgrade now
+  </Alert>
+
+  <Alert status="info">
+    <AlertIcon />
+    Chakra is going live on August 30th. Get ready!
+  </Alert>
+</List>
+```
+
+## Variant
+
+Alerts come in different variant so you have enough options to pick from.
+
+```jsx
+<List spacing={3}>
+  <Alert status="success" variant="subtle">
+    <AlertIcon />
+    Data uploaded to the server. Fire on!
+  </Alert>
+
+  <Alert status="success" variant="solid">
+    <AlertIcon />
+    Data uploaded to the server. Fire on!
+  </Alert>
+
+  <Alert status="success" variant="left-accent">
+    <AlertIcon />
+    Data uploaded to the server. Fire on!
+  </Alert>
+
+  <Alert status="success" variant="top-accent">
+    <AlertIcon />
+    Data uploaded to the server. Fire on!
+  </Alert>
+</List>
+```
+
+## Alert with Stripes
+
+In some cases, you might need to show a critical situation alert, say, when
+there is an app-wide performance issue that affects a wide range of users or
+deeply affects an individual's product usage. Combining the `solid` variant and
+`hasStripe` can help you draw their attention.
+
+```jsx
+<Alert status="error" variant="solid" hasStripe>
+  <AlertTitle mr={2}>We're having some trouble.</AlertTitle>
+  <AlertDescription>
+    Hang in there. We're working on fixing this now.
   </AlertDescription>
   <CloseButton position="absolute" right="8px" top="8px" />
 </Alert>
 ```
 
+## Composition
+
+Alert ships with smaller component to allow for flexibility and make it easy to
+create all kinds of layout.
+
+```jsx
+<Alert
+  status="success"
+  variant="subtle"
+  flexDirection="column"
+  justifyContent="center"
+  textAlign="center"
+  height="200px"
+>
+  <AlertIcon size="40px" mr={0} />
+  <AlertTitle mt={4} mb={1} fontSize="lg">
+    Application submitted!
+  </AlertTitle>
+  <AlertDescription maxWidth="sm">
+    Thanks for submitting your application. Our team will get back to you soon.
+  </AlertDescription>
+</Alert>
+```
+
 ## Props
 
-| Name    | Type                                           | Default  | Description                            |
-| ------- | ---------------------------------------------- | -------- | -------------------------------------- |
-| status  | `error`, `success`, `warning`, `info`          | `info`   | The status of the alert                |
-| variant | `subtle`, `solid`, `left-accent`, `top-accent` | `subtle` | The variant of the alert style to use. |
+| Name      | Type                                           | Default  | Description                                                     |
+| --------- | ---------------------------------------------- | -------- | --------------------------------------------------------------- |
+| status    | `error`, `success`, `warning`, `info`          | `info`   | The status of the alert                                         |
+| variant   | `subtle`, `solid`, `left-accent`, `top-accent` | `subtle` | The variant of the alert style to use.                          |
+| hasStripe | `boolean`                                      | `false`  | If `true`, the alert will show stripe pattern in the background |

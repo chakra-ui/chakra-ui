@@ -10,6 +10,7 @@ import { tx } from "../Box/config";
 const hover = "&:hover";
 const active = "&:active";
 const focus = "&:focus";
+const visited = "&:visited";
 const disabled =
   "&[aria-disabled=true], &:disabled, &:disabled:focus, &:disabled:hover, &:focus[aria-disabled=true], &:hover[aria-disabled=true]";
 const checked = "&[aria-checked=true]";
@@ -37,6 +38,7 @@ const PseudoBox = styled(Box)(
     _grabbed,
     _pressed,
     _expanded,
+    _visited,
     _before,
     _readOnly,
     _firstChild,
@@ -50,6 +52,7 @@ const PseudoBox = styled(Box)(
       [hover]: tx(_hover),
       [focus]: tx(_focus),
       [active]: tx(_active),
+      [visited]: tx(_visited),
       [disabled]: tx(_disabled),
       [selected]: tx(_selected),
       [invalid]: tx(_invalid),

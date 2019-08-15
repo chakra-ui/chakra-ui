@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { colorEmphasis } from "../theme/colors-utils";
+import { colorEmphasis, generateStripe } from "../theme/colors-utils";
 import { useTheme } from "../ThemeProvider";
 import { useColorMode } from "../ColorModeProvider";
 
@@ -7,11 +7,13 @@ const leftAccent = props => {
   const { color } = props;
   return {
     light: {
+      pl: 3,
       ...subtle(props).light,
       borderLeft: "4px",
       borderColor: `${color}.500`,
     },
     dark: {
+      pl: 3,
       ...subtle(props).dark,
       borderLeft: "4px",
       borderColor: `${color}.200`,
@@ -23,11 +25,13 @@ const topAccent = props => {
   const { color } = props;
   return {
     light: {
+      pt: 2,
       ...subtle(props).light,
       borderTop: "4px",
       borderColor: `${color}.500`,
     },
     dark: {
+      pt: 2,
       ...subtle(props).dark,
       borderTop: "4px",
       borderColor: `${color}.200`,
@@ -43,10 +47,10 @@ const solid = ({ color }) => {
 };
 
 const subtle = ({ color, theme: { colors } }) => {
-  let darkBg = colors[color][200];
+  let darkBg = colors[color] && colors[color][200];
   return {
     light: {
-      bg: `${color}.50`,
+      bg: `${color}.100`,
     },
     dark: { bg: colorEmphasis(darkBg, "lowest") },
   };
@@ -74,7 +78,19 @@ const baseProps = {
   overflow: "hidden",
   pl: 4,
   pr: 4,
-  py: 3,
+  pt: 3,
+  pb: 3,
+};
+
+const stripeStyle = {
+  light: generateStripe({
+    size: "8rem",
+    color: "rgba(255, 255, 255, 0.08)",
+  }),
+  dark: generateStripe({
+    size: "8rem",
+    color: "rgba(0,0,0,0.04)",
+  }),
 };
 
 const useAlertStyle = props => {
@@ -85,6 +101,7 @@ const useAlertStyle = props => {
   return {
     ...baseProps,
     ...statusStyleProps(_props)[mode],
+    ...(props.hasStripe && { css: stripeStyle[mode] }),
   };
 };
 

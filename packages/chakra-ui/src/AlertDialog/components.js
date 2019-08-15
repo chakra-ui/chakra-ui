@@ -1,10 +1,10 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import {
-  AlertDialogContent as IAlertDialogContent,
+  AlertDialogContent as ReachAlertDialogContent,
   AlertDialogDescription,
   AlertDialogLabel,
-  AlertDialogOverlay as IAlertDialogOverlay,
+  AlertDialogOverlay as ReachAlertDialogOverlay,
 } from "@reach/alert-dialog";
 import css from "@styled-system/css";
 import { forwardRef } from "react";
@@ -20,12 +20,10 @@ const AlertDialogBody = props => (
   <Box px={6} py={2} as={AlertDialogDescription} {...props} />
 );
 
-const AlertDialogFooter = props => (
-  <Box ml="auto" p={6} as={AlertDialogDescription} {...props} />
-);
+const AlertDialogFooter = props => <Box ml="auto" p={6} {...props} />;
 
 const AlertDialogOverlay = props => (
-  <IAlertDialogOverlay
+  <ReachAlertDialogOverlay
     css={css({
       position: "fixed",
       top: "0",
@@ -43,9 +41,10 @@ const AlertDialogOverlay = props => (
 const AlertDialogContent = forwardRef((props, ref) => {
   const { mode } = useColorMode();
   const styleProps = modalContentStyle({ mode });
+
   return (
     <Box
-      as={IAlertDialogContent}
+      as={ReachAlertDialogContent}
       width="100%"
       position="relative"
       display="flex"

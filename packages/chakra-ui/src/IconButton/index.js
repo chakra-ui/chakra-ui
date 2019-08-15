@@ -44,7 +44,11 @@ IconButton.propTypes = {
    * The icon to be used. Refer to the [Icons](/components/icons/) section
    * of the docs for the available icon options.
    */
-  icon: propTypes.string.isRequired,
+  icon: propTypes.oneOfType([
+    propTypes.string,
+    propTypes.func,
+    propTypes.object,
+  ]).isRequired,
   /**
    * If `true`, the button will be perfectly round. Else, it'll be slightly round
    */

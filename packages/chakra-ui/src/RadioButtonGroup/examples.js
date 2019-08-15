@@ -12,7 +12,7 @@ const Radio = React.forwardRef((props, ref) => {
   return (
     <Button
       ref={ref}
-      color={isChecked ? "red" : "gray"}
+      variantColor={isChecked ? "red" : "gray"}
       aria-checked={isChecked}
       role="radio"
       isDisabled={isDisabled}
@@ -23,7 +23,7 @@ const Radio = React.forwardRef((props, ref) => {
 
 stories.add("Default", () => {
   return (
-    <RadioButtonGroup>
+    <RadioButtonGroup isInline>
       <Radio value="rad1">Radio 1</Radio>
       <Radio value="rad2">Radio 2</Radio>
       <Radio value="rad3">Radio 3</Radio>

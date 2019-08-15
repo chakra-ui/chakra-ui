@@ -51,7 +51,7 @@ interface ICustomConfig {
 }
 
 interface IFontSize {
-  fontSize: "xs" | "sm" | "base" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl";
+  fontSize?: "xs" | "sm" | "base" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl";
 }
 
 interface IFontWeight {
@@ -68,11 +68,11 @@ interface IFontWeight {
 }
 
 interface ILineHeight {
-  lineHeight: "none" | "shorter" | "short" | "normal" | "tall" | "taller";
+  lineHeight?: "none" | "shorter" | "short" | "normal" | "tall" | "taller";
 }
 
 interface ILetterSpacing {
-  letterSpacing: "tighter" | "tight" | "normal" | "wide" | "wider" | "widest";
+  letterSpacing?: "tighter" | "tight" | "normal" | "wide" | "wider" | "widest";
 }
 
 export type BoxProps = React.RefAttributes<HTMLElement> &
@@ -89,10 +89,11 @@ export type BoxProps = React.RefAttributes<HTMLElement> &
   StyledSystem.TypographyProps &
   IFontSize &
   ILetterSpacing &
+  IFontWeight &
   ILineHeight &
   ICustomConfig & {
-    wordBreak: "normal" | "words" | "all" | "truncate";
-    as: React.ElementType;
+    wordBreak?: "normal" | "words" | "all" | "truncate";
+    as?: React.ElementType;
   };
 
 declare const Box: Emotion.StyledComponent<BoxProps, {}, {}>;

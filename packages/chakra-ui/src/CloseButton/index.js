@@ -2,22 +2,22 @@
 import { jsx } from "@emotion/core";
 import Icon from "../Icon";
 import PseudoBox from "../PseudoBox";
-import { useColorMode, ColorModeContext } from "../ColorModeProvider";
-import { useContext } from "react";
 
-const baseProps = ({ mode }) => {
-  return {
-    transition: "all 0.2s",
-    flex: "0 0 auto",
-    _hover: { bg: "blackAlpha.100" },
-    _active: { bg: "blackAlpha.200" },
-    _disabled: {
-      cursor: "not-allowed",
-    },
-    _focus: {
-      boxShadow: "outline",
-    },
-  };
+const baseProps = {
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  rounded: "md",
+  transition: "all 0.2s",
+  flex: "0 0 auto",
+  _hover: { bg: "blackAlpha.100" },
+  _active: { bg: "blackAlpha.200" },
+  _disabled: {
+    cursor: "not-allowed",
+  },
+  _focus: {
+    boxShadow: "outline",
+  },
 };
 
 const sizes = {
@@ -44,23 +44,17 @@ const CloseButton = ({
   onClick,
   ...rest
 }) => {
-  const context = useContext(ColorModeContext);
-  const { mode } = useColorMode();
   const _size = sizes[size];
 
   return (
     <PseudoBox
-      display="inline-flex"
-      alignItems="center"
-      justifyContent="center"
+      as="button"
       aria-disabled={isDisabled}
       disabled={isDisabled}
       onClick={onClick}
       aria-label={ariaLabel}
-      rounded="md"
-      as="button"
       size={_size.button}
-      {...baseProps({ mode })}
+      {...baseProps}
       {...rest}
     >
       <Icon

@@ -6,9 +6,9 @@ import Head from "next/head";
 
 # Button
 
-Accessible Button component that enables users to trigger an action or event,
-such as submitting a [Form](/docs/form/), opening a [Dialog](/docs/dialog/),
-canceling an action, or performing a delete operation. It follows the
+Button component is used to trigger an action or event, such as submitting a
+[Form](/form/), opening a [Dialog](/dialog/), canceling an action, or performing
+a delete operation. It follows the
 [WAI-ARIA Button Pattern](https://www.w3.org/TR/wai-aria-practices/#button).
 
 ## Installation
@@ -17,12 +17,98 @@ canceling an action, or performing a delete operation. It follows the
 npm install @chakra-ui/core
 ```
 
+then import Button
+
+```js
+import { Button } from "@chakra-ui/core";
+```
+
 ## Usage
 
 ```jsx
-function Example() {
-  return <Button>Button</Button>;
-}
+<Button variantColor="green">Button</Button>
+```
+
+### Button Sizes
+
+Button component comes in 4 sizes `xs` (extra-small), `sm` (small), `md`
+(medium), and `lg` (large).
+
+```jsx
+<ButtonGroup spacing={4}>
+  <Button variantColor="teal" size="xs">
+    Button
+  </Button>
+  <Button variantColor="teal" size="sm">
+    Button
+  </Button>
+  <Button variantColor="teal" size="md">
+    Button
+  </Button>
+  <Button variantColor="teal" size="lg">
+    Button
+  </Button>
+</ButtonGroup>
+```
+
+### Button Variant
+
+Button component comes in 4 different styles `solid`, `ghost`, `outline`, and
+`link`
+
+```jsx
+<ButtonGroup spacing={4}>
+  <Button variantColor="teal" variant="solid">
+    Button
+  </Button>
+  <Button variantColor="teal" variant="outline">
+    Button
+  </Button>
+  <Button variantColor="teal" variant="ghost">
+    Button
+  </Button>
+  <Button variantColor="teal" variant="link">
+    Button
+  </Button>
+</ButtonGroup>
+```
+
+### Button with Icon
+
+You can add left and right icons to the Button components.
+
+```jsx
+<ButtonGroup spacing={4}>
+  <Button leftIcon="email" variantColor="teal" variant="solid">
+    Email
+  </Button>
+  <Button rightIcon="arrow-forward" variantColor="teal" variant="outline">
+    Call us
+  </Button>
+</ButtonGroup>
+```
+
+### Button loading state
+
+Pass `isLoading` prop to the Button component to show it's loading state. You
+can optionally pass `loadingText` prop, if you do, the button will show a
+spinner and the loading text. Otherwise, the button will take the width of the
+text label and show only the spinner
+
+```jsx
+<ButtonGroup spacing={4}>
+  <Button isLoading variantColor="teal" variant="solid">
+    Email
+  </Button>
+  <Button
+    isLoading
+    loadingText="Submitting"
+    variantColor="teal"
+    variant="outline"
+  >
+    Submit
+  </Button>
+</ButtonGroup>
 ```
 
 ## Accessibility
@@ -30,29 +116,74 @@ function Example() {
 - Button has `role` button.
 - When Button has focus, <kbd>Space</kbd> and <kbd>Enter</kbd> activates it.
 
-## Composition
+---
 
-Button uses [PseudoBox](/page2/) and all it's styles are composed as props. This
-means you can override every style of the Button.
+## Style Composition
+
+Button uses [PseudoBox](/pseudobox) and all it's styles are composed as props.
+This means you can override every style of the Button.
 
 ```jsx
-function Example() {
-  return (
-    <Button height="48px" width="200px" border="2px" borderColor="green.500">
-      Button
-    </Button>
-  );
-}
+// Even though I passed size prop, I can still override it's style
+
+<Button
+  size="md"
+  height="48px"
+  width="200px"
+  border="2px"
+  borderColor="green.500"
+>
+  Button
+</Button>
+```
+
+## Custom Button
+
+In event you need to make your own custom button, you can leverage the
+`PseudoBox` component. It provides the `hover`, `focus`, `active` and `disabled`
+style props to style the component.
+
+```jsx
+// Button from Facebook.com
+<PseudoBox
+  as="button"
+  height="24px"
+  lineHeight="1.2"
+  transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
+  border="1px"
+  px="8px"
+  rounded="2px"
+  fontSize="14px"
+  fontWeight="semibold"
+  bg="#f5f6f7"
+  borderColor="#ccd0d5"
+  color="#4b4f56"
+  _hover={{ bg: "#ebedf0" }}
+  _active={{
+    bg: "#dddfe2",
+    transform: "scale(0.98)",
+    borderColor: "#bec3c9",
+  }}
+  _focus={{
+    boxShadow:
+      "0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)",
+  }}
+>
+  Join Group
+</PseudoBox>
 ```
 
 ## Props
 
-| Name          | Type                                              | Default | Description                                                                                               |
-| ------------- | ------------------------------------------------- | ------- | --------------------------------------------------------------------------------------------------------- |
-| `aria-label`  | `string`                                          |         | The label of the button                                                                                   |
-| `color`       | `string`                                          |         | The color of the button. Use the colors passed in `theme.colors`.                                         |
-| `variant`     | `outline`, `ghost`, `unstyled` , `link` , `solid` | `solid` | The variant of the button style to use.                                                                   |
-| `isDisabled`  | `boolean`                                         |         | If `true`, the button will be disabled.                                                                   |
-| `isLoading`   | `boolean`                                         |         | If `true`, the button will show a spinner.                                                                |
-| `loadingText` | `string`                                          |         | The label to show in the button when `isLoading` is true. If no text is passed, it only shows the spinner |
-| `size`        | `sm`, `md`, `lg`                                  | `md`    | The size of the button.                                                                                   |
+The Button composes the `PseudoBox` component so you can pass props for
+`PseudoBox`. These are props related to the Button component.
+
+| Name           | Type                                              | Default | Description                                                                                               |
+| -------------- | ------------------------------------------------- | ------- | --------------------------------------------------------------------------------------------------------- |
+| `aria-label`   | `string`                                          |         | The label of the button                                                                                   |
+| `variantColor` | `string`                                          |         | The color of the button. Use the colors passed in `theme.colors`.                                         |
+| `variant`      | `outline`, `ghost`, `unstyled` , `link` , `solid` | `solid` | The variant of the button style to use.                                                                   |
+| `isDisabled`   | `boolean`                                         |         | If `true`, the button will be disabled.                                                                   |
+| `isLoading`    | `boolean`                                         |         | If `true`, the button will show a spinner.                                                                |
+| `loadingText`  | `string`                                          |         | The label to show in the button when `isLoading` is true. If no text is passed, it only shows the spinner |
+| `size`         | `sm`, `md`, `lg`                                  | `md`    | The size of the button.                                                                                   |

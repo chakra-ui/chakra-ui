@@ -2,7 +2,7 @@
 import { jsx, ThemeContext } from "@emotion/core";
 import styled from "@emotion/styled";
 import propTypes from "prop-types";
-import { useContext } from "react";
+import { useContext, forwardRef } from "react";
 import Box from "../Box";
 
 const Svg = styled(Box)`
@@ -13,7 +13,7 @@ const Svg = styled(Box)`
   }
 `;
 
-const Icon = ({ size, name, color, role, ...rest }) => {
+const Icon = forwardRef(({ size, name, color, role, ...rest }, ref) => {
   const { icons: iconPaths } = useContext(ThemeContext);
   const iconFallback = iconPaths["question-outline"]; // Fallback in case you pass the wrong name
 
@@ -26,6 +26,7 @@ const Icon = ({ size, name, color, role, ...rest }) => {
 
   return (
     <Svg
+      ref={ref}
       as="svg"
       size={size}
       color={color}
@@ -38,7 +39,7 @@ const Icon = ({ size, name, color, role, ...rest }) => {
       {iconPath}
     </Svg>
   );
-};
+});
 
 Icon.defaultProps = {
   size: "1em",
