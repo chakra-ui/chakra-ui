@@ -1,0 +1,51 @@
+# Spinner
+
+Spinners provide a visual cue that an action is processing awaiting a course of
+change or a result.
+
+## Usage
+
+```jsx
+<Spinner />
+```
+
+### Spinner with Color
+
+```jsx
+<Spinner color="red.500" />
+```
+
+### Spinner with different size
+
+```jsx
+<List isInline spacing={4}>
+  <Spinner size="xs" />
+  <Spinner size="sm" />
+  <Spinner size="md" />
+  <Spinner size="lg" />
+  <Spinner size="xl" />
+</List>
+```
+
+### Spinner with empty area color
+
+```jsx
+<Spinner
+  thickness="4px"
+  speed="0.65s"
+  emptyColor="gray.200"
+  color="blue.500"
+  size="xl"
+/>
+```
+
+## Props
+
+| Name       | Type                          | Default       | Description                                                     |
+| ---------- | ----------------------------- | ------------- | --------------------------------------------------------------- |
+| size       | `xl`,`lg`,`md`,`sm`,`xs`      | `md`          | The size of the spinner.                                        |
+| thickness  | `xl` , `lg`, `md`, `sm`, `xs` | `2px`         | The thickness of the spinner.                                   |
+| speed      | `string`                      | `450ms`       | The speed of the spinner.                                       |
+| label      | `string`                      | `Loading...`  | An accessible label for the spinner (Useful for screen readers) |
+| color      | `string`                      |               | The color of the spinner.                                       |
+| emptyColor | `string`                      | `transparent` | The color of the empty areas in the spinner.                    |

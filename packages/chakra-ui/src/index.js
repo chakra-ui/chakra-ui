@@ -26,6 +26,10 @@ export { default as ControlBox } from "./ControlBox";
 export { default as ColorModeProvider } from "./ColorModeProvider";
 export * from "./ColorModeProvider";
 export { default as CSSReset } from "./CSSReset";
+export {
+  default as CircularProgress,
+  CircularProgressLabel,
+} from "./CircularProgress";
 
 export { default as Divider } from "./Divider";
 export { default as Drawer } from "./Drawer";
@@ -71,7 +75,7 @@ export { default as NumberInput } from "./NumberInput";
 export { default as Portal } from "./Portal";
 export { default as Popover } from "./Popover";
 export * from "./Popover";
-export { default as Progress } from "./Progress";
+export { default as Progress, ProgressLabel } from "./Progress";
 export { default as PseudoBox } from "./PseudoBox";
 
 export { default as Radio } from "./Radio";
@@ -81,7 +85,7 @@ export { default as RadioButtonGroup } from "./RadioButtonGroup";
 export { default as Select } from "./Select";
 export { default as Slider } from "./Slider";
 export * from "./Slider";
-export { default as Spinner, Spinner2 } from "./Spinner";
+export { default as Spinner } from "./Spinner";
 export * from "./Stat";
 export { default as Switch } from "./Switch";
 

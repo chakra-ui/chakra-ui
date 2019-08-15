@@ -7,6 +7,14 @@ export interface ISpinnerProps {
    */
   size?: "xs" | "sm" | "md" | "lg" | "xl";
   /**
+   * The color of the empty area in the spinner
+   */
+  emptyColor?: string;
+  /**
+   * The color of the spinner
+   */
+  color?: string;
+  /**
    * The thickness of the spinner
    * @example
    * ```jsx
@@ -26,7 +34,7 @@ export interface ISpinnerProps {
    * For accessibility, it's important to add a fallback loading text.
    * This text will be visible to screen readers.
    */
-  loadingText?: string;
+  label?: string;
 }
 
 export type SpinnerProps = BoxProps & ISpinnerProps;

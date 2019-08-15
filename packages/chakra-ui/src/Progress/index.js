@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { jsx, keyframes, css } from "@emotion/core";
 import { number, oneOf, bool } from "prop-types";
-import VisuallyHidden from "../VisuallyHidden";
 import { useColorMode } from "../ColorModeProvider";
 import Box from "../Box";
 import { generateStripe } from "../theme/colors-utils";
@@ -16,12 +15,35 @@ const stripeAnimation = css`
   animation: ${stripe} 1s linear infinite;
 `;
 
-export const stripeStyle = generateStripe({});
+export const ProgressLabel = props => (
+  <Box textAlign="center" width="100%" {...props} />
+);
+
+const ProgressIndicator = ({ min, max, value, ...rest }) => {
+  const percent = valueToPercent(value, min, max);
+
+  return (
+    <Box
+      height="100%"
+      aria-valuemax={max}
+      aria-valuemin={min}
+      aria-valuenow={value}
+      role="progressbar"
+      transition="all 0.3s"
+      width={`${percent}%`}
+      {...rest}
+    ></Box>
+  );
+};
 
 const progressbarSizes = {
   lg: "1rem",
   md: "0.75rem",
   sm: "0.5rem",
+};
+
+const ProgressTrack = ({ size, ...rest }) => {
+  return <Box height={progressbarSizes[size]} overflow="hidden" {...rest} />;
 };
 
 const Progress = ({
@@ -32,36 +54,43 @@ const Progress = ({
   size = "md",
   hasStripe,
   isAnimated,
+  borderRadius,
+  rounded,
+  children,
   ...rest
 }) => {
+  const _borderRadius = rounded || borderRadius;
   const { mode } = useColorMode();
-  const percent = valueToPercent(value, min, max);
+
+  const trackColor = { light: "gray.100", dark: "whiteAlpha.300" };
+  const indicatorColor = { light: `${color}.500`, dark: `${color}.200` };
+
+  const stripeStyle = {
+    light: generateStripe({}),
+    dark: generateStripe({
+      color: "rgba(0,0,0,0.1)",
+    }),
+  };
+
   return (
-    <Box
-      className="progress"
-      height={progressbarSizes[size]}
-      bg={mode === "dark" ? "whiteAlpha.300" : "gray.100"}
-      overflow="hidden"
+    <ProgressTrack
+      size={size}
+      bg={trackColor[mode]}
+      borderRadius={_borderRadius}
       {...rest}
     >
-      <Box
-        height="100%"
-        bg={`${color}.500`}
-        aria-valuemax={max}
-        aria-valuemin={min}
-        aria-valuenow={value}
-        role="progressbar"
-        borderRadius="full"
-        transition="all 0.3s"
-        width={`${percent}%`}
+      <ProgressIndicator
+        min={min}
+        max={max}
+        value={value}
+        bg={indicatorColor[mode]}
+        borderRadius={_borderRadius}
         css={[
-          hasStripe && stripeStyle,
+          hasStripe && stripeStyle[mode],
           hasStripe && isAnimated && stripeAnimation,
         ]}
-      >
-        <VisuallyHidden>{`${percent}%`}</VisuallyHidden>
-      </Box>
-    </Box>
+      />
+    </ProgressTrack>
   );
 };
 

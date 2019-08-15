@@ -1,0 +1,81 @@
+# Circular Progress
+
+Circular Progress is used to indicates a wait time for deterministic actions -
+either within an experience flow or loading data.
+
+Circular progress support both determinate and indeterminate processes.
+
+- Determinate circular indicators fill the circular track with color, as the
+  indicator moves from 0 to 360 degrees.
+- Indeterminate circular indicators grow and shrink in size while moving along
+  the circular track.
+
+## Usage
+
+```js
+import { CircularProgress } from "@chakra-ui/core";
+```
+
+```jsx
+<CircularProgress value={80} />
+```
+
+### Changing the size
+
+You can add `size` prop to the progressbar to add a custom size.
+
+```jsx
+// Change the size to 120px
+<CircularProgress value={30} size="120px" />
+```
+
+### Changing the thickness
+
+You can add `thickness` prop to update the thicknessof the progress ring.
+
+> The thickness has to be a ratio of the size. Value should be between 0 and 1.
+
+```jsx
+// 10% of size => 10px
+<CircularProgress value={59} size="100px" thickness={0.1} />
+```
+
+### Changing the color
+
+You can add `color` prop to any progressbar to apply any color that exists in
+the theme.
+
+```jsx
+<CircularProgress value={30} color="orange" thickness={0.1} />
+```
+
+### Adding label
+
+Chakra exports a `CircularProgressLabel` to help you add label. Pass this
+component as children and you'll be able to render the value
+
+```jsx
+<CircularProgress value={40} color="green">
+  <CircularProgressLabel>40%</CircularProgressLabel>
+</CircularProgress>
+```
+
+### Indeterminate Progress
+
+Setting the progress to `indeterminate` means you're not able to determinate the
+`value` upfront, so won't need to pass the `value` prop.
+
+```jsx
+<CircularProgress isIndeterminate color="green"></CircularProgress>
+```
+
+### Accessibility
+
+- Progress has a `role` set to `progressbar` to denote that it's a progress`
+- Progress has `aria-valuenow` set to the percentage completion value passed to
+  the component, to ensure the progress percent is visible to screen readers.
+
+> **ARIA:** If the progress bar is describing the loading progress of a
+> particular region of a page, you should use `aria-describedby` to point to the
+> progress bar, and set the `aria-busy` attribute to `true` on that region until
+> it has finished loading.
