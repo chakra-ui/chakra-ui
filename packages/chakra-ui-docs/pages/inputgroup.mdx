@@ -30,8 +30,11 @@ function Example() {
 
 ## Compostion
 
-Place one [addon-on](/inputaddon) or [Button](/button) on either side of an [Input](/input). You may also place one on
-both sides of an input as well as have a combination of , [Icon](/icon) or button
+Use the `InputGroup` to compose form input components by placing an
+[addon-on](/inputaddon) or [Button](/button) on either side of an
+[Input](/input). You may also place one on both sides of an input as well as
+have a combination of [addon-on](/inputaddon), [Icon](/icon) or
+[Button](/button).
 
 ### With left addon
 
@@ -51,10 +54,10 @@ function Example() {
 ```jsx
 function Example() {
   return (
-  <InputGroup size="md">
-    <InputRightAddon>.com</InputRightAddon>
-    <Input roundedRight="0" placeholder="Welcome" />
-  </InputGroup>
+    <InputGroup size="md">
+      <InputRightAddon>.com</InputRightAddon>
+      <Input roundedRight="0" placeholder="Welcome" />
+    </InputGroup>
   );
 }
 ```
@@ -91,9 +94,7 @@ function Example() {
 
 ## Props
 
-| Name         | Type      | Default | Description                                                            |
-| ------------ | --------- | ------- | ---------------------------------------------------------------------- |
-| `isInvalid`  | `boolean` | `false` | If `true`, the form control passes the invalid state to its children.  |
-| `isRequired` | `boolean` | `false` | If `true`, the form control passes the required state to its children. |
-| `isDisabled` | `boolean` | `false` | If `true`, the form control passes the disabled state to its children. |
-| `isReadOnly` | `boolean` | `false` | If `true`, the form control passes the readonly state to its children. |
+| Name       | Type              | Default | Description                                                     |
+| ---------- | ----------------- | ------- | --------------------------------------------------------------- |
+| `size`     | `sm`, `md`, `lg`  | `md`    | The size of the input component composed with the `InputGroup`. |
+| `children` | `React.ReactNode` | `false` | The children of the `InputGroup` e.g `InputLeftAddon`, `Input`. |
