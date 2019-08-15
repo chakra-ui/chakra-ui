@@ -1,0 +1,103 @@
+import Head from "next/head";
+
+<Head key="icon">
+  <title key="tti">Icon Component</title>
+</Head>
+
+# Icon
+
+An icon is a graphical representation of meaning. Icons are used to represent
+common actions and states.
+
+> ChakraUI can be used with any icon library of your choice.
+
+## Installation
+
+```bash
+npm install @chakra-ui/core
+```
+
+## Icons are not buttons
+
+An icon is only a `svg` element and should not have `onClick` handlers. If you
+need a clickable icon, use [IconButton](/iconbutton) instead.
+
+## Usage
+
+```jsx
+function Example() {
+  return (
+    <Flex alignItems="center">
+      <Box mr="12px">
+        <Icon name="search" size="20px" />
+      </Box>
+      <Box mr="12px">
+        <Icon name="add" size="20px" />
+      </Box>
+      <Box mr="12px">
+        <Icon name="repeat" size="20px" />
+      </Box>
+      <Box mr="12px">
+        <Icon name="edit" size="20px" />
+      </Box>
+      <Box mr="12px">
+        <Icon name="star" size="20px" />
+      </Box>
+      <Box mr="12px">
+        <Icon name="email" size="20px" />
+      </Box>
+      <Box mr="12px">
+        <Icon name="phone" size="20px" />
+      </Box>
+      <Box mr="12px">
+        <Icon name="question" size="20px" />
+      </Box>
+      <Box mr="12px">
+        <Icon name="spinner" size="20px" />
+      </Box>
+      <Box mr="12px">
+        <Icon name="chat" size="20px" />
+      </Box>
+      <Box mr="12px">
+        <Icon name="calender" size="20px" />
+      </Box>
+      <Box mr="12px">
+        <Icon name="time" size="20px" />
+      </Box>
+      <Box mr="12px">
+        <Icon name="close" size="20px" />
+      </Box>
+      <Box mr="12px">
+        <Icon name="warning" size="20px" />
+      </Box>
+      <Box mr="12px">
+        <Icon name="drag-handle" size="20px" />
+      </Box>
+      <Box mr="12px">
+        <Icon name="bell" size="20px" />
+      </Box>
+      <Box mr="12px">
+        <Icon name="not-allowed" size="20px" />
+      </Box>
+      <Box mr="12px">
+        <Icon name="check" size="20px" />
+      </Box>
+      <Box mr="12px">
+        <Icon name="time" size="20px" />
+      </Box>
+      <Box mr="12px">
+        <Icon name="delete" size="20px" />
+      </Box>
+    </Flex>
+  );
+}
+```
+
+## Props
+
+| Name        | Type                  | Default        | Description                                   |
+| ----------- | --------------------- | -------------- | --------------------------------------------- |
+| `size`      | `string`              |                | The size of the icon.                         |
+| `name`      | `string`              |                | The name of the icon.                         |
+| `color`     | `string`              |                | The color of the icon.                        |
+| `placement` | `presentation`, `img` | `presentation` | The role of the icon. `presentation` or `img` |

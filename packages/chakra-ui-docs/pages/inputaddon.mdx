@@ -6,9 +6,8 @@ import Head from "next/head";
 
 # Input Addon
 
-The InputGroup is a wrapper component used for the composition of input
-components e.g an input or select with addons, icons or other elements on either
-side of it.
+Input Addon is a component used to extend form controls by adding text or icons
+before, after, or on both sides of any text-based [Input](/input).
 
 ## Installation
 
@@ -21,73 +20,22 @@ npm install @chakra-ui/core
 ```jsx
 function Example() {
   return (
-    <InputGroup size={size}>
-      <InputLeftAddon>+234</InputLeftAddon>
+    <InputGroup size="md">
+      <InputAddon placement="left">+234</InputAddon>
       <Input roundedLeft="0" placeholder="Welcome" />
     </InputGroup>
   );
 }
 ```
 
-## Compostion
-
-Use the `InputGroup` to compose form input components by placing an
-[addon-on](/inputaddon) or [Button](/button) on either side of an
-[Input](/input). You may also place one on both sides of an input as well as
-have a combination of [addon-on](/inputaddon), [Icon](/icon) or
-[Button](/button).
-
-### With left addon
-
 ```jsx
 function Example() {
   return (
-    <InputGroup size="md">
-      <InputLeftAddon>+234</InputLeftAddon>
-      <Input roundedLeft="0" placeholder="Welcome" />
-    </InputGroup>
-  );
-}
-```
-
-### With right addon
-
-```jsx
-function Example() {
-  return (
-    <InputGroup size="md">
-      <InputRightAddon>.com</InputRightAddon>
-      <Input roundedRight="0" placeholder="Welcome" />
-    </InputGroup>
-  );
-}
-```
-
-### With left icon
-
-```jsx
-function Example() {
-  return (
-    <InputGroup size="md">
-      <InputLeftElement>
-        <Icon name="phone" size="1em" />
-      </InputLeftElement>
-      <Input placeholder="Welcome" />
-    </InputGroup>
-  );
-}
-```
-
-### With right icon
-
-```jsx
-function Example() {
-  return (
-    <InputGroup size="md">
-      <InputRightElement>
-        <Icon name="check" size="1em" />
-      </InputRightElement>
-      <Input placeholder="Welcome" />
+    <InputGroup size="lg">
+      <InputAddon placement="right">
+        <Icon name="search" />
+      </InputAddon>
+      <Input roundedRight="0" placeholder="Search" />
     </InputGroup>
   );
 }
@@ -95,7 +43,8 @@ function Example() {
 
 ## Props
 
-| Name       | Type              | Default | Description                                                     |
-| ---------- | ----------------- | ------- | --------------------------------------------------------------- |
-| `size`     | `sm`, `md`, `lg`  | `md`    | The size of the input component composed with the `InputGroup`. |
-| `children` | `React.ReactNode` | `false` | The children of the `InputGroup` e.g `InputLeftAddon`, `Input`. |
+| Name        | Type              | Default | Description                                                                                                                                      |
+| ----------- | ----------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `size`      | `sm`, `md`, `lg`  | `md`    | The size of the input component composed with the `InputGroup`.                                                                                  |
+| `children`  | `React.ReactNode` | `false` | The children of the `InputGroup` e.g `InputLeftAddon`, `Input`.                                                                                  |
+| `placement` | `left`, `right`   | `left`  | The position the addon should appear relative to the `Input`. We added `InputLeftAddon` and `InputRightAddon` so you might not need to pass this |
