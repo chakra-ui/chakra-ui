@@ -1,0 +1,40 @@
+import Head from "next/head";
+
+<Head key="input-add">
+  <title key="tti">Link Component</title>
+</Head>
+
+# Link
+
+Links are accesible elements used primarily for navigation. Links may also
+change what or how data is displayed (i.e., view more, show all). If the action
+taken by the user will change or manipulate data, use a [Button](/button).
+
+## Installation
+
+```bash
+npm install @chakra-ui/core
+```
+
+## Usage
+
+```jsx
+function Example() {
+  return <Link variant="underline">Home</Link>;
+}
+```
+
+```jsx
+function Example() {
+  return <Link variant="bg-underline">Home</Link>;
+}
+```
+
+## Props
+
+| Name           | Type                                    | Default     | Description                               |
+| -------------- | --------------------------------------- | ----------- | ----------------------------------------- |
+| `variant`      | `bg-underline`, `underline`, `unstyled` | `underline` | The variant of the link style.            |
+| `variantColor` | `string`                                |             | The color of the link variant.            |
+| `isDisabled`   | `boolean`                               | `false`     | If `true`, the link will be disabled.     |
+| `onClick`      | `function`                              |             | Function called when the link is clicked. |

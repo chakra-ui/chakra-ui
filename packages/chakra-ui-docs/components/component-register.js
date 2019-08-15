@@ -14,6 +14,7 @@ const componentRegister = [
   "IconButton",
   "InputAddon",
   "InputGroup",
+  "Link",
   "Heading",
   "Breadcrumb",
   "Radio",
