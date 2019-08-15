@@ -4,7 +4,10 @@ import { createContext, useContext, useState } from "react";
 import useDarkMode from "use-dark-mode";
 
 // This context handles the color mode (light or dark) of the UI
-export const ColorModeContext = createContext();
+export const ColorModeContext = createContext({
+  mode: "light",
+  toggle: () => {},
+});
 
 const ColorModeProvider = ({ value: overideValue, children }) => {
   const [manualMode, setManualMode] = useState(overideValue);

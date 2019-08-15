@@ -13,5 +13,8 @@ const componentRegister = [
   "Heading",
   "Breadcrumb",
   "Radio",
+  "Spinner",
+  "Progress",
+  "CircularProgress",
 ];
 export default componentRegister;

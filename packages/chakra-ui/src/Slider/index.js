@@ -31,7 +31,7 @@ export function roundValueToStep(value, step) {
   return makeValuePrecise(Math.round(value / step) * step, step);
 }
 
-function clampValue(val, min, max) {
+export function clampValue(val, min, max) {
   if (val > max) {
     return max;
   }

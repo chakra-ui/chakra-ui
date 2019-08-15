@@ -1,0 +1,72 @@
+# Progress
+
+Progress is used to display the progress status for a task that take a long time
+or consists of several steps.
+
+## Usage
+
+```js
+import { Progress } from "@chakra-ui/core";
+```
+
+```jsx
+<Progress value={80} />
+```
+
+### Progress with Stripe
+
+You can add `hasStripe` prop to any progressbar to apply a stripe via a CSS
+gradient over the progress bar’s background color.
+
+```jsx
+<Progress hasStripe value={64} />
+```
+
+### Progress sizes
+
+There are two ways you can increase the height of the progressbar:
+
+- You can add `size` prop to increase the height of the progressbar.
+- You can also use the `height` prop to manually set a height.
+
+```jsx
+<List spacing={5}>
+  <Progress color="green" size="sm" value={20} />
+  <Progress color="green" size="md" value={20} />
+  <Progress color="green" size="lg" value={20} />
+  <Progress color="green" height="32px" value={20} />
+</List>
+```
+
+### Progress with theme color
+
+You can add `color` prop to any progressbar to apply any color that exists in
+the theme.
+
+```jsx
+<Progress color="pink" hasStripe />
+```
+
+### Animated Progress
+
+The striped gradient can also be animated. Just add `isAnimated` and `hasStripe`
+prop to the progressbar to animate the stripes right to left via CSS3
+animations.
+
+```jsx
+<Progress hasStripe isAnimated />
+```
+
+### Accessibility
+
+- Progress has a `role` set to `progressbar` to denote that it's a progress`
+- Progress has `aria-valuenow` set to the percentage completion value passed to
+  the component, to ensure the progress percent is visible to screen readers.
+
+## UX Guideline
+
+As a general rule of thumb, you should use a progressbar for longer processes
+that take 10 or more seconds. Based on
+[Jakob Nielsen’s research](https://www.nngroup.com/articles/response-times-3-important-limits/)
+about response times, after 10 seconds, users quickly grow impatient if they
+don’t have an idea how many more steps they have to take until completion.
