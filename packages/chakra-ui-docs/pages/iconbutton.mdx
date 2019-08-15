@@ -1,0 +1,36 @@
+import Head from "next/head";
+
+<Head key="icon-button">
+  <title key="tti">Icon Button Component</title>
+</Head>
+
+# Icon Button
+
+For the use case of creating a button with a single icon ChakraUI provides the
+IconButton component.
+
+## Installation
+
+```bash
+npm install @chakra-ui/core
+```
+
+## Usage
+
+```jsx
+function Example() {
+  return <IconButton aria-label="custom icon" size="sm" icon="search" />;
+}
+```
+
+## Props
+
+| Name         | Type                                              | Default | Description                                                                                                       |
+| ------------ | ------------------------------------------------- | ------- | ----------------------------------------------------------------------------------------------------------------- |
+| `size`       | `sm`, `md`, `lg`                                  | `md`    | Specifies an explicit icon size instead of the default value.                                                     |
+| `icon`       | `string`                                          | `null`  | The icon to be used. Refer to the [Icons](/components/icons/) section of the docs for the available icon options. |
+| `isRound`    | `boolean`                                         | `false` | If `true`, the button will be perfectly round. Else, it'll be slightly round.                                     |
+| `aria-label` | `string`                                          |         | A11y: A label that describes the button                                                                           |
+| `variant`    | `outline`, `ghost`, `unstyled` , `link` , `solid` | `solid` | The variant of the button style to use.                                                                           |
+| `isDisabled` | `boolean`                                         |         | If `true`, the button will be disabled.                                                                           |
+| `isLoading`  | `boolean`                                         |         | If `true`, the button will show a spinner.                                                                        |

@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/tioluwani/.nvm/versions/node/v8.10.0/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js bootstrap
+  /Users/tioluwani/.nvm/versions/node/v8.10.0/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js reboot:core
 
 PATH: 
   /Users/tioluwani/.nvm/versions/node/v8.10.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools:/Users/tioluwani/Library/Android/sdk/tools:/Users/tioluwani/Library/Android/sdk/platform-tools:/Users/tioluwani/Library/Android/sdk/tools:/Users/tioluwani/Library/Android/sdk/platform-tools
@@ -21,6 +21,9 @@ npm manifest:
     "main": "dist/index.js",
     "module": "dist/es/index.js",
     "sideEffects": false,
+    "publishConfig": {
+      "access": "public"
+    },
     "scripts": {
       "prebuild": "rimraf dist",
       "build": "npm run build:cjs && npm run build:es && npm run build:copy-types",
@@ -7783,7 +7786,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/yallist/-/yallist-3.0.3.tgz#b4b049e314be545e3ce802236d6cd22cd91c3de9"
 
 Trace: 
-  Error: Command "bootstrap" not found.
+  Error: Command "reboot:core" not found.
       at new MessageError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:186:110)
       at /usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:87307:17
       at Generator.next (<anonymous>)
