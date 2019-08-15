@@ -11,6 +11,7 @@ const componentRegister = [
   "AvatarGroup",
   "Badge",
   "InputGroup",
+  "IconButton",
   "Heading",
   "Breadcrumb",
   "Radio",
