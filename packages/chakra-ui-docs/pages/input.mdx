@@ -1,0 +1,108 @@
+import Head from "next/head";
+
+<Head key="input">
+  <title key="tti">Input Component</title>
+</Head>
+
+# Input
+
+Input component enables the user to interact with and input content and data.
+The form input allows you to create various text style inputs such as `text`,
+`password`, `email`, `number`, `url`, `search` and more.
+
+The Input component is optionally controllable, to control the component,
+specify a `value` prop and an `onChange` prop; to specify the defaultValue but
+leave the component uncontrolled specify a `defaultValue` prop.
+
+## Installation
+
+```bash
+npm install @chakra-ui/core
+```
+
+then import Input
+
+```js
+import { Input } from "@chakra-ui/core";
+```
+
+## Usage
+
+```jsx
+function Example() {
+  return <Input placeholder="Here is a sample placeholder" size="sm" />;
+}
+```
+
+### Controlled Input
+
+```jsx
+function Example() {
+  let [value, setValue] = React.useState("");
+
+  let handleInputChange = e => {
+    let inputValue = e.target.value;
+    setValue(inputValue);
+  };
+  return (
+    <>
+      <Text mb="8px">Value: {value}</Text>
+      <Input
+        value={value}
+        onChange={handleInputChange}
+        placeholder="Here is a sample placeholder"
+        size="sm"
+      />
+    </>
+  );
+}
+```
+
+### Input sizes
+
+The input comes with 3 sizes
+
+```jsx
+<List>
+  <Box mb="8px">
+    <Input placeholder="Here is a sample placeholder" size="sm" />
+  </Box>
+  <Box mb="8px">
+    <Input placeholder="Here is a sample placeholder" size="md" />
+  </Box>
+  <Box mb="8px">
+    <Input placeholder="Here is a sample placeholder" size="lg" />
+  </Box>
+</List>
+```
+
+## Props
+
+| Name                | Type                                                  | Default   | Description                                                                                                                                                                                                                          |
+| ------------------- | ----------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `autoComplete`      | `string`                                              |           | The standard HTML input autocomplete attribute. This prop helps users to fill forms faster, especially on mobile devices. [See the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill). |
+| `autoFocus`         | `boolean`                                             | `false`   | If `true`, the `input` element will be focused during the first mount.                                                                                                                                                               |
+| `as`                | `React.ElementType`                                   |           | The component to use in place of `input`.                                                                                                                                                                                            |
+| `aria-label`        | `React.AriaAttributes["aria-label"]`                  |           | Accessibility label to use, in scenarios where the input as no visible label. A11y: It's usefult for screen readers                                                                                                                  |
+| `form`              | `boolean`                                             | `false`   | Standard HTML input form attribute. This is useful if the input cannot be included directly inside a form.                                                                                                                           |
+| `pattern`           | `string`                                              |           | Standard HTML `input` pattern attribute, used for validating using a regular expression.                                                                                                                                             |
+| `className`         | `string`                                              |           | The CSS class name of the `input` element.                                                                                                                                                                                           |
+| `type`              | `React.InputHTMLAttributes<HTMLInputElement>["type"]` | `text`    | The type attribute of the `input` element.                                                                                                                                                                                           |
+| `min`               | `number`                                              |           | Standard `input` min attribute, to be used with `type="number"`                                                                                                                                                                      |
+| `max`               | `number`                                              |           | Standard `input` max attribute, to be used with `type="number"`                                                                                                                                                                      |
+| `step`              | `number`                                              |           | Standard `input` step attribute, to be used with `type="number"`                                                                                                                                                                     |
+| `maxLength`         | `number`                                              |           | Set the maximum length that the entered text can be.                                                                                                                                                                                 |
+| `placeholder`       | `string`                                              |           | Text to display in the input if the `input` is empty.                                                                                                                                                                                |
+| `defaultValue`      | `string`, `number`                                    |           | Initial value of the input, for uncontrolled usage.                                                                                                                                                                                  |
+| `value`             | `string`, `number`                                    |           | The value of the input, for controlled usage.                                                                                                                                                                                        |
+| `isDisabled`        | `boolean`                                             | `false`   | If `true`, the input will be disabled. This sets `aria-disabled=true` and you can style this state by passing `_disabled` prop.                                                                                                      |
+| `isInvalid`         | `boolean`                                             | `false`   | If `true`, the `input` will indicate an error. This sets `aria-invalid=true` and you can style this state by passing `_invalid` prop.                                                                                                |
+| `isRequired`        | `boolean`                                             | `false`   | If `true`, the input element will be required.                                                                                                                                                                                       |
+| `isFullWidth`       | `boolean`                                             | `false`   | If `true`, the input element will span the full width of it's parent.                                                                                                                                                                |
+| `isReadOnly`        | `boolean`                                             | `false`   | If `true`, prevents the value of the input from being edited.                                                                                                                                                                        |
+| `id`                | `string`                                              |           | The id of the `input` element.                                                                                                                                                                                                       |
+| `name`              | `string`                                              |           | The name attribute of the `input` element.                                                                                                                                                                                           |
+| `size`              | `sm`, `md`, `lg`                                      | `md`      | The visual size of the `input` element.                                                                                                                                                                                              |
+| `variant`           | `outline`, `unstyled`, `flushed`, `filled`            | `outline` | The variant of the input style to use.                                                                                                                                                                                               |
+| `_focusBorderColor` | `string`                                              |           | The border color when the input is focused. Use color keys in `theme.colors` e.g `_focusBorderColor = "blue"`                                                                                                                        |
+| `onChange`          | `function`                                            |           | Function called when the value of the `input` changes, for controlled usage.                                                                                                                                                         |

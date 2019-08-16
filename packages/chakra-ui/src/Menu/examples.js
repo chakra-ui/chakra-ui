@@ -7,9 +7,9 @@ import Menu, {
   MenuItem,
   MenuList,
 } from ".";
-// import { MenuItemOption, MenuOptionsGroup } from "./MenuOption";
 import Box from "../Box";
 import Button from "../Button";
+import { MenuOptionGroup, MenuItemOption } from "./MenuOption";
 
 const stories = storiesOf("Menu", module).addDecorator(story => (
   <Box maxWidth="md" mx="auto" mt="600px">
@@ -18,21 +18,17 @@ const stories = storiesOf("Menu", module).addDecorator(story => (
 ));
 
 stories.add("Default", () => (
-  <Menu closeOnBlur={false} placement="auto">
-    <MenuButton as={Button}>Open Menu</MenuButton>
+  <Menu>
+    <MenuButton as={Button} variantColor="blue">
+      Open Menu
+    </MenuButton>
 
     <MenuList minWidth="200px">
-      <MenuGroup label="Group 1">
-        <MenuItem>Share</MenuItem>
-        <MenuItem>Move</MenuItem>
-      </MenuGroup>
-
+      <MenuItem>Share</MenuItem>
+      <MenuItem>Move</MenuItem>
       <MenuDivider />
-
-      <MenuGroup label="Group 2">
-        <MenuItem onClick={() => alert("Rename Clicked")}>Rename</MenuItem>
-        <MenuItem>Delete</MenuItem>
-      </MenuGroup>
+      <MenuItem>Rename</MenuItem>
+      <MenuItem>Delete</MenuItem>
     </MenuList>
   </Menu>
 ));
@@ -40,12 +36,12 @@ stories.add("Default", () => (
 stories.add("MenuList only", () => (
   <Menu autoSelect isOpen closeOnSelect={false}>
     <MenuList minWidth="240px">
-      <MenuGroup label="Group 1">
+      <MenuGroup title="Group 1">
         <MenuItem>Share...</MenuItem>
         <MenuItem>Move...</MenuItem>
       </MenuGroup>
       <MenuDivider />
-      <MenuGroup label="Group 2">
+      <MenuGroup title="Group 2">
         <MenuItem isDisabled>Rename...</MenuItem>
         <MenuItem>Delete...</MenuItem>
       </MenuGroup>
@@ -53,24 +49,25 @@ stories.add("MenuList only", () => (
   </Menu>
 ));
 
-// stories.add("MenuItem Radio", () => (
-//   <Menu autoSelect closeOnOutsideClick>
-//     <MenuButton color="blue">MenuItem</MenuButton>
-//     <MenuList minWidth="240px">
-//       <MenuOptionsGroup value="move" title="Group 1" type="radio">
-//         <MenuItemOption value="share">Share...</MenuItemOption>
-//         <MenuItemOption value="move">Move...</MenuItemOption>
-//       </MenuOptionsGroup>
-//       <MenuDivider />
-//       <MenuGroup title="Group 2">
-//         <MenuItem>Rename...</MenuItem>
-//         <MenuItem>Delete...</MenuItem>
-//       </MenuGroup>
-//       <MenuDivider />
-//       <MenuOptionsGroup title="Group 2" type="checkbox">
-//         <MenuItemOption value="rename">Rename...</MenuItemOption>
-//         <MenuItemOption value="delete">Delete...</MenuItemOption>
-//       </MenuOptionsGroup>
-//     </MenuList>
-//   </Menu>
-// ));
+stories.add("MenuItem Radio", () => (
+  <Menu>
+    <MenuButton as={Button} variantColor="blue">
+      MenuItem
+    </MenuButton>
+    <MenuList minWidth="240px">
+      <MenuOptionGroup defaultValue="asc" title="Order" type="radio">
+        <MenuItemOption _checked={{ color: "blue.500" }} value="asc">
+          Ascending
+        </MenuItemOption>
+        <MenuItemOption value="desc">Descending</MenuItemOption>
+      </MenuOptionGroup>
+      <MenuDivider />
+
+      <MenuOptionGroup title="Country" type="checkbox">
+        <MenuItemOption value="email">Email</MenuItemOption>
+        <MenuItemOption value="phone">Phone</MenuItemOption>
+        <MenuItemOption value="country">Country</MenuItemOption>
+      </MenuOptionGroup>
+    </MenuList>
+  </Menu>
+));

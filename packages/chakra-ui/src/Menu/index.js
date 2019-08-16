@@ -135,7 +135,7 @@ const Menu = ({
     <MenuContext.Provider value={context}>
       <Manager>
         {typeof children === "function"
-          ? children({ isOpen, onClose: closeMenu })
+          ? children({ isOpen: state.isOpen, onClose: closeMenu })
           : children}
       </Manager>
     </MenuContext.Provider>
@@ -154,54 +154,66 @@ export function useMenuContext() {
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
-const MenuButton = forwardRef((props, ref) => {
-  const {
-    state: { isOpen },
-    focusOnLastItem,
-    focusOnFirstItem,
-    closeMenu,
-    menuId,
-    buttonId,
-    autoSelect,
-    openMenu,
-    buttonRef,
-  } = useMenuContext();
+const PseudoButton = forwardRef((props, ref) => (
+  <PseudoBox ref={ref} as="button" {...props} />
+));
 
-  return (
-    <Reference>
-      {({ ref: referenceRef }) => (
-        <PseudoBox
-          as="button"
-          aria-haspopup="menu"
-          aria-expanded={isOpen}
-          aria-controls={menuId}
-          id={buttonId}
-          role="button"
-          ref={node => mergeRefs([buttonRef, referenceRef, ref], node)}
-          onClick={() => {
-            if (isOpen) {
-              closeMenu();
-            } else {
-              autoSelect ? focusOnFirstItem() : openMenu();
-            }
-          }}
-          onKeyDown={event => {
-            if (event.key === "ArrowDown") {
-              event.preventDefault();
-              focusOnFirstItem();
-            }
+const MenuButton = forwardRef(
+  ({ onClick, onKeyDown, as: Comp = PseudoButton, ...rest }, ref) => {
+    const {
+      state: { isOpen },
+      focusOnLastItem,
+      focusOnFirstItem,
+      closeMenu,
+      menuId,
+      buttonId,
+      autoSelect,
+      openMenu,
+      buttonRef,
+    } = useMenuContext();
 
-            if (event.key === "ArrowUp") {
-              event.preventDefault();
-              focusOnLastItem();
-            }
-          }}
-          {...props}
-        />
-      )}
-    </Reference>
-  );
-});
+    return (
+      <Reference>
+        {({ ref: referenceRef }) => (
+          <Comp
+            aria-haspopup="menu"
+            aria-expanded={isOpen}
+            aria-controls={menuId}
+            id={buttonId}
+            role="button"
+            ref={node => mergeRefs([buttonRef, referenceRef, ref], node)}
+            onClick={event => {
+              if (isOpen) {
+                closeMenu();
+              } else {
+                autoSelect ? focusOnFirstItem() : openMenu();
+              }
+              if (onClick) {
+                onClick(event);
+              }
+            }}
+            onKeyDown={event => {
+              if (event.key === "ArrowDown") {
+                event.preventDefault();
+                focusOnFirstItem();
+              }
+
+              if (event.key === "ArrowUp") {
+                event.preventDefault();
+                focusOnLastItem();
+              }
+
+              if (onKeyDown) {
+                onKeyDown(event);
+              }
+            }}
+            {...rest}
+          />
+        )}
+      </Reference>
+    );
+  },
+);
 //////////////////////////////////////////////////////////////////////////////////////////
 
 const MenuList = ({ onKeyDown, onBlur, ...props }) => {
@@ -263,6 +275,7 @@ const MenuList = ({ onKeyDown, onBlur, ...props }) => {
       closeOnBlur &&
       isOpen &&
       menuRef.current &&
+      buttonRef.current &&
       !menuRef.current.contains(event.relatedTarget) &&
       !buttonRef.current.contains(event.relatedTarget)
     ) {
@@ -388,22 +401,25 @@ MenuItem.propTypes = {
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
-const MenuDivider = props => <Divider orientation="horizontal" {...props} />;
+const MenuDivider = forwardRef((props, ref) => (
+  <Divider ref={ref} orientation="horizontal" {...props} />
+));
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
-const MenuGroup = ({ children, label, ...rest }) => (
-  <Box role="presentation">
-    {label && (
+const MenuGroup = forwardRef(({ children, title, ...rest }, ref) => (
+  <Box ref={ref} role="group">
+    {title && (
       <Text mx={4} my={2} fontWeight="semibold" fontSize="sm" {...rest}>
-        {label}
+        {title}
       </Text>
     )}
     {children}
   </Box>
-);
+));
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
 export default Menu;
 export { MenuButton, MenuDivider, MenuGroup, MenuList, MenuItem };
+export * from "./MenuOption";

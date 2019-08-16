@@ -10,7 +10,7 @@ export const useMenuListStyle = () => {
         "0 7px 14px 0 rgba(0,0,0, 0.1), 0 3px 6px 0 rgba(0, 0, 0, .07)",
     },
     dark: {
-      bg: "gray.800",
+      bg: "gray.700",
       boxShadow: `rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.2) 0px 5px 10px, rgba(0, 0, 0, 0.4) 0px 15px 40px`,
     },
   };

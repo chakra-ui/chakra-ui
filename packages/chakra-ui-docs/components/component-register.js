@@ -7,6 +7,13 @@ const componentRegister = [
   "AvatarGroup",
   "Badge",
   "Box",
+  "Icon",
+  "IconButton",
+  "Input",
+  "InputAddon",
+  "InputGroup",
+  "Link",
+  "Heading",
   "Breadcrumb",
   "Button",
   "Checkbox",
@@ -22,5 +29,6 @@ const componentRegister = [
   "PseudoBox",
   "Radio",
   "Spinner",
+  "Textarea",
 ];
 export default componentRegister;

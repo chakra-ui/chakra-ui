@@ -10,7 +10,7 @@ const outlinedStyle = ({
   const borderColor = { light: "inherit", dark: "whiteAlpha.50" };
   const hoverColor = { light: "gray.300", dark: "whiteAlpha.200" };
 
-  const boxShadow = colors[_focusBorderColor][500];
+  const boxShadow = colors[_focusBorderColor] && colors[_focusBorderColor][500];
 
   const invalidColor = { light: "red.500", dark: "red.300" };
   const invalidBoxShadow = { light: colors.red[500], dark: colors.red[300] };
