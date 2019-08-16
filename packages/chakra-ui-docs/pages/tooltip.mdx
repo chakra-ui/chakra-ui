@@ -1,0 +1,125 @@
+import Head from "next/head";
+
+<Head key="tooltip">
+  <title key="tti">Tooltip Component</title>
+</Head>
+
+# Tooltip
+
+The Tooltip component follows the <a href="https://www.w3.org/TR/wai-aria-practices/#tooltip" target="__blank">WAI-ARIA
+Tooltip Pattern</a>. It's a popup that displays information related to an
+element when the element receives keyboard focus or the mouse hovers over it.
+Tooltip is built on top of the <a href="https://popper.js.org/" target="__blank">Popper.js</a> library.
+
+## Installation
+
+```bash
+npm install @chakra-ui/core
+```
+
+then import Tooltip
+
+```js
+import { Tooltip } from "@chakra-ui/core";
+```
+
+## Usage
+
+```jsx
+function Example() {
+  return (
+    <Tooltip label="Welcome home" placement="right" closeOnClick>
+      <Button variant="solid" color="blue">
+        Close
+      </Button>
+    </Tooltip>
+  );
+}
+```
+
+## With a string
+
+Wrap the string content of the tooltip with a `<span>`.
+
+```jsx
+function Example() {
+  return <Tooltip label="Welcome home">This is a sample</Tooltip>;
+}
+```
+
+## With an icon
+
+```jsx
+function Example() {
+  return (
+    <Tooltip label="Welcome home" placement="bottom">
+      <Icon name="phone" />
+    </Tooltip>
+  );
+}
+```
+
+## With arrow
+
+```jsx
+function Example() {
+  return (
+    <Tooltip showArrow label="Search places" placement="top">
+      <Icon name="search" />
+    </Tooltip>
+  );
+}
+```
+
+## Placement
+
+Using the `placement` prop you can adjust where your tooltip will be displayed.
+
+```jsx
+function Example() {
+  return (
+    <Flex>
+      <Tooltip label="Right end" placement="right-end">
+        <Button variant="outline">Right-End</Button>
+      </Tooltip>
+      <Box mx="4px" />
+
+      <Tooltip label="Left" placement="left">
+        <Button variant="outline">Left</Button>
+      </Tooltip>
+
+      <Box mx="4px" />
+
+      <Tooltip label="Auto start" placement="auto-start">
+        <Button variant="outline">Auto-Start</Button>
+      </Tooltip>
+      <Box mx="4px" />
+
+      <Tooltip label="Auto end" placement="auto-end">
+        <Button variant="outline">Auto-End</Button>
+      </Tooltip>
+      <Box mx="4px" />
+
+      <Tooltip label="Left end" placement="left-end">
+        <Button variant="outline">Left-End</Button>
+      </Tooltip>
+    </Flex>
+  );
+}
+```
+
+## Props
+
+| Name           | Type                                                                                                                                                                           | Default  | Description                                                                                                  |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- | ------------------------------------------------------------------------------------------------------------ |
+| `isOpen`       | `boolean`                                                                                                                                                                      | `false`  | If `true`, the popover is shown.                                                                             |
+| `defaultOpen`  | `boolean`                                                                                                                                                                      | `false`  | If `true`, the popover is shown by default.                                                                  |
+| `bg`           | `string`                                                                                                                                                                       |          | The background color of the tooltip.                                                                         |
+| `color`        | `string`                                                                                                                                                                       |          | The color of tooltip label.                                                                                  |
+| `label`        | `string`                                                                                                                                                                       |          | The label of the tooltip.                                                                                    |
+| `timeout`      | `number`                                                                                                                                                                       | `100`    | Determines how long, in milliseconds tooltip is to be shown.                                                 |
+| `placement`    | `auto-start`, `auto`, `auto-end`, `top-start`, `top`, `top-end`, `right-start`, `right`, `right-end`, `bottom-end`, `bottom`, `bottom-start`, `left-end`, `left`, `left-start` | `bottom` | Position the tooltip relative to the trigger element as well as surrounding elements.                        |
+| `children`     | `React.ReactNode`                                                                                                                                                              |          | The children of the tooltip.                                                                                 |
+| `showArrow`    | `boolean`                                                                                                                                                                      | `false`  | If `true` display an arrow tip on the tooltip. This is displayed relative to the `placement` of the popover. |
+| `closeOnClick` | `boolean`                                                                                                                                                                      | `false`  | If `true` hide the tooltip, when it is clicked.                                                              |
+| `onOpenChange` | `function`                                                                                                                                                                     |          | Function called when the value controlling the opening/closing of the tooltip changes.                       |

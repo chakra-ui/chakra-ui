@@ -9,7 +9,7 @@ export interface ITooltip {
   children?: React.ReactNode;
   showArrow?: boolean;
   placement?: string;
-  closeOnClick?: () => void;
+  closeOnClick?: boolean;
   defaultOpen?: string;
   isOpen?: boolean;
   onOpenChange?: () => void;
