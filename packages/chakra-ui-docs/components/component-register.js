@@ -19,10 +19,12 @@ const componentRegister = [
   "Link",
   "Heading",
   "Breadcrumb",
+  "NumberInput",
   "Radio",
   "Spinner",
+  "Popover",
   "Progress",
   "CircularProgress",
-  "TextArea"
+  "Textarea"
 ];
 export default componentRegister;
