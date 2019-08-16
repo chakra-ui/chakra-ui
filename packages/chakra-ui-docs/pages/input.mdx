@@ -20,6 +20,12 @@ leave the component uncontrolled specify a `defaultValue` prop.
 npm install @chakra-ui/core
 ```
 
+then import Input
+
+```js
+import { Input } from "@chakra-ui/core";
+```
+
 ## Usage
 
 ```jsx
@@ -40,7 +46,7 @@ function Example() {
   };
   return (
     <>
-      <Text mb="8px">{value}</Text>
+      <Text mb="8px">Value: {value}</Text>
       <Input
         value={value}
         onChange={handleInputChange}
