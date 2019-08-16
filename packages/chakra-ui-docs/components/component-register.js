@@ -4,6 +4,7 @@ const componentRegister = [
   "Button",
   "ControlBox",
   "Checkbox",
+  "Drawer",
   "FormControl",
   "PseudoBox",
   "AlertDialog",
