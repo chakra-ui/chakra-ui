@@ -22,5 +22,6 @@ const componentRegister = [
   "Spinner",
   "Progress",
   "CircularProgress",
+  "TextArea"
 ];
 export default componentRegister;

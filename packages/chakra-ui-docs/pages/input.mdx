@@ -28,6 +28,48 @@ function Example() {
 }
 ```
 
+### Controlled Input
+
+```jsx
+function Example() {
+  let [value, setValue] = React.useState("");
+
+  let handleInputChange = e => {
+    let inputValue = e.target.value;
+    setValue(inputValue);
+  };
+  return (
+    <>
+      <Text mb="8px">{value}</Text>
+      <Input
+        value={value}
+        onChange={handleInputChange}
+        placeholder="Here is a sample placeholder"
+        size="sm"
+      />
+    </>
+  );
+}
+```
+
+### Input sizes
+
+The input comes with 3 sizes
+
+```jsx
+<List>
+  <Box mb="8px">
+    <Input placeholder="Here is a sample placeholder" size="sm" />
+  </Box>
+  <Box mb="8px">
+    <Input placeholder="Here is a sample placeholder" size="md" />
+  </Box>
+  <Box mb="8px">
+    <Input placeholder="Here is a sample placeholder" size="lg" />
+  </Box>
+</List>
+```
+
 ## Props
 
 | Name                | Type                                                  | Default   | Description                                                                                                                                                                                                                          |
