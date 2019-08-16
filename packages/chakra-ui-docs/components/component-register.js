@@ -12,6 +12,7 @@ const componentRegister = [
   "Badge",
   "Icon",
   "IconButton",
+  "Input",
   "InputAddon",
   "InputGroup",
   "Link",
