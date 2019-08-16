@@ -25,6 +25,7 @@ const componentRegister = [
   "Popover",
   "Progress",
   "CircularProgress",
-  "Textarea"
+  "Textarea",
+  "Tooltip"
 ];
 export default componentRegister;
