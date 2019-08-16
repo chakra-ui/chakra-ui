@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as ReactPopper from "react-popper";
 import { BoxProps } from "../Box";
+import { PseudoBoxProps } from "../PseudoBox";
 
 interface IRenderProps {
   isOpen?: boolean;
@@ -25,9 +26,9 @@ export type MenuProps = IMenu & ChildrenProp;
 declare const Menu: React.FC<MenuProps>;
 export default Menu;
 
-export type MenuButtonProps = { as?: React.ElementType } & React.RefAttributes<
-  HTMLButtonElement
->;
+export type MenuButtonProps = React.RefAttributes<HTMLButtonElement> &
+  PseudoBoxProps;
+
 export const MenuButton: React.ForwardRefExoticComponent<MenuButtonProps>;
 
 export type MenuListProps = {

@@ -25,7 +25,7 @@ const MenuContext = createContext();
 const Menu = ({
   children,
   isOpen,
-  autoSelect,
+  autoSelect = true,
   closeOnBlur = true,
   closeOnSelect = true,
   placement,
@@ -154,7 +154,7 @@ export function useMenuContext() {
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
-const MenuButton = forwardRef(({ as: Comp = "button", ...props }, ref) => {
+const MenuButton = forwardRef((props, ref) => {
   const {
     state: { isOpen },
     focusOnLastItem,
@@ -170,7 +170,8 @@ const MenuButton = forwardRef(({ as: Comp = "button", ...props }, ref) => {
   return (
     <Reference>
       {({ ref: referenceRef }) => (
-        <Comp
+        <PseudoBox
+          as="button"
           aria-haspopup="menu"
           aria-expanded={isOpen}
           aria-controls={menuId}
@@ -227,6 +228,7 @@ const MenuList = ({ onKeyDown, onBlur, ...props }) => {
       nextIndex = (index + 1) % count;
       focusAtIndex(nextIndex);
     } else if (event.key === "ArrowUp") {
+      event.preventDefault();
       nextIndex = (index - 1 + count) % count;
       focusAtIndex(nextIndex);
     } else if (event.key === "Home") {
@@ -274,7 +276,7 @@ const MenuList = ({ onKeyDown, onBlur, ...props }) => {
 
   return (
     <Popper placement={placement}>
-      {({ ref }) => (
+      {({ ref, style: popperStyle }) => (
         <Box
           maxWidth="xs"
           borderRadius="md"
@@ -287,7 +289,9 @@ const MenuList = ({ onKeyDown, onBlur, ...props }) => {
           onKeyDown={handleKeyDown}
           onBlur={handleBlur}
           tabIndex={-1}
+          zIndex="1"
           hidden={!isOpen}
+          css={popperStyle}
           {...styleProps}
           {...props}
         />
@@ -324,6 +328,9 @@ const MenuItem = forwardRef(
       <PseudoBox
         as="button"
         ref={ref}
+        display="flex"
+        textDecoration="none"
+        color="inherit"
         minHeight="32px"
         alignItems="center"
         textAlign="left"

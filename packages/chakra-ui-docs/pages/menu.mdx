@@ -1,0 +1,72 @@
+# Menu
+
+An accessible dropdown menu for the common dropdown menu button design pattern.
+Menu uses roving tabIndex for focus management.
+
+Chakra exports 4 components for creating menus:
+
+- **Menu**: Provides context and state management for the component.
+- **MenuButton**: The trigger for the menu. It composes `PseudoBox`
+- **MenuDivider**: A visual divider between menu groups.
+- **MenuGroup**: A wrapper to group menu items.
+- **MenuList**: The wrapper for the menu items or grouped menu items.
+- **MenuItem**: A single menu item that contains a label, icon and/or a command.
+  It composes `PseudoBox`
+
+## Usage
+
+```jsx
+<Menu>
+  <MenuButton as={Button}>
+    Actions <span aria-hidden>▾</span>
+  </MenuButton>
+  <MenuList>
+    <MenuItem onClick={() => alert("Download")}>Download</MenuItem>
+    <MenuItem onClick={() => alert("Copy")}>Create a Copy</MenuItem>
+    <MenuItem onClick={() => alert("Mark as Draft")}>Mark as Draft</MenuItem>
+    <MenuItem onClick={() => alert("Delete")}>Delete</MenuItem>
+    <MenuItem as="a" href="https://reach.tech/workshops">
+      Attend a Workshop
+    </MenuItem>
+  </MenuList>
+</Menu>
+```
+
+## Accessibility
+
+### Keyboard Interaction
+
+When you focus on the `MenuButton`:
+
+- Enter: opens the menu and places focus on the first menu item.
+- Space: Opens the menu and places focus on the first menu item.
+- Down Arrow: opens the menu and moves focus to the first menu item.
+- Up Arrow: opens the menu and moves focus to the last menu item.
+
+### ARIA roles
+
+For MenuButton:
+
+- It has `role` set to `button`.
+- It has aria-haspopup set to either `menu`.
+- When the menu is displayed, `MenuButton` has `aria-expanded` set to `true`.
+- `MenuButton` has `aria-controls` set to the `id` of the `MenuList`.
+
+For MenuList:
+
+- It contains the `MenuItem` has role `menu`.
+
+For MenuItem:
+
+- Pressing `Enter` or `Space` activates the menu item, closes the menu and
+  returns focus to the `MenuButton`
+- Pressing `Esc` closes the menu and sets focus to the `MenuButton`.
+- Up Arrow moves focus to the previous menu item. If focus is on the first menu
+  item, moves focus to the last menu item.
+- Down Arrow moves focus to the next menu item. If focus is on the last menu
+  item, moves focus to the first menu item.
+- Home moves focus to the first menu item.
+- Moves focus to the last menu item.
+- Character search: Pressing any character moves focus to the next menu item
+  with a label that starts with the typed character if such an menu item exists.
+  Otherwise, focus does not move.
