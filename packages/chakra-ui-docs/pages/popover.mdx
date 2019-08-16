@@ -1,0 +1,148 @@
+import Head from "next/head";
+
+<Head key="popover">
+  <title key="tti">Popover Component</title>
+</Head>
+
+# Popover
+
+The Popover component displays floating content in relation to a trigger.
+Popovers appear either at the `top`, `bottom`, `left` or `right` of their
+trigger. The preferred and default side is the bottom. Popover is built on top
+of the [Popper.js](https://popper.js.org/) library.
+
+## Installation
+
+```bash
+import { Popover } from "@chakra-ui/core";
+```
+
+## Usage
+
+```jsx
+function Example() {
+  return (
+    <>
+      <Popover
+        trigger={<Button>Trigger</Button>}
+        usePortal
+        placement="bottom"
+        showCloseButton
+      >
+        {({ onClose }) => (
+          <>
+            <PopoverHeader>Header</PopoverHeader>
+            <PopoverBody>
+              <Button color="blue" onClick={onClose}>
+                Close
+              </Button>
+            </PopoverBody>
+            <PopoverFooter>This is the footer</PopoverFooter>
+          </>
+        )}
+      </Popover>
+    </>
+  );
+}
+```
+
+## With arrow
+
+```jsx
+function Example() {
+  return (
+    <>
+      <Popover
+        trigger={<Button>Trigger</Button>}
+        usePortal
+        showArrow
+        bg="gray.500"
+        placement="bottom"
+        showCloseButton
+      >
+        {({ onClose }) => (
+          <>
+            <PopoverHeader>Header</PopoverHeader>
+            <PopoverBody>
+              <Button color="blue" onClick={onClose}>
+                Close
+              </Button>
+            </PopoverBody>
+            <PopoverFooter>This is the footer</PopoverFooter>
+          </>
+        )}
+      </Popover>
+    </>
+  );
+}
+```
+
+## Placement
+
+Using the `placement` prop you can adjust where your popover will be displayed.
+
+```jsx
+function Example() {
+  return (
+    <Flex>
+      <Popover
+        trigger={<Button>Top start</Button>}
+        usePortal
+        placement="top-start"
+        showCloseButton
+      >
+        {({ onClose }) => (
+          <>
+            <PopoverHeader>Header</PopoverHeader>
+            <PopoverBody>
+              <Button color="blue" onClick={onClose}>
+                Close
+              </Button>
+            </PopoverBody>
+            <PopoverFooter>This is the footer</PopoverFooter>
+          </>
+        )}
+      </Popover>
+      <Box mx="4px"/>
+
+      <Popover
+        trigger={<Button>Right end</Button>}
+        usePortal
+        placement="right-end"
+        showCloseButton
+      >
+        {({ onClose }) => (
+          <>
+            <PopoverHeader>Header</PopoverHeader>
+            <PopoverBody>
+              <Button color="blue" onClick={onClose}>
+                Close
+              </Button>
+            </PopoverBody>
+            <PopoverFooter>This is the footer</PopoverFooter>
+          </>
+        )}
+      </Popover>
+    </Flex>
+  );
+}
+```
+
+## Props
+
+| Name              | Type                                                                                                                                                                           | Default  | Description                                                                                                                                                                                                                 |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `isOpen`          | `boolean`                                                                                                                                                                      | `false`  | If `true`, the popover is shown.                                                                                                                                                                                            |
+| `defaultOpen`     | `boolean`                                                                                                                                                                      | `false`  | If `true`, the popover is shown by default.                                                                                                                                                                                 |
+| `maxWidth`        | `string`, `number`                                                                                                                                                             |          | The maximum width of the popover                                                                                                                                                                                            |
+| `trigger`         | `React.ReactNode`                                                                                                                                                              | `false`  | Element that triggers the display of the popover. Most times a `Button` or a `Link`                                                                                                                                         |
+| `placement`       | `auto-start`, `auto`, `auto-end`, `top-start`, `top`, `top-end`, `right-start`, `right`, `right-end`, `bottom-end`, `bottom`, `bottom-start`, `left-end`, `left`, `left-start` | `bottom` | Determines how the popover is displayed relative to the trigger element as well as surrounding elements.                                                                                                                    |
+| `children`        | `React.ReactNode`                                                                                                                                                              |          | The children of the popover.                                                                                                                                                                                                |
+| `showArrow`       | `boolean`                                                                                                                                                                      | `false`  | If `true` display an arrow tip on the popover. This is displayed relative to the `placement` of the popover.                                                                                                                |
+| `showCloseButton` | `boolean`                                                                                                                                                                      | `false`  | If `true` display a close button to close the popover.                                                                                                                                                                      |
+| `initialFocusRef` | `React.Ref`                                                                                                                                                                    |          | The ref to the initial element to receive focus when the popover opens.                                                                                                                                                     |
+| `usePortal`       | `boolean`                                                                                                                                                                      | `true`   | If `true` the popover is displayed with a `Portal`. Rendering content inside a Portal allows the popover content to escape the physical bounds of its parent while still being positioned correctly relative to its target. |
+| `trapFocus`       | `boolean`                                                                                                                                                                      | `false`  | If `true` focus will be brought inside the popover.                                                                                                                                                                         |
+| `onOpenChange`    | `function`                                                                                                                                                                     |          | Function called when the value controlling the opening/closing of the popover changes.                                                                                                                                      |
+| `closeOnBlur`     | `boolean`                                                                                                                                                                      | `false`  | If `true`, close the popover when focus is taken away from the popover.                                                                                                                                                     |
+| `closeOnEsc`      | `boolean`                                                                                                                                                                      | `false`  | If `true`, close the popover when the `esc` key is pressed.                                                                                                                                                                 |

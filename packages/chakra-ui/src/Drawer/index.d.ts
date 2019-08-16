@@ -33,7 +33,7 @@ interface IDrawer {
    */
   isFullHeight?: boolean;
   /**
-   * The ref to the initial element to receiver focus when the drawer opens.
+   * The ref to the initial element to receive focus when the drawer opens.
    */
   initialFocusRef?: React.Ref<{}>;
   /**
