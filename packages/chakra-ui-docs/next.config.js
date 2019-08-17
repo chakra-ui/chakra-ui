@@ -3,5 +3,6 @@ const withMDX = require("@next/mdx")({
 });
 
 module.exports = withMDX({
+  target: 'serverless',
   pageExtensions: ["js", "jsx", "md", "mdx"]
 });
