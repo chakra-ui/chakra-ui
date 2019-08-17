@@ -44,7 +44,6 @@
     ]
   },
   "dependencies": {
-    "@reach/alert": "0.1.5",
     "@reach/alert-dialog": "0.2.9",
     "@reach/auto-id": "0.2.0",
     "@reach/dialog": "0.2.9",
