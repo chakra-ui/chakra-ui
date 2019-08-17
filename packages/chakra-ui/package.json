@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/core",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Responsive and accessible React UI components built with React and Emotion",
   "main": "dist/index.js",
   "module": "dist/es/index.js",
@@ -17,7 +17,6 @@
     "build:umd": "cross-env NODE_ENV=production-umd rollup -c",
     "build:copy-types": "node ./scripts/copy-files.js",
     "version": "npm run build",
-    "postversion": "git push && git push --tags && npm publish",
     "lint": "eslint src",
     "tslint": "tslint -c tslint.json 'src/**/*.ts'",
     "prettier": "prettier \"**/*.+(js|jsx|ts|tsx|d.ts|md|mdx)\"",
