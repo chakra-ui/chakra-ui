@@ -39,6 +39,7 @@ const componentRegister = [
   "PseudoBox",
   "Radio",
   "Spinner",
+  "Switch",
   "Textarea",
   "Toast",
   "Tooltip",
