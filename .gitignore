@@ -3,3 +3,4 @@ lerna-debug.log
 npm-debug.log
 packages/*/lib
 packages/*/.next
+storybook-static

@@ -24,7 +24,7 @@
     "format": "npm run prettier -- --write",
     "validate": "npm run lint && npm run prettier -- --list-different && npm run tslint",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
+    "build-storybook": "npm install && build-storybook",
     "build:watch": "nodemon -w src -x 'rm .babelrc &> /dev/null; npm run build'"
   },
   "husky": {
