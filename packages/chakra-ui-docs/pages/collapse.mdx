@@ -1,0 +1,67 @@
+# Collapse
+
+The Collapse component allows the hiding of content that is not immediately
+relevant to the user. It's used by the the `Accordion` and `NavItem` components.
+
+It composes the `Box` component
+
+## Usage
+
+### Basic Usage
+
+```jsx
+function Example() {
+  const [show, setShow] = React.useState(false);
+
+  const handleToggle = () => setShow(!show);
+
+  return (
+    <>
+      <Button variantColor="blue" onClick={handleToggle} mb="1rem">
+        Toggle
+      </Button>
+      <Collapse isOpen={show}>
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+        terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
+        labore wes anderson cred nesciunt sapiente ea proident.
+      </Collapse>
+    </>
+  );
+}
+```
+
+### Changing the startingHeight
+
+```jsx
+function Example() {
+  const [show, setShow] = React.useState(false);
+
+  const handleToggle = () => setShow(!show);
+
+  return (
+    <>
+      <Collapse startingHeight={20} isOpen={show}>
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+        terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
+        labore wes anderson cred nesciunt sapiente ea proident.
+      </Collapse>
+      <Button size="sm" onClick={handleToggle} mt="1rem">
+        {show ? "Collapse" : "Expand"}
+      </Button>
+    </>
+  );
+}
+```
+
+## Props
+
+This component doesn't have any custom props.
+
+| Name               | Type      | Description                                                                                                  |
+| ------------------ | --------- | ------------------------------------------------------------------------------------------------------------ |
+| `isOpen`           | `boolean` | If `true`, the content will be visible                                                                       |
+| `animateOpacity`   | `boolean` | If `true`, the opacity of the content will be animated                                                       |
+| `duration`         | `number`  | The animation duration as it expands                                                                         |
+| `startingHeight`   | `number`  | The height you want the content to be collapsed to                                                           |
+| `onAnimationEnd`   | `func`    | The function to be called when the collapse animation starts. It provides the `currentHeight` as an argument |
+| `onAnimationStart` | `func`    | The function to be called when the collapse animation ends. It provides the `currentHeight` as an argument   |
