@@ -1,0 +1,75 @@
+import Head from "next/head";
+
+<Head key="slider">
+  <title key="tti">Slider Component</title>
+</Head>
+
+# Slider
+
+The Switch component is used as an alternative for the [Checkbox](/checkbox)
+component, that simulates on/off instead of checked/unchecked.
+
+Switch is optionally controllable, to control the component, specify a `value`
+prop and an `onChange` prop.
+
+## Installation
+
+```bash
+npm install @chakra-ui/core
+```
+
+then import Slider
+
+```js
+import { Slider } from "@chakra-ui/core";
+```
+
+## Usage
+
+```jsx
+function Example() {
+  return (
+    <Slider>
+      <SliderTrack />
+      <SliderFilledTrack />
+      <SliderThumb />
+    </Slider>
+  );
+}
+```
+
+## Slider themes
+
+```jsx
+function Example() {
+  return (
+    <List inline>
+      <Slider color="gray">
+        <SliderTrack />
+        <SliderFilledTrack />
+        <SliderThumb />
+      </Slider>
+    </List>
+  );
+}
+```
+
+## Props
+
+| Name               | Type                                      | Default | Description                                           |
+| ------------------ | ----------------------------------------- | ------- | ----------------------------------------------------- |
+| `value`            | `number`                                  |         | The size of the slider.                               |
+| `defaultValue`     | `number`                                  |         | Initial value of the slider, for uncontrolled usage.  |
+| `max`              | `number`                                  |         | Standard `input` max attribute.                       |
+| `min`              | `number`                                  |         | Standard `input` min attribute.                       |
+| `step`             | `number`                                  |         | Standard `input` step attribute.                      |
+| `aria-label`       | `React.AriaAttributes["aria-label"]`      |         | The aria-label of the switch for accessibility.       |
+| `aria-labelledby`  | `React.AriaAttributes["aria-labelledby"]` |         | The aria-labelledby of the switch for accessibility.  |
+| `aria-valuetext`   | `React.AriaAttributes["aria-valuetext"]`  |         | The aria-valuetext of the switch for accessibility.   |
+| `orientation`      | `string`                                  |         | If `true`, set the switch to the checked state.       |
+| `getAriaValueText` | `function`                                |         | If `true`, set the disabled to the invalid state.     |
+| `size`             | `string`                                  |         | The size of the slider.                               |
+| `color`            | `string`                                  |         | The background color of the slider.                   |
+| `name`             | `string`                                  |         | The name of the slider component when used in a form. |
+| `id`               | `string`                                  |         | The id of the slider component when used in a form.   |
+| `children`         | `React.ReactNode`                         |         | The children of the slider.                           |

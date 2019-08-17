@@ -32,13 +32,15 @@ const thumbStyle = ({ thumbSize, trackPercent, theme }) => {
   };
 };
 
-const filledTrackStyle = ({ trackHeight, trackPercent }) => ({
-  ...centeredProps,
-  height: trackHeight,
-  bg: "blue.500",
-  width: `${trackPercent}%`,
-  rounded: "sm",
-});
+const filledTrackStyle = ({ trackHeight, trackPercent, color, mode }) => {
+  return {
+    ...centeredProps,
+    height: trackHeight,
+    bg: mode === "light" ? `${color}.500` : `${color}.200`,
+    width: `${trackPercent}%`,
+    rounded: "sm",
+  }
+};
 
 const themedTrackStyle = {
   light: {
