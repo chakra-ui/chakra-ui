@@ -4,6 +4,6 @@
   "builds": [
     { "src": "packages/chakra-ui-docs/package.json", "use": "@now/next" }
   ],
-  "alias": "www.chakra-ui.com",
+  "alias": ["chakra-ui.com", "staging"],
   "scope": "chakra-ui"
 }
