@@ -15,11 +15,20 @@ export interface ICollapse {
    */
   duration?: number;
   /**
-   * The height you want the content to be collapsed to
+   * The height you want the content in it's collapsed state. Set to `0` by default
    */
   startingHeight?: number | string;
+  /**
+   * The height you want the content in it's expanded state. Set to `auto` by default
+   */
   endingHeight?: number | string;
+  /**
+   * The function to be called when the collapse animation starts. It provides the `currentHeight` as an argument
+   */
   onAnimationEnd?(props: { newHeight: number }): void;
+  /**
+   * The function to be called when the collapse animation ends. It provides the `currentHeight` as an argument
+   */
   onAnimationStart?(props: { newHeight: number }): void;
 }
 
