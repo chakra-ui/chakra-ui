@@ -20,6 +20,7 @@
     "reboot:core": "npm run core:build && npm run bootstrap",
     "bootstrap": "npm run clean && lerna bootstrap --hoist",
     "storybook": "lerna run --scope @chakra-ui/core storybook --stream",
+    "storybook:build": "lerna run --scope @chakra-ui/core build-storybook --stream",
     "docs:dev": "lerna run --scope @chakra-ui/docs dev --stream",
     "docs:build": "lerna run --scope @chakra-ui/docs build --stream",
     "docs:start": "lerna run --scope @chakra-ui/docs start --stream",

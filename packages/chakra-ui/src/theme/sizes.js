@@ -1,5 +1,3 @@
-// TODO: Let the spacing a follow multiples of 8
-
 const baseSizes = {
   px: "1px",
   "0": "0",
@@ -45,40 +43,8 @@ const containers = {
   xl: "1280px",
 };
 
-const components = {
-  switch: {
-    sm: {
-      width: "1.375rem",
-      height: "0.75rem",
-    },
-    md: {
-      width: "1.875rem",
-      height: "1rem",
-    },
-    lg: {
-      width: "2.875rem",
-      height: "1.5rem",
-    },
-  },
-  tab: {
-    sm: {
-      padding: "0.25rem 1rem",
-      fontSize: "0.85rem",
-    },
-    md: {
-      fontSize: "1rem",
-      padding: "0.5rem 1rem",
-    },
-    lg: {
-      fontSize: "1.15rem",
-      padding: "0.75rem 1rem",
-    },
-  },
-};
-
 const sizes = {
   ...baseSizes,
-  ...components,
   ...maxWidths,
   containers,
 };

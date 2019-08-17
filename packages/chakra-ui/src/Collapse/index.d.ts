@@ -5,7 +5,8 @@ export interface ICollapse {
   isOpen?: boolean;
   animateOpacity?: boolean;
   duration?: number;
-  collapsedHeight?: number;
+  startingHeight?: number | string;
+  endingHeight?: number | string;
   onAnimationEnd?(props: { newHeight: number }): void;
   onAnimationStart?(props: { newHeight: number }): void;
 }
