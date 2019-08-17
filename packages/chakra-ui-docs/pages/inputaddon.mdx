@@ -11,46 +11,12 @@ before, after, or on both sides of any text-based [Input](/input).
 
 ## Installation
 
-```js
-import { InputAddon } from "@chakra-ui/core";
+```bash
+npm install @chakra-ui/core
 ```
 
 then import InputAddon
 
-<<<<<<< HEAD
-```jsx
-<InputGroup size="md">
-  <InputLeftAddon>+234</InputLeftAddon>
-  <Input roundedLeft="0" placeholder="Welcome" />
-</InputGroup>
-```
-
-## Composition
-
-Chakra exports 3 components you can use to compose more form input styles:
-
-- InputGroup: A wrapper with `display: flex` that has uses React's cloneElement
-  to pass it's props to its children
-- InputLeftAddon: Used to prepend any element to the input
-- InputRightAddon: Used to append any element to the input
-
-Let's say we need an add-on to the left of the input, here's how we do it:
-
-```jsx
-<InputGroup size="md">
-  <InputLeftAddon>+234</InputLeftAddon>
-  <Input roundedLeft="0" placeholder="Welcome" />
-</InputGroup>
-```
-
-Similar patter for the right:
-
-```jsx
-<InputGroup size="md">
-  <InputRightAddon>.com</InputRightAddon>
-  <Input roundedRight="0" placeholder="Welcome" />
-</InputGroup>
-=======
 ```js
 import { InputAddon } from "@chakra-ui/core";
 ```
@@ -79,20 +45,12 @@ function Example() {
     </InputGroup>
   );
 }
->>>>>>> 031967aec20eca896e3460ec67a46f720d204b8c
 ```
 
 ## Props
 
-<<<<<<< HEAD
-| Name     | Type              | Default | Description                                                     |
-| -------- | ----------------- | ------- | --------------------------------------------------------------- |
-| size     | `sm`, `md`, `lg`  | `md`    | The size of the input component composed with the `InputGroup`. |
-| children | `React.ReactNode` |         | The children of the `InputGroup` e.g `InputLeftAddon`, `Input`. |
-=======
 | Name        | Type              | Default | Description                                                                                                                                      |
 | ----------- | ----------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `size`      | `sm`, `md`, `lg`  | `md`    | The size of the input component composed with the `InputGroup`.                                                                                  |
 | `children`  | `React.ReactNode` | `false` | The children of the `InputGroup` e.g `InputLeftAddon`, `Input`.                                                                                  |
 | `placement` | `left`, `right`   | `left`  | The position the addon should appear relative to the `Input`. We added `InputLeftAddon` and `InputRightAddon` so you might not need to pass this. |
->>>>>>> 031967aec20eca896e3460ec67a46f720d204b8c

@@ -23,6 +23,7 @@
     "storybook:build": "lerna run --scope @chakra-ui/core build-storybook --stream",
     "docs:dev": "lerna run --scope @chakra-ui/docs dev --stream",
     "docs:build": "lerna run --scope @chakra-ui/docs build --stream",
+    "docs:deploy": "lerna exec --scope=@chakra-ui/docs -- now",
     "docs:start": "lerna run --scope @chakra-ui/docs start --stream",
     "core:build": "lerna run --scope @chakra-ui/core build --stream",
     "release": "lerna publish",

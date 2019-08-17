@@ -6,7 +6,7 @@ import Head from "next/head";
 
 # Toast
 
-The toaster is used to show toasts (alerts) on top of an overlay. The toast will
+The toaster is used to show alerts on top of an overlay. The toast will
 close itself when the close button is clicked, or after a timeout — the default
 is 5 seconds. The toast component is used to give feeback to users after an
 action has taken place.
@@ -203,4 +203,5 @@ function Example() {
 | `isClosable`  | `boolean`                                                                                                                                                                      | `false`  | If `true` adds a close button to the toast. |
 | `onClose`     | `function`                                                                                                                                                                     |          | Callback function to close the toast.       |
 | `description` | `string`                                                                                                                                                                       |          | The description of the toast.               |
+| `status`      | `success`, `danger`, `warning`                                                                                                                                                 |          | The status of the toast.                    |
 | `position`    | `auto-start`, `auto`, `auto-end`, `top-start`, `top`, `top-end`, `right-start`, `right`, `right-end`, `bottom-end`, `bottom`, `bottom-start`, `left-end`, `left`, `left-start` | `bottom` | Position the toast will popup out from.     |

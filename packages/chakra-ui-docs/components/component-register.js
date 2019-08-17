@@ -28,6 +28,7 @@ const componentRegister = [
   "Progress",
   "PseudoBox",
   "Radio",
+  "Slider",
   "Spinner",
   "Stat",
   "Tabs",

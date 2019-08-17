@@ -5,10 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "now-build": "next build",
     "start": "next start"
   },
   "dependencies": {
-    "@chakra-ui/core": "^0.1.2",
+    "@chakra-ui/core": "*",
     "@mdx-js/loader": "^1.1.6",
     "@mdx-js/mdx": "^1.1.6",
     "@mdx-js/react": "^1.1.6",
@@ -19,6 +20,8 @@
     "react-live": "^2.1.2"
   },
   "devDependencies": {
+    "react": "16.x",
+    "react-dom": "16.x",
     "@emotion/core": "10.0.10",
     "@emotion/styled": "10.0.11",
     "emotion-theming": "10.0.10",
