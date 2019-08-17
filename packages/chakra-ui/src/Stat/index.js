@@ -1,17 +1,17 @@
 import { oneOf } from "prop-types";
-import React from "react";
+import React, { forwardRef } from "react";
 import Icon from "../Icon";
 import Text from "../Text";
 import Box from "../Box";
 import Flex from "../Flex";
 
-const StatLabel = props => (
-  <Text fontWeight="medium" fontSize="sm" {...props} />
-);
+const StatLabel = forwardRef((props, ref) => (
+  <Text ref={ref} fontWeight="medium" fontSize="sm" {...props} />
+));
 
-const StatHelpText = props => (
-  <Text fontSize="sm" opacity="0.8" mb={2} {...props} />
-);
+const StatHelpText = forwardRef((props, ref) => (
+  <Text ref={ref} fontSize="sm" opacity="0.8" mb={2} {...props} />
+));
 
 const StatNumber = props => (
   <Text
@@ -33,30 +33,36 @@ const arrowOptions = {
   },
 };
 
-const StatArrow = ({ type = "increase", "aria-label": ariaLabel, ...rest }) => (
-  <Icon
-    mr={1}
-    size="14px"
-    verticalAlign="middle"
-    aria-label={ariaLabel}
-    {...arrowOptions[type]}
-    {...rest}
-  />
+const StatArrow = forwardRef(
+  ({ type = "increase", "aria-label": ariaLabel, ...rest }, ref) => (
+    <Icon
+      ref={ref}
+      mr={1}
+      size="14px"
+      verticalAlign="middle"
+      aria-label={ariaLabel}
+      {...arrowOptions[type]}
+      {...rest}
+    />
+  ),
 );
 
 StatArrow.propTypes = {
   type: oneOf(["increase", "decrease"]),
 };
 
-const Stat = props => <Box flex="1" pr={4} position="relative" {...props} />;
+const Stat = forwardRef((props, ref) => (
+  <Box ref={ref} flex="1" pr={4} position="relative" {...props} />
+));
 
-const StatGroup = props => (
+const StatGroup = forwardRef((props, ref) => (
   <Flex
+    ref={ref}
     flexWrap="wrap"
     justifyContent="space-around"
     alignItems="flex-start"
     {...props}
   />
-);
+));
 
 export { StatLabel, StatNumber, Stat, StatHelpText, StatArrow, StatGroup };

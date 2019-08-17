@@ -1,8 +1,8 @@
 /** @jsx jsx */
-import { ThemeContext } from "@emotion/core";
 import { useContext } from "react";
 import { TabContext } from ".";
 import { useColorMode } from "../ColorModeProvider";
+import { useTheme } from "../ThemeProvider";
 
 export const baseProps = {
   display: "flex",
@@ -49,29 +49,10 @@ const lineStyle = ({ color, mode }) => {
   };
 };
 
-const containedStyle = props => {
-  return {
-    tab: {
-      _notFirstChild: {
-        borderLeftWidth: 1,
-      },
-      _selected: {
-        bg: "gray.100",
-      },
-    },
-    tabList: {
-      bg: "#fff",
-      borderWidth: "1px",
-      rounded: "md",
-      overflow: "hidden",
-    },
-  };
-};
-
 // TODO: Create new issue in @styled-system/css to allow custom alias
 const enclosedStyle = ({ color, mode, theme }) => {
   const _selectedColor = { light: `${color}.600`, dark: `${color}.300` };
-  const _selectedBg = { light: "#fff", dark: theme.colors.gray[900] };
+  const _selectedBg = { light: "#fff", dark: theme.colors.gray[800] };
 
   return {
     tab: {
@@ -96,7 +77,7 @@ const enclosedStyle = ({ color, mode, theme }) => {
 const enclosedColoredStyle = ({ color, mode }) => {
   const bg = { light: "gray.50", dark: "whiteAlpha.50" };
   const _selectedColor = { light: `${color}.600`, dark: `${color}.300` };
-  const _selectedBg = { light: `#fff`, dark: `gray.900` };
+  const _selectedBg = { light: `#fff`, dark: `gray.800` };
 
   return {
     tab: {
@@ -141,7 +122,7 @@ const softRoundedStyle = ({ color }) => {
 const solidRoundedStyle = ({ color, mode }) => {
   const _color = { light: "gray.600", dark: "inherit" };
   const _selectedBg = { light: `${color}.600`, dark: `${color}.300` };
-  const _selectedColor = { light: `#fff`, dark: `gray.900` };
+  const _selectedColor = { light: `#fff`, dark: `gray.800` };
 
   return {
     tab: {
@@ -161,8 +142,6 @@ export const variantStyle = props => {
   switch (props.variant) {
     case "line":
       return lineStyle(props);
-    case "contained":
-      return containedStyle(props);
     case "enclosed":
       return enclosedStyle(props);
     case "enclosed-colored":
@@ -183,42 +162,79 @@ export const orientationStyle = ({ align, orientation }) => {
     center: "center",
     start: "flex-start",
   };
-  switch (orientation) {
-    case "horizontal":
-      return {
-        alignItems: "center",
-        justifyContent: alignments[align],
-        maxWidth: "full",
-      };
-    case "vertical":
-      return {
-        flexDirection: "column",
-      };
-    default:
-      return {};
+
+  let tabListStyle;
+  let tabStyle;
+
+  if (orientation === "horizontal") {
+    tabListStyle = {
+      alignItems: "center",
+      justifyContent: alignments[align],
+      maxWidth: "full",
+    };
+
+    tabStyle = {
+      height: "100%",
+    };
   }
+
+  if (orientation === "vertical") {
+    tabListStyle = { flexDirection: "column" };
+
+    tabStyle = {
+      width: "100%",
+    };
+  }
+
+  return {
+    tabList: tabListStyle,
+    tab: tabStyle,
+  };
+};
+
+const tabSizes = {
+  sm: {
+    padding: "0.25rem 1rem",
+    fontSize: "0.85rem",
+  },
+  md: {
+    fontSize: "1rem",
+    padding: "0.5rem 1rem",
+  },
+  lg: {
+    fontSize: "1.15rem",
+    padding: "0.75rem 1rem",
+  },
 };
 
 export const useTabStyle = () => {
-  const theme = useContext(ThemeContext);
-  const { variant, color, size, isFitted } = useContext(TabContext);
+  const theme = useTheme();
+  const { variant, color, size, isFitted, orientation } = useContext(
+    TabContext,
+  );
   const { mode } = useColorMode();
+
+  const _variantStyle = variantStyle({ variant, color, theme, mode });
+  const _orientationStyle = orientationStyle({ orientation });
 
   return {
     ...baseProps,
     ...disabledProps,
-    ...theme.sizes.tab[size],
-    ...variantStyle({ variant, color, theme, mode }).tab,
+    ...tabSizes[size],
+    ...(_variantStyle && _variantStyle.tab),
+    ...(_orientationStyle && _orientationStyle.tab),
     ...(isFitted && { flex: 1 }),
   };
 };
 
 export const useTabListStyle = () => {
-  const theme = useContext(ThemeContext);
+  const theme = useTheme();
   const { variant, align, orientation } = useContext(TabContext);
+  const _variantStyle = variantStyle({ variant, theme });
+  const _orientationStyle = orientationStyle({ align, orientation });
 
   return {
-    ...variantStyle({ variant, theme }).tabList,
-    ...orientationStyle({ align, orientation }),
+    ...(_variantStyle && _variantStyle.tabList),
+    ...(_orientationStyle && _orientationStyle.tabList),
   };
 };
