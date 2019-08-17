@@ -1,9 +1,0 @@
-{
-  "version": 2,
-  "name": "chakra-ui",
-  "builds": [
-    { "src": "packages/chakra-ui-docs/package.json", "use": "@now/next" }
-  ],
-  "alias": ["chakra-ui.com", "chakra-ui-staging"],
-  "scope": "chakra-ui"
-}
