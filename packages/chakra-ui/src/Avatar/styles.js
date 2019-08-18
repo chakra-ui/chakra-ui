@@ -29,13 +29,13 @@ export const avatarSizes = {
   full: "full",
 };
 
-const useAvatarStyle = ({ size, name, showBorder }) => {
+const useAvatarStyle = ({ size, name, showBorder, borderColor }) => {
   const { colors } = useTheme();
   const { mode } = useColorMode();
 
   const bg = name ? string2Hex(name) : colors.gray[400];
   const color = name ? (isDarkColor(bg) ? "#fff" : "gray.800") : "#fff";
-  const borderColor = { light: "#fff", dark: "gray.900" };
+  const _borderColor = { light: "#fff", dark: "gray.800" };
 
   const baseProps = {
     display: "inline-flex",
@@ -53,7 +53,7 @@ const useAvatarStyle = ({ size, name, showBorder }) => {
     color,
     ...(showBorder && {
       border: "2px",
-      borderColor: borderColor[mode],
+      borderColor: borderColor || _borderColor[mode],
     }),
   };
 };

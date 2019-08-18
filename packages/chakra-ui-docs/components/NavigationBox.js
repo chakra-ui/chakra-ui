@@ -8,7 +8,7 @@ import {
   useColorMode,
 } from "@chakra-ui/core";
 import NavLink from "./NavLink";
-import componentRegister from "./component-register";
+import completedComponents from "./components";
 
 const stringToUrl = (str, path = "/") => {
   return `${path}${str
@@ -97,7 +97,7 @@ export default function NavigationBox() {
 
         <Box pb="16px" mb="16px">
           <NavGroupHeading>Components</NavGroupHeading>
-          <NavLinks links={componentRegister} />
+          <NavLinks links={completedComponents} />
         </Box>
       </Box>
     </Box>

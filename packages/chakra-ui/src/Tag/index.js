@@ -90,7 +90,7 @@ export const TagLabel = props => {
     <Box
       maxWidth={14}
       overflow="hidden"
-      wordBreak="truncate"
+      isTruncated
       lineHeight="1.2"
       as="span"
       {...props}

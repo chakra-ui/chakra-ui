@@ -119,7 +119,7 @@ const HeadingWithLink = ({ children, ...props }) => {
     .join("-");
 
   return (
-    <Heading as="h3" my={4} id={id} {...props}>
+    <Heading my={4} id={id} {...props}>
       {children}
     </Heading>
   );
@@ -135,7 +135,7 @@ const MDXComponents = {
   pre: PreComponent,
   kbd: KeyboardKey,
   br: props => <Box height="24px" {...props} />,
-  hr: props => <Box as="hr" height="px" my={8} bg="gray.200" {...props} />,
+  hr: props => <Box as="hr" borderTopWidth="1px" my={8} {...props} />,
   table: Table,
   th: THead,
   td: TData,

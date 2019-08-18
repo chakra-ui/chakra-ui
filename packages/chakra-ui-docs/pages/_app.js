@@ -1,85 +1,28 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Icon,
-  Input,
-  InputGroup,
-  InputLeftElement,
-} from "@chakra-ui/core";
+import { Box, Flex } from "@chakra-ui/core";
 import { MDXProvider } from "@mdx-js/react";
 import React, { useState } from "react";
-import { DiGithubBadge } from "react-icons/di";
-import { IoMdMenu } from "react-icons/io";
+import Header from "../components/Header";
 import { ChakraProvider, MDXComponents } from "../components/MDXComponents";
-import Navigation from "../components/Navigation";
+import SideNav from "../components/SideNav";
 
-const SearchBox = props => {
-  return (
-    <InputGroup>
-      <InputLeftElement>
-        <Icon name="search" />
-      </InputLeftElement>
-      <Input placeholder="Search..." {...props} />
-    </InputGroup>
-  );
-};
+const Main = props => <Box as="main" mx="auto" mb="3rem" {...props} />;
 
 export default ({ Component, pageProps }) => {
-  let [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <MDXProvider components={MDXComponents}>
-      <ChakraProvider>
-        <Flex>
-          <Navigation
-            isDrawerOpen={isOpen}
-            onDrawerClose={() => setIsOpen(false)}
-          />
-          <Box flex={1} paddingLeft={[0, "260px"]}>
-            <Flex
-              px="16px"
-              zIndex="1"
-              minHeight="60px"
-              bg="white"
-              position="fixed"
-              alignItems="center"
-              borderBottomWidth="1px"
-              justifyContent={["space-between", "flex-end"]}
-              width={["full", "calc(100% - 260px)"]}
-            >
-              <Box display={["block", "none"]}>
-                <Button size="sm" onClick={() => setIsOpen(true)}>
-                  <IoMdMenu />
-                </Button>
-              </Box>
-              <Flex alignItems="center" justifyContent="space-between">
-                <SearchBox />
-                <Box paddingLeft="8px">
-                  <a
-                    href="https://github.com/segunadebayo/chakra"
-                    target="__blank"
-                  >
-                    <Box color="black">
-                      <DiGithubBadge size="2.5rem" />
-                    </Box>
-                  </a>
-                </Box>
-              </Flex>
-            </Flex>
-            <Box
-              as="main"
-              maxWidth="700px"
-              mx="auto"
-              mt="120px"
-              mb="80px"
-              px="16px"
-            >
+    <ChakraProvider>
+      <MDXProvider components={MDXComponents}>
+        <Header />
+        <Box>
+          <SideNav maxWidth="18rem" width="full" />
+          <Box pl="18rem" mt="4rem">
+            <Main maxWidth="42rem" pt={8}>
               <Component {...pageProps} />
-            </Box>
+            </Main>
           </Box>
-        </Flex>
-      </ChakraProvider>
-    </MDXProvider>
+        </Box>
+      </MDXProvider>
+    </ChakraProvider>
   );
 };

@@ -29,7 +29,7 @@ To start using the components, please follow these steps:
 1. Wrap your application in a `ThemeProvider` provded by **chakra-ui**
 
 ```jsx
-import { ThemeProvider, ColorModeProvider } from "fannypack";
+import { ThemeProvider, ColorModeProvider } from "@chakra-ui/core";
 
 const App = () => (
   <ThemeProvider>
@@ -45,7 +45,7 @@ mode.
 2. Now you can start using components like so!:
 
 ```jsx
-import { Button } from "chakra-ui";
+import { Button } from "@chakra-ui/core";
 
 const App = () => <Button>I just consumed some ⚡️Chakra!</Button>;
 ```
@@ -83,7 +83,7 @@ Might Build?
 | ✅      | Popover              |
 | ✅      | Pseudo Box           |
 | ✅      | Radio Group          |
-| ⚠️     | Slider               |
+| ✅      | Slider               |
 | 🛠     | Slider (Multi-Thumb) |
 | ❓      | Table                |
 | ✅      | Tabs                 |

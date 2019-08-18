@@ -15,36 +15,20 @@ import {
 } from "styled-system";
 import extraConfig from "./config";
 
-const wordBreakOptions = {
-  normal: {
-    wordBreak: "normal",
-    overflowWrap: "normal",
-  },
-  words: {
-    wordBreak: "break-word",
-  },
-  all: {
-    wordBreak: "break-all",
-  },
-  truncate: {
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-    whiteSpace: "nowrap",
-  },
-};
-
-const wordBreak = props => {
-  if (Object.keys(wordBreakOptions).includes(props.wordBreak)) {
-    return wordBreakOptions[props.wordBreak];
-  } else {
-    return props.wordBreak;
+const truncate = props => {
+  if (props.isTruncated) {
+    return {
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap",
+    };
   }
 };
 
 const Box = styled("div", {
   shouldForwardProp,
 })(
-  wordBreak,
+  truncate,
   layout,
   color,
   space,

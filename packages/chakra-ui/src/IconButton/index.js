@@ -13,7 +13,7 @@ const IconButton = forwardRef(
 
     return (
       <Button
-        css={{ padding: 0 }}
+        p="0"
         borderRadius={isRound ? "round" : "md"}
         ref={ref}
         aria-label={ariaLabel}
@@ -34,16 +34,7 @@ const IconButton = forwardRef(
   },
 );
 
-IconButton.displayName = "IconButton";
-
-/**
- * You can also pass the other props in [Button](/components/Button)
- * */
 IconButton.propTypes = {
-  /**
-   * The icon to be used. Refer to the [Icons](/components/icons/) section
-   * of the docs for the available icon options.
-   */
   icon: propTypes.oneOfType([
     propTypes.string,
     propTypes.func,
@@ -58,6 +49,7 @@ IconButton.propTypes = {
    */
   "aria-label": propTypes.string.isRequired,
 };
+
 IconButton.defaultProps = Button.defaultProps;
 
 export default IconButton;

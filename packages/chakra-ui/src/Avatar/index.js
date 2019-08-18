@@ -62,8 +62,21 @@ const DefaultAvatar = () => (
   </Box>
 );
 
-const Avatar = ({ size, showBorder, name, badge, src, ...rest }) => {
-  const avatarStyleProps = useAvatarStyle({ name, size, showBorder });
+const Avatar = ({
+  size,
+  showBorder,
+  name,
+  badge,
+  src,
+  borderColor,
+  ...rest
+}) => {
+  const avatarStyleProps = useAvatarStyle({
+    name,
+    size,
+    showBorder,
+    borderColor,
+  });
   const hasLoaded = useHasImageLoaded({ src });
 
   const theme = useTheme();

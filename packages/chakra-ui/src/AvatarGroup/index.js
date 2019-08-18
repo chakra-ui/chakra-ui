@@ -29,7 +29,13 @@ export const MoreAvatarIndicator = ({ size, label, ...props }) => {
   );
 };
 
-const AvatarGroup = ({ size, children, spacing = -3, ...rest }) => {
+const AvatarGroup = ({
+  size,
+  children,
+  borderColor,
+  spacing = -3,
+  ...rest
+}) => {
   let count = Children.count(children);
   const clones = Children.map(children, (child, index) => {
     if (child.type !== Avatar) {
@@ -42,6 +48,7 @@ const AvatarGroup = ({ size, children, spacing = -3, ...rest }) => {
     return cloneElement(child, {
       ml: isFirstAvatar ? 0 : spacing,
       size,
+      borderColor: borderColor || child.props.borderColor,
       showBorder: true,
       css: { zIndex: count - index },
     });
