@@ -31,7 +31,7 @@ export const avatarSizes = {
 
 const useAvatarStyle = ({ size, name, showBorder, borderColor }) => {
   const { colors } = useTheme();
-  const { mode } = useColorMode();
+  const { colorMode } = useColorMode();
 
   const bg = name ? string2Hex(name) : colors.gray[400];
   const color = name ? (isDarkColor(bg) ? "#fff" : "gray.800") : "#fff";
@@ -53,7 +53,7 @@ const useAvatarStyle = ({ size, name, showBorder, borderColor }) => {
     color,
     ...(showBorder && {
       border: "2px",
-      borderColor: borderColor || _borderColor[mode],
+      borderColor: borderColor || _borderColor[colorMode],
     }),
   };
 };

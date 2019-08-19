@@ -5,8 +5,8 @@ import useDarkMode from "use-dark-mode";
 
 // This context handles the color mode (light or dark) of the UI
 export const ColorModeContext = createContext({
-  mode: "light",
-  toggle: () => {},
+  colorMode: "light",
+  toggleColorMode: () => {},
 });
 
 const ColorModeProvider = ({ value: overideValue, children }) => {
@@ -22,12 +22,12 @@ const ColorModeProvider = ({ value: overideValue, children }) => {
     }
   };
 
-  const { value, toggle } = useDarkMode(false);
-  const mode = value ? "dark" : "light";
+  const { value: isDarkMode, toggle } = useDarkMode(false);
+  const colorMode = isDarkMode ? "dark" : "light";
 
   const childContext = overideValue
-    ? { mode: manualMode, toggle: manualToggle }
-    : { mode, toggle };
+    ? { colorMode: manualMode, toggleColorMode: manualToggle }
+    : { colorMode, toggleColorMode: toggle };
 
   return (
     <ColorModeContext.Provider value={childContext}>

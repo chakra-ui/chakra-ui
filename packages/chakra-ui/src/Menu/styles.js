@@ -2,7 +2,7 @@ import { useTheme } from "../ThemeProvider";
 import { useColorMode } from "../ColorModeProvider";
 
 export const useMenuListStyle = () => {
-  const { mode } = useColorMode();
+  const { colorMode } = useColorMode();
   const elevation = {
     light: {
       bg: "#fff",
@@ -17,7 +17,7 @@ export const useMenuListStyle = () => {
 
   return {
     color: "inherit",
-    ...elevation[mode],
+    ...elevation[colorMode],
   };
 };
 
@@ -34,16 +34,16 @@ const baseProps = {
   transition: "background-color 220ms, color 220ms",
 };
 
-const interactionProps = ({ mode }) => {
+const interactionProps = ({ colorMode }) => {
   const _focusColor = { light: "gray.100", dark: "whiteAlpha.100" };
   const _activeColor = { light: "gray.200", dark: "whiteAlpha.200" };
 
   return {
     _active: {
-      bg: _activeColor[mode],
+      bg: _activeColor[colorMode],
     },
     _focus: {
-      bg: _focusColor[mode],
+      bg: _focusColor[colorMode],
     },
     _disabled: {
       opacity: 0.4,
@@ -54,8 +54,8 @@ const interactionProps = ({ mode }) => {
 
 export const useMenuItemStyle = () => {
   const theme = useTheme();
-  const { mode } = useColorMode();
-  const props = { theme, mode };
+  const { colorMode } = useColorMode();
+  const props = { theme, colorMode};
 
   return {
     ...baseProps,

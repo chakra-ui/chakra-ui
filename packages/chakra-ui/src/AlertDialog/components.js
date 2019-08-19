@@ -39,8 +39,8 @@ const AlertDialogOverlay = props => (
 );
 
 const AlertDialogContent = forwardRef((props, ref) => {
-  const { mode } = useColorMode();
-  const styleProps = modalContentStyle({ mode });
+  const { colorMode } = useColorMode();
+  const styleProps = modalContentStyle({ colorMode });
 
   return (
     <Box

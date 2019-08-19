@@ -42,7 +42,7 @@ const ModalOverlay = forwardRef((props, ref) => (
   />
 ));
 
-export const modalContentStyle = ({ mode }) => {
+export const modalContentStyle = ({ colorMode }) => {
   let style = {
     light: {
       bg: "#fff",
@@ -56,13 +56,13 @@ export const modalContentStyle = ({ mode }) => {
     },
   };
 
-  return style[mode];
+  return style[colorMode];
 };
 
 const ModalContent = forwardRef((props, ref) => {
-  const { mode } = useColorMode();
+  const { colorMode } = useColorMode();
   const theme = useTheme();
-  const styleProps = modalContentStyle({ mode, theme });
+  const styleProps = modalContentStyle({ colorMode, theme });
   return (
     <Box
       as={DialogContent}

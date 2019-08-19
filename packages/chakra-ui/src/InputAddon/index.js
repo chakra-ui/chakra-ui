@@ -6,7 +6,7 @@ import useInputStyle from "../Input/styles";
 import { useColorMode } from "../ColorModeProvider";
 
 const InputAddon = ({ placement = "left", size = "md", ...props }) => {
-  const { mode } = useColorMode();
+  const { colorMode } = useColorMode();
   const bg = { dark: "whiteAlpha.300", light: "gray.100" };
   const _placement = {
     left: {
@@ -25,7 +25,7 @@ const InputAddon = ({ placement = "left", size = "md", ...props }) => {
     ...useInputStyle({ size, variant: "outline" }),
     flex: "0 0 auto",
     whiteSpace: "nowrap",
-    bg: bg[mode],
+    bg: bg[colorMode],
     ..._placement[placement],
   };
 

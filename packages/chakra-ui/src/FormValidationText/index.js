@@ -9,7 +9,7 @@ import { forwardRef } from "react";
 
 export const FormValidationText = forwardRef(
   ({ children, icon, ...props }, ref) => {
-    const { mode } = useColorMode();
+    const { colorMode } = useColorMode();
     const formControl = useFormControl(props);
 
     const invalidColor = {
@@ -18,13 +18,13 @@ export const FormValidationText = forwardRef(
     };
     const invalidProps = {
       icon: "warning",
-      color: invalidColor[mode],
+      color: invalidColor[colorMode],
     };
 
     const validColor = { light: "green.500", dark: "green.200" };
     const validProps = {
       icon: "check-circle",
-      color: validColor[mode],
+      color: validColor[colorMode],
     };
 
     const validationProps = formControl.isInvalid ? invalidProps : validProps;

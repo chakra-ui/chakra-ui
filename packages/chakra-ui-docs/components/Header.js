@@ -31,14 +31,14 @@ const SearchBox = props => {
 };
 
 const Header = props => {
-  const { mode, toggle } = useColorMode();
+  const { colorMode, toggleColorMode } = useColorMode();
   const bg = { light: "white", dark: "gray.800" };
   return (
     <Fixed
       as="header"
       top="0"
       zIndex="1"
-      bg={bg[mode]}
+      bg={bg[colorMode]}
       left="0"
       right="0"
       borderBottomWidth="1px"
@@ -64,15 +64,21 @@ const Header = props => {
           color="gray.500"
           justify="flex-end"
         >
-          <Box as={DiGithubBadge} size="7" color="current" />
+          <a
+            href="https://github.com/chakra-ui/chakra-ui/tree/master/packages/chakra-ui"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <Box as={DiGithubBadge} size="7" color="current" />
+          </a>
           <IconButton
-            aria-label={`Switch to ${mode === "light" ? "dark" : "light"} mode`}
+            aria-label={`Switch to ${colorMode === "light" ? "dark" : "light"} mode`}
             variant="ghost"
             color="current"
             ml="2"
             fontSize="20px"
-            onClick={toggle}
-            icon={mode === "light" ? "moon" : "sun"}
+            onClick={toggleColorMode}
+            icon={colorMode === "light" ? "moon" : "sun"}
           />
         </Flex>
       </Flex>

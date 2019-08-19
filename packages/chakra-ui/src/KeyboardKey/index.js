@@ -4,12 +4,12 @@ import Box from "../Box";
 import { useColorMode } from "../ColorModeProvider";
 
 const Keyboard = props => {
-  const { mode } = useColorMode();
+  const { colorMode } = useColorMode();
   const bg = { light: "gray.100", dark: "whiteAlpha.50" };
   return (
     <Box
       as="kbd"
-      bg={bg[mode]}
+      bg={bg[colorMode]}
       rounded="md"
       border="1px"
       borderColor="inherit"

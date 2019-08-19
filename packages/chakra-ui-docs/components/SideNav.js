@@ -1,12 +1,6 @@
 import { Box, Heading } from "@chakra-ui/core";
 import React from "react";
 import components from "./components";
-import {
-  BookIcon,
-  DownloadIcon,
-  ResponsiveIcon,
-  ThemeIcon,
-} from "./custom-icons";
 import { ComponentLink, stringToUrl, TopNavLink } from "./NavLink";
 
 // export default function Navigation({ isDrawerOpen, onDrawerClose }) {
@@ -27,26 +21,11 @@ import { ComponentLink, stringToUrl, TopNavLink } from "./NavLink";
 // }
 
 const topNavLinks = [
-  {
-    label: "Motivation",
-    icon: <BookIcon />,
-    href: "/motivation",
-  },
-  {
-    label: "Installation",
-    icon: <DownloadIcon />,
-    href: "/installation",
-  },
-  {
-    label: "Responsive Design",
-    icon: <ResponsiveIcon />,
-    href: "/responsive-design",
-  },
-  {
-    label: "Theming",
-    icon: <ThemeIcon />,
-    href: "/theme",
-  },
+  "Getting Started",
+  "Principles",
+  "Color Mode",
+  "Responsive Styles",
+  "Theming",
 ];
 
 const NavGroupHeading = props => (
@@ -86,8 +65,8 @@ const SideNav = props => {
         >
           <Box mb="8">
             {topNavLinks.map(link => (
-              <TopNavLink key={link.label} href={link.href} icon={link.icon}>
-                {link.label}
+              <TopNavLink key={link} href={stringToUrl(link)}>
+                {link}
               </TopNavLink>
             ))}
           </Box>

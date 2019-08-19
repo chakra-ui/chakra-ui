@@ -32,7 +32,7 @@ const themedProps = {
   },
 };
 
-const styleProps = ({ mode }) => ({
+const styleProps = ({ colorMode }) => ({
   borderLeft: "1px",
   _firstChild: {
     roundedTopRight: 1,
@@ -41,24 +41,28 @@ const styleProps = ({ mode }) => ({
     opacity: 0.4,
     cursor: "not-allowed",
   },
-  ...themedProps[mode],
+  ...themedProps[colorMode],
 });
 
-const Segment = ({ isDisabled, mode, ...props }) => (
-  <PseudoBox
-    display="flex"
-    justifyContent="center"
-    alignItems="center"
-    flex="1"
-    cursor="pointer"
-    transition="all 0.3s"
-    role="button"
-    tabindex="-1"
-    aria-disabled={isDisabled}
-    {...styleProps({ mode })}
-    {...props}
-  />
-);
+const SpinButton = ({ isDisabled, ...props }) => {
+  const { colorMode } = useColorMode();
+
+  return (
+    <PseudoBox
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      flex="1"
+      cursor="pointer"
+      transition="all 0.3s"
+      role="button"
+      tabindex="-1"
+      aria-disabled={isDisabled}
+      {...styleProps({ colorMode })}
+      {...props}
+    />
+  );
+};
 
 const NumberInput = forwardRef(
   (
@@ -76,7 +80,6 @@ const NumberInput = forwardRef(
     },
     ref,
   ) => {
-    const { mode } = useColorMode();
     const [val, setVal] = useState(defaultValue || 0);
 
     const { current: isControlled } = useRef(valueProp != null);
@@ -145,18 +148,12 @@ const NumberInput = forwardRef(
           right="0px"
           height="calc(100% - 2px)"
         >
-          <Segment
-            onClick={isDisabled ? undefined : handleIncrement}
-            mode={mode}
-          >
-            <Icon name="chevron-up" size={iconSize} color="currentColor" />
-          </Segment>
-          <Segment
-            onClick={isDisabled ? undefined : handleDecrement}
-            mode={mode}
-          >
-            <Icon name="chevron-down" size={iconSize} color="currentColor" />
-          </Segment>
+          <SpinButton onClick={isDisabled ? undefined : handleIncrement}>
+            <Icon name="chevron-up" size={iconSize} />
+          </SpinButton>
+          <SpinButton onClick={isDisabled ? undefined : handleDecrement}>
+            <Icon name="chevron-down" size={iconSize} />
+          </SpinButton>
         </Flex>
       </Flex>
     );

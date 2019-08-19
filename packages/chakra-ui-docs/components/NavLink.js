@@ -26,6 +26,8 @@ export const stringToUrl = (str, path = "/") => {
 };
 
 export const SideNavLink = forwardRef(({ children, icon, ...props }, ref) => {
+  const { colorMode } = useColorMode();
+  const color = { light: "gray.600", dark: "whiteAlpha.700" };
   return (
     <PseudoBox
       ref={ref}
@@ -38,8 +40,7 @@ export const SideNavLink = forwardRef(({ children, icon, ...props }, ref) => {
       py="1"
       transition="all 0.2s"
       fontWeight="medium"
-      color="gray.500"
-      _hover={{ color: "inherit" }}
+      color={color[colorMode]}
       _notFirstChild={{ mt: 1 }}
       {...props}
     >
@@ -55,7 +56,9 @@ export const TopNavLink = forwardRef(({ href, ...props }, ref) => {
       {isActive => (
         <SideNavLink
           ref={ref}
-          {...(isActive && { color: "inherit" })}
+          aria-current={isActive ? "page" : undefined}
+          _hover={{ color: !isActive ? "inherit" : null }}
+          {...(isActive && { color: "teal.500" })}
           {...props}
         />
       )}
@@ -64,7 +67,7 @@ export const TopNavLink = forwardRef(({ href, ...props }, ref) => {
 });
 
 export const ComponentLink = forwardRef(({ href, ...props }, ref) => {
-  const { mode } = useColorMode();
+  const { colorMode } = useColorMode();
   const hoverColor = { light: "gray.900", dark: "whiteAlpha.900" };
 
   return (
@@ -72,7 +75,11 @@ export const ComponentLink = forwardRef(({ href, ...props }, ref) => {
       {isActive => (
         <SideNavLink
           ref={ref}
-          _hover={{ color: hoverColor[mode], transform: "translateX(2px)" }}
+          aria-current={isActive ? "page" : undefined}
+          _hover={{
+            color: hoverColor[colorMode],
+            transform: "translateX(2px)",
+          }}
           {...(isActive && {
             bg: "teal.50",
             rounded: "sm",

@@ -94,26 +94,26 @@ const stripeStyle = {
 };
 
 const useAlertStyle = props => {
-  const { mode } = useColorMode();
+  const { colorMode } = useColorMode();
   const theme = useTheme();
   const _props = { ...props, theme };
 
   return {
     ...baseProps,
-    ...statusStyleProps(_props)[mode],
-    ...(props.hasStripe && { css: stripeStyle[mode] }),
+    ...statusStyleProps(_props)[colorMode],
+    ...(props.hasStripe && { css: stripeStyle[colorMode] }),
   };
 };
 
 export const useIconStyle = ({ variant, color }) => {
-  const { mode } = useColorMode();
+  const { colorMode } = useColorMode();
   if (["left-accent", "top-accent", "subtle"].includes(variant)) {
     let result = {
       light: { color: `${color}.500` },
       dark: { color: `${color}.200` },
     };
 
-    return result[mode];
+    return result[colorMode];
   }
 };
 

@@ -145,7 +145,7 @@ const CircularProgress = forwardRef((props, ref) => {
     color = "blue",
     ...rest
   } = props;
-  const { mode } = useColorMode();
+  const { colorMode } = useColorMode();
   const _trackColor = { light: `${trackColor}.100`, dark: "whiteAlpha.300" };
   const _color = { light: `${color}.500`, dark: `${color}.200` };
 
@@ -163,8 +163,8 @@ const CircularProgress = forwardRef((props, ref) => {
     thickness,
     capIsRound,
     isIndeterminate,
-    color: _color[mode],
-    trackColor: _trackColor[mode],
+    color: _color[colorMode],
+    trackColor: _trackColor[colorMode],
   });
 
   return (

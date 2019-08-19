@@ -60,7 +60,7 @@ stories.add("styling expanded state", () => (
 ));
 
 stories.add("using render prop with icon", () => (
-  <Accordion maxWidth="sm" mx="auto" mt={5} bg="gray.50">
+  <Accordion maxWidth="sm" mx="auto" mt={5} bg="blackAlpha.50">
     <AccordionHeader
       px={4}
       py={2}

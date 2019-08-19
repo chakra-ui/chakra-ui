@@ -59,10 +59,10 @@ const Popover = ({
     }
   };
 
-  const { mode } = useColorMode();
+  const { colorMode } = useColorMode();
 
-  const _bgColor = mode === "light" ? "white" : "gray.700";
-  const _color = mode === "light" ? "gray.900" : "whiteAlpha.900";
+  const _bgColor = colorMode === "light" ? "white" : "gray.700";
+  const _color = colorMode === "light" ? "gray.900" : "whiteAlpha.900";
 
   const bg = rest.bg || rest.background || rest.backgroundColor || _bgColor;
   const color = rest.color || _color;

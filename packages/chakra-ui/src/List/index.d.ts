@@ -5,7 +5,7 @@ interface IList {
   /**
    * If `true` the list is displayed inline.
    */
-  inline?: boolean;
+  isLine?: boolean;
   /**
    * If `true` the list is displayed in order.
    */

@@ -23,7 +23,7 @@ const grayGhostStyle = {
   },
 };
 
-const ghostVariantProps = ({ color, mode, theme }) => {
+const ghostVariantProps = ({ color, colorMode, theme }) => {
   const _color = theme.colors[color] && theme.colors[color][200];
   let result;
   if (color === "gray") {
@@ -53,18 +53,18 @@ const ghostVariantProps = ({ color, mode, theme }) => {
     };
   }
 
-  return result[mode];
+  return result[colorMode];
 };
 
 ////////////////////////////////////////////////////////////
 
 const outlineVariantProps = props => {
-  const { color, mode } = props;
+  const { color, colorMode} = props;
   const borderColor = { light: "gray.200", dark: "whiteAlpha.300" };
 
   return {
     border: "1px",
-    borderColor: color === "gray" ? borderColor[mode] : "current",
+    borderColor: color === "gray" ? borderColor[colorMode] : "current",
     ...ghostVariantProps(props),
   };
 };
@@ -92,7 +92,7 @@ const graySolidStyle = {
   },
 };
 
-const solidVariantProps = ({ color, mode }) => {
+const solidVariantProps = ({ color, colorMode}) => {
   let style = {
     light: {
       bg: `${color}.500`,
@@ -120,24 +120,24 @@ const solidVariantProps = ({ color, mode }) => {
     style = graySolidStyle;
   }
 
-  return style[mode];
+  return style[colorMode];
 };
 
 ////////////////////////////////////////////////////////////
 
-const linkVariantProps = ({ color, mode }) => {
+const linkVariantProps = ({ color, colorMode}) => {
   const _color = { light: `${color}.500`, dark: `${color}.200` };
   const _activeColor = { light: `${color}.700`, dark: `${color}.500` };
   return {
     p: 0,
     height: "auto",
     lineHeight: "normal",
-    color: _color[mode],
+    color: _color[colorMode],
     _hover: {
       textDecoration: "underline",
     },
     _active: {
-      color: _activeColor[mode],
+      color: _activeColor[colorMode],
     },
   };
 };
@@ -242,10 +242,10 @@ const baseProps = {
 ////////////////////////////////////////////////////////////
 
 const useButtonStyle = props => {
-  const { mode } = useColorMode();
+  const { colorMode } = useColorMode();
   const theme = useTheme();
 
-  const _props = { ...props, mode, theme };
+  const _props = { ...props, colorMode, theme };
   return {
     ...baseProps,
     ...sizeProps(_props),

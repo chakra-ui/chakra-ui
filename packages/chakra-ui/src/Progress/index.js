@@ -60,7 +60,7 @@ const Progress = ({
   ...rest
 }) => {
   const _borderRadius = rounded || borderRadius;
-  const { mode } = useColorMode();
+  const { colorMode } = useColorMode();
 
   const trackColor = { light: "gray.100", dark: "whiteAlpha.300" };
   const indicatorColor = { light: `${color}.500`, dark: `${color}.200` };
@@ -75,7 +75,7 @@ const Progress = ({
   return (
     <ProgressTrack
       size={size}
-      bg={trackColor[mode]}
+      bg={trackColor[colorMode]}
       borderRadius={_borderRadius}
       {...rest}
     >
@@ -83,10 +83,10 @@ const Progress = ({
         min={min}
         max={max}
         value={value}
-        bg={indicatorColor[mode]}
+        bg={indicatorColor[colorMode]}
         borderRadius={_borderRadius}
         css={[
-          hasStripe && stripeStyle[mode],
+          hasStripe && stripeStyle[colorMode],
           hasStripe && isAnimated && stripeAnimation,
         ]}
       />

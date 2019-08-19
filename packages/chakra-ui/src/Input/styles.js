@@ -4,7 +4,7 @@ import { useColorMode } from "../ColorModeProvider";
 const outlinedStyle = ({
   _focusBorderColor = "blue",
   theme: { colors },
-  mode,
+  colorMode,
 }) => {
   const bg = { light: "white", dark: "whiteAlpha.100" };
   const borderColor = { light: "inherit", dark: "whiteAlpha.50" };
@@ -18,10 +18,10 @@ const outlinedStyle = ({
   return {
     ...readOnly,
     border: "1px",
-    borderColor: borderColor[mode],
-    bg: bg[mode],
+    borderColor: borderColor[colorMode],
+    bg: bg[colorMode],
     _hover: {
-      borderColor: hoverColor[mode],
+      borderColor: hoverColor[colorMode],
     },
     _disabled: {
       opacity: "0.4",
@@ -32,8 +32,8 @@ const outlinedStyle = ({
       boxShadow: `0 0 0 1px ${boxShadow}`,
     },
     _invalid: {
-      borderColor: invalidColor[mode],
-      boxShadow: `0 0 0 1px ${invalidBoxShadow[mode]}`,
+      borderColor: invalidColor[colorMode],
+      boxShadow: `0 0 0 1px ${invalidBoxShadow[colorMode]}`,
     },
   };
 };
@@ -46,7 +46,7 @@ const readOnly = {
   },
 };
 
-const filledStyle = ({ _focusBorderColor, mode }) => {
+const filledStyle = ({ _focusBorderColor, colorMode}) => {
   const bg = { light: "gray.100", dark: "whiteAlpha.50" };
   const hoverColor = { light: "gray.200", dark: "whiteAlpha.100" };
   const invalidColor = { light: "red.500", dark: "red.300" };
@@ -59,9 +59,9 @@ const filledStyle = ({ _focusBorderColor, mode }) => {
     ...readOnly,
     border: "2px",
     borderColor: "transparent",
-    bg: bg[mode],
+    bg: bg[colorMode],
     _hover: {
-      bg: hoverColor[mode],
+      bg: hoverColor[colorMode],
     },
     _disabled: {
       opacity: "0.4",
@@ -69,15 +69,15 @@ const filledStyle = ({ _focusBorderColor, mode }) => {
     },
     _focus: {
       bg: "transparent",
-      borderColor: focusColor[mode],
+      borderColor: focusColor[colorMode],
     },
     _invalid: {
-      borderColor: invalidColor[mode],
+      borderColor: invalidColor[colorMode],
     },
   };
 };
 
-const flushedStyle = ({ mode }) => {
+const flushedStyle = ({ colorMode }) => {
   const focusColor = { light: "blue.500", dark: "blue.300" };
   const errorColor = { light: "red.500", dark: "red.300" };
 
@@ -89,10 +89,10 @@ const flushedStyle = ({ mode }) => {
     px: undefined,
     bg: "transparent",
     _focus: {
-      borderColor: focusColor[mode],
+      borderColor: focusColor[colorMode],
     },
     _invalid: {
-      borderColor: errorColor[mode],
+      borderColor: errorColor[colorMode],
     },
   };
 };
@@ -153,9 +153,9 @@ const sizeProps = props => inputSizes[props.size];
 
 const useInputStyle = props => {
   const theme = useTheme();
-  const { mode } = useColorMode();
+  const { colorMode } = useColorMode();
 
-  const _props = { ...props, theme, mode };
+  const _props = { ...props, theme, colorMode};
 
   return {
     width: props.isFullWidth ? "100%" : undefined,

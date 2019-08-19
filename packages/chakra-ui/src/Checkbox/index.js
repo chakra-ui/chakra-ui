@@ -36,8 +36,8 @@ const Checkbox = forwardRef(
     },
     ref,
   ) => {
-    const { mode } = useColorMode();
-    const styleProps = checkboxStyles({ color, size, mode });
+    const { colorMode } = useColorMode();
+    const styleProps = checkboxStyles({ color, size, colorMode});
 
     return (
       <Flex

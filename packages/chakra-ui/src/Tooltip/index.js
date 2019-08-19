@@ -54,9 +54,9 @@ const Tooltip = ({
 
   const _isOpen = isControlled ? controlledIsOpen : isOpen;
 
-  const { mode } = useColorMode();
-  const _bg = mode === "dark" ? "gray.300" : "gray.700";
-  const _color = mode === "dark" ? "gray.900" : "whiteAlpha.900";
+  const { colorMode } = useColorMode();
+  const _bg = colorMode === "dark" ? "gray.300" : "gray.700";
+  const _color = colorMode === "dark" ? "gray.900" : "whiteAlpha.900";
 
   const bgColor = bg || _bg;
   const textColor = color || _color;

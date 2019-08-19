@@ -32,8 +32,8 @@ const Radio = forwardRef(
     },
     ref,
   ) => {
-    const { mode } = useColorMode();
-    const styleProps = useCheckboxStyle({ color, size, mode, type: "radio" });
+    const { colorMode } = useColorMode();
+    const styleProps = useCheckboxStyle({ color, size, colorMode, type: "radio" });
 
     return (
       <Flex

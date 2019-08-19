@@ -1,0 +1,99 @@
+# Color Mode
+
+Color modes can be used to create a user-configurable _dark mode_ or any number
+of other color modes.
+
+## Setting the color mode
+
+Use the `useColorMode` hook in your application to change the color mode. This
+value will be stored in `localStorage` and used whenever the page is loaded.
+
+```jsx
+// import React from "react";
+// import { useColorMode } from "chakra-ui";
+
+function Example() {
+  const { colorMode, toggleColorMode } = useColorMode();
+  return (
+    <header>
+      <button onClick={toggleColorMode}>
+        Toggle {colorMode === "light" ? "Dark" : "Light"}
+      </button>
+    </header>
+  );
+}
+```
+
+## Applying colors
+
+The previous steps will enable a color mode state and pass it through context.
+To apply the color mode values to the `<body>` element, render the
+`ColorModeProvider` component in your application.
+
+```js
+import React from "react";
+import { ThemeProvider, ColorModeProvider } from "chakra-ui";
+import theme from "./theme";
+
+export default props => (
+  <ThemeProvider theme={theme}>
+    <ColorModeProvider>{props.children}</ColorModeProvider>
+  </ThemeProvider>
+);
+```
+
+## Styling dark mode
+
+To style dark mode in your components, use the `useColorMode` hook to change the
+styles of your component.
+
+```jsx
+// Use the "Toggle Dark" button in the previous example
+// to see dark mode in action here.
+
+function Example() {
+  const { colorMode } = useColorMode();
+  const bgColor = { light: "red.500", dark: "red.200" };
+  const color = { light: "white", dark: "gray.800" };
+
+  return (
+    <Box bg={bgColor[colorMode]} color={color[colorMode]}>
+      This is a text
+    </Box>
+  );
+}
+```
+
+## Forcing a specific mode
+
+In some occasions, you might want Chakra components to look the same in both
+light and dark modes. To achieve this, wrap the component in `LightMode` or
+`DarkMode` component.
+
+Doing this will override the global `colorMode`.
+
+```jsx
+function Example() {
+  const { colorMode, toggleColorMode } = useColorMode();
+
+  return (
+    <List isInline>
+      <LightMode>
+        <Button size="sm" variantColor="blue">
+          Light Mode Always
+        </Button>
+      </LightMode>
+
+      <DarkMode>
+        <Button size="sm" variantColor="blue">
+          Dark Mode Always
+        </Button>
+      </DarkMode>
+
+      <Button size="sm" variantColor="blue" onClick={toggleColorMode}>
+        Toggle Mode
+      </Button>
+    </List>
+  );
+}
+```

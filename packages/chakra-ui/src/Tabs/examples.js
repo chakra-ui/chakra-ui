@@ -11,7 +11,7 @@ import Tabs, { Tab, TabList, TabPanel, TabPanels } from ".";
 const stories = storiesOf("Tabs", module).addDecorator(withKnobs);
 
 stories.addDecorator(story => (
-  <Box maxWidth="lg" mx="auto" mt={4}>
+  <Box maxWidth="xl" mx="auto" mt={4}>
     {story()}
   </Box>
 ));

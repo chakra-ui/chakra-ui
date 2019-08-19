@@ -6,13 +6,13 @@ import { useFormControl } from "../FormControl";
 import { useColorMode } from "../ColorModeProvider";
 
 export const RequiredIndicator = props => {
-  const { mode } = useColorMode();
+  const { colorMode } = useColorMode();
   const color = { light: "red.500", dark: "red.300" };
   return (
     <Box
       as="span"
       ml={1}
-      color={color[mode]}
+      color={color[colorMode]}
       aria-hidden="true"
       children="*"
       {...props}

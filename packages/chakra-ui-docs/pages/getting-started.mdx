@@ -1,41 +1,78 @@
 # Getting Started
 
-## Adding Chakra to an existing app
-
-You can install Chakra UI via npm or yarn. It relies on `emotion` and
-`emotion-theming` (as well as React) being available in whatever project you are
-working on.
+Install Chakra UI and its peer dependencies.
 
 ```bash
-  # Using npm
   npm install @chakra-ui/core @emotion/core @emotion/styled emotion-theming
-
-
+  # or
   yarn add @chakra-ui/core @emotion/core @emotion/styled emotion-theming
 ```
 
-## Configuring the theme
+Create a theme object to include custom color, typography, and layout values.
+Chakra UI comes with a default theme, so this step is optional.
 
-At the root of your application, you should tell your app which theme to use. In
-most cases, you will want to use the default theme.
+```js
+// example theme.js
+export default {
+  breakpoints: ["30em", "48em", "62em", "80em"],
+  fonts: {
+    heading: '"Avenir Next", sans-serif',
+    body: "system-ui, sans-serif",
+    mono: "Menlo, monospace",
+  },
+  fontSizes: {
+    xs: "0.75rem",
+    sm: "0.875rem",
+    md: "1rem",
+    lg: "1.125rem",
+    xl: "1.25rem",
+    "2xl": "1.5rem",
+    "3xl": "1.875rem",
+    "4xl": "2.25rem",
+    "5xl": "3rem",
+    "6xl": "4rem",
+  },
+};
+```
+
+You can also extend the theme to add your custom colors, fonts, etc.
+
+```js
+import { theme } from "chakra-ui";
+
+// Let's say you want to add custom colors
+const customTheme = {
+  ...theme,
+  colors: {
+    ...theme.colors,
+    brand: {
+      900: "#1a365d",
+      800: "#153e75",
+      700: "#2a69ac",
+    },
+  },
+};
+```
+
+Add the theme to your application with the `ThemeProvider`, passing in the theme
+object as a prop.
 
 ```jsxCodeOnly
-import { Button, theme, ChakraProvider } from "@chakra-ui/core";
+import React from 'react'
+import { ThemeProvider } from 'chakra-ui'
 
-const App = () => (
-  <ChakraProvider theme={theme}>
-    <Button color="green">Click me</Button>
-  </ChakraProvider>
-);
+export default props => (
+  <ThemeProvider theme={customTheme}>{props.children}</ThemeProvider>
+)
 ```
 
 ## Using components
 
-Simply import components by name from the @chakra-ui/core package, as
-demonstrated above.
+Simply import components by name from the chakra-ui package, as demonstrated
+above.
 
-```bash
-import {Button} from "@chakra-ui/core"
+```js
+import { Button } from "chakra-ui";
 ```
 
 ## Injecting global styles

@@ -7,21 +7,27 @@ import SideNav from "../components/SideNav";
 
 const Main = props => <Box as="main" mx="auto" mb="3rem" {...props} />;
 
+const DocsLayout = ({ children }) => (
+  <Box>
+    <Header />
+    <SideNav display={["none", null, "block"]} maxWidth="18rem" width="full" />
+    <Box pl={[0, null, "18rem"]} mt="4rem">
+      <Main maxWidth="46rem" pt={8} px={5}>
+        {children}
+      </Main>
+    </Box>
+  </Box>
+);
+
 export default ({ Component, pageProps }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <ChakraProvider>
       <MDXProvider components={MDXComponents}>
-        <Header />
-        <Box>
-          <SideNav maxWidth="18rem" width="full" />
-          <Box pl="18rem" mt="4rem">
-            <Main maxWidth="42rem" pt={8}>
-              <Component {...pageProps} />
-            </Main>
-          </Box>
-        </Box>
+        <DocsLayout>
+          <Component {...pageProps} />
+        </DocsLayout>
       </MDXProvider>
     </ChakraProvider>
   );

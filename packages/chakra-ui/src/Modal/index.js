@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { useColorMode } from "../ColorModeProvider";
 import { ModalTransition, ModalOverlay, ModalContent } from "./components";
 
 const Modal = ({
@@ -12,7 +11,6 @@ const Modal = ({
   initialFocusRef,
   ...rest
 }) => {
-  const { mode } = useColorMode();
   const centeredStyle = {
     display: "flex",
     alignItems: "center",
@@ -33,7 +31,6 @@ const Modal = ({
           onDismiss={onClose}
         >
           <ModalContent
-            mode={mode}
             css={({ sizes, radii }) => ({
               ...(!isCentered && { top: 40, margin: "0 auto" }),
               maxWidth: sizes[size],

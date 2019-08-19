@@ -9,8 +9,8 @@ import Absolute from "../Absolute";
 
 const Select = forwardRef(
   ({ children, placeholder, wrapperProps, ...rest }, ref) => {
-    const { mode } = useColorMode();
-    const themedColor = mode === "dark" ? "whiteAlpha.800" : "inherit";
+    const { colorMode } = useColorMode();
+    const themedColor = colorMode === "dark" ? "whiteAlpha.800" : "inherit";
     const opacity = rest.isReadOnly || rest.isDisabled ? 0.5 : 1;
 
     return (

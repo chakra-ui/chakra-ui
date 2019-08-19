@@ -3,26 +3,27 @@ import colors from "./colors";
 import sizes from "./sizes";
 import typography from "./typography";
 
-const space = [
-  "0",
-  "0.25rem",
-  "0.5rem",
-  "0.75rem",
-  "1rem",
-  "1.25rem",
-  "1.5rem",
-  "2rem",
-  "2.5rem",
-  "3rem",
-  "4rem",
-  "5rem",
-  "6rem",
-  "8rem",
-  "10rem",
-  "12rem",
-  "14rem",
-  "16rem",
-];
+const space = {
+  px: "1px",
+  "0": "0",
+  "1": "0.25rem",
+  "2": "0.5rem",
+  "3": "0.75rem",
+  "4": "1rem",
+  "5": "1.25rem",
+  "6": "1.5rem",
+  "7": "2rem",
+  "8": "2.5rem",
+  "9": "3rem",
+  "10": "4rem",
+  "11": "5rem",
+  "12": "6rem",
+  "13": "8rem",
+  "14": "10rem",
+  "15": "12rem",
+  "16": "14rem",
+  "17": "16rem",
+};
 
 const shadows = {
   sm: "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
@@ -46,14 +47,14 @@ const zIndices = {
   hide: -1,
   auto: "auto",
   "0": 0,
-  "1": 10,
-  "2": 20,
-  "3": 30,
-  "4": 40,
-  "5": 50,
-  "6": 60,
-  "7": 70,
-  "8": 80,
+  "10": 10,
+  "20": 20,
+  "30": 30,
+  "40": 40,
+  "50": 50,
+  "60": 60,
+  "70": 70,
+  "80": 80,
 };
 
 const radii = {

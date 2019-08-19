@@ -9,7 +9,7 @@ import Absolute from "../Absolute";
 import Box from "../Box";
 
 export const AvatarBadge = props => {
-  const { mode } = useColorMode();
+  const { colorMode } = useColorMode();
   const borderColor = { light: "white", dark: "gray.800" };
 
   return (
@@ -21,7 +21,7 @@ export const AvatarBadge = props => {
       bottom="0"
       right="0"
       border="0.2em solid"
-      borderColor={borderColor[mode]}
+      borderColor={borderColor[colorMode]}
       rounded="full"
       {...props}
     />

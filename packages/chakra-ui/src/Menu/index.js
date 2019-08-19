@@ -30,7 +30,7 @@ const Menu = ({
   closeOnSelect = true,
   placement,
 }) => {
-  const { mode } = useColorMode();
+  const { colorMode } = useColorMode();
 
   const [state, setState] = useState({
     isOpen: isOpen || false,
@@ -128,7 +128,7 @@ const Menu = ({
     closeOnSelect,
     closeOnBlur,
     placement,
-    mode,
+    colorMode,
   };
 
   return (

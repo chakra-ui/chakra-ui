@@ -85,7 +85,7 @@ const DrawerOverlay = ({ hideOverlay, ...rest }) => (
 );
 
 const DrawerCloseButton = ({ onClick, ...rest }) => {
-  const { mode } = useColorMode();
+  const { colorMode } = useColorMode();
   const hoverColor = { light: "blackAlpha.100", dark: "whiteAlpha.100" };
   const activeColor = { light: "blackAlpha.200", dark: "whiteAlpha.200" };
 
@@ -96,8 +96,8 @@ const DrawerCloseButton = ({ onClick, ...rest }) => {
       zIndex="1"
       top="8px"
       right="12px"
-      _hover={{ bg: hoverColor[mode] }}
-      _active={{ bg: activeColor[mode] }}
+      _hover={{ bg: hoverColor[colorMode] }}
+      _active={{ bg: activeColor[colorMode] }}
       {...rest}
     />
   );

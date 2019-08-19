@@ -19,7 +19,7 @@ const unstyledProps = {
   color: "inherit",
 };
 
-const underlineProps = ({ variantColor: color, mode }) => {
+const underlineProps = ({ variantColor: color, colorMode}) => {
   return {
     color: color ? `${color}.500` : "inherit",
     borderBottom: "1px",
@@ -30,7 +30,7 @@ const underlineProps = ({ variantColor: color, mode }) => {
   };
 };
 
-const bgUnderlineProps = ({ variantColor: color, mode }) => {
+const bgUnderlineProps = ({ variantColor: color, colorMode}) => {
   return {
     bg: color ? `${color}.50` : "gray.100",
     borderBottom: "1px",
@@ -42,10 +42,10 @@ const bgUnderlineProps = ({ variantColor: color, mode }) => {
   };
 };
 
-const basicProps = ({ variantColor: color, mode }) => {
+const basicProps = ({ variantColor: color, colorMode}) => {
   const _color = { light: `${color}.600`, dark: `${color}.200` };
   return {
-    color: color ? _color[mode] : "inherit",
+    color: color ? _color[colorMode] : "inherit",
     _hover: {
       textDecoration: "underline",
     },
@@ -72,11 +72,11 @@ const variantProps = props => {
 
 const useLinkStyle = props => {
   const theme = useTheme();
-  const { mode } = useColorMode();
+  const { colorMode } = useColorMode();
 
   return {
     ...baseProps,
-    ...variantProps({ theme, mode, ...props }),
+    ...variantProps({ theme, colorMode, ...props }),
   };
 };
 

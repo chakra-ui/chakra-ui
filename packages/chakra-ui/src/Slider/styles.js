@@ -32,11 +32,11 @@ const thumbStyle = ({ thumbSize, trackPercent, theme }) => {
   };
 };
 
-const filledTrackStyle = ({ trackHeight, trackPercent, color, mode }) => {
+const filledTrackStyle = ({ trackHeight, trackPercent, color, colorMode}) => {
   return {
     ...centeredProps,
     height: trackHeight,
-    bg: mode === "light" ? `${color}.500` : `${color}.200`,
+    bg: colorMode === "light" ? `${color}.500` : `${color}.200`,
     width: `${trackPercent}%`,
     rounded: "sm",
   }
@@ -57,12 +57,12 @@ const themedTrackStyle = {
   },
 };
 
-const trackStyle = ({ trackHeight, theme, mode }) => ({
+const trackStyle = ({ trackHeight, theme, colorMode}) => ({
   height: trackHeight,
   borderRadius: "sm",
   width: "100%",
   ...centeredProps,
-  ...themedTrackStyle[mode],
+  ...themedTrackStyle[colorMode],
 });
 
 const rootStyle = {
@@ -94,7 +94,7 @@ const sizes = {
 
 const useSliderStyle = props => {
   const theme = useTheme();
-  const { mode } = useColorMode();
+  const { colorMode } = useColorMode();
 
   const { trackPercent, size, color } = props;
   const { trackHeight, thumb: thumbSize } = sizes[size];
@@ -105,7 +105,7 @@ const useSliderStyle = props => {
     theme,
     trackPercent,
     color,
-    mode,
+    colorMode,
   };
   return {
     rootStyle,

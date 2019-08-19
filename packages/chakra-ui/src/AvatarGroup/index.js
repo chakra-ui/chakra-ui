@@ -10,17 +10,17 @@ export const MoreAvatarIndicator = ({ size, label, ...props }) => {
   const borderColor = { light: "#fff", dark: "gray.800" };
   const bg = { light: "gray.200", dark: "whiteAlpha.400" };
 
-  const { mode } = useColorMode();
+  const { colorMode } = useColorMode();
 
   return (
     <Flex
-      bg={bg[mode]}
+      bg={bg[colorMode]}
       color="inherit"
       rounded="full"
       alignItems="center"
       justifyContent="center"
       border="2px"
-      borderColor={borderColor[mode]}
+      borderColor={borderColor[colorMode]}
       size={avatarSizes[size]}
       {...props}
     >

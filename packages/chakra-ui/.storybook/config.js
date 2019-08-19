@@ -16,7 +16,7 @@ function loadStories() {
 }
 
 const AppProvider = ({ children }) => {
-  const { mode, toggle } = useColorMode();
+  const { colorMode, toggleColorMode } = useColorMode();
   return (
     <ThemeProvider>
       <CSSReset />
@@ -24,10 +24,10 @@ const AppProvider = ({ children }) => {
       <Fixed bottom="24px" right="24px" zIndex={2}>
         <Button
           variant="outline"
-          onClick={toggle}
-          leftIcon={mode === "dark" ? "sun" : "moon"}
+          onClick={toggleColorMode}
+          leftIcon={colorMode === "dark" ? "sun" : "moon"}
         >
-          {mode === "dark" ? "Light" : "Dark"}
+          {colorMode === "dark" ? "Light" : "Dark"}
         </Button>
       </Fixed>
     </ThemeProvider>

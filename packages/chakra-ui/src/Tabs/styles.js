@@ -23,7 +23,7 @@ export const disabledProps = {
   },
 };
 
-const lineStyle = ({ color, mode }) => {
+const lineStyle = ({ color, colorMode}) => {
   const _color = { light: `${color}.600`, dark: `${color}.300` };
   return {
     tabList: {
@@ -35,7 +35,7 @@ const lineStyle = ({ color, mode }) => {
       borderColor: "transparent",
       mb: "-2px",
       _selected: {
-        color: _color[mode],
+        color: _color[colorMode],
         borderColor: "currentColor",
       },
       _active: {
@@ -50,7 +50,7 @@ const lineStyle = ({ color, mode }) => {
 };
 
 // TODO: Create new issue in @styled-system/css to allow custom alias
-const enclosedStyle = ({ color, mode, theme }) => {
+const enclosedStyle = ({ color, colorMode, theme }) => {
   const _selectedColor = { light: `${color}.600`, dark: `${color}.300` };
   const _selectedBg = { light: "#fff", dark: theme.colors.gray[800] };
 
@@ -61,9 +61,9 @@ const enclosedStyle = ({ color, mode, theme }) => {
       borderColor: "transparent",
       mb: "-1px",
       _selected: {
-        color: _selectedColor[mode],
+        color: _selectedColor[colorMode],
         borderColor: "inherit",
-        borderBottomColor: _selectedBg[mode],
+        borderBottomColor: _selectedBg[colorMode],
       },
     },
     tabList: {
@@ -74,7 +74,7 @@ const enclosedStyle = ({ color, mode, theme }) => {
   };
 };
 
-const enclosedColoredStyle = ({ color, mode }) => {
+const enclosedColoredStyle = ({ color, colorMode}) => {
   const bg = { light: "gray.50", dark: "whiteAlpha.50" };
   const _selectedColor = { light: `${color}.600`, dark: `${color}.300` };
   const _selectedBg = { light: `#fff`, dark: `gray.800` };
@@ -83,14 +83,14 @@ const enclosedColoredStyle = ({ color, mode }) => {
     tab: {
       border: "1px",
       borderColor: "inherit",
-      bg: bg[mode],
+      bg: bg[colorMode],
       mb: "-1px",
       _notLastChild: {
         mr: "-1px",
       },
       _selected: {
-        bg: _selectedBg[mode],
-        color: _selectedColor[mode],
+        bg: _selectedBg[colorMode],
+        color: _selectedColor[colorMode],
         borderColor: "inherit",
         borderTopColor: "currentColor",
         borderBottomColor: "transparent",
@@ -119,7 +119,7 @@ const softRoundedStyle = ({ color }) => {
   };
 };
 
-const solidRoundedStyle = ({ color, mode }) => {
+const solidRoundedStyle = ({ color, colorMode}) => {
   const _color = { light: "gray.600", dark: "inherit" };
   const _selectedBg = { light: `${color}.600`, dark: `${color}.300` };
   const _selectedColor = { light: `#fff`, dark: `gray.800` };
@@ -128,10 +128,10 @@ const solidRoundedStyle = ({ color, mode }) => {
     tab: {
       rounded: "full",
       fontWeight: "semibold",
-      color: _color[mode],
+      color: _color[colorMode],
       _selected: {
-        color: _selectedColor[mode],
-        bg: _selectedBg[mode],
+        color: _selectedColor[colorMode],
+        bg: _selectedBg[colorMode],
       },
     },
     tabList: {},
@@ -212,9 +212,9 @@ export const useTabStyle = () => {
   const { variant, color, size, isFitted, orientation } = useContext(
     TabContext,
   );
-  const { mode } = useColorMode();
+  const { colorMode } = useColorMode();
 
-  const _variantStyle = variantStyle({ variant, color, theme, mode });
+  const _variantStyle = variantStyle({ variant, color, theme, colorMode});
   const _orientationStyle = orientationStyle({ orientation });
 
   return {

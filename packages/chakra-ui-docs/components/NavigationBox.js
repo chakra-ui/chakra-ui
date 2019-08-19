@@ -61,7 +61,7 @@ const NavGroupHeading = props => (
 );
 
 export default function NavigationBox() {
-  const { toggle } = useColorMode();
+  const { toggleColorMode } = useColorMode();
   return (
     <Box
       position={["relative", "fixed"]}
@@ -83,7 +83,7 @@ export default function NavigationBox() {
         <Heading>Chakra UI</Heading>
         <IconButton
           variant="ghost"
-          onClick={toggle}
+          onClick={toggleColorMode}
           aria-label="Change theme"
           icon="sun"
         />

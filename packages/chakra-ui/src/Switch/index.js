@@ -43,7 +43,7 @@ const Switch = forwardRef(
     },
     ref,
   ) => {
-    const { mode } = useColorMode();
+    const { colorMode } = useColorMode();
     const { width, height } = switchSizes[size];
 
     const stylesProps = {
@@ -51,7 +51,7 @@ const Switch = forwardRef(
       justifyContent: "flex-start",
       width,
       height,
-      bg: mode === "dark" ? "whiteAlpha.400" : "gray.300",
+      bg: colorMode === "dark" ? "whiteAlpha.400" : "gray.300",
       boxSizing: "content-box",
       p: "2px",
       _checked: {
