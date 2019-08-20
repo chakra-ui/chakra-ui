@@ -1,6 +1,7 @@
-import { Box, Flex } from "@chakra-ui/core";
+import { Box } from "@chakra-ui/core";
 import { MDXProvider } from "@mdx-js/react";
-import React, { useState } from "react";
+import { useRouter } from "next/router";
+import React from "react";
 import Header from "../components/Header";
 import { ChakraProvider, MDXComponents } from "../components/MDXComponents";
 import SideNav from "../components/SideNav";
@@ -20,8 +21,9 @@ const DocsLayout = ({ children }) => (
 );
 
 export default ({ Component, pageProps }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
+  // const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
+  console.log({ router, pageProps });
   return (
     <ChakraProvider>
       <MDXProvider components={MDXComponents}>

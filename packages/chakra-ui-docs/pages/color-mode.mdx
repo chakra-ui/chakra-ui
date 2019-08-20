@@ -30,16 +30,18 @@ The previous steps will enable a color mode state and pass it through context.
 To apply the color mode values to the `<body>` element, render the
 `ColorModeProvider` component in your application.
 
-```js
+```jsx live=false
 import React from "react";
 import { ThemeProvider, ColorModeProvider } from "chakra-ui";
 import theme from "./theme";
 
-export default props => (
-  <ThemeProvider theme={theme}>
-    <ColorModeProvider>{props.children}</ColorModeProvider>
-  </ThemeProvider>
-);
+function ColorMode(props) {
+  return (
+    <ThemeProvider theme={theme}>
+      <ColorModeProvider>{props.children}</ColorModeProvider>
+    </ThemeProvider>
+  );
+}
 ```
 
 ## Styling dark mode

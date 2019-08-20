@@ -3,9 +3,9 @@
 Install Chakra UI and its peer dependencies.
 
 ```bash
-  npm install @chakra-ui/core @emotion/core @emotion/styled emotion-theming
-  # or
-  yarn add @chakra-ui/core @emotion/core @emotion/styled emotion-theming
+npm install @chakra-ui/core @emotion/core @emotion/styled emotion-theming
+# or
+yarn add @chakra-ui/core @emotion/core @emotion/styled emotion-theming
 ```
 
 Create a theme object to include custom color, typography, and layout values.
@@ -57,13 +57,13 @@ const customTheme = {
 Add the theme to your application with the `ThemeProvider`, passing in the theme
 object as a prop.
 
-```jsxCodeOnly
-import React from 'react'
-import { ThemeProvider } from 'chakra-ui'
+```jsx live=false
+import React from "react";
+import { ThemeProvider } from "chakra-ui";
 
 export default props => (
   <ThemeProvider theme={customTheme}>{props.children}</ThemeProvider>
-)
+);
 ```
 
 ## Using components
@@ -109,7 +109,7 @@ export default {
 Once you add the icons, you can then use them within the `Icon` component, like
 this;
 
-```jsx
+```jsx live=true
 <Icon name="search" color="red.500" />
 ```
 

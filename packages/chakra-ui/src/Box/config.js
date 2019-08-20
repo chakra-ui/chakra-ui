@@ -61,6 +61,30 @@ export const config = {
     property: "letterSpacing",
     scale: "letterSpacings",
   },
+  w: {
+    property: "width",
+    scale: "sizes",
+  },
+  minW: {
+    property: "min-width",
+    scale: "sizes",
+  },
+  maxW: {
+    property: "max-width",
+    scale: "sizes",
+  },
+  h: {
+    property: "height",
+    scale: "sizes",
+  },
+  minH: {
+    property: "min-height",
+    scale: "sizes",
+  },
+  maxH: {
+    property: "max-height",
+    scale: "sizes",
+  },
   textDecoration: true,
   textTransform: true,
   overflowX: true,
