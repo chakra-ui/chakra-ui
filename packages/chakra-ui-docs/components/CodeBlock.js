@@ -41,7 +41,7 @@ const LiveCodePreview = props => (
     p={3}
     border="1px"
     borderColor="inherit"
-    roundedTop="md"
+    rounded="md"
     {...props}
   />
 );
@@ -51,6 +51,7 @@ const CopyButton = props => (
     size="sm"
     position="absolute"
     textTransform="uppercase"
+    variantColor="teal"
     rounded="0"
     fontSize="xs"
     height="24px"
@@ -59,6 +60,25 @@ const CopyButton = props => (
     icon="phone"
     {...props}
   />
+);
+
+const EditableNotice = props => (
+  <Box
+    position="absolute"
+    width="full"
+    top="0"
+    py="2"
+    tracking="wide"
+    color="gray.400"
+    fontSize="xs"
+    fontWeight="semibold"
+    textAlign="center"
+    textTransform="uppercase"
+    pointerEvents="none"
+    {...props}
+  >
+    Editable Example
+  </Box>
 );
 
 const CodeBlock = ({ className, live = true, render, children, ...props }) => {
@@ -87,6 +107,7 @@ const CodeBlock = ({ className, live = true, render, children, ...props }) => {
           <CopyButton onClick={onCopy}>
             {hasCopied ? "copied" : "copy"}
           </CopyButton>
+          <EditableNotice />
         </Box>
         <LiveError style={liveErrorStyle} />
       </LiveProvider>

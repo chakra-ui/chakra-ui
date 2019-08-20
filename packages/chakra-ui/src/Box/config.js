@@ -66,11 +66,11 @@ export const config = {
     scale: "sizes",
   },
   minW: {
-    property: "min-width",
+    property: "minWidth",
     scale: "sizes",
   },
   maxW: {
-    property: "max-width",
+    property: "maxWidth",
     scale: "sizes",
   },
   h: {
@@ -78,11 +78,11 @@ export const config = {
     scale: "sizes",
   },
   minH: {
-    property: "min-height",
+    property: "minHeight",
     scale: "sizes",
   },
   maxH: {
-    property: "max-height",
+    property: "maxHeight",
     scale: "sizes",
   },
   textDecoration: true,
@@ -114,6 +114,7 @@ export const config = {
   objectFit: true,
   objectPosition: true,
   backgroundAttachment: true,
+  WebkitAppearance: true,
 };
 
 config.bgAttachment = config.backgroundAttachment;

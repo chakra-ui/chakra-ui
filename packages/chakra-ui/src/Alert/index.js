@@ -13,7 +13,7 @@ const statusIcons = {
   error: "warning",
 };
 
-const statusColors = {
+export const statusColors = {
   error: "red",
   warning: "orange",
   info: "blue",

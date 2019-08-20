@@ -22,6 +22,20 @@ interface ICustomConfig {
   borderRightColor?: StyledSystem.BorderColorProps;
   borderLeftColor?: StyledSystem.BorderColorProps;
 
+  // Custom width utils
+  w?: StyledSystem.WidthProps;
+  minW?: StyledSystem.MinWidthProps;
+  maxW?: StyledSystem.MaxWidthProps;
+
+  // Custom height utils
+  h?: StyledSystem.HeightProps;
+  minH?: StyledSystem.MinHeightProps;
+  maxH?: StyledSystem.MaxHeightProps;
+
+  // Custom typography utils
+  tracking?: StyledSystem.LetterSpacingProps;
+  leading?: StyledSystem.LineHeightProps;
+
   // CSS properties
   textDecoration?: StyledSystem.ResponsiveValue<CSS["textDecoration"]>;
   textTransform?: StyledSystem.ResponsiveValue<CSS["textTransform"]>;

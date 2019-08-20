@@ -16,9 +16,9 @@ function Example() {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <header>
-      <button onClick={toggleColorMode}>
+      <Button onClick={toggleColorMode}>
         Toggle {colorMode === "light" ? "Dark" : "Light"}
-      </button>
+      </Button>
     </header>
   );
 }

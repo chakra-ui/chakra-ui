@@ -15,6 +15,11 @@ export interface IAlert {
    * The variant of the alert style to use.
    */
   variant?: "subtle" | "solid" | "left-accent" | "top-accent";
+  /**
+   * If `true`, the alert will show a striped background gradient.
+   * Use this with `variant=solid`
+   */
+  hasStripe?: "subtle" | "solid" | "left-accent" | "top-accent";
 }
 
 export const AlertTitle: React.FC<BoxProps>;

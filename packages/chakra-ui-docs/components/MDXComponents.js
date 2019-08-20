@@ -9,6 +9,7 @@ import {
   PseudoBox,
   Text,
   ThemeProvider,
+  Callout,
 } from "@chakra-ui/core";
 import { jsx } from "@emotion/core";
 import NextLink from "next/link";
@@ -48,21 +49,31 @@ const Link = forwardRef((props, ref) => (
   <PseudoBox
     as="a"
     ref={ref}
-    bg="blue.50"
-    borderBottom="1px"
+    color="teal.500"
     cursor="pointer"
-    borderColor="blackAlpha.200"
-    textDecoration="none"
-    color="inherit"
-    _hover={{ bg: "blue.100", borderColor: "gray.300" }}
+    textDecoration="underline"
+    _hover={{ opacity: "0.8" }}
+    _focus={{ boxShadow: "outline" }}
     {...props}
   />
 ));
 
 const MDXComponents = {
-  h1: props => <Heading as="h1" size="xl" my={5} {...props} />,
-  h2: props => <Heading as="h2" my={4} size="lg" mb={3} mt={7} {...props} />,
-  h3: props => <Heading as="h3" my={4} {...props} />,
+  h1: props => (
+    <Heading as="h1" size="xl" my={5} {...props}>
+      <a href={`#${props.id}`}>{props.children}</a>
+    </Heading>
+  ),
+  h2: props => (
+    <Heading as="h2" my={4} size="lg" mb={3} mt={7} {...props}>
+      <a href={`#${props.id}`}>{props.children}</a>
+    </Heading>
+  ),
+  h3: props => (
+    <Heading as="h3" my={4} {...props}>
+      <a href={`#${props.id}`}>{props.children}</a>
+    </Heading>
+  ),
   inlineCode: props => (
     <Code variantColor="yellow" fontSize="0.84em" {...props} />
   ),
@@ -83,15 +94,10 @@ const MDXComponents = {
   ul: props => <Box as="ul" pt="8px" pl="16px" {...props} />,
   li: props => <Box as="li" pb="4px" {...props} />,
   blockquote: props => (
-    <Box
-      bg="yellow.100"
-      borderLeftWidth="4px"
-      as="blockquote"
-      px={5}
-      py={2}
-      mt={5}
-      my={7}
-      borderColor="yellow.400"
+    <Callout
+      mt={4}
+      variant="left-accent"
+      status="warning"
       css={{ "> *:first-of-type": { marginTop: 0 } }}
       {...props}
     />

@@ -59,7 +59,7 @@ const ghostVariantProps = ({ color, colorMode, theme }) => {
 ////////////////////////////////////////////////////////////
 
 const outlineVariantProps = props => {
-  const { color, colorMode} = props;
+  const { color, colorMode } = props;
   const borderColor = { light: "gray.200", dark: "whiteAlpha.300" };
 
   return {
@@ -92,7 +92,7 @@ const graySolidStyle = {
   },
 };
 
-const solidVariantProps = ({ color, colorMode}) => {
+const solidVariantProps = ({ color, colorMode }) => {
   let style = {
     light: {
       bg: `${color}.500`,
@@ -125,7 +125,7 @@ const solidVariantProps = ({ color, colorMode}) => {
 
 ////////////////////////////////////////////////////////////
 
-const linkVariantProps = ({ color, colorMode}) => {
+const linkVariantProps = ({ color, colorMode }) => {
   const _color = { light: `${color}.500`, dark: `${color}.200` };
   const _activeColor = { light: `${color}.700`, dark: `${color}.500` };
   return {
@@ -236,6 +236,7 @@ const baseProps = {
   position: "relative",
   whiteSpace: "nowrap",
   verticalAlign: "middle",
+  WebkitAppearance: "none",
   lineHeight: "1.2",
 };
 

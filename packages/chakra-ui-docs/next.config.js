@@ -1,4 +1,4 @@
-const mdPlugins = [
+const remarkPlugins = [
   require("remark-autolink-headings"),
   require("remark-emoji"),
   require("remark-images"),
@@ -9,7 +9,7 @@ const mdPlugins = [
 const withMDX = require("@next/mdx")({
   extension: /\.mdx?$/,
   options: {
-    mdPlugins,
+    remarkPlugins,
   },
 });
 

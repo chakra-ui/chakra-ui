@@ -8,16 +8,23 @@ export const useHasImageLoaded = ({ src, onLoad, onError }) => {
   const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
+    let isSubscribed = true;
+
     const img = new Image();
     img.src = src;
-    img.onload = () => {
-      setHasLoaded(true);
-      onLoad && onLoad();
-    };
-    img.onerror = () => {
-      setHasLoaded(false);
-      onError && onError();
-    };
+
+    if (isSubscribed) {
+      img.onload = () => {
+        setHasLoaded(true);
+        onLoad && onLoad();
+      };
+      img.onerror = () => {
+        setHasLoaded(false);
+        onError && onError();
+      };
+    }
+
+    return () => (isSubscribed = false);
   }, [src, onLoad, onError]);
 
   return hasLoaded;

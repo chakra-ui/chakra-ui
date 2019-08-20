@@ -17,6 +17,7 @@ export * from "./Breadcrumb";
 export { default as Button } from "./Button";
 export { default as ButtonGroup } from "./ButtonGroup";
 
+export { default as Callout } from "./Callout";
 export { default as Center } from "./Center";
 export { default as Code } from "./Code";
 export { default as Checkbox } from "./Checkbox";
