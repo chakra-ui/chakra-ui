@@ -1,12 +1,13 @@
 {
   "name": "@chakra-ui/core",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Responsive and accessible React UI components built with React and Emotion",
-  "main": "dist/index.js",
-  "module": "dist/es/index.js",
+  "main": "index.js",
+  "module": "es/index.js",
   "sideEffects": false,
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "directory": "dist"
   },
   "scripts": {
     "prebuild": "rimraf dist",
