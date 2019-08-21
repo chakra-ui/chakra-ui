@@ -1,0 +1,48 @@
+# Accordion
+
+Accordions display a list of high-level options that can expand/contract to
+reveal more detailed information.
+
+## Accessibility
+
+- `tab`, `shift + tab` - to switch between panels.
+- `space` or `enter` - when focus is on the accordion panel header it will
+  toggle (expand or collapse) the currently focused panel.
+
+## Basic Usage
+
+```jsx
+<Accordion bg="blackAlpha.100">
+  <AccordionHeader px={4} py={2}>
+    Accordion Header 1
+  </AccordionHeader>
+  <AccordionPanel px={4} pt={2} pb={4} display="flex">
+    Praesent condimentum ante ac ipsum aliquam, ac scelerisque velit sagittis.
+    Ut sit amet libero scelerisque, accumsan ante vitae, hendrerit tellus.
+    Nullam metus est, vehicula a aliquet id, lobortis in mauris.;
+  </AccordionPanel>
+</Accordion>
+```
+
+## Styling the expanded state
+
+```jsx
+<Accordion maxWidth="sm" mx="auto" mt={5} bg="blackAlpha.50">
+  <AccordionHeader
+    px={4}
+    py={2}
+    _expanded={{
+      bg: "blackAlpha.100",
+      fontWeight: "semibold",
+      roundedBottom: "0",
+    }}
+  >
+    Accordion Header
+  </AccordionHeader>
+  <AccordionPanel px={4} py={2} display="flex">
+    Praesent condimentum ante ac ipsum aliquam, ac scelerisque velit sagittis.
+    Ut sit amet libero scelerisque, accumsan ante vitae, hendrerit tellus.
+    Nullam metus est, vehicula a aliquet id, lobortis in mauris.;
+  </AccordionPanel>
+</Accordion>
+```
