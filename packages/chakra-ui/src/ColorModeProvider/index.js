@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useLayoutEffect } from "react";
 import useDarkMode from "use-dark-mode";
 
 // This context handles the color mode (light or dark) of the UI
