@@ -4,36 +4,36 @@ import { PseudoBoxProps } from "../PseudoBox";
 
 interface IEditable {
   /**
-   * Text value of the controlled input
+   * The value of the Editable in both edit & preview mode
    */
   value?: string;
   /**
-   * Default text value of uncontrolled input.
+   * The initial value of the Editable in both edit & preview mode
    */
   defaultValue?: string;
   /**
-   * Whether the text can be edited.
+   * If `true`, the Editable will be disabled.
    */
   isDisabled?: boolean;
   /**
-   * Whether the component should start with the edit mode active
-   * If `true`, the input is shown by default.
+   * If `true`, the Editable will start with edit mode by default.
    */
-  isEditing?: boolean;
+  startWithEditView?: boolean;
   /**
-   * Callback invoked when user changes input in any way.
+   * Callback invoked when user changes input.
    */
-  onChange?: () => void;
+  onChange?: (newValue: string) => void;
   /**
-   * Callback invoked when user cancels input with the `Esc` key. Receives last confirmed value.
+   * Callback invoked when user cancels input with the `Esc` key.
+   * It provides the last confirmed value as argument.
    */
-  onCancel?: () => void;
+  onCancel?: (previousValue: string) => void;
   /**
    * Callback invoked when user confirms value with `enter` key or by blurring input.
    */
-  onSubmit?: () => void;
+  onSubmit?: (newValue: string) => void;
   /**
-   * Callback invoked after the user enters edit mode.
+   * Callback invoked once the user enters edit mode.
    */
   onEdit?: () => void;
   /**
@@ -41,13 +41,13 @@ interface IEditable {
    */
   selectAllOnFocus?: boolean;
   /**
-   * Placeholder text when the value is empty.
+   * The placeholder text when the value is empty.
    */
   placeholder?: string;
   /**
    * The content of the EditableText
    * Ideally only `EditablePreview` and `EditableInput` should
-   * be the children (but you add other elements too)
+   * be the children but you add other elements too
    */
   children: React.ReactNode;
 }

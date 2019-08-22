@@ -2,6 +2,7 @@
 import { jsx } from "@emotion/core";
 import propTypes from "prop-types";
 import Box from "../Box";
+import { forwardRef } from "react";
 
 /* 
 .uni-headline--1 {
@@ -77,15 +78,16 @@ const sizes = {
   xs: "sm",
 };
 
-const Heading = ({ size = "md", ...props }) => (
+const Heading = forwardRef(({ size = "md", ...props }, ref) => (
   <Box
+    ref={ref}
     as="h2"
     fontSize={sizes[size]}
     lineHeight="short"
     fontWeight="bold"
     {...props}
   />
-);
+));
 
 Heading.propTypes = {
   size: propTypes.oneOf(["2xl", "xl", "lg", "md", "sm", "xs"]),
