@@ -1,0 +1,31 @@
+import Head from "next/head";
+
+<Head key="code">
+  <title key="tti">Code Component</title>
+</Head>
+
+# Code
+
+Code is a component used to display inline and multiline blocks of code. It is
+composed from the [Box](/box) component with a font family of `Mono` for display
+code.
+
+## Installation
+
+```bash
+import { Code } from "@chakra-ui/core";
+```
+
+## Usage
+
+```jsx
+function Example() {
+  return <Code>Hello world</Code>;
+}
+```
+
+## Props
+
+| Name       | Type              | Default | Description                         |
+| ---------- | ----------------- | ------- | ----------------------------------- |
+| `children` | `React.ReactNode` | `false` | The children of the code component. |

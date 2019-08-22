@@ -12,6 +12,8 @@ const components = [
   "Button",
   "Checkbox",
   "CircularProgress",
+  "CloseButton",
+  "Code",
   "Collapse",
   "ControlBox",
   "Drawer",
