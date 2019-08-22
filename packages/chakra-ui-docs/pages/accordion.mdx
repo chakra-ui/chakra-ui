@@ -1,0 +1,85 @@
+# Accordion
+
+Accordions display a list of high-level options that can expand/contract to
+reveal more detailed information.
+
+## Accessibility
+
+Pressing `space` or `enter` when focus is on the accordion panel header will
+toggle (expand or collapse) the accordion.
+
+## Basic Usage
+
+```jsx
+<Accordion bg="blackAlpha.100">
+  <AccordionHeader _focus={{ boxShadow: "outline" }} px={4} py={2}>
+    Accordion Header 1
+  </AccordionHeader>
+  <AccordionPanel px={4} pt={2} pb={4} display="flex">
+    Praesent condimentum ante ac ipsum aliquam, ac scelerisque velit sagittis.
+    Ut sit amet libero scelerisque, accumsan ante vitae, hendrerit tellus.
+    Nullam metus est, vehicula a aliquet id, lobortis in mauris.;
+  </AccordionPanel>
+</Accordion>
+```
+
+## Styling the expanded state
+
+```jsx
+<Accordion bg="blackAlpha.50">
+  <AccordionHeader
+    px={4}
+    py={2}
+    _focus={{ boxShadow: "outline" }}
+    _expanded={{
+      bg: "rgba(219,55,55,.25)",
+      roundedBottom: "0",
+    }}
+  >
+    Accordion Header
+  </AccordionHeader>
+  <AccordionPanel px={4} py={2}>
+    Praesent condimentum ante ac ipsum aliquam, ac scelerisque velit sagittis.
+    Ut sit amet libero scelerisque, accumsan ante vitae, hendrerit tellus.
+    Nullam metus est, vehicula a aliquet id, lobortis in mauris.;
+  </AccordionPanel>
+</Accordion>
+```
+
+## Render Prop
+
+```jsx
+<Accordion bg="blackAlpha.50">
+  {({ isExpanded }) => (
+    <>
+      <AccordionHeader
+        px={4}
+        py={2}
+        _focus={{ boxShadow: "outline" }}
+        _expanded={{ bg: "red.100", roundedBottom: "0" }}
+      >
+        <Box flex="1" textAlign="left">
+          Uchiha Itachi
+        </Box>
+        <Icon size="12px" name={isExpanded ? "minus" : "add"} />
+      </AccordionHeader>
+      <AccordionPanel p={4} display="flex">
+        <Avatar
+          src="http://bit.ly/uchiha-itachi"
+          size="lg"
+          mr={3}
+          name="Itachi"
+        />
+        <Box flex="1">
+          Itachi Uchiha is a fictional character in the Naruto manga and anime
+          series created by Masashi Kishimoto. Itachi is the older brother of
+          Sasuke Uchiha and is responsible for killing all the members of their
+          clan, sparing only Sasuke.
+        </Box>
+      </AccordionPanel>
+    </>
+  )}
+</Accordion>
+```
+
+## Props

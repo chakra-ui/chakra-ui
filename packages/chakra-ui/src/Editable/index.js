@@ -12,12 +12,12 @@ const Editable = ({
   defaultValue,
   isDisabled,
   onChange,
-  isEditing: isEditingProp,
+  startWithEditView: isEditingProp,
   onCancel,
   onSubmit,
   selectAllOnFocus = true,
   submitOnBlur,
-  isPreviewFocusable,
+  isPreviewFocusable = true,
   placeholder = "Click to edit...",
   children,
   ...rest
@@ -184,6 +184,10 @@ export const EditableInput = props => {
     placeholder,
   } = useContext(EditableContext);
 
+  if (!isEditing) {
+    return null;
+  }
+
   const styleProps = {
     ...sharedProps,
     width: "full",
@@ -192,65 +196,38 @@ export const EditableInput = props => {
     },
   };
 
-  if (!isEditing) {
-    return null;
-  }
+  const renderProps = {
+    ref: inputRef,
+    onBlur: event => {
+      submitOnBlur && onSubmit();
+      if (props.onBlur) {
+        props.onBlur(event);
+      }
+    },
+    value,
+    placeholder,
+    onChange,
+    onKeyDown,
+  };
 
-  return (
-    <PseudoBox
-      as="input"
-      ref={inputRef}
-      onBlur={() => {
-        submitOnBlur && onSubmit();
-      }}
-      value={value}
-      placeholder={placeholder}
-      onChange={onChange}
-      onKeyDown={onKeyDown}
-      {...styleProps}
-      {...props}
-    />
+  return props.children ? (
+    props.children(renderProps)
+  ) : (
+    <PseudoBox as="input" {...renderProps} {...styleProps} {...props} />
   );
 };
 
 Editable.propTypes = {
-  /** Text value of the controlled input */
   value: propTypes.string,
-  /** Default text value of uncontrolled input. */
   defaultValue: propTypes.string,
-  /**
-   * Whether the text can be edited.
-   * @default false
-   */
   isDisabled: propTypes.bool,
-  /**
-   * Whether the component should start with the edit mode active
-   * If `true`, the input is shown by default.
-   * @default false
-   */
   isEditing: propTypes.bool,
-  /** Callback invoked when user changes input in any way.  */
   onChange: propTypes.func,
-  /** Callback invoked when user cancels input with the `Esc` key. Receives last confirmed value. */
   onCancel: propTypes.func,
-  /** Callback invoked when user confirms value with `enter` key or by blurring input. */
   onSubmit: propTypes.func,
-  /** Callback invoked after the user enters edit mode. */
   onEdit: propTypes.func,
-  /**
-   * If `true`, the input's text will be highlighted on focus.
-   * @default false
-   */
   selectAllOnFocus: propTypes.bool,
-  /**
-   * Placeholder text when the value is empty.
-   * @default "Click to Edit"
-   */
   placeholder: propTypes.string,
-  /** The content of the Editable
-   *  Ideally only `EditablePreview` and `EditableInput` should
-   *  be the children (but you add other elements too)
-   */
   children: propTypes.node,
 };
 

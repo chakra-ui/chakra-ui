@@ -1,0 +1,84 @@
+# Editable Text
+
+EditableText appears as normal UI text but transforms into a text input field
+when the user focuses it.
+
+The text input inherits all font styling from its ancestors, making for a
+seamless transition between reading and editing text.
+
+> Dont' use EditableText when a static always - editable `<input>` or
+> `<textarea>` tag would suffice.
+
+## Usage
+
+```jsx
+<Editable
+  isPreviewFocusable
+  submitOnBlur
+  textAlign="center"
+  defaultValue="testing"
+  fontSize="2xl"
+  onSubmit={value => alert(value)}
+>
+  <EditablePreview />
+  <EditableInput />
+</Editable>
+```
+
+### With custom controls
+
+```jsx
+function Example() {
+  /* Here's a custom control */
+  function EditableControls({ isEditing, onSubmit, onCancel, onRequestEdit }) {
+    return isEditing ? (
+      <ButtonGroup justify="center" size="sm">
+        <IconButton icon="check" onClick={onSubmit} />
+        <IconButton icon="close" onClick={onCancel} />
+      </ButtonGroup>
+    ) : (
+      <Flex justify="center">
+        <IconButton size="sm" icon="edit" onClick={onRequestEdit} />
+      </Flex>
+    );
+  }
+
+  return (
+    <Editable
+      startWithEditView
+      textAlign="center"
+      defaultValue="testing"
+      fontSize="2xl"
+    >
+      {props => (
+        <>
+          <Flex>
+            <EditablePreview flex="1" wordBreak="words" />
+            <EditableInput flex="1" />
+          </Flex>
+          <EditableControls {...props} />
+        </>
+      )}
+    </Editable>
+  );
+}
+```
+
+## Props
+
+| Name             | Type              | Default | Description                                                                                                                               |
+| ---------------- | ----------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| value            | `string`          |         | Text value of the controlled input                                                                                                        |
+| defaultValue     | `string`          |         | The initial value of the Editable in both edit & preview mode                                                                             |
+| placeholder      | `string`          |         | The placeholder text when the value is empty.                                                                                             |
+| isDisabled       | `string`          |         | If `true`, the Editable will be disabled.                                                                                                 |
+| isEditing        | `string`          |         | If `true`, the Editable will start with edit mode by default.                                                                             |
+| onChange         | `func`            |         | Callback invoked when user changes input.                                                                                                 |
+| onCancel         | `string`          |         | Callback invoked when user cancels input with the `Esc` key.                                                                              |
+| onSubmit         | `string`          |         | Callback invoked when user confirms value with `enter` key or by blurring input.                                                          |
+| onEdit           | `string`          |         | Callback invoked once the user enters edit mode.                                                                                          |
+| selectAllOnFocus | `boolean`         | `true`  | If `true`, the input's text will be highlighted on focus.                                                                                 |
+| children         | `React.ReactNode` |         | The content of the EditableText. Ideally only `EditablePreview` and `EditableInput` should be the children but you add other elements too |
+
+`EditablePreview` and `EditableInput` composes `PseudoBox` so you can pass all
+`PseudoBox` props.

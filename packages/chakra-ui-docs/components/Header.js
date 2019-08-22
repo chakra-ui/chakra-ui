@@ -22,7 +22,8 @@ const SearchBox = props => {
       </InputLeftElement>
       <Input
         variant="filled"
-        placeholder='Search the docs (Press "/" to focus)'
+        _focusBorderColor="teal"
+        placeholder="Search the docs "
         _placeholder={{ color: "gray.500", opacity: 1 }}
         rounded="lg"
       />
@@ -72,7 +73,9 @@ const Header = props => {
             <Box as={DiGithubBadge} size="7" color="current" />
           </a>
           <IconButton
-            aria-label={`Switch to ${colorMode === "light" ? "dark" : "light"} mode`}
+            aria-label={`Switch to ${
+              colorMode === "light" ? "dark" : "light"
+            } mode`}
             variant="ghost"
             color="current"
             ml="2"

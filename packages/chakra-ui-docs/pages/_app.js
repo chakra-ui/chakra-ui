@@ -1,4 +1,4 @@
-import { Box, Text } from "@chakra-ui/core";
+import { Box, Text, Link } from "@chakra-ui/core";
 import { MDXProvider } from "@mdx-js/react";
 import { useRouter } from "next/router";
 import React from "react";
@@ -10,9 +10,23 @@ const Main = props => <Box as="main" mx="auto" mb="3rem" {...props} />;
 
 const Footer = props => (
   <Box textAlign="center" pt="12" pb="4" fontSize="sm" opacity="0.6" {...props}>
-    <Text>Proudly made in 🇳🇬 </Text>
+    <Text>
+      Proudly made in{" "}
+      <span aria-label="Nigeria" role="img">
+        🇳🇬
+      </span>{" "}
+    </Text>
     <Text mt="5">Released under the MIT License.</Text>
-    <Text>Copyright &copy; {new Date().getFullYear()} Segun Adebayo</Text>
+    <Text>
+      Copyright &copy; {new Date().getFullYear()}{" "}
+      <Link
+        color="teal.500"
+        href="https://twitter.com/thesegunadebayo"
+        target="__blank"
+      >
+        Segun Adebayo
+      </Link>
+    </Text>
   </Box>
 );
 

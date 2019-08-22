@@ -61,35 +61,33 @@ stories.add("styling expanded state", () => (
 
 stories.add("using render prop with icon", () => (
   <Accordion maxWidth="sm" mx="auto" mt={5} bg="blackAlpha.50">
-    <AccordionHeader
-      px={4}
-      py={2}
-      _expanded={{ bg: "red.100", roundedBottom: "0" }}
-    >
-      {({ isExpanded }) => {
-        return (
-          <Fragment>
-            <Box flex="1" textAlign="left">
-              Uchiha Itachi
-            </Box>
-            <Icon size="12px" name={isExpanded ? "minus" : "add"} />
-          </Fragment>
-        );
-      }}
-    </AccordionHeader>
-    <AccordionPanel px={4} py={2} display="flex">
-      <Avatar
-        src="https://vignette.wikia.nocookie.net/naruto/images/b/bb/Itachi.png/revision/latest/scale-to-width-down/300?cb=20160125182202"
-        size="lg"
-        mr={3}
-        name="Itachi"
-      />
-      <Box flex="1">
-        Itachi Uchiha is a fictional character in the Naruto manga and anime
-        series created by Masashi Kishimoto. Itachi is the older brother of
-        Sasuke Uchiha and is responsible for killing all the members of their
-        clan, sparing only Sasuke.
-      </Box>
-    </AccordionPanel>
+    {({ isExpanded }) => (
+      <>
+        <AccordionHeader
+          px={4}
+          py={2}
+          _expanded={{ bg: "red.100", roundedBottom: "0" }}
+        >
+          <Box flex="1" textAlign="left">
+            Uchiha Itachi
+          </Box>
+          <Icon size="12px" name={isExpanded ? "minus" : "add"} />
+        </AccordionHeader>
+        <AccordionPanel px={4} py={2} display="flex">
+          <Avatar
+            src="https://vignette.wikia.nocookie.net/naruto/images/b/bb/Itachi.png/revision/latest/scale-to-width-down/300?cb=20160125182202"
+            size="lg"
+            mr={3}
+            name="Itachi"
+          />
+          <Box flex="1">
+            Itachi Uchiha is a fictional character in the Naruto manga and anime
+            series created by Masashi Kishimoto. Itachi is the older brother of
+            Sasuke Uchiha and is responsible for killing all the members of
+            their clan, sparing only Sasuke.
+          </Box>
+        </AccordionPanel>
+      </>
+    )}
   </Accordion>
 ));

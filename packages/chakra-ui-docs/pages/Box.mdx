@@ -38,15 +38,14 @@ Here's how it works:
 
 ```jsx
 // Sample card from Airbnb
+
 function AirbnbExample() {
   const property = {
-    imageUrl:
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    imageUrl: "http://bit.ly/2Z4KKcF",
     imageAlt: "Rear view of modern home with pool",
     beds: 3,
     baths: 2,
     title: "Modern home in city center in the heart of historic Los Angeles",
-    priceInCents: 190000,
     formattedPrice: "$1,900.00",
     reviewCount: 34,
     rating: 4,
@@ -94,17 +93,10 @@ function AirbnbExample() {
           {Array(5)
             .fill("")
             .map((_, i) => (
-              <Box
+              <StarIcon
                 key={i}
-                m="2px"
-                as="svg"
-                fill="current"
                 color={i < property.rating ? "teal.500" : "gray.300"}
-                size="3"
-                viewBox="0 0 24 24"
-              >
-                <path d="M23.555 8.729a1.505 1.505 0 0 0-1.406-.98h-6.087a.5.5 0 0 1-.472-.334l-2.185-6.193a1.5 1.5 0 0 0-2.81 0l-.005.016-2.18 6.177a.5.5 0 0 1-.471.334H1.85A1.5 1.5 0 0 0 .887 10.4l5.184 4.3a.5.5 0 0 1 .155.543l-2.178 6.531a1.5 1.5 0 0 0 2.31 1.684l5.346-3.92a.5.5 0 0 1 .591 0l5.344 3.919a1.5 1.5 0 0 0 2.312-1.683l-2.178-6.535a.5.5 0 0 1 .155-.543l5.194-4.306a1.5 1.5 0 0 0 .433-1.661z"></path>
-              </Box>
+              />
             ))}
           <Box as="span" ml="2" color="gray.600" fontSize="sm">
             {property.reviewCount} reviews
