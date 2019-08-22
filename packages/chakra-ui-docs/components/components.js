@@ -34,6 +34,7 @@ const componentRegister = [
   "Spinner",
   "Stat",
   "Tabs",
+  "Tag",
   "Textarea",
   "Toast",
   "Tooltip",
