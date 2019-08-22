@@ -1,14 +1,14 @@
 Arguments: 
-  /Users/tioluwani/.nvm/versions/node/v11.10.1/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js reboot:core
+  /Users/tioluwani/.nvm/versions/node/v8.10.0/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js docs:dev
 
 PATH: 
-  /Users/tioluwani/.nvm/versions/node/v11.10.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools:/Users/tioluwani/Library/Android/sdk/tools:/Users/tioluwani/Library/Android/sdk/platform-tools:/Users/tioluwani/Library/Android/sdk/tools:/Users/tioluwani/Library/Android/sdk/platform-tools
+  /Users/tioluwani/.nvm/versions/node/v8.10.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools:/Users/tioluwani/Library/Android/sdk/tools:/Users/tioluwani/Library/Android/sdk/platform-tools:/Users/tioluwani/Library/Android/sdk/tools:/Users/tioluwani/Library/Android/sdk/platform-tools
 
 Yarn version: 
   1.5.1
 
 Node version: 
-  11.10.1
+  8.10.0
 
 Platform: 
   darwin x64
@@ -7251,13 +7251,14 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: sh
-  Arguments: -c npm run core:build && npm run bootstrap
+  Arguments: -c lerna run --scope @chakra-ui/docs dev --stream
   Directory: /Users/tioluwani/Documents/Projects/chakra
   Output:
   
       at ProcessTermError.MessageError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:186:110)
       at new ProcessTermError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:226:113)
       at ChildProcess.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:30281:17)
-      at ChildProcess.emit (events.js:197:13)
-      at maybeClose (internal/child_process.js:984:16)
-      at Process.ChildProcess._handle.onexit (internal/child_process.js:265:5)
+      at emitTwo (events.js:126:13)
+      at ChildProcess.emit (events.js:214:7)
+      at maybeClose (internal/child_process.js:925:16)
+      at Process.ChildProcess._handle.onexit (internal/child_process.js:209:5)
