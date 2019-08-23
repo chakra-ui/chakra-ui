@@ -10,10 +10,33 @@ Tag component is used for items that need to be labeled, categorized, or
 organized using keywords that describe them. Use tags when content is mapped to
 multiple categories, and the user needs a way to differentiate between them.
 
+This component exports 4 Alert related components:
+
+- **Tag**: The wrapper component that uses provides context, state, and focus
+  management for the other components. It composes the `PseudoBox` component.
+- **TagLabel**: The label for tag component. It composes the `Box` component
+- **TagAddon**: This handles the placement of custom elements on either side of
+  the tag component . It composes the `Box` component.
+- **TagCloseButton**: The close button for the tag component.
+
 ## Installation
 
 ```bash
-import { Tag } from "@chakra-ui/core";
+npm install @chakra-ui/core
+# or
+yarn add @chakra-ui/core
+```
+
+And then import the components you need.
+
+```bash
+import {
+  Tag,
+  TagAddon,
+  TagLabel,
+  TagCloseButton,
+} from "@chakra-ui/core";
+
 ```
 
 ## Usage
