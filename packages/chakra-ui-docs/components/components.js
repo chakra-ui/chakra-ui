@@ -36,6 +36,7 @@ const components = [
   "Spinner",
   "Stat",
   "Tabs",
+  "Tag",
   "Textarea",
   "Toast",
   "Tooltip",

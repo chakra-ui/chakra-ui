@@ -1,0 +1,117 @@
+import Head from "next/head";
+
+<Head key="tag">
+  <title key="tti">Tag Component</title>
+</Head>
+
+# Tag
+
+Tag component is used for items that need to be labeled, categorized, or
+organized using keywords that describe them. Use tags when content is mapped to
+multiple categories, and the user needs a way to differentiate between them.
+
+## Installation
+
+```bash
+import { Tag } from "@chakra-ui/core";
+```
+
+## Usage
+
+```jsx
+function Example() {
+  return (
+    <List spacing={4} inline>
+      {["sm", "md", "lg"].map(size => (
+        <Tag size={size} color="gray">
+          <TagLabel>Gray</TagLabel>
+        </Tag>
+      ))}
+    </List>
+  );
+}
+```
+
+## With left icon
+
+```jsx
+function Example() {
+  return (
+    <List spacing={4} inline>
+      {["sm", "md", "lg"].map(size => (
+        <Tag size={size} color="cyan">
+          <TagAddon placement="left">
+            <Icon name="add" size="12px" />
+          </TagAddon>
+          <TagLabel>Green</TagLabel>
+        </Tag>
+      ))}
+    </List>
+  );
+}
+```
+
+## With right icon
+
+```jsx
+function Example() {
+  return (
+    <List spacing={4} inline>
+      {["sm", "md", "lg"].map(size => (
+        <Tag size={size} color="cyan">
+          <TagLabel>Green</TagLabel>
+          <TagAddon placement="right">
+            <Icon name="check" size="12px" />
+          </TagAddon>
+        </Tag>
+      ))}
+    </List>
+  );
+}
+```
+
+## With close button
+
+```jsx
+function Example() {
+  return (
+    <List spacing={4} inline>
+      {["sm", "md", "lg"].map(size => (
+        <Tag size={size} rounded="full" variant="solid" color="cyan">
+          <TagLabel>Green</TagLabel>
+          <TagCloseButton />
+        </Tag>
+      ))}
+    </List>
+  );
+}
+```
+
+## With custom element
+
+```jsx
+function Example() {
+  return (
+    <List spacing={4} inline>
+      <Tag color="red" rounded="full">
+        <TagAddon placement="left">
+          <Avatar
+            src="https://www.dropbox.com/s/nd8z3hxuo3ahauk/segun_adebayo.jpg?dl=1"
+            size="xs"
+            name="Segun Adebayo"
+          />
+        </TagAddon>
+        <TagLabel>Segun</TagLabel>
+      </Tag>
+    </List>
+  );
+}
+```
+
+## Props
+
+| Name      | Type                         | Default | Description                              |
+| --------- | ---------------------------- | ------- | ---------------------------------------- |
+| `variant` | `solid`, `subtle`, `outline` | `solid` | The variant of the tag component.        |
+| `size`    | `sm`, `md`, `lg`             | `md`    | The size of the tag component.           |
+| `color`   | `string`                     |         | The background color of the tag variant. |
