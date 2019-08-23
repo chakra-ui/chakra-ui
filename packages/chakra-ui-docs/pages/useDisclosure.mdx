@@ -1,0 +1,57 @@
+import Head from "next/head";
+
+<Head key="useDisclosure">
+  <title key="tti">useDisclosure hook</title>
+</Head>
+
+# useDisclosure
+
+`useDisclosure` is a custom hook to help handle common `open`, `close`, or
+`toggle` scenarios. It can be used to control the display of components such as
+[Drawer](/drawer), [Modal](/modal), [Toast](/toast) or [Alert](/alert).
+
+## Return value
+
+The `useDisclosure` hook returns an object with the following fields:
+
+| Name       | Type       | Default | Description                                                         |
+| ---------- | ---------- | ------- | ------------------------------------------------------------------- |
+| `isOpen`   | `boolean`  | `false` | If `true` set the controlled component to it's visible state.       |
+| `onClose`  | `function` |         | Callback function to set a falsy value for the `isOpen` parameter.  |
+| `onOpen`   | `function` |         | Callback function to set a truthy value for the `isOpen` parameter. |
+| `onToggle` | `function` |         | Callback function to toggle the value of the `isOpen` parameter.    |
+
+## Installation
+
+```bash
+npm install @chakra-ui/core
+# or
+yarn add @chakra-ui/core
+```
+
+And then import the hook.
+
+```bash
+import { useDisclosure } from "@chakra-ui/core";
+```
+
+## Usage
+
+```jsx
+function Example() {
+  const { isOpen, onToggle, onClose } = useDisclosure();
+
+  return (
+    <>
+      <Button onClick={onToggle}>Open Drawer</Button>
+      <Drawer
+        zIndex="3"
+        size="xs"
+        isOpen={isOpen}
+        placement="left"
+        onClose={onClose}
+      />
+    </>
+  );
+}
+```
