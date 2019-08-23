@@ -38,7 +38,7 @@ export default {
 You can also extend the theme to add your custom colors, fonts, etc.
 
 ```js
-import { theme } from "chakra-ui";
+import { theme } from "@chakra-ui/core";
 
 // Let's say you want to add custom colors
 const customTheme = {
@@ -59,11 +59,10 @@ object as a prop.
 
 ```jsx live=false
 import React from "react";
-import { ThemeProvider } from "chakra-ui";
+import { ThemeProvider } from "@chakra-ui/core";
 
-export default props => (
-  <ThemeProvider theme={customTheme}>{props.children}</ThemeProvider>
-);
+// Use at the root of your app
+<ThemeProvider theme={customTheme}>{props.children}</ThemeProvider>;
 ```
 
 ## Using components
@@ -72,7 +71,7 @@ Simply import components by name from the chakra-ui package, as demonstrated
 above.
 
 ```js
-import { Button } from "chakra-ui";
+import { Button } from "@chakra-ui/core";
 ```
 
 ## Injecting global styles
@@ -82,17 +81,21 @@ do this with the utilities provided by Chakra UI.
 
 ## Adding Icons
 
-You can use custom icons from standard libraries like [react-icons](#) or you
-can add the icon paths into the theme object.
+You can use custom icons from standard libraries like
+[react-icons](https://react-icons.netlify.com) or you can add the icon `path` in
+the the theme object.
 
-Here's how the icon aspect of the theme object looks.
+To add the icon to the theme object, add the `icons` key as shown below.
 
 ```js
-// Theme object
+// theme.js
 export default {
   icons: {
+    // Add Chakra's icons
+    ...theme.icons,
+    // Your custom icons
     search: {
-      // This is can be the <path/> or <g> elements for the svg. Note the "fill=currentColor"
+      // The <path/> or <g> element for the svg. Note the use of  `fill=currentColor`
       path: (
         <path
           fill="currentColor"
@@ -115,5 +118,5 @@ this;
 
 ## Contributing
 
-Please see our [contribution guidelines]() to learn how you can contribute to
-this project.
+Please see our [contribution guidelines](/contributing) to learn how you can
+contribute to this project.

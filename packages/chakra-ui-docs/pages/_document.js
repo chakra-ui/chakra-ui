@@ -1,5 +1,6 @@
 import React from "react";
 import NextDocument, { Html, Head, Main, NextScript } from "next/document";
+import NoFlashSript from "../components/NoFlashSript";
 
 class Document extends NextDocument {
   static async getInitialProps(ctx) {
@@ -12,6 +13,7 @@ class Document extends NextDocument {
       <Html>
         <Head />
         <body>
+          <NoFlashSript />
           <Main />
           <NextScript />
         </body>

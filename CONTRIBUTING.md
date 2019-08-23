@@ -36,7 +36,6 @@ git remote add upstream git@github.com:chakra-ui/chakra-ui.git
 git checkout master
 git pull upstream master
 git checkout -b my-feature-branch
-yarn
 ```
 
 ### Running the documentation site
@@ -56,11 +55,7 @@ Depending on the package you want to build just run `npm run core:build`.
 
 ### Coding style
 
-Please follow the coding style of the project. Material-UI uses eslint, so if possible, enable linting in your editor to get real-time feedback. The linting rules can be run manually with the following command `npm run lint`.
-
-You can also run `npm run prettier` to reformat the code.
-
-Finally, when you submit a pull request, they are run again by Travis CI, but hopefully by then your code is already clean!
+TODO
 
 ## How do I add a new demo in the documentation?
 

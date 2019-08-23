@@ -133,7 +133,7 @@ Avatar.defaultProps = {
 Avatar.propTypes = {
   size: propTypes.oneOf(["2xs", "xs", "sm", "md", "lg", "xl", "2xl"]),
   showBorder: propTypes.bool,
-  name: propTypes.string.isRequired,
+  name: propTypes.string,
   badge: propTypes.node,
   src: propTypes.string,
 };

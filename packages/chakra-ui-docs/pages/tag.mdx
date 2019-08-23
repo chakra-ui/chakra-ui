@@ -20,13 +20,21 @@ import { Tag } from "@chakra-ui/core";
 
 ```jsx
 function Example() {
+  const props = {
+    color: "gray",
+  };
+
   return (
-    <List spacing={4} inline>
-      {["sm", "md", "lg"].map(size => (
-        <Tag size={size} color="gray">
-          <TagLabel>Gray</TagLabel>
-        </Tag>
-      ))}
+    <List isInline>
+      <Tag size="sm" {...props}>
+        <TagLabel>Gray</TagLabel>
+      </Tag>
+      <Tag size="md" {...props}>
+        <TagLabel>Gray</TagLabel>
+      </Tag>
+      <Tag size="lg" {...props}>
+        <TagLabel>Gray</TagLabel>
+      </Tag>
     </List>
   );
 }
@@ -37,7 +45,7 @@ function Example() {
 ```jsx
 function Example() {
   return (
-    <List spacing={4} inline>
+    <List isInline>
       {["sm", "md", "lg"].map(size => (
         <Tag size={size} color="cyan">
           <TagAddon placement="left">
@@ -56,7 +64,7 @@ function Example() {
 ```jsx
 function Example() {
   return (
-    <List spacing={4} inline>
+    <List isInline>
       {["sm", "md", "lg"].map(size => (
         <Tag size={size} color="cyan">
           <TagLabel>Green</TagLabel>
@@ -75,7 +83,7 @@ function Example() {
 ```jsx
 function Example() {
   return (
-    <List spacing={4} inline>
+    <List isInline>
       {["sm", "md", "lg"].map(size => (
         <Tag size={size} rounded="full" variant="solid" color="cyan">
           <TagLabel>Green</TagLabel>
@@ -92,11 +100,11 @@ function Example() {
 ```jsx
 function Example() {
   return (
-    <List spacing={4} inline>
+    <List isInline>
       <Tag color="red" rounded="full">
-        <TagAddon placement="left">
+        <TagAddon placement="left" mr="1">
           <Avatar
-            src="https://www.dropbox.com/s/nd8z3hxuo3ahauk/segun_adebayo.jpg?dl=1"
+            src="http://bit.ly/sage-adebayo"
             size="xs"
             name="Segun Adebayo"
           />
@@ -110,8 +118,8 @@ function Example() {
 
 ## Props
 
-| Name      | Type                         | Default | Description                              |
-| --------- | ---------------------------- | ------- | ---------------------------------------- |
-| `variant` | `solid`, `subtle`, `outline` | `solid` | The variant of the tag component.        |
-| `size`    | `sm`, `md`, `lg`             | `md`    | The size of the tag component.           |
-| `color`   | `string`                     |         | The background color of the tag variant. |
+| Name      | Type                         | Default | Description                             |
+| --------- | ---------------------------- | ------- | --------------------------------------- |
+| `variant` | `solid`, `subtle`, `outline` | `solid` | The variant style of the tag component. |
+| `size`    | `sm`, `md`, `lg`             | `md`    | The size of the tag component.          |
+| `color`   | `string`                     |         | The color scheme of the tag variant.    |

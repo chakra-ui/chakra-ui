@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
 import List from "../List";
-import Tag, { TagAddon, TagLabel, TagCloseButton } from ".";
+import Tag, { TagLabel, TagLeftAddon, TagRightAddon, TagCloseButton } from ".";
 import Icon from "../Icon";
 import Avatar from "../Avatar";
 
@@ -25,9 +25,9 @@ stories.add("with left icon", () => {
     <List spacing={4} inline>
       {["sm", "md", "lg"].map(size => (
         <Tag size={size} color="cyan">
-          <TagAddon placement="left">
+          <TagLeftAddon>
             <Icon name="add" size="12px" />
-          </TagAddon>
+          </TagLeftAddon>
           <TagLabel>Green</TagLabel>
         </Tag>
       ))}
@@ -41,9 +41,9 @@ stories.add("with right icon", () => {
       {["sm", "md", "lg"].map(size => (
         <Tag size={size} color="cyan">
           <TagLabel>Green</TagLabel>
-          <TagAddon placement="right">
+          <TagRightAddon>
             <Icon name="check" size="12px" />
-          </TagAddon>
+          </TagRightAddon>
         </Tag>
       ))}
     </List>
@@ -67,13 +67,13 @@ stories.add("with custom element", () => {
   return (
     <List spacing={4} inline>
       <Tag color="red" rounded="full">
-        <TagAddon placement="left">
+        <TagLeftAddon>
           <Avatar
             src="https://www.dropbox.com/s/nd8z3hxuo3ahauk/segun_adebayo.jpg?dl=1"
             size="xs"
             name="Segun Adebayo"
           />
-        </TagAddon>
+        </TagLeftAddon>
         <TagLabel>Segun</TagLabel>
       </Tag>
     </List>

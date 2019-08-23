@@ -29,7 +29,11 @@ const tagSizes = {
 
 const TagContext = createContext();
 const useTagContext = () => {
-  return useContext(TagContext);
+  const context = useContext(TagContext);
+  if (context == null) {
+    throw Error("useTagContext must be used within a TagContext Provider");
+  }
+  return context;
 };
 
 export const TagAddon = ({ placement, ...props }) => {
@@ -52,9 +56,15 @@ export const TagAddon = ({ placement, ...props }) => {
   );
 };
 
+export const TagLeftAddon = props => <TagAddon placement="left" {...props} />;
+export const TagRightAddon = props => <TagAddon placement="right" {...props} />;
+
 export const TagCloseButton = props => {
   const margin = { sm: -2, md: -2, lg: -3 };
   const { size } = useTagContext();
+
+  const width = tagSizes[size] && tagSizes[size]["minWidth"];
+  const marginRight = margin[size];
 
   return (
     <PseudoBox
@@ -66,8 +76,8 @@ export const TagCloseButton = props => {
       alignSelf="stretch"
       rounded="full"
       opacity="0.5"
-      mr={margin[size]}
-      width={tagSizes[size]["minWidth"]}
+      mr={marginRight}
+      width={width}
       _focus={{
         boxShadow: "outline",
         bg: "rgba(0, 0, 0, 0.14)",
@@ -85,18 +95,16 @@ export const TagCloseButton = props => {
   );
 };
 
-export const TagLabel = props => {
-  return (
-    <Box
-      maxWidth={14}
-      overflow="hidden"
-      isTruncated
-      lineHeight="1.2"
-      as="span"
-      {...props}
-    />
-  );
-};
+export const TagLabel = props => (
+  <Box
+    maxWidth={14}
+    overflow="hidden"
+    isTruncated
+    lineHeight="1.2"
+    as="span"
+    {...props}
+  />
+);
 
 const Tag = ({ variant = "subtle", size = "lg", color, ...rest }) => {
   const tagStyleProps = useBadgeStyle({ color, variant });
