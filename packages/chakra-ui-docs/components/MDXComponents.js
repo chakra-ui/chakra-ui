@@ -71,6 +71,7 @@ const DocsHeading = props => (
       "&:hover > a": { opacity: 1 },
       "&::before": {
         content: `""`,
+        visibility: "hidden",
         display: "block",
         paddingTop: 90,
         marginTop: -90,
@@ -97,7 +98,7 @@ const DocsHeading = props => (
 );
 
 const MDXComponents = {
-  h1: props => <DocsHeading as="h1" size="xl" my={5} {...props}></DocsHeading>,
+  h1: props => <Heading as="h1" size="xl" my={5} {...props}></Heading>,
   h2: props => (
     <DocsHeading as="h2" size="lg" mb="20px" mt="40px" {...props}></DocsHeading>
   ),

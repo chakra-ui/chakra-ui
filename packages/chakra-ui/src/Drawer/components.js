@@ -10,6 +10,7 @@ import {
 } from "../Modal";
 import CloseButton from "../CloseButton";
 import { useColorMode } from "../ColorModeProvider";
+import { forwardRef } from "react";
 
 const DrawerTransition = ({
   isOpen,
@@ -74,23 +75,33 @@ const DrawerTransition = ({
       config={{ duration }}
     >
       {isOpen =>
-        isOpen && (styles => children({ styles, transform, placements }))
+        isOpen &&
+        (styles =>
+          children({
+            reactSpringStyles: styles,
+            transformStyle: transform(styles.offset),
+            placementStyle: placements[placement],
+          }))
       }
     </Transition>
   );
 };
 
-const DrawerOverlay = ({ hideOverlay, ...rest }) => (
-  <ModalOverlay {...(hideOverlay && { bg: "transparent" })} {...rest} />
+const DrawerOverlay = ({ showOverlay, ...props }) => (
+  <ModalOverlay
+    {...(showOverlay === false && { bg: "transparent" })}
+    {...props}
+  />
 );
 
-const DrawerCloseButton = ({ onClick, ...rest }) => {
+const DrawerCloseButton = forwardRef(({ onClick, ...rest }, ref) => {
   const { colorMode } = useColorMode();
   const hoverColor = { light: "blackAlpha.100", dark: "whiteAlpha.100" };
   const activeColor = { light: "blackAlpha.200", dark: "whiteAlpha.200" };
 
   return (
     <CloseButton
+      ref={ref}
       onClick={onClick}
       position="fixed"
       zIndex="1"
@@ -101,7 +112,7 @@ const DrawerCloseButton = ({ onClick, ...rest }) => {
       {...rest}
     />
   );
-};
+});
 
 export {
   DrawerTransition,

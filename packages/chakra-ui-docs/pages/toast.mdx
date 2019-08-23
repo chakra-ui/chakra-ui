@@ -6,10 +6,10 @@ import Head from "next/head";
 
 # Toast
 
-The toaster is used to show alerts on top of an overlay. The toast will
-close itself when the close button is clicked, or after a timeout — the default
-is 5 seconds. The toast component is used to give feeback to users after an
-action has taken place.
+The toast is used to show alerts on top of an overlay. The toast will close
+itself when the close button is clicked, or after a timeout — the default is 5
+seconds. The toast component is used to give feeback to users after an action
+has taken place.
 
 Toasts can be configured to appear at either the top or the bottom of an
 application window, and it is possible to have more than one toast onscreen at a
@@ -24,33 +24,29 @@ npm install @chakra-ui/core
 then import Toast
 
 ```js
-import { Toast } from "@chakra-ui/core";
+import { useToast } from "@chakra-ui/core";
 ```
 
 ## Usage
 
 ```jsx
 function Example() {
-  const Toaster = () => {
-    const toast = useToast();
-    return (
-      <Button
-        onClick={() =>
-          toast({
-            title: "Account created.",
-            description: "We've created your account for you.",
-            status: "success",
-            duration: 9000,
-            isClosable: true,
-          })
-        }
-      >
-        Show Toast
-      </Button>
-    );
-  };
-
-  return <Toaster />;
+  const toast = useToast();
+  return (
+    <Button
+      onClick={() =>
+        toast({
+          title: "Account created.",
+          description: "We've created your account for you.",
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+        })
+      }
+    >
+      Show Toast
+    </Button>
+  );
 }
 ```
 
@@ -60,27 +56,23 @@ Display a custom component instead of the default Toast UI.
 
 ```jsx
 function Example() {
-  const Toaster = () => {
-    const toast = useToast();
-    return (
-      <Button
-        onClick={() =>
-          toast({
-            position: "bottom-left",
-            render: () => (
-              <Box m={3} color="white" p={3} bg="blue.500">
-                Hello World
-              </Box>
-            ),
-          })
-        }
-      >
-        Show Toast
-      </Button>
-    );
-  };
-
-  return <Toaster />;
+  const toast = useToast();
+  return (
+    <Button
+      onClick={() =>
+        toast({
+          position: "bottom-left",
+          render: () => (
+            <Box m={3} color="white" p={3} bg="blue.500">
+              Hello World
+            </Box>
+          ),
+        })
+      }
+    >
+      Show Toast
+    </Button>
+  );
 }
 ```
 
@@ -88,26 +80,22 @@ function Example() {
 
 ```jsx
 function Example() {
-  const Toaster = () => {
-    const toast = useToast();
-    return (
-      <Button
-        onClick={() =>
-          toast({
-            title: "Account created.",
-            description: "We've created your account for you.",
-            status: "success",
-            duration: 9000,
-            isClosable: true,
-          })
-        }
-      >
-        Show Success Toast
-      </Button>
-    );
-  };
-
-  return <Toaster />;
+  const toast = useToast();
+  return (
+    <Button
+      onClick={() =>
+        toast({
+          title: "Account created.",
+          description: "We've created your account for you.",
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+        })
+      }
+    >
+      Show Success Toast
+    </Button>
+  );
 }
 ```
 
@@ -115,26 +103,22 @@ function Example() {
 
 ```jsx
 function Example() {
-  const Toaster = () => {
-    const toast = useToast();
-    return (
-      <Button
-        onClick={() =>
-          toast({
-            title: "Waring.",
-            description: "This is a warning.",
-            status: "warning",
-            duration: 9000,
-            isClosable: true,
-          })
-        }
-      >
-        Show Warning Toast
-      </Button>
-    );
-  };
-
-  return <Toaster />;
+  const toast = useToast();
+  return (
+    <Button
+      onClick={() =>
+        toast({
+          title: "Waring.",
+          description: "This is a warning.",
+          status: "warning",
+          duration: 9000,
+          isClosable: true,
+        })
+      }
+    >
+      Show Warning Toast
+    </Button>
+  );
 }
 ```
 
@@ -142,26 +126,22 @@ function Example() {
 
 ```jsx
 function Example() {
-  const Toaster = () => {
-    const toast = useToast();
-    return (
-      <Button
-        onClick={() =>
-          toast({
-            title: "An error occurred.",
-            description: "Unable to create user account.",
-            status: "error",
-            duration: 9000,
-            isClosable: true,
-          })
-        }
-      >
-        Show Error Toast
-      </Button>
-    );
-  };
-
-  return <Toaster />;
+  const toast = useToast();
+  return (
+    <Button
+      onClick={() =>
+        toast({
+          title: "An error occurred.",
+          description: "Unable to create user account.",
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+        })
+      }
+    >
+      Show Error Toast
+    </Button>
+  );
 }
 ```
 
@@ -171,27 +151,23 @@ Using the `position` prop you can adjust where your toast will be popup from.
 
 ```jsx
 function Example() {
-  const Toaster = () => {
-    const toast = useToast();
-    return (
-      <Button
-        onClick={() =>
-          toast({
-            position: "bottom-left",
-            title: "Account created.",
-            description: "We've created your account for you.",
-            status: "success",
-            duration: 9000,
-            isClosable: true,
-          })
-        }
-      >
-        Show Toast
-      </Button>
-    );
-  };
-
-  return <Toaster />;
+  const toast = useToast();
+  return (
+    <Button
+      onClick={() =>
+        toast({
+          position: "bottom-left",
+          title: "Account created.",
+          description: "We've created your account for you.",
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+        })
+      }
+    >
+      Show Toast
+    </Button>
+  );
 }
 ```
 

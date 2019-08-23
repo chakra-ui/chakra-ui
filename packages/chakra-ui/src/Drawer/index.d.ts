@@ -44,6 +44,10 @@ interface IDrawer {
    *  Set the position of the drawer.
    */
   placement?: "top" | "left" | "bottom" | "right";
+  /**
+   *  The zIndex of the drawer.
+   */
+  zIndex?: number | string;
 }
 
 interface IDrawerTransition {

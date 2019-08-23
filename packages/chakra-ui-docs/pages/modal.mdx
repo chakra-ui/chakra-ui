@@ -1,0 +1,59 @@
+# Modal
+
+A React component that displays content in a layer blocking the interaction with
+the page.
+
+## Usage
+
+Below is an example of how to use the ModalDialog component.
+
+### Basic
+
+```jsx
+function ExampleBasic() {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  const open = () => setIsOpen(true);
+
+  const close = () => setIsOpen(false);
+
+  return (
+    <>
+      <Button onClick={open}>Open Modal</Button>
+      <Modal size="lg" isOpen={isOpen} onClose={close}>
+        <ModalHeader>Modal Title</ModalHeader>
+        <ModalBody>
+          Sit nulla est ex deserunt exercitation anim occaecat. Nostrud ullamco
+          deserunt aute id consequat.
+        </ModalBody>
+        <ModalFooter>
+          <Button onClick={close} mr={2}>
+            Close
+          </Button>
+          <Button variantColor="cyan">Submit</Button>
+        </ModalFooter>
+      </Modal>
+    </>
+  );
+}
+```
+
+## Accessibility
+
+- When the dialog opens, focus is automatically set to the first enabled
+  element.
+- Clicking on the overlay closes the Modal.
+- Pressing <kbd>esc</kbd> closes the Modal.
+
+## Props
+
+| Name            | Type                   | Default | Description                                                   |
+| --------------- | ---------------------- | ------- | ------------------------------------------------------------- |
+| isOpen          | `boolean`              |         | If true, the `AlertDialog` will open                          |
+| onClose         | `function`             |         | The function to close the `AlertDialog`                       |
+| size            | `xs`, `sm`, `md`, `lg` | `md`    | The maximum width of the AlertDialog                          |
+| isCentered      | `boolean`              |         | If`true`, the`AlertDialog` will be centered on screen         |
+| initialFocusRef | `React.Ref`            |         | The least destructive action to get focus when dialog is open |
+
+- ModalHeader and ModalBody composes `Box` component
+- ModalFooter composes `Flex` component

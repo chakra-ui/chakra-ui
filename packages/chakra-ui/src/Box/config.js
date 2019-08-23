@@ -93,6 +93,7 @@ export const config = {
   appearance: true,
   transform: true,
   transformOrigin: true,
+  visibility: true,
   whiteSpace: true,
   userSelect: true,
   pointerEvents: true,
