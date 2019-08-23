@@ -10,5 +10,5 @@ export interface ISelect {
 
 export type SelectProps = ISelect & InputProps;
 
-declare const Select: React.ForwardRefExoticComponent<SelectProps>;
+declare const Select: React.FC<SelectProps>;
 export default Select;

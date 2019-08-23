@@ -23,7 +23,7 @@ export const TagLabel: React.FC<BoxProps>;
 
 export const TagCloseButton: React.FC<PseudoBoxProps>;
 
-export const TagAddon: React.FC<CenterProps>;
+export const TagAddon: React.FC<BoxProps>;
 
 export type TagProps = ITag & PseudoBoxProps;
 

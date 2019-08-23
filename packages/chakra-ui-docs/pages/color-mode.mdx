@@ -80,17 +80,13 @@ function Example() {
 
   return (
     <List isInline>
-      <LightMode>
-        <Button size="sm" variantColor="blue">
-          Light Mode Always
-        </Button>
-      </LightMode>
+      <Button colorMode="light" size="sm" variantColor="blue">
+        Light Mode Always
+      </Button>
 
-      <DarkMode>
-        <Button size="sm" variantColor="blue">
-          Dark Mode Always
-        </Button>
-      </DarkMode>
+      <Button colorMode="dark" size="sm" variantColor="blue">
+        Dark Mode Always
+      </Button>
 
       <Button size="sm" variantColor="blue" onClick={toggleColorMode}>
         Toggle Mode

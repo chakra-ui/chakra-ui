@@ -2,7 +2,7 @@ import { addDecorator, configure } from "@storybook/react";
 import React from "react";
 import { Button, Fixed } from "../src";
 import CSSReset from "../src/CSSReset";
-import ColorModeProvider, { useColorMode } from "../src/ColorModeProvider";
+import { useColorMode } from "../src/ColorModeProvider";
 import ThemeProvider from "../src/ThemeProvider";
 
 // function loadStories() {
@@ -34,10 +34,6 @@ const AppProvider = ({ children }) => {
   );
 };
 
-addDecorator(story => (
-  <ColorModeProvider>
-    <AppProvider>{story()}</AppProvider>
-  </ColorModeProvider>
-));
+addDecorator(story => <AppProvider>{story()}</AppProvider>);
 
 configure(loadStories, module);

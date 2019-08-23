@@ -25,7 +25,7 @@ export type PopoverProps = IPopover & BoxProps;
 
 declare const Popover: React.FC<PopoverProps>;
 
-export const PopoverContent: React.ForwardRefExoticComponent<
+export const PopoverContent: React.FC<
   BoxProps & React.RefAttributes<HTMLElement>
 >;
 

@@ -33,11 +33,11 @@ export type AvatarGroupProps = IAvatarGroup &
   BoxProps &
   React.RefAttributes<HTMLDivElement>;
 
-export const MoreIndicator: React.ForwardRefExoticComponent<MoreIndicatorProps>;
+export const MoreIndicator: React.FC<MoreIndicatorProps>;
 
 /**
  * AvatarGroup is a wrapper to render a collection of evenly spaced avatars.
  */
-declare const AvatarGroup: React.ForwardRefExoticComponent<AvatarGroupProps>;
+declare const AvatarGroup: React.FC<AvatarGroupProps>;
 
 export default AvatarGroup;

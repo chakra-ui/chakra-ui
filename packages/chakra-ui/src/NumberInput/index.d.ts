@@ -17,5 +17,5 @@ export type NumberInputProps = INumberInput &
   TypesFromInput &
   React.RefAttributes<HTMLInputElement>;
 
-declare const NumberInput: React.ForwardRefExoticComponent<NumberInputProps>;
+declare const NumberInput: React.FC<NumberInputProps>;
 export default NumberInput;

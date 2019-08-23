@@ -1,4 +1,3 @@
-export { default as Absolute } from "./Absolute";
 export { default as Accordion } from "./Accordion";
 export * from "./Accordion";
 export { default as Alert } from "./Alert";
@@ -7,8 +6,8 @@ export { default as AlertDialog } from "./AlertDialog";
 export * from "./AlertDialog";
 export { default as Avatar } from "./Avatar";
 export * from "./Avatar";
-export { default as AvatarGroup } from "./AvatarGroup";
-export * from "./AvatarGroup";
+// export { default as AvatarGroup } from "./AvatarGroup";
+// export * from "./AvatarGroup";
 
 export { default as Badge } from "./Badge";
 export { default as Box } from "./Box";

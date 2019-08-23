@@ -5,7 +5,6 @@ const components = [
   "Alert",
   "AlertDialog",
   "Avatar",
-  "AvatarGroup",
   "Badge",
   "Box",
   "Breadcrumb",

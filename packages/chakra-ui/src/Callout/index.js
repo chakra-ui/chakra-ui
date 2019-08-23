@@ -8,7 +8,6 @@ const Callout = ({ status = "info", variant = "subtle", ...rest }) => {
   const alertStyleProps = useAlertStyle({
     variant,
     color: statusColors[status],
-    hasStripe: false,
   });
 
   return <Box {...alertStyleProps} {...rest} />;

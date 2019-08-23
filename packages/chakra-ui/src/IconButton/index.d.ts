@@ -24,6 +24,6 @@ interface IIconButton extends PropsFromButton {
 
 export type IconButtonProps = IIconButton & React.RefAttributes<HTMLDivElement>;
 
-declare const IconButton: React.ForwardRefExoticComponent<IconButtonProps>;
+declare const IconButton: React.FC<IconButtonProps>;
 
 export default IconButton;

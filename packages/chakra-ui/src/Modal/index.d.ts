@@ -44,10 +44,10 @@ export default Modal;
 
 export const ModalHeader: React.FC<BoxProps>;
 export const ModalFooter: React.FC<BoxProps>;
-export const ModalOverlay: React.ForwardRefExoticComponent<
+export const ModalOverlay: React.FC<
   BoxProps & React.RefAttributes<HTMLDivElement>
 >;
-export const ModalContent: React.ForwardRefExoticComponent<
+export const ModalContent: React.FC<
   BoxProps & React.RefAttributes<HTMLDivElement>
 >;
 

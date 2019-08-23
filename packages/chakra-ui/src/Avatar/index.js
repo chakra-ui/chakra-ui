@@ -1,11 +1,9 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import propTypes from "prop-types";
 import useAvatarStyle, { avatarSizes } from "./styles";
 import { useHasImageLoaded } from "../Image";
 import { useTheme } from "../ThemeProvider";
 import { useColorMode } from "../ColorModeProvider";
-import Absolute from "../Absolute";
 import Box from "../Box";
 
 export const AvatarBadge = props => {
@@ -13,7 +11,8 @@ export const AvatarBadge = props => {
   const borderColor = { light: "white", dark: "gray.800" };
 
   return (
-    <Absolute
+    <Box
+      position="absolute"
       display="flex"
       alignItems="center"
       justifyContent="center"
@@ -66,9 +65,9 @@ const Avatar = ({
   size,
   showBorder,
   name,
-  badge,
   src,
   borderColor,
+  children,
   ...rest
 }) => {
   const avatarStyleProps = useAvatarStyle({
@@ -121,21 +120,13 @@ const Avatar = ({
       {...rest}
     >
       {renderChildren()}
-      {badge}
+      {children}
     </Box>
   );
 };
 
 Avatar.defaultProps = {
   size: "md",
-};
-
-Avatar.propTypes = {
-  size: propTypes.oneOf(["2xs", "xs", "sm", "md", "lg", "xl", "2xl"]),
-  showBorder: propTypes.bool,
-  name: propTypes.string,
-  badge: propTypes.node,
-  src: propTypes.string,
 };
 
 export default Avatar;

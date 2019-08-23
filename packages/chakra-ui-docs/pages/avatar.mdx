@@ -17,7 +17,7 @@ import { Avatar } from "@chakra-ui/core";
 ```jsx
 <List isInline>
   <Avatar name="Dan Abrahmov" src="http://bit.ly/dan-abramov" />
-  <Avatar name="Uchiha Itachi" src="http://bit.ly/uchiha-itachi" />
+  <Avatar name="Kola Tioluwani" src="http://bit.ly/tioluwani-kolawole" />
   <Avatar name="Kent Dodds" src="http://bit.ly/kent-c-dodds" />
   <Avatar name="Ryan Florence" src="http://bit.ly/ryan-florence" />
   <Avatar name="Prosper Otemuyiwa" src="http://bit.ly/prosper-baba" />
@@ -32,7 +32,11 @@ The Avatar component comes in 7 sizes
 ```jsx
 <List isInline>
   <Avatar size="2xs" name="Dan Abrahmov" src="http://bit.ly/dan-abramov" />
-  <Avatar size="xs" name="Uchiha Itachi" src="http://bit.ly/uchiha-itachi" />
+  <Avatar
+    size="xs"
+    name="Kola Tioluwani"
+    src="http://bit.ly/tioluwani-kolawole"
+  />
   <Avatar size="sm" name="Kent Dodds" src="http://bit.ly/kent-c-dodds" />
   <Avatar size="md" name="Ryan Florence" src="http://bit.ly/ryan-florence" />
   <Avatar size="lg" name="Prosper Otemuyiwa" src="http://bit.ly/prosper-baba" />
@@ -60,7 +64,9 @@ If there was an error loading the image `src` of the avatar, we do two things:
 ## Avatar with badge
 
 ```jsx
-<Avatar badge={<AvatarBadge size="1.25em" bg="green.500" />} />
+<Avatar>
+  <AvatarBadge size="1.25em" bg="green.500" />
+</Avatar>
 ```
 
 > The `em` size of the `AvatarBadge` helps us size the circle relative to the
@@ -76,4 +82,4 @@ The Avatar component composes `Box` component so you can pass props for `Box`.
 | `showBorder` | `boolean`                                  | `false` | If `true`, the `Avatar` will show a border around it. Best for a group of avatars |
 | `name`       | `string`                                   |         | The name of the user in the avatar                                                |
 | `src`        | `string`                                   |         | The image url of the `Avatar`                                                     |
-| `badge`      | `React.ReactNode`                          |         | The badge at the bottom right corner of the Avatar.                               |
+| `children`   | `React.ReactNode`                          |         | The badge at the bottom right corner of the Avatar.                               |

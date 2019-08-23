@@ -3,7 +3,6 @@ import { jsx } from "@emotion/core";
 import toaster from "toasted-notes";
 import Alert, { AlertIcon, AlertTitle, AlertDescription } from "../Alert";
 import ThemeProvider, { useTheme } from "../ThemeProvider";
-import ColorModeProvider from "../ColorModeProvider";
 import Box from "../Box";
 import CloseButton from "../CloseButton";
 
@@ -48,14 +47,6 @@ const Toast = ({
   );
 };
 
-const ChakraProvider = ({ theme, children }) => {
-  return (
-    <ColorModeProvider>
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
-    </ColorModeProvider>
-  );
-};
-
 export function useToast() {
   const theme = useTheme();
 
@@ -77,9 +68,7 @@ export function useToast() {
     if (render) {
       return toaster.notify(
         ({ onClose, id }) => (
-          <ChakraProvider theme={theme}>
-            {render({ onClose, id })}
-          </ChakraProvider>
+          <ThemeProvider theme={theme}>{render({ onClose, id })}</ThemeProvider>
         ),
         options,
       );
@@ -87,7 +76,7 @@ export function useToast() {
 
     toaster.notify(
       ({ onClose, id }) => (
-        <ChakraProvider theme={theme}>
+        <ThemeProvider theme={theme}>
           <Toast
             {...{
               onClose,
@@ -99,7 +88,7 @@ export function useToast() {
               isClosable,
             }}
           />
-        </ChakraProvider>
+        </ThemeProvider>
       ),
       options,
     );

@@ -30,7 +30,8 @@ const Select = forwardRef(
           {placeholder && <option value="">{placeholder}</option>}
           {children}
         </Input>
-        <Absolute
+        <Box
+          position="absolute"
           display="inline-flex"
           right="8px"
           top="50%"
@@ -40,7 +41,7 @@ const Select = forwardRef(
           transform="translateY(-50%)"
         >
           <Icon name="chevron-down" color="currentColor" size="18px" />
-        </Absolute>
+        </Box>
       </Box>
     );
   },

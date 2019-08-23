@@ -47,7 +47,10 @@ export const TagAddon = ({ placement, ...props }) => {
   };
 
   return (
-    <Center
+    <Box
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
       transition="all 0.2s"
       size={sizes[size]}
       {..._placement[placement]}

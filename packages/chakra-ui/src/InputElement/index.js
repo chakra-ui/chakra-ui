@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import { forwardRef } from "react";
-import Center from "../Center";
+import Box from "../Box";
 import { inputSizes } from "../Input/styles";
 
 const InputElement = forwardRef(
@@ -19,7 +19,10 @@ const InputElement = forwardRef(
     const placementProp = { [placement]: "0" };
 
     return (
-      <Center
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
         position="absolute"
         height={height}
         width={height}
@@ -32,7 +35,7 @@ const InputElement = forwardRef(
         {...props}
       >
         {children}
-      </Center>
+      </Box>
     );
   },
 );

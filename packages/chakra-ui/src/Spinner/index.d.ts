@@ -44,6 +44,6 @@ export type SpinnerProps = BoxProps & ISpinnerProps;
  *
  * RECOMMENDED: Add `aria-busy="true"` to the component that triggered the loading state while the spinner is shown.
  */
-declare const Spinner: React.ForwardRefExoticComponent<SpinnerProps>;
+declare const Spinner: React.FC<SpinnerProps>;
 
 export default Spinner;

@@ -243,8 +243,9 @@ const baseProps = {
 ////////////////////////////////////////////////////////////
 
 const useButtonStyle = props => {
-  const { colorMode } = useColorMode();
+  const context = useColorMode();
   const theme = useTheme();
+  const colorMode = props.colorMode || context.colorMode;
 
   const _props = { ...props, colorMode, theme };
   return {

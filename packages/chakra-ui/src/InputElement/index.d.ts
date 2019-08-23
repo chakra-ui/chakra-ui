@@ -25,12 +25,12 @@ interface IInputElement {
 
 type IInputElementProps = IInputElement & BoxProps;
 
-declare const InputElement: React.ForwardRefExoticComponent<IInputElementProps>;
+declare const InputElement: React.FC<IInputElementProps>;
 export default InputElement;
 
-export const InputLeftElement: React.ForwardRefExoticComponent<
+export const InputLeftElement: React.FC<
   IInputElementProps
 >;
-export const InputRightElement: React.ForwardRefExoticComponent<
+export const InputRightElement: React.FC<
   IInputElementProps
 >;

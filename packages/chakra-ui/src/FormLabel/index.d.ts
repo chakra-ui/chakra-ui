@@ -20,6 +20,6 @@ export type FormLabelProps = ILabelProps &
  * It reads from the `FormControl` context to handle it's styles for
  * the various form states.
  */
-declare const FormLabel: React.ForwardRefExoticComponent<FormLabelProps>;
+declare const FormLabel: React.FC<FormLabelProps>;
 
 export default FormLabel;

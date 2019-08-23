@@ -41,6 +41,7 @@ const Button = forwardRef(
       iconSpacing,
       type,
       size,
+      colorMode,
       ...rest
     },
     ref,
@@ -49,6 +50,7 @@ const Button = forwardRef(
       color: variantColor,
       variant,
       size,
+      colorMode,
     });
     const _isDisabled = isDisabled || isLoading;
 

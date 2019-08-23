@@ -58,5 +58,5 @@ export type RadioProps = IRadio &
   BoxProps &
   React.RefAttributes<HTMLInputElement>;
 
-declare const Radio: React.ForwardRefExoticComponent<RadioProps>;
+declare const Radio: React.FC<RadioProps>;
 export default Radio;

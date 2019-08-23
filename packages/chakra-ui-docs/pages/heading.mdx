@@ -1,11 +1,15 @@
 # Heading
 
-Headings are used to create a primary area of interest in an interface with
-large type. Headlines establish the first-level typographical hierarchy for
-sections throughout the interface.
+Headings are used for rendering headlines.
 
 Heading composes `Box` so you can use all the style props and add responsive
 styles as well. It renders an `<h2>` tag by default.
+
+## Basic Usage
+
+```jsx
+<Heading>Heading component</Heading>
+```
 
 ## Size
 
@@ -14,62 +18,51 @@ visual coherency within the interface.
 
 ```jsx
 <>
-  <Heading as="h1" size="2xl">
-    Heading 1
-  </Heading>
-  <Heading as="h2" size="xl">
-    Heading 2
-  </Heading>
-  <Heading as="h3" size="lg">
-    Heading 3
-  </Heading>
-  <Heading as="h4" size="md">
-    Heading 4
-  </Heading>
-  <Heading as="h5" size="sm">
-    Heading 5
-  </Heading>
-  <Heading as="h6" size="xs">
-    Heading 6
-  </Heading>
+  <Heading size="2xl">Heading 1</Heading>
+  <Heading size="xl">Heading 2</Heading>
+  <Heading size="lg">Heading 3</Heading>
+  <Heading size="md">Heading 4</Heading>
+  <Heading size="sm">Heading 5</Heading>
+  <Heading size="xs">Heading 6</Heading>
 </>
 ```
 
 > If you use the `size` prop, the `Heading` component will automatically
-> decrease in size for smaller screens. However you can pass the typography
-> props (fontSize, lineHeight, etc) for more granular control.
+> decrease in size for smaller screens.
 
 ## Installation
 
 ```bash
-  npm i @chakra-ui/core --save
-
-  # or
-
-  yarn add @chakra-ui/core
+npm i @chakra-ui/core --save
+# or
+yarn add @chakra-ui/core
 ```
 
 Then import
 
 ```bash
-  import { Heading } from "@chakra-ui/core"
+import { Heading } from "@chakra-ui/core"
 ```
 
 ## Usage
 
 ```jsx
-<>
-  <Heading as="h1" lineHeight="shorter" size="2xl">
-    Modern online and offline payments for Africa
-  </Heading>
-  <Text mt="24px" fontSize="xl">
-    Paystack helps businesses in Africa get paid by anyone, anywhere in the
-    world
-  </Text>
-  <Button size="lg" variantColor="green" mt="24px">
-    Create a free account
-  </Button>
-</>
+function PaystackExample() {
+  return (
+    <>
+      <Heading lineHeight="shorter" size="2xl">
+        Modern online and offline payments for Africa
+      </Heading>
+      <Text mt="24px" fontSize="xl">
+        Paystack helps businesses in Africa get paid by anyone, anywhere in the
+        world
+      </Text>
+      <Button size="lg" variantColor="green" mt="24px">
+        Create a free account
+      </Button>
+    </>
+  );
+}
 ```
 
 ## Props

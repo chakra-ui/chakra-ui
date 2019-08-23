@@ -53,14 +53,6 @@ export const config = {
     property: "borderRadius",
     scale: "radii",
   },
-  leading: {
-    property: "lineHeight",
-    scale: "lineHeights",
-  },
-  tracking: {
-    property: "letterSpacing",
-    scale: "letterSpacings",
-  },
   w: {
     property: "width",
     scale: "sizes",

@@ -122,6 +122,6 @@ export type InputProps = IInput &
   PseudoBoxProps &
   React.RefAttributes<InputElemType>;
 
-declare const Input: React.ForwardRefExoticComponent<InputProps>;
+declare const Input: React.FC<InputProps>;
 
 export default Input;

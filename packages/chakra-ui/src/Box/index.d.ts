@@ -99,6 +99,7 @@ export type BoxProps = React.RefAttributes<HTMLElement> &
   StyledSystem.PositionProps &
   StyledSystem.FlexboxProps &
   StyledSystem.ShadowProps &
+  StyledSystem.GridProps &
   StyledSystem.OpacityProps &
   StyledSystem.TypographyProps &
   IFontSize &

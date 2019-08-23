@@ -82,17 +82,6 @@ const baseProps = {
   pb: 3,
 };
 
-const stripeStyle = {
-  light: generateStripe({
-    size: "8rem",
-    color: "rgba(255, 255, 255, 0.08)",
-  }),
-  dark: generateStripe({
-    size: "8rem",
-    color: "rgba(0,0,0,0.04)",
-  }),
-};
-
 const useAlertStyle = props => {
   const { colorMode } = useColorMode();
   const theme = useTheme();
@@ -101,7 +90,6 @@ const useAlertStyle = props => {
   return {
     ...baseProps,
     ...statusStyleProps(_props)[colorMode],
-    ...(props.hasStripe && { css: stripeStyle[colorMode] }),
   };
 };
 

@@ -48,7 +48,7 @@ export interface ITabs {
 }
 
 export type TabsProps = ITabs & BoxProps;
-declare const Tabs: React.ForwardRefExoticComponent<TabsProps>;
+declare const Tabs: React.FC<TabsProps>;
 export default Tabs;
 
 ////////////////////////////////////////////////////////////////////////
@@ -61,7 +61,7 @@ export interface ITabList {
 }
 
 export type TabListProps = ITabList & FlexProps;
-export const TabList: React.ForwardRefExoticComponent<TabListProps>;
+export const TabList: React.FC<TabListProps>;
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -84,7 +84,7 @@ export interface ITabPanel {
   selectedPanelRef: React.RefAttributes<HTMLDivElement>;
 }
 export type TabPanelProps = ITabPanel & BoxProps;
-export const TabPanel: React.ForwardRefExoticComponent<TabPanelProps>;
+export const TabPanel: React.FC<TabPanelProps>;
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -96,8 +96,8 @@ export interface ITabPanels {
 }
 
 export type TabPanelsProps = ITabPanels & BoxProps;
-export const TabPanels: React.ForwardRefExoticComponent<TabPanelsProps>;
+export const TabPanels: React.FC<TabPanelsProps>;
 
 ////////////////////////////////////////////////////////////////////////
 
-export const Tab: React.ForwardRefExoticComponent<PseudoBoxProps>;
+export const Tab: React.FC<PseudoBoxProps>;

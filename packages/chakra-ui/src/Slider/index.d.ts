@@ -21,7 +21,7 @@ interface ISlider {
   children: React.ReactNode;
 }
 
-export const SliderThumb: React.ForwardRefExoticComponent<PseudoBoxProps>;
+export const SliderThumb: React.FC<PseudoBoxProps>;
 
 export const SliderTrack: React.FC<BoxProps>;
 
@@ -29,6 +29,6 @@ export const SliderFilledTrack: React.FC<PseudoBoxProps>;
 
 export type SliderProps = ISlider & BoxProps;
 
-declare const Slider: React.ForwardRefExoticComponent<SliderProps>;
+declare const Slider: React.FC<SliderProps>;
 
 export default Slider;

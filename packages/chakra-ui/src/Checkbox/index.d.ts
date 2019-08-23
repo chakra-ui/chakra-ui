@@ -68,6 +68,6 @@ export type CheckboxProps = ICheckbox &
   React.RefAttributes<HTMLDivElement> &
   BoxProps;
 
-declare const Checkbox: React.ForwardRefExoticComponent<CheckboxProps>;
+declare const Checkbox: React.FC<CheckboxProps>;
 
 export default Checkbox;

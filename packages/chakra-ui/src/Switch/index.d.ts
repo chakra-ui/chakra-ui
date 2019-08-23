@@ -46,6 +46,6 @@ export interface ISwitch {
 
 export type SwitchProps = ISwitch & BoxProps;
 
-declare const Switch: React.ForwardRefExoticComponent<SwitchProps>;
+declare const Switch: React.FC<SwitchProps>;
 
 export default Switch;

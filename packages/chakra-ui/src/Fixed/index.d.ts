@@ -3,6 +3,6 @@ import * as React from "react";
 
 export type FixedProps = BoxProps & React.RefAttributes<HTMLDivElement>;
 
-declare const Fixed: React.ForwardRefExoticComponent<FixedProps>;
+declare const Fixed: React.FC<FixedProps>;
 
 export default Fixed;

@@ -22,7 +22,7 @@ export interface IAvatar {
   /**
    * The badge at the bottom right corner of the avatar.
    */
-  badge?: React.ReactNode;
+  children?: React.ReactNode;
   /**
    * The image url of the `Avatar`
    */

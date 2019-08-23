@@ -63,7 +63,7 @@ export const AccordionHeader: React.FC<AccordionHeaderProps>;
 /**
  * AccordionPanel component composes `Collapse` to provide the height animation
  */
-export const AccordionPanel: React.ForwardRefExoticComponent<
+export const AccordionPanel: React.FC<
   AccordionPanelProps
 >;
 

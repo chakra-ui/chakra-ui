@@ -9,7 +9,7 @@ const stories = storiesOf("Alert", module);
 
 stories.add("Default", () => {
   return (
-    <Alert hasStripe status="error" variant="solid" justifyContent="center">
+    <Alert status="error" variant="solid" justifyContent="center">
       <AlertIcon />
       <AlertTitle display="inline-block" mr={2}>
         Your browser is outdated!

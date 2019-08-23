@@ -74,7 +74,7 @@ const EditableNotice = props => {
       bg={bg[colorMode]}
       py="2"
       zIndex="0"
-      tracking="wide"
+      letterSpacing="wide"
       color="gray.400"
       fontSize="xs"
       fontWeight="semibold"

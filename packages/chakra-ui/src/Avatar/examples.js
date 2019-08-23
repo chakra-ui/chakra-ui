@@ -18,19 +18,17 @@ stories.add("Default", () => (
         mr={2}
         size={size}
         name="Uchiha Itachi"
-        badge={<AvatarBadge size="1.25em" bg="green.500" />}
-        src="https://vignette.wikia.nocookie.net/naruto/images/b/bb/Itachi.png/revision/latest/scale-to-width-down/300?cb=20160125182202"
-      />
+        src="http://bit.ly/uchiha-itachi"
+      >
+        <AvatarBadge size="1.25em" bg="green.500" />
+      </Avatar>
     ))}
   </Fragment>
 ));
 
 stories.add("Avatar Group", () => (
   <AvatarGroup size="md">
-    <Avatar
-      name="Uchiha Itachi"
-      src="https://vignette.wikia.nocookie.net/naruto/images/b/bb/Itachi.png/revision/latest/scale-to-width-down/300?cb=20160125182202"
-    />
+    <Avatar name="Uchiha Itachi" src="http://bit.ly/uchiha-itachi" />
     <Avatar
       name="Uchiha Sasuke"
       src="https://vignette.wikia.nocookie.net/naruto/images/2/21/Sasuke_Part_1.png/revision/latest?cb=20170716092103"

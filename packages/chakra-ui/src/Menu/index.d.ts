@@ -37,7 +37,7 @@ export type MenuButtonProps = React.RefAttributes<HTMLButtonElement> &
   PseudoBoxProps &
   IMenuButton;
 
-export const MenuButton: React.ForwardRefExoticComponent<MenuButtonProps>;
+export const MenuButton: React.FC<MenuButtonProps>;
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -64,7 +64,7 @@ export type MenuItemProps = IMenuItem &
   PseudoBoxProps &
   React.RefAttributes<HTMLButtonElement>;
 
-export const MenuItem: React.ForwardRefExoticComponent<MenuItemProps>;
+export const MenuItem: React.FC<MenuItemProps>;
 
 ////////////////////////////////////////////////////////////////////////
 

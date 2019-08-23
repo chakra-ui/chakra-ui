@@ -69,6 +69,8 @@ const AccordionHeader = forwardRef((props, ref) => {
       onClick={onToggle}
       id={headerId}
       aria-controls={panelId}
+      px={4}
+      py={2}
       {...props}
     ></PseudoBox>
   );
@@ -86,6 +88,8 @@ const AccordionPanel = forwardRef((props, ref) => {
       ref={ref}
       aria-hidden={!isExpanded}
       isOpen={isExpanded}
+      px={4}
+      py={2}
       {...props}
     />
   );

@@ -81,23 +81,6 @@ Alerts come in different variant so you have enough options to pick from.
 </List>
 ```
 
-## Alert with Stripes
-
-In some cases, you might need to show a critical situation alert, say, when
-there is an app-wide performance issue that affects a wide range of users or
-deeply affects an individual's product usage. Combining the `solid` variant and
-`hasStripe` can help you draw their attention.
-
-```jsx
-<Alert status="error" variant="solid" hasStripe>
-  <AlertTitle mr={2}>We're having some trouble.</AlertTitle>
-  <AlertDescription>
-    Hang in there. We're working on fixing this now.
-  </AlertDescription>
-  <CloseButton position="absolute" right="8px" top="8px" />
-</Alert>
-```
-
 ## Composition
 
 Alert ships with smaller component to allow for flexibility and make it easy to
@@ -124,8 +107,7 @@ create all kinds of layout.
 
 ## Props
 
-| Name      | Type                                           | Default  | Description                                                     |
-| --------- | ---------------------------------------------- | -------- | --------------------------------------------------------------- |
-| status    | `error`, `success`, `warning`, `info`          | `info`   | The status of the alert                                         |
-| variant   | `subtle`, `solid`, `left-accent`, `top-accent` | `subtle` | The variant of the alert style to use.                          |
-| hasStripe | `boolean`                                      | `false`  | If `true`, the alert will show stripe pattern in the background |
+| Name    | Type                                           | Default  | Description                            |
+| ------- | ---------------------------------------------- | -------- | -------------------------------------- |
+| status  | `error`, `success`, `warning`, `info`          | `info`   | The status of the alert                |
+| variant | `subtle`, `solid`, `left-accent`, `top-accent` | `subtle` | The variant of the alert style to use. |

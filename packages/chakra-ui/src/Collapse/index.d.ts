@@ -36,6 +36,6 @@ export type CollapseProps = ICollapse &
   BoxProps &
   React.RefAttributes<HTMLDivElement>;
 
-declare const Collapse: React.ForwardRefExoticComponent<CollapseProps>;
+declare const Collapse: React.FC<CollapseProps>;
 
 export default Collapse;

@@ -33,6 +33,7 @@ const SearchBox = props => (
 const Header = props => {
   const { colorMode, toggleColorMode } = useColorMode();
   const bg = { light: "white", dark: "gray.800" };
+  debugger;
   return (
     <Fixed
       as="header"

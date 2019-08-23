@@ -133,15 +133,15 @@ const MDXComponents = {
   ),
 };
 
-const ChakraProvider = ({ children, theme }) => {
-  return (
-    <ThemeProvider theme={theme}>
-      <ColorModeProvider>
-        <CSSReset />
-        {children}
-      </ColorModeProvider>
-    </ThemeProvider>
-  );
-};
+// const ChakraProvider = ({ children, theme }) => {
+//   return (
+//     <ThemeProvider theme={theme}>
+//       <ColorModeProvider>
+//         <CSSReset />
+//         {children}
+//       </ColorModeProvider>
+//     </ThemeProvider>
+//   );
+// };
 
-export { MDXComponents, ChakraProvider };
+export default MDXComponents;

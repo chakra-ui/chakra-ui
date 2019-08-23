@@ -23,6 +23,6 @@ interface IFlex {
 
 export type FlexProps = IFlex & BoxProps & React.RefAttributes<HTMLDivElement>;
 
-declare const Flex: React.ForwardRefExoticComponent<FlexProps>;
+declare const Flex: React.FC<FlexProps>;
 
 export default Flex;
