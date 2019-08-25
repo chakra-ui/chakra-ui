@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
-import Alert, { AlertIcon, AlertTitle, AlertDescription } from ".";
+import { Alert, AlertIcon, AlertTitle, AlertDescription } from ".";
 import Box from "../Box";
 import CloseButton from "../CloseButton";
 

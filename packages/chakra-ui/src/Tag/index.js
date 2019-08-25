@@ -3,7 +3,6 @@ import { jsx } from "@emotion/core";
 import useBadgeStyle from "../Badge/styles";
 import Icon from "../Icon";
 import Box from "../Box";
-import Center from "../Center";
 import PseudoBox from "../PseudoBox";
 import { createContext, useContext } from "react";
 

@@ -77,6 +77,18 @@ export const config = {
     property: "maxHeight",
     scale: "sizes",
   },
+  bgImg: {
+    property: "backgroundImage",
+  },
+  bgSize: {
+    property: "backgroundSize",
+  },
+  bgPos: {
+    property: "backgroundPosition",
+  },
+  pos: {
+    property: "position",
+  },
   textDecoration: true,
   textTransform: true,
   overflowX: true,

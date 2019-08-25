@@ -2,29 +2,31 @@ import * as React from "react";
 import { BoxProps } from "../Box";
 
 interface IBreadcrumb {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   /**
    * The visual separator between each breadcrumb item
    */
-  separator?: "/" | ">" | "-";
+  separator?: string | React.ReactNode;
   /**
    * The color of the visual separator
    */
   separatorColor?: string;
 }
 
-export type BreadcrumbProps = BoxProps & IBreadcrumb;
+type BreadcrumbProps = BoxProps & IBreadcrumb;
 
-declare const Breadcrumb: React.FunctionComponent<BreadcrumbProps>;
+declare const Breadcrumb: React.FC<BreadcrumbProps>;
+
+export default Breadcrumb;
+
+/////////////////////////////////////////////////////////////
 
 export type BreadcrumbItemProps = BreadcrumbProps & {
   /**
    * If `true`, indicates that the breadcrumb item is active, adds
-   * `aria-current=page` and renders a `span` instead of an `a`
+   * `aria-current=page` and renders a `span`
    */
-  isActive?: boolean;
+  isCurrentPage?: boolean;
 };
 
-export const BreadcrumbItem: React.FunctionComponent<BreadcrumbItemProps>;
-
-export default Breadcrumb;
+export const BreadcrumbItem: React.FC<BreadcrumbItemProps>;

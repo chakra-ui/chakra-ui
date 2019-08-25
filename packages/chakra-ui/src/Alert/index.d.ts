@@ -28,6 +28,4 @@ export type AlertProps = IAlert & BoxProps;
 /**
  * Alerts are used to communicate a state that affects a system, feature or page
  */
-declare const Alert: React.FC<AlertProps>;
-
-export default Alert;
+export const Alert: React.FC<AlertProps>;

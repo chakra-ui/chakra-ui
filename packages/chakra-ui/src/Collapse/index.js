@@ -8,11 +8,11 @@ const Collapse = forwardRef(
   (
     {
       isOpen,
-      animateOpacity,
+      animateOpacity = true,
       onAnimationStart,
       onAnimationEnd,
       duration,
-      easing = "ease-in-out",
+      easing = "ease",
       startingHeight = 0,
       endingHeight = "auto",
       ...rest
@@ -25,6 +25,15 @@ const Collapse = forwardRef(
         easing={easing}
         animateOpacity={animateOpacity}
         height={isOpen ? endingHeight : startingHeight}
+        applyInlineTransitions={false}
+        css={{
+          transition:
+            "height .2s ease,opacity .2s ease-in-out,transform .2s ease-in-out",
+          "&.rah-animating--up": {
+            opacity: 0,
+            transform: "translateY(-.625rem)",
+          },
+        }}
         {...{ onAnimationStart, onAnimationEnd }}
       >
         <Box ref={ref} {...rest} />

@@ -1,5 +1,16 @@
 import * as React from "react";
+import * as AnimateHeight from "react-animate-height";
 import { BoxProps } from "../Box";
+
+type AnimateHeightProps = Pick<
+  AnimateHeight.AnimateHeightProps,
+  | "animationStateClasses"
+  | "applyInlineTransitions"
+  | "delay"
+  | "easing"
+  | "style"
+  | "children"
+>;
 
 export interface ICollapse {
   /**
@@ -11,7 +22,7 @@ export interface ICollapse {
    */
   animateOpacity?: boolean;
   /**
-   * The animation duration as it expands
+   * The duration of the animation in `ms`
    */
   duration?: number;
   /**
@@ -23,16 +34,17 @@ export interface ICollapse {
    */
   endingHeight?: number | string;
   /**
-   * The function to be called when the collapse animation starts. It provides the `currentHeight` as an argument
+   * The function to be called when the collapse animation starts. It provides the `newHeight` as an argument
    */
   onAnimationEnd?(props: { newHeight: number }): void;
   /**
-   * The function to be called when the collapse animation ends. It provides the `currentHeight` as an argument
+   * The function to be called when the collapse animation ends. It provides the `newHeight` as an argument
    */
   onAnimationStart?(props: { newHeight: number }): void;
 }
 
-export type CollapseProps = ICollapse &
+export type CollapseProps = AnimateHeightProps &
+  ICollapse &
   BoxProps &
   React.RefAttributes<HTMLDivElement>;
 

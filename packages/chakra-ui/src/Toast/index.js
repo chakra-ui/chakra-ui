@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import toaster from "toasted-notes";
-import Alert, { AlertIcon, AlertTitle, AlertDescription } from "../Alert";
+import { Alert, AlertIcon, AlertTitle, AlertDescription } from "../Alert";
 import ThemeProvider, { useTheme } from "../ThemeProvider";
 import Box from "../Box";
 import CloseButton from "../CloseButton";

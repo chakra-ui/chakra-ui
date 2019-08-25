@@ -1,6 +1,4 @@
-export { default as Accordion } from "./Accordion";
 export * from "./Accordion";
-export { default as Alert } from "./Alert";
 export * from "./Alert";
 export { default as AlertDialog } from "./AlertDialog";
 export * from "./AlertDialog";
@@ -17,7 +15,6 @@ export { default as Button } from "./Button";
 export { default as ButtonGroup } from "./ButtonGroup";
 
 export { default as Callout } from "./Callout";
-export { default as Center } from "./Center";
 export { default as Code } from "./Code";
 export { default as Checkbox } from "./Checkbox";
 export { default as CloseButton } from "./CloseButton";

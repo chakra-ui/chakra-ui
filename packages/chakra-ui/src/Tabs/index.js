@@ -11,7 +11,7 @@ import {
   useState,
 } from "react";
 import { useId } from "@reach/auto-id";
-import { makeId } from "../utils";
+import { assignRef } from "../utils";
 import { useTabStyle, useTabListStyle } from "./styles";
 import PseudoBox from "../PseudoBox";
 import Flex from "../Flex";
@@ -125,7 +125,7 @@ const TabList = forwardRef((props, ref) => {
       ref: node => (allNodes.current[index] = node),
       isSelected,
       onClick: handleClick,
-      id: makeId(id, index),
+      id: `${id}-${index}`,
     });
   });
 
@@ -145,22 +145,29 @@ const TabList = forwardRef((props, ref) => {
 
 ////////////////////////////////////////////////////////////////////////
 
-const TabPanel = ({ children, isSelected, selectedPanelRef, id, ...rest }) => {
-  return (
-    <Box
-      ref={isSelected ? selectedPanelRef : undefined}
-      role="tabpanel"
-      tabIndex={-1}
-      aria-labelledby={`tab:${id}`}
-      hidden={!isSelected}
-      id={`panel:${id}`}
-      css={{ outline: "none" }}
-      {...rest}
-    >
-      {children}
-    </Box>
-  );
-};
+const TabPanel = forwardRef(
+  ({ children, isSelected, selectedPanelRef, id, ...rest }, ref) => {
+    return (
+      <Box
+        ref={node => {
+          if (isSelected) {
+            selectedPanelRef(node);
+          }
+          assignRef(ref, node);
+        }}
+        role="tabpanel"
+        tabIndex={-1}
+        aria-labelledby={`tab:${id}`}
+        hidden={!isSelected}
+        id={`panel:${id}`}
+        css={{ outline: "none" }}
+        {...rest}
+      >
+        {children}
+      </Box>
+    );
+  },
+);
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -177,7 +184,7 @@ const TabPanels = forwardRef(({ children, ...rest }, ref) => {
     return cloneElement(child, {
       isSelected: isManual ? index === manualIndex : index === selectedIndex,
       selectedPanelRef,
-      id: makeId(id, index),
+      id: `${id}-${index}`,
     });
   });
 
@@ -210,7 +217,7 @@ const Tabs = forwardRef(
     },
     ref,
   ) => {
-    const isControlled = controlledIndex != null;
+    const { current: isControlled } = useRef(controlledIndex != null);
     const selectedPanelRef = useRef(null);
 
     const getInitialIndex = () => {

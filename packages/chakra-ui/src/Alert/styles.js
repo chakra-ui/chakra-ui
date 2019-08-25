@@ -93,7 +93,7 @@ const useAlertStyle = props => {
   };
 };
 
-export const useIconStyle = ({ variant, color }) => {
+export const useAlertIconStyle = ({ variant, color }) => {
   const { colorMode } = useColorMode();
   if (["left-accent", "top-accent", "subtle"].includes(variant)) {
     let result = {

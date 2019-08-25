@@ -5,7 +5,6 @@ import { forwardRef } from "react";
 import Input from "../Input";
 import { useColorMode } from "../ColorModeProvider";
 import Box from "../Box";
-import Absolute from "../Absolute";
 
 const Select = forwardRef(
   ({ children, placeholder, wrapperProps, ...rest }, ref) => {

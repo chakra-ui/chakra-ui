@@ -2,16 +2,89 @@
 import { jsx } from "@emotion/core";
 import { useId } from "@reach/auto-id";
 import propTypes from "prop-types";
-import { createContext, forwardRef, useContext, useRef, useState } from "react";
+import {
+  createContext,
+  forwardRef,
+  useContext,
+  useRef,
+  useState,
+  Children,
+  cloneElement,
+} from "react";
 import Box from "../Box";
 import Collapse from "../Collapse";
 import PseudoBox from "../PseudoBox";
+import Icon from "../Icon";
 
-const AccordionContext = createContext();
+const Accordion = ({
+  allowMultiple,
+  allowToggle,
+  index,
+  defaultIndex,
+  onChange,
+  children,
+  ...rest
+}) => {
+  const initializeState = () => {
+    if (allowMultiple) {
+      return defaultIndex || [];
+    } else {
+      return defaultIndex || 0;
+    }
+  };
 
-const Accordion = forwardRef(
+  const getExpandCondition = (index, itemIndex) => {
+    if (Array.isArray(index)) {
+      return index.includes(itemIndex);
+    }
+    return index === itemIndex;
+  };
+
+  const [expandedIndex, setExpandedIndex] = useState(initializeState);
+  const { current: isControlled } = useRef(index != null);
+
+  const _index = isControlled ? index : expandedIndex;
+
+  const clones = Children.map(children, (child, childIndex) => {
+    return cloneElement(child, {
+      isOpen: getExpandCondition(_index, childIndex),
+      onChange: isExpanded => {
+        if (allowMultiple) {
+          if (isExpanded) {
+            let newIndexes = [...expandedIndex, childIndex];
+            setExpandedIndex(newIndexes);
+          } else {
+            let newIndexes = expandedIndex.filter(
+              itemIndex => itemIndex !== childIndex,
+            );
+            setExpandedIndex(newIndexes);
+          }
+        } else {
+          if (isExpanded) {
+            setExpandedIndex(childIndex);
+          } else {
+            if (allowToggle) {
+              setExpandedIndex(null);
+            }
+          }
+        }
+      },
+    });
+  });
+
+  return (
+    <Box data-accordion="" {...rest}>
+      {clones}
+    </Box>
+  );
+};
+
+const AccordionItemContext = createContext();
+const useAccordionItemContext = () => useContext(AccordionItemContext);
+
+const AccordionItem = forwardRef(
   (
-    { isOpen, defaultIsOpen, isDisabled, onOpenChange, children, ...rest },
+    { isOpen, defaultIsOpen, id, isDisabled, onChange, children, ...rest },
     ref,
   ) => {
     const [isExpanded, setIsExpanded] = useState(defaultIsOpen || false);
@@ -19,80 +92,125 @@ const Accordion = forwardRef(
     let _isExpanded = isControlled ? isOpen : isExpanded;
 
     const onToggle = () => {
-      onOpenChange && onOpenChange(!_isExpanded);
+      onChange && onChange(!_isExpanded);
       !isControlled && setIsExpanded(!isExpanded);
     };
 
-    const headerId = `accordion-header:${useId()}`;
-    const panelId = `accordion-panel:${useId()}`;
+    const uuid = useId();
+    const uniqueId = id || uuid;
+
+    const headerId = `accordion-header-${uniqueId}`;
+    const panelId = `accordion-panel-${uniqueId}`;
 
     return (
-      <AccordionContext.Provider
+      <AccordionItemContext.Provider
         value={{ isExpanded: _isExpanded, headerId, panelId, onToggle }}
       >
-        <Box ref={ref} {...rest}>
+        <PseudoBox
+          borderTopWidth="1px"
+          _lastChild={{ borderBottomWidth: "1px" }}
+          data-accordion-item=""
+          ref={ref}
+          {...rest}
+        >
           {typeof children === "function"
             ? children({ isExpanded, isDisabled })
             : children}
-        </Box>
-      </AccordionContext.Provider>
+        </PseudoBox>
+      </AccordionItemContext.Provider>
     );
   },
 );
 
-Accordion.propTypes = {
+AccordionItem.propTypes = {
   isOpen: propTypes.bool,
   defaultIsOpen: propTypes.bool,
-  onOpenChange: propTypes.func,
-  children: propTypes.node.isRequired,
+  onChange: propTypes.func,
+  children: propTypes.node,
 };
 
 /////////////////////////////////////////////////////////////
 
-const AccordionHeader = forwardRef((props, ref) => {
-  const { isExpanded, panelId, headerId, isDisabled, onToggle } = useContext(
-    AccordionContext,
-  );
+const AccordionHeader = forwardRef(({ onClick, ...props }, ref) => {
+  const {
+    isExpanded,
+    panelId,
+    headerId,
+    isDisabled,
+    onToggle,
+  } = useAccordionItemContext();
   return (
     <PseudoBox
       ref={ref}
+      data-accordion-header=""
       display="flex"
       alignItems="center"
       width="100%"
-      position="relative"
-      borderRadius="sm"
       transition="all 0.2s"
+      _focus={{ boxShadow: "outline" }}
+      _hover={{ bg: "blackAlpha.50" }}
       as="button"
       disabled={isDisabled}
       aria-disabled={isDisabled}
       aria-expanded={isExpanded}
-      onClick={onToggle}
+      onClick={event => {
+        onToggle();
+        if (onClick) {
+          onClick(event);
+        }
+      }}
       id={headerId}
       aria-controls={panelId}
-      px={4}
-      py={2}
-      {...props}
-    ></PseudoBox>
-  );
-});
-
-/////////////////////////////////////////////////////////////
-
-const AccordionPanel = forwardRef((props, ref) => {
-  const { isExpanded, panelId, headerId } = useContext(AccordionContext);
-  return (
-    <Collapse
-      role="region"
-      id={panelId}
-      aria-labelledby={headerId}
-      ref={ref}
-      aria-hidden={!isExpanded}
-      isOpen={isExpanded}
       px={4}
       py={2}
       {...props}
     />
   );
 });
-export default Accordion;
-export { AccordionHeader, AccordionPanel };
+
+/////////////////////////////////////////////////////////////
+
+const AccordionPanel = forwardRef((props, ref) => {
+  const { isExpanded, panelId, headerId } = useAccordionItemContext();
+  return (
+    <Collapse
+      ref={ref}
+      data-accordion-panel=""
+      role="region"
+      id={panelId}
+      aria-labelledby={headerId}
+      aria-hidden={!isExpanded}
+      isOpen={isExpanded}
+      pt={2}
+      px={4}
+      pb={5}
+      {...props}
+    />
+  );
+});
+
+/////////////////////////////////////////////////////////////
+
+const AccordionIcon = props => {
+  const { isExpanded } = useAccordionItemContext();
+  return (
+    <Icon
+      aria-hidden
+      focusable="false"
+      size="1.25em"
+      name="chevron-down"
+      transform={isExpanded ? "rotate(-180deg)" : null}
+      transition="transform 0.2s"
+      transformOrigin="center"
+      {...props}
+    />
+  );
+};
+
+export {
+  Accordion,
+  AccordionItem,
+  AccordionIcon,
+  AccordionHeader,
+  AccordionPanel,
+};

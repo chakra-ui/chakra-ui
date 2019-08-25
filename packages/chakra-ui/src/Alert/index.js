@@ -1,23 +1,15 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { oneOf } from "prop-types";
 import { createContext, useContext } from "react";
 import Box from "../Box";
 import Icon from "../Icon";
-import useAlertStyle, { useIconStyle } from "./styles";
+import useAlertStyle, { useAlertIconStyle } from "./styles";
 
-const statusIcons = {
-  info: "info",
-  warning: "warning-2",
-  success: "check-circle",
-  error: "warning",
-};
-
-export const statusColors = {
-  error: "red",
-  warning: "orange",
-  info: "blue",
-  success: "green",
+export const statuses = {
+  info: { icon: "info", color: "blue" },
+  warning: { icon: "warning-2", color: "orange" },
+  success: { icon: "check-circle", color: "green" },
+  error: { icon: "warning", color: "red" },
 };
 
 const AlertContext = createContext();
@@ -25,17 +17,16 @@ const useAlertContext = () => {
   const context = useContext(AlertContext);
   if (context === undefined) {
     throw new Error(
-      "useAlertContext must be used within a AlertContext.Provider",
+      "useAlertContext must be used within a AlertContextProvider",
     );
   }
   return context;
 };
 
-const Alert = ({ status = "info", variant = "subtle", hasStripe, ...rest }) => {
+const Alert = ({ status = "info", variant = "subtle", ...rest }) => {
   const alertStyleProps = useAlertStyle({
     variant,
-    color: statusColors[status],
-    hasStripe,
+    color: statuses[status] && statuses[status]["color"],
   });
 
   const context = { status, variant };
@@ -47,17 +38,6 @@ const Alert = ({ status = "info", variant = "subtle", hasStripe, ...rest }) => {
   );
 };
 
-Alert.propTypes = {
-  /**
-   * The status of the alert
-   */
-  status: oneOf(["error", "success", "warning", "info"]),
-  /**
-   * The variant of the alert style to use.
-   */
-  variant: oneOf(["subtle", "solid", "left-accent", "top-accent", "card"]),
-};
-
 const AlertTitle = props => (
   <Box fontWeight="bold" lineHeight="normal" {...props} />
 );
@@ -65,22 +45,21 @@ const AlertDescription = props => <Box {...props} />;
 
 const AlertIcon = props => {
   const { status, variant } = useAlertContext();
-  const iconStyleProps = useIconStyle({
+  const iconStyleProps = useAlertIconStyle({
     variant,
-    color: statusColors[status],
+    color: statuses[status] && statuses[status]["color"],
   });
 
   return (
     <Icon
-      mt="2px"
+      mt={1}
       mr={3}
       size={5}
-      name={statusIcons[status]}
+      name={statuses[status] && statuses[status]["icon"]}
       {...iconStyleProps}
       {...props}
     />
   );
 };
 
-export default Alert;
-export { AlertTitle, AlertDescription, AlertIcon };
+export { Alert, AlertTitle, AlertDescription, AlertIcon };

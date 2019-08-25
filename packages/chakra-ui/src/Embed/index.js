@@ -14,7 +14,7 @@ const aspectRatios = {
 
 const generatePadding = ratio => {
   let _ratio;
-  if (Object.keys(aspectRatios).includes(ratio)) {
+  if (ratio in aspectRatios) {
     _ratio = ratio;
   } else {
     _ratio = "4:3";
