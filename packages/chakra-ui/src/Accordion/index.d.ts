@@ -48,6 +48,10 @@ interface IAccordionItemRenderProps {
   isDisabled: boolean;
 }
 
+/**
+ * The content of the accordion.
+ * The children must be the `AccordionHeader` and `AccordionPanel` components.
+ */
 type AccordionItemChildren =
   | { children: (props: IAccordionItemRenderProps) => React.ReactNode }
   | { children: React.ReactNode };
@@ -65,11 +69,6 @@ interface IAccordionItem {
    * The callback fired when the accordion is expanded/collapsed.
    */
   onChange?: (isOpen: boolean) => void;
-  /**
-   * The content of the accordion.
-   * The children must be the `AccordionHeader` and `AccordionPanel` components.
-   */
-  children: React.ReactNode;
 }
 
 export type AccordionItemProps = IAccordionItem &

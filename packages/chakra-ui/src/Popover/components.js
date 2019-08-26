@@ -5,6 +5,8 @@ import { Transition } from "react-spring/renderprops.cjs";
 import CloseButton from "../CloseButton";
 import Box from "../Box";
 
+const arrowSize = "5px";
+
 export const PopoverTransition = ({
   isOpen,
   duration = 200,
@@ -38,16 +40,16 @@ export const popperStyle = css`
     height: 0;
     border-style: solid;
     position: absolute;
-    margin: 5px;
+    margin: ${arrowSize};
   }
 
   &[data-placement^="top"] {
-    margin-bottom: 5px;
+    margin-bottom: ${arrowSize};
     transform-origin: bottom center;
   }
 
   &[data-placement^="top"] > [data-arrow] {
-    border-width: 5px 5px 0 5px;
+    border-width: ${arrowSize} ${arrowSize} 0 ${arrowSize};
     border-left-color: transparent;
     border-right-color: transparent;
     border-bottom-color: transparent;
@@ -59,12 +61,12 @@ export const popperStyle = css`
   }
 
   &[data-placement^="bottom"] {
-    margin-top: 5px;
+    margin-top: ${arrowSize};
     transform-origin: top center;
   }
 
   &[data-placement^="bottom"] > [data-arrow] {
-    border-width: 0 5px 5px 5px;
+    border-width: 0 ${arrowSize} ${arrowSize} ${arrowSize};
     border-left-color: transparent;
     border-right-color: transparent;
     border-top-color: transparent;
@@ -81,7 +83,7 @@ export const popperStyle = css`
   }
 
   &[data-placement^="right"] > [data-arrow] {
-    border-width: 5px 5px 5px 0;
+    border-width: ${arrowSize} ${arrowSize} ${arrowSize} 0;
     border-left-color: transparent;
     border-top-color: transparent;
     border-bottom-color: transparent;
@@ -93,12 +95,12 @@ export const popperStyle = css`
   }
 
   &[data-placement^="left"] {
-    margin-right: 5px;
+    margin-right: ${arrowSize};
     transform-origin: right center;
   }
 
   &[data-placement^="left"] > [data-arrow] {
-    border-width: 5px 0 5px 5px;
+    border-width: ${arrowSize} 0 ${arrowSize} ${arrowSize};
     border-top-color: transparent;
     border-right-color: transparent;
     border-bottom-color: transparent;
@@ -110,14 +112,17 @@ export const popperStyle = css`
   }
 `;
 
-export const PopoverContent = forwardRef(({ css, ...props }, ref) => (
+export const PopoverContent = forwardRef((props, ref) => (
   <Box
     width="100%"
     position="relative"
     display="flex"
     flexDirection="column"
+    rounded="lg"
+    boxShadow="lg"
+    maxWidth="xs"
     ref={ref}
-    css={[popperStyle, css]}
+    css={popperStyle}
     {...props}
   />
 ));

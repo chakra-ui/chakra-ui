@@ -66,34 +66,38 @@ const Link = forwardRef((props, ref) => (
 
 const DocsHeading = props => (
   <Heading
-    position="relative"
     css={{
-      "&:hover > a": { opacity: 1 },
-      "&::before": {
-        content: `""`,
-        visibility: "hidden",
-        display: "block",
-        paddingTop: 90,
-        marginTop: -90,
+      "&[id]": {
+        pointerEvents: "none",
       },
+      "&[id]:before": {
+        display: "block",
+        height: " 6rem",
+        marginTop: "-6rem",
+        visibility: "hidden",
+        content: `""`,
+      },
+      "&[id]:hover a": { opacity: 1 },
     }}
     {...props}
   >
-    {props.id && (
-      <PseudoBox
-        aria-hidden
-        as="a"
-        color="teal.500"
-        _focus={{ opacity: 1, boxShadow: "outline" }}
-        opacity="0"
-        ml="-32px"
-        px="8px"
-        href={`#${props.id}`}
-      >
-        <Icon aria-hidden size="16px" name="link" />
-      </PseudoBox>
-    )}
-    {props.children}
+    <Box pointerEvents="auto">
+      {props.children}
+      {props.id && (
+        <PseudoBox
+          aria-label="anchor"
+          as="a"
+          color="teal.500"
+          fontWeight="normal"
+          _focus={{ opacity: 1, boxShadow: "outline" }}
+          opacity="0"
+          pl="0.375rem"
+          href={`#${props.id}`}
+        >
+          #
+        </PseudoBox>
+      )}
+    </Box>
   </Heading>
 );
 

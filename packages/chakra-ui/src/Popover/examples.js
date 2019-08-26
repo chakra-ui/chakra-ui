@@ -5,6 +5,7 @@ import Button from "../Button";
 import Box from "../Box";
 
 const stories = storiesOf("Popover", module);
+
 stories.addDecorator(story => {
   return (
     <Box maxWidth="lg" mx="auto" mt={6} p={6}>
@@ -17,7 +18,6 @@ stories.add("Default", () => (
   <Fragment>
     <Popover
       trigger={<Button>Trigger</Button>}
-      usePortal
       placement="bottom"
       showCloseButton
       // showArrow
@@ -26,7 +26,7 @@ stories.add("Default", () => (
         <Fragment>
           <PopoverHeader>Header</PopoverHeader>
           <PopoverBody>
-            <Button color="blue" onClick={onClose}>
+            <Button variantColor="blue" onClick={onClose}>
               Close
             </Button>
           </PopoverBody>
@@ -34,6 +34,6 @@ stories.add("Default", () => (
         </Fragment>
       )}
     </Popover>
-    <Button color="green">Content Inside</Button>
+    <Button>Close</Button>
   </Fragment>
 ));

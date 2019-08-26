@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import { useId } from "@reach/auto-id";
-import propTypes from "prop-types";
 import {
   createContext,
   forwardRef,
@@ -114,20 +113,13 @@ const AccordionItem = forwardRef(
           {...rest}
         >
           {typeof children === "function"
-            ? children({ isExpanded, isDisabled })
+            ? children({ isExpanded: _isExpanded, isDisabled })
             : children}
         </PseudoBox>
       </AccordionItemContext.Provider>
     );
   },
 );
-
-AccordionItem.propTypes = {
-  isOpen: propTypes.bool,
-  defaultIsOpen: propTypes.bool,
-  onChange: propTypes.func,
-  children: propTypes.node,
-};
 
 /////////////////////////////////////////////////////////////
 

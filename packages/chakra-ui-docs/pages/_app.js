@@ -59,7 +59,7 @@ export default ({ Component, pageProps }) => {
 
   return (
     <ThemeProvider>
-      <ColorModeProvider>
+      <ColorModeProvider value="light">
         <CSSReset />
         <MDXProvider components={MDXComponents}>
           <Layout>

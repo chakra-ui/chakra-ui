@@ -1,19 +1,19 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
+import { useId } from "@reach/auto-id";
 import Portal from "@reach/portal";
-import { oneOf } from "prop-types";
-import { cloneElement, useEffect, useRef, Fragment } from "react";
-import FocusLock from "react-focus-lock";
+import { cloneElement, Fragment, useEffect, useRef } from "react";
 import { Manager, Popper, Reference } from "react-popper";
-import {
-  PopoverTransition,
-  PopoverContent,
-  PopoverCloseButton,
-} from "./components";
-import { assignRef, genId } from "../utils";
-import { useColorMode } from "../ColorModeProvider";
 import Box from "../Box";
+import { useColorMode } from "../ColorModeProvider";
 import useDisclosure from "../useDisclosure";
+import { assignRef } from "../utils";
+import FocusLock from "react-focus-lock";
+import {
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverTransition,
+} from "./components";
 
 const Popover = ({
   isOpen: controlledIsOpen,
@@ -25,11 +25,10 @@ const Popover = ({
   children,
   showArrow,
   showCloseButton,
-  initialFocusRef,
   usePortal = true,
   onOpenChange,
   trapFocus = false,
-  closeOnBlur,
+  closeOnBlur = true,
   closeOnEsc = true,
   ...rest
 }) => {
@@ -38,14 +37,9 @@ const Popover = ({
   const popperRef = useRef();
 
   useEffect(() => {
-    onOpenChange && onOpenChange();
+    onOpenChange && onOpenChange(isOpen);
   }, [isOpen, onOpenChange]);
 
-  const handleClick = () => {
-    onToggle();
-  };
-
-  /* Close on outside click and blur for the Menu */
   const handleBlur = event => {
     if (
       !trapFocus &&
@@ -62,12 +56,10 @@ const Popover = ({
   const { colorMode } = useColorMode();
 
   const _bgColor = colorMode === "light" ? "white" : "gray.700";
-  const _color = colorMode === "light" ? "gray.900" : "whiteAlpha.900";
 
   const bg = rest.bg || rest.background || rest.backgroundColor || _bgColor;
-  const color = rest.color || _color;
-  const popoverId = genId("popper");
-  const Wrapper = usePortal ? Portal : Fragment;
+  const popoverId = `popper-${useId()}`;
+  const PopperWrapper = usePortal ? Portal : Fragment;
 
   return (
     <Manager>
@@ -81,25 +73,22 @@ const Popover = ({
               assignRef(referenceRef, node);
             },
             onClick: event => {
-              handleClick();
+              onToggle();
               trigger.props.onClick && trigger.props.onClick(event);
             },
           })
         }
       </Reference>
 
-      <Wrapper>
+      <PopperWrapper>
         <Popper placement={placement}>
           {({ ref, style: popperStyle, placement, arrowProps }) => (
             <PopoverTransition duration={100} isOpen={isOpen}>
               {styles => (
                 <FocusLock
+                  // eslint-disable-next-line jsx-a11y/no-autofocus
+                  autoFocus={false}
                   returnFocus
-                  onActivation={() => {
-                    if (initialFocusRef && initialFocusRef.current) {
-                      initialFocusRef.current.focus();
-                    }
-                  }}
                 >
                   <PopoverContent
                     ref={node => {
@@ -107,11 +96,8 @@ const Popover = ({
                       assignRef(ref, node);
                     }}
                     bg={bg}
-                    color={color}
                     maxWidth={maxWidth}
                     data-placement={placement}
-                    borderRadius="lg"
-                    boxShadow="lg"
                     id={popoverId}
                     aria-hidden={isOpen}
                     {...rest}
@@ -149,32 +135,9 @@ const Popover = ({
             </PopoverTransition>
           )}
         </Popper>
-      </Wrapper>
+      </PopperWrapper>
     </Manager>
   );
-};
-
-export const placementOptions = [
-  "left",
-  "right",
-  "bottom",
-  "auto",
-  "top",
-  "right-end",
-  "right-start",
-  "left-end",
-  "left-start",
-  "bottom-end",
-  "bottom-start",
-  "top-end",
-  "top-start",
-  "auto-start",
-  "auto-end",
-];
-
-Popover.propTypes = {
-  interaction: oneOf(["hover", "click"]),
-  placement: oneOf(placementOptions),
 };
 
 export default Popover;
