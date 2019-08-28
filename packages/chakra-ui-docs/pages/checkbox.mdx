@@ -7,10 +7,10 @@ Native HTML checkboxes are 100% accessible by default, so we used a
 [very common CSS technique](https://dev.to/lkopacz/create-custom-keyboard-accessible-checkboxes-2036)
 to style the checkboxes.
 
-The Checkbox component composes `ControlBox`, a component we created to make it
-easy to style sibling inputs. [Check it out](/controlbox)
+The Checkbox component composes [`ControlBox`](/controlbox), a component we
+created to make it easy to style an element based on sibling inputs.
 
-## Installation
+## Import
 
 ```js
 import { Checkbox } from "@chakra-ui/core";
@@ -21,18 +21,18 @@ import { Checkbox } from "@chakra-ui/core";
 Basic usage of checkbox.
 
 ```jsx
-<Checkbox defaultChecked>Checkbox</Checkbox>
+<Checkbox defaultIsChecked>Checkbox</Checkbox>
 ```
 
 ### Disabled Checkbox
 
 ```jsx
-<List isInline>
+<Stack spacing={10} isInline>
   <Checkbox isDisabled>Checkbox</Checkbox>
-  <Checkbox isDisabled defaultChecked>
+  <Checkbox isDisabled defaultIsChecked>
     Checkbox
   </Checkbox>
-</List>
+</Stack>
 ```
 
 ### Checkbox with custom color
@@ -41,32 +41,33 @@ You can override the color scheme of the checkbox to any color key specified in
 `theme.colors`.
 
 ```jsx
-<List isInline>
-  <Checkbox color="red" defaultChecked>
+<Stack spacing={10} isInline>
+  <Checkbox color="red" defaultIsChecked>
     Checkbox
   </Checkbox>
-  <Checkbox color="green" defaultChecked>
+  <Checkbox color="green" defaultIsChecked>
     Checkbox
   </Checkbox>
-</List>
+</Stack>
 ```
 
 ### Checkbox sizes
 
-The checkbox comes with 3 sizes
+Pass the `size` prop to change the size of the Checkbox. Values can be either
+`sm`, `md` or `lg`.
 
 ```jsx
-<List isInline>
+<Stack spacing={10} isInline>
   <Checkbox size="sm" color="red">
     Checkbox
   </Checkbox>
-  <Checkbox size="md" color="green" defaultChecked>
+  <Checkbox size="md" color="green" defaultIsChecked>
     Checkbox
   </Checkbox>
-  <Checkbox size="lg" color="orange" defaultChecked>
+  <Checkbox size="lg" color="orange" defaultIsChecked>
     Checkbox
   </Checkbox>
-</List>
+</Stack>
 ```
 
 ### Invalid Checkbox
@@ -92,7 +93,7 @@ function IndeterminateExample() {
         onChange={e => setCheckedItems([e.target.checked, e.target.checked])}
         children="Parent Checkbox"
       />
-      <List pl={6} mt={1} spacing={1}>
+      <Stack pl={6} mt={1} spacing={1}>
         <Checkbox
           isChecked={checkedItems[0]}
           onChange={e => setCheckedItems([e.target.checked, checkedItems[1]])}
@@ -103,7 +104,7 @@ function IndeterminateExample() {
           onChange={e => setCheckedItems([checkedItems[0], e.target.checked])}
           children="Child Checkbox 2"
         />
-      </List>
+      </Stack>
     </>
   );
 }
@@ -111,22 +112,22 @@ function IndeterminateExample() {
 
 ## Props
 
-| Name            | Type                 | Default | Description                                                                                                              |
-| --------------- | -------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------ |
-| id              | `string`             |         | The id assigned to input field                                                                                           |
-| name            | `string`             |         | The name of the input field in a checkbox (Useful for form submission)                                                   |
-| value           | `string` or `number` |         | The value to be used in the checkbox input. This is the value that will be returned on form submission.                  |
-| color           | `string`             |         | The color of the checkbox when it's checked. This should be one of the color keys in the theme (e.g."green", "red")      |
-| defaultChecked  | `boolean`            |         | If `true`, the checkbox will be initially checked.                                                                       |
-| isChecked       | `boolean`            |         | If `true`, the checkbox will be checked. You'll need to pass `onChange` to update it's value (since it's now controlled) |
-| isIndeterminate | `boolean`            |         | If `true`, the checkbox will be indeterminate. This only affects the icon shown inside checkbox                          |
-| isFullWidth     | `boolean`            |         | If `true`, the checkbox should take up the full width of the parent.                                                     |
-| size            | `sm`, `md`, `lg`     | `md`    | The size (width and height) of the checkbox                                                                              |
-| isDisabled      | `boolean`            |         | If `true`, the checkbox will be disabled                                                                                 |
-| isInvalid       | `boolean`            |         | If `true`, the checkbox is marked as invalid. Changes style of unchecked state.                                          |
-| children        | `React.ReactNode`    |         | The children of the checkbox.                                                                  |
-| onChange        | `function`           |         | Function called when the state of the checkbox changes.                                                                  |
-| onBlur          | `function`           |         | Function called when you blur out of the checkbox.                                                                       |
-| onFocus         | `function`           |         | Function called when the checkbox receive focus.                                                                         |
-| aria-label      | `string`             |         | An accessible label for the checkbox in event there's no visible label or `children` passed                              |
-| aria-labelledby | `string`             |         | Id that points to the label for the checkbox in event no `children` was passed                                           |
+| Name             | Type                 | Default | Description                                                                                                              |
+| ---------------- | -------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------ |
+| id               | `string`             |         | The id assigned to input field                                                                                           |
+| name             | `string`             |         | The name of the input field in a checkbox (Useful for form submission)                                                   |
+| value            | `string` or `number` |         | The value to be used in the checkbox input. This is the value that will be returned on form submission.                  |
+| color            | `string`             |         | The color of the checkbox when it's checked. This should be one of the color keys in the theme (e.g."green", "red")      |
+| defaultIsChecked | `boolean`            |         | If `true`, the checkbox will be initially checked.                                                                       |
+| isChecked        | `boolean`            |         | If `true`, the checkbox will be checked. You'll need to pass `onChange` to update it's value (since it's now controlled) |
+| isIndeterminate  | `boolean`            |         | If `true`, the checkbox will be indeterminate. This only affects the icon shown inside checkbox                          |
+| isFullWidth      | `boolean`            |         | If `true`, the checkbox should take up the full width of the parent.                                                     |
+| size             | `sm`, `md`, `lg`     | `md`    | The size (width and height) of the checkbox                                                                              |
+| isDisabled       | `boolean`            |         | If `true`, the checkbox will be disabled                                                                                 |
+| isInvalid        | `boolean`            |         | If `true`, the checkbox is marked as invalid. Changes style of unchecked state.                                          |
+| children         | `React.ReactNode`    |         | The children of the checkbox.                                                                                            |
+| onChange         | `function`           |         | Function called when the state of the checkbox changes.                                                                  |
+| onBlur           | `function`           |         | Function called when you blur out of the checkbox.                                                                       |
+| onFocus          | `function`           |         | Function called when the checkbox receive focus.                                                                         |
+| aria-label       | `string`             |         | An accessible label for the checkbox in event there's no visible label or `children` passed                              |
+| aria-labelledby  | `string`             |         | Id that points to the label for the checkbox in event no `children` was passed                                           |

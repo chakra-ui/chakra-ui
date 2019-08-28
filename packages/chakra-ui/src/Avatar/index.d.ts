@@ -37,6 +37,10 @@ export const AvatarBadge: React.FC<BoxProps>;
 
 export const AvatarName: React.FC<AvatarNameProps>;
 
+/**
+ * The Avatar component is used to represent user, and displays the profile
+ * picture, initials or fallback icon.
+ */
 declare const Avatar: React.FC<AvatarProps>;
 
 export default Avatar;

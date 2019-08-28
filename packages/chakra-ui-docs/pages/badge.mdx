@@ -1,31 +1,41 @@
 # Badge
 
-Badges are used to highlight an item's status for quick recognition. They come
-in 3 variants: `subtle`, `solid`, and `outline`.
+Badges are used to highlight an item's status for quick recognition.
 
-You can pass the `variantColor` prop to customize the color of the Badge.
-`variantColor` can be any **color key** that exists in the `theme.colors`.
-[Learn more about theming](/theme).
-
-## Usage
+## Import
 
 ```js
 import { Badge } from "@chakra-ui/core";
 ```
 
+## Usage
+
 ```jsx
-<List isInline>
+<Badge>Default</Badge>
+```
+
+### Badge Color
+
+Pass the `variantColor` prop to customize the color of the Badge. `variantColor`
+can be any **color key** that exists in the `theme.colors`.
+[Learn more about theming](/theming).
+
+```jsx
+<Stack isInline>
   <Badge>Default</Badge>
   <Badge variantColor="green">Success</Badge>
   <Badge variantColor="red">Removed</Badge>
   <Badge variantColor="purple">New</Badge>
-</List>
+</Stack>
 ```
 
-## Badge Variants
+### Badge Variants
+
+Pass the variant prop and set to either `subtle`, `solid`, or `outline` to get a
+different style.
 
 ```jsx
-<List isInline>
+<Stack isInline>
   <Badge variant="outline" variantColor="green">
     Default
   </Badge>
@@ -35,8 +45,10 @@ import { Badge } from "@chakra-ui/core";
   <Badge variant="subtle" variantColor="green">
     Removed
   </Badge>
-</List>
+</Stack>
 ```
+
+## Composition
 
 ```jsx
 <Flex>
@@ -53,13 +65,22 @@ import { Badge } from "@chakra-ui/core";
 </Flex>
 ```
 
+You can also change the size of the badge by passing `fontSize` prop.
+
+```jsx
+<Text fontSize="xl" fontWeight="bold">
+  Segun Adebayo
+  <Badge ml="1" fontSize="0.8em" variantColor="green">
+    New
+  </Badge>
+</Text>
+```
+
 ## Props
 
 The Badge component composes `Box` component so you can pass props for `Box`.
 
-> Pro Tip: You can use the `fontSize` prop to change the size of the Badge.
-
-| Name           | Type                         | Default  | Description                           |
-| -------------- | ---------------------------- | -------- | ------------------------------------- |
-| `variant`      | `solid`, `subtle`, `outline` | `subtle` | The style variant of the badge        |
-| `variantColor` | `keyof theme.colors`         | `gray`   | The color scheme to use for the badge |
+| Name           | Type                         | Default  | Description                                                            |
+| -------------- | ---------------------------- | -------- | ---------------------------------------------------------------------- |
+| `variant`      | `solid`, `subtle`, `outline` | `subtle` | The style variant of the badge                                         |
+| `variantColor` | `string`                     | `gray`   | The color scheme to use for the badge. Must be a key in `theme.colors` |

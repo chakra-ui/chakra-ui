@@ -1,23 +1,10 @@
-import Head from "next/head";
-
-<Head key="button">
-  <title key="tti">Button Component</title>
-</Head>
-
 # Button
 
 Button component is used to trigger an action or event, such as submitting a
-[Form](/form/), opening a [Dialog](/dialog/), canceling an action, or performing
-a delete operation. It follows the
-[WAI-ARIA Button Pattern](https://www.w3.org/TR/wai-aria-practices/#button).
+form, opening a [Dialog](/modal), canceling an action, or performing a delete
+operation.
 
-## Installation
-
-```bash
-npm install @chakra-ui/core
-```
-
-then import Button
+## Import
 
 ```js
 import { Button } from "@chakra-ui/core";
@@ -31,8 +18,8 @@ import { Button } from "@chakra-ui/core";
 
 ### Button Sizes
 
-Button component comes in 4 sizes `xs` (extra-small), `sm` (small), `md`
-(medium), and `lg` (large).
+Use the `size` prop to change the size of the button. You can set the value to
+`xs`, `sm`, `md`, or `lg`.
 
 ```jsx
 <ButtonGroup spacing={4}>
@@ -53,8 +40,8 @@ Button component comes in 4 sizes `xs` (extra-small), `sm` (small), `md`
 
 ### Button Variant
 
-Button component comes in 4 different styles `solid`, `ghost`, `outline`, and
-`link`
+Use the `variant` prop to change the visual style of the Button. You can set the
+value to `solid`, `ghost`, `outline`, or `link`.
 
 ```jsx
 <ButtonGroup spacing={4}>
@@ -118,13 +105,14 @@ text label and show only the spinner
 
 ---
 
-## Style Composition
+## Composition
 
-Button uses [PseudoBox](/pseudobox) and all it's styles are composed as props.
-This means you can override every style of the Button.
+Button composes [PseudoBox](/pseudobox) and all props you pass (variant,
+variantColor, etc.) are converted to style props. This means you can override
+any style of the Button via props.
 
 ```jsx
-// Even though I passed size prop, I can still override it's style
+// Even though I passed size prop, I can still override the height of the button
 
 <Button
   size="md"
@@ -158,6 +146,7 @@ style props to style the component.
   bg="#f5f6f7"
   borderColor="#ccd0d5"
   color="#4b4f56"
+  // Interaction Styles
   _hover={{ bg: "#ebedf0" }}
   _active={{
     bg: "#dddfe2",

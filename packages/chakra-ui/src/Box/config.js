@@ -53,6 +53,9 @@ export const config = {
     property: "borderRadius",
     scale: "radii",
   },
+  d: {
+    property: "display",
+  },
   w: {
     property: "width",
     scale: "sizes",
@@ -88,6 +91,9 @@ export const config = {
   },
   pos: {
     property: "position",
+  },
+  flexDir: {
+    property: "flexDirection",
   },
   textDecoration: true,
   textTransform: true,
@@ -129,7 +135,8 @@ const extraConfig = system(config);
 export default extraConfig;
 
 // Create an issue on @styled-system/css to allow custom alias to be passed to the `css` function
-// In the meantime, let's transform the custom alias
+
+// Transform the custom alias to a format that styled-system CSS supports
 const transformAlias = (prop, propValue) => {
   const configKeys = Object.keys(config);
   let result = {};
@@ -151,7 +158,7 @@ const transformAlias = (prop, propValue) => {
   return result;
 };
 
-export const tx = props => {
+export const transformAliasProps = props => {
   let result = {};
   for (let prop in props) {
     result = { ...result, ...transformAlias(prop, props[prop]) };

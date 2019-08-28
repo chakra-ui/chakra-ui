@@ -66,6 +66,14 @@ interface IAccordionItem {
    */
   defaultIsOpen?: boolean;
   /**
+   * If `true`, the accordion header will be disabled.
+   */
+  isDisabled?: boolean;
+  /**
+   * A unique id for the accordion item.
+   */
+  id?: string;
+  /**
    * The callback fired when the accordion is expanded/collapsed.
    */
   onChange?: (isOpen: boolean) => void;
@@ -73,7 +81,7 @@ interface IAccordionItem {
 
 export type AccordionItemProps = IAccordionItem &
   AccordionItemChildren &
-  BoxProps;
+  PseudoBoxProps;
 
 /**
  * Accordions allow users to expand and collapse sections of content.
@@ -84,11 +92,7 @@ export const AccordionItem: React.FC<AccordionItemProps>;
 /////////////////////////////////////////////////////////////
 
 interface IAccordionHeader {
-  /**
-   * If `true`, disables the accordion header.
-   * Note: Pass `_disabled` prop to style the disabled state.
-   */
-  isDisabled?: boolean;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export type AccordionHeaderProps = IAccordionHeader & PseudoBoxProps;

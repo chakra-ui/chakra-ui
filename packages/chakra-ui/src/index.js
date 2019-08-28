@@ -4,8 +4,7 @@ export { default as AlertDialog } from "./AlertDialog";
 export * from "./AlertDialog";
 export { default as Avatar } from "./Avatar";
 export * from "./Avatar";
-// export { default as AvatarGroup } from "./AvatarGroup";
-// export * from "./AvatarGroup";
+export { default as AvatarGroup } from "./AvatarGroup";
 
 export { default as Badge } from "./Badge";
 export { default as Box } from "./Box";
@@ -61,7 +60,7 @@ export * from "./InputElement";
 export { default as KeyboardKey } from "./KeyboardKey";
 
 export { default as Link } from "./Link";
-export { default as List } from "./List";
+export { default as Stack } from "./Stack";
 
 export { default as Menu } from "./Menu";
 export * from "./Menu";

@@ -11,10 +11,7 @@ const topNavLinks = [
   "Theming",
 ];
 
-const utilsNavLinks = [
-  "useClipboard",
-  "useDisclosure",
-];
+const utilsNavLinks = ["useClipboard", "useDisclosure"];
 
 const NavGroupHeading = props => (
   <Heading
@@ -33,7 +30,6 @@ export const SideNavContent = props => (
     position="relative"
     overflowY="auto"
     borderRightWidth="1px"
-    pb="4rem"
     {...props}
   >
     <Box
@@ -54,9 +50,9 @@ export const SideNavContent = props => (
       <Box mb="8">
         <NavGroupHeading>Utilities</NavGroupHeading>
         {utilsNavLinks.map(link => (
-          <TopNavLink key={link} href={stringToUrl(link)}>
+          <ComponentLink key={link} href={stringToUrl(link)}>
             {link}
-          </TopNavLink>
+          </ComponentLink>
         ))}
       </Box>
 

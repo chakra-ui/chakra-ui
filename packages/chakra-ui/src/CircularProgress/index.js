@@ -2,8 +2,8 @@
 import { jsx, keyframes } from "@emotion/core";
 import { useColorMode } from "../ColorModeProvider";
 import Box from "../Box";
-import { valueToPercent, clampValue } from "../Slider";
 import { forwardRef } from "react";
+import { useTheme } from "../ThemeProvider";
 
 const circularProgressCircle = keyframes`
   0% {
@@ -146,6 +146,7 @@ const CircularProgress = forwardRef((props, ref) => {
     ...rest
   } = props;
   const { colorMode } = useColorMode();
+
   const _trackColor = { light: `${trackColor}.100`, dark: "whiteAlpha.300" };
   const _color = { light: `${color}.500`, dark: `${color}.200` };
 

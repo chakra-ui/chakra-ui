@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import lightTheme from "prism-react-renderer/themes/nightOwlLight";
 import darkTheme from "prism-react-renderer/themes/nightOwl";
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
@@ -104,8 +104,10 @@ const StarIcon = props => {
 };
 
 const CodeBlock = ({ className, live = true, render, children, ...props }) => {
+  const [editorCode, setEditorCode] = useState(children.trim());
+
   const language = className.replace(/language-/, "");
-  const { onCopy, hasCopied } = useClipboard(children.trim());
+  const { onCopy, hasCopied } = useClipboard(editorCode);
 
   const { colorMode } = useColorMode();
   const themes = { light: lightTheme, dark: darkTheme };
@@ -114,18 +116,24 @@ const CodeBlock = ({ className, live = true, render, children, ...props }) => {
   const liveProviderProps = {
     theme,
     language,
-    code: children.trim(),
+    code: editorCode,
     transformCode: code => "/** @jsx mdx */" + code,
     scope: { ...Chakra, mdx, StarIcon },
     ...props,
   };
+
+  const handleCodeChange = newCode => setEditorCode(newCode.trim());
 
   if (language === "jsx" && live === true) {
     return (
       <LiveProvider {...liveProviderProps}>
         <LiveCodePreview />
         <Box position="relative">
-          <LiveEditor padding={20} style={liveEditorStyle} />
+          <LiveEditor
+            onChange={handleCodeChange}
+            padding={20}
+            style={liveEditorStyle}
+          />
           <CopyButton onClick={onCopy}>
             {hasCopied ? "copied" : "copy"}
           </CopyButton>

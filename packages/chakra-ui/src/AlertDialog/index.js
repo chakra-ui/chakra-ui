@@ -8,19 +8,18 @@ const AlertDialog = ({
   onClose,
   children,
   size = "md",
+  overlayBg,
+  zIndex,
   isCentered,
   leastDestructiveRef,
   ...rest
 }) => {
-  const centeredProps = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  };
   return (
     <ModalTransition isOpen={isOpen}>
       {styles => (
         <AlertDialogOverlay
+          bg={overlayBg}
+          zIndex={zIndex}
           leastDestructiveRef={leastDestructiveRef}
           css={{
             opacity: styles.opacity,
@@ -31,7 +30,6 @@ const AlertDialog = ({
             }),
           }}
           onDismiss={onClose}
-          {...(isCentered && centeredProps)}
         >
           <AlertDialogContent
             maxWidth={size}

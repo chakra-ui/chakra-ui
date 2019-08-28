@@ -1,8 +1,11 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
-import Breadcrumb, { BreadcrumbItem } from ".";
-import Link from "../Link";
+import Breadcrumb, {
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
+} from ".";
 import Box from "../Box";
 import Icon from "../Icon";
 
@@ -13,17 +16,19 @@ const stories = storiesOf("Breadcrumb", module).addDecorator(story => (
 ));
 
 stories.add("default", () => (
-  <Breadcrumb>
+  <Breadcrumb addSeparator={false}>
     <BreadcrumbItem>
-      <Link href="#">Breadcrumb 1</Link>
+      <BreadcrumbLink href="#">Breadcrumb 1</BreadcrumbLink>
+      <BreadcrumbSeparator />
     </BreadcrumbItem>
 
     <BreadcrumbItem>
-      <Link href="#">Breadcrumb 2</Link>
+      <BreadcrumbLink href="#">Breadcrumb 2</BreadcrumbLink>
+      <BreadcrumbSeparator />
     </BreadcrumbItem>
 
     <BreadcrumbItem isCurrentPage>
-      <Link href="#">Breadcrumb 3</Link>
+      <BreadcrumbLink href="#">Breadcrumb 3</BreadcrumbLink>
     </BreadcrumbItem>
   </Breadcrumb>
 ));
@@ -31,15 +36,15 @@ stories.add("default", () => (
 stories.add("separator", () => (
   <Breadcrumb separator=">">
     <BreadcrumbItem>
-      <Link href="#">Home</Link>
+      <BreadcrumbLink href="#">Home</BreadcrumbLink>
     </BreadcrumbItem>
 
     <BreadcrumbItem>
-      <Link href="#">About</Link>
+      <BreadcrumbLink href="#">About</BreadcrumbLink>
     </BreadcrumbItem>
 
     <BreadcrumbItem isCurrentPage>
-      <Link href="#">Current</Link>
+      <BreadcrumbLink href="#">Current</BreadcrumbLink>
     </BreadcrumbItem>
   </Breadcrumb>
 ));
@@ -47,15 +52,15 @@ stories.add("separator", () => (
 stories.add("separator v2", () => (
   <Breadcrumb separator={<Icon name="chevron-right" />}>
     <BreadcrumbItem>
-      <Link href="#">Home</Link>
+      <BreadcrumbLink href="#">Home</BreadcrumbLink>
     </BreadcrumbItem>
 
     <BreadcrumbItem>
-      <Link href="#">About</Link>
+      <BreadcrumbLink href="#">About</BreadcrumbLink>
     </BreadcrumbItem>
 
     <BreadcrumbItem isCurrentPage>
-      <Link href="#">Current</Link>
+      <BreadcrumbLink href="#">Current</BreadcrumbLink>
     </BreadcrumbItem>
   </Breadcrumb>
 ));

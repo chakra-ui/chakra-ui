@@ -69,6 +69,8 @@ export const TopNavLink = forwardRef(({ href, ...props }, ref) => {
 export const ComponentLink = forwardRef(({ href, ...props }, ref) => {
   const { colorMode } = useColorMode();
   const hoverColor = { light: "gray.900", dark: "whiteAlpha.900" };
+  const activeColor = { light: "teal.500", dark: "teal.200" };
+  const activeBg = { light: "teal.50", dark: "#308c7a4d" };
 
   return (
     <NavLink href={href}>
@@ -81,9 +83,9 @@ export const ComponentLink = forwardRef(({ href, ...props }, ref) => {
             transform: "translateX(2px)",
           }}
           {...(isActive && {
-            bg: "teal.50",
+            bg: activeBg[colorMode],
             rounded: "sm",
-            color: "teal.600",
+            color: activeColor[colorMode],
             _hover: {},
           })}
           {...props}

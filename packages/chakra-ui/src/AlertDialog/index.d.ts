@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as StyledSystem from "styled-system";
 import { BoxProps } from "../Box";
 
 interface IAlertDialog {
@@ -16,6 +17,14 @@ interface IAlertDialog {
    * Should Ideally be `AlertDialogHeader`, `AlertDialogBody`, `AlertDialogFooter`
    */
   children: React.ReactNode;
+  /**
+   * The zIndex of the AlertDialog.
+   */
+  zIndex: StyledSystem.ZIndexProps;
+  /**
+   * The background color of the overlay.
+   */
+  overlayBg: StyledSystem.BackgroundColorProps;
   /**
    * The size of the AlertDialog
    */
@@ -35,12 +44,7 @@ interface IAlertDialog {
    */
   isCentered?: boolean;
   /**
-   * The element to automatically set focus on when the `AlertDialog` opens.
-   * **🚨This is should point to the least destructive action.**
-   *
-   * EXAMPLE:
-   * If you have two buttons `Delete` and `Cancel` in the `AlertDialog`.
-   * The `leastDestructiveRef` should point to `Cancel`
+   * The least destructive element to automatically set focus on when the `AlertDialog` opens.
    */
   leastDestructiveRef: React.Ref<{}>;
 }
@@ -48,14 +52,12 @@ interface IAlertDialog {
 export type AlertDialogProps = IAlertDialog & BoxProps;
 
 /**
- * AlertDialog is a modal dialog that interrupts the user's workflow to communicate an important message and acquire a response.
+ * AlertDialog component is used interrupt the user with a mandatory confirmation or action.
  */
 declare const AlertDialog: React.FC<AlertDialogProps>;
 
 /**
  * The `AlertDialogHeader` contains the title announced by screen readers.
- *
- * It may contain a `Heading` component
  */
 export const AlertDialogHeader: React.FC<BoxProps>;
 

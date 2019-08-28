@@ -1,18 +1,26 @@
 # Alert
 
 Alerts are used to communicate a state that affects a system, feature or page.
-This component exports 4 Alert related components:
 
-- **Alert**: The wrapper for alert components. It composes the `Flex` component.
+## Import
 
-- **AlertIcon**: The visual indicator for the alert. It composes the `Icon`
-  component and changes the icon based on the `status` passed.
+Chakra UI exports 4 alert related components.
 
-- **AlertTitle**: The title of the alert. It composes the `Box` component,
-  meaning you can pass all `Box` props to this component
+- `Alert`: The wrapper for alert components.
+- `AlertIcon`: The visual icon for the alert that changes based on the `status`
+  prop.
+- `AlertTitle`: The title of the alert to be announced by screen readers.
+- `AlertDescription`: The description of the alert to be announced by screen
+  readers.
 
-- **AlertDescription**: The description of the alert. It also composes the `Box`
-  component.
+```js
+import {
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+} from "@chakra-ui/core";
+```
 
 ## Usage
 
@@ -25,12 +33,14 @@ This component exports 4 Alert related components:
 </Alert>
 ```
 
-## Status
+### Status
 
-Alerts can have different statuses, so we've added the `status` prop.
+Change the status of the alerts by passing the `status` prop. This affects the
+color scheme and icon used. Alert supports `error`, `success`, `warning`, and
+`info` statuses.
 
 ```jsx
-<List spacing={3}>
+<Stack spacing={3}>
   <Alert status="error">
     <AlertIcon />
     There was an error processes your request
@@ -50,15 +60,16 @@ Alerts can have different statuses, so we've added the `status` prop.
     <AlertIcon />
     Chakra is going live on August 30th. Get ready!
   </Alert>
-</List>
+</Stack>
 ```
 
-## Variant
+### Variant
 
-Alerts come in different variant so you have enough options to pick from.
+Alert has 4 variant styles you can use. Pass the `variant` prop and use either
+`subtle`, `solid`, `left-accent` or `top-accent`.
 
 ```jsx
-<List spacing={3}>
+<Stack spacing={3}>
   <Alert status="success" variant="subtle">
     <AlertIcon />
     Data uploaded to the server. Fire on!
@@ -78,13 +89,13 @@ Alerts come in different variant so you have enough options to pick from.
     <AlertIcon />
     Data uploaded to the server. Fire on!
   </Alert>
-</List>
+</Stack>
 ```
 
-## Composition
+### Composition
 
 Alert ships with smaller component to allow for flexibility and make it easy to
-create all kinds of layout.
+create all kinds of layout. Here's an example of custom alert style and layout.
 
 ```jsx
 <Alert
@@ -107,7 +118,23 @@ create all kinds of layout.
 
 ## Props
 
+### Alert Props
+
+Alert is the wrapper for alert component. It composes the `Flex` component.
+
 | Name    | Type                                           | Default  | Description                            |
 | ------- | ---------------------------------------------- | -------- | -------------------------------------- |
 | status  | `error`, `success`, `warning`, `info`          | `info`   | The status of the alert                |
 | variant | `subtle`, `solid`, `left-accent`, `top-accent` | `subtle` | The variant of the alert style to use. |
+
+### AlertIcon Props
+
+AlertIcon composes `Icon` and changes the icon based on the `status` prop.
+
+### AlertTitle Props
+
+AlertTitle composes the `Box` component.
+
+### AlertDescription Props
+
+AlertDescription composes the `Box` component.

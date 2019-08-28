@@ -19,7 +19,7 @@ const Checkbox = forwardRef(
       "aria-label": ariaLabel,
       "aria-labelledby": ariaLabelledBy,
       color,
-      defaultChecked,
+      defaultIsChecked,
       isChecked,
       isFullWidth,
       size,
@@ -37,7 +37,7 @@ const Checkbox = forwardRef(
     ref,
   ) => {
     const { colorMode } = useColorMode();
-    const styleProps = checkboxStyles({ color, size, colorMode});
+    const styleProps = checkboxStyles({ color, size, colorMode });
 
     return (
       <Flex
@@ -57,7 +57,7 @@ const Checkbox = forwardRef(
           ref={ref}
           name={name}
           value={value}
-          defaultChecked={defaultChecked}
+          defaultChecked={defaultIsChecked}
           onChange={onChange}
           onBlur={onBlur}
           onFocus={onFocus}

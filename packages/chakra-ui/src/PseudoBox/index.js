@@ -2,7 +2,7 @@
 import styled from "@emotion/styled";
 import css from "@styled-system/css";
 import Box from "../Box";
-import { tx } from "../Box/config";
+import { transformAliasProps as tx } from "../Box/config";
 
 /**
  * The selectors are based on [WAI-ARIA state properties](https://www.w3.org/WAI/PF/aria-1.1/states_and_properties) and common CSS Selectors
@@ -11,9 +11,12 @@ const hover = "&:hover";
 const active = "&:active";
 const focus = "&:focus";
 const visited = "&:visited";
+const even = "&:nth-of-type(even)";
+const odd = "&:nth-of-type(odd)";
 const disabled =
-  "&[aria-disabled=true], &:disabled, &:disabled:focus, &:disabled:hover, &:focus[aria-disabled=true], &:hover[aria-disabled=true]";
+  "&:disabled, &:disabled:focus, &:disabled:hover, &[aria-disabled=true], &[aria-disabled=true]:focus, &[aria-disabled=true]:hover";
 const checked = "&[aria-checked=true]";
+const mixed = "&[aria-checked=mixed]";
 const selected = "&[aria-selected=true]";
 const invalid = "&[aria-invalid=true]";
 const pressed = "&[aria-pressed=true]";
@@ -48,6 +51,8 @@ const PseudoBox = styled(Box)(
     _placeholder,
     _checked,
     _mixed,
+    _odd,
+    _even,
   }) => {
     return css({
       [hover]: tx(_hover),
@@ -64,6 +69,9 @@ const PseudoBox = styled(Box)(
       [notFirstChild]: tx(_notFirstChild),
       [notLastChild]: tx(_notLastChild),
       [lastChild]: tx(_lastChild),
+      [odd]: tx(_odd),
+      [even]: tx(_even),
+      [mixed]: tx(_mixed),
       [checked]: tx(_checked),
       [pressed]: tx(_pressed),
       "&:before": tx(_before),

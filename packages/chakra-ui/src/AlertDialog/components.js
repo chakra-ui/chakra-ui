@@ -22,7 +22,11 @@ const AlertDialogBody = props => (
 
 const AlertDialogFooter = props => <Box ml="auto" p={6} {...props} />;
 
-const AlertDialogOverlay = props => (
+const AlertDialogOverlay = ({
+  zIndex = 5,
+  bg = "rgba(16,22,26,.7)",
+  ...props
+}) => (
   <ReachAlertDialogOverlay
     css={css({
       position: "fixed",
@@ -30,9 +34,9 @@ const AlertDialogOverlay = props => (
       right: "0",
       left: "0",
       bottom: "0",
-      zIndex: "1",
+      zIndex,
       overflowY: "auto",
-      bg: "rgba(16,22,26,.7)",
+      bg,
     })}
     {...props}
   />

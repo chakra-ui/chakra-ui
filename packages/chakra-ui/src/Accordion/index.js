@@ -50,20 +50,24 @@ const Accordion = ({
       onChange: isExpanded => {
         if (allowMultiple) {
           if (isExpanded) {
-            let newIndexes = [...expandedIndex, childIndex];
-            setExpandedIndex(newIndexes);
+            let newIndexes = [..._index, childIndex];
+            !isControlled && setExpandedIndex(newIndexes);
+            onChange && onChange(newIndexes);
           } else {
-            let newIndexes = expandedIndex.filter(
+            let newIndexes = _index.filter(
               itemIndex => itemIndex !== childIndex,
             );
-            setExpandedIndex(newIndexes);
+            !isControlled && setExpandedIndex(newIndexes);
+            onChange && onChange(newIndexes);
           }
         } else {
           if (isExpanded) {
-            setExpandedIndex(childIndex);
+            !isControlled && setExpandedIndex(childIndex);
+            onChange && onChange(childIndex);
           } else {
             if (allowToggle) {
-              setExpandedIndex(null);
+              !isControlled && setExpandedIndex(null);
+              onChange && onChange(null);
             }
           }
         }
@@ -103,7 +107,13 @@ const AccordionItem = forwardRef(
 
     return (
       <AccordionItemContext.Provider
-        value={{ isExpanded: _isExpanded, headerId, panelId, onToggle }}
+        value={{
+          isExpanded: _isExpanded,
+          isDisabled,
+          headerId,
+          panelId,
+          onToggle,
+        }}
       >
         <PseudoBox
           borderTopWidth="1px"
@@ -141,6 +151,7 @@ const AccordionHeader = forwardRef(({ onClick, ...props }, ref) => {
       transition="all 0.2s"
       _focus={{ boxShadow: "outline" }}
       _hover={{ bg: "blackAlpha.50" }}
+      _disabled={{ opacity: "0.4", cursor: "not-allowed" }}
       as="button"
       disabled={isDisabled}
       aria-disabled={isDisabled}
@@ -184,13 +195,14 @@ const AccordionPanel = forwardRef((props, ref) => {
 /////////////////////////////////////////////////////////////
 
 const AccordionIcon = props => {
-  const { isExpanded } = useAccordionItemContext();
+  const { isExpanded, isDisabled } = useAccordionItemContext();
   return (
     <Icon
       aria-hidden
       focusable="false"
       size="1.25em"
       name="chevron-down"
+      opacity={isDisabled ? 0.4 : 1}
       transform={isExpanded ? "rotate(-180deg)" : null}
       transition="transform 0.2s"
       transformOrigin="center"

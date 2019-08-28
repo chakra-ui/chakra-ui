@@ -2,7 +2,7 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 import Box from "../Box";
 import Checkbox from "../Checkbox";
-import List from "../List";
+import Stack from "../Stack";
 import FormValidationText from "../FormValidationText";
 
 const stories = storiesOf("Checkbox", module);
@@ -72,7 +72,7 @@ function IndeterminateExample() {
         onChange={e => setCheckedItems([e.target.checked, e.target.checked])}
         children="Parent Checkbox"
       />
-      <List pl={6} mt={1} spacing={1}>
+      <Stack pl={6} mt={1} spacing={1}>
         <Checkbox
           isChecked={checkedItems[0]}
           onChange={e => setCheckedItems([e.target.checked, checkedItems[1]])}
@@ -83,7 +83,7 @@ function IndeterminateExample() {
           onChange={e => setCheckedItems([checkedItems[0], e.target.checked])}
           children="Child Checkbox 2"
         />
-      </List>
+      </Stack>
     </>
   );
 }

@@ -1,40 +1,30 @@
 # Box
 
 Box is the most abstract component on top of which all other Chakra UI
-components are built. By default, it renders a div element
-
-The Box component is the most fundamental component in Chakra UI. It is
-primitive used to construct layouts and compose components. In most cases you
-can use a `Box` instead of a div element.
+components are built. By default, it renders a `div` element
 
 **The Box component is useful because it helps with 3 common use cases:**
 
-- Create responsive layouts without writing CSS.
-- Provide a shorthand way to define styles (`bg` instead of `backgroundColor`).
+- Create responsive layouts with ease.
+- Provide a shorthand way to pass styles via props (`bg` instead of
+  `backgroundColor`).
 - Compose new component and allow for override using the `as` prop.
 
----
+## Import
 
-## You don’t need className
-
-With Chakra UI, you don’t deal with CSS classes through the className property.
-Instead, you write CSS properties directly onto your Chakra UI components — in
-most cases it will just work.
-
-Here's how it works:
-
-```jsx
-<Box
-  p={5}
-  width={["100%", "50%", "25%", "15%"]}
-  color={["white", "yellow.300", "papayawhip"]}
-  bg="green.500"
->
-  Box
-</Box>
+```js
+import { Box } from "@chakra-ui/core";
 ```
 
 ## Usage
+
+```jsx
+<Box bg="tomato" w="100%" p={4} color="white">
+  This is the Box
+</Box>
+```
+
+### Usage
 
 ```jsx
 // Sample card from Airbnb
@@ -52,11 +42,11 @@ function AirbnbExample() {
   };
 
   return (
-    <Box maxWidth="sm" borderWidth="1px" rounded="lg" overflow="hidden">
+    <Box maxW="sm" borderWidth="1px" rounded="lg" overflow="hidden">
       <Image src={property.imageUrl} alt={property.imageAlt} />
 
       <Box p="6">
-        <Flex align="baseline">
+        <Box d="flex" alignItems="baseline">
           <Badge rounded="full" px="2" variantColor="teal">
             New
           </Badge>
@@ -70,9 +60,9 @@ function AirbnbExample() {
           >
             {property.beds} beds &bull; {property.baths} baths
           </Box>
-        </Flex>
+        </Box>
 
-        <Heading
+        <Box
           mt="1"
           fontWeight="semibold"
           as="h4"
@@ -80,7 +70,7 @@ function AirbnbExample() {
           isTruncated
         >
           {property.title}
-        </Heading>
+        </Box>
 
         <Box>
           {property.formattedPrice}
@@ -89,7 +79,7 @@ function AirbnbExample() {
           </Box>
         </Box>
 
-        <Flex mt="2" align="center">
+        <Box d="flex" mt="2" alignItems="center">
           {Array(5)
             .fill("")
             .map((_, i) => (
@@ -101,7 +91,7 @@ function AirbnbExample() {
           <Box as="span" ml="2" color="gray.600" fontSize="sm">
             {property.reviewCount} reviews
           </Box>
-        </Flex>
+        </Box>
       </Box>
     </Box>
   );
@@ -114,9 +104,7 @@ You can use the `as` prop to change the element render, just like
 styled-components.
 
 ```jsx
-// import { Box } from "@chakra-ui/Box";
-
-function Example() {
-  return <Box as="button">Button</Box>;
-}
+<Box as="button" rounded="md" bg="tomato" color="white" px={4} h={8}>
+  Button
+</Box>
 ```

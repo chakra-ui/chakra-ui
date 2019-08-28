@@ -1,10 +1,35 @@
 # Accordion
 
-Accordions display a list of high-level options that can expand/contract to
-reveal more detailed information. By default, only one item may be expanded and
-it can only be collapsed again by expanding another.
+Accordions display a list of high-level options that can expand/collapse to
+reveal more information.
 
-## Basic Usage
+## Import
+
+Chakra UI exports 5 accordion related components.
+
+- `Accordion`: The wrapper that uses cloneElement to pass it's prop to the
+  `AccordionItem`.
+- `AccordionItem`: A single accordion item.
+- `AccordionHeader`: The button that toggles the expand/collapse state of the
+  accordion item.
+- `AccordionPanel`: The container for the details to be revealed.
+- `AccordionIcon`: A `chevron-down` icon that rotates based on the
+  expanded/collapsed state
+
+```js
+import {
+  Accordion,
+  AccordionItem,
+  AccordionHeader,
+  AccordionPanel,
+  AccordionIcon,
+} from "@chakra-ui/core";
+```
+
+## Usage
+
+By default, only one item may be expanded and it can only be collapsed again by
+expanding another.
 
 ```jsx
 <Accordion>
@@ -45,8 +70,11 @@ it can only be collapsed again by expanding another.
 If you set `allowMultiple` to true then the accordion will permit multiple items
 to be expanded at once.
 
+> If you pass this prop, ensure that the `index` or `defaultIndex` prop is an
+> array.
+
 ```jsx
-<Accordion allowMultiple>
+<Accordion defaultIndex={[0]} allowMultiple>
   <AccordionItem>
     <AccordionHeader>
       <Box flex="1" textAlign="left">
@@ -119,11 +147,15 @@ If you set `allowToggle` to true, any expanded item may be collapsed again.
 
 ### Styling the expanded state
 
+The `AccordionHeader` component has `aria-expanded` set to `true` or `false`
+depending on the state of the `AccordionItem`. Use the style prop `_expanded` to
+style this state.
+
 ```jsx
-<AccordionItem defaultIsOpen>
+<AccordionItem>
   <AccordionHeader _expanded={{ bg: "tomato", color: "white" }}>
     <Box flex="1" textAlign="left">
-      Section 2 title
+      Click me to see a different style
     </Box>
     <AccordionIcon />
   </AccordionHeader>
@@ -137,6 +169,9 @@ If you set `allowToggle` to true, any expanded item may be collapsed again.
 ```
 
 ### Accessing the internal state
+
+If you need access to the internal state of each accordion item, you can use a
+render prop. It provides 2 internal state `isExpanded`, and `isDisabled`.
 
 ```jsx
 <Accordion allowMultiple>
@@ -183,29 +218,31 @@ toggle (expand or collapse) the accordion.
 
 ## Props
 
-### Accordion
+### Accordion Props
 
-| Name            | Type                              | Default | Description                                                                                               |
-| --------------- | --------------------------------- | ------- | --------------------------------------------------------------------------------------------------------- |
-| `allowMultiple` | `boolean`                         |         | If `true`, multiple accordion items can be expanded at once.                                              |
-| `allowToggle`   | `boolean`                         | `false` | If `true`, any expanded accordion item can be collapsed again.                                            |
-| `index`         | `NumberOrArrayOfNumber`           |         | The index(es) of the expanded accordion item                                                              |
-| `defaultIndex`  | `NumberOrArrayOfNumber`           |         | The initial index(es) of the expanded accordion item                                                      |
-| `onChange`      | `(NumberOrArrayOfNumber) => void` |         | The callback invoked when accordion items are expanded or collapsed.                                      |
-| `children`      | `ReactNode`                       | `false` | The content of the accordion. The children must be the `AccordionHeader` and `AccordionPanel` components. |
+| Name          | Type                              | Default | Description                                                                                               |
+| ------------- | --------------------------------- | ------- | --------------------------------------------------------------------------------------------------------- |
+| allowMultiple | `boolean`                         |         | If `true`, multiple accordion items can be expanded at once.                                              |
+| allowToggle   | `boolean`                         |         | If `true`, any expanded accordion item can be collapsed again.                                            |
+| index         | `NumberOrArrayOfNumber`           |         | The index(es) of the expanded accordion item                                                              |
+| defaultIndex  | `NumberOrArrayOfNumber`           |         | The initial index(es) of the expanded accordion item                                                      |
+| onChange      | `(NumberOrArrayOfNumber) => void` |         | The callback invoked when accordion items are expanded or collapsed.                                      |
+| children      | `ReactNode`                       |         | The content of the accordion. The children must be the `AccordionHeader` and `AccordionPanel` components. |
 
-### AccordionItem
+### AccordionItem Props
 
-| Name            | Type                                      | Default | Description                                                                                               |
-| --------------- | ----------------------------------------- | ------- | --------------------------------------------------------------------------------------------------------- |
-| `isOpen`        | `boolean`                                 |         | If `true`, expands the accordion in the controlled mode.                                                  |
-| `defaultIsOpen` | `boolean`                                 | `false` | If `true`, expands the accordion by on initial mount.                                                     |
-| `onChange`      | `(NumberOrArrayOfNumber) => void`         |         | The callback fired when the accordion is expanded/collapsed.                                              |
-| `children`      | `ReactNode`, `(RenderProps) => ReactNode` | `false` | The content of the accordion. The children must be the `AccordionHeader` and `AccordionPanel` components. |
+| Name          | Type                                      | Default | Description                                                                                               |
+| ------------- | ----------------------------------------- | ------- | --------------------------------------------------------------------------------------------------------- |
+| isOpen        | `boolean`                                 |         | If `true`, expands the accordion in the controlled mode.                                                  |
+| defaultIsOpen | `boolean`                                 |         | If `true`, expands the accordion by on initial mount.                                                     |
+| id            | `string`                                  |         | A unique `id` for the accordion item.                                                                     |
+| isDisabled    | `boolean`                                 |         | If `true`, the accordion header will be disabled.                                                         |
+| onChange      | `(NumberOrArrayOfNumber) => void`         |         | The callback fired when the accordion is expanded/collapsed.                                              |
+| children      | `ReactNode`, `(RenderProps) => ReactNode` |         | The content of the accordion. The children must be the `AccordionHeader` and `AccordionPanel` components. |
 
 <br />
 
-### AccordionHeader
+### AccordionHeader Props
 
 AccordionHeader renders a `button` and composes `PseudoBox`, this means you can
 style it by passing the pseudo style props `_expanded`, `_disabled`, `_hover`,
@@ -213,7 +250,7 @@ etc.
 
 <br />
 
-### AccordionPanel
+### AccordionPanel Props
 
 AccordionPanel renders a `div` and composes `Collapse` to provide the height
 animation.

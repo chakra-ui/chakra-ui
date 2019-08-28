@@ -48,7 +48,7 @@ function Example() {
   };
 
   return (
-    <List isInline>
+    <Stack isInline>
       <Tag size="sm" {...props}>
         <TagLabel>Gray</TagLabel>
       </Tag>
@@ -58,7 +58,7 @@ function Example() {
       <Tag size="lg" {...props}>
         <TagLabel>Gray</TagLabel>
       </Tag>
-    </List>
+    </Stack>
   );
 }
 ```
@@ -68,7 +68,7 @@ function Example() {
 ```jsx
 function Example() {
   return (
-    <List isInline>
+    <Stack isInline>
       {["sm", "md", "lg"].map(size => (
         <Tag size={size} color="cyan">
           <TagAddon placement="left">
@@ -77,7 +77,7 @@ function Example() {
           <TagLabel>Green</TagLabel>
         </Tag>
       ))}
-    </List>
+    </Stack>
   );
 }
 ```
@@ -87,7 +87,7 @@ function Example() {
 ```jsx
 function Example() {
   return (
-    <List isInline>
+    <Stack isInline>
       {["sm", "md", "lg"].map(size => (
         <Tag size={size} color="cyan">
           <TagLabel>Green</TagLabel>
@@ -96,7 +96,7 @@ function Example() {
           </TagAddon>
         </Tag>
       ))}
-    </List>
+    </Stack>
   );
 }
 ```
@@ -106,14 +106,14 @@ function Example() {
 ```jsx
 function Example() {
   return (
-    <List isInline>
+    <Stack isInline>
       {["sm", "md", "lg"].map(size => (
         <Tag size={size} rounded="full" variant="solid" color="cyan">
           <TagLabel>Green</TagLabel>
           <TagCloseButton />
         </Tag>
       ))}
-    </List>
+    </Stack>
   );
 }
 ```
@@ -123,7 +123,7 @@ function Example() {
 ```jsx
 function Example() {
   return (
-    <List isInline>
+    <Stack isInline>
       <Tag color="red" rounded="full">
         <TagAddon placement="left" mr="1">
           <Avatar
@@ -134,7 +134,7 @@ function Example() {
         </TagAddon>
         <TagLabel>Segun</TagLabel>
       </Tag>
-    </List>
+    </Stack>
   );
 }
 ```

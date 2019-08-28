@@ -79,7 +79,7 @@ function Example() {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
-    <List isInline>
+    <Stack isInline>
       <Button colorMode="light" size="sm" variantColor="blue">
         Light Mode Always
       </Button>
@@ -91,7 +91,7 @@ function Example() {
       <Button size="sm" variantColor="blue" onClick={toggleColorMode}>
         Toggle Mode
       </Button>
-    </List>
+    </Stack>
   );
 }
 ```

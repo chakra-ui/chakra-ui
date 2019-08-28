@@ -1,5 +1,7 @@
 import * as React from "react";
 import { BoxProps } from "../Box";
+import * as StyledSystem from "styled-system";
+import { LinkProps } from "../Link";
 
 interface IBreadcrumb {
   children?: React.ReactNode;
@@ -8,16 +10,23 @@ interface IBreadcrumb {
    */
   separator?: string | React.ReactNode;
   /**
-   * The color of the visual separator
+   * If `true`, the breadcrumb will add the separator automatically
    */
-  separatorColor?: string;
+  addSeparator?: boolean;
+  /**
+   * The left and right margin applied to the separator
+   */
+  spacing?: StyledSystem.MarginProps;
 }
 
 type BreadcrumbProps = BoxProps & IBreadcrumb;
-
 declare const Breadcrumb: React.FC<BreadcrumbProps>;
-
 export default Breadcrumb;
+
+/////////////////////////////////////////////////////////////
+
+export const BreadcrumbSeparator: React.FC<BoxProps>;
+export const BreadcrumbLink: React.FC<LinkProps>;
 
 /////////////////////////////////////////////////////////////
 

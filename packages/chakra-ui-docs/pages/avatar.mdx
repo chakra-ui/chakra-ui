@@ -1,28 +1,33 @@
 # Avatars
 
-The Avatar component is used to represent users.
+The Avatar component is used to represent user, and displays the profile
+picture, initials or fallback icon.
 
-The `Avatar` package export 2 Components:
+## Import
 
-- `Avatar`: This displays the image that represents the user.
-- `AvatarBadge`: In some products, you might need show a badge on the right
-  corner of the avatar. For instance, an avatar can show if the user is online.
+Chakra UI exports 2 avatar related components:
+
+- `Avatar`: The image that represents the user.
+- `AvatarBadge`: A wrapper that displays it's content on the on the right corner
+  of the avatar.
+- `AvatarGroup`: A wrapper to stack multiple Avatars together.
+
+```js
+import { Avatar, AvatarBadge } from "@chakra-ui/core";
+```
 
 ## Usage
 
-```js
-import { Avatar } from "@chakra-ui/core";
-```
-
 ```jsx
-<List isInline>
+<Stack isInline>
   <Avatar name="Dan Abrahmov" src="http://bit.ly/dan-abramov" />
   <Avatar name="Kola Tioluwani" src="http://bit.ly/tioluwani-kolawole" />
   <Avatar name="Kent Dodds" src="http://bit.ly/kent-c-dodds" />
   <Avatar name="Ryan Florence" src="http://bit.ly/ryan-florence" />
   <Avatar name="Prosper Otemuyiwa" src="http://bit.ly/prosper-baba" />
   <Avatar name="Christian Nwamba" src="http://bit.ly/code-beast" />
-</List>
+  <Avatar name="Segun Adebayo" src="http://bit.ly/sage-adebayo" />
+</Stack>
 ```
 
 ## Avatar Sizes
@@ -30,7 +35,7 @@ import { Avatar } from "@chakra-ui/core";
 The Avatar component comes in 7 sizes
 
 ```jsx
-<List isInline>
+<Stack isInline>
   <Avatar size="2xs" name="Dan Abrahmov" src="http://bit.ly/dan-abramov" />
   <Avatar
     size="xs"
@@ -42,44 +47,74 @@ The Avatar component comes in 7 sizes
   <Avatar size="lg" name="Prosper Otemuyiwa" src="http://bit.ly/prosper-baba" />
   <Avatar size="xl" name="Christian Nwamba" src="http://bit.ly/code-beast" />
   <Avatar size="2xl" name="Segun Adebayo" src="http://bit.ly/sage-adebayo" />
-</List>
+</Stack>
 ```
 
 ## Avatar Fallbacks
 
-If there was an error loading the image `src` of the avatar, we do two things:
+If there was an error loading the `src` of the avatar, there are 2 fallbacks:
 
-- If there's a `name` prop, we use it to generate the initials and a random
-  background color.
-- If there's no `name` prop, we use a default avatar
+- If there's a `name` prop, we use it to generate the initials and a random,
+  accessible background color.
+- If there's no `name` prop, we use a default avatar.
 
 ```jsx
-<List isInline>
+<Stack isInline>
   <Avatar name="Oshigaki Kisame" src="http://bit.ly/broken-link" />
   <Avatar name="Sasuke Uchiha" src="http://bit.ly/broken-link" />
   <Avatar src="http://bit.ly/broken-link" />
-</List>
+</Stack>
 ```
 
 ## Avatar with badge
 
+In some products, you might need show a badge on the right corner of the avatar,
+what we call a **badge**. Here's an example that shows if the user is online:
+
 ```jsx
-<Avatar>
-  <AvatarBadge size="1.25em" bg="green.500" />
-</Avatar>
+<Stack isInline spacing={4}>
+  <Avatar>
+    <AvatarBadge size="1.25em" bg="green.500" />
+  </Avatar>
+
+  {/* You can also change the borderColor and bg of the badge */}
+  <Avatar>
+    <AvatarBadge borderColor="papayawhip" bg="tomato" size="1.25em" />
+  </Avatar>
+</Stack>
 ```
 
-> The `em` size of the `AvatarBadge` helps us size the circle relative to the
-> avatar size
+> Note the use of `em` for the size of the `AvatarBadge`. this is useful to size
+> the badge relative to the avatar font size
+
+## AvatarGroup
+
+In some cases, you might need to stack avatars as a group. Use the `AvatarGroup`
+component.
+
+- To limit the amount of avatars to show, use the `max` prop. It'll truncate the
+  avatars and show a "+X" label (where X is the remaining avatars).
+- To size all the avatars equally, pass the size prop.
+- To adjust the spacing between the avatars, pass the `spacing` prop.
+
+```jsx
+<AvatarGroup size="md" max={2}>
+  <Avatar name="Ryan Florence" src="http://bit.ly/ryan-florence" />
+  <Avatar name="Segun Adebayo" src="http://bit.ly/sage-adebayo" />
+  <Avatar name="Kent Dodds" src="http://bit.ly/kent-c-dodds" />
+  <Avatar name="Prosper Otemuyiwa" src="http://bit.ly/prosper-baba" />
+  <Avatar name="Christian Nwamba" src="http://bit.ly/code-beast" />
+</AvatarGroup>
+```
 
 ## Props
 
 The Avatar component composes `Box` component so you can pass props for `Box`.
 
-| Name         | Type                                       | Default | Description                                                                       |
-| ------------ | ------------------------------------------ | ------- | --------------------------------------------------------------------------------- |
-| `size`       | `2xs`, `xs`, `sm`, `md`, `lg`, `xl`, `2xl` | `md`    | The size of the avatar                                                            |
-| `showBorder` | `boolean`                                  | `false` | If `true`, the `Avatar` will show a border around it. Best for a group of avatars |
-| `name`       | `string`                                   |         | The name of the user in the avatar                                                |
-| `src`        | `string`                                   |         | The image url of the `Avatar`                                                     |
-| `children`   | `React.ReactNode`                          |         | The badge at the bottom right corner of the Avatar.                               |
+| Name       | Type                                       | Default | Description                                                                       |
+| ---------- | ------------------------------------------ | ------- | --------------------------------------------------------------------------------- |
+| size       | `2xs`, `xs`, `sm`, `md`, `lg`, `xl`, `2xl` | `md`    | The size of the avatar                                                            |
+| showBorder | `boolean`                                  | `false` | If `true`, the `Avatar` will show a border around it. Best for a group of avatars |
+| name       | `string`                                   |         | The name of the user in the avatar                                                |
+| src        | `string`                                   |         | The image url of the `Avatar`                                                     |
+| children   | `React.ReactNode`                          |         | The badge at the bottom right corner of the Avatar.                               |

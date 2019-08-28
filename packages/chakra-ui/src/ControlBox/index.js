@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import css from "@styled-system/css";
 import Box from "../Box";
-import { tx } from "../Box/config";
+import { transformAliasProps } from "../Box/config";
 
 const ControlBox = styled(Box)(
   ({
@@ -27,17 +27,17 @@ const ControlBox = styled(Box)(
       invalid = `input[type=${type}][aria-invalid=true] + &`;
 
     return css({
-      [focus]: tx(_focus),
-      [hover]: tx(_hover),
-      [disabled]: tx(_disabled),
-      [invalid]: tx(_invalid),
-      [checkedAndDisabled]: tx(_checkedAndDisabled),
-      [checkedAndFocus]: tx(_checkedAndFocus),
-      [checkedAndHover]: tx(_checkedAndHover),
-      "& > *": tx(_child),
+      [focus]: transformAliasProps(_focus),
+      [hover]: transformAliasProps(_hover),
+      [disabled]: transformAliasProps(_disabled),
+      [invalid]: transformAliasProps(_invalid),
+      [checkedAndDisabled]: transformAliasProps(_checkedAndDisabled),
+      [checkedAndFocus]: transformAliasProps(_checkedAndFocus),
+      [checkedAndHover]: transformAliasProps(_checkedAndHover),
+      "& > *": transformAliasProps(_child),
       [checked]: {
-        ...tx(_checked),
-        "& > *": tx(_checkedAndChild),
+        ...transformAliasProps(_checked),
+        "& > *": transformAliasProps(_checkedAndChild),
       },
     });
   },

@@ -37,7 +37,7 @@ const Header = props => {
     <Fixed
       as="header"
       top="0"
-      zIndex="2"
+      zIndex="4"
       bg={bg[colorMode]}
       left="0"
       right="0"

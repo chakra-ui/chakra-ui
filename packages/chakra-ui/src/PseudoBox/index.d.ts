@@ -9,7 +9,7 @@ interface IPseudoBoxProps {
    * NOTE:When using this, ensure the `content` is wrapped in a backtick.
    * @example
    * ```jsx
-   * <PseudoBox _after={{content:`"FontAwesomeIcon"` }}/>
+   * <PseudoBox _after={{content:`""` }}/>
    * ```
    */
   _after: BoxProps;
@@ -19,7 +19,7 @@ interface IPseudoBoxProps {
    * NOTE:When using this, ensure the `content` is wrapped in a backtick.
    * @example
    * ```jsx
-   * <PseudoBox _before={{content:`"FontAwesomeIcon"` }}/>
+   * <PseudoBox _before={{content:`""` }}/>
    * ```
    */
   _before: BoxProps;
@@ -82,6 +82,23 @@ interface IPseudoBoxProps {
    * - CSS selector `&[aria-checked=true]`
    */
   _checked: BoxProps;
+  /**
+   * Styles to apply when the ARIA attribute `aria-checked` is `mixed`
+   * - CSS selector `&[aria-checked=mixed]`
+   */
+  _mixed: BoxProps;
+  /**
+   * Styles for CSS Selector `&:nth-child(odd)`
+   */
+  _odd: BoxProps;
+  /**
+   * Styles for CSS Selector `&:nth-child(even)`
+   */
+  _even: BoxProps;
+  /**
+   * Styles for CSS Selector `&:visited`
+   */
+  _visited: BoxProps;
   /**
    * Styles for CSS Selector `&:readonly`
    */

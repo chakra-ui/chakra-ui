@@ -1,17 +1,34 @@
 # Alert Dialog
 
 AlertDialog component is used interrupt the user with a mandatory confirmation
-or action. It typically doesn't contain a close button.
+or action.
 
 Based on
-[WAI-ARIA specifications](https://www.w3.org/TR/wai-aria-practices-1.1/examples/dialog-modal/alertdialog.html),
-focus should be placed on the least destructive element when the `AlertDialog`
-opens, to prevent users from accidentally taking the destructive action.
+[WAI-ARIA specifications](https://www.w3.org/TR/wai-aria-practices/#alertdialog),
+focus should be placed on the least destructive element when the dialog opens,
+to prevent users from accidentally taking the destructive action.
 
-> AlertDialog requires that you provide the `leastDestructiveRef` prop, based on
-> the explanation above.
+## Import
+
+Chakra UI exports 4 alert dialog related components.
+
+- `AlertDialog`: renders an overlay and wraps the content for the dialog.
+- `AlertDialogHeader`: contains the title announced by screen readers.
+- `AlertDialogBody`: contains the description announced by screen readers.
+- `AlertDialogFooter`: contains the actions of the dialog.
+
+```js
+import {
+  AlertDialog,
+  AlertDialogHeader,
+  AlertDialogBody,
+  AlertDialogFooter,
+} from "@chakra-ui/core";
+```
 
 ## Usage
+
+AlertDialog requires that you provide the `leastDestructiveRef` prop.
 
 ```jsx
 function AlertDialogExample() {
@@ -29,7 +46,6 @@ function AlertDialogExample() {
         isOpen={isOpen}
         leastDestructiveRef={cancelRef}
         onClose={onClose}
-        isCentered
       >
         <AlertDialogHeader fontSize="lg" fontWeight="bold">
           Delete Customer
@@ -66,10 +82,12 @@ function AlertDialogExample() {
 
 ## Props
 
-| Name                           | Type                   | Default | Description                                                   |
-| ------------------------------ | ---------------------- | ------- | ------------------------------------------------------------- |
-| isOpen                         | `boolean`              |         | If true, the `AlertDialog` will open                          |
-| onClose                        | `function`             |         | The function to close the `AlertDialog`                       |
-| size                           | `xs`, `sm`, `md`, `lg` | `md`    | The maximum width of the AlertDialog                          |
-| isCentered                     | `boolean`              |         | If `true`, the `AlertDialog` will be centered on screen       |
-| leastDestructiveRef (required) | `React.Ref`            |         | The least destructive action to get focus when dialog is open |
+| Name                           | Type                                | Default | Description                                                   |
+| ------------------------------ | ----------------------------------- | ------- | ------------------------------------------------------------- |
+| isOpen                         | `boolean`                           |         | If true, the `AlertDialog` will open                          |
+| onClose                        | `function`                          |         | The function to close the `AlertDialog`                       |
+| size                           | `xs`, `sm`, `md`, `lg`, `xl`        | `md`    | The maximum width of the AlertDialog                          |
+| isCentered                     | `boolean`                           |         | If `true`, the `AlertDialog` will be centered on screen       |
+| overlayBg                      | `StyledSystem.BackgroundColorProps` |         | The background color of the overlay.                          |
+| zIndex                         | `StyledSystem.ZIndexProps`          |         | The zIndex of the AlertDialog.                                |
+| leastDestructiveRef (required) | `React.Ref`                         |         | The least destructive action to get focus when dialog is open |

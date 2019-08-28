@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
 import Box from "../Box";
-import List from "../List";
+import Stack from "../Stack";
 import Progress from ".";
 
 const stories = storiesOf("Progress", module).addDecorator(story => (
@@ -25,11 +25,11 @@ stories.add("with stripe", () => {
 
 stories.add("with sizes", () => {
   return (
-    <List spacing={5}>
+    <Stack spacing={5}>
       <Progress color="green" size="sm" value={20} />
       <Progress color="green" size="md" value={20} />
       <Progress color="green" size="lg" value={20} />
-    </List>
+    </Stack>
   );
 });
 

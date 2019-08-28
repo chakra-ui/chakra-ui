@@ -66,6 +66,7 @@ const Link = forwardRef((props, ref) => (
 
 const DocsHeading = props => (
   <Heading
+    fontWeight="medium"
     css={{
       "&[id]": {
         pointerEvents: "none",
@@ -91,7 +92,7 @@ const DocsHeading = props => (
           fontWeight="normal"
           _focus={{ opacity: 1, boxShadow: "outline" }}
           opacity="0"
-          pl="0.375rem"
+          ml="0.375rem"
           href={`#${props.id}`}
         >
           #
@@ -102,11 +103,15 @@ const DocsHeading = props => (
 );
 
 const MDXComponents = {
-  h1: props => <Heading as="h1" size="xl" my={5} {...props}></Heading>,
-  h2: props => (
-    <DocsHeading as="h2" size="lg" mb="20px" mt="40px" {...props}></DocsHeading>
+  h1: props => (
+    <Heading as="h1" size="xl" fontWeight="normal" my={5} {...props}></Heading>
   ),
-  h3: props => <DocsHeading as="h3" my={4} {...props}></DocsHeading>,
+  h2: props => (
+    <DocsHeading as="h2" size="lg" mb="24px" mt="40px" {...props}></DocsHeading>
+  ),
+  h3: props => (
+    <DocsHeading as="h3" fontWeight="semibold" my={4} {...props}></DocsHeading>
+  ),
   inlineCode: props => (
     <Code variantColor="yellow" fontSize="0.84em" {...props} />
   ),

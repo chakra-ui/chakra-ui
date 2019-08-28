@@ -2,10 +2,10 @@ import * as StyledSystem from "styled-system";
 import * as Emotion from "@emotion/styled";
 import * as React from "react";
 
-type CSS = Emotion.CSSObject;
+type CSS = React.CSSProperties;
 
 interface ICustomConfig {
-  // Border radius shorthand
+  // Custom borderRadius alias
   rounded?: StyledSystem.BorderRadiusProps;
   roundedTop?: StyledSystem.BorderRadiusProps;
   roundedBottom?: StyledSystem.BorderRadiusProps;
@@ -16,25 +16,34 @@ interface ICustomConfig {
   roundedBottomRight?: StyledSystem.BorderRadiusProps;
   roundedBottomLeft?: StyledSystem.BorderRadiusProps;
 
-  // Custom border color
+  // Custom borderColor alias
   borderBottomColor?: StyledSystem.BorderColorProps;
   borderTopColor?: StyledSystem.BorderColorProps;
   borderRightColor?: StyledSystem.BorderColorProps;
   borderLeftColor?: StyledSystem.BorderColorProps;
 
-  // Custom width utils
+  // Custom width alias
   w?: StyledSystem.WidthProps;
   minW?: StyledSystem.MinWidthProps;
   maxW?: StyledSystem.MaxWidthProps;
 
-  // Custom height utils
+  // Custom height alias
   h?: StyledSystem.HeightProps;
   minH?: StyledSystem.MinHeightProps;
   maxH?: StyledSystem.MaxHeightProps;
 
-  // Custom typography utils
-  tracking?: StyledSystem.LetterSpacingProps;
-  leading?: StyledSystem.LineHeightProps;
+  // Custom display alias
+  d?: StyledSystem.DisplayProps;
+
+  // Custom background alias
+  backgroundAttachment?: StyledSystem.ResponsiveValue<
+    CSS["backgroundAttachment"]
+  >;
+  bgImg?: StyledSystem.BackgroundImageProps;
+  bgSize?: StyledSystem.BackgroundSizeProps;
+  bgPos?: StyledSystem.BackgroundPositionProps;
+  pos?: StyledSystem.PositionProps;
+  flexDir?: StyledSystem.FlexDirectionProps;
 
   // CSS properties
   textDecoration?: StyledSystem.ResponsiveValue<CSS["textDecoration"]>;
@@ -44,7 +53,6 @@ interface ICustomConfig {
   appearance?: StyledSystem.ResponsiveValue<CSS["appearance"]>;
   transform?: StyledSystem.ResponsiveValue<CSS["transform"]>;
   transformOrigin?: StyledSystem.ResponsiveValue<CSS["transformOrigin"]>;
-  whiteSpace?: StyledSystem.ResponsiveValue<CSS["whiteSpace"]>;
   animation?: StyledSystem.ResponsiveValue<CSS["animation"]>;
   userSelect?: StyledSystem.ResponsiveValue<CSS["userSelect"]>;
   pointerEvents?: StyledSystem.ResponsiveValue<CSS["pointerEvents"]>;
@@ -54,10 +62,11 @@ interface ICustomConfig {
   transition?: StyledSystem.ResponsiveValue<CSS["transition"]>;
   objectFit?: StyledSystem.ResponsiveValue<CSS["objectFit"]>;
   objectPosition?: StyledSystem.ResponsiveValue<CSS["objectPosition"]>;
-  backgroundAttachment?: StyledSystem.ResponsiveValue<
-    CSS["backgroundAttachment"]
-  >;
-  bgAttachment?: StyledSystem.ResponsiveValue<CSS["backgroundAttachment"]>;
+
+  // Ellipsis alias
+  wordBreak?: StyledSystem.ResponsiveValue<CSS["wordBreak"]>;
+  overflowWrap?: StyledSystem.ResponsiveValue<CSS["overflowWrap"]>;
+  whiteSpace?: StyledSystem.ResponsiveValue<CSS["whiteSpace"]>;
 
   // SVG color properties
   fill?: StyledSystem.ColorProps;
@@ -89,6 +98,10 @@ interface ILetterSpacing {
   letterSpacing?: "tighter" | "tight" | "normal" | "wide" | "wider" | "widest";
 }
 
+interface AsProp {
+  as?: React.ElementType | React.ReactElement;
+}
+
 export type BoxProps = React.RefAttributes<HTMLElement> &
   React.HTMLAttributes<HTMLDivElement> &
   StyledSystem.LayoutProps &
@@ -106,10 +119,8 @@ export type BoxProps = React.RefAttributes<HTMLElement> &
   ILetterSpacing &
   IFontWeight &
   ILineHeight &
-  ICustomConfig & {
-    wordBreak?: "normal" | "words" | "all" | "truncate";
-    as?: React.ElementType;
-  };
+  ICustomConfig &
+  AsProp;
 
 declare const Box: Emotion.StyledComponent<BoxProps, {}, {}>;
 
