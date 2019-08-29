@@ -125,7 +125,6 @@ export const config = {
   objectFit: true,
   objectPosition: true,
   backgroundAttachment: true,
-  WebkitAppearance: true,
 };
 
 config.bgAttachment = config.backgroundAttachment;

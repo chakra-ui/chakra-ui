@@ -12,10 +12,11 @@ import {
   shadow,
   space,
   typography,
+  compose,
 } from "styled-system";
 import extraConfig from "./config";
 
-const truncate = props => {
+export const truncate = props => {
   if (props.isTruncated) {
     return {
       overflow: "hidden",
@@ -25,10 +26,7 @@ const truncate = props => {
   }
 };
 
-const Box = styled("div", {
-  shouldForwardProp,
-})(
-  truncate,
+export const systemProps = compose(
   layout,
   color,
   space,
@@ -39,7 +37,10 @@ const Box = styled("div", {
   shadow,
   typography,
   flexbox,
-  extraConfig,
 );
+
+const Box = styled("div", {
+  shouldForwardProp,
+})(truncate, systemProps, extraConfig);
 
 export default Box;

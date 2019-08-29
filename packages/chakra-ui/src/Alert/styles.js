@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { colorEmphasis, generateStripe } from "../theme/colors-utils";
+import { colorEmphasis } from "../theme/colors-utils";
 import { useTheme } from "../ThemeProvider";
 import { useColorMode } from "../ColorModeProvider";
 

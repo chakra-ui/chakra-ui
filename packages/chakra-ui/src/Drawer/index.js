@@ -10,9 +10,10 @@ const Drawer = ({
   size = "lg",
   isFullHeight,
   initialFocusRef,
-  showOverlay,
   placement = "right",
+  overlayBg,
   zIndex,
+  ...rest
 }) => {
   return (
     <DrawerTransition {...{ isOpen, placement, isFullHeight }}>
@@ -20,7 +21,7 @@ const Drawer = ({
         <DrawerOverlay
           initialFocusRef={initialFocusRef}
           onDismiss={onClose}
-          showOverlay={showOverlay}
+          bg={overlayBg}
           zIndex={zIndex}
           opacity={reactSpringStyles.opacity}
         >
@@ -29,6 +30,7 @@ const Drawer = ({
             transform={transformStyle}
             maxWidth={size}
             {...placementStyle}
+            {...rest}
           >
             {children}
           </DrawerContent>

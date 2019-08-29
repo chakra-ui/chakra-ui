@@ -236,7 +236,6 @@ const baseProps = {
   position: "relative",
   whiteSpace: "nowrap",
   verticalAlign: "middle",
-  WebkitAppearance: "none",
   lineHeight: "1.2",
 };
 

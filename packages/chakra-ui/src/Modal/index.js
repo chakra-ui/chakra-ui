@@ -24,7 +24,7 @@ const Modal = ({
         <ModalOverlay
           initialFocusRef={initialFocusRef}
           opacity={styles.opacity}
-          overlayBg={overlayBg}
+          bg={overlayBg}
           zIndex={zIndex}
           css={isCentered && centeredStyle}
           onDismiss={onClose}

@@ -14,6 +14,7 @@ const liveEditorStyle = {
   marginTop: 32,
   overflowX: "auto",
   fontFamily: "Menlo,monospace",
+  borderRadius: 10,
 };
 
 const highlightStyle = {
@@ -57,7 +58,6 @@ const CopyButton = props => (
     top={0}
     zIndex="1"
     right="1.25em"
-    icon="phone"
     {...props}
   />
 );
@@ -71,7 +71,8 @@ const EditableNotice = props => {
       position="absolute"
       width="full"
       top="-1.25em"
-      bg={bg[colorMode]}
+      roundedTop="10px"
+      bg={bg["dark"]}
       py="2"
       zIndex="0"
       letterSpacing="wide"
@@ -111,7 +112,7 @@ const CodeBlock = ({ className, live = true, render, children, ...props }) => {
 
   const { colorMode } = useColorMode();
   const themes = { light: lightTheme, dark: darkTheme };
-  const theme = themes[colorMode];
+  const theme = themes["dark"];
 
   const liveProviderProps = {
     theme,

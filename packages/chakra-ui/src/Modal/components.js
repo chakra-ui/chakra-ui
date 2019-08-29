@@ -7,7 +7,9 @@ import { useTheme } from "../ThemeProvider";
 import { useColorMode } from "../ColorModeProvider";
 import Box from "../Box";
 import Flex from "../Flex";
-import Fixed from "../Fixed";
+import styled from "@emotion/styled-base";
+import { systemProps } from "../Box";
+import extraConfig from "../Box/config";
 
 const ModalHeader = props => (
   <Box
@@ -27,18 +29,20 @@ const ModalFooter = props => (
 
 const ModalBody = props => <Box px={6} py={2} flex="1" {...props} />;
 
+const StyledDialogOverlay = styled(DialogOverlay)(systemProps, extraConfig);
+
 const ModalOverlay = forwardRef(
-  ({ overlayBg = "rgba(16,22,26,.7)", zIndex, ...props }, ref) => (
-    <Fixed
-      as={DialogOverlay}
+  ({ bg = "rgba(16,22,26,0.7)", zIndex, ...props }, ref) => (
+    <StyledDialogOverlay
+      ref={ref}
+      position="fixed"
       zIndex={zIndex}
       bottom="0"
       top="0"
       left="0"
       right="0"
       overflowY="auto"
-      bg={overlayBg}
-      ref={ref}
+      bg={bg}
       {...props}
     />
   ),

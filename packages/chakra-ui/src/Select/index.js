@@ -23,7 +23,8 @@ const Select = forwardRef(
           as="select"
           appearance="none"
           ref={ref}
-          style={{ paddingRight: 24, paddingBottom: "unset", ...rest.style }}
+          pr="2rem"
+          lineHeight="normal"
           {...rest}
         >
           {placeholder && <option value="">{placeholder}</option>}
@@ -32,14 +33,18 @@ const Select = forwardRef(
         <Box
           position="absolute"
           display="inline-flex"
-          right="8px"
+          width="1.5rem"
+          height="100%"
+          alignItems="center"
+          justifyContent="center"
+          right="0.5rem"
           top="50%"
           pointerEvents="none"
           opacity={opacity}
-          style={{ zIndex: 2 }}
+          zIndex={2}
           transform="translateY(-50%)"
         >
-          <Icon name="chevron-down" color="currentColor" size="18px" />
+          <Icon name="chevron-down" color="currentColor" size="20px" />
         </Box>
       </Box>
     );

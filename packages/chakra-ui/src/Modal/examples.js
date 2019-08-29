@@ -1,5 +1,5 @@
 import { storiesOf } from "@storybook/react";
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useRef } from "react";
 import Box from "../Box";
 import Button from "../Button";
 import FormControl from "../FormControl";
@@ -21,9 +21,10 @@ stories.add("Default", () => {
   const SampleModal = () => {
     const [isOpen, setIsOpen] = useState(false);
     const close = () => setIsOpen(false);
+    const firstField = useRef();
     return (
       <Fragment>
-        <Modal isOpen={isOpen} onClose={close}>
+        <Modal initialFocusRef={firstField} isOpen={isOpen} onClose={close}>
           <ModalHeader onClose={close}>Create your account</ModalHeader>
 
           <CloseButton
@@ -36,7 +37,7 @@ stories.add("Default", () => {
           <ModalBody pb={6}>
             <FormControl mb={4}>
               <FormLabel>First name</FormLabel>
-              <Input placeholder="Type here..." />
+              <Input ref={firstField} placeholder="Type here..." />
             </FormControl>
           </ModalBody>
 

@@ -1,13 +1,8 @@
 # Drawer
 
-The Drawer component is a panel that slides out from the left or right side of
-the screen.
-
-## Use cases
-
-- Showing a profile view of a user.
-- Showing detailed information about a transaction.
-- Actions that don‘t need to be accessible by a URL.
+The Drawer component is a panel that slides out from the edge of the screen. It
+can be useful when you need users to complete a task or view some details
+without leaving the current page.
 
 ## Installation
 
@@ -22,60 +17,186 @@ import {
 
 ## Usage
 
+### Basic Drawer
+
 ```jsx
-function Example() {
+function DrawerExample() {
   const [isOpen, setIsOpen] = React.useState(false);
   return (
     <>
+      <Button variantColor="teal" onClick={() => setIsOpen(true)}>
+        Open
+      </Button>
       <Drawer
         isOpen={isOpen}
         size="sm"
-        placement="left"
+        zIndex={6}
+        placement="right"
         onClose={() => setIsOpen(false)}
       >
-        <DrawerCloseButton
-          onClick={() => {
-            setIsOpen(false);
-            console.log("hello");
-          }}
-        />
-        <DrawerHeader>Create your account</DrawerHeader>
-
+        <DrawerHeader borderBottomWidth="1px">Basic Drawer</DrawerHeader>
         <DrawerBody>
-          <Input placeholder="Type here..." />
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+          <p>Some contents...</p>
         </DrawerBody>
-
-        <DrawerFooter>
-          <Button variant="outline" mr={3} onClick={() => setIsOpen(false)}>
-            Cancel
-          </Button>
-          <Button color="blue" onClick={() => setIsOpen(false)}>
-            Save
-          </Button>
-        </DrawerFooter>
       </Drawer>
-      <Button onClick={() => setIsOpen(true)}>Open Drawer</Button>
     </>
   );
 }
 ```
 
-### Drawer positions
+### Drawer placement
 
-The Drawer component can appear on all side of the screens; `top`, `right`,
-`bottom`, `left` using the `placement` prop.
+The Drawer can appear from any edge of the screen. Pass the `placement` prop and
+set it to `top`, `right`, `bottom`, or `left`.
 
 ```jsx
+function PlacementExample() {
+  const [placement, setPlacement] = React.useState("right");
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  const openDrawer = () => setIsOpen(true);
+  const closeDrawer = () => setIsOpen(false);
+  const handlePlacementChange = event => setPlacement(event.target.value);
+
+  return (
+    <>
+      <RadioGroup
+        isInline
+        spacing={5}
+        defaultValue={placement}
+        onChange={handlePlacementChange}
+        mb={6}
+      >
+        <Radio value="top">Top</Radio>
+        <Radio value="right">Right</Radio>
+        <Radio value="bottom">Bottom</Radio>
+        <Radio value="left">Left</Radio>
+      </RadioGroup>
+      <Button variantColor="blue" onClick={openDrawer}>
+        Open
+      </Button>
+      <Drawer
+        zIndex={6}
+        placement={placement}
+        onClose={closeDrawer}
+        isOpen={isOpen}
+      >
+        <DrawerHeader borderBottomWidth="1px">Basic Drawer</DrawerHeader>
+        <DrawerBody>
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+        </DrawerBody>
+      </Drawer>
+    </>
+  );
+}
+```
+
+### Giving focus to an element
+
+When a form is in the drawer, you might need to set focus on a field when the
+drawer opens. Pass the `initialFocusRef` prop.
+
+> Without the `initialFocusRef` prop, the drawer will set focus on the **first
+> focusable element** when it opens.
+
+```jsx
+function DrawerExample() {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const firstField = React.useRef();
+  return (
+    <>
+      <Button
+        leftIcon="add"
+        variantColor="teal"
+        onClick={() => setIsOpen(true)}
+      >
+        Create user
+      </Button>
+      <Drawer
+        isOpen={isOpen}
+        zIndex={6}
+        placement="right"
+        initialFocusRef={firstField}
+        onClose={() => setIsOpen(false)}
+      >
+        <DrawerCloseButton onClick={() => setIsOpen(false)} />
+        <DrawerHeader borderBottomWidth="1px">
+          Create a new account
+        </DrawerHeader>
+
+        <DrawerBody>
+          <Stack spacing="24px">
+            <>
+              <FormLabel htmlFor="username">Name</FormLabel>
+              <Input
+                ref={firstField}
+                id="username"
+                placeholder="Please enter user name"
+              />
+            </>
+
+            <>
+              <FormLabel htmlFor="url">Url</FormLabel>
+              <InputGroup>
+                <InputLeftAddon>http://</InputLeftAddon>
+                <Input
+                  type="url"
+                  id="url"
+                  placeholder="Please enter password"
+                  rounded="0"
+                />
+                <InputRightAddon>.com</InputRightAddon>
+              </InputGroup>
+            </>
+
+            <>
+              <FormLabel htmlFor="owner">Select Owner</FormLabel>
+              <Select id="owner" defaultValue="segun">
+                <option value="segun">Segun Adebayo</option>
+                <option value="kola">Kola Tioluwani</option>
+              </Select>
+            </>
+
+            <>
+              <FormLabel htmlFor="owner">Select Owner</FormLabel>
+              <Select id="owner" defaultValue="segun">
+                <option value="segun">Segun Adebayo</option>
+                <option value="kola">Kola Tioluwani</option>
+              </Select>
+            </>
+
+            <>
+              <FormLabel htmlFor="desc">Description</FormLabel>
+              <Textarea id="desc" />
+            </>
+          </Stack>
+        </DrawerBody>
+
+        <DrawerFooter borderTopWidth="1px">
+          <Button variant="outline" mr={3} onClick={() => setIsOpen(false)}>
+            Cancel
+          </Button>
+          <Button variantColor="blue" onClick={() => setIsOpen(false)}>
+            Submit
+          </Button>
+        </DrawerFooter>
+      </Drawer>
+    </>
+  );
+}
 ```
 
 ## Accessibility
 
-When opening the Drawer, focus will be brought inside the Drawer by looking for
-elements with `autofocus` first, `tabindex` second and `button` last.
-
-When closing the Drawer, focus will be brought back to the element that was
-focused before opening the Drawer. This is normally the button that triggered
-the Drawer.
+- When opening the Drawer, focus is trapped inside the Drawer.
+- By default, the drawer sets focus on the first focusable element. If the
+  `initialFocusRef` prop is passed, the drawer sets focus on the element with
+  the assigned `ref`
+- After the drawer closes, it'll return focus to the element that triggered it.
 
 ## Props
 
@@ -87,5 +208,4 @@ the Drawer.
 | `children`        | `React.ReactNode`                                                       |         | The children of the `InputGroup` e.g `InputLeftAddon`, `Input`.        |
 | `isFullHeight`    | `boolean`                                                               | `false` | If `true`, the drawer fills the height of the viewport by default.     |
 | `initialFocusRef` | `React.Ref`                                                             |         | The ref to the initial element to receive focus when the drawer opens. |
-| `hideOverlay`     | `boolean`                                                               | `false` | If `true`, show the drawer overlay by default.                         |
 | `placement`       | `top`, `left`, `bottom`, `right`                                        | `left`  | Set the position of the drawer.                                        |

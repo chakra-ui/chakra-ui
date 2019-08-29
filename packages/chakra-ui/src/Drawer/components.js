@@ -87,13 +87,6 @@ const DrawerTransition = ({
   );
 };
 
-const DrawerOverlay = ({ showOverlay, ...props }) => (
-  <ModalOverlay
-    {...(showOverlay === false && { bg: "transparent" })}
-    {...props}
-  />
-);
-
 const DrawerCloseButton = forwardRef(({ onClick, ...rest }, ref) => {
   const { colorMode } = useColorMode();
   const hoverColor = { light: "blackAlpha.100", dark: "whiteAlpha.100" };
@@ -120,6 +113,6 @@ export {
   ModalHeader as DrawerHeader,
   ModalFooter as DrawerFooter,
   ModalBody as DrawerBody,
-  DrawerOverlay,
+  ModalOverlay as DrawerOverlay,
   ModalContent as DrawerContent,
 };
