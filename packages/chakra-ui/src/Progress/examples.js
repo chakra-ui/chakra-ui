@@ -12,7 +12,7 @@ const stories = storiesOf("Progress", module).addDecorator(story => (
 ));
 
 stories.add("basic usage", () => {
-  return <Progress value={20} />;
+  return <Progress value={20} isIndeterminate />;
 });
 
 stories.add("with theme color ", () => {

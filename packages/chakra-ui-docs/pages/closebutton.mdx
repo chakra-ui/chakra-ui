@@ -1,25 +1,41 @@
-import Head from "next/head";
-
-<Head key="close-button">
-  <title key="tti">CloseButton Component</title>
-</Head>
-
 # CloseButton
 
 CloseButton is essentially a button with a close icon. It is used to handle the
-close functionality in feedback components: [Alert](/alert), [Toast](/toast), as
-well as overlay components: [Drawer](/drawer) and [Modal](/modal).
+close functionality in feedback and overlay components like [Alerts](/alert),
+[Toasts](/toast), [Drawers](/drawer) and [Modals](/modal).
 
-## Installation
+## Import
 
-```bash
+```js
 import { CloseButton } from "@chakra-ui/core";
 ```
 
 ## Usage
 
 ```jsx
-function Example() {
-  return <CloseButton />;
-}
+<CloseButton />
 ```
+
+### Button Size
+
+Pass the size prop to adjust the size of the close button. Values can be `sm`,
+`md` or `lg`.
+
+```jsx
+<Stack isInline spacing={6}>
+  <CloseButton size="sm" />
+  <CloseButton size="md" />
+  <CloseButton size="lg" />
+</Stack>
+```
+
+## Props
+
+The CloseButton composes `PseudoBox` component.
+
+| Name         | Type             | Default | Description                              |
+| ------------ | ---------------- | ------- | ---------------------------------------- |
+| `aria-label` | `string`         |         | An accessible label for the close button |
+| `isDisabled` | `boolean`        |         | If `true`, the button will be disabled.  |
+| `color`      | `string`         |         | The color of the close icon              |
+| `size`       | `sm`, `md`, `lg` | `md`    | The size of the close button.            |

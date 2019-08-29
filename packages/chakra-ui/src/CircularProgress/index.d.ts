@@ -15,7 +15,7 @@ interface ICircularProgress {
    */
   min?: number;
   /**
-   * Put component into 'indeterminate' state; Ignores 'value' prop
+   * Puts the component into 'indeterminate' state; Ignores 'value' prop
    */
   isIndeterminate?: boolean;
   /**

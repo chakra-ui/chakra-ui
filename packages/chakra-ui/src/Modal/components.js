@@ -27,20 +27,22 @@ const ModalFooter = props => (
 
 const ModalBody = props => <Box px={6} py={2} flex="1" {...props} />;
 
-const ModalOverlay = forwardRef((props, ref) => (
-  <Fixed
-    as={DialogOverlay}
-    zIndex="1"
-    bottom="0"
-    top="0"
-    left="0"
-    right="0"
-    overflowY="auto"
-    bg="rgba(16,22,26,.7)"
-    ref={ref}
-    {...props}
-  />
-));
+const ModalOverlay = forwardRef(
+  ({ overlayBg = "rgba(16,22,26,.7)", zIndex, ...props }, ref) => (
+    <Fixed
+      as={DialogOverlay}
+      zIndex={zIndex}
+      bottom="0"
+      top="0"
+      left="0"
+      right="0"
+      overflowY="auto"
+      bg={overlayBg}
+      ref={ref}
+      {...props}
+    />
+  ),
+);
 
 export const modalContentStyle = ({ colorMode }) => {
   let style = {

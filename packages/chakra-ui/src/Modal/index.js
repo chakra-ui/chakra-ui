@@ -8,6 +8,8 @@ const Modal = ({
   children,
   size = "md",
   isCentered,
+  zIndex,
+  overlayBg,
   initialFocusRef,
   ...rest
 }) => {
@@ -20,23 +22,18 @@ const Modal = ({
     <ModalTransition isOpen={isOpen}>
       {styles => (
         <ModalOverlay
-          onClick={() => {}}
           initialFocusRef={initialFocusRef}
-          css={[
-            {
-              opacity: styles.opacity,
-            },
-            isCentered && centeredStyle,
-          ]}
+          opacity={styles.opacity}
+          overlayBg={overlayBg}
+          zIndex={zIndex}
+          css={isCentered && centeredStyle}
           onDismiss={onClose}
         >
           <ModalContent
-            css={({ sizes, radii }) => ({
-              ...(!isCentered && { top: 40, margin: "0 auto" }),
-              maxWidth: sizes[size],
-              borderRadius: radii.md,
-              transform: `translate3d(0px, ${styles.y}px, 0px)`,
-            })}
+            maxWidth={size}
+            rounded="md"
+            transform={`translate3d(0px, ${styles.y}px, 0px)`}
+            {...(!isCentered && { top: 40, mx: "auto" })}
             {...rest}
           >
             {children}

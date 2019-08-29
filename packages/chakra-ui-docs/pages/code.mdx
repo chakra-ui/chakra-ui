@@ -1,31 +1,36 @@
-import Head from "next/head";
-
-<Head key="code">
-  <title key="tti">Code Component</title>
-</Head>
-
 # Code
 
-Code is a component used to display inline and multiline blocks of code. It is
-composed from the [Box](/box) component with a font family of `Mono` for display
-code.
+Code is a component used to display inline code. It is composed from the
+[Box](/box) component with a font family of `mono` for display code.
 
-## Installation
+## Import
 
-```bash
+```js
 import { Code } from "@chakra-ui/core";
 ```
 
 ## Usage
 
 ```jsx
-function Example() {
-  return <Code>Hello world</Code>;
-}
+<Code>Hello world</Code>
+```
+
+### Colors
+
+You can change the color scheme of the component by passing the `variantColor`
+prop.
+
+```jsx
+<Stack isInline>
+  <Code children="console.log(welcome)" />
+  <Code variantColor="red" children="var chakra = 'awesome!'" />
+  <Code variantColor="yellow" children="npm install chakra" />
+</Stack>
 ```
 
 ## Props
 
-| Name       | Type              | Default | Description                         |
-| ---------- | ----------------- | ------- | ----------------------------------- |
-| `children` | `React.ReactNode` | `false` | The children of the code component. |
+| Name           | Type              | Default | Description                           |
+| -------------- | ----------------- | ------- | ------------------------------------- |
+| `variantColor` | `string`          |         | The color scheme to use for the code. |
+| `children`     | `React.ReactNode` |         | The content of the code               |

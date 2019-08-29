@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { jsx, keyframes, css } from "@emotion/core";
-import { number, oneOf, bool } from "prop-types";
 import { useColorMode } from "../ColorModeProvider";
 import Box from "../Box";
 import { generateStripe } from "../theme/colors-utils";
@@ -15,11 +14,27 @@ const stripeAnimation = css`
   animation: ${stripe} 1s linear infinite;
 `;
 
+const indeterminate = keyframes`
+0% {
+    left: -35%;
+    right: 100%; }
+  60% {
+    left: 100%;
+    right: -90%; }
+  100% {
+    left: 100%;
+    right: -90%; } }
+`;
+
+const indeterminateAnimation = css`
+  animation: ${indeterminate} 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+`;
+
 export const ProgressLabel = props => (
   <Box textAlign="center" width="100%" {...props} />
 );
 
-const ProgressIndicator = ({ min, max, value, ...rest }) => {
+const ProgressIndicator = ({ isIndeterminate, min, max, value, ...rest }) => {
   const percent = valueToPercent(value, min, max);
 
   return (
@@ -27,7 +42,7 @@ const ProgressIndicator = ({ min, max, value, ...rest }) => {
       height="100%"
       aria-valuemax={max}
       aria-valuemin={min}
-      aria-valuenow={value}
+      aria-valuenow={isIndeterminate ? null : value}
       role="progressbar"
       transition="all 0.3s"
       width={`${percent}%`}
@@ -43,7 +58,14 @@ const progressbarSizes = {
 };
 
 const ProgressTrack = ({ size, ...rest }) => {
-  return <Box height={progressbarSizes[size]} overflow="hidden" {...rest} />;
+  return (
+    <Box
+      pos="relative"
+      height={progressbarSizes[size]}
+      overflow="hidden"
+      {...rest}
+    />
+  );
 };
 
 const Progress = ({
@@ -57,6 +79,7 @@ const Progress = ({
   borderRadius,
   rounded,
   children,
+  isIndeterminate,
   ...rest
 }) => {
   const _borderRadius = rounded || borderRadius;
@@ -85,20 +108,23 @@ const Progress = ({
         value={value}
         bg={indicatorColor[colorMode]}
         borderRadius={_borderRadius}
+        isIndeterminate={isIndeterminate}
+        {...(isIndeterminate && {
+          width: "100%",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          bottom: 0,
+          willChange: "left, right",
+        })}
         css={[
           hasStripe && stripeStyle[colorMode],
           hasStripe && isAnimated && stripeAnimation,
+          isIndeterminate && indeterminateAnimation,
         ]}
       />
     </ProgressTrack>
   );
-};
-
-Progress.propTypes = {
-  size: oneOf(["md", "sm", "lg"]),
-  value: number,
-  hasStripe: bool,
-  isAnimated: bool,
 };
 
 export default Progress;

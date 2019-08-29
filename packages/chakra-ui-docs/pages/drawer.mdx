@@ -1,27 +1,23 @@
-import Head from "next/head";
-
-<Head key="drawer">
-  <title key="tti">Drawer Component</title>
-</Head>
-
 # Drawer
 
-The Drawer component is a panel overlaying the screen on either the left or
-right side. It is used to show more details about a certain object or person. A
-SideSheet is often triggered by clicking a row in a table. The Drawer component
-can appear on all side of the screens; `top`, `right`, `bottom`, `left` using
-the `placement` prop.
+The Drawer component is a panel that slides out from the left or right side of
+the screen.
 
 ## Use cases
 
 - Showing a profile view of a user.
 - Showing detailed information about a transaction.
-- Showing configuration settings that don‘t need to be accessible by a URL.
+- Actions that don‘t need to be accessible by a URL.
 
 ## Installation
 
-```bash
-import { Drawer } from "@chakra-ui/core";
+```js
+import {
+  Drawer,
+  DrawerHeader,
+  DrawerBody,
+  DrawerFooter,
+} from "@chakra-ui/core";
 ```
 
 ## Usage
@@ -64,6 +60,14 @@ function Example() {
 }
 ```
 
+### Drawer positions
+
+The Drawer component can appear on all side of the screens; `top`, `right`,
+`bottom`, `left` using the `placement` prop.
+
+```jsx
+```
+
 ## Accessibility
 
 When opening the Drawer, focus will be brought inside the Drawer by looking for
@@ -75,13 +79,13 @@ the Drawer.
 
 ## Props
 
-| Name              | Type                                                                    | Default | Description                                                             |
-| ----------------- | ----------------------------------------------------------------------- | ------- | ----------------------------------------------------------------------- |
-| `isOpen`          | `boolean`                                                               | false   | If `true`, the drawer is shown.                                         |
-| `onClose`         | `function`                                                              |         | Callback invoked when user closes the drawer.                           |
-| `size`            | `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl`, `4xl`, `5xl`, `6xl`, `full` | `md`    | The width of the drawer.                                                |
-| `children`        | `React.ReactNode`                                                       |         | The children of the `InputGroup` e.g `InputLeftAddon`, `Input`.         |
-| `isFullHeight`    | `boolean`                                                               | `false` | If `true`, the drawer fills the height of the viewport by default.      |
+| Name              | Type                                                                    | Default | Description                                                            |
+| ----------------- | ----------------------------------------------------------------------- | ------- | ---------------------------------------------------------------------- |
+| `isOpen`          | `boolean`                                                               | false   | If `true`, the drawer is shown.                                        |
+| `onClose`         | `function`                                                              |         | Callback invoked when user closes the drawer.                          |
+| `size`            | `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl`, `4xl`, `5xl`, `6xl`, `full` | `md`    | The width of the drawer.                                               |
+| `children`        | `React.ReactNode`                                                       |         | The children of the `InputGroup` e.g `InputLeftAddon`, `Input`.        |
+| `isFullHeight`    | `boolean`                                                               | `false` | If `true`, the drawer fills the height of the viewport by default.     |
 | `initialFocusRef` | `React.Ref`                                                             |         | The ref to the initial element to receive focus when the drawer opens. |
-| `hideOverlay`     | `boolean`                                                               | `false` | If `true`, show the drawer overlay by default.                          |
-| `placement`       | `top`, `left`, `bottom`, `right`                                        | `left`  | Set the position of the drawer.                                         |
+| `hideOverlay`     | `boolean`                                                               | `false` | If `true`, show the drawer overlay by default.                         |
+| `placement`       | `top`, `left`, `bottom`, `right`                                        | `left`  | Set the position of the drawer.                                        |

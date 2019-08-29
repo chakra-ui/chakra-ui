@@ -62,7 +62,7 @@ component as children and you'll be able to render the value
 
 ### Indeterminate Progress
 
-Setting the progress to `indeterminate` means you're not able to determine the
+Setting the progress to indeterminate means you're not able to determine the
 `value` upfront, so won't need to pass the `value` prop.
 
 ```jsx
@@ -75,7 +75,18 @@ Setting the progress to `indeterminate` means you're not able to determine the
 - Progress has `aria-valuenow` set to the percentage completion value passed to
   the component, to ensure the progress percent is visible to screen readers.
 
-> **ARIA:** If the progress bar is describing the loading progress of a
-> particular region of a page, you should use `aria-describedby` to point to the
-> progress bar, and set the `aria-busy` attribute to `true` on that region until
-> it has finished loading.
+## Props
+
+| Name            | Type              | Default | Description                                                                                                       |
+| --------------- | ----------------- | ------- | ----------------------------------------------------------------------------------------------------------------- |
+| size            | `string`          | `48px`  | The size of the circular progress in CSS units                                                                    |
+| max             | `number`          | `100`   | Maximum value defining 100% progress made (must be higher than 'min')                                             |
+| min             | `number`          | `0`     | Minimum value defining 'no progress' (must be lower than 'max')                                                   |
+| value           | `number`          |         | Current progress (must be between min/max)                                                                        |
+| isIndeterminate | `boolean`         |         | Puts the component into 'indeterminate' state; Ignores 'value' prop                                               |
+| thickness       | `number`          | `0.2`   | The thickness of progress indicator as a ratio of `size`. Must be between `0` and `1`                             |
+| angle           | `number`          | `0`     | Angle to rotate progress indicator by                                                                             |
+| capIsRound      | `boolean`         |         | If `true`, the cap of the progress indicator will be rounded.                                                     |
+| children        | `React.ReactNode` |         | The content of the circular progress bar. If passed, the content will be inside and centered in the progress bar. |
+| trackColor      | `string`          | `gray`  | The color name of the progress track. Use a color key in the theme object                                         |
+| color           | `string`          | `blue`  | The color of the progress indicator. Use a color key in the theme object                                          |

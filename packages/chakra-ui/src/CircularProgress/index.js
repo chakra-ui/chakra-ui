@@ -91,7 +91,7 @@ function getComputedProps({
       role: "progressbar",
       "aria-valuemin": min,
       "aria-valuemax": max,
-      "aria-valuenow": isIndeterminate ? value : null,
+      "aria-valuenow": isIndeterminate ? null : value,
     },
 
     svgProps: {

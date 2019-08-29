@@ -39,9 +39,7 @@ const CloseButton = ({
   size = "md",
   isDisabled,
   color,
-  icon = "close",
   "aria-label": ariaLabel = "Close",
-  onClick,
   ...rest
 }) => {
   const _size = sizes[size];
@@ -51,7 +49,6 @@ const CloseButton = ({
       as="button"
       aria-disabled={isDisabled}
       disabled={isDisabled}
-      onClick={onClick}
       aria-label={ariaLabel}
       size={_size.button}
       {...baseProps}
@@ -60,7 +57,7 @@ const CloseButton = ({
       <Icon
         color={color}
         focusable="false"
-        name={icon}
+        name="close"
         aria-hidden
         size={_size.icon}
       />

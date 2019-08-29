@@ -29,9 +29,9 @@ const Collapse = forwardRef(
         css={{
           transition:
             "height .2s ease,opacity .2s ease-in-out,transform .2s ease-in-out",
-          "&.rah-animating--up": {
+          "&.rah-animating--to-height-zero": {
             opacity: 0,
-            transform: "translateY(-.625rem)",
+            transform: "translateY(-0.625rem)",
           },
         }}
         {...{ onAnimationStart, onAnimationEnd }}

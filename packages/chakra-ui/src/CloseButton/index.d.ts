@@ -2,12 +2,22 @@ import * as React from "react";
 import { PseudoBoxProps } from "../PseudoBox";
 
 interface ICloseButton {
-  size: "lg" | "md" | "sm";
-  isDisabled: boolean;
-  color: string;
-  icon: string;
-  "aria-label": string;
-  onClick: React.KeyboardEventHandler<HTMLButtonElement>;
+  /**
+   * The size of the close button
+   */
+  size?: "lg" | "md" | "sm";
+  /**
+   * If `true`, the close button will be disabled
+   */
+  isDisabled?: boolean;
+  /**
+   * The color of the close icon
+   */
+  color?: string;
+  /**
+   * An accessible label for the close button
+   */
+  "aria-label"?: string;
 }
 
 export type CloseButtonProps = ICloseButton & PseudoBoxProps;

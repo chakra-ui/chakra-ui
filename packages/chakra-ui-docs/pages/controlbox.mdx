@@ -1,30 +1,25 @@
 # ControlBox
 
-ControlBox composes `Box` component and provides props to style itself based on
-a sibling `checkbox` or `radio` input.
-
-It also uses the underscore `_` notation just like the `PseudoBox`. All styles
-support the shorthand notation of the `Box` component.
+ControlBox provides style props to change it's styles based on a sibling
+`checkbox` or `radio` input. It relies on a
+[common CSS technique](https://dev.to/lkopacz/create-custom-keyboard-accessible-checkboxes-2036)
+for styling custom controls.
 
 > NOTE 🚨: For this component to work, you should have a sibling `input` and
 > they should both be wrapped in a `label`
 
 ## Usage
 
----
-
-Let's say you want to create a custom Checkbox, here's a popular CSS technique
-you can use
+Creating a custom checkbox component
 
 ```jsx
 <label>
-  {/* This is the hidden input */}
+  {/* This is the sibling input, it's visually hidden */}
   <VisuallyHidden as="input" type="checkbox" defaultChecked />
 
   {/* This is the control box with a check icon as children */}
   <ControlBox
-    border="1px"
-    borderColor="gray.200"
+    borderWidth="1px"
     size="24px"
     rounded="sm"
     _checked={{ bg: "green.500", color: "white", borderColor: "green.500" }}
@@ -33,24 +28,58 @@ you can use
     <Icon name="check" size="16px" />
   </ControlBox>
 
-  {/* You can pass a label */}
+  {/* You can pass additional text */}
   <Box as="span" verticalAlign="top" ml={3}>
     Checkbox Label
   </Box>
 </label>
 ```
 
-PseudoBox can be used to create custom radio and checkboxes. It provides props
-for the following selectors
+Creating a custom radio component
 
-| Selector                       | Prop                  | Description                                                                  |
-| ------------------------------ | --------------------- | ---------------------------------------------------------------------------- |
-| `[input]:hover + &`            | `_hover`              | Styles for when the sibling `input` is hovered                               |
-| `[input]:focus + &`            | `_focus`              | Styles for when the sibling `input` is focused                               |
-| `[input]:disabled + &`         | `_disabled`           | Styles for when the sibling `input` is disabled                              |
-| `[input]:checked + &`          | `_hover`              | Styles for when the sibling `input` is checked                               |
-| `[input]:checked:disabled + &` | `_checkedAndDisabled` | Styles for when the sibling `input` is checked and disabled                  |
-| `[input]:checked:focus + &`    | `_checkedAndFocus`    | Styles for when the sibling `input` is checked and focused                   |
-| `[input]:checked:hover + &`    | `_checkedAndHover`    | Styles for when the sibling `input` is checked and hovered                   |
-| `[input] + & > *`              | `_child`              | Styles for the child of the `ControlBox`                                     |
-| `[input]:checked + & > *`      | `_checkedAndChild`    | Styles for the child of the `ControlBox` when the sibling `input` is checked |
+```jsx
+<label>
+  {/* This is the sibling input, it's visually hidden */}
+  <VisuallyHidden type="radio" as="input" />
+
+  {/* This is the control box with a circle as children */}
+  <ControlBox
+    size="24px"
+    bg="white"
+    border="2px"
+    rounded="full"
+    type="radio"
+    borderColor="inherit"
+    _focus={{ boxShadow: "outline" }}
+    _hover={{ borderColor: "gray.300" }}
+    _disabled={{ opacity: "40%" }}
+    _checked={{ bg: "green.500", borderColor: "green.500" }}
+  >
+    <Box size="50%" bg="white" rounded="full" />
+  </ControlBox>
+
+  {/* You can pass additional text */}
+  <Box as="span" ml={2} verticalAlign="center" userSelect="none">
+    This is a Radio
+  </Box>
+</label>
+```
+
+## Props
+
+ControlBox composes the `Box` component so you can pass all Box props. By
+default, we toggle the opacity of the `ControlBox` children by setting `_child`
+to `{ opacity: 0 }` and `_checkedAndChild` to `{ opacity: 1 }`
+
+| Prop                 | CSS selector                      | Description                                                                  |
+| -------------------- | --------------------------------- | ---------------------------------------------------------------------------- |
+| \_hover              | `[input]:hover + &`               | Styles for when the sibling `input` is hovered                               |
+| \_focus              | `[input]:focus + &`               | Styles for when the sibling `input` is focused                               |
+| \_disabled           | `[input]:disabled + &`            | Styles for when the sibling `input` is disabled                              |
+| \_checked            | `[input]:checked + &`             | Styles for when the sibling `input` is checked                               |
+| \_checkedAndDisabled | `[input]:checked:disabled + &`    | Styles for when the sibling `input` is checked and disabled                  |
+| \_checkedAndFocus    | `[input]:checked:focus + &`       | Styles for when the sibling `input` is checked and focused                   |
+| \_checkedAndHover    | `[input]:checked:hover + &`       | Styles for when the sibling `input` is checked and hovered                   |
+| \_invalid            | `[input]:[aria-invalid=true] + &` | Styles for when the sibling `input` has `aria-invalid` set to `true`         |
+| \_child              | `[input] + & > *`                 | Styles for the child of the `ControlBox`                                     |
+| \_checkedAndChild    | `[input]:checked + & > *`         | Styles for the child of the `ControlBox` when the sibling `input` is checked |
