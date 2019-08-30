@@ -5,16 +5,25 @@ Headings are used for rendering headlines.
 Heading composes `Box` so you can use all the style props and add responsive
 styles as well. It renders an `<h2>` tag by default.
 
-## Basic Usage
+## import
+
+```js
+import { Heading } from "@chakra-ui/core";
+```
+
+## Usage
 
 ```jsx
 <Heading>Heading component</Heading>
 ```
 
-## Size
+### Size
 
 The level of headline you select should provide the appropriate hierarchy and
 visual coherency within the interface.
+
+> If you use the `size` prop, the `Heading` component will automatically
+> decrease in size for smaller screens.
 
 ```jsx
 <>
@@ -27,24 +36,18 @@ visual coherency within the interface.
 </>
 ```
 
-> If you use the `size` prop, the `Heading` component will automatically
-> decrease in size for smaller screens.
+### Override style
 
-## Installation
+You can override the size of the Heading component by passing the `fontSize`
+prop. No need to write `css` or `styled()`
 
-```bash
-npm i @chakra-ui/core --save
-# or
-yarn add @chakra-ui/core
+```jsx
+<Heading size="lg" fontSize="50px">
+  I'm overriding this heading
+</Heading>
 ```
 
-Then import
-
-```bash
-import { Heading } from "@chakra-ui/core"
-```
-
-## Usage
+## Composition
 
 ```jsx
 function PaystackExample() {
@@ -70,26 +73,3 @@ function PaystackExample() {
 | Name   | Type                                 | Default | Description              |
 | ------ | ------------------------------------ | ------- | ------------------------ |
 | `size` | `2xl`, `xl` , `lg`, `md`, `sm`, `xs` | `md`    | The size of the heading. |
-
-## Composition
-
-You can override the size of the Heading component by passing the `fontSize`
-prop. No need to write `css` or `styled()`
-
-```jsx
-<Heading size="lg" fontSize="50px">
-  I'm overriding this heading
-</Heading>
-```
-
-## Guidelines
-
-- Keep headings to single sentence and avoid using punctuation such as periods,
-  commas, or semicolons
-- In most cases, write in sentence case (first word capitalized, the rest is
-  lowercase)
-- The most important heading has the rank 1 (`<h1>`), the least important
-  heading rank 6 (`<h6>`).
-- Skipping heading ranks can be confusing and should be avoided where possible:
-  Make sure that a `<h2>` is not followed directly by an `<h4>`, for example. It
-  should be `<h2>` then `<h3>`

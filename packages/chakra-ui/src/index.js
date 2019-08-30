@@ -16,6 +16,7 @@ export { default as ButtonGroup } from "./ButtonGroup";
 export { default as Callout } from "./Callout";
 export { default as Code } from "./Code";
 export { default as Checkbox } from "./Checkbox";
+export { default as CheckboxGroup } from "./CheckboxGroup";
 export { default as CloseButton } from "./CloseButton";
 export { default as Collapse } from "./Collapse";
 export { default as ControlBox } from "./ControlBox";
@@ -41,7 +42,7 @@ export { default as FormControl } from "./FormControl";
 export * from "./FormControl";
 export { default as FormHelperText } from "./FormHelperText";
 export { default as FormLabel } from "./FormLabel";
-export { default as FormValidationText } from "./FormValidationText";
+export { default as FormErrorMessage } from "./FormErrorMessage";
 
 export { default as Grid } from "./Grid";
 

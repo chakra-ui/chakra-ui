@@ -1,18 +1,5 @@
 /** @jsx jsx */
-import {
-  Box,
-  Code,
-  ColorModeProvider,
-  CSSReset,
-  Heading,
-  KeyboardKey,
-  PseudoBox,
-  Text,
-  ThemeProvider,
-  Callout,
-  Icon,
-  useColorMode,
-} from "@chakra-ui/core";
+import { Box, Callout, Code, Heading, KeyboardKey, PseudoBox, Text, useColorMode } from "@chakra-ui/core";
 import { jsx } from "@emotion/core";
 import NextLink from "next/link";
 import { forwardRef } from "react";

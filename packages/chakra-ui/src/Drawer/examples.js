@@ -22,7 +22,7 @@ stories.add("Default", () => {
       <Fragment>
         <Drawer
           isOpen={isOpen}
-          size="sm"
+          size="xl"
           placement="left"
           onClose={() => setIsOpen(false)}
         >

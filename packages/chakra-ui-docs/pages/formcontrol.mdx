@@ -1,77 +1,137 @@
-import Head from "next/head";
-
-<Head key="form-control">
-  <title key="tti">Form Control Component</title>
-</Head>
-
 # Form Control
 
-FormControl is an accessible component used with a collection of other
-components, such as [FormLabel](/formlabel), [FormHelperText](/formhelptext),
-[Select](/select), [Input](/input), etc, to compose new form components.
-`FormControl` uses <a href="https://reactjs.org/docs/context.html" target="__blank">React
-Context</a> to pass down props, such as `isInvalid`, `isDisabled` to its children.
+FormControl provides context such as `isInvalid`, `isDisabled`, and `isRequired`
+to form elements. This context is used by the following components:
 
-## Installation
+It follows the [WAI specifications](https://www.w3.org/WAI/tutorials/forms/) for
+forms.
 
-```bash
-npm install @chakra-ui/core
+- FormLabel
+- FormHelperText
+- FormErrorMessage
+- Form Elements (Select, Input, Textarea)
+
+## Import
+
+```js
+import {
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  FormHelperText,
+} from "@chakra-ui/core";
 ```
 
 ## Usage
 
 ```jsx
-function Example() {
-  return (
-    <FormControl isInvalid>
-      <FormLabel htmlFor="fname">First name</FormLabel>
-      <Input id="fname" placeholder="First name" />
-      <FormValidationText id="url-error">
-        First name is invalid
-      </FormValidationText>
-    </FormControl>
-  );
-}
+<FormControl>
+  <FormLabel htmlFor="email">Email address</FormLabel>
+  <Input type="email" id="email" aria-describedby="email-helper-text" />
+  <FormHelperText id="email-helper-text">
+    We'll never share your email.
+  </FormHelperText>
+</FormControl>
 ```
 
-## Compostion
-
-FormControls is used with other components such as, [Input](/input),
-[Select](/select), [FormLabel](/formlabel),
-[FormValidationText](/formvalidationtext), [FormHelperText](/formhelpertext),
-[InputAddon](/inputaddon), etc, to compose new form components.
-
-### Input Example
+### Sample usage for a radio or checkbox group
 
 ```jsx
-function Example() {
-  return (
-    <FormControl isRequired>
-      <FormLabel htmlFor="fname">First name</FormLabel>
-      <Input id="fname" placeholder="First name" />
-    </FormControl>
-  );
-}
+<FormControl as="fieldset">
+  <FormLabel as="legend">Favorite Naruto Character</FormLabel>
+  <RadioGroup defaultValue="Itachi">
+    <Radio value="Sasuke">Sasuke</Radio>
+    <Radio value="Nagato">Nagato</Radio>
+    <Radio value="Itachi">Itachi</Radio>
+    <Radio value="Sage of the six Paths">Sage of the six Paths</Radio>
+  </RadioGroup>
+  <FormHelperText id="email-helper-text">
+    Select only if you're a fan.
+  </FormHelperText>
+</FormControl>
+```
+
+### Making a field required
+
+By passing the `isRequired` props, the `Input` field has `aria-required` set to
+true, and the `FormLabel` will show a red asterisks.
+
+```jsx
+<FormControl isRequired>
+  <FormLabel htmlFor="fname">First name</FormLabel>
+  <Input id="fname" placeholder="First name" />
+</FormControl>
 ```
 
 ### Select Example
 
 ```jsx
-function Example() {
+<FormControl>
+  <FormLabel htmlFor="country">Country</FormLabel>
+  <Select id="country" placeholder="Select country" />
+</FormControl>
+```
+
+### Usage with Form Libraries
+
+Form Libraries like [Formik](https://jaredpalmer.com/formik/) make it soooo easy
+to manage form state and validation. I 💖 Formik
+
+```jsx
+function FormikExample() {
+  function validateName(value) {
+    let error;
+    if (!value) {
+      error = "Name is required";
+    }
+    if (value !== "Naruto") {
+      error = "Jeez! You're not a fan 😱";
+    }
+    return error;
+  }
+
   return (
-    <FormControl>
-      <FormLabel htmlFor="country">Country</FormLabel>
-      <Select id="country" placeholder="Select country" />
-    </FormControl>
+    <Formik
+      initialValues={{ name: "Sasuke" }}
+      onSubmit={(values, actions) => {
+        setTimeout(() => {
+          alert(JSON.stringify(values, null, 2));
+          actions.setSubmitting(false);
+        }, 1000);
+      }}
+      render={props => (
+        <form onSubmit={props.handleSubmit}>
+          <Field
+            name="name"
+            validate={validateName}
+            render={({ field, form }) => (
+              <FormControl isInvalid={form.errors.name && form.touched.name}>
+                <FormLabel htmlFor="name">First name</FormLabel>
+                <Input {...field} id="name" placeholder="name" />
+                <FormErrorMessage>{form.errors.name}</FormErrorMessage>
+              </FormControl>
+            )}
+          />
+          <Button
+            mt={4}
+            variantColor="teal"
+            isLoading={props.isSubmitting}
+            type="submit"
+          >
+            Submit
+          </Button>
+        </form>
+      )}
+    />
   );
 }
 ```
 
 ## Props
 
-| Name         | Type      | Default | Description                                                            |
-| ------------ | --------- | ------- | ---------------------------------------------------------------------- |
-| `isInvalid`  | `boolean` | `false` | If `true`, the form control passes the invalid state to its children.  |
-| `isRequired` | `boolean` | `false` | If `true`, the form control passes the required state to its children. |
-| `isDisabled` | `boolean` | `false` | If `true`, the form control passes the disabled state to its children. |
-| `isReadOnly` | `boolean` | `false` | If `true`, the form control passes the readonly state to its children. |
+| Name         | Type      | Default | Description                                     |
+| ------------ | --------- | ------- | ----------------------------------------------- |
+| `isInvalid`  | `boolean` |         | If `true`, this prop is passed to its children. |
+| `isRequired` | `boolean` |         | If `true`, this prop is passed to its children. |
+| `isDisabled` | `boolean` |         | If `true`, this prop is passed to its children. |
+| `isReadOnly` | `boolean` |         | If `true`, this prop is passed to its children. |

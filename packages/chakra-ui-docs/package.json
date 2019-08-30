@@ -14,6 +14,7 @@
     "@mdx-js/mdx": "^1.1.6",
     "@mdx-js/react": "^1.1.6",
     "@next/mdx": "^9.0.3",
+    "formik": "^1.5.8",
     "next": "9.0.3",
     "prism-react-renderer": "^0.1.7",
     "react-icons": "^3.7.0",
