@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/tioluwani/.nvm/versions/node/v8.10.0/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js docs:dev
+  /Users/tioluwani/.nvm/versions/node/v8.10.0/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js release:core
 
 PATH: 
   /Users/tioluwani/.nvm/versions/node/v8.10.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools:/Users/tioluwani/Library/Android/sdk/tools:/Users/tioluwani/Library/Android/sdk/platform-tools:/Users/tioluwani/Library/Android/sdk/tools:/Users/tioluwani/Library/Android/sdk/platform-tools
@@ -7255,7 +7255,7 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: sh
-  Arguments: -c lerna run --scope @chakra-ui/docs dev --stream
+  Arguments: -c lerna exec --scope=@chakra-ui/core npm publish
   Directory: /Users/tioluwani/Documents/Projects/chakra
   Output:
   
