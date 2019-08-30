@@ -3,7 +3,7 @@
   "builds": [
     {
       "src": "packages/chakra-ui-docs/package.json",
-      "use": "@now/next@canary"
+      "use": "@now/next"
     }
   ],
   "name": "chakra-ui",
