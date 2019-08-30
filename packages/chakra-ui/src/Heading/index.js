@@ -12,12 +12,12 @@ const sizes = {
   xs: "sm",
 };
 
-const Heading = forwardRef(({ size = "md", ...props }, ref) => (
+const Heading = forwardRef(({ size = "xl", ...props }, ref) => (
   <Box
     ref={ref}
     as="h2"
     fontSize={sizes[size]}
-    lineHeight="short"
+    lineHeight="shorter"
     fontWeight="bold"
     {...props}
   />

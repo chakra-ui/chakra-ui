@@ -151,7 +151,7 @@ const TabPanel = forwardRef(
       <Box
         ref={node => {
           if (isSelected) {
-            selectedPanelRef(node);
+            assignRef(selectedPanelRef, node);
           }
           assignRef(ref, node);
         }}
@@ -218,7 +218,7 @@ const Tabs = forwardRef(
     ref,
   ) => {
     const { current: isControlled } = useRef(controlledIndex != null);
-    const selectedPanelRef = useRef(null);
+    const selectedPanelRef = useRef();
 
     const getInitialIndex = () => {
       if (!isManual) {

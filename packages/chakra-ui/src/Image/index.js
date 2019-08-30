@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import propTypes from "prop-types";
 import { useEffect, useState } from "react";
 import Box from "../Box";
 
@@ -33,14 +32,6 @@ export const useHasImageLoaded = ({ src, onLoad, onError }) => {
 const Img = ({ src, onLoad, onError, fallbackSrc, alt, ...props }) => {
   const hasLoaded = useHasImageLoaded({ src, onLoad, onError });
   return <Box as="img" src={hasLoaded ? src : fallbackSrc} {...props} />;
-};
-
-Img.propTypes = {
-  src: propTypes.string,
-  fallbackSrc: propTypes.string,
-  alt: propTypes.string.isRequired,
-  onLoad: propTypes.func,
-  onError: propTypes.func,
 };
 
 export default Img;

@@ -6,6 +6,7 @@ import Highlight, { defaultProps } from "prism-react-renderer";
 import { mdx } from "@mdx-js/react";
 import * as Chakra from "@chakra-ui/core";
 import * as Formik from "formik";
+import * as ReactIcons from "react-icons/md";
 
 const { Box, Button, useClipboard, useColorMode } = Chakra;
 
@@ -120,7 +121,7 @@ const CodeBlock = ({ className, live = true, render, children, ...props }) => {
     language,
     code: editorCode,
     transformCode: code => "/** @jsx mdx */" + code,
-    scope: { ...Chakra, ...Formik, mdx, StarIcon },
+    scope: { ...Chakra, ...Formik, ...ReactIcons, mdx, StarIcon },
     ...props,
   };
 

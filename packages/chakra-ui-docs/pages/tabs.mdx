@@ -10,9 +10,9 @@ composition.
 ## Usage
 
 ```sh
-  npm install @chakra-ui/core
-  # or
-  yarn add @chakra/core
+npm install @chakra-ui/core
+# or
+yarn add @chakra/core
 ```
 
 then import the components
@@ -293,11 +293,10 @@ and then inspect clone props passed in.
 function Example() {
   const CoolTab = React.forwardRef((props, ref) => {
     // `isSelected` comes from `TabList` cloning the `CoolTab`.
-    const { isSelected, children } = props;
+    const { isSelected, children, ...rest } = props;
 
-    // make sure to forward *all* props received from TabList
     return (
-      <Tab ref={ref} isSelected={isSelected} {...props}>
+      <Tab ref={ref} isSelected={isSelected} {...rest}>
         {isSelected ? "😎" : "😐"}
         {children}
       </Tab>
@@ -345,10 +344,12 @@ function Example() {
 
 ### DataTabs
 
-If you'd like to drive your tabs with data you can create a DataTabs component.
+If you'd like to drive your tabs with an array instead of using the granular
+components, you can create your own DataTabs component.
 
 ```jsx
 function Example() {
+  // First, you create the component...
   function DataTabs({ data }) {
     return (
       <Tabs>
@@ -359,20 +360,25 @@ function Example() {
         </TabList>
         <TabPanels>
           {data.map((tab, index) => (
-            <TabPanel key={index}>{tab.content}</TabPanel>
+            <TabPanel p={4} key={index}>
+              {tab.content}
+            </TabPanel>
           ))}
         </TabPanels>
       </Tabs>
     );
   }
 
-  // now if you have an array of data...
+  // Next, you have an array of data...
   const tabData = [
-    { label: "Taco", content: "Perhaps the greatest dish ever invented." },
     {
-      label: "Burrito",
+      label: "Nigerian Jollof",
+      content: "Perhaps the greatest dish ever invented.",
+    },
+    {
+      label: "Pounded Yam & Egusi",
       content:
-        "Perhaps the greatest dish ever invented but bigger and with rice.",
+        "Perhaps the surest dish ever invented but fills the stomach more than rice.",
     },
   ];
 

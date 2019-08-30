@@ -1,109 +1,116 @@
-import Head from "next/head";
-
-<Head key="icon">
-  <title key="tti">Icon Component</title>
-</Head>
+import { Grid, Flex, useTheme, Icon, Text } from "@chakra-ui/core";
 
 # Icon
 
-An icon is a graphical representation of meaning. Icons are used to represent
-common actions and states.
+Use the `<Icon>` component to easily render `<svg>` icons. Chakra UI providers
+basic interface icons, to add your icons,
+[read the guide](#adding-custom-icons).
 
-> Chakra UI can be extended to use any icon library of your choice.
+> Avoid passing `onClick` handlers to the `Icon` component. If you need a
+> clickable icon, use [IconButton](/iconbutton) instead.
 
-## Installation
-
-```bash
-npm install @chakra-ui/core
-```
-
-then import Icon
+## Import
 
 ```js
 import { Icon } from "@chakra-ui/core";
 ```
 
-## Icons are not buttons
-
-An icon is only a `svg` element and should not have `onClick` handlers. If you
-need a clickable icon, use [IconButton](/iconbutton) instead.
-
 ## Usage
 
+Use an icon by passing the `name` props. This name must match an icon key in
+`theme.icons`. By default, the icon inherits the fontSize and color of it's
+parent.
+
 ```jsx
-function Example() {
-  return (
-    <Flex alignItems="center">
-      <Box mr="12px">
-        <Icon name="search" size="20px" />
-      </Box>
-      <Box mr="12px">
-        <Icon name="add" size="20px" />
-      </Box>
-      <Box mr="12px">
-        <Icon name="repeat" size="20px" />
-      </Box>
-      <Box mr="12px">
-        <Icon name="edit" size="20px" />
-      </Box>
-      <Box mr="12px">
-        <Icon name="star" size="20px" />
-      </Box>
-      <Box mr="12px">
-        <Icon name="email" size="20px" />
-      </Box>
-      <Box mr="12px">
-        <Icon name="phone" size="20px" />
-      </Box>
-      <Box mr="12px">
-        <Icon name="question" size="20px" />
-      </Box>
-      <Box mr="12px">
-        <Icon name="spinner" size="20px" />
-      </Box>
-      <Box mr="12px">
-        <Icon name="chat" size="20px" />
-      </Box>
-      <Box mr="12px">
-        <Icon name="calender" size="20px" />
-      </Box>
-      <Box mr="12px">
-        <Icon name="time" size="20px" />
-      </Box>
-      <Box mr="12px">
-        <Icon name="close" size="20px" />
-      </Box>
-      <Box mr="12px">
-        <Icon name="warning" size="20px" />
-      </Box>
-      <Box mr="12px">
-        <Icon name="drag-handle" size="20px" />
-      </Box>
-      <Box mr="12px">
-        <Icon name="bell" size="20px" />
-      </Box>
-      <Box mr="12px">
-        <Icon name="not-allowed" size="20px" />
-      </Box>
-      <Box mr="12px">
-        <Icon name="check" size="20px" />
-      </Box>
-      <Box mr="12px">
-        <Icon name="time" size="20px" />
-      </Box>
-      <Box mr="12px">
-        <Icon name="delete" size="20px" />
-      </Box>
+<Stack isInline>
+  {/* Default size is 1em => 16px */}
+  <Icon name="phone" />
+
+  {/* Use the `size` prop to change the icon size */}
+  <Icon name="check-circle" size="24px" />
+
+  {/* Use the `color` prop to change the icon color */}
+  <Icon name="warning" size="32px" color="red.500" />
+</Stack>
+```
+
+### All Icons
+
+Here's a list of the default icons Chakra UI comes with and their respective
+`name`. You add your own icons as well, [see the guide](#adding-custom-icons)
+
+<Grid mt={7} gap={5} templateColumns="repeat( auto-fit, minmax(120px, 1fr) )">
+  {Object.keys(useTheme().icons).map(icon => (
+    <Flex
+      rounded="md"
+      borderWidth="1px"
+      p={3}
+      flexDir="column"
+      align="center"
+      justify="center"
+    >
+      <Icon color="gray.700" name={icon} size="1.25em" />
+      <Text mt={2} fontSize="sm" textAlign="center">
+        {icon}
+      </Text>
     </Flex>
-  );
+  ))}
+</Grid>
+
+## Adding custom icons
+
+All Chakra icons are stored in the theme object under the `icons` key. So you
+can extend this object to add your own icons. Here are the steps:
+
+- Export the icon's `svg` from Figma, Sketch, etc.
+- Use a tool like [SvgOmg](https://svgomg.firebaseapp.com) to reduce the size
+  and minify the markup.
+- Add the icon to the theme object.
+
+```jsx live=false
+
+// Step 1: Each icon should be stored as an object of `path` and `viewBox`
+const customIcons = {
+  icon1: {
+    path: <path d="..." />,
+    // If the icon's viewBox is `0 0 24 24`, you can ignore `viewBox`
+    viewBox: "0 0 40 40",
+  },
+  icon2: {
+    path: (
+      <g>
+        <path d="..."/>
+      </g>
+    )
+  }
+};
+
+// Step 2: Add the custom icon to the theme
+const customTheme = {
+  ...theme,
+  icons: {
+    ...theme.icons,
+    ...customIcons,
+  }
 }
+
+// Step 3: Pass the new theme to the ThemeProvider
+
+<ThemeProvider theme={customTheme}>
+  {/* app goes here */}
+</ThemeProvider>
+
+// Step 4: Now you can do this
+<Icon name="icon1" />
 ```
 
 ## Props
 
-| Name    | Type                  | Default        | Description                                   |
-| ------- | --------------------- | -------------- | --------------------------------------------- |
-| `size`  | `string`              |                | The size of the icon.                         |
-| `name`  | `string`              |                | The name of the icon.                         |
-| `color` | `string`              |                | The color of the icon.                        |
-| `role`  | `presentation`, `img` | `presentation` | The role of the icon. `presentation` or `img` |
+Icon component composes `Box` so you can pass all `Box` props.
+
+| Name    | Type                  | Default        | Description                |
+| ------- | --------------------- | -------------- | -------------------------- |
+| `size`  | `string`              | `1em`          | The size of the icon.      |
+| `name`  | `string`              |                | The name of the icon.      |
+| `color` | `string`              | `currentColor` | The color of the icon.     |
+| `role`  | `presentation`, `img` | `presentation` | The html role of the icon. |

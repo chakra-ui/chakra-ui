@@ -1,5 +1,14 @@
 /** @jsx jsx */
-import { Box, Callout, Code, Heading, KeyboardKey, PseudoBox, Text, useColorMode } from "@chakra-ui/core";
+import {
+  Box,
+  Callout,
+  Code,
+  Heading,
+  KeyboardKey,
+  PseudoBox,
+  Text,
+  useColorMode,
+} from "@chakra-ui/core";
 import { jsx } from "@emotion/core";
 import NextLink from "next/link";
 import { forwardRef } from "react";
@@ -53,7 +62,8 @@ const Link = forwardRef((props, ref) => (
 
 const DocsHeading = props => (
   <Heading
-    fontWeight="medium"
+    mb="1em"
+    mt="2em"
     css={{
       "&[id]": {
         pointerEvents: "none",
@@ -90,14 +100,17 @@ const DocsHeading = props => (
 );
 
 const MDXComponents = {
-  h1: props => (
-    <Heading as="h1" size="xl" fontWeight="normal" my={5} {...props}></Heading>
-  ),
+  h1: props => <Heading as="h1" size="xl" my="1em" {...props}></Heading>,
   h2: props => (
-    <DocsHeading as="h2" size="lg" mb="24px" mt="40px" {...props}></DocsHeading>
+    <DocsHeading
+      as="h2"
+      fontWeight="semibold"
+      size="lg"
+      {...props}
+    ></DocsHeading>
   ),
   h3: props => (
-    <DocsHeading as="h3" fontWeight="semibold" my={4} {...props}></DocsHeading>
+    <DocsHeading as="h3" size="md" fontWeight="medium" {...props}></DocsHeading>
   ),
   inlineCode: props => (
     <Code variantColor="yellow" fontSize="0.84em" {...props} />
