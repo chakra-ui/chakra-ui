@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import propTypes from "prop-types";
-import { Children, cloneElement, useState, useRef } from "react";
+import { Children, cloneElement, useState, useRef, forwardRef } from "react";
 import { useId } from "@reach/auto-id";
 import Box from "../Box";
 
@@ -10,84 +10,62 @@ import Box from "../Box";
   - Calling focus() on the radiogroup should focus on the selected option or first enabled option
 */
 
-const RadioGroup = ({
-  id,
-  onChange,
-  name,
-  size,
-  defaultValue,
-  isInline,
-  value: valueProp,
-  spacing = 2,
-  children,
-  ...rest
-}) => {
-  const { current: isControlled } = useRef(valueProp != null);
-  const [value, setValue] = useState(defaultValue || null);
-  const _value = isControlled ? valueProp : value;
+const RadioGroup = forwardRef(
+  (
+    {
+      onChange,
+      name,
+      color,
+      size,
+      defaultValue,
+      isInline,
+      value: valueProp,
+      spacing = 2,
+      children,
+      ...rest
+    },
+    ref,
+  ) => {
+    const { current: isControlled } = useRef(valueProp != null);
+    const [value, setValue] = useState(defaultValue || null);
+    const _value = isControlled ? valueProp : value;
 
-  const _onChange = event => {
-    const { value: _val } = event.target;
-    !isControlled && setValue(_val);
-    onChange && onChange(event, _val);
-  };
+    const _onChange = event => {
+      const { value: _val } = event.target;
+      !isControlled && setValue(_val);
+      onChange && onChange(event, _val);
+    };
 
-  // If no name is passed, we'll generate a random, unique name
-  const fallbackName = `radio-${useId()}`;
-  const _name = name || fallbackName;
+    // If no name is passed, we'll generate a random, unique name
+    const fallbackName = `radio-${useId()}`;
+    const _name = name || fallbackName;
 
-  const clones = Children.map(children, (child, index) => {
-    const isLastRadio = children.length === index + 1;
-    const spacingProps = isInline ? { mr: spacing } : { mb: spacing };
+    const clones = Children.map(children, (child, index) => {
+      const isLastRadio = children.length === index + 1;
+      const spacingProps = isInline ? { mr: spacing } : { mb: spacing };
+
+      return (
+        <Box
+          display={isInline ? "inline-block" : "block"}
+          {...(!isLastRadio && spacingProps)}
+        >
+          {cloneElement(child, {
+            size: child.props.size || size,
+            color: child.props.color || color,
+            name: _name,
+            onChange: _onChange,
+            isChecked: child.props.value === _value,
+          })}
+        </Box>
+      );
+    });
 
     return (
-      <Box
-        display={isInline ? "inline-block" : "block"}
-        {...(!isLastRadio && spacingProps)}
-      >
-        {cloneElement(child, {
-          size: size || child.props.size,
-          name: _name,
-          onChange: _onChange,
-          isChecked: child.props.value === _value,
-        })}
+      <Box role="radiogroup" {...rest}>
+        {clones}
       </Box>
     );
-  });
-
-  return (
-    <Box role="radiogroup" aria-labelledby={id} {...rest}>
-      {clones}
-    </Box>
-  );
-};
-
-RadioGroup.propTypes = {
-  /**
-   * The selected (controlled) value of the Radio Group.
-   */
-  value: propTypes.oneOfType([
-    propTypes.string,
-    propTypes.number,
-    propTypes.object,
-  ]),
-  /**
-   * The initial selected value of the Radio Group
-   */
-  defaultValue: propTypes.oneOfType([
-    propTypes.string,
-    propTypes.number,
-    propTypes.object,
-  ]),
-  /**
-   * Function fired when a radio button is selected
-   *
-   * @param {object} event - The event source of the callback.
-   * You can pull out the new value by accessing `event.target.value`.
-   *
-   * @param {string} value - The `value` of the selected radio button
-   * */
-  onChange: propTypes.func,
-};
+  },
+);
 
 export default RadioGroup;

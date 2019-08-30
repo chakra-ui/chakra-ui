@@ -24,7 +24,10 @@ const NavGroupHeading = props => (
   />
 );
 
-export const SideNavContent = props => (
+export const SideNavContent = ({
+  contentHeight = "calc(100vh - 4rem)",
+  ...props
+}) => (
   <Box
     top="4rem"
     position="relative"
@@ -34,7 +37,7 @@ export const SideNavContent = props => (
   >
     <Box
       as="nav"
-      height="calc(100vh - 4rem)"
+      height={contentHeight}
       aria-label="Main navigation"
       fontSize="sm"
       p="6"

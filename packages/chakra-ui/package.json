@@ -50,7 +50,6 @@
     "@reach/portal": "0.2.1",
     "@styled-system/css": "5.0.13",
     "@styled-system/should-forward-prop": "5.0.12",
-    "@styled-system/theme-get": "5.0.5",
     "@types/styled-system": "5.0.1",
     "color": "3.1.2",
     "react-animate-height": "2.0.9",

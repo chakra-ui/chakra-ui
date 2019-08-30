@@ -35,14 +35,14 @@ const MobileNav = () => {
         onClick={onToggle}
       />
       <Drawer
-        zIndex="3"
         size="xs"
         isOpen={isOpen}
         placement="left"
+        zIndex={6}
         onClose={onClose}
       >
         <DrawerBody p={0}>
-          <SideNavContent top="0" />
+          <SideNavContent contentHeight="100vh" top="0" />
         </DrawerBody>
       </Drawer>
     </>

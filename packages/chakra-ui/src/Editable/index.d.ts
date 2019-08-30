@@ -20,6 +20,14 @@ interface IEditable {
    */
   startWithEditView?: boolean;
   /**
+   * If `true`, the read only view, has a `tabIndex` set to `0` so it can recieve focus via the keyboard or click.
+   */
+  isPreviewFocusable?: boolean;
+  /**
+   * If `true`, it'll update the value onBlur and turn off the edit mode.
+   */
+  submitOnBlur?: boolean;
+  /**
    * Callback invoked when user changes input.
    */
   onChange?: (newValue: string) => void;

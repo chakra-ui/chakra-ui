@@ -37,6 +37,7 @@ const Input = forwardRef((props, ref) => {
       disabled={formControl.isDisabled}
       aria-label={ariaLabel}
       aria-invalid={formControl.isInvalid}
+      required={formControl.isRequired}
       aria-required={formControl.isRequired}
       aria-disabled={formControl.isDisabled}
       aria-describedby={ariaDescribedby}

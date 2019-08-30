@@ -9,7 +9,7 @@ import Input from "../Input";
 import Select from "../Select";
 import { InputLeftAddon } from "../InputAddon";
 import InputGroup from "../InputGroup";
-import FormValidationText from "../FormValidationText";
+import FormValidationText from "../FormErrorMessage";
 
 const stories = storiesOf("FormControl", module).addDecorator(story => (
   <Box maxWidth="sm" mx="auto" mt={5}>

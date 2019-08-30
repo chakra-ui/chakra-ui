@@ -22,6 +22,7 @@ import {
 ```jsx
 function DrawerExample() {
   const [isOpen, setIsOpen] = React.useState(false);
+
   return (
     <>
       <Button variantColor="teal" onClick={() => setIsOpen(true)}>
@@ -107,6 +108,7 @@ drawer opens. Pass the `initialFocusRef` prop.
 function DrawerExample() {
   const [isOpen, setIsOpen] = React.useState(false);
   const firstField = React.useRef();
+
   return (
     <>
       <Button
@@ -162,14 +164,6 @@ function DrawerExample() {
             </>
 
             <>
-              <FormLabel htmlFor="owner">Select Owner</FormLabel>
-              <Select id="owner" defaultValue="segun">
-                <option value="segun">Segun Adebayo</option>
-                <option value="kola">Kola Tioluwani</option>
-              </Select>
-            </>
-
-            <>
               <FormLabel htmlFor="desc">Description</FormLabel>
               <Textarea id="desc" />
             </>
@@ -190,22 +184,65 @@ function DrawerExample() {
 }
 ```
 
+### Drawer Widths
+
+Pass the `size` prop if you need to adjust the size of the drawer. Values can be
+`xs`, `sm`, `md`, `lg`, `xl`, or `full`.
+
+```jsx
+function SizeExample() {
+  const [size, setSize] = React.useState("md");
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  const openDrawer = () => setIsOpen(true);
+  const closeDrawer = () => setIsOpen(false);
+
+  const handleClick = newSize => {
+    setSize(newSize);
+    openDrawer();
+  };
+
+  const sizes = ["xs", "sm", "md", "lg", "xl", "full"];
+
+  return (
+    <>
+      {sizes.map(size => (
+        <Button
+          onClick={() => handleClick(size)}
+          type="button"
+          key={size}
+          m={4}
+        >{`Open ${size} Drawer`}</Button>
+      ))}
+
+      <Drawer zIndex={6} onClose={closeDrawer} isOpen={isOpen} size={size}>
+        <DrawerHeader>{`${size} drawer contents`}</DrawerHeader>
+        {size === "full"
+          ? `You're trapped 😆, refresh the page to leave`
+          : null}
+      </Drawer>
+    </>
+  );
+}
+```
+
 ## Accessibility
 
 - When opening the Drawer, focus is trapped inside the Drawer.
 - By default, the drawer sets focus on the first focusable element. If the
   `initialFocusRef` prop is passed, the drawer sets focus on the element with
-  the assigned `ref`
+  the assigned `ref`.
 - After the drawer closes, it'll return focus to the element that triggered it.
 
 ## Props
 
-| Name              | Type                                                                    | Default | Description                                                            |
-| ----------------- | ----------------------------------------------------------------------- | ------- | ---------------------------------------------------------------------- |
-| `isOpen`          | `boolean`                                                               | false   | If `true`, the drawer is shown.                                        |
-| `onClose`         | `function`                                                              |         | Callback invoked when user closes the drawer.                          |
-| `size`            | `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl`, `4xl`, `5xl`, `6xl`, `full` | `md`    | The width of the drawer.                                               |
-| `children`        | `React.ReactNode`                                                       |         | The children of the `InputGroup` e.g `InputLeftAddon`, `Input`.        |
-| `isFullHeight`    | `boolean`                                                               | `false` | If `true`, the drawer fills the height of the viewport by default.     |
-| `initialFocusRef` | `React.Ref`                                                             |         | The ref to the initial element to receive focus when the drawer opens. |
-| `placement`       | `top`, `left`, `bottom`, `right`                                        | `left`  | Set the position of the drawer.                                        |
+| Name              | Type                                 | Default | Description                                                            |
+| ----------------- | ------------------------------------ | ------- | ---------------------------------------------------------------------- |
+| `isOpen`          | `boolean`                            | false   | If `true`, the drawer is shown.                                        |
+| `onClose`         | `function`                           |         | Callback invoked when user closes the drawer.                          |
+| `placement`       | `top`, `left`, `bottom`, `right`     | `left`  | Set the position of the drawer.                                        |
+| `size`            | `xs`, `sm`, `md`, `lg`, `xl`, `full` | `md`    | The size of the drawer when placement is `left` or `right`.            |
+| `children`        | `React.ReactNode`                    |         | The children of the `InputGroup` e.g `InputLeftAddon`, `Input`.        |
+| `isFullHeight`    | `boolean`                            | `false` | If `true`, the drawer fills the height of the viewport by default.     |
+| `initialFocusRef` | `React.Ref`                          |         | The ref to the initial element to receive focus when the drawer opens. |
+| `overlayBg`       | `string`                             |         | The background color of the overlay.                                   |

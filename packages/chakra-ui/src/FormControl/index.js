@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { createContext, useContext } from "react";
+import { createContext, useContext, forwardRef } from "react";
 import Box from "../Box";
 
 export const useFormControl = props => {
@@ -10,10 +10,10 @@ export const useFormControl = props => {
   }
   const keys = Object.keys(context);
   return keys.reduce((acc, prop) => {
+    /** Giving precedence to `props` over `context` */
     acc[prop] = props[prop];
 
     if (context) {
-      /** Giving precedence to `props` over `context` */
       if (props[prop] == null) {
         acc[prop] = context[prop];
       }
@@ -30,25 +30,21 @@ export const useFormControlContext = () => {
   return context;
 };
 
-const FormControl = ({
-  isInvalid,
-  isRequired,
-  isDisabled,
-  isReadOnly,
-  ...rest
-}) => {
-  const context = {
-    isRequired,
-    isDisabled,
-    isInvalid,
-    isReadOnly,
-  };
+const FormControl = forwardRef(
+  ({ isInvalid, isRequired, isDisabled, isReadOnly, ...rest }, ref) => {
+    const context = {
+      isRequired,
+      isDisabled,
+      isInvalid,
+      isReadOnly,
+    };
 
-  return (
-    <FormControlContext.Provider value={context}>
-      <Box {...rest} />
-    </FormControlContext.Provider>
-  );
-};
+    return (
+      <FormControlContext.Provider value={context}>
+        <Box role="group" ref={ref} {...rest} />
+      </FormControlContext.Provider>
+    );
+  },
+);
 
 export default FormControl;

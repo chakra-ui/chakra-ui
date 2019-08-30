@@ -14,20 +14,9 @@ interface IDrawer {
    */
   children: React.ReactNode;
   /**
-   * The size of the drawer.
+   * The size of the drawer when placement is `left` or `right`.
    */
-  size?:
-    | "xs"
-    | "sm"
-    | "md"
-    | "lg"
-    | "xl"
-    | "2xl"
-    | "3xl"
-    | "4xl"
-    | "5xl"
-    | "6xl"
-    | "full";
+  size?: "xs" | "sm" | "md" | "lg" | "xl" | "full";
   /**
    *  If `true`, the drawer fills the height of the viewport by default.
    */
@@ -48,6 +37,10 @@ interface IDrawer {
    *  The zIndex of the drawer.
    */
   zIndex?: number | string;
+  /**
+   *  The background color of the overlay.
+   */
+  overlayBg?: string;
 }
 
 interface IDrawerTransition {
