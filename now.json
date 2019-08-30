@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "packages/chakra-ui-docs/next.config.js",
+      "use": "@now/next@canary"
+    }
+  ],
+  "name": "chakra-ui",
+  "alias": ["www.chakra-ui.com", "chakra-ui"],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "status": 301,
+      "headers": { "Location": "https://chakra-ui.com/$1" }
+    }
+  ],
+  "scope": "chakra-ui"
+}
