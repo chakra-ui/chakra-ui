@@ -72,15 +72,18 @@ Might Build?
 | ✅     | Box                  |
 | ✅     | Breadcrumb           |
 | ✅     | Button               |
+| 🛠      | Carousel             |
 | ✅     | Checkbox             |
 | ✅     | CircularProgress     |
 | ✅     | CloseButton          |
+| ✅     | Code                 |
 | ✅     | Collapse             |
 | ✅     | ControlBox           |
 | 🛠      | Combo Box            |
 | ✅     | Dialog (Modal)       |
 | 🛠      | Disclosure           |
 | ✅     | Drawer               |
+| 🛠      | Dropdown             |
 | ✅     | Editable             |
 | ❓     | Feed                 |
 | ✅     | FormControl          |
@@ -95,15 +98,19 @@ Might Build?
 | ✅     | Menu or Menu bar     |
 | ✅     | Menu Button          |
 | ✅     | NumberInput          |
+| 🛠      | Pagination           |
 | ✅     | Popover              |
 | ✅     | Progress             |
 | ✅     | PseudoBox            |
 | ✅     | Radio                |
 | ✅     | Radio Group          |
+| 🛠      | Rating               |
+| 🛠      | Select               |
 | ⚠️     | Slider               |
 | 🛠      | Slider (Multi-Thumb) |
 | ✅     | Spinner              |
 | ✅     | Stat                 |
+| 🛠      | Stepper              |
 | ✅     | Switch               |
 | ❓     | Table                |
 | ✅     | Tabs                 |
