@@ -1,6 +1,7 @@
 {
   "version": 2,
   "name": "chakra-ui",
+  "builds": [{"src": "next.config.js", "use": "@now/next"}],
   "alias": ["chakra-ui.com", "chakra-ui"],
   "scope": "chakra-ui"
 }
