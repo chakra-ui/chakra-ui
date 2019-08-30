@@ -68,25 +68,55 @@ Might Build?
 | ✅     | Accordion            |
 | ✅     | Alert                |
 | ✅     | Alert Dialog         |
+| ✅     | Badge                |
+| ✅     | Box                  |
 | ✅     | Breadcrumb           |
 | ✅     | Button               |
-| ✅     | Box                  |
+| 🛠      | Carousel             |
 | ✅     | Checkbox             |
+| ✅     | CircularProgress     |
+| ✅     | CloseButton          |
+| ✅     | Code                 |
+| ✅     | Collapse             |
+| ✅     | ControlBox           |
 | 🛠      | Combo Box            |
 | ✅     | Dialog (Modal)       |
 | 🛠      | Disclosure           |
+| ✅     | Drawer               |
+| 🛠      | Dropdown             |
+| ✅     | Editable             |
 | ❓     | Feed                 |
+| ✅     | FormControl          |
+| ✅     | Heading              |
+| ✅     | Icon                 |
+| ✅     | IconButton           |
+| ✅     | Input                |
+| ✅     | InputAddon           |
+| ✅     | InputGroup           |
 | ✅     | Link                 |
 | 🛠      | Listbox              |
-| 🛠      | Menu or Menu bar     |
+| ✅     | Menu or Menu bar     |
 | ✅     | Menu Button          |
+| ✅     | NumberInput          |
+| 🛠      | Pagination           |
 | ✅     | Popover              |
-| ✅     | Pseudo Box           |
+| ✅     | Progress             |
+| ✅     | PseudoBox            |
+| ✅     | Radio                |
 | ✅     | Radio Group          |
+| 🛠      | Rating               |
+| 🛠      | Select               |
 | ⚠️     | Slider               |
 | 🛠      | Slider (Multi-Thumb) |
+| ✅     | Spinner              |
+| ✅     | Stat                 |
+| 🛠      | Stepper              |
+| ✅     | Switch               |
 | ❓     | Table                |
 | ✅     | Tabs                 |
+| ✅     | Tag                  |
+| ✅     | Textarea             |
+| ✅     | Toast                |
 | ❓     | Toolbar              |
 | ✅     | Tooltip              |
 | 🛠      | Tree View            |
