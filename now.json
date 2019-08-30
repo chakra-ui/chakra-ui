@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "packages/chakra-ui-docs/next.config.js",
+      "src": "packages/chakra-ui-docs/package.json",
       "use": "@now/next@canary"
     }
   ],
