@@ -3,54 +3,44 @@ import * as ReactPopper from "react-popper";
 import { BoxProps } from "../Box";
 import { PseudoBoxProps } from "../PseudoBox";
 
-interface IRenderProps {
+interface InternalState {
   isOpen?: boolean;
   onClose?: () => void;
 }
 
-type ChildrenProp =
+type MenuChildren =
   | {
       children: React.ReactNode;
     }
-  | { children: (props: IRenderProps) => React.ReactNode };
+  | { children: (props: InternalState) => React.ReactNode };
 
 export interface IMenu {
   isOpen?: boolean;
   autoSelect?: boolean;
   closeOnBlur?: boolean;
   closeOnSelect?: boolean;
-  placement?: ReactPopper.PopperProps["placement"];
 }
 
-export type MenuProps = IMenu & ChildrenProp;
+export type MenuProps = IMenu & MenuChildren;
 declare const Menu: React.FC<MenuProps>;
 export default Menu;
-
-////////////////////////////////////////////////////////////////////////
 
 export interface IMenuButton {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLButtonElement>;
 }
-
 export type MenuButtonProps = React.RefAttributes<HTMLButtonElement> &
   PseudoBoxProps &
   IMenuButton;
-
 export const MenuButton: React.FC<MenuButtonProps>;
 
-////////////////////////////////////////////////////////////////////////
-
 export interface IMenuList {
-  onKeydown: React.KeyboardEventHandler<HTMLDivElement>;
-  onBlur: React.FocusEventHandler<HTMLDivElement>;
+  placement?: ReactPopper.PopperProps["placement"];
+  onKeydown?: React.KeyboardEventHandler<HTMLDivElement>;
+  onBlur?: React.FocusEventHandler<HTMLDivElement>;
 }
-
 export type MenuListProps = IMenuList & BoxProps;
-
 export const MenuList: React.FC<MenuListProps>;
-
-////////////////////////////////////////////////////////////////////////
 
 interface IMenuItem {
   isDisabled?: boolean;
@@ -66,19 +56,12 @@ export type MenuItemProps = IMenuItem &
 
 export const MenuItem: React.FC<MenuItemProps>;
 
-////////////////////////////////////////////////////////////////////////
-
 interface IMenuGroup {
   title?: string;
   children: React.ReactNode;
 }
-
 export type MenuGroupProps = IMenuGroup & BoxProps;
-
 export const MenuGroup: React.FC<MenuGroupProps>;
 
-////////////////////////////////////////////////////////////////////////
-
 export const MenuDivider: React.FC<BoxProps>;
-
 export * from "./MenuOption";

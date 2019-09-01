@@ -15,7 +15,6 @@ interface IMenuOptionGroup {
 }
 
 type MenuOptionGroupProps = MenuGroupProps & IMenuOptionGroup;
-
 export const MenuOptionGroup: React.FC<MenuOptionGroupProps>;
 
 interface IMenuItemOption {

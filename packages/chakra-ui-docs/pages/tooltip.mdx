@@ -1,23 +1,13 @@
-import Head from "next/head";
-
-<Head key="tooltip">
-  <title key="tti">Tooltip Component</title>
-</Head>
-
 # Tooltip
 
-The Tooltip component follows the <a href="https://www.w3.org/TR/wai-aria-practices/#tooltip" target="__blank">WAI-ARIA
-Tooltip Pattern</a>. It's a popup that displays information related to an
-element when the element receives keyboard focus or the mouse hovers over it.
-Tooltip is built on top of the <a href="https://popper.js.org/" target="__blank">Popper.js</a> library.
+A tooltip is a brief, informative message that appears when a user interacts
+with an element . Tooltips are usually initiated in one of two ways: through a
+mouse-hover gesture or through a keyboard-hover gesture.
 
-## Installation
+The Tooltip component follows the
+[WAI-ARIA](https://www.w3.org/TR/wai-aria-practices/#tooltip) Tooltip Pattern.
 
-```bash
-npm install @chakra-ui/core
-```
-
-then import Tooltip
+## Import
 
 ```js
 import { Tooltip } from "@chakra-ui/core";
@@ -26,49 +16,35 @@ import { Tooltip } from "@chakra-ui/core";
 ## Usage
 
 ```jsx
-function Example() {
-  return (
-    <Tooltip label="Welcome home" placement="right" closeOnClick>
-      <Button variant="solid" color="blue">
-        Close
-      </Button>
-    </Tooltip>
-  );
-}
+<Tooltip label="Hey, I'm here!">Hover me</Tooltip>
 ```
 
-## With a string
-
-Wrap the string content of the tooltip with a `<span>`.
+### With an icon
 
 ```jsx
-function Example() {
-  return <Tooltip label="Welcome home">This is a sample</Tooltip>;
-}
+<Tooltip label="Welcome home" placement="bottom">
+  <Icon name="phone" />
+</Tooltip>
 ```
 
-## With an icon
+### With arrow
 
 ```jsx
-function Example() {
-  return (
-    <Tooltip label="Welcome home" placement="bottom">
-      <Icon name="phone" />
-    </Tooltip>
-  );
-}
+<Tooltip showArrow label="Search places" placement="top">
+  <Icon name="search" />
+</Tooltip>
 ```
 
-## With arrow
+### Tooltip with focusable content
+
+If you children of the tooltip is a focusable element, the tooltip will show
+when you focus or hover on the element, and will hide when you blur or move
+cursor out of the element.
 
 ```jsx
-function Example() {
-  return (
-    <Tooltip showArrow label="Search places" placement="top">
-      <Icon name="search" />
-    </Tooltip>
-  );
-}
+<Tooltip showArrow label="Search places" placement="top" bg="red.600">
+  <Button>Button</Button>
+</Tooltip>
 ```
 
 ## Placement
@@ -76,36 +52,32 @@ function Example() {
 Using the `placement` prop you can adjust where your tooltip will be displayed.
 
 ```jsx
-function Example() {
-  return (
-    <Flex>
-      <Tooltip label="Right end" placement="right-end">
-        <Button variant="outline">Right-End</Button>
-      </Tooltip>
-      <Box mx="4px" />
+<Flex>
+  <Tooltip label="Right end" placement="right-end">
+    <Button variant="outline">Right-End</Button>
+  </Tooltip>
+  <Box mx="4px" />
 
-      <Tooltip label="Left" placement="left">
-        <Button variant="outline">Left</Button>
-      </Tooltip>
+  <Tooltip label="Left" placement="left">
+    <Button variant="outline">Left</Button>
+  </Tooltip>
 
-      <Box mx="4px" />
+  <Box mx="4px" />
 
-      <Tooltip label="Auto start" placement="auto-start">
-        <Button variant="outline">Auto-Start</Button>
-      </Tooltip>
-      <Box mx="4px" />
+  <Tooltip label="Auto start" placement="auto-start">
+    <Button variant="outline">Auto-Start</Button>
+  </Tooltip>
+  <Box mx="4px" />
 
-      <Tooltip label="Auto end" placement="auto-end">
-        <Button variant="outline">Auto-End</Button>
-      </Tooltip>
-      <Box mx="4px" />
+  <Tooltip label="Auto end" placement="auto-end">
+    <Button variant="outline">Auto-End</Button>
+  </Tooltip>
+  <Box mx="4px" />
 
-      <Tooltip label="Left end" placement="left-end">
-        <Button variant="outline">Left-End</Button>
-      </Tooltip>
-    </Flex>
-  );
-}
+  <Tooltip label="Left end" placement="left-end">
+    <Button variant="outline">Left-End</Button>
+  </Tooltip>
+</Flex>
 ```
 
 ## Props

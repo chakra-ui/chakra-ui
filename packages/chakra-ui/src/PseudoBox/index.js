@@ -8,7 +8,7 @@ import { transformAliasProps as tx } from "../Box/config";
  * The selectors are based on [WAI-ARIA state properties](https://www.w3.org/WAI/PF/aria-1.1/states_and_properties) and common CSS Selectors
  */
 const hover = "&:hover";
-const active = "&:active";
+const active = "&:active, &[data-active=true]";
 const focus = "&:focus";
 const visited = "&:visited";
 const even = "&:nth-of-type(even)";

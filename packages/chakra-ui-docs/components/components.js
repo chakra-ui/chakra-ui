@@ -22,8 +22,6 @@ const components = [
   "Icon",
   "IconButton",
   "Input",
-  "InputAddon",
-  "InputGroup",
   "Link",
   "Menu",
   "NumberInput",

@@ -28,9 +28,5 @@ type IInputElementProps = IInputElement & BoxProps;
 declare const InputElement: React.FC<IInputElementProps>;
 export default InputElement;
 
-export const InputLeftElement: React.FC<
-  IInputElementProps
->;
-export const InputRightElement: React.FC<
-  IInputElementProps
->;
+export const InputLeftElement: React.FC<Omit<IInputElementProps, "placement">>;
+export const InputRightElement: React.FC<Omit<IInputElementProps, "placement">>;

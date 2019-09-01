@@ -22,6 +22,10 @@ export interface IButton {
    */
   variant?: "outline" | "ghost" | "unstyled" | "link" | "solid";
   /**
+   * If `true`, the button will be styled in it's active state.
+   */
+  isActive?: boolean;
+  /**
    * If `true`, the button will be disabled.
    */
   isDisabled?: boolean;

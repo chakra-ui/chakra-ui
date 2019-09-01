@@ -28,7 +28,6 @@ const Menu = ({
   autoSelect = true,
   closeOnBlur = true,
   closeOnSelect = true,
-  placement,
 }) => {
   const { colorMode } = useColorMode();
 
@@ -127,7 +126,6 @@ const Menu = ({
     autoSelect,
     closeOnSelect,
     closeOnBlur,
-    placement,
     colorMode,
   };
 
@@ -216,7 +214,7 @@ const MenuButton = forwardRef(
 );
 //////////////////////////////////////////////////////////////////////////////////////////
 
-const MenuList = ({ onKeyDown, onBlur, ...props }) => {
+const MenuList = ({ onKeyDown, onBlur, placement, ...props }) => {
   const {
     state: { index, isOpen },
     focusAtIndex,
@@ -228,7 +226,6 @@ const MenuList = ({ onKeyDown, onBlur, ...props }) => {
     menuId,
     buttonId,
     menuRef,
-    placement,
     closeOnBlur,
   } = useMenuContext();
 
@@ -291,13 +288,13 @@ const MenuList = ({ onKeyDown, onBlur, ...props }) => {
     <Popper placement={placement}>
       {({ ref, style: popperStyle }) => (
         <Box
-          maxWidth="xs"
-          borderRadius="md"
+          minW="3xs"
+          rounded="md"
           role="menu"
           ref={node => mergeRefs([menuRef, ref], node)}
           id={menuId}
           py={2}
-          position="absolute"
+          pos="absolute"
           aria-labelledby={buttonId}
           onKeyDown={handleKeyDown}
           onBlur={handleBlur}

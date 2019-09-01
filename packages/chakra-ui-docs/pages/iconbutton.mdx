@@ -1,21 +1,11 @@
-import Head from "next/head";
-
-<Head key="icon-button">
-  <title key="tti">Icon Button Component</title>
-</Head>
-
 # Icon Button
 
-For the use case of creating a button with a single icon ChakraUI provides the
-IconButton component.
+IconButton composes the `Button` component, except that it renders only an icon.
 
-## Installation
+> Since it's only an icon that's rendered, it's required to pass the
+> `aria-label` prop, so screen readers can give meaning to the button.
 
-```bash
-npm install @chakra-ui/core
-```
-
-then import IconButton
+## Import
 
 ```js
 import { IconButton } from "@chakra-ui/core";
@@ -24,19 +14,57 @@ import { IconButton } from "@chakra-ui/core";
 ## Usage
 
 ```jsx
-function Example() {
-  return <IconButton aria-label="Search database" size="sm" icon="search" />;
-}
+<IconButton aria-label="Search database" icon="search" />
+```
+
+### Button Colors
+
+The IconButton component accepts most of the props from the `Button` component.
+so we can use `variantColor` prop to change the color of the button.
+
+```jsx
+<IconButton variantColor="blue" aria-label="Search database" icon="search" />
+```
+
+### Button Sizes
+
+Just like the Button component, pass the `size` prop to change the size of the
+button.
+
+```jsx
+<IconButton
+  variantColor="teal"
+  aria-label="Call Segun"
+  size="lg"
+  icon="phone"
+/>
+```
+
+### Button Variants
+
+Just like the Button component, pass the `variant` prop to change the size of
+the button.
+
+```jsx
+<Tooltip placement="right" label="Send email">
+  <IconButton
+    variant="outline"
+    variantColor="teal"
+    aria-label="Send email"
+    icon="email"
+  />
+</Tooltip>
 ```
 
 ## Props
 
-| Name         | Type                                              | Default | Description                                                                                                       |
-| ------------ | ------------------------------------------------- | ------- | ----------------------------------------------------------------------------------------------------------------- |
-| `size`       | `sm`, `md`, `lg`                                  | `md`    | Specifies an explicit icon size instead of the default value.                                                     |
-| `icon`       | `string`                                          | `null`  | The icon to be used. Refer to the [Icons](/components/icons/) section of the docs for the available icon options. |
-| `isRound`    | `boolean`                                         | `false` | If `true`, the button will be perfectly round. Else, it'll be slightly round.                                     |
-| `aria-label` | `string`                                          |         | A11y: A label that describes the button.                                                                          |
-| `variant`    | `outline`, `ghost`, `unstyled` , `link` , `solid` | `solid` | The variant of the button style to use.                                                                           |
-| `isDisabled` | `boolean`                                         |         | If `true`, the button will be disabled.                                                                           |
-| `isLoading`  | `boolean`                                         |         | If `true`, the button will show a spinner.                                                                        |
+| Name                  | Type                                              | Default | Description                                                                                           |
+| --------------------- | ------------------------------------------------- | ------- | ----------------------------------------------------------------------------------------------------- |
+| size                  | `sm`, `md`, `lg`                                  | `md`    | Specifies an explicit icon size instead of the default value.                                         |
+| icon                  | `string`                                          | `null`  | The icon to be used. Refer to the [Icons](/icon/) section of the docs for the available icon options. |
+| isRound               | `boolean`                                         | `false` | If `true`, the button will be perfectly round. Else, it'll be slightly round.                         |
+| aria-label (required) | `string`                                          |         | A11y: A label that describes the button.                                                              |
+| variant               | `outline`, `ghost`, `unstyled` , `link` , `solid` | `solid` | The variant of the button style to use.                                                               |
+| variantColor          | `string`                                          | `gray`  | The color scheme of the button.                                                                       |
+| isDisabled            | `boolean`                                         |         | If `true`, the button will be disabled.                                                               |
+| isLoading             | `boolean`                                         |         | If `true`, the button will show a spinner.                                                            |

@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import { forwardRef } from "react";
-import propTypes from "prop-types";
 import Icon from "../Icon";
 import Button from "../Button";
 import Box from "../Box";
@@ -33,22 +32,6 @@ const IconButton = forwardRef(
     );
   },
 );
-
-IconButton.propTypes = {
-  icon: propTypes.oneOfType([
-    propTypes.string,
-    propTypes.func,
-    propTypes.object,
-  ]).isRequired,
-  /**
-   * If `true`, the button will be perfectly round. Else, it'll be slightly round
-   */
-  isRound: propTypes.bool,
-  /**
-   * A11y: A label that describes the button
-   */
-  "aria-label": propTypes.string.isRequired,
-};
 
 IconButton.defaultProps = Button.defaultProps;
 

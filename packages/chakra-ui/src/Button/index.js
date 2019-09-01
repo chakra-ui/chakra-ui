@@ -30,6 +30,7 @@ const Button = forwardRef(
     {
       isDisabled,
       isLoading,
+      isActive,
       isFullWidth,
       children,
       as: Comp,
@@ -64,6 +65,7 @@ const Button = forwardRef(
         borderRadius="md"
         fontWeight="semibold"
         width={isFullWidth ? "full" : undefined}
+        data-active={isActive ? "true" : undefined}
         {...buttonStyleProps}
         {...rest}
       >

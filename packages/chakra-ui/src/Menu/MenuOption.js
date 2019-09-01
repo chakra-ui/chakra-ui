@@ -1,13 +1,12 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { Children, cloneElement, forwardRef, useState, useRef } from "react";
-import Icon from "../Icon";
 import { useId } from "@reach/auto-id";
-import { useMenuContext } from ".";
-import { MenuGroup } from ".";
-import { useMenuItemStyle } from "./styles";
-import PseudoBox from "../PseudoBox";
+import { Children, cloneElement, forwardRef, useRef, useState } from "react";
+import { MenuGroup, useMenuContext } from ".";
 import Box from "../Box";
+import Icon from "../Icon";
+import PseudoBox from "../PseudoBox";
+import { useMenuItemStyle } from "./styles";
 
 export const MenuItemOption = forwardRef(
   (
@@ -24,9 +23,19 @@ export const MenuItemOption = forwardRef(
     },
     ref,
   ) => {
-    const { focusableItems, focusAtIndex } = useMenuContext();
+    const {
+      focusableItems,
+      focusAtIndex,
+      closeMenu,
+      closeOnSelect,
+    } = useMenuContext();
 
     const role = `menuitem${type}`;
+
+    const handleSelect = () => {
+      onClick && onClick();
+      closeOnSelect && closeMenu();
+    };
 
     const handleClick = event => {
       if (isDisabled) {
@@ -34,14 +43,14 @@ export const MenuItemOption = forwardRef(
         event.preventDefault();
         return;
       }
-      onClick && onClick();
+      handleSelect();
     };
 
     const handleKeyDown = event => {
       if (isDisabled) return;
       if (["Enter", " "].includes(event.key)) {
         event.preventDefault();
-        onClick && onClick();
+        handleSelect();
       }
 
       if (onKeyDown) {

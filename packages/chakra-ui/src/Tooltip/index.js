@@ -19,25 +19,28 @@ const Tooltip = ({
   bg,
   color,
   label,
-  timeout = 100,
+  showDelay = 100,
+  hideDelay = 100,
+  transitionDuration = 50,
+  placement = "auto",
   children,
   showArrow,
-  placement = "auto",
   closeOnClick,
-  defaultOpen,
+  defaultIsOpen,
   isOpen: controlledIsOpen,
   onOpenChange,
   ...rest
 }) => {
-  const { isOpen, onClose, onOpen } = useDisclosure(defaultOpen || false);
+  const { isOpen, onClose, onOpen } = useDisclosure(defaultIsOpen || false);
   const { current: isControlled } = useRef(controlledIsOpen != null);
+  const _isOpen = isControlled ? controlledIsOpen : isOpen;
 
   const openWithDelay = () => {
-    setTimeout(onOpen, timeout);
+    setTimeout(onOpen, showDelay);
   };
 
   const closeWithDelay = () => {
-    setTimeout(onClose, timeout);
+    setTimeout(onClose, hideDelay);
   };
 
   const tooltipId = `tooltip-${useId()}`;
@@ -52,8 +55,6 @@ const Tooltip = ({
     onOpenChange && onOpenChange();
   };
 
-  const _isOpen = isControlled ? controlledIsOpen : isOpen;
-
   const { colorMode } = useColorMode();
   const _bg = colorMode === "dark" ? "gray.300" : "gray.700";
   const _color = colorMode === "dark" ? "gray.900" : "whiteAlpha.900";
@@ -64,25 +65,32 @@ const Tooltip = ({
   const child =
     typeof children === "string" ? children : Children.only(children);
 
+  const handleClick = event => {
+    closeOnClick && closeWithDelay();
+    if (typeof children !== "string") {
+      child.props.onClick && child.props.onClick(event);
+    }
+  };
+
   return (
     <Manager>
       <Reference>
         {({ ref: referenceRef }) => {
+          // Props for the reference element.
           const referenceProps = {
             "aria-labelledby": tooltipId,
             ref: node => {
               assignRef(referenceRef, node);
             },
-            onMouseOver: handleOpen,
+            onMouseEnter: handleOpen,
             onMouseLeave: handleClose,
-            onClick: event => {
-              closeOnClick && closeWithDelay();
-              child.props.onClick && child.props.onClick(event);
-            },
+            onClick: handleClick,
             onFocus: handleOpen,
             onBlur: handleClose,
           };
 
+          // If you pass just a string to the Tooltip children,
+          // let's wrap it in a span as a fallback
           if (typeof child === "string") {
             return (
               <Box as="span" {...referenceProps}>
@@ -94,9 +102,10 @@ const Tooltip = ({
           return cloneElement(child, { ...referenceProps });
         }}
       </Reference>
+
       <Popper placement={placement}>
         {({ ref: popperRef, style, arrowProps, placement }) => (
-          <PopoverTransition duration={50} isOpen={_isOpen}>
+          <PopoverTransition duration={transitionDuration} isOpen={_isOpen}>
             {styles => (
               <Portal>
                 <TooltipContent

@@ -8,7 +8,7 @@ type PropsFromButton = Pick<
 
 interface IIconButton extends PropsFromButton {
   /**
-   * The icon to be used. Refer to the [Icons](/components/icons/) section
+   * The icon to be used. Refer to the [Icons](http://chakra-ui.com/icon/) section
    * of the docs for the available icon options.
    */
   icon: string;

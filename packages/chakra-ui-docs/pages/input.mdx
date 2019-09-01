@@ -12,8 +12,93 @@ import { Input } from "@chakra-ui/core";
 
 ## Usage
 
+Here's a basic usage of the Input component.
+
 ```jsx
-<Input placeholder="Here is a sample placeholder" size="sm" />
+<Input placeholder="Basic usage" />
+```
+
+### Three sizes of Input
+
+There are three sizes of an Input : large (40px), default (32px) and small
+(24px).
+
+```jsx
+<Stack spacing={3}>
+  <Input placeholder="large size" size="lg" />
+  <Input placeholder="default size" size="md" />
+  <Input placeholder="small size" size="sm" />
+</Stack>
+```
+
+### Left and Right Addons
+
+Just like bootstrap, you can add addons to the left and right of the input
+component. Chakra UI exports `InputGroup`, `InputLeftAddon`, `InputRightAddon`
+to help with this use case.
+
+```jsx
+<Stack spacing={4}>
+  <InputGroup>
+    <InputLeftAddon children="+234" />
+    <Input type="phone" roundedLeft="0" placeholder="phone number" />
+  </InputGroup>
+
+  {/* If you add the size prop to `InputGroup`, it'll pass it to all it's children. */}
+  <InputGroup size="sm">
+    <InputLeftAddon children="https://" />
+    <Input rounded="0" placeholder="mysite" />
+    <InputRightAddon children=".com" />
+  </InputGroup>
+</Stack>
+```
+
+### Add elements inside input
+
+In some scenarios, you might need to add an icon or button inside the input
+component. Chakra UI exports `InputLeftElement`, and `InputRightElement` to help
+with this use case.
+
+```jsx
+<Stack spacing={4}>
+  <InputGroup>
+    <InputLeftElement children={<Icon name="phone" color="gray.300" />} />
+    <Input type="phone" placeholder="Phone number" />
+  </InputGroup>
+
+  <InputGroup>
+    <InputLeftElement color="gray.300" fontSize="1.2em" children="$" />
+    <Input placeholder="Enter amount" />
+    <InputRightElement children={<Icon name="check" color="green.500" />} />
+  </InputGroup>
+</Stack>
+```
+
+### Password Input Example
+
+Let's use these components to create a password input with a show/hide password
+functionality.
+
+```jsx
+function PasswordInput() {
+  const [show, setShow] = React.useState(false);
+  const handleClick = () => setShow(!show);
+
+  return (
+    <InputGroup size="md">
+      <Input
+        pr="4.5rem"
+        type={show ? "text" : "password"}
+        placeholder="Enter password"
+      />
+      <InputRightElement width="4.5rem">
+        <Button h="1.75rem" size="sm" onClick={handleClick}>
+          {show ? "Hide" : "Show"}
+        </Button>
+      </InputRightElement>
+    </InputGroup>
+  );
+}
 ```
 
 ### Controlled Input
@@ -35,18 +120,6 @@ function Example() {
     </>
   );
 }
-```
-
-### Input sizes
-
-The input comes with 3 sizes
-
-```jsx
-<Stack spacing={3}>
-  <Input placeholder="Here is a sample placeholder" size="sm" />
-  <Input placeholder="Here is a sample placeholder" size="md" />
-  <Input placeholder="Here is a sample placeholder" size="lg" />
-</Stack>
 ```
 
 ### Focus border color

@@ -24,6 +24,7 @@ const FormErrorMessage = forwardRef(({ children, icon, ...props }, ref) => {
     <Flex
       ref={ref}
       color={color[colorMode]}
+      id={formControl.id ? `${formControl.id}-error-message` : null}
       mt={2}
       fontSize="sm"
       align="center"

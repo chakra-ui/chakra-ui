@@ -104,13 +104,23 @@ const customTheme = {
 <Icon name="icon1" />
 ```
 
+### Icon Fallbacks
+
+If you pass an icon name that doesn't exist in `theme.icons` , you'll see the
+`question-outline` icon.
+
+```jsx
+<Icon name="naruto" />
+```
+
 ## Props
 
 Icon component composes `Box` so you can pass all `Box` props.
 
-| Name    | Type                  | Default        | Description                |
-| ------- | --------------------- | -------------- | -------------------------- |
-| `size`  | `string`              | `1em`          | The size of the icon.      |
-| `name`  | `string`              |                | The name of the icon.      |
-| `color` | `string`              | `currentColor` | The color of the icon.     |
-| `role`  | `presentation`, `img` | `presentation` | The html role of the icon. |
+| Name        | Type                  | Default        | Description                                                                         |
+| ----------- | --------------------- | -------------- | ----------------------------------------------------------------------------------- |
+| `size`      | `string`              | `1em`          | The size of the icon.                                                               |
+| `name`      | `string`              |                | The name of the icon.                                                               |
+| `color`     | `string`              | `currentColor` | The color of the icon.                                                              |
+| `focusable` | `boolean`             | `false`        | Denotes that the icon is not an interative element, and only used for presentation. |
+| `role`      | `presentation`, `img` | `presentation` | The html role of the icon.                                                          |

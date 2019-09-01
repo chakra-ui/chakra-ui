@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { jsx, ThemeContext } from "@emotion/core";
 import styled from "@emotion/styled";
-import propTypes from "prop-types";
 import { useContext, forwardRef } from "react";
 import Box from "../Box";
 
@@ -13,41 +12,48 @@ const Svg = styled(Box)`
   }
 `;
 
-const Icon = forwardRef(({ size, name, color, role, ...rest }, ref) => {
-  const { icons: iconPaths } = useContext(ThemeContext);
-  const iconFallback = iconPaths["question-outline"]; // Fallback in case you pass the wrong name
+const Icon = forwardRef(
+  (
+    {
+      size = "1em",
+      name,
+      color = "currentColor",
+      role = "presentation",
+      focusable = false,
+      ...rest
+    },
+    ref,
+  ) => {
+    const { icons: iconPaths } = useContext(ThemeContext);
 
-  const iconPath =
-    iconPaths[name] == null ? iconFallback.path : iconPaths[name].path;
-  const iconViewBox =
-    (iconPaths[name] == null
-      ? iconFallback.viewBox
-      : iconPaths[name].viewBox) || "0 0 24 24";
+    // Fallback in case you pass the wrong name
+    const iconFallback = iconPaths["question-outline"];
 
-  return (
-    <Svg
-      ref={ref}
-      as="svg"
-      size={size}
-      color={color}
-      display="inline-block"
-      viewBox={iconViewBox}
-      role={role}
-      verticalAlign="middle"
-      {...rest}
-    >
-      {iconPath}
-    </Svg>
-  );
-});
+    const path =
+      iconPaths[name] == null ? iconFallback.path : iconPaths[name].path;
 
-Icon.defaultProps = {
-  size: "1em",
-  color: "currentColor",
-};
+    const viewBox =
+      (iconPaths[name] == null
+        ? iconFallback.viewBox
+        : iconPaths[name].viewBox) || "0 0 24 24";
 
-Icon.propTypes = {
-  role: propTypes.oneOf(["presentation", "img"]),
-};
+    return (
+      <Svg
+        ref={ref}
+        as="svg"
+        size={size}
+        color={color}
+        display="inline-block"
+        verticalAlign="middle"
+        viewBox={viewBox}
+        focusable={focusable}
+        role={role}
+        {...rest}
+      >
+        {path}
+      </Svg>
+    );
+  },
+);
 
 export default Icon;

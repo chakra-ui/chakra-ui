@@ -14,7 +14,7 @@ export const FormHelperText = forwardRef((props, ref) => {
     <Text
       mt={2}
       ref={ref}
-      id={`${formControl.id}-help-text`}
+      id={formControl.id ? `${formControl.id}-help-text` : null}
       color={color[colorMode]}
       lineHeight="normal"
       fontSize="sm"
