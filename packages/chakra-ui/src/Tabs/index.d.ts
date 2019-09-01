@@ -81,7 +81,7 @@ export interface ITabPanel {
   /**
    * The ref of the panel if it is selected.
    */
-  selectedPanelRef: React.RefAttributes<HTMLDivElement>;
+  selectedPanelRef?: React.RefAttributes<HTMLDivElement>;
 }
 export type TabPanelProps = ITabPanel & BoxProps;
 export const TabPanel: React.FC<TabPanelProps>;

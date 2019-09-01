@@ -2,18 +2,17 @@
 import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
 import Stack from "../Stack";
-import Tag, { TagLabel, TagLeftAddon, TagRightAddon, TagCloseButton } from ".";
-import Icon from "../Icon";
+import Tag, { TagLabel, TagCloseButton, TagIcon } from ".";
 import Avatar from "../Avatar";
 
 const stories = storiesOf("Tag", module);
 
 stories.add("Default", () => {
   return (
-    <Stack spacing={4} inline>
+    <Stack spacing={4} isInline>
       {["sm", "md", "lg"].map(size => (
-        <Tag size={size} color="gray">
-          <TagLabel>Gray</TagLabel>
+        <Tag size={size} variantColor="gray">
+          Gray
         </Tag>
       ))}
     </Stack>
@@ -22,12 +21,10 @@ stories.add("Default", () => {
 
 stories.add("with left icon", () => {
   return (
-    <Stack spacing={4} inline>
+    <Stack spacing={4} isInline>
       {["sm", "md", "lg"].map(size => (
-        <Tag size={size} color="cyan">
-          <TagLeftAddon>
-            <Icon name="add" size="12px" />
-          </TagLeftAddon>
+        <Tag size={size} variantColor="cyan">
+          <TagIcon icon="add" size="12px" />
           <TagLabel>Green</TagLabel>
         </Tag>
       ))}
@@ -37,13 +34,11 @@ stories.add("with left icon", () => {
 
 stories.add("with right icon", () => {
   return (
-    <Stack spacing={4} inline>
+    <Stack spacing={4} isInline>
       {["sm", "md", "lg"].map(size => (
-        <Tag size={size} color="cyan">
+        <Tag size={size} variantColor="cyan">
           <TagLabel>Green</TagLabel>
-          <TagRightAddon>
-            <Icon name="check" size="12px" />
-          </TagRightAddon>
+          <TagIcon icon="check" size="12px" />
         </Tag>
       ))}
     </Stack>
@@ -52,9 +47,9 @@ stories.add("with right icon", () => {
 
 stories.add("with close button", () => {
   return (
-    <Stack spacing={4} inline>
+    <Stack spacing={4} isInline>
       {["sm", "md", "lg"].map(size => (
-        <Tag size={size} rounded="full" variant="solid" color="cyan">
+        <Tag size={size} rounded="full" variant="solid" variantColor="cyan">
           <TagLabel>Green</TagLabel>
           <TagCloseButton />
         </Tag>
@@ -65,17 +60,15 @@ stories.add("with close button", () => {
 
 stories.add("with custom element", () => {
   return (
-    <Stack spacing={4} inline>
-      <Tag color="red" rounded="full">
-        <TagLeftAddon>
-          <Avatar
-            src="https://www.dropbox.com/s/nd8z3hxuo3ahauk/segun_adebayo.jpg?dl=1"
-            size="xs"
-            name="Segun Adebayo"
-          />
-        </TagLeftAddon>
-        <TagLabel>Segun</TagLabel>
-      </Tag>
-    </Stack>
+    <Tag variantColor="red" rounded="full">
+      <Avatar
+        src="https://www.dropbox.com/s/nd8z3hxuo3ahauk/segun_adebayo.jpg?dl=1"
+        size="xs"
+        name="Segun Adebayo"
+        ml={-1}
+        mr={2}
+      />
+      <TagLabel>Segun</TagLabel>
+    </Tag>
   );
 });

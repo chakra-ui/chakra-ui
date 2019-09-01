@@ -68,6 +68,9 @@ export const SliderThumb = forwardRef((props, ref) => {
   return (
     <PseudoBox
       data-slider-thumb=""
+      d="flex"
+      alignItems="center"
+      justifyContent="center"
       onFocus={onFocus}
       ref={node => mergeRefs([thumbRef, ref], node)}
       role="slider"

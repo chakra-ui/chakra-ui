@@ -30,7 +30,7 @@ const Switch = forwardRef(
       "aria-label": ariaLabel,
       "aria-labelledby": ariaLabelledBy,
       color,
-      defaultChecked,
+      defaultIsChecked,
       isChecked,
       size,
       isDisabled,
@@ -44,7 +44,8 @@ const Switch = forwardRef(
     ref,
   ) => {
     const { colorMode } = useColorMode();
-    const { width, height } = switchSizes[size];
+    const width = switchSizes[size] && switchSizes[size]["width"];
+    const height = switchSizes[size] && switchSizes[size]["height"];
 
     const stylesProps = {
       rounded: "full",
@@ -83,7 +84,7 @@ const Switch = forwardRef(
           name={name}
           value={value}
           aria-invalid={isInvalid}
-          defaultChecked={defaultChecked}
+          defaultChecked={defaultIsChecked}
           onChange={onChange}
           onBlur={onBlur}
           onFocus={onFocus}

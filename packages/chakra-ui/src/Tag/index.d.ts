@@ -2,7 +2,6 @@ import { IBadge } from "../Badge";
 import * as React from "react";
 import { BoxProps } from "../Box";
 import { PseudoBoxProps } from "../PseudoBox";
-import { CenterProps } from "../Center";
 
 export interface ITag {
   /**
@@ -14,19 +13,18 @@ export interface ITag {
    */
   size?: "sm" | "md" | "lg";
   /**
-   * The color of the tag's text.
+   * The color scheme of the tag.
    */
-  color?: IBadge["color"];
+  variantColor?: IBadge["variantColor"];
 }
+export type TagProps = ITag & PseudoBoxProps;
+declare const Tag: React.FC<TagProps>;
+export default Tag;
 
 export const TagLabel: React.FC<BoxProps>;
-
 export const TagCloseButton: React.FC<PseudoBoxProps>;
 
-export const TagAddon: React.FC<BoxProps>;
-
-export type TagProps = ITag & PseudoBoxProps;
-
-declare const Tag: React.FC<TagProps>;
-
-export default Tag;
+interface ITagIcon {
+  icon: string | React.ElementType;
+}
+export const TagIcon: React.FC<ITagIcon & BoxProps>;

@@ -1,24 +1,12 @@
-import Head from "next/head";
-
-<Head key="switch">
-  <title key="tti">Switch Component</title>
-</Head>
-
 # Switch
 
 The Switch component is used as an alternative for the [Checkbox](/checkbox)
-component, that simulates on/off instead of checked/unchecked.
+component, switch between enabled or disabled states.
 
-Switch is optionally controllable, to control the component, specify a `value`
-prop and an `onChange` prop.
+Switch must always be accompanied by a label, and follows the same keyboard
+workflow as a checkbox.
 
-## Installation
-
-```bash
-npm install @chakra-ui/core
-```
-
-then import Switch
+## Import
 
 ```js
 import { Switch } from "@chakra-ui/core";
@@ -27,77 +15,48 @@ import { Switch } from "@chakra-ui/core";
 ## Usage
 
 ```jsx
-function Example() {
-  return <Switch />;
-}
+<Flex justify="center" align="center">
+  <FormLabel htmlFor="email-alerts">Enable email alerts?</FormLabel>
+  <Switch id="email-alerts" />
+</Flex>
 ```
 
-### Controlled Switch
+## Sizes
 
-The Switch component passes on the original event through the `onChange`
-handler. Use `e.target.checked` to get the latest value and update state
-accordingly.
+Pass the `size` prop to change the size of the switch.
 
 ```jsx
-function Example() {
-  let [value, setValue] = React.useState("");
-
-  let handleInputChange = e => {
-    let switchValue = e.target.checked;
-    setValue(switchValue);
-  };
-
-  return (
-    <>
-      <Switch
-        size="sm"
-        value={value}
-        color="green"
-        onChange={handleInputChange}
-      />
-    </>
-  );
-}
-```
-
-## Switch sizes
-
-```jsx
-function Example() {
-  return (
-    <Stack inline>
-      <Switch size="sm" />
-      <Switch size="md" />
-      <Switch size="lg" />
-    </Stack>
-  );
-}
+<Stack align="center" isInline>
+  <Switch size="sm" />
+  <Switch size="md" />
+  <Switch size="lg" />
+</Stack>
 ```
 
 ## Switch background color
 
+You can change the checked background color of the switch by passing the `color`
+prop.
+
 ```jsx
-function Example() {
-  return (
-    <Stack inline>
-      <Switch color="red" />
-      <Switch color="gray" size="lg" />
-    </Stack>
-  );
-}
+<Stack isInline>
+  <Switch color="red" />
+  <Switch color="teal" size="lg" />
+</Stack>
 ```
 
 ## Props
 
-| Name              | Type                                      | Default | Description                                          |
-| ----------------- | ----------------------------------------- | ------- | ---------------------------------------------------- |
-| `size`            | `sm`, `md`, `lg`                          |         | The size of the switch.                              |
-| `color`           | `string`                                  |         | The background color of the switch when checked.     |
-| `name`            | `string`                                  |         | The input name of the switch when used in a form.    |
-| `value`           | `string`, `boolean`                       |         | The value of the switch.                             |
-| `children`        | `React.ReactNode`                         |         | The children of the switch.                          |
-| `aria-label`      | `React.AriaAttributes["aria-label"]`      |         | The aria-label of the switch for accessibility.      |
-| `aria-labelledby` | `React.AriaAttributes["aria-labelledby"]` |         | The aria-labelledby of the switch for accessibility. |
-| `isChecked`       | `boolean`                                 | `false` | If `true`, set the switch to the checked state.      |
-| `isDisabled`      | `boolean`                                 | `false` | If `true`, set the disabled to the invalid state.    |
-| `isInvalid`       | `boolean`                                 | `false` | If `true`, set the switch to the invalid state.      |
+| Name               | Type                | Default | Description                                          |
+| ------------------ | ------------------- | ------- | ---------------------------------------------------- |
+| `size`             | `sm`, `md`, `lg`    |         | The size of the switch.                              |
+| `color`            | `string`            |         | The background color of the switch when checked.     |
+| `name`             | `string`            |         | The input name of the switch when used in a form.    |
+| `value`            | `string`, `boolean` |         | The value of the switch.                             |
+| `children`         | `React.ReactNode`   |         | The children of the switch.                          |
+| `aria-label`       | `string`            |         | The aria-label of the switch for accessibility.      |
+| `aria-labelledby`  | `string`            |         | The aria-labelledby of the switch for accessibility. |
+| `isChecked`        | `boolean`           |         | If `true`, set the switch to the checked state.      |
+| `defaultIsChecked` | `boolean`           |         | If `true`, the checkbox will be initially checked.   |
+| `isDisabled`       | `boolean`           |         | If `true`, set the disabled to the invalid state.    |
+| `isInvalid`        | `boolean`           |         | If `true`, set the switch to the invalid state.      |

@@ -7,15 +7,7 @@ None of the components are empty wrappers, each is associated with a real DOM
 element in the document, giving you maximum control over styling and
 composition.
 
-## Usage
-
-```sh
-npm install @chakra-ui/core
-# or
-yarn add @chakra/core
-```
-
-then import the components
+## Import
 
 ```js
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/core";
@@ -80,10 +72,10 @@ Tabs come in 6 different variants to style the tabs: `line`,`enclosed`,
 By default, `Tabs` are activated automatically. This means when you use the
 arrow keys to change tabs, the tab is activated and focused.
 
-> The content of a `TabPanel` should ideally be preloaded. However, if switching
-> to a tab panel causes a network request and possibly a page refresh, there
-> might be some notable latency and this might affect the experience for
-> keyboard and screen reader users.
+The content of a `TabPanel` should ideally be preloaded. However, if switching
+to a tab panel causes a network request and possibly a page refresh, there might
+be some notable latency and this might affect the experience for keyboard and
+screen reader users.
 
 In this scenario, you should use a manually activated tab, it moves focus
 without activating the tabs. With focus on a specifc tab, users can activate a
@@ -180,21 +172,15 @@ to synchronize with it.
 function Example() {
   const colors = ["firebrick", "goldenrod", "dodgerblue"];
   const [tabIndex, setTabIndex] = React.useState(0);
-  const backgroundColor = colors[tabIndex];
+  const bg = colors[tabIndex];
   return (
-    <Tabs
-      onChange={index => setTabIndex(index)}
-      style={{
-        color: "white",
-        background: backgroundColor,
-      }}
-    >
+    <Tabs onChange={index => setTabIndex(index)} color="white" bg={bg}>
       <TabList>
         <Tab>Red</Tab>
         <Tab>Yellow</Tab>
         <Tab>Blue</Tab>
       </TabList>
-      <TabPanels style={{ padding: 20 }}>
+      <TabPanels p="2rem">
         <TabPanel>The Primary Colors</TabPanel>
         <TabPanel>Are 1, 2, 3</TabPanel>
         <TabPanel>Red, yellow and blue.</TabPanel>
@@ -285,20 +271,18 @@ function ControlledExample() {
 
 ### Tab isSelected
 
-Because TabList needs to know the order of the children, we use cloneElement to
-pass state internally. If you want to know if a tab is active, you can wrap it,
-and then inspect clone props passed in.
+Because `TabList` needs to know the order of the children, we use `cloneElement`
+to pass state internally. If you want to know if a tab is active, you can wrap
+it, and then inspect clone props passed in.
 
 ```jsx
-function Example() {
+function CoolTabsExample() {
   const CoolTab = React.forwardRef((props, ref) => {
-    // `isSelected` comes from `TabList` cloning the `CoolTab`.
-    const { isSelected, children, ...rest } = props;
-
+    // `isSelected` is passed to all children of `TabList`.
     return (
-      <Tab ref={ref} isSelected={isSelected} {...rest}>
-        {isSelected ? "😎" : "😐"}
-        {children}
+      <Tab ref={ref} isSelected={props.isSelected} {...props}>
+        {props.isSelected ? "😎" : "😐"}
+        {props.children}
       </Tab>
     );
   });

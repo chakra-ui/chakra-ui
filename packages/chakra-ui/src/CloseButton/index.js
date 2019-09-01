@@ -42,7 +42,8 @@ const CloseButton = ({
   "aria-label": ariaLabel = "Close",
   ...rest
 }) => {
-  const _size = sizes[size];
+  const buttonSize = sizes[size] && sizes[size]["button"];
+  const iconSize = sizes[size] && sizes[size]["icon"];
 
   return (
     <PseudoBox
@@ -50,7 +51,7 @@ const CloseButton = ({
       aria-disabled={isDisabled}
       disabled={isDisabled}
       aria-label={ariaLabel}
-      size={_size.button}
+      size={buttonSize}
       {...baseProps}
       {...rest}
     >
@@ -59,7 +60,7 @@ const CloseButton = ({
         focusable="false"
         name="close"
         aria-hidden
-        size={_size.icon}
+        size={iconSize}
       />
     </PseudoBox>
   );

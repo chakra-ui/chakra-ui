@@ -1,9 +1,3 @@
-import Head from "next/head";
-
-<Head key="popover">
-  <title key="tti">Popover Component</title>
-</Head>
-
 # Popover
 
 The Popover component displays floating content in relation to a trigger.
@@ -11,17 +5,12 @@ Popovers appear either at the `top`, `bottom`, `left` or `right` of their
 trigger. The preferred and default side is the bottom. Popover is built on top
 of the <a href="https://popper.js.org/" target="__blank">Popper.js</a> library.
 
-## Installation
-
-```bash
-npm install @chakra-ui/core
-```
-
-then import Popover
+## Import
 
 ```js
 import { Popover } from "@chakra-ui/core";
 ```
+
 ## Usage
 
 ```jsx
@@ -108,7 +97,7 @@ function Example() {
           </>
         )}
       </Popover>
-      <Box mx="4px"/>
+      <Box mx="4px" />
 
       <Popover
         trigger={<Button>Right end</Button>}

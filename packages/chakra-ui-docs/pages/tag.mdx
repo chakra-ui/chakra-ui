@@ -1,148 +1,105 @@
-import Head from "next/head";
-
-<Head key="tag">
-  <title key="tti">Tag Component</title>
-</Head>
-
 # Tag
 
 Tag component is used for items that need to be labeled, categorized, or
-organized using keywords that describe them. Use tags when content is mapped to
-multiple categories, and the user needs a way to differentiate between them.
+organized using keywords that describe them.
 
-This component exports 4 Alert related components:
+## Import
 
-- **Tag**: The wrapper component that uses provides context, state, and focus
-  management for the other components. It composes the `PseudoBox` component.
-- **TagLabel**: The label for tag component. It composes the `Box` component
-- **TagAddon**: This handles the placement of custom elements on either side of
-  the tag component . It composes the `Box` component.
-- **TagCloseButton**: The close button for the tag component.
+Chakra UI exports 4 Tag related components:
 
-## Installation
+- **Tag**: The wrapper for all the tag elements
+- **TagLabel**: The label for tag's text content.
+- **TagIcon**: The icon for the tag
+- **TagCloseButton**: The close button for the tag.
 
-```bash
-npm install @chakra-ui/core
-# or
-yarn add @chakra-ui/core
-```
-
-And then import the components you need.
-
-```bash
-import {
-  Tag,
-  TagAddon,
-  TagLabel,
-  TagCloseButton,
-} from "@chakra-ui/core";
-
+```js
+import { Tag, TagIcon, TagLabel, TagCloseButton } from "@chakra-ui/core";
 ```
 
 ## Usage
 
 ```jsx
-function Example() {
-  const props = {
-    color: "gray",
-  };
+<Tag>Sample Tag</Tag>
+```
 
-  return (
-    <Stack isInline>
-      <Tag size="sm" {...props}>
-        <TagLabel>Gray</TagLabel>
-      </Tag>
-      <Tag size="md" {...props}>
-        <TagLabel>Gray</TagLabel>
-      </Tag>
-      <Tag size="lg" {...props}>
-        <TagLabel>Gray</TagLabel>
-      </Tag>
-    </Stack>
-  );
-}
+```jsx
+<Stack spacing={4} isInline>
+  {["sm", "md", "lg"].map(size => (
+    <Tag size={size} key={size} variantColor="gray">
+      Gray
+    </Tag>
+  ))}
+</Stack>
 ```
 
 ## With left icon
 
 ```jsx
-function Example() {
-  return (
-    <Stack isInline>
-      {["sm", "md", "lg"].map(size => (
-        <Tag size={size} color="cyan">
-          <TagAddon placement="left">
-            <Icon name="add" size="12px" />
-          </TagAddon>
-          <TagLabel>Green</TagLabel>
-        </Tag>
-      ))}
-    </Stack>
-  );
-}
+<Stack spacing={4} isInline>
+  {["sm", "md", "lg"].map(size => (
+    <Tag size={size} key={size} variantColor="cyan">
+      <TagIcon icon="add" size="12px" />
+      <TagLabel>Green</TagLabel>
+    </Tag>
+  ))}
+</Stack>
 ```
 
 ## With right icon
 
 ```jsx
-function Example() {
-  return (
-    <Stack isInline>
-      {["sm", "md", "lg"].map(size => (
-        <Tag size={size} color="cyan">
-          <TagLabel>Green</TagLabel>
-          <TagAddon placement="right">
-            <Icon name="check" size="12px" />
-          </TagAddon>
-        </Tag>
-      ))}
-    </Stack>
-  );
-}
+<Stack spacing={4} isInline>
+  <Tag variantColor="cyan">
+    <TagLabel>Green</TagLabel>
+    <TagIcon icon="check" size="12px" />
+  </Tag>
+
+  {/* You can also use custom svg icons */}
+  <Tag variantColor="teal">
+    <TagLabel>Green</TagLabel>
+    <TagIcon icon={MdSettings} />
+  </Tag>
+</Stack>
 ```
 
 ## With close button
 
 ```jsx
-function Example() {
-  return (
-    <Stack isInline>
-      {["sm", "md", "lg"].map(size => (
-        <Tag size={size} rounded="full" variant="solid" color="cyan">
-          <TagLabel>Green</TagLabel>
-          <TagCloseButton />
-        </Tag>
-      ))}
-    </Stack>
-  );
-}
+<Stack spacing={4} isInline>
+  {["sm", "md", "lg"].map(size => (
+    <Tag
+      size={size}
+      key={size}
+      rounded="full"
+      variant="solid"
+      variantColor="cyan"
+    >
+      <TagLabel>Green</TagLabel>
+      <TagCloseButton />
+    </Tag>
+  ))}
+</Stack>
 ```
 
 ## With custom element
 
 ```jsx
-function Example() {
-  return (
-    <Stack isInline>
-      <Tag color="red" rounded="full">
-        <TagAddon placement="left" mr="1">
-          <Avatar
-            src="http://bit.ly/sage-adebayo"
-            size="xs"
-            name="Segun Adebayo"
-          />
-        </TagAddon>
-        <TagLabel>Segun</TagLabel>
-      </Tag>
-    </Stack>
-  );
-}
+<Tag variantColor="red" rounded="full">
+  <Avatar
+    src="http://bit.ly/sage-adebayo"
+    size="xs"
+    name="Segun Adebayo"
+    ml={-1}
+    mr={2}
+  />
+  <TagLabel>Segun</TagLabel>
+</Tag>
 ```
 
 ## Props
 
-| Name      | Type                         | Default | Description                             |
-| --------- | ---------------------------- | ------- | --------------------------------------- |
-| `variant` | `solid`, `subtle`, `outline` | `solid` | The variant style of the tag component. |
-| `size`    | `sm`, `md`, `lg`             | `md`    | The size of the tag component.          |
-| `color`   | `string`                     |         | The color scheme of the tag variant.    |
+| Name           | Type                         | Default | Description                             |
+| -------------- | ---------------------------- | ------- | --------------------------------------- |
+| `variant`      | `solid`, `subtle`, `outline` | `solid` | The variant style of the tag component. |
+| `size`         | `sm`, `md`, `lg`             | `md`    | The size of the tag component.          |
+| `variantColor` | `string`                     |         | The color scheme of the tag variant.    |

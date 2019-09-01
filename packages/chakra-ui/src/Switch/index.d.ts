@@ -35,6 +35,10 @@ export interface ISwitch {
    */
   isChecked?: boolean;
   /**
+   * If `true`, the switch will be initially checked.
+   */
+  defaultIsChecked?: boolean;
+  /**
    * If `true`, set the disabled to the invalid state.
    */
   isDisabled?: boolean;
