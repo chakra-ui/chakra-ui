@@ -24,6 +24,7 @@ const components = [
   "IconButton",
   "Input",
   "Link",
+  "List",
   "Menu",
   "NumberInput",
   "Popover",

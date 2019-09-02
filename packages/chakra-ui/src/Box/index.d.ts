@@ -47,6 +47,7 @@ interface ICustomConfig {
 
   // CSS properties
   textDecoration?: StyledSystem.ResponsiveValue<CSS["textDecoration"]>;
+  textDecor?: StyledSystem.ResponsiveValue<CSS["textDecoration"]>;
   textTransform?: StyledSystem.ResponsiveValue<CSS["textTransform"]>;
   overflowX?: StyledSystem.ResponsiveValue<CSS["overflowX"]>;
   overflowY?: StyledSystem.ResponsiveValue<CSS["overflowY"]>;
@@ -71,6 +72,15 @@ interface ICustomConfig {
   // SVG color properties
   fill?: StyledSystem.ColorProps;
   stroke?: StyledSystem.ColorProps;
+
+  bgAttachment?: StyledSystem.ResponsiveValue<CSS["backgroundAttachment"]>;
+
+  // List properties
+  listStyleType?: StyledSystem.ResponsiveValue<CSS["listStyleType"]>;
+  listStylePosition?: StyledSystem.ResponsiveValue<CSS["listStylePosition"]>;
+  listStyleImage?: StyledSystem.ResponsiveValue<CSS["listStyleImage"]>;
+  listStyleImg?: StyledSystem.ResponsiveValue<CSS["listStyleImage"]>;
+  listStylePos?: StyledSystem.ResponsiveValue<CSS["listStylePosition"]>;
 }
 
 interface IFontSize {

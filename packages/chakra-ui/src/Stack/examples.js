@@ -2,7 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import Stack from ".";
 
-const stories = storiesOf("Lists", module);
+const stories = storiesOf("Stack", module);
 
 stories.add("vertical stack", () => (
   <Stack spacing={4}>

@@ -101,6 +101,9 @@ export const config = {
   cursor: true,
   resize: true,
   transition: true,
+  listStyleType: true,
+  listStylePosition: true,
+  listStyleImage: true,
   fill: {
     property: "fill",
     scale: "colors",
@@ -116,6 +119,8 @@ export const config = {
 
 config.bgAttachment = config.backgroundAttachment;
 config.textDecor = config.textDecoration;
+config.listStylePos = config.listStylePosition;
+config.listStyleImg = config.listStyleImage;
 
 const extraConfig = system(config);
 

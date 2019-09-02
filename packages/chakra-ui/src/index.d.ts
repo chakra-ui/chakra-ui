@@ -54,6 +54,8 @@ export { default as InputAddon } from "./InputAddon";
 export { default as Kbd } from "./Kbd";
 
 export { default as Link } from "./Link";
+export { default as List } from "./List";
+
 export { default as Stack } from "./Stack";
 
 export { default as Menu } from "./Menu";

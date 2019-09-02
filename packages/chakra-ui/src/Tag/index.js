@@ -56,7 +56,6 @@ export const TagIcon = ({ icon, ...props }) => {
   if (typeof icon === "string") {
     return (
       <Icon
-        focusable="false"
         name={icon}
         mx="0.5rem"
         css={{
