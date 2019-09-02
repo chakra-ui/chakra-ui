@@ -1,5 +1,5 @@
 import { storiesOf } from "@storybook/react";
-import Keyboard from ".";
+import Kbd from ".";
 import React from "react";
 import Box from "../Box";
 
@@ -8,7 +8,7 @@ const stories = storiesOf("Keyboard", module);
 stories.add("Default", () => (
   <Box maxWidth="sm" mx="auto" mt={3}>
     <kbd>
-      <Keyboard>ctrl</Keyboard>+<Keyboard>D</Keyboard>
+      <Kbd>ctrl</Kbd>+<Kbd>D</Kbd>
     </kbd>
   </Box>
 ));

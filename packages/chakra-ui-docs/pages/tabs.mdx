@@ -170,14 +170,14 @@ to synchronize with it.
 
 ```jsx
 function Example() {
-  const colors = ["firebrick", "goldenrod", "dodgerblue"];
+  const colors = ["red.200", "teal.200", "blue.200"];
   const [tabIndex, setTabIndex] = React.useState(0);
   const bg = colors[tabIndex];
   return (
     <Tabs onChange={index => setTabIndex(index)} color="white" bg={bg}>
       <TabList>
         <Tab>Red</Tab>
-        <Tab>Yellow</Tab>
+        <Tab>Teal</Tab>
         <Tab>Blue</Tab>
       </TabList>
       <TabPanels p="2rem">

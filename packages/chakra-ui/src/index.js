@@ -58,7 +58,7 @@ export * from "./InputAddon";
 export { default as InputGroup } from "./InputGroup";
 export * from "./InputElement";
 
-export { default as KeyboardKey } from "./KeyboardKey";
+export { default as Kbd } from "./Kbd";
 
 export { default as Link } from "./Link";
 export { default as Stack } from "./Stack";

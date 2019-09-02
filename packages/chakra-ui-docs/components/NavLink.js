@@ -41,7 +41,7 @@ export const SideNavLink = forwardRef(({ children, icon, ...props }, ref) => {
       transition="all 0.2s"
       fontWeight="medium"
       color={color[colorMode]}
-      _notFirstChild={{ mt: 1 }}
+      _notFirst={{ mt: 1 }}
       {...props}
     >
       {icon && cloneElement(icon, { mr: 3 })}

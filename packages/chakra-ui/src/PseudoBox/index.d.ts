@@ -106,19 +106,23 @@ interface IPseudoBoxProps {
   /**
    * Styles for CSS Selector `&:first-of-type`
    */
-  _firstChild: BoxProps;
+  _first: BoxProps;
   /**
    * Styles for CSS Selector `&:last-of-type`
    */
-  _lastChild: BoxProps;
+  _last: BoxProps;
+  /**
+   * Styles to apply when you hover on a parent that has `role=group`.
+   */
+  _groupHover: BoxProps;
   /**
    * Styles for CSS Selector `&:not(:first-of-type)`
    */
-  _notFirstChild: BoxProps;
+  _notFirst: BoxProps;
   /**
    * Styles for CSS Selector `&:not(:last-of-type)`
    */
-  _notLastChild: BoxProps;
+  _notLast: BoxProps;
   /**
    * Styles for CSS Selector `&::placeholder`.
    * Useful for inputs

@@ -3,11 +3,13 @@
 Progress is used to display the progress status for a task that take a long time
 or consists of several steps.
 
-## Usage
+## Import
 
 ```js
 import { Progress } from "@chakra-ui/core";
 ```
+
+## Usage
 
 ```jsx
 <Progress value={80} />
@@ -38,7 +40,7 @@ There are two ways you can increase the height of the progressbar:
 </Stack>
 ```
 
-### Progress with theme color
+### Progress color
 
 You can add `color` prop to any progressbar to apply any color that exists in
 the theme.
@@ -57,16 +59,8 @@ animations.
 <Progress hasStripe isAnimated />
 ```
 
-### Accessibility
+## Accessibility
 
 - Progress has a `role` set to `progressbar` to denote that it's a progress`
 - Progress has `aria-valuenow` set to the percentage completion value passed to
   the component, to ensure the progress percent is visible to screen readers.
-
-## UX Guideline
-
-As a general rule of thumb, you should use a progressbar for longer processes
-that take 10 or more seconds. Based on
-[Jakob Nielsen’s research](https://www.nngroup.com/articles/response-times-3-important-limits/)
-about response times, after 10 seconds, users quickly grow impatient if they
-don’t have an idea how many more steps they have to take until completion.

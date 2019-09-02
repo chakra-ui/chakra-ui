@@ -1,9 +1,3 @@
-import Head from "next/head";
-
-<Head key="toast">
-  <title key="tti">Toast Component</title>
-</Head>
-
 # Toast
 
 The toast is used to show alerts on top of an overlay. The toast will close
@@ -15,13 +9,7 @@ Toasts can be configured to appear at either the top or the bottom of an
 application window, and it is possible to have more than one toast onscreen at a
 time.
 
-## Installation
-
-```bash
-npm install @chakra-ui/core
-```
-
-then import Toast
+## Import
 
 ```js
 import { useToast } from "@chakra-ui/core";
@@ -30,7 +18,7 @@ import { useToast } from "@chakra-ui/core";
 ## Usage
 
 ```jsx
-function Example() {
+function ToastExample() {
   const toast = useToast();
   return (
     <Button
@@ -125,7 +113,7 @@ function Example() {
 ## Error
 
 ```jsx
-function Example() {
+function ErrorToast() {
   const toast = useToast();
   return (
     <Button
@@ -145,12 +133,12 @@ function Example() {
 }
 ```
 
-## Placement
+## Position
 
 Using the `position` prop you can adjust where your toast will be popup from.
 
 ```jsx
-function Example() {
+function PositionExample() {
   const toast = useToast();
   return (
     <Button
@@ -179,5 +167,5 @@ function Example() {
 | `isClosable`  | `boolean`                                                                                                                                                                      | `false`  | If `true` adds a close button to the toast. |
 | `onClose`     | `function`                                                                                                                                                                     |          | Callback function to close the toast.       |
 | `description` | `string`                                                                                                                                                                       |          | The description of the toast.               |
-| `status`      | `success`, `danger`, `warning`                                                                                                                                                 |          | The status of the toast.                    |
+| `status`      | `success`, `danger`, `warning`, `info`                                                                                                                                         |          | The status of the toast.                    |
 | `position`    | `auto-start`, `auto`, `auto-end`, `top-start`, `top`, `top-end`, `right-start`, `right`, `right-end`, `bottom-end`, `bottom`, `bottom-start`, `left-end`, `left`, `left-start` | `bottom` | Position the toast will popup out from.     |

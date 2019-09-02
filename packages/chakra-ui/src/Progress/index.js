@@ -14,22 +14,6 @@ const stripeAnimation = css`
   animation: ${stripe} 1s linear infinite;
 `;
 
-const indeterminate = keyframes`
-0% {
-    left: -35%;
-    right: 100%; }
-  60% {
-    left: 100%;
-    right: -90%; }
-  100% {
-    left: 100%;
-    right: -90%; } }
-`;
-
-const indeterminateAnimation = css`
-  animation: ${indeterminate} 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
-`;
-
 export const ProgressLabel = props => (
   <Box textAlign="center" width="100%" {...props} />
 );
@@ -108,7 +92,6 @@ const Progress = ({
         value={value}
         bg={indicatorColor[colorMode]}
         borderRadius={_borderRadius}
-        isIndeterminate={isIndeterminate}
         {...(isIndeterminate && {
           width: "100%",
           position: "absolute",
@@ -120,7 +103,6 @@ const Progress = ({
         css={[
           hasStripe && stripeStyle[colorMode],
           hasStripe && isAnimated && stripeAnimation,
-          isIndeterminate && indeterminateAnimation,
         ]}
       />
     </ProgressTrack>

@@ -12,7 +12,7 @@ const themedProps = {
     _active: {
       bg: "gray.200",
     },
-    _lastChild: {
+    _last: {
       roundedBottomRight: 3,
       mt: "-1px",
       borderTopWidth: 1,
@@ -21,7 +21,7 @@ const themedProps = {
   dark: {
     color: "whiteAlpha.800",
     borderColor: "whiteAlpha.300",
-    _lastChild: {
+    _last: {
       roundedBottomRight: 3,
       mt: "-1px",
       borderTopWidth: 1,
@@ -34,7 +34,7 @@ const themedProps = {
 
 const styleProps = ({ colorMode }) => ({
   borderLeft: "1px",
-  _firstChild: {
+  _first: {
     roundedTopRight: 1,
   },
   _disabled: {

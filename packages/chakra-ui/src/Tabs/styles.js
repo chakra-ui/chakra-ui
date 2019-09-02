@@ -85,7 +85,7 @@ const enclosedColoredStyle = ({ color, colorMode}) => {
       borderColor: "inherit",
       bg: bg[colorMode],
       mb: "-1px",
-      _notLastChild: {
+      _notLast: {
         mr: "-1px",
       },
       _selected: {

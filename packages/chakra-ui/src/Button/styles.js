@@ -229,6 +229,7 @@ const variantProps = props => {
 
 const baseProps = {
   display: "inline-flex",
+  appearance: "none",
   alignItems: "center",
   justifyContent: "center",
   transition: "all 250ms",

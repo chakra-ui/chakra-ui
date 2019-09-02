@@ -17,6 +17,7 @@ const components = [
   "ControlBox",
   "Drawer",
   "Editable",
+  "Flex",
   "FormControl",
   "Heading",
   "Icon",

@@ -62,6 +62,9 @@ const RadioButtonGroup = ({
     }
   };
 
+  const fallbackName = `radio-${useId()}`;
+  const _name = name || fallbackName;
+
   const clones = Children.map(children, (child, index) => {
     const isLastChild = children.length === index + 1;
     const isFirstChild = index === 0;
@@ -85,7 +88,7 @@ const RadioButtonGroup = ({
 
     return cloneElement(child, {
       ref: node => (allNodes.current[index] = node),
-      name: name || `radio-${useId()}`,
+      name: _name,
       onClick: handleClick,
       tabIndex: getTabIndex(),
       isChecked,

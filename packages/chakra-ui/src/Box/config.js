@@ -33,22 +33,6 @@ export const config = {
     property: "borderBottomLeftRadius",
     scale: "radii",
   },
-  borderBottomColor: {
-    property: "borderBottomColor",
-    scale: "colors",
-  },
-  borderTopColor: {
-    property: "borderTopColor",
-    scale: "colors",
-  },
-  borderLeftColor: {
-    property: "borderLeftColor",
-    scale: "colors",
-  },
-  borderRightColor: {
-    property: "borderRightColor",
-    scale: "colors",
-  },
   rounded: {
     property: "borderRadius",
     scale: "radii",
@@ -89,6 +73,9 @@ export const config = {
   bgPos: {
     property: "backgroundPosition",
   },
+  bgRepeat: {
+    property: "backgroundRepeat",
+  },
   pos: {
     property: "position",
   },
@@ -96,9 +83,9 @@ export const config = {
     property: "flexDirection",
   },
   textDecoration: true,
-  textTransform: true,
   overflowX: true,
   overflowY: true,
+  textTransform: true,
   animation: true,
   appearance: true,
   transform: true,
@@ -128,6 +115,7 @@ export const config = {
 };
 
 config.bgAttachment = config.backgroundAttachment;
+config.textDecor = config.textDecoration;
 
 const extraConfig = system(config);
 

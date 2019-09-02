@@ -2,11 +2,11 @@
 
 The keyboard shortcut exists only to show which key or combination of keys
 performs a given action. The action itself should be further explained in
-accompanying content.
+accompanying content. It renders a `<kbd>` element.
 
 ```jsx
 <span>
-  <KeyboardKey>shift</KeyboardKey> + <KeyboardKey>H</KeyboardKey>
+  <Kbd>shift</Kbd> + <Kbd>H</Kbd>
 </span>
 ```
 
@@ -25,7 +25,7 @@ keys will activate the shortcut.
 
 ```jsx
 <span>
-  <KeyboardKey>shift</KeyboardKey> + <KeyboardKey>H</KeyboardKey>
+  <Kbd>shift</Kbd> + <Kbd>H</Kbd>
 </span>
 ```
 
@@ -34,7 +34,7 @@ lowercase to match the non-letter keys.
 
 ```jsx
 <span>
-  <KeyboardKey>shift</KeyboardKey> then <KeyboardKey>H</KeyboardKey>
+  <Kbd>shift</Kbd> then <Kbd>H</Kbd>
 </span>
 ```
 
@@ -43,6 +43,6 @@ look different on the user’s keyboard, insert or.
 
 ```jsx
 <span>
-  <KeyboardKey>alt</KeyboardKey> or <KeyboardKey>option</KeyboardKey>
+  <Kbd>alt</Kbd> or <Kbd>option</Kbd>
 </span>
 ```

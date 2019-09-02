@@ -1,4 +1,4 @@
-# Theme Configuration
+# Theme
 
 The theme object is where you define your application's color palette, type
 scale, font stacks, breakpoints, border radius values, and more. Theming with
@@ -181,6 +181,55 @@ export default {
 
 For a component like this: `<Box width={4} height={3} />` will generate an empty
 `div` with width set to `1rem` or `16px` and height set to `0.75rem` or `14px`
+
+## Icons
+
+All Chakra icons are stored in the theme object under the `icons` key.
+[See the icons](/icon#all-icons).
+
+You can extend this object to add your own icons. Here are the steps:
+
+- Export the icon's `svg` from Figma, Sketch, etc.
+- Use a tool like [SvgOmg](https://svgomg.firebaseapp.com) to reduce the size
+  and minify the markup.
+- Add the icon to the theme object.
+
+```jsx live=false
+
+// Step 1: Each icon should be stored as an object of `path` and `viewBox`
+const customIcons = {
+  icon1: {
+    path: <path d="..." />,
+    // If the icon's viewBox is `0 0 24 24`, you can ignore `viewBox`
+    viewBox: "0 0 40 40",
+  },
+  icon2: {
+    path: (
+      <g>
+        <path d="..."/>
+      </g>
+    )
+  }
+};
+
+// Step 2: Add the custom icon to the theme
+const customTheme = {
+  ...theme,
+  icons: {
+    ...theme.icons,
+    ...customIcons,
+  }
+}
+
+// Step 3: Pass the new theme to the ThemeProvider
+
+<ThemeProvider theme={customTheme}>
+  {/* app goes here */}
+</ThemeProvider>
+
+// Step 4: Now you can do this
+<Icon name="icon1" />
+```
 
 ## Configuration reference
 

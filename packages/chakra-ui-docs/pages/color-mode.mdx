@@ -1,18 +1,32 @@
-# Color Mode
+# Color Mode (In progress)
 
-Color modes can be used to create a user-configurable _dark mode_ or any number
-of other color modes.
+Most of Chakra's component are dark mode compatible. Use the `useColorMode` hook
+in your application to change the color mode. This value will be stored in
+`localStorage` and used whenever the page is loaded.
 
-## Setting the color mode
+## Enable Color Mode
 
-Use the `useColorMode` hook in your application to change the color mode. This
-value will be stored in `localStorage` and used whenever the page is loaded.
+To enable this behavior within your apps, wrap your application in a
+`ColorModeProvider`
+
+```jsx live=false
+import React from "react";
+import { ThemeProvider, ColorModeProvider } from "@chakra-ui/core";
+import customTheme from "./theme";
+
+function TurnOnColorMode({ children }) {
+  return (
+    <ThemeProvider theme={customTheme}>
+      <ColorModeProvider>{children}</ColorModeProvider>
+    </ThemeProvider>
+  );
+}
+```
+
+Then you can use the hook `useColorMode` within your application.
 
 ```jsx
-// import React from "react";
-// import { useColorMode } from "chakra-ui";
-
-function Example() {
+function ColorModeExample() {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <header>
@@ -24,44 +38,28 @@ function Example() {
 }
 ```
 
-## Applying colors
-
-The previous steps will enable a color mode state and pass it through context.
-To apply the color mode values to the `<body>` element, render the
-`ColorModeProvider` component in your application.
-
-```jsx live=false
-import React from "react";
-import { ThemeProvider, ColorModeProvider } from "chakra-ui";
-import theme from "./theme";
-
-function ColorMode(props) {
-  return (
-    <ThemeProvider theme={theme}>
-      <ColorModeProvider>{props.children}</ColorModeProvider>
-    </ThemeProvider>
-  );
-}
-```
-
-## Styling dark mode
+## Styling color modes
 
 To style dark mode in your components, use the `useColorMode` hook to change the
 styles of your component.
 
-```jsx
-// Use the "Toggle Dark" button in the previous example
-// to see dark mode in action here.
+> Click the **"Toggle Mode"** button to see it in action.
 
-function Example() {
-  const { colorMode } = useColorMode();
+```jsx
+function StyleColorMode() {
+  const { colorMode, toggleColorMode } = useColorMode();
   const bgColor = { light: "red.500", dark: "red.200" };
   const color = { light: "white", dark: "gray.800" };
 
   return (
-    <Box bg={bgColor[colorMode]} color={color[colorMode]}>
-      This is a text
-    </Box>
+    <>
+      <Box flex="1" mb={4} bg={bgColor[colorMode]} color={color[colorMode]}>
+        This box's style will change based on the color mode.
+      </Box>
+      <Button size="sm" onClick={toggleColorMode}>
+        Toggle Mode
+      </Button>
+    </>
   );
 }
 ```
@@ -70,9 +68,9 @@ function Example() {
 
 In some occasions, you might want Chakra components to look the same in both
 light and dark modes. To achieve this, wrap the component in `LightMode` or
-`DarkMode` component.
+`DarkMode` component. Doing this will override the global `colorMode`.
 
-Doing this will override the global `colorMode`.
+> Click the **"Toggle Mode"** button to see it in action.
 
 ```jsx
 function Example() {
@@ -80,13 +78,17 @@ function Example() {
 
   return (
     <Stack isInline>
-      <Button colorMode="light" size="sm" variantColor="blue">
-        Light Mode Always
-      </Button>
+      <LightMode>
+        <Button size="sm" variantColor="blue">
+          Light Mode Always
+        </Button>
+      </LightMode>
 
-      <Button colorMode="dark" size="sm" variantColor="blue">
-        Dark Mode Always
-      </Button>
+      <DarkMode>
+        <Button size="sm" variantColor="blue">
+          Dark Mode Always
+        </Button>
+      </DarkMode>
 
       <Button size="sm" variantColor="blue" onClick={toggleColorMode}>
         Toggle Mode

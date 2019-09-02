@@ -1,34 +1,33 @@
 # Design Principles
 
-Chakra UI is established on principles that make it more consistent throughout
-its components. Understanding these concepts will help you to work with any
-Chakra component right away.
+Chakra UI is established on principles that keep it's components fairly
+consistent. Understanding these concepts will help you better contribute to
+Chakra UI.
 
-Our goal is to design simple, composable yet beautiful components that cater to
-real life UI design problems. In order to do that, we developed a set of
-principles that help us always be on that path.
+Our goal is to design simple, composable components that cater to real life UI
+design problems. In order to do that, we developed a set of principles that help
+us always be on that path.
 
-- **Separate Style from Functionality:** We decoupled most of the styling from
-  the functionality to make it easy for you to create your own custom
-  components.
+- **Style Props:** All component styles can be overriden or extended via style
+  props to reduce the use of `css` prop or `styled()`. Compose new components
+  from the `Box` or `PseudoBox` component.
 
-- **Composition:** We break down components into smaller parts and compose them
-  together. This helps to keep the styles and functionality flexible and
-  extensible. Make the smaller components and composed component available to
-  users.
+- **Simplicity:** Strive to keep the component API fairly simple and show real
+  world scenarios of using the component.
 
-- **Dark Mode:** We try to make components dark mode compatible. Use our
-  ColorModeProvider, useColorMode hook to handle styling.
+- **Composition:** Break down components into smaller parts with minimal props
+  to keep complexity low, and compose them together. This will ensure that the
+  styles and functionality are flexible and extensible.
+
+- **Accessibility:** When creating a component, keep accessibility top of mind.
+  This includes keyboard navigation, focus management, color contrast, voice
+  over, and the correct `aria-*` attributes.
+
+- **Dark Mode:** Try to make components dark mode compatible. Use our
+  `ColorModeProvider`, `useColorMode` hook to handle styling.
   [Learn more about Dark mode](/color-mode)
 
-- **Accessible:** We keep accessibility top of mind for all components from
-  keyboard, to color contrast to voice over. We intend to do more rigorous
-  accessibility tests soon.
-
-- **Hooks:** We fell in love with react hooks at first sight. Most of our
-  components are composed with hooks and context. StyleHooks and FunctionHooks.
-
-- **Limit the use of `styled()` or `css` prop:** All our components' styles can
-  be overriden or extended via a style props. We prefer to compose new
-  components from the base `Box` component, as much as possible we stay away
-  from `styled()` or `css` prop as a means to pass styles to a component.
+- **Naming Props:** We all know naming is the hardest thing in this industry.
+  Generally, ensure a prop name is indicative of what it does. Boolean props
+  should be named using auxilliary verbs such as `does`, `has`, `is` and
+  `should`. For example, `Button` uses `isDisabled`, `isLoading`, etc.

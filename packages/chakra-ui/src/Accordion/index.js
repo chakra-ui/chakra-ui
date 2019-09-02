@@ -117,7 +117,7 @@ const AccordionItem = forwardRef(
       >
         <PseudoBox
           borderTopWidth="1px"
-          _lastChild={{ borderBottomWidth: "1px" }}
+          _last={{ borderBottomWidth: "1px" }}
           data-accordion-item=""
           ref={ref}
           {...rest}

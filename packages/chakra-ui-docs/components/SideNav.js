@@ -6,9 +6,10 @@ import { ComponentLink, stringToUrl, TopNavLink } from "./NavLink";
 const topNavLinks = [
   "Getting Started",
   "Principles",
+  "Style Props",
   "Color Mode",
   "Responsive Styles",
-  "Theming",
+  "Theme",
 ];
 
 const utilsNavLinks = ["useClipboard", "useDisclosure"];

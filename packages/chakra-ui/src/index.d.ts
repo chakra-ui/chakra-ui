@@ -51,7 +51,7 @@ export { default as Image } from "./Image";
 export { default as Input } from "./Input";
 export { default as InputAddon } from "./InputAddon";
 
-export { default as KeyboardKey } from "./KeyboardKey";
+export { default as Kbd } from "./Kbd";
 
 export { default as Link } from "./Link";
 export { default as Stack } from "./Stack";

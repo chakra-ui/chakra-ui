@@ -21,12 +21,13 @@ const selected = "&[aria-selected=true]";
 const invalid = "&[aria-invalid=true]";
 const pressed = "&[aria-pressed=true]";
 const readOnly = "&[aria-readonly=true], &[readonly]";
-const firstChild = "&:first-of-type";
-const lastChild = "&:last-of-type";
+const first = "&:first-of-type";
+const last = "&:last-of-type";
 const expanded = "&[aria-expanded=true]";
 const grabbed = "&[aria-grabbed=true]";
-const notFirstChild = "&:not(:first-of-type)";
-const notLastChild = "&:not(:last-of-type)";
+const notFirst = "&:not(:first-of-type)";
+const notLast = "&:not(:last-of-type)";
+const groupHover = "[role=group]:hover &";
 
 const PseudoBox = styled(Box)(
   ({
@@ -44,12 +45,13 @@ const PseudoBox = styled(Box)(
     _visited,
     _before,
     _readOnly,
-    _firstChild,
-    _notFirstChild,
-    _notLastChild,
-    _lastChild,
+    _first,
+    _notFirst,
+    _notLast,
+    _last,
     _placeholder,
     _checked,
+    _groupHover,
     _mixed,
     _odd,
     _even,
@@ -65,15 +67,16 @@ const PseudoBox = styled(Box)(
       [expanded]: tx(_expanded),
       [grabbed]: tx(_grabbed),
       [readOnly]: tx(_readOnly),
-      [firstChild]: tx(_firstChild),
-      [notFirstChild]: tx(_notFirstChild),
-      [notLastChild]: tx(_notLastChild),
-      [lastChild]: tx(_lastChild),
+      [first]: tx(_first),
+      [notFirst]: tx(_notFirst),
+      [notLast]: tx(_notLast),
+      [last]: tx(_last),
       [odd]: tx(_odd),
       [even]: tx(_even),
       [mixed]: tx(_mixed),
       [checked]: tx(_checked),
       [pressed]: tx(_pressed),
+      [groupHover]: tx(_groupHover),
       "&:before": tx(_before),
       "&:after": tx(_after),
       "&:focus-within": tx(_focusWithin),

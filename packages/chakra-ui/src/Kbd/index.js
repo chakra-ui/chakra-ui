@@ -3,7 +3,7 @@ import { jsx } from "@emotion/core";
 import Box from "../Box";
 import { useColorMode } from "../ColorModeProvider";
 
-const Keyboard = props => {
+const Kbd = props => {
   const { colorMode } = useColorMode();
   const bg = { light: "gray.100", dark: "whiteAlpha.50" };
   return (
@@ -24,4 +24,4 @@ const Keyboard = props => {
   );
 };
 
-export default Keyboard;
+export default Kbd;
