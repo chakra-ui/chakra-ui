@@ -21,6 +21,8 @@ const Grid = forwardRef(
     ref,
   ) => (
     <Box
+      ref={ref}
+      display="grid"
       gridArea={area}
       gridTemplateAreas={templateAreas}
       gridGap={gap}
@@ -33,8 +35,6 @@ const Grid = forwardRef(
       gridAutoRows={autoRows}
       gridTemplateRows={templateRows}
       gridTemplateColumns={templateColumns}
-      display="grid"
-      ref={ref}
       {...props}
     />
   ),

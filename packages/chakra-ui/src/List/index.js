@@ -3,14 +3,18 @@ import { jsx } from "@emotion/core";
 import { forwardRef, Children, cloneElement } from "react";
 import Box from "../Box";
 import Icon from "../Icon";
+import PseudoBox from "../PseudoBox";
 
 const List = forwardRef(
-  ({ type = "none", spacing, children, ...props }, ref) => (
+  (
+    { styleType = "none", stylePos = "inside", spacing, children, ...props },
+    ref,
+  ) => (
     <Box
       ref={ref}
       as="ul"
-      ml={type === "none" ? null : "1.25em"}
-      listStyleType={type}
+      listStyleType={styleType}
+      listStylePosition={stylePos}
       {...props}
     >
       {Children.map(children, (child, index) => {
@@ -26,7 +30,7 @@ const List = forwardRef(
 );
 
 export const ListItem = forwardRef(({ spacing, ...props }, ref) => (
-  <Box ref={ref} as="li" mb={spacing} {...props} />
+  <PseudoBox ref={ref} as="li" mb={spacing} {...props} />
 ));
 
 export const ListIcon = ({ icon, ...props }) => {

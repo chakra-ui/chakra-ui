@@ -20,12 +20,12 @@ function string2Hex(str) {
 
 export const avatarSizes = {
   "2xs": 4,
-  xs: 5,
-  sm: 7,
-  md: 9,
-  lg: 10,
-  xl: 12,
-  "2xl": 13,
+  xs: 6,
+  sm: 8,
+  md: 12,
+  lg: 16,
+  xl: 24,
+  "2xl": 32,
   full: "full",
 };
 

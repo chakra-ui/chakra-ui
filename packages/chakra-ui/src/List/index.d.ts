@@ -4,14 +4,26 @@ import { BoxProps } from "../Box";
 
 interface IList {
   /**
-   * The `listStyleType` of this list
+   * The `list-style-type` of the list
    */
-  type?: StyledSystem.ResponsiveValue<React.CSSProperties["listStyleType"]>;
-  spacing: StyledSystem.ResponsiveValue<StyledSystem.MarginBottomProps>;
+  styleType?: StyledSystem.ResponsiveValue<
+    React.CSSProperties["listStyleType"]
+  >;
+  /**
+   * The `list-style-position` of the list
+   */
+  stylePos?: StyledSystem.ResponsiveValue<
+    React.CSSProperties["listStylePosition"]
+  >;
+  /**
+   * The space between each list item
+   */
+  spacing?: StyledSystem.MarginBottomProps;
 }
 
 type ListProps = IList & BoxProps;
 declare const List: React.FC<ListProps>;
 export const ListItem: React.FC<BoxProps>;
+export const ListIcon: React.FC<BoxProps>;
 
 export default List;

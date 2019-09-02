@@ -1,4 +1,4 @@
-const baseSizes = {
+export const baseSizes = {
   px: "1px",
   "0": "0",
   "1": "0.25rem",
@@ -7,33 +7,33 @@ const baseSizes = {
   "4": "1rem",
   "5": "1.25rem",
   "6": "1.5rem",
-  "7": "2rem",
-  "8": "2.5rem",
-  "9": "3rem",
-  "10": "4rem",
-  "11": "5rem",
-  "12": "6rem",
-  "13": "8rem",
-  "14": "10rem",
-  "15": "12rem",
-  "16": "14rem",
-  "17": "16rem",
-  full: "100%",
+  "8": "2rem",
+  "10": "2.5rem",
+  "12": "3rem",
+  "16": "4rem",
+  "20": "5rem",
+  "24": "6rem",
+  "32": "8rem",
+  "40": "10rem",
+  "48": "12rem",
+  "56": "14rem",
+  "64": "16rem",
 };
 
-const maxWidths = {
-  "3xs": "12rem",
-  "2xs": "14rem",
-  xs: "16rem",
-  sm: "20rem",
-  md: "24rem",
-  lg: "28rem",
-  xl: "32rem",
-  "2xl": "36rem",
-  "3xl": "42rem",
-  "4xl": "48rem",
-  "5xl": "56rem",
-  "6xl": "64rem",
+const largeSizes = {
+  full: "100%",
+  "3xs": "14rem",
+  "2xs": "16rem",
+  xs: "20rem",
+  sm: "24rem",
+  md: "28rem",
+  lg: "32rem",
+  xl: "36rem",
+  "2xl": "42rem",
+  "3xl": "48rem",
+  "4xl": "56rem",
+  "5xl": "64rem",
+  "6xl": "72rem",
 };
 
 const containers = {
@@ -45,7 +45,7 @@ const containers = {
 
 const sizes = {
   ...baseSizes,
-  ...maxWidths,
+  ...largeSizes,
   containers,
 };
 

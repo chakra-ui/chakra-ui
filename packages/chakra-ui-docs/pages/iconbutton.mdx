@@ -46,14 +46,27 @@ Just like the Button component, pass the `variant` prop to change the size of
 the button.
 
 ```jsx
-<Tooltip placement="right" label="Send email">
-  <IconButton
-    variant="outline"
-    variantColor="teal"
-    aria-label="Send email"
-    icon="email"
-  />
-</Tooltip>
+<IconButton
+  variant="outline"
+  variantColor="teal"
+  aria-label="Send email"
+  icon="email"
+/>
+```
+
+### With custom icon
+
+You can also use icons from popular libraries like
+[react-icons](react-icons.netlify.com) and just pass it into the button.
+
+```jsx
+<IconButton
+  variant="outline"
+  variantColor="teal"
+  aria-label="Call Sage"
+  fontSize="20px"
+  icon={MdPhone}
+/>
 ```
 
 ## Props

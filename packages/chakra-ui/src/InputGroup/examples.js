@@ -18,7 +18,7 @@ const stories = storiesOf("Input Group", module).addDecorator(story => {
   );
 });
 
-const size = "sm";
+const size = "md";
 
 stories.add("with left addon", () => (
   <InputGroup size={size}>

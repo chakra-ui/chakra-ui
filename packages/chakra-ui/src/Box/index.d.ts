@@ -74,6 +74,7 @@ interface ICustomConfig {
   stroke?: StyledSystem.ColorProps;
 
   bgAttachment?: StyledSystem.ResponsiveValue<CSS["backgroundAttachment"]>;
+  shadow?: StyledSystem.BoxShadowProps;
 
   // List properties
   listStyleType?: StyledSystem.ResponsiveValue<CSS["listStyleType"]>;

@@ -7,8 +7,8 @@ import PseudoBox from "../PseudoBox";
 
 const tagSizes = {
   sm: {
-    minH: "1.5rem",
-    minW: "1.5rem",
+    minH: 6,
+    minW: 6,
     fontSize: "sm",
     px: 2,
   },
@@ -19,8 +19,8 @@ const tagSizes = {
     px: 2,
   },
   lg: {
-    minH: "2rem",
-    minW: "2rem",
+    minH: 8,
+    minW: 8,
     px: 3,
   },
 };
@@ -83,7 +83,7 @@ export const TagIcon = ({ icon, ...props }) => {
 };
 
 export const TagLabel = props => (
-  <Box maxW={14} isTruncated lineHeight="1.2" as="span" {...props} />
+  <Box isTruncated lineHeight="1.2" as="span" {...props} />
 );
 
 const Tag = ({

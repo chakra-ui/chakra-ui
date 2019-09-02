@@ -156,20 +156,20 @@ const disabledProps = {
 
 const sizes = {
   lg: {
-    height: 9,
-    minWidth: 9,
+    height: 12,
+    minWidth: 12,
     fontSize: "lg",
     px: 6,
   },
   md: {
-    height: 8,
-    minWidth: 8,
+    height: 10,
+    minWidth: 10,
     fontSize: "md",
     px: 4,
   },
   sm: {
-    height: 7,
-    minWidth: 7,
+    height: 8,
+    minWidth: 8,
     fontSize: "sm",
     px: 3,
   },

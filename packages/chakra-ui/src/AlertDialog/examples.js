@@ -26,7 +26,9 @@ const SampleDialog = () => {
         onClose={onClose}
       >
         <AlertDialogHeader>
-          <Heading as="h2">Please Confirm!</Heading>
+          <Heading size="md" as="h2">
+            Please Confirm!
+          </Heading>
         </AlertDialogHeader>
 
         <AlertDialogBody>

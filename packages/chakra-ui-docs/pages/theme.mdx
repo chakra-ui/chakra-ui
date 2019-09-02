@@ -1,3 +1,10 @@
+import { Box, Flex, Grid, useTheme } from "@chakra-ui/core";
+import {
+  ColorPalette,
+  ColorPalettes,
+  ColorWrapper,
+} from "../components/ColorPalette";
+
 # Theme
 
 The theme object is where you define your application's color palette, type
@@ -11,33 +18,98 @@ Add a `theme.colors` object to provide colors for your project. By default these
 colors can be referenced by the `color`, `borderColor`, and `backgroundColor`,
 `fill`, `stroke`, styles.
 
-> We recommend adding palette that go from `50` - `900`. Use tools like
-> [Coolors](https://coolors.co/app) or [Palx](https://palx.jxnblk.com) to
-> generate these palette.
+We recommend adding palette that go from `50` - `900`. Use tools like
+[Coolors](https://coolors.co/app) or [Palx](https://palx.jxnblk.com) to generate
+these palette.
 
 ```js
 // theme.js
 export default {
-  theme: {
-    colors: {
-      transparent: "transparent",
-      black: "#000",
-      white: "#fff",
-      gray: {
-        50: "#f7fafc",
-        // ...
-        900: "#1a202c",
-      },
+  colors: {
+    transparent: "transparent",
+    black: "#000",
+    white: "#fff",
+    gray: {
+      50: "#f7fafc",
       // ...
+      900: "#1a202c",
     },
+    // ...
   },
 };
 ```
 
-We provide a sensible
-[default theme](https://github.com/segunadebayo/chakra/theme.js/) with a very
-generous set of values to get you started, but you can customize it to fit your
-design.
+Chakra provide a sensible
+[default theme](https://github.com/chakra-ui/chakra-ui/blob/master/packages/chakra-ui/src/theme)
+inspired by Tailwind CSS, but you can customize it to fit your design.
+
+### Black & White
+
+<ColorWrapper>
+  <ColorPalette color="black" name="Black" />
+  <ColorPalette color="white" name="White" />
+  <div />
+</ColorWrapper>
+
+### Gray
+
+<ColorWrapper>
+  <ColorPalettes color="gray" />
+</ColorWrapper>
+
+## Red
+
+<ColorWrapper>
+  <ColorPalettes color="red" />
+</ColorWrapper>
+
+## Orange
+
+<ColorWrapper>
+  <ColorPalettes color="orange" />
+</ColorWrapper>
+
+## Yellow
+
+<ColorWrapper>
+  <ColorPalettes color="yellow" />
+</ColorWrapper>
+
+## Green
+
+<ColorWrapper>
+  <ColorPalettes color="green" />
+</ColorWrapper>
+
+## Teal
+
+<ColorWrapper>
+  <ColorPalettes color="teal" />
+</ColorWrapper>
+
+## Blue
+
+<ColorWrapper>
+  <ColorPalettes color="blue" />
+</ColorWrapper>
+
+## Cyan
+
+<ColorWrapper>
+  <ColorPalettes color="cyan" />
+</ColorWrapper>
+
+## Purple
+
+<ColorWrapper>
+  <ColorPalettes color="purple" />
+</ColorWrapper>
+
+## Pink
+
+<ColorWrapper>
+  <ColorPalettes color="pink" />
+</ColorWrapper>
 
 ## Typography
 
@@ -52,7 +124,7 @@ To manage Typography options, the theme object supports the following keys:
 ```js
 // example theme object
 export default {
-  colors,
+  colors: {...},
   fonts: {
     body: "system-ui, sans-serif",
     heading: "Georgia, serif",
@@ -108,7 +180,7 @@ responsive styles.
 ```js
 // theme.js
 export default {
-  breakpoints: ["640px", "768px", "1024px", "1280px"],
+  breakpoints: ["30em", "48em", "62em", "80em"],
 };
 ```
 
@@ -120,31 +192,58 @@ your project. By default these spacing value can be referenced by the `padding`,
 
 ```js
 export default {
-  spacing: [
-    "0",
-    "0.25rem",
-    "0.5rem",
-    "0.75rem",
-    "1rem",
-    "1.25rem",
-    "1.5rem",
-    "2rem",
-    "2.5rem",
-    "3rem",
-    "4rem",
-    "5rem",
-    "6rem",
-    "8rem",
-    "10rem",
-    "12rem",
-    "14rem",
-    "16rem",
-  ],
+  space: {
+    px: "1px",
+    "0": "0",
+    "1": "0.25rem",
+    "2": "0.5rem",
+    "3": "0.75rem",
+    "4": "1rem",
+    "5": "1.25rem",
+    "6": "1.5rem",
+    "8": "2rem",
+    "10": "2.5rem",
+    "12": "3rem",
+    "16": "4rem",
+    "20": "5rem",
+    "24": "6rem",
+    "32": "8rem",
+    "40": "10rem",
+    "48": "12rem",
+    "56": "14rem",
+    "64": "16rem",
+  },
 };
 ```
 
-By default, these values are inherited by the `padding`, `margin`, `top`,
-`right`, `bottom`, `left`
+By default, Chakra includes a comprehensive numeric spacing scale inspired by
+Tailwind CSS. The values are proportional, so 1 spacing unit is equal to
+`0.25rem`, which translates to `4px` by default in common browsers.
+
+> **Mental model:** If you need a spacing of `40px`, divide it by `4`. That'll
+> give you `10`. Then use it in your component.
+
+| Name | Space   | Pixels |                                   |
+| ---- | ------- | ------ | --------------------------------- |
+| 0    | 0       | 0px    | <Box bg="pink.200" h="4" w="0"/>  |
+| px   | 1px     | 1px    | <Box bg="pink.200" h="4" w="px"/> |
+| 1    | 0.25rem | 4px    | <Box bg="pink.200" h="4" w="1"/>  |
+| 2    | 0.5rem  | 8px    | <Box bg="pink.200" h="4" w="2"/>  |
+| 3    | 0.75rem | 12px   | <Box bg="pink.200" h="4" w="3"/>  |
+| 4    | 1rem    | 16px   | <Box bg="pink.200" h="4" w="4"/>  |
+| 5    | 1.25rem | 20px   | <Box bg="pink.200" h="4" w="5"/>  |
+| 6    | 1.5rem  | 24px   | <Box bg="pink.200" h="4" w="6"/>  |
+| 8    | 2rem    | 32px   | <Box bg="pink.200" h="4" w="8"/>  |
+| 10   | 2.5rem  | 40px   | <Box bg="pink.200" h="4" w="10"/> |
+| 12   | 3rem    | 48px   | <Box bg="pink.200" h="4" w="12"/> |
+| 16   | 4rem    | 64px   | <Box bg="pink.200" h="4" w="16"/> |
+| 20   | 5rem    | 80px   | <Box bg="pink.200" h="4" w="20"/> |
+| 24   | 6rem    | 96px   | <Box bg="pink.200" h="4" w="24"/> |
+| 32   | 8rem    | 128px  | <Box bg="pink.200" h="4" w="32"/> |
+| 40   | 10rem   | 160px  | <Box bg="pink.200" h="4" w="40"/> |
+| 48   | 12rem   | 192px  | <Box bg="pink.200" h="4" w="48"/> |
+| 56   | 14rem   | 224px  | <Box bg="pink.200" h="4" w="56"/> |
+| 64   | 16rem   | 256px  | <Box bg="pink.200" h="4" w="64"/> |
 
 ## Sizes
 
@@ -155,32 +254,26 @@ build for your project. By default these spacing value can be referenced by the
 ```js
 export default {
   sizes: {
-    px: "1px",
-    "0": "0",
-    "1": "0.25rem",
-    "2": "0.5rem",
-    "3": "0.75rem",
-    "4": "1rem",
-    "5": "1.25rem",
-    "6": "1.5rem",
-    "7": "2rem",
-    "8": "2.5rem",
-    "9": "3rem",
-    "10": "4rem",
-    "11": "5rem",
-    "12": "6rem",
-    "13": "8rem",
-    "14": "10rem",
-    "15": "12rem",
-    "16": "14rem",
-    "17": "16rem",
+    ...theme.space,
     full: "100%",
+    "3xs": "14rem",
+    "2xs": "16rem",
+    xs: "20rem",
+    sm: "24rem",
+    md: "28rem",
+    lg: "32rem",
+    xl: "36rem",
+    "2xl": "42rem",
+    "3xl": "48rem",
+    "4xl": "56rem",
+    "5xl": "64rem",
+    "6xl": "72rem",
   },
 };
 ```
 
-For a component like this: `<Box width={4} height={3} />` will generate an empty
-`div` with width set to `1rem` or `16px` and height set to `0.75rem` or `14px`
+For a component like this: `<Box w={4} h={3} />` will generate an empty `div`
+with width set to `1rem` or `16px` and height set to `0.75rem` or `12px`
 
 ## Icons
 

@@ -82,6 +82,10 @@ export const config = {
   flexDir: {
     property: "flexDirection",
   },
+  shadow: {
+    property: "boxShadow",
+    scale: "shadows",
+  },
   textDecoration: true,
   overflowX: true,
   overflowY: true,
@@ -115,6 +119,7 @@ export const config = {
   objectFit: true,
   objectPosition: true,
   backgroundAttachment: true,
+  outline: true,
 };
 
 config.bgAttachment = config.backgroundAttachment;

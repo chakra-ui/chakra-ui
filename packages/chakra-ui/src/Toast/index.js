@@ -26,7 +26,7 @@ const Toast = ({
       rounded="md"
       alignItems="start"
       m={2}
-      pr={7}
+      pr={8}
       {...props}
     >
       <AlertIcon />

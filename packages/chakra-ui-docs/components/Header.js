@@ -77,7 +77,7 @@ const Header = props => {
             rel="noopener noreferrer"
             target="_blank"
           >
-            <Box as={DiGithubBadge} size="7" color="current" />
+            <Box as={DiGithubBadge} size="8" color="current" />
           </Box>
           <IconButton
             aria-label={`Switch to ${

@@ -38,7 +38,7 @@ change the style of most properties at a given breakpoint.
 This shortcut is an alternative to writing media queries out by hand. Given the
 following:
 
-```js
+```jsx live=false
 <Box width={[1, 1 / 2, 1 / 4]} />
 ```
 
@@ -91,12 +91,12 @@ browser to see it in action)**:
   <Box flexShrink="0">
     <Image
       rounded="lg"
-      width={{ sm: "full", md: 15 }}
-      src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80"
+      width={{ md: 40 }}
+      src="http://bit.ly/2jYM25F"
       alt="Woman paying for a purchase"
     />
   </Box>
-  <Box mt={{ sm: 4, md: 0 }} ml={{ sm: 0, md: 6 }}>
+  <Box mt={{ base: 4, md: 0 }} ml={{ md: 6 }}>
     <Text
       fontWeight="bold"
       textTransform="uppercase"
@@ -106,19 +106,16 @@ browser to see it in action)**:
     >
       Marketing
     </Text>
-    <PseudoBox
+    <Link
       mt={1}
-      as="a"
       display="block"
       fontSize="lg"
-      lineHeight="tight"
+      lineHeight="normal"
       fontWeight="semibold"
-      color="gray.900"
       href="#"
-      _hover={{ textDecoration: "underline" }}
     >
       Finding customers for your new business
-    </PseudoBox>
+    </Link>
     <Text mt={2} color="gray.500">
       Getting a new business off the ground is a lot of hard work. Here are five
       ideas you can use to find your first customers.

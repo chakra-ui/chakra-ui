@@ -46,7 +46,7 @@ const readOnly = {
   },
 };
 
-const filledStyle = ({ _focusBorderColor, colorMode}) => {
+const filledStyle = ({ _focusBorderColor, colorMode }) => {
   const bg = { light: "gray.100", dark: "whiteAlpha.50" };
   const hoverColor = { light: "gray.200", dark: "whiteAlpha.100" };
   const invalidColor = { light: "red.500", dark: "red.300" };
@@ -129,21 +129,21 @@ export const inputSizes = {
   lg: {
     fontSize: "lg",
     px: 4,
-    height: 9,
+    height: 12,
     lineHeight: "3rem",
     rounded: "md",
   },
   md: {
     fontSize: "md",
     px: 4,
-    height: 8,
+    height: 10,
     lineHeight: "2.5rem",
     rounded: "md",
   },
   sm: {
     fontSize: "sm",
     px: 3,
-    height: 7,
+    height: 8,
     lineHeight: "2rem",
     rounded: "sm",
   },
@@ -155,7 +155,7 @@ const useInputStyle = props => {
   const theme = useTheme();
   const { colorMode } = useColorMode();
 
-  const _props = { ...props, theme, colorMode};
+  const _props = { ...props, theme, colorMode };
 
   return {
     width: props.isFullWidth ? "100%" : undefined,

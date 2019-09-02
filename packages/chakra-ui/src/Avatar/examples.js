@@ -6,7 +6,7 @@ import AvatarGroup from "../AvatarGroup";
 
 const stories = storiesOf("Avatar", module);
 stories.addDecorator(story => (
-  <Box maxWidth="md" mt="40px" mx="auto">
+  <Box maxWidth="lg" mt="40px" mx="auto">
     {story()}
   </Box>
 ));

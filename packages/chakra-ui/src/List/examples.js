@@ -14,7 +14,7 @@ stories.add("Default", () => (
     <Text fontSize="sm" color="gray.600">
       .list-disc
     </Text>
-    <List type="disc">
+    <List styleType="disc">
       <ListItem>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit
       </ListItem>
@@ -33,7 +33,7 @@ stories.add("Ordered", () => (
     <Text fontSize="sm" color="gray.600">
       .list-decimal
     </Text>
-    <List type="decimal">
+    <List styleType="decimal">
       <ListItem>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit
       </ListItem>

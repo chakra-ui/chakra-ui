@@ -1,13 +1,42 @@
 # Grid
 
-A primitive useful for grid layouts.
+A primitive useful for grid layouts. Grid is `Box` with `display: grid` and
+comes with helpful style shorthand. It renders a `div` element.
+
+## Import
+
+```js
+import { Flex } from "@chakra-ui/core";
+```
+
+## Usage
+
+Using the Flex components, here are some helpful shorthand props:
+
+| Verbose Prop          | Shorthand Prop    |
+| --------------------- | ----------------- |
+| `gridArea`            | `area`            |
+| `gridTemplateAreas`   | `templateAreas`   |
+| `gridGap`             | `gap`             |
+| `gridRowGap`          | `rowGap`          |
+| `gridColumnGap`       | `columnGap`       |
+| `gridAutoColumns`     | `autoColumns`     |
+| `gridColumn`          | `column`          |
+| `gridRow`             | `row`             |
+| `gridAutoFlow`        | `autoFlow`        |
+| `gridAutoRows`        | `autoRows`        |
+| `gridTemplateRows`    | `templateRows`    |
+| `gridTemplateColumns` | `templateColumns` |
+
+While you can pass the verbose props, using the shorthand can save you some
+time.
 
 ```jsx
-<Grid gridTemplateColumns="repeat(5, 1fr)" gridGap={6}>
-  <Box w="100%" h="40px" bg="blue.500" />
-  <Box w="100%" h="40px" bg="blue.500" />
-  <Box w="100%" h="40px" bg="blue.500" />
-  <Box w="100%" h="40px" bg="blue.500" />
-  <Box w="100%" h="40px" bg="blue.500" />
+<Grid templateColumns="repeat(5, 1fr)" gap={6}>
+  <Box w="100%" h="10" bg="blue.500" />
+  <Box w="100%" h="10" bg="blue.500" />
+  <Box w="100%" h="10" bg="blue.500" />
+  <Box w="100%" h="10" bg="blue.500" />
+  <Box w="100%" h="10" bg="blue.500" />
 </Grid>
 ```

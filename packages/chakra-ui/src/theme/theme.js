@@ -1,29 +1,9 @@
 import icons from "../IconPaths";
 import colors from "./colors";
-import sizes from "./sizes";
+import sizes, { baseSizes } from "./sizes";
 import typography from "./typography";
 
-const space = {
-  px: "1px",
-  "0": "0",
-  "1": "0.25rem",
-  "2": "0.5rem",
-  "3": "0.75rem",
-  "4": "1rem",
-  "5": "1.25rem",
-  "6": "1.5rem",
-  "7": "2rem",
-  "8": "2.5rem",
-  "9": "3rem",
-  "10": "4rem",
-  "11": "5rem",
-  "12": "6rem",
-  "13": "8rem",
-  "14": "10rem",
-  "15": "12rem",
-  "16": "14rem",
-  "17": "16rem",
-};
+const space = baseSizes;
 
 const shadows = {
   sm: "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
@@ -33,6 +13,7 @@ const shadows = {
     "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
   "2xl": "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
   outline: "0 0 0 3px rgba(66, 153, 225, 0.6)",
+  inner: "inset 0 2px 4px 0 rgba(0,0,0,0.06)",
   none: "none",
 };
 

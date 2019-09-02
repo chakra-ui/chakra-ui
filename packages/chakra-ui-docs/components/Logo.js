@@ -8,7 +8,7 @@ const Logo = props => {
   return (
     <Box
       as="svg"
-      height="7"
+      height="8"
       width="auto"
       viewBox="0 0 998 257"
       fill="none"

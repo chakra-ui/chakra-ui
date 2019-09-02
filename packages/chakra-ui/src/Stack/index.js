@@ -28,7 +28,7 @@ const Stack = ({
           : { mb: isLastChild ? null : spacing };
         return (
           <Fragment>
-            <Box data-stack-item="" {...spacingProps}>
+            <Box data-stack-item="" display="inline-block" {...spacingProps}>
               {child}
             </Box>
           </Fragment>

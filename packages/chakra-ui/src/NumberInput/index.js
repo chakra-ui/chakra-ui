@@ -4,7 +4,7 @@ import Icon from "../Icon";
 import Input from "../Input";
 import PseudoBox from "../PseudoBox";
 import { useColorMode } from "../ColorModeProvider";
-import { roundValueToStep } from "../Slider";
+import { clampValue } from "../Slider";
 
 const themedProps = {
   light: {
@@ -86,7 +86,13 @@ const NumberInput = forwardRef(
     const _value = isControlled ? valueProp : val;
 
     const getNextValue = nextVal => {
-      return roundValueToStep(nextVal, step);
+      if (nextVal > max) {
+        return nextVal;
+      }
+      if (nextVal < min) {
+        return min;
+      }
+      return nextVal;
     };
 
     const handleIncrement = () => {

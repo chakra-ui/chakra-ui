@@ -11,7 +11,7 @@ import { List, ListItem, ListIcon } from "@chakra-ui/core";
 ## Unordered List
 
 ```jsx
-<List type="disc">
+<List styleType="disc">
   <ListItem>Lorem ipsum dolor sit amet</ListItem>
   <ListItem>Consectetur adipiscing elit</ListItem>
   <ListItem>Integer molestie lorem at massa</ListItem>
@@ -22,7 +22,7 @@ import { List, ListItem, ListIcon } from "@chakra-ui/core";
 ## Ordered List
 
 ```jsx
-<List as="ol" type="decimal">
+<List as="ol" styleType="decimal">
   <ListItem>Lorem ipsum dolor sit amet</ListItem>
   <ListItem>Consectetur adipiscing elit</ListItem>
   <ListItem>Integer molestie lorem at massa</ListItem>
@@ -57,3 +57,18 @@ size of the list item.
   </ListItem>
 </List>
 ```
+
+## Props
+
+### List Props
+
+| Name      | Type                             | Default  | Description                             |
+| --------- | -------------------------------- | -------- | --------------------------------------- |
+| styleType | `string`                         | `none`   | The CSS value for `list-style-type`     |
+| stylePos  | `string`                         | `inside` | The CSS value for `list-style-position` |
+| spacing   | `StyledSystem.MarginBottomProps` |          | The space between each list item        |
+
+### List Item Props
+
+ListItem composes `PseudoBox` so you pass all style props, and pseudo style
+props.

@@ -12,7 +12,7 @@ const topNavLinks = [
   "Theme",
 ];
 
-const utilsNavLinks = ["useClipboard", "useDisclosure"];
+const utilsNavLinks = ["useClipboard", "useDisclosure", "useTheme"];
 
 const NavGroupHeading = props => (
   <Heading
@@ -51,18 +51,18 @@ export const SideNavContent = ({
         ))}
       </Box>
 
-      <Box mb="8">
-        <NavGroupHeading>Utilities</NavGroupHeading>
-        {utilsNavLinks.map(link => (
+      <Box mb="10">
+        <NavGroupHeading>Components</NavGroupHeading>
+        {components.map(link => (
           <ComponentLink key={link} href={stringToUrl(link)}>
             {link}
           </ComponentLink>
         ))}
       </Box>
 
-      <Box mb="40px">
-        <NavGroupHeading>Components</NavGroupHeading>
-        {components.map(link => (
+      <Box mb="10">
+        <NavGroupHeading>Utilities</NavGroupHeading>
+        {utilsNavLinks.map(link => (
           <ComponentLink key={link} href={stringToUrl(link)}>
             {link}
           </ComponentLink>
