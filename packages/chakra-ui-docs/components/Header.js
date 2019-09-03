@@ -44,7 +44,8 @@ const Header = props => {
   const { colorMode, toggleColorMode } = useColorMode();
   const bg = { light: "white", dark: "gray.800" };
   return (
-    <Fixed
+    <Box
+      pos="fixed"
       as="header"
       top="0"
       zIndex="4"
@@ -92,7 +93,7 @@ const Header = props => {
           </Flex>
         </Flex>
       </Container>
-    </Fixed>
+    </Box>
   );
 };
 

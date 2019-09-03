@@ -21,7 +21,7 @@ const AppProvider = ({ children }) => {
     <ThemeProvider>
       <CSSReset />
       {children}
-      {/* <Fixed bottom="24px" right="24px" zIndex={2}>
+      {/* <Box pos="fixed" bottom="24px" right="24px" zIndex={2}>
         <Button
           variant="outline"
           onClick={toggleColorMode}
@@ -29,7 +29,7 @@ const AppProvider = ({ children }) => {
         >
           {colorMode === "dark" ? "Light" : "Dark"}
         </Button>
-      </Fixed> */}
+      </Box> */}
     </ThemeProvider>
   );
 };

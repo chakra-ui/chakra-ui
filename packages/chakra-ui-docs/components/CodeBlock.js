@@ -106,7 +106,14 @@ const StarIcon = props => {
   );
 };
 
-const CodeBlock = ({ className, live = true, render, children, ...props }) => {
+const CodeBlock = ({
+  className,
+  live = true,
+  isManual,
+  render,
+  children,
+  ...props
+}) => {
   const [editorCode, setEditorCode] = useState(children.trim());
 
   const language = className && className.replace(/language-/, "");
@@ -122,6 +129,7 @@ const CodeBlock = ({ className, live = true, render, children, ...props }) => {
     code: editorCode,
     transformCode: code => "/** @jsx mdx */" + code,
     scope: { ...Chakra, ...Formik, ...ReactIcons, mdx, StarIcon },
+    noInline: isManual,
     ...props,
   };
 

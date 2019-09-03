@@ -36,7 +36,6 @@ export { default as Editable } from "./Editable";
 export * from "./Editable";
 export { default as Embed } from "./Embed";
 
-export { default as Fixed } from "./Fixed";
 export { default as Flex } from "./Flex";
 export { default as FormControl } from "./FormControl";
 export * from "./FormControl";

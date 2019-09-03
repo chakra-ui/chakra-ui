@@ -1,8 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import { oneOf } from "prop-types";
-import { Children, Fragment } from "react";
-import Box from "../Box";
+import { Children, cloneElement } from "react";
 import Flex from "../Flex";
 
 const Stack = ({
@@ -18,7 +17,6 @@ const Stack = ({
       align={align}
       justify={justify}
       flexDir={isInline ? "row" : "column"}
-      data-stack=""
       {...rest}
     >
       {Children.map(children, (child, index) => {
@@ -26,20 +24,10 @@ const Stack = ({
         let spacingProps = isInline
           ? { mr: isLastChild ? null : spacing }
           : { mb: isLastChild ? null : spacing };
-        return (
-          <Fragment>
-            <Box data-stack-item="" display="inline-block" {...spacingProps}>
-              {child}
-            </Box>
-          </Fragment>
-        );
+        return cloneElement(child, spacingProps);
       })}
     </Flex>
   );
-};
-
-Stack.propTypes = {
-  type: oneOf(["bullet", "number", "none"]),
 };
 
 export default Stack;

@@ -34,6 +34,7 @@ const components = [
   "Slider",
   "Spinner",
   "Stat",
+  "Stack",
   "Switch",
   "Tabs",
   "Tag",
