@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "tioluwani94",
+      "name": "Tioluwani Kolawole",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/11310046?v=4",
+      "profile": "https://github.com/tioluwani94",
+      "contributions": [
+        "doc",
+        "example"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "chakra-ui",
+  "projectOwner": "chakra-ui",
+  "repoType": "github",
+  "repoHost": "https://github.com"
+}
