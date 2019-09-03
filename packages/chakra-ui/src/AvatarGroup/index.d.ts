@@ -25,15 +25,9 @@ interface IAvatarGroup {
   spacing?: StyledSystem.MarginLeftProps;
 }
 
-export type MoreIndicatorProps = IMoreIndicator &
-  BoxProps &
-  React.RefAttributes<HTMLDivElement>;
-
 export type AvatarGroupProps = IAvatarGroup &
   BoxProps &
-  React.RefAttributes<HTMLDivElement>;
-
-export const MoreIndicator: React.FC<MoreIndicatorProps>;
+  React.RefAttributes<HTMLElement>;
 
 /**
  * AvatarGroup is a wrapper to render a collection of evenly spaced avatars.

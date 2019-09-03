@@ -17,7 +17,7 @@ import {
 
 const Popover = ({
   isOpen: controlledIsOpen,
-  defaultOpen,
+  defaultIsOpen,
   maxWidth = "xs",
   trigger,
   gutter,
@@ -32,7 +32,7 @@ const Popover = ({
   closeOnEsc = true,
   ...rest
 }) => {
-  const { isOpen, onClose, onToggle } = useDisclosure(defaultOpen);
+  const { isOpen, onClose, onToggle } = useDisclosure(defaultIsOpen);
   const triggerRef = useRef();
   const popperRef = useRef();
 

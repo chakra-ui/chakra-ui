@@ -4,7 +4,6 @@ import Icon from "../Icon";
 import Input from "../Input";
 import PseudoBox from "../PseudoBox";
 import { useColorMode } from "../ColorModeProvider";
-import { clampValue } from "../Slider";
 
 const themedProps = {
   light: {
@@ -68,14 +67,34 @@ const NumberInput = forwardRef(
   (
     {
       size,
+      form,
+      pattern,
+      name,
+      placeholder,
+      onBlur,
       onChange,
+      onKeyDown,
+      onKeyUp,
+      onKeyPress,
+      onFocus,
+      id,
+      autoFocus,
+      variant,
+      "aria-label": ariaLabel,
+      "aria-describedby": ariaDescribedby,
+      "aria-labelledby": ariaLabelledby,
       min,
       max,
       step = 1,
       defaultValue,
       value: valueProp,
+      isReadOnly,
+      isFullWidth,
       isDisabled,
-      wrapperProps,
+      isInvalid,
+      isRequired,
+      focusBorderColor,
+      inputProps,
       ...rest
     },
     ref,
@@ -128,22 +147,47 @@ const NumberInput = forwardRef(
     const iconSize = size === "sm" ? "11px" : "15px";
 
     return (
-      <Flex alignItems="stretch" position="relative" {...wrapperProps}>
+      <Flex
+        align="stretch"
+        w={isFullWidth ? "full" : null}
+        pos="relative"
+        {...rest}
+      >
         <Input
+          ref={ref}
           size={size}
           type="number"
           role="spinbutton"
           aria-valuemin={min}
           aria-valuemax={max}
           aria-valuenow={_value}
-          ref={ref}
           onChange={handleChange}
           value={_value}
-          min={min}
-          max={max}
-          step={step}
-          isDisabled={isDisabled}
-          {...rest}
+          {...{
+            form,
+            pattern,
+            min,
+            placeholder,
+            onBlur,
+            onKeyDown,
+            onKeyUp,
+            onKeyPress,
+            onFocus,
+            autoFocus,
+            max,
+            step,
+            isDisabled,
+            isInvalid,
+            isRequired,
+            name,
+            id,
+            isReadOnly,
+            focusBorderColor,
+            variant,
+            "aria-label": ariaLabel,
+            "aria-describedby": ariaDescribedby,
+          }}
+          {...inputProps}
         />
         <Flex
           flexDirection="column"
@@ -154,10 +198,16 @@ const NumberInput = forwardRef(
           right="0px"
           height="calc(100% - 2px)"
         >
-          <SpinButton onClick={isDisabled ? undefined : handleIncrement}>
+          <SpinButton
+            isDisabled={isDisabled}
+            onClick={isDisabled ? undefined : handleIncrement}
+          >
             <Icon name="chevron-up" size={iconSize} />
           </SpinButton>
-          <SpinButton onClick={isDisabled ? undefined : handleDecrement}>
+          <SpinButton
+            isDisabled={isDisabled}
+            onClick={isDisabled ? undefined : handleDecrement}
+          >
             <Icon name="chevron-down" size={iconSize} />
           </SpinButton>
         </Flex>

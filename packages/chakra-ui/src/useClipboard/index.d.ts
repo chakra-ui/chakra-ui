@@ -1,7 +1,7 @@
 interface IClipboard<T> {
-  value: T;
-  onCopy: () => void;
-  hasCopied: boolean;
+  value?: T;
+  onCopy?: () => void;
+  hasCopied?: boolean;
 }
 
 /**

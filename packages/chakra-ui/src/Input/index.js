@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import propTypes from "prop-types";
 import { forwardRef } from "react";
 import { useFormControl } from "../FormControl";
 import PseudoBox from "../PseudoBox";
@@ -8,8 +7,6 @@ import useInputStyle from "./styles";
 
 const Input = forwardRef((props, ref) => {
   const {
-    type,
-    name,
     size,
     variant,
     as,
@@ -20,7 +17,7 @@ const Input = forwardRef((props, ref) => {
     isDisabled,
     isInvalid,
     isRequired,
-    _focusBorderColor,
+    focusBorderColor,
     ...rest
   } = props;
 
@@ -31,9 +28,8 @@ const Input = forwardRef((props, ref) => {
     <PseudoBox
       ref={ref}
       as={as}
-      type={type}
-      name={name}
       readOnly={formControl.isReadOnly}
+      aria-readonly={isReadOnly}
       disabled={formControl.isDisabled}
       aria-label={ariaLabel}
       aria-invalid={formControl.isInvalid}
@@ -52,12 +48,7 @@ Input.defaultProps = {
   as: "input",
   variant: "outline",
   isFullWidth: true,
-  _focusBorderColor: "blue",
-};
-
-Input.propTypes = {
-  size: propTypes.oneOf(["md", "sm", "lg"]),
-  variant: propTypes.oneOf(["outline", "unstyled", "flushed", "filled"]),
+  focusBorderColor: "blue",
 };
 
 export default Input;

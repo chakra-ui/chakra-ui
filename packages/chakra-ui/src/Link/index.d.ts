@@ -18,7 +18,9 @@ export interface ILink {
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 }
 
-export type LinkProps = ILink & PseudoBoxProps;
+export type LinkProps = ILink &
+  PseudoBoxProps &
+  React.HTMLAttributes<HTMLAnchorElement>;
 
 /**
  * Links are accesible elements used primarily for navigation. This component is

@@ -3,8 +3,6 @@ import { BoxProps } from "../Box";
 import { PseudoBoxProps } from "../PseudoBox";
 import { CollapseProps } from "../Collapse";
 
-type NumberOrArrayOfNumber = number | number[];
-
 interface IAccordion {
   /**
    * If `true`, multiple accordion items can be expanded at once.
@@ -17,15 +15,15 @@ interface IAccordion {
   /**
    * The index(es) of the expanded accordion item
    */
-  index?: NumberOrArrayOfNumber;
+  index?: number | number[];
   /**
    * The initial index(es) of the expanded accordion item
    */
-  defaultIndex?: NumberOrArrayOfNumber;
+  defaultIndex?: number | number[];
   /**
    * The callback invoked when accordion items are expanded or collapsed.
    */
-  onChange?: (expandedIndex?: NumberOrArrayOfNumber) => void;
+  onChange?: (expandedIndex?: number | number[]) => void;
   /**
    * The content of the accordion. Must be `AccordionItem`
    */
@@ -44,8 +42,8 @@ export const Accordion: React.FC<AccordionProps>;
 /////////////////////////////////////////////////////////////
 
 interface IAccordionItemRenderProps {
-  isExpanded: boolean;
-  isDisabled: boolean;
+  isExpanded?: boolean;
+  isDisabled?: boolean;
 }
 
 /**
@@ -53,7 +51,7 @@ interface IAccordionItemRenderProps {
  * The children must be the `AccordionHeader` and `AccordionPanel` components.
  */
 type AccordionItemChildren =
-  | { children: (props: IAccordionItemRenderProps) => React.ReactNode }
+  | { children(props: IAccordionItemRenderProps): React.ReactNode }
   | { children: React.ReactNode };
 
 interface IAccordionItem {

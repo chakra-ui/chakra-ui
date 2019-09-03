@@ -7,25 +7,72 @@ import { useColorMode } from "../ColorModeProvider";
 import Box from "../Box";
 
 const Select = forwardRef(
-  ({ children, placeholder, wrapperProps, ...rest }, ref) => {
+  (
+    {
+      children,
+      size,
+      placeholder,
+      form,
+      onBlur,
+      onKeyDown,
+      onKeyUp,
+      onKeyPress,
+      onFocus,
+      autoFocus,
+      isDisabled,
+      isInvalid,
+      isRequired,
+      name,
+      id,
+      isReadOnly,
+      focusBorderColor,
+      variant,
+      "aria-label": ariaLabel,
+      "aria-describedby": ariaDescribedby,
+      value,
+      defaultValue,
+      selectProps,
+      ...rest
+    },
+    ref,
+  ) => {
     const { colorMode } = useColorMode();
     const themedColor = colorMode === "dark" ? "whiteAlpha.800" : "inherit";
-    const opacity = rest.isReadOnly || rest.isDisabled ? 0.5 : 1;
+    const opacity = isReadOnly || isDisabled ? 0.5 : null;
 
     return (
-      <Box
-        position="relative"
-        width="100%"
-        color={themedColor}
-        {...wrapperProps}
-      >
+      <Box position="relative" width="100%" color={themedColor} {...rest}>
         <Input
           as="select"
+          size={size}
           appearance="none"
           ref={ref}
           pr="2rem"
+          pb="px"
           lineHeight="normal"
-          {...rest}
+          {...{
+            form,
+            placeholder,
+            onBlur,
+            onKeyDown,
+            onKeyUp,
+            onKeyPress,
+            onFocus,
+            autoFocus,
+            isDisabled,
+            isInvalid,
+            isRequired,
+            value,
+            defaultValue,
+            name,
+            id,
+            isReadOnly,
+            focusBorderColor,
+            variant,
+            "aria-label": ariaLabel,
+            "aria-describedby": ariaDescribedby,
+          }}
+          {...selectProps}
         >
           {placeholder && <option value="">{placeholder}</option>}
           {children}

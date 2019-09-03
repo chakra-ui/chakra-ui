@@ -1,6 +1,8 @@
 import * as React from "react";
 import { BoxProps } from "../Box";
 
+type Size = "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
+
 export interface IAvatar {
   /**
    * The name of the person in the avatar.
@@ -8,11 +10,11 @@ export interface IAvatar {
    * - if `src` has loaded, the name will be used as the `alt` attribute of the `img`
    * - If `src` is not loaded, the name will be used to create the initials
    */
-  name: string;
+  name?: string;
   /**
    * The size of the avatar.
    */
-  size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
+  size?: Size;
   /**
    * If `true`, the `Avatar` will show a border around it.
    *
@@ -29,14 +31,12 @@ export interface IAvatar {
   src?: string;
 }
 
-export type AvatarNameProps = Pick<IAvatar, "name"> & BoxProps;
-
-export type AvatarProps = IAvatar & BoxProps;
+export type AvatarNameProps = IAvatar["name"] & BoxProps;
+export const AvatarName: React.FC<AvatarNameProps>;
 
 export const AvatarBadge: React.FC<BoxProps>;
 
-export const AvatarName: React.FC<AvatarNameProps>;
-
+export type AvatarProps = IAvatar & BoxProps;
 /**
  * The Avatar component is used to represent user, and displays the profile
  * picture, initials or fallback icon.

@@ -1,21 +1,23 @@
 import * as React from "react";
 import { BoxProps } from "../Box";
 
-interface ICheckbox {
+type InputAttributes = React.InputHTMLAttributes<HTMLInputElement>;
+
+export interface ICheckbox {
   /**
    * id assigned to input
    */
-  id?: string;
+  id?: InputAttributes["id"];
   /**
    * The name of the input field in a checkbox
    * (Useful for form submission).
    */
-  name?: string;
+  name?: InputAttributes["name"];
   /**
    * The value to be used in the checkbox input.
    * This is the value that will be returned on form submission.
    */
-  value?: string | number;
+  value?: InputAttributes["value"];
   /**
    * The color of the checkbox when it's checked.
    * This should be one of the color keys in the theme (e.g."green", "red")
@@ -24,12 +26,12 @@ interface ICheckbox {
   /**
    * If `true`, the checkbox will be initially checked.
    */
-  defaultIsChecked?: boolean;
+  defaultIsChecked?: InputAttributes["defaultChecked"];
   /**
    * If `true`, the checkbox will be checked.
    * You'll need to pass `onChange` to update it's value (since it's now controlled)
    */
-  isChecked?: boolean;
+  isChecked?: InputAttributes["checked"];
   /**
    * If `true`, the checkbox should take up the full width of the parent.
    */
@@ -41,7 +43,7 @@ interface ICheckbox {
   /**
    * If `true`, the checkbox will be disabled
    */
-  isDisabled?: boolean;
+  isDisabled?: InputAttributes["disabled"];
   /**
    * If `true`, the checkbox is marked as invalid.
    * Changes style of unchecked state.
@@ -50,7 +52,7 @@ interface ICheckbox {
   /**
    * The callback invoked when the checked state of the `Checkbox` changes..
    */
-  onChange?: (event: React.ChangeEventHandler<HTMLInputElement>) => void;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
   /**
    * If `true`, the checkbox will be indeterminate.
    * This only affects the icon shown inside checkbox
@@ -64,7 +66,7 @@ interface ICheckbox {
 }
 
 export type CheckboxProps = ICheckbox &
-  React.RefAttributes<HTMLDivElement> &
+  React.RefAttributes<HTMLInputElement> &
   BoxProps;
 
 declare const Checkbox: React.FC<CheckboxProps>;

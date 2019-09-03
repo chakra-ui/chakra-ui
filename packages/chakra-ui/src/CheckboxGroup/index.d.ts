@@ -1,14 +1,15 @@
 import * as React from "react";
 import * as StyledSystem from "styled-system";
 import { BoxProps } from "../Box";
+import { ICheckbox } from "../Checkbox";
 
 export interface ICheckboxGroup {
-  id?: string;
-  name?: string;
+  id?: ICheckbox["id"];
+  name?: ICheckbox["name"];
   children?: React.ReactNode;
-  defaultValue?: Array<any>;
-  value?: Array<any>;
-  onChange?: (values?: Array<any>) => void;
+  defaultValue?: Array<ICheckbox["value"]>;
+  value?: Array<ICheckbox["value"]>;
+  onChange?: (value?: Array<ICheckbox["value"]>) => void;
   spacing?: StyledSystem.MarginProps;
   isInline?: boolean;
 }

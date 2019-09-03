@@ -15,13 +15,6 @@ stories.addDecorator(story => {
   );
 });
 
-/* 
-  <label>
-    <input type="checkbox"/>
-    Testing
-  </label>
-*/
-
 stories.add("Default", () => (
   <React.Fragment>
     <Checkbox isIndeterminate defaultChecked>

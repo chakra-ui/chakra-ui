@@ -84,37 +84,63 @@ interface ICustomConfig {
   listStylePos?: StyledSystem.ResponsiveValue<CSS["listStylePosition"]>;
 }
 
+type FontSize =
+  | "xs"
+  | "sm"
+  | "base"
+  | "lg"
+  | "xl"
+  | "2xl"
+  | "3xl"
+  | "4xl"
+  | "5xl";
+
 interface IFontSize {
-  fontSize?: "xs" | "sm" | "base" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl";
+  fontSize?: StyledSystem.ResponsiveValue<FontSize>;
 }
 
+type FontWeight =
+  | "hairline"
+  | "thin"
+  | "light"
+  | "normal"
+  | "medium"
+  | "semibold"
+  | "bold"
+  | "extrabold"
+  | "black";
 interface IFontWeight {
-  fontWeight?:
-    | "hairline"
-    | "thin"
-    | "light"
-    | "normal"
-    | "medium"
-    | "semibold"
-    | "bold"
-    | "extrabold"
-    | "black";
+  fontWeight?: StyledSystem.ResponsiveValue<FontWeight>;
 }
 
+type LineHeight = "none" | "shorter" | "short" | "normal" | "tall" | "taller";
 interface ILineHeight {
-  lineHeight?: "none" | "shorter" | "short" | "normal" | "tall" | "taller";
+  lineHeight?: StyledSystem.ResponsiveValue<LineHeight>;
 }
+
+type LetterSpacing =
+  | "tighter"
+  | "tight"
+  | "normal"
+  | "wide"
+  | "wider"
+  | "widest";
 
 interface ILetterSpacing {
-  letterSpacing?: "tighter" | "tight" | "normal" | "wide" | "wider" | "widest";
+  letterSpacing?: StyledSystem.ResponsiveValue<LetterSpacing>;
 }
 
-interface AsProp {
-  as?: React.ElementType | React.ReactElement;
+interface As {
+  as?: React.ElementType;
 }
+
+type TypographyProps = Omit<
+  StyledSystem.TypographyProps,
+  "fontWeight" | "lineHeight" | "fontSize" | "letterSpacing"
+>;
 
 export type BoxProps = React.RefAttributes<HTMLElement> &
-  React.HTMLAttributes<HTMLDivElement> &
+  React.HTMLAttributes<HTMLElement> &
   StyledSystem.LayoutProps &
   StyledSystem.ColorProps &
   StyledSystem.SpaceProps &
@@ -125,13 +151,13 @@ export type BoxProps = React.RefAttributes<HTMLElement> &
   StyledSystem.ShadowProps &
   StyledSystem.GridProps &
   StyledSystem.OpacityProps &
-  StyledSystem.TypographyProps &
+  TypographyProps &
   IFontSize &
   ILetterSpacing &
   IFontWeight &
   ILineHeight &
   ICustomConfig &
-  AsProp;
+  As;
 
 declare const Box: Emotion.StyledComponent<BoxProps, {}, {}>;
 

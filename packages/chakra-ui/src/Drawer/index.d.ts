@@ -44,11 +44,11 @@ interface IDrawer {
 }
 
 interface IDrawerTransition {
-  isOpen: boolean;
-  children: React.ReactNode;
-  duration: number;
-  placement: string;
-  isFullHeight: boolean;
+  isOpen?: IDrawer["isOpen"];
+  children?: React.ReactNode;
+  duration?: number;
+  placement?: IDrawer["placement"];
+  isFullHeight?: IDrawer["isFullHeight"];
 }
 
 export type DrawerProps = IDrawer;

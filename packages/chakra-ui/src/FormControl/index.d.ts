@@ -1,13 +1,6 @@
 import { BoxProps } from "../Box";
 import * as React from "react";
 
-interface IFormLabel extends BoxProps {
-  /**
-   * Content of the form label.
-   */
-  children: React.ReactNode;
-}
-
 interface IFormControl {
   /**
    * Content of the form control.
@@ -28,12 +21,6 @@ interface IFormControl {
 }
 
 export type FormControlProps = IFormControl & BoxProps;
-
-export const ErrorMessage: React.FC<BoxProps>;
-export const ValidationMessage: React.FC<BoxProps>;
-export const HelperMessage: React.FC<BoxProps>;
-export const RequiredIndicator: React.FC<BoxProps>;
-export const ValidationText: React.FC<BoxProps>;
 
 /**
  * FormControl provides context such as `isInvalid`, `isRequired`, `isDisabled` to it's children.

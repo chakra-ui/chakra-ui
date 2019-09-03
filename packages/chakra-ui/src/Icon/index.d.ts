@@ -9,7 +9,7 @@ interface IIcon {
   /**
    * The name of the icon.
    */
-  name: string;
+  name?: string;
   /**
    * The color of the icon.
    */

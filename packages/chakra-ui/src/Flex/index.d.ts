@@ -21,7 +21,7 @@ interface IFlex {
   direction?: BoxProps["flexDirection"];
 }
 
-export type FlexProps = IFlex & BoxProps & React.RefAttributes<HTMLDivElement>;
+export type FlexProps = IFlex & BoxProps & React.RefAttributes<HTMLElement>;
 
 declare const Flex: React.FC<FlexProps>;
 

@@ -12,7 +12,7 @@ interface IPseudoBoxProps {
    * <PseudoBox _after={{content:`""` }}/>
    * ```
    */
-  _after: BoxProps;
+  _after?: BoxProps;
   /**
    * Styles for CSS selector `&:before`
    *
@@ -22,41 +22,41 @@ interface IPseudoBoxProps {
    * <PseudoBox _before={{content:`""` }}/>
    * ```
    */
-  _before: BoxProps;
+  _before?: BoxProps;
   /**
    * Styles for CSS selector `&:focus`
    *
    */
-  _focus: BoxProps;
+  _focus?: BoxProps;
   /**
    * Styles for CSS selector `&:hover`
    */
-  _hover: BoxProps;
+  _hover?: BoxProps;
   /**
    * Styles for CSS Selector `&:active`
    */
-  _active: BoxProps;
+  _active?: BoxProps;
   /**
    * Styles for CSS Selector `&[aria-pressed=true]`
    * Typically used to style the current "pressed" state of toggle buttons
    */
-  _pressed: BoxProps;
+  _pressed?: BoxProps;
   /**
    * Styles to apply when the ARIA attribute `aria-selected` is `true`
    * - CSS selector `&[aria-selected=true]`
    */
-  _selected: BoxProps;
+  _selected?: BoxProps;
   /**
    * Styles to apply when a child of this element has received focus
    * - CSS Selector `&:focus-within`
    */
-  _focusWithin: BoxProps;
+  _focusWithin?: BoxProps;
 
   /**
    * Styles to apply when the ARIA attribute `aria-invalid` is `true`
    * - CSS selector `&[aria-invalid=true]`
    */
-  _invalid: BoxProps;
+  _invalid?: BoxProps;
   /**
    * Styles to apply when this element is disabled. The passed styles are applied to these CSS selectors:
    * - `&[aria-disabled=true]`
@@ -66,68 +66,68 @@ interface IPseudoBoxProps {
    * - `&:focus[aria-disabled=true]`
    * - `&:hover[aria-disabled=true]`
    */
-  _disabled: BoxProps;
+  _disabled?: BoxProps;
   /**
    * Styles to apply when the ARIA attribute `aria-grabbed` is `true`
    * - CSS selector `&[aria-grabbed=true]`
    */
-  _grabbed: BoxProps;
+  _grabbed?: BoxProps;
   /**
    * Styles to apply when the ARIA attribute `aria-expanded` is `true`
    * - CSS selector `&[aria-expanded=true]`
    */
-  _expanded: BoxProps;
+  _expanded?: BoxProps;
   /**
    * Styles to apply when the ARIA attribute `aria-checked` is `true`
    * - CSS selector `&[aria-checked=true]`
    */
-  _checked: BoxProps;
+  _checked?: BoxProps;
   /**
    * Styles to apply when the ARIA attribute `aria-checked` is `mixed`
    * - CSS selector `&[aria-checked=mixed]`
    */
-  _mixed: BoxProps;
+  _mixed?: BoxProps;
   /**
    * Styles for CSS Selector `&:nth-child(odd)`
    */
-  _odd: BoxProps;
+  _odd?: BoxProps;
   /**
    * Styles for CSS Selector `&:nth-child(even)`
    */
-  _even: BoxProps;
+  _even?: BoxProps;
   /**
    * Styles for CSS Selector `&:visited`
    */
-  _visited: BoxProps;
+  _visited?: BoxProps;
   /**
    * Styles for CSS Selector `&:readonly`
    */
-  _readOnly: BoxProps;
+  _readOnly?: BoxProps;
   /**
    * Styles for CSS Selector `&:first-of-type`
    */
-  _first: BoxProps;
+  _first?: BoxProps;
   /**
    * Styles for CSS Selector `&:last-of-type`
    */
-  _last: BoxProps;
+  _last?: BoxProps;
   /**
    * Styles to apply when you hover on a parent that has `role=group`.
    */
-  _groupHover: BoxProps;
+  _groupHover?: BoxProps;
   /**
    * Styles for CSS Selector `&:not(:first-of-type)`
    */
-  _notFirst: BoxProps;
+  _notFirst?: BoxProps;
   /**
    * Styles for CSS Selector `&:not(:last-of-type)`
    */
-  _notLast: BoxProps;
+  _notLast?: BoxProps;
   /**
    * Styles for CSS Selector `&::placeholder`.
    * Useful for inputs
    */
-  _placeholder: BoxProps;
+  _placeholder?: BoxProps;
 }
 
 export type PseudoBoxProps = IPseudoBoxProps & BoxProps;

@@ -53,11 +53,12 @@ function SliderInput() {
   return (
     <Flex>
       <NumberInput
-        wrapperProps={{ maxW: "100px", mr: "2rem" }}
+        maxW="100px"
+        mr="2rem"
         value={value}
         onChange={handleChange}
       />
-      <Slider flex="1" value={value} onChange={handleCkhange}>
+      <Slider flex="1" value={value} onChange={handleChange}>
         <SliderTrack />
         <SliderFilledTrack />
         <SliderThumb
@@ -86,4 +87,3 @@ NumberInput composes `Input` with some additional props listed below.
 | `value`        | `string`, `number`        |         | The value of the input, for controlled usage.                                                                                   |
 | `isDisabled`   | `boolean`                 | `false` | If `true`, the input will be disabled. This sets `aria-disabled=true` and you can style this state by passing `_disabled` prop. |
 | `onChange`     | `(value: number) => void` |         | Function called when the value of the `input` changes, for controlled usage.                                                    |
-| `wrapperProps` | `BoxProps`                |         | Style for the root wrapper of the number input                                                                                  |

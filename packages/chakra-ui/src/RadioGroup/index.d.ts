@@ -1,16 +1,17 @@
 import * as React from "react";
 import * as StyledSystem from "styled-system";
 import { BoxProps } from "../Box";
+import { IRadio } from "../Radio";
 
 export interface IRadioGroup {
   id?: string;
   name?: string;
   children?: React.ReactNode;
-  defaultValue?: string | number;
-  value?: string | number;
+  defaultValue?: IRadio["value"];
+  value?: IRadio["value"];
   onChange?: (
-    event?: React.ChangeEventHandler<HTMLInputElement>,
-    value?: string | number,
+    event?: React.ChangeEvent<HTMLInputElement>,
+    value?: IRadio["value"],
   ) => void;
   spacing?: StyledSystem.MarginProps;
   isInline?: boolean;

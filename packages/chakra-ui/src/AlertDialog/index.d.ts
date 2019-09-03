@@ -2,6 +2,20 @@ import * as React from "react";
 import * as StyledSystem from "styled-system";
 import { BoxProps } from "../Box";
 
+type Size =
+  | "3xs"
+  | "2xs"
+  | "xs"
+  | "sm"
+  | "md"
+  | "lg"
+  | "xl"
+  | "2xl"
+  | "3xl"
+  | "4xl"
+  | "5xl"
+  | "6xl";
+
 interface IAlertDialog {
   /**
    * If true, the `AlertDialog` will open
@@ -20,25 +34,15 @@ interface IAlertDialog {
   /**
    * The zIndex of the AlertDialog.
    */
-  zIndex: StyledSystem.ZIndexProps;
+  zIndex?: StyledSystem.ZIndexProps;
   /**
    * The background color of the overlay.
    */
-  overlayBg: StyledSystem.BackgroundColorProps;
+  overlayBg?: StyledSystem.BackgroundColorProps;
   /**
    * The size of the AlertDialog
    */
-  size?:
-    | "xs"
-    | "sm"
-    | "md"
-    | "lg"
-    | "xl"
-    | "2xl"
-    | "3xl"
-    | "4xl"
-    | "5xl"
-    | "6xl";
+  size?: Size;
   /**
    * If `true`, the `AlertDialog` will be centered on screen
    */

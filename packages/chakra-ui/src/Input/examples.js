@@ -21,10 +21,7 @@ stories.add("Readonly", () => (
     placeholder="Here is a sample placeholder"
     variant="outline"
     size="md"
-    _focusBorderColor="cyan"
-    // variant="filled"
-    // isReadOnly
-    // value="Testing Readonly"
-    // size="md"
+    focusBorderColor="cyan"
+    isReadOnly
   />
 ));

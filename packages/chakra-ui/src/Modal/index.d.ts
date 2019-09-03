@@ -52,8 +52,8 @@ export const ModalContent: React.FC<
 >;
 
 export interface IModalTransition {
-  isOpen: boolean;
-  children: React.ReactNode;
-  duration: number;
+  isOpen?: boolean;
+  children?: React.ReactNode;
+  duration?: number;
 }
 export const ModalTransition: React.FC<IModalTransition>;

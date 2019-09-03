@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import {
   Box,
-  Fixed,
   Flex,
   IconButton,
   useColorMode,

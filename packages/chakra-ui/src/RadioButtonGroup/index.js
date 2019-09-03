@@ -5,7 +5,6 @@ import { useId } from "@reach/auto-id";
 import Box from "../Box";
 
 const RadioButtonGroup = ({
-  id,
   name,
   children,
   defaultValue,
@@ -97,12 +96,7 @@ const RadioButtonGroup = ({
   });
 
   return (
-    <Box
-      role="radiogroup"
-      onKeyDown={handleKeyDown}
-      aria-labelledby={id}
-      {...rest}
-    >
+    <Box role="radiogroup" onKeyDown={handleKeyDown} {...rest}>
       {clones}
     </Box>
   );

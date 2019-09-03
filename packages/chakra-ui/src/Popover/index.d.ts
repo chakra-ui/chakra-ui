@@ -6,7 +6,7 @@ import { PseudoBoxProps } from "../PseudoBox";
 
 interface IPopover {
   isOpen?: boolean;
-  defaultOpen?: boolean;
+  defaultIsOpen?: boolean;
   maxWidth?: StyledSystem.MaxWidthProps;
   trigger?: React.ReactNode;
   placement?: ReactPopper.PopperProps["placement"];
@@ -33,7 +33,7 @@ export const PopoverHeader: React.FC<BoxProps>;
 export const PopoverFooter: React.FC<BoxProps>;
 export const PopoverBody: React.FC<BoxProps & { isScrollable?: boolean }>;
 export const PopoverCloseButton: React.FC<
-  PseudoBoxProps & { onClick: React.MouseEventHandler<HTMLButtonElement> }
+  PseudoBoxProps & { onClick?: React.MouseEventHandler<HTMLButtonElement> }
 >;
 
 export default Popover;

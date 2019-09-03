@@ -13,7 +13,7 @@ export interface IButtonGroup {
    */
   isAttached?: boolean;
   spacing?: StyledSystem.MarginRightProps;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export type ButtonGroupProps = IButtonGroup & BoxProps;

@@ -1,19 +1,17 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
+import styled from "@emotion/styled";
 import {
   AlertDialogContent as ReachAlertDialogContent,
   AlertDialogDescription,
   AlertDialogLabel,
   AlertDialogOverlay as ReachAlertDialogOverlay,
 } from "@reach/alert-dialog";
-import css from "@styled-system/css";
 import { forwardRef } from "react";
-import Box from "../Box";
-import { modalContentStyle } from "../Modal";
-import { useColorMode } from "../ColorModeProvider";
-import styled from "@emotion/styled-base";
-import { systemProps } from "../Box";
+import Box, { systemProps } from "../Box";
 import extraConfig from "../Box/config";
+import { useColorMode } from "../ColorModeProvider";
+import { modalContentStyle } from "../Modal";
 
 const AlertDialogHeader = props => (
   <Box py={4} px={6} as={AlertDialogLabel} {...props} />

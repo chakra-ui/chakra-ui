@@ -2,7 +2,7 @@ import { useTheme } from "../ThemeProvider";
 import { useColorMode } from "../ColorModeProvider";
 
 const outlinedStyle = ({
-  _focusBorderColor = "blue",
+  focusBorderColor = "blue",
   theme: { colors },
   colorMode,
 }) => {
@@ -10,7 +10,7 @@ const outlinedStyle = ({
   const borderColor = { light: "inherit", dark: "whiteAlpha.50" };
   const hoverColor = { light: "gray.300", dark: "whiteAlpha.200" };
 
-  const boxShadow = colors[_focusBorderColor] && colors[_focusBorderColor][500];
+  const boxShadow = colors[focusBorderColor] && colors[focusBorderColor][500];
 
   const invalidColor = { light: "red.500", dark: "red.300" };
   const invalidBoxShadow = { light: colors.red[500], dark: colors.red[300] };
@@ -28,7 +28,7 @@ const outlinedStyle = ({
       cursor: "not-allowed",
     },
     _focus: {
-      borderColor: `${_focusBorderColor}.500`,
+      borderColor: `${focusBorderColor}.500`,
       boxShadow: `0 0 0 1px ${boxShadow}`,
     },
     _invalid: {
@@ -46,13 +46,13 @@ const readOnly = {
   },
 };
 
-const filledStyle = ({ _focusBorderColor, colorMode }) => {
+const filledStyle = ({ focusBorderColor, colorMode }) => {
   const bg = { light: "gray.100", dark: "whiteAlpha.50" };
   const hoverColor = { light: "gray.200", dark: "whiteAlpha.100" };
   const invalidColor = { light: "red.500", dark: "red.300" };
   const focusColor = {
-    light: `${_focusBorderColor}.500`,
-    dark: `${_focusBorderColor}.300`,
+    light: `${focusBorderColor}.500`,
+    dark: `${focusBorderColor}.300`,
   };
 
   return {
