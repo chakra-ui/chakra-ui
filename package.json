@@ -32,6 +32,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "1.x",
     "@typescript-eslint/parser": "1.x",
+    "all-contributors-cli": "6.8.2",
     "babel-eslint": "10.0.1",
     "dtslint": "0.9.0",
     "eslint": "6.1.0",

@@ -6,13 +6,27 @@
   "commit": false,
   "contributors": [
     {
+      "login": "segunadebayo",
+      "name": "Segun Adebayo",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/6916170?v=4",
+      "profile": "https://github.com/segunadebayo",
+      "contributions": [
+        "code",
+        "maintenance"
+        "doc",
+        "example",
+        "design",
+      ]
+    },
+    {
       "login": "tioluwani94",
       "name": "Tioluwani Kolawole",
       "avatar_url": "https://avatars1.githubusercontent.com/u/11310046?v=4",
       "profile": "https://github.com/tioluwani94",
       "contributions": [
         "doc",
-        "example"
+        "example",
+        "maintenance"
       ]
     }
   ],
@@ -20,5 +34,6 @@
   "projectName": "chakra-ui",
   "projectOwner": "chakra-ui",
   "repoType": "github",
-  "repoHost": "https://github.com"
+  "repoHost": "https://github.com",
+  "commitConvention": "none"
 }

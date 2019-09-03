@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { oneOf } from "prop-types";
 import { Children, cloneElement } from "react";
 import Flex from "../Flex";
+import Box from "../Box";
 
 const Stack = ({
   isInline,
@@ -10,6 +10,7 @@ const Stack = ({
   align,
   justify,
   spacing = 2,
+  shouldWrapChildren,
   ...rest
 }) => {
   return (
@@ -24,6 +25,14 @@ const Stack = ({
         let spacingProps = isInline
           ? { mr: isLastChild ? null : spacing }
           : { mb: isLastChild ? null : spacing };
+
+        if (shouldWrapChildren) {
+          return (
+            <Box d="inline-block" {...spacingProps}>
+              {child}
+            </Box>
+          );
+        }
         return cloneElement(child, spacingProps);
       })}
     </Flex>

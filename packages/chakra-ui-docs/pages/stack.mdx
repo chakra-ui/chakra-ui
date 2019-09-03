@@ -9,7 +9,8 @@ together and apply a space between them. It composes the `Flex` component.
 import { Stack } from "@chakra-ui/core";
 ```
 
-By default, each item is stacked vertically.
+By default, each item is stacked vertically. Stack clones it's children and
+passes the spacing to them via the `margin-bottom` or `margin-right`.
 
 ## Usage
 
@@ -73,3 +74,14 @@ function StackEx() {
 
 render(<StackEx />);
 ```
+
+### Props
+
+| Name                 | Type                       | Default | Description                                                                                                              |
+| -------------------- | -------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `isInline`           | `boolean`                  |         | If `true` the items will be stacked horizontally inline.                                                                 |
+| `children`           | `React.ReactNode`          |         | The content of the stack.                                                                                                |
+| `spacing`            | `StyledSystem.MarginProps` |         | The space between each stack item                                                                                        |
+| `align`              | `string`                   |         | The alignment of the stack item. Similar to `align-items`                                                                |
+| `justify`            | `string`                   |         | The distribution of the stack item. Similar to `justify-content`                                                         |
+| `shouldWrapChildren` | `boolean`                  |         | If `true`, the children will be wrapped in a `Box` with `display: inline-block`, and the Box will take the spacing props |
