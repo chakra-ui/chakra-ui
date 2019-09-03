@@ -87,9 +87,9 @@ export default () => {
       <Header />
       <Box as="section" pt={40} pb={24}>
         <Container>
-          <Box maxW="2xl" mx="auto" textAlign="center">
+          <Box maxW="xl" mx="auto" textAlign="center">
             <Heading as="h1" size="xl" fontWeight="semibold">
-              Build accessible React apps with speed
+              Build accessible React apps & websites
               <Box as="span" color="teal.500">
                 {" "}
                 with speed
@@ -99,7 +99,7 @@ export default () => {
             <Text opacity="0.7" fontSize="xl" mt="6">
               Chakra UI is a simple, modular and accessible component library
               that gives you all the building blocks you need to build your
-              React applications. Build accessible rich web apps with React
+              React applications.
             </Text>
 
             <ButtonGroup size="lg" spacing="4" mt="6">
