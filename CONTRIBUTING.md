@@ -6,36 +6,39 @@ If you're reading this, you're awesome! Thank you for helping us make this proje
 
 Chakra UI is a community project, so pull requests are always welcome, but, before working on a large change, it is best to open an issue first to discuss it with the maintainers.
 
-When in doubt, keep your pull requests small. To give a PR the best chance of getting accepted, don't bundle more than one feature or bug fix per pull request. It's always best to create two smaller PRs than one big one.
-
 As with issues, please begin the title with [ComponentName].
 
-### Branch Structure
+## Getting Started
 
-At any given time, `master` represents the latest development version of the library.
+This project uses
 
-Patches or hotfix releases are prepared on an independent branch.
+- [Lerna](https://lerna.js.org/) to manage multiple libs
+- [Storybook](https://storybook.js.org/) for a great development experience
+- [Next](https://nextjs.org/) for a blazing fast website.
 
+Before doing anything else, run these commands:
 
-### How to increase the chance of being accepted?
+```
+git clone git@github.com:chakra-ui/chakra-ui.git
+cd chakra-ui
+yarn install
+yarn bootstrap
+yarn build
+```
 
+## Root Repo Scripts:
 
-## Getting started
-
-Please create a new branch from an up to date master on your fork. (Note, urgent hotfixes should be branched off the latest stable release rather than master)
-
-1. Fork the Chakra UI repository on Github
-2. Clone your fork to your local machine `git clone git@github.com:<yourname>/material-ui.git`
-3. Create a branch `git checkout -b my-feature-branch`
-4. Make your changes, lint, then push to to GitHub with `git push --set-upstream origin my-feature-branch`.
-5. Visit GitHub and make your pull request.
-
-If you have an existing local repository, please update it before you start, to minimise the chance of merge conflicts.
 ```sh
-git remote add upstream git@github.com:chakra-ui/chakra-ui.git
-git checkout master
-git pull upstream master
-git checkout -b my-feature-branch
+yarn bootstrap    # bootstraps lerna so all dependencies get
+                  # linked for cross-component development
+
+yarn storybook        # starts storybook server
+
+yarn docs:dev         # runs the documentation site locally
+
+yarn core:build        # build the component library
+
+yarn release      # publishes changed packages
 ```
 
 ### Running the documentation site
@@ -75,7 +78,7 @@ First, you have to build your local distribution of Chakra UI:
 
 ```shell
 # From the root of the project
-npm run build
+yarn build
 ```
 
 Next, you link your local distribution of Chakra UI to any project you want to try your changes:
@@ -85,7 +88,7 @@ Next, you link your local distribution of Chakra UI to any project you want to t
 lerna link
 ```
 
-Now, every time you import `chakra-ui` in your project, it is going to use your local distribution.
+Now, every time you import from `@chakra-ui/core` in your project, it is going to use your local distribution.
 
 
 ## License

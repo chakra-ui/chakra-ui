@@ -10,7 +10,7 @@ import * as ReactIcons from "react-icons/md";
 
 const { Box, Button, useClipboard, useColorMode } = Chakra;
 
-const liveEditorStyle = {
+export const liveEditorStyle = {
   fontSize: 14,
   marginBottom: 32,
   marginTop: 32,
@@ -27,7 +27,7 @@ const highlightStyle = {
   fontFamily: "Menlo,monospace",
 };
 
-const liveErrorStyle = {
+export const liveErrorStyle = {
   fontFamily: "Menlo, monospace",
   fontSize: 14,
   padding: "1em",
@@ -187,7 +187,6 @@ const CodeBlock = ({ className, live = true, render, children, ...props }) => {
 
 CodeBlock.defaultProps = {
   mountStylesheet: false,
-  // transformCode: src => `<React.Fragment>${src}</React.Fragment>`,
 };
 
 export default CodeBlock;

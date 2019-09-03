@@ -1,11 +1,18 @@
-import { Box, Text, Link, ColorModeProvider } from "@chakra-ui/core";
+import {
+  Box,
+  ColorModeProvider,
+  CSSReset,
+  Link,
+  Text,
+  ThemeProvider,
+} from "@chakra-ui/core";
 import { MDXProvider } from "@mdx-js/react";
+import { DefaultSeo } from "next-seo";
 import { useRouter } from "next/router";
 import React from "react";
-import Header from "../components/Header";
+import DocsHeader from "../components/DocsHeader";
 import MDXComponents from "../components/MDXComponents";
 import SideNav from "../components/SideNav";
-import { ThemeProvider, CSSReset } from "@chakra-ui/core";
 
 const Main = props => <Box as="main" mx="auto" mb="3rem" {...props} />;
 
@@ -33,7 +40,7 @@ const Footer = props => (
 
 const DocsLayout = ({ children }) => (
   <Box>
-    <Header />
+    <DocsHeader />
     <SideNav display={["none", null, "block"]} maxWidth="18rem" width="full" />
     <Box pl={[0, null, "18rem"]} mt="4rem">
       <Main maxWidth="46rem" pt={8} px={5}>
@@ -63,6 +70,10 @@ export default ({ Component, pageProps }) => {
         <CSSReset />
         <MDXProvider components={MDXComponents}>
           <Layout>
+            <DefaultSeo
+              title="Chakra Design System"
+              description="Simple, Modular and Accessible UI Components for your React Applications. Built with Styled System"
+            />
             <Component {...pageProps} />
           </Layout>
         </MDXProvider>

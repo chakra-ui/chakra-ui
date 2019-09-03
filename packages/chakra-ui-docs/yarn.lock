@@ -710,9 +710,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@chakra-ui/core@^0.1.4":
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/core/-/core-0.1.4.tgz#172b91ec712400f78d742a995b37d6db442c902a"
+"@chakra-ui/core@^0.1.6":
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/core/-/core-0.1.6.tgz#76c695616c00a0eba4a352376d9c0d482018827e"
+  integrity sha512-7TNKu1lq0Q2J8NEkt7VsTywhD7TnNSsSBm3wQ0x8NfEdkSENfUDKn7usea2tqanqBw7963q3moSKpD6reEJWKg==
   dependencies:
     "@reach/alert-dialog" "0.2.9"
     "@reach/auto-id" "0.2.0"
@@ -720,7 +721,6 @@
     "@reach/portal" "0.2.1"
     "@styled-system/css" "5.0.13"
     "@styled-system/should-forward-prop" "5.0.12"
-    "@styled-system/theme-get" "5.0.5"
     "@types/styled-system" "5.0.1"
     color "3.1.2"
     react-animate-height "2.0.9"
@@ -1101,12 +1101,6 @@
   resolved "https://registry.yarnpkg.com/@styled-system/space/-/space-5.0.18.tgz#30b66600d36afd33d2e33e1325356dff423e0c82"
   dependencies:
     "@styled-system/core" "^5.0.18"
-
-"@styled-system/theme-get@5.0.5":
-  version "5.0.5"
-  resolved "https://registry.yarnpkg.com/@styled-system/theme-get/-/theme-get-5.0.5.tgz#917d8b4d2d9c862b622e3fb019c9a74d5546196e"
-  dependencies:
-    "@styled-system/core" "^5.0.5"
 
 "@styled-system/typography@^5.0.18", "@styled-system/typography@^5.0.5":
   version "5.0.18"
@@ -2128,6 +2122,14 @@ create-react-context@0.2.2, create-react-context@<=0.2.2:
     fbjs "^0.8.0"
     gud "^1.0.0"
 
+create-react-context@^0.2.2:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/create-react-context/-/create-react-context-0.2.3.tgz#9ec140a6914a22ef04b8b09b7771de89567cb6f3"
+  integrity sha512-CQBmD0+QGgTaxDL3OX1IDXYqjkp2It4RIbcb99jS6AEg27Ga+a9G3JtK6SIu0HBwPLZlmwt9F7UwWA4Bn92Rag==
+  dependencies:
+    fbjs "^0.8.0"
+    gud "^1.0.0"
+
 crypto-browserify@^3.11.0:
   version "3.12.0"
   resolved "https://registry.yarnpkg.com/crypto-browserify/-/crypto-browserify-3.12.0.tgz#396cf9f3137f03e4b8e532c58f698254e00f80ec"
@@ -2190,6 +2192,11 @@ decode-uri-component@^0.2.0:
 deep-extend@^0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/deep-extend/-/deep-extend-0.6.0.tgz#c4fa7c95404a17a9c3e8ca7e1537312b736330ac"
+
+deepmerge@^2.1.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-2.2.1.tgz#5d3ff22a01c00f645405a2fbc17d0778a1801170"
+  integrity sha512-R9hc1Xa/NOBi9WRVUWg19rl1UB7Tt4kuPd+thNJgFZoxXsTz7ncaPaeIm+40oSGuP33DfMb4sZt1QIGiJzC4EA==
 
 define-properties@^1.1.2:
   version "1.1.3"
@@ -2544,6 +2551,21 @@ fork-ts-checker-webpack-plugin@1.3.4:
     semver "^5.6.0"
     tapable "^1.0.0"
     worker-rpc "^0.1.0"
+
+formik@^1.5.8:
+  version "1.5.8"
+  resolved "https://registry.yarnpkg.com/formik/-/formik-1.5.8.tgz#eee8cd345effe46839bc748c7f920486f12f14b0"
+  integrity sha512-fNvPe+ddbh+7xiByT25vuso2p2hseG/Yvuj211fV1DbCjljUEG9OpgRpcb7g7O3kxHX/q31cbZDzMxJXPWSNwA==
+  dependencies:
+    create-react-context "^0.2.2"
+    deepmerge "^2.1.1"
+    hoist-non-react-statics "^3.3.0"
+    lodash "^4.17.14"
+    lodash-es "^4.17.14"
+    prop-types "^15.6.1"
+    react-fast-compare "^2.0.1"
+    tiny-warning "^1.0.2"
+    tslib "^1.9.3"
 
 fragment-cache@^0.2.1:
   version "0.2.1"
@@ -3225,6 +3247,11 @@ locate-path@^5.0.0:
   dependencies:
     p-locate "^4.1.0"
 
+lodash-es@^4.17.14:
+  version "4.17.15"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.15.tgz#21bd96839354412f23d7a10340e5eac6ee455d78"
+  integrity sha512-rlrc3yU3+JNOpZ9zj5pQtxnx2THmvRykwL4Xlxoa8I9lHBlVbbyPhgyPMioxVZ4NqyxaVVtaJnzsyOidQIhyyQ==
+
 lodash.toarray@^4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/lodash.toarray/-/lodash.toarray-4.4.0.tgz#24c4bfcd6b2fba38bfd0594db1179d8e9b656561"
@@ -3233,7 +3260,7 @@ lodash.uniq@4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
 
-lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.4, lodash@^4.17.5:
+lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.4, lodash@^4.17.5:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
 
@@ -3501,6 +3528,11 @@ negotiator@0.6.2:
 neo-async@^2.5.0:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.1.tgz#ac27ada66167fa8849a6addd837f6b189ad2081c"
+
+next-seo@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/next-seo/-/next-seo-2.0.0.tgz#478ea9ac5a6f7b331b58f9604a577bcccbd4ba43"
+  integrity sha512-VUkgKtnBEugWIjZTHLBRO/EI9LCqPM55qCuYgP1OBvSPwXKReG27g9k5iEHaFymoTjdyhQFMUE8GVHdbAfd2eA==
 
 next-server@9.0.3:
   version "9.0.3"
@@ -4128,6 +4160,11 @@ react-dom@^16.8.6:
 react-error-overlay@5.1.6:
   version "5.1.6"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-5.1.6.tgz#0cd73407c5d141f9638ae1e0c63e7b2bf7e9929d"
+
+react-fast-compare@^2.0.1:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"
+  integrity sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==
 
 react-focus-lock@1.19.1, react-focus-lock@^1.17.7:
   version "1.19.1"
@@ -4927,6 +4964,11 @@ tiny-invariant@^1.0.4:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/tiny-invariant/-/tiny-invariant-1.0.6.tgz#b3f9b38835e36a41c843a3b0907a5a7b3755de73"
 
+tiny-warning@^1.0.2:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/tiny-warning/-/tiny-warning-1.0.3.tgz#94a30db453df4c643d0fd566060d60a875d84754"
+  integrity sha512-lBN9zLN/oAf68o3zNXYrdCt1kP8WsiGW8Oo2ka41b2IM5JL/S1CTyX1rW0mb/zSuJun0ZUrDxx4sqvYS2FWzPA==
+
 to-arraybuffer@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/to-arraybuffer/-/to-arraybuffer-1.0.1.tgz#7d229b1fcc637e466ca081180836a7aabff83f43"
@@ -4994,7 +5036,7 @@ trough@^1.0.0:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/trough/-/trough-1.0.4.tgz#3b52b1f13924f460c3fbfd0df69b587dbcbc762e"
 
-tslib@^1.0.0, tslib@^1.9.0:
+tslib@^1.0.0, tslib@^1.9.0, tslib@^1.9.3:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.10.0.tgz#c3c19f95973fb0a62973fb09d90d961ee43e5c8a"
 

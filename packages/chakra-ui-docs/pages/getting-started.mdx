@@ -74,8 +74,22 @@ import { Button } from "@chakra-ui/core";
 
 ## Injecting global styles
 
-Sometimes you may need to apply global styles to your page. Here is how you can
-do this with the utilities provided by Chakra UI.
+Sometimes you may need to apply css reset styles to your page. Chakra UI exports
+a `CSSReset` that'll remove browser default styles. It's heavily inspired by
+[Tailwind's preflight](https://unpkg.com/tailwindcss@1.1.2/dist/base.css)
+
+```jsx live=false
+// import customTheme from "./theme"
+
+function App({ children }) {
+  return (
+    <ThemeProvider theme={customTheme}>
+      <CSSReset />
+      {children}
+    </ThemeProvider>
+  );
+}
+```
 
 ## Adding Icons
 

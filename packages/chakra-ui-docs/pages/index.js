@@ -7,119 +7,214 @@ import {
   ButtonGroup,
   Button,
   Grid,
-  Image,
+  Divider,
+  Flex,
+  Stack,
+  Link,
 } from "@chakra-ui/core";
 import { useRouter } from "next/router";
-import Logo from "../components/Logo";
+import Header from "../components/Header";
+import { DiGithubBadge } from "react-icons/di";
+import { MdAccessibility, MdPalette, MdGrain, MdEmail } from "react-icons/md";
+import { IoLogoTwitter, IoLogoLinkedin } from "react-icons/io";
+import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
+import theme from "prism-react-renderer/themes/nightOwl";
+import * as Chakra from "@chakra-ui/core";
+import * as ReactMdIcons from "react-icons/md";
 
-const Container = props => (
-  <Box width="full" maxWidth="1024px" mx="auto" px="24px" {...props} />
+export const Container = props => (
+  <Box width="full" maxWidth="1280px" mx="auto" px={6} {...props} />
 );
 
-const Feature = ({ title, children, ...props }) => {
+const Feature = ({ title, icon, children, ...props }) => {
   return (
     <Box {...props}>
-      <Heading as="h2" size="lg" my={5}>
+      <Flex
+        rounded="full"
+        size={12}
+        bg="teal.500"
+        align="center"
+        justify="center"
+      >
+        <Box size={6} color="white" as={icon} />
+      </Flex>
+      <Heading as="h2" size="md" fontWeight="semibold" mt="1em" mb="0.5em">
         {title}
       </Heading>
-      <Text my={5}>{children}</Text>
+      <Text>{children}</Text>
     </Box>
   );
 };
 
-const badges = [
-  {
-    src: "https://flat.badgen.net/circleci/github/system-ui/theme-ui/master",
-    alt: "Build Status",
-  },
-  {
-    src: "https://flat.badgen.net/npm/v/theme-ui",
-    alt: "Version",
-  },
-  {
-    src: "https://flat.badgen.net/badge/license/MIT/blue",
-    alt: "MIT License",
-  },
-  {
-    src: "https://flat.badgen.net/badge/system-ui/theme/black",
-    alt: "system-ui/theme badge",
-  },
-  {
-    src: "https://flat.badgen.net/bundlephobia/minzip/theme-ui",
-    alt: "bundle size badge",
-  },
-];
+const sampleCode = `
+// All Chakra Components are available here
+
+<Box>
+  <Image rounded="md" src="http://bit.ly/2k1H1t6"/>
+  <Flex align="baseline" mt={2}>
+    <Badge variantColor="pink">Plus</Badge>
+    <Text
+      ml={2}
+      textTransform="uppercase"
+      fontSize="sm"
+      fontWeight="bold"
+      color="pink.800"
+    >
+    Verified &bull; Cape Town
+    </Text>
+  </Flex>
+  <Text mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
+    Modern, Chic Penthouse with Mountain, City & Sea Views
+  </Text>
+  <Text mt={2}>$119/night</Text>
+  <Flex mt={2} align="center">
+    <Box as={MdStar} color="orange.400" />
+    <Text ml={1} fontsize="sm"><b>4.84</b> (190)</Text>
+  </Flex>
+</Box>
+`;
+
+const FooterLink = ({ icon, href }) => (
+  <Link href={href} isExternal>
+    <Box as={icon} size="6" color="gray.400" />
+  </Link>
+);
 
 export default () => {
   const router = useRouter();
   return (
-    <Box mb="80px">
-      <Box
-        as="section"
-        minH="100vh"
-        borderTop="10px solid"
-        borderColor="teal.500"
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-      >
+    <Box mb={20}>
+      <Header />
+      <Box as="section" pt={40} pb={24}>
         <Container>
-          <Heading color="teal.500" fontWeight="bold" fontSize="6xl">
-            Chakra UI
-          </Heading>
+          <Box maxW="2xl" mx="auto" textAlign="center">
+            <Heading as="h1" size="xl" fontWeight="semibold">
+              Build accessible React apps with speed
+              <Box as="span" color="teal.500">
+                {" "}
+                with speed
+              </Box>
+            </Heading>
 
-          <Text mt="16px" fontSize="2xl">
-            Build consistent, themeable React apps based on constraint-based
-            design principles
-          </Text>
+            <Text opacity="0.7" fontSize="xl" mt="6">
+              Chakra UI is a simple, modular and accessible component library
+              that gives you all the building blocks you need to build your
+              React applications. Build accessible rich web apps with React
+            </Text>
 
-          <Text mt="32px" fontSize="xl" fontWeight="bold">
-            Emotion + Styled System + Reach UI
-          </Text>
-
-          <ButtonGroup size="lg" spacing={4} mt={7}>
-            <Button
-              variantColor="teal"
-              onClick={() => router.push("/getting-started")}
-            >
-              Documentation
-            </Button>
-            <Button
-              as="a"
-              href="https://github.com/chakra-ui/chakra-ui/"
-              target="__blank"
-            >
-              Github
-            </Button>
-          </ButtonGroup>
-          {/* <Box mt={8}>
-            {badges.map(badge => (
-              <Image mr={2} display="inline-block" {...badge} />
-            ))}
-          </Box> */}
+            <ButtonGroup size="lg" spacing="4" mt="6">
+              <Button
+                variantColor="teal"
+                onClick={() => router.push("/getting-started")}
+              >
+                Get Started
+              </Button>
+              <Button
+                as="a"
+                href="https://github.com/chakra-ui/chakra-ui/"
+                target="__blank"
+                leftIcon={props => <DiGithubBadge size="1.5em" {...props} />}
+              >
+                Github
+              </Button>
+            </ButtonGroup>
+          </Box>
         </Container>
       </Box>
 
+      <Divider my={16} />
+
       <Container>
         <Grid
-          gridTemplateColumns={{ sm: "repeat(1, 1fr)", md: "repeat(3, 1fr)" }}
-          gridGap={{ sm: "24px", md: "40px" }}
+          templateColumns={{ sm: "repeat(1, 1fr)", md: "repeat(3, 1fr)" }}
+          gap={10}
+          px={{ md: 12 }}
         >
-          <Feature title="Accessible">
-            Chakra UI strictly follows <strong>WAI-ARIA 1.1</strong> standards.
-            All components come with proper attributes and keyboard interactions
-            out of the box.
+          <Feature icon={MdAccessibility} title="Accessible">
+            Chakra UI strictly follows WAI-ARIA standards. All components come
+            with proper attributes and keyboard interactions out of the box.
           </Feature>
-          <Feature title="Themeable">
+          <Feature icon={MdPalette} title="Themeable">
             Quickly and easily reference values from your theme throughout your
-            entire application, on any component
+            entire application, on any component.
           </Feature>
-          <Feature title="Composition">
-            Chakra UI components were built with composition in mind. You can
-            leverage any component or hook to create new things.
+          <Feature icon={MdGrain} title="Composable">
+            Components were built with composition in mind. You can leverage any
+            component to create new things.
           </Feature>
         </Grid>
       </Container>
+
+      <Divider my={16} />
+
+      <Container>
+        <Box maxW="xl" mx="auto">
+          <Heading fontWeight="semibold" textAlign="center" mb="2em">
+            Code components for your React Apps with speed{" "}
+            <Box as="span" color="teal.500">
+              using Chakra
+            </Box>
+            .
+          </Heading>
+        </Box>
+
+        <Box>
+          <LiveProvider
+            theme={theme}
+            language="jsx"
+            scope={{ ...Chakra, ...ReactMdIcons }}
+            code={sampleCode.trim()}
+          >
+            <Box d={{ md: "flex" }} alignItems="flex-start">
+              <LiveEditor
+                padding={20}
+                style={{
+                  fontFamily: "Menlo,monospace",
+                  borderRadius: 4,
+                  flex: 1,
+                }}
+              />
+              <Box size={8} />
+              <Box
+                p={6}
+                flex="1"
+                rounded="4px"
+                as={LivePreview}
+                borderWidth="1px"
+              />
+            </Box>
+            <Box
+              as={LiveError}
+              mt={4}
+              bg="red.400"
+              fontFamily="Menlo, monospace"
+              color="white"
+              p="1em"
+            />
+          </LiveProvider>
+        </Box>
+      </Container>
+
+      <Divider my={16} />
+
+      <Box as="footer" mt={12} textAlign="center">
+        <Text fontSize="sm">Designed & Developed by Segun Adebayo</Text>
+        <Stack mt={4} isInline spacing="12px" justify="center">
+          <FooterLink
+            href="https://github.com/segunadebayo"
+            icon={DiGithubBadge}
+          />
+          <FooterLink
+            href="https://twitter.com/thesegunadebayo"
+            icon={IoLogoTwitter}
+          />
+          <FooterLink
+            href="https://linkedin.com/in/thesegunadebayo/"
+            icon={IoLogoLinkedin}
+          />
+          <FooterLink href="mailto:sage@adebayosegun.com" icon={MdEmail} />
+        </Stack>
+      </Box>
     </Box>
   );
 };
