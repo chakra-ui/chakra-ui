@@ -7,7 +7,7 @@ Menu uses roving tabIndex for focus management.
 
 Chakra UI exports 8 components for rendering menus:
 
-- `Menu`: The wrapper component that uses provides context, state, and focus
+- `Menu`: The wrapper component that provides context, state, and focus
   management.
 - `MenuList`: The wrapper for the menu items. Must be a direct child of `Menu`.
 - `MenuButton`: The trigger for the menu list. Must be a direct child of `Menu`.
@@ -222,8 +222,8 @@ options. Use the `MenuOptionGroup` and `MenuItemOption` components.
 | children      | `React.ReactNode` |         | The children of the menu must be `MenuButton` and `MenuList` |
 | isOpen        | `boolean`         |         | If `true`, the menu will be opened                           |
 | autoSelect    | `boolean`         | `true`  | The menu will select the first enabled item when it opens    |
-| closeOnBlur   | `boolean`         | `true`  | If `true`, the menu will be close on outside click or blur.  |
-| closeOnSelect | `boolean`         | `true`  | If `true`, the button will show a spinner.                   |
+| closeOnBlur   | `boolean`         | `true`  | If `true`, the menu will close on outside click or blur      |
+| closeOnSelect | `boolean`         | `true`  | If `true`, the menu will close on menu item select           |
 
 ### MenuButton Props
 
@@ -238,44 +238,44 @@ options. Use the `MenuOptionGroup` and `MenuItemOption` components.
 | Name      | Type                      | Description                                                       |
 | --------- | ------------------------- | ----------------------------------------------------------------- |
 | children  | `React.ReactNode`         | The content of the `MenuList`, should be the `MenuItem` component |
-| onClick   | `React.MouseEventHandler` | Function to be called when you click on the menu item.            |
-| onBlur    | `React.FocusEventHandler` | Function to be called when you blur out of the menu list.         |
+| onClick   | `React.MouseEventHandler` | Function to be called when you click on the menu item             |
+| onBlur    | `React.FocusEventHandler` | Function to be called when you blur out of the menu list          |
 | placement | `PopperJS.placement`      | The placement of the `MenuList`                                   |
 
 ### MenuItem Props
 
-| Name       | Type                                            | Description                                                |
-| ---------- | ----------------------------------------------- | ---------------------------------------------------------- |
-| isDisabled | `boolean`                                       | If `true`, the menu item will be isDisabled                |
-| onClick    | `React.MouseEventHandler`                       | Function that is called on click and enter/space keypress. |
-| onKeyDown  | `React.KeyboardEventHander`                     | Function that is called on keydown.                        |
-| role       | `menuitem`, `menuitemradio`, `menuitemcheckbox` | The ARIA role of the menuitem                              |
+| Name       | Type                                            | Description                                               |
+| ---------- | ----------------------------------------------- | --------------------------------------------------------- |
+| isDisabled | `boolean`                                       | If `true`, the menu item will be disabled                 |
+| onClick    | `React.MouseEventHandler`                       | Function that is called on click and enter/space keypress |
+| onKeyDown  | `React.KeyboardEventHander`                     | Function that is called on keydown                        |
+| role       | `menuitem`, `menuitemradio`, `menuitemcheckbox` | The ARIA role of the menuitem                             |
 
 ### MenuGroup Props
 
 | Name     | Type              | Description                   |
 | -------- | ----------------- | ----------------------------- |
 | children | `React.ReactNode` | The content of the menu group |
-| title    | `string`          | The title of the menu group.  |
+| title    | `string`          | The title of the menu group   |
 
 ### MenuOptionGroup Props
 
-| Name         | Type                                         | Description                                             |
-| ------------ | -------------------------------------------- | ------------------------------------------------------- |
-| children     | `React.ReactNode`                            | The content of the menu group                           |
-| title        | `string`                                     | Title of the menu group.                                |
-| type         | `radio`, `checkbox`                          | Used to add roles `menuitemradio` or `menuitemcheckbox` |
-| defaultValue | `string`, `number`, `Array<string | number>` | The initial value of the option group                   |
-| value        | `string`, `number`, `Array<string | number>` | The value of the option group.                          |
-| onChange     | `(value) => void`                            | Function called when selection changes.                 |
+| Name         | Type                                          | Description                                             |
+| ------------ | --------------------------------------------- | ------------------------------------------------------- |
+| children     | `React.ReactNode`                             | The content of the option group                         |
+| title        | `string`                                      | Title of the option group                               |
+| type         | `radio`, `checkbox`                           | Used to add roles `menuitemradio` or `menuitemcheckbox` |
+| defaultValue | `string`, `number`, `Array<string or number>` | The initial value of the option group                   |
+| value        | `string`, `number`, `Array<string or number>` | The value of the option group                           |
+| onChange     | `(value) => void`                             | Function called when selection changes                  |
 
 ### MenuItemOption Props
 
 | Name         | Type                      | Description                                             |
 | ------------ | ------------------------- | ------------------------------------------------------- |
-| isDisabled   | `boolean`                 | if `true`, the menu item will be disabled.              |
-| children     | `React.ReactNode`         | The content of the menu item..                          |
+| isDisabled   | `boolean`                 | If `true`, the menu item will be disabled               |
+| children     | `React.ReactNode`         | The content of the option item                          |
 | value        | `StringOrNumber`          | Used to add roles `menuitemradio` or `menuitemcheckbox` |
-| type         | `radio`, `checkbox`       | The initial value of the option group                   |
-| onMouseLeave | `React.MouseEventHandler` | The value of the option group.                          |
-| onMouseEnter | `React.MouseEventHandler` | Function called when selection changes.                 |
+| type         | `radio`, `checkbox`       | The initial value of the option item                    |
+| onMouseLeave | `React.MouseEventHandler` | The value of the option item                            |
+| onMouseEnter | `React.MouseEventHandler` | Function called when selection changes                  |

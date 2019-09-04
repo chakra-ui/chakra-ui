@@ -1,7 +1,7 @@
 # Tooltip
 
 A tooltip is a brief, informative message that appears when a user interacts
-with an element . Tooltips are usually initiated in one of two ways: through a
+with an element. Tooltips are usually initiated in one of two ways: through a
 mouse-hover gesture or through a keyboard-hover gesture.
 
 The Tooltip component follows the
@@ -37,7 +37,7 @@ import { Tooltip } from "@chakra-ui/core";
 
 ### Tooltip with focusable content
 
-If you children of the tooltip is a focusable element, the tooltip will show
+If the children of the tooltip is a focusable element, the tooltip will show
 when you focus or hover on the element, and will hide when you blur or move
 cursor out of the element.
 
@@ -84,14 +84,14 @@ Using the `placement` prop you can adjust where your tooltip will be displayed.
 
 | Name           | Type                                                                                                                                                                           | Default  | Description                                                                                                  |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- | ------------------------------------------------------------------------------------------------------------ |
-| `isOpen`       | `boolean`                                                                                                                                                                      | `false`  | If `true`, the popover is shown.                                                                             |
-| `defaultOpen`  | `boolean`                                                                                                                                                                      | `false`  | If `true`, the popover is shown by default.                                                                  |
+| `isOpen`       | `boolean`                                                                                                                                                                      | `false`  | If `true`, the tooltip is shown.                                                                             |
+| `defaultOpen`  | `boolean`                                                                                                                                                                      | `false`  | If `true`, the tooltip is shown by default.                                                                  |
 | `bg`           | `string`                                                                                                                                                                       |          | The background color of the tooltip.                                                                         |
 | `color`        | `string`                                                                                                                                                                       |          | The color of tooltip label.                                                                                  |
 | `label`        | `string`                                                                                                                                                                       |          | The label of the tooltip.                                                                                    |
 | `timeout`      | `number`                                                                                                                                                                       | `100`    | Determines how long, in milliseconds tooltip is to be shown.                                                 |
 | `placement`    | `auto-start`, `auto`, `auto-end`, `top-start`, `top`, `top-end`, `right-start`, `right`, `right-end`, `bottom-end`, `bottom`, `bottom-start`, `left-end`, `left`, `left-start` | `bottom` | Position the tooltip relative to the trigger element as well as surrounding elements.                        |
 | `children`     | `React.ReactNode`                                                                                                                                                              |          | The children of the tooltip.                                                                                 |
-| `showArrow`    | `boolean`                                                                                                                                                                      | `false`  | If `true` display an arrow tip on the tooltip. This is displayed relative to the `placement` of the popover. |
+| `showArrow`    | `boolean`                                                                                                                                                                      | `false`  | If `true` display an arrow tip on the tooltip. This is displayed relative to the `placement` of the tooltip. |
 | `closeOnClick` | `boolean`                                                                                                                                                                      | `false`  | If `true` hide the tooltip, when it is clicked.                                                              |
 | `onOpenChange` | `function`                                                                                                                                                                     |          | Function called when the value controlling the opening/closing of the tooltip changes.                       |
