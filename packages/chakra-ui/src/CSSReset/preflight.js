@@ -198,12 +198,12 @@ const tailwindPreflight = css`
  * Correct the inability to style clickable types in iOS and Safari.
  */
 
-  button,
+  /* button,
   [type="button"],
   [type="reset"],
   [type="submit"] {
     -webkit-appearance: button;
-  }
+  } */
 
   /**
  * Remove the inner border and padding in Firefox.
