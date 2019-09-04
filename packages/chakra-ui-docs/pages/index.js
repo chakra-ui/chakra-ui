@@ -47,7 +47,7 @@ const Feature = ({ title, icon, children, ...props }) => {
 };
 
 const sampleCode = `
-// All Chakra Components are available here
+// Sample component from airbnb
 
 <Box>
   <Image rounded="md" src="http://bit.ly/2k1H1t6"/>
@@ -163,6 +163,7 @@ export default () => {
             theme={theme}
             language="jsx"
             scope={{ ...Chakra, ...ReactMdIcons }}
+            disabled
             code={sampleCode.trim()}
           >
             <Box d={{ md: "flex" }} alignItems="flex-start">
@@ -199,7 +200,13 @@ export default () => {
 
       <Box as="footer" mt={12} textAlign="center">
         <Text fontSize="sm">Designed & Developed by Segun Adebayo</Text>
-        <Stack mt={4} isInline spacing="12px" justify="center">
+        <Stack
+          shouldWrapChildren
+          mt={4}
+          isInline
+          spacing="12px"
+          justify="center"
+        >
           <FooterLink
             href="https://github.com/segunadebayo"
             icon={DiGithubBadge}
