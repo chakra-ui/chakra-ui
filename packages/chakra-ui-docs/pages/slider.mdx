@@ -1,75 +1,104 @@
-import Head from "next/head";
-
-<Head key="slider">
-  <title key="tti">Slider Component</title>
-</Head>
-
 # Slider
 
-The Slider component is used as an alternative for the [Checkbox](/checkbox)
-component, that simulates on/off instead of checked/unchecked.
+The Slider is used to allow users to make selections from a range of values.
 
-Switch is optionally controllable, to control the component, specify a `value`
-prop and an `onChange` prop.
+Sliders reflect a range of values along a bar, from which users may select a
+single value. They are ideal for adjusting settings such as volume, brightness,
+or applying image filters.
 
-## Installation
+## Import
 
-```bash
-npm install @chakra-ui/core
-```
+Chakra UI export 4 components for Slider:
 
-then import Slider
+- Slider: The wrapper that provides context and functionality for all children.
+- SliderTrack: The empty part of the slider that shows the track.
+- SliderFilledTrack: The filled part of the slider.
+- SliderThumb: The handle that's used to change the slider value.
 
 ```js
-import { Slider } from "@chakra-ui/core";
+import {
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+} from "@chakra-ui/core";
 ```
 
 ## Usage
 
 ```jsx
-function Example() {
-  return (
-    <Slider>
-      <SliderTrack />
-      <SliderFilledTrack />
-      <SliderThumb />
-    </Slider>
-  );
-}
+<Slider defaultValue={30}>
+  <SliderTrack />
+  <SliderFilledTrack />
+  <SliderThumb />
+</Slider>
 ```
 
-## Slider themes
+### Changing the slider color
 
 ```jsx
-function Example() {
-  return (
-    <Stack inline>
-      <Slider color="gray">
-        <SliderTrack />
-        <SliderFilledTrack />
-        <SliderThumb />
-      </Slider>
-    </Stack>
-  );
-}
+<Slider color="pink" defaultValue={30}>
+  <SliderTrack />
+  <SliderFilledTrack />
+  <SliderThumb />
+</Slider>
+```
+
+### Customized Sliders
+
+Slider component was designed to be composed to make it easy for you to
+customize its styles.
+
+```jsx
+<Slider defaultValue={30}>
+  <SliderTrack bg="red.100" />
+  <SliderFilledTrack bg="tomato" />
+  <SliderThumb size={6}>
+    <Box color="tomato" as={MdGraphicEq} />
+  </SliderThumb>
+</Slider>
 ```
 
 ## Props
 
-| Name               | Type                                      | Default | Description                                           |
-| ------------------ | ----------------------------------------- | ------- | ----------------------------------------------------- |
-| `value`            | `number`                                  |         | The size of the slider.                               |
-| `defaultValue`     | `number`                                  |         | Initial value of the slider, for uncontrolled usage.  |
-| `max`              | `number`                                  |         | Standard `input` max attribute.                       |
-| `min`              | `number`                                  |         | Standard `input` min attribute.                       |
-| `step`             | `number`                                  |         | Standard `input` step attribute.                      |
-| `aria-label`       | `React.AriaAttributes["aria-label"]`      |         | The aria-label of the switch for accessibility.       |
-| `aria-labelledby`  | `React.AriaAttributes["aria-labelledby"]` |         | The aria-labelledby of the switch for accessibility.  |
-| `aria-valuetext`   | `React.AriaAttributes["aria-valuetext"]`  |         | The aria-valuetext of the switch for accessibility.   |
-| `orientation`      | `string`                                  |         | If `true`, set the switch to the checked state.       |
-| `getAriaValueText` | `function`                                |         | If `true`, set the disabled to the invalid state.     |
-| `size`             | `string`                                  |         | The size of the slider.                               |
-| `color`            | `string`                                  |         | The background color of the slider.                   |
-| `name`             | `string`                                  |         | The name of the slider component when used in a form. |
-| `id`               | `string`                                  |         | The id of the slider component when used in a form.   |
-| `children`         | `React.ReactNode`                         |         | The children of the slider.                           |
+### Slider Props
+
+The `Slider` component wraps all it's children in the `Box` component, so you
+can pass all `Box` props to change it's style.
+
+| Name               | Type                       | Default | Description                                                               |
+| ------------------ | -------------------------- | ------- | ------------------------------------------------------------------------- |
+| `value`            | `number`                   |         | The value of the slider.                                                  |
+| `defaultValue`     | `number`                   |         | The initial value of the slider.                                          |
+| `max`              | `number`                   |         | Standard `input` max attribute.                                           |
+| `min`              | `number`                   |         | Standard `input` min attribute.                                           |
+| `step`             | `number`                   |         | Standard `input` step attribute.                                          |
+| `onChange`         | `(value: number): void`    |         | Callback fired when the value of the slider changes.                      |
+| `onFocus`          | `React.FocusEventHander`   |         | Callback fired when the thumb receives focus                              |
+| `onBlur`           | `React.FocusEventHander`   |         | Callback fired when the thumb is blurred                                  |
+| `onMouseDown`      | `React.MouseEventHander`   |         | Callback fired when the you mousedown on any part of the slider           |
+| `aria-label`       | `string`                   |         | The accessible label.                                                     |
+| `aria-labelledby`  | `string`                   |         | The `id` of the element that labels the sliders                           |
+| `aria-valuetext`   | `string`                   |         | The aria-valuetext of the switch for accessibility.                       |
+| `orientation`      | `string`                   |         | The orientation of the slider, only `horizontal` is supported for now.    |
+| `getAriaValueText` | `(value: number ): string` |         | The callback to format the `aria-valuetext`.                              |
+| `size`             | `sm`, `md`, `lg`           |         | The size of the slider.                                                   |
+| `color`            | `string`                   |         | The color scheme to use for the slider. Use a color key in `theme.colors` |
+| `name`             | `string`                   |         | The name of the slider component when used in a form.                     |
+| `id`               | `string`                   |         | The id of the slider component when used in a form.                       |
+| `children`         | `React.ReactNode`          |         | The children of the slider.                                               |
+
+### SliderThumb Props
+
+SliderThumb composes [PseudoBox](/pseudobox) so you can pass all PseudoBox props
+to change it's style.
+
+### SliderFilledTrack Props
+
+SliderFilledTrack composes [PseudoBox](/pseudobox) so you can pass all PseudoBox
+props to change it's style.
+
+### SliderTrack Props
+
+SliderTrack composes [Box](/box) so you can pass all Box props to change it's
+style.
