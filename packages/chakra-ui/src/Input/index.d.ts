@@ -1,5 +1,6 @@
 import * as React from "react";
 import { PseudoBoxProps } from "../PseudoBox";
+import { Omit } from "../common-types";
 
 type Variant = "outline" | "unstyled" | "flushed" | "filled";
 type Size = "sm" | "md" | "lg";

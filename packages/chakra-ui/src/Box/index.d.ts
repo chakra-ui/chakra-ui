@@ -1,6 +1,7 @@
 import * as StyledSystem from "styled-system";
 import * as Emotion from "@emotion/styled";
 import * as React from "react";
+import { Omit } from "../common-types";
 
 type CSS = React.CSSProperties;
 
