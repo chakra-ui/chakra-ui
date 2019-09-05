@@ -176,7 +176,7 @@ const Slider = forwardRef(
     const getNewValue = event => {
       if (trackRef.current) {
         const { left, width } = trackRef.current.getBoundingClientRect();
-        const { clientX } = event;
+        const { clientX } = event.touches ? event.touches[0] : event;
         let diffX = clientX - left;
         let percent = diffX / width;
         let newValue = percentToValue(percent, min, max);
@@ -254,7 +254,9 @@ const Slider = forwardRef(
 
     const handleMouseUp = () => {
       document.body.removeEventListener("mousemove", handleMouseMove);
+      document.body.removeEventListener("touchmove", handleMouseMove);
       document.body.removeEventListener("mouseup", handleMouseUp);
+      document.body.removeEventListener("touchend", handleMouseUp);
     };
 
     // TODO: Optimize this mouseMove event
@@ -275,7 +277,9 @@ const Slider = forwardRef(
       }
 
       document.body.addEventListener("mousemove", handleMouseMove);
+      document.body.addEventListener("touchmove", handleMouseMove);
       document.body.addEventListener("mouseup", handleMouseUp);
+      document.body.addEventListener("touchend", handleMouseUp);
       thumbRef.current && thumbRef.current.focus();
     };
 
@@ -306,7 +310,9 @@ const Slider = forwardRef(
           role="presentation"
           tabIndex="-1"
           onMouseDown={handleMouseDown}
+          onTouchStart={handleMouseDown}
           onMouseLeave={handleMouseUp}
+          onTouchEnd={handleMouseUp}
           onBlur={event => {
             handleMouseUp();
             onBlur && onBlur(event);
@@ -314,6 +320,7 @@ const Slider = forwardRef(
           py={3}
           aria-disabled={isDisabled}
           ref={ref}
+          css={{ touchAction: "none" }}
           {...rootStyle}
           {...rest}
         >
