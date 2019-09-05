@@ -25,3 +25,7 @@ const AddCircle = props => (
 stories.add("with custom Icon", () => (
   <IconButton aria-label="custom icon" size="sm" icon={AddCircle} />
 ));
+
+stories.add("rounded", () => (
+  <IconButton aria-label="custom icon" isRound icon="phone" />
+));

@@ -13,7 +13,7 @@ const IconButton = forwardRef(
     return (
       <Button
         p="0"
-        borderRadius={isRound ? "round" : "md"}
+        borderRadius={isRound ? "full" : "md"}
         ref={ref}
         aria-label={ariaLabel}
         {...props}
