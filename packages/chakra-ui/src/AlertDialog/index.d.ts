@@ -34,15 +34,15 @@ interface IAlertDialog {
   /**
    * The zIndex of the AlertDialog.
    */
-  zIndex?: StyledSystem.ZIndexProps;
+  zIndex?: StyledSystem.ZIndexProps["zIndex"];
   /**
    * The background color of the overlay.
    */
-  overlayBg?: StyledSystem.BackgroundColorProps;
+  overlayBg?: StyledSystem.BackgroundColorProps["bg"];
   /**
    * The size of the AlertDialog
    */
-  size?: Size;
+  size?: Size | StyledSystem.MaxWidthProps["maxWidth"];
   /**
    * If `true`, the `AlertDialog` will be centered on screen
    */

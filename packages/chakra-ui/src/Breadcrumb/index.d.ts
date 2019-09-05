@@ -16,7 +16,7 @@ interface IBreadcrumb {
   /**
    * The left and right margin applied to the separator
    */
-  spacing?: StyledSystem.MarginProps;
+  spacing?: StyledSystem.MarginProps["margin"];
 }
 
 type BreadcrumbProps = BoxProps & IBreadcrumb;

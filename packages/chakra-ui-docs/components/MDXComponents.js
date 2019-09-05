@@ -54,6 +54,7 @@ const Link = forwardRef((props, ref) => (
     color="teal.500"
     cursor="pointer"
     textDecoration="underline"
+    outline="none"
     _hover={{ opacity: "0.8" }}
     _focus={{ boxShadow: "outline" }}
     {...props}
@@ -87,6 +88,7 @@ const DocsHeading = props => (
           as="a"
           color="teal.500"
           fontWeight="normal"
+          outline="none"
           _focus={{ opacity: 1, boxShadow: "outline" }}
           opacity="0"
           ml="0.375rem"

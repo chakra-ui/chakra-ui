@@ -344,6 +344,7 @@ const MenuItem = forwardRef(
         minHeight="32px"
         alignItems="center"
         textAlign="left"
+        outline="none"
         px={4}
         role={role}
         tabIndex={-1}

@@ -123,6 +123,7 @@ const baseProps = {
   alignItems: "center",
   position: "relative",
   transition: "all 0.2s",
+  outline: "none",
 };
 
 export const inputSizes = {

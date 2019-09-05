@@ -60,7 +60,7 @@ export interface IButton {
    * The space between the button icon and label.
    * Use the styled-system tokens or add custom values as a string
    */
-  iconSpacing?: StyledSystem.MarginRightProps;
+  iconSpacing?: StyledSystem.MarginProps["margin"];
 }
 
 export type ButtonProps = IButton &

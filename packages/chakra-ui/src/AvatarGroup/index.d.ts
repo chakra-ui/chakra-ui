@@ -22,7 +22,7 @@ interface IAvatarGroup {
   /**
    * The space between the avatars in the group.
    */
-  spacing?: StyledSystem.MarginLeftProps;
+  spacing?: StyledSystem.MarginLeftProps["marginLeft"];
 }
 
 export type AvatarGroupProps = IAvatarGroup &

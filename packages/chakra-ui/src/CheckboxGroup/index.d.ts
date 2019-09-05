@@ -10,7 +10,7 @@ export interface ICheckboxGroup {
   defaultValue?: Array<ICheckbox["value"]>;
   value?: Array<ICheckbox["value"]>;
   onChange?: (value?: Array<ICheckbox["value"]>) => void;
-  spacing?: StyledSystem.MarginProps;
+  spacing?: StyledSystem.MarginProps["margin"];
   isInline?: boolean;
 }
 

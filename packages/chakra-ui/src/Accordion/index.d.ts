@@ -2,6 +2,7 @@ import * as React from "react";
 import { BoxProps } from "../Box";
 import { PseudoBoxProps } from "../PseudoBox";
 import { CollapseProps } from "../Collapse";
+import { IconProps } from "../Icon";
 
 interface IAccordion {
   /**
@@ -107,3 +108,4 @@ export const AccordionHeader: React.FC<AccordionHeaderProps>;
  * AccordionPanel component composes `Collapse` to provide the height animation
  */
 export const AccordionPanel: React.FC<CollapseProps>;
+export const AccordionIcon: React.FC<IconProps>;

@@ -238,6 +238,7 @@ const baseProps = {
   whiteSpace: "nowrap",
   verticalAlign: "middle",
   lineHeight: "1.2",
+  outline: "none",
 };
 
 ////////////////////////////////////////////////////////////

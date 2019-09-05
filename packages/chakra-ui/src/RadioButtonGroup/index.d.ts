@@ -9,7 +9,7 @@ export interface IRadioButtonGroup {
   defaultValue?: IRadio["value"];
   value?: IRadio["value"];
   onChange?: (value: IRadio["value"]) => void;
-  spacing?: StyledSystem.MarginRightProps;
+  spacing?: StyledSystem.MarginProps["margin"];
   isInline?: boolean;
 }
 

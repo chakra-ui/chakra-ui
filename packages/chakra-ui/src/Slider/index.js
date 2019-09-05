@@ -70,6 +70,7 @@ export const SliderThumb = forwardRef((props, ref) => {
       data-slider-thumb=""
       d="flex"
       alignItems="center"
+      outline="none"
       justifyContent="center"
       onFocus={onFocus}
       ref={node => mergeRefs([thumbRef, ref], node)}

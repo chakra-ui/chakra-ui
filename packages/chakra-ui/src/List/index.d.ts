@@ -18,7 +18,7 @@ interface IList {
   /**
    * The space between each list item
    */
-  spacing?: StyledSystem.MarginBottomProps;
+  spacing?: StyledSystem.MarginBottomProps["marginBottom"];
 }
 
 type ListProps = IList & BoxProps;

@@ -231,6 +231,8 @@ export const EditableInput = props => {
       aria-disabled={isDisabled}
       disabled={isDisabled}
       as="input"
+      outline="none"
+      _focus={{ shadow: "outline" }}
       {...renderProps}
       {...styleProps}
       {...props}

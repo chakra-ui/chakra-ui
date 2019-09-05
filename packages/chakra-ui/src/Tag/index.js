@@ -34,6 +34,7 @@ export const TagCloseButton = props => (
     transition="all 0.2s"
     rounded="full"
     size="1.25rem"
+    outline="none"
     mr={-1}
     opacity="0.5"
     _focus={{
