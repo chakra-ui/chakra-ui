@@ -48,6 +48,7 @@ const CloseButton = ({
   return (
     <PseudoBox
       as="button"
+      outline="none"
       aria-disabled={isDisabled}
       disabled={isDisabled}
       aria-label={ariaLabel}

@@ -4,46 +4,49 @@ import * as React from "react";
 
 type CSS = React.CSSProperties;
 
+type borderRadius = StyledSystem.BorderRadiusProps["borderRadius"];
+type borderColor = StyledSystem.BorderColorProps["borderColor"];
+
 interface ICustomConfig {
   // Custom borderRadius alias
-  rounded?: StyledSystem.BorderRadiusProps;
-  roundedTop?: StyledSystem.BorderRadiusProps;
-  roundedBottom?: StyledSystem.BorderRadiusProps;
-  roundedLeft?: StyledSystem.BorderRadiusProps;
-  roundedRight?: StyledSystem.BorderRadiusProps;
-  roundedTopRight?: StyledSystem.BorderRadiusProps;
-  roundedTopLeft?: StyledSystem.BorderRadiusProps;
-  roundedBottomRight?: StyledSystem.BorderRadiusProps;
-  roundedBottomLeft?: StyledSystem.BorderRadiusProps;
+  rounded?: borderRadius;
+  roundedTop?: borderRadius;
+  roundedBottom?: borderRadius;
+  roundedLeft?: borderRadius;
+  roundedRight?: borderRadius;
+  roundedTopRight?: borderRadius;
+  roundedTopLeft?: borderRadius;
+  roundedBottomRight?: borderRadius;
+  roundedBottomLeft?: borderRadius;
 
   // Custom borderColor alias
-  borderBottomColor?: StyledSystem.BorderColorProps;
-  borderTopColor?: StyledSystem.BorderColorProps;
-  borderRightColor?: StyledSystem.BorderColorProps;
-  borderLeftColor?: StyledSystem.BorderColorProps;
+  borderBottomColor?: borderColor;
+  borderTopColor?: borderColor;
+  borderRightColor?: borderColor;
+  borderLeftColor?: borderColor;
 
   // Custom width alias
-  w?: StyledSystem.WidthProps;
-  minW?: StyledSystem.MinWidthProps;
-  maxW?: StyledSystem.MaxWidthProps;
+  w?: StyledSystem.WidthProps["width"];
+  minW?: StyledSystem.MinWidthProps["minWidth"];
+  maxW?: StyledSystem.MaxWidthProps["maxWidth"];
 
   // Custom height alias
-  h?: StyledSystem.HeightProps;
-  minH?: StyledSystem.MinHeightProps;
-  maxH?: StyledSystem.MaxHeightProps;
+  h?: StyledSystem.HeightProps["height"];
+  minH?: StyledSystem.MinHeightProps["minHeight"];
+  maxH?: StyledSystem.MaxHeightProps["maxHeight"];
 
   // Custom display alias
-  d?: StyledSystem.DisplayProps;
+  d?: StyledSystem.DisplayProps["display"];
 
   // Custom background alias
   backgroundAttachment?: StyledSystem.ResponsiveValue<
     CSS["backgroundAttachment"]
   >;
-  bgImg?: StyledSystem.BackgroundImageProps;
-  bgSize?: StyledSystem.BackgroundSizeProps;
-  bgPos?: StyledSystem.BackgroundPositionProps;
-  pos?: StyledSystem.PositionProps;
-  flexDir?: StyledSystem.FlexDirectionProps;
+  bgImg?: StyledSystem.BackgroundImageProps["backgroundImage"];
+  bgSize?: StyledSystem.BackgroundSizeProps["backgroundSize"];
+  bgPos?: StyledSystem.BackgroundPositionProps["backgroundPosition"];
+  pos?: StyledSystem.PositionProps["position"];
+  flexDir?: StyledSystem.FlexDirectionProps["flexDirection"];
 
   // CSS properties
   textDecoration?: StyledSystem.ResponsiveValue<CSS["textDecoration"]>;
@@ -70,11 +73,11 @@ interface ICustomConfig {
   whiteSpace?: StyledSystem.ResponsiveValue<CSS["whiteSpace"]>;
 
   // SVG color properties
-  fill?: StyledSystem.ColorProps;
-  stroke?: StyledSystem.ColorProps;
+  fill?: StyledSystem.ColorProps["color"];
+  stroke?: StyledSystem.ColorProps["color"];
 
   bgAttachment?: StyledSystem.ResponsiveValue<CSS["backgroundAttachment"]>;
-  shadow?: StyledSystem.BoxShadowProps;
+  shadow?: StyledSystem.BoxShadowProps["boxShadow"];
 
   // List properties
   listStyleType?: StyledSystem.ResponsiveValue<CSS["listStyleType"]>;
@@ -82,6 +85,9 @@ interface ICustomConfig {
   listStyleImage?: StyledSystem.ResponsiveValue<CSS["listStyleImage"]>;
   listStyleImg?: StyledSystem.ResponsiveValue<CSS["listStyleImage"]>;
   listStylePos?: StyledSystem.ResponsiveValue<CSS["listStylePosition"]>;
+
+  // Outline prop
+  outline?: StyledSystem.ResponsiveValue<CSS["outline"]>;
 }
 
 type FontSize =
@@ -93,10 +99,13 @@ type FontSize =
   | "2xl"
   | "3xl"
   | "4xl"
-  | "5xl";
+  | "5xl"
+  | "6xl";
 
 interface IFontSize {
-  fontSize?: StyledSystem.ResponsiveValue<FontSize>;
+  fontSize?:
+    | StyledSystem.ResponsiveValue<FontSize>
+    | StyledSystem.FontSizeProps["fontSize"];
 }
 
 type FontWeight =
@@ -109,13 +118,19 @@ type FontWeight =
   | "bold"
   | "extrabold"
   | "black";
+
 interface IFontWeight {
-  fontWeight?: StyledSystem.ResponsiveValue<FontWeight>;
+  fontWeight?:
+    | StyledSystem.ResponsiveValue<FontWeight>
+    | StyledSystem.FontWeightProps["fontWeight"];
 }
 
 type LineHeight = "none" | "shorter" | "short" | "normal" | "tall" | "taller";
+
 interface ILineHeight {
-  lineHeight?: StyledSystem.ResponsiveValue<LineHeight>;
+  lineHeight?:
+    | StyledSystem.ResponsiveValue<LineHeight>
+    | StyledSystem.LineHeightProps["lineHeight"];
 }
 
 type LetterSpacing =
@@ -127,7 +142,9 @@ type LetterSpacing =
   | "widest";
 
 interface ILetterSpacing {
-  letterSpacing?: StyledSystem.ResponsiveValue<LetterSpacing>;
+  letterSpacing?:
+    | StyledSystem.ResponsiveValue<LetterSpacing>
+    | StyledSystem.LetterSpacingProps["letterSpacing"];
 }
 
 interface As {
@@ -159,6 +176,6 @@ export type BoxProps = React.RefAttributes<HTMLElement> &
   ICustomConfig &
   As;
 
-declare const Box: Emotion.StyledComponent<BoxProps, {}, {}>;
+declare const Box: React.FC<BoxProps>;
 
 export default Box;

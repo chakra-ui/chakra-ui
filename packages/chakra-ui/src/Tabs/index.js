@@ -27,6 +27,7 @@ const Tab = forwardRef((props, ref) => {
       role="tab"
       tabIndex={isSelected ? 0 : -1}
       id={`tab:${id}`}
+      outline="none"
       as="button"
       type="button"
       disabled={isDisabled}

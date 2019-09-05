@@ -13,7 +13,7 @@ export interface IRadioGroup {
     event?: React.ChangeEvent<HTMLInputElement>,
     value?: IRadio["value"],
   ) => void;
-  spacing?: StyledSystem.MarginProps;
+  spacing?: StyledSystem.MarginProps["margin"];
   isInline?: boolean;
 }
 

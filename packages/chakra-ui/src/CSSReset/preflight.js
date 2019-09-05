@@ -474,11 +474,6 @@ const tailwindPreflight = css`
     cursor: pointer;
   }
 
-  *,
-  *:focus {
-    outline: 0;
-  }
-
   button::-moz-focus-inner {
     border: 0 !important;
   }

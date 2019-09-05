@@ -12,7 +12,7 @@ export interface IButtonGroup {
    * to look flushed together
    */
   isAttached?: boolean;
-  spacing?: StyledSystem.MarginRightProps;
+  spacing?: StyledSystem.MarginRightProps["marginRight"];
   children?: React.ReactNode;
 }
 

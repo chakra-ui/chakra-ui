@@ -7,11 +7,12 @@ const baseStyleProps = {
   transition: `all 0.15s ease-out`,
   cursor: "pointer",
   textDecoration: "none",
+  outline: "none",
   _focus: {
     boxShadow: "outline",
   },
   _disabled: {
-    opacity: "40%",
+    opacity: "0.4",
     cursor: "not-allowed",
     textDecoration: "none",
   },

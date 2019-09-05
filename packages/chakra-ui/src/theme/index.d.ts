@@ -1,12 +1,14 @@
 import * as StyledSystem from "styled-system";
 
-interface IIcon {
+interface Icon {
   path: JSX.Element;
   viewBox?: string;
 }
 
+type Icons = { [name: string]: Icon };
+
 export interface ITheme extends StyledSystem.Theme {
-  icons: IIcon;
+  icons: Icons;
 }
 
 declare const theme: ITheme;

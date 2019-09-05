@@ -7,7 +7,7 @@ import { PseudoBoxProps } from "../PseudoBox";
 interface IPopover {
   isOpen?: boolean;
   defaultIsOpen?: boolean;
-  maxWidth?: StyledSystem.MaxWidthProps;
+  maxWidth?: StyledSystem.MaxWidthProps["maxWidth"];
   trigger?: React.ReactNode;
   placement?: ReactPopper.PopperProps["placement"];
   children: React.ReactNode;

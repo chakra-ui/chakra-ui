@@ -66,7 +66,7 @@ const Header = props => {
           >
             <Logo />
           </Box>
-          <Flex ml={5} align="center" color="gray.500">
+          <Flex align="center" color="gray.500">
             <Stack align="center" isInline spacing="3">
               <Link
                 isExternal

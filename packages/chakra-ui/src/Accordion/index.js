@@ -144,7 +144,6 @@ const AccordionHeader = forwardRef(({ onClick, ...props }, ref) => {
   return (
     <PseudoBox
       ref={ref}
-      data-accordion-header=""
       display="flex"
       alignItems="center"
       width="100%"
@@ -153,6 +152,7 @@ const AccordionHeader = forwardRef(({ onClick, ...props }, ref) => {
       _hover={{ bg: "blackAlpha.50" }}
       _disabled={{ opacity: "0.4", cursor: "not-allowed" }}
       as="button"
+      outline="none"
       disabled={isDisabled}
       aria-disabled={isDisabled}
       aria-expanded={isExpanded}

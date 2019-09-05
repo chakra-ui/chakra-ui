@@ -15,7 +15,7 @@ interface IStack {
   /**
    * The space between each stack item
    */
-  spacing?: StyledSystem.MarginProps;
+  spacing?: StyledSystem.MarginProps["margin"];
   /**
    * The alignment of the stack item. Similar to `align-items`
    */
