@@ -21,24 +21,24 @@ Before doing anything else, run these commands:
 ```
 git clone git@github.com:chakra-ui/chakra-ui.git
 cd chakra-ui
-yarn install
-yarn bootstrap
-yarn build
+yarn run install
+yarn run bootstrap
+yarn run build
 ```
 
 ## Root Repo Scripts:
 
 ```sh
-yarn bootstrap    # bootstraps lerna so all dependencies get
+yarn run bootstrap    # bootstraps lerna so all dependencies get
                   # linked for cross-component development
 
-yarn storybook        # starts storybook server
+yarn run storybook        # starts storybook server
 
-yarn docs:dev         # runs the documentation site locally
+yarn run docs:dev         # runs the documentation site locally
 
-yarn core:build        # build the component library
+yarn run core:build        # build the component library
 
-yarn release      # publishes changed packages
+yarn run release      # publishes changed packages
 ```
 
 ### Running the documentation site
