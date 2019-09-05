@@ -66,27 +66,27 @@ customize its styles.
 The `Slider` component wraps all it's children in the [Box](/box) component, so you
 can pass all `Box` props to change it's style.
 
-| Name               | Type                       | Default | Description                                                               |
-| ------------------ | -------------------------- | ------- | ------------------------------------------------------------------------- |
-| `value`            | `number`                   |         | The value of the slider.                                                  |
-| `defaultValue`     | `number`                   |         | The initial value of the slider.                                          |
-| `max`              | `number`                   |         | Standard `input` max attribute.                                           |
-| `min`              | `number`                   |         | Standard `input` min attribute.                                           |
-| `step`             | `number`                   |         | Standard `input` step attribute.                                          |
-| `onChange`         | `(value: number): void`    |         | Callback fired when the value of the slider changes.                      |
-| `onFocus`          | `React.FocusEventHander`   |         | Callback fired when the thumb receives focus                              |
-| `onBlur`           | `React.FocusEventHander`   |         | Callback fired when the thumb is blurred                                  |
-| `onMouseDown`      | `React.MouseEventHander`   |         | Callback fired when the you mousedown on any part of the slider           |
-| `aria-label`       | `string`                   |         | The accessible label.                                                     |
-| `aria-labelledby`  | `string`                   |         | The `id` of the element that labels the sliders                           |
-| `aria-valuetext`   | `string`                   |         | The aria-valuetext of the switch for accessibility.                       |
-| `orientation`      | `string`                   |         | The orientation of the slider, only `horizontal` is supported for now.    |
-| `getAriaValueText` | `(value: number ): string` |         | The callback to format the `aria-valuetext`.                              |
-| `size`             | `sm`, `md`, `lg`           |         | The size of the slider.                                                   |
-| `color`            | `string`                   |         | The color scheme to use for the slider. Use a color key in `theme.colors` |
-| `name`             | `string`                   |         | The name of the slider component when used in a form.                     |
-| `id`               | `string`                   |         | The id of the slider component when used in a form.                       |
-| `children`         | `React.ReactNode`          |         | The children of the slider.                                               |
+| Name               | Type                                               | Default | Description                                                               |
+| ------------------ | -------------------------------------------------- | ------- | ------------------------------------------------------------------------- |
+| `value`            | `number`                                           |         | The value of the slider.                                                  |
+| `defaultValue`     | `number`                                           |         | The initial value of the slider.                                          |
+| `max`              | `number`                                           |         | Standard `input` max attribute.                                           |
+| `min`              | `number`                                           |         | Standard `input` min attribute.                                           |
+| `step`             | `number`                                           |         | Standard `input` step attribute.                                          |
+| `onChange`         | `(value: number): void`                            |         | Callback fired when the value of the slider changes.                      |
+| `onFocus`          | `React.FocusEventHander`                           |         | Callback fired when the thumb receives focus                              |
+| `onBlur`           | `React.FocusEventHander`                           |         | Callback fired when the thumb is blurred                                  |
+| `onMouseDown`      | `React.MouseEventHander | React.TouchEventHandler` |         | Callback fired when the you mousedown on any part of the slider           |
+| `aria-label`       | `string`                                           |         | The accessible label.                                                     |
+| `aria-labelledby`  | `string`                                           |         | The `id` of the element that labels the sliders                           |
+| `aria-valuetext`   | `string`                                           |         | The aria-valuetext of the switch for accessibility.                       |
+| `orientation`      | `string`                                           |         | The orientation of the slider, only `horizontal` is supported for now.    |
+| `getAriaValueText` | `(value: number ): string`                         |         | The callback to format the `aria-valuetext`.                              |
+| `size`             | `sm`, `md`, `lg`                                   |         | The size of the slider.                                                   |
+| `color`            | `string`                                           |         | The color scheme to use for the slider. Use a color key in `theme.colors` |
+| `name`             | `string`                                           |         | The name of the slider component when used in a form.                     |
+| `id`               | `string`                                           |         | The id of the slider component when used in a form.                       |
+| `children`         | `React.ReactNode`                                  |         | The children of the slider.                                               |
 
 ### SliderThumb Props
 
