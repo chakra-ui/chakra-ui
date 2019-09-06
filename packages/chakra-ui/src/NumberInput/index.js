@@ -1,67 +1,7 @@
-import React, { forwardRef, useRef, useState } from "react";
+import React, { forwardRef, useRef, useState, useEffect } from "react";
 import Flex from "../Flex";
-import Icon from "../Icon";
 import Input from "../Input";
-import PseudoBox from "../PseudoBox";
-import { useColorMode } from "../ColorModeProvider";
-
-const themedProps = {
-  light: {
-    borderColor: "inherit",
-    _active: {
-      bg: "gray.200",
-    },
-    _last: {
-      roundedBottomRight: 3,
-      mt: "-1px",
-      borderTopWidth: 1,
-    },
-  },
-  dark: {
-    color: "whiteAlpha.800",
-    borderColor: "whiteAlpha.300",
-    _last: {
-      roundedBottomRight: 3,
-      mt: "-1px",
-      borderTopWidth: 1,
-    },
-    _active: {
-      bg: "whiteAlpha.300",
-    },
-  },
-};
-
-const styleProps = ({ colorMode }) => ({
-  borderLeft: "1px",
-  _first: {
-    roundedTopRight: 1,
-  },
-  _disabled: {
-    opacity: 0.4,
-    cursor: "not-allowed",
-  },
-  ...themedProps[colorMode],
-});
-
-const SpinButton = ({ isDisabled, ...props }) => {
-  const { colorMode } = useColorMode();
-
-  return (
-    <PseudoBox
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      flex="1"
-      cursor="pointer"
-      transition="all 0.3s"
-      role="button"
-      tabindex="-1"
-      aria-disabled={isDisabled}
-      {...styleProps({ colorMode })}
-      {...props}
-    />
-  );
-};
+import Spinner from "./Spinner";
 
 const NumberInput = forwardRef(
   (
@@ -104,45 +44,83 @@ const NumberInput = forwardRef(
     const { current: isControlled } = useRef(valueProp != null);
     const _value = isControlled ? valueProp : val;
 
-    const getNextValue = nextVal => {
+    const ownRef = useRef();
+
+    const _ref = ref || ownRef;
+
+    const clampValue = nextVal => {
+      let output = nextVal;
+
       if (nextVal > max) {
-        return nextVal;
+        output = nextVal;
       }
       if (nextVal < min) {
-        return min;
+        output = min;
       }
-      return nextVal;
+      return output;
+    };
+
+    const updateValue = value => {
+      !isControlled && setVal(value);
+      onChange && onChange(value);
     };
 
     const handleIncrement = () => {
-      const nextValue = getNextValue(_value + step);
+      let nextValue = Math.round((_value + step) * 1e12) / 1e12;
+      nextValue = clampValue(nextValue);
+
       if (max == null) {
-        !isControlled && setVal(nextValue);
-        onChange && onChange(nextValue);
+        updateValue(nextValue);
       }
       if (max != null && max >= nextValue) {
-        !isControlled && setVal(nextValue);
-        onChange && onChange(nextValue);
+        updateValue(nextValue);
       }
     };
 
     const handleDecrement = () => {
-      const nextValue = getNextValue(_value - step);
+      let nextValue = Math.round((_value - step) * 1e12) / 1e12;
+      nextValue = clampValue(nextValue);
+
       if (min == null) {
-        !isControlled && setVal(nextValue);
-        onChange && onChange(nextValue);
+        updateValue(nextValue);
       }
       if (min != null && min <= nextValue) {
-        !isControlled && setVal(nextValue);
-        onChange && onChange(nextValue);
+        updateValue(nextValue);
       }
     };
 
-    const handleChange = event => {
-      const newValue = Number(event.target.value);
-      !isControlled && setVal(newValue);
-      onChange && onChange(newValue);
+    const incrementRef = useRef();
+    const decrementRef = useRef();
+
+    const handleClick = (event, action) => {
+      if (action === "increment") {
+        handleIncrement(event);
+      }
+
+      if (action === "decrement") {
+        handleDecrement(event);
+      }
     };
+
+    // A11y: Increase the value at an interval when the mouse is still down
+    const handleUpMouseDown = () => {};
+
+    // A11y: Decrease the value at an interval when the mouse is still down
+    const handleDownMouseDown = () => {};
+
+    const handleMouseUp = () => {
+      clearInterval(incrementRef.current);
+      clearInterval(decrementRef.current);
+    };
+
+    const handleChange = event => {
+      const nextValue = Number(event.target.value);
+      updateValue(nextValue);
+    };
+
+    // useEffect(() => {
+    //   _ref.current && _ref.current.focus();
+    // }, [val, _ref]);
 
     const iconSize = size === "sm" ? "11px" : "15px";
 
@@ -154,7 +132,7 @@ const NumberInput = forwardRef(
         {...rest}
       >
         <Input
-          ref={ref}
+          ref={_ref}
           size={size}
           type="number"
           role="spinbutton"
@@ -189,28 +167,22 @@ const NumberInput = forwardRef(
           }}
           {...inputProps}
         />
-        <Flex
-          flexDirection="column"
-          aria-hidden
-          width="24px"
-          m="1px"
-          position="absolute"
-          right="0px"
-          height="calc(100% - 2px)"
-        >
-          <SpinButton
-            isDisabled={isDisabled}
-            onClick={isDisabled ? undefined : handleIncrement}
-          >
-            <Icon name="chevron-up" size={iconSize} />
-          </SpinButton>
-          <SpinButton
-            isDisabled={isDisabled}
-            onClick={isDisabled ? undefined : handleDecrement}
-          >
-            <Icon name="chevron-down" size={iconSize} />
-          </SpinButton>
-        </Flex>
+        <Spinner
+          onClick={handleClick}
+          onMouseDown={(event, action) => {
+            if (action === "increment") {
+              handleUpMouseDown();
+            }
+
+            if (action === "decrement") {
+              handleDownMouseDown();
+            }
+          }}
+          isDisabled={isDisabled}
+          iconSize={iconSize}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseUp}
+        />
       </Flex>
     );
   },
