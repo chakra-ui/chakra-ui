@@ -29,14 +29,7 @@ const SpinButton = ({ isDisabled, onClick, onMouseDown, ...props }) => {
   );
 };
 
-const Spinner = ({
-  isDisabled,
-  onClick,
-  onMouseDown,
-  onMouseUp,
-  iconSize,
-  ...rest
-}) => {
+const Spinner = ({ incrementProps, decrementProps, iconSize, ...rest }) => {
   return (
     <Flex
       flexDir="column"
@@ -48,36 +41,10 @@ const Spinner = ({
       h="calc(100% - 2px)"
       {...rest}
     >
-      <SpinButton
-        isDisabled={isDisabled}
-        onClick={event => {
-          if (onClick) {
-            onClick(event, "increment");
-          }
-        }}
-        onMouseDown={event => {
-          if (onMouseDown) {
-            onMouseDown(event, "increment");
-          }
-        }}
-        onMouseUp={onMouseUp}
-      >
+      <SpinButton {...incrementProps}>
         <Icon name="chevron-up" size={iconSize} />
       </SpinButton>
-      <SpinButton
-        isDisabled={isDisabled}
-        onClick={event => {
-          if (onClick) {
-            onClick(event, "decrement");
-          }
-        }}
-        onMouseDown={event => {
-          if (onMouseDown) {
-            onMouseDown(event, "decrement");
-          }
-        }}
-        onMouseUp={onMouseUp}
-      >
+      <SpinButton {...decrementProps}>
         <Icon name="chevron-down" size={iconSize} />
       </SpinButton>
     </Flex>

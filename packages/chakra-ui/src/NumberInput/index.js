@@ -1,7 +1,40 @@
-import React, { forwardRef, useRef, useState, useEffect } from "react";
+import React, {
+  forwardRef,
+  useRef,
+  useState,
+  useEffect,
+  useCallback,
+} from "react";
 import Flex from "../Flex";
 import Input from "../Input";
 import Spinner from "./Spinner";
+
+function useLongPress(callback = () => {}, speed = 200) {
+  const [startLongPress, setStartLongPress] = useState(false);
+
+  useEffect(() => {
+    let timerId;
+    if (startLongPress) {
+      timerId = setTimeout(callback, speed);
+    } else {
+      clearTimeout(timerId);
+    }
+
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [startLongPress, callback, speed]);
+
+  const start = useCallback(() => {
+    setStartLongPress(true);
+  }, []);
+
+  const stop = useCallback(() => {
+    setStartLongPress(false);
+  }, []);
+
+  return { start, stop };
+}
 
 const NumberInput = forwardRef(
   (
@@ -35,17 +68,17 @@ const NumberInput = forwardRef(
       isRequired,
       focusBorderColor,
       inputProps,
+      focusOnUpDown = true,
       ...rest
     },
     ref,
   ) => {
     const [val, setVal] = useState(defaultValue || 0);
-
     const { current: isControlled } = useRef(valueProp != null);
     const _value = isControlled ? valueProp : val;
 
+    const isEditable = !isReadOnly && !isDisabled;
     const ownRef = useRef();
-
     const _ref = ref || ownRef;
 
     const clampValue = nextVal => {
@@ -60,57 +93,40 @@ const NumberInput = forwardRef(
       return output;
     };
 
+    const focusInput = () => {
+      if (focusOnUpDown && _ref.current) {
+        _ref.current.focus();
+      }
+    };
+
     const updateValue = value => {
       !isControlled && setVal(value);
       onChange && onChange(value);
     };
 
-    const handleIncrement = () => {
-      let nextValue = Math.round((_value + step) * 1e12) / 1e12;
+    const handleIncrement = (unitStep = step) => {
+      let nextValue = Math.round((_value + unitStep) * 1e12) / 1e12;
       nextValue = clampValue(nextValue);
 
-      if (max == null) {
+      const maxExists = max != null;
+
+      if (!maxExists || (maxExists && max >= nextValue)) {
         updateValue(nextValue);
       }
-      if (max != null && max >= nextValue) {
-        updateValue(nextValue);
-      }
+
+      focusInput();
     };
 
-    const handleDecrement = () => {
-      let nextValue = Math.round((_value - step) * 1e12) / 1e12;
+    const handleDecrement = (unitStep = step) => {
+      let nextValue = Math.round((_value - unitStep) * 1e12) / 1e12;
       nextValue = clampValue(nextValue);
 
-      if (min == null) {
+      const minExists = min != null;
+      if (!minExists || (minExists && min <= nextValue)) {
         updateValue(nextValue);
       }
-      if (min != null && min <= nextValue) {
-        updateValue(nextValue);
-      }
-    };
 
-    const incrementRef = useRef();
-    const decrementRef = useRef();
-
-    const handleClick = (event, action) => {
-      if (action === "increment") {
-        handleIncrement(event);
-      }
-
-      if (action === "decrement") {
-        handleDecrement(event);
-      }
-    };
-
-    // A11y: Increase the value at an interval when the mouse is still down
-    const handleUpMouseDown = () => {};
-
-    // A11y: Decrease the value at an interval when the mouse is still down
-    const handleDownMouseDown = () => {};
-
-    const handleMouseUp = () => {
-      clearInterval(incrementRef.current);
-      clearInterval(decrementRef.current);
+      focusInput();
     };
 
     const handleChange = event => {
@@ -118,11 +134,43 @@ const NumberInput = forwardRef(
       updateValue(nextValue);
     };
 
-    // useEffect(() => {
-    //   _ref.current && _ref.current.focus();
-    // }, [val, _ref]);
+    const getIncrementFactor = event => {
+      let ratio = 1;
+      if (event.metaKey || event.ctrlKey) {
+        ratio = 0.1;
+      } else if (event.shiftKey) {
+        ratio = 10;
+      }
+      return ratio;
+    };
+
+    const handleKeyDown = event => {
+      if (!isEditable) {
+        return;
+      }
+
+      if (event.key === "ArrowUp") {
+        event.preventDefault();
+        const ratio = getIncrementFactor(event);
+        handleIncrement(ratio * step);
+      }
+
+      if (event.key === "ArrowDown") {
+        event.preventDefault();
+        // BUG: ratio becomes undefined for some reason
+        const ratio = getIncrementFactor(event);
+        handleDecrement(ratio * step);
+      }
+
+      if (onKeyDown) {
+        onKeyDown(event);
+      }
+    };
 
     const iconSize = size === "sm" ? "11px" : "15px";
+
+    const increment = useLongPress(handleIncrement);
+    const decrement = useLongPress(handleDecrement);
 
     return (
       <Flex
@@ -141,16 +189,16 @@ const NumberInput = forwardRef(
           aria-valuenow={_value}
           onChange={handleChange}
           value={_value}
+          onKeyDown={handleKeyDown}
           {...{
             form,
             pattern,
             min,
             placeholder,
-            onBlur,
-            onKeyDown,
             onKeyUp,
             onKeyPress,
             onFocus,
+            onBlur,
             autoFocus,
             max,
             step,
@@ -168,20 +216,25 @@ const NumberInput = forwardRef(
           {...inputProps}
         />
         <Spinner
-          onClick={handleClick}
-          onMouseDown={(event, action) => {
-            if (action === "increment") {
-              handleUpMouseDown();
-            }
-
-            if (action === "decrement") {
-              handleDownMouseDown();
-            }
+          incrementProps={{
+            onMouseDown: increment.start,
+            onMouseUp: increment.stop,
+            onMouseLeave: increment.stop,
+            onTouchStart: increment.start,
+            onTouchEnd: increment.stop,
+            onClick: () => handleIncrement(),
+            isDisabled: !isEditable,
           }}
-          isDisabled={isDisabled}
+          decrementProps={{
+            onMouseDown: decrement.start,
+            onMouseUp: decrement.stop,
+            onMouseLeave: decrement.stop,
+            onTouchStart: decrement.start,
+            onTouchEnd: decrement.stop,
+            onClick: () => handleDecrement(),
+            isDisabled: !isEditable,
+          }}
           iconSize={iconSize}
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseUp}
         />
       </Flex>
     );
