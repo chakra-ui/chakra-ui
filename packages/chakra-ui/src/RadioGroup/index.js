@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import propTypes from "prop-types";
 import { Children, cloneElement, useState, useRef, forwardRef } from "react";
 import { useId } from "@reach/auto-id";
 import Box from "../Box";

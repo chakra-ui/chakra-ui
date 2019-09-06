@@ -23,7 +23,7 @@ const Radio = React.forwardRef((props, ref) => {
 
 stories.add("Default", () => {
   return (
-    <RadioButtonGroup isInline>
+    <RadioButtonGroup onChange={val => console.log(val)} isInline>
       <Radio value="rad1">Radio 1</Radio>
       <Radio value="rad2">Radio 2</Radio>
       <Radio value="rad3">Radio 3</Radio>

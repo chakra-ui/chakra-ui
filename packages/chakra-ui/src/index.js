@@ -34,7 +34,7 @@ export * from "./Drawer";
 
 export { default as Editable } from "./Editable";
 export * from "./Editable";
-export { default as Embed } from "./Embed";
+export { default as AspectRatioBox } from "./AspectRatioBox";
 
 export { default as Flex } from "./Flex";
 export { default as FormControl } from "./FormControl";

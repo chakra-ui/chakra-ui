@@ -73,7 +73,8 @@ const RadioButtonGroup = ({
     const isChecked = child.props.value === _value;
 
     const handleClick = () => {
-      setValue(child.props.value);
+      !isControlled && setValue(child.props.value);
+      onChange && onChange(child.props.value);
     };
 
     const getTabIndex = () => {

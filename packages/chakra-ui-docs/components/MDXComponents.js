@@ -132,6 +132,7 @@ const MDXComponents = {
   ),
   p: props => <Text as="p" mt={4} lineHeight="tall" {...props} />,
   ul: props => <Box as="ul" pt="8px" pl="16px" {...props} />,
+  ol: props => <Box as="ol" pt="8px" pl="16px" {...props} />,
   li: props => <Box as="li" pb="4px" {...props} />,
   blockquote: props => (
     <Callout

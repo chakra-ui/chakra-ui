@@ -1,0 +1,65 @@
+# AspectRatioBox
+
+AspectRatioBox component is used mostly used to embed responsive videos and
+maps, etc. It uses a very common
+[**padding hack**](https://css-tricks.com/aspect-ratio-boxes/) to achieve this.
+
+## Import
+
+```js
+import { AspectRatioBox } from "@chakra-ui/core";
+```
+
+## Embed Video
+
+To embed a video with a specific aspect ratio, use an iframe with `src` pointing
+to the link of the video.
+
+> Use `<Box as="iframe">` instead of `<iframe>` directly because we're
+> forwarding some style props behind the scene.
+
+Pass the `maxWidth` prop to `AspectRatioBox` to control the width of the
+content.
+
+```jsx
+// This video will have equal sides
+<AspectRatioBox maxW="560px" ratio={1}>
+  <Box
+    as="iframe"
+    title="naruto"
+    src="https://www.youtube.com/embed/QhBnZ6NPOY0"
+    allowFullScreen
+  />
+</AspectRatioBox>
+```
+
+### Embed Image
+
+Here's how to embed an image that has a 4 by 3 aspect ratio.
+
+```jsx
+<AspectRatioBox maxW="400px" ratio={4 / 3}>
+  <Image src="http://bit.ly/naruto-sage" alt="naruto" objectFit="cover" />
+</AspectRatioBox>
+```
+
+### Embed a map
+
+Here's how to embed a responsive Google map using `AspectRatioBox`. To make the
+map take up the entire width, we can ignore the `maxWidth` prop.
+
+```jsx
+<AspectRatioBox ratio={16 / 9}>
+  <Box
+    as="iframe"
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.952912260219!2d3.375295414770757!3d6.5276316452784755!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8b2ae68280c1%3A0xdc9e87a367c3d9cb!2sLagos!5e0!3m2!1sen!2sng!4v1567723392506!5m2!1sen!2sng"
+    alt="demo"
+  />
+</AspectRatioBox>
+```
+
+## Props
+
+| Name  | Type     | Default | Description                     |
+| ----- | -------- | ------- | ------------------------------- |
+| ratio | `number` | 4/3     | The aspect ratio of the content |

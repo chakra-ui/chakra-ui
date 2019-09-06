@@ -34,7 +34,7 @@ export interface IRadio {
   /**
    * If `true`, the radio will be initially checked.
    */
-  defaultChecked?: InputAttributes["defaultChecked"];
+  defaultIsChecked?: InputAttributes["defaultChecked"];
   /**
    * If `true`, the radio will be checked.
    * You'll need to pass `onChange` to update it's value (since it's now controlled)
@@ -44,11 +44,17 @@ export interface IRadio {
    * If `true`, the radio will occupy the full width of it's parent container
    */
   isFullWidth?: boolean;
+  /**
+   * The size of the radio button
+   */
   size?: "lg" | "md" | "sm";
   /**
    * If `true`, the radio will be disabled
    */
   isDisabled?: InputAttributes["disabled"];
+  /**
+   * If `true`, the radio button will be invalid. This sets `aria-invalid` to `true`.
+   */
   isInvalid?: boolean;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onBlur?: React.FocusEventHandler<HTMLInputElement>;

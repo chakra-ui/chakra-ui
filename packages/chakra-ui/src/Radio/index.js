@@ -18,7 +18,7 @@ const Radio = forwardRef(
       "aria-label": ariaLabel,
       "aria-labelledby": ariaLabelledBy,
       color,
-      defaultChecked,
+      defaultIsChecked,
       isChecked,
       isFullWidth,
       size,
@@ -33,7 +33,12 @@ const Radio = forwardRef(
     ref,
   ) => {
     const { colorMode } = useColorMode();
-    const styleProps = useCheckboxStyle({ color, size, colorMode, type: "radio" });
+    const styleProps = useCheckboxStyle({
+      color,
+      size,
+      colorMode,
+      type: "radio",
+    });
 
     return (
       <Flex
@@ -56,7 +61,7 @@ const Radio = forwardRef(
           name={name}
           value={value}
           aria-invalid={isInvalid}
-          defaultChecked={defaultChecked}
+          defaultChecked={defaultIsChecked}
           onChange={onChange}
           onBlur={onBlur}
           onFocus={onFocus}
