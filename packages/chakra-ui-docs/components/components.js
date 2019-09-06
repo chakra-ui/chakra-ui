@@ -4,6 +4,7 @@ const components = [
   "Accordion",
   "Alert",
   "AlertDialog",
+  "AspectRatioBox",
   "Avatar",
   "Badge",
   "Box",
