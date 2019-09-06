@@ -57,6 +57,7 @@ const SpinButton = ({ isDisabled, ...props }) => {
       role="button"
       tabindex="-1"
       aria-disabled={isDisabled}
+      userSelect="none"
       {...styleProps({ colorMode })}
       {...props}
     />
