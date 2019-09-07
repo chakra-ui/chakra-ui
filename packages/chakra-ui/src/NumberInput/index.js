@@ -136,11 +136,15 @@ const NumberInput = forwardRef(
 
     const getIncrementFactor = event => {
       let ratio = 1;
+
       if (event.metaKey || event.ctrlKey) {
         ratio = 0.1;
-      } else if (event.shiftKey) {
+      }
+
+      if (event.shiftKey) {
         ratio = 10;
       }
+
       return ratio;
     };
 
@@ -157,7 +161,6 @@ const NumberInput = forwardRef(
 
       if (event.key === "ArrowDown") {
         event.preventDefault();
-        // BUG: ratio becomes undefined for some reason
         const ratio = getIncrementFactor(event);
         handleDecrement(ratio * step);
       }
