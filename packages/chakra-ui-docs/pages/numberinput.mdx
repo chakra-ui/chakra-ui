@@ -1,7 +1,7 @@
 # NumberInput
 
-The NumberInput component is similar to the [Input](/input), but it contains
-controls for incrementing or decrementing numeric values.
+The NumberInput component is similar to the [Input](/input), but it has controls
+for incrementing or decrementing numeric values.
 
 ## Import
 
@@ -72,6 +72,31 @@ function SliderInput() {
   );
 }
 ```
+
+## Accessibility
+
+### Aria Roles
+
+- The input has `role` set to `spinbutton` to denote that users are to select
+  from a range of discrete values using an up and down arrows on the keyboard.
+- The input as `aria-valuemin` set to the minimum value allowed for the
+  spinbutton.
+- The input as `aria-valuemax` set to the maximum value allowed for the
+  spinbutton. attribute should be applied to the spinbutton.
+- The input as `aria-valuenow` set to the current value of the `input`.
+- The custom spinner (up and down buttons) have`aria-hidden` set to `true` to
+  make them invisible to screen readers.
+
+### Keyboard Navigation
+
+- When you hit the <kbd>⬆</kbd> or <kbd>⬇</kbd> key, the input value will be
+  increased or decreased by `step`
+- With the <kbd>Shift</kbd> key (<kbd>Shift+⬆</kbd>, <kbd>Shift+⬇</kbd>), the
+  input value will be changed by `10 * step`
+- With the <kbd>Ctrl</kbd> or <kbd>⌘</kbd> key (<kbd>Ctrl+⬆</kbd> or
+  <kbd>⌘+⬆</kbd> or <kbd>Ctrl+⬇</kbd> or <kbd>⌘+⬇</kbd> ), the input value will
+be changed by `0.1 * step`
+- Long press the Up and down buttons to change the values at intervals.
 
 ## Props
 
