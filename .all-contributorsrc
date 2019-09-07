@@ -1,5 +1,7 @@
 {
-  "files": ["README.md"],
+  "files": [
+    "README.md"
+  ],
   "imageSize": 40,
   "commit": false,
   "contributors": [
@@ -8,14 +10,33 @@
       "name": "Segun Adebayo",
       "avatar_url": "https://avatars2.githubusercontent.com/u/6916170?v=4",
       "profile": "https://github.com/segunadebayo",
-      "contributions": ["code", "maintenance", "doc", "example", "design"]
+      "contributions": [
+        "code",
+        "maintenance",
+        "doc",
+        "example",
+        "design"
+      ]
     },
     {
       "login": "tioluwani94",
       "name": "Tioluwani Kolawole",
       "avatar_url": "https://avatars1.githubusercontent.com/u/11310046?v=4",
       "profile": "https://github.com/tioluwani94",
-      "contributions": ["doc", "example", "maintenance"]
+      "contributions": [
+        "doc",
+        "example",
+        "maintenance"
+      ]
+    },
+    {
+      "login": "devanshj",
+      "name": "Devansh Jethmalani",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/30295578?v=4",
+      "profile": "https://github.com/devanshj",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 10,
