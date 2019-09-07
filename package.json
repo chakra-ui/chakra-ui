@@ -26,8 +26,7 @@
     "docs:deploy": "lerna exec --scope=@chakra-ui/docs -- now --target production",
     "docs:start": "lerna run --scope=@chakra-ui/docs start --stream",
     "core:build": "lerna run --scope=@chakra-ui/core build --stream",
-    "release": "lerna publish",
-    "release:core": "lerna exec --scope=@chakra-ui/core npm publish"
+    "release": "lerna publish --since origin/master"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "1.x",
