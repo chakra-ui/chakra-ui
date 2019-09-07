@@ -1,6 +1,6 @@
 {
   "files": ["README.md"],
-  "imageSize": 100,
+  "imageSize": 40,
   "commit": false,
   "contributors": [
     {
@@ -18,7 +18,7 @@
       "contributions": ["doc", "example", "maintenance"]
     }
   ],
-  "contributorsPerLine": 7,
+  "contributorsPerLine": 10,
   "projectName": "chakra-ui",
   "projectOwner": "chakra-ui",
   "repoType": "github",
