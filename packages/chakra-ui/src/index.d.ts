@@ -96,6 +96,7 @@ export { default as Textarea } from "./Textarea";
 export { default as useToast } from "./Toast";
 export { default as Tooltip } from "./Tooltip";
 export { default as theme } from "./theme";
+export * from "./theme";
 export { default as ThemeProvider } from "./ThemeProvider";
 export * from "./ThemeProvider";
 
