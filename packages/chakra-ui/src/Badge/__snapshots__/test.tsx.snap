@@ -1,8 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Badge should render all variants 1`] = `
-Array [
-  .emotion-0 {
+exports[`variants default 1`] = `
+.emotion-0 {
   display: inline-block;
   padding-left: 0.25rem;
   padding-right: 0.25rem;
@@ -10,172 +9,23 @@ Array [
   border-radius: 0.125rem;
   font-weight: 700;
   vertical-align: middle;
-  background-color: #fed7d7;
-  color: #822727;
+  background-color: #EDF2F7;
+  color: #1A202C;
   text-transform: uppercase;
   white-space: nowrap;
 }
 
 <div>
-    <div
-      class="emotion-0"
-    >
-      content
-    </div>
-  </div>,
-  .emotion-0 {
-  display: inline-block;
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
-  font-size: 0.75rem;
-  border-radius: 0.125rem;
-  font-weight: 700;
-  vertical-align: middle;
-  background-color: #c6f6d5;
-  color: #22543d;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-<div>
-    <div
-      class="emotion-0"
-    >
-      content
-    </div>
-  </div>,
-  .emotion-0 {
-  display: inline-block;
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
-  font-size: 0.75rem;
-  border-radius: 0.125rem;
-  font-weight: 700;
-  vertical-align: middle;
-  box-shadow: inset 0 0 0px 1px #e53e3e;
-  color: #e53e3e;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-<div>
-    <div
-      class="emotion-0"
-    >
-      content
-    </div>
-  </div>,
-  .emotion-0 {
-  display: inline-block;
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
-  font-size: 0.75rem;
-  border-radius: 0.125rem;
-  font-weight: 700;
-  vertical-align: middle;
-  box-shadow: inset 0 0 0px 1px #38a169;
-  color: #38a169;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-<div>
-    <div
-      class="emotion-0"
-    >
-      content
-    </div>
-  </div>,
-  .emotion-0 {
-  display: inline-block;
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
-  font-size: 0.75rem;
-  border-radius: 0.125rem;
-  font-weight: 700;
-  vertical-align: middle;
-  background-color: #e53e3e;
-  color: #fff;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-<div>
-    <div
-      class="emotion-0"
-    >
-      content
-    </div>
-  </div>,
-  .emotion-0 {
-  display: inline-block;
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
-  font-size: 0.75rem;
-  border-radius: 0.125rem;
-  font-weight: 700;
-  vertical-align: middle;
-  background-color: #38a169;
-  color: #fff;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-<div>
-    <div
-      class="emotion-0"
-    >
-      content
-    </div>
-  </div>,
-  .emotion-0 {
-  display: inline-block;
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
-  font-size: 0.75rem;
-  border-radius: 0.125rem;
-  font-weight: 700;
-  vertical-align: middle;
-  background-color: #fed7d7;
-  color: #822727;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-<div>
-    <div
-      class="emotion-0"
-    >
-      content
-    </div>
-  </div>,
-  .emotion-0 {
-  display: inline-block;
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
-  font-size: 0.75rem;
-  border-radius: 0.125rem;
-  font-weight: 700;
-  vertical-align: middle;
-  background-color: #c6f6d5;
-  color: #22543d;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-<div>
-    <div
-      class="emotion-0"
-    >
-      content
-    </div>
-  </div>,
-]
+  <div
+    class="emotion-0"
+  >
+    content
+  </div>
+</div>
 `;
 
-exports[`should render all variants 1`] = `
-Array [
-  .emotion-0 {
+exports[`variants outline variant 1`] = `
+.emotion-0 {
   display: inline-block;
   padding-left: 0.25rem;
   padding-right: 0.25rem;
@@ -183,20 +33,71 @@ Array [
   border-radius: 0.125rem;
   font-weight: 700;
   vertical-align: middle;
-  background-color: #fed7d7;
-  color: #822727;
+  box-shadow: inset 0 0 0px 1px #718096;
+  color: #718096;
   text-transform: uppercase;
   white-space: nowrap;
 }
 
 <div>
-    <div
-      class="emotion-0"
-    >
-      content
-    </div>
-  </div>,
-  .emotion-0 {
+  <div
+    class="emotion-0"
+  >
+    content
+  </div>
+</div>
+`;
+
+exports[`variants solid variant 1`] = `
+.emotion-0 {
+  display: inline-block;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  font-size: 0.75rem;
+  border-radius: 0.125rem;
+  font-weight: 700;
+  vertical-align: middle;
+  background-color: #718096;
+  color: #fff;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+<div>
+  <div
+    class="emotion-0"
+  >
+    content
+  </div>
+</div>
+`;
+
+exports[`variants subtle variant 1`] = `
+.emotion-0 {
+  display: inline-block;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  font-size: 0.75rem;
+  border-radius: 0.125rem;
+  font-weight: 700;
+  vertical-align: middle;
+  background-color: #EDF2F7;
+  color: #1A202C;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+<div>
+  <div
+    class="emotion-0"
+  >
+    content
+  </div>
+</div>
+`;
+
+exports[`variants variant color 1`] = `
+.emotion-0 {
   display: inline-block;
   padding-left: 0.25rem;
   padding-right: 0.25rem;
@@ -211,137 +112,10 @@ Array [
 }
 
 <div>
-    <div
-      class="emotion-0"
-    >
-      content
-    </div>
-  </div>,
-  .emotion-0 {
-  display: inline-block;
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
-  font-size: 0.75rem;
-  border-radius: 0.125rem;
-  font-weight: 700;
-  vertical-align: middle;
-  box-shadow: inset 0 0 0px 1px #e53e3e;
-  color: #e53e3e;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-<div>
-    <div
-      class="emotion-0"
-    >
-      content
-    </div>
-  </div>,
-  .emotion-0 {
-  display: inline-block;
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
-  font-size: 0.75rem;
-  border-radius: 0.125rem;
-  font-weight: 700;
-  vertical-align: middle;
-  box-shadow: inset 0 0 0px 1px #38a169;
-  color: #38a169;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-<div>
-    <div
-      class="emotion-0"
-    >
-      content
-    </div>
-  </div>,
-  .emotion-0 {
-  display: inline-block;
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
-  font-size: 0.75rem;
-  border-radius: 0.125rem;
-  font-weight: 700;
-  vertical-align: middle;
-  background-color: #e53e3e;
-  color: #fff;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-<div>
-    <div
-      class="emotion-0"
-    >
-      content
-    </div>
-  </div>,
-  .emotion-0 {
-  display: inline-block;
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
-  font-size: 0.75rem;
-  border-radius: 0.125rem;
-  font-weight: 700;
-  vertical-align: middle;
-  background-color: #38a169;
-  color: #fff;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-<div>
-    <div
-      class="emotion-0"
-    >
-      content
-    </div>
-  </div>,
-  .emotion-0 {
-  display: inline-block;
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
-  font-size: 0.75rem;
-  border-radius: 0.125rem;
-  font-weight: 700;
-  vertical-align: middle;
-  background-color: #fed7d7;
-  color: #822727;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-<div>
-    <div
-      class="emotion-0"
-    >
-      content
-    </div>
-  </div>,
-  .emotion-0 {
-  display: inline-block;
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
-  font-size: 0.75rem;
-  border-radius: 0.125rem;
-  font-weight: 700;
-  vertical-align: middle;
-  background-color: #c6f6d5;
-  color: #22543d;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-<div>
-    <div
-      class="emotion-0"
-    >
-      content
-    </div>
-  </div>,
-]
+  <div
+    class="emotion-0"
+  >
+    content
+  </div>
+</div>
 `;
