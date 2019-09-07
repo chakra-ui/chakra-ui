@@ -288,6 +288,10 @@ const tailwindPreflight = css`
     -webkit-appearance: none !important;
   }
 
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
   /**
  * 1. Correct the odd appearance in Chrome and Safari.
  * 2. Correct the outline style in Safari.

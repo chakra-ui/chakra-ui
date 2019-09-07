@@ -16,6 +16,18 @@
 
 https://chakra-ui.com
 
+
+## Supporting Chakra UI 💖
+
+Chakra UI is an MIT-licensed open source project. It's an independent project with ongoing development made possible thanks to the support of amazing contributors. If you're happy with Chakra UI and would like to support it's ongoing development, we'll appreciate some support.
+- [Become a backer or sponsor on Patreon](https://www.patreon.com/segunadebayo).
+- [Become a backer or sponsor on OpenCollective](https://opencollective.com/chakra-ui).
+
+
+### What's the difference between Patreon and OpenCollective?
+
+Funds donated via Patreon directly support [Segun Adebayo](https://github.com/segunadebayo)'s work on Chakra UI. Funds donated via OpenCollective are managed transparently and will be used for compensating work and expenses for core team members. Your name/logo will receive proper recognition and exposure by donating on either platform.
+
 ## Installing Chakra UI
 
 ⚡️Chakra UI is made up of multiple components and tools which you can import
