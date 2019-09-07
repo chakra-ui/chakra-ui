@@ -37,6 +37,16 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Vynlar",
+      "name": "Adrian Aleixandre",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/920212?v=4",
+      "profile": "http://adrianaleixandre.com",
+      "contributions": [
+        "code",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 10,
