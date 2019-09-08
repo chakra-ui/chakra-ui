@@ -14,6 +14,7 @@ import {
   PopoverContent,
   PopoverTransition,
 } from "./components";
+import usePopper from "../usePopper";
 
 const Popover = ({
   isOpen: controlledIsOpen,
@@ -33,8 +34,20 @@ const Popover = ({
   ...rest
 }) => {
   const { isOpen, onClose, onToggle } = useDisclosure(defaultIsOpen);
-  const triggerRef = useRef();
-  const popperRef = useRef();
+  // const triggerRef = useRef();
+  // const popperRef = useRef();
+
+  const {
+    placement: _placement,
+    referenceRef,
+    popoverRef,
+    arrowRef,
+    arrowStyles,
+    popoverStyles,
+  } = usePopper({
+    placement,
+    isOpen,
+  });
 
   useEffect(() => {
     onOpenChange && onOpenChange(isOpen);
@@ -44,10 +57,10 @@ const Popover = ({
     if (
       !trapFocus &&
       isOpen &&
-      popperRef.current &&
-      triggerRef.current &&
-      !popperRef.current.contains(event.relatedTarget) &&
-      !triggerRef.current.contains(event.relatedTarget)
+      popoverRef.current &&
+      referenceRef.current &&
+      !popoverRef.current.contains(event.relatedTarget) &&
+      !referenceRef.current.contains(event.relatedTarget)
     ) {
       closeOnBlur && onClose();
     }
@@ -61,82 +74,62 @@ const Popover = ({
   const popoverId = `popper-${useId()}`;
   const PopperWrapper = usePortal ? Portal : Fragment;
 
+  const triggerClone = cloneElement(trigger, {
+    "aria-haspopup": "true",
+    "aria-controls": popoverId,
+    ref: referenceRef,
+    onClick: event => {
+      onToggle();
+      trigger.props.onClick && trigger.props.onClick(event);
+    },
+  });
+
   return (
-    <Manager>
-      <Reference>
-        {({ ref: referenceRef }) =>
-          cloneElement(trigger, {
-            "aria-haspopup": "true",
-            "aria-controls": popoverId,
-            ref: node => {
-              triggerRef.current = node;
-              assignRef(referenceRef, node);
-            },
-            onClick: event => {
-              onToggle();
-              trigger.props.onClick && trigger.props.onClick(event);
-            },
-          })
-        }
-      </Reference>
+    <Fragment>
+      {triggerClone}
 
       <PopperWrapper>
-        <Popper placement={placement}>
-          {({ ref, style: popperStyle, placement, arrowProps }) => (
-            <PopoverTransition duration={100} isOpen={isOpen}>
-              {styles => (
-                <FocusLock
-                  // eslint-disable-next-line jsx-a11y/no-autofocus
-                  autoFocus={false}
-                  returnFocus
-                >
-                  <PopoverContent
-                    ref={node => {
-                      popperRef.current = node;
-                      assignRef(ref, node);
-                    }}
-                    bg={bg}
-                    maxWidth={maxWidth}
-                    data-placement={placement}
-                    id={popoverId}
-                    aria-hidden={isOpen}
-                    {...rest}
-                    tabIndex="-1"
-                    onBlur={handleBlur}
-                    css={{
-                      ...popperStyle,
-                      transform: `${popperStyle.transform} scale(${styles.scale})`,
-                      opacity: styles.opacity,
-                    }}
-                    onKeyDown={event => {
-                      event.stopPropagation();
-                      if (event.key === "Escape" && closeOnEsc) {
-                        onClose && onClose();
-                      }
-                    }}
-                  >
-                    {showCloseButton && (
-                      <PopoverCloseButton onClick={onClose} />
-                    )}
-                    {typeof children === "function"
-                      ? children({ isOpen, onClose })
-                      : children}
-                    {showArrow && (
-                      <Box
-                        borderColor={bg}
-                        data-arrow=""
-                        ref={arrowProps.ref}
-                        css={arrowProps.style}
-                      />
-                    )}
-                  </PopoverContent>
-                </FocusLock>
+        <PopoverTransition duration={100} isOpen={isOpen}>
+          {styles => (
+            <PopoverContent
+              ref={popoverRef}
+              bg={bg}
+              maxWidth={maxWidth}
+              data-placement={_placement}
+              id={popoverId}
+              aria-hidden={isOpen}
+              {...rest}
+              tabIndex="-1"
+              onBlur={handleBlur}
+              css={{
+                ...popoverStyles,
+                transform: `${popoverStyles.transform} scale(${styles.scale})`,
+                opacity: styles.opacity,
+              }}
+              onKeyDown={event => {
+                event.stopPropagation();
+                if (event.key === "Escape" && closeOnEsc) {
+                  onClose && onClose();
+                }
+              }}
+            >
+              {showCloseButton && <PopoverCloseButton onClick={onClose} />}
+              {typeof children === "function"
+                ? children({ isOpen, onClose })
+                : children}
+              {showArrow && (
+                <Box
+                  borderColor={bg}
+                  data-arrow=""
+                  ref={arrowRef}
+                  css={arrowStyles}
+                />
               )}
-            </PopoverTransition>
+            </PopoverContent>
           )}
-        </Popper>
+        </PopoverTransition>
       </PopperWrapper>
-    </Manager>
+    </Fragment>
   );
 };
 
