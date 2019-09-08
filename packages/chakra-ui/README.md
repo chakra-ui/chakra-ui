@@ -58,7 +58,7 @@ const App = () => <Button>I just consumed some ⚡️Chakra!</Button>;
 # Contributing
 
 Feel like contributing? That's awesome! We have a
-[contributing guide](./CONTRIBUTING.md) to help guide you.
+[contributing guide](../../CONTRIBUTING.md) to help guide you.
 
 The components to be built come from the
 [Aria Practices Design Patterns and Widgets](https://www.w3.org/TR/wai-aria-practices-1.1).
