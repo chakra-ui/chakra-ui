@@ -7,8 +7,9 @@ const usePopper = ({
   shift = true,
   gutter,
   preventOverflow = true,
-  boundariesElement = "scrollParent",
-  positionFixed,
+  eventsEnabled = true,
+  boundariesElement = "viewport",
+  positionFixed = false,
   isOpen,
 }) => {
   const referenceRef = useRef();
@@ -23,15 +24,16 @@ const usePopper = ({
   useLayoutEffect(() => {
     if (!referenceRef.current || !popoverRef.current) return;
 
-    const instance = new Popper(referenceRef.current, popoverRef.current, {
+    popperRef.current = new Popper(referenceRef.current, popoverRef.current, {
       placement: realPlacement,
+      eventsEnabled,
+      positionFixed,
       modifiers: {
         flip: {
           enabled: flip,
           padding: 16,
         },
         shift,
-        positionFixed,
         preventOverflow: { enabled: preventOverflow, boundariesElement },
         arrow: arrowRef.current
           ? { enabled: true, element: arrowRef.current }
@@ -65,7 +67,9 @@ const usePopper = ({
     });
 
     return () => {
-      instance.destroy();
+      if (popperRef.current) {
+        popperRef.current.destroy();
+      }
     };
   }, [
     isOpen,
@@ -76,12 +80,19 @@ const usePopper = ({
     preventOverflow,
     boundariesElement,
     positionFixed,
+    eventsEnabled,
   ]);
 
   useEffect(() => {
-    if (isOpen && popperRef.current) {
+    if (popperRef.current) {
+      popperRef.current.enableEventListeners();
       popperRef.current.scheduleUpdate();
     }
+    return () => {
+      if (popperRef.current) {
+        popperRef.current.disableEventListeners();
+      }
+    };
   }, [isOpen]);
 
   return {

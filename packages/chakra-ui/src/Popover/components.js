@@ -1,38 +1,55 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import { forwardRef } from "react";
-import { Transition } from "react-spring/renderprops.cjs";
-import CloseButton from "../CloseButton";
 import Box from "../Box";
+import Transition from "react-transition-group/Transition";
 
-const arrowSize = "5px";
-
-export const PopoverTransition = ({
-  isOpen,
+export const ScaleTransition = ({
+  in: inProp,
   duration = 200,
   children,
-  ...rest
-}) => (
-  <Transition
-    items={isOpen}
-    from={{
-      opacity: 0.01,
-      scale: 0.75,
-    }}
-    enter={{
+  ...props
+}) => {
+  const transitionStyles = {
+    entering: { opacity: 0, scale: 0.75 },
+    entered: {
       opacity: 1,
       scale: 1,
-    }}
-    leave={{
+      transition: `transform, opacity ${duration}ms ease-in-out`,
+    },
+    // exiting: { opacity: 1, scale: 1 },
+    exited: {
       opacity: 0,
       scale: 0.75,
-    }}
-    config={{ duration, ...rest.config }}
-    {...rest}
-  >
-    {isOpen => isOpen && (style => children(style))}
-  </Transition>
-);
+      transition: `transform, opacity ${duration}ms ease-in-out`,
+    },
+  };
+  const defaultStyle = {
+    // transition: `transform, opacity ${duration}ms ease-in-out`,
+    opacity: 0,
+    // scale: 0.75,
+  };
+
+  // const defaultStyle = {
+  //   transition: `opacity ${duration}ms ease-in-out`,
+  //   opacity: 0,
+  // };
+
+  // const transitionStyles = {
+  //   entering: { opacity: 1 },
+  //   entered: { opacity: 1 },
+  //   exiting: { opacity: 0 },
+  //   exited: { opacity: 0 },
+  // };
+
+  return (
+    <Transition in={inProp} timeout={duration} {...props}>
+      {state => children({ ...defaultStyle, ...transitionStyles[state] })}
+    </Transition>
+  );
+};
+
+const arrowSize = "5px";
 
 export const popperStyle = css`
   > [data-arrow] {
@@ -54,7 +71,6 @@ export const popperStyle = css`
     border-right-color: transparent;
     border-bottom-color: transparent;
     bottom: -5px;
-    left: calc(50% - 5px);
     margin-top: 0;
     margin-bottom: 0;
     box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.07);
@@ -71,7 +87,6 @@ export const popperStyle = css`
     border-right-color: transparent;
     border-top-color: transparent;
     top: -5px;
-    left: calc(50% - 5px);
     margin-top: 0;
     margin-bottom: 0;
     box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.06);
@@ -88,7 +103,6 @@ export const popperStyle = css`
     border-top-color: transparent;
     border-bottom-color: transparent;
     left: -5px;
-    top: calc(50% - 5px);
     margin-left: 0;
     margin-right: 0;
     box-shadow: -3px 3px 7px rgba(0, 0, 0, 0.07);
@@ -105,7 +119,6 @@ export const popperStyle = css`
     border-right-color: transparent;
     border-bottom-color: transparent;
     right: -5px;
-    top: calc(50% - 5px);
     margin-left: 0;
     margin-right: 0;
     box-shadow: 3px -3px 7px rgba(0, 0, 0, 0.07);
@@ -126,19 +139,6 @@ export const PopoverContent = forwardRef((props, ref) => (
     {...props}
   />
 ));
-
-export const PopoverCloseButton = ({ onClick, ...props }) => (
-  <CloseButton
-    size="sm"
-    onClick={onClick}
-    position="absolute"
-    rounded="md"
-    top="12px"
-    right="12px"
-    p="6px"
-    {...props}
-  />
-);
 
 export const PopoverHeader = props => (
   <Box px="12px" boxShadow="bottom" py="8px" as="header" {...props} />
