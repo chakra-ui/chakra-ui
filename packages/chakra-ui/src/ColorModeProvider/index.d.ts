@@ -10,8 +10,8 @@ declare const ColorModeProvider: React.FC<IColorModeProvider>;
 export default ColorModeProvider;
 
 export interface IUseColorMode {
-  readonly mode?: "light" | "dark";
-  toggle?: () => void;
+  readonly colorMode?: "light" | "dark";
+  toggleColorMode?: () => void;
 }
 export function useColorMode(): IUseColorMode;
 
