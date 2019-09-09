@@ -34,7 +34,7 @@ stories.add("Default", () => (
 ));
 
 stories.add("MenuList only", () => (
-  <Menu autoSelect isOpen closeOnSelect={false}>
+  <Menu autoSelect defaultIsOpen closeOnSelect={false}>
     <MenuList minWidth="240px">
       <MenuGroup title="Group 1">
         <MenuItem>Share...</MenuItem>

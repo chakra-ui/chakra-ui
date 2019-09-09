@@ -3,8 +3,6 @@ import { jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import Portal from "@reach/portal";
 import { cloneElement, useRef, Children, Fragment } from "react";
-// import { Manager, Popper, Reference } from "react-popper";
-// import { assignRef, genId } from "../utils";
 import { popperStyle } from "../Popover/components";
 import { useColorMode } from "../ColorModeProvider";
 import Box from "../Box";
@@ -158,6 +156,7 @@ const Tooltip = ({
               bg={bgColor}
               borderRadius="sm"
               fontWeight="medium"
+              pointerEvents="none"
               color={textColor}
               css={{
                 ...popoverStyles,

@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as ReactPopper from "react-popper";
+import PopperJS from "popper.js";
 import { BoxProps } from "../Box";
 import { PseudoBoxProps } from "../PseudoBox";
 
@@ -35,7 +35,7 @@ export type MenuButtonProps = React.RefAttributes<HTMLButtonElement> &
 export const MenuButton: React.FC<MenuButtonProps>;
 
 export interface IMenuList {
-  placement?: ReactPopper.PopperProps["placement"];
+  placement?: PopperJS.Placement;
   onKeydown?: React.KeyboardEventHandler<HTMLDivElement>;
   onBlur?: React.FocusEventHandler<HTMLDivElement>;
 }
