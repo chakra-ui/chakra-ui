@@ -23,7 +23,7 @@ git clone git@github.com:chakra-ui/chakra-ui.git
 cd chakra-ui
 yarn install
 yarn bootstrap
-yarn build
+yarn core:build
 ```
 
 ## Root Repo Scripts:
