@@ -10,6 +10,12 @@ import Popover, {
   PopoverTrigger,
 } from ".";
 import Button from "../Button";
+import Avatar from "../Avatar";
+import Box from "../Box";
+import Text from "../Text";
+import Badge from "../Badge";
+import Link from "../Link";
+import { DarkMode } from "../ColorModeProvider";
 import { PopoverBody, PopoverFooter, PopoverHeader } from "./components";
 
 const stories = storiesOf("Popover", module);
@@ -18,7 +24,7 @@ const Example = () => {
   const initRef = useRef();
   return (
     <>
-      <Popover trigger="hover" initialFocusRef={initRef}>
+      <Popover initialFocusRef={initRef}>
         <PopoverTrigger>
           <Button float="right">Trigger</Button>
         </PopoverTrigger>
@@ -87,3 +93,43 @@ const PortalAndFocusLockEx = () => (
 );
 
 stories.add("with focus lock", () => <PortalAndFocusLockEx />);
+
+function Card() {
+  return (
+    <DarkMode>
+      <Box p={5}>
+        <Avatar
+          name="swyx"
+          src="https://pbs.twimg.com/profile_images/990728399873232896/CMPn3IxT_reasonably_small.jpg"
+        />
+        <Text mt={4} fontWeight="bold">
+          swyx
+          <Badge ml={3} fontSize="xs">
+            Follows you
+          </Badge>
+        </Text>
+        <Text mt={3}>
+          Infinite Builder working on DX @Netlify. Helping people #LearnInPublic
+        </Text>
+      </Box>
+    </DarkMode>
+  );
+}
+
+function TwitterEx() {
+  return (
+    <Popover trigger="hover">
+      <PopoverTrigger>
+        <Link href="#" color="blue.500">
+          Hover to see @swyx profile
+        </Link>
+      </PopoverTrigger>
+
+      <PopoverContent bg="#15202b" color="white" width="400px">
+        <Card></Card>
+      </PopoverContent>
+    </Popover>
+  );
+}
+
+stories.add("twitter hover card", () => <TwitterEx />);

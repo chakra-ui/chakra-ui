@@ -44,24 +44,27 @@ export const PopoverTrigger = ({ children }) => {
     onToggle,
     trigger,
     onOpen,
+    isOpen,
     onClose,
     isHoveringRef,
   } = usePopoverContext();
 
   const child = Children.only(children);
-  return cloneElement(child, {
-    "aria-haspopup": "true",
-    "aria-controls": popoverId,
-    ref: referenceRef,
-    ...(trigger === "click" && {
+  let eventHandlers = {};
+
+  if (trigger === "click") {
+    eventHandlers = {
       onClick: event => {
         onToggle();
         if (child.props.onClick) {
           child.props.onClick(event);
         }
       },
-    }),
-    ...(trigger === "hover" && {
+    };
+  }
+
+  if (trigger === "hover") {
+    eventHandlers = {
       onFocus: event => {
         onOpen();
         if (child.props.onFocus) {
@@ -76,7 +79,9 @@ export const PopoverTrigger = ({ children }) => {
       },
       onMouseEnter: event => {
         isHoveringRef.current = true;
-        onOpen();
+        setTimeout(() => {
+          onOpen();
+        }, 300);
         if (child.props.onMouseEnter) {
           child.props.onMouseEnter(event);
         }
@@ -92,7 +97,15 @@ export const PopoverTrigger = ({ children }) => {
           child.props.onMouseLeave(event);
         }
       },
-    }),
+    };
+  }
+
+  return cloneElement(child, {
+    "aria-haspopup": "dialog",
+    "aria-expanded": isOpen,
+    "aria-controls": popoverId,
+    ref: referenceRef,
+    ...eventHandlers,
   });
 };
 
@@ -105,7 +118,7 @@ export const PopoverArrow = props => {
       borderColor={borderColor}
       data-arrow=""
       ref={arrowRef}
-      css={{ ...arrowStyles }}
+      css={arrowStyles}
       {...props}
     />
   );
@@ -187,6 +200,9 @@ export const PopoverContent = ({
   onMouseLeave,
   onMouseEnter,
   onFocus,
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledBy,
+  "aria-describedby": ariaDescribedBy,
   ...props
 }) => {
   const {
@@ -205,53 +221,71 @@ export const PopoverContent = ({
   const { colorMode } = useColorMode();
   const bg = colorMode === "light" ? "white" : "gray.700";
 
+  let eventHandlers = {};
+
+  if (trigger === "click") {
+    eventHandlers = {
+      onBlur: event => {
+        onBlur(event);
+        if (onBlurProp) {
+          onBlurProp(event);
+        }
+      },
+    };
+  }
+
+  if (trigger === "hover") {
+    eventHandlers = {
+      onMouseEnter: event => {
+        isHoveringRef.current = true;
+        if (onMouseEnter) {
+          onMouseEnter(event);
+        }
+      },
+      onMouseLeave: event => {
+        isHoveringRef.current = false;
+
+        setTimeout(() => {
+          onClose();
+        }, 300);
+
+        if (onMouseLeave) {
+          onMouseLeave(event);
+        }
+      },
+    };
+  }
+
+  eventHandlers = {
+    ...eventHandlers,
+    onKeyDown: event => {
+      if (event.key === "Escape" && closeOnEsc) {
+        onClose && onClose();
+      }
+
+      if (onKeyDown) {
+        onKeyDown(event);
+      }
+    },
+  };
+
   return (
     <PopoverTransition>
       <PopoverContentBase
+        aria-label={ariaLabel}
+        role="dialog"
+        aria-modal="false"
         bg={bg}
         ref={popoverRef}
-        maxWidth="200px"
         data-placement={placement}
         id={popoverId}
         aria-hidden={!isOpen}
         tabIndex="-1"
-        {...(trigger === "click" && {
-          onBlur: event => {
-            onBlur(event);
-            if (onBlurProp) {
-              onBlurProp(event);
-            }
-          },
-        })}
-        {...(trigger === "hover" && {
-          onMouseEnter: event => {
-            isHoveringRef.current = true;
-            if (onMouseEnter) {
-              onMouseEnter(event);
-            }
-          },
-          onMouseLeave: event => {
-            isHoveringRef.current = false;
-            onClose();
-
-            if (onMouseLeave) {
-              onMouseLeave(event);
-            }
-          },
-        })}
         css={{
           position: "absolute",
           ...popoverStyles,
         }}
-        onKeyDown={event => {
-          if (event.key === "Escape" && closeOnEsc) {
-            onClose && onClose();
-          }
-
-          if (onKeyDown) {
-            onKeyDown(event);
-          }
-        }}
+        {...eventHandlers}
         {...props}
       />
     </PopoverTransition>
@@ -337,7 +371,12 @@ const Popover = ({
   const prevIsOpen = usePrevious(isOpen);
 
   useEffect(() => {
-    if (isOpen && popoverRef.current && !initialFocusRef) {
+    if (
+      isOpen &&
+      popoverRef.current &&
+      !initialFocusRef &&
+      trigger !== "hover"
+    ) {
       popoverRef.current.focus();
     }
 
