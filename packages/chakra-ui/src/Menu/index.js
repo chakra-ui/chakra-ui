@@ -24,7 +24,9 @@ const MenuContext = createContext();
 
 const Menu = ({
   children,
+  isOpen: isOpenProp,
   defaultIsOpen,
+  onOpenChange,
   autoSelect = true,
   closeOnBlur = true,
   closeOnSelect = true,
@@ -32,10 +34,11 @@ const Menu = ({
 }) => {
   const { colorMode } = useColorMode();
 
-  const [state, setState] = useState({
-    isOpen: defaultIsOpen || false,
-    index: -1,
-  });
+  const [activeIndex, setActiveIndex] = useState(-1);
+  const [isOpen, setIsOpen] = useState(defaultIsOpen || false);
+  const { current: isControlled } = useRef(isOpenProp != null);
+
+  const _isOpen = isControlled ? isOpenProp : isOpen;
 
   const menuId = `menu-${useId()}`;
   const buttonId = `menubutton-${useId()}`;
@@ -51,7 +54,7 @@ const Menu = ({
     popoverStyles,
   } = usePopper({
     placement: placementProp,
-    isOpen: state.isOpen,
+    isOpen: _isOpen,
   });
 
   useEffect(() => {
@@ -86,44 +89,58 @@ const Menu = ({
     );
   };
 
-  const wasPreviouslyOpen = usePrevious(state.isOpen);
+  const wasPreviouslyOpen = usePrevious(_isOpen);
 
   useEffect(() => {
-    if (state.index !== -1) {
-      focusableItems.current[state.index].focus();
-      updateTabIndex(state.index);
+    if (activeIndex !== -1) {
+      focusableItems.current[activeIndex].focus();
+      updateTabIndex(activeIndex);
     }
-    if (state.index === -1 && !state.isOpen && wasPreviouslyOpen) {
+    if (activeIndex === -1 && !_isOpen && wasPreviouslyOpen) {
       buttonRef.current && buttonRef.current.focus();
     }
-    if (state.index === -1 && state.isOpen) {
+    if (activeIndex === -1 && _isOpen) {
       menuRef.current && menuRef.current.focus();
     }
-  }, [state, buttonRef, menuRef, wasPreviouslyOpen]);
+  }, [activeIndex, _isOpen, buttonRef, menuRef, wasPreviouslyOpen]);
 
   const focusOnFirstItem = () => {
-    setState({ isOpen: true, index: 0 });
+    if (!isControlled) {
+      setActiveIndex(0);
+      setIsOpen(true);
+    }
   };
 
   const openMenu = () => {
-    setState({ ...state, isOpen: true });
+    if (!isControlled) {
+      setIsOpen(true);
+    }
   };
 
   const focusAtIndex = index => {
-    setState({ ...state, index });
+    if (!isControlled) {
+      setActiveIndex(index);
+    }
   };
 
   const focusOnLastItem = () => {
-    setState({ isOpen: true, index: focusableItems.current.length - 1 });
+    if (!isControlled) {
+      setIsOpen(true);
+      setActiveIndex(focusableItems.current.length - 1);
+    }
   };
 
   const closeMenu = () => {
-    setState({ isOpen: false, index: -1 });
+    if (!isControlled) {
+      setIsOpen(false);
+      setActiveIndex(-1);
+    }
     resetTabIndex();
   };
 
   const context = {
-    state,
+    activeIndex,
+    isOpen: _isOpen,
     focusAtIndex,
     focusOnLastItem,
     focusOnFirstItem,
@@ -147,7 +164,7 @@ const Menu = ({
   return (
     <MenuContext.Provider value={context}>
       {typeof children === "function"
-        ? children({ isOpen: state.isOpen, onClose: closeMenu })
+        ? children({ isOpen: _isOpen, onClose: closeMenu })
         : children}
     </MenuContext.Provider>
   );
@@ -172,7 +189,7 @@ const PseudoButton = forwardRef((props, ref) => (
 const MenuButton = forwardRef(
   ({ onClick, onKeyDown, as: Comp = PseudoButton, ...rest }, ref) => {
     const {
-      state: { isOpen },
+      isOpen,
       focusOnLastItem,
       focusOnFirstItem,
       closeMenu,
@@ -225,7 +242,8 @@ const MenuButton = forwardRef(
 
 const MenuList = ({ onKeyDown, onBlur, placement, ...props }) => {
   const {
-    state: { index, isOpen },
+    activeIndex: index,
+    isOpen,
     focusAtIndex,
     focusOnFirstItem,
     focusOnLastItem,

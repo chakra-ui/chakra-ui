@@ -9,13 +9,16 @@ import Menu, {
 } from ".";
 import Box from "../Box";
 import Button from "../Button";
+import Icon from "../Icon";
 import { MenuOptionGroup, MenuItemOption } from "./MenuOption";
 
-const stories = storiesOf("Menu", module).addDecorator(story => (
-  <Box maxWidth="md" mx="auto" mt="600px">
-    {story()}
-  </Box>
-));
+const stories = storiesOf("Menu", module);
+
+// stories.addDecorator(story => (
+//   <Box maxWidth="md" mx="auto" mt="600px">
+//     {story()}
+//   </Box>
+// ));
 
 stories.add("Default", () => (
   <Menu>
@@ -70,4 +73,25 @@ stories.add("MenuItem Radio", () => (
       </MenuOptionGroup>
     </MenuList>
   </Menu>
+));
+
+function CustomMenu() {
+  return (
+    <Menu>
+      <MenuButton as={Button} rightIcon="chevron-down">
+        <Icon name="settings" />
+      </MenuButton>
+      <MenuList>
+        <MenuItem>Download</MenuItem>
+        <MenuItem>Upload</MenuItem>
+      </MenuList>
+    </Menu>
+  );
+}
+
+stories.add("Bug fix", () => (
+  <div style={{ float: "right" }}>
+    <CustomMenu />
+    <CustomMenu />
+  </div>
 ));

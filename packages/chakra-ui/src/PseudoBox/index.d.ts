@@ -1,5 +1,4 @@
 import * as StyledSystem from "styled-system";
-import * as Emotion from "@emotion/styled";
 import { BoxProps } from "../Box";
 
 interface IPseudoBoxProps {
@@ -143,6 +142,6 @@ export type PseudoBoxProps = IPseudoBoxProps & BoxProps;
  * <PseudoBox _hover={...} _focus={...}/>
  * ```
  */
-declare const PseudoBox: Emotion.StyledComponent<PseudoBoxProps, {}, {}>;
+declare const PseudoBox: React.FC<PseudoBoxProps>;
 
 export default PseudoBox;

@@ -8,36 +8,45 @@ import { useColorMode } from "../ColorModeProvider";
 import Box from "../Box";
 import useDisclosure from "../useDisclosure";
 import { useId } from "@reach/auto-id";
-import Transition from "react-transition-group/Transition";
+import CSSTransition from "react-transition-group/CSSTransition";
 import usePopper from "../usePopper";
 
-export const FadeTransition = ({
-  in: inProp,
-  duration = 200,
-  children,
-  ...props
-}) => {
-  const defaultStyle = {
-    transition: `opacity ${duration}ms ease-in-out`,
-    opacity: 0,
-  };
+export const Fade = ({ in: inProp, timeout = 200, children, ...props }) => {
+  const child = Children.only(children);
 
-  const transitionStyles = {
-    entering: { opacity: 1 },
-    entered: { opacity: 1 },
-    exiting: { opacity: 0 },
-    exited: { opacity: 0 },
+  const fadeStyle = {
+    "&.fade-enter": {
+      opacity: 0.01,
+    },
+    "&.fade-enter-active": {
+      opacity: 1,
+      transition: `opacity ${timeout}ms ease`,
+    },
+    "&.fade-exit": {
+      opacity: 1,
+    },
+    "&.fade-exit-active": {
+      opacity: 0.01,
+      transition: `opacity ${timeout}ms ease`,
+    },
   };
 
   return (
-    <Transition in={inProp} timeout={duration} {...props}>
-      {state => children({ ...defaultStyle, ...transitionStyles[state] })}
-    </Transition>
+    <CSSTransition
+      in={inProp}
+      timeout={timeout}
+      appear
+      unmountOnExit
+      classNames="fade"
+      {...props}
+    >
+      {cloneElement(child, { css: [child.props.css, fadeStyle] })}
+    </CSSTransition>
   );
 };
 
 const TooltipContent = styled(Box)`
-  ${popperStyle}
+  ${popperStyle()}
 `;
 
 const Tooltip = ({
@@ -144,43 +153,38 @@ const Tooltip = ({
     <Fragment>
       {clone}
 
-      <FadeTransition duration={transitionDuration} in={_isOpen}>
-        {styles => (
-          <Portal>
-            <TooltipContent
-              ref={popoverRef}
-              px="8px"
-              py="2px"
-              id={tooltipId}
-              role="tooltip"
-              bg={bgColor}
-              borderRadius="sm"
-              fontWeight="medium"
-              pointerEvents="none"
-              color={textColor}
-              css={{
-                ...popoverStyles,
-                opacity: styles.opacity,
-              }}
-              data-placement={placement}
-              fontSize="sm"
-              boxShadow="md"
-              maxWidth="320px"
-              {...rest}
-            >
-              {label}
-              {showArrow && (
-                <Box
-                  borderColor={bgColor}
-                  data-arrow=""
-                  ref={arrowRef}
-                  style={arrowStyles}
-                />
-              )}
-            </TooltipContent>
-          </Portal>
-        )}
-      </FadeTransition>
+      <Portal>
+        <Fade duration={transitionDuration} in={_isOpen}>
+          <TooltipContent
+            ref={popoverRef}
+            px="8px"
+            py="2px"
+            id={tooltipId}
+            role="tooltip"
+            bg={bgColor}
+            borderRadius="sm"
+            fontWeight="medium"
+            pointerEvents="none"
+            color={textColor}
+            css={popoverStyles}
+            data-placement={placement}
+            fontSize="sm"
+            boxShadow="md"
+            maxWidth="320px"
+            {...rest}
+          >
+            {label}
+            {showArrow && (
+              <Box
+                borderColor={bgColor}
+                data-arrow=""
+                ref={arrowRef}
+                style={arrowStyles}
+              />
+            )}
+          </TooltipContent>
+        </Fade>
+      </Portal>
     </Fragment>
   );
 };
