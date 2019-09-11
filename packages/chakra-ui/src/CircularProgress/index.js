@@ -38,6 +38,7 @@ export const CircularProgressLabel = props => (
     lineHeight="1"
     transform="translate(-50%, -50%)"
     fontSize="0.25em"
+    css={{ fontVariantNumeric: "tabular-nums" }}
     {...props}
   ></Box>
 );
