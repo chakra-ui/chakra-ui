@@ -10,7 +10,7 @@ import {
   useState,
   useRef,
 } from "react";
-import Box from "../Box";
+import PseudoBox from "../PseudoBox";
 import CloseButton from "../CloseButton";
 import { useColorMode } from "../ColorModeProvider";
 import usePopper from "../usePopper";
@@ -36,7 +36,8 @@ const usePopoverContext = () => {
   return context;
 };
 
-// Should Chakra support multiple triggers? maybe hover and click?
+/////////////////////////////////////////////////////////////////////
+
 export const PopoverTrigger = ({ children }) => {
   const {
     referenceRef,
@@ -69,6 +70,16 @@ export const PopoverTrigger = ({ children }) => {
         onOpen();
         if (child.props.onFocus) {
           child.props.onFocus(event);
+        }
+      },
+      onKeyDown: event => {
+        if (event.key === "Escape") {
+          setTimeout(() => {
+            onClose();
+          }, 300);
+        }
+        if (child.props.onKeyDown) {
+          child.props.onKeyDown(event);
         }
       },
       onBlur: event => {
@@ -109,12 +120,15 @@ export const PopoverTrigger = ({ children }) => {
   });
 };
 
+/////////////////////////////////////////////////////////////////////
+
 export const PopoverArrow = props => {
   const { colorMode } = useColorMode();
   const borderColor = colorMode === "light" ? "white" : "gray.700";
   const { arrowRef, arrowStyles } = usePopoverContext();
+
   return (
-    <Box
+    <PseudoBox
       borderColor={borderColor}
       data-arrow=""
       ref={arrowRef}
@@ -123,6 +137,8 @@ export const PopoverArrow = props => {
     />
   );
 };
+
+/////////////////////////////////////////////////////////////////////
 
 export const PopoverCloseButton = ({ onClick, ...props }) => {
   const { onClose } = usePopoverContext();
@@ -135,15 +151,18 @@ export const PopoverCloseButton = ({ onClick, ...props }) => {
           onClick(event);
         }
       }}
+      aria-label="Close dialog"
       position="absolute"
       rounded="md"
-      top="12px"
-      right="12px"
-      p="6px"
+      top={1}
+      right={2}
+      p={2}
       {...props}
     />
   );
 };
+
+/////////////////////////////////////////////////////////////////////
 
 export const PopoverTransition = ({
   timeout = 250,
@@ -194,12 +213,17 @@ export const PopoverTransition = ({
   );
 };
 
+/////////////////////////////////////////////////////////////////////
+
 export const PopoverContent = ({
   onKeyDown,
   onBlur: onBlurProp,
   onMouseLeave,
   onMouseEnter,
   onFocus,
+  hasArrow,
+  arrowSize,
+  arrowShadowColor,
   "aria-label": ariaLabel,
   "aria-labelledby": ariaLabelledBy,
   "aria-describedby": ariaDescribedBy,
@@ -281,6 +305,10 @@ export const PopoverContent = ({
         id={popoverId}
         aria-hidden={!isOpen}
         tabIndex="-1"
+        borderWidth="1px"
+        arrowSize={arrowSize}
+        arrowShadowColor={arrowShadowColor}
+        hasArrow={hasArrow}
         css={{
           position: "absolute",
           ...popoverStyles,
@@ -292,11 +320,13 @@ export const PopoverContent = ({
   );
 };
 
+/////////////////////////////////////////////////////////////////////
+
 const Popover = ({
   isOpen: isOpenProp,
   initialFocusRef,
   defaultIsOpen,
-  gutter,
+  gutter = 4,
   trigger = "click",
   placement: placementProp,
   children,
@@ -305,7 +335,7 @@ const Popover = ({
   onOpenChange,
 }) => {
   const [isOpen, setIsOpen] = useState(defaultIsOpen || false);
-  const { current: isControlled } = useRef();
+  const { current: isControlled } = useRef(isOpenProp != null);
 
   const isHoveringRef = useRef();
 
@@ -356,7 +386,7 @@ const Popover = ({
 
   const handleBlur = event => {
     if (
-      isOpen &&
+      _isOpen &&
       closeOnBlur &&
       popoverRef.current &&
       referenceRef.current &&
@@ -368,11 +398,11 @@ const Popover = ({
   };
 
   const popoverId = `popper-${useId()}`;
-  const prevIsOpen = usePrevious(isOpen);
+  const prevIsOpen = usePrevious(_isOpen);
 
   useEffect(() => {
     if (
-      isOpen &&
+      _isOpen &&
       popoverRef.current &&
       !initialFocusRef &&
       trigger !== "hover"
@@ -380,10 +410,10 @@ const Popover = ({
       popoverRef.current.focus();
     }
 
-    if (!isOpen && prevIsOpen && trigger !== "hover") {
+    if (!_isOpen && prevIsOpen && trigger !== "hover") {
       referenceRef.current.focus();
     }
-  }, [isOpen, popoverRef, initialFocusRef, trigger, referenceRef, prevIsOpen]);
+  }, [_isOpen, popoverRef, initialFocusRef, trigger, referenceRef, prevIsOpen]);
 
   const context = {
     popoverRef,
@@ -396,7 +426,7 @@ const Popover = ({
     onToggle,
     placement,
     trigger,
-    isOpen,
+    isOpen: _isOpen,
     arrowRef,
     onBlur: handleBlur,
     closeOnEsc,
@@ -407,7 +437,7 @@ const Popover = ({
   return (
     <PopoverContext.Provider value={context}>
       {typeof children === "function"
-        ? children({ isOpen, onClose })
+        ? children({ isOpen: _isOpen, onClose })
         : children}
     </PopoverContext.Provider>
   );

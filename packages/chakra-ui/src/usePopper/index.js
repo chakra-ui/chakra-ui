@@ -12,10 +12,10 @@ const usePopper = ({
   positionFixed = false,
   isOpen,
 }) => {
-  const referenceRef = useRef();
-  const popoverRef = useRef();
-  const arrowRef = useRef();
-  const popperRef = useRef();
+  const referenceRef = useRef(null);
+  const popoverRef = useRef(null);
+  const arrowRef = useRef(null);
+  const popperRef = useRef(null);
 
   const [popoverStyles, setPopoverStyles] = useState({});
   const [arrowStyles, setArrowStyles] = useState({});
@@ -88,6 +88,7 @@ const usePopper = ({
       popperRef.current.enableEventListeners();
       popperRef.current.scheduleUpdate();
     }
+
     return () => {
       if (popperRef.current) {
         popperRef.current.disableEventListeners();

@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { Children, cloneElement } from "react";
+import { Children, cloneElement, isValidElement } from "react";
 import Flex from "../Flex";
 import Box from "../Box";
 
@@ -21,6 +21,7 @@ const Stack = ({
       {...rest}
     >
       {Children.map(children, (child, index) => {
+        if (!isValidElement(child)) return;
         let isLastChild = children.length === index + 1;
         let spacingProps = isInline
           ? { mr: isLastChild ? null : spacing }

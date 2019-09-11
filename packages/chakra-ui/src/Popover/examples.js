@@ -15,6 +15,7 @@ import Box from "../Box";
 import Text from "../Text";
 import Badge from "../Badge";
 import Link from "../Link";
+import ButtonGroup from "../ButtonGroup";
 import { DarkMode } from "../ColorModeProvider";
 import { PopoverBody, PopoverFooter, PopoverHeader } from "./components";
 
@@ -24,9 +25,14 @@ const Example = () => {
   const initRef = useRef();
   return (
     <>
-      <Popover initialFocusRef={initRef}>
+      <Popover
+        defaultIsOpen
+        closeOnBlur={false}
+        placement="right"
+        initialFocusRef={initRef}
+      >
         <PopoverTrigger>
-          <Button float="right">Trigger</Button>
+          <Button mt="180px">Trigger</Button>
         </PopoverTrigger>
         <PopoverContent>
           <PopoverArrow />
@@ -34,7 +40,7 @@ const Example = () => {
           <PopoverCloseButton />
           <PopoverBody>
             <Button variantColor="blue" ref={initRef}>
-              Close
+              Button
             </Button>
           </PopoverBody>
           <PopoverFooter>This is the footer</PopoverFooter>
@@ -55,7 +61,7 @@ const PortalEx = () => {
         <Button float="right">Trigger</Button>
       </PopoverTrigger>
       <Portal>
-        <PopoverContent>
+        <PopoverContent hasArrow={false}>
           <PopoverHeader>Header</PopoverHeader>
           <PopoverCloseButton />
           <PopoverBody>
@@ -133,3 +139,61 @@ function TwitterEx() {
 }
 
 stories.add("twitter hover card", () => <TwitterEx />);
+
+const FeedbackEx = () => (
+  <Popover defaultIsOpen closeOnBlur={false}>
+    <PopoverTrigger>
+      <Button>Trigger</Button>
+    </PopoverTrigger>
+    <Portal>
+      <PopoverContent border="0" hasArrow={false}>
+        <PopoverHeader borderBottom="0" bg="red.600" color="white">
+          Header
+          <PopoverCloseButton />
+        </PopoverHeader>
+        <PopoverBody>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore.
+          <Link color="blue.500"> Learn More</Link>
+        </PopoverBody>
+      </PopoverContent>
+    </Portal>
+  </Popover>
+);
+
+stories.add("feedback", () => <FeedbackEx />);
+
+const WalkthroughEx = () => (
+  <Popover placement="bottom" isOpen closeOnBlur={false}>
+    <PopoverTrigger>
+      <Button float="right">Trigger</Button>
+    </PopoverTrigger>
+    <Portal>
+      <PopoverContent color="white" bg="#032e61" borderColor="#032e61">
+        <PopoverHeader pt={4} fontWeight="bold" border="0">
+          Manage Your Channels
+        </PopoverHeader>
+        <PopoverCloseButton />
+        <PopoverBody>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore.
+        </PopoverBody>
+        <PopoverFooter
+          border="0"
+          d="flex"
+          alignItems="center"
+          justifyContent="space-between"
+          pb={4}
+        >
+          <Box fontSize="sm">Step 2 of 4</Box>
+          <ButtonGroup size="sm">
+            <Button variantColor="green">Setup Email</Button>
+            <Button variantColor="blue">Next</Button>
+          </ButtonGroup>
+        </PopoverFooter>
+      </PopoverContent>
+    </Portal>
+  </Popover>
+);
+
+stories.add("walkthrough", () => <WalkthroughEx />);

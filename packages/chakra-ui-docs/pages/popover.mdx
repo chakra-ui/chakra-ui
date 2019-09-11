@@ -109,56 +109,33 @@ The popovers don't display in a portal by default. To use a portal, Import the
 </Popover>
 ```
 
-## Placement
+## Popover with no arrow
 
-Using the `placement` prop you can adjust where your popover will be displayed.
+In some cases, you might not need to use the PopoverArrow. Pass the `hasArrow`
+prop to the `PopoverContent` and set to `false`. This will remove the internal
+margin set on the `PopoverContent` to allow for the arrow.
 
-```jsx
-function Example() {
-  return (
-    <Flex>
-      <Popover
-        trigger={<Button>Top start</Button>}
-        usePortal
-        placement="top-start"
-        showCloseButton
-      >
-        {({ onClose }) => (
-          <>
-            <PopoverHeader>Header</PopoverHeader>
-            <PopoverBody>
-              <Button color="blue" onClick={onClose}>
-                Close
-              </Button>
-            </PopoverBody>
-            <PopoverFooter>This is the footer</PopoverFooter>
-          </>
-        )}
-      </Popover>
-      <Box mx="4px" />
+TO DO: Show Example.
 
-      <Popover
-        trigger={<Button>Right end</Button>}
-        usePortal
-        placement="right-end"
-        showCloseButton
-      >
-        {({ onClose }) => (
-          <>
-            <PopoverHeader>Header</PopoverHeader>
-            <PopoverBody>
-              <Button color="blue" onClick={onClose}>
-                Close
-              </Button>
-            </PopoverBody>
-            <PopoverFooter>This is the footer</PopoverFooter>
-          </>
-        )}
-      </Popover>
-    </Flex>
-  );
-}
-```
+## Customizing the Popover
+
+Chakra exports all the components you need to customize the look and feel of the
+popover. You can change the background, arrow size, boxShadow and so on.
+
+TO DO: Show Example.
+
+## Accessiblity
+
+- The `Popover` element has role set to `dialog`
+- The dialog should be labelled, this can be achieved in two ways:
+- Apply the `aria-labelledby` attribute to the dialog element and set the value
+  to be the ID of the main Heading element in the Popover (if it provides a good
+  and meaningful title to the dialog)
+- If no Heading element is present, use the `aria-label` attribute and set the
+  value to be a meaningful title of the dialog
+- The dialog should be described where possible. This can be achieved by
+  applying the `aria-describedby` attribute to the dialog element and set the
+  value to be the id of the Popover body
 
 ## Props
 

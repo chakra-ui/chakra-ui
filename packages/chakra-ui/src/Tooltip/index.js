@@ -3,13 +3,13 @@ import { jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import Portal from "@reach/portal";
 import { cloneElement, useRef, Children, Fragment } from "react";
-import { popperStyle } from "../Popover/components";
 import { useColorMode } from "../ColorModeProvider";
 import Box from "../Box";
 import useDisclosure from "../useDisclosure";
 import { useId } from "@reach/auto-id";
 import CSSTransition from "react-transition-group/CSSTransition";
 import usePopper from "../usePopper";
+import getPopperArrowStyle from "../usePopper/styles";
 
 export const Fade = ({ in: inProp, timeout = 200, children, ...props }) => {
   const child = Children.only(children);
@@ -46,7 +46,7 @@ export const Fade = ({ in: inProp, timeout = 200, children, ...props }) => {
 };
 
 const TooltipContent = styled(Box)`
-  ${popperStyle()}
+  ${getPopperArrowStyle({ arrowSize: "8px" })}
 `;
 
 const Tooltip = ({
