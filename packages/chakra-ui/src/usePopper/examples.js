@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
-import React, { useState } from "react";
+import { useState } from "react";
 import usePopper from ".";
 
 const stories = storiesOf("usePopper", module);
@@ -9,6 +9,7 @@ const App = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { referenceRef, popoverRef, popoverStyles } = usePopper({
     isOpen,
+    placement: "left",
   });
 
   return (

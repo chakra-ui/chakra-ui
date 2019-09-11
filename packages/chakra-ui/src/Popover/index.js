@@ -28,7 +28,7 @@ import CSSTransition from "react-transition-group/CSSTransition";
  */
 
 const PopoverContext = createContext();
-const usePopoverContext = () => {
+export const usePopoverContext = () => {
   const context = useContext(PopoverContext);
   if (context == null) {
     throw Error("usePopoverContext must be used within <Popover/>");
@@ -41,7 +41,7 @@ const usePopoverContext = () => {
 export const PopoverTrigger = ({ children }) => {
   const {
     referenceRef,
-    popoverId,
+    id,
     onToggle,
     trigger,
     onOpen,
@@ -114,7 +114,7 @@ export const PopoverTrigger = ({ children }) => {
   return cloneElement(child, {
     "aria-haspopup": "dialog",
     "aria-expanded": isOpen,
-    "aria-controls": popoverId,
+    "aria-controls": id,
     ref: referenceRef,
     ...eventHandlers,
   });
@@ -174,10 +174,10 @@ export const PopoverTransition = ({
   const child = Children.only(children);
 
   const fadeStyle = {
-    "&.fade-enter": {
+    "&.fade-enter, &.fade-appear": {
       opacity: 0.01,
     },
-    "&.fade-enter-active": {
+    "&.fade-enter-active, &.fade-appear-active": {
       opacity: 1,
       transition: `opacity ${timeout}ms ease`,
     },
@@ -198,7 +198,7 @@ export const PopoverTransition = ({
       unmountOnExit
       classNames="fade"
       onEntering={(node, isAppearing) => {
-        if (initialFocusRef && trigger !== "hover") {
+        if (initialFocusRef && initialFocusRef.current && trigger !== "hover") {
           initialFocusRef.current.focus();
         }
 
@@ -240,6 +240,10 @@ export const PopoverContent = ({
     onClose,
     isHoveringRef,
     trigger,
+    hasHeadingRef,
+    headerId,
+    hasBodyRef,
+    bodyId,
   } = usePopoverContext();
 
   const { colorMode } = useColorMode();
@@ -313,6 +317,8 @@ export const PopoverContent = ({
           position: "absolute",
           ...popoverStyles,
         }}
+        {...(hasHeadingRef.current && { "aria-labelledby": headerId })}
+        {...(hasBodyRef.current && { "aria-describedby": bodyId })}
         {...eventHandlers}
         {...props}
       />
@@ -323,21 +329,26 @@ export const PopoverContent = ({
 /////////////////////////////////////////////////////////////////////
 
 const Popover = ({
+  id,
   isOpen: isOpenProp,
   initialFocusRef,
   defaultIsOpen,
   gutter = 4,
+  returnFocusOnClose = true,
   trigger = "click",
   placement: placementProp,
   children,
   closeOnBlur = true,
   closeOnEsc = true,
-  onOpenChange,
+  onOpen: onOpenProp,
+  onClose: onCloseProp,
 }) => {
   const [isOpen, setIsOpen] = useState(defaultIsOpen || false);
   const { current: isControlled } = useRef(isOpenProp != null);
 
   const isHoveringRef = useRef();
+  const hasHeadingRef = useRef(false);
+  const hasBodyRef = useRef(false);
 
   const _isOpen = isControlled ? isOpenProp : isOpen;
 
@@ -346,8 +357,10 @@ const Popover = ({
       setIsOpen(!_isOpen);
     }
 
-    if (onOpenChange) {
-      onOpenChange(!_isOpen);
+    if (!_isOpen === true) {
+      onOpenProp();
+    } else {
+      onCloseProp();
     }
   };
 
@@ -356,8 +369,8 @@ const Popover = ({
       setIsOpen(true);
     }
 
-    if (onOpenChange) {
-      onOpenChange(true);
+    if (onOpenProp) {
+      onOpenProp();
     }
   };
 
@@ -366,8 +379,8 @@ const Popover = ({
       setIsOpen(false);
     }
 
-    if (onOpenChange) {
-      onOpenChange(false);
+    if (onCloseProp) {
+      onCloseProp();
     }
   };
 
@@ -397,7 +410,12 @@ const Popover = ({
     }
   };
 
-  const popoverId = `popper-${useId()}`;
+  // A unique fallback id in case the id prop wasn't passed
+  const fallbackId = `popover-${useId()}`;
+  const popoverId = id || fallbackId;
+  const headerId = `${popoverId}-header`;
+  const bodyId = `${popoverId}-body`;
+
   const prevIsOpen = usePrevious(_isOpen);
 
   useEffect(() => {
@@ -410,17 +428,29 @@ const Popover = ({
       popoverRef.current.focus();
     }
 
-    if (!_isOpen && prevIsOpen && trigger !== "hover") {
+    if (!_isOpen && prevIsOpen && trigger !== "hover" && returnFocusOnClose) {
       referenceRef.current.focus();
     }
-  }, [_isOpen, popoverRef, initialFocusRef, trigger, referenceRef, prevIsOpen]);
+  }, [
+    _isOpen,
+    popoverRef,
+    initialFocusRef,
+    trigger,
+    referenceRef,
+    prevIsOpen,
+    returnFocusOnClose,
+  ]);
 
   const context = {
     popoverRef,
     referenceRef,
     popoverStyles,
     arrowStyles,
+    headerId,
+    bodyId,
     popoverId,
+    hasHeadingRef,
+    hasBodyRef,
     onOpen,
     onClose,
     onToggle,

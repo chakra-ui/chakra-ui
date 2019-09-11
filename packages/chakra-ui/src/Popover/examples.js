@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-autofocus */
 import Portal from "@reach/portal";
 import { storiesOf } from "@storybook/react";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import FocusLock from "react-focus-lock";
 import Popover, {
   PopoverCloseButton,
@@ -15,9 +15,15 @@ import Box from "../Box";
 import Text from "../Text";
 import Badge from "../Badge";
 import Link from "../Link";
+import Icon from "../Icon";
 import ButtonGroup from "../ButtonGroup";
 import { DarkMode } from "../ColorModeProvider";
 import { PopoverBody, PopoverFooter, PopoverHeader } from "./components";
+import Stack from "../Stack";
+import FormControl from "../FormControl";
+import FormLabel from "../FormLabel";
+import Input from "../Input";
+import IconButton from "../IconButton";
 
 const stories = storiesOf("Popover", module);
 
@@ -141,12 +147,12 @@ function TwitterEx() {
 stories.add("twitter hover card", () => <TwitterEx />);
 
 const FeedbackEx = () => (
-  <Popover defaultIsOpen closeOnBlur={false}>
+  <Popover defaultIsOpen closeOnBlur={false} placement="right">
     <PopoverTrigger>
       <Button>Trigger</Button>
     </PopoverTrigger>
     <Portal>
-      <PopoverContent border="0" hasArrow={false}>
+      <PopoverContent border="0">
         <PopoverHeader borderBottom="0" bg="red.600" color="white">
           Header
           <PopoverCloseButton />
@@ -173,6 +179,7 @@ const WalkthroughEx = () => (
         <PopoverHeader pt={4} fontWeight="bold" border="0">
           Manage Your Channels
         </PopoverHeader>
+        <PopoverArrow />
         <PopoverCloseButton />
         <PopoverBody>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
@@ -197,3 +204,120 @@ const WalkthroughEx = () => (
 );
 
 stories.add("walkthrough", () => <WalkthroughEx />);
+
+const ConfirmationEx = () => (
+  <Popover placement="right" closeOnBlur={false}>
+    <PopoverTrigger>
+      <Button>Delete Customer</Button>
+    </PopoverTrigger>
+    <Portal>
+      <PopoverContent>
+        <PopoverHeader fontWeight="semibold">Confirmation</PopoverHeader>
+        <PopoverArrow />
+        <PopoverCloseButton />
+        <PopoverBody>
+          Are you sure you want to continue with your action?
+        </PopoverBody>
+        <PopoverFooter d="flex" justifyContent="flex-end">
+          <ButtonGroup size="sm">
+            <Button variant="outline">Cancel</Button>
+            <Button variantColor="red">Apply</Button>
+          </ButtonGroup>
+        </PopoverFooter>
+      </PopoverContent>
+    </Portal>
+  </Popover>
+);
+
+stories.add("confirmation", () => <ConfirmationEx />);
+
+const CustomTargetEx = () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <Button onClick={() => setOpen(!open)}>Trigger Popover</Button>
+      <Popover
+        returnFocusOnClose={false}
+        isOpen={open}
+        placement="right"
+        closeOnBlur={false}
+      >
+        <PopoverTrigger>
+          <Button>Popover Target</Button>
+        </PopoverTrigger>
+        <Portal>
+          <PopoverContent>
+            <PopoverHeader fontWeight="semibold">Confirmation</PopoverHeader>
+            <PopoverArrow />
+            <PopoverCloseButton />
+            <PopoverBody>
+              Are you sure you want to continue with your action?
+            </PopoverBody>
+            <PopoverFooter d="flex" justifyContent="flex-end">
+              <ButtonGroup size="sm">
+                <Button variant="outline">Cancel</Button>
+                <Button variantColor="red">Apply</Button>
+              </ButtonGroup>
+            </PopoverFooter>
+          </PopoverContent>
+        </Portal>
+      </Popover>
+    </>
+  );
+};
+
+stories.add("custom target", () => <CustomTargetEx />);
+
+function Form({ initField, ...props }) {
+  return (
+    <Stack {...props}>
+      <FormControl>
+        <FormLabel htmlFor="fname">First name</FormLabel>
+        <Input ref={initField} id="fname" defaultValue="John" />
+      </FormControl>
+      <FormControl>
+        <FormLabel htmlFor="lname">Last name</FormLabel>
+        <Input id="lname" defaultValue="Smith" />
+      </FormControl>
+    </Stack>
+  );
+}
+
+const DialogForm = () => {
+  const [open, setOpen] = useState(false);
+  const firstField = useRef(null);
+  return (
+    <>
+      <Box d="inline-block" mr={3}>
+        John Smith
+      </Box>
+      <Popover
+        isOpen={open}
+        initialFocusRef={firstField}
+        onOpen={() => setOpen(true)}
+        onClose={() => setOpen(false)}
+        placement="right"
+        closeOnBlur={false}
+      >
+        <PopoverTrigger>
+          <IconButton size="sm" icon="edit" />
+        </PopoverTrigger>
+        <PopoverContent p={5}>
+          <FocusLock returnFocus persistentFocus={false}>
+            <PopoverArrow />
+            <PopoverCloseButton />
+            <Form initField={firstField} />
+            <ButtonGroup mt={5} d="flex" justifyContent="flex-end">
+              <Button variant="outline">Cancel</Button>
+              <Button isDisabled variantColor="teal">
+                Save
+              </Button>
+            </ButtonGroup>
+          </FocusLock>
+        </PopoverContent>
+      </Popover>
+    </>
+  );
+};
+
+stories.add("form with focus lock", () => <DialogForm />);

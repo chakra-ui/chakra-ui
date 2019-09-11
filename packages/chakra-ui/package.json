@@ -59,10 +59,10 @@
     "react-transition-group": "4.3.0",
     "styled-system": "5.0.5",
     "toasted-notes": "2.1.6",
-    "use-dark-mode": "2.3.1"
+    "use-dark-mode": "2.3.1",
+    "use-deep-compare": "^0.1.0"
   },
   "devDependencies": {
-    "react-focus-lock": "1.19.1",
     "@babel/cli": "7.5.5",
     "@babel/core": "7.5.5",
     "@babel/plugin-proposal-class-properties": "7.5.5",
@@ -85,6 +85,7 @@
     "fs-extra": "8.1.0",
     "glob": "7.1.4",
     "path": "0.12.7",
+    "react-focus-lock": "1.19.1",
     "rimraf": "2.6.3",
     "rollup": "1.18.0",
     "rollup-plugin-babel": "4.3.3",
