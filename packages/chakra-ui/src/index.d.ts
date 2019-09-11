@@ -93,7 +93,7 @@ export { default as Tag } from "./Tag";
 export * from "./Tag";
 export { default as Text } from "./Text";
 export { default as Textarea } from "./Textarea";
-export { default as useToast } from "./Toast";
+export { default as Toast, useToast } from "./Toast";
 export { default as Tooltip } from "./Tooltip";
 export { default as theme } from "./theme";
 export * from "./theme";
