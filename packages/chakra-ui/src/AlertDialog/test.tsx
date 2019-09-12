@@ -4,6 +4,7 @@ import {
   fireEvent,
   waitForElement,
   waitForElementToBeRemoved,
+  prettyDOM,
 } from "../utils/testing";
 import AlertDialog from "./index";
 import {
@@ -59,6 +60,14 @@ it("should open and close", async () => {
   await waitForElementToBeRemoved(() => queryByText("Dialog Header"));
 });
 
+it("should match snapshot when open", async () => {
+  const { getByText, getByTestId } = render(<MockDialog />);
+  fireEvent.click(getByText("open"));
+  await waitForElement(() => getByText("Dialog Header"));
+  const dialog = getByTestId("alert-dialog-overlay");
+  expect(dialog).toMatchSnapshot();
+});
+
 it("should close when you press escape", async () => {
   const { findByText, getByText } = render(<MockDialog />);
   fireEvent.click(getByText("open"));
@@ -84,4 +93,12 @@ it("should not close when you click inside the alert dialog", async () => {
   fireEvent.click(getByText("open"));
   await waitForElement(() => getByText("Dialog Header"));
   getByText("Dialog Header");
+});
+
+it("should have correct role and aria attributes", async () => {
+  const { getByText, getByRole } = render(<MockDialog />);
+  fireEvent.click(getByText("open"));
+  await waitForElement(() => getByText("Dialog Header"));
+  const dialog = getByRole("alertdialog");
+  expect(dialog).toHaveAttribute("aria-modal", "true");
 });

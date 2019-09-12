@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should match snapshot when open 1`] = `
+.emotion-0 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.emotion-1 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.emotion-2 {
+  margin-left: auto;
+  padding: 1.5rem;
+}
+
+.emotion-4 {
+  position: fixed;
+  z-index: 5;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  overflow-y: auto;
+  background-color: rgba(16,22,26,.7);
+  overflow-y: auto;
+  opacity: 0.2;
+}
+
+.emotion-3 {
+  width: 100%;
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  background-color: #fff;
+  color: inherit;
+  box-shadow: 0 7px 14px 0 rgba(0,0,0,0.1),0 3px 6px 0 rgba(0,0,0,.07);
+  max-width: 28rem;
+  top: 10rem;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 0.25rem;
+  -webkit-transform: translate3d(0px,8px,0px);
+  -ms-transform: translate3d(0px,8px,0px);
+  transform: translate3d(0px,8px,0px);
+}
+
+<div
+  bg="rgba(16,22,26,.7)"
+  bottom="0"
+  class="emotion-4"
+  data-reach-alert-dialog-overlay="true"
+  data-reach-dialog-overlay="true"
+  data-testid="alert-dialog-overlay"
+  left="0"
+  overflowy="auto"
+  position="fixed"
+  right="0"
+  top="0"
+  zindex="5"
+>
+  <div
+    aria-labelledby="alert-dialog-null"
+    aria-modal="true"
+    class="emotion-3"
+    data-reach-alert-dialong-content="true"
+    data-reach-dialog-content="true"
+    role="alertdialog"
+    tabindex="-1"
+    transform="translate3d(0px, 8px, 0px)"
+  >
+    <div
+      class="emotion-0"
+      data-reach-alert-dialog-label="true"
+      id="alert-dialog-null"
+    >
+      Dialog Header
+    </div>
+    <div
+      class="emotion-1"
+      data-reach-alert-dialog-description="true"
+      id="alert-dialog-null"
+    >
+      Dialog content
+    </div>
+    <div
+      class="emotion-2"
+    >
+      <button>
+        Cancel
+      </button>
+      <button>
+        Confirm
+      </button>
+    </div>
+  </div>
+</div>
+`;
