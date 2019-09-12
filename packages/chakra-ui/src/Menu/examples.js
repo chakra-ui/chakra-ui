@@ -53,7 +53,7 @@ stories.add("MenuList only", () => (
 ));
 
 stories.add("MenuItem Radio", () => (
-  <Menu closeOnSelect={false}>
+  <Menu closeOnBlur={false} closeOnSelect={false}>
     <MenuButton as={Button} variantColor="blue">
       MenuItem
     </MenuButton>

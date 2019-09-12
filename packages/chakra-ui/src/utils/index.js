@@ -13,10 +13,6 @@ export const assignRef = (ref, value) => {
   }
 };
 
-export const mergeRefs = (refs, value) => {
-  refs.forEach(ref => assignRef(ref, value));
-};
-
 const focusableElList = [
   "a[href]",
   "area[href]",
@@ -116,3 +112,13 @@ export function createChainedFunction(...funcs) {
 
 export const useEnhancedEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
+export const wrapEvent = (theirHandler, ourHandler) => event => {
+  if (theirHandler) {
+    theirHandler(event);
+  }
+
+  if (!event.defaultPrevented) {
+    return ourHandler(event);
+  }
+};

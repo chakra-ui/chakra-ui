@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/no-autofocus */
-import Portal from "../Portal";
 import { storiesOf } from "@storybook/react";
 import React, { useRef, useState } from "react";
 import FocusLock from "react-focus-lock";
@@ -8,6 +7,9 @@ import Popover, {
   PopoverContent,
   PopoverArrow,
   PopoverTrigger,
+  PopoverBody,
+  PopoverFooter,
+  PopoverHeader,
 } from ".";
 import Button from "../Button";
 import Avatar from "../Avatar";
@@ -15,10 +17,8 @@ import Box from "../Box";
 import Text from "../Text";
 import Badge from "../Badge";
 import Link from "../Link";
-import Icon from "../Icon";
 import ButtonGroup from "../ButtonGroup";
 import { DarkMode } from "../ColorModeProvider";
-import { PopoverBody, PopoverFooter, PopoverHeader } from "./components";
 import Stack from "../Stack";
 import FormControl from "../FormControl";
 import FormLabel from "../FormLabel";

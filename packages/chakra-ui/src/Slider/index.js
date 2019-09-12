@@ -11,7 +11,7 @@ import {
 import Box from "../Box";
 import useSliderStyle from "./styles";
 import PseudoBox from "../PseudoBox";
-import { mergeRefs } from "../utils";
+import { useForkRef } from "../utils";
 
 export function valueToPercent(value, min, max) {
   return ((value - min) * 100) / (max - min);
@@ -65,6 +65,8 @@ export const SliderThumb = forwardRef((props, ref) => {
     size,
     color,
   });
+
+  const sliderThumbRef = useForkRef(thumbRef, ref);
   return (
     <PseudoBox
       data-slider-thumb=""
@@ -73,7 +75,7 @@ export const SliderThumb = forwardRef((props, ref) => {
       outline="none"
       justifyContent="center"
       onFocus={onFocus}
-      ref={node => mergeRefs([thumbRef, ref], node)}
+      ref={sliderThumbRef}
       role="slider"
       tabIndex={isDisabled ? undefined : 0}
       aria-disabled={isDisabled}
