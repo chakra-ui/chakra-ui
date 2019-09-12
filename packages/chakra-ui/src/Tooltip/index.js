@@ -1,94 +1,47 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import styled from "@emotion/styled";
-import Portal from "@reach/portal";
 import { cloneElement, useRef, Children, Fragment } from "react";
 import { useColorMode } from "../ColorModeProvider";
 import Box from "../Box";
 import useDisclosure from "../useDisclosure";
 import { useId } from "@reach/auto-id";
-import CSSTransition from "react-transition-group/CSSTransition";
-import usePopper from "../usePopper";
-import getPopperArrowStyle from "../usePopper/styles";
+import Popper from "../Popper";
+import VisuallyHidden from "../VisuallyHidden";
 
-export const Fade = ({ in: inProp, timeout = 200, children, ...props }) => {
-  const child = Children.only(children);
-
-  const fadeStyle = {
-    "&.fade-enter": {
-      opacity: 0.01,
-    },
-    "&.fade-enter-active": {
-      opacity: 1,
-      transition: `opacity ${timeout}ms ease`,
-    },
-    "&.fade-exit": {
-      opacity: 1,
-    },
-    "&.fade-exit-active": {
-      opacity: 0.01,
-      transition: `opacity ${timeout}ms ease`,
-    },
-  };
-
-  return (
-    <CSSTransition
-      in={inProp}
-      timeout={timeout}
-      appear
-      unmountOnExit
-      classNames="fade"
-      {...props}
-    >
-      {cloneElement(child, { css: [child.props.css, fadeStyle] })}
-    </CSSTransition>
-  );
-};
-
-const TooltipContent = styled(Box)`
-  ${getPopperArrowStyle({ arrowSize: "8px" })}
-`;
+const activeTooltip = { id: "" };
 
 const Tooltip = ({
   color,
   label,
-  showDelay = 100,
-  hideDelay = 100,
-  transitionDuration = 50,
-  placement: placementProp = "auto",
+  "aria-label": ariaLabel,
+  showDelay = 250,
+  hideDelay = 500,
+  placement = "auto",
   children,
-  showArrow,
+  hasArrow,
   closeOnClick,
   defaultIsOpen,
   gutter,
   shouldWrapChildren,
   isOpen: controlledIsOpen,
-  onOpenChange,
+  onOpen: onOpenProp,
+  onClose: onCloseProp,
   ...rest
 }) => {
   const { isOpen, onClose, onOpen } = useDisclosure(defaultIsOpen || false);
   const { current: isControlled } = useRef(controlledIsOpen != null);
   const _isOpen = isControlled ? controlledIsOpen : isOpen;
 
-  const {
-    placement,
-    referenceRef,
-    popoverRef,
-    arrowRef,
-    arrowStyles,
-    popoverStyles,
-  } = usePopper({
-    placement: placementProp,
-    isOpen: _isOpen,
-    gutter,
-  });
+  const referenceRef = useRef();
+  const enterTimeoutRef = useRef();
+  const exitTimeoutRef = useRef();
 
   const openWithDelay = () => {
-    setTimeout(onOpen, showDelay);
+    enterTimeoutRef.current = setTimeout(onOpen, showDelay);
   };
 
   const closeWithDelay = () => {
-    setTimeout(onClose, hideDelay);
+    exitTimeoutRef.current = setTimeout(onClose, hideDelay);
   };
 
   const tooltipId = `tooltip-${useId()}`;
@@ -98,8 +51,8 @@ const Tooltip = ({
       openWithDelay();
     }
 
-    if (onOpenChange) {
-      onOpenChange(true);
+    if (onOpenProp) {
+      onOpenProp();
     }
   };
 
@@ -108,7 +61,9 @@ const Tooltip = ({
       closeWithDelay();
     }
 
-    onOpenChange && onOpenChange(false);
+    if (onCloseProp) {
+      onCloseProp();
+    }
   };
 
   const { colorMode } = useColorMode();
@@ -149,42 +104,43 @@ const Tooltip = ({
       cloneElement(Children.only(children), referenceProps)
     );
 
+  const hasAriaLabel = ariaLabel != null;
+
   return (
     <Fragment>
       {clone}
 
-      <Portal>
-        <Fade duration={transitionDuration} in={_isOpen}>
-          <TooltipContent
-            ref={popoverRef}
-            px="8px"
-            py="2px"
-            id={tooltipId}
-            role="tooltip"
-            bg={bgColor}
-            borderRadius="sm"
-            fontWeight="medium"
-            pointerEvents="none"
-            color={textColor}
-            css={popoverStyles}
-            data-placement={placement}
-            fontSize="sm"
-            boxShadow="md"
-            maxWidth="320px"
-            {...rest}
-          >
-            {label}
-            {showArrow && (
-              <Box
-                borderColor={bgColor}
-                data-arrow=""
-                ref={arrowRef}
-                style={arrowStyles}
-              />
-            )}
-          </TooltipContent>
-        </Fade>
-      </Portal>
+      <Popper
+        usePortal
+        isOpen={_isOpen}
+        placement={placement}
+        timeout={200}
+        modifiers={{ offset: { enabled: true, offset: `0, 8` } }}
+        anchorEl={referenceRef.current}
+        arrowSize="10px"
+        hasArrow={hasArrow}
+        px="8px"
+        py="2px"
+        id={hasAriaLabel ? undefined : tooltipId}
+        role={hasAriaLabel ? undefined : "tooltip"}
+        bg={bgColor}
+        borderRadius="sm"
+        fontWeight="medium"
+        pointerEvents="none"
+        color={textColor}
+        fontSize="sm"
+        shadow="md"
+        maxW="320px"
+        {...rest}
+      >
+        {label}
+        {hasAriaLabel && (
+          <VisuallyHidden role="tooltip" id={tooltipId}>
+            {ariaLabel}
+          </VisuallyHidden>
+        )}
+        {hasArrow && <Box x-arrow="" />}
+      </Popper>
     </Fragment>
   );
 };

@@ -47,7 +47,6 @@
     "@reach/alert-dialog": "0.2.9",
     "@reach/auto-id": "0.2.0",
     "@reach/dialog": "0.2.9",
-    "@reach/portal": "0.2.1",
     "@styled-system/css": "5.0.13",
     "@styled-system/should-forward-prop": "5.0.12",
     "@types/react-transition-group": "^4.2.2",

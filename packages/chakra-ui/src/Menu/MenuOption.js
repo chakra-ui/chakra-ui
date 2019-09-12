@@ -97,6 +97,7 @@ export const MenuItemOption = forwardRef(
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onKeyDown={handleKeyDown}
+        _focus={{ outline: 0, shadow: "outline" }}
         {...styleProps}
         {...rest}
       >

@@ -13,10 +13,12 @@ import {
 import Box from "../Box";
 import CloseButton from "../CloseButton";
 import { useColorMode } from "../ColorModeProvider";
-import usePopper from "../usePopper";
+// import usePopper from "../usePopper";
 import usePrevious from "../usePrevious";
-import { PopoverContent as PopoverContentBase } from "./components";
-import CSSTransition from "react-transition-group/CSSTransition";
+import Popper from "../Popper";
+import Fade from "../Popper/Fade";
+// import { PopoverContent as PopoverContentBase } from "./components";
+// import CSSTransition from "react-transition-group/CSSTransition";
 
 /**
  * Hook based idea:
@@ -122,21 +124,7 @@ const PopoverTrigger = ({ children }) => {
 
 /////////////////////////////////////////////////////////////////////
 
-const PopoverArrow = props => {
-  const { colorMode } = useColorMode();
-  const borderColor = colorMode === "light" ? "white" : "gray.700";
-  const { arrowRef, arrowStyles } = usePopoverContext();
-
-  return (
-    <Box
-      borderColor={borderColor}
-      data-arrow=""
-      ref={arrowRef}
-      css={arrowStyles}
-      {...props}
-    />
-  );
-};
+const PopoverArrow = props => <Box x-arrow="" {...props} />;
 
 /////////////////////////////////////////////////////////////////////
 
@@ -164,57 +152,6 @@ const PopoverCloseButton = ({ onClick, ...props }) => {
 
 /////////////////////////////////////////////////////////////////////
 
-const PopoverTransition = ({
-  timeout = 250,
-  children,
-  onEntering,
-  ...rest
-}) => {
-  const { initialFocusRef, isOpen, trigger } = usePopoverContext();
-  const child = Children.only(children);
-
-  const fadeStyle = {
-    "&.fade-enter, &.fade-appear": {
-      opacity: 0.01,
-    },
-    "&.fade-enter-active, &.fade-appear-active": {
-      opacity: 1,
-      transition: `opacity ${timeout}ms ease`,
-    },
-    "&.fade-exit": {
-      opacity: 1,
-    },
-    "&.fade-exit-active": {
-      opacity: 0.01,
-      transition: `opacity ${timeout}ms ease`,
-    },
-  };
-
-  return (
-    <CSSTransition
-      in={isOpen}
-      timeout={timeout}
-      appear
-      unmountOnExit
-      classNames="fade"
-      onEntering={(node, isAppearing) => {
-        if (initialFocusRef && initialFocusRef.current && trigger !== "hover") {
-          initialFocusRef.current.focus();
-        }
-
-        if (onEntering) {
-          onEntering(node, isAppearing);
-        }
-      }}
-      {...rest}
-    >
-      {cloneElement(child, { css: [child.props.css, fadeStyle] })}
-    </CSSTransition>
-  );
-};
-
-/////////////////////////////////////////////////////////////////////
-
 const PopoverContent = ({
   onKeyDown,
   onBlur: onBlurProp,
@@ -224,16 +161,18 @@ const PopoverContent = ({
   hasArrow,
   arrowSize,
   arrowShadowColor,
+  children,
   "aria-label": ariaLabel,
   ...props
 }) => {
   const {
     popoverRef,
+    referenceRef,
     placement,
+    initialFocusRef,
     popoverId,
     isOpen,
     onBlur,
-    popoverStyles,
     closeOnEsc,
     onClose,
     isHoveringRef,
@@ -242,6 +181,7 @@ const PopoverContent = ({
     headerId,
     hasBodyRef,
     bodyId,
+    usePortal,
   } = usePopoverContext();
 
   const { colorMode } = useColorMode();
@@ -296,31 +236,42 @@ const PopoverContent = ({
   };
 
   return (
-    <PopoverTransition>
-      <PopoverContentBase
-        aria-label={ariaLabel}
-        role="dialog"
-        aria-modal="false"
-        bg={bg}
-        ref={popoverRef}
-        data-placement={placement}
-        id={popoverId}
-        aria-hidden={!isOpen}
-        tabIndex="-1"
-        borderWidth="1px"
-        arrowSize={arrowSize}
-        arrowShadowColor={arrowShadowColor}
-        hasArrow={hasArrow}
-        css={{
-          position: "absolute",
-          ...popoverStyles,
-        }}
-        {...(hasHeadingRef.current && { "aria-labelledby": headerId })}
-        {...(hasBodyRef.current && { "aria-describedby": bodyId })}
-        {...eventHandlers}
-        {...props}
-      />
-    </PopoverTransition>
+    <Popper
+      usePortal={usePortal}
+      isOpen={isOpen}
+      placement={placement}
+      aria-label={ariaLabel}
+      anchorEl={referenceRef.current}
+      role="dialog"
+      aria-modal="false"
+      ref={popoverRef}
+      bg={bg}
+      id={popoverId}
+      aria-hidden={!isOpen}
+      tabIndex="-1"
+      borderWidth="1px"
+      width="100%"
+      position="relative"
+      display="flex"
+      flexDirection="column"
+      rounded="md"
+      shadow="sm"
+      maxWidth="xs"
+      willUseTransition
+      _focus={{ outline: 0, shadow: "outline" }}
+      {...(hasHeadingRef.current && { "aria-labelledby": headerId })}
+      {...(hasBodyRef.current && { "aria-describedby": bodyId })}
+      {...eventHandlers}
+      {...props}
+    >
+      {({ transition }) => (
+        <Fade {...transition}>
+          <Box role="group" bg="inherit">
+            {children}
+          </Box>
+        </Fade>
+      )}
+    </Popper>
   );
 };
 
@@ -332,9 +283,10 @@ const Popover = ({
   initialFocusRef,
   defaultIsOpen,
   gutter = 4,
+  usePortal,
   returnFocusOnClose = true,
   trigger = "click",
-  placement: placementProp,
+  placement,
   children,
   closeOnBlur = true,
   closeOnEsc = true,
@@ -347,6 +299,9 @@ const Popover = ({
   const isHoveringRef = useRef();
   const hasHeadingRef = useRef(false);
   const hasBodyRef = useRef(false);
+
+  const referenceRef = useRef();
+  const popoverRef = useRef();
 
   const _isOpen = isControlled ? isOpenProp : isOpen;
 
@@ -382,19 +337,6 @@ const Popover = ({
     }
   };
 
-  const {
-    placement,
-    referenceRef,
-    popoverRef,
-    arrowRef,
-    arrowStyles,
-    popoverStyles,
-  } = usePopper({
-    placement: placementProp,
-    isOpen: _isOpen,
-    gutter,
-  });
-
   const handleBlur = event => {
     if (
       _isOpen &&
@@ -411,23 +353,29 @@ const Popover = ({
   // A unique fallback id in case the id prop wasn't passed
   const fallbackId = `popover-${useId()}`;
   const popoverId = id || fallbackId;
+
   const headerId = `${popoverId}-header`;
   const bodyId = `${popoverId}-body`;
 
   const prevIsOpen = usePrevious(_isOpen);
 
   useEffect(() => {
-    if (
-      _isOpen &&
-      popoverRef.current &&
-      !initialFocusRef &&
-      trigger !== "hover"
-    ) {
-      popoverRef.current.focus();
+    if (_isOpen && trigger === "click") {
+      requestAnimationFrame(() => {
+        if (initialFocusRef && initialFocusRef.current) {
+          initialFocusRef.current.focus();
+        } else {
+          if (popoverRef.current) {
+            popoverRef.current.focus();
+          }
+        }
+      });
     }
 
-    if (!_isOpen && prevIsOpen && trigger !== "hover" && returnFocusOnClose) {
-      referenceRef.current.focus();
+    if (!_isOpen && prevIsOpen && trigger === "click" && returnFocusOnClose) {
+      if (referenceRef.current) {
+        referenceRef.current.focus();
+      }
     }
   }, [
     _isOpen,
@@ -441,9 +389,8 @@ const Popover = ({
 
   const context = {
     popoverRef,
+    placement,
     referenceRef,
-    popoverStyles,
-    arrowStyles,
     headerId,
     bodyId,
     popoverId,
@@ -452,14 +399,13 @@ const Popover = ({
     onOpen,
     onClose,
     onToggle,
-    placement,
     trigger,
     isOpen: _isOpen,
-    arrowRef,
     onBlur: handleBlur,
     closeOnEsc,
     initialFocusRef,
     isHoveringRef,
+    usePortal,
   };
 
   return (
@@ -476,7 +422,6 @@ export {
   usePopoverContext,
   Popover,
   PopoverTrigger,
-  PopoverTransition,
   PopoverContent,
   PopoverArrow,
   PopoverCloseButton,

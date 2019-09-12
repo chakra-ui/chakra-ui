@@ -27,7 +27,7 @@ stories.add("with a string", () => (
 ));
 
 stories.add("with icon", () => (
-  <Tooltip showArrow shouldWrapChildren label="Welcome home" placement="right">
+  <Tooltip hasArrow shouldWrapChildren label="Welcome home" placement="right">
     <Icon name="phone" />
   </Tooltip>
 ));

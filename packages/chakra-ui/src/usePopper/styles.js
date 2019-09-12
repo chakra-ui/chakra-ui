@@ -9,7 +9,7 @@ const getPopperArrowStyle = ({
   const arrowPos = `calc(${arrowSize} / 2 * -1)`;
 
   return css`
-    > [data-arrow] {
+    [x-arrow] {
       width: ${arrowSize};
       height: ${arrowSize};
       position: absolute;
@@ -25,12 +25,12 @@ const getPopperArrowStyle = ({
       }
     }
 
-    &[data-placement^="top"] {
+    &[x-placement^="top"] {
       margin-bottom: ${popoverMargin};
       transform-origin: bottom center;
     }
 
-    &[data-placement^="top"] > [data-arrow] {
+    &[x-placement^="top"] [x-arrow] {
       bottom: ${arrowPos};
 
       &::before {
@@ -38,12 +38,12 @@ const getPopperArrowStyle = ({
       }
     }
 
-    &[data-placement^="bottom"] {
+    &[x-placement^="bottom"] {
       margin-top: ${popoverMargin};
       transform-origin: top center;
     }
 
-    &[data-placement^="bottom"] > [data-arrow] {
+    &[x-placement^="bottom"]  [x-arrow] {
       top: ${arrowPos};
 
       &::before {
@@ -51,12 +51,12 @@ const getPopperArrowStyle = ({
       }
     }
 
-    &[data-placement^="right"] {
+    &[x-placement^="right"] {
       margin-left: ${popoverMargin};
       transform-origin: left center;
     }
 
-    &[data-placement^="right"] > [data-arrow] {
+    &[x-placement^="right"] [x-arrow] {
       left: ${arrowPos};
 
       &::before {
@@ -64,12 +64,12 @@ const getPopperArrowStyle = ({
       }
     }
 
-    &[data-placement^="left"] {
+    &[x-placement^="left"] {
       margin-right: ${popoverMargin};
       transform-origin: right center;
     }
 
-    &[data-placement^="left"] > [data-arrow] {
+    &[x-placement^="left"]  [x-arrow] {
       right: ${arrowPos};
       &::before {
         box-shadow: 1px -1px 1px 0 ${arrowShadowColor};

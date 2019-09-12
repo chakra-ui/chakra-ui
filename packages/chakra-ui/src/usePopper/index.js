@@ -10,7 +10,7 @@ function usePopper({
   positionFixed = false,
   eventsEnabled = true,
   preventOverflow = true,
-  boundariesElement = "viewport",
+  boundariesElement = "scrollParent",
   isOpen,
   modifiers = {},
 }) {
@@ -35,7 +35,7 @@ function usePopper({
       popperRef.current,
       {
         placement: realPlacement,
-        eventsEnabled,
+        eventsEnabled: isOpen,
         positionFixed,
         modifiers: {
           flip: {
@@ -77,7 +77,7 @@ function usePopper({
     );
 
     return () => {
-      if (popperInstance.current !== null) {
+      if (popperInstance.current) {
         popperInstance.current.destroy();
       }
     };

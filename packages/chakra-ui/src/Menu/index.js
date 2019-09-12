@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import { useId } from "@reach/auto-id";
-import { bool, func, string } from "prop-types";
 import {
   createContext,
   forwardRef,
@@ -15,10 +14,10 @@ import PseudoBox from "../PseudoBox";
 import Text from "../Text";
 import { useColorMode } from "../ColorModeProvider";
 import usePrevious from "../usePrevious";
-import { getFocusables, mergeRefs } from "../utils";
+import { getFocusables, useForkRef } from "../utils";
 import { useMenuItemStyle, useMenuListStyle } from "./styles";
 import Divider from "../Divider";
-import usePopper from "../usePopper";
+import Popper from "../Popper";
 
 const MenuContext = createContext();
 
@@ -30,7 +29,7 @@ const Menu = ({
   autoSelect = true,
   closeOnBlur = true,
   closeOnSelect = true,
-  placement: placementProp,
+  placement,
 }) => {
   const { colorMode } = useColorMode();
 
@@ -44,28 +43,20 @@ const Menu = ({
   const buttonId = `menubutton-${useId()}`;
 
   const focusableItems = useRef(null);
-
-  const {
-    placement,
-    referenceRef: buttonRef,
-    popoverRef: menuRef,
-    arrowRef,
-    arrowStyles,
-    popoverStyles,
-  } = usePopper({
-    placement: placementProp,
-    isOpen: _isOpen,
-  });
+  const menuRef = useRef(null);
+  const buttonRef = useRef(null);
 
   useEffect(() => {
-    let focusables = getFocusables(menuRef.current).filter(node =>
-      ["menuitem", "menuitemradio", "menuitemcheckbox"].includes(
-        node.getAttribute("role"),
-      ),
-    );
-    focusableItems.current = menuRef.current ? focusables : [];
-    initTabIndex();
-  }, [menuRef]);
+    if (_isOpen && menuRef && menuRef.current) {
+      let focusables = getFocusables(menuRef.current).filter(node =>
+        ["menuitem", "menuitemradio", "menuitemcheckbox"].includes(
+          node.getAttribute("role"),
+        ),
+      );
+      focusableItems.current = menuRef.current ? focusables : [];
+      initTabIndex();
+    }
+  }, [_isOpen]);
 
   const updateTabIndex = index => {
     if (focusableItems.current.length > 0) {
@@ -80,7 +71,9 @@ const Menu = ({
   };
 
   const resetTabIndex = () => {
-    focusableItems.current.forEach(node => node.setAttribute("tabindex", -1));
+    if (focusableItems.current) {
+      focusableItems.current.forEach(node => node.setAttribute("tabindex", -1));
+    }
   };
 
   const initTabIndex = () => {
@@ -148,6 +141,7 @@ const Menu = ({
     buttonRef,
     menuRef,
     focusableItems,
+    placement,
     menuId,
     buttonId,
     openMenu,
@@ -155,10 +149,6 @@ const Menu = ({
     closeOnSelect,
     closeOnBlur,
     colorMode,
-    placement,
-    arrowRef,
-    arrowStyles,
-    popoverStyles,
   };
 
   return (
@@ -200,6 +190,8 @@ const MenuButton = forwardRef(
       buttonRef,
     } = useMenuContext();
 
+    const menuButtonRef = useForkRef(buttonRef, ref);
+
     return (
       <Comp
         aria-haspopup="menu"
@@ -207,12 +199,16 @@ const MenuButton = forwardRef(
         aria-controls={menuId}
         id={buttonId}
         role="button"
-        ref={node => mergeRefs([buttonRef, ref], node)}
+        ref={menuButtonRef}
         onClick={event => {
           if (isOpen) {
             closeMenu();
           } else {
-            autoSelect ? focusOnFirstItem() : openMenu();
+            if (autoSelect) {
+              focusOnFirstItem();
+            } else {
+              openMenu();
+            }
           }
           if (onClick) {
             onClick(event);
@@ -240,7 +236,7 @@ const MenuButton = forwardRef(
 );
 //////////////////////////////////////////////////////////////////////////////////////////
 
-const MenuList = ({ onKeyDown, onBlur, placement, ...props }) => {
+const MenuList = ({ onKeyDown, onBlur, ...props }) => {
   const {
     activeIndex: index,
     isOpen,
@@ -254,7 +250,7 @@ const MenuList = ({ onKeyDown, onBlur, placement, ...props }) => {
     buttonId,
     menuRef,
     closeOnBlur,
-    popoverStyles,
+    placement,
   } = useMenuContext();
 
   const handleKeyDown = event => {
@@ -313,21 +309,26 @@ const MenuList = ({ onKeyDown, onBlur, placement, ...props }) => {
   const styleProps = useMenuListStyle();
 
   return (
-    <Box
+    <Popper
+      usePortal={false}
+      isOpen={isOpen}
+      anchorEl={buttonRef.current}
+      placement={placement}
+      modifiers={{
+        preventOverflow: { enabled: true, boundariesElement: "viewport" },
+      }}
       minW="3xs"
       rounded="md"
       role="menu"
       ref={menuRef}
       id={menuId}
       py={2}
-      pos="absolute"
       aria-labelledby={buttonId}
       onKeyDown={handleKeyDown}
       onBlur={handleBlur}
       tabIndex={-1}
       zIndex="1"
-      hidden={!isOpen}
-      css={popoverStyles}
+      _focus={{ outline: 0, shadow: "outline" }}
       {...styleProps}
       {...props}
     />
@@ -380,8 +381,12 @@ const MenuItem = forwardRef(
             event.preventDefault();
             return;
           }
-          onClick && onClick(event);
-          closeOnSelect && closeMenu();
+          if (onClick) {
+            onClick(event);
+          }
+          if (closeOnSelect) {
+            closeMenu();
+          }
         }}
         onMouseMove={event => {
           if (isDisabled) {
@@ -389,22 +394,38 @@ const MenuItem = forwardRef(
             event.preventDefault();
             return;
           }
-          let nextIndex = focusableItems.current.indexOf(event.currentTarget);
-          focusAtIndex(nextIndex);
-          onMouseMove && onMouseMove(event);
+          if (focusableItems && focusableItems.current.length > 0) {
+            let nextIndex = focusableItems.current.indexOf(event.currentTarget);
+            focusAtIndex(nextIndex);
+          }
+          if (onMouseMove) {
+            onMouseMove(event);
+          }
         }}
         onMouseLeave={event => {
           focusAtIndex(-1);
-          onMouseLeave && onMouseLeave(event);
+
+          if (onMouseLeave) {
+            onMouseLeave(event);
+          }
         }}
         onKeyDown={event => {
           if (isDisabled) return;
           if (event.key === "Enter" || event.key === " ") {
             event.preventDefault();
-            onClick && onClick();
-            closeOnSelect && closeMenu();
+
+            if (onClick) {
+              onClick();
+            }
+
+            if (closeOnSelect) {
+              closeMenu();
+            }
           }
-          onKeyDown && onKeyDown(event);
+
+          if (onKeyDown) {
+            onKeyDown(event);
+          }
         }}
         {...styleProps}
         {...props}
@@ -412,14 +433,6 @@ const MenuItem = forwardRef(
     );
   },
 );
-
-MenuItem.propTypes = {
-  isDisabled: bool,
-  onKeyDown: func,
-  onClick: func,
-  onMouseMove: func,
-  role: string,
-};
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
