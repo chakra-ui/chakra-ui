@@ -60,9 +60,14 @@ it("should open and close", async () => {
   await waitForElementToBeRemoved(() => queryByText("Dialog Header"));
 });
 
-it("should match snapshot when open", async () => {
+it.only("should match snapshot when open", async () => {
+  jest.useFakeTimers();
   const { getByText, getByTestId } = render(<MockDialog />);
   fireEvent.click(getByText("open"));
+
+  // Skip to end of animation
+  jest.runAllTimers();
+
   await waitForElement(() => getByText("Dialog Header"));
   const dialog = getByTestId("alert-dialog-overlay");
   expect(dialog).toMatchSnapshot();

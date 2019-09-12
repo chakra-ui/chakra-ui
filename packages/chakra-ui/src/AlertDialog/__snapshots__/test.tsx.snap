@@ -1,25 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should match snapshot when open 1`] = `
-.emotion-0 {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-
-.emotion-1 {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-}
-
-.emotion-2 {
-  margin-left: auto;
-  padding: 1.5rem;
-}
-
 .emotion-4 {
   position: fixed;
   z-index: 5;
@@ -30,7 +11,7 @@ exports[`should match snapshot when open 1`] = `
   overflow-y: auto;
   background-color: rgba(16,22,26,.7);
   overflow-y: auto;
-  opacity: 0.2;
+  opacity: 0;
 }
 
 .emotion-3 {
@@ -51,9 +32,28 @@ exports[`should match snapshot when open 1`] = `
   margin-left: auto;
   margin-right: auto;
   border-radius: 0.25rem;
-  -webkit-transform: translate3d(0px,8px,0px);
-  -ms-transform: translate3d(0px,8px,0px);
-  transform: translate3d(0px,8px,0px);
+  -webkit-transform: translate3d(0px,10px,0px);
+  -ms-transform: translate3d(0px,10px,0px);
+  transform: translate3d(0px,10px,0px);
+}
+
+.emotion-0 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.emotion-1 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.emotion-2 {
+  margin-left: auto;
+  padding: 1.5rem;
 }
 
 <div
@@ -78,7 +78,7 @@ exports[`should match snapshot when open 1`] = `
     data-reach-dialog-content="true"
     role="alertdialog"
     tabindex="-1"
-    transform="translate3d(0px, 8px, 0px)"
+    transform="translate3d(0px, 10px, 0px)"
   >
     <div
       class="emotion-0"
