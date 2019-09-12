@@ -60,7 +60,7 @@ it("should open and close", async () => {
   await waitForElementToBeRemoved(() => queryByText("Dialog Header"));
 });
 
-it.only("should match snapshot when open", async () => {
+it("should match snapshot when open", async () => {
   jest.useFakeTimers();
   const { getByText, getByTestId } = render(<MockDialog />);
   fireEvent.click(getByText("open"));
