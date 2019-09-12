@@ -7,6 +7,8 @@ import { mdx } from "@mdx-js/react";
 import * as Chakra from "@chakra-ui/core";
 import * as Formik from "formik";
 import * as ReactIcons from "react-icons/md";
+import FocusLock from "react-focus-lock";
+import ChakraPortal from "./Portal";
 
 const { Box, Button, useClipboard, useColorMode } = Chakra;
 
@@ -128,7 +130,15 @@ const CodeBlock = ({
     language,
     code: editorCode,
     transformCode: code => "/** @jsx mdx */" + code,
-    scope: { ...Chakra, ...Formik, ...ReactIcons, mdx, StarIcon },
+    scope: {
+      ...Chakra,
+      ...Formik,
+      ...ReactIcons,
+      mdx,
+      StarIcon,
+      FocusLock,
+      ChakraPortal,
+    },
     noInline: isManual,
     ...props,
   };

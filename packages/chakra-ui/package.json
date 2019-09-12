@@ -53,14 +53,14 @@
     "@types/react-transition-group": "^4.2.2",
     "@types/styled-system": "5.0.1",
     "color": "3.1.2",
+    "dequal": "^1.0.0",
     "popper.js": "^1.15.0",
     "react-animate-height": "2.0.9",
     "react-spring": "8.0.23",
     "react-transition-group": "4.3.0",
     "styled-system": "5.0.5",
     "toasted-notes": "2.1.6",
-    "use-dark-mode": "2.3.1",
-    "use-deep-compare": "^0.1.0"
+    "use-dark-mode": "2.3.1"
   },
   "devDependencies": {
     "@babel/cli": "7.5.5",

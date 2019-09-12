@@ -1,16 +1,6 @@
 import PopperJS from "popper.js";
-import { useRef, useState, useEffect, useLayoutEffect } from "react";
-import {
-  checkDeps,
-  useDeepCompareMemoize,
-} from "use-deep-compare/dist-src/useDeepCompareMemoize";
-
-function useDeepCompareEffect(effect, deps) {
-  if (process.env.NODE_ENV !== "production") {
-    checkDeps(deps, "useDeepCompareEffect");
-  }
-  useLayoutEffect(effect, useDeepCompareMemoize(deps));
-}
+import { useRef, useState, useEffect } from "react";
+import { useDeepCompareLayoutEffect } from "./utils";
 
 function usePopper({
   placement = "bottom",
@@ -33,7 +23,7 @@ function usePopper({
   const [arrowStyles, setArrowStyles] = useState({});
   const [realPlacement, setRealPlacement] = useState(placement);
 
-  useDeepCompareEffect(() => {
+  useDeepCompareLayoutEffect(() => {
     if (popperInstance.current !== null) {
       popperInstance.current.destroy();
     }

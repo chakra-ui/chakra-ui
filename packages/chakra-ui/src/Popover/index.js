@@ -10,7 +10,7 @@ import {
   useState,
   useRef,
 } from "react";
-import PseudoBox from "../PseudoBox";
+import Box from "../Box";
 import CloseButton from "../CloseButton";
 import { useColorMode } from "../ColorModeProvider";
 import usePopper from "../usePopper";
@@ -28,7 +28,7 @@ import CSSTransition from "react-transition-group/CSSTransition";
  */
 
 const PopoverContext = createContext();
-export const usePopoverContext = () => {
+const usePopoverContext = () => {
   const context = useContext(PopoverContext);
   if (context == null) {
     throw Error("usePopoverContext must be used within <Popover/>");
@@ -38,10 +38,10 @@ export const usePopoverContext = () => {
 
 /////////////////////////////////////////////////////////////////////
 
-export const PopoverTrigger = ({ children }) => {
+const PopoverTrigger = ({ children }) => {
   const {
     referenceRef,
-    id,
+    popoverId,
     onToggle,
     trigger,
     onOpen,
@@ -114,7 +114,7 @@ export const PopoverTrigger = ({ children }) => {
   return cloneElement(child, {
     "aria-haspopup": "dialog",
     "aria-expanded": isOpen,
-    "aria-controls": id,
+    "aria-controls": popoverId,
     ref: referenceRef,
     ...eventHandlers,
   });
@@ -122,13 +122,13 @@ export const PopoverTrigger = ({ children }) => {
 
 /////////////////////////////////////////////////////////////////////
 
-export const PopoverArrow = props => {
+const PopoverArrow = props => {
   const { colorMode } = useColorMode();
   const borderColor = colorMode === "light" ? "white" : "gray.700";
   const { arrowRef, arrowStyles } = usePopoverContext();
 
   return (
-    <PseudoBox
+    <Box
       borderColor={borderColor}
       data-arrow=""
       ref={arrowRef}
@@ -140,7 +140,7 @@ export const PopoverArrow = props => {
 
 /////////////////////////////////////////////////////////////////////
 
-export const PopoverCloseButton = ({ onClick, ...props }) => {
+const PopoverCloseButton = ({ onClick, ...props }) => {
   const { onClose } = usePopoverContext();
   return (
     <CloseButton
@@ -164,7 +164,7 @@ export const PopoverCloseButton = ({ onClick, ...props }) => {
 
 /////////////////////////////////////////////////////////////////////
 
-export const PopoverTransition = ({
+const PopoverTransition = ({
   timeout = 250,
   children,
   onEntering,
@@ -215,7 +215,7 @@ export const PopoverTransition = ({
 
 /////////////////////////////////////////////////////////////////////
 
-export const PopoverContent = ({
+const PopoverContent = ({
   onKeyDown,
   onBlur: onBlurProp,
   onMouseLeave,
@@ -225,8 +225,6 @@ export const PopoverContent = ({
   arrowSize,
   arrowShadowColor,
   "aria-label": ariaLabel,
-  "aria-labelledby": ariaLabelledBy,
-  "aria-describedby": ariaDescribedBy,
   ...props
 }) => {
   const {
@@ -358,9 +356,9 @@ const Popover = ({
     }
 
     if (!_isOpen === true) {
-      onOpenProp();
+      onOpenProp && onOpenProp();
     } else {
-      onCloseProp();
+      onCloseProp && onCloseProp();
     }
   };
 
@@ -474,3 +472,13 @@ const Popover = ({
 };
 
 export default Popover;
+export {
+  usePopoverContext,
+  Popover,
+  PopoverTrigger,
+  PopoverTransition,
+  PopoverContent,
+  PopoverArrow,
+  PopoverCloseButton,
+};
+export * from "./components";

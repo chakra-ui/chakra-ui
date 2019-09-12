@@ -1,22 +1,21 @@
-# Popover (In Progress)
+# Popover
 
-Popover is a non-modal dialog that floats around a trigger. They're used to
-display contextual information to the user.
+Popover is a non-modal dialog that floats around a trigger. It's used to display
+contextual information to the user, and should be paired with a clickable
+trigger element.
 
-The component should be paired with a clickable trigger element
-
-Popover is built on top of the
-<a href="https://popper.js.org/" target="__blank">Popper.js</a> library.
+Popover is built on top of the [Popper.js](https://popper.js.org/) library.
 
 ## Import
 
-- Popover: The wrapper that provides props, state, and context to it's children.
-- PopoverTrigger: Used to wrap the reference (or trigger) element.
-- PopoverContent: The popover itself.
-- PopoverHeader: The header of the popover.
-- PopoverBody: The body of the popover.
-- PopoverArrow: A visual arrow that points to the reference (or trigger).
-- PopoverCloseButton: Obviously, a button to close the popover.
+- `Popover`: The wrapper that provides props, state, and context to it's
+  children.
+- `PopoverTrigger`: Used to wrap the reference (or trigger) element.
+- `PopoverContent`: The popover itself.
+- `PopoverHeader`: The header of the popover.
+- `PopoverBody`: The body of the popover.
+- `PopoverArrow`: A visual arrow that points to the reference (or trigger).
+- `PopoverCloseButton`: Obviously, a button to close the popover.
 
 ```js
 import {
@@ -35,13 +34,13 @@ import {
 
 ```jsx
 function BasicExample() {
-  const closeRef = useRef();
+  const closeRef = React.useRef();
   return (
     <Popover initialFocusRef={closeRef}>
       <PopoverTrigger>
-        <Button float="right">Trigger</Button>
+        <Button>Trigger</Button>
       </PopoverTrigger>
-      <PopoverContent>
+      <PopoverContent zIndex={20}>
         <PopoverArrow />
         <PopoverHeader>Header</PopoverHeader>
         <PopoverCloseButton />
@@ -66,25 +65,22 @@ The popovers don't display in a portal by default. To use a portal, Import the
 // import { Portal } from "@chakra-ui/core"
 
 function BasicExample() {
-  const closeRef = useRef();
   return (
-    <Popover initialFocusRef={closeRef}>
+    <Popover>
       <PopoverTrigger>
-        <Button float="right">Trigger</Button>
+        <Button>Trigger</Button>
       </PopoverTrigger>
-      <Portal>
+      <ChakraPortal>
         <PopoverContent>
           <PopoverArrow />
           <PopoverHeader>Header</PopoverHeader>
           <PopoverCloseButton />
           <PopoverBody>
-            <Button variantColor="blue" ref={closeRef}>
-              Button
-            </Button>
+            <Button variantColor="blue">Button</Button>
           </PopoverBody>
           <PopoverFooter>This is the footer</PopoverFooter>
         </PopoverContent>
-      </Portal>
+      </ChakraPortal>
     </Popover>
   );
 }
@@ -101,7 +97,7 @@ The popovers don't display in a portal by default. To use a portal, Import the
 
 <Popover closeOnBlur={false}>
   <PopoverTrigger>
-    <Button float="right">Trigger</Button>
+    <Button>Trigger</Button>
   </PopoverTrigger>
   <Portal>
     <PopoverContent>
