@@ -31,6 +31,7 @@ const AlertDialogOverlay = ({
   ...props
 }) => (
   <StyledOverlay
+    data-testid="alert-dialog-overlay"
     position="fixed"
     zIndex={zIndex}
     bottom="0"
