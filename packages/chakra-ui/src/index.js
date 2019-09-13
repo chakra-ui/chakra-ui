@@ -72,7 +72,6 @@ export * from "./Modal";
 export { default as NumberInput } from "./NumberInput";
 
 export { default as Portal } from "./Portal";
-export { default as Popover } from "./Popover";
 export * from "./Popover";
 export { default as Progress } from "./Progress";
 export * from "./Progress";

@@ -14,7 +14,6 @@ const getPopperArrowStyle = ({
       height: ${arrowSize};
       position: absolute;
       transform: rotate(45deg);
-      background-color: inherit;
 
       &::before {
         content: "";
@@ -43,7 +42,7 @@ const getPopperArrowStyle = ({
       transform-origin: top center;
     }
 
-    &[x-placement^="bottom"]  [x-arrow] {
+    &[x-placement^="bottom"] [x-arrow] {
       top: ${arrowPos};
 
       &::before {
@@ -69,7 +68,7 @@ const getPopperArrowStyle = ({
       transform-origin: right center;
     }
 
-    &[x-placement^="left"]  [x-arrow] {
+    &[x-placement^="left"] [x-arrow] {
       right: ${arrowPos};
       &::before {
         box-shadow: 1px -1px 1px 0 ${arrowShadowColor};

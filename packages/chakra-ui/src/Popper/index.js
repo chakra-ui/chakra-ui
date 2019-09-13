@@ -16,8 +16,9 @@ import React, {
 import PopperJS from "popper.js";
 import Portal from "../Portal";
 import PseudoBox from "../PseudoBox";
+import Box from "../Box";
 import { useForkRef, setRef, createChainedFunction } from "../utils";
-import getPopperArrowStyle from "../usePopper/styles";
+import getPopperArrowStyle from "./styles";
 
 /**
  * Flips placement if in <body dir="rtl" />
@@ -58,6 +59,7 @@ const Popper = forwardRef(
     {
       anchorEl,
       children,
+      gutter,
       closeOnBlur = true,
       container,
       initialFocusRef,
@@ -217,3 +219,7 @@ const Popper = forwardRef(
 );
 
 export default Popper;
+
+export const PopperArrow = props => (
+  <Box x-arrow="" role="presentation" bg="inherit" {...props} />
+);

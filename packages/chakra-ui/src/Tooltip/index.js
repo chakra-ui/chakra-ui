@@ -5,7 +5,7 @@ import { useColorMode } from "../ColorModeProvider";
 import Box from "../Box";
 import useDisclosure from "../useDisclosure";
 import { useId } from "@reach/auto-id";
-import Popper from "../Popper";
+import Popper, { PopperArrow } from "../Popper";
 import VisuallyHidden from "../VisuallyHidden";
 
 const activeTooltip = { id: "" };
@@ -139,7 +139,7 @@ const Tooltip = ({
             {ariaLabel}
           </VisuallyHidden>
         )}
-        {hasArrow && <Box x-arrow="" />}
+        {hasArrow && <PopperArrow />}
       </Popper>
     </Fragment>
   );

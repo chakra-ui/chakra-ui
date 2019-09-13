@@ -3,8 +3,7 @@ import React from "react";
 import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
 import Popper from ".";
-import Fade from "./Fade";
-import Box from "../Box";
+import Button from "../Button";
 
 const stories = storiesOf("Popper", module);
 
@@ -17,25 +16,14 @@ const Example = () => {
   }
 
   return (
-    <div>
-      <button ref={buttonRef} onClick={handleClick}>
+    <>
+      <Button size="sm" ref={buttonRef} onClick={handleClick}>
         Toggle Popper
-      </button>
-      <Popper
-        placement="right"
-        isOpen={open}
-        anchorEl={buttonRef.current}
-        willUseTransition
-      >
-        {({ transition }) => (
-          <Fade {...transition} timeout={350}>
-            <Box>
-              <p>The content of the Popper.</p>
-            </Box>
-          </Fade>
-        )}
+      </Button>
+      <Popper placement="right" isOpen={open} anchorEl={buttonRef.current}>
+        <p>The content of the Popper.</p>
       </Popper>
-    </div>
+    </>
   );
 };
 

@@ -67,23 +67,27 @@ can extend this object to add your own icons. Here are the steps:
   and minify the markup.
 - Add the icon to the theme object.
 
+> Add the `fill=currentColor` attribute to the `path` or `g` so that when you
+> this `<Icon color="gray.200"/>`, it works correctly.
+
 ```jsx live=false
 
 // Step 1: Each icon should be stored as an object of `path` and `viewBox`
 const customIcons = {
   icon1: {
-    path: <path d="..." />,
+    path: <path fill="currentColor" d="..." />,
     // If the icon's viewBox is `0 0 24 24`, you can ignore `viewBox`
     viewBox: "0 0 40 40",
   },
   icon2: {
     path: (
-      <g>
+      <g fill="currentColor">
         <path d="..."/>
       </g>
     )
   }
 };
+
 
 // Step 2: Add the custom icon to the theme
 const customTheme = {
@@ -101,7 +105,7 @@ const customTheme = {
 </ThemeProvider>
 
 // Step 4: Now you can do this
-<Icon name="icon1" />
+<Icon name="icon1" color="green.200"/>
 ```
 
 ### Icon Fallbacks
