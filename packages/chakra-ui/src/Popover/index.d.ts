@@ -3,6 +3,29 @@ import PopperJS from "popper.js";
 import StyledSystem from "styled-system";
 import { BoxProps } from "../Box";
 import { PseudoBoxProps } from "../PseudoBox";
+import { PopperProps } from "../Popper";
+
+interface PopoverContextValue {
+  popoverRef: React.Ref<HTMLElement>;
+  placement: PopperJS.Placement;
+  referenceRef: React.Ref<HTMLElement>;
+  headerId: string;
+  bodyId: string;
+  popoverId: string;
+  onOpen: () => void;
+  onClose: () => void;
+  onToggle: () => void;
+  trigger: "hover" | "click";
+  isOpen: boolean;
+  onBlur: React.FocusEventHandler<HTMLElement>;
+  closeOnEsc: boolean;
+  initialFocusRef: boolean;
+  isHoveringRef: React.Ref<boolean>;
+  usePortal: boolean;
+}
+
+declare const PopoverContext: React.Context<{}>;
+declare const usePopoverContext: () => PopoverContextValue | undefined;
 
 type InternalState = { isOpen?: boolean; onClose?: () => void };
 
@@ -18,7 +41,7 @@ type PopoverChildren =
 interface IPopover {
   /**
    * The html `id` attribute of the popover.
-   * If not provided, we use generate a unique id.
+   * If not provided, we generate a unique id.
    *
    * This `id` is also used to auto-generate the `aria-labelledby`
    * and `aria-decribedby` attributes that points to the `PopoverHeader` and `PopoverBody`
@@ -79,8 +102,7 @@ interface IPopover {
 }
 
 type PopoverProps = IPopover & PopoverChildren;
-declare const Popover: React.FC<PopoverProps>;
-export default Popover;
+export const Popover: React.FC<PopoverProps>;
 
 interface IPopoverTrigger {
   children: React.ReactNode;
@@ -93,28 +115,14 @@ interface IPopoverContent {
   onMouseLeave?: React.MouseEventHandler<HTMLElement>;
   onMouseEnter?: React.MouseEventHandler<HTMLElement>;
   onFocus?: React.FocusEventHandler<HTMLElement>;
-  /**
-   * If `true` and the `PopoverArrow` isn't render, we'll remove the margin applied
-   * to the `PopoverContent`
-   */
-  hasArrow?: boolean;
-  /**
-   * The size of the arrow in pixels
-   * @default "1rem"
-   */
-  arrowSize?: string;
-  /**
-   * The color to apply to the `box-shadow` of the arrow.
-   * @default "rgba(0, 0, 0, 0.1)"
-   */
-  arrowShadowColor?: string;
+  gutter?: number;
   /**
    * If the `PopoverHeading` isn't rendered, use this prop to add
    * an accessible label to the popover.
    */
   "aria-label"?: string;
 }
-type PopoverContentProps = PseudoBoxProps & IPopoverContent;
+type PopoverContentProps = IPopoverContent & PopperProps;
 export const PopoverContent: React.FC<PopoverContentProps>;
 
 export const PopoverArrow: React.FC<BoxProps>;

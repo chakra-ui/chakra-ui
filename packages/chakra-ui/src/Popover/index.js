@@ -384,7 +384,6 @@ const PopoverCloseButton = ({ onClick, ...props }) => {
 
 /////////////////////////////////////////////////////////////////////
 
-export default Popover;
 export {
   PopoverHeader,
   PopoverFooter,

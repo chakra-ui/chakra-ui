@@ -364,6 +364,50 @@ possible placement values.
 </Popover>
 ```
 
+## Hover Trigger
+
+To show the popover when you mouse over or focus on the trigger, pass the prop
+`trigger` and set it to `hover`. When you focus on or mouse over the popover
+trigger, the popover will open.
+
+> If you quickly move your cursor to the popover content when it's open, it'll
+> remain open till you leave.
+
+```jsx
+function TwitterEx() {
+  return (
+    <Popover trigger="hover">
+      <PopoverTrigger>
+        <Link href="#" color="blue.500">
+          Hover to see @swyx profile
+        </Link>
+      </PopoverTrigger>
+
+      <DarkMode>
+        <PopoverContent border="0" zIndex={4} width="400px" color="white">
+          <Box p={5}>
+            <Avatar
+              name="swyx"
+              src="https://pbs.twimg.com/profile_images/990728399873232896/CMPn3IxT_reasonably_small.jpg"
+            />
+            <Text mt={4} fontWeight="bold">
+              swyx
+              <Badge ml={3} fontSize="xs">
+                Follows you
+              </Badge>
+            </Text>
+            <Text mt={3}>
+              Infinite Builder working on DX @Netlify. Helping people
+              #LearnInPublic
+            </Text>
+          </Box>
+        </PopoverContent>
+      </DarkMode>
+    </Popover>
+  );
+}
+```
+
 ## Accessiblity
 
 > When you see the word _"trigger"_, it's referring to the `children` of
@@ -376,8 +420,9 @@ possible placement values.
 - When the popover is closed, focus returns to the trigger. If you set
   `returnFocusOnClose` to `false`, focus will not return.
 - If trigger is set to `hover`:
-  - Focusing on or mousing over the anchor will open the popover
-  - Blurring or mousing out of the anchor will close the popover
+  - Focusing on or mousing over the trigger will open the popover
+  - Blurring or mousing out of the trigger will close the popover. If you move
+    your mouse into the `PopoverContent`, it'll remain visible.
 - If trigger is set to `click`:
   - Clicking the trigger or using the `Space` or `Enter` when focus is on the
     trigger will open the popover.
