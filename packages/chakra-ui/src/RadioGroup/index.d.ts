@@ -10,8 +10,8 @@ export interface IRadioGroup {
   defaultValue?: IRadio["value"];
   value?: IRadio["value"];
   onChange?: (
-    event?: React.ChangeEvent<HTMLInputElement>,
-    value?: IRadio["value"],
+    event: React.ChangeEvent<HTMLInputElement>,
+    value: IRadio["value"],
   ) => void;
   spacing?: StyledSystem.MarginProps["margin"];
   isInline?: boolean;
