@@ -40,10 +40,10 @@ You can override the color scheme of the Radio to any color key specified in
 
 ```jsx
 <RadioGroup defaultValue="2" spacing={5} isInline>
-  <Radio color="red" value="1">
+  <Radio variantColor="red" value="1">
     Radio
   </Radio>
-  <Radio color="green" value="2">
+  <Radio variantColor="green" value="2">
     Radio
   </Radio>
 </RadioGroup>
@@ -55,13 +55,13 @@ The checkbox comes with 3 sizes
 
 ```jsx
 <Stack>
-  <Radio size="sm" name="1" color="red">
+  <Radio size="sm" name="1" variantColor="red">
     Radio
   </Radio>
-  <Radio size="md" name="1" color="green">
+  <Radio size="md" name="1" variantColor="green">
     Radio
   </Radio>
-  <Radio size="lg" name="1" color="orange" defaultChecked>
+  <Radio size="lg" name="1" variantColor="orange" defaultChecked>
     Radio
   </Radio>
 </Stack>
@@ -156,7 +156,7 @@ render(<Example />);
 | id               | `string`             |         | The id assigned to input field                                                                                        |
 | name             | `string`             |         | The name of the input field in a radio (Useful for form submission)                                                   |
 | value            | `string` or `number` |         | The value to be used in the radio input. This is the value that will be returned on form submission                   |
-| color            | `string`             |         | The color of the radio when it's checked. This should be one of the color keys in the theme (e.g."green", "red")      |
+| variantColor     | `string`             |         | The color of the radio when it's checked. This should be one of the color keys in the theme (e.g."green", "red")      |
 | defaultIsChecked | `boolean`            |         | If `true`, the radio will be initially checked                                                                        |
 | isChecked        | `boolean`            |         | If `true`, the radio will be checked. You'll need to pass `onChange` to update it's value (since it's now controlled) |
 | isFullWidth      | `boolean`            |         | If `true`, the radio should take up the full width of the parent                                                      |

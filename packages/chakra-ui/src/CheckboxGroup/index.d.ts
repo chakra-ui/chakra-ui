@@ -39,7 +39,7 @@ export interface ICheckboxGroup {
   /**
    * The color of the checkbox when it's checked.
    */
-  color?: ICheckbox["color"];
+  variantColor?: ICheckbox["variantColor"];
   /**
    * The size of the checkbox. It's forwarded to all children checkbox
    */

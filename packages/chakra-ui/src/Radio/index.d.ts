@@ -30,7 +30,7 @@ export interface IRadio {
    * The color of the radio when it's checked.
    * This should be one of the color keys in the theme (e.g."green", "red")
    */
-  color?: string;
+  variantColor?: string;
   /**
    * If `true`, the radio will be initially checked.
    */

@@ -7,7 +7,7 @@ import Box from "../Box";
 const CheckboxGroup = ({
   onChange,
   name,
-  color,
+  variantColor,
   size,
   defaultValue,
   isInline,
@@ -49,7 +49,7 @@ const CheckboxGroup = ({
       >
         {cloneElement(child, {
           size: size,
-          color: color,
+          variantColor: variantColor,
           name: `${_name}-${index}`,
           onChange: _onChange,
           isChecked: _values.includes(child.props.value),

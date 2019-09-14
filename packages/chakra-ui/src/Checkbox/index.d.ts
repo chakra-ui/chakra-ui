@@ -22,7 +22,7 @@ export interface ICheckbox {
    * The color of the checkbox when it's checked.
    * This should be one of the color keys in the theme (e.g."green", "red")
    */
-  color?: string;
+  variantColor?: string;
   /**
    * If `true`, the checkbox will be initially checked.
    */

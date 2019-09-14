@@ -17,7 +17,7 @@ const RadioGroup = forwardRef(
     {
       onChange,
       name,
-      color,
+      variantColor,
       size,
       defaultValue,
       isInline,
@@ -60,7 +60,7 @@ const RadioGroup = forwardRef(
           >
             {cloneElement(child, {
               size: child.props.size || size,
-              color: child.props.color || color,
+              variantColor: child.props.variantColor || variantColor,
               name: _name,
               onChange: _onChange,
               isChecked: child.props.value === _value,

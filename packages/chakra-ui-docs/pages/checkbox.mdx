@@ -45,10 +45,10 @@ You can override the color scheme of the checkbox to any color key specified in
 
 ```jsx
 <Stack spacing={10} isInline>
-  <Checkbox color="red" defaultIsChecked>
+  <Checkbox variantColor="red" defaultIsChecked>
     Checkbox
   </Checkbox>
-  <Checkbox color="green" defaultIsChecked>
+  <Checkbox variantColor="green" defaultIsChecked>
     Checkbox
   </Checkbox>
 </Stack>
@@ -61,13 +61,13 @@ Pass the `size` prop to change the size of the Checkbox. Values can be either
 
 ```jsx
 <Stack spacing={10} isInline>
-  <Checkbox size="sm" color="red">
+  <Checkbox size="sm" variantColor="red">
     Checkbox
   </Checkbox>
-  <Checkbox size="md" color="green" defaultIsChecked>
+  <Checkbox size="md" variantColor="green" defaultIsChecked>
     Checkbox
   </Checkbox>
-  <Checkbox size="lg" color="orange" defaultIsChecked>
+  <Checkbox size="lg" variantColor="orange" defaultIsChecked>
     Checkbox
   </Checkbox>
 </Stack>
@@ -119,7 +119,7 @@ Chakra exports a `CheckboxGroup` component to help manage the checked state of
 it's children.
 
 ```jsx
-<CheckboxGroup color="green" defaultValue={["naruto", "kakashi"]}>
+<CheckboxGroup variantColor="green" defaultValue={["naruto", "kakashi"]}>
   <Checkbox value="naruto">Naruto</Checkbox>
   <Checkbox value="sasuke">Sasuke</Checkbox>
   <Checkbox value="kakashi">kakashi</Checkbox>
@@ -133,7 +133,7 @@ prop.
 <CheckboxGroup
   isInline
   spacing={8}
-  color="teal"
+  variantColor="teal"
   defaultValue={["itachi", "kisame"]}
 >
   <Checkbox value="itachi">Itachi</Checkbox>
@@ -151,7 +151,7 @@ prop.
 | id               | `string`             |         | The id assigned to input field                                                                                           |
 | name             | `string`             |         | The name of the input field in a checkbox (Useful for form submission)                                                   |
 | value            | `string` or `number` |         | The value to be used in the checkbox input. This is the value that will be returned on form submission.                  |
-| color            | `string`             |         | The color of the checkbox when it's checked. This should be one of the color keys in the theme (e.g."green", "red")      |
+| variantColor            | `string`             |         | The color of the checkbox when it's checked. This should be one of the color keys in the theme (e.g."green", "red")      |
 | defaultIsChecked | `boolean`            |         | If `true`, the checkbox will be initially checked.                                                                       |
 | isChecked        | `boolean`            |         | If `true`, the checkbox will be checked. You'll need to pass `onChange` to update it's value (since it's now controlled) |
 | isIndeterminate  | `boolean`            |         | If `true`, the checkbox will be indeterminate. This only affects the icon shown inside checkbox                          |
