@@ -40,6 +40,7 @@ const components = [
   "Switch",
   "Tabs",
   "Tag",
+  "Text",
   "Textarea",
   "Toast",
   "Tooltip",
