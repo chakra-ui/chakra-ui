@@ -1,9 +1,72 @@
 # Image
 
+The Image component is used to display images.
+
+Image composes `Box` so you can use all the style props and add responsive
+styles as well.
+
 ## Import
+
+```js
+import { Image } from "@chakra-ui/core";
+```
 
 ## Usage
 
+```jsx
+<Box size="sm">
+  <Image src="http://bit.ly/sage-adebayo" alt="Segun Adebayo" />
+</Box>
+```
+
+## Size
+
+The size of the image can be adjusted using the `size` prop.
+
+```jsx
+<Stack isInline>
+  <Image
+    size="100px"
+    objectFit="cover"
+    src="http://bit.ly/sage-adebayo"
+    alt="Segun Adebayo"
+  />
+  <Image
+    size="150px"
+    objectFit="cover"
+    src="http://bit.ly/dan-abramov"
+    alt="Dan Abramov"
+  />
+  <Image size="200px" src="http://bit.ly/dan-abramov" alt="Dan Abramov" />
+</Stack>
+```
+
+## Rounded Image
+
+```jsx
+<Image
+  rounded="full"
+  size="150px"
+  src="http://bit.ly/sage-adebayo"
+  alt="Segun Adebayo"
+/>
+```
+
 ## Fallback support
 
+You can provide a fallback image for when there is an error loading the `src` of
+the image.
+
+```jsx
+<Image src="gibbresh.png" fallbackSrc="https://via.placeholder.com/150" />
+```
+
 ## Props
+
+| Name          | Type       | Default | Description                                                                                                                  |
+| ------------- | ---------- | ------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `src`         | `string`   |         | The path to the image source                                                                                                 |
+| `fallbackSrc` | `string`   |         | In event there was an error loading the `src`, specify a fallback. In most cases, this can be an avatar or image placeholder |
+| `alt`         | `string`   |         | The alt text that describes the image                                                                                        |
+| `onLoad`      | `function` |         | A callback for when the image `src` has been loaded                                                                          |
+| `onError`     | `function` |         | A callback for when there was an error loading the image `src`                                                               |

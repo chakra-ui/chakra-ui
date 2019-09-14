@@ -23,6 +23,7 @@ const components = [
   "Heading",
   "Icon",
   "IconButton",
+  "Image",
   "Input",
   "Link",
   "List",
