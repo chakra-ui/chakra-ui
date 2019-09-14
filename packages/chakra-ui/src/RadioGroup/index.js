@@ -49,25 +49,25 @@ const RadioGroup = forwardRef(
     const _name = name || fallbackName;
 
     const clones = Children.map(children, (child, index) => {
+      if (!isValidElement(child)) return;
+
       const isLastRadio = children.length === index + 1;
       const spacingProps = isInline ? { mr: spacing } : { mb: spacing };
 
-      if (isValidElement(child)) {
-        return (
-          <Box
-            display={isInline ? "inline-block" : "block"}
-            {...(!isLastRadio && spacingProps)}
-          >
-            {cloneElement(child, {
-              size: child.props.size || size,
-              variantColor: child.props.variantColor || variantColor,
-              name: _name,
-              onChange: _onChange,
-              isChecked: child.props.value === _value,
-            })}
-          </Box>
-        );
-      }
+      return (
+        <Box
+          display={isInline ? "inline-block" : "block"}
+          {...(!isLastRadio && spacingProps)}
+        >
+          {cloneElement(child, {
+            size: child.props.size || size,
+            variantColor: child.props.variantColor || variantColor,
+            name: _name,
+            onChange: _onChange,
+            isChecked: child.props.value === _value,
+          })}
+        </Box>
+      );
     });
 
     // Calling focus() on the radiogroup should focus on the selected option or first enabled option

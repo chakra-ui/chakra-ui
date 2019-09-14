@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { Children, cloneElement, forwardRef } from "react";
+import { Children, cloneElement, forwardRef, isValidElement } from "react";
 import Box from "../Box";
 import Link from "../Link";
 
@@ -30,6 +30,8 @@ const BreadcrumbItem = ({
   ...rest
 }) => {
   const clones = Children.map(children, child => {
+    if (!isValidElement(child)) return;
+
     if (child.type === BreadcrumbLink) {
       return cloneElement(child, { isCurrentPage });
     }
@@ -61,14 +63,16 @@ const Breadcrumb = ({
   separator = "/",
   ...rest
 }) => {
-  const clones = Children.map(children, (child, index) =>
-    cloneElement(child, {
+  const clones = Children.map(children, (child, index) => {
+    if (!isValidElement(child)) return;
+
+    return cloneElement(child, {
       addSeparator,
       separator,
       spacing,
       isLastChild: Children.count(children) === index + 1,
-    }),
-  );
+    });
+  });
 
   return (
     <Box as="nav" aria-label="breadcrumb" {...rest}>

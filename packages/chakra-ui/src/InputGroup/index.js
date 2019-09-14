@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { Children, cloneElement } from "react";
+import { Children, cloneElement, isValidElement } from "react";
 import Box from "../Box";
 import Input from "../Input";
 import { inputSizes } from "../Input/styles";
@@ -15,6 +15,8 @@ const InputGroup = ({ children, size = "md", ...props }) => {
   return (
     <Box display="flex" position="relative" {...props}>
       {Children.map(children, child => {
+        if (!isValidElement(child)) return;
+
         if (child.type === InputLeftElement) {
           pl = sizes[height];
         }

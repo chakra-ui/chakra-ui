@@ -9,6 +9,7 @@ import {
   useContext,
   useRef,
   useState,
+  isValidElement,
 } from "react";
 import { useId } from "@reach/auto-id";
 import { assignRef } from "../utils";
@@ -182,6 +183,8 @@ const TabPanels = forwardRef(({ children, ...rest }, ref) => {
   } = useContext(TabContext);
 
   const clones = Children.map(children, (child, index) => {
+    if (!isValidElement(child)) return;
+
     return cloneElement(child, {
       isSelected: isManual ? index === manualIndex : index === selectedIndex,
       selectedPanelRef,
