@@ -15,6 +15,9 @@ import { Tooltip } from "@chakra-ui/core";
 
 ## Usage
 
+If the `children` of Tooltip is a string, we wrap with in a `span` with
+`tabIndex` set to `0`, to ensure it meets the accessibility requirements.
+
 ```jsx
 <Tooltip label="Hey, I'm here!">Hover me</Tooltip>
 ```
@@ -30,7 +33,7 @@ import { Tooltip } from "@chakra-ui/core";
 ### With arrow
 
 ```jsx
-<Tooltip showArrow label="Search places" placement="top">
+<Tooltip hasArrow label="Search places" placement="top">
   <Icon name="search" />
 </Tooltip>
 ```
@@ -77,16 +80,18 @@ Using the `placement` prop you can adjust where your tooltip will be displayed.
 
 ## Props
 
-| Name            | Type                                                                                                                                                                           | Default  | Description                                                                                                  |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- | ------------------------------------------------------------------------------------------------------------ |
-| `isOpen`        | `boolean`                                                                                                                                                                      | `false`  | If `true`, the tooltip is shown.                                                                             |
-| `defaultIsOpen` | `boolean`                                                                                                                                                                      | `false`  | If `true`, the tooltip is shown by default.                                                                  |
-| `bg`            | `string`                                                                                                                                                                       |          | The background color of the tooltip.                                                                         |
-| `color`         | `string`                                                                                                                                                                       |          | The color of tooltip label.                                                                                  |
-| `label`         | `string`                                                                                                                                                                       |          | The label of the tooltip.                                                                                    |
-| `timeout`       | `number`                                                                                                                                                                       | `100`    | Determines how long, in milliseconds tooltip is to be shown.                                                 |
-| `placement`     | `auto-start`, `auto`, `auto-end`, `top-start`, `top`, `top-end`, `right-start`, `right`, `right-end`, `bottom-end`, `bottom`, `bottom-start`, `left-end`, `left`, `left-start` | `bottom` | Position the tooltip relative to the trigger element as well as surrounding elements.                        |
-| `children`      | `React.ReactNode`                                                                                                                                                              |          | The children of the tooltip.                                                                                 |
-| `showArrow`     | `boolean`                                                                                                                                                                      | `false`  | If `true` display an arrow tip on the tooltip. This is displayed relative to the `placement` of the tooltip. |
-| `closeOnClick`  | `boolean`                                                                                                                                                                      | `false`  | If `true` hide the tooltip, when it is clicked.                                                              |
-| `onOpenChange`  | `function`                                                                                                                                                                     |          | Function called when the value controlling the opening/closing of the tooltip changes.                       |
+| Name                 | Type                 | Default  | Description                                                                           |
+| -------------------- | -------------------- | -------- | ------------------------------------------------------------------------------------- |
+| `isOpen`             | `boolean`            |          | If `true`, the tooltip is shown.                                                      |
+| `defaultIsOpen`      | `boolean`            |          | If `true`, the tooltip is initially shown.                                            |
+| `label`              | `string`             |          | The label of the tooltip.                                                             |
+| `aria-label`         | `string`             |          | An alternate label for screen readers.                                                |
+| `placement`          | `PopperJS.Placement` | `bottom` | Position the tooltip relative to the trigger element as well as surrounding elements. |
+| `children`           | `React.ReactNode`    |          | The `ReactNode` to be used as the trigger of the tooltip.                             |
+| `hasArrow`           | `boolean`            |          | If `true` display an arrow tip on the tooltip.                                        |
+| `showDelay`          | `number`             |          | The delay in `ms` for the tooltip to show                                             |
+| `hideDelay`          | `number`             |          | The delay in `ms` for the tooltip to hide                                             |
+| `closeOnClick`       | `boolean`            |          | If `true` hide the tooltip, when the trigger is clicked.                              |
+| `shouldWrapChildren` | `boolean`            |          | If `true`, the tooltip will wrap the children in a `span` with `tabIndex=0`           |
+| `onOpen`             | `function`           |          | Function called when the tooltip shows.                                               |
+| `onClose`            | `function`           |          | Function called when the tooltip hides.                                               |
