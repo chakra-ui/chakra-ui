@@ -60,9 +60,7 @@ const Popper = forwardRef(
       anchorEl,
       children,
       gutter,
-      closeOnBlur = true,
       container,
-      initialFocusRef,
       usePortal = true,
       unmountOnExit = true,
       modifiers,
@@ -162,16 +160,6 @@ const Popper = forwardRef(
       handleClose();
     };
 
-    const handleEntering = () => {
-      if (initialFocusRef && initialFocusRef.current) {
-        initialFocusRef.current.focus();
-      } else {
-        if (handleRef.current) {
-          handleRef.current.focus();
-        }
-      }
-    };
-
     useEffect(() => {
       handleOpen();
     }, [handleOpen]);
@@ -199,7 +187,6 @@ const Popper = forwardRef(
         in: isOpen,
         onEnter: handleEnter,
         onExited: handleExited,
-        onEntering: handleEntering,
       };
     }
 

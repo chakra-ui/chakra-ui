@@ -4,7 +4,7 @@ import { forwardRef } from "react";
 import Box from "../Box";
 import { useColorMode } from "../ColorModeProvider";
 import ControlBox from "../ControlBox";
-import Flex from "../Flex";
+import PseudoBox from "../PseudoBox";
 import Icon from "../Icon";
 import VisuallyHidden from "../VisuallyHidden";
 import checkboxStyles from "./styles";
@@ -17,11 +17,11 @@ const Checkbox = forwardRef(
       value,
       "aria-label": ariaLabel,
       "aria-labelledby": ariaLabelledBy,
-      color,
+      variantColor = "blue",
       defaultIsChecked,
       isChecked,
       isFullWidth,
-      size,
+      size = "md",
       isDisabled,
       isInvalid,
       onChange,
@@ -30,16 +30,16 @@ const Checkbox = forwardRef(
       isIndeterminate,
       children,
       iconColor,
-      iconSize,
+      iconSize = "10px",
       ...rest
     },
     ref,
   ) => {
     const { colorMode } = useColorMode();
-    const styleProps = checkboxStyles({ color, size, colorMode });
+    const styleProps = checkboxStyles({ color: variantColor, size, colorMode });
 
     return (
-      <Flex
+      <PseudoBox
         as="label"
         display="inline-flex"
         verticalAlign="top"
@@ -82,15 +82,9 @@ const Checkbox = forwardRef(
             {children}
           </Box>
         )}
-      </Flex>
+      </PseudoBox>
     );
   },
 );
-
-Checkbox.defaultProps = {
-  size: "md",
-  color: "blue",
-  iconSize: "10px",
-};
 
 export default Checkbox;

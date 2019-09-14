@@ -46,7 +46,7 @@ interface IPopover {
    * This `id` is also used to auto-generate the `aria-labelledby`
    * and `aria-decribedby` attributes that points to the `PopoverHeader` and `PopoverBody`
    */
-  id: string;
+  id?: string;
   /**
    * If `true`, the popover will be opened in controlled mode.
    */

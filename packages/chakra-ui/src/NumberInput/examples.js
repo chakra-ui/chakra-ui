@@ -13,3 +13,9 @@ stories.add("Default", () => (
     <NumberInput size="lg" defaultValue={30} min={0} max={35} />
   </Box>
 ));
+
+stories.add("bug", () => (
+  <Box maxWidth="sm" mx="auto" mt={5}>
+    <NumberInput min={0} max={35} />
+  </Box>
+));
