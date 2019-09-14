@@ -338,7 +338,6 @@ const MenuItem = forwardRef(
       onMouseLeave,
       onMouseEnter,
       onKeyDown,
-      // onMouseMove,
       role = "menuitem",
       ...props
     },

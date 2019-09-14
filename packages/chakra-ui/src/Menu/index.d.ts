@@ -48,7 +48,7 @@ interface IMenuItem {
   onClick?: React.KeyboardEventHandler<HTMLButtonElement>;
   onMouseLeave?: React.MouseEventHandler<HTMLButtonElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLButtonElement>;
-  onMouseMove?: React.MouseEventHandler<HTMLButtonElement>;
+  onMouseEnter?: React.MouseEventHandler<HTMLButtonElement>;
 }
 export type MenuItemProps = IMenuItem &
   PseudoBoxProps &
