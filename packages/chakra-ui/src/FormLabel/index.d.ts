@@ -8,7 +8,7 @@ interface ILabelProps {
    * If passed, it'll override the context and give the `label` look disabled
    */
   isDisabled?: boolean;
-  children?: React.ReactNode;
+  children: React.ReactNode;
 }
 
 export type FormLabelProps = ILabelProps &

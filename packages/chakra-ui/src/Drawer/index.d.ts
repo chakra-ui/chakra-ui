@@ -24,7 +24,7 @@ interface IDrawer {
   /**
    * The ref to the initial element to receive focus when the drawer opens.
    */
-  initialFocusRef?: React.Ref<{}>;
+  initialFocusRef?: React.Ref<HTMLElement>;
   /**
    *  If `true`, show the drawer overlay by default.
    */

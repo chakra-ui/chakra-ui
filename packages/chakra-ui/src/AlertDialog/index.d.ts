@@ -50,7 +50,7 @@ interface IAlertDialog {
   /**
    * The least destructive element to automatically set focus on when the `AlertDialog` opens.
    */
-  leastDestructiveRef: React.Ref<{}>;
+  leastDestructiveRef: React.Ref<HTMLElement>;
 }
 
 export type AlertDialogProps = IAlertDialog & BoxProps;

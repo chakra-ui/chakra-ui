@@ -27,7 +27,7 @@ export interface ICheckboxGroup {
   /**
    * The callback fired when any children Checkbox is checked or unchecked
    */
-  onChange?: (value?: Array<ICheckbox["value"]>) => void;
+  onChange?: (value: Array<ICheckbox["value"]>) => void;
   /**
    * The space between each checkbox
    */
