@@ -47,7 +47,7 @@ const Toast = ({
   );
 };
 
-export function useToast() {
+function useToast() {
   const theme = useTheme();
 
   function notify({

@@ -4,14 +4,7 @@ import { Omit } from "../common-types";
 import { Position } from "toasted-notes";
 import * as React from "react";
 
-type AlertProps = Omit<BaseAlertProps, "position"> & {
-  /**
-   * One of toasted-notes positions.
-   */
-  position?: keyof typeof Position;
-};
-
-export interface IToast extends AlertProps {
+export interface IToast extends IAlert {
   /**
    * The title of the toast.
    */
@@ -32,12 +25,16 @@ export interface IToast extends AlertProps {
    * Duration before dismiss in milliseconds, or `null` to never dismiss.
    */
   duration?: number | null;
+  /**
+   * One of toasted-notes positions.
+   */
+  position?: keyof typeof Position;
 }
 
-export type ToastProps = IToast;
+interface RenderOption {
+  render: (props: { onClose: () => void; id: string }) => React.ReactNode;
+}
+export type useToastOptions = IToast & RenderOption;
+declare const useToast: () => (props: useToastOptions) => void;
 
-declare const Toast: React.FC<ToastProps>;
-
-export const useToast: () => (props: IToast) => void;
-
-export default Toast;
+export default useToast;
