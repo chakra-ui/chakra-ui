@@ -1,6 +1,7 @@
 import * as React from "react";
 import PopperJS from "popper.js";
 import { BoxProps } from "../Box";
+import { PopperProps } from "../Popper";
 import { PseudoBoxProps } from "../PseudoBox";
 
 interface InternalState {
@@ -35,11 +36,10 @@ export type MenuButtonProps = React.RefAttributes<HTMLButtonElement> &
 export const MenuButton: React.FC<MenuButtonProps>;
 
 export interface IMenuList {
-  placement?: PopperJS.Placement;
   onKeydown?: React.KeyboardEventHandler<HTMLDivElement>;
   onBlur?: React.FocusEventHandler<HTMLDivElement>;
 }
-export type MenuListProps = IMenuList & BoxProps;
+export type MenuListProps = IMenuList & PopperProps;
 export const MenuList: React.FC<MenuListProps>;
 
 interface IMenuItem {

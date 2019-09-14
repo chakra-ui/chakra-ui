@@ -70,7 +70,6 @@ export * from "./Modal";
 export { default as NumberInput } from "./NumberInput";
 
 export { default as Portal } from "./Portal";
-export { default as Popover } from "./Popover";
 export * from "./Popover";
 export { default as Progress } from "./Progress";
 export * from "./Progress";
@@ -93,7 +92,7 @@ export { default as Tag } from "./Tag";
 export * from "./Tag";
 export { default as Text } from "./Text";
 export { default as Textarea } from "./Textarea";
-export { default as Toast, useToast } from "./Toast";
+export { default as useToast } from "./Toast";
 export { default as Tooltip } from "./Tooltip";
 export { default as theme } from "./theme";
 export * from "./theme";
