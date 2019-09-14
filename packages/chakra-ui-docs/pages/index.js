@@ -115,7 +115,7 @@ export default () => {
                 target="__blank"
                 leftIcon={props => <DiGithubBadge size="1.5em" {...props} />}
               >
-                Github
+                GitHub
               </Button>
             </ButtonGroup>
           </Box>

@@ -19,10 +19,22 @@ export interface IToast extends AlertProps {
    * The description of the toast
    */
   description?: string;
+  /**
+   * Position
+   */
+  position?:
+    | "top-left"
+    | "top"
+    | "top-right"
+    | "bottom-left"
+    | "bottom"
+    | "bottom-right";
 }
 
 export type ToastProps = IToast;
 
 declare const Toast: React.FC<ToastProps>;
+
+export const useToast: () => (props: IToast) => void;
 
 export default Toast;

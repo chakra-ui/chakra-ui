@@ -36,6 +36,9 @@ const RadioButtonGroup = ({
   };
 
   const handleKeyDown = event => {
+    // Disable page scrolling while navigating with keys
+    event.preventDefault();
+
     const count = focusableValues.length;
     let enabledCheckedIndex = focusableValues.indexOf(_value);
 
