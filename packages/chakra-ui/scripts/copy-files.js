@@ -1,3 +1,10 @@
+/**
+ * Node script to copy types to lib folder
+ *
+ * The following code is a derivative of the amazing work done by the Material UI team.
+ * Original source: https://github.com/mui-org/material-ui/blob/master/scripts/copy-files.js
+ */
+
 /* eslint-disable no-console */
 const path = require("path");
 const fse = require("fs-extra");
