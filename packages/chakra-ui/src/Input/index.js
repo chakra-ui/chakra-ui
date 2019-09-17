@@ -48,7 +48,7 @@ Input.defaultProps = {
   as: "input",
   variant: "outline",
   isFullWidth: true,
-  focusBorderColor: "blue",
+  focusBorderColor: "blue.500",
 };
 
 export default Input;
