@@ -1,5 +1,5 @@
 import { storiesOf } from "@storybook/react";
-import { withKnobs, select } from "@storybook/addon-knobs";
+import { withKnobs, select, boolean } from "@storybook/addon-knobs";
 import React from "react";
 import Box from "../Box";
 import Input from "../Input";
@@ -37,12 +37,18 @@ variantStories.add("Filled", () => (
   <Input variant="filled" placeholder="Text goes here"></Input>
 ));
 
-variantStories.add("Filled, custom focusBorderColor", () => {
-  const colorKnob = select("focusBorderColor", colors, "blue.500");
+variantStories.add("Filled, custom border colors", () => {
+  const errorColorKnob = select("errorBorderColor", colors, "red.200");
+  const focusColorKnob = select("focusBorderColor", colors, "blue.500");
+
+  const invalidKnob = boolean("isInvalid", false);
+
   return (
     <Input
       variant="filled"
-      focusBorderColor={colorKnob}
+      isInvalid={invalidKnob}
+      errorBorderColor={errorColorKnob}
+      focusBorderColor={focusColorKnob}
       placeholder="Text goes here"
     ></Input>
   );
@@ -52,12 +58,17 @@ variantStories.add("Flushed", () => (
   <Input variant="flushed" placeholder="Text goes here"></Input>
 ));
 
-variantStories.add("Flushed, custom focusBorderColor", () => {
-  const colorKnob = select("focusBorderColor", colors, "blue.500");
+variantStories.add("Flushed, custom border colors", () => {
+  const errorColorKnob = select("errorBorderColor", colors, "red.200");
+  const focusColorKnob = select("focusBorderColor", colors, "blue.500");
+
+  const invalidKnob = boolean("isInvalid", false);
   return (
     <Input
       variant="flushed"
-      focusBorderColor={colorKnob}
+      isInvalid={invalidKnob}
+      errorBorderColor={errorColorKnob}
+      focusBorderColor={focusColorKnob}
       placeholder="Text goes here"
     ></Input>
   );
@@ -67,12 +78,17 @@ variantStories.add("Outline", () => (
   <Input variant="outline" placeholder="Text goes here"></Input>
 ));
 
-variantStories.add("Outline, custom focusBorderColor", () => {
-  const colorKnob = select("focusBorderColor", colors, "blue.500");
+variantStories.add("Outline, custom border colors", () => {
+  const errorColorKnob = select("errorBorderColor", colors, "red.200");
+  const focusColorKnob = select("focusBorderColor", colors, "blue.500");
+
+  const invalidKnob = boolean("isInvalid", false);
   return (
     <Input
       variant="outline"
-      focusBorderColor={colorKnob}
+      isInvalid={invalidKnob}
+      errorBorderColor={errorColorKnob}
+      focusBorderColor={focusColorKnob}
       placeholder="Text goes here"
     ></Input>
   );
