@@ -20,7 +20,7 @@ export interface ILink {
 
 export type LinkProps = ILink &
   PseudoBoxProps &
-  React.HTMLAttributes<HTMLAnchorElement>;
+  React.HTMLProps<HTMLAnchorElement>;
 
 /**
  * Links are accesible elements used primarily for navigation. This component is

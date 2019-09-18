@@ -41,7 +41,7 @@ export const useHasImageLoaded = ({ src, onLoad, onError }) => {
   return hasLoaded;
 };
 
-const Img = ({ src, onLoad, onError, fallbackSrc, alt, ...props }) => {
+const Img = ({ src, onLoad, onError, fallbackSrc, ...props }) => {
   const hasLoaded = useHasImageLoaded({ src, onLoad, onError });
   return <Box as="img" src={hasLoaded ? src : fallbackSrc} {...props} />;
 };

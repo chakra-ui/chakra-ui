@@ -25,15 +25,17 @@ const Menu = ({
   children,
   isOpen: isOpenProp,
   defaultIsOpen,
-  onOpenChange,
+  onOpen,
+  onClose,
   autoSelect = true,
   closeOnBlur = true,
   closeOnSelect = true,
+  defaultActiveIndex,
   placement,
 }) => {
   const { colorMode } = useColorMode();
 
-  const [activeIndex, setActiveIndex] = useState(-1);
+  const [activeIndex, setActiveIndex] = useState(defaultActiveIndex || -1);
   const [isOpen, setIsOpen] = useState(defaultIsOpen || false);
   const { current: isControlled } = useRef(isOpenProp != null);
 
@@ -98,36 +100,39 @@ const Menu = ({
   }, [activeIndex, _isOpen, buttonRef, menuRef, wasPreviouslyOpen]);
 
   const focusOnFirstItem = () => {
-    if (!isControlled) {
-      setActiveIndex(0);
-      setIsOpen(true);
-    }
+    openMenu();
+    setActiveIndex(0);
   };
 
   const openMenu = () => {
     if (!isControlled) {
       setIsOpen(true);
     }
+
+    if (onOpen) {
+      onOpen();
+    }
   };
 
   const focusAtIndex = index => {
-    if (!isControlled) {
-      setActiveIndex(index);
-    }
+    setActiveIndex(index);
   };
 
   const focusOnLastItem = () => {
-    if (!isControlled) {
-      setIsOpen(true);
-      setActiveIndex(focusableItems.current.length - 1);
-    }
+    openMenu();
+    setActiveIndex(focusableItems.current.length - 1);
   };
 
   const closeMenu = () => {
     if (!isControlled) {
       setIsOpen(false);
-      setActiveIndex(-1);
     }
+
+    if (onClose) {
+      onClose();
+    }
+
+    setActiveIndex(-1);
     resetTabIndex();
   };
 

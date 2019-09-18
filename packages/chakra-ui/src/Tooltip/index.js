@@ -8,7 +8,17 @@ import { useId } from "@reach/auto-id";
 import Popper, { PopperArrow } from "../Popper";
 import VisuallyHidden from "../VisuallyHidden";
 
-const activeTooltip = { id: "" };
+const wrapEvent = (child, theirHandler, ourHandler) => event => {
+  if (typeof child === "string") return;
+
+  if (child.props[theirHandler]) {
+    child.props[theirHandler](event);
+  }
+
+  if (!event.defaultPrevented) {
+    return ourHandler(event);
+  }
+};
 
 const Tooltip = ({
   color,
@@ -73,26 +83,20 @@ const Tooltip = ({
   const bgColor = rest.bg || rest.backgroundColor || _bg;
   const textColor = color || _color;
 
-  const handleClick = event => {
+  const handleClick = wrapEvent(children, "onClick", () => {
     if (closeOnClick) {
       closeWithDelay();
     }
-
-    if (typeof children !== "string") {
-      if (children.props.onClick) {
-        children.props.onClick(event);
-      }
-    }
-  };
+  });
 
   const referenceProps = {
-    "aria-labelledby": tooltipId,
     ref: referenceRef,
-    onMouseEnter: handleOpen,
-    onMouseLeave: handleClose,
+    onMouseEnter: wrapEvent(children, "onMouseEnter", handleOpen),
+    onMouseLeave: wrapEvent(children, "onMouseLeave", handleClose),
     onClick: handleClick,
-    onFocus: handleOpen,
-    onBlur: handleClose,
+    onFocus: wrapEvent(children, "onFocus", handleOpen),
+    onBlur: wrapEvent(children, "onBlur", handleClose),
+    ...(_isOpen && { "aria-describedby": tooltipId }),
   };
 
   const clone =

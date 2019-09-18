@@ -122,3 +122,9 @@ export const wrapEvent = (theirHandler, ourHandler) => event => {
     return ourHandler(event);
   }
 };
+
+export const canUseDOM = !!(
+  typeof window !== "undefined" &&
+  window.document &&
+  window.document.createElement
+);
