@@ -81,128 +81,135 @@ function useAriaHider({ isOpen, id }) {
   return mountRef;
 }
 
-export const ModalOverlay = forwardRef(
-  (
-    {
-      isOpen,
-      initialFocusRef,
-      finalFocusRef,
-      onClose,
-      lockBodyScroll,
-      closeOnEsc,
-      closeOnOverlayClick,
-      onOpen,
-      scrollBoundary,
-      returnFocusOnClose,
-      parentSelector,
-      children,
-      onClick,
-      onKeyDown,
-      ...rest
-    },
-    ref,
-  ) => {
-    const overlayRef = useRef(null);
-    const contentRef = useRef(null);
+export const Modal = ({
+  isOpen,
+  initialFocusRef,
+  finalFocusRef,
+  onClose,
+  lockBodyScroll,
+  closeOnEsc,
+  closeOnOverlayClick,
+  onOpen,
+  scrollBoundary,
+  isCentered,
+  returnFocus = true,
+  parentSelector,
+  children,
+}) => {
+  const overlayRef = useRef(null);
+  const contentRef = useRef(null);
 
+  useEffect(() => {
+    const dialogNode = contentRef.current;
+    if (isOpen && lockBodyScroll) {
+      disableBodyScroll(dialogNode);
+    }
+    return () => enableBodyScroll(dialogNode);
+  }, [isOpen, lockBodyScroll]);
+
+  const mountRef = useAriaHider({ isOpen, id: "chakra-portal" });
+
+  const context = {
+    isOpen,
+    initialFocusRef,
+    onClose,
+    lockBodyScroll,
+    closeOnEsc,
+    closeOnOverlayClick,
+    onOpen,
+    returnFocus,
+    parentSelector,
+    contentRef,
+    overlayRef,
+    scrollBoundary,
+    isCentered,
+  };
+
+  if (isOpen) {
+    return (
+      <ModalContext.Provider value={context}>
+        <Portal container={mountRef.current}>
+          <FocusLock
+            returnFocus={returnFocus}
+            onActivation={() => {
+              if (initialFocusRef && initialFocusRef.current) {
+                initialFocusRef.current.focus();
+              }
+            }}
+            onDeactivation={() => {
+              if (finalFocusRef && finalFocusRef.current) {
+                finalFocusRef.current.focus();
+              }
+            }}
+          >
+            {children}
+          </FocusLock>
+        </Portal>
+      </ModalContext.Provider>
+    );
+  }
+};
+
+export const ModalOverlay = React.forwardRef(
+  ({ onClick, onKeyDown, ...rest }, ref) => {
+    const { overlayRef } = useModalContext();
     const _overlayRef = useForkRef(ref, overlayRef);
 
-    useEffect(() => {
-      const dialogNode = contentRef.current;
-      if (isOpen && lockBodyScroll) {
-        disableBodyScroll(dialogNode);
-      }
-      return () => enableBodyScroll(dialogNode);
-    }, [isOpen, lockBodyScroll]);
-
-    const mountRef = useAriaHider({ isOpen, id: "chakra-portal" });
-
-    const context = {
-      isOpen,
-      initialFocusRef,
-      onClose,
-      lockBodyScroll,
-      closeOnEsc,
-      closeOnOverlayClick,
-      onOpen,
-      returnFocusOnClose,
-      parentSelector,
-      contentRef,
-      overlayRef,
-    };
-
-    if (isOpen) {
-      return (
-        <ModalContext.Provider value={context}>
-          <Portal container={mountRef.current}>
-            <FocusLock
-              returnFocus={returnFocusOnClose}
-              onActivation={() => {
-                if (initialFocusRef && initialFocusRef.current) {
-                  initialFocusRef.current.focus();
-                }
-              }}
-              onDeactivation={() => {
-                if (finalFocusRef && finalFocusRef.current) {
-                  finalFocusRef.current.focus();
-                }
-                onClose();
-              }}
-            >
-              <Box
-                pos="fixed"
-                bg="rgba(0,0,0,0.6)"
-                left="0"
-                right="0"
-                top="0"
-                bottom="0"
-                zIndex="1"
-                overflow="hidden auto"
-                padding="3rem"
-                onClick={wrapEvent(onClick, event => {
-                  event.stopPropagation();
-                  onClose();
-                })}
-                onKeyDown={wrapEvent(onKeyDown, event => {
-                  if (event.key === "Escape") {
-                    event.stopPropagation();
-                    onClose();
-                  }
-                })}
-                ref={_overlayRef}
-                {...rest}
-              >
-                {children}
-              </Box>
-            </FocusLock>
-          </Portal>
-        </ModalContext.Provider>
-      );
-    }
+    return (
+      <Box
+        pos="fixed"
+        bg="rgba(0,0,0,0.4)"
+        left="0"
+        top="0"
+        w="100vw"
+        h="100vh"
+        ref={_overlayRef}
+        {...rest}
+      />
+    );
   },
 );
 
 export const ModalContent = React.forwardRef(
-  ({ onClick, onKeyDown, children, ...props }, ref) => {
-    const { contentRef } = useModalContext();
+  ({ onClick, onKeyDown, children, zIndex = 1, ...props }, ref) => {
+    const { contentRef, onClose } = useModalContext();
     const _contentRef = useForkRef(ref, contentRef);
     return (
       <Box
-        role="dialog"
-        aria-modal="true"
-        tabIndex={0}
-        style={{
-          maxWidth: 400,
-          width: "100%",
-          padding: 24,
-          background: "#fff",
-          margin: "0 auto",
+        pos="fixed"
+        left="0"
+        top="0"
+        w="100%"
+        h="100%"
+        zIndex={zIndex}
+        overflow="hidden auto"
+        onClick={event => {
+          event.stopPropagation();
+          onClose();
         }}
-        onClick={wrapEvent(onClick, event => event.stopPropagation())}
-        ref={_contentRef}
-        {...props}
+        onKeyDown={event => {
+          if (event.key === "Escape") {
+            event.stopPropagation();
+            onClose();
+          }
+        }}
       >
-        {children}
+        <Box
+          aria-modal="true"
+          tabIndex={0}
+          maxW="400px"
+          w="100%"
+          p={6}
+          bg="white"
+          my="1.75rem"
+          mx="auto"
+          zIndex={zIndex}
+          onClick={wrapEvent(onClick, event => event.stopPropagation())}
+          ref={_contentRef}
+          {...props}
+        >
+          {children}
+        </Box>
       </Box>
     );
   },
