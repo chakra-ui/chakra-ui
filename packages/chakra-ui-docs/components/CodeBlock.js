@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import lightTheme from "prism-react-renderer/themes/nightOwlLight";
 import darkTheme from "prism-react-renderer/themes/nightOwl";
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
-import Highlight, { defaultProps } from "prism-react-renderer";
+// import Highlight, { defaultProps } from "prism-react-renderer";
 import { mdx } from "@mdx-js/react";
 import * as Chakra from "@chakra-ui/core";
 import * as Formik from "formik";
 import * as ReactIcons from "react-icons/md";
 import FocusLock from "react-focus-lock";
 import ChakraPortal from "./Portal";
+import Lorem from "react-lorem-component";
 
 const { Box, Button, useClipboard, useColorMode } = Chakra;
 
@@ -21,13 +22,13 @@ export const liveEditorStyle = {
   borderRadius: 10,
 };
 
-const highlightStyle = {
-  padding: 20,
-  fontSize: 14,
-  overflow: "auto",
-  lineHeight: "1.5",
-  fontFamily: "Menlo,monospace",
-};
+// const highlightStyle = {
+//   padding: 20,
+//   fontSize: 14,
+//   overflow: "auto",
+//   lineHeight: "1.5",
+//   fontFamily: "Menlo,monospace",
+// };
 
 export const liveErrorStyle = {
   fontFamily: "Menlo, monospace",
@@ -138,6 +139,7 @@ const CodeBlock = ({
       StarIcon,
       FocusLock,
       ChakraPortal,
+      Lorem,
     },
     noInline: isManual,
     ...props,

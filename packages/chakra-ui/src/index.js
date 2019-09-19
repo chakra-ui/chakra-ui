@@ -64,7 +64,6 @@ export { default as Stack } from "./Stack";
 
 export { default as Menu } from "./Menu";
 export * from "./Menu";
-export { default as Modal } from "./Modal";
 export * from "./Modal";
 
 export { default as NumberInput } from "./NumberInput";

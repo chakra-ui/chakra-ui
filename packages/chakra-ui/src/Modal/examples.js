@@ -16,6 +16,7 @@ import {
   ModalHeader,
   ModalTransition,
 } from ".";
+import Lorem from "react-lorem-component";
 
 const stories = storiesOf("Modal", module);
 stories.addDecorator(story => {
@@ -99,15 +100,7 @@ stories.add("Chakra Modal", () => {
                 <ModalHeader>Login now</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
-                  Start editing to see some magic happen! HISTORY, PURPOSE AND
-                  USAGE Lorem ipsum, or lipsum as it is sometimes known, is
-                  dummy text used in laying out print, graphic or web designs.
-                  The passage is attributed to an unknown typesetter in the 15th
-                  century who is thought to have scrambled parts of Cicero's De
-                  Finibus Bonorum et Malorum for use in a type specimen book. It
-                  usually begins with: “Lorem ipsum dolor sit amet, consectetur
-                  adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore magna aliqua.” The purpose of lorem ipsum is to create
+                  <Lorem count={2} />
                 </ModalBody>
               </ModalContent>
             </Modal>
@@ -142,15 +135,7 @@ stories.add("Chakra Modal v2", () => {
             <ModalHeader>Login now</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-              Start editing to see some magic happen! HISTORY, PURPOSE AND USAGE
-              Lorem ipsum, or lipsum as it is sometimes known, is dummy text
-              used in laying out print, graphic or web designs. The passage is
-              attributed to an unknown typesetter in the 15th century who is
-              thought to have scrambled parts of Cicero's De Finibus Bonorum et
-              Malorum for use in a type specimen book. It usually begins with:
-              “Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.” The
-              purpose of lorem ipsum is to create
+              <Lorem count={2} />
             </ModalBody>
           </ModalContent>
         </Modal>
@@ -184,56 +169,7 @@ stories.add("Scroll inside", () => {
             <ModalHeader>Modal Title</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-              Sit nulla est ex deserunt exercitation anim occaecat. Nostrud
-              ullamco deserunt aute id consequat veniam incididunt duis in sint
-              irure nisi. Mollit officia cillum Lorem ullamco minim nostrud elit
-              officia tempor esse quis. Sunt ad dolore quis aute consequat.
-              Magna exercitation reprehenderit magna aute tempor cupidatat
-              consequat elit dolor adipisicing. Mollit dolor eiusmod sunt ex
-              incididunt cillum quis. Velit duis sit officia eiusmod Lorem
-              aliqua enim laboris do dolor eiusmod. Et mollit incididunt nisi
-              consectetur esse laborum eiusmod pariatur proident Lorem eiusmod
-              et. Culpa deserunt nostrud ad veniam. Est velit labore esse esse
-              cupidatat. Velit id elit consequat minim. Mollit enim excepteur ea
-              laboris adipisicing aliqua proident occaecat do do adipisicing
-              adipisicing ut fugiat. Consequat pariatur ullamco aute sunt esse.
-              Irure excepteur eu non eiusmod. Commodo commodo et ad ipsum elit
-              esse pariatur sit adipisicing sunt excepteur enim. Incididunt duis
-              commodo mollit esse veniam non exercitation dolore occaecat ea
-              nostrud laboris. Adipisicing occaecat fugiat fugiat irure fugiat
-              in magna non consectetur proident fugiat. Commodo magna et aliqua
-              elit sint cupidatat. Sint aute ullamco enim cillum anim ex. Est
-              eiusmod commodo occaecat consequat laboris est do duis. Enim
-              incididunt non culpa velit quis aute in elit magna ullamco in
-              consequat ex proident. Dolore incididunt mollit fugiat pariatur
-              cupidatat ipsum laborum cillum. Commodo consequat velit cupidatat
-              duis ex nisi non aliquip ad ea pariatur do culpa. Eiusmod proident
-              adipisicing tempor tempor qui pariatur voluptate dolor do ea
-              commodo. Veniam voluptate cupidatat ex nisi do ullamco in quis
-              elit. Cillum proident veniam cupidatat pariatur laborum tempor
-              cupidatat anim eiusmod id nostrud pariatur tempor reprehenderit.
-              Do esse ullamco laboris sunt proident est ea exercitation
-              cupidatat. Do Lorem eiusmod aliqua culpa ullamco consectetur
-              veniam voluptate cillum. Dolor consequat cillum tempor laboris
-              mollit laborum reprehenderit reprehenderit veniam aliqua deserunt
-              cupidatat consequat id. Est id tempor excepteur enim labore sint
-              aliquip consequat duis minim tempor proident. Dolor incididunt
-              aliquip minim elit ea. Exercitation non officia eu id. Ipsum ipsum
-              consequat incididunt do aliquip pariatur nostrud. Qui ut sint
-              culpa labore Lorem. Magna deserunt aliquip aute duis consectetur
-              magna amet anim. Magna fugiat est nostrud veniam. Officia duis ea
-              sunt aliqua. Ipsum minim officia aute anim minim aute aliquip aute
-              non in non. Ipsum aliquip proident ut dolore eiusmod ad fugiat
-              fugiat ut ex. Ea velit Lorem ut et commodo nulla voluptate veniam
-              ea et aliqua esse id. Pariatur dolor et adipisicing ea mollit.
-              Ipsum non irure proident ipsum dolore aliquip adipisicing laborum
-              irure dolor nostrud occaecat exercitation. Culpa qui reprehenderit
-              nostrud aliqua reprehenderit et ullamco proident nisi commodo non
-              ut. Ipsum quis irure nisi sint do qui velit nisi. Sunt voluptate
-              eu reprehenderit tempor consequat eiusmod Lorem irure velit duis
-              Lorem laboris ipsum cupidatat. Pariatur excepteur tempor veniam
-              cillum et nulla ipsum veniam ad ipsum ad aute. Est officia duis
-              pariatur ad eiusmod id voluptate.
+              <Lorem size={5} />
             </ModalBody>
             <ModalFooter>
               <Button>Close</Button>
@@ -268,56 +204,7 @@ stories.add("Scroll outside", () => {
             <ModalHeader>Modal Title</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-              Sit nulla est ex deserunt exercitation anim occaecat. Nostrud
-              ullamco deserunt aute id consequat veniam incididunt duis in sint
-              irure nisi. Mollit officia cillum Lorem ullamco minim nostrud elit
-              officia tempor esse quis. Sunt ad dolore quis aute consequat.
-              Magna exercitation reprehenderit magna aute tempor cupidatat
-              consequat elit dolor adipisicing. Mollit dolor eiusmod sunt ex
-              incididunt cillum quis. Velit duis sit officia eiusmod Lorem
-              aliqua enim laboris do dolor eiusmod. Et mollit incididunt nisi
-              consectetur esse laborum eiusmod pariatur proident Lorem eiusmod
-              et. Culpa deserunt nostrud ad veniam. Est velit labore esse esse
-              cupidatat. Velit id elit consequat minim. Mollit enim excepteur ea
-              laboris adipisicing aliqua proident occaecat do do adipisicing
-              adipisicing ut fugiat. Consequat pariatur ullamco aute sunt esse.
-              Irure excepteur eu non eiusmod. Commodo commodo et ad ipsum elit
-              esse pariatur sit adipisicing sunt excepteur enim. Incididunt duis
-              commodo mollit esse veniam non exercitation dolore occaecat ea
-              nostrud laboris. Adipisicing occaecat fugiat fugiat irure fugiat
-              in magna non consectetur proident fugiat. Commodo magna et aliqua
-              elit sint cupidatat. Sint aute ullamco enim cillum anim ex. Est
-              eiusmod commodo occaecat consequat laboris est do duis. Enim
-              incididunt non culpa velit quis aute in elit magna ullamco in
-              consequat ex proident. Dolore incididunt mollit fugiat pariatur
-              cupidatat ipsum laborum cillum. Commodo consequat velit cupidatat
-              duis ex nisi non aliquip ad ea pariatur do culpa. Eiusmod proident
-              adipisicing tempor tempor qui pariatur voluptate dolor do ea
-              commodo. Veniam voluptate cupidatat ex nisi do ullamco in quis
-              elit. Cillum proident veniam cupidatat pariatur laborum tempor
-              cupidatat anim eiusmod id nostrud pariatur tempor reprehenderit.
-              Do esse ullamco laboris sunt proident est ea exercitation
-              cupidatat. Do Lorem eiusmod aliqua culpa ullamco consectetur
-              veniam voluptate cillum. Dolor consequat cillum tempor laboris
-              mollit laborum reprehenderit reprehenderit veniam aliqua deserunt
-              cupidatat consequat id. Est id tempor excepteur enim labore sint
-              aliquip consequat duis minim tempor proident. Dolor incididunt
-              aliquip minim elit ea. Exercitation non officia eu id. Ipsum ipsum
-              consequat incididunt do aliquip pariatur nostrud. Qui ut sint
-              culpa labore Lorem. Magna deserunt aliquip aute duis consectetur
-              magna amet anim. Magna fugiat est nostrud veniam. Officia duis ea
-              sunt aliqua. Ipsum minim officia aute anim minim aute aliquip aute
-              non in non. Ipsum aliquip proident ut dolore eiusmod ad fugiat
-              fugiat ut ex. Ea velit Lorem ut et commodo nulla voluptate veniam
-              ea et aliqua esse id. Pariatur dolor et adipisicing ea mollit.
-              Ipsum non irure proident ipsum dolore aliquip adipisicing laborum
-              irure dolor nostrud occaecat exercitation. Culpa qui reprehenderit
-              nostrud aliqua reprehenderit et ullamco proident nisi commodo non
-              ut. Ipsum quis irure nisi sint do qui velit nisi. Sunt voluptate
-              eu reprehenderit tempor consequat eiusmod Lorem irure velit duis
-              Lorem laboris ipsum cupidatat. Pariatur excepteur tempor veniam
-              cillum et nulla ipsum veniam ad ipsum ad aute. Est officia duis
-              pariatur ad eiusmod id voluptate.
+              <Lorem size={5} />
             </ModalBody>
             <ModalFooter>
               <Button>Close</Button>
@@ -329,4 +216,90 @@ stories.add("Scroll outside", () => {
   };
 
   return <SampleModal />;
+});
+
+stories.add("close on overlay click", () => {
+  function ManualClose() {
+    const [isOpen, setIsOpen] = React.useState(false);
+    const close = () => setIsOpen(false);
+    const open = () => setIsOpen(true);
+
+    return (
+      <>
+        <Button onClick={open}>Open Modal</Button>
+
+        <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={close}>
+          <ModalOverlay zIndex={7} />
+          <ModalContent zIndex={8}>
+            <ModalHeader onClose={close}>Create your account</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody pb={6}>
+              <Lorem count={2} />
+            </ModalBody>
+
+            <ModalFooter>
+              <Button variantColor="blue" mr={3}>
+                Save
+              </Button>
+              <Button onClick={close}>Cancel</Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+      </>
+    );
+  }
+
+  return <ManualClose />;
+});
+
+stories.add("initial and final focus ref", () => {
+  function InitialFocus() {
+    const [isOpen, setIsOpen] = React.useState(false);
+    const close = () => setIsOpen(false);
+    const open = () => setIsOpen(true);
+    const initialRef = React.useRef();
+    const finalRef = React.useRef();
+
+    return (
+      <>
+        <Button onClick={open}>Open Modal</Button>
+        <Button ml={4} ref={finalRef}>
+          I'll receive focus on close
+        </Button>
+
+        <Modal
+          initialFocusRef={initialRef}
+          finalFocusRef={finalRef}
+          isOpen={isOpen}
+          onClose={close}
+        >
+          <ModalOverlay zIndex={7} />
+          <ModalContent zIndex={8}>
+            <ModalHeader onClose={close}>Create your account</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody pb={6}>
+              <FormControl>
+                <FormLabel>First name</FormLabel>
+                <Input ref={initialRef} placeholder="First name" />
+              </FormControl>
+
+              <FormControl mt={4}>
+                <FormLabel>Last name</FormLabel>
+                <Input placeholder="Last name" />
+              </FormControl>
+            </ModalBody>
+
+            <ModalFooter>
+              <Button variantColor="blue" mr={3}>
+                Save
+              </Button>
+              <Button onClick={close}>Cancel</Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+      </>
+    );
+  }
+
+  return <InitialFocus />;
 });

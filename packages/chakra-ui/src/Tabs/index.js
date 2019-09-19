@@ -117,8 +117,8 @@ const TabList = forwardRef((props, ref) => {
       onManualTabChange(index);
       onChangeTab(index);
 
-      if (onClick) {
-        onClick(event);
+      if (child.props.onClick) {
+        child.props.onClick(event);
       }
     };
 
@@ -161,7 +161,7 @@ const TabPanel = forwardRef(
         aria-labelledby={`tab:${id}`}
         hidden={!isSelected}
         id={`panel:${id}`}
-        css={{ outline: "none" }}
+        outline={0}
         {...rest}
       >
         {children}

@@ -90,11 +90,9 @@ export const AccordionItem: React.FC<AccordionItemProps>;
 
 /////////////////////////////////////////////////////////////
 
-interface IAccordionHeader {
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
-}
-
-export type AccordionHeaderProps = IAccordionHeader & PseudoBoxProps;
+export type AccordionHeaderProps = PseudoBoxProps &
+  React.ButtonHTMLAttributes<HTMLButtonElement> &
+  React.RefAttributes<HTMLButtonElement>;
 
 /**
  * AccordionHeader component composes `PseudoBox`, this means you can use

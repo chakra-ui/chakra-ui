@@ -16,6 +16,7 @@ import { hideOthers } from "aria-hidden";
 import { useId } from "@reach/auto-id";
 import { Transition } from "react-spring/renderprops.cjs";
 import { useColorMode } from "../ColorModeProvider";
+import { canUseDOM } from "exenv";
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -26,14 +27,16 @@ const useModalContext = () => useContext(ModalContext);
 
 function useAriaHider({ isOpen, id, enableInert }) {
   const mountRef = useRef(
-    document.getElementById(id) || document.createElement("div"),
+    canUseDOM
+      ? document.getElementById(id) || document.createElement("div")
+      : null,
   );
 
   useEffect(() => {
     let undoAriaHidden = null;
     let mountNode = mountRef.current;
 
-    if (isOpen) {
+    if (isOpen && canUseDOM) {
       mountRef.current.id = id;
       document.body.appendChild(mountRef.current);
       if (enableInert) {
@@ -68,6 +71,7 @@ const Modal = ({
   hasHeader = true,
   scrollBehavior = "outside",
   isCentered,
+  isFullScreen,
   returnFocusOnClose = true,
   children,
   id,
@@ -87,6 +91,21 @@ const Modal = ({
     }
     return () => enableBodyScroll(dialogNode);
   }, [isOpen, blockScrollOnMount]);
+
+  useEffect(() => {
+    const func = event => {
+      if (event.key === "Escape" && closeOnEsc) {
+        onClose();
+      }
+    };
+
+    if (isOpen && !closeOnOverlayClick) {
+      canUseDOM && document.addEventListener("keydown", func);
+    }
+    return () => {
+      canUseDOM && document.removeEventListener("keydown", func);
+    };
+  }, [isOpen, onClose, closeOnOverlayClick, closeOnEsc]);
 
   const mountRef = useAriaHider({
     isOpen,
@@ -120,7 +139,7 @@ const Modal = ({
     <ModalContext.Provider value={context}>
       <Portal container={mountRef.current}>
         <FocusLock
-          returnFocus={returnFocusOnClose}
+          returnFocus={returnFocusOnClose && !finalFocusRef}
           onActivation={() => {
             if (initialFocusRef && initialFocusRef.current) {
               initialFocusRef.current.focus();
@@ -222,6 +241,7 @@ const ModalContent = React.forwardRef(
       contentStyle = {
         ...contentStyle,
         height: "100%",
+        top: 0,
       };
     }
 
@@ -281,7 +301,6 @@ const ModalContent = React.forwardRef(
           d="flex"
           flexDir="column"
           zIndex={zIndex}
-          rounded={{ md: "lg" }}
           onClick={wrapEvent(onClick, event => event.stopPropagation())}
           {...boxStyleProps}
           {...contentStyle}

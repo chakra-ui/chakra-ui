@@ -32,6 +32,7 @@
     "emotion-theming": "10.0.10",
     "now": "^16.1.1",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-lorem-component": "^0.13.0"
   }
 }

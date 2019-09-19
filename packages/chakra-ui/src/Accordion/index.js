@@ -152,7 +152,8 @@ const AccordionHeader = forwardRef(({ onClick, ...props }, ref) => {
       _hover={{ bg: "blackAlpha.50" }}
       _disabled={{ opacity: "0.4", cursor: "not-allowed" }}
       as="button"
-      outline="none"
+      type="button"
+      outline="0"
       disabled={isDisabled}
       aria-disabled={isDisabled}
       aria-expanded={isExpanded}

@@ -11,7 +11,6 @@ import { forwardRef } from "react";
 import Box, { systemProps } from "../Box";
 import extraConfig from "../Box/config";
 import { useColorMode } from "../ColorModeProvider";
-import { modalContentStyle } from "../Modal";
 
 const AlertDialogHeader = props => (
   <Box py={4} px={6} as={AlertDialogLabel} {...props} />
@@ -45,7 +44,17 @@ const AlertDialogOverlay = ({
 
 const AlertDialogContent = forwardRef((props, ref) => {
   const { colorMode } = useColorMode();
-  const styleProps = modalContentStyle({ colorMode });
+  const colorModeStyles = {
+    light: {
+      bg: "white",
+      shadow: "0 7px 14px 0 rgba(0,0,0, 0.1), 0 3px 6px 0 rgba(0, 0, 0, .07)",
+    },
+    dark: {
+      bg: "gray.700",
+      shadow: `rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.2) 0px 5px 10px, rgba(0, 0, 0, 0.4) 0px 15px 40px`,
+    },
+  };
+  const styleProps = colorModeStyles[colorMode];
 
   return (
     <Box

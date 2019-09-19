@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { ModalTransition } from "../Modal/components";
+import { ModalTransition } from "../Modal";
 import { AlertDialogContent, AlertDialogOverlay } from "./components";
 
 const AlertDialog = ({
