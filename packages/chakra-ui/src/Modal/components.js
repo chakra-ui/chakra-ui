@@ -52,7 +52,6 @@ export const modalContentStyle = ({ colorMode }) => {
   let style = {
     light: {
       bg: "#fff",
-      color: "inherit",
       boxShadow:
         "0 7px 14px 0 rgba(0,0,0, 0.1), 0 3px 6px 0 rgba(0, 0, 0, .07)",
     },

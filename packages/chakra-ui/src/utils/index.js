@@ -128,3 +128,15 @@ export const canUseDOM = !!(
   window.document &&
   window.document.createElement
 );
+
+export const isReducedMotion = () => {
+  const { matches } = window.matchMedia("(prefers-reduced-motion: reduce)");
+  return matches;
+};
+
+export const prefersReducedMotion = () => ({
+  "@media (prefers-reduced-motion: reduce)": {
+    animation: "none",
+    transition: "none",
+  },
+});
