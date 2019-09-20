@@ -136,6 +136,32 @@ breadcrumbs.
 </Breadcrumb>
 ```
 
+## Usage with Routing Library
+
+To use the Breadcrumb with a routing Library like Reach Router or React Router,
+all you need to do is to pass the `as` prop to the `BreadcrumbLink` component.
+
+It'll replace the rendered `a` tag with with Reach's Link.
+
+```jsx live=false
+// import { Link } from "@reach/router"
+<Breadcrumb>
+  <BreadcrumbItem>
+    <BreadcrumbLink as={Link} to="/">
+      Home
+    </BreadcrumbLink>
+  </BreadcrumbItem>
+  <BreadcrumbItem>
+    <BreadcrumbLink as={Link} to="/about">
+      About
+    </BreadcrumbLink>
+  </BreadcrumbItem>
+  <BreadcrumbItem isCurrentPage>
+    <BreadcrumbLink>Contact</BreadcrumbLink>
+  </BreadcrumbItem>
+</Breadcrumb>
+```
+
 ## Accessibility
 
 - The Breadcrumbs are rendered in a `nav` to denote that it's a navigation

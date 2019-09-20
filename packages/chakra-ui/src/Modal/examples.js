@@ -37,7 +37,7 @@ stories.add("Default", () => {
         <Modal initialFocusRef={firstField} isOpen={isOpen} onClose={close}>
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader onClose={close}>Create your account</ModalHeader>
+            <ModalHeader>Create your account</ModalHeader>
 
             <CloseButton
               onClick={close}
@@ -71,7 +71,7 @@ stories.add("Default", () => {
   return <SampleModal />;
 });
 
-stories.add("Chakra Modal", () => {
+stories.add("with transition", () => {
   const SampleModal = () => {
     const [isOpen, setIsOpen] = useState(false);
     const btnRef = useRef();
@@ -113,23 +113,14 @@ stories.add("Chakra Modal", () => {
   return <SampleModal />;
 });
 
-stories.add("Chakra Modal v2", () => {
+stories.add("Basic usage", () => {
   const SampleModal = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const btnRef = useRef();
     return (
       <Fragment>
-        <Button ref={btnRef} onClick={() => setIsOpen(true)}>
-          Trigger modal
-        </Button>
+        <Button onClick={() => setIsOpen(true)}>Trigger modal</Button>
 
-        <Modal
-          onClose={() => setIsOpen(false)}
-          finalFocusRef={btnRef}
-          isOpen={isOpen}
-          blockScrollOnMount
-          // isCentered
-        >
+        <Modal onClose={() => setIsOpen(false)} isOpen={isOpen}>
           <ModalOverlay />
           <ModalContent pb={5}>
             <ModalHeader>Login now</ModalHeader>

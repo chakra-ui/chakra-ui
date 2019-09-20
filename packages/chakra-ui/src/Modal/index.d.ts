@@ -16,6 +16,7 @@ type ModalSizes =
   | "full";
 
 export interface IModal {
+  container: React.Ref<HTMLElement>;
   /**
    * If `true`, the modal when be opened.
    */
@@ -23,7 +24,10 @@ export interface IModal {
   /**
    * Callback invoked to close the modal.
    */
-  onClose?: () => void;
+  onClose?: (
+    event: React.MouseEvent | React.KeyboardEvent,
+    reason?: "pressedEscape" | "clickedOverlay",
+  ) => void;
   /**
    * If `true`, scrolling will be disabled on the `body` when the modal opens.
    *  @default true

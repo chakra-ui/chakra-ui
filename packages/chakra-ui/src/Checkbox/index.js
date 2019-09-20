@@ -70,6 +70,7 @@ const Checkbox = forwardRef(
             name={isIndeterminate ? "minus" : "check"}
             size={iconSize}
             color={iconColor}
+            transition="transform 240ms, opacity 240ms"
           />
         </ControlBox>
         {children && (

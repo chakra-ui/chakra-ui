@@ -9,7 +9,6 @@ import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import FocusLock from "react-focus-lock";
 import { wrapEvent, useForkRef, getFocusables } from "../utils";
 import Box from "../Box";
-import Flex from "../Flex";
 import Portal from "../Portal";
 import CloseButton from "../CloseButton";
 import { hideOthers } from "aria-hidden";
@@ -25,7 +24,7 @@ const useModalContext = () => useContext(ModalContext);
 
 ////////////////////////////////////////////////////////////////////////
 
-function useAriaHider({ isOpen, id, enableInert }) {
+function useAriaHider({ isOpen, id, enableInert, container = document.body }) {
   const mountRef = useRef(
     canUseDOM
       ? document.getElementById(id) || document.createElement("div")
@@ -38,7 +37,7 @@ function useAriaHider({ isOpen, id, enableInert }) {
 
     if (isOpen && canUseDOM) {
       mountRef.current.id = id;
-      document.body.appendChild(mountRef.current);
+      container.appendChild(mountRef.current);
       if (enableInert) {
         undoAriaHidden = hideOthers(mountNode);
       }
@@ -52,12 +51,17 @@ function useAriaHider({ isOpen, id, enableInert }) {
         mountNode.parentElement.removeChild(mountNode);
       }
     };
-  }, [isOpen, id, enableInert]);
+  }, [isOpen, id, enableInert, container]);
 
   return mountRef;
 }
 
 ////////////////////////////////////////////////////////////////////////
+
+/**
+ * autoAria={ false }
+ * autaAria={ content: true, header: true, body: true }
+ */
 
 const Modal = ({
   isOpen,
@@ -69,9 +73,13 @@ const Modal = ({
   closeOnOverlayClick = true,
   useInert = true,
   hasHeader = true,
+  hasBody = true,
   scrollBehavior = "outside",
   isCentered,
+  autoAria,
+  // Whether modal should be fullscreen
   isFullScreen,
+  container,
   returnFocusOnClose = true,
   children,
   id,
@@ -95,7 +103,7 @@ const Modal = ({
   useEffect(() => {
     const func = event => {
       if (event.key === "Escape" && closeOnEsc) {
-        onClose();
+        onClose(event, "pressedEscape");
       }
     };
 
@@ -111,6 +119,7 @@ const Modal = ({
     isOpen,
     id: "chakra-portal",
     enableInert: useInert,
+    container,
   });
 
   const context = {
@@ -129,6 +138,7 @@ const Modal = ({
     id: _id,
     size,
     hasHeader,
+    hasBody,
   };
 
   if (!isOpen) {
@@ -168,7 +178,6 @@ const Modal = ({
 const ModalOverlay = React.forwardRef((props, ref) => {
   return (
     <Box
-      data-chakra-modal-overlay=""
       pos="fixed"
       bg="rgba(0,0,0,0.4)"
       left="0"
@@ -184,7 +193,7 @@ const ModalOverlay = React.forwardRef((props, ref) => {
 ////////////////////////////////////////////////////////////////////////
 
 const ModalContent = React.forwardRef(
-  ({ onClick, children, zIndex = 1, ...props }, ref) => {
+  ({ onClick, children, zIndex = 1, noStyles, ...props }, ref) => {
     const {
       contentRef,
       onClose,
@@ -195,6 +204,7 @@ const ModalContent = React.forwardRef(
       size,
       closeOnEsc,
       hasHeader,
+      hasBody,
       scrollBehavior,
       closeOnOverlayClick,
     } = useModalContext();
@@ -259,9 +269,13 @@ const ModalContent = React.forwardRef(
       };
     }
 
+    if (noStyles) {
+      wrapperStyle = {};
+      contentStyle = {};
+    }
+
     return (
       <Box
-        data-chakra-modal-content-wrapper=""
         pos="fixed"
         left="0"
         top="0"
@@ -271,14 +285,14 @@ const ModalContent = React.forwardRef(
         onClick={event => {
           event.stopPropagation();
           if (closeOnOverlayClick) {
-            onClose();
+            onClose(event, "clickedOverlay");
           }
         }}
         onKeyDown={event => {
           if (event.key === "Escape") {
             event.stopPropagation();
             if (closeOnEsc) {
-              onClose();
+              onClose(event, "pressedEscape");
             }
           }
         }}
@@ -286,16 +300,15 @@ const ModalContent = React.forwardRef(
       >
         <Box
           ref={_contentRef}
-          data-chakra-modal-content=""
           as="section"
           // role="dialog"
           aria-modal="true"
           tabIndex={-1}
           outline={0}
-          maxW={size}
+          maxWidth={size}
           w="100%"
           id={id}
-          aria-describedby={bodyId}
+          {...(hasBody && { "aria-describedby": bodyId })}
           {...(hasHeader && { "aria-labelledby": headerId })}
           pos="relative"
           d="flex"
@@ -327,7 +340,6 @@ const ModalHeader = forwardRef((props, ref) => {
       position="relative"
       fontSize="xl"
       fontWeight="semibold"
-      data-chakra-modal-header=""
       {...props}
     />
   );
@@ -336,17 +348,7 @@ const ModalHeader = forwardRef((props, ref) => {
 ////////////////////////////////////////////////////////////////////////
 
 const ModalFooter = forwardRef((props, ref) => {
-  return (
-    <Flex
-      ref={ref}
-      data-chakra-modal-footer=""
-      px={6}
-      py={4}
-      as="footer"
-      justifyContent="flex-end"
-      {...props}
-    />
-  );
+  return <Box ref={ref} px={6} py={4} as="footer" ml="auto" {...props} />;
 });
 
 ////////////////////////////////////////////////////////////////////////
@@ -360,16 +362,7 @@ const ModalBody = forwardRef((props, ref) => {
   }
 
   return (
-    <Box
-      ref={ref}
-      data-chakra-modal-body=""
-      id={bodyId}
-      px={6}
-      py={2}
-      flex="1"
-      {...style}
-      {...props}
-    />
+    <Box ref={ref} id={bodyId} px={6} py={2} flex="1" {...style} {...props} />
   );
 });
 
@@ -380,7 +373,6 @@ const ModalCloseButton = forwardRef((props, ref) => {
   return (
     <CloseButton
       ref={ref}
-      data-chakra-modal-close-btn=""
       onClick={onClose}
       position="absolute"
       top="8px"
