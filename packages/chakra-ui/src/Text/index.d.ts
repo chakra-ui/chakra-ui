@@ -1,6 +1,15 @@
 import { BoxProps } from "../Box";
 import * as React from "react";
 
-declare const Text: React.FC<BoxProps>;
+interface IText {
+  /**
+   * Boolean prop for text truncation.
+   */
+  isTruncated?: boolean;
+}
+
+export type TextProps = IText & BoxProps;
+
+declare const Text: React.FC<TextProps>;
 
 export default Text;
