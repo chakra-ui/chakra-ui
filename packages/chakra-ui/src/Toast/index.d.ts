@@ -32,7 +32,7 @@ export interface IToast extends IAlert {
 }
 
 interface RenderOption {
-  render: (props: { onClose: () => void; id: string }) => React.ReactNode;
+  render?: (props: { onClose: () => void; id: string }) => React.ReactNode;
 }
 export type useToastOptions = IToast & RenderOption;
 declare const useToast: () => (props: useToastOptions) => void;
