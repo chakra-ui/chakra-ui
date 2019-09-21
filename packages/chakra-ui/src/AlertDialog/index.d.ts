@@ -1,56 +1,11 @@
 import * as React from "react";
 import * as StyledSystem from "styled-system";
 import { BoxProps } from "../Box";
+import { IModal } from "../Modal";
+import { Omit } from "../common-types";
 
-type Size =
-  | "3xs"
-  | "2xs"
-  | "xs"
-  | "sm"
-  | "md"
-  | "lg"
-  | "xl"
-  | "2xl"
-  | "3xl"
-  | "4xl"
-  | "5xl"
-  | "6xl";
-
-interface IAlertDialog {
-  /**
-   * If true, the `AlertDialog` will open
-   */
-  isOpen?: boolean;
-  /**
-   * The function to close the `AlertDialog`
-   */
-  onClose?: () => void;
-  /**
-   * The content of the AlertDialog.
-   *
-   * Should Ideally be `AlertDialogHeader`, `AlertDialogBody`, `AlertDialogFooter`
-   */
-  children: React.ReactNode;
-  /**
-   * The zIndex of the AlertDialog.
-   */
-  zIndex?: StyledSystem.ZIndexProps["zIndex"];
-  /**
-   * The background color of the overlay.
-   */
-  overlayBg?: StyledSystem.BackgroundColorProps["bg"];
-  /**
-   * The size of the AlertDialog
-   */
-  size?: Size | StyledSystem.MaxWidthProps["maxWidth"];
-  /**
-   * If `true`, the `AlertDialog` will be centered on screen
-   */
-  isCentered?: boolean;
-  /**
-   * The least destructive element to automatically set focus on when the `AlertDialog` opens.
-   */
-  leastDestructiveRef: React.Ref<HTMLElement>;
+interface IAlertDialog extends Omit<IModal, "initialFocusRef"> {
+  leastDestructiveRef: React.RefObject<HTMLElement>;
 }
 
 export type AlertDialogProps = IAlertDialog & BoxProps;

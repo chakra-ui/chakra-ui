@@ -2,6 +2,7 @@
 import { jsx } from "@emotion/core";
 import Icon from "../Icon";
 import PseudoBox from "../PseudoBox";
+import { useColorMode } from "../ColorModeProvider";
 
 const baseProps = {
   display: "inline-flex",
@@ -42,6 +43,10 @@ const CloseButton = ({
   "aria-label": ariaLabel = "Close",
   ...rest
 }) => {
+  const { colorMode } = useColorMode();
+  const hoverColor = { light: "blackAlpha.100", dark: "whiteAlpha.100" };
+  const activeColor = { light: "blackAlpha.200", dark: "whiteAlpha.200" };
+
   const buttonSize = sizes[size] && sizes[size]["button"];
   const iconSize = sizes[size] && sizes[size]["icon"];
 
@@ -53,6 +58,8 @@ const CloseButton = ({
       disabled={isDisabled}
       aria-label={ariaLabel}
       size={buttonSize}
+      _hover={{ bg: hoverColor[colorMode] }}
+      _active={{ bg: activeColor[colorMode] }}
       {...baseProps}
       {...rest}
     >

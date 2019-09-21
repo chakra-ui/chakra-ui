@@ -34,13 +34,12 @@ stories.add("Default", () => {
 
         <Drawer
           isOpen={isOpen}
-          // size="xl"
           placement="right"
           onClose={() => setIsOpen(false)}
           finalFocusRef={btnRef}
         >
-          <DrawerOverlay bg="tomato" />
-          <DrawerContent pos="fixed">
+          <DrawerOverlay />
+          <DrawerContent>
             <DrawerCloseButton />
             <DrawerHeader>Create your account</DrawerHeader>
 

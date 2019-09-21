@@ -121,6 +121,7 @@ export const config = {
   backgroundAttachment: true,
   outline: true,
   float: true,
+  willChange: true,
 };
 
 config.bgAttachment = config.backgroundAttachment;

@@ -58,11 +58,6 @@ function useAriaHider({ isOpen, id, enableInert, container = document.body }) {
 
 ////////////////////////////////////////////////////////////////////////
 
-/**
- * autoAria={ false }
- * autaAria={ content: true, header: true, body: true }
- */
-
 const Modal = ({
   isOpen,
   initialFocusRef,
@@ -72,13 +67,14 @@ const Modal = ({
   closeOnEsc = true,
   closeOnOverlayClick = true,
   useInert = true,
-  hasHeader = true,
-  hasBody = true,
   scrollBehavior = "outside",
   isCentered,
-  autoAria,
-  // Whether modal should be fullscreen
-  isFullScreen,
+  addAriaLabels = true,
+  formatIds = id => ({
+    content: `modal-${id}`,
+    header: `modal-${id}-header`,
+    body: `modal-${id}-body`,
+  }),
   container,
   returnFocusOnClose = true,
   children,
@@ -86,11 +82,25 @@ const Modal = ({
   size = "md",
 }) => {
   const contentRef = useRef(null);
+  const uuid = useId();
+  const _id = id || uuid;
 
-  const fallbackId = `modal-${useId()}`;
-  const _id = id || fallbackId;
-  const headerId = `${_id}-header`;
-  const bodyId = `${_id}-content`;
+  const contentId = formatIds(_id)["content"];
+  const headerId = formatIds(_id)["header"];
+  const bodyId = formatIds(_id)["body"];
+
+  let addAriaLabelledby = false;
+  let addAriaDescribedby = false;
+
+  if (typeof addAriaLabels === "object") {
+    addAriaLabelledby = addAriaLabels["header"];
+    addAriaDescribedby = addAriaLabels["body"];
+  }
+
+  if (typeof addAriaLabels === "boolean") {
+    addAriaLabelledby = addAriaLabels;
+    addAriaDescribedby = addAriaLabels;
+  }
 
   useEffect(() => {
     const dialogNode = contentRef.current;
@@ -135,10 +145,10 @@ const Modal = ({
     isCentered,
     headerId,
     bodyId,
-    id: _id,
+    contentId,
     size,
-    hasHeader,
-    hasBody,
+    addAriaLabelledby,
+    addAriaDescribedby,
   };
 
   if (!isOpen) {
@@ -154,9 +164,11 @@ const Modal = ({
             if (initialFocusRef && initialFocusRef.current) {
               initialFocusRef.current.focus();
             } else {
-              let focusables = getFocusables(contentRef.current);
-              if (focusables.length === 0) {
-                contentRef.current.focus();
+              if (contentRef.current) {
+                let focusables = getFocusables(contentRef.current);
+                if (focusables.length === 0) {
+                  contentRef.current.focus();
+                }
               }
             }
           }}
@@ -185,6 +197,7 @@ const ModalOverlay = React.forwardRef((props, ref) => {
       w="100vw"
       h="100vh"
       ref={ref}
+      zIndex="overlay"
       {...props}
     />
   );
@@ -193,18 +206,18 @@ const ModalOverlay = React.forwardRef((props, ref) => {
 ////////////////////////////////////////////////////////////////////////
 
 const ModalContent = React.forwardRef(
-  ({ onClick, children, zIndex = 1, noStyles, ...props }, ref) => {
+  ({ onClick, children, zIndex = "modal", noStyles, ...props }, ref) => {
     const {
       contentRef,
       onClose,
       isCentered,
       bodyId,
       headerId,
-      id,
+      contentId,
       size,
       closeOnEsc,
-      hasHeader,
-      hasBody,
+      addAriaLabelledby,
+      addAriaDescribedby,
       scrollBehavior,
       closeOnOverlayClick,
     } = useModalContext();
@@ -307,9 +320,9 @@ const ModalContent = React.forwardRef(
           outline={0}
           maxWidth={size}
           w="100%"
-          id={id}
-          {...(hasBody && { "aria-describedby": bodyId })}
-          {...(hasHeader && { "aria-labelledby": headerId })}
+          id={contentId}
+          {...(addAriaDescribedby && { "aria-describedby": bodyId })}
+          {...(addAriaLabelledby && { "aria-labelledby": headerId })}
           pos="relative"
           d="flex"
           flexDir="column"
@@ -384,25 +397,6 @@ const ModalCloseButton = forwardRef((props, ref) => {
 
 ////////////////////////////////////////////////////////////////////////
 
-let transitions = {
-  slideIn: {
-    from: { opacity: 0, transform: `translate3d(0, 10px, 0)` },
-    enter: { opacity: 1, transform: `translate3d(0, 0, 0)` },
-    leave: { opacity: 0, transform: `translate3d(0, -10px, 0)` },
-  },
-  scale: {
-    from: { opacity: 0, transform: `scale(0.95)` },
-    enter: { opacity: 1, transform: `scale(1)` },
-    leave: { opacity: 0, transform: `scale(0.95)` },
-  },
-};
-
-const ModalTransition = ({ isOpen, duration = 150, children }) => (
-  <Transition items={isOpen} {...transitions["slideIn"]} config={{ duration }}>
-    {isOpen => isOpen && (styles => children(styles))}
-  </Transition>
-);
-
 export {
   Modal,
   ModalOverlay,
@@ -411,5 +405,4 @@ export {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  ModalTransition,
 };

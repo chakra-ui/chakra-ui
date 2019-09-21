@@ -47,10 +47,8 @@
     ]
   },
   "dependencies": {
-    "@reach/alert-dialog": "0.2.9",
     "@reach/auto-id": "0.2.0",
-    "@reach/dialog": "0.2.9",
-    "@storybook/addon-docs": "^5.2.1",
+    "styled-system": "5.0.5",
     "@styled-system/css": "5.0.13",
     "@styled-system/should-forward-prop": "5.0.12",
     "@types/styled-system": "5.0.1",
@@ -62,7 +60,6 @@
     "react-animate-height": "2.0.9",
     "react-focus-lock": "^2.1.0",
     "react-spring": "8.0.23",
-    "styled-system": "5.0.5",
     "toasted-notes": "2.1.6",
     "use-dark-mode": "2.3.1"
   },
@@ -75,6 +72,7 @@
     "@babel/plugin-transform-runtime": "7.5.5",
     "@babel/preset-env": "7.5.5",
     "@babel/preset-react": "7.0.0",
+    "@storybook/addon-docs": "^5.2.1",
     "@storybook/addon-actions": "^5.2.1",
     "@storybook/addon-knobs": "5.2.1",
     "@storybook/addon-links": "^5.2.1",

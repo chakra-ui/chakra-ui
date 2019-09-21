@@ -47,8 +47,8 @@ function BasicUsage() {
       <Button onClick={onOpen}>Open Modal</Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay zIndex={7} />
-        <ModalContent zIndex={8}>
+        <ModalOverlay />
+        <ModalContent>
           <ModalHeader>Modal Title</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
@@ -96,8 +96,8 @@ function ReturnFocus() {
         isOpen={isOpen}
         onClose={onClose}
       >
-        <ModalOverlay zIndex={7} />
-        <ModalContent zIndex={8}>
+        <ModalOverlay />
+        <ModalContent>
           <ModalHeader>Modal Title</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
@@ -132,8 +132,8 @@ function BasicUsage() {
       <Button onClick={onOpen}>Open Modal</Button>
 
       <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay zIndex={7} />
-        <ModalContent zIndex={8}>
+        <ModalOverlay />
+        <ModalContent>
           <ModalHeader>Modal Title</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
@@ -192,8 +192,8 @@ function InitialFocus() {
         isOpen={isOpen}
         onClose={onClose}
       >
-        <ModalOverlay zIndex={7} />
-        <ModalContent zIndex={8}>
+        <ModalOverlay />
+        <ModalContent>
           <ModalHeader>Create your account</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
@@ -235,8 +235,8 @@ function ManualClose() {
       <Button onClick={onOpen}>Open Modal</Button>
 
       <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay zIndex={7} />
-        <ModalContent zIndex={8}>
+        <ModalOverlay />
+        <ModalContent>
           <ModalHeader>Create your account</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
@@ -274,8 +274,8 @@ function VerticallyCenter() {
       <Button onClick={onOpen}>Trigger modal</Button>
 
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
-        <ModalOverlay zIndex={7} />
-        <ModalContent zIndex={8}>
+        <ModalOverlay />
+        <ModalContent>
           <ModalHeader>Modal Title</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
@@ -313,12 +313,11 @@ function TransitionExample() {
       <ModalTransition isOpen={isOpen}>
         {styles => (
           <Modal finalFocusRef={btnRef} onClose={onClose} isOpen={true}>
-            <ModalOverlay opacity={styles.opacity} zIndex={7} />
+            <ModalOverlay opacity={styles.opacity} />
             <ModalContent
               transform={styles.transform}
               opacity={styles.opacity}
               pb={5}
-              zIndex={8}
             >
               <ModalHeader>Login now</ModalHeader>
               <ModalCloseButton />
@@ -370,8 +369,8 @@ function ScrollingExample() {
         isOpen={isOpen}
         scrollBehavior={scrollBehavior}
       >
-        <ModalOverlay zIndex={7} />
-        <ModalContent zIndex={8}>
+        <ModalOverlay />
+        <ModalContent>
           <ModalHeader>Modal Title</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
@@ -415,8 +414,8 @@ function SizeExample() {
       ))}
 
       <Modal onClose={onClose} size={size} isOpen={isOpen}>
-        <ModalOverlay zIndex={7} />
-        <ModalContent zIndex={8}>
+        <ModalOverlay />
+        <ModalHeader>
           <ModalHeader>Modal Title</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
@@ -425,7 +424,7 @@ function SizeExample() {
           <ModalFooter>
             <Button>Close</Button>
           </ModalFooter>
-        </ModalContent>
+        </ModalHeader>
       </Modal>
     </>
   );

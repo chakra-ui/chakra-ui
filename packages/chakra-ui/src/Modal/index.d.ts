@@ -1,6 +1,7 @@
 import * as React from "react";
 import { BoxProps } from "../Box";
 import { CloseButtonProps } from "../CloseButton";
+import { TransitionProps } from "react-spring/renderprops";
 
 type ModalSizes =
   | "xs"
@@ -87,10 +88,24 @@ export interface IModal {
    */
   returnFocusOnClose?: boolean;
   /**
-   * Set this to `false`, if you don't render the `ModalHeader` within the modal.
-   * This is used to remove the `aria-labelledby` prop on the `ModalContent`
+   * By default, a unique `id` is passed to the header and body.
+   * These ids are used to add `aria-labelledby` and `aria-describedby` to the `ModalContent`.
+   *
+   * You can configure this behavior:
+   * - Set it to `false` if you'd like to manually add the `aria-*` attributes.
+   * - Set it to `{header: false}` if you don't render the `ModalHeader` within the modal.
+   * We'll remove the `aria-labelledby` prop.
+   *
+   * @default true
    */
-  hasHeader?: boolean;
+  addAriaLabels?: boolean | { header?: boolean; body?: boolean };
+  /**
+   * The function to format the `id`s passed to the `ModalHeader`, `Modalbody`, and `ModalContent`
+   * @private
+   */
+  formatIds?: (
+    id: string | number,
+  ) => { content: string; header: string; body: string };
 }
 
 export const Modal: React.FC<IModal>;
@@ -104,13 +119,6 @@ interface IModalContent {
 
 type ModalContentProps = IModalContent & BoxProps;
 export const ModalContent: React.FC<ModalContentProps>;
-
-interface IModalTransition {
-  isOpen?: boolean;
-  children: (styles: React.CSSProperties) => React.ReactNode;
-  duration?: number;
-}
-export const ModalTransition: React.FC<IModalTransition>;
 
 export const ModalHeader: React.FC<BoxProps>;
 export const ModalFooter: React.FC<BoxProps>;

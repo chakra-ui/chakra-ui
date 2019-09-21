@@ -1,24 +1,14 @@
 {
   "name": "root",
   "private": true,
-  "dependencies": {
-    "@emotion/core": "10.0.10",
-    "@emotion/styled": "10.0.11",
-    "@testing-library/react": "8.0.7",
-    "@testing-library/react-hooks": "1.1.0",
-    "emotion-theming": "10.0.10",
-    "lerna": "^3.15.0",
-    "prettier": "1.18.2",
-    "prop-types": "^15.7.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "typescript": "3.5.3"
-  },
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "clean": "lerna clean --yes",
     "core:dev": "lerna run --scope=@chakra-ui/core build:watch --stream",
     "reboot:core": "npm run core:build && npm run bootstrap",
-    "bootstrap": "npm run clean && lerna bootstrap --hoist",
+    "bootstrap": "yarn clean && lerna bootstrap --use-workspaces",
     "storybook": "lerna run --scope=@chakra-ui/core storybook --stream",
     "storybook:build": "lerna run --scope=@chakra-ui/core build-storybook --stream",
     "docs:dev": "lerna run --scope=@chakra-ui/docs dev --stream",
@@ -29,6 +19,18 @@
     "release": "lerna publish"
   },
   "devDependencies": {
+    "@emotion/core": "10.0.10",
+    "@emotion/styled": "10.0.11",
+    "emotion-theming": "10.0.10",
+    "@testing-library/react": "8.0.7",
+    "@testing-library/react-hooks": "1.1.0",
+    "prop-types": "^15.7.2",
+    "prettier": "1.18.2",
+    "lerna": "^3.15.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-transition-group": "4.3.0",
+    "typescript": "3.5.3",
     "@typescript-eslint/eslint-plugin": "1.x",
     "@typescript-eslint/parser": "1.x",
     "all-contributors-cli": "6.8.2",

@@ -90,6 +90,7 @@ interface ICustomConfig {
   // Outline prop
   outline?: StyledSystem.ResponsiveValue<CSS["outline"]>;
   float?: StyledSystem.ResponsiveValue<CSS["float"]>;
+  willChange?: StyledSystem.ResponsiveValue<CSS["willChange"]>;
 }
 
 type FontSize =

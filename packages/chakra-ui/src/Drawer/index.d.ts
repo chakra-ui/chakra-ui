@@ -1,18 +1,7 @@
 import * as React from "react";
+import { IModal } from "../Modal";
 
-interface IDrawer {
-  /**
-   * If `true`, the drawer is shown.
-   */
-  isOpen?: boolean;
-  /**
-   * Callback invoked when user closes the drawer.
-   */
-  onClose?: () => void;
-  /**
-   * Callback invoked when user closes the drawer.
-   */
-  children: React.ReactNode;
+interface IDrawer extends IModal {
   /**
    * The size of the drawer when placement is `left` or `right`.
    */
@@ -22,29 +11,20 @@ interface IDrawer {
    */
   isFullHeight?: boolean;
   /**
-   * The ref to the initial element to receive focus when the drawer opens.
-   */
-  initialFocusRef?: React.Ref<HTMLElement>;
-  /**
-   *  If `true`, show the drawer overlay by default.
-   */
-  hideOverlay?: boolean;
-  /**
-   *  Set the position of the drawer.
+   *  Set the position of the drawer should slide from.
    */
   placement?: "top" | "left" | "bottom" | "right";
   /**
-   *  The zIndex of the drawer.
+   * The element to receive focus when the drawer closes.
+   *
+   * 🚨 This prop is required.
+   * You could point it to the element that triggered the drawer
    */
-  zIndex?: number | string;
-  /**
-   *  The background color of the overlay.
-   */
-  overlayBg?: string;
+  finalFocusRef: IModal["finialFocusRef"];
 }
 
 interface IDrawerTransition {
-  isOpen?: IDrawer["isOpen"];
+  in: IDrawer["isOpen"];
   children?: React.ReactNode;
   duration?: number;
   placement?: IDrawer["placement"];

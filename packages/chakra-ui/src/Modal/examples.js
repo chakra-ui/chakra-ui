@@ -14,9 +14,9 @@ import {
   ModalBody,
   ModalFooter,
   ModalHeader,
-  ModalTransition,
 } from ".";
 import Lorem from "react-lorem-component";
+import { SlideIn, Scale } from "../Transition";
 
 const stories = storiesOf("Modal", module);
 stories.addDecorator(story => {
@@ -71,7 +71,7 @@ stories.add("Default", () => {
   return <SampleModal />;
 });
 
-stories.add("with transition", () => {
+stories.add("with slide transition", () => {
   const SampleModal = () => {
     const [isOpen, setIsOpen] = useState(false);
     const btnRef = useRef();
@@ -80,23 +80,15 @@ stories.add("with transition", () => {
         <Button ref={btnRef} onClick={() => setIsOpen(true)}>
           Trigger modal
         </Button>
-
-        <ModalTransition isOpen={isOpen}>
+        <SlideIn offset="10px" in={isOpen}>
           {styles => (
             <Modal
+              isOpen={true}
               onClose={() => setIsOpen(false)}
               finalFocusRef={btnRef}
-              isOpen={true}
-              blockScrollOnMount={false}
-              // isCentered
-              useInert={false}
             >
               <ModalOverlay opacity={styles.opacity} />
-              <ModalContent
-                transform={styles.transform}
-                opacity={styles.opacity}
-                pb={5}
-              >
+              <ModalContent {...styles} pb={5}>
                 <ModalHeader>Login now</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
@@ -105,7 +97,41 @@ stories.add("with transition", () => {
               </ModalContent>
             </Modal>
           )}
-        </ModalTransition>
+        </SlideIn>
+      </Fragment>
+    );
+  };
+
+  return <SampleModal />;
+});
+
+stories.add("with scale transition", () => {
+  const SampleModal = () => {
+    const [isOpen, setIsOpen] = useState(false);
+    const btnRef = useRef();
+    return (
+      <Fragment>
+        <Button ref={btnRef} onClick={() => setIsOpen(true)}>
+          Trigger modal
+        </Button>
+        <Scale in={isOpen}>
+          {styles => (
+            <Modal
+              isOpen={true}
+              onClose={() => setIsOpen(false)}
+              finalFocusRef={btnRef}
+            >
+              <ModalOverlay opacity={styles.opacity} />
+              <ModalContent {...styles} pb={5}>
+                <ModalHeader>Login now</ModalHeader>
+                <ModalCloseButton />
+                <ModalBody>
+                  <Lorem count={2} />
+                </ModalBody>
+              </ModalContent>
+            </Modal>
+          )}
+        </Scale>
       </Fragment>
     );
   };
