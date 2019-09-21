@@ -13,7 +13,6 @@ import Portal from "../Portal";
 import CloseButton from "../CloseButton";
 import { hideOthers } from "aria-hidden";
 import { useId } from "@reach/auto-id";
-import { Transition } from "react-spring/renderprops.cjs";
 import { useColorMode } from "../ColorModeProvider";
 import { canUseDOM } from "exenv";
 
@@ -24,7 +23,12 @@ const useModalContext = () => useContext(ModalContext);
 
 ////////////////////////////////////////////////////////////////////////
 
-function useAriaHider({ isOpen, id, enableInert, container = document.body }) {
+function useAriaHider({
+  isOpen,
+  id,
+  enableInert,
+  container = canUseDOM ? document.body : null,
+}) {
   const mountRef = useRef(
     canUseDOM
       ? document.getElementById(id) || document.createElement("div")
@@ -360,9 +364,17 @@ const ModalHeader = forwardRef((props, ref) => {
 
 ////////////////////////////////////////////////////////////////////////
 
-const ModalFooter = forwardRef((props, ref) => {
-  return <Box ref={ref} px={6} py={4} as="footer" ml="auto" {...props} />;
-});
+const ModalFooter = forwardRef((props, ref) => (
+  <Box
+    display="flex"
+    justifyContent="flex-end"
+    ref={ref}
+    px={6}
+    py={4}
+    as="footer"
+    {...props}
+  />
+));
 
 ////////////////////////////////////////////////////////////////////////
 

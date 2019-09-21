@@ -3,11 +3,6 @@
 AlertDialog component is used interrupt the user with a mandatory confirmation
 or action.
 
-Based on
-[WAI-ARIA specifications](https://www.w3.org/TR/wai-aria-practices/#alertdialog),
-focus should be placed on the least destructive element when the dialog opens,
-to prevent users from accidentally taking the destructive action.
-
 ## Import
 
 Chakra UI exports 4 alert dialog related components.
@@ -20,15 +15,22 @@ Chakra UI exports 4 alert dialog related components.
 ```js
 import {
   AlertDialog,
-  AlertDialogHeader,
   AlertDialogBody,
   AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
 } from "@chakra-ui/core";
 ```
 
 ## Usage
 
 AlertDialog requires that you provide the `leastDestructiveRef` prop.
+
+Based on
+[WAI-ARIA specifications](https://www.w3.org/TR/wai-aria-practices/#alertdialog),
+focus should be placed on the least destructive element when the dialog opens,
+to prevent users from accidentally confirming the destructive action.
 
 ```jsx
 function AlertDialogExample() {
@@ -47,23 +49,81 @@ function AlertDialogExample() {
         leastDestructiveRef={cancelRef}
         onClose={onClose}
       >
-        <AlertDialogHeader fontSize="lg" fontWeight="bold">
-          Delete Customer
-        </AlertDialogHeader>
+        <AlertDialogOverlay />
+        <AlertDialogContent>
+          <AlertDialogHeader fontSize="lg" fontWeight="bold">
+            Delete Customer
+          </AlertDialogHeader>
 
-        <AlertDialogBody>
-          Are you sure? You can't undo this action afterwards.
-        </AlertDialogBody>
+          <AlertDialogBody>
+            Are you sure? You can't undo this action afterwards.
+          </AlertDialogBody>
 
-        <AlertDialogFooter>
-          <Button ref={cancelRef} onClick={onClose}>
-            Cancel
-          </Button>
-          <Button variantColor="red" onClick={onClose} ml={3}>
-            Delete
-          </Button>
-        </AlertDialogFooter>
+          <AlertDialogFooter>
+            <Button ref={cancelRef} onClick={onClose}>
+              Cancel
+            </Button>
+            <Button variantColor="red" onClick={onClose} ml={3}>
+              Delete
+            </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
       </AlertDialog>
+    </>
+  );
+}
+```
+
+### Adding transition
+
+The dialog doesn't come with any transition by default so you can manage this
+yourself. Chakra exports some useful transition components for simple
+transitions.
+
+> For some reason, focus doesn't return back to the trigger after the transition
+> ends. As a walkaround, you might need to set `finalFocusRef` to the trigger or
+> any other element, and set `isOpen` to `true`.
+
+```jsx
+function TransitionExample() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = React.useRef();
+  const cancelRef = React.useRef();
+
+  return (
+    <>
+      <Button ref={btnRef} onClick={onOpen}>
+        Discard
+      </Button>
+
+      <Scale in={isOpen}>
+        {styles => (
+          <AlertDialog
+            leastDestructiveRef={cancelRef}
+            finalFocusRef={btnRef}
+            onClose={onClose}
+            isOpen={true}
+          >
+            <AlertDialogOverlay opacity={styles.opacity} />
+            <AlertDialogContent pb={5} {...styles}>
+              <AlertDialogHeader>Discard Changes?</AlertDialogHeader>
+              <ModalCloseButton />
+              <AlertDialogBody>
+                Are you sure you want to discard all of your notes? 44 words
+                will be deleted.
+              </AlertDialogBody>
+              <AlertDialogFooter>
+                <Button ref={cancelRef} onClick={onClose}>
+                  No
+                </Button>
+                <Button variantColor="red" ml={3}>
+                  Yes
+                </Button>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        )}
+      </Scale>
     </>
   );
 }

@@ -1,4 +1,11 @@
-import { Drawer, DrawerBody, IconButton, useDisclosure } from "@chakra-ui/core";
+import {
+  Drawer,
+  DrawerBody,
+  IconButton,
+  useDisclosure,
+  DrawerOverlay,
+  DrawerContent,
+} from "@chakra-ui/core";
 import React, { useEffect } from "react";
 import { MdDehaze } from "react-icons/md";
 import { SideNavContent } from "./SideNav";
@@ -34,16 +41,13 @@ const MobileNav = () => {
         icon={MdDehaze}
         onClick={onToggle}
       />
-      <Drawer
-        size="xs"
-        isOpen={isOpen}
-        placement="left"
-        zIndex={6}
-        onClose={onClose}
-      >
-        <DrawerBody p={0}>
-          <SideNavContent contentHeight="100vh" top="0" />
-        </DrawerBody>
+      <Drawer size="xs" isOpen={isOpen} placement="left" onClose={onClose}>
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerBody p={0}>
+            <SideNavContent contentHeight="100vh" top="0" />
+          </DrawerBody>
+        </DrawerContent>
       </Drawer>
     </>
   );

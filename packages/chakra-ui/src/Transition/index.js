@@ -125,7 +125,7 @@ export const Scale = ({
 
 export const SlideIn = ({
   in: inProp,
-  offset = "20%",
+  offset = "10px",
   duration = 150,
   children,
   ...rest

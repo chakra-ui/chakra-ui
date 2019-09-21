@@ -1,4 +1,4 @@
-# Dialog (Modal)
+# Modal (Dialog)
 
 A dialog is a window overlaid on either the primary window or another dialog
 window. Windows under a modal dialog are **inert** meaning that users cannot
@@ -18,7 +18,6 @@ Chakra exports 8 components to help you create any modal dialog.
 - `ModalHeader`: The header that labels the modal dialog
 - `ModalFooter`: The footer that houses the modal actions
 - `ModalBody`: The wrapper that houses the modal's main content
-- `ModalTransition`: The transition provider, built with `react-spring`
 - `ModalCloseButton`: The button that closes the modal.
 
 ```js
@@ -30,7 +29,6 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  ModalTransition,
 } from "@chakra-ui/core";
 ```
 
@@ -294,10 +292,11 @@ function VerticallyCenter() {
 ### Adding transition
 
 The modal doesn't come with any transition by default so you can manage this
-yourself. Chakra exports `ModalTransition` that provides simple transitions.
+yourself. Chakra exports two useful transition components `SlideIn` and `Scale`.
 
-> If use the `ModalTransition`, you might need to set `finalFocusRef` so it
-> returns focus back, and also set `isOpen` to `true`.
+> For some reason, focus doesn't return back to the trigger after the transition
+> ends. As a walkaround, you might need to set `finalFocusRef` to the trigger or
+> any other element, and set `isOpen` to `true`.
 
 ```jsx
 function TransitionExample() {
@@ -310,15 +309,11 @@ function TransitionExample() {
         Trigger modal
       </Button>
 
-      <ModalTransition isOpen={isOpen}>
+      <SlideIn in={isOpen}>
         {styles => (
           <Modal finalFocusRef={btnRef} onClose={onClose} isOpen={true}>
             <ModalOverlay opacity={styles.opacity} />
-            <ModalContent
-              transform={styles.transform}
-              opacity={styles.opacity}
-              pb={5}
-            >
+            <ModalContent pb={5} {...styles}>
               <ModalHeader>Login now</ModalHeader>
               <ModalCloseButton />
               <ModalBody>
@@ -327,7 +322,7 @@ function TransitionExample() {
             </ModalContent>
           </Modal>
         )}
-      </ModalTransition>
+      </SlideIn>
     </>
   );
 }
@@ -415,7 +410,7 @@ function SizeExample() {
 
       <Modal onClose={onClose} size={size} isOpen={isOpen}>
         <ModalOverlay />
-        <ModalHeader>
+        <ModalContent>
           <ModalHeader>Modal Title</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
@@ -424,7 +419,7 @@ function SizeExample() {
           <ModalFooter>
             <Button>Close</Button>
           </ModalFooter>
-        </ModalHeader>
+        </ModalContent>
       </Modal>
     </>
   );
