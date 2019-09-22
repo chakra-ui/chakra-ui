@@ -18,7 +18,7 @@ stories.add("Default", () => (
         mr={2}
         size={size}
         name="Uchiha Itachi"
-        src="http://bit.ly/uchiha-itachi"
+        src="https://bit.ly/uchiha-itachi"
       >
         <AvatarBadge size="1.25em" bg="green.500" />
       </Avatar>
@@ -28,7 +28,7 @@ stories.add("Default", () => (
 
 stories.add("Avatar Group", () => (
   <AvatarGroup size="md" max={2}>
-    <Avatar name="Uchiha Itachi" src="http://bit.ly/uchiha-itachi" />
+    <Avatar name="Uchiha Itachi" src="https://bit.ly/uchiha-itachi" />
     <Avatar
       name="Uchiha Sasuke"
       src="https://vignette.wikia.nocookie.net/naruto/images/2/21/Sasuke_Part_1.png/revision/latest?cb=20170716092103"
