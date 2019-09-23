@@ -20,31 +20,9 @@
     "build:umd": "cross-env NODE_ENV=production-umd rollup -c",
     "build:copy-types": "node ./scripts/copy-files.js",
     "version": "yarn build",
-    "lint": "eslint src",
-    "tslint": "tslint -c tslint.json 'src/**/*.ts'",
-    "prettier": "prettier \"**/*.+(js|jsx|ts|tsx|d.ts|md|mdx)\"",
-    "format": "yarn prettier -- --write",
-    "validate": "yarn lint && yarn prettier -- --list-different && yarn tslint",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "npm install && build-storybook",
     "build:watch": "nodemon -w src -x 'rm .babelrc &> /dev/null; yarn build'"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.js": [
-      "eslint --fix"
-    ],
-    "*.ts": [
-      "tslint -c tslint.json"
-    ],
-    "**/*.+(js|jsx|ts|tsx|d.ts|md|mdx)": [
-      "prettier --write",
-      "git add"
-    ]
   },
   "dependencies": {
     "@reach/auto-id": "0.2.0",
@@ -69,18 +47,7 @@
     "@storybook/addon-knobs": "5.2.1",
     "@storybook/addon-links": "^5.2.1",
     "@storybook/addons": "^5.2.1",
-    "@storybook/react": "^5.2.1",
-    "cross-env": "5.2.0",
-    "fs-extra": "8.1.0",
-    "glob": "7.1.4",
-    "path": "0.12.7",
-    "react-lorem-component": "^0.13.0",
-    "rimraf": "2.6.3",
-    "rollup": "1.18.0",
-    "rollup-plugin-babel": "4.3.3",
-    "rollup-plugin-commonjs": "10.0.2",
-    "rollup-plugin-node-resolve": "5.2.0",
-    "rollup-plugin-terser": "5.1.1"
+    "@storybook/react": "^5.2.1"
   },
   "peerDependencies": {
     "@emotion/core": "10.x",

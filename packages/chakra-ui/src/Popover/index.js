@@ -1,6 +1,6 @@
 /** @jsx jsx */
-import { jsx } from "@emotion/core";
-import { useId } from "@reach/auto-id";
+import {jsx} from "@emotion/core";
+import {useId} from "@reach/auto-id";
 import {
   Children,
   cloneElement,
@@ -12,10 +12,11 @@ import {
 } from "react";
 import Box from "../Box";
 import CloseButton from "../CloseButton";
-import { useColorMode } from "../ColorModeProvider";
-import Popper, { PopperArrow } from "../Popper";
+import {useColorMode} from "../ColorModeProvider";
+import Popper, {PopperArrow} from "../Popper";
 import usePrevious from "../usePrevious";
-import { wrapEvent } from "../utils";
+
+import {wrapEvent} from "../utils";
 
 /**
  * Hook based idea:
@@ -37,7 +38,7 @@ const usePopoverContext = () => {
 
 /////////////////////////////////////////////////////////////////////
 
-const PopoverTrigger = ({ children }) => {
+const PopoverTrigger = ({children}) => {
   const {
     referenceRef,
     popoverId,
@@ -119,7 +120,7 @@ const PopoverContent = ({
     usePortal,
   } = usePopoverContext();
 
-  const { colorMode } = useColorMode();
+  const {colorMode} = useColorMode();
   const bg = colorMode === "light" ? "white" : "gray.700";
 
   let eventHandlers = {};
@@ -182,8 +183,8 @@ const PopoverContent = ({
       rounded="md"
       shadow="sm"
       maxWidth="xs"
-      modifiers={{ offset: { enabled: true, offset: `0, ${gutter}` } }}
-      _focus={{ outline: 0, shadow: "outline" }}
+      modifiers={{offset: {enabled: true, offset: `0, ${gutter}`}}}
+      _focus={{outline: 0, shadow: "outline"}}
       aria-labelledby={headerId}
       aria-describedby={bodyId}
       {...roleProps}
@@ -211,7 +212,7 @@ const Popover = ({
   onClose: onCloseProp,
 }) => {
   const [isOpen, setIsOpen] = useState(defaultIsOpen || false);
-  const { current: isControlled } = useRef(isOpenProp != null);
+  const {current: isControlled} = useRef(isOpenProp != null);
 
   const isHoveringRef = useRef();
 
@@ -324,7 +325,7 @@ const Popover = ({
   return (
     <PopoverContext.Provider value={context}>
       {typeof children === "function"
-        ? children({ isOpen: _isOpen, onClose })
+        ? children({isOpen: _isOpen, onClose})
         : children}
     </PopoverContext.Provider>
   );
@@ -333,7 +334,7 @@ const Popover = ({
 /////////////////////////////////////////////////////////////////////
 
 const PopoverHeader = props => {
-  const { headerId } = usePopoverContext();
+  const {headerId} = usePopoverContext();
   return (
     <Box
       as="header"
@@ -355,7 +356,7 @@ const PopoverFooter = props => (
 /////////////////////////////////////////////////////////////////////
 
 const PopoverBody = props => {
-  const { bodyId } = usePopoverContext();
+  const {bodyId} = usePopoverContext();
   return <Box id={bodyId} flex="1" px={3} py={2} {...props} />;
 };
 
@@ -365,8 +366,8 @@ const PopoverArrow = props => <PopperArrow {...props} />;
 
 /////////////////////////////////////////////////////////////////////
 
-const PopoverCloseButton = ({ onClick, ...props }) => {
-  const { onClose } = usePopoverContext();
+const PopoverCloseButton = ({onClick, ...props}) => {
+  const {onClose} = usePopoverContext();
   return (
     <CloseButton
       size="sm"
