@@ -19,9 +19,9 @@
     "release": "lerna publish",
     "lint": "yarn workspace @chakra-ui/core eslint src",
     "tslint": "tslint -c tslint.json '**/*/src/**/*.ts'",
-    "prettier": "prettier \"**/*/+(src|components|pages)/**/*.+(js|mdx|md)\"",
-    "format": "yarn prettier -- --write",
-    "validate": "yarn lint && yarn prettier -- --list-different"
+    "prettier": "prettier \"**/**/**/*.+(js|json|jsx|ts|tsx|md|mdx)\"",
+    "format": "yarn prettier --write",
+    "validate": "yarn lint && yarn prettier --list-different"
   },
   "husky": {
     "hooks": {
@@ -35,7 +35,7 @@
     "*.ts": [
       "tslint -c tslint.json"
     ],
-    "**/*/+(src|components|pages)/**/*.+(js|mdx|md)": [
+    "**/**/**/*.+(js|json|jsx|ts|tsx|mdx|md)": [
       "prettier --write",
       "git add"
     ]

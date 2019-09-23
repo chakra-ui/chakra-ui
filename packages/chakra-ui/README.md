@@ -1,4 +1,5 @@
 # Welcome to Chakra UI ⚡️
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 
 - Works out of the box. Chakra UI contains a set of polished React components
@@ -36,7 +37,7 @@ To start using the components, please follow these steps:
 ```jsx
 import { ThemeProvider, ColorModeProvider } from "@chakra-ui/core";
 
-const App = ({children}) => (
+const App = ({ children }) => (
   <ThemeProvider>
     <ColorModeProvider>{children}</ColorModeProvider>
   </ThemeProvider>
@@ -63,11 +64,10 @@ Feel like contributing? That's awesome! We have a
 The components to be built come from the
 [Aria Practices Design Patterns and Widgets](https://www.w3.org/TR/wai-aria-practices-1.1).
 
-
-
 ## Contributors ✨
 
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+Thanks goes to these wonderful people
+([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -81,6 +81,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+This project follows the
+[all-contributors](https://github.com/all-contributors/all-contributors)
+specification. Contributions of any kind welcome!

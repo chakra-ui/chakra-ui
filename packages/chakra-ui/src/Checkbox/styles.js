@@ -8,7 +8,7 @@ const baseProps = {
   transition: "background-color 120ms, box-shadow 250ms",
 };
 
-const interactionProps = ({ color, colorMode}) => {
+const interactionProps = ({ color, colorMode }) => {
   const isDarkMode = colorMode === "dark";
   const _color = isDarkMode ? 200 : 500;
   return {

@@ -23,7 +23,7 @@ export const disabledProps = {
   },
 };
 
-const lineStyle = ({ color, colorMode}) => {
+const lineStyle = ({ color, colorMode }) => {
   const _color = { light: `${color}.600`, dark: `${color}.300` };
   return {
     tabList: {
@@ -74,7 +74,7 @@ const enclosedStyle = ({ color, colorMode, theme }) => {
   };
 };
 
-const enclosedColoredStyle = ({ color, colorMode}) => {
+const enclosedColoredStyle = ({ color, colorMode }) => {
   const bg = { light: "gray.50", dark: "whiteAlpha.50" };
   const _selectedColor = { light: `${color}.600`, dark: `${color}.300` };
   const _selectedBg = { light: `#fff`, dark: `gray.800` };
@@ -119,7 +119,7 @@ const softRoundedStyle = ({ color }) => {
   };
 };
 
-const solidRoundedStyle = ({ color, colorMode}) => {
+const solidRoundedStyle = ({ color, colorMode }) => {
   const _color = { light: "gray.600", dark: "inherit" };
   const _selectedBg = { light: `${color}.600`, dark: `${color}.300` };
   const _selectedColor = { light: `#fff`, dark: `gray.800` };
@@ -214,7 +214,7 @@ export const useTabStyle = () => {
   );
   const { colorMode } = useColorMode();
 
-  const _variantStyle = variantStyle({ variant, color, theme, colorMode});
+  const _variantStyle = variantStyle({ variant, color, theme, colorMode });
   const _orientationStyle = orientationStyle({ orientation });
 
   return {

@@ -51,7 +51,7 @@ const outlineStyle = ({ theme: { colors }, color }) => {
 };
 
 const variantProps = props => {
-  const { variant, colorMode} = props;
+  const { variant, colorMode } = props;
   switch (variant) {
     case "solid":
       return solidStyle(props)[colorMode];
@@ -67,7 +67,7 @@ const variantProps = props => {
 const useBadgeStyle = props => {
   const theme = useTheme();
   const { colorMode } = useColorMode();
-  const _props = { ...props, theme, colorMode};
+  const _props = { ...props, theme, colorMode };
 
   return variantProps(_props);
 };

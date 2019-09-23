@@ -1,4 +1,5 @@
 # Welcome to Chakra UI ⚡️
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 
 - Works out of the box. Chakra UI contains a set of polished React components
@@ -16,22 +17,29 @@
 
 https://chakra-ui.com
 
-
 ## Supporting Chakra UI 💖
 
-Chakra UI is an MIT-licensed open source project. It's an independent project with ongoing development made possible thanks to the support of amazing contributors. If you're happy with Chakra UI and would like to support it's ongoing development, we'll appreciate some support.
+Chakra UI is an MIT-licensed open source project. It's an independent project
+with ongoing development made possible thanks to the support of amazing
+contributors. If you're happy with Chakra UI and would like to support it's
+ongoing development, we'll appreciate some support.
+
 - [Become a backer or sponsor on Patreon](https://www.patreon.com/segunadebayo).
 - [Become a backer or sponsor on OpenCollective](https://opencollective.com/chakra-ui).
 
-
 ### What's the difference between Patreon and OpenCollective?
 
-Funds donated via Patreon directly support [Segun Adebayo](https://github.com/segunadebayo)'s work on Chakra UI. Funds donated via OpenCollective are managed transparently and will be used for compensating work and expenses for core team members. Your name/logo will receive proper recognition and exposure by donating on either platform.
+Funds donated via Patreon directly support
+[Segun Adebayo](https://github.com/segunadebayo)'s work on Chakra UI. Funds
+donated via OpenCollective are managed transparently and will be used for
+compensating work and expenses for core team members. Your name/logo will
+receive proper recognition and exposure by donating on either platform.
 
 ## Installing Chakra UI
 
 ⚡️Chakra UI is made up of multiple components and tools which you can import
-one by one. All you need to do is install the `@chakra-ui/core` package and its peer dependencies:
+one by one. All you need to do is install the `@chakra-ui/core` package and its
+peer dependencies:
 
 ```sh
 $ yarn add @chakra-ui/core @emotion/core @emotion/styled emotion-theming
@@ -48,7 +56,7 @@ To start using the components, please follow these steps:
 ```jsx
 import { ThemeProvider, ColorModeProvider } from "@chakra-ui/core";
 
-const App = ({children}) => (
+const App = ({ children }) => (
   <ThemeProvider>
     <ColorModeProvider>{children}</ColorModeProvider>
   </ThemeProvider>
@@ -75,11 +83,10 @@ Feel like contributing? That's awesome! We have a
 The components to be built come from the
 [Aria Practices Design Patterns and Widgets](https://www.w3.org/TR/wai-aria-practices-1.1).
 
-
-
 ## Contributors ✨
 
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+Thanks goes to these wonderful people
+([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
@@ -95,4 +102,6 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+This project follows the
+[all-contributors](https://github.com/all-contributors/all-contributors)
+specification. Contributions of any kind welcome!
