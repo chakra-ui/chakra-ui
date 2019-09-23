@@ -35,7 +35,7 @@
     "*.ts": [
       "tslint -c tslint.json"
     ],
-    "**/*/+(src|components|pages)/**/*.+(js|json|jsx|ts|tsx|md|mdx)": [
+    "**/*.+(js|json|jsx|ts|tsx|md|mdx)": [
       "prettier --write",
       "git add"
     ]
