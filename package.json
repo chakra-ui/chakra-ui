@@ -35,7 +35,7 @@
     "*.ts": [
       "tslint -c tslint.json"
     ],
-    "*.+(js|json|jsx|ts|tsx|md|mdx)": [
+    "**/*.+(js|jsx|json|yml|yaml|css|less|scss|ts|tsx|md|graphql|mdx)": [
       "echo 'Welcome home'",
       "prettier --write",
       "git add"
