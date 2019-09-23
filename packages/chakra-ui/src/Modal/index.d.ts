@@ -101,7 +101,6 @@ export interface IModal {
   addAriaLabels?: boolean | { header?: boolean; body?: boolean };
   /**
    * The function to format the `id`s passed to the `ModalHeader`, `Modalbody`, and `ModalContent`
-   * @private
    */
   formatIds?: (
     id: string | number,

@@ -3,5 +3,11 @@
   "version": "independent",
   "registry": "https://registry.npmjs.org/",
   "npmClient": "yarn",
-  "useWorkspaces": true
+  "useWorkspaces": true,
+  "command": {
+    "publish": {
+      "allowBranch": "master",
+      "message": "chore(release): publish"
+    }
+  }
 }

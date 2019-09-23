@@ -4,7 +4,6 @@ import {
   Box,
   Heading,
   Text,
-  ButtonGroup,
   Button,
   Grid,
   Divider,
@@ -12,7 +11,6 @@ import {
   Stack,
   Link,
 } from "@chakra-ui/core";
-import { useRouter } from "next/router";
 import Header from "../components/Header";
 import { DiGithubBadge } from "react-icons/di";
 import { MdAccessibility, MdPalette, MdGrain, MdEmail } from "react-icons/md";
@@ -21,6 +19,7 @@ import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
 import theme from "prism-react-renderer/themes/nightOwl";
 import * as Chakra from "@chakra-ui/core";
 import * as ReactMdIcons from "react-icons/md";
+import NextLink from "next/link";
 
 export const Container = props => (
   <Box width="full" maxWidth="1280px" mx="auto" px={6} {...props} />
@@ -81,7 +80,6 @@ const FooterLink = ({ icon, href }) => (
 );
 
 export default () => {
-  const router = useRouter();
   return (
     <Box mb={20}>
       <Header />
@@ -102,22 +100,23 @@ export default () => {
               React applications.
             </Text>
 
-            <ButtonGroup size="lg" spacing="4" mt="6">
-              <Button
-                variantColor="teal"
-                onClick={() => router.push("/getting-started")}
-              >
-                Get Started
-              </Button>
+            <Box mt="6">
+              <NextLink href="/getting-started" passHref>
+                <Button size="lg" as="a" variantColor="teal">
+                  Get Started
+                </Button>
+              </NextLink>
               <Button
                 as="a"
+                size="lg"
+                ml={4}
                 href="https://github.com/chakra-ui/chakra-ui/"
                 target="__blank"
                 leftIcon={props => <DiGithubBadge size="1.5em" {...props} />}
               >
                 GitHub
               </Button>
-            </ButtonGroup>
+            </Box>
           </Box>
         </Container>
       </Box>
