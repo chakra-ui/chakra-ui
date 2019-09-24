@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/core",
-  "version": "0.2.8",
+  "version": "0.3.0",
   "description": "Responsive and accessible React UI components built with React and Emotion",
   "main": "dist/index.js",
   "module": "dist/es/index.js",
@@ -26,7 +26,6 @@
   },
   "dependencies": {
     "@reach/auto-id": "0.2.0",
-    "styled-system": "5.0.5",
     "@styled-system/css": "5.0.13",
     "@styled-system/should-forward-prop": "5.0.12",
     "@types/styled-system": "5.0.1",
@@ -38,12 +37,13 @@
     "react-animate-height": "2.0.9",
     "react-focus-lock": "^2.1.0",
     "react-spring": "8.0.23",
+    "styled-system": "5.0.5",
     "toasted-notes": "2.1.6",
     "use-dark-mode": "2.3.1"
   },
   "devDependencies": {
-    "@storybook/addon-docs": "^5.2.1",
     "@storybook/addon-actions": "^5.2.1",
+    "@storybook/addon-docs": "^5.2.1",
     "@storybook/addon-knobs": "5.2.1",
     "@storybook/addon-links": "^5.2.1",
     "@storybook/addons": "^5.2.1",
