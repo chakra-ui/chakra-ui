@@ -5,7 +5,7 @@ can be useful when you need users to complete a task or view some details
 without leaving the current page.
 
 > 🚨 The latest version of Chakra UI introduced a breaking change to this
-> component. Kindly update accordingly.
+> component's API. Kindly update accordingly.
 
 ## Installation
 
@@ -107,10 +107,10 @@ function PlacementExample() {
 }
 ```
 
-### Giving focus to an element
+### Focus on specific element
 
-When a form is in the drawer, you might need to set focus on a field when the
-drawer opens. Pass the `initialFocusRef` prop.
+When a form is in the drawer, you might need to set focus on a specific element
+when the drawer opens. Pass the `initialFocusRef` prop.
 
 > Without the `initialFocusRef` prop, the drawer will set focus on the **first
 > focusable element** when it opens.
@@ -247,10 +247,17 @@ function SizeExample() {
 
 ## Props
 
-The Drawer and it's components composes the `Modal` with exception of the
-following props:
+### Drawer Props
+
+Drawer composes the `Modal` component with these extra props:
 
 | Name           | Type                             | Default | Description                                                                                         |
 | -------------- | -------------------------------- | ------- | --------------------------------------------------------------------------------------------------- |
 | `isFullHeight` | `boolean`                        | `false` | If `true` and `placement` is set to `top` or `bottom`, the drawer fills the height of the viewport. |
 | `placement`    | `left`, `right`, `top`, `bottom` | `right` | The ref to the initial element to receive focus when the drawer opens.                              |
+
+### Other components
+
+- `DrawerOverlay`, `DrawerFooter`, `DrawerHeader` and `DrawerBody` composes
+  `Box` component
+- `DrawerCloseButton` composes `CloseButton`

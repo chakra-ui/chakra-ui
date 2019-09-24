@@ -34,6 +34,21 @@ import { Link } from "@chakra-ui/core";
 </Text>
 ```
 
+## Usage with Routing Library
+
+To use the `Link` with a routing Library like Reach Router or React Router, all
+you need to do is to pass the `as` prop. It'll replace the rendered `a` tag with
+with Reach's Link.
+
+```jsx live=false
+// 1. import { Link as ReachLink } from "@reach/router"
+
+// 2. Then use it like this
+<Link as={ReachLink} to="/home">
+  Home
+</Link>
+```
+
 ## Props
 
 The link component composes the [PseudoBox](/pseudobox) component.

@@ -4,19 +4,19 @@ AlertDialog component is used interrupt the user with a mandatory confirmation
 or action.
 
 > 🚨 The latest version of Chakra UI introduced a breaking change to this
-> component. Kindly update accordingly.
+> component's API. Kindly update accordingly.
 
 ## Import
 
-Chakra UI exports 4 alert dialog related components.
+Chakra UI exports 7 alert dialog related components.
 
-- `AlertDialog`: renders an overlay and wraps the content for the dialog.
-- `AlertDialogHeader`: contains the title announced by screen readers.
-- `AlertDialogBody`: contains the description announced by screen readers.
-- `AlertDialogFooter`: contains the actions of the dialog.
-- `AlertDialogOverlay`: The dimmed overlay behind the alert dialog
-- `AlertDialogContent`: The container for the alert dialog's content
-- `AlertDialogCloseButton`: The button that closes the alert dialog.
+- `AlertDialog`: provides context and state for the dialog.
+- `AlertDialogHeader`: should contain the title announced by screen readers.
+- `AlertDialogBody`: should contain the description announced by screen readers.
+- `AlertDialogFooter`: should contain the actions of the dialog.
+- `AlertDialogOverlay`: The dimmed overlay behind the dialog.
+- `AlertDialogContent`: The wrapper for the alert dialog's content.
+- `AlertDialogCloseButton`: The button that closes the dialog.
 
 ```js
 import {
@@ -83,8 +83,8 @@ function AlertDialogExample() {
 ### Adding transition
 
 The modal doesn't come with any transition by default so you can manage this
-yourself. Chakra exports two useful transition components `SlideIn` and `Scale`
-to provide simple transitions.
+yourself. Chakra exports two transition components `SlideIn` and `Scale` to
+provide simple transitions.
 
 > For some reason, focus doesn't return back to the trigger after the transition
 > ends. As a walkaround, you might need to set `finalFocusRef` to the trigger or

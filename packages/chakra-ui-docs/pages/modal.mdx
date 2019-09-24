@@ -5,7 +5,7 @@ window. Contents behind a modal dialog are **inert** meaning that users cannot
 interact with content behind the dialog.
 
 > 🚨 The latest version of Chakra UI introduced a breaking change to this
-> component. Kindly update accordingly.
+> component's API. Kindly update accordingly.
 
 ## Import
 
@@ -68,10 +68,7 @@ function BasicUsage() {
 ### Control Focus when Modal closes
 
 When the dialog closes, it returns focus to the element that triggered. Set
-`returnFocusOnClose` to `false` if you want to control this manually.
-
-> Ensure you manually set the focus when the modal closes so users know where
-> the focus is. Use the `finalFocusRef` prop to achieve this.
+`finalFocusRef` to element that should receive focus when the modal opens.
 
 ```jsx
 function ReturnFocus() {
@@ -87,12 +84,7 @@ function ReturnFocus() {
       <Button mt={4} onClick={onOpen}>
         Open Modal
       </Button>
-      <Modal
-        returnFocusOnClose={false}
-        finalFocusRef={finalRef}
-        isOpen={isOpen}
-        onClose={onClose}
-      >
+      <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Modal Title</ModalHeader>
@@ -291,8 +283,8 @@ function VerticallyCenter() {
 ### Adding transition
 
 The modal doesn't come with any transition by default so you can manage this
-yourself. Chakra exports two useful transition components `SlideIn` and `Scale`
-to provide simple transitions.
+yourself. Chakra exports two transition components `SlideIn` and `Scale` to
+provide simple transitions.
 
 > For some reason, focus doesn't return back to the trigger after the transition
 > ends. As a walkaround, you might need to set `finalFocusRef` to the trigger or
@@ -455,6 +447,8 @@ To disable this behavior, set `useInert` to `false`.
 
 ## Props
 
+### Modal Props
+
 | Name                | Type                                          | Default   | Description                                                                                                                         |
 | ------------------- | --------------------------------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | isOpen              | `boolean`                                     |           | If true, the modal will open                                                                                                        |
@@ -473,6 +467,8 @@ To disable this behavior, set `useInert` to `false`.
 | addAriaLabels       | `boolean`, `{header: boolean, body: boolean}` | `true`    | If `false`, no `aria-*` properties will be added by default.                                                                        |
 | id                  | `string`                                      |           | The `id` of the modal                                                                                                               |
 
-- `ModalOverlay`, `ModalHeader` and `ModalBody` composes `Box` component
-- `ModalFooter` composes `Flex` component
+### Other components
+
+- `ModalOverlay`, `ModalHeader`, `ModalFooter` and `ModalBody` composes `Box`
+  component
 - `ModalCloseButton` composes `CloseButton`
