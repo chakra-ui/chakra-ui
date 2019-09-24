@@ -3,6 +3,9 @@
 AlertDialog component is used interrupt the user with a mandatory confirmation
 or action.
 
+> 🚨 The latest version of Chakra UI introduced a breaking change to this
+> component. Kindly update accordingly.
+
 ## Import
 
 Chakra UI exports 4 alert dialog related components.
@@ -79,9 +82,9 @@ function AlertDialogExample() {
 
 ### Adding transition
 
-The dialog doesn't come with any transition by default so you can manage this
-yourself. Chakra exports some useful transition components for simple
-transitions.
+The modal doesn't come with any transition by default so you can manage this
+yourself. Chakra exports two useful transition components `SlideIn` and `Scale`
+to provide simple transitions.
 
 > For some reason, focus doesn't return back to the trigger after the transition
 > ends. As a walkaround, you might need to set `finalFocusRef` to the trigger or
@@ -98,7 +101,7 @@ function TransitionExample() {
       <Button ref={btnRef} onClick={onOpen}>
         Discard
       </Button>
-
+      {/* You can swap the `Scale` with `SlideIn` to see a different transition */}
       <Scale in={isOpen}>
         {styles => (
           <AlertDialog
@@ -108,9 +111,9 @@ function TransitionExample() {
             isOpen={true}
           >
             <AlertDialogOverlay opacity={styles.opacity} />
-            <AlertDialogContent pb={5} {...styles}>
+            <AlertDialogContent {...styles}>
               <AlertDialogHeader>Discard Changes?</AlertDialogHeader>
-              <ModalCloseButton />
+              <AlertDialogCloseButton />
               <AlertDialogBody>
                 Are you sure you want to discard all of your notes? 44 words
                 will be deleted.
@@ -145,12 +148,10 @@ function TransitionExample() {
 
 ## Props
 
-| Name                           | Type                                | Default | Description                                                   |
-| ------------------------------ | ----------------------------------- | ------- | ------------------------------------------------------------- |
-| isOpen                         | `boolean`                           |         | If true, the `AlertDialog` will open                          |
-| onClose                        | `function`                          |         | The function to close the `AlertDialog`                       |
-| size                           | `xs`, `sm`, `md`, `lg`, `xl`        | `md`    | The maximum width of the AlertDialog                          |
-| isCentered                     | `boolean`                           |         | If `true`, the `AlertDialog` will be centered on screen       |
-| overlayBg                      | `StyledSystem.BackgroundColorProps` |         | The background color of the overlay.                          |
-| zIndex                         | `StyledSystem.ZIndexProps`          |         | The zIndex of the AlertDialog.                                |
-| leastDestructiveRef (required) | `React.Ref`                         |         | The least destructive action to get focus when dialog is open |
+AlertDialog and it's components composes the `Modal` component, the only
+exception is that it requires a `leastDestructiveRef` which is similar to the
+`initialFocusRef` in `Modal`
+
+| Name                           | Type        | Default | Description                                                   |
+| ------------------------------ | ----------- | ------- | ------------------------------------------------------------- |
+| leastDestructiveRef (required) | `React.Ref` |         | The least destructive action to get focus when dialog is open |

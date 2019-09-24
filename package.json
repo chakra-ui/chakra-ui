@@ -42,6 +42,11 @@
   "czConfig": {
     "path": "node_modules/cz-conventional-changelog"
   },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
   "devDependencies": {
     "@babel/cli": "7.5.5",
     "@babel/core": "7.5.5",
@@ -53,7 +58,6 @@
     "@babel/preset-react": "7.0.0",
     "@commitlint/cli": "8.2.0",
     "@commitlint/config-conventional": "8.2.0",
-    "@commitlint/prompt-cli": "8.2.0",
     "@emotion/core": "10.0.10",
     "@emotion/styled": "10.0.11",
     "@testing-library/react": "8.0.7",

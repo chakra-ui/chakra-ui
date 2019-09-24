@@ -3,6 +3,7 @@ import * as StyledSystem from "styled-system";
 import { BoxProps } from "../Box";
 import { IModal } from "../Modal";
 import { Omit } from "../common-types";
+import { CloseButtonProps } from "../CloseButton";
 
 interface IAlertDialog extends Omit<IModal, "initialFocusRef"> {
   leastDestructiveRef: React.RefObject<HTMLElement>;
@@ -29,5 +30,7 @@ export const AlertDialogBody: React.FC<BoxProps>;
  * The `AlertDialogFooter` contains the actions of the dialog.
  */
 export const AlertDialogFooter: React.FC<BoxProps>;
+
+export const AlertDialogCloseButton: React.FC<CloseButtonProps>;
 
 export default AlertDialog;

@@ -8,6 +8,7 @@ import {
   ModalBody,
   ModalHeader,
   ModalOverlay,
+  ModalCloseButton,
 } from "../Modal";
 
 const formatIds = id => ({
@@ -35,4 +36,5 @@ export {
   ModalBody as AlertDialogBody,
   ModalHeader as AlertDialogHeader,
   ModalFooter as AlertDialogFooter,
+  ModalCloseButton as AlertDialogCloseButton,
 };

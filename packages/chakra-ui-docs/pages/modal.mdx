@@ -1,12 +1,11 @@
 # Modal (Dialog)
 
 A dialog is a window overlaid on either the primary window or another dialog
-window. Windows under a modal dialog are **inert** meaning that users cannot
-interact with content outside the dialog.
+window. Contents behind a modal dialog are **inert** meaning that users cannot
+interact with content behind the dialog.
 
-Inert content behind an active dialog is typically visually dimmed using an
-overlay, and any attempt to interact with the inert content by clicking on the
-overlay, causes the dialog to close.
+> 🚨 The latest version of Chakra UI introduced a breaking change to this
+> component. Kindly update accordingly.
 
 ## Import
 
@@ -292,7 +291,8 @@ function VerticallyCenter() {
 ### Adding transition
 
 The modal doesn't come with any transition by default so you can manage this
-yourself. Chakra exports two useful transition components `SlideIn` and `Scale`.
+yourself. Chakra exports two useful transition components `SlideIn` and `Scale`
+to provide simple transitions.
 
 > For some reason, focus doesn't return back to the trigger after the transition
 > ends. As a walkaround, you might need to set `finalFocusRef` to the trigger or
