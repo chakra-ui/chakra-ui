@@ -21,17 +21,15 @@ const wrapEvent = (child, theirHandler, ourHandler) => event => {
 };
 
 const Tooltip = ({
-  color,
   label,
   "aria-label": ariaLabel,
-  showDelay = 250,
-  hideDelay = 500,
+  showDelay = 0,
+  hideDelay = 0,
   placement = "auto",
   children,
   hasArrow,
   closeOnClick,
   defaultIsOpen,
-  gutter,
   shouldWrapChildren,
   isOpen: controlledIsOpen,
   onOpen: onOpenProp,
@@ -80,9 +78,6 @@ const Tooltip = ({
   const _bg = colorMode === "dark" ? "gray.300" : "gray.700";
   const _color = colorMode === "dark" ? "gray.900" : "whiteAlpha.900";
 
-  const bgColor = rest.bg || rest.backgroundColor || _bg;
-  const textColor = color || _color;
-
   const handleClick = wrapEvent(children, "onClick", () => {
     if (closeOnClick) {
       closeWithDelay();
@@ -127,11 +122,11 @@ const Tooltip = ({
         py="2px"
         id={hasAriaLabel ? undefined : tooltipId}
         role={hasAriaLabel ? undefined : "tooltip"}
-        bg={bgColor}
+        bg={_bg}
         borderRadius="sm"
         fontWeight="medium"
         pointerEvents="none"
-        color={textColor}
+        color={_color}
         fontSize="sm"
         shadow="md"
         maxW="320px"

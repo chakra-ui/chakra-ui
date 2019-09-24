@@ -18,6 +18,7 @@ interface ISlider {
   color?: string;
   name?: string;
   id?: string;
+  onChange?: (newValue: number) => void;
   children: React.ReactNode;
 }
 
@@ -27,7 +28,7 @@ export const SliderTrack: React.FC<BoxProps>;
 
 export const SliderFilledTrack: React.FC<PseudoBoxProps>;
 
-export type SliderProps = ISlider & BoxProps;
+export type SliderProps = ISlider & Omit<BoxProps, "onChange">;
 
 declare const Slider: React.FC<SliderProps>;
 

@@ -9,6 +9,7 @@ export interface IRadioGroup {
   children?: React.ReactNode;
   defaultValue?: IRadio["value"];
   value?: IRadio["value"];
+  variantColor?: IRadio["variantColor"];
   onChange?: (
     event: React.ChangeEvent<HTMLInputElement>,
     value: IRadio["value"],

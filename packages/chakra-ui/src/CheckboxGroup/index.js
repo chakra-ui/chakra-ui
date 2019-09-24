@@ -1,13 +1,19 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { Children, cloneElement, useState, useRef } from "react";
+import {
+  Children,
+  cloneElement,
+  useState,
+  useRef,
+  isValidElement,
+} from "react";
 import { useId } from "@reach/auto-id";
 import Box from "../Box";
 
 const CheckboxGroup = ({
   onChange,
   name,
-  color,
+  variantColor,
   size,
   defaultValue,
   isInline,
@@ -39,6 +45,8 @@ const CheckboxGroup = ({
   const _name = name || fallbackName;
 
   const clones = Children.map(children, (child, index) => {
+    if (!isValidElement(child)) return;
+
     const isLastCheckbox = children.length === index + 1;
     const spacingProps = isInline ? { mr: spacing } : { mb: spacing };
 
@@ -49,7 +57,7 @@ const CheckboxGroup = ({
       >
         {cloneElement(child, {
           size: size,
-          color: color,
+          variantColor: variantColor,
           name: `${_name}-${index}`,
           onChange: _onChange,
           isChecked: _values.includes(child.props.value),

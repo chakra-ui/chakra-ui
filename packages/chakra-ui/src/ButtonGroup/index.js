@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import propTypes from "prop-types";
-import { Children, cloneElement } from "react";
+import { Children, cloneElement, isValidElement } from "react";
 import Box from "../Box";
 
 const ButtonGroup = ({
@@ -14,6 +14,8 @@ const ButtonGroup = ({
   ...rest
 }) => {
   const clones = Children.map(children, (child, index) => {
+    if (!isValidElement(child)) return;
+
     const isFirst = index === 0;
     const isLast = index === Children.count(children) - 1;
 

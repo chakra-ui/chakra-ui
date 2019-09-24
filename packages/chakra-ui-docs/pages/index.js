@@ -49,7 +49,7 @@ const sampleCode = `
 // Sample component from airbnb.com
 
 <Box>
-  <Image rounded="md" src="http://bit.ly/2k1H1t6"/>
+  <Image rounded="md" src="https://bit.ly/2k1H1t6"/>
   <Flex align="baseline" mt={2}>
     <Badge variantColor="pink">Plus</Badge>
     <Text

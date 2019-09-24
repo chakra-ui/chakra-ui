@@ -9,7 +9,7 @@ type _ButtonProps = Omit<
 
 interface IIconButton {
   /**
-   * The icon to be used. Refer to the [Icons](http://chakra-ui.com/icon/) section
+   * The icon to be used. Refer to the [Icons](https://chakra-ui.com/icon/) section
    * of the docs for the available icon options.
    */
   icon?: string;

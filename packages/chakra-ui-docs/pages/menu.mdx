@@ -90,7 +90,7 @@ the letter you typed.
     borderWidth="1px"
     _hover={{ bg: "gray.100" }}
     _expanded={{ bg: "red.200" }}
-    _focus={{ boxShadow: "outline" }}
+    _focus={{ outline: 0, boxShadow: "outline" }}
   >
     File <Icon name="chevron-down" />
   </MenuButton>
@@ -166,7 +166,7 @@ You can compose a menu for table headers to help with sorting and filtering
 options. Use the `MenuOptionGroup` and `MenuItemOption` components.
 
 ```jsx
-<Menu>
+<Menu closeOnSelect={false}>
   <MenuButton as={Button} variantColor="blue">
     MenuItem
   </MenuButton>
