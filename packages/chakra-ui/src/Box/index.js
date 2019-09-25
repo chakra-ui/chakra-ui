@@ -1,6 +1,9 @@
 /** @jsx jsx */
 import styled from "@emotion/styled";
-import shouldForwardProp from "@styled-system/should-forward-prop";
+import {
+  createShouldForwardProp,
+  props,
+} from "@styled-system/should-forward-prop";
 import {
   background,
   border,
@@ -37,10 +40,23 @@ export const systemProps = compose(
   shadow,
   typography,
   flexbox,
+  extraConfig,
 );
+
+const shouldForwardProp = createShouldForwardProp([
+  ...props,
+  "d",
+  "textDecoration",
+  "pointerEvents",
+  "visibility",
+  "transform",
+  "cursor",
+  "fill",
+  "stroke",
+]);
 
 const Box = styled("div", {
   shouldForwardProp,
-})(truncate, systemProps, extraConfig);
+})(truncate, systemProps);
 
 export default Box;
