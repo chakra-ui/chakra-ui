@@ -1,87 +1,133 @@
-# Welcome to Chakra UI ⚡️
+<br />
 
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+<p align="center">
+  <a href="https://github.com/reakit/reakit/tree/master/logo">
+    <img src="https://github.com/chakra-ui/chakra-ui/blob/master/logo/logo-colored@2x.png?raw=true" alt="Reakit symbol" width="300" />
+  </a>
+</p>
 
-- Works out of the box. Chakra UI contains a set of polished React components
-  that work out of the box.
+<h1 align="center">Build Accessible React Apps with Speed ⚡️</h1>
 
-- Flexible & composable. Chakra UI components are built on top of a React UI
-  Primitive for endless composability.
+<br>
 
-- Accessible. Chakra UI components follows the WAI-ARIA guidelines
-  specifications.
+<p align="center">
+  <img alt="All Contributors" src="https://img.shields.io/github/contributors/chakra-ui/chakra-ui"/>
+  <img alt="Bundle Size" src="https://badgen.net/bundlephobia/minzip/@chakra-ui/core"/>
+  <img alt="MIT License" src="https://img.shields.io/github/license/chakra-ui/chakra-ui"/>
+  <img alt="NPM Downloads" src="https://img.shields.io/npm/dm/@chakra-ui/core.svg?style=flat"/>
+  <a href="https://spectrum.chat/chakra-ui"><img alt="Spectrum" src="https://img.shields.io/badge/community-spectrum-7A2DFB.svg?style=flat-square" /></a>
+  <img alt="Spectrum" src="https://badgen.net/github/last-commit/chakra-ui/chakra-ui" />
+  <img alt="Spectrum" src="https://badgen.net/github/stars/chakra-ui/chakra-ui" />
+</p>
+<br />
 
-- Dark Mode 😍: All components are dark mode compatible.
+Chakra UI provides a set of accessible, reusable and composable React components
+that make it super easy to create websites and apps.
 
 ## Looking for the documentation?
 
-https://chakra-ui.com
+Here over here => https://chakra-ui.com
 
-## Supporting Chakra UI 💖
+## Features
 
-Chakra UI is an MIT-licensed open source project. It's an independent project
-with ongoing development made possible thanks to the support of amazing
-contributors. If you're happy with Chakra UI and would like to support it's
-ongoing development, we'll appreciate some support.
+- Ease of Styling: Chakra UI contains a set of layout components like `Box` and
+  `Stack` that make it easy to style your components by passing props.
+  [Learn more](https://chakra-ui.com/style-props)
+- Flexible & composable: Chakra UI components are built on top of a React UI
+  Primitive for endless composability.
+- Accessible. Chakra UI components follows the WAI-ARIA guidelines
+  specifications and have the right `aria-*` attributes.
+- Dark Mode 😍: Most components in Chakra UI are dark mode compatible.
 
-- [Become a backer or sponsor on Patreon](https://www.patreon.com/segunadebayo).
-- [Become a backer or sponsor on OpenCollective](https://opencollective.com/chakra-ui).
+## Support Chakra UI 💖
 
-### What's the difference between Patreon and OpenCollective?
+By donating \$5 or more you can support the ongoing development of this project.
+We'll appreciate some support! 🙏
 
-Funds donated via Patreon directly support
-[Segun Adebayo](https://github.com/segunadebayo)'s work on Chakra UI. Funds
-donated via OpenCollective are managed transparently and will be used for
-compensating work and expenses for core team members. Your name/logo will
-receive proper recognition and exposure by donating on either platform.
+- To support [Segun Adebayo](https://github.com/segunadebayo)'s work <br><br>
+  <a href="https://www.patreon.com/bePatron?u=24162613" data-patreon-widget-type="become-patron-button">Become
+  a
+  Patron!</a><script async src="https://c6.patreon.com/becomePatronButton.bundle.js"></script>
+
+- To support the Chakra UI core team members and maintainers <br><br>
+  <a href="https://opencollective.com/webpack/donate" target="_blank">
+  <img src="https://opencollective.com/webpack/donate/button@2x.png?color=blue" width=300 />
+  </a>
+
+## Testimonials
+
+> People throw React component libraries and design systems at me regularly.
+> This might be the best one I've seen. The APIs are simple but composable and
+> the accessibility on the couple components I looked is complete.
+>
+> Great work @thesegunadebayo, really inspiring work. –
+> [Ryan Florence](https://twitter.com/ryanflorence/status/1169260008069947392)
+
+> Awesome new open-source component library from @thesegunadebayo. Really
+> impressive stuff! –
+> [Colm Tuite](https://twitter.com/colmtuite/status/1169622886052782081)
+
+> This is incredible work. Amazing job Segun! –
+> [Lee Robinson](https://twitter.com/leeerob/status/1169330130361159682)
+
+> Chakra UI is glorious! I love the consistent use of focus styling and the
+> subtle animation –
+> [Guillermo ▲](https://twitter.com/rauchg/status/1169632334389248000)
 
 ## Installing Chakra UI
 
-⚡️Chakra UI is made up of multiple components and tools which you can import
-one by one. All you need to do is install the `@chakra-ui/core` package and its
-peer dependencies:
+To use Chakra UI components, all you need to do is install the `@chakra-ui/core`
+package and its peer dependencies:
 
 ```sh
 $ yarn add @chakra-ui/core @emotion/core @emotion/styled emotion-theming
+
 # or
+
 $ npm install @chakra-ui/core @emotion/core @emotion/styled emotion-theming
 ```
 
-# Getting set up
+## Usage
 
 To start using the components, please follow these steps:
 
-1. Wrap your application in a `ThemeProvider` provided by **@chakra-ui/core**
+1. Wrap your application with the `ThemeProvider` provided by
+   **@chakra-ui/core**. We recommend that you also add the `CSSReset` component
+   to remove all browser styling.
 
 ```jsx
-import { ThemeProvider, ColorModeProvider } from "@chakra-ui/core";
+import { ThemeProvider, CSSReset } from "@chakra-ui/core".
 
+// Do this at the root of your application
 const App = ({ children }) => (
   <ThemeProvider>
-    <ColorModeProvider>{children}</ColorModeProvider>
+    <CSSReset />
+    {children}
   </ThemeProvider>
 );
 ```
 
-`ColorModeProvider` is a context that provides light mode and dark mode values
-to the components. It also comes with a function to toggle between light/dark
-mode.
+Optionally, you can wrap your application with the `ColorModeProvider` so you
+can toggle beween light and dark mode within your app.
 
 2. Now you can start using components like so!:
 
 ```jsx
 import { Button } from "@chakra-ui/core";
 
-const App = () => <Button>I just consumed some ⚡️Chakra!</Button>;
+<Button>I just consumed some ⚡️Chakra!</Button>;
 ```
 
-# Contributing
+## CodeSandbox
+
+- JavaScript: https://codesandbox.io/s/chakra-js-starter-lzzg9
+
+- Typescript: https://codesandbox.io/s/chakra-ts-starter-pomi8
+
+## Contributing
 
 Feel like contributing? That's awesome! We have a
 [contributing guide](./CONTRIBUTING.md) to help guide you.
-
-The components to be built come from the
-[Aria Practices Design Patterns and Widgets](https://www.w3.org/TR/wai-aria-practices-1.1).
 
 ## Contributors ✨
 
