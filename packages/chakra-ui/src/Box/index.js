@@ -37,10 +37,11 @@ export const systemProps = compose(
   shadow,
   typography,
   flexbox,
+  extraConfig,
 );
 
 const Box = styled("div", {
   shouldForwardProp,
-})(truncate, systemProps, extraConfig);
+})(truncate, systemProps);
 
 export default Box;
