@@ -17,7 +17,7 @@ type ModalSizes =
   | "full";
 
 export interface IModal {
-  container: React.Ref<HTMLElement>;
+  container?: React.Ref<HTMLElement>;
   /**
    * If `true`, the modal when be opened.
    */

@@ -4,12 +4,9 @@
   "npmClient": "yarn",
   "useWorkspaces": true,
   "registry": "https://registry.npmjs.org/",
-  "npmClient": "yarn",
-  "useWorkspaces": true,
   "command": {
     "publish": {
       "conventionalCommits": true,
-      "allowBranch": "master",
       "message": "chore(release): publish"
     }
   }
