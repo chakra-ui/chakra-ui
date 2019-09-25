@@ -45,13 +45,11 @@ By donating \$5 or more you can support the ongoing development of this project.
 We'll appreciate some support! 🙏
 
 - To support [Segun Adebayo](https://github.com/segunadebayo)'s work <br><br>
-  <a href="https://www.patreon.com/bePatron?u=24162613" data-patreon-widget-type="become-patron-button">Become
-  a
-  Patron!</a><script async src="https://c6.patreon.com/becomePatronButton.bundle.js"></script>
+  <a href="https://www.patreon.com/bePatron?u=24162613" data-patreon-widget-type="become-patron-button"><img height="56px" src="https://cloakandmeeple.files.wordpress.com/2017/06/become_a_patron_button3x.png?w=610"/></a>
 
 - To support the Chakra UI core team members and maintainers <br><br>
-  <a href="https://opencollective.com/webpack/donate" target="_blank">
-  <img src="https://opencollective.com/webpack/donate/button@2x.png?color=blue" width=300 />
+  <a href="https://opencollective.com/chakra-ui/donate" target="_blank">
+  <img src="https://opencollective.com/chakra-ui/donate/button@2x.png?color=blue" width=300 />
   </a>
 
 ## Testimonials
