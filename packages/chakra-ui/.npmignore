@@ -1,10 +1,8 @@
-node_modules
-tests
-demo
 src
 scripts
-stories
-.storybook
-.env
-.gitignore
-*.log
+tests
+*.tgz
+babel.config.js
+rollup.config.js
+tsconfig.json
+tslint.json
