@@ -6,9 +6,9 @@ import { PseudoBoxProps } from "../PseudoBox";
 import { PopperProps } from "../Popper";
 
 interface PopoverContextValue {
-  popoverRef: React.Ref<HTMLElement>;
+  popoverRef: React.RefObject<HTMLElement>;
   placement: PopperJS.Placement;
-  referenceRef: React.Ref<HTMLElement>;
+  referenceRef: React.RefObject<HTMLElement>;
   headerId: string;
   bodyId: string;
   popoverId: string;
@@ -20,7 +20,7 @@ interface PopoverContextValue {
   onBlur: React.FocusEventHandler<HTMLElement>;
   closeOnEsc: boolean;
   initialFocusRef: boolean;
-  isHoveringRef: React.Ref<boolean>;
+  isHoveringRef: React.RefObject<boolean>;
   usePortal: boolean;
 }
 
@@ -58,9 +58,9 @@ interface IPopover {
   /**
    * The `ref` of the element that should receive focus when the popover opens.
    */
-  initialFocusRef?: React.Ref<HTMLElement>;
+  initialFocusRef?: React.RefObject<HTMLElement>;
   /**
-   * The action that triggers the popover.
+   * The interaction that triggers the popover.
    *
    * `hover` - means the popover will open when you hover with mouse or
    * focus with keyboard on the popover trigger
