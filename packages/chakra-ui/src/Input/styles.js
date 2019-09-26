@@ -1,8 +1,9 @@
 import { useTheme } from "../ThemeProvider";
 import { useColorMode } from "../ColorModeProvider";
+import { get } from "@styled-system/core";
 
 const outlinedStyle = ({
-  theme: { colors },
+  theme,
   colorMode,
   focusBorderColor,
   errorBorderColor,
@@ -11,10 +12,22 @@ const outlinedStyle = ({
   const borderColor = { light: "inherit", dark: "whiteAlpha.50" };
   const hoverColor = { light: "gray.300", dark: "whiteAlpha.200" };
 
-  const boxShadow = colors[focusBorderColor] && colors[focusBorderColor][500];
-
-  const invalidColor = { light: "red.500", dark: "red.300" };
-  const invalidBoxShadow = { light: errorBorderColor, dark: errorBorderColor };
+  /**
+   * styled-system's get takes 3 args
+   * - object or array to read from
+   * - key to get
+   * - fallback value
+   */
+  const _focusBorderColor = get(
+    theme.colors,
+    focusBorderColor,
+    focusBorderColor, // If color doesn't exist in theme, use it's raw value
+  );
+  const _errorBorderColor = get(
+    theme.colors,
+    errorBorderColor,
+    errorBorderColor,
+  );
 
   return {
     ...readOnly,
@@ -29,12 +42,12 @@ const outlinedStyle = ({
       cursor: "not-allowed",
     },
     _focus: {
-      borderColor: focusBorderColor,
-      boxShadow: `0 0 0 1px ${boxShadow}`,
+      borderColor: _focusBorderColor,
+      boxShadow: `0 0 0 1px ${_focusBorderColor}`,
     },
     _invalid: {
-      borderColor: invalidColor[colorMode],
-      boxShadow: `0 0 0 1px ${invalidBoxShadow[colorMode]}`,
+      borderColor: _errorBorderColor,
+      boxShadow: `0 0 0 1px ${_errorBorderColor}`,
     },
   };
 };
@@ -47,14 +60,25 @@ const readOnly = {
   },
 };
 
-const filledStyle = ({ focusBorderColor, errorBorderColor, colorMode }) => {
+const filledStyle = ({
+  theme,
+  focusBorderColor,
+  errorBorderColor,
+  colorMode,
+}) => {
   const bg = { light: "gray.100", dark: "whiteAlpha.50" };
   const hoverColor = { light: "gray.200", dark: "whiteAlpha.100" };
-  const invalidColor = { light: errorBorderColor, dark: errorBorderColor };
-  const focusColor = {
-    light: focusBorderColor,
-    dark: focusBorderColor,
-  };
+
+  const _focusBorderColor = get(
+    theme.colors,
+    focusBorderColor,
+    focusBorderColor,
+  );
+  const _errorBorderColor = get(
+    theme.colors,
+    errorBorderColor,
+    errorBorderColor,
+  );
 
   return {
     ...readOnly,
@@ -70,17 +94,25 @@ const filledStyle = ({ focusBorderColor, errorBorderColor, colorMode }) => {
     },
     _focus: {
       bg: "transparent",
-      borderColor: focusColor[colorMode],
+      borderColor: _focusBorderColor,
     },
     _invalid: {
-      borderColor: invalidColor[colorMode],
+      borderColor: _errorBorderColor,
     },
   };
 };
 
-const flushedStyle = ({ colorMode, focusBorderColor, errorBorderColor }) => {
-  const focusColor = { light: focusBorderColor, dark: focusBorderColor };
-  const errorColor = { light: errorBorderColor, dark: errorBorderColor };
+const flushedStyle = ({ theme, focusBorderColor, errorBorderColor }) => {
+  const _focusBorderColor = get(
+    theme.colors,
+    focusBorderColor,
+    focusBorderColor,
+  );
+  const _errorBorderColor = get(
+    theme.colors,
+    errorBorderColor,
+    errorBorderColor,
+  );
 
   return {
     ...readOnly,
@@ -90,10 +122,10 @@ const flushedStyle = ({ colorMode, focusBorderColor, errorBorderColor }) => {
     px: undefined,
     bg: "transparent",
     _focus: {
-      borderColor: focusColor[colorMode],
+      borderColor: _focusBorderColor,
     },
     _invalid: {
-      borderColor: errorColor[colorMode],
+      borderColor: _errorBorderColor,
     },
   };
 };
