@@ -1,5 +1,7 @@
 import * as React from "react";
-import { IModal } from "../Modal";
+import { IModal, ModalContentProps } from "../Modal";
+import { BoxProps } from "../Box";
+import { CloseButtonProps } from "../CloseButton";
 
 interface IDrawer extends IModal {
   /**
@@ -16,27 +18,15 @@ interface IDrawer extends IModal {
   placement?: "top" | "left" | "bottom" | "right";
   /**
    * The element to receive focus when the drawer closes.
-   *
-   * 🚨 This prop is required.
    * You could point it to the element that triggered the drawer
    */
-  finalFocusRef: IModal["finialFocusRef"];
+  finalFocusRef?: IModal["finalFocusRef"];
 }
 
-interface IDrawerTransition {
-  in: IDrawer["isOpen"];
-  children?: React.ReactNode;
-  duration?: number;
-  placement?: IDrawer["placement"];
-  isFullHeight?: IDrawer["isFullHeight"];
-}
-
-export type DrawerProps = IDrawer;
-
-export type DrawerTransitionProps = IDrawerTransition;
-
-declare const Drawer: React.FC<DrawerProps>;
-
-export const DrawerTransition: React.FC<DrawerTransitionProps>;
-
-export default Drawer;
+export const Drawer: React.FC<IDrawer>;
+export const DrawerBody: React.FC<BoxProps>;
+export const DrawerHeader: React.FC<BoxProps>;
+export const DrawerContent: React.FC<ModalContentProps>;
+export const DrawerFooter: React.FC<BoxProps>;
+export const DrawerOverlay: React.FC<BoxProps>;
+export const DrawerCloseButton: React.FC<CloseButtonProps>;
