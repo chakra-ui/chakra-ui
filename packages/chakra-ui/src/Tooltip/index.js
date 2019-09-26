@@ -9,9 +9,7 @@ import Popper, { PopperArrow } from "../Popper";
 import VisuallyHidden from "../VisuallyHidden";
 
 const wrapEvent = (child, theirHandler, ourHandler) => event => {
-  if (typeof child === "string") return;
-
-  if (child.props[theirHandler]) {
+  if (typeof child !== "string" && child.props[theirHandler]) {
     child.props[theirHandler](event);
   }
 
@@ -94,14 +92,17 @@ const Tooltip = ({
     ...(_isOpen && { "aria-describedby": tooltipId }),
   };
 
-  const clone =
-    typeof children === "string" || shouldWrapChildren ? (
+  let clone;
+
+  if (typeof children === "string" || shouldWrapChildren) {
+    clone = (
       <Box as="span" tabIndex="0" {...referenceProps}>
         {children}
       </Box>
-    ) : (
-      cloneElement(Children.only(children), referenceProps)
     );
+  } else {
+    clone = cloneElement(Children.only(children), referenceProps);
+  }
 
   const hasAriaLabel = ariaLabel != null;
 
