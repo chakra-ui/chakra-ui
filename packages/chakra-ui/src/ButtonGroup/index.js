@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import propTypes from "prop-types";
 import { Children, cloneElement, isValidElement } from "react";
 import Box from "../Box";
 
@@ -37,18 +36,6 @@ const ButtonGroup = ({
       {clones}
     </Box>
   );
-};
-
-ButtonGroup.propTypes = {
-  size: propTypes.oneOf(["sm", "md", "lg"]),
-  color: propTypes.string,
-  /**
-   * If `true`, the borderRadius of button that are direct children will be altered
-   * to look flushed together
-   * */
-  isAttached: propTypes.bool,
-  spacing: propTypes.oneOfType([propTypes.string, propTypes.number]),
-  children: propTypes.node.isRequired,
 };
 
 export default ButtonGroup;

@@ -17,7 +17,7 @@ type ModalSizes =
   | "full";
 
 export interface IModal {
-  container?: React.Ref<HTMLElement>;
+  container?: React.RefObject<HTMLElement>;
   /**
    * If `true`, the modal when be opened.
    */
@@ -62,7 +62,7 @@ export interface IModal {
   /**
    * The `ref` of element to receive focus when the modal closes.
    */
-  finialFocusRef?: React.RefObject<HTMLElement>;
+  finalFocusRef?: React.RefObject<HTMLElement>;
   /**
    * Where scroll behaviour should originate.
    * - If set to `inside`, scroll only occurs within the `ModalBody`.
@@ -118,7 +118,6 @@ interface IModalContent {
 
 type ModalContentProps = IModalContent & BoxProps;
 export const ModalContent: React.FC<ModalContentProps>;
-
 export const ModalHeader: React.FC<BoxProps>;
 export const ModalFooter: React.FC<BoxProps>;
 export const ModalBody: React.FC<BoxProps>;

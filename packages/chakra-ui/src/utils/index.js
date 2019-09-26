@@ -46,34 +46,6 @@ export function getFocusables(element, keyboardOnly = false) {
   return focusableEls;
 }
 
-/// Evaluate color in theme object
-
-const colorKeyInTheme = (theme, color) => color in theme.colors;
-
-const colorHueValue = (theme, color) => {
-  let hasDot = color.search(".") !== -1;
-  if (hasDot) {
-    const [colorName, hue] = color.split(".");
-
-    if (colorKeyInTheme(theme, colorName)) {
-      return theme.colors[colorName][hue];
-    }
-  }
-  return null;
-};
-
-export const getColorInTheme = (theme, color) => {
-  if (colorKeyInTheme(theme, color)) {
-    return theme.colors[color][500];
-  }
-
-  if (colorHueValue(theme, color)) {
-    return colorHueValue(theme, color);
-  }
-
-  return color;
-};
-
 export function setRef(ref, value) {
   if (typeof ref === "function") {
     ref(value);

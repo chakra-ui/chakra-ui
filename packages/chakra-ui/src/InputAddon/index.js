@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { oneOf } from "prop-types";
 import Box from "../Box";
 import useInputStyle from "../Input/styles";
 import { useColorMode } from "../ColorModeProvider";
@@ -36,10 +35,6 @@ const InputAddon = ({ placement = "left", size = "md", ...props }) => {
       css={{ "input:focus + &": { zIndex: -1 } }}
     />
   );
-};
-
-InputAddon.propTypes = {
-  placement: oneOf(["left", "right"]),
 };
 
 const InputLeftAddon = props => <InputAddon placement="left" {...props} />;

@@ -63,7 +63,7 @@ export interface IPopper {
   /**
    * A ref that points to the used popper instance.
    */
-  popperRef?: React.Ref<PopperJs>;
+  popperRef?: React.RefObject<PopperJs>;
   /**
    * 🚨 Experiemental: Don't use this prop for now.
    * @ignore

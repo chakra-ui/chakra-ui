@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import propTypes from "prop-types";
 import {
   Children,
   cloneElement,
@@ -306,41 +305,6 @@ const Tabs = forwardRef(
     );
   },
 );
-
-Tabs.propTypes = {
-  /**
-   * The alignment of the tabs
-   * */
-  align: propTypes.oneOf(["start", "center", "end"]),
-  /**
-   * If `true`, tabs will stretch to width of the tablist
-   * */
-  isFitted: propTypes.bool,
-  /**
-   * The orientation of the <TabList/>
-   * */
-  orientation: propTypes.oneOf(["vertical", "horizontal"]),
-  /**
-   * The size of the tab (affects the font-size and padding)
-   * */
-  size: propTypes.oneOf(["sm", "md", "lg"]),
-  /**
-   * If `true`, the tabs will be manually activated and
-   * display its panel by pressing Space or Enter.
-   *
-   * If `false`, the tabs will be automatically activated
-   * and their panel is displayed when they receive focus.
-   */
-  isManual: propTypes.bool,
-  /**
-   * The children of the tabs should be `TabPanel` and `TabList`
-   */
-  children: propTypes.node.isRequired,
-  /**
-   * Callback when the index (controlled or un-controlled) changes
-   */
-  onChange: propTypes.func,
-};
 
 export default Tabs;
 export { TabList, Tab, TabPanel, TabPanels };

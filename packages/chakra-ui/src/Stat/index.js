@@ -1,4 +1,3 @@
-import { oneOf } from "prop-types";
 import React, { forwardRef } from "react";
 import Icon from "../Icon";
 import Text from "../Text";
@@ -46,10 +45,6 @@ const StatArrow = forwardRef(
     />
   ),
 );
-
-StatArrow.propTypes = {
-  type: oneOf(["increase", "decrease"]),
-};
 
 const Stat = forwardRef((props, ref) => (
   <Box ref={ref} flex="1" pr={4} position="relative" {...props} />

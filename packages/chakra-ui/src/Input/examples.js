@@ -4,7 +4,14 @@ import React from "react";
 import Box from "../Box";
 import Input from "../Input";
 
-const colors = ["blue.500", "red.200", "orange.300", "teal.600"];
+const colors = [
+  "blue.500",
+  "red.200",
+  "orange.300",
+  "teal.600",
+  "tomato",
+  "#fd5",
+];
 
 const stories = storiesOf("Input", module);
 
@@ -25,7 +32,7 @@ stories.add("Readonly", () => (
     placeholder="Here is a sample placeholder"
     variant="outline"
     size="md"
-    focusBorderColor="cyan"
+    focusBorderColor="cyan.500"
     isReadOnly
   />
 ));
