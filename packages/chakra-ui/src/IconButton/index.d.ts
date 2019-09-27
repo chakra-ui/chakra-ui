@@ -4,7 +4,7 @@ import { Omit } from "../common-types";
 
 type _ButtonProps = Omit<
   ButtonProps,
-  "loadingText" | "isFullWidth" | "leftIcon" | "rightIcon" | "iconSpacing"
+  "loadingText" | "isFullWidth" | "leftIcon" | "rightIcon" | "iconSpacing" | "children"
 >;
 
 interface IIconButton {
