@@ -57,6 +57,28 @@ Here's a list of the default icons Chakra UI comes with and their respective
   ))}
 </Grid>
 
+## Using an icon library
+
+Most times, you might need to use icons from a popular icon library like
+[react-icons](https://react-icons.netlify.com/). Here's how to go about it.
+
+```jsx live=false
+// 1. import the icon from "react-icons"
+import { MdSettings } from "react-icons/md"
+
+// 2. Use the `as` prop to render the icons
+<Box as={MdSettings} />
+
+// 3. Then you can pass all `Box` props to style the icon
+<Box as={MdSettings} size="32px" color="green.400" />
+```
+
+Here's a working example:
+
+```jsx
+<Box as={MdSettings} size="32px" color="green.400" />
+```
+
 ## Adding custom icons
 
 All Chakra icons are stored in the theme object under the `icons` key. So you
