@@ -16,8 +16,7 @@
     "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel --root-mode upward src -d dist/es --ignore \"**/examples.js\"",
     "build:umd": "cross-env NODE_ENV=production-umd rollup -c",
     "build:copy-types": "node ../../scripts/copy-files.js",
-    "version": "yarn build",
-    "build:watch": "nodemon -w src -x 'rm .babelrc &> /dev/null; yarn build'"
+    "version": "yarn build"
   },
   "dependencies": {
     "@reach/auto-id": "0.2.0",

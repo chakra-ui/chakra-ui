@@ -7,8 +7,7 @@
   "scripts": {
     "commit": "git-cz",
     "clean": "lerna clean --yes",
-    "core:dev": "yarn workspace @chakra-ui/core build:watch",
-    "reboot:core": "npm run core:build && npm run bootstrap",
+    "build": "lerna exec --parallel build",
     "bootstrap": "yarn clean && lerna bootstrap --use-workspaces",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "npm install && build-storybook",
