@@ -12,7 +12,7 @@ interface IIconButton {
    * The icon to be used. Refer to the [Icons](https://chakra-ui.com/icon/) section
    * of the docs for the available icon options.
    */
-  icon?: string;
+  icon: string | JSX.Element;
   /**
    * If `true`, the button will be perfectly round. Else, it'll be slightly round
    */
