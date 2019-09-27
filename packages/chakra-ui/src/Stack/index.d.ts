@@ -9,6 +9,10 @@ interface IStack {
    */
   isInline?: boolean;
   /**
+   * If `true` the items will be stacked horizontally inline.
+   */
+  direction?: FlexProps["direction"];
+  /**
    * The content of the stack.
    */
   children?: React.ReactNode;
