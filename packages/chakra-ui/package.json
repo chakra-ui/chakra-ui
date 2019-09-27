@@ -17,8 +17,6 @@
     "build:umd": "cross-env NODE_ENV=production-umd rollup -c",
     "build:copy-types": "node ../../scripts/copy-files.js",
     "version": "yarn build",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "npm install && build-storybook",
     "build:watch": "nodemon -w src -x 'rm .babelrc &> /dev/null; yarn build'"
   },
   "dependencies": {
@@ -37,14 +35,6 @@
     "styled-system": "5.0.5",
     "toasted-notes": "2.1.6",
     "use-dark-mode": "2.3.1"
-  },
-  "devDependencies": {
-    "@storybook/addon-actions": "^5.2.1",
-    "@storybook/addon-docs": "^5.2.1",
-    "@storybook/addon-knobs": "5.2.1",
-    "@storybook/addon-links": "^5.2.1",
-    "@storybook/addons": "^5.2.1",
-    "@storybook/react": "^5.2.1"
   },
   "peerDependencies": {
     "@emotion/core": "10.x",

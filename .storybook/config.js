@@ -1,15 +1,12 @@
 import { addDecorator, configure } from "@storybook/react";
 import React from "react";
-import { Button, Fixed } from "../src";
-import CSSReset from "../src/CSSReset";
-import { useColorMode } from "../src/ColorModeProvider";
-import ThemeProvider from "../src/ThemeProvider";
+import { CSSReset, useColorMode, ThemeProvider } from "@chakra-ui/core";
 
 // function loadStories() {
 //   require("../stories");
 // }
 
-const req = require.context("../src", true, /examples\.(js|mdx)$/);
+const req = require.context("../packages", true, /examples\.(js|mdx)$/);
 
 function loadStories() {
   req.keys().forEach(filename => req(filename));

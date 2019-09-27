@@ -10,7 +10,8 @@
     "core:dev": "yarn workspace @chakra-ui/core build:watch",
     "reboot:core": "npm run core:build && npm run bootstrap",
     "bootstrap": "yarn clean && lerna bootstrap --use-workspaces",
-    "storybook": "yarn workspace @chakra-ui/core storybook",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "npm install && build-storybook",
     "storybook:build": "yarn workspace @chakra-ui/core build-storybook",
     "docs:dev": "yarn workspace @chakra-ui/docs dev",
     "docs:build": "yarn workspace @chakra-ui/docs build",
@@ -46,6 +47,11 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   },
   "devDependencies": {
     "@babel/cli": "7.5.5",
@@ -107,11 +113,12 @@
     "rollup-plugin-terser": "5.1.1",
     "tslint": "5.18.0",
     "tslint-config-prettier": "1.18.0",
-    "typescript": "3.5.3"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
+    "typescript": "3.5.3",
+    "@storybook/addon-actions": "^5.2.1",
+    "@storybook/addon-docs": "^5.2.1",
+    "@storybook/addon-knobs": "5.2.1",
+    "@storybook/addon-links": "^5.2.1",
+    "@storybook/addons": "^5.2.1",
+    "@storybook/react": "^5.2.1"
   }
 }
