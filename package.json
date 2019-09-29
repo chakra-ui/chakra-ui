@@ -10,7 +10,7 @@
     "build": "lerna exec --parallel build",
     "bootstrap": "yarn clean && lerna bootstrap --use-workspaces",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "yarn install && yarn build-storybook",
+    "build-storybook": "build-storybook -c .storybook",
     "docs:dev": "yarn workspace @chakra-ui/docs dev",
     "docs:build": "yarn workspace @chakra-ui/docs build",
     "docs:deploy": "cd packages/chakra-ui-docs && now",
