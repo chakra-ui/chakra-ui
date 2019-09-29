@@ -418,6 +418,44 @@ function SizeExample() {
 }
 ```
 
+### Preserving the scrollbar gap
+
+By default, scrolling is blocked when the modal opens. This can lead to
+unpleasant content shift.
+
+To prevent this, pass the `preserveScrollBarGap` prop. It applies a
+`padding-right` to the body element that's equal to the width of the browser's
+scrollbar.
+
+```jsx
+function PreserveScrollBar() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  return (
+    <>
+      <Button onClick={onOpen}>Open Modal</Button>
+
+      <Modal preserveScrollBarGap isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal Title</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Lorem count={2} />
+          </ModalBody>
+
+          <ModalFooter>
+            <Button variantColor="blue" mr={3} onClick={onClose}>
+              Close
+            </Button>
+            <Button variant="ghost">Secondary Action</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
+  );
+}
+```
+
 ### Making other elements Inert
 
 When the modal is open, it's rendered within a portal and all it's siblings have
@@ -449,23 +487,24 @@ To disable this behavior, set `useInert` to `false`.
 
 ### Modal Props
 
-| Name                | Type                                          | Default   | Description                                                                                                                         |
-| ------------------- | --------------------------------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| isOpen              | `boolean`                                     |           | If true, the modal will open                                                                                                        |
-| onClose             | `(event, reason) => void`                     |           | Callback invoked to close the modal.                                                                                                |
-| isCentered          | `boolean`                                     |           | If `true`, the `Modal` will be centered on screen                                                                                   |
-| initialFocusRef     | `React.Ref`                                   |           | The least destructive action to get focus when dialog is open                                                                       |
-| finalFocusRef       | `React.Ref`                                   |           | The least destructive action to get focus when dialog is open                                                                       |
-| blockScrollOnMount  | `boolean`                                     | `true`    | If `true`, scrolling will be disabled on the `body` when the modal opens.                                                           |
-| useInert            | `boolean`                                     | `true`    | A11y: If `true`, the siblings of the `Modal` will have `aria-hidden` set to `true` so that screen readers can only see the `Modal`. |
-| children            | `React.ReactNode`                             |           | The content of the modal.                                                                                                           |
-| size                | `BoxProps["maxWidth"]`                        | `md`      | The size (maxWidth) of the modal.                                                                                                   |
-| scrollBehavior      | `inside`, `outside`                           | `outside` | Where scroll behaviour should originate.                                                                                            |
-| closeOnOverlayClick | `boolean`                                     | `true`    | If `true`, the modal will close when the overlay is clicked                                                                         |
-| returnFocusOnClose  | `boolean`                                     | `true`    | If `true`, the modal will return focus to the element that triggered it when it closes.                                             |
-| closeOnEsc          | `boolean`                                     | `true`    | If `true`, the modal will close when the `Esc` key is pressed                                                                       |
-| addAriaLabels       | `boolean`, `{header: boolean, body: boolean}` | `true`    | If `false`, no `aria-*` properties will be added by default.                                                                        |
-| id                  | `string`                                      |           | The `id` of the modal                                                                                                               |
+| Name                 | Type                                          | Default   | Description                                                                                                                         |
+| -------------------- | --------------------------------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| isOpen               | `boolean`                                     |           | If true, the modal will open                                                                                                        |
+| onClose              | `(event, reason) => void`                     |           | Callback invoked to close the modal.                                                                                                |
+| isCentered           | `boolean`                                     |           | If `true`, the `Modal` will be centered on screen                                                                                   |
+| initialFocusRef      | `React.Ref`                                   |           | The least destructive action to get focus when dialog is open                                                                       |
+| finalFocusRef        | `React.Ref`                                   |           | The least destructive action to get focus when dialog is open                                                                       |
+| blockScrollOnMount   | `boolean`                                     | `true`    | If `true`, scrolling will be disabled on the `body` when the modal opens.                                                           |
+| preserveScrollBarGap | `boolean`                                     |           | If `true`, a `padding-right` will be applied to the body element to preserve the scrollbar gap.                                     |
+| useInert             | `boolean`                                     | `true`    | A11y: If `true`, the siblings of the `Modal` will have `aria-hidden` set to `true` so that screen readers can only see the `Modal`. |
+| children             | `React.ReactNode`                             |           | The content of the modal.                                                                                                           |
+| size                 | `BoxProps["maxWidth"]`                        | `md`      | The size (maxWidth) of the modal.                                                                                                   |
+| scrollBehavior       | `inside`, `outside`                           | `outside` | Where scroll behaviour should originate.                                                                                            |
+| closeOnOverlayClick  | `boolean`                                     | `true`    | If `true`, the modal will close when the overlay is clicked                                                                         |
+| returnFocusOnClose   | `boolean`                                     | `true`    | If `true`, the modal will return focus to the element that triggered it when it closes.                                             |
+| closeOnEsc           | `boolean`                                     | `true`    | If `true`, the modal will close when the `Esc` key is pressed                                                                       |
+| addAriaLabels        | `boolean`, `{header: boolean, body: boolean}` | `true`    | If `false`, no `aria-*` properties will be added by default.                                                                        |
+| id                   | `string`                                      |           | The `id` of the modal                                                                                                               |
 
 ### Other components
 
