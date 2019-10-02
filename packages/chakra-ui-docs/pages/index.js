@@ -74,7 +74,7 @@ const sampleCode = `
 `;
 
 const FooterLink = ({ icon, href }) => (
-  <Link href={href} isExternal>
+  <Link display="inline-block" href={href} isExternal>
     <Box as={icon} size="6" color="gray.400" />
   </Link>
 );
