@@ -53,8 +53,8 @@ interface ICustomConfig {
   textDecoration?: StyledSystem.ResponsiveValue<CSS["textDecoration"]>;
   textDecor?: StyledSystem.ResponsiveValue<CSS["textDecoration"]>;
   textTransform?: StyledSystem.ResponsiveValue<CSS["textTransform"]>;
-  overflowX?: StyledSystem.ResponsiveValue<CSS["overflowX"]>;
-  overflowY?: StyledSystem.ResponsiveValue<CSS["overflowY"]>;
+  overflowX?: StyledSystem.OverflowProps["overflow"];
+  overflowY?: StyledSystem.OverflowProps["overflow"];
   appearance?: StyledSystem.ResponsiveValue<CSS["appearance"]>;
   transform?: StyledSystem.ResponsiveValue<CSS["transform"]>;
   transformOrigin?: StyledSystem.ResponsiveValue<CSS["transformOrigin"]>;
@@ -178,6 +178,7 @@ export type BoxProps = React.RefAttributes<HTMLElement> &
   StyledSystem.ShadowProps &
   StyledSystem.GridProps &
   StyledSystem.OpacityProps &
+  StyledSystem.OverflowProps &
   TypographyProps &
   IFontSize &
   ILetterSpacing &
