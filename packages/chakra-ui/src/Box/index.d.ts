@@ -91,6 +91,12 @@ interface ICustomConfig {
   outline?: StyledSystem.ResponsiveValue<CSS["outline"]>;
   float?: StyledSystem.ResponsiveValue<CSS["float"]>;
   willChange?: StyledSystem.ResponsiveValue<CSS["willChange"]>;
+
+  // Border Width props
+  borderTopWidth?: StyledSystem.ResponsiveValue<CSS["borderTopWidth"]>;
+  borderBottomWidth?: StyledSystem.ResponsiveValue<CSS["borderBottomWidth"]>;
+  borderLeftWidth?: StyledSystem.ResponsiveValue<CSS["borderLeftWidth"]>;
+  borderRightWidth?: StyledSystem.ResponsiveValue<CSS["borderRightWidth"]>;
 }
 
 type FontSize =
