@@ -1,6 +1,5 @@
 import { Component } from "react";
 import ReactDOM from "react-dom";
-import PropTypes from "prop-types";
 
 let portalContainer;
 
@@ -37,7 +36,3 @@ export default class Portal extends Component {
     return ReactDOM.createPortal(this.props.children, this.el);
   }
 }
-
-Portal.propTypes = {
-  children: PropTypes.node.isRequired,
-};
