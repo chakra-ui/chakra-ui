@@ -1059,6 +1059,13 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
+"@babel/runtime@^7.6.2":
+  version "7.6.2"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.6.2.tgz#c3d6e41b304ef10dcf13777a33e7694ec4a9a6dd"
+  integrity sha512-EXxN64agfUqqIGeEjI5dL5z0Sw0ZwWo1mLTi4mQowCZ42O59b7DRpZAnTC6OqdF28wMBMFKNb/4uFGrVaigSpg==
+  dependencies:
+    regenerator-runtime "^0.13.2"
+
 "@babel/template@^7.1.0", "@babel/template@^7.4.0", "@babel/template@^7.4.4":
   version "7.4.4"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.4.4.tgz#f4b88d1225689a08f5bc3a17483545be9e4ed237"
@@ -2467,93 +2474,6 @@
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/@reach/visually-hidden/-/visually-hidden-0.1.4.tgz#0dc4ecedf523004337214187db70a46183bd945b"
   integrity sha512-QHbzXjflSlCvDd6vJwdwx16mSB+vUCCQMiU/wK/CgVNPibtpEiIbisyxkpZc55DyDFNUIqP91rSUsNae+ogGDQ==
-
-"@react-spring/addons@^9.0.0-beta.33":
-  version "9.0.0-beta.33"
-  resolved "https://registry.yarnpkg.com/@react-spring/addons/-/addons-9.0.0-beta.33.tgz#0948301c271758f7a52aa39a1d96d4db65c6dd9b"
-  integrity sha512-/QJ5vcq54oljT1n4dSx9maYGaIKzz5WRuKGa12fhLD2JsYo9syTc9S3VH4qmAM4pkbggUQdiaA/AJWack4NF7A==
-  dependencies:
-    "@babel/runtime" "^7.3.1"
-    "@react-spring/animated" "^9.0.0-beta.33"
-    "@react-spring/core" "^9.0.0-beta.33"
-    use-memo-one "^1.1.0"
-
-"@react-spring/animated@^9.0.0-beta.33":
-  version "9.0.0-beta.33"
-  resolved "https://registry.yarnpkg.com/@react-spring/animated/-/animated-9.0.0-beta.33.tgz#5481278056e771466137f4d48c2efbf3277faad3"
-  integrity sha512-0ecIXTLjvUuplQgUOr3fhXzHuVcCuVi4gLAEG74m/OcXZ8JZ0DuQCwdIT2TNJYaWX1pOG0OstT3bJ8KN+Ji/BQ==
-  dependencies:
-    "@babel/runtime" "^7.3.1"
-    "@react-spring/shared" "^9.0.0-beta.33"
-    tiny-invariant "^1.0.4"
-
-"@react-spring/core@^9.0.0-beta.33":
-  version "9.0.0-beta.33"
-  resolved "https://registry.yarnpkg.com/@react-spring/core/-/core-9.0.0-beta.33.tgz#3b894fb9fbc3d0dde5e4cdfc8eb52935e8cea9bf"
-  integrity sha512-fIUGsAsCmZSBtucfE3zf2XTBjdTYbzdcblZyeo1/pUGW7ehjB85x2oNj7o6JQ603+elsTJ9k7POiYI5/wn1N3A==
-  dependencies:
-    "@babel/runtime" "^7.3.1"
-    "@react-spring/animated" "^9.0.0-beta.33"
-    "@react-spring/shared" "^9.0.0-beta.33"
-    use-memo-one "^1.1.0"
-
-"@react-spring/konva@^9.0.0-beta.33":
-  version "9.0.0-beta.33"
-  resolved "https://registry.yarnpkg.com/@react-spring/konva/-/konva-9.0.0-beta.33.tgz#2a116aee5a32ab4cde1b5eef1c10b533183f6518"
-  integrity sha512-9tfrbd/j3ZZHu8Vjpx86vAkLZ3lQLv9VEgvDIQSpzUzQOUojeQPdbB/xVKSoqR2hWR0XMV2IurD2e6rolZv7fQ==
-  dependencies:
-    "@babel/runtime" "^7.3.1"
-    "@react-spring/animated" "^9.0.0-beta.33"
-    "@react-spring/core" "^9.0.0-beta.33"
-    "@react-spring/shared" "^9.0.0-beta.33"
-
-"@react-spring/native@^9.0.0-beta.33":
-  version "9.0.0-beta.33"
-  resolved "https://registry.yarnpkg.com/@react-spring/native/-/native-9.0.0-beta.33.tgz#0e27f34acbb395e2f355c9f91fc8010fbd1c4967"
-  integrity sha512-x2Wlcr0JSxc2O/6QsOut4aR3VOVYP8QOLBNXA+5tgQGK5yfkTaDoXTZC8vD/uX3dBsY41FUr2x9a+LOqvTfziQ==
-  dependencies:
-    "@babel/runtime" "^7.3.1"
-    "@react-spring/animated" "^9.0.0-beta.33"
-    "@react-spring/core" "^9.0.0-beta.33"
-    "@react-spring/shared" "^9.0.0-beta.33"
-
-"@react-spring/shared@^9.0.0-beta.33":
-  version "9.0.0-beta.33"
-  resolved "https://registry.yarnpkg.com/@react-spring/shared/-/shared-9.0.0-beta.33.tgz#8630cf68f79a7b12f075345bdf23a47dff6ed877"
-  integrity sha512-oGalrGtIg7ZMn9VW5PzLFMDAa8vH5V0XIeC4WFk7JB4hBfhxx6yzPwjMxSJfRrt/Q+WuS2cPoR5qN0RpH+fJOA==
-  dependencies:
-    "@babel/runtime" "^7.3.1"
-    tiny-invariant "^1.0.4"
-
-"@react-spring/three@^9.0.0-beta.33":
-  version "9.0.0-beta.33"
-  resolved "https://registry.yarnpkg.com/@react-spring/three/-/three-9.0.0-beta.33.tgz#556f8ef92397c3b9bec0f92c13acc9c7d7c6995d"
-  integrity sha512-ouTN6w1VMjN2V04JGSG7eliesBgOqPmplrETeUSc3gAl3unv9LzqRDK/NGan0GwvsCx98BUycKYD26wWAAu1lA==
-  dependencies:
-    "@babel/runtime" "^7.3.1"
-    "@react-spring/animated" "^9.0.0-beta.33"
-    "@react-spring/core" "^9.0.0-beta.33"
-    "@react-spring/shared" "^9.0.0-beta.33"
-
-"@react-spring/web@^9.0.0-beta.34":
-  version "9.0.0-beta.34"
-  resolved "https://registry.yarnpkg.com/@react-spring/web/-/web-9.0.0-beta.34.tgz#d71fef11416a6be8b07d22faea16c8597e9487f3"
-  integrity sha512-K5kF2e0BgUE6ehY81NF9C8eYiopFx9YrWQvxRXVUbXUYOgLjZ5JsKFlAbM52PAl3AgP5c1pMP9ir6yzn144nig==
-  dependencies:
-    "@babel/runtime" "^7.3.1"
-    "@react-spring/animated" "^9.0.0-beta.33"
-    "@react-spring/core" "^9.0.0-beta.33"
-    "@react-spring/shared" "^9.0.0-beta.33"
-
-"@react-spring/zdog@^9.0.0-beta.33":
-  version "9.0.0-beta.33"
-  resolved "https://registry.yarnpkg.com/@react-spring/zdog/-/zdog-9.0.0-beta.33.tgz#0f49d72bd56c9d9c797ac0390b141d6f9c7eafbe"
-  integrity sha512-cGxNJxZxbKpaagpelTxdOLOxJkdUEjmiXzrePu0dAgO58WTGcya9XWcI0ntKZo1/8T6E2qR29j0J59MDeHkAZQ==
-  dependencies:
-    "@babel/runtime" "^7.3.1"
-    "@react-spring/animated" "^9.0.0-beta.33"
-    "@react-spring/core" "^9.0.0-beta.33"
-    "@react-spring/shared" "^9.0.0-beta.33"
 
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
@@ -11820,27 +11740,13 @@ react-sizeme@^2.6.7:
     shallowequal "^1.1.0"
     throttle-debounce "^2.1.0"
 
-react-spring@8.0.23:
-  version "8.0.23"
-  resolved "https://registry.yarnpkg.com/react-spring/-/react-spring-8.0.23.tgz#2a0ddaeb0816ea9e21898d04d3b8da7d1a3daa14"
-  integrity sha512-2mp7+0DnoBQ67h2zY0rFztdMqSm8gdvSWHgfwKz4TbLQ+N4n2IauB6DCMc046K8uvUNwDCUdlKgshUrCj14QUA==
+react-spring@^8.0.27:
+  version "8.0.27"
+  resolved "https://registry.yarnpkg.com/react-spring/-/react-spring-8.0.27.tgz#97d4dee677f41e0b2adcb696f3839680a3aa356a"
+  integrity sha512-nDpWBe3ZVezukNRandTeLSPcwwTMjNVu1IDq9qA/AMiUqHuRN4BeSWvKr3eIxxg1vtiYiOLy4FqdfCP5IoP77g==
   dependencies:
     "@babel/runtime" "^7.3.1"
     prop-types "^15.5.8"
-
-react-spring@^9.0.0-beta.20:
-  version "9.0.0-beta.34"
-  resolved "https://registry.yarnpkg.com/react-spring/-/react-spring-9.0.0-beta.34.tgz#909fdccec45b15f317cabe0d4746e636b60e39ed"
-  integrity sha512-Ey+Zg/jS2b/uaT6MlvMLnnNZ+N16Gc6r/CAwduC1+jy9UnB/fYnMMflZPemkGVEpZ+T9ef5FvWknw4ytnGl4zw==
-  dependencies:
-    "@babel/runtime" "^7.3.1"
-    "@react-spring/addons" "^9.0.0-beta.33"
-    "@react-spring/core" "^9.0.0-beta.33"
-    "@react-spring/konva" "^9.0.0-beta.33"
-    "@react-spring/native" "^9.0.0-beta.33"
-    "@react-spring/three" "^9.0.0-beta.33"
-    "@react-spring/web" "^9.0.0-beta.34"
-    "@react-spring/zdog" "^9.0.0-beta.33"
 
 react-syntax-highlighter@^8.0.1:
   version "8.1.0"
@@ -13640,11 +13546,6 @@ tiny-emitter@^2.0.0:
   resolved "https://registry.yarnpkg.com/tiny-emitter/-/tiny-emitter-2.1.0.tgz#1d1a56edfc51c43e863cbb5382a72330e3555423"
   integrity sha512-NB6Dk1A9xgQPMoGqC5CVXn123gWyte215ONT5Pp5a0yt4nlEoO1ZWeCwpncaekPHXO60i47ihFnZPiRPjRMq4Q==
 
-tiny-invariant@^1.0.4:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/tiny-invariant/-/tiny-invariant-1.0.6.tgz#b3f9b38835e36a41c843a3b0907a5a7b3755de73"
-  integrity sha512-FOyLWWVjG+aC0UqG76V53yAWdXfH8bO6FNmyZOuUrzDzK8DI3/JRY25UD7+g49JWM1LXwymsKERB+DzI0dTEQA==
-
 tiny-warning@^1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/tiny-warning/-/tiny-warning-1.0.3.tgz#94a30db453df4c643d0fd566060d60a875d84754"
@@ -13708,15 +13609,14 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
 
-toasted-notes@2.1.6:
-  version "2.1.6"
-  resolved "https://registry.yarnpkg.com/toasted-notes/-/toasted-notes-2.1.6.tgz#8e828dbbe2f5c52b7cf98d01fb3052ad167e26b5"
-  integrity sha512-e4UWJ/zwFKL0/fxB0B2HzNz+G9VOMc8dqKWLNjU5gG86kr1dQ8dWArD9vUJhK4er3mbaB7ocyHEE+pLHIokwVw==
+toasted-notes@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/toasted-notes/-/toasted-notes-3.0.0.tgz#ad72e9e601d658b301117d84c5ab431bfb75e1fa"
+  integrity sha512-gjL18/1aNP+bgipt1YbCBFeinFYExubltm8HIAJIYmlzDquC+YpajYOfhVysUCnBGwkX0w1V1AF5whpHGqohkQ==
   dependencies:
     "@reach/alert" "^0.1.2"
     "@types/react" "^16.8.10"
     "@types/react-dom" "^16.8.3"
-    react-spring "^9.0.0-beta.20"
 
 toggle-selection@^1.0.6:
   version "1.0.6"
@@ -14209,11 +14109,6 @@ use-dark-mode@2.3.1:
   dependencies:
     "@use-it/event-listener" "^0.1.2"
     use-persisted-state "^0.3.0"
-
-use-memo-one@^1.1.0:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/use-memo-one/-/use-memo-one-1.1.1.tgz#39e6f08fe27e422a7d7b234b5f9056af313bd22c"
-  integrity sha512-oFfsyun+bP7RX8X2AskHNTxu+R3QdE/RC5IefMbqptmACAA/gfol1KDD5KRzPsGMa62sWxGZw+Ui43u6x4ddoQ==
 
 use-persisted-state@^0.3.0:
   version "0.3.0"
