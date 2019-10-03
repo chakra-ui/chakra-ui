@@ -130,7 +130,7 @@ export const PopoverHeader: React.FC<BoxProps>;
 export const PopoverFooter: React.FC<BoxProps>;
 export const PopoverBody: React.FC<BoxProps>;
 
-type CloseButtonProps = PseudoBoxProps & {
+type PopoverCloseButtonProps = PseudoBoxProps & {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
-export const PopoverCloseButton: React.FC<CloseButtonProps>;
+export const PopoverCloseButton: React.FC<PopoverCloseButtonProps>;

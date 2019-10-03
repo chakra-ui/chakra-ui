@@ -10,7 +10,7 @@ interface Config {
 
 type ConfigReturnType = { light: Config; dark: Config };
 
-type CSSResetProps = {
+export type CSSResetProps = {
   config?: (
     theme: ITheme,
     defaultConfig?: ConfigReturnType,

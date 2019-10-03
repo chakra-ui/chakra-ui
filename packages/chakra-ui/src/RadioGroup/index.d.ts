@@ -18,6 +18,6 @@ export interface IRadioGroup {
   isInline?: boolean;
 }
 
-export type RadioButtonGroupProps = IRadioGroup & BoxProps;
-declare const RadioGroup: React.FC<RadioButtonGroupProps>;
+export type RadioGroupProps = IRadioGroup & BoxProps;
+declare const RadioGroup: React.FC<RadioGroupProps>;
 export default RadioGroup;
