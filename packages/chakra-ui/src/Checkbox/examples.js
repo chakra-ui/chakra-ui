@@ -51,6 +51,16 @@ stories.add("disabled checkbox", () => (
   </React.Fragment>
 ));
 
+stories.add("readonly checkbox", () => (
+  <React.Fragment>
+    <Checkbox isReadOnly>Readonly </Checkbox>
+    <Checkbox isChecked isReadOnly>
+      Readonly
+    </Checkbox>
+    <br />
+  </React.Fragment>
+));
+
 function IndeterminateExample() {
   const [checkedItems, setCheckedItems] = React.useState([true, false]);
 

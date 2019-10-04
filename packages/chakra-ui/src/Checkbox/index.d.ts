@@ -45,6 +45,10 @@ export interface ICheckbox {
    */
   isDisabled?: InputAttributes["disabled"];
   /**
+   * If `true`, the checkbox will be readonly
+   */
+  isReadOnly?: InputAttributes["readOnly"];
+  /**
    * If `true`, the checkbox is marked as invalid.
    * Changes style of unchecked state.
    */
