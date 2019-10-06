@@ -85,8 +85,7 @@ function FormikExample() {
     let error;
     if (!value) {
       error = "Name is required";
-    }
-    if (value !== "Naruto") {
+    } else if (value !== "Naruto") {
       error = "Jeez! You're not a fan 😱";
     }
     return error;
