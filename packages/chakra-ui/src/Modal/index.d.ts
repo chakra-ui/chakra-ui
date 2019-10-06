@@ -44,6 +44,14 @@ export interface IModal {
    */
   useInert?: boolean;
   /**
+   * If `true`, a `padding-right` will be applied to the body element
+   * that's equal to the width of the scrollbar.
+   *
+   * This can help prevent some unpleasant flickering effect
+   * and content adjustment when the modal opens
+   */
+  preserveScrollBarGap?: boolean;
+  /**
    * The content of the modal.
    */
   children: React.ReactNode;

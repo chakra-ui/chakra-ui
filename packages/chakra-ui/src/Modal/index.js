@@ -74,6 +74,7 @@ const Modal = ({
   scrollBehavior = "outside",
   isCentered,
   addAriaLabels = true,
+  preserveScrollBarGap,
   formatIds = id => ({
     content: `modal-${id}`,
     header: `modal-${id}-header`,
@@ -109,10 +110,12 @@ const Modal = ({
   useEffect(() => {
     const dialogNode = contentRef.current;
     if (isOpen && blockScrollOnMount) {
-      disableBodyScroll(dialogNode);
+      disableBodyScroll(dialogNode, {
+        reserveScrollBarGap: preserveScrollBarGap,
+      });
     }
     return () => enableBodyScroll(dialogNode);
-  }, [isOpen, blockScrollOnMount]);
+  }, [isOpen, blockScrollOnMount, preserveScrollBarGap]);
 
   useEffect(() => {
     const func = event => {

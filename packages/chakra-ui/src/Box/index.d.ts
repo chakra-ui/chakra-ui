@@ -53,8 +53,8 @@ interface ICustomConfig {
   textDecoration?: StyledSystem.ResponsiveValue<CSS["textDecoration"]>;
   textDecor?: StyledSystem.ResponsiveValue<CSS["textDecoration"]>;
   textTransform?: StyledSystem.ResponsiveValue<CSS["textTransform"]>;
-  overflowX?: StyledSystem.ResponsiveValue<CSS["overflowX"]>;
-  overflowY?: StyledSystem.ResponsiveValue<CSS["overflowY"]>;
+  overflowX?: StyledSystem.OverflowProps["overflow"];
+  overflowY?: StyledSystem.OverflowProps["overflow"];
   appearance?: StyledSystem.ResponsiveValue<CSS["appearance"]>;
   transform?: StyledSystem.ResponsiveValue<CSS["transform"]>;
   transformOrigin?: StyledSystem.ResponsiveValue<CSS["transformOrigin"]>;
@@ -91,6 +91,12 @@ interface ICustomConfig {
   outline?: StyledSystem.ResponsiveValue<CSS["outline"]>;
   float?: StyledSystem.ResponsiveValue<CSS["float"]>;
   willChange?: StyledSystem.ResponsiveValue<CSS["willChange"]>;
+
+  // Border Width props
+  borderTopWidth?: StyledSystem.ResponsiveValue<CSS["borderTopWidth"]>;
+  borderBottomWidth?: StyledSystem.ResponsiveValue<CSS["borderBottomWidth"]>;
+  borderLeftWidth?: StyledSystem.ResponsiveValue<CSS["borderLeftWidth"]>;
+  borderRightWidth?: StyledSystem.ResponsiveValue<CSS["borderRightWidth"]>;
 }
 
 type FontSize =
@@ -178,6 +184,7 @@ export type BoxProps = React.RefAttributes<HTMLElement> &
   StyledSystem.ShadowProps &
   StyledSystem.GridProps &
   StyledSystem.OpacityProps &
+  StyledSystem.OverflowProps &
   TypographyProps &
   IFontSize &
   ILetterSpacing &

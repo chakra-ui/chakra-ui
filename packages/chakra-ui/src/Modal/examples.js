@@ -105,6 +105,42 @@ stories.add("with slide transition", () => {
   return <SampleModal />;
 });
 
+stories.add("with preserve scrollbar", () => {
+  const SampleModal = () => {
+    const [isOpen, setIsOpen] = useState(false);
+    const btnRef = useRef();
+    return (
+      <Fragment>
+        <Button ref={btnRef} onClick={() => setIsOpen(true)}>
+          Trigger modal
+        </Button>
+        <Lorem count={5} />
+        <SlideIn offset="10px" in={isOpen}>
+          {styles => (
+            <Modal
+              isOpen={true}
+              onClose={() => setIsOpen(false)}
+              finalFocusRef={btnRef}
+              preserveScrollBarGap
+            >
+              <ModalOverlay opacity={styles.opacity} />
+              <ModalContent {...styles} pb={5}>
+                <ModalHeader>Login now</ModalHeader>
+                <ModalCloseButton />
+                <ModalBody>
+                  <Lorem count={2} />
+                </ModalBody>
+              </ModalContent>
+            </Modal>
+          )}
+        </SlideIn>
+      </Fragment>
+    );
+  };
+
+  return <SampleModal />;
+});
+
 stories.add("with scale transition", () => {
   const SampleModal = () => {
     const [isOpen, setIsOpen] = useState(false);

@@ -19,6 +19,7 @@
     "version": "yarn build"
   },
   "dependencies": {
+    "@babel/runtime": "^7.6.2",
     "@reach/auto-id": "0.2.0",
     "@styled-system/css": "5.0.13",
     "@styled-system/should-forward-prop": "5.0.12",
@@ -30,10 +31,10 @@
     "popper.js": "^1.15.0",
     "react-animate-height": "2.0.9",
     "react-focus-lock": "^2.1.0",
-    "react-spring": "8.0.23",
+    "react-spring": "^8.0.27",
     "styled-system": "5.0.5",
-    "toasted-notes": "2.1.6",
     "pretty-num": "0.3.0",
+    "toasted-notes": "3.0.0",
     "use-dark-mode": "2.3.1"
   },
   "peerDependencies": {

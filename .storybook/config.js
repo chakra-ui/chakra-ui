@@ -13,7 +13,7 @@ function loadStories() {
 }
 
 const AppProvider = ({ children }) => {
-  const { colorMode, toggleColorMode } = useColorMode();
+  // const { colorMode, toggleColorMode } = useColorMode();
   return (
     <ThemeProvider>
       <CSSReset />
