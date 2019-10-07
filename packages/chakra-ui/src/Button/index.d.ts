@@ -63,9 +63,7 @@ export interface IButton {
   iconSpacing?: StyledSystem.MarginProps["margin"];
 }
 
-export type ButtonProps = IButton &
-  PseudoBoxProps &
-  React.RefAttributes<HTMLButtonElement>;
+export type ButtonProps = IButton & PseudoBoxProps;
 
 declare const Button: React.FC<ButtonProps>;
 

@@ -43,10 +43,7 @@ export interface ICollapse {
   onAnimationStart?(props: { newHeight: number }): void;
 }
 
-export type CollapseProps = AnimateHeightProps &
-  ICollapse &
-  BoxProps &
-  React.RefAttributes<HTMLDivElement>;
+export type CollapseProps = AnimateHeightProps & ICollapse & BoxProps;
 
 declare const Collapse: React.FC<CollapseProps>;
 

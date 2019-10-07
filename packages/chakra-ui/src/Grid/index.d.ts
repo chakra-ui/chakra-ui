@@ -17,7 +17,7 @@ export interface IGrid {
   row?: StyledSystem.GridRowProps["gridRow"];
 }
 
-export type GridProps = BoxProps & IGrid & React.RefAttributes<HTMLElement>;
+export type GridProps = BoxProps & IGrid;
 
 declare const Grid: React.FC<GridProps>;
 

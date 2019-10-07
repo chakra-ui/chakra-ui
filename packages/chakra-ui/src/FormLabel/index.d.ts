@@ -13,7 +13,7 @@ interface ILabelProps {
 
 export type FormLabelProps = ILabelProps &
   BoxProps &
-  React.LabelHTMLAttributes<HTMLLabelElement>;
+  React.LabelHTMLAttributes<any>;
 
 /**
  * FormLabel is used for form inputs and controls.
