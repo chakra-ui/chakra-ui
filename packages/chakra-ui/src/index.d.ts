@@ -126,6 +126,7 @@ export * from "./Toast";
 export { default as useToast } from "./Toast";
 export * from "./Tooltip";
 export { default as Tooltip } from "./Tooltip";
+export * from "./theme";
 export { default as theme } from "./theme";
 export * from "./ThemeProvider";
 export { default as ThemeProvider } from "./ThemeProvider";
