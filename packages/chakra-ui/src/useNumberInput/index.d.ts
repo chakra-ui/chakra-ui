@@ -11,12 +11,12 @@ interface Props {
   max?: number;
   step?: number;
   precision?: number;
-  getAriaLabel?: (value: number) => string;
+  getAriaValueText?: (value: number) => string;
   isReadOnly?: boolean;
   isInvalid?: boolean;
   isDisabled?: boolean;
-  onFocus?: React.FocusEventHandler<HTMLInputElement>;
-  onBlur?: React.FocusEventHandler<HTMLInputElement>;
+  onFocus?: React.FocusEventHandler<HTMLElement>;
+  onBlur?: React.FocusEventHandler<HTMLElement>;
 }
 
 interface SpinnerProps {
@@ -36,8 +36,8 @@ interface ButtonProps {
 
 interface InputProps {
   onChange: React.ChangeEventHandler<HTMLInputElement>;
-  onKeyDown: React.KeyboardEventHandler<HTMLInputElement>;
-  ref: React.RefObject<HTMLInputElement>;
+  onKeyDown: React.KeyboardEventHandler<HTMLElement>;
+  ref: React.RefObject<HTMLElement>;
   value: number;
   role: string;
   type: string;
@@ -46,11 +46,12 @@ interface InputProps {
   "aria-disabled": boolean;
   "aria-valuenow": number;
   "aria-invalid": boolean;
+  "aria-valuetext": string;
   readOnly: boolean;
   disabled: boolean;
   autoComplete: string;
-  onFocus: React.FocusEventHandler<HTMLInputElement>;
-  onBlur: React.FocusEventHandler<HTMLInputElement>;
+  onFocus: React.FocusEventHandler<HTMLElement>;
+  onBlur: React.FocusEventHandler<HTMLElement>;
 }
 
 interface hiddenLabelProps {

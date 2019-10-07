@@ -44,12 +44,10 @@ function useNumberInput({
   max = Infinity,
   step: stepProp = 1,
   precision: precisionProp,
-  getAriaLabel,
-  isReadonly,
+  getAriaValueText,
+  isReadOnly,
   isInvalid,
   isDisabled,
-  onFocus,
-  onBlur,
 }) {
   const { current: isControlled } = useRef(valueProp != null);
 
@@ -67,7 +65,7 @@ function useNumberInput({
 
   const _value = isControlled ? valueProp : value;
 
-  const isInteractive = !(isReadonly || isDisabled);
+  const isInteractive = !(isReadOnly || isDisabled);
 
   const inputRef = useRef();
 
@@ -197,7 +195,7 @@ function useNumberInput({
     return ratio;
   };
 
-  const validate = () => {
+  const validateAndClamp = () => {
     const maxExists = max != null;
     const minExists = min != null;
 
@@ -210,9 +208,14 @@ function useNumberInput({
     }
   };
 
+  const isOutOfRange = _value > max || _value < min;
+  const ariaValueText = getAriaValueText ? getAriaValueText(_value) : null;
+
   return {
     value: _value,
     isFocused,
+    isDisabled,
+    isReadOnly,
     incrementSpinner: incrementSpinnerProps,
     decrementSpinner: decrementSpinnerProps,
     incrementButton: {
@@ -242,29 +245,24 @@ function useNumberInput({
       "aria-valuemax": max,
       "aria-disabled": isDisabled,
       "aria-valuenow": _value,
-      "aria-invalid": isInvalid || _value > max,
-      readOnly: isReadonly,
+      "aria-invalid": isInvalid || isOutOfRange,
+      ...(getAriaValueText && { "aria-valuetext": ariaValueText }),
+      readOnly: isReadOnly,
       disabled: isDisabled,
       autoComplete: "off",
-      onFocus: event => {
+      onFocus: () => {
         setIsFocused(true);
-        if (onFocus) {
-          onFocus(event);
-        }
       },
-      onBlur: event => {
+      onBlur: () => {
         setIsFocused(false);
         if (clampValueOnBlur) {
-          validate();
-        }
-        if (onBlur) {
-          onBlur(event);
+          validateAndClamp();
         }
       },
     },
     hiddenLabel: {
       "aria-live": "polite",
-      children: getAriaLabel ? getAriaLabel(_value) : _value,
+      children: getAriaValueText ? ariaValueText : _value,
       style: {
         position: "absolute",
         clip: "rect(0px, 0px, 0px, 0px)",
