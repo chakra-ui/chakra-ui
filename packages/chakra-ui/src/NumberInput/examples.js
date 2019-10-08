@@ -38,8 +38,8 @@ const ContolledEx = () => {
     >
       <NumberInputField />
       <NumberInputStepper>
-        <NumberIncrementStepper />
-        <NumberDecrementStepper />
+        <NumberIncrementStepper children="+" />
+        <NumberDecrementStepper children="-" />
       </NumberInputStepper>
     </NumberInputV2>
   );
