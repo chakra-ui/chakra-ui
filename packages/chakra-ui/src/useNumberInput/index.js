@@ -142,26 +142,6 @@ function useNumberInput({
     }
   };
 
-  const setValueToMax = () => {
-    if (!isControlled) {
-      setValue(max);
-    }
-
-    if (onChange) {
-      onChange(max);
-    }
-  };
-
-  const setValueToMin = () => {
-    if (!isControlled) {
-      setValue(min);
-    }
-
-    if (onChange) {
-      onChange(min);
-    }
-  };
-
   const incrementSpinnerProps = useLongPress(handleIncrement);
   const decrementSpinnerProps = useLongPress(handleDecrement);
 
@@ -188,14 +168,14 @@ function useNumberInput({
     if (event.key === "Home") {
       event.preventDefault();
       if (min != null) {
-        setValueToMax();
+        updateValue(max);
       }
     }
 
     if (event.key === "End") {
       event.preventDefault();
       if (max != null) {
-        setValueToMin();
+        updateValue(min);
       }
     }
   };
@@ -216,11 +196,11 @@ function useNumberInput({
     const minExists = min != null;
 
     if (maxExists && _value > max) {
-      setValueToMax();
+      updateValue(max);
     }
 
     if (minExists && _value < min) {
-      setValueToMin();
+      updateValue(min);
     }
   };
 

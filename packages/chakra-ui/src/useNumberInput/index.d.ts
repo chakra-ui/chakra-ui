@@ -1,6 +1,6 @@
 import * as React from "react";
 
-interface Props {
+export interface useNumberInputProps {
   value?: number;
   onChange?: number;
   defaultValue?: number;
@@ -60,7 +60,7 @@ interface hiddenLabelProps {
   style: React.CSSProperties;
 }
 
-interface ReturnValue {
+interface ReturnedValue {
   value: number;
   isFocused: boolean;
   incrementSpinner: SpinnerProps;
@@ -71,6 +71,6 @@ interface ReturnValue {
   hiddenLabel: hiddenLabelProps;
 }
 
-declare function useNumberInput(props: Props): ReturnValue;
+declare function useNumberInput(props: useNumberInputProps): ReturnedValue;
 
 export default useNumberInput;
