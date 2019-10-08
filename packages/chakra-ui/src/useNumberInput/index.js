@@ -1,28 +1,62 @@
 import { canUseDOM } from "exenv";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import {
   calculatePrecision,
   preventNonNumberKey,
   roundToPrecision,
 } from "./utils";
 
-function useLongPress(callback) {
-  const timeout = useRef();
-  const interval = useRef();
+// function useLongPress(callback) {
+//   const timeout = useRef();
+//   const interval = useRef();
 
-  const start = () => {
+//   const start = () => {
+//     callback();
+//     timeout.current = setTimeout(() => {
+//       interval.current = setInterval(() => {
+//         callback();
+//       }, 200);
+//     }, 150);
+//   };
+
+//   const stop = () => {
+//     clearTimeout(timeout.current);
+//     clearInterval(interval.current);
+//   };
+
+//   return {
+//     onMouseUp: stop,
+//     onMouseLeave: stop,
+//     onMouseDown: start,
+//     onTouchStart: start,
+//     onTouchEnd: stop,
+//   };
+// }
+
+function useLongPress(callback = () => {}, speed = 200) {
+  const [isPressed, setIsPressed] = useState(false);
+
+  useEffect(() => {
+    let timerId;
+    if (isPressed) {
+      timerId = setTimeout(callback, speed);
+    } else {
+      clearTimeout(timerId);
+    }
+
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [isPressed, callback, speed]);
+
+  const start = useCallback(() => {
     callback();
-    timeout.current = setTimeout(() => {
-      interval.current = setInterval(() => {
-        callback();
-      }, 50);
-    }, 300);
-  };
+    setIsPressed(true);
+  }, [callback]);
 
-  const stop = () => {
-    clearTimeout(timeout.current);
-    clearInterval(interval.current);
-  };
+  const stop = useCallback(() => {
+    setIsPressed(false);
+  }, []);
 
   return {
     onMouseUp: stop,
@@ -64,31 +98,40 @@ function useNumberInput({
   const [isFocused, setIsFocused] = useState(false);
 
   const _value = isControlled ? valueProp : value;
-
   const isInteractive = !(isReadOnly || isDisabled);
-
   const inputRef = useRef();
 
-  const getNextValue = step => value => {
-    let nextValue = Number(value) + Number(step);
+  const updateValue = value => {
+    !isControlled && setValue(value);
+    onChange && onChange(value);
+  };
+
+  const handleIncrement = (step = stepProp) => {
+    if (!isInteractive) return;
+    let nextValue = Number(_value) + Number(step);
 
     if (keepWithinRange) {
       nextValue = Math.min(nextValue, max);
     }
 
     nextValue = roundToPrecision(nextValue, precision);
-    return nextValue;
+    updateValue(nextValue);
+
+    focusInput();
   };
 
-  const getPrevValue = step => value => {
-    let nextValue = Number(value) - Number(step);
+  const handleDecrement = (step = stepProp) => {
+    if (!isInteractive) return;
+    let nextValue = Number(_value) - Number(step);
 
     if (keepWithinRange) {
       nextValue = Math.max(nextValue, min);
     }
 
     nextValue = roundToPrecision(nextValue, precision);
-    return nextValue;
+    updateValue(nextValue);
+
+    focusInput();
   };
 
   const focusInput = () => {
@@ -119,38 +162,11 @@ function useNumberInput({
     }
   };
 
-  const increment = (step = stepProp) => {
-    if (!isInteractive) return;
-
-    if (!isControlled) {
-      setValue(getNextValue(step));
-    }
-
-    if (onChange) {
-      onChange(getNextValue(step));
-    }
-
-    focusInput();
-  };
-
-  const decrement = (step = stepProp) => {
-    if (!isInteractive) return;
-
-    if (!isControlled) {
-      setValue(getPrevValue(step));
-    }
-    if (onChange) {
-      onChange(getPrevValue(step));
-    }
-
-    focusInput();
-  };
-
-  const incrementSpinnerProps = useLongPress(increment);
-  const decrementSpinnerProps = useLongPress(decrement);
+  const incrementSpinnerProps = useLongPress(handleIncrement);
+  const decrementSpinnerProps = useLongPress(handleDecrement);
 
   const handleChange = event => {
-    setValue(event.target.value);
+    updateValue(event.target.value);
   };
 
   const handleKeyDown = event => {
@@ -160,13 +176,13 @@ function useNumberInput({
     if (event.key === "ArrowUp") {
       event.preventDefault();
       const ratio = getIncrementFactor(event);
-      increment(ratio * stepProp);
+      handleIncrement(ratio * stepProp);
     }
 
     if (event.key === "ArrowDown") {
       event.preventDefault();
       const ratio = getIncrementFactor(event);
-      decrement(ratio * stepProp);
+      handleDecrement(ratio * stepProp);
     }
 
     if (event.key === "Home") {
@@ -219,7 +235,7 @@ function useNumberInput({
     incrementSpinner: incrementSpinnerProps,
     decrementSpinner: decrementSpinnerProps,
     incrementButton: {
-      onClick: () => increment(),
+      onClick: () => handleIncrement(),
       "aria-label": "add",
       ...(keepWithinRange && {
         disabled: _value === max,
@@ -227,7 +243,7 @@ function useNumberInput({
       }),
     },
     decrementButton: {
-      onClick: () => decrement(),
+      onClick: () => handleDecrement(),
       "aria-label": "subtract",
       ...(keepWithinRange && {
         disabled: _value === min,

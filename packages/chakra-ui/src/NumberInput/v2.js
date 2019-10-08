@@ -94,10 +94,7 @@ const NumberInputField = forwardRef(
     const handleBlur = wrapEvent(onBlur, _onBlur);
     const handleFocus = wrapEvent(onFocus, _onFocus);
     const handleKeyDown = wrapEvent(onKeyDown, _onKeyDown);
-    const handleChange = event => {
-      _onChange(event);
-      console.log("changed");
-    };
+    const handleChange = wrapEvent(onChange, _onChange);
 
     return (
       <Input

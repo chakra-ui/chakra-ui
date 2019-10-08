@@ -34,9 +34,9 @@ const ContolledEx = () => {
       keepWithinRange={false}
       clampValueOnBlur={false}
       precision={2}
-      onChange={valueFunc => setVal(valueFunc)}
+      onChange={setVal}
     >
-      <NumberInputField onChange={e => console.log(e.target.value)} />
+      <NumberInputField />
       <NumberInputStepper>
         <NumberIncrementStepper />
         <NumberDecrementStepper />

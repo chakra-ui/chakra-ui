@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FlexboxProps, ResponsiveValue } from "styled-system";
+import { ResponsiveValue, GridProps } from "styled-system";
 import { BoxProps } from "../Box";
 
 interface ISimpleGrid {
@@ -14,15 +14,15 @@ interface ISimpleGrid {
   /**
    * The gap between the grid items
    */
-  spacing?: BoxProps["gridGap"];
+  spacing?: GridProps["gridGap"];
   /**
    * The row gap between the grid items
    */
-  spacingX?: BoxProps["gridGap"];
+  spacingX?: GridProps["gridGap"];
   /**
    * The column gap between the grid items
    */
-  spacingY?: BoxProps["gridGap"];
+  spacingY?: GridProps["gridGap"];
 }
 
 type SimpleGridProps = BoxProps & ISimpleGrid;

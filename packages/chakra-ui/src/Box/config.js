@@ -67,6 +67,9 @@ export const config = {
   bgImg: {
     property: "backgroundImage",
   },
+  bgImage: {
+    property: "backgroundImage",
+  },
   bgSize: {
     property: "backgroundSize",
   },
