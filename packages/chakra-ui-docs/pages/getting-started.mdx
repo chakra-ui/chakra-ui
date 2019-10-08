@@ -14,6 +14,20 @@ Install Chakra UI and its peer dependencies.
 npm install @chakra-ui/core @emotion/core @emotion/styled emotion-theming
 ```
 
+Also, it's necessary to install babel plugin for emotion:
+
+```bash
+npm install --save-dev babel-plugin-emotion
+```
+
+In .babelrc, add:
+
+```json
+{
+  "plugins": ["emotion"]
+}
+```
+
 Create a theme object to include custom color, typography, and layout values.
 Chakra UI comes with a default theme, so this step is optional.
 
