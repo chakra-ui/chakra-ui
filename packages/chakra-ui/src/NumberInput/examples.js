@@ -5,8 +5,8 @@ import Box from "../Box";
 import {
   NumberInput,
   NumberInputField,
-  NumberDecrementStepper,
   NumberInputStepper,
+  NumberDecrementStepper,
   NumberIncrementStepper,
 } from ".";
 import { useState } from "react";
@@ -27,8 +27,8 @@ const ContolledEx = () => {
     >
       <NumberInputField />
       <NumberInputStepper>
-        <NumberIncrementStepper />
-        <NumberDecrementStepper />
+        <NumberIncrementStepper children="+" />
+        <NumberDecrementStepper children="-" />
       </NumberInputStepper>
     </NumberInput>
   );
@@ -37,7 +37,7 @@ const ContolledEx = () => {
 stories.add("version2", () => (
   <Box maxWidth="sm" mx="auto" mt={5}>
     <NumberInput
-      size="md"
+      size="sm"
       max={35}
       min={0}
       step={4}
@@ -45,6 +45,23 @@ stories.add("version2", () => (
       // keepWithinRange={false}
       // clampValueOnBlur={false}
       precision={2}
+    />
+  </Box>
+));
+
+stories.add("v2 controlled", () => (
+  <Box maxWidth="sm" mx="auto" mt={5}>
+    <ContolledEx />
+  </Box>
+));
+
+stories.add("allow out of range", () => (
+  <Box maxWidth="sm" mx="auto" mt={5}>
+    <NumberInput
+      defaultValue={15}
+      max={10}
+      clampValueOnBlur={false}
+      keepWithinRange={false}
     >
       <NumberInputField />
       <NumberInputStepper>
@@ -52,11 +69,5 @@ stories.add("version2", () => (
         <NumberDecrementStepper />
       </NumberInputStepper>
     </NumberInput>
-  </Box>
-));
-
-stories.add("v2 controlled", () => (
-  <Box maxWidth="sm" mx="auto" mt={5}>
-    <ContolledEx />
   </Box>
 ));

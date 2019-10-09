@@ -14,13 +14,13 @@ const themedProps = {
   },
 };
 
-const styleProps = ({ colorMode }) => ({
+const styleProps = ({ colorMode, size }) => ({
   borderLeft: "1px",
   _first: {
-    roundedTopRight: 3,
+    roundedTopRight: size === "sm" ? 1 : 3,
   },
   _last: {
-    roundedBottomRight: 3,
+    roundedBottomRight: size === "sm" ? 1 : 3,
     mt: "-1px",
     borderTopWidth: 1,
   },

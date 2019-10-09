@@ -88,7 +88,6 @@ export { default as Menu } from "./Menu";
 export * from "./Modal";
 
 export * from "./NumberInput";
-export { default as NumberInput } from "./NumberInput";
 
 export * from "./Portal";
 export { default as Portal } from "./Portal";

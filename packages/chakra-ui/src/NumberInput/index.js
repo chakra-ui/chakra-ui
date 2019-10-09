@@ -12,9 +12,7 @@ const NumberInputContext = createContext({});
 const useNumberInputContext = () => {
   const context = useContext(NumberInputContext);
   if (context == null) {
-    throw new Error(
-      "This component must be wrapped within a `NumberInputContext` ",
-    );
+    throw new Error("This component must be used within the `NumberInput` ");
   }
   return context;
 };
@@ -32,14 +30,13 @@ const NumberInput = forwardRef(
       max,
       step,
       precision,
-      getAriaLabel,
+      getAriaValueText,
       isReadOnly,
       isInvalid,
       isDisabled,
-      onFocus,
-      onBlur,
       isFullWidth,
-      size,
+      size = "md",
+      children,
       ...rest
     },
     ref,
@@ -55,11 +52,22 @@ const NumberInput = forwardRef(
       max,
       step,
       precision,
-      getAriaLabel,
+      getAriaValueText,
       isReadOnly,
       isInvalid,
       isDisabled,
     });
+    // A trick to render this event the user doesn't
+    // want to have control over the children
+    const _children = children || (
+      <>
+        <NumberInputField />
+        <NumberInputStepper>
+          <NumberIncrementStepper />
+          <NumberDecrementStepper />
+        </NumberInputStepper>
+      </>
+    );
     return (
       <NumberInputContext.Provider value={{ ...context, size }}>
         <Flex
@@ -68,7 +76,9 @@ const NumberInput = forwardRef(
           w={isFullWidth ? "full" : null}
           pos="relative"
           {...rest}
-        />
+        >
+          {_children}
+        </Flex>
       </NumberInputContext.Provider>
     );
   },
@@ -131,7 +141,7 @@ const NumberInputStepper = forwardRef((props, ref) => {
 
 const StepperButton = forwardRef((props, ref) => {
   const { colorMode } = useColorMode();
-  const { isDisabled } = useNumberInputContext();
+  const { isDisabled, size } = useNumberInputContext();
 
   return (
     <PseudoBox
@@ -148,7 +158,7 @@ const StepperButton = forwardRef((props, ref) => {
       pointerEvents={isDisabled ? "none" : undefined}
       cursor="pointer"
       lineHeight="normal"
-      {...styleProps({ colorMode })}
+      {...styleProps({ colorMode, size })}
       {...props}
     />
   );
@@ -185,20 +195,6 @@ const NumberDecrementStepper = forwardRef((props, ref) => {
     </StepperButton>
   );
 });
-
-/**
- * <NumberInput>
- *  <NumberInput />
- *  <NumberInputStepper>
- *   <NumberIncrementStepper children="+"/>
- *   <NumberDecrementStepper children="-"/>
- * </NumberInputStepper>
- * </NumberInput>
- *
- * <NumberInput>
- *   {({isDisabled, isReadOnly, incrementButton, decrementButton}) => JSX.Element}
- * </NumberInput>
- */
 
 export {
   NumberInput,

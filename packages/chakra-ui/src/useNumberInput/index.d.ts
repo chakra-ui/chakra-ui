@@ -1,22 +1,83 @@
 import * as React from "react";
 
 export interface useNumberInputProps {
+  /**
+   * The value of the input. Should be less than `max` and greater than `min`
+   */
   value?: number;
-  onChange?: number;
+  /**
+   * The initial value of the input. Should be less than `max` and greater than `min`
+   */
   defaultValue?: number;
+  /**
+   * The callback fired when the value changes
+   * @param {Number} value - The next value
+   */
+  onChange?: (value: number) => void;
+  /**
+   * If `true`, the input will be focused as you increment
+   * or decrement the value with the stepper
+   *
+   * @default true
+   */
   focusInputOnChange?: boolean;
+  /**
+   * This controls the value update when you blur out of the input.
+   * - If `true` and the value is greater than `max`, the value will be reset to `max`
+   * - Else, the value remains the same.
+   *
+   * @default true
+   */
   clampValueOnBlur?: boolean;
+  /**
+   * This controls the value update behavior in general.
+   * - If `true` and you use the stepper or up/down arrow keys,
+   *  the value will not exceed the `max` or go lower than `min`
+   * - Else, the value will be allowed to go out of range.
+   *
+   * @default true
+   */
   keepWithinRange?: boolean;
+  /**
+   * The minimum value of the input
+   * @default -Infinity
+   */
   min?: number;
+  /**
+   * The maximum value of the input
+   * @default Infinity
+   */
   max?: number;
+  /**
+   * The step used to increment or decrement the value
+   * @default 1
+   */
   step?: number;
+  /**
+   * The number of decimal points used to round the value
+   */
   precision?: number;
+  /**
+   * This is used to format the value so that screen readers
+   * can speak out a more human-friendly value.
+   *
+   * It is used to set the `aria-valuetext` property of the input
+   *
+   * @param {Number} value - the current value
+   */
   getAriaValueText?: (value: number) => string;
+  /**
+   * If `true`, the input will be in readonly mode
+   */
   isReadOnly?: boolean;
+  /**
+   * If `true`, the input will have `aria-invalid` set to `true`
+   */
   isInvalid?: boolean;
+  /**
+   * If `true`, the input will be disabled
+   */
   isDisabled?: boolean;
-  onFocus?: React.FocusEventHandler<HTMLElement>;
-  onBlur?: React.FocusEventHandler<HTMLElement>;
 }
 
 interface SpinnerProps {

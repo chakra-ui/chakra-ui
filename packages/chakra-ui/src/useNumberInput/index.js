@@ -90,7 +90,12 @@ function useNumberInput({
 
   const [value, setValue] = useState(() => {
     if (defaultValue != null) {
-      return roundToPrecision(defaultValue, precision);
+      let nextValue = defaultValue;
+      if (keepWithinRange) {
+        nextValue = Math.max(Math.min(nextValue, max), min);
+      }
+      nextValue = roundToPrecision(nextValue, precision);
+      return nextValue;
     }
     return 0;
   });

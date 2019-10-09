@@ -64,7 +64,7 @@ export { default as Menu } from "./Menu";
 export * from "./Menu";
 export * from "./Modal";
 
-export { default as NumberInput } from "./NumberInput";
+export * from "./NumberInput";
 
 export { default as Portal } from "./Portal";
 export * from "./Popover";
