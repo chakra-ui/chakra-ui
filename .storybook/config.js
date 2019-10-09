@@ -1,6 +1,6 @@
 import { addDecorator, configure } from "@storybook/react";
 import React from "react";
-import { CSSReset, useColorMode, ThemeProvider } from "@chakra-ui/core";
+import { CSSReset, ThemeProvider } from "../packages/chakra-ui/src";
 
 // function loadStories() {
 //   require("../stories");
@@ -13,7 +13,6 @@ function loadStories() {
 }
 
 const AppProvider = ({ children }) => {
-  // const { colorMode, toggleColorMode } = useColorMode();
   return (
     <ThemeProvider>
       <CSSReset />
