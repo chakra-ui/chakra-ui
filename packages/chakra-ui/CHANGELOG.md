@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.3](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/core@0.3.2...@chakra-ui/core@0.3.3) (2019-10-09)
+
+### Bug Fixes
+
+- **box:** add overflow types from styled-system
+  ([805cb61](https://github.com/chakra-ui/chakra-ui/commit/805cb61))
+- **box:** update type definition for borderWidth props
+  ([f4310ec](https://github.com/chakra-ui/chakra-ui/commit/f4310ec))
+- **button:** fix the types for leftIcon and rightIcon
+  ([9f3ba3a](https://github.com/chakra-ui/chakra-ui/commit/9f3ba3a))
+- **cssreset:** update the type definition
+  ([d8f2701](https://github.com/chakra-ui/chakra-ui/commit/d8f2701))
+- **iconbutton:** fix the types for the iconbutton
+  ([b9462d4](https://github.com/chakra-ui/chakra-ui/commit/b9462d4))
+- **modal:** add support for preserving scrollbar gap
+  ([bd67ea0](https://github.com/chakra-ui/chakra-ui/commit/bd67ea0))
+- **types:** export named types in all components
+  ([7378b77](https://github.com/chakra-ui/chakra-ui/commit/7378b77))
+- resolve yarn v2 pnp issues
+  ([0e0a04f](https://github.com/chakra-ui/chakra-ui/commit/0e0a04f))
+- **types:** include named exports from theme in main type definitions
+  ([68e06d8](https://github.com/chakra-ui/chakra-ui/commit/68e06d8))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [0.3.2](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/core@0.3.1...@chakra-ui/core@0.3.2) (2019-09-26)
 
 ### Bug Fixes
