@@ -34,7 +34,8 @@
       "eslint --fix"
     ],
     "**/**/**/*.+(js|json|jsx|ts|tsx|mdx|md)": [
-      "prettier --write"
+      "prettier --write",
+      "git add "
     ]
   },
   "czConfig": {
