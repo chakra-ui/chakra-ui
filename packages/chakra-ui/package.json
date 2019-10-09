@@ -19,7 +19,6 @@
     "version": "yarn build"
   },
   "dependencies": {
-    "@babel/runtime": "^7.6.2",
     "@reach/auto-id": "0.2.0",
     "@styled-system/css": "5.0.13",
     "@styled-system/should-forward-prop": "5.0.12",
