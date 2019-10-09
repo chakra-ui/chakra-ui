@@ -42,7 +42,8 @@ const DocsHeader = props => {
       bg={bg[colorMode]}
       left="0"
       right="0"
-      borderBottomWidth="1px"
+      borderBottom="1px"
+      borderBottomColor="inherit"
       width="full"
       height="4rem"
       {...props}
