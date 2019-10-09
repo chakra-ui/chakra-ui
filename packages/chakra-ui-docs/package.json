@@ -9,7 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@chakra-ui/core": "latest",
+    "@chakra-ui/core": "0.3.4",
     "@emotion/core": "10.0.10",
     "@emotion/styled": "10.0.11",
     "@mdx-js/loader": "1.3.1",
