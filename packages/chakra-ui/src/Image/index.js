@@ -7,43 +7,26 @@ export const useHasImageLoaded = ({ src, onLoad, onError }) => {
   const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
-    const image = new Image();
+    const image = new window.Image();
     image.src = src;
 
-    const removeEventListeners = () => {
-      image.removeEventListener("load", loadListener);
-      image.removeEventListener("error", errorListener);
-    };
-
-    const loadListener = () => {
-      removeEventListeners();
+    image.onload = event => {
       setHasLoaded(true);
-      onLoad && onLoad();
+      onLoad && onLoad(event);
     };
 
-    const errorListener = err => {
-      removeEventListeners();
+    image.onError = event => {
       setHasLoaded(false);
-      onError && onError(err);
+      onError && onError(event);
     };
-
-    image.addEventListener("load", loadListener);
-    image.addEventListener("error", errorListener);
-
-    return () => {
-      if (hasLoaded) {
-        return;
-      }
-      image.src = "";
-    };
-  }, [hasLoaded, src, onLoad, onError]);
+  }, [src, onLoad, onError]);
 
   return hasLoaded;
 };
 
-const Img = ({ src, onLoad, onError, fallbackSrc, ...props }) => {
+const Image = ({ src, fallbackSrc, onError, onLoad, ...props }) => {
   const hasLoaded = useHasImageLoaded({ src, onLoad, onError });
   return <Box as="img" src={hasLoaded ? src : fallbackSrc} {...props} />;
 };
 
-export default Img;
+export default Image;
