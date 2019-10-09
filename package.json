@@ -26,7 +26,7 @@
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged "
     }
   },
   "lint-staged": {
@@ -34,8 +34,7 @@
       "eslint --fix"
     ],
     "**/**/**/*.+(js|json|jsx|ts|tsx|mdx|md)": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
   "czConfig": {
@@ -118,6 +117,22 @@
     "rollup-plugin-terser": "5.1.1",
     "tslint": "5.18.0",
     "tslint-config-prettier": "1.18.0",
-    "typescript": "3.5.3"
+    "typescript": "3.5.3",
+    "@mdx-js/loader": "1.3.1",
+    "@mdx-js/mdx": "^1.1.6",
+    "@mdx-js/react": "^1.1.6",
+    "@next/mdx": "^9.0.3",
+    "formik": "^1.5.8",
+    "next": "9.0.3",
+    "now": "^16.1.1",
+    "next-seo": "2.0.0",
+    "prism-react-renderer": "^0.1.7",
+    "react-icons": "^3.7.0",
+    "react-live": "2.2.1",
+    "remark-autolink-headings": "5.2.1",
+    "remark-emoji": "2.0.2",
+    "remark-images": "1.0.0",
+    "remark-slug": "5.1.2",
+    "remark-unwrap-images": "1.0.0"
   }
 }

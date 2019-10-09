@@ -1,5 +1,5 @@
 {
-  "packages": ["packages/*", ".storybook/"],
+  "packages": ["packages/*", ".storybook/*"],
   "version": "independent",
   "npmClient": "yarn",
   "useWorkspaces": true,

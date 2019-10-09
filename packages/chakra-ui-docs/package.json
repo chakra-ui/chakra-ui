@@ -24,11 +24,5 @@
     "remark-images": "1.0.0",
     "remark-slug": "5.1.2",
     "remark-unwrap-images": "1.0.0"
-  },
-  "devDependencies": {
-    "now": "^16.1.1",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-lorem-component": "^0.13.0"
   }
 }
