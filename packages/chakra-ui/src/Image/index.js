@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { useEffect, useState } from "react";
+import { useEffect, useState, forwardRef } from "react";
 import Box from "../Box";
 
 export const useHasImageLoaded = ({ src, onLoad, onError }) => {
@@ -24,9 +24,24 @@ export const useHasImageLoaded = ({ src, onLoad, onError }) => {
   return hasLoaded;
 };
 
-const Image = ({ src, fallbackSrc, onError, onLoad, ...props }) => {
-  const hasLoaded = useHasImageLoaded({ src, onLoad, onError });
-  return <Box as="img" src={hasLoaded ? src : fallbackSrc} {...props} />;
-};
+const NativeImage = forwardRef(
+  ({ htmlWidth, htmlHeight, alt, ...props }, ref) => (
+    <img width={htmlWidth} height={htmlHeight} ref={ref} alt={alt} {...props} />
+  ),
+);
+
+const Image = forwardRef(
+  ({ src, fallbackSrc, onError, onLoad, ...props }, ref) => {
+    const hasLoaded = useHasImageLoaded({ src, onLoad, onError });
+    return (
+      <Box
+        as={NativeImage}
+        ref={ref}
+        src={hasLoaded ? src : fallbackSrc}
+        {...props}
+      />
+    );
+  },
+);
 
 export default Image;

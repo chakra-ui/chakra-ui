@@ -23,6 +23,14 @@ interface IImage {
    * A callback for when there was an error loading the image `src`
    */
   onError?: () => void;
+  /**
+   * The native HTML `width` attribute to the passed to the `img`
+   */
+  htmlWidth?: string | number;
+  /**
+   * The native HTML `height` attribute to the passed to the `img`
+   */
+  htmlHeight?: string | number;
 }
 
 export type ImageProps = IImage & BoxProps;
