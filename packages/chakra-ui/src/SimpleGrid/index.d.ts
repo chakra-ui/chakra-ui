@@ -16,11 +16,11 @@ interface ISimpleGrid {
    */
   spacing?: GridProps["gridGap"];
   /**
-   * The row gap between the grid items
+   * The column gap between the grid items
    */
   spacingX?: GridProps["gridGap"];
   /**
-   * The column gap between the grid items
+   * The row gap between the grid items
    */
   spacingY?: GridProps["gridGap"];
 }

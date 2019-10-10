@@ -38,7 +38,7 @@ yarn bootstrap    # bootstraps lerna so all dependencies get
 
 yarn storybook        # starts storybook server
 
-yarn docs:dev         # runs the documentation site locally
+yarn docs         # runs the documentation site locally
 
 yarn core:build        # build the component library
 
@@ -51,7 +51,7 @@ The documentation site is built with Next but we created a simple command to run
 it.
 
 ```sh
-npm run docs:dev
+npm run docs
 ```
 
 You can now access the documentation site [locally](http://localhost:3000).

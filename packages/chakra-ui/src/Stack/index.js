@@ -6,9 +6,9 @@ import Box from "../Box";
 
 const Stack = ({
   direction,
-  isInline,
+  isInline = false,
   children,
-  align = "center",
+  align,
   justify,
   spacing = 2,
   shouldWrapChildren,
@@ -16,11 +16,11 @@ const Stack = ({
 }) => {
   let flexDirection;
 
-  if (isInline) {
+  if (isInline != null) {
     flexDirection = isInline ? "row" : "column";
   }
 
-  if (direction) {
+  if (direction != null) {
     flexDirection = direction;
   }
 

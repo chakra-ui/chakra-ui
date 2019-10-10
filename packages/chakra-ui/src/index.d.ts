@@ -80,6 +80,8 @@ export * from "./Link";
 export { default as Link } from "./Link";
 export * from "./List";
 export { default as List } from "./List";
+export * from "./SimpleGrid";
+export { default as SimpleGrid } from "./SimpleGrid";
 export * from "./Stack";
 export { default as Stack } from "./Stack";
 

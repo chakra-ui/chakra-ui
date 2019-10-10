@@ -11,7 +11,7 @@
     "bootstrap": "yarn clean && lerna bootstrap --use-workspaces",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -c .storybook",
-    "docs:dev": "yarn workspace @chakra-ui/docs dev",
+    "docs": "yarn workspace @chakra-ui/docs dev",
     "docs:build": "yarn workspace @chakra-ui/docs build",
     "docs:deploy": "cd packages/chakra-ui-docs && now",
     "docs:start": "yarn workspace @chakra-ui/docs start",

@@ -59,6 +59,7 @@ export { default as Link } from "./Link";
 export { default as List } from "./List";
 export * from "./List";
 export { default as Stack } from "./Stack";
+export { default as SimpleGrid } from "./SimpleGrid";
 
 export { default as Menu } from "./Menu";
 export * from "./Menu";
