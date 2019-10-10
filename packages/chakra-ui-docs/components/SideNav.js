@@ -10,6 +10,7 @@ const topNavLinks = [
   "Color Mode",
   "Responsive Styles",
   "Theme",
+  "Recipes",
 ];
 
 const utilsNavLinks = ["useClipboard", "useDisclosure", "useTheme"];
