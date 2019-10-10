@@ -44,6 +44,7 @@ interface ICustomConfig {
     CSS["backgroundAttachment"]
   >;
   bgImg?: StyledSystem.BackgroundImageProps["backgroundImage"];
+  bgImage?: StyledSystem.BackgroundImageProps["backgroundImage"];
   bgSize?: StyledSystem.BackgroundSizeProps["backgroundSize"];
   bgPos?: StyledSystem.BackgroundPositionProps["backgroundPosition"];
   pos?: StyledSystem.PositionProps["position"];

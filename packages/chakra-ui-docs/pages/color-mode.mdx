@@ -77,7 +77,7 @@ function Example() {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
-    <Stack isInline>
+    <Stack shouldWrapChildren isInline>
       <LightMode>
         <Button size="sm" variantColor="blue">
           Light Mode Always
