@@ -51,8 +51,7 @@ const Header = props => {
       bg={bg[colorMode]}
       left="0"
       right="0"
-      borderBottom="1px"
-      borderBottomColor="inherit"
+      borderBottomWidth="1px"
       width="full"
       height="4rem"
       {...props}
