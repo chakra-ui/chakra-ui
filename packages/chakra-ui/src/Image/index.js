@@ -31,16 +31,15 @@ const NativeImage = forwardRef(
 );
 
 const Image = forwardRef(
-  ({ src, fallbackSrc, onError, onLoad, ...props }, ref) => {
+  ({ src, fallbackSrc, onError, onLoad, ignoreFallback, ...props }, ref) => {
     const hasLoaded = useHasImageLoaded({ src, onLoad, onError });
-    return (
-      <Box
-        as={NativeImage}
-        ref={ref}
-        src={hasLoaded ? src : fallbackSrc}
-        {...props}
-      />
-    );
+    let imageProps;
+    if (ignoreFallback) {
+      imageProps = { src, onLoad, onError };
+    } else {
+      imageProps = { src: hasLoaded ? src : fallbackSrc };
+    }
+    return <Box as={NativeImage} ref={ref} {...imageProps} {...props} />;
   },
 );
 
