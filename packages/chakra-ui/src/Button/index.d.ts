@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as StyledSystem from "styled-system";
 import { PseudoBoxProps } from "../PseudoBox";
+import { Icons } from "../theme/icons";
 
 export interface IButton {
   /**
@@ -50,12 +51,12 @@ export interface IButton {
    * If added, the button will show an icon before the button's label.
    * Use the icon key in `theme.iconPath`
    */
-  leftIcon?: string | React.ElementType;
+  leftIcon?: Icons | React.ComponentType;
   /**
    * If added, the button will show an icon after the button's label.
    * Use the icon key in `theme.iconPath`
    */
-  rightIcon?: string | React.ElementType;
+  rightIcon?: Icons | React.ComponentType;
   /**
    * The space between the button icon and label.
    * Use the styled-system tokens or add custom values as a string
