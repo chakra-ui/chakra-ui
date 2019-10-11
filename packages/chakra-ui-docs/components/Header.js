@@ -74,9 +74,9 @@ const Header = props => {
               >
                 <Box as={DiGithubBadge} size="8" color="current" />
               </Link>
-              <Link isExternal href="https://chakra-ui.netlify.com">
+              {/* <Link isExternal href="https://chakra-ui.netlify.com">
                 <Box as={StorybookIcon} size="6" color="current" />
-              </Link>
+              </Link> */}
             </Stack>
             <IconButton
               aria-label={`Switch to ${
