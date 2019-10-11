@@ -56,6 +56,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "wKovacs64",
+      "name": "Justin Hall",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1288694?v=4",
+      "profile": "https://github.com/wKovacs64",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 10,
