@@ -3,6 +3,53 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/core@0.3.4...@chakra-ui/core@0.4.0) (2019-10-14)
+
+### Bug Fixes
+
+- **box:** update type definitions
+  ([b78723a](https://github.com/chakra-ui/chakra-ui/commit/b78723a))
+- **css:** export css function
+  ([c8a17c8](https://github.com/chakra-ui/chakra-ui/commit/c8a17c8))
+- **cssreset:** remove comments from CSSReset preflight.js
+  ([25edb5b](https://github.com/chakra-ui/chakra-ui/commit/25edb5b)), closes
+  [#161](https://github.com/chakra-ui/chakra-ui/issues/161)
+- **image:** add prop to opt out of the fallbackSrc logic
+  ([cd1acc6](https://github.com/chakra-ui/chakra-ui/commit/cd1acc6))
+- **image:** add support for native width and height
+  ([e4b6165](https://github.com/chakra-ui/chakra-ui/commit/e4b6165))
+- **image:** add support for native width and height
+  ([298f067](https://github.com/chakra-ui/chakra-ui/commit/298f067))
+- improve NumberInput API
+  ([bca497e](https://github.com/chakra-ui/chakra-ui/commit/bca497e))
+- **image:** improve image hook
+  ([4fb5c04](https://github.com/chakra-ui/chakra-ui/commit/4fb5c04))
+- **numberinput:** improve NumberInput API
+  ([fe0441d](https://github.com/chakra-ui/chakra-ui/commit/fe0441d))
+- **numberinput:** update API and docs for numberinput
+  ([dc70274](https://github.com/chakra-ui/chakra-ui/commit/dc70274))
+- **numberinput:** update story
+  ([bda8efc](https://github.com/chakra-ui/chakra-ui/commit/bda8efc))
+- **types:** add types for default theme. closes issue
+  [#160](https://github.com/chakra-ui/chakra-ui/issues/160)
+  ([dfef504](https://github.com/chakra-ui/chakra-ui/commit/dfef504))
+- **types:** add types for icons to improve DX
+  ([5629bc7](https://github.com/chakra-ui/chakra-ui/commit/5629bc7))
+- **types:** update types to allow for migration to TS
+  ([73bbe73](https://github.com/chakra-ui/chakra-ui/commit/73bbe73))
+
+### Features
+
+- add SimpleGrid component
+  ([ff5760c](https://github.com/chakra-ui/chakra-ui/commit/ff5760c))
+- add SimpleGrid component and improve Stack
+  ([16cc9ef](https://github.com/chakra-ui/chakra-ui/commit/16cc9ef))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [0.3.4](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/core@0.3.3...@chakra-ui/core@0.3.4) (2019-10-09)
 
 ### Bug Fixes
