@@ -7,7 +7,7 @@
     }
   ],
   "name": "chakra-ui",
-  "alias": ["www.chakra-ui.com", "chakra-ui"],
+  "alias": "chakra-ui.com",
   "routes": [
     {
       "src": "^(.*)$",
