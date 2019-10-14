@@ -1,0 +1,7 @@
+node_modules
+public
+out
+.next
+.env
+.cache
+yarn-error.log

@@ -3,14 +3,18 @@
   "builds": [
     {
       "src": "packages/chakra-ui-docs/package.json",
-      "use": "@now/next"
+      "use": "@now/next@canary"
     }
   ],
   "name": "chakra-ui",
   "alias": ["www.chakra-ui.com", "chakra-ui"],
   "routes": [
     {
-      "src": "packages/chakra-ui-docs/(.*)",
+      "src": "^(.*)$",
+      "dest": "packages/chakra-ui-docs$1"
+    },
+    {
+      "src": "www.chakra-ui.com/*",
       "status": 301,
       "headers": { "Location": "https://chakra-ui.com/$1" }
     }

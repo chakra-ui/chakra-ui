@@ -10,6 +10,9 @@
   },
   "dependencies": {
     "@chakra-ui/core": "^0.4.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-lorem-component": "^0.13.0",
     "@emotion/core": "10.0.10",
     "@emotion/styled": "10.0.11",
     "@mdx-js/loader": "1.3.1",
