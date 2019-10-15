@@ -13,7 +13,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -c .storybook",
     "docs": "yarn workspace @chakra-ui/docs dev",
-    "docs:now": "now",
+    "docs:now": "cd packages/chakra-ui-docs && now",
     "core:build": "yarn workspace @chakra-ui/core build",
     "release": "lerna publish",
     "lint": "yarn workspace @chakra-ui/core eslint src",
