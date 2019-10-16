@@ -1,49 +1,213 @@
+import SEO from "../components/SEO";
+
+<SEO
+  title="NumberInput"
+  description="The NumberInput component is similar to the Input component, but it has controls
+for incrementing or decrementing numeric values."
+/>
+
 # NumberInput
 
 The NumberInput component is similar to the [Input](/input), but it has controls
 for incrementing or decrementing numeric values.
 
+It follows the
+[WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices-1.1/#spinbutton)
+for the Spinbutton widget.
+
+> 🚨 Version (v0.4.0) introduced a change to this component's API. Kindly update
+> accordingly.
+
 ## Import
 
+Chakra UI exports 5 components for the NumberInput.
+
+- **NumberInput**: The wrapper that provides context and logic to the
+  components.
+- **NumberInputField**: The `input` field itself.
+- **NumberInputStepper**: The wrapper for the input's stepper buttons.
+- **NumberIncrementStepper**: The button to increment the value of the input.
+- **NumberDecrementStepper**: The button to decrement the value of the input.
+
 ```js
-import { NumberInput } from "@chakra-ui/core";
+import {
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
+} from "@chakra-ui/core";
 ```
 
 ## Usage
 
+The `NumberInput` is composed of smaller components to give you control of the
+styling of each part.
+
 ```jsx
-<NumberInput />
+<NumberInput>
+  <NumberInputField />
+  <NumberInputStepper>
+    <NumberIncrementStepper />
+    <NumberDecrementStepper />
+  </NumberInputStepper>
+</NumberInput>
 ```
 
-### With minimum value
+### Setting a minimum and minimum value
+
+Simply pass the `min` prop or `max` prop to set an upper and lower limit for the
+input. By default, the input will restrict the value to stay within the
+specified range.
 
 ```jsx
-<NumberInput defaultValue={15} min={10} />
+<NumberInput defaultValue={15} min={10} max={20}>
+  <NumberInputField />
+  <NumberInputStepper>
+    <NumberIncrementStepper />
+    <NumberDecrementStepper />
+  </NumberInputStepper>
+</NumberInput>
 ```
 
-### Sizes
+### Setting the step size
+
+Simply pass the `step` prop to change the step size when you increment or
+decrement the value. By default, the value is rounded to match the number of
+decimals in the `step`.
 
 ```jsx
-<Stack>
-  <NumberInput size="sm" defaultValue={15} min={10} />
-  <NumberInput size="md" defaultValue={15} min={10} />
-  <NumberInput size="lg" defaultValue={15} min={10} />
+<NumberInput step={5} defaultValue={15} min={10} max={30}>
+  <NumberInputField />
+  <NumberInputStepper>
+    <NumberIncrementStepper />
+    <NumberDecrementStepper />
+  </NumberInputStepper>
+</NumberInput>
+```
+
+### Adjusting the precision of the value
+
+In some cases, you might need the value to be rounded to specific decimal
+points. Simply pass the `precision` prop and set it to the number of decimal
+points.
+
+```jsx
+<NumberInput defaultValue={15} precision={2} step={0.2}>
+  <NumberInputField />
+  <NumberInputStepper>
+    <NumberIncrementStepper />
+    <NumberDecrementStepper />
+  </NumberInputStepper>
+</NumberInput>
+```
+
+### Clamp value when user blurs the input
+
+In most cases, users can type custom values in the input field. If the typed
+value is greater than the `max`, the value is reset to `max` when the user blur
+out of the input.
+
+To disable this behavior, pass `clampValueOnBlur` and set to `false`.
+
+> In this example, try to type a value greater than the max, it won't reset the
+> value on blur.
+
+```jsx
+<NumberInput defaultValue={15} max={30} clampValueOnBlur={false}>
+  <NumberInputField />
+  <NumberInputStepper>
+    <NumberIncrementStepper />
+    <NumberDecrementStepper />
+  </NumberInputStepper>
+</NumberInput>
+```
+
+### Allowing out of range values
+
+In some scenarios, you might not want to block out of range values. Simple pass
+`keepWithinRange` and `clampValueOnBlur` and set them to `false` to support this
+use case.
+
+> The NumberInput will be set `isInvalid` to `true` internally when the value is
+> out of range. Out of range means that the `value` is great than `max` or less
+> than `min`.
+
+```jsx
+<NumberInput
+  defaultValue={15}
+  max={10}
+  keepWithinRange={false}
+  clampValueOnBlur={false}
+>
+  <NumberInputField />
+  <NumberInputStepper>
+    <NumberIncrementStepper />
+    <NumberDecrementStepper />
+  </NumberInputStepper>
+</NumberInput>
+```
+
+### Changing the size of the input
+
+Just like the `Input` component, you can pass the `size` prop to change the size
+of the input.
+
+```jsx
+<Stack shouldWrapChildren isInline>
+  <NumberInput size="sm" defaultValue={15} min={10}>
+    <NumberInputField />
+    <NumberInputStepper>
+      <NumberIncrementStepper />
+      <NumberDecrementStepper />
+    </NumberInputStepper>
+  </NumberInput>
+
+  <NumberInput size="md" defaultValue={15} min={10}>
+    <NumberInputField />
+    <NumberInputStepper>
+      <NumberIncrementStepper />
+      <NumberDecrementStepper />
+    </NumberInputStepper>
+  </NumberInput>
+
+  <NumberInput size="lg" defaultValue={15} min={10}>
+    <NumberInputField />
+    <NumberInputStepper>
+      <NumberIncrementStepper />
+      <NumberDecrementStepper />
+    </NumberInputStepper>
+  </NumberInput>
 </Stack>
 ```
 
-### With maximum value
+### Changing the styles
+
+You can change the style of any part of the components using style props. You
+can also change the icons used in the steppers
 
 ```jsx
-<NumberInput defaultValue={20} max={25} />
-```
-
-### With step value
-
-```jsx
-<NumberInput defaultValue={20} step={5} max={50} />
+<NumberInput size="sm" defaultValue={15} min={10}>
+  <NumberInputField focusBorderColor="red.200" />
+  <NumberInputStepper>
+    <NumberIncrementStepper
+      bg="green.200"
+      _active={{ bg: "green.300" }}
+      children="+"
+    />
+    <NumberDecrementStepper
+      bg="pink.200"
+      _active={{ bg: "pink.300" }}
+      children="-"
+    />
+  </NumberInputStepper>
+</NumberInput>
 ```
 
 ### Combining it with a Slider
+
+A common use case is to combine the `NumberInput` with a `Slider`. Here's an
+example of how to do that.
 
 ```jsx
 function SliderInput() {
@@ -91,24 +255,44 @@ function SliderInput() {
 
 - When you hit the <kbd>⬆</kbd> or <kbd>⬇</kbd> key, the input value will be
   increased or decreased by `step`
-- With the <kbd>Shift</kbd> key (<kbd>Shift+⬆</kbd>, <kbd>Shift+⬇</kbd>), the
-  input value will be changed by `10 * step`
-- With the <kbd>Ctrl</kbd> or <kbd>⌘</kbd> key (<kbd>Ctrl+⬆</kbd> or
-  <kbd>⌘+⬆</kbd> or <kbd>Ctrl+⬇</kbd> or <kbd>⌘+⬇</kbd> ), the input value will
-be changed by `0.1 * step`
-- Long press the Up and down buttons to change the values at intervals.
+- Holding down <kbd>Shift</kbd> and pressing <kbd>⬆</kbd> or <kbd>⬇</kbd> will
+  update the value by `10 * step`
+- Holding down <kbd>Ctrl</kbd> or <kbd>⌘</kbd>, and pressing <kbd>⬆</kbd> or
+   <kbd>⬆</kbd> will update the value by `0.1 * step`
+- Long press the Up and down stepper buttons will update the value at intervals.
 
 ## Props
 
-NumberInput composes `Input` with some additional props listed below.
+### NumberInput Props
 
-| Name           | Type                      | Default | Description                                                                                                                    |
-| -------------- | ------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| `min`          | `number`                  |         | Standard `input` min attribute, to be used with `type="number"`                                                                |
-| `max`          | `number`                  |         | Standard `input` max attribute, to be used with `type="number"`                                                                |
-| `step`         | `number`                  |         | Standard `input` step attribute, to be used with `type="number"`                                                               |
-| `placeholder`  | `string`                  |         | Text to display in the input if the `input` is empty                                                                           |
-| `defaultValue` | `string`, `number`        |         | Initial value of the input, for uncontrolled usage                                                                             |
-| `value`        | `string`, `number`        |         | The value of the input, for controlled usage                                                                                   |
-| `isDisabled`   | `boolean`                 | `false` | If `true`, the input will be disabled. This sets `aria-disabled=true` and you can style this state by passing `_disabled` prop |
-| `onChange`     | `(value: number) => void` |         | Function called when the value of the `input` changes, for controlled usage                                                    |
+NumberInput composes `Flex` with some additional props listed below.
+
+| Name                 | Type                        | Default     | Description                                                                                                         |
+| -------------------- | --------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------- |
+| `value`              | `number`                    |             | The value of the input for controlled usage. Should be less than `max` and greater than `min`                       |
+| `defaultValue`       | `number`                    |             | The initial value of the input. Should be less than `max` and greater than `min`                                    |
+| `onChange`           | `(value: number) => void`   |             | The callback fired when the value changes                                                                           |
+| `min`                | `number`                    | `-Infinity` | The maximum value of the input                                                                                      |
+| `max`                | `number`                    | `Infinity`  | The minimum value of the input                                                                                      |
+| `step`               | `number`                    | `1`         | The step used to increment or decrement the value                                                                   |
+| `precision`          | `number`                    |             | The number of decimal points used to round the value                                                                |
+| `isReadOnly`         | `boolean`                   |             | If `true`, the input will be in readonly mode                                                                       |
+| `isInvalid`          | `boolean`                   |             | If `true`, the input will have `aria-invalid` set to `true`                                                         |
+| `isDisabled`         | `boolean`                   |             | If `true`, the input will be disabled                                                                               |
+| `keepWithinRange`    | `boolean`                   | `true`      | If `true` and you use the stepper or up/down arrow keys, the value will not exceed the `max` or go lower than `min` |
+| `clampValueOnBlur`   | `boolean`                   | `true`      | If `true` and the value is greater than `max`, the value will be reset to `max`                                     |
+| `focusInputOnChange` | `boolean`                   | `true`      | If `true`, the input will be focused as you increment or decrement the value with the stepper                       |
+| `getAriaValueText`   | `(value: number) => string` | `true`      | It is used to set the `aria-valuetext` property of the input                                                        |
+
+### NumberInputField Props
+
+NumberInput composes `Input` so you can pass all `Input` props.
+
+### NumberInputStepper Props
+
+NumberInputStepper composes `Flex` so you can pass all `Flex` props.
+
+### NumberDecrementStepper and NumberIncrementStepper Props
+
+NumberDecrementStepper and NumberIncrementStepper composes the `PseudoBox` props
+so you can pass all `PseudoBox` props.

@@ -67,6 +67,9 @@ export const config = {
   bgImg: {
     property: "backgroundImage",
   },
+  bgImage: {
+    property: "backgroundImage",
+  },
   bgSize: {
     property: "backgroundSize",
   },
@@ -162,7 +165,11 @@ const transformAlias = (prop, propValue) => {
 export const transformAliasProps = props => {
   let result = {};
   for (let prop in props) {
-    result = { ...result, ...transformAlias(prop, props[prop]) };
+    if (typeof props[prop] === "object") {
+      result = { ...result, [prop]: transformAliasProps(props[prop]) };
+    } else {
+      result = { ...result, ...transformAlias(prop, props[prop]) };
+    }
   }
   return result;
 };

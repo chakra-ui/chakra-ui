@@ -4,13 +4,48 @@ If you're reading this, you're awesome! Thank you for helping us make this
 project great and being a part of the Chakra UI community. Here are a few
 guidelines that will help you along the way.
 
+## Branch naming convention
+
+Branches created to address issues should be named in the following format:
+
+- Issue Type/Issue-ID-Issue Summary
+
+`Issue Type` - Shows the type of issue being worked on, and could be any one of
+the following:
+
+- bug (any fix to an existing feature to correct an anomaly).
+- feature (a new, working functionality).
+- chore (a task that doesn't change the behavior of the library. e.g
+  documentation, tests addition, etc).
+
+`Issue ID` - The issue ID assigned by Github.
+
+`Issue Summary` - Short description of the issue being worked on.
+
 ## Submitting a pull request
 
-Chakra UI is a community project, so pull requests are always welcome, but,
+Chakra UI is a community project, so pull requests are always welcome. But
 before working on a large change, it is best to open an issue first to discuss
-it with the maintainers.
+it with the maintainers. If no issue exists addressing the change you would like
+implemented, feel free to create one.
 
-As with issues, please begin the title with [ComponentName].
+If you decide to work on an already opened issue, do check the comments thread
+of that particular issue just incase someone else is already working on a fix.
+Should there be no one assigned that issue, indicate you are working on that
+issue by leaving a comment in the thread. This is to ensure nobody else takes up
+that same issue.
+
+Assuming you get the green light to work on the opened issue, the following
+steps would guide you on how to submit a PR:-
+
+- Create a fork of the chakra-ui repository
+- Create a branch out of the master branch of your forked repository, following
+  the branch naming convention above.
+- It is advisable to make atomic commits, as this would help other maintainers
+  understand the changes made. Also, working on small changes per single PR is
+  advisable as those are easy to review and maintain.
+- When you are sure your change works as intended, proceed to raise a PR against
+  the chakra-ui master branch
 
 ## Getting Started
 
@@ -38,7 +73,7 @@ yarn bootstrap    # bootstraps lerna so all dependencies get
 
 yarn storybook        # starts storybook server
 
-yarn docs:dev         # runs the documentation site locally
+yarn docs         # runs the documentation site locally
 
 yarn core:build        # build the component library
 
@@ -51,7 +86,7 @@ The documentation site is built with Next but we created a simple command to run
 it.
 
 ```sh
-npm run docs:dev
+npm run docs
 ```
 
 You can now access the documentation site [locally](http://localhost:3000).

@@ -2,6 +2,7 @@ import { IBadge } from "../Badge";
 import * as React from "react";
 import { BoxProps } from "../Box";
 import { PseudoBoxProps } from "../PseudoBox";
+import { IconProps } from "../Icon";
 
 export interface ITag {
   /**
@@ -24,7 +25,7 @@ export default Tag;
 export const TagLabel: React.FC<BoxProps>;
 export const TagCloseButton: React.FC<PseudoBoxProps>;
 
-interface ITagIcon {
-  icon: string | React.ElementType;
-}
-export const TagIcon: React.FC<ITagIcon & BoxProps>;
+type TagIconProps = Omit<IconProps, "name"> & {
+  icon: IconProps["name"] | React.ComponentType;
+};
+export const TagIcon: React.FC<TagIconProps>;

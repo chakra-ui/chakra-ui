@@ -91,9 +91,7 @@ export const AccordionItem: React.FC<AccordionItemProps>;
 /////////////////////////////////////////////////////////////
 
 export type AccordionHeaderProps = PseudoBoxProps &
-  React.ButtonHTMLAttributes<HTMLButtonElement> &
-  React.RefAttributes<HTMLButtonElement>;
-
+  React.ButtonHTMLAttributes<any>;
 /**
  * AccordionHeader component composes `PseudoBox`, this means you can use
  * the `_expanded`, `_disabled`, `_hover`, etc. props to style them

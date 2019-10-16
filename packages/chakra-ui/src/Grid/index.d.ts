@@ -2,7 +2,7 @@ import * as React from "react";
 import * as StyledSystem from "styled-system";
 import { BoxProps } from "../Box";
 
-interface IGrid {
+export interface IGrid {
   templateColumns?: StyledSystem.GridTemplateColumnsProps["gridTemplateColumns"];
   gap?: StyledSystem.GridGapProps["gridGap"];
   rowGap?: StyledSystem.GridRowGapProps["gridRowGap"];
@@ -17,7 +17,7 @@ interface IGrid {
   row?: StyledSystem.GridRowProps["gridRow"];
 }
 
-export type GridProps = BoxProps & IGrid & React.RefAttributes<HTMLElement>;
+export type GridProps = BoxProps & IGrid;
 
 declare const Grid: React.FC<GridProps>;
 

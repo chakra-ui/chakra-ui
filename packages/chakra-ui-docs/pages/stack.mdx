@@ -11,7 +11,7 @@ import { Stack } from "@chakra-ui/core";
 ```
 
 By default, each item is stacked vertically. Stack clones it's children and
-passes the spacing to them via the `margin-bottom` or `margin-right`.
+passes the spacing to them using `margin-bottom` or `margin-right`.
 
 ## Usage
 
@@ -43,10 +43,12 @@ function StackEx() {
 render(<StackEx />);
 ```
 
-### Inline stack
+### Stack items horizontally
 
-The stack each item horizonally, pass the `isInline` prop. Optionally, you can
-use `align` and `justify` to adjust the alignment of the items.
+Pass the `isInline` prop or `direction` and set it to `horizontal`.
+
+Optionally, you can use `align` and `justify` to adjust the alignment and
+distribution of the items.
 
 ```jsx isManual=true
 function Feature({ title, desc, ...rest }) {
@@ -78,11 +80,12 @@ render(<StackEx />);
 
 ### Props
 
-| Name                 | Type                       | Default | Description                                                                                                              |
-| -------------------- | -------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `isInline`           | `boolean`                  |         | If `true` the items will be stacked horizontally inline.                                                                 |
-| `children`           | `React.ReactNode`          |         | The content of the stack.                                                                                                |
-| `spacing`            | `StyledSystem.MarginProps` |         | The space between each stack item                                                                                        |
-| `align`              | `string`                   |         | The alignment of the stack item. Similar to `align-items`                                                                |
-| `justify`            | `string`                   |         | The distribution of the stack item. Similar to `justify-content`                                                         |
-| `shouldWrapChildren` | `boolean`                  |         | If `true`, the children will be wrapped in a `Box` with `display: inline-block`, and the Box will take the spacing props |
+| Name                 | Type                          | Default | Description                                                                                                              |
+| -------------------- | ----------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `isInline`           | `boolean`                     |         | If `true` the items will be stacked horizontally.                                                                        |
+| `direction`          | `FlexProps["flexDirection"]`  |         | The direction to stack the items.                                                                                        |
+| `children`           | `React.ReactNode`             |         | The content of the stack.                                                                                                |
+| `spacing`            | `StyledSystem.MarginProps`    |         | The space between each stack item                                                                                        |
+| `align`              | `FlexProps["alignItems"]`     |         | The alignment of the stack item. Similar to `align-items`                                                                |
+| `justify`            | `FlexProps["justifyContent"]` |         | The distribution of the stack item. Similar to `justify-content`                                                         |
+| `shouldWrapChildren` | `boolean`                     |         | If `true`, the children will be wrapped in a `Box` with `display: inline-block`, and the Box will take the spacing props |

@@ -55,7 +55,8 @@ The size of the image can be adjusted using the `size` prop.
 ## Fallback support
 
 You can provide a fallback image for when there is an error loading the `src` of
-the image.
+the image. You can also opt out of this behavior by passing the `ignoreFallback`
+prop.
 
 ```jsx
 <Image src="gibbresh.png" fallbackSrc="https://via.placeholder.com/150" />
@@ -63,10 +64,13 @@ the image.
 
 ## Props
 
-| Name          | Type       | Default | Description                                                                                                                  |
-| ------------- | ---------- | ------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `src`         | `string`   |         | The path to the image source                                                                                                 |
-| `fallbackSrc` | `string`   |         | In event there was an error loading the `src`, specify a fallback. In most cases, this can be an avatar or image placeholder |
-| `alt`         | `string`   |         | The alt text that describes the image                                                                                        |
-| `onLoad`      | `function` |         | A callback for when the image `src` has been loaded                                                                          |
-| `onError`     | `function` |         | A callback for when there was an error loading the image `src`                                                               |
+| Name             | Type               | Default | Description                                                                                                                  |
+| ---------------- | ------------------ | ------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `src`            | `string`           |         | The path to the image source                                                                                                 |
+| `fallbackSrc`    | `string`           |         | In event there was an error loading the `src`, specify a fallback. In most cases, this can be an avatar or image placeholder |
+| `alt`            | `string`           |         | The alt text that describes the image                                                                                        |
+| `onLoad`         | `function`         |         | A callback for when the image `src` has been loaded                                                                          |
+| `onError`        | `function`         |         | A callback for when there was an error loading the image `src`                                                               |
+| `htmlWidth`      | `string`, `number` |         | The native HTML width attribute of the `img` element                                                                         |
+| `htmlHeight`     | `string`, `number` |         | The native HTML height attribute of the `img` element                                                                        |
+| `ignoreFallback` | `boolean`          |         | Opt out of the `fallbackSrc` logic and use the `Image` directly                                                              |

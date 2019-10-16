@@ -27,17 +27,15 @@ declare const Menu: React.FC<MenuProps>;
 export default Menu;
 
 export interface IMenuButton {
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  onKeyDown?: React.KeyboardEventHandler<HTMLButtonElement>;
+  onClick?: React.MouseEventHandler<HTMLElement>;
+  onKeyDown?: React.KeyboardEventHandler<HTMLElement>;
 }
-export type MenuButtonProps = React.RefAttributes<HTMLButtonElement> &
-  PseudoBoxProps &
-  IMenuButton;
+export type MenuButtonProps = PseudoBoxProps & IMenuButton;
 export const MenuButton: React.FC<MenuButtonProps>;
 
 export interface IMenuList {
-  onKeydown?: React.KeyboardEventHandler<HTMLDivElement>;
-  onBlur?: React.FocusEventHandler<HTMLDivElement>;
+  onKeydown?: React.KeyboardEventHandler<HTMLElement>;
+  onBlur?: React.FocusEventHandler<HTMLElement>;
 }
 export type MenuListProps = IMenuList & PopperProps;
 export const MenuList: React.FC<MenuListProps>;
@@ -45,14 +43,12 @@ export const MenuList: React.FC<MenuListProps>;
 interface IMenuItem {
   isDisabled?: boolean;
   role?: "menuitem" | "menuitemradio" | "menuitemcheckbox";
-  onClick?: React.KeyboardEventHandler<HTMLButtonElement>;
-  onMouseLeave?: React.MouseEventHandler<HTMLButtonElement>;
-  onKeyDown?: React.KeyboardEventHandler<HTMLButtonElement>;
-  onMouseEnter?: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: React.KeyboardEventHandler<HTMLElement>;
+  onMouseLeave?: React.MouseEventHandler<HTMLElement>;
+  onKeyDown?: React.KeyboardEventHandler<HTMLElement>;
+  onMouseEnter?: React.MouseEventHandler<HTMLElement>;
 }
-export type MenuItemProps = IMenuItem &
-  PseudoBoxProps &
-  React.RefAttributes<HTMLButtonElement>;
+export type MenuItemProps = IMenuItem & PseudoBoxProps;
 
 export const MenuItem: React.FC<MenuItemProps>;
 

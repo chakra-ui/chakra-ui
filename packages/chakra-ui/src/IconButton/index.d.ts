@@ -1,6 +1,7 @@
 import * as React from "react";
 import { ButtonProps } from "../Button";
 import { Omit } from "../common-types";
+import { Icons } from "../theme/icons";
 
 type _ButtonProps = Omit<
   ButtonProps,
@@ -16,7 +17,7 @@ interface IIconButton {
   /**
    * The icon to be used in the button.
    */
-  icon?: string | React.ElementType;
+  icon?: Icons | React.ComponentType;
   /**
    * If `true`, the button will be perfectly round. Else, it'll be slightly round
    */

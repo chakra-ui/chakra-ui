@@ -1,5 +1,6 @@
 import { BoxProps } from "../Box";
 import * as React from "react";
+import { Icons } from "../theme/icons";
 
 interface IIcon {
   /**
@@ -9,7 +10,7 @@ interface IIcon {
   /**
    * The name of the icon.
    */
-  name?: string;
+  name?: Icons;
   /**
    * The color of the icon.
    */

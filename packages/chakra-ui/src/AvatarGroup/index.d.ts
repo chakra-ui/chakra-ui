@@ -27,7 +27,7 @@ interface IAvatarGroup {
 
 export type AvatarGroupProps = IAvatarGroup &
   BoxProps &
-  React.RefAttributes<HTMLElement>;
+  React.RefAttributes<any>;
 
 /**
  * AvatarGroup is a wrapper to render a collection of evenly spaced avatars.

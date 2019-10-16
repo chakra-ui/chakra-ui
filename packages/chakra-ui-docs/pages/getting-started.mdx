@@ -73,7 +73,7 @@ import { ThemeProvider } from "@chakra-ui/core";
 
 ## Using components
 
-Simply import components by name from the chakra-ui package, as demonstrated
+Simply import components by name from `@chakra-ui/core` package, as demonstrated
 below.
 
 ```js
@@ -82,9 +82,13 @@ import { Button } from "@chakra-ui/core";
 
 ## Injecting global styles
 
-Sometimes you may need to apply css reset styles to your page. Chakra UI exports
-a `CSSReset` that'll remove browser default styles. It's heavily inspired by
+Sometimes you may need to apply css reset styles to your application. Chakra UI
+exports a `CSSReset` that'll remove browser default styles. It's heavily
+inspired by
 [Tailwind's preflight](https://unpkg.com/tailwindcss@1.1.2/dist/base.css)
+
+> 🚨 We highly recommend that you add the `CSSReset` at the root of your
+> application to ensure all components work correctly.
 
 ```jsx live=false
 // import customTheme from "./theme"

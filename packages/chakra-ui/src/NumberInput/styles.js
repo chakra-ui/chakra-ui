@@ -4,30 +4,25 @@ const themedProps = {
     _active: {
       bg: "gray.200",
     },
-    _last: {
-      roundedBottomRight: 3,
-      mt: "-1px",
-      borderTopWidth: 1,
-    },
   },
   dark: {
     color: "whiteAlpha.800",
     borderColor: "whiteAlpha.300",
-    _last: {
-      roundedBottomRight: 3,
-      mt: "-1px",
-      borderTopWidth: 1,
-    },
     _active: {
       bg: "whiteAlpha.300",
     },
   },
 };
 
-const styleProps = ({ colorMode }) => ({
+const styleProps = ({ colorMode, size }) => ({
   borderLeft: "1px",
   _first: {
-    roundedTopRight: 1,
+    roundedTopRight: size === "sm" ? 1 : 3,
+  },
+  _last: {
+    roundedBottomRight: size === "sm" ? 1 : 3,
+    mt: "-1px",
+    borderTopWidth: 1,
   },
   _disabled: {
     opacity: 0.4,

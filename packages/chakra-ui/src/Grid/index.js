@@ -4,7 +4,6 @@ import Box from "../Box";
 const Grid = forwardRef(
   (
     {
-      templateColumns,
       gap,
       rowGap,
       columnGap,
@@ -12,6 +11,7 @@ const Grid = forwardRef(
       autoRows,
       autoColumns,
       templateRows,
+      templateColumns,
       templateAreas,
       area,
       column,

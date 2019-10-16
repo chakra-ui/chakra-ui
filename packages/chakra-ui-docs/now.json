@@ -1,12 +1,11 @@
 {
   "version": 2,
   "name": "chakra-ui",
-  "builds": [{ "src": "package.json", "use": "@now/next" }],
-  "alias": ["chakra-ui.com", "chakra-ui"],
+  "alias": ["www.chakra-ui.com"],
   "scope": "chakra-ui",
   "routes": [
     {
-      "src": "www.chakra-ui.com/*",
+      "src": "/(.*)",
       "status": 301,
       "headers": { "Location": "https://chakra-ui.com/$1" }
     }

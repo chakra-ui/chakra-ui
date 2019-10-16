@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/core",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "description": "Responsive and accessible React UI components built with React and Emotion",
   "main": "dist/index.js",
   "module": "dist/es/index.js",
@@ -19,7 +19,6 @@
     "version": "yarn build"
   },
   "dependencies": {
-    "@babel/runtime": "^7.6.2",
     "@reach/auto-id": "0.2.0",
     "@styled-system/css": "5.0.13",
     "@styled-system/should-forward-prop": "5.0.12",
@@ -29,6 +28,7 @@
     "color": "3.1.2",
     "exenv": "^1.2.2",
     "popper.js": "^1.15.0",
+    "pretty-num": "0.3.0",
     "react-animate-height": "2.0.9",
     "react-focus-lock": "^2.1.0",
     "react-spring": "^8.0.27",
