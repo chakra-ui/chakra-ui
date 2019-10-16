@@ -80,13 +80,19 @@ export interface useNumberInputProps {
   isDisabled?: boolean;
 }
 
-interface SpinnerProps {
-  onMouseUp: React.MouseEventHandler<HTMLElement>;
-  onMouseLeave: React.MouseEventHandler<HTMLElement>;
-  onMouseDown: React.MouseEventHandler<HTMLElement>;
-  onTouchStart: React.TouchEventHandler<HTMLElement>;
-  onTouchEnd: React.TouchEventHandler<HTMLElement>;
-}
+type StepperProps =
+  | {
+      onMouseUp: React.MouseEventHandler<HTMLElement>;
+      onMouseLeave: React.MouseEventHandler<HTMLElement>;
+      onMouseDown: React.MouseEventHandler<HTMLElement>;
+      onTouchEnd: React.TouchEventHandler<HTMLElement>;
+    }
+  | {
+      onMouseUp: React.MouseEventHandler<HTMLElement>;
+      onMouseLeave: React.MouseEventHandler<HTMLElement>;
+      onTouchStart: React.TouchEventHandler<HTMLElement>;
+      onTouchEnd: React.TouchEventHandler<HTMLElement>;
+    };
 
 interface ButtonProps {
   onClick: React.MouseEventHandler<HTMLButtonElement>;
@@ -124,8 +130,8 @@ interface hiddenLabelProps {
 interface ReturnedValue {
   value: number;
   isFocused: boolean;
-  incrementSpinner: SpinnerProps;
-  decrementSpinner: SpinnerProps;
+  incrementStepper: StepperProps;
+  decrementStepper: StepperProps;
   incrementButton: ButtonProps;
   decrementButton: ButtonProps;
   input: InputProps;
