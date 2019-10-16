@@ -102,6 +102,23 @@ points.
 </NumberInput>
 ```
 
+### Setting numeric keyboard
+
+By default the `NumericInputField` is of type text, hence displaying a full
+keyboard on mobile devices. If you want to display a numeric keyboard, add
+`type="number"` or `type="tel"` if you're working with floating numbers to the
+`NumberInputField` input, like so:
+
+```jsx
+<NumberInput defaultValue={15} precision={2} step={0.2}>
+  <NumberInputField type="number" /> {/* <-- "type" here */}
+  <NumberInputStepper>
+    <NumberIncrementStepper />
+    <NumberDecrementStepper />
+  </NumberInputStepper>
+</NumberInput>
+```
+
 ### Clamp value when user blurs the input
 
 In most cases, users can type custom values in the input field. If the typed
