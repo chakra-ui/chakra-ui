@@ -30,7 +30,7 @@ const Stack = ({
         if (!isValidElement(child)) return;
         let isLastChild = children.length === index + 1;
         let spacingProps =
-          isInline || direction === "horizontal"
+          isInline || direction === "row"
             ? { mr: isLastChild ? null : spacing }
             : { mb: isLastChild ? null : spacing };
 
