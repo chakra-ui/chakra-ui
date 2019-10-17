@@ -7,6 +7,7 @@ import Box from "../Box";
 const Stack = ({
   direction,
   isInline = false,
+  isReversed = false,
   children,
   align,
   justify,
@@ -16,7 +17,7 @@ const Stack = ({
 }) => {
   direction = direction || (isInline ? "row" : "column");
   isInline |= direction.startsWith("row");
-  let isReversed = direction.endsWith("reverse");
+  isReversed |= direction.endsWith("reverse");
 
   return (
     <Flex align={align} justify={justify} direction={direction} {...rest}>

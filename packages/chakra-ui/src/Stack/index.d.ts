@@ -9,6 +9,10 @@ interface IStack {
    */
   isInline?: boolean;
   /**
+   * If `true` the items will be displayed in reverse order.
+   */
+  isReversed?: boolean;
+  /**
    * The direction to stack the items.
    */
   direction?: FlexProps["direction"];
