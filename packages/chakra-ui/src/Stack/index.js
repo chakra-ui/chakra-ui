@@ -14,27 +14,18 @@ const Stack = ({
   shouldWrapChildren,
   ...rest
 }) => {
-  let flexDirection;
-  let isReversed = false;
-
-  if (isInline != null) {
-    flexDirection = isInline ? "row" : "column";
-  }
-
-  if (direction != null) {
-    flexDirection = direction;
-    isReversed = direction.endsWith("reverse");
-  }
+  direction = direction || (isInline ? "row" : "column");
+  isInline |= direction.startsWith("row");
+  let isReversed = direction.endsWith("reverse");
 
   return (
-    <Flex align={align} justify={justify} direction={flexDirection} {...rest}>
+    <Flex align={align} justify={justify} direction={direction} {...rest}>
       {Children.map(children, (child, index) => {
         if (!isValidElement(child)) return;
         let isLastChild = children.length === index + 1;
-        let spacingProps =
-          isInline || direction.startsWith("row")
-            ? { [isReversed ? "ml" : "mr"]: isLastChild ? null : spacing }
-            : { [isReversed ? "mt" : "mb"]: isLastChild ? null : spacing };
+        let spacingProps = isInline
+          ? { [isReversed ? "ml" : "mr"]: isLastChild ? null : spacing }
+          : { [isReversed ? "mt" : "mb"]: isLastChild ? null : spacing };
 
         if (shouldWrapChildren) {
           return (
