@@ -15,6 +15,7 @@ const Stack = ({
   ...rest
 }) => {
   let flexDirection;
+  let isReversed = false;
 
   if (isInline != null) {
     flexDirection = isInline ? "row" : "column";
@@ -22,6 +23,7 @@ const Stack = ({
 
   if (direction != null) {
     flexDirection = direction;
+    isReversed = direction.endsWith("reverse");
   }
 
   return (
@@ -30,9 +32,9 @@ const Stack = ({
         if (!isValidElement(child)) return;
         let isLastChild = children.length === index + 1;
         let spacingProps =
-          isInline || direction === "row"
-            ? { mr: isLastChild ? null : spacing }
-            : { mb: isLastChild ? null : spacing };
+          isInline || direction.startsWith("row")
+            ? { [isReversed ? "ml" : "mr"]: isLastChild ? null : spacing }
+            : { [isReversed ? "mt" : "mb"]: isLastChild ? null : spacing };
 
         if (shouldWrapChildren) {
           return (
