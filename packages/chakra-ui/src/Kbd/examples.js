@@ -1,5 +1,5 @@
 import { storiesOf } from "@storybook/react";
-import Kbd from ".";
+import Kbd from "../Kbd";
 import React from "react";
 import Box from "../Box";
 

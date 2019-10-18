@@ -2,7 +2,7 @@
 import { jsx, ThemeContext } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
 import { useContext } from "react";
-import Icon from ".";
+import Icon from "../Icon";
 import Text from "../Text";
 import Flex from "../Flex";
 

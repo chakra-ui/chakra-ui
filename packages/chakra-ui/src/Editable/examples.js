@@ -1,6 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import React, { Fragment } from "react";
-import Editable, { EditableInput, EditablePreview } from ".";
+import Editable, { EditableInput, EditablePreview } from "../Editable";
 import Box from "../Box";
 import Button from "../Button";
 import ButtonGroup from "../ButtonGroup";

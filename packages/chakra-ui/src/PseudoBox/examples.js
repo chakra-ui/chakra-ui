@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
-import PseudoBox from ".";
+import PseudoBox from "../PseudoBox";
 import Box from "../Box";
 
 const stories = storiesOf("PseudoBox", module);

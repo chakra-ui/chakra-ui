@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
-import Box from ".";
+import Box from "../Box";
 
 const stories = storiesOf("Box", module);
 stories.add("Generic", () => {

@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
-import InputGroup from ".";
+import InputGroup from "../InputGroup";
 import Box from "../Box";
 import Icon from "../Icon";
 import Input from "../Input";

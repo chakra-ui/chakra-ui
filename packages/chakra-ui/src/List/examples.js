@@ -3,9 +3,9 @@ import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
 import Box from "../Box";
 import Text from "../Text";
-import List from ".";
-import { ListItem } from ".";
-import { ListIcon } from ".";
+import List from "../List";
+import { ListItem } from "../List";
+import { ListIcon } from "../List";
 
 const stories = storiesOf("List", module);
 

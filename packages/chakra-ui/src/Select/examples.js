@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
-import Select from ".";
+import Select from "../Select";
 import Box from "../Box";
 import Stack from "../Stack";
 

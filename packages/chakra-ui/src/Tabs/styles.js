@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { useContext } from "react";
-import { TabContext } from ".";
+import { TabContext } from "../Tabs";
 import { useColorMode } from "../ColorModeProvider";
 import { useTheme } from "../ThemeProvider";
 

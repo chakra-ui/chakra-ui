@@ -1,5 +1,5 @@
 import * as React from "react";
-import { MenuGroupProps } from ".";
+import { MenuGroupProps } from "../Menu";
 import { PseudoBoxProps } from "../PseudoBox";
 
 type stringOrNumber = string | number | Array<number | string>;

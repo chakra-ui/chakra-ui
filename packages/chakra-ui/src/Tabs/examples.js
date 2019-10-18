@@ -6,7 +6,7 @@ import { storiesOf } from "@storybook/react";
 import React, { Fragment } from "react";
 import Icon from "../Icon";
 import Box from "../Box";
-import Tabs, { Tab, TabList, TabPanel, TabPanels } from ".";
+import Tabs, { Tab, TabList, TabPanel, TabPanels } from "../Tabs";
 
 const stories = storiesOf("Tabs", module).addDecorator(withKnobs);
 

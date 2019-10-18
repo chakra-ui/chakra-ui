@@ -3,19 +3,21 @@
   "version": "0.4.0",
   "description": "Responsive and accessible React UI components built with React and Emotion",
   "main": "dist/index.js",
-  "module": "dist/es/index.js",
+  "module": "dist/core.esm.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "sideEffects": false,
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "yarn build:cjs && yarn build:es && yarn build:copy-types",
-    "build:cjs": "cross-env NODE_ENV=production BABEL_ENV=cjs babel --root-mode upward src -d dist --ignore \"**/examples.js\"",
-    "build:esm": "cross-env NODE_ENV=production BABEL_ENV=esm babel --root-mode upward src -d dist/esm --ignore \"**/examples.js\"",
-    "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel --root-mode upward src -d dist/es --ignore \"**/examples.js\"",
-    "build:umd": "cross-env NODE_ENV=production-umd rollup -c",
-    "build:copy-types": "node ../../scripts/copy-files.js",
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --env=jsdom",
+    "lint": "tsdx lint src",
     "version": "yarn build"
   },
   "dependencies": {
@@ -59,5 +61,17 @@
     "library",
     "design-system"
   ],
-  "gitHead": "bf23c9514f184e58fb8f652bfaa38826d1b88906"
+  "gitHead": "bf23c9514f184e58fb8f652bfaa38826d1b88906",
+  "devDependencies": {
+    "@types/jest": "24.0.19",
+    "@types/react": "16.9.6",
+    "@types/react-dom": "16.9.2",
+    "eslint-config-react-app": "5.0.1",
+    "husky": "3.0.9",
+    "react": "16.10.2",
+    "react-dom": "16.10.2",
+    "tsdx": "0.9.3",
+    "tslib": "1.10.0",
+    "typescript": "3.6.4"
+  }
 }

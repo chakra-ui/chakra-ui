@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
 import { Fragment } from "react";
-import Heading from ".";
+import Heading from "../Heading";
 
 const stories = storiesOf("Heading", module);
 

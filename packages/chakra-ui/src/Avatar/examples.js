@@ -1,7 +1,7 @@
 import { storiesOf } from "@storybook/react";
 import React, { Fragment } from "react";
 import Box from "../Box";
-import Avatar, { AvatarBadge } from ".";
+import Avatar, { AvatarBadge } from "../Avatar";
 import AvatarGroup from "../AvatarGroup";
 
 const stories = storiesOf("Avatar", module);

@@ -1,6 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import useToast from ".";
+import useToast from "../Toast";
 import Button from "../Button";
 import Box from "../Box";
 

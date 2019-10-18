@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
-import Textarea from ".";
+import Textarea from "../Textarea";
 
 const stories = storiesOf("Textarea", module);
 

@@ -8,7 +8,7 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
-} from ".";
+} from "../Drawer";
 import Button from "../Button";
 import Input from "../Input";
 import Box from "../Box";

@@ -1,17 +1,30 @@
 {
+  "include": ["src", "types"],
   "compilerOptions": {
-    "module": "commonjs",
     "target": "es5",
-    "lib": ["es6", "dom"],
-    "jsx": "react",
-    "moduleResolution": "node",
-    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "lib": ["dom", "esnext"],
+    "importHelpers": true,
+    "declaration": true,
+    "sourceMap": true,
+    "rootDir": "./",
     "strict": true,
-    "noEmit": true,
-    "experimentalDecorators": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
     "baseUrl": "./",
-    "allowSyntheticDefaultImports": true,
-    "noErrorTruncation": true,
-    "allowJs": true
+    "paths": {
+      "*": ["src/*", "node_modules/*"]
+    },
+    "jsx": "react",
+    "esModuleInterop": true
   }
 }

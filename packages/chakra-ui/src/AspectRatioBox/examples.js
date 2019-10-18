@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
-import AspectRatioBox from ".";
+import AspectRatioBox from "../AspectRatioBox";
 import Image from "../Image";
 import Box from "../Box";
 

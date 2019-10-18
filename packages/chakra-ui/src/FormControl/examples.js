@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
-import FormControl from ".";
+import FormControl from "../FormControl";
 import Box from "../Box";
 import FormHelperText from "../FormHelperText";
 import FormLabel from "../FormLabel";

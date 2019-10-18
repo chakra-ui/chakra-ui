@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
-import Image from ".";
+import Image from "../Image";
 
 const stories = storiesOf("Image", module);
 

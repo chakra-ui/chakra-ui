@@ -9,7 +9,7 @@ import {
   useState,
   isValidElement,
 } from "react";
-import { MenuGroup, useMenuContext } from ".";
+import { MenuGroup, useMenuContext } from "../Menu";
 import Box from "../Box";
 import Icon from "../Icon";
 import PseudoBox from "../PseudoBox";

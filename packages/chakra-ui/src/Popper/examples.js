@@ -2,7 +2,7 @@
 import React from "react";
 import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
-import Popper from ".";
+import Popper from "../Popper";
 import Button from "../Button";
 
 const stories = storiesOf("Popper", module);

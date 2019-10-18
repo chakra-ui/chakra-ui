@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import Stack from ".";
+import Stack from "../Stack";
 import Box from "../Box";
 
 const stories = storiesOf("Stack", module);

@@ -3,7 +3,7 @@ import React from "react";
 import Button from "../Button";
 import Box from "../Box";
 import Icon from "../Icon";
-import Tooltip from ".";
+import Tooltip from "../Tooltip";
 
 const stories = storiesOf("Tooltip", module);
 stories.addDecorator(story => {
