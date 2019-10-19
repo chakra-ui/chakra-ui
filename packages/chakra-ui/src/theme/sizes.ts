@@ -17,7 +17,7 @@ export const baseSizes = {
   "40": "10rem",
   "48": "12rem",
   "56": "14rem",
-  "64": "16rem"
+  "64": "16rem",
 };
 
 export type BaseSizes = typeof baseSizes;
@@ -35,20 +35,20 @@ const largeSizes = {
   "3xl": "48rem",
   "4xl": "56rem",
   "5xl": "64rem",
-  "6xl": "72rem"
+  "6xl": "72rem",
 };
 
 const containers = {
   sm: "640px",
   md: "768px",
   lg: "1024px",
-  xl: "1280px"
+  xl: "1280px",
 };
 
 const sizes = {
   ...baseSizes,
   ...largeSizes,
-  containers
+  containers,
 };
 
 export type Sizes = typeof baseSizes &

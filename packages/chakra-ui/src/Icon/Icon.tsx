@@ -3,7 +3,7 @@ import { jsx, ThemeContext } from "@emotion/core";
 import * as React from "react";
 import { Box, BoxProps } from "../Box";
 import iconPaths from "./IconPaths";
-import { Theme } from "../theme"
+import { Theme } from "../theme";
 
 type Icons = keyof typeof iconPaths;
 
@@ -24,10 +24,10 @@ export type IconProps<P = {}> = BoxProps<P, SVGElement> &
 
 const Icon = React.forwardRef(function Icon<P>(
   props: IconProps<P>,
-  ref: React.Ref<SVGElement>
+  ref: React.Ref<SVGElement>,
 ) {
   const { icons: iconPaths } = React.useContext<Theme>(
-    ThemeContext as React.Context<Theme>
+    ThemeContext as React.Context<Theme>,
   );
 
   // Fallback in case you pass the wrong name

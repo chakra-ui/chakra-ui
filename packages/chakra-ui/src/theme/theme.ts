@@ -14,7 +14,7 @@ const shadows = {
   "2xl": "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
   outline: "0 0 0 3px rgba(66, 153, 225, 0.6)",
   inner: "inset 0 2px 4px 0 rgba(0,0,0,0.06)",
-  none: "none"
+  none: "none",
 };
 
 export type Shadows = typeof shadows;
@@ -58,7 +58,7 @@ const zIndices: ZIndices = {
   popover: 1500,
   skipLink: 1600,
   toast: 1700,
-  tooltip: 1800
+  tooltip: 1800,
 };
 
 const radii = {
@@ -66,7 +66,7 @@ const radii = {
   sm: "0.125rem",
   md: "0.25rem",
   lg: "0.5rem",
-  full: "9999px"
+  full: "9999px",
 };
 
 export type Radii = typeof radii;
@@ -77,7 +77,7 @@ const opacity = {
   "40%": "0.4",
   "60%": "0.6",
   "80%": "0.8",
-  "100%": "1"
+  "100%": "1",
 };
 
 export type Opacity = typeof opacity;
@@ -93,7 +93,7 @@ const borders: Borders = {
   none: 0,
   "1px": "1px solid",
   "2px": "2px solid",
-  "4px": "4px solid"
+  "4px": "4px solid",
 };
 
 // const borderWidths = {
@@ -137,7 +137,7 @@ const theme = {
   sizes,
   shadows,
   space,
-  icons
+  icons,
 };
 
 export default theme;
