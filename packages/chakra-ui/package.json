@@ -24,6 +24,7 @@
     "@reach/auto-id": "0.2.0",
     "@styled-system/css": "5.0.13",
     "@styled-system/should-forward-prop": "5.0.12",
+    "@types/exenv": "1.2.0",
     "@types/styled-system": "5.0.1",
     "aria-hidden": "^1.1.1",
     "body-scroll-lock": "^2.6.4",
