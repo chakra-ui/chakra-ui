@@ -16,14 +16,14 @@
     "prebuild": "rimraf dist",
     "start": "tsdx watch",
     "build": "tsdx build",
-    "test": "tsdx test --env=jsdom",
+    "test": "tsdx test --env=jsdom --watch",
     "lint": "tsdx lint src",
     "version": "yarn build"
   },
   "dependencies": {
-    "@reach/auto-id": "0.2.0",
     "@styled-system/css": "5.0.13",
     "@styled-system/should-forward-prop": "5.0.12",
+    "@types/color": "3.0.0",
     "@types/exenv": "1.2.0",
     "@types/styled-system": "5.0.1",
     "aria-hidden": "^1.1.1",
@@ -35,6 +35,7 @@
     "react-animate-height": "2.0.9",
     "react-focus-lock": "^2.1.0",
     "react-spring": "^8.0.27",
+    "react-uid": "2.2.0",
     "styled-system": "5.0.5",
     "toasted-notes": "3.0.0",
     "use-dark-mode": "2.3.1"
@@ -64,13 +65,17 @@
   ],
   "gitHead": "bf23c9514f184e58fb8f652bfaa38826d1b88906",
   "devDependencies": {
+    "@testing-library/jest-dom": "4.1.2",
+    "@testing-library/react": "8.0.7",
     "@types/jest": "24.0.19",
     "@types/react": "16.9.6",
     "@types/react-dom": "16.9.2",
     "eslint-config-react-app": "5.0.1",
     "husky": "3.0.9",
+    "jest": "24.9.0",
     "react": "16.10.2",
     "react-dom": "16.10.2",
+    "ts-jest": "24.1.0",
     "tsdx": "0.9.3",
     "tslib": "1.10.0",
     "typescript": "3.6.4"

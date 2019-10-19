@@ -7,3 +7,7 @@ export type Void = () => void;
 export type Dictionary<T = any> = {
   [key: string]: T;
 };
+
+export type Required<T> = {
+  [P in keyof T]-?: T[P];
+};
