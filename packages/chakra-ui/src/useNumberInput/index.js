@@ -6,33 +6,6 @@ import {
   roundToPrecision,
 } from "./utils";
 
-// function useLongPress(callback) {
-//   const timeout = useRef();
-//   const interval = useRef();
-
-//   const start = () => {
-//     callback();
-//     timeout.current = setTimeout(() => {
-//       interval.current = setInterval(() => {
-//         callback();
-//       }, 200);
-//     }, 150);
-//   };
-
-//   const stop = () => {
-//     clearTimeout(timeout.current);
-//     clearInterval(interval.current);
-//   };
-
-//   return {
-//     onMouseUp: stop,
-//     onMouseLeave: stop,
-//     onMouseDown: start,
-//     onTouchStart: start,
-//     onTouchEnd: stop,
-//   };
-// }
-
 function useLongPress(callback = () => {}, speed = 200) {
   const [isPressed, setIsPressed] = useState(false);
 
@@ -58,11 +31,14 @@ function useLongPress(callback = () => {}, speed = 200) {
     setIsPressed(false);
   }, []);
 
+  const clickEvent = !!document.documentElement.ontouchstart
+    ? "onTouchStart"
+    : "onMouseDown";
+
   return {
+    [clickEvent]: start,
     onMouseUp: stop,
     onMouseLeave: stop,
-    onMouseDown: start,
-    onTouchStart: start,
     onTouchEnd: stop,
   };
 }
@@ -147,8 +123,8 @@ function useNumberInput({
     }
   };
 
-  const incrementSpinnerProps = useLongPress(handleIncrement);
-  const decrementSpinnerProps = useLongPress(handleDecrement);
+  const incrementStepperProps = useLongPress(handleIncrement);
+  const decrementStepperProps = useLongPress(handleDecrement);
 
   const handleChange = event => {
     updateValue(event.target.value);
@@ -217,8 +193,8 @@ function useNumberInput({
     isFocused,
     isDisabled,
     isReadOnly,
-    incrementSpinner: incrementSpinnerProps,
-    decrementSpinner: decrementSpinnerProps,
+    incrementStepper: incrementStepperProps,
+    decrementStepper: decrementStepperProps,
     incrementButton: {
       onClick: () => handleIncrement(),
       "aria-label": "add",
