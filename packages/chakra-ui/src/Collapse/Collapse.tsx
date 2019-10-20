@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { forwardRef, useState } from "react";
+import { forwardRef } from "react";
 import AnimateHeight, { AnimateHeightProps } from "react-animate-height";
 import { Box, BoxProps } from "../Box";
 

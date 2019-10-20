@@ -87,21 +87,3 @@ const Box = React.forwardRef(function Box<P, T>(
 ) => React.ReactElement<BoxProps<P, T>>;
 
 export default Box;
-
-type BoxAppProps = BoxProps<React.ImgHTMLAttributes<any>, HTMLImageElement>;
-
-export const BoxApp: React.FC<BoxAppProps> = props => {
-  return (
-    <>
-      <Box<React.ImgHTMLAttributes<any>, HTMLImageElement>
-        rounded="sm"
-        as="img"
-        _hover={{ bg: "ref" }}
-        margin={[3, 4]}
-        src="welcome.png"
-        isTruncated
-        {...props}
-      />
-    </>
-  );
-};

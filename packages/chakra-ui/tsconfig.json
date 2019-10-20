@@ -1,5 +1,12 @@
 {
   "include": ["src", "types"],
+  "exclude": [
+    "**/*.spec.ts",
+    "**/*.spec.tsx",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*/examples.tsx"
+  ],
   "compilerOptions": {
     "target": "es5",
     "module": "esnext",
@@ -11,17 +18,20 @@
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
-    // "strictFunctionTypes": false,
+    "strictFunctionTypes": true,
     // "strictPropertyInitialization": true,
     // "noImplicitThis": true,
-    // "skipLibCheck": true,
     // "alwaysStrict": true,
     // "noUnusedLocals": true,
     // "noUnusedParameters": true,
     // "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "types": ["jest"],
-    "typeRoots": ["./@types", "node_modules/@types", "../../node_modules/@types"],
+    "typeRoots": [
+      "./@types",
+      "node_modules/@types",
+      "../../node_modules/@types"
+    ],
     "moduleResolution": "node",
     "baseUrl": "./",
     "paths": {

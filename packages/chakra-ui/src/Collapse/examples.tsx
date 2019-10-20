@@ -1,8 +1,15 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { Collapse } from ".";
+import { ThemeProvider } from "../ThemeProvider";
+import { CSSReset } from "../CSSReset";
 
-const stories = storiesOf("Collapse", module);
+const stories = storiesOf("Collapse", module).addDecorator(story => (
+  <ThemeProvider>
+    <CSSReset />
+    {story()}
+  </ThemeProvider>
+));
 
 export function CollapseExample() {
   const [show, setShow] = React.useState(false);
