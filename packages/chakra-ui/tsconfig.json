@@ -21,7 +21,7 @@
     // "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "types": ["jest"],
-    "typeRoots": ["node_modules/@types", "typings", "../../node_modules/@types"],
+    "typeRoots": ["./@types", "node_modules/@types", "../../node_modules/@types"],
     "moduleResolution": "node",
     "baseUrl": "./",
     "paths": {

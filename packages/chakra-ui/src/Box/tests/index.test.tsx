@@ -1,10 +1,12 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import "@testing-library/jest-dom/extend-expect";
+import { render } from "@testing-library/react";
+import { Box } from "../index";
 
-describe("it", () => {
-  it("renders without crashing", () => {
-    const div = document.createElement("div");
-    ReactDOM.render(<div />, div);
-    ReactDOM.unmountComponentAtNode(div);
+describe("Box Component", () => {
+  test("renders without crashing", () => {
+    const { getByText } = render(<Box>Welcome to Box</Box>);
+    expect(getByText("Welcome to Box")).toBeInTheDocument();
   });
 });
