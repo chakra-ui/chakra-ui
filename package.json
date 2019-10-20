@@ -43,6 +43,7 @@
     }
   },
   "devDependencies": {
+    "@types/jest": "24.0.19",
     "@commitlint/cli": "8.2.0",
     "@commitlint/config-conventional": "8.2.0",
     "@emotion/core": "10.0.10",

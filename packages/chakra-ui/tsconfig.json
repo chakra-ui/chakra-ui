@@ -20,7 +20,8 @@
     // "noUnusedParameters": true,
     // "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "typeRoots": ["node_modules/@types", "typings"],
+    "types": ["jest"],
+    "typeRoots": ["node_modules/@types", "typings", "../../node_modules/@types"],
     "moduleResolution": "node",
     "baseUrl": "./",
     "paths": {

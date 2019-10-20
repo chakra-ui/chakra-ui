@@ -16,7 +16,7 @@
     "prebuild": "rimraf dist",
     "start": "tsdx watch",
     "build": "tsdx build",
-    "test": "tsdx test --env=jsdom --watch",
+    "test": "tsdx test --env=jsdom",
     "lint": "tsdx lint src",
     "version": "yarn build"
   },
