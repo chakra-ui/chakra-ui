@@ -46,7 +46,7 @@ const Checkbox = forwardRef(
         verticalAlign="top"
         alignItems="center"
         width={isFullWidth ? "full" : undefined}
-        cursor={isDisabled ? "not-allowed" : "pointer"}
+        cursor={isDisabled || isReadOnly ? "not-allowed" : "pointer"}
         {...rest}
       >
         <VisuallyHidden
@@ -57,13 +57,20 @@ const Checkbox = forwardRef(
           ref={ref}
           name={name}
           value={value}
-          defaultChecked={defaultIsChecked}
-          onChange={onChange}
+          defaultChecked={isReadOnly ? undefined : defaultIsChecked}
+          onChange={isReadOnly ? undefined : onChange}
           onBlur={onBlur}
           onFocus={onFocus}
-          checked={isChecked}
+          checked={
+            isReadOnly
+              ? Boolean(isChecked)
+              : defaultIsChecked
+              ? undefined
+              : isChecked
+          }
           disabled={isDisabled}
           readOnly={isReadOnly}
+          aria-readonly={isReadOnly}
           aria-invalid={isInvalid}
           data-indeterminate={isIndeterminate}
         />
