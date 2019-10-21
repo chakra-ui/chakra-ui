@@ -6,7 +6,6 @@
   "registry": "https://registry.npmjs.org/",
   "command": {
     "publish": {
-      "conventionalCommits": true,
       "message": "chore(release): publish"
     }
   }
