@@ -1,18 +1,18 @@
 {
   "name": "gatsby-starter-chakra-ui",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "scripts": {
     "start": "gatsby develop",
     "build": "gatsby build"
   },
   "dependencies": {
-    "@chakra-ui/core": "0.4.0",
+    "@chakra-ui/core": "^0.4.1",
     "@emotion/core": "^10.0.21",
     "@emotion/styled": "^10.0.17",
     "emotion-theming": "^10.0.19",
     "gatsby": "2.15.0",
-    "gatsby-plugin-chakra-ui": "0.0.1",
+    "gatsby-plugin-chakra-ui": "^0.1.0",
     "react": "link:../../node_modules/react",
     "react-dom": "link:../../node_modules/react-dom"
   }
