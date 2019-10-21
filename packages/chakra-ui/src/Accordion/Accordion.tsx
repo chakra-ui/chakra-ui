@@ -16,11 +16,6 @@ import { Collapse, CollapseProps } from "../Collapse";
 import Icon, { IconProps } from "../Icon/Icon";
 import { Merge } from "../utils";
 
-interface AccordionChildProps {
-  isOpen?: boolean;
-  onChange(e: boolean): void;
-}
-
 export interface AccordionOptions {
   /**
    * If `true`, multiple accordion items can be expanded at once.
