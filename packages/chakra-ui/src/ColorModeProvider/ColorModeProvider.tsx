@@ -15,7 +15,7 @@ export const ColorModeContext = createContext<ContextValue>({
 });
 
 export interface Props {
-  value?: "light" | "dark";
+  value: "light" | "dark";
   children: React.ReactNode;
 }
 
