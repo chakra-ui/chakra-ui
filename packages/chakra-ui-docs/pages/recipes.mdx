@@ -2,7 +2,67 @@
 
 ## Building Forms with Chakra UI and React Hook Form
 
+_by [Simon Collins](https://github.com/simoncollins)_
+
 This example shows how to build a simple form with Chakra UI's form components
 and the [React Hook Form](https://react-hook-form.com) form library.
 
-[Explore on Code Sandbox](https://codesandbox.io/s/chakra-ui-react-hook-form-v382z)
+```jsx live=false
+import useForm from "react-hook-form";
+import React, { useState } from "react";
+import {
+  FormErrorMessage,
+  FormLabel,
+  FormControl,
+  Input,
+  Button,
+} from "@chakra-ui/core";
+
+export default function HookForm() {
+  const { handleSubmit, errors, register } = useForm();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  function validateName(value) {
+    let error;
+    if (!value) {
+      error = "Name is required";
+    } else if (value !== "Naruto") {
+      error = "Jeez! You're not a fan 😱";
+    }
+    return error || true;
+  }
+
+  function onSubmit(values) {
+    setIsSubmitting(true);
+
+    setTimeout(() => {
+      alert(JSON.stringify(values, null, 2));
+      setIsSubmitting(false);
+    }, 1000);
+  }
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <FormControl isInvalid={errors.name}>
+        <FormLabel htmlFor="name">First name</FormLabel>
+        <Input
+          name="name"
+          placeholder="name"
+          ref={register({ validate: validateName })}
+        />
+        <FormErrorMessage>
+          {errors.name && errors.name.message}
+        </FormErrorMessage>
+      </FormControl>
+      <Button mt={4} variantColor="teal" isLoading={isSubmitting} type="submit">
+        Submit
+      </Button>
+    </form>
+  );
+}
+```
+
+[![Edit with CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/chakra-ui-react-hook-form-v382z?fontsize=14)
+
+> Are you using Chakra UI to build some cool features in your products, and
+> you'd like to showcase it? Submit a PR to add it to this page.
