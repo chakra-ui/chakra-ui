@@ -31,9 +31,10 @@ function useLongPress(callback = () => {}, speed = 200) {
     setIsPressed(false);
   }, []);
 
-  const clickEvent = !!document.documentElement.ontouchstart
-    ? "onTouchStart"
-    : "onMouseDown";
+  const clickEvent =
+    canUseDOM && !!document.documentElement.ontouchstart
+      ? "onTouchStart"
+      : "onMouseDown";
 
   return {
     [clickEvent]: start,

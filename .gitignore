@@ -13,6 +13,7 @@ packages/*/.env
 yarn.lock
 yarn-error.log
 packages/*/.rpt2_cache
+packages/*/.rts2_cache*
 .next
 # Local Netlify folder
 .netlify
