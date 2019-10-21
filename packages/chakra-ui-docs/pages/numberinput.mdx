@@ -102,11 +102,15 @@ points.
 </NumberInput>
 ```
 
-### Setting numeric keyboard
+### Showing the numeric keyboard on mobile
 
 By default the `NumericInputField` is of type text, hence displaying a full
 keyboard on mobile devices. If you want to display a numeric keyboard, add
 `type="number"` to the `NumberInputField` input, like so:
+
+> 🚨 We don't recommend you use this component for mobile considering that it
+> might be difficult for mobile users to tap on the steppers. We'll release a
+> mobile specific implementation soon.
 
 ```jsx
 <NumberInput defaultValue={15} precision={2} step={0.2}>
