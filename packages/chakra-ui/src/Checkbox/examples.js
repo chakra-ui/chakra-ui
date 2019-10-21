@@ -17,11 +17,11 @@ stories.addDecorator(story => {
 
 stories.add("Default", () => (
   <React.Fragment>
-    <Checkbox isIndeterminate defaultChecked>
+    <Checkbox isIndeterminate defaultIsChecked>
       Disabled and Checked
     </Checkbox>
     <Box ml={3} mt={3}>
-      <Checkbox variantColor="pink" isFullWidth defaultChecked>
+      <Checkbox variantColor="pink" isFullWidth defaultIsChecked>
         Checkbox 1
       </Checkbox>
       <Checkbox isInvalid mt={2}>
