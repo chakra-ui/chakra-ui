@@ -14,7 +14,7 @@ import {
 import { Box, BoxProps } from "../Box";
 import { Collapse, CollapseProps } from "../Collapse";
 import Icon, { IconProps } from "../Icon/Icon";
-import { Merge } from "../utils";
+import { Merge, Omit } from "../utils";
 
 export interface AccordionOptions {
   /**
@@ -132,9 +132,11 @@ interface AccordionItemRenderProps {
   isDisabled?: boolean;
 }
 
-type AccordionItemChildren =
-  | { children(props: AccordionItemRenderProps): React.ReactNode }
-  | { children: React.ReactNode };
+type AccordionItemChildrenType = {
+  children:
+    | React.ReactNode
+    | ((props: AccordionItemRenderProps) => React.ReactNode);
+};
 
 interface AccordionItemOptions {
   /**
@@ -159,9 +161,11 @@ interface AccordionItemOptions {
   onChange?: (isOpen: boolean) => void;
 }
 
-export type AccordionItemProps<P, T> = AccordionItemOptions &
-  AccordionItemChildren &
-  BoxProps<P, T>;
+export type AccordionItemProps<P, T> = Merge<
+  BoxProps<P, T>,
+  AccordionItemChildrenType
+> &
+  AccordionItemOptions;
 
 const AccordionItemContext = createContext<AccordionItemContextValue>({});
 const useAccordionItemContext = () => useContext(AccordionItemContext);
@@ -222,6 +226,11 @@ const AccordionItem = forwardRef(function AccordionItem<P, T>(
 
 export type AccordionHeaderProps<P, T> = BoxProps<P, T>;
 
+type ButtonType = Omit<
+  React.ButtonHTMLAttributes<HTMLButtonElement>,
+  "onClick"
+>;
+
 /**
  * AccordionHeader component composes `Box`, this means you can use
  * the `_expanded`, `_disabled`, `_hover`, etc. props to style them
@@ -239,7 +248,7 @@ const AccordionHeader = forwardRef(function AccordionHeader<
   } = useAccordionItemContext();
   return (
     //@ts-ignore
-    <Box<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
+    <Box<ButtonType>
       ref={ref}
       display="flex"
       alignItems="center"
