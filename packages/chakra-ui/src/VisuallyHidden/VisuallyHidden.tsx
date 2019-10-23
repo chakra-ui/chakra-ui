@@ -16,11 +16,11 @@ const StyledHidden = styled(Box)`
 
 const VisuallyHidden = React.forwardRef(function VisuallyHidden<P, T>(
   props: BoxProps<P, T>,
-  ref: React.Ref<T>
+  ref: React.Ref<T>,
 ) {
   return <StyledHidden ref={ref} {...props} />;
 }) as <P, T = HTMLElement>(
-  props: BoxProps<P, T>
+  props: BoxProps<P, T>,
 ) => React.ReactElement<BoxProps<P, T>>;
 
 export default VisuallyHidden;
