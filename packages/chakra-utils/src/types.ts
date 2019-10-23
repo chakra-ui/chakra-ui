@@ -33,3 +33,7 @@ export type RenderProp<P = {}> =
 export type As<P = any> = React.ReactType<P>;
 
 export type AnyFunction = (...args: any[]) => any;
+
+export type Required<T> = {
+  [P in keyof T]-?: T[P];
+};
