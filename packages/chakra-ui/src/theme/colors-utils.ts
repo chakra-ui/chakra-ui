@@ -1,7 +1,7 @@
 import { css } from "@emotion/core";
 import Color from "color";
 
-export const get = (color: string, hue: string) => `${color}.${hue}`;
+export const get = (color: string, hue: string | number) => `${color}.${hue}`;
 
 export const addOpacity = (color: string, opacity: number) =>
   Color(color)
