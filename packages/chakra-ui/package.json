@@ -21,6 +21,7 @@
     "version": "yarn build"
   },
   "dependencies": {
+    "@chakra-ui/utils": "0.0.1",
     "@styled-system/css": "5.0.13",
     "@styled-system/should-forward-prop": "5.0.12",
     "@types/color": "3.0.0",
@@ -30,16 +31,20 @@
     "body-scroll-lock": "^2.6.4",
     "color": "3.1.2",
     "exenv": "^1.2.2",
+    "intersection-observer": "^0.7.0",
     "popper.js": "^1.15.0",
     "pretty-num": "0.3.0",
     "react-animate-height": "2.0.9",
     "react-focus-lock": "^2.1.0",
+    "react-intersection-observer": "^8.25.1",
     "react-spring": "^8.0.27",
     "react-uid": "2.2.0",
+    "scroll-behavior-polyfill": "^2.0.13",
     "styled-system": "5.0.5",
     "toasted-notes": "3.0.0",
     "use-dark-mode": "2.3.1",
-    "@chakra-ui/utils": "0.0.1"
+    "web-api-hooks": "^2.1.0",
+    "wicg-inert": "^3.0.0"
   },
   "peerDependencies": {
     "@emotion/core": "10.x",
