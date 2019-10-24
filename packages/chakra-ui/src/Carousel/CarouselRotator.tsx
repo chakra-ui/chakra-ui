@@ -1,22 +1,22 @@
-import { Flex, FlexProps } from '@chakra-ui/core';
-import { css } from '@emotion/core';
-import React, { useCallback, useContext, useEffect } from 'react';
-import { InView } from 'react-intersection-observer';
+import { Flex, FlexProps } from "@chakra-ui/core";
+import { css } from "@emotion/core";
+import React, { useCallback, useContext, useEffect } from "react";
+import { InView } from "react-intersection-observer";
 import {
   useInterval,
   usePreferredMotionIntensity,
   useWindowSize,
-} from 'web-api-hooks';
-import useCarouselControls from './useCarouselControls';
-import useWindowResizing from './useWindowResizing';
-import CarouselContext from './CarouselContext';
-import CarouselSlide from './CarouselSlide';
+} from "web-api-hooks";
+import useCarouselControls from "./useCarouselControls";
+import useWindowResizing from "./useWindowResizing";
+import CarouselContext from "./CarouselContext";
+import CarouselSlide from "./CarouselSlide";
 
 // TODO: Follow browser support for IntersectionObserver and remove polyfill
-import 'intersection-observer';
+import "intersection-observer";
 
 // TODO: Follow the status of element scrolling methods and remove polyfill
-import 'scroll-behavior-polyfill';
+import "scroll-behavior-polyfill";
 
 // TODO: https://www.w3.org/TR/wai-aria-practices-1.1/#tabbed-carousel-elements
 
@@ -77,12 +77,12 @@ export default function CarouselRotator({
   }, [activeIndex, isWindowResizing, slidesRef, windowWidth]);
 
   // TODO: Replace this check with CSS when no polyfill is required
-  const preferReducedMotion = usePreferredMotionIntensity() === 'reduce';
+  const preferReducedMotion = usePreferredMotionIntensity() === "reduce";
 
   return (
     <Flex
       aria-atomic={false}
-      aria-live={isPlaying ? 'off' : 'polite'}
+      aria-live={isPlaying ? "off" : "polite"}
       onMouseDown={useCallback(e => {
         // Disable mouse wheel scrolling between slides
         if (e.button === 1) e.preventDefault();
@@ -90,7 +90,7 @@ export default function CarouselRotator({
       position="relative"
       overflow={
         // Disable user-initiated scrolling when the component is controlled
-        controlledActiveIndex != null ? 'hidden' : 'auto'
+        controlledActiveIndex != null ? "hidden" : "auto"
       }
       css={css`
         /* Support every version of CSS Scroll Snap */
@@ -112,7 +112,7 @@ export default function CarouselRotator({
       style={{
         // Smooth scroll polyfill only works with inline styles
         ...(!isWindowResizing &&
-          !preferReducedMotion && { scrollBehavior: 'smooth' }),
+          !preferReducedMotion && { scrollBehavior: "smooth" }),
         ...style,
       }}
       {...restProps}
@@ -133,13 +133,13 @@ export default function CarouselRotator({
                   (ref as (node: Element) => void)(element);
                   slidesRef.current[i] = element;
                 }}
-                inert={i === activeIndex ? '' : undefined}
-                aria-label={child.props['aria-label']}
-                aria-labelledby={child.props['aria-labelledby']}
+                inert={i === activeIndex ? "" : undefined}
+                aria-label={child.props["aria-label"]}
+                aria-labelledby={child.props["aria-labelledby"]}
               >
                 {React.cloneElement(child, {
-                  'aria-label': undefined,
-                  'aria-labelledby': undefined,
+                  "aria-label": undefined,
+                  "aria-labelledby": undefined,
                 })}
               </CarouselSlide>
             );

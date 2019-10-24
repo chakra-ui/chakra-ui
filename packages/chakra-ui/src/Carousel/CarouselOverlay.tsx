@@ -1,7 +1,7 @@
-import { Box, BoxProps } from '@chakra-ui/core';
-import React from 'react';
-import CarouselPlayToggleIconButton from './CarouselPlayToggleIconButton';
-import CarouselStepIconButton from './CarouselStepIconButton';
+import { Box, BoxProps } from "@chakra-ui/core";
+import React from "react";
+import CarouselPlayToggleIconButton from "./CarouselPlayToggleIconButton";
+import CarouselStepIconButton from "./CarouselStepIconButton";
 
 export interface CarouselOverlayProps extends BoxProps {
   children?: React.ReactElement[];
@@ -38,7 +38,7 @@ export default function CarouselOverlay({
       {React.Children.map(children, child =>
         React.cloneElement(child, {
           css: {
-            position: 'absolute',
+            position: "absolute",
             zIndex: 1,
           },
         }),

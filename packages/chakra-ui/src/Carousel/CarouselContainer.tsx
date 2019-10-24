@@ -1,8 +1,8 @@
-import { Box, BoxProps } from '@chakra-ui/core';
-import React, { useRef, useState } from 'react';
-import CarouselContext from './CarouselContext';
-import useFocus from './useFocus';
-import useHover from './useHover';
+import { Box, BoxProps } from "@chakra-ui/core";
+import React, { useRef, useState } from "react";
+import CarouselContext from "./CarouselContext";
+import useFocus from "./useFocus";
+import useHover from "./useHover";
 
 export interface CarouselContainerProps extends BoxProps {
   isInfinite?: boolean;

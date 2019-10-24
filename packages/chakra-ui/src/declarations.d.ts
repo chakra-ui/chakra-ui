@@ -7,5 +7,5 @@
 // And to shim assets, use (one file extension per `declare`):
 // declare module '*.png';
 
-declare module 'intersection-observer';
-declare module 'wicg-inert';
+declare module "intersection-observer";
+declare module "wicg-inert";

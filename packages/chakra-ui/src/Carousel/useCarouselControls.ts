@@ -1,5 +1,5 @@
-import { useContext, useCallback } from 'react';
-import CarouselContext from './CarouselContext';
+import { useContext, useCallback } from "react";
+import CarouselContext from "./CarouselContext";
 
 function mod(dividend: number, divisor: number) {
   return ((dividend % divisor) + divisor) % divisor;
@@ -21,7 +21,7 @@ export default function useCarouselControls() {
     (index: React.SetStateAction<number>) => {
       setActiveIndex(prevIndex => {
         const nextIndex =
-          typeof index !== 'function' ? index : index(prevIndex);
+          typeof index !== "function" ? index : index(prevIndex);
         if (nextIndex < 0 || nextIndex >= totalCount) return prevIndex;
 
         const slide = slidesRef.current[nextIndex];

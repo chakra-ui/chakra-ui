@@ -1,5 +1,5 @@
-import { IconButton, IconButtonProps } from '@chakra-ui/core';
-import React from 'react';
+import { IconButton, IconButtonProps } from "@chakra-ui/core";
+import React from "react";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface CarouselIconButtonProps extends IconButtonProps {}

@@ -1,11 +1,11 @@
-import React from 'react';
-import CarouselContainer, { CarouselContainerProps } from './CarouselContainer';
-import CarouselOverlay from './CarouselOverlay';
-import CarouselRotator, { CarouselRotatorProps } from './CarouselRotator';
+import React from "react";
+import CarouselContainer, { CarouselContainerProps } from "./CarouselContainer";
+import CarouselOverlay from "./CarouselOverlay";
+import CarouselRotator, { CarouselRotatorProps } from "./CarouselRotator";
 
 export interface CarouselProps
   extends CarouselRotatorProps,
-    Omit<CarouselContainerProps, 'children'> {}
+    Omit<CarouselContainerProps, "children"> {}
 
 export default function Carousel({
   children,

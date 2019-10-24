@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState } from "react";
 
 export default function useFocus() {
   const [isFocused, setFocused] = useState(false);

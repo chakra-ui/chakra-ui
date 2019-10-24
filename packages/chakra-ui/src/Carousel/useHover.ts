@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState } from "react";
 
 export default function useHover(mouseOnly = false) {
   const [isHovered, setHovered] = useState(false);

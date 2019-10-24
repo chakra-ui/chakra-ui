@@ -1,10 +1,10 @@
-import { Box, BoxProps } from '@chakra-ui/core';
-import { css } from '@emotion/core';
-import React from 'react';
+import { Box, BoxProps } from "@chakra-ui/core";
+import { css } from "@emotion/core";
+import React from "react";
 
 // TODO: Follow the status of https://github.com/WICG/inert and remove polyfill
-if (typeof window !== 'undefined') {
-  import('wicg-inert');
+if (typeof window !== "undefined") {
+  import("wicg-inert");
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface

@@ -1,8 +1,8 @@
-import React, { useCallback } from 'react';
-import useCarouselControls from './useCarouselControls';
+import React, { useCallback } from "react";
+import useCarouselControls from "./useCarouselControls";
 import CarouselIconButton, {
   CarouselIconButtonProps,
-} from './CarouselIconButton';
+} from "./CarouselIconButton";
 
 export interface CarouselStepIconButtonProps extends CarouselIconButtonProps {
   delta: number;
