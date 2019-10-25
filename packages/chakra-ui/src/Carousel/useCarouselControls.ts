@@ -1,4 +1,5 @@
 import { useContext, useCallback } from "react";
+import { usePreferredMotionIntensity } from "web-api-hooks";
 import CarouselContext from "./CarouselContext";
 
 function mod(dividend: number, divisor: number) {
@@ -17,6 +18,9 @@ export default function useCarouselControls() {
     isInfinite,
   ] = useContext(CarouselContext);
 
+  // TODO: Replace this check with CSS when no polyfill is required
+  const preferReducedMotion = usePreferredMotionIntensity() === "reduce";
+
   const goTo = useCallback(
     (index: React.SetStateAction<number>) => {
       setActiveIndex(prevIndex => {
@@ -26,11 +30,14 @@ export default function useCarouselControls() {
 
         const slide = slidesRef.current[nextIndex];
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        slide.parentElement!.scrollLeft = slide.offsetLeft;
+        slide.parentElement!.scroll({
+          left: slide.offsetLeft,
+          ...(!preferReducedMotion && { behavior: "smooth" }),
+        });
         return nextIndex;
       });
     },
-    [setActiveIndex, slidesRef, totalCount],
+    [preferReducedMotion, setActiveIndex, slidesRef, totalCount],
   );
 
   return {
