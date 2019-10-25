@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
     "outDir": "build/lib",
-    "module": "commonjs",
+    "module": "esnext",
     "target": "es5",
-    "lib": ["es5", "es6", "es7", "es2017", "dom"],
+    "lib": ["es5", "es6", "es7", "es2017", "dom", "esnext"],
     "sourceMap": true,
     "allowJs": false,
     "jsx": "react",
+    "importHelpers": true,
     "moduleResolution": "node",
     "rootDirs": ["packages"],
     "skipLibCheck": true,

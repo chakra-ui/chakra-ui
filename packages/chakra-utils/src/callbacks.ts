@@ -4,9 +4,13 @@ export function runCallback(callback: any, ...args: any[]) {
   }
 }
 
-export function resolveCallback<T, U>(callback: T, arg?: U) {
+export function resolveCallback<T, U>(
+  callback: T | ((event: U) => T),
+  event?: U,
+): T {
   if (typeof callback === "function") {
-    return arg ? callback(arg) : callback();
+    //@ts-ignore
+    return callback(event);
   }
   return callback;
 }

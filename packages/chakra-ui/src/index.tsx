@@ -9,5 +9,6 @@ export * from "./Icon";
 export * from "./Image";
 export * from "./Spinner";
 export * from "./Stack";
+export * from "./ThemeProvider";
 export * from "./VisuallyHidden";
 export * from "./Link";

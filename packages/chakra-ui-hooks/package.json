@@ -46,5 +46,13 @@
     "tsdx": "0.9.3",
     "tslib": "1.10.0",
     "typescript": "3.6.4"
+  },
+  "dependencies": {
+    "scroll-into-view-if-needed": "2.2.20",
+    "react-uid": "2.2.0"
+  },
+  "peerDependencies": {
+    "react": "16.x",
+    "react-dom": "16.x"
   }
 }

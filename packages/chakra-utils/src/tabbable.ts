@@ -1,11 +1,11 @@
 const focusableElements = [
   "a[href]",
   "area[href]",
-  "button:not([disabled])",
   "embed",
   "iframe",
-  "input:not([disabled])",
   "object",
+  "button:not([disabled])",
+  "input:not([disabled])",
   "select:not([disabled])",
   "textarea:not([disabled])",
   "*[tabindex]:not([aria-disabled])",
@@ -30,7 +30,7 @@ function isDisabled(element: HTMLElement) {
   return Boolean(element.getAttribute("disabled")) == true;
 }
 
-export function getAllFocusables<T extends Element>(parentNode: T) {
+export function getAllFocusables<T extends HTMLElement>(parentNode: T) {
   const focusableEls: HTMLElement[] = Array.from(
     parentNode.querySelectorAll(focusableSelector),
   );
@@ -43,4 +43,9 @@ export function getAllFocusables<T extends Element>(parentNode: T) {
   );
 
   return filteredElements;
+}
+
+export function hasFocusWithin(element: Element) {
+  if (!document.activeElement) return false;
+  return element.contains(document.activeElement);
 }

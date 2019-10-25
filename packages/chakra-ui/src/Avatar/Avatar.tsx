@@ -1,6 +1,6 @@
 import * as React from "react";
 import useAvatarStyle, { avatarSizes } from "./styles";
-import useHasImageLoaded from "../hooks/useHasImageLoaded";
+import useHasImageLoaded from "../../../chakra-ui-hooks/src/useHasImageLoaded";
 import { useTheme } from "../ThemeProvider";
 import { useColorMode } from "../ColorModeProvider";
 import { Box, BoxProps } from "../Box";

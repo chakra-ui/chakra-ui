@@ -3,6 +3,7 @@
   "include": ["src", "types"],
   "exclude": ["**/*.spec.ts", "**/*.spec.tsx", "**/*.test.ts", "**/*.test.tsx"],
   "compilerOptions": {
+    "noImplicitAny": true,
     "rootDir": "./",
     "baseUrl": "./",
     "paths": {
