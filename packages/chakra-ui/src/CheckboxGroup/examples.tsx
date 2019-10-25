@@ -3,12 +3,28 @@ import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
 import { CheckboxGroup } from ".";
 import { Checkbox } from "../Checkbox";
+import { ThemeProvider } from "../ThemeProvider";
+import { CSSReset } from "../CSSReset";
 
 const stories = storiesOf("CheckboxGroup", module);
+
+stories.addDecorator(story => {
+  return (
+    <ThemeProvider>
+      <CSSReset />
+      {story()}
+    </ThemeProvider>
+  );
+});
+
 stories.add("Default", () => (
-  <CheckboxGroup variantColor="green" defaultValue={["two"]}>
-    <Checkbox value="one">One</Checkbox>
-    <Checkbox value="two">Two</Checkbox>
-    <Checkbox value="three">Three</Checkbox>
+  <CheckboxGroup
+    variantColor="green"
+    defaultValue={[1]}
+    onChange={val => console.log(val)}
+  >
+    <Checkbox value={1}>One</Checkbox>
+    <Checkbox value={2}>Two</Checkbox>
+    <Checkbox value={3}>Three</Checkbox>
   </CheckboxGroup>
 ));

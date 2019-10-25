@@ -5,5 +5,6 @@ export { default as useHasImageLoaded } from "./useHasImageLoaded";
 export { default as useSelect } from "./useSelect";
 export { default as useButton } from "./useButton";
 export { default as usePrevious } from "./usePrevious";
+export { default as useAriaHidden } from "./useAriaHidden";
 export * from "./useRegister";
 export * from "./useRover";

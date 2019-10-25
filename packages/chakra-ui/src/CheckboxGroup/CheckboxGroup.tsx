@@ -32,15 +32,15 @@ export interface CheckboxGroupOptions {
   /**
    * The initial value of the checkbox group
    */
-  defaultValue?: Array<CheckboxOptions["value"]>;
+  defaultValue?: Array<string | number>;
   /**
    * The value of the checkbox group
    */
-  value?: Array<CheckboxOptions["value"]>;
+  value?: Array<string | number>;
   /**
    * The callback fired when any children Checkbox is checked or unchecked
    */
-  onChange?: (value: Array<CheckboxOptions["value"]>) => void;
+  onChange?: (value: Array<string | number>) => void;
   /**
    * The space between each checkbox
    */
@@ -72,7 +72,7 @@ const CheckboxGroup = ({
   spacing = 2,
   children,
   ...rest
-}: CheckboxGroupProps) => {
+}: CheckboxGroupOptions) => {
   const [values, setValues] = useState<CheckboxGroupOptions["defaultValue"]>(
     defaultValue || [],
   );
@@ -80,15 +80,20 @@ const CheckboxGroup = ({
   const { current: isControlled } = useRef(valueProp != null);
   const _values = isControlled ? valueProp : values;
 
-  const _onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { checked, value } = event.target;
+  const _onChange = ({
+    checked,
+    value,
+  }: {
+    checked: boolean;
+    value: string | number;
+  }) => {
     if (_values == null) return;
 
-    let newValues;
+    let newValues: any[];
     if (checked) {
       newValues = [..._values, value];
     } else {
-      newValues = _values.filter(val => val !== value);
+      newValues = _values.filter(val => val != value);
     }
 
     !isControlled && setValues(newValues);
@@ -114,7 +119,11 @@ const CheckboxGroup = ({
           size: size,
           variantColor: variantColor,
           name: `${_name}-${index}`,
-          onChange: _onChange,
+          onChange: () =>
+            _onChange({
+              checked: _values ? !_values.includes(child.props.value) : false,
+              value: child.props.value,
+            }),
           isChecked: _values ? _values.includes(child.props.value) : false,
         })}
       </Box>
