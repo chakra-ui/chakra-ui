@@ -3,7 +3,7 @@ import { Box, BoxProps, SystemProps } from "../Box";
 
 export type AspectRatioBoxProps<P, T> = BoxProps<P, T> & { ratio?: number };
 
-const AspectRatioBox = React.forwardRef(function AspectRatioBox<P, T>(
+const AspectRatioBox = React.forwardRef(function AspectRatioBox<P, T extends HTMLElement>(
   { ratio = 4 / 3, ...props }: AspectRatioBoxProps<P, T>,
   ref: React.Ref<T>,
 ) {

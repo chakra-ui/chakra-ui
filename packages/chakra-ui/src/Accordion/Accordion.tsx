@@ -82,7 +82,7 @@ const Accordion = forwardRef(function Accordion<P, T>(
   const clones = Children.map(children, (child, childIndex) => {
     if (!isValidElement(child)) return;
 
-    return cloneElement(child, {
+    return cloneElement(child as React.ReactElement<any>, {
       isOpen: _index ? getExpandCondition(_index, childIndex) : false,
       onChange: (isExpanded: boolean) => {
         if (allowMultiple && Array.isArray(_index)) {

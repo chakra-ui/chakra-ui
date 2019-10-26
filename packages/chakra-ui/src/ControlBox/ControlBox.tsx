@@ -1,9 +1,7 @@
 /**@jsx jsx */
-import { jsx } from "@emotion/core";
 import styled from "@emotion/styled";
-import * as React from "react";
+import { Box, SystemProps } from "../Box";
 import { css } from "../Css";
-import { Box, BoxProps, SystemProps } from "../Box";
 
 interface ControlBoxOptions {
   type?: "checkbox" | "radio";
