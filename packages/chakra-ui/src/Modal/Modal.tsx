@@ -204,7 +204,7 @@ function Modal({
     return () => {
       focusTrap.deactivate();
     };
-  }, [isOpen]);
+  }, [focusTrap, isOpen]);
 
   React.useEffect(() => {
     const func = (event: KeyboardEvent) => {
