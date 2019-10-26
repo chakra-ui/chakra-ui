@@ -1,10 +1,13 @@
 export { default as useFocusEffect } from "./useFocusEffect";
 export { default as useCheckbox } from "./useCheckbox";
 export { default as useCreateContext } from "./useCreateContext";
-export { default as useHasImageLoaded } from "./useHasImageLoaded";
 export { default as useSelect } from "./useSelect";
 export { default as useButton } from "./useButton";
 export { default as usePrevious } from "./usePrevious";
 export { default as useAriaHidden } from "./useAriaHidden";
+export { default as useLockBodyScroll } from "./useLockBodyScroll";
+export { default as useId } from "./useId";
+export { default as useFocusTrap } from "./useFocusTrap";
+export { default as useEnhancedEffect } from "./useEnhancedEffect";
 export * from "./useRegister";
 export * from "./useRover";

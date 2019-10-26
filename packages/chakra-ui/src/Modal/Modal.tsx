@@ -1,4 +1,15 @@
+import {
+  useCreateContext,
+  useLockBodyScroll,
+  useAriaHidden,
+  useId,
+  useFocusTrap,
+} from "@chakra-ui/hooks";
 import { BoxProps } from "../Box";
+import * as React from "react";
+import { canUseDOM } from "exenv";
+import { getAllFocusables, mergeRefs } from "@chakra-ui/utils";
+import { Portal } from "../Portal";
 
 type ModalSizes =
   | "xs"
@@ -14,7 +25,7 @@ type ModalSizes =
   | "full";
 
 export interface ModalOptions {
-  container?: React.RefObject<HTMLElement>;
+  container?: HTMLElement;
   /**
    * If `true`, the modal when be opened.
    */
@@ -23,8 +34,8 @@ export interface ModalOptions {
    * Callback invoked to close the modal.
    */
   onClose?: (
-    event: React.MouseEvent | React.KeyboardEvent,
-    reason?: "pressedEscape" | "clickedOverlay",
+    event: MouseEvent | KeyboardEvent,
+    reason?: "pressed-escape" | "clicked-overlay",
   ) => void;
   /**
    * If `true`, scrolling will be disabled on the `body` when the modal opens.
@@ -116,4 +127,129 @@ interface ModalContentOptions {
   onClick?: React.KeyboardEventHandler<HTMLElement>;
   zIndex?: BoxProps["zIndex"];
   children: React.ReactNode;
+}
+
+interface ContextValue extends Partial<Required<ModalOptions>> {
+  contentRef: React.Ref<HTMLElement | undefined>;
+  headerId: string;
+  bodyId: string;
+  contentId: string;
+}
+
+const [useModalContext, ModalContextProvider] = useCreateContext<
+  ContextValue
+>();
+
+function Modal({
+  isOpen,
+  initialFocusRef,
+  finalFocusRef,
+  onClose,
+  blockScrollOnMount = true,
+  closeOnEsc = true,
+  closeOnOverlayClick = true,
+  useInert = true,
+  scrollBehavior = "outside",
+  isCentered,
+  addAriaLabels = true,
+  preserveScrollBarGap,
+  formatIds = id => ({
+    content: `modal-${id}`,
+    header: `modal-${id}-header`,
+    body: `modal-${id}-body`,
+  }),
+  container,
+  returnFocusOnClose = true,
+  children,
+  id,
+  size = "md",
+}: ModalOptions) {
+  const contentRef = useLockBodyScroll({
+    isEnabled: isOpen && blockScrollOnMount,
+    preserveScrollBarGap,
+  });
+
+  const mountRef = useAriaHidden({
+    isOpen,
+    id: "chakra-portal",
+    isEnabled: useInert,
+    container,
+  });
+
+  const focusTrap = useFocusTrap({
+    shouldReturnFocus: returnFocusOnClose,
+    onActivate: () => {
+      if (initialFocusRef && initialFocusRef.current) {
+        initialFocusRef.current.focus();
+      } else {
+        if (contentRef.current) {
+          let focusables = getAllFocusables(contentRef.current);
+          if (focusables.length === 0) {
+            contentRef.current.focus();
+          }
+        }
+      }
+    },
+    onDeactivate: () => {
+      if (finalFocusRef && finalFocusRef.current) {
+        finalFocusRef.current.focus();
+      }
+    },
+  });
+
+  React.useEffect(() => {
+    if (isOpen) {
+      focusTrap.activate();
+    }
+    return () => {
+      focusTrap.deactivate();
+    };
+  }, [isOpen]);
+
+  React.useEffect(() => {
+    const func = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && closeOnEsc) {
+        onClose && onClose(event, "pressed-escape");
+      }
+    };
+
+    if (isOpen && !closeOnOverlayClick) {
+      canUseDOM && document.addEventListener("keydown", func);
+    }
+    return () => {
+      canUseDOM && document.removeEventListener("keydown", func);
+    };
+  }, [isOpen, onClose, closeOnOverlayClick, closeOnEsc]);
+
+  const uuid = useId();
+  const _id = id || uuid;
+
+  const contentId = formatIds(_id)["content"];
+  const headerId = formatIds(_id)["header"];
+  const bodyId = formatIds(_id)["body"];
+
+  const _contentRef = mergeRefs(focusTrap.ref, contentRef);
+
+  return (
+    <ModalContextProvider
+      value={{
+        isOpen,
+        initialFocusRef,
+        onClose,
+        blockScrollOnMount,
+        closeOnEsc,
+        closeOnOverlayClick,
+        returnFocusOnClose,
+        contentRef: _contentRef,
+        scrollBehavior,
+        isCentered,
+        headerId,
+        bodyId,
+        contentId,
+        size,
+      }}
+    >
+      <Portal container={mountRef.current}>{children}</Portal>
+    </ModalContextProvider>
+  );
 }

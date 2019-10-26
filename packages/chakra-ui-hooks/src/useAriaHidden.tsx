@@ -2,7 +2,7 @@ import { canUseDOM } from "exenv";
 import { useRef, useEffect } from "react";
 import { hideOthers, Undo } from "aria-hidden";
 
-interface Options {
+interface useAriaHiddenOptions {
   isOpen?: boolean;
   id: string;
   isEnabled?: boolean;
@@ -14,7 +14,7 @@ function useAriaHidden({
   id,
   isEnabled,
   container = canUseDOM ? document.body : null,
-}: Options) {
+}: useAriaHiddenOptions) {
   const mountRef = useRef(
     canUseDOM
       ? document.getElementById(id) || document.createElement("div")

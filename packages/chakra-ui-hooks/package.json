@@ -48,11 +48,15 @@
     "typescript": "3.6.4"
   },
   "dependencies": {
-    "scroll-into-view-if-needed": "2.2.20",
+    "@types/body-scroll-lock": "2.6.1",
     "@types/exenv": "1.2.0",
     "aria-hidden": "^1.1.1",
+    "body-scroll-lock": "^2.6.4",
+    "dom-focus-lock": "1.0.4",
     "exenv": "^1.2.2",
-    "react-uid": "2.2.0"
+    "react-uid": "2.2.0",
+    "scroll-into-view-if-needed": "2.2.20",
+    "use-callback-ref": "1.2.1"
   },
   "peerDependencies": {
     "react": "16.x",
