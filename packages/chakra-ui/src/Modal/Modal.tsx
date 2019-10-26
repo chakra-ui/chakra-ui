@@ -5,11 +5,16 @@ import {
   useId,
   useFocusTrap,
 } from "@chakra-ui/hooks";
-import { BoxProps } from "../Box";
+import { BoxProps, Box } from "../Box";
 import * as React from "react";
 import { canUseDOM } from "exenv";
-import { getAllFocusables, mergeRefs } from "@chakra-ui/utils";
+import {
+  getAllFocusables,
+  mergeRefs,
+  wrapEventCallback,
+} from "@chakra-ui/utils";
 import { Portal } from "../Portal";
+import { CloseButtonProps, CloseButton } from "CloseButton";
 
 type ModalSizes =
   | "xs"
@@ -24,6 +29,8 @@ type ModalSizes =
   | "6xl"
   | "full";
 
+type CloseReason = "pressed-escape" | "clicked-overlay";
+
 export interface ModalOptions {
   container?: HTMLElement;
   /**
@@ -33,10 +40,7 @@ export interface ModalOptions {
   /**
    * Callback invoked to close the modal.
    */
-  onClose?: (
-    event: MouseEvent | KeyboardEvent,
-    reason?: "pressed-escape" | "clicked-overlay",
-  ) => void;
+  onClose?: (event: any, reason?: CloseReason) => void;
   /**
    * If `true`, scrolling will be disabled on the `body` when the modal opens.
    *  @default true
@@ -130,7 +134,7 @@ interface ModalContentOptions {
 }
 
 interface ContextValue extends Partial<Required<ModalOptions>> {
-  contentRef: React.Ref<HTMLElement | undefined>;
+  contentRef: React.Ref<HTMLElement>;
   headerId: string;
   bodyId: string;
   contentId: string;
@@ -170,9 +174,8 @@ function Modal({
   });
 
   const mountRef = useAriaHidden({
-    isOpen,
+    isEnabled: isOpen && useInert,
     id: "chakra-portal",
-    isEnabled: useInert,
     container,
   });
 
@@ -228,7 +231,7 @@ function Modal({
   const headerId = formatIds(_id)["header"];
   const bodyId = formatIds(_id)["body"];
 
-  const _contentRef = mergeRefs(focusTrap.ref, contentRef);
+  const _contentRef = mergeRefs([focusTrap.ref, contentRef]);
 
   return (
     <ModalContextProvider
@@ -253,3 +256,234 @@ function Modal({
     </ModalContextProvider>
   );
 }
+
+////////////////////////////////////////////////////////////////////////
+
+const ModalOverlay = React.forwardRef((props, ref) => {
+  return (
+    <Box
+      pos="fixed"
+      bg="rgba(0,0,0,0.4)"
+      left="0"
+      top="0"
+      w="100vw"
+      h="100vh"
+      ref={ref}
+      // zIndex="overlay"
+      {...props}
+    />
+  );
+});
+
+////////////////////////////////////////////////////////////////////////
+
+interface ModalContent {
+  onClick?: React.MouseEventHandler<HTMLElement>;
+  zIndex?: BoxProps["zIndex"];
+  children: React.ReactNode;
+  noStyles: boolean;
+}
+
+const ModalContent = React.forwardRef<HTMLElement, ModalContent>(function(
+  { onClick, children, zIndex = "modal", noStyles, ...props },
+  ref,
+) {
+  const {
+    contentRef,
+    onClose,
+    isCentered,
+    bodyId,
+    headerId,
+    contentId,
+    size,
+    closeOnEsc,
+    // addAriaLabelledby,
+    // addAriaDescribedby,
+    scrollBehavior,
+    closeOnOverlayClick,
+  } = useModalContext();
+  let _contentRef = null;
+  if (ref && contentRef) {
+    _contentRef = mergeRefs([ref, contentRef]);
+  }
+  // const { colorMode } = useColorMode();
+
+  const colorModeStyles = {
+    light: {
+      bg: "white",
+      shadow: "0 7px 14px 0 rgba(0,0,0, 0.1), 0 3px 6px 0 rgba(0, 0, 0, .07)",
+    },
+    dark: {
+      bg: "gray.700",
+      shadow: `rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.2) 0px 5px 10px, rgba(0, 0, 0, 0.4) 0px 15px 40px`,
+    },
+  };
+
+  // const boxStyleProps = colorModeStyles[colorMode];
+
+  let wrapperStyle = {};
+  let contentStyle = {};
+
+  if (isCentered) {
+    wrapperStyle = {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    };
+  } else {
+    contentStyle = {
+      top: "3.75rem",
+      mx: "auto",
+    };
+  }
+
+  if (scrollBehavior === "inside") {
+    wrapperStyle = {
+      ...wrapperStyle,
+      maxHeight: "calc(100vh - 7.5rem)",
+      overflow: "hidden",
+      top: "3.75rem",
+    };
+
+    contentStyle = {
+      ...contentStyle,
+      height: "100%",
+      top: 0,
+    };
+  }
+
+  if (scrollBehavior === "outside") {
+    wrapperStyle = {
+      ...wrapperStyle,
+      overflowY: "auto",
+      overflowX: "hidden",
+    };
+
+    contentStyle = {
+      ...contentStyle,
+      my: "3.75rem",
+      top: 0,
+    };
+  }
+
+  if (noStyles) {
+    wrapperStyle = {};
+    contentStyle = {};
+  }
+
+  return (
+    <Box
+      pos="fixed"
+      left="0"
+      top="0"
+      w="100%"
+      h="100%"
+      // zIndex={zIndex}
+      onClick={event => {
+        event.stopPropagation();
+        if (closeOnOverlayClick && onClose) {
+          onClose(event, "clicked-overlay");
+        }
+      }}
+      onKeyDown={event => {
+        if (event.key === "Escape") {
+          event.stopPropagation();
+          if (closeOnEsc && onClose) {
+            onClose(event, "pressed-escape");
+          }
+        }
+      }}
+      {...wrapperStyle}
+    >
+      <Box
+        ref={_contentRef}
+        as="section"
+        // role="dialog"
+        aria-modal="true"
+        tabIndex={-1}
+        outline={0}
+        maxWidth={size}
+        w="100%"
+        id={contentId}
+        // {...(addAriaDescribedby && { "aria-describedby": bodyId })}
+        // {...(addAriaLabelledby && { "aria-labelledby": headerId })}
+        pos="relative"
+        d="flex"
+        flexDir="column"
+        // zIndex={zIndex}
+        onClick={wrapEventCallback(event => event.stopPropagation(), onClick)}
+        // {...boxStyleProps}
+        {...contentStyle}
+        {...props}
+      >
+        {children}
+      </Box>
+    </Box>
+  );
+});
+
+////////////////////////////////////////////////////////////////////////
+
+const ModalHeader = React.forwardRef<HTMLElement, BoxProps>((props, ref) => {
+  const { headerId } = useModalContext();
+  return (
+    <Box
+      ref={ref}
+      px={6}
+      py={4}
+      id={headerId}
+      as="header"
+      position="relative"
+      fontSize="xl"
+      // fontWeight="semibold"
+      {...props}
+    />
+  );
+});
+
+////////////////////////////////////////////////////////////////////////
+
+const ModalFooter = React.forwardRef((props, ref) => (
+  <Box
+    display="flex"
+    justifyContent="flex-end"
+    ref={ref}
+    px={6}
+    py={4}
+    as="footer"
+    {...props}
+  />
+));
+
+////////////////////////////////////////////////////////////////////////
+
+const ModalBody = React.forwardRef((props, ref) => {
+  const { bodyId, scrollBehavior } = useModalContext();
+
+  let style = {};
+  if (scrollBehavior === "inside") {
+    style = { overflowY: "auto" };
+  }
+
+  return (
+    <Box ref={ref} id={bodyId} px={6} py={2} flex="1" {...style} {...props} />
+  );
+});
+
+////////////////////////////////////////////////////////////////////////
+
+const ModalCloseButton = React.forwardRef<HTMLElement, CloseButtonProps>(
+  (props, ref) => {
+    const { onClose } = useModalContext();
+    return (
+      <CloseButton
+        ref={ref}
+        onClick={onClose}
+        position="absolute"
+        top="8px"
+        right="12px"
+        {...props}
+      />
+    );
+  },
+);

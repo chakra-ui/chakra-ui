@@ -7,7 +7,7 @@ interface Options {
 }
 
 function useLockBodyScroll({ isEnabled, preserveScrollBarGap }: Options) {
-  const ref = React.useRef<HTMLElement>();
+  const ref = React.useRef<HTMLElement>(null);
 
   React.useEffect(() => {
     const dialogNode = ref.current;

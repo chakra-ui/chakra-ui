@@ -2,6 +2,7 @@ import * as React from "react";
 import styled, { FunctionInterpolation } from "@emotion/styled";
 import {
   layout,
+  zIndex,
   color,
   space,
   background,
@@ -22,6 +23,7 @@ import {
   OpacityProps,
   OverflowProps,
   PositionProps,
+  ZIndexProps,
 } from "styled-system";
 import { customProps, CustomProps } from "./config";
 import { pseudo, PseudoProps } from "./pseudo";
@@ -38,6 +40,7 @@ const StyledBox = styled("div")(
   shadow,
   typography,
   flexbox,
+  zIndex,
   pseudo as FunctionInterpolation<object>,
   customProps,
   truncate as FunctionInterpolation<any>,
@@ -65,6 +68,7 @@ export type SystemProps = ColorProps &
   OpacityProps &
   PseudoProps &
   OverflowProps &
+  ZIndexProps &
   CustomProps;
 
 type BoxHTMLProps<T> = React.RefAttributes<T> &

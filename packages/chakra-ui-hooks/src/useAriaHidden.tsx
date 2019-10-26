@@ -3,14 +3,12 @@ import { useRef, useEffect } from "react";
 import { hideOthers, Undo } from "aria-hidden";
 
 interface useAriaHiddenOptions {
-  isOpen?: boolean;
   id: string;
   isEnabled?: boolean;
   container?: HTMLElement | null;
 }
 
 function useAriaHidden({
-  isOpen,
   id,
   isEnabled,
   container = canUseDOM ? document.body : null,
@@ -25,10 +23,10 @@ function useAriaHidden({
     let undoAriaHidden: Undo | null = null;
     let mountNode = mountRef.current;
 
-    if (isOpen && canUseDOM && mountRef.current && container) {
+    if (isEnabled && canUseDOM && mountRef.current && container) {
       mountRef.current.id = id;
       container.appendChild(mountRef.current);
-      if (isEnabled && mountNode) {
+      if (mountNode) {
         undoAriaHidden = hideOthers(mountNode);
       }
     }
@@ -41,7 +39,7 @@ function useAriaHidden({
         mountNode.parentElement.removeChild(mountNode);
       }
     };
-  }, [isOpen, id, isEnabled, container]);
+  }, [id, isEnabled, container]);
 
   return mountRef;
 }
