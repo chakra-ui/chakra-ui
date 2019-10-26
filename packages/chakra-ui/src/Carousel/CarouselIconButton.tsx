@@ -1,4 +1,4 @@
-import { IconButton, IconButtonProps } from "@chakra-ui/core";
+import { IconButton, IconButtonProps } from "../IconButton";
 import React from "react";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface

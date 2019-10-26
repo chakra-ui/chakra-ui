@@ -1,25 +1,23 @@
-import { createContext } from "react";
+import React from "react";
 
-const CarouselContext = createContext<
+const CarouselContext = React.createContext<
   [
     boolean,
     boolean,
     [boolean, React.Dispatch<React.SetStateAction<boolean>>],
     [number, React.Dispatch<React.SetStateAction<number>>],
     [number, React.Dispatch<React.SetStateAction<number>>],
-    React.MutableRefObject<HTMLElement[]>,
     [boolean, React.Dispatch<React.SetStateAction<boolean>>],
     boolean,
   ]
 >([
-  false,
-  false,
-  [false, () => {}],
-  [0, () => {}],
-  [1, () => {}],
-  { current: [] },
-  [false, () => {}],
-  false,
+  /* isHovered: */ false,
+  /* isFocused: */ false,
+  /* [disableAutoPause, setDisableAutoPause]: */ [false, () => {}],
+  /* [uncontrolledShownIndex, setUncontrolledShownIndex]: */ [0, () => {}],
+  /* [totalCount, setTotalCount]: */ [1, () => {}],
+  /* [isPlaying, setPlaying]: */ [false, () => {}],
+  /* isInfinite: */ false,
 ]);
 
 export default CarouselContext;

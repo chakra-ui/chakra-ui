@@ -10,13 +10,13 @@ export interface CarouselProps
 export default function Carousel({
   children,
   playInterval,
-  activeIndex,
+  shownIndex,
   ...restProps
 }: CarouselProps) {
   return (
     <CarouselContainer {...restProps}>
       <CarouselOverlay />
-      <CarouselRotator playInterval={playInterval} activeIndex={activeIndex}>
+      <CarouselRotator playInterval={playInterval} shownIndex={shownIndex}>
         {children}
       </CarouselRotator>
     </CarouselContainer>

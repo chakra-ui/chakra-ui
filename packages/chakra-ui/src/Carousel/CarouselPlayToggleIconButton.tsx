@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
+import { useFocus, useHover } from "web-api-hooks";
 import useCarouselControls from "./useCarouselControls";
-import useFocus from "./useFocus";
-import useHover from "./useHover";
 import CarouselContext from "./CarouselContext";
 import CarouselIconButton, {
   CarouselIconButtonProps,
@@ -19,16 +18,16 @@ export default function CarouselPlayToggleIconButton(
   const [
     isContainerHovered,
     isContainerFocused,
-    [disableAutoPause, setDisableAutoPause],
+    [, setDisableAutoPause],
   ] = useContext(CarouselContext);
   const [isHovered, bindHover] = useHover();
   const [isFocused, bindFocus] = useFocus();
   const nextDisableAutoPause =
     (isHovered && !isContainerFocused) ||
     (isFocused && (!isContainerHovered || isHovered));
-  if (nextDisableAutoPause !== disableAutoPause) {
+  useEffect(() => {
     setDisableAutoPause(nextDisableAutoPause);
-  }
+  }, [nextDisableAutoPause, setDisableAutoPause]);
 
   return (
     <CarouselIconButton

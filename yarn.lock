@@ -1574,10 +1574,10 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
-"@juggle/resize-observer@^2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@juggle/resize-observer/-/resize-observer-2.3.0.tgz#c528b369a2959e49aa6aaace5640c8e4748e9084"
-  integrity sha512-vCS2dz1HAG760+vADa7Fol/NhrmdyDa58Nvq39TpdwYjCqTEDFmIFCDGRiKGSw4GPoDRcx/+xwOYlJdMeNUKRw==
+"@juggle/resize-observer@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@juggle/resize-observer/-/resize-observer-2.4.0.tgz#8693fc08e49625eabd146751870e95d7a1eb556f"
+  integrity sha512-iBxD3plYdW4+yryivUWtfHy+B2wwQsdET6eviABx9QJKjokf0lBOZH853I31sbccskPsagtulW0ik1SWDek4RQ==
 
 "@lerna/add@3.18.0":
   version "3.18.0"
@@ -3401,6 +3401,11 @@
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"
+
+"@types/resize-observer-browser@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@types/resize-observer-browser/-/resize-observer-browser-0.1.2.tgz#615d567c094c6500d760289be0ce48c9798672c9"
+  integrity sha512-4mrAenvAObVQthn05TldKpZ/xW236GyCrpyQvH4hmKVWdobpqM8Fub5Kn4lTNZRKANZ3+P1bq8Zp53asvklKTQ==
 
 "@types/resolve@0.0.8":
   version "0.0.8"
@@ -13926,6 +13931,11 @@ stack-utils@^1.0.1:
   resolved "https://registry.yarnpkg.com/stack-utils/-/stack-utils-1.0.2.tgz#33eba3897788558bebfc2db059dc158ec36cebb8"
   integrity sha512-MTX+MeG5U994cazkjd/9KNAapsHnibjMLnfXodlkXw76JEea0UiNzrqidzo1emMwk7w5Qhc9jd4Bn9TBb1MFwA==
 
+state-hooks@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/state-hooks/-/state-hooks-2.1.0.tgz#16d8a354fb2282c396c23e95f674c4d1f0f55355"
+  integrity sha512-TOqF1rIelos3pW/XrEpNfEPuIT9m0db5F+AFjgGvHhuEaBUSPa8ZpvIaUNwzWMk7jgQoPUmkr3j/f+r2gmRF9A==
+
 state-toggle@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/state-toggle/-/state-toggle-1.0.2.tgz#75e93a61944116b4959d665c8db2d243631d6ddc"
@@ -15336,11 +15346,12 @@ wcwidth@^1.0.0, wcwidth@^1.0.1:
   dependencies:
     defaults "^1.0.3"
 
-web-api-hooks@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/web-api-hooks/-/web-api-hooks-2.1.0.tgz#c1d28b2ba0a974b22b507933adf8f239b124da7e"
-  integrity sha512-MHI/AocLW5gi4ynHM0hUH+G3Co2Lr/d+TRXWPG3y51wMRj2jHmPCmDAEP+zZgVY4csKDUa6PuffbiGm6s6XE/Q==
+web-api-hooks@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/web-api-hooks/-/web-api-hooks-2.2.2.tgz#67fe40a912b7548ba4f98ec274db8a71fcd97db6"
+  integrity sha512-WWIlXnHmydd/sDsdGqI0yzfyxKV7vj8/l4bP3aLDyVHOBeV5TAqO+4ob70F0yYirZtEnYqdOcjxL3BzUiv8++Q==
   dependencies:
+    "@types/resize-observer-browser" "^0.1.2"
     network-information-types "^0.1.0"
 
 web-namespaces@^1.0.0, web-namespaces@^1.1.2:
