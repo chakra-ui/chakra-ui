@@ -9,5 +9,6 @@ export { default as useLockBodyScroll } from "./useLockBodyScroll";
 export { default as useId } from "./useId";
 export { default as useEnhancedEffect } from "./useEnhancedEffect";
 export { default as usePopper } from "./usePopper";
+export { default as useNumberInput } from "./useNumberInput";
 export * from "./useRegister";
 export * from "./useRover";

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { canUseDOM } from "exenv";
+import { canUseDOM } from "@chakra-ui/utils";
 
 const useEnhancedEffect = canUseDOM ? React.useEffect : React.useLayoutEffect;
 

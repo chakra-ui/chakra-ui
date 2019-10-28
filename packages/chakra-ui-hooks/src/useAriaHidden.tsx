@@ -1,4 +1,4 @@
-import { canUseDOM } from "exenv";
+import { canUseDOM } from "@chakra-ui/utils";
 import { useRef, useEffect } from "react";
 import { hideOthers, Undo } from "aria-hidden";
 

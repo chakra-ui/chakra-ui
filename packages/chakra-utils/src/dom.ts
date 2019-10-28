@@ -1,3 +1,5 @@
+import { canUseDOM } from "exenv";
+
 const focusableElements = [
   "a[href]",
   "area[href]",
@@ -48,4 +50,17 @@ export function getAllFocusables<T extends HTMLElement>(parentNode: T) {
 export function hasFocusWithin(element: Element) {
   if (!document.activeElement) return false;
   return element.contains(document.activeElement);
+}
+
+export { canUseDOM };
+
+export function focusWithoutScroll<T extends HTMLElement>(element: T) {
+  if (canUseDOM) {
+    const x = window.scrollX;
+    const y = window.scrollY;
+    element.focus();
+    window.scrollTo(x, y);
+  } else {
+    element.focus();
+  }
 }

@@ -4,8 +4,12 @@ import {
   useId,
   useLockBodyScroll,
 } from "@chakra-ui/hooks";
-import { getAllFocusables, Merge, wrapEventCallback } from "@chakra-ui/utils";
-import { canUseDOM } from "exenv";
+import {
+  getAllFocusables,
+  Merge,
+  wrapEventCallback,
+  canUseDOM,
+} from "@chakra-ui/utils";
 import * as React from "react";
 import FocusLock from "react-focus-lock";
 import { Box, BoxProps } from "../Box";
