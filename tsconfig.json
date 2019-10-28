@@ -22,7 +22,11 @@
     "declaration": true,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "typeRoots": [
+      "node_modules/@types",
+      "packages/**/*/@types"
+    ]
   },
   "include": ["packages/**/*"],
   "exclude": [
