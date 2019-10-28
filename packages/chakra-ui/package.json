@@ -25,10 +25,6 @@
     "@styled-system/should-forward-prop": "5.0.12",
     "@types/color": "3.0.0",
     "@types/styled-system": "5.0.1",
-    "@types/exenv": "1.2.0",
-    "aria-hidden": "^1.1.1",
-    "exenv": "^1.2.2",
-    "body-scroll-lock": "^2.6.4",
     "color": "3.1.2",
     "popper.js": "^1.15.0",
     "pretty-num": "0.3.0",
@@ -39,7 +35,8 @@
     "styled-system": "5.0.5",
     "toasted-notes": "3.0.0",
     "use-dark-mode": "2.3.1",
-    "@chakra-ui/utils": "0.0.1"
+    "@chakra-ui/utils": "0.0.1",
+    "@chakra-ui/hooks": "0.0.1"
   },
   "peerDependencies": {
     "@emotion/core": "10.x",

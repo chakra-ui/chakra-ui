@@ -91,7 +91,7 @@ function addCSSUnits(a: string, b: string) {
  * @param a first translate string
  * @param b second translate string
  */
-export function mergeTransform(a: string, b: string) {
+export function mergeTransform<T extends string>(a: T, b: T) {
   const aa = getTranslateValues(a);
   const bb = getTranslateValues(b);
 
@@ -119,5 +119,5 @@ export function mergeTransform(a: string, b: string) {
     }
   }
 
-  return prepare(result);
+  return prepare(result) as T;
 }

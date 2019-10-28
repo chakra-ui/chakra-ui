@@ -1,20 +1,16 @@
 import {
-  useCreateContext,
-  useLockBodyScroll,
   useAriaHidden,
+  useCreateContext,
   useId,
-  useFocusTrap,
+  useLockBodyScroll,
 } from "@chakra-ui/hooks";
-import { BoxProps, Box } from "../Box";
-import * as React from "react";
+import { getAllFocusables, Merge, wrapEventCallback } from "@chakra-ui/utils";
 import { canUseDOM } from "exenv";
-import {
-  getAllFocusables,
-  mergeRefs,
-  wrapEventCallback,
-} from "@chakra-ui/utils";
+import * as React from "react";
+import FocusLock from "react-focus-lock";
+import { Box, BoxProps } from "../Box";
+import { CloseButton, CloseButtonProps } from "../CloseButton";
 import { Portal } from "../Portal";
-import { CloseButtonProps, CloseButton } from "CloseButton";
 
 type ModalSizes =
   | "xs"
@@ -169,7 +165,7 @@ function Modal({
   size = "md",
 }: ModalOptions) {
   const contentRef = useLockBodyScroll({
-    isEnabled: isOpen && blockScrollOnMount,
+    isEnabled: isOpen,
     preserveScrollBarGap,
   });
 
@@ -178,36 +174,6 @@ function Modal({
     id: "chakra-portal",
     container,
   });
-
-  const focusTrap = useFocusTrap({
-    shouldReturnFocus: returnFocusOnClose,
-    onActivate: () => {
-      if (initialFocusRef && initialFocusRef.current) {
-        initialFocusRef.current.focus();
-      } else {
-        if (contentRef.current) {
-          let focusables = getAllFocusables(contentRef.current);
-          if (focusables.length === 0) {
-            contentRef.current.focus();
-          }
-        }
-      }
-    },
-    onDeactivate: () => {
-      if (finalFocusRef && finalFocusRef.current) {
-        finalFocusRef.current.focus();
-      }
-    },
-  });
-
-  React.useEffect(() => {
-    if (isOpen) {
-      focusTrap.activate();
-    }
-    return () => {
-      focusTrap.deactivate();
-    };
-  }, [focusTrap, isOpen]);
 
   React.useEffect(() => {
     const func = (event: KeyboardEvent) => {
@@ -231,7 +197,9 @@ function Modal({
   const headerId = formatIds(_id)["header"];
   const bodyId = formatIds(_id)["body"];
 
-  const _contentRef = mergeRefs([focusTrap.ref, contentRef]);
+  if (!isOpen) {
+    return null;
+  }
 
   return (
     <ModalContextProvider
@@ -243,7 +211,7 @@ function Modal({
         closeOnEsc,
         closeOnOverlayClick,
         returnFocusOnClose,
-        contentRef: _contentRef,
+        contentRef,
         scrollBehavior,
         isCentered,
         headerId,
@@ -252,7 +220,30 @@ function Modal({
         size,
       }}
     >
-      <Portal container={mountRef.current}>{children}</Portal>
+      <Portal container={mountRef.current}>
+        <FocusLock
+          returnFocus={returnFocusOnClose && !finalFocusRef}
+          onActivation={() => {
+            if (initialFocusRef && initialFocusRef.current) {
+              initialFocusRef.current.focus();
+            } else {
+              if (contentRef.current) {
+                let focusables = getAllFocusables(contentRef.current);
+                if (focusables.length === 0) {
+                  contentRef.current.focus();
+                }
+              }
+            }
+          }}
+          onDeactivation={() => {
+            if (finalFocusRef && finalFocusRef.current) {
+              finalFocusRef.current.focus();
+            }
+          }}
+        >
+          {children}
+        </FocusLock>
+      </Portal>
     </ModalContextProvider>
   );
 }
@@ -281,10 +272,12 @@ interface ModalContent {
   onClick?: React.MouseEventHandler<HTMLElement>;
   zIndex?: BoxProps["zIndex"];
   children: React.ReactNode;
-  noStyles: boolean;
+  noStyles?: boolean;
 }
 
-const ModalContent = React.forwardRef<HTMLElement, ModalContent>(function(
+type ModalContentProps = Merge<BoxProps, ModalContent>;
+
+const ModalContent = React.forwardRef<HTMLElement, ModalContentProps>(function(
   { onClick, children, zIndex = "modal", noStyles, ...props },
   ref,
 ) {
@@ -302,10 +295,10 @@ const ModalContent = React.forwardRef<HTMLElement, ModalContent>(function(
     scrollBehavior,
     closeOnOverlayClick,
   } = useModalContext();
-  let _contentRef = null;
-  if (ref && contentRef) {
-    _contentRef = mergeRefs([ref, contentRef]);
-  }
+
+  // const _contentRef =
+  //   ref && contentRef ? mergeRefs([ref, contentRef]) : contentRef;
+
   // const { colorMode } = useColorMode();
 
   const colorModeStyles = {
@@ -376,8 +369,7 @@ const ModalContent = React.forwardRef<HTMLElement, ModalContent>(function(
       pos="fixed"
       left="0"
       top="0"
-      w="100%"
-      h="100%"
+      size="100%"
       // zIndex={zIndex}
       onClick={event => {
         event.stopPropagation();
@@ -396,23 +388,25 @@ const ModalContent = React.forwardRef<HTMLElement, ModalContent>(function(
       {...wrapperStyle}
     >
       <Box
-        ref={_contentRef}
+        ref={contentRef}
         as="section"
         // role="dialog"
         aria-modal="true"
         tabIndex={-1}
         outline={0}
         maxWidth={size}
-        w="100%"
+        width="100%"
         id={contentId}
         // {...(addAriaDescribedby && { "aria-describedby": bodyId })}
         // {...(addAriaLabelledby && { "aria-labelledby": headerId })}
-        pos="relative"
-        d="flex"
-        flexDir="column"
+        position="relative"
+        display="flex"
+        flexDirection="column"
         // zIndex={zIndex}
         onClick={wrapEventCallback(event => event.stopPropagation(), onClick)}
         // {...boxStyleProps}
+        bg="white"
+        zIndex={50}
         {...contentStyle}
         {...props}
       >
@@ -443,7 +437,7 @@ const ModalHeader = React.forwardRef<HTMLElement, BoxProps>((props, ref) => {
 
 ////////////////////////////////////////////////////////////////////////
 
-const ModalFooter = React.forwardRef((props, ref) => (
+const ModalFooter = React.forwardRef<HTMLElement, BoxProps>((props, ref) => (
   <Box
     display="flex"
     justifyContent="flex-end"
@@ -457,7 +451,7 @@ const ModalFooter = React.forwardRef((props, ref) => (
 
 ////////////////////////////////////////////////////////////////////////
 
-const ModalBody = React.forwardRef((props, ref) => {
+const ModalBody = React.forwardRef<HTMLElement, BoxProps>((props, ref) => {
   const { bodyId, scrollBehavior } = useModalContext();
 
   let style = {};
@@ -487,3 +481,13 @@ const ModalCloseButton = React.forwardRef<HTMLElement, CloseButtonProps>(
     );
   },
 );
+
+export {
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  ModalContent,
+  ModalCloseButton,
+};

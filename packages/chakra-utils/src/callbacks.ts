@@ -1,5 +1,4 @@
-import * as React from "react";
-import { FunctionArguments } from "./types";
+import { FunctionArguments, AnyFunction } from "./types";
 
 export function runCallback(callback: any, ...args: any[]) {
   if (typeof callback === "function") {
@@ -31,4 +30,20 @@ export function wrapEventCallback<T extends (event: any) => void>(
       return ourHandler(event);
     }
   };
+}
+
+export function createChainedFunction(...funcs: AnyFunction[]) {
+  return funcs.reduce(
+    (acc, func) => {
+      if (func == null) {
+        return acc;
+      }
+
+      return function chainedFunction(this: any, ...args) {
+        acc.apply(this, args);
+        func.apply(this, args);
+      };
+    },
+    () => {},
+  );
 }

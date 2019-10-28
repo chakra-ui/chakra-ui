@@ -14,12 +14,10 @@ const stories = storiesOf("Hooks", module).addDecorator(story => (
 
 function Item(props: any) {
   const rover = useRover(props);
-
-  const roverProps = omit(rover, ["value", "isDisabled"]);
   const _props = omit(props, ["value"]);
-  const finalProps = { ..._props, ...roverProps };
+  const finalProps = { ..._props, ...rover };
 
-  return <div {...finalProps} data-value={rover.value} />;
+  return <div {...finalProps} />;
 }
 
 export function RegisterExample() {

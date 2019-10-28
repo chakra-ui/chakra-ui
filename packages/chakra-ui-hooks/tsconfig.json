@@ -6,7 +6,7 @@
     "noImplicitAny": true,
     "rootDir": "./",
     "baseUrl": "./",
-    "typeRoots": ["node_modules/@types", "@types"],
+    "typeRoots": ["../../node_modules/@types", "@types"],
     "paths": {
       "*": ["src/*", "node_modules/*"]
     }

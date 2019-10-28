@@ -1,6 +1,4 @@
-import { SystemProps } from "@chakra-ui/core/dist/Box";
 import { findIndex } from "@chakra-ui/utils";
-import styled from "@emotion/styled";
 import React, {
   Children,
   cloneElement,
@@ -16,7 +14,7 @@ import scrollIntoView from "scroll-into-view-if-needed";
 import useCreateContext from "./useCreateContext";
 import usePrevious from "./usePrevious";
 
-const optionStyle: SystemProps = {
+const optionStyle: React.CSSProperties = {
   fontWeight: "normal",
   display: "block",
   whiteSpace: "pre",
@@ -24,30 +22,30 @@ const optionStyle: SystemProps = {
   padding: "0px 2px 1px",
 };
 
-const StyledLi = styled.li`
-  display: flex;
-  align-items: center;
-  position: relative;
-  line-height: 2em;
+// const StyledLi = styled.li`
+//   display: flex;
+//   align-items: center;
+//   position: relative;
+//   line-height: 2em;
 
-  &[data-focus="true"] {
-    background: #bde4ff;
-  }
-  &[aria-disabled="true"] {
-    opacity: 0.4;
-  }
-`;
+//   &[data-focus="true"] {
+//     background: #bde4ff;
+//   }
+//   &[aria-disabled="true"] {
+//     opacity: 0.4;
+//   }
+// `;
 
-const VisuallyHidden = styled.div`
-  border: 0px;
-  clip: rect(0px, 0px, 0px, 0px);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0px;
-  position: absolute;
-  width: 1px;
-`;
+// const VisuallyHidden =  styled.div`
+//   border: 0px;
+//   clip: rect(0px, 0px, 0px, 0px);
+//   height: 1px;
+//   margin: -1px;
+//   overflow: hidden;
+//   padding: 0px;
+//   position: absolute;
+//   width: 1px;
+// `;
 
 const nodeToObject = <T extends HTMLElement>(node: T) =>
   ({
@@ -110,7 +108,7 @@ export const Option = forwardRef(
 
     return (
       // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
-      <StyledLi
+      <li
         ref={ref}
         role="option"
         id={optionId}
@@ -142,7 +140,7 @@ export const Option = forwardRef(
       >
         {isSelected && "✔️"}
         {children}
-      </StyledLi>
+      </li>
     );
   },
 );
@@ -185,25 +183,25 @@ export const OptionGroup = forwardRef(
   },
 );
 
-const StyledButton = styled.button`
-  align-items: center;
-  background-color: rgb(255, 255, 255);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  min-height: 38px;
-  position: relative;
-  box-sizing: border-box;
-  border-color: rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-  border-style: solid;
-  border-width: 1px;
-  transition: all 100ms ease 0s;
-  outline: 0;
-  &:focus {
-    border-color: teal;
-  }
-`;
+// const StyledButton = styled.button`
+//   align-items: center;
+//   background-color: rgb(255, 255, 255);
+//   display: flex;
+//   flex-wrap: wrap;
+//   justify-content: space-between;
+//   min-height: 38px;
+//   position: relative;
+//   box-sizing: border-box;
+//   border-color: rgba(0, 0, 0, 0.1);
+//   border-radius: 4px;
+//   border-style: solid;
+//   border-width: 1px;
+//   transition: all 100ms ease 0s;
+//   outline: 0;
+//   &:focus {
+//     border-color: teal;
+//   }
+// `;
 
 export const SelectControl = forwardRef((props, ref) => {
   const {
@@ -216,7 +214,7 @@ export const SelectControl = forwardRef((props, ref) => {
     controlEvents,
   } = useSelectContext();
   return (
-    <StyledButton
+    <button
       ref={controlRef}
       id={controlId}
       aria-haspopup="listbox"
@@ -227,22 +225,22 @@ export const SelectControl = forwardRef((props, ref) => {
       {...props}
     >
       {selected ? itemToString(selected) : "Select"}
-    </StyledButton>
+    </button>
   );
 });
 
-const StyledListbox = styled.ul`
-  /* min-height: 8em; */
-  padding: 0;
-  background: white;
-  border: 1px solid #aaa;
-  border-top: 0;
-  max-height: 8em;
-  overflow-y: auto;
-  position: absolute;
-  margin: 0;
-  width: 148px;
-`;
+// const StyledListbox = styled.ul`
+//   /* min-height: 8em; */
+//   padding: 0;
+//   background: white;
+//   border: 1px solid #aaa;
+//   border-top: 0;
+//   max-height: 8em;
+//   overflow-y: auto;
+//   position: absolute;
+//   margin: 0;
+//   width: 148px;
+// `;
 
 export const SelectMenuList = forwardRef((props, ref) => {
   const {
@@ -253,7 +251,7 @@ export const SelectMenuList = forwardRef((props, ref) => {
     focused,
   } = useSelectContext();
   return (
-    <StyledListbox
+    <ul
       tabIndex={-1}
       hidden={!isOpen}
       role="listbox"

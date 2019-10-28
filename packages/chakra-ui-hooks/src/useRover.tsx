@@ -19,8 +19,8 @@ function useRover({
   return {
     id,
     ref,
-    isDisabled,
-    value,
+    "aria-disabled": isDisabled,
+    "data-value": value,
     onClick: () => {
       actions.move(id, "mouse");
     },

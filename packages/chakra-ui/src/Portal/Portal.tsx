@@ -11,7 +11,7 @@ export interface PortalProps {
   /**
    * The children to render into the `container`.
    */
-  children: React.ReactNode;
+  children: React.ReactNode | React.ReactPortal;
   /**
    * A node, component instance, or function that returns either.
    * The `container` will have the portal children appended to it.
@@ -31,48 +31,48 @@ export interface PortalProps {
 
 function getContainer(container: Container) {
   const _container = typeof container === "function" ? container() : container;
-  return findDOMNode(_container) as Element;
+  return findDOMNode(_container) as HTMLElement;
 }
 
-const Portal = forwardRef(function(
-  { children, container, isDisabled = false, onRendered }: PortalProps,
-  ref: React.Ref<any>,
-) {
-  const [mountNode, setMountNode] = useState<Element | null>(null);
-  // const handleRef = mergeRefs(children.ref, ref);
+const Portal = forwardRef<any, PortalProps>(
+  ({ children, container, isDisabled = false, onRendered }, ref) => {
+    const [mountNode, setMountNode] = useState<HTMLElement | null>(null);
+    // const handleRef = mergeRefs(children.ref, ref);
 
-  useEnhancedEffect(() => {
-    if (!isDisabled && container) {
-      const _mountNode = getContainer(container) || document.body;
-      setMountNode(_mountNode);
-    }
-  }, [container, isDisabled]);
+    useEnhancedEffect(() => {
+      if (!isDisabled && container) {
+        const _mountNode = getContainer(container) || document.body;
+        setMountNode(_mountNode);
+      }
+    }, [container, isDisabled]);
 
-  useEnhancedEffect(() => {
-    if (mountNode && !isDisabled) {
-      assignRef(ref, mountNode);
-      return () => {
-        assignRef(ref, null);
-      };
-    }
+    useEnhancedEffect(() => {
+      if (mountNode && !isDisabled && ref) {
+        assignRef(ref, mountNode);
+        return () => {
+          assignRef(ref, null);
+        };
+      }
 
-    return undefined;
-  }, [ref, mountNode, isDisabled]);
+      return undefined;
+    }, [ref, mountNode, isDisabled]);
 
-  useEnhancedEffect(() => {
-    if (onRendered && (mountNode || isDisabled)) {
-      onRendered();
-    }
-  }, [onRendered, mountNode, isDisabled]);
+    useEnhancedEffect(() => {
+      if (onRendered && (mountNode || isDisabled)) {
+        onRendered();
+      }
+    }, [onRendered, mountNode, isDisabled]);
 
-  // if (isDisabled) {
-  //   Children.only(children);
-  //   return cloneElement(children, {
-  //     ref: handleRef,
-  //   });
-  // }
+    // if (isDisabled) {
+    //   Children.only(children);
+    //   return cloneElement(children, {
+    //     ref: handleRef,
+    //   });
+    // }
 
-  return mountNode ? createPortal(children, mountNode) : mountNode;
-});
+    const _node = mountNode ? createPortal(children, mountNode) : mountNode;
+    return _node as React.ReactPortal;
+  },
+);
 
 export default Portal;

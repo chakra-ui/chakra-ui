@@ -6,7 +6,7 @@ import React, {
   useEffect,
   useRef,
 } from "react";
-import { findIndex } from "@chakra-ui/utils/dist/array";
+import { findIndex } from "@chakra-ui/utils";
 import useCreateContext from "./useCreateContext";
 import useId from "./useId";
 

@@ -7,7 +7,7 @@ export { default as usePrevious } from "./usePrevious";
 export { default as useAriaHidden } from "./useAriaHidden";
 export { default as useLockBodyScroll } from "./useLockBodyScroll";
 export { default as useId } from "./useId";
-export { default as useFocusTrap } from "./useFocusTrap";
 export { default as useEnhancedEffect } from "./useEnhancedEffect";
+export { default as usePopper } from "./usePopper";
 export * from "./useRegister";
 export * from "./useRover";
