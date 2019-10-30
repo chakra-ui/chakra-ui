@@ -18,5 +18,5 @@ export * from "./useNumberInput";
 export { default as useScrollIntoView } from "./useScrollIntoView";
 export * from "./useScrollIntoView";
 
-export * from "./useRegister";
+export * from "./useSelection";
 export * from "./useRover";

@@ -7,7 +7,7 @@ import {
 import {
   getAllFocusables,
   Merge,
-  wrapEventCallback,
+  composeEventHandlers,
   canUseDOM,
 } from "@chakra-ui/utils";
 import * as React from "react";
@@ -407,7 +407,7 @@ const ModalContent = React.forwardRef<HTMLElement, ModalContentProps>(function(
         display="flex"
         flexDirection="column"
         // zIndex={zIndex}
-        onClick={wrapEventCallback(event => event.stopPropagation(), onClick)}
+        onClick={composeEventHandlers(event => event.stopPropagation(), onClick)}
         // {...boxStyleProps}
         bg="white"
         zIndex={50}

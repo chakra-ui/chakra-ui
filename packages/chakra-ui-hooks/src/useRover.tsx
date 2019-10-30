@@ -1,20 +1,38 @@
-import { useRegister, Register } from "./useRegister";
+import {
+  useSelection,
+  useSelectionState,
+  UseSelectionOptions,
+} from "./useSelection";
 import useFocusEffect from "./useFocusEffect";
 import { createOnKeyDown } from "@chakra-ui/utils";
 
-function useRover({
-  value,
-  isDisabled,
-}: {
+interface UseRoverOptions extends UseSelectionOptions {
   value?: string;
-  isDisabled?: boolean;
-}) {
-  const { ref, id, state, actions } = useRegister({
+  orientation?: "horizontal" | "vertical";
+}
+
+function useRover(options: UseRoverOptions) {
+  const {
+    value,
     isDisabled,
+    isFocusable,
+    actions,
+    state,
+    orientation = "vertical",
+  } = options;
+  const { ref, id } = useSelection({
     extraData: { value },
+    isDisabled,
+    isFocusable,
+    state,
+    actions,
+    id: options.id,
   });
   const isSelected = state.selectedId === id;
   useFocusEffect(isSelected, ref);
+
+  const isVertical = orientation === "vertical";
+  const isHorizontal = orientation === "horizontal";
 
   return {
     id,
@@ -27,8 +45,10 @@ function useRover({
     tabIndex: isSelected ? 0 : -1,
     onKeyDown: createOnKeyDown({
       keyMap: {
-        ArrowDown: actions.next,
-        ArrowUp: actions.previous,
+        ArrowDown: isVertical ? actions.next : undefined,
+        ArrowUp: isVertical ? actions.previous : undefined,
+        ArrowLeft: isHorizontal ? actions.next : undefined,
+        ArrowRight: isHorizontal ? actions.previous : undefined,
         Home: actions.first,
         End: actions.last,
       },
@@ -36,6 +56,6 @@ function useRover({
   };
 }
 
-const Rover = Register;
+const useRoverState = useSelectionState;
 
-export { Rover, useRover };
+export { useRoverState, useRover };

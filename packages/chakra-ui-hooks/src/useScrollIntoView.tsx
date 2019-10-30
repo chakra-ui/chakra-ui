@@ -8,6 +8,13 @@ export interface useScrollIntoViewOptions {
   isEnabled?: boolean;
 }
 
+/**
+ * Custom hook to scroll node into view if needed
+ *
+ * @param {HTMLElement} node the element that should scroll into view
+ * @param {HTMLElement} boundary the boundary element of the component
+ * @param {Boolean} isEnabled the condition to re-run the scrollIntoView effect
+ */
 function useScrollIntoView({
   isEnabled,
   node,
@@ -15,10 +22,14 @@ function useScrollIntoView({
   behavior = "instant",
 }: useScrollIntoViewOptions) {
   React.useEffect(() => {
-    if (isEnabled && node) {
+    if (node == null) {
+      return;
+    }
+    if (isEnabled) {
       scrollIntoView(node, {
         boundary: boundary,
         behavior: behavior,
+        block: "nearest",
         scrollMode: "if-needed",
       });
     }

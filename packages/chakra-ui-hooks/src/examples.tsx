@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { storiesOf } from "@storybook/react";
 import { ThemeProvider, CSSReset } from "@chakra-ui/core";
-import { Rover, useRover } from "./useRover";
+import { useRover, useRoverState } from "./useRover";
 import { SelectExample } from "./useSelect";
 import { omit } from "@chakra-ui/utils";
+import useLogger from "./useLogger";
 
 const stories = storiesOf("Hooks", module).addDecorator(story => (
   <ThemeProvider>
@@ -12,25 +13,31 @@ const stories = storiesOf("Hooks", module).addDecorator(story => (
   </ThemeProvider>
 ));
 
-function Item(props: any) {
+function Rover(props: any) {
   const rover = useRover(props);
-  const _props = omit(props, ["value"]);
-  const finalProps = { ..._props, ...rover };
+  const allProps = { ...props, ...rover };
+  const finalProps = omit(allProps, ["value", "actions", "state"]);
 
   return <div {...finalProps} />;
 }
 
-export function RegisterExample() {
+export function RoverExample() {
+  const rover = useRoverState({ loop: true });
+  useLogger(rover.state);
   return (
-    <Rover>
-      <div>
-        <Item value="option 1">Option 1</Item>
-        <Item value="option 2">Option 2</Item>
-        <Item value="option 3">Option 3</Item>
-      </div>
-    </Rover>
+    <div>
+      <Rover value="option 1" {...rover}>
+        Option 1
+      </Rover>
+      <Rover value="option 2" {...rover}>
+        Option 2
+      </Rover>
+      <Rover value="option 3" {...rover}>
+        Option 3
+      </Rover>
+    </div>
   );
 }
 
-stories.add("Register", () => <RegisterExample />);
+stories.add("Register", () => <RoverExample />);
 stories.add("Select", () => <SelectExample />);
