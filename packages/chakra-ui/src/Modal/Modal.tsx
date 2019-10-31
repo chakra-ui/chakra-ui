@@ -407,7 +407,10 @@ const ModalContent = React.forwardRef<HTMLElement, ModalContentProps>(function(
         display="flex"
         flexDirection="column"
         // zIndex={zIndex}
-        onClick={composeEventHandlers(event => event.stopPropagation(), onClick)}
+        onClick={composeEventHandlers(
+          event => event.stopPropagation(),
+          onClick,
+        )}
         // {...boxStyleProps}
         bg="white"
         zIndex={50}
