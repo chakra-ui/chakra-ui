@@ -21,6 +21,8 @@ const sizes = {
   xs: "sm",
 };
 
+type Sizes = keyof typeof sizes;
+
 const Heading = forwardRef(function Heading<P, T extends HTMLHeadingElement>(
   { size = "xl", ...props }: HeadingProps<P, T>,
   ref: React.Ref<T>,
@@ -29,7 +31,7 @@ const Heading = forwardRef(function Heading<P, T extends HTMLHeadingElement>(
     <Box
       ref={ref}
       as="h2"
-      fontSize={sizes[size]}
+      fontSize={sizes[size as Sizes]}
       lineHeight="shorter"
       fontWeight="bold"
       {...props}
@@ -43,7 +45,7 @@ export function HeadingExample() {
   return (
     <Fragment>
       {["2xl", "xl", "lg", "md", "sm", "xs"].map((size, index) => (
-        <Heading size={size}>Heading {index + 1}</Heading>
+        <Heading size={size as Sizes}>Heading {index + 1}</Heading>
       ))}
     </Fragment>
   );
