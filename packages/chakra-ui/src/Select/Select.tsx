@@ -1,12 +1,12 @@
-/* eslint-disable */
-
 import React, {
   useState,
   useRef,
   forwardRef,
   useEffect,
+  useLayoutEffect,
   isValidElement,
   cloneElement,
+  Children,
 } from "react";
 import {
   useCreateContext,
@@ -15,10 +15,8 @@ import {
   usePrevious,
   useScrollIntoView,
 } from "@chakra-ui/hooks";
-import { normalizeArrowKey } from "@chakra-ui/utils";
-import { useMemo } from "react";
-import { Children } from "react";
-import { useLayoutEffect } from "react";
+import { normalizeEventKey, composeEventHandlers } from "@chakra-ui/utils";
+import { useOnClickOutside } from "./utils";
 
 interface Option {
   value: string | number;
@@ -32,14 +30,28 @@ interface OptionProps {
   children: React.ReactNode;
   isDisabled?: boolean;
   isFocusable?: boolean;
+  onMouseEnter?: React.MouseEventHandler<any>;
+  onMouseLeave?: React.MouseEventHandler<any>;
+  onClick?: React.MouseEventHandler<any>;
+  onKeyDown?: React.KeyboardEventHandler<any>;
 }
 
 const Option = forwardRef(
   (
-    { value, id: idProp, isDisabled, isFocusable, ...rest }: OptionProps,
+    {
+      value,
+      id: idProp,
+      isDisabled,
+      isFocusable,
+      onMouseEnter,
+      onMouseLeave,
+      onKeyDown,
+      onClick,
+      ...rest
+    }: OptionProps,
     forwardedRef: React.Ref<any>,
   ) => {
-    const { state, optionsRef } = useSelectContext();
+    const { state, props, actions, optionsRef } = useSelectContext();
     const ownRef = useRef<any>();
 
     const ref = useForkRef(forwardedRef, ownRef);
@@ -53,16 +65,43 @@ const Option = forwardRef(
 
     const isSelected = state.selected ? id === state.selected.id : false;
 
+    const option = { value, id, ref: ownRef };
+
     useEffect(() => {
       if (optionsRef && optionsRef.current) {
-        const option = { value, id, ref: ownRef };
         optionsRef.current.push(option);
       }
-    });
+      // console.log(optionsRef.current);
+      return () => {
+        if (optionsRef && optionsRef.current.length) {
+          const newOptions = optionsRef.current.filter(item => item.id !== id);
+          optionsRef.current = newOptions;
+        }
+      };
+    }, [id, isDisabled, isFocusable, option, optionsRef, ref]);
 
     return (
       <div
+        role="option"
+        data-chakra-select-option=""
+        aria-selected={isHighlighted ? true : undefined}
+        aria-disabled={isDisabled ? true : undefined}
+        tabIndex={-1}
         ref={ref}
+        onMouseEnter={composeEventHandlers(onMouseEnter, () => {
+          actions.highlightOption(option);
+        })}
+        onMouseLeave={composeEventHandlers(onMouseLeave, () => {
+          actions.clearHighlighted();
+        })}
+        onClick={composeEventHandlers(onClick, () => {
+          actions.selectOption(option);
+        })}
+        onKeyDown={composeEventHandlers(onKeyDown, event => {
+          if (event.key === "Tab" && props.selectOptionOnTab) {
+            actions.selectOption(option);
+          }
+        })}
         style={{
           ...(isHighlighted && { background: "blue", color: "white" }),
           ...(isSelected && { background: "tomato", color: "white" }),
@@ -75,6 +114,9 @@ const Option = forwardRef(
 
 interface SelectContext {
   optionsRef: React.MutableRefObject<Option[]>;
+  props: {
+    selectOptionOnTab?: boolean;
+  };
   state: {
     isOpen: boolean;
     selected: Option | null;
@@ -183,7 +225,8 @@ function getNextIndex({
   }
 
   if (nextIndex >= itemsLength) {
-    return loop ? 0 : itemsLength - 1;
+    if (loop) return 0;
+    return currentIndex > itemsLength ? itemsLength : currentIndex;
   }
 
   return nextIndex;
@@ -212,7 +255,7 @@ function useFocusManagement<T extends any>({
          * If no option is selected before the listbox
          * receives focus, the first option receives focus.
          */
-        if (highlighted == null) {
+        if (!prevIsOpen && highlighted == null) {
           action(optionsRef.current[0]);
         }
       }
@@ -314,11 +357,20 @@ function useRapidKeydown() {
 
 interface SelectProps {
   children: React.ReactNode;
-  value?: string;
+  value?: string | number;
+  defaultValue?: string | number;
+  autoFocus?: boolean;
   onOpen?: () => void;
   onClose?: () => void;
   defaultIsOpen?: boolean;
   isOpen?: boolean;
+  onChange?: (val: string | number) => void;
+  autoSelect?: boolean;
+  blockScrollOnMount?: boolean;
+  closeOnSelect?: boolean;
+  openOnFocus?: boolean;
+  autoFocusOption?: boolean;
+  selectOptionOnTab?: boolean;
 }
 
 const Select = ({
@@ -327,15 +379,44 @@ const Select = ({
   isOpen: isOpenProp,
   onClose,
   children,
+  onChange,
+  selectOptionOnTab,
+  defaultValue,
+  value,
 }: SelectProps) => {
   const [selected, setSelected] = useState<Option | null>(null);
   const [highlighted, setHighlighted] = useState<Option | null>(null);
   const [isOpen, setIsOpen] = useState(defaultIsOpen || false);
+  const [isMousingDown, setIsMousingDown] = useState(false);
 
   // Store the refs of the components we'll be using
   const controlRef = useRef<HTMLElement>();
   const listBoxRef = useRef<HTMLElement>();
   const optionsRef = useRef<Option[]>([]);
+
+  // To handle the default selected value
+  useEffect(() => {
+    const defaultSelectedOption = optionsRef.current.find(
+      option => option.value === defaultValue,
+    );
+    if (defaultSelectedOption) {
+      setSelected(defaultSelectedOption);
+    }
+  }, [defaultValue]);
+
+  const valueIsControlled = value != null;
+  // To handle the selected value
+
+  useEffect(() => {
+    if (valueIsControlled && value) {
+      const selectedOption = optionsRef.current.find(
+        option => option.value === value,
+      );
+      if (selectedOption) {
+        setSelected(selectedOption);
+      }
+    }
+  }, [value, valueIsControlled]);
 
   // id generation
   const uuid = useId();
@@ -366,11 +447,9 @@ const Select = ({
   });
 
   // Actions
-  const selectOptionFromKeys = (
-    keys: string,
-    action: "select" | "highlight",
-  ) => {
-    const currentValue = action === "select" ? selected : highlighted;
+  const goToOptionFromKeys = (keys: string, type: "select" | "highlight") => {
+    const action = type === "select" ? selectOption : highlightOption;
+    const currentValue = type === "select" ? selected : highlighted;
     const nextOption = getNextOptionFromKeys({
       items: optionsRef.current,
       searchString: keys,
@@ -383,9 +462,7 @@ const Select = ({
       currentValue,
     });
     if (nextOption) {
-      action === "select"
-        ? setSelected(nextOption)
-        : setHighlighted(nextOption);
+      action(nextOption);
     }
   };
 
@@ -408,10 +485,17 @@ const Select = ({
     if (onClose) {
       onClose();
     }
+    setIsMousingDown(false);
   };
 
-  const selectOption = (value: Option) => {
-    setSelected(value);
+  const selectOption = (option: Option) => {
+    const isSameOption = selected ? option.value === selected.value : false;
+    if (!isSameOption) {
+      if (!valueIsControlled) {
+        setSelected(option);
+      }
+      onChange && onChange(option.value);
+    }
     closeMenu();
   };
 
@@ -425,49 +509,126 @@ const Select = ({
 
   const { keyDownAction } = useRapidKeydown();
 
+  const goToNextOrPreviousOption = (
+    type: "highlight" | "select",
+    step: number = 1,
+    loop: boolean = true,
+  ) => {
+    const option = type === "highlight" ? highlighted : selected;
+    const action = type === "highlight" ? highlightOption : selectOption;
+
+    const currentIndex = option
+      ? optionsRef.current.findIndex(item => item.value === option.value)
+      : -1;
+
+    const nextIndex = getNextIndex({
+      step,
+      currentIndex,
+      itemsLength: optionsRef.current.length,
+      loop,
+    });
+
+    const nextOption = optionsRef.current[nextIndex];
+
+    action(nextOption);
+  };
+
+  const goToFirstOrLastOption = (
+    type: "highlight" | "select",
+    position: "first" | "last",
+  ) => {
+    const action = type === "highlight" ? highlightOption : selectOption;
+    const { length } = optionsRef.current;
+    if (length) {
+      const nextOption =
+        position === "first"
+          ? optionsRef.current[0]
+          : optionsRef.current[length - 1];
+      action(nextOption);
+    }
+  };
+
+  // Select Actions
+  const selectNextOption = (loop?: boolean) =>
+    goToNextOrPreviousOption("select", 1, loop);
+  const selectPrevOption = (loop?: boolean) =>
+    goToNextOrPreviousOption("select", -1, loop);
+  const selectFirstOption = () => goToFirstOrLastOption("select", "first");
+  const selectLastOption = () => goToFirstOrLastOption("select", "last");
+  const selectOptionFromKeys = (str: string) =>
+    goToOptionFromKeys(str, "select");
+
+  // Highlight Actions
+  const highlightNextOption = (loop?: boolean) =>
+    goToNextOrPreviousOption("highlight", 1, loop);
+  const highlightPrevOption = (loop?: boolean) =>
+    goToNextOrPreviousOption("highlight", -1, loop);
+  const highlightFirstOption = () =>
+    goToFirstOrLastOption("highlight", "first");
+  const highlightLastOption = () => goToFirstOrLastOption("highlight", "last");
+  const highlightOptionFromKeys = (str: string) =>
+    goToOptionFromKeys(str, "highlight");
+
   // Event handlers for the select control
   const controlEventHandlers = {
     onKeyDown: (event: KeyboardEvent) => {
-      const eventKey = normalizeArrowKey(event);
-      const isOpenKey = ["ArrowUp", "ArrowDown", " "].includes(eventKey);
-
-      if (isOpenKey) {
+      const eventKey = normalizeEventKey(event);
+      const iOpenKey = ["ArrowUp", "ArrowDown", " "].includes(eventKey);
+      if (iOpenKey) {
         openMenu();
-      } else {
-        const selectItem = (str: string) => selectOptionFromKeys(str, "select");
-        keyDownAction(event, selectItem);
+        return;
+      }
+
+      keyDownAction(event, selectOptionFromKeys);
+
+      if (eventKey === "ArrowLeft") {
+        selectPrevOption(false);
+      }
+
+      if (eventKey === "ArrowRight") {
+        selectNextOption(false);
+      }
+
+      if (eventKey === "Home") {
+        selectFirstOption();
+      }
+
+      if (eventKey === "End") {
+        selectLastOption();
       }
     },
-    onClick: () => {
+    onMouseDown: (event: MouseEvent) => {
+      if (_isOpen) {
+        setIsMousingDown(true);
+      }
+    },
+    onClick: (event: MouseEvent) => {
+      event.preventDefault();
+      if (document.activeElement !== event.target) {
+        (event.target as HTMLElement).focus();
+      }
       if (_isOpen) {
         closeMenu();
       } else {
         openMenu();
       }
     },
-    onMouseDown: (event: MouseEvent) => {
-      // event.preventDefault();
-    },
   };
 
   const listBoxEventHandlers = {
     onKeyDown: (event: KeyboardEvent) => {
-      const eventKey = normalizeArrowKey(event);
+      const eventKey = normalizeEventKey(event);
 
       if (eventKey === "Enter") {
-        if (
-          selected == null ||
-          (highlighted && highlighted.value != selected.value)
-        ) {
+        event.preventDefault();
+        if (highlighted != null && highlighted != selected) {
           setSelected(highlighted);
+          onChange && onChange(highlighted.value);
         }
         closeMenu();
       }
 
-      const highlightItem = (str: string) =>
-        selectOptionFromKeys(str, "highlight");
-
-      keyDownAction(event, highlightItem);
+      keyDownAction(event, highlightOptionFromKeys);
 
       if (eventKey === "Escape") {
         closeMenu();
@@ -475,80 +636,40 @@ const Select = ({
 
       if (eventKey === "ArrowDown") {
         event.preventDefault();
-        if (highlighted == null) {
-          setHighlighted(optionsRef.current[0]);
-          return;
+        if (!highlighted) {
+          highlightFirstOption();
+        } else {
+          highlightNextOption();
         }
-
-        const currentIndex = optionsRef.current.findIndex(
-          item => item.value === highlighted.value,
-        );
-
-        const nextIndex = getNextIndex({
-          currentIndex,
-          itemsLength: optionsRef.current.length,
-          loop: true,
-        });
-
-        const nextOption = optionsRef.current[nextIndex];
-        setHighlighted(nextOption);
       }
 
       if (eventKey === "ArrowUp") {
         event.preventDefault();
-        if (highlighted == null) {
-          setHighlighted(optionsRef.current[optionsRef.current.length - 1]);
-          return;
+        if (!highlighted == null) {
+          highlightLastOption();
+        } else {
+          highlightPrevOption();
         }
-
-        const currentIndex = optionsRef.current.findIndex(
-          item => item.value === highlighted.value,
-        );
-
-        const nextIndex = getNextIndex({
-          step: -1,
-          currentIndex,
-          itemsLength: optionsRef.current.length,
-          loop: true,
-        });
-
-        setHighlighted(optionsRef.current[nextIndex]);
       }
 
       if (eventKey === "Home") {
         event.preventDefault();
-        const optionsLength = optionsRef.current.length;
-        if (optionsLength) {
-          setHighlighted(optionsRef.current[0]);
-        }
+        highlightFirstOption();
       }
 
       if (eventKey === "End") {
         event.preventDefault();
-        const { length } = optionsRef.current;
-        if (length) {
-          setHighlighted(optionsRef.current[length - 1]);
-        }
+        highlightLastOption();
       }
     },
     onBlur: (event: FocusEvent) => {
-      let relatedTarget = event.relatedTarget;
-      if (event.relatedTarget === null) {
-        // In IE11, due to lack of support, event.relatedTarget is always
-        // null making every onBlur call to be "outside" of the Listbox
-        // even when it's not. Using document.activeElement is another way
-        // for us to be able to get what the relatedTarget without relying
-        // on the event
-        relatedTarget = document.activeElement;
-      }
-
-      if (
-        isOpen &&
-        controlRef.current &&
+      const shouldCloseMenu =
+        !isMousingDown &&
         listBoxRef.current &&
-        !controlRef.current.contains(relatedTarget as HTMLElement) &&
-        !listBoxRef.current.contains(relatedTarget as HTMLElement)
-      ) {
+        !listBoxRef.current.contains((event.relatedTarget ||
+          document.activeElement) as HTMLElement);
+
+      if (shouldCloseMenu) {
         closeMenu();
       }
     },
@@ -556,6 +677,9 @@ const Select = ({
 
   const context: SelectContext = {
     optionsRef,
+    props: {
+      selectOptionOnTab,
+    },
     state: {
       isOpen: _isOpen as boolean,
       selected,
@@ -583,43 +707,47 @@ const Select = ({
 
 /////////////////////////////////////////////////////////////////////////////////
 
-const SelectControl = forwardRef((props, ref) => {
-  const { state, controlProps, menuProps } = useSelectContext();
-  const _ref = useForkRef(ref, controlProps.ref);
-  return (
-    <button
-      ref={_ref}
-      id={controlProps.id}
-      aria-haspopup="listbox"
-      aria-expanded={state.isOpen}
-      aria-controls={menuProps.id}
-      style={{ minWidth: 80, textAlign: "left" }}
-      {...controlProps.eventHandlers}
-      {...props}
-    >
-      {state.selected
-        ? (state.selected.ref.current as Node).textContent
-        : "Select"}
-    </button>
-  );
-});
+const SelectControl = forwardRef(
+  (
+    props: {
+      isReadOnly?: boolean;
+      isDisabled?: boolean;
+      isInvalid?: boolean;
+      children?: React.ReactNode;
+    },
+    ref,
+  ) => {
+    const { state, controlProps, menuProps } = useSelectContext();
+    const _ref = useForkRef(ref, controlProps.ref);
+    return (
+      <button
+        ref={_ref}
+        id={controlProps.id}
+        aria-haspopup="listbox"
+        aria-expanded={state.isOpen}
+        // aria-readonly={props.isReadOnly}
+        aria-controls={menuProps.id}
+        style={{ minWidth: 80, textAlign: "left" }}
+        {...controlProps.eventHandlers}
+        {...props}
+      >
+        {state.selected
+          ? (state.selected.ref.current as Node).textContent
+          : "Select"}
+      </button>
+    );
+  },
+);
 
 /////////////////////////////////////////////////////////////////////////////////
 
 const SelectMenu = forwardRef((props: any, ref: React.Ref<any>) => {
-  const { optionsRef, state, menuProps } = useSelectContext();
+  const { state, menuProps } = useSelectContext();
   const _ref = useForkRef(ref, menuProps.ref);
-
-  useLayoutEffect(() => {
-    optionsRef.current = [];
-    return () => {
-      optionsRef.current = [];
-    };
-  }, [optionsRef]);
 
   return (
     <ul
-      tabIndex={-1}
+      tabIndex={0}
       hidden={!state.isOpen}
       role="listbox"
       aria-activedescendant={state.highlighted ? state.highlighted.id : ""}
@@ -674,20 +802,25 @@ const OptionGroup = forwardRef(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export function SelectExample() {
+  const [add, setAdd] = useState(false);
   return (
-    <Select>
-      <SelectControl />
-      <SelectMenu>
-        <Option value="Niger">Niger</Option>
-        <Option value="Nigeria">Nigeria</Option>
-        <Option value="Togo">Togo</Option>
-        <Option value="Germany">Germany</Option>
-        <OptionGroup label="Other room">
-          <Option value="Zambia">Zambia</Option>
-          <Option value="Gerba">Gerba</Option>
-          <Option value="Tunisia">Tunisia</Option>
-        </OptionGroup>
-      </SelectMenu>
-    </Select>
+    <>
+      <Select defaultValue="Togo" onChange={val => console.log(val)}>
+        <SelectControl />
+        <SelectMenu>
+          <Option value="Niger">Niger</Option>
+          <Option value="Nigeria">Nigeria</Option>
+          <Option value="Togo">Togo</Option>
+          <Option value="Germany">Germany</Option>
+          {add && <Option value="Ghana">Ghana</Option>}
+          <OptionGroup label="Other room">
+            <Option value="Zambia">Zambia</Option>
+            <Option value="Gerba">Gerba</Option>
+            <Option value="Tunisia">Tunisia</Option>
+          </OptionGroup>
+        </SelectMenu>
+      </Select>
+      <button onClick={() => setAdd(!add)}>Add</button>
+    </>
   );
 }

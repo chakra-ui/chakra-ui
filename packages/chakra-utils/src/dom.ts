@@ -1,5 +1,3 @@
-import { canUseDOM } from "exenv";
-
 const focusableElements = [
   "a[href]",
   "area[href]",
@@ -52,21 +50,14 @@ export function hasFocusWithin(element: Element) {
   return element.contains(document.activeElement);
 }
 
-export { canUseDOM };
-
-export function focusWithoutScroll<T extends HTMLElement>(element: T) {
-  if (canUseDOM) {
-    const x = window.scrollX;
-    const y = window.scrollY;
-    element.focus();
-    window.scrollTo(x, y);
-  } else {
-    element.focus();
-  }
-}
+export const canUseDOM = !!(
+  typeof window !== "undefined" &&
+  window.document &&
+  window.document.createElement
+);
 
 // Credits: https://github.com/downshift-js/downshift/blob/master/src/downshift.js
-export function normalizeArrowKey(event: KeyboardEvent) {
+export function normalizeEventKey(event: KeyboardEvent) {
   const { key, keyCode } = event;
   if (keyCode >= 37 && keyCode <= 40 && key.indexOf("Arrow") !== 0) {
     return `Arrow${key}`;
