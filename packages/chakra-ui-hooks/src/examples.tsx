@@ -58,7 +58,7 @@ const Selection = () => {
   const ss = useSelectionState({
     loop: true,
     selectOnFocus: false,
-    onSelect: item => console.log(item),
+    onSelect: (id, item) => console.log({ id, item }),
     defaultSelectedId: "tab3",
   });
 

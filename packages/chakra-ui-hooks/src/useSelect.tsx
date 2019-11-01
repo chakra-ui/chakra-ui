@@ -98,7 +98,7 @@ export const Option = forwardRef(
       focused,
       selectOption,
       focusOption,
-      resetFocused,
+      // resetFocused,
     } = useSelectContext();
     const isFocused = focused ? focused.value === value : false;
     const isSelected = selected ? selected.value === value : false;

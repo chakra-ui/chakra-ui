@@ -2,10 +2,10 @@ import * as React from "react";
 import scrollIntoView, { Options } from "scroll-into-view-if-needed";
 
 export interface useScrollIntoViewOptions {
-  node?: HTMLElement;
-  boundary?: Options["boundary"];
+  node: HTMLElement | null;
+  boundary?: Options["boundary"] | null;
   behavior?: Options["behavior"];
-  isEnabled?: boolean;
+  isEnabled: boolean;
 }
 
 /**

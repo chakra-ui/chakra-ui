@@ -1,8 +1,6 @@
 // Credit goes to Reakit, Zendesk React Containers, Downshift and react-roving-tabindex for inspiring this API
-import { findIndex } from "@chakra-ui/utils";
 import React, { useLayoutEffect, useReducer, useRef } from "react";
 import useId from "../useId";
-import { getValue, getItemIndex, getNextIndex } from "./utils";
 import {
   register,
   State,
@@ -137,7 +135,6 @@ export function useSelectionState({
         },
       }),
     keyboard_select: () =>
-      //@ts-ignore
       dispatch({
         type: "KEYBOARD_SELECT",
         payload: {

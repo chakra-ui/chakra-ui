@@ -11,8 +11,8 @@ export interface Props {
   id?: string;
   loop?: boolean;
   lastEvent?: EventType;
-  onFocus?: (stopId: string | null) => void;
-  onSelect?: (stopId: string | null) => void;
+  onFocus?: (stopId: string | null, item?: Item) => void;
+  onSelect?: (stopId: string | null, item?: Item) => void;
   selectOnFocus?: boolean;
   focusedId?: string;
   selectedId?: string;
@@ -31,12 +31,14 @@ export interface State {
 }
 
 function keyboardFocusMove(state: State, props: Props, nextFocusId: string) {
+  const nextFocusedItem = state.items.find(item => item.id === nextFocusId);
+
   if (props.onFocus) {
-    props.onFocus(nextFocusId);
+    props.onFocus(nextFocusId, nextFocusedItem);
   }
 
   if (props.selectOnFocus && props.onSelect) {
-    props.onSelect(nextFocusId);
+    props.onSelect(nextFocusId, nextFocusedItem);
   }
 
   if (props.focusedId != null && props.focusedId != null) {
@@ -87,8 +89,10 @@ export function nextOrPrevious(
 ////////////////////////////////////////////////////////////////
 
 export function keyboardSelect(state: State, props: Props): State {
+  const nextFocusedItem = state.items.find(item => item.id === state.focusedId);
+
   if (props.onSelect) {
-    props.onSelect(state.focusedId);
+    props.onSelect(state.focusedId, nextFocusedItem);
   }
 
   if (props.selectedId != null) {
@@ -108,12 +112,14 @@ export function mouseSelect(state: State, props: Props) {
   const focusIsControlled = props.focusedId != null;
   const selectionIsControlled = props.selectedId != null;
 
+  const nextFocusedItem = state.items.find(item => item.id === props.id);
+
   if (props.onSelect && props.id) {
-    props.onSelect(props.id);
+    props.onSelect(props.id, nextFocusedItem);
   }
 
   if (props.onFocus && props.id) {
-    props.onFocus(props.id);
+    props.onFocus(props.id, nextFocusedItem);
   }
 
   const nextState: State = { ...state, lastEvent: "mouse-select" };

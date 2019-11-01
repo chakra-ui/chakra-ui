@@ -64,3 +64,12 @@ export function focusWithoutScroll<T extends HTMLElement>(element: T) {
     element.focus();
   }
 }
+
+// Credits: https://github.com/downshift-js/downshift/blob/master/src/downshift.js
+export function normalizeArrowKey(event: KeyboardEvent) {
+  const { key, keyCode } = event;
+  if (keyCode >= 37 && keyCode <= 40 && key.indexOf("Arrow") !== 0) {
+    return `Arrow${key}`;
+  }
+  return key;
+}

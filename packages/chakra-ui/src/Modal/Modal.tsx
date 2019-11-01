@@ -300,9 +300,6 @@ const ModalContent = React.forwardRef<HTMLElement, ModalContentProps>(function(
     closeOnOverlayClick,
   } = useModalContext();
 
-  // const _contentRef =
-  //   ref && contentRef ? mergeRefs([ref, contentRef]) : contentRef;
-
   // const { colorMode } = useColorMode();
 
   const colorModeStyles = {
