@@ -158,7 +158,9 @@ export function ControlledInput() {
   return (
     <Input
       value={value}
-      onChange={(e: React.ChangeEvent<HTMLInputElement>) => console.log(e.target.value)}
+      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+        console.log(e.target.value)
+      }
       variant="filled"
       placeholder="Text goes here"
     />

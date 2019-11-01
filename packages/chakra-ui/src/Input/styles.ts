@@ -12,7 +12,7 @@ interface StyleProps {
 
 type VariantProps = StyleProps & { variant: string };
 
-type InputStyleProps = VariantProps & { isFullWidth?: boolean, size: Sizes };
+type InputStyleProps = VariantProps & { isFullWidth?: boolean; size: Sizes };
 
 const outlinedStyle = ({
   theme,
