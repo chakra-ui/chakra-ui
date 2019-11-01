@@ -56,7 +56,6 @@
     "exenv": "^1.2.2",
     "react-uid": "2.2.0",
     "scroll-into-view-if-needed": "2.2.20",
-    "use-callback-ref": "1.2.1",
     "use-popper": "1.1.6",
     "@chakra-ui/utils": "0.0.1"
   },

@@ -2,7 +2,7 @@ import {
   useSelection,
   useSelectionState,
   UseSelectionOptions,
-} from "./useSelection";
+} from "./useSelection/useSelection";
 import useFocusEffect from "./useFocusEffect";
 import { createOnKeyDown } from "@chakra-ui/utils";
 
@@ -19,43 +19,45 @@ function useRover(options: UseRoverOptions) {
     actions,
     state,
     orientation = "vertical",
+    extraData,
   } = options;
   const { ref, id } = useSelection({
-    extraData: { value },
+    extraData: { value, ...extraData },
     isDisabled,
     isFocusable,
     state,
     actions,
     id: options.id,
   });
-  const isSelected = state.selectedId === id;
-  useFocusEffect(isSelected, ref);
+  // const isSelected = state.selectedId === id;
+  // useFocusEffect(isSelected, ref);
 
-  const isVertical = orientation === "vertical";
-  const isHorizontal = orientation === "horizontal";
+  // const isVertical = orientation === "vertical";
+  // const isHorizontal = orientation === "horizontal";
 
-  return {
-    id,
-    ref,
-    "aria-disabled": isDisabled,
-    "data-value": value,
-    onClick: () => {
-      actions.move(id, "mouse");
-    },
-    tabIndex: isSelected ? 0 : -1,
-    onKeyDown: createOnKeyDown({
-      keyMap: {
-        ArrowDown: isVertical ? actions.next : undefined,
-        ArrowUp: isVertical ? actions.previous : undefined,
-        ArrowLeft: isHorizontal ? actions.next : undefined,
-        ArrowRight: isHorizontal ? actions.previous : undefined,
-        Home: actions.first,
-        End: actions.last,
-      },
-    }),
-  };
+  // return {
+  //   id,
+  //   ref,
+  //   "aria-disabled": isDisabled,
+  //   "data-value": value,
+  //   onClick: () => {
+  //     //@ts-ignore
+  //     actions.move(id, "mouse");
+  //   },
+  //   tabIndex: isSelected ? 0 : -1,
+  //   onKeyDown: createOnKeyDown({
+  //     keyMap: {
+  //       ArrowDown: isVertical ? actions.next : undefined,
+  //       ArrowUp: isVertical ? actions.previous : undefined,
+  //       ArrowLeft: isHorizontal ? actions.next : undefined,
+  //       ArrowRight: isHorizontal ? actions.previous : undefined,
+  //       Home: actions.first,
+  //       End: actions.last,
+  //     },
+  //   }),
+  // };
 }
 
 const useRoverState = useSelectionState;
 
-export { useRoverState, useRover };
+// export { useRoverState, useRover };

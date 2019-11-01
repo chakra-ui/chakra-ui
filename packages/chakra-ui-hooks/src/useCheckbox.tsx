@@ -1,5 +1,5 @@
 import * as React from "react";
-import { mergeRefs } from "@chakra-ui/utils";
+import { useForkRef } from "./useForkRef";
 
 interface Options {
   isChecked?: boolean;
@@ -48,7 +48,7 @@ function useCheckbox(props: Options) {
   };
 
   return {
-    ref: ref ? mergeRefs([ref, inputRef]) : inputRef,
+    ref: ref ? useForkRef(ref, inputRef) : inputRef,
     tabIndex: isInteractive ? 0 : undefined,
     readonly: isReadOnly,
     role: "checkbox",

@@ -20,32 +20,20 @@ export function resolveCallback<T, U>(
 
 /**
  * Credit: https://github.com/downshift-js/downshift/blob/master/src/utils.js
- *
- * This is intended to be used to compose event handlers.
- * They are executed in order until one of them calls
- * `event.preventDefault()`
- *
- * @param {...Function} fns the event handler functions
- * @return {Function} the event handler to add to an element
  */
 export function composeEventHandlers<T extends (event: any) => void>(
-  ...fns: T[]
+  ...fns: (T | undefined)[]
 ) {
-  return (event: FunctionArguments<T>[0]) =>
-    fns.some(fn => {
+  return function(event: FunctionArguments<T>[0]) {
+    return fns.some(fn => {
       fn && fn(event);
       return event && event.defaultPrevented;
     });
+  };
 }
 
 /**
  * Credit: https://github.com/downshift-js/downshift/blob/master/src/utils.js
- *
- * This return a function that will call all the given functions with
- * the arguments with which it's called. It does a null-check before
- * attempting to call the functions and can take any number of functions.
- * @param {...Function} fns the functions to call
- * @return {Function} the function that calls all the functions
  */
 export function composeFunctions(...fns: AnyFunction[]) {
   return (...args: any) => {
