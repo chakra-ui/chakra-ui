@@ -48,7 +48,7 @@ function useCheckbox(props: Options) {
   };
 
   return {
-    ref: ref ? mergeRefs(ref, inputRef) : inputRef,
+    ref: ref ? mergeRefs([ref, inputRef]) : inputRef,
     tabIndex: isInteractive ? 0 : undefined,
     readonly: isReadOnly,
     role: "checkbox",

@@ -45,5 +45,11 @@
     "tsdx": "0.9.3",
     "tslib": "1.10.0",
     "typescript": "3.6.4"
+  },
+  "dependencies": {
+    "pretty-num": "0.3.0"
+  },
+  "peerDependencies": {
+    "react": "16.x"
   }
 }

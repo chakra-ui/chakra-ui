@@ -1,6 +1,5 @@
 import * as React from "react";
 import useAvatarStyle, { avatarSizes } from "./styles";
-import useHasImageLoaded from "../../../chakra-ui-hooks/src/useHasImageLoaded";
 import { useTheme } from "../ThemeProvider";
 import { useColorMode } from "../ColorModeProvider";
 import { Box, BoxProps } from "../Box";
@@ -123,7 +122,8 @@ const Avatar = React.forwardRef(function Avatar<P, T>(
     showBorder,
     borderColor,
   });
-  const hasLoaded = useHasImageLoaded({ src: src || "" });
+  // const hasLoaded = useHasImageLoaded({ src: src || "" });
+  const hasLoaded = false;
 
   const theme = useTheme();
   const sizeKey = avatarSizes[size];

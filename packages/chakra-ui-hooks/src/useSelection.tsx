@@ -1,17 +1,7 @@
 // Credit goes to Reakit and react-roving-tabindex for inspiring this API
-import React, {
-  createContext,
-  useMemo,
-  useReducer,
-  useLayoutEffect,
-  useRef,
-} from "react";
-import { findIndex, createOnKeyDown } from "@chakra-ui/utils";
-import useCreateContext from "./useCreateContext";
-import { useUID } from "react-uid";
-import { useContext } from "react";
-import { useEffect } from "react";
-import useFocusEffect from "./useFocusEffect";
+import { findIndex } from "@chakra-ui/utils";
+import React, { useLayoutEffect, useReducer, useRef } from "react";
+import useId from "./useId";
 
 interface Stop {
   id: string;
@@ -51,8 +41,8 @@ function reducer(state: State, action: Action): State {
       if (state.stops.length === 0) {
         return {
           ...state,
-          selectedId: newStop.id,
           stops: [newStop],
+          selectedId: state.selectedId || newStop.id,
         };
       }
       const index = findIndex(state.stops, stop => stop.id === newStop.id);
@@ -204,30 +194,30 @@ interface Actions {
   last: () => void;
 }
 
-interface ContextValue {
-  state: State;
-  actions: Actions;
+interface UseSelectionStateOptions {
+  loop?: boolean;
+  defaultSelectedId?: string;
 }
 
-const [useRegisterContext, RegisterProvider] = useCreateContext<ContextValue>();
-
-export function Register({
-  children,
+/**
+ * Custom hook to manage selection of items within a list.
+ * It provides actions to update the state as well.
+ *
+ * Can use used in `Tabs`, `Select`, `Menu` components
+ *
+ * @param {Boolean} loop whether the selection should loop
+ * @param {String} defaultSelectedId the id to be selected initially
+ */
+export function useSelectionState({
   loop,
-}: {
-  children: React.ReactNode;
-  loop?: boolean;
-}) {
+  defaultSelectedId,
+}: UseSelectionStateOptions) {
   const [state, dispatch] = useReducer(reducer, {
-    selectedId: null,
+    selectedId: defaultSelectedId || null,
     lastEventSource: null,
     stops: [],
-    loop: loop || true,
+    loop: loop || false,
   });
-
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
 
   const actions: Actions = {
     register: (id, ref, rest) =>
@@ -252,22 +242,23 @@ export function Register({
     last: () => dispatch({ type: "last" }),
   };
 
-  const context = useMemo(() => ({ state, actions }), [state]);
-
-  return <RegisterProvider value={context}>{children}</RegisterProvider>;
+  return { state, actions };
 }
 
-export function useRegister(
-  options: {
-    isDisabled?: boolean;
-    isFocusable?: boolean;
-    extraData?: any;
-  } = {},
-) {
-  const { isDisabled, isFocusable, extraData } = options;
-  const id = useUID();
-  const ref = useRef(null);
-  const { state, actions } = useRegisterContext();
+export interface UseSelectionOptions {
+  state: State;
+  actions: Actions;
+  isDisabled?: boolean;
+  isFocusable?: boolean;
+  extraData?: any;
+  id?: string;
+}
+
+export function useSelection(options: UseSelectionOptions) {
+  const { isDisabled, isFocusable, extraData, actions } = options;
+  const uuid = useId();
+  const id = options.id || uuid;
+  const ref = useRef<any>(null);
 
   useLayoutEffect(() => {
     if (isDisabled && !isFocusable) return;
@@ -278,6 +269,5 @@ export function useRegister(
     };
   }, [id, isDisabled, isFocusable, ref]);
 
-  return { ref, id, state, actions };
+  return { ref, id };
 }
-

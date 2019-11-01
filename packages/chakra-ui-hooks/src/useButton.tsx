@@ -1,6 +1,10 @@
-import { useCallback, useRef, MouseEventHandler } from "react";
+import {
+  useCallback,
+  useRef,
+  MouseEventHandler,
+  KeyboardEventHandler,
+} from "react";
 import useFocusEffect from "./useFocusEffect";
-import { KeyboardEventHandler } from "react";
 
 interface Props<T> {
   isDisabled?: boolean;
