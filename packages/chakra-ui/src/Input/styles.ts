@@ -12,7 +12,10 @@ interface StyleProps {
 
 type VariantProps = StyleProps & { variant: string };
 
-type InputStyleProps = VariantProps & { isFullWidth?: boolean; size: InputSizes };
+type InputStyleProps = VariantProps & {
+  isFullWidth?: boolean;
+  size: InputSizes;
+};
 
 const outlinedStyle = ({
   theme,
@@ -201,7 +204,8 @@ export const inputSizes = {
 
 export type InputSizes = keyof typeof inputSizes;
 
-const sizeProps = (props: InputStyleProps) => inputSizes[props.size as InputSizes];
+const sizeProps = (props: InputStyleProps) =>
+  inputSizes[props.size as InputSizes];
 
 const useInputStyle = (props: any) => {
   const theme = useTheme();
