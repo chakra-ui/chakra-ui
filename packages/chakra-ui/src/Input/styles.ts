@@ -1,7 +1,7 @@
 import { useTheme } from "../ThemeProvider";
 import { useColorMode, Props } from "../ColorModeProvider";
 import { get } from "styled-system";
-import { Theme } from "theme";
+import { Theme } from "../theme/theme";
 
 interface StyleProps {
   theme: Theme;
@@ -12,7 +12,7 @@ interface StyleProps {
 
 type VariantProps = StyleProps & { variant: string };
 
-type InputStyleProps = VariantProps & { isFullWidth?: boolean; size: Sizes };
+type InputStyleProps = VariantProps & { isFullWidth?: boolean; size: InputSizes };
 
 const outlinedStyle = ({
   theme,
@@ -118,7 +118,7 @@ const flushedStyle = ({
   theme,
   focusBorderColor,
   errorBorderColor,
-}: StyleProps) => {
+}: StyleProps): any => {
   const _focusBorderColor = get(
     theme.colors,
     focusBorderColor,
@@ -150,7 +150,7 @@ const unstyledStyle = {
   bg: "transparent",
   px: undefined,
   height: undefined,
-};
+} as any;
 
 const variantProps = (props: VariantProps) => {
   switch (props.variant) {
@@ -179,31 +179,31 @@ export const inputSizes = {
   lg: {
     fontSize: "lg",
     px: 4,
-    height: 12,
+    height: "12",
     lineHeight: "3rem",
     rounded: "md",
   },
   md: {
     fontSize: "md",
     px: 4,
-    height: 10,
+    height: "10",
     lineHeight: "2.5rem",
     rounded: "md",
   },
   sm: {
     fontSize: "sm",
     px: 3,
-    height: 8,
+    height: "8",
     lineHeight: "2rem",
     rounded: "sm",
   },
 };
 
-type Sizes = keyof typeof inputSizes;
+export type InputSizes = keyof typeof inputSizes;
 
-const sizeProps = (props: InputStyleProps) => inputSizes[props.size as Sizes];
+const sizeProps = (props: InputStyleProps) => inputSizes[props.size as InputSizes];
 
-const useInputStyle = (props: InputStyleProps) => {
+const useInputStyle = (props: any) => {
   const theme = useTheme();
   const { colorMode } = useColorMode();
 

@@ -38,16 +38,16 @@ const IconButton = forwardRef(function IconButton<
   P,
   T extends HTMLButtonElement
 >(
-  { icon, isRound, "aria-label": ariaLabel, ...props }: IconButtonProps<P, T>,
+  { icon, isRound, "aria-label": ariaLabel, ...rest }: IconButtonProps<P, T>,
   ref: React.Ref<T>,
 ) {
   return (
     <Button
       p="0"
-      borderRadius={isRound ? "full" : "md"}
       ref={ref}
+      {...rest}
       aria-label={ariaLabel}
-      {...props}
+      borderRadius={isRound ? "full" : "md"}
     >
       {typeof icon === "string" ? (
         <Icon name={icon} focusable="false" color="currentColor" aria-hidden />

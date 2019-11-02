@@ -4,7 +4,7 @@ import { forwardRef, useState } from "react";
 import { useFormControl } from "../FormControl";
 import { Box, BoxProps } from "../Box";
 import useInputStyle from "./styles";
-import { Omit } from "../utils";
+import { Omit, Merge } from "../utils";
 
 type Variant = "outline" | "unstyled" | "flushed" | "filled";
 type Size = "sm" | "md" | "lg";
@@ -82,13 +82,15 @@ type InputHTMLAttributes = Omit<
   OmittedTypes
 >;
 
-export type InputProps<P, T = HTMLInputElement> = InputOptions<T> &
-  BoxProps<P, T> &
-  InputHTMLAttributes &
-  React.RefAttributes<T>;
+type InputHTMLProps<T> = BoxProps<{}, T> & InputHTMLAttributes;
 
-const Input = forwardRef(function Input<P, T extends HTMLInputElement>(
-  props: InputProps<P, T>,
+export type InputProps<T = HTMLInputElement> = Merge<
+  InputHTMLProps<T>,
+  InputOptions<T>
+>;
+
+const Input = forwardRef(function Input<T extends HTMLInputElement>(
+  props: InputProps<T>,
   ref: React.Ref<T>,
 ) {
   const {
@@ -128,8 +130,8 @@ const Input = forwardRef(function Input<P, T extends HTMLInputElement>(
     />
   );
 }) as <P, T = HTMLInputElement>(
-  props: InputProps<P, T>,
-) => React.ReactElement<InputProps<P, T>>;
+  props: InputProps<T>,
+) => React.ReactElement<InputProps<T>>;
 
 export function DefaultInput() {
   return (
