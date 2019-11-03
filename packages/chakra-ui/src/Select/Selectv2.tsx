@@ -67,7 +67,7 @@ const Option = forwardRef(
       return () => {
         dispatch({ type: "UNREGISTER", payload: { id } });
       };
-    }, [id, isDisabled, isFocusable, ref]);
+    }, [dispatch, id, isDisabled, isFocusable, ref, value]);
 
     return (
       <div
@@ -294,7 +294,7 @@ const Select = ({
     }
   };
 
-  const closeMenu = () => {
+  const closeMenu = useCallback(() => {
     if (!openIsControlled) {
       setIsOpen(false);
     }
@@ -304,7 +304,7 @@ const Select = ({
     setIsMousingDown(false);
 
     dispatch({ type: "RESET_FOCUSED", payload: {} });
-  };
+  });
 
   const selectOption = (option: Option) => {
     const isSameOption = option.id === state.selectedId;
@@ -461,7 +461,17 @@ const Select = ({
         eventHandlers: listBoxEventHandlers,
       },
     }),
-    [state, _isOpen, keys],
+    [
+      selectOptionOnTab,
+      state,
+      _isOpen,
+      closeMenu,
+      selectOption,
+      controlId,
+      controlEventHandlers,
+      listBoxId,
+      listBoxEventHandlers,
+    ],
   );
 
   return <SelectProvider value={context}>{children}</SelectProvider>;

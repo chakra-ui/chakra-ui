@@ -78,7 +78,7 @@ const Option = forwardRef(
           optionsRef.current = newOptions;
         }
       };
-    }, []);
+    }, [id, option, optionsRef]);
 
     return (
       <div
@@ -751,7 +751,7 @@ const SelectMenu = forwardRef((props: any, ref: React.Ref<any>) => {
     return () => {
       optionsRef.current = [];
     };
-  }, []);
+  }, [optionsRef]);
 
   return (
     <ul
