@@ -9,6 +9,7 @@ import {
   UseSelectionOptions,
 } from "./useSelection/useSelection";
 import useFocusEffect from "./useFocusEffect";
+import useLogger from "./useLogger";
 
 const stories = storiesOf("Hooks", module).addDecorator(story => (
   <ThemeProvider>
@@ -17,7 +18,12 @@ const stories = storiesOf("Hooks", module).addDecorator(story => (
   </ThemeProvider>
 ));
 
-const Item: React.FC<UseSelectionOptions> = ({ state, actions, id }) => {
+const Item: React.FC<UseSelectionOptions> = ({
+  state,
+  actions,
+  id,
+  children,
+}) => {
   const ss = useSelection({ state, actions, id });
   const isFocused = state.focusedId === id;
   const isSelected = state.selectedId === id;
@@ -49,18 +55,21 @@ const Item: React.FC<UseSelectionOptions> = ({ state, actions, id }) => {
         }
       }}
     >
-      Button {id} {isSelected && "selected"}
+      {children} {isSelected && "selected"}
     </button>
   );
 };
 
 const Selection = () => {
+  const [add, setAdd] = useState(false);
   const ss = useSelectionState({
     loop: true,
     selectOnFocus: false,
     onSelect: (id, item) => console.log({ id, item }),
     defaultSelectedId: "tab3",
   });
+
+  useLogger(ss.state.items);
 
   return (
     <div>
@@ -70,9 +79,15 @@ const Selection = () => {
       <Item id="tab2" {...ss}>
         Welcome 2
       </Item>
+      {add && (
+        <Item id="tab4" {...ss}>
+          New Item
+        </Item>
+      )}
       <Item id="tab3" {...ss}>
         Welcome 2
       </Item>
+      <button onClick={() => setAdd(!add)}>Add</button>
     </div>
   );
 };

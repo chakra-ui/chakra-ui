@@ -1,51 +1,23 @@
-import * as React from "react";
+export function registerOption(items: any[], item: any) {
+  if (items.length === 0) {
+    return [item];
+  }
+  const index = items.findIndex(_item => _item.id === item.id);
+  if (index >= 0) return items;
 
-export function useEventListenerOutside(
-  containerRef: React.RefObject<HTMLElement>,
-  event: string,
-  handler?: (e: Event) => void,
-  shouldListen?: boolean,
-) {
-  const handlerRef = React.useRef(handler);
+  const indexAfter = items.findIndex(
+    _item =>
+      !!(
+        _item.ref.current &&
+        item.ref.current &&
+        item.ref.current.compareDocumentPosition(item.ref.current) &
+          Node.DOCUMENT_POSITION_PRECEDING
+      ),
+  );
 
-  React.useEffect(() => {
-    if (!shouldListen) return undefined;
+  if (indexAfter === -1) {
+    return [...items, item];
+  }
 
-    const handleEvent = (e: MouseEvent) => {
-      if (!handlerRef.current) return;
-
-      const container = containerRef.current;
-      const target = e.target as Element;
-
-      if (!container) {
-        return;
-      }
-
-      // Click inside dialog
-      if (container.contains(target)) return;
-
-      handlerRef.current(e);
-    };
-
-    document.addEventListener(event as any, handleEvent, true);
-
-    return () => {
-      document.removeEventListener(event as any, handleEvent, true);
-    };
-  }, [containerRef, event, handlerRef, shouldListen]);
-}
-
-export function useOnClickOutside(
-  boundaryRef: React.RefObject<HTMLElement>,
-  options: { hide: () => void; visible: boolean; hideOnClickOutside: boolean },
-) {
-  const useEvent = (eventType: string) =>
-    useEventListenerOutside(
-      boundaryRef,
-      eventType,
-      options.hide,
-      options.visible && options.hideOnClickOutside,
-    );
-  useEvent("click");
-  useEvent("focus");
+  return [...items.slice(0, indexAfter), item, ...items.slice(indexAfter)];
 }

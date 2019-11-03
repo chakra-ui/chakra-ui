@@ -16,7 +16,7 @@ import {
   useScrollIntoView,
 } from "@chakra-ui/hooks";
 import { normalizeEventKey, composeEventHandlers } from "@chakra-ui/utils";
-import { useOnClickOutside } from "./utils";
+import { registerOption } from "./utils";
 
 interface Option {
   value: string | number;
@@ -69,16 +69,16 @@ const Option = forwardRef(
 
     useEffect(() => {
       if (optionsRef && optionsRef.current) {
-        optionsRef.current.push(option);
+        optionsRef.current = registerOption(optionsRef.current, option);
+        console.log(optionsRef.current);
       }
-      // console.log(optionsRef.current);
       return () => {
         if (optionsRef && optionsRef.current.length) {
           const newOptions = optionsRef.current.filter(item => item.id !== id);
           optionsRef.current = newOptions;
         }
       };
-    }, [id, isDisabled, isFocusable, option, optionsRef, ref]);
+    }, []);
 
     return (
       <div
@@ -180,6 +180,7 @@ function getNextOptionFromKeys<T>({
   // If there's a match, let's get the next item to select
   if (searchResults.length) {
     let nextIndex: number;
+    debugger;
 
     // If the currentValue is in the available items, we move to the next available option
     if (searchResults.includes(currentValue)) {
@@ -239,10 +240,10 @@ function getNextIndex({
 function useFocusManagement<T extends any>({
   isOpen,
   listBoxRef,
-  optionsRef,
+  items,
   controlRef,
-  highlighted,
-  selected,
+  focusedId,
+  selectedId,
   action,
 }: T) {
   const prevIsOpen = usePrevious(isOpen);
@@ -255,8 +256,8 @@ function useFocusManagement<T extends any>({
          * If no option is selected before the listbox
          * receives focus, the first option receives focus.
          */
-        if (!prevIsOpen && highlighted == null) {
-          action(optionsRef.current[0]);
+        if (!prevIsOpen && focusedId == null) {
+          action(items.current[0]);
         }
       }
       return;
@@ -266,24 +267,24 @@ function useFocusManagement<T extends any>({
       if (controlRef && controlRef.current) {
         controlRef.current.focus();
       }
-      action(selected);
+      action(selectedId);
     } else {
       /**
        * If an option is selected before the listbox
        * receives focus, focus is set on the selected option.
        */
-      if (selected != null) {
-        action(selected);
+      if (selectedId != null) {
+        action(selectedId);
       }
     }
   }, [
     isOpen,
     prevIsOpen,
-    selected,
-    highlighted,
+    selectedId,
+    focusedId,
     listBoxRef,
     action,
-    optionsRef,
+    items,
     controlRef,
   ]);
 }
@@ -731,7 +732,7 @@ const SelectControl = forwardRef(
         {...controlProps.eventHandlers}
         {...props}
       >
-        {state.selected
+        {state.selected && state.selected.ref
           ? (state.selected.ref.current as Node).textContent
           : "Select"}
       </button>
@@ -742,8 +743,15 @@ const SelectControl = forwardRef(
 /////////////////////////////////////////////////////////////////////////////////
 
 const SelectMenu = forwardRef((props: any, ref: React.Ref<any>) => {
-  const { state, menuProps } = useSelectContext();
+  const { optionsRef, state, menuProps } = useSelectContext();
   const _ref = useForkRef(ref, menuProps.ref);
+
+  useLayoutEffect(() => {
+    optionsRef.current = [];
+    return () => {
+      optionsRef.current = [];
+    };
+  }, []);
 
   return (
     <ul

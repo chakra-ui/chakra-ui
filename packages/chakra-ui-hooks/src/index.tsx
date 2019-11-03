@@ -10,6 +10,7 @@ export { default as useId } from "./useId";
 export { default as useEnhancedEffect } from "./useEnhancedEffect";
 export * from "./useForkRef";
 
+export { default as useLogger } from "./useLogger";
 export { default as usePopper } from "./usePopper";
 export * from "./usePopper";
 
@@ -18,3 +19,5 @@ export * from "./useNumberInput";
 
 export { default as useScrollIntoView } from "./useScrollIntoView";
 export * from "./useScrollIntoView";
+
+export * from "./useSelection";

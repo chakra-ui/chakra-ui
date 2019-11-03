@@ -21,6 +21,7 @@ export interface Props {
 export interface Item {
   id: string;
   ref: React.RefObject<HTMLElement>;
+  value?: string | number;
 }
 
 export interface State {
@@ -204,19 +205,19 @@ export function register(state: State, props: Props) {
 ////////////////////////////////////////////////////////////////
 
 export function unRegister(state: State, props: Props) {
-  const filtedItems = state.items.filter(item => item.id !== props.id);
-  if (filtedItems.length === state.items.length) {
+  const filteredItems = state.items.filter(item => item.id !== props.id);
+  if (filteredItems.length === state.items.length) {
     return state;
   }
   return {
     ...state,
     selectedId:
       state.selectedId && state.selectedId === props.id
-        ? state.items.length === 0
+        ? filteredItems.length === 0
           ? null
-          : state.items[0]["id"]
+          : filteredItems[0]["id"]
         : state.selectedId,
-    items: state.items,
+    items: filteredItems,
   };
 }
 
@@ -226,6 +227,21 @@ export function reset(state: State, props: Props) {
   return {
     ...state,
     selectedId: props.selectedId || null,
+    focusedId: props.focusedId || null,
+  };
+}
+
+////////////////////////////////////////////////////////////////
+
+export function focus(state: State, props: Props) {
+  return keyboardFocusMove(state, props, props.id || "");
+}
+
+////////////////////////////////////////////////////////////////
+
+export function resetFocused(state: State, props: Props) {
+  return {
+    ...state,
     focusedId: props.focusedId || null,
   };
 }

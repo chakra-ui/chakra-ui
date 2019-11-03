@@ -1,7 +1,7 @@
-import { useEffect } from "react";
+import * as React from "react";
 
 function useFocusEffect(isFocused: boolean, ref: React.RefObject<HTMLElement>) {
-  useEffect(() => {
+  React.useLayoutEffect(() => {
     if (!ref.current) {
       console.warn(
         "Can't focus element because `ref` wasn't passed to component.",

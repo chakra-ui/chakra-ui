@@ -12,12 +12,9 @@ import {
   reset,
   Props,
   EventType,
+  focus,
+  Item,
 } from "./reducerActions";
-
-interface Item {
-  id: string;
-  ref: React.RefObject<HTMLElement>;
-}
 
 type ActionTypes =
   | "REGISTER"
@@ -28,7 +25,9 @@ type ActionTypes =
   | "FIRST"
   | "LAST"
   | "PREVIOUS"
-  | "RESET";
+  | "FOCUS"
+  | "RESET"
+  | "RESET_FOCUSED";
 
 type Action = { type: ActionTypes; payload: Partial<Props> };
 
@@ -52,9 +51,13 @@ function reducer(state: State, action: Action): State {
     case "MOUSE_SELECT": {
       return mouseSelect(state, action.payload);
     }
+    case "FOCUS": {
+      return focus(state, action.payload);
+    }
     case "RESET": {
       return reset(state, action.payload);
     }
+
     case "FIRST": {
       return selectFirstOrLast(state, action.payload, "first");
     }
@@ -67,10 +70,11 @@ function reducer(state: State, action: Action): State {
   }
 }
 
-interface Actions {
+export interface Actions {
   register: (id: Item["id"], ref: Item["ref"], rest: any) => void;
   unregister: (id: Item["id"]) => void;
   mouse_select: (id: string) => void;
+  focus: (id: string) => void;
   keyboard_select: () => void;
   next: (lastEvent: EventType) => void;
   previous: (lastEvent: EventType) => void;
@@ -115,6 +119,11 @@ export function useSelectionState({
   };
 
   const actions: Actions = {
+    focus: id =>
+      dispatch({
+        type: "FOCUS",
+        payload: { id, ...sharedProps },
+      }),
     register: (id, ref, rest) =>
       dispatch({
         type: "REGISTER",
@@ -160,17 +169,18 @@ export interface UseSelectionOptions {
   isFocusable?: boolean;
   extraData?: any;
   id?: string;
+  value?: string | number;
 }
 
 export function useSelection(options: UseSelectionOptions) {
-  const { isDisabled, isFocusable, extraData, actions } = options;
+  const { isDisabled, isFocusable, extraData, value, actions } = options;
   const uuid = useId();
   const id = options.id || uuid;
   const ref = useRef<any>(null);
 
   useLayoutEffect(() => {
     if (isDisabled && !isFocusable) return;
-    const rest = extraData || {};
+    const rest = { value, ...extraData };
     actions.register(id, ref, rest);
     return () => {
       actions.unregister(id);
