@@ -1,20 +1,18 @@
 /** @jsx jsx */
+import { Merge } from "@chakra-ui/utils";
 import { jsx } from "@emotion/core";
+import * as React from "react";
 import {
   Children,
   cloneElement,
-  useState,
-  useRef,
   isValidElement,
-  FormEvent,
+  useRef,
+  useState,
 } from "react";
 import { useUID as useId } from "react-uid";
-import { Box } from "../Box";
-import * as React from "react";
 import * as StyledSystem from "styled-system";
-import { BoxProps } from "../Box";
+import { Box, BoxProps } from "../Box";
 import { CheckboxOptions } from "../Checkbox";
-import { Merge } from "@chakra-ui/utils";
 
 export interface CheckboxGroupOptions {
   /**
@@ -115,16 +113,20 @@ const CheckboxGroup = ({
         display={isInline ? "inline-block" : "block"}
         {...(!isLastCheckbox && spacingProps)}
       >
-        {cloneElement(child, {
+        {cloneElement(child as React.ReactElement<CheckboxOptions>, {
           size: size,
           variantColor: variantColor,
           name: `${_name}-${index}`,
           onChange: () =>
             _onChange({
-              checked: _values ? !_values.includes(child.props.value) : false,
-              value: child.props.value,
+              checked: _values
+                ? !_values.includes((child.props as { value: any }).value)
+                : false,
+              value: (child.props as { value: any }).value,
             }),
-          isChecked: _values ? _values.includes(child.props.value) : false,
+          isChecked: _values
+            ? _values.includes((child.props as { value: any }).value)
+            : false,
         })}
       </Box>
     );

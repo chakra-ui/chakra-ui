@@ -26,7 +26,7 @@ interface StackOptions {
 
 type StackProps<P, T> = FlexProps<P, T> & StackOptions;
 
-const Stack = React.forwardRef(function Stack<P, T>(
+const Stack = React.forwardRef(function Stack<P, T extends HTMLElement>(
   {
     isInline,
     align,

@@ -6,12 +6,12 @@ import { BadgeOptions } from "./Badge";
 
 type RequiredProps = Required<BadgeOptions>;
 
-type Props = {
+export type UseBadgeStyleProps = {
   variant: RequiredProps["variant"];
   color: RequiredProps["variantColor"];
 };
 
-type PropsWithTheme = Props & { theme: Theme };
+type PropsWithTheme = UseBadgeStyleProps & { theme: Theme };
 
 const solidStyle = ({ theme: { colors }, color }: PropsWithTheme) => {
   const _color = colors[color] && colors[color][500];
@@ -77,7 +77,7 @@ const variantProps = (
   }
 };
 
-const useBadgeStyle = (props: Props) => {
+const useBadgeStyle = (props: UseBadgeStyleProps) => {
   const theme = useTheme();
   const { colorMode } = useColorMode();
   const _props = { ...props, theme, colorMode };
