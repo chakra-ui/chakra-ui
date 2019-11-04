@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Box, BoxProps } from "../Box";
+import { Box, BoxProps } from "@chakra-ui/layout";
 import { useColorMode } from "../ColorModeProvider";
 
 const Kbd = React.forwardRef(function Kbd<P, T>(

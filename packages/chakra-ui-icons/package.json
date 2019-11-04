@@ -1,0 +1,48 @@
+{
+  "name": "@chakra-ui/icons",
+  "version": "0.0.1",
+  "description": "Chakra UI icons",
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/icons.esm.js",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --env=jsdom",
+    "lint": "tsdx lint src",
+    "version": "yarn build"
+  },
+  "devDependencies": {
+    "@types/jest": "24.0.19",
+    "@types/react": "16.9.6",
+    "@types/react-dom": "16.9.2",
+    "husky": "3.0.9",
+    "jest": "24.9.0",
+    "react": "16.10.2",
+    "react-dom": "16.10.2",
+    "ts-jest": "24.1.0",
+    "tsdx": "0.9.3",
+    "tslib": "1.10.0",
+    "typescript": "3.6.4"
+  },
+  "peerDependencies": {
+    "react": "16.x",
+    "react-dom": "16.x"
+  }
+}

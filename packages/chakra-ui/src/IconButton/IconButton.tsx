@@ -3,7 +3,7 @@ import { Omit } from "@chakra-ui/utils";
 import { jsx } from "@emotion/core";
 import { forwardRef } from "react";
 import { Icons } from "../theme/theme";
-import { Box } from "../Box";
+import { Box } from "@chakra-ui/layout";
 import { Button, ButtonProps } from "../Button";
 import { Icon } from "../Icon";
 

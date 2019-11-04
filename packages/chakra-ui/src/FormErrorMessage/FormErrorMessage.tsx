@@ -2,11 +2,10 @@
 import { jsx } from "@emotion/core";
 import { forwardRef } from "react";
 import { useColorMode } from "../ColorModeProvider";
-import { Flex, FlexProps } from "../Flex";
 import { useFormControl } from "../FormControl";
 import { Icon } from "../Icon";
-import { Box } from "../Box";
-import { Icons } from "../theme";
+import { Box, Flex, FlexProps } from "@chakra-ui/layout";
+import { Icons } from "@chakra-ui/icons";
 
 type FormErrorMessageProps<P, T> = FlexProps<P, T> & { icon?: Icons };
 

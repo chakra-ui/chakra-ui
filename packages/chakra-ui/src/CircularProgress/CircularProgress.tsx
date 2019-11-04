@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, keyframes } from "@emotion/core";
 import { useColorMode } from "../ColorModeProvider";
-import { Box, BoxProps, SystemProps } from "../Box";
+import { Box, BoxProps, SystemProps } from "@chakra-ui/layout";
 import { forwardRef } from "react";
 
 const circularProgressCircle = keyframes`

@@ -27,7 +27,7 @@ import {
 } from "styled-system";
 import { customProps, CustomProps } from "./config";
 import { pseudo, PseudoProps } from "./pseudo";
-import { Omit } from "../utils";
+import { Omit } from "@chakra-ui/utils";
 
 const StyledBox = styled("div")(
   layout,

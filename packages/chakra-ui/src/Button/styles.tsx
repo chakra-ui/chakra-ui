@@ -2,7 +2,7 @@ import { addOpacity } from "../theme/colors-utils";
 import { useColorMode } from "../ColorModeProvider";
 import { useTheme } from "../ThemeProvider";
 import { ButtonOptions } from "./Button";
-import { SystemProps } from "../Box";
+import { SystemProps } from "@chakra-ui/layout";
 import { Theme } from "../theme";
 
 // TODO: Move all these to theme object

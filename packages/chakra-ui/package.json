@@ -36,6 +36,7 @@
     "toasted-notes": "3.0.0",
     "use-dark-mode": "2.3.1",
     "@chakra-ui/utils": "0.0.1",
+    "@chakra-ui/layout": "0.0.1",
     "@chakra-ui/hooks": "0.0.1"
   },
   "peerDependencies": {

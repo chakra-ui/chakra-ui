@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { Box, BoxProps } from "../Box";
+import { Box, BoxProps } from "@chakra-ui/layout";
 import { forwardRef } from "react";
 
 type DividerProps<P> = BoxProps<P, HTMLHRElement> & { orientation?: string };

@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/core";
 import useBadgeStyle from "../Badge/styles";
 import { Icon, IconProps } from "../Icon";
-import { Box, BoxProps } from "../Box";
+import { Box, BoxProps } from "@chakra-ui/layout";
 import { Omit, Merge } from "../utils";
 import { BadgeOptions } from "../Badge";
 import { forwardRef } from "react";

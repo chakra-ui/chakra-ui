@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { Box, BoxProps } from "../Box";
+import { Box, BoxProps } from "@chakra-ui/layout";
 import useInputStyle from "../Input/styles";
 import { useColorMode } from "../ColorModeProvider";
 import { InputOptions } from "../Input";

@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, keyframes } from "@emotion/core";
 import { forwardRef } from "react";
-import { Box, BoxProps } from "../Box";
+import { Box, BoxProps } from "@chakra-ui/layout";
 import { VisuallyHidden } from "../VisuallyHidden";
 import { Merge } from "@chakra-ui/utils";
 

@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/utils";
 import * as React from "react";
 import FocusLock from "react-focus-lock";
-import { Box, BoxProps } from "../Box";
+import { Box, BoxProps } from "@chakra-ui/layout";
 import { CloseButton, CloseButtonProps } from "../CloseButton";
 import { Portal } from "../Portal";
 

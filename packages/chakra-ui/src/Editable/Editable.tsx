@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Box, BoxProps } from "../Box";
+import { Box, BoxProps } from "@chakra-ui/layout";
 import { Merge } from "@chakra-ui/utils";
 
 interface EditableOptions {

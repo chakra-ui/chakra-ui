@@ -1,6 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import { Box } from "../Box";
+import { Box } from "@chakra-ui/layout";
 import Checkbox from "./Checkbox";
 import { Stack } from "../Stack";
 import { FormErrorMessage } from "../FormErrorMessage";

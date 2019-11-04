@@ -1,7 +1,7 @@
 import * as React from "react";
 import useBadgeStyle from "./styles";
-import { Box, BoxProps } from "../Box";
-import { Theme } from "../theme";
+import { Box, BoxProps } from "@chakra-ui/layout";
+import { Theme } from "@chakra-ui/theme";
 
 export interface BadgeOptions {
   /**

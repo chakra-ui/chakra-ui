@@ -3,7 +3,7 @@ import { colorEmphasis } from "../theme/colors-utils";
 import { useTheme } from "../ThemeProvider";
 import { useColorMode } from "../ColorModeProvider";
 import { Theme } from "../theme";
-import { SystemProps } from "../Box";
+import { SystemProps } from "@chakra-ui/layout";
 import { AlertOptions } from "./Alert";
 
 type AlertStyleProps = {

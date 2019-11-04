@@ -9,9 +9,9 @@ import {
   useRef,
   useState,
 } from "react";
-import { useUID as useId } from "react-uid";
+import { useId } from "@chakra-ui/hooks";
 import * as StyledSystem from "styled-system";
-import { Box, BoxProps } from "../Box";
+import { Box, BoxProps } from "@chakra-ui/layout";
 import { CheckboxOptions } from "../Checkbox";
 
 export interface CheckboxGroupOptions {

@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/core";
 import { forwardRef } from "react";
 import AnimateHeight, { AnimateHeightProps } from "react-animate-height";
-import { Box, BoxProps } from "../Box";
+import { Box, BoxProps } from "@chakra-ui/layout";
 
 type AnimateHeightOptions = Pick<
   AnimateHeightProps,

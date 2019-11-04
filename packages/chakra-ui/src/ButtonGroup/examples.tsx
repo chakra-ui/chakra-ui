@@ -2,7 +2,7 @@ import { withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import { ButtonGroup } from ".";
-import { Box } from "../Box";
+import { Box } from "@chakra-ui/layout";
 import { Button } from "../Button";
 import { CSSReset } from "../CSSReset";
 import { ThemeProvider } from "../ThemeProvider";

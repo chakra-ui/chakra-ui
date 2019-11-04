@@ -1,12 +1,12 @@
 /** @jsx jsx */
+import { Box, BoxProps, SystemProps } from "@chakra-ui/layout";
+import { Merge, Omit } from "@chakra-ui/utils";
 import { jsx } from "@emotion/core";
 import { forwardRef } from "react";
 import { Icon, IconProps } from "../Icon";
 import { Spinner } from "../Spinner";
-import useButtonStyle from "./styles";
-import { Box, SystemProps, BoxProps } from "../Box";
 import { Icons, Theme } from "../theme";
-import { Omit, Merge } from "@chakra-ui/utils";
+import useButtonStyle from "./styles";
 
 type IconType = Icons | React.ComponentType;
 

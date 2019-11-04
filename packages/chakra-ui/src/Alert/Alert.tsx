@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import { createContext, useContext } from "react";
-import { Box, BoxProps } from "../Box";
+import { Box, BoxProps } from "@chakra-ui/layout";
 import { Icon, IconProps } from "../Icon";
 import useAlertStyle, { useAlertIconStyle } from "./styles";
 import { Icons, Theme } from "../theme";

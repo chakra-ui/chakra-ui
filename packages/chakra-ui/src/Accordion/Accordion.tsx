@@ -11,7 +11,7 @@ import {
   cloneElement,
   isValidElement,
 } from "react";
-import { Box, BoxProps } from "../Box";
+import { Box, BoxProps } from "@chakra-ui/layout";
 import { Collapse, CollapseProps } from "../Collapse";
 import Icon, { IconProps } from "../Icon/Icon";
 import { Merge, Omit } from "../utils";

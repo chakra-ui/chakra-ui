@@ -1,6 +1,6 @@
 /**@jsx jsx */
 import styled from "@emotion/styled";
-import { Box, SystemProps } from "../Box";
+import { Box, SystemProps } from "@chakra-ui/layout";
 import { css } from "../Css";
 
 interface ControlBoxOptions {

@@ -1,4 +1,4 @@
-import { Box, BoxProps } from "../Box";
+import { Box, BoxProps } from "@chakra-ui/layout";
 import * as React from "react";
 import { Omit } from "@chakra-ui/utils";
 

@@ -1,36 +1,63 @@
 {
   "name": "@chakra-ui/theme",
-  "version": "0.0.2",
-  "description": "Chakra UI's theme framework and utilities",
+  "version": "0.0.1",
+  "description": "Chakra UI themes",
   "keywords": [
-    "chakra",
-    "ui",
-    "css",
-    "react",
-    "theme"
+    "theme",
+    "theming",
+    "ui mode",
+    "ui"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
   "main": "dist/index.js",
-  "directories": {
-    "lib": "lib",
-    "test": "__tests__"
-  },
+  "module": "dist/theme.esm.js",
   "files": [
-    "lib"
+    "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git"
   },
-  "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
-  },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --env=jsdom",
+    "lint": "tsdx lint src",
+    "version": "yarn build"
+  },
   "devDependencies": {
-    "react-lorem-component": "^0.13.0"
+    "@types/jest": "24.0.19",
+    "@types/react": "16.9.6",
+    "@types/react-dom": "16.9.2",
+    "husky": "3.0.9",
+    "jest": "24.9.0",
+    "react": "16.10.2",
+    "react-dom": "16.10.2",
+    "ts-jest": "24.1.0",
+    "tsdx": "0.9.3",
+    "tslib": "1.10.0",
+    "typescript": "3.6.4"
+  },
+  "dependencies": {
+    "@types/color": "3.0.0",
+    "color": "3.1.2",
+    "use-dark-mode": "2.3.1",
+    "@chakra-ui/utils": "0.0.1",
+    "@chakra-ui/icons": "0.0.1"
+  },
+  "peerDependencies": {
+    "@emotion/core": "10.x",
+    "emotion-theming": "10.x",
+    "react": "16.x",
+    "react-dom": "16.x"
   }
 }

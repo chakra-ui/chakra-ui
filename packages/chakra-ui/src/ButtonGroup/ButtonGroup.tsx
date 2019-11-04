@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import { Children, cloneElement, isValidElement, forwardRef } from "react";
-import { Box, BoxProps } from "../Box";
+import { Box, BoxProps } from "@chakra-ui/layout";
 import { ButtonOptions, ButtonProps } from "../Button";
 import * as StyledSystem from "styled-system";
 

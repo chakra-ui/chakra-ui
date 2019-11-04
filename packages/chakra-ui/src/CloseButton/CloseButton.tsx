@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import { Icon } from "../Icon";
-import { Box, BoxProps, SystemProps } from "../Box";
+import { Box, BoxProps, SystemProps } from "@chakra-ui/layout";
 import { useColorMode } from "../ColorModeProvider";
 import { Merge } from "../utils";
 

@@ -1,5 +1,5 @@
 import React, { forwardRef } from "react";
-import { Box, BoxProps, SystemProps } from "../Box";
+import { Box, BoxProps, SystemProps } from "@chakra-ui/layout";
 
 export interface GridOptions {
   templateColumns?: SystemProps["gridTemplateColumns"];

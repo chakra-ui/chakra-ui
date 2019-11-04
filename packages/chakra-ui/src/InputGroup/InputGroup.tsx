@@ -7,7 +7,7 @@ import {
   isValidElement,
   useState,
 } from "react";
-import { Box, BoxProps, SystemProps } from "../Box";
+import { Box, BoxProps, SystemProps } from "@chakra-ui/layout";
 import { Button } from "../Button";
 import { Icon } from "../Icon";
 import { Input, InputOptions, InputProps } from "../Input";

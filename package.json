@@ -15,6 +15,9 @@
     "build": "yarn workspace @chakra-ui/core build",
     "test": "yarn workspace @chakra-ui/core test",
     "core:add": "yarn workspace @chakra-ui/core add",
+    "icon:build": "yarn workspace @chakra-ui/icons build",
+    "hooks:build": "yarn workspace @chakra-ui/hooks build",
+    "theme:build": "yarn workspace @chakra-ui/theme build",
     "release": "lerna publish"
   },
   "husky": {
