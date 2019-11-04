@@ -1,5 +1,5 @@
 {
-  "include": ["src", "types", "../chakra-ui-hooks/src/useHasImageLoaded.ts", "../chakra-ui-hooks/src/useCheckbox.tsx", "../chakra-ui-hooks/src/useFocusEffect.tsx", "../chakra-ui-hooks/src/useButton.tsx"],
+  "include": ["src", "types"],
   "exclude": [
     "**/*.spec.ts",
     "**/*.spec.tsx",

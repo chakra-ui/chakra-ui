@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { css, Global, jsx } from "@emotion/core";
 import { useColorMode } from "../ColorModeProvider";
-import { Theme } from "../theme";
+import { Theme } from "../theme/base";
 import preflight from "./preflight";
 
 interface ConfigOptions {

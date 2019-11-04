@@ -1,6 +1,6 @@
 {
   "extends": "../../tsconfig-base.json",
-  "include": ["src", "types"],
+  "include": ["src", "types", "../chakra-ui/src/Badge"],
   "exclude": ["**/*.spec.ts", "**/*.spec.tsx", "**/*.test.ts", "**/*.test.tsx"],
   "compilerOptions": {
     "noImplicitAny": true,

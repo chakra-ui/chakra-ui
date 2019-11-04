@@ -14,8 +14,8 @@ import { Input, InputOptions, InputProps } from "../Input";
 import { inputSizes, InputSizes } from "../Input/styles";
 import { InputLeftAddon, InputRightAddon } from "../InputAddon";
 import { InputLeftElement, InputRightElement } from "../InputElement";
-import { useTheme } from "../ThemeProvider";
-import { Merge } from "../utils";
+import { useTheme } from "@chakra-ui/theme";
+import { Merge } from "@chakra-ui/utils";
 
 export interface InputGroupOptions {
   size?: InputOptions["size"];

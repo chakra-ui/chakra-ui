@@ -2,8 +2,8 @@
 import { jsx } from "@emotion/core";
 import { forwardRef } from "react";
 import { useFormControl } from "../FormControl";
-import { useColorMode } from "../ColorModeProvider";
-import { Text, TextProps } from "../Text";
+import { useColorMode } from "@chakra-ui/theme";
+import { Text, TextProps } from "@chakra-ui/layout";
 
 const FormHelperText = forwardRef(function FormHelperText<
   P,

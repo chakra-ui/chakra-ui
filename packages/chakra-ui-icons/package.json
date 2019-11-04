@@ -6,6 +6,7 @@
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "module": "dist/icons.esm.js",
   "files": [
     "dist"

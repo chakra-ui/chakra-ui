@@ -1,11 +1,9 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import { Box } from "@chakra-ui/layout";
+import { Box, Stack } from "@chakra-ui/layout";
 import Checkbox from "./Checkbox";
-import { Stack } from "../Stack";
 import { FormErrorMessage } from "../FormErrorMessage";
-import { ThemeProvider } from "../ThemeProvider";
-import { CSSReset } from "../CSSReset";
+import { ThemeProvider, CSSReset } from "@chakra-ui/theme";
 
 const stories = storiesOf("Checkbox", module);
 

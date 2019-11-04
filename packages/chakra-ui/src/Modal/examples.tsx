@@ -1,10 +1,9 @@
 import React, { useRef, useState } from "react";
 import { storiesOf } from "@storybook/react";
-import { Modal } from ".";
-import { ThemeProvider } from "../ThemeProvider";
-import { CSSReset } from "../CSSReset";
+import { ThemeProvider, CSSReset } from "@chakra-ui/theme";
 import { Button } from "../Button";
 import {
+  Modal,
   ModalOverlay,
   ModalContent,
   ModalHeader,

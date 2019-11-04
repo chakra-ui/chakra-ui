@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Box, BoxProps } from "@chakra-ui/layout";
-import { Omit, Merge } from "../utils";
+import { Omit, Merge } from "@chakra-ui/utils";
 
 interface NativeImageOptions {
   htmlWidth?: number | string;

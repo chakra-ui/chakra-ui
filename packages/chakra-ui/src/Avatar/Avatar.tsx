@@ -1,7 +1,6 @@
 import * as React from "react";
 import useAvatarStyle, { avatarSizes } from "./styles";
-import { useTheme } from "../ThemeProvider";
-import { useColorMode } from "../ColorModeProvider";
+import { useTheme, useColorMode } from "@chakra-ui/theme";
 import { Box, BoxProps } from "@chakra-ui/layout";
 import { Merge } from "@chakra-ui/utils";
 

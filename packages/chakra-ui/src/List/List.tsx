@@ -2,10 +2,9 @@
 import { jsx } from "@emotion/core";
 import { Children, cloneElement, forwardRef, isValidElement } from "react";
 import * as StyledSystem from "styled-system";
-import { Box, BoxProps, SystemProps } from "@chakra-ui/layout";
+import { Box, BoxProps, SystemProps, Text } from "@chakra-ui/layout";
 import { Icon, IconProps } from "../Icon";
-import { Text } from "../Text";
-import { Omit } from "../utils";
+import { Omit } from "@chakra-ui/utils";
 
 interface ListOptions {
   /**

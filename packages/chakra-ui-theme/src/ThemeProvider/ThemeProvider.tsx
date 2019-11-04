@@ -2,7 +2,7 @@
 import { jsx, ThemeContext } from "@emotion/core";
 import { ThemeProvider as EmotionThemeProvider } from "emotion-theming";
 import { useContext } from "react";
-import { theme as defaultTheme, Theme } from "../theme";
+import { theme as defaultTheme, Theme } from "../theme/base";
 
 interface ThemeProviderProps {
   theme?: Theme;

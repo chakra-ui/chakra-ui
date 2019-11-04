@@ -4,7 +4,7 @@ import { forwardRef, useState } from "react";
 import { useFormControl } from "../FormControl";
 import { Box, BoxProps } from "@chakra-ui/layout";
 import useInputStyle from "./styles";
-import { Omit, Merge } from "../utils";
+import { Omit, Merge } from "@chakra-ui/utils";
 
 type Variant = "outline" | "unstyled" | "flushed" | "filled";
 type Size = "sm" | "md" | "lg";

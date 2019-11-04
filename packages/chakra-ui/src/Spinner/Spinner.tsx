@@ -1,8 +1,7 @@
 /** @jsx jsx */
 import { jsx, keyframes } from "@emotion/core";
 import { forwardRef } from "react";
-import { Box, BoxProps } from "@chakra-ui/layout";
-import { VisuallyHidden } from "../VisuallyHidden";
+import { Box, BoxProps, VisuallyHidden } from "@chakra-ui/layout";
 import { Merge } from "@chakra-ui/utils";
 
 const spin = keyframes`

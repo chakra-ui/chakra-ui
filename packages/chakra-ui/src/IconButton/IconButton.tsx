@@ -2,7 +2,7 @@
 import { Omit } from "@chakra-ui/utils";
 import { jsx } from "@emotion/core";
 import { forwardRef } from "react";
-import { Icons } from "../theme/theme";
+import { Icons } from "@chakra-ui/icons";
 import { Box } from "@chakra-ui/layout";
 import { Button, ButtonProps } from "../Button";
 import { Icon } from "../Icon";
@@ -45,6 +45,7 @@ const IconButton = forwardRef(function IconButton<
     <Button
       p="0"
       ref={ref}
+      //@ts-ignore
       {...rest}
       aria-label={ariaLabel}
       borderRadius={isRound ? "full" : "md"}

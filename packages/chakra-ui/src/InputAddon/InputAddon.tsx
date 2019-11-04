@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/core";
 import { Box, BoxProps } from "@chakra-ui/layout";
 import useInputStyle from "../Input/styles";
-import { useColorMode } from "../ColorModeProvider";
+import { useColorMode } from "@chakra-ui/theme";
 import { InputOptions } from "../Input";
 import { forwardRef } from "react";
 

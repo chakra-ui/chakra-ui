@@ -1,17 +1,14 @@
 /** @jsx jsx */
-import { jsx, ThemeContext } from "@emotion/core";
+import { jsx } from "@emotion/core";
 import * as React from "react";
 import { Box, BoxProps } from "@chakra-ui/layout";
-import iconPaths from "./IconPaths";
-import { Theme } from "../theme";
-
-type Icons = keyof typeof iconPaths;
+import { useTheme, Theme } from "@chakra-ui/theme";
 
 interface IconOptions {
   /**
    * The name of the icon.
    */
-  name?: Icons;
+  name?: keyof Theme["icons"];
   /**
    * The role of the icon. `presentation` or `img`
    */
@@ -26,25 +23,21 @@ const Icon = React.forwardRef(function Icon<P>(
   props: IconProps<P>,
   ref: React.Ref<SVGElement>,
 ) {
-  const { icons: iconPaths } = React.useContext<Theme>(
-    ThemeContext as React.Context<Theme>,
-  );
+  const { icons } = useTheme();
 
   // Fallback in case you pass the wrong name
-  const iconFallback = iconPaths["question-outline"];
+  const iconFallback = icons["question-outline"];
   let path: JSX.Element = <React.Fragment></React.Fragment>;
   let viewBox = "0 0 24 24";
 
   if (props.name) {
     path =
-      iconPaths[props.name] == null
-        ? iconFallback.path
-        : iconPaths[props.name].path;
+      icons[props.name] == null ? iconFallback.path : icons[props.name].path;
 
     viewBox =
-      (iconPaths[props.name] == null
+      (icons[props.name] == null
         ? iconFallback.viewBox
-        : iconPaths[props.name].viewBox) || "0 0 24 24";
+        : icons[props.name].viewBox) || "0 0 24 24";
   }
 
   return (

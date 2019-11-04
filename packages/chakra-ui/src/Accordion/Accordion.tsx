@@ -14,7 +14,7 @@ import {
 import { Box, BoxProps } from "@chakra-ui/layout";
 import { Collapse, CollapseProps } from "../Collapse";
 import Icon, { IconProps } from "../Icon/Icon";
-import { Merge, Omit } from "../utils";
+import { Merge, Omit } from "@chakra-ui/utils";
 
 export interface AccordionOptions {
   /**

@@ -3,8 +3,7 @@ import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
 import { CheckboxGroup } from ".";
 import { Checkbox } from "../Checkbox";
-import { ThemeProvider } from "../ThemeProvider";
-import { CSSReset } from "../CSSReset";
+import { ThemeProvider, CSSReset } from "@chakra-ui/theme";
 
 const stories = storiesOf("CheckboxGroup", module);
 

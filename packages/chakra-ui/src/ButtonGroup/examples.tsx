@@ -4,8 +4,7 @@ import React from "react";
 import { ButtonGroup } from ".";
 import { Box } from "@chakra-ui/layout";
 import { Button } from "../Button";
-import { CSSReset } from "../CSSReset";
-import { ThemeProvider } from "../ThemeProvider";
+import { ThemeProvider, CSSReset } from "@chakra-ui/theme";
 
 const stories = storiesOf("Button Group", module).addDecorator(story => (
   <ThemeProvider>

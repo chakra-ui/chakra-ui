@@ -3,7 +3,7 @@ import { jsx } from "@emotion/core";
 import { forwardRef } from "react";
 import { Box, BoxProps } from "@chakra-ui/layout";
 import { useFormControl } from "../FormControl";
-import { useColorMode } from "../ColorModeProvider";
+import { useColorMode } from "@chakra-ui/theme";
 
 interface FormLabelOptions {
   isInvalid?: boolean;

@@ -1,8 +1,7 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { Collapse } from ".";
-import { ThemeProvider } from "../ThemeProvider";
-import { CSSReset } from "../CSSReset";
+import { ThemeProvider, CSSReset } from "@chakra-ui/theme";
 
 const stories = storiesOf("Collapse", module).addDecorator(story => (
   <ThemeProvider>

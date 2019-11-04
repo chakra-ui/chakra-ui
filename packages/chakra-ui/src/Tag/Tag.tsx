@@ -2,12 +2,11 @@
 import { jsx } from "@emotion/core";
 import useBadgeStyle from "../Badge/styles";
 import { Icon, IconProps } from "../Icon";
-import { Box, BoxProps } from "@chakra-ui/layout";
-import { Omit, Merge } from "../utils";
+import { Box, BoxProps, Stack } from "@chakra-ui/layout";
 import { BadgeOptions } from "../Badge";
+import { Omit, Merge } from "@chakra-ui/utils";
 import { forwardRef } from "react";
 import { Avatar } from "../Avatar";
-import { Stack } from "../Stack";
 
 type TagIconProps = Omit<IconProps, "name"> & {
   icon: IconProps["name"] | React.ComponentType;

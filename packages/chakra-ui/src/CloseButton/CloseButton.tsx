@@ -2,8 +2,8 @@
 import { jsx } from "@emotion/core";
 import { Icon } from "../Icon";
 import { Box, BoxProps, SystemProps } from "@chakra-ui/layout";
-import { useColorMode } from "../ColorModeProvider";
-import { Merge } from "../utils";
+import { useColorMode } from "@chakra-ui/theme";
+import { Merge } from "@chakra-ui/utils";
 
 // TODO: Move this to theme.components.CloseButton
 // Under theme.components.CloseButton = {root: "", sizes: ""}
