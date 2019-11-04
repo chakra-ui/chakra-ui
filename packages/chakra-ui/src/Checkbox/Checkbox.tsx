@@ -3,13 +3,13 @@ import { Merge, Omit } from "@chakra-ui/utils";
 import { jsx } from "@emotion/core";
 import { forwardRef } from "react";
 import { Box, BoxProps, VisuallyHidden } from "@chakra-ui/layout";
-import { useColorMode, Colors } from "@chakra-ui/theme";
+import { useColorMode, Theme } from "@chakra-ui/theme";
 import { ControlBox } from "../ControlBox";
 import { Icon, IconProps } from "../Icon";
 import checkboxStyles from "./styles";
 
 type VariantColor = keyof Omit<
-  Colors,
+  Theme["colors"],
   "black" | "white" | "whiteAlpha" | "blackAlpha" | "current" | "transparent"
 >;
 

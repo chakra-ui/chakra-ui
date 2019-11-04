@@ -1,9 +1,6 @@
-import { addOpacity } from "../theme/colors-utils";
-import { useColorMode } from "../ColorModeProvider";
-import { useTheme } from "../ThemeProvider";
+import { addOpacity, useColorMode, useTheme, Theme } from "@chakra-ui/theme";
 import { ButtonOptions } from "./Button";
 import { SystemProps } from "@chakra-ui/layout";
-import { Theme } from "../theme";
 
 // TODO: Move all these to theme object
 // Under theme.components.Button = {root: "", variants: "", sizes: ""}

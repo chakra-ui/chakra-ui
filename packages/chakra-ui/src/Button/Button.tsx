@@ -5,7 +5,7 @@ import { jsx } from "@emotion/core";
 import { forwardRef } from "react";
 import { Icon, IconProps } from "../Icon";
 import { Spinner } from "../Spinner";
-import { Icons, Theme } from "../theme";
+import { Icons, Theme } from "@chakra-ui/theme";
 import useButtonStyle from "./styles";
 
 type IconType = Icons | React.ComponentType;

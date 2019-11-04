@@ -1,8 +1,5 @@
 /** @jsx jsx */
-import { colorEmphasis } from "../theme/colors-utils";
-import { useTheme } from "../ThemeProvider";
-import { useColorMode } from "../ColorModeProvider";
-import { Theme } from "../theme";
+import { Theme, useColorMode, colorEmphasis, useTheme } from "@chakra-ui/theme";
 import { SystemProps } from "@chakra-ui/layout";
 import { AlertOptions } from "./Alert";
 

@@ -1,7 +1,5 @@
-import { useTheme } from "../ThemeProvider";
-import { useColorMode, Props } from "../ColorModeProvider";
+import { useTheme, useColorMode, Props, Theme } from "@chakra-ui/theme";
 import { get } from "styled-system";
-import { Theme } from "../theme/theme";
 
 interface StyleProps {
   theme: Theme;

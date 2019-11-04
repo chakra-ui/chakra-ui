@@ -1,7 +1,4 @@
-import { useTheme } from "../ThemeProvider";
-import { useColorMode } from "../ColorModeProvider";
-import { isDarkColor } from "../theme/colors-utils";
-import { Theme } from "../theme";
+import { useTheme, useColorMode, Theme, isDarkColor } from "@chakra-ui/theme";
 import { AvatarOptions } from "./Avatar";
 
 // Found this on StackOverflow :)

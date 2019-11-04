@@ -1,4 +1,4 @@
-import { get } from "../theme/colors-utils";
+import { get } from "@chakra-ui/theme";
 import { Required } from "@chakra-ui/utils";
 import { CheckboxOptions } from "./Checkbox";
 
@@ -18,8 +18,8 @@ const interactionProps = ({ color, colorMode }: StyleProp) => {
   return {
     color: "white",
     _checked: {
-      bg: get(color, _color),
-      borderColor: get(color, _color),
+      bg: get(color as string, _color),
+      borderColor: get(color as string, _color),
       color: isDarkMode ? "gray.900" : undefined,
     },
     _checkedAndDisabled: {
