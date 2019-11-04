@@ -19,6 +19,7 @@ const Heading = forwardRef(({ size = "xl", ...props }, ref) => (
     fontSize={sizes[size]}
     lineHeight="shorter"
     fontWeight="bold"
+    fontFamily="heading"
     {...props}
   />
 ));
