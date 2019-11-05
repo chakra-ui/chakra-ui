@@ -15,16 +15,16 @@ import {
   useForkRef,
   usePrevious,
   useLogger,
+  usePopper,
 } from "@chakra-ui/hooks";
 import { normalizeEventKey, composeEventHandlers } from "@chakra-ui/utils";
-import { getNextIndex } from "./hook/utils";
 import { Item, State, reducer, Action } from "./hook/reducer";
 import { useLayoutEffect } from "react";
 
 type Option = Item;
 
 interface OptionProps {
-  value: string | number;
+  value: NonNullable<Option["value"]>;
   id?: Option["id"];
   children: React.ReactNode;
   isDisabled?: boolean;
@@ -78,7 +78,8 @@ const Option = forwardRef(
         aria-disabled={isDisabled ? true : undefined}
         tabIndex={-1}
         ref={ref}
-        onMouseEnter={composeEventHandlers(onMouseEnter, () => {
+        onMouseMove={composeEventHandlers(onMouseEnter, () => {
+          // console.log("welcome");
           dispatch({ type: "FOCUS", payload: { id } });
         })}
         onMouseLeave={composeEventHandlers(onMouseLeave, () => {
@@ -124,6 +125,8 @@ interface SelectContext {
     id: string;
     ref: React.Ref<any>;
     eventHandlers: Record<string, Function>;
+    styles?: React.CSSProperties;
+    placement?: string;
   };
 }
 
@@ -437,6 +440,16 @@ const Select = ({
     },
   };
 
+  const { reference, popper } = usePopper<HTMLElement, HTMLDivElement>({
+    placement: "right",
+    positionFixed: true,
+  });
+
+  useLogger(popper.styles);
+
+  const _controlRef = useForkRef(controlRef, reference as any);
+  const _listBoxRef = useForkRef(listBoxRef, popper as any);
+
   const context = React.useMemo<SelectContext>(
     () => ({
       props: {
@@ -453,16 +466,19 @@ const Select = ({
       },
       controlProps: {
         id: controlId,
-        ref: controlRef,
+        ref: _controlRef,
         eventHandlers: controlEventHandlers,
       },
       menuProps: {
         id: listBoxId,
-        ref: listBoxRef,
+        ref: _listBoxRef,
         eventHandlers: listBoxEventHandlers,
+        styles: popper.styles,
+        placement: popper.placement,
       },
     }),
     [
+      popper,
       selectOptionOnTab,
       state,
       _isOpen,
@@ -524,6 +540,13 @@ const SelectMenu = forwardRef((props: any, ref: React.Ref<any>) => {
       aria-activedescendant={state.focusedId || ""}
       ref={_ref}
       id={menuProps.id}
+      data-placement={menuProps.placement}
+      style={{
+        // ...menuProps.styles,
+        opacity: 1,
+        zIndex: 3,
+        background: "white",
+      }}
       {...menuProps.eventHandlers}
       {...props}
     />

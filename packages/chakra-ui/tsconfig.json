@@ -1,5 +1,5 @@
 {
-  "include": ["src", "types"],
+  "include": ["src", "types", "../chakra-ui-layout/src/SimpleGrid"],
   "exclude": [
     "**/*.spec.ts",
     "**/*.spec.tsx",

@@ -2,15 +2,7 @@
 import { jsx } from "@emotion/core";
 import { Box, BoxProps } from "../Box";
 import { forwardRef, Fragment } from "react";
-
-interface HeadingOptions {
-  /**
-   * The size of the Heading.
-   */
-  size?: "2xl" | "xl" | "lg" | "md" | "sm" | "xs";
-}
-
-export type HeadingProps<P, T> = HeadingOptions & BoxProps<P, T>;
+import { Merge } from "@chakra-ui/utils";
 
 const sizes = {
   "2xl": ["4xl", null, "5xl"],
@@ -23,9 +15,18 @@ const sizes = {
 
 type Sizes = keyof typeof sizes;
 
-const Heading = forwardRef(function Heading<P, T extends HTMLHeadingElement>(
-  { size = "xl", ...props }: HeadingProps<P, T>,
-  ref: React.Ref<T>,
+interface HeadingOptions {
+  /**
+   * The size of the Heading.
+   */
+  size?: Sizes;
+}
+
+export type HeadingProps = Merge<BoxProps, HeadingOptions>;
+
+const Heading = forwardRef<HTMLElement, HeadingProps>(function Heading(
+  { size = "xl", ...props },
+  ref,
 ) {
   return (
     <Box
@@ -34,21 +35,10 @@ const Heading = forwardRef(function Heading<P, T extends HTMLHeadingElement>(
       fontSize={sizes[size as Sizes]}
       lineHeight="shorter"
       fontWeight="bold"
+      fontFamily="heading"
       {...props}
     />
   );
-}) as <P = {}, T = HTMLHeadingElement>(
-  props: HeadingProps<P, T>,
-) => React.ReactElement<HeadingProps<P, T>>;
-
-export function HeadingExample() {
-  return (
-    <Fragment>
-      {["2xl", "xl", "lg", "md", "sm", "xs"].map((size, index) => (
-        <Heading size={size as Sizes}>Heading {index + 1}</Heading>
-      ))}
-    </Fragment>
-  );
-}
+});
 
 export default Heading;

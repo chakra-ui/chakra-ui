@@ -16,7 +16,7 @@ interface StackOptions {
   /**
    * The content of the stack.
    */
-  children?: React.ReactNode;
+  children: React.ReactNode;
   /**
    * If `true`, the children will be wrapped in a `Box` with
    * `display: inline-block`, and the `Box` will take the spacing props
@@ -38,6 +38,9 @@ const Stack = React.forwardRef(function Stack<P, T extends HTMLElement>(
   }: StackProps<P, T>,
   ref: React.Ref<T>,
 ) {
+  const validChildren = React.Children.toArray(children).filter(
+    React.isValidElement,
+  );
   return (
     <Flex
       ref={ref}
@@ -46,11 +49,9 @@ const Stack = React.forwardRef(function Stack<P, T extends HTMLElement>(
       flexDir={isInline ? "row" : "column"}
       {...props}
     >
-      {React.Children.map(children, (child, index) => {
-        if (!React.isValidElement(child)) return;
+      {React.Children.map(validChildren, (child, index) => {
         let isLastChild = React.Children.count(children) === index + 1;
 
-        // @tsFixMe
         let spacingProps: any = isInline
           ? { mr: isLastChild ? null : spacing }
           : { mb: isLastChild ? null : spacing };
