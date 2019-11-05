@@ -28,8 +28,40 @@ import {
 import { customProps, CustomProps } from "./config";
 import { pseudo, PseudoProps } from "./pseudo";
 import { Omit } from "@chakra-ui/utils";
+import {
+  createShouldForwardProp,
+  props,
+} from "@styled-system/should-forward-prop";
 
-const StyledBox = styled("div")(
+const shouldForwardProp = createShouldForwardProp([
+  ...props,
+  "d",
+  "textDecoration",
+  "pointerEvents",
+  "visibility",
+  "transform",
+  "cursor",
+  "fill",
+  "stroke",
+]);
+
+/**
+ * htmlWidth and htmlHeight is used in the <Image />
+ * component to support the native `width` and `height` attributes
+ *
+ * https://github.com/chakra-ui/chakra-ui/issues/149
+ */
+const nativeHTMLPropAlias = ["htmlWidth", "htmlHeight"];
+
+const StyledBox = styled("div", {
+  shouldForwardProp: prop => {
+    if (nativeHTMLPropAlias.includes(prop)) {
+      return true;
+    } else {
+      return shouldForwardProp(prop);
+    }
+  },
+})(
   layout,
   color,
   space,

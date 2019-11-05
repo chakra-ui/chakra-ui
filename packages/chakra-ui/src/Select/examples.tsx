@@ -5,7 +5,7 @@ import { SelectExample } from "./Selectv2";
 
 const stories = storiesOf("Select", module).addDecorator(story => (
   <ThemeProvider>
-    {/* <CSSReset /> */}
+    <CSSReset />
     {story()}
   </ThemeProvider>
 ));

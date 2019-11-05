@@ -144,7 +144,7 @@ const Checkbox = forwardRef(function Checkbox(
         checked={isChecked}
         disabled={isDisabled}
         aria-invalid={isInvalid}
-        data-indeterminate={isIndeterminate}
+        aria-checked={isIndeterminate ? "mixed" : isChecked}
       />
       <ControlBox {...styleProps}>
         <Icon
