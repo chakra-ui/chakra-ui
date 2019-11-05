@@ -151,7 +151,7 @@ export function DefaultTag() {
   return (
     <Stack spacing={4} isInline>
       {["sm", "md", "lg"].map(size => (
-        <Tag size={size} variantColor="gray">
+        <Tag size={size as TagOptions["size"]} variantColor="gray">
           Gray
         </Tag>
       ))}
@@ -163,7 +163,7 @@ export function TagWithLeftIcon() {
   return (
     <Stack spacing={4} isInline>
       {["sm", "md", "lg"].map(size => (
-        <Tag size={size} variantColor="cyan">
+        <Tag size={size as TagOptions["size"]} variantColor="cyan">
           <TagIcon icon="add" size="12px" />
           <TagLabel>Green</TagLabel>
         </Tag>
@@ -176,7 +176,7 @@ export function TagWithRightIcon() {
   return (
     <Stack spacing={4} isInline>
       {["sm", "md", "lg"].map(size => (
-        <Tag size={size} variantColor="cyan">
+        <Tag size={size as TagOptions["size"]} variantColor="cyan">
           <TagLabel>Green</TagLabel>
           <TagIcon icon="check" size="12px" />
         </Tag>
@@ -189,7 +189,12 @@ export function TagWithCloseButton() {
   return (
     <Stack spacing={4} isInline>
       {["sm", "md", "lg"].map(size => (
-        <Tag size={size} rounded="full" variant="solid" variantColor="cyan">
+        <Tag
+          size={size as TagOptions["size"]}
+          rounded="full"
+          variant="solid"
+          variantColor="cyan"
+        >
           <TagLabel>Green</TagLabel>
           <TagCloseButton />
         </Tag>

@@ -5,6 +5,7 @@ import React, {
   useEffect,
   useReducer,
   isValidElement,
+  useCallback,
   cloneElement,
   Children,
 } from "react";
@@ -304,7 +305,7 @@ const Select = ({
     setIsMousingDown(false);
 
     dispatch({ type: "RESET_FOCUSED", payload: {} });
-  });
+  }, []);
 
   const selectOption = (option: Option) => {
     const isSameOption = option.id === state.selectedId;

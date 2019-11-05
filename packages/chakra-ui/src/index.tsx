@@ -3,7 +3,6 @@ export * from "./Alert";
 export * from "./Avatar";
 export * from "./Button";
 export * from "./Collapse";
-export * from "./Flex";
 export * from "./Icon";
 export * from "./Image";
 export * from "./Spinner";

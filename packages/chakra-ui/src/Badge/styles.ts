@@ -1,7 +1,13 @@
-import { addOpacity, generateAlphaColors, get } from "../theme/colors-utils";
-import { useTheme } from "../ThemeProvider";
-import { useColorMode } from "../ColorModeProvider";
-import { Theme } from "../theme";
+import {
+  ThemeProvider,
+  CSSReset,
+  Theme,
+  addOpacity,
+  generateAlphaColors,
+  get,
+  useTheme,
+  useColorMode,
+} from "@chakra-ui/theme";
 import { BadgeOptions } from "./Badge";
 
 type RequiredProps = Required<BadgeOptions>;

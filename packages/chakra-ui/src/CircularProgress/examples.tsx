@@ -2,8 +2,7 @@
 import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
 import { CircularProgressLabel, CircularProgress } from ".";
-import { ThemeProvider } from "../ThemeProvider";
-import { CSSReset } from "../CSSReset";
+import { ThemeProvider, CSSReset } from "@chakra-ui/theme";
 
 const stories = storiesOf("Circular progress", module).addDecorator(story => (
   <ThemeProvider>

@@ -1,11 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import {
-  Box,
-  BoxProps,
-  useBadgeStyle,
-  UseBadgeStyleProps,
-} from "@chakra-ui/layout";
+import { Box, BoxProps } from "@chakra-ui/layout";
+import useBadgeStyle, { UseBadgeStyleProps } from "../Badge/styles";
 import { forwardRef } from "react";
 
 type CodeProps<P, T> = BoxProps<P, T> & { variantColor?: string };

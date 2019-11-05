@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, keyframes } from "@emotion/core";
-import { useColorMode } from "../ColorModeProvider";
+import { useColorMode } from "@chakra-ui/theme";
 import { Box, BoxProps, SystemProps } from "@chakra-ui/layout";
 import { forwardRef } from "react";
 

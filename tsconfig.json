@@ -14,8 +14,8 @@
     "baseUrl": "packages",
     "forceConsistentCasingInFileNames": true,
     // "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noImplicitAny": true,
+    // "noImplicitThis": true,
+    // "noImplicitAny": true,
     // "strictNullChecks": true,
     // "suppressImplicitAnyIndexErrors": true,
     // "noUnusedLocals": true,
@@ -23,10 +23,7 @@
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "typeRoots": [
-      "node_modules/@types",
-      "packages/**/*/@types"
-    ]
+    "typeRoots": ["node_modules/@types", "packages/**/*/@types"]
   },
   "include": ["packages/**/*"],
   "exclude": [
