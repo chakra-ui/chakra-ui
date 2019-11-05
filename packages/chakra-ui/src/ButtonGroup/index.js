@@ -27,6 +27,7 @@ const ButtonGroup = ({
       ...(!isLast && !isAttached && { mr: spacing }),
       ...(isFirst && isAttached && { roundedRight: 0 }),
       ...(isLast && isAttached && { roundedLeft: 0 }),
+      ...(!isLast && isAttached && { borderRight: 0 }),
       ...(!isFirst && !isLast && isAttached && { rounded: 0 }),
     });
   });
