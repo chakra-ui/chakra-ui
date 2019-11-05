@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { Box, BoxProps } from "@chakra-ui/layout";
+import { Box, BoxProps } from "../Box";
 import { forwardRef, Fragment } from "react";
 
 interface HeadingOptions {

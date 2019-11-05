@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "@emotion/styled";
-import { Box, BoxProps } from "@chakra-ui/layout";
+import { Box, BoxProps } from "../Box";
 
 const StyledHidden = styled(Box)`
   border: 0px;

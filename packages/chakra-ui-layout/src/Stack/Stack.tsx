@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/core";
 import * as React from "react";
 import { FlexProps, Flex } from "../Flex";
-import { Box, SystemProps } from "@chakra-ui/layout";
+import { Box, SystemProps } from "../Box";
 
 interface StackOptions {
   /**

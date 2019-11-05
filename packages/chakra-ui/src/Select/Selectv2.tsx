@@ -305,7 +305,7 @@ const Select = ({
     setIsMousingDown(false);
 
     dispatch({ type: "RESET_FOCUSED", payload: {} });
-  }, []);
+  }, [onClose, openIsControlled]);
 
   const selectOption = (option: Option) => {
     const isSameOption = option.id === state.selectedId;

@@ -1,7 +1,6 @@
 /**@jsx jsx */
 import styled from "@emotion/styled";
-import { Box, SystemProps } from "@chakra-ui/layout";
-import { css } from "../../../chakra-ui-layout/src/Css";
+import { Box, SystemProps, css } from "@chakra-ui/layout";
 
 interface ControlBoxOptions {
   type?: "checkbox" | "radio";
