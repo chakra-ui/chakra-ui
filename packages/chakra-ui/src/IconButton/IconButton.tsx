@@ -1,14 +1,12 @@
 /** @jsx jsx */
-import { Omit } from "@chakra-ui/utils";
+import { Omit, Merge } from "@chakra-ui/utils";
 import { jsx } from "@emotion/core";
 import { forwardRef } from "react";
-import { Icons } from "@chakra-ui/icons";
-import { Box } from "@chakra-ui/layout";
-import { Button, ButtonProps } from "../Button";
-import { Icon } from "../Icon";
+import { BoxProps } from "@chakra-ui/layout";
+import { Button, ButtonIcon, IconType, ButtonOptions } from "../Button";
 
-type _ButtonProps<P, T> = Omit<
-  ButtonProps<P, T>,
+type ModifiedButtonOptions = Omit<
+  ButtonOptions,
   | "loadingText"
   | "isFullWidth"
   | "leftIcon"
@@ -17,11 +15,11 @@ type _ButtonProps<P, T> = Omit<
   | "children"
 >;
 
-interface IconButtonOptions {
+interface IconButtonOptions extends ModifiedButtonOptions {
   /**
    * The icon to be used in the button.
    */
-  icon?: Icons | React.ComponentType;
+  icon: IconType;
   /**
    * If `true`, the button will be perfectly round. Else, it'll be slightly round
    */
@@ -32,7 +30,7 @@ interface IconButtonOptions {
   "aria-label": string;
 }
 
-export type IconButtonProps<P, T> = IconButtonOptions & _ButtonProps<P, T>;
+export type IconButtonProps<P, T> = Merge<BoxProps<P, T>, IconButtonOptions>;
 
 const IconButton = forwardRef(function IconButton<
   P,
@@ -45,21 +43,14 @@ const IconButton = forwardRef(function IconButton<
     <Button
       p="0"
       ref={ref}
-      //@ts-ignore
-      {...rest}
       aria-label={ariaLabel}
       borderRadius={isRound ? "full" : "md"}
+      {...rest}
     >
-      {typeof icon === "string" ? (
-        <Icon name={icon} focusable="false" color="currentColor" aria-hidden />
-      ) : (
-        <Box as={icon} aria-hidden focusable="false" color="currentColor" />
-      )}
+      <ButtonIcon icon={icon} />
     </Button>
   );
-}) as <P, T>(
-  props: IconButtonProps<P, T>,
-) => React.ReactElement<IconButtonProps<P, T>>;
+});
 
 export function DefaultIconButtonExample() {
   return (

@@ -8,25 +8,17 @@ import { Spinner } from "../Spinner";
 import { Icons, Theme } from "@chakra-ui/theme";
 import useButtonStyle from "./styles";
 
-type IconType = Icons | React.ComponentType;
+export type IconType = Icons | React.ComponentType;
 
 type ButtonIconProps = { icon: IconType } & Omit<IconProps, "name">;
 
-const ButtonIcon = ({ icon, ...props }: ButtonIconProps) => {
+export const ButtonIcon = ({ icon, ...props }: ButtonIconProps) => {
   if (typeof icon === "string") {
     return (
       <Icon focusable="false" name={icon} color="currentColor" {...props} />
     );
   }
-  return (
-    <Box
-      as={icon}
-      data-custom-icon
-      focusable="false"
-      color="currentColor"
-      {...props}
-    />
-  );
+  return <Box as={icon} focusable="false" color="currentColor" {...props} />;
 };
 
 export interface ButtonOptions {

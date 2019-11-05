@@ -11,7 +11,13 @@ const stories = storiesOf("Box", module).addDecorator(story => (
 ));
 
 stories.add("default", () => (
-  <Box _hover={{ bg: "red.500", color: "white" }}>Welcome to Box</Box>
+  <Box
+    color={["tomato", "papaya"]}
+    fontWeight="medium"
+    _hover={{ bg: "red.500", color: "white" }}
+  >
+    Welcome to Box
+  </Box>
 ));
 
 stories.add("as prop", () => (
