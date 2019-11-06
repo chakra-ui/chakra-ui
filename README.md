@@ -137,4 +137,5 @@ import { Button } from "@chakra-ui/core";
 ## Contributors
 
 This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+
 <a href="https://github.com/chakra-ui/chakra-ui/graphs/contributors"><img src="https://opencollective.com/chakra-ui/contributors.svg?width=890&button=false" /></a>
