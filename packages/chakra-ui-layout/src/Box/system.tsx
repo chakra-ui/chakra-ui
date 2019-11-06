@@ -81,13 +81,13 @@ export const systemFn = compose(
   typography,
   flexbox,
   zIndex,
-  pseudo as FunctionInterpolation<object>,
   customProps,
-  truncate as FunctionInterpolation<any>,
 );
 
 // Allow users pass the `isTruncated` prop from any component
-function truncate(props: { isTruncated?: boolean }): SystemProps | undefined {
+export function truncate(props: {
+  isTruncated?: boolean;
+}): SystemProps | undefined {
   if (props.isTruncated) {
     return {
       overflow: "hidden",

@@ -3,9 +3,9 @@ import css from "@styled-system/css";
 import { transformAliasProps as tx } from "./config";
 
 const PseudoSelectors = {
-  hover: "&:hover",
+  hover: "&:hover, &[data-hover=true]",
   active: "&:active, &[data-active=true]",
-  focus: "&:focus",
+  focus: "&:focus, &[data-focus=true]",
   visited: "&:visited",
   even: "&:nth-of-type(even)",
   odd: "&:nth-of-type(odd)",
@@ -13,7 +13,7 @@ const PseudoSelectors = {
     "&:disabled, &:disabled:focus, &:disabled:hover, &[aria-disabled=true], &[aria-disabled=true]:focus, &[aria-disabled=true]:hover",
   checked: "&[aria-checked=true]",
   mixed: "&[aria-checked=mixed]",
-  selected: "&[aria-selected=true]",
+  selected: "&[aria-selected=true], &[data-selected=true]",
   invalid: "&[aria-invalid=true]",
   pressed: "&[aria-pressed=true]",
   readOnly: "&[aria-readonly=true], &[readonly]",
@@ -36,7 +36,7 @@ export interface PseudoProps {
    * <Box _after={{content:`""` }}/>
    * ```
    */
-  _after?: SystemProps;
+  _after?: SystemProps & { content?: string };
   /**
    * Styles for CSS selector `&:before`
    *
@@ -46,7 +46,7 @@ export interface PseudoProps {
    * <Box _before={{content:`""` }}/>
    * ```
    */
-  _before?: SystemProps;
+  _before?: SystemProps & { content?: string };
   /**
    * Styles for CSS selector `&:focus`
    *

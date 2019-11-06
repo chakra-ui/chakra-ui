@@ -17,7 +17,7 @@ stories.addDecorator(story => (
 ));
 
 stories.add("vertical stack", () => (
-  <Stack isInline shouldWrapChildren spacing={4}>
+  <Stack shouldWrapChildren spacing={4}>
     <span>ooooooo</span>
     <span>ahhhhh</span>
     <span>Woah!</span>

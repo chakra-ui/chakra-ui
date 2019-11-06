@@ -478,16 +478,19 @@ const Select = ({
       },
     }),
     [
-      popper,
       selectOptionOnTab,
       state,
       _isOpen,
       closeMenu,
       selectOption,
       controlId,
+      _controlRef,
       controlEventHandlers,
       listBoxId,
+      _listBoxRef,
       listBoxEventHandlers,
+      popper.styles,
+      popper.placement,
     ],
   );
 

@@ -1,11 +1,16 @@
 import * as React from "react";
-import styled from "@emotion/styled";
+import styled, { FunctionInterpolation } from "@emotion/styled";
 import { Omit } from "@chakra-ui/utils";
-import { systemFn, shouldForwardProp, SystemProps } from "./system";
+import { systemFn, shouldForwardProp, SystemProps, truncate } from "./system";
+import { pseudo } from "./pseudo";
 
 const StyledBox = styled("div", {
   shouldForwardProp,
-})(systemFn);
+})(
+  systemFn,
+  pseudo as FunctionInterpolation<object>,
+  truncate as FunctionInterpolation<any>,
+);
 
 type BoxHTMLProps<T> = React.RefAttributes<T> &
   Omit<React.HTMLAttributes<T>, "color">;

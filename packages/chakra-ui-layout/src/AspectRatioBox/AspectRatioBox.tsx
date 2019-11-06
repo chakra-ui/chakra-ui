@@ -1,13 +1,16 @@
 import * as React from "react";
-import { Box, BoxProps, SystemProps } from "@chakra-ui/layout";
+import { Box, BoxProps, SystemProps } from "../Box";
 
 export type AspectRatioBoxProps<P, T> = BoxProps<P, T> & { ratio?: number };
 
 const AspectRatioBox = React.forwardRef(function AspectRatioBox<
   P,
   T extends HTMLElement
->({ ratio = 4 / 3, ...props }: AspectRatioBoxProps<P, T>, ref: React.Ref<T>) {
-  const child = React.Children.only(props.children);
+>(
+  { ratio = 4 / 3, children, ...rest }: AspectRatioBoxProps<P, T>,
+  ref: React.Ref<T>,
+) {
+  const child = React.Children.only(children);
   return (
     <Box
       ref={ref}
@@ -18,7 +21,7 @@ const AspectRatioBox = React.forwardRef(function AspectRatioBox<
         display: "block",
         paddingBottom: `${(1 / ratio) * 100}%`,
       }}
-      {...props}
+      {...rest}
     >
       {React.isValidElement(child) &&
         React.cloneElement(child, {

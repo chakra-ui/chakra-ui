@@ -14,6 +14,14 @@ interface StackOptions {
    */
   isInline?: boolean;
   /**
+   * If `true` the items will be displayed in reverse order.
+   */
+  isReversed?: boolean;
+  /**
+   * The direction to stack the items.
+   */
+  direction?: React.CSSProperties["flexDirection"];
+  /**
    * The content of the stack.
    */
   children: React.ReactNode;
@@ -28,33 +36,57 @@ type StackProps<P, T> = FlexProps<P, T> & StackOptions;
 
 const Stack = React.forwardRef(function Stack<P, T extends HTMLElement>(
   {
-    isInline,
+    direction,
+    isInline = false,
+    isReversed = false,
     align,
     justify,
-    spacing,
+    spacing = 2,
     children,
     shouldWrapChildren,
     ...props
   }: StackProps<P, T>,
   ref: React.Ref<T>,
 ) {
+  const _isReversed =
+    isReversed || (direction && direction.endsWith("reverse"));
+  const _isInline = isInline || (direction && direction.startsWith("row"));
+  let _direction: any;
+
+  if (_isInline) {
+    _direction = "row";
+  }
+
+  if (_isReversed) {
+    _direction = isInline ? "row-reverse" : "column-reverse";
+  }
+
+  if (direction) {
+    _direction = direction;
+  }
+
+  if (!_isInline && !_isReversed && !direction) {
+    _direction = "column";
+  }
+
   const validChildren = React.Children.toArray(children).filter(
     React.isValidElement,
   );
+
   return (
     <Flex
       ref={ref}
       align={align}
       justify={justify}
-      flexDir={isInline ? "row" : "column"}
+      direction={_direction}
       {...props}
     >
       {React.Children.map(validChildren, (child, index) => {
         let isLastChild = React.Children.count(children) === index + 1;
 
-        let spacingProps: any = isInline
-          ? { mr: isLastChild ? null : spacing }
-          : { mb: isLastChild ? null : spacing };
+        let spacingProps = _isInline
+          ? { [_isReversed ? "ml" : "mr"]: isLastChild ? null : spacing }
+          : { [_isReversed ? "mt" : "mb"]: isLastChild ? null : spacing };
 
         if (shouldWrapChildren) {
           return (
