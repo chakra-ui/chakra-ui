@@ -8,6 +8,7 @@ export { default as useAriaHidden } from "./useAriaHidden";
 export { default as useLockBodyScroll } from "./useLockBodyScroll";
 export { default as useId } from "./useId";
 export { default as useEnhancedEffect } from "./useEnhancedEffect";
+export { default as useControllableValue } from "./useControllableValue";
 export * from "./useForkRef";
 
 export { default as useLogger } from "./useLogger";

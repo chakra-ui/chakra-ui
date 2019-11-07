@@ -49,15 +49,14 @@
     "typescript": "3.6.4"
   },
   "dependencies": {
-    "@types/body-scroll-lock": "2.6.1",
-    "@types/exenv": "1.2.0",
-    "aria-hidden": "^1.1.1",
+    "@chakra-ui/utils": "0.0.1",
     "body-scroll-lock": "^2.6.4",
-    "exenv": "^1.2.2",
+    "@types/body-scroll-lock": "2.6.1",
+    "aria-hidden": "^1.1.1",
     "react-uid": "2.2.0",
     "scroll-into-view-if-needed": "2.2.20",
-    "use-popper": "1.1.6",
-    "@chakra-ui/utils": "0.0.1"
+    "use-deep-compare": "0.1.0",
+    "popper.js": "^1.15.0"
   },
   "peerDependencies": {
     "react": "16.x",

@@ -1,31 +1,32 @@
+import {
+  useControllableValue,
+  useCreateContext,
+  useForkRef,
+  useId,
+  useLogger,
+  usePopper,
+  usePrevious,
+} from "@chakra-ui/hooks";
+import { Box, SystemProps } from "@chakra-ui/layout";
+import { composeEventHandlers, normalizeEventKey } from "@chakra-ui/utils";
 import React, {
-  useState,
-  useRef,
+  Children,
+  cloneElement,
   forwardRef,
+  isValidElement,
+  useCallback,
   useEffect,
   useLayoutEffect,
-  isValidElement,
-  cloneElement,
-  Children,
+  useReducer,
+  useRef,
+  useState,
 } from "react";
-import {
-  useCreateContext,
-  useId,
-  useForkRef,
-  usePrevious,
-  useScrollIntoView,
-} from "@chakra-ui/hooks";
-import { normalizeEventKey, composeEventHandlers } from "@chakra-ui/utils";
-import { registerOption } from "./utils";
+import { Action, Item, reducer, State } from "./reducer";
 
-interface Option {
-  value: string | number;
-  ref: React.RefObject<HTMLElement>;
-  id: string;
-}
+type Option = Item;
 
 interface OptionProps {
-  value: Option["value"];
+  value: NonNullable<Option["value"]>;
   id?: Option["id"];
   children: React.ReactNode;
   isDisabled?: boolean;
@@ -51,37 +52,38 @@ const Option = forwardRef(
     }: OptionProps,
     forwardedRef: React.Ref<any>,
   ) => {
-    const { state, props, actions, optionsRef } = useSelectContext();
-    const ownRef = useRef<any>();
+    const { state, dispatch } = useSelectContext();
+    const uuid = useId();
+    const id = idProp || uuid;
+    const ownRef = useRef<any>(null);
 
     const ref = useForkRef(forwardedRef, ownRef);
+    const isHighlighted = state.focusedId === id;
+    const isSelected = state.selectedId === id;
 
-    const uuid = useId(`chakra-select-option-`);
-    const id = idProp || uuid;
-
-    const isHighlighted = state.highlighted
-      ? id === state.highlighted.id
-      : false;
-
-    const isSelected = state.selected ? id === state.selected.id : false;
-
-    const option = { value, id, ref: ownRef };
-
-    useEffect(() => {
-      if (optionsRef && optionsRef.current) {
-        optionsRef.current = registerOption(optionsRef.current, option);
-        console.log(optionsRef.current);
-      }
+    useLayoutEffect(() => {
+      if (isDisabled && !isFocusable) return;
+      dispatch({
+        type: "REGISTER",
+        payload: { ref: ownRef, id, value },
+      });
       return () => {
-        if (optionsRef && optionsRef.current.length) {
-          const newOptions = optionsRef.current.filter(item => item.id !== id);
-          optionsRef.current = newOptions;
-        }
+        dispatch({ type: "UNREGISTER", payload: { id } });
       };
-    }, [id, option, optionsRef]);
+    }, [dispatch, id, isDisabled, isFocusable, ref, value]);
+
+    const getBg = (): SystemProps["bg"] => {
+      if (isHighlighted) {
+        return isSelected ? "blue.500" : "blue.50";
+      } else if (isSelected) {
+        return "blue.400";
+      } else {
+        return undefined;
+      }
+    };
 
     return (
-      <div
+      <Box
         role="option"
         data-chakra-select-option=""
         aria-selected={isHighlighted ? true : undefined}
@@ -89,23 +91,17 @@ const Option = forwardRef(
         tabIndex={-1}
         ref={ref}
         onMouseEnter={composeEventHandlers(onMouseEnter, () => {
-          actions.highlightOption(option);
+          dispatch({ type: "FOCUS", payload: { id } });
         })}
         onMouseLeave={composeEventHandlers(onMouseLeave, () => {
-          actions.clearHighlighted();
+          dispatch({ type: "RESET_FOCUSED", payload: {} });
         })}
         onClick={composeEventHandlers(onClick, () => {
-          actions.selectOption(option);
+          dispatch({ type: "MOUSE_SELECT", payload: { id } });
+          // actions.closeMenu();
         })}
-        onKeyDown={composeEventHandlers(onKeyDown, event => {
-          if (event.key === "Tab" && props.selectOptionOnTab) {
-            actions.selectOption(option);
-          }
-        })}
-        style={{
-          ...(isHighlighted && { background: "blue", color: "white" }),
-          ...(isSelected && { background: "tomato", color: "white" }),
-        }}
+        cursor="pointer"
+        backgroundColor={getBg()}
         {...rest}
       />
     );
@@ -113,29 +109,28 @@ const Option = forwardRef(
 );
 
 interface SelectContext {
-  optionsRef: React.MutableRefObject<Option[]>;
   props: {
     selectOptionOnTab?: boolean;
   };
-  state: {
+  state: State & {
     isOpen: boolean;
-    selected: Option | null;
-    highlighted: Option | null;
   };
+  dispatch: React.Dispatch<Action>;
   actions: {
-    selectOption: (option: Option) => void;
-    highlightOption: (option: Option) => void;
-    clearHighlighted: () => void;
+    closeMenu: () => void;
+    selectOption: (opt: Option) => void;
   };
   controlProps: {
     id: string;
-    ref: React.Ref<any>;
+    ref: (React.Ref<any>)[];
     eventHandlers: Record<string, Function>;
   };
   menuProps: {
     id: string;
-    ref: React.Ref<any>;
+    ref: (React.Ref<any>)[];
     eventHandlers: Record<string, Function>;
+    style?: React.CSSProperties;
+    placement?: string;
   };
 }
 
@@ -143,150 +138,27 @@ const [useSelectContext, SelectProvider] = useCreateContext<SelectContext>();
 
 /////////////////////////////////////////////////////////////////////////////////
 /**
- * Gets the next highlighted or selected option based on the typed characters
- */
-function getNextOptionFromKeys<T>({
-  items,
-  searchString,
-  itemToString,
-  currentValue,
-}: {
-  items: T[];
-  searchString: string;
-  itemToString: (item: T) => string;
-  currentValue: T;
-}) {
-  if (!searchString) {
-    return null;
-  }
-
-  // If current value doesn't exist, find the item that match the search string
-  if (!currentValue) {
-    const found = items.find(item =>
-      itemToString(item)
-        .toLowerCase()
-        .startsWith(searchString.toLowerCase()),
-    );
-    return found || currentValue;
-  }
-
-  // Filter items for ones that match the search string (case insensitive)
-  const searchResults = items.filter(item =>
-    itemToString(item)
-      .toLowerCase()
-      .startsWith(searchString.toLowerCase()),
-  );
-
-  // If there's a match, let's get the next item to select
-  if (searchResults.length) {
-    let nextIndex: number;
-    debugger;
-
-    // If the currentValue is in the available items, we move to the next available option
-    if (searchResults.includes(currentValue)) {
-      const currentIndex = searchResults.indexOf(currentValue);
-      nextIndex = currentIndex + 1;
-      if (nextIndex === searchResults.length) {
-        nextIndex = 0;
-      }
-      return searchResults[nextIndex];
-    } else {
-      // Else, we pick the first item in the available items
-      nextIndex = items.indexOf(searchResults[0]);
-      return items[nextIndex];
-    }
-  }
-
-  // a decent fallback to the currentValue
-  return currentValue;
-}
-
-/////////////////////////////////////////////////////////////////////////////////
-interface GetNextIndex {
-  step?: number;
-  currentIndex: number;
-  itemsLength: number;
-  loop: boolean;
-}
-
-function getNextIndex({
-  step = 1,
-  currentIndex,
-  itemsLength,
-  loop,
-}: GetNextIndex) {
-  if (currentIndex === -1) {
-    return step > 0 ? 0 : itemsLength - 1;
-  }
-
-  const nextIndex = currentIndex + step;
-
-  if (nextIndex < 0) {
-    return loop ? itemsLength - 1 : 0;
-  }
-
-  if (nextIndex >= itemsLength) {
-    if (loop) return 0;
-    return currentIndex > itemsLength ? itemsLength : currentIndex;
-  }
-
-  return nextIndex;
-}
-
-/////////////////////////////////////////////////////////////////////////////////
-/**
  *  Handles focus management for the select
  */
-function useFocusManagement<T extends any>({
-  isOpen,
-  listBoxRef,
-  items,
-  controlRef,
-  focusedId,
-  selectedId,
-  action,
-}: T) {
+function useFocusManagement(
+  state: State & { isOpen: boolean },
+  refs: { listBoxRef: React.RefObject<any>; controlRef: React.RefObject<any> },
+) {
+  const { isOpen } = state;
+  const { listBoxRef, controlRef } = refs;
+
   const prevIsOpen = usePrevious(isOpen);
 
   useEffect(() => {
-    if (isOpen) {
-      if (listBoxRef && listBoxRef.current) {
-        listBoxRef.current.focus();
-        /**
-         * If no option is selected before the listbox
-         * receives focus, the first option receives focus.
-         */
-        if (!prevIsOpen && focusedId == null) {
-          action(items.current[0]);
-        }
-      }
+    if (isOpen && listBoxRef && listBoxRef.current) {
+      listBoxRef.current.focus();
       return;
     }
 
-    if (prevIsOpen && !isOpen) {
-      if (controlRef && controlRef.current) {
-        controlRef.current.focus();
-      }
-      action(selectedId);
-    } else {
-      /**
-       * If an option is selected before the listbox
-       * receives focus, focus is set on the selected option.
-       */
-      if (selectedId != null) {
-        action(selectedId);
-      }
+    if (prevIsOpen && !isOpen && controlRef && controlRef.current) {
+      controlRef.current.focus();
     }
-  }, [
-    isOpen,
-    prevIsOpen,
-    selectedId,
-    focusedId,
-    listBoxRef,
-    action,
-    items,
-    controlRef,
-  ]);
+  }, [isOpen, prevIsOpen, listBoxRef, controlRef]);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -303,33 +175,22 @@ function useRapidKeydown() {
   // We'll clear the keys after specific timeout
   const keysTimeoutRef = useRef<any>();
 
-  const outlierKeys = [
-    "Tab",
-    "Enter",
-    "Shift",
-    "CapsLock",
-    "Control",
-    "Alt",
-    "Meta",
-    "ArrowUp",
-    "ArrowLeft",
-    "ArrowRight",
-    "ArrowLeft",
-  ];
-
-  const keyDownAction = (event: KeyboardEvent, action: Function) => {
-    // debugger;
+  const keyDownAction = (
+    event: KeyboardEvent,
+    action: (str: string) => void,
+  ) => {
+    const keyCode = event.keyCode || event.which;
+    const isBackspace = keyCode === 8;
     const { key } = event;
 
-    if (key === "Backspace") {
+    if (isBackspace) {
       let _keys = [...keys];
       _keys.pop();
       setKeys(_keys);
     } else {
-      const isOutlierKey = outlierKeys.includes(key);
-      const regex = new RegExp("^[a-zA-Z0-9_.-]*$");
-      const isSameLetter = key === keys[keys.length - 1];
-      const isValid = regex.test(key) && !isOutlierKey && !isSameLetter;
+      const isLetter = keyCode >= 65 && keyCode <= 90;
+      const isNumber = keyCode >= 48 && keyCode <= 57;
+      const isValid = isLetter || isNumber;
 
       if (isValid) {
         let _keys = keys.concat(key);
@@ -351,7 +212,7 @@ function useRapidKeydown() {
     }, 300);
   };
 
-  return { keys: keys.join(""), keyDownAction };
+  return { keys, keyDownAction };
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -385,39 +246,39 @@ const Select = ({
   defaultValue,
   value,
 }: SelectProps) => {
-  const [selected, setSelected] = useState<Option | null>(null);
-  const [highlighted, setHighlighted] = useState<Option | null>(null);
+  const [state, dispatch] = useReducer(reducer, {
+    items: [],
+    lastEvent: "",
+    selectedId: "",
+    focusedId: "",
+  });
+
+  // To handle the default selected value
+  useLayoutEffect(() => {
+    if (defaultValue && state.items.length) {
+      const defaultSelectedOption = state.items.find(
+        option => option.value === defaultValue,
+      );
+      if (defaultSelectedOption) {
+        dispatch({ type: "SELECT", payload: { id: defaultSelectedOption.id } });
+      }
+    }
+  }, [defaultValue, state.items]);
+
   const [isOpen, setIsOpen] = useState(defaultIsOpen || false);
   const [isMousingDown, setIsMousingDown] = useState(false);
 
   // Store the refs of the components we'll be using
+
+  const { reference, popper } = usePopper<HTMLButtonElement, HTMLDivElement>({
+    modifiers: { keepTogether: { enabled: true } },
+    placement: "bottom-start",
+  });
+
   const controlRef = useRef<HTMLElement>();
-  const listBoxRef = useRef<HTMLElement>();
-  const optionsRef = useRef<Option[]>([]);
+  const listBoxRef = useRef<HTMLDivElement>();
 
-  // To handle the default selected value
-  useEffect(() => {
-    const defaultSelectedOption = optionsRef.current.find(
-      option => option.value === defaultValue,
-    );
-    if (defaultSelectedOption) {
-      setSelected(defaultSelectedOption);
-    }
-  }, [defaultValue]);
-
-  const valueIsControlled = value != null;
-  // To handle the selected value
-
-  useEffect(() => {
-    if (valueIsControlled && value) {
-      const selectedOption = optionsRef.current.find(
-        option => option.value === value,
-      );
-      if (selectedOption) {
-        setSelected(selectedOption);
-      }
-    }
-  }, [value, valueIsControlled]);
+  const { current: valueIsControlled } = useRef(value != null);
 
   // id generation
   const uuid = useId();
@@ -425,50 +286,10 @@ const Select = ({
   const listBoxId = `select-listbox-${uuid}`;
 
   // Focus Management hook
-  useFocusManagement({
-    isOpen,
-    listBoxRef,
-    controlRef,
-    optionsRef,
-    selected,
-    highlighted,
-    action: setHighlighted,
-  });
+  useFocusManagement({ ...state, isOpen }, { listBoxRef, controlRef });
+  const [openIsControlled, _isOpen] = useControllableValue(isOpenProp, isOpen);
 
-  /**
-   * If an option is partially or not visible in the select menu,
-   * We want to scroll that option into view.
-   *
-   * Let's use a hook for that
-   */
-  useScrollIntoView({
-    isEnabled: isOpen && highlighted != null,
-    node: highlighted ? highlighted.ref.current : null,
-    boundary: listBoxRef ? listBoxRef.current : null,
-  });
-
-  // Actions
-  const goToOptionFromKeys = (keys: string, type: "select" | "highlight") => {
-    const action = type === "select" ? selectOption : highlightOption;
-    const currentValue = type === "select" ? selected : highlighted;
-    const nextOption = getNextOptionFromKeys({
-      items: optionsRef.current,
-      searchString: keys,
-      itemToString: item => {
-        if (item) {
-          return (item.ref.current as Node).textContent || String(item.value);
-        }
-        return "";
-      },
-      currentValue,
-    });
-    if (nextOption) {
-      action(nextOption);
-    }
-  };
-
-  const { current: openIsControlled } = useRef(isOpenProp != null);
-  const _isOpen = openIsControlled ? isOpenProp : isOpen;
+  useLogger({ focus: state.focusedId, select: state.selectedId });
 
   const openMenu = () => {
     if (!openIsControlled) {
@@ -477,9 +298,18 @@ const Select = ({
     if (onOpen) {
       onOpen();
     }
+
+    // Side effects after open
+    if (state.selectedId) {
+      dispatch({ type: "FOCUS", payload: { id: state.selectedId } });
+    } else {
+      if (!state.focusedId) {
+        dispatch({ type: "FIRST", payload: {} });
+      }
+    }
   };
 
-  const closeMenu = () => {
+  const closeMenu = useCallback(() => {
     if (!openIsControlled) {
       setIsOpen(false);
     }
@@ -487,118 +317,62 @@ const Select = ({
       onClose();
     }
     setIsMousingDown(false);
-  };
+
+    dispatch({ type: "RESET_FOCUSED", payload: {} });
+  }, [onClose, openIsControlled]);
 
   const selectOption = (option: Option) => {
-    const isSameOption = selected ? option.value === selected.value : false;
+    const isSameOption = option.id === state.selectedId;
     if (!isSameOption) {
       if (!valueIsControlled) {
-        setSelected(option);
+        dispatch({ type: "MOUSE_SELECT", payload: option });
       }
-      onChange && onChange(option.value);
+      if (onChange && option.value) {
+        onChange && onChange(option.value);
+      }
     }
     closeMenu();
   };
 
-  const highlightOption = (value: Option) => {
-    setHighlighted(value);
-  };
+  const { keys, keyDownAction } = useRapidKeydown();
 
-  const clearHighlighted = () => {
-    setHighlighted(null);
-  };
-
-  const { keyDownAction } = useRapidKeydown();
-
-  const goToNextOrPreviousOption = (
-    type: "highlight" | "select",
-    step: number = 1,
-    loop: boolean = true,
-  ) => {
-    const option = type === "highlight" ? highlighted : selected;
-    const action = type === "highlight" ? highlightOption : selectOption;
-
-    const currentIndex = option
-      ? optionsRef.current.findIndex(item => item.value === option.value)
-      : -1;
-
-    const nextIndex = getNextIndex({
-      step,
-      currentIndex,
-      itemsLength: optionsRef.current.length,
-      loop,
-    });
-
-    const nextOption = optionsRef.current[nextIndex];
-
-    action(nextOption);
-  };
-
-  const goToFirstOrLastOption = (
-    type: "highlight" | "select",
-    position: "first" | "last",
-  ) => {
-    const action = type === "highlight" ? highlightOption : selectOption;
-    const { length } = optionsRef.current;
-    if (length) {
-      const nextOption =
-        position === "first"
-          ? optionsRef.current[0]
-          : optionsRef.current[length - 1];
-      action(nextOption);
-    }
-  };
-
-  // Select Actions
-  const selectNextOption = (loop?: boolean) =>
-    goToNextOrPreviousOption("select", 1, loop);
-  const selectPrevOption = (loop?: boolean) =>
-    goToNextOrPreviousOption("select", -1, loop);
-  const selectFirstOption = () => goToFirstOrLastOption("select", "first");
-  const selectLastOption = () => goToFirstOrLastOption("select", "last");
-  const selectOptionFromKeys = (str: string) =>
-    goToOptionFromKeys(str, "select");
-
-  // Highlight Actions
-  const highlightNextOption = (loop?: boolean) =>
-    goToNextOrPreviousOption("highlight", 1, loop);
-  const highlightPrevOption = (loop?: boolean) =>
-    goToNextOrPreviousOption("highlight", -1, loop);
-  const highlightFirstOption = () =>
-    goToFirstOrLastOption("highlight", "first");
-  const highlightLastOption = () => goToFirstOrLastOption("highlight", "last");
-  const highlightOptionFromKeys = (str: string) =>
-    goToOptionFromKeys(str, "highlight");
-
-  // Event handlers for the select control
   const controlEventHandlers = {
     onKeyDown: (event: KeyboardEvent) => {
       const eventKey = normalizeEventKey(event);
-      const iOpenKey = ["ArrowUp", "ArrowDown", " "].includes(eventKey);
-      if (iOpenKey) {
+      const isOpenKey = ["ArrowUp", "ArrowDown", " "].includes(eventKey);
+
+      if (isOpenKey) {
         openMenu();
         return;
       }
 
-      keyDownAction(event, selectOptionFromKeys);
+      keyDownAction(event, str => {
+        dispatch({ type: "CHARACTER_SELECT", payload: { keys: str } });
+      });
 
       if (eventKey === "ArrowLeft") {
-        selectPrevOption(false);
+        dispatch({
+          type: "PREVIOUS",
+          payload: { selectOnFocus: true, loop: false },
+        });
       }
 
       if (eventKey === "ArrowRight") {
-        selectNextOption(false);
+        dispatch({
+          type: "NEXT",
+          payload: { selectOnFocus: true, loop: false },
+        });
       }
 
       if (eventKey === "Home") {
-        selectFirstOption();
+        dispatch({ type: "FIRST", payload: { selectOnFocus: true } });
       }
 
       if (eventKey === "End") {
-        selectLastOption();
+        dispatch({ type: "LAST", payload: { selectOnFocus: true } });
       }
     },
-    onMouseDown: (event: MouseEvent) => {
+    onMouseDown: () => {
       if (_isOpen) {
         setIsMousingDown(true);
       }
@@ -622,14 +396,15 @@ const Select = ({
 
       if (eventKey === "Enter") {
         event.preventDefault();
-        if (highlighted != null && highlighted != selected) {
-          setSelected(highlighted);
-          onChange && onChange(highlighted.value);
+        if (state.focusedId != null && state.focusedId != state.selectedId) {
+          dispatch({ type: "SELECT_FOCUSED", payload: {} });
         }
         closeMenu();
       }
 
-      keyDownAction(event, highlightOptionFromKeys);
+      keyDownAction(event, keys => {
+        dispatch({ type: "CHARACTER_FOCUS", payload: { keys } });
+      });
 
       if (eventKey === "Escape") {
         closeMenu();
@@ -637,30 +412,38 @@ const Select = ({
 
       if (eventKey === "ArrowDown") {
         event.preventDefault();
-        if (!highlighted) {
-          highlightFirstOption();
+        if (!state.focusedId) {
+          dispatch({ type: "FIRST", payload: {} });
         } else {
-          highlightNextOption();
+          dispatch({ type: "NEXT", payload: {} });
         }
       }
 
       if (eventKey === "ArrowUp") {
         event.preventDefault();
-        if (!highlighted == null) {
-          highlightLastOption();
+        if (!state.focusedId == null) {
+          dispatch({ type: "LAST", payload: {} });
         } else {
-          highlightPrevOption();
+          dispatch({ type: "PREVIOUS", payload: {} });
         }
       }
 
       if (eventKey === "Home") {
         event.preventDefault();
-        highlightFirstOption();
+        dispatch({ type: "FIRST", payload: {} });
       }
 
       if (eventKey === "End") {
         event.preventDefault();
-        highlightLastOption();
+        dispatch({ type: "LAST", payload: {} });
+      }
+
+      if (eventKey === "Tab") {
+        event.preventDefault();
+        if (selectOptionOnTab) {
+          dispatch({ type: "SELECT_FOCUSED", payload: {} });
+          closeMenu();
+        }
       }
     },
     onBlur: (event: FocusEvent) => {
@@ -676,32 +459,47 @@ const Select = ({
     },
   };
 
-  const context: SelectContext = {
-    optionsRef,
-    props: {
+  const context = React.useMemo<SelectContext>(
+    () => ({
+      props: {
+        selectOptionOnTab,
+      },
+      state: {
+        ...state,
+        isOpen: _isOpen as boolean,
+      },
+      dispatch,
+      actions: {
+        closeMenu,
+        selectOption,
+      },
+      controlProps: {
+        ...reference,
+        ref: [reference.ref, controlRef],
+        id: controlId,
+        eventHandlers: controlEventHandlers,
+      },
+      menuProps: {
+        ...popper,
+        ref: [popper.ref, listBoxRef],
+        id: listBoxId,
+        eventHandlers: listBoxEventHandlers,
+      },
+    }),
+    [
       selectOptionOnTab,
-    },
-    state: {
-      isOpen: _isOpen as boolean,
-      selected,
-      highlighted,
-    },
-    actions: {
+      state,
+      _isOpen,
+      closeMenu,
       selectOption,
-      highlightOption,
-      clearHighlighted,
-    },
-    controlProps: {
-      id: controlId,
-      ref: controlRef,
-      eventHandlers: controlEventHandlers,
-    },
-    menuProps: {
-      id: listBoxId,
-      ref: listBoxRef,
-      eventHandlers: listBoxEventHandlers,
-    },
-  };
+      controlId,
+      controlRef,
+      controlEventHandlers,
+      listBoxId,
+      listBoxRef,
+      listBoxEventHandlers,
+    ],
+  );
 
   return <SelectProvider value={context}>{children}</SelectProvider>;
 };
@@ -719,22 +517,20 @@ const SelectControl = forwardRef(
     ref,
   ) => {
     const { state, controlProps, menuProps } = useSelectContext();
-    const _ref = useForkRef(ref, controlProps.ref);
+    const controlRef = useForkRef(ref, ...controlProps.ref);
+    const selected = state.items.find(item => item.id === state.selectedId);
     return (
       <button
-        ref={_ref}
+        ref={controlRef}
         id={controlProps.id}
         aria-haspopup="listbox"
         aria-expanded={state.isOpen}
-        // aria-readonly={props.isReadOnly}
         aria-controls={menuProps.id}
         style={{ minWidth: 80, textAlign: "left" }}
         {...controlProps.eventHandlers}
         {...props}
       >
-        {state.selected && state.selected.ref
-          ? (state.selected.ref.current as Node).textContent
-          : "Select"}
+        {selected ? (selected.ref.current as Node).textContent : "Select"}
       </button>
     );
   },
@@ -743,24 +539,24 @@ const SelectControl = forwardRef(
 /////////////////////////////////////////////////////////////////////////////////
 
 const SelectMenu = forwardRef((props: any, ref: React.Ref<any>) => {
-  const { optionsRef, state, menuProps } = useSelectContext();
-  const _ref = useForkRef(ref, menuProps.ref);
-
-  useLayoutEffect(() => {
-    optionsRef.current = [];
-    return () => {
-      optionsRef.current = [];
-    };
-  }, [optionsRef]);
+  const { state, menuProps } = useSelectContext();
+  const menuRef = useForkRef(ref, ...menuProps.ref);
 
   return (
-    <ul
+    <Box
+      as="ul"
       tabIndex={0}
       hidden={!state.isOpen}
       role="listbox"
-      aria-activedescendant={state.highlighted ? state.highlighted.id : ""}
-      ref={_ref}
+      aria-activedescendant={state.focusedId || ""}
+      ref={menuRef}
       id={menuProps.id}
+      data-placement={menuProps.placement}
+      style={menuProps.style}
+      width="240px"
+      shadow="lg"
+      outline="0"
+      p={5}
       {...menuProps.eventHandlers}
       {...props}
     />
@@ -812,8 +608,12 @@ const OptionGroup = forwardRef(
 export function SelectExample() {
   const [add, setAdd] = useState(false);
   return (
-    <>
-      <Select defaultValue="Togo" onChange={val => console.log(val)}>
+    <Box maxW="400px" mx="auto">
+      <Select
+        defaultValue="Togo"
+        onChange={val => console.log(val)}
+        selectOptionOnTab
+      >
         <SelectControl />
         <SelectMenu>
           <Option value="Niger">Niger</Option>
@@ -828,7 +628,14 @@ export function SelectExample() {
           </OptionGroup>
         </SelectMenu>
       </Select>
+
       <button onClick={() => setAdd(!add)}>Add</button>
-    </>
+      <select defaultValue="Togo">
+        <option value="Niger">Niger</option>
+        <option value="Nigeria">Nigeria</option>
+        <option value="Togo">Togo</option>
+        <option value="Germany">Germany</option>
+      </select>
+    </Box>
   );
 }
