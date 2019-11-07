@@ -1,8 +1,11 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import { Popper } from ".";
+import { Button } from "../Button";
 import { ThemeProvider, CSSReset } from "@chakra-ui/theme";
-import { usePopper } from "@chakra-ui/hooks";
-import { mergeTransform } from "@chakra-ui/utils";
+import { useLogger } from "@chakra-ui/hooks/src";
+import usePopper from "./hook";
+import { Portal } from "../Portal";
 
 const stories = storiesOf("Popper", module).addDecorator(story => (
   <ThemeProvider>
@@ -12,35 +15,28 @@ const stories = storiesOf("Popper", module).addDecorator(story => (
 ));
 
 const Example = () => {
-  const [open, setOpen] = React.useState(false);
-  const { reference, popper, arrow } = usePopper<
-    HTMLButtonElement,
-    HTMLDivElement,
-    HTMLDivElement
-  >({
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  const { reference, popper } = usePopper<HTMLButtonElement, HTMLDivElement>({
     placement: "right",
   });
 
   function handleClick() {
-    setOpen(!open);
+    setIsOpen(!isOpen);
   }
 
   return (
     <>
-      <button ref={reference.ref}>hover me</button>
-      <div
-        ref={popper.ref}
-        style={{
-          ...popper.styles,
-          transform:
-            popper.styles.transform &&
-            mergeTransform(popper.styles.transform, "translateX(30px)"),
-        }}
-        data-placement={popper.placement}
-      >
-        <div>Hello!</div>
-        {/* <div ref={arrow.ref} style={arrow.styles} /> */}
-      </div>
+      <button ref={reference.ref} onClick={handleClick}>
+        Toggle Popper
+      </button>
+      {isOpen && (
+        <Portal>
+          <div ref={popper.ref} style={popper.style}>
+            <p>The content of the Popper.</p>
+          </div>
+        </Portal>
+      )}
     </>
   );
 };
