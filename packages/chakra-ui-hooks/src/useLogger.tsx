@@ -1,7 +1,7 @@
-import { useDeepCompareEffect } from "use-deep-compare";
+import { useEffect } from "react";
 
 function useLogger<T>(value: T, format = "log") {
-  useDeepCompareEffect(() => {
+  useEffect(() => {
     //@ts-ignore
     console[format](value);
   }, [value]);

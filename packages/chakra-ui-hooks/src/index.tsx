@@ -1,7 +1,6 @@
 export { default as useFocusEffect } from "./useFocusEffect";
 export { default as useCheckbox } from "./useCheckbox";
 export { default as useCreateContext } from "./useCreateContext";
-export { default as useSelect } from "./useSelect";
 export { default as useButton } from "./useButton";
 export { default as usePrevious } from "./usePrevious";
 export { default as useAriaHidden } from "./useAriaHidden";
@@ -17,8 +16,3 @@ export * from "./usePopper";
 
 export { default as useNumberInput } from "./useNumberInput";
 export * from "./useNumberInput";
-
-export { default as useScrollIntoView } from "./useScrollIntoView";
-export * from "./useScrollIntoView";
-
-export * from "./useSelection";

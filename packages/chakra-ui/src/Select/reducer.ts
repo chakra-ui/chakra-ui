@@ -10,13 +10,10 @@ export type EventType =
 
 export interface ActionsPayload extends Item {
   loop?: boolean;
-  keys?: string;
+  characters?: string;
   lastEvent?: EventType;
-  onFocus?: (stopId: string | null, item?: Item) => void;
-  onSelect?: (stopId: string | null, item?: Item) => void;
-  selectOnFocus?: boolean;
-  focusedId?: string;
-  selectedId?: string;
+  selectOnHighlight?: boolean;
+  highlightOnSelect?: boolean;
 }
 
 export interface Item {
@@ -29,110 +26,74 @@ export interface State {
   items: Item[];
   lastEvent: EventType | "";
   selectedId: string | null;
-  focusedId: string | null;
+  highlightedId: string | null;
+  orientation?: "horizontal" | "vertical";
 }
 
-export type ComponentProps = Pick<
-  ActionsPayload,
-  "focusedId" | "selectedId" | "onFocus" | "onSelect" | "selectOnFocus" | "loop"
->;
+type KeyAction = "select" | "highlight";
 
 export type Action =
+  | { type: "REGISTER"; id: Item["id"]; ref: Item["ref"]; value: Item["value"] }
+  | { type: "UNREGISTER"; id: Item["id"] }
+  | { type: "HIGHLIGHT"; id: Item["id"] | null; selectOnHighlight?: boolean }
+  | { type: "SELECT"; id: Item["id"] | null; highlightOnSelect?: boolean }
   | {
-      type: "REGISTER";
-      payload: Pick<ActionsPayload, "ref" | "id" | "value">;
+      type: "RESET";
+      action: "highlighted" | "selected" | "both";
     }
   | {
-      type: "UNREGISTER";
-      payload: Pick<ActionsPayload, "id">;
-    }
-  | {
-      type: "FOCUS";
-      payload: Pick<ActionsPayload, "id"> & ComponentProps;
-    }
-  | {
-      type: "SELECT";
-      payload: Pick<ActionsPayload, "id"> & ComponentProps;
-    }
-  | {
-      type: "RESET_FOCUSED";
-      payload: ComponentProps;
-    }
-  | {
-      type: "SELECT_FOCUSED";
-      payload: ComponentProps;
-    }
-  | {
-      type: "CHARACTER_FOCUS";
-      payload: { keys: string } & ComponentProps;
-    }
-  | {
-      type: "CHARACTER_SELECT";
-      payload: { keys: string } & ComponentProps;
+      type: "SEARCH";
+      characters: string;
+      action: KeyAction;
     }
   | {
       type: "PREVIOUS";
-      payload: ComponentProps;
+      action: KeyAction;
     }
   | {
       type: "NEXT";
-      payload: ComponentProps;
-    }
-  | {
-      type: "SELECT_FOCUSED";
-      payload: ComponentProps;
-    }
-  | {
-      type: "MOUSE_SELECT";
-      payload: Pick<ActionsPayload, "id"> & ComponentProps;
-    }
-  | {
-      type: "RESET";
-      payload: ComponentProps;
+      action: KeyAction;
     }
   | {
       type: "FIRST";
-      payload: ComponentProps;
+      action: KeyAction;
     }
   | {
       type: "LAST";
-      payload: ComponentProps;
+      action: KeyAction;
     };
 
 ////////////////////////////////////////////////////////////////
 
 function register(
   state: State,
-  props: Pick<ActionsPayload, "ref" | "id" | "value"> & ComponentProps,
+  action: Pick<ActionsPayload, "ref" | "id" | "value">,
 ) {
-  const newItem = { id: props.id, ref: props.ref, value: props.value };
+  const { id, ref, value } = action;
 
   if (state.items.length === 0) {
     return {
       ...state,
-      items: [newItem],
-      selectedId: props.selectedId || state.selectedId || null,
-      focusedId: props.focusedId || state.focusedId || newItem.id,
+      items: [{ id, ref, value }],
     };
   }
-  const index = state.items.findIndex(item => item.id === newItem.id);
 
+  const index = state.items.findIndex(item => item.id === id);
   if (index >= 0) return state;
 
-  const indexToInsertAt = state.items.findIndex(
-    item =>
-      !!(
-        item.ref.current &&
-        newItem.ref.current &&
-        item.ref.current.compareDocumentPosition(newItem.ref.current) &
-          Node.DOCUMENT_POSITION_PRECEDING
-      ),
-  );
+  const indexToInsertAt = state.items.findIndex(item => {
+    if (!item.ref.current || !ref.current) return false;
+
+    return Boolean(
+      item.ref.current.compareDocumentPosition(ref.current) &
+        Node.DOCUMENT_POSITION_PRECEDING,
+    );
+  });
 
   if (indexToInsertAt === -1) {
     return {
       ...state,
-      items: [...state.items, newItem],
+      items: [...state.items, { id, ref, value }],
     };
   }
 
@@ -140,7 +101,7 @@ function register(
     ...state,
     items: [
       ...state.items.slice(0, indexToInsertAt),
-      newItem,
+      { id, ref, value },
       ...state.items.slice(indexToInsertAt),
     ],
   };
@@ -148,56 +109,44 @@ function register(
 
 ////////////////////////////////////////////////////////////////
 
-function unRegister(state: State, props: Pick<ActionsPayload, "id">) {
-  const filteredItems = state.items.filter(item => item.id !== props.id);
-  if (filteredItems.length === state.items.length) {
+function unRegister(state: State, action: { id: Item["id"] }) {
+  const { id } = action;
+  const newItems = state.items.filter(item => item.id !== id);
+
+  if (newItems.length === state.items.length) {
     return state;
   }
+
   return {
     ...state,
     selectedId:
-      state.selectedId && state.selectedId === props.id
-        ? filteredItems.length === 0
+      state.selectedId && state.selectedId === id
+        ? newItems.length === 0
           ? null
-          : filteredItems[0]["id"]
+          : newItems[0]["id"]
         : state.selectedId,
-    items: filteredItems,
+    items: newItems,
   };
 }
 
 /////////////////////////////////////////////////////////////////////////////
 
-function moveFocus(
+function highlight(
   state: State,
-  props: Pick<ActionsPayload, "id"> & ComponentProps,
+  action: { id: Item["id"] | null; selectOnHighlight?: boolean },
 ) {
-  const nextFocusedItem = state.items.find(item => item.id === props.id);
+  const { id, selectOnHighlight } = action;
+  const nextFocusedItem = state.items.find(item => item.id === id);
 
   if (!nextFocusedItem) return state;
 
-  if (props.onFocus) {
-    props.onFocus(props.id, nextFocusedItem);
-  }
-
-  if (props.selectOnFocus && props.onSelect) {
-    props.onSelect(props.id, nextFocusedItem);
-  }
-
-  if (props.focusedId != null) {
-    return state;
-  }
-
   const nextState: State = {
     ...state,
-    lastEvent: "keyboard",
+    highlightedId: id,
   };
 
-  if (!props.focusedId != null) {
-    nextState["focusedId"] = props.id;
-  }
-
-  if (!props.focusedId != null && props.selectOnFocus) {
-    nextState["selectedId"] = props.id;
+  if (selectOnHighlight) {
+    nextState["selectedId"] = id;
   }
 
   return nextState;
@@ -205,232 +154,155 @@ function moveFocus(
 
 ////////////////////////////////////////////////////////////////
 
-function selectFocused(state: State, props: ComponentProps): State {
-  const nextFocusedItem = state.items.find(item => item.id === state.focusedId);
+function select(
+  state: State,
+  action: { id: Item["id"] | null; highlightOnSelect?: boolean },
+): State {
+  const { id, highlightOnSelect } = action;
+  const __id = id != null ? id : state.highlightedId;
+  const nextFocusedItem = state.items.find(item => item.id === __id);
+  if (!nextFocusedItem) return state;
 
-  if (props.onSelect) {
-    props.onSelect(state.focusedId, nextFocusedItem);
-  }
-
-  if (props.selectedId != null) {
-    return state;
-  }
-
-  return {
+  const newState: State = {
     ...state,
     lastEvent: "keyboard",
-    selectedId: state.focusedId,
+    selectedId: __id,
   };
+
+  if (highlightOnSelect) {
+    newState["highlightedId"] = __id;
+  }
+
+  return newState;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 
-export function focusNextOrPrevious(
+export function nextOrPrevious(
   state: State,
-  props: ComponentProps,
+  action: { action: "select" | "highlight"; loop?: boolean },
   type: "next" | "previous",
 ) {
-  const [focusedId] = getValue(props.focusedId, state.focusedId);
-  const [selectedId] = getValue(props.selectedId, state.selectedId);
-
-  const idToUse = focusedId || selectedId;
-  const index = state.items.findIndex(item => item.id === idToUse);
+  const { loop, action: __action } = action;
+  const id = __action === "select" ? state.selectedId : state.highlightedId;
+  const index = state.items.findIndex(item => item.id === id);
 
   if (index === -1) return state;
 
-  const nextFocusIndex = getNextIndex({
+  const nextIndex = getNextIndex({
     currentIndex: index,
     itemsLength: state.items.length,
-    loop: props.loop != null ? props.loop : true,
+    loop: loop != null ? loop : true,
     step: type === "next" ? 1 : -1,
   });
 
-  const nextFocusedId = state.items[nextFocusIndex]["id"];
+  const nextItemId = state.items[nextIndex]["id"];
 
-  return moveFocus(state, { ...props, id: nextFocusedId });
+  if (__action === "select") {
+    return select(state, { id: nextItemId });
+  } else {
+    return highlight(state, { id: nextItemId });
+  }
 }
 
 ////////////////////////////////////////////////////////////////
 
-export function mouseSelect(
+export function firstOrLast(
   state: State,
-  props: Pick<ActionsPayload, "id"> & ComponentProps,
-) {
-  const focusIsControlled = props.focusedId != null;
-  const selectionIsControlled = props.selectedId != null;
-
-  const nextFocusedItem = state.items.find(item => item.id === props.id);
-
-  if (props.onSelect && props.id) {
-    props.onSelect(props.id, nextFocusedItem);
-  }
-
-  if (props.onFocus && props.id) {
-    props.onFocus(props.id, nextFocusedItem);
-  }
-
-  const nextState: State = { ...state, lastEvent: "mouse" };
-
-  if (focusIsControlled && selectionIsControlled) {
-    return state;
-  }
-
-  if (!selectionIsControlled && props.id) {
-    nextState["selectedId"] = props.id;
-  }
-
-  if (!focusIsControlled && props.id) {
-    nextState["focusedId"] = props.id;
-  }
-
-  return nextState;
-}
-
-////////////////////////////////////////////////////////////////
-
-export function focusFirstOrLast(
-  state: State,
-  props: ComponentProps,
+  action: { action: KeyAction },
   type: "first" | "last",
 ) {
-  const nextFocusedId =
+  const { action: __action } = action;
+  const nextItemId =
     type === "first"
       ? state.items[0]["id"]
       : state.items[state.items.length - 1]["id"];
-  if (!nextFocusedId) return state;
 
-  return moveFocus(state, { ...props, id: nextFocusedId });
+  if (!nextItemId) return state;
+
+  if (__action === "select") {
+    return select(state, { id: nextItemId });
+  } else {
+    return highlight(state, { id: nextItemId });
+  }
 }
 
 ////////////////////////////////////////////////////////////////
 
-export function reset(state: State, props: ComponentProps) {
-  return {
-    ...state,
-    selectedId: props.selectedId || null,
-    focusedId: props.focusedId || null,
-  };
-}
-
-////////////////////////////////////////////////////////////////
-
-export function select(state: State, props: Pick<ActionsPayload, "id">) {
-  return {
-    ...state,
-    selectedId: props.id,
-  };
-}
-
-////////////////////////////////////////////////////////////////
-
-function resetFocused(state: State, props: ComponentProps) {
-  return {
-    ...state,
-    // Reset the focused option to the default passed in props or null
-    focusedId: props.focusedId || null,
-  };
-}
-
-////////////////////////////////////////////////////////////////
-
-export function focusOptionFromKeys(
+export function reset(
   state: State,
-  props: Pick<ActionsPayload, "keys">,
+  action: { action: "highlighted" | "selected" | "both" },
 ) {
-  const currentFocusedOption = state.items.find(
-    item => item.id === state.focusedId,
-  );
+  const { action: __action } = action;
+  const newState = { ...state };
+
+  if (__action === "highlighted" || __action === "both") {
+    newState["highlightedId"] = null;
+  }
+
+  if (__action === "selected" || __action === "both") {
+    newState["selectedId"] = null;
+  }
+
+  return newState;
+}
+
+////////////////////////////////////////////////////////////////
+
+export function search(
+  state: State,
+  action: { characters: string; action: "select" | "highlight" },
+) {
+  const { characters, action: __action } = action;
+  const id = __action === "select" ? state.selectedId : state.highlightedId;
+  const currentItem = state.items.find(item => item.id === id);
+
   const nextOption = getNextOptionFromKeys({
     items: state.items,
-    searchString: props.keys || "",
+    searchString: characters || "",
     itemToString: item => {
       if (!item) return "";
       return (item.ref.current as Node).textContent || String(item.value);
     },
-    currentValue: currentFocusedOption,
+    currentValue: currentItem,
   });
 
   if (!nextOption) return state;
 
-  return {
-    ...state,
-    focusedId: nextOption.id,
-  };
-}
+  const nextState = { ...state };
+  if (__action === "select") {
+    nextState["selectedId"] = nextOption.id;
+  } else {
+    nextState["highlightedId"] = nextOption.id;
+  }
 
-////////////////////////////////////////////////////////////////
-
-export function selectOptionFromKeys(
-  state: State,
-  props: Pick<ActionsPayload, "keys">,
-) {
-  const currentSelectedOption = state.items.find(
-    item => item.id === state.selectedId,
-  );
-  const nextOption = getNextOptionFromKeys({
-    items: state.items,
-    searchString: props.keys || "",
-    itemToString: item => {
-      if (!item) return "";
-      return (item.ref.current as Node).textContent || String(item.value);
-    },
-    currentValue: currentSelectedOption,
-  });
-
-  if (!nextOption) return state;
-
-  return {
-    ...state,
-    selectedId: nextOption.id,
-  };
+  return nextState;
 }
 
 ////////////////////////////////////////////////////////////////
 
 export function reducer(state: State, action: Action): State {
   switch (action.type) {
-    case "REGISTER": {
-      return register(state, action.payload);
-    }
-    case "UNREGISTER": {
-      return unRegister(state, action.payload);
-    }
-    case "PREVIOUS": {
-      return focusNextOrPrevious(state, action.payload, "previous");
-    }
-    case "NEXT": {
-      return focusNextOrPrevious(state, action.payload, "next");
-    }
-    case "MOUSE_SELECT": {
-      return mouseSelect(state, action.payload);
-    }
-    case "FOCUS": {
-      return moveFocus(state, action.payload);
-    }
-    case "SELECT": {
-      return select(state, action.payload);
-    }
-    case "RESET": {
-      return reset(state, action.payload);
-    }
-    case "SELECT_FOCUSED": {
-      return selectFocused(state, action.payload);
-    }
-    case "RESET_FOCUSED": {
-      return resetFocused(state, action.payload);
-    }
-    case "CHARACTER_FOCUS": {
-      return focusOptionFromKeys(state, action.payload);
-    }
-    case "CHARACTER_SELECT": {
-      return selectOptionFromKeys(state, action.payload);
-    }
-    case "FIRST": {
-      return focusFirstOrLast(state, action.payload, "first");
-    }
-    case "LAST": {
-      return focusFirstOrLast(state, action.payload, "last");
-    }
+    case "REGISTER":
+      return register(state, action);
+    case "UNREGISTER":
+      return unRegister(state, action);
+    case "PREVIOUS":
+      return nextOrPrevious(state, action, "previous");
+    case "NEXT":
+      return nextOrPrevious(state, action, "next");
+    case "HIGHLIGHT":
+      return highlight(state, action);
+    case "SELECT":
+      return select(state, action);
+    case "RESET":
+      return reset(state, action);
+    case "SEARCH":
+      return search(state, action);
+    case "FIRST":
+      return firstOrLast(state, action, "first");
+    case "LAST":
+      return firstOrLast(state, action, "last");
     default:
       throw new Error("Reducer called without proper action type.");
   }
