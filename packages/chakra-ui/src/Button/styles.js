@@ -150,6 +150,8 @@ const disabledProps = {
     cursor: "not-allowed",
     boxShadow: "none",
   },
+  _hover: undefined,
+  _active: undefined,
 };
 
 ////////////////////////////////////////////////////////////
@@ -252,8 +254,8 @@ const useButtonStyle = props => {
     ...baseProps,
     ...sizeProps(_props),
     ...focusProps,
-    ...disabledProps,
     ...variantProps(_props),
+    ...disabledProps,
   };
 };
 
