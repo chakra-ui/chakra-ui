@@ -24,4 +24,6 @@ const Heading = forwardRef(({ size = "xl", ...props }, ref) => (
   />
 ));
 
+Heading.displayName = "Heading";
+
 export default Heading;

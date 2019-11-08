@@ -181,6 +181,8 @@ const PseudoButton = forwardRef((props, ref) => (
   <PseudoBox ref={ref} as="button" {...props} />
 ));
 
+PseudoButton.displayName = "PseudoButton";
+
 const MenuButton = forwardRef(
   ({ onClick, onKeyDown, as: Comp = PseudoButton, ...rest }, ref) => {
     const {
@@ -232,6 +234,9 @@ const MenuButton = forwardRef(
     );
   },
 );
+
+MenuButton.displayName = "MenuButton";
+
 //////////////////////////////////////////////////////////////////////////////////////////
 
 const MenuList = ({ onKeyDown, onBlur, ...props }) => {
@@ -418,11 +423,15 @@ const MenuItem = forwardRef(
   },
 );
 
+MenuItem.displayName = "MenuItem";
+
 //////////////////////////////////////////////////////////////////////////////////////////
 
 const MenuDivider = forwardRef((props, ref) => (
   <Divider ref={ref} orientation="horizontal" {...props} />
 ));
+
+MenuDivider.displayName = "MenuDivider";
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -436,6 +445,8 @@ const MenuGroup = forwardRef(({ children, title, ...rest }, ref) => (
     {children}
   </Box>
 ));
+
+MenuGroup.displayName = "MenuGroup";
 
 //////////////////////////////////////////////////////////////////////////////////////////
 

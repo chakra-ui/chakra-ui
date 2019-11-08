@@ -13,4 +13,6 @@ const Flex = forwardRef(({ align, justify, wrap, direction, ...rest }, ref) => (
   />
 ));
 
+Flex.displayName = "Flex";
+
 export default Flex;

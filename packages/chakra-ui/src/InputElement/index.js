@@ -41,13 +41,19 @@ const InputElement = forwardRef(
   },
 );
 
+InputElement.displayName = "InputElement";
+
 const InputLeftElement = forwardRef((props, ref) => (
   <InputElement ref={ref} placement="left" {...props} />
 ));
 
+InputLeftElement.displayName = "InputLeftElement";
+
 const InputRightElement = forwardRef((props, ref) => (
   <InputElement ref={ref} placement="right" {...props} />
 ));
+
+InputRightElement.displayName = "InputRightElement";
 
 export { InputLeftElement, InputRightElement };
 export default InputElement;

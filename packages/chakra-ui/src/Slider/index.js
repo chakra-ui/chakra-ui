@@ -99,6 +99,8 @@ export const SliderThumb = forwardRef((props, ref) => {
   );
 });
 
+SliderThumb.displayName = "SliderThumb";
+
 ////////////////////////////////////////////////////////////////
 
 export const SliderTrack = props => {
@@ -341,5 +343,7 @@ const Slider = forwardRef(
     );
   },
 );
+
+Slider.displayName = "Slider";
 
 export default Slider;

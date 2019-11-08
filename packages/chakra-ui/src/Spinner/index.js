@@ -57,4 +57,6 @@ const Spinner = forwardRef(
   },
 );
 
+Spinner.displayName = "Spinner";
+
 export default Spinner;

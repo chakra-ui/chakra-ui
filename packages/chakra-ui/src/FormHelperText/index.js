@@ -23,4 +23,6 @@ export const FormHelperText = forwardRef((props, ref) => {
   );
 });
 
+FormHelperText.displayName = "FormHelperText";
+
 export default FormHelperText;

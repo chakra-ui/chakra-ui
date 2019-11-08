@@ -42,4 +42,6 @@ export const FormLabel = forwardRef(({ children, ...props }, ref) => {
   );
 });
 
+FormLabel.displayName = "FormLabel";
+
 export default FormLabel;

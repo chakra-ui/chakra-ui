@@ -43,4 +43,6 @@ const Image = forwardRef(
   },
 );
 
+Image.displayName = "Image";
+
 export default Image;

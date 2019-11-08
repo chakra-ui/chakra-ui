@@ -13,4 +13,6 @@ const VisuallyHidden = styled(Box)`
   position: absolute;
 `;
 
+VisuallyHidden.displayName = "VisuallyHidden";
+
 export default VisuallyHidden;

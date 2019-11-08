@@ -9,12 +9,12 @@ const circularProgressCircle = keyframes`
     stroke-dasharray: 1, 400;
     stroke-dashoffset: 0;
   }
-  
+
   50% {
     stroke-dasharray: 400, 400;
     stroke-dashoffset: -100;
   }
-  
+
   100% {
     stroke-dasharray: 400, 400;
     stroke-dashoffset: -300;
@@ -178,5 +178,7 @@ const CircularProgress = forwardRef((props, ref) => {
     </Box>
   );
 });
+
+CircularProgress.displayName = "CircularProgress";
 
 export default CircularProgress;

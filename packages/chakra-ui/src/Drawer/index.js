@@ -79,14 +79,20 @@ const DrawerContent = forwardRef((props, ref) => {
   );
 });
 
+DrawerContent.displayName = "DrawerContent";
+
 const DrawerOverlay = forwardRef((props, ref) => {
   const { styles } = useDrawerContext();
   return <ModalOverlay ref={ref} opacity={styles.opacity} {...props} />;
 });
 
+DrawerOverlay.displayName = "DrawerOverlay";
+
 const DrawerCloseButton = forwardRef(({ onClick, ...rest }, ref) => (
   <ModalCloseButton ref={ref} position="fixed" zIndex="1" {...rest} />
 ));
+
+DrawerCloseButton.displayName = "DrawerCloseButton";
 
 export {
   Drawer,
