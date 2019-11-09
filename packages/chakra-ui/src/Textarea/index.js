@@ -16,6 +16,8 @@ const Textarea = forwardRef((props, ref) => {
   );
 });
 
+Textarea.displayName = "Textarea";
+
 export default Textarea;
 
 export const ExpandingTextarea = forwardRef(
@@ -52,3 +54,5 @@ export const ExpandingTextarea = forwardRef(
     );
   },
 );
+
+ExpandingTextarea.displayName = "ExpandingTextarea";

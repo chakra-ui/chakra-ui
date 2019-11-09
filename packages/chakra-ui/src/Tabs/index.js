@@ -40,6 +40,8 @@ const Tab = forwardRef((props, ref) => {
   );
 });
 
+Tab.displayName = "Tab";
+
 ////////////////////////////////////////////////////////////////////////
 
 const TabList = forwardRef((props, ref) => {
@@ -144,6 +146,8 @@ const TabList = forwardRef((props, ref) => {
   );
 });
 
+TabList.displayName = "TabList";
+
 ////////////////////////////////////////////////////////////////////////
 
 const TabPanel = forwardRef(
@@ -169,6 +173,8 @@ const TabPanel = forwardRef(
     );
   },
 );
+
+TabPanel.displayName = "TabPanel";
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -197,6 +203,8 @@ const TabPanels = forwardRef(({ children, ...rest }, ref) => {
     </Box>
   );
 });
+
+TabPanels.displayName = "TabPanels";
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -305,6 +313,8 @@ const Tabs = forwardRef(
     );
   },
 );
+
+Tabs.displayName = "Tabs";
 
 export default Tabs;
 export { TabList, Tab, TabPanel, TabPanels };

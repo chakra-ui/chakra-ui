@@ -36,4 +36,6 @@ const FormErrorMessage = forwardRef(({ children, icon, ...props }, ref) => {
   );
 });
 
+FormErrorMessage.displayName = "FormErrorMessage";
+
 export default FormErrorMessage;

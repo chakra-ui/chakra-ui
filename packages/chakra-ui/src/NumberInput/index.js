@@ -84,6 +84,8 @@ const NumberInput = forwardRef(
   },
 );
 
+NumberInput.displayName = "NumberInput";
+
 const NumberInputField = forwardRef(
   ({ onBlur, onFocus, onKeyDown, onChange, ...props }, ref) => {
     const {
@@ -122,6 +124,8 @@ const NumberInputField = forwardRef(
     );
   },
 );
+
+NumberInputField.displayName = "NumberInputField";
 
 const NumberInputStepper = forwardRef((props, ref) => {
   return (
@@ -164,6 +168,8 @@ const StepperButton = forwardRef((props, ref) => {
   );
 });
 
+NumberInputStepper.displayName = "NumberInputStepper";
+
 const NumberIncrementStepper = forwardRef((props, ref) => {
   const { incrementStepper, size } = useNumberInputContext();
   const iconSize = size === "sm" ? "11px" : "15px";
@@ -180,6 +186,8 @@ const NumberIncrementStepper = forwardRef((props, ref) => {
   );
 });
 
+NumberIncrementStepper.displayName = "NumberIncrementStepper";
+
 const NumberDecrementStepper = forwardRef((props, ref) => {
   const { decrementStepper, size } = useNumberInputContext();
   const iconSize = size === "sm" ? "11px" : "15px";
@@ -195,6 +203,8 @@ const NumberDecrementStepper = forwardRef((props, ref) => {
     </StepperButton>
   );
 });
+
+NumberDecrementStepper.displayName = "NumberDecrementStepper";
 
 export {
   NumberInput,

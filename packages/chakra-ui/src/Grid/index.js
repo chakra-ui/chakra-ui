@@ -40,4 +40,6 @@ const Grid = forwardRef(
   ),
 );
 
+Grid.displayName = "Grid";
+
 export default Grid;

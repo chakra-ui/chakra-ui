@@ -42,4 +42,6 @@ const Collapse = forwardRef(
   },
 );
 
+Collapse.displayName = "Collapse";
+
 export default Collapse;

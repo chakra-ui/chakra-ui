@@ -29,6 +29,8 @@ const AlertDialogContent = forwardRef((props, ref) => (
   <ModalContent ref={ref} role="alertdialog" {...props} />
 ));
 
+AlertDialogContent.displayName = "AlertDialogContent";
+
 export {
   AlertDialog,
   AlertDialogContent,

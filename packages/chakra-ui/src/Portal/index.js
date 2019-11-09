@@ -53,4 +53,6 @@ const Portal = forwardRef(
   },
 );
 
+Portal.displayName = "Portal";
+
 export default Portal;
