@@ -3,6 +3,7 @@
 
 import * as React from "react";
 import { resolveCallback } from "./callbacks";
+import { normalizeEventKey } from "./dom";
 
 type EventKeys =
   | "ArrowDown"
@@ -21,6 +22,7 @@ type EventKeys =
   | "PageUp"
   | "Delete"
   | "Escape"
+  | " "
   | "Shift";
 
 type KeyMapReturn = (event?: React.KeyboardEvent) => any;
@@ -53,14 +55,15 @@ export function createOnKeyDown({
     const shouldPreventDefault = resolveCallback(preventDefault, event);
     const shouldStopPropagation = resolveCallback(stopPropagation, event);
 
-    if (event.key in finalKeyMap) {
-      const action = finalKeyMap[event.key as EventKeys];
+    const eventKey = normalizeEventKey(event as any);
+
+    if (eventKey in finalKeyMap) {
+      const action = finalKeyMap[eventKey as EventKeys];
       if (typeof action === "function" && shouldKeyDown(event)) {
         if (shouldPreventDefault) event.preventDefault();
         if (shouldStopPropagation) event.stopPropagation();
         if (onKey) onKey(event);
         action(event);
-        // Prevent onKeyDown from being called twice for the same keys
         return;
       }
     }

@@ -6,7 +6,7 @@ export type Actions = {
   /**
    * Registers Id, ref, and value of an element.
    */
-  register: (id: Item["id"], ref: Item["ref"], value?: Item["value"]) => void;
+  register: (item: Item) => void;
   /**
    * Unregisters the element.
    */
@@ -14,11 +14,11 @@ export type Actions = {
   /**
    * Moves focus to a given element ID.
    */
-  highlight: (id: Item["id"] | null, selectOnHighlight?: boolean) => void;
+  highlight: (item: Item | null, selectOnHighlight?: boolean) => void;
   /**
    * Moves focus to a given element ID.
    */
-  select: (id: Item["id"] | null, highlightOnSelect?: boolean) => void;
+  select: (item: Item | null, highlightOnSelect?: boolean) => void;
   /**
    * Moves focus to the next element.
    */
@@ -45,8 +45,8 @@ export type Actions = {
 const _initialState: State = {
   items: [],
   lastEvent: "",
-  selectedId: "",
-  highlightedId: "",
+  selectedItem: null,
+  highlightedItem: null,
 };
 
 export type Selection = State & Actions;
@@ -63,7 +63,7 @@ export function useSelectionState(
   return {
     ...state,
     register: React.useCallback(
-      (id, ref, value) => dispatch({ type: "REGISTER", id, ref, value }),
+      item => dispatch({ type: "REGISTER", item }),
       [],
     ),
     unregister: React.useCallback(
@@ -73,16 +73,16 @@ export function useSelectionState(
     // Moves focus a specific `id`.
     // Focus follows selection if `selectOnHighlight` is true
     highlight: React.useCallback(
-      (id, selectOnHighlight) =>
-        dispatch({ type: "HIGHLIGHT", id, selectOnHighlight }),
+      (item, selectOnHighlight) =>
+        dispatch({ type: "HIGHLIGHT", item, selectOnHighlight }),
       [],
     ),
     // Select option with specified id. If no id is passed, then it'll use the focusedId
     // Highlight follows selection if `highlightOnSelect` is true. useful for mouse clicks
     // you need to move focus and selection together.
     select: React.useCallback(
-      (id, highlightOnSelect) =>
-        dispatch({ type: "SELECT", id, highlightOnSelect }),
+      (item, highlightOnSelect) =>
+        dispatch({ type: "SELECT", item, highlightOnSelect }),
       [],
     ),
     first: React.useCallback(action => dispatch({ type: "FIRST", action }), []),
@@ -117,8 +117,8 @@ export function useSelectionItem(
   const {
     id: idProp,
     value,
-    highlightedId,
-    selectedId,
+    highlightedItem,
+    selectedItem,
     register,
     isDisabled,
     unregister,
@@ -128,16 +128,19 @@ export function useSelectionItem(
   const id = idProp || uuid;
   const ref = React.useRef<any>(null);
 
-  const isHighlighted = highlightedId === id;
-  const isSelected = selectedId === id;
+  const isHighlighted = highlightedItem ? highlightedItem.id === id : false;
+  const isSelected = selectedItem ? selectedItem.id === id : false;
+
+  const newItem = { id, ref, value };
 
   React.useLayoutEffect(() => {
     if (isDisabled && !isFocusable) return;
-    register(id, ref, value);
+    register(newItem);
     return () => {
       unregister(id);
     };
-  }, [id, isDisabled, isFocusable, register, unregister, value]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isDisabled, isFocusable]);
 
-  return { id, ref, isHighlighted, isSelected };
+  return { item: newItem, isHighlighted, isSelected };
 }

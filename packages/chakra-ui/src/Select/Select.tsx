@@ -8,128 +8,48 @@ import {
   usePrevious,
 } from "@chakra-ui/hooks";
 import { Box, SystemProps } from "@chakra-ui/layout";
-import { composeEventHandlers, normalizeEventKey } from "@chakra-ui/utils";
+import {
+  composeEventHandlers,
+  normalizeEventKey,
+  createOnKeyDown,
+} from "@chakra-ui/utils";
 import React, {
   Children,
   cloneElement,
   forwardRef,
   isValidElement,
-  useCallback,
   useEffect,
   useRef,
   useState,
   useMemo,
+  useLayoutEffect,
 } from "react";
 import { Item, State } from "./reducer";
 import scrollIntoView from "scroll-into-view-if-needed";
-import { useDeepCompareMemo } from "use-deep-compare";
 import { useSelectionState, Selection, useSelectionItem } from "./hook";
 
-/////////////////////////////////////////////////////////////////////////////////
-
-type Option = Item;
-
-interface OptionProps {
-  value: NonNullable<Option["value"]>;
-  id?: Option["id"];
-  children: React.ReactNode;
-  isDisabled?: boolean;
-  isFocusable?: boolean;
-  onMouseEnter?: React.MouseEventHandler<any>;
-  onMouseLeave?: React.MouseEventHandler<any>;
-  onClick?: React.MouseEventHandler<any>;
-  onKeyDown?: React.KeyboardEventHandler<any>;
-}
-
-/////////////////////////////////////////////////////////////////////////////////
-
-const Option = forwardRef(
-  (
-    {
-      value,
-      id: idProp,
-      isDisabled,
-      isFocusable,
-      onMouseEnter,
-      onMouseLeave,
-      onKeyDown,
-      onClick,
-      ...rest
-    }: OptionProps,
-    forwardedRef: React.Ref<any>,
-  ) => {
-    const { select, optionProps } = useSelectContext();
-    const { id, ref: __ref, isSelected, isHighlighted } = useSelectionItem({
-      ...select,
-      id: idProp,
-      value,
-      isDisabled,
-      isFocusable,
-    });
-
-    const ref = useForkRef(forwardedRef, __ref);
-
-    const getBg = (): SystemProps["bg"] => {
-      if (isHighlighted) {
-        return isSelected ? "blue.500" : "blue.50";
-      } else if (isSelected) {
-        return "blue.400";
-      } else {
-        return undefined;
-      }
-    };
-
-    return (
-      <Box
-        role="option"
-        data-chakra-select-option=""
-        aria-selected={isHighlighted ? true : undefined}
-        aria-disabled={isDisabled ? true : undefined}
-        tabIndex={-1}
-        ref={ref}
-        onMouseEnter={composeEventHandlers(onMouseEnter, () => {
-          optionProps.eventHandlers.onMouseEnter(id);
-        })}
-        onMouseLeave={composeEventHandlers(onMouseLeave, () => {
-          optionProps.eventHandlers.onMouseLeave();
-        })}
-        onMouseDown={event => {
-          event.preventDefault();
-        }}
-        onClick={composeEventHandlers(onClick, () => {
-          optionProps.eventHandlers.onClick(id);
-        })}
-        cursor="pointer"
-        backgroundColor={getBg()}
-        {...rest}
-      />
-    );
-  },
-);
+console.clear();
 
 /////////////////////////////////////////////////////////////////////////////////
 
 interface SelectContext {
   select: Selection;
   isOpen: boolean;
-  optionProps: {
-    eventHandlers: Record<string, Function>;
-  };
+  openMenu: () => void;
+  closeMenu: () => void;
   controlProps: {
     id: string;
     ref: (React.Ref<any>)[];
-    eventHandlers: Record<string, Function>;
   };
   menuProps: {
     id: string;
     ref: (React.Ref<any>)[];
-    eventHandlers: Record<string, Function>;
     style?: React.CSSProperties;
     placement?: string;
   };
 }
 
-const [useSelectContext, SelectProvider] = useCreateContext<SelectContext>();
+const [useSelectContext, SelectProvider] = useCreateContext<any>();
 
 /////////////////////////////////////////////////////////////////////////////////
 /**
@@ -212,22 +132,24 @@ function useRapidKeydown() {
 
 function useScrollIntoView(
   items: State["items"],
-  highlightedId: Item["id"] | null,
+  highlightedItem: Item | null,
   listBoxRef: React.RefObject<any>,
+  isOpen: boolean,
 ) {
   useEffect(() => {
-    if (!highlightedId) return;
+    if (isOpen) {
+      if (!highlightedItem) return;
 
-    const scrollOption = items.find(item => item.id === highlightedId);
-    if (scrollOption && scrollOption.ref && listBoxRef.current) {
-      scrollIntoView(scrollOption.ref.current, {
-        boundary: listBoxRef.current,
-        behavior: "instant",
-        block: "nearest",
-        scrollMode: "if-needed",
-      });
+      if (highlightedItem && highlightedItem.ref && listBoxRef.current) {
+        scrollIntoView(highlightedItem.ref.current, {
+          boundary: listBoxRef.current,
+          behavior: "instant",
+          block: "nearest",
+          scrollMode: "if-needed",
+        });
+      }
     }
-  }, [highlightedId, items, listBoxRef]);
+  }, [isOpen, highlightedItem, items, listBoxRef]);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -241,7 +163,7 @@ interface SelectProps {
   onClose?: () => void;
   defaultIsOpen?: boolean;
   isOpen?: boolean;
-  onChange?: (value?: Item["value"]) => void;
+  onChange?: (value?: Item["value"] | null) => void;
   autoSelect?: boolean;
   blockScrollOnMount?: boolean;
   closeOnSelect?: boolean;
@@ -250,8 +172,11 @@ interface SelectProps {
   selectOptionOnTab?: boolean;
 }
 
+const [useDisclosure, DisclosureProvider] = useCreateContext<any>();
+const [useRefContext, RefProvider] = useCreateContext<any>();
+
 /////////////////////////////////////////////////////////////////////////////////
-const Select = ({
+export const Select = ({
   defaultIsOpen,
   onOpen,
   isOpen: isOpenProp,
@@ -263,349 +188,258 @@ const Select = ({
   value,
 }: SelectProps) => {
   const select = useSelectionState();
-
-  // const _selectedOption = state.items.find(item => item.value === value);
-
-  // const sharedProps = {
-  //   onSelect(id: string | null, option?: Item) {
-  //     if (option && onChange) {
-  //       onChange(option.value);
-  //     }
-  //   },
-  //   selectedId: _selectedOption ? _selectedOption.id : "",
-  // };
-
-  // To handle the default selected value
-  // useLayoutEffect(() => {
-  //   if (defaultValue && state.items.length) {
-  //     const defaultSelectedOption = state.items.find(
-  //       option => option.value === defaultValue,
-  //     );
-  //     if (defaultSelectedOption) {
-  //       dispatch({ type: "SELECT", payload: { id: defaultSelectedOption.id } });
-  //     }
-  //   }
-  // }, [defaultValue, state.items]);
-
-  // useLayoutEffect(() => {
-  //   if (value && state.items.length) {
-  //     const selectedOption = state.items.find(option => option.value === value);
-  //     if (selectedOption) {
-  //       dispatch({ type: "SELECT", payload: { id: selectedOption.id } });
-  //     }
-  //   }
-  // }, [value, state.items]);
-
   const [isOpen, setIsOpen] = useState(defaultIsOpen || false);
   const [isMousingDown, setIsMousingDown] = useState(false);
 
-  // Store the refs of the components we'll be using
+  const [isOpenControlled, isOpenValue] = useControllableValue(
+    isOpenProp,
+    isOpen,
+  );
 
-  const { reference, popper } = usePopper<HTMLButtonElement, HTMLDivElement>({
-    modifiers: { keepTogether: { enabled: true } },
-    placement: "bottom-start",
-  });
+  const { reference, popper } = usePopper({ placement: "bottom-start" });
+  const controlRef = useRef();
+  const listBoxRef = useRef();
 
-  const controlRef = useRef<HTMLElement>();
-  const listBoxRef = useRef<HTMLDivElement>();
+  const refContext = { reference, popper, controlRef, listBoxRef };
 
-  const { current: valueIsControlled } = useRef(value != null);
+  useScrollIntoView(
+    select.items,
+    select.highlightedItem,
+    listBoxRef,
+    Boolean(isOpenValue),
+  );
 
-  // id generation
-  const uuid = useId();
-  const controlId = `select-control-${uuid}`;
-  const listBoxId = `select-listbox-${uuid}`;
+  useFocusManagement(controlRef, listBoxRef, Boolean(isOpenValue));
 
-  useLogger(select.highlightedId);
-
-  // Focus and scroll Management hook
-  useFocusManagement(controlRef, listBoxRef, isOpen);
-  useScrollIntoView(select.items, select.highlightedId, listBoxRef);
-
-  const [openIsControlled, _isOpen] = useControllableValue(isOpenProp, isOpen);
-
-  const openMenu = () => {
-    if (!openIsControlled) {
-      setIsOpen(true);
-    }
-    if (onOpen) {
-      onOpen();
-    }
-
-    // Side effects after open
-    if (select.selectedId) {
-      select.highlight(select.selectedId);
-    } else {
-      if (!select.highlightedId) {
-        select.first("highlight");
-      }
-    }
+  const open = () => {
+    if (!isOpenControlled) setIsOpen(true);
+    if (onOpen) onOpen();
   };
 
-  const closeMenu = useCallback(() => {
-    if (!openIsControlled) {
-      setIsOpen(false);
-    }
-    if (onClose) {
-      onClose();
-    }
-
+  const close = () => {
+    if (!isOpenControlled) setIsOpen(false);
+    if (onOpen) onOpen();
     setIsMousingDown(false);
-
-    select.reset("highlighted");
-  }, [onClose, openIsControlled, select]);
-
-  const { keys, keyDownAction } = useRapidKeydown();
-
-  const controlEventHandlers = {
-    onKeyDown: (event: KeyboardEvent) => {
-      const eventKey = normalizeEventKey(event);
-      const isOpenKey = ["ArrowUp", "ArrowDown", " "].includes(eventKey);
-
-      if (isOpenKey) {
-        openMenu();
-        return;
-      }
-
-      keyDownAction(event, characters => select.search(characters, "select"));
-
-      if (eventKey === "ArrowLeft") {
-        select.previous("select");
-      }
-
-      if (eventKey === "ArrowRight") {
-        select.next("select");
-      }
-
-      if (eventKey === "Home") {
-        select.first("select");
-      }
-
-      if (eventKey === "End") {
-        select.last("select");
-      }
-    },
-    onMouseDown: () => {
-      if (_isOpen) {
-        setIsMousingDown(true);
-      }
-    },
-    onClick: (event: MouseEvent) => {
-      event.preventDefault();
-      if (document.activeElement !== event.target) {
-        (event.target as HTMLElement).focus();
-      }
-      if (_isOpen) {
-        closeMenu();
-      } else {
-        openMenu();
-      }
-    },
   };
 
-  const rAF = (function() {
-    return (
-      window.requestAnimationFrame ||
-      window.webkitRequestAnimationFrame ||
-      function(callback) {
-        window.setTimeout(callback, 1000 / 60);
-      }
-    );
-  })();
-
-  const moveDown = () => {
-    rAF(() => {
-      if (select.highlightedId == null) {
-        select.first("highlight");
-      } else {
-        select.next("highlight");
-      }
-    });
+  const toggle = () => {
+    const action = isOpenValue ? close : open;
+    action();
   };
 
-  const listBoxEventHandlers = {
-    onKeyDown: (event: KeyboardEvent) => {
-      const eventKey = normalizeEventKey(event);
+  const prevIsOpen = usePrevious(isOpenValue);
 
-      // if (eventKey === "Enter") {
-      //   event.preventDefault();
-      //   if (
-      //     select.highlightedId != null &&
-      //     select.highlightedId != select.selectedId
-      //   ) {
-      //     select.select(null); // setting to null use the `highlightedId`
-      //   }
-      //   closeMenu();
-      // }
+  useEffect(() => {
+    if (prevIsOpen && !isOpenValue) {
+      select.reset("highlighted");
+      return;
+    }
 
-      // keyDownAction(event, keys => select.search(keys, "highlight"));
-
-      // if (eventKey === "Escape") {
-      //   closeMenu();
-      // }
-
-      if (eventKey === "ArrowDown") {
-        event.preventDefault();
-        moveDown();
-        // if (select.highlightedId == null) {
-        //   select.first("highlight");
-        // } else {
-        //   select.next("highlight");
-        // }
-      }
-
-      if (eventKey === "ArrowUp") {
-        event.preventDefault();
-        if (select.highlightedId == null) {
-          select.last("highlight");
-        } else {
-          select.previous("highlight");
+    if (isOpen) {
+      if (select.selectedItem) {
+        select.highlight(select.selectedItem);
+      } else {
+        if (!select.highlightedItem) {
+          select.first("highlight");
         }
       }
+    }
+  }, [isOpen, isOpenValue, prevIsOpen]);
 
-      // if (eventKey === "Home") {
-      //   event.preventDefault();
-      //   select.first("highlight");
-      // }
+  const selectOption = (option: Item, highlightOnSelect?: boolean) => {
+    select.select(option, highlightOnSelect);
+    onChange && onChange(option.value);
+    close();
+  };
 
-      // if (eventKey === "End") {
-      //   event.preventDefault();
-      //   select.last("highlight");
-      // }
-
-      // if (eventKey === "Tab") {
-      //   if (selectOptionOnTab) {
-      //     event.preventDefault();
-      //     select.select(null);
-      //     closeMenu();
-      //   }
-      // }
-    },
-    onBlur: (event: FocusEvent) => {
-      const shouldCloseMenu =
-        !isMousingDown &&
-        listBoxRef.current &&
-        !listBoxRef.current.contains((event.relatedTarget ||
-          document.activeElement) as HTMLElement);
-
-      if (shouldCloseMenu) {
-        closeMenu();
+  useLayoutEffect(() => {
+    if (defaultValue && select.items.length) {
+      const option = select.items.find(option => option.value === defaultValue);
+      if (option) {
+        select.select(option, true);
       }
-    },
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [select.items]);
+
+  useLayoutEffect(() => {
+    if (value && select.items.length) {
+      const option = select.items.find(option => option.value === value);
+      if (option) {
+        select.select(option, true);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value, select.items]);
+
+  const selectContext = useMemo(() => select, Object.values(select));
+  const disclosureContext = {
+    isOpen: Boolean(isOpenValue),
+    open,
+    close,
+    toggle,
+    isMousingDown,
+    setIsMousingDown,
+    selectOption,
   };
-
-  const optionEventHandlers = {
-    onMouseEnter: (id: Item["id"]) => select.highlight(id),
-    onMouseLeave: () => select.reset("highlighted"),
-    onClick: (id: Item["id"]) => {
-      select.select(id);
-      closeMenu();
-    },
-  };
-
-  const context = {
-    select,
-    isOpen: _isOpen as boolean,
-    optionProps: {
-      eventHandlers: optionEventHandlers,
-    },
-    controlProps: {
-      ...reference,
-      ref: [reference.ref, controlRef],
-      id: controlId,
-      eventHandlers: controlEventHandlers,
-    },
-    menuProps: {
-      ...popper,
-      ref: [popper.ref, listBoxRef],
-      id: listBoxId,
-      eventHandlers: listBoxEventHandlers,
-    },
-  };
-
-  // const context = useDeepCompareMemo<SelectContext>(
-  //   () => ({
-  //     select,
-  //     isOpen: _isOpen as boolean,
-  //     optionProps: {
-  //       eventHandlers: optionEventHandlers,
-  //     },
-  //     controlProps: {
-  //       ...reference,
-  //       ref: [reference.ref, controlRef],
-  //       id: controlId,
-  //       eventHandlers: controlEventHandlers,
-  //     },
-  //     menuProps: {
-  //       ...popper,
-  //       ref: [popper.ref, listBoxRef],
-  //       id: listBoxId,
-  //       eventHandlers: listBoxEventHandlers,
-  //     },
-  //   }),
-  //   [select],
-  // );
-
-  return <SelectProvider value={context}>{children}</SelectProvider>;
+  return (
+    <RefProvider value={refContext}>
+      <DisclosureProvider value={disclosureContext}>
+        <SelectProvider value={selectContext}>{children}</SelectProvider>
+      </DisclosureProvider>
+    </RefProvider>
+  );
 };
-
 /////////////////////////////////////////////////////////////////////////////////
 
-const SelectControl = forwardRef(
-  (
-    props: {
-      isReadOnly?: boolean;
-      isDisabled?: boolean;
-      isInvalid?: boolean;
-      children?: React.ReactNode;
-    },
-    ref,
-  ) => {
-    const { select, isOpen, controlProps, menuProps } = useSelectContext();
-    const controlRef = useForkRef(ref, ...controlProps.ref);
-    const selected = select.items.find(item => item.id === select.selectedId);
-    return (
-      <button
-        ref={controlRef}
-        type="button"
-        id={controlProps.id}
-        aria-haspopup="listbox"
-        aria-expanded={isOpen}
-        aria-controls={menuProps.id}
-        style={{ minWidth: 80, textAlign: "left" }}
-        {...controlProps.eventHandlers}
-        {...props}
-      >
-        {selected ? (selected.ref.current as Node).textContent : "Select"}
-      </button>
-    );
-  },
-);
+export const Option = forwardRef((props: any, forwardedRef: React.Ref<any>) => {
+  const select = useSelectContext();
+  const disclosure = useDisclosure();
 
-/////////////////////////////////////////////////////////////////////////////////
-
-const SelectMenu = forwardRef((props: any, ref: React.Ref<any>) => {
-  const { select, isOpen, menuProps } = useSelectContext();
-  const menuRef = useForkRef(ref, ...menuProps.ref);
+  const { item, isHighlighted } = useSelectionItem({
+    ...select,
+    ...props,
+  });
 
   return (
-    <Box
-      as="ul"
-      tabIndex={0}
-      hidden={!isOpen}
-      role="listbox"
-      aria-activedescendant={select.highlightedId || ""}
-      ref={menuRef}
-      id={menuProps.id}
-      data-placement={menuProps.placement}
-      style={menuProps.style}
-      width="240px"
-      shadow="lg"
-      outline="0"
-      p={5}
-      {...menuProps.eventHandlers}
+    <div
+      id={item.id}
+      ref={item.ref}
+      data-value={item.value}
+      role="option"
+      aria-selected={isHighlighted ? "true" : undefined}
+      onMouseEnter={() => {
+        if (select.highlightedItem && item.id === select.highlightedItem.id) {
+          return;
+        }
+        select.highlight(item);
+      }}
+      onMouseLeave={() => {
+        select.reset("highlighted");
+      }}
+      onClick={() => {
+        if (item.id === select.selectedItem.id) {
+          disclosure.close();
+        } else {
+          disclosure.selectOption(item);
+        }
+      }}
+      style={{ background: isHighlighted ? "pink" : "white" }}
+    >
+      {props.children}
+    </div>
+  );
+});
+
+/////////////////////////////////////////////////////////////////////////////////
+
+export const SelectControl = forwardRef((props: any, ref) => {
+  const select = useSelectContext();
+  const disclosure = useDisclosure();
+  const refs = useRefContext();
+
+  const buttonRef = useForkRef(refs.controlRef, refs.reference.ref, ref);
+  const { keyDownAction } = useRapidKeydown();
+  return (
+    <button
+      ref={buttonRef}
+      type="button"
+      aria-expanded={disclosure.isOpen}
+      aria-haspopup="listbox"
+      style={{ minWidth: 80, textAlign: "left" }}
+      onClick={disclosure.toggle}
+      onMouseDown={() => {
+        if (disclosure.isOpen) {
+          disclosure.setIsMousingDown(true);
+        }
+      }}
+      onKeyDown={createOnKeyDown({
+        onKeyDown: event =>
+          keyDownAction(event as any, keys => select.search(keys, "select")),
+        keyMap: {
+          ArrowUp: disclosure.open,
+          ArrowDown: disclosure.open,
+          ArrowRight: () => select.next("select"),
+          ArrowLeft: () => select.previous("select"),
+          Home: () => select.first("select"),
+          End: () => select.last("select"),
+          " ": event => {
+            event && event.preventDefault();
+            disclosure.toggle();
+          },
+        },
+      })}
       {...props}
-    />
+    >
+      {select.selectedItem
+        ? (select.selectedItem.ref.current as Node).textContent
+        : "Select"}
+    </button>
+  );
+});
+
+/////////////////////////////////////////////////////////////////////////////////
+
+export const SelectMenu = forwardRef((props: any, ref: React.Ref<any>) => {
+  const select = useSelectContext();
+  const disclosure = useDisclosure();
+  const refs = useRefContext();
+
+  const { keyDownAction } = useRapidKeydown();
+  const menuRef = useForkRef(refs.listBoxRef, refs.popper.ref, ref);
+
+  return (
+    <div
+      ref={menuRef}
+      hidden={!disclosure.isOpen}
+      tabIndex={0}
+      role="listbox"
+      style={{
+        maxWidth: 400,
+        padding: 40,
+        maxHeight: "90vh",
+        overflow: "auto",
+        ...refs.popper.style,
+      }}
+      data-placement={refs.popper.placement}
+      onKeyDown={createOnKeyDown({
+        onKeyDown: event =>
+          keyDownAction(event as any, keys => select.search(keys, "highlight")),
+        keyMap: {
+          ArrowDown: () => {
+            select.next("highlight");
+          },
+          ArrowUp: () => select.previous("highlight"),
+          Enter: () => {
+            select.select(null);
+            disclosure.close();
+          },
+          Tab: event => {
+            event && event.preventDefault();
+            select.select(null);
+            disclosure.close();
+          },
+          Escape: event => {
+            event && event.preventDefault();
+            select.reset("highlighted");
+            disclosure.close();
+          },
+        },
+      })}
+      onBlur={event => {
+        const shouldClose =
+          !disclosure.isMousingDown &&
+          refs.listBoxRef.current &&
+          !refs.listBoxRef.current.contains((event.relatedTarget ||
+            document.activeElement) as HTMLElement);
+
+        if (shouldClose) {
+          disclosure.close();
+        }
+      }}
+    >
+      {props.children}
+    </div>
   );
 });
 
@@ -623,7 +457,7 @@ const optGroupStyle = {
   fontSize: "0.8em",
 };
 
-const OptionGroup = forwardRef(
+export const OptionGroup = forwardRef(
   (
     { children, isDisabled, label, ...props }: OptionGroupProp,
     ref: React.Ref<any>,
@@ -648,6 +482,3 @@ const OptionGroup = forwardRef(
     );
   },
 );
-
-////////////////////////////////////////////////////////////////////////////////////
-export { Select, SelectControl, SelectMenu, Option, OptionGroup };

@@ -39,14 +39,6 @@ export function getItemIndex<T>(items: T[], item: T) {
 }
 
 //////////////////////////////////////////////////////////////
-
-export function getValue<T>(valueProp: T, valueState: T) {
-  const isControlled = valueProp != null;
-  const value = isControlled ? valueProp : valueState;
-  return [value, isControlled] as [T, boolean];
-}
-
-//////////////////////////////////////////////////////////////
 /**
  * Gets the next highlighted or selected option based on the typed characters
  */

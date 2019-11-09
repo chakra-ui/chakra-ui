@@ -1,7 +1,7 @@
-import { getValue, getNextIndex, getNextOptionFromKeys } from "./utils";
+import { getNextIndex, getNextOptionFromKeys } from "./utils";
 
 // The possible event types within any selection widget
-export type EventType =
+export type EventMeta =
   | "mouse"
   | "keyboard"
   | "character"
@@ -11,7 +11,7 @@ export type EventType =
 export interface ActionsPayload extends Item {
   loop?: boolean;
   characters?: string;
-  lastEvent?: EventType;
+  lastEvent?: EventMeta;
   selectOnHighlight?: boolean;
   highlightOnSelect?: boolean;
 }
@@ -24,19 +24,19 @@ export interface Item {
 
 export interface State {
   items: Item[];
-  lastEvent: EventType | "";
-  selectedId: string | null;
-  highlightedId: string | null;
+  lastEvent: EventMeta | "";
+  selectedItem: Item | null;
+  highlightedItem: Item | null;
   orientation?: "horizontal" | "vertical";
 }
 
 type KeyAction = "select" | "highlight";
 
 export type Action =
-  | { type: "REGISTER"; id: Item["id"]; ref: Item["ref"]; value: Item["value"] }
+  | { type: "REGISTER"; item: Item }
   | { type: "UNREGISTER"; id: Item["id"] }
-  | { type: "HIGHLIGHT"; id: Item["id"] | null; selectOnHighlight?: boolean }
-  | { type: "SELECT"; id: Item["id"] | null; highlightOnSelect?: boolean }
+  | { type: "HIGHLIGHT"; item: Item | null; selectOnHighlight?: boolean }
+  | { type: "SELECT"; item: Item | null; highlightOnSelect?: boolean }
   | {
       type: "RESET";
       action: "highlighted" | "selected" | "both";
@@ -65,27 +65,24 @@ export type Action =
 
 ////////////////////////////////////////////////////////////////
 
-function register(
-  state: State,
-  action: Pick<ActionsPayload, "ref" | "id" | "value">,
-) {
-  const { id, ref, value } = action;
+function register(state: State, action: { item: Item }) {
+  const { item: newItem } = action;
 
   if (state.items.length === 0) {
     return {
       ...state,
-      items: [{ id, ref, value }],
+      items: [newItem],
     };
   }
 
-  const index = state.items.findIndex(item => item.id === id);
+  const index = state.items.indexOf(newItem);
   if (index >= 0) return state;
 
   const indexToInsertAt = state.items.findIndex(item => {
-    if (!item.ref.current || !ref.current) return false;
+    if (!item.ref.current || !newItem.ref.current) return false;
 
     return Boolean(
-      item.ref.current.compareDocumentPosition(ref.current) &
+      item.ref.current.compareDocumentPosition(newItem.ref.current) &
         Node.DOCUMENT_POSITION_PRECEDING,
     );
   });
@@ -93,7 +90,7 @@ function register(
   if (indexToInsertAt === -1) {
     return {
       ...state,
-      items: [...state.items, { id, ref, value }],
+      items: [...state.items, newItem],
     };
   }
 
@@ -101,7 +98,7 @@ function register(
     ...state,
     items: [
       ...state.items.slice(0, indexToInsertAt),
-      { id, ref, value },
+      newItem,
       ...state.items.slice(indexToInsertAt),
     ],
   };
@@ -119,12 +116,11 @@ function unRegister(state: State, action: { id: Item["id"] }) {
 
   return {
     ...state,
-    selectedId:
-      state.selectedId && state.selectedId === id
-        ? newItems.length === 0
-          ? null
-          : newItems[0]["id"]
-        : state.selectedId,
+    selectedItem: state.selectedItem
+      ? newItems.length === 0
+        ? null
+        : newItems[0]
+      : state.selectedItem,
     items: newItems,
   };
 }
@@ -133,20 +129,18 @@ function unRegister(state: State, action: { id: Item["id"] }) {
 
 function highlight(
   state: State,
-  action: { id: Item["id"] | null; selectOnHighlight?: boolean },
+  action: { item: Item | null; selectOnHighlight?: boolean },
 ) {
-  const { id, selectOnHighlight } = action;
-  const nextFocusedItem = state.items.find(item => item.id === id);
-
-  if (!nextFocusedItem) return state;
+  const { item, selectOnHighlight } = action;
+  if (!item) return state;
 
   const nextState: State = {
     ...state,
-    highlightedId: id,
+    highlightedItem: item,
   };
 
   if (selectOnHighlight) {
-    nextState["selectedId"] = id;
+    nextState["selectedItem"] = item;
   }
 
   return nextState;
@@ -156,21 +150,20 @@ function highlight(
 
 function select(
   state: State,
-  action: { id: Item["id"] | null; highlightOnSelect?: boolean },
+  action: { item: Item | null; highlightOnSelect?: boolean },
 ): State {
-  const { id, highlightOnSelect } = action;
-  const __id = id != null ? id : state.highlightedId;
-  const nextFocusedItem = state.items.find(item => item.id === __id);
-  if (!nextFocusedItem) return state;
+  const { item, highlightOnSelect } = action;
+  const nextItem = item != null ? item : state.highlightedItem;
+
+  if (!nextItem) return state;
 
   const newState: State = {
     ...state,
-    lastEvent: "keyboard",
-    selectedId: __id,
+    selectedItem: nextItem,
   };
 
   if (highlightOnSelect) {
-    newState["highlightedId"] = __id;
+    newState["highlightedItem"] = item;
   }
 
   return newState;
@@ -184,10 +177,12 @@ export function nextOrPrevious(
   type: "next" | "previous",
 ) {
   const { loop, action: __action } = action;
-  const id = __action === "select" ? state.selectedId : state.highlightedId;
-  const index = state.items.findIndex(item => item.id === id);
+  const currentItem =
+    __action === "select" ? state.selectedItem : state.highlightedItem;
 
-  if (index === -1) return state;
+  if (!currentItem) return state;
+
+  const index = state.items.findIndex(item => item.id === currentItem.id);
 
   const nextIndex = getNextIndex({
     currentIndex: index,
@@ -196,12 +191,12 @@ export function nextOrPrevious(
     step: type === "next" ? 1 : -1,
   });
 
-  const nextItemId = state.items[nextIndex]["id"];
+  const nextItem = state.items[nextIndex];
 
   if (__action === "select") {
-    return select(state, { id: nextItemId });
+    return select(state, { item: nextItem });
   } else {
-    return highlight(state, { id: nextItemId });
+    return highlight(state, { item: nextItem });
   }
 }
 
@@ -213,17 +208,15 @@ export function firstOrLast(
   type: "first" | "last",
 ) {
   const { action: __action } = action;
-  const nextItemId =
-    type === "first"
-      ? state.items[0]["id"]
-      : state.items[state.items.length - 1]["id"];
+  const nextItem =
+    type === "first" ? state.items[0] : state.items[state.items.length - 1];
 
-  if (!nextItemId) return state;
+  if (!nextItem) return state;
 
   if (__action === "select") {
-    return select(state, { id: nextItemId });
+    return select(state, { item: nextItem });
   } else {
-    return highlight(state, { id: nextItemId });
+    return highlight(state, { item: nextItem });
   }
 }
 
@@ -237,11 +230,11 @@ export function reset(
   const newState = { ...state };
 
   if (__action === "highlighted" || __action === "both") {
-    newState["highlightedId"] = null;
+    newState["highlightedItem"] = null;
   }
 
   if (__action === "selected" || __action === "both") {
-    newState["selectedId"] = null;
+    newState["selectedItem"] = null;
   }
 
   return newState;
@@ -254,8 +247,8 @@ export function search(
   action: { characters: string; action: "select" | "highlight" },
 ) {
   const { characters, action: __action } = action;
-  const id = __action === "select" ? state.selectedId : state.highlightedId;
-  const currentItem = state.items.find(item => item.id === id);
+  const currentItem =
+    __action === "select" ? state.selectedItem : state.highlightedItem;
 
   const nextOption = getNextOptionFromKeys({
     items: state.items,
@@ -271,9 +264,9 @@ export function search(
 
   const nextState = { ...state };
   if (__action === "select") {
-    nextState["selectedId"] = nextOption.id;
+    nextState["selectedItem"] = nextOption;
   } else {
-    nextState["highlightedId"] = nextOption.id;
+    nextState["highlightedItem"] = nextOption;
   }
 
   return nextState;
