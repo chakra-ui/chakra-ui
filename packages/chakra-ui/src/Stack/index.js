@@ -37,12 +37,12 @@ const Stack = ({
     _direction = "column";
   }
 
-  const validChildren = children.filter(isValidElement);
+  const validChildrenArray = Children.toArray(children).filter(isValidElement);
 
   return (
     <Flex align={align} justify={justify} direction={_direction} {...rest}>
-      {Children.map(validChildren, (child, index) => {
-        let isLastChild = validChildren.length === index + 1;
+      {validChildrenArray.map((child, index) => {
+        let isLastChild = validChildrenArray.length === index + 1;
         let spacingProps = _isInline
           ? { [_isReversed ? "ml" : "mr"]: isLastChild ? null : spacing }
           : { [_isReversed ? "mt" : "mb"]: isLastChild ? null : spacing };
