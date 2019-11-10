@@ -6,6 +6,7 @@ const PseudoSelectors = {
   hover: "&:hover, &[data-hover=true]",
   active: "&:active, &[data-active=true]",
   focus: "&:focus, &[data-focus=true]",
+  loading: "&[data-loading=true], &[aria-busy=true]",
   visited: "&:visited",
   even: "&:nth-of-type(even)",
   odd: "&:nth-of-type(odd)",
@@ -152,6 +153,11 @@ export interface PseudoProps {
    * Useful for inputs
    */
   _placeholder?: SystemProps;
+  /**
+   * Styles for CSS Selector `&[aria-busy=true]` or `&[data-loading=true]`.
+   * Useful for styling loading states
+   */
+  _loading?: SystemProps;
 }
 
 export const pseudo = (props: PseudoProps): object =>
@@ -176,6 +182,7 @@ export const pseudo = (props: PseudoProps): object =>
     [PseudoSelectors.checked]: tx(props._checked),
     [PseudoSelectors.pressed]: tx(props._pressed),
     [PseudoSelectors.groupHover]: tx(props._groupHover),
+    [PseudoSelectors.loading]: tx(props._loading),
     "&:before": tx(props._before),
     "&:after": tx(props._after),
     "&:focus-within": tx(props._focusWithin),

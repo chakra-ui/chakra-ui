@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 import { ThemeProvider, CSSReset } from "@chakra-ui/theme";
 import {
   Select,
-  SelectControl,
+  SelectButton,
   SelectMenu,
   Option,
   OptionGroup,
@@ -30,7 +30,7 @@ export function SelectExample() {
         //   setVal(value);
         // }}
       >
-        <SelectControl />
+        <SelectButton />
         <SelectMenu>
           <Option value="Niger">Niger</Option>
           <Option value="Nigeria">Nigeria</Option>
@@ -280,7 +280,7 @@ export function LotsExample() {
           console.log(value);
         }}
       >
-        <SelectControl />
+        <SelectButton />
         <SelectMenu maxHeight="90vh" overflow="auto" width="auto">
           {country_list.map(country => (
             <Option id={country} value={country}>

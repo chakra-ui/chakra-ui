@@ -8,11 +8,7 @@ import {
   usePrevious,
 } from "@chakra-ui/hooks";
 import { Box, SystemProps } from "@chakra-ui/layout";
-import {
-  composeEventHandlers,
-  normalizeEventKey,
-  createOnKeyDown,
-} from "@chakra-ui/utils";
+import { composeEventHandlers, createOnKeyDown } from "@chakra-ui/utils";
 import React, {
   Children,
   cloneElement,
@@ -170,6 +166,8 @@ interface SelectProps {
   openOnFocus?: boolean;
   autoFocusOption?: boolean;
   selectOptionOnTab?: boolean;
+  useDrawerOnMobile?: boolean;
+  useModalOnMobile?: boolean;
 }
 
 const [useDisclosure, DisclosureProvider] = useCreateContext<any>();
@@ -333,7 +331,7 @@ export const Option = forwardRef((props: any, forwardedRef: React.Ref<any>) => {
 
 /////////////////////////////////////////////////////////////////////////////////
 
-export const SelectControl = forwardRef((props: any, ref) => {
+export const SelectButton = forwardRef((props: any, ref) => {
   const select = useSelectContext();
   const disclosure = useDisclosure();
   const refs = useRefContext();

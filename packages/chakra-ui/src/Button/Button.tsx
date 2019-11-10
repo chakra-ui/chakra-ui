@@ -80,6 +80,10 @@ export interface ButtonOptions {
    * Use the styled-system tokens or add custom values as a string
    */
   iconSpacing?: SystemProps["margin"];
+  /**
+   * Use a custom spinner within the button, when `isLoading` is true
+   */
+  spinnerComponent?: React.ComponentType;
 }
 
 export type ButtonProps<P, T = HTMLButtonElement> = Merge<
@@ -102,6 +106,7 @@ const Button = forwardRef(function Button<P, T>(
     iconSpacing = 2,
     type = "button",
     size = "md",
+    spinnerComponent: SpinnerComp,
     ...rest
   }: ButtonProps<P, T>,
   ref: React.Ref<T>,
@@ -124,20 +129,24 @@ const Button = forwardRef(function Button<P, T>(
       fontWeight="semibold"
       width={isFullWidth ? "full" : undefined}
       data-active={isActive ? "true" : undefined}
+      data-loading={isLoading ? "true" : undefined}
       {...buttonStyleProps}
       {...rest}
     >
       {leftIcon && !isLoading && (
         <ButtonIcon ml={-1} mr={iconSpacing} icon={leftIcon} />
       )}
-      {isLoading && (
-        <Spinner
-          position={loadingText ? "relative" : "absolute"}
-          mr={loadingText ? iconSpacing : 0}
-          color="currentColor"
-          size="1em"
-        />
-      )}
+      {isLoading &&
+        (SpinnerComp ? (
+          <SpinnerComp />
+        ) : (
+          <Spinner
+            position={loadingText ? "relative" : "absolute"}
+            mr={loadingText ? iconSpacing : 0}
+            color="currentColor"
+            size="1em"
+          />
+        ))}
       {isLoading
         ? loadingText || (
             <Box as="span" opacity={0}>

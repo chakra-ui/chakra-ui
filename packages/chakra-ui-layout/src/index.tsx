@@ -1,6 +1,7 @@
 export * from "./AspectRatioBox";
 export * from "./Box";
 export * from "./Css";
+export * from "./Divider";
 export * from "./Flex";
 export * from "./Grid";
 export * from "./Heading";

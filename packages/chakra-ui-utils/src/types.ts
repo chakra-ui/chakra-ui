@@ -90,3 +90,9 @@ export type FunctionArguments<T extends Function> = T extends (
 ) => any
   ? R
   : never;
+
+export type GenericReactElement<P> = React.ReactElement<P> & {
+  displayName: string;
+  defaultProps: Partial<P>;
+  [key: string]: any;
+};

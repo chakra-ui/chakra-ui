@@ -1,5 +1,5 @@
-import { useTheme } from "../ThemeProvider";
-import { useColorMode } from "../ColorModeProvider";
+import { useTheme, useColorMode } from "@chakra-ui/theme";
+import { SystemProps } from "@chakra-ui/layout";
 
 export const useMenuListStyle = () => {
   const { colorMode } = useColorMode();
@@ -27,14 +27,14 @@ export const useMenuListStyle = () => {
 |--------------------------------------------------
 */
 
-const baseProps = {
+const baseProps: SystemProps = {
   width: "full",
   flex: " 0 0 auto",
   userSelect: "none",
   transition: "background-color 220ms, color 220ms",
 };
 
-const interactionProps = ({ colorMode }) => {
+const interactionProps = ({ colorMode }: { colorMode: "light" | "dark" }) => {
   const _focusColor = { light: "gray.100", dark: "whiteAlpha.100" };
   const _activeColor = { light: "gray.200", dark: "whiteAlpha.200" };
 
@@ -53,7 +53,7 @@ const interactionProps = ({ colorMode }) => {
   };
 };
 
-export const useMenuItemStyle = () => {
+export const useMenuItemStyle = (): SystemProps => {
   const theme = useTheme();
   const { colorMode } = useColorMode();
   const props = { theme, colorMode };

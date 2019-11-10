@@ -1,6 +1,7 @@
 export { default as useFocusEffect } from "./useFocusEffect";
 export { default as useCheckbox } from "./useCheckbox";
 export { default as useCreateContext } from "./useCreateContext";
+export { default as useDisclosure } from "./useDisclosure";
 export { default as useButton } from "./useButton";
 export { default as usePrevious } from "./usePrevious";
 export { default as useAriaHidden } from "./useAriaHidden";
@@ -16,3 +17,7 @@ export * from "./usePopper";
 
 export { default as useNumberInput } from "./useNumberInput";
 export * from "./useNumberInput";
+
+export * from "./useSelection";
+export { default as useRapidKeyDown } from "./useRapidKeyDown";
+export { default as useUpdateEffect } from "./useUpdateEffect";

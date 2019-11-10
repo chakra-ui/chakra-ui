@@ -150,3 +150,6 @@ Thanks goes to these wonderful people
 This project follows the
 [all-contributors](https://github.com/all-contributors/all-contributors)
 specification. Contributions of any kind welcome!
+
+Testing Supported By<br/>
+<img width="160" src="https://3fxtqy18kygf3on3bu39kh93-wpengine.netdna-ssl.com/wp-content/themes/browserstack/img/browserstack-logo.svg" alt="BrowserStack"/>
