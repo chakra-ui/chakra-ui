@@ -14,7 +14,10 @@ export function hasNegativeTabIndex(element: HTMLElement) {
 }
 
 export function isDisabled(element: HTMLElement) {
-  return Boolean(element.getAttribute("disabled")) == true;
+  return (
+    Boolean(element.getAttribute("disabled")) == true ||
+    Boolean(element.getAttribute("aria-disabled")) == true
+  );
 }
 
 export function hasFocusWithin(element: Element) {
@@ -37,13 +40,12 @@ export function isContentEditable(element: HTMLElement) {
 }
 
 export function isFocusable(element: Element) {
-  if (!isHTMLElement(element)) return false;
-  if (isHidden(element)) return false;
-  if (isDisabled(element)) return false;
+  if (!isHTMLElement(element) || isHidden(element) || isDisabled(element)) {
+    return false;
+  }
 
   const { localName } = element;
   const focusableTags = ["input", "select", "textarea", "button"];
-
   if (focusableTags.indexOf(localName) >= 0) return true;
 
   const others = {

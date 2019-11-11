@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { useId } from "@reach/auto-id";
+import { useId } from "@chakra-ui/hooks";
 import {
   Children,
   cloneElement,
@@ -9,10 +9,9 @@ import {
   useState,
   isValidElement,
 } from "react";
-import { MenuGroup, useMenuContext } from ".";
-import Box from "../Box";
-import Icon from "../Icon";
-import PseudoBox from "../PseudoBox";
+import { MenuGroup, useMenuContext } from "./Menu";
+import { Box } from "@chakra-ui/layout";
+import { Icon } from "../Icon";
 import { useMenuItemStyle } from "./styles";
 
 export const MenuItemOption = forwardRef(
@@ -89,7 +88,7 @@ export const MenuItemOption = forwardRef(
     const styleProps = useMenuItemStyle();
 
     return (
-      <PseudoBox
+      <Box
         ref={ref}
         as="button"
         display="flex"
@@ -120,7 +119,7 @@ export const MenuItemOption = forwardRef(
         <Box textAlign="left" as="span" mx="1rem" flex="1">
           {children}
         </Box>
-      </PseudoBox>
+      </Box>
     );
   },
 );

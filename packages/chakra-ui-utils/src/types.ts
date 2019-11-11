@@ -27,8 +27,8 @@ export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
  * @template P Props
  */
 export type RenderProp<P = {}> =
-  | { render: (props: P) => JSX.Element }
-  | { children: (props: P) => JSX.Element };
+  | { render: (props: P) => React.ReactNode }
+  | { children: (props: P) => React.ReactNode };
 
 export type As<P = any> = React.ReactType<P>;
 
@@ -38,10 +38,9 @@ export type AnyFunction = (...args: any[]) => any;
  * Required
  * @desc Make all types in `T` required
  * @example
- *    type Props = {name?: string; age: number};
- *
- *    type OutputType = Required<Props>;
- * => Output: {name: string; age: number}
+ *  type Input = {name?: string; age: number};
+ *  type Output = Required<Props>;
+ *  // => Result: {name: string; age: number}
  */
 export type Required<T> = {
   [P in keyof T]-?: T[P];
@@ -53,9 +52,8 @@ export type Required<T> = {
  * @example
  *   type Props = { name: string; age: number; visible: boolean };
  *   type DefaultProps = { age: number };
- *
  *   type DuplicateProps = Intersection<Props, DefaultProps>;
- *   `Expect: { age: number; }`
+ *    // => Result: { age: number; }
  */
 export type Intersection<T extends object, U extends object> = Pick<
   T,

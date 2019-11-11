@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/interactive-supports-focus */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+
 import {
   useControllableValue,
   useCreateContext,
@@ -67,7 +70,8 @@ function useFocusManagement(
     if (prevIsOpen && !isOpen && controlRef && controlRef.current) {
       controlRef.current.focus();
     }
-  }, [isOpen, prevIsOpen, listBoxRef, controlRef]);
+    // eslint-disable-next-line
+  }, [isOpen, prevIsOpen]);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -242,6 +246,7 @@ export const Select = ({
         }
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen, isOpenValue, prevIsOpen]);
 
   const selectOption = (option: Item, highlightOnSelect?: boolean) => {
@@ -270,7 +275,9 @@ export const Select = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value, select.items]);
 
+  // eslint-disable-next-line
   const selectContext = useMemo(() => select, Object.values(select));
+
   const disclosureContext = {
     isOpen: Boolean(isOpenValue),
     open,

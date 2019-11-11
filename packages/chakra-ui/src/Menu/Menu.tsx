@@ -1,25 +1,24 @@
 import {
-  useControllableValue,
+  useBlurOutside,
   useCreateContext,
+  useDisclosure,
+  useFocusOnHide,
   useForkRef,
   useId,
-  usePrevious,
-  useLogger,
-  useDisclosure,
+  useIds,
 } from "@chakra-ui/hooks";
 import { Box, BoxProps, Divider, DividerProps, Text } from "@chakra-ui/layout";
 import {
-  composeEventHandlers,
+  composeEventHandlers as compose,
   createOnKeyDown,
+  getAllFocusableIn,
   Merge,
   normalizeEventKey,
-  getAllFocusables,
+  RenderProp,
 } from "@chakra-ui/utils";
 import { PopperOptions } from "popper.js";
-import React, { forwardRef, useRef, useState, useEffect } from "react";
+import React, { forwardRef, useEffect, useRef, useState } from "react";
 import { useMenuItemStyle, useMenuListStyle } from "./styles";
-
-import { useFocusOnHide, useFocusOnShow } from "./hook";
 
 interface MenuContext {
   activeIndex: number;
@@ -42,11 +41,11 @@ interface MenuContext {
 
 const [useMenuContext, MenuContextProvider] = useCreateContext<MenuContext>();
 
-type InternalState = { isOpen?: boolean; onClose?: () => void };
+type ExposedProps = { isOpen?: boolean; onClose?: () => void };
 
 type MenuChildren =
   | { children: React.ReactNode }
-  | { children: (props: InternalState) => React.ReactNode };
+  | { children: RenderProp<ExposedProps> };
 
 interface MenuOptions {
   isOpen?: boolean;
@@ -64,6 +63,16 @@ interface MenuOptions {
 
 export type MenuProps = MenuOptions & MenuChildren;
 
+function isMenuElement(element: HTMLElement) {
+  const role = element.getAttribute("role");
+  const menuRoles = ["menuitem", "menuitemradio", "menuitemcheckbox"];
+
+  // If the element doesn't have a role attribute
+  if (!role) return false;
+
+  return menuRoles.includes(role);
+}
+
 ///////////////////////////////////////////////////////////
 
 const Menu: React.FC<MenuProps> = ({
@@ -80,10 +89,7 @@ const Menu: React.FC<MenuProps> = ({
 }) => {
   const [activeIndex, setActiveIndex] = useState(defaultActiveIndex || -1);
   const disclosure = useDisclosure({ isOpen, onClose, onOpen, defaultIsOpen });
-
-  const uuid = useId();
-  const menuId = `menu-${uuid}`;
-  const buttonId = `menubutton-${uuid}`;
+  const [menuId, buttonId] = useIds(["menu", "menubutton"]);
 
   const focusableItems = useRef<HTMLElement[]>([]);
   const menuRef = useRef<HTMLElement>(null);
@@ -91,13 +97,9 @@ const Menu: React.FC<MenuProps> = ({
 
   useEffect(() => {
     if (disclosure.isOpen && menuRef && menuRef.current) {
-      let focusables = getAllFocusables(menuRef.current);
-      focusables = focusables.filter(node =>
-        ["menuitem", "menuitemradio", "menuitemcheckbox"].includes(
-          node.getAttribute("role") as string,
-        ),
-      );
-      focusableItems.current = menuRef.current ? focusables : [];
+      let focusables = getAllFocusableIn(menuRef.current);
+      focusables = focusables.filter(isMenuElement);
+      focusableItems.current = focusables;
       initTabIndex();
     }
   }, [disclosure.isOpen]);
@@ -108,14 +110,12 @@ const Menu: React.FC<MenuProps> = ({
       focusableItems.current.forEach(node => {
         if (node !== nodeAtIndex) {
           node.setAttribute("tabindex", "-1");
+        } else {
+          nodeAtIndex.setAttribute("tabindex", "0");
         }
       });
-      nodeAtIndex.setAttribute("tabindex", "0");
     }
   };
-
-  useLogger(focusableItems.current);
-  useLogger(disclosure.isOpen);
 
   const resetTabIndex = () => {
     if (focusableItems.current) {
@@ -137,21 +137,12 @@ const Menu: React.FC<MenuProps> = ({
         focusableItems.current[activeIndex].focus();
       updateTabIndex(activeIndex);
     }
-    if (activeIndex === -1 && disclosure.isOpen) {
-      menuRef.current && menuRef.current.focus();
-    }
   }, [activeIndex, disclosure.isOpen, disclosure.prevIsOpen]);
 
   useFocusOnHide(menuRef, {
     autoFocus: true,
     visible: disclosure.isOpen,
     focusRef: buttonRef,
-  });
-
-  useFocusOnShow(menuRef, {
-    autoFocus: true,
-    visible: disclosure.isOpen,
-    focusRef: initialFocusRef,
   });
 
   const focusOnFirstItem = () => {
@@ -163,6 +154,7 @@ const Menu: React.FC<MenuProps> = ({
   const closeMenu = () => {
     disclosure.onClose();
     setActiveIndex(-1);
+    resetTabIndex();
   };
 
   const focusAtIndex = (index: number) => {
@@ -219,8 +211,8 @@ export type MenuButtonProps<P> = Merge<
   MenuButtonOptions
 >;
 
-const MenuButton = forwardRef(function MenuButton<P>(
-  { onClick, onKeyDown, as: Comp = PseudoButton, ...rest }: MenuButtonProps<P>,
+function useMenuButton(
+  props: MenuButtonOptions,
   ref: React.Ref<HTMLButtonElement>,
 ) {
   const {
@@ -235,41 +227,55 @@ const MenuButton = forwardRef(function MenuButton<P>(
     buttonRef,
   } = useMenuContext();
 
-  const menuButtonRef = useForkRef(buttonRef, ref);
+  const onClick = () => {
+    if (isOpen) {
+      closeMenu();
+    } else {
+      if (autoSelect) {
+        focusOnFirstItem();
+      } else {
+        openMenu();
+      }
+    }
+  };
 
-  return (
-    <Comp
-      aria-haspopup="menu"
-      aria-expanded={isOpen}
-      aria-controls={menuId}
-      id={buttonId}
-      role="button"
-      ref={menuButtonRef}
-      onClick={composeEventHandlers(onClick, () => {
-        if (isOpen) {
-          closeMenu();
-        } else {
-          if (autoSelect) {
-            focusOnFirstItem();
-          } else {
-            openMenu();
-          }
-        }
-      })}
-      onKeyDown={composeEventHandlers(onKeyDown, event => {
-        if (event.key === "ArrowDown") {
-          event.preventDefault();
-          focusOnFirstItem();
-        }
+  const onKeyDown = createOnKeyDown({
+    preventDefault: true,
+    keyMap: {
+      ArrowDown: focusOnFirstItem,
+      ArrowUp: focusOnLastItem,
+    },
+  });
 
-        if (event.key === "ArrowUp") {
-          event.preventDefault();
-          focusOnLastItem();
-        }
-      })}
-      {...rest}
-    />
-  );
+  const _ref = useForkRef(buttonRef, ref);
+
+  return {
+    ...props,
+    "aria-haspopup": "menu",
+    "aria-expanded": isOpen,
+    "aria-controls": menuId,
+    "data-active": isOpen,
+    id: buttonId,
+    role: "button",
+    type: "button",
+    ref: _ref,
+    onClick: compose(
+      props.onClick,
+      onClick,
+    ),
+    onKeyDown: compose(
+      props.onKeyDown,
+      onKeyDown,
+    ),
+  };
+}
+
+const MenuButton = forwardRef(function MenuButton<P>(
+  { as: Comp = PseudoButton, ...props }: MenuButtonProps<P>,
+  ref: React.Ref<HTMLButtonElement>,
+) {
+  const menuButton = useMenuButton(props, ref);
+  return <Comp {...menuButton} />;
 }) as <P>(props: MenuButtonProps<P>) => React.ReactElement<MenuButtonProps<P>>;
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -281,10 +287,9 @@ export interface MenuListOptions {
 
 export type MenuListProps<P, T> = Merge<BoxProps<P, T>, MenuListOptions>;
 
-const MenuList = forwardRef(function MenuList<P, T extends HTMLElement>(
-  { onKeyDown, onBlur, ...props }: MenuListProps<P, T>,
-  ref: React.Ref<T>,
-) {
+//////////////////////////////////////////////////////
+
+function useMenuList(props: MenuListOptions, ref: React.Ref<any>) {
   const {
     activeIndex: index,
     isOpen,
@@ -297,15 +302,9 @@ const MenuList = forwardRef(function MenuList<P, T extends HTMLElement>(
     menuId,
     buttonId,
     menuRef,
-    closeOnBlur,
-    placement,
   } = useMenuContext();
 
-  const menulistRef = useForkRef(menuRef, ref);
-
-  const itemCount = focusableItems.current.length;
-
-  const handleKeyDown = createOnKeyDown({
+  const onKeyDown = createOnKeyDown({
     onKeyDown: event => {
       const eventKey = normalizeEventKey(event as any);
       if (/^[a-z0-9_-]$/i.test(eventKey)) {
@@ -321,8 +320,15 @@ const MenuList = forwardRef(function MenuList<P, T extends HTMLElement>(
       }
     },
     keyMap: {
-      ArrowDown: () => focusAtIndex((index + 1) % itemCount),
-      ArrowUp: () => focusAtIndex((index - 1 + itemCount) % itemCount),
+      ArrowDown: () => {
+        const itemCount = focusableItems.current.length;
+        const nextIndex = (index + 1) % itemCount;
+        focusAtIndex(nextIndex);
+      },
+      ArrowUp: () => {
+        const itemCount = focusableItems.current.length;
+        focusAtIndex((index - 1 + itemCount) % itemCount);
+      },
       Home: focusOnFirstItem,
       End: focusOnLastItem,
       Tab: event => event && event.preventDefault(),
@@ -330,41 +336,52 @@ const MenuList = forwardRef(function MenuList<P, T extends HTMLElement>(
     },
   });
 
-  // Close the menu on blur
-  const handleBlur = (event: React.FocusEvent<HTMLElement>) => {
-    if (
-      closeOnBlur &&
-      isOpen &&
-      menuRef.current &&
-      buttonRef.current &&
-      !menuRef.current.contains(event.relatedTarget as HTMLElement) &&
-      !buttonRef.current.contains(event.relatedTarget as HTMLElement)
-    ) {
-      closeMenu();
-    }
+  const onBlur = useBlurOutside(buttonRef, menuRef, {
+    action: closeMenu,
+    visible: isOpen,
+  });
 
-    onBlur && onBlur(event);
+  const _ref = useForkRef(menuRef, ref);
+
+  return {
+    ...props,
+    ref: _ref,
+    isOpen,
+    role: "menu",
+    id: menuId,
+    "aria-labelledby": buttonId,
+    tabIndex: -1,
+    onKeyDown: compose(
+      props.onKeyDown,
+      onKeyDown,
+    ),
+    onBlur: compose(
+      props.onBlur,
+      onBlur,
+    ),
   };
+}
 
+//////////////////////////////////////////////////////
+
+const MenuList = forwardRef(function MenuList<P, T extends HTMLElement>(
+  { onKeyDown, onBlur, ...props }: MenuListProps<P, T>,
+  ref: React.Ref<T>,
+) {
+  const { isOpen, ...menulist } = useMenuList(props, ref);
   const styleProps = useMenuListStyle();
 
   return (
     <Box
       minW="3xs"
       rounded="md"
-      role="menu"
       hidden={!isOpen}
-      ref={menulistRef}
-      id={menuId}
       py={2}
-      aria-labelledby={buttonId}
-      onKeyDown={composeEventHandlers(onKeyDown, handleKeyDown)}
-      onBlur={composeEventHandlers(onBlur, handleBlur)}
-      tabIndex={-1}
       zIndex={1}
       _focus={{ outline: 0 }}
       {...styleProps}
       {...props}
+      {...menulist}
     />
   );
 });
@@ -384,18 +401,7 @@ interface MenuItemOptions {
 
 export type MenuItemProps<P, T> = Merge<BoxProps<P, T>, MenuItemOptions>;
 
-const MenuItem = forwardRef(function MenuItem<P, T extends HTMLElement>(
-  {
-    isDisabled,
-    onClick,
-    onMouseLeave,
-    onMouseEnter,
-    onKeyDown,
-    role = "menuitem",
-    ...props
-  }: MenuItemProps<P, T>,
-  ref: React.Ref<T>,
-) {
+function useMenuItem(props: MenuItemOptions, ref: React.Ref<any>) {
   const {
     focusableItems,
     focusAtIndex,
@@ -403,10 +409,8 @@ const MenuItem = forwardRef(function MenuItem<P, T extends HTMLElement>(
     closeMenu,
   } = useMenuContext();
 
-  const styleProps = useMenuItemStyle();
-
-  const handleMouseEnter: React.MouseEventHandler<HTMLElement> = event => {
-    if (isDisabled) {
+  const onMouseEnter = (event: React.MouseEvent<HTMLElement>) => {
+    if (props.isDisabled) {
       event.stopPropagation();
       event.preventDefault();
       return;
@@ -417,8 +421,8 @@ const MenuItem = forwardRef(function MenuItem<P, T extends HTMLElement>(
     }
   };
 
-  const handleClick: React.MouseEventHandler<HTMLElement> = event => {
-    if (isDisabled) {
+  const onClick = (event: React.MouseEvent<HTMLElement>) => {
+    if (props.isDisabled) {
       event.stopPropagation();
       event.preventDefault();
       return;
@@ -428,11 +432,66 @@ const MenuItem = forwardRef(function MenuItem<P, T extends HTMLElement>(
     }
   };
 
+  const onMouseLeave = () => {
+    focusAtIndex(-1);
+  };
+
+  const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
+    if (props.isDisabled) return;
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+
+      // dispatch a click event
+      event.target.dispatchEvent(
+        new MouseEvent("click", {
+          cancelable: false,
+          bubbles: true,
+          view: window,
+        }),
+      );
+
+      if (closeOnSelect) {
+        closeMenu();
+      }
+    }
+  };
+
+  return {
+    ...props,
+    role: props.role || "menuitem",
+    tabIndex: -1,
+    disabled: props.isDisabled,
+    "aria-disabled": props.isDisabled,
+    onClick: compose(
+      props.onClick,
+      onClick,
+    ),
+    onMouseEnter: compose(
+      props.onMouseEnter,
+      onMouseEnter,
+    ),
+    onKeyDown: compose(
+      props.onKeyDown,
+      onKeyDown,
+    ),
+    onMouseLeave: compose(
+      props.onMouseLeave,
+      onMouseLeave,
+    ),
+  };
+}
+
+const MenuItem = forwardRef(function MenuItem<P, T extends HTMLElement>(
+  props: MenuItemProps<P, T>,
+  ref: React.Ref<T>,
+) {
+  const styleProps = useMenuItemStyle();
+  const menuitem = useMenuItem(props, ref);
+
   return (
     <Box
       as="button"
       type="button"
-      ref={ref}
       display="flex"
       textDecoration="none"
       color="inherit"
@@ -441,36 +500,9 @@ const MenuItem = forwardRef(function MenuItem<P, T extends HTMLElement>(
       textAlign="left"
       outline="none"
       px={4}
-      role={role}
-      tabIndex={-1}
-      disabled={isDisabled}
-      aria-disabled={isDisabled}
-      onClick={composeEventHandlers(onClick, handleClick)}
-      onMouseEnter={composeEventHandlers(onMouseEnter, handleMouseEnter)}
-      onMouseLeave={composeEventHandlers(onMouseLeave, () => {
-        focusAtIndex(-1);
-      })}
-      onKeyDown={composeEventHandlers(onKeyDown, event => {
-        if (isDisabled) return;
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-
-          // dispatch a click event
-          event.target.dispatchEvent(
-            new MouseEvent("click", {
-              cancelable: false,
-              bubbles: true,
-              view: window,
-            }),
-          );
-
-          if (closeOnSelect) {
-            closeMenu();
-          }
-        }
-      })}
       {...styleProps}
       {...props}
+      {...menuitem}
     />
   );
 });

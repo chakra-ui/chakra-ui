@@ -12,7 +12,7 @@ function useRapidKeydown() {
   // We'll clear the keys after specific timeout
   const keysTimeoutRef = React.useRef<any>();
 
-  const keyDownAction = (
+  const handleKeyDown = (
     event: KeyboardEvent,
     action: (str: string) => void,
   ) => {
@@ -49,7 +49,7 @@ function useRapidKeydown() {
     }, 300);
   };
 
-  return { keys, keyDownAction };
+  return [keys, handleKeyDown];
 }
 
 export default useRapidKeydown;

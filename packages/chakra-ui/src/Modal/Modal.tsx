@@ -5,7 +5,7 @@ import {
   useLockBodyScroll,
 } from "@chakra-ui/hooks";
 import {
-  getAllFocusables,
+  getAllFocusableIn,
   Merge,
   composeEventHandlers,
   canUseDOM,
@@ -232,7 +232,7 @@ function Modal({
               initialFocusRef.current.focus();
             } else {
               if (contentRef.current) {
-                let focusables = getAllFocusables(contentRef.current);
+                let focusables = getAllFocusableIn(contentRef.current);
                 if (focusables.length === 0) {
                   contentRef.current.focus();
                 }
