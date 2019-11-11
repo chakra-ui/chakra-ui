@@ -144,15 +144,18 @@ const linkVariantProps = ({ color, colorMode }) => {
 
 ////////////////////////////////////////////////////////////
 
-const disabledProps = {
-  _disabled: {
-    opacity: "40%",
-    cursor: "not-allowed",
-    boxShadow: "none",
-  },
-  _hover: undefined,
-  _active: undefined,
-};
+const disabledProps = ({ disabled }) =>
+  disabled
+    ? {
+        _disabled: {
+          opacity: "40%",
+          cursor: "not-allowed",
+          boxShadow: "none",
+        },
+        _hover: undefined,
+        _active: undefined,
+      }
+    : {};
 
 ////////////////////////////////////////////////////////////
 
@@ -255,7 +258,7 @@ const useButtonStyle = props => {
     ...sizeProps(_props),
     ...focusProps,
     ...variantProps(_props),
-    ...disabledProps,
+    ...disabledProps(_props),
   };
 };
 

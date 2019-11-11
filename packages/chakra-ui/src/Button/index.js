@@ -46,13 +46,14 @@ const Button = forwardRef(
     },
     ref,
   ) => {
+    const _isDisabled = isDisabled || isLoading;
     const buttonStyleProps = useButtonStyle({
       color: variantColor,
       variant,
       size,
       colorMode,
+      disabled: _isDisabled,
     });
-    const _isDisabled = isDisabled || isLoading;
 
     return (
       <PseudoBox
