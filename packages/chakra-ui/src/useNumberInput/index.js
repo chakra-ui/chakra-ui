@@ -60,7 +60,7 @@ function useNumberInput({
   isInvalid,
   isDisabled,
 }) {
-  const { current: isControlled } = useRef(valueProp != null);
+  const { current: isControlled } = useRef(valueProp !== undefined);
 
   const defaultPrecision = Math.max(calculatePrecision(stepProp), 0);
   const precision = precisionProp || defaultPrecision;
@@ -216,13 +216,13 @@ function useNumberInput({
       onChange: handleChange,
       onKeyDown: handleKeyDown,
       ref: inputRef,
-      value: _value,
+      value: _value != null ? _value : undefined,
       role: "spinbutton",
       type: "text",
       "aria-valuemin": min,
       "aria-valuemax": max,
       "aria-disabled": isDisabled,
-      "aria-valuenow": _value,
+      "aria-valuenow": _value != null ? _value : undefined,
       "aria-invalid": isInvalid || isOutOfRange,
       ...(getAriaValueText && { "aria-valuetext": ariaValueText }),
       readOnly: isReadOnly,
