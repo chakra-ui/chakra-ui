@@ -54,7 +54,7 @@ function usePopperState(
 
 //////////////////////////////////////////////////////////////////////////
 
-export interface Popper {
+export interface UsePopperOptions {
   placement?: PopperJS.Placement;
   positionFixed?: boolean;
   eventsEnabled?: boolean;
@@ -66,7 +66,7 @@ function usePopper<R = HTMLElement, P = HTMLElement, A = HTMLElement>({
   positionFixed = false,
   eventsEnabled = true,
   modifiers = {},
-}: Popper) {
+}: UsePopperOptions) {
   const popperInstance = React.useRef<PopperJS>(null);
   const [popperStyles, updatePopperState] = usePopperState(placement);
   const [referenceNode, referenceRef] = useCallbackRef<R>();
@@ -132,6 +132,7 @@ function usePopper<R = HTMLElement, P = HTMLElement, A = HTMLElement>({
   }, [popperInstance]);
 
   return {
+    popperInstance: popperInstance.current,
     reference: {
       ref: referenceRef,
     },
@@ -151,7 +152,7 @@ export default usePopper;
 
 ////////////////////////////////////////////////
 
-export function getComputedArrowStyle(options: {
+export function computeArrowStyle(options: {
   size: React.CSSProperties["width"];
   shadowColor: React.CSSProperties["color"];
   hasArrow: boolean;
@@ -228,3 +229,5 @@ export function getComputedArrowStyle(options: {
     }
   `;
 }
+
+export type PopperJS = PopperJS;

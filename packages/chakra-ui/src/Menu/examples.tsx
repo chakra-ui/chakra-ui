@@ -8,12 +8,18 @@ import {
   MenuItem,
   MenuList,
 } from ".";
-import { Box } from "@chakra-ui/layout";
+// import { Box } from "@chakra-ui/layout";
 import { Button, ButtonOptions } from "../Button";
 import { Icon } from "../Icon";
-import { MenuOptionGroup, MenuItemOption } from "./MenuOption";
+// import { MenuOptionGroup, MenuItemOption } from "./MenuOption";
 import { ThemeProvider, CSSReset } from "@chakra-ui/theme";
-import { useDisclosure } from "@chakra-ui/hooks";
+// import { useDisclosure } from "@chakra-ui/hooks";
+import {
+  CheckExample,
+  RadioExample,
+  MenuItemOption,
+  MenuOptionGroup,
+} from "./MenuOption";
 
 const stories = storiesOf("Menu", module);
 
@@ -42,7 +48,8 @@ stories.add("Default", () => (
 ));
 
 stories.add("MenuList only", () => (
-  <Menu autoSelect defaultIsOpen closeOnSelect={false}>
+  <Menu autoSelect defaultIsOpen defaultActiveIndex={1} closeOnSelect={false}>
+    <MenuButton></MenuButton>
     <MenuList minWidth="240px">
       <MenuGroup title="Group 1">
         <MenuItem>Share...</MenuItem>
@@ -80,10 +87,29 @@ stories.add("MenuList only", () => (
 //   </Menu>
 // ));
 
+stories.add("Test MenuItemRadio", () => (
+  <Menu defaultIsOpen closeOnSelect={false}>
+    <MenuButton>Button</MenuButton>
+    <MenuList>
+      <MenuOptionGroup defaultValue="opt1" type="radio">
+        <MenuItemOption isDisabled value="opt1">
+          Option 1
+        </MenuItemOption>
+        <MenuItemOption value="opt2">Option 2</MenuItemOption>
+        <MenuItemOption value="opt3">Option 3</MenuItemOption>
+      </MenuOptionGroup>
+    </MenuList>
+  </Menu>
+));
+
 function CustomMenu() {
   return (
     <Menu>
-      <MenuButton<ButtonOptions> as={Button} rightIcon="chevron-down">
+      <MenuButton<ButtonOptions>
+        style={{ float: "right" }}
+        as={Button}
+        rightIcon="chevron-down"
+      >
         <Icon name="settings" />
       </MenuButton>
       <MenuList>
@@ -95,8 +121,16 @@ function CustomMenu() {
 }
 
 stories.add("Bug fix", () => (
-  <div style={{ float: "right" }}>
+  <>
     <CustomMenu />
     <CustomMenu />
-  </div>
+  </>
+));
+
+stories.add("Testing", () => (
+  <CheckExample defaultValue={["opt1"]} onChange={val => console.log(val)} />
+));
+
+stories.add("Testing Radio", () => (
+  <RadioExample defaultValue={"opt1"} onChange={val => console.log(val)} />
 ));

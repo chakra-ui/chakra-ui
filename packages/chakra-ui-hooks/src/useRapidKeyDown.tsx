@@ -49,7 +49,7 @@ function useRapidKeydown() {
     }, 300);
   };
 
-  return [keys, handleKeyDown];
+  return [keys.join(""), handleKeyDown] as const;
 }
 
 export default useRapidKeydown;
