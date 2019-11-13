@@ -23,7 +23,7 @@ A clear and concise description of what you expected to happen.
 3. Scroll down to '....'
 4. See error
 
-** Suggested solution(s)**
+**Suggested solution(s)**
 <!-- How could we solve this bug? What changes would need to be made? -->
 
 **Desktop (please complete the following information):**
