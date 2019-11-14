@@ -1,17 +1,19 @@
+/**@jsx jsx */
+import { jsx, css } from "@emotion/core";
 import {
   useBlurOutside,
   useCreateContext,
   useDisclosure,
-  useFocusOnHide,
   useForkRef,
   useIds,
   useSelectionState,
   Selection,
   useRapidKeyDown,
-  useFocusEffect,
   useSelectionItem,
   usePopper,
+  useFocusOnHide,
   PopperJS,
+  useLogger,
 } from "@chakra-ui/hooks";
 import { Box, BoxProps, Divider, DividerProps, Text } from "@chakra-ui/layout";
 import {
@@ -28,7 +30,34 @@ import React, {
   useState,
   useLayoutEffect,
 } from "react";
-import { useMenuItemStyle, useMenuListStyle } from "./styles";
+import { useMenuItemStyle, useMenuListStyle, transitionStyles } from "./styles";
+import { CSSTransition } from "react-transition-group";
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+// Here's what the menu context looks like
+interface MenuContext extends ReturnType<typeof useDisclosure> {
+  menu: {
+    ref: React.RefObject<HTMLElement>;
+    id: string;
+  };
+  button: {
+    ref: React.RefObject<HTMLButtonElement>;
+    id: string;
+  };
+  options: {
+    autoSelect: boolean;
+    closeOnSelect: boolean;
+    closeOnBlur: boolean;
+  };
+}
+
+type Popper = ReturnType<typeof usePopper>;
+const [usePopperContext, PopperProvider] = useCreateContext<Popper>();
+const [useMenuContext, MenuContextProvider] = useCreateContext<MenuContext>();
+const [useSelection, SelectionProvider] = useCreateContext<Selection>();
+
+//////////////////////////////////////////////////////////////////////////////////////////
 
 type ExposedProps = { isOpen?: boolean; onClose?: () => void };
 
@@ -52,29 +81,7 @@ interface MenuOptions {
 
 export type MenuProps = MenuOptions & MenuChildren;
 
-type Popper = ReturnType<typeof usePopper>;
-const [usePopperContext, PopperProvider] = useCreateContext<Popper>();
-
-// Here's what the menu context looks like
-interface MenuContext extends ReturnType<typeof useDisclosure> {
-  menu: {
-    ref: React.RefObject<HTMLElement>;
-    id: string;
-  };
-  button: {
-    ref: React.RefObject<HTMLButtonElement>;
-    id: string;
-  };
-  options: {
-    autoSelect: boolean;
-    closeOnSelect: boolean;
-    closeOnBlur: boolean;
-  };
-}
-const [useMenuContext, MenuContextProvider] = useCreateContext<MenuContext>();
-const [useSelection, SelectionProvider] = useCreateContext<Selection>();
-
-///////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
 
 export const Menu: React.FC<MenuProps> = ({
   children,
@@ -117,7 +124,6 @@ export const Menu: React.FC<MenuProps> = ({
   // refs to get a reference to the menu and button elements :)
   const menuRef = useRef<HTMLElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
-  // const focusableItems = useRef<HTMLElement[]>([]);
 
   // manage focus restoration when menu closes
   useFocusOnHide(menuRef, {
@@ -128,16 +134,16 @@ export const Menu: React.FC<MenuProps> = ({
 
   // manage the defaultActiveIndex since we're not storing it in the `useSelection` hook
   useLayoutEffect(() => {
-    if (defaultActiveIndex && selection.items.length) {
+    if (disclosure.isOpen && defaultActiveIndex && selection.items.length) {
       selection.highlight(selection.items[defaultActiveIndex]);
     }
     // eslint-disable-next-line
-  }, [selection.items]);
+  }, [disclosure.isOpen, selection.items]);
 
   const context = {
     ...disclosure,
     menu: {
-      ref: buttonRef,
+      ref: menuRef,
       id: menuId,
     },
     button: {
@@ -151,22 +157,24 @@ export const Menu: React.FC<MenuProps> = ({
     },
   };
 
-  const selectionContext = React.useMemo(() => selection, [
-    ...Object.values(selection),
-  ]);
+  // eslint-disable-next-line
+  const selectionContext = React.useMemo(
+    () => selection,
+    Object.values(selection),
+  );
 
   return (
     <PopperProvider value={popper}>
-      <SelectionProvider value={selectionContext}>
-        <MenuContextProvider value={context}>
+      <MenuContextProvider value={context}>
+        <SelectionProvider value={selectionContext}>
           {typeof children === "function"
             ? children({
                 isOpen: disclosure.isOpen,
                 onClose: disclosure.onClose,
               })
             : children}
-        </MenuContextProvider>
-      </SelectionProvider>
+        </SelectionProvider>
+      </MenuContextProvider>
     </PopperProvider>
   );
 };
@@ -190,6 +198,8 @@ export type MenuButtonProps<P> = Merge<
   MenuButtonOptions
 >;
 
+//////////////////////////////////////////////////////////////////////////////////////////
+
 export function useMenuButton(
   props: MenuButtonOptions,
   ref: React.Ref<HTMLButtonElement>,
@@ -200,7 +210,9 @@ export function useMenuButton(
 
   const focusOnFirstItem = () => {
     menu.onOpen();
-    selection.first("highlight");
+    requestAnimationFrame(() => {
+      selection.first("highlight");
+    });
   };
 
   const focusOnLastItem = () => {
@@ -251,6 +263,8 @@ export function useMenuButton(
   };
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////
+
 export const MenuButton = forwardRef(function MenuButton<P>(
   { as: Comp = PseudoButton, ...props }: MenuButtonProps<P>,
   ref: React.Ref<HTMLButtonElement>,
@@ -270,6 +284,8 @@ export interface MenuListOptions {
 }
 
 export type MenuListProps<P, T> = Merge<BoxProps<P, T>, MenuListOptions>;
+
+//////////////////////////////////////////////////////////////////////////////////////////
 
 export function useMenuList(props: MenuListOptions, ref: React.Ref<any>) {
   const menu = useMenuContext();
@@ -323,14 +339,16 @@ export function useMenuList(props: MenuListOptions, ref: React.Ref<any>) {
       props.onKeyDown,
       onKeyDown,
     ),
-    onBlur: compose(
-      props.onBlur,
-      onBlur,
-    ),
+    onBlur: menu.options.closeOnBlur
+      ? compose(
+          props.onBlur,
+          onBlur,
+        )
+      : props.onBlur,
   };
 }
 
-//////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
 
 export const MenuList = forwardRef(function MenuList<P, T extends HTMLElement>(
   { onKeyDown, onBlur, ...props }: MenuListProps<P, T>,
@@ -340,17 +358,21 @@ export const MenuList = forwardRef(function MenuList<P, T extends HTMLElement>(
   const styleProps = useMenuListStyle();
 
   return (
-    <Box
-      minW="3xs"
-      rounded="md"
-      hidden={!isOpen}
-      py={2}
-      zIndex={1}
-      _focus={{ outline: 0 }}
-      {...styleProps}
-      {...props}
-      {...menulist}
-    />
+    <CSSTransition appear timeout={240} classNames="menu" in={isOpen}>
+      <Box
+        minW="3xs"
+        rounded="md"
+        aria-hidden={!isOpen}
+        py={2}
+        zIndex={1}
+        transformOrigin="top left"
+        _focus={{ outline: 0 }}
+        {...styleProps}
+        css={transitionStyles}
+        {...props}
+        {...menulist}
+      />
+    </CSSTransition>
   );
 });
 
@@ -379,8 +401,13 @@ export function useMenuItem(props: MenuItemOptions, ref: React.Ref<any>) {
     isFocusable: props.isFocusable,
   });
 
-  useFocusEffect(menuItem.isHighlighted, menuItem.item.ref);
   const _ref = useForkRef(menuItem.item.ref, ref);
+
+  useEffect(() => {
+    if (menu.isOpen && menuItem.isHighlighted) {
+      menuItem.item.ref.current.focus();
+    }
+  }, [menu.isOpen, menuItem.isHighlighted]);
 
   const onClick = (event: React.MouseEvent<HTMLElement>) => {
     if (props.isDisabled) {
@@ -452,6 +479,8 @@ export function useMenuItem(props: MenuItemOptions, ref: React.Ref<any>) {
     ),
   };
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////
 
 export const MenuItem = forwardRef(function MenuItem<P, T extends HTMLElement>(
   props: MenuItemProps<P, T>,

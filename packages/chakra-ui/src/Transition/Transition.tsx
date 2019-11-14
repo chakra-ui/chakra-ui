@@ -1,4 +1,5 @@
 import * as React from "react";
+import { css } from "@emotion/core";
 import { SerializedStyles } from "@emotion/core";
 import CSSTransition, {
   TransitionStatus,
@@ -11,10 +12,11 @@ interface Prop {
 }
 
 export interface TransitionProps {
+  timeout?: number;
   isOpen: boolean;
   children: ({ state, styles }: Prop) => React.ReactNode;
-  onOpenComplete: () => void;
-  onCloseComplete: () => void;
+  onOpenComplete?: () => void;
+  onCloseComplete?: () => void;
 }
 
 // TODO: Add support for Fade, Slide animations
@@ -24,6 +26,7 @@ function Transition({
   children,
   onCloseComplete,
   onOpenComplete,
+  timeout = 200,
 }: TransitionProps) {
   const [isExiting, setIsExiting] = React.useState(false);
 
@@ -34,14 +37,19 @@ function Transition({
 
   return (
     <CSSTransition
-      appear
-      unmountOnExit
-      timeout={200}
+      // appear
+      unmountOnExit={false}
+      timeout={timeout}
       in={isOpen && !isExiting}
       onExited={onExited}
       onEntered={onOpenComplete}
     >
-      {state => children({ state, styles: animationStyles })}
+      {state =>
+        children({
+          state,
+          styles: animationStyles,
+        })
+      }
     </CSSTransition>
   );
 }

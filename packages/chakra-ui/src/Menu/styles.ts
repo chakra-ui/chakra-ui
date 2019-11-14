@@ -1,5 +1,6 @@
 import { useTheme, useColorMode } from "@chakra-ui/theme";
 import { SystemProps } from "@chakra-ui/layout";
+import css from "@emotion/css";
 
 export const useMenuListStyle = () => {
   const { colorMode } = useColorMode();
@@ -63,3 +64,44 @@ export const useMenuItemStyle = (): SystemProps => {
     ...interactionProps(props),
   };
 };
+
+export const transitionStyles = css`
+  &[aria-hidden="true"] {
+    visibility: hidden;
+  }
+  &.menu {
+    &-enter,
+    &-appear {
+      transform: scale(0.4);
+      visibility: visible;
+    }
+
+    &-enter-active,
+    &-appear-active {
+      transform: scale(1);
+      transition: all cubic-bezier(0.175, 0.885, 0.32, 1.175) 0.24s;
+    }
+
+    &-enter-done,
+    &-appear-done {
+      visibility: visible;
+    }
+
+    &-exit {
+      visibility: visible;
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    &-exit-active {
+      opacity: 0;
+      transform: scale(0.9);
+      transition: all cubic-bezier(0.4, 0, 1, 1) 0.12s;
+    }
+
+    &-exit-done {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+`;

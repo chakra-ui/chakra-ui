@@ -5,7 +5,7 @@ import {
   UseCheckboxGroupOptions,
   UseRadioGroupOptions,
 } from "@chakra-ui/hooks";
-import { useMenuItem, MenuItemOptions } from "./Menu";
+import { useMenuItem, MenuItemOptions, MenuGroup } from "./Menu";
 import { Box, BoxProps } from "@chakra-ui/layout";
 import { useMenuItemStyle } from "./styles";
 import { Icon } from "../Icon";
@@ -92,7 +92,6 @@ export const MenuItemOption = React.forwardRef(function MenuItemRadio(
         opacity={isChecked ? 1 : 0}
         color="currentColor"
         size="1em"
-        ml="1rem"
         mr="-4px"
         aria-hidden
         data-menuitem-icon=""
@@ -104,38 +103,37 @@ export const MenuItemOption = React.forwardRef(function MenuItemRadio(
   );
 });
 
-type MenuOptionGroupProps = Merge<
-  UseCheckboxGroupOptions,
-  UseRadioGroupOptions
-> & { type?: "radio" | "checkbox"; children?: React.ReactNode };
+type MenuOptionGroupProps = (UseCheckboxGroupOptions | UseRadioGroupOptions) & {
+  type?: "radio" | "checkbox";
+} & BoxProps;
 
 export function MenuOptionGroup(props: MenuOptionGroupProps) {
   const radioGroup = useRadioGroup(props);
   const checkboxGroup = useCheckboxGroup(props);
+  const { type, children, title, ...rest } = props;
 
   return (
-    <div>
-      {React.Children.map(props.children, child => {
+    <MenuGroup title={title} {...rest}>
+      {React.Children.map(children, child => {
         if (!React.isValidElement(child)) return;
 
-        if (props.type === "radio") {
+        if (type === "radio") {
           return React.cloneElement(child, {
-            type: props.type,
+            type: "radio",
             onClick: () => radioGroup.onChange(child.props.value),
             name: radioGroup.name,
             isChecked: child.props.value === radioGroup.value,
           });
         }
 
-        if (props.type === "checkbox") {
+        if (type === "checkbox") {
           return React.cloneElement(child, {
-            type: props.type,
-            key: child.props.value,
+            type: "checkbox",
             onClick: () => checkboxGroup.onChange(child.props.value),
             isChecked: checkboxGroup.value.includes(child.props.value),
           });
         }
       })}
-    </div>
+    </MenuGroup>
   );
 }

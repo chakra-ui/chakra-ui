@@ -6,7 +6,7 @@ const animationEasing = {
   spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`,
 };
 
-const ANIMATION_DURATION = 240;
+const animationDuration = 200;
 
 const openAnimation = keyframes`
   from{
@@ -33,11 +33,12 @@ const closeAnimation = keyframes`
 export const animationStyles = css`
   &[data-state="entering"],
   &[data-state="entered"] {
-    animation: ${openAnimation} ${ANIMATION_DURATION}ms
-      ${animationEasing.spring} both;
+    animation: ${openAnimation} ${animationDuration}ms
+      cubic-bezier(0.215, 0.61, 0.355, 1) both;
   }
 
-  &[data-state="exiting"] {
-    animation: ${closeAnimation} 120ms ${animationEasing.acceleration} both;
+  &[data-state="exiting"],
+  &[data-state="exited"] {
+    animation: ${closeAnimation} 200ms ${animationEasing.acceleration} both;
   }
 `;

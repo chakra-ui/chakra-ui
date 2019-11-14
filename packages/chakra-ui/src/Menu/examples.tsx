@@ -64,39 +64,24 @@ stories.add("MenuList only", () => (
   </Menu>
 ));
 
-// stories.add("MenuItem Radio", () => (
-//   <Menu closeOnBlur={false} closeOnSelect={false}>
-//     <MenuButton as={Button} variantColor="blue">
-//       MenuItem
-//     </MenuButton>
-//     <MenuList minWidth="240px">
-//       <MenuOptionGroup defaultValue="asc" title="Order" type="radio">
-//         <MenuItemOption _checked={{ color: "blue.500" }} value="asc">
-//           Ascending
-//         </MenuItemOption>
-//         <MenuItemOption value="desc">Descending</MenuItemOption>
-//       </MenuOptionGroup>
-//       <MenuDivider />
-
-//       <MenuOptionGroup title="Country" type="checkbox">
-//         <MenuItemOption value="email">Email</MenuItemOption>
-//         <MenuItemOption value="phone">Phone</MenuItemOption>
-//         <MenuItemOption value="country">Country</MenuItemOption>
-//       </MenuOptionGroup>
-//     </MenuList>
-//   </Menu>
-// ));
-
-stories.add("Test MenuItemRadio", () => (
-  <Menu defaultIsOpen closeOnSelect={false}>
-    <MenuButton>Button</MenuButton>
-    <MenuList>
-      <MenuOptionGroup defaultValue="opt1" type="radio">
-        <MenuItemOption isDisabled value="opt1">
-          Option 1
+stories.add("MenuItem Radio", () => (
+  <Menu closeOnBlur={false} closeOnSelect={false}>
+    <MenuButton<ButtonOptions> as={Button} variantColor="blue">
+      MenuItem
+    </MenuButton>
+    <MenuList minWidth="240px">
+      <MenuOptionGroup defaultValue="asc" title="Order" type="radio">
+        <MenuItemOption _checked={{ color: "blue.500" }} value="asc">
+          Ascending
         </MenuItemOption>
-        <MenuItemOption value="opt2">Option 2</MenuItemOption>
-        <MenuItemOption value="opt3">Option 3</MenuItemOption>
+        <MenuItemOption value="desc">Descending</MenuItemOption>
+      </MenuOptionGroup>
+      <MenuDivider />
+
+      <MenuOptionGroup title="Country" type="checkbox">
+        <MenuItemOption value="email">Email</MenuItemOption>
+        <MenuItemOption value="phone">Phone</MenuItemOption>
+        <MenuItemOption value="country">Country</MenuItemOption>
       </MenuOptionGroup>
     </MenuList>
   </Menu>
