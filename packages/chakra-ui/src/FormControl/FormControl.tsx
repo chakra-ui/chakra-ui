@@ -1,9 +1,9 @@
 /** @jsx jsx */
-import { jsx } from "@emotion/core";
-import { createContext, useContext, forwardRef } from "react";
 import { Box, BoxProps } from "@chakra-ui/layout";
+import { jsx } from "@emotion/core";
+import React, { forwardRef } from "react";
 
-interface FormControlContextValue {
+interface FormControlContext {
   [k: string]: any;
   isRequired?: boolean;
   isDisabled?: boolean;
@@ -34,34 +34,22 @@ interface FormControlOptions {
   isReadOnly?: boolean;
 }
 
-const FormControlContext = createContext<FormControlContextValue>({});
+const FormControlContext = React.createContext<FormControlContext | null>(null);
+const useFormControlContext = () => React.useContext(FormControlContext);
 
 export const useFormControl = (props: any) => {
   const context = useFormControlContext();
-  if (!context) {
-    return props;
+  if (!context) return props;
+
+  const output: Record<string, any> = {};
+  for (let prop in context) {
+    output[prop] = props[prop];
+
+    if (context && props[prop] == null) {
+      output[prop] = context[prop];
+    }
   }
-  const keys = Object.keys(context);
-  return keys.reduce(
-    (acc, prop) => {
-      /** Giving precedence to `props` over `context` */
-      acc[prop] = props[prop];
-
-      if (context) {
-        if (props[prop] == null) {
-          acc[prop] = context[prop];
-        }
-      }
-
-      return acc;
-    },
-    {} as Record<string, any>,
-  );
-};
-
-export const useFormControlContext = () => {
-  const context = useContext(FormControlContext);
-  return context;
+  return output;
 };
 
 export type FormControlProps<P, T> = FormControlOptions & BoxProps<P, T>;
@@ -76,7 +64,7 @@ const FormControl = forwardRef(function FormControl<P, T extends HTMLElement>(
   }: FormControlProps<P, T>,
   ref: React.Ref<T>,
 ) {
-  const context: FormControlContextValue = {
+  const context = {
     isRequired,
     isDisabled,
     isInvalid,

@@ -1,16 +1,18 @@
 import * as React from "react";
 import { isTabbable, ensureFocus } from "@chakra-ui/utils";
-import useUpdateEffect from "./useUpdateEffect";
 import { FocusOptions } from "./useFocusOnShow";
+import usePrevious from "./usePrevious";
 
 function useFocusOnHide(
   ref: React.RefObject<HTMLElement>,
   options: FocusOptions,
 ) {
-  const shouldFocus = options.autoFocus && !options.visible;
+  const previouslyVisible = usePrevious(options.visible);
 
-  useUpdateEffect(() => {
+  React.useEffect(() => {
+    const shouldFocus = options.autoFocus && !options.visible;
     if (!shouldFocus) return;
+
     const element = ref.current;
 
     // Hide was triggered by a click/focus on a tabbable element outside
@@ -27,10 +29,10 @@ function useFocusOnHide(
 
     const focusEl = options.focusRef && options.focusRef.current;
 
-    if (focusEl) {
+    if (focusEl && previouslyVisible && !options.visible) {
       ensureFocus(focusEl);
     }
-  }, [ref, shouldFocus]);
+  }, [options.autoFocus, options.visible, ref, previouslyVisible]);
 }
 
 export default useFocusOnHide;

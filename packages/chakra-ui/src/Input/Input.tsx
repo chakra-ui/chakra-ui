@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { forwardRef, useState } from "react";
+import { forwardRef } from "react";
 import { useFormControl } from "../FormControl";
 import { Box, BoxProps } from "@chakra-ui/layout";
 import useInputStyle from "./styles";
@@ -133,40 +133,17 @@ const Input = forwardRef(function Input<T extends HTMLInputElement>(
   props: InputProps<T>,
 ) => React.ReactElement<InputProps<T>>;
 
-export function DefaultInput() {
-  return (
-    <Input isInvalid placeholder="Here is a sample placeholder" size="sm" />
-  );
-}
+//@ts-ignore
+Input.defaultProps = {
+  size: "md",
+  as: "input",
+  variant: "outline",
+  isFullWidth: true,
+  focusBorderColor: "blue.500",
+  errorBorderColor: "red.500",
+};
 
-export function ReadonlyInput() {
-  return (
-    <Input
-      placeholder="Here is a sample placeholder"
-      variant="outline"
-      size="md"
-      focusBorderColor="cyan.500"
-      isReadOnly
-    />
-  );
-}
-
-export function FilledInput() {
-  return <Input variant="filled" placeholder="Text goes here" />;
-}
-
-export function ControlledInput() {
-  let [value, setValue] = useState();
-  return (
-    <Input
-      value={value}
-      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-        console.log(e.target.value)
-      }
-      variant="filled"
-      placeholder="Text goes here"
-    />
-  );
-}
+//@ts-ignore
+Input.displayName = "Input";
 
 export default Input;

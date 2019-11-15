@@ -13,7 +13,6 @@ import {
   usePopper,
   useFocusOnHide,
   PopperJS,
-  useLogger,
 } from "@chakra-ui/hooks";
 import { Box, BoxProps, Divider, DividerProps, Text } from "@chakra-ui/layout";
 import {
@@ -157,9 +156,9 @@ export const Menu: React.FC<MenuProps> = ({
     },
   };
 
-  // eslint-disable-next-line
   const selectionContext = React.useMemo(
     () => selection,
+    // eslint-disable-next-line
     Object.values(selection),
   );
 
@@ -362,7 +361,7 @@ export const MenuList = forwardRef(function MenuList<P, T extends HTMLElement>(
       <Box
         minW="3xs"
         rounded="md"
-        aria-hidden={!isOpen}
+        hidden={!isOpen}
         py={2}
         zIndex={1}
         transformOrigin="top left"
@@ -407,7 +406,7 @@ export function useMenuItem(props: MenuItemOptions, ref: React.Ref<any>) {
     if (menu.isOpen && menuItem.isHighlighted) {
       menuItem.item.ref.current.focus();
     }
-  }, [menu.isOpen, menuItem.isHighlighted]);
+  }, [menu.isOpen, menuItem.isHighlighted, menuItem.item.ref]);
 
   const onClick = (event: React.MouseEvent<HTMLElement>) => {
     if (props.isDisabled) {

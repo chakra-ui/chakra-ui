@@ -1,5 +1,5 @@
-import useUpdateEffect from "./useUpdateEffect";
-import { getFirstTabbableIn, ensureFocus } from "@chakra-ui/utils";
+import { getFirstTabbableIn } from "@chakra-ui/utils";
+import { useEffect } from "react";
 
 export interface FocusOptions {
   autoFocus?: boolean;
@@ -11,29 +11,27 @@ function useFocusOnShow(
   ref: React.RefObject<HTMLElement>,
   options: FocusOptions,
 ) {
-  const initialFocusRef = options.focusRef;
-  const shouldFocus = options.visible && options.autoFocus;
+  useEffect(() => {
+    const initialFocusRef = options.focusRef;
+    const shouldFocus = options.visible && options.autoFocus;
 
-  useUpdateEffect(() => {
-    const element = ref.current;
-
-    // If there're nested open dialogs, let them handle focus
-    if (!shouldFocus || !element) {
-      return;
+    if (shouldFocus) {
+      requestAnimationFrame(() => {
+        if (initialFocusRef && initialFocusRef.current) {
+          initialFocusRef.current.focus({ preventScroll: true });
+        } else {
+          if (ref.current) {
+            const firstTabbable = getFirstTabbableIn(ref.current, true);
+            if (firstTabbable) {
+              firstTabbable.focus({ preventScroll: true });
+            } else {
+              ref.current.focus({ preventScroll: true });
+            }
+          }
+        }
+      });
     }
-
-    if (initialFocusRef && initialFocusRef.current) {
-      initialFocusRef.current.focus({ preventScroll: true });
-    } else {
-      const tabbable = getFirstTabbableIn(element, true);
-      const isActive = () => element.contains(document.activeElement);
-      if (tabbable) {
-        ensureFocus(tabbable, { preventScroll: true, isActive });
-      } else {
-        ensureFocus(element, { preventScroll: true, isActive });
-      }
-    }
-  }, [ref, initialFocusRef, shouldFocus]);
+  }, [options.visible, options.autoFocus, ref, options.focusRef]);
 }
 
 export default useFocusOnShow;
