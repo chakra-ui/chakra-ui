@@ -20,7 +20,14 @@ export type IconProps<P = {}> = BoxProps<P, SVGElement> &
   React.SVGAttributes<SVGElement>;
 
 const Icon = React.forwardRef(function Icon<P>(
-  props: IconProps<P>,
+  {
+    size = "1em",
+    name,
+    color = "currentColor",
+    role = "presentation",
+    focusable = "false",
+    ...rest
+  }: IconProps<P>,
   ref: React.Ref<SVGElement>,
 ) {
   const { icons } = useTheme();
@@ -30,28 +37,27 @@ const Icon = React.forwardRef(function Icon<P>(
   let path: JSX.Element = <React.Fragment></React.Fragment>;
   let viewBox = "0 0 24 24";
 
-  if (props.name) {
-    path =
-      icons[props.name] == null ? iconFallback.path : icons[props.name].path;
+  if (name) {
+    path = icons[name] == null ? iconFallback.path : icons[name].path;
 
     viewBox =
-      (icons[props.name] == null
-        ? iconFallback.viewBox
-        : icons[props.name].viewBox) || "0 0 24 24";
+      (icons[name] == null ? iconFallback.viewBox : icons[name].viewBox) ||
+      "0 0 24 24";
   }
 
   return (
     <Box<{}, SVGElement>
       ref={ref}
       as="svg"
+      size={size}
+      color={color}
       flexShrink="0"
       display="inline-block"
       verticalAlign="middle"
       viewBox={viewBox}
-      focusable="false"
-      role="presentation"
-      textColor="red"
-      {...props}
+      focusable={focusable}
+      role={role}
+      {...rest}
     >
       {path}
     </Box>

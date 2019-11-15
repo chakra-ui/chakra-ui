@@ -52,19 +52,12 @@ const IconButton = forwardRef(function IconButton<
   );
 });
 
-export function DefaultIconButtonExample() {
-  return (
-    <IconButton
-      aria-label="Call us"
-      icon="phone"
-      color="green"
-      variant="solid"
-    />
-  );
-}
-
-export function RoundedIconButtonExample() {
-  return <IconButton aria-label="custom icon" isRound icon="phone" />;
-}
+//@ts-ignore
+IconButton.defaultProps = {
+  variant: "solid",
+  size: "md",
+  type: "button",
+  variantColor: "gray",
+};
 
 export default IconButton;
