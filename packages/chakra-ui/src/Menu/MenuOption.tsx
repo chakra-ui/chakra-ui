@@ -11,39 +11,6 @@ import { useMenuItemStyle } from "./styles";
 import { Icon } from "../Icon";
 import { Merge } from "@chakra-ui/utils";
 
-export function CheckExample(props: any) {
-  const checkboxGroup = useCheckboxGroup(props);
-  return (
-    <div>
-      {["opt1", "opt2", "opt3"].map(val => (
-        <input
-          type="checkbox"
-          value={val}
-          checked={checkboxGroup.value.includes(val)}
-          onChange={checkboxGroup.onChange}
-        />
-      ))}
-    </div>
-  );
-}
-
-export function RadioExample(props: any) {
-  const radio = useRadioGroup(props);
-  return (
-    <div>
-      {["opt1", "opt2", "opt3"].map(val => (
-        <input
-          type="radio"
-          value={val}
-          checked={radio.value === val}
-          onChange={radio.onChange}
-          name={radio.name}
-        />
-      ))}
-    </div>
-  );
-}
-
 interface MenuItemOptionOptions extends MenuItemOptions {
   isChecked?: boolean;
   type?: "radio" | "checkbox";

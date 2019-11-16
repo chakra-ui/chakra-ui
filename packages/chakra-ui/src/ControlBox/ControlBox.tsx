@@ -1,6 +1,7 @@
 /**@jsx jsx */
 import styled from "@emotion/styled";
-import { Box, SystemProps, css } from "@chakra-ui/layout";
+import { Box, SystemProps, css, BoxProps } from "@chakra-ui/layout";
+import { Merge } from "@chakra-ui/utils";
 
 interface ControlBoxOptions {
   type?: "checkbox" | "radio";
@@ -16,18 +17,9 @@ interface ControlBoxOptions {
   _checkedAndHover?: SystemProps;
 }
 
-// type ControlBoxProps<P, T> = BoxProps<P, T> & ControlBoxOptions;
+export type ControlBoxProps = Merge<BoxProps, ControlBoxOptions>;
 
-const baseStyles = {
-  display: "inline-flex",
-  alignItems: "center",
-  justifyContent: "center",
-  transition: "all 120ms",
-  flexShrink: "0",
-  "aria-hidden": "true",
-};
-
-const ControlBox = styled(Box)(
+const ControlBox = (styled(Box)(
   ({
     type = "checkbox",
     _hover,
@@ -65,8 +57,9 @@ const ControlBox = styled(Box)(
       },
     });
   },
-);
+) as unknown) as React.FC<ControlBoxProps>;
 
+//@ts-ignore
 ControlBox.defaultProps = {
   display: "inline-flex",
   alignItems: "center",

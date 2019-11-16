@@ -14,12 +14,7 @@ import { Icon } from "../Icon";
 // import { MenuOptionGroup, MenuItemOption } from "./MenuOption";
 import { ThemeProvider, CSSReset } from "@chakra-ui/theme";
 // import { useDisclosure } from "@chakra-ui/hooks";
-import {
-  CheckExample,
-  RadioExample,
-  MenuItemOption,
-  MenuOptionGroup,
-} from "./MenuOption";
+import { MenuItemOption, MenuOptionGroup } from "./MenuOption";
 
 const stories = storiesOf("Menu", module);
 
@@ -110,12 +105,4 @@ stories.add("Bug fix", () => (
     <CustomMenu />
     <CustomMenu />
   </>
-));
-
-stories.add("Testing", () => (
-  <CheckExample defaultValue={["opt1"]} onChange={val => console.log(val)} />
-));
-
-stories.add("Testing Radio", () => (
-  <RadioExample defaultValue={"opt1"} onChange={val => console.log(val)} />
 ));

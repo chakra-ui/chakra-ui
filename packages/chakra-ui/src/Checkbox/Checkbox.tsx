@@ -8,7 +8,7 @@ import { ControlBox } from "../ControlBox";
 import { Icon, IconProps } from "../Icon";
 import checkboxStyles from "./styles";
 
-type VariantColor = keyof Omit<
+export type VariantColor = keyof Omit<
   Theme["colors"],
   "black" | "white" | "whiteAlpha" | "blackAlpha" | "current" | "transparent"
 >;
