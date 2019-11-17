@@ -1,6 +1,6 @@
 import useId from "../useId";
 import * as React from "react";
-import { Item, reducer, State } from "./reducer";
+import { Item, reducer, State, EventMeta } from "./reducer";
 
 export type SelectionActions = {
   /**
@@ -14,35 +14,50 @@ export type SelectionActions = {
   /**
    * Moves focus to a given element ID.
    */
-  highlight: (item: Item | null, selectOnHighlight?: boolean) => void;
+  highlight: (
+    item: Item | null,
+    selectOnHighlight?: boolean,
+    eventSource?: EventMeta,
+  ) => void;
   /**
    * Moves focus to a given element ID.
    */
-  select: (item: Item | null, highlightOnSelect?: boolean) => void;
+  select: (
+    item: Item | null,
+    highlightOnSelect?: boolean,
+    eventSource?: EventMeta,
+  ) => void;
   /**
    * Moves focus to the next element.
    */
-  next: (action: "select" | "highlight") => void;
+  next: (action: "select" | "highlight", eventSource?: EventMeta) => void;
   /**
    * Moves focus to the previous element.
    */
-  previous: (action: "select" | "highlight") => void;
+  previous: (action: "select" | "highlight", eventSource?: EventMeta) => void;
   /**
    * Moves focus to the first element.
    */
-  first: (action: "select" | "highlight") => void;
+  first: (action: "select" | "highlight", eventSource?: EventMeta) => void;
   /**
    * Moves focus to the last element.
    */
-  last: (action: "select" | "highlight") => void;
-  search: (characters: string, action: "select" | "highlight") => void;
+  last: (action: "select" | "highlight", eventSource?: EventMeta) => void;
+  search: (
+    characters: string,
+    action: "select" | "highlight",
+    eventSource?: EventMeta,
+  ) => void;
   /**
    * Resets `highlightedId` or `selectedId` or both.
    */
-  reset: (action: "highlighted" | "selected" | "both") => void;
+  reset: (
+    action: "highlighted" | "selected" | "both",
+    eventSource?: EventMeta,
+  ) => void;
 };
 
-const _initialState: State = {
+const defaultState: State = {
   items: [],
   lastEvent: "",
   selectedItem: null,
@@ -56,9 +71,10 @@ export type Selection = State & SelectionActions;
  * @param initialState The initial state of the selection
  */
 export function useSelectionState(
-  initialState: State = _initialState,
+  initialState: Partial<State> = {},
 ): Selection {
-  const [state, dispatch] = React.useReducer(reducer, initialState);
+  const _initialState = { ...defaultState, ...initialState };
+  const [state, dispatch] = React.useReducer(reducer, _initialState);
 
   return {
     ...state,
@@ -73,34 +89,62 @@ export function useSelectionState(
     // Moves focus a specific `id`.
     // Focus follows selection if `selectOnHighlight` is true
     highlight: React.useCallback(
-      (item, selectOnHighlight) =>
-        dispatch({ type: "HIGHLIGHT", item, selectOnHighlight }),
+      (item, selectOnHighlight, eventSource) =>
+        dispatch({
+          type: "HIGHLIGHT",
+          item,
+          selectOnHighlight,
+          lastEvent: eventSource,
+        }),
       [],
     ),
     // Select option with specified id. If no id is passed, then it'll use the focusedId
     // Highlight follows selection if `highlightOnSelect` is true. useful for mouse clicks
     // you need to move focus and selection together.
     select: React.useCallback(
-      (item, highlightOnSelect) =>
-        dispatch({ type: "SELECT", item, highlightOnSelect }),
+      (item, highlightOnSelect, eventSource) =>
+        dispatch({
+          type: "SELECT",
+          item,
+          highlightOnSelect,
+          lastEvent: eventSource,
+        }),
       [],
     ),
-    first: React.useCallback(action => dispatch({ type: "FIRST", action }), []),
-    last: React.useCallback(action => dispatch({ type: "LAST", action }), []),
+    first: React.useCallback(
+      (action, eventSource) =>
+        dispatch({ type: "FIRST", action, lastEvent: eventSource }),
+      [],
+    ),
+    last: React.useCallback(
+      (action, eventSource) =>
+        dispatch({ type: "LAST", action, lastEvent: eventSource }),
+      [],
+    ),
     // To reset the state, you need to pass which part you want to reset,
     // by default it'll reset only the highlighted option
     reset: React.useCallback(
-      (action: "highlighted" | "selected" | "both") =>
-        dispatch({ type: "RESET", action }),
+      (action: "highlighted" | "selected" | "both", eventSource) =>
+        dispatch({ type: "RESET", action, lastEvent: eventSource }),
       [],
     ),
     search: React.useCallback(
-      (characters, action) => dispatch({ type: "SEARCH", characters, action }),
+      (characters, action) =>
+        dispatch({
+          type: "SEARCH",
+          characters,
+          action,
+        }),
       [],
     ),
-    next: React.useCallback(action => dispatch({ type: "NEXT", action }), []),
+    next: React.useCallback(
+      (action, eventSource) =>
+        dispatch({ type: "NEXT", action, lastEvent: eventSource }),
+      [],
+    ),
     previous: React.useCallback(
-      action => dispatch({ type: "PREVIOUS", action }),
+      (action, eventSource) =>
+        dispatch({ type: "PREVIOUS", action, lastEvent: eventSource }),
       [],
     ),
   };

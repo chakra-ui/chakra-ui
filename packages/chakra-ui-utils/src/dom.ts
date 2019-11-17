@@ -11,5 +11,3 @@ export function normalizeEventKey(event: KeyboardEvent) {
   }
   return key;
 }
-
-export { isFocusable, isTabbable, ensureFocus } from "./tabbable";
