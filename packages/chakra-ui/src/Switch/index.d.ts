@@ -21,7 +21,7 @@ export interface ISwitch {
   /**
    * The children of the switch.
    */
-  children: React.ReactNode;
+  children?: React.ReactNode;
   /**
    * The aria-label of the switch for accessibility.
    */
