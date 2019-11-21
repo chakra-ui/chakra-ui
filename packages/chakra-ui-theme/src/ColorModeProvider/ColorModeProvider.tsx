@@ -3,8 +3,10 @@ import { jsx } from "@emotion/core";
 import { createContext, useContext, useState } from "react";
 import useDarkMode from "use-dark-mode";
 
+export type ColorMode = "light" | "dark";
+
 interface ContextValue {
-  colorMode: Props["value"];
+  colorMode: ColorMode;
   toggleColorMode: () => void;
 }
 
@@ -15,12 +17,12 @@ export const ColorModeContext = createContext<ContextValue>({
 });
 
 export interface Props {
-  value: "light" | "dark";
+  value: ColorMode;
   children: React.ReactNode;
 }
 
 const ColorModeProvider: React.FC<Props> = ({ value, children }) => {
-  const [manualMode, setManualMode] = useState<Props["value"]>(value);
+  const [manualMode, setManualMode] = useState<ColorMode>(value);
 
   const manualToggle = () => {
     if (manualMode === "light") {

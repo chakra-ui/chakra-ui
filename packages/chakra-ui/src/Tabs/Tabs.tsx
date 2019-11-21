@@ -17,18 +17,54 @@ import React, {
   useRef,
   useState,
   useEffect,
+  useLayoutEffect,
 } from "react";
+import { Theme } from "@chakra-ui/theme";
+import { useTabsStyle } from "./styles";
 
 ////////////////////////////////////////////////////////////////////////
+interface TabsStyleOptions {
+  /**
+   * The alignment of the tabs
+   */
+  align?: "start" | "center" | "end";
+  /**
+   * The style of the tabs to use
+   */
+  variant?:
+    | "line"
+    | "enclosed"
+    | "enclosed-colored"
+    | "soft-rounded"
+    | "solid-rounded";
+  /**
+   * If `true`, tabs will stretch to width of the tablist.
+   */
+  isFitted?: boolean;
+  /**
+   * The size of the tab (affects the font-size and padding).
+   */
+  size?: "sm" | "md" | "lg";
+  /**
+   * The color scheme of the tab variant. Use the color keys passed in `theme.colors`.
+   *
+   * Note: Use colors that have 50-900 values
+   */
+  variantColor?: keyof Theme["colors"];
+}
 
-const [useTabsContext, TabContextProvider] = useCreateContext<any>();
+export type TabContext = ReturnType<typeof useTabs> &
+  Required<Omit<TabsStyleOptions, "isFitted">> &
+  Pick<TabsStyleOptions, "isFitted">;
+const [useTabsContext, TabContextProvider] = useCreateContext<TabContext>();
+export { useTabsContext };
 
 ////////////////////////////////////////////////////////////////////////
 interface UseTabOptions extends UseTabbableOptions {
   id: string;
 }
 
-function useTab(props: UseTabOptions, ref: React.Ref<any>) {
+export function useTab(props: UseTabOptions, ref: React.Ref<any>) {
   const tab: any = useTabbable({
     clickOnSpace: true,
     clickOnEnter: true,
@@ -52,9 +88,8 @@ interface UseTabListOptions {
   onKeyDown: React.KeyboardEventHandler<any>;
 }
 
-function useTabList(props: UseTabListOptions) {
+export function useTabList(props: UseTabListOptions) {
   const tabs = useTabsContext();
-  const allNodes = useRef<HTMLElement[]>([]);
 
   const focusableIndexes = Children.map(props.children, (child: any, index) => {
     const isTrulyDisabled = child.props.isDisabled && !child.props.isFocusable;
@@ -66,7 +101,7 @@ function useTabList(props: UseTabListOptions) {
 
   const updateActiveIndex = (index: number) => {
     const childIndex = focusableIndexes[index];
-    allNodes.current[childIndex].focus();
+    tabs.tabNodesRef.current[childIndex].focus();
     tabs.onFocus(childIndex);
   };
 
@@ -114,9 +149,9 @@ function useTabList(props: UseTabListOptions) {
       }
     };
 
-    return cloneElement(child, {
+    return cloneElement(child as any, {
       id: `${tabs.id}--tab-${index}`,
-      ref: (node: HTMLElement) => (allNodes.current[index] = node),
+      ref: (node: HTMLElement) => (tabs.tabNodesRef.current[index] = node),
       isSelected,
       onClick: composeEventHandlers(child.props.onClick, onClick),
       onFocus: composeEventHandlers(child.props.onFocus, onFocus),
@@ -124,6 +159,7 @@ function useTabList(props: UseTabListOptions) {
   });
 
   return {
+    ref: tabs.tablistRef,
     role: "tablist",
     "aria-orientation": tabs.orientation,
     onKeyDown: composeEventHandlers(props.onKeyDown, onKeyDown),
@@ -133,17 +169,17 @@ function useTabList(props: UseTabListOptions) {
 
 ////////////////////////////////////////////////////////////////////////
 
-function useTabPanel(props: { isSelected: boolean }) {
+export function useTabPanel(props: { isSelected: boolean }) {
   return {
     role: "tabpanel",
-    tabIndex: -1,
+    // tabIndex: -1,
     hidden: !props.isSelected,
   };
 }
 
 ////////////////////////////////////////////////////////////////////////
 
-function useTabPanels(props: { children: React.ReactNode }) {
+export function useTabPanels(props: { children: React.ReactNode }) {
   const tabs = useTabsContext();
 
   const children = Children.map(props.children, (child, index) => {
@@ -156,6 +192,49 @@ function useTabPanels(props: { children: React.ReactNode }) {
   });
 
   return children;
+}
+
+////////////////////////////////////////////////////////////////////////
+
+export function useTabIndicator() {
+  const tabs = useTabsContext();
+  const isHorizontal = tabs.orientation === "horizontal";
+  const isVertical = tabs.orientation === "vertical";
+
+  const [rect, setRect] = useState(() => {
+    if (isHorizontal) return { left: 0, width: 0 };
+    if (isVertical) return { top: 0, height: 0 };
+  });
+
+  useLayoutEffect(() => {
+    if (tabs.selectedIndex == undefined) return;
+    const selectedTabNode = tabs.tabNodesRef.current[tabs.selectedIndex];
+    const selectedTabRect =
+      selectedTabNode && selectedTabNode.getBoundingClientRect();
+    const tabListRect =
+      tabs.tablistRef.current &&
+      tabs.tablistRef.current.getBoundingClientRect();
+
+    // For horizontal tabs
+    if (tabs.orientation === "horizontal" && tabListRect) {
+      const left = selectedTabRect && selectedTabRect.left - tabListRect.left;
+      const width = selectedTabRect && selectedTabRect.width;
+      setRect({ left, width });
+    }
+
+    // For vertical tabs
+    if (tabs.orientation === "vertical" && tabListRect) {
+      const top = selectedTabRect && selectedTabRect.top - tabListRect.top;
+      const height = selectedTabRect && selectedTabRect.width;
+      setRect({ top, height });
+    }
+  }, [tabs.tabNodesRef.current, tabs.selectedIndex]);
+
+  return {
+    position: "absolute",
+    transition: "all 200ms cubic-bezier(0, 0, 0.2, 1)",
+    ...rect,
+  };
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -181,12 +260,23 @@ export interface UseTabsOptions {
    * Callback when the index (controlled or un-controlled) changes.
    */
   onChange?: (index: number) => void;
+  /**
+   * The index of the selected tab (in controlled mode)
+   */
   index?: number;
+  /**
+   * The initial index of the selected tab (in uncontrolled mode)
+   */
   defaultIndex?: number;
+  /**
+   * The id of the tab
+   */
   id?: string;
 }
 
-function useTabs(props: UseTabsOptions) {
+////////////////////////////////////////////////////////////////////////
+
+export function useTabs(props: UseTabsOptions) {
   const [selectedIndex, setSelectedIndex] = useState<number>(
     props.defaultIndex || 0,
   );
@@ -199,7 +289,12 @@ function useTabs(props: UseTabsOptions) {
     selectedIndex,
   );
 
-  // sync up the focus index if we're in controlled mode
+  // Reference to all elements with `role=tab`
+  const tabNodesRef = useRef<HTMLElement[]>([]);
+  // Reference to the tablist
+  const tablistRef = useRef<HTMLElement>();
+
+  // sync focus with selection in controlled mode
   useEffect(() => {
     if (isControlled && props.index != undefined) {
       setFocusedIndex(props.index);
@@ -232,102 +327,74 @@ function useTabs(props: UseTabsOptions) {
     onFocus,
     isManual: props.isManual,
     orientation: props.orientation,
+    tabNodesRef,
+    tablistRef,
   };
 }
 
 ////////////////////////////////////////////////////////////////////////
 
-type TabsProps = Merge<BoxProps, UseTabsOptions>;
+export type BaseTabProps = UseTabsOptions & TabsStyleOptions;
+export type TabsProps = Merge<BoxProps, BaseTabProps>;
 
-const Tabs = forwardRef(function Tabs(props: TabsProps, ref: React.Ref<any>) {
-  const tabs = useTabs(props);
+const defaultProps: Partial<BaseTabProps> = {
+  variant: "line",
+  variantColor: "blue",
+  align: "start",
+  size: "md",
+  orientation: "horizontal",
+};
+
+export const Tabs = forwardRef(function Tabs(
+  props: TabsProps,
+  ref: React.Ref<any>,
+) {
+  const baseProps = { ...props, ...defaultProps };
+  const tabsProps = useTabs(baseProps);
+  const tabs = { ...baseProps, ...tabsProps };
   const context = React.useMemo(() => tabs, [tabs]);
 
   return (
-    <TabContextProvider value={context}>
+    <TabContextProvider value={context as any}>
       <Box ref={ref}>{props.children}</Box>
     </TabContextProvider>
   );
 });
 
-const Tab = forwardRef(function Tab(props: any, ref: React.Ref<any>) {
+export const Tab = forwardRef(function Tab(props: any, ref: React.Ref<any>) {
   const tab = useTab(props, ref);
-  return <Box {...props} {...tab} />;
+  const styleProps = useTabsStyle();
+  return <Box outline="none" {...styleProps.tab} {...props} {...tab} />;
 });
 
-const TabList = forwardRef(function TabList(props: any, ref: React.Ref<any>) {
+export const TabList = forwardRef(function TabList(
+  props: any,
+  ref: React.Ref<any>,
+) {
   const tablist = useTabList(props);
-  return <Flex ref={ref} {...props} {...tablist} />;
+  const styleProps = useTabsStyle();
+  return <Flex ref={ref} {...styleProps.tabList} {...props} {...tablist} />;
 });
 
-const TabPanel = forwardRef(function TabPanel(props: any, ref: React.Ref<any>) {
+export const TabPanel = forwardRef(function TabPanel(
+  props: any,
+  ref: React.Ref<any>,
+) {
   const tabpanel = useTabPanel(props);
   return <Box ref={ref} {...props} {...tabpanel} />;
 });
 
-const TabPanels = function TabPanels(props: any) {
+export const TabIndicator = forwardRef(function TabPanel(
+  props: BoxProps,
+  ref: React.Ref<any>,
+) {
+  const indicatorStyle = useTabIndicator();
+  return (
+    <Box ref={ref} {...props} style={indicatorStyle as React.CSSProperties} />
+  );
+});
+
+export const TabPanels = function TabPanels(props: any) {
   const tabpanels = useTabPanels(props);
   return <React.Fragment>{tabpanels}</React.Fragment>;
 };
-
-export function TabsExample() {
-  const [index, setIndex] = React.useState(1);
-  return (
-    <Tabs
-      // defaultIndex={1}
-      isManual
-      onChange={console.log}
-      orientation="vertical"
-    >
-      <TabList>
-        <Tab isDisabled isFocusable>
-          Tab 1
-        </Tab>
-        <Tab isDisabled>Tab 2</Tab>
-        <Tab>Tab 3</Tab>
-      </TabList>
-      <TabPanels>
-        <TabPanel>Tab Panel 1</TabPanel>
-        <TabPanel>Tab Panel 2</TabPanel>
-        <TabPanel>Tab Panel 3</TabPanel>
-      </TabPanels>
-    </Tabs>
-  );
-}
-
-export function TabsExample2() {
-  const [index, setIndex] = React.useState(2);
-  return (
-    <React.Fragment>
-      <input
-        type="range"
-        max="4"
-        min="0"
-        value={index}
-        onChange={e => setIndex(Number(e.target.value))}
-      />
-      <Tabs
-        // color="green"
-        index={index}
-        // isManual
-        orientation="horizontal"
-        onChange={setIndex}
-      >
-        <TabList>
-          <Tab>Tab 1</Tab>
-          <Tab isDisabled>Tab 2</Tab>
-          <Tab>Tab 3</Tab>
-          <Tab>Tab 4</Tab>
-          <Tab>Tab 5</Tab>
-        </TabList>
-        <TabPanels>
-          <TabPanel>Tab Panel 1</TabPanel>
-          <TabPanel>Tab Panel 2</TabPanel>
-          <TabPanel>Tab Panel 3</TabPanel>
-          <TabPanel>Tab Panel 4</TabPanel>
-          <TabPanel>Tab Panel 5</TabPanel>
-        </TabPanels>
-      </Tabs>
-    </React.Fragment>
-  );
-}

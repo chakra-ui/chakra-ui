@@ -31,7 +31,7 @@ export interface ButtonOptions {
    */
   isLoading?: boolean;
   /**
-   * The color scheme of the button vaint. Use the color keys passed in `theme.colors`.
+   * The color scheme of the button variant. Use the color keys passed in `theme.colors`.
    * @example
    * variantColor = "green" | "purple" | "orange"
    */
