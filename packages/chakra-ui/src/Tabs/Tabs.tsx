@@ -1,11 +1,9 @@
 /** @jsx jsx */
 import {
-  Selection,
+  useControllableValue,
   useCreateContext,
-  useFocusEffect,
-  useForkRef,
-  useSelectionItem,
-  useSelectionState,
+  useId,
+  useTabbable,
 } from "@chakra-ui/hooks";
 import { Box, Flex } from "@chakra-ui/layout";
 import { composeEventHandlers, createOnKeyDown } from "@chakra-ui/utils";
@@ -16,158 +14,117 @@ import React, {
   forwardRef,
   isValidElement,
   useRef,
+  useState,
+  useEffect,
 } from "react";
-import { getNextIndex } from "../Select/utils";
-
-/**
- * TODO:
- * 1. Fix autoFocus on mount issue
- * 2. Complete useTabbable hook and use it within useTab hook
- */
 
 ////////////////////////////////////////////////////////////////////////
 
-const [useSelection, SelectionProvider] = useCreateContext<Selection>();
 const [useTabsContext, TabContextProvider] = useCreateContext<any>();
 
 ////////////////////////////////////////////////////////////////////////
 
 function useTab(props: any, ref: React.Ref<any>) {
-  const selection = useSelection();
+  const tab: any = useTabbable(
+    { clickOnSpace: true, clickOnEnter: true, ...props },
+    ref,
+  );
+
+  return {
+    ...tab,
+    ref,
+    role: "tab",
+    tabIndex: tab.isSelected ? 0 : -1,
+    type: "button",
+    "aria-selected": tab.isSelected ? true : undefined,
+    "aria-controls": `tabpanel-${props.id}`,
+  };
+}
+
+////////////////////////////////////////////////////////////////////////
+
+function useTabList(props: any) {
   const tabs = useTabsContext();
-  const { isSelected, isHighlighted, item } = useSelectionItem({
-    ...props,
-    ...selection,
-  });
+  const allNodes = useRef<HTMLElement[]>([]);
 
-  useFocusEffect(isHighlighted, item.ref);
+  const focusableIndexes = Children.map(props.children, (child, index) => {
+    const isTrulyDisabled = child.props.isDisabled && !child.props.isFocusable;
+    return isTrulyDisabled ? null : index;
+  }).filter(child => child !== null) as number[];
 
-  const _ref = useForkRef(ref, item.ref);
+  const enabledSelectedIndex = focusableIndexes.indexOf(tabs.focusedIndex);
+  const count = focusableIndexes.length;
 
-  const onClick = () => {
-    if (!tabs.isControlled) {
-      selection.select(item, true);
-    }
-    const currentIndex = selection.items.findIndex(
-      _item => _item.id === item.id,
-    );
-    if (tabs.onChange) {
-      tabs.onChange(currentIndex);
-    }
+  const updateActiveIndex = (index: number) => {
+    const childIndex = focusableIndexes[index];
+    allNodes.current[childIndex].focus();
+    tabs.onFocus(childIndex);
   };
 
   const goToNextTab = () => {
-    if (!tabs.isControlled || tabs.options.isManual) {
-      selection.next("highlight", "keyboard-arrows");
-    }
-    if (!tabs.options.isManual && tabs.onChange) {
-      const nextIndex = getNextIndexFunc();
-      tabs.onChange(nextIndex);
-    }
+    const nextIndex = (enabledSelectedIndex + 1) % count;
+    updateActiveIndex(nextIndex);
   };
 
   const goToPrevTab = () => {
-    if (!tabs.isControlled || tabs.options.isManual) {
-      selection.previous("highlight", "keyboard-arrows");
-    }
-    if (!tabs.options.isManual && tabs.onChange) {
-      const nextIndex = getPrevIndexFunc();
-      tabs.onChange(nextIndex);
-    }
+    const nextIndex = (enabledSelectedIndex - 1 + count) % count;
+    updateActiveIndex(nextIndex);
   };
 
-  const getPrevIndexFunc = () => {
-    const currentIndex = selection.highlightedItem
-      ? selection.items.indexOf(selection.highlightedItem)
-      : -1;
-
-    const prevIndex = getNextIndex({
-      step: -1,
-      currentIndex,
-      itemsLength: selection.items.length,
-      loop: true,
-    });
-
-    return prevIndex;
-  };
-
-  const { isManual, orientation } = tabs.options;
-  const isHorizontal = orientation === "horizontal";
-  const isVertical = orientation === "vertical";
+  const isHorizontal = tabs.orientation === "horizontal";
+  const isVertical = tabs.orientation === "vertical";
 
   const onKeyDown = createOnKeyDown({
-    stopPropagation: true,
     keyMap: {
       ArrowRight: () => isHorizontal && goToNextTab(),
-      ArrowDown: () => isVertical && goToNextTab(),
       ArrowLeft: () => isHorizontal && goToPrevTab(),
+      ArrowDown: () => isVertical && goToNextTab(),
       ArrowUp: () => isVertical && goToPrevTab(),
-      Home: () => selection.first("highlight", "keyboard-arrows"),
-      End: () => selection.last("highlight", "keyboard-arrows"),
-      Enter: () => {
-        if (!tabs.isControlled) {
-          selection.select(null, false, "keyboard-enter");
-        }
-        const currentIndex = selection.highlightedItem
-          ? selection.items.indexOf(selection.highlightedItem)
-          : -1;
-        if (tabs.onChange) {
-          tabs.onChange(currentIndex);
-        }
-      },
+      Home: () => updateActiveIndex(0),
+      End: () => updateActiveIndex(count - 1),
     },
   });
 
-  const getNextIndexFunc = () => {
-    const currentIndex = selection.highlightedItem
-      ? selection.items.indexOf(selection.highlightedItem)
-      : -1;
+  const children = Children.map(props.children, (child, index) => {
+    let isSelected = index === tabs.selectedIndex;
 
-    const nextIndex = getNextIndex({
-      currentIndex,
-      itemsLength: selection.items.length,
-      loop: true,
-    });
+    const onClick = (event: React.MouseEvent) => {
+      (event.target as HTMLElement).focus();
+      tabs.onFocus(index);
 
-    return nextIndex;
-  };
-
-  const onFocus = () => {
-    if (!isManual) {
-      if (!tabs.isControlled) {
-        selection.select(null);
+      if (tabs.onChange) {
+        tabs.onChange(index);
       }
-    }
-  };
+    };
+
+    const onFocus = () => {
+      const isDisabledButFocusable =
+        child.props.isDisabled && child.props.isFocusable;
+      if (!tabs.isManual && !isDisabledButFocusable) {
+        tabs.onChange(index);
+      }
+    };
+
+    return cloneElement(child, {
+      id: `${tabs.id}--tab-${index}`,
+      ref: (node: HTMLElement) => (allNodes.current[index] = node),
+      isSelected,
+      onClick: composeEventHandlers(child.props.onClick, onClick),
+      onFocus: composeEventHandlers(child.props.onFocus, onFocus),
+    });
+  });
 
   return {
-    ref: _ref,
-    role: "tab",
-    tabIndex: isSelected ? 0 : -1,
-    id: `tab-${item.id}`,
-    type: "button",
-    "aria-selected": isSelected ? true : undefined,
-    "aria-controls": `tab-${item.id}-panel`,
-    onClick: composeEventHandlers(props.onClick, onClick),
-    onFocus: composeEventHandlers(props.onFocus, onFocus),
-    onKeyDown: composeEventHandlers(props.onKeyDown, onKeyDown),
-  };
-}
-
-////////////////////////////////////////////////////////////////////////
-
-function useTabList(props: any, ref: React.Ref<any>) {
-  const tabs = useTabsContext();
-  return {
-    ref,
     role: "tablist",
-    "aria-orientation": tabs.options.orientation,
+    "aria-orientation": tabs.orientation,
+    onKeyDown: composeEventHandlers(props.onKeyDown, onKeyDown),
+    children,
   };
 }
 
 ////////////////////////////////////////////////////////////////////////
 
-function useTabPanel(props: any, ref: React.Ref<any>) {
+function useTabPanel(props: any) {
   return {
     role: "tabpanel",
     tabIndex: -1,
@@ -177,26 +134,16 @@ function useTabPanel(props: any, ref: React.Ref<any>) {
 
 ////////////////////////////////////////////////////////////////////////
 
-function useTabPanels(props: any, ref: React.Ref<any>) {
-  const selection = useSelection();
+function useTabPanels(props: any) {
+  const tabs = useTabsContext();
 
   const children = Children.map(props.children, (child, index) => {
     if (!isValidElement(child)) return;
 
-    if (selection.items.length === 0) return child;
-
-    const tabId = selection.items[index]["id"];
-    const isSelected = selection.selectedItem
-      ? selection.selectedItem.id === tabId
-      : false;
-
-    return cloneElement(
-      child as React.ReactElement<{ isSelected: boolean; id: string }>,
-      {
-        isSelected,
-        id: `tab-${tabId}-panel`,
-      },
-    );
+    return cloneElement(child as any, {
+      isSelected: index === tabs.selectedIndex,
+      id: `${tabs.id}--tabpanel-${index}`,
+    });
   });
 
   return children;
@@ -204,53 +151,64 @@ function useTabPanels(props: any, ref: React.Ref<any>) {
 
 ////////////////////////////////////////////////////////////////////////
 
-const Tabs = forwardRef(function Tabs(props: any, ref: React.Ref<any>) {
-  const selection = useSelectionState({
-    selectFirstItemOnMount: !Boolean(
-      props.defaultActiveIndex || props.activeIndex,
-    ),
-    highlightFirstItemOnMount: !Boolean(
-      props.defaultActiveIndex || props.activeIndex,
-    ),
-  });
-
-  const { current: isControlled } = useRef(props.activeIndex != undefined);
-
-  React.useLayoutEffect(() => {
-    if (props.defaultActiveIndex != undefined && selection.items.length) {
-      const item = selection.items[props.defaultActiveIndex];
-      selection.select(item, true);
-    }
-    // eslint-disable-next-line
-  }, [selection.items]);
-
-  React.useLayoutEffect(() => {
-    if (props.activeIndex != undefined && selection.items.length) {
-      const item = selection.items[props.activeIndex];
-      selection.select(item, true);
-    }
-    // eslint-disable-next-line
-  }, [props.activeIndex, selection.items]);
-
-  const selectionContext = React.useMemo(
-    () => selection,
-    // eslint-disable-next-line
-    Object.values(selection),
+function useTabs(props: any) {
+  const [selectedIndex, setSelectedIndex] = useState<number>(
+    props.defaultIndex || 0,
   );
-  const tabContext = {
-    onChange: props.onChange,
-    isControlled,
-    options: {
-      isManual: props.isManual,
-      orientation: props.orientation,
-    },
+  const [focusedIndex, setFocusedIndex] = useState<number>(
+    props.defaultIndex || 0,
+  );
+
+  const [isControlled, _selectedIndex] = useControllableValue(
+    props.index,
+    selectedIndex,
+  );
+
+  // sync up the focus index if we're in controlled mode
+  useEffect(() => {
+    if (isControlled) {
+      setFocusedIndex(props.index);
+    }
+  }, [props.index]);
+
+  const uuid = useId(`tabs`);
+  const id = props.id || uuid;
+
+  const onChange = (index: number) => {
+    if (!isControlled) {
+      setSelectedIndex(index);
+    }
+
+    if (props.onChange) {
+      props.onChange(index);
+    }
   };
 
+  const onFocus = (index: number) => {
+    setFocusedIndex(index);
+  };
+
+  return {
+    id,
+    isControlled,
+    selectedIndex: _selectedIndex,
+    focusedIndex,
+    onChange,
+    onFocus,
+    isManual: props.isManual,
+    orientation: props.orientation,
+  };
+}
+
+////////////////////////////////////////////////////////////////////////
+
+const Tabs = forwardRef(function Tabs(props: any, ref: React.Ref<any>) {
+  const tabs = useTabs(props);
+  const context = React.useMemo(() => tabs, [tabs]);
+
   return (
-    <TabContextProvider value={tabContext}>
-      <SelectionProvider value={selectionContext}>
-        <Box ref={ref}>{props.children}</Box>
-      </SelectionProvider>
+    <TabContextProvider value={context}>
+      <Box ref={ref}>{props.children}</Box>
     </TabContextProvider>
   );
 });
@@ -261,37 +219,34 @@ const Tab = forwardRef(function Tab(props: any, ref: React.Ref<any>) {
 });
 
 const TabList = forwardRef(function TabList(props: any, ref: React.Ref<any>) {
-  const tablist = useTabList(props, ref);
-  return <Flex {...props} {...tablist} />;
+  const tablist = useTabList(props);
+  return <Flex ref={ref} {...props} {...tablist} />;
 });
 
 const TabPanel = forwardRef(function TabPanel(props: any, ref: React.Ref<any>) {
-  const tabpanel = useTabPanel(props, ref);
-  return <Box {...props} {...tabpanel} />;
+  const tabpanel = useTabPanel(props);
+  return <Box ref={ref} {...props} {...tabpanel} />;
 });
 
-const TabPanels = forwardRef(function TabPanels(
-  props: any,
-  ref: React.Ref<any>,
-) {
-  const tabpanels = useTabPanels(props, ref);
+const TabPanels = function TabPanels(props: any) {
+  const tabpanels = useTabPanels(props);
   return <React.Fragment>{tabpanels}</React.Fragment>;
-});
+};
 
 export function TabsExample() {
   const [index, setIndex] = React.useState(1);
   return (
     <Tabs
-      defaultActiveIndex={2}
-      // activeIndex={index}
-      onChange={console.log}
-      // onChange={setIndex}
-      orientation="horizontal"
+      // defaultIndex={1}
       isManual
+      onChange={console.log}
+      orientation="vertical"
     >
       <TabList>
-        <Tab>Tab 1</Tab>
-        <Tab>Tab 2</Tab>
+        <Tab isDisabled isFocusable>
+          Tab 1
+        </Tab>
+        <Tab isDisabled>Tab 2</Tab>
         <Tab>Tab 3</Tab>
       </TabList>
       <TabPanels>
@@ -300,5 +255,42 @@ export function TabsExample() {
         <TabPanel>Tab Panel 3</TabPanel>
       </TabPanels>
     </Tabs>
+  );
+}
+
+export function TabsExample2() {
+  const [index, setIndex] = React.useState(2);
+  return (
+    <React.Fragment>
+      <input
+        type="range"
+        max="4"
+        min="0"
+        value={index}
+        onChange={e => setIndex(Number(e.target.value))}
+      />
+      <Tabs
+        color="green"
+        index={index}
+        // isManual
+        orientation="horizontal"
+        onChange={setIndex}
+      >
+        <TabList>
+          <Tab>Tab 1</Tab>
+          <Tab isDisabled>Tab 2</Tab>
+          <Tab>Tab 3</Tab>
+          <Tab>Tab 4</Tab>
+          <Tab>Tab 5</Tab>
+        </TabList>
+        <TabPanels>
+          <TabPanel>Tab Panel 1</TabPanel>
+          <TabPanel>Tab Panel 2</TabPanel>
+          <TabPanel>Tab Panel 3</TabPanel>
+          <TabPanel>Tab Panel 4</TabPanel>
+          <TabPanel>Tab Panel 5</TabPanel>
+        </TabPanels>
+      </Tabs>
+    </React.Fragment>
   );
 }

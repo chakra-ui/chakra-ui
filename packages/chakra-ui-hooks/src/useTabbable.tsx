@@ -1,11 +1,5 @@
-import {
-  useCallback,
-  useRef,
-  MouseEventHandler,
-  KeyboardEventHandler,
-} from "react";
-import { useForkRef } from "./useForkRef";
 import { normalizeEventKey } from "@chakra-ui/utils";
+import { KeyboardEventHandler, MouseEventHandler, useCallback } from "react";
 
 interface Props<T> {
   isDisabled?: boolean;
@@ -25,9 +19,6 @@ function useTabbable<T extends HTMLElement>(
   ref: React.Ref<T>,
 ) {
   const trulyDisabled = props.isDisabled && !props.isFocusable;
-  const ownRef = useRef<HTMLElement>(null);
-
-  const _ref = useForkRef(ref, ownRef);
 
   const onMouseDown = useCallback(
     event => {
@@ -65,7 +56,7 @@ function useTabbable<T extends HTMLElement>(
     event => {
       const eventKey = normalizeEventKey(event);
       const shouldEnterClick = props.clickOnEnter && eventKey === "Enter";
-      const shouldSpaceClick = props.clickOnSpace && eventKey === "Space";
+      const shouldSpaceClick = props.clickOnSpace && eventKey === " ";
 
       if (props.isDisabled) return;
 
@@ -89,7 +80,7 @@ function useTabbable<T extends HTMLElement>(
 
   return {
     ...props,
-    ref: _ref,
+    ref,
     role: "button",
     disabled: trulyDisabled,
     "aria-disabled": props.isDisabled,
