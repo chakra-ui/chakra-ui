@@ -4,9 +4,10 @@ import {
   useCreateContext,
   useId,
   useTabbable,
+  UseTabbableOptions,
 } from "@chakra-ui/hooks";
-import { Box, Flex } from "@chakra-ui/layout";
-import { composeEventHandlers, createOnKeyDown } from "@chakra-ui/utils";
+import { Box, Flex, BoxProps } from "@chakra-ui/layout";
+import { composeEventHandlers, createOnKeyDown, Merge } from "@chakra-ui/utils";
 import { jsx } from "@emotion/core";
 import React, {
   Children,
@@ -23,12 +24,16 @@ import React, {
 const [useTabsContext, TabContextProvider] = useCreateContext<any>();
 
 ////////////////////////////////////////////////////////////////////////
+interface UseTabOptions extends UseTabbableOptions {
+  id: string;
+}
 
-function useTab(props: any, ref: React.Ref<any>) {
-  const tab: any = useTabbable(
-    { clickOnSpace: true, clickOnEnter: true, ...props },
-    ref,
-  );
+function useTab(props: UseTabOptions, ref: React.Ref<any>) {
+  const tab: any = useTabbable({
+    clickOnSpace: true,
+    clickOnEnter: true,
+    ...props,
+  });
 
   return {
     ...tab,
@@ -42,12 +47,16 @@ function useTab(props: any, ref: React.Ref<any>) {
 }
 
 ////////////////////////////////////////////////////////////////////////
+interface UseTabListOptions {
+  children: React.ReactNode;
+  onKeyDown: React.KeyboardEventHandler<any>;
+}
 
-function useTabList(props: any) {
+function useTabList(props: UseTabListOptions) {
   const tabs = useTabsContext();
   const allNodes = useRef<HTMLElement[]>([]);
 
-  const focusableIndexes = Children.map(props.children, (child, index) => {
+  const focusableIndexes = Children.map(props.children, (child: any, index) => {
     const isTrulyDisabled = child.props.isDisabled && !child.props.isFocusable;
     return isTrulyDisabled ? null : index;
   }).filter(child => child !== null) as number[];
@@ -85,7 +94,7 @@ function useTabList(props: any) {
     },
   });
 
-  const children = Children.map(props.children, (child, index) => {
+  const children = Children.map(props.children, (child: any, index) => {
     let isSelected = index === tabs.selectedIndex;
 
     const onClick = (event: React.MouseEvent) => {
@@ -124,7 +133,7 @@ function useTabList(props: any) {
 
 ////////////////////////////////////////////////////////////////////////
 
-function useTabPanel(props: any) {
+function useTabPanel(props: { isSelected: boolean }) {
   return {
     role: "tabpanel",
     tabIndex: -1,
@@ -134,7 +143,7 @@ function useTabPanel(props: any) {
 
 ////////////////////////////////////////////////////////////////////////
 
-function useTabPanels(props: any) {
+function useTabPanels(props: { children: React.ReactNode }) {
   const tabs = useTabsContext();
 
   const children = Children.map(props.children, (child, index) => {
@@ -151,7 +160,33 @@ function useTabPanels(props: any) {
 
 ////////////////////////////////////////////////////////////////////////
 
-function useTabs(props: any) {
+export interface UseTabsOptions {
+  /**
+   * The orientation of the <TabList/>.
+   */
+  orientation?: "vertical" | "horizontal";
+  /**
+   * If `true`, the tabs will be manually activated and
+   * display its panel by pressing Space or Enter.
+   *
+   * If `false`, the tabs will be automatically activated
+   * and their panel is displayed when they receive focus.
+   */
+  isManual?: boolean;
+  /**
+   * The children of the tabs should be `TabPanel` and `TabList`.
+   */
+  children: React.ReactNode;
+  /**
+   * Callback when the index (controlled or un-controlled) changes.
+   */
+  onChange?: (index: number) => void;
+  index?: number;
+  defaultIndex?: number;
+  id?: string;
+}
+
+function useTabs(props: UseTabsOptions) {
   const [selectedIndex, setSelectedIndex] = useState<number>(
     props.defaultIndex || 0,
   );
@@ -166,10 +201,10 @@ function useTabs(props: any) {
 
   // sync up the focus index if we're in controlled mode
   useEffect(() => {
-    if (isControlled) {
+    if (isControlled && props.index != undefined) {
       setFocusedIndex(props.index);
     }
-  }, [props.index]);
+  }, [isControlled, props.index]);
 
   const uuid = useId(`tabs`);
   const id = props.id || uuid;
@@ -202,7 +237,9 @@ function useTabs(props: any) {
 
 ////////////////////////////////////////////////////////////////////////
 
-const Tabs = forwardRef(function Tabs(props: any, ref: React.Ref<any>) {
+type TabsProps = Merge<BoxProps, UseTabsOptions>;
+
+const Tabs = forwardRef(function Tabs(props: TabsProps, ref: React.Ref<any>) {
   const tabs = useTabs(props);
   const context = React.useMemo(() => tabs, [tabs]);
 
@@ -270,7 +307,7 @@ export function TabsExample2() {
         onChange={e => setIndex(Number(e.target.value))}
       />
       <Tabs
-        color="green"
+        // color="green"
         index={index}
         // isManual
         orientation="horizontal"

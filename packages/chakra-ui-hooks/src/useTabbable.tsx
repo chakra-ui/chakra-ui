@@ -1,7 +1,7 @@
 import { normalizeEventKey } from "@chakra-ui/utils";
 import { KeyboardEventHandler, MouseEventHandler, useCallback } from "react";
 
-interface Props<T> {
+export interface UseTabbableOptions<T = any> {
   isDisabled?: boolean;
   onMouseOver?: MouseEventHandler<T>;
   onMouseDown?: MouseEventHandler<T>;
@@ -14,10 +14,7 @@ interface Props<T> {
   tabIndex?: number;
 }
 
-function useTabbable<T extends HTMLElement>(
-  props: Props<T>,
-  ref: React.Ref<T>,
-) {
+function useTabbable<T extends HTMLElement>(props: UseTabbableOptions<T>) {
   const trulyDisabled = props.isDisabled && !props.isFocusable;
 
   const onMouseDown = useCallback(
@@ -80,7 +77,6 @@ function useTabbable<T extends HTMLElement>(
 
   return {
     ...props,
-    ref,
     role: "button",
     disabled: trulyDisabled,
     "aria-disabled": props.isDisabled,

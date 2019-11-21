@@ -3,6 +3,7 @@ export { default as useCheckbox } from "./useCheckbox";
 export { default as useCreateContext } from "./useCreateContext";
 export { default as useDisclosure } from "./useDisclosure";
 export { default as useTabbable } from "./useTabbable";
+export * from "./useTabbable";
 export { default as usePrevious } from "./usePrevious";
 export { default as useAriaHidden } from "./useAriaHidden";
 export { default as useLockBodyScroll } from "./useLockBodyScroll";
