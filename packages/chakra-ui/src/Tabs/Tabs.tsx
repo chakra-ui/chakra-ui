@@ -228,7 +228,7 @@ export function useTabIndicator() {
       const height = selectedTabRect && selectedTabRect.width;
       setRect({ top, height });
     }
-  }, [tabs.tabNodesRef.current, tabs.selectedIndex]);
+  }, [tabs.selectedIndex, tabs.tabNodesRef, tabs.tablistRef, tabs.orientation]);
 
   return {
     position: "absolute",
