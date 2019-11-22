@@ -10,8 +10,15 @@
     "gatsby",
     "gatsby-plugin"
   ],
+  "scripts": {
+    "build": "babel src --out-dir .",
+    "prepare": "cross-env NODE_ENV=production npm run build"
+  },
   "peerDependencies": {
     "@chakra-ui/core": "0.3.2",
     "gatsby": ">=2.13.80"
+  },
+  "devDependencies": {
+    "babel-preset-gatsby-package": "^0.2.11"
   }
 }
