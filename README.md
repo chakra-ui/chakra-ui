@@ -1,8 +1,8 @@
 <br />
 
 <p align="center">
-  <a href="https://github.com/reakit/reakit/tree/master/logo">
-    <img src="https://github.com/chakra-ui/chakra-ui/blob/master/logo/logo-colored@2x.png?raw=true" alt="Reakit symbol" width="300" />
+  <a href="https://github.com/chakra-ui/chakra-ui/tree/master/logo">
+    <img src="https://github.com/chakra-ui/chakra-ui/blob/master/logo/logo-colored@2x.png?raw=true" alt="chakra-ui symbol" width="300" />
   </a>
 </p>
 
