@@ -23,6 +23,7 @@ const Checkbox = forwardRef(
       size = "md",
       isDisabled,
       isInvalid,
+      isReadOnly,
       onChange,
       onBlur,
       onFocus,
@@ -36,6 +37,7 @@ const Checkbox = forwardRef(
   ) => {
     const { colorMode } = useColorMode();
     const styleProps = checkboxStyles({ color: variantColor, size, colorMode });
+    const opacity = isReadOnly || isDisabled ? 0.32 : 1;
 
     return (
       <Box
@@ -44,7 +46,7 @@ const Checkbox = forwardRef(
         verticalAlign="top"
         alignItems="center"
         width={isFullWidth ? "full" : undefined}
-        cursor={isDisabled ? "not-allowed" : "pointer"}
+        cursor={isDisabled || isReadOnly ? "not-allowed" : "pointer"}
         {...rest}
       >
         <VisuallyHidden
@@ -55,12 +57,20 @@ const Checkbox = forwardRef(
           ref={ref}
           name={name}
           value={value}
-          defaultChecked={defaultIsChecked}
-          onChange={onChange}
+          defaultChecked={isReadOnly ? undefined : defaultIsChecked}
+          onChange={isReadOnly ? undefined : onChange}
           onBlur={onBlur}
           onFocus={onFocus}
-          checked={isChecked}
+          checked={
+            isReadOnly
+              ? Boolean(isChecked)
+              : defaultIsChecked
+              ? undefined
+              : isChecked
+          }
           disabled={isDisabled}
+          readOnly={isReadOnly}
+          aria-readonly={isReadOnly}
           aria-invalid={isInvalid}
           aria-checked={isIndeterminate ? "mixed" : isChecked}
         />
@@ -73,12 +83,7 @@ const Checkbox = forwardRef(
           />
         </ControlBox>
         {children && (
-          <Box
-            ml={2}
-            fontSize={size}
-            userSelect="none"
-            opacity={isDisabled ? 0.32 : 1}
-          >
+          <Box ml={2} fontSize={size} userSelect="none" opacity={opacity}>
             {children}
           </Box>
         )}
