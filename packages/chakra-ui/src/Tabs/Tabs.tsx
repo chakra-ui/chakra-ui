@@ -6,7 +6,7 @@ import {
   useTabbable,
   UseTabbableOptions,
 } from "@chakra-ui/hooks";
-import { Box, Flex, BoxProps } from "@chakra-ui/layout";
+import { Box, Flex, BoxProps, FlexProps } from "@chakra-ui/layout";
 import { composeEventHandlers, createOnKeyDown, Merge } from "@chakra-ui/utils";
 import { jsx } from "@emotion/core";
 import React, {
@@ -20,7 +20,7 @@ import React, {
   useLayoutEffect,
 } from "react";
 import { Theme } from "@chakra-ui/theme";
-import { useTabsStyle } from "./styles";
+import useTabsStyle from "./styles";
 
 ////////////////////////////////////////////////////////////////////////
 interface TabsStyleOptions {
@@ -36,6 +36,7 @@ interface TabsStyleOptions {
     | "enclosed"
     | "enclosed-colored"
     | "soft-rounded"
+    | "unstyled"
     | "solid-rounded";
   /**
    * If `true`, tabs will stretch to width of the tablist.
@@ -61,7 +62,7 @@ export { useTabsContext };
 
 ////////////////////////////////////////////////////////////////////////
 interface UseTabOptions extends UseTabbableOptions {
-  id: string;
+  id?: string;
 }
 
 export function useTab(props: UseTabOptions, ref: React.Ref<any>) {
@@ -82,10 +83,16 @@ export function useTab(props: UseTabOptions, ref: React.Ref<any>) {
   };
 }
 
+export const Tab = forwardRef(function Tab(props: any, ref: React.Ref<any>) {
+  const tab = useTab(props, ref);
+  const styleProps = useTabsStyle();
+  return <Box outline="none" {...styleProps.tab} {...props} {...tab} />;
+});
+
 ////////////////////////////////////////////////////////////////////////
 interface UseTabListOptions {
-  children: React.ReactNode;
-  onKeyDown: React.KeyboardEventHandler<any>;
+  children?: React.ReactNode;
+  onKeyDown?: React.KeyboardEventHandler<any>;
 }
 
 export function useTabList(props: UseTabListOptions) {
@@ -148,7 +155,6 @@ export function useTabList(props: UseTabListOptions) {
         tabs.onChange(index);
       }
     };
-
     return cloneElement(child as any, {
       id: `${tabs.id}--tab-${index}`,
       ref: (node: HTMLElement) => (tabs.tabNodesRef.current[index] = node),
@@ -167,15 +173,31 @@ export function useTabList(props: UseTabListOptions) {
   };
 }
 
+export const TabList = forwardRef(function TabList(
+  props: FlexProps<{}, any>,
+  ref: React.Ref<any>,
+) {
+  const tablist = useTabList(props);
+  const styleProps = useTabsStyle();
+  return <Flex ref={ref} {...styleProps.tabList} {...props} {...tablist} />;
+});
+
 ////////////////////////////////////////////////////////////////////////
 
-export function useTabPanel(props: { isSelected: boolean }) {
+export function useTabPanel(props: { isSelected?: boolean }) {
   return {
     role: "tabpanel",
-    // tabIndex: -1,
     hidden: !props.isSelected,
   };
 }
+
+export const TabPanel = forwardRef(function TabPanel(
+  props: any,
+  ref: React.Ref<any>,
+) {
+  const tabpanel = useTabPanel(props);
+  return <Box ref={ref} {...props} {...tabpanel} />;
+});
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -193,6 +215,11 @@ export function useTabPanels(props: { children: React.ReactNode }) {
 
   return children;
 }
+
+export const TabPanels = function TabPanels(props: any) {
+  const tabpanels = useTabPanels(props);
+  return <React.Fragment>{tabpanels}</React.Fragment>;
+};
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -236,6 +263,16 @@ export function useTabIndicator() {
     ...rect,
   };
 }
+
+export const TabIndicator = forwardRef(function TabPanel(
+  props: BoxProps,
+  ref: React.Ref<any>,
+) {
+  const indicatorStyle = useTabIndicator();
+  return (
+    <Box ref={ref} {...props} style={indicatorStyle as React.CSSProperties} />
+  );
+});
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -349,7 +386,7 @@ export const Tabs = forwardRef(function Tabs(
   props: TabsProps,
   ref: React.Ref<any>,
 ) {
-  const baseProps = { ...props, ...defaultProps };
+  const baseProps = { ...defaultProps, ...props };
   const tabsProps = useTabs(baseProps);
   const tabs = { ...baseProps, ...tabsProps };
   const context = React.useMemo(() => tabs, [tabs]);
@@ -360,41 +397,3 @@ export const Tabs = forwardRef(function Tabs(
     </TabContextProvider>
   );
 });
-
-export const Tab = forwardRef(function Tab(props: any, ref: React.Ref<any>) {
-  const tab = useTab(props, ref);
-  const styleProps = useTabsStyle();
-  return <Box outline="none" {...styleProps.tab} {...props} {...tab} />;
-});
-
-export const TabList = forwardRef(function TabList(
-  props: any,
-  ref: React.Ref<any>,
-) {
-  const tablist = useTabList(props);
-  const styleProps = useTabsStyle();
-  return <Flex ref={ref} {...styleProps.tabList} {...props} {...tablist} />;
-});
-
-export const TabPanel = forwardRef(function TabPanel(
-  props: any,
-  ref: React.Ref<any>,
-) {
-  const tabpanel = useTabPanel(props);
-  return <Box ref={ref} {...props} {...tabpanel} />;
-});
-
-export const TabIndicator = forwardRef(function TabPanel(
-  props: BoxProps,
-  ref: React.Ref<any>,
-) {
-  const indicatorStyle = useTabIndicator();
-  return (
-    <Box ref={ref} {...props} style={indicatorStyle as React.CSSProperties} />
-  );
-});
-
-export const TabPanels = function TabPanels(props: any) {
-  const tabpanels = useTabPanels(props);
-  return <React.Fragment>{tabpanels}</React.Fragment>;
-};

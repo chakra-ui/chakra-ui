@@ -1,16 +1,16 @@
-import { useState } from "react";
+import * as React from "react";
 import useControllableValue from "./useControllableValue";
 import usePrevious from "./usePrevious";
 
-interface UseDisclosure {
+export interface UseDisclosureOptions {
   isOpen?: boolean;
   defaultIsOpen?: boolean;
   onClose?: () => void;
   onOpen?: () => void;
 }
 
-const useDisclosure = (props: UseDisclosure = {}) => {
-  const [isOpen, setIsOpen] = useState(props.defaultIsOpen || false);
+const useDisclosure = (props: UseDisclosureOptions = {}) => {
+  const [isOpen, setIsOpen] = React.useState(props.defaultIsOpen || false);
   const [isControlled, isOpenValue] = useControllableValue(
     props.isOpen,
     isOpen,
@@ -18,34 +18,35 @@ const useDisclosure = (props: UseDisclosure = {}) => {
 
   const prevIsOpen = usePrevious(isOpenValue);
 
-  const onClose = () => {
+  const onClose = React.useCallback(() => {
     if (!isControlled) {
       setIsOpen(false);
     }
     if (props.onClose) {
       props.onClose();
     }
-  };
+  }, [props.onClose]);
 
-  const onOpen = () => {
+  const onOpen = React.useCallback(() => {
     if (!isControlled) {
       setIsOpen(true);
     }
     if (props.onOpen) {
       props.onOpen();
     }
-  };
+  }, [props.onOpen]);
 
-  const onToggle = () => {
+  const onToggle = React.useCallback(() => {
     if (isOpenValue) {
       onClose();
     } else {
       onOpen();
     }
-  };
+  }, []);
+
   return {
-    isOpen: isOpenValue as boolean,
-    prevIsOpen,
+    isOpen: Boolean(isOpenValue),
+    prevIsOpen: Boolean(prevIsOpen),
     onOpen,
     onClose,
     onToggle,

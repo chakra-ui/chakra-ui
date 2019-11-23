@@ -15,6 +15,7 @@ import { Icon } from "../Icon";
 import { ThemeProvider, CSSReset } from "@chakra-ui/theme";
 // import { useDisclosure } from "@chakra-ui/hooks";
 import { MenuItemOption, MenuOptionGroup } from "./MenuOption";
+import { BugExample } from "./bug";
 
 const stories = storiesOf("Menu", module);
 
@@ -106,3 +107,5 @@ stories.add("Bug fix", () => (
     <CustomMenu />
   </>
 ));
+
+stories.add("Bug 2", () => <BugExample />);

@@ -162,6 +162,8 @@ export function getVariantStyle(props: VariantProps) {
       return softRoundedStyle(props);
     case "solid-rounded":
       return solidRoundedStyle(props);
+    case "unstyled":
+      return { tab: {}, tabList: {} };
     default:
       break;
   }
@@ -223,7 +225,7 @@ const tabSizes = {
 };
 
 // Styles for the tab's variant and variantColor
-export function useTabsStyle() {
+function useTabsStyle() {
   const theme = useTheme();
   const {
     variant,
@@ -243,8 +245,6 @@ export function useTabsStyle() {
     colorMode,
   });
 
-  console.log(variantStyle);
-
   const orientationStyle = getOrientationStyle({ orientation, align });
 
   return {
@@ -262,3 +262,5 @@ export function useTabsStyle() {
     },
   };
 }
+
+export default useTabsStyle;

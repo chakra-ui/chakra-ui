@@ -8,7 +8,7 @@ type Argument = React.ChangeEvent<HTMLInputElement> | Value;
 export interface UseRadioGroupOptions {
   value?: Value;
   defaultValue?: Value;
-  onChange?: (value: Value) => void;
+  onChange?: (nextValue: Value) => void;
   name?: string;
 }
 

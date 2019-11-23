@@ -1,7 +1,7 @@
 /**@jsx jsx */
 import { jsx, css } from "@emotion/core";
 import {
-  useBlurOutside,
+  // useBlurOutside,
   useCreateContext,
   useDisclosure,
   useForkRef,
@@ -11,7 +11,7 @@ import {
   useRapidKeyDown,
   useSelectionItem,
   usePopper,
-  useFocusOnHide,
+  // useFocusOnHide,
   PopperJS,
 } from "@chakra-ui/hooks";
 import { Box, BoxProps, Divider, DividerProps, Text } from "@chakra-ui/layout";
@@ -21,6 +21,7 @@ import {
   Merge,
   RenderProp,
   ensureFocus,
+  isTabbable,
 } from "@chakra-ui/utils";
 import React, {
   forwardRef,
@@ -31,6 +32,7 @@ import React, {
 } from "react";
 import { useMenuItemStyle, useMenuListStyle, transitionStyles } from "./styles";
 import { CSSTransition } from "react-transition-group";
+import { useBlurOutside, useFocusOnHide } from "./hook";
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -103,9 +105,13 @@ export const Menu: React.FC<MenuProps> = ({
   // provides the popper functionality
   const popper = usePopper({
     placement,
+    eventsEnabled: true,
     modifiers: {
       computeStyle: {
         gpuAcceleration: false,
+      },
+      preventOverflow: {
+        boundariesElement: "viewport",
       },
     },
   });
@@ -135,6 +141,11 @@ export const Menu: React.FC<MenuProps> = ({
   useLayoutEffect(() => {
     if (disclosure.isOpen && defaultActiveIndex && selection.items.length) {
       selection.highlight(selection.items[defaultActiveIndex]);
+    }
+    if (!autoSelect && disclosure.isOpen) {
+      requestAnimationFrame(() => {
+        menuRef.current && menuRef.current.focus({ preventScroll: true });
+      });
     }
     // eslint-disable-next-line
   }, [disclosure.isOpen, selection.items]);
@@ -357,21 +368,21 @@ export const MenuList = forwardRef(function MenuList<P, T extends HTMLElement>(
   const styleProps = useMenuListStyle();
 
   return (
-    <CSSTransition appear timeout={240} classNames="menu" in={isOpen}>
-      <Box
-        minW="3xs"
-        rounded="md"
-        hidden={!isOpen}
-        py={2}
-        zIndex={1}
-        transformOrigin="top left"
-        _focus={{ outline: 0 }}
-        {...styleProps}
-        css={transitionStyles}
-        {...props}
-        {...menulist}
-      />
-    </CSSTransition>
+    // <CSSTransition appear timeout={240} classNames="menu" in={isOpen}>
+    <Box
+      minW="3xs"
+      rounded="md"
+      hidden={!isOpen}
+      py={2}
+      zIndex={1}
+      // transformOrigin="top left"
+      _focus={{ outline: 0 }}
+      {...styleProps}
+      css={transitionStyles}
+      {...props}
+      {...menulist}
+    />
+    // </CSSTransition>
   );
 });
 

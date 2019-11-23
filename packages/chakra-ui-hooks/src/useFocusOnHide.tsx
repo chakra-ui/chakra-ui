@@ -17,15 +17,14 @@ function useFocusOnHide(
 
     // Hide was triggered by a click/focus on a tabbable element outside
     // the dialog or on another dialog. We won't change focus then.
-    if (
+    const preventFocus =
       document.activeElement &&
       element &&
       !element.contains(document.activeElement) &&
       (isTabbable(document.activeElement) ||
-        document.activeElement.getAttribute("data-dialog") === "true")
-    ) {
-      return;
-    }
+        document.activeElement.getAttribute("data-dialog") === "true");
+    debugger;
+    if (preventFocus) return;
 
     const focusEl = options.focusRef && options.focusRef.current;
 
