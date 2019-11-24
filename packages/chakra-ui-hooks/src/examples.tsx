@@ -6,12 +6,14 @@ import useCheckboxGroup from "./useCheckboxGroup";
 import useRadioGroup from "./useRadioGroup";
 import { useSlider } from "./useSlider";
 import useLogger from "./useLogger";
+import useCounter from "./useCounter";
+import useNumberInput from "./useNumberInput";
 
 const stories = storiesOf("Hooks", module);
 
 stories.addDecorator(story => (
   <ThemeProvider>
-    <CSSReset />
+    {/* <CSSReset /> */}
     {story()}
   </ThemeProvider>
 ));
@@ -113,4 +115,80 @@ export function Slider() {
   );
 }
 
-stories.add("Slider", () => <Slider />);
+stories.add("useSlider", () => <Slider />);
+
+function Counter() {
+  const counter = useCounter({
+    defaultValue: 1.53,
+    max: 10,
+    min: 0,
+    step: 0.1,
+    shouldSpin: true,
+    keepWithinRange: true,
+  });
+
+  return (
+    <div>
+      <div>current: {counter.value}</div>
+      <br />
+      <button
+        onKeyDown={event => {
+          if (event.key === "Enter" || event.key === " ") {
+            counter.incOnKeyDown();
+          }
+        }}
+        onMouseDown={counter.incOnPointerDown}
+        onMouseUp={counter.stop}
+        disabled={counter.isAtMax}
+      >
+        Increment
+      </button>
+      <button
+        onKeyDown={event => {
+          if (event.key === "Enter" || event.key === " ") {
+            counter.decOnKeyDown();
+          }
+        }}
+        onMouseDown={counter.decOnPointerDown}
+        onMouseUp={counter.stop}
+        disabled={counter.isAtMin}
+      >
+        Decrement
+      </button>
+    </div>
+  );
+}
+
+stories.add("useCounter", () => <Counter />);
+
+function NumberInput() {
+  const numberInput = useNumberInput({
+    defaultValue: 1.53,
+    max: 10,
+    min: 0,
+    step: 0.1,
+    keepWithinRange: true,
+    onChange: (v: any) => console.log(v),
+  });
+
+  return (
+    <div>
+      <div>current: {numberInput.value}</div>
+      <button tabIndex={-1} {...numberInput.incrementStepper}>
+        +
+      </button>
+      <input {...numberInput.input} />
+      <input
+        type="number"
+        min={-2}
+        step={5}
+        onChange={e => console.log(e.target.value)}
+      />
+      <button tabIndex={-1} {...numberInput.decrementStepper}>
+        -
+      </button>
+    </div>
+  );
+}
+
+stories.add("useNumberInput", () => <NumberInput />);

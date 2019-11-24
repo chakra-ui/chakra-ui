@@ -33,6 +33,23 @@ export function useSliderThumb(props: any) {
   };
 }
 
+export function useSliderMarker(props: any) {
+  const slider = useSliderContext();
+
+  const isInRange = !(props.value < slider.min || props.value > slider.max);
+  const isHighlighted = slider.value >= props.value;
+  const markerPercent = valueToPercent(props.value, slider.min, slider.max);
+
+  const markerStyle: React.CSSProperties = {
+    position: "absolute",
+    ...(slider.isVertical
+      ? { bottom: `${markerPercent}%` }
+      : { left: `${markerPercent}%` }),
+  };
+
+  return { isInRange, markerStyle, isHighlighted };
+}
+
 interface SliderOptions {
   /**
    * minimum value the slider can hold
@@ -81,19 +98,6 @@ interface SliderOptions {
 }
 
 /////////////////////////////////////////////////////////////////////////////////
-/**
- * The default value is halfway between the min and max
- * unless the maximum is actually less than the minimum,
- * in this case the default is set to the min.
- */
-function getDefaultValue(props: any) {
-  if (props.defaultValue) return props.defaultValue;
-  const defaultValue =
-    props.max < props.min ? props.min : props.min + (props.max - props.min) / 2;
-  return defaultValue;
-}
-
-// TODO: Add resize event listener
 
 export function useSlider(props: any) {
   const [isPointerDown, setIsPointerDown] = React.useState(false);
@@ -245,19 +249,19 @@ export function useSlider(props: any) {
   }
 
   // Just a short-hand for `constrainAndUpdate`
-  const cup = constrainAndUpdate;
+  const cAU = constrainAndUpdate;
 
   const onKeyDown = createOnKeyDown({
     stopPropagation: true,
     keyMap: {
-      ArrowRight: () => cup(value + keyStep),
-      ArrowUp: () => cup(value + keyStep),
-      ArrowLeft: () => cup(value - keyStep),
-      ArrowDown: () => cup(value - keyStep),
-      PageUp: () => cup(value + tenSteps),
-      PageDown: () => cup(value - tenSteps),
-      Home: () => cup(props.min),
-      End: () => cup(props.max),
+      ArrowRight: () => cAU(value + keyStep),
+      ArrowUp: () => cAU(value + keyStep),
+      ArrowLeft: () => cAU(value - keyStep),
+      ArrowDown: () => cAU(value - keyStep),
+      PageUp: () => cAU(value + tenSteps),
+      PageDown: () => cAU(value - tenSteps),
+      Home: () => cAU(props.min),
+      End: () => cAU(props.max),
     },
   });
 
@@ -284,14 +288,16 @@ export function useSlider(props: any) {
 
   const trackStyle: React.CSSProperties = {
     position: "relative",
+    touchAction: "none",
   };
+
   const trackId = `slider-track-${id}`;
 
   // Support for Native slider methods
-  const stepUp = React.useCallback(() => cup(value + keyStep), []);
-  const stepDown = React.useCallback(() => cup(value - keyStep), []);
-  const reset = React.useCallback(() => cup(props.defaultValue), []);
-  const stepTo = React.useCallback((value: number) => cup(value), []);
+  const stepUp = React.useCallback(() => cAU(value + keyStep), []);
+  const stepDown = React.useCallback(() => cAU(value - keyStep), []);
+  const reset = React.useCallback(() => cAU(props.defaultValue), []);
+  const stepTo = React.useCallback((value: number) => cAU(value), []);
 
   // Return all the goods :)
   return {

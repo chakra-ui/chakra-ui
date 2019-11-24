@@ -1,33 +1,6 @@
 import prettyNum, { PRECISION_SETTING } from "pretty-num";
 
 /**
- * Checks if the pressed key is a number
- *
- * @param event The keyboard event
- * @returns {Boolean} True or false, obviously :)
- */
-export function isNumberKey(event: KeyboardEvent) {
-  const keyCode = event.which ? event.which : event.keyCode;
-
-  const isDotKey = keyCode === 190;
-  if (isDotKey) return true;
-
-  const isNotKeyboardKey = keyCode > 31 && (keyCode < 48 || keyCode > 57);
-  const isNotNumericKeypadKey =
-    (keyCode < 96 || keyCode > 105) && keyCode !== 110;
-
-  if (isNotKeyboardKey && isNotNumericKeypadKey) return false;
-
-  return true;
-}
-
-export function preventNonNumberKey(event: KeyboardEvent) {
-  if (!isNumberKey(event)) {
-    event.preventDefault();
-  }
-}
-
-/**
  * Rounds a number to a specific precision (Alternative to Math.round)
  *
  * @param value The value to convert
@@ -36,10 +9,12 @@ export function preventNonNumberKey(event: KeyboardEvent) {
  * @returns {Number} The rounded value
  */
 export function roundToPrecision(value: number, precision: number) {
-  return prettyNum(value, {
-    precision,
-    precisionSetting: PRECISION_SETTING.FIXED,
-  });
+  return Number(
+    prettyNum(value, {
+      precision,
+      precisionSetting: PRECISION_SETTING.FIXED,
+    }),
+  );
 }
 
 /**

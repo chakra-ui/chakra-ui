@@ -1,11 +1,7 @@
+import { canUseDOM, normalizeEventKey } from "@chakra-ui/utils";
 import * as React from "react";
-import {
-  calculatePrecision,
-  roundToPrecision,
-  canUseDOM,
-  preventNonNumberKey,
-} from "@chakra-ui/utils";
-import useLongPress from "./useLongPress";
+import useCounter from "./useCounter";
+import useUpdateEffect from "./useUpdateEffect";
 
 export interface useNumberInputOptions {
   /**
@@ -87,138 +83,53 @@ export interface useNumberInputOptions {
   isDisabled?: boolean;
 }
 
-type StepperProps =
-  | {
-      onMouseUp: React.MouseEventHandler<HTMLElement>;
-      onMouseLeave: React.MouseEventHandler<HTMLElement>;
-      onMouseDown: React.MouseEventHandler<HTMLElement>;
-      onTouchEnd: React.TouchEventHandler<HTMLElement>;
-    }
-  | {
-      onMouseUp: React.MouseEventHandler<HTMLElement>;
-      onMouseLeave: React.MouseEventHandler<HTMLElement>;
-      onTouchStart: React.TouchEventHandler<HTMLElement>;
-      onTouchEnd: React.TouchEventHandler<HTMLElement>;
-    };
+const defaultProps = {
+  focusInputOnChange: true,
+  clampValueOnBlur: true,
+  keepWithinRange: true,
+  min: -Infinity,
+  max: Infinity,
+  shouldSpin: true,
+  step: 1,
+};
 
-interface ButtonProps {
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
-  "aria-label": string;
-  disabled?: boolean;
-  "aria-disabled"?: boolean;
-}
-
-interface InputProps {
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
-  onKeyDown: React.KeyboardEventHandler<HTMLElement>;
-  ref: React.RefObject<HTMLElement>;
-  value: number;
-  role: string;
-  type: string;
-  "aria-valuemin": number;
-  "aria-valuemax": number;
-  "aria-disabled": boolean;
-  "aria-valuenow": number;
-  "aria-invalid": boolean;
-  "aria-valuetext": string;
-  readOnly: boolean;
-  disabled: boolean;
-  autoComplete: string;
-  onFocus: React.FocusEventHandler<HTMLElement>;
-  onBlur: React.FocusEventHandler<HTMLElement>;
-}
-
-interface hiddenLabelProps {
-  "aria-live": string;
-  children: React.ReactNode;
-  style: React.CSSProperties;
-}
-
-interface ReturnedValue {
-  value: number;
-  isFocused: boolean;
-  incrementStepper: StepperProps;
-  decrementStepper: StepperProps;
-  incrementButton: ButtonProps;
-  decrementButton: ButtonProps;
-  input: InputProps;
-  hiddenLabel: hiddenLabelProps;
-}
-
-function useNumberInput({
-  value: valueProp,
-  onChange,
-  defaultValue,
-  focusInputOnChange = true,
-  clampValueOnBlur = true,
-  keepWithinRange = true,
-  min = -Infinity,
-  max = Infinity,
-  step: stepProp = 1,
-  precision: precisionProp,
-  getAriaValueText,
-  isReadOnly,
-  isInvalid,
-  isDisabled,
-}: useNumberInputOptions) {
-  const { current: isControlled } = React.useRef(valueProp != null);
-
-  const defaultPrecision = Math.max(calculatePrecision(stepProp), 0);
-  const precision = precisionProp || defaultPrecision;
-
-  const [value, setValue] = React.useState<string | number>(() => {
-    if (defaultValue != null) {
-      let nextValue = defaultValue;
-      if (keepWithinRange) {
-        nextValue = Math.max(Math.min(nextValue, max), min);
-      }
-      nextValue = roundToPrecision(nextValue, precision);
-      return nextValue;
-    }
-    return 0;
-  });
+function useNumberInput(_props: any) {
+  const props = { ...defaultProps, ..._props };
+  const counter = useCounter(props);
 
   const [isFocused, setIsFocused] = React.useState(false);
 
-  const _value = isControlled ? valueProp : value;
-  const isInteractive = !(isReadOnly || isDisabled);
-  const inputRef = React.useRef<HTMLInputElement>();
+  const inputRef = React.useRef<HTMLInputElement>(null);
+  const isInteractive = !(props.isReadOnly || props.isDisabled);
 
-  const updateValue = (value: string | number) => {
-    !isControlled && setValue(value);
-    onChange && onChange(value);
+  useUpdateEffect(() => {
+    focusInput();
+  }, [counter.value]);
+
+  const increment = (step = props.step) => {
+    if (!isInteractive) return;
+    let valueToUse = Number(counter.value);
+
+    if (isNaN(valueToUse)) {
+      valueToUse = props.min;
+    }
+    const nextValue = counter.beforeUpdate(valueToUse + step);
+    counter.update(nextValue);
   };
 
-  const handleIncrement = (step = stepProp) => {
+  const decrement = (step = props.step) => {
     if (!isInteractive) return;
-    let nextValue = Number(_value) + Number(step);
+    let valueToUse = Number(counter.value);
 
-    if (keepWithinRange) {
-      nextValue = Math.min(nextValue, max);
+    if (isNaN(valueToUse)) {
+      valueToUse = props.min;
     }
-
-    nextValue = roundToPrecision(nextValue, precision);
-    updateValue(nextValue);
-
-    focusInput();
-  };
-
-  const handleDecrement = (step = stepProp) => {
-    if (!isInteractive) return;
-    let nextValue = Number(_value) - Number(step);
-
-    if (keepWithinRange) {
-      nextValue = Math.max(nextValue, min);
-    }
-
-    nextValue = roundToPrecision(nextValue, precision);
-    updateValue(nextValue);
-
-    focusInput();
+    const nextValue = counter.beforeUpdate(valueToUse - step);
+    counter.update(nextValue);
   };
 
   const focusInput = () => {
-    if (focusInputOnChange && inputRef.current && canUseDOM) {
+    if (props.focusInputOnChange && inputRef.current && canUseDOM) {
       requestAnimationFrame(() => {
         if (inputRef.current) {
           inputRef.current.focus();
@@ -227,46 +138,42 @@ function useNumberInput({
     }
   };
 
-  const incrementStepperProps = useLongPress(handleIncrement);
-  const decrementStepperProps = useLongPress(handleDecrement);
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    updateValue(event.target.value);
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    counter.update(event.target.value);
   };
 
-  // TODO: Use createOnKeydown here
-  const handleKeyDown = (event: KeyboardEvent) => {
-    preventNonNumberKey(event);
-    if (!isInteractive) return;
-
-    if (event.key === "ArrowUp") {
+  const onKeyDown = (event: React.KeyboardEvent) => {
+    if (!isAllowedKey(event)) {
       event.preventDefault();
-      const ratio = getIncrementFactor(event);
-      handleIncrement(ratio * stepProp);
     }
 
-    if (event.key === "ArrowDown") {
-      event.preventDefault();
-      const ratio = getIncrementFactor(event);
-      handleDecrement(ratio * stepProp);
-    }
+    const eventKey = normalizeEventKey(event);
+    const factor = getIncrementFactor(event);
+    const valueStep = factor * props.step;
 
-    if (event.key === "Home") {
-      event.preventDefault();
-      if (min != null) {
-        updateValue(max);
-      }
-    }
-
-    if (event.key === "End") {
-      event.preventDefault();
-      if (max != null) {
-        updateValue(min);
-      }
+    switch (eventKey) {
+      case "ArrowUp":
+        event.preventDefault();
+        increment(valueStep);
+        break;
+      case "ArrowDown":
+        event.preventDefault();
+        decrement(valueStep);
+        break;
+      case "Home":
+        event.preventDefault();
+        counter.update(props.max);
+        break;
+      case "End":
+        event.preventDefault();
+        counter.update(props.max);
+        break;
+      default:
+        break;
     }
   };
 
-  const getIncrementFactor = (event: KeyboardEvent) => {
+  const getIncrementFactor = (event: React.KeyboardEvent) => {
     let ratio = 1;
     if (event.metaKey || event.ctrlKey) {
       ratio = 0.1;
@@ -278,89 +185,126 @@ function useNumberInput({
   };
 
   const validateAndClamp = () => {
-    const maxExists = max != null;
-    const minExists = min != null;
-
-    if (typeof _value === "number" && maxExists && _value > max) {
-      updateValue(max);
+    if (counter.value > props.max) {
+      counter.update(props.max);
     }
-
-    if (typeof _value === "number" && minExists && _value < min) {
-      updateValue(min);
+    if (counter.value < props.min) {
+      counter.update(props.min);
     }
   };
 
-  const isOutOfRange =
-    typeof _value === "number" && (_value > max || _value < min);
-
   const ariaValueText =
-    getAriaValueText && _value ? getAriaValueText(_value) : null;
+    typeof props.getAriaValueText === "function"
+      ? props.getAriaValueText(counter.value)
+      : undefined;
+
+  const onFocus = React.useCallback(() => setIsFocused(true), []);
+  const onBlur = React.useCallback(() => {
+    setIsFocused(false);
+    if (props.clampValueOnBlur) {
+      validateAndClamp();
+    }
+  }, [props.clampValueOnBlur, counter.value]);
 
   return {
-    value: _value,
+    value: counter.value,
     isFocused,
-    isDisabled,
-    isReadOnly,
-    incrementStepper: incrementStepperProps,
-    decrementStepper: decrementStepperProps,
+    isDisabled: props.isDisabled,
+    isReadOnly: props.isReadOnly,
+    incrementStepper: {
+      onPointerDown: counter.incOnPointerDown,
+      onPointerUp: counter.stop,
+      disabled: counter.isAtMax,
+    },
+    decrementStepper: {
+      onPointerDown: counter.decOnPointerDown,
+      onPointerUp: counter.stop,
+      disabled: counter.isAtMin,
+    },
     incrementButton: {
-      onClick: () => handleIncrement(),
+      onClick: counter.inc,
       "aria-label": "add",
-      ...(keepWithinRange && {
-        disabled: _value === max,
-        "aria-disabled": _value === max,
+      ...(props.keepWithinRange && {
+        disabled: counter.isAtMax,
+        "aria-disabled": counter.isAtMax,
       }),
     },
     decrementButton: {
-      onClick: () => handleDecrement(),
+      onClick: counter.dec,
       "aria-label": "subtract",
-      ...(keepWithinRange && {
-        disabled: _value === min,
-        "aria-disabled": _value === min,
+      ...(props.keepWithinRange && {
+        disabled: counter.isAtMin,
+        "aria-disabled": counter.isAtMin,
       }),
     },
     input: {
-      onChange: handleChange,
-      onKeyDown: handleKeyDown,
+      onChange,
+      onKeyDown,
       ref: inputRef,
-      value: _value,
+      value: counter.value,
       role: "spinbutton",
       type: "text",
-      "aria-valuemin": min,
-      "aria-valuemax": max,
-      "aria-disabled": isDisabled,
-      "aria-valuenow": _value,
-      "aria-invalid": isInvalid || isOutOfRange,
-      ...(getAriaValueText && { "aria-valuetext": ariaValueText }),
-      readOnly: isReadOnly,
-      disabled: isDisabled,
+      "aria-valuemin": props.min,
+      "aria-valuemax": props.max,
+      "aria-disabled": props.isDisabled,
+      "aria-valuenow": counter.value,
+      "aria-invalid": props.isInvalid || counter.isOutOfRange,
+      "aria-valuetext": ariaValueText,
+      readOnly: props.isReadOnly,
+      disabled: props.isDisabled,
       autoComplete: "off",
-      onFocus: () => {
-        setIsFocused(true);
-      },
-      onBlur: () => {
-        setIsFocused(false);
-        if (clampValueOnBlur) {
-          validateAndClamp();
-        }
-      },
+      onFocus,
+      onBlur,
     },
     hiddenLabel: {
       "aria-live": "polite",
-      children: getAriaValueText ? ariaValueText : _value,
-      style: {
-        position: "absolute",
-        clip: "rect(0px, 0px, 0px, 0px)",
-        height: 1,
-        width: 1,
-        margin: -1,
-        whiteSpace: "nowrap",
-        border: 0,
-        overflow: "hidden",
-        padding: 0,
-      },
+      children: ariaValueText || counter.value,
     },
   };
+}
+
+/**
+ * Checks if the pressed key is a number
+ *
+ * @param event The keyboard event
+ * @returns {Boolean} True or false, obviously :)
+ */
+function isAllowedKey(event: React.KeyboardEvent) {
+  const keyCode = event.which ? event.which : event.keyCode;
+
+  const allowedKeys = [
+    "Delete",
+    "Backspace",
+    "ArrowLeft",
+    "ArrowRight",
+    "Meta",
+    "Shift",
+    "Enter",
+    "Escape",
+    "Home",
+    "End",
+    "+",
+    "-",
+    ".",
+  ];
+
+  const key = normalizeEventKey(event);
+  const ctrlKey = event.metaKey || event.ctrlKey;
+
+  const isCopy = ctrlKey && key === "c";
+  const isPaste = ctrlKey && key === "v";
+  const isCut = ctrlKey && key === "x";
+  const isSelectAll = ctrlKey && key === "a";
+
+  if (allowedKeys.includes(key) || isCopy || isPaste || isCut || isSelectAll)
+    return true;
+
+  const notTopNumberKeypad = keyCode > 31 && (keyCode < 48 || keyCode > 57);
+  const notNumericKeypad = (keyCode < 96 || keyCode > 105) && keyCode !== 110;
+
+  if (event.shiftKey || (notTopNumberKeypad && notNumericKeypad)) return false;
+
+  return true;
 }
 
 export default useNumberInput;
