@@ -8,6 +8,13 @@ import { useSlider } from "./useSlider";
 import useLogger from "./useLogger";
 import useCounter from "./useCounter";
 import useNumberInput from "./useNumberInput";
+import {
+  useAccordion,
+  useAccordionItem,
+  AccordionItemProvider,
+  useAccordionButton,
+  useAccordionPanel,
+} from "./useAccordion";
 
 const stories = storiesOf("Hooks", module);
 
@@ -192,3 +199,40 @@ function NumberInput() {
 }
 
 stories.add("useNumberInput", () => <NumberInput />);
+
+function Accordion(props: any) {
+  const children = useAccordion(props);
+  return <React.Fragment>{children}</React.Fragment>;
+}
+
+function AccordionItem(props: any) {
+  const accordionItem = useAccordionItem(props);
+  return (
+    <AccordionItemProvider value={accordionItem}>
+      <div>{props.children}</div>
+    </AccordionItemProvider>
+  );
+}
+
+function AccordionButton(props: any) {
+  const button = useAccordionButton(props);
+  return <button {...props} {...button} />;
+}
+
+function AccordionPanel(props: any) {
+  const panel = useAccordionPanel(props);
+  return <div {...props} {...panel} />;
+}
+
+stories.add("useAccordion", () => (
+  <Accordion defaultIndex={1} allowToggle>
+    <AccordionItem>
+      <AccordionButton>Toggle 1</AccordionButton>
+      <AccordionPanel>Panel 1</AccordionPanel>
+    </AccordionItem>
+    <AccordionItem>
+      <AccordionButton>Toggle 2</AccordionButton>
+      <AccordionPanel>Panel 2</AccordionPanel>
+    </AccordionItem>
+  </Accordion>
+));

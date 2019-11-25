@@ -33,7 +33,7 @@ export function useBlurOutside(
         buttonRef.current.removeEventListener("mousedown", preventDefault);
       }
     };
-  }, []);
+  }, [buttonRef]);
 
   return (event: React.FocusEvent) => {
     const shouldClose = options.visible && !hasFocusWithin(containerRef, event);
@@ -71,7 +71,13 @@ export function useFocusOnHide(
     if (focusEl && previouslyVisible && shouldFocus) {
       // ensureFocus(focusEl);
     }
-  }, [options.autoFocus, options.visible, ref, previouslyVisible]);
+  }, [
+    options.autoFocus,
+    options.visible,
+    ref,
+    previouslyVisible,
+    options.focusRef,
+  ]);
 }
 
 export default useFocusOnHide;

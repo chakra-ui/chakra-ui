@@ -50,6 +50,7 @@ const useDisclosure = (props: UseDisclosureOptions = {}) => {
     onOpen,
     onClose,
     onToggle,
+    isControlled,
   };
 };
 
