@@ -76,7 +76,6 @@ function useTabbable<T extends HTMLElement>(props: UseTabbableOptions<T>) {
   );
 
   return {
-    ...props,
     role: "button",
     disabled: trulyDisabled,
     "aria-disabled": props.isDisabled,

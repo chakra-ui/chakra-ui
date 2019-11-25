@@ -15,6 +15,15 @@ import {
   useAccordionButton,
   useAccordionPanel,
 } from "./useAccordion";
+import {
+  useTab,
+  useTabList,
+  useTabPanel,
+  useTabPanels,
+  useTabIndicator,
+  TabContextProvider,
+  useTabs,
+} from "./useTabs";
 
 const stories = storiesOf("Hooks", module);
 
@@ -247,4 +256,63 @@ stories.add("useAccordion", () => (
       <AccordionPanel>Panel 2</AccordionPanel>
     </AccordionItem>
   </Accordion>
+));
+
+function Tabs(props: any) {
+  const tabs = useTabs(props);
+  const context = React.useMemo(() => tabs, [tabs]);
+  return (
+    <TabContextProvider value={context}>{props.children}</TabContextProvider>
+  );
+}
+
+const Tab = React.forwardRef(function Tab(props: any, ref: any) {
+  const tab = useTab(props);
+  return (
+    <button ref={ref} {...tab}>
+      {props.children}
+    </button>
+  );
+});
+
+function TabList(props: any) {
+  const tablist = useTabList(props);
+  return <div {...props} {...tablist} />;
+}
+
+function TabPanel(props: any) {
+  const tabpanel = useTabPanel(props);
+  return <div {...tabpanel}>{props.children}</div>;
+}
+
+function TabPanels(props: any) {
+  const tabpanels = useTabPanels(props);
+  return <React.Fragment>{tabpanels}</React.Fragment>;
+}
+
+function TabIndicator(props: any) {
+  const indicator = useTabIndicator();
+  return (
+    <div style={{ ...indicator, height: 2, background: "red" }} {...props} />
+  );
+}
+
+stories.add("useTabs", () => (
+  <Tabs orientation="horizontal" isManual>
+    <TabList>
+      <Tab>Settings</Tab>
+      <Tab isDisabled isFocusable>
+        Billings
+      </Tab>
+      <Tab>Preferences</Tab>
+      <Tab>Shut Down</Tab>
+    </TabList>
+    <TabIndicator />
+    <TabPanels>
+      <TabPanel>Settings</TabPanel>
+      <TabPanel>Billings</TabPanel>
+      <TabPanel>Preferences</TabPanel>
+      <TabPanel>Shut Down</TabPanel>
+    </TabPanels>
+  </Tabs>
 ));

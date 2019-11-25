@@ -171,7 +171,7 @@ export function useAccordionButton(props: any) {
     clickOnSpace: true,
   });
 
-  return tabbable;
+  return { ...button, ...tabbable };
 }
 
 export function useAccordionPanel(props: any) {

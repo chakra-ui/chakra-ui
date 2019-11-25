@@ -40,6 +40,7 @@ export * from "./useSelection";
 export * from "./useSlider";
 
 export * from "./useTabbable";
+export * from "./useTabs";
 export { default as useTabbable } from "./useTabbable";
 
 export { default as useUpdateEffect } from "./useUpdateEffect";
