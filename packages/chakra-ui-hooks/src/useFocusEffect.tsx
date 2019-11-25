@@ -1,18 +1,19 @@
 import * as React from "react";
-import { hasFocusWithin } from "@chakra-ui/utils";
+import { hasFocusWithin, ensureFocus } from "@chakra-ui/utils";
+import useUpdateEffect from "./useUpdateEffect";
 
-function useFocusEffect(isFocused: boolean, ref: React.RefObject<HTMLElement>) {
-  React.useEffect(() => {
-    if (!ref.current) {
-      console.warn(
-        "Can't focus element because `ref` wasn't passed to component.",
-      );
-      return;
+function useFocusEffect<T extends HTMLElement>(
+  ref: React.RefObject<T>,
+  options: { shouldFocus: boolean; preventScroll?: boolean },
+) {
+  const { shouldFocus, preventScroll } = options;
+
+  useUpdateEffect(() => {
+    if (!ref.current) return;
+    if (shouldFocus && ref.current && !hasFocusWithin(ref.current)) {
+      ensureFocus(ref.current, { preventScroll });
     }
-    if (isFocused && ref.current && !hasFocusWithin(ref.current)) {
-      ref.current.focus();
-    }
-  }, [isFocused, ref]);
+  }, [shouldFocus, ref]);
 }
 
 export default useFocusEffect;

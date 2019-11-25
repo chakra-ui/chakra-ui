@@ -1,6 +1,8 @@
 import useId from "../useId";
 import * as React from "react";
 import { Item, reducer, State, EventMeta } from "./reducer";
+import useCreateContext from "../useCreateContext";
+import { useDeepCompareMemo } from "use-deep-compare";
 
 export type SelectionActions = {
   /**
@@ -188,3 +190,15 @@ export function useSelectionItem(
 
   return { item: newItem, isHighlighted, isSelected };
 }
+
+const [useSelection, SelectionCtxProvider] = useCreateContext<any>();
+
+function SelectionProvider({ children, ...props }: any) {
+  const selection = useSelectionState(props);
+  const context = useDeepCompareMemo(() => selection, [selection]);
+
+  return (
+    <SelectionCtxProvider value={context}>{children}</SelectionCtxProvider>
+  );
+}
+export { useSelection, SelectionProvider };

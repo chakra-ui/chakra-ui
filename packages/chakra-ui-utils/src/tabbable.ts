@@ -76,11 +76,6 @@ export function ensureFocus(
   { isActive = defaultIsActive, preventScroll }: EnsureFocusOptions = {},
 ) {
   if (isActive(element)) return -1;
-
-  element.focus({ preventScroll });
-
-  if (isActive(element)) return -1;
-
   return requestAnimationFrame(() => {
     element.focus({ preventScroll });
   });

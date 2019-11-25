@@ -51,6 +51,10 @@ function useTabbable<T extends HTMLElement>(props: UseTabbableOptions<T>) {
 
   const onKeyDown = useCallback(
     event => {
+      if (props.onKeyDown) {
+        props.onKeyDown(event);
+      }
+
       const eventKey = normalizeEventKey(event);
       const shouldEnterClick = props.clickOnEnter && eventKey === "Enter";
       const shouldSpaceClick = props.clickOnSpace && eventKey === " ";
@@ -66,10 +70,6 @@ function useTabbable<T extends HTMLElement>(props: UseTabbableOptions<T>) {
             cancelable: false,
           }),
         );
-      }
-
-      if (props.onKeyDown) {
-        props.onKeyDown(event);
       }
     },
     [props.isDisabled, props.onKeyDown, props.clickOnEnter, props.clickOnSpace],

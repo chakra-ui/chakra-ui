@@ -201,8 +201,8 @@ function NumberInput() {
 stories.add("useNumberInput", () => <NumberInput />);
 
 function Accordion(props: any) {
-  const children = useAccordion(props);
-  return <React.Fragment>{children}</React.Fragment>;
+  const { FocusManager, children } = useAccordion(props);
+  return <FocusManager>{children}</FocusManager>;
 }
 
 function AccordionItem(props: any) {
@@ -225,10 +225,22 @@ function AccordionPanel(props: any) {
 }
 
 stories.add("useAccordion", () => (
-  <Accordion defaultIndex={1} allowToggle>
+  <Accordion allowToggle>
     <AccordionItem>
       <AccordionButton>Toggle 1</AccordionButton>
-      <AccordionPanel>Panel 1</AccordionPanel>
+      <AccordionPanel>
+        Panel 1
+        <Accordion>
+          <AccordionItem>
+            <AccordionButton>InnerButton 1</AccordionButton>
+            <AccordionPanel>InnerPanel 1</AccordionPanel>
+          </AccordionItem>
+          <AccordionItem>
+            <AccordionButton>InnerButton 2</AccordionButton>
+            <AccordionPanel>InnerPanel 2</AccordionPanel>
+          </AccordionItem>
+        </Accordion>
+      </AccordionPanel>
     </AccordionItem>
     <AccordionItem>
       <AccordionButton>Toggle 2</AccordionButton>

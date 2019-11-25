@@ -10,13 +10,13 @@ export interface UseDisclosureOptions {
 }
 
 const useDisclosure = (props: UseDisclosureOptions = {}) => {
-  const [isOpen, setIsOpen] = React.useState(props.defaultIsOpen || false);
-  const [isControlled, isOpenValue] = useControllableValue(
+  const [isOpenState, setIsOpen] = React.useState(props.defaultIsOpen || false);
+  const [isControlled, isOpen] = useControllableValue(
     props.isOpen,
-    isOpen,
+    isOpenState,
   );
 
-  const prevIsOpen = usePrevious(isOpenValue);
+  const prevIsOpen = usePrevious(isOpen);
 
   const onClose = React.useCallback(() => {
     if (!isControlled) {
@@ -25,7 +25,7 @@ const useDisclosure = (props: UseDisclosureOptions = {}) => {
     if (props.onClose) {
       props.onClose();
     }
-  }, [props.onClose]);
+  }, [isControlled, props.onClose]);
 
   const onOpen = React.useCallback(() => {
     if (!isControlled) {
@@ -34,18 +34,18 @@ const useDisclosure = (props: UseDisclosureOptions = {}) => {
     if (props.onOpen) {
       props.onOpen();
     }
-  }, [props.onOpen]);
+  }, [isControlled, props.onOpen]);
 
   const onToggle = React.useCallback(() => {
-    if (isOpenValue) {
+    if (isOpen) {
       onClose();
     } else {
       onOpen();
     }
-  }, []);
+  }, [isOpen]);
 
   return {
-    isOpen: Boolean(isOpenValue),
+    isOpen: Boolean(isOpen),
     prevIsOpen: Boolean(prevIsOpen),
     onOpen,
     onClose,
