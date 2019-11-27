@@ -3,7 +3,7 @@ import PopperJS from "popper.js";
 import React from "react";
 import { css } from "@emotion/core";
 import { useDeepCompareEffect } from "use-deep-compare";
-import useCallbackRef from "./useCallbackRef";
+import useCallbackRef from "../useCallbackRef";
 
 const popperStyles: React.CSSProperties = {
   position: "absolute",

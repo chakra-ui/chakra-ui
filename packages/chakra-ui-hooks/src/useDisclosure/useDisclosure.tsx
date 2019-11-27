@@ -1,6 +1,6 @@
 import * as React from "react";
-import useControllableValue from "./useControllableValue";
-import usePrevious from "./usePrevious";
+import useControllableValue from "../useControllableValue";
+import usePrevious from "../usePrevious";
 
 export interface UseDisclosureOptions {
   isOpen?: boolean;

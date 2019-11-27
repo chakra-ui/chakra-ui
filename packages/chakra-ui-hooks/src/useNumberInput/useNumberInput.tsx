@@ -1,7 +1,7 @@
 import { canUseDOM, normalizeEventKey } from "@chakra-ui/utils";
 import * as React from "react";
-import useCounter from "./useCounter";
-import useUpdateEffect from "./useUpdateEffect";
+import useCounter from "../useCounter/useCounter";
+import useUpdateEffect from "../useUpdateEffect";
 
 export interface useNumberInputOptions {
   /**

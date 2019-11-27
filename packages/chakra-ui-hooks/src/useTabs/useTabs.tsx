@@ -1,8 +1,8 @@
 import * as React from "react";
-import useControllableValue from "./useControllableValue";
-import useCreateContext from "./useCreateContext";
-import useId from "./useId";
-import useTabbable, { UseTabbableOptions } from "./useTabbable";
+import useControllableValue from "../useControllableValue";
+import useCreateContext from "../useCreateContext";
+import useId from "../useId";
+import useTabbable, { UseTabbableOptions } from "../useTabbable";
 import { createOnKeyDown, composeEventHandlers } from "@chakra-ui/utils";
 
 export interface UseTabsOptions {
@@ -201,7 +201,7 @@ export function useTabList(props: UseTabListOptions) {
       }
     };
 
-    return React.cloneElement(child as any, {
+    return React.cloneElement(child, {
       id: `${tabs.id}--tab-${index}`,
       panelId: `${tabs.id}--tabpanel-${index}`,
       ref: (node: HTMLElement) => (tabs.tabNodesRef.current[index] = node),

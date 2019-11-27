@@ -5,9 +5,9 @@ import {
 } from "@chakra-ui/utils";
 import * as React from "react";
 import { throttle } from "throttle-debounce";
-import useControllableValue from "./useControllableValue";
-import useInterval from "./useInterval";
-import usePrevious from "./usePrevious";
+import useControllableValue from "../useControllableValue";
+import useInterval from "../useInterval";
+import usePrevious from "../usePrevious";
 
 type Action = "increment" | "decrement";
 type VoidFunction = () => void;

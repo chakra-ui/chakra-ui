@@ -14,7 +14,14 @@ export interface UseTabbableOptions<T = any> {
   tabIndex?: number;
 }
 
-function useTabbable<T extends HTMLElement>(props: UseTabbableOptions<T>) {
+const defaultProps: Partial<UseTabbableOptions> = {
+  clickOnEnter: true,
+  clickOnSpace: true,
+};
+
+function useTabbable<T extends HTMLElement>(
+  props: UseTabbableOptions<T> = defaultProps,
+) {
   const trulyDisabled = props.isDisabled && !props.isFocusable;
 
   const onMouseDown = useCallback(

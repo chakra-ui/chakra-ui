@@ -7,13 +7,15 @@ import {
   valueToPercent,
 } from "@chakra-ui/utils";
 import * as React from "react";
-import useControllableValue from "./useControllableValue";
-import useCreateContext from "./useCreateContext";
-import useId from "./useId";
+import useControllableValue from "../useControllableValue";
+import useCreateContext from "../useCreateContext";
+import useId from "../useId";
 import { throttle } from "throttle-debounce";
 
 const [useSliderContext, SliderContextProvider] = useCreateContext<any>();
 export { SliderContextProvider };
+
+// http://muffinman.io/aria-progress-range-slider/
 /////////////////////////////////////////////////////////////////////////////////
 
 export function useSliderThumb(props: any) {

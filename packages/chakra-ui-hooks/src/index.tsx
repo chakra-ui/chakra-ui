@@ -1,20 +1,20 @@
-export * from "./useAccordion";
+export * from "./useAccordion/useAccordion";
 export { default as useAriaHidden } from "./useAriaHidden";
 export { default as useBlurOutside } from "./useBlurOutside";
 
-export { default as useCheckbox } from "./useCheckbox";
-export * from "./useCheckboxGroup";
-export { default as useCheckboxGroup } from "./useCheckboxGroup";
-export { default as useCounter } from "./useCounter";
-export { default as useClipboard } from "./useClipboard";
+export { default as useCheckbox } from "./useCheckbox/useCheckbox";
+export * from "./useCheckboxGroup/useCheckboxGroup";
+export { default as useCheckboxGroup } from "./useCheckboxGroup/useCheckboxGroup";
+export { default as useCounter } from "./useCounter/useCounter";
+export { default as useClipboard } from "./useClipboard/useClipboard";
 export { default as useControllableValue } from "./useControllableValue";
 export { default as useCreateContext } from "./useCreateContext";
 
-export { default as useDisclosure } from "./useDisclosure";
+export { default as useDisclosure } from "./useDisclosure/useDisclosure";
 
 export { default as useEnhancedEffect } from "./useEnhancedEffect";
 
-export { default as useFocusEffect } from "./useFocusEffect";
+export { default as useFocusEffect } from "./useFocusEffect/useFocusEffect";
 export { default as useFocusOnHide } from "./useFocusOnHide";
 export { default as useFocusOnShow } from "./useFocusOnShow";
 export * from "./useForkRef";
@@ -25,19 +25,19 @@ export { default as useIds } from "./useIds";
 export { default as useLockBodyScroll } from "./useLockBodyScroll";
 export { default as useLogger } from "./useLogger";
 
-export * from "./useNumberInput";
-export { default as useNumberInput } from "./useNumberInput";
+export * from "./useNumberInput/useNumberInput";
+export { default as useNumberInput } from "./useNumberInput/useNumberInput";
 
-export * from "./usePopper";
-export { default as usePopper } from "./usePopper";
+export * from "./usePopper/usePopper";
+export { default as usePopper } from "./usePopper/usePopper";
 export { default as usePrevious } from "./usePrevious";
 
-export * from "./useRadioGroup";
-export { default as useRadioGroup } from "./useRadioGroup";
-export { default as useRapidKeyDown } from "./useRapidKeyDown";
+export * from "./useRadioGroup/useRadioGroup";
+export { default as useRadioGroup } from "./useRadioGroup/useRadioGroup";
+export { default as useRapidKeyDown } from "./useRapidKeydown/useRapidKeyDown";
 
 export * from "./useSelection";
-export * from "./useSlider";
+export * from "./useSlider/useSlider";
 
 export * from "./useTabbable";
 export * from "./useTabs";

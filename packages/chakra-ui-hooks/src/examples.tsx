@@ -1,20 +1,20 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import { ThemeProvider, CSSReset } from "@chakra-ui/theme";
-import useDisclosure from "./useDisclosure";
-import useCheckboxGroup from "./useCheckboxGroup";
-import useRadioGroup from "./useRadioGroup";
-import { useSlider } from "./useSlider";
+import useDisclosure from "./useDisclosure/useDisclosure";
+import useCheckboxGroup from "./useCheckboxGroup/useCheckboxGroup";
+import useRadioGroup from "./useRadioGroup/useRadioGroup";
+import { useSlider } from "./useSlider/useSlider";
 import useLogger from "./useLogger";
-import useCounter from "./useCounter";
-import useNumberInput from "./useNumberInput";
+import useCounter from "./useCounter/useCounter";
+import useNumberInput from "./useNumberInput/useNumberInput";
 import {
   useAccordion,
   useAccordionItem,
   AccordionItemProvider,
   useAccordionButton,
   useAccordionPanel,
-} from "./useAccordion";
+} from "./useAccordion/useAccordion";
 import {
   useTab,
   useTabList,
@@ -24,6 +24,10 @@ import {
   TabContextProvider,
   useTabs,
 } from "./useTabs";
+import useCheckbox, { UseCheckboxOptions } from "./useCheckbox/useCheckbox";
+import useNativeCheckbox, {
+  UseNativeCheckboxOptions,
+} from "./useNativeCheckbox/useNativeCheckbox";
 
 const stories = storiesOf("Hooks", module);
 
@@ -316,3 +320,63 @@ stories.add("useTabs", () => (
     </TabPanels>
   </Tabs>
 ));
+
+function Checkbox(props: UseCheckboxOptions & { children: React.ReactNode }) {
+  const { hiddenCheckbox, checkbox } = useCheckbox(props);
+  return (
+    <div {...checkbox}>
+      <input {...hiddenCheckbox} />
+      {props.children}
+    </div>
+  );
+}
+
+stories.add("useCheckbox", () => (
+  <Checkbox defaultIsChecked={true} isReadOnly value="wewe">
+    Select Food
+  </Checkbox>
+));
+
+export function CheckExample2(props: any) {
+  const checkboxGroup = useCheckboxGroup(props);
+  return (
+    <div>
+      <>{JSON.stringify(checkboxGroup.value)}</>
+      {["opt1", "opt2", "opt3"].map(val => (
+        <Checkbox
+          key={val}
+          value={val}
+          isChecked={checkboxGroup.value.includes(val)}
+          onChange={() => checkboxGroup.onChange(val)}
+        >
+          {val}
+        </Checkbox>
+      ))}
+    </div>
+  );
+}
+
+stories.add("useCheckbox + group", () => <CheckExample2 />);
+
+function NativeCheckbox(
+  props: UseNativeCheckboxOptions & { children: React.ReactNode },
+) {
+  const { hiddenCheckbox, checkbox } = useNativeCheckbox(props);
+  return (
+    <label>
+      <input {...hiddenCheckbox} />
+      <span {...checkbox}>{props.children}</span>
+    </label>
+  );
+}
+
+function WithState() {
+  const [checked, setChecked] = React.useState<any>(true);
+  return (
+    <NativeCheckbox defaultIsChecked={true} onChange={setChecked}>
+      Select Food {String(checked)}
+    </NativeCheckbox>
+  );
+}
+
+stories.add("useNativeCheckbox", () => <WithState />);

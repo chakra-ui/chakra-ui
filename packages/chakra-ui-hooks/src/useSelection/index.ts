@@ -1,1 +1,1 @@
-export * from "./hook";
+export * from "./useSelection";

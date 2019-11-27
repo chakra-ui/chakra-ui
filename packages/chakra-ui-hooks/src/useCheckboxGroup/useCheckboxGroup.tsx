@@ -1,5 +1,5 @@
 import * as React from "react";
-import useControllableValue from "./useControllableValue";
+import useControllableValue from "../useControllableValue";
 
 type Value = string | number;
 type ArrayOfValue = Value[];

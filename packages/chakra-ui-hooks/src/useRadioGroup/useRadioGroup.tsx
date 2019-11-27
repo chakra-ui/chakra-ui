@@ -1,6 +1,6 @@
 import * as React from "react";
-import useControllableValue from "./useControllableValue";
-import useId from "./useId";
+import useControllableValue from "../useControllableValue";
+import useId from "../useId";
 
 type Value = string | number;
 type Argument = React.ChangeEvent<HTMLInputElement> | Value;

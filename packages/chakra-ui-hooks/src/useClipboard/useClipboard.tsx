@@ -1,5 +1,4 @@
-import { useState, useRef } from "react";
-import { useEffect } from "react";
+import * as React from "react";
 
 function copyToClipboard<T extends string>(value: T) {
   const el = document.createElement("textarea");
@@ -31,18 +30,18 @@ function copyToClipboard<T extends string>(value: T) {
 }
 
 function useClipboard<T>(value: T) {
-  const [hasCopied, setHasCopied] = useState(false);
-  const timeoutId = useRef<any>();
+  const [hasCopied, setHasCopied] = React.useState(false);
+  const timeoutRef = React.useRef<any>();
 
-  const onCopy = () => {
+  const onCopy = React.useCallback(() => {
     copyToClipboard(value as any);
     setHasCopied(true);
-    timeoutId.current = setTimeout(() => setHasCopied(false), 1500);
-  };
+    timeoutRef.current = setTimeout(() => setHasCopied(false), 1500);
+  }, [value]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     return () => {
-      clearTimeout(timeoutId.current);
+      clearTimeout(timeoutRef.current);
     };
   });
 
