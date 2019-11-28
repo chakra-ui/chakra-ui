@@ -76,6 +76,7 @@ const Modal = ({
   addAriaLabels = true,
   preserveScrollBarGap,
   formatIds = id => ({
+    portal: `chakra-portal-${id}`,
     content: `modal-${id}`,
     header: `modal-${id}-header`,
     body: `modal-${id}-body`,
@@ -93,6 +94,7 @@ const Modal = ({
   const contentId = formatIds(_id)["content"];
   const headerId = formatIds(_id)["header"];
   const bodyId = formatIds(_id)["body"];
+  const portalId = formatIds(_id)["portal"];
 
   let addAriaLabelledby = false;
   let addAriaDescribedby = false;
@@ -134,7 +136,7 @@ const Modal = ({
 
   const mountRef = useAriaHider({
     isOpen,
-    id: "chakra-portal",
+    id: portalId,
     enableInert: useInert,
     container,
   });
