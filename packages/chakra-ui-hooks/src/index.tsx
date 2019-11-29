@@ -1,14 +1,16 @@
 export * from "./useAccordion/useAccordion";
-export { default as useAriaHidden } from "./useAriaHidden";
+export { default as useAriaHidden } from "./useModal/useAriaHidden";
 export { default as useBlurOutside } from "./useBlurOutside";
 
 export { default as useCheckbox } from "./useCheckbox/useCheckbox";
 export * from "./useCheckboxGroup/useCheckboxGroup";
-export { default as useCheckboxGroup } from "./useCheckboxGroup/useCheckboxGroup";
+export {
+  default as useCheckboxGroup,
+} from "./useCheckboxGroup/useCheckboxGroup";
 export { default as useCounter } from "./useCounter/useCounter";
 export { default as useClipboard } from "./useClipboard/useClipboard";
 export { default as useControllableValue } from "./useControllableValue";
-export { default as useCreateContext } from "./useCreateContext";
+export { default as createCtx } from "./useCreateContext";
 
 export { default as useDisclosure } from "./useDisclosure/useDisclosure";
 
@@ -22,7 +24,9 @@ export * from "./useForkRef";
 export { default as useId } from "./useId";
 export { default as useIds } from "./useIds";
 
-export { default as useLockBodyScroll } from "./useLockBodyScroll";
+export {
+  default as useLockBodyScroll,
+} from "./useLockBodyScroll/useLockBodyScroll";
 export { default as useLogger } from "./useLogger";
 
 export * from "./useNumberInput/useNumberInput";

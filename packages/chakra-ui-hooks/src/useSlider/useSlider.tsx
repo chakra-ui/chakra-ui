@@ -8,11 +8,11 @@ import {
 } from "@chakra-ui/utils";
 import * as React from "react";
 import useControllableValue from "../useControllableValue";
-import useCreateContext from "../useCreateContext";
+import createCtx from "../useCreateContext";
 import useId from "../useId";
 import { throttle } from "throttle-debounce";
 
-const [useSliderContext, SliderContextProvider] = useCreateContext<any>();
+const [useSliderContext, SliderContextProvider] = createCtx<any>();
 export { SliderContextProvider };
 
 // http://muffinman.io/aria-progress-range-slider/

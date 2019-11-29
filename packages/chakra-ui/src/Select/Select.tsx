@@ -3,7 +3,7 @@
 
 import {
   useControllableValue,
-  useCreateContext,
+  createCtx,
   useForkRef,
   useId,
   useLogger,
@@ -48,7 +48,7 @@ interface SelectContext {
   };
 }
 
-const [useSelectContext, SelectProvider] = useCreateContext<any>();
+const [useSelectContext, SelectProvider] = createCtx<any>();
 
 /////////////////////////////////////////////////////////////////////////////////
 /**
@@ -174,8 +174,8 @@ interface SelectProps {
   useModalOnMobile?: boolean;
 }
 
-const [useDisclosure, DisclosureProvider] = useCreateContext<any>();
-const [useRefContext, RefProvider] = useCreateContext<any>();
+const [useDisclosure, DisclosureProvider] = createCtx<any>();
+const [useRefContext, RefProvider] = createCtx<any>();
 
 /////////////////////////////////////////////////////////////////////////////////
 export const Select = ({

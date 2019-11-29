@@ -12,10 +12,10 @@ import { BadgeOptions } from "./Badge";
 
 type RequiredProps = Required<BadgeOptions>;
 
-export type UseBadgeStyleProps = {
+export interface UseBadgeStyleProps {
   variant: RequiredProps["variant"];
   color: RequiredProps["variantColor"];
-};
+}
 
 type PropsWithTheme = UseBadgeStyleProps & { theme: Theme };
 

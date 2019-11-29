@@ -1,11 +1,11 @@
 import * as React from "react";
 import { isTabbable, ensureFocus } from "@chakra-ui/utils";
-import { FocusOptions } from "./useFocusOnShow";
+import { UseFocusOnShowOptions } from "./useFocusOnShow";
 import usePrevious from "./usePrevious";
 
 function useFocusOnHide(
   ref: React.RefObject<HTMLElement>,
-  options: FocusOptions,
+  options: UseFocusOnShowOptions,
 ) {
   const previouslyVisible = usePrevious(options.visible);
 

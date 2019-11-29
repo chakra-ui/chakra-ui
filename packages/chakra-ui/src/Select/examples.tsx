@@ -10,7 +10,7 @@ import {
 } from "./Select";
 import { Box } from "@chakra-ui/layout";
 import { useSelectionItem, useSelectionState } from "./hook";
-import { useLogger, useCreateContext } from "@chakra-ui/hooks";
+import { useLogger, createCtx } from "@chakra-ui/hooks";
 
 const stories = storiesOf("Select", module).addDecorator(story => (
   <ThemeProvider>

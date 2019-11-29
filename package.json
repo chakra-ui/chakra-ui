@@ -63,6 +63,7 @@
     "commitizen": "4.0.3",
     "cz-conventional-changelog": "3.0.2",
     "emotion-theming": "10.0.10",
+    "eslint-plugin-react-hooks": "2.3.0",
     "lerna": "^3.15.0",
     "lint-staged": "9.2.1",
     "prettier": "1.18.2",

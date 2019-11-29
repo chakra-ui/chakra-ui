@@ -2,7 +2,7 @@
 import { jsx, css } from "@emotion/core";
 import {
   // useBlurOutside,
-  useCreateContext,
+  createCtx,
   useDisclosure,
   useForkRef,
   useIds,
@@ -54,13 +54,16 @@ interface MenuContext extends ReturnType<typeof useDisclosure> {
 }
 
 type Popper = ReturnType<typeof usePopper>;
-const [usePopperContext, PopperProvider] = useCreateContext<Popper>();
-const [useMenuContext, MenuContextProvider] = useCreateContext<MenuContext>();
-const [useSelection, SelectionProvider] = useCreateContext<Selection>();
+const [usePopperContext, PopperProvider] = createCtx<Popper>();
+const [useMenuContext, MenuContextProvider] = createCtx<MenuContext>();
+const [useSelection, SelectionProvider] = createCtx<Selection>();
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
-type ExposedProps = { isOpen?: boolean; onClose?: () => void };
+interface ExposedProps {
+  isOpen?: boolean;
+  onClose?: () => void;
+}
 
 type MenuChildren =
   | { children: React.ReactNode }

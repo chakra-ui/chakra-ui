@@ -1,2 +1,2 @@
-// export * from "./usePortal";
-// export { default } from "./usePortal";
+export * from "./usePortal";
+export { default } from "./usePortal";

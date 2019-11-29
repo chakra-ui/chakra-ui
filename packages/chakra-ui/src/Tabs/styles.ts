@@ -143,12 +143,12 @@ const solidRoundedStyle = (props: VariantProps) => {
   };
 };
 
-type VariantProps = {
+interface VariantProps {
   variant: TabContext["variant"];
   color: TabContext["variantColor"];
   theme: Theme;
   colorMode: ColorMode;
-};
+}
 
 export function getVariantStyle(props: VariantProps) {
   switch (props.variant) {

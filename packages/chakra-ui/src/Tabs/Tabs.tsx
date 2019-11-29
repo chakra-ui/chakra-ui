@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import {
   useControllableValue,
-  useCreateContext,
+  createCtx,
   useId,
   useTabbable,
   UseTabbableOptions,
@@ -57,7 +57,7 @@ interface TabsStyleOptions {
 export type TabContext = ReturnType<typeof useTabs> &
   Required<Omit<TabsStyleOptions, "isFitted">> &
   Pick<TabsStyleOptions, "isFitted">;
-const [useTabsContext, TabContextProvider] = useCreateContext<TabContext>();
+const [useTabsContext, TabContextProvider] = createCtx<TabContext>();
 export { useTabsContext };
 
 ////////////////////////////////////////////////////////////////////////

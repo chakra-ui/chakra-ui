@@ -23,15 +23,15 @@ export interface CheckboxGroupOptions {
   /**
    * The initial value of the checkbox group
    */
-  defaultValue?: Array<string | number>;
+  defaultValue?: (string | number)[];
   /**
    * The value of the checkbox group
    */
-  value?: Array<string | number>;
+  value?: (string | number)[];
   /**
    * The callback fired when any children Checkbox is checked or unchecked
    */
-  onChange?: (value: Array<string | number>) => void;
+  onChange?: (value: (string | number)[]) => void;
   /**
    * The space between each checkbox
    */

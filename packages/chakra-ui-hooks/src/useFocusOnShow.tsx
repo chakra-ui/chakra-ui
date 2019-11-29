@@ -1,7 +1,7 @@
-import { getFirstTabbableIn } from "@chakra-ui/utils";
-import { useEffect } from "react";
+import { getFirstTabbableIn, ensureFocus } from "@chakra-ui/utils";
+import * as React from "react";
 
-export interface FocusOptions {
+export interface UseFocusOnShowOptions {
   autoFocus?: boolean;
   visible?: boolean;
   focusRef?: React.RefObject<HTMLElement>;
@@ -9,27 +9,25 @@ export interface FocusOptions {
 
 function useFocusOnShow(
   ref: React.RefObject<HTMLElement>,
-  options: FocusOptions,
+  options: UseFocusOnShowOptions,
 ) {
-  useEffect(() => {
+  React.useEffect(() => {
     const initialFocusRef = options.focusRef;
     const shouldFocus = options.visible && options.autoFocus;
 
     if (shouldFocus) {
-      requestAnimationFrame(() => {
-        if (initialFocusRef && initialFocusRef.current) {
-          initialFocusRef.current.focus({ preventScroll: true });
-        } else {
-          if (ref.current) {
-            const firstTabbable = getFirstTabbableIn(ref.current, true);
-            if (firstTabbable) {
-              firstTabbable.focus({ preventScroll: true });
-            } else {
-              ref.current.focus({ preventScroll: true });
-            }
+      if (initialFocusRef && initialFocusRef.current) {
+        ensureFocus(initialFocusRef.current);
+      } else {
+        if (ref.current) {
+          const firstTabbable = getFirstTabbableIn(ref.current, true);
+          if (firstTabbable) {
+            ensureFocus(firstTabbable);
+          } else {
+            ensureFocus(ref.current);
           }
         }
-      });
+      }
     }
   }, [options.visible, options.autoFocus, ref, options.focusRef]);
 }

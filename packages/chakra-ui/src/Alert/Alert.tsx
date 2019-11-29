@@ -6,7 +6,10 @@ import { Icon, IconProps } from "../Icon";
 import useAlertStyle, { useAlertIconStyle } from "./styles";
 import { Icons, Theme } from "@chakra-ui/theme";
 
-type Status = { icon: Icons; color: keyof Theme["colors"] };
+interface Status {
+  icon: Icons;
+  color: keyof Theme["colors"];
+}
 
 interface Statuses {
   info: Status;

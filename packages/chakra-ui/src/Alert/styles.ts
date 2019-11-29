@@ -3,10 +3,10 @@ import { Theme, useColorMode, colorEmphasis, useTheme } from "@chakra-ui/theme";
 import { SystemProps } from "@chakra-ui/layout";
 import { AlertOptions } from "./Alert";
 
-type AlertStyleProps = {
+interface AlertStyleProps {
   variant?: AlertOptions["variant"];
   color: keyof Theme["colors"];
-};
+}
 
 type AlertStylePropsWithTheme = AlertStyleProps & { theme: Theme };
 

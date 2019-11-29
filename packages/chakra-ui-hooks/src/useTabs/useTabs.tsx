@@ -1,6 +1,6 @@
 import * as React from "react";
 import useControllableValue from "../useControllableValue";
-import useCreateContext from "../useCreateContext";
+import createCtx from "../useCreateContext";
 import useId from "../useId";
 import useTabbable, { UseTabbableOptions } from "../useTabbable";
 import { createOnKeyDown, composeEventHandlers } from "@chakra-ui/utils";
@@ -40,7 +40,7 @@ export interface UseTabsOptions {
   id?: string;
 }
 
-const [useTabsContext, TabContextProvider] = useCreateContext<any>();
+const [useTabsContext, TabContextProvider] = createCtx<any>();
 export { TabContextProvider };
 
 export function useTabs(props: UseTabsOptions) {

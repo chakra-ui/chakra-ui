@@ -6,16 +6,16 @@ import useUpdateEffect from "./useUpdateEffect";
  * and as it updates.
  *
  * @param label a label for the component
- * @param params parameters to log
+ * @param values parameters to log
  */
-function useLogger(label: string, ...params: any[]) {
+function useLogger(label: string, ...values: any[]) {
   React.useEffect(() => {
-    console.log(`${label} mounted`, ...params);
+    console.log(`${label} mounted:`, ...values);
     return () => console.log(`${label} unmounted`);
   }, []);
 
   useUpdateEffect(() => {
-    console.log(`${label} updated`, ...params);
+    console.log(`${label} updated:`, ...values);
   });
 }
 

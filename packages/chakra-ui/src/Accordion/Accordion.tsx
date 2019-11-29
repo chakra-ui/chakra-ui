@@ -132,11 +132,11 @@ interface AccordionItemRenderProps {
   isDisabled?: boolean;
 }
 
-type AccordionItemChildrenType = {
+interface AccordionItemChildrenType {
   children:
     | React.ReactNode
     | ((props: AccordionItemRenderProps) => React.ReactNode);
-};
+}
 
 interface AccordionItemOptions {
   /**

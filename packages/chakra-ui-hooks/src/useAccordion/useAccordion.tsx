@@ -2,7 +2,7 @@ import { composeEventHandlers, createOnKeyDown } from "@chakra-ui/utils";
 import * as React from "react";
 import useFocusEffect from "../useFocusEffect/useFocusEffect";
 import useControllableValue from "../useControllableValue";
-import useCreateContext from "../useCreateContext";
+import createCtx from "../useCreateContext";
 import useDisclosure from "../useDisclosure/useDisclosure";
 import useIds from "../useIds";
 import {
@@ -152,7 +152,7 @@ export function useAccordionItem(props: any) {
 
 // To manage communication between the accordion item's children,
 // let's create a context and a hook to read from context
-const [useAccordionItemCtx, AccordionItemProvider] = useCreateContext<any>();
+const [useAccordionItemCtx, AccordionItemProvider] = createCtx<any>();
 export { AccordionItemProvider };
 
 export function useAccordionButton(props: any) {

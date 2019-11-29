@@ -2,7 +2,7 @@ import { useId } from "@chakra-ui/hooks";
 import * as React from "react";
 import { Item, reducer, State } from "./reducer";
 
-export type Actions = {
+export interface Actions {
   /**
    * Registers Id, ref, and value of an element.
    */
@@ -40,7 +40,7 @@ export type Actions = {
    * Resets `highlightedId` or `selectedId` or both.
    */
   reset: (action: "highlighted" | "selected" | "both") => void;
-};
+}
 
 const _initialState: State = {
   items: [],

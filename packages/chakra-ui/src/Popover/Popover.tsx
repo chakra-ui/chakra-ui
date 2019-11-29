@@ -3,7 +3,7 @@ import {
   computeArrowStyle,
   PopperJS,
   useBlurOutside,
-  useCreateContext,
+  createCtx,
   useDisclosure,
   useFocusOnHide,
   useFocusOnShow,
@@ -42,7 +42,7 @@ interface PopoverContext extends ReturnType<typeof useDisclosure> {
   };
 }
 
-const [usePopoverContext, PopoverProvider] = useCreateContext<PopoverContext>();
+const [usePopoverContext, PopoverProvider] = createCtx<PopoverContext>();
 
 /////////////////////////////////////////////////////////////////////
 

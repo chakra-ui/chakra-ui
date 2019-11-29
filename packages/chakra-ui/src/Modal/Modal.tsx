@@ -1,6 +1,6 @@
 import {
   useAriaHidden,
-  useCreateContext,
+  createCtx,
   useId,
   useLockBodyScroll,
 } from "@chakra-ui/hooks";
@@ -140,9 +140,8 @@ interface ContextValue extends Partial<Required<ModalOptions>> {
   contentId: string;
 }
 
-const [useModalContext, ModalContextProvider] = useCreateContext<
-  ContextValue
->();
+// eslint-disable-next-line react-hooks/rules-of-hooks
+const [useModalContext, ModalContextProvider] = createCtx<ContextValue>();
 
 function Modal({
   isOpen,
