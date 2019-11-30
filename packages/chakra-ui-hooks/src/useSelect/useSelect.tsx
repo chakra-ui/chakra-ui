@@ -221,7 +221,7 @@ export function useSelectListBox(props: any) {
         End: () => last("highlight"),
       },
     }),
-    [search, next, previous, _select, reset, onClose, first, last],
+    [search, next, _select, reset, onClose, first, last],
   );
 
   return {

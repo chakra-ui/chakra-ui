@@ -73,7 +73,7 @@ function SelectMenu(props: any) {
 export function SelectExample() {
   console.log(list2.length);
   return (
-    <SelectProvider defaultValue="Claus">
+    <SelectProvider defaultValue="5952c7fe-0264-493a-b98d-f0d0d4a2c1e0">
       <SelectButton>Select</SelectButton>
       <SelectMenu>
         {list2.map(list => (
