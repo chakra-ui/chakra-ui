@@ -134,7 +134,7 @@ interface ModalContentOptions {
 }
 
 interface ContextValue extends Partial<Required<ModalOptions>> {
-  contentRef: React.Ref<HTMLElement>;
+  contentRef: any;
   headerId: string;
   bodyId: string;
   contentId: string;
@@ -167,16 +167,16 @@ function Modal({
   id,
   size = "md",
 }: ModalOptions) {
-  const contentRef = useLockBodyScroll({
-    isEnabled: isOpen,
-    preserveScrollBarGap,
-  });
+  // const contentRef = useLockBodyScroll({
+  //   isEnabled: isOpen,
+  //   preserveScrollBarGap,
+  // });
 
-  const mountRef = useAriaHidden({
-    isEnabled: isOpen && useInert,
-    id: "chakra-portal",
-    container,
-  });
+  // const mountRef = useAriaHidden({
+  //   isEnabled: isOpen && useInert,
+  //   id: "chakra-portal",
+  //   container,
+  // });
 
   React.useEffect(() => {
     const func = (event: KeyboardEvent) => {
@@ -214,7 +214,7 @@ function Modal({
         closeOnEsc,
         closeOnOverlayClick,
         returnFocusOnClose,
-        contentRef,
+        contentRef: "",
         scrollBehavior,
         isCentered,
         headerId,
@@ -223,26 +223,26 @@ function Modal({
         size,
       }}
     >
-      <Portal container={mountRef.current}>
+      <Portal>
         <FocusLock
-          returnFocus={returnFocusOnClose && !finalFocusRef}
-          onActivation={() => {
-            if (initialFocusRef && initialFocusRef.current) {
-              initialFocusRef.current.focus();
-            } else {
-              if (contentRef.current) {
-                let focusables = getAllFocusableIn(contentRef.current);
-                if (focusables.length === 0) {
-                  contentRef.current.focus();
-                }
-              }
-            }
-          }}
-          onDeactivation={() => {
-            if (finalFocusRef && finalFocusRef.current) {
-              finalFocusRef.current.focus();
-            }
-          }}
+        // returnFocus={returnFocusOnClose && !finalFocusRef}
+        // onActivation={() => {
+        //   if (initialFocusRef && initialFocusRef.current) {
+        //     initialFocusRef.current.focus();
+        //   } else {
+        //     if (contentRef.current) {
+        //       let focusables = getAllFocusableIn(contentRef.current);
+        //       if (focusables.length === 0) {
+        //         contentRef.current.focus();
+        //       }
+        //     }
+        //   }
+        // }}
+        // onDeactivation={() => {
+        //   if (finalFocusRef && finalFocusRef.current) {
+        //     finalFocusRef.current.focus();
+        //   }
+        // }}
         >
           {children}
         </FocusLock>

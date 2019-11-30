@@ -23,15 +23,13 @@ export function useBlurOutside(
   },
 ) {
   React.useEffect(() => {
+    if (!buttonRef.current) return;
     // Fix firefox toggle issue
+    const buttonEl = buttonRef.current;
     const preventDefault = (event: MouseEvent) => event.preventDefault();
-    if (buttonRef.current) {
-      buttonRef.current.addEventListener("mousedown", preventDefault);
-    }
+    buttonEl.addEventListener("mousedown", preventDefault);
     return () => {
-      if (buttonRef.current) {
-        buttonRef.current.removeEventListener("mousedown", preventDefault);
-      }
+      buttonEl.removeEventListener("mousedown", preventDefault);
     };
   }, [buttonRef]);
 

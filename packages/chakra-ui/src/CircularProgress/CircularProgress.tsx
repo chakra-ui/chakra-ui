@@ -191,7 +191,7 @@ function getComputedProps({
         transformOrigin: "50% 50%",
         animation: `${spin} 2s linear infinite`,
       }),
-    } as SvgProps,
+    },
 
     trackCircleProps: getCircleProps({
       thickness: strokeWidth,
@@ -213,7 +213,7 @@ function getComputedProps({
         strokeDashoffset: "0",
       }),
       stroke: "currentColor",
-    } as IndicatorCircleProps,
+    },
   };
 }
 
@@ -262,9 +262,9 @@ const CircularProgress = forwardRef(function CircularProgress<
 
   return (
     <Box ref={ref} {...rootProps} {...rest}>
-      <Box {...svgProps}>
+      <Box {...(svgProps as any)}>
         <Box {...trackCircleProps} data-progress-track />
-        <Box {...indicatorCircleProps} data-progress-indicator />
+        <Box {...(indicatorCircleProps as any)} data-progress-indicator />
       </Box>
       {children}
     </Box>

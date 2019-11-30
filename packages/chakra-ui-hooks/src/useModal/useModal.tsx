@@ -1,52 +1,52 @@
 import * as React from "react";
-import useNested from "./useNested";
-import useOutsideClick from "./useOutsideClick";
-import useFocusOnShow from "../useFocusOnShow";
+import useClickOutside from "./useClickOutside";
 import useAriaHidden from "./useAriaHidden";
 import useLockBodyScroll from "../useLockBodyScroll";
-import useIds from "../useIds";
+import { useManager } from "./ModalManager";
+import useMountedState from "../useMountedState";
+import useId from "../useId";
 
-function useModal(props: any) {
+interface UseModalOptions {
+  onClose: () => void;
+}
+
+function useModal({ onClose }: UseModalOptions) {
   const ref = React.useRef<any>(null);
-  const [wrap, nestedBoxes, visible] = useNested(ref);
-  useOutsideClick(ref, nestedBoxes, props.onClose);
-  useFocusOnShow(ref, {
-    focusRef: props.initialFocusRef,
-    autoFocus: true,
-    visible: visible(),
-  });
-  useAriaHidden(ref, true);
-  useLockBodyScroll(ref, { shouldLock: visible() });
+  const visible = useMountedState();
+  const uuid = useId();
+  const manager = useManager();
 
-  const { onClose } = props;
+  React.useEffect(() => {
+    if (!visible) return;
+    manager.add(ref);
+    return () => {
+      manager.remove(ref);
+    };
+    // eslint-disable-next-line
+  }, [visible, ref]);
+
+  useAriaHidden(ref, true);
+  useLockBodyScroll(ref, { shouldLock: visible });
+  useClickOutside(ref, manager.modals, onClose);
 
   const onKeyDown = React.useCallback(
-    (event: React.KeyboardEvent) => {
+    event => {
       if (event.key === "Escape") {
         event.stopPropagation();
-        if (onClose) {
-          onClose();
-        }
+        onClose();
       }
     },
     [onClose],
   );
 
-  const [headerId, bodyId, contentId] = useIds(
-    ["modal-header", "modal-body", "modal-content"],
-    props.id,
-  );
-
-  const dialog = {
-    id: contentId,
+  return {
     ref,
-    role: "dialog",
-    tabIndex: 0,
-    "aria-modal": true,
+    id: uuid,
     onKeyDown,
+    role: "dialog",
+    "aria-modal": true,
+    tabIndex: -1,
   };
-
-  return [wrap, dialog] as const;
 }
 
 export default useModal;

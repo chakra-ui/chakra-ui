@@ -4,7 +4,9 @@ import { Box, BoxProps } from "@chakra-ui/layout";
 import useBadgeStyle, { UseBadgeStyleProps } from "../Badge/styles";
 import { forwardRef } from "react";
 
-type CodeProps<P, T> = BoxProps<P, T> & { variantColor?: string };
+type CodeProps<P, T> = BoxProps<P, T> & {
+  variantColor?: UseBadgeStyleProps["color"];
+};
 
 const Code = forwardRef(function Code<P, T extends HTMLElement>(
   { variantColor = "gray", ...props }: CodeProps<P, T>,
@@ -13,7 +15,7 @@ const Code = forwardRef(function Code<P, T extends HTMLElement>(
   const badgeStyle = useBadgeStyle({
     variant: "subtle",
     color: variantColor,
-  } as UseBadgeStyleProps);
+  });
   return (
     <Box
       ref={ref}

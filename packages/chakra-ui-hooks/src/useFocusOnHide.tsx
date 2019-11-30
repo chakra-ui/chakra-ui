@@ -21,9 +21,8 @@ function useFocusOnHide(
       document.activeElement &&
       element &&
       !element.contains(document.activeElement) &&
-      (isTabbable(document.activeElement) ||
-        document.activeElement.getAttribute("data-dialog") === "true");
-    debugger;
+      isTabbable(document.activeElement);
+
     if (preventFocus) return;
 
     const focusEl = options.focusRef && options.focusRef.current;
@@ -31,7 +30,13 @@ function useFocusOnHide(
     if (focusEl && previouslyVisible && !options.visible) {
       ensureFocus(focusEl);
     }
-  }, [options.autoFocus, options.visible, ref, previouslyVisible]);
+  }, [
+    options.autoFocus,
+    options.focusRef,
+    options.visible,
+    ref,
+    previouslyVisible,
+  ]);
 }
 
 export default useFocusOnHide;

@@ -22,7 +22,7 @@ stories.add("Default", () => {
   const SampleModal = () => {
     const [isOpen, setIsOpen] = useState(false);
     const close = () => setIsOpen(false);
-    const firstField = useRef();
+    const firstField = useRef<any>();
     return (
       <>
         <Modal initialFocusRef={firstField} isOpen={isOpen} onClose={close}>

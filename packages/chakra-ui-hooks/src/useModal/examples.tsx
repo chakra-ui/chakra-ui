@@ -1,41 +1,44 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 import { storiesOf } from "@storybook/react";
 import useModal from "./useModal";
 import { ThemeProvider } from "@chakra-ui/theme";
-import usePortal from "../usePortal";
-import { Portal } from "../usePortal/examples";
+import Portal from "../usePortal/";
+import Manager from "./ModalManager";
+import useDisclosure from "../useDisclosure";
+import FocusLock from "react-focus-lock";
 
 const stories = storiesOf("useModal", module);
 stories.addDecorator(story => <ThemeProvider>{story()}</ThemeProvider>);
 
 function Dialog(props: any) {
-  const [DialogManager, dialog] = useModal(props);
+  const dialog = useModal(props);
   return (
     <Portal className="dialog__portal">
-      <DialogManager>
+      <FocusLock>
         <div {...dialog}>{props.children}</div>
-      </DialogManager>
+      </FocusLock>
     </Portal>
   );
 }
 
 function SampleModal({ children }: any) {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const toggle = () => setIsOpen(s => !s);
-  const close = () => setIsOpen(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <button onClick={toggle}>Open</button>
-      {isOpen && <Dialog onClose={close}>{children}</Dialog>}
+      <button onClick={onOpen}>Open</button>
+      {isOpen && <Dialog onClose={onClose}>{children}</Dialog>}
     </>
   );
 }
 
 stories.add("Default", () => (
-  <SampleModal>
+  <Manager>
     <SampleModal>
-      Level 1<SampleModal>Level 2</SampleModal>
+      This is Modal 1
+      <SampleModal>
+        This is Modal 2 <br />
+        <SampleModal>This is Modal 3</SampleModal>
+      </SampleModal>
     </SampleModal>
-  </SampleModal>
+  </Manager>
 ));

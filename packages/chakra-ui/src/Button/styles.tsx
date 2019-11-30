@@ -265,19 +265,19 @@ const baseProps: SystemProps = {
 
 ////////////////////////////////////////////////////////////
 
-interface VariantStyleProps extends useButtonStyleProps {
+interface VariantStyleProps extends UseButtonStyleProps {
   colorMode: "light" | "dark";
   theme: Theme;
 }
 
 type RequiredButtonOptions = Required<ButtonOptions>;
 
-interface useButtonStyleProps {
+interface UseButtonStyleProps {
   color: RequiredButtonOptions["variantColor"];
   variant: RequiredButtonOptions["variant"];
   size: RequiredButtonOptions["size"];
 }
-const useButtonStyle = (props: useButtonStyleProps): SystemProps => {
+const useButtonStyle = (props: UseButtonStyleProps): SystemProps => {
   const { colorMode } = useColorMode();
   const theme = useTheme();
 

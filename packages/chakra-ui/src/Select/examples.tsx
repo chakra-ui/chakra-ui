@@ -58,7 +58,7 @@ export function SelectExample() {
 
 stories.add("Default", () => <SelectExample />);
 
-const country_list = [
+const countryList = [
   "Afghanistan",
   "Albania",
   "Algeria",
@@ -282,7 +282,7 @@ export function LotsExample() {
       >
         <SelectButton />
         <SelectMenu maxHeight="90vh" overflow="auto" width="auto">
-          {country_list.map(country => (
+          {countryList.map(country => (
             <Option id={country} value={country}>
               {country}
             </Option>
@@ -291,7 +291,7 @@ export function LotsExample() {
       </Select>
 
       <select defaultValue="Nigeria">
-        {country_list.map(country => (
+        {countryList.map(country => (
           <option id={country} value={country}>
             {country}
           </option>

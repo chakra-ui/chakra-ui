@@ -54,9 +54,6 @@ interface TabsStyleOptions {
   variantColor?: keyof Theme["colors"];
 }
 
-export type TabContext = ReturnType<typeof useTabs> &
-  Required<Omit<TabsStyleOptions, "isFitted">> &
-  Pick<TabsStyleOptions, "isFitted">;
 const [useTabsContext, TabContextProvider] = createCtx<TabContext>();
 export { useTabsContext };
 
@@ -368,6 +365,10 @@ export function useTabs(props: UseTabsOptions) {
     tablistRef,
   };
 }
+
+export type TabContext = ReturnType<typeof useTabs> &
+  Required<Omit<TabsStyleOptions, "isFitted">> &
+  Pick<TabsStyleOptions, "isFitted">;
 
 ////////////////////////////////////////////////////////////////////////
 

@@ -7,7 +7,7 @@ import useCheckboxStyle from "../Checkbox/styles";
 import { Box, BoxProps, VisuallyHidden } from "@chakra-ui/layout";
 import { VariantColor } from "../Checkbox";
 
-export interface IRadio {
+export interface RadioOptions {
   /**
    * id assigned to input
    */
@@ -66,7 +66,7 @@ export interface IRadio {
   children?: React.ReactNode;
 }
 
-export type RadioProps = IRadio &
+export type RadioProps = RadioOptions &
   BoxProps &
   React.RefAttributes<HTMLInputElement>;
 

@@ -1,17 +1,16 @@
 import * as React from "react";
 
 function useMountedState() {
-  const mountedRef = React.useRef(false);
-  const getState = React.useCallback(() => mountedRef.current, []);
+  const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
-    mountedRef.current = true;
+    setMounted(true);
     return () => {
-      mountedRef.current = false;
+      setMounted(false);
     };
-  });
+  }, []);
 
-  return getState;
+  return mounted;
 }
 
 export default useMountedState;

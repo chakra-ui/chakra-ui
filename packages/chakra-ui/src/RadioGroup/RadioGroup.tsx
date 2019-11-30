@@ -4,21 +4,21 @@ import * as React from "react";
 import { Box, SystemProps, BoxProps } from "@chakra-ui/layout";
 import { useRadioGroup } from "@chakra-ui/hooks";
 import { omit, Merge } from "@chakra-ui/utils";
-import { IRadio } from "../Radio";
+import { RadioOptions } from "../Radio";
 
-export interface IRadioGroup {
+export interface RadioGroupOptions {
   id?: string;
   name?: string;
   children?: React.ReactNode;
-  defaultValue?: IRadio["value"];
-  value?: IRadio["value"];
-  variantColor?: IRadio["variantColor"];
-  onChange?: (value: IRadio["value"]) => void;
+  defaultValue?: RadioOptions["value"];
+  value?: RadioOptions["value"];
+  variantColor?: RadioOptions["variantColor"];
+  onChange?: (value: RadioOptions["value"]) => void;
   spacing?: SystemProps["margin"];
   isInline?: boolean;
 }
 
-export type RadioGroupProps = Merge<BoxProps, IRadioGroup>;
+export type RadioGroupProps = Merge<BoxProps, RadioGroupOptions>;
 type z = RadioGroupProps["onChange"];
 
 const RadioGroup = React.forwardRef(
