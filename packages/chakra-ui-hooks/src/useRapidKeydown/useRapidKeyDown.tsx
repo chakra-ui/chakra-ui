@@ -12,9 +12,20 @@ function useRapidKeydown() {
   // We'll clear the keys after specific timeout
   const keysTimeoutRef = React.useRef<any>();
 
-  const handleKeyDown = (
-    event: KeyboardEvent,
-    action: (str: string) => void,
+  const clearKeysAfterDelay = () => {
+    if (keysTimeoutRef.current) {
+      clearTimeout(keysTimeoutRef.current);
+      keysTimeoutRef.current = null;
+    }
+    keysTimeoutRef.current = setTimeout(() => {
+      setKeys([]);
+      keysTimeoutRef.current = null;
+    }, 300);
+  };
+
+  const onKeyDown = (
+    event: React.KeyboardEvent,
+    callback: (str: string) => void,
   ) => {
     const keyCode = event.keyCode || event.which;
     const isBackspace = keyCode === 8;
@@ -31,25 +42,14 @@ function useRapidKeydown() {
 
       if (isValid) {
         let _keys = keys.concat(key);
-        action(_keys.join(""));
+        callback(_keys.join(""));
         setKeys(_keys);
         clearKeysAfterDelay();
       }
     }
   };
 
-  const clearKeysAfterDelay = () => {
-    if (keysTimeoutRef.current) {
-      clearTimeout(keysTimeoutRef.current);
-      keysTimeoutRef.current = null;
-    }
-    keysTimeoutRef.current = setTimeout(() => {
-      setKeys([]);
-      keysTimeoutRef.current = null;
-    }, 300);
-  };
-
-  return [keys.join(""), handleKeyDown] as const;
+  return onKeyDown;
 }
 
 export default useRapidKeydown;

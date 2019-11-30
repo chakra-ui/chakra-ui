@@ -19,13 +19,16 @@ export interface ActionsPayload extends Item {
   highlightOnSelect?: boolean;
 }
 
-export interface Item {
+export interface SelectionItem {
   id: string;
   ref: React.RefObject<any>;
   value?: string | number;
 }
 
-export interface State {
+// To avoid errors, remove this later
+export type Item = SelectionItem;
+
+export interface SelectionState {
   items: Item[];
   lastEvent: EventMeta | "";
   selectedItem: Item | null;
@@ -34,6 +37,9 @@ export interface State {
   selectFirstItemOnMount?: boolean;
   highlightFirstItemOnMount?: boolean;
 }
+
+// To avoid errors, remove this later
+export type State = SelectionState;
 
 type KeyAction = "select" | "highlight";
 
