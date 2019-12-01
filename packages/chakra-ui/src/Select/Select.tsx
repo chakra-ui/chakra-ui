@@ -1,5 +1,5 @@
-/* eslint-disable jsx-a11y/interactive-supports-focus */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
+// /* eslint-disable jsx-a11y/interactive-supports-focus */
+// /* eslint-disable jsx-a11y/click-events-have-key-events */
 
 import {
   useControllableValue,
@@ -24,7 +24,7 @@ import React, {
   useLayoutEffect,
 } from "react";
 import { Item, State } from "./reducer";
-import scrollIntoView from "scroll-into-view-if-needed";
+import scrollIntoView from "compute-scroll-into-view";
 import { useSelectionState, Selection, useSelectionItem } from "./hook";
 
 console.clear();
@@ -88,6 +88,17 @@ function useRapidKeydown() {
   // We'll clear the keys after specific timeout
   const keysTimeoutRef = useRef<any>();
 
+  const clearKeysAfterDelay = () => {
+    if (keysTimeoutRef.current) {
+      clearTimeout(keysTimeoutRef.current);
+      keysTimeoutRef.current = null;
+    }
+    keysTimeoutRef.current = setTimeout(() => {
+      setKeys([]);
+      keysTimeoutRef.current = null;
+    }, 300);
+  };
+
   const keyDownAction = (
     event: KeyboardEvent,
     action: (str: string) => void,
@@ -114,17 +125,6 @@ function useRapidKeydown() {
     }
   };
 
-  const clearKeysAfterDelay = () => {
-    if (keysTimeoutRef.current) {
-      clearTimeout(keysTimeoutRef.current);
-      keysTimeoutRef.current = null;
-    }
-    keysTimeoutRef.current = setTimeout(() => {
-      setKeys([]);
-      keysTimeoutRef.current = null;
-    }, 300);
-  };
-
   return { keys, keyDownAction };
 }
 
@@ -143,7 +143,7 @@ function useScrollIntoView(
       if (highlightedItem && highlightedItem.ref && listBoxRef.current) {
         scrollIntoView(highlightedItem.ref.current, {
           boundary: listBoxRef.current,
-          behavior: "instant",
+          // behavior: "instant",
           block: "nearest",
           scrollMode: "if-needed",
         });

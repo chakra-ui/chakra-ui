@@ -30,7 +30,7 @@ export type Item = SelectionItem;
 
 export interface SelectionState {
   items: Item[];
-  lastEvent: EventMeta | "";
+  lastEvent?: EventMeta | "";
   selectedItem: Item | null;
   highlightedItem: Item | null;
   orientation?: "horizontal" | "vertical";
@@ -43,7 +43,7 @@ export type State = SelectionState;
 
 type KeyAction = "select" | "highlight";
 
-export type Action =
+export type SelectionAction =
   | { type: "REGISTER"; item: Item }
   | { type: "UNREGISTER"; id: Item["id"] }
   | {
@@ -90,6 +90,12 @@ export type Action =
       lastEvent?: EventMeta;
     };
 
+export type Action = SelectionAction;
+
+function insertItem<T>(array: T[], item: T, index: number) {
+  return [...array.slice(0, index), item, ...array.slice(index)];
+}
+
 ////////////////////////////////////////////////////////////////
 
 function register(state: State, action: { item: Item }): State {
@@ -131,11 +137,7 @@ function register(state: State, action: { item: Item }): State {
 
   return {
     ...state,
-    items: [
-      ...state.items.slice(0, indexToInsertAt),
-      newItem,
-      ...state.items.slice(indexToInsertAt),
-    ],
+    items: insertItem(state.items, newItem, indexToInsertAt),
   };
 }
 
@@ -237,12 +239,12 @@ export function nextOrPrevious(
 
   if (!currentItem) return state;
 
-  const index = state.items.findIndex(item => item.id === currentItem.id);
+  const index = state.items.indexOf(currentItem);
 
   const nextIndex = getNextIndex({
     currentIndex: index,
     itemsLength: state.items.length,
-    loop: loop != null ? loop : true,
+    loop: loop || true,
     step: type === "next" ? 1 : -1,
   });
 

@@ -54,9 +54,9 @@
     "@types/throttle-debounce": "2.1.0",
     "aria-hidden": "^1.1.1",
     "body-scroll-lock": "^2.6.4",
+    "compute-scroll-into-view": "1.0.11",
     "popper.js": "^1.15.0",
     "react-uid": "2.2.0",
-    "scroll-into-view-if-needed": "2.2.20",
     "throttle-debounce": "2.1.0",
     "use-deep-compare": "0.1.0"
   },

@@ -4,7 +4,7 @@ import { Item, reducer, State, EventMeta } from "./reducer";
 import createCtx from "../useCreateContext";
 import { useDeepCompareMemo } from "use-deep-compare";
 
-export type SelectionActions = {
+export interface SelectionActions {
   /**
    * Registers Id, ref, and value of an element.
    */
@@ -57,7 +57,7 @@ export type SelectionActions = {
     action: "highlighted" | "selected" | "both",
     eventSource?: EventMeta,
   ) => void;
-};
+}
 
 const defaultState: State = {
   items: [],

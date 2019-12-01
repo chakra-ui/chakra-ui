@@ -8,7 +8,7 @@ import {
   useSelectListBox,
 } from "./useSelect";
 // import { countryList } from "./data";
-import list2 from "./data2";
+import list2 from "./data";
 import styled from "@emotion/styled";
 
 const StyledOption = styled.div`
@@ -62,7 +62,6 @@ function SelectMenu(props: any) {
         height: 400,
         overflow: "auto",
         background: "white",
-        ...listbox.style,
       }}
     >
       {props.children}
@@ -71,14 +70,13 @@ function SelectMenu(props: any) {
 }
 
 export function SelectExample() {
-  console.log(list2.length);
   return (
-    <SelectProvider defaultValue="5952c7fe-0264-493a-b98d-f0d0d4a2c1e0">
+    <SelectProvider>
       <SelectButton>Select</SelectButton>
       <SelectMenu>
-        {list2.map(list => (
-          <Option key={list.value} value={list.value}>
-            {list.label}
+        {list2.map(value => (
+          <Option key={value} value={value}>
+            {value}
           </Option>
         ))}
       </SelectMenu>

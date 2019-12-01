@@ -1,4 +1,4 @@
-export const countryList = [
+export default [
   "Afghanistan",
   "Albania",
   "Algeria",

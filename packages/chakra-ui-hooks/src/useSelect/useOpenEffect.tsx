@@ -1,26 +1,27 @@
 import * as React from "react";
-import { Selection } from "../useSelection";
-import usePrevious from "../usePrevious";
+import { SelectionAction, SelectionState } from "../useSelection/reducer";
 
-function useOpenEffect(selection: Selection, isOpen: boolean) {
-  const prevIsOpen = usePrevious(isOpen);
-
-  React.useEffect(() => {
+function useOpenEffect(
+  state: SelectionState,
+  dispatch: React.Dispatch<SelectionAction>,
+  isOpen: boolean,
+  prevIsOpen: boolean,
+) {
+  React.useLayoutEffect(() => {
     if (prevIsOpen && !isOpen) {
-      selection.reset("highlighted");
-      return;
+      return dispatch({ type: "RESET", action: "highlighted" });
     }
 
     if (isOpen) {
-      if (selection.selectedItem) {
-        selection.highlight(selection.selectedItem);
+      if (state.selectedItem) {
+        dispatch({ type: "HIGHLIGHT", item: state.selectedItem });
       } else {
-        if (!selection.highlightedItem) {
-          selection.first("highlight");
+        if (!state.highlightedItem) {
+          dispatch({ type: "FIRST", action: "highlight" });
         }
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, [isOpen, prevIsOpen]);
 }
 

@@ -7,92 +7,83 @@ import { useForkRef } from "../useForkRef";
 import usePopper from "../usePopper";
 import useRapidKeydown from "../useRapidKeydown";
 import { useSelectionItem, useSelectionState } from "../useSelection";
-import { SelectionItem } from "../useSelection/reducer";
+import {
+  SelectionItem,
+  reducer,
+  SelectionAction,
+  SelectionState,
+} from "../useSelection/reducer";
 import useFocusManagement from "./useFocusManagement";
 import useOpenEffect from "./useOpenEffect";
 import useScrollIntoView from "./useScrollIntoView";
 import { useDefaultValue, useValue } from "./useValue";
+import useId from "../useId";
+import useIds from "../useIds";
+import useDisableHoverOutside from "./useDisableHoverOutside";
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-const [useSelectCtx, SelectCtxProvider] = createCtx<any>();
-
-////////////////////////////////////////////////////////////////////////////////////
-
-function useSelect(props: any) {
-  const selection = useSelectionState();
-  const disclosure = useDisclosure(props);
-  const popper = usePopper({
-    placement: props.placement || "bottom-start",
-    modifiers: {
-      computeStyle: { gpuAcceleration: false },
-    },
-  });
-
-  const controlRef = React.useRef();
-  const listBoxRef = React.useRef();
-
-  useScrollIntoView(
-    listBoxRef,
-    selection.items,
-    selection.highlightedItem,
-    disclosure.isOpen,
-  );
-  useFocusManagement(controlRef, listBoxRef, disclosure.isOpen);
-  useDefaultValue(selection, props.defaultValue);
-  useValue(selection, props.value);
-  useOpenEffect(selection, disclosure.isOpen);
-
-  const selectOption = (option: SelectionItem, highlightOnSelect?: boolean) => {
-    selection.select(option, highlightOnSelect);
-    props.onChange && props.onChange(option.value);
-    disclosure.onClose();
-  };
-
-  return {
-    popper,
-    ...disclosure,
-    controlRef,
-    listBoxRef,
-    selectOption,
-    ...selection,
-  };
-}
+const [useSelectState, StateProvider] = createCtx<SelectionState>();
+const [useSelectDispatch, DispatchProvider] = createCtx<
+  React.Dispatch<SelectionAction>
+>();
+const [useSelectDisclosure, DisclosureProvider] = createCtx<
+  ReturnType<typeof useDisclosure>
+>();
+const [useSelectOptions, OptionsProvider] = createCtx<{
+  controlRef: React.RefObject<any>;
+  listBoxRef: React.RefObject<any>;
+  shouldScrollRef: React.MutableRefObject<boolean>;
+  listBoxId: string;
+  buttonId: string;
+}>();
 
 /////////////////////////////////////////////////////////////////////////////////
 
 export function useSelectOption(props: any) {
-  const select = useSelectCtx();
-  const selectionItem = useSelectionItem({ ...select, ...props });
-  const { item, isHighlighted, isSelected } = selectionItem;
+  const { isDisabled, isFocusable, value } = props;
 
-  const {
-    selectedItem,
-    highlightedItem,
-    onClose,
-    selectOption,
-    reset,
-    highlight,
-  } = select;
+  const dispatch = useSelectDispatch();
+  const { selectedItem, highlightedItem } = useSelectState();
+  const { onClose } = useSelectDisclosure();
+  const { shouldScrollRef } = useSelectOptions();
+
+  const id = useId(`select-option`, props.id);
+  const ref = React.useRef<any>(null);
+  const item = React.useMemo(() => ({ id, ref, value }), [id, ref, value]);
+
+  // If this option is not disabled, register it
+  // as a descendant on context onMount
+  React.useLayoutEffect(() => {
+    if (isDisabled && !isFocusable) return;
+    dispatch({ type: "REGISTER", item });
+    return () => {
+      dispatch({ type: "UNREGISTER", id });
+    };
+    // eslint-disable-next-line
+  }, [isDisabled, isFocusable, id]);
+
+  const isHighlighted = highlightedItem ? highlightedItem.id === id : false;
+  const isSelected = selectedItem ? selectedItem.id === id : false;
 
   const onClick = React.useCallback(() => {
     if (selectedItem && item.id === selectedItem.id) {
       onClose();
     } else {
-      selectOption(item);
+      dispatch({ type: "SELECT", item });
+      onClose();
     }
-  }, [item, onClose, selectOption, selectedItem]);
-
-  const onPointerLeave = React.useCallback(() => {
-    reset("highlighted");
-  }, [reset]);
+    // eslint-disable-next-line
+  }, [item, onClose, selectedItem]);
 
   const onPointerEnter = React.useCallback(() => {
     if (highlightedItem && item.id === highlightedItem.id) {
       return;
     }
-    highlight(item);
-  }, [highlightedItem, item, highlight]);
+    shouldScrollRef.current = false;
+    dispatch({ type: "HIGHLIGHT", item });
+    // eslint-disable-next-line
+  }, [highlightedItem, item]);
 
   return {
     id: item.id,
@@ -103,7 +94,6 @@ export function useSelectOption(props: any) {
     "data-selected": isSelected ? "" : undefined,
     "data-highlighted": isHighlighted ? "" : undefined,
     onClick: composeEventHandlers(props.onClick, onClick),
-    onPointerLeave: composeEventHandlers(props.onPointerLeave, onPointerLeave),
     onPointerEnter: composeEventHandlers(props.onPointerEnter, onPointerEnter),
   };
 }
@@ -111,139 +101,181 @@ export function useSelectOption(props: any) {
 /////////////////////////////////////////////////////////////////////////////////
 
 export function useSelectButton(props: any) {
-  const select = useSelectCtx();
-  const {
-    onToggle,
-    isOpen,
-    setIsMousingDown,
-    selectedItem,
-    onOpen,
-    next,
-    previous,
-    first,
-    last,
-    search,
-  } = select;
+  const { selectedItem } = useSelectState();
+  const { controlRef, listBoxId } = useSelectOptions();
+  const { onToggle, isOpen, onOpen } = useSelectDisclosure();
 
-  const ref = useForkRef(select.popper.reference.ref, select.controlRef);
+  const dispatch = useSelectDispatch();
+  const [onRapidKeyDown] = useRapidKeydown();
 
-  const onClick = React.useCallback(onToggle, []);
+  const onClick = React.useCallback(() => {
+    onToggle();
+  }, [onToggle]);
 
-  const onPointerDown = React.useCallback(() => {
-    if (isOpen) {
-      setIsMousingDown(true);
-    }
-  }, [isOpen, setIsMousingDown]);
-
-  const onRapidKeyDown = useRapidKeydown();
-
-  const onKeyDown = React.useCallback(
-    createOnKeyDown({
-      onKeyDown: event => onRapidKeyDown(event, keys => search(keys, "select")),
-      keyMap: {
-        ArrowUp: onOpen,
-        ArrowDown: onOpen,
-        ArrowRight: () => next("select"),
-        ArrowLeft: () => previous("select"),
-        Home: () => first("select"),
-        End: () => last("select"),
-        " ": event => {
-          event && event.preventDefault();
-          onToggle();
-        },
+  const onKeyDown = createOnKeyDown({
+    onKeyDown: event =>
+      onRapidKeyDown(event, keys =>
+        dispatch({ type: "SEARCH", characters: keys, action: "select" }),
+      ),
+    keyMap: {
+      ArrowUp: onOpen,
+      ArrowDown: onOpen,
+      ArrowRight: () => dispatch({ type: "NEXT", action: "select" }),
+      ArrowLeft: () => dispatch({ type: "PREVIOUS", action: "select" }),
+      Home: () => dispatch({ type: "FIRST", action: "select" }),
+      End: () => dispatch({ type: "LAST", action: "select" }),
+      " ": event => {
+        event && event.preventDefault();
+        onToggle();
       },
-    }),
-    [search, onOpen, next, previous, first, last, onToggle],
-  );
+    },
+  });
 
   const selectedOptionText =
     selectedItem && (selectedItem.ref.current as Node).textContent;
 
   return {
-    ref,
-    selected: select.selectedItem,
+    ref: controlRef,
+    selected: selectedItem,
     "data-selected-text": selectedOptionText || undefined,
     type: "button",
     "aria-expanded": isOpen,
     "aria-haspopup": "listbox",
+    "aria-controls": listBoxId,
     onClick: composeEventHandlers(props.onClick, onClick),
     onKeyDown: composeEventHandlers(props.onKeyDown, onKeyDown),
-    onPointerDown: composeEventHandlers(props.onPointerDown, onPointerDown),
   };
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export function useSelectListBox(props: any) {
-  const select = useSelectCtx();
-  const onRapidKeyDown = useRapidKeydown();
-  const onBlur = useBlurOutside(select.controlRef, select.listBoxRef, {
-    action: select.onClose,
-    visible: select.isOpen,
+  const { highlightedItem } = useSelectState();
+  const dispatch = useSelectDispatch();
+  const { controlRef, listBoxRef } = useSelectOptions();
+  const { isOpen, onClose } = useSelectDisclosure();
+
+  const [onRapidKeyDown, keys] = useRapidKeydown();
+  const onBlur = useBlurOutside(controlRef, listBoxRef, {
+    action: onClose,
+    visible: isOpen,
   });
-  const ref = useForkRef(select.popper.popper.ref, select.listBoxRef);
 
-  const {
-    onClose,
-    next,
-    previous,
-    first,
-    last,
-    search,
-    reset,
-    select: _select,
-  } = select;
-
+  // Had to switch to regular switch/case to see if it improve perf
   const onKeyDown = React.useCallback(
-    createOnKeyDown({
-      onKeyDown: event =>
-        onRapidKeyDown(event, keys => search(keys, "highlight")),
-      keyMap: {
-        ArrowDown: () => {
-          next("highlight");
-        },
-        ArrowUp: () => previous("highlight"),
-        Enter: () => {
-          _select(null);
-          onClose();
-        },
-        Tab: event => {
-          event && event.preventDefault();
-          _select(null);
-          onClose();
-        },
-        Escape: event => {
-          event && event.preventDefault();
-          reset("highlighted");
-          onClose();
-        },
-        Home: () => first("highlight"),
-        End: () => last("highlight"),
-      },
-    }),
-    [search, next, _select, reset, onClose, first, last],
+    (event: React.KeyboardEvent) => {
+      switch (event.key) {
+        case "ArrowDown":
+          event.preventDefault();
+          return dispatch({ type: "NEXT", action: "highlight" });
+        case "ArrowUp":
+          event.preventDefault();
+          return dispatch({ type: "PREVIOUS", action: "highlight" });
+        case "Enter":
+          event.preventDefault();
+          dispatch({ type: "SELECT", item: null });
+          return onClose();
+        case "Home":
+          event.preventDefault();
+          return dispatch({ type: "FIRST", action: "highlight" });
+        case "End":
+          event.preventDefault();
+          return dispatch({ type: "LAST", action: "highlight" });
+        case "Escape":
+          event.preventDefault();
+          dispatch({ type: "RESET", action: "highlighted" });
+          return onClose();
+        case "Tab":
+          event.preventDefault();
+          return onClose();
+        default:
+          return onRapidKeyDown(event, keys =>
+            dispatch({
+              type: "SEARCH",
+              characters: keys,
+              action: "highlight",
+            }),
+          );
+      }
+    },
+    // eslint-disable-next-line
+    [keys],
   );
 
   return {
-    ref,
+    ref: listBoxRef,
     role: "listbox",
-    hidden: !select.isOpen,
+    hidden: !isOpen,
     tabIndex: -1,
-    "data-placement": select.popper.popper.placement,
-    style: select.popper.popper.style,
     onKeyDown: composeEventHandlers(props.onKeyDown, onKeyDown),
     onBlur: composeEventHandlers(props.onBlur, onBlur),
-    "aria-activedescendant": select.highlightedItem
-      ? select.highlightedItem.id
-      : undefined,
+    "aria-activedescendant": highlightedItem ? highlightedItem.id : undefined,
   };
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+/**
+ * function focusLandsOnElement(event, nextElement){
+ * return (
+    event.relatedTarget === nextElement ||
+    (event.nativeEvent &&
+      (nextElement === event.nativeEvent.explicitOriginalTarget ||
+        nextElement.contains(event.nativeEvent.explicitOriginalTarget)))
+  )}
+
+  const menuHandleBlur = event => {
+    if (!focusLandsOnElement(event, toggleButtonRef.current)) {
+      dispatch({
+        type: stateChangeTypes.MenuBlur,
+      })
+    }
+  }
+ * 
+ * 
+ */
+
 export function SelectProvider(props: any) {
-  const select = useSelect(props);
-  // eslint-disable-next-line
-  const ctx = React.useMemo(() => select, Object.values(select));
-  return <SelectCtxProvider value={ctx}>{props.children}</SelectCtxProvider>;
+  const [state, dispatch] = React.useReducer(reducer, {
+    items: [],
+    selectedItem: null,
+    highlightedItem: null,
+  });
+
+  const disclosure = useDisclosure(props);
+  const controlRef = React.useRef<any>();
+  const listBoxRef = React.useRef<any>();
+  const shouldScrollRef = React.useRef(true);
+  const [buttonId, listBoxId] = useIds([`select-button`, `select-listbox`]);
+
+  useScrollIntoView(
+    listBoxRef,
+    state.highlightedItem,
+    disclosure.isOpen,
+    shouldScrollRef,
+  );
+
+  useFocusManagement(controlRef, listBoxRef, disclosure.isOpen);
+  useOpenEffect(state, dispatch, disclosure.isOpen, disclosure.prevIsOpen);
+  useDisableHoverOutside(listBoxRef, disclosure.isOpen);
+
+  const stateCtx = React.useMemo(() => state, [state]);
+
+  const options = {
+    controlRef,
+    listBoxRef,
+    shouldScrollRef,
+    buttonId,
+    listBoxId,
+  };
+
+  return (
+    <StateProvider value={stateCtx}>
+      <DispatchProvider value={dispatch}>
+        <DisclosureProvider value={disclosure}>
+          <OptionsProvider value={options}>{props.children}</OptionsProvider>
+        </DisclosureProvider>
+      </DispatchProvider>
+    </StateProvider>
+  );
 }

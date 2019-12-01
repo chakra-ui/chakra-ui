@@ -1,27 +1,40 @@
+import computeScrollIntoView from "compute-scroll-into-view";
 import * as React from "react";
-import scrollIntoView from "scroll-into-view-if-needed";
-import { SelectionItem, SelectionState } from "../useSelection/reducer";
+import { SelectionItem } from "../useSelection/reducer";
+
+function scrollIntoView(node: HTMLElement, menuNode: HTMLElement) {
+  if (node === null) {
+    return;
+  }
+
+  const actions = computeScrollIntoView(node, {
+    boundary: menuNode,
+    block: "nearest",
+    scrollMode: "if-needed",
+  });
+  actions.forEach(({ el, top, left }) => {
+    el.scrollTop = top;
+    el.scrollLeft = left;
+  });
+}
 
 function useScrollIntoView(
-  listBoxRef: React.RefObject<any>,
-  items: SelectionState["items"],
+  menuRef: React.RefObject<any>,
   highlightedItem: SelectionItem | null,
-  visible: boolean,
+  isOpen: boolean,
+  shouldScrollRef: React.MutableRefObject<boolean>,
 ) {
   React.useEffect(() => {
-    if (visible) {
-      if (!highlightedItem) return;
-
-      if (highlightedItem && highlightedItem.ref && listBoxRef.current) {
-        scrollIntoView(highlightedItem.ref.current, {
-          boundary: listBoxRef.current,
-          behavior: "instant",
-          block: "nearest",
-          scrollMode: "if-needed",
-        });
-      }
+    if (!highlightedItem || !isOpen) {
+      return;
     }
-  }, [visible, highlightedItem, items, listBoxRef]);
+    if (shouldScrollRef.current === false) {
+      shouldScrollRef.current = true;
+    } else {
+      scrollIntoView(highlightedItem.ref.current, menuRef.current);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [highlightedItem, isOpen]);
 }
 
 export default useScrollIntoView;
