@@ -3,6 +3,7 @@ import { BoxProps } from "../Box";
 import { PseudoBoxProps } from "../PseudoBox";
 import { CollapseProps } from "../Collapse";
 import { IconProps } from "../Icon";
+import { Omit } from "../common-types";
 
 interface IAccordion {
   /**
@@ -31,7 +32,7 @@ interface IAccordion {
   children: React.ReactNode;
 }
 
-type AccordionProps = IAccordion & BoxProps;
+type AccordionProps = IAccordion & Omit<BoxProps, "onChange">;
 
 /**
  * The accordion component delivers large amounts of content in a small space through progressive disclosure.

@@ -13,7 +13,7 @@ export interface useNumberInputProps {
    * The callback fired when the value changes
    * @param {Number} value - The next value
    */
-  onChange?: (value: number) => void;
+  onChange?: (value: number | null) => void;
   /**
    * If `true`, the input will be focused as you increment
    * or decrement the value with the stepper

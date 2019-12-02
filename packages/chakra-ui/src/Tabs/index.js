@@ -220,7 +220,7 @@ const Tabs = forwardRef(
       isManual,
       variant = "line",
       variantColor = "blue",
-      align = "left",
+      align = "start",
       size = "md",
       orientation = "horizontal",
       isFitted,

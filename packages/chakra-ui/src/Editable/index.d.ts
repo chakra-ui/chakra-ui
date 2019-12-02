@@ -1,6 +1,7 @@
 import * as React from "react";
 import { BoxProps } from "../Box";
 import { PseudoBoxProps } from "../PseudoBox";
+import { Omit } from "../common-types";
 
 interface IEditable {
   /**
@@ -60,7 +61,7 @@ interface IEditable {
   children: React.ReactNode;
 }
 
-export type EditableProps = IEditable & BoxProps;
+export type EditableProps = IEditable & Omit<BoxProps, "onChange">;
 
 export const EditablePreview: React.FC<PseudoBoxProps>;
 

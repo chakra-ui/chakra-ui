@@ -1,7 +1,7 @@
 import * as React from "react";
-import * as StyledSystem from "styled-system";
 import { BoxProps } from "../Box";
 import { IRadio } from "../Radio";
+import { Omit } from "../common-types";
 
 export interface IRadioGroup {
   id?: string;
@@ -14,10 +14,10 @@ export interface IRadioGroup {
     event: React.ChangeEvent<HTMLInputElement>,
     value: IRadio["value"],
   ) => void;
-  spacing?: StyledSystem.MarginProps["margin"];
+  spacing?: BoxProps["margin"];
   isInline?: boolean;
 }
 
-export type RadioGroupProps = IRadioGroup & BoxProps;
+export type RadioGroupProps = IRadioGroup & Omit<BoxProps, "onChange">;
 declare const RadioGroup: React.FC<RadioGroupProps>;
 export default RadioGroup;

@@ -1,7 +1,7 @@
 import * as React from "react";
-import * as StyledSystem from "styled-system";
 import { BoxProps } from "../Box";
 import { IRadio } from "../Radio";
+import { Omit } from "../common-types";
 
 export interface IRadioButtonGroup {
   name?: IRadio["name"];
@@ -9,10 +9,12 @@ export interface IRadioButtonGroup {
   defaultValue?: IRadio["value"];
   value?: IRadio["value"];
   onChange?: (value: IRadio["value"]) => void;
-  spacing?: StyledSystem.MarginProps["margin"];
+  spacing?: BoxProps["margin"];
   isInline?: boolean;
 }
 
-export type RadioButtonGroupProps = IRadioButtonGroup & BoxProps;
+export type RadioButtonGroupProps = IRadioButtonGroup &
+  Omit<BoxProps, "onChange">;
+
 declare const RadioButtonGroup: React.FC<RadioButtonGroupProps>;
 export default RadioButtonGroup;

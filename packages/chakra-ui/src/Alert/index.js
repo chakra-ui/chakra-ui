@@ -52,7 +52,7 @@ const AlertIcon = props => {
 
   return (
     <Icon
-      mt={1}
+      // mt={1}
       mr={3}
       size={5}
       name={statuses[status] && statuses[status]["icon"]}

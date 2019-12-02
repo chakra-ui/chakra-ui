@@ -5,6 +5,7 @@ import {
   preventNonNumberKey,
   roundToPrecision,
 } from "./utils";
+import usePrevious from "../usePrevious";
 
 function useLongPress(callback = () => {}, speed = 200) {
   const [isPressed, setIsPressed] = useState(false);
@@ -65,7 +66,7 @@ function useNumberInput({
   const defaultPrecision = Math.max(calculatePrecision(stepProp), 0);
   const precision = precisionProp || defaultPrecision;
 
-  const [value, setValue] = useState(() => {
+  const [valueState, setValue] = useState(() => {
     if (defaultValue != null) {
       let nextValue = defaultValue;
       if (keepWithinRange) {
@@ -74,23 +75,32 @@ function useNumberInput({
       nextValue = roundToPrecision(nextValue, precision);
       return nextValue;
     }
-    return 0;
+    return null;
   });
 
   const [isFocused, setIsFocused] = useState(false);
 
-  const _value = isControlled ? valueProp : value;
+  const value = isControlled ? valueProp : valueState;
   const isInteractive = !(isReadOnly || isDisabled);
   const inputRef = useRef();
+  const previousValue = usePrevious(value);
 
   const updateValue = value => {
-    !isControlled && setValue(value);
-    onChange && onChange(value);
+    const hasValueChanged = previousValue !== value;
+    if (!hasValueChanged) return;
+
+    const nextValue = value === "" ? null : value;
+    if (!isControlled) {
+      setValue(nextValue);
+    }
+    if (onChange) {
+      onChange(nextValue);
+    }
   };
 
   const handleIncrement = (step = stepProp) => {
     if (!isInteractive) return;
-    let nextValue = Number(_value) + Number(step);
+    let nextValue = Number(value) + Number(step);
 
     if (keepWithinRange) {
       nextValue = Math.min(nextValue, max);
@@ -104,7 +114,7 @@ function useNumberInput({
 
   const handleDecrement = (step = stepProp) => {
     if (!isInteractive) return;
-    let nextValue = Number(_value) - Number(step);
+    let nextValue = Number(value) - Number(step);
 
     if (keepWithinRange) {
       nextValue = Math.max(nextValue, min);
@@ -177,20 +187,20 @@ function useNumberInput({
     const maxExists = max != null;
     const minExists = min != null;
 
-    if (maxExists && _value > max) {
+    if (maxExists && value > max) {
       updateValue(max);
     }
 
-    if (minExists && _value < min) {
+    if (minExists && value < min) {
       updateValue(min);
     }
   };
 
-  const isOutOfRange = _value > max || _value < min;
-  const ariaValueText = getAriaValueText ? getAriaValueText(_value) : null;
+  const isOutOfRange = value > max || value < min;
+  const ariaValueText = getAriaValueText ? getAriaValueText(value) : null;
 
   return {
-    value: _value,
+    value: value,
     isFocused,
     isDisabled,
     isReadOnly,
@@ -200,29 +210,29 @@ function useNumberInput({
       onClick: () => handleIncrement(),
       "aria-label": "add",
       ...(keepWithinRange && {
-        disabled: _value === max,
-        "aria-disabled": _value === max,
+        disabled: value === max,
+        "aria-disabled": value === max,
       }),
     },
     decrementButton: {
       onClick: () => handleDecrement(),
       "aria-label": "subtract",
       ...(keepWithinRange && {
-        disabled: _value === min,
-        "aria-disabled": _value === min,
+        disabled: value === min,
+        "aria-disabled": value === min,
       }),
     },
     input: {
       onChange: handleChange,
       onKeyDown: handleKeyDown,
       ref: inputRef,
-      value: _value != null ? _value : undefined,
+      value: value != null ? value : undefined,
       role: "spinbutton",
       type: "text",
       "aria-valuemin": min,
       "aria-valuemax": max,
       "aria-disabled": isDisabled,
-      "aria-valuenow": _value != null ? _value : undefined,
+      "aria-valuenow": value != null ? value : undefined,
       "aria-invalid": isInvalid || isOutOfRange,
       ...(getAriaValueText && { "aria-valuetext": ariaValueText }),
       readOnly: isReadOnly,
@@ -240,7 +250,7 @@ function useNumberInput({
     },
     hiddenLabel: {
       "aria-live": "polite",
-      children: getAriaValueText ? ariaValueText : _value,
+      children: getAriaValueText ? ariaValueText : value,
       style: {
         position: "absolute",
         clip: "rect(0px, 0px, 0px, 0px)",

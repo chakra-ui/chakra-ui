@@ -17,9 +17,7 @@ stories.addDecorator(story => {
 
 stories.add("Default", () => (
   <React.Fragment>
-    <Checkbox isIndeterminate defaultIsChecked>
-      Disabled and Checked
-    </Checkbox>
+    <Checkbox defaultIsChecked>Disabled and Checked</Checkbox>
     <Box ml={3} mt={3}>
       <Checkbox variantColor="pink" isFullWidth defaultIsChecked>
         Checkbox 1
@@ -53,7 +51,7 @@ stories.add("disabled checkbox", () => (
 
 stories.add("readonly checkbox", () => (
   <React.Fragment>
-    <Checkbox isReadOnly>Readonly </Checkbox>
+    <Checkbox isReadOnly>Readonly (default checked)</Checkbox>
     <Checkbox isChecked isReadOnly>
       Readonly
     </Checkbox>

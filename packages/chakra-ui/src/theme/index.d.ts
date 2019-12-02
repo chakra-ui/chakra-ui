@@ -1,5 +1,6 @@
-import * as StyledSystem from "styled-system";
+// import * as StyledSystem from "styled-system";
 import { Icons } from "./icons";
+import { Omit } from "../common-types";
 
 interface Shadows {
   sm: string;
@@ -31,19 +32,19 @@ type Breakpoints =
 
 type StringOrNumber = string | number;
 interface ZIndices {
-  hide: StringOrNumber;
-  auto: StringOrNumber;
-  base: StringOrNumber;
-  docked: StringOrNumber;
-  dropdown: StringOrNumber;
-  sticky: StringOrNumber;
-  banner: StringOrNumber;
-  overlay: StringOrNumber;
-  modal: StringOrNumber;
-  popover: StringOrNumber;
-  skipLink: StringOrNumber;
-  toast: StringOrNumber;
-  tooltip: StringOrNumber;
+  hide: number;
+  auto: string;
+  base: number;
+  docked: number;
+  dropdown: number;
+  sticky: number;
+  banner: number;
+  overlay: number;
+  modal: number;
+  popover: number;
+  skipLink: number;
+  toast: number;
+  tooltip: number;
 }
 
 interface Radii {
@@ -85,6 +86,8 @@ interface Colors {
   twitter: ColorHues;
   telegram: ColorHues;
 }
+
+export type VariantColor = keyof Omit<Colors, "transparent" | "current">;
 
 interface BaseSizes {
   px: string;
@@ -136,7 +139,7 @@ type Sizes = BaseSizes &
     containers: Containers;
   };
 
-interface LetterSpacing {
+interface LetterSpacings {
   tighter: string;
   tight: string;
   normal: string;
@@ -187,7 +190,7 @@ interface FontSizes {
 }
 
 interface Typography {
-  letterSpacing: LetterSpacing;
+  letterSpacings: LetterSpacings;
   lineHeights: LineHeights;
   fontWeights: FontWeights;
   fonts: Fonts;
@@ -223,9 +226,11 @@ interface Icon {
 
 type IconsType = { [key: string]: Icon };
 
-export interface ITheme extends StyledSystem.Theme {
-  icons: IconsType;
-}
+// export interface ITheme extends StyledSystem.Theme {
+//   icons: IconsType;
+// }
+
+export type ITheme = DefaultTheme;
 
 declare const theme: ITheme;
 

@@ -1,37 +1,37 @@
 import * as React from "react";
 import { BoxProps } from "../Box";
-
-type InputAttributes = React.InputHTMLAttributes<HTMLInputElement>;
+import { Omit } from "../common-types";
+import { VariantColor } from "../theme";
 
 export interface ICheckbox {
   /**
    * id assigned to input
    */
-  id?: InputAttributes["id"];
+  id?: string;
   /**
    * The name of the input field in a checkbox
    * (Useful for form submission).
    */
-  name?: InputAttributes["name"];
+  name?: string;
   /**
    * The value to be used in the checkbox input.
    * This is the value that will be returned on form submission.
    */
-  value?: InputAttributes["value"];
+  value?: string | number;
   /**
    * The color of the checkbox when it's checked.
    * This should be one of the color keys in the theme (e.g."green", "red")
    */
-  variantColor?: string;
+  variantColor?: VariantColor;
   /**
    * If `true`, the checkbox will be initially checked.
    */
-  defaultIsChecked?: InputAttributes["defaultChecked"];
+  defaultIsChecked?: boolean;
   /**
    * If `true`, the checkbox will be checked.
    * You'll need to pass `onChange` to update it's value (since it's now controlled)
    */
-  isChecked?: InputAttributes["checked"];
+  isChecked?: boolean;
   /**
    * If `true`, the checkbox should take up the full width of the parent.
    */
@@ -43,11 +43,11 @@ export interface ICheckbox {
   /**
    * If `true`, the checkbox will be disabled
    */
-  isDisabled?: InputAttributes["disabled"];
+  isDisabled?: boolean;
   /**
    * If `true`, the checkbox will be readonly
    */
-  isReadOnly?: InputAttributes["readOnly"];
+  isReadOnly?: boolean;
   /**
    * If `true`, the checkbox is marked as invalid.
    * Changes style of unchecked state.
@@ -71,7 +71,7 @@ export interface ICheckbox {
 
 export type CheckboxProps = ICheckbox &
   React.RefAttributes<HTMLInputElement> &
-  BoxProps;
+  Omit<BoxProps, "onChange" | "defaultChecked">;
 
 declare const Checkbox: React.FC<CheckboxProps>;
 

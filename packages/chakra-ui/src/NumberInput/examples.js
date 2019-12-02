@@ -14,7 +14,7 @@ import { useState } from "react";
 const stories = storiesOf("NumberInput", module);
 
 const ContolledEx = () => {
-  const [val, setVal] = useState(23);
+  const [val, setVal] = useState(null);
   return (
     <NumberInput
       size="md"
@@ -41,7 +41,8 @@ stories.add("version2", () => (
       max={35}
       min={0}
       step={4}
-      defaultValue={23}
+      onChange={console.log}
+      // defaultValue={null}
       // keepWithinRange={false}
       // clampValueOnBlur={false}
       precision={2}

@@ -23,6 +23,10 @@ interface IAvatarGroup {
    * The space between the avatars in the group.
    */
   spacing?: StyledSystem.MarginLeftProps["marginLeft"];
+  /**
+   * The maximum number of visible avatars
+   */
+  max?: number;
 }
 
 export type AvatarGroupProps = IAvatarGroup &

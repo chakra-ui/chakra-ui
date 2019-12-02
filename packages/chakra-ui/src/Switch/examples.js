@@ -28,6 +28,7 @@ stories.add("Default", () => (
     />
     <Switch
       size="lg"
+      isDisabled
       onChange={e => console.log(e.target.checked)}
       color="cyan"
     />

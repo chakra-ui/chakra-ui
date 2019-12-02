@@ -2,6 +2,7 @@ import * as React from "react";
 import * as StyledSystem from "styled-system";
 import { BoxProps } from "../Box";
 import { ICheckbox } from "../Checkbox";
+import { Omit } from "../common-types";
 
 export interface ICheckboxGroup {
   /**
@@ -46,6 +47,7 @@ export interface ICheckboxGroup {
   size?: ICheckbox["size"];
 }
 
-export type CheckboxGroupProps = ICheckboxGroup & BoxProps;
+export type CheckboxGroupProps = ICheckboxGroup &
+  Omit<BoxProps, "onChange" | "size">;
 declare const CheckboxGroup: React.FC<CheckboxGroupProps>;
 export default CheckboxGroup;

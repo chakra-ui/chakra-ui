@@ -2,6 +2,8 @@ import * as React from "react";
 import { BoxProps } from "../Box";
 import { FlexProps } from "../Flex";
 import { PseudoBoxProps } from "../PseudoBox";
+import { VariantColor } from "../theme";
+import { Omit } from "../common-types";
 
 export interface ITabs {
   /**
@@ -45,9 +47,23 @@ export interface ITabs {
    * Callback when the index (controlled or un-controlled) changes.
    */
   onChange?: (index: number) => void;
+  /**
+   * The index of the activated tab
+   */
+  index?: number;
+  /**
+   * The index of the tab that should be activated initially
+   */
+  defaultIndex?: number;
+  /**
+   * The color scheme of the tabs
+   * Value should be the key of the colors in the theme object.
+   * @example "blue" | "green" | "yellow"
+   */
+  variantColor?: VariantColor;
 }
 
-export type TabsProps = ITabs & BoxProps;
+export type TabsProps = ITabs & Omit<BoxProps, "onChange" | "size">;
 
 declare const Tabs: React.FC<TabsProps>;
 export default Tabs;
@@ -69,10 +85,12 @@ export const TabList: React.FC<TabListProps>;
 export interface ITabPanel {
   /**
    * The id of the tab panel.
+   * @private Used during `cloneElement`
    */
   id?: string;
   /**
    * If `true`, indicates that the panel is selected.
+   * @private Used during `cloneElement`
    */
   isSelected?: boolean;
   /**
@@ -81,6 +99,7 @@ export interface ITabPanel {
   children: React.ReactNode;
   /**
    * The ref of the panel if it is selected.
+   * @private Used during `cloneElement`
    */
   selectedPanelRef?: React.RefObject<HTMLElement>;
 }

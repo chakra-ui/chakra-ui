@@ -67,8 +67,15 @@ const Switch = forwardRef(
       _focus: {
         boxShadow: "outline",
       },
+      _hover: {
+        cursor: "pointer",
+      },
+      _checkedAndHover: {
+        cursor: "pointer",
+      },
       _disabled: {
-        opacity: 0.5,
+        opacity: 0.4,
+        cursor: "not-allowed",
       },
     };
 

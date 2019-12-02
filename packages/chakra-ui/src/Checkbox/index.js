@@ -1,12 +1,13 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { forwardRef } from "react";
+import { forwardRef, useEffect, useRef } from "react";
 import Box from "../Box";
 import { useColorMode } from "../ColorModeProvider";
 import ControlBox from "../ControlBox";
 import Icon from "../Icon";
 import VisuallyHidden from "../VisuallyHidden";
-import checkboxStyles from "./styles";
+import useCheckboxStyle from "./styles";
+import { useForkRef } from "../utils";
 
 const Checkbox = forwardRef(
   (
@@ -36,8 +37,20 @@ const Checkbox = forwardRef(
     ref,
   ) => {
     const { colorMode } = useColorMode();
-    const styleProps = checkboxStyles({ color: variantColor, size, colorMode });
-    const opacity = isReadOnly || isDisabled ? 0.32 : 1;
+    const styleProps = useCheckboxStyle({
+      color: variantColor,
+      size,
+      colorMode,
+    });
+
+    const ownRef = useRef();
+    const _ref = useForkRef(ownRef, ref);
+
+    useEffect(() => {
+      if (_ref.current) {
+        _ref.current.indeterminate = Boolean(isIndeterminate);
+      }
+    }, [isIndeterminate, _ref]);
 
     return (
       <Box
@@ -46,7 +59,7 @@ const Checkbox = forwardRef(
         verticalAlign="top"
         alignItems="center"
         width={isFullWidth ? "full" : undefined}
-        cursor={isDisabled || isReadOnly ? "not-allowed" : "pointer"}
+        cursor={isDisabled ? "not-allowed" : "pointer"}
         {...rest}
       >
         <VisuallyHidden
@@ -54,13 +67,13 @@ const Checkbox = forwardRef(
           type="checkbox"
           aria-label={ariaLabel}
           id={id}
-          ref={ref}
+          ref={_ref}
           name={name}
           value={value}
-          defaultChecked={isReadOnly ? undefined : defaultIsChecked}
           onChange={isReadOnly ? undefined : onChange}
           onBlur={onBlur}
           onFocus={onFocus}
+          defaultChecked={isReadOnly ? undefined : defaultIsChecked}
           checked={
             isReadOnly
               ? Boolean(isChecked)
@@ -74,7 +87,7 @@ const Checkbox = forwardRef(
           aria-invalid={isInvalid}
           aria-checked={isIndeterminate ? "mixed" : isChecked}
         />
-        <ControlBox {...styleProps}>
+        <ControlBox opacity={isReadOnly ? 0.8 : 1} {...styleProps}>
           <Icon
             name={isIndeterminate ? "minus" : "check"}
             size={iconSize}
@@ -83,7 +96,12 @@ const Checkbox = forwardRef(
           />
         </ControlBox>
         {children && (
-          <Box ml={2} fontSize={size} userSelect="none" opacity={opacity}>
+          <Box
+            ml={2}
+            fontSize={size}
+            userSelect="none"
+            opacity={isDisabled ? 0.4 : 1}
+          >
             {children}
           </Box>
         )}
