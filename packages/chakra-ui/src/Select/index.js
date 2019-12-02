@@ -13,6 +13,7 @@ const Select = forwardRef(
       size,
       placeholder,
       form,
+      onChange,
       onBlur,
       onKeyDown,
       onKeyUp,
@@ -53,6 +54,7 @@ const Select = forwardRef(
           {...{
             form,
             placeholder,
+            onChange,
             onBlur,
             onKeyDown,
             onKeyUp,
