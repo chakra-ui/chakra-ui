@@ -55,7 +55,7 @@ export function createOnKeyDown({
     const shouldPreventDefault = resolveCallback(preventDefault, event);
     const shouldStopPropagation = resolveCallback(stopPropagation, event);
 
-    const eventKey = normalizeEventKey(event as any);
+    const eventKey = normalizeEventKey(event);
 
     if (eventKey in finalKeyMap) {
       const action = finalKeyMap[eventKey as EventKeys];

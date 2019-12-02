@@ -31,6 +31,7 @@ export function useEditable(props: UseEditableOptions) {
     submitOnBlur,
     startWithEditView,
     selectAllOnFocus,
+    placeholder,
   } = props;
 
   const [isEditing, setIsEditing] = React.useState(
@@ -118,6 +119,7 @@ export function useEditable(props: UseEditableOptions) {
     onChange,
     onKeyDown,
     onFocus,
+    placeholder,
   };
 }
 
@@ -144,6 +146,7 @@ export function useEditablePreview(props: any) {
     value,
     onEdit,
     isPreviewFocusable,
+    placeholder,
   } = useEditableCtx();
 
   const isValueEmpty = value == null || value == "";
@@ -152,10 +155,13 @@ export function useEditablePreview(props: any) {
     if ((!isEditing || !isDisabled) && isPreviewFocusable) {
       return 0;
     }
-    return null;
+    return undefined;
   };
 
   return {
+    value,
+    placeholder,
+    hidden: isEditing,
     isValueEmpty,
     "aria-disabled": isDisabled,
     tabIndex: getTabIndex(),
@@ -165,7 +171,13 @@ export function useEditablePreview(props: any) {
 
 ////////////////////////////////////////////////////////////////
 
-export function useEditableInput(props: any) {
+interface UseEditableInput {
+  onChange?: React.ChangeEventHandler;
+  onBlur?: React.FocusEventHandler;
+  onKeyDown?: React.KeyboardEventHandler;
+}
+
+export function useEditableInput(props: UseEditableInput = {}) {
   const {
     inputRef,
     isEditing,
@@ -173,6 +185,7 @@ export function useEditableInput(props: any) {
     onKeyDown,
     value,
     onSubmit,
+    placeholder,
     submitOnBlur,
     isDisabled,
   } = useEditableCtx();
@@ -183,6 +196,7 @@ export function useEditableInput(props: any) {
 
   return {
     hidden: !isEditing,
+    placeholder,
     ref: inputRef,
     disabled: isDisabled,
     "aria-disabled": isDisabled,
@@ -190,5 +204,22 @@ export function useEditableInput(props: any) {
     value,
     onChange: composeEventHandlers(props.onChange, onChange),
     onKeyDown: composeEventHandlers(props.onKeyDown, onKeyDown),
+  };
+}
+
+export function useEditableState() {
+  const {
+    isEditing,
+    onSubmit,
+    onCancel,
+    onEdit,
+    isDisabled,
+  } = useEditableCtx();
+  return {
+    isEditing,
+    onSubmit,
+    onCancel,
+    onEdit,
+    isDisabled,
   };
 }

@@ -191,7 +191,9 @@ export function useSelectionItem(
   return { item: newItem, isHighlighted, isSelected };
 }
 
-const [useSelection, SelectionCtxProvider] = createCtx<any>();
+const [useSelection, SelectionCtxProvider] = createCtx<
+  ReturnType<typeof useSelectionState>
+>();
 
 function SelectionProvider({ children, ...props }: any) {
   const selection = useSelectionState(props);

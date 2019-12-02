@@ -25,7 +25,7 @@ export function composeEventHandlers<T extends (event: any) => void>(
   ...fns: (T | undefined)[]
 ) {
   return function(event: FunctionArguments<T>[0]) {
-    return fns.some(fn => {
+    fns.some(fn => {
       fn && fn(event);
       return event && event.defaultPrevented;
     });
