@@ -1,6 +1,7 @@
 {
   "name": "@chakra-ui/theme",
   "version": "0.0.2",
+  "private": true,
   "description": "Chakra UI's theme framework and utilities",
   "keywords": [
     "chakra",
