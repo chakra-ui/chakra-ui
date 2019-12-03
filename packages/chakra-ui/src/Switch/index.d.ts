@@ -1,15 +1,17 @@
 import { BoxProps } from "../Box";
 import * as React from "react";
+import { Omit } from "../common-types";
+import { VariantColor } from "../theme";
 
 export interface ISwitch {
   /**
    * The size of the switch
    */
-  size?: string;
+  size?: "sm" | "md" | "lg";
   /**
    * The background color of the switch when checked
    */
-  color?: string;
+  color?: VariantColor;
   /**
    * The input name of the switch when used in a form
    */
@@ -17,7 +19,7 @@ export interface ISwitch {
   /**
    * The value of the switch.
    */
-  value?: string | boolean;
+  value?: string | number | boolean;
   /**
    * The children of the switch.
    */
@@ -25,11 +27,11 @@ export interface ISwitch {
   /**
    * The aria-label of the switch for accessibility.
    */
-  "aria-label"?: React.AriaAttributes["aria-label"];
+  "aria-label"?: string;
   /**
    * The aria-labelledby of the switch for accessibility.
    */
-  "aria-labelledby"?: React.AriaAttributes["aria-labelledby"];
+  "aria-labelledby"?: string;
   /**
    * If `true`, set the switch to the checked state.
    */
@@ -48,7 +50,7 @@ export interface ISwitch {
   isInvalid?: boolean;
 }
 
-export type SwitchProps = ISwitch & BoxProps;
+export type SwitchProps = ISwitch & Omit<BoxProps, "defaultChecked" | "size">;
 
 declare const Switch: React.FC<SwitchProps>;
 
