@@ -1,13 +1,13 @@
 {
   "name": "gatsby-starter-chakra-ui",
   "private": true,
-  "version": "0.0.2",
+  "version": "0.0.3",
   "scripts": {
     "start": "gatsby develop",
     "build": "gatsby build"
   },
   "dependencies": {
-    "@chakra-ui/core": "^0.4.1",
+    "@chakra-ui/core": "^0.5.0",
     "@emotion/core": "^10.0.21",
     "@emotion/styled": "^10.0.17",
     "emotion-theming": "^10.0.19",

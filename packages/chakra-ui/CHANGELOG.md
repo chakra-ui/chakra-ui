@@ -3,6 +3,48 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/core@0.4.1...@chakra-ui/core@0.5.0) (2019-12-03)
+
+### Bug Fixes
+
+- prevent bugs with multiple modals opened at the same time
+  ([46c5eaa](https://github.com/chakra-ui/chakra-ui/commit/46c5eaa2d0f803df109e0ca54d74bfbd45d72b18))
+- prop name in Checkbox examples
+  ([5ff3c5a](https://github.com/chakra-ui/chakra-ui/commit/5ff3c5a67d0b876527fce694f425c8f527b27788))
+- react-focus-lock issues and review storybook
+  ([af3816e](https://github.com/chakra-ui/chakra-ui/commit/af3816eac08c0ae9cbe0f8b684f2772c2c8da51f))
+- resolve latest issues and fix types
+  ([db054a3](https://github.com/chakra-ui/chakra-ui/commit/db054a36bda3f5a09cb39f475947795204e51316))
+- set aria-checked to mixed when partially checked
+  ([42c8a1b](https://github.com/chakra-ui/chakra-ui/commit/42c8a1bec674b282c2df130749033bab85f4baa7))
+- types for switch component
+  ([ad22610](https://github.com/chakra-ui/chakra-ui/commit/ad226105a6d4ee1b28338b5f89e70197ee5aedee))
+- useDisclosure types
+  ([3f72505](https://github.com/chakra-ui/chakra-ui/commit/3f7250529310708bca3867edd5d116f8c980aaa3))
+- **number-input:** cannot use numeric keypad
+  ([5cc4b37](https://github.com/chakra-ui/chakra-ui/commit/5cc4b37cf13cf980e25fca37f34b3fb63518e618))
+- **select:** add onChange prop
+  ([1857fc6](https://github.com/chakra-ui/chakra-ui/commit/1857fc6619efea76589703791655c8cdbf147cec))
+- **stack:** convert React children to array before processing
+  ([3b7dce3](https://github.com/chakra-ui/chakra-ui/commit/3b7dce3421c09d57c58676a135b888f6b174d62c)),
+  closes [#234](https://github.com/chakra-ui/chakra-ui/issues/234)
+- **stack:** ensure that invalid elements are filtered correctly
+  ([04f9e7e](https://github.com/chakra-ui/chakra-ui/commit/04f9e7e4e64f43fdb12dc54e24c74041666b6149))
+- **types:** omit conflicting types
+  ([830c93d](https://github.com/chakra-ui/chakra-ui/commit/830c93d6a6538f1a3b5a86ff363583cea9c32ec3))
+
+### Features
+
+- **theme:** apply fonts to Heading and Text
+  ([5f1d815](https://github.com/chakra-ui/chakra-ui/commit/5f1d815db7bc923e6bb8aed2fa55697a878f0b92))
+- add displayName to anonymous components
+  ([5587de9](https://github.com/chakra-ui/chakra-ui/commit/5587de9082e0acd214205b1f9c81fdb36ca39d34))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [0.4.0](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/core@0.3.4...@chakra-ui/core@0.4.0) (2019-10-14)
 
 ### Bug Fixes
