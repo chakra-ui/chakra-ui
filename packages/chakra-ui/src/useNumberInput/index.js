@@ -80,7 +80,8 @@ function useNumberInput({
 
   const [isFocused, setIsFocused] = useState(false);
 
-  const value = isControlled ? valueProp : valueState;
+  let value = isControlled ? valueProp : valueState;
+  if (value === null) value = "";
   const isInteractive = !(isReadOnly || isDisabled);
   const inputRef = useRef();
   const previousValue = usePrevious(value);
@@ -226,13 +227,13 @@ function useNumberInput({
       onChange: handleChange,
       onKeyDown: handleKeyDown,
       ref: inputRef,
-      value: value != null ? value : undefined,
+      value: value,
       role: "spinbutton",
       type: "text",
       "aria-valuemin": min,
       "aria-valuemax": max,
       "aria-disabled": isDisabled,
-      "aria-valuenow": value != null ? value : undefined,
+      "aria-valuenow": value,
       "aria-invalid": isInvalid || isOutOfRange,
       ...(getAriaValueText && { "aria-valuetext": ariaValueText }),
       readOnly: isReadOnly,
