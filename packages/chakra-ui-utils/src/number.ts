@@ -1,97 +1,71 @@
-import prettyNum, { PRECISION_SETTING } from "pretty-num";
-
-/**
- * Rounds a number to a specific precision (Alternative to Math.round)
- *
- * @param value The value to convert
- * @param precision The precision to use
- 
- * @returns {Number} The rounded value
- */
-export function roundToPrecision(value: number, precision: number) {
-  return Number(
-    prettyNum(value, {
-      precision,
-      precisionSetting: PRECISION_SETTING.FIXED,
-    }),
-  );
+function isNotNumber(val: any) {
+  return typeof val !== "number" || isNaN(val) || !isFinite(val);
 }
 
-/**
- * Gets the precision of a specified value
- *
- * @param value the number to get precision
- * @returns {Number} the precision
- *
- * @example
- * calculatePrecision(10.34)  // => 2
- */
+export const minSafeInteger = Number.MIN_SAFE_INTEGER || -9007199254740991;
+export const maxSafeInteger = Number.MAX_SAFE_INTEGER || 9007199254740991;
+
+function toNumber(value: any) {
+  let num = parseFloat(value);
+  return isNotNumber(num) ? 0 : num;
+}
+
+export function roundToPrecision(value: number, precision: number) {
+  let nextValue: string | number = toNumber(value);
+  const quotient = Math.pow(10, precision == null ? 10 : precision);
+
+  nextValue = Math.round(nextValue * quotient) / quotient;
+  nextValue = precision ? nextValue.toFixed(precision) : nextValue;
+  return String(nextValue);
+}
+
 export function calculatePrecision(value: number) {
   const groups = /[1-9]([0]+$)|\.([0-9]*)/.exec(String(value));
-  if (!groups) {
-    return 0;
-  }
-  if (groups[1]) {
-    return -groups[1].length;
-  }
-  if (groups[2]) {
-    return groups[2].length;
-  }
+  if (!groups) return 0;
+  if (groups[1]) return -groups[1].length;
+  if (groups[2]) return groups[2].length;
   return 0;
 }
 
-/**
- * Converts a value to it's equivalent percentage based on the min and max
- *
- * @param value The current value
- * @param min The minimum value
- * @param max The maximum value
- *
- * @returns {Number} The percentage value
- */
 export function valueToPercent(value: number, min: number, max: number) {
   return ((value - min) * 100) / (max - min);
 }
 
-/**
- * Converts a percentage value to it's equivalent value based on the min and max
- *
- * @param percent The percentage value
- * @param min The minimum value
- * @param max The maximum value
- *
- * @returns {Number} The equivalent value
- */
 export function percentToValue(percent: number, min: number, max: number) {
   return (max - min) * percent + min;
 }
 
-/**
- * Converts a value to a precise version (using the step for precision)
- *
- * @param value The value to make precise
- * @param step The step
- *
- * @returns {Number} The value rounded to the step's precision
- */
-function makeValuePrecise(value: number, step: number) {
-  const precision = calculatePrecision(step);
-  return roundToPrecision(value, precision);
-}
-
 export function roundValueToStep(value: number, step: number) {
-  return makeValuePrecise(Math.round(value / step) * step, step);
+  const nextValue = Math.round(value / step) * step;
+  const precision = calculatePrecision(step);
+  return roundToPrecision(nextValue, precision);
 }
 
-/**
- * Clamps the value and keeps it within the `min` and `max`
- *
- * @param value The current value
- * @param min The minimum value
- * @param max The maximum value
- *
- * @returns {Number} The clamped value
- */
+interface StepValue {
+  value: number;
+  stepBy: number;
+  noOfSteps: number;
+  precision: number;
+  constrain: boolean;
+  min: number;
+  max: number;
+}
+
+export function stepValue({
+  value,
+  stepBy,
+  noOfSteps = 1,
+  precision,
+  constrain,
+  min,
+  max,
+}: StepValue) {
+  const step = stepBy * noOfSteps;
+  let nextValue = toNumber(value + step);
+  if (constrain) nextValue = constrainValue(nextValue, min, max);
+  return roundToPrecision(nextValue, precision);
+}
+
 export function constrainValue(value: number, min: number, max: number) {
   if (value > max) return max;
   if (value < min) return min;

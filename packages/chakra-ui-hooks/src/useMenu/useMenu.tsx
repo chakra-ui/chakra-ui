@@ -18,7 +18,7 @@ import useRapidKeydown from "../useRapidKeydown";
 import useBlurOutside from "../useBlurOutside";
 import useFocusOnHide from "../useFocusOnHide";
 
-function useOpenEffect(
+function useFocusOnShow(
   menuRef: React.RefObject<any>,
   selection: Selection,
   options: {
@@ -95,7 +95,7 @@ function useMenu(props: MenuOptions) {
   });
 
   // Selects first menuitem on mount or use `defaultActiveIndex`
-  useOpenEffect(menuRef, selection, {
+  useFocusOnShow(menuRef, selection, {
     autoSelect: props.autoSelect,
     visible: disclosure.isOpen,
     activeIndex: props.defaultActiveIndex,

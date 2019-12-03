@@ -1,4 +1,4 @@
-import { canUseDOM, normalizeEventKey } from "@chakra-ui/utils";
+import { canUseDOM, normalizeEventKey, ensureFocus } from "@chakra-ui/utils";
 import * as React from "react";
 import useCounter from "../useCounter/useCounter";
 import useUpdateEffect from "../useUpdateEffect";
@@ -93,14 +93,23 @@ const defaultProps = {
   step: 1,
 };
 
-function useNumberInput(_props: any) {
+function useNumberInput(_props: any = {}) {
   const props = { ...defaultProps, ..._props };
+  const { min, max } = props;
+
   const counter = useCounter(props);
+  const { update, value } = counter;
 
   const [isFocused, setIsFocused] = React.useState(false);
 
   const inputRef = React.useRef<HTMLInputElement>(null);
   const isInteractive = !(props.isReadOnly || props.isDisabled);
+
+  const focusInput = () => {
+    if (props.focusInputOnChange && inputRef.current) {
+      ensureFocus(inputRef.current);
+    }
+  };
 
   useUpdateEffect(() => {
     focusInput();
@@ -126,16 +135,6 @@ function useNumberInput(_props: any) {
     }
     const nextValue = counter.beforeUpdate(valueToUse - step);
     counter.update(nextValue);
-  };
-
-  const focusInput = () => {
-    if (props.focusInputOnChange && inputRef.current && canUseDOM) {
-      requestAnimationFrame(() => {
-        if (inputRef.current) {
-          inputRef.current.focus();
-        }
-      });
-    }
   };
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -184,14 +183,14 @@ function useNumberInput(_props: any) {
     return ratio;
   };
 
-  const validateAndClamp = () => {
-    if (counter.value > props.max) {
-      counter.update(props.max);
+  const validateAndClamp = React.useCallback(() => {
+    if (value > max) {
+      update(max);
     }
-    if (counter.value < props.min) {
-      counter.update(props.min);
+    if (value < min) {
+      update(min);
     }
-  };
+  }, [value, update, min, max]);
 
   const ariaValueText =
     typeof props.getAriaValueText === "function"
@@ -204,7 +203,7 @@ function useNumberInput(_props: any) {
     if (props.clampValueOnBlur) {
       validateAndClamp();
     }
-  }, [props.clampValueOnBlur, counter.value]);
+  }, [props.clampValueOnBlur, validateAndClamp]);
 
   return {
     value: counter.value,
