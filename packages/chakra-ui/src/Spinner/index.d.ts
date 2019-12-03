@@ -1,5 +1,6 @@
 import * as React from "react";
 import { BoxProps } from "../Box";
+import { Omit } from "../common-types";
 
 export interface ISpinnerProps {
   /**
@@ -37,7 +38,7 @@ export interface ISpinnerProps {
   label?: string;
 }
 
-export type SpinnerProps = BoxProps & ISpinnerProps;
+export type SpinnerProps = Omit<BoxProps, "size"> & ISpinnerProps;
 
 /**
  * Spinner is used for indicating a loading state of a component or page.

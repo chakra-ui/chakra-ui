@@ -1,5 +1,6 @@
 import * as React from "react";
 import { BoxProps } from "../Box";
+import { Omit } from "../common-types";
 
 type Size = "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
 
@@ -36,7 +37,7 @@ export const AvatarName: React.FC<AvatarNameProps>;
 
 export const AvatarBadge: React.FC<BoxProps>;
 
-export type AvatarProps = IAvatar & BoxProps;
+export type AvatarProps = IAvatar & Omit<BoxProps, "size">;
 /**
  * The Avatar component is used to represent user, and displays the profile
  * picture, initials or fallback icon.

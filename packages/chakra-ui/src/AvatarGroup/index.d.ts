@@ -1,7 +1,7 @@
 import * as React from "react";
-import * as StyledSystem from "styled-system";
 import { BoxProps } from "../Box";
 import { IAvatar } from "../Avatar";
+import { Omit } from "../common-types";
 
 interface IMoreIndicator {
   size?: IAvatar["size"];
@@ -22,17 +22,14 @@ interface IAvatarGroup {
   /**
    * The space between the avatars in the group.
    */
-  spacing?: StyledSystem.MarginLeftProps["marginLeft"];
+  spacing?: BoxProps["marginLeft"];
   /**
    * The maximum number of visible avatars
    */
   max?: number;
 }
 
-export type AvatarGroupProps = IAvatarGroup &
-  BoxProps &
-  React.RefAttributes<any>;
-
+export type AvatarGroupProps = IAvatarGroup & Omit<BoxProps, "size">;
 /**
  * AvatarGroup is a wrapper to render a collection of evenly spaced avatars.
  */

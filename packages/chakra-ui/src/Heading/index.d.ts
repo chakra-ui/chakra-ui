@@ -1,5 +1,6 @@
 import { BoxProps } from "../Box";
 import * as React from "react";
+import { Omit } from "../common-types";
 
 interface IHeading {
   /**
@@ -8,7 +9,7 @@ interface IHeading {
   size?: "2xl" | "xl" | "lg" | "md" | "sm" | "xs";
 }
 
-export type HeadingProps = IHeading & BoxProps;
+export type HeadingProps = IHeading & Omit<BoxProps, "size">;
 
 declare const Heading: React.FC<HeadingProps>;
 

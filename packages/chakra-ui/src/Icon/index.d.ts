@@ -1,6 +1,7 @@
 import { BoxProps } from "../Box";
 import * as React from "react";
 import { Icons } from "../theme/icons";
+import { Omit } from "../common-types";
 
 interface IIcon {
   /**
@@ -21,7 +22,7 @@ interface IIcon {
   role?: "presentation" | "img";
 }
 
-export type IconProps = IIcon & BoxProps;
+export type IconProps = IIcon & Omit<BoxProps, "size">;
 
 declare const Icon: React.FC<IconProps>;
 

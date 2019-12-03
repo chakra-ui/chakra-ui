@@ -36,7 +36,7 @@ type Omitted =
 
 export type SelectProps = ISelect &
   Omit<InputProps, Omitted | "value" | "defaultValue"> &
-  Omit<BoxProps, Omitted> &
+  Omit<BoxProps, Omitted | "size"> &
   React.RefAttributes<HTMLSelectElement>;
 
 type xx = SelectProps["value"];

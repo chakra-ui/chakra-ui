@@ -2,6 +2,7 @@ import * as React from "react";
 import * as StyledSystem from "styled-system";
 import { IButton } from "../Button";
 import { BoxProps } from "../Box";
+import { Omit } from "../common-types";
 
 export interface IButtonGroup {
   size?: IButton["size"];
@@ -16,7 +17,7 @@ export interface IButtonGroup {
   children?: React.ReactNode;
 }
 
-export type ButtonGroupProps = IButtonGroup & BoxProps;
+export type ButtonGroupProps = IButtonGroup & Omit<BoxProps, "size">;
 
 declare const ButtonGroup: React.FC<ButtonGroupProps>;
 

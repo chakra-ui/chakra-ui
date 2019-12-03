@@ -3,6 +3,7 @@ import * as React from "react";
 import { BoxProps } from "../Box";
 import { PseudoBoxProps } from "../PseudoBox";
 import { IconProps } from "../Icon";
+import { Omit } from "../common-types";
 
 export interface ITag {
   /**
@@ -18,7 +19,7 @@ export interface ITag {
    */
   variantColor?: IBadge["variantColor"];
 }
-export type TagProps = ITag & PseudoBoxProps;
+export type TagProps = ITag & Omit<PseudoBoxProps, "size">;
 declare const Tag: React.FC<TagProps>;
 export default Tag;
 

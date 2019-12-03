@@ -1,7 +1,7 @@
 import * as React from "react";
-import * as StyledSystem from "styled-system";
 import { PseudoBoxProps } from "../PseudoBox";
 import { Icons } from "../theme/icons";
+import { Omit } from "../common-types";
 
 export interface IButton {
   /**
@@ -61,10 +61,10 @@ export interface IButton {
    * The space between the button icon and label.
    * Use the styled-system tokens or add custom values as a string
    */
-  iconSpacing?: StyledSystem.MarginProps["margin"];
+  iconSpacing?: PseudoBoxProps["margin"];
 }
 
-export type ButtonProps = IButton & PseudoBoxProps;
+export type ButtonProps = IButton & Omit<PseudoBoxProps, "size">;
 
 declare const Button: React.FC<ButtonProps>;
 
