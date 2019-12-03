@@ -3,6 +3,7 @@ import { jsx } from "@emotion/core";
 import { Children, cloneElement, isValidElement } from "react";
 import Flex from "../Flex";
 import Box from "../Box";
+import css from "../Css";
 
 const Stack = ({
   direction,
@@ -19,24 +20,26 @@ const Stack = ({
   isInline |= direction.startsWith("row");
   isReversed |= direction.endsWith("reverse");
 
-  return (
-    <Flex align={align} justify={justify} direction={direction} {...rest}>
-      {Children.map(children, (child, index) => {
-        if (!isValidElement(child)) return;
-        let isLastChild = children.length === index + 1;
-        let spacingProps = isInline
-          ? { [isReversed ? "ml" : "mr"]: isLastChild ? null : spacing }
-          : { [isReversed ? "mt" : "mb"]: isLastChild ? null : spacing };
+  let spacingProp = isInline
+    ? { [isReversed ? "mr" : "ml"]: spacing }
+    : { [isReversed ? "mb" : "mt"]: spacing };
 
-        if (shouldWrapChildren) {
-          return (
-            <Box d="inline-block" {...spacingProps}>
-              {child}
-            </Box>
-          );
-        }
-        return cloneElement(child, spacingProps);
+  return (
+    <Flex
+      css={css({
+        ">*+*": spacingProp,
       })}
+      align={align}
+      justify={justify}
+      direction={direction}
+      {...rest}
+    >
+      {shouldWrapChildren
+        ? Children.map(children, (child, index) => {
+            if (!isValidElement(child)) return;
+            return <Box d="inline-block">{child}</Box>;
+          })
+        : children}
     </Flex>
   );
 };
