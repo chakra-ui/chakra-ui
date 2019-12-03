@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import useAvatarStyle, { avatarSizes } from "./styles";
 import { useTheme, useColorMode } from "@chakra-ui/theme";
 import { Box, BoxProps } from "@chakra-ui/layout";
@@ -90,7 +90,7 @@ const AvatarName = ({ name, ...props }: AvatarNameProps) => {
 };
 
 const DefaultAvatar = (props: BoxProps) => (
-  <Box size="100%" {...props}>
+  <Box size="100%" data-testid="DefaultAvatar" {...props}>
     <svg fill="#fff" viewBox="0 0 128 128" role="img">
       <g>
         <path d="M103,102.1388 C93.094,111.92 79.3504,118 64.1638,118 C48.8056,118 34.9294,111.768 25,101.7892 L25,95.2 C25,86.8096 31.981,80 40.6,80 L87.4,80 C96.019,80 103,86.8096 103,95.2 L103,102.1388 Z" />
@@ -115,14 +115,13 @@ const Avatar = React.forwardRef(function Avatar<P, T>(
   }: AvatarProps<P, T>,
   ref: React.Ref<T>,
 ) {
+  const [hasLoaded, setHasLoaded] = useState(true);
   const avatarStyleProps = useAvatarStyle({
     name,
     size,
     showBorder,
     borderColor,
   });
-  // const hasLoaded = useHasImageLoaded({ src: src || "" });
-  const hasLoaded = false;
 
   const theme = useTheme();
   const sizeKey = avatarSizes[size];
@@ -139,6 +138,7 @@ const Avatar = React.forwardRef(function Avatar<P, T>(
           objectFit="cover"
           src={src}
           alt={name}
+          onError={() => setHasLoaded(false)}
         />
       );
     }
@@ -147,7 +147,7 @@ const Avatar = React.forwardRef(function Avatar<P, T>(
       if (name) {
         return <AvatarName size={_size} name={name} />;
       } else {
-        return <DefaultAvatar aria-label={name} />;
+        return <DefaultAvatar aria-label="default-avatar" />;
       }
     }
 
