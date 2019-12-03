@@ -6,7 +6,7 @@ import React, {
   forwardRef,
 } from "react";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
-import FocusLock from "react-focus-lock";
+import FocusLock from "react-focus-lock/dist/cjs";
 import { wrapEvent, useForkRef, getFocusables } from "../utils";
 import Box from "../Box";
 import Portal from "../Portal";

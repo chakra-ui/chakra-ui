@@ -9,7 +9,7 @@ const stories = storiesOf("Tag", module);
 
 stories.add("Default", () => {
   return (
-    <Stack spacing={4} isInline>
+    <Stack align="center" spacing={4} isInline>
       {["sm", "md", "lg"].map(size => (
         <Tag size={size} variantColor="gray">
           Gray
@@ -21,7 +21,7 @@ stories.add("Default", () => {
 
 stories.add("with left icon", () => {
   return (
-    <Stack spacing={4} isInline>
+    <Stack align="center" spacing={4} isInline>
       {["sm", "md", "lg"].map(size => (
         <Tag size={size} variantColor="cyan">
           <TagIcon icon="add" size="12px" />
@@ -34,7 +34,7 @@ stories.add("with left icon", () => {
 
 stories.add("with right icon", () => {
   return (
-    <Stack spacing={4} isInline>
+    <Stack align="center" spacing={4} isInline>
       {["sm", "md", "lg"].map(size => (
         <Tag size={size} variantColor="cyan">
           <TagLabel>Green</TagLabel>
@@ -47,7 +47,7 @@ stories.add("with right icon", () => {
 
 stories.add("with close button", () => {
   return (
-    <Stack spacing={4} isInline>
+    <Stack align="center" spacing={4} isInline>
       {["sm", "md", "lg"].map(size => (
         <Tag size={size} rounded="full" variant="solid" variantColor="cyan">
           <TagLabel>Green</TagLabel>

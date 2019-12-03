@@ -6,7 +6,7 @@ import Box from "../Box";
 import Stack from "../Stack";
 
 const stories = storiesOf("Select", module);
-stories.add("Default", () => <Select />);
+stories.add("Default", () => <Select placeholder="Select option" />);
 stories.add("sizes", () => (
   <Box>
     <Stack>

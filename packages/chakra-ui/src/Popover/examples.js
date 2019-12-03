@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-autofocus */
 import { storiesOf } from "@storybook/react";
 import React, { useRef, useState } from "react";
-import FocusLock from "react-focus-lock";
+import FocusLock from "react-focus-lock/dist/cjs";
 import {
   Popover,
   PopoverCloseButton,
