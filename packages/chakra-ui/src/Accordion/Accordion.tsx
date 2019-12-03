@@ -59,13 +59,20 @@ const Accordion = forwardRef(function Accordion<P, T>(
 ) {
   const initializeState = () => {
     if (allowMultiple) {
-      return defaultIndex || [];
+      return defaultIndex || [0];
     } else {
       return defaultIndex || 0;
     }
   };
 
-  const getExpandCondition = (index: number | number[], itemIndex: number) => {
+  const getExpandCondition = (
+    index: number | number[] | null | undefined,
+    itemIndex: number,
+  ) => {
+    if (index === null || index === undefined) {
+      return false;
+    }
+
     if (Array.isArray(index)) {
       return index.includes(itemIndex);
     }
@@ -83,15 +90,15 @@ const Accordion = forwardRef(function Accordion<P, T>(
     if (!isValidElement(child)) return;
 
     return cloneElement(child as React.ReactElement<any>, {
-      isOpen: _index ? getExpandCondition(_index, childIndex) : false,
+      isOpen: getExpandCondition(_index, childIndex),
       onChange: (isExpanded: boolean) => {
         if (allowMultiple && Array.isArray(_index)) {
           if (isExpanded) {
-            let newIndexes = [..._index, childIndex];
+            const newIndexes = [..._index, childIndex];
             !isControlled && setExpandedIndex(newIndexes);
             onChange && onChange(newIndexes);
           } else {
-            let newIndexes = _index.filter(
+            const newIndexes = _index.filter(
               itemIndex => itemIndex !== childIndex,
             );
             !isControlled && setExpandedIndex(newIndexes);
