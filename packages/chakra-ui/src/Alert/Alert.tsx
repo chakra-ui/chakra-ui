@@ -89,7 +89,7 @@ const AlertIcon = (props: IconProps) => {
     variant: variant,
     color: statuses[status]["color"],
   });
-  const iconName = statuses[status]["icon"];
+  const iconName = props.name || statuses[status]["icon"];
 
   return (
     <Icon
@@ -97,6 +97,7 @@ const AlertIcon = (props: IconProps) => {
       mr={3}
       size={5}
       name={iconName}
+      data-testid={`icon-${iconName}`}
       {...iconStyleProps}
       {...props}
     />
