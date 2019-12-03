@@ -3,7 +3,7 @@
     "ecmaVersion": 2018
   },
   "extends": [
-    "react-app",
+    "eslint-config-react-app",
     "plugin:jsx-a11y/recommended",
     "eslint-config-prettier"
   ],

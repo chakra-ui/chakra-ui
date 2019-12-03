@@ -7,12 +7,12 @@ function expOut(t) {
   return 1 - Math.pow(2, -10 * t);
 }
 
-function expInOut(t) {
-  return (
-    ((t *= 2) <= 1 ? Math.pow(2, 10 * t - 10) : 2 - Math.pow(2, 10 - 10 * t)) /
-    2
-  );
-}
+// function expInOut(t) {
+//   return (
+//     ((t *= 2) <= 1 ? Math.pow(2, 10 * t - 10) : 2 - Math.pow(2, 10 - 10 * t)) /
+//     2
+//   );
+// }
 
 ///////////////////////////////////////////////////////////////////////////
 
