@@ -16,13 +16,21 @@ const TIMEOUT_DURATION = 300;
 const INTERVAL_DURATION = 50;
 
 function useCounter(props: any) {
+  const {
+    onChange,
+    precision: precisionProp,
+    defaultValue,
+    value: valueProp,
+    step: stepProp,
+  } = props;
+
   const [valueState, setValue] = React.useState<number | string>(
-    props.defaultValue || 0,
+    defaultValue || 0,
   );
   const [isSpinning, setIsSpinning] = React.useState(false);
   const [action, setAction] = React.useState<Action | null>(null);
   const [runOnce, setRunOnce] = React.useState(true);
-  const [isControlled, value] = useControllableValue(props.value, valueState);
+  const [isControlled, value] = useControllableValue(valueProp, valueState);
 
   const timeoutRef = React.useRef<any>();
 
@@ -48,26 +56,21 @@ function useCounter(props: any) {
   }, [value, prevNumberValue]);
 
   const defaultPrecision = Math.max(
-    calculatePrecision(props.step),
-    calculatePrecision(props.value || props.defaultValue || 0),
+    calculatePrecision(stepProp),
+    calculatePrecision(valueProp || defaultValue || 0),
   );
-  const precision = props.precision || defaultPrecision;
+  const precision = precisionProp || defaultPrecision;
 
   const updateValue = React.useCallback(
     (value: number | string) => {
-      if (!isControlled) {
-        setValue(value);
-      }
-
-      if (props.onChange) {
-        props.onChange(value);
-      }
+      if (!isControlled) setValue(value);
+      if (onChange) onChange(value);
     },
-    [props.onChange, isControlled],
+    [onChange, isControlled],
   );
 
   // Function to clamp the value and round it to the precision
-  const beforeUpdate = (value: number) => {
+  const prepareNextValue = (value: number) => {
     let nextValue = value;
     if (props.keepWithinRange) {
       nextValue = constrainValue(nextValue, props.min, props.max);
@@ -76,14 +79,14 @@ function useCounter(props: any) {
   };
 
   // Function to increment the value based on specified step
-  const increment = (step: number = props.step) => {
-    const nextValue = beforeUpdate(+value + step);
+  const increment = (step: number = stepProp) => {
+    const nextValue = prepareNextValue(+value + step);
     updateValue(nextValue);
   };
 
   // Function to decrement the value based on specified step
-  const decrement = (step: number = props.step) => {
-    const nextValue = beforeUpdate(+value - step);
+  const decrement = (step: number = stepProp) => {
+    const nextValue = prepareNextValue(+value - step);
     updateValue(nextValue);
   };
 
@@ -98,9 +101,8 @@ function useCounter(props: any) {
   );
 
   const incOnPointerDown = () => {
-    if (runOnce) {
-      increment();
-    }
+    if (runOnce) increment();
+
     timeoutRef.current = setTimeout(() => {
       setRunOnce(false);
       setIsSpinning(true);
@@ -109,9 +111,8 @@ function useCounter(props: any) {
   };
 
   const decOnPointerDown = () => {
-    if (runOnce) {
-      decrement();
-    }
+    if (runOnce) decrement();
+
     timeoutRef.current = setTimeout(() => {
       setRunOnce(false);
       setIsSpinning(true);
@@ -144,10 +145,10 @@ function useCounter(props: any) {
     };
   }, []);
 
-  const reset = React.useCallback(
-    () => updateValue(props.defaultValue || 0),
-    [],
-  );
+  const reset = React.useCallback(() => updateValue(defaultValue || 0), [
+    defaultValue,
+    updateValue,
+  ]);
 
   const isOutOfRange = value > props.max || value < props.min;
   const isAtMax = value === props.max;
@@ -163,7 +164,6 @@ function useCounter(props: any) {
     value,
     valueAsNumber,
     // actions
-    beforeUpdate,
     update: updateValue,
     stop,
     reset,
