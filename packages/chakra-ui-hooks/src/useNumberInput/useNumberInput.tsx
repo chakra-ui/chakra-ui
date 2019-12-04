@@ -89,99 +89,81 @@ const defaultProps = {
   keepWithinRange: true,
   min: -Infinity,
   max: Infinity,
-  shouldSpin: true,
   step: 1,
 };
 
 function useNumberInput(_props: any = {}) {
   const props = { ...defaultProps, ..._props };
-  const { min, max } = props;
+  const { min, max, step: stepProp } = props;
 
-  const counter = useCounter(props) as any;
-  const { update, value, prepareNextValue } = counter;
+  const counter = useCounter(props);
 
   const [isFocused, setIsFocused] = React.useState(false);
 
   const inputRef = React.useRef<HTMLInputElement>(null);
   const isInteractive = !(props.isReadOnly || props.isDisabled);
 
-  const focusInput = () => {
+  // Focus the input then you use the spinner to change value
+  useUpdateEffect(() => {
     if (props.focusInputOnChange && inputRef.current) {
       ensureFocus(inputRef.current);
     }
-  };
-
-  useUpdateEffect(() => {
-    focusInput();
   }, [counter.value]);
 
-  const increment = React.useCallback(
-    (step = props.step) => {
-      if (!isInteractive) return;
-      let valueToUse = Number(value);
-      if (isNaN(valueToUse)) {
-        valueToUse = props.min;
-      }
-      const nextValue = prepareNextValue(valueToUse + step);
-      update(nextValue);
-    },
-    [value, prepareNextValue, props.min, props.step, isInteractive, update],
-  );
+  const increment = (step = stepProp) => {
+    if (!isInteractive) return;
+    let valueToUse = +counter.value;
+    if (isNaN(valueToUse)) {
+      valueToUse = min;
+    }
+    const nextValue = counter.clamp(valueToUse + step);
+    counter.update(nextValue);
+  };
 
-  const decrement = React.useCallback(
-    (step = props.step) => {
-      if (!isInteractive) return;
-      let valueToUse = Number(value);
+  const decrement = (step = stepProp) => {
+    if (!isInteractive) return;
+    let valueToUse = +counter.value;
+    if (isNaN(valueToUse)) {
+      valueToUse = min;
+    }
+    const nextValue = counter.clamp(valueToUse - step);
+    counter.update(nextValue);
+  };
 
-      if (isNaN(valueToUse)) {
-        valueToUse = props.min;
-      }
-      const nextValue = prepareNextValue(valueToUse - step);
-      update(nextValue);
-    },
-    [value, prepareNextValue, update, props.step, isInteractive, props.min],
-  );
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    counter.update(event.target.value);
+  };
 
-  const onChange = React.useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      update(event.target.value);
-    },
-    [update],
-  );
+  const onKeyDown = (event: React.KeyboardEvent) => {
+    if (!isAllowedKey(event)) {
+      event.preventDefault();
+    }
 
-  const onKeyDown = React.useCallback(
-    (event: React.KeyboardEvent) => {
-      if (!isAllowedKey(event)) {
+    const eventKey = normalizeEventKey(event);
+    const factor = getIncrementFactor(event);
+    const valueStep = factor * props.step;
+
+    switch (eventKey) {
+      case "ArrowUp":
         event.preventDefault();
-      }
-
-      const eventKey = normalizeEventKey(event);
-      const factor = getIncrementFactor(event);
-      const valueStep = factor * props.step;
-
-      switch (eventKey) {
-        case "ArrowUp":
-          event.preventDefault();
-          increment(valueStep);
-          break;
-        case "ArrowDown":
-          event.preventDefault();
-          decrement(valueStep);
-          break;
-        case "Home":
-          event.preventDefault();
-          update(props.min);
-          break;
-        case "End":
-          event.preventDefault();
-          update(props.max);
-          break;
-        default:
-          break;
-      }
-    },
-    [increment, decrement, update, props.step, props.min, props.max],
-  );
+        increment(valueStep);
+        break;
+      case "ArrowDown":
+        event.preventDefault();
+        decrement(valueStep);
+        break;
+      case "Home":
+        event.preventDefault();
+        counter.update(props.min);
+        break;
+      case "End":
+        event.preventDefault();
+        counter.update(props.max);
+        break;
+      default:
+        break;
+    }
+  };
 
   const getIncrementFactor = (event: React.KeyboardEvent) => {
     let ratio = 1;
@@ -194,27 +176,27 @@ function useNumberInput(_props: any = {}) {
     return ratio;
   };
 
-  const validateAndClamp = React.useCallback(() => {
-    if (value > max) {
-      update(max);
+  const validateAndClamp = () => {
+    if (counter.value > max) {
+      counter.update(max);
     }
-    if (value < min) {
-      update(min);
+    if (counter.value < min) {
+      counter.update(min);
     }
-  }, [value, update, min, max]);
+  };
 
   const ariaValueText =
     typeof props.getAriaValueText === "function"
       ? props.getAriaValueText(counter.value)
       : undefined;
 
-  const onFocus = React.useCallback(() => setIsFocused(true), []);
-  const onBlur = React.useCallback(() => {
+  const onFocus = () => setIsFocused(true);
+  const onBlur = () => {
     setIsFocused(false);
     if (props.clampValueOnBlur) {
       validateAndClamp();
     }
-  }, [props.clampValueOnBlur, validateAndClamp]);
+  };
 
   return {
     value: counter.value,
@@ -222,26 +204,26 @@ function useNumberInput(_props: any = {}) {
     isFocused,
     isDisabled: props.isDisabled,
     isReadOnly: props.isReadOnly,
-    incrementStepper: {
-      onPointerDown: counter.incOnPointerDown,
-      onPointerUp: counter.stop,
+    upSpinner: {
+      onMouseDown: counter.keepIncrementing,
+      onMouseUp: counter.stop,
       disabled: counter.isAtMax,
     },
-    decrementStepper: {
-      onPointerDown: counter.decOnPointerDown,
-      onPointerUp: counter.stop,
+    downSpinner: {
+      onMouseDown: counter.keepDecrementing,
+      onMouseUp: counter.stop,
       disabled: counter.isAtMin,
     },
-    incrementButton: {
-      onClick: counter.inc,
+    upButton: {
+      onClick: counter.increment,
       "aria-label": "add",
       ...(props.keepWithinRange && {
         disabled: counter.isAtMax,
         "aria-disabled": counter.isAtMax,
       }),
     },
-    decrementButton: {
-      onClick: counter.dec,
+    downButton: {
+      onClick: counter.decrement,
       "aria-label": "subtract",
       ...(props.keepWithinRange && {
         disabled: counter.isAtMin,
@@ -275,7 +257,7 @@ function useNumberInput(_props: any = {}) {
 }
 
 /**
- * Checks if the pressed key is a number
+ * Checks if the pressed key is a number input related
  *
  * @param event The keyboard event
  * @returns {Boolean} True or false, obviously :)

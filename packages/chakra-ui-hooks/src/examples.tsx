@@ -137,33 +137,6 @@ export function Slider() {
 
 stories.add("useSlider", () => <Slider />);
 
-// function NumberInput() {
-//   const numberInput = useNumberInput({
-//     defaultValue: 1.53,
-//     max: 10,
-//     min: 0,
-//     step: 0.1,
-//     keepWithinRange: true,
-//   });
-
-//   console.log(numberInput.value);
-
-//   return (
-//     <div>
-//       <div>current: {numberInput.value}</div>
-//       <button tabIndex={-1} {...numberInput.incrementStepper}>
-//         +
-//       </button>
-//       <input {...numberInput.input} />
-//       <button tabIndex={-1} {...numberInput.decrementStepper}>
-//         -
-//       </button>
-//     </div>
-//   );
-// }
-
-// stories.add("useNumberInput", () => <NumberInput />);
-
 function Accordion(props: any) {
   const { FocusManager, children } = useAccordion(props);
   return <FocusManager>{children}</FocusManager>;

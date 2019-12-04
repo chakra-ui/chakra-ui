@@ -62,6 +62,9 @@ function useCounter(props: UseCounterOptions) {
   // Store the timeout instance id in a ref, so we can clear the timeout later
   const timeoutRef = React.useRef<any>(null);
 
+  // Clears the timeout from memory
+  const removeTimeout = () => clearTimeout(timeoutRef.current);
+
   /**
    * While the state can be a number/string (due to precision logic)
    * We'll create a state to store only the number value
@@ -192,13 +195,6 @@ function useCounter(props: UseCounterOptions) {
     setIsSpinning(false);
     removeTimeout();
   }, []);
-
-  // Clears the timeout from memory
-  const removeTimeout = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-  };
 
   /**
    * If the component unmounts while spinning,
