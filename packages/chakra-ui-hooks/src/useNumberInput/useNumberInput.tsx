@@ -1,9 +1,9 @@
-import { canUseDOM, normalizeEventKey, ensureFocus } from "@chakra-ui/utils";
+import { ensureFocus, normalizeEventKey } from "@chakra-ui/utils";
 import * as React from "react";
-import useCounter from "../useCounter/useCounter";
+import useCounter from "../useCounter";
 import useUpdateEffect from "../useUpdateEffect";
 
-export interface useNumberInputOptions {
+export interface UseNumberInputOptions {
   /**
    * The value of the input. Should be less than `max` and greater than `min`
    */
@@ -97,8 +97,8 @@ function useNumberInput(_props: any = {}) {
   const props = { ...defaultProps, ..._props };
   const { min, max } = props;
 
-  const counter = useCounter(props);
-  const { update, value } = counter;
+  const counter = useCounter(props) as any;
+  const { update, value, prepareNextValue } = counter;
 
   const [isFocused, setIsFocused] = React.useState(false);
 
@@ -115,62 +115,73 @@ function useNumberInput(_props: any = {}) {
     focusInput();
   }, [counter.value]);
 
-  const increment = (step = props.step) => {
-    if (!isInteractive) return;
-    let valueToUse = Number(counter.value);
+  const increment = React.useCallback(
+    (step = props.step) => {
+      if (!isInteractive) return;
+      let valueToUse = Number(value);
+      if (isNaN(valueToUse)) {
+        valueToUse = props.min;
+      }
+      const nextValue = prepareNextValue(valueToUse + step);
+      update(nextValue);
+    },
+    [value, prepareNextValue, props.min, props.step, isInteractive, update],
+  );
 
-    if (isNaN(valueToUse)) {
-      valueToUse = props.min;
-    }
-    const nextValue = counter.beforeUpdate(valueToUse + step);
-    counter.update(nextValue);
-  };
+  const decrement = React.useCallback(
+    (step = props.step) => {
+      if (!isInteractive) return;
+      let valueToUse = Number(value);
 
-  const decrement = (step = props.step) => {
-    if (!isInteractive) return;
-    let valueToUse = Number(counter.value);
+      if (isNaN(valueToUse)) {
+        valueToUse = props.min;
+      }
+      const nextValue = prepareNextValue(valueToUse - step);
+      update(nextValue);
+    },
+    [value, prepareNextValue, update, props.step, isInteractive, props.min],
+  );
 
-    if (isNaN(valueToUse)) {
-      valueToUse = props.min;
-    }
-    const nextValue = counter.beforeUpdate(valueToUse - step);
-    counter.update(nextValue);
-  };
+  const onChange = React.useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      update(event.target.value);
+    },
+    [update],
+  );
 
-  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    counter.update(event.target.value);
-  };
-
-  const onKeyDown = (event: React.KeyboardEvent) => {
-    if (!isAllowedKey(event)) {
-      event.preventDefault();
-    }
-
-    const eventKey = normalizeEventKey(event);
-    const factor = getIncrementFactor(event);
-    const valueStep = factor * props.step;
-
-    switch (eventKey) {
-      case "ArrowUp":
+  const onKeyDown = React.useCallback(
+    (event: React.KeyboardEvent) => {
+      if (!isAllowedKey(event)) {
         event.preventDefault();
-        increment(valueStep);
-        break;
-      case "ArrowDown":
-        event.preventDefault();
-        decrement(valueStep);
-        break;
-      case "Home":
-        event.preventDefault();
-        counter.update(props.max);
-        break;
-      case "End":
-        event.preventDefault();
-        counter.update(props.max);
-        break;
-      default:
-        break;
-    }
-  };
+      }
+
+      const eventKey = normalizeEventKey(event);
+      const factor = getIncrementFactor(event);
+      const valueStep = factor * props.step;
+
+      switch (eventKey) {
+        case "ArrowUp":
+          event.preventDefault();
+          increment(valueStep);
+          break;
+        case "ArrowDown":
+          event.preventDefault();
+          decrement(valueStep);
+          break;
+        case "Home":
+          event.preventDefault();
+          update(props.min);
+          break;
+        case "End":
+          event.preventDefault();
+          update(props.max);
+          break;
+        default:
+          break;
+      }
+    },
+    [increment, decrement, update, props.step, props.min, props.max],
+  );
 
   const getIncrementFactor = (event: React.KeyboardEvent) => {
     let ratio = 1;
@@ -207,6 +218,7 @@ function useNumberInput(_props: any = {}) {
 
   return {
     value: counter.value,
+    valueAsNumber: counter.valueAsNumber,
     isFocused,
     isDisabled: props.isDisabled,
     isReadOnly: props.isReadOnly,

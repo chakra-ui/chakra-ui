@@ -1,33 +1,33 @@
+import { ThemeProvider } from "@chakra-ui/theme";
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import { ThemeProvider, CSSReset } from "@chakra-ui/theme";
-import useDisclosure from "./useDisclosure/useDisclosure";
-import useCheckboxGroup from "./useCheckboxGroup/useCheckboxGroup";
-import useRadioGroup from "./useRadioGroup/useRadioGroup";
-import { useSlider } from "./useSlider/useSlider";
-import useLogger from "./useLogger";
-import useCounter from "./useCounter/useCounter";
-import useNumberInput from "./useNumberInput/useNumberInput";
+// import useCounter from "./useCounter/useCounter";
+// import useNumberInput from "./useNumberInput/useNumberInput";
 import {
-  useAccordion,
-  useAccordionItem,
   AccordionItemProvider,
+  useAccordion,
   useAccordionButton,
+  useAccordionItem,
   useAccordionPanel,
 } from "./useAccordion/useAccordion";
-import {
-  useTab,
-  useTabList,
-  useTabPanel,
-  useTabPanels,
-  useTabIndicator,
-  TabContextProvider,
-  useTabs,
-} from "./useTabs";
 import useCheckbox, { UseCheckboxOptions } from "./useCheckbox/useCheckbox";
+import useCheckboxGroup from "./useCheckboxGroup/useCheckboxGroup";
+import useDisclosure from "./useDisclosure/useDisclosure";
+import useLogger from "./useLogger";
 import useNativeCheckbox, {
   UseNativeCheckboxOptions,
 } from "./useNativeCheckbox/useNativeCheckbox";
+import useRadioGroup from "./useRadioGroup/useRadioGroup";
+import { useSlider } from "./useSlider/useSlider";
+import {
+  TabContextProvider,
+  useTab,
+  useTabIndicator,
+  useTabList,
+  useTabPanel,
+  useTabPanels,
+  useTabs,
+} from "./useTabs";
 
 const stories = storiesOf("Hooks", module);
 
@@ -137,81 +137,32 @@ export function Slider() {
 
 stories.add("useSlider", () => <Slider />);
 
-function Counter() {
-  const counter = useCounter({
-    defaultValue: 1.53,
-    max: 10,
-    min: 0,
-    step: 0.1,
-    shouldSpin: true,
-    keepWithinRange: true,
-  });
+// function NumberInput() {
+//   const numberInput = useNumberInput({
+//     defaultValue: 1.53,
+//     max: 10,
+//     min: 0,
+//     step: 0.1,
+//     keepWithinRange: true,
+//   });
 
-  return (
-    <div>
-      <div>current: {counter.value}</div>
-      <br />
-      <button
-        onKeyDown={event => {
-          if (event.key === "Enter" || event.key === " ") {
-            counter.incOnKeyDown();
-          }
-        }}
-        onMouseDown={counter.incOnPointerDown}
-        onMouseUp={counter.stop}
-        disabled={counter.isAtMax}
-      >
-        Increment
-      </button>
-      <button
-        onKeyDown={event => {
-          if (event.key === "Enter" || event.key === " ") {
-            counter.decOnKeyDown();
-          }
-        }}
-        onMouseDown={counter.decOnPointerDown}
-        onMouseUp={counter.stop}
-        disabled={counter.isAtMin}
-      >
-        Decrement
-      </button>
-    </div>
-  );
-}
+//   console.log(numberInput.value);
 
-stories.add("useCounter", () => <Counter />);
+//   return (
+//     <div>
+//       <div>current: {numberInput.value}</div>
+//       <button tabIndex={-1} {...numberInput.incrementStepper}>
+//         +
+//       </button>
+//       <input {...numberInput.input} />
+//       <button tabIndex={-1} {...numberInput.decrementStepper}>
+//         -
+//       </button>
+//     </div>
+//   );
+// }
 
-function NumberInput() {
-  const numberInput = useNumberInput({
-    defaultValue: 1.53,
-    max: 10,
-    min: 0,
-    step: 0.1,
-    keepWithinRange: true,
-    onChange: (v: any) => console.log(v),
-  });
-
-  return (
-    <div>
-      <div>current: {numberInput.value}</div>
-      <button tabIndex={-1} {...numberInput.incrementStepper}>
-        +
-      </button>
-      <input {...numberInput.input} />
-      <input
-        type="number"
-        min={-2}
-        step={5}
-        onChange={e => console.log(e.target.value)}
-      />
-      <button tabIndex={-1} {...numberInput.decrementStepper}>
-        -
-      </button>
-    </div>
-  );
-}
-
-stories.add("useNumberInput", () => <NumberInput />);
+// stories.add("useNumberInput", () => <NumberInput />);
 
 function Accordion(props: any) {
   const { FocusManager, children } = useAccordion(props);

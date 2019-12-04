@@ -29,8 +29,8 @@ export {
 } from "./useLockBodyScroll/useLockBodyScroll";
 export { default as useLogger } from "./useLogger";
 
-export * from "./useNumberInput/useNumberInput";
-export { default as useNumberInput } from "./useNumberInput/useNumberInput";
+// export * from "./useNumberInput/useNumberInput";
+// export { default as useNumberInput } from "./useNumberInput/useNumberInput";
 
 export * from "./usePopper/usePopper";
 export { default as usePopper } from "./usePopper/usePopper";

@@ -1,158 +1,225 @@
 import {
   calculatePrecision,
-  roundToPrecision,
   constrainValue,
+  maxSafeInteger,
+  minSafeInteger,
+  roundToPrecision,
 } from "@chakra-ui/utils";
 import * as React from "react";
 import { throttle } from "throttle-debounce";
 import useControllableValue from "../useControllableValue";
 import useInterval from "../useInterval";
-import usePrevious from "../usePrevious";
 
 type Action = "increment" | "decrement";
 type VoidFunction = () => void;
 
+interface UseCounterOptions {
+  onChange?: (valueAsNumber?: number, valueAsString?: string) => void;
+  precision?: number;
+  defaultValue?: number;
+  value?: number;
+  step?: number;
+  min?: number;
+  max?: number;
+  keepWithinRange?: boolean;
+}
+
 const TIMEOUT_DURATION = 300;
 const INTERVAL_DURATION = 50;
 
-function useCounter(props: any) {
+function useCounter(props: UseCounterOptions) {
   const {
     onChange,
     precision: precisionProp,
     defaultValue,
     value: valueProp,
-    step: stepProp,
+    step: stepProp = 1,
+    min = minSafeInteger,
+    max = maxSafeInteger,
+    keepWithinRange,
   } = props;
 
+  // Let's keep the current here and initialize it with the defaultValue
   const [valueState, setValue] = React.useState<number | string>(
     defaultValue || 0,
   );
-  const [isSpinning, setIsSpinning] = React.useState(false);
-  const [action, setAction] = React.useState<Action | null>(null);
-  const [runOnce, setRunOnce] = React.useState(true);
-  const [isControlled, value] = useControllableValue(valueProp, valueState);
 
-  const timeoutRef = React.useRef<any>();
+  // To keep incrementing/decrementing on mousedown, we call that `spinning`
+  const [isSpinning, setIsSpinning] = React.useState(false);
+
+  // This state keeps track of the action
+  const [action, setAction] = React.useState<Action | null>(null);
+
+  // To increment the value the first time you mousedown, we call that `runOnce`
+  const [runOnce, setRunOnce] = React.useState(true);
 
   /**
-   * Value as number
-   *
-   * Native number input support getting the value as number
-   * from event.target.valueAsNumber.
-   *
-   * If the value in the input field is not valid, the valueAsNumber returns NaN
-   * If you type ".", the valueAsNumber doesn't change,
-   * It changes when the value is a valid number
+   * Because the component that consumes this hook can be controlled or uncontrolled
+   * we'll keep track of that
+   */
+  const [isControlled, value] = useControllableValue(valueProp, valueState);
+
+  // Store the timeout instance id in a ref, so we can clear the timeout later
+  const timeoutRef = React.useRef<any>(null);
+
+  /**
+   * While the state can be a number/string (due to precision logic)
+   * We'll create a state to store only the number value
    */
   const [valueAsNumber, setValueAsNumber] = React.useState<number>(+value);
-  const prevNumberValue = usePrevious(valueAsNumber);
 
-  React.useEffect(() => {
-    const isSameValue = +value === prevNumberValue;
-    const skipUpdate = isNaN(+value) || isSameValue;
-    if (!skipUpdate) {
-      setValueAsNumber(+value);
-    }
-  }, [value, prevNumberValue]);
-
-  const defaultPrecision = Math.max(
-    calculatePrecision(stepProp),
+  /**
+   * Get the fallback precision from the value or step
+   *
+   * @example If no precision prop was passed and
+   * value = 4, step = 0.01
+   *
+   * Then precision (or decimal points) is 2
+   */
+  const fallbackPrecision = Math.max(
+    calculatePrecision(stepProp || 1),
     calculatePrecision(valueProp || defaultValue || 0),
   );
-  const precision = precisionProp || defaultPrecision;
+  const precision = precisionProp || fallbackPrecision;
 
+  // If we've reached the max and `keepWithinRange` is true
+  // We don't want to fired unnecessary updates, let's store the prev value here
+  const prevNextValue = React.useRef<any>(null);
+
+  // Function to update value in state and invoke the `onChange` callback
   const updateValue = React.useCallback(
-    (value: number | string) => {
-      if (!isControlled) setValue(value);
-      if (onChange) onChange(value);
+    (nextValue: number | string) => {
+      if (prevNextValue.current == nextValue) return;
+
+      if (!isControlled) {
+        setValue(nextValue);
+        // Update number state if it's not the same
+        // "3.", "3.0" and "3" are considered the same
+        const isSameValue = !isNaN(+nextValue) && +nextValue === valueAsNumber;
+        if (!isSameValue) setValueAsNumber(+nextValue);
+      }
+      if (onChange) {
+        onChange(Number(nextValue), String(nextValue));
+      }
+
+      prevNextValue.current = nextValue;
     },
-    [onChange, isControlled],
+    [onChange, isControlled, valueAsNumber],
   );
 
   // Function to clamp the value and round it to the precision
-  const prepareNextValue = (value: number) => {
-    let nextValue = value;
-    if (props.keepWithinRange) {
-      nextValue = constrainValue(nextValue, props.min, props.max);
-    }
-    return roundToPrecision(nextValue, precision);
-  };
+  const clampAndRoundValue = React.useCallback(
+    (value: number) => {
+      let nextValue = value;
+      if (keepWithinRange) {
+        nextValue = constrainValue(nextValue, min, max);
+      }
+      return roundToPrecision(nextValue, precision);
+    },
+    [precision, keepWithinRange, max, min],
+  );
 
   // Function to increment the value based on specified step
-  const increment = (step: number = stepProp) => {
-    const nextValue = prepareNextValue(+value + step);
-    updateValue(nextValue);
-  };
+  const increment = React.useCallback(
+    (step: number = stepProp) => {
+      let nextValue: string | number = +value + step;
+      nextValue = clampAndRoundValue(nextValue);
+      updateValue(nextValue);
+    },
+    [clampAndRoundValue, stepProp, updateValue, value],
+  );
 
   // Function to decrement the value based on specified step
-  const decrement = (step: number = stepProp) => {
-    const nextValue = prepareNextValue(+value - step);
-    updateValue(nextValue);
-  };
+  const decrement = React.useCallback(
+    (step: number = stepProp) => {
+      const nextValue = clampAndRoundValue(+value - step);
+      updateValue(nextValue);
+    },
+    [clampAndRoundValue, stepProp, updateValue, value],
+  );
 
-  const activateInterval = isSpinning && Boolean(props.shouldSpin);
-
+  /**
+   * useInterval hook provides a performant way to
+   * update the state value at specific interval
+   */
   useInterval(
-    function() {
+    () => {
       if (action === "increment") increment();
       if (action === "decrement") decrement();
     },
-    activateInterval ? INTERVAL_DURATION : null,
+    isSpinning ? INTERVAL_DURATION : null,
   );
 
-  const incOnPointerDown = () => {
+  // Function to activate the spinning and increment the value
+  const keepIncrementing = React.useCallback(() => {
+    // increment the first fime
     if (runOnce) increment();
 
+    // after a delay, keep incrementing at interval ("spinning up")
     timeoutRef.current = setTimeout(() => {
       setRunOnce(false);
       setIsSpinning(true);
       setAction("increment");
     }, TIMEOUT_DURATION);
-  };
+  }, [increment, runOnce]);
 
-  const decOnPointerDown = () => {
+  // Function to activate the spinning and increment the value
+  const keepDecrementing = React.useCallback(() => {
+    // decrement the first fime
     if (runOnce) decrement();
 
+    // after a delay, keep decrementing at interval ("spinning down")
     timeoutRef.current = setTimeout(() => {
       setRunOnce(false);
       setIsSpinning(true);
       setAction("decrement");
     }, TIMEOUT_DURATION);
-  };
+  }, [decrement, runOnce]);
 
-  const inc = React.useCallback(increment, []);
-  const dec = React.useCallback(decrement, []);
-
-  const incOnKeyDown = throttle(INTERVAL_DURATION, () =>
+  // increment using throttle (useful for keydown handlers)
+  const incrementWithThrottle = throttle(INTERVAL_DURATION, () =>
     increment(),
   ) as VoidFunction;
 
-  const decOnKeyDown = throttle(INTERVAL_DURATION, () =>
+  // decrement using throttle (useful for keydown handlers)
+  const decrementWithThrottle = throttle(INTERVAL_DURATION, () =>
     decrement(),
   ) as VoidFunction;
 
-  const stop = () => {
+  // Function to stop spinng (useful for mouseup, keyup handlers)
+  const stopSpinning = React.useCallback(() => {
     setRunOnce(true);
     setIsSpinning(false);
     removeTimeout();
+  }, []);
+
+  // Clears the timeout from memory
+  const removeTimeout = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
   };
 
-  const removeTimeout = () => clearTimeout(timeoutRef.current);
-
+  /**
+   * If the component unmounts while spinning,
+   * let's clear the timeout as well
+   */
   React.useEffect(() => {
     return () => {
       removeTimeout();
     };
   }, []);
 
+  // Function to reset the state to the initial value or 0
   const reset = React.useCallback(() => updateValue(defaultValue || 0), [
     defaultValue,
     updateValue,
   ]);
 
-  const isOutOfRange = value > props.max || value < props.min;
-  const isAtMax = value === props.max;
-  const isAtMin = value === props.min;
+  // Common range checks
+  const isOutOfRange = value > max || value < min;
+  const isAtMax = value === max;
+  const isAtMin = value === min;
 
   return {
     // range checks
@@ -165,14 +232,17 @@ function useCounter(props: any) {
     valueAsNumber,
     // actions
     update: updateValue,
-    stop,
+    clamp: clampAndRoundValue,
     reset,
-    inc,
-    dec,
-    incOnKeyDown,
-    decOnKeyDown,
-    incOnPointerDown,
-    decOnPointerDown,
+    increment: React.useCallback(increment, []),
+    decrement: React.useCallback(decrement, []),
+    // throttled actions
+    incrementWithThrottle,
+    decrementWithThrottle,
+    // spinner actions
+    stop: stopSpinning,
+    keepIncrementing,
+    keepDecrementing,
   };
 }
 
