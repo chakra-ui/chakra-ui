@@ -308,7 +308,9 @@ export function useMenuList(props: MenuListOptions, ref: React.Ref<any>) {
 
   const onKeyDown = createOnKeyDown({
     onKeyDown: event =>
-      onRapidKeyDown(event, (keys:string) => selection.search(keys, "highlight")),
+      onRapidKeyDown(event, (keys: string) =>
+        selection.search(keys, "highlight"),
+      ),
     keyMap: {
       ArrowDown: () => {
         if (!selection.highlightedItem) {
