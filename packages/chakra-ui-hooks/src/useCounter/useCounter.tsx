@@ -13,14 +13,46 @@ import useInterval from "../useInterval";
 type Action = "increment" | "decrement";
 type VoidFunction = () => void;
 
-interface UseCounterOptions {
-  onChange?: (valueAsNumber?: number, valueAsString?: string) => void;
+export interface UseCounterOptions {
+  /**
+   * The callback fired when the value changes
+   */
+  onChange?: (value?: string | number, valueAsNumber?: number) => void;
+  /**
+   * The number of decimal points used to round the value
+   */
   precision?: number;
+  /**
+   * The initial value of the counter. Should be less than `max` and greater than `min`
+   */
   defaultValue?: number;
-  value?: number;
+  /**
+   * The value of the counter. Should be less than `max` and greater than `min`
+   */
+  value?: number | string;
+  /**
+   * The step used to increment or decrement the value
+   * @default 1
+   */
   step?: number;
+  /**
+   * The minimum value of the counter
+   * @default -Infinity
+   */
   min?: number;
+  /**
+   * The maximum value of the counter
+   * @default Infinity
+   */
   max?: number;
+  /**
+   * This controls the value update behavior in general.
+   * - If `true` and you use the stepper or up/down arrow keys,
+   *  the value will not exceed the `max` or go lower than `min`
+   * - Else, the value will be allowed to go out of range.
+   *
+   * @default true
+   */
   keepWithinRange?: boolean;
 }
 
@@ -81,7 +113,7 @@ function useCounter(props: UseCounterOptions) {
    */
   const fallbackPrecision = Math.max(
     calculatePrecision(stepProp || 1),
-    calculatePrecision(valueProp || defaultValue || 0),
+    calculatePrecision(+value || 0),
   );
   const precision = precisionProp || fallbackPrecision;
 
@@ -102,7 +134,7 @@ function useCounter(props: UseCounterOptions) {
         if (!isSameValue) setValueAsNumber(+nextValue);
       }
       if (onChange) {
-        onChange(Number(nextValue), String(nextValue));
+        onChange(nextValue, Number(nextValue));
       }
 
       prevNextValue.current = nextValue;
@@ -214,8 +246,8 @@ function useCounter(props: UseCounterOptions) {
 
   // Common range checks
   const isOutOfRange = value > max || value < min;
-  const isAtMax = value === max;
-  const isAtMin = value === min;
+  const isAtMax = value == max;
+  const isAtMin = value == min;
 
   return {
     // range checks
@@ -230,8 +262,8 @@ function useCounter(props: UseCounterOptions) {
     update: updateValue,
     clamp: clampAndRoundValue,
     reset,
-    increment: React.useCallback(increment, []),
-    decrement: React.useCallback(decrement, []),
+    increment,
+    decrement,
     // throttled actions
     incrementWithThrottle,
     decrementWithThrottle,

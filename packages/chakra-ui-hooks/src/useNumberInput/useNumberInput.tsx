@@ -1,22 +1,9 @@
 import { ensureFocus, normalizeEventKey } from "@chakra-ui/utils";
 import * as React from "react";
-import useCounter from "../useCounter";
+import useCounter, { UseCounterOptions } from "../useCounter";
 import useUpdateEffect from "../useUpdateEffect";
 
-export interface UseNumberInputOptions {
-  /**
-   * The value of the input. Should be less than `max` and greater than `min`
-   */
-  value?: number;
-  /**
-   * The initial value of the input. Should be less than `max` and greater than `min`
-   */
-  defaultValue?: number;
-  /**
-   * The callback fired when the value changes
-   * @param {Number} value - The next value
-   */
-  onChange?: (value: number | string) => void;
+export interface UseNumberInputOptions extends UseCounterOptions {
   /**
    * If `true`, the input will be focused as you increment
    * or decrement the value with the stepper
@@ -33,40 +20,10 @@ export interface UseNumberInputOptions {
    */
   clampValueOnBlur?: boolean;
   /**
-   * This controls the value update behavior in general.
-   * - If `true` and you use the stepper or up/down arrow keys,
-   *  the value will not exceed the `max` or go lower than `min`
-   * - Else, the value will be allowed to go out of range.
-   *
-   * @default true
-   */
-  keepWithinRange?: boolean;
-  /**
-   * The minimum value of the input
-   * @default -Infinity
-   */
-  min?: number;
-  /**
-   * The maximum value of the input
-   * @default Infinity
-   */
-  max?: number;
-  /**
-   * The step used to increment or decrement the value
-   * @default 1
-   */
-  step?: number;
-  /**
-   * The number of decimal points used to round the value
-   */
-  precision?: number;
-  /**
    * This is used to format the value so that screen readers
    * can speak out a more human-friendly value.
    *
    * It is used to set the `aria-valuetext` property of the input
-   *
-   * @param {Number} value - the current value
    */
   getAriaValueText?: (value: number | string) => string;
   /**
@@ -81,7 +38,23 @@ export interface UseNumberInputOptions {
    * If `true`, the input will be disabled
    */
   isDisabled?: boolean;
+  /**
+   * Specifies the value extracted from formatter
+   * @default parseFloat
+   *
+   */
+  parse?: (value: string) => number;
+  /**
+   * Specifies the format of the value presented
+   */
+  format?: (value: string | number) => string;
+  /**
+   * decimal separator
+   */
+  decimalSeparator?: string;
 }
+
+// input => input.replace(/[^\w\.-]*/g, '')
 
 const defaultProps = {
   focusInputOnChange: true,
@@ -92,7 +65,10 @@ const defaultProps = {
   step: 1,
 };
 
-function useNumberInput(_props: any = {}) {
+// TODO
+// Add Support for `format` and `parse`
+
+function useNumberInput(_props: UseNumberInputOptions = {}) {
   const props = { ...defaultProps, ..._props };
   const { min, max, step: stepProp } = props;
 
@@ -177,12 +153,8 @@ function useNumberInput(_props: any = {}) {
   };
 
   const validateAndClamp = () => {
-    if (counter.value > max) {
-      counter.update(max);
-    }
-    if (counter.value < min) {
-      counter.update(min);
-    }
+    if (counter.value > max) counter.update(max);
+    if (counter.value < min) counter.update(min);
   };
 
   const ariaValueText =
@@ -240,7 +212,7 @@ function useNumberInput(_props: any = {}) {
       "aria-valuemin": props.min,
       "aria-valuemax": props.max,
       "aria-disabled": props.isDisabled,
-      "aria-valuenow": counter.value,
+      "aria-valuenow": counter.valueAsNumber,
       "aria-invalid": props.isInvalid || counter.isOutOfRange,
       "aria-valuetext": ariaValueText,
       readOnly: props.isReadOnly,

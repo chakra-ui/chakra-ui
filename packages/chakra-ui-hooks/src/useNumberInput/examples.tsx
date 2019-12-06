@@ -1,14 +1,11 @@
-import React from "react";
-import { storiesOf } from "@storybook/react";
-import { useNumberInput } from ".";
-import { ThemeProvider, CSSReset } from "@chakra-ui/theme";
+import { ThemeProvider } from "@chakra-ui/theme";
 import { action } from "@storybook/addon-actions";
+import { storiesOf } from "@storybook/react";
+import React from "react";
+import { useNumberInput } from ".";
 
 const stories = storiesOf("useNumberInput", module).addDecorator(story => (
-  <ThemeProvider>
-    {/* <CSSReset /> */}
-    {story()}
-  </ThemeProvider>
+  <ThemeProvider>{story()}</ThemeProvider>
 ));
 
 function NumberInput() {
@@ -26,7 +23,7 @@ function NumberInput() {
       <button tabIndex={-1} {...upSpinner}>
         +
       </button>
-      <input {...(input as any)} />
+      <input {...input} />
       <button tabIndex={-1} {...downSpinner}>
         -
       </button>

@@ -23,25 +23,27 @@ function Counter() {
       <div>current: {counter.value}</div>
       <br />
       <button
-        onKeyDown={event => {
-          if (event.key === "Enter" || event.key === " ") {
-            counter.incrementWithThrottle();
-          }
-        }}
-        onMouseDown={counter.keepIncrementing}
-        onMouseUp={counter.stop}
+        // onKeyDown={event => {
+        //   if (event.key === "Enter" || event.key === " ") {
+        //     counter.incrementWithThrottle();
+        //   }
+        // }}
+        // onMouseDown={counter.keepIncrementing}
+        // onMouseUp={counter.stop}
+        onClick={() => counter.increment()}
         disabled={counter.isAtMax}
       >
         Increment
       </button>
       <button
-        onKeyDown={event => {
-          if (event.key === "Enter" || event.key === " ") {
-            counter.decrementWithThrottle();
-          }
-        }}
-        onMouseDown={counter.keepDecrementing}
-        onMouseUp={counter.stop}
+        // onKeyDown={event => {
+        //   if (event.key === "Enter" || event.key === " ") {
+        //     counter.decrementWithThrottle();
+        //   }
+        // }}
+        onClick={() => counter.decrement()}
+        // onMouseDown={counter.keepDecrementing}
+        // onMouseUp={counter.stop}
         disabled={counter.isAtMin}
       >
         Decrement

@@ -4,6 +4,7 @@ import createCtx from "../useCreateContext";
 import useId from "../useId";
 import useTabbable, { UseTabbableOptions } from "../useTabbable";
 import { createOnKeyDown, composeEventHandlers } from "@chakra-ui/utils";
+import constate from "constate";
 
 export interface UseTabsOptions {
   /**
@@ -40,20 +41,25 @@ export interface UseTabsOptions {
   id?: string;
 }
 
-const [useTabsContext, TabContextProvider] = createCtx<any>();
-export { TabContextProvider };
-
 export function useTabs(props: UseTabsOptions) {
-  const [selectedIndex, setSelectedIndex] = React.useState<number>(
-    props.defaultIndex || 0,
+  const {
+    defaultIndex,
+    onChange: onChangeProp,
+    index: selectedIndexProp,
+    isManual,
+    orientation,
+  } = props;
+
+  const [selectedIndexState, setSelectedIndex] = React.useState<number>(
+    defaultIndex || 0,
   );
   const [focusedIndex, setFocusedIndex] = React.useState<number>(
-    props.defaultIndex || 0,
+    defaultIndex || 0,
   );
 
-  const [isControlled, _selectedIndex] = useControllableValue(
-    props.index,
-    selectedIndex,
+  const [isControlled, selectedIndex] = useControllableValue(
+    selectedIndexProp,
+    selectedIndexState,
   );
 
   // Reference to all elements with `role=tab`
@@ -70,30 +76,37 @@ export function useTabs(props: UseTabsOptions) {
 
   const id = useId(`tabs`, props.id);
 
-  const onChange = (index: number) => {
-    if (!isControlled) {
-      setSelectedIndex(index);
-    }
-    if (props.onChange) {
-      props.onChange(index);
-    }
-  };
+  const onChange = React.useCallback(
+    (index: number) => {
+      if (!isControlled) setSelectedIndex(index);
+      if (onChangeProp) onChangeProp(index);
+    },
+    [isControlled, onChangeProp],
+  );
 
-  const onFocus = (index: number) => setFocusedIndex(index);
+  const onFocus = React.useCallback(
+    (index: number) => setFocusedIndex(index),
+    [],
+  );
 
   return {
     id,
     isControlled,
-    selectedIndex: _selectedIndex,
+    selectedIndex,
     focusedIndex,
     onChange,
     onFocus,
-    isManual: props.isManual,
-    orientation: props.orientation,
+    isManual,
+    orientation,
     tabNodesRef,
     tablistRef,
   };
 }
+
+////////////////////////////////////////////////////////////////////////
+
+const [TabsProvider, useTabsContext] = constate(useTabs);
+export { TabsProvider };
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -287,7 +300,14 @@ export function useTabIndicator(): React.CSSProperties {
       const height = selectedTabRect.height;
       setRect({ top, height });
     }
-  }, [tabs.selectedIndex, tabs.tabNodesRef, tabs.tablistRef, tabs.orientation]);
+  }, [
+    tabs.selectedIndex,
+    tabs.tabNodesRef,
+    tabs.tablistRef,
+    tabs.orientation,
+    isHorizontal,
+    isVertical,
+  ]);
 
   return {
     position: "absolute",

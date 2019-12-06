@@ -53,8 +53,8 @@
     "@styled-system/css": "5.0.13",
     "@styled-system/should-forward-prop": "5.0.12",
     "styled-system": "5.0.5",
-    "@types/color": "3.0.0",
     "@types/styled-system": "5.0.1",
+    "@types/color": "3.0.0",
     "color": "3.1.2",
     "@chakra-ui/utils": "0.0.1"
   },

@@ -197,7 +197,7 @@ const [useSelection, SelectionCtxProvider] = createCtx<
 
 function SelectionProvider({ children, ...props }: any) {
   const selection = useSelectionState(props);
-  const context = useDeepCompareMemo(() => selection, [selection]);
+  const context = React.useMemo(() => selection, [selection]);
 
   return (
     <SelectionCtxProvider value={context}>{children}</SelectionCtxProvider>
