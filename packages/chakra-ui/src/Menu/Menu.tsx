@@ -304,11 +304,11 @@ export function useMenuList(props: MenuListOptions, ref: React.Ref<any>) {
   const menu = useMenuContext();
   const popper = usePopperContext();
   const selection = useSelection();
-  const [keys, onRapidKeyDown] = useRapidKeyDown();
+  const [onRapidKeyDown, keys] = useRapidKeyDown();
 
   const onKeyDown = createOnKeyDown({
     onKeyDown: event =>
-      onRapidKeyDown(event as any, keys => selection.search(keys, "highlight")),
+      onRapidKeyDown(event, (keys:string) => selection.search(keys, "highlight")),
     keyMap: {
       ArrowDown: () => {
         if (!selection.highlightedItem) {

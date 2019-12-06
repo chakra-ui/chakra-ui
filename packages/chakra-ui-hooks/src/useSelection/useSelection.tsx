@@ -1,8 +1,7 @@
-import useId from "../useId";
 import * as React from "react";
-import { Item, reducer, State, EventMeta } from "./reducer";
 import createCtx from "../useCreateContext";
-import { useDeepCompareMemo } from "use-deep-compare";
+import useId from "../useId";
+import { EventMeta, Item, reducer, State } from "./reducer";
 
 export interface SelectionActions {
   /**
@@ -204,3 +203,4 @@ function SelectionProvider({ children, ...props }: any) {
   );
 }
 export { useSelection, SelectionProvider };
+
