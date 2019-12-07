@@ -1,9 +1,9 @@
 import { composeEventHandlers, createOnKeyDown } from "@chakra-ui/utils";
+import constate from "constate";
 import * as React from "react";
-import useFocusEffect from "../useFocusEffect/useFocusEffect";
 import useControllableValue from "../useControllableValue";
-import createCtx from "../useCreateContext";
 import useDisclosure from "../useDisclosure/useDisclosure";
+import useFocusEffect from "../useFocusEffect/useFocusEffect";
 import useIds from "../useIds";
 import {
   SelectionProvider,
@@ -11,6 +11,33 @@ import {
   useSelectionItem,
 } from "../useSelection";
 import useTabbable from "../useTabbable";
+
+interface AccordionItemOptions {
+  /**
+   * If `true`, expands the accordion in the controlled mode.
+   */
+  isOpen?: boolean;
+  /**
+   * If `true`, expands the accordion by on initial mount.
+   */
+  defaultIsOpen?: boolean;
+  /**
+   * If `true`, the accordion item will be disabled.
+   */
+  isDisabled?: boolean;
+  /**
+   * If `true`, the accordion item will be focusable.
+   */
+  isFocusable?: boolean;
+  /**
+   * A unique id for the accordion item.
+   */
+  id?: string;
+  /**
+   * The callback fired when the accordion is expanded/collapsed.
+   */
+  onChange?: (isOpen: boolean) => void;
+}
 
 type Index = number | number[];
 
@@ -79,7 +106,7 @@ export function useAccordion(props: any) {
   return { FocusManager: SelectionProvider, children };
 }
 
-export function useAccordionItem(props: any) {
+export function useAccordionItem(props: AccordionItemOptions) {
   // Manages the open and close state of a single accordion item
   const disclosure = useDisclosure(props);
 
@@ -152,7 +179,7 @@ export function useAccordionItem(props: any) {
 
 // To manage communication between the accordion item's children,
 // let's create a context and a hook to read from context
-const [useAccordionItemCtx, AccordionItemProvider] = createCtx<any>();
+const [AccordionItemProvider, useAccordionItemCtx] = constate(useAccordionItem);
 export { AccordionItemProvider };
 
 export function useAccordionButton(props: any) {
