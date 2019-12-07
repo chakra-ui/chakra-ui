@@ -4,10 +4,11 @@
   "exclude": ["**/*.spec.ts", "**/*.spec.tsx", "**/*.test.ts", "**/*.test.tsx"],
   "compilerOptions": {
     "noImplicitAny": true,
-    "rootDir": "./",
-    "typeRoots": ["./@types", "../../node_modules/@types"],
+    "baseUrl": "./",
     "paths": {
       "*": ["src/*", "node_modules/*"]
-    }
+    },
+    "rootDir": "./",
+    "typeRoots": ["./@types", "../../node_modules/@types"]
   }
 }

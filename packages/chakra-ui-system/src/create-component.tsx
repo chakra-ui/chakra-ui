@@ -12,13 +12,15 @@ export type PropsWithAs<P, T extends As> = P &
 
 interface Options<T extends As, P> {
   as?: T;
-  hook?: (props: P) => BoxHTMLProps;
-  displayName?: string;
+  hook?(props: P): BoxHTMLProps;
 }
 
+// Credit to Diego Haz for inspiring this 💖
 export interface Component<T extends As, O> {
   <P extends As>(props: PropsWithAs<O, P> & { as: P }): JSX.Element;
   (props: PropsWithAs<O, T>): JSX.Element;
+  displayName?: string;
+  defaultProps?: Partial<O>;
 }
 
 export function createComponent<T extends As, O>({
@@ -45,5 +47,5 @@ export function createComponent<T extends As, O>({
   };
 
   //@ts-ignore
-  return memo(forwardRef(Comp as Component<T, O & BoxHTMLProps>));
+  return memo(forwardRef(Comp as Component<T, O>));
 }

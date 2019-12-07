@@ -1,37 +1,50 @@
+import { Theme, useTheme } from "@chakra-ui/theme";
 import styled, { FunctionInterpolation } from "@emotion/styled";
 import * as React from "react";
-import { Theme, useTheme } from "@chakra-ui/theme";
-import { As, Component, PropsWithAs } from "./create-component";
+import { As } from "./create-component";
 import { forwardRef, memo } from "./forward-ref";
-import { systemFn, truncate, AllProps, BoxHTMLProps } from "./system-props";
+import { BoxHTMLProps, systemFn, SystemProps, truncate } from "./system-props";
 import { pseudo } from "./system-pseudo";
 
-export interface ChakraOptions<T extends As, P> {
+export interface ChakraOptions<T extends As, O> {
   as?: T;
-  hook?: (props: P) => BoxHTMLProps;
+  hook?: (props: O) => BoxHTMLProps;
   __themeKey?: string;
 }
 
-export function createChakra<T extends As, P>({
+interface ThemeProps {
+  __variant?: string;
+  __size?: string;
+  isTruncated?: boolean;
+}
+
+type MergePropsOf<O, T extends As> = Omit<
+  O,
+  keyof React.ComponentPropsWithRef<T>
+> &
+  React.ComponentPropsWithRef<T>;
+
+export function createChakra<T extends As, O>({
   //@ts-ignore
   as: type = "div",
   __themeKey,
   hook,
-}: ChakraOptions<T, P>) {
-  const StyledComp = styled(type as any)(
+}: ChakraOptions<T, O>) {
+  //@ts-ignore
+  const StyledComp = styled(type)(
     systemFn,
     pseudo as FunctionInterpolation<object>,
     truncate as FunctionInterpolation<any>,
   );
 
-  const ReactComp = (props: PropsWithAs<P, T>, ref: React.Ref<any>) => {
+  const Comp = (props: any, ref: React.Ref<any>) => {
     const theme = useTheme();
     const componentTheme = theme[__themeKey as keyof Theme];
 
     let styleProps: Record<string, any> = {};
 
     // constraints. We'll only allow variant, variantColor and size to be theme-aware
-    const themeable = ["size", "variant", "variantColor"] as const;
+    const themeable = ["__size", "__variant", "__variantColor"];
 
     for (const key of themeable) {
       // Get the component style for any of the themeable props
@@ -47,20 +60,46 @@ export function createChakra<T extends As, P>({
     }
 
     let hookProps: Record<string, any> = {};
-    if (hook) hookProps = hook(props); // let's find a way to memoize this return value
+    if (hook) hookProps = hook(props);
 
-    return <StyledComp ref={ref} {...styleProps} {...hookProps} {...props} />;
+    return <StyledComp ref={ref} {...styleProps} {...props} {...hookProps} />;
   };
 
-  return (memo(forwardRef(ReactComp)) as unknown) as Component<
-    T,
-    P &
-      React.ComponentProps<T> &
-      Omit<AllProps, "size"> & {
-        size?: any;
-        variant?: any;
-        variantColor?: any;
-        isTruncated?: boolean;
-      }
-  >;
+  return memo(forwardRef(Comp)) as {
+    <P>(props: P & SystemProps & MergePropsOf<O, T> & ThemeProps): JSX.Element;
+    displayName?: string;
+    defaultProps?: Partial<SystemProps & O>;
+  };
+}
+
+const Tel = createChakra({ as: "a" });
+Tel.displayName = "Tab";
+Tel.defaultProps = {
+  margin: "20px",
+};
+
+function Test() {
+  return (
+    <Tel<{ sun?: boolean }>
+      type="submit"
+      target="blank"
+      __variant="You're welcome"
+      onClick={event => {
+        console.log(event);
+      }}
+      href="www.google.com"
+      margin="30px"
+      onMouseDown={event => {
+        console.log(event);
+      }}
+      ref={node => {
+        console.log(node);
+      }}
+      onKeyDown={event => {
+        console.log(event);
+      }}
+    >
+      Welcome
+    </Tel>
+  );
 }

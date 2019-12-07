@@ -9,16 +9,13 @@ const stories = storiesOf("", module).addDecorator(story => (
   <ThemeProvider>{story()}</ThemeProvider>
 ));
 
-const Box = createChakra({
-  as: "div",
-});
-
 interface TabOptions {
   isDisabled?: boolean;
   value?: string;
+  onClick?: React.MouseEventHandler;
 }
 
-const useTab = (props: TabOptions & BoxHTMLProps) => {
+const useTab = (props: TabOptions) => {
   return {
     ...props,
     role: "tab",
@@ -33,11 +30,30 @@ const useTab = (props: TabOptions & BoxHTMLProps) => {
 };
 
 const BaseBox = createComponent({
-  as: "div",
+  as: "button",
+  hook: useTab,
 });
+
+const Box = createChakra({
+  as: "button",
+  hook: useTab,
+});
+
+Box.displayName = "Box";
+Box.defaultProps = {
+  margin: "20px",
+};
 
 stories.add("createComponent", () => (
   <>
+    <BaseBox
+      type="button"
+      onClick={event => {
+        console.log(event);
+      }}
+    >
+      Typical
+    </BaseBox>
     <Box
       isTruncated
       onKeyDown={event => {
@@ -46,6 +62,5 @@ stories.add("createComponent", () => (
     >
       This is an empowered box
     </Box>
-    <BaseBox>Typical </BaseBox>
   </>
 ));

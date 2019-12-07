@@ -1,4 +1,4 @@
-import * as StyledSystem from "styled-system";
+import * as SS from "styled-system";
 
 export const config: { [key: string]: any } = {
   roundedTop: {
@@ -134,10 +134,10 @@ config.textDecor = config.textDecoration;
 config.listStylePos = config.listStylePosition;
 config.listStyleImg = config.listStyleImage;
 
-export const customProps = StyledSystem.system(config);
+export const customProps = SS.system(config);
 
-type borderRadius = StyledSystem.BorderRadiusProps["borderRadius"];
-type borderColor = StyledSystem.BorderColorProps["borderColor"];
+type borderRadius = SS.BorderRadiusProps["borderRadius"];
+type borderColor = SS.BorderColorProps["borderColor"];
 type CSS = React.CSSProperties;
 
 export interface CustomProps {
@@ -158,78 +158,76 @@ export interface CustomProps {
   borderLeftColor?: borderColor;
 
   // Custom width alias
-  w?: StyledSystem.WidthProps["width"];
-  minW?: StyledSystem.MinWidthProps["minWidth"];
-  maxW?: StyledSystem.MaxWidthProps["maxWidth"];
+  w?: SS.WidthProps["width"];
+  minW?: SS.MinWidthProps["minWidth"];
+  maxW?: SS.MaxWidthProps["maxWidth"];
 
   // Custom height alias
-  h?: StyledSystem.HeightProps["height"];
-  minH?: StyledSystem.MinHeightProps["minHeight"];
-  maxH?: StyledSystem.MaxHeightProps["maxHeight"];
+  h?: SS.HeightProps["height"];
+  minH?: SS.MinHeightProps["minHeight"];
+  maxH?: SS.MaxHeightProps["maxHeight"];
 
   // Custom display alias
-  d?: StyledSystem.DisplayProps["display"];
+  d?: SS.DisplayProps["display"];
 
   // Custom background alias
-  backgroundAttachment?: StyledSystem.ResponsiveValue<
-    CSS["backgroundAttachment"]
-  >;
-  bgImg?: StyledSystem.BackgroundImageProps["backgroundImage"];
-  bgImage?: StyledSystem.BackgroundImageProps["backgroundImage"];
-  bgSize?: StyledSystem.BackgroundSizeProps["backgroundSize"];
-  bgPos?: StyledSystem.BackgroundPositionProps["backgroundPosition"];
-  pos?: StyledSystem.PositionProps["position"];
-  flexDir?: StyledSystem.FlexDirectionProps["flexDirection"];
+  backgroundAttachment?: SS.ResponsiveValue<CSS["backgroundAttachment"]>;
+  bgImg?: SS.BackgroundImageProps["backgroundImage"];
+  bgImage?: SS.BackgroundImageProps["backgroundImage"];
+  bgSize?: SS.BackgroundSizeProps["backgroundSize"];
+  bgPos?: SS.BackgroundPositionProps["backgroundPosition"];
+  pos?: SS.PositionProps["position"];
+  flexDir?: SS.FlexDirectionProps["flexDirection"];
 
   // CSS properties
-  textDecoration?: StyledSystem.ResponsiveValue<CSS["textDecoration"]>;
-  textDecor?: StyledSystem.ResponsiveValue<CSS["textDecoration"]>;
-  textTransform?: StyledSystem.ResponsiveValue<CSS["textTransform"]>;
-  overflowX?: StyledSystem.OverflowProps["overflow"];
-  overflowY?: StyledSystem.OverflowProps["overflow"];
-  appearance?: StyledSystem.ResponsiveValue<CSS["appearance"]>;
-  transform?: StyledSystem.ResponsiveValue<CSS["transform"]>;
-  transformOrigin?: StyledSystem.ResponsiveValue<CSS["transformOrigin"]>;
-  animation?: StyledSystem.ResponsiveValue<CSS["animation"]>;
-  userSelect?: string | StyledSystem.ResponsiveValue<CSS["userSelect"]>;
-  pointerEvents?: StyledSystem.ResponsiveValue<CSS["pointerEvents"]>;
-  boxSizing?: StyledSystem.ResponsiveValue<CSS["boxSizing"]>;
-  cursor?: StyledSystem.ResponsiveValue<CSS["cursor"]>;
-  resize?: StyledSystem.ResponsiveValue<CSS["resize"]>;
-  transition?: StyledSystem.ResponsiveValue<CSS["transition"]>;
-  objectFit?: StyledSystem.ResponsiveValue<CSS["objectFit"]>;
-  objectPosition?: StyledSystem.ResponsiveValue<CSS["objectPosition"]>;
+  textDecoration?: SS.ResponsiveValue<CSS["textDecoration"]>;
+  textDecor?: SS.ResponsiveValue<CSS["textDecoration"]>;
+  textTransform?: SS.ResponsiveValue<CSS["textTransform"]>;
+  overflowX?: SS.OverflowProps["overflow"];
+  overflowY?: SS.OverflowProps["overflow"];
+  appearance?: SS.ResponsiveValue<CSS["appearance"]>;
+  transform?: SS.ResponsiveValue<CSS["transform"]>;
+  transformOrigin?: SS.ResponsiveValue<CSS["transformOrigin"]>;
+  animation?: SS.ResponsiveValue<CSS["animation"]>;
+  userSelect?: string | SS.ResponsiveValue<CSS["userSelect"]>;
+  pointerEvents?: SS.ResponsiveValue<CSS["pointerEvents"]>;
+  boxSizing?: SS.ResponsiveValue<CSS["boxSizing"]>;
+  cursor?: SS.ResponsiveValue<CSS["cursor"]>;
+  resize?: SS.ResponsiveValue<CSS["resize"]>;
+  transition?: SS.ResponsiveValue<CSS["transition"]>;
+  objectFit?: SS.ResponsiveValue<CSS["objectFit"]>;
+  objectPosition?: SS.ResponsiveValue<CSS["objectPosition"]>;
 
   // Ellipsis alias
-  wordBreak?: StyledSystem.ResponsiveValue<CSS["wordBreak"]>;
-  overflowWrap?: StyledSystem.ResponsiveValue<CSS["overflowWrap"]>;
-  textOverflow?: StyledSystem.ResponsiveValue<CSS["textOverflow"]>;
-  whiteSpace?: StyledSystem.ResponsiveValue<CSS["whiteSpace"]>;
+  wordBreak?: SS.ResponsiveValue<CSS["wordBreak"]>;
+  overflowWrap?: SS.ResponsiveValue<CSS["overflowWrap"]>;
+  textOverflow?: SS.ResponsiveValue<CSS["textOverflow"]>;
+  whiteSpace?: SS.ResponsiveValue<CSS["whiteSpace"]>;
 
   // SVG color properties
-  fill?: StyledSystem.ColorProps["color"];
-  stroke?: StyledSystem.ColorProps["color"];
+  fill?: SS.ColorProps["color"];
+  stroke?: SS.ColorProps["color"];
 
-  bgAttachment?: StyledSystem.ResponsiveValue<CSS["backgroundAttachment"]>;
-  shadow?: StyledSystem.BoxShadowProps["boxShadow"];
+  bgAttachment?: SS.ResponsiveValue<CSS["backgroundAttachment"]>;
+  shadow?: SS.BoxShadowProps["boxShadow"];
 
   // List properties
-  listStyleType?: StyledSystem.ResponsiveValue<CSS["listStyleType"]>;
-  listStylePosition?: StyledSystem.ResponsiveValue<CSS["listStylePosition"]>;
-  listStyleImage?: StyledSystem.ResponsiveValue<CSS["listStyleImage"]>;
-  listStyleImg?: StyledSystem.ResponsiveValue<CSS["listStyleImage"]>;
-  listStylePos?: StyledSystem.ResponsiveValue<CSS["listStylePosition"]>;
+  listStyleType?: SS.ResponsiveValue<CSS["listStyleType"]>;
+  listStylePosition?: SS.ResponsiveValue<CSS["listStylePosition"]>;
+  listStyleImage?: SS.ResponsiveValue<CSS["listStyleImage"]>;
+  listStyleImg?: SS.ResponsiveValue<CSS["listStyleImage"]>;
+  listStylePos?: SS.ResponsiveValue<CSS["listStylePosition"]>;
 
   // Outline prop
-  outline?: StyledSystem.ResponsiveValue<CSS["outline"]>;
-  float?: StyledSystem.ResponsiveValue<CSS["float"]>;
-  willChange?: StyledSystem.ResponsiveValue<CSS["willChange"]>;
+  outline?: SS.ResponsiveValue<CSS["outline"]>;
+  float?: SS.ResponsiveValue<CSS["float"]>;
+  willChange?: SS.ResponsiveValue<CSS["willChange"]>;
 
   // Border Width props
-  borderTopWidth?: StyledSystem.ResponsiveValue<CSS["borderTopWidth"]>;
-  borderBottomWidth?: StyledSystem.ResponsiveValue<CSS["borderBottomWidth"]>;
-  borderLeftWidth?: StyledSystem.ResponsiveValue<CSS["borderLeftWidth"]>;
-  borderRightWidth?: StyledSystem.ResponsiveValue<CSS["borderRightWidth"]>;
+  borderTopWidth?: SS.ResponsiveValue<CSS["borderTopWidth"]>;
+  borderBottomWidth?: SS.ResponsiveValue<CSS["borderBottomWidth"]>;
+  borderLeftWidth?: SS.ResponsiveValue<CSS["borderLeftWidth"]>;
+  borderRightWidth?: SS.ResponsiveValue<CSS["borderRightWidth"]>;
 }
 
 const transformAlias = (prop: string, propValue: any): object => {
