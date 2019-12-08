@@ -106,22 +106,20 @@ type ModifiedTypographyProps = Omit<
   ModifiedLineHeight &
   ModifiedLetterSpacing;
 
-// type zz= ModifiedFontWeight["fontWeight"][]
-
 // All system props
 export type SystemProps = SS.ColorProps &
   SS.LayoutProps &
   SS.SpaceProps &
-  ModifiedTypographyProps &
+  // ModifiedTypographyProps &
   SS.PositionProps &
   SS.BordersProps &
   SS.FlexboxProps &
   SS.ShadowProps &
   SS.GridProps &
   SS.OpacityProps &
-  PseudoProps &
   SS.OverflowProps &
   SS.ZIndexProps &
+  PseudoProps &
   CustomProps;
 
 export type BoxHTMLProps = React.RefAttributes<any> &

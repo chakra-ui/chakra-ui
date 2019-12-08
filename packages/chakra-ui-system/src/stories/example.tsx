@@ -1,9 +1,8 @@
 import { ThemeProvider } from "@chakra-ui/theme";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
-import { createChakra } from "../create-chakra";
-import { createComponent } from "../create-component";
-import { BoxHTMLProps } from "../system-props";
+import createChakra from "../create-chakra";
+import createComponent from "../create-component";
 
 const stories = storiesOf("", module).addDecorator(story => (
   <ThemeProvider>{story()}</ThemeProvider>
@@ -34,33 +33,32 @@ const BaseBox = createComponent({
   hook: useTab,
 });
 
+stories.add("createComponent", () => (
+  <BaseBox
+    type="button"
+    onClick={event => {
+      console.log(event);
+    }}
+  >
+    Typical
+  </BaseBox>
+));
+
 const Box = createChakra({
   as: "button",
   hook: useTab,
 });
 
-Box.displayName = "Box";
-Box.defaultProps = {
-  margin: "20px",
-};
-
-stories.add("createComponent", () => (
-  <>
-    <BaseBox
-      type="button"
-      onClick={event => {
-        console.log(event);
-      }}
-    >
-      Typical
-    </BaseBox>
-    <Box
-      isTruncated
-      onKeyDown={event => {
-        console.log(event);
-      }}
-    >
-      This is an empowered box
-    </Box>
-  </>
+stories.add("createChakra", () => (
+  <Box
+    isTruncated
+    type="reset"
+    marginX="20px"
+    _hover={{ backgroundColor: "scale(X)", marginX: "auto" }}
+    onKeyDown={event => {
+      console.log(event);
+    }}
+  >
+    This is an empowered box
+  </Box>
 ));

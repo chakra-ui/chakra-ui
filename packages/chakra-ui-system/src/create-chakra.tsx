@@ -6,25 +6,34 @@ import { forwardRef, memo } from "./forward-ref";
 import { BoxHTMLProps, systemFn, SystemProps, truncate } from "./system-props";
 import { pseudo } from "./system-pseudo";
 
-export interface ChakraOptions<T extends As, O> {
+interface ChakraOptions<T extends As, O> {
   as?: T;
-  hook?: (props: O) => BoxHTMLProps;
+  hook?: (props: O & BoxHTMLProps) => BoxHTMLProps;
   __themeKey?: string;
 }
 
 interface ThemeProps {
   __variant?: string;
   __size?: string;
+  __variantColor?: string;
   isTruncated?: boolean;
 }
 
-type MergePropsOf<O, T extends As> = Omit<
-  O,
-  keyof React.ComponentPropsWithRef<T>
-> &
+type MergePropsOf<O, T extends As> = Omit<O, keyof React.ComponentProps<T>> &
   React.ComponentPropsWithRef<T>;
 
-export function createChakra<T extends As, O>({
+interface ChakraComponent<T extends As, O> {
+  <P>(
+    props: P &
+      SystemProps &
+      MergePropsOf<O, T> &
+      ThemeProps & { as?: React.ElementType },
+  ): JSX.Element;
+  displayName?: string;
+  defaultProps?: Partial<SystemProps & O>;
+}
+
+function createChakra<T extends As, O>({
   //@ts-ignore
   as: type = "div",
   __themeKey,
@@ -65,41 +74,7 @@ export function createChakra<T extends As, O>({
     return <StyledComp ref={ref} {...styleProps} {...props} {...hookProps} />;
   };
 
-  return memo(forwardRef(Comp)) as {
-    <P>(props: P & SystemProps & MergePropsOf<O, T> & ThemeProps): JSX.Element;
-    displayName?: string;
-    defaultProps?: Partial<SystemProps & O>;
-  };
+  return memo(forwardRef(Comp)) as ChakraComponent<T, O>;
 }
 
-const Tel = createChakra({ as: "a" });
-Tel.displayName = "Tab";
-Tel.defaultProps = {
-  margin: "20px",
-};
-
-function Test() {
-  return (
-    <Tel<{ sun?: boolean }>
-      type="submit"
-      target="blank"
-      __variant="You're welcome"
-      onClick={event => {
-        console.log(event);
-      }}
-      href="www.google.com"
-      margin="30px"
-      onMouseDown={event => {
-        console.log(event);
-      }}
-      ref={node => {
-        console.log(node);
-      }}
-      onKeyDown={event => {
-        console.log(event);
-      }}
-    >
-      Welcome
-    </Tel>
-  );
-}
+export default createChakra;
