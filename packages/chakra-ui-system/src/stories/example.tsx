@@ -67,6 +67,7 @@ const Box = createChakra({
 
 stories.add("createChakra", () => (
   <Box
+    as="a"
     onKeyDown={event => {
       console.log(event);
     }}

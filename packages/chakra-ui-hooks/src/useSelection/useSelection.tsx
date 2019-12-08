@@ -1,5 +1,5 @@
+import constate from "constate";
 import * as React from "react";
-import createCtx from "../useCreateContext";
 import useId from "../useId";
 import { EventMeta, Item, reducer, State } from "./reducer";
 
@@ -176,7 +176,7 @@ export function useSelectionItem(
   const isHighlighted = highlightedItem ? highlightedItem.id === id : false;
   const isSelected = selectedItem ? selectedItem.id === id : false;
 
-  const newItem = { id, ref, value };
+  const newItem = React.useMemo(() => ({ id, ref, value }), [id, ref, value]);
 
   React.useLayoutEffect(() => {
     if (isDisabled && !isFocusable) return;
@@ -190,17 +190,5 @@ export function useSelectionItem(
   return { item: newItem, isHighlighted, isSelected };
 }
 
-const [useSelection, SelectionCtxProvider] = createCtx<
-  ReturnType<typeof useSelectionState>
->();
-
-function SelectionProvider({ children, ...props }: any) {
-  const selection = useSelectionState(props);
-  const context = React.useMemo(() => selection, [selection]);
-
-  return (
-    <SelectionCtxProvider value={context}>{children}</SelectionCtxProvider>
-  );
-}
+const [SelectionProvider, useSelection] = constate(useSelectionState);
 export { useSelection, SelectionProvider };
-
