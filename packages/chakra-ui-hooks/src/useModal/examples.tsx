@@ -3,19 +3,21 @@ import { storiesOf } from "@storybook/react";
 import useModal from "./useModal";
 import { ThemeProvider } from "@chakra-ui/theme";
 import Portal from "../usePortal/";
-import Manager from "./ModalManager";
+import Manager from "./utils/ModalManager";
 import useDisclosure from "../useDisclosure";
 import FocusLock from "react-focus-lock";
+import { createChakra } from "@chakra-ui/system";
 
 const stories = storiesOf("useModal", module);
 stories.addDecorator(story => <ThemeProvider>{story()}</ThemeProvider>);
 
-function Dialog(props: any) {
-  const dialog = useModal(props);
+const ModalDialog = createChakra({ as: "div", hook: useModal });
+
+function Dialog(props: React.ComponentProps<typeof ModalDialog>) {
   return (
     <Portal className="dialog__portal">
       <FocusLock>
-        <div {...dialog}>{props.children}</div>
+        <ModalDialog {...props} />
       </FocusLock>
     </Portal>
   );

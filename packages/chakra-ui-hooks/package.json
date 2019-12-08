@@ -46,7 +46,8 @@
     "ts-jest": "24.1.0",
     "tsdx": "0.9.3",
     "tslib": "1.10.0",
-    "typescript": "3.6.4"
+    "typescript": "3.6.4",
+    "@chakra-ui/system": "0.0.1"
   },
   "dependencies": {
     "@chakra-ui/utils": "0.0.1",
