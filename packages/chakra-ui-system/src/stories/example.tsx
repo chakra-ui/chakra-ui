@@ -44,6 +44,22 @@ stories.add("createComponent", () => (
   </BaseBox>
 ));
 
+// createComponent as, swaps out the base element completely
+// so you can't pass props from the base element
+
+stories.add("createComponent with as", () => (
+  <BaseBox
+    as="a"
+    target="blank"
+    type="button"
+    onClick={event => {
+      console.log(event);
+    }}
+  >
+    Typical
+  </BaseBox>
+));
+
 const Box = createChakra({
   as: "button",
   hook: useTab,
@@ -51,14 +67,31 @@ const Box = createChakra({
 
 stories.add("createChakra", () => (
   <Box
-    isTruncated
-    type="reset"
-    marginX="20px"
-    _hover={{ backgroundColor: "scale(X)", marginX: "auto" }}
     onKeyDown={event => {
       console.log(event);
     }}
+    margin="20px"
   >
-    This is an empowered box
+    This is a box
+  </Box>
+));
+
+type LinkProps = React.HTMLProps<HTMLLinkElement>;
+
+// createChakra as, extends the functionality of `styled` as
+// You should be able to pass the props from base and the new element
+
+stories.add("createChakra with generics", () => (
+  <Box<LinkProps>
+    as="a"
+    ref={node => {
+      console.log(node);
+    }}
+    onKeyDown={event => {
+      console.log(event);
+    }}
+    margin="20px"
+  >
+    This is a box
   </Box>
 ));

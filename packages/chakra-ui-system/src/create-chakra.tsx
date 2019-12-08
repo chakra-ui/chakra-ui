@@ -19,14 +19,26 @@ interface ThemeProps {
   isTruncated?: boolean;
 }
 
-type MergePropsOf<O, T extends As> = Omit<O, keyof React.ComponentProps<T>> &
+type MergePropsOf<O, T extends As> = Omit<
+  O,
+  keyof React.ComponentPropsWithRef<T>
+> &
   React.ComponentPropsWithRef<T>;
+
+type MergeGeneric<G, P, T extends As> = G & Omit<MergePropsOf<P, T>, keyof G>;
+
+type GenericMiddleware<P, O, T extends As> = {} extends P
+  ? MergeGeneric<P, O, T>
+  : MergePropsOf<O, T>;
+
+// instead of inferring the types from the `as` prop, we'll allow users pass a generic
+// inferring types can take some noticeable time in VSCode.
+// To understand this, use the `createComponent` function to see what I mean
 
 interface ChakraComponent<T extends As, O> {
   <P>(
-    props: P &
+    props: GenericMiddleware<P, O, T> &
       SystemProps &
-      MergePropsOf<O, T> &
       ThemeProps & { as?: React.ElementType },
   ): JSX.Element;
   displayName?: string;
