@@ -8,31 +8,16 @@ import {
   useTabList,
   useTabPanel,
   useTabPanels,
-  useTabs,
 } from "./useTabs";
+import { createChakra } from "@chakra-ui/system";
 
 const stories = storiesOf("useTabs", module).addDecorator(story => (
   <ThemeProvider>{story()}</ThemeProvider>
 ));
 
-const Tab = React.forwardRef(function Tab(props: any, ref: any) {
-  const tab = useTab(props);
-  return (
-    <button ref={ref} {...tab}>
-      {props.children}
-    </button>
-  );
-});
-
-function TabList(props: any) {
-  const tablist = useTabList(props);
-  return <div {...props} {...tablist} />;
-}
-
-function TabPanel(props: any) {
-  const tabpanel = useTabPanel(props);
-  return <div {...tabpanel}>{props.children}</div>;
-}
+const Tab = createChakra({ as: "button", hook: useTab });
+const TabList = createChakra({ as: "div", hook: useTabList });
+const TabPanel = createChakra({ as: "div", hook: useTabPanel });
 
 function TabPanels(props: any) {
   const tabpanels = useTabPanels(props);
@@ -40,10 +25,8 @@ function TabPanels(props: any) {
 }
 
 function TabIndicator(props: any) {
-  const indicator = useTabIndicator();
-  return (
-    <div style={{ ...indicator, height: 2, background: "red" }} {...props} />
-  );
+  const styles = useTabIndicator();
+  return <div style={{ ...styles, height: 2, background: "red" }} {...props} />;
 }
 
 stories.add("useTabs", () => (
