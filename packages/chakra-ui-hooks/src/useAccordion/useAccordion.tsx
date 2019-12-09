@@ -2,14 +2,11 @@ import { composeEventHandlers, createOnKeyDown } from "@chakra-ui/utils";
 import constate from "constate";
 import * as React from "react";
 import useControllableValue from "../useControllableValue";
+import createCtx from "../useCreateContext";
 import useDisclosure from "../useDisclosure/useDisclosure";
 import useFocusEffect from "../useFocusEffect/useFocusEffect";
 import useIds from "../useIds";
-import {
-  SelectionProvider,
-  useSelection,
-  useSelectionItem,
-} from "../useSelection";
+import { useSelectionItem, useSelectionState } from "../useSelection";
 import useTabbable from "../useTabbable";
 
 interface AccordionItemOptions {
@@ -48,12 +45,10 @@ type Index = number | number[];
 // 4. Passing isFocusable has no effect without isDisabled
 
 export function useAccordion(props: any) {
+  const { onChange, defaultIndex, index: indexProp, allowMultiple } = props;
   const getInitialState = () => {
-    if (props.allowMultiple) {
-      return props.defaultIndex || [];
-    } else {
-      return props.defaultIndex || 0;
-    }
+    if (allowMultiple) return defaultIndex || [];
+    else return defaultIndex || null;
   };
 
   // Keep track of all the opened accordion index
@@ -61,17 +56,23 @@ export function useAccordion(props: any) {
   const [indexState, setIndex] = React.useState<Index | null>(getInitialState);
 
   // To allow for controlled or uncontrolled mode
-  const [isControlled, index] = useControllableValue(props.index, indexState);
+  const [isControlled, index] = useControllableValue(indexProp, indexState);
 
   // Only this the only site where state gets updated
-  const updateIndex = (indexes: Index | null) => {
-    if (!isControlled) {
-      setIndex(indexes);
-    }
-    if (props.onChange) {
-      props.onChange(indexes);
-    }
-  };
+  const updateIndex = React.useCallback(
+    (indexes: Index | null) => {
+      if (!isControlled) {
+        setIndex(indexes);
+      }
+      if (onChange) {
+        onChange(indexes);
+      }
+    },
+    [isControlled, onChange],
+  );
+
+  // Some Magic :) It manages the focus between accordion items
+  const selection = useSelectionState();
 
   const children = React.Children.map(props.children, (child, childIndex) => {
     // Ignore falsy or invalid elements
@@ -83,7 +84,6 @@ export function useAccordion(props: any) {
       : index === childIndex;
 
     // Pass some props to each accordion item
-    // TODO: Ideally we should use `context` not `cloneElement`
     return React.cloneElement(child as React.ReactElement<any>, {
       isOpen: isOpenCondition,
       onChange: (isOpen: boolean) => {
@@ -96,63 +96,75 @@ export function useAccordion(props: any) {
             updateIndex(newIndexes);
           }
         } else {
-          if (isOpen) updateIndex(childIndex);
-          else if (props.allowToggle) updateIndex(null);
+          if (isOpen) {
+            updateIndex(childIndex);
+          } else {
+            if (props.allowToggle) {
+              updateIndex(null);
+            }
+          }
         }
       },
     });
   });
 
-  return { FocusManager: SelectionProvider, children };
+  return { selection, children };
+}
+
+const [useAccordionCtx, AccordionCtxProvider] = createCtx<
+  ReturnType<typeof useAccordion>["selection"]
+>();
+
+export function Accordion(props: any) {
+  const { selection, children } = useAccordion(props);
+  const ctx = React.useMemo(() => selection, [selection]);
+  return <AccordionCtxProvider value={ctx}>{children}</AccordionCtxProvider>;
 }
 
 export function useAccordionItem(props: AccordionItemOptions) {
+  const { isDisabled, isFocusable, onChange } = props;
+
   // Manages the open and close state of a single accordion item
   const disclosure = useDisclosure(props);
-
-  // Some Magic :) It manages the focus between accordion items
-  const focusManager = useSelection();
+  const { isControlled, onToggle, isOpen } = disclosure;
 
   // Generate some ids
   const [buttonId, panelId] = useIds([`accordion-header`, `accordion-panel`]);
 
+  const selection = useAccordionCtx();
+  const { highlight, next, previous, first, last } = selection;
+
   // Think of this as a way to register this item in the FocusManager
   const { isHighlighted, item } = useSelectionItem({
-    ...focusManager,
+    ...selection,
     id: buttonId,
-    isDisabled: props.isDisabled,
-    isFocusable: props.isFocusable,
+    isDisabled,
+    isFocusable,
   });
 
   // Focus the accordion button if it's highlighted
   useFocusEffect(item.ref, { shouldFocus: isHighlighted });
 
   // Function to toggle the visibility of the accordion item
-  const onToggle = () => {
-    if (!disclosure.isControlled) {
-      disclosure.onToggle();
-    }
-    if (props.onChange) {
-      props.onChange(!disclosure.isOpen);
-    }
-
-    // When we click on a button, let's update the focus manager
-    focusManager.highlight(item);
-  };
+  const onClick = React.useCallback(() => {
+    if (!isControlled) onToggle();
+    if (onChange) onChange(!isOpen);
+    highlight(item);
+  }, [highlight, onChange, isOpen, isControlled, onToggle, item]);
 
   // ARIA: Allow for keyboard navigation between accordion items
   const onKeyDown = createOnKeyDown({
     keyMap: {
-      ArrowDown: () => focusManager.next("highlight"),
-      ArrowUp: () => focusManager.previous("highlight"),
-      Home: () => focusManager.first("highlight"),
-      End: () => focusManager.last("highlight"),
+      ArrowDown: () => next("highlight"),
+      ArrowUp: () => previous("highlight"),
+      Home: () => first("highlight"),
+      End: () => last("highlight"),
     },
   });
 
   // Since each accordion item's button still remains tabbable, let's
   // update the focusManager when it receives focus
-  const onFocus = () => focusManager.highlight(item);
+  const onFocus = React.useCallback(() => highlight(item), [highlight, item]);
 
   // Let's organize the goods and return it :)
   return {
@@ -161,7 +173,7 @@ export function useAccordionItem(props: AccordionItemOptions) {
       "aria-expanded": disclosure.isOpen,
       "aria-controls": panelId,
       id: buttonId,
-      onClick: onToggle,
+      onClick,
       onKeyDown,
       onFocus,
     },
@@ -179,8 +191,8 @@ export function useAccordionItem(props: AccordionItemOptions) {
 
 // To manage communication between the accordion item's children,
 // let's create a context and a hook to read from context
-const [AccordionItemProvider, useAccordionItemCtx] = constate(useAccordionItem);
-export { AccordionItemProvider };
+const [AccordionItem, useAccordionItemCtx] = constate(useAccordionItem);
+export { AccordionItem };
 
 export function useAccordionButton(props: any) {
   // Read from the accordion item's context
@@ -194,14 +206,14 @@ export function useAccordionButton(props: any) {
     isFocusable,
     onClick: composeEventHandlers(props.onClick, button.onClick),
     onKeyDown: composeEventHandlers(props.onKeyDown, button.onKeyDown),
-    clickOnEnter: true,
-    clickOnSpace: true,
+    // clickOnEnter: true,
+    // clickOnSpace: true,
   });
 
-  return { ...button, ...tabbable };
+  return { ...props, ...button, ...tabbable };
 }
 
 export function useAccordionPanel(props: any) {
   const { panel } = useAccordionItemCtx();
-  return panel;
+  return { ...props, ...panel };
 }

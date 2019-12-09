@@ -1,5 +1,5 @@
 export * from "./useAccordion/useAccordion";
-export { default as useAriaHidden } from "./useModal/useAriaHidden";
+export { default as useAriaHidden } from "./useModal/utils/useAriaHidden";
 export { default as useBlurOutside } from "./useBlurOutside";
 
 export { default as useCheckbox } from "./useCheckbox/useCheckbox";
