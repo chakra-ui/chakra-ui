@@ -8,6 +8,7 @@ import useDisclosure from "../useDisclosure";
 import useIds from "../useIds";
 import useFocusOnHide from "../useFocusOnHide";
 import useFocusOnShow from "../useFocusOnShow";
+import useIsomorphicEffect from "../useIsomorphicEffect";
 
 const [usePopoverCtx, PopoverCtxProvider] = createCtx<PopoverContext>();
 export { usePopoverCtx };
@@ -107,7 +108,7 @@ export function usePopover(props: UsePopoverOptions) {
   });
 
   // update the popper instance when menu is open
-  React.useLayoutEffect(() => {
+  useIsomorphicEffect(() => {
     if (disclosure.isOpen && popper.popperInstance) {
       popper.popperInstance.scheduleUpdate();
     }

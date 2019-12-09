@@ -17,6 +17,7 @@ import { useForkRef } from "../useForkRef";
 import useRapidKeydown from "../useRapidKeydown";
 import useBlurOutside from "../useBlurOutside";
 import useFocusOnHide from "../useFocusOnHide";
+import useIsomorphicEffect from "../useIsomorphicEffect";
 
 function useFocusOnShow(
   menuRef: React.RefObject<any>,
@@ -27,7 +28,7 @@ function useFocusOnShow(
     visible: boolean;
   },
 ) {
-  React.useLayoutEffect(() => {
+  useIsomorphicEffect(() => {
     if (options.visible && options.activeIndex && selection.items.length) {
       selection.highlight(selection.items[options.activeIndex]);
     }
@@ -74,7 +75,7 @@ function useMenu(props: MenuOptions) {
   });
 
   // update the popper instance when menu is open
-  React.useLayoutEffect(() => {
+  useIsomorphicEffect(() => {
     if (disclosure.isOpen && popper.popperInstance) {
       popper.popperInstance.scheduleUpdate();
     }

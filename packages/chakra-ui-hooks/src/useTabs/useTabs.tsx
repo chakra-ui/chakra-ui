@@ -5,6 +5,7 @@ import useId from "../useId";
 import useTabbable, { UseTabbableOptions } from "../useTabbable";
 import { createOnKeyDown, composeEventHandlers } from "@chakra-ui/utils";
 import constate from "constate";
+import useIsomorphicEffect from "../useIsomorphicEffect";
 
 export interface UseTabsOptions {
   /**
@@ -274,7 +275,7 @@ export function useTabIndicator(): React.CSSProperties {
   });
 
   // Update the selected tab rect when the selectedIndex changes
-  React.useLayoutEffect(() => {
+  useIsomorphicEffect(() => {
     if (tabs.selectedIndex == undefined) return;
     const selectedTabNode = tabs.tabNodesRef.current[tabs.selectedIndex];
 
