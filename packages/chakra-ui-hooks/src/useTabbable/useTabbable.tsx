@@ -62,7 +62,6 @@ function useTabbable(props: UseTabbableOptions) {
         event.stopPropagation();
         event.preventDefault();
       } else {
-        event.target.focus();
         if (onMouseDownProp) {
           onMouseDownProp(event);
         }
@@ -77,6 +76,7 @@ function useTabbable(props: UseTabbableOptions) {
         event.stopPropagation();
         event.preventDefault();
       } else {
+        event.target.focus();
         if (onClickProp) {
           onClickProp(event);
         }

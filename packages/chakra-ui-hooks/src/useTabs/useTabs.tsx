@@ -1,12 +1,27 @@
+/**
+ * Welcome to Chakra's useTabs hook
+ *
+ * References + Credits:
+ * - https://www.w3.org/TR/wai-aria-practices/#tabpanel
+ * - https://inclusive-components.design/tabbed-interfaces/
+ */
+
+import { composeEventHandlers, createOnKeyDown } from "@chakra-ui/utils";
+import constate from "constate";
 import * as React from "react";
 import useControllableValue from "../useControllableValue";
-import useId from "../useId";
-import useTabbable, { UseTabbableOptions } from "../useTabbable";
-import { createOnKeyDown, composeEventHandlers } from "@chakra-ui/utils";
-import constate from "constate";
-import useIsomorphicEffect from "../useIsomorphicEffect";
 import useForkRef from "../useForkRef";
-import useLogger from "../useLogger";
+import useId from "../useId";
+import useIsomorphicEffect from "../useIsomorphicEffect";
+import useTabbable, { UseTabbableOptions } from "../useTabbable";
+
+/**
+|--------------------------------------------------
+| Tabs component
+|--------------------------------------------------
+*/
+
+// Let's start with some type definitions
 
 export interface UseTabsOptions {
   /**
@@ -70,8 +85,6 @@ export function useTabs(props: UseTabsOptions) {
   // Reference to the tablist
   const tablistRef = React.useRef<HTMLElement>();
 
-  useLogger("nodes", tabNodesRef.current);
-
   // sync focus with selection in controlled mode
   React.useEffect(() => {
     if (isControlled && props.index != undefined) {
@@ -123,6 +136,7 @@ export interface UseTabOptions extends UseTabbableOptions {
 
 export function useTab(props: UseTabOptions) {
   const { isSelected, isDisabled, id, panelId, ...rest } = props;
+
   const tab = useTabbable({
     ...rest,
     clickOnSpace: true,
@@ -192,11 +206,18 @@ export function useTabList(props: UseTabListOptions) {
 
   // Function to handle keyboard navigation
   const onKeyDown = createOnKeyDown({
+    preventDefault: false,
     keyMap: {
       ArrowRight: () => isHorizontal && goToNextTab(),
       ArrowLeft: () => isHorizontal && goToPrevTab(),
-      ArrowDown: () => isVertical && goToNextTab(),
-      ArrowUp: () => isVertical && goToPrevTab(),
+      ArrowDown: event => {
+        event.preventDefault();
+        isVertical && goToNextTab();
+      },
+      ArrowUp: event => {
+        event.preventDefault();
+        isVertical && goToPrevTab();
+      },
       Home: () => goToFirst(),
       End: () => goToLast(),
     },

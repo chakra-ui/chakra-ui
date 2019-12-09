@@ -30,7 +30,7 @@ function TabIndicator(props: any) {
 }
 
 stories.add("useTabs", () => (
-  <TabsProvider orientation="horizontal" isManual>
+  <TabsProvider orientation="horizontal">
     <TabList>
       <Tab>Settings</Tab>
       <Tab isDisabled isFocusable>

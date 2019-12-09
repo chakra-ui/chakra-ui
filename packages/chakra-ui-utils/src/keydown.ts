@@ -25,7 +25,7 @@ type EventKeys =
   | " "
   | "Shift";
 
-type KeyMapReturn = (event?: React.KeyboardEvent) => any;
+type KeyMapReturn = (event: React.KeyboardEvent) => any;
 type KeyMap = Partial<Record<EventKeys, KeyMapReturn>>;
 
 interface Options {
