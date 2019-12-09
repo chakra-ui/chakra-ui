@@ -1,113 +1,166 @@
 /**
  * Welcome to useArrayState hook
  *
- * API References:
+ * The hook makes it easy to manage array states
+ *
+ * References + Credits:
  * - https://github.com/jaredpalmer/formik/blob/master/src/FieldArray.tsx
  * - https://github.com/streamich/react-use/blob/master/src/useList.ts
  */
 
 import * as React from "react";
+import useControllableValue from "../useControllableValue";
 
-export interface Actions<T> {
-  /**
-   * Add new value(s) to the end of an array
-   */
-  add: (...items: T[]) => void;
-  /**
-   * Blow away the state and set it to the passed items
-   */
-  set: (items: T[]) => void;
-  /**
-   * Swap two values in an array
-   */
-  swap: (indexA: number, indexB: number) => void;
+function useArrayState<T>(props: {
+  defaultValue?: T[];
+  value?: T[];
+  onChange?: (nextValue: T[]) => void;
+}) {
+  const { onChange, defaultValue, value: valueProp } = props;
+  const [valueState, setValue] = React.useState<T[]>(defaultValue || []);
+  const [isControlled, value] = useControllableValue(valueProp, valueState);
+
+  const updateState = React.useCallback(
+    nextState => {
+      if (!isControlled) setValue(nextState);
+      if (onChange) onChange(nextState);
+    },
+    [isControlled, onChange],
+  );
+
   /**
    * Move an element in an array to another index
    */
-  move: (fromIndex: number, toIndex: number) => void;
+  const move = React.useCallback(
+    (from: number, to: number) => {
+      const nextState = [...value];
+      const fromValue = nextState[from];
+
+      nextState.splice(from, 1);
+      nextState.splice(to, 0, fromValue);
+
+      updateState(nextState);
+    },
+    [value, updateState],
+  );
+
   /**
-   * Insert an element at a given index into the array
+   * Add new value(s) to the end of an array
    */
-  insertAt: (index: number, value: T) => void;
+  const add = React.useCallback(
+    (...items: T[]) => {
+      updateState([...value, ...items]);
+    },
+    [value, updateState],
+  );
+
   /**
-   * Replace a value at an index of an array
+   * Blow away the state and set it to the passed items
    */
-  replace: (index: number, value: T) => void;
-  /**
-   * Add an element to the beginning of an array and return its length
-   */
-  unshift: (value: T) => number;
-  /**
-   * Remove and element at an index of an array
-   */
-  removeAt: (index: number) => T | undefined;
-  /**
-   * Remove and return value from the end of the array
-   */
-  pop: () => T | undefined;
+  const set = React.useCallback(
+    (newValue: T[]) => {
+      updateState(newValue);
+    },
+    [updateState],
+  );
+
   /**
    * Make the list empty
    */
-  clear: () => void;
+  const clear = React.useCallback(() => {
+    updateState([]);
+  }, [updateState]);
+
   /**
    * Reset list to initial value
    */
-  reset: () => void;
+  const reset = React.useCallback(() => {
+    updateState(defaultValue || []);
+  }, [defaultValue, updateState]);
+
+  /**
+   * Swap two values in an array
+   */
+  const swap = React.useCallback(
+    (indexA: number, indexB: number) => {
+      const nextState = [...value];
+      const indexAValue = nextState[indexA];
+      nextState[indexA] = nextState[indexB];
+      nextState[indexB] = indexAValue;
+      updateState(nextState);
+    },
+    [value, updateState],
+  );
+
+  /**
+   * Insert an element at a given index into the array
+   */
+  const insertAt = React.useCallback(
+    (index: number, item: T) => {
+      const nextState = [...value];
+      nextState.splice(index, 0, item);
+      updateState(nextState);
+    },
+    [value, updateState],
+  );
+
+  /**
+   * Remove and element at an index of an array
+   */
+  const removeAt = React.useCallback(
+    (index: number) => {
+      const nextState = [...value].filter((_, idx) => index !== idx);
+      updateState(nextState);
+      return value[index];
+    },
+    [updateState, value],
+  );
+
+  /**
+   * Remove and return value from the end of the array
+   */
+  const pop = React.useCallback(() => {
+    const nextState = [...value];
+    const poppedItem = nextState.pop();
+    updateState(nextState);
+    return poppedItem;
+  }, [value, updateState]);
+
+  /**
+   * Add an element to the beginning of an array and return its length
+   */
+  const unshift = React.useCallback(() => {
+    const nextState = [...value];
+    const newLength = nextState.unshift();
+    updateState(nextState);
+    return newLength;
+  }, [value, updateState]);
+
+  /**
+   * Replace a value at an index of an array
+   */
+  const replace = React.useCallback(
+    (index: number, item: T) => {
+      const nextState = [...value];
+      nextState[index] = item;
+      updateState(nextState);
+    },
+    [value, updateState],
+  );
+
+  return {
+    add,
+    set,
+    pop,
+    move,
+    clear,
+    reset,
+    swap,
+    insertAt,
+    removeAt,
+    unshift,
+    replace,
+  };
 }
-
-function move<T>(array: T[], from: number, to: number) {
-  const copy = [...array];
-  const value = copy[from];
-  copy.splice(from, 1);
-  copy.splice(to, 0, value);
-  return copy;
-}
-
-export const swap = (
-  arrayLike: ArrayLike<any>,
-  indexA: number,
-  indexB: number,
-) => {
-  const copy = copyArrayLike(arrayLike);
-  const a = copy[indexA];
-  copy[indexA] = copy[indexB];
-  copy[indexB] = a;
-  return copy;
-};
-
-export const insert = (
-  arrayLike: ArrayLike<any>,
-  index: number,
-  value: any,
-) => {
-  const copy = copyArrayLike(arrayLike);
-  copy.splice(index, 0, value);
-  return copy;
-};
-
-export const replace = (
-  arrayLike: ArrayLike<any>,
-  index: number,
-  value: any,
-) => {
-  const copy = copyArrayLike(arrayLike);
-  copy[index] = value;
-  return copy;
-};
-
-const copyArrayLike = (arrayLike: ArrayLike<any>) => {
-  if (!arrayLike) {
-    return [];
-  } else if (Array.isArray(arrayLike)) {
-    return [...arrayLike];
-  } else {
-    const maxIndex = Object.keys(arrayLike)
-      .map(key => parseInt(key))
-      .reduce((max, el) => (el > max ? el : max), 0);
-    return Array.from({ ...arrayLike, length: maxIndex + 1 });
-  }
-};
-
-function useArrayState() {}
 
 export default useArrayState;

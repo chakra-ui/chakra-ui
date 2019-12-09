@@ -94,14 +94,6 @@ export function useAccordion(props: AccordionOptions) {
    */
   const [isControlled, index] = useControllableValue(indexProp, indexState);
 
-  /** Add warning for allow multiple */
-  if (__DEV__) {
-    warnForAllowMultipleArray(props);
-    warnForAllowMultipleAndAllowToggle(props);
-    warnForControlledNoOnChange(props);
-    warnForControlledSwitching("Accordion", isControlled, indexProp);
-  }
-
   /**
    * Function that updates state and invokes `onChange` callback
    */
@@ -175,6 +167,14 @@ export function useAccordion(props: AccordionOptions) {
       },
     );
   });
+
+  /** Add warning for allow multiple */
+  if (__DEV__) {
+    warnForAllowMultipleArray(props);
+    warnForAllowMultipleAndAllowToggle(props);
+    warnForControlledNoOnChange(props);
+    warnForControlledSwitching("Accordion", isControlled, indexProp);
+  }
 
   /**
    * We're returning the enhanced children and the selection (for focus management)
