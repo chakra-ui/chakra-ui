@@ -300,7 +300,11 @@ export function useAccordionItem(props: AccordionItemOptions) {
 
 // To manage communication between the accordion item's children,
 // let's create a context and a hook to read from context
-const [AccordionItem, useAccordionItemContext, useAccordionItemState] = constate(
+const [
+  AccordionItem,
+  useAccordionItemContext,
+  useAccordionItemState,
+] = constate(
   useAccordionItem,
   context => context,
   context => ({
@@ -320,7 +324,7 @@ export { AccordionItem, useAccordionItemState };
 export interface AccordionButtonOptions {
   onClick?: React.MouseEventHandler;
   onKeyDown?: React.KeyboardEventHandler;
-  ref?: React.RefObject<any>;
+  ref?: React.RefObject<HTMLElement>;
 }
 
 export function useAccordionButton(props: AccordionButtonOptions) {

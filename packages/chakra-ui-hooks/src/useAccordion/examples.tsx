@@ -56,7 +56,7 @@ const AccordionIcon = (props: any) => {
       aria-hidden
       focusable="false"
       size="1.25em"
-      name="chevron-down"
+      name={isOpen ? "chevron-up" : "chevron-down"}
       opacity={isDisabled ? 0.4 : 1}
       transition="transform 0.2s"
       transformOrigin="center"
