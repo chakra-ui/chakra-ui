@@ -76,6 +76,9 @@ function useTabbable(props: UseTabbableOptions) {
         event.stopPropagation();
         event.preventDefault();
       } else {
+        if (document.activeElement === document.body) {
+          event.target.focus();
+        }
         event.target.focus();
         if (onClickProp) {
           onClickProp(event);
