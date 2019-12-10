@@ -1,4 +1,4 @@
-import { normalizeEventKey } from "@chakra-ui/utils";
+import { normalizeEventKey, omit } from "@chakra-ui/utils";
 import * as React from "react";
 import useForkRef from "../useForkRef";
 
@@ -37,11 +37,11 @@ function useTabbable(props: UseTabbableOptions) {
   const {
     isDisabled,
     isFocusable,
+    clickOnEnter,
+    clickOnSpace,
     onMouseDown: onMouseDownProp,
     onClick: onClickProp,
     onKeyDown: onKeyDownProp,
-    clickOnEnter,
-    clickOnSpace,
   } = props;
 
   const [isButton, setIsButton] = React.useState(true);
@@ -62,7 +62,6 @@ function useTabbable(props: UseTabbableOptions) {
         event.stopPropagation();
         event.preventDefault();
       } else {
-        event.target.focus();
         if (onMouseDownProp) {
           onMouseDownProp(event);
         }
@@ -77,6 +76,7 @@ function useTabbable(props: UseTabbableOptions) {
         event.stopPropagation();
         event.preventDefault();
       } else {
+        event.target.focus();
         if (onClickProp) {
           onClickProp(event);
         }
@@ -113,9 +113,16 @@ function useTabbable(props: UseTabbableOptions) {
 
   const ref = useForkRef(props.ref, refCallback);
 
+  const cleanProps = omit(props, [
+    "isDisabled",
+    "isFocusable",
+    "clickOnEnter",
+    "clickOnSpace",
+  ]);
+
   if (isButton) {
     return {
-      ...props,
+      ...cleanProps,
       ref,
       "aria-disabled": props.isDisabled,
       disabled: trulyDisabled,
@@ -125,7 +132,7 @@ function useTabbable(props: UseTabbableOptions) {
   }
 
   return {
-    ...props,
+    ...cleanProps,
     ref,
     role: "button",
     "aria-disabled": props.isDisabled,

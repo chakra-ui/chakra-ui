@@ -8,14 +8,14 @@ const stories = storiesOf("useCheckbox", module);
 function Checkbox(props: UseCheckboxOptions & { children: React.ReactNode }) {
   const { hiddenCheckbox, checkbox } = useCheckbox(props);
   return (
-    <div {...checkbox}>
+    <label {...checkbox}>
       <input {...hiddenCheckbox} />
       {props.children}
-    </div>
+    </label>
   );
 }
 
-stories.add("Checkbox", () => (
+stories.add("default", () => (
   <Checkbox defaultIsChecked={true} isReadOnly value="wewe">
     Select Food
   </Checkbox>

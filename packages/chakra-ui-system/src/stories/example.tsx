@@ -63,6 +63,11 @@ stories.add("createComponent with as", () => (
 const Box = createChakra({
   as: "button",
   hook: useTab,
+  baseProps: {
+    tabIndex: 0,
+    _hover: { color: "green" },
+    isDisabled: true,
+  },
 });
 
 stories.add("createChakra", () => (

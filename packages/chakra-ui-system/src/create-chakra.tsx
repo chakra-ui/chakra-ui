@@ -10,6 +10,7 @@ interface ChakraOptions<T extends As, O> {
   as?: T;
   hook?: (props: O & BoxHTMLProps) => BoxHTMLProps;
   __themeKey?: string;
+  baseProps?: Partial<MergePropsOf<O, T> & SystemProps & ThemeProps>;
 }
 
 interface ThemeProps {
@@ -50,6 +51,7 @@ function createChakra<T extends As, O>({
   as: type = "div",
   __themeKey,
   hook,
+  baseProps,
 }: ChakraOptions<T, O>) {
   //@ts-ignore
   const StyledComp = styled(type)(
@@ -81,9 +83,16 @@ function createChakra<T extends As, O>({
     }
 
     let hookProps: Record<string, any> = {};
-    if (hook) hookProps = hook(props);
+    if (hook) hookProps = hook({ ref, ...props });
 
-    return <StyledComp ref={ref} {...styleProps} {...props} {...hookProps} />;
+    const mergedProps = {
+      ...baseProps,
+      ...styleProps,
+      ...props,
+      ...hookProps,
+    };
+
+    return <StyledComp {...mergedProps} />;
   };
 
   return memo(forwardRef(Comp)) as ChakraComponent<T, O>;

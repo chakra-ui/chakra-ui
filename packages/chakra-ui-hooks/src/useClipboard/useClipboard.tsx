@@ -1,8 +1,8 @@
 import * as React from "react";
 
-function copyToClipboard<T extends string>(value: T) {
+function copyToClipboard<T>(value: T) {
   const el = document.createElement("textarea");
-  el.value = value;
+  el.value = value as any;
   el.setAttribute("readonly", "");
   el.style.position = "absolute";
   el.style.left = "-9999px";
@@ -31,19 +31,24 @@ function copyToClipboard<T extends string>(value: T) {
 
 function useClipboard<T>(value: T) {
   const [hasCopied, setHasCopied] = React.useState(false);
-  const timeoutRef = React.useRef<any>();
 
   const onCopy = React.useCallback(() => {
     copyToClipboard(value as any);
     setHasCopied(true);
-    timeoutRef.current = setTimeout(() => setHasCopied(false), 1500);
   }, [value]);
 
   React.useEffect(() => {
+    let timeoutId: any;
+    if (hasCopied) {
+      if (timeoutId) clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        setHasCopied(false);
+      }, 1500);
+    }
     return () => {
-      clearTimeout(timeoutRef.current);
+      clearTimeout(timeoutId);
     };
-  });
+  }, [hasCopied]);
 
   return { value, onCopy, hasCopied };
 }

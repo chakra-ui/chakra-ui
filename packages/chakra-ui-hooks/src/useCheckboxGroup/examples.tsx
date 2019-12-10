@@ -1,21 +1,21 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import useCheckboxGroup from "./useCheckboxGroup";
-import useCheckbox, { UseCheckboxOptions } from '../useCheckbox/useCheckbox';
+import useCheckbox, { UseCheckboxOptions } from "../useCheckbox/useCheckbox";
 
-const stories = storiesOf("useCheckbox", module);
+const stories = storiesOf("useCheckboxGroup", module);
 
 function Checkbox(props: UseCheckboxOptions & { children: React.ReactNode }) {
   const { hiddenCheckbox, checkbox } = useCheckbox(props);
   return (
-    <div {...checkbox}>
+    <label {...checkbox}>
       <input {...hiddenCheckbox} />
       {props.children}
-    </div>
+    </label>
   );
 }
 
-export function CheckExample2(props: any) {
+export function CheckExample(props: any) {
   const checkboxGroup = useCheckboxGroup(props);
   return (
     <div>
@@ -34,4 +34,4 @@ export function CheckExample2(props: any) {
   );
 }
 
-stories.add("Checkbox + group", () => <CheckExample2 />);
+stories.add("default", () => <CheckExample />);

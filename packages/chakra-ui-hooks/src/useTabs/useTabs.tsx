@@ -1,11 +1,27 @@
+/**
+ * Welcome to Chakra's useTabs hook
+ *
+ * References + Credits:
+ * - https://www.w3.org/TR/wai-aria-practices/#tabpanel
+ * - https://inclusive-components.design/tabbed-interfaces/
+ */
+
+import { composeEventHandlers, createOnKeyDown } from "@chakra-ui/utils";
+import constate from "constate";
 import * as React from "react";
 import useControllableValue from "../useControllableValue";
-import createCtx from "../useCreateContext";
+import useForkRef from "../useForkRef";
 import useId from "../useId";
-import useTabbable, { UseTabbableOptions } from "../useTabbable";
-import { createOnKeyDown, composeEventHandlers } from "@chakra-ui/utils";
-import constate from "constate";
 import useIsomorphicEffect from "../useIsomorphicEffect";
+import useTabbable, { UseTabbableOptions } from "../useTabbable";
+
+/**
+|--------------------------------------------------
+| Tabs component
+|--------------------------------------------------
+*/
+
+// Let's start with some type definitions
 
 export interface UseTabsOptions {
   /**
@@ -65,6 +81,7 @@ export function useTabs(props: UseTabsOptions) {
 
   // Reference to all elements with `role=tab`
   const tabNodesRef = React.useRef<HTMLElement[]>([]);
+
   // Reference to the tablist
   const tablistRef = React.useRef<HTMLElement>();
 
@@ -119,18 +136,21 @@ export interface UseTabOptions extends UseTabbableOptions {
 
 export function useTab(props: UseTabOptions) {
   const { isSelected, isDisabled, id, panelId, ...rest } = props;
-  const tab: any = useTabbable({
+
+  const tab = useTabbable({
     ...rest,
     clickOnSpace: true,
     clickOnEnter: true,
     isDisabled,
   });
 
+  const type: "button" | "submit" | "reset" = "button";
+
   return {
     ...tab,
     role: "tab",
     tabIndex: isSelected ? 0 : -1,
-    type: "button",
+    type,
     "aria-selected": isSelected ? true : undefined,
     "aria-controls": panelId,
   };
@@ -140,7 +160,8 @@ export function useTab(props: UseTabOptions) {
 
 export interface UseTabListOptions {
   children?: React.ReactNode;
-  onKeyDown?: React.KeyboardEventHandler<any>;
+  onKeyDown?: React.KeyboardEventHandler;
+  ref?: React.Ref<any>;
 }
 
 export function useTabList(props: UseTabListOptions) {
@@ -185,18 +206,24 @@ export function useTabList(props: UseTabListOptions) {
 
   // Function to handle keyboard navigation
   const onKeyDown = createOnKeyDown({
+    preventDefault: false,
     keyMap: {
       ArrowRight: () => isHorizontal && goToNextTab(),
       ArrowLeft: () => isHorizontal && goToPrevTab(),
-      ArrowDown: () => isVertical && goToNextTab(),
-      ArrowUp: () => isVertical && goToPrevTab(),
+      ArrowDown: event => {
+        event.preventDefault();
+        isVertical && goToNextTab();
+      },
+      ArrowUp: event => {
+        event.preventDefault();
+        isVertical && goToPrevTab();
+      },
       Home: () => goToFirst(),
       End: () => goToLast(),
     },
   });
 
   // Enhance the children by passing some props to them
-  // TODO: Ideally this should be using context
   const children = React.Children.map(props.children, (child: any, index) => {
     let isSelected = index === tabs.selectedIndex;
 
@@ -215,7 +242,7 @@ export function useTabList(props: UseTabListOptions) {
       }
     };
 
-    return React.cloneElement(child, {
+    return React.cloneElement(child as any, {
       id: `${tabs.id}--tab-${index}`,
       panelId: `${tabs.id}--tabpanel-${index}`,
       ref: (node: HTMLElement) => (tabs.tabNodesRef.current[index] = node),
@@ -225,8 +252,11 @@ export function useTabList(props: UseTabListOptions) {
     });
   });
 
+  const ref = useForkRef(props.ref, tabs.tablistRef);
+
   return {
-    ref: tabs.tablistRef,
+    ...props,
+    ref,
     role: "tablist",
     "aria-orientation": tabs.orientation,
     onKeyDown: composeEventHandlers(props.onKeyDown, onKeyDown),
@@ -255,6 +285,7 @@ export function useTabPanels(props: { children: React.ReactNode }) {
 
 export function useTabPanel(props: { isSelected?: boolean; id?: string }) {
   return {
+    ...props,
     role: "tabpanel",
     hidden: !props.isSelected,
     id: props.id,
@@ -263,7 +294,7 @@ export function useTabPanel(props: { isSelected?: boolean; id?: string }) {
 
 ////////////////////////////////////////////////////////////////////////
 
-export function useTabIndicator(): React.CSSProperties {
+export function useTabIndicator(props = {}): React.CSSProperties {
   const tabs = useTabsContext();
   const isHorizontal = tabs.orientation === "horizontal";
   const isVertical = tabs.orientation === "vertical";
@@ -311,6 +342,7 @@ export function useTabIndicator(): React.CSSProperties {
   ]);
 
   return {
+    ...props,
     position: "absolute",
     transition: "all 200ms cubic-bezier(0, 0, 0.2, 1)",
     ...rect,
