@@ -1,0 +1,40 @@
+# Divider
+
+Dividers are used to display a thin horizontal line.
+
+Divider composes `Box` so you can use all the style props and add responsive
+styles as well. It renders an `<hr>` tag by default.
+
+## Import
+
+```js
+import { Divider } from "@chakra-ui/core";
+```
+
+## Usage
+
+```jsx
+<Divider />
+```
+
+### Changing the color
+
+To change the color, use the `borderColor` property
+
+```jsx
+<Stack spacing={3}>
+  <Divider />
+  <Divider borderColor="blue.500" />
+  <Divider borderColor="red.500" />
+  <Divider borderColor="green.500" />
+  <Divider borderColor="gray.500" />
+</Stack>
+```
+
+## Props
+
+The Divider composes the [Box](/box) component, so you can pass all `Box` props.
+
+| Name          | Type                     | Default      | Description     |
+| ------------- | ------------------------ | ------------ | --------------- |
+| `orientation` | `horizontal`, `vertical` | `horizontal` | The orientation |
