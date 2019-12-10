@@ -8,12 +8,7 @@ import Stack from "../Stack";
 const stories = storiesOf("Select", module);
 
 stories.add("Default", () => (
-  <Select
-    bg="blue.200"
-    borderColor="blue.200"
-    placeholder="Select option"
-    zIndex={1}
-  >
+  <Select placeholder="Select option">
     <option value="Option 1">Option 1</option>
     <option value="Option 2">Option 2</option>
     <option value="Option 3">Option 3</option>
