@@ -2,6 +2,7 @@ import * as React from "react";
 import useControllableValue from "../useControllableValue";
 import { composeEventHandlers } from "@chakra-ui/utils";
 import usePrevious from "../usePrevious";
+import useIsomorphicEffect from "../useIsomorphicEffect";
 
 export interface UseNativeCheckboxOptions {
   isChecked?: CheckboxState;
@@ -46,7 +47,7 @@ function useNativeCheckbox(props: UseNativeCheckboxOptions) {
     }
   };
 
-  React.useLayoutEffect(() => {
+  useIsomorphicEffect(() => {
     if (!ref.current) return;
     if (ref.current.indeterminate !== isMixed) {
       ref.current.indeterminate = isMixed;

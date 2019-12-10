@@ -1,5 +1,6 @@
 import { Box } from "@chakra-ui/layout";
 import { createChakra } from "@chakra-ui/system";
+import { Icon } from "@chakra-ui/core";
 import { ThemeProvider } from "@chakra-ui/theme";
 import { storiesOf } from "@storybook/react";
 import React from "react";
@@ -8,6 +9,7 @@ import {
   AccordionItem,
   useAccordionButton,
   useAccordionPanel,
+  useAccordionItemState,
 } from "./useAccordion";
 
 const stories = storiesOf("useAccordion", module).addDecorator(story => (
@@ -25,28 +27,32 @@ const AccordionPanel = createChakra({
 });
 
 stories.add("Accordion", () => (
-  <Accordion>
+  <Accordion allowToggle>
     <AccordionItem>
-      <AccordionButton>Toggle 1</AccordionButton>
+      <h2>
+        <AccordionButton>Toggle 1</AccordionButton>
+      </h2>
       <AccordionPanel>Panel 1</AccordionPanel>
     </AccordionItem>
 
     <AccordionItem>
-      <AccordionButton>Toggle 2</AccordionButton>
+      <h2>
+        <AccordionButton>Toggle 2</AccordionButton>
+      </h2>
       <AccordionPanel>Panel 2</AccordionPanel>
     </AccordionItem>
   </Accordion>
 ));
 
 const AccordionHeader = createChakra({
-  as: Box,
+  as: "div",
   hook: useAccordionButton,
 });
 
 const AccordionIcon = (props: any) => {
-  const { isExpanded, isDisabled } = useAccordionButton(props);
+  const { isDisabled, isOpen } = useAccordionItemState();
   return (
-    <Box
+    <Icon
       aria-hidden
       focusable="false"
       size="1.25em"
@@ -55,9 +61,7 @@ const AccordionIcon = (props: any) => {
       transition="transform 0.2s"
       transformOrigin="center"
       {...props}
-    >
-      {isExpanded ? "-" : "+"}
-    </Box>
+    />
   );
 };
 
@@ -79,7 +83,7 @@ stories.add("Chakra Accordion", () => (
         <Box flex="1" textAlign="left">
           Section 1 title
         </Box>
-        <AccordionIcon/>
+        <AccordionIcon />
       </AccordionHeader>
       <AccordionPanel px={4} py={2}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -105,7 +109,7 @@ stories.add("Chakra Accordion", () => (
         <Box flex="1" textAlign="left">
           Section 2 title
         </Box>
-        <AccordionIcon/>
+        <AccordionIcon />
       </AccordionHeader>
       <AccordionPanel px={4} py={2}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod

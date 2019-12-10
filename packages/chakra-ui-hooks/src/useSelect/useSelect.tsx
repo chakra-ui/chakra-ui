@@ -20,6 +20,7 @@ import { useDefaultValue, useValue } from "./useValue";
 import useId from "../useId";
 import useIds from "../useIds";
 import useDisableHoverOutside from "./useDisableHoverOutside";
+import useIsomorphicEffect from "../useIsomorphicEffect";
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -54,7 +55,7 @@ export function useSelectOption(props: any) {
 
   // If this option is not disabled, register it
   // as a descendant on context onMount
-  React.useLayoutEffect(() => {
+  useIsomorphicEffect(() => {
     if (isDisabled && !isFocusable) return;
     dispatch({ type: "REGISTER", item });
     return () => {

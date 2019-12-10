@@ -18,6 +18,7 @@ export function pick<T extends Record<string, any>, K extends keyof T>(
   object: T,
   keys: K[],
 ) {
+  // eslint-disable-next-line
   const result = {} as { [P in K]: T[P] };
   for (const key of keys) {
     if (key in object) {
