@@ -5,100 +5,70 @@ import { forwardRef } from "react";
 import Input from "../Input";
 import { useColorMode } from "../ColorModeProvider";
 import Box from "../Box";
+import splitProps from "./utils";
 
-const Select = forwardRef(
-  (
-    {
-      children,
-      size,
-      placeholder,
-      form,
-      onChange,
-      onBlur,
-      onKeyDown,
-      onKeyUp,
-      onKeyPress,
-      onFocus,
-      autoFocus,
-      isDisabled,
-      isInvalid,
-      isRequired,
-      name,
-      id,
-      isReadOnly,
-      focusBorderColor,
-      variant,
-      "aria-label": ariaLabel,
-      "aria-describedby": ariaDescribedby,
-      value,
-      defaultValue,
-      selectProps,
-      ...rest
-    },
-    ref,
-  ) => {
-    const { colorMode } = useColorMode();
-    const themedColor = colorMode === "dark" ? "whiteAlpha.800" : "inherit";
-    const opacity = isReadOnly || isDisabled ? 0.5 : null;
+const SelectIconWrapper = forwardRef(function SelectIconWrapper(props, ref) {
+  return (
+    <Box
+      ref={ref}
+      position="absolute"
+      display="inline-flex"
+      width="1.5rem"
+      height="100%"
+      alignItems="center"
+      justifyContent="center"
+      right="0.5rem"
+      top="50%"
+      pointerEvents="none"
+      zIndex={2}
+      transform="translateY(-50%)"
+      {...props}
+    />
+  );
+});
 
-    return (
-      <Box position="relative" width="100%" color={themedColor} {...rest}>
-        <Input
-          as="select"
-          size={size}
-          appearance="none"
-          ref={ref}
-          pr="2rem"
-          pb="px"
-          lineHeight="normal"
-          {...{
-            form,
-            placeholder,
-            onChange,
-            onBlur,
-            onKeyDown,
-            onKeyUp,
-            onKeyPress,
-            onFocus,
-            autoFocus,
-            isDisabled,
-            isInvalid,
-            isRequired,
-            value,
-            defaultValue,
-            name,
-            id,
-            isReadOnly,
-            focusBorderColor,
-            variant,
-            "aria-label": ariaLabel,
-            "aria-describedby": ariaDescribedby,
-          }}
-          {...selectProps}
-        >
-          {placeholder && <option value="">{placeholder}</option>}
-          {children}
-        </Input>
-        <Box
-          position="absolute"
-          display="inline-flex"
-          width="1.5rem"
-          height="100%"
-          alignItems="center"
-          justifyContent="center"
-          right="0.5rem"
-          top="50%"
-          pointerEvents="none"
-          opacity={opacity}
-          zIndex={2}
-          transform="translateY(-50%)"
-        >
-          <Icon name="chevron-down" color="currentColor" size="20px" />
-        </Box>
-      </Box>
-    );
-  },
-);
+const SelectInput = forwardRef(function SelectInput(
+  { placeholder, children, ...rest },
+  ref,
+) {
+  return (
+    <Input
+      as="select"
+      appearance="none"
+      ref={ref}
+      pr="2rem"
+      pb="px"
+      lineHeight="normal"
+      {...rest}
+    >
+      {placeholder && <option value="">{placeholder}</option>}
+      {children}
+    </Input>
+  );
+});
+
+const Select = forwardRef(({ rootProps, icon, ...props }, ref) => {
+  const { colorMode } = useColorMode();
+  const color = colorMode === "dark" ? "whiteAlpha.800" : "inherit";
+  const opacity = props.isReadOnly || props.isDisabled ? 0.5 : null;
+
+  const [root, select] = splitProps(props);
+
+  return (
+    <Box
+      position="relative"
+      width="100%"
+      color={color}
+      {...root}
+      {...rootProps}
+    >
+      <SelectInput ref={ref} {...select} />
+      <SelectIconWrapper opacity={opacity}>
+        {icon || <Icon name="chevron-down" color="currentColor" size="20px" />}
+      </SelectIconWrapper>
+    </Box>
+  );
+});
 
 Select.displayName = "Select";
 

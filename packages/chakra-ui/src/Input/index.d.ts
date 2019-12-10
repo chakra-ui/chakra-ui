@@ -65,7 +65,7 @@ export interface IInput<T = HTMLInputElement> {
   errorBorderColor?: string;
 }
 
-type OmittedTypes =
+export type OmittedTypes =
   | "size"
   | "disabled"
   | "required"

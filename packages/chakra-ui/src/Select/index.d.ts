@@ -1,45 +1,52 @@
 import * as React from "react";
 import { BoxProps } from "../Box/index";
-import { InputProps } from "../Input/index";
 import { IInput } from "../Input";
 import { PseudoBoxProps } from "../PseudoBox";
-import { Omit } from "../common-types";
+import { Omit, Merge } from "../common-types";
 
-type SelectAttributes = React.SelectHTMLAttributes<HTMLSelectElement>;
+type SelectAttributes = Omit<
+  React.SelectHTMLAttributes<HTMLSelectElement>,
+  "size" | "disabled" | "required" | "defaultChecked"
+>;
 
-export interface ISelect extends IInput<HTMLSelectElement> {
-  form?: string;
-  id?: string;
-  name?: string;
-  onChange?: React.ChangeEventHandler<HTMLSelectElement>;
-  onBlur?: React.FocusEventHandler<HTMLSelectElement>;
-  onFocus?: React.FocusEventHandler<HTMLSelectElement>;
-  onKeyDown?: React.KeyboardEventHandler<HTMLSelectElement>;
-  onKeyUp?: React.KeyboardEventHandler<HTMLSelectElement>;
-  onKeyPress?: React.KeyboardEventHandler<HTMLSelectElement>;
-  autoFocus?: boolean;
-  "aria-labelledby": string;
-  value?: string | number;
-  defaultValue?: string | number;
-  children?: React.ReactNode;
-  placeholder?: string | number;
-  selectProps?: React.HTMLAttributes<HTMLSelectElement> & PseudoBoxProps;
-}
+type MergeSelectAttributes = Merge<
+  Omit<PseudoBoxProps, "ref" | "as" | "defaultChecked">,
+  SelectAttributes
+>;
 
-type Omitted =
-  | "onChange"
-  | "onBlur"
-  | "onFocus"
-  | "onKeyDown"
-  | "onKeyUp"
-  | "onKeyPress";
-
-export type SelectProps = ISelect &
-  Omit<InputProps, Omitted | "value" | "defaultValue"> &
-  Omit<BoxProps, Omitted | "size"> &
+export type ISelect = IInput<HTMLSelectElement> &
+  MergeSelectAttributes &
   React.RefAttributes<HTMLSelectElement>;
 
-type xx = SelectProps["value"];
+export type SelectProps = ISelect & {
+  /**
+   * The props passed to the select's root element.
+   *
+   * The internal structure looks like this:
+   *
+   * ```jsx
+   * <SelectWrapper {...rootProps}>
+   *  <Select /> <== most props go here directly
+   *  <SelectIconWrapper />
+   * </SelectWrapper>
+   * ```
+   *
+   * In some scenario, you might want to pass some other props to the root.
+   */
+  rootProps?: BoxProps;
+  /**
+   * The placeholder for the select. This renders an `<option>` with empty value
+   *
+   * ```jsx
+   * <option value="">{placeholder}</option>
+   * ```
+   */
+  placeholder?: string;
+  /**
+   * The icon component to render
+   */
+  icon?: JSX.Element;
+};
 
 declare const Select: React.FC<SelectProps>;
 export default Select;
