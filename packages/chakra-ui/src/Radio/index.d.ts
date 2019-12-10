@@ -1,6 +1,7 @@
 import * as React from "react";
 import { BoxProps } from "../Box";
 import { VariantColor } from "../theme";
+
 import { Omit } from "../common-types";
 
 export interface IRadio {
@@ -30,7 +31,7 @@ export interface IRadio {
    * The color of the radio when it's checked.
    * This should be one of the color keys in the theme (e.g."green", "red")
    */
-  variantColor?: VariantColor;
+  variantColor?: VariantColor | string;
   /**
    * If `true`, the radio will be initially checked.
    */

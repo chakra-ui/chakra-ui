@@ -17,7 +17,7 @@ interface ISlider {
   orientation?: "horizontal" | "vertical";
   getAriaValueText?: (value: number) => string;
   size?: "sm" | "md" | "lg";
-  color?: VariantColor;
+  color?: VariantColor | string;
   name?: string;
   id?: string;
   onChange?: (newValue: number) => void;
