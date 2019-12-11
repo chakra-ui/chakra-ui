@@ -5,7 +5,6 @@ import {
   preventNonNumberKey,
   roundToPrecision,
 } from "./utils";
-import usePrevious from "../usePrevious";
 
 function useLongPress(callback = () => {}, speed = 200) {
   const [isPressed, setIsPressed] = useState(false);
@@ -61,7 +60,7 @@ function useNumberInput({
   isInvalid,
   isDisabled,
 }) {
-  const { current: isControlled } = useRef(valueProp !== undefined);
+  const { current: isControlled } = useRef(valueProp != null);
 
   const defaultPrecision = Math.max(calculatePrecision(stepProp), 0);
   const precision = precisionProp || defaultPrecision;
@@ -75,7 +74,7 @@ function useNumberInput({
       nextValue = roundToPrecision(nextValue, precision);
       return nextValue;
     }
-    return null;
+    return "";
   });
 
   const [isFocused, setIsFocused] = useState(false);
@@ -83,19 +82,29 @@ function useNumberInput({
   const value = isControlled ? valueProp : valueState;
   const isInteractive = !(isReadOnly || isDisabled);
   const inputRef = useRef();
-  const previousValue = usePrevious(value);
 
-  const updateValue = value => {
-    const hasValueChanged = previousValue !== value;
-    if (!hasValueChanged) return;
+  const prevNextValue = useRef(null);
 
-    const nextValue = value === "" ? null : value;
-    if (!isControlled) {
-      setValue(nextValue);
-    }
-    if (onChange) {
-      onChange(nextValue);
-    }
+  const shouldConvertToNumber = value => {
+    const hasDot = value.indexOf(".") > -1;
+    const hasTrailingZero = value.substr(value.length - 1) === "0";
+    const hasTrailingDot = value.substr(value.length - 1) === ".";
+    if (hasDot && hasTrailingZero) return false;
+    if (hasDot && hasTrailingDot) return false;
+    return true;
+  };
+
+  const updateValue = nextValue => {
+    //eslint-disable-next-line
+    if (prevNextValue.current == nextValue) return;
+
+    const shouldConvert = shouldConvertToNumber(nextValue);
+    const converted = shouldConvert ? +nextValue : nextValue;
+
+    if (!isControlled) setValue(converted);
+    if (onChange) onChange(converted);
+
+    prevNextValue.current = nextValue;
   };
 
   const handleIncrement = (step = stepProp) => {

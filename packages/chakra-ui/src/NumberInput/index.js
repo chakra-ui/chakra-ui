@@ -57,8 +57,6 @@ const NumberInput = forwardRef(
       isInvalid,
       isDisabled,
     });
-    // A trick to render this event the user doesn't
-    // want to have control over the children
     const _children = children || (
       <>
         <NumberInputField />

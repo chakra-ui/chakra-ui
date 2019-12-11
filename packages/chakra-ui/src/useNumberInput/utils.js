@@ -3,8 +3,13 @@ import prettyNum, { PRECISION_SETTING } from "pretty-num";
 export function isNumberKey(event) {
   const charCode = event.which ? event.which : event.keyCode;
   if (event.key === ".") return true;
-  if (charCode > 31 && (charCode < 48 || charCode > 57) &&
-    (charCode < 96 || charCode > 105) && charCode !== 110) return false;
+  if (
+    charCode > 31 &&
+    (charCode < 48 || charCode > 57) &&
+    (charCode < 96 || charCode > 105) &&
+    charCode !== 110
+  )
+    return false;
   return true;
 }
 

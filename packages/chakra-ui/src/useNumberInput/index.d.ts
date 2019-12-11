@@ -1,19 +1,19 @@
 import * as React from "react";
 
-export interface useNumberInputProps {
+export interface UseNumberInputProps {
   /**
    * The value of the input. Should be less than `max` and greater than `min`
    */
-  value?: number;
+  value?: string | number;
   /**
    * The initial value of the input. Should be less than `max` and greater than `min`
    */
-  defaultValue?: number;
+  defaultValue?: string | number;
   /**
    * The callback fired when the value changes
    * @param {Number} value - The next value
    */
-  onChange?: (value: number | null) => void;
+  onChange?: (value: number | string) => void;
   /**
    * If `true`, the input will be focused as you increment
    * or decrement the value with the stepper
@@ -65,7 +65,7 @@ export interface useNumberInputProps {
    *
    * @param {Number} value - the current value
    */
-  getAriaValueText?: (value: number) => string;
+  getAriaValueText?: (value: string | number) => string;
   /**
    * If `true`, the input will be in readonly mode
    */
@@ -127,7 +127,7 @@ interface hiddenLabelProps {
   style: React.CSSProperties;
 }
 
-interface ReturnedValue {
+interface UseNumberInputReturn {
   value: number;
   isFocused: boolean;
   incrementStepper: StepperProps;
@@ -138,6 +138,8 @@ interface ReturnedValue {
   hiddenLabel: hiddenLabelProps;
 }
 
-declare function useNumberInput(props: useNumberInputProps): ReturnedValue;
+declare function useNumberInput(
+  props: UseNumberInputProps,
+): UseNumberInputReturn;
 
 export default useNumberInput;

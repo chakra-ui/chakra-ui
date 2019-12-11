@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 import Box from "../Box";
 import {
   NumberInput,
@@ -13,8 +14,21 @@ import { useState } from "react";
 
 const stories = storiesOf("NumberInput", module);
 
+stories.add("version2", () => (
+  <Box maxWidth="sm" mx="auto" mt={5}>
+    <NumberInput
+      size="sm"
+      max={35}
+      min={0}
+      step={4}
+      onChange={action("onChange")}
+      // precision={2}
+    />
+  </Box>
+));
+
 const ContolledEx = () => {
-  const [val, setVal] = useState(null);
+  const [val, setVal] = useState("");
   return (
     <NumberInput
       size="md"
@@ -33,22 +47,6 @@ const ContolledEx = () => {
     </NumberInput>
   );
 };
-
-stories.add("version2", () => (
-  <Box maxWidth="sm" mx="auto" mt={5}>
-    <NumberInput
-      size="sm"
-      max={35}
-      min={0}
-      step={4}
-      onChange={console.log}
-      // defaultValue={null}
-      // keepWithinRange={false}
-      // clampValueOnBlur={false}
-      precision={2}
-    />
-  </Box>
-));
 
 stories.add("v2 controlled", () => (
   <Box maxWidth="sm" mx="auto" mt={5}>
