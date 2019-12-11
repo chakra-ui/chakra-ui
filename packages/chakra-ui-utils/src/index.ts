@@ -7,3 +7,4 @@ export * from "./object";
 export * from "./number";
 export * from "./dom-query";
 export * from "./tabbable";
+export * from "./data-assertion";

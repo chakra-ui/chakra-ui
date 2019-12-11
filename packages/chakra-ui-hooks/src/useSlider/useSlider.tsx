@@ -284,7 +284,7 @@ export function useSlider(props: any) {
     position: "absolute",
     ...(isVertical
       ? { bottom: `calc(${trackPercent}%)` }
-      : { top: `calc(${trackPercent}%)` }),
+      : { left: `calc(${trackPercent}%)` }),
   };
   const thumbId = `slider-thumb-${id}`;
 

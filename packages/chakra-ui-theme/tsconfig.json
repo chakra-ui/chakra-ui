@@ -14,7 +14,7 @@
     "importHelpers": true,
     "declaration": true,
     "sourceMap": true,
-    "rootDir": "./",
+    // "rootDir": "./",
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,

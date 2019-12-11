@@ -1,8 +1,9 @@
 import * as React from "react";
 import { Selection } from "../useSelection";
+import useIsomorphicEffect from "../useIsomorphicEffect";
 
 export function useDefaultValue(selection: Selection, defaultValue: any) {
-  React.useLayoutEffect(() => {
+  useIsomorphicEffect(() => {
     if (defaultValue && selection.items.length) {
       const option = selection.items.find(
         option => option.value === defaultValue,
@@ -16,7 +17,7 @@ export function useDefaultValue(selection: Selection, defaultValue: any) {
 }
 
 export function useValue(selection: Selection, value: any) {
-  React.useLayoutEffect(() => {
+  useIsomorphicEffect(() => {
     if (value && selection.items.length) {
       const option = selection.items.find(option => option.value === value);
       if (option) {

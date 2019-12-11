@@ -1,5 +1,5 @@
 export * from "./useAccordion/useAccordion";
-export { default as useAriaHidden } from "./useModal/useAriaHidden";
+export { default as useAriaHidden } from "./useModal/utils/useAriaHidden";
 export { default as useBlurOutside } from "./useBlurOutside";
 
 export { default as useCheckbox } from "./useCheckbox/useCheckbox";
@@ -14,7 +14,7 @@ export { default as createCtx } from "./useCreateContext";
 
 export { default as useDisclosure } from "./useDisclosure/useDisclosure";
 
-export { default as useEnhancedEffect } from "./useEnhancedEffect";
+export { default as useIsomorphicEffect } from "./useIsomorphicEffect";
 
 export { default as useFocusEffect } from "./useFocusEffect/useFocusEffect";
 export { default as useFocusOnHide } from "./useFocusOnHide";
@@ -29,8 +29,8 @@ export {
 } from "./useLockBodyScroll/useLockBodyScroll";
 export { default as useLogger } from "./useLogger";
 
-export * from "./useNumberInput/useNumberInput";
-export { default as useNumberInput } from "./useNumberInput/useNumberInput";
+// export * from "./useNumberInput/useNumberInput";
+// export { default as useNumberInput } from "./useNumberInput/useNumberInput";
 
 export * from "./usePopper/usePopper";
 export { default as usePopper } from "./usePopper/usePopper";

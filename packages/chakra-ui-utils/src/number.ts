@@ -13,7 +13,6 @@ function toNumber(value: any) {
 export function roundToPrecision(value: number, precision: number) {
   let nextValue: string | number = toNumber(value);
   const quotient = Math.pow(10, precision == null ? 10 : precision);
-
   nextValue = Math.round(nextValue * quotient) / quotient;
   nextValue = precision ? nextValue.toFixed(precision) : nextValue;
   return String(nextValue);
@@ -38,31 +37,6 @@ export function percentToValue(percent: number, min: number, max: number) {
 export function roundValueToStep(value: number, step: number) {
   const nextValue = Math.round(value / step) * step;
   const precision = calculatePrecision(step);
-  return roundToPrecision(nextValue, precision);
-}
-
-interface StepValue {
-  value: number;
-  stepBy: number;
-  noOfSteps: number;
-  precision: number;
-  constrain: boolean;
-  min: number;
-  max: number;
-}
-
-export function stepValue({
-  value,
-  stepBy,
-  noOfSteps = 1,
-  precision,
-  constrain,
-  min,
-  max,
-}: StepValue) {
-  const step = stepBy * noOfSteps;
-  let nextValue = toNumber(value + step);
-  if (constrain) nextValue = constrainValue(nextValue, min, max);
   return roundToPrecision(nextValue, precision);
 }
 

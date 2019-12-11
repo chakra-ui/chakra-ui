@@ -1,5 +1,6 @@
 import * as React from "react";
 import { SelectionAction, SelectionState } from "../useSelection/reducer";
+import useIsomorphicEffect from "../useIsomorphicEffect";
 
 function useOpenEffect(
   state: SelectionState,
@@ -7,7 +8,7 @@ function useOpenEffect(
   isOpen: boolean,
   prevIsOpen: boolean,
 ) {
-  React.useLayoutEffect(() => {
+  useIsomorphicEffect(() => {
     if (prevIsOpen && !isOpen) {
       return dispatch({ type: "RESET", action: "highlighted" });
     }

@@ -49,6 +49,8 @@ function useRapidKeydown() {
     }
   };
 
+
+  //@ts-ignore
   return [onKeyDown, keys.join("")] as const;
 }
 

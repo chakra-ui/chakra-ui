@@ -1,6 +1,9 @@
 import * as React from "react";
 
-type ReactRef<T> = React.Ref<T> | React.MutableRefObject<T>;
+type ReactRef<T> =
+  | React.Ref<T>
+  | React.RefObject<T>
+  | React.MutableRefObject<T>;
 
 export function assignRef<T = any>(ref: ReactRef<T>, value: T) {
   if (ref == null) return;
@@ -15,15 +18,17 @@ export function assignRef<T = any>(ref: ReactRef<T>, value: T) {
   }
 }
 
-export function useForkRef<T>(...refs: (ReactRef<T>)[]) {
+export function useForkRef<T>(...refs: (ReactRef<T> | undefined)[]) {
   return React.useMemo(() => {
     if (refs.every(ref => ref == null)) {
       return null;
     }
     return (node: T) => {
       refs.forEach(ref => {
-        assignRef(ref, node);
+        if (ref) assignRef(ref, node);
       });
     };
   }, refs);
 }
+
+export default useForkRef;

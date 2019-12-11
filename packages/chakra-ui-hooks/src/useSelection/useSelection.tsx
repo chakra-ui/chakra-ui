@@ -1,8 +1,8 @@
-import useId from "../useId";
+import constate from "constate";
 import * as React from "react";
-import { Item, reducer, State, EventMeta } from "./reducer";
-import createCtx from "../useCreateContext";
-import { useDeepCompareMemo } from "use-deep-compare";
+import useId from "../useId";
+import useIsomorphicEffect from "../useIsomorphicEffect";
+import { EventMeta, Item, reducer, State } from "./reducer";
 
 export interface SelectionActions {
   /**
@@ -177,30 +177,19 @@ export function useSelectionItem(
   const isHighlighted = highlightedItem ? highlightedItem.id === id : false;
   const isSelected = selectedItem ? selectedItem.id === id : false;
 
-  const newItem = { id, ref, value };
+  const item = React.useMemo(() => ({ id, ref, value }), [id, ref, value]);
 
-  React.useLayoutEffect(() => {
+  useIsomorphicEffect(() => {
     if (isDisabled && !isFocusable) return;
-    register(newItem);
+    register(item);
     return () => {
       unregister(id);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDisabled, isFocusable]);
 
-  return { item: newItem, isHighlighted, isSelected };
+  return { item, isHighlighted, isSelected };
 }
 
-const [useSelection, SelectionCtxProvider] = createCtx<
-  ReturnType<typeof useSelectionState>
->();
-
-function SelectionProvider({ children, ...props }: any) {
-  const selection = useSelectionState(props);
-  const context = useDeepCompareMemo(() => selection, [selection]);
-
-  return (
-    <SelectionCtxProvider value={context}>{children}</SelectionCtxProvider>
-  );
-}
+const [SelectionProvider, useSelection] = constate(useSelectionState);
 export { useSelection, SelectionProvider };

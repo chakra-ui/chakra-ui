@@ -30,8 +30,6 @@ function useLockBodyScroll(
     options.allowTouchMove,
     options.preserveScrollBarGap,
   ]);
-
-  return ref;
 }
 
 export default useLockBodyScroll;
