@@ -7,7 +7,7 @@ import ControlBox from "../ControlBox";
 import Icon from "../Icon";
 import VisuallyHidden from "../VisuallyHidden";
 import useCheckboxStyle from "./styles";
-import { useForkRef } from "../utils";
+import { useForkRef, useVariantColorWarning } from "../utils";
 
 const Checkbox = forwardRef(
   (
@@ -36,6 +36,10 @@ const Checkbox = forwardRef(
     },
     ref,
   ) => {
+    // Wrong usage of `variantColor` prop is quite common
+    // Let's add a warning hook that validates the passed variantColor
+    useVariantColorWarning("Checkbox", variantColor);
+
     const { colorMode } = useColorMode();
     const styleProps = useCheckboxStyle({
       color: variantColor,

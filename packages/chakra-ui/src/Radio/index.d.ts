@@ -1,6 +1,5 @@
 import * as React from "react";
 import { BoxProps } from "../Box";
-import { VariantColor } from "../theme";
 
 import { Omit } from "../common-types";
 
@@ -28,10 +27,12 @@ export interface IRadio {
    */
   "aria-labelledby"?: string;
   /**
-   * The color of the radio when it's checked.
-   * This should be one of the color keys in the theme (e.g."green", "red")
+   * The color scheme of the radio.
+   *
+   * 🚨Note: This should be one of the color keys in the theme that has `100` - `900` color values (e.g.`green`, `red`).
+   * @see http://chakra-ui.com/theme#colors
    */
-  variantColor?: VariantColor | string;
+  variantColor?: string;
   /**
    * If `true`, the radio will be initially checked.
    */

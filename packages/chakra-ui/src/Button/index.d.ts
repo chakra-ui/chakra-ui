@@ -13,9 +13,10 @@ export interface IButton {
    */
   isLoading?: boolean;
   /**
-   * The color scheme of the button vaint. Use the color keys passed in `theme.colors`.
-   * @example
-   * variantColor = "green" | "purple" | "orange"
+   * The color scheme of the button.
+   *
+   * 🚨Note: This should be one of the color keys in the theme that has `100` - `900` color values (e.g.`green`, `red`).
+   * @see http://chakra-ui.com/theme#colors
    */
   variantColor?: string;
   /**

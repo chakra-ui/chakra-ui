@@ -11,7 +11,7 @@ import {
   isValidElement,
 } from "react";
 import { useId } from "@reach/auto-id";
-import { assignRef } from "../utils";
+import { assignRef, useVariantColorWarning } from "../utils";
 import { useTabStyle, useTabListStyle } from "./styles";
 import PseudoBox from "../PseudoBox";
 import Flex from "../Flex";
@@ -228,6 +228,10 @@ const Tabs = forwardRef(
     },
     ref,
   ) => {
+    // Wrong usage of `variantColor` prop is quite common
+    // Let's add a warning hook that validates the passed variantColor
+    useVariantColorWarning("Tabs", variantColor);
+
     const { current: isControlled } = useRef(controlledIndex != null);
     const selectedPanelRef = useRef();
 

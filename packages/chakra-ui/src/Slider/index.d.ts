@@ -2,7 +2,6 @@ import { PseudoBoxProps } from "../PseudoBox";
 import * as React from "react";
 import { BoxProps } from "../Box";
 import { Omit } from "../common-types";
-import { VariantColor } from "../theme";
 
 interface ISlider {
   value?: number;
@@ -17,7 +16,13 @@ interface ISlider {
   orientation?: "horizontal" | "vertical";
   getAriaValueText?: (value: number) => string;
   size?: "sm" | "md" | "lg";
-  color?: VariantColor | string;
+  /**
+   * The color of the slider track
+   *
+   * 🚨Note: This should be one of the color keys in the theme that has `100` - `900` color values (e.g.`green`, `red`).
+   * @see http://chakra-ui.com/theme#colors
+   */
+  color?: string;
   name?: string;
   id?: string;
   onChange?: (newValue: number) => void;

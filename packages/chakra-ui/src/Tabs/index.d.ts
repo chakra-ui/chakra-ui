@@ -2,7 +2,6 @@ import * as React from "react";
 import { BoxProps } from "../Box";
 import { FlexProps } from "../Flex";
 import { PseudoBoxProps } from "../PseudoBox";
-import { VariantColor } from "../theme";
 import { Omit } from "../common-types";
 
 export interface ITabs {
@@ -58,10 +57,11 @@ export interface ITabs {
   defaultIndex?: number;
   /**
    * The color scheme of the tabs
-   * Value should be the key of the colors in the theme object.
-   * @example "blue" | "green" | "yellow"
+   *
+   * 🚨Note: This should be one of the color keys in the theme that has `100` - `900` color values (e.g.`green`, `red`).
+   * @see http://chakra-ui.com/theme#colors
    */
-  variantColor?: VariantColor;
+  variantColor?: string;
 }
 
 export type TabsProps = ITabs & Omit<BoxProps, "onChange" | "size">;

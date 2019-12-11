@@ -6,6 +6,7 @@ import { useColorMode } from "../ColorModeProvider";
 import VisuallyHidden from "../VisuallyHidden";
 import useCheckboxStyle from "../Checkbox/styles";
 import Box from "../Box";
+import { useVariantColorWarning } from "../utils";
 
 const Radio = forwardRef(
   (
@@ -30,6 +31,10 @@ const Radio = forwardRef(
     },
     ref,
   ) => {
+    // Wrong usage of `variantColor` prop is quite common
+    // Let's add a warning hook that validates the passed variantColor
+    useVariantColorWarning("Radio", variantColor);
+
     const { colorMode } = useColorMode();
     const styleProps = useCheckboxStyle({
       color: variantColor,

@@ -17,7 +17,7 @@ stories.addDecorator(story => {
 
 stories.add("variants", () => (
   <ButtonGroup spacing="24px">
-    <Button variantColor="teal" variant="solid">
+    <Button variantColor="black" variant="solid">
       Button
     </Button>
     <Button variantColor="teal" variant="outline">

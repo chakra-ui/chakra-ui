@@ -1,7 +1,6 @@
 import * as React from "react";
 import { BoxProps } from "../Box";
 import { Omit } from "../common-types";
-import { VariantColor } from "../theme";
 
 export interface ICheckbox {
   /**
@@ -19,10 +18,12 @@ export interface ICheckbox {
    */
   value?: string | number;
   /**
-   * The color of the checkbox when it's checked.
-   * This should be one of the color keys in the theme (e.g."green", "red")
+   * The color scheme of the checkbox.
+   *
+   * 🚨Note: This should be one of the color keys in the theme that has `100` - `900` color values (e.g.`green`, `red`).
+   * @see http://chakra-ui.com/theme#colors
    */
-  variantColor?: VariantColor | string;
+  variantColor?: string;
   /**
    * If `true`, the checkbox will be initially checked.
    */

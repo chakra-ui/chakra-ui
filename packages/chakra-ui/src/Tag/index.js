@@ -4,6 +4,7 @@ import useBadgeStyle from "../Badge/styles";
 import Icon from "../Icon";
 import Box from "../Box";
 import PseudoBox from "../PseudoBox";
+import { useVariantColorWarning } from "../utils";
 
 const tagSizes = {
   sm: {
@@ -93,6 +94,7 @@ const Tag = ({
   variantColor = "gray",
   ...rest
 }) => {
+  useVariantColorWarning("Tag", variantColor);
   const styleProps = useBadgeStyle({ color: variantColor, variant });
   const sizeProps = tagSizes[size];
 

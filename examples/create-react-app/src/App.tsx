@@ -1,14 +1,12 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { ThemeProvider, Box } from "@chakra-ui/core";
+import { ThemeProvider, Box, Checkbox } from "@chakra-ui/core";
 import styled from "@emotion/styled";
 
 interface Props {
   as?: string;
 }
-
-const SampleBox: React.FC<Props> = styled.div``;
 
 const App: React.FC = () => {
   return (
@@ -20,6 +18,7 @@ const App: React.FC = () => {
           <p>
             Edit <code>src/App.tsx</code> and save to reload.
           </p>
+          <Checkbox variantColor="red" />
           <a
             className="App-link"
             href="https://reactjs.org"

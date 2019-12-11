@@ -6,6 +6,7 @@ import Spinner from "../Spinner";
 import useButtonStyle from "./styles";
 import PseudoBox from "../PseudoBox";
 import Box from "../Box";
+import { useVariantColorWarning } from "../utils";
 
 const ButtonIcon = ({ icon, ...props }) => {
   if (typeof icon === "string") {
@@ -46,6 +47,10 @@ const Button = forwardRef(
     },
     ref,
   ) => {
+    // Wrong usage of `variantColor` prop is quite common
+    // Let's add a warning hook that validates the passed variantColor
+    useVariantColorWarning("Button", variantColor);
+
     const buttonStyleProps = useButtonStyle({
       color: variantColor,
       variant,

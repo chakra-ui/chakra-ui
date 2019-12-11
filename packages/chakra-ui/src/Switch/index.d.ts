@@ -1,7 +1,6 @@
 import { BoxProps } from "../Box";
 import * as React from "react";
 import { Omit } from "../common-types";
-import { VariantColor } from "../theme";
 
 export interface ISwitch {
   /**
@@ -10,8 +9,11 @@ export interface ISwitch {
   size?: "sm" | "md" | "lg";
   /**
    * The background color of the switch when checked
+   *
+   * 🚨Note: This should be one of the color keys in the theme that has `100` - `900` color values (e.g.`green`, `red`).
+   * @see http://chakra-ui.com/theme#colors
    */
-  color?: VariantColor;
+  color?: string;
   /**
    * The input name of the switch when used in a form
    */
