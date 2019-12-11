@@ -21,7 +21,8 @@ interface IIcon {
    */
   role?: "presentation" | "img";
   /**
-   * Denotes whether the icon is an interactive element or only used for presentation.
+   * If `false`, it means the icon is used within interactive
+   * element and won't be focuable.
    */
   focusable?: boolean;
 }
