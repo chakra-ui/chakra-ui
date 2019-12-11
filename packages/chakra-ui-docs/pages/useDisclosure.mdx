@@ -14,12 +14,12 @@ import { useDisclosure } from "@chakra-ui/core";
 
 The `useDisclosure` hook returns an object with the following fields:
 
-| Name       | Type       | Default | Description                                                         |
-| ---------- | ---------- | ------- | ------------------------------------------------------------------- |
-| `isOpen`   | `boolean`  | `false` | If `true` set the controlled component to it's visible state.       |
-| `onClose`  | `function` |         | Callback function to set a falsy value for the `isOpen` parameter.  |
-| `onOpen`   | `function` |         | Callback function to set a truthy value for the `isOpen` parameter. |
-| `onToggle` | `function` |         | Callback function to toggle the value of the `isOpen` parameter.    |
+| Name       | Type       | Default | Description                                               |
+| ---------- | ---------- | ------- | --------------------------------------------------------- |
+| `isOpen`   | `boolean`  | `false` | If `true`, it sets the component to it's visible state.   |
+| `onClose`  | `function` |         | Function that sets `isOpen` to `false`.                   |
+| `onOpen`   | `function` |         | Function that sets `isOpen` to `true`.                    |
+| `onToggle` | `function` |         | Function that toggles `isOpen` between `true` and `false` |
 
 ## Usage
 

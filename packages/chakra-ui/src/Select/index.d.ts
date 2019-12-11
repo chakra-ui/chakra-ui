@@ -43,9 +43,21 @@ export type SelectProps = ISelect & {
    */
   placeholder?: string;
   /**
-   * The icon component to render
+   * The icon component to render.
+   * You can use an icon in Chakra or pass a custom icon
+   * from libraries like `react-icons`
+   *
+   * @example
+   * ```jsx
+   * <Select icon="arrow-down" />
+   * <Select icon={MdArrowDownward} />
+   * ```
    */
-  icon?: JSX.Element;
+  icon?: string | React.ElementType;
+  /**
+   * The size of the icon
+   */
+  iconSize?: BoxProps["size"];
 };
 
 declare const Select: React.FC<SelectProps>;

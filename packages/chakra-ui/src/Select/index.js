@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import Icon from "../Icon";
 import { forwardRef } from "react";
 import Input from "../Input";
 import { useColorMode } from "../ColorModeProvider";
 import Box from "../Box";
 import splitProps from "./utils";
+import Icon from "../Icon/custom";
 
 const SelectIconWrapper = forwardRef(function SelectIconWrapper(props, ref) {
   return (
@@ -47,28 +47,24 @@ const SelectInput = forwardRef(function SelectInput(
   );
 });
 
-const Select = forwardRef(({ rootProps, icon, ...props }, ref) => {
-  const { colorMode } = useColorMode();
-  const color = colorMode === "dark" ? "whiteAlpha.800" : "inherit";
-  const opacity = props.isReadOnly || props.isDisabled ? 0.5 : null;
+const Select = forwardRef(
+  ({ rootProps, icon, iconSize = 5, ...props }, ref) => {
+    const { colorMode } = useColorMode();
+    const color = colorMode === "dark" ? "whiteAlpha.800" : "inherit";
+    const opacity = props.isReadOnly || props.isDisabled ? 0.5 : null;
 
-  const [root, select] = splitProps(props);
+    const [root, select] = splitProps(props);
 
-  return (
-    <Box
-      position="relative"
-      width="100%"
-      color={color}
-      {...root}
-      {...rootProps}
-    >
-      <SelectInput ref={ref} {...select} />
-      <SelectIconWrapper opacity={opacity}>
-        {icon || <Icon name="chevron-down" color="currentColor" size="20px" />}
-      </SelectIconWrapper>
-    </Box>
-  );
-});
+    return (
+      <Box position="relative" width="100%" {...root} {...rootProps}>
+        <SelectInput ref={ref} color={color} {...select} />
+        <SelectIconWrapper opacity={opacity} color={select.color || color}>
+          <Icon icon={icon || "chevron-down"} size={iconSize} />
+        </SelectIconWrapper>
+      </Box>
+    );
+  },
+);
 
 Select.displayName = "Select";
 

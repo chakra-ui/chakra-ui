@@ -36,6 +36,7 @@ const components = [
   "PseudoBox",
   "Radio",
   "SimpleGrid",
+  "Select",
   "Slider",
   "Spinner",
   "Stat",
