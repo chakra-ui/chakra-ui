@@ -38,7 +38,9 @@ it("should render default avatar if name is not provided and image didn't load",
     fireEvent.error(image);
   }
 
-  expect(queryByTestId("DefaultAvatar")).toBeInTheDocument();
+  expect(
+    container.querySelector('div[aria-label="default-avatar"]'),
+  ).toBeInTheDocument();
 });
 
 it("should display a badge near the avatar", () => {

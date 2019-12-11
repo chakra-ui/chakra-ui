@@ -94,7 +94,6 @@ const Spinner = forwardRef(function Spinner(
       color={color}
       animation={`${spin} ${speed} linear infinite`}
       size={_size}
-      data-testid="Spinner"
       {...props}
     >
       {label && <VisuallyHidden>{label}</VisuallyHidden>}

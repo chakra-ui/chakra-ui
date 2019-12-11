@@ -90,7 +90,7 @@ const AvatarName = ({ name, ...props }: AvatarNameProps) => {
 };
 
 const DefaultAvatar = (props: BoxProps) => (
-  <Box size="100%" data-testid="DefaultAvatar" {...props}>
+  <Box size="100%" {...props}>
     <svg fill="#fff" viewBox="0 0 128 128" role="img">
       <g>
         <path d="M103,102.1388 C93.094,111.92 79.3504,118 64.1638,118 C48.8056,118 34.9294,111.768 25,101.7892 L25,95.2 C25,86.8096 31.981,80 40.6,80 L87.4,80 C96.019,80 103,86.8096 103,95.2 L103,102.1388 Z" />

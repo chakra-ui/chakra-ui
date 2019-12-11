@@ -11,7 +11,7 @@ interface Status {
   color: keyof Theme["colors"];
 }
 
-interface Statuses {
+export interface Statuses {
   info: Status;
   warning: Status;
   success: Status;
@@ -97,7 +97,6 @@ const AlertIcon = (props: IconProps) => {
       mr={3}
       size={5}
       name={iconName}
-      data-testid={`icon-${iconName}`}
       {...iconStyleProps}
       {...props}
     />
