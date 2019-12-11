@@ -150,6 +150,8 @@ export const variantStyle = props => {
       return softRoundedStyle(props);
     case "solid-rounded":
       return solidRoundedStyle(props);
+    case "unstyled":
+      return {};
     default:
       break;
   }

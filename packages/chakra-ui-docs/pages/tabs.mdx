@@ -1,3 +1,10 @@
+import SEO from "../components/SEO";
+
+<SEO
+  title="Tabs"
+  description="An accessible Tabs component for your application"
+/>
+
 # Tabs
 
 An accessible tabs component.
@@ -13,10 +20,13 @@ composition.
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/core";
 ```
 
-## Tabs
+## Usage
 
-You can render any other elements you want inside of Tabs, but TabList should
-only render Tab elements, and TabPanels should only render TabPanel elements.
+You can render any element within `Tabs`, but `TabList` should only have `Tab`
+as children, and `TabPanels` should have `TabPanel` as children.
+
+Tabs expects `TabList` and `TabPanels` as children. The order doesn't matter,
+you can have tabs at the top, at the bottom, or both.
 
 ```jsx
 <Tabs>
@@ -40,15 +50,10 @@ only render Tab elements, and TabPanels should only render TabPanel elements.
 </Tabs>
 ```
 
-Tabs expects `TabList` and `TabPanels` as children. The order doesn't matter,
-you can have tabs on the top or the bottom. In fact, you could have tabs on both
-the bottom and the top at the same time. You can have random elements inside as
-well.
-
-## Tab variants and color
+### Tab variants and color
 
 Tabs come in 6 different variants to style the tabs: `line`,`enclosed`,
-`enclosed-colored`, `soft-rounded`, `solid-rounded`
+`enclosed-colored`, `soft-rounded`, `solid-rounded`, `unstyled`
 
 ```jsx
 <Tabs variant="enclosed">
@@ -67,25 +72,17 @@ Tabs come in 6 different variants to style the tabs: `line`,`enclosed`,
 </Tabs>
 ```
 
-## Manually Activated Tabs
+You can also change the color for any specific variant by passing the
+`variantColor`.
 
-By default, `Tabs` are activated automatically. This means when you use the
-arrow keys to change tabs, the tab is activated and focused.
-
-The content of a `TabPanel` should ideally be preloaded. However, if switching
-to a tab panel causes a network request and possibly a page refresh, there might
-be some notable latency and this might affect the experience for keyboard and
-screen reader users.
-
-In this scenario, you should use a manually activated tab, it moves focus
-without activating the tabs. With focus on a specifc tab, users can activate a
-tab by pressing <kbd>Space</kbd> or <kbd>Enter</kbd>.
+> The value of `variantColor` must exist in the theme object, and must be a key
+> in `theme.colors` that has the `100` - `900` color values.
 
 ```jsx
-<Tabs isManual variant="enclosed">
+<Tabs variant="soft-rounded" variantColor="green">
   <TabList>
-    <Tab>One</Tab>
-    <Tab>Two</Tab>
+    <Tab>Tab 1</Tab>
+    <Tab>Tab 2</Tab>
   </TabList>
   <TabPanels>
     <TabPanel>
@@ -98,7 +95,7 @@ tab by pressing <kbd>Space</kbd> or <kbd>Enter</kbd>.
 </Tabs>
 ```
 
-## Tab sizes
+### Tab sizes
 
 You can change the size of the tab by passing `size` prop. We support 3 sizes
 `sm`, `md`, `lg`
@@ -120,7 +117,7 @@ You can change the size of the tab by passing `size` prop. We support 3 sizes
 </Tabs>
 ```
 
-## Tab alignment
+### Change the tabs alignment
 
 You can change the alignment of the `TabList` by passing `align` prop. We
 support 3 sizes `start`, `center`, `end`.
@@ -142,7 +139,7 @@ support 3 sizes `start`, `center`, `end`.
 </Tabs>
 ```
 
-## Fitted Tabs
+### Fitted Tabs
 
 Stretch the tab list to fit the container by passing `isFitted` prop.
 
@@ -163,10 +160,33 @@ Stretch the tab list to fit the container by passing `isFitted` prop.
 </Tabs>
 ```
 
+### Styling the tab states manually
+
+In event you need to create custom styles for the tabs. Simply set the variant
+to `unstyled`, and use the `_selected`, `_hover`, `_active` style props.
+
+```jsx
+<Tabs variant="unstyled">
+  <TabList>
+    <Tab _selected={{ color: "white", bg: "blue.500" }}>Tab 1</Tab>
+    <Tab _selected={{ color: "white", bg: "green.400" }}>Tab 2</Tab>
+  </TabList>
+  <TabPanels>
+    <TabPanel>
+      <p>one!</p>
+    </TabPanel>
+    <TabPanel>
+      <p>two!</p>
+    </TabPanel>
+  </TabPanels>
+</Tabs>
+```
+
 ### Tabs onChange
 
-Calls back with the tab index whenever the user changes tabs, allowing your app
-to synchronize with it.
+The `onChange` callback returns the active tab's index whenever the user changes
+tabs. If you intend to control the tabs programmatically, use this with the
+`index` prop.
 
 ```jsx
 function Example() {
@@ -190,9 +210,10 @@ function Example() {
 }
 ```
 
-### Tabs defaultIndex
+### Make a tab initally active
 
-Starts the tabs at a specific index.
+If you want a tab to be initially active, simply pass the `defaultIndex` prop
+and set it to the index of that tab.
 
 ```jsx
 <Tabs defaultIndex={1}>
@@ -219,7 +240,62 @@ Starts the tabs at a specific index.
 </Tabs>
 ```
 
-### Tabs Index
+### Make a Tab disabled
+
+When a `Tab` is disabled, it's skipped during keyboard navigation and it's not
+clickable.
+
+```jsx
+function Example() {
+  return (
+    <Tabs>
+      <TabList>
+        <Tab>One</Tab>
+        <Tab isDisabled>Two</Tab>
+        <Tab>Three</Tab>
+      </TabList>
+      <TabPanels>
+        <TabPanel>1</TabPanel>
+        <TabPanel>2</TabPanel>
+        <TabPanel>3</TabPanel>
+      </TabPanels>
+    </Tabs>
+  );
+}
+```
+
+### Manually Activated Tabs
+
+By default, `Tabs` are activated automatically. This means when you use the
+arrow keys to change tabs, the tab is activated and focused.
+
+> The content of a `TabPanel` should ideally be preloaded. However, if switching
+> to a tab panel causes a network request and possibly a page refresh, there
+> might be some notable latency and this might affect the experience for
+> keyboard and screen reader users.
+
+In this scenario, you should use a manually activated tab, it moves focus
+without activating the tabs. With focus on a specifc tab, users can activate a
+tab by pressing <kbd>Space</kbd> or <kbd>Enter</kbd>.
+
+```jsx
+<Tabs isManual variant="enclosed">
+  <TabList>
+    <Tab>One</Tab>
+    <Tab>Two</Tab>
+  </TabList>
+  <TabPanels>
+    <TabPanel>
+      <p>one!</p>
+    </TabPanel>
+    <TabPanel>
+      <p>two!</p>
+    </TabPanel>
+  </TabPanels>
+</Tabs>
+```
+
+### Controlled Tabs
 
 Like form inputs, a tab's state can be controlled. Make sure to include an
 onChange as well, or else the tabs will not be interactive.
@@ -269,7 +345,7 @@ function ControlledExample() {
 }
 ```
 
-### Tab isSelected
+### Creating custom tab components
 
 Because `TabList` needs to know the order of the children, we use `cloneElement`
 to pass state internally. If you want to know if a tab is active, you can wrap
@@ -302,31 +378,7 @@ function CoolTabsExample() {
 }
 ```
 
-### Tab isDisabled
-
-When a `Tab` is disabled, it's skipped from the keyboard navigations and not
-clickable.
-
-```jsx
-function Example() {
-  return (
-    <Tabs>
-      <TabList>
-        <Tab>One</Tab>
-        <Tab isDisabled>Two</Tab>
-        <Tab>Three</Tab>
-      </TabList>
-      <TabPanels>
-        <TabPanel>1</TabPanel>
-        <TabPanel>2</TabPanel>
-        <TabPanel>3</TabPanel>
-      </TabPanels>
-    </Tabs>
-  );
-}
-```
-
-### DataTabs
+### Data Tabs
 
 If you'd like to drive your tabs with an array instead of using the granular
 components, you can create your own DataTabs component.
@@ -395,3 +447,28 @@ function Example() {
 |           | `aria-orientation` | Set to vertical or horizontal based on the value of the `orientation` prop. |
 |           | `role="tablist"`   | Indicates that it's a tablist                                               |
 |           | `aria-labelledby`  | Set to the `id` of the `Tab` that labels the `TabPanel`.                    |
+
+## Props
+
+### Tabs Props
+
+Tabs composes `Box` so you call pass all `Box` related props.
+
+| Name           | Type                                                                              | Default      | Description                                                                                                                     |
+| -------------- | --------------------------------------------------------------------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------- |
+| `onChange`     | `(index: number) => void`                                                         |              | The callback to update the active tab index.                                                                                    |
+| `index`        | `number`                                                                          |              | The controlled index of the tabs.                                                                                               |
+| `defaultIndex` | `number`                                                                          |              | The index of the initial active tab.                                                                                            |
+| `isManual`     | `boolean`                                                                         |              | If `true`, keyboard navigation changes focus between tabs but doens't activate it. User will have to press `Enter` to active it |
+| `children`     | `React.ReactNode`                                                                 |              | The children of the switch.                                                                                                     |
+| `variant`      | `line`,`enclosed`,`enclosed-colored`, `soft-rounded`, `solid-rounded`, `unstyled` | `line`       | The visual style of the tab.                                                                                                    |
+| `variantColor` | `string`                                                                          |              | The primary color to use for the selected variant. Use a color key in `theme.colors`                                            |
+| `size`         | `sm`, `md`, `lg`                                                                  | `md`         | The visual size of the tabs                                                                                                     |
+| `orientation`  | `horizontal`, `vertical`                                                          | `horizontal` | The orientation of the tabs                                                                                                     |
+| `isFitted`     | `boolean`                                                                         |              | If `true`, the tabs will stretch to fill the available space                                                                    |
+
+### Tab Props
+
+| Name         | Type      | Default | Description                         |
+| ------------ | --------- | ------- | ----------------------------------- |
+| `isDisabled` | `boolean` |         | If `true`, the tab will be disabled |

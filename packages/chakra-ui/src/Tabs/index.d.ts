@@ -18,7 +18,8 @@ export interface ITabs {
     | "enclosed"
     | "enclosed-colored"
     | "soft-rounded"
-    | "solid-rounded";
+    | "solid-rounded"
+    | "unstyled";
   /**
    * If `true`, tabs will stretch to width of the tablist.
    */
