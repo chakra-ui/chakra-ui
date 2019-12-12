@@ -66,7 +66,7 @@ const CSSReset = ({ config }) => {
     `;
   };
 
-  return <Global styles={theme => css([preflight, configCSS(theme)])} />;
+  return <Global styles={theme => css([preflight(theme), configCSS(theme)])} />;
 };
 
 export default CSSReset;

@@ -1,6 +1,6 @@
 import { css } from "@emotion/core";
 
-const tailwindPreflight = css`
+const tailwindPreflight = theme => css`
   html {
     line-height: 1.15;
     -webkit-text-size-adjust: 100%;
@@ -216,9 +216,7 @@ const tailwindPreflight = css`
   }
 
   html {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
-      "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-family: ${theme.fonts.body};
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -webkit-text-size-adjust: 100%;
@@ -279,8 +277,7 @@ const tailwindPreflight = css`
   code,
   kbd,
   samp {
-    font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
-      monospace;
+    font-family: ${theme.fonts.mono};
   }
 
   img,
