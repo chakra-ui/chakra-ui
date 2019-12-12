@@ -39,7 +39,9 @@ This shortcut is an alternative to writing media queries out by hand. Given the
 following:
 
 ```jsx live=false
-<Box width={[1, 1 / 2, 1 / 4]} />
+<Box width={['100%', 1 / 2, 1 / 4]} />
+or
+<Box width={['100%', 0.5, 0.25]} />
 ```
 
 It'll generate a CSS that looks like this
@@ -61,6 +63,8 @@ It'll generate a CSS that looks like this
   }
 }
 ```
+
+___NOTE___: In the shortcut example `'100%'` is used instead of `1` because in the default Chakra UI theme, `theme.sizes[1] = 0.25rem`. This means that using a prop like `width={1}` will render a width of 4px and not `'100%'`
 
 The equivalent of this style if you passed it as an object.
 
