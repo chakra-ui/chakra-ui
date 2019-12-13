@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.1](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/core@0.5.0...@chakra-ui/core@0.5.1) (2019-12-13)
+
+### Bug Fixes
+
+- export SimpleGrid component
+  ([ecdca25](https://github.com/chakra-ui/chakra-ui/commit/ecdca25c1a72ba31fa93c39b4ad2891bfbcebc02))
+- resolve types for variantColor
+  ([9a0030c](https://github.com/chakra-ui/chakra-ui/commit/9a0030ce1ad61ffbefe4888f923c9b85253752bd))
+- **numberinput:** fix bugs and improve types for onChange and value
+  ([e3e3453](https://github.com/chakra-ui/chakra-ui/commit/e3e3453e495fae9f9d5f38a8b8bca0e4f33e6f9e))
+- **types:** change listitem types to use pseudobox props
+  ([615ebcc](https://github.com/chakra-ui/chakra-ui/commit/615ebcc9f516747c425e7fc84d45c6787f0ebbdb))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [0.5.0](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/core@0.4.1...@chakra-ui/core@0.5.0) (2019-12-03)
 
 ### Bug Fixes
