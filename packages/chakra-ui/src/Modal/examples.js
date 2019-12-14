@@ -17,6 +17,7 @@ import {
 } from ".";
 import Lorem from "react-lorem-component";
 import { SlideIn, Scale } from "../Transition";
+import useDisclosure from "../useDisclosure";
 
 const stories = storiesOf("Modal", module);
 stories.addDecorator(story => {
@@ -356,3 +357,46 @@ stories.add("initial and final focus ref", () => {
 
   return <InitialFocus />;
 });
+
+function App() {
+  let { isOpen, onOpen, onClose } = useDisclosure();
+  let [firstName, setFirstName] = useState();
+  let [lastName, setLastName] = useState();
+
+  return (
+    <>
+      <Button onClick={onOpen}>Open Modal</Button>
+
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Test</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <FormControl isRequired>
+              <FormLabel htmlFor="firstName">First Name</FormLabel>
+              <Input
+                name="firstName"
+                value={firstName}
+                onChange={event => setFirstName(event.target.value)}
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel htmlFor="lastName">Last Name</FormLabel>
+              <Input
+                name="lastName"
+                value={lastName}
+                onChange={event => setLastName(event.target.value)}
+              />
+            </FormControl>
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={onClose}>Close</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
+  );
+}
+
+stories.add("bug", () => <App />);

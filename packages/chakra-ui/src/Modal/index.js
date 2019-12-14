@@ -4,6 +4,7 @@ import React, {
   createContext,
   useContext,
   forwardRef,
+  useCallback,
 } from "react";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import FocusLock from "react-focus-lock/dist/cjs";
@@ -160,32 +161,34 @@ const Modal = ({
     addAriaDescribedby,
   };
 
-  if (!isOpen) {
-    return null;
-  }
+  const activateFocusLock = useCallback(() => {
+    if (initialFocusRef && initialFocusRef.current) {
+      initialFocusRef.current.focus();
+    } else {
+      if (contentRef.current) {
+        let focusables = getFocusables(contentRef.current);
+        if (focusables.length === 0) {
+          contentRef.current.focus();
+        }
+      }
+    }
+  }, [initialFocusRef]);
+
+  const deactivateFocusLock = useCallback(() => {
+    if (finalFocusRef && finalFocusRef.current) {
+      finalFocusRef.current.focus();
+    }
+  }, [finalFocusRef]);
+
+  if (!isOpen) return null;
 
   return (
     <ModalContext.Provider value={context}>
       <Portal container={mountRef.current}>
         <FocusLock
           returnFocus={returnFocusOnClose && !finalFocusRef}
-          onActivation={() => {
-            if (initialFocusRef && initialFocusRef.current) {
-              initialFocusRef.current.focus();
-            } else {
-              if (contentRef.current) {
-                let focusables = getFocusables(contentRef.current);
-                if (focusables.length === 0) {
-                  contentRef.current.focus();
-                }
-              }
-            }
-          }}
-          onDeactivation={() => {
-            if (finalFocusRef && finalFocusRef.current) {
-              finalFocusRef.current.focus();
-            }
-          }}
+          onActivation={activateFocusLock}
+          onDeactivation={deactivateFocusLock}
         >
           {children}
         </FocusLock>
@@ -207,6 +210,9 @@ const ModalOverlay = React.forwardRef((props, ref) => {
       h="100vh"
       ref={ref}
       zIndex="overlay"
+      onClick={wrapEvent(props.onClick, event => {
+        event.stopPropagation();
+      })}
       {...props}
     />
   );
@@ -325,7 +331,7 @@ const ModalContent = React.forwardRef(
         <Box
           ref={_contentRef}
           as="section"
-          // role="dialog"
+          role="dialog"
           aria-modal="true"
           tabIndex={-1}
           outline={0}

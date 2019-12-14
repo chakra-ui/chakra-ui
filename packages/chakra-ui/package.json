@@ -30,7 +30,7 @@
     "popper.js": "^1.15.0",
     "pretty-num": "0.3.0",
     "react-animate-height": "2.0.9",
-    "react-focus-lock": "2.1.0",
+    "react-focus-lock": "^2.2.1",
     "react-spring": "^8.0.27",
     "styled-system": "5.0.5",
     "toasted-notes": "3.0.0",
