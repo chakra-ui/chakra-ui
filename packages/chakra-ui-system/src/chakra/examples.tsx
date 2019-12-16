@@ -2,7 +2,7 @@ import { theme } from "@chakra-ui/theme";
 import { ThemeContext } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
-import chakra from ".";
+import chakra from "./chakra";
 
 const stories = storiesOf("chakra", module);
 
