@@ -5,8 +5,8 @@
   "compilerOptions": {
     "noImplicitAny": true,
     "rootDir": "./",
-    // "baseUrl": "./",
     "typeRoots": ["../../node_modules/@types", "@types"],
+    "baseUrl": ".",
     "paths": {
       "*": ["src/*", "node_modules/*"]
     }

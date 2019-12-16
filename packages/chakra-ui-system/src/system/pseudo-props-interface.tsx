@@ -1,31 +1,4 @@
-import { SystemProps } from "./system-props";
-import css from "@styled-system/css";
-import { transformAliasProps as tx } from "./system-config";
-
-const PseudoSelectors = {
-  hover: "&:hover, &[data-hover=true]",
-  active: "&:active, &[data-active=true]",
-  focus: "&:focus, &[data-focus=true]",
-  loading: "&[data-loading=true], &[aria-busy=true]",
-  visited: "&:visited",
-  even: "&:nth-of-type(even)",
-  odd: "&:nth-of-type(odd)",
-  disabled:
-    "&:disabled, &:disabled:focus, &:disabled:hover, &[aria-disabled=true], &[aria-disabled=true]:focus, &[aria-disabled=true]:hover",
-  checked: "&[aria-checked=true]",
-  mixed: "&[aria-checked=mixed]",
-  selected: "&[aria-selected=true], &[data-selected=true]",
-  invalid: "&[aria-invalid=true]",
-  pressed: "&[aria-pressed=true]",
-  readOnly: "&[aria-readonly=true], &[readonly]",
-  first: "&:first-of-type",
-  last: "&:last-of-type",
-  expanded: "&[aria-expanded=true]",
-  grabbed: "&[aria-grabbed=true]",
-  notFirst: "&:not(:first-of-type)",
-  notLast: "&:not(:last-of-type)",
-  groupHover: "[role=group]:hover &",
-};
+import { SystemProps } from "./system-props-interface";
 
 export interface PseudoProps {
   /**
@@ -159,32 +132,3 @@ export interface PseudoProps {
    */
   _loading?: SystemProps;
 }
-
-export const pseudo = (props: PseudoProps): object =>
-  css({
-    [PseudoSelectors.hover]: tx(props._hover),
-    [PseudoSelectors.focus]: tx(props._focus),
-    [PseudoSelectors.active]: tx(props._active),
-    [PseudoSelectors.visited]: tx(props._visited),
-    [PseudoSelectors.disabled]: tx(props._disabled),
-    [PseudoSelectors.selected]: tx(props._selected),
-    [PseudoSelectors.invalid]: tx(props._invalid),
-    [PseudoSelectors.expanded]: tx(props._expanded),
-    [PseudoSelectors.grabbed]: tx(props._grabbed),
-    [PseudoSelectors.readOnly]: tx(props._readOnly),
-    [PseudoSelectors.first]: tx(props._first),
-    [PseudoSelectors.notFirst]: tx(props._notFirst),
-    [PseudoSelectors.notLast]: tx(props._notLast),
-    [PseudoSelectors.last]: tx(props._last),
-    [PseudoSelectors.odd]: tx(props._odd),
-    [PseudoSelectors.even]: tx(props._even),
-    [PseudoSelectors.mixed]: tx(props._mixed),
-    [PseudoSelectors.checked]: tx(props._checked),
-    [PseudoSelectors.pressed]: tx(props._pressed),
-    [PseudoSelectors.groupHover]: tx(props._groupHover),
-    [PseudoSelectors.loading]: tx(props._loading),
-    "&:before": tx(props._before),
-    "&:after": tx(props._after),
-    "&:focus-within": tx(props._focusWithin),
-    "&::placeholder": props._placeholder,
-  });

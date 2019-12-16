@@ -7,7 +7,7 @@ function useClientRect() {
       setRect(node.getBoundingClientRect());
     }
   }, []);
-  return [rect, ref];
+  return [rect, ref] as const;
 }
 
 export default useClientRect;

@@ -1,6 +1,5 @@
 import * as React from "react";
-import { BoxHTMLProps } from "./system-props";
-import { memo, forwardRef } from "./forward-ref";
+import { memo, forwardRef } from "../forward-ref";
 
 export type As<P = any> = React.ReactType<P>;
 
@@ -12,7 +11,7 @@ type PropsWithAs<P, T extends As> = P &
 
 interface Options<T extends As, P> {
   as?: T;
-  hook?(props: P): BoxHTMLProps;
+  hook?(props: P): React.HTMLProps<any>;
 }
 
 // Credit to Diego Haz for inspiring this 💖
