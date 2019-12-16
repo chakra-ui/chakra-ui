@@ -11,18 +11,6 @@ stories.addDecorator(story => (
   <ThemeContext.Provider
     value={{
       ...theme,
-      styles: {
-        h1: {
-          fontSize: 40,
-          margin: 30,
-          color: "green.200",
-        },
-        h2: {
-          fontSize: "2xl",
-          margin: 10,
-          color: "red.500",
-        },
-      },
       components: {
         tab: {
           variantSize: {

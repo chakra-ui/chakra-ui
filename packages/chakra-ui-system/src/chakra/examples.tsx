@@ -3,6 +3,8 @@ import { ThemeContext } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 import chakra from "./chakra";
+import { PropsOf, ChakraComponent } from "./types";
+import { forwardRef } from "../forward-ref";
 
 const stories = storiesOf("chakra", module);
 
@@ -28,9 +30,24 @@ stories.addDecorator(story => (
   </ThemeContext.Provider>
 ));
 
+const Box = chakra.div;
+type BoxProps = PropsOf<typeof Box>;
+
+const Flex = forwardRef(
+  (props: Omit<BoxProps, "ref">, ref: BoxProps["ref"]) => (
+    <Box ref={ref} display="flex" {...props} />
+  ),
+) as ChakraComponent<"div">;
+
 stories.add("chakra", () => (
   <>
     <h1>This is a heading</h1>
+    <Flex>
+      <Box color="red.300" flex="1">
+        Div 1
+      </Box>
+      <Box>Div 2</Box>
+    </Flex>
     <chakra.h1
       margin="0"
       color="red.400"
@@ -45,9 +62,6 @@ stories.add("chakra", () => (
       apply="styles.h1"
       textDecor="none"
       _hover={{ textDecor: "underline" }}
-      ref={node => {
-        console.log(node);
-      }}
       href="www.google.com"
       target="__blank"
       rel="noreferrer"
