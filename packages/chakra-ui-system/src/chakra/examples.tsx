@@ -31,7 +31,29 @@ stories.addDecorator(story => (
 stories.add("chakra", () => (
   <>
     <h1>This is a heading</h1>
-    <chakra.h1 _hover={{ color: "red.400" }}>This is chakra heading</chakra.h1>
+    <chakra.h1
+      margin="0"
+      color="red.400"
+      transition="all 0.3s"
+      pl="30px"
+      _hover={{ color: "red.700" }}
+    >
+      This is chakra heading
+    </chakra.h1>
+
+    <chakra.a
+      apply="styles.h1"
+      textDecor="none"
+      _hover={{ textDecor: "underline" }}
+      ref={node => {
+        console.log(node);
+      }}
+      href="www.google.com"
+      target="__blank"
+      rel="noreferrer"
+    >
+      This is anchor
+    </chakra.a>
 
     <chakra.h2 apply="styles.h1" fontFamily="Inter">
       This is chakra heading

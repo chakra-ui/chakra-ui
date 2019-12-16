@@ -98,6 +98,11 @@ export interface PseudoProps {
    */
   _visited?: SystemProps;
   /**
+   * Used to style the active link in a navigation
+   * Styles for CSS Selector `&[aria-current=page]`
+   */
+  _activeLink?: SystemProps;
+  /**
    * Styles for CSS Selector `&:readonly`
    */
   _readOnly?: SystemProps;
