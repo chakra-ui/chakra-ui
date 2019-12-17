@@ -1,34 +1,30 @@
 import { theme } from "@chakra-ui/theme";
-import { ThemeContext } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
-import chakra from "./chakra";
-import { PropsOf, ChakraComponent } from "./types";
 import { forwardRef } from "../forward-ref";
+import chakra from "./chakra";
+import { ChakraComponent, PropsOf } from "./types";
+import createThemeContext from "../create-theme-context";
 
 const stories = storiesOf("chakra", module);
 
-stories.addDecorator(story => (
-  <ThemeContext.Provider
-    value={{
-      ...theme,
-      styles: {
-        h1: {
-          fontSize: 40,
-          margin: 30,
-          color: "green.200",
-        },
-        h2: {
-          fontSize: "2xl",
-          margin: 10,
-          color: "red.500",
-        },
-      },
-    }}
-  >
-    {story()}
-  </ThemeContext.Provider>
-));
+const [ThemeProvider] = createThemeContext({
+  ...theme,
+  styles: {
+    h1: {
+      fontSize: 40,
+      margin: 30,
+      color: "green.200",
+    },
+    h2: {
+      fontSize: "2xl",
+      margin: 10,
+      color: "red.500",
+    },
+  },
+});
+
+stories.addDecorator(story => <ThemeProvider>{story()}</ThemeProvider>);
 
 const Box = chakra.div;
 type BoxProps = PropsOf<typeof Box>;

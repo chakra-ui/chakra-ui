@@ -1,35 +1,31 @@
 import { theme } from "@chakra-ui/theme";
-import { ThemeContext } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
+import { BrowserRouter, Link } from "react-router-dom";
+import createThemeContext from "../create-theme-context";
 import createChakra from "./create-chakra";
-import { BrowserRouter, Link, LinkProps } from "react-router-dom";
+
+const [ThemeProvider] = createThemeContext({
+  ...theme,
+  components: {
+    tab: {
+      variantSize: {
+        sm: {
+          fontSize: 24,
+          padding: 20,
+        },
+        md: {
+          fontSize: 40,
+          padding: 40,
+        },
+      },
+    },
+  },
+});
 
 const stories = storiesOf("createChakra", module);
 
-stories.addDecorator(story => (
-  <ThemeContext.Provider
-    value={{
-      ...theme,
-      components: {
-        tab: {
-          variantSize: {
-            sm: {
-              fontSize: 24,
-              padding: 20,
-            },
-            md: {
-              fontSize: 40,
-              padding: 40,
-            },
-          },
-        },
-      },
-    }}
-  >
-    {story()}
-  </ThemeContext.Provider>
-));
+stories.addDecorator(story => <ThemeProvider>{story()}</ThemeProvider>);
 
 const useTab = (props: { id?: string; isSelected?: boolean }) => {
   return {
