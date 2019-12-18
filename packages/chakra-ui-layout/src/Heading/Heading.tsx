@@ -1,8 +1,6 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/core";
-import { Box, BoxProps } from "../Box";
-import { forwardRef, Fragment } from "react";
-import { Merge } from "@chakra-ui/utils";
+import { chakra, forwardRef, PropsOf } from "@chakra-ui/system";
+import * as React from "react";
+import { SafeMerge } from "@chakra-ui/utils";
 
 const sizes = {
   "2xl": ["4xl", null, "5xl"],
@@ -22,23 +20,22 @@ interface HeadingOptions {
   size?: Sizes;
 }
 
-export type HeadingProps = Merge<BoxProps, HeadingOptions>;
+type HeadingProps = SafeMerge<PropsOf<typeof chakra.h2>, HeadingOptions>;
 
-const Heading = forwardRef<HTMLElement, HeadingProps>(function Heading(
-  { size = "xl", ...props },
-  ref,
-) {
-  return (
-    <Box
-      ref={ref}
-      as="h2"
-      fontSize={sizes[size as Sizes]}
-      lineHeight="shorter"
-      fontWeight="bold"
-      fontFamily="heading"
-      {...props}
-    />
-  );
-});
+const Heading = forwardRef(
+  ({ size = "xl", ...props }: HeadingProps, ref: React.Ref<any>) => {
+    return (
+      <chakra.h2
+        ref={ref}
+        as="h2"
+        fontSize={sizes[size as Sizes]}
+        lineHeight="shorter"
+        fontWeight="bold"
+        fontFamily="heading"
+        {...props}
+      />
+    );
+  },
+);
 
 export default Heading;

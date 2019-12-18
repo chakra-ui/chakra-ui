@@ -1,15 +1,16 @@
 import React from "react";
 import { Box, BoxProps } from "../Box";
+import {
+  chakra,
+  PropsOf,
+  forwardRef,
+  ChakraComponent,
+} from "@chakra-ui/system";
 
-export type TextProps<P, T> = BoxProps<P, T>;
+export type TextProps = PropsOf<typeof chakra.p>;
 
-const Text = React.forwardRef(function Text<P, T extends HTMLElement>(
-  props: TextProps<P, T>,
-  ref: React.Ref<T>,
-) {
-  return <Box ref={ref} as="p" {...props} />;
-}) as <P, T extends HTMLElement>(
-  props: TextProps<P, T>,
-) => React.ReactElement<TextProps<P, T>>;
+const Text = forwardRef((props: TextProps, ref: React.Ref<any>) => {
+  return <chakra.p ref={ref} fontFamily="body" {...props} />;
+}) as ChakraComponent<"p">;
 
 export default Text;

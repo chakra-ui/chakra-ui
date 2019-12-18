@@ -1,44 +1,38 @@
 import * as React from "react";
-import { Box, BoxProps, SystemProps } from "../Box";
+import { chakra, forwardRef, ChakraComponent } from "@chakra-ui/system";
+import { BoxProps } from "../Box";
 
 interface FlexOptions {
   /**
    * Shorthand for Styled-System `alignItems` prop
    */
-  align?: SystemProps["alignItems"];
+  align?: BoxProps["alignItems"];
   /**
    * Shorthand for Styled-System `justifyContent` prop
    */
-  justify?: SystemProps["justifyContent"];
+  justify?: BoxProps["justifyContent"];
   /**
    * Shorthand for Styled-System `flexWrap` prop
    */
-  wrap?: SystemProps["flexWrap"];
+  wrap?: BoxProps["flexWrap"];
   /**
    * Shorthand for Styled-System `flexDirection` prop
    */
-  direction?: SystemProps["flexDirection"];
+  direction?: BoxProps["flexDirection"];
 }
 
-export type FlexProps<P, T> = BoxProps<P, T> & FlexOptions;
+export type FlexProps = BoxProps & FlexOptions;
 
-const Flex = React.forwardRef(function Flex<P, T extends HTMLElement>(
-  props: FlexProps<P, T>,
-  ref: React.Ref<T>,
-) {
-  return (
-    <Box
-      ref={ref}
-      display="flex"
-      flexDirection={props.direction}
-      alignItems={props.align}
-      justifyContent={props.justify}
-      flexWrap={props.wrap}
-      {...props}
-    />
-  );
-}) as <P = {}, T = HTMLElement>(
-  props: FlexProps<P, T>,
-) => React.ReactElement<FlexProps<P, T>>;
+const Flex = forwardRef((props: FlexProps, ref: React.Ref<any>) => (
+  <chakra.div
+    ref={ref}
+    display="flex"
+    flexDirection={props.direction}
+    alignItems={props.align}
+    justifyContent={props.justify}
+    flexWrap={props.wrap}
+    {...props}
+  />
+)) as ChakraComponent<"div">;
 
 export default Flex;

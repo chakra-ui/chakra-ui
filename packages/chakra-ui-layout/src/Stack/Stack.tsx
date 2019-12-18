@@ -1,22 +1,13 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/core";
+import { chakra, ChakraComponent } from "@chakra-ui/system";
 import * as React from "react";
-import { FlexProps, Flex } from "../Flex";
-import { Box, SystemProps } from "../Box";
+import { Box } from "../Box";
+import { FlexProps } from "../Flex";
 
 interface StackOptions {
   /**
    * The space between each stack item
    */
-  spacing?: SystemProps["margin"];
-  /**
-   * If `true` the items will be stacked horizontally inline.
-   */
-  isInline?: boolean;
-  /**
-   * If `true` the items will be displayed in reverse order.
-   */
-  isReversed?: boolean;
+  spacing?: FlexProps["margin"];
   /**
    * The direction to stack the items.
    */
@@ -32,75 +23,73 @@ interface StackOptions {
   shouldWrapChildren?: boolean;
 }
 
-type StackProps<P, T> = FlexProps<P, T> & StackOptions;
+type StackProps = FlexProps & StackOptions;
 
-const Stack = React.forwardRef(function Stack<P, T extends HTMLElement>(
-  {
-    direction,
-    isInline = false,
-    isReversed = false,
-    align,
-    justify,
-    spacing = 2,
-    children,
-    shouldWrapChildren,
-    ...props
-  }: StackProps<P, T>,
-  ref: React.Ref<T>,
-) {
-  const _isReversed =
-    isReversed || (direction && direction.endsWith("reverse"));
-  const _isInline = isInline || (direction && direction.startsWith("row"));
-  let _direction: any;
+const Stack = React.forwardRef(
+  (
+    {
+      direction: directionProp,
+      align,
+      justify,
+      spacing = 2,
+      children,
+      shouldWrapChildren,
+      ...props
+    }: StackProps,
+    ref: React.Ref<any>,
+  ) => {
+    const isReversed = directionProp && directionProp.endsWith("reverse");
+    const isInline = directionProp && directionProp.startsWith("row");
+    let direction: any;
 
-  if (_isInline) {
-    _direction = "row";
-  }
+    if (isInline) {
+      direction = "row";
+    }
 
-  if (_isReversed) {
-    _direction = isInline ? "row-reverse" : "column-reverse";
-  }
+    if (isReversed) {
+      direction = isInline ? "row-reverse" : "column-reverse";
+    }
 
-  if (direction) {
-    _direction = direction;
-  }
+    if (directionProp) {
+      direction = directionProp;
+    }
 
-  if (!_isInline && !_isReversed && !direction) {
-    _direction = "column";
-  }
+    if (!isInline && !isReversed && !directionProp) {
+      direction = "column";
+    }
 
-  const validChildren = React.Children.toArray(children).filter(
-    React.isValidElement,
-  );
+    const validChildren = React.Children.toArray(children).filter(
+      React.isValidElement,
+    );
 
-  return (
-    <Flex
-      ref={ref}
-      align={align}
-      justify={justify}
-      direction={_direction}
-      {...props}
-    >
-      {React.Children.map(validChildren, (child, index) => {
-        let isLastChild = React.Children.count(children) === index + 1;
+    return (
+      <chakra.div
+        ref={ref}
+        display="flex"
+        alignItems={align}
+        justifyContent={justify}
+        flexDirection={direction}
+        {...props}
+      >
+        {React.Children.map(validChildren, (child, index) => {
+          const isLastChild = React.Children.count(children) === index + 1;
 
-        let spacingProps = _isInline
-          ? { [_isReversed ? "ml" : "mr"]: isLastChild ? null : spacing }
-          : { [_isReversed ? "mt" : "mb"]: isLastChild ? null : spacing };
+          const spacingProps = isInline
+            ? { [isReversed ? "ml" : "mr"]: isLastChild ? null : spacing }
+            : { [isReversed ? "mt" : "mb"]: isLastChild ? null : spacing };
 
-        if (shouldWrapChildren) {
-          return (
-            <Box display="inline-block" {...spacingProps}>
-              {child}
-            </Box>
-          );
-        }
-        return React.cloneElement(child, spacingProps);
-      })}
-    </Flex>
-  );
-}) as <P = {}, T = HTMLElement>(
-  props: StackProps<P, T>,
-) => React.ReactElement<StackProps<P, T>>;
+          if (shouldWrapChildren) {
+            return (
+              <Box display="inline-block" width="100%" {...spacingProps}>
+                {child}
+              </Box>
+            );
+          }
+          return React.cloneElement(child, spacingProps);
+        })}
+      </chakra.div>
+    );
+  },
+) as ChakraComponent<"div">;
 
 export default Stack;

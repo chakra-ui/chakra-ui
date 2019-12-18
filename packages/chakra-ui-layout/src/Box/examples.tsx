@@ -1,7 +1,10 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import { ThemeProvider, CSSReset } from "@chakra-ui/theme";
+import { CSSReset, theme } from "@chakra-ui/theme";
 import { Box } from ".";
+import createThemeContext from "@chakra-ui/system/dist/create-theme-context";
+
+const [ThemeProvider] = createThemeContext(theme);
 
 const stories = storiesOf("Box", module).addDecorator(story => (
   <ThemeProvider>
@@ -12,7 +15,7 @@ const stories = storiesOf("Box", module).addDecorator(story => (
 
 stories.add("default", () => (
   <Box
-    color={["tomato", "papaya"]}
+    color="tomato"
     fontWeight="medium"
     _hover={{ bg: "red.500", color: "white" }}
   >
@@ -20,8 +23,8 @@ stories.add("default", () => (
   </Box>
 ));
 
-stories.add("as prop", () => (
-  <Box<React.ImgHTMLAttributes<any>, HTMLImageElement>
+stories.add("as prop + generic", () => (
+  <Box<React.ImgHTMLAttributes<any>>
     rounded="sm"
     as="img"
     _hover={{ rounded: "md" }}

@@ -5,10 +5,10 @@
   "compilerOptions": {
     "noImplicitAny": true,
     "rootDir": "./",
-    "baseUrl": "./",
-    "typeRoots": ["./@types", "../../node_modules/@types"],
-    "paths": {
-      "*": ["src/*", "node_modules/*"]
-    }
+    // "baseUrl": "./",
+    "typeRoots": ["./@types", "../../node_modules/@types"]
+    // "paths": {
+    //   "*": ["src/*", "node_modules/*"]
+    // }
   }
 }

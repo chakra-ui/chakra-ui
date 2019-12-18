@@ -74,5 +74,11 @@
     "react-dom": "^16.8.6",
     "react-lorem-component": "^0.13.0",
     "react-transition-group": "4.3.0"
-  }
+  },
+  "bundlesize": [
+    {
+      "path": "./packages/chakra-ui-system/dist/*.js",
+      "maxSize": "10 kB"
+    }
+  ]
 }

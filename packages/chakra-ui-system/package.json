@@ -5,9 +5,13 @@
   "keywords": [
     "system",
     "styled-component",
+    "emotion",
     "ui-component",
     "ui",
-    "styled-system"
+    "chakra",
+    "style-props",
+    "styled-system",
+    "design-system"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
@@ -52,7 +56,6 @@
     "typescript": "3.6.4"
   },
   "dependencies": {
-    "@chakra-ui/theme": "0.0.1",
     "@styled-system/css": "5.0.13",
     "@styled-system/should-forward-prop": "5.0.12",
     "@types/styled-system": "5.0.1",

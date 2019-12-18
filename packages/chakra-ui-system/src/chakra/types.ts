@@ -19,8 +19,8 @@ interface OtherProps {
   htmlHeight?: string | number;
 }
 
-export interface ChakraComponent<T extends As> {
-  <P>(props: MergePropsOf<P, T> & SystemProps & OtherProps): JSX.Element;
+export interface ChakraComponent<T extends As, O = {}> {
+  <P>(props: MergePropsOf<P, T> & SystemProps & OtherProps & O): JSX.Element;
   displayName?: string;
   defaultProps?: Partial<PropsOf<T> & SystemProps & OtherProps>;
 }

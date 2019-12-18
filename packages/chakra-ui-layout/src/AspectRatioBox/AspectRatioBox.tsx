@@ -1,40 +1,38 @@
+import { chakra, ChakraComponent, forwardRef } from "@chakra-ui/system";
 import * as React from "react";
-import { Box, BoxProps, SystemProps } from "../Box";
+import { BoxProps } from "../Box";
 
-export type AspectRatioBoxProps<P, T> = BoxProps<P, T> & { ratio?: number };
+export type AspectRatioBoxProps = BoxProps & { ratio?: number };
 
-const AspectRatioBox = React.forwardRef(function AspectRatioBox<
-  P,
-  T extends HTMLElement
->(
-  { ratio = 4 / 3, children, ...rest }: AspectRatioBoxProps<P, T>,
-  ref: React.Ref<T>,
-) {
-  const child = React.Children.only(children);
-  return (
-    <Box
-      ref={ref}
-      pos="relative"
-      _before={{
-        height: 0,
-        content: `""`,
-        display: "block",
-        paddingBottom: `${(1 / ratio) * 100}%`,
-      }}
-      {...rest}
-    >
-      {React.isValidElement(child) &&
-        React.cloneElement(child, {
-          position: "absolute",
-          width: "full",
-          height: "full",
-          top: 0,
-          left: 0,
-        } as SystemProps)}
-    </Box>
-  );
-}) as <P, T = HTMLElement>(
-  props: AspectRatioBoxProps<P, T>,
-) => React.ReactElement<AspectRatioBoxProps<P, T>>;
+const AspectRatioBox = forwardRef(
+  (
+    { ratio = 4 / 3, children, ...rest }: AspectRatioBoxProps,
+    ref: React.Ref<any>,
+  ) => {
+    const child = React.Children.only(children);
+    return (
+      <chakra.div
+        ref={ref}
+        pos="relative"
+        _before={{
+          height: 0,
+          content: `""`,
+          display: "block",
+          paddingBottom: `${(1 / ratio) * 100}%`,
+        }}
+        {...rest}
+      >
+        {React.isValidElement(child) &&
+          React.cloneElement(child as React.ReactElement<BoxProps>, {
+            position: "absolute",
+            width: "full",
+            height: "full",
+            top: 0,
+            left: 0,
+          })}
+      </chakra.div>
+    );
+  },
+) as ChakraComponent<"div", { ratio?: number }>;
 
 export default AspectRatioBox;

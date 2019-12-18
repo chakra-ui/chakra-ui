@@ -14,6 +14,9 @@ export type HTMLAttributesWithRef<T = any> = React.HTMLAttributes<T> &
  */
 export type Merge<T1, T2> = Omit<T1, Extract<keyof T1, keyof T2>> & T2;
 
+//@ts-ignore
+export type SafeMerge<T, P> = P & Omit<T, keyof P>;
+
 /**
  * Omit keys `K` that exists in type `T`
  *
