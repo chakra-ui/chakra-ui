@@ -168,9 +168,9 @@ const tailwindPreflight = css`
     display: none;
   }
 
-  [hidden] {
+  /* [hidden] {
     display: none !important;
-  }
+  } */
 
   html {
     box-sizing: border-box;

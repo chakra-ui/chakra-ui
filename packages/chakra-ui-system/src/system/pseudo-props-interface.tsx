@@ -136,4 +136,9 @@ export interface PseudoProps {
    * Useful for styling loading states
    */
   _loading?: SystemProps;
+  /**
+   * Styles for CSS Selector `[hidden=true]`
+   * Useful for styling the hidden state
+   */
+  _hidden?: SystemProps;
 }

@@ -1,6 +1,8 @@
+/**@jsx jsx */
+import { jsx } from "@emotion/core";
 import { theme } from "@chakra-ui/theme";
 import { storiesOf } from "@storybook/react";
-import * as React from "react";
+// import * as React from "react";
 import { forwardRef } from "../forward-ref";
 import chakra from "./chakra";
 import { ChakraComponent, PropsOf } from "./types";
@@ -35,8 +37,14 @@ const Flex = forwardRef(
   ),
 ) as ChakraComponent<"div">;
 
+const VisuallyHidden = forwardRef(
+  (props: Omit<BoxProps, "ref">, ref: BoxProps["ref"]) => (
+    <Box ref={ref} css={{}} {...props} />
+  ),
+) as ChakraComponent<"div">;
+
 stories.add("chakra", () => (
-  <>
+  <div>
     <h1>This is a heading</h1>
     <Flex>
       <Box color="red.300" flex="1">
@@ -65,7 +73,7 @@ stories.add("chakra", () => (
       This is anchor
     </chakra.a>
 
-    <chakra.h2 apply="styles.h1" fontFamily="Inter">
+    <chakra.h2 apply="styles.h2" fontFamily="Inter">
       This is chakra heading
     </chakra.h2>
 
@@ -75,5 +83,5 @@ stories.add("chakra", () => (
     </chakra.div>
 
     <chakra.img src="image.png" htmlHeight="900" />
-  </>
+  </div>
 ));
