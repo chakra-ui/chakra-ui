@@ -2,12 +2,12 @@ import * as React from "react";
 import { InputProps } from "../Input";
 import { PseudoBoxProps } from "../PseudoBox";
 import { FlexProps } from "../Flex";
-import { useNumberInputProps } from "../useNumberInput";
+import { UseNumberInputProps } from "../useNumberInput";
 import { Omit } from "../common-types";
 
 type InputAttributes = React.InputHTMLAttributes<HTMLInputElement>;
 
-export interface INumberInput extends useNumberInputProps {
+export interface INumberInput extends UseNumberInputProps {
   isFullWidth?: boolean;
   size?: InputProps["size"];
 }
