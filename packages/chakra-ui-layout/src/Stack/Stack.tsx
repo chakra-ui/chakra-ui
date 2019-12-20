@@ -90,6 +90,6 @@ const Stack = React.forwardRef(
       </chakra.div>
     );
   },
-) as ChakraComponent<"div">;
+) as ChakraComponent<"div", StackOptions>;
 
 export default Stack;

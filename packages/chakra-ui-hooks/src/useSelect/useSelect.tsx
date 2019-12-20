@@ -1,35 +1,32 @@
 import { composeEventHandlers, createOnKeyDown } from "@chakra-ui/utils";
 import * as React from "react";
+// import useIsomorphicEffect from "../useIsomorphicEffect";
+import {
+  DescendantsActions,
+  DescendantsState,
+  useDescendant,
+  useDescendants,
+} from "../useDescendant";
 import useBlurOutside from "../useBlurOutside";
 import createCtx from "../useCreateContext";
-import useDisclosure from "../useDisclosure";
-import { useForkRef } from "../useForkRef";
-import usePopper from "../usePopper";
+import useDisclosure, { UseDisclosureReturn } from "../useDisclosure";
+// import { useDefaultValue, useValue } from "./useValue";
+import useId from "../useId";
+import useIds from "../useIds";
+// import { useForkRef } from "../useForkRef";
+// import usePopper from "../usePopper";
 import useRapidKeydown from "../useRapidKeydown";
-import { useSelectionItem, useSelectionState } from "../useSelection";
-import {
-  SelectionItem,
-  reducer,
-  SelectionAction,
-  SelectionState,
-} from "../useSelection/reducer";
+import useDisableHoverOutside from "./useDisableHoverOutside";
 import useFocusManagement from "./useFocusManagement";
 import useOpenEffect from "./useOpenEffect";
 import useScrollIntoView from "./useScrollIntoView";
-import { useDefaultValue, useValue } from "./useValue";
-import useId from "../useId";
-import useIds from "../useIds";
-import useDisableHoverOutside from "./useDisableHoverOutside";
-import useIsomorphicEffect from "../useIsomorphicEffect";
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-const [useSelectState, StateProvider] = createCtx<SelectionState>();
-const [useSelectDispatch, DispatchProvider] = createCtx<
-  React.Dispatch<SelectionAction>
->();
+const [useSelectState, StateProvider] = createCtx<DescendantsState>();
+const [useSelectActions, ActionsProvider] = createCtx<DescendantsActions>();
 const [useSelectDisclosure, DisclosureProvider] = createCtx<
-  ReturnType<typeof useDisclosure>
+  UseDisclosureReturn
 >();
 const [useSelectOptions, OptionsProvider] = createCtx<{
   controlRef: React.RefObject<any>;
@@ -44,34 +41,29 @@ const [useSelectOptions, OptionsProvider] = createCtx<{
 export function useSelectOption(props: any) {
   const { isDisabled, isFocusable, value } = props;
 
-  const dispatch = useSelectDispatch();
-  const { selectedItem, highlightedItem } = useSelectState();
+  const actions = useSelectActions();
+  const state = useSelectState();
+  const { selectedItem, highlightedItem } = state;
+
   const { onClose } = useSelectDisclosure();
   const { shouldScrollRef } = useSelectOptions();
 
   const id = useId(`select-option`, props.id);
-  const ref = React.useRef<any>(null);
-  const item = React.useMemo(() => ({ id, ref, value }), [id, ref, value]);
 
-  // If this option is not disabled, register it
-  // as a descendant on context onMount
-  useIsomorphicEffect(() => {
-    if (isDisabled && !isFocusable) return;
-    dispatch({ type: "REGISTER", item });
-    return () => {
-      dispatch({ type: "UNREGISTER", id });
-    };
-    // eslint-disable-next-line
-  }, [isDisabled, isFocusable, id]);
-
-  const isHighlighted = highlightedItem ? highlightedItem.id === id : false;
-  const isSelected = selectedItem ? selectedItem.id === id : false;
+  const { item, isHighlighted, isSelected } = useDescendant({
+    state,
+    actions,
+    id,
+    isDisabled,
+    isFocusable,
+    value,
+  });
 
   const onClick = React.useCallback(() => {
     if (selectedItem && item.id === selectedItem.id) {
       onClose();
     } else {
-      dispatch({ type: "SELECT", item });
+      actions.select(item);
       onClose();
     }
     // eslint-disable-next-line
@@ -82,7 +74,7 @@ export function useSelectOption(props: any) {
       return;
     }
     shouldScrollRef.current = false;
-    dispatch({ type: "HIGHLIGHT", item });
+    actions.highlight(item);
     // eslint-disable-next-line
   }, [highlightedItem, item]);
 
@@ -106,7 +98,7 @@ export function useSelectButton(props: any) {
   const { controlRef, listBoxId } = useSelectOptions();
   const { onToggle, isOpen, onOpen } = useSelectDisclosure();
 
-  const dispatch = useSelectDispatch();
+  const { next, previous, first, last, search } = useSelectActions();
   const [onRapidKeyDown] = useRapidKeydown();
 
   const onClick = React.useCallback(() => {
@@ -114,17 +106,14 @@ export function useSelectButton(props: any) {
   }, [onToggle]);
 
   const onKeyDown = createOnKeyDown({
-    onKeyDown: event =>
-      onRapidKeyDown(event, keys =>
-        dispatch({ type: "SEARCH", characters: keys, action: "select" }),
-      ),
+    onKeyDown: event => onRapidKeyDown(event, keys => search(keys, "select")),
     keyMap: {
       ArrowUp: onOpen,
       ArrowDown: onOpen,
-      ArrowRight: () => dispatch({ type: "NEXT", action: "select" }),
-      ArrowLeft: () => dispatch({ type: "PREVIOUS", action: "select" }),
-      Home: () => dispatch({ type: "FIRST", action: "select" }),
-      End: () => dispatch({ type: "LAST", action: "select" }),
+      ArrowRight: () => next("select"),
+      ArrowLeft: () => previous("select"),
+      Home: () => first("select"),
+      End: () => last("select"),
       " ": event => {
         event && event.preventDefault();
         onToggle();
@@ -152,7 +141,16 @@ export function useSelectButton(props: any) {
 
 export function useSelectListBox(props: any) {
   const { highlightedItem } = useSelectState();
-  const dispatch = useSelectDispatch();
+  const {
+    next,
+    previous,
+    select,
+    first,
+    last,
+    reset,
+    search,
+  } = useSelectActions();
+
   const { controlRef, listBoxRef } = useSelectOptions();
   const { isOpen, onClose } = useSelectDisclosure();
 
@@ -168,35 +166,29 @@ export function useSelectListBox(props: any) {
       switch (event.key) {
         case "ArrowDown":
           event.preventDefault();
-          return dispatch({ type: "NEXT", action: "highlight" });
+          return next("highlight");
         case "ArrowUp":
           event.preventDefault();
-          return dispatch({ type: "PREVIOUS", action: "highlight" });
+          return previous("highlight");
         case "Enter":
           event.preventDefault();
-          dispatch({ type: "SELECT", item: null });
+          select(null);
           return onClose();
         case "Home":
           event.preventDefault();
-          return dispatch({ type: "FIRST", action: "highlight" });
+          return first("highlight");
         case "End":
           event.preventDefault();
-          return dispatch({ type: "LAST", action: "highlight" });
+          return last("highlight");
         case "Escape":
           event.preventDefault();
-          dispatch({ type: "RESET", action: "highlighted" });
+          reset("highlighted");
           return onClose();
         case "Tab":
           event.preventDefault();
           return onClose();
         default:
-          return onRapidKeyDown(event, keys =>
-            dispatch({
-              type: "SEARCH",
-              characters: keys,
-              action: "highlight",
-            }),
-          );
+          return onRapidKeyDown(event, keys => search(keys, "highlight"));
       }
     },
     // eslint-disable-next-line
@@ -216,32 +208,8 @@ export function useSelectListBox(props: any) {
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-/**
- * function focusLandsOnElement(event, nextElement){
- * return (
-    event.relatedTarget === nextElement ||
-    (event.nativeEvent &&
-      (nextElement === event.nativeEvent.explicitOriginalTarget ||
-        nextElement.contains(event.nativeEvent.explicitOriginalTarget)))
-  )}
-
-  const menuHandleBlur = event => {
-    if (!focusLandsOnElement(event, toggleButtonRef.current)) {
-      dispatch({
-        type: stateChangeTypes.MenuBlur,
-      })
-    }
-  }
- * 
- * 
- */
-
 export function SelectProvider(props: any) {
-  const [state, dispatch] = React.useReducer(reducer, {
-    items: [],
-    selectedItem: null,
-    highlightedItem: null,
-  });
+  const [state, actions] = useDescendants();
 
   const disclosure = useDisclosure(props);
   const controlRef = React.useRef<any>();
@@ -257,7 +225,7 @@ export function SelectProvider(props: any) {
   );
 
   useFocusManagement(controlRef, listBoxRef, disclosure.isOpen);
-  useOpenEffect(state, dispatch, disclosure.isOpen, disclosure.prevIsOpen);
+  useOpenEffect(state, actions, disclosure.isOpen, disclosure.prevIsOpen);
   useDisableHoverOutside(listBoxRef, disclosure.isOpen);
 
   const stateCtx = React.useMemo(() => state, [state]);
@@ -272,11 +240,11 @@ export function SelectProvider(props: any) {
 
   return (
     <StateProvider value={stateCtx}>
-      <DispatchProvider value={dispatch}>
+      <ActionsProvider value={actions}>
         <DisclosureProvider value={disclosure}>
           <OptionsProvider value={options}>{props.children}</OptionsProvider>
         </DisclosureProvider>
-      </DispatchProvider>
+      </ActionsProvider>
     </StateProvider>
   );
 }

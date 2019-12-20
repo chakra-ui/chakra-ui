@@ -1,4 +1,4 @@
-import { SystemProps } from "../Box";
+import { SystemProps } from "@chakra-ui/system";
 import { ResponsiveValue } from "styled-system";
 
 // These helper fns are modified versions of the amazing rebass library

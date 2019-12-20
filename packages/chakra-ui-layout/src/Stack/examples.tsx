@@ -26,14 +26,14 @@ stories.add("vertical stack", () => (
 
 stories.add("Inline Stack", () => (
   <Stack w="100%" bg="blue.500" direction="row">
-    <Box size="40px" background={"#fff"} rounded="full" />
-    <Box size="40px" background={"#fff"} rounded="full" />
-    <Box size="40px" background={"#fff"} rounded="full" />
+    <Box size="40px" bg={"#fff"} rounded="full" />
+    <Box size="40px" bg={"#fff"} rounded="full" />
+    <Box size="40px" bg={"#fff"} rounded="full" />
   </Stack>
 ));
 
 stories.add("Reversed + Inline Stack", () => (
-  <Stack isReversed isInline spacing="40px" w="100%" h="60px">
+  <Stack spacing="40px" w="100%" h="60px">
     <Box w="100%" h="40px" bg="yellow.200">
       1
     </Box>
@@ -70,7 +70,7 @@ function Feature({ title, desc, ...rest }: any) {
 }
 
 stories.add("Reverse example in docs", () => (
-  <Stack isReversed spacing={8}>
+  <Stack direction="row-reverse" spacing={8}>
     <Feature
       title="Plan Money"
       desc="The future can be even brighter but a goal without a plan is just a wish"

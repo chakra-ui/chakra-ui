@@ -4,10 +4,10 @@ import useDisclosure from "../useDisclosure";
 import useIds from "../useIds";
 import createCtx from "../useCreateContext";
 import {
-  useSelectionItem,
-  Selection,
-  useSelectionState,
-} from "../useSelection";
+  useDescendant,
+  useDescendants,
+  UseDescendantsReturn,
+} from "../useDescendant";
 import {
   createOnKeyDown,
   composeEventHandlers,
@@ -21,22 +21,23 @@ import useIsomorphicEffect from "../useIsomorphicEffect";
 
 function useFocusOnShow(
   menuRef: React.RefObject<any>,
-  selection: Selection,
+  descendants: UseDescendantsReturn,
   options: {
     autoSelect?: boolean;
     activeIndex?: number;
     visible: boolean;
   },
 ) {
+  const [state, actions] = descendants;
   useIsomorphicEffect(() => {
-    if (options.visible && options.activeIndex && selection.items.length) {
-      selection.highlight(selection.items[options.activeIndex]);
+    if (options.visible && options.activeIndex && state.items.length) {
+      actions.highlight(state.items[options.activeIndex]);
     }
     if (!options.autoSelect && options.visible) {
       ensureFocus(menuRef.current);
     }
     // eslint-disable-next-line
-  }, [options.visible, options.autoSelect, selection.items]);
+  }, [options.visible, options.autoSelect, state.items]);
 }
 
 interface MenuOptions {
@@ -82,7 +83,7 @@ function useMenu(props: MenuOptions) {
   }, [disclosure.isOpen, popper.popperInstance]);
 
   // provides the selection functionality
-  const selection = useSelectionState();
+  const descendants = useDescendants();
 
   // refs to get a reference to the menu and button elements :)
   const menuRef = React.useRef<any>(null);
@@ -96,14 +97,14 @@ function useMenu(props: MenuOptions) {
   });
 
   // Selects first menuitem on mount or use `defaultActiveIndex`
-  useFocusOnShow(menuRef, selection, {
+  useFocusOnShow(menuRef, descendants, {
     autoSelect: props.autoSelect,
     visible: disclosure.isOpen,
     activeIndex: props.defaultActiveIndex,
   });
 
   return [
-    selection,
+    descendants,
     {
       ...disclosure,
       ...popper,
@@ -149,7 +150,8 @@ export function useMenuButton(props: UseMenuButtonOptions) {
   const menu = useMenuCtx();
   const { onOpen, isOpen, onClose, autoSelect } = menu;
 
-  const { reset, first, last } = useSelection();
+  const [, actions] = useSelection();
+  const { reset, first, last } = actions;
 
   const focusOnFirstItem = () => {
     onOpen();
@@ -206,30 +208,30 @@ export interface UseMenuListOptions {
 
 export function useMenuList(props: UseMenuListOptions) {
   const menu = useMenuCtx();
-  const selection = useSelection();
+  const [state, actions] = useSelection();
 
   const [onRapidKeyDown] = useRapidKeydown();
 
   const onKeyDown = createOnKeyDown({
     onKeyDown: event =>
-      onRapidKeyDown(event, keys => selection.search(keys, "highlight")),
+      onRapidKeyDown(event, keys => actions.search(keys, "highlight")),
     keyMap: {
       ArrowDown: () => {
-        if (!selection.highlightedItem) {
-          selection.first("highlight");
+        if (!state.highlightedItem) {
+          actions.first("highlight");
         } else {
-          selection.next("highlight");
+          actions.next("highlight");
         }
       },
       ArrowUp: () => {
-        if (!selection.highlightedItem) {
-          selection.last("highlight");
+        if (!state.highlightedItem) {
+          actions.last("highlight");
         } else {
-          selection.previous("highlight");
+          actions.previous("highlight");
         }
       },
-      Home: () => selection.first("highlight"),
-      End: () => selection.last("highlight"),
+      Home: () => actions.first("highlight"),
+      End: () => actions.last("highlight"),
       Tab: event => event && event.preventDefault(),
       Escape: menu.onClose,
     },
@@ -276,11 +278,12 @@ export interface UseMenuItemOptions {
 export function useMenuItem(props: UseMenuItemOptions) {
   const { closeOnSelect, onClose, isOpen, menuRef } = useMenuCtx();
 
-  const selection = useSelection();
-  const { reset, highlight } = selection;
+  const [state, actions] = useSelection();
+  const { reset, highlight } = actions;
 
-  const { item: menuitem, isHighlighted } = useSelectionItem({
-    ...selection,
+  const { item: menuitem, isHighlighted } = useDescendant({
+    state,
+    actions,
     isDisabled: props.isDisabled,
     isFocusable: props.isFocusable,
   });

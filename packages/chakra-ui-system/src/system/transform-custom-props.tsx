@@ -1,4 +1,5 @@
 import { config } from "./custom-props";
+import { css as cssFunc } from "@styled-system/css";
 
 //TODO: Memoize this
 const transformProp = (prop: string, propValue: any): object => {

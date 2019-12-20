@@ -11,7 +11,7 @@ import { createChakra } from "@chakra-ui/system";
 const stories = storiesOf("useModal", module);
 stories.addDecorator(story => <ThemeProvider>{story()}</ThemeProvider>);
 
-const ModalDialog = createChakra({ as: "div", hook: useModal });
+const ModalDialog = createChakra("div", { hook: useModal });
 
 function Dialog(props: React.ComponentProps<typeof ModalDialog>) {
   return (

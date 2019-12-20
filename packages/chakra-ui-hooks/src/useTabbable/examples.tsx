@@ -9,7 +9,7 @@ const stories = storiesOf("useTabbable", module).addDecorator(story => (
   <ThemeProvider>{story()}</ThemeProvider>
 ));
 
-const Button = createChakra({ as: "button", hook: useTabbable });
+const Button = createChakra("button", { hook: useTabbable });
 
 // function Button(props: { children?: React.ReactNode }) {
 //   const tabbable = useTabbable({

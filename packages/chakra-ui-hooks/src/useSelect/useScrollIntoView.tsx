@@ -1,6 +1,6 @@
 import computeScrollIntoView from "compute-scroll-into-view";
 import * as React from "react";
-import { SelectionItem } from "../useSelection/reducer";
+import { Descendant } from "../useDescendant/reducer";
 
 function scrollIntoView(node: HTMLElement, menuNode: HTMLElement) {
   if (node === null) {
@@ -20,7 +20,7 @@ function scrollIntoView(node: HTMLElement, menuNode: HTMLElement) {
 
 function useScrollIntoView(
   menuRef: React.RefObject<any>,
-  highlightedItem: SelectionItem | null,
+  highlightedItem: Descendant | null,
   isOpen: boolean,
   shouldScrollRef: React.MutableRefObject<boolean>,
 ) {

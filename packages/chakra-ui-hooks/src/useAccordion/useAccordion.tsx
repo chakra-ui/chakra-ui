@@ -24,18 +24,22 @@ import constate from "constate";
 import * as React from "react";
 import useControllableValue from "../useControllableValue";
 import createCtx from "../useCreateContext";
+import {
+  useDescendant,
+  useDescendants,
+  UseDescendantsReturn,
+} from "../useDescendant";
 import useDisclosure from "../useDisclosure/useDisclosure";
 import useFocusEffect from "../useFocusEffect/useFocusEffect";
-import useIds from "../useIds";
-import { useSelectionItem, useSelectionState } from "../useSelection";
-import useTabbable from "../useTabbable";
 import { useForkRef } from "../useForkRef";
+import useIds from "../useIds";
+import useTabbable from "../useTabbable";
 import {
+  warnForAllowMultipleAndAllowToggle,
   warnForAllowMultipleArray,
   warnForControlledNoOnChange,
   warnForControlledSwitching,
   warnForFocusableNotDisabled,
-  warnForAllowMultipleAndAllowToggle,
 } from "./warning";
 
 const __DEV__ = process.env.NODE_ENV !== "production";
@@ -111,7 +115,7 @@ export function useAccordion(props: AccordionOptions) {
    * focusable items so when you press `up` and `down`, we can
    * move focus between the items.
    */
-  const selection = useSelectionState();
+  const descendants = useDescendants();
 
   /**
    * We'll map through the children and inject the `isOpen` and `onChange` attributes
@@ -179,21 +183,22 @@ export function useAccordion(props: AccordionOptions) {
   /**
    * We're returning the enhanced children and the selection (for focus management)
    */
-  return { selection, children };
+  return { descendants, children };
 }
 
 /**
  * Let's create context for the Accordion
  */
-type ContextType = ReturnType<typeof useAccordion>["selection"];
-const [useAccordionCtx, AccordionCtxProvider] = createCtx<ContextType>();
+const [useAccordionCtx, AccordionCtxProvider] = createCtx<
+  UseDescendantsReturn
+>();
 
 /**
  * This will be the provider for the accordion state
  */
 export function Accordion(props: AccordionOptions) {
-  const { selection, children } = useAccordion(props);
-  const ctx = React.useMemo(() => selection, [selection]);
+  const { children, descendants } = useAccordion(props);
+  const ctx = React.useMemo(() => descendants, [descendants]);
   return <AccordionCtxProvider value={ctx}>{children}</AccordionCtxProvider>;
 }
 
@@ -249,12 +254,13 @@ export function useAccordionItem(props: AccordionItemOptions) {
   }
 
   // The keyboard navigation manager
-  const selection = useAccordionCtx();
-  const { highlight, next, previous, first, last } = selection;
+  const [state, actions] = useAccordionCtx();
+  const { highlight, next, previous, first, last } = actions;
 
   // Think of this as a way to register this item in the selection manager
-  const { isHighlighted, item } = useSelectionItem({
-    ...selection,
+  const { isHighlighted, item } = useDescendant({
+    actions,
+    state,
     id: buttonId,
     isDisabled,
     isFocusable,
@@ -367,7 +373,7 @@ export function useAccordionButton(props: AccordionButtonOptions) {
 
 /**
 |-------------------------------------------------------------------------------
-| AccordionTrigger component
+| AccordionPanel component
 |-------------------------------------------------------------------------------
 */
 

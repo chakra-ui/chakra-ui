@@ -1,96 +1,61 @@
 import { getNextIndex, getNextOptionFromKeys } from "./utils";
 
-// The possible event types within any selection widget
-export type EventMeta =
-  | "mouse-click"
-  | "mouse-over"
-  | "keyboard-arrows"
-  | "keyboard-enter"
-  | "keyboard-search"
-  | "internal-action"
-  | "external-action"
-  | "reset";
-
-export interface ActionsPayload extends Item {
-  loop?: boolean;
-  characters?: string;
-  lastEvent?: EventMeta;
-  selectOnHighlight?: boolean;
-  highlightOnSelect?: boolean;
-}
-
-export interface SelectionItem {
+export interface Descendant {
   id: string;
   ref: React.RefObject<any>;
   value?: string | number;
+  rest?: any[];
 }
 
-// To avoid errors, remove this later
-export type Item = SelectionItem;
-
-export interface SelectionState {
-  items: Item[];
-  lastEvent?: EventMeta | "";
-  selectedItem: Item | null;
-  highlightedItem: Item | null;
+export interface DescendantsState {
+  items: Descendant[];
+  selectedItem: Descendant | null;
+  highlightedItem: Descendant | null;
   orientation?: "horizontal" | "vertical";
   selectFirstItemOnMount?: boolean;
   highlightFirstItemOnMount?: boolean;
 }
 
-// To avoid errors, remove this later
-export type State = SelectionState;
-
 type KeyAction = "select" | "highlight";
 
-export type SelectionAction =
-  | { type: "REGISTER"; item: Item }
-  | { type: "UNREGISTER"; id: Item["id"] }
+export type DescendantReducerActions =
+  | { type: "REGISTER"; item: Descendant }
+  | { type: "UNREGISTER"; id: Descendant["id"] }
   | {
       type: "HIGHLIGHT";
-      item: Item | null;
+      item: Descendant | null;
       selectOnHighlight?: boolean;
-      lastEvent?: EventMeta;
     }
   | {
       type: "SELECT";
-      item: Item | null;
+      item: Descendant | null;
       highlightOnSelect?: boolean;
-      lastEvent?: EventMeta;
     }
   | {
       type: "RESET";
       action: "highlighted" | "selected" | "both";
-      lastEvent?: EventMeta;
     }
   | {
       type: "SEARCH";
       characters: string;
       action: KeyAction;
-      lastEvent?: EventMeta;
     }
   | {
       type: "PREVIOUS";
       action: KeyAction;
-      lastEvent?: EventMeta;
     }
   | {
       type: "NEXT";
       action: KeyAction;
-      lastEvent?: EventMeta;
     }
   | {
       type: "FIRST";
       action: KeyAction;
-      lastEvent?: EventMeta;
     }
   | {
       type: "LAST";
       action: KeyAction;
-      lastEvent?: EventMeta;
     };
-
-export type Action = SelectionAction;
 
 function insertItem<T>(array: T[], item: T, index: number) {
   return [...array.slice(0, index), item, ...array.slice(index)];
@@ -98,7 +63,10 @@ function insertItem<T>(array: T[], item: T, index: number) {
 
 ////////////////////////////////////////////////////////////////
 
-function register(state: State, action: { item: Item }): State {
+function register(
+  state: DescendantsState,
+  action: { item: Descendant },
+): DescendantsState {
   const { item: newItem } = action;
 
   if (state.items.length === 0) {
@@ -143,7 +111,7 @@ function register(state: State, action: { item: Item }): State {
 
 ////////////////////////////////////////////////////////////////
 
-function unRegister(state: State, action: { id: Item["id"] }) {
+function unRegister(state: DescendantsState, action: { id: Descendant["id"] }) {
   const { id } = action;
   const newItems = state.items.filter(item => item.id !== id);
 
@@ -165,17 +133,16 @@ function unRegister(state: State, action: { id: Item["id"] }) {
 /////////////////////////////////////////////////////////////////////////////
 
 function highlight(
-  state: State,
+  state: DescendantsState,
   action: {
-    item: Item | null;
+    item: Descendant | null;
     selectOnHighlight?: boolean;
-    lastEvent?: EventMeta;
   },
 ) {
-  const { item, selectOnHighlight, lastEvent } = action;
+  const { item, selectOnHighlight } = action;
   if (!item) return state;
 
-  const nextState: State = {
+  const nextState: DescendantsState = {
     ...state,
     highlightedItem: item,
   };
@@ -184,29 +151,24 @@ function highlight(
     nextState["selectedItem"] = item;
   }
 
-  if (lastEvent) {
-    nextState["lastEvent"] = lastEvent;
-  }
-
   return nextState;
 }
 
 ////////////////////////////////////////////////////////////////
 
 function select(
-  state: State,
+  state: DescendantsState,
   action: {
-    item: Item | null;
+    item: Descendant | null;
     highlightOnSelect?: boolean;
-    lastEvent?: EventMeta;
   },
-): State {
-  const { item, highlightOnSelect, lastEvent } = action;
+): DescendantsState {
+  const { item, highlightOnSelect } = action;
   const nextItem = item != null ? item : state.highlightedItem;
 
   if (!nextItem) return state;
 
-  const newState: State = {
+  const newState: DescendantsState = {
     ...state,
     selectedItem: nextItem,
   };
@@ -215,25 +177,20 @@ function select(
     newState["highlightedItem"] = item;
   }
 
-  if (lastEvent) {
-    newState["lastEvent"] = lastEvent;
-  }
-
   return newState;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 
 export function nextOrPrevious(
-  state: State,
+  state: DescendantsState,
   action: {
     action: "select" | "highlight";
     loop?: boolean;
-    lastEvent?: EventMeta;
   },
   type: "next" | "previous",
 ) {
-  const { loop, action: keyAction, lastEvent } = action;
+  const { loop, action: keyAction } = action;
   const currentItem =
     keyAction === "select" ? state.selectedItem : state.highlightedItem;
 
@@ -251,42 +208,41 @@ export function nextOrPrevious(
   const nextItem = state.items[nextIndex];
 
   if (keyAction === "select") {
-    return select(state, { item: nextItem, lastEvent });
+    return select(state, { item: nextItem });
   } else {
-    return highlight(state, { item: nextItem, lastEvent });
+    return highlight(state, { item: nextItem });
   }
 }
 
 ////////////////////////////////////////////////////////////////
 
 export function firstOrLast(
-  state: State,
-  action: { action: KeyAction; lastEvent?: EventMeta },
+  state: DescendantsState,
+  action: { action: KeyAction },
   type: "first" | "last",
 ) {
-  const { action: keyAction, lastEvent } = action;
+  const { action: keyAction } = action;
   const nextItem =
     type === "first" ? state.items[0] : state.items[state.items.length - 1];
 
   if (!nextItem) return state;
 
   if (keyAction === "select") {
-    return select(state, { item: nextItem, lastEvent });
+    return select(state, { item: nextItem });
   } else {
-    return highlight(state, { item: nextItem, lastEvent });
+    return highlight(state, { item: nextItem });
   }
 }
 
 ////////////////////////////////////////////////////////////////
 
 export function reset(
-  state: State,
+  state: DescendantsState,
   action: {
     action: "highlighted" | "selected" | "both";
-    lastEvent?: EventMeta;
   },
 ) {
-  const { action: keyAction, lastEvent } = action;
+  const { action: keyAction } = action;
   const newState = { ...state };
 
   if (keyAction === "highlighted" || keyAction === "both") {
@@ -297,15 +253,13 @@ export function reset(
     newState["selectedItem"] = null;
   }
 
-  newState["lastEvent"] = lastEvent || "reset";
-
   return newState;
 }
 
 ////////////////////////////////////////////////////////////////
 
 export function search(
-  state: State,
+  state: DescendantsState,
   action: {
     characters: string;
     action: "select" | "highlight";
@@ -334,14 +288,15 @@ export function search(
     nextState["highlightedItem"] = nextOption;
   }
 
-  nextState["lastEvent"] = "keyboard-search";
-
   return nextState;
 }
 
 ////////////////////////////////////////////////////////////////
 
-export function reducer(state: State, action: Action): State {
+export function descendantsReducer(
+  state: DescendantsState,
+  action: DescendantReducerActions,
+) {
   switch (action.type) {
     case "REGISTER":
       return register(state, action);

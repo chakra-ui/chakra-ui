@@ -1,24 +1,25 @@
-import * as React from "react";
-import { SelectionAction, SelectionState } from "../useSelection/reducer";
+import { DescendantsActions, DescendantsState } from "../useDescendant";
 import useIsomorphicEffect from "../useIsomorphicEffect";
 
 function useOpenEffect(
-  state: SelectionState,
-  dispatch: React.Dispatch<SelectionAction>,
+  state: DescendantsState,
+  actions: DescendantsActions,
   isOpen: boolean,
   prevIsOpen: boolean,
 ) {
+  const { reset, highlight, first } = actions;
+
   useIsomorphicEffect(() => {
     if (prevIsOpen && !isOpen) {
-      return dispatch({ type: "RESET", action: "highlighted" });
+      return reset("highlighted");
     }
 
     if (isOpen) {
       if (state.selectedItem) {
-        dispatch({ type: "HIGHLIGHT", item: state.selectedItem });
+        highlight(state.selectedItem);
       } else {
         if (!state.highlightedItem) {
-          dispatch({ type: "FIRST", action: "highlight" });
+          first("highlight");
         }
       }
     }

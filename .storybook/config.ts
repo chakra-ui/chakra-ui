@@ -1,7 +1,7 @@
 import { configure } from "@storybook/react";
 
 const req = require.context(
-  "../packages/chakra-ui-system/src/",
+  "../packages/chakra-ui-hooks/src/useDescendant",
   true,
   /examples\.(ts|tsx)$/,
 );

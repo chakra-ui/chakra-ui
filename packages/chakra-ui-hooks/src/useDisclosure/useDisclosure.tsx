@@ -10,6 +10,8 @@ export interface UseDisclosureOptions {
 }
 
 const useDisclosure = (props: UseDisclosureOptions = {}) => {
+  const { onClose: onCloseProp, onOpen: onOpenProp } = props;
+
   const [isOpenState, setIsOpen] = React.useState(props.defaultIsOpen || false);
   const [isControlled, isOpen] = useControllableValue(
     props.isOpen,
@@ -22,19 +24,19 @@ const useDisclosure = (props: UseDisclosureOptions = {}) => {
     if (!isControlled) {
       setIsOpen(false);
     }
-    if (props.onClose) {
-      props.onClose();
+    if (onCloseProp) {
+      onCloseProp();
     }
-  }, [isControlled, props.onClose]);
+  }, [isControlled, onCloseProp]);
 
   const onOpen = React.useCallback(() => {
     if (!isControlled) {
       setIsOpen(true);
     }
-    if (props.onOpen) {
-      props.onOpen();
+    if (onOpenProp) {
+      onOpenProp();
     }
-  }, [isControlled, props.onOpen]);
+  }, [isControlled, onOpenProp]);
 
   const onToggle = React.useCallback(() => {
     if (isOpen) {
@@ -53,5 +55,7 @@ const useDisclosure = (props: UseDisclosureOptions = {}) => {
     isControlled,
   };
 };
+
+export type UseDisclosureReturn = ReturnType<typeof useDisclosure>;
 
 export default useDisclosure;

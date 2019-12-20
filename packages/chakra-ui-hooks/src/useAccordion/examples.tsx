@@ -16,13 +16,11 @@ const stories = storiesOf("useAccordion", module).addDecorator(story => (
   <ThemeProvider>{story()}</ThemeProvider>
 ));
 
-const AccordionButton = createChakra({
-  as: "button",
+const AccordionButton = createChakra("button", {
   hook: useAccordionButton,
 });
 
-const AccordionPanel = createChakra({
-  as: "div",
+const AccordionPanel = createChakra("div", {
   hook: useAccordionPanel,
 });
 
@@ -44,8 +42,7 @@ stories.add("Accordion", () => (
   </Accordion>
 ));
 
-const AccordionHeader = createChakra({
-  as: "div",
+const AccordionHeader = createChakra("div", {
   hook: useAccordionButton,
 });
 

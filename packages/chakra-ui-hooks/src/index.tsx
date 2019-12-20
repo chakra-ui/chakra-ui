@@ -40,7 +40,7 @@ export * from "./useRadioGroup/useRadioGroup";
 export { default as useRadioGroup } from "./useRadioGroup/useRadioGroup";
 export { default as useRapidKeyDown } from "./useRapidKeydown/useRapidKeyDown";
 
-export * from "./useSelection";
+export * from "./useDescendant";
 export * from "./useSlider/useSlider";
 
 export * from "./useTabbable";

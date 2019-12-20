@@ -15,9 +15,9 @@ const stories = storiesOf("useTabs", module).addDecorator(story => (
   <ThemeProvider>{story()}</ThemeProvider>
 ));
 
-const Tab = createChakra({ as: "button", hook: useTab });
-const TabList = createChakra({ as: "div", hook: useTabList });
-const TabPanel = createChakra({ as: "div", hook: useTabPanel });
+const Tab = createChakra("button", { hook: useTab });
+const TabList = createChakra("div", { hook: useTabList });
+const TabPanel = createChakra("div", { hook: useTabPanel });
 
 function TabPanels(props: any) {
   const tabpanels = useTabPanels(props);
