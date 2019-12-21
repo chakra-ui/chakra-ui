@@ -11,22 +11,29 @@ import { chakra } from "@chakra-ui/system";
 
 const stories = storiesOf("useDescendant", module);
 
-function Option({ children }: { children?: React.ReactNode }) {
-  const context = useDescendantsContext();
-  const { item, isHighlighted } = useDescendant(context);
+function Option({
+  children,
+  value,
+}: {
+  children?: React.ReactNode;
+  value?: string;
+}) {
+  const { state, actions } = useDescendantsContext();
+  const { item, isHighlighted } = useDescendant({ state, actions, value });
 
   return (
     <chakra.div
       ref={item.ref}
       id={item.id}
       tabIndex={0}
+      data-value={value}
       bg={isHighlighted ? "red" : "white"}
       onMouseOver={() => {
-        context.actions.highlight(item);
+        actions.highlight(item);
       }}
       onKeyDown={e => {
         if (e.key === "ArrowDown") {
-          context.actions.next("highlight");
+          actions.next("highlight");
         }
       }}
     >
@@ -43,6 +50,8 @@ const [useDescendantsContext, DescendantsProvider] = createCtx<{
 function Select({ children }: { children?: React.ReactNode }) {
   const [state, actions] = useDescendants({ highlightFirstItemOnMount: true });
 
+  console.log(state);
+
   return (
     <DescendantsProvider value={{ state, actions }}>
       {children}
@@ -52,12 +61,12 @@ function Select({ children }: { children?: React.ReactNode }) {
 
 stories.add("Default", () => (
   <Select>
-    <Option>Option 1</Option>
+    <Option value="option 1">Option 1</Option>
     <div>
       <div>
-        <Option>Option 2</Option>
+        <Option value="option 2">Option 2</Option>
       </div>
-      <Option>Option 3</Option>
+      <Option value="option 3">Option 3</Option>
     </div>
   </Select>
 ));

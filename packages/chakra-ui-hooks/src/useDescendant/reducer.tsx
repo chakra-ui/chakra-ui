@@ -75,11 +75,9 @@ function register(
       items: [newItem],
       ...(state.highlightFirstItemOnMount && {
         highlightedItem: newItem,
-        lastEvent: "internal-action",
       }),
       ...(state.selectFirstItemOnMount && {
         selectedItem: newItem,
-        lastEvent: "internal-action",
       }),
     };
   }

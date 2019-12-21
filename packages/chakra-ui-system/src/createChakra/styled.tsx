@@ -1,3 +1,4 @@
+/**@jsx jsx */
 import { jsx, ThemeContext } from "@emotion/core";
 import { css, get } from "@styled-system/css";
 import * as React from "react";
@@ -55,12 +56,13 @@ export const styled = <T extends As, H = {}>(
         if (!isPropValid(key)) delete finalProps[key];
       }
 
-      console.log(finalProps);
+      const Component = as || Comp;
+      const componentProps =
+        options && options.hook ? finalProps : { ...props, ref };
 
-      return jsx(as || Comp, {
-        ...finalProps,
-        css: { ...componentStyle, ...styles },
-      });
+      return (
+        <Component css={{ ...componentStyle, ...styles }} {...componentProps} />
+      );
     },
   );
 

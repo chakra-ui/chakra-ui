@@ -92,12 +92,12 @@ export function usePopover(props: UsePopoverOptions) {
   const triggerRef = React.useRef<any>(null);
   const contentRef = React.useRef<HTMLElement>(null);
 
-  const [triggerId, contentId, headerId, bodyId] = useIds([
+  const [triggerId, contentId, headerId, bodyId] = useIds(
     "popover-trigger",
     "popover-content",
     "popover-header",
     "popover-body",
-  ]);
+  );
 
   const popper = usePopper({
     placement: props.placement,

@@ -1,7 +1,10 @@
 import { configure } from "@storybook/react";
 
+// ../packages/chakra-ui-hooks/src/useMenu-v2
+// ../packages/chakra-ui-system
+
 const req = require.context(
-  "../packages/chakra-ui-hooks/src/useDescendant",
+  "../packages/chakra-ui-hooks/src/useMenu-v2",
   true,
   /examples\.(ts|tsx)$/,
 );

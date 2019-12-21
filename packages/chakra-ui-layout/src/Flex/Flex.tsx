@@ -33,6 +33,6 @@ const Flex = forwardRef((props: FlexProps, ref: React.Ref<any>) => (
     flexWrap={props.wrap}
     {...props}
   />
-)) as ChakraComponent<"div">;
+)) as ChakraComponent<"div", FlexOptions>;
 
 export default Flex;

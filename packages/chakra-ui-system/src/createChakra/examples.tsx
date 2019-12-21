@@ -1,9 +1,12 @@
+/**@jsx jsx */
+import { jsx } from "@emotion/core";
 import { theme } from "@chakra-ui/theme";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 import { BrowserRouter, Link } from "react-router-dom";
 import createThemeContext from "../create-theme-context";
 import createChakra from "./create-chakra";
+import { chakra } from "../chakra";
 
 const [ThemeProvider] = createThemeContext({
   ...theme,
@@ -57,4 +60,24 @@ stories.add("with hooks", () => (
       children="Welcome to create chakra"
     />
   </BrowserRouter>
+));
+
+const Button = createChakra("button", { hook: useTab });
+
+function Bacon(props: any) {
+  return (
+    <chakra.div {...props}>
+      <button>This is menu disclosure</button>
+      <div>This is menu</div>
+    </chakra.div>
+  );
+}
+
+stories.add("as prop", () => (
+  <Button
+    as={Bacon}
+    margin="20px"
+    borderTop="2px solid crimson"
+    css={{ background: "tomato" }}
+  />
 ));

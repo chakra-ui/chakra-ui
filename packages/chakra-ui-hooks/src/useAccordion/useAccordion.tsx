@@ -1,24 +1,3 @@
-/**
- * Welcome to Chakra's useAccordion hook
- *
- * References + Credits:
- * - https://www.w3.org/TR/wai-aria-practices/examples/accordion/accordion.html
- * - https://inclusive-components.design/collapsible-sections/
- * - https://github.com/stereobooster/react-accessible-accordion
- * - https://jqueryui.com/accordion/
- *
- * Core Requirements:
- * - Should have the appropriate aria-* state and relationship attributes
- * - Support keydown navigation between accordion items
- * - Allow toggling items and allow multiple items
- *
- * Component Parts:
- * - Accordion: manages the global state of all opened accordion items via context
- * - AccordionItem: manages the state for a single accordion item
- * - AccordionButton: the trigger to open/close an accordion item
- * - AccordionPanel: the main content area for the accordion item
- */
-
 import { composeEventHandlers, createOnKeyDown } from "@chakra-ui/utils";
 import constate from "constate";
 import * as React from "react";
@@ -163,9 +142,7 @@ export function useAccordion(props: AccordionOptions) {
              * update state directly
              */
             if (isOpen) updateIndex(childIndex);
-            else {
-              if (props.allowToggle) updateIndex(null);
-            }
+            else if (props.allowToggle) updateIndex(null);
           }
         },
       },
@@ -245,7 +222,7 @@ export function useAccordionItem(props: AccordionItemOptions) {
   const { isControlled, onToggle, isOpen } = disclosure;
 
   // Generate some ids
-  const [buttonId, panelId] = useIds([`accordion-header`, `accordion-panel`]);
+  const [buttonId, panelId] = useIds(`accordion-header`, `accordion-panel`);
 
   // Add some warnings
   if (__DEV__) {
@@ -377,7 +354,7 @@ export function useAccordionButton(props: AccordionButtonOptions) {
 |-------------------------------------------------------------------------------
 */
 
-export function useAccordionPanel(props = {}) {
+export function useAccordionPanel(props: object = {}) {
   const { panelId, buttonId, isOpen } = useAccordionItemContext();
   return {
     ...props,

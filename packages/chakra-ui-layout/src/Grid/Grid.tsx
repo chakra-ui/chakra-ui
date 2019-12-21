@@ -37,27 +37,25 @@ const Grid = forwardRef(
       ...props
     }: GridProps,
     ref: React.Ref<any>,
-  ) => {
-    return (
-      <chakra.div
-        ref={ref}
-        display="grid"
-        gridArea={area}
-        gridTemplateAreas={templateAreas}
-        gridGap={gap}
-        gridRowGap={rowGap}
-        gridColumnGap={columnGap}
-        gridAutoColumns={autoColumns}
-        gridColumn={column}
-        gridRow={row}
-        gridAutoFlow={autoFlow}
-        gridAutoRows={autoRows}
-        gridTemplateRows={templateRows}
-        gridTemplateColumns={templateColumns}
-        {...props}
-      />
-    );
-  },
-) as ChakraComponent<"div">;
+  ) => (
+    <chakra.div
+      ref={ref}
+      display="grid"
+      gridArea={area}
+      gridTemplateAreas={templateAreas}
+      gridGap={gap}
+      gridRowGap={rowGap}
+      gridColumnGap={columnGap}
+      gridAutoColumns={autoColumns}
+      gridColumn={column}
+      gridRow={row}
+      gridAutoFlow={autoFlow}
+      gridAutoRows={autoRows}
+      gridTemplateRows={templateRows}
+      gridTemplateColumns={templateColumns}
+      {...props}
+    />
+  ),
+) as ChakraComponent<"div", GridOptions>;
 
 export default Grid;

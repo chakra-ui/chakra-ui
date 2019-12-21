@@ -103,7 +103,7 @@ export const Menu: React.FC<MenuProps> = ({
   const disclosure = useDisclosure({ isOpen, onClose, onOpen, defaultIsOpen });
 
   // generates unique ids for components
-  const [menuId, buttonId] = useIds(["menu", "menubutton"]);
+  const [menuId, buttonId] = useIds("menu", "menubutton");
 
   // provides the popper functionality
   const popper = usePopper({

@@ -60,7 +60,7 @@ function useMenu(props: MenuOptions) {
   const disclosure = useDisclosure(props);
 
   // Id generation
-  const [menuId, buttonId] = useIds([`menu`, `menu-button`]);
+  const [menuId, buttonId] = useIds(`menu`, `menu-button`);
 
   const popper = usePopper({
     placement: props.placement,
@@ -119,23 +119,21 @@ function useMenu(props: MenuOptions) {
   ] as const;
 }
 
+export type UseMenuReturn = ReturnType<typeof useMenu>;
+
 //////////////////////////////////////////////////////////////////////////////////////////
 
-const [useMenuCtx, MenuCtxProvider] = createCtx<
-  ReturnType<typeof useMenu>[1]
->();
-const [useSelection, SelectionCtxProvider] = createCtx<
-  ReturnType<typeof useMenu>[0]
->();
+const [useMenuCtx, MenuContextProvider] = createCtx<UseMenuReturn[1]>();
+const [useSelection, DescendantsProvider] = createCtx<UseMenuReturn[0]>();
 
 export function MenuProvider(
   props: MenuOptions & { children?: React.ReactNode },
 ) {
-  const [selection, menu] = useMenu(props);
+  const [descendants, menu] = useMenu(props);
   return (
-    <SelectionCtxProvider value={selection}>
-      <MenuCtxProvider value={menu}>{props.children}</MenuCtxProvider>
-    </SelectionCtxProvider>
+    <DescendantsProvider value={descendants}>
+      <MenuContextProvider value={menu}>{props.children}</MenuContextProvider>
+    </DescendantsProvider>
   );
 }
 
@@ -213,8 +211,7 @@ export function useMenuList(props: UseMenuListOptions) {
   const [onRapidKeyDown] = useRapidKeydown();
 
   const onKeyDown = createOnKeyDown({
-    onKeyDown: event =>
-      onRapidKeyDown(event, keys => actions.search(keys, "highlight")),
+    onKeyDown: onRapidKeyDown(keys => actions.search(keys, "highlight")),
     keyMap: {
       ArrowDown: () => {
         if (!state.highlightedItem) {

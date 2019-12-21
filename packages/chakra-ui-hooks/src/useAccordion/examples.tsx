@@ -27,16 +27,12 @@ const AccordionPanel = createChakra("div", {
 stories.add("Accordion", () => (
   <Accordion allowToggle>
     <AccordionItem>
-      <h2>
-        <AccordionButton>Toggle 1</AccordionButton>
-      </h2>
+      <AccordionButton>Toggle 1</AccordionButton>
       <AccordionPanel>Panel 1</AccordionPanel>
     </AccordionItem>
 
     <AccordionItem>
-      <h2>
-        <AccordionButton>Toggle 2</AccordionButton>
-      </h2>
+      <AccordionButton>Toggle 2</AccordionButton>
       <AccordionPanel>Panel 2</AccordionPanel>
     </AccordionItem>
   </Accordion>

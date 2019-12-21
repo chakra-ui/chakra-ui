@@ -50,7 +50,7 @@ const SimpleGrid = forwardRef(
         gap={spacing}
         columnGap={spacingX}
         rowGap={spacingY}
-        templateColumns={templateColumns}
+        templateColumns={templateColumns || undefined}
         {...props}
       />
     );

@@ -23,9 +23,8 @@ function useRapidKeydown() {
     }, 300);
   };
 
-  const onKeyDown = (
+  const onKeyDown = (callback: (str: string) => void) => (
     event: React.KeyboardEvent,
-    callback: (str: string) => void,
   ) => {
     const keyCode = event.keyCode || event.which;
     const isBackspace = keyCode === 8;
@@ -48,7 +47,6 @@ function useRapidKeydown() {
       }
     }
   };
-
 
   //@ts-ignore
   return [onKeyDown, keys.join("")] as const;

@@ -85,3 +85,9 @@ stories.add("chakra", () => (
     <chakra.img src="image.png" htmlHeight="900" />
   </div>
 ));
+
+stories.add("chakra", () => (
+  <chakra.div<{ src?: string }> as="img" src="image.png">
+    This is a div
+  </chakra.div>
+));

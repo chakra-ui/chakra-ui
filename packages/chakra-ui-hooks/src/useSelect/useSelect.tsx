@@ -106,7 +106,7 @@ export function useSelectButton(props: any) {
   }, [onToggle]);
 
   const onKeyDown = createOnKeyDown({
-    onKeyDown: event => onRapidKeyDown(event, keys => search(keys, "select")),
+    onKeyDown: onRapidKeyDown(keys => search(keys, "select")),
     keyMap: {
       ArrowUp: onOpen,
       ArrowDown: onOpen,
@@ -188,7 +188,7 @@ export function useSelectListBox(props: any) {
           event.preventDefault();
           return onClose();
         default:
-          return onRapidKeyDown(event, keys => search(keys, "highlight"));
+          return onRapidKeyDown(keys => search(keys, "highlight"))(event);
       }
     },
     // eslint-disable-next-line
@@ -215,7 +215,7 @@ export function SelectProvider(props: any) {
   const controlRef = React.useRef<any>();
   const listBoxRef = React.useRef<any>();
   const shouldScrollRef = React.useRef(true);
-  const [buttonId, listBoxId] = useIds([`select-button`, `select-listbox`]);
+  const [buttonId, listBoxId] = useIds(`select-button`, `select-listbox`);
 
   useScrollIntoView(
     listBoxRef,

@@ -128,12 +128,12 @@ function usePopover(props: PopoverOptions) {
   const triggerRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLElement>(null);
 
-  const [triggerId, contentId, headerId, bodyId] = useIds([
+  const [triggerId, contentId, headerId, bodyId] = useIds(
     "popover-trigger",
     "popover-content",
     "popover-header",
     "popover-body",
-  ]);
+  );
 
   const popper = usePopper({
     placement: props.placement,

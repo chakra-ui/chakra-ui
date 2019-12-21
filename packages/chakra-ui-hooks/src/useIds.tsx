@@ -2,10 +2,9 @@ import useId from "./useId";
 
 const prefix = (str: string, id: string | number) => `${str}-${id}`;
 
-function useIds(prefixes: string[], id?: string) {
+function useIds(...prefixes: string[]) {
   const uuid = useId();
-  const _id = id || uuid;
-  const ids = prefixes.map(p => prefix(p, _id));
+  const ids = prefixes.map(p => prefix(p, uuid));
   return ids;
 }
 
