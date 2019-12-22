@@ -19,8 +19,7 @@ import {
 } from "@chakra-ui/core";
 
 export default function HookForm() {
-  const { handleSubmit, errors, register } = useForm();
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { handleSubmit, errors, register, formState } = useForm();
 
   function validateName(value) {
     let error;
@@ -33,11 +32,8 @@ export default function HookForm() {
   }
 
   function onSubmit(values) {
-    setIsSubmitting(true);
-
     setTimeout(() => {
       alert(JSON.stringify(values, null, 2));
-      setIsSubmitting(false);
     }, 1000);
   }
 
@@ -54,7 +50,12 @@ export default function HookForm() {
           {errors.name && errors.name.message}
         </FormErrorMessage>
       </FormControl>
-      <Button mt={4} variantColor="teal" isLoading={isSubmitting} type="submit">
+      <Button
+        mt={4}
+        variantColor="teal"
+        isLoading={formState.isSubmitting}
+        type="submit"
+      >
         Submit
       </Button>
     </form>
@@ -62,7 +63,7 @@ export default function HookForm() {
 }
 ```
 
-[![Edit with CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/chakra-ui-react-hook-form-v382z?fontsize=14)
+[![Edit with CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/chakra-ui-react-hook-form-rvi3p)
 
 > Are you using Chakra UI to build some cool features in your products, and
 > you'd like to showcase it? Submit a PR to add it to this page.
