@@ -28,7 +28,6 @@
     "color": "3.1.2",
     "exenv": "^1.2.2",
     "popper.js": "^1.15.0",
-    "pretty-num": "0.3.0",
     "react-animate-height": "2.0.9",
     "react-focus-lock": "^2.2.1",
     "react-spring": "^8.0.27",
