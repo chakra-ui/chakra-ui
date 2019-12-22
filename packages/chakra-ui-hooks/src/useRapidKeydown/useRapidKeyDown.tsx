@@ -1,15 +1,7 @@
 import * as React from "react";
 
 function useRapidKeydown() {
-  /**
-   * When focus is on the select control or the select menu is open,
-   * Typing some characters, either rapidly or at intervals, should highlight
-   * the option that matches the character(s).
-   *
-   * So we need to keep some refs
-   */
   const [keys, setKeys] = React.useState<string[]>([]);
-  // We'll clear the keys after specific timeout
   const keysTimeoutRef = React.useRef<any>();
 
   const clearKeysAfterDelay = () => {

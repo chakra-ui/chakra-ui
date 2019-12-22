@@ -2,7 +2,6 @@ import * as React from "react";
 import usePopper, { PopperJS } from "../usePopper";
 import useDisclosure from "../useDisclosure";
 import useIds from "../useIds";
-import createCtx from "../useCreateContext";
 import {
   useDescendant,
   useDescendants,
@@ -12,6 +11,7 @@ import {
   createOnKeyDown,
   composeEventHandlers,
   ensureFocus,
+  createContext,
 } from "@chakra-ui/utils";
 import { useForkRef } from "../useForkRef";
 import useRapidKeydown from "../useRapidKeydown";
@@ -123,8 +123,8 @@ export type UseMenuReturn = ReturnType<typeof useMenu>;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
-const [useMenuCtx, MenuContextProvider] = createCtx<UseMenuReturn[1]>();
-const [useSelection, DescendantsProvider] = createCtx<UseMenuReturn[0]>();
+const [MenuContextProvider, useMenuCtx] = createContext<UseMenuReturn[1]>();
+const [DescendantsProvider, useSelection] = createContext<UseMenuReturn[0]>();
 
 export function MenuProvider(
   props: MenuOptions & { children?: React.ReactNode },

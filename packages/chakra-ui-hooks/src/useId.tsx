@@ -1,9 +1,12 @@
 import { useUID } from "react-uid";
 
-function useId(prefix?: string, idProp?: string) {
+const prefix = (str: string, id: string | number) => `${str}-${id}`;
+
+function useId(idPrefix?: string, idProp?: string) {
   const uuid = useUID();
-  const id = idProp || uuid;
-  return prefix ? `${prefix}-${id}` : id;
+  if (idProp) return idProp;
+  if (idPrefix) return prefix(idPrefix, uuid);
+  return uuid;
 }
 
 export default useId;

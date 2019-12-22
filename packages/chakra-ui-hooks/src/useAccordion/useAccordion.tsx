@@ -1,8 +1,11 @@
-import { composeEventHandlers, createOnKeyDown } from "@chakra-ui/utils";
+import {
+  composeEventHandlers,
+  createOnKeyDown,
+  createContext,
+} from "@chakra-ui/utils";
 import constate from "constate";
 import * as React from "react";
 import useControllableValue from "../useControllableValue";
-import createCtx from "../useCreateContext";
 import {
   useDescendant,
   useDescendants,
@@ -89,14 +92,6 @@ export function useAccordion(props: AccordionOptions) {
   );
 
   /**
-   * The selection manager is use to support keyboard navigation
-   * We'll add `useSelectionState` which helps us register the
-   * focusable items so when you press `up` and `down`, we can
-   * move focus between the items.
-   */
-  const descendants = useDescendants();
-
-  /**
    * We'll map through the children and inject the `isOpen` and `onChange` attributes
    * via cloneElement
    */
@@ -160,13 +155,13 @@ export function useAccordion(props: AccordionOptions) {
   /**
    * We're returning the enhanced children and the selection (for focus management)
    */
-  return { descendants, children };
+  return { children };
 }
 
 /**
  * Let's create context for the Accordion
  */
-const [useAccordionCtx, AccordionCtxProvider] = createCtx<
+const [AccordionCtxProvider, useAccordionCtx] = createContext<
   UseDescendantsReturn
 >();
 
@@ -174,7 +169,14 @@ const [useAccordionCtx, AccordionCtxProvider] = createCtx<
  * This will be the provider for the accordion state
  */
 export function Accordion(props: AccordionOptions) {
-  const { children, descendants } = useAccordion(props);
+  /**
+   * The selection manager is use to support keyboard navigation
+   * We'll add `useDescendants` which helps us register the
+   * focusable items so when you press `up` and `down`, we can
+   * move focus between the items.
+   */
+  const descendants = useDescendants();
+  const { children } = useAccordion(props);
   const ctx = React.useMemo(() => descendants, [descendants]);
   return <AccordionCtxProvider value={ctx}>{children}</AccordionCtxProvider>;
 }

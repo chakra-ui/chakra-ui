@@ -1,7 +1,6 @@
 import * as React from "react";
-import createCtx from "../useCreateContext";
 import { useForkRef } from "../useForkRef";
-import { composeEventHandlers } from "@chakra-ui/utils";
+import { composeEventHandlers, createContext } from "@chakra-ui/utils";
 import useBlurOutside from "../useBlurOutside";
 import usePopper, { PopperJS } from "../usePopper";
 import useDisclosure from "../useDisclosure";
@@ -10,7 +9,7 @@ import useFocusOnHide from "../useFocusOnHide";
 import useFocusOnShow from "../useFocusOnShow";
 import useIsomorphicEffect from "../useIsomorphicEffect";
 
-const [usePopoverCtx, PopoverCtxProvider] = createCtx<PopoverContext>();
+const [PopoverCtxProvider, usePopoverCtx] = createContext<PopoverContext>();
 export { usePopoverCtx };
 /////////////////////////////////////////////////////////////////////
 

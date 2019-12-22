@@ -5,14 +5,14 @@ import {
   percentToValue,
   roundValueToStep,
   valueToPercent,
+  createContext,
 } from "@chakra-ui/utils";
 import * as React from "react";
 import useControllableValue from "../useControllableValue";
-import createCtx from "../useCreateContext";
 import useId from "../useId";
 import { throttle } from "throttle-debounce";
 
-const [useSliderContext, SliderContextProvider] = createCtx<any>();
+const [SliderContextProvider, useSliderContext] = createContext<any>();
 export { SliderContextProvider };
 
 // http://muffinman.io/aria-progress-range-slider/

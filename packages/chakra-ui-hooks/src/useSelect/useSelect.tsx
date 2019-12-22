@@ -1,4 +1,8 @@
-import { composeEventHandlers, createOnKeyDown } from "@chakra-ui/utils";
+import {
+  composeEventHandlers,
+  createOnKeyDown,
+  createContext,
+} from "@chakra-ui/utils";
 import * as React from "react";
 // import useIsomorphicEffect from "../useIsomorphicEffect";
 import {
@@ -8,7 +12,6 @@ import {
   useDescendants,
 } from "../useDescendant";
 import useBlurOutside from "../useBlurOutside";
-import createCtx from "../useCreateContext";
 import useDisclosure, { UseDisclosureReturn } from "../useDisclosure";
 // import { useDefaultValue, useValue } from "./useValue";
 import useId from "../useId";
@@ -23,12 +26,12 @@ import useScrollIntoView from "./useScrollIntoView";
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-const [useSelectState, StateProvider] = createCtx<DescendantsState>();
-const [useSelectActions, ActionsProvider] = createCtx<DescendantsActions>();
-const [useSelectDisclosure, DisclosureProvider] = createCtx<
+const [StateProvider, useSelectState] = createContext<DescendantsState>();
+const [ActionsProvider, useSelectActions] = createContext<DescendantsActions>();
+const [DisclosureProvider, useSelectDisclosure] = createContext<
   UseDisclosureReturn
 >();
-const [useSelectOptions, OptionsProvider] = createCtx<{
+const [OptionsProvider, useSelectOptions] = createContext<{
   controlRef: React.RefObject<any>;
   listBoxRef: React.RefObject<any>;
   shouldScrollRef: React.MutableRefObject<boolean>;

@@ -1,5 +1,5 @@
 // Credit: https://github.com/maktouch/use-popper
-import PopperJS from "popper.js";
+import * as PopperJS from "popper.js";
 import React from "react";
 import { css } from "@emotion/core";
 import { useDeepCompareEffect } from "use-deep-compare";
@@ -230,4 +230,4 @@ export function computeArrowStyle(options: {
   `;
 }
 
-export type PopperJS = PopperJS;
+export type PopperJS = PopperJS.default;

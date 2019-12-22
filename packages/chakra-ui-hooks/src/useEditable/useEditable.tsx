@@ -1,7 +1,6 @@
 import * as React from "react";
-import createCtx from "../useCreateContext";
 import useControllableValue from "../useControllableValue";
-import { composeEventHandlers } from "@chakra-ui/utils";
+import { composeEventHandlers, createContext } from "@chakra-ui/utils";
 
 interface UseEditableOptions {
   value?: string;
@@ -125,7 +124,7 @@ export function useEditable(props: UseEditableOptions) {
 
 ////////////////////////////////////////////////////////////////
 
-const [useEditableCtx, EditableCtxProvider] = createCtx<
+const [EditableContextProvider, useEditableContext] = createContext<
   ReturnType<typeof useEditable>
 >();
 
@@ -133,7 +132,9 @@ export function EditableProvider(props: UseEditableOptions) {
   const editable = useEditable(props);
   const ctx = React.useMemo(() => editable, [editable]);
   return (
-    <EditableCtxProvider value={ctx}>{props.children}</EditableCtxProvider>
+    <EditableContextProvider value={ctx}>
+      {props.children}
+    </EditableContextProvider>
   );
 }
 
@@ -147,7 +148,7 @@ export function useEditablePreview(props: any) {
     onEdit,
     isPreviewFocusable,
     placeholder,
-  } = useEditableCtx();
+  } = useEditableContext();
 
   const isValueEmpty = value == null || value == "";
 
@@ -188,7 +189,7 @@ export function useEditableInput(props: UseEditableInput = {}) {
     placeholder,
     submitOnBlur,
     isDisabled,
-  } = useEditableCtx();
+  } = useEditableContext();
 
   const onBlur = React.useCallback(() => {
     if (submitOnBlur) onSubmit();
@@ -214,7 +215,7 @@ export function useEditableState() {
     onCancel,
     onEdit,
     isDisabled,
-  } = useEditableCtx();
+  } = useEditableContext();
   return {
     isEditing,
     onSubmit,

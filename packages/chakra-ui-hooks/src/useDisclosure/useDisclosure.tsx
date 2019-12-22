@@ -39,12 +39,9 @@ const useDisclosure = (props: UseDisclosureOptions = {}) => {
   }, [isControlled, onOpenProp]);
 
   const onToggle = React.useCallback(() => {
-    if (isOpen) {
-      onClose();
-    } else {
-      onOpen();
-    }
-  }, [isOpen]);
+    if (isOpen) onClose();
+    else onOpen();
+  }, [isOpen, onOpen, onClose]);
 
   return {
     isOpen: Boolean(isOpen),

@@ -8,3 +8,4 @@ export * from "./number";
 export * from "./dom-query";
 export * from "./tabbable";
 export * from "./data-assertion";
+export * from "./context";

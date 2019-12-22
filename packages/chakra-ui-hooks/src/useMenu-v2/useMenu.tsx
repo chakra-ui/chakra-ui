@@ -8,13 +8,13 @@ import {
   composeEventHandlers,
   ensureFocus,
   createOnKeyDown,
+  createContext,
 } from "@chakra-ui/utils";
 import {
   useDescendants,
   UseDescendantsReturn,
   useDescendant,
 } from "../useDescendant";
-import createCtx from "../useCreateContext";
 import useLogger from "../useLogger";
 import { useEffect } from "@storybook/addons";
 import useRapidKeydown from "../useRapidKeydown";
@@ -114,9 +114,10 @@ function useMenuProvider(props = {}) {
     disclosureRef,
   };
 }
-const [useDescendantCtx, DescendantProvider] = createCtx<
+const [DescendantProvider, useDescendantCtx] = createContext<
   UseDescendantsReturn
 >();
+
 export function MenuProvider(props: any) {
   const ctx = useMenuProvider(props);
   const descendants = useDescendants();
