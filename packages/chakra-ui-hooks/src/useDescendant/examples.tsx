@@ -6,8 +6,8 @@ import {
   DescendantsState,
   DescendantsActions,
 } from ".";
-import createCtx from "../useCreateContext";
 import { chakra } from "@chakra-ui/system";
+import { createContext } from "@chakra-ui/utils";
 
 const stories = storiesOf("useDescendant", module);
 
@@ -42,7 +42,7 @@ function Option({
   );
 }
 
-const [useDescendantsContext, DescendantsProvider] = createCtx<{
+const [DescendantsProvider, useDescendantsContext] = createContext<{
   state: DescendantsState;
   actions: DescendantsActions;
 }>();

@@ -9,3 +9,5 @@ export * from "./dom-query";
 export * from "./tabbable";
 export * from "./data-assertion";
 export * from "./context";
+export * from "throttle-debounce";
+export { default as constate } from "constate";

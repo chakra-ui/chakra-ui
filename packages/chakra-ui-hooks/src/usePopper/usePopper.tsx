@@ -1,5 +1,5 @@
 // Credit: https://github.com/maktouch/use-popper
-import * as PopperJS from "popper.js";
+import Popper from "popper.js";
 import React from "react";
 import { css } from "@emotion/core";
 import { useDeepCompareEffect } from "use-deep-compare";
@@ -14,14 +14,14 @@ const popperStyles: React.CSSProperties = {
 };
 
 function usePopperState(
-  placement: PopperJS.Placement,
+  placement: Popper.Placement,
 ): [
   {
-    placement: PopperJS.Placement;
+    placement: Popper.Placement;
     popperStyles: React.CSSProperties;
     arrowStyles?: React.CSSProperties | {};
   },
-  (data: PopperJS.Data) => PopperJS.Data,
+  (data: Popper.Data) => Popper.Data,
 ] {
   const [currentPopperStyles, setPopperStyles] = React.useState<
     React.CSSProperties
@@ -29,11 +29,11 @@ function usePopperState(
   const [currentArrowStyles, setArrowStyles] = React.useState<
     React.CSSProperties
   >({});
-  const [currentPlacement, setPlacement] = React.useState<PopperJS.Placement>(
+  const [currentPlacement, setPlacement] = React.useState<Popper.Placement>(
     placement,
   );
 
-  const setState = React.useCallback((data: PopperJS.Data) => {
+  const setState = React.useCallback((data: Popper.Data) => {
     const { styles, arrowStyles, placement: p } = data;
 
     setPopperStyles(styles as React.CSSProperties);
@@ -55,10 +55,10 @@ function usePopperState(
 //////////////////////////////////////////////////////////////////////////
 
 export interface UsePopperOptions {
-  placement?: PopperJS.Placement;
+  placement?: Popper.Placement;
   positionFixed?: boolean;
   eventsEnabled?: boolean;
-  modifiers?: PopperJS.Modifiers;
+  modifiers?: Popper.Modifiers;
 }
 
 function usePopper<R = HTMLElement, P = HTMLElement, A = HTMLElement>({
@@ -67,7 +67,7 @@ function usePopper<R = HTMLElement, P = HTMLElement, A = HTMLElement>({
   eventsEnabled = true,
   modifiers = {},
 }: UsePopperOptions) {
-  const popperInstance = React.useRef<PopperJS>(null);
+  const popperInstance = React.useRef<Popper>(null);
   const [popperStyles, updatePopperState] = usePopperState(placement);
   const [referenceNode, referenceRef] = useCallbackRef<R>();
   const [popperNode, popperRef] = useCallbackRef<P>();
@@ -81,7 +81,7 @@ function usePopper<R = HTMLElement, P = HTMLElement, A = HTMLElement>({
     if (referenceNode === null || popperNode === null) return;
 
     // @ts-ignore
-    popperInstance.current = new PopperJS(referenceNode, popperNode, {
+    popperInstance.current = new Popper(referenceNode, popperNode, {
       placement,
       positionFixed,
       modifiers: {
@@ -230,4 +230,4 @@ export function computeArrowStyle(options: {
   `;
 }
 
-export type PopperJS = PopperJS.default;
+export type PopperJS = Popper;

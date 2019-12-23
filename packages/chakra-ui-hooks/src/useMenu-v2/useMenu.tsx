@@ -1,23 +1,23 @@
-import * as React from "react";
-import useId from "../useId";
-import usePopper from "../usePopper";
-import useIsomorphicEffect from "../useIsomorphicEffect";
-import useUpdateEffect from "../useUpdateEffect";
-import useForkRef from "../useForkRef";
 import {
   composeEventHandlers,
-  ensureFocus,
-  createOnKeyDown,
   createContext,
+  createOnKeyDown,
+  ensureFocus,
 } from "@chakra-ui/utils";
+import * as React from "react";
 import {
+  useDescendant,
   useDescendants,
   UseDescendantsReturn,
-  useDescendant,
 } from "../useDescendant";
-import useLogger from "../useLogger";
-import { useEffect } from "@storybook/addons";
+import useForkRef from "../useForkRef";
+import useId from "../useId";
+import useIsomorphicEffect from "../useIsomorphicEffect";
+import usePopper from "../usePopper";
 import useRapidKeydown from "../useRapidKeydown";
+import useUpdateEffect from "../useUpdateEffect";
+import useDisclosure from "../useDisclosure";
+import useIds from "../useIds";
 
 type PopperType = Pick<ReturnType<typeof usePopper>, "popper" | "reference">;
 
@@ -27,15 +27,17 @@ interface MenuContextType extends PopperType {
   parent: MenuContextType | undefined;
   orientation: any;
   isOpen: boolean;
-  toggle: () => void;
-  show: () => void;
-  hide: () => void;
+  onToggle: () => void;
+  onOpen: () => void;
+  onClose: () => void;
   menuRef: React.RefObject<any>;
   disclosureRef: React.RefObject<any>;
 }
 
+// Create the context for a single menu
 const MenuContext = React.createContext<MenuContextType | undefined>(undefined);
 const useMenuContext = () => React.useContext(MenuContext) as MenuContextType;
+const MenuContextProvider = MenuContext.Provider;
 
 function useMenuProvider(props = {}) {
   /**
@@ -49,10 +51,7 @@ function useMenuProvider(props = {}) {
   const hasParent = Boolean(parent);
 
   // Regular open and close stuff
-  const [isOpen, setIsOpen] = React.useState(false);
-  const show = () => setIsOpen(true);
-  const hide = () => setIsOpen(false);
-  const toggle = () => setIsOpen(t => !t);
+  const { isOpen, onOpen, onClose, onToggle } = useDisclosure();
 
   // prepare the reference to the menu and disclosure
   const menuRef = React.useRef<HTMLElement>(null);
@@ -80,9 +79,9 @@ function useMenuProvider(props = {}) {
    */
   React.useEffect(() => {
     if (isOpen && hasParent && !parent.isOpen) {
-      hide();
+      onClose();
     }
-  }, [isOpen, parent, hasParent]);
+  }, [isOpen, onClose, parent, hasParent]);
 
   /**
    * Let's focus the top-level disclosure when we close
@@ -95,9 +94,7 @@ function useMenuProvider(props = {}) {
   }, [isOpen]);
 
   // generate unique ids for menu and disclosure
-  const uuid = useId();
-  const disclosureId = `menubutton-${uuid}`;
-  const menuId = `menu-${uuid}`;
+  const [disclosureId, menuId] = useIds(`menu-button`, `menu`);
 
   return {
     popper,
@@ -107,9 +104,9 @@ function useMenuProvider(props = {}) {
     parent,
     orientation: "vertical",
     isOpen,
-    toggle,
-    show,
-    hide,
+    onToggle,
+    onOpen,
+    onClose,
     menuRef,
     disclosureRef,
   };
@@ -125,12 +122,20 @@ export function MenuProvider(props: any) {
 
   return (
     <DescendantProvider value={descCtx}>
-      <MenuContext.Provider value={ctx}>{props.children}</MenuContext.Provider>
+      <MenuContextProvider value={ctx}>{props.children}</MenuContextProvider>
     </DescendantProvider>
   );
 }
 
-export function useMenu(props: any) {
+//////////////////////////////////////////////////////////////////////////////
+
+interface MenuProps {
+  onMouseEnter?: React.MouseEventHandler;
+  onKeyDown?: React.KeyboardEventHandler;
+  ref?: React.Ref<any>;
+}
+
+export function useMenu(props: MenuProps) {
   // let's read from the menu context
   const menu = useMenuContext();
   // then check if this menu is a nested menu
@@ -151,8 +156,8 @@ export function useMenu(props: any) {
       if (event.target === menu.disclosureRef.current) {
         return;
       }
-      // otherwise, hide the menu
-      menu.hide();
+      // otherwise, onClose the menu
+      menu.onClose();
     };
     // add the event listener for click
     document.addEventListener("click", click);
@@ -162,11 +167,11 @@ export function useMenu(props: any) {
     };
   }, [menu, hasParent]);
 
-  const onMouseEnter = (event: React.MouseEvent) => {
+  const onMouseEnter = () => {
     // If we're in a nested menu,
     // keep the menu open when we mouse into it
     if (hasParent) {
-      menu.show();
+      menu.onOpen();
     }
   };
 
@@ -180,12 +185,12 @@ export function useMenu(props: any) {
     },
     onKeyDown: onSearch(keys => search(keys, "highlight")),
     keyMap: {
-      Escape: menu.hide,
+      Escape: menu.onClose,
       ArrowDown: () => next("highlight"),
       ArrowUp: () => previous("highlight"),
       ArrowLeft: () => {
         if (!hasParent) return;
-        menu.hide();
+        menu.onClose();
         const disclosureNode = menu.disclosureRef.current;
         disclosureNode.focus();
       },
@@ -206,9 +211,11 @@ export function useMenu(props: any) {
     "data-placement": menu.popper.placement,
     style: menu.popper.style,
     onMouseEnter: composeEventHandlers(onMouseEnter, props.onMouseEnter),
-    onKeyDown,
+    onKeyDown: composeEventHandlers(onKeyDown, props.onKeyDown),
   };
 }
+
+//////////////////////////////////////////////////////////////////////////////
 
 interface MenuDisclosureProps {
   ref?: React.Ref<any>;
@@ -228,7 +235,7 @@ export function useMenuDisclosure(props: MenuDisclosureProps) {
     // if it's the top-level disclosure, toggle the menu
     if (!hasParent) {
       if (menu.isOpen) {
-        menu.hide();
+        menu.onClose();
       } else {
         showAndFocusFirstItem();
       }
@@ -245,7 +252,7 @@ export function useMenuDisclosure(props: MenuDisclosureProps) {
     // open the nested menu after a delay
     setTimeout(() => {
       if (self.contains(document.activeElement)) {
-        menu.show();
+        menu.onOpen();
         // if this menu item hasn't received focus due to browser
         // issues, force it to focus
         if (document.activeElement !== self) {
@@ -262,14 +269,14 @@ export function useMenuDisclosure(props: MenuDisclosureProps) {
     // we'll close the nested menu
     const parentMenuNode = menu.parent.menuRef.current;
     if (parentMenuNode.contains(event.target)) {
-      menu.hide();
+      menu.onClose();
     }
   };
 
   const [{ items }, { highlight }] = useDescendantCtx();
 
   const showAndFocusFirstItem = () => {
-    menu.show();
+    menu.onOpen();
     const firstItem = items[0];
     const firstItemNode = firstItem.ref.current as HTMLElement;
     ensureFocus(firstItemNode);
@@ -277,7 +284,7 @@ export function useMenuDisclosure(props: MenuDisclosureProps) {
   };
 
   const showAndFocusLastItem = () => {
-    menu.show();
+    menu.onOpen();
     const lastItem = items[items.length - 1];
     const lastItemNode = lastItem.ref.current as HTMLElement;
     ensureFocus(lastItemNode);
@@ -351,12 +358,12 @@ export function useMenuItem(props: any) {
     }
 
     // close the current menu
-    menu.hide();
+    menu.onClose();
 
     // close all parent menus recursively
     let next = menu.parent;
     while (next != null) {
-      next.hide();
+      next.onClose();
       next = next.parent;
     }
   };
