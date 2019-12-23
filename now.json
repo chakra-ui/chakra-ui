@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "packages/chakra-ui-docs/package.json",
+      "src": "packages/docs/package.json",
       "use": "@now/next@canary"
     }
   ],
@@ -11,7 +11,7 @@
   "routes": [
     {
       "src": "^(.*)$",
-      "dest": "packages/chakra-ui-docs$1"
+      "dest": "packages/docs$1"
     },
     {
       "src": "www.chakra-ui.com/*",

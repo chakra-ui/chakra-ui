@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/layout";
 import { createChakra } from "@chakra-ui/system";
-import { Icon } from "@chakra-ui/core";
+import { Icon } from "../../../core/dist";
 import { ThemeProvider } from "@chakra-ui/theme";
 import { storiesOf } from "@storybook/react";
 import React from "react";
