@@ -1,5 +1,10 @@
 # Recipes
 
+- [Building Forms with Chakra UI and React Hook Form](#building-forms-with-chakra-ui-and-react-hook-form)
+  by Simon Collins
+- [Responsive Header with Chakra UI](#responsive-header-with-chakra-ui) by Jean
+  Bauer
+
 ## Building Forms with Chakra UI and React Hook Form
 
 _by [Simon Collins](https://github.com/simoncollins)_
@@ -63,6 +68,84 @@ export default function HookForm() {
 ```
 
 [![Edit with CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/chakra-ui-react-hook-form-v382z?fontsize=14)
+
+## Responsive Header with Chakra UI
+
+_by [Jean Bauer](https://github.com/jeanbauer)_
+
+This example shows how to build your own simple responsive header just using
+Chakra UI's components.
+
+```jsx live=false
+import React from "react";
+import { Box, Heading, Flex, Text, Button } from "@chakra-ui/core";
+
+const MenuItems = ({ children }) => (
+  <Text mt={{ base: 4, md: 0 }} mr={6} display="block">
+    {children}
+  </Text>
+);
+
+const Header = props => {
+  const [show, setShow] = React.useState(false);
+  const handleToggle = () => setShow(!show);
+
+  return (
+    <Flex
+      as="nav"
+      align="center"
+      justify="space-between"
+      wrap="wrap"
+      padding="1.5rem"
+      bg="teal.500"
+      color="white"
+      {...props}
+    >
+      <Flex align="center" mr={5}>
+        <Heading as="h1" size="lg">
+          Chakra UI
+        </Heading>
+      </Flex>
+
+      <Box display={{ sm: "block", md: "none" }} onClick={handleToggle}>
+        <svg
+          fill="white"
+          width="12px"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <title>Menu</title>
+          <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+        </svg>
+      </Box>
+
+      <Box
+        display={{ sm: show ? "block" : "none", md: "flex" }}
+        width={{ sm: "full", md: "auto" }}
+        alignItems="center"
+        flexGrow={1}
+      >
+        <MenuItems>Docs</MenuItems>
+        <MenuItems>Examples</MenuItems>
+        <MenuItems>Blog</MenuItems>
+      </Box>
+
+      <Box
+        display={{ sm: show ? "block" : "none", md: "block" }}
+        mt={{ base: 4, md: 0 }}
+      >
+        <Button bg="transparent" border="1px">
+          Create account
+        </Button>
+      </Box>
+    </Flex>
+  );
+};
+
+export default Header;
+```
+
+[![Edit with CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/chakra-ui-header-sbsh5?fontsize=14&hidenavigation=1&theme=dark)
 
 > Are you using Chakra UI to build some cool features in your products, and
 > you'd like to showcase it? Submit a PR to add it to this page.
