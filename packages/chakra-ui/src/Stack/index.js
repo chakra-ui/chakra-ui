@@ -49,7 +49,11 @@ const Stack = ({
 
         if (shouldWrapChildren) {
           return (
-            <Box d="inline-block" {...spacingProps}>
+            <Box
+              d="inline-block"
+              {...spacingProps}
+              key={`stack-box-wrapper-${index}`}
+            >
               {child}
             </Box>
           );
