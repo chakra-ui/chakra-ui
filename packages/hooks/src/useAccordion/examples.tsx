@@ -1,7 +1,4 @@
-import { Box } from "@chakra-ui/layout";
 import { createChakra } from "@chakra-ui/system";
-import { Icon } from "../../../core/dist";
-import { ThemeProvider } from "@chakra-ui/theme";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import {
@@ -9,22 +6,52 @@ import {
   AccordionItem,
   useAccordionButton,
   useAccordionPanel,
-  useAccordionItemState,
 } from "./useAccordion";
 
-const stories = storiesOf("useAccordion", module).addDecorator(story => (
-  <ThemeProvider>{story()}</ThemeProvider>
-));
+const stories = storiesOf("useAccordion", module);
 
 const AccordionButton = createChakra("button", {
   hook: useAccordionButton,
 });
 
+AccordionButton.defaultProps = {
+  display: "block",
+  width: "100%",
+  border: 0,
+  borderBottom: "1px solid #e2e2e2",
+  padding: "16px 20px",
+  fontWeight: 600,
+  textAlign: "left",
+  fontSize: "16px",
+  _expanded: {
+    bg: "lightgray",
+  },
+};
+
 const AccordionPanel = createChakra("div", {
   hook: useAccordionPanel,
 });
 
-stories.add("Accordion", () => (
+AccordionPanel.defaultProps = {
+  padding: "16px",
+  fontFamily: "system-ui",
+};
+
+stories.add("default", () => (
+  <Accordion>
+    <AccordionItem>
+      <AccordionButton>Toggle 1</AccordionButton>
+      <AccordionPanel>Panel 1</AccordionPanel>
+    </AccordionItem>
+
+    <AccordionItem>
+      <AccordionButton>Toggle 2</AccordionButton>
+      <AccordionPanel>Panel 2</AccordionPanel>
+    </AccordionItem>
+  </Accordion>
+));
+
+stories.add("allow toggle", () => (
   <Accordion allowToggle>
     <AccordionItem>
       <AccordionButton>Toggle 1</AccordionButton>
@@ -38,78 +65,30 @@ stories.add("Accordion", () => (
   </Accordion>
 ));
 
-const AccordionHeader = createChakra("div", {
-  hook: useAccordionButton,
-});
-
-const AccordionIcon = (props: any) => {
-  const { isDisabled, isOpen } = useAccordionItemState();
-  return (
-    <Icon
-      aria-hidden
-      focusable="false"
-      size="1.25em"
-      name={isOpen ? "chevron-up" : "chevron-down"}
-      opacity={isDisabled ? 0.4 : 1}
-      transition="transform 0.2s"
-      transformOrigin="center"
-      {...props}
-    />
-  );
-};
-
-stories.add("Chakra Accordion", () => (
+stories.add("allow multiple", () => (
   <Accordion allowMultiple>
     <AccordionItem>
-      <AccordionHeader
-        px={4}
-        py={2}
-        width="100%"
-        display="flex"
-        alignItems="center"
-        transition="all 0.2s"
-        borderBottom="1px solid red"
-        _focus={{ boxShadow: "outline" }}
-        _hover={{ bg: "blackAlpha.50" }}
-        _disabled={{ opacity: 0.4, cursor: "not-allowed" }}
-      >
-        <Box flex="1" textAlign="left">
-          Section 1 title
-        </Box>
-        <AccordionIcon />
-      </AccordionHeader>
-      <AccordionPanel px={4} py={2}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat.
-      </AccordionPanel>
+      <AccordionButton>Section 1 title</AccordionButton>
+      <AccordionPanel>Panel 1</AccordionPanel>
     </AccordionItem>
 
     <AccordionItem>
-      <AccordionHeader
-        px={4}
-        py={2}
-        width="100%"
-        display="flex"
-        alignItems="center"
-        transition="all 0.2s"
-        borderBottom="1px solid red"
-        _focus={{ boxShadow: "outline" }}
-        _hover={{ bg: "blackAlpha.50" }}
-        _disabled={{ opacity: 0.4, cursor: "not-allowed" }}
-      >
-        <Box flex="1" textAlign="left">
-          Section 2 title
-        </Box>
-        <AccordionIcon />
-      </AccordionHeader>
-      <AccordionPanel px={4} py={2}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat.
-      </AccordionPanel>
+      <AccordionButton>Section 2 title</AccordionButton>
+      <AccordionPanel>Panel 2</AccordionPanel>
+    </AccordionItem>
+  </Accordion>
+));
+
+stories.add("allow multiple - default index", () => (
+  <Accordion allowMultiple defaultIndex={[1]}>
+    <AccordionItem>
+      <AccordionButton>Section 1 title</AccordionButton>
+      <AccordionPanel>Panel 1</AccordionPanel>
+    </AccordionItem>
+
+    <AccordionItem>
+      <AccordionButton>Section 2 title</AccordionButton>
+      <AccordionPanel>Panel 2</AccordionPanel>
     </AccordionItem>
   </Accordion>
 ));

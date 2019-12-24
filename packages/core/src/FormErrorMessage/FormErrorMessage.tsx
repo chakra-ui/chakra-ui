@@ -5,7 +5,7 @@ import { useColorMode } from "@chakra-ui/theme";
 import { useFormControl } from "../FormControl";
 import { Icon } from "../Icon";
 import { Box, Flex, FlexProps } from "@chakra-ui/layout";
-import { Icons } from "../icons/dist";
+import { Icons } from "@chakra-ui/icons";
 
 type FormErrorMessageProps<P, T> = FlexProps<P, T> & { icon?: Icons };
 

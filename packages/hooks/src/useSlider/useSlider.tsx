@@ -102,24 +102,38 @@ interface SliderOptions {
 /////////////////////////////////////////////////////////////////////////////////
 
 export function useSlider(props: any) {
+  const {
+    min,
+    max,
+    onChange,
+    value: valueProp,
+    defaultValue,
+    isReversed,
+    orientation,
+    id: idProp,
+    isDisabled,
+    onChangeStart,
+    onChangeEnd,
+    step,
+  } = props;
+
   const [isPointerDown, setIsPointerDown] = React.useState(false);
   const [isFocused, setIsFocused] = React.useState(false);
-  const [internalValue, setValue] = React.useState(() => {
-    if (props.defaultValue) return props.defaultValue;
-    return props.isReversed ? props.max : props.min;
+
+  const [valueState, setValue] = React.useState(() => {
+    if (defaultValue) return defaultValue;
+    return isReversed ? max : min;
   });
-  const [isControlled, _value] = useControllableValue(
-    props.value,
-    internalValue,
-  );
+
+  const [isControlled, _value] = useControllableValue(valueProp, valueState);
 
   // Constrain the value because it can't be less than min
   // or greater than max
-  const value = constrainValue(_value, props.min, props.max);
+  const value = constrainValue(_value, min, max);
 
-  const reversedValue = props.max - value + props.min;
-  const trackValue = props.isReversed ? reversedValue : value;
-  const trackPercent = valueToPercent(trackValue, props.min, props.max);
+  const reversedValue = max - value + min;
+  const trackValue = isReversed ? reversedValue : value;
+  const trackPercent = valueToPercent(trackValue, min, max);
 
   // A single place to update state for controlled/uncontrolled scenarios
   const updateValue = React.useCallback(
@@ -127,31 +141,31 @@ export function useSlider(props: any) {
       if (!isControlled) {
         setValue(newValue);
       }
-      if (props.onChange) {
-        props.onChange(newValue);
+      if (onChange) {
+        onChange(newValue);
       }
     },
-    [isControlled, props.max, props.min, props.onChange],
+    [isControlled, onChange],
   );
 
-  const isVertical = props.orientation === "vertical";
+  const isVertical = orientation === "vertical";
 
   // Let's keep a reference to the slider track and thumb
   const trackRef = React.useRef<HTMLElement>();
   const thumbRef = React.useRef<HTMLElement>();
 
   const uuid = useId();
-  const id = props.id || uuid;
+  const id = idProp || uuid;
 
   const onPointerDown = React.useCallback(
     (event: React.PointerEvent) => {
       event.preventDefault();
-      if (props.isDisabled) return;
+      if (isDisabled) return;
 
       setIsPointerDown(true);
 
-      if (props.onChangeStart) {
-        props.onChangeStart(value);
+      if (onChangeStart) {
+        onChangeStart(value);
       }
 
       if (trackRef.current) {
@@ -167,7 +181,8 @@ export function useSlider(props: any) {
         }
       }
     },
-    [props.isDisabled],
+    //eslint-disable-next-line
+    [isDisabled, onChangeStart, value, updateValue],
   );
 
   const onPointerUp = React.useCallback(
@@ -178,11 +193,11 @@ export function useSlider(props: any) {
         trackRef.current.releasePointerCapture(event.pointerId);
       }
 
-      if (props.onChangeEnd) {
-        props.onChangeEnd(value);
+      if (onChangeEnd) {
+        onChangeEnd(value);
       }
     },
-    [props.onChangeEnd],
+    [onChangeEnd, value],
   );
 
   // throttle the pointer move function
@@ -207,48 +222,48 @@ export function useSlider(props: any) {
     }
   };
 
-  /**
-   * We're using the HTML5 Pointer Events API because it combines touch, mouse, and pen
-   * without having to handle any special use cases
-   *
-   * @see https://developer.mozilla.org/en-US/docs/Web/API/Element/setPointerCapture
-   */
-  const getValueFromPointer = (event: React.PointerEvent) => {
-    if (trackRef.current) {
-      const trackRect = trackRef.current.getBoundingClientRect();
-      const { clientX, clientY } = event;
-      let diff = isVertical
-        ? trackRect.bottom - clientY
-        : clientX - trackRect.left;
+  const getValueFromPointer = React.useCallback(
+    (event: React.PointerEvent) => {
+      if (trackRef.current) {
+        const trackRect = trackRef.current.getBoundingClientRect();
+        const { clientX, clientY } = event;
+        let diff = isVertical
+          ? trackRect.bottom - clientY
+          : clientX - trackRect.left;
 
-      const length = isVertical ? trackRect.height : trackRect.width;
-      let percent = diff / length;
+        const length = isVertical ? trackRect.height : trackRect.width;
+        let percent = diff / length;
 
-      if (props.isReversed) {
-        percent = 1 - percent;
+        if (isReversed) {
+          percent = 1 - percent;
+        }
+
+        let nextValue = percentToValue(percent, min, max);
+
+        if (step) {
+          nextValue = +roundValueToStep(nextValue, step);
+        }
+
+        nextValue = constrainValue(nextValue, min, max);
+        return nextValue;
       }
-
-      let nextValue = percentToValue(percent, props.min, props.max);
-
-      if (props.step) {
-        nextValue = +roundValueToStep(nextValue, props.step);
-      }
-
-      nextValue = constrainValue(nextValue, props.min, props.max);
-      return nextValue;
-    }
-  };
+    },
+    [isVertical, isReversed, max, min, step],
+  );
 
   // Callback invoked When focus is on the thumb and you use the arrow keys,
-  const tenSteps = (props.max - props.min) / 10;
-  const keyStep = props.step || (props.max - props.min) / 100;
+  const tenSteps = (max - min) / 10;
+  const keyStep = step || (max - min) / 100;
 
-  function constrainAndUpdate(value: number) {
-    let nextValue = value;
-    nextValue = +roundValueToStep(nextValue, keyStep);
-    nextValue = constrainValue(nextValue, props.min, props.max);
-    updateValue(nextValue);
-  }
+  const constrainAndUpdate = React.useCallback(
+    (value: number) => {
+      let nextValue = value;
+      nextValue = +roundValueToStep(nextValue, keyStep);
+      nextValue = constrainValue(nextValue, min, max);
+      updateValue(nextValue);
+    },
+    [keyStep, max, min, updateValue],
+  );
 
   // Just a short-hand for `constrainAndUpdate`
   const cAU = constrainAndUpdate;
@@ -296,10 +311,21 @@ export function useSlider(props: any) {
   const trackId = `slider-track-${id}`;
 
   // Support for Native slider methods
-  const stepUp = React.useCallback(() => cAU(value + keyStep), []);
-  const stepDown = React.useCallback(() => cAU(value - keyStep), []);
-  const reset = React.useCallback(() => cAU(props.defaultValue), []);
-  const stepTo = React.useCallback((value: number) => cAU(value), []);
+  const stepUp = React.useCallback(() => cAU(value + keyStep), [
+    cAU,
+    keyStep,
+    value,
+  ]);
+  const stepDown = React.useCallback(() => cAU(value - keyStep), [
+    cAU,
+    keyStep,
+    value,
+  ]);
+  const reset = React.useCallback(() => cAU(props.defaultValue), [
+    cAU,
+    props.defaultValue,
+  ]);
+  const stepTo = React.useCallback((value: number) => cAU(value), [cAU]);
 
   // Return all the goods :)
   return {

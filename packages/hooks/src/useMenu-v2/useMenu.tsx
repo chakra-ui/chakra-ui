@@ -135,7 +135,11 @@ interface MenuProps {
   ref?: React.Ref<any>;
 }
 
-export function useMenu(props: MenuProps) {
+export function useMenu(
+  props: MenuProps,
+): React.DetailedHTMLProps<React.HTMLAttributes<any>, any> & {
+  "data-placement": string;
+} {
   // let's read from the menu context
   const menu = useMenuContext();
   // then check if this menu is a nested menu

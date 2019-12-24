@@ -4,7 +4,7 @@ import { configure } from "@storybook/react";
 // ../packages/chakra-ui-system
 
 const req = require.context(
-  "../packages/chakra-ui-hooks/src/useMenu-v2",
+  "../packages/hooks/src/useAccordion",
   true,
   /examples\.(ts|tsx)$/,
 );

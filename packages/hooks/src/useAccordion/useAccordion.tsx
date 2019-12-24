@@ -1,7 +1,7 @@
 import {
   composeEventHandlers,
-  createOnKeyDown,
   createContext,
+  createOnKeyDown,
 } from "@chakra-ui/utils";
 import constate from "constate";
 import * as React from "react";
@@ -17,6 +17,13 @@ import { useForkRef } from "../useForkRef";
 import useIds from "../useIds";
 import useTabbable from "../useTabbable";
 import {
+  AccordionButtonOptions,
+  AccordionItemElement,
+  AccordionItemOptions,
+  AccordionOptions,
+  Index,
+} from "./types";
+import {
   warnForAllowMultipleAndAllowToggle,
   warnForAllowMultipleArray,
   warnForControlledNoOnChange,
@@ -24,44 +31,11 @@ import {
   warnForFocusableNotDisabled,
 } from "./warning";
 
+//////////////////////////////////////////////////////////////////////
+
 const __DEV__ = process.env.NODE_ENV !== "production";
 
-/**
-|-------------------------------------------------------------------------------
-| Accordion component
-|-------------------------------------------------------------------------------
-*/
-
-// We'll start with some Type Definitions
-
-type Index = number | number[];
-
-export interface AccordionOptions {
-  /**
-   * If `true`, multiple accordion items can be expanded at once.
-   */
-  allowMultiple?: boolean;
-  /**
-   * If `true`, any expanded accordion item can be collapsed again.
-   */
-  allowToggle?: boolean;
-  /**
-   * The index(es) of the expanded accordion item
-   */
-  index?: Index;
-  /**
-   * The initial index(es) of the expanded accordion item
-   */
-  defaultIndex?: Index;
-  /**
-   * The callback invoked when accordion items are expanded or collapsed.
-   */
-  onChange?: (expandedIndex?: Index | null) => void;
-  /**
-   * The content of the accordion. Must be `AccordionItem`
-   */
-  children: React.ReactNode;
-}
+//////////////////////////////////////////////////////////////////////
 
 export function useAccordion(props: AccordionOptions) {
   const { onChange, defaultIndex, index: indexProp, allowMultiple } = props;
@@ -111,37 +85,34 @@ export function useAccordion(props: AccordionOptions) {
     /**
      * Pass some props to each accordion item
      */
-    return React.cloneElement(
-      child as React.ReactElement<{
-        isOpen: boolean;
-        onChange: (isOpen: boolean) => void;
-      }>,
-      {
-        isOpen: isOpenCondition,
-        onChange: (isOpen: boolean) => {
-          /**
-           * If we support multiple accordions being visible, then we'll
-           * use array methods to update state
-           */
-          if (props.allowMultiple && Array.isArray(index)) {
-            if (isOpen) {
-              const nextState = [...index, childIndex];
-              updateIndex(nextState);
-            } else {
-              const nextState = index.filter(idx => idx !== childIndex);
-              updateIndex(nextState);
-            }
+    return React.cloneElement(child as AccordionItemElement, {
+      isOpen: isOpenCondition,
+      onChange: (isOpen: boolean) => {
+        /**
+         * If we support multiple accordions being visible, then we'll
+         * use array methods to update state
+         */
+        if (props.allowMultiple && Array.isArray(index)) {
+          if (isOpen) {
+            const nextState = [...index, childIndex];
+            updateIndex(nextState);
           } else {
-            /**
-             * If we support only one accordion to be visible, then we
-             * update state directly
-             */
-            if (isOpen) updateIndex(childIndex);
-            else if (props.allowToggle) updateIndex(null);
+            const nextState = index.filter(idx => idx !== childIndex);
+            updateIndex(nextState);
           }
-        },
+        } else {
+          /**
+           * If we support only one accordion to be visible, then we
+           * update state directly
+           */
+          if (isOpen) {
+            updateIndex(childIndex);
+          } else if (props.allowToggle) {
+            updateIndex(null);
+          }
+        }
       },
-    );
+    });
   });
 
   /** Add warning for allow multiple */
@@ -157,6 +128,8 @@ export function useAccordion(props: AccordionOptions) {
    */
   return { children };
 }
+
+//////////////////////////////////////////////////////////////////////
 
 /**
  * Let's create context for the Accordion
@@ -181,40 +154,7 @@ export function Accordion(props: AccordionOptions) {
   return <AccordionCtxProvider value={ctx}>{children}</AccordionCtxProvider>;
 }
 
-/**
-|-------------------------------------------------------------------------------
-| AccordionItem component
-|-------------------------------------------------------------------------------
-*/
-
-// We'll start with some Type Definitions
-
-export interface AccordionItemOptions {
-  /**
-   * If `true`, expands the accordion in the controlled mode.
-   */
-  isOpen?: boolean;
-  /**
-   * If `true`, expands the accordion by on initial mount.
-   */
-  defaultIsOpen?: boolean;
-  /**
-   * If `true`, the accordion item will be disabled.
-   */
-  isDisabled?: boolean;
-  /**
-   * If `true`, the accordion item will be focusable.
-   */
-  isFocusable?: boolean;
-  /**
-   * A unique id for the accordion item.
-   */
-  id?: string;
-  /**
-   * The callback fired when the accordion is expanded/collapsed.
-   */
-  onChange?: (isOpen: boolean) => void;
-}
+//////////////////////////////////////////////////////////////////////
 
 export function useAccordionItem(props: AccordionItemOptions) {
   const { isDisabled, isFocusable, onChange } = props;
@@ -233,13 +173,13 @@ export function useAccordionItem(props: AccordionItemOptions) {
   }
 
   // The keyboard navigation manager
-  const [state, actions] = useAccordionCtx();
-  const { highlight, next, previous, first, last } = actions;
+  const [descendantState, descendantActions] = useAccordionCtx();
+  const { highlight, next, previous, first, last } = descendantActions;
 
   // Think of this as a way to register this item in the selection manager
   const { isHighlighted, item } = useDescendant({
-    actions,
-    state,
+    actions: descendantActions,
+    state: descendantState,
     id: buttonId,
     isDisabled,
     isFocusable,
@@ -256,14 +196,18 @@ export function useAccordionItem(props: AccordionItemOptions) {
   }, [highlight, onChange, isOpen, isControlled, onToggle, item]);
 
   // ARIA: Allow for keyboard navigation between accordion items
-  const onKeyDown = createOnKeyDown({
-    keyMap: {
-      ArrowDown: () => next("highlight"),
-      ArrowUp: () => previous("highlight"),
-      Home: () => first("highlight"),
-      End: () => last("highlight"),
-    },
-  });
+  const onKeyDown = React.useMemo(
+    () =>
+      createOnKeyDown({
+        keyMap: {
+          ArrowDown: () => next("highlight"),
+          ArrowUp: () => previous("highlight"),
+          Home: () => first("highlight"),
+          End: () => last("highlight"),
+        },
+      }),
+    [next, previous, first, last],
+  );
 
   // Since each accordion item's button still remains tabbable, let's
   // update the focusManager when it receives focus
@@ -300,17 +244,7 @@ const [
 );
 export { AccordionItem, useAccordionItemState };
 
-/**
-|-------------------------------------------------------------------------------
-| AccordionTrigger component
-|-------------------------------------------------------------------------------
-*/
-
-export interface AccordionButtonOptions {
-  onClick?: React.MouseEventHandler;
-  onKeyDown?: React.KeyboardEventHandler;
-  ref?: React.RefObject<HTMLElement>;
-}
+//////////////////////////////////////////////////////////////////////
 
 export function useAccordionButton(props: AccordionButtonOptions) {
   // Read from the accordion item's context
@@ -344,19 +278,13 @@ export function useAccordionButton(props: AccordionButtonOptions) {
     "aria-expanded": isOpen,
     "aria-controls": panelId,
     id: buttonId,
-    onClick,
-    onKeyDown,
-    onFocus,
+    onFocus: composeEventHandlers(props.onFocus, onFocus),
   };
 }
 
-/**
-|-------------------------------------------------------------------------------
-| AccordionPanel component
-|-------------------------------------------------------------------------------
-*/
+//////////////////////////////////////////////////////////////////////
 
-export function useAccordionPanel(props: object = {}) {
+export function useAccordionPanel(props: object) {
   const { panelId, buttonId, isOpen } = useAccordionItemContext();
   return {
     ...props,

@@ -5,7 +5,7 @@
  * let's prepare of warnings when they use it wrongly
  */
 
-import { AccordionOptions, AccordionItemOptions } from "./useAccordion";
+import { AccordionOptions, AccordionItemOptions } from "./types";
 
 export function warnForAllowMultipleArray(props: AccordionOptions) {
   const indexPassed = props.index || props.defaultIndex;
