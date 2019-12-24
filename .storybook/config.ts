@@ -4,7 +4,7 @@ import { configure } from "@storybook/react";
 // ../packages/chakra-ui-system
 
 const req = require.context(
-  "../packages/hooks/src/useAccordion",
+  "../packages/hooks/src/useArray",
   true,
   /examples\.(ts|tsx)$/,
 );

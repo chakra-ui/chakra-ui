@@ -1,21 +1,37 @@
 import * as React from "react";
 import useControllableValue from "../useControllableValue";
 
-function useArrayState<T>(props: {
+interface ArrayProps<T> {
   defaultValue?: T[];
   value?: T[];
   onChange?: (nextValue: T[]) => void;
-}) {
-  const { onChange, defaultValue, value: valueProp } = props;
+  max?: number;
+  keepWithinMax?: boolean;
+}
+
+function useArray<T>(props: ArrayProps<T>) {
+  const {
+    onChange,
+    defaultValue,
+    value: valueProp,
+    max,
+    keepWithinMax = true,
+  } = props;
   const [valueState, setValue] = React.useState<T[]>(defaultValue || []);
   const [isControlled, value] = useControllableValue(valueProp, valueState);
 
+  const isAtMax = Boolean(max && value.length === max);
+  const isOutOfRange = Boolean(max && value.length > max);
+
   const updateState = React.useCallback(
     nextState => {
+      if (max && nextState.length > max && keepWithinMax) {
+        return;
+      }
       if (!isControlled) setValue(nextState);
       if (onChange) onChange(nextState);
     },
-    [isControlled, onChange],
+    [isControlled, onChange, max, keepWithinMax],
   );
 
   /**
@@ -139,6 +155,10 @@ function useArrayState<T>(props: {
   );
 
   return {
+    value,
+    isEmpty: Boolean(value.length),
+    isAtMax,
+    isOutOfRange,
     add,
     set,
     pop,
@@ -153,4 +173,4 @@ function useArrayState<T>(props: {
   };
 }
 
-export default useArrayState;
+export default useArray;
