@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.2](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/core@0.5.1...@chakra-ui/core@0.5.2) (2019-12-25)
+
+### Bug Fixes
+
+- resolve modal focus lock issue
+  ([1b2c4bb](https://github.com/chakra-ui/chakra-ui/commit/1b2c4bbfda6076239a5e64aa7aad30ec305698f0))
+- use `UseNumberInputProps` instead of `useNumberInputProps`
+  ([8ef820e](https://github.com/chakra-ui/chakra-ui/commit/8ef820ef11447b92ee1d87d5f97a1e84ce924f40))
+- **types:** update types for theme
+  ([57134eb](https://github.com/chakra-ui/chakra-ui/commit/57134ebae3846bb60158a7fb5c850f46264d678b))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [0.5.1](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/core@0.5.0...@chakra-ui/core@0.5.1) (2019-12-13)
 
 ### Bug Fixes
