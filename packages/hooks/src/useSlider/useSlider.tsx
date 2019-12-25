@@ -8,7 +8,7 @@ import {
   createContext,
 } from "@chakra-ui/utils";
 import * as React from "react";
-import useControllableValue from "../useControllableValue";
+import useControllableProp from "../useControllableProp";
 import useId from "../useId";
 import { throttle } from "throttle-debounce";
 
@@ -125,7 +125,7 @@ export function useSlider(props: any) {
     return isReversed ? max : min;
   });
 
-  const [isControlled, _value] = useControllableValue(valueProp, valueState);
+  const [isControlled, _value] = useControllableProp(valueProp, valueState);
 
   // Constrain the value because it can't be less than min
   // or greater than max

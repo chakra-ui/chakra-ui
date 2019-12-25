@@ -1,5 +1,5 @@
 import * as React from "react";
-import useControllableValue from "../useControllableValue";
+import useControllableProp from "../useControllableProp";
 import { composeEventHandlers, createContext } from "@chakra-ui/utils";
 
 interface UseEditableOptions {
@@ -37,7 +37,7 @@ export function useEditable(props: UseEditableOptions) {
     Boolean(startWithEditView && !isDisabled),
   );
   const [valueState, setValue] = React.useState<string>(defaultValue || "");
-  const [isControlled, value] = useControllableValue(valueProp, valueState);
+  const [isControlled, value] = useControllableProp(valueProp, valueState);
   const [previousValue, setPreviousValue] = React.useState(value);
 
   const inputRef = React.useRef<HTMLInputElement>(null);

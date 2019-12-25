@@ -2,7 +2,7 @@
 // // /* eslint-disable jsx-a11y/click-events-have-key-events */
 
 // import {
-//   useControllableValue,
+//   useControllableProp,
 //   createCtx,
 //   useForkRef,
 //   useId,
@@ -193,7 +193,7 @@
 //   const [isOpen, setIsOpen] = useState(defaultIsOpen || false);
 //   const [isMousingDown, setIsMousingDown] = useState(false);
 
-//   const [isOpenControlled, isOpenValue] = useControllableValue(
+//   const [isOpenControlled, isOpenValue] = useControllableProp(
 //     isOpenProp,
 //     isOpen,
 //   );

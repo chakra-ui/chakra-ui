@@ -1,6 +1,6 @@
 // /** @jsx jsx */
 // import {
-//   useControllableValue,
+//   useControllableProp,
 //   createCtx,
 //   useId,
 //   useTabbable,
@@ -318,7 +318,7 @@
 //     props.defaultIndex || 0,
 //   );
 
-//   const [isControlled, _selectedIndex] = useControllableValue(
+//   const [isControlled, _selectedIndex] = useControllableProp(
 //     props.index,
 //     selectedIndex,
 //   );

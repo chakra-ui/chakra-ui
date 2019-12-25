@@ -1,5 +1,5 @@
 import * as React from "react";
-import useControllableValue from "../useControllableValue";
+import useControllableProp from "../useControllableProp";
 import usePrevious from "../usePrevious";
 
 export interface UseDisclosureOptions {
@@ -13,7 +13,7 @@ const useDisclosure = (props: UseDisclosureOptions = {}) => {
   const { onClose: onCloseProp, onOpen: onOpenProp } = props;
 
   const [isOpenState, setIsOpen] = React.useState(props.defaultIsOpen || false);
-  const [isControlled, isOpen] = useControllableValue(
+  const [isControlled, isOpen] = useControllableProp(
     props.isOpen,
     isOpenState,
   );

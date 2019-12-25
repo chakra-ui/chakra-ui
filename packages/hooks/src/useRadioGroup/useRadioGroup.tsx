@@ -1,5 +1,5 @@
 import * as React from "react";
-import useControllableValue from "../useControllableValue";
+import useControllableProp from "../useControllableProp";
 import useId from "../useId";
 
 type Value = string | number;
@@ -14,7 +14,7 @@ export interface UseRadioGroupOptions {
 
 export function useRadioGroup(props: UseRadioGroupOptions) {
   const [value, setValue] = React.useState<Value>(props.defaultValue || "");
-  const [isControlled, derivedValue] = useControllableValue(props.value, value);
+  const [isControlled, derivedValue] = useControllableProp(props.value, value);
 
   // All radio options must use the same name
   const fallbackName = useId(`radio`);

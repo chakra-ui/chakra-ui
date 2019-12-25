@@ -1,5 +1,5 @@
 import * as React from "react";
-import useControllableValue from "../useControllableValue";
+import useControllableProp from "../useControllableProp";
 
 type Value = string | number;
 type ArrayOfValue = Value[];
@@ -14,7 +14,7 @@ export function useCheckboxGroup(props: UseCheckboxGroupOptions) {
   const [value, setValue] = React.useState<ArrayOfValue>(
     props.defaultValue || [],
   );
-  const [isControlled, derivedValue] = useControllableValue(props.value, value);
+  const [isControlled, derivedValue] = useControllableProp(props.value, value);
 
   const onChange = (arg: React.ChangeEvent<HTMLInputElement> | Value) => {
     if (!derivedValue) return;
@@ -46,9 +46,6 @@ export function useCheckboxGroup(props: UseCheckboxGroupOptions) {
   return {
     value: derivedValue,
     onChange,
-  } as {
-    value: Value[];
-    onChange: (arg: Value | React.ChangeEvent<HTMLInputElement>) => void;
   };
 }
 

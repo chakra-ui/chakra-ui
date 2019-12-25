@@ -4,10 +4,10 @@ import {
   maxSafeInteger,
   minSafeInteger,
   roundToPrecision,
+  throttle,
 } from "@chakra-ui/utils";
 import * as React from "react";
-import { throttle } from "throttle-debounce";
-import useControllableValue from "../useControllableValue";
+import useControllableProp from "../useControllableProp";
 import useInterval from "../useInterval";
 
 type Action = "increment" | "decrement";
@@ -89,7 +89,7 @@ function useCounter(props: UseCounterOptions) {
    * Because the component that consumes this hook can be controlled or uncontrolled
    * we'll keep track of that
    */
-  const [isControlled, value] = useControllableValue(valueProp, valueState);
+  const [isControlled, value] = useControllableProp(valueProp, valueState);
 
   // Store the timeout instance id in a ref, so we can clear the timeout later
   const timeoutRef = React.useRef<any>(null);

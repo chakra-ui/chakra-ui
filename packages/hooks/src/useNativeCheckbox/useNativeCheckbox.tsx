@@ -1,5 +1,5 @@
 import * as React from "react";
-import useControllableValue from "../useControllableValue";
+import useControllableProp from "../useControllableProp";
 import { composeEventHandlers } from "@chakra-ui/utils";
 import usePrevious from "../usePrevious";
 import useIsomorphicEffect from "../useIsomorphicEffect";
@@ -31,7 +31,7 @@ function useNativeCheckbox(props: UseNativeCheckboxOptions) {
   const [checkedState, setCheckedState] = React.useState<CheckboxState>(
     Boolean(props.defaultIsChecked),
   );
-  const [isControlled, isChecked] = useControllableValue(
+  const [isControlled, isChecked] = useControllableProp(
     props.isChecked,
     checkedState,
   );

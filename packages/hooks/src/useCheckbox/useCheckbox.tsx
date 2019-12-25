@@ -1,5 +1,5 @@
 import * as React from "react";
-import useControllableValue from "../useControllableValue";
+import useControllableProp from "../useControllableProp";
 import { composeEventHandlers } from "@chakra-ui/utils";
 import useTabbable from "../useTabbable";
 
@@ -26,7 +26,7 @@ function useCheckbox(props: UseCheckboxOptions) {
   const [checkedState, setCheckedState] = React.useState<CheckboxState>(
     Boolean(props.defaultIsChecked),
   );
-  const [isControlled, checked] = useControllableValue(
+  const [isControlled, checked] = useControllableProp(
     props.isChecked,
     checkedState,
   );

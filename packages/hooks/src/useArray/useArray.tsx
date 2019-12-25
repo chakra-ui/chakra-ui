@@ -1,5 +1,5 @@
 import * as React from "react";
-import useControllableValue from "../useControllableValue";
+import useControllableProp from "../useControllableProp";
 
 interface ArrayProps<T> {
   defaultValue?: T[];
@@ -18,7 +18,7 @@ function useArray<T>(props: ArrayProps<T>) {
     keepWithinMax = true,
   } = props;
   const [valueState, setValue] = React.useState<T[]>(defaultValue || []);
-  const [isControlled, value] = useControllableValue(valueProp, valueState);
+  const [isControlled, value] = useControllableProp(valueProp, valueState);
 
   const isAtMax = Boolean(max && value.length === max);
   const isOutOfRange = Boolean(max && value.length > max);

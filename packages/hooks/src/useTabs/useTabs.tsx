@@ -9,7 +9,7 @@
 import { composeEventHandlers, createOnKeyDown } from "@chakra-ui/utils";
 import constate from "constate";
 import * as React from "react";
-import useControllableValue from "../useControllableValue";
+import useControllableProp from "../useControllableProp";
 import useForkRef from "../useForkRef";
 import useId from "../useId";
 import useIsomorphicEffect from "../useIsomorphicEffect";
@@ -74,7 +74,7 @@ export function useTabs(props: UseTabsOptions) {
     defaultIndex || 0,
   );
 
-  const [isControlled, selectedIndex] = useControllableValue(
+  const [isControlled, selectedIndex] = useControllableProp(
     selectedIndexProp,
     selectedIndexState,
   );

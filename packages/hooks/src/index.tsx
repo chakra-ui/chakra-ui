@@ -9,7 +9,7 @@ export {
 } from "./useCheckboxGroup/useCheckboxGroup";
 export { default as useCounter } from "./useCounter/useCounter";
 export { default as useClipboard } from "./useClipboard/useClipboard";
-export { default as useControllableValue } from "./useControllableValue";
+export { default as useControllableProp } from "./useControllableProp";
 
 export { default as useDisclosure } from "./useDisclosure/useDisclosure";
 

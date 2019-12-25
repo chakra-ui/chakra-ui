@@ -5,7 +5,7 @@ import {
 } from "@chakra-ui/utils";
 import constate from "constate";
 import * as React from "react";
-import useControllableValue from "../useControllableValue";
+import useControllableProp from "../useControllableProp";
 import {
   useDescendant,
   useDescendants,
@@ -52,7 +52,7 @@ export function useAccordion(props: AccordionOptions) {
    * To allow for controlled/uncontrolled, let's check if the component
    * is controlled (i.e. if the index prop was passed)
    */
-  const [isControlled, index] = useControllableValue(indexProp, indexState);
+  const [isControlled, index] = useControllableProp(indexProp, indexState);
 
   /**
    * Function that updates state and invokes `onChange` callback
