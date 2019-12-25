@@ -1,11 +1,7 @@
 import * as React from "react";
 
-function isDefined<T>(value: T | undefined): boolean {
-  return value != undefined && typeof value !== "undefined";
-}
-
 function useControllableProp<T>(propValue: T | undefined, stateValue: T) {
-  const { current: isControlled } = React.useRef(isDefined(propValue));
+  const { current: isControlled } = React.useRef(propValue !== undefined);
   const value =
     isControlled && typeof propValue !== "undefined" ? propValue : stateValue;
   return [isControlled, value] as const;
