@@ -1,6 +1,7 @@
 // import * as StyledSystem from "styled-system";
 import { Icons } from "./icons";
 import { Omit } from "../common-types";
+import * as SS from "styled-system";
 
 interface Shadows {
   sm: string;
@@ -216,7 +217,7 @@ export interface DefaultTheme extends Typography {
   sizes: Sizes;
   shadows: Shadows;
   space: BaseSizes;
-  icons: { [key in Icons]: Icon };
+  icons: Record<string, Icon>;
 }
 
 interface Icon {
@@ -224,11 +225,11 @@ interface Icon {
   viewBox?: string;
 }
 
-type IconsType = { [key: string]: Icon };
+export type IconsType = Record<string, Icon>;
 
-// export interface ITheme extends StyledSystem.Theme {
-//   icons: IconsType;
-// }
+export interface CustomTheme extends SS.Theme {
+  icons: IconsType;
+}
 
 export type ITheme = DefaultTheme;
 
