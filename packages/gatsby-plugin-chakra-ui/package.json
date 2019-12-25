@@ -10,6 +10,9 @@
     "gatsby",
     "gatsby-plugin"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "babel src --out-dir .",
     "prepare": "cross-env NODE_ENV=production npm run build"
