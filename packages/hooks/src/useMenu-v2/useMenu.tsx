@@ -10,7 +10,7 @@ import {
   useDescendants,
   UseDescendantsReturn,
 } from "../useDescendant";
-import useForkRef from "../useForkRef";
+import useMergeRefs from "../useMergeRefs";
 import useId from "../useId";
 import useIsomorphicEffect from "../useIsomorphicEffect";
 import usePopper from "../usePopper";
@@ -202,7 +202,7 @@ export function useMenu(
   });
 
   // merge all the refs
-  const ref = useForkRef(menu.menuRef, menu.popper.ref, props.ref);
+  const ref = useMergeRefs(menu.menuRef, menu.popper.ref, props.ref);
 
   return {
     ...props,
@@ -306,7 +306,7 @@ export function useMenuDisclosure(props: MenuDisclosureProps) {
   });
 
   // merge the refs
-  const ref = useForkRef(menu.disclosureRef, menu.reference.ref, props.ref);
+  const ref = useMergeRefs(menu.disclosureRef, menu.reference.ref, props.ref);
 
   return {
     ...props,
@@ -380,7 +380,7 @@ export function useMenuItem(props: any) {
     }
   }, [isHighlighted, item.ref]);
 
-  const ref = useForkRef(item.ref, props.ref);
+  const ref = useMergeRefs(item.ref, props.ref);
 
   return {
     ...props,

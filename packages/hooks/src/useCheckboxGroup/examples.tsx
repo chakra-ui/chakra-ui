@@ -1,15 +1,15 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import useCheckboxGroup from "./useCheckboxGroup";
-import useCheckbox, { UseCheckboxOptions } from "../useCheckbox/useCheckbox";
+import useCheckbox, { CheckboxProps } from "../useCheckbox/useCheckbox";
 
 const stories = storiesOf("useCheckboxGroup", module);
 
-function Checkbox(props: UseCheckboxOptions & { children: React.ReactNode }) {
-  const { hiddenCheckbox, checkbox } = useCheckbox(props);
+function Checkbox(props: CheckboxProps & { children: React.ReactNode }) {
+  const { input, checkbox } = useCheckbox(props);
   return (
     <label {...checkbox}>
-      <input {...hiddenCheckbox} />
+      <input {...input} />
       {props.children}
     </label>
   );

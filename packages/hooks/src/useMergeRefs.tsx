@@ -18,7 +18,7 @@ export function assignRef<T = any>(ref: ReactRef<T>, value: T) {
   }
 }
 
-export function useForkRef<T>(...refs: (ReactRef<T> | undefined)[]) {
+export function useMergeRefs<T>(...refs: (ReactRef<T> | undefined)[]) {
   return React.useMemo(() => {
     if (refs.every(ref => ref == null)) {
       return null;
@@ -31,4 +31,4 @@ export function useForkRef<T>(...refs: (ReactRef<T> | undefined)[]) {
   }, refs);
 }
 
-export default useForkRef;
+export default useMergeRefs;

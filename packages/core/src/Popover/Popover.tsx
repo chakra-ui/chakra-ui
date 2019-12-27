@@ -7,7 +7,7 @@
 //   useDisclosure,
 //   useFocusOnHide,
 //   useFocusOnShow,
-//   useForkRef,
+//   useMergeRefs,
 //   useIds,
 //   usePopper,
 // } from "@chakra-ui/hooks";
@@ -48,7 +48,7 @@
 
 // function usePopoverTrigger(props: any, ref: React.Ref<any>) {
 //   const popover = usePopoverContext();
-//   const _ref = useForkRef(popover.trigger.ref, popover.popper.reference.ref);
+//   const _ref = useMergeRefs(popover.trigger.ref, popover.popper.reference.ref);
 
 //   return {
 //     ref: _ref,
@@ -71,7 +71,7 @@
 
 // function usePopoverContent(props: PopoverContentOptions, ref: React.Ref<any>) {
 //   const popover = usePopoverContext();
-//   const _ref = useForkRef(popover.content.ref, popover.popper.popper.ref);
+//   const _ref = useMergeRefs(popover.content.ref, popover.popper.popper.ref);
 
 //   const onBlur = useBlurOutside(popover.trigger.ref, popover.content.ref, {
 //     action: popover.onClose,

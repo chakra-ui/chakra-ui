@@ -4,7 +4,7 @@
 //   // useBlurOutside,
 //   createCtx,
 //   useDisclosure,
-//   useForkRef,
+//   useMergeRefs,
 //   useIds,
 //   useSelectionState,
 //   Selection,
@@ -253,7 +253,7 @@
 //     },
 //   });
 
-//   const _ref = useForkRef(menu.button.ref, ref, popper.reference.ref);
+//   const _ref = useMergeRefs(menu.button.ref, ref, popper.reference.ref);
 
 //   return {
 //     ...props,
@@ -337,7 +337,7 @@
 //     visible: menu.isOpen,
 //   });
 
-//   const _ref = useForkRef(menu.menu.ref, ref, popper.popper.ref);
+//   const _ref = useMergeRefs(menu.menu.ref, ref, popper.popper.ref);
 
 //   return {
 //     ...props,
@@ -415,7 +415,7 @@
 //     isFocusable: props.isFocusable,
 //   });
 
-//   const _ref = useForkRef(menuItem.item.ref, ref);
+//   const _ref = useMergeRefs(menuItem.item.ref, ref);
 
 //   useEffect(() => {
 //     if (menu.isOpen && menuItem.isHighlighted) {

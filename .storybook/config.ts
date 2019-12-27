@@ -4,7 +4,7 @@ import { configure } from "@storybook/react";
 // ../packages/chakra-ui-system
 
 const req = require.context(
-  "../packages/hooks/src/useArray",
+  "../packages/hooks/src/useCheckbox",
   true,
   /examples\.(ts|tsx)$/,
 );

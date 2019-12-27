@@ -16,7 +16,7 @@ import useDisclosure, { UseDisclosureReturn } from "../useDisclosure";
 // import { useDefaultValue, useValue } from "./useValue";
 import useId from "../useId";
 import useIds from "../useIds";
-// import { useForkRef } from "../useForkRef";
+// import { useMergeRefs } from "../useMergeRefs";
 // import usePopper from "../usePopper";
 import useRapidKeydown from "../useRapidKeydown";
 import useDisableHoverOutside from "./useDisableHoverOutside";

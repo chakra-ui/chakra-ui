@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useForkRef } from "../useForkRef";
+import { useMergeRefs } from "../useMergeRefs";
 import { composeEventHandlers, createContext } from "@chakra-ui/utils";
 import useBlurOutside from "../useBlurOutside";
 import usePopper, { PopperJS } from "../usePopper";
@@ -15,7 +15,7 @@ export { usePopoverCtx };
 
 export function usePopoverTrigger(props: any = {}) {
   const popover = usePopoverCtx();
-  const _ref = useForkRef(popover.trigger.ref, popover.reference.ref);
+  const _ref = useMergeRefs(popover.trigger.ref, popover.reference.ref);
 
   const ariaHasPopup: React.AriaAttributes["aria-haspopup"] = "dialog";
 
@@ -38,7 +38,7 @@ interface UsePopoverContentOptions {
 
 export function usePopoverContent(props: UsePopoverContentOptions = {}) {
   const popover = usePopoverCtx();
-  const _ref = (useForkRef(
+  const _ref = (useMergeRefs(
     popover.content.ref,
     popover.popper.ref,
   ) as unknown) as React.RefObject<any>;

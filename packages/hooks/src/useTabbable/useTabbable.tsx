@@ -1,8 +1,22 @@
-import { normalizeEventKey, omit } from "@chakra-ui/utils";
 import * as React from "react";
-import useForkRef from "../useForkRef";
+import useMergeRefs from "../useMergeRefs";
 
-export interface UseTabbableOptions {
+type HTMLAttributes = React.HTMLAttributes<Element> &
+  React.RefAttributes<Element>;
+
+type HTMLProps = Pick<
+  HTMLAttributes,
+  | "onMouseOver"
+  | "onMouseDown"
+  | "onMouseUp"
+  | "onClick"
+  | "onKeyDown"
+  | "onKeyUp"
+  | "ref"
+  | "tabIndex"
+>;
+
+export interface TabbableProps extends HTMLProps {
   /**
    * If `true`, the element will be disabled.
    * It will set the `disabled` HTML attribute
@@ -21,128 +35,175 @@ export interface UseTabbableOptions {
    * Whether or not trigger click on pressing ```Space```.
    */
   clickOnSpace?: boolean;
-  onMouseDown?: React.MouseEventHandler;
-  onClick?: React.MouseEventHandler;
-  onKeyDown?: React.KeyboardEventHandler;
-  tabIndex?: number;
-  ref?: React.Ref<any>;
 }
 
-const defaultProps: Partial<UseTabbableOptions> = {
-  clickOnEnter: true,
-  clickOnSpace: true,
-};
-
-function useTabbable(props: UseTabbableOptions) {
-  const {
-    isDisabled,
-    isFocusable,
-    clickOnEnter,
-    clickOnSpace,
-    onMouseDown: onMouseDownProp,
-    onClick: onClickProp,
-    onKeyDown: onKeyDownProp,
-  } = props;
-
+function useTabbable({
+  isDisabled,
+  isFocusable,
+  clickOnEnter = true,
+  clickOnSpace = true,
+  onMouseDown,
+  onMouseUp,
+  onClick,
+  onKeyDown,
+  onKeyUp,
+  tabIndex: tabIndexProp,
+  onMouseOver,
+  ...props
+}: TabbableProps) {
+  // We'll use this to track if the element is a button element
   const [isButton, setIsButton] = React.useState(true);
 
+  // For custom button implementation, we'll use this to track when
+  // we mouse down on the button, to enable use style it's ":active" style
+  const [isPressed, setIsPressed] = React.useState(false);
+
+  // The ref callback that fires as soon as the dom node is ready
   const refCallback = React.useCallback(node => {
-    if (node != null && node.tagName !== "BUTTON") {
+    if (node && node.tagName !== "BUTTON") {
       setIsButton(false);
     }
   }, []);
 
-  const tabIndex = isButton ? props.tabIndex : props.tabIndex || 0;
-
+  const tabIndex = isButton ? tabIndexProp : tabIndexProp || 0;
   const trulyDisabled = isDisabled && !isFocusable;
 
-  const onMouseDown = React.useCallback(
-    event => {
+  const handleClick = React.useCallback(
+    (event: React.MouseEvent) => {
       if (isDisabled) {
         event.stopPropagation();
         event.preventDefault();
-      } else {
-        if (onMouseDownProp) {
-          onMouseDownProp(event);
-        }
+        return;
+      }
+
+      (event.currentTarget as HTMLElement).focus();
+
+      if (onClick) {
+        onClick(event);
       }
     },
-    [isDisabled, onMouseDownProp],
+    [isDisabled, onClick],
   );
 
-  const onClick = React.useCallback(
-    event => {
-      if (isDisabled) {
-        event.stopPropagation();
-        event.preventDefault();
-      } else {
-        if (document.activeElement === document.body) {
-          event.target.focus();
-        }
-        event.target.focus();
-        if (onClickProp) {
-          onClickProp(event);
-        }
+  const handleKeyDown = React.useCallback(
+    (event: React.KeyboardEvent) => {
+      if (onKeyDown) {
+        onKeyDown(event);
       }
-    },
-    [isDisabled, onClickProp],
-  );
-
-  const onKeyDown = React.useCallback(
-    event => {
-      if (onKeyDownProp) {
-        onKeyDownProp(event);
-      }
-
-      const eventKey = normalizeEventKey(event);
-      const shouldEnterClick = clickOnEnter && eventKey === "Enter";
-      const shouldSpaceClick = clickOnSpace && eventKey === " ";
 
       if (isDisabled) return;
 
-      if (!isButton && (shouldEnterClick || shouldSpaceClick)) {
+      const shouldEnterClick = clickOnEnter && event.key === "Enter";
+
+      if (!isButton && event.key === " ") {
         event.preventDefault();
-        event.target.dispatchEvent(
-          new MouseEvent("click", {
-            view: window,
-            bubbles: true,
-            cancelable: false,
-          }),
-        );
+        setIsPressed(true);
+        return;
+      }
+
+      if (!isButton && shouldEnterClick) {
+        event.preventDefault();
+        (event.currentTarget as HTMLElement).click();
+        return;
       }
     },
-    [isDisabled, isButton, onKeyDownProp, clickOnEnter, clickOnSpace],
+    [isDisabled, isButton, onKeyDown, clickOnEnter],
   );
 
-  const ref = useForkRef(props.ref, refCallback);
+  const handleKeyUp = React.useCallback(
+    (event: React.KeyboardEvent) => {
+      if (onKeyUp) {
+        onKeyUp(event);
+      }
 
-  const cleanProps = omit(props, [
-    "isDisabled",
-    "isFocusable",
-    "clickOnEnter",
-    "clickOnSpace",
-  ]);
+      if (isDisabled) return;
+      const shouldSpaceClick = clickOnSpace && event.key === " ";
+
+      if (!isButton && shouldSpaceClick) {
+        event.preventDefault();
+        setIsPressed(false);
+        (event.currentTarget as HTMLElement).click();
+      }
+    },
+    [clickOnSpace, isButton, isDisabled, onKeyUp],
+  );
+
+  const handleMouseDown = React.useCallback(
+    (event: React.MouseEvent) => {
+      if (isDisabled) {
+        event.stopPropagation();
+        event.preventDefault();
+        return;
+      }
+
+      if (!isButton) {
+        setIsPressed(true);
+      }
+
+      if (onMouseDown) {
+        onMouseDown(event);
+      }
+    },
+    [isDisabled, isButton, onMouseDown],
+  );
+
+  const handleMouseUp = React.useCallback(
+    (event: React.MouseEvent) => {
+      if (!isButton) {
+        setIsPressed(false);
+      }
+
+      if (onMouseUp) {
+        onMouseUp(event);
+      }
+    },
+    [onMouseUp, isButton],
+  );
+
+  const handleMouseOver = React.useCallback(
+    (event: React.MouseEvent) => {
+      if (isDisabled) {
+        event.preventDefault();
+        return;
+      }
+
+      if (onMouseOver) {
+        onMouseOver(event);
+      }
+    },
+    [isDisabled, onMouseOver],
+  );
+
+  const ref = useMergeRefs(props.ref, refCallback);
 
   if (isButton) {
     return {
-      ...cleanProps,
+      ...props,
       ref,
-      "aria-disabled": props.isDisabled,
+      "aria-disabled": trulyDisabled ? undefined : isDisabled,
       disabled: trulyDisabled,
-      onClick,
+      onClick: handleClick,
       onMouseDown,
+      onMouseUp,
+      onKeyUp,
+      onKeyDown,
+      onMouseOver,
     };
   }
 
   return {
-    ...cleanProps,
+    ...props,
     ref,
     role: "button",
-    "aria-disabled": props.isDisabled,
+    "data-active": isPressed || undefined,
+    "aria-disabled": isDisabled,
     tabIndex: trulyDisabled ? undefined : tabIndex,
-    onClick,
-    onMouseDown,
-    onKeyDown,
+    onClick: handleClick,
+    onMouseDown: handleMouseDown,
+    onMouseUp: handleMouseUp,
+    onKeyUp: handleKeyUp,
+    onKeyDown: handleKeyDown,
+    onMouseOver: handleMouseOver,
   };
 }
 

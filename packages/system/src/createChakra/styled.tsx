@@ -60,8 +60,14 @@ export const styled = <T extends As, H = {}>(
       const componentProps =
         options && options.hook ? finalProps : { ...props, ref };
 
+      const combinedStyle = { ...componentStyle, ...styles };
+      const hasCombinedStyle = Object.keys(combinedStyle).length > 0;
+
       return (
-        <Component css={{ ...componentStyle, ...styles }} {...componentProps} />
+        <Component
+          css={hasCombinedStyle ? combinedStyle : undefined}
+          {...componentProps}
+        />
       );
     },
   );

@@ -10,10 +10,10 @@ import { composeEventHandlers, createOnKeyDown } from "@chakra-ui/utils";
 import constate from "constate";
 import * as React from "react";
 import useControllableProp from "../useControllableProp";
-import useForkRef from "../useForkRef";
+import useMergeRefs from "../useMergeRefs";
 import useId from "../useId";
 import useIsomorphicEffect from "../useIsomorphicEffect";
-import useTabbable, { UseTabbableOptions } from "../useTabbable";
+import useTabbable, { TabbableProps } from "../useTabbable";
 
 /**
 |--------------------------------------------------
@@ -128,7 +128,7 @@ export { TabsProvider };
 
 ////////////////////////////////////////////////////////////////////////
 
-export interface UseTabOptions extends UseTabbableOptions {
+export interface UseTabOptions extends TabbableProps {
   id?: string;
   isSelected?: boolean;
   panelId?: string;
@@ -252,7 +252,7 @@ export function useTabList(props: UseTabListOptions) {
     });
   });
 
-  const ref = useForkRef(props.ref, tabs.tablistRef);
+  const ref = useMergeRefs(props.ref, tabs.tablistRef);
 
   return {
     ...props,

@@ -18,7 +18,7 @@ export { default as useIsomorphicEffect } from "./useIsomorphicEffect";
 export { default as useFocusEffect } from "./useFocusEffect/useFocusEffect";
 export { default as useFocusOnHide } from "./useFocusOnHide";
 export { default as useFocusOnShow } from "./useFocusOnShow";
-export * from "./useForkRef";
+export * from "./useMergeRefs";
 
 export { default as useId } from "./useId";
 export { default as useIds } from "./useIds";

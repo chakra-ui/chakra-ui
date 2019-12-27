@@ -13,7 +13,7 @@ import {
   ensureFocus,
   createContext,
 } from "@chakra-ui/utils";
-import { useForkRef } from "../useForkRef";
+import { useMergeRefs } from "../useMergeRefs";
 import useRapidKeydown from "../useRapidKeydown";
 import useBlurOutside from "../useBlurOutside";
 import useFocusOnHide from "../useFocusOnHide";
@@ -180,7 +180,7 @@ export function useMenuButton(props: UseMenuButtonOptions) {
     },
   });
 
-  const ref = useForkRef(menu.buttonRef, menu.reference.ref);
+  const ref = useMergeRefs(menu.buttonRef, menu.reference.ref);
 
   return {
     ...props,
@@ -239,7 +239,7 @@ export function useMenuList(props: UseMenuListOptions) {
     visible: menu.isOpen,
   });
 
-  const ref = useForkRef(menu.menuRef, menu.popper.ref);
+  const ref = useMergeRefs(menu.menuRef, menu.popper.ref);
 
   return {
     ...props,

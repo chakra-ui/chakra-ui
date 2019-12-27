@@ -2,16 +2,17 @@
 
 ## Core Requirements
 
-Should have the appropriate aria-\* state and relationship attributes Support
-keydown navigation between accordion items Allow toggling items and allow
-multiple items -
+Should have the appropriate aria-\* state and relationship attributes.
 
-## Component Parts: Accordion:
+Support keydown navigation between accordion items Allow toggling items and
+allow multiple items
 
-manages the global state of all opened accordionitems via context AccordionItem:
-manages the state for a single accordion item AccordionButton: the trigger to
-open/close an accordion item AccordionPanel: the main content area for the
-accordion item \*/
+## Component Parts:
+
+- Accordion: manages the global state of all opened accordionitems via context.
+- AccordionItem: manages the state for a single accordion item.
+- AccordionButton: the trigger to open/close an accordion item.
+- AccordionPanel: the main content area for the accordion item.
 
 ## References + Credits:
 

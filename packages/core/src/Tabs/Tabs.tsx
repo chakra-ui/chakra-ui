@@ -4,7 +4,7 @@
 //   createCtx,
 //   useId,
 //   useTabbable,
-//   UseTabbableOptions,
+//   TabbableProps,
 // } from "@chakra-ui/hooks";
 // import { Box, Flex, BoxProps, FlexProps } from "@chakra-ui/layout";
 // import { composeEventHandlers, createOnKeyDown, Merge } from "@chakra-ui/utils";
@@ -58,7 +58,7 @@
 // export { useTabsContext };
 
 // ////////////////////////////////////////////////////////////////////////
-// interface UseTabOptions extends UseTabbableOptions {
+// interface UseTabOptions extends TabbableProps {
 //   id?: string;
 // }
 

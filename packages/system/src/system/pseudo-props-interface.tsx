@@ -84,7 +84,7 @@ export interface PseudoProps {
    * Styles to apply when the ARIA attribute `aria-checked` is `mixed`
    * - CSS selector `&[aria-checked=mixed]`
    */
-  _mixed?: SystemProps;
+  _indeterminate?: SystemProps;
   /**
    * Styles for CSS Selector `&:nth-child(odd)`
    */

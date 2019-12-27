@@ -4,7 +4,7 @@
 // import {
 //   useControllableProp,
 //   createCtx,
-//   useForkRef,
+//   useMergeRefs,
 //   useId,
 //   useLogger,
 //   usePopper,
@@ -343,7 +343,7 @@
 //   const disclosure = useDisclosure();
 //   const refs = useRefContext();
 
-//   const buttonRef = useForkRef(refs.controlRef, refs.reference.ref, ref);
+//   const buttonRef = useMergeRefs(refs.controlRef, refs.reference.ref, ref);
 //   const { keyDownAction } = useRapidKeydown();
 //   return (
 //     <button
@@ -391,7 +391,7 @@
 //   const refs = useRefContext();
 
 //   const { keyDownAction } = useRapidKeydown();
-//   const menuRef = useForkRef(refs.listBoxRef, refs.popper.ref, ref);
+//   const menuRef = useMergeRefs(refs.listBoxRef, refs.popper.ref, ref);
 
 //   return (
 //     <div

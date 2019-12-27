@@ -13,7 +13,7 @@ import {
 } from "../useDescendant";
 import useDisclosure from "../useDisclosure/useDisclosure";
 import useFocusEffect from "../useFocusEffect/useFocusEffect";
-import { useForkRef } from "../useForkRef";
+import useMergeRefs from "../useMergeRefs";
 import useIds from "../useIds";
 import useTabbable from "../useTabbable";
 import {
@@ -115,7 +115,7 @@ export function useAccordion(props: AccordionOptions) {
     });
   });
 
-  /** Add warning for allow multiple */
+  /** Add all warnings */
   if (__DEV__) {
     warnForAllowMultipleArray(props);
     warnForAllowMultipleAndAllowToggle(props);
@@ -270,7 +270,7 @@ export function useAccordionButton(props: AccordionButtonOptions) {
     onKeyDown: composeEventHandlers(props.onKeyDown, onKeyDown),
   });
 
-  const ref = useForkRef(buttonRef, props.ref);
+  const ref = useMergeRefs(buttonRef, props.ref);
 
   return {
     ...tabbable,
