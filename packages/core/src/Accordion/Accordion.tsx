@@ -87,11 +87,11 @@ const Accordion = forwardRef(function Accordion<P, T>(
       onChange: (isExpanded: boolean) => {
         if (allowMultiple && Array.isArray(_index)) {
           if (isExpanded) {
-            let newIndexes = [..._index, childIndex];
+            const newIndexes = [..._index, childIndex];
             !isControlled && setExpandedIndex(newIndexes);
             onChange && onChange(newIndexes);
           } else {
-            let newIndexes = _index.filter(
+            const newIndexes = _index.filter(
               itemIndex => itemIndex !== childIndex,
             );
             !isControlled && setExpandedIndex(newIndexes);
@@ -184,7 +184,7 @@ const AccordionItem = forwardRef(function AccordionItem<P, T>(
 ) {
   const [isExpanded, setIsExpanded] = useState(defaultIsOpen || false);
   const { current: isControlled } = useRef(isOpen != null);
-  let _isExpanded = isControlled ? isOpen : isExpanded;
+  const _isExpanded = isControlled ? isOpen : isExpanded;
 
   const onToggle = () => {
     onChange && onChange(!_isExpanded);

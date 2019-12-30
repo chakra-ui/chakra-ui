@@ -11,7 +11,7 @@ function string2Hex(str: string): string {
   }
   let color = "#";
   for (let j = 0; j < 3; j++) {
-    let value = (hash >> (j * 8)) & 255;
+    const value = (hash >> (j * 8)) & 255;
     color += ("00" + value.toString(16)).substr(-2);
   }
   return color;

@@ -138,16 +138,16 @@ function getComputedProps({
   capIsRound,
   isIndeterminate,
 }: RequiredCircularProgressOptions) {
-  let radius = 50;
-  let diameter = radius * 2;
-  let circumference = diameter * Math.PI;
-  let strokeDasharray = Math.round(circumference * 1000) / 1000;
+  const radius = 50;
+  const diameter = radius * 2;
+  const circumference = diameter * Math.PI;
+  const strokeDasharray = Math.round(circumference * 1000) / 1000;
 
-  let viewBox = diameter / (1 - thickness / 2);
-  let viewBoxAttr = `${viewBox / 2} ${viewBox / 2} ${viewBox} ${viewBox}`;
-  let strokeWidth = (thickness / 2) * viewBox;
-  let progress = 1 - (value - min) / (max - min);
-  let strokeDashoffset = progress * circumference;
+  const viewBox = diameter / (1 - thickness / 2);
+  const viewBoxAttr = `${viewBox / 2} ${viewBox / 2} ${viewBox} ${viewBox}`;
+  const strokeWidth = (thickness / 2) * viewBox;
+  const progress = 1 - (value - min) / (max - min);
+  const strokeDashoffset = progress * circumference;
 
   function getCircleProps({
     thickness,

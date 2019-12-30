@@ -42,7 +42,7 @@ export const useFormControl = (props: any) => {
   if (!context) return props;
 
   const output: Record<string, any> = {};
-  for (let prop in context) {
+  for (const prop in context) {
     output[prop] = props[prop];
 
     if (context && props[prop] == null) {

@@ -54,7 +54,7 @@ const solid = ({ color }: AlertStylePropsWithTheme) => {
 };
 
 const subtle = ({ color, theme }: AlertStylePropsWithTheme) => {
-  let darkBg = theme.colors[color] && theme.colors[color][200];
+  const darkBg = theme.colors[color] && theme.colors[color][200];
   return {
     light: {
       bg: `${color}.100`,
@@ -115,7 +115,7 @@ export function useAlertIconStyle({
 }: Required<IconStyleProps>) {
   const { colorMode } = useColorMode();
   if (["left-accent", "top-accent", "subtle"].includes(variant)) {
-    let result = {
+    const result = {
       light: { color: `${color}.500` },
       dark: { color: `${color}.200` },
     };

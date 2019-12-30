@@ -64,7 +64,7 @@ export const AvatarBadge = React.forwardRef(function AvatarBadge<P, T>(
 ) => React.ReactElement<BoxProps<P, T>>;
 
 const getInitials = (name: string): string => {
-  let [firstName, lastName] = name.split(" ");
+  const [firstName, lastName] = name.split(" ");
 
   if (firstName && lastName) {
     return `${firstName.charAt(0)}${lastName.charAt(0)}`;
