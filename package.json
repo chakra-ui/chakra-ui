@@ -1,5 +1,5 @@
 {
-  "name": "root",
+  "name": "chakra-ui",
   "private": true,
   "workspaces": [
     "packages/*"
@@ -48,36 +48,36 @@
     "@commitlint/config-conventional": "8.2.0",
     "@emotion/core": "10.0.10",
     "@emotion/styled": "10.0.11",
-    "@storybook/addon-actions": "^5.2.1",
-    "@storybook/addon-docs": "^5.2.1",
-    "@storybook/addon-knobs": "5.2.1",
-    "@storybook/addon-links": "^5.2.1",
-    "@storybook/addons": "^5.2.1",
-    "@storybook/react": "^5.2.1",
-    "@types/jest": "24.0.19",
-    "@typescript-eslint/eslint-plugin": "1.x",
-    "@typescript-eslint/parser": "1.x",
+    "emotion-theming": "10.0.10",
+    "@storybook/addon-actions": "^5.2.8",
+    "@storybook/addon-docs": "^5.2.8",
+    "@storybook/addon-knobs": "5.2.8",
+    "@storybook/addon-links": "^5.2.8",
+    "@storybook/addons": "^5.2.8",
+    "@storybook/react": "^5.2.8",
+    "@typescript-eslint/eslint-plugin": "2.13.0",
+    "@typescript-eslint/parser": "2.13.0",
     "all-contributors-cli": "6.8.2",
     "awesome-typescript-loader": "5.2.1",
+    "@types/jest": "24.0.19",
     "babel-eslint": "10.0.3",
     "babel-loader": "8.0.6",
     "commitizen": "4.0.3",
     "cz-conventional-changelog": "3.0.2",
-    "emotion-theming": "10.0.10",
     "eslint-plugin-react-hooks": "2.3.0",
     "lerna": "^3.15.0",
     "lint-staged": "9.2.1",
     "prettier": "1.18.2",
     "pretty-num": "0.3.0",
-    "react": "^16.8.6",
+    "react": "16.12.0",
+    "react-dom": "16.12.0",
     "react-docgen-typescript-loader": "3.3.0",
-    "react-dom": "^16.8.6",
     "react-lorem-component": "^0.13.0",
     "react-transition-group": "4.3.0"
   },
   "bundlesize": [
     {
-      "path": "./packages/chakra-ui-system/dist/*.js",
+      "path": "./packages/system/dist/*.js",
       "maxSize": "10 kB"
     }
   ]

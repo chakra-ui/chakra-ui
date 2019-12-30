@@ -1,11 +1,8 @@
 import * as SS from "@styled-system/should-forward-prop";
 
-declare module "@styled-system/should-forward-prop" {
-  export const props: any[];
-}
-
 // Prevent some prop from getting to the underlying DOM element
 const shouldForwardProp = SS.createShouldForwardProp([
+  //@ts-ignore
   ...SS.props,
   "d",
   "textDecoration",

@@ -1,11 +1,15 @@
 {
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "jsx": true,
-    "useJSXTextNode": true
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
-  "extends": ["plugin:@typescript-eslint/recommended"],
-  "plugins": ["react-hooks"],
+  "plugins": ["@typescript-eslint", "react-hooks"],
+  "extends": [
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
   "rules": {
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-explicit-any": "off",
