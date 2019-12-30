@@ -1,9 +1,10 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { useEffect, useState, forwardRef } from "react";
+import { useEffect, useState, forwardRef, useRef } from "react";
 import Box from "../Box";
 
 export const useHasImageLoaded = ({ src, onLoad, onError }) => {
+  const isMounted = useRef(true);
   const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
@@ -11,15 +12,25 @@ export const useHasImageLoaded = ({ src, onLoad, onError }) => {
     image.src = src;
 
     image.onload = event => {
-      setHasLoaded(true);
-      onLoad && onLoad(event);
+      if (isMounted.current) {
+        setHasLoaded(true);
+        onLoad && onLoad(event);
+      }
     };
 
     image.onError = event => {
-      setHasLoaded(false);
-      onError && onError(event);
+      if (isMounted.current) {
+        setHasLoaded(false);
+        onError && onError(event);
+      }
     };
   }, [src, onLoad, onError]);
+
+  useEffect(() => {
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
 
   return hasLoaded;
 };
