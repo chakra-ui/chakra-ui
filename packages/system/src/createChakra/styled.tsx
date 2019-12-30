@@ -4,6 +4,31 @@ import * as React from "react";
 import { forwardRef } from "../forward-ref";
 import { isPropValid, jsx } from "../system";
 import { As, CreateChakraComponent, CreateChakraOptions } from "./types";
+import { replacePseudo } from "../system/jsx";
+
+function getComponentStyles(props: any, options: any) {
+  const themableProps = ["variant", "variantSize", "variantColor"];
+  let componentStyle: any = {};
+
+  for (const prop of themableProps) {
+    if (themableProps.includes(prop)) {
+      const getFromTheme = get(
+        props.theme,
+        `${options.themeKey}.${prop}.${props[prop]}`,
+      );
+
+      const systemObject =
+        typeof getFromTheme === "function"
+          ? replacePseudo(getFromTheme(props))
+          : replacePseudo(getFromTheme);
+
+      const style = css(systemObject)(props.theme);
+
+      componentStyle = { ...componentStyle, ...style };
+    }
+  }
+  return componentStyle;
+}
 
 export const styled = <T extends As, H = {}>(
   tag: T,
@@ -18,24 +43,15 @@ export const styled = <T extends As, H = {}>(
 
       // component component style
       let styles = {};
+      const propsWithTheme = { theme, ...props };
       args.forEach(arg => {
-        const style =
-          typeof arg === "function" ? arg({ theme, ...props }) : arg;
+        const style = typeof arg === "function" ? arg(propsWithTheme) : arg;
         styles = { ...styles, ...style };
       });
 
-      // styles for component variant, size, variantColor
-      const themableProps = ["variant", "variantSize", "variantColor"];
+      const componentStyles = getComponentStyles(propsWithTheme, options);
 
-      for (let prop of themableProps) {
-        const componentStyle =
-          options && options.themeKey
-            ? css(get(theme, `${options.themeKey}.${prop}.${props[prop]}`))(
-                theme,
-              )
-            : {};
-        styles = { ...styles, ...componentStyle };
-      }
+      styles = { ...componentStyles, ...styles };
 
       // check if we should forward props
       let nextProps: Record<string, any> = shouldForwardProps
@@ -49,7 +65,7 @@ export const styled = <T extends As, H = {}>(
       }
 
       if (!shouldForwardProps) {
-        for (let key in props) {
+        for (const key in props) {
           if (!isPropValid(key)) continue;
           nextProps[key] = props[key];
         }

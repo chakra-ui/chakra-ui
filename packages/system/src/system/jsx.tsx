@@ -10,7 +10,7 @@ type SelectorProp = keyof typeof selectors;
 const hasUnderscore = (str: string) => str.startsWith("_");
 const stripUnderscore = (str: string) => str.slice(1, str.length);
 
-const replace = (props: any) => {
+export const replacePseudo = (props: any) => {
   const next: any = {};
   for (const prop in props) {
     if (hasUnderscore(prop)) {
@@ -26,7 +26,7 @@ const replace = (props: any) => {
 const getCSS = (props: { sx?: object; css?: object }) => {
   if (!props.sx && !props.css) return undefined;
   return (theme: object) => {
-    const modifiedSx = tx(replace(props.sx));
+    const modifiedSx = tx(replacePseudo(props.sx));
     const styles = css(modifiedSx)(theme);
     const raw = typeof props.css === "function" ? props.css(theme) : props.css;
     return [styles, raw];
@@ -36,7 +36,7 @@ const getCSS = (props: { sx?: object; css?: object }) => {
 const parseProps = (props: any) => {
   if (!props) return null;
   const next: any = {};
-  for (let key in props) {
+  for (const key in props) {
     if (key === "sx") continue;
     next[key] = props[key];
   }

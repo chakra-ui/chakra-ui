@@ -10,9 +10,9 @@ const styled = <T extends As>(tag: T) => (...styleInterpolations: any[]) => {
       const shouldForwardProps =
         typeof tag !== "string" || (as && typeof as !== "string");
 
-      let nextProps = shouldForwardProps ? props : {};
+      const nextProps = shouldForwardProps ? props : {};
 
-      let styles = {};
+      const styles = {};
       const theme = React.useContext(ThemeContext);
 
       styleInterpolations.forEach(interpolation => {
@@ -31,7 +31,7 @@ const styled = <T extends As>(tag: T) => (...styleInterpolations: any[]) => {
       };
 
       if (!shouldForwardProps) {
-        for (let prop in props) {
+        for (const prop in props) {
           if (!isPropValid(prop)) continue;
           const propKey =
             prop in replace ? replace[prop as keyof typeof replace] : prop;
