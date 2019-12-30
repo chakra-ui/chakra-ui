@@ -3121,6 +3121,18 @@
   dependencies:
     csstype "^2.6.4"
 
+"@types/styled-system__css@5.0.4":
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/@types/styled-system__css/-/styled-system__css-5.0.4.tgz#df83b015cf377ab39ecf33ea31339c05eeb9230a"
+  integrity sha512-SHHoNh9cCRTG9hcmCD2ua0NeYUrLmLXoMJ7g0U/e0FjrzcwNQtM5wjjEJVCVZymU632xA1PdPEykrtoSHTIecA==
+  dependencies:
+    csstype "^2.6.6"
+
+"@types/styled-system__should-forward-prop@5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@types/styled-system__should-forward-prop/-/styled-system__should-forward-prop-5.1.0.tgz#b531eee45616182af6b59f8b5f36ae6d30b30ab2"
+  integrity sha512-3ibb+6ORE3HPc/yrcZE9TVLVRDna2919xu2FXK05VSy9h4odgkz4wHvmTdgEExERH4lMmY4cDS0p9MsJjC75Yg==
+
 "@types/throttle-debounce@2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@types/throttle-debounce/-/throttle-debounce-2.1.0.tgz#1c3df624bfc4b62f992d3012b84c56d41eab3776"
@@ -5374,6 +5386,11 @@ cssstyle@^1.0.0:
 csstype@^2.2.0, csstype@^2.5.7, csstype@^2.6.4, csstype@^2.6.7:
   version "2.6.7"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.6.7.tgz#20b0024c20b6718f4eda3853a1f5a1cce7f5e4a5"
+
+csstype@^2.6.6:
+  version "2.6.8"
+  resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.6.8.tgz#0fb6fc2417ffd2816a418c9336da74d7f07db431"
+  integrity sha512-msVS9qTuMT5zwAGCVm4mxfrZ18BNc6Csd0oJAtiFMZ1FAx1CCvy2+5MDmYoix63LM/6NDbNtodCiGYGmFgO0dA==
 
 currently-unhandled@^0.4.1:
   version "0.4.1"

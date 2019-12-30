@@ -1,74 +1,66 @@
-/**@jsx jsx */
-import { jsx, ThemeContext } from "@emotion/core";
+import { ThemeContext } from "@emotion/core";
 import { css, get } from "@styled-system/css";
 import * as React from "react";
 import { forwardRef } from "../forward-ref";
-import { isPropValid } from "../system";
+import { isPropValid, jsx } from "../system";
 import { As, CreateChakraComponent, CreateChakraOptions } from "./types";
 
 export const styled = <T extends As, H = {}>(
-  Comp: T,
+  tag: T,
   options?: CreateChakraOptions<H>,
-) => (...styleInterpolations: any[]) => {
+) => (...args: any[]) => {
   const Styled = forwardRef(
     ({ as, ...props }: any, ref: React.Ref<Element>) => {
-      let styles = {};
+      // check if we should forward props
+      const shouldForwardProps =
+        typeof tag !== "string" || (as && typeof as !== "string");
       const theme = React.useContext(ThemeContext);
 
-      styleInterpolations.forEach(interpolation => {
+      // component component style
+      let styles = {};
+      args.forEach(arg => {
         const style =
-          typeof interpolation === "function"
-            ? interpolation({ theme, ...props })
-            : interpolation;
-        Object.assign(styles, style);
+          typeof arg === "function" ? arg({ theme, ...props }) : arg;
+        styles = { ...styles, ...style };
       });
 
-      let componentStyle: Record<string, any> = {};
+      // styles for component variant, size, variantColor
       const themableProps = ["variant", "variantSize", "variantColor"];
 
       for (let prop of themableProps) {
-        const componentStyleProps =
+        const componentStyle =
           options && options.themeKey
             ? css(get(theme, `${options.themeKey}.${prop}.${props[prop]}`))(
                 theme,
               )
             : {};
-        Object.assign(componentStyle, componentStyleProps);
+        styles = { ...styles, ...componentStyle };
       }
 
-      let nextProps: Record<string, any> = {};
-      for (let prop in props) {
-        if (!isPropValid(prop)) continue;
-        nextProps[prop] = props[prop];
+      // check if we should forward props
+      let nextProps: Record<string, any> = shouldForwardProps
+        ? { ...props }
+        : {};
+
+      // If hook was passed, invoke the hook
+      if (options && options.hook) {
+        const hookProps = options.hook({ ref, ...props });
+        nextProps = { ...nextProps, ...hookProps };
       }
 
-      // If hook prop was passed, invoke the hook
-      let hookProps: Record<string, any> = {};
-      if (options && options.hook) hookProps = options.hook({ ref, ...props });
+      if (!shouldForwardProps) {
+        for (let key in props) {
+          if (!isPropValid(key)) continue;
+          nextProps[key] = props[key];
+        }
+      }
 
-      const finalProps = {
+      const hasStyles = Object.keys(styles).length > 0;
+
+      return jsx(as || tag, {
         ...nextProps,
-        ...hookProps,
-      };
-
-      // Remove non-DOM props from hook's return
-      for (let key in finalProps) {
-        if (!isPropValid(key)) delete finalProps[key];
-      }
-
-      const Component = as || Comp;
-      const componentProps =
-        options && options.hook ? finalProps : { ...props, ref };
-
-      const combinedStyle = { ...componentStyle, ...styles };
-      const hasCombinedStyle = Object.keys(combinedStyle).length > 0;
-
-      return (
-        <Component
-          css={hasCombinedStyle ? combinedStyle : undefined}
-          {...componentProps}
-        />
-      );
+        css: hasStyles ? styles : undefined,
+      });
     },
   );
 

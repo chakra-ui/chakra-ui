@@ -25,7 +25,8 @@ const transformProp = (prop: string, propValue: any): object => {
 
 //TODO: Memoize this
 const transformProps = (props: any): object => {
-  let result: Record<string, any> = {};
+  //@ts-ignore
+  let result: Record<string, any> = null;
   for (let prop in props) {
     if (typeof props[prop] === "object") {
       result = { ...result, [prop]: transformProps(props[prop]) };

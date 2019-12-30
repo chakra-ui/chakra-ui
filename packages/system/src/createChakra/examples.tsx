@@ -1,12 +1,15 @@
 /**@jsx jsx */
-import { jsx } from "@emotion/core";
 import { theme } from "@chakra-ui/theme";
+import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 import { BrowserRouter, Link } from "react-router-dom";
 import createThemeContext from "../create-theme-context";
+import { isPropValid } from "../system";
 import createChakra from "./create-chakra";
-import { chakra } from "../chakra";
+import { sanitize, clean } from "./utils";
+
+const NewLink = sanitize(Link);
 
 const [ThemeProvider] = createThemeContext({
   ...theme,
@@ -45,9 +48,9 @@ const Tab = createChakra(Link, {
   hook: useTab,
 });
 
-stories.add("with hooks", () => (
+stories.add("react-router + hooks", () => (
   <BrowserRouter>
-    <Tab<{ ref?: React.Ref<HTMLAnchorElement> }>
+    <Tab
       to="/home"
       replace
       isSelected
@@ -64,20 +67,32 @@ stories.add("with hooks", () => (
 
 const Button = createChakra("button", { hook: useTab });
 
-function Bacon(props: any) {
-  return (
-    <chakra.div {...props}>
-      <button>This is menu disclosure</button>
-      <div>This is menu</div>
-    </chakra.div>
-  );
-}
+const Bacon = (props: any) => (
+  <div {...props}>
+    <button>This is menu disclosure</button>
+    <div>This is menu</div>
+  </div>
+);
 
 stories.add("as prop", () => (
   <Button
-    as={Bacon}
+    as={sanitize(Bacon)}
     margin="20px"
     borderTop="2px solid crimson"
     css={{ background: "tomato" }}
   />
+));
+
+const Tabbable = ({ isInvalid, ...props }: { isInvalid?: boolean }) => (
+  <div role="checkbox" aria-invalid={isInvalid} {...clean(props)} />
+);
+
+const ChakraTabbable = createChakra(Tabbable, {
+  hook: useTab,
+});
+
+stories.add("beesama test", () => (
+  <ChakraTabbable isInvalid isSelected>
+    This is a tab
+  </ChakraTabbable>
 ));

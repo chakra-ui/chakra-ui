@@ -1,7 +1,13 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import useCheckbox, { CheckboxProps } from "./useCheckbox";
-import { chakra } from "@chakra-ui/system";
+import useCheckbox, {
+  CheckboxProps,
+  Checkbox as CheckboxLabel,
+  CheckboxInput,
+  CustomCheckbox,
+  useCheckboxState,
+} from "./useCheckbox";
+import { chakra, createChakra } from "@chakra-ui/system";
 
 const stories = storiesOf("useCheckbox", module);
 
@@ -24,12 +30,13 @@ function Checkbox(props: CheckboxProps & { children: React.ReactNode }) {
       <input {...input} style={visuallyHiddenStyles} />
       <chakra.div
         {...checkbox}
-        _hover={{
-          bg: state.isChecked ? "red" : "papayawhip",
-        }}
+        _hover={{ bg: "papayawhip" }}
+        _focus={{ color: "yellow" }}
         _indeterminate={{ bg: "blue", color: "white" }}
       >
-        {state.isChecked && "✔️"} {props.children}
+        {state.isChecked && "✔️"} {props.children}{" "}
+        {state.isHovered ? "hover" : null}
+        {state.isActive ? "active" : null}
       </chakra.div>
     </label>
   );
@@ -102,3 +109,26 @@ function IndeterminateExample() {
 }
 
 stories.add("indeterminate checkbox", () => <IndeterminateExample />);
+
+const CheckIcon = () => {
+  const { isChecked } = useCheckboxState();
+  return <>{isChecked ? "✔️" : null}</>;
+};
+
+const ChakraBox = createChakra(CustomCheckbox);
+
+stories.add("custom components", () => (
+  <CheckboxLabel value="male">
+    <CheckboxInput />
+    <ChakraBox
+      display="inline-block"
+      size="30px"
+      border="1px solid gray"
+      color="white"
+      _checked={{ bg: "green" }}
+      _focus={{ outline: "3px dotted red" }}
+    >
+      <CheckIcon />
+    </ChakraBox>
+  </CheckboxLabel>
+));

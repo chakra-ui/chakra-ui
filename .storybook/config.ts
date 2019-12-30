@@ -1,12 +1,13 @@
 import { configure } from "@storybook/react";
 
-// ../packages/chakra-ui-hooks/src/useMenu-v2
-// ../packages/chakra-ui-system
+// ../packages/hooks/src/useMenu-v2
+// ../packages/system
+// ../packages/hooks/src/useCheckbox
 
 const req = require.context(
-  "../packages/hooks/src/useCheckbox",
+  "../packages/system/src",
   true,
-  /examples\.(ts|tsx)$/,
+  /\.stories\.(ts|tsx)$/,
 );
 
 function loadStories() {

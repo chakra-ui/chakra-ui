@@ -1,5 +1,6 @@
 import css from "@styled-system/css";
 import tx from "./transform-custom-props";
+import { PseudoProps } from "./pseudo-props-interface";
 
 export const selectors = {
   hover: "&:hover, &[data-hover]",
@@ -9,7 +10,7 @@ export const selectors = {
   disabled:
     "&:disabled, &[data-disabled], &:disabled:focus, &:disabled:hover, &[aria-disabled=true], &[aria-disabled=true]:focus, &[aria-disabled=true]:hover",
   checked: "&[aria-checked=true], &[data-checked]",
-  indeterminate: "&::indeterminate, &[aria-checked=mixed], &[data-mixed]",
+  indeterminate: "&:indeterminate, &[aria-checked=mixed], &[data-mixed]",
   selected: "&[aria-selected=true], &[data-selected]",
   invalid: "&[aria-invalid=true], &[data-invalid]",
   pressed: "&[aria-pressed=true], &[data-pressed]",
@@ -34,8 +35,8 @@ export const selectors = {
 
 const sx = selectors;
 
-const pseudo = (props: any): object => {
-  return css({
+const pseudo = ({ theme, ...props }: { theme: object } & PseudoProps) =>
+  css({
     [sx.hover]: tx(props._hover),
     [sx.focus]: tx(props._focus),
     [sx.active]: tx(props._active),
@@ -63,7 +64,6 @@ const pseudo = (props: any): object => {
     [sx.focusWithin]: tx(props._focusWithin),
     [sx.placeholder]: props._placeholder,
     [sx.hidden]: props._hidden,
-  })(props.theme);
-};
+  })(theme);
 
 export default pseudo;

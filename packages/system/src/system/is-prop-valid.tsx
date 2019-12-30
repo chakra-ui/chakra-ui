@@ -1,5 +1,9 @@
 import * as SS from "@styled-system/should-forward-prop";
 
+declare module "@styled-system/should-forward-prop" {
+  export const props: any[];
+}
+
 // Prevent some prop from getting to the underlying DOM element
 const shouldForwardProp = SS.createShouldForwardProp([
   ...SS.props,
@@ -21,7 +25,7 @@ const shouldForwardProp = SS.createShouldForwardProp([
  */
 const nativeHTMLPropAlias = ["htmlWidth", "htmlHeight"];
 
-function isPropValid(prop: string) {
+function isPropValid(prop: string): boolean {
   if (nativeHTMLPropAlias.includes(prop)) {
     return true;
   } else {
