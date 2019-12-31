@@ -6,16 +6,24 @@ import { isPropValid, jsx } from "../system";
 import { As, CreateChakraComponent, CreateChakraOptions } from "./types";
 import { replacePseudo } from "../system/jsx";
 
+// const obj = (light, dark) => {light, dark}
+// const [color, activeColor] = getMode(obj(`blue.500`, `blue.200`), obj(`blue.700`, `blue.500`))("light")
+
 function getComponentStyles(props: any, options: any) {
   const themableProps = ["variant", "variantSize", "variantColor"];
   let componentStyle: any = {};
+
+  const themeKey = options?.themeKey;
+  if (!themeKey) return null;
 
   for (const prop of themableProps) {
     if (themableProps.includes(prop)) {
       const getFromTheme = get(
         props.theme,
-        `${options.themeKey}.${prop}.${props[prop]}`,
+        `${themeKey}.${prop}.${props[prop]}`
       );
+
+      if (!getFromTheme) continue;
 
       const systemObject =
         typeof getFromTheme === "function"
@@ -32,8 +40,8 @@ function getComponentStyles(props: any, options: any) {
 
 export const styled = <T extends As, H = {}>(
   tag: T,
-  options?: CreateChakraOptions<H>,
-) => (...args: any[]) => {
+  options?: CreateChakraOptions<H>
+) => (...interpolations: any[]) => {
   const Styled = forwardRef(
     ({ as, ...props }: any, ref: React.Ref<Element>) => {
       // check if we should forward props
@@ -44,13 +52,16 @@ export const styled = <T extends As, H = {}>(
       // component component style
       let styles = {};
       const propsWithTheme = { theme, ...props };
-      args.forEach(arg => {
-        const style = typeof arg === "function" ? arg(propsWithTheme) : arg;
+
+      interpolations.forEach(interpolation => {
+        const style =
+          typeof interpolation === "function"
+            ? interpolation(propsWithTheme)
+            : interpolation;
         styles = { ...styles, ...style };
       });
 
       const componentStyles = getComponentStyles(propsWithTheme, options);
-
       styles = { ...componentStyles, ...styles };
 
       // check if we should forward props
@@ -59,7 +70,7 @@ export const styled = <T extends As, H = {}>(
         : {};
 
       // If hook was passed, invoke the hook
-      if (options && options.hook) {
+      if (options?.hook) {
         const hookProps = options.hook({ ref, ...props });
         nextProps = { ...nextProps, ...hookProps };
       }
@@ -71,13 +82,11 @@ export const styled = <T extends As, H = {}>(
         }
       }
 
-      const hasStyles = Object.keys(styles).length > 0;
-
       return jsx(as || tag, {
         ...nextProps,
-        css: hasStyles ? styles : undefined,
+        css: styles
       });
-    },
+    }
   );
 
   return Styled as CreateChakraComponent<T, H>;
