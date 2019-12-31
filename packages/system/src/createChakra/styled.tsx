@@ -83,10 +83,19 @@ export const styled = <T extends As, H = {}>(
         nextProps = { ...nextProps, ...hookProps };
       }
 
+      // Replace the htmlWidth and htmlHeight with the appropriate DOM props
+      // This is mostly for the `img` tag
+      const replace = {
+        htmlWidth: "width",
+        htmlHeight: "height",
+      };
+
       if (!shouldForwardProps) {
-        for (const key in props) {
-          if (!isPropValid(key)) continue;
-          nextProps[key] = props[key];
+        for (const prop in props) {
+          if (!isPropValid(prop)) continue;
+          const propKey =
+            prop in replace ? replace[prop as keyof typeof replace] : prop;
+          nextProps[propKey] = props[prop];
         }
       }
 

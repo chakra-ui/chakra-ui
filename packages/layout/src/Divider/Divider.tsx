@@ -1,8 +1,8 @@
 import {
-  chakra,
-  PropsOf,
-  forwardRef,
   ChakraComponent,
+  createChakra,
+  forwardRef,
+  PropsOf,
 } from "@chakra-ui/system";
 import React from "react";
 
@@ -10,11 +10,13 @@ interface DividerOptions {
   orientation?: "horizontal" | "vertical";
 }
 
-export type DividerProps = PropsOf<typeof chakra.hr> & DividerOptions;
+export type DividerProps = PropsOf<typeof BaseDivider> & DividerOptions;
+
+const BaseDivider = createChakra("hr");
 
 const Divider = forwardRef(
   ({ orientation, ...props }: DividerProps, ref: React.Ref<any>) => (
-    <chakra.hr
+    <BaseDivider
       ref={ref}
       marginY="8px"
       role="separator"

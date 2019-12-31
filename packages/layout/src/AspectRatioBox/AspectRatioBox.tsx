@@ -1,6 +1,6 @@
-import { chakra, ChakraComponent, forwardRef } from "@chakra-ui/system";
+import { ChakraComponent, forwardRef } from "@chakra-ui/system";
 import * as React from "react";
-import { BoxProps } from "../Box";
+import { Box, BoxProps } from "../Box";
 
 export type AspectRatioBoxProps = BoxProps & { ratio?: number };
 
@@ -11,7 +11,7 @@ const AspectRatioBox = forwardRef(
   ) => {
     const child = React.Children.only(children);
     return (
-      <chakra.div
+      <Box
         ref={ref}
         pos="relative"
         _before={{
@@ -30,7 +30,7 @@ const AspectRatioBox = forwardRef(
             top: 0,
             left: 0,
           })}
-      </chakra.div>
+      </Box>
     );
   },
 ) as ChakraComponent<"div", { ratio?: number }>;

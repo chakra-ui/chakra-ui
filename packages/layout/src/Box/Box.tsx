@@ -1,6 +1,6 @@
-import { chakra, PropsOf } from "@chakra-ui/system";
+import { createChakra, PropsOf } from "@chakra-ui/system";
 
-const Box = chakra.div;
+const Box = createChakra("div");
 
 export type BoxProps = PropsOf<typeof Box>;
 

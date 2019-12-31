@@ -19,6 +19,8 @@ interface OtherProps {
   as?: React.ElementType;
   isTruncated?: boolean;
   children?: React.ReactNode;
+  htmlWidth?: string | number;
+  htmlHeight?: string | number;
 }
 
 /**

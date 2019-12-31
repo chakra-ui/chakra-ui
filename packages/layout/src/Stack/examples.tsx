@@ -4,20 +4,17 @@ import { Stack } from ".";
 import { Heading } from "../Heading";
 import { Text } from "../Text";
 import { Box } from "../Box";
+import { createThemeContext } from "@chakra-ui/system";
+import theme from "@chakra-ui/preset-base";
 
-import { ThemeProvider, CSSReset } from "@chakra-ui/theme";
+const [ThemeProvider] = createThemeContext(theme);
 
 const stories = storiesOf("Stack", module);
 
-stories.addDecorator(story => (
-  <ThemeProvider>
-    <CSSReset />
-    {story()}
-  </ThemeProvider>
-));
+stories.addDecorator(story => <ThemeProvider>{story()}</ThemeProvider>);
 
 stories.add("vertical stack", () => (
-  <Stack shouldWrapChildren spacing={4}>
+  <Stack shouldWrapChildren spacing={4} direction="row">
     <span>ooooooo</span>
     <span>ahhhhh</span>
     <span>Woah!</span>

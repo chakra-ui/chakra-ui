@@ -1,6 +1,6 @@
+import { ChakraComponent, forwardRef } from "@chakra-ui/system";
 import * as React from "react";
-import { chakra, forwardRef, ChakraComponent } from "@chakra-ui/system";
-import { BoxProps } from "../Box";
+import { Box, BoxProps } from "../Box";
 
 interface FlexOptions {
   /**
@@ -24,7 +24,7 @@ interface FlexOptions {
 export type FlexProps = BoxProps & FlexOptions;
 
 const Flex = forwardRef((props: FlexProps, ref: React.Ref<any>) => (
-  <chakra.div
+  <Box
     ref={ref}
     display="flex"
     flexDirection={props.direction}

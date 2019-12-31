@@ -1,17 +1,14 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import { CSSReset, theme } from "@chakra-ui/theme";
 import { Box } from ".";
-import createThemeContext from "@chakra-ui/system/dist/create-theme-context";
+import { createThemeContext } from "@chakra-ui/system";
+import theme from "@chakra-ui/preset-base";
 
 const [ThemeProvider] = createThemeContext(theme);
 
-const stories = storiesOf("Box", module).addDecorator(story => (
-  <ThemeProvider>
-    <CSSReset />
-    {story()}
-  </ThemeProvider>
-));
+const stories = storiesOf("Box", module);
+
+stories.addDecorator(story => <ThemeProvider>{story()}</ThemeProvider>);
 
 stories.add("default", () => (
   <Box

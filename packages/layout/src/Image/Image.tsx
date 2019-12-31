@@ -1,5 +1,4 @@
-import { chakra, PropsOf } from "@chakra-ui/system";
+import { createChakra } from "@chakra-ui/system";
 
-export type ImageProps = PropsOf<typeof chakra.img>;
-const Image = chakra.img;
+const Image = createChakra("img");
 export default Image;

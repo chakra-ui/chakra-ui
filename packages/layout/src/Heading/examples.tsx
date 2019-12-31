@@ -1,7 +1,11 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { Heading } from ".";
-import { ThemeProvider, CSSReset } from "@chakra-ui/theme";
+import { createThemeContext } from "@chakra-ui/system";
+import theme from "@chakra-ui/preset-base";
+import { CSSReset } from "@chakra-ui/theme";
+
+const [ThemeProvider] = createThemeContext(theme);
 
 const stories = storiesOf("Heading", module);
 
@@ -15,7 +19,7 @@ stories.addDecorator(story => (
 stories.add("Default", () => (
   <>
     {["2xl", "xl", "lg", "md", "sm", "xs"].map((size, index) => (
-      <Heading size={size as any}>Heading {index + 1}</Heading>
+      <Heading variantSize={size}>Heading {index + 1}</Heading>
     ))}
   </>
 ));

@@ -1,6 +1,6 @@
-import { chakra, ChakraComponent, forwardRef } from "@chakra-ui/system";
+import { ChakraComponent, forwardRef } from "@chakra-ui/system";
 import * as React from "react";
-import { BoxProps } from "../Box";
+import { Box, BoxProps } from "../Box";
 
 export interface GridOptions {
   templateColumns?: BoxProps["gridTemplateColumns"];
@@ -38,7 +38,7 @@ const Grid = forwardRef(
     }: GridProps,
     ref: React.Ref<any>,
   ) => (
-    <chakra.div
+    <Box
       ref={ref}
       display="grid"
       gridArea={area}

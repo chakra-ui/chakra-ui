@@ -1,4 +1,5 @@
-import { chakra, ChakraComponent } from "@chakra-ui/system";
+/**@jsx jsx */
+import { chakra, ChakraComponent, css, jsx } from "@chakra-ui/system";
 import * as React from "react";
 import { Box } from "../Box";
 import { FlexProps } from "../Flex";
@@ -28,7 +29,7 @@ type StackProps = FlexProps & StackOptions;
 const Stack = React.forwardRef(
   (
     {
-      direction: directionProp,
+      direction = "column",
       align,
       justify,
       spacing = 2,
@@ -38,29 +39,12 @@ const Stack = React.forwardRef(
     }: StackProps,
     ref: React.Ref<any>,
   ) => {
-    const isReversed = directionProp && directionProp.endsWith("reverse");
-    const isInline = directionProp && directionProp.startsWith("row");
-    let direction: any;
+    const isInline = direction?.startsWith("row");
+    const isReversed = direction?.endsWith("reverse");
 
-    if (isInline) {
-      direction = "row";
-    }
-
-    if (isReversed) {
-      direction = isInline ? "row-reverse" : "column-reverse";
-    }
-
-    if (directionProp) {
-      direction = directionProp;
-    }
-
-    if (!isInline && !isReversed && !directionProp) {
-      direction = "column";
-    }
-
-    const validChildren = React.Children.toArray(children).filter(
-      React.isValidElement,
-    );
+    const spacingProp = isInline
+      ? { [isReversed ? "mr" : "ml"]: spacing }
+      : { [isReversed ? "mb" : "mt"]: spacing };
 
     return (
       <chakra.div
@@ -69,24 +53,15 @@ const Stack = React.forwardRef(
         alignItems={align}
         justifyContent={justify}
         flexDirection={direction}
+        css={css({ ">*+*": spacingProp })}
         {...props}
       >
-        {React.Children.map(validChildren, (child, index) => {
-          const isLastChild = React.Children.count(children) === index + 1;
-
-          const spacingProps = isInline
-            ? { [isReversed ? "ml" : "mr"]: isLastChild ? null : spacing }
-            : { [isReversed ? "mt" : "mb"]: isLastChild ? null : spacing };
-
-          if (shouldWrapChildren) {
-            return (
-              <Box display="inline-block" width="100%" {...spacingProps}>
-                {child}
-              </Box>
-            );
-          }
-          return React.cloneElement(child, spacingProps);
-        })}
+        {shouldWrapChildren
+          ? React.Children.map(children, child => {
+              if (!React.isValidElement(child)) return;
+              return <Box display="inline-block">{child}</Box>;
+            })
+          : children}
       </chakra.div>
     );
   },
