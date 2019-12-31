@@ -5,6 +5,7 @@ import { forwardRef } from "../forward-ref";
 import { isPropValid, jsx } from "../system";
 import { As, CreateChakraComponent, CreateChakraOptions } from "./types";
 import { replacePseudo } from "../system/jsx";
+import { useColorMode } from "../color-mode";
 
 //TODO: Figure out the color mode API [@see line 35]
 function getComponentStyles(props: any, options: any) {
@@ -32,7 +33,7 @@ function getComponentStyles(props: any, options: any) {
 
       const systemObject =
         typeof getFromTheme === "function"
-          ? replacePseudo(getFromTheme({ ...props, colorMode: "light" }))
+          ? replacePseudo(getFromTheme(props))
           : replacePseudo(getFromTheme);
 
       const style = css(systemObject)(props.theme);
@@ -52,11 +53,13 @@ export const styled = <T extends As, H = {}>(
       // check if we should forward props
       const shouldForwardProps =
         typeof tag !== "string" || (as && typeof as !== "string");
+
       const theme = React.useContext(ThemeContext);
+      const [colorMode] = useColorMode();
 
       // component component style
       let styles = {};
-      const propsWithTheme = { theme, ...props };
+      const propsWithTheme = { theme, colorMode, ...props };
 
       interpolations.forEach(interpolation => {
         const style =

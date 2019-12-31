@@ -1,12 +1,11 @@
 /**@jsx jsx */
-import { theme } from "@chakra-ui/theme";
 import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
-import * as React from "react";
 import { BrowserRouter, Link } from "react-router-dom";
 import setup from "../../chakra/stories/setup";
-import { sanitize, clean } from "../utils";
 import createChakra from "../create-chakra";
+import { clean, sanitize } from "../utils";
+import { LightMode } from "../../color-mode";
 
 const NewLink = sanitize(Link);
 
@@ -15,10 +14,6 @@ const stories = storiesOf("createChakra + hooks", module);
 stories.addDecorator(setup);
 
 const useTab = (props: { id?: string; isSelected?: boolean }) => {
-  React.useEffect(() => {
-    console.log("mounted");
-  }, []);
-
   return {
     ...props,
     role: "tab",

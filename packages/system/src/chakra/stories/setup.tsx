@@ -2,7 +2,7 @@ import { css, Global } from "@emotion/core";
 import * as React from "react";
 import createThemeContext from "../../create-theme-context";
 import theme from "@chakra-ui/preset-base";
-import { ColorModeProvider, InitializeColorMode } from "../../color-mode";
+import { ColorModeProvider, ColorMode } from "../../color-mode";
 
 const [ThemeProvider, useTheme] = createThemeContext(theme);
 
@@ -17,6 +17,7 @@ const setup = (story: () => any) => (
           }
         `}
       />
+      <ColorMode />
       {story()}
     </ColorModeProvider>
   </ThemeProvider>
