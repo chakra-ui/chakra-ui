@@ -22,6 +22,7 @@
     "utils:build": "yarn workspace @chakra-ui/utils build && yarn link:all",
     "layout:build": "yarn workspace @chakra-ui/layout build && yarn link:all",
     "system:build": "yarn workspace @chakra-ui/system build && yarn link:all",
+    "preset:build": "yarn workspace @chakra-ui/preset-base build && yarn link:all",
     "release": "lerna publish"
   },
   "husky": {

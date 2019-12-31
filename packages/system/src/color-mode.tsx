@@ -1,3 +1,9 @@
+/**
+ * Credits:
+ * https://github.com/system-ui/theme-ui/blob/master/packages/theme-ui/src/color-modes.js
+ * https://github.com/donavon/use-dark-mode/blob/develop/noflash.js.txt
+ */
+
 import * as React from "react";
 import { Global } from "@emotion/core";
 import css, { get } from "@styled-system/css";
@@ -43,10 +49,16 @@ type ContextType = [ColorMode, React.Dispatch<React.SetStateAction<ColorMode>>];
 const ColorModeContext = React.createContext<ContextType | undefined>(
   undefined,
 );
-export const useColorMode = () =>
-  React.useContext(ColorModeContext) as ContextType;
+export const useColorMode = () => {
+  const context = React.useContext(ColorModeContext) as ContextType;
+  if (context === undefined) {
+    throw new Error("useColorMode must be used within a ColorModeProvider");
+  }
+  return context;
+};
 
 // Gets the color mode based on OS time
+// TODO: Maybe can use this for browsers that don't support the media query
 function syncWithLocalTime(callback: Function, shouldRun?: boolean) {
   if (!shouldRun) return;
   const date = new Date();
@@ -134,43 +146,24 @@ export const LightMode = (props: Props) => (
   <ColorModeProvider mode="light" {...props} />
 );
 
-const globalColor = {
-  text: "gray.800",
-  background: "white",
-  primary: "teal.500",
-  placeholder: "gray.400",
-  modes: {
-    dark: {
-      text: "whiteAlpha.900",
-      background: "gray.800",
-      primary: "teal.300",
-      placeholder: "whiteAlpha.400",
-    },
-  },
-};
-
 export const createColorStyles = (theme: any, colorMode: ColorMode) => {
   if (!theme.colors) return {};
 
-  const modifiedTheme = {
-    ...theme,
-    colors: {
-      ...theme.colors,
-      ...globalColor,
-    },
-  };
-
   const isDark = colorMode === "dark";
 
-  const mx = (str: string) => (isDark ? `modes.dark.${str}` : str);
-  const rx = (str: string) => get(modifiedTheme, `colors.${mx(str)}`);
+  const mx = (str: string) => (isDark ? `__dark.${str}` : str);
+  const rx = (str: string) => get(theme, `styles.body.${mx(str)}`);
 
   return css({
     color: rx("text"),
     bg: rx("background"),
-    "*::placeholder": rx("placeholder"),
-    borderColor: rx("border"),
-  })(modifiedTheme);
+    "*::placeholder": { color: rx("placeholder") },
+    "*, *::before, *::after": {
+      borderWidth: 0,
+      borderStyle: "solid",
+      borderColor: rx("border"),
+    },
+  })(theme);
 };
 
 const bodyColor = (colorMode: ColorMode) => (theme: any) => ({
@@ -230,3 +223,7 @@ export const InitializeColorMode = () => (
     }}
   />
 );
+
+/**
+ * const color = useMode(lightMode, darkMode)
+ */

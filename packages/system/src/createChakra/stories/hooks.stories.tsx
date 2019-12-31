@@ -5,7 +5,6 @@ import { BrowserRouter, Link } from "react-router-dom";
 import setup from "../../chakra/stories/setup";
 import createChakra from "../create-chakra";
 import { clean, sanitize } from "../utils";
-import { LightMode } from "../../color-mode";
 
 const NewLink = sanitize(Link);
 
@@ -73,7 +72,23 @@ const ChakraTabbable = createChakra(Tabbable, {
 });
 
 stories.add("caveat 2", () => (
-  <ChakraTabbable margin="30px" color="green.500" isInvalid isSelected>
-    This is a tab
-  </ChakraTabbable>
+  <div>
+    <ChakraTabbable
+      border="1px solid"
+      borderColor="inherit"
+      margin="30px"
+      isInvalid
+      isSelected
+    >
+      This is a tab
+    </ChakraTabbable>
+    <input
+      placeholder="welcome"
+      style={{
+        backgroundColor: "transparent",
+        color: "inherit",
+        borderWidth: "1px",
+      }}
+    />
+  </div>
 ));

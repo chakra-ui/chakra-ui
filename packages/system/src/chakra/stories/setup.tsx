@@ -11,7 +11,7 @@ const setup = (story: () => any) => (
     <ColorModeProvider>
       <Global
         styles={css`
-          * {
+          body * {
             font-family: "system-ui";
             box-sizing: border-box;
           }
