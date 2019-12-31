@@ -6,9 +6,7 @@ import { isPropValid, jsx } from "../system";
 import { As, CreateChakraComponent, CreateChakraOptions } from "./types";
 import { replacePseudo } from "../system/jsx";
 
-// const obj = (light, dark) => {light, dark}
-// const [color, activeColor] = getMode(obj(`blue.500`, `blue.200`), obj(`blue.700`, `blue.500`))("light")
-
+//TODO: Figure out the color mode API
 function getComponentStyles(props: any, options: any) {
   const themableProps = ["variant", "variantSize", "variantColor"];
   let componentStyle: any = {};
@@ -16,11 +14,18 @@ function getComponentStyles(props: any, options: any) {
   const themeKey = options?.themeKey;
   if (!themeKey) return null;
 
+  const getCommonStyle = replacePseudo(get(props.theme, `${themeKey}.common`));
+
+  if (getCommonStyle) {
+    const commonStyle = css(getCommonStyle)(props.theme);
+    componentStyle = commonStyle;
+  }
+
   for (const prop of themableProps) {
     if (themableProps.includes(prop)) {
       const getFromTheme = get(
         props.theme,
-        `${themeKey}.${prop}.${props[prop]}`
+        `${themeKey}.${prop}.${props[prop]}`,
       );
 
       if (!getFromTheme) continue;
@@ -40,7 +45,7 @@ function getComponentStyles(props: any, options: any) {
 
 export const styled = <T extends As, H = {}>(
   tag: T,
-  options?: CreateChakraOptions<H>
+  options?: CreateChakraOptions<H>,
 ) => (...interpolations: any[]) => {
   const Styled = forwardRef(
     ({ as, ...props }: any, ref: React.Ref<Element>) => {
@@ -84,9 +89,9 @@ export const styled = <T extends As, H = {}>(
 
       return jsx(as || tag, {
         ...nextProps,
-        css: styles
+        css: styles,
       });
-    }
+    },
   );
 
   return Styled as CreateChakraComponent<T, H>;

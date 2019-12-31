@@ -15,7 +15,24 @@ Button.defaultProps = {
   cursor: "pointer",
   outline: 0,
   border: 0,
-  _focus: { shadow: "outline" },
+  display: "inline-flex",
+  appearance: "none",
+  alignItems: "center",
+  justifyContent: "center",
+  transition: "all 250ms",
+  userSelect: "none",
+  position: "relative",
+  whiteSpace: "nowrap",
+  verticalAlign: "middle",
+  lineHeight: "1.2",
+  borderRadius: "md",
+  _focus: {
+    boxShadow: "outline",
+  },
+  _disabled: {
+    opacity: 0.4,
+    cursor: "not-allowed",
+  },
 };
 
 stories.add("variant size", () => (
@@ -36,6 +53,17 @@ stories.add("variant color", () => (
     variantSize="sm"
     variant="link"
     variantColor="blue"
+  >
+    This is my button
+  </Button>
+));
+
+stories.add("variant", () => (
+  <Button
+    variantSize="lg"
+    variant="solid"
+    variantColor="blue"
+    aria-disabled="true"
   >
     This is my button
   </Button>
