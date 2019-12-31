@@ -6,7 +6,7 @@ import { isPropValid, jsx } from "../system";
 import { As, CreateChakraComponent, CreateChakraOptions } from "./types";
 import { replacePseudo } from "../system/jsx";
 
-//TODO: Figure out the color mode API
+//TODO: Figure out the color mode API [@see line 35]
 function getComponentStyles(props: any, options: any) {
   const themableProps = ["variant", "variantSize", "variantColor"];
   let componentStyle: any = {};
@@ -32,7 +32,7 @@ function getComponentStyles(props: any, options: any) {
 
       const systemObject =
         typeof getFromTheme === "function"
-          ? replacePseudo(getFromTheme(props))
+          ? replacePseudo(getFromTheme({ ...props, colorMode: "light" }))
           : replacePseudo(getFromTheme);
 
       const style = css(systemObject)(props.theme);

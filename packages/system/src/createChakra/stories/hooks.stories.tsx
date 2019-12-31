@@ -4,36 +4,21 @@ import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 import { BrowserRouter, Link } from "react-router-dom";
-import createThemeContext from "../create-theme-context";
-import { isPropValid } from "../system";
-import createChakra from "./create-chakra";
-import { sanitize, clean } from "./utils";
+import setup from "../../chakra/stories/setup";
+import { sanitize, clean } from "../utils";
+import createChakra from "../create-chakra";
 
 const NewLink = sanitize(Link);
 
-const [ThemeProvider] = createThemeContext({
-  ...theme,
-  components: {
-    tab: {
-      variantSize: {
-        sm: {
-          fontSize: 24,
-          padding: 20,
-        },
-        md: {
-          fontSize: 40,
-          padding: 40,
-        },
-      },
-    },
-  },
-});
+const stories = storiesOf("createChakra + hooks", module);
 
-const stories = storiesOf("createChakra", module);
-
-stories.addDecorator(story => <ThemeProvider>{story()}</ThemeProvider>);
+stories.addDecorator(setup);
 
 const useTab = (props: { id?: string; isSelected?: boolean }) => {
+  React.useEffect(() => {
+    console.log("mounted");
+  }, []);
+
   return {
     ...props,
     role: "tab",
@@ -43,8 +28,8 @@ const useTab = (props: { id?: string; isSelected?: boolean }) => {
   };
 };
 
-const Tab = createChakra(Link, {
-  themeKey: "components.tab",
+const Tab = createChakra(NewLink, {
+  themeKey: "components.Button",
   hook: useTab,
 });
 
@@ -55,8 +40,9 @@ stories.add("react-router + hooks", () => (
       replace
       isSelected
       variantSize="sm"
-      margin="30px"
-      fontSize="40px"
+      variantColor="pink"
+      variant="solid"
+      textDecor="none"
       onClick={() => {
         console.log("clicked");
       }}
@@ -74,7 +60,7 @@ const Bacon = (props: any) => (
   </div>
 );
 
-stories.add("as prop", () => (
+stories.add("caveat 1", () => (
   <Button
     as={sanitize(Bacon)}
     margin="20px"
@@ -91,8 +77,8 @@ const ChakraTabbable = createChakra(Tabbable, {
   hook: useTab,
 });
 
-stories.add("beesama test", () => (
-  <ChakraTabbable isInvalid isSelected>
+stories.add("caveat 2", () => (
+  <ChakraTabbable margin="30px" color="green.500" isInvalid isSelected>
     This is a tab
   </ChakraTabbable>
 ));

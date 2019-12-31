@@ -1,6 +1,6 @@
 {
   "extends": "../../tsconfig-base.json",
-  "include": ["src", "types", "src/@types"],
+  "include": ["src", "types"],
   "exclude": [
     "**/*.spec.ts",
     "**/*.spec.tsx",
@@ -8,9 +8,10 @@
     "**/*.test.tsx",
     "**/stories"
   ],
+  "files": ["./types/index.d.ts"],
   "compilerOptions": {
     "noImplicitAny": true,
     "rootDir": "./",
-    "typeRoots": ["src/@types", "../../node_modules/@types"]
+    "typeRoots": ["types", "../../node_modules/@types"]
   }
 }

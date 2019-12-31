@@ -61,3 +61,34 @@ export interface CreateChakraOptions<P> {
   hook?: (props: P) => React.HTMLProps<any>;
   themeKey?: string;
 }
+
+///////////////////////////////////////////////////////////////////
+
+type ThemingProps = {
+  /**
+   * The `variant` prop passed to the component
+   */
+  variant: string;
+  /**
+   * The `theme` object from context
+   */
+  theme: object;
+  /**
+   * The `variantColor` prop passed to the component
+   */
+  variantColor: string;
+  /**
+   * The current `colorMode` from context
+   */
+  colorMode: "light" | "dark";
+};
+
+type Style = {
+  [k: string]: SystemProps | ((props: ThemingProps) => SystemProps);
+};
+
+export interface ComponentStyle {
+  variant?: Style;
+  variantColor?: Style;
+  variantSize?: Style;
+}
