@@ -23,7 +23,7 @@ const useTab = (props: { id?: string; isSelected?: boolean }) => {
 };
 
 const Tab = createChakra(NewLink, {
-  themeKey: "components.Button",
+  themeKey: "Button",
   hook: useTab,
 });
 

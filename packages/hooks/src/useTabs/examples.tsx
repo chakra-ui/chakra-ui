@@ -1,4 +1,3 @@
-import { ThemeProvider } from "@chakra-ui/theme";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import {
@@ -10,10 +9,9 @@ import {
   useTabPanels,
 } from "./useTabs";
 import { createChakra } from "@chakra-ui/system";
+import setup from "../story.setup";
 
-const stories = storiesOf("useTabs", module).addDecorator(story => (
-  <ThemeProvider>{story()}</ThemeProvider>
-));
+const stories = storiesOf("useTabs", module).addDecorator(setup);
 
 const Tab = createChakra("button", { hook: useTab });
 const TabList = createChakra("div", { hook: useTabList });

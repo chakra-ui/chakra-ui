@@ -534,4 +534,6 @@ export const iconPaths = {
   },
 };
 
-export type Icons = keyof typeof iconPaths;
+export type Icons = {
+  [K in keyof typeof iconPaths]: { path: JSX.Element; viewBox?: string };
+};

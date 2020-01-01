@@ -1,12 +1,10 @@
-import { ThemeProvider } from "@chakra-ui/theme";
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import { useNumberInput } from ".";
+import setup from "../story.setup";
 
-const stories = storiesOf("useNumberInput", module).addDecorator(story => (
-  <ThemeProvider>{story()}</ThemeProvider>
-));
+const stories = storiesOf("useNumberInput", module).addDecorator(setup);
 
 function NumberInput() {
   const { input, upSpinner, downSpinner, valueAsNumber } = useNumberInput({

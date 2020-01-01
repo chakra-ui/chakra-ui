@@ -5,7 +5,7 @@
  */
 
 import * as React from "react";
-import { Global } from "@emotion/core";
+import { Global, ThemeContext } from "@emotion/core";
 import css, { get } from "@styled-system/css";
 
 const supportsLocalStorage = typeof Storage !== "undefined";
@@ -222,6 +222,14 @@ export const InitializeColorMode = () => (
   />
 );
 
-/**
- * const color = useMode(lightMode, darkMode)
- */
+export function useMode(lightModeValue: any, darkModeValue: any) {
+  const [colorMode] = useColorMode();
+  const out = { light: lightModeValue, dark: darkModeValue };
+  return out[colorMode];
+}
+
+export function useChakra() {
+  const [colorMode, setColorMode] = useColorMode();
+  const theme = React.useContext(ThemeContext);
+  return { colorMode, setColorMode, theme };
+}

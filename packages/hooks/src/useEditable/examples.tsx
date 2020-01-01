@@ -6,14 +6,9 @@ import {
   useEditablePreview,
   useEditableState,
 } from "./useEditable";
-import { ThemeProvider } from "@chakra-ui/theme";
+import setup from "../story.setup";
 
-const stories = storiesOf("useEditable", module).addDecorator(story => (
-  <ThemeProvider>
-    {/* <CSSReset /> */}
-    {story()}
-  </ThemeProvider>
-));
+const stories = storiesOf("useEditable", module).addDecorator(setup);
 
 function EditableInput(props: any) {
   const input = useEditableInput(props);

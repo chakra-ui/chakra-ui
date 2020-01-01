@@ -55,10 +55,10 @@
     "typescript": "3.7.4"
   },
   "dependencies": {
-    "@styled-system/css": "5.0.13",
+    "@styled-system/css": "5.1.4",
+    "@types/styled-system__css": "5.0.4",
     "@styled-system/should-forward-prop": "5.0.12",
     "@types/styled-system": "5.0.1",
-    "@types/styled-system__css": "5.0.4",
     "@types/styled-system__should-forward-prop": "5.1.0",
     "styled-system": "5.0.5",
     "use-dark-mode": "2.3.1"

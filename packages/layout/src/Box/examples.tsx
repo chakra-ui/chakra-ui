@@ -1,19 +1,17 @@
-import * as React from "react";
+import { PropsOf } from "@chakra-ui/system";
 import { storiesOf } from "@storybook/react";
+import * as React from "react";
 import { Box } from ".";
-import { createThemeContext } from "@chakra-ui/system";
-import theme from "@chakra-ui/preset-base";
-
-const [ThemeProvider] = createThemeContext(theme);
+import setup from "../story.setup";
 
 const stories = storiesOf("Box", module);
 
-stories.addDecorator(story => <ThemeProvider>{story()}</ThemeProvider>);
+stories.addDecorator(setup);
 
 stories.add("default", () => (
   <Box
     color="tomato"
-    fontWeight="medium"
+    // fontWeight="medium"
     _hover={{ bg: "red.500", color: "white" }}
   >
     Welcome to Box
@@ -21,7 +19,7 @@ stories.add("default", () => (
 ));
 
 stories.add("as prop + generic", () => (
-  <Box<React.ImgHTMLAttributes<any>>
+  <Box<PropsOf<"img">>
     rounded="sm"
     as="img"
     _hover={{ rounded: "md" }}

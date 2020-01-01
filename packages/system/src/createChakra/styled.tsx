@@ -7,7 +7,6 @@ import { As, CreateChakraComponent, CreateChakraOptions } from "./types";
 import { replacePseudo } from "../system/jsx";
 import { useColorMode } from "../color-mode";
 
-//TODO: Figure out the color mode API [@see line 35]
 function getComponentStyles(props: any, options: any) {
   const themableProps = ["variant", "variantSize", "variantColor"];
   let componentStyle: any = {};
@@ -15,7 +14,9 @@ function getComponentStyles(props: any, options: any) {
   const themeKey = options?.themeKey;
   if (!themeKey) return null;
 
-  const getCommonStyle = replacePseudo(get(props.theme, `${themeKey}.common`));
+  const getCommonStyle = replacePseudo(
+    get(props.theme, `components.${themeKey}.common`),
+  );
 
   if (getCommonStyle) {
     const commonStyle = css(getCommonStyle)(props.theme);
@@ -26,7 +27,7 @@ function getComponentStyles(props: any, options: any) {
     if (themableProps.includes(prop)) {
       const getFromTheme = get(
         props.theme,
-        `${themeKey}.${prop}.${props[prop]}`,
+        `components.${themeKey}.${prop}.${props[prop]}`,
       );
 
       if (!getFromTheme) continue;

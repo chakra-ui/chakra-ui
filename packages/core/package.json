@@ -23,23 +23,13 @@
   "dependencies": {
     "@chakra-ui/hooks": "0.0.1",
     "@chakra-ui/layout": "0.0.1",
-    "@chakra-ui/theme": "0.0.1",
+    "@chakra-ui/system": "0.0.1",
     "@chakra-ui/utils": "0.0.1",
-    "@styled-system/css": "5.0.13",
-    "@styled-system/should-forward-prop": "5.0.12",
-    "@types/color": "3.0.0",
-    "@types/react-transition-group": "4.2.3",
-    "@types/styled-system": "5.0.1",
-    "color": "3.1.2",
-    "popper.js": "^1.15.0",
-    "pretty-num": "0.3.0",
     "react-animate-height": "2.0.9",
     "react-focus-lock": "^2.1.0",
     "react-transition-group": "4.3.0",
     "react-uid": "2.2.0",
-    "styled-system": "5.0.5",
-    "toasted-notes": "3.0.0",
-    "use-dark-mode": "2.3.1"
+    "toasted-notes": "3.0.0"
   },
   "peerDependencies": {
     "@emotion/core": "10.x",

@@ -1,6 +1,5 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import { ThemeProvider } from "@chakra-ui/theme";
 import {
   SelectProvider,
   useSelectOption,
@@ -10,6 +9,7 @@ import {
 // import { countryList } from "./data";
 import list2 from "./data";
 import styled from "@emotion/styled";
+import setup from "../story.setup";
 
 const StyledOption = styled.div`
   &[data-highlighted] {
@@ -23,9 +23,7 @@ const StyledOption = styled.div`
   }
 `;
 
-const stories = storiesOf("useSelect", module).addDecorator(story => (
-  <ThemeProvider>{story()}</ThemeProvider>
-));
+const stories = storiesOf("useSelect", module).addDecorator(setup);
 
 function Option(props: any) {
   const option = useSelectOption(props);

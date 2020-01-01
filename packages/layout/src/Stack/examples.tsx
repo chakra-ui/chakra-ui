@@ -1,17 +1,14 @@
-import React from "react";
 import { storiesOf } from "@storybook/react";
+import React from "react";
 import { Stack } from ".";
-import { Heading } from "../Heading";
-import { Text } from "../Text";
 import { Box } from "../Box";
-import { createThemeContext } from "@chakra-ui/system";
-import theme from "@chakra-ui/preset-base";
-
-const [ThemeProvider] = createThemeContext(theme);
+import { Heading } from "../Heading";
+import setup from "../story.setup";
+import { Text } from "../Text";
 
 const stories = storiesOf("Stack", module);
 
-stories.addDecorator(story => <ThemeProvider>{story()}</ThemeProvider>);
+stories.addDecorator(setup);
 
 stories.add("vertical stack", () => (
   <Stack shouldWrapChildren spacing={4} direction="row">

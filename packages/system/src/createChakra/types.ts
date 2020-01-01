@@ -19,6 +19,9 @@ interface OtherProps {
   as?: React.ElementType;
   isTruncated?: boolean;
   children?: React.ReactNode;
+}
+
+interface NativeImageProps {
   htmlWidth?: string | number;
   htmlHeight?: string | number;
 }
@@ -35,14 +38,15 @@ export interface CreateChakraComponent<T extends As, H = {}> {
   <P>(
     props: GenericMiddleware<P, H, T> &
       SystemProps &
-      ComponentThemeProps &
+      ComponentThemingProps &
+      NativeImageProps &
       OtherProps,
   ): JSX.Element;
 
   displayName?: string;
 
   defaultProps?: Partial<
-    MergePropsOf<H, T> & SystemProps & ComponentThemeProps
+    MergePropsOf<H, T> & SystemProps & ComponentThemingProps
   >;
 }
 
@@ -50,7 +54,7 @@ export interface CreateChakraComponent<T extends As, H = {}> {
  * For all components that has `themeKey` passed,
  * the user can pass these 3 props to customize them
  */
-interface ComponentThemeProps {
+interface ComponentThemingProps {
   variant?: string;
   variantSize?: string;
   variantColor?: string;

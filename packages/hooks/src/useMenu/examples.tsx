@@ -1,4 +1,3 @@
-import { ThemeProvider } from "@chakra-ui/theme";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import {
@@ -7,10 +6,9 @@ import {
   useMenuItem,
   useMenuList,
 } from "./useMenu";
+import setup from "../story.setup";
 
-const stories = storiesOf("useMenu", module).addDecorator(story => (
-  <ThemeProvider>{story()}</ThemeProvider>
-));
+const stories = storiesOf("useMenu", module).addDecorator(setup);
 
 function MenuButton(props: any) {
   const button = useMenuButton(props);

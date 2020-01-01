@@ -1,17 +1,12 @@
 import { chakra } from "@chakra-ui/system";
-import { CSSReset, ThemeProvider } from "@chakra-ui/theme";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
+import setup from "../story.setup";
 import AspectRatioBox from "./AspectRatioBox";
 
 const stories = storiesOf("AspectRatioBox", module);
 
-stories.addDecorator(story => (
-  <ThemeProvider>
-    <CSSReset />
-    {story()}
-  </ThemeProvider>
-));
+stories.addDecorator(setup);
 
 stories.add("with video", () => (
   <AspectRatioBox maxW="300px" ratio={1}>

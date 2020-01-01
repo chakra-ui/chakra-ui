@@ -48,7 +48,6 @@
     "typescript": "3.7.4"
   },
   "dependencies": {
-    "@chakra-ui/theme": "0.0.1",
     "@chakra-ui/system": "0.0.1",
     "@chakra-ui/utils": "0.0.1"
   },

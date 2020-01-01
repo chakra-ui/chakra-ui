@@ -2,17 +2,14 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { Icon } from ".";
 import { Text, Flex } from "@chakra-ui/layout";
-import { ThemeProvider, CSSReset, useTheme } from "@chakra-ui/theme";
+import setup from "../story.setup";
+import { iconPaths } from "@chakra-ui/icons";
 
-const stories = storiesOf("Icons", module).addDecorator(story => (
-  <ThemeProvider>
-    <CSSReset />
-    {story()}
-  </ThemeProvider>
-));
+const stories = storiesOf("Icons", module);
+
+stories.addDecorator(setup);
 
 const Icons = () => {
-  const { icons: iconPaths } = useTheme();
   return (
     <>
       {Object.keys(iconPaths).map(icon => (

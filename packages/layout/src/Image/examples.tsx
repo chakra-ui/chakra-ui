@@ -1,19 +1,10 @@
-import React from "react";
 import { storiesOf } from "@storybook/react";
+import React from "react";
 import { Image } from ".";
-import { createThemeContext } from "@chakra-ui/system";
-import theme from "@chakra-ui/preset-base";
-import { CSSReset } from "@chakra-ui/theme";
+import setup from "../story.setup";
 
-const [ThemeProvider] = createThemeContext(theme);
 const stories = storiesOf("Image", module);
-
-stories.addDecorator(story => (
-  <ThemeProvider>
-    <CSSReset />
-    {story()}
-  </ThemeProvider>
-));
+stories.addDecorator(setup);
 
 stories.add("Default", () => (
   <Image

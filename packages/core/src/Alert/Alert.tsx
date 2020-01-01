@@ -1,45 +1,25 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/core";
-import { createContext, useContext } from "react";
-import { Box, BoxProps } from "@chakra-ui/layout";
+import * as React from "react";
 import { Icon, IconProps } from "../Icon";
-import useAlertStyle, { useAlertIconStyle } from "./styles";
-import { Icons, Theme } from "@chakra-ui/theme";
+import {
+  createChakra,
+  PropsOf,
+  forwardRef,
+  useColorMode,
+} from "@chakra-ui/system";
 
-interface Status {
-  icon: Icons;
-  color: keyof Theme["colors"];
-}
-
-interface Statuses {
-  info: Status;
-  warning: Status;
-  success: Status;
-  error: Status;
-}
-
-export const statuses: Statuses = {
+export const statuses = {
   info: { icon: "info", color: "blue" },
   warning: { icon: "warning-2", color: "orange" },
   success: { icon: "check-circle", color: "green" },
   error: { icon: "warning", color: "red" },
 };
 
-// export type AlertContextType = { status?: string; variant?: string };
-
-const AlertContext = createContext<AlertContextValue>({
+const AlertContext = React.createContext<AlertContextValue>({
   status: "success",
   variant: "solid",
 });
-const useAlertContext = () => {
-  const context = useContext(AlertContext);
-  if (context === undefined) {
-    throw new Error(
-      "useAlertContext must be used within a AlertContextProvider",
-    );
-  }
-  return context;
-};
+
+const useAlertContext = () => React.useContext(AlertContext);
 
 type AlertContextValue = Required<AlertOptions>;
 
@@ -47,74 +27,63 @@ export interface AlertOptions {
   /**
    * The status of the alert
    */
-  status?: keyof Statuses;
+  status?: keyof typeof statuses;
   /**
    * The variant of the alert style to use.
    */
   variant?: "subtle" | "solid" | "left-accent" | "top-accent";
 }
 
-export type AlertProps<P> = BoxProps<P> & AlertOptions;
+export type AlertProps = PropsOf<typeof AlertRoot> & AlertOptions;
 
-function Alert<P>({
-  status = "info",
-  variant = "subtle",
-  ...rest
-}: AlertProps<P>) {
-  const alertStyleProps = useAlertStyle({
-    variant,
-    color: statuses[status]["color"],
-  });
+const AlertRoot = createChakra("div", { themeKey: "Alert" });
+
+const Alert = forwardRef((props: AlertProps, ref: React.Ref<any>) => {
+  const { status = "info", variant = "subtle", ...rest } = props;
+  const variantColor = statuses[status]["color"];
 
   const context = { status, variant };
-
   return (
     <AlertContext.Provider value={context}>
-      <Box role="alert" {...alertStyleProps} {...rest} />
+      <AlertRoot
+        ref={ref}
+        role="alert"
+        variant={variant}
+        variantColor={variantColor}
+        {...rest}
+      />
     </AlertContext.Provider>
   );
-}
+});
 
-function AlertTitle<P>(props: BoxProps<P>) {
-  return <Box fontWeight="bold" lineHeight="normal" {...props} />;
-}
-
-function AlertDescription<P>(props: BoxProps<P>) {
-  return <Box {...props} />;
-}
-
-const AlertIcon = (props: IconProps) => {
-  const { status, variant } = useAlertContext();
-  const iconStyleProps = useAlertIconStyle({
-    variant: variant,
-    color: statuses[status]["color"],
-  });
-  const iconName = statuses[status]["icon"];
-
-  return (
-    <Icon
-      mt={1}
-      mr={3}
-      size={5}
-      name={iconName}
-      {...iconStyleProps}
-      {...props}
-    />
-  );
+const AlertTitle = createChakra("div");
+AlertTitle.defaultProps = {
+  fontWeight: "bold",
+  lineHeight: "normal",
 };
 
-export function AlertExample() {
+const AlertDescription = createChakra("div");
+
+const AlertIcon = (props: IconProps) => {
+  const [colorMode] = useColorMode();
+  const { status, variant } = useAlertContext();
+  const { icon, color } = statuses[status];
+
+  let style = {};
+
+  if (["left-accent", "top-accent", "subtle"].includes(variant)) {
+    style = {
+      light: { color: `${color}.500` },
+      dark: { color: `${color}.200` },
+    };
+  }
+
+  //@ts-ignore
+  const iconStyleProps = style[colorMode];
+
   return (
-    <Alert status="error" variant="solid" justifyContent="center">
-      <AlertIcon name="phone" />
-      <AlertTitle display="inline-block" mr={2}>
-        Your browser is outdated!
-      </AlertTitle>
-      <AlertDescription display="inline-block">
-        Your Chakra experience may be degraded.
-      </AlertDescription>
-    </Alert>
+    <Icon mt={1} mr={3} size={5} name={icon} {...iconStyleProps} {...props} />
   );
-}
+};
 
 export { Alert, AlertTitle, AlertDescription, AlertIcon };

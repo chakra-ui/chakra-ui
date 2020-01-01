@@ -1,6 +1,10 @@
-import { chakra, ChakraComponent, forwardRef } from "@chakra-ui/system";
+import {
+  createChakra,
+  CreateChakraComponent,
+  forwardRef,
+  PropsOf,
+} from "@chakra-ui/system";
 import * as React from "react";
-import { BoxProps } from "../Box";
 
 const visuallyHiddenStyles: React.CSSProperties = {
   border: "0px",
@@ -14,8 +18,26 @@ const visuallyHiddenStyles: React.CSSProperties = {
   position: "absolute",
 };
 
-const VisuallyHidden = forwardRef((props: BoxProps, ref: React.Ref<any>) => (
-  <chakra.div ref={ref} style={visuallyHiddenStyles} {...props} />
-)) as ChakraComponent<"div">;
+const Hidden = createChakra("div");
+
+const VisuallyHidden = forwardRef(
+  (props: PropsOf<typeof Hidden>, ref: React.Ref<any>) => (
+    <Hidden ref={ref} style={visuallyHiddenStyles} {...props} />
+  ),
+) as CreateChakraComponent<"div">;
+
+type InputProps = PropsOf<"input">;
+
+const Example = () => {
+  <VisuallyHidden<InputProps>
+    as="input"
+    ref={node => {
+      console.log(node);
+    }}
+    onChange={event => {
+      console.log(event);
+    }}
+  />;
+};
 
 export default VisuallyHidden;

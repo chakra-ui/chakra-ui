@@ -1,12 +1,10 @@
-import { ThemeProvider } from '@chakra-ui/theme';
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import useLogger from "../useLogger";
 import { useSlider } from "./useSlider";
+import setup from "../story.setup";
 
-const stories = storiesOf("useSlider", module).addDecorator(story => (
-  <ThemeProvider>{story()}</ThemeProvider>
-));
+const stories = storiesOf("useSlider", module).addDecorator(setup);
 
 export function VerticalSlider() {
   const slider = useSlider({

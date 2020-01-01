@@ -1,6 +1,6 @@
 import {
-  ChakraComponent,
   createChakra,
+  CreateChakraComponent,
   forwardRef,
   PropsOf,
 } from "@chakra-ui/system";
@@ -28,6 +28,6 @@ const Divider = forwardRef(
       {...props}
     />
   ),
-) as ChakraComponent<"hr", DividerOptions>;
+) as CreateChakraComponent<"hr", DividerOptions>;
 
 export default Divider;

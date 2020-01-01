@@ -1,11 +1,8 @@
-import { ThemeProvider } from "@chakra-ui/theme";
 import { storiesOf } from "@storybook/react";
 import React from "react";
+import setup from "../story.setup";
 import useCounter from "./useCounter";
-
-const stories = storiesOf("useCounter", module).addDecorator(story => (
-  <ThemeProvider>{story()}</ThemeProvider>
-));
+const stories = storiesOf("useCounter", module).addDecorator(setup);
 
 function Counter() {
   const counter = useCounter({

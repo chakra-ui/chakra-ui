@@ -1,14 +1,9 @@
-import { ThemeProvider } from "@chakra-ui/theme";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 import Portal from "./usePortal";
+import setup from "../story.setup";
 
-const stories = storiesOf("usePortal", module).addDecorator(story => (
-  <ThemeProvider>
-    {/* <CSSReset /> */}
-    {story()}
-  </ThemeProvider>
-));
+const stories = storiesOf("usePortal", module).addDecorator(setup);
 
 export { Portal };
 

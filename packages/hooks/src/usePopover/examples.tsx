@@ -1,6 +1,5 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import { ThemeProvider, CSSReset } from "@chakra-ui/theme";
 import {
   PopoverProvider,
   usePopoverContent,
@@ -8,15 +7,11 @@ import {
   usePopoverState,
 } from "./usePopover";
 import Portal from "../usePortal";
+import setup from "../story.setup";
 
 const stories = storiesOf("usePopover", module);
 
-stories.addDecorator(story => (
-  <ThemeProvider>
-    {/* <CSSReset /> */}
-    {story()}
-  </ThemeProvider>
-));
+stories.addDecorator(setup);
 
 function PopoverExample() {
   const popover = usePopoverState();

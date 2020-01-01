@@ -5,9 +5,9 @@ import { configure } from "@storybook/react";
 // ../packages/hooks/src/useCheckbox
 
 const req = require.context(
-  "../packages/layout/src",
+  "../packages/core/src/Alert",
   true,
-  /examples\.(ts|tsx)$/,
+  /.stories\.(ts|tsx)$/,
 );
 
 function loadStories() {

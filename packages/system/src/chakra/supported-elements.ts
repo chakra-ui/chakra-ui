@@ -84,6 +84,7 @@ const htmlElements = [
   "rt",
   "ruby",
   "s",
+  "svg",
   "samp",
   "script",
   "section",
