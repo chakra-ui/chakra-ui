@@ -221,6 +221,7 @@ const Button = {
     solid,
     ghost,
     link,
+    outline,
   },
 };
 

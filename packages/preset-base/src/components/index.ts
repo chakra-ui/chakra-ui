@@ -4,6 +4,7 @@ import Alert from "./Alert";
 import Badge from "./Badge";
 import Avatar from "./Avatar";
 import Link from "./Link";
+import Code from "./Code";
 
 export default {
   Button,
@@ -12,4 +13,5 @@ export default {
   Badge,
   Avatar,
   Link,
+  Code,
 };
