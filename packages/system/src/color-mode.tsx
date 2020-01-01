@@ -45,15 +45,18 @@ function getMediaQuery() {
   return { isQuerySupported, isDark, queryList };
 }
 
-type ContextType = [ColorMode, React.Dispatch<React.SetStateAction<ColorMode>>];
+type ColorModeReturn = [
+  ColorMode,
+  React.Dispatch<React.SetStateAction<ColorMode>>,
+];
 
-const ColorModeContext = React.createContext<ContextType | undefined>([
+const ColorModeContext = React.createContext<ColorModeReturn | undefined>([
   "light",
   () => {},
 ]);
 
 export const useColorMode = () =>
-  React.useContext(ColorModeContext) as ContextType;
+  React.useContext(ColorModeContext) as ColorModeReturn;
 
 // Gets the color mode based on OS time
 // TODO: Maybe can use this for browsers that don't support the media query
@@ -125,7 +128,7 @@ export const ColorModeProvider: React.FC = ({ children, mode }: Props) => {
   //@ts-ignore
   const [manualMode, setManualMode] = React.useState<ColorMode>(mode);
 
-  const context: ContextType =
+  const context: ColorModeReturn =
     typeof mode != "undefined"
       ? [manualMode, setManualMode]
       : [colorMode, setColorMode];

@@ -106,14 +106,14 @@ const DefaultAvatar = (props: BoxProps) => (
 
 const AvatarRoot = createChakra("div", { themeKey: "Avatar" });
 
-type AvatarProps = SafeMerge<PropsOf<typeof AvatarRoot>, AvatarOptions>;
+export type AvatarProps = SafeMerge<PropsOf<typeof AvatarRoot>, AvatarOptions>;
 
 const Avatar = forwardRef(
   (
     { src, name, showBorder, borderColor, ...props }: AvatarProps,
     ref: React.Ref<any>,
   ) => {
-    const hasLoaded = false;
+    const [hasLoaded, setHasLoaded] = React.useState(true);
 
     const renderChildren = () => {
       if (src && hasLoaded) {
@@ -124,6 +124,9 @@ const Avatar = forwardRef(
             objectFit="cover"
             src={src}
             alt={name}
+            onError={() => {
+              setHasLoaded(false);
+            }}
           />
         );
       }

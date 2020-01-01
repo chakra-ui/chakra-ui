@@ -12,3 +12,9 @@ export function createContext<T>() {
 
   return [Context.Provider, useContext] as const; // make TypeScript infer a tuple, not an array of union types
 }
+
+export function cleanChildren(children: React.ReactNode) {
+  return React.Children.toArray(children).filter(child =>
+    React.isValidElement(child),
+  );
+}

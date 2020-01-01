@@ -81,7 +81,7 @@ export const generateAlphaColors = (color: string) => ({
 
 export const colorEmphasis = (
   color: string,
-  emphasis: "high" | "medium" | "low",
+  emphasis: "high" | "medium" | "low" | "lowest",
 ) =>
   ({
     high: color,

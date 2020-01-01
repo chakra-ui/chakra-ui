@@ -8,6 +8,6 @@ export * from "./number";
 export * from "./dom-query";
 export * from "./tabbable";
 export * from "./data-assertion";
-export * from "./context";
+export * from "./react-related";
 export * from "throttle-debounce";
 export { default as constate } from "constate";

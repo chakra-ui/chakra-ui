@@ -6,6 +6,7 @@ import {
   CSSReset,
 } from "@chakra-ui/system";
 import * as React from "react";
+import { Global } from "@emotion/core";
 
 const [ThemeProvider, useTheme] = createThemeContext(theme);
 
@@ -14,6 +15,13 @@ const setup = (story: () => any) => (
     <ColorModeProvider>
       <CSSReset />
       <ColorMode />
+      <Global
+        styles={{
+          "*": {
+            fontFamily: "system-ui",
+          },
+        }}
+      />
       {story()}
     </ColorModeProvider>
   </ThemeProvider>

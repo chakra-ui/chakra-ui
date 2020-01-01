@@ -49,8 +49,8 @@ const Alert = forwardRef((props: AlertProps, ref: React.Ref<any>) => {
         ref={ref}
         role="alert"
         variant={variant}
-        variantColor={variantColor}
         {...rest}
+        variantColor={variantColor}
       />
     </AlertContext.Provider>
   );

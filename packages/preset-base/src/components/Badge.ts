@@ -15,7 +15,7 @@ const solid = ({ theme, variantColor, colorMode }: any) => {
   return style[colorMode];
 };
 
-const subtle = ({ theme, variantColor }: any) => {
+const subtle = ({ theme, variantColor, colorMode }: any) => {
   const alphaColors = generateAlphaColors(`${variantColor}.200`);
   const darkModeBg = alphaColors[300];
 

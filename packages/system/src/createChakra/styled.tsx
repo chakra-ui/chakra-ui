@@ -1,22 +1,20 @@
 import { ThemeContext } from "@emotion/core";
-import { css, get } from "@styled-system/css";
+import { get } from "@styled-system/css";
 import * as React from "react";
+import { useColorMode } from "../color-mode";
+import { css } from "../css";
 import { forwardRef } from "../forward-ref";
 import { isPropValid, jsx } from "../system";
 import { As, CreateChakraComponent, CreateChakraOptions } from "./types";
-import { replacePseudo } from "../system/jsx";
-import { useColorMode } from "../color-mode";
 
 function getComponentStyles(props: any, options: any) {
   const themableProps = ["variant", "variantSize", "variantColor"];
   let componentStyle: any = {};
 
   const themeKey = options?.themeKey;
-  if (!themeKey) return null;
+  if (!themeKey) return {};
 
-  const getCommonStyle = replacePseudo(
-    get(props.theme, `components.${themeKey}.common`),
-  );
+  const getCommonStyle = get(props.theme, `components.${themeKey}.common`);
 
   if (getCommonStyle) {
     const commonStyle = css(getCommonStyle)(props.theme);
@@ -33,9 +31,7 @@ function getComponentStyles(props: any, options: any) {
       if (!getFromTheme) continue;
 
       const systemObject =
-        typeof getFromTheme === "function"
-          ? replacePseudo(getFromTheme(props))
-          : replacePseudo(getFromTheme);
+        typeof getFromTheme === "function" ? getFromTheme(props) : getFromTheme;
 
       const style = css(systemObject)(props.theme);
 

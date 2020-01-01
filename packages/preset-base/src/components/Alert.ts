@@ -1,9 +1,11 @@
-const subtle = ({ theme, variantColor, colorMode }: any) => {
+import { colorEmphasis } from "@chakra-ui/color";
+
+const subtle = ({ variantColor, colorMode }: any) => {
   const style = {
     light: {
       bg: `${variantColor}.100`,
     },
-    dark: { bg: `${variantColor}.200` },
+    dark: { bg: colorEmphasis(`${variantColor}.200`, "lowest") },
   };
   return style[colorMode as keyof typeof style];
 };
@@ -13,12 +15,12 @@ const leftAccent = (props: any) => {
   const style = {
     light: {
       paddingLeft: 3,
-      borderLeft: "4px",
+      borderLeft: "4px solid",
       borderColor: `${variantColor}.500`,
     },
     dark: {
       paddingLeft: 3,
-      borderLeft: "4px",
+      borderLeft: "4px solid",
       borderColor: `${variantColor}.200`,
     },
   };
@@ -33,12 +35,12 @@ const topAccent = (props: any) => {
   const style = {
     light: {
       paddingTop: 2,
-      borderTop: "4px",
+      borderTop: "4px solid",
       borderColor: `${variantColor}.500`,
     },
     dark: {
       paddingTop: 2,
-      borderTop: "4px",
+      borderTop: "4px solid",
       borderColor: `${variantColor}.200`,
     },
   };

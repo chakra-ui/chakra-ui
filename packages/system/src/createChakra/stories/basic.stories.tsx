@@ -8,7 +8,7 @@ const stories = storiesOf("createChakra", module);
 stories.addDecorator(setup);
 
 const Button = createChakra("button", {
-  themeKey: "components.Button",
+  themeKey: "Button",
 });
 
 Button.defaultProps = {
@@ -67,4 +67,12 @@ stories.add("variant", () => (
   >
     This is my button
   </Button>
+));
+
+const Alert = createChakra("div", { themeKey: "Alert" });
+
+stories.add("alert", () => (
+  <Alert variant="left-accent" variantColor="green" role="alert">
+    Welcome to alert
+  </Alert>
 ));
