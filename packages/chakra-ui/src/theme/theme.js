@@ -32,12 +32,11 @@ const zIndices = {
   dropdown: 1000,
   sticky: 1100,
   banner: 1200,
-  overlay: 1300,
-  modal: 1400,
-  popover: 1500,
-  skipLink: 1600,
-  toast: 1700,
-  tooltip: 1800,
+  modal: 1300,
+  popover: 1400,
+  skipLink: 1500,
+  toast: 1600,
+  tooltip: 1700,
 };
 
 const radii = {
