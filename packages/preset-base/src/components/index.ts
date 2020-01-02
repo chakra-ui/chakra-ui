@@ -5,6 +5,7 @@ import Badge from "./Badge";
 import Avatar from "./Avatar";
 import Link from "./Link";
 import Code from "./Code";
+import Spinner from "./Spinner";
 
 export default {
   Button,
@@ -14,4 +15,5 @@ export default {
   Avatar,
   Link,
   Code,
+  Spinner,
 };

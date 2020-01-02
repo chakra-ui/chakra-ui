@@ -141,6 +141,11 @@ const CSSReset = () => (
         cursor: pointer;
       }
 
+      button {
+        background: transparent;
+        padding: 0;
+      }
+
       button::-moz-focus-inner {
         border: 0 !important;
       }

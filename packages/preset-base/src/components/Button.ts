@@ -1,3 +1,5 @@
+import { addOpacity } from "@chakra-ui/color";
+
 const grayGhostStyle = {
   light: {
     color: "inherit",
@@ -41,10 +43,10 @@ const ghost = ({ variantColor, colorMode }: any) => {
         color: `${variantColor}.200`,
         bg: "transparent",
         _hover: {
-          bg: `${variantColor}.300`,
+          bg: addOpacity(`${variantColor}.200`, 0.12),
         },
         _active: {
-          bg: `${variantColor}.400`,
+          bg: addOpacity(`${variantColor}.200`, 0.24),
         },
       },
     };
@@ -60,7 +62,7 @@ const outline = (props: any) => {
   const borderColor = { light: "gray.200", dark: "whiteAlpha.300" };
 
   return {
-    border: "1px",
+    border: "1px solid",
     borderColor:
       variantColor === "gray"
         ? borderColor[colorMode as keyof typeof borderColor]
@@ -201,6 +203,8 @@ const common = {
   verticalAlign: "middle",
   lineHeight: "1.2",
   outline: "none",
+  borderRadius: "md",
+  fontWeight: "semibold",
   _focus: {
     boxShadow: "outline",
   },
