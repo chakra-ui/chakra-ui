@@ -6,14 +6,21 @@ import {
   AccordionItem,
   AccordionButton,
   AccordionPanel,
+  AccordionIcon,
 } from "./Accordion";
+import { chakra } from "@chakra-ui/system";
 
 const stories = storiesOf("Accordion", module).addDecorator(setup);
 
 stories.add("default", () => (
   <Accordion allowToggle>
     <AccordionItem>
-      <AccordionButton>Toggle 1</AccordionButton>
+      <AccordionButton>
+        <chakra.div flex="1" textAlign="left">
+          Section 1 title
+        </chakra.div>
+        <AccordionIcon />
+      </AccordionButton>
       <AccordionPanel>Panel 1</AccordionPanel>
     </AccordionItem>
 

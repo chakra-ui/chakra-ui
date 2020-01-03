@@ -2,8 +2,8 @@ import {
   composeEventHandlers,
   createContext,
   createOnKeyDown,
+  createHookContext,
 } from "@chakra-ui/utils";
-import constate from "constate";
 import * as React from "react";
 import useControllableProp from "../useControllableProp";
 import {
@@ -229,19 +229,15 @@ export function useAccordionItem(props: AccordionItemProviderProps) {
 
 // To manage communication between the accordion item's children,
 // let's create a context and a hook to read from context
-const [
-  AccordionItemProvider,
-  useAccordionItemContext,
-  useAccordionItemState,
-] = constate(
+const [AccordionItemProvider, useAccordionItemContext] = createHookContext(
   useAccordionItem,
-  context => context,
-  context => ({
-    isOpen: context.isOpen,
-    onClose: context.onClose,
-    isDisabled: context.isDisabled,
-  }),
 );
+
+const useAccordionItemState = () => {
+  const { isOpen, onClose, isDisabled } = useAccordionItemContext();
+  return { isOpen, onClose, isDisabled };
+};
+
 export { AccordionItemProvider, useAccordionItemState };
 
 //////////////////////////////////////////////////////////////////////

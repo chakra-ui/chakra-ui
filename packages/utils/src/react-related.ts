@@ -10,7 +10,22 @@ export function createContext<T>() {
     return context;
   }
 
-  return [Context.Provider, useContext] as const; // make TypeScript infer a tuple, not an array of union types
+  return [Context.Provider, useContext] as const;
+}
+
+export function createHookContext<P, R>(hook: (props: P) => R) {
+  const [ContextProvider, useContext] = createContext<R>();
+  const Provider: React.FC<P> = props => {
+    const context = hook(props);
+    const memoContext = React.useMemo(() => context, [context]);
+
+    return React.createElement(ContextProvider, {
+      value: memoContext,
+      children: props.children,
+    });
+  };
+  const useProviderContext = () => useContext();
+  return [Provider, useProviderContext] as const;
 }
 
 export function cleanChildren(children: React.ReactNode) {

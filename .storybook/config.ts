@@ -5,7 +5,7 @@ import { configure } from "@storybook/react";
 // ../packages/hooks/src/useCheckbox
 
 const req = require.context(
-  "../packages/system/src/",
+  "../packages/core/src/",
   true,
   /.stories\.(ts|tsx)$/,
 );

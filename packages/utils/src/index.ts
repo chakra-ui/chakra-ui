@@ -10,4 +10,3 @@ export * from "./tabbable";
 export * from "./assertion";
 export * from "./react-related";
 export * from "throttle-debounce";
-export { default as constate } from "constate";

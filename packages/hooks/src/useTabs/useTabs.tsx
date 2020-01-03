@@ -6,8 +6,11 @@
  * - https://inclusive-components.design/tabbed-interfaces/
  */
 
-import { composeEventHandlers, createOnKeyDown } from "@chakra-ui/utils";
-import constate from "constate";
+import {
+  composeEventHandlers,
+  createOnKeyDown,
+  createHookContext,
+} from "@chakra-ui/utils";
 import * as React from "react";
 import useControllableProp from "../useControllableProp";
 import useMergeRefs from "../useMergeRefs";
@@ -123,7 +126,7 @@ export function useTabs(props: UseTabsOptions) {
 
 ////////////////////////////////////////////////////////////////////////
 
-const [TabsProvider, useTabsContext] = constate(useTabs);
+const [TabsProvider, useTabsContext] = createHookContext(useTabs);
 export { TabsProvider };
 
 ////////////////////////////////////////////////////////////////////////
@@ -225,7 +228,7 @@ export function useTabList(props: UseTabListOptions) {
 
   // Enhance the children by passing some props to them
   const children = React.Children.map(props.children, (child: any, index) => {
-    let isSelected = index === tabs.selectedIndex;
+    const isSelected = index === tabs.selectedIndex;
 
     const onClick = () => {
       tabs.onFocus(index);

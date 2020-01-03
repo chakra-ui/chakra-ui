@@ -22,7 +22,7 @@ const shouldForwardProp = SS.createShouldForwardProp([
  */
 const nativeHTMLPropAlias = ["htmlWidth", "htmlHeight"];
 
-function isPropValid(prop: string): boolean {
+export function isPropValid(prop: string): boolean {
   if (nativeHTMLPropAlias.includes(prop)) {
     return true;
   } else {

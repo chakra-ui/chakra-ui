@@ -1,5 +1,5 @@
 import * as React from "react";
-import constate from "constate";
+import { createHookContext } from "@chakra-ui/utils";
 
 type ElementRef = React.RefObject<HTMLElement>;
 
@@ -23,6 +23,6 @@ function useModalManager() {
   };
 }
 
-const [ModalManager, useManager] = constate(useModalManager);
+const [ModalManager, useManager] = createHookContext(useModalManager);
 export { useManager };
 export default ModalManager;

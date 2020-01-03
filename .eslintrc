@@ -18,6 +18,7 @@
     "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/indent": "off",
     "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/array-callback-return": "off",
     "@typescript-eslint/array-type": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn"

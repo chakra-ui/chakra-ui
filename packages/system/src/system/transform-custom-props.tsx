@@ -1,7 +1,5 @@
 import { config } from "./custom-props";
-import { css as cssFunc } from "@styled-system/css";
 
-//TODO: Memoize this
 const transformProp = (prop: string, propValue: any): object => {
   const configKeys: string[] = Object.keys(config);
   const result: Record<string, any> = {};
@@ -23,7 +21,6 @@ const transformProp = (prop: string, propValue: any): object => {
   return result;
 };
 
-//TODO: Memoize this
 const transformProps = (props: any): object => {
   //@ts-ignore
   let result: Record<string, any> = null;

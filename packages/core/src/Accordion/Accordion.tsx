@@ -5,17 +5,16 @@ import {
   useAccordionButton,
   useAccordionPanel,
   AccordionItemProviderProps,
+  useAccordionItemState,
 } from "@chakra-ui/hooks";
 import { createChakra, chakra, PropsOf } from "@chakra-ui/system";
 import { Omit } from "@chakra-ui/utils";
+import { Icon } from "../Icon";
 
 const AccordionButton = createChakra("button", {
   hook: useAccordionButton,
   themeKey: "AccordionButton",
-});
-
-AccordionButton.defaultProps = {
-  sx: {
+  baseStyles: {
     display: "flex",
     alignItems: "center",
     width: "100%",
@@ -27,19 +26,18 @@ AccordionButton.defaultProps = {
     paddingX: 4,
     paddingY: 2,
   },
-};
+});
 
 const AccordionPanel = createChakra("div", {
   hook: useAccordionPanel,
   themeKey: "AccordionPanel",
   dataAttr: "accordion-panel",
+  baseStyles: {
+    paddingTop: 2,
+    paddingX: 4,
+    paddingBottom: 5,
+  },
 });
-
-AccordionPanel.defaultProps = {
-  paddingTop: 2,
-  paddingX: 4,
-  paddingBottom: 5,
-};
 
 export type AccordionItemProps = AccordionItemProviderProps &
   Omit<PropsOf<typeof chakra.div>, "onChange">;
@@ -65,4 +63,28 @@ const AccordionItem = React.forwardRef(
   ),
 );
 
-export { Accordion, AccordionItem, AccordionPanel, AccordionButton };
+const AccordionIcon = (props: PropsOf<typeof Icon>) => {
+  const { isOpen, isDisabled } = useAccordionItemState();
+  return (
+    <Icon
+      aria-hidden
+      focusable="false"
+      size="1.25em"
+      name="chevron-down"
+      opacity={isDisabled ? 0.4 : 1}
+      transform={isOpen ? "rotate(-180deg)" : undefined}
+      transition="transform 0.2s"
+      transformOrigin="center"
+      {...props}
+    />
+  );
+};
+
+export {
+  Accordion,
+  useAccordionItemState,
+  AccordionItem,
+  AccordionIcon,
+  AccordionPanel,
+  AccordionButton,
+};

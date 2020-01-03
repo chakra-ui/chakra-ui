@@ -35,7 +35,6 @@
   },
   "dependencies": {
     "@types/throttle-debounce": "2.1.0",
-    "constate": "1.3.2",
     "throttle-debounce": "2.1.0"
   },
   "devDependencies": {

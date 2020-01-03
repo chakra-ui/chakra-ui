@@ -1,6 +1,6 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import { forwardRef } from "../../forward-ref";
+import { forwardRef } from "@chakra-ui/system";
 import chakra from "../chakra";
 import { ChakraComponent, PropsOf } from "../types";
 import setup from "./setup";

@@ -1,9 +1,9 @@
 import { ThemeContext } from "@emotion/core";
 import * as React from "react";
-import { forwardRef, memo } from "../forward-ref";
 import { isPropValid, jsx } from "../system";
 import { As, ChakraComponent } from "./types";
 import { isFunction, isString } from "@chakra-ui/utils";
+import { forwardRef, memo } from "../forward-ref";
 
 /**
  * @desc Check if we should forward props
