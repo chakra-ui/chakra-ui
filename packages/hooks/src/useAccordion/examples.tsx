@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 import {
   Accordion,
-  AccordionItem,
+  AccordionItemProvider,
   useAccordionButton,
   useAccordionPanel,
 } from "./useAccordion";
@@ -39,56 +39,56 @@ AccordionPanel.defaultProps = {
 
 stories.add("default", () => (
   <Accordion>
-    <AccordionItem>
+    <AccordionItemProvider>
       <AccordionButton>Toggle 1</AccordionButton>
       <AccordionPanel>Panel 1</AccordionPanel>
-    </AccordionItem>
+    </AccordionItemProvider>
 
-    <AccordionItem>
+    <AccordionItemProvider>
       <AccordionButton>Toggle 2</AccordionButton>
       <AccordionPanel>Panel 2</AccordionPanel>
-    </AccordionItem>
+    </AccordionItemProvider>
   </Accordion>
 ));
 
 stories.add("allow toggle", () => (
   <Accordion allowToggle>
-    <AccordionItem>
+    <AccordionItemProvider>
       <AccordionButton>Toggle 1</AccordionButton>
       <AccordionPanel>Panel 1</AccordionPanel>
-    </AccordionItem>
+    </AccordionItemProvider>
 
-    <AccordionItem>
+    <AccordionItemProvider>
       <AccordionButton>Toggle 2</AccordionButton>
       <AccordionPanel>Panel 2</AccordionPanel>
-    </AccordionItem>
+    </AccordionItemProvider>
   </Accordion>
 ));
 
 stories.add("allow multiple", () => (
   <Accordion allowMultiple>
-    <AccordionItem>
+    <AccordionItemProvider>
       <AccordionButton>Section 1 title</AccordionButton>
       <AccordionPanel>Panel 1</AccordionPanel>
-    </AccordionItem>
+    </AccordionItemProvider>
 
-    <AccordionItem>
+    <AccordionItemProvider>
       <AccordionButton>Section 2 title</AccordionButton>
       <AccordionPanel>Panel 2</AccordionPanel>
-    </AccordionItem>
+    </AccordionItemProvider>
   </Accordion>
 ));
 
 stories.add("allow multiple - default index", () => (
   <Accordion allowMultiple defaultIndex={[1]}>
-    <AccordionItem>
+    <AccordionItemProvider>
       <AccordionButton>Section 1 title</AccordionButton>
       <AccordionPanel>Panel 1</AccordionPanel>
-    </AccordionItem>
+    </AccordionItemProvider>
 
-    <AccordionItem>
+    <AccordionItemProvider>
       <AccordionButton>Section 2 title</AccordionButton>
       <AccordionPanel>Panel 2</AccordionPanel>
-    </AccordionItem>
+    </AccordionItemProvider>
   </Accordion>
 ));

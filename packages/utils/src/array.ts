@@ -1,10 +1,10 @@
-export function removeIndexFromArray<A>(array: A[], index: number) {
+export function removeIndex<A>(array: A[], index: number) {
   return array.filter((_, idx) => idx !== index);
 }
 
-export function removeItemFromArray<A>(array: A[], item: A) {
+export function removeItem<A>(array: A[], item: A) {
   const itemIndex = array.indexOf(item);
-  return removeIndexFromArray(array, itemIndex);
+  return removeIndex(array, itemIndex);
 }
 
 export function findIndex<A>(array: A[], callback: (item: A) => boolean) {

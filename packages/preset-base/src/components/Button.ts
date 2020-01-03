@@ -209,7 +209,7 @@ const common = {
     boxShadow: "outline",
   },
   _disabled: {
-    opacity: "40%",
+    opacity: 0.4,
     cursor: "not-allowed",
     boxShadow: "none",
   },

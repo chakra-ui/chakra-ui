@@ -1,6 +1,7 @@
 import * as SS from "styled-system";
+import { Dict } from "@chakra-ui/utils";
 
-export const config: { [key: string]: any } = {
+export const config: Dict = {
   roundedTop: {
     properties: ["borderTopLeftRadius", "borderTopRightRadius"],
     scale: "radii",

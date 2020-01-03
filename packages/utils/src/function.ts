@@ -18,9 +18,6 @@ export function resolveCallback<T, U>(
   return callback;
 }
 
-/**
- * Credit: https://github.com/downshift-js/downshift/blob/master/src/utils.js
- */
 export function composeEventHandlers<T extends (event: any) => void>(
   ...fns: (T | undefined)[]
 ) {
@@ -32,15 +29,16 @@ export function composeEventHandlers<T extends (event: any) => void>(
   };
 }
 
-/**
- * Credit: https://github.com/downshift-js/downshift/blob/master/src/utils.js
- */
-export function composeFunctions(...fns: AnyFunction[]) {
-  return (...args: any) => {
-    fns.forEach(fn => {
-      if (fn) {
-        fn(...args);
-      }
-    });
+export function composeFns<T extends AnyFunction>(...fns: AnyFunction[]) {
+  const filteredFns = fns.filter(Boolean);
+  return (...args: FunctionArguments<T>) => {
+    filteredFns.forEach(fn => fn(...args));
   };
 }
+
+type Func<T = any> = (arg: T) => T;
+
+export const pipeFns = <R>(...fns: Array<Func<R> | null | undefined>) => {
+  const filteredFns = fns.filter(Boolean) as Array<Func<R>>;
+  return filteredFns.reduce((prevFn, nextFn) => value => nextFn(prevFn(value)));
+};

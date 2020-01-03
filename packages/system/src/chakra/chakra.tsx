@@ -6,21 +6,30 @@ import { As, HTMLChakraComponents } from "./types";
 import { css, get } from "@styled-system/css";
 
 const sx = (props: { sx: object; theme: object }) => css(props.sx)(props.theme);
+const cx = (props: { css: object }) => props.css;
 
-const themed = (tag: React.ElementType) => (props: {
+interface ThemedProps {
   theme: object;
   apply: string;
-}) => css(get(props.theme, props.apply || `styles.${tag}`))(props.theme);
+}
 
-function createComponent<T extends As>(tag: T) {
-  return styled(tag)(themed(tag), system, pseudo, truncate, sx);
+function themed(tag: React.ElementType) {
+  return (props: ThemedProps) => {
+    const styleObject = get(props.theme, props.apply || `styles.${tag}`);
+    const style = css(styleObject)(props.theme);
+    return style;
+  };
+}
+
+function createStyled<T extends As>(tag: T) {
+  return styled(tag)(themed(tag), system, pseudo, truncate, sx, cx);
 }
 
 //@ts-ignore
 const chakra: HTMLChakraComponents = {};
 htmlElements.forEach(tag => {
   //@ts-ignore
-  chakra[tag] = createComponent(tag);
+  chakra[tag] = createStyled(tag);
 });
 
 export default chakra;

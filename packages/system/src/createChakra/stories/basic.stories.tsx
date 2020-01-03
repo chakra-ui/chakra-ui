@@ -2,16 +2,23 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 import createChakra from "../create-chakra";
 import setup from "../../chakra/stories/setup";
+import { SystemProps } from "../../system";
 
 const stories = storiesOf("createChakra", module);
 
 stories.addDecorator(setup);
 
-const Button = createChakra("button", {
-  themeKey: "Button",
-});
+/**
+ * createChakra takes 3 options
+ * - The tag
+ * - The options:
+ *  - themeKey: the reference to the styles in the theme.components
+ *  - hook: To execute a hook within the components
+ *  - dataAttr: A unique data-chakra-* attribute
+ *  - baseStyles: Some base styles to apply to the component
+ */
 
-Button.defaultProps = {
+const baseStyles: SystemProps = {
   cursor: "pointer",
   outline: 0,
   border: 0,
@@ -26,6 +33,7 @@ Button.defaultProps = {
   verticalAlign: "middle",
   lineHeight: "1.2",
   borderRadius: "md",
+  color: "yellow.100",
   _focus: {
     boxShadow: "outline",
   },
@@ -35,11 +43,26 @@ Button.defaultProps = {
   },
 };
 
+type ButtonOptions = {
+  variantSize?: "sm" | "md" | "lg";
+  variant?: "solid" | "outline" | "ghost" | "link";
+};
+
+const Button = createChakra<"button", ButtonOptions>("button", {
+  // themeKey: "Button",
+  dataAttr: "button",
+  baseStyles,
+});
+
+Button.defaultProps = {
+  variantSize: "md",
+};
+
 stories.add("variant size", () => (
   <Button
-    variantSize="md"
+    variantSize="lg"
     bg="teal.500"
-    color="white"
+    // color="white"
     _hover={{ bg: "teal.600" }}
   >
     This is my button
@@ -72,7 +95,7 @@ stories.add("variant", () => (
 const Alert = createChakra("div", { themeKey: "Alert" });
 
 stories.add("alert", () => (
-  <Alert variant="left-accent" variantColor="green" role="alert">
+  <Alert variant="solid" variantColor="green" role="alert">
     Welcome to alert
   </Alert>
 ));

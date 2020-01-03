@@ -17,10 +17,10 @@ import useMergeRefs from "../useMergeRefs";
 import useIds from "../useIds";
 import useTabbable from "../useTabbable";
 import {
-  AccordionButtonOptions,
+  AccordionButtonProps,
   AccordionItemElement,
-  AccordionItemOptions,
-  AccordionOptions,
+  AccordionItemProviderProps,
+  AccordionProviderProps,
   Index,
 } from "./types";
 import {
@@ -37,7 +37,7 @@ const __DEV__ = process.env.NODE_ENV !== "production";
 
 //////////////////////////////////////////////////////////////////////
 
-export function useAccordion(props: AccordionOptions) {
+export function useAccordion(props: AccordionProviderProps) {
   const { onChange, defaultIndex, index: indexProp, allowMultiple } = props;
 
   /**
@@ -134,14 +134,14 @@ export function useAccordion(props: AccordionOptions) {
 /**
  * Let's create context for the Accordion
  */
-const [AccordionCtxProvider, useAccordionCtx] = createContext<
+const [AccordionProvider, useAccordionContext] = createContext<
   UseDescendantsReturn
 >();
 
 /**
  * This will be the provider for the accordion state
  */
-export function Accordion(props: AccordionOptions) {
+export function Accordion(props: AccordionProviderProps) {
   /**
    * The selection manager is use to support keyboard navigation
    * We'll add `useDescendants` which helps us register the
@@ -151,12 +151,12 @@ export function Accordion(props: AccordionOptions) {
   const descendants = useDescendants();
   const { children } = useAccordion(props);
   const ctx = React.useMemo(() => descendants, [descendants]);
-  return <AccordionCtxProvider value={ctx}>{children}</AccordionCtxProvider>;
+  return <AccordionProvider value={ctx}>{children}</AccordionProvider>;
 }
 
 //////////////////////////////////////////////////////////////////////
 
-export function useAccordionItem(props: AccordionItemOptions) {
+export function useAccordionItem(props: AccordionItemProviderProps) {
   const { isDisabled, isFocusable, onChange } = props;
 
   // Manages the open and close state of a single accordion item
@@ -173,7 +173,7 @@ export function useAccordionItem(props: AccordionItemOptions) {
   }
 
   // The keyboard navigation manager
-  const [descendantState, descendantActions] = useAccordionCtx();
+  const [descendantState, descendantActions] = useAccordionContext();
   const { highlight, next, previous, first, last } = descendantActions;
 
   // Think of this as a way to register this item in the selection manager
@@ -230,7 +230,7 @@ export function useAccordionItem(props: AccordionItemOptions) {
 // To manage communication between the accordion item's children,
 // let's create a context and a hook to read from context
 const [
-  AccordionItem,
+  AccordionItemProvider,
   useAccordionItemContext,
   useAccordionItemState,
 ] = constate(
@@ -242,11 +242,11 @@ const [
     isDisabled: context.isDisabled,
   }),
 );
-export { AccordionItem, useAccordionItemState };
+export { AccordionItemProvider, useAccordionItemState };
 
 //////////////////////////////////////////////////////////////////////
 
-export function useAccordionButton(props: AccordionButtonOptions) {
+export function useAccordionButton(props: AccordionButtonProps) {
   // Read from the accordion item's context
   const {
     buttonRef,

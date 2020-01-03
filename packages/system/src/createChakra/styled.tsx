@@ -1,43 +1,48 @@
-import { ThemeContext } from "@emotion/core";
+import { isFunction, Dict } from "@chakra-ui/utils";
 import { get } from "@styled-system/css";
 import * as React from "react";
-import { useColorMode } from "../color-mode";
+import { filterProps, getShouldForwardProps } from "../chakra/styled";
+import { useChakra } from "../color-mode";
 import { css } from "../css";
 import { forwardRef } from "../forward-ref";
-import { isPropValid, jsx } from "../system";
+import { jsx } from "../system";
 import { As, CreateChakraComponent, CreateChakraOptions } from "./types";
 
-function getComponentStyles(props: any, options: any) {
-  const themableProps = ["variant", "variantSize", "variantColor"];
-  let componentStyle: any = {};
+const themableProps = ["variant", "variantSize", "variantColor"] as const;
+
+function getComponentStyles<H>(props: any, options?: CreateChakraOptions<H>) {
+  const componentStyle: Dict = {};
 
   const themeKey = options?.themeKey;
   if (!themeKey) return {};
 
-  const getCommonStyle = get(props.theme, `components.${themeKey}.common`);
+  const commonStyleObject = get(props.theme, `components.${themeKey}.common`);
 
-  if (getCommonStyle) {
-    const commonStyle = css(getCommonStyle)(props.theme);
-    componentStyle = commonStyle;
+  if (commonStyleObject) {
+    const commonStyle = css(commonStyleObject)(props.theme);
+    Object.assign(componentStyle, commonStyle);
   }
 
   for (const prop of themableProps) {
     if (themableProps.includes(prop)) {
-      const getFromTheme = get(
+      const styleObjectOrFunc = get(
         props.theme,
         `components.${themeKey}.${prop}.${props[prop]}`,
       );
 
-      if (!getFromTheme) continue;
+      if (!styleObjectOrFunc) continue;
 
-      const systemObject =
-        typeof getFromTheme === "function" ? getFromTheme(props) : getFromTheme;
+      const systemObject = isFunction(styleObjectOrFunc)
+        ? styleObjectOrFunc(props)
+        : styleObjectOrFunc;
 
       const style = css(systemObject)(props.theme);
 
-      componentStyle = { ...componentStyle, ...style };
+      // Add style to component style
+      Object.assign(componentStyle, style);
     }
   }
+
   return componentStyle;
 }
 
@@ -47,53 +52,49 @@ export const styled = <T extends As, H = {}>(
 ) => (...interpolations: any[]) => {
   const Styled = forwardRef(
     ({ as, ...props }: any, ref: React.Ref<Element>) => {
-      // check if we should forward props
-      const shouldForwardProps =
-        typeof tag !== "string" || (as && typeof as !== "string");
-
-      const theme = React.useContext(ThemeContext);
-      const [colorMode] = useColorMode();
+      const { colorMode, theme } = useChakra();
 
       // component component style
-      let styles = {};
-      const propsWithTheme = { theme, colorMode, ...props };
+      let styles: Dict = {};
+
+      if (options?.baseStyles) {
+        const baseStyle = css(options.baseStyles)(theme);
+        Object.assign(styles, baseStyle);
+      }
+
+      const mergedProps = { theme, colorMode, ...props };
 
       interpolations.forEach(interpolation => {
-        const style =
-          typeof interpolation === "function"
-            ? interpolation(propsWithTheme)
-            : interpolation;
-        styles = { ...styles, ...style };
+        const style = isFunction(interpolation)
+          ? interpolation(mergedProps)
+          : interpolation;
+        Object.assign(styles, style);
       });
 
-      const componentStyles = getComponentStyles(propsWithTheme, options);
+      const componentStyles = getComponentStyles(mergedProps, options);
+
       styles = { ...componentStyles, ...styles };
 
       // check if we should forward props
-      let nextProps: Record<string, any> = shouldForwardProps
-        ? { ...props }
-        : {};
+      // check if we should forward props
+      const shouldForwardProps = getShouldForwardProps(tag, as);
 
-      // If hook was passed, invoke the hook
+      const nextProps: Dict = shouldForwardProps ? { ...props } : {};
+
+      // If hook was passed, invoke the hook with the props
       if (options?.hook) {
         const hookProps = options.hook({ ref, ...props });
-        nextProps = { ...nextProps, ...hookProps };
+        Object.assign(nextProps, hookProps);
       }
 
-      // Replace the htmlWidth and htmlHeight with the appropriate DOM props
-      // This is mostly for the `img` tag
-      const replace = {
-        htmlWidth: "width",
-        htmlHeight: "height",
-      };
-
+      // The gatekeeper that prevents style props from getting to the dom
       if (!shouldForwardProps) {
-        for (const prop in props) {
-          if (!isPropValid(prop)) continue;
-          const propKey =
-            prop in replace ? replace[prop as keyof typeof replace] : prop;
-          nextProps[propKey] = props[prop];
-        }
+        filterProps(nextProps, props);
+      }
+
+      // Add data-* signature
+      if (options?.dataAttr) {
+        nextProps[`data-chakra-${options.dataAttr}`] = "";
       }
 
       return jsx(as || tag, {

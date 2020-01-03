@@ -1,12 +1,10 @@
-function isNotNumber(val: any) {
-  return typeof val !== "number" || isNaN(val) || !isFinite(val);
-}
+import { isNotNumber } from "./assertion";
 
 export const minSafeInteger = Number.MIN_SAFE_INTEGER || -9007199254740991;
 export const maxSafeInteger = Number.MAX_SAFE_INTEGER || 9007199254740991;
 
 function toNumber(value: any) {
-  let num = parseFloat(value);
+  const num = parseFloat(value);
   return isNotNumber(num) ? 0 : num;
 }
 

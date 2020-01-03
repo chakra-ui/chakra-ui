@@ -5,9 +5,9 @@
  * let's prepare of warnings when they use it wrongly
  */
 
-import { AccordionOptions, AccordionItemOptions } from "./types";
+import { AccordionProviderProps, AccordionItemProviderProps } from "./types";
 
-export function warnForAllowMultipleArray(props: AccordionOptions) {
+export function warnForAllowMultipleArray(props: AccordionProviderProps) {
   const indexPassed = props.index || props.defaultIndex;
   if (
     props.allowMultiple &&
@@ -20,7 +20,9 @@ export function warnForAllowMultipleArray(props: AccordionOptions) {
   }
 }
 
-export function warnForAllowMultipleAndAllowToggle(props: AccordionOptions) {
+export function warnForAllowMultipleAndAllowToggle(
+  props: AccordionProviderProps,
+) {
   if (props.allowMultiple && props.allowToggle) {
     console.warn(
       `If 'allowMultiple' is passed, 'allowToggle' will be ignored. Either remove 'allowToggle' or 'allowMultiple' depending on whether you want multiple accordions visible or not`,
@@ -28,7 +30,7 @@ export function warnForAllowMultipleAndAllowToggle(props: AccordionOptions) {
   }
 }
 
-export function warnForControlledNoOnChange(props: AccordionOptions) {
+export function warnForControlledNoOnChange(props: AccordionProviderProps) {
   if (
     typeof props.index !== "undefined" &&
     typeof props.onChange === "undefined"
@@ -39,7 +41,7 @@ export function warnForControlledNoOnChange(props: AccordionOptions) {
   }
 }
 
-export function warnForFocusableNotDisabled(props: AccordionItemOptions) {
+export function warnForFocusableNotDisabled(props: AccordionItemProviderProps) {
   if (props.isFocusable && !props.isDisabled) {
     console.error(
       `Using only 'isFocusable', this prop is reserved for situations where you pass 'isDisabled' but you still want the element to receive focus (A11y). Either remove it or pass 'isDisabled' as well.

@@ -4,6 +4,7 @@ import css from "@styled-system/css";
 import { SxProps } from "./types";
 import tx from "./transform-custom-props";
 import { selectors } from "./pseudo-props";
+import { Dict } from "@chakra-ui/utils";
 
 type SelectorProp = keyof typeof selectors;
 
@@ -35,7 +36,7 @@ const getCSS = (props: { sx?: object; css?: object }) => {
 
 const parseProps = (props: any) => {
   if (!props) return null;
-  const next: any = {};
+  const next: Dict = {};
   for (const key in props) {
     if (key === "sx") continue;
     next[key] = props[key];

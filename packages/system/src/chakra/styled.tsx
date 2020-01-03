@@ -3,40 +3,55 @@ import * as React from "react";
 import { forwardRef, memo } from "../forward-ref";
 import { isPropValid, jsx } from "../system";
 import { As, ChakraComponent } from "./types";
+import { isFunction, isString } from "@chakra-ui/utils";
 
-const styled = <T extends As>(tag: T) => (...styleInterpolations: any[]) => {
+/**
+ * @desc Check if we should forward props
+ * @param tag The base tag used to create the styled component
+ * @param as The tag or Element passed to replace the underlying dom element
+ */
+export function getShouldForwardProps(tag: any, as: any) {
+  return !isString(tag) || (as && !isString(as));
+}
+
+type Dict = Record<string, any>;
+
+export function filterProps(next: Dict, props: Dict) {
+  // Replace the htmlWidth and htmlHeight with the appropriate DOM props
+  // This is mostly for the `img` tag
+  const replace = {
+    htmlWidth: "width",
+    htmlHeight: "height",
+  };
+
+  for (const prop in props) {
+    if (!isPropValid(prop)) continue;
+    const propKey =
+      prop in replace ? replace[prop as keyof typeof replace] : prop;
+    next[propKey] = props[prop];
+  }
+}
+
+const styled = <T extends As>(tag: T) => (...interpolations: any[]) => {
   const Styled = forwardRef(
     ({ as, apply, ...props }: any, ref: React.Ref<Element>) => {
-      const shouldForwardProps =
-        typeof tag !== "string" || (as && typeof as !== "string");
+      // check if we should forward all props or not
+      const shouldForwardProps = getShouldForwardProps(tag, as);
 
       const nextProps = shouldForwardProps ? props : {};
 
       const styles = {};
       const theme = React.useContext(ThemeContext);
 
-      styleInterpolations.forEach(interpolation => {
-        const style =
-          typeof interpolation === "function"
-            ? interpolation({ theme, apply, ...props })
-            : interpolation;
+      interpolations.forEach(interpolation => {
+        const style = isFunction(interpolation)
+          ? interpolation({ theme, apply, ...props })
+          : interpolation;
         Object.assign(styles, style);
       });
 
-      // Replace the htmlWidth and htmlHeight with the appropriate DOM props
-      // This is mostly for the `img` tag
-      const replace = {
-        htmlWidth: "width",
-        htmlHeight: "height",
-      };
-
       if (!shouldForwardProps) {
-        for (const prop in props) {
-          if (!isPropValid(prop)) continue;
-          const propKey =
-            prop in replace ? replace[prop as keyof typeof replace] : prop;
-          nextProps[propKey] = props[prop];
-        }
+        filterProps(nextProps, props);
       }
 
       return jsx(as || tag, {

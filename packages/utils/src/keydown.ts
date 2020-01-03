@@ -2,7 +2,7 @@
 // https://github.com/reakit/reakit/blob/master/packages/reakit-utils/src/createOnKeyDown.ts
 
 import * as React from "react";
-import { resolveCallback } from "./callbacks";
+import { resolveCallback } from "./function";
 import { normalizeEventKey } from "./dom";
 
 type EventKeys =

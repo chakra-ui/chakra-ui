@@ -6,7 +6,7 @@ export type Index = number | number[];
 
 //////////////////////////////////////////////////////////////////////
 
-export interface AccordionOptions {
+export interface AccordionProviderProps {
   /**
    * If `true`, multiple accordion items can be expanded at once.
    */
@@ -42,7 +42,7 @@ export type AccordionItemElement = React.ReactElement<{
 
 //////////////////////////////////////////////////////////////////////
 
-export interface AccordionItemOptions {
+export interface AccordionItemProviderProps {
   /**
    * If `true`, expands the accordion in the controlled mode.
    */
@@ -71,7 +71,7 @@ export interface AccordionItemOptions {
 
 //////////////////////////////////////////////////////////////////////
 
-export interface AccordionButtonOptions {
+export interface AccordionButtonProps {
   onClick?: React.MouseEventHandler;
   onFocus?: React.FocusEventHandler;
   onKeyDown?: React.KeyboardEventHandler;

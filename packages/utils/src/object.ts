@@ -1,10 +1,7 @@
-import { Omit } from "./types";
+import { Omit, Dict } from "./types";
 
-export function omit<T extends Record<string, any>, K extends keyof T>(
-  object: T,
-  keys: K[],
-) {
-  const result: Record<string, any> = {};
+export function omit<T extends Dict, K extends keyof T>(object: T, keys: K[]) {
+  const result: Dict = {};
 
   for (const key in object) {
     if (keys.includes(key as any)) continue;
@@ -14,10 +11,7 @@ export function omit<T extends Record<string, any>, K extends keyof T>(
   return result as Omit<T, K>;
 }
 
-export function pick<T extends Record<string, any>, K extends keyof T>(
-  object: T,
-  keys: K[],
-) {
+export function pick<T extends Dict, K extends keyof T>(object: T, keys: K[]) {
   // eslint-disable-next-line
   const result = {} as { [P in K]: T[P] };
   for (const key of keys) {
@@ -28,12 +22,9 @@ export function pick<T extends Record<string, any>, K extends keyof T>(
   return result;
 }
 
-export function split<T extends Record<string, any>, K extends keyof T>(
-  object: T,
-  keys: K[],
-) {
-  const picked: Record<string, any> = {};
-  const omitted: Record<string, any> = {};
+export function split<T extends Dict, K extends keyof T>(object: T, keys: K[]) {
+  const picked: Dict = {};
+  const omitted: Dict = {};
 
   for (const key in object) {
     if (keys.includes(key as T[K])) {
@@ -45,3 +36,10 @@ export function split<T extends Record<string, any>, K extends keyof T>(
 
   return [picked, omitted] as [{ [P in K]: T[P] }, Omit<T, K>];
 }
+
+export const addKey = (obj: object, key: string, value: any) => {
+  (obj[key as keyof typeof obj] as any) = value;
+};
+
+export const getKey = (obj: object, key: string): any =>
+  obj[key as keyof typeof obj];
