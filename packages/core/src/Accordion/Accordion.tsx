@@ -1,14 +1,14 @@
-import * as React from "react";
 import {
-  Accordion,
+  Accordion as Accordions,
   AccordionItemProvider,
-  useAccordionButton,
-  useAccordionPanel,
   AccordionItemProviderProps,
-  useAccordionItemState,
+  useAccordionButton,
+  useAccordionItemState as useAccordionState,
+  useAccordionPanel,
 } from "@chakra-ui/hooks";
-import { createChakra, chakra, PropsOf } from "@chakra-ui/system";
+import { createChakra, PropsOf } from "@chakra-ui/system";
 import { Omit } from "@chakra-ui/utils";
+import * as React from "react";
 import { Icon } from "../Icon";
 
 const AccordionButton = createChakra("button", {
@@ -39,10 +39,12 @@ const AccordionPanel = createChakra("div", {
   },
 });
 
-export type AccordionItemProps = AccordionItemProviderProps &
-  Omit<PropsOf<typeof chakra.div>, "onChange">;
+const AccordionItemRoot = createChakra("div", { dataAttr: "accordion-item" });
 
-const AccordionItem = React.forwardRef(
+export type AccordionItemProps = AccordionItemProviderProps &
+  Omit<PropsOf<typeof AccordionItemRoot>, "onChange">;
+
+const Accordion = React.forwardRef(
   (
     {
       isOpen,
@@ -58,13 +60,13 @@ const AccordionItem = React.forwardRef(
     <AccordionItemProvider
       {...{ isOpen, defaultIsOpen, isDisabled, isFocusable, id, onChange }}
     >
-      <chakra.div data-chakra-accordion-item="" ref={ref} {...props} />
+      <AccordionItemRoot ref={ref} {...props} />
     </AccordionItemProvider>
   ),
 );
 
 const AccordionIcon = (props: PropsOf<typeof Icon>) => {
-  const { isOpen, isDisabled } = useAccordionItemState();
+  const { isOpen, isDisabled } = useAccordionState();
   return (
     <Icon
       aria-hidden
@@ -81,9 +83,9 @@ const AccordionIcon = (props: PropsOf<typeof Icon>) => {
 };
 
 export {
+  Accordions,
+  useAccordionState,
   Accordion,
-  useAccordionItemState,
-  AccordionItem,
   AccordionIcon,
   AccordionPanel,
   AccordionButton,

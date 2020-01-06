@@ -42,7 +42,7 @@ BaseButton.defaultProps = {
 };
 BaseButton.displayName = "BaseButton";
 
-interface ButtonOptions {
+export interface ButtonOptions {
   /**
    * If `true`, the button will show a spinner.
    */

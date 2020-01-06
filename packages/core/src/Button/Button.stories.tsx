@@ -3,6 +3,7 @@ import { storiesOf } from "@storybook/react";
 import setup from "../story.setup";
 import { Stack } from "@chakra-ui/layout";
 import Button from "./Button";
+import ButtonGroup from "./ButtonGroup";
 
 const stories = storiesOf("Button", module);
 
@@ -70,4 +71,11 @@ stories.add("with loading", () => (
   <Button variantColor="pink" isLoading loadingText="Loading...">
     Pink Button
   </Button>
+));
+
+stories.add("with button group", () => (
+  <ButtonGroup variant="solid">
+    <Button variantColor="green">Save</Button>
+    <Button variant="outline">Cancel</Button>
+  </ButtonGroup>
 ));
