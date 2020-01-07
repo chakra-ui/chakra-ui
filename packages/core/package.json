@@ -29,7 +29,8 @@
     "react-focus-lock": "^2.1.0",
     "react-transition-group": "4.3.0",
     "react-uid": "2.2.0",
-    "toasted-notes": "3.0.0"
+    "toasted-notes": "3.0.0",
+    "react-spring": "8.0.27"
   },
   "peerDependencies": {
     "@emotion/core": "10.x",

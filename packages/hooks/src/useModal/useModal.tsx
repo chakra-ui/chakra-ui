@@ -1,6 +1,6 @@
 import * as React from "react";
 import useClickOutside from "./utils/useClickOutside";
-import useAriaHidden from "./utils/useAriaHidden";
+import useAriaHidden from "../useAriaHidden";
 import useLockBodyScroll from "../useLockBodyScroll";
 import { useManager } from "./utils/ModalManager";
 import useMountedState from "../useMountedState";
