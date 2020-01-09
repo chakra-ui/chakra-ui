@@ -13,3 +13,6 @@ export function normalizeEventKey(event: React.KeyboardEvent) {
   }
   return key;
 }
+
+export const makeDataAttribute = (condition: boolean | undefined) =>
+  condition ? "" : undefined;

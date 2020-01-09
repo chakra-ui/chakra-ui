@@ -1,4 +1,3 @@
-export * from "./useAccordion";
 export { default as useAriaHidden } from "./useAriaHidden";
 export { default as useBlurOutside } from "./useBlurOutside";
 

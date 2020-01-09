@@ -1,4 +1,5 @@
 import { config } from "./custom-props";
+import { isObject } from "@chakra-ui/utils";
 
 const transformProp = (prop: string, propValue: any): object => {
   const configKeys: string[] = Object.keys(config);
@@ -25,7 +26,7 @@ const transformProps = (props: any): object => {
   //@ts-ignore
   let result: Record<string, any> = null;
   for (const prop in props) {
-    if (typeof props[prop] === "object") {
+    if (isObject(props[prop])) {
       result = { ...result, [prop]: transformProps(props[prop]) };
     } else {
       result = { ...result, ...transformProp(prop, props[prop]) };
