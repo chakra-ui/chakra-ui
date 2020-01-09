@@ -59,7 +59,7 @@ export function usePopoverContent(props: UsePopoverContentOptions = {}) {
     tabIndex: -1,
     id: popover.content.id,
     role: "dialog",
-    "data-placement": popover.popper.placement,
+    "data-placement": popover.placement,
     style: popover.popper.style,
     onBlur: composeEventHandlers(props.onBlur, onBlur),
     onKeyDown: composeEventHandlers(props.onKeyDown, onKeyDown),

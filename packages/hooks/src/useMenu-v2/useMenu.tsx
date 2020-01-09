@@ -23,6 +23,7 @@ type PopperType = Pick<ReturnType<typeof usePopper>, "popper" | "reference">;
 
 interface MenuContextType extends PopperType {
   disclosureId: string;
+  placement: any;
   menuId: string;
   parent: MenuContextType | undefined;
   orientation: any;
@@ -58,7 +59,7 @@ function useMenuProvider(props = {}) {
   const disclosureRef = React.useRef<HTMLElement>(null);
 
   // Add some popper.js for dymanic positioning
-  const { popper, reference, popperInstance } = usePopper({
+  const { placement, popper, reference, popperInstance } = usePopper({
     placement: !hasParent ? "bottom-start" : "right-start",
     positionFixed: true,
   });
@@ -98,6 +99,7 @@ function useMenuProvider(props = {}) {
 
   return {
     popper,
+    placement,
     reference,
     disclosureId,
     menuId,
@@ -212,7 +214,7 @@ export function useMenu(
     id: menu.menuId,
     hidden: !menu.isOpen,
     "aria-orientation": "vertical",
-    "data-placement": menu.popper.placement,
+    "data-placement": menu.placement,
     style: menu.popper.style,
     onMouseEnter: composeEventHandlers(onMouseEnter, props.onMouseEnter),
     onKeyDown: composeEventHandlers(onKeyDown, props.onKeyDown),

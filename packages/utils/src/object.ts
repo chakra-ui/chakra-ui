@@ -43,3 +43,5 @@ export const addKey = (obj: object, key: string, value: any) => {
 
 export const getKey = (obj: object, key: string): any =>
   obj[key as keyof typeof obj];
+
+export { default as deepEqual } from "dequal";

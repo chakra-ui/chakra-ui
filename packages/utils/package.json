@@ -35,7 +35,8 @@
   },
   "dependencies": {
     "@types/throttle-debounce": "2.1.0",
-    "throttle-debounce": "2.1.0"
+    "throttle-debounce": "2.1.0",
+    "dequal": "1.0.0"
   },
   "devDependencies": {
     "@types/jest": "24.0.25",

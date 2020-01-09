@@ -248,7 +248,7 @@ export function useMenuList(props: UseMenuListOptions) {
     id: menu.menuId,
     hidden: !menu.isOpen,
     "aria-labelledby": menu.buttonId,
-    "data-placement": menu.popper.placement,
+    "data-placement": menu.placement,
     style: menu.popper.style,
     tabIndex: -1,
     onKeyDown: composeEventHandlers(props.onKeyDown, onKeyDown),
