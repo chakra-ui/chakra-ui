@@ -8,5 +8,5 @@ export * from "./number";
 export * from "./dom-query";
 export * from "./tabbable";
 export * from "./assertion";
-export * from "./react-related";
+export * from "./context";
 export * from "throttle-debounce";

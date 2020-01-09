@@ -7,13 +7,13 @@ import {
   AccordionButton,
   AccordionPanel,
   AccordionIcon,
-} from "./Accordion";
+} from ".";
 import { chakra } from "@chakra-ui/system";
 
 const stories = storiesOf("Accordion", module).addDecorator(setup);
 
 stories.add("default", () => (
-  <Accordions allowToggle>
+  <Accordions>
     <Accordion>
       <AccordionButton>
         <chakra.div flex="1" textAlign="left">
@@ -31,6 +31,20 @@ stories.add("default", () => (
         </chakra.div>
         <AccordionIcon />
       </AccordionButton>
+      <AccordionPanel>Panel 2</AccordionPanel>
+    </Accordion>
+  </Accordions>
+));
+
+stories.add("allow multiple - default index", () => (
+  <Accordions allowMultiple defaultIndex={[1]}>
+    <Accordion>
+      <AccordionButton>Section 1 title</AccordionButton>
+      <AccordionPanel>Panel 1</AccordionPanel>
+    </Accordion>
+
+    <Accordion>
+      <AccordionButton>Section 2 title</AccordionButton>
       <AccordionPanel>Panel 2</AccordionPanel>
     </Accordion>
   </Accordions>

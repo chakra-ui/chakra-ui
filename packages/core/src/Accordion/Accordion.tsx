@@ -1,17 +1,16 @@
-import {
-  Accordion as Accordions,
-  AccordionItemProvider,
-  AccordionItemProviderProps,
-  useAccordionButton,
-  useAccordionItemState as useAccordionState,
-  useAccordionPanel,
-} from "@chakra-ui/hooks";
 import { createChakra, PropsOf } from "@chakra-ui/system";
 import { Omit } from "@chakra-ui/utils";
 import * as React from "react";
 import { Icon } from "../Icon";
+import {
+  AccordionProvider,
+  useAccordionButton,
+  useAccordionPanel,
+  useAccordionState,
+} from "./Accordion.hook";
+import * as Types from "./Accordion.types";
 
-const AccordionButton = createChakra("button", {
+export const AccordionButton = createChakra("button", {
   hook: useAccordionButton,
   themeKey: "AccordionButton",
   baseStyles: {
@@ -28,7 +27,7 @@ const AccordionButton = createChakra("button", {
   },
 });
 
-const AccordionPanel = createChakra("div", {
+export const AccordionPanel = createChakra("div", {
   hook: useAccordionPanel,
   themeKey: "AccordionPanel",
   dataAttr: "accordion-panel",
@@ -39,12 +38,14 @@ const AccordionPanel = createChakra("div", {
   },
 });
 
-const AccordionItemRoot = createChakra("div", { dataAttr: "accordion-item" });
+const AccordionItemRoot = createChakra("div", { dataAttr: "accordion" });
 
-export type AccordionItemProps = AccordionItemProviderProps &
-  Omit<PropsOf<typeof AccordionItemRoot>, "onChange">;
+export type AccordionProps = Types.AccordionProviderProps &
+  Omit<PropsOf<typeof AccordionItemRoot>, "onChange"> & {
+    children?: React.ReactNode;
+  };
 
-const Accordion = React.forwardRef(
+export const Accordion = React.forwardRef(
   (
     {
       isOpen,
@@ -54,18 +55,18 @@ const Accordion = React.forwardRef(
       id,
       onChange,
       ...props
-    }: AccordionItemProps,
+    }: AccordionProps,
     ref: React.Ref<any>,
   ) => (
-    <AccordionItemProvider
+    <AccordionProvider
       {...{ isOpen, defaultIsOpen, isDisabled, isFocusable, id, onChange }}
     >
       <AccordionItemRoot ref={ref} {...props} />
-    </AccordionItemProvider>
+    </AccordionProvider>
   ),
 );
 
-const AccordionIcon = (props: PropsOf<typeof Icon>) => {
+export const AccordionIcon = (props: PropsOf<typeof Icon>) => {
   const { isOpen, isDisabled } = useAccordionState();
   return (
     <Icon
@@ -80,13 +81,4 @@ const AccordionIcon = (props: PropsOf<typeof Icon>) => {
       {...props}
     />
   );
-};
-
-export {
-  Accordions,
-  useAccordionState,
-  Accordion,
-  AccordionIcon,
-  AccordionPanel,
-  AccordionButton,
 };

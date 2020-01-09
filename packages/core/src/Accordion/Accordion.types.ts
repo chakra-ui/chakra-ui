@@ -2,11 +2,11 @@ import * as React from "react";
 
 //////////////////////////////////////////////////////////////////////
 
-export type Index = number | number[];
+export type OpenedIndex = number | number[];
 
 //////////////////////////////////////////////////////////////////////
 
-export interface AccordionProviderProps {
+export interface AccordionsProviderProps {
   /**
    * If `true`, multiple accordion items can be expanded at once.
    */
@@ -18,15 +18,15 @@ export interface AccordionProviderProps {
   /**
    * The index(es) of the expanded accordion item
    */
-  index?: Index;
+  index?: OpenedIndex;
   /**
    * The initial index(es) of the expanded accordion item
    */
-  defaultIndex?: Index;
+  defaultIndex?: OpenedIndex;
   /**
    * The callback invoked when accordion items are expanded or collapsed.
    */
-  onChange?: (expandedIndex?: Index | null) => void;
+  onChange?: (expandedIndex?: OpenedIndex | null) => void;
   /**
    * The content of the accordion. Must be `AccordionItem`
    */
@@ -35,14 +35,14 @@ export interface AccordionProviderProps {
 
 //////////////////////////////////////////////////////////////////////
 
-export type AccordionItemElement = React.ReactElement<{
+export type AccordionElement = React.ReactElement<{
   isOpen: boolean;
   onChange: (isOpen: boolean) => void;
 }>;
 
 //////////////////////////////////////////////////////////////////////
 
-export interface AccordionItemProviderProps {
+export interface AccordionProviderProps {
   /**
    * If `true`, expands the accordion in the controlled mode.
    */

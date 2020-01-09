@@ -5,9 +5,9 @@
  * let's prepare of warnings when they use it wrongly
  */
 
-import { AccordionProviderProps, AccordionItemProviderProps } from "./types";
+import * as Types from "./Accordion.types";
 
-export function warnForAllowMultipleArray(props: AccordionProviderProps) {
+export function allowMultiple(props: Types.AccordionsProviderProps) {
   const indexPassed = props.index || props.defaultIndex;
   if (
     props.allowMultiple &&
@@ -20,8 +20,8 @@ export function warnForAllowMultipleArray(props: AccordionProviderProps) {
   }
 }
 
-export function warnForAllowMultipleAndAllowToggle(
-  props: AccordionProviderProps,
+export function allowMultipleAndAllowToggle(
+  props: Types.AccordionsProviderProps,
 ) {
   if (props.allowMultiple && props.allowToggle) {
     console.warn(
@@ -30,7 +30,7 @@ export function warnForAllowMultipleAndAllowToggle(
   }
 }
 
-export function warnForControlledNoOnChange(props: AccordionProviderProps) {
+export function controlledAndNoChange(props: Types.AccordionsProviderProps) {
   if (
     typeof props.index !== "undefined" &&
     typeof props.onChange === "undefined"
@@ -41,7 +41,7 @@ export function warnForControlledNoOnChange(props: AccordionProviderProps) {
   }
 }
 
-export function warnForFocusableNotDisabled(props: AccordionItemProviderProps) {
+export function focusableNotDisabled(props: Types.AccordionProviderProps) {
   if (props.isFocusable && !props.isDisabled) {
     console.error(
       `Using only 'isFocusable', this prop is reserved for situations where you pass 'isDisabled' but you still want the element to receive focus (A11y). Either remove it or pass 'isDisabled' as well.
@@ -50,7 +50,7 @@ export function warnForFocusableNotDisabled(props: AccordionItemProviderProps) {
   }
 }
 
-export function warnForControlledSwitching(
+export function controlledSwitching(
   label: string,
   isControlled?: boolean,
   propValue?: any,
