@@ -36,6 +36,10 @@ const RadioButtonGroup = ({
   };
 
   const handleKeyDown = event => {
+    if (event.key === "Tab") {
+      return;
+    }
+
     // Disable page scrolling while navigating with keys
     event.preventDefault();
 
