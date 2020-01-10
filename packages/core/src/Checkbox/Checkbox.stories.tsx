@@ -1,27 +1,107 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import { Checkbox } from "./Checkbox";
+import {
+  Checkbox,
+  CheckboxProvider,
+  CustomCheckbox,
+  CheckboxInput,
+  useCheckboxState,
+} from ".";
 import setup from "../story.setup";
+import { chakra, createChakra } from "@chakra-ui/system";
+import { useCheckbox } from "./Checkbox.hook";
+import useCheckboxGroup from "./CheckboxGroup.hook";
 
 const stories = storiesOf("checkbox", module);
 
 stories.addDecorator(setup);
 
-stories.add("default", () => (
-  <Checkbox
-    _hover={{ borderColor: "gray.200", bg: "gray.50" }}
-    _focus={{ shadow: "outline" }}
-    _checked={{
-      bg: "green.500",
-      color: "white",
-      _hover: { bg: "green.600" },
-      _focus: { bg: "tomato" },
-    }}
-    isIndeterminate
-    transition="all 0.2s"
-    rounded="md"
-    size="24px"
-    border="1px solid"
-    borderColor="gray.100"
-  />
+stories.add("default", () => <Checkbox />);
+
+function IndeterminateExample() {
+  const [checkedItems, setCheckedItems] = React.useState([false, false]);
+
+  const allChecked = checkedItems.every(Boolean);
+  const isIndeterminate = checkedItems.some(Boolean) && !allChecked;
+
+  return (
+    <>
+      <Checkbox
+        isChecked={allChecked}
+        isIndeterminate={isIndeterminate}
+        onChange={e => setCheckedItems([e.target.checked, e.target.checked])}
+        children="Parent Checkbox"
+      />
+      <chakra.div pl="20px" mt="12px">
+        <Checkbox
+          isChecked={checkedItems[0]}
+          onChange={e => setCheckedItems([e.target.checked, checkedItems[1]])}
+          children="Child Checkbox 1"
+        />
+        <Checkbox
+          isChecked={checkedItems[1]}
+          onChange={e => setCheckedItems([checkedItems[0], e.target.checked])}
+          children="Child Checkbox 2"
+        />
+      </chakra.div>
+    </>
+  );
+}
+
+stories.add("indeterminate checkbox", () => <IndeterminateExample />);
+
+const CheckBox = createChakra(CustomCheckbox);
+
+const CheckIcon = () => {
+  const { isChecked } = useCheckboxState();
+  return <>{isChecked ? "✔️" : null}</>;
+};
+
+stories.add("custom composition", () => (
+  <CheckboxProvider>
+    <CheckboxInput />
+    <CheckBox
+      display="inline-block"
+      border="1px solid gray"
+      _checked={{ bg: "green" }}
+      _focus={{ outline: "3px dotted red" }}
+    >
+      Click me to check
+      <CheckIcon />
+    </CheckBox>
+  </CheckboxProvider>
 ));
+
+stories.add("checkbox group", () => {
+  function Checkbox(props: any) {
+    const { input, checkbox } = useCheckbox(props);
+    return (
+      <label {...checkbox}>
+        <input {...input} />
+        {props.children}
+      </label>
+    );
+  }
+
+  function CheckExample(props: any) {
+    const checkboxGroup = useCheckboxGroup(props);
+    return (
+      <div>
+        <code>{JSON.stringify(checkboxGroup.value)}</code>
+        <div />
+        {["opt1", "opt2", "opt3"].map(val => (
+          <Checkbox
+            key={val}
+            value={val}
+            isChecked={checkboxGroup.value.includes(val)}
+            onChange={checkboxGroup.onChange}
+          >
+            {val}
+          </Checkbox>
+        ))}
+      </div>
+    );
+  }
+
+  return <CheckExample />;
+});

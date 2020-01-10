@@ -23,7 +23,8 @@
     "system": "yarn workspace @chakra-ui/system",
     "preset": "yarn workspace @chakra-ui/preset-base",
     "color": "yarn workspace @chakra-ui/color",
-    "release": "lerna publish"
+    "release": "lerna publish",
+    "boot": "yarn install && yarn build"
   },
   "husky": {
     "hooks": {
