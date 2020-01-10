@@ -52,6 +52,14 @@ stories.add("with right icon", () => (
   </InputGroup>
 ));
 
+stories.add("with left and right addon", () => (
+  <InputGroup size="sm">
+    <InputLeftAddon children="https://" />
+    <Input rounded="0" placeholder="mysite" />
+    <InputRightAddon children=".com" />
+  </InputGroup>
+));
+
 const PasswordInput = () => {
   const [show, setShow] = useState(false);
   return (

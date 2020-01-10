@@ -28,13 +28,7 @@ const InputAddon = ({ placement = "left", size = "md", ...props }) => {
     ..._placement[placement],
   };
 
-  return (
-    <Box
-      {...styleProps}
-      {...props}
-      css={{ "input:focus + &": { zIndex: -1 } }}
-    />
-  );
+  return <Box {...styleProps} {...props} />;
 };
 
 const InputLeftAddon = props => <InputAddon placement="left" {...props} />;

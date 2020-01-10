@@ -29,7 +29,7 @@ const InputElement = forwardRef(
         width={height}
         fontSize={fontSize}
         top="0"
-        zIndex={1}
+        zIndex={2}
         ref={ref}
         {...(disablePointerEvents && { pointerEvents: "none" })}
         {...placementProp}

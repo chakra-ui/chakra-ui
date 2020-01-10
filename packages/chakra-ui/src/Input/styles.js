@@ -42,6 +42,7 @@ const outlinedStyle = ({
       cursor: "not-allowed",
     },
     _focus: {
+      zIndex: 1,
       borderColor: _focusBorderColor,
       boxShadow: `0 0 0 1px ${_focusBorderColor}`,
     },
@@ -93,6 +94,7 @@ const filledStyle = ({
       cursor: "not-allowed",
     },
     _focus: {
+      zIndex: 1,
       bg: "transparent",
       borderColor: _focusBorderColor,
     },
@@ -122,6 +124,7 @@ const flushedStyle = ({ theme, focusBorderColor, errorBorderColor }) => {
     px: undefined,
     bg: "transparent",
     _focus: {
+      zIndex: 1,
       borderColor: _focusBorderColor,
     },
     _invalid: {
