@@ -1,0 +1,9 @@
+diff a/packages/chakra-ui/src/InputAddon/index.js b/packages/chakra-ui/src/InputAddon/index.js	(rejected hunks)
+@@ -31,6 +31 @@ const InputAddon = ({ placement = "left", size = "md", ...props }) => {
+-  return (
+-    <Box
+-      {...styleProps}
+-      {...props}
+-    />
+-  );
++  return <Box {...styleProps} {...props} />;

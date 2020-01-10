@@ -1,0 +1,4 @@
+diff a/packages/chakra-ui/src/InputGroup/examples.js b/packages/chakra-ui/src/InputGroup/examples.js	(rejected hunks)
+@@ -61 +61 @@ stories.add("with left and right addon", () => (
+-))
++));
