@@ -8,10 +8,13 @@ import useUpdateEffect from "./useUpdateEffect";
  * @param label a label for the component
  * @param values parameters to log
  */
-function useLogger(label: string, ...values: any[]) {
+export function useLogger(label: string, ...values: any[]) {
   React.useEffect(() => {
     console.log(`${label} mounted:`, ...values);
-    return () => console.log(`${label} unmounted`);
+    return () => {
+      console.log(`${label} unmounted`);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useUpdateEffect(() => {

@@ -1,15 +1,14 @@
+import { chakra, createChakra } from "@chakra-ui/system";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import {
   Checkbox,
+  CheckboxInput,
   CheckboxProvider,
   CustomCheckbox,
-  CheckboxInput,
   useCheckboxState,
 } from ".";
 import setup from "../story.setup";
-import { chakra, createChakra } from "@chakra-ui/system";
-import { useCheckbox } from "./Checkbox.hook";
 import useCheckboxGroup from "./CheckboxGroup.hook";
 
 const stories = storiesOf("checkbox", module);
@@ -73,16 +72,6 @@ stories.add("custom composition", () => (
 ));
 
 stories.add("checkbox group", () => {
-  function Checkbox(props: any) {
-    const { input, checkbox } = useCheckbox(props);
-    return (
-      <label {...checkbox}>
-        <input {...input} />
-        {props.children}
-      </label>
-    );
-  }
-
   function CheckExample(props: any) {
     const checkboxGroup = useCheckboxGroup(props);
     return (

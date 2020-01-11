@@ -1,15 +1,15 @@
 import * as React from "react";
 import * as Lock from "body-scroll-lock";
 
-interface UseLockBodyScrollOptions {
+export interface LockBodyScrollOptions {
   shouldLock?: boolean;
   preserveScrollBarGap?: boolean;
   allowTouchMove?: Lock.BodyScrollOptions["allowTouchMove"];
 }
 
-function useLockBodyScroll(
+export function useLockBodyScroll(
   ref: React.RefObject<HTMLElement>,
-  options: UseLockBodyScrollOptions,
+  options: LockBodyScrollOptions,
 ) {
   React.useEffect(() => {
     if (!ref.current) return;

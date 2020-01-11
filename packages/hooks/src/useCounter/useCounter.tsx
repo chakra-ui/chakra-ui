@@ -13,7 +13,7 @@ import useInterval from "../useInterval";
 type Action = "increment" | "decrement";
 type VoidFunction = () => void;
 
-export interface UseCounterOptions {
+export interface CounterOptions {
   /**
    * The callback fired when the value changes
    */
@@ -59,7 +59,7 @@ export interface UseCounterOptions {
 const TIMEOUT_DURATION = 300;
 const INTERVAL_DURATION = 50;
 
-function useCounter(props: UseCounterOptions) {
+export function useCounter(props: CounterOptions) {
   const {
     onChange,
     precision: precisionProp,

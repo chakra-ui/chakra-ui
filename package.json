@@ -24,7 +24,8 @@
     "preset": "yarn workspace @chakra-ui/preset-base",
     "color": "yarn workspace @chakra-ui/color",
     "release": "lerna publish",
-    "boot": "yarn install && yarn build"
+    "boot": "yarn install && yarn build",
+    "create-pkg": "node scripts/create-package.js"
   },
   "husky": {
     "hooks": {
@@ -75,7 +76,15 @@
     "react-docgen-typescript-loader": "3.3.0",
     "react-dom": "16.12.0",
     "react-lorem-component": "^0.13.0",
-    "react-transition-group": "4.3.0"
+    "react-transition-group": "4.3.0",
+    "arg": "4.1.2",
+    "chalk": "3.0.0",
+    "edit-json-file": "1.4.0",
+    "esm": "3.2.25",
+    "execa": "4.0.0",
+    "inquirer": "7.0.3",
+    "listr": "0.14.3",
+    "ncp": "2.0.0"
   },
   "bundlesize": [
     {

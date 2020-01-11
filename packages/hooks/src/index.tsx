@@ -1,6 +1,8 @@
-export { default as useAriaHidden } from "./useAriaHidden";
-export { default as useBlurOutside } from "./useBlurOutside";
+export * from "./useAriaHidden";
+export * from "./useFocusEffect";
+export * from "./useLockBodyScroll";
 
+export { default as useBlurOutside } from "./useBlurOutside";
 export { default as useCounter } from "./useCounter/useCounter";
 export { default as useClipboard } from "./useClipboard/useClipboard";
 export { default as useControllableProp } from "./useControllableProp";
@@ -9,7 +11,6 @@ export { default as useDisclosure } from "./useDisclosure/useDisclosure";
 
 export { default as useIsomorphicEffect } from "./useIsomorphicEffect";
 
-export { default as useFocusEffect } from "./useFocusEffect/useFocusEffect";
 export { default as useFocusOnHide } from "./useFocusOnHide";
 export { default as useFocusOnShow } from "./useFocusOnShow";
 export * from "./useMergeRefs";
@@ -17,7 +18,6 @@ export * from "./useMergeRefs";
 export { default as useId } from "./useId";
 export { default as useIds } from "./useIds";
 
-export { default as useLockBodyScroll } from "./useLockBodyScroll/useLockBodyScroll";
 export { default as useLogger } from "./useLogger";
 
 // export * from "./useNumberInput/useNumberInput";

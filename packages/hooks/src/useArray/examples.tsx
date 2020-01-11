@@ -1,5 +1,5 @@
-import React from "react";
 import { storiesOf } from "@storybook/react";
+import React from "react";
 import useArray from "./useArray";
 
 const stories = storiesOf("useArray", module);
@@ -13,7 +13,7 @@ function useInput(props: any = {}) {
     setValue(event.target.value);
   }, []);
 
-  const clear = React.useCallback(() => {
+  const clearValue = React.useCallback(() => {
     setValue("");
   }, []);
 
@@ -24,12 +24,16 @@ function useInput(props: any = {}) {
   }, []);
 
   return {
-    ...props,
-    ref,
-    value,
-    clear,
-    focus,
-    onChange,
+    bind: {
+      ...props,
+      ref,
+      value,
+      onChange,
+    },
+    helpers: {
+      clearValue,
+      focus,
+    },
   };
 }
 
@@ -53,12 +57,12 @@ function Example() {
       <form
         onSubmit={e => {
           e.preventDefault();
-          add(input.value);
-          input.clear();
-          input.focus();
+          add(input.bind.value);
+          input.helpers.clearValue();
+          input.helpers.focus();
         }}
       >
-        <input {...input} />
+        <input {...input.bind} />
         <button type="submit">Add new item</button>
       </form>
       {isOutOfRange && <p>Hey! You're out of range</p>}
