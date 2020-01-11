@@ -91,3 +91,7 @@ stories.add("Cards", () => (
     </Box>
   </Box>
 ));
+
+stories.add("responsive test", () => (
+  <Box h="500px" bg="red.500" w={{ sm: "500px", md: "1000px" }} />
+));

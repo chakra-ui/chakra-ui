@@ -62,9 +62,11 @@ const TabList = forwardRef((props, ref) => {
 
   const allNodes = useRef([]);
 
-  const focusableIndexes = Children.map(children, (child, index) =>
-    child.props.isDisabled === true ? null : index,
-  ).filter(index => index != null);
+  const focusableIndexes = Children.map(children, (child, index) => {
+    if (isValidElement(child)) {
+      return child.props.isDisabled === true ? null : index;
+    }
+  }).filter(index => index != null);
 
   const enabledSelectedIndex = focusableIndexes.indexOf(selectedIndex);
   const count = focusableIndexes.length;
@@ -124,12 +126,14 @@ const TabList = forwardRef((props, ref) => {
       }
     };
 
-    return cloneElement(child, {
-      ref: node => (allNodes.current[index] = node),
-      isSelected,
-      onClick: handleClick,
-      id: `${id}-${index}`,
-    });
+    if (isValidElement(child)) {
+      return cloneElement(child, {
+        ref: node => (allNodes.current[index] = node),
+        isSelected,
+        onClick: handleClick,
+        id: `${id}-${index}`,
+      });
+    }
   });
 
   return (

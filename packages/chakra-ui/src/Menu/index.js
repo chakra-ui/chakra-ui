@@ -88,7 +88,8 @@ const Menu = ({
 
   useEffect(() => {
     if (activeIndex !== -1) {
-      focusableItems.current[activeIndex].focus();
+      focusableItems.current[activeIndex] &&
+        focusableItems.current[activeIndex].focus();
       updateTabIndex(activeIndex);
     }
     if (activeIndex === -1 && !_isOpen && wasPreviouslyOpen) {
