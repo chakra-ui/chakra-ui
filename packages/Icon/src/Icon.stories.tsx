@@ -1,7 +1,7 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import setup from "../story.setup";
-import Icon from "./Icon";
+import Icon, { IconProps } from "./Icon";
 import { Md3DRotation } from "react-icons/md";
 
 const stories = storiesOf("Icon", module);
@@ -9,7 +9,7 @@ stories.addDecorator(setup);
 
 stories.add("default", () => <Icon fontSize="24px" label="Base icon" />);
 
-const ArrowIcon = (props: React.ComponentProps<typeof Icon>) => (
+const ArrowIcon = (props: IconProps) => (
   <Icon
     path={
       <g fill="currentColor">

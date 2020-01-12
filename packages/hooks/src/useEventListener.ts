@@ -1,10 +1,13 @@
 import * as React from "react";
-import { canUseDOM } from "@chakra-ui/utils";
+import { canUseDOM, FunctionArguments } from "@chakra-ui/utils";
+
+type AddEventLister = FunctionArguments<typeof document.addEventListener>;
 
 export function useEventListener(
   event: keyof WindowEventMap,
   handler: (event: any) => void,
   environment: Document | null = canUseDOM ? document : null,
+  options?: AddEventLister[2],
 ) {
   const savedHandler = React.useRef(handler);
   React.useEffect(() => {
@@ -14,12 +17,12 @@ export function useEventListener(
   React.useEffect(() => {
     if (environment == null) return;
     const eventListener = (event: any) => savedHandler.current(event);
-    environment.addEventListener(event, eventListener, true);
+    environment.addEventListener(event, eventListener, options);
 
     return () => {
-      environment.removeEventListener(event, eventListener, true);
+      environment.removeEventListener(event, eventListener, options);
     };
-  }, [event, environment]);
+  }, [event, environment, options]);
 }
 
 export default useEventListener;

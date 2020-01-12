@@ -3594,6 +3594,11 @@
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@types/events/-/events-3.0.0.tgz#2862f3f58a9a7f7c3e78d79f130dd4d71c25c2a7"
 
+"@types/flushable@0.0.0":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@types/flushable/-/flushable-1.0.1.tgz#7ef22f21ee52ba6602758661cc1c1845e72c9735"
+  integrity sha512-4IWprFsI6bdy3ByEE07vK+6271PhmayjAHVmPWQ+lKfAEgHacNhsNohf39oyUOXA6pVn/CVBKrRY1oH6AZweZA==
+
 "@types/glob@*", "@types/glob@^7.1.1":
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/@types/glob/-/glob-7.1.1.tgz#aa59a1c6e3fbc421e07ccd31a944c30eba521575"
@@ -7518,6 +7523,11 @@ flush-write-stream@^1.0.0:
   dependencies:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
+
+flushable@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/flushable/-/flushable-1.0.0.tgz#2fc16837ec85f8d7ec1bd777087b8448e1ca8216"
+  integrity sha512-WQr7DsBZfdmXwqWk7yyk9H2R60iHiUpLMvkov6KivafC9d1SzDTjSBsKMa8skT4laaSxus+F4v7WLO6J0zxPkw==
 
 focus-lock@^0.6.3, focus-lock@^0.6.6:
   version "0.6.6"

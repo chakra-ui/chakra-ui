@@ -19,3 +19,4 @@ export * from "./usePrevious";
 export * from "./useRapidKeyDown";
 export * from "./useTabbable";
 export * from "./useUpdateEffect";
+export * from "./useEventListener";

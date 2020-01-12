@@ -1,7 +1,7 @@
 import { configure } from "@storybook/react";
 
 const req = require.context(
-  `../packages/Icon/src/`,
+  `../packages/Tooltip/src/`,
   true,
   /.stories\.(ts|tsx)$/,
 );

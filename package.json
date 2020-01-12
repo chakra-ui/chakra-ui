@@ -41,7 +41,8 @@
     "numberinput": "yarn workspace @chakra-ui/numberinput",
     "popover": "yarn workspace @chakra-ui/popover",
     "popper": "yarn workspace @chakra-ui/popper",
-    "button": "yarn workspace @chakra-ui/button"
+    "button": "yarn workspace @chakra-ui/button",
+    "tooltip": "yarn workspace @chakra-ui/tooltip"
   },
   "husky": {
     "hooks": {
