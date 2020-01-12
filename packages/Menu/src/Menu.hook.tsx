@@ -14,9 +14,9 @@ import {
   useRapidKeydown,
   useUpdateEffect,
   useDisclosure,
-  usePopper,
   useIds,
 } from "@chakra-ui/hooks";
+import { usePopper } from "@chakra-ui/popper";
 
 type PopperType = Pick<ReturnType<typeof usePopper>, "popper" | "reference">;
 

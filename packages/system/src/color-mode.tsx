@@ -236,3 +236,7 @@ export function useChakra() {
   const theme = React.useContext(ThemeContext);
   return { colorMode, setColorMode, theme };
 }
+
+export function useTheme() {
+  return React.useContext(ThemeContext);
+}

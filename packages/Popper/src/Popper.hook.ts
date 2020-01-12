@@ -188,3 +188,5 @@ export function usePopper<
 }
 
 export default usePopper;
+
+export type PopperJS = Popper;

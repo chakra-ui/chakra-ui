@@ -6048,6 +6048,13 @@ crypto-browserify@^3.11.0:
     randombytes "^2.0.0"
     randomfill "^1.0.3"
 
+css-box-model@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/css-box-model/-/css-box-model-1.2.0.tgz#3a26377b4162b3200d2ede4b064ec5b6a75186d0"
+  integrity sha512-lri0br+jSNV0kkkiGEp9y9y3Njq2PmpqbeGWRFQJuZteZzY9iC9GZhQ8Y4WpPwM/2YocjHePxy14igJY7YKzkA==
+  dependencies:
+    tiny-invariant "^1.0.6"
+
 css-loader@^3.0.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/css-loader/-/css-loader-3.2.0.tgz#bb570d89c194f763627fcf1f80059c6832d009b2"
@@ -9990,7 +9997,7 @@ media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
 
-memoize-one@^5.0.0:
+memoize-one@5.1.1, memoize-one@^5.0.0:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/memoize-one/-/memoize-one-5.1.1.tgz#047b6e3199b508eaec03504de71229b8eb1d75c0"
 
@@ -13776,7 +13783,7 @@ tiny-glob@^0.2.6:
     globalyzer "^0.1.0"
     globrex "^0.1.1"
 
-tiny-invariant@^1.0.2:
+tiny-invariant@^1.0.2, tiny-invariant@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/tiny-invariant/-/tiny-invariant-1.0.6.tgz#b3f9b38835e36a41c843a3b0907a5a7b3755de73"
   integrity sha512-FOyLWWVjG+aC0UqG76V53yAWdXfH8bO6FNmyZOuUrzDzK8DI3/JRY25UD7+g49JWM1LXwymsKERB+DzI0dTEQA==

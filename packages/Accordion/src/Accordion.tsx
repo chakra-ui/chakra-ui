@@ -1,7 +1,7 @@
 import { createChakra, PropsOf } from "@chakra-ui/system";
 import { Omit } from "@chakra-ui/utils";
 import * as React from "react";
-import { Icon } from "../../core/src/Icon";
+// import { Icon } from "@chakra-ui/icon";
 import {
   AccordionProvider,
   useAccordionButton,
@@ -66,19 +66,19 @@ export const Accordion = React.forwardRef(
   ),
 );
 
-export const AccordionIcon = (props: PropsOf<typeof Icon>) => {
-  const { isOpen, isDisabled } = useAccordionState();
-  return (
-    <Icon
-      aria-hidden
-      focusable="false"
-      size="1.25em"
-      name="chevron-down"
-      opacity={isDisabled ? 0.4 : 1}
-      transform={isOpen ? "rotate(-180deg)" : undefined}
-      transition="transform 0.2s"
-      transformOrigin="center"
-      {...props}
-    />
-  );
-};
+// export const AccordionIcon = (props: PropsOf<typeof Icon>) => {
+//   const { isOpen, isDisabled } = useAccordionState();
+//   return (
+//     <Icon
+//       aria-hidden
+//       focusable="false"
+//       size="1.25em"
+//       name="chevron-down"
+//       opacity={isDisabled ? 0.4 : 1}
+//       transform={isOpen ? "rotate(-180deg)" : undefined}
+//       transition="transform 0.2s"
+//       transformOrigin="center"
+//       {...props}
+//     />
+//   );
+// };

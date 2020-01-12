@@ -1,12 +1,12 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import setup from "../../core/src/story.setup";
+import setup from "../story.setup";
 import {
   Accordions,
   Accordion,
   AccordionButton,
   AccordionPanel,
-  AccordionIcon,
+  // AccordionIcon,
 } from ".";
 import { chakra } from "@chakra-ui/system";
 
@@ -19,7 +19,7 @@ stories.add("default", () => (
         <chakra.div flex="1" textAlign="left">
           Section 1 title
         </chakra.div>
-        <AccordionIcon />
+        {/* <AccordionIcon /> */}
       </AccordionButton>
       <AccordionPanel>Panel 1</AccordionPanel>
     </Accordion>
@@ -29,7 +29,7 @@ stories.add("default", () => (
         <chakra.div flex="1" textAlign="left">
           Section 2 title
         </chakra.div>
-        <AccordionIcon />
+        {/* <AccordionIcon /> */}
       </AccordionButton>
       <AccordionPanel>Panel 2</AccordionPanel>
     </Accordion>

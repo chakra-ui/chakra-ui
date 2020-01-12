@@ -1,9 +1,7 @@
 import { configure } from "@storybook/react";
 
-const scope = "Accordion";
-
 const req = require.context(
-  `../packages/${scope}/src/`,
+  `../packages/Icon/src/`,
   true,
   /.stories\.(ts|tsx)$/,
 );

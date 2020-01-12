@@ -16,7 +16,7 @@
     "test": "yarn workspace @chakra-ui/core test",
     "link:all": "npx lerna link",
     "core": "yarn workspace @chakra-ui/core",
-    "icon": "yarn workspace @chakra-ui/icons",
+    "icon": "yarn workspace @chakra-ui/icon",
     "hooks": "yarn workspace @chakra-ui/hooks",
     "utils": "yarn workspace @chakra-ui/utils",
     "layout": "yarn workspace @chakra-ui/layout",
@@ -40,7 +40,8 @@
     "counter": "yarn workspace @chakra-ui/counter",
     "numberinput": "yarn workspace @chakra-ui/numberinput",
     "popover": "yarn workspace @chakra-ui/popover",
-    "popper": "yarn workspace @chakra-ui/popper"
+    "popper": "yarn workspace @chakra-ui/popper",
+    "button": "yarn workspace @chakra-ui/button"
   },
   "husky": {
     "hooks": {
