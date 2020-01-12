@@ -1,0 +1,58 @@
+{
+  "name": "@chakra-ui/tabs",
+  "version": "0.0.1",
+  "description": "description",
+  "keywords": [
+    "theme",
+    "theming",
+    "ui mode",
+    "ui"
+  ],
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/tabs.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --env=jsdom",
+    "lint": "tsdx lint src",
+    "version": "yarn build"
+  },
+  "devDependencies": {
+    "@types/jest": "24.0.25",
+    "@types/react": "16.9.17",
+    "@types/react-dom": "16.9.4",
+    "husky": "3.1.0",
+    "react": "16.12.0",
+    "react-dom": "16.12.0",
+    "ts-jest": "24.0.2",
+    "tsdx": "0.12.1",
+    "tslib": "1.10.0",
+    "typescript": "3.7.4"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "@emotion/core": "10.x",
+    "@emotion/styled": "10.x",
+    "emotion-theming": "10.x",
+    "react": "16.x",
+    "react-dom": "16.x"
+  }
+}

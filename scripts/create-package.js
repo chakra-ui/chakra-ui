@@ -19,6 +19,7 @@ function parseArgsIntoOptions(rawArgs) {
     {
       "--no-hook": Boolean,
       "--file": Boolean,
+      "--empty": Boolean,
     },
     {
       argv: rawArgs.slice(2),
@@ -30,6 +31,7 @@ function parseArgsIntoOptions(rawArgs) {
   return {
     noHook: args["--no-hook"] || false,
     asSingleFile: args["--file"] || false,
+    noCopy: args["--empty"] || false,
     component: inlineArgs[0],
   };
 }
@@ -81,25 +83,69 @@ function createFile(filePath, fileContent = "") {
   });
 }
 
+const hookContent = component => `
+import * as React from "react"
+
+interface ${component}Props{
+
+}
+
+export function use${component}(props: ${component}Props){
+  return {
+    ...props
+  }
+}
+
+export default use${component}
+`;
+
+const componentContent = component => `
+import * as React from "react"
+import { use${component}, ${component}Props }from "./${component}.hook"
+
+export function ${component}(props: ${component}Props){
+  const hook = use${component}(props)
+  return <div>This is a ${component} component</div>
+}
+
+export default ${component}
+`;
+
+const storiesContent = component => `
+import * as React from "react"
+import { storiesOf } from "@storybook/react";
+import setup from "../story.setup";
+
+const stories = storiesOf("${component}", module);
+stories.addDecorator(setup)
+
+stories.add("default", ()=><div>Component goes here</div>)
+`;
+
 function createFiles(options) {
   if (options.asSingleFile) {
-    createFile(`${options.component}.tsx`);
+    createFile(`${options.component}.tsx`, componentContent(options.component));
   } else {
     const files = [
-      `${options.component}.tsx`,
-      `${options.component}.stories.tsx`,
-      `index.ts`,
-      `README.md`,
+      [`${options.component}.tsx`, componentContent],
+      [`${options.component}.stories.tsx`, storiesContent],
+      [`index.ts`],
     ];
 
     if (!options.noHook) {
-      files.push(`${options.component}.hook.ts`);
+      files.push([`${options.component}.hook.tsx`, hookContent]);
     }
 
     const fileDir = `packages/${options.component}/src/`;
-    files.forEach(file => {
+    files.forEach(([file, fileContent]) => {
+      console.log(file);
       const filePath = fileDir + file;
-      createFile(filePath);
+      createFile(
+        filePath,
+        typeof fileContent === "function"
+          ? fileContent(options.component)
+          : fileContent,
+      );
     });
   }
 }
@@ -166,12 +212,20 @@ async function createPackage(options) {
       task: () => createPackageDir(options),
     },
     { title: "Copy template files", task: () => copyTemplateFiles(options) },
-    { title: "Add files to src", task: () => createFiles(options) },
+    {
+      title: "Add files to src",
+      task: () => createFiles(options),
+      skip: () => options.noCopy === true,
+    },
     {
       title: "Edit package.json",
       task: () => editPackageJson(options),
     },
-    { title: "Add export to src/index", task: () => appendToSrc(options) },
+    {
+      title: "Add export to src/index",
+      task: () => appendToSrc(options),
+      skip: () => options.noCopy === true,
+    },
     {
       title: "Add shortcut to root package.json",
       task: () => editRootPackageJson(options),

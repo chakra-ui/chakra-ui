@@ -37,7 +37,7 @@ export interface TabbableProps extends HTMLProps {
   clickOnSpace?: boolean;
 }
 
-function useTabbable({
+export function useTabbable({
   isDisabled,
   isFocusable,
   clickOnEnter = true,

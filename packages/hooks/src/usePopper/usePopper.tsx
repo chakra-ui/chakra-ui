@@ -1,4 +1,3 @@
-// Credit: https://github.com/maktouch/use-popper
 import { css } from "@emotion/core";
 import Popper from "popper.js";
 import React from "react";
@@ -82,7 +81,7 @@ export interface PopperOptions {
   popperOffset?: number;
 }
 
-function usePopper<
+export function usePopper<
   Reference = HTMLButtonElement,
   Popover = HTMLDivElement,
   Arrow = HTMLDivElement
