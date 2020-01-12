@@ -1,14 +1,16 @@
 import {
-  useControllableProp,
   useDescendant,
   useDescendants,
   UseDescendantsReturn,
+} from "@chakra-ui/descendant";
+import {
+  useControllableProp,
   useDisclosure,
   useFocusEffect,
   useIds,
   useMergeRefs,
-  useTabbable,
 } from "@chakra-ui/hooks";
+import { useTabbable } from "@chakra-ui/tabbable";
 import {
   composeEventHandlers,
   createContext,

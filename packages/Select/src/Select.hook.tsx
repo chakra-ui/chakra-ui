@@ -10,10 +10,6 @@ import {
   useScrollIntoView,
 } from "./Select.utils";
 import {
-  DescendantsActions,
-  DescendantsState,
-  useDescendant,
-  useDescendants,
   useBlurOutside,
   useDisclosure,
   UseDisclosureReturn,
@@ -21,6 +17,12 @@ import {
   useIds,
   useRapidKeydown,
 } from "@chakra-ui/hooks";
+import {
+  DescendantsActions,
+  DescendantsState,
+  useDescendant,
+  useDescendants,
+} from "@chakra-ui/descendant";
 
 ////////////////////////////////////////////////////////////////////////////////////
 

@@ -3,13 +3,13 @@ import { storiesOf } from "@storybook/react";
 import {
   useDescendants,
   useDescendant,
-  DescendantsState,
   DescendantsActions,
-} from ".";
+  DescendantsState,
+} from "./";
 import { chakra } from "@chakra-ui/system";
 import { createContext } from "@chakra-ui/utils";
 
-const stories = storiesOf("useDescendant", module);
+const stories = storiesOf("Descendant", module);
 
 function Option({
   children,

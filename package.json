@@ -42,7 +42,9 @@
     "popover": "yarn workspace @chakra-ui/popover",
     "popper": "yarn workspace @chakra-ui/popper",
     "button": "yarn workspace @chakra-ui/button",
-    "tooltip": "yarn workspace @chakra-ui/tooltip"
+    "tooltip": "yarn workspace @chakra-ui/tooltip",
+    "descendant": "yarn workspace @chakra-ui/descendant",
+    "tabbable": "yarn workspace @chakra-ui/tabbable"
   },
   "husky": {
     "hooks": {

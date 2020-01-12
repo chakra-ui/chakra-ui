@@ -7,6 +7,7 @@ import {
   composeEventHandlers,
   makeDataAttribute,
   createContext,
+  visuallyHiddenStyle,
 } from "@chakra-ui/utils";
 import * as React from "react";
 
@@ -28,18 +29,6 @@ export interface CheckboxProps {
   onKeyDown?: React.KeyboardEventHandler;
   onKeyUp?: React.KeyboardEventHandler;
 }
-
-const hiddenStyles: React.CSSProperties = {
-  border: "0px",
-  clip: "rect(0px, 0px, 0px, 0px)",
-  height: "1px",
-  width: "1px",
-  margin: "-1px",
-  padding: "0px",
-  overflow: "hidden",
-  whiteSpace: "nowrap",
-  position: "absolute",
-};
 
 export function useCheckbox(props: CheckboxProps) {
   const {
@@ -161,7 +150,7 @@ export function useCheckbox(props: CheckboxProps) {
       readOnly: isReadOnly,
       "aria-invalid": isInvalid,
       "aria-disabled": isDisabled,
-      style: hiddenStyles,
+      style: visuallyHiddenStyle,
     },
     remaining,
   };

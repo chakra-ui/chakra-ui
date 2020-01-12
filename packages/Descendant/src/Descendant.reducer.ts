@@ -1,4 +1,4 @@
-import { getNextIndex, getNextOptionFromKeys } from "./utils";
+import { getNextIndex, getNextOptionFromKeys } from "./Descendant.utils";
 
 export interface Descendant {
   id: string;

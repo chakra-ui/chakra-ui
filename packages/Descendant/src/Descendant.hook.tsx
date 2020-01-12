@@ -1,7 +1,10 @@
 import * as React from "react";
-import useId from "../useId";
-import useIsomorphicEffect from "../useIsomorphicEffect";
-import { Descendant, DescendantsState, descendantsReducer } from "./reducer";
+import { useId, useIsomorphicEffect } from "@chakra-ui/hooks";
+import {
+  Descendant,
+  DescendantsState,
+  descendantsReducer,
+} from "./Descendant.reducer";
 
 export interface DescendantsActions {
   /**

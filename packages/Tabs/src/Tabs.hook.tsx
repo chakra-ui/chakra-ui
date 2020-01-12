@@ -9,9 +9,8 @@ import {
   useMergeRefs,
   useId,
   useIsomorphicEffect,
-  useTabbable,
-  TabbableProps,
 } from "@chakra-ui/hooks";
+import { useTabbable, TabbableProps } from "@chakra-ui/tabbable";
 
 /**
 |--------------------------------------------------

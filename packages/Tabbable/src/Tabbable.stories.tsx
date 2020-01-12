@@ -1,6 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
-import useTabbable from "./useTabbable";
+import useTabbable from "./Tabbable.hook";
 import { createChakra } from "@chakra-ui/system";
 
 const stories = storiesOf("useTabbable", module);

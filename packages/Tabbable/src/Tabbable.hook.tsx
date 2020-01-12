@@ -1,5 +1,5 @@
 import * as React from "react";
-import useMergeRefs from "../useMergeRefs";
+import { useMergeRefs } from "@chakra-ui/hooks";
 
 type HTMLAttributes = React.HTMLAttributes<Element> &
   React.RefAttributes<Element>;

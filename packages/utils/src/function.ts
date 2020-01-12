@@ -1,4 +1,4 @@
-import { FunctionArguments, AnyFunction } from "./types";
+import { FunctionArguments } from "./types";
 
 /**
  * This is checks any callback to ensure it's a
@@ -29,16 +29,4 @@ export function composeEventHandlers<T extends (event: any) => void>(
   };
 }
 
-export function composeFns<T extends AnyFunction>(...fns: AnyFunction[]) {
-  const filteredFns = fns.filter(Boolean);
-  return (...args: FunctionArguments<T>) => {
-    filteredFns.forEach(fn => fn(...args));
-  };
-}
-
-type Func<T = any> = (arg: T) => T;
-
-export const pipeFns = <R>(...fns: Array<Func<R> | null | undefined>) => {
-  const filteredFns = fns.filter(Boolean) as Array<Func<R>>;
-  return filteredFns.reduce((prevFn, nextFn) => value => nextFn(prevFn(value)));
-};
+export { default as memoizeOne } from "memoize-one";

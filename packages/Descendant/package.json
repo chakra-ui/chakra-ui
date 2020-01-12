@@ -1,19 +1,21 @@
 {
-  "name": "@chakra-ui/utils",
+  "name": "@chakra-ui/descendant",
   "version": "0.0.1",
-  "description": "All utilties for Chakra Components and Types",
+  "description": "description",
+  "keywords": [
+    "theme",
+    "theming",
+    "ui mode",
+    "ui"
+  ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
   "main": "dist/index.js",
-  "module": "dist/utils.esm.js",
+  "module": "dist/descendant.esm.js",
   "types": "dist/index.d.ts",
-  "directories": {
-    "lib": "lib",
-    "test": "__tests__"
-  },
   "files": [
-    "lib"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"
@@ -22,6 +24,9 @@
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git"
   },
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
   "scripts": {
     "prebuild": "rimraf dist",
     "start": "tsdx watch",
@@ -29,17 +34,6 @@
     "test": "tsdx test --env=jsdom",
     "lint": "tsdx lint src",
     "version": "yarn build"
-  },
-  "bugs": {
-    "url": "https://github.com/chakra-ui/chakra-ui/issues"
-  },
-  "dependencies": {
-    "@types/throttle-debounce": "2.1.0",
-    "throttle-debounce": "2.1.0",
-    "dequal": "1.0.0",
-    "memoize-one": "5.1.1",
-    "css-box-model": "1.2.0",
-    "tiny-invariant": "1.0.6"
   },
   "devDependencies": {
     "@types/jest": "24.0.25",
@@ -53,7 +47,12 @@
     "tslib": "1.10.0",
     "typescript": "3.7.4"
   },
+  "dependencies": {},
   "peerDependencies": {
-    "react": "16.x"
+    "@emotion/core": "10.x",
+    "@emotion/styled": "10.x",
+    "emotion-theming": "10.x",
+    "react": "16.x",
+    "react-dom": "16.x"
   }
 }

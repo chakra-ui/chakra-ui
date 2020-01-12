@@ -3594,7 +3594,7 @@
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@types/events/-/events-3.0.0.tgz#2862f3f58a9a7f7c3e78d79f130dd4d71c25c2a7"
 
-"@types/flushable@0.0.0":
+"@types/flushable@1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@types/flushable/-/flushable-1.0.1.tgz#7ef22f21ee52ba6602758661cc1c1845e72c9735"
   integrity sha512-4IWprFsI6bdy3ByEE07vK+6271PhmayjAHVmPWQ+lKfAEgHacNhsNohf39oyUOXA6pVn/CVBKrRY1oH6AZweZA==
@@ -13793,7 +13793,7 @@ tiny-glob@^0.2.6:
     globalyzer "^0.1.0"
     globrex "^0.1.1"
 
-tiny-invariant@^1.0.2, tiny-invariant@^1.0.6:
+tiny-invariant@1.0.6, tiny-invariant@^1.0.2, tiny-invariant@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/tiny-invariant/-/tiny-invariant-1.0.6.tgz#b3f9b38835e36a41c843a3b0907a5a7b3755de73"
   integrity sha512-FOyLWWVjG+aC0UqG76V53yAWdXfH8bO6FNmyZOuUrzDzK8DI3/JRY25UD7+g49JWM1LXwymsKERB+DzI0dTEQA==
