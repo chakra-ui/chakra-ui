@@ -33,10 +33,18 @@ export interface TooltipOptions {
 }
 
 export function useTooltip(props: TooltipOptions) {
-  const { delay = 300, hideOnClick, onShow, onHide, hideOnMouseDown } = props;
+  const {
+    delay = 300,
+    hideOnClick = true,
+    onShow,
+    onHide,
+    hideOnMouseDown,
+  } = props;
   // These two states are useful for animations
   const [immediatelyHide, setImmediatelyHide] = React.useState(false);
   const [immediatelyShow, setImmediatelyShow] = React.useState(false);
+
+  const ref = React.useRef<any>(null);
 
   // The actual visible state of the tooltip
   const [isOpen, setIsOpen] = React.useState(false);
@@ -72,6 +80,7 @@ export function useTooltip(props: TooltipOptions) {
 
   const onClick = () => {
     if (hideOnClick) {
+      console.log("clicked");
       cancelPendingRef.current();
       setIsOpen(false);
       setImmediatelyHide(true);
@@ -108,15 +117,26 @@ export function useTooltip(props: TooltipOptions) {
     }
   };
 
+  const onMouseOver = (event: React.MouseEvent) => {
+    if (isOpen && event.target === (ref.current as HTMLElement)) {
+      return;
+    }
+    showTooltip();
+  };
+
   return {
     isOpen,
+    setIsOpen,
     immediatelyHide,
     immediatelyShow,
     bind: {
+      ref,
       onMouseOut: hideTooltip,
-      onMouseOver: showTooltip,
+      onMouseOver,
       onClick,
       onMouseDown,
+      onFocus: showTooltip,
+      onBlur: hideTooltip,
     },
   };
 }

@@ -7,7 +7,7 @@ const stories = storiesOf("Tooltip", module);
 stories.addDecorator(setup);
 
 export const Tooltip = ({ children }: any) => {
-  const tip = useTooltip({ hideOnClick: false });
+  const tip = useTooltip({ hideOnClick: true });
   return (
     <>
       <button {...tip.bind}>Hover me</button>
