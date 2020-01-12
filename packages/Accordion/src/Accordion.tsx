@@ -1,7 +1,7 @@
 import { createChakra, PropsOf } from "@chakra-ui/system";
 import { Omit } from "@chakra-ui/utils";
 import * as React from "react";
-import { Icon } from "../Icon";
+import { Icon } from "../../core/src/Icon";
 import {
   AccordionProvider,
   useAccordionButton,

@@ -2,7 +2,7 @@ import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { Alert, AlertIcon, AlertTitle, AlertDescription } from ".";
 import { chakra } from "@chakra-ui/system";
-import setup from "../story.setup";
+import setup from "../../core/src/story.setup";
 
 const stories = storiesOf("Alert", module);
 

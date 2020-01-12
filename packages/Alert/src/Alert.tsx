@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Icon, IconProps } from "../Icon";
+import { Icon, IconProps } from "../../core/src/Icon";
 import {
   createChakra,
   PropsOf,

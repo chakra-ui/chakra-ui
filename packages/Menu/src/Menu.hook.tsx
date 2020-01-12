@@ -9,15 +9,14 @@ import {
   useDescendant,
   useDescendants,
   UseDescendantsReturn,
-} from "../useDescendant";
-import useMergeRefs from "../useMergeRefs";
-import useId from "../useId";
-import useIsomorphicEffect from "../useIsomorphicEffect";
-import usePopper from "../usePopper";
-import useRapidKeydown from "../useRapidKeydown";
-import useUpdateEffect from "../useUpdateEffect";
-import useDisclosure from "../useDisclosure";
-import useIds from "../useIds";
+  useMergeRefs,
+  useIsomorphicEffect,
+  useRapidKeyDown,
+  useUpdateEffect,
+  useDisclosure,
+  usePopper,
+  useIds,
+} from "@chakra-ui/hooks";
 
 type PopperType = Pick<ReturnType<typeof usePopper>, "popper" | "reference">;
 
@@ -182,7 +181,7 @@ export function useMenu(
   };
 
   const [descendants, { next, previous, search }] = useDescendantCtx();
-  const [onSearch, keys] = useRapidKeydown();
+  const [onSearch, keys] = useRapidKeyDown();
 
   const onKeyDown = createOnKeyDown({
     stopPropagation: event => {

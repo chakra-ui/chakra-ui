@@ -25,7 +25,10 @@
     "color": "yarn workspace @chakra-ui/color",
     "release": "lerna publish",
     "boot": "yarn install && yarn build",
-    "create-pkg": "node scripts/create-package.js"
+    "create-pkg": "node scripts/create-package.js",
+    "menu": "yarn workspace @chakra-ui/menu",
+    "accordion": "yarn workspace @chakra-ui/accordion",
+    "alert": "yarn workspace @chakra-ui/alert"
   },
   "husky": {
     "hooks": {

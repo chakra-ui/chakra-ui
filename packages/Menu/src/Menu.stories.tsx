@@ -1,12 +1,7 @@
 import { createChakra, forwardRef } from "@chakra-ui/system";
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import {
-  MenuProvider,
-  useMenu,
-  useMenuDisclosure,
-  useMenuItem,
-} from "./useMenu";
+import { MenuProvider, useMenu, useMenuDisclosure, useMenuItem } from ".";
 
 const stories = storiesOf("useMenu v2", module);
 

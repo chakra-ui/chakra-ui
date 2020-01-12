@@ -20,9 +20,6 @@ export { default as useIds } from "./useIds";
 
 export { default as useLogger } from "./useLogger";
 
-// export * from "./useNumberInput/useNumberInput";
-// export { default as useNumberInput } from "./useNumberInput/useNumberInput";
-
 export * from "./usePopper/usePopper";
 export { default as usePopper } from "./usePopper/usePopper";
 export { default as usePrevious } from "./usePrevious";

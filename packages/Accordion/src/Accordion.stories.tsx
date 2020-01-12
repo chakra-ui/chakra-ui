@@ -1,6 +1,6 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import setup from "../story.setup";
+import setup from "../../core/src/story.setup";
 import {
   Accordions,
   Accordion,
