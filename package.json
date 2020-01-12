@@ -38,7 +38,9 @@
     "editable": "yarn workspace @chakra-ui/editable",
     "select": "yarn workspace @chakra-ui/select",
     "counter": "yarn workspace @chakra-ui/counter",
-    "numberinput": "yarn workspace @chakra-ui/numberinput"
+    "numberinput": "yarn workspace @chakra-ui/numberinput",
+    "popover": "yarn workspace @chakra-ui/popover",
+    "popper": "yarn workspace @chakra-ui/popper"
   },
   "husky": {
     "hooks": {

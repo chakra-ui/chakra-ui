@@ -11,7 +11,7 @@ import {
   UseDescendantsReturn,
   useMergeRefs,
   useIsomorphicEffect,
-  useRapidKeyDown,
+  useRapidKeydown,
   useUpdateEffect,
   useDisclosure,
   usePopper,
@@ -181,7 +181,7 @@ export function useMenu(
   };
 
   const [descendants, { next, previous, search }] = useDescendantCtx();
-  const [onSearch, keys] = useRapidKeyDown();
+  const [onSearch, keys] = useRapidKeydown();
 
   const onKeyDown = createOnKeyDown({
     stopPropagation: event => {

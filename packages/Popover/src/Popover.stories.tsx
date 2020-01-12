@@ -5,8 +5,8 @@ import {
   usePopoverContent,
   usePopoverTrigger,
   usePopoverState,
-} from "./usePopover";
-import Portal from "../usePortal";
+} from ".";
+import { Portal } from "@chakra-ui/portal";
 import setup from "../story.setup";
 
 const stories = storiesOf("usePopover", module);
@@ -21,7 +21,7 @@ function PopoverExample() {
   return (
     <>
       <button {...trigger}>Open</button>
-      <Portal className="popover__portal">
+      <Portal>
         <div {...content}>
           This is the content <button onClick={popover.onClose}>Close</button>
         </div>

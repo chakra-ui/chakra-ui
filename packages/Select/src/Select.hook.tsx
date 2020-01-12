@@ -4,25 +4,23 @@ import {
   createContext,
 } from "@chakra-ui/utils";
 import * as React from "react";
-// import useIsomorphicEffect from "../useIsomorphicEffect";
+import {
+  useFocusManagement,
+  useOpenEffect,
+  useScrollIntoView,
+} from "./Select.utils";
 import {
   DescendantsActions,
   DescendantsState,
   useDescendant,
   useDescendants,
-} from "../useDescendant";
-import useBlurOutside from "../useBlurOutside";
-import useDisclosure, { UseDisclosureReturn } from "../useDisclosure";
-// import { useDefaultValue, useValue } from "./useValue";
-import useId from "../useId";
-import useIds from "../useIds";
-// import { useMergeRefs } from "../useMergeRefs";
-// import usePopper from "../usePopper";
-import useRapidKeydown from "../useRapidKeydown";
-import useDisableHoverOutside from "./useDisableHoverOutside";
-import useFocusManagement from "./useFocusManagement";
-import useOpenEffect from "./useOpenEffect";
-import useScrollIntoView from "./useScrollIntoView";
+  useBlurOutside,
+  useDisclosure,
+  UseDisclosureReturn,
+  useId,
+  useIds,
+  useRapidKeydown,
+} from "@chakra-ui/hooks";
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -229,7 +227,6 @@ export function SelectProvider(props: any) {
 
   useFocusManagement(controlRef, listBoxRef, disclosure.isOpen);
   useOpenEffect(state, actions, disclosure.isOpen, disclosure.prevIsOpen);
-  useDisableHoverOutside(listBoxRef, disclosure.isOpen);
 
   const stateCtx = React.useMemo(() => state, [state]);
 

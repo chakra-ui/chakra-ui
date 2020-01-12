@@ -15,7 +15,7 @@ function hasFocusWithin(
   return hasFocus;
 }
 
-function useBlurOutside(
+export function useBlurOutside(
   buttonRef: React.RefObject<HTMLButtonElement>,
   containerRef: React.RefObject<HTMLElement>,
   options: {

@@ -1,6 +1,6 @@
 import React from "react";
 
-function useCallbackRef<T>() {
+export function useCallbackRef<T>() {
   const [node, setNode] = React.useState<T | null>(null);
 
   const ref = React.useCallback<(node: T) => void>(node => {

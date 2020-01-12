@@ -1,11 +1,9 @@
 import { configure } from "@storybook/react";
 
-// ../packages/hooks/src/useMenu-v2
-// ../packages/system
-// ../packages/hooks/src/useCheckbox
+const scope = "Accordion";
 
 const req = require.context(
-  "../packages/core/src/",
+  `../packages/${scope}/src/`,
   true,
   /.stories\.(ts|tsx)$/,
 );

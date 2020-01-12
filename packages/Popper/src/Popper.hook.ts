@@ -1,13 +1,12 @@
-import { css } from "@emotion/core";
 import Popper from "popper.js";
 import React from "react";
 import { useDeepCompareEffect } from "use-deep-compare";
-import useCallbackRef from "../useCallbackRef";
+import { useCallbackRef } from "@chakra-ui/hooks";
 import {
   getArrowStyles,
   getNormalizedOffset,
   getPopoverOffset,
-} from "./usePopper.utils";
+} from "./Popper.utils";
 
 const popperStyles: React.CSSProperties = {
   position: "absolute",
@@ -189,85 +188,3 @@ export function usePopper<
 }
 
 export default usePopper;
-
-////////////////////////////////////////////////
-
-export function computeArrowStyle(options: {
-  size: React.CSSProperties["width"];
-  shadowColor: React.CSSProperties["color"];
-  hasArrow: boolean;
-}) {
-  const { size, shadowColor, hasArrow } = options;
-  const margin = hasArrow ? `calc(${size} / 2)` : null;
-  const arrowPosition = `calc(${size} / 2 * -1)`;
-
-  return css`
-    [data-arrow] {
-      width: ${size};
-      height: ${size};
-      position: absolute;
-      transform: rotate(45deg);
-
-      &::before {
-        content: "";
-        width: ${size};
-        height: ${size};
-        position: absolute;
-        z-index: -1;
-      }
-    }
-
-    &[data-placement^="top"] {
-      margin-bottom: ${margin};
-      transform-origin: bottom center;
-    }
-
-    &[data-placement^="top"] [data-arrow] {
-      bottom: ${arrowPosition};
-
-      &::before {
-        box-shadow: 2px 2px 2px 0 ${shadowColor};
-      }
-    }
-
-    &[data-placement^="bottom"] {
-      margin-top: ${margin};
-      transform-origin: top center;
-    }
-
-    &[data-placement^="bottom"] [data-arrow] {
-      top: ${arrowPosition};
-
-      &::before {
-        box-shadow: -1px -1px 1px 0 ${shadowColor};
-      }
-    }
-
-    &[data-placement^="right"] {
-      margin-left: ${margin};
-      transform-origin: left center;
-    }
-
-    &[data-placement^="right"] [data-arrow] {
-      left: ${arrowPosition};
-
-      &::before {
-        box-shadow: -1px 1px 1px 0 ${shadowColor};
-      }
-    }
-
-    &[data-placement^="left"] {
-      margin-right: ${margin};
-      transform-origin: right center;
-    }
-
-    &[data-placement^="left"] [data-arrow] {
-      right: ${arrowPosition};
-      &::before {
-        box-shadow: 1px -1px 1px 0 ${shadowColor};
-      }
-    }
-  `;
-}
-
-export type PopperJS = Popper;

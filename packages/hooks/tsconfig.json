@@ -1,14 +1,5 @@
 {
   "extends": "../../tsconfig-base.json",
-  "include": ["src", "types", "../core/src/Modal/useAriaHidden.tsx"],
-  "exclude": ["**/*.spec.ts", "**/*.spec.tsx", "**/*.test.ts", "**/*.test.tsx"],
-  "compilerOptions": {
-    "noImplicitAny": true,
-    "rootDir": "./",
-    "typeRoots": ["../../node_modules/@types", "@types"]
-    // "baseUrl": ".",
-    // "paths": {
-    //   "*": ["src/*", "node_modules/*"]
-    // }
-  }
+  "include": ["src", "types"],
+  "exclude": ["**/*.spec.ts", "**/*.spec.tsx", "**/*.test.ts", "**/*.test.tsx"]
 }

@@ -1,8 +1,8 @@
 import * as React from "react";
-import { useLayersContext } from "../Layers";
+import { usePortalsContext } from "@chakra-ui/portal";
 
 function useStackContext(ref: React.Ref<any>, isOpen?: boolean) {
-  const manager = useLayersContext();
+  const manager = usePortalsContext();
 
   React.useEffect(() => {
     if (!isOpen) return;

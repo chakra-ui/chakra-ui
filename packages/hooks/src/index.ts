@@ -14,7 +14,7 @@ export * from "./useIsomorphicEffect";
 export * from "./useLockBodyScroll";
 export * from "./useLogger";
 export * from "./useMergeRefs";
-export * from "./usePopper";
+export * from "./useCallbackRef";
 export * from "./usePrevious";
 export * from "./useRapidKeyDown";
 export * from "./useTabbable";

@@ -1,7 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import usePopper from "./usePopper";
-import useDisclosure from "../useDisclosure";
+import { useDisclosure } from "@chakra-ui/hooks";
+import usePopper from "./Popper.hook";
 
 const stories = storiesOf("usePopper", module);
 

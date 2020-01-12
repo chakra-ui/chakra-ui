@@ -10,7 +10,7 @@ import useOutsideClick from "./useOutsideClick";
 import useStackContext from "./useStackingContext";
 import ModalFocusLock from "./DialogFocusLock";
 import { createChakra } from "@chakra-ui/system";
-import { Layer } from "../Layers";
+import { Portal } from "@chakra-ui/portal";
 
 interface ModalProviderProps {
   /**
@@ -70,9 +70,9 @@ export function Modal(props: ModalProps) {
 
   return (
     <ModalProvider value={context}>
-      <Layer>
+      <Portal>
         <ModalFocusLock restoreFocus children={props.children} />
-      </Layer>
+      </Portal>
     </ModalProvider>
   );
 }

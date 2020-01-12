@@ -1,13 +1,15 @@
 import * as React from "react";
-import { useMergeRefs } from "../useMergeRefs";
 import { composeEventHandlers, createContext } from "@chakra-ui/utils";
-import useBlurOutside from "../useBlurOutside";
-import usePopper, { PopperJS } from "../usePopper";
-import useDisclosure from "../useDisclosure";
-import useIds from "../useIds";
-import useFocusOnHide from "../useFocusOnHide";
-import useFocusOnShow from "../useFocusOnShow";
-import useIsomorphicEffect from "../useIsomorphicEffect";
+import { usePopper, PopperJS } from "@chakra-ui/popper";
+import {
+  useMergeRefs,
+  useBlurOutside,
+  useDisclosure,
+  useIds,
+  useFocusOnHide,
+  useFocusOnShow,
+  useIsomorphicEffect,
+} from "@chakra-ui/hooks";
 
 const [PopoverCtxProvider, usePopoverCtx] = createContext<PopoverContext>();
 export { usePopoverCtx };
