@@ -1,4 +1,5 @@
 import { addOpacity } from "@chakra-ui/color";
+import { VariantStyleFunction } from "./utils";
 
 const grayGhostStyle = {
   light: {
@@ -23,7 +24,7 @@ const grayGhostStyle = {
 
 ////////////////////////////////////////////////////////////
 
-const ghost = ({ variantColor, colorMode }: any) => {
+function getGhostStyle({ variantColor, colorMode }: VariantStyleFunction) {
   let result: any;
   if (variantColor === "gray") {
     result = grayGhostStyle;
@@ -53,23 +54,20 @@ const ghost = ({ variantColor, colorMode }: any) => {
   }
 
   return result[colorMode];
-};
+}
 
 ////////////////////////////////////////////////////////////
 
-const outline = (props: any) => {
+function getOutlineStyle(props: VariantStyleFunction) {
   const { variantColor, colorMode } = props;
   const borderColor = { light: "gray.200", dark: "whiteAlpha.300" };
 
   return {
     border: "1px solid",
-    borderColor:
-      variantColor === "gray"
-        ? borderColor[colorMode as keyof typeof borderColor]
-        : "current",
-    ...ghost(props),
+    borderColor: variantColor === "gray" ? borderColor[colorMode] : "current",
+    ...getGhostStyle(props),
   };
-};
+}
 
 ////////////////////////////////////////////////////////////
 
@@ -94,8 +92,12 @@ const graySolidStyle = {
   },
 };
 
-const solid = ({ variantColor, colorMode }: any) => {
-  let style: any = {
+function getSolidStyle({ variantColor, colorMode }: VariantStyleFunction) {
+  if (variantColor === "gray") {
+    return graySolidStyle[colorMode];
+  }
+
+  const style = {
     light: {
       bg: `${variantColor}.500`,
       color: "white",
@@ -118,16 +120,12 @@ const solid = ({ variantColor, colorMode }: any) => {
     },
   };
 
-  if (variantColor === "gray") {
-    style = graySolidStyle;
-  }
-
   return style[colorMode];
-};
+}
 
 ////////////////////////////////////////////////////////////
 
-const link = ({ variantColor, colorMode }: any) => {
+function getLinkStyle({ variantColor, colorMode }: VariantStyleFunction) {
   const _color = { light: `${variantColor}.500`, dark: `${variantColor}.200` };
   const _activeColor = {
     light: `${variantColor}.700`,
@@ -137,15 +135,15 @@ const link = ({ variantColor, colorMode }: any) => {
     padding: 0,
     height: "auto",
     lineHeight: "normal",
-    color: _color[colorMode as keyof typeof _color],
+    color: _color[colorMode],
     _hover: {
       textDecoration: "underline",
     },
     _active: {
-      color: _activeColor[colorMode as keyof typeof _activeColor],
+      color: _activeColor[colorMode],
     },
   };
-};
+}
 
 ////////////////////////////////////////////////////////////
 
@@ -191,7 +189,7 @@ const unstyled = {
   textAlign: "inherit",
 };
 
-const common = {
+const baseStyles = {
   display: "inline-flex",
   appearance: "none",
   alignItems: "center",
@@ -218,14 +216,14 @@ const common = {
 ////////////////////////////////////////////////////////////
 
 const Button = {
-  common,
+  baseStyles,
   variantSize,
   variant: {
     unstyled,
-    solid,
-    ghost,
-    link,
-    outline,
+    solid: getSolidStyle,
+    ghost: getGhostStyle,
+    link: getLinkStyle,
+    outline: getOutlineStyle,
   },
 };
 

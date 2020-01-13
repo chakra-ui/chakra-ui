@@ -1,57 +1,66 @@
 import { colorEmphasis } from "@chakra-ui/color";
+import { VariantStyleFunction } from "./utils";
 
-const subtle = ({ variantColor, colorMode }: any) => {
+function getSubtleStyle({ variantColor, colorMode }: VariantStyleFunction) {
   const style = {
     light: {
       bg: `${variantColor}.100`,
     },
     dark: { bg: colorEmphasis(`${variantColor}.200`, "lowest") },
   };
+  return style[colorMode];
+}
+
+function getLeftAccentStyle(props: VariantStyleFunction) {
+  const { variantColor, colorMode } = props;
+  const style = {
+    light: {
+      paddingLeft: 3,
+      borderLeft: "4px solid",
+      borderColor: `${variantColor}.500`,
+    },
+    dark: {
+      paddingLeft: 3,
+      borderLeft: "4px solid",
+      borderColor: `${variantColor}.200`,
+    },
+  };
+  return {
+    ...getSubtleStyle(props),
+    ...style[colorMode],
+  };
+}
+
+function getTopAccentStyle(props: VariantStyleFunction) {
+  const { variantColor, colorMode } = props;
+  const style = {
+    light: {
+      paddingTop: 2,
+      borderTop: "4px solid",
+      borderColor: `${variantColor}.500`,
+    },
+    dark: {
+      paddingTop: 2,
+      borderTop: "4px solid",
+      borderColor: `${variantColor}.200`,
+    },
+  };
+  return {
+    ...getSubtleStyle(props),
+    ...style[colorMode],
+  };
+}
+
+function getSolidStyle({ variantColor, colorMode }: VariantStyleFunction) {
+  const style = {
+    light: { bg: `${variantColor}.500`, color: "white" },
+    dark: { bg: `${variantColor}.200`, color: "gray.900" },
+  };
   return style[colorMode as keyof typeof style];
-};
-
-const leftAccent = (props: any) => {
-  const { variantColor, colorMode } = props;
-  const style = {
-    light: {
-      paddingLeft: 3,
-      borderLeft: "4px solid",
-      borderColor: `${variantColor}.500`,
-    },
-    dark: {
-      paddingLeft: 3,
-      borderLeft: "4px solid",
-      borderColor: `${variantColor}.200`,
-    },
-  };
-  return {
-    ...subtle(props),
-    ...style[colorMode as keyof typeof style],
-  };
-};
-
-const topAccent = (props: any) => {
-  const { variantColor, colorMode } = props;
-  const style = {
-    light: {
-      paddingTop: 2,
-      borderTop: "4px solid",
-      borderColor: `${variantColor}.500`,
-    },
-    dark: {
-      paddingTop: 2,
-      borderTop: "4px solid",
-      borderColor: `${variantColor}.200`,
-    },
-  };
-  return {
-    ...subtle(props),
-    ...style[colorMode as keyof typeof style],
-  };
-};
+}
 
 export default {
-  common: {
+  baseStyles: {
     display: "flex",
     alignItems: "center",
     position: "relative",
@@ -62,15 +71,9 @@ export default {
     paddingBottom: 3,
   },
   variant: {
-    solid: ({ variantColor, colorMode }: any) => {
-      const style = {
-        light: { bg: `${variantColor}.500`, color: "white" },
-        dark: { bg: `${variantColor}.200`, color: "gray.900" },
-      };
-      return style[colorMode as keyof typeof style];
-    },
-    subtle,
-    "left-accent": leftAccent,
-    "top-accent": topAccent,
+    solid: getSolidStyle,
+    subtle: getSubtleStyle,
+    "left-accent": getLeftAccentStyle,
+    "top-accent": getTopAccentStyle,
   },
 };

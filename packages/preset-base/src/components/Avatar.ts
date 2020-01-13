@@ -7,7 +7,7 @@ const compute = (size: keyof typeof sizes) => ({
 });
 
 export default {
-  common: {
+  baseStyles: {
     display: "inline-flex",
     rounded: "full",
     alignItems: "center",

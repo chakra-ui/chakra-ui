@@ -1,6 +1,11 @@
 import { addOpacity, generateAlphaColors, getColor } from "@chakra-ui/color";
+import { VariantStyleFunction } from "./utils";
 
-const solid = ({ theme, variantColor, colorMode }: any) => {
+function getSolidStyle({
+  theme,
+  variantColor,
+  colorMode,
+}: VariantStyleFunction) {
   const style = {
     light: {
       bg: getColor(theme, `${variantColor}.500`),
@@ -11,11 +16,14 @@ const solid = ({ theme, variantColor, colorMode }: any) => {
       color: "whiteAlpha.800",
     },
   };
-  //@ts-ignore
   return style[colorMode];
-};
+}
 
-const subtle = ({ theme, variantColor, colorMode }: any) => {
+function getSubtleStyle({
+  theme,
+  variantColor,
+  colorMode,
+}: VariantStyleFunction) {
   const alphaColors = generateAlphaColors(`${variantColor}.200`);
   const darkModeBg = alphaColors[300];
 
@@ -29,11 +37,14 @@ const subtle = ({ theme, variantColor, colorMode }: any) => {
       color: getColor(theme, `${variantColor}.200`),
     },
   };
-  //@ts-ignore
   return style[colorMode];
-};
+}
 
-const outline = ({ theme, variantColor, colorMode }: any) => {
+function getOutlineStyle({
+  theme,
+  variantColor,
+  colorMode,
+}: VariantStyleFunction) {
   const darkModeColor = addOpacity(`${variantColor}.200`, 0.8)(theme);
   const lightModeColor = getColor(theme, `${variantColor}.500`);
   const style = {
@@ -46,12 +57,11 @@ const outline = ({ theme, variantColor, colorMode }: any) => {
       color: darkModeColor,
     },
   };
-  //@ts-ignore
   return style[colorMode];
-};
+}
 
 const Badge = {
-  common: {
+  baseStyles: {
     display: "inline-block",
     paddingX: 1,
     textTransform: "uppercase",
@@ -62,9 +72,9 @@ const Badge = {
     verticalAlign: "middle",
   },
   variant: {
-    solid,
-    outline,
-    subtle,
+    solid: getSolidStyle,
+    outline: getOutlineStyle,
+    subtle: getSubtleStyle,
   },
 };
 
