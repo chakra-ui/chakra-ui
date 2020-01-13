@@ -1,4 +1,5 @@
-import { VariantStyleFunction } from "./utils";
+import { VariantStyleFunction, getModeValue } from "./utils";
+import { getColor } from "@chakra-ui/color";
 
 const tabVariantSize = {
   sm: {
@@ -15,23 +16,30 @@ const tabVariantSize = {
   },
 };
 
-function getLineStyle({ variantColor, colorMode }: VariantStyleFunction) {
-  const _color = { light: `${variantColor}.600`, dark: `${variantColor}.300` };
+function getLineStyle(props: VariantStyleFunction) {
+  const color = getModeValue(
+    props,
+    `${props.variantColor}.600`,
+    `${props.variantColor}.300`,
+  );
+
+  const activeBg = getModeValue(props, "gray.200", "whiteAlpha.300");
+
   return {
     TabList: {
-      borderBottom: "2px",
+      borderBottom: "2px solid",
       borderColor: "inherit",
     },
     Tab: {
-      borderBottom: "2px",
+      borderBottom: "2px solid",
       borderColor: "transparent",
-      mb: "-2px",
+      marginBottom: "-2px",
       _selected: {
-        color: _color[colorMode],
+        color: color,
         borderColor: "currentColor",
       },
       _active: {
-        bg: "gray.200",
+        bg: activeBg,
       },
       _disabled: {
         opacity: 0.4,
@@ -41,107 +49,104 @@ function getLineStyle({ variantColor, colorMode }: VariantStyleFunction) {
   };
 }
 
-function getEnclosedStyle({
-  variantColor,
-  colorMode,
-  theme,
-}: VariantStyleFunction) {
-  const _selectedColor = {
-    light: `${variantColor}.600`,
-    dark: `${variantColor}.300`,
-  };
-  const _selectedBg = { light: "#fff", dark: theme.colors.gray[800] };
+function getEnclosedStyle(props: VariantStyleFunction) {
+  const selectedColor = getModeValue(
+    props,
+    `${props.variantColor}.600`,
+    `${props.variantColor}.300`,
+  );
+
+  const selectedBorderColor = getModeValue(props, `white`, `gray.800`);
 
   return {
     Tab: {
       roundedTop: "md",
-      border: "1px",
+      border: "1px solid",
       borderColor: "transparent",
-      mb: "-1px",
+      marginBottom: "-1px",
       _selected: {
-        color: _selectedColor[colorMode],
+        color: selectedColor,
         borderColor: "inherit",
-        borderBottomColor: _selectedBg[colorMode],
+        borderBottomColor: selectedBorderColor,
       },
     },
     TabList: {
-      mb: "-1px",
-      borderBottom: "1px",
+      marginBottom: "-1px",
+      borderBottom: "1px solid",
       borderColor: "inherit",
     },
   };
 }
 
-const getEnclosedColoredStyle = ({
-  variantColor,
-  colorMode,
-}: VariantStyleFunction) => {
-  const bg = { light: "gray.50", dark: "whiteAlpha.50" };
-  const _selectedColor = {
-    light: `${variantColor}.600`,
-    dark: `${variantColor}.300`,
-  };
-  const _selectedBg = { light: `#fff`, dark: `gray.800` };
+const getEnclosedColoredStyle = (props: VariantStyleFunction) => {
+  const bg = getModeValue(props, `gray.50`, `whiteAlpha.50`);
+  const selectedColor = getModeValue(
+    props,
+    `${props.variantColor}.600`,
+    `${props.variantColor}.300`,
+  );
+  const selectedBg = getModeValue(props, `#fff`, "gray.800");
 
   return {
     Tab: {
-      border: "1px",
+      border: "1px solid",
       borderColor: "inherit",
-      bg: bg[colorMode],
-      mb: "-1px",
+      bg: bg,
+      marginBottom: "-1px",
       _notLast: {
         mr: "-1px",
       },
       _selected: {
-        bg: _selectedBg[colorMode],
-        color: _selectedColor[colorMode],
+        bg: selectedBg,
+        color: selectedColor,
         borderColor: "inherit",
         borderTopColor: "currentColor",
         borderBottomColor: "transparent",
       },
     },
     TabList: {
-      mb: "-1px",
-      borderBottom: "1px",
+      marginBottom: "-1px",
+      borderBottom: "1px solid",
       borderColor: "inherit",
     },
   };
 };
 
-function getSoftRoundedStyle({ variantColor }: VariantStyleFunction) {
+function getSoftRoundedStyle(props: VariantStyleFunction) {
+  const selectedColor = getColor(props.theme, `${props.variantColor}.700`);
+  const selectedBg = getColor(props.theme, `${props.variantColor}.100`);
+
   return {
     Tab: {
       rounded: "full",
       fontWeight: "semibold",
       color: "gray.600",
       _selected: {
-        color: `${variantColor}.700`,
-        bg: `${variantColor}.100`,
+        color: selectedColor,
+        bg: selectedBg,
       },
     },
     TabList: {},
   };
 }
 
-function getSolidRoundedStyle({
-  variantColor,
-  colorMode,
-}: VariantStyleFunction) {
-  const _color = { light: "gray.600", dark: "inherit" };
-  const _selectedBg = {
-    light: `${variantColor}.600`,
-    dark: `${variantColor}.300`,
-  };
-  const _selectedColor = { light: `#fff`, dark: `gray.800` };
+function getSolidRoundedStyle(props: VariantStyleFunction) {
+  const color = getModeValue(props, "gray.600", "inherit");
+  const selectedBg = getModeValue(
+    props,
+    `${props.variantColor}.600`,
+    `${props.variantColor}.300`,
+  );
+  const selectedColor = getModeValue(props, `#fff`, "gray.800");
 
   return {
     Tab: {
       rounded: "full",
       fontWeight: "semibold",
-      color: _color[colorMode],
+      color: color,
       _selected: {
-        color: _selectedColor[colorMode],
-        bg: _selectedBg[colorMode],
+        color: selectedColor,
+        bg: selectedBg,
       },
     },
     TabList: {},
@@ -149,7 +154,7 @@ function getSolidRoundedStyle({
 }
 
 export default {
-  baseStyles: {
+  baseStyle: {
     Tab: {
       display: "flex",
       cursor: "pointer",
@@ -160,12 +165,18 @@ export default {
         zIndex: "1",
         boxShadow: "outline",
       },
-      TabList: {},
     },
   },
   variantSize: {
-    Tab: tabVariantSize,
-    TabList: {},
+    sm: {
+      Tab: tabVariantSize.sm,
+    },
+    md: {
+      Tab: tabVariantSize.md,
+    },
+    lg: {
+      Tab: tabVariantSize.lg,
+    },
   },
   variant: {
     line: getLineStyle,

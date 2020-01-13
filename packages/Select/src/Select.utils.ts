@@ -1,11 +1,10 @@
+import { useIsomorphicEffect, usePrevious } from "@chakra-ui/hooks";
 import {
   UseDescendantsReturn,
-  useIsomorphicEffect,
   Descendant,
   DescendantsState,
   DescendantsActions,
-  usePrevious,
-} from "@chakra-ui/hooks";
+} from "@chakra-ui/descendant";
 import computeScrollIntoView from "compute-scroll-into-view";
 import * as React from "react";
 import { ensureFocus } from "@chakra-ui/utils";
@@ -120,4 +119,3 @@ export function useOpenEffect(
     // eslint-disable-next-line
   }, [isOpen, prevIsOpen]);
 }
-

@@ -189,7 +189,7 @@ const unstyled = {
   textAlign: "inherit",
 };
 
-const baseStyles = {
+const baseStyle = {
   display: "inline-flex",
   appearance: "none",
   alignItems: "center",
@@ -216,7 +216,7 @@ const baseStyles = {
 ////////////////////////////////////////////////////////////
 
 const Button = {
-  baseStyles,
+  baseStyle,
   variantSize,
   variant: {
     unstyled,

@@ -25,15 +25,16 @@ function getMenuItemStyle({ colorMode }: VariantStyleFunction) {
 
   return {
     width: "full",
-    flex: " 0 0 auto",
+    flex: "0 0 auto",
     userSelect: "none",
     transition: "background-color 220ms, color 220ms",
     _active: {
       bg: _activeColor[colorMode],
     },
     _focus: {
-      bg: _focusColor[colorMode],
+      // bg: _focusColor[colorMode],
       outline: 0,
+      shadow: "outline",
     },
     _disabled: {
       opacity: 0.4,
@@ -42,9 +43,7 @@ function getMenuItemStyle({ colorMode }: VariantStyleFunction) {
   };
 }
 
-// themeKey: Menu.MenuList or Menu.MenuItem
-
-function getBaseStyles(props: VariantStyleFunction) {
+function getbaseStyle(props: VariantStyleFunction) {
   return {
     MenuList: getMenuListStyle(props),
     MenuItem: getMenuItemStyle(props),
@@ -52,5 +51,5 @@ function getBaseStyles(props: VariantStyleFunction) {
 }
 
 export default {
-  baseStyles: getBaseStyles,
+  baseStyle: getbaseStyle,
 };

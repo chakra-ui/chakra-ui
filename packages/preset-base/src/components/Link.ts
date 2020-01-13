@@ -1,5 +1,5 @@
 export default {
-  baseStyles: {
+  baseStyle: {
     transition: `all 0.15s ease-out`,
     cursor: "pointer",
     textDecoration: "none",

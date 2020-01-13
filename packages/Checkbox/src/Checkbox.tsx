@@ -6,7 +6,7 @@ import { SafeMerge, Omit } from "@chakra-ui/utils";
 ////////////////////////////////////////////////////////////////////////////////
 
 const CustomCheckbox = createChakra("div", {
-  baseStyles: {
+  baseStyle: {
     _hover: { borderColor: "gray.200", bg: "gray.50" },
     _focus: { shadow: "outline" },
     _checked: {

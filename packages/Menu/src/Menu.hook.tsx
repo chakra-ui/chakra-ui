@@ -6,9 +6,6 @@ import {
 } from "@chakra-ui/utils";
 import * as React from "react";
 import {
-  useDescendant,
-  useDescendants,
-  UseDescendantsReturn,
   useMergeRefs,
   useIsomorphicEffect,
   useRapidKeydown,
@@ -16,6 +13,11 @@ import {
   useDisclosure,
   useIds,
 } from "@chakra-ui/hooks";
+import {
+  useDescendant,
+  useDescendants,
+  UseDescendantsReturn,
+} from "@chakra-ui/descendant";
 import { usePopper } from "@chakra-ui/popper";
 
 type PopperType = Pick<ReturnType<typeof usePopper>, "popper" | "reference">;

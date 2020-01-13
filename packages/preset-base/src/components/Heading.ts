@@ -1,5 +1,5 @@
 export default {
-  baseStyles: {
+  baseStyle: {
     fontFamily: "heading",
   },
   variantSize: {

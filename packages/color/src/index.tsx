@@ -1,8 +1,15 @@
 import tiny from "tinycolor2";
 import * as SS from "@styled-system/css";
 
-export const getColor = (theme: object, color: string): string =>
-  SS.get(theme, `colors.${color}`, color);
+export const getColor = (
+  theme: object,
+  color: string,
+  fallback?: string,
+): string => {
+  const result = SS.get(theme, `colors.${color}`, color);
+  const isValid = tiny(result).isValid();
+  return isValid ? result : fallback;
+};
 
 const get = getColor;
 

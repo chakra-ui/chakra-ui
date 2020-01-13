@@ -89,7 +89,7 @@ export interface CreateChakraOptions<P> {
   /**
    * Some base styles to add the all components
    */
-  baseStyles?: SystemProps;
+  baseStyle?: SystemProps;
 }
 
 ///////////////////////////////////////////////////////////////////

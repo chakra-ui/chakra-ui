@@ -13,7 +13,7 @@ import * as Types from "./Accordion.types";
 export const AccordionButton = createChakra("button", {
   hook: useAccordionButton,
   themeKey: "AccordionButton",
-  baseStyles: {
+  baseStyle: {
     display: "flex",
     alignItems: "center",
     width: "100%",
@@ -31,7 +31,7 @@ export const AccordionPanel = createChakra("div", {
   hook: useAccordionPanel,
   themeKey: "AccordionPanel",
   dataAttr: "accordion-panel",
-  baseStyles: {
+  baseStyle: {
     paddingTop: 2,
     paddingX: 4,
     paddingBottom: 5,

@@ -1,7 +1,7 @@
 import Badge from "./Badge";
 
 export default {
-  baseStyles: {
+  baseStyle: {
     display: "inline-block",
     fontFamily: "mono",
     fontSize: "sm",

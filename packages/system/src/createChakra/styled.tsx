@@ -5,7 +5,7 @@ import { useChakra } from "../color-mode";
 import { css } from "../css";
 import { forwardRef } from "../forward-ref";
 import { jsx } from "../system";
-import getComponentStyles from "./component-style";
+import getComponentStyles from "./get-component-style";
 import { As, CreateChakraComponent, CreateChakraOptions } from "./types";
 
 export const styled = <T extends As, H = {}>(
@@ -19,8 +19,8 @@ export const styled = <T extends As, H = {}>(
       // component component style
       let styles: Dict = {};
 
-      if (options?.baseStyles) {
-        const baseStyle = css(options.baseStyles)(theme);
+      if (options?.baseStyle) {
+        const baseStyle = css(options.baseStyle)(theme);
         Object.assign(styles, baseStyle);
       }
 

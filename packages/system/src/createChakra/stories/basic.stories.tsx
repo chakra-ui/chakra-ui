@@ -15,10 +15,10 @@ stories.addDecorator(setup);
  *  - themeKey: the reference to the styles in the theme.components
  *  - hook: To execute a hook within the components
  *  - dataAttr: A unique data-chakra-* attribute
- *  - baseStyles: Some base styles to apply to the component
+ *  - baseStyle: Some base styles to apply to the component
  */
 
-const baseStyles: SystemProps = {
+const baseStyle: SystemProps = {
   cursor: "pointer",
   outline: 0,
   border: 0,
@@ -51,7 +51,7 @@ type ButtonOptions = {
 const Button = createChakra<"button", ButtonOptions>("button", {
   // themeKey: "Button",
   dataAttr: "button",
-  baseStyles,
+  baseStyle,
 });
 
 Button.defaultProps = {

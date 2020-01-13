@@ -1,38 +1,26 @@
-import { VariantStyleFunction } from "./utils";
+import { VariantStyleFunction, getModeValue } from "./utils";
+import { getColor } from "@chakra-ui/color";
 
 type InputVariant = VariantStyleFunction & {
   focusBorderColor: string;
   errorBorderColor: string;
 };
 
-function getOutlinedStyle({
-  theme,
-  get,
-  colorMode,
-  focusBorderColor,
-  errorBorderColor,
-}: InputVariant) {
-  const bg = { light: "white", dark: "whiteAlpha.100" };
-  const borderColor = { light: "inherit", dark: "whiteAlpha.50" };
-  const hoverColor = { light: "gray.300", dark: "whiteAlpha.200" };
+function getOutlinedStyle(props: InputVariant) {
+  const { focusBorderColor, errorBorderColor } = props;
+  const bg = getModeValue(props, "white", "whiteAlpha.100");
+  const borderColor = getModeValue(props, "inherit", "whiteAlpha.50");
+  const hoverBorderColor = getModeValue(props, "gray.300", "whiteAlpha.200");
 
-  const _focusBorderColor = get(
-    theme.colors,
-    focusBorderColor,
-    focusBorderColor,
-  );
-  const _errorBorderColor = get(
-    theme.colors,
-    errorBorderColor,
-    errorBorderColor,
-  );
+  const _focusBorderColor = getColor(props.theme, focusBorderColor);
+  const _errorBorderColor = getColor(props.theme, errorBorderColor);
 
   return {
     border: "1px",
-    borderColor: borderColor[colorMode],
-    bg: bg[colorMode],
+    borderColor: borderColor,
+    bg: bg,
     _hover: {
-      borderColor: hoverColor[colorMode],
+      borderColor: hoverBorderColor,
     },
     _disabled: {
       opacity: "0.4",
@@ -50,33 +38,20 @@ function getOutlinedStyle({
   };
 }
 
-function getFilledStyle({
-  theme,
-  get,
-  focusBorderColor,
-  errorBorderColor,
-  colorMode,
-}: InputVariant) {
-  const bg = { light: "gray.100", dark: "whiteAlpha.50" };
-  const hoverColor = { light: "gray.200", dark: "whiteAlpha.100" };
+function getFilledStyle(props: InputVariant) {
+  const { theme, focusBorderColor, errorBorderColor } = props;
+  const bg = getModeValue(props.theme, "gray.100", "whiteAlpha.50");
+  const hoverBg = getModeValue(props.theme, "gray.200", "whiteAlpha.100");
 
-  const _focusBorderColor = get(
-    theme.colors,
-    focusBorderColor,
-    focusBorderColor,
-  );
-  const _errorBorderColor = get(
-    theme.colors,
-    errorBorderColor,
-    errorBorderColor,
-  );
+  const _focusBorderColor = getColor(theme.colors, focusBorderColor);
+  const _errorBorderColor = getColor(theme.colors, errorBorderColor);
 
   return {
     border: "2px",
     borderColor: "transparent",
-    bg: bg[colorMode],
+    bg: bg,
     _hover: {
-      bg: hoverColor[colorMode],
+      bg: hoverBg,
     },
     _disabled: {
       opacity: "0.4",
@@ -93,22 +68,11 @@ function getFilledStyle({
   };
 }
 
-function getFlushedStyle({
-  get,
-  theme,
-  focusBorderColor,
-  errorBorderColor,
-}: InputVariant) {
-  const _focusBorderColor = get(
-    theme.colors,
-    focusBorderColor,
-    focusBorderColor,
-  );
-  const _errorBorderColor = get(
-    theme.colors,
-    errorBorderColor,
-    errorBorderColor,
-  );
+function getFlushedStyle(props: InputVariant) {
+  const { focusBorderColor, errorBorderColor } = props;
+
+  const _focusBorderColor = getColor(props.theme, focusBorderColor);
+  const _errorBorderColor = getColor(props.theme, errorBorderColor);
 
   return {
     borderBottom: "2px",
@@ -133,7 +97,7 @@ const unstyled = {
 };
 
 export default {
-  baseStyles: {
+  baseStyle: {
     display: "flex",
     alignItems: "center",
     position: "relative",

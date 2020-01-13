@@ -61,7 +61,7 @@ function getOutlineStyle({
 }
 
 const Badge = {
-  baseStyles: {
+  baseStyle: {
     display: "inline-block",
     paddingX: 1,
     textTransform: "uppercase",

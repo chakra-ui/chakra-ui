@@ -60,7 +60,7 @@ function getSolidStyle({ variantColor, colorMode }: VariantStyleFunction) {
 }
 
 export default {
-  baseStyles: {
+  baseStyle: {
     display: "flex",
     alignItems: "center",
     position: "relative",

@@ -6,6 +6,8 @@ import Avatar from "./Avatar";
 import Link from "./Link";
 import Code from "./Code";
 import Spinner from "./Spinner";
+import Menu from "./Menu";
+import Tabs from "./Tabs";
 
 export default {
   Button,
@@ -16,4 +18,6 @@ export default {
   Link,
   Code,
   Spinner,
+  Menu,
+  Tabs,
 };
