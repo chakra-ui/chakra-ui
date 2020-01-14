@@ -1,4 +1,4 @@
-const htmlElements = [
+const domElements = [
   "a",
   "abbr",
   "address",
@@ -116,8 +116,8 @@ const htmlElements = [
   "webview",
 ] as const;
 
-export default htmlElements;
+export default domElements;
 
 type UnionStringArray<T extends Readonly<string[]>> = T[number];
 
-export type HTMLElements = UnionStringArray<typeof htmlElements>;
+export type DOMElements = UnionStringArray<typeof domElements>;

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { HTMLElements } from "./supported-elements";
+import { DOMElements } from "./dom-elements";
 import { SystemProps } from "../system";
 
 export type As<P = any> = React.ReactType<P>;
@@ -26,7 +26,7 @@ export interface ChakraComponent<T extends As, O = {}> {
 }
 
 export type HTMLChakraComponents = {
-  [K in HTMLElements]: ChakraComponent<K>;
+  [K in DOMElements]: ChakraComponent<K>;
 };
 
 export interface ChakraOptions {

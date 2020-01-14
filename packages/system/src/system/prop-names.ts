@@ -14,8 +14,8 @@ import {
   textStyle,
   colorStyle,
 } from "styled-system";
-import customProps from "./custom-props";
-import { selectors } from "./pseudo-props";
+import customProps from "./custom/custom";
+import { selectors } from "./pseudo/pseudo";
 
 const SS = compose(
   space,

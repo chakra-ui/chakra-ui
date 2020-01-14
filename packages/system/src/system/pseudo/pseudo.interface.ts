@@ -1,4 +1,4 @@
-import { SystemProps } from "./system-props-interface";
+import { SystemProps } from "../system-props-interface";
 
 type Nested<T, P = {}> =
   | T & P

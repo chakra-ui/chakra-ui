@@ -1,7 +1,7 @@
-import { config } from "./custom-props";
-import { isObject } from "@chakra-ui/utils";
+import { config } from "./custom";
+import { isObject, memoizeOne } from "@chakra-ui/utils";
 
-const transformProp = (prop: string, propValue: any): object => {
+const transformProp = memoizeOne((prop: string, propValue: any): object => {
   const configKeys: string[] = Object.keys(config);
   const result: Record<string, any> = {};
 
@@ -20,9 +20,9 @@ const transformProp = (prop: string, propValue: any): object => {
     result[prop] = propValue;
   }
   return result;
-};
+});
 
-const transformProps = (props: any): object => {
+export const transformProps = (props: any): object => {
   //@ts-ignore
   let result: Record<string, any> = null;
   for (const prop in props) {

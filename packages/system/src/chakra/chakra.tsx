@@ -1,7 +1,7 @@
 import * as React from "react";
 import { pseudo, system, truncate } from "../system";
 import styled from "./styled";
-import htmlElements from "./supported-elements";
+import domElements from "./dom-elements";
 import { As, HTMLChakraComponents } from "./types";
 import { css, get } from "@styled-system/css";
 
@@ -27,7 +27,7 @@ function createStyled<T extends As>(tag: T) {
 
 //@ts-ignore
 const chakra: HTMLChakraComponents = {};
-htmlElements.forEach(tag => {
+domElements.forEach(tag => {
   //@ts-ignore
   chakra[tag] = createStyled(tag);
 });

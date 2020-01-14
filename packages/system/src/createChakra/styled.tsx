@@ -1,6 +1,6 @@
 import { Dict, isFunction } from "@chakra-ui/utils";
 import * as React from "react";
-import { filterProps, getShouldForwardProps } from "../chakra/styled";
+import { filterProps, isTag } from "../chakra/styled";
 import { useChakra } from "../color-mode/";
 import { css } from "../css";
 import { forwardRef } from "../forward-ref";
@@ -26,56 +26,62 @@ export const styled = <T extends As, H = {}>(
 ) => (...interpolations: any[]) => {
   const Styled = forwardRef(
     ({ as, ...props }: any, ref: React.Ref<Element>) => {
+      // Get the color mode and theme from context
       const { colorMode, theme } = useChakra();
 
-      // component component style
-      let styles: Dict = {};
+      // Stores the the final styles
+      let finalStyles: Dict = {};
 
+      // Users can pass a base style to the component, let's resolve it
       if (options?.baseStyle) {
         const baseStyle = css(options.baseStyle)(theme);
-        Object.assign(styles, baseStyle);
+        Object.assign(finalStyles, baseStyle);
       }
 
-      const mergedProps = { theme, colorMode, ...props };
+      // For each style interpolation, we'll pass the theme and colorMode
+      const propsWithTheme = { theme, colorMode, ...props };
 
+      // Resolve each interpolation and add result to final style
       interpolations.forEach(interpolation => {
         const style = isFunction(interpolation)
-          ? interpolation(mergedProps)
+          ? interpolation(propsWithTheme)
           : interpolation;
-        Object.assign(styles, style);
+        Object.assign(finalStyles, style);
       });
 
-      const componentStyles = getComponentStyles(mergedProps, options);
+      // Get the component style from theme.components
+      // There's a convention for how to define component styles in theme.components
+      // @see [Link]
+      const componentStyles = getComponentStyles(propsWithTheme, options);
 
-      styles = { ...componentStyles, ...styles };
+      // Add final styles before component styles to support prop overriding
+      finalStyles = { ...componentStyles, ...finalStyles };
 
-      // check if we should forward props
-      // check if we should forward props
-      const shouldForwardProps = getShouldForwardProps(tag, as);
-
-      let nextProps: Dict = shouldForwardProps ? { ...props } : {};
+      const shouldForwardProps = !isTag(tag, as);
+      const elementToBeCreated = as || tag;
+      let computedProps: Dict = shouldForwardProps ? { ...props } : {};
 
       // If hook was passed, invoke the hook with the props
       if (options?.hook) {
         const hookProps = options.hook({ ref, ...props });
-        Object.assign(nextProps, hookProps);
+        Object.assign(computedProps, hookProps);
       }
 
       // The gatekeeper that prevents style props from getting to the dom
       if (!shouldForwardProps) {
-        filterProps(nextProps, props);
+        filterProps(computedProps, props);
       } else {
-        nextProps = clean(nextProps);
+        computedProps = clean(computedProps);
       }
 
       // Add data-* signature
       if (options?.dataAttr) {
-        nextProps[`data-chakra-${options.dataAttr}`] = "";
+        computedProps[options.dataAttr] = "";
       }
 
-      return jsx(as || tag, {
-        ...nextProps,
-        css: styles,
+      return jsx(elementToBeCreated, {
+        ...computedProps,
+        css: finalStyles,
       });
     },
   );

@@ -1,7 +1,7 @@
 import css from "@styled-system/css";
-import transformProps from "./transform-custom-props";
-import { PseudoProps } from "./pseudo-props-interface";
-import { replacePseudo } from "./jsx";
+import transformProps from "../custom/custom.utils";
+import { PseudoProps } from "./pseudo.interface";
+import { replacePseudo } from "./pseudo.utils";
 
 const tx = (props: any) => transformProps(replacePseudo(props));
 

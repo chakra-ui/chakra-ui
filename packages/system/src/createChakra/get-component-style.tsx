@@ -3,13 +3,10 @@ import { get } from "@styled-system/css";
 import css from "../css";
 import { CreateChakraOptions } from "./types";
 
-function isSubcomponent(themeKey: string) {
-  return themeKey.split(".").length > 1;
-}
+const isSubcomponent = (themeKey: string) => themeKey.split(".").length > 1;
 
-function resolveStyle(objectOrFn: any, props: object) {
-  return isFunction(objectOrFn) ? objectOrFn(props) : objectOrFn;
-}
+const resolveStyle = (objectOrFn: any, props: object) =>
+  isFunction(objectOrFn) ? objectOrFn(props) : objectOrFn;
 
 function getBaseStyle(props: any, themeKey: string) {
   const [parent, component] = themeKey.split(".");

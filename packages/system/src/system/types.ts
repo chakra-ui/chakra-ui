@@ -1,5 +1,5 @@
 import { SystemStyleObject } from "@styled-system/css";
-import { PseudoProps } from "./pseudo-props-interface";
+import { PseudoProps } from "./pseudo/pseudo.interface";
 
 /**
  * The `sx` prop accepts a `SxStyleProp` object and properties that are part of

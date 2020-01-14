@@ -2,20 +2,12 @@ import { ThemeContext } from "@emotion/core";
 import * as React from "react";
 import { isPropValid, jsx } from "../system";
 import { As, ChakraComponent } from "./types";
-import { isFunction, isString } from "@chakra-ui/utils";
+import { isFunction, isString, Dict } from "@chakra-ui/utils";
 import { forwardRef, memo } from "../forward-ref";
-import propNames from "../system/prop-names";
 
-/**
- * @desc Check if we should forward props
- * @param tag The base tag used to create the styled component
- * @param as The tag or Element passed to replace the underlying dom element
- */
-export function getShouldForwardProps(tag: any, as: any) {
+export function isTag(tag: any, as: any) {
   return !isString(tag) || (as && !isString(as));
 }
-
-type Dict = Record<string, any>;
 
 export function filterProps(next: Dict, props: Dict) {
   // Replace the htmlWidth and htmlHeight with the appropriate DOM props
@@ -37,7 +29,7 @@ const styled = <T extends As>(tag: T) => (...interpolations: any[]) => {
   const Styled = forwardRef(
     ({ as, apply, ...props }: any, ref: React.Ref<Element>) => {
       // check if we should forward all props or not
-      const shouldForwardProps = getShouldForwardProps(tag, as);
+      const shouldForwardProps = !isTag(tag, as);
 
       const nextProps = shouldForwardProps ? props : {};
 

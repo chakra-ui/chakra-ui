@@ -3,6 +3,7 @@ import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
 import setup from "../../chakra/stories/setup";
 import createChakra from "../create-chakra";
+import styled from "@emotion/styled";
 
 const stories = storiesOf("subcomponent", module);
 
@@ -49,7 +50,7 @@ Tab.defaultProps = {
   variantSize: "md",
 };
 
-stories.add("tablist", () => (
+stories.add("styled", () => (
   <TabList>
     <Tab>Tab 1</Tab>
     <Tab variantColor="orange" data-selected="">

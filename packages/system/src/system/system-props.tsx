@@ -1,5 +1,5 @@
 import * as SS from "styled-system";
-import custom from "./custom-props";
+import custom from "./custom/custom";
 import { SystemProps } from "./system-props-interface";
 
 // Compose all style functions into a single function

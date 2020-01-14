@@ -138,4 +138,4 @@ config.listStyleImg = config.listStyleImage;
 const customProps = SS.system(config);
 
 export default customProps;
-export { CustomProps } from "./custom-props-interface";
+export { CustomProps } from "./custom.interface";

@@ -1,6 +1,6 @@
 import * as SS from "styled-system";
-import { CustomProps } from "./custom-props-interface";
-import { PseudoProps } from "./pseudo-props-interface";
+import { CustomProps } from "./custom/custom.interface";
+import { PseudoProps } from "./pseudo";
 
 export type SystemProps = SS.ColorProps &
   SS.LayoutProps &
