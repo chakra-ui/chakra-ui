@@ -3,7 +3,8 @@ import { pseudo, system, truncate } from "../system";
 import styled from "./styled";
 import domElements from "./dom-elements";
 import { As, HTMLChakraComponents } from "./types";
-import { css, get } from "@styled-system/css";
+import { get } from "@styled-system/css";
+import css from '../css';
 
 const sx = (props: { sx: object; theme: object }) => css(props.sx)(props.theme);
 const cx = (props: { css: object }) => props.css;
