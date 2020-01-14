@@ -1,6 +1,6 @@
-import { Dict, isFunction } from "@chakra-ui/utils";
+import { Dict, isFunction, isString } from "@chakra-ui/utils";
 import * as React from "react";
-import { filterProps, isTag } from "../chakra/styled";
+import { filterProps } from "../chakra/styled";
 import { useChakra } from "../color-mode/";
 import { css } from "../css";
 import { forwardRef } from "../forward-ref";
@@ -57,8 +57,8 @@ export const styled = <T extends As, H = {}>(
       // Add final styles before component styles to support prop overriding
       finalStyles = { ...componentStyles, ...finalStyles };
 
-      const shouldForwardProps = !isTag(tag, as);
       const elementToBeCreated = as || tag;
+      const shouldForwardProps = !isString(elementToBeCreated);
       let computedProps: Dict = shouldForwardProps ? { ...props } : {};
 
       // If hook was passed, invoke the hook with the props

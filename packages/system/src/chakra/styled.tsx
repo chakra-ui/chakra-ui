@@ -5,10 +5,6 @@ import { As, ChakraComponent } from "./types";
 import { isFunction, isString, Dict } from "@chakra-ui/utils";
 import { forwardRef, memo } from "../forward-ref";
 
-export function isTag(tag: any, as: any) {
-  return !isString(tag) || (as && !isString(as));
-}
-
 export function filterProps(next: Dict, props: Dict) {
   // Replace the htmlWidth and htmlHeight with the appropriate DOM props
   // This is mostly for the `img` tag
@@ -28,10 +24,9 @@ export function filterProps(next: Dict, props: Dict) {
 const styled = <T extends As>(tag: T) => (...interpolations: any[]) => {
   const Styled = forwardRef(
     ({ as, apply, ...props }: any, ref: React.Ref<Element>) => {
-      // check if we should forward all props or not
-      const shouldForwardProps = !isTag(tag, as);
-
-      const nextProps = shouldForwardProps ? props : {};
+      const elementToBeCreated = as || tag;
+      const shouldForwardProps = !isString(elementToBeCreated);
+      const computedProps = shouldForwardProps ? props : {};
 
       const styles = {};
       const theme = React.useContext(ThemeContext);
@@ -44,11 +39,11 @@ const styled = <T extends As>(tag: T) => (...interpolations: any[]) => {
       });
 
       if (!shouldForwardProps) {
-        filterProps(nextProps, props);
+        filterProps(computedProps, props);
       }
 
       return jsx(as || tag, {
-        ...nextProps,
+        ...computedProps,
         ref,
         css: styles,
       });
