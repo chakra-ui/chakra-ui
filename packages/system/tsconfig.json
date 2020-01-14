@@ -8,7 +8,6 @@
     "**/*.test.tsx",
     "**/stories"
   ],
-  "files": ["./types/index.d.ts"],
   "compilerOptions": {
     "noImplicitAny": true,
     "rootDir": "./",

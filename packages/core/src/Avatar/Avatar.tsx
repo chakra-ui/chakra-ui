@@ -6,7 +6,7 @@ import {
   forwardRef,
   PropsOf,
   SystemProps,
-  useMode,
+  useModeValue,
 } from "@chakra-ui/system";
 import { SafeMerge } from "@chakra-ui/utils";
 import * as React from "react";
@@ -45,7 +45,7 @@ export interface AvatarOptions {
 
 export const AvatarBadge = forwardRef(
   (props: PropsOf<typeof chakra.div>, ref: React.Ref<any>) => {
-    const borderColor = useMode("white", "gray.800");
+    const borderColor = useModeValue("white", "gray.800");
     return (
       <chakra.div
         ref={ref}
@@ -149,7 +149,7 @@ const Avatar = forwardRef(
     const bg = name ? stringToColor(name) : "gray.400";
     const color = name ? (isDark(bg) ? "#fff" : "gray.800") : "#fff";
 
-    const dafaultBorderColor = useMode("#fff", "gray.800");
+    const dafaultBorderColor = useModeValue("#fff", "gray.800");
     const styleProps = {
       bg,
       color,

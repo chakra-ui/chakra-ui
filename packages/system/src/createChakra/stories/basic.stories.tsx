@@ -8,16 +8,6 @@ const stories = storiesOf("createChakra", module);
 
 stories.addDecorator(setup);
 
-/**
- * createChakra takes 3 options
- * - The tag
- * - The options:
- *  - themeKey: the reference to the styles in the theme.components
- *  - hook: To execute a hook within the components
- *  - dataAttr: A unique data-chakra-* attribute
- *  - baseStyle: Some base styles to apply to the component
- */
-
 const baseStyle: SystemProps = {
   cursor: "pointer",
   outline: 0,

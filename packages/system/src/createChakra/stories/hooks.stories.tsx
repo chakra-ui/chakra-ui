@@ -4,9 +4,6 @@ import { storiesOf } from "@storybook/react";
 import { BrowserRouter, Link } from "react-router-dom";
 import setup from "../../chakra/stories/setup";
 import createChakra from "../create-chakra";
-import { clean, sanitize } from "../utils";
-
-const NewLink = sanitize(Link);
 
 const stories = storiesOf("createChakra + hooks", module);
 
@@ -22,7 +19,7 @@ const useTab = (props: { id?: string; isSelected?: boolean }) => {
   };
 };
 
-const Tab = createChakra(NewLink, {
+const Tab = createChakra(Link, {
   themeKey: "Button",
   hook: useTab,
 });
@@ -56,7 +53,7 @@ const Bacon = (props: any) => (
 
 stories.add("caveat 1", () => (
   <Button
-    as={sanitize(Bacon)}
+    as={Bacon}
     margin="20px"
     borderTop="2px solid crimson"
     css={{ background: "tomato" }}
@@ -64,7 +61,7 @@ stories.add("caveat 1", () => (
 ));
 
 const Tabbable = ({ isInvalid, ...props }: { isInvalid?: boolean }) => (
-  <div role="checkbox" aria-invalid={isInvalid} {...clean(props)} />
+  <div role="checkbox" aria-invalid={isInvalid} {...props} />
 );
 
 const ChakraTabbable = createChakra(Tabbable, {
@@ -82,13 +79,5 @@ stories.add("caveat 2", () => (
     >
       This is a tab
     </ChakraTabbable>
-    <input
-      placeholder="welcome"
-      style={{
-        backgroundColor: "transparent",
-        color: "inherit",
-        borderWidth: "1px",
-      }}
-    />
   </div>
 ));
