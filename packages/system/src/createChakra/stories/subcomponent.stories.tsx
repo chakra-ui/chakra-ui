@@ -3,7 +3,6 @@ import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
 import setup from "../../chakra/stories/setup";
 import createChakra from "../create-chakra";
-import { clean, sanitize } from "../utils";
 
 const stories = storiesOf("subcomponent", module);
 

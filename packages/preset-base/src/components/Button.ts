@@ -214,7 +214,7 @@ const baseStyle = {
 };
 
 ////////////////////////////////////////////////////////////
-
+// <Button variantSize="md" variant="solid" />
 const Button = {
   baseStyle,
   variantSize,

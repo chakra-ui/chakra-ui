@@ -7,6 +7,7 @@ const typography = {
     wider: "0.05em",
     widest: "0.1em",
   },
+
   lineHeights: {
     normal: "normal",
     none: "1",
@@ -16,6 +17,7 @@ const typography = {
     tall: "1.625",
     taller: "2",
   },
+
   fontWeights: {
     hairline: 100,
     thin: 200,
@@ -27,11 +29,13 @@ const typography = {
     extrabold: 800,
     black: 900,
   },
+
   fonts: {
     heading: `-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
     body: `-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
     mono: `SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace`,
   },
+
   fontSizes: {
     xs: "0.75rem",
     sm: "0.875rem",
