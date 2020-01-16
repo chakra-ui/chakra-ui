@@ -2,7 +2,7 @@
 import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
 import { BrowserRouter, Link } from "react-router-dom";
-import setup from "../../chakra/stories/setup";
+import setup from "../../../story.setup";
 import createChakra from "../create-chakra";
 
 const stories = storiesOf("createChakra + hooks", module);

@@ -1,60 +1,41 @@
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 import createChakra from "../create-chakra";
-import setup from "../../chakra/stories/setup";
+import setup from "../../../story.setup";
 import { SystemProps } from "../../system";
+import { useTabbable } from "@chakra-ui/tabbable";
+import { FunctionArguments } from "@chakra-ui/utils";
 
 const stories = storiesOf("createChakra", module);
 
 stories.addDecorator(setup);
 
-const baseStyle: SystemProps = {
-  cursor: "pointer",
-  outline: 0,
-  border: 0,
-  display: "inline-flex",
-  appearance: "none",
-  alignItems: "center",
-  justifyContent: "center",
-  transition: "all 250ms",
-  userSelect: "none",
-  position: "relative",
-  whiteSpace: "nowrap",
-  verticalAlign: "middle",
-  lineHeight: "1.2",
-  borderRadius: "md",
-  color: "yellow.100",
-  _focus: {
-    boxShadow: "outline",
-  },
-  _disabled: {
-    opacity: 0.4,
-    cursor: "not-allowed",
-  },
-};
+type HookProps<T extends Function> = FunctionArguments<T>[0];
 
-type ButtonOptions = {
+/**
+ * Here's how to create a button component
+ * w/ some type safety for variant and variantSize
+ */
+type ButtonProps = HookProps<typeof useTabbable> & {
   variantSize?: "sm" | "md" | "lg";
   variant?: "solid" | "outline" | "ghost" | "link";
+  variantColor?: "red" | "green" | "pink" | "blue";
 };
 
-const Button = createChakra<"button", ButtonOptions>("button", {
-  // themeKey: "Button",
-  dataAttr: "button",
-  baseStyle,
+const Button = createChakra<"button", ButtonProps>("button", {
+  hook: useTabbable,
+  themeKey: "Button",
+  attrs: { "data-chakra-button": "", type: "button" },
 });
 
 Button.defaultProps = {
   variantSize: "md",
+  variant: "solid",
+  variantColor: "green",
 };
 
 stories.add("variant size", () => (
-  <Button
-    variantSize="lg"
-    bg="teal.500"
-    // color="white"
-    _hover={{ bg: "teal.600" }}
-  >
+  <Button marginTop="40px" isDisabled isFocusable>
     This is my button
   </Button>
 ));

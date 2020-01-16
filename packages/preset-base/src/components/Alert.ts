@@ -1,62 +1,44 @@
-import { colorEmphasis } from "@chakra-ui/color";
-import { VariantStyleFunction } from "./utils";
+import { colorEmphasis, getColor } from "@chakra-ui/color";
+import { VariantStyleFunction, getModeColor } from "./utils";
 
-function getSubtleStyle({ variantColor, colorMode }: VariantStyleFunction) {
-  const style = {
-    light: {
-      bg: `${variantColor}.100`,
-    },
-    dark: { bg: colorEmphasis(`${variantColor}.200`, "lowest") },
-  };
-  return style[colorMode];
+function getSubtleStyle(props: VariantStyleFunction) {
+  const { theme: t, variantColor: c } = props;
+  const lightBg = getColor(t, `${c}.100`, c);
+  const darkBg = colorEmphasis(`${c}.200`, "lowest");
+
+  return { bg: getModeColor(props, lightBg, darkBg) };
 }
 
 function getLeftAccentStyle(props: VariantStyleFunction) {
-  const { variantColor, colorMode } = props;
-  const style = {
-    light: {
-      paddingLeft: 3,
-      borderLeft: "4px solid",
-      borderColor: `${variantColor}.500`,
-    },
-    dark: {
-      paddingLeft: 3,
-      borderLeft: "4px solid",
-      borderColor: `${variantColor}.200`,
-    },
-  };
+  const { variantColor: c } = props;
+  const borderColor = getModeColor(props, `${c}.500`, `${c}.200`);
+
   return {
+    paddingLeft: 3,
+    borderLeft: "4px solid",
+    borderColor,
     ...getSubtleStyle(props),
-    ...style[colorMode],
   };
 }
 
 function getTopAccentStyle(props: VariantStyleFunction) {
-  const { variantColor, colorMode } = props;
-  const style = {
-    light: {
-      paddingTop: 2,
-      borderTop: "4px solid",
-      borderColor: `${variantColor}.500`,
-    },
-    dark: {
-      paddingTop: 2,
-      borderTop: "4px solid",
-      borderColor: `${variantColor}.200`,
-    },
-  };
+  const { variantColor: c } = props;
+  const borderColor = getModeColor(props, `${c}.500`, `${c}.200`);
+
   return {
+    paddingTop: 2,
+    borderTop: "4px solid",
+    borderColor,
     ...getSubtleStyle(props),
-    ...style[colorMode],
   };
 }
 
-function getSolidStyle({ variantColor, colorMode }: VariantStyleFunction) {
-  const style = {
-    light: { bg: `${variantColor}.500`, color: "white" },
-    dark: { bg: `${variantColor}.200`, color: "gray.900" },
+function getSolidStyle(props: VariantStyleFunction) {
+  const { variantColor: c } = props;
+  return {
+    bg: getModeColor(props, `${c}.500`, `${c}.200`),
+    color: getModeColor(props, `white`, `gray.900`),
   };
-  return style[colorMode as keyof typeof style];
 }
 
 export default {

@@ -7,7 +7,7 @@ import { Md3DRotation } from "react-icons/md";
 const stories = storiesOf("Icon", module);
 stories.addDecorator(setup);
 
-stories.add("default", () => <Icon fontSize="24px" label="Base icon" />);
+stories.add("default", () => <Icon fontSize="24px" />);
 
 const ArrowIcon = (props: IconProps) => (
   <Icon
@@ -22,10 +22,8 @@ const ArrowIcon = (props: IconProps) => (
   />
 );
 
-stories.add("custom icon", () => (
-  <ArrowIcon label="arrow icon" size="40px" color="red.100" />
-));
+stories.add("custom icon", () => <ArrowIcon size="40px" color="red.100" />);
 
 stories.add("using react-icon", () => (
-  <Icon label="rotation icon" as={Md3DRotation} size="40px" color="tomato" />
+  <Icon as={Md3DRotation} size="40px" color="tomato" />
 ));

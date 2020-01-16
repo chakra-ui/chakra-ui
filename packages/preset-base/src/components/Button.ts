@@ -1,146 +1,88 @@
 import { addOpacity } from "@chakra-ui/color";
-import { VariantStyleFunction } from "./utils";
+import { VariantStyleFunction, getModeColor } from "./utils";
 
-const grayGhostStyle = {
-  light: {
-    color: "inherit",
-    _hover: {
-      bg: "gray.100",
-    },
-    _active: {
-      bg: "gray.200",
-    },
+const grayGhostStyle = (props: VariantStyleFunction) => ({
+  color: getModeColor(props, `inherit`, `whiteAlpha.900`),
+  _hover: {
+    bg: getModeColor(props, `gray.100`, `whiteAlpha.200`),
   },
-  dark: {
-    color: "whiteAlpha.900",
-    _hover: {
-      bg: "whiteAlpha.200",
-    },
-    _active: {
-      bg: "whiteAlpha.300",
-    },
+  _active: {
+    bg: getModeColor(props, `gray.200`, `whiteAlpha.300`),
   },
-};
+});
 
 ////////////////////////////////////////////////////////////
 
-function getGhostStyle({ variantColor, colorMode }: VariantStyleFunction) {
-  let result: any;
-  if (variantColor === "gray") {
-    result = grayGhostStyle;
-  } else {
-    result = {
-      light: {
-        color: `${variantColor}.500`,
-        bg: "transparent",
-        _hover: {
-          bg: `${variantColor}.50`,
-        },
-        _active: {
-          bg: `${variantColor}.100`,
-        },
-      },
-      dark: {
-        color: `${variantColor}.200`,
-        bg: "transparent",
-        _hover: {
-          bg: addOpacity(`${variantColor}.200`, 0.12),
-        },
-        _active: {
-          bg: addOpacity(`${variantColor}.200`, 0.24),
-        },
-      },
-    };
-  }
+function getGhostStyle(props: VariantStyleFunction) {
+  const { variantColor: c, theme: t } = props;
+  if (c === "gray") return grayGhostStyle(props);
 
-  return result[colorMode];
+  const darkHoverBg = addOpacity(`${c}.200`, 0.12)(t);
+  const darkActiveBg = addOpacity(`${c}.200`, 0.24)(t);
+
+  return {
+    color: getModeColor(props, `${c}.500`, `${c}.200`),
+    bg: "transparent",
+    _hover: {
+      bg: getModeColor(props, `${c}.50`, darkHoverBg),
+    },
+    _active: {
+      bg: getModeColor(props, `${c}.100`, darkActiveBg),
+    },
+  };
 }
 
 ////////////////////////////////////////////////////////////
 
 function getOutlineStyle(props: VariantStyleFunction) {
-  const { variantColor, colorMode } = props;
-  const borderColor = { light: "gray.200", dark: "whiteAlpha.300" };
+  const { variantColor: c } = props;
+  const borderColor = getModeColor(props, `gray.200`, `whiteAlpha.300`);
 
   return {
     border: "1px solid",
-    borderColor: variantColor === "gray" ? borderColor[colorMode] : "current",
+    borderColor: c === "gray" ? borderColor : "current",
     ...getGhostStyle(props),
   };
 }
 
 ////////////////////////////////////////////////////////////
 
-const graySolidStyle = {
-  light: {
-    bg: "gray.100",
-    _hover: {
-      bg: "gray.200",
-    },
-    _active: {
-      bg: "gray.300",
-    },
+const graySolidStyle = (props: VariantStyleFunction) => ({
+  bg: getModeColor(props, `gray.100`, `whiteAlpha.200`),
+  _hover: {
+    bg: getModeColor(props, `gray.200`, `whiteAlpha.300`),
   },
-  dark: {
-    bg: "whiteAlpha.200",
-    _hover: {
-      bg: "whiteAlpha.300",
-    },
-    _active: {
-      bg: "whiteAlpha.400",
-    },
+  _active: {
+    bg: getModeColor(props, `gray.300`, `whiteAlpha.400`),
   },
-};
+});
 
-function getSolidStyle({ variantColor, colorMode }: VariantStyleFunction) {
-  if (variantColor === "gray") {
-    return graySolidStyle[colorMode];
-  }
+function getSolidStyle(props: VariantStyleFunction) {
+  const { variantColor: c } = props;
+  if (c === "gray") return graySolidStyle(props);
 
-  const style = {
-    light: {
-      bg: `${variantColor}.500`,
-      color: "white",
-      _hover: {
-        bg: `${variantColor}.600`,
-      },
-      _active: {
-        bg: `${variantColor}.700`,
-      },
-    },
-    dark: {
-      bg: `${variantColor}.200`,
-      color: "gray.800",
-      _hover: {
-        bg: `${variantColor}.300`,
-      },
-      _active: {
-        bg: `${variantColor}.400`,
-      },
-    },
+  return {
+    bg: getModeColor(props, `${c}.500`, `${c}.200`),
+    color: getModeColor(props, `${c}.600`, `gray.800`),
+    _hover: { bg: getModeColor(props, `${c}.600`, `${c}.300`) },
+    _active: { bg: getModeColor(props, `${c}.700`, `${c}.400`) },
   };
-
-  return style[colorMode];
 }
 
 ////////////////////////////////////////////////////////////
 
-function getLinkStyle({ variantColor, colorMode }: VariantStyleFunction) {
-  const _color = { light: `${variantColor}.500`, dark: `${variantColor}.200` };
-  const _activeColor = {
-    light: `${variantColor}.700`,
-    dark: `${variantColor}.500`,
-  };
+function getLinkStyle(props: VariantStyleFunction) {
+  const { variantColor: c } = props;
   return {
     padding: 0,
     height: "auto",
     lineHeight: "normal",
-    color: _color[colorMode],
+    color: getModeColor(props, `${c}.500`, `${c}.200`),
     _hover: {
       textDecoration: "underline",
     },
     _active: {
-      color: _activeColor[colorMode],
+      color: getModeColor(props, `${c}.700`, `${c}.500`),
     },
   };
 }
@@ -152,25 +94,25 @@ const variantSize = {
     height: 12,
     minWidth: 12,
     fontSize: "lg",
-    px: 6,
+    paddingX: 6,
   },
   md: {
     height: 10,
     minWidth: 10,
     fontSize: "md",
-    px: 4,
+    paddingX: 4,
   },
   sm: {
     height: 8,
     minWidth: 8,
     fontSize: "sm",
-    px: 3,
+    paddingX: 3,
   },
   xs: {
     height: 6,
     minWidth: 6,
     fontSize: "xs",
-    px: 2,
+    paddingX: 2,
   },
 };
 
@@ -214,7 +156,6 @@ const baseStyle = {
 };
 
 ////////////////////////////////////////////////////////////
-// <Button variantSize="md" variant="solid" />
 const Button = {
   baseStyle,
   variantSize,

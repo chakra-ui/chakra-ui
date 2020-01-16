@@ -1,40 +1,27 @@
-import { VariantStyleFunction } from "./utils";
+import { VariantStyleFunction, getModeValue, getModeColor } from "./utils";
 
-function getMenuListStyle({ colorMode }: VariantStyleFunction) {
-  const elevation = {
-    light: {
-      bg: "#fff",
-      shadow: "sm",
-    },
-    dark: {
-      bg: "gray.700",
-      shadow: `rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.2) 0px 5px 10px, rgba(0, 0, 0, 0.4) 0px 15px 40px`,
-    },
-  };
-
+function getMenuListStyle(props: VariantStyleFunction) {
+  const longShadow = `rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.2) 0px 5px 10px, rgba(0, 0, 0, 0.4) 0px 15px 40px`;
   return {
+    bg: getModeColor(props, `#fff`, `gray.700`),
+    shadow: getModeValue(props, `sm`, longShadow),
     color: "inherit",
     borderWidth: "1px",
-    ...elevation[colorMode],
   };
 }
 
-function getMenuItemStyle({ colorMode }: VariantStyleFunction) {
-  const _focusColor = { light: "gray.100", dark: "whiteAlpha.100" };
-  const _activeColor = { light: "gray.200", dark: "whiteAlpha.200" };
-
+function getMenuItemStyle(props: VariantStyleFunction) {
   return {
-    width: "full",
+    width: "100%",
     flex: "0 0 auto",
     userSelect: "none",
     transition: "background-color 220ms, color 220ms",
     _active: {
-      bg: _activeColor[colorMode],
+      bg: getModeValue(props, `gray.200`, `whiteAlpha.200`),
     },
     _focus: {
-      // bg: _focusColor[colorMode],
+      bg: getModeValue(props, `gray.100`, `whiteAlpha.100`),
       outline: 0,
-      shadow: "outline",
     },
     _disabled: {
       opacity: 0.4,

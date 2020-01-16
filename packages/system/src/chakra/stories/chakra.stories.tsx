@@ -1,7 +1,7 @@
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 import chakra from "../chakra";
-import setup from "./setup";
+import setup from "../../../story.setup";
 
 const stories = storiesOf("chakra", module);
 

@@ -1,63 +1,36 @@
 import { addOpacity, generateAlphaColors, getColor } from "@chakra-ui/color";
-import { VariantStyleFunction } from "./utils";
+import { VariantStyleFunction, getModeColor } from "./utils";
 
-function getSolidStyle({
-  theme,
-  variantColor,
-  colorMode,
-}: VariantStyleFunction) {
-  const style = {
-    light: {
-      bg: getColor(theme, `${variantColor}.500`),
-      color: "white",
-    },
-    dark: {
-      bg: addOpacity(`${variantColor}.500`, 0.6),
-      color: "whiteAlpha.800",
-    },
+function getSolidStyle(props: VariantStyleFunction) {
+  const { variantColor: c } = props;
+  const darkBg = addOpacity(`${c}.500`, 0.6);
+  return {
+    bg: getModeColor(props, `${c}.500`, darkBg),
+    color: getModeColor(props, `white`, `whiteAlpha.800`),
   };
-  return style[colorMode];
 }
 
-function getSubtleStyle({
-  theme,
-  variantColor,
-  colorMode,
-}: VariantStyleFunction) {
-  const alphaColors = generateAlphaColors(`${variantColor}.200`);
+function getSubtleStyle(props: VariantStyleFunction) {
+  const { variantColor: c } = props;
+  const alphaColors = generateAlphaColors(`${c}.200`);
   const darkModeBg = alphaColors[300];
 
-  const style = {
-    light: {
-      bg: getColor(theme, `${variantColor}.100`),
-      color: getColor(theme, `${variantColor}.800`),
-    },
-    dark: {
-      bg: darkModeBg,
-      color: getColor(theme, `${variantColor}.200`),
-    },
+  return {
+    bg: getModeColor(props, `${c}.200`, darkModeBg),
+    color: getModeColor(props, `${c}.800`, `${c}.200`),
   };
-  return style[colorMode];
 }
 
-function getOutlineStyle({
-  theme,
-  variantColor,
-  colorMode,
-}: VariantStyleFunction) {
-  const darkModeColor = addOpacity(`${variantColor}.200`, 0.8)(theme);
-  const lightModeColor = getColor(theme, `${variantColor}.500`);
-  const style = {
-    light: {
-      boxShadow: `inset 0 0 0px 1px ` + lightModeColor,
-      color: lightModeColor,
-    },
-    dark: {
-      boxShadow: `inset 0 0 0px 1px ` + darkModeColor,
-      color: darkModeColor,
-    },
+function getOutlineStyle(props: VariantStyleFunction) {
+  const { variantColor: c, theme: t } = props;
+  const darkModeColor = addOpacity(`${c}.200`, 0.8)(t);
+  const lightModeColor = getColor(t, `${c}.500`);
+  const color = getModeColor(props, lightModeColor, darkModeColor);
+
+  return {
+    color,
+    boxShadow: `inset 0 0 0px 1px ` + color,
   };
-  return style[colorMode];
 }
 
 const Badge = {

@@ -1,9 +1,9 @@
 import { css, Global } from "@emotion/core";
 import * as React from "react";
-import createThemeContext from "../../create-theme-context";
+import createThemeContext from "./src/create-theme-context";
 import theme from "@chakra-ui/preset-base";
-import { ColorModeProvider, ColorMode } from "../../color-mode";
-import CSSReset from "../../css-reset";
+import { ColorModeProvider, ColorMode } from "./src/color-mode";
+import CSSReset from "./src/css-reset";
 
 const [ThemeProvider, useTheme] = createThemeContext(theme);
 

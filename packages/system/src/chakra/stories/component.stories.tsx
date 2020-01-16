@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 import { forwardRef } from "@chakra-ui/system";
 import chakra from "../chakra";
 import { ChakraComponent, PropsOf } from "../types";
-import setup from "./setup";
+import setup from "../../../story.setup";
 
 const stories = storiesOf("component", module);
 

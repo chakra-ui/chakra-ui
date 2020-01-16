@@ -1,26 +1,34 @@
+import { ChangeEvent } from "react";
+
 // Number assertions
-export const isNumber = (num: any) => typeof num === "number";
+export function isNumber(value: any): value is number {
+  return typeof value === "number";
+}
 
-export const isNotNumber = (val: any) =>
-  typeof val !== "number" || isNaN(val) || !isFinite(val);
+export const isNotNumber = (value: any) =>
+  typeof value !== "number" || isNaN(value) || !isFinite(value);
 
-export const isInteger = (obj: any): boolean =>
-  String(Math.floor(Number(obj))) === obj;
+export const isInteger = (value: any): value is number =>
+  String(Math.floor(Number(value))) === value;
 
 // Array assertions
-export const isArray = (value: any) => Array.isArray(value);
+export function isArray<T>(value: any): value is Array<T> {
+  return Array.isArray(value);
+}
 
 export const isEmptyArray = (value: any) =>
   isArray(value) && value.length === 0;
 
 // Function assertions
-export const isFunction = (value: any) => typeof value === "function";
+export function isFunction(value: any): value is Function {
+  return typeof value === "function";
+}
 
 // Generic assertions
 export const isDefined = (value: any) =>
   typeof value !== "undefined" && value !== undefined;
 
-export const isUndefined = (value: any) =>
+export const isUndefined = (value: any): value is undefined =>
   typeof value === "undefined" || value === undefined;
 
 // Object assertions
@@ -31,12 +39,14 @@ export const isEmptyObject = (value: any) =>
   isObject(value) && Object.keys(value).length === 0;
 
 // String assertions
-export const isString = (value: any) =>
-  Object.prototype.toString.call(value) === "[object String]";
+export function isString(value: any): value is string {
+  return Object.prototype.toString.call(value) === "[object String]";
+}
 
 // Event assertions
-export const isInputEvent = (value: any) =>
-  value && isObject(value) && isObject(value.target);
+export function isInputEvent(value: any): value is ChangeEvent {
+  return value && isObject(value) && isObject(value.target);
+}
 
 // Empty assertions
 export const isEmpty = (value: any) => {

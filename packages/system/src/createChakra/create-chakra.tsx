@@ -1,6 +1,6 @@
 import { css } from "@styled-system/css";
 import { pseudo, system, truncate } from "../system";
-import styled from "./styled";
+import createStyled from "./create-styled";
 import { As, CreateChakraOptions } from "./types";
 
 const sx = (props: { sx: object; theme: object }) => css(props.sx)(props.theme);
@@ -19,7 +19,7 @@ function createChakra<T extends As, H>(
   tag: T,
   options?: CreateChakraOptions<H>,
 ) {
-  return styled(tag, options)(system, pseudo, truncate, sx, cx);
+  return createStyled(tag, options)(system, pseudo, truncate, sx, cx);
 }
 
 export default createChakra;

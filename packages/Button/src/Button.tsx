@@ -1,37 +1,8 @@
-import {
-  chakra,
-  ChakraComponent,
-  createChakra,
-  forwardRef,
-  PropsOf,
-  SystemProps,
-} from "@chakra-ui/system";
+import { Icon } from "@chakra-ui/icon";
+import { chakra, createChakra, PropsOf, SystemProps } from "@chakra-ui/system";
 import { Omit } from "@chakra-ui/utils";
 import * as React from "react";
-import { Icon, Spinner } from "@chakra-ui/core";
-
-const ButtonIcon = forwardRef(
-  ({ icon, ...props }: { icon?: any }, ref: React.Ref<any>) =>
-    typeof icon === "string" ? (
-      <Icon
-        ref={ref}
-        focusable="false"
-        //@ts-ignore
-        name={icon}
-        color="currentColor"
-        {...props}
-      />
-    ) : (
-      <chakra.svg
-        ref={ref}
-        as={icon}
-        data-custom-icon
-        focusable="false"
-        color="currentColor"
-        {...props}
-      />
-    ),
-) as ChakraComponent<"svg", { icon?: string | React.ElementType }>;
+import { Spinner } from "@chakra-ui/spinner";
 
 const BaseButton = createChakra("button", { themeKey: "Button" });
 BaseButton.defaultProps = {
@@ -39,7 +10,6 @@ BaseButton.defaultProps = {
   variantSize: "md",
   variantColor: "gray",
 };
-BaseButton.displayName = "BaseButton";
 
 export interface ButtonOptions {
   /**
@@ -71,12 +41,12 @@ export interface ButtonOptions {
    * If added, the button will show an icon before the button's label.
    * Use the icon key in `theme.iconPath`
    */
-  leftIcon?: string | React.ComponentType;
+  leftIcon?: React.ElementType;
   /**
    * If added, the button will show an icon after the button's label.
    * Use the icon key in `theme.iconPath`
    */
-  rightIcon?: string | React.ComponentType;
+  rightIcon?: React.ElementType;
   /**
    * The space between the button icon and label.
    * Use the styled-system tokens or add custom values as a string
@@ -113,7 +83,7 @@ const Button = React.forwardRef((props: ButtonProps, ref: React.Ref<any>) => {
       {...rest}
     >
       {leftIcon && !isLoading && (
-        <ButtonIcon marginLeft={-1} marginRight={iconSpacing} icon={leftIcon} />
+        <Icon marginLeft={-1} marginRight={iconSpacing} as={leftIcon} />
       )}
       {isLoading && (
         <Spinner
@@ -127,11 +97,7 @@ const Button = React.forwardRef((props: ButtonProps, ref: React.Ref<any>) => {
         ? loadingText || <chakra.span opacity={0}>{children}</chakra.span>
         : children}
       {rightIcon && !isLoading && (
-        <ButtonIcon
-          marginRight={-1}
-          marginLeft={iconSpacing}
-          icon={rightIcon}
-        />
+        <Icon marginRight={-1} marginLeft={iconSpacing} as={rightIcon} />
       )}
     </BaseButton>
   );

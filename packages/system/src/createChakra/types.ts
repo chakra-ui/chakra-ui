@@ -73,23 +73,22 @@ export interface CreateChakraOptions<P> {
    * The hook to execute within the component.
    * @returns valid HTML attributes
    */
-  hook?: (props: P) => React.HTMLProps<any>;
+  hook?: (props: P) => object;
   /**
    * The key of this component in `theme.components`.
    * Ideally, this should be the name of the component
    */
   themeKey?: string;
   /**
-   * Add a data-* signature to this component.
-   * @example
-   * dataAttr : "button",
-   * => `data-chakra-button`
+   * Additional props to attach to the component
+   * You can use a function to make it dynamic
    */
-  dataAttr?: string;
+  attrs?: Record<string, any> | ((props: object) => Record<string, any>);
   /**
-   * Some base styles to add the all components
+   * Base style object to apply to this component
+   * NB: This style is theme-aware so you can use all style props
    */
-  baseStyle?: SystemProps;
+  baseStyle?: SystemProps | ((props: object) => SystemProps);
 }
 
 ///////////////////////////////////////////////////////////////////

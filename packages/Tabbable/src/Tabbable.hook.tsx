@@ -179,6 +179,7 @@ export function useTabbable({
   if (isButton) {
     return {
       ...props,
+      type: "button",
       ref,
       "aria-disabled": trulyDisabled ? undefined : isDisabled,
       disabled: trulyDisabled,

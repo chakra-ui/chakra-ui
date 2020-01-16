@@ -35,7 +35,7 @@ interface AvatarGroupOptions {
 export type AvatarGroupProps = AvatarGroupOptions & AvatarProps;
 type AvatarElement = React.ReactElement<AvatarProps>;
 
-const AvatarGroup = ({
+export const AvatarGroup = ({
   children,
   borderColor,
   max,

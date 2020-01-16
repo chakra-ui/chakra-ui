@@ -1,11 +1,10 @@
 import { chakra, PropsOf } from "@chakra-ui/system";
 import * as React from "react";
 
-interface IconOptions {
+export interface IconOptions {
   role?: "presentation" | "img";
   path?: JSX.Element;
   viewBox?: string;
-  label: string;
 }
 
 const fallbackIcon = {
@@ -25,7 +24,7 @@ const fallbackIcon = {
 export type IconProps = Omit<PropsOf<typeof chakra.svg>, "path" | "viewBox"> &
   IconOptions;
 
-const Icon = React.forwardRef(
+export const Icon = React.forwardRef(
   (
     {
       as,
@@ -34,7 +33,6 @@ const Icon = React.forwardRef(
       viewBox,
       color = "currentColor",
       role = "presentation",
-      label,
       focusable = false,
       ...rest
     }: IconProps,
@@ -49,7 +47,6 @@ const Icon = React.forwardRef(
       focusable,
       role,
       flexShrink: 0,
-      "aria-label": label,
     };
 
     // If you're using an icon-library like `react-icons`

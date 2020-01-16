@@ -1,9 +1,8 @@
 /**@jsx jsx */
 import { jsx } from "@emotion/core";
 import { storiesOf } from "@storybook/react";
-import setup from "../../chakra/stories/setup";
+import setup from "../../../story.setup";
 import createChakra from "../create-chakra";
-import styled from "@emotion/styled";
 
 const stories = storiesOf("subcomponent", module);
 

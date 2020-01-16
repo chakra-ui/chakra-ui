@@ -2,8 +2,11 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 import useTabbable from "./Tabbable.hook";
 import { createChakra } from "@chakra-ui/system";
+import setup from "../story.setup";
 
 const stories = storiesOf("useTabbable", module);
+
+stories.addDecorator(setup);
 
 const Button = createChakra("div", { hook: useTabbable });
 

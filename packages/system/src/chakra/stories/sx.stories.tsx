@@ -1,7 +1,7 @@
 /**@jsx jsx */
 import { storiesOf } from "@storybook/react";
 import { jsx } from "../../system/jsx";
-import setup from "./setup";
+import setup from "../../../story.setup";
 
 const stories = storiesOf("sx", module);
 

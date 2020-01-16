@@ -1,4 +1,4 @@
-import { VariantStyleFunction, getModeValue } from "./utils";
+import { VariantStyleFunction, getModeColor } from "./utils";
 import { getColor } from "@chakra-ui/color";
 
 type InputVariant = VariantStyleFunction & {
@@ -7,20 +7,13 @@ type InputVariant = VariantStyleFunction & {
 };
 
 function getOutlinedStyle(props: InputVariant) {
-  const { focusBorderColor, errorBorderColor } = props;
-  const bg = getModeValue(props, "white", "whiteAlpha.100");
-  const borderColor = getModeValue(props, "inherit", "whiteAlpha.50");
-  const hoverBorderColor = getModeValue(props, "gray.300", "whiteAlpha.200");
-
-  const _focusBorderColor = getColor(props.theme, focusBorderColor);
-  const _errorBorderColor = getColor(props.theme, errorBorderColor);
-
+  const { focusBorderColor: fc, errorBorderColor: ec, theme: t } = props;
   return {
-    border: "1px",
-    borderColor: borderColor,
-    bg: bg,
+    border: "1px solid",
+    borderColor: getModeColor(props, "inherit", "whiteAlpha.50"),
+    bg: getModeColor(props, "white", "whiteAlpha.100"),
     _hover: {
-      borderColor: hoverBorderColor,
+      borderColor: getModeColor(props, "gray.300", "whiteAlpha.200"),
     },
     _disabled: {
       opacity: "0.4",
@@ -28,30 +21,24 @@ function getOutlinedStyle(props: InputVariant) {
     },
     _focus: {
       zIndex: 1,
-      borderColor: _focusBorderColor,
-      boxShadow: `0 0 0 1px ${_focusBorderColor}`,
+      borderColor: getColor(t, fc),
+      boxShadow: `0 0 0 1px ${getColor(t, fc)}`,
     },
     _invalid: {
-      borderColor: _errorBorderColor,
-      boxShadow: `0 0 0 1px ${_errorBorderColor}`,
+      borderColor: getColor(t, ec),
+      boxShadow: `0 0 0 1px ${getColor(t, ec)}`,
     },
   };
 }
 
 function getFilledStyle(props: InputVariant) {
-  const { theme, focusBorderColor, errorBorderColor } = props;
-  const bg = getModeValue(props.theme, "gray.100", "whiteAlpha.50");
-  const hoverBg = getModeValue(props.theme, "gray.200", "whiteAlpha.100");
-
-  const _focusBorderColor = getColor(theme.colors, focusBorderColor);
-  const _errorBorderColor = getColor(theme.colors, errorBorderColor);
-
+  const { theme: t, focusBorderColor: fc, errorBorderColor: ec } = props;
   return {
-    border: "2px",
+    border: "2px solid",
     borderColor: "transparent",
-    bg: bg,
+    bg: getModeColor(props, "gray.100", "whiteAlpha.50"),
     _hover: {
-      bg: hoverBg,
+      bg: getModeColor(props, "gray.200", "whiteAlpha.100"),
     },
     _disabled: {
       opacity: "0.4",
@@ -60,32 +47,29 @@ function getFilledStyle(props: InputVariant) {
     _focus: {
       zIndex: 1,
       bg: "transparent",
-      borderColor: _focusBorderColor,
+      borderColor: getColor(t, fc),
     },
     _invalid: {
-      borderColor: _errorBorderColor,
+      borderColor: getColor(t, ec),
     },
   };
 }
 
 function getFlushedStyle(props: InputVariant) {
-  const { focusBorderColor, errorBorderColor } = props;
-
-  const _focusBorderColor = getColor(props.theme, focusBorderColor);
-  const _errorBorderColor = getColor(props.theme, errorBorderColor);
+  const { focusBorderColor: fc, errorBorderColor: ec, theme: t } = props;
 
   return {
-    borderBottom: "2px",
+    borderBottom: "2px solid",
     borderColor: "inherit",
     rounded: 0,
     paddingX: undefined,
     bg: "transparent",
     _focus: {
       zIndex: 1,
-      borderColor: _focusBorderColor,
+      borderColor: getColor(t, fc),
     },
     _invalid: {
-      borderColor: _errorBorderColor,
+      borderColor: getColor(t, ec),
     },
   };
 }

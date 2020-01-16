@@ -16,7 +16,7 @@ export interface ButtonGroupOptions
 
 export type ButtonGroupProps = BoxProps & ButtonGroupOptions;
 
-const ButtonGroup = ({
+export const ButtonGroup = ({
   variantSize,
   variantColor,
   variant,

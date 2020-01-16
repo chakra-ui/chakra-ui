@@ -56,11 +56,12 @@ const Alert = forwardRef((props: AlertProps, ref: React.Ref<any>) => {
   );
 });
 
-const AlertTitle = createChakra("div");
-AlertTitle.defaultProps = {
-  fontWeight: "bold",
-  lineHeight: "normal",
-};
+const AlertTitle = createChakra("div", {
+  baseStyle: {
+    fontWeight: "bold",
+    lineHeight: "normal",
+  },
+});
 
 const AlertDescription = createChakra("div");
 

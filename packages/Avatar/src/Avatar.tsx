@@ -108,14 +108,14 @@ const AvatarRoot = createChakra("div", { themeKey: "Avatar" });
 
 export type AvatarProps = SafeMerge<PropsOf<typeof AvatarRoot>, AvatarOptions>;
 
-const Avatar = forwardRef(
+export const Avatar = forwardRef(
   (
     { src, name, showBorder, borderColor, ...props }: AvatarProps,
     ref: React.Ref<any>,
   ) => {
     const [hasLoaded, setHasLoaded] = React.useState(true);
 
-    const renderChildren = () => {
+    const getChildren = () => {
       if (src && hasLoaded) {
         return (
           <chakra.img
@@ -161,7 +161,7 @@ const Avatar = forwardRef(
 
     return (
       <AvatarRoot ref={ref} verticalAlign="top" {...styleProps} {...props}>
-        {renderChildren()}
+        {getChildren()}
         {props.children}
       </AvatarRoot>
     );

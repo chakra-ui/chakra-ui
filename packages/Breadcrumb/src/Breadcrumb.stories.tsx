@@ -6,7 +6,7 @@ import {
   BreadcrumbLink,
   BreadcrumbSeparator,
 } from "./Breadcrumb";
-import { Icon } from "../Icon";
+// import { Icon } from "../Icon";
 import setup from "../story.setup";
 
 const stories = storiesOf("Breadcrumb", module);
@@ -48,7 +48,7 @@ stories.add("separator", () => (
 ));
 
 stories.add("separator v2", () => (
-  <Breadcrumb separator={<Icon name="chevron-right" />}>
+  <Breadcrumb separator="/">
     <BreadcrumbItem>
       <BreadcrumbLink href="#">Home</BreadcrumbLink>
     </BreadcrumbItem>

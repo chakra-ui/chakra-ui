@@ -1,7 +1,7 @@
 import { Dict, isFunction, isString } from "@chakra-ui/utils";
 import * as React from "react";
 import { filterProps } from "../chakra/styled";
-import { useChakra } from "../color-mode/";
+import { useChakra } from "../color-mode";
 import { css } from "../css";
 import { forwardRef } from "../forward-ref";
 import { jsx } from "../system";
@@ -10,17 +10,17 @@ import { As, CreateChakraComponent, CreateChakraOptions } from "./types";
 import propNames from "../system/prop-names";
 
 // prevent chakra props from getting to DOM element
-function clean(props: object) {
+function clean(props: Dict) {
   const nextProps: Dict = {};
   for (const prop in props) {
     if (!propNames.includes(prop)) {
-      nextProps[prop] = props[prop as keyof typeof props];
+      nextProps[prop] = props[prop];
     }
   }
   return nextProps;
 }
 
-export const styled = <T extends As, H = {}>(
+export const createStyled = <T extends As, H = {}>(
   tag: T,
   options?: CreateChakraOptions<H>,
 ) => (...interpolations: any[]) => {
@@ -57,9 +57,12 @@ export const styled = <T extends As, H = {}>(
       // Add final styles before component styles to support prop overriding
       finalStyles = { ...componentStyles, ...finalStyles };
 
-      const elementToBeCreated = as || tag;
-      const shouldForwardProps = !isString(elementToBeCreated);
-      let computedProps: Dict = shouldForwardProps ? { ...props } : {};
+      const element = as || tag;
+      const isTag = isString(element);
+      let computedProps: Dict = isTag ? {} : { ...props };
+
+      // The gatekeeper that prevents style props from getting to the dom
+      if (isTag) filterProps(computedProps, props);
 
       // If hook was passed, invoke the hook with the props
       if (options?.hook) {
@@ -67,19 +70,19 @@ export const styled = <T extends As, H = {}>(
         Object.assign(computedProps, hookProps);
       }
 
-      // The gatekeeper that prevents style props from getting to the dom
-      if (!shouldForwardProps) {
-        filterProps(computedProps, props);
-      } else {
-        computedProps = clean(computedProps);
+      // anyone style props that made it through here will get cleaned up
+      computedProps = clean(computedProps);
+
+      // Attach props to this component
+      if (options?.attrs) {
+        const attrsProps =
+          typeof options.attrs === "function"
+            ? options.attrs(computedProps)
+            : options.attrs;
+        Object.assign(computedProps, attrsProps);
       }
 
-      // Add data-* signature
-      if (options?.dataAttr) {
-        computedProps[options.dataAttr] = "";
-      }
-
-      return jsx(elementToBeCreated, {
+      return jsx(element, {
         ...computedProps,
         css: finalStyles,
       });
@@ -89,4 +92,4 @@ export const styled = <T extends As, H = {}>(
   return Styled as CreateChakraComponent<T, H>;
 };
 
-export default styled;
+export default createStyled;
