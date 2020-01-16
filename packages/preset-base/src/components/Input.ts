@@ -1,4 +1,4 @@
-import { VariantStyleFunction, getModeColor } from "./utils";
+import { VariantStyleFunction, getModeColor as get } from "./utils";
 import { getColor } from "@chakra-ui/color";
 
 type InputVariant = VariantStyleFunction & {
@@ -10,10 +10,10 @@ function getOutlinedStyle(props: InputVariant) {
   const { focusBorderColor: fc, errorBorderColor: ec, theme: t } = props;
   return {
     border: "1px solid",
-    borderColor: getModeColor(props, "inherit", "whiteAlpha.50"),
-    bg: getModeColor(props, "white", "whiteAlpha.100"),
+    borderColor: get(props, "inherit", "whiteAlpha.50"),
+    bg: get(props, "white", "whiteAlpha.100"),
     _hover: {
-      borderColor: getModeColor(props, "gray.300", "whiteAlpha.200"),
+      borderColor: get(props, "gray.300", "whiteAlpha.200"),
     },
     _disabled: {
       opacity: "0.4",
@@ -36,9 +36,9 @@ function getFilledStyle(props: InputVariant) {
   return {
     border: "2px solid",
     borderColor: "transparent",
-    bg: getModeColor(props, "gray.100", "whiteAlpha.50"),
+    bg: get(props, "gray.100", "whiteAlpha.50"),
     _hover: {
-      bg: getModeColor(props, "gray.200", "whiteAlpha.100"),
+      bg: get(props, "gray.200", "whiteAlpha.100"),
     },
     _disabled: {
       opacity: "0.4",

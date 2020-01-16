@@ -114,7 +114,7 @@ function useModalDialog(props: any) {
 
 export const ModalDialog = createChakra("section", {
   hook: useModalDialog,
-  dataAttr: "--chakra-dialog",
+  attrs: { "data-chakra-dialog": "" },
 });
 
 export const ModalOverlay = createChakra("div", {

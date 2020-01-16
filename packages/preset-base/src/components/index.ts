@@ -8,6 +8,7 @@ import Code from "./Code";
 import Spinner from "./Spinner";
 import Menu from "./Menu";
 import Tabs from "./Tabs";
+import Checkbox from "./Checkbox";
 
 export default {
   Button,
@@ -20,4 +21,5 @@ export default {
   Spinner,
   Menu,
   Tabs,
+  Checkbox,
 };

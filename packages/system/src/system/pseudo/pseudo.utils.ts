@@ -1,5 +1,5 @@
 import { selectors } from "./pseudo";
-import { memoizeOne, Dict } from "@chakra-ui/utils";
+import { memoizeOne, Dict, isObject } from "@chakra-ui/utils";
 
 type SelectorProp = keyof typeof selectors;
 
@@ -17,8 +17,13 @@ export const replacePseudoProp = memoizeOne((prop: string) => {
 export const replacePseudo = (props: any) => {
   const next: Dict = {};
   for (const prop in props) {
-    const realProp = replacePseudoProp(prop);
-    next[realProp] = props[prop];
+    const propValue = props[prop];
+    const propKey = replacePseudoProp(prop);
+    if (isObject(propValue)) {
+      next[propKey] = replacePseudo(propValue);
+    } else {
+      next[propKey] = propValue;
+    }
   }
   return next;
 };

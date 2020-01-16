@@ -14,10 +14,7 @@ export interface CheckboxGroupProps {
 export function useCheckboxGroup(props: CheckboxGroupProps) {
   const { defaultValue, value: valueProp, onChange: onChangeProp } = props;
   const [valueState, setValue] = React.useState(defaultValue || []);
-  const [isControlled, derivedValue] = useControllableProp(
-    valueProp,
-    valueState,
-  );
+  const [isControlled, value] = useControllableProp(valueProp, valueState);
 
   const updateValue = React.useCallback(
     (nextState: Value[]) => {
@@ -35,25 +32,25 @@ export function useCheckboxGroup(props: CheckboxGroupProps) {
   const onChange = (
     eventOrValue: React.ChangeEvent<HTMLInputElement> | Value,
   ) => {
-    if (!derivedValue) return;
+    if (!value) return;
 
     const checked = isInputEvent(eventOrValue)
-      ? (eventOrValue as React.ChangeEvent<HTMLInputElement>).target.checked
-      : !derivedValue.includes(eventOrValue as Value);
+      ? eventOrValue.target.checked
+      : !value.includes(eventOrValue as Value);
 
-    const selectedValue =
-      typeof eventOrValue === "object"
-        ? eventOrValue.target.value
-        : eventOrValue;
+    const selectedValue = isInputEvent(eventOrValue)
+      ? eventOrValue.target.value
+      : eventOrValue;
 
-    const nextState = checked
-      ? [...derivedValue, selectedValue]
-      : derivedValue.filter(val => val !== selectedValue);
-    updateValue(nextState);
+    const nextValue = checked
+      ? [...value, selectedValue]
+      : value.filter(val => val !== selectedValue);
+
+    updateValue(nextValue);
   };
 
   return {
-    value: derivedValue,
+    value: value,
     onChange,
     setValue: updateValue,
   };

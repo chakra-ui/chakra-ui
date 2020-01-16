@@ -128,6 +128,7 @@ export function useCheckbox(props: CheckboxProps) {
       "data-mixed": makeDataAttribute(isIndeterminate),
       "data-disabled": makeDataAttribute(isDisabled),
       "data-readonly": makeDataAttribute(isReadOnly),
+      "aria-hidden": true,
       onPointerDown: handlePointerDown,
       onPointerUp: handlePointerUp,
       onPointerEnter: handlePointerEnter,

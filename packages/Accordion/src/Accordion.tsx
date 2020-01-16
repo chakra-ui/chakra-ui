@@ -30,7 +30,7 @@ export const AccordionButton = createChakra("button", {
 export const AccordionPanel = createChakra("div", {
   hook: useAccordionPanel,
   themeKey: "AccordionPanel",
-  dataAttr: "accordion-panel",
+  attrs: { "data-chakra-accordion-panel": "" },
   baseStyle: {
     paddingTop: 2,
     paddingX: 4,
@@ -38,7 +38,9 @@ export const AccordionPanel = createChakra("div", {
   },
 });
 
-const AccordionItemRoot = createChakra("div", { dataAttr: "accordion" });
+const AccordionItemRoot = createChakra("div", {
+  attrs: { "data-chakrs-accordion": "" },
+});
 
 export type AccordionProps = Types.AccordionProviderProps &
   Omit<PropsOf<typeof AccordionItemRoot>, "onChange"> & {

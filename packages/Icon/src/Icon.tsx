@@ -3,7 +3,6 @@ import * as React from "react";
 
 export interface IconOptions {
   role?: "presentation" | "img";
-  path?: JSX.Element;
   viewBox?: string;
 }
 
@@ -29,11 +28,11 @@ export const Icon = React.forwardRef(
     {
       as,
       size = "1em",
-      path,
       viewBox,
       color = "currentColor",
       role = "presentation",
       focusable = false,
+      children,
       ...rest
     }: IconProps,
     ref: React.Ref<any>,
@@ -54,7 +53,7 @@ export const Icon = React.forwardRef(
       return <chakra.svg data-custom-icon as={as} {...sharedProps} {...rest} />;
     }
 
-    const iconPath = path ?? fallbackIcon.path;
+    const iconPath = children ?? fallbackIcon.path;
     const iconViewbox = viewBox ?? fallbackIcon.viewBox;
 
     return (

@@ -5,7 +5,7 @@ import { CreateChakraOptions } from "./types";
 
 const isSubcomponent = (themeKey: string) => themeKey.split(".").length > 1;
 
-const resolveStyle = (objectOrFn: any, props: object) =>
+export const resolveStyle = (objectOrFn: any, props: object) =>
   isFunction(objectOrFn) ? objectOrFn(props) : objectOrFn;
 
 function getBaseStyle(props: any, themeKey: string) {

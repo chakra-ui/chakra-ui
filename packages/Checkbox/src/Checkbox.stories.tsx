@@ -15,7 +15,7 @@ const stories = storiesOf("checkbox", module);
 
 stories.addDecorator(setup);
 
-stories.add("default", () => <Checkbox />);
+stories.add("default", () => <Checkbox variantSize="lg" />);
 
 function IndeterminateExample() {
   const [checkedItems, setCheckedItems] = React.useState([false, false]);

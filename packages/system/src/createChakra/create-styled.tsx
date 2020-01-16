@@ -5,7 +5,7 @@ import { useChakra } from "../color-mode";
 import { css } from "../css";
 import { forwardRef } from "../forward-ref";
 import { jsx } from "../system";
-import getComponentStyles from "./get-component-style";
+import getComponentStyles, { resolveStyle } from "./get-component-style";
 import { As, CreateChakraComponent, CreateChakraOptions } from "./types";
 import propNames from "../system/prop-names";
 
@@ -32,14 +32,14 @@ export const createStyled = <T extends As, H = {}>(
       // Stores the the final styles
       let finalStyles: Dict = {};
 
-      // Users can pass a base style to the component, let's resolve it
-      if (options?.baseStyle) {
-        const baseStyle = css(options.baseStyle)(theme);
-        Object.assign(finalStyles, baseStyle);
-      }
-
       // For each style interpolation, we'll pass the theme and colorMode
       const propsWithTheme = { theme, colorMode, ...props };
+
+      // Users can pass a base style to the component, let's resolve it
+      if (options?.baseStyle) {
+        const baseStyle = resolveStyle(options.baseStyle, propsWithTheme);
+        Object.assign(finalStyles, baseStyle);
+      }
 
       // Resolve each interpolation and add result to final style
       interpolations.forEach(interpolation => {
