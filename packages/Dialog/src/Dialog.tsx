@@ -119,8 +119,5 @@ export const ModalDialog = createChakra("section", {
 
 export const ModalOverlay = createChakra("div", {
   hook: useModalBackdrop,
+  attrs: { role: "presentation", "data-chakra-overlay": "" },
 });
-
-ModalOverlay.defaultProps = {
-  role: "presentation",
-};

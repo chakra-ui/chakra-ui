@@ -2,7 +2,7 @@ import * as React from "react";
 import { useControllableProp } from "@chakra-ui/hooks";
 import { composeEventHandlers, createContext } from "@chakra-ui/utils";
 
-interface UseEditableOptions {
+export interface EditableProviderProps {
   value?: string;
   defaultValue?: string;
   isDisabled?: boolean;
@@ -15,10 +15,9 @@ interface UseEditableOptions {
   onEdit?: () => void;
   selectAllOnFocus?: boolean;
   placeholder?: string;
-  children: React.ReactNode;
 }
 
-export function useEditable(props: UseEditableOptions) {
+export function useEditableProvider(props: EditableProviderProps) {
   const {
     onChange: onChangeProp,
     onCancel: onCancelProp,
@@ -105,6 +104,8 @@ export function useEditable(props: UseEditableOptions) {
     }
   }, [selectAllOnFocus]);
 
+  const isValueEmpty = value == null || value == "";
+
   return {
     isEditing,
     isDisabled,
@@ -119,28 +120,19 @@ export function useEditable(props: UseEditableOptions) {
     onKeyDown,
     onFocus,
     placeholder,
+    isValueEmpty,
   };
 }
 
 ////////////////////////////////////////////////////////////////
 
-const [EditableContextProvider, useEditableContext] = createContext<
-  ReturnType<typeof useEditable>
->();
-
-export function EditableProvider(props: UseEditableOptions) {
-  const editable = useEditable(props);
-  const ctx = React.useMemo(() => editable, [editable]);
-  return (
-    <EditableContextProvider value={ctx}>
-      {props.children}
-    </EditableContextProvider>
-  );
+export interface EditablePreviewProps {
+  context: ReturnType<typeof useEditableProvider>;
+  onFocus?: React.FocusEventHandler;
 }
+export function useEditablePreview(props: EditablePreviewProps) {
+  const { context, onFocus } = props;
 
-////////////////////////////////////////////////////////////////
-
-export function useEditablePreview(props: any) {
   const {
     isEditing,
     isDisabled,
@@ -148,9 +140,8 @@ export function useEditablePreview(props: any) {
     onEdit,
     isPreviewFocusable,
     placeholder,
-  } = useEditableContext();
-
-  const isValueEmpty = value == null || value == "";
+    isValueEmpty,
+  } = context;
 
   const getTabIndex = () => {
     if ((!isEditing || !isDisabled) && isPreviewFocusable) {
@@ -160,25 +151,30 @@ export function useEditablePreview(props: any) {
   };
 
   return {
-    value,
-    placeholder,
+    children: isValueEmpty ? placeholder : value,
     hidden: isEditing,
-    isValueEmpty,
     "aria-disabled": isDisabled,
     tabIndex: getTabIndex(),
-    onFocus: composeEventHandlers(props.onFocus, onEdit),
+    onFocus: composeEventHandlers(onFocus, onEdit),
   };
 }
 
 ////////////////////////////////////////////////////////////////
 
-interface UseEditableInput {
+export interface EditableInputProps {
+  context: ReturnType<typeof useEditableProvider>;
   onChange?: React.ChangeEventHandler;
   onBlur?: React.FocusEventHandler;
   onKeyDown?: React.KeyboardEventHandler;
 }
 
-export function useEditableInput(props: UseEditableInput = {}) {
+export function useEditableInput(props: EditableInputProps) {
+  const {
+    context,
+    onChange: onChangeProp,
+    onBlur,
+    onKeyDown: onKeyDownProp,
+  } = props;
   const {
     inputRef,
     isEditing,
@@ -189,10 +185,12 @@ export function useEditableInput(props: UseEditableInput = {}) {
     placeholder,
     submitOnBlur,
     isDisabled,
-  } = useEditableContext();
+  } = context;
 
-  const onBlur = React.useCallback(() => {
-    if (submitOnBlur) onSubmit();
+  const handleBlur = React.useCallback(() => {
+    if (submitOnBlur) {
+      onSubmit && onSubmit();
+    }
   }, [submitOnBlur, onSubmit]);
 
   return {
@@ -201,26 +199,9 @@ export function useEditableInput(props: UseEditableInput = {}) {
     ref: inputRef,
     disabled: isDisabled,
     "aria-disabled": isDisabled,
-    onBlur: composeEventHandlers(props.onBlur, onBlur),
+    onBlur: composeEventHandlers(onBlur, handleBlur),
     value,
-    onChange: composeEventHandlers(props.onChange, onChange),
-    onKeyDown: composeEventHandlers(props.onKeyDown, onKeyDown),
-  };
-}
-
-export function useEditableState() {
-  const {
-    isEditing,
-    onSubmit,
-    onCancel,
-    onEdit,
-    isDisabled,
-  } = useEditableContext();
-  return {
-    isEditing,
-    onSubmit,
-    onCancel,
-    onEdit,
-    isDisabled,
+    onChange: composeEventHandlers(onChangeProp, onChange),
+    onKeyDown: composeEventHandlers(onKeyDownProp, onKeyDown),
   };
 }

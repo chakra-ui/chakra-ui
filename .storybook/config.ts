@@ -1,7 +1,7 @@
 import { configure } from "@storybook/react";
 
 const req = require.context(
-  `../packages/Checkbox/src/`,
+  `../packages/Editable/src/`,
   true,
   /.stories\.(ts|tsx)$/,
 );
