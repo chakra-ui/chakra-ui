@@ -39,7 +39,7 @@ export const AccordionPanel = createChakra("div", {
 });
 
 const AccordionItemRoot = createChakra("div", {
-  attrs: { "data-chakrs-accordion": "" },
+  attrs: { "data-chakra-accordion": "" },
 });
 
 export type AccordionProps = Types.AccordionProviderProps &
