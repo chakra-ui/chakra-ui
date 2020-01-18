@@ -48,7 +48,8 @@
     "pin-input": "yarn workspace @chakra-ui/pin-input",
     "avatar": "yarn workspace @chakra-ui/avatar",
     "spinner": "yarn workspace @chakra-ui/spinner",
-    "breadcrumb": "yarn workspace @chakra-ui/breadcrumb"
+    "breadcrumb": "yarn workspace @chakra-ui/breadcrumb",
+    "transition": "yarn workspace @chakra-ui/transition"
   },
   "husky": {
     "hooks": {

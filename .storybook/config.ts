@@ -1,7 +1,7 @@
 import { configure } from "@storybook/react";
 
 const req = require.context(
-  `../packages/Editable/src/`,
+  `../packages/Transition/src/`,
   true,
   /.stories\.(ts|tsx)$/,
 );

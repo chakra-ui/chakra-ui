@@ -47,6 +47,8 @@ export function EditablePreview(props: any) {
   return <chakra.span {...styleProps} {...props} {...preview} />;
 }
 
+Editable.Preview = EditablePreview;
+
 export function EditableInput(props: any) {
   const context = useEditableContext();
   const input = useEditableInput({ context });
@@ -69,6 +71,8 @@ export function EditableInput(props: any) {
     />
   );
 }
+
+Editable.Input = EditableInput;
 
 export function useEditableState() {
   const {

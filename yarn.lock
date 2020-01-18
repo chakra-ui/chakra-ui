@@ -3731,6 +3731,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-transition-group@2.0.9":
+  version "2.0.9"
+  resolved "https://registry.yarnpkg.com/@types/react-transition-group/-/react-transition-group-2.0.9.tgz#ed6a71fb711e524345844defec2a861c1a222a03"
+  integrity sha512-Id2MtQcmOgLymqqLqg1VjzNpN7O5vGoF47h3s7jxhzqWdMCtk2GwxFUqcKbGrRmHzzQGyRatfG8yahonIys74Q==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*", "@types/react@^16.8.10":
   version "16.9.9"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.9.tgz#a62c6f40f04bc7681be5e20975503a64fe783c3a"
