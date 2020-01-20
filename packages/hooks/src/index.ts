@@ -18,4 +18,3 @@ export * from "./usePrevious";
 export * from "./useRapidKeyDown";
 export * from "./useUpdateEffect";
 export * from "./useEventListener";
-export * from "./useAnnouncer";

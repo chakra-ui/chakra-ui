@@ -1,7 +1,7 @@
 import { configure } from "@storybook/react";
 
 const req = require.context(
-  `../packages/Transition/src/`,
+  `../packages/live-region/src/`,
   true,
   /.stories\.(ts|tsx)$/,
 );

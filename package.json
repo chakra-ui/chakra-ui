@@ -49,7 +49,8 @@
     "avatar": "yarn workspace @chakra-ui/avatar",
     "spinner": "yarn workspace @chakra-ui/spinner",
     "breadcrumb": "yarn workspace @chakra-ui/breadcrumb",
-    "transition": "yarn workspace @chakra-ui/transition"
+    "transition": "yarn workspace @chakra-ui/transition",
+    "live-region": "yarn workspace @chakra-ui/live-region"
   },
   "husky": {
     "hooks": {

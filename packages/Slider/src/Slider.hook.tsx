@@ -6,10 +6,10 @@ import {
   roundValueToStep,
   valueToPercent,
   createContext,
+  throttle,
 } from "@chakra-ui/utils";
 import * as React from "react";
 import { useControllableProp, useId } from "@chakra-ui/hooks";
-import { throttle } from "throttle-debounce";
 
 const [SliderContextProvider, useSliderContext] = createContext<any>();
 export { SliderContextProvider };
