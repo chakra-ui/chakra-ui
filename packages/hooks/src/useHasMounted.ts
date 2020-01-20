@@ -1,6 +1,6 @@
 import * as React from "react";
 
-function useMountedState() {
+function useHasMounted() {
   const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
@@ -13,4 +13,4 @@ function useMountedState() {
   return mounted;
 }
 
-export default useMountedState;
+export default useHasMounted;

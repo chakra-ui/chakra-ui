@@ -1,6 +1,6 @@
 import { valueToPercent } from "@chakra-ui/utils";
 
-export interface UseProgressBarOptions {
+export interface ProgressBarOptions {
   value: number;
   min: number;
   max: number;
@@ -8,7 +8,7 @@ export interface UseProgressBarOptions {
   getValueText?: (value: number, percent?: number) => string;
 }
 
-export function useProgressbar(props: UseProgressBarOptions) {
+export function useProgress(props: ProgressBarOptions) {
   const percent = valueToPercent(props.value, props.min, props.max);
   const isIndeterminate = typeof props.value === "undefined";
   return {
@@ -24,3 +24,5 @@ export function useProgressbar(props: UseProgressBarOptions) {
     percent,
   };
 }
+
+export default useProgress;
