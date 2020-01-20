@@ -9,6 +9,7 @@ import Spinner from "./Spinner";
 import Menu from "./Menu";
 import Tabs from "./Tabs";
 import Checkbox from "./Checkbox";
+import Radio from "./Radio";
 
 export default {
   Button,
@@ -22,4 +23,5 @@ export default {
   Menu,
   Tabs,
   Checkbox,
+  Radio,
 };

@@ -62,7 +62,7 @@ stories.add("custom composition", () => (
     <CheckBox
       display="inline-block"
       border="1px solid gray"
-      _checked={{ bg: "green" }}
+      _checked={{ bg: "green.200" }}
       _focus={{ outline: "3px dotted red" }}
     >
       Click me to check

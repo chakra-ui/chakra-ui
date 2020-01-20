@@ -1,19 +1,15 @@
-import {
-  useControllableProp,
-  useIsomorphicEffect,
-  useMergeRefs,
-} from "@chakra-ui/hooks";
+import { useControllableProp, useMergeRefs } from "@chakra-ui/hooks";
 import {
   composeEventHandlers,
-  makeDataAttribute,
   createContext,
+  makeDataAttribute,
   visuallyHiddenStyle,
+  Omit,
 } from "@chakra-ui/utils";
 import * as React from "react";
 
-export interface CheckboxProps {
+export interface RadioProps {
   isChecked?: boolean;
-  isIndeterminate?: boolean;
   isDisabled?: boolean;
   isFocusable?: boolean;
   isReadOnly?: boolean;
@@ -30,7 +26,7 @@ export interface CheckboxProps {
   onKeyUp?: React.KeyboardEventHandler;
 }
 
-export function useCheckbox(props: CheckboxProps) {
+export function useRadio(props: RadioProps) {
   const {
     defaultIsChecked,
     isChecked: checkedProp,
@@ -39,7 +35,6 @@ export function useCheckbox(props: CheckboxProps) {
     isReadOnly,
     isRequired,
     onChange,
-    isIndeterminate,
     isInvalid,
     name,
     value,
@@ -73,22 +68,13 @@ export function useCheckbox(props: CheckboxProps) {
     }
 
     if (!isControlled) {
-      if (isChecked) {
-        setCheckedState(event.target.checked);
-      } else {
-        setCheckedState(isIndeterminate ? true : event.target.checked);
-      }
+      setCheckedState(event.target.checked);
     }
 
     if (onChange) {
       onChange(event);
     }
   };
-
-  useIsomorphicEffect(() => {
-    if (!ref.current) return;
-    ref.current.indeterminate = Boolean(isIndeterminate);
-  }, [isIndeterminate]);
 
   const trulyDisabled = isDisabled && !isFocusable;
 
@@ -115,7 +101,6 @@ export function useCheckbox(props: CheckboxProps) {
       isChecked,
       isActive,
       isHovered,
-      isIndeterminate,
       isDisabled,
       isReadOnly,
       isRequired,
@@ -125,8 +110,6 @@ export function useCheckbox(props: CheckboxProps) {
       "data-hover": makeDataAttribute(isHovered),
       "data-checked": makeDataAttribute(isChecked),
       "data-focus": makeDataAttribute(isFocused),
-      "data-mixed": makeDataAttribute(isIndeterminate),
-      "data-disabled": makeDataAttribute(isDisabled),
       "data-readonly": makeDataAttribute(isReadOnly),
       "aria-hidden": true,
       onPointerDown: handlePointerDown,
@@ -136,7 +119,7 @@ export function useCheckbox(props: CheckboxProps) {
     },
     input: {
       ref,
-      type: "checkbox",
+      type: "radio",
       name,
       value,
       id,
@@ -157,27 +140,28 @@ export function useCheckbox(props: CheckboxProps) {
   };
 }
 
-export type UseCheckboxReturn = ReturnType<typeof useCheckbox>;
+export type UseRadioReturn = ReturnType<typeof useRadio>;
 
-const [CheckboxContextProvider, useCheckboxContext] = createContext<
-  Omit<UseCheckboxReturn, "remaining">
+const [RadioCtxProvider, useRadioContext] = createContext<
+  Omit<UseRadioReturn, "remaining">
 >();
 
-export const useCheckboxState = () => useCheckboxContext()["state"];
+export const useRadioState = () => useRadioContext()["state"];
 
 ////////////////////////////////////////////////////////////////////////////////
 
-type LabelProps = CheckboxProps & React.HTMLAttributes<HTMLLabelElement>;
+type LabelProps = RadioProps &
+  Omit<React.HTMLAttributes<HTMLLabelElement>, "onChange">;
 
-export const CheckboxProvider = React.forwardRef(
+export const RadioProvider = React.forwardRef(
   (props: LabelProps, ref: React.Ref<HTMLLabelElement>) => {
-    const { remaining, ...context } = useCheckbox(props);
+    const { remaining, ...context } = useRadio(props);
     return (
-      <CheckboxContextProvider value={context}>
+      <RadioCtxProvider value={context}>
         <label ref={ref} {...remaining}>
           {props.children}
         </label>
-      </CheckboxContextProvider>
+      </RadioCtxProvider>
     );
   },
 );
@@ -186,9 +170,9 @@ export const CheckboxProvider = React.forwardRef(
 
 type InputProps = React.HTMLAttributes<HTMLInputElement>;
 
-export const CheckboxInput = React.forwardRef(
+export const RadioInput = React.forwardRef(
   (props: InputProps, forwardedRef: React.Ref<HTMLInputElement>) => {
-    const { input } = useCheckboxContext();
+    const { input } = useRadioContext();
     const ref = useMergeRefs(input.ref, forwardedRef);
     return <input {...props} {...input} ref={ref} />;
   },
@@ -196,7 +180,7 @@ export const CheckboxInput = React.forwardRef(
 
 ////////////////////////////////////////////////////////////////////////////////
 
-interface CustomCheckboxProps {
+interface CustomRadioProps {
   onPointerDown?: React.PointerEventHandler;
   onPointerUp?: React.PointerEventHandler;
   onPointerEnter?: React.PointerEventHandler;
@@ -205,7 +189,7 @@ interface CustomCheckboxProps {
   children?: React.ReactNode;
 }
 
-export const CustomCheckbox = React.forwardRef(
+export const CustomRadio = React.forwardRef(
   (
     {
       onPointerDown,
@@ -214,10 +198,10 @@ export const CustomCheckbox = React.forwardRef(
       onPointerLeave,
       style,
       ...props
-    }: CustomCheckboxProps,
+    }: CustomRadioProps,
     ref: React.Ref<any>,
   ) => {
-    const { checkbox } = useCheckboxContext();
+    const { checkbox } = useRadioContext();
     return (
       <div
         {...props}

@@ -1,7 +1,7 @@
 import { configure } from "@storybook/react";
 
 const req = require.context(
-  `../packages/live-region/src/`,
+  `../packages/Radio/src/`,
   true,
   /.stories\.(ts|tsx)$/,
 );
