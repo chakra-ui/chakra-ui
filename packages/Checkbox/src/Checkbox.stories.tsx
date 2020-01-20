@@ -8,7 +8,7 @@ import {
   CustomCheckbox,
   useCheckboxState,
 } from ".";
-import setup from "../../core/src/story.setup";
+import setup from "../story.setup";
 import useCheckboxGroup from "./CheckboxGroup.hook";
 
 const stories = storiesOf("checkbox", module);

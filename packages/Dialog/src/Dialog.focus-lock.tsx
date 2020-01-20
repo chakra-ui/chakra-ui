@@ -8,7 +8,7 @@ interface FocusLockProps {
   children: React.ReactNode;
 }
 
-function ModalFocusLock(props: FocusLockProps) {
+function FocusLock(props: FocusLockProps) {
   const { initialFocusRef, finalFocusRef, restoreFocus, children } = props;
 
   const onActivation = React.useCallback(() => {
@@ -36,4 +36,4 @@ function ModalFocusLock(props: FocusLockProps) {
   );
 }
 
-export default ModalFocusLock;
+export default FocusLock;

@@ -47,7 +47,7 @@ function UIRadio() {
   });
   const isChecked = (val: string) => radio.value === val;
   return (
-    <>
+    <div {...radio.bind}>
       {options.map(opt => (
         <Radio
           {...radio}
@@ -57,7 +57,7 @@ function UIRadio() {
           children={opt}
         />
       ))}
-    </>
+    </div>
   );
 }
 

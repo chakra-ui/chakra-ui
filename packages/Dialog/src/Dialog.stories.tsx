@@ -1,16 +1,16 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import { Modal, ModalOverlay, ModalDialog } from "./Dialog";
+import { Dialog, DialogOverlay, DialogContent, getBaseStyle } from "./Dialog";
 import setup from "../story.setup";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { Portal } from "@chakra-ui/portal";
 
-const stories = storiesOf("Modal", module);
+const stories = storiesOf("Dialog", module);
 
 stories.addDecorator(setup);
 
 const Overlay = (props: any) => (
-  <ModalOverlay
+  <DialogOverlay
     pos="fixed"
     bg="rgba(0,0,0,0.4)"
     left="0"
@@ -21,29 +21,22 @@ const Overlay = (props: any) => (
   />
 );
 
-const Dialog = (props: any) => (
-  <ModalDialog
-    bg="white"
-    color="black"
-    pos="fixed"
-    left="50%"
-    transform="translateX(-50%)"
-    top="20vh"
-    w="600px"
-    h="200px"
-    {...props}
-  />
-);
+const DialogContentt = (props: any) => {
+  const baseStyle = getBaseStyle({ colorMode: "dark", isCentered: true });
+  return (
+    <DialogContent maxW="600px" height="200px" {...baseStyle} {...props} />
+  );
+};
 
 function SimpleModal() {
   const dialog = useDisclosure();
   return (
     <>
       <button onClick={dialog.onOpen}>Open</button>
-      <Modal isOpen={dialog.isOpen} onClose={dialog.onClose}>
+      <Dialog isOpen={dialog.isOpen} onClose={dialog.onClose}>
         <Overlay />
-        <Dialog>Welcome Home</Dialog>
-      </Modal>
+        <DialogContentt>Welcome Home</DialogContentt>
+      </Dialog>
     </>
   );
 }
@@ -57,26 +50,26 @@ function NestedModal() {
   return (
     <>
       <button onClick={dialog1.onOpen}>Open</button>
-      <Modal isOpen={dialog1.isOpen} onClose={dialog1.onClose}>
+      <Dialog isOpen={dialog1.isOpen} onClose={dialog1.onClose}>
         <Overlay />
-        <Dialog>
+        <DialogContentt>
           Welcome Home
           <br />
           <button>Button 2</button>
           <button onClick={dialog2.onOpen}>Open Nested</button>
-          <Modal isOpen={dialog2.isOpen} onClose={dialog2.onClose}>
+          <Dialog isOpen={dialog2.isOpen} onClose={dialog2.onClose}>
             <Overlay />
-            <Dialog>
+            <DialogContentt>
               Welcome Home
               <button onClick={dialog3.onOpen}>Open Nested 2</button>
-              <Modal isOpen={dialog3.isOpen} onClose={dialog3.onClose}>
+              <Dialog isOpen={dialog3.isOpen} onClose={dialog3.onClose}>
                 <Overlay />
-                <Dialog>Welcome Home</Dialog>
-              </Modal>
-            </Dialog>
-          </Modal>
-        </Dialog>
-      </Modal>
+                <DialogContentt>Welcome Home</DialogContentt>
+              </Dialog>
+            </DialogContentt>
+          </Dialog>
+        </DialogContentt>
+      </Dialog>
     </>
   );
 }

@@ -1,7 +1,7 @@
 import { configure } from "@storybook/react";
 
 const req = require.context(
-  `../packages/Radio/src/`,
+  `../packages/Dialog/src/`,
   true,
   /.stories\.(ts|tsx)$/,
 );
