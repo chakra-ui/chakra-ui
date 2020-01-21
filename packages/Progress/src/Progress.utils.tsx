@@ -32,6 +32,13 @@ export const rotate = keyframes`
 
 ////////////////////////////////////////////////////////////////////////
 
+export const progress = keyframes`
+  0% { left: -40% }
+  100% { left: 100% }
+`;
+
+////////////////////////////////////////////////////////////////////////
+
 export const stripe = keyframes`
   from { background-position: 1rem 0}
   to { background-position: 0 0 }

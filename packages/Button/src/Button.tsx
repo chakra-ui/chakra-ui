@@ -80,6 +80,7 @@ const Button = React.forwardRef((props: ButtonProps, ref: React.Ref<any>) => {
       type={type}
       width={isFullWidth ? "full" : undefined}
       data-active={isActive ? "" : undefined}
+      data-loading={isLoading ? "" : undefined}
       {...rest}
     >
       {leftIcon && !isLoading && (

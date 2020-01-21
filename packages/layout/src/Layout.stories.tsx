@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 import setup from "./story.setup";
 import Box from "./Box";
 import { PropsOf, chakra } from "@chakra-ui/system";
-import { AspectRatioBox } from "./AspectRatioBox";
+import AspectRatioBox from "./AspectRatioBox";
 import Stack from "./Stack";
 import Heading from "./Heading";
 import Text from "./Text";

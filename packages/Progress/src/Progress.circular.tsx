@@ -2,47 +2,42 @@
 import { css, jsx } from "@emotion/core";
 import React from "react";
 import getProgressProps, { rotate, spin } from "./Progress.utils";
-import { chakra } from "@chakra-ui/system";
+import { chakra, PropsOf } from "@chakra-ui/system";
 import { isUndefined } from "@chakra-ui/utils";
 
-type CircleProps = React.ComponentProps<"circle">;
+type CircleProps = PropsOf<"circle">;
 
-const Circle = (props: CircleProps) => (
-  <circle
-    cx={50}
-    cy={50}
-    r={42}
-    fill="transparent"
-    strokeLinecap="round"
-    {...props}
-  />
-);
+function Circle(props: CircleProps) {
+  return <circle cx={50} cy={50} r={42} fill="transparent" {...props} />;
+}
 
-type ShapeProps = React.ComponentProps<"svg"> & {
+type ShapeProps = PropsOf<"svg"> & {
   size?: string | number;
   isIndeterminate?: boolean;
 };
 
-const Shape = ({ size, isIndeterminate, ...props }: ShapeProps) => (
-  <svg
-    width={size}
-    height={size}
-    viewBox="0 0 100 100"
-    css={
-      isIndeterminate &&
-      css`
-        animation: ${rotate} 2s linear infinite;
-      `
-    }
-    {...props}
-  />
-);
+function Shape({ size, isIndeterminate, ...props }: ShapeProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 100 100"
+      css={
+        isIndeterminate &&
+        css`
+          animation: ${rotate} 2s linear infinite;
+        `
+      }
+      {...props}
+    />
+  );
+}
 
-interface CircularProgressProps {
+interface CircularProgressOptions {
   /**
    * The size of the circular progress in CSS units
    */
-  size?: string;
+  size?: string | number;
   /**
    * Maximum value defining 100% progress made (must be higher than 'min')
    */
@@ -54,15 +49,11 @@ interface CircularProgressProps {
   /**
    * The thickness of progress indicator as a ratio of `size`. Must be between `0` and `1`
    */
-  thickness?: number;
+  thickness?: string | number;
   /**
    * Current progress (must be between min/max)
    */
   value?: number;
-  /**
-   * Angle to rotate progress indicator by
-   */
-  angle?: number;
   /**
    * If `true`, the cap of the progress indicator will be rounded.
    */
@@ -89,6 +80,9 @@ interface CircularProgressProps {
   getValueText?: (value?: number, percent?: number) => string;
 }
 
+type CircularProgressProps = PropsOf<typeof chakra.div> &
+  CircularProgressOptions;
+
 export function CircularProgress(props: CircularProgressProps) {
   const {
     size = "48px",
@@ -97,7 +91,6 @@ export function CircularProgress(props: CircularProgressProps) {
     valueText,
     getValueText,
     value,
-    angle = 0,
     capIsRound,
     children,
     thickness = "5px",
@@ -157,22 +150,26 @@ export function CircularProgress(props: CircularProgressProps) {
           stroke={color}
           strokeWidth={thickness}
           data-chakra-progress-indicator=""
+          strokeLinecap={capIsRound ? "round" : undefined}
           {...indicatorProps}
         />
       </Shape>
+      {children}
     </chakra.div>
   );
 }
 
-export const CircularProgressLabel = (props: any) => (
-  <chakra.div
-    position="absolute"
-    left="50%"
-    top="50%"
-    lineHeight="1"
-    transform="translate(-50%, -50%)"
-    fontSize="0.25em"
-    css={{ fontVariantNumeric: "tabular-nums" }}
-    {...props}
-  />
-);
+export function CircularProgressLabel(props: PropsOf<typeof chakra.div>) {
+  return (
+    <chakra.div
+      position="absolute"
+      left="50%"
+      top="50%"
+      lineHeight="1"
+      transform="translate(-50%, -50%)"
+      fontSize="0.25em"
+      css={{ fontVariantNumeric: "tabular-nums" }}
+      {...props}
+    />
+  );
+}

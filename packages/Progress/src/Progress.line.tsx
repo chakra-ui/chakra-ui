@@ -1,25 +1,26 @@
 /** @jsx jsx */
+import { generateStripe, getColor } from "@chakra-ui/color";
+import { chakra, PropsOf, useModeValue, useTheme } from "@chakra-ui/system";
+import { isUndefined, Omit, resolveProp } from "@chakra-ui/utils";
 import { css, jsx } from "@emotion/core";
 import {
   getProgressProps,
-  stripe,
+  progress,
   ProgressPropsOptions,
+  stripe,
 } from "./Progress.utils";
-import { chakra, PropsOf } from "@chakra-ui/system";
-import { generateStripe } from "@chakra-ui/color";
-import { Omit, isArray, isObject, Dict } from "@chakra-ui/utils";
 
-const stripeAnimation = css`
-  animation: ${stripe} 1s linear infinite;
-`;
+///////////////////////////////////////////////////////////////////////////
 
-export const ProgressLabel = (props: any) => (
-  <chakra.div textAlign="center" width="100%" {...props} />
-);
+export function ProgressLabel(props: PropsOf<typeof chakra.div>) {
+  return <chakra.div textAlign="center" width="100%" {...props} />;
+}
 
-type ProgressIndicatorProps = ProgressPropsOptions;
+///////////////////////////////////////////////////////////////////////////
 
-const ProgressIndicator = (props: ProgressIndicatorProps) => {
+type ProgressIndicatorProps = PropsOf<typeof chakra.div> & ProgressPropsOptions;
+
+function ProgressIndicator(props: ProgressIndicatorProps) {
   const { min, max, value, ...rest } = props;
   const progress = getProgressProps({ value, min, max });
 
@@ -27,120 +28,120 @@ const ProgressIndicator = (props: ProgressIndicatorProps) => {
     <chakra.div
       height="100%"
       transition="all 0.3s"
-      width={`${progress.percent}%`}
+      width={progress.percent ? `${progress.percent}%` : undefined}
       {...progress.bind}
       {...rest}
     />
   );
-};
+}
 
-const progressbarSizes = {
+///////////////////////////////////////////////////////////////////////////
+
+const sizes = {
   lg: "1rem",
   md: "0.75rem",
   sm: "0.5rem",
+  xs: "0.25rem",
 };
 
 type ProgressTrackProps = Omit<PropsOf<typeof chakra.div>, "size"> & {
-  size: keyof typeof progressbarSizes;
+  size?: keyof typeof sizes;
 };
 
-function resolveProp(prop: any, fn: (val: any) => any) {
-  if (isArray(prop)) {
-    return prop.map(val => fn(val));
-  }
-
-  if (isObject(prop)) {
-    const result: Record<string, string> = {};
-    for (const key in prop) {
-      result[key] = fn(prop[key]);
-    }
-    return result;
-  }
-
-  if (prop != null) {
-    return fn(prop);
-  }
-
-  return null;
-}
-
 function ProgressTrack({ size, ...props }: ProgressTrackProps) {
+  const getHeight = (val: keyof typeof sizes) => sizes[val] || val;
+  const height = resolveProp(size, getHeight);
+
   return (
     <chakra.div
       position="relative"
-      height={progressbarSizes[size]}
       overflow="hidden"
+      height={height}
       {...props}
     />
   );
 }
 
-interface ProgressProps {
+///////////////////////////////////////////////////////////////////////////
+
+interface ProgressProps extends ProgressTrackProps {
   color?: string;
   value?: number;
   min?: number;
   max?: number;
-  variantSize?: "lg" | "md" | "sm";
+  variantSize?: keyof typeof sizes;
   hasStripe?: boolean;
   isAnimated?: boolean;
 }
 
-function getBaseStyle(props: any) {
-  return {};
-}
+export function Progress(props: ProgressProps) {
+  const {
+    color = "blue",
+    value,
+    min = 0,
+    max = 100,
+    variantSize = "md",
+    hasStripe,
+    isAnimated,
+    children,
+    borderRadius,
+    ...rest
+  } = props;
 
-const Progress = ({
-  color = "blue",
-  value = 63,
-  min = 0,
-  max = 100,
-  variantSize = "md",
-  hasStripe,
-  isAnimated,
-  children,
-  ...rest
-}: ProgressProps) => {
-  const _borderRadius = rounded || borderRadius;
-  const { colorMode } = useColorMode();
+  // The color of the progress track
+  const trackBg = useModeValue(`gray.100`, `whiteAlpha.300`);
+  const theme = useTheme();
 
-  const trackColor = { light: "gray.100", dark: "whiteAlpha.300" };
-  const indicatorColor = { light: `${color}.500`, dark: `${color}.200` };
+  // The color of the progress indicator
+  const indicatorBg = useModeValue(`${color}.500`, `${color}.200`);
 
-  const stripeStyle = {
-    light: generateStripe({}),
-    dark: generateStripe({
-      color: "rgba(0,0,0,0.1)",
+  // Generate a strip style for the progress bar
+  const stripeStyle = useModeValue(
+    generateStripe(),
+    generateStripe("1rem", "rgba(0,0,0,0.1)"),
+  );
+
+  const isIndeterminate = isUndefined(value);
+
+  const stripAnimation = { animation: `${stripe} 1s linear infinite` };
+
+  // You should not use stripe if it's indeterminate
+  const shouldAddStripe = !isIndeterminate && hasStripe;
+  const shouldAnimateStripe = shouldAddStripe && isAnimated;
+
+  // generate custom styles
+  const style = css({
+    ...(shouldAddStripe && stripeStyle),
+    ...(shouldAnimateStripe && stripAnimation),
+    ...(isIndeterminate && {
+      position: "absolute",
+      willChange: "left",
+      minWidth: "50%",
+      animation: `${progress} 1s ease infinite normal none running`,
+      background: `linear-gradient(
+        to right,
+        transparent 0%,
+        ${getColor(theme, indicatorBg)} 50%,
+        transparent 100%
+      )`,
     }),
-  };
+  });
 
   return (
     <ProgressTrack
-      size={size}
-      bg={trackColor[colorMode]}
-      borderRadius={_borderRadius}
+      size={variantSize}
+      bg={trackBg}
+      borderRadius={borderRadius}
       {...rest}
     >
       <ProgressIndicator
         min={min}
         max={max}
         value={value}
-        bg={indicatorColor[colorMode]}
-        borderRadius={_borderRadius}
-        {...(isIndeterminate && {
-          width: "100%",
-          position: "absolute",
-          top: 0,
-          left: 0,
-          bottom: 0,
-          willChange: "left, right",
-        })}
-        css={[
-          hasStripe && stripeStyle[colorMode],
-          hasStripe && isAnimated && stripeAnimation,
-        ]}
+        bg={indicatorBg}
+        borderRadius={borderRadius}
+        css={style}
       />
     </ProgressTrack>
   );
-};
-
-export default Progress;
+}

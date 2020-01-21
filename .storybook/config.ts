@@ -1,7 +1,7 @@
 import { configure } from "@storybook/react";
 
 const req = require.context(
-  `../packages/Dialog/src/`,
+  `../packages/Progress/src/`,
   true,
   /.stories\.(ts|tsx)$/,
 );
