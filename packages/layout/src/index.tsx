@@ -1,4 +1,5 @@
 export * from "./AspectRatioBox";
+export * from "./Center";
 export * from "./Box";
 export * from "./Divider";
 export * from "./Flex";

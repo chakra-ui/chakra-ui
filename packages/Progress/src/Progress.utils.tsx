@@ -40,15 +40,17 @@ export const stripe = keyframes`
 ////////////////////////////////////////////////////////////////////////
 
 export interface ProgressPropsOptions {
-  value: number;
+  value?: number;
   min: number;
   max: number;
   valueText?: string;
-  getValueText?: (value: number, percent?: number) => string;
+  getValueText?: (value?: number, percent?: number) => string;
 }
 
 export function getProgressProps(options: ProgressPropsOptions) {
-  const percent = valueToPercent(options.value, options.min, options.max);
+  const percent = options.value
+    ? valueToPercent(options.value, options.min, options.max)
+    : undefined;
   const isIndeterminate = isUndefined(options.value);
 
   return {

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { SystemProps } from "../system";
+import { SystemProps, ValidHTMLProps } from "../system";
 import { SafeMerge } from "@chakra-ui/utils";
 
 export type As<P = any> = React.ReactType<P>;
@@ -16,15 +16,10 @@ type GenericMiddleware<P, H, T extends As> = {} extends P
   ? MergeGeneric<P, H, T>
   : MergePropsOf<H, T>;
 
-interface OtherProps {
+interface OtherProps extends ValidHTMLProps {
   as?: React.ElementType;
   isTruncated?: boolean;
   children?: React.ReactNode;
-}
-
-interface NativeImageProps {
-  htmlWidth?: string | number;
-  htmlHeight?: string | number;
 }
 
 /**
@@ -44,7 +39,6 @@ export interface CreateChakraComponent<
     props: GenericMiddleware<P, H, T> &
       SystemProps &
       SafeMerge<ComponentThemingProps, C> &
-      NativeImageProps &
       OtherProps,
   ): JSX.Element;
 

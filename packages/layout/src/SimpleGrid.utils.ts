@@ -19,7 +19,7 @@ export function widthToColumns(
     Object.keys(width).length > 0
   ) {
     const acc: Record<string, string> = {};
-    for (let key in width) {
+    for (const key in width) {
       acc[key] = `repeat(auto-fit, minmax(${px(width[key])}, 1fr))`;
     }
     return acc;
@@ -45,7 +45,7 @@ export function countToColumns(
     Object.keys(count).length > 0
   ) {
     const acc: Record<string, string> = {};
-    for (let key in count) {
+    for (const key in count) {
       acc[key] = `repeat(${count[key]}, 1fr)`;
     }
     return acc;

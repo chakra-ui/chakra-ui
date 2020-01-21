@@ -1,6 +1,6 @@
 import * as React from "react";
 import { DOMElements } from "./dom-elements";
-import { SystemProps } from "../system";
+import { SystemProps, ValidHTMLProps } from "../system";
 
 export type As<P = any> = React.ReactType<P>;
 
@@ -10,13 +10,11 @@ type MergePropsOf<P, T extends As> = {} extends P
   ? Omit<P, keyof PropsOf<T>> & PropsOf<T>
   : PropsOf<T>;
 
-interface OtherProps {
+interface OtherProps extends ValidHTMLProps {
   as?: React.ElementType;
   isTruncated?: boolean;
   children?: React.ReactNode;
   apply?: string;
-  htmlWidth?: string | number;
-  htmlHeight?: string | number;
 }
 
 export interface ChakraComponent<T extends As, O = {}> {

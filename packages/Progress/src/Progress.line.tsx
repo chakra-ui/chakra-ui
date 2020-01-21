@@ -5,7 +5,9 @@ import {
   stripe,
   ProgressPropsOptions,
 } from "./Progress.utils";
-import { chakra } from "@chakra-ui/system";
+import { chakra, PropsOf } from "@chakra-ui/system";
+import { generateStripe } from "@chakra-ui/color";
+import { Omit, isArray, isObject, Dict } from "@chakra-ui/utils";
 
 const stripeAnimation = css`
   animation: ${stripe} 1s linear infinite;
@@ -38,21 +40,40 @@ const progressbarSizes = {
   sm: "0.5rem",
 };
 
-const ProgressTrack = ({
-  size,
-  ...rest
-}: {
+type ProgressTrackProps = Omit<PropsOf<typeof chakra.div>, "size"> & {
   size: keyof typeof progressbarSizes;
-}) => {
+};
+
+function resolveProp(prop: any, fn: (val: any) => any) {
+  if (isArray(prop)) {
+    return prop.map(val => fn(val));
+  }
+
+  if (isObject(prop)) {
+    const result: Record<string, string> = {};
+    for (const key in prop) {
+      result[key] = fn(prop[key]);
+    }
+    return result;
+  }
+
+  if (prop != null) {
+    return fn(prop);
+  }
+
+  return null;
+}
+
+function ProgressTrack({ size, ...props }: ProgressTrackProps) {
   return (
     <chakra.div
-      pos="relative"
+      position="relative"
       height={progressbarSizes[size]}
       overflow="hidden"
-      {...rest}
+      {...props}
     />
   );
-};
+}
 
 interface ProgressProps {
   color?: string;
@@ -62,6 +83,10 @@ interface ProgressProps {
   variantSize?: "lg" | "md" | "sm";
   hasStripe?: boolean;
   isAnimated?: boolean;
+}
+
+function getBaseStyle(props: any) {
+  return {};
 }
 
 const Progress = ({

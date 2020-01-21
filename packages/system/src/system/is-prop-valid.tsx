@@ -20,10 +20,21 @@ const shouldForwardProp = SS.createShouldForwardProp([
  *
  * https://github.com/chakra-ui/chakra-ui/issues/149
  */
-const nativeHTMLPropAlias = ["htmlWidth", "htmlHeight"];
+
+export type ValidHTMLProps = {
+  htmlWidth?: string | number;
+  htmlHeight?: string | number;
+  htmlSize?: string | number;
+};
+
+export const validHTMLProps = {
+  htmlWidth: "width",
+  htmlHeight: "height",
+  htmlSize: "size",
+};
 
 export function isPropValid(prop: string): boolean {
-  if (nativeHTMLPropAlias.includes(prop)) {
+  if (Object.keys(validHTMLProps).includes(prop)) {
     return true;
   } else {
     return shouldForwardProp(prop);

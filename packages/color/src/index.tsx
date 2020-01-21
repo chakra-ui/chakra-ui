@@ -1,28 +1,33 @@
 import tiny from "tinycolor2";
-import * as SS from "@styled-system/css";
+import * as system from "@styled-system/css";
 
-export const getColor = (
-  theme: object,
-  color: string,
-  fallback?: string,
-): string => {
-  const result = SS.get(theme, `colors.${color}`, color);
+export function getColor(theme: object, color: string, fallback?: string) {
+  const result = system.get(theme, `colors.${color}`, color);
   const isValid = tiny(result).isValid();
   return isValid ? result : fallback;
-};
+}
 
 const get = getColor;
 
-export const isDark = (color: string) => (theme: object) =>
-  tiny(get(theme, color)).isDark();
+export function isDark(color: string) {
+  return function(theme: object) {
+    return tiny(get(theme, color)).isDark();
+  };
+}
 
-export const isLight = (color: string) => (theme: object) =>
-  tiny(get(theme, color)).isLight();
+export function isLight(color: string) {
+  return function(theme: object) {
+    return tiny(get(theme, color)).isLight();
+  };
+}
 
-export const addOpacity = (color: string, opacity: number) => (theme: object) =>
-  tiny(get(theme, color))
-    .setAlpha(opacity)
-    .toRgbString();
+export function addOpacity(color: string, opacity: number) {
+  return function(theme: object) {
+    return tiny(get(theme, color))
+      .setAlpha(opacity)
+      .toRgbString();
+  };
+}
 
 export const mixWithWhite = (color: string, amount: number) => (
   theme: object,

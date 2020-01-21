@@ -1,6 +1,6 @@
 import { ChakraComponent, forwardRef } from "@chakra-ui/system";
 import * as React from "react";
-import { Box, BoxProps } from "../Box";
+import { Box, BoxProps } from "./Box";
 
 export type AspectRatioBoxProps = BoxProps & { ratio?: number };
 

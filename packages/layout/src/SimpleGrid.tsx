@@ -1,7 +1,7 @@
 import { forwardRef, ResponsiveValue } from "@chakra-ui/system";
 import * as React from "react";
-import { Grid, GridProps } from "../Grid";
-import { countToColumns, widthToColumns } from "./utils";
+import { Grid, GridProps } from "./Grid";
+import { countToColumns, widthToColumns } from "./SimpleGrid.utils";
 
 interface SimpleGridOptions {
   /**

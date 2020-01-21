@@ -1,22 +1,17 @@
 import { ThemeContext } from "@emotion/core";
 import * as React from "react";
-import { isPropValid, jsx } from "../system";
+import { isPropValid, jsx, validHTMLProps } from "../system";
 import { As, ChakraComponent } from "./types";
 import { isFunction, isString, Dict } from "@chakra-ui/utils";
 import { forwardRef, memo } from "../forward-ref";
 
 export function filterProps(next: Dict, props: Dict) {
-  // Replace the htmlWidth and htmlHeight with the appropriate DOM props
-  // This is mostly for the `img` tag
-  const replace = {
-    htmlWidth: "width",
-    htmlHeight: "height",
-  };
-
   for (const prop in props) {
     if (!isPropValid(prop)) continue;
     const propKey =
-      prop in replace ? replace[prop as keyof typeof replace] : prop;
+      prop in validHTMLProps
+        ? validHTMLProps[prop as keyof typeof validHTMLProps]
+        : prop;
     next[propKey] = props[prop];
   }
 }

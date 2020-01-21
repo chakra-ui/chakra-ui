@@ -1,8 +1,8 @@
 /**@jsx jsx */
 import { ChakraComponent, css, jsx, forwardRef } from "@chakra-ui/system";
 import * as React from "react";
-import { Box } from "../Box";
-import { FlexProps } from "../Flex";
+import { Box } from "./Box";
+import { FlexProps } from "./Flex";
 
 interface StackOptions {
   /**

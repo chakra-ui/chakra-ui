@@ -2,7 +2,6 @@ import { Dict, isFunction, isString } from "@chakra-ui/utils";
 import * as React from "react";
 import { filterProps } from "../chakra/styled";
 import { useChakra } from "../color-mode";
-import { css } from "../css";
 import { forwardRef } from "../forward-ref";
 import { jsx } from "../system";
 import getComponentStyles, { resolveStyle } from "./get-component-style";
