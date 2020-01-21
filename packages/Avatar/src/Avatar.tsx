@@ -38,9 +38,17 @@ export interface AvatarOptions {
    */
   src?: string;
   /**
+   * List of sources to use for different screen resolutions
+   */
+  srcSet?: string;
+  /**
    * The border color of the avatar
    */
   borderColor?: SystemProps["borderColor"];
+  /**
+   * Function called when image failed to load
+   */
+  onError?: () => void;
 }
 
 export const AvatarBadge = forwardRef(
@@ -108,64 +116,65 @@ const AvatarRoot = createChakra("div", { themeKey: "Avatar" });
 
 export type AvatarProps = SafeMerge<PropsOf<typeof AvatarRoot>, AvatarOptions>;
 
-export const Avatar = forwardRef(
-  (
-    { src, name, showBorder, borderColor, ...props }: AvatarProps,
-    ref: React.Ref<any>,
-  ) => {
-    const [hasLoaded, setHasLoaded] = React.useState(true);
+export const Avatar = forwardRef(function(
+  { src, name, showBorder, borderColor, onError, ...props }: AvatarProps,
+  ref: React.Ref<any>,
+) {
+  const [hasLoaded, setHasLoaded] = React.useState(true);
 
-    const getChildren = () => {
-      if (src && hasLoaded) {
-        return (
-          <chakra.img
-            size="100%"
-            rounded="full"
-            objectFit="cover"
-            src={src}
-            alt={name}
-            onError={() => {
-              setHasLoaded(false);
-            }}
-          />
-        );
-      }
+  const onLoadError = React.useCallback(() => {
+    setHasLoaded(false);
+    onError && onError();
+  }, [onError]);
 
-      if (src && !hasLoaded) {
-        if (name) {
-          return <AvatarName name={name} />;
-        } else {
-          return <DefaultAvatar aria-label={name} />;
-        }
-      }
+  const getChildren = () => {
+    if (src && hasLoaded) {
+      return (
+        <chakra.img
+          size="100%"
+          rounded="full"
+          objectFit="cover"
+          src={src}
+          alt={name}
+          onError={onLoadError}
+        />
+      );
+    }
 
-      if (!src && name) {
+    if (src && !hasLoaded) {
+      if (name) {
         return <AvatarName name={name} />;
+      } else {
+        return <DefaultAvatar aria-label={name} />;
       }
+    }
 
-      return <DefaultAvatar aria-label={name} />;
-    };
+    if (!src && name) {
+      return <AvatarName name={name} />;
+    }
 
-    const bg = name ? stringToColor(name) : "gray.400";
-    const color = name ? (isDark(bg) ? "#fff" : "gray.800") : "#fff";
+    return <DefaultAvatar aria-label={name} />;
+  };
 
-    const dafaultBorderColor = useModeValue("#fff", "gray.800");
-    const styleProps = {
-      bg,
-      color,
-      ...(showBorder && {
-        border: "2px solid",
-        borderColor: borderColor || dafaultBorderColor,
-      }),
-    };
+  const bg = name ? stringToColor(name) : "gray.400";
+  const color = name ? (isDark(bg) ? "#fff" : "gray.800") : "#fff";
 
-    return (
-      <AvatarRoot ref={ref} verticalAlign="top" {...styleProps} {...props}>
-        {getChildren()}
-        {props.children}
-      </AvatarRoot>
-    );
-  },
-);
+  const dafaultBorderColor = useModeValue("#fff", "gray.800");
+  const styleProps = {
+    bg,
+    color,
+    ...(showBorder && {
+      border: "2px solid",
+      borderColor: borderColor || dafaultBorderColor,
+    }),
+  };
+
+  return (
+    <AvatarRoot ref={ref} verticalAlign="top" {...styleProps} {...props}>
+      {getChildren()}
+      {props.children}
+    </AvatarRoot>
+  );
+});
 
 export default Avatar;

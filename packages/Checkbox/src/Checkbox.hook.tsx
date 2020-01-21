@@ -5,7 +5,7 @@ import {
 } from "@chakra-ui/hooks";
 import {
   composeEventHandlers,
-  makeDataAttribute,
+  makeDataAttr,
   createContext,
   visuallyHiddenStyle,
 } from "@chakra-ui/utils";
@@ -121,13 +121,13 @@ export function useCheckbox(props: CheckboxProps) {
       isRequired,
     },
     checkbox: {
-      "data-active": makeDataAttribute(isActive),
-      "data-hover": makeDataAttribute(isHovered),
-      "data-checked": makeDataAttribute(isChecked),
-      "data-focus": makeDataAttribute(isFocused),
-      "data-mixed": makeDataAttribute(isIndeterminate),
-      "data-disabled": makeDataAttribute(isDisabled),
-      "data-readonly": makeDataAttribute(isReadOnly),
+      "data-active": makeDataAttr(isActive),
+      "data-hover": makeDataAttr(isHovered),
+      "data-checked": makeDataAttr(isChecked),
+      "data-focus": makeDataAttr(isFocused),
+      "data-mixed": makeDataAttr(isIndeterminate),
+      "data-disabled": makeDataAttr(isDisabled),
+      "data-readonly": makeDataAttr(isReadOnly),
       "aria-hidden": true,
       onPointerDown: handlePointerDown,
       onPointerUp: handlePointerUp,

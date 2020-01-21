@@ -2,7 +2,7 @@ import { useControllableProp, useMergeRefs } from "@chakra-ui/hooks";
 import {
   composeEventHandlers,
   createContext,
-  makeDataAttribute,
+  makeDataAttr,
   visuallyHiddenStyle,
   Omit,
 } from "@chakra-ui/utils";
@@ -106,11 +106,11 @@ export function useRadio(props: RadioProps) {
       isRequired,
     },
     checkbox: {
-      "data-active": makeDataAttribute(isActive),
-      "data-hover": makeDataAttribute(isHovered),
-      "data-checked": makeDataAttribute(isChecked),
-      "data-focus": makeDataAttribute(isFocused),
-      "data-readonly": makeDataAttribute(isReadOnly),
+      "data-active": makeDataAttr(isActive),
+      "data-hover": makeDataAttr(isHovered),
+      "data-checked": makeDataAttr(isChecked),
+      "data-focus": makeDataAttr(isFocused),
+      "data-readonly": makeDataAttr(isReadOnly),
       "aria-hidden": true,
       onPointerDown: handlePointerDown,
       onPointerUp: handlePointerUp,

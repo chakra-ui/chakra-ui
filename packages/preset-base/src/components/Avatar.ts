@@ -2,8 +2,8 @@ import sizes from "../foundations/sizes";
 
 const compute = (size: keyof typeof sizes) => ({
   size,
-  fontSize: `calc(${sizes[size]} / 2.5)`,
-  lineHeight: sizes[size],
+  fontSize: `calc(${sizes[size] || size} / 2.5)`,
+  lineHeight: sizes[size] || size,
 });
 
 export default {
