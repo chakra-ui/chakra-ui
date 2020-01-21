@@ -15,18 +15,18 @@ const selectors = [
 
 const selector = selectors.join();
 
-export function getAllFocusableIn<T extends Element>(container: T) {
+export function getAllFocusable<T extends Element>(container: T) {
   const allFocusable = Array.from(container.querySelectorAll<T>(selector));
   allFocusable.unshift(container);
   return allFocusable.filter(isFocusable);
 }
 
-export function getFirstFocusableIn<T extends Element>(container: T) {
-  const allFocusable = getAllFocusableIn(container);
+export function getFirstFocusable<T extends Element>(container: T) {
+  const allFocusable = getAllFocusable(container);
   return allFocusable.length ? allFocusable[0] : null;
 }
 
-export function getAllTabbableIn<T extends Element>(
+export function getAllTabbable<T extends Element>(
   container: T,
   fallbackToFocusable?: boolean,
 ) {
@@ -47,7 +47,7 @@ export function getFirstTabbableIn<T extends Element>(
   container: T,
   fallbackToFocusable?: boolean,
 ): T | null {
-  const [first] = getAllTabbableIn(container, fallbackToFocusable);
+  const [first] = getAllTabbable(container, fallbackToFocusable);
   return first || null;
 }
 
@@ -55,15 +55,15 @@ export function getLastTabbableIn<T extends Element>(
   container: T,
   fallbackToFocusable?: boolean,
 ): T | null {
-  const allTabbable = getAllTabbableIn(container, fallbackToFocusable);
+  const allTabbable = getAllTabbable(container, fallbackToFocusable);
   return allTabbable[allTabbable.length - 1] || null;
 }
 
-export function getNextTabbableIn<T extends Element>(
+export function getNextTabbable<T extends Element>(
   container: T,
   fallbackToFocusable?: boolean,
 ): T | null {
-  const allFocusable = getAllFocusableIn(container);
+  const allFocusable = getAllFocusable(container);
   const index = allFocusable.indexOf(document.activeElement as T);
   const slice = allFocusable.slice(index + 1);
   return (
@@ -73,11 +73,11 @@ export function getNextTabbableIn<T extends Element>(
   );
 }
 
-export function getPreviousTabbableIn<T extends Element>(
+export function getPreviousTabbable<T extends Element>(
   container: T,
   fallbackToFocusable?: boolean,
 ): T | null {
-  const allFocusable = getAllFocusableIn(container).reverse();
+  const allFocusable = getAllFocusable(container).reverse();
   const index = allFocusable.indexOf(document.activeElement as T);
   const slice = allFocusable.slice(index + 1);
   return (
@@ -87,24 +87,21 @@ export function getPreviousTabbableIn<T extends Element>(
   );
 }
 
-export function focusNextTabbableIn<T extends Element>(
+export function focusNextTabbable<T extends Element>(
   container: T,
   fallbackToFocusable?: boolean,
 ) {
-  const nextTabbable = getNextTabbableIn(container, fallbackToFocusable);
+  const nextTabbable = getNextTabbable(container, fallbackToFocusable);
   if (nextTabbable && isHTMLElement(nextTabbable)) {
     nextTabbable.focus();
   }
 }
 
-export function focusPreviousTabbableIn<T extends Element>(
+export function focusPreviousTabbable<T extends Element>(
   container: T,
   fallbackToFocusable?: boolean,
 ) {
-  const previousTabbable = getPreviousTabbableIn(
-    container,
-    fallbackToFocusable,
-  );
+  const previousTabbable = getPreviousTabbable(container, fallbackToFocusable);
   if (previousTabbable && isHTMLElement(previousTabbable)) {
     previousTabbable.focus();
   }
