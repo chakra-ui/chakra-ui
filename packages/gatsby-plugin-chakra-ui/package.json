@@ -18,7 +18,7 @@
     "prepare": "cross-env NODE_ENV=production npm run build"
   },
   "peerDependencies": {
-    "@chakra-ui/core": "0.3.2",
+    "@chakra-ui/core": ">=0.3 <0.6",
     "gatsby": ">=2.13.80"
   },
   "devDependencies": {
