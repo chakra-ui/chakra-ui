@@ -38,7 +38,7 @@
     "editable": "yarn workspace @chakra-ui/editable",
     "select": "yarn workspace @chakra-ui/select",
     "counter": "yarn workspace @chakra-ui/counter",
-    "numberinput": "yarn workspace @chakra-ui/number-input",
+    "number-input": "yarn workspace @chakra-ui/number-input",
     "popover": "yarn workspace @chakra-ui/popover",
     "popper": "yarn workspace @chakra-ui/popper",
     "button": "yarn workspace @chakra-ui/button",
@@ -52,7 +52,8 @@
     "transition": "yarn workspace @chakra-ui/transition",
     "live-region": "yarn workspace @chakra-ui/live-region",
     "progress": "yarn workspace @chakra-ui/progress",
-    "formcontrol": "yarn workspace @chakra-ui/form-control"
+    "form-control": "yarn workspace @chakra-ui/form-control",
+    "input": "yarn workspace @chakra-ui/input"
   },
   "husky": {
     "hooks": {

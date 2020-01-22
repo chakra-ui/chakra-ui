@@ -1,5 +1,5 @@
 {
-  "name": "@chakra-ui/form-control",
+  "name": "@chakra-ui/input",
   "version": "0.0.1",
   "description": "description",
   "keywords": [
@@ -12,7 +12,7 @@
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
   "main": "dist/index.js",
-  "module": "dist/form-control.esm.js",
+  "module": "dist/input.esm.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
@@ -49,6 +49,9 @@
   },
   "dependencies": {},
   "peerDependencies": {
+    "@emotion/core": "10.x",
+    "@emotion/styled": "10.x",
+    "emotion-theming": "10.x",
     "react": "16.x",
     "react-dom": "16.x"
   }
