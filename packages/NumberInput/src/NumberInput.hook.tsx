@@ -3,7 +3,7 @@ import * as React from "react";
 import { useCounter, CounterOptions } from "@chakra-ui/counter";
 import { useUpdateEffect } from "@chakra-ui/hooks";
 
-export interface UseNumberInputOptions extends CounterOptions {
+export interface NumberInputOptions extends CounterOptions {
   /**
    * If `true`, the input will be focused as you increment
    * or decrement the value with the stepper
@@ -56,7 +56,7 @@ export interface UseNumberInputOptions extends CounterOptions {
 
 // input => input.replace(/[^\w\.-]*/g, '')
 
-const defaultProps = {
+const defaultOptions = {
   focusInputOnChange: true,
   clampValueOnBlur: true,
   keepWithinRange: true,
@@ -68,8 +68,8 @@ const defaultProps = {
 // TODO
 // Add Support for `format` and `parse`
 
-export function useNumberInput(_props: UseNumberInputOptions = {}) {
-  const props = { ...defaultProps, ..._props };
+export function useNumberInput(options: NumberInputOptions = {}) {
+  const props = { ...defaultOptions, ...options };
   const { min, max, step: stepProp } = props;
 
   const counter = useCounter(props);
@@ -218,6 +218,7 @@ export function useNumberInput(_props: UseNumberInputOptions = {}) {
       readOnly: props.isReadOnly,
       disabled: props.isDisabled,
       autoComplete: "off",
+      autoCorrect: "off",
       onFocus,
       onBlur,
     },

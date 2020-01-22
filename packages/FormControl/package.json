@@ -1,5 +1,5 @@
 {
-  "name": "@chakra-ui/number-input",
+  "name": "@chakra-ui/form-control",
   "version": "0.0.1",
   "description": "description",
   "keywords": [
@@ -12,7 +12,7 @@
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
   "main": "dist/index.js",
-  "module": "dist/numberinput.esm.js",
+  "module": "dist/formcontrol.esm.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
