@@ -16,7 +16,7 @@ export interface CounterOptions {
   /**
    * The callback fired when the value changes
    */
-  onChange?: (value?: string | number, valueAsNumber?: number) => void;
+  onChange?: (value: number | null) => void;
   /**
    * The number of decimal points used to round the value
    */
@@ -28,7 +28,7 @@ export interface CounterOptions {
   /**
    * The value of the counter. Should be less than `max` and greater than `min`
    */
-  value?: number | string;
+  value?: number | null;
   /**
    * The step used to increment or decrement the value
    * @default 1
@@ -71,8 +71,8 @@ export function useCounter(props: CounterOptions) {
   } = props;
 
   // Let's keep the current here and initialize it with the defaultValue
-  const [valueState, setValue] = React.useState<number | string>(
-    defaultValue || 0,
+  const [valueState, setValue] = React.useState<number | null>(
+    defaultValue != null ? defaultValue : null,
   );
 
   // To keep incrementing/decrementing on mousedown, we call that `spinning`
@@ -97,12 +97,6 @@ export function useCounter(props: CounterOptions) {
   const removeTimeout = () => clearTimeout(timeoutRef.current);
 
   /**
-   * While the state can be a number/string (due to precision logic)
-   * We'll create a state to store only the number value
-   */
-  const [valueAsNumber, setValueAsNumber] = React.useState<number>(+value);
-
-  /**
    * Get the fallback precision from the value or step
    *
    * @example If no precision prop was passed and
@@ -122,23 +116,19 @@ export function useCounter(props: CounterOptions) {
 
   // Function to update value in state and invoke the `onChange` callback
   const updateValue = React.useCallback(
-    (nextValue: number | string) => {
+    (nextValue: number | null) => {
       if (prevNextValue.current == nextValue) return;
 
       if (!isControlled) {
         setValue(nextValue);
-        // Update number state if it's not the same
-        // "3.", "3.0" and "3" are considered the same
-        const isSameValue = !isNaN(+nextValue) && +nextValue === valueAsNumber;
-        if (!isSameValue) setValueAsNumber(+nextValue);
       }
       if (onChange) {
-        onChange(nextValue, Number(nextValue));
+        onChange(nextValue);
       }
 
       prevNextValue.current = nextValue;
     },
-    [onChange, isControlled, valueAsNumber],
+    [onChange, isControlled],
   );
 
   // Function to clamp the value and round it to the precision
@@ -156,8 +146,7 @@ export function useCounter(props: CounterOptions) {
   // Function to increment the value based on specified step
   const increment = React.useCallback(
     (step: number = stepProp) => {
-      let nextValue: string | number = +value + step;
-      nextValue = clampAndRoundValue(nextValue);
+      const nextValue: number = clampAndRoundValue(Number(value) + step);
       updateValue(nextValue);
     },
     [clampAndRoundValue, stepProp, updateValue, value],
@@ -166,7 +155,7 @@ export function useCounter(props: CounterOptions) {
   // Function to decrement the value based on specified step
   const decrement = React.useCallback(
     (step: number = stepProp) => {
-      const nextValue = clampAndRoundValue(+value - step);
+      const nextValue: number = clampAndRoundValue(Number(value) - step);
       updateValue(nextValue);
     },
     [clampAndRoundValue, stepProp, updateValue, value],
@@ -237,11 +226,11 @@ export function useCounter(props: CounterOptions) {
     };
   }, []);
 
-  // Function to reset the state to the initial value or 0
-  const reset = React.useCallback(() => updateValue(defaultValue || 0), [
-    defaultValue,
-    updateValue,
-  ]);
+  // Function to reset the state to the initial value or empty
+  const reset = React.useCallback(
+    () => updateValue(defaultValue != null ? defaultValue : null),
+    [defaultValue, updateValue],
+  );
 
   // Common range checks
   const isOutOfRange = value > max || value < min;
@@ -256,7 +245,6 @@ export function useCounter(props: CounterOptions) {
     precision,
     // state
     value,
-    valueAsNumber,
     // actions
     update: updateValue,
     clamp: clampAndRoundValue,

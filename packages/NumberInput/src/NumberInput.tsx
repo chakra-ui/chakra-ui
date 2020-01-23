@@ -1,4 +1,5 @@
 import * as React from "react";
+import { NumberInput as TypedNumberInput } from "react-typed-inputs";
 import { useNumberInput, NumberInputOptions } from "./NumberInput.hook";
 import { chakra, forwardRef, PropsOf } from "@chakra-ui/system";
 import { createContext, composeEventHandlers } from "@chakra-ui/utils";
@@ -125,10 +126,11 @@ const NumberInputField = forwardRef(
         ref: _ref,
         onBlur: _onBlur,
         onFocus: _onFocus,
-        onChange: _onChange,
+        onValueChange: _onValueChange,
         onKeyDown: _onKeyDown,
         disabled: isDisabled,
         readOnly: isReadOnly,
+        clampValueOnBlur: clampOnBlur,
         ...otherInputProps
       },
     } = useNumberInputCtx();
@@ -137,13 +139,15 @@ const NumberInputField = forwardRef(
     const handleBlur = composeEventHandlers(onBlur, _onBlur);
     const handleFocus = composeEventHandlers(onFocus, _onFocus);
     const handleKeyDown = composeEventHandlers(onKeyDown, _onKeyDown);
-    const handleChange = composeEventHandlers(onChange, _onChange);
+    const handleChange = composeEventHandlers(onChange, _onValueChange);
 
     return (
       <Input
+        as={TypedNumberInput}
         ref={inputRef}
         isReadOnly={isReadOnly}
         isDisabled={isDisabled}
+        clampOnBlur={clampOnBlur}
         onBlur={handleBlur}
         onFocus={handleFocus}
         onKeyDown={handleKeyDown}

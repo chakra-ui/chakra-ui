@@ -106,8 +106,8 @@ export function useNumberInput(options: NumberInputOptions = {}) {
     counter.update(nextValue);
   };
 
-  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    counter.update(event.target.value);
+  const onValueChange = (value: number | null) => {
+    counter.update(value);
   };
 
   const onKeyDown = (event: React.KeyboardEvent) => {
@@ -152,23 +152,13 @@ export function useNumberInput(options: NumberInputOptions = {}) {
     return ratio;
   };
 
-  const validateAndClamp = () => {
-    if (counter.value > max) counter.update(max);
-    if (counter.value < min) counter.update(min);
-  };
-
   const ariaValueText =
     typeof props.getAriaValueText === "function"
       ? props.getAriaValueText(counter.value)
       : undefined;
 
   const onFocus = () => setIsFocused(true);
-  const onBlur = () => {
-    setIsFocused(false);
-    if (props.clampValueOnBlur) {
-      validateAndClamp();
-    }
-  };
+  const onBlur = () => setIsFocused(false);
 
   return {
     value: counter.value,
@@ -203,7 +193,7 @@ export function useNumberInput(options: NumberInputOptions = {}) {
       }),
     },
     input: {
-      onChange,
+      onValueChange,
       onKeyDown,
       ref: inputRef,
       value: counter.value,
@@ -217,6 +207,7 @@ export function useNumberInput(options: NumberInputOptions = {}) {
       "aria-valuetext": ariaValueText,
       readOnly: props.isReadOnly,
       disabled: props.isDisabled,
+      clampValueOnBlur: props.clampValueOnBlur,
       autoComplete: "off",
       autoCorrect: "off",
       onFocus,

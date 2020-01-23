@@ -12039,6 +12039,11 @@ react-transition-group@^2.2.1:
     prop-types "^15.6.2"
     react-lifecycles-compat "^3.0.4"
 
+react-typed-inputs@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-typed-inputs/-/react-typed-inputs-1.0.1.tgz#f3c7722a177e7e431e1481b63cb3d67be484a899"
+  integrity sha512-6qJyRh4UIz0PVnp/5r4xopmF/O0C8qJe847RRR9VqK0HIol5xOCThKISkWzSuW2nu6B4UrnXIPFJw4BdXA6Qiw==
+
 react-uid@2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/react-uid/-/react-uid-2.2.0.tgz#0f77e1e0594fbf29fc4fe528cc9aa415c5bf9159"
