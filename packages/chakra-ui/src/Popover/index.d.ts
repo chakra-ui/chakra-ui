@@ -99,6 +99,13 @@ interface IPopover {
    * Callback fired when the popover closes
    */
   onClose?: () => void;
+  /**
+   * If true the popover is displayed with a Portal. 
+   * Rendering content inside a Portal allows the popover content 
+   * to escape the physical bounds of its parent while still being 
+   * positioned correctly relative to its target
+  */
+  usePortal?: boolean;
 }
 
 type PopoverProps = IPopover & PopoverChildren;
