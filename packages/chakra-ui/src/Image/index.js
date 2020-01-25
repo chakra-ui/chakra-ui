@@ -8,6 +8,9 @@ export const useHasImageLoaded = ({ src, onLoad, onError }) => {
   const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
+    if (!src) {
+      return;
+    }
     const image = new window.Image();
     image.src = src;
 
