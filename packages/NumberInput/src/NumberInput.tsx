@@ -145,6 +145,7 @@ const NumberInputField = forwardRef(
       <Input
         as={TypedNumberInput}
         ref={inputRef}
+        type="text"
         isReadOnly={isReadOnly}
         isDisabled={isDisabled}
         clampOnBlur={clampOnBlur}
