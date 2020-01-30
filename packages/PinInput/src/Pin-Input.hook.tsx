@@ -1,12 +1,7 @@
 import * as React from "react";
+import { useDescendants, useDescendant } from "@chakra-ui/descendant";
 
-function ensureFocus(ref: React.RefObject<HTMLInputElement>) {
-  if (ref && ref.current) {
-    ref.current.focus();
-  }
-}
-
-export interface PinInputProviderProps {
+export interface PinStateHookProps {
   autoFocus?: boolean;
   value?: string;
   defaultValue?: string;
@@ -14,12 +9,12 @@ export interface PinInputProviderProps {
   onComplete?: () => void;
 }
 
-type InputRefs = React.RefObject<HTMLInputElement>[];
-
-export function usePinInputProvider(props: PinInputProviderProps = {}) {
+export function usePinInputState(props: PinStateHookProps = {}) {
   const { autoFocus } = props;
 
-  const refs = React.useRef<InputRefs>([]);
+  const descendantsContext = useDescendants<HTMLInputElement, {}>();
+
+  const { descendants } = descendantsContext;
 
   const [moveFocus, setMoveFocus] = React.useState(true);
 
@@ -27,18 +22,18 @@ export function usePinInputProvider(props: PinInputProviderProps = {}) {
 
   React.useEffect(() => {
     if (autoFocus) {
-      const firstInputRef = refs.current[0];
-      ensureFocus(firstInputRef);
+      const firstInput = descendants[0];
+      firstInput.element?.focus();
     }
-  }, [autoFocus]);
+  }, [descendants, autoFocus]);
 
   const focusNext = React.useCallback(
-    index => {
+    (index: number) => {
       if (!moveFocus) return;
-      const nextInputRef = refs.current[index + 1];
-      ensureFocus(nextInputRef);
+      const nextInput = descendants[index + 1];
+      nextInput.element?.focus();
     },
-    [moveFocus],
+    [descendants, moveFocus],
   );
 
   const setValue = React.useCallback(
@@ -51,70 +46,65 @@ export function usePinInputProvider(props: PinInputProviderProps = {}) {
     [values, focusNext],
   );
 
-  const register = React.useCallback(ref => {
-    refs.current.push(ref);
-  }, []);
-
-  const unregister = React.useCallback(ref => {
-    refs.current = refs.current.filter(_ref => _ref !== ref);
-  }, []);
-
   const clear = React.useCallback(() => {
-    const values: string[] = Array(refs.current.length).fill("");
+    const values: string[] = Array(descendants.length).fill("");
     setValues(values);
-    ensureFocus(refs.current[0]);
-  }, []);
-
-  const _setValues = React.useCallback((value: string[]) => {
-    setValues(value);
-  }, []);
-
-  const _setMoveFocus = React.useCallback((value: boolean) => {
-    setMoveFocus(value);
-  }, []);
+    const firstInput = descendants[0];
+    firstInput.element?.focus();
+  }, [descendants]);
 
   return {
-    refs: refs.current,
-    register,
-    unregister,
+    descendantsContext,
     setValue,
     values,
-    setValues: _setValues,
-    setMoveFocus: _setMoveFocus,
+    setValues,
+    setMoveFocus,
     clear,
   };
 }
 
-export interface PinInputProps {
-  context: ReturnType<typeof usePinInputProvider>;
+type PinInputHookReturn = ReturnType<typeof usePinInputState>;
+
+export interface PinInputHookProps {
+  context: PinInputHookReturn;
 }
 
-export function usePinInput({ context }: PinInputProps) {
+export function usePinInput(props: PinInputHookProps) {
+  const { context } = props;
+
   const ref = React.useRef<HTMLInputElement>(null);
-  const { setValue, refs, values, setMoveFocus, setValues } = context;
 
-  React.useLayoutEffect(() => {
-    context.register(ref);
-    return () => {
-      context.unregister(ref);
-    };
-  }, [context]);
+  const {
+    setValue,
+    values,
+    setMoveFocus,
+    setValues,
+    descendantsContext,
+  } = context;
+  const { descendants } = descendantsContext;
 
-  const getNextValue = React.useCallback((currentValue, eventValue) => {
-    let nextValue = eventValue;
-    if (currentValue && currentValue.length > 0) {
-      if (currentValue[0] === eventValue[0]) {
-        nextValue = eventValue[1];
-      } else if (currentValue[0] === eventValue[1]) {
-        nextValue = eventValue[0];
+  const { index } = useDescendant({
+    context: descendantsContext,
+    element: ref.current,
+  });
+
+  const getNextValue = React.useCallback(
+    (currentValue: string, eventValue: string) => {
+      let nextValue = eventValue;
+      if (currentValue && currentValue.length > 0) {
+        if (currentValue[0] === eventValue[0]) {
+          nextValue = eventValue[1];
+        } else if (currentValue[0] === eventValue[1]) {
+          nextValue = eventValue[0];
+        }
       }
-    }
-    return nextValue;
-  }, []);
+      return nextValue;
+    },
+    [],
+  );
 
   const onChange = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      const index = refs.indexOf(ref);
       const eventValue = event.target.value;
       const currentValue = values[index];
       const nextValue = getNextValue(currentValue, eventValue);
@@ -129,7 +119,7 @@ export function usePinInput({ context }: PinInputProps) {
       if (eventValue.length > 2) {
         // see if we can use the string to fill out our values
         if (eventValue.match(/^[0-9]+$/)) {
-          const length = refs.length;
+          const length = descendants.length;
           // ensure the value matches the number of inputs
           const nextValue = eventValue.split("").filter((_, i) => i < length);
           setValues(nextValue);
@@ -144,19 +134,26 @@ export function usePinInput({ context }: PinInputProps) {
 
       setMoveFocus(true);
     },
-    [setValue, setMoveFocus, getNextValue, values, refs, setValues],
+    [
+      values,
+      index,
+      getNextValue,
+      setMoveFocus,
+      setValue,
+      descendants.length,
+      setValues,
+    ],
   );
 
   const onKeyDown = React.useCallback(
-    (event: React.KeyboardEvent<HTMLInputElement>) => {
+    (event: React.KeyboardEvent) => {
       if (event.key === "Backspace") {
         //@ts-ignore
         if (event.target.value === "") {
-          const index = refs.indexOf(ref);
-          if (refs[index - 1]) {
+          if (descendants[index - 1]) {
             setValue("", index - 1);
-            const prevInputRef = refs[index - 1];
-            ensureFocus(prevInputRef);
+            const prevInput = descendants[index - 1];
+            prevInput.element?.focus();
             setMoveFocus(true);
           }
         } else {
@@ -164,18 +161,20 @@ export function usePinInput({ context }: PinInputProps) {
         }
       }
     },
-    [setMoveFocus, refs, setValue],
+    [descendants, index, setValue, setMoveFocus],
   );
 
   const [hasFocus, setHasFocus] = React.useState(false);
+
   const onFocus = React.useCallback(() => {
     setHasFocus(true);
   }, []);
+
   const onBlur = React.useCallback(() => {
     setHasFocus(false);
   }, []);
 
-  const value = values[refs.indexOf(ref)] || "";
+  const value = values[index] || "";
 
   return {
     ref,
