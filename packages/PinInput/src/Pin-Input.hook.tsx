@@ -23,7 +23,7 @@ export function usePinInputState(props: PinStateHookProps = {}) {
   React.useEffect(() => {
     if (autoFocus) {
       const firstInput = descendants[0];
-      firstInput.element?.focus();
+      firstInput?.element?.focus();
     }
   }, [descendants, autoFocus]);
 
@@ -31,7 +31,7 @@ export function usePinInputState(props: PinStateHookProps = {}) {
     (index: number) => {
       if (!moveFocus) return;
       const nextInput = descendants[index + 1];
-      nextInput.element?.focus();
+      nextInput?.element?.focus();
     },
     [descendants, moveFocus],
   );

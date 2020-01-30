@@ -13,14 +13,20 @@ function Example() {
   const input3 = usePinInput({ context });
   const input4 = usePinInput({ context });
 
+  const style: React.CSSProperties = {
+    width: 40,
+    height: 40,
+    textAlign: "center",
+    color: "black",
+    margin: 4,
+  };
+
   return (
     <div>
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
-      <input {...input1} />
-      <input {...input2} />
-      <input {...input3} />
-      <input {...input4} />
+      <input style={style} {...input1} />
+      <input style={style} {...input2} />
+      <input style={style} {...input3} />
+      <input style={style} {...input4} />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { configure } from "@storybook/react";
 
 const req = require.context(
-  `../packages/Descendant/src/`,
+  `../packages/PinInput/src/`,
   true,
   /.stories\.(ts|tsx)$/,
 );
