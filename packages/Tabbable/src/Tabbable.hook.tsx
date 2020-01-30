@@ -37,20 +37,21 @@ export interface TabbableProps extends HTMLProps {
   clickOnSpace?: boolean;
 }
 
-export function useTabbable({
-  isDisabled,
-  isFocusable,
-  clickOnEnter = true,
-  clickOnSpace = true,
-  onMouseDown,
-  onMouseUp,
-  onClick,
-  onKeyDown,
-  onKeyUp,
-  tabIndex: tabIndexProp,
-  onMouseOver,
-  ...props
-}: TabbableProps) {
+export function useTabbable(props: TabbableProps) {
+  const {
+    isDisabled,
+    isFocusable,
+    clickOnEnter = true,
+    clickOnSpace = true,
+    onMouseDown,
+    onMouseUp,
+    onClick,
+    onKeyDown,
+    onKeyUp,
+    tabIndex: tabIndexProp,
+    onMouseOver,
+    ...htmlProps
+  } = props;
   // We'll use this to track if the element is a button element
   const [isButton, setIsButton] = React.useState(true);
 
@@ -178,9 +179,9 @@ export function useTabbable({
 
   if (isButton) {
     return {
-      ...props,
-      type: "button",
+      ...htmlProps,
       ref,
+      type: "button",
       "aria-disabled": trulyDisabled ? undefined : isDisabled,
       disabled: trulyDisabled,
       onClick: handleClick,
@@ -193,7 +194,7 @@ export function useTabbable({
   }
 
   return {
-    ...props,
+    ...htmlProps,
     ref,
     role: "button",
     "data-active": isPressed || undefined,

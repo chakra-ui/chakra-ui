@@ -5,9 +5,9 @@
  * let's prepare of warnings when they use it wrongly
  */
 
-import * as Types from "./Accordion.types";
+import * as Accordion from "./Accordion.hook";
 
-export function allowMultiple(props: Types.AccordionsProviderProps) {
+export function allowMultiple(props: Accordion.AccordionHookProps) {
   const indexPassed = props.index || props.defaultIndex;
   if (
     props.allowMultiple &&
@@ -21,7 +21,7 @@ export function allowMultiple(props: Types.AccordionsProviderProps) {
 }
 
 export function allowMultipleAndAllowToggle(
-  props: Types.AccordionsProviderProps,
+  props: Accordion.AccordionHookProps,
 ) {
   if (props.allowMultiple && props.allowToggle) {
     console.warn(
@@ -30,7 +30,7 @@ export function allowMultipleAndAllowToggle(
   }
 }
 
-export function controlledAndNoChange(props: Types.AccordionsProviderProps) {
+export function controlledAndNoChange(props: Accordion.AccordionHookProps) {
   if (
     typeof props.index !== "undefined" &&
     typeof props.onChange === "undefined"
@@ -41,7 +41,7 @@ export function controlledAndNoChange(props: Types.AccordionsProviderProps) {
   }
 }
 
-export function focusableNotDisabled(props: Types.AccordionProviderProps) {
+export function focusableNotDisabled(props: Accordion.AccordionItemHookProps) {
   if (props.isFocusable && !props.isDisabled) {
     console.error(
       `Using only 'isFocusable', this prop is reserved for situations where you pass 'isDisabled' but you still want the element to receive focus (A11y). Either remove it or pass 'isDisabled' as well.

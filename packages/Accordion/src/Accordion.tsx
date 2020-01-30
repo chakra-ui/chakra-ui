@@ -1,17 +1,12 @@
-import { createChakra, PropsOf } from "@chakra-ui/system";
-import { Omit } from "@chakra-ui/utils";
-import * as React from "react";
-// import { Icon } from "@chakra-ui/icon";
+import { createChakra } from "@chakra-ui/system";
 import {
-  AccordionProvider,
-  useAccordionButton,
-  useAccordionPanel,
-  useAccordionState,
-} from "./Accordion.hook";
-import * as Types from "./Accordion.types";
+  BaseAccordionButton,
+  BaseAccordionPanel,
+  BaseAccordion,
+  BaseAccordionItem,
+} from "./Accordion.base";
 
-export const AccordionButton = createChakra("button", {
-  hook: useAccordionButton,
+export const AccordionButton = createChakra(BaseAccordionButton, {
   themeKey: "AccordionButton",
   baseStyle: {
     display: "flex",
@@ -27,10 +22,8 @@ export const AccordionButton = createChakra("button", {
   },
 });
 
-export const AccordionPanel = createChakra("div", {
-  hook: useAccordionPanel,
+export const AccordionPanel = createChakra(BaseAccordionPanel, {
   themeKey: "AccordionPanel",
-  attrs: { "data-chakra-accordion-panel": "" },
   baseStyle: {
     paddingTop: 2,
     paddingX: 4,
@@ -38,49 +31,6 @@ export const AccordionPanel = createChakra("div", {
   },
 });
 
-const AccordionItemRoot = createChakra("div", {
-  attrs: { "data-chakrs-accordion": "" },
-});
+export const AccordionItem = createChakra(BaseAccordionItem);
 
-export type AccordionProps = Types.AccordionProviderProps &
-  Omit<PropsOf<typeof AccordionItemRoot>, "onChange"> & {
-    children?: React.ReactNode;
-  };
-
-export const Accordion = React.forwardRef(
-  (
-    {
-      isOpen,
-      defaultIsOpen,
-      isDisabled,
-      isFocusable,
-      id,
-      onChange,
-      ...props
-    }: AccordionProps,
-    ref: React.Ref<any>,
-  ) => (
-    <AccordionProvider
-      {...{ isOpen, defaultIsOpen, isDisabled, isFocusable, id, onChange }}
-    >
-      <AccordionItemRoot ref={ref} {...props} />
-    </AccordionProvider>
-  ),
-);
-
-// export const AccordionIcon = (props: PropsOf<typeof Icon>) => {
-//   const { isOpen, isDisabled } = useAccordionState();
-//   return (
-//     <Icon
-//       aria-hidden
-//       focusable="false"
-//       size="1.25em"
-//       name="chevron-down"
-//       opacity={isDisabled ? 0.4 : 1}
-//       transform={isOpen ? "rotate(-180deg)" : undefined}
-//       transition="transform 0.2s"
-//       transformOrigin="center"
-//       {...props}
-//     />
-//   );
-// };
+export const Accordion = createChakra(BaseAccordion);

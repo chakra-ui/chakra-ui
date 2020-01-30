@@ -1,51 +1,25 @@
-import * as React from "react";
 import { storiesOf } from "@storybook/react";
+import * as React from "react";
 import setup from "../story.setup";
+import { BaseAccordion } from ".";
 import {
-  Accordions,
-  Accordion,
-  AccordionButton,
-  AccordionPanel,
-  // AccordionIcon,
-} from ".";
-import { chakra } from "@chakra-ui/system";
+  BaseAccordionItem,
+  BaseAccordionButton,
+  BaseAccordionPanel,
+} from "./Accordion.base";
 
-const stories = storiesOf("Accordion", module).addDecorator(setup);
+const stories = storiesOf("accordion", module).addDecorator(setup);
 
-stories.add("default", () => (
-  <Accordions>
-    <Accordion>
-      <AccordionButton>
-        <chakra.div flex="1" textAlign="left">
-          Section 1 title
-        </chakra.div>
-        {/* <AccordionIcon /> */}
-      </AccordionButton>
-      <AccordionPanel>Panel 1</AccordionPanel>
-    </Accordion>
+stories.add("basic", () => (
+  <BaseAccordion>
+    <BaseAccordionItem>
+      <BaseAccordionButton>Section 1 title</BaseAccordionButton>
+      <BaseAccordionPanel>Panel 1</BaseAccordionPanel>
+    </BaseAccordionItem>
 
-    <Accordion>
-      <AccordionButton>
-        <chakra.div flex="1" textAlign="left">
-          Section 2 title
-        </chakra.div>
-        {/* <AccordionIcon /> */}
-      </AccordionButton>
-      <AccordionPanel>Panel 2</AccordionPanel>
-    </Accordion>
-  </Accordions>
-));
-
-stories.add("allow multiple - default index", () => (
-  <Accordions allowMultiple defaultIndex={[1]}>
-    <Accordion>
-      <AccordionButton>Section 1 title</AccordionButton>
-      <AccordionPanel>Panel 1</AccordionPanel>
-    </Accordion>
-
-    <Accordion>
-      <AccordionButton>Section 2 title</AccordionButton>
-      <AccordionPanel>Panel 2</AccordionPanel>
-    </Accordion>
-  </Accordions>
+    <BaseAccordionItem>
+      <BaseAccordionButton>Section 2 title</BaseAccordionButton>
+      <BaseAccordionPanel>Panel 2</BaseAccordionPanel>
+    </BaseAccordionItem>
+  </BaseAccordion>
 ));
