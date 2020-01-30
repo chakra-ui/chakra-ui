@@ -1,22 +1,20 @@
-import * as React from "react";
+import { useDescendant, useDescendants } from "@chakra-ui/descendant";
 import { useDisclosure, useId } from "@chakra-ui/hooks";
-import { composeEventHandlers, isUndefined } from "@chakra-ui/utils";
-import { useDescendants, useDescendant } from "@chakra-ui/descendant";
+import { composeEventHandlers, createOnKeyDown } from "@chakra-ui/utils";
+import * as React from "react";
 
-interface ComboboxProps {
+export interface ComboboxHookProps {
   id?: string;
   onHighlight?: (highlightedValue: string) => void;
   onSelect?: (selectedValue: string) => void;
   autoHighlight?: boolean;
   selectTextOnClick?: boolean;
   selectOnBlur?: boolean;
-  getA11yStatusMessage?: () => string;
-  getA11yHighlightMessage?: () => string;
   openOnFocus?: () => string;
   autoComplete?: boolean;
 }
 
-export function useCombobox(props: ComboboxProps) {
+export function useCombobox(props: ComboboxHookProps) {
   const {
     id: idProp,
     onHighlight,
@@ -32,15 +30,16 @@ export function useCombobox(props: ComboboxProps) {
   const [focusedValue, setFocusedValue] = React.useState<string | null>(null);
 
   const inputRef = React.useRef<HTMLInputElement>(null);
-  const listBoxRef = React.useRef<HTMLDivElement>(null);
+  const menuRef = React.useRef<HTMLDivElement>(null);
 
   const { isOpen, onOpen: openMenu, onClose: closeMenu } = useDisclosure();
 
-  const descendantsCtx = useDescendants<
+  const descendantsContext = useDescendants<
     HTMLDivElement,
     { value: string; id: string }
   >();
-  const { descendants } = descendantsCtx;
+
+  const { descendants } = descendantsContext;
 
   React.useEffect(() => {
     if (onHighlight && focusedValue != null) {
@@ -59,20 +58,6 @@ export function useCombobox(props: ComboboxProps) {
 
   const menuId = `chakra-menu-` + id;
   const inputId = `chakra-input-` + id;
-
-  const onChange = React.useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setFocusedValue(null);
-      setInputValue(event.target.value);
-      if (!isOpen) {
-        openMenu();
-      }
-      if (event.target.value.trim() === "") {
-        closeMenu();
-      }
-    },
-    [isOpen, openMenu, closeMenu],
-  );
 
   const focusPrevOption = React.useCallback(() => {
     if (!descendants.length) return;
@@ -127,105 +112,28 @@ export function useCombobox(props: ComboboxProps) {
     setFocusedValue(null);
   }, [focusedValue]);
 
-  const onKeyDown = React.useCallback(
-    event => {
-      switch (event.key) {
-        case "ArrowDown": {
-          event.preventDefault();
-          focusNextOption();
-          break;
-        }
-        case "ArrowUp": {
-          event.preventDefault();
-          focusPrevOption();
-          break;
-        }
-        case "Escape": {
-          event.preventDefault();
-          clearValue();
-          break;
-        }
-        case "Enter": {
-          event.preventDefault();
-          selectValue();
-          closeMenu();
-          if (onSelect && focusedValue) {
-            onSelect(focusedValue);
-          }
-          break;
-        }
-        default:
-          break;
-      }
-    },
-    [
-      focusNextOption,
-      focusPrevOption,
-      onSelect,
-      focusedValue,
-      clearValue,
-      closeMenu,
-      selectValue,
-    ],
-  );
-
-  const onBlur = React.useCallback(() => {
-    if (!listBoxRef.current) return;
-    requestAnimationFrame(() => {
-      const isFocusWithin = listBoxRef.current?.contains(
-        document.activeElement,
-      );
-      if (!isFocusWithin) {
-        selectOnBlur && selectValue();
-        closeMenu();
-      }
-    });
-  }, [closeMenu, selectValue, selectOnBlur]);
-
-  const onMouseOver = React.useCallback(value => {
-    setFocusedValue(value);
-  }, []);
-
-  const onMouseOut = React.useCallback(() => {
-    setFocusedValue(null);
-  }, []);
-
-  const onClick = React.useCallback(() => {
-    focusedValue && setInputValue(focusedValue);
-    closeMenu();
-    requestAnimationFrame(() => {
-      if (selectTextOnClick) {
-        inputRef.current?.select();
-      } else {
-        inputRef.current?.focus();
-      }
-    });
-  }, [closeMenu, selectTextOnClick, focusedValue]);
-
-  const onFocus = React.useCallback(() => {
-    if (openOnFocus) {
-      openMenu();
-    }
-  }, [openOnFocus, openMenu]);
-
   return {
     isOpen,
-    descendantsCtx,
-    listBoxRef,
+    descendantsContext,
+    menuRef,
     inputRef,
-    onChange,
-    onBlur,
+    openOnFocus,
+    focusNextOption,
+    focusPrevOption,
+    onSelect,
+    clearValue,
+    selectValue,
+    selectOnBlur,
     inputId,
-    onKeyDown,
-    onFocus,
     inputValue,
     selectTextOnClick,
     menuId,
     autoComplete,
     focusedValue,
-    onMouseOver,
-    onMouseOut,
-    onClick,
+    openMenu,
+    closeMenu,
+    setInputValue,
+    setFocusedValue,
   };
 }
 
@@ -233,6 +141,7 @@ type ComboboxHookReturn = ReturnType<typeof useCombobox>;
 
 interface ComboBoxInputHookProps {
   context: ComboboxHookReturn;
+  onFocus?: React.FocusEventHandler<HTMLInputElement>;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
   onClick?: React.MouseEventHandler<HTMLInputElement>;
@@ -241,21 +150,36 @@ interface ComboBoxInputHookProps {
 }
 
 export function useComboboxInput(props: ComboBoxInputHookProps) {
-  const { context, onChange: onChangeProp, value: valueProp } = props;
-
-  const isControlled = !isUndefined(valueProp);
+  const {
+    context,
+    onChange: onChangeProp,
+    value: valueProp,
+    onKeyDown: onKeyDownProp,
+    onFocus: onFocusProp,
+  } = props;
 
   const {
     inputValue,
+    setInputValue,
     inputId,
     menuId,
-    onBlur,
-    onChange,
-    onKeyDown,
+    isOpen,
     focusedValue,
     autoComplete,
     selectTextOnClick,
     inputRef,
+    clearValue,
+    closeMenu,
+    focusNextOption,
+    focusPrevOption,
+    onSelect,
+    selectValue,
+    selectOnBlur,
+    menuRef,
+    setFocusedValue,
+    openOnFocus,
+    openMenu,
+    descendantsContext,
   } = context;
 
   const onClick = React.useCallback(() => {
@@ -264,29 +188,82 @@ export function useComboboxInput(props: ComboBoxInputHookProps) {
     }
   }, [selectTextOnClick, inputRef]);
 
-  const handleChange = React.useCallback(
+  const onKeyDown = React.useMemo(
+    () =>
+      createOnKeyDown({
+        keyMap: {
+          ArrowDown: focusNextOption,
+          ArrowUp: focusPrevOption,
+          Escape: clearValue,
+          Enter: () => {
+            selectValue();
+            closeMenu();
+            if (onSelect && focusedValue) {
+              onSelect(focusedValue);
+            }
+          },
+        },
+      }),
+    [
+      clearValue,
+      closeMenu,
+      focusNextOption,
+      focusPrevOption,
+      focusedValue,
+      onSelect,
+      selectValue,
+    ],
+  );
+
+  const onBlur = React.useCallback(() => {
+    if (!menuRef.current) return;
+    requestAnimationFrame(() => {
+      const isFocusWithin = menuRef.current?.contains(document.activeElement);
+      if (!isFocusWithin) {
+        selectOnBlur && selectValue();
+        closeMenu();
+      }
+    });
+  }, [menuRef, selectOnBlur, selectValue, closeMenu]);
+
+  const onFocus = React.useCallback(() => {
+    if (openOnFocus) {
+      openMenu();
+    }
+  }, [openOnFocus, openMenu]);
+
+  const onChange = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      if (!isControlled) {
-        onChange(event);
+      setFocusedValue(null);
+      setInputValue(event.target.value);
+      if (!isOpen) {
+        openMenu();
+      }
+      if (event.target.value.trim() === "") {
+        closeMenu();
       }
     },
-    [isControlled, onChange],
+    [setFocusedValue, setInputValue, isOpen, openMenu, closeMenu],
   );
 
   return {
     type: "text",
+    role: "combobox",
     "aria-activedescendant": focusedValue
       ? String(makeHash(focusedValue))
       : undefined,
     "aria-autocomplete": (autoComplete
       ? "both"
       : "list") as React.AriaAttributes["aria-autocomplete"],
-    "aria-controls": menuId,
+    "aria-owns": menuId,
+    "aria-expanded": isOpen && descendantsContext.descendants.length > 0,
     autoComplete: "off",
+    autoCorrect: "off",
     ref: inputRef,
     id: inputId,
-    onChange: composeEventHandlers(onChangeProp, handleChange),
-    onKeyDown,
+    onChange: composeEventHandlers(onChangeProp, onChange),
+    onFocus: composeEventHandlers(onFocusProp, onFocus),
+    onKeyDown: composeEventHandlers(onKeyDownProp, onKeyDown),
     onClick,
     onBlur,
     value: autoComplete
@@ -295,70 +272,79 @@ export function useComboboxInput(props: ComboBoxInputHookProps) {
   };
 }
 
-export function useComboboxInputWrapper({
-  context,
-}: {
-  context: ComboboxHookReturn;
-}) {
-  const { isOpen, menuId } = context;
-  return {
-    role: "combobox",
-    "aria-expanded": isOpen,
-    "aria-owns": menuId,
-    "aria-haspopup": "listbox" as React.AriaAttributes["aria-haspopup"],
-  };
-}
+export type ComboboxMenuHookProps = { context: ComboboxHookReturn };
 
-export function useComboboxMenu({ context }: { context: ComboboxHookReturn }) {
-  const { menuId, isOpen, listBoxRef } = context;
+export function useComboboxMenu(props: ComboboxMenuHookProps) {
+  const { menuId, isOpen, menuRef } = props.context;
 
   return {
-    ref: listBoxRef,
+    ref: menuRef,
     id: menuId,
     role: "listbox",
     hidden: !isOpen,
   };
 }
 
-export interface ComboboxOptionProps {
+export interface ComboboxOptionHookProps {
   context: ComboboxHookReturn;
   value: string;
 }
 
-export function useComboboxOption({ context, value }: ComboboxOptionProps) {
+export function useComboboxOption({ context, value }: ComboboxOptionHookProps) {
   const {
-    descendantsCtx,
+    descendantsContext,
     focusedValue,
-    onMouseOver,
-    onMouseOut,
-    onClick,
+    setFocusedValue,
+    setInputValue,
+    closeMenu,
+    inputRef,
+    selectTextOnClick,
   } = context;
 
   const ref = React.useRef<HTMLDivElement>(null);
   const id = String(makeHash(value));
 
+  const onMouseOver = React.useCallback(() => {
+    setFocusedValue(value);
+  }, [setFocusedValue, value]);
+
+  const onMouseOut = React.useCallback(() => {
+    setFocusedValue(null);
+  }, [setFocusedValue]);
+
+  const onClick = React.useCallback(() => {
+    if (focusedValue) {
+      setInputValue(focusedValue);
+    }
+    closeMenu();
+    requestAnimationFrame(() => {
+      if (selectTextOnClick) {
+        inputRef.current?.select();
+      } else {
+        inputRef.current?.focus();
+      }
+    });
+  }, [focusedValue, setInputValue, closeMenu, selectTextOnClick, inputRef]);
+
   useDescendant({
-    context: descendantsCtx,
+    context: descendantsContext,
     value: value,
     element: ref.current,
     id,
   });
 
-  const isSelected = focusedValue === value;
-
-  const handleMouseOver = React.useCallback(() => {
-    onMouseOver(value);
-  }, [onMouseOver, value]);
+  const isFocused = focusedValue === value;
 
   return {
     id,
     ref,
-    onMouseOver: handleMouseOver,
+    onMouseOver,
     onMouseOut,
     onClick,
     role: "option",
     tabIndex: -1,
-    "aria-selected": isSelected ? true : undefined,
+    "aria-selected": isFocused ? true : undefined,
+    "data-selected": isFocused ? "" : undefined,
   };
 }
 

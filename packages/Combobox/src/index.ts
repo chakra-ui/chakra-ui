@@ -1,2 +1,2 @@
-export * from "./Combobox";
-export * from  "./Combobox.hook";
+export * from "./Combobox.base";
+export * from "./Combobox.hook";

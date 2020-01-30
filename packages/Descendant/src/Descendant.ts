@@ -1,22 +1,20 @@
 import * as React from "react";
 import { useIsomorphicEffect } from "@chakra-ui/hooks";
 
-export type Descendant<T, P> = P & {
-  element: (T extends HTMLElement ? T : HTMLElement) | null;
+export type Descendant<T extends HTMLElement, P = {}> = P & {
+  element: T | null;
   index?: number;
   disabled?: boolean;
   focusable?: boolean;
 };
 
-export interface DescendantContext<T = Element, P = {}> {
+export interface DescendantContext<T extends HTMLElement, P = {}> {
   descendants: Descendant<T, P>[];
   register: (descendant: Descendant<T, P>) => void;
-  unregister: (
-    element: (T extends HTMLElement ? T : HTMLElement) | null,
-  ) => void;
+  unregister: (element: T) => void;
 }
 
-export function createDescendantsContext<T, P>() {
+export function createDescendantsContext<T extends HTMLElement, P>() {
   const DescandantsContext = React.createContext<DescendantContext<T, P>>({
     descendants: [],
     register: () => {},
@@ -26,11 +24,13 @@ export function createDescendantsContext<T, P>() {
   return [DescandantsContext.Provider, useDescendantsContext] as const;
 }
 
-export type DescendantProps<T, P> = {
+export type DescendantProps<T extends HTMLElement, P> = {
   context: DescendantContext<T, P>;
 } & Descendant<T, P>;
 
-export function useDescendant<T, P>(props: DescendantProps<T, P>) {
+export function useDescendant<T extends HTMLElement, P>(
+  props: DescendantProps<T, P>,
+) {
   const {
     context,
     element,
@@ -61,7 +61,9 @@ export function useDescendant<T, P>(props: DescendantProps<T, P>) {
 
     // when it unmounts, unregister the descendant
     return () => {
-      unregister(element);
+      if (element) {
+        unregister(element);
+      }
     };
     //eslint-disable-next-line
   }, [element, ...Object.values(rest)]);
@@ -73,7 +75,7 @@ export function useDescendant<T, P>(props: DescendantProps<T, P>) {
   return { index, descendants };
 }
 
-export function useDescendants<T, P>() {
+export function useDescendants<T extends HTMLElement, P>() {
   const [descendants, setDescendants] = React.useState<Descendant<T, P>[]>([]);
 
   const register = React.useCallback(
