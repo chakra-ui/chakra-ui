@@ -1,94 +1,42 @@
-// import { createChakra, forwardRef } from "@chakra-ui/system";
-// import { storiesOf } from "@storybook/react";
-// import React from "react";
-// import { MenuProvider, useMenu, useMenuDisclosure, useMenuItem } from ".";
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { BaseMenuButton, BaseMenuItem, BaseMenuList, Menu } from "./Menu.base";
 
-// const stories = storiesOf("useMenu v2", module);
+const stories = storiesOf("Menu", module);
 
-// //@ts-ignore
-// const MenuDisclosure = createChakra("button", {
-//   hook: useMenuDisclosure,
-// });
+const Submenu = React.forwardRef((props, ref) => {
+  return (
+    <Menu>
+      <BaseMenuButton
+        ref={ref}
+        style={{ minWidth: 200, background: "white", border: "1px solid" }}
+        {...props}
+      >
+        Submenu 1
+      </BaseMenuButton>
+      <BaseMenuList
+        style={{ minWidth: 200, background: "white", border: "1px solid" }}
+      >
+        <BaseMenuItem>Menu 1</BaseMenuItem>
+        <BaseMenuItem>Menu 2</BaseMenuItem>
+      </BaseMenuList>
+    </Menu>
+  );
+});
 
-// const Menu = createChakra("div", {
-//   hook: useMenu,
-// });
+function SampleMenu() {
+  return (
+    <Menu>
+      <BaseMenuButton>Open menu</BaseMenuButton>
+      <BaseMenuList
+        style={{ minWidth: 200, background: "white", border: "1px solid" }}
+      >
+        <BaseMenuItem>Menu 1</BaseMenuItem>
+        <BaseMenuItem>Menu 2</BaseMenuItem>
+        <BaseMenuItem as={Submenu} />
+      </BaseMenuList>
+    </Menu>
+  );
+}
 
-// Menu.defaultProps = {
-//   color: "#212121",
-//   bg: "white",
-//   p: "0.25rem",
-//   rounded: "0.25rem",
-//   border: "1px solid rgba(33, 33, 33, 0.25)",
-//   outline: 0,
-//   width: "240px",
-// };
-
-// const MenuItem = createChakra("button", {
-//   hook: useMenuItem,
-// });
-
-// MenuItem.defaultProps = {
-//   border: 0,
-//   width: "100%",
-//   padding: "0.5em 0.24em",
-//   color: "#212121",
-//   _focus: {
-//     bg: "#006DFF",
-//     color: "white",
-//   },
-//   _expanded: {
-//     bg: "#006DFF",
-//     color: "white",
-//   },
-// };
-
-// const Submenu2 = forwardRef((props, ref) => {
-//   return (
-//     <MenuProvider>
-//       <MenuDisclosure ref={ref} {...props}>
-//         Open submenu 2
-//       </MenuDisclosure>
-//       <Menu>
-//         <MenuItem>Menu 1</MenuItem>
-//         <MenuItem>Menu 2</MenuItem>
-//       </Menu>
-//     </MenuProvider>
-//   );
-// });
-
-// const Submenu = forwardRef((props, ref) => {
-//   return (
-//     <MenuProvider>
-//       <MenuDisclosure ref={ref} {...props}>
-//         Open submenu
-//       </MenuDisclosure>
-//       <Menu>
-//         <MenuItem onClick={() => console.log("submenu")}>Submenu 1</MenuItem>
-//         <MenuItem as={Submenu2} />
-//       </Menu>
-//     </MenuProvider>
-//   );
-// });
-
-// function SampleMenu() {
-//   return (
-//     <MenuProvider>
-//       <MenuDisclosure
-//         bg="#006DFF"
-//         color="white"
-//         p="0.375em 0.75em"
-//         rounded="0.25rem"
-//       >
-//         Open menu
-//       </MenuDisclosure>
-//       <Menu>
-//         <MenuItem>Menu 1</MenuItem>
-//         <MenuItem>Menu 2</MenuItem>
-//         <MenuItem as={Submenu} />
-//       </Menu>
-//     </MenuProvider>
-//   );
-// }
-
-// stories.add("Default", () => <SampleMenu />);
+stories.add("Default", () => <SampleMenu />);

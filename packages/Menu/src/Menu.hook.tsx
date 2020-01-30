@@ -74,8 +74,8 @@ export function useMenu({ context }: { context?: MenuHookReturn }) {
    * the menu
    */
   useUpdateEffect(() => {
-    if (!isOpen && disclosureRef.current && !hasParent) {
-      disclosureRef.current.focus();
+    if (!isOpen && !hasParent) {
+      disclosureRef.current?.focus();
     }
   }, [isOpen]);
 
@@ -114,10 +114,11 @@ export interface MenuListHookProps {
   onMouseEnter?: React.MouseEventHandler;
   onKeyDown?: React.KeyboardEventHandler;
   context: MenuHookReturn;
+  style?: React.CSSProperties;
 }
 
 export function useMenuList(props: MenuListHookProps) {
-  const { context: menu } = props;
+  const { context: menu, ...htmlProps } = props;
   const {
     focusedIndex,
     setFocusedIndex,
@@ -160,7 +161,6 @@ export function useMenuList(props: MenuListHookProps) {
     }
   };
 
-  // const [descendants, { next, previous, search }] = useDescendantCtx();
   const [onSearch] = useRapidKeydown();
 
   const onKeyDown = createOnKeyDown({
@@ -183,10 +183,12 @@ export function useMenuList(props: MenuListHookProps) {
     keyMap: {
       Escape: menu.onClose,
       ArrowDown: () => {
+        console.log("down");
         const nextIndex = getNextIndex(focusedIndex, descendants.length);
         setFocusedIndex(nextIndex);
       },
       ArrowUp: () => {
+        console.log("up");
         const prevIndex = getPrevIndex(focusedIndex, descendants.length);
         setFocusedIndex(prevIndex);
       },
@@ -203,6 +205,7 @@ export function useMenuList(props: MenuListHookProps) {
   const ref = useMergeRefs(menu.menuRef, menu.popper.ref);
 
   return {
+    ...htmlProps,
     ref,
     tabIndex: -1,
     role: "menu",
@@ -210,7 +213,7 @@ export function useMenuList(props: MenuListHookProps) {
     hidden: !menu.isOpen,
     "aria-orientation": "vertical" as React.AriaAttributes["aria-orientation"],
     "data-placement": menu.placement,
-    style: menu.popper.style,
+    style: { ...htmlProps.style, ...menu.popper.style },
     onMouseEnter: composeEventHandlers(onMouseEnter, props.onMouseEnter),
     onKeyDown: composeEventHandlers(onKeyDown, props.onKeyDown),
   };
@@ -222,11 +225,12 @@ export interface MenuDisclosureHookProps {
   onMouseOver?: React.MouseEventHandler;
   onClick?: React.MouseEventHandler;
   onMouseOut?: React.MouseEventHandler;
+  onKeyDown?: React.KeyboardEventHandler;
   context: MenuHookReturn;
 }
 
 export function useMenuDisclosure(props: MenuDisclosureHookProps) {
-  const { context: menu } = props;
+  const { context: menu, ...htmlProps } = props;
   const {
     setFocusedIndex,
     onOpen,
@@ -279,25 +283,33 @@ export function useMenuDisclosure(props: MenuDisclosureHookProps) {
 
   const openAndFocusFirstItem = React.useCallback(() => {
     onOpen();
-    setFocusedIndex(0);
-  }, [onOpen, setFocusedIndex]);
+    const firstIndex = 0;
+    setFocusedIndex(firstIndex);
+    requestAnimationFrame(() => {
+      descendants[firstIndex].element?.focus();
+    });
+  }, [descendants, onOpen, setFocusedIndex]);
 
   const showAndFocusLastItem = React.useCallback(() => {
     onOpen();
-    setFocusedIndex(descendants.length - 1);
+    const lastIndex = descendants.length - 1;
+    setFocusedIndex(lastIndex);
+    requestAnimationFrame(() => {
+      descendants[lastIndex].element?.focus();
+    });
   }, [onOpen, setFocusedIndex, descendants]);
 
   const onKeyDown = createOnKeyDown({
-    stopPropagation: event => event.key !== "Escape",
+    // stopPropagation: event => !hasParent && event.key !== "Escape",
     keyMap: {
       ArrowDown: () => {
-        if (!hasParent) openAndFocusFirstItem;
+        if (!hasParent) openAndFocusFirstItem();
       },
       ArrowUp: () => {
-        if (!hasParent) showAndFocusLastItem;
+        if (!hasParent) showAndFocusLastItem();
       },
       ArrowRight: () => {
-        if (hasParent) openAndFocusFirstItem;
+        if (hasParent) openAndFocusFirstItem();
       },
     },
   });
@@ -305,6 +317,7 @@ export function useMenuDisclosure(props: MenuDisclosureHookProps) {
   const ref = useMergeRefs(menu.disclosureRef, menu.reference.ref);
 
   return {
+    ...htmlProps,
     ref,
     id: menu.disclosureId,
     "aria-expanded": menu.isOpen,
@@ -313,7 +326,7 @@ export function useMenuDisclosure(props: MenuDisclosureHookProps) {
     onClick: composeEventHandlers(onClick, props.onClick),
     onMouseEnter: composeEventHandlers(onMouseOver, props.onMouseOver),
     onMouseOut: composeEventHandlers(onMouseOut, props.onMouseOut),
-    onKeyDown,
+    onKeyDown: composeEventHandlers(onKeyDown, props.onKeyDown),
   };
 }
 
@@ -330,6 +343,7 @@ export function useMenuItem(props: MenuItemHookProps) {
     context: menu,
     onMouseOut: onMouseOutProp,
     onClick: onClickProp,
+    ...htmlProps
   } = props;
   const { descendantsContext, setFocusedIndex, focusedIndex, menuRef } = menu;
 
@@ -404,6 +418,7 @@ export function useMenuItem(props: MenuItemHookProps) {
   }, [isFocused]);
 
   return {
+    ...htmlProps,
     ref,
     id,
     tabIndex: -1,

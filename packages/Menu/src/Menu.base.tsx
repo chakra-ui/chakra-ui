@@ -8,28 +8,54 @@ import {
 } from "./Menu.hook";
 import { createContext } from "@chakra-ui/utils";
 import { PropsOf } from "@chakra-ui/system";
+import { useMergeRefs } from "@chakra-ui/hooks";
 
-const [MenuProvider, useMenuContext] = createContext<MenuHookReturn>();
+const [MenuProvider, useMenuContext] = createContext<MenuHookReturn>(true);
 
-export function Menu({ children, context }: any) {
+export function Menu({ children }: any) {
+  const context = useMenuContext();
   const menuContext = useMenu({ context });
   return <MenuProvider value={menuContext}>{children}</MenuProvider>;
 }
 
-export function BaseMenuButton(props: PropsOf<"button">) {
-  const context = useMenuContext();
-  const buttonProps = useMenuDisclosure({ context, ...props });
-  return <button {...props} {...buttonProps} />;
-}
+export const BaseMenuButton = React.forwardRef(
+  (
+    props: PropsOf<"button"> & { as?: React.ElementType },
+    ref: React.Ref<any>,
+  ) => {
+    const { as: Comp = "button", ...htmlProps } = props;
+    const context = useMenuContext();
 
-export function BaseMenuList(props: PropsOf<"div">) {
-  const context = useMenuContext();
-  const listProps = useMenuList({ context, ...props });
-  return <div {...props} {...listProps} />;
-}
+    const buttonProps = useMenuDisclosure({ context, ...htmlProps });
 
-export function BaseMenuItem(props: PropsOf<"div">) {
-  const context = useMenuContext();
-  const itemProps = useMenuItem({ context, ...props });
-  return <div {...props} {...itemProps} />;
-}
+    const ownRef = useMergeRefs(ref, buttonProps.ref);
+
+    return <Comp {...buttonProps} ref={ownRef} />;
+  },
+);
+
+export const BaseMenuList = React.forwardRef(
+  (props: PropsOf<"div">, ref: React.Ref<any>) => {
+    const context = useMenuContext();
+
+    const listProps = useMenuList({ context, ...props });
+
+    const ownRef = useMergeRefs(listProps.ref, ref);
+
+    return <div {...listProps} ref={ownRef} />;
+  },
+);
+
+export const BaseMenuItem = React.forwardRef(
+  (props: PropsOf<"div"> & { as?: React.ElementType }, ref: React.Ref<any>) => {
+    const { as: Comp = "div", ...htmlProps } = props;
+
+    const context = useMenuContext();
+
+    const itemProps = useMenuItem({ context, ...htmlProps });
+
+    const ownRef = useMergeRefs(itemProps.ref, ref);
+
+    return <Comp {...itemProps} ref={ownRef} />;
+  },
+);
