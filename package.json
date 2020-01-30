@@ -53,7 +53,8 @@
     "live-region": "yarn workspace @chakra-ui/live-region",
     "progress": "yarn workspace @chakra-ui/progress",
     "form-control": "yarn workspace @chakra-ui/form-control",
-    "input": "yarn workspace @chakra-ui/input"
+    "input": "yarn workspace @chakra-ui/input",
+    "combobox": "yarn workspace @chakra-ui/combobox"
   },
   "husky": {
     "hooks": {

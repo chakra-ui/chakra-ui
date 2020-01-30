@@ -10,6 +10,7 @@ import Menu from "./Menu";
 import Tabs from "./Tabs";
 import Checkbox from "./Checkbox";
 import Radio from "./Radio";
+import Input from "./Input";
 
 export default {
   Button,
@@ -24,4 +25,5 @@ export default {
   Tabs,
   Checkbox,
   Radio,
+  Input,
 };

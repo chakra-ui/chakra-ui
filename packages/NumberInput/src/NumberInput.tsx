@@ -71,10 +71,10 @@ export const NumberInput = forwardRef((props: NumberInputProps, ref) => {
 
   const finalChildren = children || (
     <>
-      <NumberInputField />
+      {/* <NumberInputField /> */}
       <NumberInputStepper>
-        <NumberIncrementStepper />
-        <NumberDecrementStepper />
+        {/* <NumberIncrementStepper />
+        <NumberDecrementStepper /> */}
       </NumberInputStepper>
     </>
   );
@@ -117,41 +117,41 @@ const StepperButton = forwardRef((props, ref) => {
   );
 });
 
-const NumberInputField = forwardRef(
-  ({ onBlur, onFocus, onKeyDown, onChange, ...props }, ref) => {
-    const {
-      variantSize,
-      input: {
-        ref: _ref,
-        onBlur: _onBlur,
-        onFocus: _onFocus,
-        onChange: _onChange,
-        onKeyDown: _onKeyDown,
-        disabled: isDisabled,
-        readOnly: isReadOnly,
-        ...otherInputProps
-      },
-    } = useNumberInputCtx();
+// const NumberInputField = forwardRef(
+//   ({ onBlur, onFocus, onKeyDown, onChange, ...props }, ref) => {
+//     const {
+//       variantSize,
+//       input: {
+//         ref: _ref,
+//         onBlur: _onBlur,
+//         onFocus: _onFocus,
+//         onChange: _onChange,
+//         onKeyDown: _onKeyDown,
+//         disabled: isDisabled,
+//         readOnly: isReadOnly,
+//         ...otherInputProps
+//       },
+//     } = useNumberInputCtx();
 
-    const inputRef = useMergeRefs(_ref, ref);
-    const handleBlur = composeEventHandlers(onBlur, _onBlur);
-    const handleFocus = composeEventHandlers(onFocus, _onFocus);
-    const handleKeyDown = composeEventHandlers(onKeyDown, _onKeyDown);
-    const handleChange = composeEventHandlers(onChange, _onChange);
+//     const inputRef = useMergeRefs(_ref, ref);
+//     const handleBlur = composeEventHandlers(onBlur, _onBlur);
+//     const handleFocus = composeEventHandlers(onFocus, _onFocus);
+//     const handleKeyDown = composeEventHandlers(onKeyDown, _onKeyDown);
+//     const handleChange = composeEventHandlers(onChange, _onChange);
 
-    return (
-      <Input
-        ref={inputRef}
-        isReadOnly={isReadOnly}
-        isDisabled={isDisabled}
-        onBlur={handleBlur}
-        onFocus={handleFocus}
-        onKeyDown={handleKeyDown}
-        onChange={handleChange}
-        variantSize={variantSize}
-        {...otherInputProps}
-        {...props}
-      />
-    );
-  },
-);
+//     return (
+//       <Input
+//         ref={inputRef}
+//         isReadOnly={isReadOnly}
+//         isDisabled={isDisabled}
+//         onBlur={handleBlur}
+//         onFocus={handleFocus}
+//         onKeyDown={handleKeyDown}
+//         onChange={handleChange}
+//         variantSize={variantSize}
+//         {...otherInputProps}
+//         {...props}
+//       />
+//     );
+//   },
+// );

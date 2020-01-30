@@ -80,6 +80,30 @@ const unstyled = {
   height: "auto",
 };
 
+const variantSize = {
+  lg: {
+    fontSize: "lg",
+    px: 4,
+    height: 12,
+    lineHeight: "3rem",
+    rounded: "md",
+  },
+  md: {
+    fontSize: "md",
+    px: 4,
+    height: 10,
+    lineHeight: "2.5rem",
+    rounded: "md",
+  },
+  sm: {
+    fontSize: "sm",
+    px: 3,
+    height: 8,
+    lineHeight: "2rem",
+    rounded: "sm",
+  },
+};
+
 export default {
   baseStyle: {
     display: "flex",
@@ -88,7 +112,7 @@ export default {
     transition: "all 0.2s",
     outline: "none",
   },
-  variantSize: {},
+  variantSize,
   variant: {
     outline: getOutlinedStyle,
     filled: getFilledStyle,

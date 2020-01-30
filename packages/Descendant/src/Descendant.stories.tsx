@@ -1,72 +1,57 @@
-import React from "react";
-import { storiesOf } from "@storybook/react";
-import {
-  useDescendants,
-  useDescendant,
-  DescendantsActions,
-  DescendantsState,
-} from "./";
 import { chakra } from "@chakra-ui/system";
-import { createContext } from "@chakra-ui/utils";
+import { storiesOf } from "@storybook/react";
+import React from "react";
+import { useDescendant, useDescendants } from "./";
+import { createDescendantsContext } from "./Descendant";
 
 const stories = storiesOf("Descendant", module);
 
 function Option({
-  children,
   value,
+  disabled,
+  focusable,
 }: {
-  children?: React.ReactNode;
   value?: string;
+  disabled?: boolean;
+  focusable?: boolean;
 }) {
-  const { state, actions } = useDescendantsContext();
-  const { item, isHighlighted } = useDescendant({ state, actions, value });
+  const context = useDescendantCtx();
+
+  const ref = React.useRef<HTMLDivElement>();
+
+  const { index } = useDescendant({
+    element: ref.current,
+    value,
+    disabled,
+    focusable,
+    context,
+  });
 
   return (
-    <chakra.div
-      ref={item.ref}
-      id={item.id}
-      tabIndex={0}
-      data-value={value}
-      bg={isHighlighted ? "red" : "white"}
-      onMouseOver={() => {
-        actions.highlight(item);
-      }}
-      onKeyDown={e => {
-        if (e.key === "ArrowDown") {
-          actions.next("highlight");
-        }
-      }}
-    >
-      {children}
+    <chakra.div ref={ref} tabIndex={0} data-value={value}>
+      Option {index + 1}
     </chakra.div>
   );
 }
 
-const [DescendantsProvider, useDescendantsContext] = createContext<{
-  state: DescendantsState;
-  actions: DescendantsActions;
-}>();
+const [DescendantsProvider, useDescendantCtx] = createDescendantsContext<
+  HTMLDivElement,
+  { value?: string }
+>();
 
 function Select({ children }: { children?: React.ReactNode }) {
-  const [state, actions] = useDescendants({ highlightFirstItemOnMount: true });
-
-  console.log(state);
-
-  return (
-    <DescendantsProvider value={{ state, actions }}>
-      {children}
-    </DescendantsProvider>
-  );
+  const context = useDescendants<HTMLDivElement, { value?: string }>();
+  return <DescendantsProvider value={context}>{children}</DescendantsProvider>;
 }
 
 stories.add("Default", () => (
   <Select>
-    <Option value="option 1">Option 1</Option>
+    <Option value="option 1" />
     <div>
       <div>
-        <Option value="option 2">Option 2</Option>
+        <Option value="option 2" />
       </div>
-      <Option value="option 3">Option 3</Option>
+      <Option value="option 3" />
     </div>
   </Select>
 ));

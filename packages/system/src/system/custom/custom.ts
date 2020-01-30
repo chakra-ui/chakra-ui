@@ -65,6 +65,10 @@ export const config: Dict = {
     property: "maxHeight",
     scale: "sizes",
   },
+  textColor: {
+    property: "color",
+    scale: "colors",
+  },
   bgImg: {
     property: "backgroundImage",
   },
