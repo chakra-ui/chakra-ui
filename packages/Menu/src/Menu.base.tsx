@@ -25,9 +25,7 @@ export const BaseMenuButton = React.forwardRef(
   ) => {
     const { as: Comp = "button", ...htmlProps } = props;
     const context = useMenuContext();
-
     const buttonProps = useMenuDisclosure({ context, ...htmlProps });
-
     const ownRef = useMergeRefs(ref, buttonProps.ref);
 
     return <Comp {...buttonProps} ref={ownRef} />;
@@ -37,9 +35,7 @@ export const BaseMenuButton = React.forwardRef(
 export const BaseMenuList = React.forwardRef(
   (props: PropsOf<"div">, ref: React.Ref<any>) => {
     const context = useMenuContext();
-
     const listProps = useMenuList({ context, ...props });
-
     const ownRef = useMergeRefs(listProps.ref, ref);
 
     return <div {...listProps} ref={ownRef} />;
@@ -49,11 +45,8 @@ export const BaseMenuList = React.forwardRef(
 export const BaseMenuItem = React.forwardRef(
   (props: PropsOf<"div"> & { as?: React.ElementType }, ref: React.Ref<any>) => {
     const { as: Comp = "div", ...htmlProps } = props;
-
     const context = useMenuContext();
-
     const itemProps = useMenuItem({ context, ...htmlProps });
-
     const ownRef = useMergeRefs(itemProps.ref, ref);
 
     return <Comp {...itemProps} ref={ownRef} />;
