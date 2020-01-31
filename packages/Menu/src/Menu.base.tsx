@@ -5,6 +5,7 @@ import {
   useMenuDisclosure,
   useMenuList,
   useMenuItem,
+  MenuItemHookProps,
 } from "./Menu.hook";
 import { createContext } from "@chakra-ui/utils";
 import { PropsOf } from "@chakra-ui/system";
@@ -42,8 +43,13 @@ export const BaseMenuList = React.forwardRef(
   },
 );
 
+type BaseMenuItemProps = PropsOf<"div"> & { as?: React.ElementType } & {
+  isDisabled?: boolean;
+  isFocusable?: boolean;
+};
+
 export const BaseMenuItem = React.forwardRef(
-  (props: PropsOf<"div"> & { as?: React.ElementType }, ref: React.Ref<any>) => {
+  (props: BaseMenuItemProps, ref: React.Ref<any>) => {
     const { as: Comp = "div", ...htmlProps } = props;
     const context = useMenuContext();
     const itemProps = useMenuItem({ context, ...htmlProps });

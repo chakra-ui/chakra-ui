@@ -9,6 +9,7 @@ import {
   useUpdateEffect,
 } from "@chakra-ui/hooks";
 import { usePopper } from "@chakra-ui/popper";
+import { useTabbable } from "@chakra-ui/tabbable";
 import {
   composeEventHandlers,
   createOnKeyDown,
@@ -183,12 +184,10 @@ export function useMenuList(props: MenuListHookProps) {
     keyMap: {
       Escape: menu.onClose,
       ArrowDown: () => {
-        console.log("down");
         const nextIndex = getNextIndex(focusedIndex, descendants.length);
         setFocusedIndex(nextIndex);
       },
       ArrowUp: () => {
-        console.log("up");
         const prevIndex = getPrevIndex(focusedIndex, descendants.length);
         setFocusedIndex(prevIndex);
       },
@@ -302,6 +301,10 @@ export function useMenuDisclosure(props: MenuDisclosureHookProps) {
   const onKeyDown = createOnKeyDown({
     // stopPropagation: event => !hasParent && event.key !== "Escape",
     keyMap: {
+      Enter: () => {
+        // not sure of this yet.
+        openAndFocusFirstItem();
+      },
       ArrowDown: () => {
         if (!hasParent) openAndFocusFirstItem();
       },
@@ -336,6 +339,8 @@ export interface MenuItemHookProps {
   onMouseOut?: React.MouseEventHandler;
   context: MenuHookReturn;
   onClick?: React.MouseEventHandler;
+  isDisabled?: boolean;
+  isFocusable?: boolean;
 }
 
 export function useMenuItem(props: MenuItemHookProps) {
@@ -343,6 +348,8 @@ export function useMenuItem(props: MenuItemHookProps) {
     context: menu,
     onMouseOut: onMouseOutProp,
     onClick: onClickProp,
+    isDisabled,
+    isFocusable,
     ...htmlProps
   } = props;
   const { descendantsContext, setFocusedIndex, focusedIndex, menuRef } = menu;
@@ -353,6 +360,8 @@ export function useMenuItem(props: MenuItemHookProps) {
   const { index } = useDescendant({
     element: ref.current,
     context: descendantsContext,
+    disabled: isDisabled,
+    focusable: isFocusable,
   });
 
   const onMouseOver = React.useCallback(
@@ -417,14 +426,20 @@ export function useMenuItem(props: MenuItemHookProps) {
     }
   }, [isFocused]);
 
+  const tabbable = useTabbable({
+    onClick,
+    onMouseOver,
+    ref,
+    isDisabled,
+    isFocusable,
+  });
+
   return {
     ...htmlProps,
-    ref,
+    ...tabbable,
     id,
-    tabIndex: -1,
     role: "menuitem",
-    onMouseOver,
     onMouseOut,
-    onClick,
+    tabIndex: isFocused ? 0 : -1,
   };
 }
