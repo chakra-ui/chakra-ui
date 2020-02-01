@@ -4,9 +4,10 @@ import { filterProps } from "../chakra/styled";
 import { useChakra } from "../color-mode";
 import { forwardRef } from "../forward-ref";
 import { jsx } from "../system";
-import getComponentStyles, { resolveStyle } from "./get-component-style";
+import { getComponentStyles, runIfFn } from "./get-component-style";
 import { As, CreateChakraComponent, CreateChakraOptions } from "./types";
 import propNames from "../system/prop-names";
+import css from "../css";
 
 // prevent chakra props from getting to DOM element
 function clean(props: Dict) {
@@ -20,7 +21,7 @@ function clean(props: Dict) {
 }
 
 export const createStyled = <T extends As, H = {}>(
-  tag: T,
+  component: T,
   options?: CreateChakraOptions<H>,
 ) => (...interpolations: any[]) => {
   const Styled = forwardRef(
@@ -36,27 +37,24 @@ export const createStyled = <T extends As, H = {}>(
 
       // Users can pass a base style to the component, let's resolve it
       if (options?.baseStyle) {
-        const baseStyle = resolveStyle(options.baseStyle, propsWithTheme);
+        const baseStyleObject = runIfFn(options.baseStyle, propsWithTheme);
+        const baseStyle = css(baseStyleObject);
         Object.assign(finalStyles, baseStyle);
       }
 
       // Resolve each interpolation and add result to final style
       interpolations.forEach(interpolation => {
-        const style = isFunction(interpolation)
-          ? interpolation(propsWithTheme)
-          : interpolation;
+        const style = runIfFn(interpolation, propsWithTheme);
         Object.assign(finalStyles, style);
       });
 
       // Get the component style from theme.components
-      // There's a convention for how to define component styles in theme.components
-      // @see [Link]
       const componentStyles = getComponentStyles(propsWithTheme, options);
 
       // Add final styles before component styles to support prop overriding
       finalStyles = { ...componentStyles, ...finalStyles };
 
-      const element = as || tag;
+      const element = as || component;
       const isTag = isString(element);
       let computedProps: Dict = isTag ? {} : { ...props };
 
@@ -74,21 +72,29 @@ export const createStyled = <T extends As, H = {}>(
 
       // Attach props to this component
       if (options?.attrs) {
-        const attrsProps =
-          typeof options.attrs === "function"
-            ? options.attrs(computedProps)
-            : options.attrs;
+        const attrsProps = runIfFn(options.attrs, computedProps);
         Object.assign(computedProps, attrsProps);
       }
 
-      return jsx(element, {
+      const Component = jsx(element, {
         ...computedProps,
         css: finalStyles,
       });
+
+      return Component;
     },
   );
 
+  //@ts-ignore
+  Styled.displayName = `Chakra(${getDisplayName(component)})`;
+
   return Styled as CreateChakraComponent<T, H>;
 };
+
+function getDisplayName(primitive: any) {
+  return isString(primitive)
+    ? primitive
+    : primitive.displayName || primitive.name || "ChakraComponent";
+}
 
 export default createStyled;

@@ -5,7 +5,7 @@ import { CreateChakraOptions } from "./types";
 
 const isSubcomponent = (themeKey: string) => themeKey.split(".").length > 1;
 
-export const resolveStyle = (objectOrFn: any, props: object) =>
+export const runIfFn = (objectOrFn: any, props: object) =>
   isFunction(objectOrFn) ? objectOrFn(props) : objectOrFn;
 
 function getBaseStyle(props: any, themeKey: string) {
@@ -14,7 +14,7 @@ function getBaseStyle(props: any, themeKey: string) {
 
   if (!baseStyleOrFn) return undefined;
 
-  let baseStyle = resolveStyle(baseStyleOrFn, props);
+  let baseStyle = runIfFn(baseStyleOrFn, props);
 
   if (isSubcomponent(themeKey)) {
     baseStyle = baseStyle[component];
@@ -24,14 +24,16 @@ function getBaseStyle(props: any, themeKey: string) {
 
 function getVariantPropStyle(props: any, prop: any, themeKey: string) {
   const [parent, component] = themeKey.split(".");
-  const ObjectOrFn = get(
-    props.theme,
-    `components.${parent}.${prop}.${props[prop]}`,
-  );
+
+  const _default = get(props.theme, `components.${parent}.${prop}.__default`);
+  console.log(_default);
+  const value = props[prop] || _default;
+
+  const ObjectOrFn = get(props.theme, `components.${parent}.${prop}.${value}`);
 
   if (!ObjectOrFn) return undefined;
 
-  let baseStyle = resolveStyle(ObjectOrFn, props);
+  let baseStyle = runIfFn(ObjectOrFn, props);
   if (isSubcomponent(themeKey)) {
     baseStyle = baseStyle[component];
   }
@@ -40,16 +42,18 @@ function getVariantPropStyle(props: any, prop: any, themeKey: string) {
 
 function getVariantsStyle(props: any, themeKey: string) {
   const componentStyle = {};
-  const themableProps = ["variant", "variantSize", "variantColor"] as const;
+  const themableProps = ["variant", "variantSize"] as const;
+
   for (const prop of themableProps) {
     const styleObject = getVariantPropStyle(props, prop, themeKey);
     if (!styleObject) continue;
     Object.assign(componentStyle, styleObject);
   }
+
   return componentStyle;
 }
 
-function getComponentStyles<Hook>(
+export function getComponentStyles<Hook>(
   props: any,
   options?: CreateChakraOptions<Hook>,
 ) {
@@ -74,5 +78,3 @@ function getComponentStyles<Hook>(
 
   return componentStyle;
 }
-
-export default getComponentStyles;

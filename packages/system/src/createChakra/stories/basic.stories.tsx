@@ -25,8 +25,10 @@ type ButtonProps = HookProps<typeof useTabbable> & {
 const Button = createChakra<"button", ButtonProps>("button", {
   hook: useTabbable,
   themeKey: "Button",
-  attrs: { "data-chakra-button": "", type: "button" },
+  attrs: { type: "button" },
 });
+
+Button.displayName = "Button";
 
 Button.defaultProps = {
   variantSize: "md",

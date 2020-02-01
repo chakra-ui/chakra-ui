@@ -10,13 +10,15 @@ export const selectors = {
   active: "&:active, &[data-active]",
   focus: "&:focus, &[data-focus]",
   focusVisible: ".js-focus-visible &.focus-visible, &:focus-visible",
-  loading: "&[data-loading], &[aria-busy=true]",
+  loading: "&[data-loading], &[aria-busy=true], &[data-state='loading']",
   disabled:
     "&:disabled, &[data-disabled], &:disabled:focus, &:disabled:hover, &[aria-disabled=true], &[aria-disabled=true]:focus, &[aria-disabled=true]:hover",
   checked: "&[aria-checked=true], &[data-checked]",
   indeterminate: "&:indeterminate, &[aria-checked=mixed], &[data-mixed]",
   selected: "&[aria-selected=true], &[data-selected]",
-  invalid: "&[aria-invalid=true], &[data-invalid]",
+  invalid:
+    "&[aria-invalid=true], &[data-invalid], &:invalid, &[data-state='invalid']",
+  valid: "&[data-invalid], &:valid, &[data-state='valid']",
   pressed: "&[aria-pressed=true], &[data-pressed]",
   expanded: "&[aria-expanded=true], &[data-expanded]",
   grabbed: "&[aria-grabbed=true], &[data-grabbed]",
@@ -38,6 +40,7 @@ export const selectors = {
   focusWithin: "&:focus-within",
   placeholder: "&::placeholder",
   hidden: "&[hidden]",
+  autofill: "&:-webkit-autofill",
 };
 
 const sx = selectors;

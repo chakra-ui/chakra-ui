@@ -37,11 +37,8 @@ export function split<T extends Dict, K extends keyof T>(object: T, keys: K[]) {
   return [picked, omitted] as [{ [P in K]: T[P] }, Omit<T, K>];
 }
 
-export const addKey = (obj: object, key: string, value: any) => {
-  (obj[key as keyof typeof obj] as any) = value;
-};
-
-export const getKey = (obj: object, key: string): any =>
-  obj[key as keyof typeof obj];
+export function objectKeys<T>(obj: T) {
+  return (Object.keys(obj) as unknown) as (keyof T)[];
+}
 
 export { default as deepEqual } from "dequal";

@@ -1,7 +1,7 @@
 import { configure } from "@storybook/react";
 
 const req = require.context(
-  `../packages/Menu/src/`,
+  `../packages/system/src/`,
   true,
   /.stories\.(ts|tsx)$/,
 );

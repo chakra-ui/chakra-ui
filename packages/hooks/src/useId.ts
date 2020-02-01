@@ -9,4 +9,8 @@ export function useId(idPrefix?: string, idProp?: string) {
   return uuid;
 }
 
-export default useId;
+export function useIds(...prefixes: string[]) {
+  const uuid = useId();
+  const ids = prefixes.map(prefix => generatePrefix(prefix, uuid));
+  return ids;
+}

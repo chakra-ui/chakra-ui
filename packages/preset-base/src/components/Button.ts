@@ -158,8 +158,12 @@ const baseStyle = {
 ////////////////////////////////////////////////////////////
 const Button = {
   baseStyle,
-  variantSize,
+  variantSize: {
+    __default: "md",
+    ...variantSize,
+  },
   variant: {
+    __default: "solid",
     unstyled,
     solid: getSolidStyle,
     ghost: getGhostStyle,

@@ -59,6 +59,8 @@ interface ComponentThemingProps {
   variantColor?: string;
 }
 
+type AllHTMLProps = React.AllHTMLAttributes<any>;
+
 /**
  * When using `createChakra`, you can pass any of these options
  */
@@ -77,7 +79,7 @@ export interface CreateChakraOptions<P> {
    * Additional props to attach to the component
    * You can use a function to make it dynamic
    */
-  attrs?: Record<string, any> | ((props: object) => Record<string, any>);
+  attrs?: AllHTMLProps | ((props: object) => AllHTMLProps);
   /**
    * Base style object to apply to this component
    * NB: This style is theme-aware so you can use all style props
