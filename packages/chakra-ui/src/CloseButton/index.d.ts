@@ -19,6 +19,10 @@ interface ICloseButton {
    * An accessible label for the close button
    */
   "aria-label"?: string;
+  /**
+   * The type of button (defaults to button)
+   */
+  type?: string;
 }
 
 export type CloseButtonProps = ICloseButton & Omit<PseudoBoxProps, "size">;

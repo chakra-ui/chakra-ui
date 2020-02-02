@@ -60,6 +60,7 @@ const CloseButton = ({
       size={buttonSize}
       _hover={{ bg: hoverColor[colorMode] }}
       _active={{ bg: activeColor[colorMode] }}
+      type="button"
       {...baseProps}
       {...rest}
     >
