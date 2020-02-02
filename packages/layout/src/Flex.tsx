@@ -23,16 +23,19 @@ interface FlexOptions {
 
 export type FlexProps = BoxProps & FlexOptions;
 
-const Flex = forwardRef((props: FlexProps, ref: React.Ref<any>) => (
-  <Box
-    ref={ref}
-    display="flex"
-    flexDirection={props.direction}
-    alignItems={props.align}
-    justifyContent={props.justify}
-    flexWrap={props.wrap}
-    {...props}
-  />
-)) as ChakraComponent<"div", FlexOptions>;
+const Flex = forwardRef((props: FlexProps, ref: React.Ref<any>) => {
+  const { direction, align, justify, wrap, ...rest } = props;
+  return (
+    <Box
+      ref={ref}
+      display="flex"
+      flexDirection={direction}
+      alignItems={align}
+      justifyContent={justify}
+      flexWrap={wrap}
+      {...rest}
+    />
+  );
+}) as ChakraComponent<"div", FlexOptions>;
 
 export default Flex;

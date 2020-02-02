@@ -69,7 +69,7 @@ const stackStories = storiesOf("Stack", module);
 stackStories.addDecorator(setup);
 
 stackStories.add("vertical stack", () => (
-  <Stack shouldWrapChildren spacing={4} direction="row">
+  <Stack spacing={4}>
     <span>ooooooo</span>
     <span>ahhhhh</span>
     <span>Woah!</span>

@@ -1,6 +1,6 @@
 import * as React from "react";
 import {
-  useModeValue,
+  useColorModeValue,
   SystemProps,
   chakra,
   createChakra,
@@ -11,7 +11,7 @@ import { cleanChildren } from "@chakra-ui/utils";
 const BaseLabel = createChakra("div", { themeKey: "Avatar" });
 
 const MoreAvatarLabel = (props: any) => {
-  const bg = useModeValue("gray.200", "whiteAlpha.400");
+  const bg = useColorModeValue("gray.200", "whiteAlpha.400");
   return <BaseLabel bg={bg} {...props} />;
 };
 

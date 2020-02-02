@@ -15,7 +15,7 @@ export function AbsoluteCenter(props: Props) {
   );
 }
 
-export function FlexCenter(props: any) {
+export function FlexCenter(props: Props) {
   return (
     <chakra.div
       display="flex"

@@ -12,8 +12,8 @@ import { As, ChakraComponent } from "./types";
 const styled = <T extends As>(tag: T) => (...interpolations: any[]) => {
   const Styled = forwardRef(
     ({ as, apply, ...props }: any, ref: React.Ref<Element>) => {
-      const elementToBeCreated = as || tag;
-      const shouldForwardProps = !isString(elementToBeCreated);
+      const element = as || tag;
+      const shouldForwardProps = !isString(element);
       const computedProps = shouldForwardProps ? props : {};
 
       const styles = {};
@@ -30,7 +30,7 @@ const styled = <T extends As>(tag: T) => (...interpolations: any[]) => {
         filterProps(computedProps, props);
       }
 
-      return jsx(as || tag, {
+      return jsx(element, {
         ...computedProps,
         ref,
         css: styles,
@@ -38,8 +38,7 @@ const styled = <T extends As>(tag: T) => (...interpolations: any[]) => {
     },
   );
 
-  //@ts-ignore
-  Styled.displayName = `Chakra(${getDisplayName(component)})`;
+  Styled.displayName = `Chakra(${getDisplayName(tag)})`;
 
   return Styled as ChakraComponent<T>;
 };

@@ -1,4 +1,4 @@
-import { createChakra, PropsOf, useModeValue } from "@chakra-ui/system";
+import { createChakra, PropsOf, useColorModeValue } from "@chakra-ui/system";
 import * as React from "react";
 
 type Placement = "left" | "right";
@@ -28,7 +28,7 @@ const BaseAddon = createChakra("div", { themeKey: "Input" });
 type InputAddonProps = PropsOf<typeof BaseAddon> & { placement?: Placement };
 
 export function InputAddon({ placement = "left", ...props }: InputAddonProps) {
-  const bg = useModeValue(`whiteAlpha.300`, `gray.100`);
+  const bg = useColorModeValue(`whiteAlpha.300`, `gray.100`);
 
   const placementStyles = getPlacementStyles(placement);
 

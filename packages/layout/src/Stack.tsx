@@ -22,11 +22,6 @@ interface StackOptions {
    * The content of the stack.
    */
   children: React.ReactNode;
-  /**
-   * If `true`, the children will be wrapped in a `Box` with
-   * `display: inline-block`, and the `Box` will take the spacing props
-   */
-  shouldWrapChildren?: boolean;
 }
 
 type StackProps = FlexProps & StackOptions;
@@ -39,7 +34,6 @@ const Stack = forwardRef(
       justify,
       spacing = 2,
       children,
-      shouldWrapChildren,
       ...props
     }: StackProps,
     ref: React.Ref<any>,
@@ -61,12 +55,7 @@ const Stack = forwardRef(
         css={css({ ">*+*": spacingProp })}
         {...props}
       >
-        {shouldWrapChildren
-          ? React.Children.map(children, child => {
-              if (!React.isValidElement(child)) return;
-              return <chakra.div display="inline-block">{child}</chakra.div>;
-            })
-          : children}
+        {children}
       </chakra.div>
     );
   },

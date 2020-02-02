@@ -113,7 +113,7 @@ function useDialogContent(props: any) {
 }
 
 export const DialogContent = createChakra("section", {
-  hook: useDialogContent,
+  // hook: useDialogContent,
   baseStyle: {
     position: "fixed",
     display: "flex",
@@ -121,7 +121,6 @@ export const DialogContent = createChakra("section", {
     width: "100%",
     outline: 0,
   },
-  attrs: { "data-chakra-dialog": "" },
 });
 
 export const DialogOverlay = createChakra("div", {
@@ -133,8 +132,8 @@ export const DialogOverlay = createChakra("div", {
     width: "100vw",
     height: "100vh",
   },
-  hook: useDialogOverlay,
-  attrs: { "data-chakra-overlay": "" },
+  // hook: useDialogOverlay,
+  // attrs: { "data-chakra-overlay": "" },
 });
 
 // TODO: Move this style to the Dialog.ts in theme

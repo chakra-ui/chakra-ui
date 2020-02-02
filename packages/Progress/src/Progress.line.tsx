@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { generateStripe, getColor } from "@chakra-ui/color";
-import { chakra, PropsOf, useModeValue, useTheme } from "@chakra-ui/system";
+import { chakra, PropsOf, useColorModeValue, useTheme } from "@chakra-ui/system";
 import { isUndefined, Omit, resolveProp } from "@chakra-ui/utils";
 import { css, jsx } from "@emotion/core";
 import {
@@ -89,14 +89,14 @@ export function Progress(props: ProgressProps) {
   } = props;
 
   // The color of the progress track
-  const trackBg = useModeValue(`gray.100`, `whiteAlpha.300`);
+  const trackBg = useColorModeValue(`gray.100`, `whiteAlpha.300`);
   const theme = useTheme();
 
   // The color of the progress indicator
-  const indicatorBg = useModeValue(`${color}.500`, `${color}.200`);
+  const indicatorBg = useColorModeValue(`${color}.500`, `${color}.200`);
 
   // Generate a strip style for the progress bar
-  const stripeStyle = useModeValue(
+  const stripeStyle = useColorModeValue(
     generateStripe(),
     generateStripe("1rem", "rgba(0,0,0,0.1)"),
   );

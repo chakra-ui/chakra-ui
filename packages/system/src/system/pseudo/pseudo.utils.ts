@@ -1,9 +1,11 @@
+import { Dict, isObject, memoizeOne } from "@chakra-ui/utils";
+import transformProps from "../custom/custom.utils";
 import { selectors } from "./pseudo";
-import { memoizeOne, Dict, isObject } from "@chakra-ui/utils";
 
 type SelectorProp = keyof typeof selectors;
 
 const hasUnderscore = (str: string) => str.startsWith("_");
+
 const stripUnderscore = (str: string) => str.slice(1, str.length);
 
 export const replacePseudoProp = memoizeOne((prop: string) => {
@@ -27,3 +29,5 @@ export const replacePseudo = (props: any) => {
   }
   return next;
 };
+
+export const tx = (props: any) => transformProps(replacePseudo(props));

@@ -19,25 +19,24 @@ export interface GridOptions {
 
 export type GridProps = BoxProps & GridOptions;
 
-export const Grid = forwardRef(
-  (
-    {
-      gap,
-      rowGap,
-      columnGap,
-      autoFlow,
-      autoRows,
-      autoColumns,
-      templateRows,
-      templateColumns,
-      templateAreas,
-      area,
-      column,
-      row,
-      ...props
-    }: GridProps,
-    ref: React.Ref<any>,
-  ) => (
+export const Grid = forwardRef((props: GridProps, ref: React.Ref<any>) => {
+  const {
+    gap,
+    rowGap,
+    columnGap,
+    autoFlow,
+    autoRows,
+    autoColumns,
+    templateRows,
+    templateColumns,
+    templateAreas,
+    area,
+    column,
+    row,
+    ...rest
+  } = props;
+
+  return (
     <Box
       ref={ref}
       display="grid"
@@ -53,9 +52,9 @@ export const Grid = forwardRef(
       gridAutoRows={autoRows}
       gridTemplateRows={templateRows}
       gridTemplateColumns={templateColumns}
-      {...props}
+      {...rest}
     />
-  ),
-) as ChakraComponent<"div", GridOptions>;
+  );
+}) as ChakraComponent<"div", GridOptions>;
 
 export default Grid;

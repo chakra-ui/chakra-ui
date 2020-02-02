@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as Base from "./FormControl.base";
-import { createChakra, useModeValue, PropsOf } from "@chakra-ui/system";
+import { createChakra, useColorModeValue, PropsOf } from "@chakra-ui/system";
 import { Icon } from "@chakra-ui/icon";
 
 export const FormLabel = createChakra(Base.FormLabel, {
@@ -39,7 +39,7 @@ export const FormErrorText = createChakra(Base.FormErrorText, {
 });
 
 export function FormErrorIcon(props: PropsOf<typeof Icon>) {
-  const color = useModeValue(`red.500`, `red.300`);
+  const color = useColorModeValue(`red.500`, `red.300`);
   const context = Base.useFormControl();
 
   if (!context.isInvalid) return null;

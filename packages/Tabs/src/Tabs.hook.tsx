@@ -20,7 +20,7 @@ import { useTabbable, TabbableProps } from "@chakra-ui/tabbable";
 
 // Let's start with some type definitions
 
-export interface UseTabsOptions {
+export interface TabsHookProps {
   /**
    * The orientation of the tablist.
    */
@@ -55,7 +55,7 @@ export interface UseTabsOptions {
   id?: string;
 }
 
-export function useTabs(props: UseTabsOptions) {
+export function useTabs(props: TabsHookProps) {
   const {
     defaultIndex,
     onChange: onChangeProp,
@@ -125,13 +125,13 @@ export { TabsProvider };
 
 ////////////////////////////////////////////////////////////////////////
 
-export interface UseTabOptions extends TabbableProps {
+export interface TabHookProps extends TabbableProps {
   id?: string;
   isSelected?: boolean;
   panelId?: string;
 }
 
-export function useTab(props: UseTabOptions) {
+export function useTab(props: TabHookProps) {
   const { isSelected, isDisabled, id, panelId, ...rest } = props;
 
   const tab = useTabbable({
@@ -155,13 +155,13 @@ export function useTab(props: UseTabOptions) {
 
 ////////////////////////////////////////////////////////////////////////
 
-export interface UseTabListOptions {
+export interface TabListHookProps {
   children?: React.ReactNode;
   onKeyDown?: React.KeyboardEventHandler;
   ref?: React.Ref<any>;
 }
 
-export function useTabList(props: UseTabListOptions) {
+export function useTabList(props: TabListHookProps) {
   // Read from context
   const tabs = useTabsContext();
 
@@ -263,7 +263,7 @@ export function useTabList(props: UseTabListOptions) {
 
 ////////////////////////////////////////////////////////////////////////
 
-export function useTabPanels(props: { children: React.ReactNode }) {
+export function useTabPanels(props: { children?: React.ReactNode }) {
   const tabs = useTabsContext();
 
   const children = React.Children.map(props.children, (child, index) => {
@@ -291,7 +291,7 @@ export function useTabPanel(props: { isSelected?: boolean; id?: string }) {
 
 ////////////////////////////////////////////////////////////////////////
 
-export function useTabIndicator(props = {}): React.CSSProperties {
+export function useTabIndicator(): React.CSSProperties {
   const tabs = useTabsContext();
   const isHorizontal = tabs.orientation === "horizontal";
   const isVertical = tabs.orientation === "vertical";
@@ -339,7 +339,6 @@ export function useTabIndicator(props = {}): React.CSSProperties {
   ]);
 
   return {
-    ...props,
     position: "absolute",
     transition: "all 200ms cubic-bezier(0, 0, 0.2, 1)",
     ...rect,

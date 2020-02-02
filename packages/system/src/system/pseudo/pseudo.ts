@@ -1,9 +1,6 @@
 import css from "@styled-system/css";
-import transformProps from "../custom/custom.utils";
 import { PseudoProps } from "./pseudo.interface";
-import { replacePseudo } from "./pseudo.utils";
-
-const tx = (props: any) => transformProps(replacePseudo(props));
+import { tx } from "./pseudo.utils";
 
 export const selectors = {
   hover: "&:hover, &[data-hover]",
