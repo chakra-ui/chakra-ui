@@ -15,7 +15,13 @@ type GenericMiddleware<G, P, T extends As> = {} extends G
   ? MergeGeneric<G, P, T>
   : MergePropsOf<P, T>;
 
-interface ChakraProps extends ValidHTMLProps, CustomizableProps {
+interface CustomizableProps {
+  variant?: string;
+  variantSize?: string;
+  variantColor?: string;
+}
+
+interface ChakraProps extends SystemProps, ValidHTMLProps, CustomizableProps {
   as?: React.ElementType;
   isTruncated?: boolean;
   children?: React.ReactNode;
@@ -28,12 +34,6 @@ export interface CreateChakraComponent<T extends As, P = {}> {
   propTypes?: {
     [prop: string]: React.Validator<any>;
   };
-}
-
-interface CustomizableProps {
-  variant?: string;
-  variantSize?: string;
-  variantColor?: string;
 }
 
 /**
@@ -49,22 +49,25 @@ export interface CreateChakraOptions<P> {
    * Additional props to attach to the component
    * You can use a function to make it dynamic
    */
-  attrs?:
-    | React.AllHTMLAttributes<any>
-    | ((props: object) => React.AllHTMLAttributes<any>);
+  attrs?: PropsFunctionOrObject<P>;
   /**
    * Base style object to apply to this component
    * NB: This style is theme-aware so you can use all style props
    */
   baseStyle?: StyleFunctionOrObject<P>;
+  /**
+   * A boolean indicating if the component should avoid re-rendering
+   * when props haven't changed. This uses `React.memo(...)`
+   */
+  pure?: boolean;
 }
-
-type AllHTMLProps = React.AllHTMLAttributes<any>;
 
 type StyleFunctionOrObject<P> =
   | SystemProps
   | ((props: P & { colorMode?: "light" | "dark" }) => SystemProps);
 
 type PropsFunctionOrObject<P> =
-  | AllHTMLProps
-  | ((props: P & { colorMode?: "light" | "dark" }) => AllHTMLProps);
+  | React.AllHTMLAttributes<any>
+  | ((
+      props: P & { colorMode?: "light" | "dark" },
+    ) => React.AllHTMLAttributes<any>);

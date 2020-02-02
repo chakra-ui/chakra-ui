@@ -1,8 +1,7 @@
-import * as React from "react";
-import { css } from "@styled-system/css";
 import { pseudo, system, truncate } from "../system";
 import createStyled from "./create-styled";
-import { As, CreateChakraOptions, CustomizableProps } from "./types";
+import { As, CreateChakraOptions } from "./types";
+import css from "../css";
 
 const sx = (props: { sx: object; theme: object }) => css(props.sx)(props.theme);
 const cx = (props: { css: object }) => props.css;
@@ -26,27 +25,6 @@ function createChakra<T extends As, P = {}>(
   options?: CreateChakraOptions<P>,
 ) {
   return createStyled(component, options)(system, pseudo, truncate, sx, cx);
-}
-
-const Button = createChakra("button", {
-  baseStyle: props => ({
-    marginTop: props.colorMode === "dark" ? 20 : 10,
-  }),
-});
-
-function GG() {
-  return (
-    <Button
-      onKeyDown={event => {
-        console.log(event);
-      }}
-      onClick={event => {
-        console.log(event);
-      }}
-    >
-      Welcome
-    </Button>
-  );
 }
 
 export default createChakra;

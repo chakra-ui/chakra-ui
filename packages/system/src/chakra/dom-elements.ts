@@ -1,3 +1,5 @@
+import { UnionStringArray } from "@chakra-ui/utils";
+
 const domElements = [
   "a",
   "abbr",
@@ -117,7 +119,5 @@ const domElements = [
 ] as const;
 
 export default domElements;
-
-type UnionStringArray<T extends Readonly<string[]>> = T[number];
 
 export type DOMElements = UnionStringArray<typeof domElements>;

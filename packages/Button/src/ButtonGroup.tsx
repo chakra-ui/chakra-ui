@@ -26,13 +26,12 @@ export const ButtonGroup = ({
   ...rest
 }: ButtonGroupProps) => {
   const validChildren = cleanChildren(children);
-  const clones = validChildren.map((child, index) => {
-    if (!React.isValidElement(child)) return;
 
+  const clones = validChildren.map((child, index) => {
     const isFirst = index === 0;
     const isLast = index === validChildren.length - 1;
 
-    return React.cloneElement<ButtonProps>(child, {
+    return React.cloneElement(child as React.ReactElement<ButtonProps>, {
       variantSize,
       variantColor: child.props.variantColor || variantColor,
       variant: child.props.variant || variant,

@@ -70,14 +70,14 @@ const BreadcrumbItem = forwardRef(
     const validChildren = cleanChildren(children);
 
     const clones = validChildren.map(child => {
-      if (!React.isValidElement(child)) return;
-
       if (child.type === BreadcrumbLink) {
-        return React.cloneElement(child, { isCurrentPage });
+        return React.cloneElement(child as React.ReactElement<any>, {
+          isCurrentPage,
+        });
       }
 
       if (child.type === BreadcrumbSeparator) {
-        return React.cloneElement(child, {
+        return React.cloneElement(child as React.ReactElement<any>, {
           spacing,
           children: child.props.children || separator,
         });
@@ -132,7 +132,7 @@ const Breadcrumb = forwardRef((props: BreadcrumbProps, ref: React.Ref<any>) => {
   const clones = validChildren.map((child, index) => {
     if (!React.isValidElement(child)) return;
 
-    return React.cloneElement(child, {
+    return React.cloneElement(child as React.ReactElement<any>, {
       addSeparator,
       separator,
       spacing,

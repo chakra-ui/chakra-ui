@@ -1,12 +1,8 @@
-import { Dict, isFunction } from "@chakra-ui/utils";
+import { Dict } from "@chakra-ui/utils";
 import { get } from "@styled-system/css";
 import css from "../css";
+import { isSubcomponent, runIfFn } from "./create-chakra.utils";
 import { CreateChakraOptions } from "./types";
-
-const isSubcomponent = (themeKey: string) => themeKey.split(".").length > 1;
-
-export const runIfFn = (objectOrFn: any, props: object) =>
-  isFunction(objectOrFn) ? objectOrFn(props) : objectOrFn;
 
 function getBaseStyle(props: any, themeKey: string) {
   const [parent, component] = themeKey.split(".");
@@ -53,7 +49,7 @@ function getVariantsStyle(props: any, themeKey: string) {
   return componentStyle;
 }
 
-export function getComponentStyles<Hook>(
+function getComponentStyles<Hook>(
   props: any,
   options?: CreateChakraOptions<Hook>,
 ) {
@@ -78,3 +74,5 @@ export function getComponentStyles<Hook>(
 
   return componentStyle;
 }
+
+export default getComponentStyles;

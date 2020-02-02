@@ -1,20 +1,13 @@
+import { isFunction, isString } from "@chakra-ui/utils";
 import { ThemeContext } from "@emotion/core";
 import * as React from "react";
-import { isPropValid, jsx, validHTMLProps } from "../system";
+import {
+  filterProps,
+  getDisplayName,
+} from "../createChakra/create-chakra.utils";
+import { forwardRef } from "../forward-ref";
+import { jsx } from "../system";
 import { As, ChakraComponent } from "./types";
-import { isFunction, isString, Dict } from "@chakra-ui/utils";
-import { forwardRef, memo } from "../forward-ref";
-
-export function filterProps(next: Dict, props: Dict) {
-  for (const prop in props) {
-    if (!isPropValid(prop)) continue;
-    const propKey =
-      prop in validHTMLProps
-        ? validHTMLProps[prop as keyof typeof validHTMLProps]
-        : prop;
-    next[propKey] = props[prop];
-  }
-}
 
 const styled = <T extends As>(tag: T) => (...interpolations: any[]) => {
   const Styled = forwardRef(
@@ -45,7 +38,10 @@ const styled = <T extends As>(tag: T) => (...interpolations: any[]) => {
     },
   );
 
-  return memo(Styled) as ChakraComponent<T>;
+  //@ts-ignore
+  Styled.displayName = `Chakra(${getDisplayName(component)})`;
+
+  return Styled as ChakraComponent<T>;
 };
 
 export default styled;

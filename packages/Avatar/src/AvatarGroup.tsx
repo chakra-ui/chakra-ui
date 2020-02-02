@@ -59,11 +59,10 @@ export const AvatarGroup = ({
     if (max == null || (max && index < max)) {
       const isFirstAvatar = index === 0;
       return React.cloneElement(child as AvatarElement, {
-        ml: isFirstAvatar ? 0 : spacing,
+        marginLeft: isFirstAvatar ? 0 : spacing,
         variantSize,
         borderColor: child.props["borderColor"] || borderColor,
         showBorder: true,
-        zIndex: count - index,
       });
     }
 
