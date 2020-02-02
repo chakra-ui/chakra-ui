@@ -19,3 +19,5 @@ export * from "./useUpdateEffect";
 export * from "./useEventListener";
 export * from "./useHasMounted";
 export * from "./useBoolean";
+export * from "./useForceUpdate";
+export * from "./useConst";

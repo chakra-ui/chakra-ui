@@ -1,10 +1,9 @@
+import { FunctionArguments } from "@chakra-ui/utils";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
-import createChakra from "../create-chakra";
 import setup from "../../../story.setup";
-import { SystemProps } from "../../system";
-import { useTabbable } from "@chakra-ui/tabbable";
-import { FunctionArguments } from "@chakra-ui/utils";
+import createChakra from "../create-chakra";
+import { PropsOf } from "../types";
 
 const stories = storiesOf("createChakra", module);
 
@@ -16,14 +15,13 @@ type HookProps<T extends Function> = FunctionArguments<T>[0];
  * Here's how to create a button component
  * w/ some type safety for variant and variantSize
  */
-type ButtonProps = HookProps<typeof useTabbable> & {
+type ButtonProps = PropsOf<"button"> & {
   variantSize?: "sm" | "md" | "lg";
   variant?: "solid" | "outline" | "ghost" | "link";
   variantColor?: "red" | "green" | "pink" | "blue";
 };
 
-const Button = createChakra<"button", ButtonProps>("button", {
-  hook: useTabbable,
+const Button = createChakra("button", {
   themeKey: "Button",
   attrs: { type: "button" },
 });
@@ -37,9 +35,7 @@ Button.defaultProps = {
 };
 
 stories.add("variant size", () => (
-  <Button marginTop="40px" isDisabled isFocusable>
-    This is my button
-  </Button>
+  <Button marginTop="40px">This is my button</Button>
 ));
 
 stories.add("variant color", () => (

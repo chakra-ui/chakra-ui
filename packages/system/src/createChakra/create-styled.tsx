@@ -20,76 +20,72 @@ function clean(props: Dict) {
   return nextProps;
 }
 
-export const createStyled = <T extends As, H = {}>(
+export function createStyled<T extends As, P = {}>(
   component: T,
-  options?: CreateChakraOptions<H>,
-) => (...interpolations: any[]) => {
-  const Styled = forwardRef(
-    ({ as, ...props }: any, ref: React.Ref<Element>) => {
-      // Get the color mode and theme from context
-      const { colorMode, theme } = useChakra();
+  options?: CreateChakraOptions<P>,
+) {
+  return function(...interpolations: any[]) {
+    //
+    const Styled = forwardRef(
+      ({ as, ...props }: any, ref: React.Ref<Element>) => {
+        // Get the color mode and theme from context
+        const { colorMode, theme } = useChakra();
 
-      // Stores the the final styles
-      let finalStyles: Dict = {};
+        // Stores the the final styles
+        let finalStyles: Dict = {};
 
-      // For each style interpolation, we'll pass the theme and colorMode
-      const propsWithTheme = { theme, colorMode, ...props };
+        // For each style interpolation, we'll pass the theme and colorMode
+        const propsWithTheme = { theme, colorMode, ...props };
 
-      // Users can pass a base style to the component, let's resolve it
-      if (options?.baseStyle) {
-        const baseStyleObject = runIfFn(options.baseStyle, propsWithTheme);
-        const baseStyle = css(baseStyleObject);
-        Object.assign(finalStyles, baseStyle);
-      }
+        // Users can pass a base style to the component, let's resolve it
+        if (options?.baseStyle) {
+          const baseStyleObject = runIfFn(options.baseStyle, propsWithTheme);
+          const baseStyle = css(baseStyleObject);
+          Object.assign(finalStyles, baseStyle);
+        }
 
-      // Resolve each interpolation and add result to final style
-      interpolations.forEach(interpolation => {
-        const style = runIfFn(interpolation, propsWithTheme);
-        Object.assign(finalStyles, style);
-      });
+        // Resolve each interpolation and add result to final style
+        interpolations.forEach(interpolation => {
+          const style = runIfFn(interpolation, propsWithTheme);
+          Object.assign(finalStyles, style);
+        });
 
-      // Get the component style from theme.components
-      const componentStyles = getComponentStyles(propsWithTheme, options);
+        // Get the component style from theme.components
+        const componentStyles = getComponentStyles(propsWithTheme, options);
 
-      // Add final styles before component styles to support prop overriding
-      finalStyles = { ...componentStyles, ...finalStyles };
+        // Add final styles before component styles to support prop overriding
+        finalStyles = { ...componentStyles, ...finalStyles };
 
-      const element = as || component;
-      const isTag = isString(element);
-      let computedProps: Dict = isTag ? {} : { ...props };
+        const element = as || component;
+        const isTag = isString(element);
+        let computedProps: Dict = isTag ? {} : { ...props };
 
-      // The gatekeeper that prevents style props from getting to the dom
-      if (isTag) filterProps(computedProps, props);
+        // The gatekeeper that prevents style props from getting to the dom
+        if (isTag) filterProps(computedProps, props);
 
-      // If hook was passed, invoke the hook with the props
-      if (options?.hook) {
-        const hookProps = options.hook({ ref, ...props });
-        Object.assign(computedProps, hookProps);
-      }
+        // anyone style props that made it through here will get cleaned up
+        computedProps = clean(computedProps);
 
-      // anyone style props that made it through here will get cleaned up
-      computedProps = clean(computedProps);
+        // Attach props to this component
+        if (options?.attrs) {
+          const attrsProps = runIfFn(options.attrs, computedProps);
+          Object.assign(computedProps, attrsProps);
+        }
 
-      // Attach props to this component
-      if (options?.attrs) {
-        const attrsProps = runIfFn(options.attrs, computedProps);
-        Object.assign(computedProps, attrsProps);
-      }
+        return jsx(element, {
+          ref,
+          ...computedProps,
+          css: finalStyles,
+        });
+      },
+    );
 
-      const Component = jsx(element, {
-        ...computedProps,
-        css: finalStyles,
-      });
+    //@ts-ignore
+    Styled.displayName = `Chakra(${getDisplayName(component)})`;
 
-      return Component;
-    },
-  );
-
-  //@ts-ignore
-  Styled.displayName = `Chakra(${getDisplayName(component)})`;
-
-  return Styled as CreateChakraComponent<T, H>;
-};
+    return Styled as CreateChakraComponent<T, P>;
+  };
+}
 
 function getDisplayName(primitive: any) {
   return isString(primitive)

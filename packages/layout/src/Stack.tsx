@@ -1,7 +1,12 @@
 /**@jsx jsx */
-import { ChakraComponent, css, jsx, forwardRef } from "@chakra-ui/system";
+import {
+  ChakraComponent,
+  css,
+  jsx,
+  forwardRef,
+  chakra,
+} from "@chakra-ui/system";
 import * as React from "react";
-import { Box } from "./Box";
 import { FlexProps } from "./Flex";
 
 interface StackOptions {
@@ -47,7 +52,7 @@ const Stack = forwardRef(
       : { [isReversed ? "mb" : "mt"]: spacing };
 
     return (
-      <Box
+      <chakra.div
         ref={ref}
         display="flex"
         alignItems={align}
@@ -59,10 +64,10 @@ const Stack = forwardRef(
         {shouldWrapChildren
           ? React.Children.map(children, child => {
               if (!React.isValidElement(child)) return;
-              return <Box display="inline-block">{child}</Box>;
+              return <chakra.div display="inline-block">{child}</chakra.div>;
             })
           : children}
-      </Box>
+      </chakra.div>
     );
   },
 ) as ChakraComponent<"div", StackOptions>;

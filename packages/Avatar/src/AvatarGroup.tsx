@@ -44,6 +44,11 @@ export const AvatarGroup = ({
   ...rest
 }: AvatarGroupProps) => {
   const validChildren = cleanChildren(children);
+
+  // Reversing the children is a great way to avoid using zIndex
+  // to stack avatars
+  const reversedChildren = validChildren.reverse();
+
   const count = validChildren.length;
 
   const clones = validChildren.map((child, index) => {
@@ -58,7 +63,7 @@ export const AvatarGroup = ({
       return React.cloneElement(child as AvatarElement, {
         ml: isFirstAvatar ? 0 : spacing,
         variantSize,
-        borderColor: borderColor || child.props["borderColor"],
+        borderColor: child.props["borderColor"] || borderColor,
         showBorder: true,
         zIndex: count - index,
       });
