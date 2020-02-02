@@ -12,7 +12,7 @@ export interface PortalsContextType {
 }
 
 const [PortalsProvider, usePortalsContext] = createContext<PortalsContextType>(
-  true,
+  false,
 );
 
 export { usePortalsContext };

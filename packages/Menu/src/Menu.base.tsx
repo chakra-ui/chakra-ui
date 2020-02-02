@@ -11,7 +11,7 @@ import { createContext } from "@chakra-ui/utils";
 import { PropsOf } from "@chakra-ui/system";
 import { useMergeRefs } from "@chakra-ui/hooks";
 
-const [MenuProvider, useMenuContext] = createContext<MenuHookReturn>(true);
+const [MenuProvider, useMenuContext] = createContext<MenuHookReturn>(false);
 
 export function Menu({ children }: any) {
   const context = useMenuContext();

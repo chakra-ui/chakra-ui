@@ -8,7 +8,7 @@ export * from "./number";
 export * from "./dom-query";
 export * from "./tabbable";
 export * from "./assertion";
-export * from "./context";
+export * from "./react-helpers";
 export * from "throttle-debounce";
 export * from "css-box-model";
 export * from "./style";

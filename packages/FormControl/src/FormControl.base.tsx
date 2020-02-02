@@ -55,7 +55,7 @@ interface ProviderProps extends ControlProps {
 type FormControlContext = ReturnType<typeof useProvider>;
 
 const [FormControlProvider, useFormControl] = createContext<FormControlContext>(
-  true,
+  false,
 );
 
 export { useFormControl };

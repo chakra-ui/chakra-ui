@@ -51,9 +51,7 @@ export const AvatarGroup = ({
 
   const count = validChildren.length;
 
-  const clones = validChildren.map((child, index) => {
-    if (!React.isValidElement(child)) return;
-
+  const clones = reversedChildren.map((child, index) => {
     if (max && index > max) {
       return null;
     }
@@ -81,7 +79,13 @@ export const AvatarGroup = ({
   });
 
   return (
-    <chakra.div display="flex" alignItems="center" {...rest}>
+    <chakra.div
+      display="flex"
+      alignItems="center"
+      justifyContent="flex-end"
+      flexDirection="row-reverse"
+      {...rest}
+    >
       {clones}
     </chakra.div>
   );

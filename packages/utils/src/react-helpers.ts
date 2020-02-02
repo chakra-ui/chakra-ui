@@ -1,12 +1,14 @@
 import * as React from "react";
 
-export function createContext<T>(suppressError?: boolean) {
+export function createContext<T>(
+  strict = true,
+  message = "useContext must be inside a Provider with a value",
+) {
   const Context = React.createContext<T | undefined>(undefined);
 
   function useContext() {
     const context = React.useContext(Context);
-    if (!context && !suppressError)
-      throw new Error("useContext must be inside a Provider with a value");
+    if (!context && strict) throw new Error(message);
     return context;
   }
 
@@ -31,5 +33,5 @@ export function createHookContext<P, R>(hook: (props: P) => R) {
 export function cleanChildren(children: React.ReactNode) {
   return React.Children.toArray(children).filter(child =>
     React.isValidElement(child),
-  );
+  ) as React.ReactElement[];
 }
