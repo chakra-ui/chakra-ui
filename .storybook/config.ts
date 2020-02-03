@@ -1,7 +1,7 @@
 import { configure } from "@storybook/react";
 
 const req = require.context(
-  `../packages/Avatar/src/`,
+  `../packages/layout/src/`,
   true,
   /.stories\.(ts|tsx)$/,
 );

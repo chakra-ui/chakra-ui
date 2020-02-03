@@ -29,7 +29,7 @@ stories.add("inline", () => (
 ));
 
 stories.add("reversed", () => (
-  <Stack direction="column-reverse" spacing="40px" w="100%">
+  <Stack direction="column" isReversed spacing="40px" w="100%">
     <Box w="100%" h="40px" bg="yellow.200">
       1
     </Box>
@@ -52,7 +52,7 @@ function Feature({ title, desc, ...rest }: any) {
 }
 
 stories.add("content example", () => (
-  <Stack direction="row-reverse" spacing={8}>
+  <Stack direction="row" isReversed spacing={8}>
     <Feature
       title="Plan Money"
       desc="The future can be even brighter but a goal without a plan is just a wish"

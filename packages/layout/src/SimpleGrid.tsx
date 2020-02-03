@@ -1,7 +1,7 @@
 import { forwardRef, ResponsiveValue } from "@chakra-ui/system";
+import { parseResponsiveProp } from "@chakra-ui/utils";
 import * as React from "react";
 import { Grid, GridProps } from "./Grid";
-import { countToColumns, widthToColumns } from "./SimpleGrid.utils";
 
 interface SimpleGridOptions {
   /**
@@ -58,3 +58,17 @@ const SimpleGrid = forwardRef(
 );
 
 export default SimpleGrid;
+
+const px = (n: string | number) => (typeof n === "number" ? n + "px" : n);
+
+function widthToColumns(width: any) {
+  return parseResponsiveProp(width, val =>
+    val == null ? null : `repeat(auto-fit, minmax(${px(val)}, 1fr))`,
+  );
+}
+
+function countToColumns(count: any) {
+  return parseResponsiveProp(count, val =>
+    val == null ? null : `repeat(${val}, 1fr)`,
+  );
+}

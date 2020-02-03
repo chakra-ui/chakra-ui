@@ -5,6 +5,7 @@ import Box from "../Box";
 import setup from "../story.setup";
 import Flex from "../Flex";
 import Spacer from "../Spacer";
+import Inline from "../Inline";
 
 ///////////////////////////////////////////////////////////////////////////////////
 
@@ -27,9 +28,20 @@ stories.add("as prop + generic", () => (
 ));
 
 stories.add("flex + spacer", () => (
-  <Flex>
+  <Flex size="500px" direction={{ base: "column", md: "row" }}>
     <Box color="tomato">Box 1</Box>
     <Spacer />
     <Box color="yellow.200">Box 2</Box>
   </Flex>
+));
+
+stories.add("cluster", () => (
+  <Inline spacing="32px" maxWidth="200px">
+    <Box color="tomato">Box 1</Box>
+    <Box color="yellow.200">Box 2</Box>
+    <Box color="yellow.200">Box 2</Box>
+    <Box color="yellow.200">Box 2</Box>
+    <Box color="yellow.200">Box 2</Box>
+    <Box color="yellow.200">Box 2</Box>
+  </Inline>
 ));

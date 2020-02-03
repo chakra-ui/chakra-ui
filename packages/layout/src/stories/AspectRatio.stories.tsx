@@ -21,7 +21,6 @@ stories.add("with image", () => (
     <chakra.img
       src="https://upload.wikimedia.org/wikipedia/en/7/7d/Minions_characters.png"
       alt="minions"
-      objectFit="cover"
     />
   </AspectRatioBox>
 ));

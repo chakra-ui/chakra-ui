@@ -1,10 +1,10 @@
 /**@jsx jsx */
 import {
+  chakra,
   ChakraComponent,
   css,
-  jsx,
   forwardRef,
-  chakra,
+  jsx,
 } from "@chakra-ui/system";
 import * as React from "react";
 import { FlexProps } from "./Flex";
@@ -17,7 +17,7 @@ interface StackOptions {
   /**
    * The direction to stack the items.
    */
-  direction?: React.CSSProperties["flexDirection"];
+  direction?: "row" | "column";
   /**
    * The content of the stack.
    */
@@ -26,6 +26,10 @@ interface StackOptions {
    * If `true`, the items will be places horizontally
    */
   isInline?: boolean;
+  /**
+   * If `true`, the stack will be reversed
+   */
+  isReversed?: boolean;
 }
 
 type StackProps = FlexProps & StackOptions;
@@ -37,10 +41,21 @@ const Stack = forwardRef((props: StackProps, ref: React.Ref<any>) => {
     align,
     spacing = 2,
     wrap,
+    children,
+    isReversed,
+    isInline,
     ...rest
   } = props;
 
-  const spacingProp = { marginTop: spacing };
+  const finalDirection = isInline ? "row" : direction;
+
+  const stackStyle = {
+    [finalDirection === "row" ? "marginLeft" : "marginTop"]: spacing,
+  };
+
+  const finalChildren = isReversed
+    ? React.Children.toArray(children).reverse()
+    : children;
 
   return (
     <chakra.div
@@ -48,12 +63,14 @@ const Stack = forwardRef((props: StackProps, ref: React.Ref<any>) => {
       display="flex"
       alignItems={align}
       justifyContent={justify}
-      flexDirection={direction}
+      flexDirection={finalDirection}
       flexWrap={wrap}
-      css={css({ ">*+*": spacingProp })}
+      css={css({ ">*+*": stackStyle })}
       {...rest}
-    />
+    >
+      {finalChildren}
+    </chakra.div>
   );
-}) as ChakraComponent<"div", StackOptions>;
+}) as ChakraComponent<"div", StackProps>;
 
 export default Stack;

@@ -1,4 +1,5 @@
-import { ChakraComponent, forwardRef } from "@chakra-ui/system";
+/**@jsx jsx */
+import { ChakraComponent, forwardRef, jsx, css } from "@chakra-ui/system";
 import * as React from "react";
 import { Box, BoxProps } from "./Box";
 
@@ -13,23 +14,34 @@ export const AspectRatioBox = forwardRef(function(
   return (
     <Box
       ref={ref}
-      pos="relative"
+      position="relative"
       _before={{
         height: 0,
         content: `""`,
         display: "block",
         paddingBottom: `${(1 / ratio) * 100}%`,
       }}
+      css={css({
+        "& > *": {
+          overflow: "hidden",
+          position: "absolute",
+          top: "0",
+          right: "0",
+          bottom: "0",
+          left: "0",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+          height: "100%",
+        },
+        "& > img": {
+          objectFit: "cover",
+        },
+      })}
       {...rest}
     >
-      {React.isValidElement(child) &&
-        React.cloneElement(child as React.ReactElement<BoxProps>, {
-          position: "absolute",
-          width: "full",
-          height: "full",
-          top: 0,
-          left: 0,
-        })}
+      {child}
     </Box>
   );
 }) as ChakraComponent<"div", { ratio?: number }>;
