@@ -39,6 +39,8 @@ export const isObject = (value: any): value is Dict =>
 export const isEmptyObject = (value: any) =>
   isObject(value) && Object.keys(value).length === 0;
 
+export const isNull = (value: any): value is null => typeof value == null;
+
 // String assertions
 export function isString(value: any): value is string {
   return Object.prototype.toString.call(value) === "[object String]";

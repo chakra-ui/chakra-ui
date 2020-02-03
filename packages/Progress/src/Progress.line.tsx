@@ -6,7 +6,7 @@ import {
   useColorModeValue,
   useTheme,
 } from "@chakra-ui/system";
-import { isUndefined, Omit, resolveProp } from "@chakra-ui/utils";
+import { isUndefined, Omit, parseResponsiveProp } from "@chakra-ui/utils";
 import { css, jsx } from "@emotion/core";
 import {
   getProgressProps,
@@ -55,7 +55,7 @@ type ProgressTrackProps = Omit<PropsOf<typeof chakra.div>, "size"> & {
 
 function ProgressTrack({ size, ...props }: ProgressTrackProps) {
   const getHeight = (val: keyof typeof sizes) => sizes[val] || val;
-  const height = resolveProp(size, getHeight);
+  const height = parseResponsiveProp(size, getHeight);
 
   return (
     <chakra.div

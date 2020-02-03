@@ -24,23 +24,23 @@ stories.add("Default", () => (
 ));
 
 stories.add("Avatar Group", () => (
-  <AvatarGroup variantSize="md" showBorder max={2}>
-    <Avatar name="Uchiha Itachi" src="https://bit.ly/uchiha-itachi" />
+  <AvatarGroup variantSize="md" showBorder max={4}>
     <Avatar
-      name="Uchiha Sasuke"
-      src="https://vignette.wikia.nocookie.net/naruto/images/2/21/Sasuke_Part_1.png/revision/latest?cb=20170716092103"
+      name="Daniel Powell"
+      src="https://uinames.com/api/photos/male/16.jpg"
+    />
+    <Avatar name="Mark Clark" src="https://uinames.com/api/photos/male/7.jpg" />
+    <Avatar
+      name="Emily Beck"
+      src="https://uinames.com/api/photos/female/3.jpg"
     />
     <Avatar
-      name="Uchiha Sasuke"
-      src="https://vignette.wikia.nocookie.net/naruto/images/2/21/Sasuke_Part_1.png/revision/latest?cb=20170716092103"
+      name="Diane Weaver"
+      src="https://uinames.com/api/photos/female/9.jpg"
     />
     <Avatar
-      name="Uchiha Sasuke"
-      src="https://vignette.wikia.nocookie.net/naruto/images/2/21/Sasuke_Part_1.png/revision/latest?cb=20170716092103"
-    />
-    <Avatar
-      name="Uchiha Sasuke"
-      src="https://vignette.wikia.nocookie.net/naruto/images/2/21/Sasuke_Part_1.png/revision/latest?cb=20170716092103"
+      name="Barbara Obrien"
+      src="https://uinames.com/api/photos/female/7.jpg"
     />
   </AvatarGroup>
 ));
