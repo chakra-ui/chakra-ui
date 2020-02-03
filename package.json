@@ -54,7 +54,8 @@
     "progress": "yarn workspace @chakra-ui/progress",
     "form-control": "yarn workspace @chakra-ui/form-control",
     "input": "yarn workspace @chakra-ui/input",
-    "combobox": "yarn workspace @chakra-ui/combobox"
+    "combobox": "yarn workspace @chakra-ui/combobox",
+    "collapse": "yarn workspace @chakra-ui/collapse"
   },
   "husky": {
     "hooks": {
