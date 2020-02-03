@@ -9,23 +9,6 @@ import {
 import * as React from "react";
 import { FlexProps } from "./Flex";
 
-/**
- * <HStack>
- *  <div>Item 1</div>
- *  <div>Item 2</div>
- * </HStack>
- *
- * <VStack>
- *  <div>Item 1</div>
- *  <div>Item 2</div>
- * </VStack>
- *
- * <ZStack>
- *  <div>Item 1</div>
- *  <div>Item 2</div>
- * </ZStack>
- */
-
 interface StackOptions {
   /**
    * The space between each stack item
@@ -39,43 +22,38 @@ interface StackOptions {
    * The content of the stack.
    */
   children: React.ReactNode;
+  /**
+   * If `true`, the items will be places horizontally
+   */
+  isInline?: boolean;
 }
 
 type StackProps = FlexProps & StackOptions;
 
-const Stack = forwardRef(
-  (
-    {
-      direction = "column",
-      align,
-      justify,
-      spacing = 2,
-      children,
-      ...props
-    }: StackProps,
-    ref: React.Ref<any>,
-  ) => {
-    const isInline = direction?.startsWith("row");
-    const isReversed = direction?.endsWith("reverse");
+const Stack = forwardRef((props: StackProps, ref: React.Ref<any>) => {
+  const {
+    direction = "column",
+    justify = "flex-start",
+    align,
+    spacing = 2,
+    wrap,
+    ...rest
+  } = props;
 
-    const spacingProp = isInline
-      ? { [isReversed ? "mr" : "ml"]: spacing }
-      : { [isReversed ? "mb" : "mt"]: spacing };
+  const spacingProp = { marginTop: spacing };
 
-    return (
-      <chakra.div
-        ref={ref}
-        display="flex"
-        alignItems={align}
-        justifyContent={justify}
-        flexDirection={direction}
-        css={css({ ">*+*": spacingProp })}
-        {...props}
-      >
-        {children}
-      </chakra.div>
-    );
-  },
-) as ChakraComponent<"div", StackOptions>;
+  return (
+    <chakra.div
+      ref={ref}
+      display="flex"
+      alignItems={align}
+      justifyContent={justify}
+      flexDirection={direction}
+      flexWrap={wrap}
+      css={css({ ">*+*": spacingProp })}
+      {...rest}
+    />
+  );
+}) as ChakraComponent<"div", StackOptions>;
 
 export default Stack;

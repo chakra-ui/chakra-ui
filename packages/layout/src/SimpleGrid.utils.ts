@@ -1,8 +1,6 @@
 import { SystemProps } from "@chakra-ui/system";
 import { ResponsiveValue } from "styled-system";
-
-// These helper fns are modified versions of the amazing rebass library
-// https://github.com/rebassjs/rebass/blob/master/packages/layout/src/index.js
+import { isArray, Dict, isString } from "@chakra-ui/utils";
 
 const px = (n: string | number) => (typeof n === "number" ? n + "px" : n);
 

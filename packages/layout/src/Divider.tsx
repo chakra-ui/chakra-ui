@@ -12,7 +12,7 @@ interface DividerOptions {
 
 export type DividerProps = PropsOf<typeof BaseDivider> & DividerOptions;
 
-const BaseDivider = createChakra("hr");
+const BaseDivider = createChakra("hr", { themeKey: "Divider" });
 
 const Divider = forwardRef(
   ({ orientation, ...props }: DividerProps, ref: React.Ref<any>) => (

@@ -1,4 +1,5 @@
 import { ChangeEvent } from "react";
+import { Dict } from "./types";
 
 // Number assertions
 export function isNumber(value: any): value is number {
@@ -32,7 +33,7 @@ export const isUndefined = (value: any): value is undefined =>
   typeof value === "undefined" || value === undefined;
 
 // Object assertions
-export const isObject = (value: any) =>
+export const isObject = (value: any): value is Dict =>
   value !== null && typeof value === "object";
 
 export const isEmptyObject = (value: any) =>

@@ -1,6 +1,11 @@
 /** @jsx jsx */
 import { generateStripe, getColor } from "@chakra-ui/color";
-import { chakra, PropsOf, useColorModeValue, useTheme } from "@chakra-ui/system";
+import {
+  chakra,
+  PropsOf,
+  useColorModeValue,
+  useTheme,
+} from "@chakra-ui/system";
 import { isUndefined, Omit, resolveProp } from "@chakra-ui/utils";
 import { css, jsx } from "@emotion/core";
 import {
@@ -110,6 +115,7 @@ export function Progress(props: ProgressProps) {
   const shouldAnimateStripe = shouldAddStripe && isAnimated;
 
   // generate custom styles
+  //@ts-ignore
   const style = css({
     ...(shouldAddStripe && stripeStyle),
     ...(shouldAnimateStripe && stripAnimation),

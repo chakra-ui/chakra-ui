@@ -11,21 +11,23 @@ export function dedent(value: string) {
     .trim();
 }
 
-export function resolveProp(prop: any, fn: (val: any) => any) {
-  if (isArray(prop)) {
-    return prop.map(val => fn(val));
+function parseResponsiveProp(
+  value: any[] | Dict | string | number,
+  resolver: (val: any) => any,
+) {
+  if (isArray(value)) {
+    return value.map(resolver);
   }
 
-  if (isObject(prop)) {
-    const result: Dict<string> = {};
-    for (const key in prop) {
-      result[key] = fn(prop[key]);
-    }
-    return result;
+  if (isObject(value)) {
+    return Object.keys(value).reduce((result: Dict, key) => {
+      result[key] = resolver(value[key]);
+      return result;
+    }, {});
   }
 
-  if (prop != null) {
-    return fn(prop);
+  if (value != null) {
+    return resolver(value);
   }
 
   return null;
