@@ -68,6 +68,9 @@ export interface CustomProps {
   textOverflow?: SS.ResponsiveValue<CSS["textOverflow"]>;
   whiteSpace?: SS.ResponsiveValue<CSS["whiteSpace"]>;
 
+  textColor?: SS.ColorProps["color"];
+  placeItems?: SS.ResponsiveValue<CSS["placeItems"]>;
+
   // SVG color properties
   fill?: SS.ColorProps["color"];
   stroke?: SS.ColorProps["color"];

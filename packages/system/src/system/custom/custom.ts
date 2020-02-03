@@ -112,6 +112,7 @@ export const config: Dict = {
   boxSizing: true,
   cursor: true,
   resize: true,
+  placeItems: true,
   transition: true,
   listStyleType: true,
   listStylePosition: true,

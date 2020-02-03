@@ -9,6 +9,23 @@ import {
 import * as React from "react";
 import { FlexProps } from "./Flex";
 
+/**
+ * <HStack>
+ *  <div>Item 1</div>
+ *  <div>Item 2</div>
+ * </HStack>
+ *
+ * <VStack>
+ *  <div>Item 1</div>
+ *  <div>Item 2</div>
+ * </VStack>
+ *
+ * <ZStack>
+ *  <div>Item 1</div>
+ *  <div>Item 2</div>
+ * </ZStack>
+ */
+
 interface StackOptions {
   /**
    * The space between each stack item
