@@ -22,12 +22,25 @@ function FlexCenter({ axis = "both", ...props }: Props) {
   return <chakra.div display="flex" {...center[axis]} {...props} />;
 }
 
-function Center(props: Props & { technique?: "absolute" | "flex" }) {
-  const { technique, ...rest } = props;
-  if (technique === "absolute") {
-    return <AbsoluteCenter {...rest} />;
-  }
-  return <FlexCenter {...rest} />;
+function GridCenter({ axis = "both", ...props }: Props) {
+  const center = {
+    x: { justifyItems: "center", alignItems: "start" },
+    y: { justifyItems: "start", alignItems: "center" },
+    both: { justifyItems: "center", alignItems: "center" },
+  };
+  return <chakra.div display="grid" {...center[axis]} {...props} />;
+}
+
+function Center(props: Props & { use?: "absolute" | "flex" | "grid" }) {
+  const { use = "flex", ...rest } = props;
+  const components = {
+    flex: FlexCenter,
+    grid: GridCenter,
+    absolute: AbsoluteCenter,
+  };
+  const Component = components[use];
+
+  return <Component {...rest} />;
 }
 
 export default Center;

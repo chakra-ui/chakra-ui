@@ -17,7 +17,7 @@ stories.add("flex", () => (
 ));
 
 stories.add("absolute", () => (
-  <Center technique="absolute" size="400px" bg="green.200">
+  <Center use="absolute" size="400px" bg="green.200">
     Box
   </Center>
 ));

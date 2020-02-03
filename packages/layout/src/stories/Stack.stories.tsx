@@ -12,7 +12,7 @@ const stories = storiesOf("Stack", module);
 
 stories.addDecorator(setup);
 
-stories.add("vertical stack", () => (
+stories.add("vertical", () => (
   <Stack spacing={4}>
     <span>ooooooo</span>
     <span>ahhhhh</span>
@@ -20,7 +20,7 @@ stories.add("vertical stack", () => (
   </Stack>
 ));
 
-stories.add("Inline Stack", () => (
+stories.add("inline", () => (
   <Stack w="100%" bg="blue.500" direction="row">
     <Box size="40px" bg={"#fff"} rounded="full" />
     <Box size="40px" bg={"#fff"} rounded="full" />
@@ -28,21 +28,7 @@ stories.add("Inline Stack", () => (
   </Stack>
 ));
 
-stories.add("Reversed + Inline Stack", () => (
-  <Stack spacing="40px" w="100%" h="60px">
-    <Box w="100%" h="40px" bg="yellow.200">
-      1
-    </Box>
-    <Box w="100%" h="40px" bg="tomato">
-      2
-    </Box>
-    <Box w="100%" h="40px" bg="pink.100">
-      3
-    </Box>
-  </Stack>
-));
-
-stories.add("Reverse direction prop", () => (
+stories.add("reversed", () => (
   <Stack direction="column-reverse" spacing="40px" w="100%">
     <Box w="100%" h="40px" bg="yellow.200">
       1
@@ -65,7 +51,7 @@ function Feature({ title, desc, ...rest }: any) {
   );
 }
 
-stories.add("Reverse example in docs", () => (
+stories.add("content example", () => (
   <Stack direction="row-reverse" spacing={8}>
     <Feature
       title="Plan Money"

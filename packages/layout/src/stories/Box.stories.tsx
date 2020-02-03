@@ -3,6 +3,8 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 import Box from "../Box";
 import setup from "../story.setup";
+import Flex from "../Flex";
+import Spacer from "../Spacer";
 
 ///////////////////////////////////////////////////////////////////////////////////
 
@@ -22,4 +24,12 @@ stories.add("as prop + generic", () => (
     margin={[3, 4]}
     src="https://avatars3.githubusercontent.com/u/14854048?s=180&v=4"
   />
+));
+
+stories.add("flex + spacer", () => (
+  <Flex>
+    <Box color="tomato">Box 1</Box>
+    <Spacer />
+    <Box color="yellow.200">Box 2</Box>
+  </Flex>
 ));
