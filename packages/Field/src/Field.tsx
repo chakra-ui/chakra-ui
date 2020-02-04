@@ -1,10 +1,22 @@
 import * as React from "react";
-import * as Base from "./FormControl.base";
+import {
+  BaseLabel,
+  BaseRequiredIndicator,
+  BaseErrorText,
+  BaseHelpText,
+  useFieldContext,
+  BaseInput,
+  BaseTextarea,
+  BaseField,
+} from "./Field.base";
+
 import { createChakra, useColorModeValue, PropsOf } from "@chakra-ui/system";
 import { Icon } from "@chakra-ui/icon";
 
-export const FormLabel = createChakra(Base.FormLabel, {
-  themeKey: "FormLabel",
+export const Field = createChakra(BaseField);
+
+export const Label = createChakra(BaseLabel, {
+  themeKey: "Label",
   baseStyle: {
     fontSize: "md",
     paddingRight: "12px",
@@ -19,16 +31,19 @@ export const FormLabel = createChakra(Base.FormLabel, {
   },
 });
 
-export const FormRequiredIndicator = createChakra(Base.FormRequiredIndicator, {
-  themeKey: "FormRequiredIndicator",
+export const RequiredIndicator = createChakra(BaseRequiredIndicator, {
+  themeKey: "RequiredIndicator",
   baseStyle: (props: any) => ({
     marginLeft: 1,
     color: props.colorMode === "dark" ? "red.300" : "red.500",
   }),
+  attrs: {
+    role: "presentation",
+  },
 });
 
-export const FormErrorText = createChakra(Base.FormErrorText, {
-  themeKey: "FormErrorText",
+export const ErrorText = createChakra(BaseErrorText, {
+  themeKey: "ErrorText",
   baseStyle: (props: any) => ({
     color: props.colorMode === "dark" ? "red.300" : "red.500",
     marginTop: 2,
@@ -38,11 +53,11 @@ export const FormErrorText = createChakra(Base.FormErrorText, {
   }),
 });
 
-export function FormErrorIcon(props: PropsOf<typeof Icon>) {
+export const ErrorIcon = (props: PropsOf<typeof Icon>) => {
   const color = useColorModeValue(`red.500`, `red.300`);
-  const context = Base.useFormControl();
+  const field = useFieldContext();
 
-  if (!context.isInvalid) return null;
+  if (!field.isInvalid) return null;
 
   return (
     <Icon color={color} {...props}>
@@ -52,18 +67,21 @@ export function FormErrorIcon(props: PropsOf<typeof Icon>) {
       />
     </Icon>
   );
-}
+};
 
-export const Input = createChakra(Base.FormInput, {
+export const Input = createChakra<
+  typeof BaseInput,
+  { focusBorderColor?: string; errorBorderColor?: string }
+>(BaseInput, {
   themeKey: "Input",
 });
 
-export const Textarea = createChakra(Base.FormTextarea, {
+export const Textarea = createChakra(BaseTextarea, {
   themeKey: "Textarea",
 });
 
-export const FormHelpText = createChakra(Base.FormHelpText, {
-  themeKey: "FormHelpText",
+export const HelpText = createChakra(BaseHelpText, {
+  themeKey: "HelpText",
   baseStyle: (props: any) => ({
     marginTop: 2,
     color: props.colorMode === "dark" ? "whiteAlpha.600" : "gray.500",

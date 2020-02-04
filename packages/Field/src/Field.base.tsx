@@ -1,9 +1,14 @@
 import { useBoolean, useId, useIsomorphicEffect } from "@chakra-ui/hooks";
 import { PropsOf } from "@chakra-ui/system";
-import { createContext, Omit, composeEventHandlers } from "@chakra-ui/utils";
+import {
+  createContext,
+  Omit,
+  composeEventHandlers as compose,
+  makeDataAttr as attr,
+} from "@chakra-ui/utils";
 import * as React from "react";
 
-interface ControlProps {
+export interface ControlProps {
   /**
    * If `true`, the form control will required. This has 2 side effects:
    * - The `FormLabel` will show a required indicator
@@ -26,9 +31,13 @@ interface ControlProps {
    * If `true`, the form control will be readonly
    */
   isReadOnly?: boolean;
+  /**
+   * If `true`, the form control will be in it's `loading` state
+   */
+  isLoading?: boolean;
 }
 
-interface ProviderProps extends ControlProps {
+interface FieldProviderProps extends ControlProps {
   /**
    * The label text used to inform users as to what information is
    * requested for a text field.
@@ -52,16 +61,23 @@ interface ProviderProps extends ControlProps {
   id?: string;
 }
 
-type FormControlContext = ReturnType<typeof useProvider>;
+type FieldContext = ReturnType<typeof useFieldProvider>;
 
-const [FormControlProvider, useFormControl] = createContext<FormControlContext>(
+const [FieldContextProvider, useFieldContext] = createContext<FieldContext>(
   false,
 );
 
-export { useFormControl };
+export { useFieldContext };
 
-function useProvider(props: FormControlProps) {
-  const { id: idProp, isRequired, isInvalid, isDisabled } = props;
+function useFieldProvider(props: FieldProps) {
+  const {
+    id: idProp,
+    isRequired,
+    isInvalid,
+    isDisabled,
+    isLoading,
+    isReadOnly,
+  } = props;
 
   // Generate all the required ids
   const uuid = useId();
@@ -83,6 +99,8 @@ function useProvider(props: FormControlProps) {
   const context = {
     isRequired,
     isInvalid,
+    isLoading,
+    isReadOnly,
     isDisabled,
     isFocused,
     onFocus,
@@ -99,10 +117,11 @@ function useProvider(props: FormControlProps) {
 }
 
 //////////////////////////////////////////////////////////////////////////////
-export type FormControlProps = ProviderProps & PropsOf<"div">;
 
-export const FormControl = React.forwardRef(
-  (props: FormControlProps, ref: React.Ref<HTMLDivElement>) => {
+export type FieldProps = FieldProviderProps & PropsOf<"div">;
+
+export const BaseField = React.forwardRef(
+  (props: FieldProps, ref: React.Ref<HTMLDivElement>) => {
     const {
       id,
       isRequired,
@@ -113,126 +132,123 @@ export const FormControl = React.forwardRef(
       helperText,
       ...htmlProps
     } = props;
-    const context = useProvider(props);
+    const fieldContext = useFieldProvider(props);
     return (
-      <FormControlProvider value={context}>
+      <FieldContextProvider value={fieldContext}>
         <div role="group" ref={ref} {...htmlProps} />
-      </FormControlProvider>
+      </FieldContextProvider>
     );
   },
 );
 
 //////////////////////////////////////////////////////////////////////////////
 
-export const FormLabel = React.forwardRef<HTMLLabelElement, PropsOf<"label">>(
+export const BaseLabel = React.forwardRef<HTMLLabelElement, PropsOf<"label">>(
   (props, ref) => {
-    const context = useFormControl();
+    const field = useFieldContext();
 
     return (
       <label
-        ref={ref}
-        data-focus={context.isFocused ? "" : undefined}
-        data-disabled={context.isDisabled ? "" : undefined}
-        data-invalid={context.isInvalid ? "" : undefined}
-        id={props.id || context.labelId}
-        htmlFor={context.id}
         {...props}
-      >
-        {props.children}
-      </label>
+        ref={ref}
+        data-focus={attr(field.isFocused)}
+        data-disabled={attr(field.isDisabled)}
+        data-invalid={attr(field.isInvalid)}
+        data-loading={attr(field.isLoading)}
+        data-readonly={attr(field.isReadOnly)}
+        id={props.id || field.labelId}
+        htmlFor={props.htmlFor || field.id}
+      />
     );
   },
 );
 
 //////////////////////////////////////////////////////////////////////////////
 
-export const FormRequiredIndicator = React.forwardRef<HTMLSpanElement, {}>(
+export const BaseRequiredIndicator = React.forwardRef<HTMLSpanElement, {}>(
   (props, ref) => {
-    const context = useFormControl();
-    if (!context.isRequired) return null;
-    return <span aria-hidden ref={ref} {...props} />;
+    const field = useFieldContext();
+    if (!field.isRequired) return null;
+    return <span aria-hidden role="presentation" ref={ref} {...props} />;
   },
 );
 
 //////////////////////////////////////////////////////////////////////////////
 
-export function FormHelpText(props: PropsOf<"div">) {
-  const context = useFormControl();
+export function BaseHelpText(props: PropsOf<"div">) {
+  const field = useFieldContext();
 
+  /**
+   * Notify the field context when the BaseHelpText is rendered on
+   * screen, so we can apply the correct `aria-describedby` to the field (e.g. input, textarea)
+   */
   useIsomorphicEffect(() => {
-    context.setHasHelpText(true);
+    field.setHasHelpText(true);
     return () => {
-      context.setHasHelpText(false);
+      field.setHasHelpText(false);
     };
   }, []);
 
-  return <div id={context.helpTextId} {...props} />;
+  return <div {...props} id={props.id || field.helpTextId} />;
 }
 
 //////////////////////////////////////////////////////////////////////////////
 
-export function FormErrorText(props: PropsOf<"div">) {
-  const context = useFormControl();
+export function BaseErrorText(props: PropsOf<"div">) {
+  const context = useFieldContext();
   if (!context.isInvalid) return null;
-  return <div aria-live="polite" id={context.feedbackId} {...props} />;
+  return (
+    <div {...props} aria-live="polite" id={props.id || context.feedbackId} />
+  );
 }
 
 //////////////////////////////////////////////////////////////////////////////
 
-type FormElementProps<T extends HTMLElement> = ControlProps & {
+type FieldElementProps<T extends HTMLElement> = ControlProps & {
   id?: string;
   onFocus?: React.FocusEventHandler<T>;
   onBlur?: React.FocusEventHandler<T>;
 };
 
-function useFormElement<T extends HTMLElement>(props: FormElementProps<T>) {
-  const context = useFormControl();
+function useField<T extends HTMLElement>(props: FieldElementProps<T>) {
+  const field = useFieldContext();
   const describedBy: string[] = [];
 
-  if (context.isInvalid) describedBy.push(context.feedbackId);
-  if (context.hasHelpText) describedBy.push(context.helpTextId);
+  if (field.isInvalid) describedBy.push(field.feedbackId);
+  if (field.hasHelpText) describedBy.push(field.helpTextId);
   const ariaDescribedBy = describedBy.join(" ");
 
   return {
-    id: props.id || context.id,
-    disabled: props.isDisabled || context.isDisabled,
-    "aria-invalid": props.isInvalid || context.isInvalid,
-    "aria-required": props.isRequired || context.isRequired,
+    ...props,
+    id: props.id || field.id,
+    disabled: props.isDisabled || field.isDisabled,
+    "aria-invalid": props.isInvalid || field.isInvalid,
+    "aria-required": props.isRequired || field.isRequired,
+    "aria-readonly": props.isReadOnly || field.isReadOnly,
     "aria-describedby": ariaDescribedBy,
-    onFocus: composeEventHandlers(context.onFocus, props.onFocus),
-    onBlur: composeEventHandlers(context.onBlur, props.onBlur),
+    onFocus: compose(field.onFocus, props.onFocus),
+    onBlur: compose(field.onBlur, props.onBlur),
   };
 }
 
-type Omitted = "disabled" | "required" | "readOnly";
+type OmittedTypes = "disabled" | "required" | "readOnly";
 
-type FormInputProps = Omit<PropsOf<"input">, Omitted> & ControlProps;
+type BaseInputProps = Omit<PropsOf<"input">, OmittedTypes> & ControlProps;
 
-export const FormInput = React.forwardRef<HTMLInputElement, FormInputProps>(
+export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
   (props, ref) => {
-    const {
-      isDisabled,
-      isInvalid,
-      isRequired,
-      id,
-      onFocus,
-      onBlur,
-      ...htmlProps
-    } = props;
-
-    const inputProps = useFormElement<HTMLInputElement>(props);
-
-    return <input ref={ref} {...inputProps} {...htmlProps} />;
+    const inputProps = useField<HTMLInputElement>(props);
+    return <input ref={ref} {...inputProps} />;
   },
 );
 
 ////////////////////////////////////////////////////////////////////////////
 
-type FormTextareaProps = Omit<PropsOf<"textarea">, Omitted> & ControlProps;
+type BaseTextAreaProps = Omit<PropsOf<"textarea">, OmittedTypes> & ControlProps;
 
-export const FormTextarea = React.forwardRef<
+export const BaseTextarea = React.forwardRef<
   HTMLTextAreaElement,
-  FormTextareaProps
+  BaseTextAreaProps
 >((props, ref) => {
   const {
     isDisabled,
@@ -244,7 +260,7 @@ export const FormTextarea = React.forwardRef<
     ...htmlProps
   } = props;
 
-  const inputProps = useFormElement<HTMLTextAreaElement>(props);
+  const inputProps = useField<HTMLTextAreaElement>(props);
 
   return <textarea ref={ref} {...inputProps} {...htmlProps} />;
 });
