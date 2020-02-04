@@ -55,7 +55,8 @@
     "form-control": "yarn workspace @chakra-ui/form-control",
     "input": "yarn workspace @chakra-ui/input",
     "combobox": "yarn workspace @chakra-ui/combobox",
-    "collapse": "yarn workspace @chakra-ui/collapse"
+    "collapse": "yarn workspace @chakra-ui/collapse",
+    "stat": "yarn workspace @chakra-ui/stat"
   },
   "husky": {
     "hooks": {

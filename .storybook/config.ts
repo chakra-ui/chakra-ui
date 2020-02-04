@@ -1,7 +1,7 @@
 import { configure } from "@storybook/react";
 
 const req = require.context(
-  `../packages/Collapse/src/`,
+  `../packages/Stat/src/`,
   true,
   /.stories\.(ts|tsx)$/,
 );
