@@ -1,7 +1,7 @@
 import { addOpacity } from "@chakra-ui/color";
-import { VariantStyleFunction, getModeColor as get } from "./utils";
+import { StyleFunctionProps, getModeColor as get } from "./utils";
 
-const grayGhostStyle = (props: VariantStyleFunction) => ({
+const grayGhostStyle = (props: StyleFunctionProps) => ({
   color: get(props, `inherit`, `whiteAlpha.900`),
   _hover: {
     bg: get(props, `gray.100`, `whiteAlpha.200`),
@@ -13,7 +13,7 @@ const grayGhostStyle = (props: VariantStyleFunction) => ({
 
 ////////////////////////////////////////////////////////////
 
-function getGhostStyle(props: VariantStyleFunction) {
+function getGhostStyle(props: StyleFunctionProps) {
   const { variantColor: c, theme: t } = props;
   if (c === "gray") return grayGhostStyle(props);
 
@@ -34,7 +34,7 @@ function getGhostStyle(props: VariantStyleFunction) {
 
 ////////////////////////////////////////////////////////////
 
-function getOutlineStyle(props: VariantStyleFunction) {
+function getOutlineStyle(props: StyleFunctionProps) {
   const { variantColor: c } = props;
   const borderColor = get(props, `gray.200`, `whiteAlpha.300`);
 
@@ -47,7 +47,7 @@ function getOutlineStyle(props: VariantStyleFunction) {
 
 ////////////////////////////////////////////////////////////
 
-const graySolidStyle = (props: VariantStyleFunction) => ({
+const graySolidStyle = (props: StyleFunctionProps) => ({
   bg: get(props, `gray.100`, `whiteAlpha.200`),
   _hover: {
     bg: get(props, `gray.200`, `whiteAlpha.300`),
@@ -57,7 +57,7 @@ const graySolidStyle = (props: VariantStyleFunction) => ({
   },
 });
 
-function getSolidStyle(props: VariantStyleFunction) {
+function getSolidStyle(props: StyleFunctionProps) {
   const { variantColor: c } = props;
   if (c === "gray") return graySolidStyle(props);
 
@@ -71,7 +71,7 @@ function getSolidStyle(props: VariantStyleFunction) {
 
 ////////////////////////////////////////////////////////////
 
-function getLinkStyle(props: VariantStyleFunction) {
+function getLinkStyle(props: StyleFunctionProps) {
   const { variantColor: c } = props;
   return {
     padding: 0,

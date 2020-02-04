@@ -1,7 +1,7 @@
-import { VariantStyleFunction, getModeColor as get } from "./utils";
+import { StyleFunctionProps, getModeColor as get } from "./utils";
 import { getColor } from "@chakra-ui/color";
 
-type InputVariant = VariantStyleFunction & {
+type InputVariant = StyleFunctionProps & {
   focusBorderColor: string;
   errorBorderColor: string;
 };

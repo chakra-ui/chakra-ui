@@ -11,6 +11,7 @@ import Tabs from "./Tabs";
 import Checkbox from "./Checkbox";
 import Radio from "./Radio";
 import Input from "./Input";
+import Tooltip from "./Tooltip";
 
 export default {
   Button,
@@ -26,4 +27,5 @@ export default {
   Checkbox,
   Radio,
   Input,
+  Tooltip,
 };

@@ -1,7 +1,7 @@
 import { Theme } from "../foundations";
 import { getColor } from "@chakra-ui/color";
 
-export interface VariantStyleFunction {
+export interface StyleFunctionProps {
   variantColor: string;
   colorMode: "light" | "dark";
   theme: Theme;

@@ -1,4 +1,4 @@
-import { VariantStyleFunction, getModeColor } from "./utils";
+import { StyleFunctionProps, getModeColor } from "./utils";
 import { getColor } from "@chakra-ui/color";
 
 const tabVariantSize = {
@@ -16,7 +16,7 @@ const tabVariantSize = {
   },
 };
 
-function getLineStyle(props: VariantStyleFunction) {
+function getLineStyle(props: StyleFunctionProps) {
   const { variantColor: c } = props;
   return {
     TabList: {
@@ -42,7 +42,7 @@ function getLineStyle(props: VariantStyleFunction) {
   };
 }
 
-function getEnclosedStyle(props: VariantStyleFunction) {
+function getEnclosedStyle(props: StyleFunctionProps) {
   const { variantColor: c } = props;
   return {
     Tab: {
@@ -64,7 +64,7 @@ function getEnclosedStyle(props: VariantStyleFunction) {
   };
 }
 
-function getEnclosedColoredStyle(props: VariantStyleFunction) {
+function getEnclosedColoredStyle(props: StyleFunctionProps) {
   const { variantColor: c } = props;
   return {
     Tab: {
@@ -91,7 +91,7 @@ function getEnclosedColoredStyle(props: VariantStyleFunction) {
   };
 }
 
-function getSoftRoundedStyle(props: VariantStyleFunction) {
+function getSoftRoundedStyle(props: StyleFunctionProps) {
   const { variantColor: c, theme: t } = props;
   return {
     Tab: {
@@ -107,7 +107,7 @@ function getSoftRoundedStyle(props: VariantStyleFunction) {
   };
 }
 
-function getSolidRoundedStyle(props: VariantStyleFunction) {
+function getSolidRoundedStyle(props: StyleFunctionProps) {
   const { variantColor: c } = props;
   return {
     Tab: {
