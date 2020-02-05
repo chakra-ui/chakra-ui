@@ -19,12 +19,15 @@ export interface ITag {
    */
   variantColor?: IBadge["variantColor"];
 }
+export interface ITagCloseButton {
+  isDisabled?: boolean;
+}
 export type TagProps = ITag & Omit<PseudoBoxProps, "size">;
 declare const Tag: React.FC<TagProps>;
 export default Tag;
 
 export const TagLabel: React.FC<BoxProps>;
-export const TagCloseButton: React.FC<PseudoBoxProps>;
+export const TagCloseButton: React.FC<PseudoBoxProps> & ITagCloseButton;
 
 type TagIconProps = Omit<IconProps, "name"> & {
   icon: IconProps["name"] | React.ComponentType;
