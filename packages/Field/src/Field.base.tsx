@@ -1,9 +1,8 @@
 import { useBoolean, useId, useIsomorphicEffect } from "@chakra-ui/hooks";
 import { PropsOf } from "@chakra-ui/system";
 import {
-  createContext,
-  Omit,
   composeEventHandlers as compose,
+  createContext,
   makeDataAttr as attr,
 } from "@chakra-ui/utils";
 import * as React from "react";
