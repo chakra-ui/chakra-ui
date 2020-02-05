@@ -204,13 +204,13 @@ export function BaseErrorText(props: PropsOf<"div">) {
 
 //////////////////////////////////////////////////////////////////////////////
 
-type FieldElementProps<T extends HTMLElement> = ControlProps & {
+export type FieldElementProps<T extends HTMLElement> = ControlProps & {
   id?: string;
   onFocus?: React.FocusEventHandler<T>;
   onBlur?: React.FocusEventHandler<T>;
 };
 
-function useField<T extends HTMLElement>(props: FieldElementProps<T>) {
+export function useField<T extends HTMLElement>(props: FieldElementProps<T>) {
   const field = useFieldContext();
   const describedBy: string[] = [];
 
@@ -230,37 +230,3 @@ function useField<T extends HTMLElement>(props: FieldElementProps<T>) {
     onBlur: compose(field.onBlur, props.onBlur),
   };
 }
-
-type OmittedTypes = "disabled" | "required" | "readOnly";
-
-type BaseInputProps = Omit<PropsOf<"input">, OmittedTypes> & ControlProps;
-
-export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
-  (props, ref) => {
-    const inputProps = useField<HTMLInputElement>(props);
-    return <input ref={ref} {...inputProps} />;
-  },
-);
-
-////////////////////////////////////////////////////////////////////////////
-
-type BaseTextAreaProps = Omit<PropsOf<"textarea">, OmittedTypes> & ControlProps;
-
-export const BaseTextarea = React.forwardRef<
-  HTMLTextAreaElement,
-  BaseTextAreaProps
->((props, ref) => {
-  const {
-    isDisabled,
-    isInvalid,
-    isRequired,
-    id,
-    onFocus,
-    onBlur,
-    ...htmlProps
-  } = props;
-
-  const inputProps = useField<HTMLTextAreaElement>(props);
-
-  return <textarea ref={ref} {...inputProps} {...htmlProps} />;
-});

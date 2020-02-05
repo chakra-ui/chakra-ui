@@ -5,8 +5,6 @@ import {
   BaseErrorText,
   BaseHelpText,
   useFieldContext,
-  BaseInput,
-  BaseTextarea,
   BaseField,
 } from "./Field.base";
 
@@ -68,17 +66,6 @@ export const ErrorIcon = (props: PropsOf<typeof Icon>) => {
     </Icon>
   );
 };
-
-export const Input = createChakra<
-  typeof BaseInput,
-  { focusBorderColor?: string; errorBorderColor?: string }
->(BaseInput, {
-  themeKey: "Input",
-});
-
-export const Textarea = createChakra(BaseTextarea, {
-  themeKey: "Textarea",
-});
 
 export const HelpText = createChakra(BaseHelpText, {
   themeKey: "HelpText",

@@ -1,49 +1,41 @@
 import * as React from "react";
-import { useFormControl } from "@chakra-ui/form-control";
+
+import { useField, ControlProps } from "@chakra-ui/field-base";
 import { createChakra, PropsOf } from "@chakra-ui/system";
-import { InputOptions } from "./Input.types";
+
 import { Omit } from "@chakra-ui/utils";
 
-const BaseInput = createChakra("input", { themeKey: "Input" });
+type OmittedTypes = "disabled" | "required" | "readOnly";
 
-type Omitted =
-  | "disabled"
-  | "required"
-  | "checked"
-  | "defaultChecked"
-  | "readOnly";
+type BaseInputProps = Omit<PropsOf<"input">, OmittedTypes> & ControlProps;
 
-type InputProps = InputOptions & Omit<PropsOf<typeof BaseInput>, Omitted>;
-
-export const Input = React.forwardRef(
-  (props: InputProps, ref: React.Ref<HTMLInputElement>) => {
-    const {
-      isReadOnly,
-      isFullWidth,
-      isDisabled,
-      isInvalid,
-      isRequired,
-      ...rest
-    } = props;
-
-    const formControl = useFormControl(props);
-
-    return (
-      <BaseInput
-        width={isFullWidth ? "100%" : undefined}
-        ref={ref}
-        readOnly={formControl.isReadOnly}
-        aria-readonly={isReadOnly}
-        disabled={formControl.isDisabled}
-        aria-invalid={formControl.isInvalid}
-        required={formControl.isRequired}
-        aria-required={formControl.isRequired}
-        aria-disabled={formControl.isDisabled}
-        {...rest}
-      />
-    );
+const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
+  (props, ref) => {
+    const inputProps = useField<HTMLInputElement>(props);
+    return <input ref={ref} {...inputProps} />;
   },
 );
+
+interface InputCustomStyle {
+  /**
+   * The border color when the input is focused. Use color keys in `theme.colors`
+   * @example
+   * focusBorderColor = "blue.500"
+   */
+  focusBorderColor?: string;
+  /**
+   * The border color when the input is invalid. Use color keys in `theme.colors`
+   * @example
+   * errorBorderColor = "red.500"
+   */
+  errorBorderColor?: string;
+  /**
+   * If `true`, the input element will span the full width of it's parent
+   */
+  isFullWidth?: boolean;
+}
+
+const Input = createChakra<typeof BaseInput, InputCustomStyle>(BaseInput);
 
 Input.displayName = "Input";
 
