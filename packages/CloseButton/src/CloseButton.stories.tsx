@@ -6,4 +6,9 @@ import CloseButton from "./CloseButton";
 const stories = storiesOf("CloseButton", module);
 stories.addDecorator(setup);
 
-stories.add("default", () => <CloseButton />);
+stories.add("default", () => (
+  <>
+    <CloseButton />
+    <CloseButton variantSize="sm" />
+  </>
+));

@@ -27,9 +27,9 @@ const ButtonIcon = createChakra(CloseIcon, {
 });
 
 export function CloseButton(props: PropsOf<typeof Button>) {
-  const { variantSize } = props;
+  const { variantSize, ...rest } = props;
   return (
-    <Button outline="0" variantSize={variantSize}>
+    <Button outline="0" variantSize={variantSize} {...rest}>
       <ButtonIcon variantSize={variantSize} />
     </Button>
   );
