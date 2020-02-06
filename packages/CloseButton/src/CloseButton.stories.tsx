@@ -1,9 +1,9 @@
-
-import * as React from "react"
+import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import setup from "../story.setup";
+import CloseButton from "./CloseButton";
 
 const stories = storiesOf("CloseButton", module);
-stories.addDecorator(setup)
+stories.addDecorator(setup);
 
-stories.add("default", ()=><div>Component goes here</div>)
+stories.add("default", () => <CloseButton />);

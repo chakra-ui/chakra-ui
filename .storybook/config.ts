@@ -1,7 +1,7 @@
 import { configure } from "@storybook/react";
 
 const req = require.context(
-  `../packages/Stat/src/`,
+  `../packages/CloseButton/src/`,
   true,
   /.stories\.(ts|tsx)$/,
 );

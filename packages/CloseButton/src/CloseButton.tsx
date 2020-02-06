@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import { createChakra, PropsOf } from "@chakra-ui/system";
-import { Icon, IconProps } from "@chakra-ui/Icon";
+import { Icon, IconProps } from "@chakra-ui/icon";
 
 const Button = createChakra("button", {
   themeKey: "CloseButton.Button",
@@ -29,7 +29,7 @@ const ButtonIcon = createChakra(CloseIcon, {
 export function CloseButton(props: PropsOf<typeof Button>) {
   const { variantSize } = props;
   return (
-    <Button variantSize={variantSize}>
+    <Button outline="0" variantSize={variantSize}>
       <ButtonIcon variantSize={variantSize} />
     </Button>
   );

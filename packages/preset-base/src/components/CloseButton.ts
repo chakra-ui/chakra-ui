@@ -21,6 +21,7 @@ export default {
     },
   }),
   variantSize: {
+    __default: "md",
     lg: {
       Button: {
         size: "40px",
