@@ -12,6 +12,7 @@ import Checkbox from "./Checkbox";
 import Radio from "./Radio";
 import Input from "./Input";
 import Tooltip from "./Tooltip";
+import CloseButton from "./CloseButton";
 
 export default {
   Button,
@@ -28,4 +29,5 @@ export default {
   Radio,
   Input,
   Tooltip,
+  CloseButton,
 };

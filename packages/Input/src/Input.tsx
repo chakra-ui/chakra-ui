@@ -17,7 +17,7 @@ const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
 );
 
 interface InputCustomStyle {
-  /**
+  /**<P
    * The border color when the input is focused. Use color keys in `theme.colors`
    * @example
    * focusBorderColor = "blue.500"

@@ -57,7 +57,8 @@
     "combobox": "yarn workspace @chakra-ui/combobox",
     "collapse": "yarn workspace @chakra-ui/collapse",
     "stat": "yarn workspace @chakra-ui/stat",
-    "toast": "yarn workspace @chakra-ui/toast"
+    "toast": "yarn workspace @chakra-ui/toast",
+    "close-button": "yarn workspace @chakra-ui/close-button"
   },
   "husky": {
     "hooks": {
