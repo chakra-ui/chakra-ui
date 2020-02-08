@@ -31,6 +31,10 @@ stories.add("invalid", () => (
   <Input isInvalid placeholder="This input is invalid" />
 ));
 
+stories.add("disabled", () => (
+  <Input isDisabled placeholder="This input is disabled" />
+));
+
 stories.add("readonly", () => (
   <Input placeholder="Here is a sample placeholder" isReadOnly />
 ));

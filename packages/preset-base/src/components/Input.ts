@@ -63,7 +63,7 @@ function getFlushedStyle(props: InputOptions) {
     borderBottom: "2px solid",
     borderColor: "inherit",
     rounded: 0,
-    paddingX: undefined,
+    px: 0,
     bg: "transparent",
     _focus: {
       zIndex: 1,
@@ -77,7 +77,7 @@ function getFlushedStyle(props: InputOptions) {
 
 const unstyled = {
   bg: "transparent",
-  paddingX: 0,
+  px: 0,
   height: "auto",
 };
 
