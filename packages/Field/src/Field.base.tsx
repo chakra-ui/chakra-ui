@@ -4,6 +4,7 @@ import {
   composeEventHandlers as compose,
   createContext,
   makeDataAttr as attr,
+  omit,
 } from "@chakra-ui/utils";
 import * as React from "react";
 
@@ -213,19 +214,20 @@ export function useField<T extends HTMLElement>(props: FieldElementProps<T>) {
   const field = useFieldContext();
   const describedBy: string[] = [];
 
-  if (field.isInvalid) describedBy.push(field.feedbackId);
-  if (field.hasHelpText) describedBy.push(field.helpTextId);
+  if (field?.isInvalid) describedBy.push(field.feedbackId);
+  if (field?.hasHelpText) describedBy.push(field.helpTextId);
   const ariaDescribedBy = describedBy.join(" ");
 
   return {
     ...props,
-    id: props.id || field.id,
-    disabled: props.isDisabled || field.isDisabled,
-    "aria-invalid": props.isInvalid || field.isInvalid,
-    "aria-required": props.isRequired || field.isRequired,
-    "aria-readonly": props.isReadOnly || field.isReadOnly,
-    "aria-describedby": ariaDescribedBy,
-    onFocus: compose(field.onFocus, props.onFocus),
-    onBlur: compose(field.onBlur, props.onBlur),
+    id: props.id || field?.id,
+    disabled: props.isDisabled || field?.isDisabled,
+    readOnly: props.isReadOnly || field?.isReadOnly,
+    "aria-invalid": props.isInvalid || field?.isInvalid,
+    "aria-required": props.isRequired || field?.isRequired,
+    "aria-readonly": props.isReadOnly || field?.isReadOnly,
+    "aria-describedby": ariaDescribedBy || undefined,
+    onFocus: compose(field?.onFocus, props.onFocus),
+    onBlur: compose(field?.onBlur, props.onBlur),
   };
 }

@@ -38,7 +38,7 @@ function getVariantPropStyle(props: any, prop: any, themeKey: string) {
 
 function getVariantsStyle(props: any, themeKey: string) {
   const componentStyle = {};
-  const themableProps = ["variant", "variantSize"] as const;
+  const themableProps = ["variantSize", "variant"] as const;
 
   for (const prop of themableProps) {
     const styleObject = getVariantPropStyle(props, prop, themeKey);

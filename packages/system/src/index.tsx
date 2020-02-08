@@ -3,7 +3,6 @@ export * from "./createChakra";
 export * from "./system";
 export * from "./create-theme-context";
 export { ResponsiveValue, get } from "styled-system";
-export * from "./system/is-prop-valid";
 export * from "./css";
 export { default as CSSReset } from "./css-reset";
 export * from "./color-mode";

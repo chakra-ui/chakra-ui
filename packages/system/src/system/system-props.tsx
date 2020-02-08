@@ -3,7 +3,7 @@ import custom from "./custom/custom";
 import { SystemProps } from "./system-props-interface";
 
 // Compose all style functions into a single function
-const system = SS.compose(
+export const system = SS.compose(
   SS.layout,
   SS.color,
   SS.space,

@@ -14,13 +14,6 @@ const shouldForwardProp = SS.createShouldForwardProp([
   "stroke",
 ]);
 
-/**
- * htmlWidth and htmlHeight is used in the <Image />
- * component to support the native `width` and `height` attributes
- *
- * https://github.com/chakra-ui/chakra-ui/issues/149
- */
-
 export type ValidHTMLProps = {
   htmlWidth?: string | number;
   htmlHeight?: string | number;
@@ -33,12 +26,11 @@ export const validHTMLProps = {
   htmlSize: "size",
 };
 
+export const isValidHTMLProp = (value: any): value is keyof ValidHTMLProps =>
+  value in validHTMLProps;
+
 export function isPropValid(prop: string): boolean {
-  if (Object.keys(validHTMLProps).includes(prop)) {
-    return true;
-  } else {
-    return shouldForwardProp(prop);
-  }
+  return prop in validHTMLProps ? true : shouldForwardProp(prop);
 }
 
 export default isPropValid;

@@ -1,3 +1,4 @@
+import { PortalManager } from "@chakra-ui/portal";
 import theme from "@chakra-ui/preset-base";
 import {
   ColorMode,
@@ -5,11 +6,10 @@ import {
   createThemeContext,
   CSSReset,
 } from "@chakra-ui/system";
-import * as React from "react";
 import { Global } from "@emotion/core";
-import { PortalManager } from "@chakra-ui/portal";
+import * as React from "react";
 
-const [ThemeProvider, useTheme] = createThemeContext(theme);
+const [ThemeProvider] = createThemeContext(theme);
 
 const setup = (story: () => any) => (
   <PortalManager>
@@ -30,5 +30,4 @@ const setup = (story: () => any) => (
   </PortalManager>
 );
 
-export { ThemeProvider, useTheme };
 export default setup;

@@ -60,6 +60,13 @@ export interface CreateChakraOptions<P> {
    * when props haven't changed. This uses `React.memo(...)`
    */
   pure?: boolean;
+  /**
+   * Whether we should forward prop to the underlying component.
+   *
+   * Useful when using `createChakra` with custom components, or using
+   * custom prop name to control component styles.
+   */
+  shouldForwardProp?(propName: string): boolean;
 }
 
 type StyleFunctionOrObject<P> =

@@ -1,46 +1,7 @@
 import css from "@styled-system/css";
 import { PseudoProps } from "./pseudo.interface";
 import { tx } from "./pseudo.utils";
-
-export const selectors = {
-  hover: "&:hover, &[data-hover]",
-  active: "&:active, &[data-active]",
-  focus: "&:focus, &[data-focus]",
-  focusVisible: ".js-focus-visible &.focus-visible, &:focus-visible",
-  loading: "&[data-loading], &[aria-busy=true], &[data-state='loading']",
-  disabled:
-    "&:disabled, &[data-disabled], &:disabled:focus, &:disabled:hover, &[aria-disabled=true], &[aria-disabled=true]:focus, &[aria-disabled=true]:hover",
-  checked: "&[aria-checked=true], &[data-checked]",
-  indeterminate: "&:indeterminate, &[aria-checked=mixed], &[data-mixed]",
-  selected: "&[aria-selected=true], &[data-selected]",
-  invalid:
-    "&[aria-invalid=true], &[data-invalid], &:invalid, &[data-state='invalid']",
-  valid: "&[data-invalid], &:valid, &[data-state='valid']",
-  pressed: "&[aria-pressed=true], &[data-pressed]",
-  expanded: "&[aria-expanded=true], &[data-expanded]",
-  grabbed: "&[aria-grabbed=true], &[data-grabbed]",
-  readOnly: "&[aria-readonly=true], &[readonly], &[data-readonly]",
-  visited: "&:visited",
-  activeLink: "&[aria-current=page]",
-  even: "&:nth-of-type(even)",
-  odd: "&:nth-of-type(odd)",
-  first: "&:first-of-type",
-  last: "&:last-of-type",
-  notFirst: "&:not(:first-of-type)",
-  notLast: "&:not(:last-of-type)",
-  groupHover: "[role=group]:hover &, [data-parent]:hover &",
-  groupFocus: "[data-parent]:focus &, [data-parent][data-focus] &",
-  groupActive: "[data-parent]:active &, [data-parent][data-active] &",
-  groupDisabled: "[data-parent]:disabled &, [data-parent][data-disabled] &",
-  before: "&:before",
-  after: "&:after",
-  focusWithin: "&:focus-within",
-  placeholder: "&::placeholder",
-  hidden: "&[hidden]",
-  autofill: "&:-webkit-autofill",
-};
-
-const sx = selectors;
+import sx from "./pseudo.selectors";
 
 const pseudo = ({ theme, ...props }: { theme: object } & PseudoProps) =>
   css({

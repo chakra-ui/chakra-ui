@@ -1,8 +1,6 @@
 import * as React from "react";
-
 import { useField, ControlProps } from "@chakra-ui/field-base";
 import { createChakra, PropsOf } from "@chakra-ui/system";
-
 import { Omit } from "@chakra-ui/utils";
 
 type OmittedTypes = "disabled" | "required" | "readOnly";
@@ -16,7 +14,7 @@ const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
   },
 );
 
-interface InputCustomStyle {
+interface InputOptions {
   /**<P
    * The border color when the input is focused. Use color keys in `theme.colors`
    * @example
@@ -35,7 +33,11 @@ interface InputCustomStyle {
   isFullWidth?: boolean;
 }
 
-const Input = createChakra<typeof BaseInput, InputCustomStyle>(BaseInput);
+const Input = createChakra<typeof BaseInput, InputOptions>(BaseInput, {
+  themeKey: "Input",
+  shouldForwardProp: prop =>
+    !["focusBorderColor", "errorBorderColor"].includes(prop),
+});
 
 Input.displayName = "Input";
 

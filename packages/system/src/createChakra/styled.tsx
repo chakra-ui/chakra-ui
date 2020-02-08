@@ -6,14 +6,15 @@ import { forwardRef, memo } from "../forward-ref";
 import { jsx } from "../system";
 import {
   getDisplayName,
+  evalShouldForwardProp,
   runIfFn,
-  clean,
+  filterStylePropNames,
   filterProps,
 } from "./create-chakra.utils";
 import getComponentStyles from "./get-component-style";
 import { As, CreateChakraComponent, CreateChakraOptions } from "./types";
 
-export function createStyled<T extends As, P = {}>(
+export function styled<T extends As, P = {}>(
   component: T,
   options?: CreateChakraOptions<P>,
 ) {
@@ -23,7 +24,7 @@ export function createStyled<T extends As, P = {}>(
       const { colorMode, theme } = useChakra();
 
       // Stores the the final styles
-      let finalStyles: Dict = {};
+      let computedStyles: Dict = {};
 
       // For each style interpolation, we'll pass the theme and colorMode
       const propsWithTheme = { theme, colorMode, ...props };
@@ -32,41 +33,49 @@ export function createStyled<T extends As, P = {}>(
       if (options?.baseStyle) {
         const baseStyleObject = runIfFn(options.baseStyle, propsWithTheme);
         const baseStyle = css(baseStyleObject)(theme);
-        Object.assign(finalStyles, baseStyle);
+        computedStyles = { ...computedStyles, ...baseStyle };
       }
 
       // Resolve each interpolation and add result to final style
       interpolations.forEach(interpolation => {
         const style = runIfFn(interpolation, propsWithTheme);
-        Object.assign(finalStyles, style);
+        computedStyles = { ...computedStyles, ...style };
       });
 
       // Get the component style from theme.components
       const componentStyles = getComponentStyles(propsWithTheme, options);
 
       // Add final styles before component styles to support prop overriding
-      finalStyles = { ...componentStyles, ...finalStyles };
+      computedStyles = { ...componentStyles, ...computedStyles };
 
       const element = as || component;
       const isTag = isString(element);
       let computedProps: Dict = isTag ? {} : { ...props };
 
       // The gatekeeper that prevents style props from getting to the dom
-      if (isTag) filterProps(computedProps, props);
+      if (isTag) computedProps = filterProps(props);
 
       // anyone style props that made it through here will get cleaned up
-      computedProps = clean(computedProps);
+      computedProps = filterStylePropNames(computedProps);
+
+      // If user passed should forward prop, evaluate it.
+      if (options?.shouldForwardProp) {
+        computedProps = evalShouldForwardProp(
+          options.shouldForwardProp,
+          computedProps,
+        );
+      }
 
       // Attach props to this component
       if (options?.attrs) {
         const attrsProps = runIfFn(options.attrs, computedProps);
-        Object.assign(computedProps, attrsProps);
+        computedProps = { ...computedProps, ...attrsProps };
       }
 
       return jsx(element, {
         ref,
         ...computedProps,
-        css: finalStyles,
+        css: computedStyles,
       });
     });
 
@@ -79,4 +88,4 @@ export function createStyled<T extends As, P = {}>(
   };
 }
 
-export default createStyled;
+export default styled;

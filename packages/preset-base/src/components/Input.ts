@@ -1,12 +1,13 @@
 import { StyleFunctionProps, getModeColor as get } from "./utils";
 import { getColor } from "@chakra-ui/color";
 
-type InputVariant = StyleFunctionProps & {
+type InputOptions = StyleFunctionProps & {
   focusBorderColor: string;
   errorBorderColor: string;
+  isFullWidth?: boolean;
 };
 
-function getOutlinedStyle(props: InputVariant) {
+function getOutlinedStyle(props: InputOptions) {
   const { focusBorderColor: fc, errorBorderColor: ec, theme: t } = props;
   return {
     border: "1px solid",
@@ -31,7 +32,7 @@ function getOutlinedStyle(props: InputVariant) {
   };
 }
 
-function getFilledStyle(props: InputVariant) {
+function getFilledStyle(props: InputOptions) {
   const { theme: t, focusBorderColor: fc, errorBorderColor: ec } = props;
   return {
     border: "2px solid",
@@ -55,7 +56,7 @@ function getFilledStyle(props: InputVariant) {
   };
 }
 
-function getFlushedStyle(props: InputVariant) {
+function getFlushedStyle(props: InputOptions) {
   const { focusBorderColor: fc, errorBorderColor: ec, theme: t } = props;
 
   return {
@@ -105,13 +106,14 @@ const variantSize = {
 };
 
 export default {
-  baseStyle: {
+  baseStyle: (props: InputOptions) => ({
+    width: props.isFullWidth ? "100%" : "auto",
     display: "flex",
     alignItems: "center",
     position: "relative",
     transition: "all 0.2s",
     outline: "none",
-  },
+  }),
   variantSize,
   variant: {
     outline: getOutlinedStyle,

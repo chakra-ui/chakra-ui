@@ -1,6 +1,6 @@
 import { Dict, isObject, memoizeOne } from "@chakra-ui/utils";
 import transformProps from "../custom/custom.utils";
-import { selectors } from "./pseudo";
+import selectors from "./pseudo.selectors";
 
 type SelectorProp = keyof typeof selectors;
 

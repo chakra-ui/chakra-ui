@@ -13,27 +13,26 @@ const styled = <T extends As>(tag: T) => (...interpolations: any[]) => {
   const Styled = forwardRef(
     ({ as, apply, ...props }: any, ref: React.Ref<Element>) => {
       const element = as || tag;
-      const shouldForwardProps = !isString(element);
-      const computedProps = shouldForwardProps ? props : {};
+      const isTag = isString(element);
 
-      const styles = {};
+      let computedProps = isTag ? {} : { ...props };
+      const computedStyles = {};
+
       const theme = React.useContext(ThemeContext);
 
       interpolations.forEach(interpolation => {
         const style = isFunction(interpolation)
           ? interpolation({ theme, apply, ...props })
           : interpolation;
-        Object.assign(styles, style);
+        Object.assign(computedStyles, style);
       });
 
-      if (!shouldForwardProps) {
-        filterProps(computedProps, props);
-      }
+      if (isTag) computedProps = filterProps(props);
 
       return jsx(element, {
         ...computedProps,
         ref,
-        css: styles,
+        css: computedStyles,
       });
     },
   );

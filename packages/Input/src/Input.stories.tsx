@@ -1,12 +1,11 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs, select, boolean } from "@storybook/addon-knobs";
-import setup from "../story.setup";
 import Input from "./Input";
 import { chakra } from "@chakra-ui/system";
 
 const stories = storiesOf("Input", module);
-stories.addDecorator(setup);
+
 stories.addDecorator(withKnobs);
 
 stories.addDecorator(story => (

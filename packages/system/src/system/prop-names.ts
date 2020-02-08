@@ -15,7 +15,7 @@ import {
   colorStyle,
 } from "styled-system";
 import customProps from "./custom/custom";
-import { selectors } from "./pseudo/pseudo";
+import selectors from "./pseudo/pseudo.selectors";
 
 const SS = compose(
   space,
@@ -40,6 +40,7 @@ let propNames: string[] = [];
 if (SS.propNames) {
   propNames = propNames.concat(SS.propNames);
 }
+
 if (customProps.propNames) {
   propNames = propNames.concat(customProps.propNames);
 }

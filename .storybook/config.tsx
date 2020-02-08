@@ -1,7 +1,8 @@
-import { configure } from "@storybook/react";
+import { configure, addDecorator } from "@storybook/react";
+import setup from "./story.setup";
 
 const req = require.context(
-  `../packages/CloseButton/src/`,
+  `../packages/Input/src/`,
   true,
   /.stories\.(ts|tsx)$/,
 );
@@ -9,5 +10,7 @@ const req = require.context(
 function loadStories() {
   req.keys().forEach(filename => req(filename));
 }
+
+addDecorator(setup);
 
 configure(loadStories, module);

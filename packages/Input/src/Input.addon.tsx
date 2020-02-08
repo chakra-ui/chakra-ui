@@ -23,44 +23,37 @@ function getPlacementStyles(placement: Placement) {
   return {};
 }
 
-const BaseAddon = createChakra("div", { themeKey: "Input" });
+const StyledAddon = createChakra("div", { themeKey: "Input" });
 
-type InputAddonProps = PropsOf<typeof BaseAddon> & { placement?: Placement };
+type InputAddonProps = PropsOf<typeof StyledAddon> & { placement?: Placement };
 
-export function InputAddon({ placement = "left", ...props }: InputAddonProps) {
+export function InputAddon({
+  placement = "left",
+  variantSize = "md",
+  ...props
+}: InputAddonProps) {
   const bg = useColorModeValue(`whiteAlpha.300`, `gray.100`);
-
   const placementStyles = getPlacementStyles(placement);
 
   return (
-    <BaseAddon
+    <StyledAddon
       flex="0 0 auto"
       whiteSpace="nowrap"
       bg={bg}
+      variantSize={variantSize}
       {...placementStyles}
       {...props}
     />
   );
 }
-
 InputAddon.displayName = "InputAddon";
 
-InputAddon.defaultProps = {
-  placement: "left",
-  variantSize: "md",
-};
-
-const InputLeftAddon = (props: InputAddonProps) => (
+export const InputLeftAddon = (props: InputAddonProps) => (
   <InputAddon placement="left" {...props} />
 );
-
 InputLeftAddon.displayName = "InputLeftAddon";
 
-const InputRightAddon = (props: InputAddonProps) => (
+export const InputRightAddon = (props: InputAddonProps) => (
   <InputAddon placement="right" {...props} />
 );
-
 InputRightAddon.displayName = "InputRightAddon";
-
-export { InputLeftAddon, InputRightAddon };
-export default InputAddon;
