@@ -1,7 +1,9 @@
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
 import setup from "../../story.setup";
+import chakra from "../chakra/chakra";
 import createChakra from "./create-chakra";
+import useComponentStyle from "./use-component-style";
 
 const stories = storiesOf("createChakra", module);
 
@@ -103,3 +105,20 @@ stories.add("subcomponents - Tabs", () => (
     </Tab>
   </TabList>
 ));
+
+stories.add("useComponentStyle", () => {
+  const Example = () => {
+    const style = useComponentStyle({
+      themeKey: "Input",
+      focusBorderColor: "gray.500",
+      errorBorderColor: "pink.500",
+    });
+    return (
+      <chakra.pre fontFamily="mono" fontSize="xs">
+        {JSON.stringify(style, null, 4)}
+      </chakra.pre>
+    );
+  };
+
+  return <Example />;
+});

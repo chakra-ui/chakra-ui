@@ -15,13 +15,16 @@ type GenericMiddleware<G, P, T extends As> = {} extends G
   ? MergeGeneric<G, P, T>
   : MergePropsOf<P, T>;
 
-interface CustomizableProps {
+export interface CustomizableProps {
   variant?: string;
   variantSize?: string;
   variantColor?: string;
 }
 
-interface ChakraProps extends SystemProps, ValidHTMLProps, CustomizableProps {
+export interface ChakraProps
+  extends SystemProps,
+    ValidHTMLProps,
+    CustomizableProps {
   as?: React.ElementType;
   isTruncated?: boolean;
   children?: React.ReactNode;

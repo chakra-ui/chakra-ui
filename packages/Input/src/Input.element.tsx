@@ -1,45 +1,74 @@
-// import * as React from "react";
+import * as React from "react";
+import { useInputGroup } from "./Input.group";
+import { chakra, useComponentStyle, PropsOf } from "@chakra-ui/system";
+import { useIsomorphicEffect } from "@chakra-ui/hooks";
 
-// const InputElement = React.forwardRef((props, ref) => {
-//   const { size, children, placement = "left", ...rest } = props;
+const InputElement = React.forwardRef((props: any, ref: React.Ref<any>) => {
+  const { placement = "left", ...rest } = props;
 
-//   const height = inputSizes[size] && inputSizes[size]["height"];
-//   const fontSize = inputSizes[size] && inputSizes[size]["fontSize"];
-//   const placementProp = { [placement]: "0" };
+  const { variant, variantSize } = useInputGroup();
 
-//   return (
-//     <Box
-//       display="flex"
-//       alignItems="center"
-//       justifyContent="center"
-//       position="absolute"
-//       height={height}
-//       width={height}
-//       fontSize={fontSize}
-//       top="0"
-//       zIndex={2}
-//       ref={ref}
-//       {...placementProp}
-//       {...rest}
-//     >
-//       {children}
-//     </Box>
-//   );
-// });
+  const { height, fontSize } = useComponentStyle({
+    themeKey: "Input",
+    variant,
+    variantSize,
+  });
 
-// InputElement.displayName = "InputElement";
+  const placementProp = { [placement]: "0" };
 
-// const InputLeftElement = forwardRef((props, ref) => (
-//   <InputElement ref={ref} placement="left" {...props} />
-// ));
+  return (
+    <chakra.div
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      position="absolute"
+      height={height}
+      minWidth={height}
+      fontSize={fontSize}
+      top="0"
+      zIndex={2}
+      ref={ref}
+      {...placementProp}
+      {...rest}
+    />
+  );
+});
 
-// InputLeftElement.displayName = "InputLeftElement";
+InputElement.displayName = "InputElement";
 
-// const InputRightElement = forwardRef((props, ref) => (
-//   <InputElement ref={ref} placement="right" {...props} />
-// ));
+const InputLeftElement = React.forwardRef(
+  (props: PropsOf<typeof InputElement>, ref: React.Ref<HTMLDivElement>) => {
+    const group = useInputGroup();
 
-// InputRightElement.displayName = "InputRightElement";
+    useIsomorphicEffect(() => {
+      group.setHasLeftElement(true);
+      return () => {
+        group.setHasLeftElement(false);
+      };
+    }, []);
 
-// export { InputLeftElement, InputRightElement };
-// export default InputElement;
+    return <InputElement ref={ref} placement="left" {...props} />;
+  },
+);
+
+InputLeftElement.displayName = "InputLeftElement";
+
+const InputRightElement = React.forwardRef(
+  (props: PropsOf<typeof InputElement>, ref: React.Ref<HTMLDivElement>) => {
+    const group = useInputGroup();
+
+    useIsomorphicEffect(() => {
+      group.setHasRightElement(true);
+      return () => {
+        group.setHasRightElement(false);
+      };
+    }, []);
+
+    return <InputElement ref={ref} placement="right" {...props} />;
+  },
+);
+
+InputRightElement.displayName = "InputRightElement";
+
+export { InputLeftElement, InputRightElement };
+export default InputElement;

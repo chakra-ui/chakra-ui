@@ -82,6 +82,7 @@ const unstyled = {
 };
 
 const variantSize = {
+  __default: "md",
   lg: {
     fontSize: "lg",
     px: 4,
@@ -116,6 +117,7 @@ export default {
   }),
   variantSize,
   variant: {
+    __default: "outline",
     outline: getOutlinedStyle,
     filled: getFilledStyle,
     flushed: getFlushedStyle,

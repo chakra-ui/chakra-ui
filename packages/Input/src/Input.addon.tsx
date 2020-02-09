@@ -1,5 +1,6 @@
 import { createChakra, PropsOf, useColorModeValue } from "@chakra-ui/system";
 import * as React from "react";
+import { useInputGroup } from "./Input.group";
 
 type Placement = "left" | "right";
 
@@ -27,22 +28,21 @@ const StyledAddon = createChakra("div", { themeKey: "Input" });
 
 type InputAddonProps = PropsOf<typeof StyledAddon> & { placement?: Placement };
 
-export function InputAddon({
-  placement = "left",
-  variantSize = "md",
-  ...props
-}: InputAddonProps) {
-  const bg = useColorModeValue(`whiteAlpha.300`, `gray.100`);
+export function InputAddon({ placement = "left", ...props }: InputAddonProps) {
+  const bg = useColorModeValue(`gray.100`, `whiteAlpha.300`);
   const placementStyles = getPlacementStyles(placement);
+
+  const group = useInputGroup();
 
   return (
     <StyledAddon
       flex="0 0 auto"
       whiteSpace="nowrap"
       bg={bg}
-      variantSize={variantSize}
       {...placementStyles}
       {...props}
+      variant={group?.variant || props.variant}
+      variantSize={group?.variantSize || props.variantSize}
     />
   );
 }

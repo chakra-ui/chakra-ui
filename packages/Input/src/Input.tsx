@@ -1,7 +1,13 @@
 import * as React from "react";
 import { useField, ControlProps } from "@chakra-ui/field-base";
-import { createChakra, PropsOf } from "@chakra-ui/system";
+import {
+  createChakra,
+  PropsOf,
+  forwardRef,
+  useComponentStyle,
+} from "@chakra-ui/system";
 import { Omit } from "@chakra-ui/utils";
+import { useInputGroup } from "./Input.group";
 
 type OmittedTypes = "disabled" | "required" | "readOnly";
 
@@ -33,17 +39,43 @@ interface InputOptions {
   isFullWidth?: boolean;
 }
 
-const Input = createChakra<typeof BaseInput, InputOptions>(BaseInput, {
+const StyledInput = createChakra<typeof BaseInput, InputOptions>(BaseInput, {
   themeKey: "Input",
   shouldForwardProp: prop =>
     !["focusBorderColor", "errorBorderColor"].includes(prop),
 });
 
+StyledInput.displayName = "StyledInput";
+
+const Input = React.forwardRef(
+  (props: PropsOf<typeof StyledInput>, ref: React.Ref<HTMLInputElement>) => {
+    const group = useInputGroup();
+
+    const variant = group?.variant || props.variant;
+    const variantSize = group?.variantSize || props.variantSize;
+
+    const { height } = useComponentStyle({
+      themeKey: "Input",
+      variant,
+      variantSize,
+    });
+
+    return (
+      <StyledInput
+        ref={ref}
+        paddingLeft={group?.hasLeftElement ? height : undefined}
+        paddingRight={group?.hasRightElement ? height : undefined}
+        {...props}
+        variant={variant}
+        variantSize={variantSize}
+      />
+    );
+  },
+);
+
 Input.displayName = "Input";
 
 Input.defaultProps = {
-  variantSize: "md",
-  variant: "outline",
   isFullWidth: true,
   focusBorderColor: "blue.500",
   errorBorderColor: "red.500",
