@@ -5,6 +5,7 @@ import * as React from "react";
 import { Spinner } from "@chakra-ui/spinner";
 
 const BaseButton = createChakra("button", { themeKey: "Button" });
+
 BaseButton.defaultProps = {
   variant: "solid",
   variantSize: "md",
@@ -104,7 +105,6 @@ const Button = React.forwardRef((props: ButtonProps, ref: React.Ref<any>) => {
   );
 });
 
-//@ts-ignore
 Button.displayName = "Button";
 
 export default Button;

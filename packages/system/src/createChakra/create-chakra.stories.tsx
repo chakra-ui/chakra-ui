@@ -40,10 +40,12 @@ stories.add("button - theming", () => (
 
 ////////////////////////////////////////////////////////////////////
 
-const Alert = createChakra("div", { themeKey: "Alert" });
+const Alert = createChakra("div", {
+  themeKey: "Alert",
+});
 
 stories.add("alert", () => (
-  <Alert variant="solid" variantColor="green" role="alert">
+  <Alert variant="tradeling" variantColor="green" role="alert">
     Welcome to alert
   </Alert>
 ));
@@ -110,8 +112,8 @@ stories.add("useComponentStyle", () => {
   const Example = () => {
     const style = useComponentStyle({
       themeKey: "Input",
-      focusBorderColor: "gray.500",
-      errorBorderColor: "pink.500",
+      // focusBorderColor: "gray.500",
+      // errorBorderColor: "pink.500",
     });
     return (
       <chakra.pre fontFamily="mono" fontSize="xs">
