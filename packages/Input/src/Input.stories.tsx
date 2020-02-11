@@ -1,15 +1,12 @@
-import * as React from "react";
-import { storiesOf } from "@storybook/react";
-import { withKnobs, select, boolean } from "@storybook/addon-knobs";
-import Input from "./Input";
 import { chakra } from "@chakra-ui/system";
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import Input from "./Input";
 import { InputLeftAddon, InputRightAddon } from "./Input.addon";
+import { InputLeftElement, InputRightElement } from "./Input.element";
 import InputGroup from "./Input.group";
-import { InputLeftElement } from "./Input.element";
 
 const stories = storiesOf("Input", module);
-
-stories.addDecorator(withKnobs);
 
 stories.addDecorator(story => (
   <chakra.div maxW="560px" mx="auto" mt="40px">
@@ -17,114 +14,104 @@ stories.addDecorator(story => (
   </chakra.div>
 ));
 
-const colors = [
-  "blue.500",
-  "red.200",
-  "orange.300",
-  "teal.600",
-  "tomato",
-  "#fd5",
-];
-
-stories.add("basic", () => (
-  <Input placeholder="Here is a sample placeholder" />
+stories.add("states", () => (
+  <>
+    <Input placeholder="Idle" />
+    <br />
+    <Input isInvalid placeholder="isInvalid" />
+    <br />
+    <Input isDisabled placeholder="isDisabled" />
+    <br />
+    <Input isReadOnly placeholder="isReadonly" />
+  </>
 ));
 
-stories.add("invalid", () => (
-  <Input isInvalid placeholder="This input is invalid" />
+stories.add("variants", () => (
+  <>
+    <Input variant="outline" placeholder="Outline" />
+    <br />
+    <Input variant="filled" placeholder="Filled" />
+    <br />
+    <Input variant="flushed" placeholder="Flushed" />
+    <br />
+    <Input variant="unstyled" placeholder="Unstyled" />
+  </>
 ));
 
-stories.add("disabled", () => (
-  <Input isDisabled placeholder="This input is disabled" />
+stories.add("left and right addon", () => (
+  <>
+    <InputGroup>
+      <InputLeftAddon children="+234" />
+      <Input roundedLeft="0" placeholder="Phone number..." />
+    </InputGroup>
+
+    <br />
+
+    <InputGroup variantSize="sm">
+      <InputLeftAddon children="https://" />
+      <Input rounded="0" placeholder="website.com" />
+      <InputRightAddon children=".com" />
+    </InputGroup>
+  </>
 ));
 
-stories.add("readonly", () => (
-  <Input placeholder="Here is a sample placeholder" isReadOnly />
+stories.add("element inside input", () => (
+  <>
+    <InputGroup>
+      <InputLeftElement children={"P"} />
+      <Input type="phone" placeholder="Phone number" />
+    </InputGroup>
+
+    <InputGroup>
+      <InputLeftElement color="gray.300" fontSize="1.2em" children="$" />
+      <Input placeholder="Enter amount" />
+      <InputRightElement children={"C"} />
+    </InputGroup>
+  </>
 ));
 
-stories.add("variant-filled", () => (
-  <Input variant="filled" placeholder="Text goes here" />
-));
-
-stories.add("variant w/ custom border colors", () => {
-  const errorColorKnob = select("errorBorderColor", colors, "red.200");
-  const focusColorKnob = select("focusBorderColor", colors, "blue.500");
-
-  const invalidKnob = boolean("isInvalid", false);
+function PasswordInput() {
+  const [show, setShow] = React.useState(false);
+  const handleClick = () => setShow(!show);
 
   return (
-    <Input
-      variant="filled"
-      isInvalid={invalidKnob}
-      errorBorderColor={errorColorKnob}
-      focusBorderColor={focusColorKnob}
-      placeholder="Text goes here"
-    />
+    <InputGroup variantSize="md">
+      <Input
+        pr="4.5rem"
+        type={show ? "text" : "password"}
+        placeholder="Enter password"
+      />
+      <InputRightElement width="4.5rem">
+        <chakra.button h="1.75rem" onClick={handleClick}>
+          {show ? "Hide" : "Show"}
+        </chakra.button>
+      </InputRightElement>
+    </InputGroup>
   );
-});
+}
 
-stories.add("Flushed", () => (
-  <Input variant="flushed" placeholder="Text goes here" />
-));
+stories.add("password input", () => <PasswordInput />);
 
-stories.add("Flushed, custom border colors", () => {
-  const errorColorKnob = select("errorBorderColor", colors, "red.200");
-  const focusColorKnob = select("focusBorderColor", colors, "blue.500");
-
-  const invalidKnob = boolean("isInvalid", false);
-  return (
+stories.add("changing the focus & error border color", () => (
+  <>
+    <Input focusBorderColor="lime" placeholder="Here is a sample placeholder" />
+    <br />
     <Input
-      variant="flushed"
-      isInvalid={invalidKnob}
-      errorBorderColor={errorColorKnob}
-      focusBorderColor={focusColorKnob}
-      placeholder="Text goes here"
+      focusBorderColor="pink.400"
+      placeholder="Here is a sample placeholder"
     />
-  );
-});
-
-stories.add("Outline", () => (
-  <Input variant="outline" placeholder="Text goes here" />
-));
-
-stories.add("Outline, custom border colors", () => {
-  const errorColorKnob = select("errorBorderColor", colors, "red.200");
-  const focusColorKnob = select("focusBorderColor", colors, "blue.500");
-
-  const invalidKnob = boolean("isInvalid", false);
-  return (
+    <br />
     <Input
-      variant="outline"
-      isInvalid={invalidKnob}
-      errorBorderColor={errorColorKnob}
-      focusBorderColor={focusColorKnob}
-      placeholder="Text goes here"
+      isInvalid
+      errorBorderColor="red.300"
+      placeholder="Here is a sample placeholder"
     />
-  );
-});
-
-stories.add("Unstyled", () => (
-  <Input variant="unstyled" placeholder="Text goes here" />
-));
-
-stories.add("Input addon - left", () => (
-  <chakra.div display="flex" position="relative">
-    <InputLeftAddon children="https://" />
-    <Input roundedLeft="0" placeholder="Text goes here" />
-  </chakra.div>
-));
-
-stories.add("Input addon - right", () => (
-  <InputGroup variantSize="lg">
-    <InputLeftAddon children="https://" />
-    <Input rounded="0" placeholder="Text goes here" />
-    <InputRightAddon children=".com" />
-  </InputGroup>
-));
-
-stories.add("Input element - left", () => (
-  <InputGroup variantSize="sm">
-    <InputLeftElement children="P:" />
-    <Input placeholder="Text goes here" />
-  </InputGroup>
+    <br />
+    <Input
+      isInvalid
+      errorBorderColor="crimson"
+      placeholder="Here is a sample placeholder"
+    />
+    <br />
+  </>
 ));

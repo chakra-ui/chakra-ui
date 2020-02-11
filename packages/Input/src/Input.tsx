@@ -63,8 +63,8 @@ const Input = React.forwardRef(
     return (
       <StyledInput
         ref={ref}
-        paddingLeft={group?.hasLeftElement ? height : undefined}
-        paddingRight={group?.hasRightElement ? height : undefined}
+        {...(group?.hasRightElement && { paddingRight: height })}
+        {...(group?.hasLeftElement && { paddingLeft: height })}
         {...props}
         variant={variant}
         variantSize={variantSize}
