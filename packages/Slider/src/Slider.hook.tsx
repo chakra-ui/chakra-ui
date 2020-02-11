@@ -1,69 +1,35 @@
+import { useControllableProp, useId } from "@chakra-ui/hooks";
 import {
-  constrainValue,
   composeEventHandlers,
+  constrainValue,
+  createContext,
   createOnKeyDown,
   percentToValue,
   roundValueToStep,
   valueToPercent,
-  createContext,
-  throttle,
 } from "@chakra-ui/utils";
 import * as React from "react";
-import { useControllableProp, useId } from "@chakra-ui/hooks";
 
-const [SliderContextProvider, useSliderContext] = createContext<any>();
+const [SliderContextProvider, useSliderContext] = createContext<
+  SliderHookReturn
+>();
 export { SliderContextProvider };
 
 // http://muffinman.io/aria-progress-range-slider/
-/////////////////////////////////////////////////////////////////////////////////
 
-export function useSliderThumb(props: any) {
-  const slider = useSliderContext();
-
-  return {
-    ref: slider.thumbRef,
-    "aria-disabled": slider.isDisabled ? undefined : 0,
-    "data-chakra-slider-thumb": "",
-    role: "slider",
-    "aria-valuetext": slider.valueText,
-    "aria-valuemin": slider.min,
-    "aria-valuemax": slider.max,
-    "aria-valuenow": slider.value,
-    "aria-orientation": slider.orientation,
-    onKeyDown: composeEventHandlers(props.onKeyDown, slider.onKeyDown),
-  };
-}
-
-export function useSliderMarker(props: any) {
-  const slider = useSliderContext();
-
-  const isInRange = !(props.value < slider.min || props.value > slider.max);
-  const isHighlighted = slider.value >= props.value;
-  const markerPercent = valueToPercent(props.value, slider.min, slider.max);
-
-  const markerStyle: React.CSSProperties = {
-    position: "absolute",
-    ...(slider.isVertical
-      ? { bottom: `${markerPercent}%` }
-      : { left: `${markerPercent}%` }),
-  };
-
-  return { isInRange, markerStyle, isHighlighted };
-}
-
-interface SliderOptions {
+interface SliderHookProps {
   /**
-   * minimum value the slider can hold
+   * The minimum allowed value of the slider. Cannot be greater than max.
    * @default 0
    */
   min?: number;
   /**
-   * maximum value the slider can hold
+   * The maximum allowed value of the slider. Cannot be less than min.
    * @default 100
    */
   max?: number;
   /**
-   * step in which increments/decrements have to be made
+   * The step in which increments/decrements have to be made
    * @default 1
    */
   step?: number;
@@ -87,7 +53,7 @@ interface SliderOptions {
   /**
    * function gets called whenever the user starts dragging the slider handle
    */
-  onChangeState?: (value?: number) => void;
+  onChangeStart?: (value?: number) => void;
   /**
    * function gets called whenever the user stops dragging the slider handle.
    */
@@ -96,14 +62,30 @@ interface SliderOptions {
    * function gets called whenever the slider handle is being dragged or clicked
    */
   onChange?: (value?: number) => void;
+  /**
+   * The base id to use for the slider and it's components
+   */
+  id?: string;
+  /**
+   * If `true`, the slider will be disabled
+   */
+  isDisabled?: boolean;
+  /**
+   * Function that returns the `aria-valuetext` for screen readers
+   */
+  getAriaValueText?: (value: number) => string;
+  /**
+   * The static string to use used for `aria-valuetext`
+   */
+  "aria-valuetext"?: string;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
 
-export function useSlider(props: any) {
+export function useSlider(props: SliderHookProps) {
   const {
-    min,
-    max,
+    min = 0,
+    max = 100,
     onChange,
     value: valueProp,
     defaultValue,
@@ -114,6 +96,8 @@ export function useSlider(props: any) {
     onChangeStart,
     onChangeEnd,
     step,
+    getAriaValueText,
+    "aria-valuetext": ariaValueText,
   } = props;
 
   const [isPointerDown, setIsPointerDown] = React.useState(false);
@@ -124,11 +108,14 @@ export function useSlider(props: any) {
     return isReversed ? max : min;
   });
 
-  const [isControlled, _value] = useControllableProp(valueProp, valueState);
+  const [isControlled, derivedValue] = useControllableProp(
+    valueProp,
+    valueState,
+  );
 
   // Constrain the value because it can't be less than min
   // or greater than max
-  const value = constrainValue(_value, min, max);
+  const value = constrainValue(derivedValue, min, max);
 
   const reversedValue = max - value + min;
   const trackValue = isReversed ? reversedValue : value;
@@ -136,12 +123,12 @@ export function useSlider(props: any) {
 
   // A single place to update state for controlled/uncontrolled scenarios
   const updateValue = React.useCallback(
-    newValue => {
+    nextValue => {
       if (!isControlled) {
-        setValue(newValue);
+        setValue(nextValue);
       }
       if (onChange) {
-        onChange(newValue);
+        onChange(nextValue);
       }
     },
     [isControlled, onChange],
@@ -155,6 +142,37 @@ export function useSlider(props: any) {
 
   const uuid = useId();
   const id = idProp || uuid;
+  const thumbId = `slider-thumb-${id}`;
+  const trackId = `slider-track-${id}`;
+
+  const getValueFromPointer = React.useCallback(
+    (event: React.PointerEvent) => {
+      if (trackRef.current) {
+        const trackRect = trackRef.current.getBoundingClientRect();
+        const { clientX, clientY } = event;
+        const diff = isVertical
+          ? trackRect.bottom - clientY
+          : clientX - trackRect.left;
+
+        const length = isVertical ? trackRect.height : trackRect.width;
+        let percent = diff / length;
+
+        if (isReversed) {
+          percent = 1 - percent;
+        }
+
+        let nextValue = percentToValue(percent, min, max);
+
+        if (step) {
+          nextValue = +roundValueToStep(nextValue, step);
+        }
+
+        nextValue = constrainValue(nextValue, min, max);
+        return nextValue;
+      }
+    },
+    [isVertical, isReversed, max, min, step],
+  );
 
   const onPointerDown = React.useCallback(
     (event: React.PointerEvent) => {
@@ -199,62 +217,23 @@ export function useSlider(props: any) {
     [onChangeEnd, value],
   );
 
-  // throttle the pointer move function
-  const log = throttle(100, (event?: any) => {
-    // setIsHovering(true)
-    const nextValue = getValueFromPointer(event);
-    console.log(nextValue);
-  });
-
-  const onPointerLeave = () => {
-    // setIsHovering(false)
-  };
-
-  const onPointerMove = (event: React.PointerEvent) => {
-    event.persist();
-    log(event);
-    if (isPointerDown) {
-      const nextValue = getValueFromPointer(event);
-      if (nextValue !== value) {
-        updateValue(nextValue);
-      }
-    }
-  };
-
-  const getValueFromPointer = React.useCallback(
+  const onPointerMove = React.useCallback(
     (event: React.PointerEvent) => {
-      if (trackRef.current) {
-        const trackRect = trackRef.current.getBoundingClientRect();
-        const { clientX, clientY } = event;
-        const diff = isVertical
-          ? trackRect.bottom - clientY
-          : clientX - trackRect.left;
-
-        const length = isVertical ? trackRect.height : trackRect.width;
-        let percent = diff / length;
-
-        if (isReversed) {
-          percent = 1 - percent;
+      if (isPointerDown) {
+        const nextValue = getValueFromPointer(event);
+        if (nextValue !== value) {
+          updateValue(nextValue);
         }
-
-        let nextValue = percentToValue(percent, min, max);
-
-        if (step) {
-          nextValue = +roundValueToStep(nextValue, step);
-        }
-
-        nextValue = constrainValue(nextValue, min, max);
-        return nextValue;
       }
     },
-    [isVertical, isReversed, max, min, step],
+    [isPointerDown, updateValue, getValueFromPointer, value],
   );
 
   // Callback invoked When focus is on the thumb and you use the arrow keys,
   const tenSteps = (max - min) / 10;
   const keyStep = step || (max - min) / 100;
 
-  const constrainAndUpdate = React.useCallback(
+  const constrain = React.useCallback(
     (value: number) => {
       let nextValue = value;
       nextValue = +roundValueToStep(nextValue, keyStep);
@@ -264,20 +243,17 @@ export function useSlider(props: any) {
     [keyStep, max, min, updateValue],
   );
 
-  // Just a short-hand for `constrainAndUpdate`
-  const cAU = constrainAndUpdate;
-
   const onKeyDown = createOnKeyDown({
     stopPropagation: true,
     keyMap: {
-      ArrowRight: () => cAU(value + keyStep),
-      ArrowUp: () => cAU(value + keyStep),
-      ArrowLeft: () => cAU(value - keyStep),
-      ArrowDown: () => cAU(value - keyStep),
-      PageUp: () => cAU(value + tenSteps),
-      PageDown: () => cAU(value - tenSteps),
-      Home: () => cAU(props.min),
-      End: () => cAU(props.max),
+      ArrowRight: () => constrain(value + keyStep),
+      ArrowUp: () => constrain(value + keyStep),
+      ArrowLeft: () => constrain(value - keyStep),
+      ArrowDown: () => constrain(value - keyStep),
+      PageUp: () => constrain(value + tenSteps),
+      PageDown: () => constrain(value - tenSteps),
+      Home: () => constrain(min),
+      End: () => constrain(max),
     },
   });
 
@@ -287,73 +263,155 @@ export function useSlider(props: any) {
    *
    * @see https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-valuetext_attribute
    */
-  const valueText = props.getAriaValueText
-    ? props.getAriaValueText(value)
-    : props["aria-valuetext"];
+  const valueText = getAriaValueText ? getAriaValueText(value) : ariaValueText;
 
   const onFocus = React.useCallback(() => setIsFocused(true), []);
   const onBlur = React.useCallback(() => setIsFocused(false), []);
 
-  const thumbStyle: React.CSSProperties = {
+  const thumbStyle = {
     position: "absolute",
     ...(isVertical
       ? { bottom: `calc(${trackPercent}%)` }
       : { left: `calc(${trackPercent}%)` }),
   };
-  const thumbId = `slider-thumb-${id}`;
 
-  const trackStyle: React.CSSProperties = {
+  const trackStyle = {
     position: "relative",
     touchAction: "none",
   };
 
-  const trackId = `slider-track-${id}`;
-
   // Support for Native slider methods
-  const stepUp = React.useCallback(() => cAU(value + keyStep), [
-    cAU,
+  const stepUp = React.useCallback(() => constrain(value + keyStep), [
+    constrain,
     keyStep,
     value,
   ]);
-  const stepDown = React.useCallback(() => cAU(value - keyStep), [
-    cAU,
+  const stepDown = React.useCallback(() => constrain(value - keyStep), [
+    constrain,
     keyStep,
     value,
   ]);
-  const reset = React.useCallback(() => cAU(props.defaultValue), [
-    cAU,
-    props.defaultValue,
+  const reset = React.useCallback(() => constrain(defaultValue || 0), [
+    constrain,
+    defaultValue,
   ]);
-  const stepTo = React.useCallback((value: number) => cAU(value), [cAU]);
+  const stepTo = React.useCallback((value: number) => constrain(value), [
+    constrain,
+  ]);
 
-  // Return all the goods :)
   return {
+    min,
+    max,
+    isVertical,
+    isDisabled,
+    orientation,
     trackPercent,
     value,
     valueText,
-    isPointerDown,
     isFocused,
-    methods: {
-      stepUp,
-      stepDown,
-      stepTo,
-      reset,
-    },
-    track: {
-      ref: trackRef as any,
-      onPointerDown,
-      onPointerUp,
-      onPointerMove,
-      id: trackId,
-      style: trackStyle,
-    },
-    thumb: {
-      ref: thumbRef as any,
-      onKeyDown,
-      onFocus,
-      onBlur,
-      id: thumbId,
-      style: thumbStyle,
-    },
+    isPointerDown,
+    thumbRef,
+    thumbId,
+    thumbStyle,
+    onKeyDown,
+    onFocus,
+    onBlur,
+    trackId,
+    trackRef,
+    trackStyle,
+    onPointerDown,
+    onPointerUp,
+    onPointerMove,
+    stepUp,
+    stepDown,
+    stepTo,
+    reset,
+  };
+}
+
+type SliderHookReturn = ReturnType<typeof useSlider>;
+
+export type SliderTrackHookProps = {
+  onPointerDown: React.PointerEventHandler;
+  onPointerUp: React.PointerEventHandler;
+  onPointerMove: React.PointerEventHandler;
+};
+
+export function useSliderTrack(props: SliderTrackHookProps) {
+  const {
+    trackRef,
+    trackStyle,
+    onPointerDown,
+    onPointerUp,
+    onPointerMove,
+    trackId,
+  } = useSliderContext();
+
+  return {
+    ...props,
+    ref: trackRef,
+    onPointerDown: composeEventHandlers(props.onPointerDown, onPointerDown),
+    onPointerUp: composeEventHandlers(props.onPointerUp, onPointerUp),
+    onPointerMove: composeEventHandlers(props.onPointerMove, onPointerMove),
+    id: trackId,
+    style: trackStyle,
+  };
+}
+
+type SliderThumbHookProps = {
+  onKeyDown: React.KeyboardEventHandler;
+};
+
+export function useSliderThumb(props: SliderThumbHookProps) {
+  const {
+    thumbRef,
+    isDisabled,
+    value,
+    valueText,
+    min,
+    max,
+    onKeyDown,
+    orientation,
+  } = useSliderContext();
+
+  return {
+    ...props,
+    ref: thumbRef,
+    "aria-disabled": isDisabled ? undefined : 0,
+    "data-chakra-slider-thumb": "",
+    role: "slider",
+    "aria-valuetext": valueText,
+    "aria-valuemin": min,
+    "aria-valuemax": max,
+    "aria-valuenow": value,
+    "aria-orientation": orientation,
+    onKeyDown: composeEventHandlers(props.onKeyDown, onKeyDown),
+  };
+}
+
+type SliderMarkerHookProps = {
+  style?: React.CSSProperties;
+  value: number;
+};
+
+export function useSliderMarker(props: SliderMarkerHookProps) {
+  const { min, max, isVertical, value } = useSliderContext();
+
+  const isInRange = !(props.value < min || props.value > max);
+  const isHighlighted = value >= props.value;
+  const markerPercent = valueToPercent(props.value, min, max);
+
+  const markerStyle = {
+    position: "absolute",
+    ...(isVertical
+      ? { bottom: `${markerPercent}%` }
+      : { left: `${markerPercent}%` }),
+  };
+
+  return {
+    ...props,
+    "data-invalid": !isInRange || undefined,
+    style: { ...props.style, ...markerStyle },
+    "data-highlighted": isHighlighted || undefined,
   };
 }
