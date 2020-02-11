@@ -53,15 +53,15 @@ interface SliderHookProps {
   /**
    * function gets called whenever the user starts dragging the slider handle
    */
-  onChangeStart?: (value?: number) => void;
+  onChangeStart?: (value: number) => void;
   /**
    * function gets called whenever the user stops dragging the slider handle.
    */
-  onChangeEnd?: (value?: number) => void;
+  onChangeEnd?: (value: number) => void;
   /**
    * function gets called whenever the slider handle is being dragged or clicked
    */
-  onChange?: (value?: number) => void;
+  onChange?: (value: number) => void;
   /**
    * The base id to use for the slider and it's components
    */
