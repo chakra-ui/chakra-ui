@@ -61,7 +61,7 @@ interface IEditable {
   children: React.ReactNode;
 }
 
-export type EditableProps = IEditable & Omit<BoxProps, "onChange">;
+export type EditableProps = IEditable & Omit<BoxProps, "onChange" | "onSubmit">;
 
 export const EditablePreview: React.FC<PseudoBoxProps>;
 
