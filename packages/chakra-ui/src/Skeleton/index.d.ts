@@ -14,6 +14,6 @@ export interface ISkeleton {
 
 export type SkeletonProps = ISkeleton & BoxProps;
 
-declare const Badge: React.FC<SkeletonProps>;
+declare const Skeleton: React.FC<SkeletonProps>;
 
-export default Badge;
+export default Skeleton;
