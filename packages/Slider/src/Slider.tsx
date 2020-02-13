@@ -5,7 +5,6 @@ import {
   useSliderTrack,
   useSliderContext,
   SliderProvider,
-  useSliderLabel,
   SliderHookProps,
   useSliderRoot,
   useSliderMarker,
@@ -21,11 +20,6 @@ export function BaseSliderThumb(props: PropsOf<"div">) {
 export function BaseSliderTrack(props: any) {
   const trackProps = useSliderTrack(props);
   return <div data-chakra-slider-track="" {...trackProps} />;
-}
-
-export function BaseSliderLabel(props: any) {
-  const labelProps = useSliderLabel(props);
-  return <label data-chakra-slider-label="" {...labelProps} />;
 }
 
 function BaseSliderRoot(props: any) {

@@ -324,6 +324,11 @@ export function useSlider(props: SliderHookProps) {
       : { width: `${trackPercent}%`, left: 0 }),
   };
 
+  const labelStyle: React.CSSProperties = {
+    display: "block",
+    marginTop: thumbRect.height * -2,
+  };
+
   // Support for Native slider methods
   const stepUp = React.useCallback(() => constrain(value + keyStep), [
     constrain,
@@ -360,6 +365,7 @@ export function useSlider(props: SliderHookProps) {
     thumbRef,
     thumbId,
     thumbStyle,
+    labelStyle,
     onKeyDown,
     onFocus,
     onBlur,
@@ -499,20 +505,5 @@ export function useSliderMarker(props: SliderMarkerHookProps) {
     "data-invalid": attr(!isInRange),
     "data-highlighted": attr(isHighlighted),
     style: { ...props.style, ...markerStyle },
-  };
-}
-
-export function useSliderLabel(props: any) {
-  const { thumbRef, labelId, isDisabled } = useSliderContext();
-
-  const onClick = React.useCallback(() => {
-    thumbRef.current?.focus();
-  }, [thumbRef]);
-
-  return {
-    ...props,
-    "data-disabled": attr(isDisabled),
-    id: labelId,
-    onClick,
   };
 }
