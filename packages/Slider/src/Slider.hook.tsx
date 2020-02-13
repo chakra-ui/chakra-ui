@@ -7,17 +7,16 @@ import {
   percentToValue,
   roundValueToStep,
   valueToPercent,
+  getBox,
 } from "@chakra-ui/utils";
 import * as React from "react";
 
-const [SliderContextProvider, useSliderContext] = createContext<
-  SliderHookReturn
->();
-export { SliderContextProvider };
+const [SliderProvider, useSliderContext] = createContext<SliderHookReturn>();
+export { SliderProvider };
 
 // http://muffinman.io/aria-progress-range-slider/
 
-interface SliderHookProps {
+export interface SliderHookProps {
   /**
    * The minimum allowed value of the slider. Cannot be greater than max.
    * @default 0
@@ -66,6 +65,7 @@ interface SliderHookProps {
    * The base id to use for the slider and it's components
    */
   id?: string;
+  name?: string;
   /**
    * If `true`, the slider will be disabled
    */
@@ -78,6 +78,7 @@ interface SliderHookProps {
    * The static string to use used for `aria-valuetext`
    */
   "aria-valuetext"?: string;
+  thumbAlignment?: "center" | "contain";
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -98,6 +99,8 @@ export function useSlider(props: SliderHookProps) {
     step,
     getAriaValueText,
     "aria-valuetext": ariaValueText,
+    name,
+    thumbAlignment = "center",
   } = props;
 
   const [isPointerDown, setIsPointerDown] = React.useState(false);
@@ -137,18 +140,19 @@ export function useSlider(props: SliderHookProps) {
   const isVertical = orientation === "vertical";
 
   // Let's keep a reference to the slider track and thumb
-  const trackRef = React.useRef<HTMLElement>();
-  const thumbRef = React.useRef<HTMLElement>();
+  const trackRef = React.useRef<any>();
+  const thumbRef = React.useRef<any>();
 
   const uuid = useId();
   const id = idProp || uuid;
   const thumbId = `slider-thumb-${id}`;
   const trackId = `slider-track-${id}`;
+  const labelId = `slider-label-${id}`;
 
   const getValueFromPointer = React.useCallback(
     (event: React.PointerEvent) => {
       if (trackRef.current) {
-        const trackRect = trackRef.current.getBoundingClientRect();
+        const trackRect = getBox(trackRef.current).borderBox;
         const { clientX, clientY } = event;
         const diff = isVertical
           ? trackRect.bottom - clientY
@@ -260,22 +264,28 @@ export function useSlider(props: SliderHookProps) {
   /**
    * ARIA (Optional): To define a human readable representation of the value,
    * we allow users pass aria-valuetext.
-   *
-   * @see https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-valuetext_attribute
    */
   const valueText = getAriaValueText ? getAriaValueText(value) : ariaValueText;
 
   const onFocus = React.useCallback(() => setIsFocused(true), []);
   const onBlur = React.useCallback(() => setIsFocused(false), []);
 
-  const thumbStyle = {
+  const { borderBox: thumbRect } = thumbRef.current
+    ? getBox(thumbRef.current)
+    : { borderBox: { width: 0, height: 0 } };
+
+  const thumbAlignmentStyle: React.CSSProperties = isVertical
+    ? { bottom: `calc(${trackPercent}% - ${thumbRect.height / 2}px)` }
+    : { left: `calc(${trackPercent}% - ${thumbRect.width / 2}px)` };
+
+  const thumbStyle: React.CSSProperties = {
     position: "absolute",
-    ...(isVertical
-      ? { bottom: `calc(${trackPercent}%)` }
-      : { left: `calc(${trackPercent}%)` }),
+    userSelect: "none",
+    touchAction: "none",
+    ...thumbAlignmentStyle,
   };
 
-  const trackStyle = {
+  const trackStyle: React.CSSProperties = {
     position: "relative",
     touchAction: "none",
   };
@@ -300,6 +310,8 @@ export function useSlider(props: SliderHookProps) {
   ]);
 
   return {
+    id,
+    name,
     min,
     max,
     isVertical,
@@ -310,6 +322,7 @@ export function useSlider(props: SliderHookProps) {
     valueText,
     isFocused,
     isPointerDown,
+    labelId,
     thumbRef,
     thumbId,
     thumbStyle,
@@ -329,12 +342,13 @@ export function useSlider(props: SliderHookProps) {
   };
 }
 
-type SliderHookReturn = ReturnType<typeof useSlider>;
+export type SliderHookReturn = ReturnType<typeof useSlider>;
 
 export type SliderTrackHookProps = {
-  onPointerDown: React.PointerEventHandler;
-  onPointerUp: React.PointerEventHandler;
-  onPointerMove: React.PointerEventHandler;
+  onPointerDown?: React.PointerEventHandler;
+  onPointerUp?: React.PointerEventHandler;
+  onPointerMove?: React.PointerEventHandler;
+  style?: React.CSSProperties;
 };
 
 export function useSliderTrack(props: SliderTrackHookProps) {
@@ -345,6 +359,7 @@ export function useSliderTrack(props: SliderTrackHookProps) {
     onPointerUp,
     onPointerMove,
     trackId,
+    isDisabled,
   } = useSliderContext();
 
   return {
@@ -354,12 +369,14 @@ export function useSliderTrack(props: SliderTrackHookProps) {
     onPointerUp: composeEventHandlers(props.onPointerUp, onPointerUp),
     onPointerMove: composeEventHandlers(props.onPointerMove, onPointerMove),
     id: trackId,
-    style: trackStyle,
+    "data-disabled": isDisabled || undefined,
+    style: { ...props.style, ...trackStyle },
   };
 }
 
-type SliderThumbHookProps = {
-  onKeyDown: React.KeyboardEventHandler;
+export type SliderThumbHookProps = {
+  onKeyDown?: React.KeyboardEventHandler;
+  style?: React.CSSProperties;
 };
 
 export function useSliderThumb(props: SliderThumbHookProps) {
@@ -370,14 +387,19 @@ export function useSliderThumb(props: SliderThumbHookProps) {
     valueText,
     min,
     max,
+    labelId,
     onKeyDown,
     orientation,
+    thumbStyle,
   } = useSliderContext();
 
   return {
     ...props,
     ref: thumbRef,
-    "aria-disabled": isDisabled ? undefined : 0,
+    style: { ...props.style, ...thumbStyle },
+    tabIndex: 0,
+    "aria-disabled": isDisabled || undefined,
+    "aria-labelledby": labelId,
     "data-chakra-slider-thumb": "",
     role: "slider",
     "aria-valuetext": valueText,
@@ -389,13 +411,13 @@ export function useSliderThumb(props: SliderThumbHookProps) {
   };
 }
 
-type SliderMarkerHookProps = {
+export type SliderMarkerHookProps = {
   style?: React.CSSProperties;
   value: number;
 };
 
 export function useSliderMarker(props: SliderMarkerHookProps) {
-  const { min, max, isVertical, value } = useSliderContext();
+  const { min, max, isVertical, value, isDisabled } = useSliderContext();
 
   const isInRange = !(props.value < min || props.value > max);
   const isHighlighted = value >= props.value;
@@ -410,8 +432,26 @@ export function useSliderMarker(props: SliderMarkerHookProps) {
 
   return {
     ...props,
+    "aria-hidden": true,
+    "data-disabled": isDisabled || undefined,
+    role: "presentation",
     "data-invalid": !isInRange || undefined,
     style: { ...props.style, ...markerStyle },
     "data-highlighted": isHighlighted || undefined,
+  };
+}
+
+export function useSliderLabel(props: any) {
+  const { thumbRef, labelId, isDisabled } = useSliderContext();
+
+  const onClick = React.useCallback(() => {
+    thumbRef.current?.focus();
+  }, [thumbRef]);
+
+  return {
+    ...props,
+    "data-disabled": isDisabled || undefined,
+    id: labelId,
+    onClick,
   };
 }
