@@ -1,6 +1,6 @@
-import { useControllableProp, useId } from "@chakra-ui/hooks";
+import { useControllableProp, useId, useDimensions } from "@chakra-ui/hooks";
 import {
-  composeEventHandlers,
+  composeEventHandlers as compose,
   constrainValue,
   createContext,
   createOnKeyDown,
@@ -8,11 +8,13 @@ import {
   roundValueToStep,
   valueToPercent,
   getBox,
+  makeDataAttr as attr,
 } from "@chakra-ui/utils";
 import * as React from "react";
 
 const [SliderProvider, useSliderContext] = createContext<SliderHookReturn>();
-export { SliderProvider };
+
+export { SliderProvider, useSliderContext };
 
 // http://muffinman.io/aria-progress-range-slider/
 
@@ -96,11 +98,11 @@ export function useSlider(props: SliderHookProps) {
     isDisabled,
     onChangeStart,
     onChangeEnd,
-    step,
+    step = 1,
     getAriaValueText,
     "aria-valuetext": ariaValueText,
     name,
-    thumbAlignment = "center",
+    ...htmlProps
   } = props;
 
   const [isPointerDown, setIsPointerDown] = React.useState(false);
@@ -270,9 +272,8 @@ export function useSlider(props: SliderHookProps) {
   const onFocus = React.useCallback(() => setIsFocused(true), []);
   const onBlur = React.useCallback(() => setIsFocused(false), []);
 
-  const { borderBox: thumbRect } = thumbRef.current
-    ? getBox(thumbRef.current)
-    : { borderBox: { width: 0, height: 0 } };
+  const boxModel = useDimensions(thumbRef);
+  const thumbRect = boxModel?.borderBox ?? { width: 0, height: 0 };
 
   const thumbAlignmentStyle: React.CSSProperties = isVertical
     ? { bottom: `calc(${trackPercent}% - ${thumbRect.height / 2}px)` }
@@ -285,9 +286,42 @@ export function useSlider(props: SliderHookProps) {
     ...thumbAlignmentStyle,
   };
 
-  const trackStyle: React.CSSProperties = {
+  const rootStyle: React.CSSProperties = {
     position: "relative",
     touchAction: "none",
+    WebkitTapHighlightColor: "rgba(0,0,0,0)",
+    userSelect: "none",
+    ...(isVertical
+      ? {
+          paddingLeft: thumbRect.width,
+          paddingRight: thumbRect.width,
+        }
+      : {
+          paddingTop: thumbRect.height,
+          paddingBottom: thumbRect.height,
+        }),
+  };
+
+  const trackStyle: React.CSSProperties = {
+    position: "absolute",
+    ...(isVertical
+      ? {
+          left: "50%",
+          transform: "translateX(-50%)",
+          height: "100%",
+        }
+      : {
+          top: "50%",
+          transform: "translateY(-50%)",
+          width: "100%",
+        }),
+  };
+
+  const innerTrackStyle: React.CSSProperties = {
+    ...trackStyle,
+    ...(isVertical
+      ? { height: `${trackPercent}%`, bottom: 0 }
+      : { width: `${trackPercent}%`, left: 0 }),
   };
 
   // Support for Native slider methods
@@ -331,7 +365,9 @@ export function useSlider(props: SliderHookProps) {
     onBlur,
     trackId,
     trackRef,
+    rootStyle,
     trackStyle,
+    innerTrackStyle,
     onPointerDown,
     onPointerUp,
     onPointerMove,
@@ -339,38 +375,64 @@ export function useSlider(props: SliderHookProps) {
     stepDown,
     stepTo,
     reset,
+    // quick hack to get the remaining props
+    htmlProps,
   };
 }
 
 export type SliderHookReturn = ReturnType<typeof useSlider>;
 
-export type SliderTrackHookProps = {
+export type SliderRootHookProps = {
   onPointerDown?: React.PointerEventHandler;
   onPointerUp?: React.PointerEventHandler;
   onPointerMove?: React.PointerEventHandler;
   style?: React.CSSProperties;
 };
 
-export function useSliderTrack(props: SliderTrackHookProps) {
+export function useSliderRoot(props: SliderRootHookProps) {
   const {
-    trackRef,
-    trackStyle,
     onPointerDown,
     onPointerUp,
     onPointerMove,
-    trackId,
     isDisabled,
+    rootStyle,
   } = useSliderContext();
+  return {
+    ...props,
+    tabIndex: -1,
+    "aria-disabled": isDisabled || undefined,
+    onPointerDown: compose(props.onPointerDown, onPointerDown),
+    onPointerUp: compose(props.onPointerUp, onPointerUp),
+    onPointerMove: compose(props.onPointerMove, onPointerMove),
+    style: { ...props.style, ...rootStyle },
+  };
+}
 
+export function useSliderTrack(props: any) {
+  const { trackRef, trackId, isDisabled, trackStyle } = useSliderContext();
   return {
     ...props,
     ref: trackRef,
-    onPointerDown: composeEventHandlers(props.onPointerDown, onPointerDown),
-    onPointerUp: composeEventHandlers(props.onPointerUp, onPointerUp),
-    onPointerMove: composeEventHandlers(props.onPointerMove, onPointerMove),
     id: trackId,
     "data-disabled": isDisabled || undefined,
     style: { ...props.style, ...trackStyle },
+  };
+}
+
+function generateDataAttrs(context: SliderHookReturn) {
+  return {
+    "data-focused": context.isFocused || undefined,
+    "data-dragging": context.isPointerDown || undefined,
+    "data-disabled": context.isDisabled || undefined,
+    "data-orientation": context.orientation,
+  };
+}
+
+export function useSliderInnerTrack(props: any) {
+  const { innerTrackStyle } = useSliderContext();
+  return {
+    ...props,
+    style: { ...props.style, ...innerTrackStyle },
   };
 }
 
@@ -396,18 +458,17 @@ export function useSliderThumb(props: SliderThumbHookProps) {
   return {
     ...props,
     ref: thumbRef,
-    style: { ...props.style, ...thumbStyle },
-    tabIndex: 0,
-    "aria-disabled": isDisabled || undefined,
-    "aria-labelledby": labelId,
-    "data-chakra-slider-thumb": "",
     role: "slider",
+    tabIndex: 0,
     "aria-valuetext": valueText,
     "aria-valuemin": min,
     "aria-valuemax": max,
     "aria-valuenow": value,
     "aria-orientation": orientation,
-    onKeyDown: composeEventHandlers(props.onKeyDown, onKeyDown),
+    "aria-disabled": isDisabled || undefined,
+    "aria-labelledby": labelId,
+    style: { ...props.style, ...thumbStyle },
+    onKeyDown: compose(props.onKeyDown, onKeyDown),
   };
 }
 
@@ -423,7 +484,7 @@ export function useSliderMarker(props: SliderMarkerHookProps) {
   const isHighlighted = value >= props.value;
   const markerPercent = valueToPercent(props.value, min, max);
 
-  const markerStyle = {
+  const markerStyle: React.CSSProperties = {
     position: "absolute",
     ...(isVertical
       ? { bottom: `${markerPercent}%` }
@@ -432,12 +493,12 @@ export function useSliderMarker(props: SliderMarkerHookProps) {
 
   return {
     ...props,
-    "aria-hidden": true,
-    "data-disabled": isDisabled || undefined,
     role: "presentation",
-    "data-invalid": !isInRange || undefined,
+    "aria-hidden": true,
+    "data-disabled": attr(isDisabled),
+    "data-invalid": attr(!isInRange),
+    "data-highlighted": attr(isHighlighted),
     style: { ...props.style, ...markerStyle },
-    "data-highlighted": isHighlighted || undefined,
   };
 }
 
@@ -450,7 +511,7 @@ export function useSliderLabel(props: any) {
 
   return {
     ...props,
-    "data-disabled": isDisabled || undefined,
+    "data-disabled": attr(isDisabled),
     id: labelId,
     onClick,
   };

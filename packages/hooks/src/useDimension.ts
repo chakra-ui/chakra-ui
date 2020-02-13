@@ -1,5 +1,6 @@
 import * as React from "react";
 import { getBox, BoxModel } from "@chakra-ui/utils";
+import useIsomorphicEffect from "./useIsomorphicEffect";
 
 export function useDimensions(
   ref: React.RefObject<HTMLElement>,
@@ -7,13 +8,18 @@ export function useDimensions(
 ) {
   const [dimensions, setDimensions] = React.useState<BoxModel | null>(null);
 
-  React.useLayoutEffect(() => {
+  useIsomorphicEffect(() => {
     if (!ref.current) return;
 
     const node = ref.current;
 
-    const measure = () =>
-      requestAnimationFrame(() => setDimensions(getBox(node)));
+    function measure() {
+      requestAnimationFrame(() => {
+        const boxModel = getBox(node);
+        setDimensions(boxModel);
+      });
+    }
+
     measure();
 
     if (observe) {

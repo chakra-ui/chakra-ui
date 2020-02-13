@@ -21,3 +21,4 @@ export * from "./useHasMounted";
 export * from "./useBoolean";
 export * from "./useForceUpdate";
 export * from "./useConst";
+export * from "./useDimension";

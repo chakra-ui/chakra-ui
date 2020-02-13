@@ -1,11 +1,5 @@
 import { StyleFunctionProps, getModeColor } from "./utils";
 
-type SliderStyleProp = StyleFunctionProps & {
-  trackPercent?: number;
-  thumbSize?: number;
-  trackHeight?: number;
-};
-
 const centeredProps = {
   position: "absolute",
   top: "50%",
@@ -31,7 +25,7 @@ const Slider = {
       FilledTrack: { height: "2px" },
     },
   },
-  baseStyle: (props: SliderStyleProp) => ({
+  baseStyle: (props: StyleFunctionProps) => ({
     Root: {
       width: "full",
       display: "inline-block",
@@ -45,7 +39,6 @@ const Slider = {
     },
     Track: {
       ...centeredProps,
-      height: props.trackHeight,
       borderRadius: "sm",
       width: "100%",
       bg: getModeColor(props, "gray.200", "whiteAlpha.200"),
@@ -56,11 +49,9 @@ const Slider = {
     Thumb: {
       ...centeredProps,
       zIndex: 1,
-      size: props.thumbSize,
       rounded: "full",
       bg: "#fff",
       boxShadow: "sm",
-      left: `calc(${props.trackPercent}% - ${props.thumbSize} / 2)`,
       border: "1px",
       borderColor: "transparent",
       transition: "transform 0.2s",
@@ -76,13 +67,11 @@ const Slider = {
     },
     FilledTrack: {
       ...centeredProps,
-      height: props.trackHeight,
       bg: getModeColor(
         props,
         `${props.variantColor}.500`,
         `${props.variantColor}.200`,
       ),
-      width: `${props.trackPercent}%`,
       rounded: "sm",
     },
   }),

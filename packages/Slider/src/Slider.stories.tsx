@@ -1,13 +1,13 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import {
-  useSlider,
-  useSliderThumb,
-  useSliderTrack,
-  SliderProvider,
-  useSliderLabel,
-  SliderHookProps,
-} from "./Slider.hook";
+  BaseSlider,
+  BaseSliderLabel,
+  BaseSliderTrack,
+  BaseSliderThumb,
+  BaseSliderMark,
+  BaseSliderFilledTrack,
+} from "./Slider";
 import { chakra } from "@chakra-ui/system";
 
 const stories = storiesOf("Slider", module);
@@ -18,143 +18,69 @@ stories.addDecorator(story => (
   </chakra.div>
 ));
 
-function SliderThumb(props: any) {
-  const thumbProps = useSliderThumb(props);
-  return <div data-chakra-slider-thumb="" {...thumbProps} />;
-}
-
-function SliderTrack(props: any) {
-  const trackProps = useSliderTrack(props);
-  return <div data-chakra-slider-track="" {...trackProps} />;
-}
-
-function SliderLabel(props: any) {
-  const labelProps = useSliderLabel(props);
-  return <label data-chakra-slider-label="" {...labelProps} />;
-}
-
-function Slider(props: SliderHookProps & { children?: React.ReactNode }) {
-  const slider = useSlider(props);
-  return (
-    <SliderProvider value={slider}>
-      <div
-        data-chakra-slider=""
-        aria-disabled={slider.isDisabled || undefined}
-        style={{ position: "relative" }}
-      >
-        {props.children}
-        <input type="hidden" value={slider.value} id={slider.id} />
-      </div>
-    </SliderProvider>
-  );
-}
-
 function HorizontalSlider() {
   return (
-    <Slider defaultValue={40} step={5}>
-      <SliderLabel>Select the value: </SliderLabel>
-      <br /> <br />
-      <SliderTrack
+    <BaseSlider defaultValue={40} style={{ height: 4 }}>
+      <BaseSliderTrack
         style={{
-          height: 4,
-          width: "100%",
+          height: "inherit",
           background: "#e2e2e2",
           borderRadius: 4,
         }}
-      >
-        <SliderThumb
-          style={{
-            width: 24,
-            height: 24,
-            borderRadius: 4,
-            background: "white",
-            boxShadow: "rgba(0, 0, 0, 0.12) 0px 1px 4px",
-            transform: "translateY(-50%)",
-            top: "50%",
-          }}
-        />
-      </SliderTrack>
-    </Slider>
+      />
+      <BaseSliderFilledTrack
+        style={{ background: "tomato", height: "inherit" }}
+      />
+      <BaseSliderThumb
+        style={{
+          width: 16,
+          height: 16,
+          borderRadius: 4,
+          background: "white",
+          boxShadow: "rgba(0, 0, 0, 0.12) 0px 1px 4px",
+          transform: "translateY(-50%)",
+          top: "50%",
+        }}
+      />
+      <BaseSliderMark
+        value={90}
+        children="90%"
+        style={{ top: 40, pointerEvents: "none" }}
+      />
+    </BaseSlider>
   );
 }
 
-// export function VerticalSlider() {
-//   const slider = useSlider({
-//     defaultValue: 40,
-//     orientation: "vertical",
-//     isReversed: false,
-//     max: 100,
-//     min: 10,
-//     step: 1,
-//   });
-
-//   useLogger("Slider", slider);
-
-//   return (
-//     <>
-//       <div
-//         {...slider.track}
-//         style={{
-//           ...slider.track.style,
-//           height: 400,
-//           width: 50,
-//           background: "red",
-//           // maxWidth: 400,
-//         }}
-//       >
-//         <div
-//           tabIndex={0}
-//           {...slider.thumb}
-//           style={{
-//             ...slider.thumb.style,
-//             width: "100%",
-//             height: 20,
-//             background: "pink",
-//           }}
-//         />
-//       </div>
-//     </>
-//   );
-// }
-
-// export function HorizontalSlider() {
-//   const slider = useSlider({
-//     defaultValue: 40,
-//     orientation: "horizontal",
-//     isReversed: false,
-//     max: 100,
-//     min: 10,
-//     step: 1,
-//   });
-
-//   useLogger("Slider", slider);
-
-//   return (
-//     <>
-//       <div
-//         {...slider.track}
-//         style={{
-//           ...slider.track.style,
-//           height: 50,
-//           width: 400,
-//           background: "blue",
-//           // maxWidth: 400,
-//         }}
-//       >
-//         <div
-//           tabIndex={0}
-//           {...slider.thumb}
-//           style={{
-//             ...slider.thumb.style,
-//             width: 20,
-//             height: "100%",
-//             background: "pink",
-//           }}
-//         />
-//       </div>
-//     </>
-//   );
-// }
+function VerticalSlider() {
+  return (
+    <BaseSlider
+      orientation="vertical"
+      defaultValue={40}
+      style={{ width: 4, height: 400 }}
+    >
+      <BaseSliderTrack style={{ width: "inherit", background: "#e2e2e2" }} />
+      <BaseSliderFilledTrack
+        style={{ background: "tomato", width: "inherit" }}
+      />
+      <BaseSliderThumb
+        style={{
+          width: 16,
+          height: 16,
+          borderRadius: 4,
+          background: "white",
+          boxShadow: "rgba(0, 0, 0, 0.12) 0px 1px 4px",
+          transform: "translateX(-50%)",
+          left: "50%",
+        }}
+      />
+      <BaseSliderMark
+        value={90}
+        children="90%"
+        style={{ left: 40, pointerEvents: "none" }}
+      />
+    </BaseSlider>
+  );
+}
 
 stories.add("horizontal", () => <HorizontalSlider />);
-// stories.add("Horizontal Slider", () => <HorizontalSlider />);
+stories.add("vertical", () => <VerticalSlider />);
