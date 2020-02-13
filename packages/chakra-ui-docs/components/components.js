@@ -38,6 +38,7 @@ const components = [
   "Radio",
   "SimpleGrid",
   "Select",
+  "Skeleton",
   "Slider",
   "Spinner",
   "Stat",

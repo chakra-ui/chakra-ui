@@ -1,0 +1,45 @@
+import SEO from "../components/SEO";
+
+<SEO
+  title="Skeleton"
+  description="Skeleton is used to display the loading state of some component"
+/>
+
+# Skeleton
+
+Skeleton is used to display the loading state of some component.
+
+## Import
+
+```js
+import { Skeleton } from "@chakra-ui/core";
+```
+
+## Usage
+
+You can use it as a standalone component
+
+```jsx
+<div>
+  <Skeleton height="20px" my="10px" />
+  <Skeleton height="20px" my="10px" />
+  <Skeleton height="20px" my="10px" />
+</div>
+```
+
+Or to wrap another component to take the same height and width
+
+```jsx
+<Skeleton>
+  <div>contents wrapped</div>
+  <div>won't be visible</div>
+</Skeleton>
+```
+
+### Skeleton color
+
+You can change the animation color with `colorStart` and `colorEnd`.
+
+```jsx
+<Skeleton colorStart="pink" colorEnd="orange" height="20px" />
+```
