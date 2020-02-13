@@ -160,6 +160,7 @@ const baseProps = {
   position: "relative",
   transition: "all 0.2s",
   outline: "none",
+  appearance: "none",
 };
 
 export const inputSizes = {
