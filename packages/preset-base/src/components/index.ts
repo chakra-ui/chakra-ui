@@ -14,6 +14,7 @@ import Input from "./Input";
 import Tooltip from "./Tooltip";
 import CloseButton from "./CloseButton";
 import Slider from "./Slider";
+import NumberInput from "./NumberInput";
 
 export default {
   Button,
@@ -32,4 +33,5 @@ export default {
   Tooltip,
   CloseButton,
   Slider,
+  NumberInput,
 };

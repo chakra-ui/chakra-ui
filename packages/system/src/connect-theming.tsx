@@ -2,13 +2,13 @@ import * as React from "react";
 import { createContext } from "@chakra-ui/utils";
 import { getDisplayName } from "./createChakra/create-chakra.utils";
 
-interface ThemingProps {
+export interface ThemingProps {
   variantSize?: string;
   variant?: string;
   variantColor?: string;
 }
 
-function connect<PP>({
+export function connect<PP>({
   parent: Parent,
   children,
   applyToParent,

@@ -9,9 +9,31 @@ function useOSPreference(callback: (mode: ColorModeValue) => void) {
     const onChangePreference = (event: MediaQueryListEvent) => {
       callback(event.matches ? "dark" : "light");
     };
-    queryList.addEventListener("change", onChangePreference);
+
+    try {
+      // Chrome and Firefox
+      queryList.addEventListener("change", onChangePreference);
+    } catch (err) {
+      try {
+        // Safari
+        queryList.addListener(onChangePreference);
+      } catch (err) {
+        // no op
+      }
+    }
+
     return () => {
-      queryList.removeEventListener("change", onChangePreference);
+      try {
+        // Chrome and Firefox
+        queryList.removeEventListener("change", onChangePreference);
+      } catch (err) {
+        try {
+          // Safari
+          queryList.removeListener(onChangePreference);
+        } catch (err) {
+          // no op
+        }
+      }
     };
   }, [callback]);
 }

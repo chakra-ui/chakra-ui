@@ -2,7 +2,7 @@ import { configure, addDecorator } from "@storybook/react";
 import setup from "./story.setup";
 
 const req = require.context(
-  `../packages/system/src/`,
+  `../packages/NumberInput/src/`,
   true,
   /.stories\.(ts|tsx)$/,
 );

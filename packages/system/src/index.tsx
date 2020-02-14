@@ -7,3 +7,4 @@ export * from "./css";
 export { default as CSSReset } from "./css-reset";
 export * from "./color-mode";
 export * from "./forward-ref";
+export * from "./connect-theming";
