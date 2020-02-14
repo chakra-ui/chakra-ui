@@ -17,12 +17,12 @@ export function BaseSliderThumb(props: PropsOf<"div">) {
   return <div data-chakra-slider-thumb="" {...thumbProps} />;
 }
 
-export function BaseSliderTrack(props: any) {
+export function BaseSliderTrack(props: PropsOf<"div">) {
   const trackProps = useSliderTrack(props);
   return <div data-chakra-slider-track="" {...trackProps} />;
 }
 
-function BaseSliderRoot(props: any) {
+function BaseSliderRoot(props: PropsOf<"div">) {
   const slider = useSliderContext();
   const rootProps = useSliderRoot(props);
   return (

@@ -80,7 +80,6 @@ export interface SliderHookProps {
    * The static string to use used for `aria-valuetext`
    */
   "aria-valuetext"?: string;
-  thumbAlignment?: "center" | "contain";
 }
 
 /////////////////////////////////////////////////////////////////////////////////

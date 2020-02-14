@@ -13,6 +13,7 @@ import Radio from "./Radio";
 import Input from "./Input";
 import Tooltip from "./Tooltip";
 import CloseButton from "./CloseButton";
+import Slider from "./Slider";
 
 export default {
   Button,
@@ -30,4 +31,5 @@ export default {
   Input,
   Tooltip,
   CloseButton,
+  Slider,
 };

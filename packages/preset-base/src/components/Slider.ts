@@ -1,12 +1,6 @@
-import { StyleFunctionProps, getModeColor } from "./utils";
+import { getModeColor as get, ComponentTheme, ComponentStyle } from "./utils";
 
-const centeredProps = {
-  position: "absolute",
-  top: "50%",
-  transform: `translateY(-50%)`,
-};
-
-const Slider = {
+const Slider: ComponentTheme = {
   variantSize: {
     __default: "md",
     lg: {
@@ -25,7 +19,7 @@ const Slider = {
       FilledTrack: { height: "2px" },
     },
   },
-  baseStyle: (props: StyleFunctionProps) => ({
+  baseStyle: props => ({
     Root: {
       width: "full",
       display: "inline-block",
@@ -38,20 +32,22 @@ const Slider = {
       },
     },
     Track: {
-      ...centeredProps,
       borderRadius: "sm",
       width: "100%",
-      bg: getModeColor(props, "gray.200", "whiteAlpha.200"),
+      bg: get(props, "gray.200", "whiteAlpha.200"),
       _disabled: {
-        bg: getModeColor(props, "gray.300", "whiteAlpha.300"),
+        bg: get(props, "gray.300", "whiteAlpha.300"),
       },
     },
     Thumb: {
-      ...centeredProps,
+      position: "absolute",
+      top: "50%",
+      transform: `translateY(-50%)`,
       zIndex: 1,
       rounded: "full",
       bg: "#fff",
       boxShadow: "sm",
+      outline: 0,
       border: "1px",
       borderColor: "transparent",
       transition: "transform 0.2s",
@@ -66,13 +62,8 @@ const Slider = {
       },
     },
     FilledTrack: {
-      ...centeredProps,
-      bg: getModeColor(
-        props,
-        `${props.variantColor}.500`,
-        `${props.variantColor}.200`,
-      ),
-      rounded: "sm",
+      bg: get(props, `${props.variantColor}.500`, `${props.variantColor}.200`),
+      borderRadius: "sm",
     },
   }),
 };

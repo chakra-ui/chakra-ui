@@ -7,7 +7,7 @@ import {
   BaseSliderMark,
   BaseSliderFilledTrack,
 } from "./Slider";
-import { chakra } from "@chakra-ui/system";
+import { chakra, createChakra } from "@chakra-ui/system";
 
 const stories = storiesOf("Slider", module);
 
@@ -82,4 +82,28 @@ function VerticalSlider() {
 }
 
 stories.add("horizontal", () => <HorizontalSlider />);
+
 stories.add("vertical", () => <VerticalSlider />);
+
+const Slider = createChakra(BaseSlider, { themeKey: "Slider.Root" });
+const SliderTrack = createChakra(BaseSliderTrack, { themeKey: "Slider.Track" });
+const SliderFilledTrack = createChakra(BaseSliderFilledTrack, {
+  themeKey: "Slider.FilledTrack",
+});
+const SliderThumb = createChakra(BaseSliderThumb, {
+  themeKey: "Slider.Thumb",
+});
+
+const size = "md";
+
+function ChakraHorizontalSlider() {
+  return (
+    <Slider defaultValue={40}>
+      <SliderTrack variantSize={size} />
+      <SliderFilledTrack variantSize={size} variantColor="blue" />
+      <SliderThumb variantSize={size} />
+    </Slider>
+  );
+}
+
+stories.add("chakra - horizontal", () => <ChakraHorizontalSlider />);

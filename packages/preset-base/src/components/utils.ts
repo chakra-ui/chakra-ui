@@ -1,5 +1,40 @@
 import { Theme } from "../foundations";
 import { getColor } from "@chakra-ui/color";
+import { SystemProps } from "@chakra-ui/system";
+
+type NestedSystemProps =
+  | SystemProps
+  | Record<string, SystemProps>
+  | Record<string, Record<string, SystemProps>>;
+
+const base: ComponentStyle = props => ({
+  Root: {
+    width: "full",
+    display: "inline-block",
+    cursor: "pointer",
+    _disabled: {
+      opacity: 0.6,
+    },
+  },
+  Track: {
+    borderRadius: "sm",
+    width: "100%",
+    bg: "red.100",
+  },
+});
+
+export type ComponentStyle<P = {}> =
+  | NestedSystemProps
+  | ((props: StyleFunctionProps & P) => NestedSystemProps);
+
+export interface ComponentTheme<P = {}> {
+  baseStyle?: ComponentStyle<P>;
+  variant?: { __default?: string } & Record<string, ComponentStyle<P> | string>;
+  variantSize?: { __default?: string } & Record<
+    string,
+    ComponentStyle<P> | string
+  >;
+}
 
 export interface StyleFunctionProps {
   variantColor: string;
@@ -23,7 +58,7 @@ export function getModeColor(
   props: any,
   lightValue: ModeValue,
   darkValue: ModeValue,
-) {
+): any {
   if (props.colorMode === "light") {
     return typeof lightValue === "function"
       ? lightValue
