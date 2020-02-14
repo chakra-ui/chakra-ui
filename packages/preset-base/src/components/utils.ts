@@ -2,26 +2,10 @@ import { Theme } from "../foundations";
 import { getColor } from "@chakra-ui/color";
 import { SystemProps } from "@chakra-ui/system";
 
-type NestedSystemProps =
+export type NestedSystemProps =
   | SystemProps
   | Record<string, SystemProps>
   | Record<string, Record<string, SystemProps>>;
-
-const base: ComponentStyle = props => ({
-  Root: {
-    width: "full",
-    display: "inline-block",
-    cursor: "pointer",
-    _disabled: {
-      opacity: 0.6,
-    },
-  },
-  Track: {
-    borderRadius: "sm",
-    width: "100%",
-    bg: "red.100",
-  },
-});
 
 export type ComponentStyle<P = {}> =
   | NestedSystemProps

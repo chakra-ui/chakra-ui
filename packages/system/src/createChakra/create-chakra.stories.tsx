@@ -4,6 +4,7 @@ import setup from "../../story.setup";
 import chakra from "../chakra/chakra";
 import createChakra from "./create-chakra";
 import useComponentStyle from "./use-component-style";
+import connect from "../connect-theming";
 
 const stories = storiesOf("createChakra", module);
 
@@ -123,4 +124,30 @@ stories.add("useComponentStyle", () => {
   };
 
   return <Example />;
+});
+
+stories.add("bind - theming", () => {
+  const TabList = createChakra("div", {
+    themeKey: "Tabs.TabList",
+    baseStyle: {
+      display: "flex",
+    },
+  });
+
+  const Tab = createChakra("button", {
+    themeKey: "Tabs.Tab",
+  });
+
+  const {
+    parent: BindTabList,
+    children: [BindTab],
+  } = connect({ parent: TabList, children: [Tab] });
+
+  return (
+    <BindTabList variant="line" variantColor="red" variantSize="md">
+      <BindTab aria-selected="true">Tab 1</BindTab>
+      <BindTab>Tab 2</BindTab>
+      <BindTab>Tab 3</BindTab>
+    </BindTabList>
+  );
 });

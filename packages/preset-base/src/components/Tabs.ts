@@ -1,20 +1,10 @@
-import { StyleFunctionProps, getModeColor } from "./utils";
+import {
+  StyleFunctionProps,
+  getModeColor,
+  ComponentTheme,
+  NestedSystemProps,
+} from "./utils";
 import { getColor } from "@chakra-ui/color";
-
-const tabVariantSize = {
-  sm: {
-    padding: "0.25rem 1rem",
-    fontSize: "0.85rem",
-  },
-  md: {
-    fontSize: "1rem",
-    padding: "0.5rem 1rem",
-  },
-  lg: {
-    fontSize: "1.15rem",
-    padding: "0.75rem 1rem",
-  },
-};
 
 function getLineStyle(props: StyleFunctionProps) {
   const { variantColor: c } = props;
@@ -91,7 +81,7 @@ function getEnclosedColoredStyle(props: StyleFunctionProps) {
   };
 }
 
-function getSoftRoundedStyle(props: StyleFunctionProps) {
+function getSoftRoundedStyle(props: any): NestedSystemProps {
   const { variantColor: c, theme: t } = props;
   return {
     Tab: {
@@ -107,7 +97,7 @@ function getSoftRoundedStyle(props: StyleFunctionProps) {
   };
 }
 
-function getSolidRoundedStyle(props: StyleFunctionProps) {
+function getSolidRoundedStyle(props: StyleFunctionProps): NestedSystemProps {
   const { variantColor: c } = props;
   return {
     Tab: {
@@ -123,7 +113,7 @@ function getSolidRoundedStyle(props: StyleFunctionProps) {
   };
 }
 
-export default {
+const Tabs: ComponentTheme = {
   baseStyle: {
     Tab: {
       display: "flex",
@@ -132,23 +122,31 @@ export default {
       justifyContent: "center",
       transition: "all 0.2s",
       _focus: {
-        zIndex: "1",
+        zIndex: 1,
         boxShadow: "outline",
       },
     },
+    TabList: {
+      display: "flex",
+    },
   },
   variantSize: {
+    __default: "md",
     sm: {
-      Tab: tabVariantSize.sm,
+      Tab: { padding: "0.25rem 1rem", fontSize: "0.85rem" },
     },
     md: {
-      Tab: tabVariantSize.md,
+      Tab: { fontSize: "1rem", padding: "0.5rem 1rem" },
     },
     lg: {
-      Tab: tabVariantSize.lg,
+      Tab: {
+        fontSize: "1.15rem",
+        padding: "0.75rem 1rem",
+      },
     },
   },
   variant: {
+    __default: "line",
     line: getLineStyle,
     enclosed: getEnclosedStyle,
     "soft-rounded": getSoftRoundedStyle,
@@ -157,3 +155,5 @@ export default {
     unstyled: {},
   },
 };
+
+export default Tabs;
