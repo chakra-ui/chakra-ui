@@ -15,10 +15,11 @@ import CloseButton from "../CloseButton";
 import { hideOthers } from "aria-hidden";
 import { useId } from "@reach/auto-id";
 import { useColorMode } from "../ColorModeProvider";
-import { canUseDOM } from "exenv";
+import exenv from "exenv";
 
 ////////////////////////////////////////////////////////////////////////
 
+const { canUseDOM } = exenv;
 const ModalContext = createContext({});
 const useModalContext = () => useContext(ModalContext);
 
