@@ -1,4 +1,5 @@
 /** @jsx jsx */
+import { Fragment } from "react";
 import { useColorMode, useTheme } from "@chakra-ui/core";
 import { css, jsx, keyframes } from "@emotion/core";
 import Box from "../Box";
@@ -48,8 +49,13 @@ const Skeleton = props => {
   const {
     colorStart = defaultStart[colorMode],
     colorEnd = defaultEnd[colorMode],
+    isLoaded = false,
     ...rest
   } = props;
+  if (isLoaded) {
+    return <Fragment {...props} />;
+  }
+
   return (
     <Box
       css={getStyle({ colorStart, colorEnd })}

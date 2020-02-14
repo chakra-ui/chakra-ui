@@ -24,6 +24,19 @@ stories.add("as Container", () => {
   );
 });
 
+stories.add("isLoaded after 1 second", () => {
+  const [isLoaded, setLoaded] = React.useState(false);
+  React.useEffect(() => {
+    setTimeout(() => setLoaded(true), 1000);
+  }, []);
+
+  return (
+    <Skeleton width="100px" isLoaded={isLoaded}>
+      <span>Chakra ui is cool</span>
+    </Skeleton>
+  );
+});
+
 stories.add("with borderRadius", () => {
   return <Skeleton size="100px" borderRadius="100px" />;
 });

@@ -10,6 +10,10 @@ export interface ISkeleton {
    * The color at the animation end
    */
   colorEnd?: string;
+  /**
+   * Render only the children
+   */
+  isLoaded?: boolean;
 }
 
 export type SkeletonProps = ISkeleton & BoxProps;

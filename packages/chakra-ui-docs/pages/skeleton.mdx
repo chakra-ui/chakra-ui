@@ -43,3 +43,13 @@ You can change the animation color with `colorStart` and `colorEnd`.
 ```jsx
 <Skeleton colorStart="pink" colorEnd="orange" height="20px" />
 ```
+
+### Skipping the skeleton when content is loaded
+
+You can prevent the skeleton from rendering using the `isLoaded` prop
+
+```jsx
+<Skeleton isLoaded>
+  <span>Chakra ui is cool</span>
+</Skeleton>
+```
