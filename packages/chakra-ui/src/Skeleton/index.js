@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { Fragment } from "react";
-import { useColorMode, useTheme } from "@chakra-ui/core";
+import { useTheme } from "../ThemeProvider";
+import { useColorMode } from "../ColorModeProvider";
 import { css, jsx, keyframes } from "@emotion/core";
 import Box from "../Box";
 
