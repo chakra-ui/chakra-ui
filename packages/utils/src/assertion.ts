@@ -33,8 +33,14 @@ export const isUndefined = (value: any): value is undefined =>
   typeof value === "undefined" || value === undefined;
 
 // Object assertions
-export const isObject = (value: any): value is Dict =>
-  value !== null && typeof value === "object";
+export const isObject = (value: any): value is Dict => {
+  const type = typeof value;
+  return (
+    value != null &&
+    (type === "object" || type === "function") &&
+    !isArray(value)
+  );
+};
 
 export const isEmptyObject = (value: any) =>
   isObject(value) && Object.keys(value).length === 0;

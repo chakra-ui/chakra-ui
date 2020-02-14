@@ -34,6 +34,7 @@ const selectors = {
   placeholder: "&::placeholder",
   hidden: "&[hidden]",
   autofill: "&:-webkit-autofill",
+  rtl: "[dir=rtl] &, [dir=rtl] &",
 };
 
 export default selectors;

@@ -1,7 +1,7 @@
 import { SystemProps } from "../system-props-interface";
 
 type Nested<T, P = {}> =
-  | T & P
+  | (T & P)
   | {
       [key: string]: (T & P) | Nested<T, P>;
     }
@@ -152,4 +152,9 @@ export interface PseudoProps {
    * Useful for styling the hidden state
    */
   _hidden?: SystemProps;
+  /**
+   * Styles for right-to-left.
+   * Useful for styling child elements when parent elements or html has `dir=rtl`
+   */
+  _rtl?: Nested<SystemProps>;
 }

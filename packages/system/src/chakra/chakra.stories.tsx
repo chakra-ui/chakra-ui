@@ -66,6 +66,14 @@ stories.add("sx prop", () => (
   </h1>
 ));
 
+stories.add("rtl styling", () => (
+  <article dir="rtl">
+    <chakra.h1 textAlign="left" _rtl={{ textAlign: "right", color: "red.200" }}>
+      This is a heading
+    </chakra.h1>
+  </article>
+));
+
 // You can create your own components from chakra as well.
 const Box = chakra.div;
 

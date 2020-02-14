@@ -32,6 +32,7 @@ const pseudo = ({ theme, ...props }: { theme: object } & PseudoProps) =>
     [sx.focusWithin]: tx(props._focusWithin),
     [sx.placeholder]: props._placeholder,
     [sx.hidden]: props._hidden,
+    [sx.rtl]: tx(props._rtl),
   })(theme);
 
 export default pseudo;

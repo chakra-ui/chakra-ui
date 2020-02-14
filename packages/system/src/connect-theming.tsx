@@ -11,14 +11,16 @@ interface ThemingProps {
 function connect<PP>({
   parent: Parent,
   children,
+  applyToParent,
 }: {
   parent: React.ComponentType<PP>;
   children: React.FC[];
+  applyToParent?: boolean;
 }) {
   const [Provider, useContext] = createContext<ThemingProps>();
 
   // @ts-ignore
-  Provider.displayName = `connect(${getDisplayName(Parent)})`;
+  Provider.displayName = `${getDisplayName(Parent)}ThemeConnect`;
 
   type NewParentProps = ThemingProps & {
     children?: React.ReactNode;
@@ -33,11 +35,13 @@ function connect<PP>({
     const themingProps = { variantSize, variant, variantColor };
     return (
       // @ts-ignore
-      <Parent {...themingProps} {...props}>
+      <Parent {...(applyToParent && themingProps)} {...props}>
         <Provider value={themingProps}>{props.children}</Provider>
       </Parent>
     );
   }
+
+  NewParent.displayName = `connect(${getDisplayName(Parent)})`;
 
   function inject<P>(Element: React.ComponentType<P>) {
     //@ts-ignore
