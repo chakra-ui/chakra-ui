@@ -1,4 +1,4 @@
-import { getModeColor as get, ComponentTheme, ComponentStyle } from "./utils";
+import { ComponentTheme, getModeColor as get } from "./utils";
 
 const Slider: ComponentTheme = {
   variantSize: {
@@ -40,6 +40,9 @@ const Slider: ComponentTheme = {
       },
     },
     Thumb: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
       position: "absolute",
       top: "50%",
       transform: `translateY(-50%)`,

@@ -292,12 +292,12 @@ export function useSlider(props: SliderHookProps) {
     userSelect: "none",
     ...(isVertical
       ? {
-          paddingLeft: thumbRect.width,
-          paddingRight: thumbRect.width,
+          paddingLeft: thumbRect.width / 2,
+          paddingRight: thumbRect.width / 2,
         }
       : {
-          paddingTop: thumbRect.height,
-          paddingBottom: thumbRect.height,
+          paddingTop: thumbRect.height / 2,
+          paddingBottom: thumbRect.height / 2,
         }),
   };
 

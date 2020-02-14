@@ -101,7 +101,7 @@ function ChakraHorizontalSlider() {
     <Slider defaultValue={40}>
       <SliderTrack variantSize={size} />
       <SliderFilledTrack variantSize={size} variantColor="blue" />
-      <SliderThumb variantSize={size} />
+      <SliderThumb variantSize={size} children="#" size="30px" color="black" />
     </Slider>
   );
 }

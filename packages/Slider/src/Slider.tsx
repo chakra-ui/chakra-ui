@@ -54,5 +54,5 @@ export function BaseSliderMark(props: PropsOf<"div"> & { value: number }) {
 
 export function BaseSliderFilledTrack(props: PropsOf<"div">) {
   const innerTrackProps = useSliderInnerTrack(props);
-  return <div {...innerTrackProps} />;
+  return <div data-chakra-slider-filled-track="" {...innerTrackProps} />;
 }
