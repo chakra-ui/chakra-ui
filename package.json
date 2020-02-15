@@ -5,7 +5,7 @@
     "packages/*"
   ],
   "scripts": {
-    "setup": "npm-run-all bootstrap \"utils build\" \"hooks build\" \"system build\"",
+    "setup": "npm-run-all bootstrap \"utils build\" \"hooks build\" \"system build\" \"preset build\" \"portal build\"",
     "commit": "git-cz",
     "clean": "lerna clean --yes",
     "bootstrap": "yarn clean && lerna bootstrap --use-workspaces",

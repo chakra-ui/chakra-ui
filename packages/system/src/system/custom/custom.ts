@@ -1,40 +1,42 @@
 import * as SS from "styled-system";
-import { Dict } from "@chakra-ui/utils";
+import { Dict, isNumber } from "@chakra-ui/utils";
 
+// !important: I updated the border-radius props, kindly add it to changelog (breaking change)
+// we could possibly write a codemod for this.
 export const config: Dict = {
-  roundedTop: {
+  topRadius: {
     properties: ["borderTopLeftRadius", "borderTopRightRadius"],
     scale: "radii",
   },
-  roundedBottom: {
+  bottomRadius: {
     properties: ["borderBottomLeftRadius", "borderBottomRightRadius"],
     scale: "radii",
   },
-  roundedLeft: {
+  leftRadius: {
     properties: ["borderTopLeftRadius", "borderBottomLeftRadius"],
     scale: "radii",
   },
-  roundedRight: {
+  rightRadius: {
     properties: ["borderTopRightRadius", "borderBottomRightRadius"],
     scale: "radii",
   },
-  roundedTopRight: {
+  topRightRadius: {
     property: "borderTopRightRadius",
     scale: "radii",
   },
-  roundedTopLeft: {
+  topLeftRadius: {
     property: "borderTopLeftRadius",
     scale: "radii",
   },
-  roundedBottomRight: {
+  bottomRightRadius: {
     property: "borderBottomRightRadius",
     scale: "radii",
   },
-  roundedBottomLeft: {
+  bottomLeftRadius: {
     property: "borderBottomLeftRadius",
     scale: "radii",
   },
-  rounded: {
+  radius: {
     property: "borderRadius",
     scale: "radii",
   },
@@ -44,6 +46,8 @@ export const config: Dict = {
   w: {
     property: "width",
     scale: "sizes",
+    transform: (val: number, scale: object) =>
+      SS.get(scale, val, !isNumber(val) || val > 1 ? val : val * 100 + "%"),
   },
   minW: {
     property: "minWidth",
@@ -68,9 +72,6 @@ export const config: Dict = {
   textColor: {
     property: "color",
     scale: "colors",
-  },
-  bgImg: {
-    property: "backgroundImage",
   },
   bgImage: {
     property: "backgroundImage",
