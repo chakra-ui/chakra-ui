@@ -3,11 +3,11 @@ import getMediaQuery from "./get-media-query";
 import { syncBodyClassName } from "./update-body-classname";
 import useOSPreference from "./use-os-preference";
 import useSyncTabs from "./use-sync-tabs";
-import { ColorModeValue, storage, storageKey } from "./constants";
+import { ColorModeType, storage, storageKey } from "./constants";
 
 type ColorModeReturn = [
-  ColorModeValue,
-  React.Dispatch<React.SetStateAction<ColorModeValue>>,
+  ColorModeType,
+  React.Dispatch<React.SetStateAction<ColorModeType>>,
 ];
 
 const ColorModeContext = React.createContext<ColorModeReturn | undefined>([
@@ -19,7 +19,7 @@ export const useColorMode = () =>
   React.useContext(ColorModeContext) as ColorModeReturn;
 
 interface Props {
-  mode?: ColorModeValue;
+  mode?: ColorModeType;
   children?: React.ReactNode;
 }
 
@@ -36,7 +36,7 @@ export const ColorModeProvider: React.FC = ({ children, mode }: Props) => {
     }
   }
 
-  const [colorMode, setColorMode] = React.useState<ColorModeValue>(
+  const [colorMode, setColorMode] = React.useState<ColorModeType>(
     initColorMode,
   );
 
@@ -51,7 +51,7 @@ export const ColorModeProvider: React.FC = ({ children, mode }: Props) => {
   }, [colorMode]);
 
   //@ts-ignore
-  const [manualMode, setManualMode] = React.useState<ColorModeValue>(mode);
+  const [manualMode, setManualMode] = React.useState<ColorModeType>(mode);
 
   const context: ColorModeReturn =
     typeof mode != "undefined"

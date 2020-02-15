@@ -29,7 +29,7 @@ const Feature = ({ title, icon, children, ...props }) => {
   return (
     <Box {...props}>
       <Flex
-        rounded="full"
+        borderRadius="full"
         size={12}
         bg="teal.500"
         align="center"
@@ -49,7 +49,7 @@ const sampleCode = `
 // Sample component from airbnb.com
 
 <Box>
-  <Image rounded="md" src="https://bit.ly/2k1H1t6"/>
+  <Image borderRadius="md" src="https://bit.ly/2k1H1t6"/>
   <Flex align="baseline" mt={2}>
     <Badge variantColor="pink">Plus</Badge>
     <Text
@@ -178,7 +178,7 @@ export default () => {
               <Box
                 p={6}
                 flex="1"
-                rounded="10px"
+                borderRadius="10px"
                 as={LivePreview}
                 borderWidth="1px"
               />

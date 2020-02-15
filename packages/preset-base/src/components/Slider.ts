@@ -47,7 +47,7 @@ const Slider: ComponentTheme = {
       top: "50%",
       transform: `translateY(-50%)`,
       zIndex: 1,
-      rounded: "full",
+      borderRadius: "full",
       bg: "#fff",
       boxShadow: "sm",
       outline: 0,

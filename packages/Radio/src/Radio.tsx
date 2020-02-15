@@ -28,12 +28,12 @@ export const Radio = React.forwardRef(
           variantSize="lg"
           variantColor="blue"
           verticalAlign="top"
-          rounded="full"
+          borderRadius="full"
           {...checkbox}
           {...rest}
         >
           {state.isChecked && (
-            <chakra.span bg="currentColor" rounded="full" size="50%" />
+            <chakra.span bg="currentColor" borderRadius="full" size="50%" />
           )}
         </ControlBox>
         {props.children && (

@@ -19,9 +19,9 @@ stories.add("vertical", () => (
 
 stories.add("inline", () => (
   <Stack w="100%" bg="blue.500" direction="row">
-    <Box size="40px" bg={"#fff"} rounded="full" />
-    <Box size="40px" bg={"#fff"} rounded="full" />
-    <Box size="40px" bg={"#fff"} rounded="full" />
+    <Box size="40px" bg={"#fff"} borderRadius="full" />
+    <Box size="40px" bg={"#fff"} borderRadius="full" />
+    <Box size="40px" bg={"#fff"} borderRadius="full" />
   </Stack>
 ));
 
@@ -41,7 +41,14 @@ stories.add("reversed", () => (
 
 function Feature({ title, desc, ...rest }: any) {
   return (
-    <Box p={5} shadow="md" borderWidth="1px" flex="1" rounded="md" {...rest}>
+    <Box
+      p={5}
+      shadow="md"
+      borderWidth="1px"
+      flex="1"
+      borderRadius="md"
+      {...rest}
+    >
       <Heading fontSize="xl">{title}</Heading>
       <Text mt={4}>{desc}</Text>
     </Box>

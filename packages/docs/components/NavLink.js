@@ -86,7 +86,7 @@ export const ComponentLink = forwardRef(({ href, ...props }, ref) => {
           }}
           {...(isActive && {
             bg: activeBg[colorMode],
-            rounded: "sm",
+            borderRadius: "sm",
             color: activeColor[colorMode],
             _hover: {},
           })}

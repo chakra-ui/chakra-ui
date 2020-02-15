@@ -1,10 +1,15 @@
 import React from "react";
 import getMediaQuery from "./get-media-query";
-import { ColorModeValue } from "./constants";
+import { ColorModeType } from "./constants";
+
+const isBrowser = typeof window !== "undefined";
+
+const useIsomorphicEffect = isBrowser ? React.useLayoutEffect : React.useEffect;
 
 // Sync color mode when user changes OS preferences
-function useOSPreference(callback: (mode: ColorModeValue) => void) {
-  React.useEffect(() => {
+function useOSPreference(callback: (mode: ColorModeType) => void) {
+  useIsomorphicEffect(() => {
+    if (!isBrowser) return;
     const { queryList } = getMediaQuery();
     const onChangePreference = (event: MediaQueryListEvent) => {
       callback(event.matches ? "dark" : "light");

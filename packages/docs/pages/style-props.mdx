@@ -270,26 +270,26 @@ import { Box } from "@chakra-ui/core";
 import { Button } from "@chakra-ui/core";
 
 // This button will have no right borderRadius
-<Button roundedRight="0">Button 1</Button>;
+<Button borderRightRadius="0">Button 1</Button>;
 
 // This button will have no left borderRadius*/
-<Button roundedLeft="0">Button 2</Button>;
+<Button borderLeftRadius="0">Button 2</Button>;
 
 // top left and top right radius will be `theme.radii.md` => 4px
-<Button roundedTop="md">Button 2</Button>;
+<Button borderTopRadius="md">Button 2</Button>;
 ```
 
-| Prop                                            | CSS Property                                               | Theme Field |
-| ----------------------------------------------- | ---------------------------------------------------------- | ----------- |
-| `rounded`, `borderRadius`                       | `border-radius`                                            | `radii`     |
-| `roundedTopLeft`, `borderTopLeftRadius`         | `border-top-left-radius`                                   | `radii`     |
-| `roundedTopRight`, `borderTopRightRadius`       | `border-top-right-radius`                                  | `radii`     |
-| `roundedBottomRight`, `borderBottomRightRadius` | `border-bottom-right-radius`                               | `radii`     |
-| `roundedBottomLeft`, `borderBottomLeftRadius`   | `border-bottom-left-radius`                                | `radii`     |
-| `roundedTop`                                    | `border-top-left-radius` & `border-top-right-radius`       | `radii`     |
-| `roundedRight`                                  | `border-top-right-radius` & `border-bottom-right-radius`   | `radii`     |
-| `roundedBottom`                                 | `border-bottom-left-radius` & `border-bottom-right-radius` | `radii`     |
-| `roundedLeft`                                   | `border-top-left-radius` & `border-bottom-left-radius`     | `radii`     |
+| Prop                      | CSS Property                                               | Theme Field |
+| ------------------------- | ---------------------------------------------------------- | ----------- |
+| `borderRadius`            | `border-radius`                                            | `radii`     |
+| `borderTopLeftRadius`     | `border-top-left-radius`                                   | `radii`     |
+| `borderTopRightRadius`    | `border-top-right-radius`                                  | `radii`     |
+| `borderBottomRightRadius` | `border-bottom-right-radius`                               | `radii`     |
+| `borderBottomLeftRadius`  | `border-bottom-left-radius`                                | `radii`     |
+| `borderTopRadius`         | `border-top-left-radius` & `border-top-right-radius`       | `radii`     |
+| `borderRightRadius`       | `border-top-right-radius` & `border-bottom-right-radius`   | `radii`     |
+| `borderBottomRadius`      | `border-bottom-left-radius` & `border-bottom-right-radius` | `radii`     |
+| `borderLeftRadius`        | `border-top-left-radius` & `border-bottom-left-radius`     | `radii`     |
 
 ### Position
 

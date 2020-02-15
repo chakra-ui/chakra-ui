@@ -18,9 +18,9 @@ stories.add("default", () => (
 
 stories.add("as prop + generic", () => (
   <Box<PropsOf<"img">>
-    rounded="sm"
+    borderRadius="sm"
     as="img"
-    _hover={{ rounded: "md" }}
+    _hover={{ borderRadius: "md" }}
     margin={[3, 4]}
     src="https://avatars3.githubusercontent.com/u/14854048?s=180&v=4"
   />

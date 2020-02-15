@@ -1,10 +1,10 @@
 import React from "react";
 import css, { get } from "@styled-system/css";
 import { Global } from "@emotion/core";
-import { ColorModeValue } from "./constants";
+import { ColorModeType } from "./constants";
 import { useColorMode } from "./color-mode-provider";
 
-const createColorStyles = (theme: any, colorMode: ColorModeValue) => {
+const createColorStyles = (theme: any, colorMode: ColorModeType) => {
   if (!theme.colors) return {};
 
   const isDark = colorMode === "dark";
@@ -24,7 +24,7 @@ const createColorStyles = (theme: any, colorMode: ColorModeValue) => {
   })(theme);
 };
 
-const bodyColor = (colorMode: ColorModeValue) => (theme: any) => ({
+const bodyColor = (colorMode: ColorModeType) => (theme: any) => ({
   body: createColorStyles(theme, colorMode),
 });
 

@@ -47,7 +47,7 @@ const LiveCodePreview = props => (
     p={3}
     border="1px"
     borderColor="inherit"
-    rounded="md"
+    borderRadius="md"
     {...props}
   />
 );
@@ -76,7 +76,7 @@ const EditableNotice = props => {
       position="absolute"
       width="full"
       top="-1.25em"
-      roundedTop="10px"
+      borderTopRadius="10px"
       bg={bg["dark"]}
       py="2"
       zIndex="0"

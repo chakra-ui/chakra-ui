@@ -14,7 +14,7 @@ import NextLink from "next/link";
 import { forwardRef } from "react";
 import CodeBlock from "./CodeBlock";
 
-const Pre = props => <Box my="2em" rounded="sm" {...props} />;
+const Pre = props => <Box my="2em" borderRadius="sm" {...props} />;
 
 const Table = props => (
   <Box as="table" textAlign="left" mt="32px" width="full" {...props} />

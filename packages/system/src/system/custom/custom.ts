@@ -4,40 +4,36 @@ import { Dict, isNumber } from "@chakra-ui/utils";
 // !important: I updated the border-radius props, kindly add it to changelog (breaking change)
 // we could possibly write a codemod for this.
 export const config: Dict = {
-  topRadius: {
+  borderTopRadius: {
     properties: ["borderTopLeftRadius", "borderTopRightRadius"],
     scale: "radii",
   },
-  bottomRadius: {
+  borderBottomRadius: {
     properties: ["borderBottomLeftRadius", "borderBottomRightRadius"],
     scale: "radii",
   },
-  leftRadius: {
+  borderLeftRadius: {
     properties: ["borderTopLeftRadius", "borderBottomLeftRadius"],
     scale: "radii",
   },
-  rightRadius: {
+  borderRightRadius: {
     properties: ["borderTopRightRadius", "borderBottomRightRadius"],
     scale: "radii",
   },
-  topRightRadius: {
+  borderTopRightRadius: {
     property: "borderTopRightRadius",
     scale: "radii",
   },
-  topLeftRadius: {
+  borderTopLeftRadius: {
     property: "borderTopLeftRadius",
     scale: "radii",
   },
-  bottomRightRadius: {
+  borderBottomRightRadius: {
     property: "borderBottomRightRadius",
     scale: "radii",
   },
-  bottomLeftRadius: {
+  borderBottomLeftRadius: {
     property: "borderBottomLeftRadius",
-    scale: "radii",
-  },
-  radius: {
-    property: "borderRadius",
     scale: "radii",
   },
   d: {

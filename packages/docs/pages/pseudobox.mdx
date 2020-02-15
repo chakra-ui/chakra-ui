@@ -25,7 +25,7 @@ regular style props.
     flex="1"
     py={2}
     px={4}
-    rounded="md"
+    borderRadius="md"
     bg="gray.100"
     borderWidth="1px"
     _hover={{ borderColor: "gray.200", bg: "gray.200" }}
@@ -42,7 +42,7 @@ regular style props.
     py={2}
     px={4}
     ml={3}
-    rounded="md"
+    borderRadius="md"
     fontWeight="semibold"
     color="white"
     _hover={{ bg: "teal.600" }}
@@ -75,7 +75,7 @@ Add the `_hover` prop to only apply style props on hover.
   px={4}
   borderWidth="1px"
   borderColor="blue.500"
-  rounded="md"
+  borderRadius="md"
   _hover={{ bg: "blue.500", color: " white" }}
   _focus={{ boxShadow: "outline" }}
 >
@@ -97,7 +97,7 @@ Add the `_focus` prop to only apply a styles on focus.
   color="gray.900"
   borderColor="transparent"
   borderWidth="2px"
-  rounded="md"
+  borderRadius="md"
   _focus={{ bg: "white", borderColor: "blue.400" }}
 />
 ```
@@ -112,7 +112,7 @@ Add the `_active` prop to only apply a styles on active.
   fontWeight="semibold"
   py={2}
   px={4}
-  rounded="md"
+  borderRadius="md"
   color="white"
   bg="blue.500"
   _active={{ bg: "blue.700" }}
@@ -135,7 +135,7 @@ to `true`
     fontWeight="semibold"
     py={2}
     px={4}
-    rounded="md"
+    borderRadius="md"
     color="white"
     bg="blue.500"
     _active={{ bg: "blue.700" }}
@@ -150,7 +150,7 @@ to `true`
     fontWeight="semibold"
     py={2}
     px={4}
-    rounded="md"
+    borderRadius="md"
     color="white"
     bg="blue.500"
     _active={{ bg: "blue.700" }}
@@ -197,7 +197,7 @@ parent. This is mostly useful when elements are being generated in some kind of
 loop.
 
 ```jsx
-<Box borderWidth="1px" rounded="md">
+<Box borderWidth="1px" borderRadius="md">
   {["One", "Two", "Three"].map(item => (
     <PseudoBox
       key={item}
@@ -219,7 +219,7 @@ parent. This is mostly useful when elements are being generated in some kind of
 loop.
 
 ```jsx
-<Box borderWidth="1px" rounded="md">
+<Box borderWidth="1px" borderRadius="md">
   {["One", "Two", "Three"].map(item => (
     <PseudoBox
       key={item}
@@ -240,7 +240,7 @@ Add the `_odd` prop to style an element when it is the odd-child of its parent.
 This is mostly useful when elements are being generated in some kind of loop.
 
 ```jsx
-<Box borderWidth="1px" rounded="md" overflow="hidden">
+<Box borderWidth="1px" borderRadius="md" overflow="hidden">
   {["One", "Two", "Three"].map(item => (
     <PseudoBox key={item} px={4} py={2} bg="white" _odd={{ bg: "gray.100" }}>
       {item}
@@ -256,7 +256,7 @@ parent. This is mostly useful when elements are being generated in some kind of
 loop.
 
 ```jsx
-<Box borderWidth="1px" rounded="md" overflow="hidden">
+<Box borderWidth="1px" borderRadius="md" overflow="hidden">
   {["One", "Two", "Three"].map(item => (
     <PseudoBox key={item} px={4} py={2} bg="white" _even={{ bg: "gray.100" }}>
       {item}
@@ -276,7 +276,7 @@ use `_groupHover` prop to style the child element.
   role="group"
   maxW="sm"
   overflow="hidden"
-  rounded="md"
+  borderRadius="md"
   p={5}
   cursor="pointer"
   bg="white"

@@ -62,7 +62,7 @@ function getFlushedStyle(props: InputOptions) {
   return {
     borderBottom: "2px solid",
     borderColor: "inherit",
-    rounded: 0,
+    radius: 0,
     px: 0,
     bg: "transparent",
     _focus: {
@@ -88,21 +88,21 @@ const variantSize = {
     px: 4,
     height: 12,
     // lineHeight: "3rem",
-    rounded: "md",
+    radius: "md",
   },
   md: {
     fontSize: "md",
     px: 4,
     height: 10,
     // lineHeight: "2.5rem",
-    rounded: "md",
+    radius: "md",
   },
   sm: {
     fontSize: "sm",
     px: 3,
     height: 8,
     // lineHeight: "2rem",
-    rounded: "sm",
+    radius: "sm",
   },
 };
 

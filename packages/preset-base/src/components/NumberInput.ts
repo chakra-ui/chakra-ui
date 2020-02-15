@@ -4,10 +4,10 @@ function getSizeStyle(size: "sm" | "md" | "lg") {
   return {
     fontSize: size === "sm" ? "11px" : "15px",
     _first: {
-      roundedTopRight: size === "sm" ? 1 : 3,
+      topRightRadius: size === "sm" ? 1 : 3,
     },
     _last: {
-      roundedBottomRight: size === "sm" ? 1 : 3,
+      bottomRightRadius: size === "sm" ? 1 : 3,
       mt: "-1px",
       borderTopWidth: 1,
     },

@@ -42,14 +42,14 @@ stories.add("left and right addon", () => (
   <>
     <InputGroup>
       <InputLeftAddon children="+234" />
-      <Input roundedLeft="0" placeholder="Phone number..." />
+      <Input borderLeftRadius="0" placeholder="Phone number..." />
     </InputGroup>
 
     <br />
 
     <InputGroup variantSize="sm">
       <InputLeftAddon children="https://" />
-      <Input rounded="0" placeholder="website.com" />
+      <Input borderRadius="0" placeholder="website.com" />
       <InputRightAddon children=".com" />
     </InputGroup>
   </>

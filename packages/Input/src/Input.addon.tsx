@@ -8,7 +8,7 @@ function getPlacementStyles(placement: Placement) {
   if (placement === "left") {
     return {
       marginRight: "-1px",
-      roundedRight: 0,
+      borderRightRadius: 0,
       borderRightColor: "transparent",
     };
   }
@@ -16,7 +16,7 @@ function getPlacementStyles(placement: Placement) {
   if (placement === "right") {
     return {
       order: 1,
-      roundedLeft: 0,
+      borderLeftRadius: 0,
       borderLeftColor: "transparent",
     };
   }

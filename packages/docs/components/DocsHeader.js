@@ -24,7 +24,7 @@ const SearchBox = props => (
       placeholder="Search the docs "
       _focusBorderColor="teal"
       _placeholder={{ color: "gray.500", opacity: 1 }}
-      rounded="lg"
+      borderRadius="lg"
     />
   </InputGroup>
 );

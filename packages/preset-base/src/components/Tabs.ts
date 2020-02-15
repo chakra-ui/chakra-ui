@@ -36,7 +36,7 @@ function getEnclosedStyle(props: StyleFunctionProps) {
   const { variantColor: c } = props;
   return {
     Tab: {
-      roundedTop: "md",
+      borderTopRadius: "md",
       border: "1px solid",
       borderColor: "transparent",
       marginBottom: "-1px",
@@ -85,7 +85,7 @@ function getSoftRoundedStyle(props: any): NestedSystemProps {
   const { variantColor: c, theme: t } = props;
   return {
     Tab: {
-      rounded: "full",
+      borderRadius: "full",
       fontWeight: "semibold",
       color: "gray.600",
       _selected: {
@@ -101,7 +101,7 @@ function getSolidRoundedStyle(props: StyleFunctionProps): NestedSystemProps {
   const { variantColor: c } = props;
   return {
     Tab: {
-      rounded: "full",
+      borderRadius: "full",
       fontWeight: "semibold",
       color: getModeColor(props, "gray.600", "inherit"),
       _selected: {

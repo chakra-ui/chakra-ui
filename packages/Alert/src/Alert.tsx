@@ -1,11 +1,12 @@
-import * as React from "react";
-import { Icon, IconProps } from "../../core/src/Icon";
+import { Icon, IconProps } from "@chakra-ui/icon";
 import {
+  ColorModeType,
   createChakra,
-  PropsOf,
   forwardRef,
+  PropsOf,
   useColorMode,
 } from "@chakra-ui/system";
+import * as React from "react";
 
 export const statuses = {
   info: { icon: "info", color: "blue" },
@@ -70,7 +71,7 @@ const AlertIcon = (props: IconProps) => {
   const { status, variant } = useAlertContext();
   const { icon, color } = statuses[status];
 
-  let style = {};
+  let style: { [K in ColorModeType]?: any } = {};
 
   if (["left-accent", "top-accent", "subtle"].includes(variant)) {
     style = {
@@ -79,7 +80,6 @@ const AlertIcon = (props: IconProps) => {
     };
   }
 
-  //@ts-ignore
   const iconStyleProps = style[colorMode];
 
   return (

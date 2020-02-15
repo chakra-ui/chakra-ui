@@ -9,7 +9,7 @@ const compute = (size: keyof typeof sizes) => ({
 export default {
   baseStyle: {
     display: "inline-flex",
-    rounded: "full",
+    radius: "full",
     alignItems: "center",
     flexShrink: "0",
     justifyContent: "center",

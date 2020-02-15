@@ -1,12 +1,9 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import { Alert, AlertIcon, AlertTitle, AlertDescription } from ".";
+import { Alert, AlertIcon, AlertTitle, AlertDescription } from "./Alert";
 import { chakra } from "@chakra-ui/system";
-import setup from "../../core/src/story.setup";
 
 const stories = storiesOf("Alert", module);
-
-stories.addDecorator(setup);
 
 stories.add("Default", () => {
   return (

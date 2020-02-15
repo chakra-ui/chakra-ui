@@ -29,7 +29,7 @@ Creating a custom checkbox component
   <ControlBox
     borderWidth="1px"
     size="24px"
-    rounded="sm"
+    borderRadius="sm"
     _checked={{ bg: "green.500", color: "white", borderColor: "green.500" }}
     _focus={{ borderColor: "green.600", boxShadow: "outline" }}
   >
@@ -55,7 +55,7 @@ Creating a custom radio component
     size="24px"
     bg="white"
     border="2px"
-    rounded="full"
+    borderRadius="full"
     type="radio"
     borderColor="inherit"
     _focus={{ boxShadow: "outline" }}
@@ -63,7 +63,7 @@ Creating a custom radio component
     _disabled={{ opacity: "40%" }}
     _checked={{ bg: "green.500", borderColor: "green.500" }}
   >
-    <Box size="50%" bg="white" rounded="full" />
+    <Box size="50%" bg="white" borderRadius="full" />
   </ControlBox>
 
   {/* You can pass additional text */}

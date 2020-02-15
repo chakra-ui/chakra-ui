@@ -66,7 +66,7 @@ export const AvatarBadge = forwardRef(
         right="0"
         border="0.2em solid"
         borderColor={borderColor}
-        rounded="full"
+        borderRadius="full"
         {...props}
       />
     );
@@ -132,7 +132,7 @@ export const Avatar = forwardRef(function(
       return (
         <chakra.img
           size="100%"
-          rounded="full"
+          borderRadius="full"
           objectFit="cover"
           src={src}
           alt={name}

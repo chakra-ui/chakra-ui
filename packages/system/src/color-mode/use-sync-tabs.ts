@@ -1,16 +1,21 @@
 import React from "react";
-import { ColorModeValue } from "./constants";
+import { ColorModeType } from "./constants";
+
+const isBrowser = typeof window !== "undefined";
+
+const useIsomorphicEffect = isBrowser ? React.useLayoutEffect : React.useEffect;
 
 // Sync color mode between tabs
 export function useSyncTabs(
   storageKey: string,
-  callback: (mode: ColorModeValue) => void,
+  callback: (mode: ColorModeType) => void,
 ) {
-  React.useEffect(() => {
+  useIsomorphicEffect(() => {
+    if (!isBrowser) return;
     const handleStorage = (event: StorageEvent) => {
       if (event.key === storageKey) {
         if (!event.newValue) return;
-        callback(event.newValue as ColorModeValue);
+        callback(event.newValue as ColorModeType);
       }
     };
     window.addEventListener("storage", handleStorage);

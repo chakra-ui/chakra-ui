@@ -50,12 +50,12 @@ function AirbnbExample() {
   };
 
   return (
-    <Box maxW="sm" borderWidth="1px" rounded="lg" overflow="hidden">
+    <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
       <Image src={property.imageUrl} alt={property.imageAlt} />
 
       <Box p="6">
         <Box d="flex" alignItems="baseline">
-          <Badge rounded="full" px="2" variantColor="teal">
+          <Badge borderRadius="full" px="2" variantColor="teal">
             New
           </Badge>
           <Box
@@ -112,7 +112,7 @@ You can use the `as` prop to change the element render, just like
 styled-components.
 
 ```jsx
-<Box as="button" rounded="md" bg="tomato" color="white" px={4} h={8}>
+<Box as="button" borderRadius="md" bg="tomato" color="white" px={4} h={8}>
   Button
 </Box>
 ```

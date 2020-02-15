@@ -5,15 +5,14 @@ type borderColor = SS.BorderColorProps["borderColor"];
 type CSS = React.CSSProperties;
 
 export interface CustomProps {
-  rounded?: borderRadius;
-  roundedTop?: borderRadius;
-  roundedBottom?: borderRadius;
-  roundedLeft?: borderRadius;
-  roundedRight?: borderRadius;
-  roundedTopRight?: borderRadius;
-  roundedTopLeft?: borderRadius;
-  roundedBottomRight?: borderRadius;
-  roundedBottomLeft?: borderRadius;
+  borderTopRadius?: borderRadius;
+  borderBottomRadius?: borderRadius;
+  borderLeftRadius?: borderRadius;
+  borderRightRadius?: borderRadius;
+  borderTopRightRadius?: borderRadius;
+  borderTopLeftRadius?: borderRadius;
+  borderBottomRightRadius?: borderRadius;
+  borderBottomLeftRadius?: borderRadius;
 
   // Custom borderColor alias
   borderBottomColor?: borderColor;
@@ -36,7 +35,6 @@ export interface CustomProps {
 
   // Custom background alias
   backgroundAttachment?: SS.ResponsiveValue<CSS["backgroundAttachment"]>;
-  bgImg?: SS.BackgroundImageProps["backgroundImage"];
   bgImage?: SS.BackgroundImageProps["backgroundImage"];
   bgSize?: SS.BackgroundSizeProps["backgroundSize"];
   bgPos?: SS.BackgroundPositionProps["backgroundPosition"];
