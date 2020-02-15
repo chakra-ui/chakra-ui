@@ -1,11 +1,6 @@
 import { chakra, PropsOf } from "@chakra-ui/system";
 import * as React from "react";
 
-export interface IconOptions {
-  role?: "presentation" | "img";
-  viewBox?: string;
-}
-
 const fallbackIcon = {
   path: (
     <g fillRule="evenodd">
@@ -20,12 +15,11 @@ const fallbackIcon = {
   viewBox: "0 0 24 24",
 };
 
-export type IconProps = Omit<PropsOf<typeof chakra.svg>, "path" | "viewBox"> &
-  IconOptions;
+export type IconProps = Omit<PropsOf<typeof chakra.svg>, "path">;
 
 export const Icon = React.forwardRef(
-  (
-    {
+  (props: IconProps, ref: React.Ref<SVGSVGElement>) => {
+    const {
       as,
       size = "1em",
       viewBox,
@@ -34,9 +28,8 @@ export const Icon = React.forwardRef(
       focusable = false,
       children,
       ...rest
-    }: IconProps,
-    ref: React.Ref<any>,
-  ) => {
+    } = props;
+
     const sharedProps = {
       ref,
       display: "inline-block",

@@ -48,7 +48,7 @@ export function useCheckbox(props: CheckboxProps) {
     onFocus,
     onKeyDown,
     onKeyUp,
-    ...remaining
+    ...htmlProps
   } = props;
 
   const [isFocused, setIsFocused] = React.useState(false);
@@ -153,14 +153,14 @@ export function useCheckbox(props: CheckboxProps) {
       "aria-disabled": isDisabled,
       style: visuallyHiddenStyle,
     },
-    remaining,
+    htmlProps,
   };
 }
 
 export type UseCheckboxReturn = ReturnType<typeof useCheckbox>;
 
 const [CheckboxContextProvider, useCheckboxContext] = createContext<
-  Omit<UseCheckboxReturn, "remaining">
+  Omit<UseCheckboxReturn, "htmlProps">
 >();
 
 export const useCheckboxState = () => useCheckboxContext()["state"];
@@ -171,10 +171,10 @@ type LabelProps = CheckboxProps & React.HTMLAttributes<HTMLLabelElement>;
 
 export const CheckboxProvider = React.forwardRef(
   (props: LabelProps, ref: React.Ref<HTMLLabelElement>) => {
-    const { remaining, ...context } = useCheckbox(props);
+    const { htmlProps, ...context } = useCheckbox(props);
     return (
       <CheckboxContextProvider value={context}>
-        <label ref={ref} {...remaining}>
+        <label ref={ref} {...htmlProps}>
           {props.children}
         </label>
       </CheckboxContextProvider>
