@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/utils";
 import * as React from "react";
 
-export interface CheckboxProps {
+export interface CheckboxHookProps {
   isChecked?: boolean;
   isIndeterminate?: boolean;
   isDisabled?: boolean;
@@ -30,7 +30,7 @@ export interface CheckboxProps {
   onKeyUp?: React.KeyboardEventHandler;
 }
 
-export function useCheckbox(props: CheckboxProps) {
+export function useCheckbox(props: CheckboxHookProps) {
   const {
     defaultIsChecked,
     isChecked: checkedProp,
@@ -157,17 +157,17 @@ export function useCheckbox(props: CheckboxProps) {
   };
 }
 
-export type UseCheckboxReturn = ReturnType<typeof useCheckbox>;
+export type CheckboxHookReturn = ReturnType<typeof useCheckbox>;
 
 const [CheckboxContextProvider, useCheckboxContext] = createContext<
-  Omit<UseCheckboxReturn, "htmlProps">
+  Omit<CheckboxHookReturn, "htmlProps">
 >();
 
 export const useCheckboxState = () => useCheckboxContext()["state"];
 
 ////////////////////////////////////////////////////////////////////////////////
 
-type LabelProps = CheckboxProps & React.HTMLAttributes<HTMLLabelElement>;
+type LabelProps = CheckboxHookProps & React.HTMLAttributes<HTMLLabelElement>;
 
 export const CheckboxProvider = React.forwardRef(
   (props: LabelProps, ref: React.Ref<HTMLLabelElement>) => {

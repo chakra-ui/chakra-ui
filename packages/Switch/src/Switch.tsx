@@ -1,10 +1,19 @@
+import React from "react";
+import { useCheckbox } from "@chakra-ui/checkbox";
+import { useMergeRefs } from "@chakra-ui/hooks";
+import { PropsOf } from "@chakra-ui/system";
 
-import * as React from "react"
-import { useSwitch, SwitchProps }from "./Switch.hook"
-
-export function Switch(props: SwitchProps){
-  const hook = useSwitch(props)
-  return <div>This is a Switch component</div>
-}
-
-export default Switch
+const BaseSwitch = React.forwardRef(
+  (props: any, ref: React.Ref<HTMLInputElement>) => {
+    const { state, input, checkbox, htmlProps } = useCheckbox(props);
+    const ownRef = useMergeRefs(ref, input.ref);
+    return (
+      <label {...htmlProps}>
+        <input {...input} ref={ownRef} />
+        <div {...checkbox}>
+          <div />
+        </div>
+      </label>
+    );
+  },
+);

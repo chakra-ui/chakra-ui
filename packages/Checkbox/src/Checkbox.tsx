@@ -1,7 +1,7 @@
 import { createChakra, PropsOf, SystemProps, chakra } from "@chakra-ui/system";
 import { Omit } from "@chakra-ui/utils";
 import * as React from "react";
-import { CheckboxProps, useCheckbox } from "./Checkbox.hook";
+import { CheckboxHookProps, useCheckbox } from "./Checkbox.hook";
 import { CheckIcon, MinusIcon } from "./Checkbox.icon";
 import { IconProps } from "@chakra-ui/icon";
 
@@ -14,9 +14,9 @@ type OmittedCheckboxProps = Omit<
 
 type CustomCheckboxProps = OmittedCheckboxProps &
   Omit<PropsOf<"input">, "size"> &
-  CheckboxProps & {
-    iconColor?: any;
-    iconSize?: SystemProps["size"];
+  CheckboxHookProps & {
+    iconColor?: IconProps["color"];
+    iconSize?: IconProps["size"];
   };
 
 function CheckboxIcon({

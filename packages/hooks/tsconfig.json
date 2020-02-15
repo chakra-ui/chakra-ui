@@ -1,5 +1,5 @@
 {
   "extends": "../../tsconfig-base.json",
-  "include": ["src", "types", "story.setup.tsx"],
+  "include": ["src", "types"],
   "exclude": ["**/*.spec.ts", "**/*.spec.tsx", "**/*.test.ts", "**/*.test.tsx"]
 }
