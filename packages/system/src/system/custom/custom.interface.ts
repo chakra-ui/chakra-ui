@@ -41,6 +41,9 @@ export interface CustomProps {
   pos?: SS.PositionProps["position"];
   flexDir?: SS.FlexDirectionProps["flexDirection"];
 
+  outlineColor?: SS.ColorProps["color"];
+  outlineOffset?: SS.SpaceProps["padding"];
+
   // CSS properties
   textDecoration?: SS.ResponsiveValue<CSS["textDecoration"]>;
   textDecor?: SS.ResponsiveValue<CSS["textDecoration"]>;
