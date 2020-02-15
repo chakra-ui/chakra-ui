@@ -128,6 +128,11 @@ export const config: Dict = {
     property: "backgroundAttachment",
   },
   outline: true,
+  outlineColor: {
+    property: "outlineColor",
+    scale: "colors",
+  },
+  outlineOffset: true,
   float: true,
   willChange: true,
 };
