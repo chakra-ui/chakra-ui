@@ -1,6 +1,6 @@
 {
   "extends": "../../tsconfig-base.json",
-  "include": ["src", "types", "../hooks/src/useAriaHidden.tsx"],
+  "include": ["src"],
   "exclude": ["**/*.spec.ts", "**/*.spec.tsx", "**/*.test.ts", "**/*.test.tsx"],
   "compilerOptions": {
     "noImplicitAny": true,
