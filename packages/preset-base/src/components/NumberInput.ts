@@ -1,13 +1,14 @@
 import { ComponentTheme, getModeColor as color } from "./utils";
+import { SystemProps } from "@chakra-ui/system";
 
-function getSizeStyle(size: "sm" | "md" | "lg") {
+function getSizeStyle(size: "sm" | "md" | "lg"): SystemProps {
   return {
     fontSize: size === "sm" ? "11px" : "15px",
     _first: {
-      topRightRadius: size === "sm" ? 1 : 3,
+      borderTopRightRadius: size === "sm" ? 1 : 3,
     },
     _last: {
-      bottomRightRadius: size === "sm" ? 1 : 3,
+      borderBottomRightRadius: size === "sm" ? 1 : 3,
       mt: "-1px",
       borderTopWidth: 1,
     },
