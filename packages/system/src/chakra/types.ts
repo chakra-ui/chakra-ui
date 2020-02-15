@@ -10,7 +10,7 @@ type MergePropsOf<P, T extends As> = {} extends P
   ? Omit<P, keyof PropsOf<T>> & PropsOf<T>
   : PropsOf<T>;
 
-interface OtherProps extends ValidHTMLProps {
+export interface OtherProps extends ValidHTMLProps {
   as?: React.ElementType;
   isTruncated?: boolean;
   children?: React.ReactNode;

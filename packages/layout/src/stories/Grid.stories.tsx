@@ -1,10 +1,9 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import SimpleGrid from "../SimpleGrid";
-import setup from "../story.setup";
 import Box from "../Box";
 
-const stories = storiesOf("SimpleGrid", module).addDecorator(setup);
+const stories = storiesOf("SimpleGrid", module);
 
 stories.add("with columns", () => (
   <SimpleGrid columns={[2, null, 3]} spacing="40px">

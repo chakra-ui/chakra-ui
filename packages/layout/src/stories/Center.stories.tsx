@@ -2,11 +2,10 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 import Box from "../Box";
 import Center from "../Center";
-import setup from "../story.setup";
 
 ///////////////////////////////////////////////////////////////////////////////////
 
-const stories = storiesOf("Center", module).addDecorator(setup);
+const stories = storiesOf("Center", module);
 
 stories.add("flex", () => (
   <Center size="400px">

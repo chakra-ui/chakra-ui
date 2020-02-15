@@ -2,9 +2,8 @@ import { chakra } from "@chakra-ui/system";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import AspectRatioBox from "../AspectRatioBox";
-import setup from "../story.setup";
 
-const stories = storiesOf("AspectRatioBox", module).addDecorator(setup);
+const stories = storiesOf("AspectRatioBox", module);
 
 stories.add("with video", () => (
   <AspectRatioBox maxW="300px" ratio={1}>

@@ -3,14 +3,11 @@ import React from "react";
 import Box from "../Box";
 import Heading from "../Heading";
 import Stack from "../Stack";
-import setup from "../story.setup";
 import Text from "../Text";
 
 ///////////////////////////////////////////////////////////////////////////////////
 
 const stories = storiesOf("Stack", module);
-
-stories.addDecorator(setup);
 
 stories.add("vertical", () => (
   <Stack spacing={4}>

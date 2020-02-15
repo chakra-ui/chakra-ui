@@ -2,14 +2,13 @@ import { PropsOf } from "@chakra-ui/system";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import Box from "../Box";
-import setup from "../story.setup";
 import Flex from "../Flex";
 import Spacer from "../Spacer";
 import Inline from "../Inline";
 
 ///////////////////////////////////////////////////////////////////////////////////
 
-const stories = storiesOf("Box", module).addDecorator(setup);
+const stories = storiesOf("Box", module);
 
 stories.add("default", () => (
   <Box color="tomato" _hover={{ bg: "red.500", color: "white" }}>

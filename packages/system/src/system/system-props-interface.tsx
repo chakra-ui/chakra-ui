@@ -13,7 +13,7 @@ type FontWeight =
   | "extrabold"
   | "black";
 
-interface FontWeightProp {
+export interface FontWeightProp {
   fontWeight?:
     | SS.ResponsiveValue<FontWeight>
     | SS.FontWeightProps["fontWeight"];
