@@ -60,7 +60,8 @@
     "stat": "yarn workspace @chakra-ui/stat",
     "toast": "yarn workspace @chakra-ui/toast",
     "close-button": "yarn workspace @chakra-ui/close-button",
-    "switch": "yarn workspace @chakra-ui/switch"
+    "switch": "yarn workspace @chakra-ui/switch",
+    "tag": "yarn workspace @chakra-ui/tag"
   },
   "husky": {
     "hooks": {

@@ -20,3 +20,12 @@ stories.add("base", () => (
     <Switch variantSize="lg" variantColor="cyan" />
   </>
 ));
+
+stories.add("usage", () => (
+  <chakra.div display="flex" justifyContent="center" alignItems="center">
+    <chakra.label htmlFor="email-alerts" mr="16px">
+      Enable email alerts?
+    </chakra.label>
+    <Switch variantColor="green" id="email-alerts" />
+  </chakra.div>
+));
