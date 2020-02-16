@@ -15,6 +15,7 @@ import Tooltip from "./Tooltip";
 import CloseButton from "./CloseButton";
 import Slider from "./Slider";
 import NumberInput from "./NumberInput";
+import Switch from "./Switch";
 
 export default {
   Button,
@@ -34,4 +35,5 @@ export default {
   CloseButton,
   Slider,
   NumberInput,
+  Switch,
 };

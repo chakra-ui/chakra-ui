@@ -2,7 +2,7 @@ import { configure, addDecorator } from "@storybook/react";
 import setup from "./story.setup";
 
 const req = require.context(
-  `../packages/layout/src/`,
+  `../packages/Switch/src/`,
   true,
   /.stories\.(ts|tsx)$/,
 );

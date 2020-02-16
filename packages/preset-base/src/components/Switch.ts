@@ -8,9 +8,8 @@ const variantSize = {
       height: "0.75rem",
     },
     Thumb: {
-      _checked: {
-        transform: `translateX(calc(1.375rem - 0.75rem))`,
-      },
+      size: "0.75rem",
+      _checked: { transform: `translateX(0.625rem)` },
     },
   },
   md: {
@@ -19,9 +18,8 @@ const variantSize = {
       height: "1rem",
     },
     Thumb: {
-      _checked: {
-        transform: `translateX(calc(1.875rem - 1rem))`,
-      },
+      size: "1rem",
+      _checked: { transform: `translateX(0.875rem)` },
     },
   },
   lg: {
@@ -30,9 +28,8 @@ const variantSize = {
       height: "1.5rem",
     },
     Thumb: {
-      _checked: {
-        transform: `translateX(calc(1.875rem - 1rem))`,
-      },
+      size: "1.5rem",
+      _checked: { transform: `translateX(1.375rem)` },
     },
   },
 };
@@ -54,6 +51,9 @@ const Switch: ComponentTheme = {
       _checked: { bg: `${props.variantColor}.500` },
     },
     Thumb: {
+      bg: "white",
+      transition: "transform 250ms",
+      borderRadius: "full",
       transform: `translateX(0)`,
     },
   }),
