@@ -1,5 +1,9 @@
 import { colorEmphasis, getColor } from "@chakra-ui/color";
-import { StyleFunctionProps, getModeColor as get } from "./utils";
+import {
+  StyleFunctionProps,
+  getModeColor as get,
+  ComponentTheme,
+} from "./utils";
 
 function getSubtleStyle(props: StyleFunctionProps) {
   const { theme: t, variantColor: c } = props;
@@ -41,7 +45,7 @@ function getSolidStyle(props: StyleFunctionProps) {
   };
 }
 
-export default {
+const Alert: ComponentTheme = {
   baseStyle: {
     display: "flex",
     alignItems: "center",
@@ -53,9 +57,12 @@ export default {
     paddingBottom: 3,
   },
   variant: {
+    __default: "subtle",
     solid: getSolidStyle,
     subtle: getSubtleStyle,
     "left-accent": getLeftAccentStyle,
     "top-accent": getTopAccentStyle,
   },
 };
+
+export default Alert;

@@ -47,7 +47,10 @@
     "tslib": "1.10.0",
     "typescript": "3.7.4"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@chakra-ui/system": "0.0.1",
+    "@chakra-ui/icon": "0.0.1"
+  },
   "peerDependencies": {
     "@emotion/core": "10.x",
     "@emotion/styled": "10.x",

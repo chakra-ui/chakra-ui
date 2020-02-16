@@ -1,5 +1,9 @@
 import { addOpacity, generateAlphaColors, getColor } from "@chakra-ui/color";
-import { StyleFunctionProps, getModeColor as get } from "./utils";
+import {
+  StyleFunctionProps,
+  getModeColor as get,
+  ComponentTheme,
+} from "./utils";
 
 function getSolidStyle(props: StyleFunctionProps) {
   const { variantColor: c } = props;
@@ -33,7 +37,7 @@ function getOutlineStyle(props: StyleFunctionProps) {
   };
 }
 
-const Badge = {
+const Badge: ComponentTheme = {
   baseStyle: {
     display: "inline-block",
     paddingX: 1,
@@ -45,6 +49,7 @@ const Badge = {
     verticalAlign: "middle",
   },
   variant: {
+    __default: "subtle",
     solid: getSolidStyle,
     outline: getOutlineStyle,
     subtle: getSubtleStyle,

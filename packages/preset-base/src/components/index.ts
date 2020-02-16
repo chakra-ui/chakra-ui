@@ -16,6 +16,7 @@ import CloseButton from "./CloseButton";
 import Slider from "./Slider";
 import NumberInput from "./NumberInput";
 import Switch from "./Switch";
+import Tag from "./Tag";
 
 export default {
   Button,
@@ -36,4 +37,5 @@ export default {
   Slider,
   NumberInput,
   Switch,
+  Tag,
 };
