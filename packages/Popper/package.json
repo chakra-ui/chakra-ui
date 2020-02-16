@@ -48,8 +48,7 @@
     "typescript": "3.7.4"
   },
   "dependencies": {
-    "use-deep-compare": "0.1.0",
-    "popper.js": "^1.15.0"
+    "@popperjs/core": "2.0.6"
   },
   "peerDependencies": {
     "@emotion/core": "10.x",

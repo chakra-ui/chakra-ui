@@ -2888,6 +2888,11 @@
     once "^1.4.0"
     universal-user-agent "^4.0.0"
 
+"@popperjs/core@2.0.6":
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.0.6.tgz#5a39ac118811ca844155b0ad5190b8c24f35e533"
+  integrity sha512-zj7Gw8QC4jmR92eKUvtrZUEpl2ypRbq+qlE4pwf9n2hnUO9BOAcWUs4/Ht+gNIbFt98xtqhLvccdCfD469MzpQ==
+
 "@reach/alert@^0.1.2":
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/@reach/alert/-/alert-0.1.5.tgz#4da79add0055fa4295f51e5295ed3b80257e9153"
@@ -11337,7 +11342,7 @@ polished@^3.3.1:
   dependencies:
     "@babel/runtime" "^7.4.5"
 
-popper.js@^1.14.4, popper.js@^1.14.7, popper.js@^1.15.0:
+popper.js@^1.14.4, popper.js@^1.14.7:
   version "1.16.0"
   resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.0.tgz#2e1816bcbbaa518ea6c2e15a466f4cb9c6e2fbb3"
 
@@ -14384,13 +14389,6 @@ use-dark-mode@2.3.1:
   dependencies:
     "@use-it/event-listener" "^0.1.2"
     use-persisted-state "^0.3.0"
-
-use-deep-compare@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/use-deep-compare/-/use-deep-compare-0.1.0.tgz#7fd775047ab7126dfc11e8c19f6926b3112c03d0"
-  integrity sha512-WZG0iTvyo+6csYuCfoFxpYSK5nAifyO4jVia+yJTSooOo8EurzgzCE8ZMIcVpRQOwqolF0Otve94DrdGNYynFA==
-  dependencies:
-    dequal "1.0.0"
 
 use-persisted-state@^0.3.0:
   version "0.3.0"

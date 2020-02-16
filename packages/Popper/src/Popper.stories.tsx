@@ -11,7 +11,7 @@ stories.add("Default", () => {
 
     const { popper, reference, arrow } = usePopper({
       placement: "left",
-      shouldUpdate: disclosure.isOpen,
+      forceUpdate: disclosure.isOpen,
     });
 
     return (
