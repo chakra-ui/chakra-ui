@@ -18,6 +18,7 @@
   <a href="https://spectrum.chat/chakra-ui"><img alt="Spectrum" src="https://img.shields.io/badge/community-spectrum-7A2DFB.svg?style=flat-square" /></a>
   <img alt="Spectrum" src="https://badgen.net/github/last-commit/chakra-ui/chakra-ui" />
   <img alt="Spectrum" src="https://badgen.net/github/stars/chakra-ui/chakra-ui" />
+  <a href="https://www.tickgit.com/browse?repo=github.com/chakra-ui/chakra-ui"><img alt="TODOs" src="https://img.shields.io/endpoint?url=https://api.tickgit.com/badge?repo=github.com/chakra-ui/chakra-ui"/></a>
 </p>
 <br />
 
