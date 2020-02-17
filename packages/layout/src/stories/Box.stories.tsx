@@ -44,3 +44,4 @@ stories.add("cluster", () => (
     <Box color="yellow.200">Box 2</Box>
   </Inline>
 ));
+

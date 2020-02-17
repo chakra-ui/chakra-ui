@@ -6,8 +6,8 @@ export function getElementHeight(el: React.RefObject<HTMLElement>) {
 }
 
 export const defaultTransitionStyles: React.CSSProperties = {
-  transitionDuration: "300ms",
-  transitionTimingFunction: "cubic-bezier(0.250, 0.460, 0.450, 0.940)",
+  transitionDuration: "250ms",
+  transitionTimingFunction: "ease-in",
 };
 
 export function join(str: string | undefined) {

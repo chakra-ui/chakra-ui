@@ -6,16 +6,7 @@ const stories = storiesOf("Collapse", module);
 
 function Example() {
   const collapse = useCollapse({
-    collapseStyles: {
-      opacity: 0.01,
-      transitionProperty: "opacity, height, transform",
-      transform: "translateY(-0.1rem)",
-    },
-    expandStyles: {
-      opacity: 1,
-      transitionProperty: "opacity, height, transform",
-      transform: "translateY(0)",
-    },
+    defaultIsOpen: true,
   });
   return (
     <>

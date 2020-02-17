@@ -6,6 +6,7 @@ import {
   forwardRef,
   jsx,
 } from "@chakra-ui/system";
+import { cleanChildren } from "@chakra-ui/utils";
 import * as React from "react";
 import { FlexProps } from "./Flex";
 
@@ -30,6 +31,15 @@ interface StackOptions {
    * If `true`, the stack will be reversed
    */
   isReversed?: boolean;
+  /**
+   * If `true`, each stack item will show a divider
+   */
+  showDivider?: boolean;
+  /**
+   * The border color of the divider.
+   * Note: It only applies when `showDivider` is set to `true`,
+   */
+  dividerColor?: StackProps["borderColor"];
 }
 
 type StackProps = FlexProps & StackOptions;
@@ -44,6 +54,8 @@ const Stack = forwardRef((props: StackProps, ref: React.Ref<any>) => {
     children,
     isReversed,
     isInline,
+    showDivider,
+    dividerColor,
     ...rest
   } = props;
 
@@ -53,9 +65,28 @@ const Stack = forwardRef((props: StackProps, ref: React.Ref<any>) => {
     [finalDirection === "row" ? "marginLeft" : "marginTop"]: spacing,
   };
 
-  const finalChildren = isReversed
-    ? React.Children.toArray(children).reverse()
-    : children;
+  const validChildren = cleanChildren(children);
+
+  const finalChildren = isReversed ? validChildren.reverse() : validChildren;
+
+  const clones = finalChildren.map((child, index) => {
+    const isLast = index + 1 === finalChildren.length;
+    if (!isLast) {
+      return (
+        <React.Fragment key={index}>
+          {child}
+          <chakra.hr
+            border="0"
+            borderBottom="1px solid"
+            borderColor={dividerColor}
+            marginY={spacing}
+            alignSelf="stretch"
+          />
+        </React.Fragment>
+      );
+    }
+    return child;
+  });
 
   return (
     <chakra.div
@@ -65,10 +96,10 @@ const Stack = forwardRef((props: StackProps, ref: React.Ref<any>) => {
       justifyContent={justify}
       flexDirection={finalDirection}
       flexWrap={wrap}
-      css={css({ ">*+*": stackStyle })}
+      css={!showDivider ? css({ ">*+*": stackStyle }) : undefined}
       {...rest}
     >
-      {finalChildren}
+      {showDivider ? clones : finalChildren}
     </chakra.div>
   );
 }) as ChakraComponent<"div", StackProps>;
