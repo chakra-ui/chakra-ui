@@ -153,3 +153,7 @@ specification. Contributions of any kind welcome!
 
 Testing Supported By<br/>
 <img width="160" src="https://3fxtqy18kygf3on3bu39kh93-wpengine.netdna-ssl.com/wp-content/themes/browserstack/img/browserstack-logo.svg" alt="BrowserStack"/>
+
+## LICENSE
+
+MIT © [Segun Adebayo](https://github.com/segunadebayo)

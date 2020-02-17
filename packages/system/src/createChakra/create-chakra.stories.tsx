@@ -1,14 +1,12 @@
-import { storiesOf } from "@storybook/react";
 import * as React from "react";
-import setup from "../../story.setup";
 import chakra from "../chakra/chakra";
+import connect from "../connect-theming";
 import createChakra from "./create-chakra";
 import useComponentStyle from "./use-component-style";
-import connect from "../connect-theming";
 
-const stories = storiesOf("createChakra", module);
-
-stories.addDecorator(setup);
+export default {
+  title: "create Chakra",
+};
 
 const Button = createChakra("button", {
   themeKey: "Button",
@@ -23,11 +21,11 @@ Button.defaultProps = {
   variantColor: "green",
 };
 
-stories.add("button - basic", () => (
+export const ButtonBasic = () => (
   <Button marginTop="40px">This is my button</Button>
-));
+);
 
-stories.add("button - theming", () => (
+export const ButtonTheming = () => (
   <Button
     bg="transparent"
     border="0"
@@ -37,7 +35,7 @@ stories.add("button - theming", () => (
   >
     This is my button
   </Button>
-));
+);
 
 ////////////////////////////////////////////////////////////////////
 
@@ -45,11 +43,11 @@ const Alert = createChakra("div", {
   themeKey: "Alert",
 });
 
-stories.add("alert", () => (
+export const Alert_ = () => (
   <Alert variant="tradeling" variantColor="green" role="alert">
     Welcome to alert
   </Alert>
-));
+);
 
 ////////////////////////////////////////////////////////////////////
 
@@ -65,13 +63,13 @@ const MenuItem = createChakra("button", {
   },
 });
 
-stories.add("subcomponents - menulist", () => (
+export const SubcomponentsMenulist = () => (
   <MenuList>
     <MenuItem>Menu 1</MenuItem>
     <MenuItem>Menu 2</MenuItem>
     <MenuItem>Menu 3</MenuItem>
   </MenuList>
-));
+);
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -100,33 +98,29 @@ Tab.defaultProps = {
   variantSize: "md",
 };
 
-stories.add("subcomponents - Tabs", () => (
+export const SubcomponentTabs = () => (
   <TabList>
     <Tab>Tab 1</Tab>
     <Tab variantColor="orange" data-selected="">
       Tab 2
     </Tab>
   </TabList>
-));
+);
 
-stories.add("useComponentStyle", () => {
-  const Example = () => {
-    const style = useComponentStyle({
-      themeKey: "Input",
-      // focusBorderColor: "gray.500",
-      // errorBorderColor: "pink.500",
-    });
-    return (
-      <chakra.pre fontFamily="mono" fontSize="xs">
-        {JSON.stringify(style, null, 4)}
-      </chakra.pre>
-    );
-  };
+export const UseComponentStyle = () => {
+  const style = useComponentStyle({
+    themeKey: "Input",
+    // focusBorderColor: "gray.500",
+    // errorBorderColor: "pink.500",
+  });
+  return (
+    <chakra.pre fontFamily="mono" fontSize="xs">
+      {JSON.stringify(style, null, 4)}
+    </chakra.pre>
+  );
+};
 
-  return <Example />;
-});
-
-stories.add("bind - theming", () => {
+export const BindTheming = () => {
   const TabList = createChakra("div", {
     themeKey: "Tabs.TabList",
     baseStyle: {
@@ -150,4 +144,4 @@ stories.add("bind - theming", () => {
       <BindTab>Tab 3</BindTab>
     </BindTabList>
   );
-});
+};
