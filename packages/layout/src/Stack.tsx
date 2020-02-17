@@ -5,8 +5,9 @@ import {
   css,
   forwardRef,
   jsx,
+  PropsOf,
 } from "@chakra-ui/system";
-import { cleanChildren } from "@chakra-ui/utils";
+import { cleanChildren, Omit } from "@chakra-ui/utils";
 import * as React from "react";
 import { FlexProps } from "./Flex";
 
@@ -34,17 +35,19 @@ interface StackOptions {
   /**
    * If `true`, each stack item will show a divider
    */
-  showDivider?: boolean;
-  /**
-   * The border color of the divider.
-   * Note: It only applies when `showDivider` is set to `true`,
-   */
-  dividerColor?: StackProps["borderColor"];
+  divider?: React.ReactElement;
 }
 
-type StackProps = FlexProps & StackOptions;
+export type StackProps = Omit<FlexProps, "direction" | "flexDirection"> &
+  StackOptions;
 
-const Stack = forwardRef((props: StackProps, ref: React.Ref<any>) => {
+export type StackDividerProps = PropsOf<typeof chakra.hr>;
+
+export const StackDivider = (props: StackDividerProps) => (
+  <chakra.hr border="0" alignSelf="stretch" {...props} />
+);
+
+export const Stack = forwardRef((props: StackProps, ref: React.Ref<any>) => {
   const {
     direction = "column",
     justify = "flex-start",
@@ -54,8 +57,7 @@ const Stack = forwardRef((props: StackProps, ref: React.Ref<any>) => {
     children,
     isReversed,
     isInline,
-    showDivider,
-    dividerColor,
+    divider,
     ...rest
   } = props;
 
@@ -69,19 +71,37 @@ const Stack = forwardRef((props: StackProps, ref: React.Ref<any>) => {
 
   const finalChildren = isReversed ? validChildren.reverse() : validChildren;
 
+  const dividerStyleProps =
+    finalDirection === "row"
+      ? {
+          marginX: spacing,
+          marginY: 0,
+          borderLeft: "1px solid",
+        }
+      : {
+          marginY: spacing,
+          marginX: 0,
+          width: "100%",
+          borderBottom: "1px solid",
+        };
+
+  const hasDivider = Boolean(divider);
+
   const clones = finalChildren.map((child, index) => {
+    if (!hasDivider) return child;
+
     const isLast = index + 1 === finalChildren.length;
+
     if (!isLast) {
       return (
         <React.Fragment key={index}>
-          {child}
-          <chakra.hr
-            border="0"
-            borderBottom="1px solid"
-            borderColor={dividerColor}
-            marginY={spacing}
-            alignSelf="stretch"
-          />
+          {[
+            child,
+            React.cloneElement(
+              divider as React.ReactElement<any>,
+              dividerStyleProps,
+            ),
+          ]}
         </React.Fragment>
       );
     }
@@ -96,10 +116,10 @@ const Stack = forwardRef((props: StackProps, ref: React.Ref<any>) => {
       justifyContent={justify}
       flexDirection={finalDirection}
       flexWrap={wrap}
-      css={!showDivider ? css({ ">*+*": stackStyle }) : undefined}
+      css={!hasDivider ? css({ ">*+*": stackStyle }) : undefined}
       {...rest}
     >
-      {showDivider ? clones : finalChildren}
+      {clones}
     </chakra.div>
   );
 }) as ChakraComponent<"div", StackProps>;

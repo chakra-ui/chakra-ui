@@ -1,7 +1,7 @@
 import React from "react";
 import Box from "../Box";
 import Heading from "../Heading";
-import Stack from "../Stack";
+import { Stack, StackDivider } from "../Stack";
 import Text from "../Text";
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -38,6 +38,38 @@ export const Reversed = () => (
       3
     </Box>
   </Stack>
+);
+
+export const WithDivider = () => (
+  <>
+    <Stack
+      isInline
+      divider={<StackDivider borderColor="red.200" />}
+      spacing="40px"
+    >
+      <Box w="100%" h="40px" bg="yellow.200">
+        1
+      </Box>
+      <Box w="100%" h="40px" bg="tomato">
+        2
+      </Box>
+      <Box w="100%" h="40px" bg="pink.100">
+        3
+      </Box>
+    </Stack>
+
+    <Stack divider={<StackDivider borderColor="red.200" />} spacing="40px">
+      <Box w="100%" h="40px" bg="yellow.200">
+        1
+      </Box>
+      <Box w="100%" h="40px" bg="tomato">
+        2
+      </Box>
+      <Box w="100%" h="40px" bg="pink.100">
+        3
+      </Box>
+    </Stack>
+  </>
 );
 
 function Feature({ title, desc, ...rest }: any) {
