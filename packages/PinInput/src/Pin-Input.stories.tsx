@@ -1,12 +1,11 @@
 import * as React from "react";
-import { storiesOf } from "@storybook/react";
-import setup from "../story.setup";
-import { usePinInputState, usePinInput } from "./Pin-Input.hook";
+import { usePinInput, usePinInputState } from "./Pin-Input.hook";
 
-const stories = storiesOf("PinInput", module);
-stories.addDecorator(setup);
+export default {
+  title: "PinInput",
+};
 
-function Example() {
+export function Basic() {
   const context = usePinInputState({ autoFocus: true });
   const input1 = usePinInput({ context });
   const input2 = usePinInput({ context });
@@ -30,5 +29,3 @@ function Example() {
     </div>
   );
 }
-
-stories.add("default", () => <Example />);

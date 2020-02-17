@@ -1,19 +1,19 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { storiesOf } from "@storybook/react";
 import {
   Stat,
-  StatLabel,
-  StatNumber,
-  StatHelpText,
   StatArrow,
   StatGroup,
+  StatHelpText,
+  StatLabel,
+  StatNumber,
 } from "./Stat";
-import setup from "../story.setup";
 
-const stories = storiesOf("Stats", module).addDecorator(setup);
+export default {
+  title: "Stat",
+};
 
-stories.add("Default", () => {
+export const Default = () => {
   return (
     <Stat>
       <StatLabel>Collected Fees</StatLabel>
@@ -21,9 +21,9 @@ stories.add("Default", () => {
       <StatHelpText>Feb 12 - Feb 28</StatHelpText>
     </Stat>
   );
-});
+};
 
-stories.add("With Indicators", () => {
+export const WithIndicators = () => {
   return (
     <StatGroup>
       <Stat>
@@ -45,4 +45,4 @@ stories.add("With Indicators", () => {
       </Stat>
     </StatGroup>
   );
-});
+};

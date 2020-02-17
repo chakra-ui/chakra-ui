@@ -1,14 +1,14 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import setup from "../story.setup";
 import CloseButton from "./CloseButton";
 
-const stories = storiesOf("CloseButton", module);
-stories.addDecorator(setup);
+export default {
+  title: "CloseButton",
+};
 
-stories.add("default", () => (
+export const Default = () => (
   <>
     <CloseButton />
     <CloseButton variantSize="sm" />
   </>
-));
+);

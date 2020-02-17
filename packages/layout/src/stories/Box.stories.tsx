@@ -1,22 +1,21 @@
 import { PropsOf } from "@chakra-ui/system";
-import { storiesOf } from "@storybook/react";
 import React from "react";
 import Box from "../Box";
 import Flex from "../Flex";
 import Spacer from "../Spacer";
 import Inline from "../Inline";
 
-///////////////////////////////////////////////////////////////////////////////////
+export default {
+  title: "Box",
+};
 
-const stories = storiesOf("Box", module);
-
-stories.add("default", () => (
+export const Basic = () => (
   <Box color="tomato" _hover={{ bg: "red.500", color: "white" }}>
     Welcome to Box
   </Box>
-));
+);
 
-stories.add("as prop + generic", () => (
+export const PropAndGeneric = () => (
   <Box<PropsOf<"img">>
     borderRadius="sm"
     as="img"
@@ -24,17 +23,17 @@ stories.add("as prop + generic", () => (
     margin={[3, 4]}
     src="https://avatars3.githubusercontent.com/u/14854048?s=180&v=4"
   />
-));
+);
 
-stories.add("flex + spacer", () => (
+export const FlexSpacer = () => (
   <Flex size="500px" direction={{ base: "column", md: "row" }}>
     <Box color="tomato">Box 1</Box>
     <Spacer />
     <Box color="yellow.200">Box 2</Box>
   </Flex>
-));
+);
 
-stories.add("cluster", () => (
+export const Cluster = () => (
   <Inline spacing="32px" maxWidth="200px">
     <Box color="tomato">Box 1</Box>
     <Box color="yellow.200">Box 2</Box>
@@ -43,5 +42,4 @@ stories.add("cluster", () => (
     <Box color="yellow.200">Box 2</Box>
     <Box color="yellow.200">Box 2</Box>
   </Inline>
-));
-
+);

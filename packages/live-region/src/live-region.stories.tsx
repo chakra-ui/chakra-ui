@@ -1,10 +1,11 @@
 import React from "react";
-import { storiesOf } from "@storybook/react";
 import useLiveRegion from "./live-region.hook";
 
-const stories = storiesOf("Live Region", module);
+export default {
+  title: "Live Region",
+};
 
-function Example() {
+export function PoliteExample() {
   const region = useLiveRegion();
   return (
     <button
@@ -16,5 +17,3 @@ function Example() {
     </button>
   );
 }
-
-stories.add("polite", () => <Example />);

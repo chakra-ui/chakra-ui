@@ -1,11 +1,9 @@
 import React from "react";
-import { storiesOf } from "@storybook/react";
-import { Portal, PortalManager } from ".";
-import setup from "../story.setup";
+import { Portal } from ".";
 
-const stories = storiesOf("Portal", module);
-
-stories.addDecorator(story => <PortalManager>{setup(story)}</PortalManager>);
+export default {
+  title: "Portal",
+};
 
 function Wrapper(props: any) {
   const { offset, color, children, forwardedRef } = props;
@@ -30,7 +28,7 @@ function Wrapper(props: any) {
   );
 }
 
-const Example = () => {
+export const BasicExample = () => {
   const [isFirstOpen, setIsFirstOpen] = React.useState(false);
   const [isSecondOpen, setIsSecondOpen] = React.useState(false);
   return (
@@ -74,5 +72,3 @@ const Example = () => {
     </>
   );
 };
-
-stories.add("Default", () => <Example />);

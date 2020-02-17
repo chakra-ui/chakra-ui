@@ -1,17 +1,17 @@
 import { createChakra } from "@chakra-ui/system";
-import { storiesOf } from "@storybook/react";
 import React from "react";
 import { TabsProvider } from ".";
-import setup from "../story.setup";
 import * as Base from "./Tabs.base";
 
-const stories = storiesOf("Tabs", module).addDecorator(setup);
+export default {
+  title: "Tabs",
+};
 
 const Tab = createChakra(Base.BaseTab);
 const TabList = createChakra(Base.BaseTabList);
 const TabPanel = createChakra(Base.BaseTabPanel);
 
-stories.add("useTabs", () => (
+export const BaseTabComponents = () => (
   <TabsProvider orientation="horizontal">
     <TabList>
       <Tab>Settings</Tab>
@@ -29,4 +29,4 @@ stories.add("useTabs", () => (
       <TabPanel>Shut Down</TabPanel>
     </Base.BaseTabPanels>
   </TabsProvider>
-));
+);

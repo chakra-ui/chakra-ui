@@ -1,12 +1,12 @@
 /** @jsx jsx */
-import { chakra } from "@chakra-ui/system";
 import { jsx } from "@emotion/core";
-import { storiesOf } from "@storybook/react";
 import { List, ListItem } from "../List";
 
-const stories = storiesOf("List", module);
+export default {
+  title: "List",
+};
 
-stories.add("Default", () => (
+export const Default = () => (
   <List styleType="disc">
     <ListItem>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit
@@ -18,9 +18,9 @@ stories.add("Default", () => (
       Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
     </ListItem>
   </List>
-));
+);
 
-stories.add("Ordered", () => (
+export const Ordered = () => (
   <List styleType="decimal">
     <ListItem>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit
@@ -32,4 +32,4 @@ stories.add("Ordered", () => (
       Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
     </ListItem>
   </List>
-));
+);

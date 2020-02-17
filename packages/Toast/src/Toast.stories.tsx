@@ -1,8 +1,8 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import setup from "../story.setup";
 
-const stories = storiesOf("Toast", module);
-stories.addDecorator(setup);
+export default {
+  title: "Toast",
+};
 
-stories.add("default", () => <div>Let's show the toaster</div>);
+export const Default = () => <div>Let's show the toaster</div>;

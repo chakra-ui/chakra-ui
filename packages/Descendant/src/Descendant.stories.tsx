@@ -1,10 +1,11 @@
 import { chakra } from "@chakra-ui/system";
-import { storiesOf } from "@storybook/react";
 import React from "react";
 import { useDescendant, useDescendants } from "./";
 import { createDescendantsContext } from "./Descendant";
 
-const stories = storiesOf("Descendant", module);
+export default {
+  title: "Descendants",
+};
 
 function Option({
   value,
@@ -44,7 +45,7 @@ function Select({ children }: { children?: React.ReactNode }) {
   return <DescendantsProvider value={context}>{children}</DescendantsProvider>;
 }
 
-stories.add("Default", () => (
+export const Default = () => (
   <Select>
     <Option value="option 1" />
     <div>
@@ -54,4 +55,4 @@ stories.add("Default", () => (
       <Option value="option 3" />
     </div>
   </Select>
-));
+);

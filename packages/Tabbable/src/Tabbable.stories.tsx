@@ -1,13 +1,11 @@
-import { storiesOf } from "@storybook/react";
+import { createChakra, PropsOf } from "@chakra-ui/system";
+import { SafeMerge } from "@chakra-ui/utils";
 import * as React from "react";
 import useTabbable, { TabbableProps } from "./Tabbable.hook";
-import { createChakra, PropsOf } from "@chakra-ui/system";
-import setup from "../story.setup";
-import { SafeMerge } from "@chakra-ui/utils";
 
-const stories = storiesOf("useTabbable", module);
-
-stories.addDecorator(setup);
+export default {
+  title: "Tabbable",
+};
 
 const BaseButton = React.forwardRef(
   (
@@ -21,7 +19,7 @@ const BaseButton = React.forwardRef(
 
 const Button = createChakra(BaseButton);
 
-stories.add("Button", () => (
+export const Button_ = () => (
   <>
     <Button
       isDisabled
@@ -51,4 +49,4 @@ stories.add("Button", () => (
       Native Button
     </button>
   </>
-));
+);

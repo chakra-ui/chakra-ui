@@ -1,15 +1,13 @@
+import { createChakra, PropsOf } from "@chakra-ui/system";
 import * as React from "react";
-import { storiesOf } from "@storybook/react";
-import setup from "../story.setup";
-import { Field, Label, HelpText, ErrorText } from "./Field";
-import { PropsOf, createChakra } from "@chakra-ui/system";
+import { ErrorText, Field, HelpText, Label } from "./Field";
 import { ControlProps, useField } from "./Field.base";
 
-const stories = storiesOf("FormControl", module);
-stories.addDecorator(setup);
+export default {
+  title: "FormControl",
+};
 
 type OmittedTypes = "disabled" | "required" | "readOnly";
-
 type BaseInputProps = Omit<PropsOf<"input">, OmittedTypes> & ControlProps;
 
 const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
@@ -35,16 +33,16 @@ const BaseTextarea = React.forwardRef<HTMLTextAreaElement, BaseTextAreaProps>(
 
 const Textarea = createChakra(BaseTextarea);
 
-stories.add("input", () => (
+export const InputExample = () => (
   <Field id="first-name" isRequired isInvalid>
     <Label>First name:</Label>
     <Input placeholder="First Name" />
     <HelpText>Keep it very short and sweet!</HelpText>
     <ErrorText>Your First name is invalid</ErrorText>
   </Field>
-));
+);
 
-stories.add("textarea", () => (
+export const TextAreaExample = () => (
   <Field id="first-name" isInvalid>
     <Label>First name:</Label>
     <br />
@@ -52,9 +50,9 @@ stories.add("textarea", () => (
     <HelpText>Keep it very short and sweet!</HelpText>
     <ErrorText>Your First name is invalid</ErrorText>
   </Field>
-));
+);
 
-stories.add("styled", () => (
+export const Styled = () => (
   <Field id="first-name" isInvalid>
     <Label>First name:</Label>
     <br />
@@ -67,4 +65,4 @@ stories.add("styled", () => (
     />
     <ErrorText>Your First name is invalid</ErrorText>
   </Field>
-));
+);

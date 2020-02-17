@@ -1,20 +1,22 @@
 import { chakra } from "@chakra-ui/system";
-import { storiesOf } from "@storybook/react";
 import * as React from "react";
 import Input from "./Input";
 import { InputLeftAddon, InputRightAddon } from "./Input.addon";
 import { InputLeftElement, InputRightElement } from "./Input.element";
 import InputGroup from "./Input.group";
 
-const stories = storiesOf("Input", module);
+export default {
+  title: "Input",
+  decorators: [
+    story => (
+      <chakra.div maxW="560px" mx="auto" mt="40px">
+        {story()}
+      </chakra.div>
+    ),
+  ],
+};
 
-stories.addDecorator(story => (
-  <chakra.div maxW="560px" mx="auto" mt="40px">
-    {story()}
-  </chakra.div>
-));
-
-stories.add("states", () => (
+export const States = () => (
   <>
     <Input placeholder="Idle" />
     <br />
@@ -24,9 +26,9 @@ stories.add("states", () => (
     <br />
     <Input isReadOnly placeholder="isReadonly" />
   </>
-));
+);
 
-stories.add("variants", () => (
+export const Variants = () => (
   <>
     <Input variant="outline" placeholder="Outline" />
     <br />
@@ -36,9 +38,9 @@ stories.add("variants", () => (
     <br />
     <Input variant="unstyled" placeholder="Unstyled" />
   </>
-));
+);
 
-stories.add("left and right addon", () => (
+export const LeftAndRightAddon = () => (
   <>
     <InputGroup>
       <InputLeftAddon children="+234" />
@@ -53,9 +55,9 @@ stories.add("left and right addon", () => (
       <InputRightAddon children=".com" />
     </InputGroup>
   </>
-));
+);
 
-stories.add("element inside input", () => (
+export const ElementInsideInput = () => (
   <>
     <InputGroup>
       <InputLeftElement children={"P"} />
@@ -68,9 +70,9 @@ stories.add("element inside input", () => (
       <InputRightElement children={"C"} />
     </InputGroup>
   </>
-));
+);
 
-function PasswordInput() {
+export function PasswordInput() {
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
 
@@ -90,9 +92,7 @@ function PasswordInput() {
   );
 }
 
-stories.add("password input", () => <PasswordInput />);
-
-stories.add("changing the focus & error border color", () => (
+export const FocusAndErrorColors = () => (
   <>
     <Input focusBorderColor="lime" placeholder="Here is a sample placeholder" />
     <br />
@@ -114,4 +114,4 @@ stories.add("changing the focus & error border color", () => (
     />
     <br />
   </>
-));
+);

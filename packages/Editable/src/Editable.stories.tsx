@@ -1,41 +1,37 @@
-import { storiesOf } from "@storybook/react";
 import React from "react";
-import setup from "../story.setup";
 import {
-  useEditableProvider,
+  Editable,
+  EditableInput,
+  EditablePreview,
+  useEditableState,
+} from "./Editable";
+import {
   useEditableInput,
   useEditablePreview,
+  useEditableProvider,
 } from "./Editable.hook";
-import {
-  useEditableState,
-  Editable,
-  EditablePreview,
-  EditableInput,
-} from "./Editable";
 
-const stories = storiesOf("useEditable", module).addDecorator(setup);
+export default {
+  title: "Editable",
+};
 
-stories.add("hook ", () => {
-  function Example() {
-    const context = useEditableProvider({
-      placeholder: "Title",
-      isPreviewFocusable: true,
-      submitOnBlur: true,
-    });
-    const input = useEditableInput({ context });
-    const preview = useEditablePreview({ context });
+export const HookSetup = () => {
+  const context = useEditableProvider({
+    placeholder: "Title",
+    isPreviewFocusable: true,
+    submitOnBlur: true,
+  });
+  const input = useEditableInput({ context });
+  const preview = useEditablePreview({ context });
 
-    return (
-      <>
-        <input style={{ width: "100%" }} {...input} />
-        <span style={{ opacity: !context.value ? 0.7 : 1 }} {...preview} />
-        {!context.isEditing && <button onClick={context.onEdit}>Edit</button>}
-      </>
-    );
-  }
-
-  return <Example />;
-});
+  return (
+    <>
+      <input style={{ width: "100%" }} {...input} />
+      <span style={{ opacity: !context.value ? 0.7 : 1 }} {...preview} />
+      {!context.isEditing && <button onClick={context.onEdit}>Edit</button>}
+    </>
+  );
+};
 
 const ControlButtons = () => {
   const state = useEditableState();
@@ -53,10 +49,10 @@ const ControlButtons = () => {
   );
 };
 
-stories.add("component", () => (
+export const BaseComponents = () => (
   <Editable defaultValue="testing">
     <EditablePreview />
     <EditableInput />
     <ControlButtons />
   </Editable>
-));
+);

@@ -1,30 +1,32 @@
 import { chakra } from "@chakra-ui/system";
 import { action } from "@storybook/addon-actions";
-import { storiesOf } from "@storybook/react";
 import React from "react";
 import { useNumberInput } from ".";
 import {
-  NumberInput,
-  BaseNumberInput,
-  BaseNumberInputField,
   BaseDecrementStepper,
   BaseIncrementStepper,
+  BaseNumberInput,
+  BaseNumberInputField,
   BaseStepperGroup,
-  NumberInputStepper,
-  NumberInputField,
-  NumberIncrementStepper,
   NumberDecrementStepper,
+  NumberIncrementStepper,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
 } from "./NumberInput";
 
-const stories = storiesOf("useNumberInput", module);
+export default {
+  title: "NumberInput",
+  decorators: [
+    story => (
+      <chakra.div maxW="400px" mt="40px" mx="auto">
+        {story()}
+      </chakra.div>
+    ),
+  ],
+};
 
-stories.addDecorator(story => (
-  <chakra.div maxW="400px" mt="40px" mx="auto">
-    {story()}
-  </chakra.div>
-));
-
-function NumberInputHook() {
+export function NumberInputHook() {
   const { input, upSpinner, downSpinner, valueAsNumber } = useNumberInput({
     step: 0.01,
     defaultValue: 1.53,
@@ -46,8 +48,6 @@ function NumberInputHook() {
     </div>
   );
 }
-
-stories.add("hook only", () => <NumberInputHook />);
 
 const styles: Record<string, React.CSSProperties> = {
   root: {
@@ -75,7 +75,7 @@ const styles: Record<string, React.CSSProperties> = {
   },
 };
 
-stories.add("base", () => (
+export const Base = () => (
   <BaseNumberInput style={styles.root}>
     <BaseNumberInputField style={styles.field} />
     <BaseStepperGroup style={styles.group}>
@@ -83,9 +83,9 @@ stories.add("base", () => (
       <BaseDecrementStepper children="-" style={styles.button} />
     </BaseStepperGroup>
   </BaseNumberInput>
-));
+);
 
-stories.add("chakra", () => (
+export const WithChakra = () => (
   <NumberInput>
     <NumberInputField focusBorderColor="tomato" />
     <NumberInputStepper>
@@ -93,4 +93,4 @@ stories.add("chakra", () => (
       <NumberDecrementStepper />
     </NumberInputStepper>
   </NumberInput>
-));
+);

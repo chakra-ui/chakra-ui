@@ -3,7 +3,6 @@ import {
   useDisclosure,
   useId,
   useIds,
-  useIsomorphicEffect,
   useMergeRefs,
   useRapidKeydown,
   useUpdateEffect,
@@ -42,22 +41,13 @@ export function useMenu({ context }: { context?: MenuHookReturn }) {
   // Add some popper.js for dymanic positioning
   const { placement, popper, reference, popperInstance } = usePopper({
     placement: !hasParent ? "bottom-start" : "right-start",
-    positionFixed: true,
+    fixed: true,
+    forceUpdate: isOpen,
   });
 
   const [focusedIndex, setFocusedIndex] = React.useState(-1);
 
   const descendantsContext = useDescendants<HTMLDivElement, {}>();
-
-  /**
-   * To get the correct positioning, let's schedule and update
-   * when the menu opens
-   */
-  useIsomorphicEffect(() => {
-    if (isOpen && popperInstance) {
-      popperInstance.scheduleUpdate();
-    }
-  }, [popperInstance, isOpen]);
 
   /**
    * If a parent menu is closed,

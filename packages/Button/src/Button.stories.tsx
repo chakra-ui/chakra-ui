@@ -1,15 +1,13 @@
-import * as React from "react";
-import { storiesOf } from "@storybook/react";
-import setup from "../story.setup";
 import { Stack } from "@chakra-ui/layout";
+import * as React from "react";
 import Button from "./Button";
 import ButtonGroup from "./ButtonGroup";
 
-const stories = storiesOf("Button", module);
+export default {
+  title: "Button",
+};
 
-stories.addDecorator(setup);
-
-stories.add("variants", () => (
+export const Variants = () => (
   <Stack direction="row" spacing="24px">
     <Button variantColor="teal" variant="solid">
       Button
@@ -24,9 +22,9 @@ stories.add("variants", () => (
       Button
     </Button>
   </Stack>
-));
+);
 
-stories.add("sizes", () => (
+export const Sizes = () => (
   <Stack direction="row">
     <Button variantColor="blue" variantSize="xs">
       Button
@@ -41,11 +39,9 @@ stories.add("sizes", () => (
       Button
     </Button>
   </Stack>
-));
+);
 
-stories.add("with left icon", () => (
-  <Button variantColor="pink">Call Us</Button>
-));
+export const WithLefIcon = () => <Button variantColor="pink">Call Us</Button>;
 
 const AddCircle = (props: any) => (
   <svg
@@ -61,19 +57,19 @@ const AddCircle = (props: any) => (
   </svg>
 );
 
-stories.add("with custom icon", () => (
+export const WithCustomIcon = () => (
   <Button leftIcon={AddCircle}>Call Us</Button>
-));
+);
 
-stories.add("with loading", () => (
+export const WithLoading = () => (
   <Button variantColor="pink" isLoading loadingText="Loading...">
     Pink Button
   </Button>
-));
+);
 
-stories.add("with button group", () => (
+export const WithButtonGroup = () => (
   <ButtonGroup variant="solid">
     <Button variantColor="green">Save</Button>
     <Button variant="outline">Cancel</Button>
   </ButtonGroup>
-));
+);

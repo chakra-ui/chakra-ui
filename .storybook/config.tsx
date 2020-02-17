@@ -1,16 +1,9 @@
 import { configure, addDecorator } from "@storybook/react";
 import setup from "./story.setup";
 
-const req = require.context(
-  `../packages/Collapse/src/`,
-  true,
-  /.stories\.(ts|tsx)$/,
+configure(
+  require.context(`../packages/layout/src/`, true, /\.stories\.(js|ts)x?$/),
+  module,
 );
 
-function loadStories() {
-  req.keys().forEach(filename => req(filename));
-}
-
 addDecorator(setup);
-
-configure(loadStories, module);

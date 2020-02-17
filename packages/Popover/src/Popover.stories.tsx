@@ -1,17 +1,15 @@
+import { Portal } from "@chakra-ui/portal";
 import * as React from "react";
-import { storiesOf } from "@storybook/react";
 import {
   PopoverProvider,
   usePopoverContent,
-  usePopoverTrigger,
   usePopoverState,
+  usePopoverTrigger,
 } from ".";
-import { Portal } from "@chakra-ui/portal";
-import setup from "../story.setup";
 
-const stories = storiesOf("usePopover", module);
-
-stories.addDecorator(setup);
+export default {
+  title: "Popover",
+};
 
 function PopoverExample() {
   const popover = usePopoverState();
@@ -30,8 +28,8 @@ function PopoverExample() {
   );
 }
 
-stories.add("Default", () => (
+export const Default = () => (
   <PopoverProvider placement="right">
     <PopoverExample />
   </PopoverProvider>
-));
+);

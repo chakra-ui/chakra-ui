@@ -1,15 +1,14 @@
-import * as React from "react";
-import { composeEventHandlers, createContext } from "@chakra-ui/utils";
-import { usePopper, PopperJS } from "@chakra-ui/popper";
 import {
-  useMergeRefs,
   useBlurOutside,
   useDisclosure,
-  useIds,
   useFocusOnHide,
   useFocusOnShow,
-  useIsomorphicEffect,
+  useIds,
+  useMergeRefs,
 } from "@chakra-ui/hooks";
+import { Placement, usePopper } from "@chakra-ui/popper";
+import { composeEventHandlers, createContext } from "@chakra-ui/utils";
+import * as React from "react";
 
 const [PopoverCtxProvider, usePopoverCtx] = createContext<PopoverContext>();
 export { usePopoverCtx };
@@ -79,7 +78,7 @@ export interface UsePopoverOptions {
   initialFocusRef?: React.RefObject<HTMLElement>;
   returnFocusOnClose?: boolean;
   gutter?: number;
-  placement?: PopperJS["options"]["placement"];
+  placement?: Placement;
   closeOnBlur?: boolean;
   closeOnEsc?: boolean;
   onOpen?: () => void;
@@ -102,18 +101,9 @@ export function usePopover(props: UsePopoverOptions) {
 
   const popper = usePopper({
     placement: props.placement,
-    modifiers: {
-      offset: { enabled: true, offset: `0, ${props.gutter}` },
-      computeStyle: { gpuAcceleration: false },
-    },
+    gutter: props.gutter,
+    forceUpdate: disclosure.isOpen,
   });
-
-  // update the popper instance when menu is open
-  useIsomorphicEffect(() => {
-    if (disclosure.isOpen && popper.popperInstance) {
-      popper.popperInstance.scheduleUpdate();
-    }
-  }, [disclosure.isOpen, popper.popperInstance]);
 
   /**
    * Manage focus when the popover closes.This is necessary in situations where you open a popover,

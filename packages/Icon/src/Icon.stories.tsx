@@ -1,13 +1,12 @@
 import * as React from "react";
-import { storiesOf } from "@storybook/react";
-import setup from "../story.setup";
-import Icon, { IconProps } from "./Icon";
 import { Md3DRotation } from "react-icons/md";
+import Icon, { IconProps } from "./Icon";
 
-const stories = storiesOf("Icon", module);
-stories.addDecorator(setup);
+export default {
+  title: "Icon",
+};
 
-stories.add("default", () => <Icon fontSize="24px" />);
+export const Basic = () => <Icon fontSize="24px" />;
 
 const ArrowIcon = (props: IconProps) => (
   <Icon viewBox="0 0 32 32" {...props}>
@@ -18,8 +17,8 @@ const ArrowIcon = (props: IconProps) => (
   </Icon>
 );
 
-stories.add("custom icon", () => <ArrowIcon size="40px" color="red.100" />);
+export const CustomIcon = () => <ArrowIcon size="40px" color="red.100" />;
 
-stories.add("using react-icon", () => (
+export const UsingReactIcon = () => (
   <Icon as={Md3DRotation} size="40px" color="tomato" />
-));
+);

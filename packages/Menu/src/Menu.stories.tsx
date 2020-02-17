@@ -1,12 +1,13 @@
-import { storiesOf } from "@storybook/react";
+import { createChakra } from "@chakra-ui/system";
 import * as React from "react";
 import { BaseMenuButton, BaseMenuItem, BaseMenuList, Menu } from "./Menu.base";
-import { createChakra, chakra } from "@chakra-ui/system";
-import setup from "../story.setup";
 
-const stories = storiesOf("Menu", module).addDecorator(setup);
+export default {
+  title: "Menu",
+};
 
 const MenuButton = createChakra(BaseMenuButton, { themeKey: "Button" });
+
 const MenuList = createChakra(BaseMenuList, {
   themeKey: "Menu.MenuList",
   baseStyle: {
@@ -32,7 +33,7 @@ const Submenu = React.forwardRef<HTMLButtonElement, {}>((props, ref) => {
   );
 });
 
-function SampleMenu() {
+export function SampleMenu() {
   return (
     <Menu>
       <MenuButton variant="solid" variantColor="green" variantSize="sm">
@@ -54,5 +55,3 @@ function SampleMenu() {
     </Menu>
   );
 }
-
-stories.add("Default", () => <SampleMenu />);

@@ -1,20 +1,18 @@
 /**@jsx jsx */
-import { storiesOf } from "@storybook/react";
 import { jsx } from "../system";
 import chakra from "./chakra";
-import setup from "../../story.setup";
 
-const stories = storiesOf("chakra", module);
-
-stories.addDecorator(setup);
+export default {
+  title: "Chakra",
+};
 
 // Any html element + chakra = magic!
-stories.add("basic", () => (
+export const Basic = () => (
   <chakra.h1 color="red.400">Chakra heading</chakra.h1>
-));
+);
 
 // You can add simple interactive styles
-stories.add("interactive 1", () => (
+export const Interactive1 = () => (
   <chakra.a
     color="gray.300"
     href="#"
@@ -25,10 +23,10 @@ stories.add("interactive 1", () => (
   >
     Chakra anchor
   </chakra.a>
-));
+);
 
 // You can add interactive styles anyhow!
-stories.add("interactive 2", () => (
+export const Interactive2 = () => (
   <chakra.div
     bg="red.500"
     size="200px"
@@ -37,18 +35,18 @@ stories.add("interactive 2", () => (
   >
     Expanding Div
   </chakra.div>
-));
+);
 
 // You can pull styles from `theme.styles` and apply it to any element
-stories.add("apply", () => (
+export const Apply = () => (
   <chakra.p apply="styles.h1">
     This is a paragraph, but apply styles from{" "}
     <chakra.code fontFamily="mono">styles.h1</chakra.code>
   </chakra.p>
-));
+);
 
 // The `sx` prop requires that you use the jsx pragma at the top of the file
-stories.add("sx prop", () => (
+export const SxProp = () => (
   <h1
     sx={{
       color: "red.100",
@@ -64,15 +62,15 @@ stories.add("sx prop", () => (
   >
     This is a heading
   </h1>
-));
+);
 
-stories.add("rtl styling", () => (
+export const RtlStyling = () => (
   <article dir="rtl">
     <chakra.h1 textAlign="left" _rtl={{ textAlign: "right", color: "red.200" }}>
       This is a heading
     </chakra.h1>
   </article>
-));
+);
 
 // You can create your own components from chakra as well.
 const Box = chakra.div;
@@ -82,7 +80,7 @@ Flex.defaultProps = {
   display: "flex",
 };
 
-stories.add("component", () => (
+export const MakingComponents = () => (
   <Flex>
     <Box
       color="red.300"
@@ -96,4 +94,4 @@ stories.add("component", () => (
     </Box>
     <Box>Div 2</Box>
   </Flex>
-));
+);

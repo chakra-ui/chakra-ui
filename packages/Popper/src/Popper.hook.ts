@@ -2,7 +2,9 @@ import * as React from "react";
 import { Placement, Instance, createPopper } from "@popperjs/core";
 import { getArrowStyles } from "./Popper.utils";
 
-interface PopperHookProps {
+export { Placement };
+
+export interface PopperHookProps {
   gutter?: number;
   placement?: Placement;
   offset?: number;

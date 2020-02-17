@@ -1,11 +1,12 @@
-import * as React from "react";
-import { storiesOf } from "@storybook/react";
-import { Tag, TagIcon, TagLabel } from "./Tag";
 import icons from "@chakra-ui/icon-glyphs";
+import * as React from "react";
+import { Tag, TagIcon, TagLabel } from "./Tag";
 
-const stories = storiesOf("Tag", module);
+export default {
+  title: "Tag",
+};
 
-stories.add("basic", () => (
+export const Basic = () => (
   <>
     <Tag variantSize="sm" variantColor="gray">
       Gray
@@ -15,9 +16,9 @@ stories.add("basic", () => (
       Gray
     </Tag>
   </>
-));
+);
 
-stories.add("variant colors", () => (
+export const VariantColors = () => (
   <>
     <Tag variantSize="sm" variantColor="green">
       Gray
@@ -27,13 +28,13 @@ stories.add("variant colors", () => (
       Gray
     </Tag>
   </>
-));
+);
 
-stories.add("with left icon", () => (
+export const LeftIcon = () => (
   <>
     <Tag variantColor="cyan">
       <TagIcon size="12px" children={icons.add.path} />
       <TagLabel>Green</TagLabel>
     </Tag>
   </>
-));
+);

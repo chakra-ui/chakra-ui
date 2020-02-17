@@ -1,14 +1,13 @@
 import * as React from "react";
-import { storiesOf } from "@storybook/react";
-import setup from "../story.setup";
 import ScaleFade from "./ScaleFade";
 import { useTransitionStyle } from "./Transition.context";
 import SlideFade from "./SlideFade";
 import Fade from "./Fade";
 import Slide from "./Slide";
 
-const stories = storiesOf("Transition", module);
-stories.addDecorator(setup);
+export default {
+  title: "Transition",
+};
 
 const modalStyles: React.CSSProperties = {
   position: "fixed",
@@ -38,7 +37,7 @@ function Modal(props: any) {
   return <div {...props} style={allStyle} children="Animate me" />;
 }
 
-function ScaleFadeExample() {
+export function ScaleFadeExample() {
   const [isOpen, setIsOpen] = React.useState(true);
   return (
     <>
@@ -50,9 +49,7 @@ function ScaleFadeExample() {
   );
 }
 
-stories.add("scale fade", () => <ScaleFadeExample />);
-
-function SlideFadeExample() {
+export function SlideFadeExample() {
   const [isOpen, setIsOpen] = React.useState(true);
   return (
     <>
@@ -64,9 +61,7 @@ function SlideFadeExample() {
   );
 }
 
-stories.add("slide fade", () => <SlideFadeExample />);
-
-function FadeExample() {
+export function FadeExample() {
   const [isOpen, setIsOpen] = React.useState(true);
   return (
     <>
@@ -77,8 +72,6 @@ function FadeExample() {
     </>
   );
 }
-
-stories.add("fade", () => <FadeExample />);
 
 function Drawer(props: any) {
   const styles = useTransitionStyle();
@@ -92,7 +85,7 @@ function Drawer(props: any) {
   return <div {...props} style={allStyle} children="Animate me" />;
 }
 
-function SlideExample() {
+export function SlideExample() {
   const [isOpen, setIsOpen] = React.useState(true);
   return (
     <>
@@ -103,5 +96,3 @@ function SlideExample() {
     </>
   );
 }
-
-stories.add("slide", () => <SlideExample />);

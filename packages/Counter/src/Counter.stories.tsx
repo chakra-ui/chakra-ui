@@ -1,10 +1,11 @@
-import { storiesOf } from "@storybook/react";
 import React from "react";
-import setup from "../story.setup";
 import useCounter from "./Counter.hook";
-const stories = storiesOf("useCounter", module).addDecorator(setup);
 
-function Counter() {
+export default {
+  title: "Counters",
+};
+
+export function HookSetup() {
   const counter = useCounter({
     defaultValue: 1.53,
     max: 10,
@@ -48,5 +49,3 @@ function Counter() {
     </div>
   );
 }
-
-stories.add("default", () => <Counter />);

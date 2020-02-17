@@ -113,13 +113,12 @@ export default ${component}
 
 const storiesContent = component => `
 import * as React from "react"
-import { storiesOf } from "@storybook/react";
-import setup from "../story.setup";
 
-const stories = storiesOf("${component}", module);
-stories.addDecorator(setup)
+export default {
+  title: ""
+}
 
-stories.add("default", ()=><div>Component goes here</div>)
+export const BasicExample = () =><div>Component goes here</div>
 `;
 
 function createFiles(options) {

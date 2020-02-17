@@ -1,4 +1,3 @@
-import { storiesOf } from "@storybook/react";
 import React from "react";
 import Box from "../Box";
 import Heading from "../Heading";
@@ -7,25 +6,27 @@ import Text from "../Text";
 
 ///////////////////////////////////////////////////////////////////////////////////
 
-const stories = storiesOf("Stack", module);
+export default {
+  title: "Stack",
+};
 
-stories.add("vertical", () => (
+export const Vertical = () => (
   <Stack spacing={4}>
     <span>ooooooo</span>
     <span>ahhhhh</span>
     <span>Woah!</span>
   </Stack>
-));
+);
 
-stories.add("inline", () => (
+export const Inline = () => (
   <Stack w="100%" bg="blue.500" direction="row">
     <Box size="40px" bg={"#fff"} borderRadius="full" />
     <Box size="40px" bg={"#fff"} borderRadius="full" />
     <Box size="40px" bg={"#fff"} borderRadius="full" />
   </Stack>
-));
+);
 
-stories.add("reversed", () => (
+export const Reversed = () => (
   <Stack direction="column" isReversed spacing="40px" w="100%">
     <Box w="100%" h="40px" bg="yellow.200">
       1
@@ -37,7 +38,7 @@ stories.add("reversed", () => (
       3
     </Box>
   </Stack>
-));
+);
 
 function Feature({ title, desc, ...rest }: any) {
   return (
@@ -55,7 +56,7 @@ function Feature({ title, desc, ...rest }: any) {
   );
 }
 
-stories.add("content example", () => (
+export const WithContent = () => (
   <Stack direction="row" isReversed spacing={8}>
     <Feature
       title="Plan Money"
@@ -66,4 +67,4 @@ stories.add("content example", () => (
       desc="You deserve good things. With a whooping 10-15% interest rate per annum, grow your savings."
     />
   </Stack>
-));
+);

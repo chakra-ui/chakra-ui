@@ -1,14 +1,12 @@
-import { storiesOf } from "@storybook/react";
 import React, { Fragment } from "react";
 import { Avatar, AvatarBadge } from ".";
-import setup from "../story.setup";
 import AvatarGroup from "./AvatarGroup";
 
-const stories = storiesOf("Avatar", module);
+export default {
+  title: "Avatar",
+};
 
-stories.addDecorator(setup);
-
-stories.add("Default", () => (
+export const Default = () => (
   <Fragment>
     {["xs", "sm", "md", "lg", "xl", "2xl"].map(size => (
       <Avatar
@@ -21,9 +19,9 @@ stories.add("Default", () => (
       </Avatar>
     ))}
   </Fragment>
-));
+);
 
-stories.add("Avatar Group", () => (
+export const AvatarGroup_ = () => (
   <AvatarGroup variantSize="md" showBorder max={4}>
     <Avatar
       name="Daniel Powell"
@@ -43,4 +41,4 @@ stories.add("Avatar Group", () => (
       src="https://uinames.com/api/photos/female/7.jpg"
     />
   </AvatarGroup>
-));
+);

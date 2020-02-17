@@ -1,17 +1,16 @@
 import * as React from "react";
-import { storiesOf } from "@storybook/react";
-import setup from "../story.setup";
 import {
   BaseCombobox,
-  BaseComboboxMenu,
   BaseComboboxInput,
+  BaseComboboxMenu,
   BaseComboboxOption,
 } from "./Combobox.base";
 
-const stories = storiesOf("Combobox", module);
-stories.addDecorator(setup);
+export default {
+  title: "Combobox",
+};
 
-stories.add("basic", () => (
+export const Basic = () => (
   <BaseCombobox>
     <BaseComboboxInput />
     <BaseComboboxMenu>
@@ -19,4 +18,4 @@ stories.add("basic", () => (
       <BaseComboboxOption value="javascript">javascript</BaseComboboxOption>
     </BaseComboboxMenu>
   </BaseCombobox>
-));
+);

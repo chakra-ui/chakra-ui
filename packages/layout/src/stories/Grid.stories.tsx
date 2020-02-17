@@ -1,11 +1,12 @@
-import { storiesOf } from "@storybook/react";
 import React from "react";
-import SimpleGrid from "../SimpleGrid";
 import Box from "../Box";
+import SimpleGrid from "../SimpleGrid";
 
-const stories = storiesOf("SimpleGrid", module);
+export default {
+  title: "SimpleGrid",
+};
 
-stories.add("with columns", () => (
+export const WithColumns = () => (
   <SimpleGrid columns={[2, null, 3]} spacing="40px">
     <Box bg="tomato" height="200px"></Box>
     <Box bg="tomato" height="200px"></Box>
@@ -13,9 +14,9 @@ stories.add("with columns", () => (
     <Box bg="tomato" height="200px"></Box>
     <Box bg="tomato" height="200px"></Box>
   </SimpleGrid>
-));
+);
 
-stories.add("with autofit and min child width", () => (
+export const WithAutofit = () => (
   <SimpleGrid minChildWidth="300px" spacing="40px">
     <Box bg="tomato" height="200px"></Box>
     <Box bg="tomato" height="200px"></Box>
@@ -23,4 +24,4 @@ stories.add("with autofit and min child width", () => (
     <Box bg="tomato" height="200px"></Box>
     <Box bg="tomato" height="200px"></Box>
   </SimpleGrid>
-));
+);

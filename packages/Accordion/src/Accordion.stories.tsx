@@ -1,6 +1,5 @@
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
-import setup from "../story.setup";
 import { BaseAccordion } from ".";
 import {
   BaseAccordionItem,
@@ -8,7 +7,7 @@ import {
   BaseAccordionPanel,
 } from "./Accordion.base";
 
-const stories = storiesOf("accordion", module).addDecorator(setup);
+const stories = storiesOf("accordion", module);
 
 stories.add("basic", () => (
   <BaseAccordion>

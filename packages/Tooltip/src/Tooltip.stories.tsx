@@ -1,10 +1,9 @@
 import * as React from "react";
-import { storiesOf } from "@storybook/react";
-import setup from "../story.setup";
 import useTooltip from "./Tooltip.hook";
 
-const stories = storiesOf("Tooltip", module);
-stories.addDecorator(setup);
+export default {
+  title: "Tooltip",
+};
 
 export const Tooltip = ({ children }: any) => {
   const tip = useTooltip({ hideOnClick: true });
@@ -18,9 +17,9 @@ export const Tooltip = ({ children }: any) => {
   );
 };
 
-stories.add("default", () => (
+export const Example = () => (
   <>
     <Tooltip>This is tip 1</Tooltip>
     <Tooltip>This is tip 2</Tooltip>
   </>
-));
+);

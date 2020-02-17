@@ -1,5 +1,4 @@
 import { chakra, createChakra } from "@chakra-ui/system";
-import { storiesOf } from "@storybook/react";
 import React from "react";
 import {
   Checkbox,
@@ -8,16 +7,15 @@ import {
   CustomCheckbox,
   useCheckboxState,
 } from ".";
-import setup from "../story.setup";
 import useCheckboxGroup from "./CheckboxGroup.hook";
 
-const stories = storiesOf("checkbox", module);
+export default {
+  title: "Checkbox",
+};
 
-stories.addDecorator(setup);
+export const Default = () => <Checkbox variantSize="lg" />;
 
-stories.add("default", () => <Checkbox variantSize="lg" />);
-
-function IndeterminateExample() {
+export function IndeterminateExample() {
   const [checkedItems, setCheckedItems] = React.useState([false, false]);
 
   const allChecked = checkedItems.every(Boolean);
@@ -47,8 +45,6 @@ function IndeterminateExample() {
   );
 }
 
-stories.add("indeterminate checkbox", () => <IndeterminateExample />);
-
 const CheckBox = createChakra(CustomCheckbox);
 
 const CheckIcon = () => {
@@ -56,7 +52,7 @@ const CheckIcon = () => {
   return <>{isChecked ? "✔️" : null}</>;
 };
 
-stories.add("custom composition", () => (
+export const CustomComposition = () => (
   <CheckboxProvider>
     <CheckboxInput />
     <CheckBox
@@ -69,28 +65,24 @@ stories.add("custom composition", () => (
       <CheckIcon />
     </CheckBox>
   </CheckboxProvider>
-));
+);
 
-stories.add("checkbox group", () => {
-  function CheckExample(props: any) {
-    const checkboxGroup = useCheckboxGroup(props);
-    return (
-      <div>
-        <code>{JSON.stringify(checkboxGroup.value)}</code>
-        <div />
-        {["opt1", "opt2", "opt3"].map(val => (
-          <Checkbox
-            key={val}
-            value={val}
-            isChecked={checkboxGroup.value.includes(val)}
-            onChange={checkboxGroup.onChange}
-          >
-            {val}
-          </Checkbox>
-        ))}
-      </div>
-    );
-  }
-
-  return <CheckExample />;
-});
+export const CheckboxGroup = () => {
+  const checkboxGroup = useCheckboxGroup({});
+  return (
+    <div>
+      <code>{JSON.stringify(checkboxGroup.value)}</code>
+      <div />
+      {["opt1", "opt2", "opt3"].map(val => (
+        <Checkbox
+          key={val}
+          value={val}
+          isChecked={checkboxGroup.value.includes(val)}
+          onChange={checkboxGroup.onChange}
+        >
+          {val}
+        </Checkbox>
+      ))}
+    </div>
+  );
+};

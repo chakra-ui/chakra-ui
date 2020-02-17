@@ -1,13 +1,10 @@
-import * as React from "react";
-import { storiesOf } from "@storybook/react";
-import { Dialog, DialogOverlay, DialogContent, getBaseStyle } from "./Dialog";
-import setup from "../story.setup";
 import { useDisclosure } from "@chakra-ui/hooks";
-import { Portal } from "@chakra-ui/portal";
+import * as React from "react";
+import { Dialog, DialogContent, DialogOverlay, getBaseStyle } from "./Dialog";
 
-const stories = storiesOf("Dialog", module);
-
-stories.addDecorator(setup);
+export default {
+  title: "Dialog",
+};
 
 const Overlay = (props: any) => (
   <DialogOverlay
@@ -28,7 +25,7 @@ const DialogContentt = (props: any) => {
   );
 };
 
-function SimpleModal() {
+export function SimpleModal() {
   const dialog = useDisclosure();
   return (
     <>
@@ -41,9 +38,7 @@ function SimpleModal() {
   );
 }
 
-stories.add("simple", () => <SimpleModal />);
-
-function NestedModal() {
+export function NestedModal() {
   const dialog1 = useDisclosure();
   const dialog2 = useDisclosure();
   const dialog3 = useDisclosure();
@@ -73,5 +68,3 @@ function NestedModal() {
     </>
   );
 }
-
-stories.add("nested", () => <NestedModal />);

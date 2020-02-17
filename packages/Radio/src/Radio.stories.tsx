@@ -1,14 +1,12 @@
 import { createChakra } from "@chakra-ui/system";
-import { storiesOf } from "@storybook/react";
 import React from "react";
-import setup from "../story.setup";
 import { Radio } from "./Radio";
 import { CustomRadio, RadioInput, RadioProvider } from "./Radio.hook";
 import useRadioGroup from "./RadioGroup.hook";
 
-const stories = storiesOf("Radio", module);
-
-stories.addDecorator(setup);
+export default {
+  title: "Radio",
+};
 
 function RadioGroupExample(props: any) {
   const radio = useRadioGroup(props);
@@ -30,16 +28,16 @@ function RadioGroupExample(props: any) {
   );
 }
 
-stories.add("controlled radio group", () => (
+export const ControlledExample = () => (
   <RadioGroupExample
     defaultValue={"opt1"}
     onChange={(val: any) => console.log(val)}
   />
-));
+);
 
 const options = ["react", "vue", "svelte"];
 
-function UIRadio() {
+export const UIRadio = () => {
   const radio = useRadioGroup({
     name: "test",
     defaultValue: "vue",
@@ -59,13 +57,11 @@ function UIRadio() {
       ))}
     </div>
   );
-}
-
-stories.add("ui radio", () => <UIRadio />);
+};
 
 const RadioBox = createChakra(CustomRadio);
 
-function CompositionRadio() {
+export function CompositionRadio() {
   const radio = useRadioGroup({
     name: "test",
     defaultValue: "vue",
@@ -92,5 +88,3 @@ function CompositionRadio() {
     </>
   );
 }
-
-stories.add("custom composition", () => <CompositionRadio />);

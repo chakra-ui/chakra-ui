@@ -19,7 +19,7 @@
     "emitDecoratorMetadata": true,
     "typeRoots": ["node_modules/@types", "packages/**/*/@types"]
   },
-  "include": ["packages/**/*"],
+  "include": ["packages/**/*", "next-env.d.ts"],
   "exclude": [
     "node_modules",
     "build",

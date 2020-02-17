@@ -1,19 +1,16 @@
 import * as React from "react";
-import { storiesOf } from "@storybook/react";
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbSeparator,
 } from "./Breadcrumb";
-// import { Icon } from "../Icon";
-import setup from "../story.setup";
 
-const stories = storiesOf("Breadcrumb", module);
+export default {
+  title: "Breadcrumb",
+};
 
-stories.addDecorator(setup);
-
-stories.add("default", () => (
+export const Default = () => (
   <Breadcrumb addSeparator={false}>
     <BreadcrumbItem>
       <BreadcrumbLink href="#">Breadcrumb 1</BreadcrumbLink>
@@ -29,9 +26,9 @@ stories.add("default", () => (
       <BreadcrumbLink href="#">Breadcrumb 3</BreadcrumbLink>
     </BreadcrumbItem>
   </Breadcrumb>
-));
+);
 
-stories.add("separator", () => (
+export const Separator = () => (
   <Breadcrumb separator=">">
     <BreadcrumbItem>
       <BreadcrumbLink href="#">Home</BreadcrumbLink>
@@ -45,9 +42,9 @@ stories.add("separator", () => (
       <BreadcrumbLink href="#">Current</BreadcrumbLink>
     </BreadcrumbItem>
   </Breadcrumb>
-));
+);
 
-stories.add("separator v2", () => (
+export const SeparatorV2 = () => (
   <Breadcrumb separator="/">
     <BreadcrumbItem>
       <BreadcrumbLink href="#">Home</BreadcrumbLink>
@@ -61,4 +58,4 @@ stories.add("separator v2", () => (
       <BreadcrumbLink href="#">Current</BreadcrumbLink>
     </BreadcrumbItem>
   </Breadcrumb>
-));
+);

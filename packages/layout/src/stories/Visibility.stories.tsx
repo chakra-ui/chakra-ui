@@ -1,29 +1,30 @@
 import React from "react";
-import { storiesOf } from "@storybook/react";
-import { ShowAt, HideAt, Hide, Show } from "../Visibility";
+import { Hide, HideAt, Show, ShowAt } from "../Visibility";
 
-const stories = storiesOf("Visibility", module);
+export default {
+  title: "Visibility",
+};
 
-stories.add("show at", () => (
+export const ShowAt_ = () => (
   <ShowAt breakpoint="320px">
     <div>Hey! I'll show at 320px</div>
   </ShowAt>
-));
+);
 
-stories.add("hide at", () => (
+export const HideAt_ = () => (
   <HideAt breakpoint="320px">
     <div>Hallos! I'll hide at 320px</div>
   </HideAt>
-));
+);
 
-stories.add("hide with query", () => (
+export const HideWithQuery = () => (
   <Hide query="(max-width: 400px)">
     <div>Hallos! I'll be hide at 400px</div>
   </Hide>
-));
+);
 
-stories.add("show with query", () => (
+export const ShowWithQuery = () => (
   <Show query="(max-width: 400px)">
     <div>Hallos! I'll be show at 400px</div>
   </Show>
-));
+);

@@ -1,10 +1,11 @@
 import * as React from "react";
-import { storiesOf } from "@storybook/react";
 import useCollapse from "./Collapse";
 
-const stories = storiesOf("Collapse", module);
+export default {
+  title: "Collapse",
+};
 
-function Example() {
+export function Basic() {
   const collapse = useCollapse({
     defaultIsOpen: true,
   });
@@ -19,7 +20,6 @@ function Example() {
     </>
   );
 }
-stories.add("basic", () => <Example />);
 
 // stories.add("changing static height", () => {
 //   function Example() {
