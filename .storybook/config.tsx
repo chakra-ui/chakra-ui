@@ -2,7 +2,7 @@ import { configure, addDecorator } from "@storybook/react";
 import setup from "./story.setup";
 
 const req = require.context(
-  `../packages/Popper/src/`,
+  `../packages/Collapse/src/`,
   true,
   /.stories\.(ts|tsx)$/,
 );

@@ -3,9 +3,9 @@ import { storiesOf } from "@storybook/react";
 import { useDisclosure } from "@chakra-ui/hooks";
 import usePopper from "./Popper.hook";
 
-const stories = storiesOf("usePopper", module);
+const stories = storiesOf("Popper", module);
 
-stories.add("Default", () => {
+stories.add("basic", () => {
   function Component() {
     const disclosure = useDisclosure({ defaultIsOpen: true });
 

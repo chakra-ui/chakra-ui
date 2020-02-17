@@ -1,44 +1,52 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import setup from "../story.setup";
-import Collapse from "./Collapse";
+import useCollapse from "./Collapse";
 
 const stories = storiesOf("Collapse", module);
-stories.addDecorator(setup);
 
 function Example() {
-  const [show, setShow] = React.useState(false);
-  const handleToggle = () => setShow(!show);
+  const collapse = useCollapse({
+    collapseStyles: {
+      opacity: 0.01,
+      transitionProperty: "opacity, height, transform",
+      transform: "translateY(-0.1rem)",
+    },
+    expandStyles: {
+      opacity: 1,
+      transitionProperty: "opacity, height, transform",
+      transform: "translateY(0)",
+    },
+  });
   return (
     <>
-      <button onClick={handleToggle}>Toggle</button>
-      <Collapse mt={4} isOpen={show}>
+      <button {...collapse.toggle}>Toggle</button>
+      <div {...collapse.collapse}>
         Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
         terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
         labore wes anderson cred nesciunt sapiente ea proident.
-      </Collapse>
+      </div>
     </>
   );
 }
 stories.add("basic", () => <Example />);
 
-stories.add("changing static height", () => {
-  function Example() {
-    const [show, setShow] = React.useState(false);
+// stories.add("changing static height", () => {
+//   function Example() {
+//     const [show, setShow] = React.useState(false);
 
-    const handleToggle = () => setShow(!show);
+//     const on = () => setShow(!show);
 
-    return (
-      <>
-        <Collapse startingHeight={20} isOpen={show}>
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-          terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-          labore wes anderson cred nesciunt sapiente ea proident.
-        </Collapse>
-        <button onClick={handleToggle}>{show ? "Collapse" : "Expand"}</button>
-      </>
-    );
-  }
+//     return (
+//       <>
+//         <Collapse startingHeight={20} isOpen={show}>
+//           Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+//           terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
+//           labore wes anderson cred nesciunt sapiente ea proident.
+//         </Collapse>
+//         <button onClick={handleToggle}>{show ? "Collapse" : "Expand"}</button>
+//       </>
+//     );
+//   }
 
-  return <Example />;
-});
+//   return <Example />;
+// });
