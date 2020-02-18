@@ -1,6 +1,6 @@
 import { createChakra } from "@chakra-ui/system";
 
-const VisuallyHidden = createChakra("div", {
+export const VisuallyHidden = createChakra("div", {
   attrs: {
     style: {
       border: "0px",
