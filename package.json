@@ -5,9 +5,10 @@
     "packages/*"
   ],
   "scripts": {
-    "setup": "npm-run-all bootstrap \"utils build\" \"hooks build\" \"system build\" \"color build\" \"preset build\" \"portal build\" \"icon build\"",
-    "setup-2": "yarn layout build && yarn descendant build && yarn icon build && yarn tabbable build && yarn checkbox build && yarn popper build",
-    "setup-3": "yarn spinner build && yarn field build && yarn counter build",
+    "setup": "npm-run-all bootstrap setup:1 setup:2 setup:3",
+    "setup:1": "yarn utils build && yarn hooks build && yarn system build && yarn color build && yarn preset build && yarn portal build && yarn icon build",
+    "setup:2": "yarn layout build && yarn descendant build && yarn icons build && yarn tabbable build && yarn checkbox build && yarn popper build",
+    "setup:3": "yarn spinner build && yarn field build && yarn counter build",
     "commit": "git-cz",
     "clean": "lerna clean --yes",
     "bootstrap": "yarn clean && lerna bootstrap --use-workspaces",
