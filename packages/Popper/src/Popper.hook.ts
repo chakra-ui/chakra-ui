@@ -114,7 +114,7 @@ export function usePopper(props: PopperHookProps) {
     }
   }, [forceUpdate]);
 
-  const computedArrowStyles = {
+  const computedArrowStyles: React.CSSProperties = {
     ...arrowStyles,
     ...getArrowStyles(placement, arrowSize),
   };
@@ -137,5 +137,7 @@ export function usePopper(props: PopperHookProps) {
     place,
   };
 }
+
+export type PopperHookReturn = ReturnType<typeof usePopper>;
 
 export default usePopper;

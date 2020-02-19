@@ -1,6 +1,6 @@
-import { getModeColor, StyleFunctionProps } from "./utils";
+import { getModeColor, StyleFunctionProps, ComponentTheme } from "./utils";
 
-export default {
+const Tooltip: ComponentTheme = {
   baseStyle: (props: StyleFunctionProps) => ({
     paddingX: "8px",
     paddingY: "2px",
@@ -14,3 +14,5 @@ export default {
     maxWidth: "320px",
   }),
 };
+
+export default Tooltip;

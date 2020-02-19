@@ -1,4 +1,10 @@
-Base Package
+# Chakra UI Tooltip
 
-Don't run any npm script in here. It's just a basic folder to enable us create
-new packages faster.
+Welcome to `@chakra-ui/tooltip`
+
+## Major Inspiration
+
+- Tooltip component in Atlaskit by Atlassian.
+  [Here](https://bitbucket.org/atlassian/atlaskit-mk-2/src/master/packages/core/tooltip/src/components/Tooltip.tsx)
+
+- Tooltip compoonent in Reach UI
