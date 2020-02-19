@@ -30,7 +30,7 @@ const FormErrorMessage = forwardRef(({ children, icon, ...props }, ref) => {
       align="center"
       {...props}
     >
-      <Icon aria-hidden name={icon || "warning"} mr="0.5em" />
+      {icon && <Icon aria-hidden name={icon} mr="0.5em" />}
       <Text lineHeight="normal">{children}</Text>
     </Flex>
   );
