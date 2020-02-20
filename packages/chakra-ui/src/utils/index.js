@@ -174,3 +174,9 @@ export function useVariantColorWarning(label, variantColor) {
     }
   }
 }
+
+export const canUseDOM = !!(
+  typeof window !== 'undefined' &&
+  window.document &&
+  window.document.createElement
+);

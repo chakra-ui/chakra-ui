@@ -1,4 +1,4 @@
-import { canUseDOM } from "exenv";
+import { canUseDOM } from "../utils";
 import { useRef, useState, useEffect, useCallback } from "react";
 import {
   calculatePrecision,
