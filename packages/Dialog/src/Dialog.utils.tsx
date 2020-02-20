@@ -34,16 +34,15 @@ export function useOutsideClick(
 }
 
 export function useStackContext(ref: React.Ref<any>, isOpen?: boolean) {
-  const manager = usePortalsContext();
+  const { modals } = usePortalsContext();
 
   React.useEffect(() => {
     if (!isOpen) return;
-    if (manager.modals) manager.modals.add(ref);
+    if (modals) modals.add(ref);
     return () => {
-      if (manager.modals) manager.modals.remove(ref);
+      if (modals) modals.remove(ref);
     };
-    // eslint-disable-next-line
-  }, [isOpen, ref]);
+  }, [isOpen, ref, modals]);
 
-  return manager.modals.value;
+  return modals.value;
 }

@@ -37,10 +37,7 @@ function useDialogProvider(props: DialogProviderProps) {
     `chakra-dialog--body`,
   );
 
-  useLockBodyScroll(dialogRef, {
-    preserveScrollBarGap: true,
-    shouldLock: isOpen,
-  });
+  useLockBodyScroll(dialogRef, isOpen);
 
   const modals = useStackContext(dialogRef, isOpen);
   useOutsideClick(dialogRef, overlayRef, modals, onClose);
@@ -80,7 +77,10 @@ export function Dialog(props: DialogProps) {
 
 function useDialogOverlay(props: any) {
   const { overlayRef } = useDialogCtx();
-  const onClick = React.useCallback(event => event.stopPropagation(), []);
+  const onClick = React.useCallback((event: React.MouseEvent) => {
+    event.nativeEvent.stopImmediatePropagation();
+    event.stopPropagation();
+  }, []);
   return { ...props, ref: overlayRef, role: "presentation", onClick };
 }
 
@@ -90,9 +90,10 @@ function useDialogContent(props: any) {
   const ref = useMergeRefs(props.ref, dialogRef);
 
   const onKeyDown = React.useCallback(
-    (event: KeyboardEvent) => {
+    (event: React.KeyboardEvent) => {
       if (event.key === "Escape") {
         event.stopPropagation();
+        event.nativeEvent.stopImmediatePropagation();
         onClose && onClose();
       }
     },

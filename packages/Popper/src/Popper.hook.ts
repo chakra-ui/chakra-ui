@@ -2,6 +2,9 @@ import * as React from "react";
 import { Placement, Instance, createPopper } from "@popperjs/core";
 import { getArrowStyles } from "./Popper.utils";
 
+const isBrowser = typeof window !== "undefined";
+const useIsomorphicEffect = isBrowser ? React.useLayoutEffect : React.useEffect;
+
 export { Placement };
 
 export interface PopperHookProps {
@@ -13,6 +16,7 @@ export interface PopperHookProps {
   forceUpdate?: boolean;
   flip?: boolean;
   arrowSize?: number;
+  eventsEnabled?: boolean;
 }
 
 export function usePopper(props: PopperHookProps) {
@@ -25,6 +29,7 @@ export function usePopper(props: PopperHookProps) {
     flip = true,
     arrowSize = 10,
     gutter = arrowSize,
+    eventsEnabled = true,
   } = props;
 
   const popper = React.useRef<Instance | null>(null);
@@ -48,15 +53,16 @@ export function usePopper(props: PopperHookProps) {
     return false;
   }, []);
 
-  React.useLayoutEffect(() => {
+  useIsomorphicEffect(() => {
     if (referenceRef.current && popoverRef.current) {
       popper.current = createPopper(referenceRef.current, popoverRef.current, {
         placement: originalPlacement,
         strategy: fixed ? "fixed" : "absolute",
         modifiers: [
           {
-            name: "eventListender",
-            enabled: forceUpdate,
+            name: "eventListener",
+            phase: "write",
+            enabled: eventsEnabled,
           },
           {
             name: "applyStyles",

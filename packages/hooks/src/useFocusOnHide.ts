@@ -1,22 +1,19 @@
+import { ensureFocus, isTabbable } from "@chakra-ui/utils";
 import * as React from "react";
-import { isTabbable, ensureFocus } from "@chakra-ui/utils";
-import { UseFocusOnShowOptions } from "./useFocusOnShow";
-import usePrevious from "./usePrevious";
+import { FocusOnShowHookOptions } from "./useFocusOnShow";
+import useUpdateEffect from "./useUpdateEffect";
 
 export function useFocusOnHide(
   ref: React.RefObject<HTMLElement>,
-  options: UseFocusOnShowOptions,
+  options: FocusOnShowHookOptions,
 ) {
-  const previouslyVisible = usePrevious(options.visible);
+  const { focusRef, autoFocus, visible } = options;
+  const shouldFocus = autoFocus && !visible;
 
-  React.useEffect(() => {
-    const shouldFocus = options.autoFocus && !options.visible;
-    if (!shouldFocus) return;
-
+  useUpdateEffect(() => {
     const element = ref.current;
+    if (!shouldFocus || !element) return undefined;
 
-    // Hide was triggered by a click/focus on a tabbable element outside
-    // the dialog or on another dialog. We won't change focus then.
     const preventFocus =
       document.activeElement &&
       element &&
@@ -25,18 +22,10 @@ export function useFocusOnHide(
 
     if (preventFocus) return;
 
-    const focusEl = options.focusRef && options.focusRef.current;
+    const focusEl = focusRef?.current;
 
-    if (focusEl && previouslyVisible && !options.visible) {
-      ensureFocus(focusEl);
-    }
-  }, [
-    options.autoFocus,
-    options.focusRef,
-    options.visible,
-    ref,
-    previouslyVisible,
-  ]);
+    if (focusEl && !visible) ensureFocus(focusEl);
+  }, [autoFocus, focusRef, visible, ref]);
 }
 
 export default useFocusOnHide;

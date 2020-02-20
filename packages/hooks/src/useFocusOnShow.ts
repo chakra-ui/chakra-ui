@@ -1,7 +1,8 @@
 import { getFirstTabbableIn, ensureFocus } from "@chakra-ui/utils";
 import * as React from "react";
+import useUpdateEffect from "./useUpdateEffect";
 
-export interface UseFocusOnShowOptions {
+export interface FocusOnShowHookOptions {
   autoFocus?: boolean;
   visible?: boolean;
   focusRef?: React.RefObject<HTMLElement>;
@@ -9,27 +10,25 @@ export interface UseFocusOnShowOptions {
 
 export function useFocusOnShow(
   ref: React.RefObject<HTMLElement>,
-  options: UseFocusOnShowOptions,
+  options: FocusOnShowHookOptions,
 ) {
-  React.useEffect(() => {
-    const initialFocusRef = options.focusRef;
-    const shouldFocus = options.visible && options.autoFocus;
+  const { visible, autoFocus, focusRef } = options;
 
-    if (shouldFocus) {
-      if (initialFocusRef && initialFocusRef.current) {
-        ensureFocus(initialFocusRef.current);
-      } else {
-        if (ref.current) {
-          const firstTabbable = getFirstTabbableIn(ref.current, true);
-          if (firstTabbable) {
-            ensureFocus(firstTabbable);
-          } else {
-            ensureFocus(ref.current);
-          }
-        }
-      }
+  useUpdateEffect(() => {
+    const shouldFocus = visible && autoFocus;
+
+    if (!shouldFocus) return;
+
+    if (focusRef?.current) {
+      ensureFocus(focusRef.current);
+      return;
     }
-  }, [options.visible, options.autoFocus, ref, options.focusRef]);
+
+    if (ref.current) {
+      const firstTabbable = getFirstTabbableIn(ref.current, true);
+      ensureFocus(firstTabbable ?? ref.current);
+    }
+  }, [visible, autoFocus, ref, focusRef]);
 }
 
 export default useFocusOnShow;

@@ -32,7 +32,7 @@ const Tooltip = ({ children }: any) => {
 
 export const Basic = () => <Tooltip>This is me</Tooltip>;
 
-export const Example = () => (
+export const MultipleTooltips = () => (
   <>
     <Tooltip>This is tip 1</Tooltip>
     <Tooltip>This is tip 2</Tooltip>

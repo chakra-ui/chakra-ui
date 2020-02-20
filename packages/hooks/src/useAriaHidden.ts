@@ -3,7 +3,7 @@ import * as React from "react";
 
 export function useAriaHidden(
   ref: React.RefObject<HTMLElement>,
-  shouldActivate: boolean,
+  activate: boolean,
 ) {
   React.useEffect(() => {
     if (!ref.current) return;
@@ -11,16 +11,14 @@ export function useAriaHidden(
     let undoAriaHidden: AriaHidden.Undo | null = null;
     const elementNode = ref.current;
 
-    if (shouldActivate && elementNode) {
+    if (activate && elementNode) {
       undoAriaHidden = AriaHidden.hideOthers(elementNode);
     }
 
     return () => {
-      if (shouldActivate && undoAriaHidden != null) {
-        undoAriaHidden();
-      }
+      if (activate && undoAriaHidden) undoAriaHidden();
     };
-  }, [shouldActivate, ref]);
+  }, [activate, ref]);
 }
 
 export default useAriaHidden;

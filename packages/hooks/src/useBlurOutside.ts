@@ -1,6 +1,6 @@
 import * as React from "react";
 
-function hasFocusWithin(
+export function hasFocusWithin(
   ref: React.RefObject<HTMLElement>,
   event: React.FocusEvent,
 ) {

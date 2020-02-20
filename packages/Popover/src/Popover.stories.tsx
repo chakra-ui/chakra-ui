@@ -1,35 +1,32 @@
 import { Portal } from "@chakra-ui/portal";
 import * as React from "react";
-import {
-  PopoverProvider,
-  usePopoverContent,
-  usePopoverState,
-  usePopoverTrigger,
-} from ".";
+import { usePopover } from ".";
 
 export default {
   title: "Popover",
 };
 
-function PopoverExample() {
-  const popover = usePopoverState();
-  const trigger = usePopoverTrigger();
-  const content = usePopoverContent();
+export function PopoverExample() {
+  const { trigger, popover, onClose } = usePopover();
 
   return (
     <>
       <button {...trigger}>Open</button>
-      <Portal>
-        <div {...content}>
-          This is the content <button onClick={popover.onClose}>Close</button>
-        </div>
-      </Portal>
+      <div
+        {...popover}
+        style={{
+          ...popover.style,
+          background: "tomato",
+          color: "white",
+          padding: 30,
+        }}
+      >
+        This is the content <br />
+        <button onClick={onClose}>Close</button>
+      </div>
+      <div style={{ float: "right" }} tabIndex={0}>
+        Other div
+      </div>
     </>
   );
 }
-
-export const Default = () => (
-  <PopoverProvider placement="right">
-    <PopoverExample />
-  </PopoverProvider>
-);

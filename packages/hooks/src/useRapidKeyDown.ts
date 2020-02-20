@@ -20,23 +20,23 @@ export function useRapidKeydown() {
   ) => {
     const keyCode = event.keyCode || event.which;
     const isBackspace = keyCode === 8;
-    const { key } = event;
 
     if (isBackspace) {
-      const _keys = [...keys];
-      _keys.pop();
-      setKeys(_keys);
-    } else {
-      const isLetter = keyCode >= 65 && keyCode <= 90;
-      const isNumber = keyCode >= 48 && keyCode <= 57;
-      const isValid = isLetter || isNumber;
+      const keysCopy = [...keys];
+      keysCopy.pop();
+      setKeys(keysCopy);
+      return;
+    }
 
-      if (isValid) {
-        const _keys = keys.concat(key);
-        callback(_keys.join(""));
-        setKeys(_keys);
-        clearKeysAfterDelay();
-      }
+    const isLetter = keyCode >= 65 && keyCode <= 90;
+    const isNumber = keyCode >= 48 && keyCode <= 57;
+    const isValid = isLetter || isNumber;
+
+    if (isValid) {
+      const keysCopy = keys.concat(event.key);
+      callback(keysCopy.join(""));
+      setKeys(keysCopy);
+      clearKeysAfterDelay();
     }
   };
 
