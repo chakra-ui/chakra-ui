@@ -9,5 +9,5 @@ export * from "./AddIcon"
 export * from "./SmallAddIcon"
 export * from "./SettingsIcon"
 export * from "./CheckCircleIcon"
-
-
+export * from "./LockIcon"
+export * from "./UnlockIcon"
