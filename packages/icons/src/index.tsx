@@ -8,3 +8,6 @@ export * from "./SunIcon"
 export * from "./AddIcon"
 export * from "./SmallAddIcon"
 export * from "./SettingsIcon"
+export * from "./CheckCircleIcon"
+
+
