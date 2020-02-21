@@ -1,10 +1,3 @@
-/**
- * Here's comes the warnings!
- *
- * We can't assume the user will use the hook correctly, so
- * let's prepare of warnings when they use it wrongly
- */
-
 import * as Accordion from "./Accordion.hook"
 
 export function allowMultiple(props: Accordion.AccordionHookProps) {

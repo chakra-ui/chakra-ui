@@ -1,6 +1,5 @@
 import { PropsOf } from "@chakra-ui/system"
-import { Omit } from "@chakra-ui/utils"
-import { createContext } from "@chakra-ui/utils/src"
+import { Omit, createContext } from "@chakra-ui/utils"
 import * as React from "react"
 import {
   AccordionHookProps,

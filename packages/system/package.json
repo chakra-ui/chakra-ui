@@ -61,7 +61,8 @@
     "@types/styled-system": "5.0.1",
     "@types/styled-system__should-forward-prop": "5.1.0",
     "styled-system": "5.0.5",
-    "use-dark-mode": "2.3.1"
+    "use-dark-mode": "2.3.1",
+    "@chakra-ui/utils": "0.0.1"
   },
   "peerDependencies": {
     "@emotion/core": "10.x",

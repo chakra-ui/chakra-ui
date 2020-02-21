@@ -4,7 +4,7 @@ import {
   BaseAccordionButton,
   BaseAccordionItem,
   BaseAccordionPanel,
-} from "./Accordion.base"
+} from "../src/Accordion.base"
 
 export default {
   title: "Accordion",

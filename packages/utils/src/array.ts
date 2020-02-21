@@ -1,10 +1,20 @@
-export function getFirstIndex<T>(array: T[]) {
+export function getFirstItem<T>(array: T[]) {
   return array != null && array.length ? array[0] : undefined
 }
 
-export function getLastIndex<T>(array: T[]) {
+export function getLastItem<T>(array: T[]) {
   const length = array == null ? 0 : array.length
   return length ? array[length - 1] : undefined
+}
+
+export function getPrevItem<T>(index: number, array: T[], loop = true) {
+  const prevIndex = getPrevIndex(index, array.length, loop)
+  return array[prevIndex]
+}
+
+export function getNextItem<T>(index: number, array: T[], loop = true) {
+  const nextIndex = getNextIndex(index, array.length, 1, loop)
+  return array[nextIndex]
 }
 
 export function removeIndex<T>(array: T[], index: number) {
@@ -40,8 +50,8 @@ export function getNextIndex(
   return nextIndex
 }
 
-export function getPrevIndex(index: number, itemCount: number, loop = true) {
-  return getNextIndex(index, itemCount, -1, loop)
+export function getPrevIndex(index: number, count: number, loop = true) {
+  return getNextIndex(index, count, -1, loop)
 }
 
 export function groupItems<T>(items: T[], noOfGroups: number): T[][] {
