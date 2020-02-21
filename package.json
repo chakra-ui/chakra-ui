@@ -5,8 +5,9 @@
     "packages/*"
   ],
   "scripts": {
+    "bundlesize": "bundlesize -c bundlesize.config.json",
     "setup": "npm-run-all bootstrap setup:1 setup:2 setup:3",
-    "setup:1": "yarn utils build && yarn hooks build && yarn system build && yarn color build && yarn preset build && yarn portal build && yarn icon build",
+    "setup:1": "yarn bootstrap && lerna run build --stream --scope=@chakra-ui/{utils,hooks,system,color,preset-base,portal,icon}",
     "setup:2": "yarn layout build && yarn descendant build && yarn icons build && yarn tabbable build && yarn checkbox build && yarn popper build",
     "setup:3": "yarn spinner build && yarn field build && yarn counter build",
     "commit": "git-cz",
@@ -67,12 +68,6 @@
     "tag": "yarn workspace @chakra-ui/tag",
     "icons": "yarn workspace @chakra-ui/icon-glyphs"
   },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "yarn workspace @chakra-ui/core lint --fix "
-    }
-  },
   "czConfig": {
     "path": "node_modules/cz-conventional-changelog"
   },
@@ -97,12 +92,14 @@
     "@storybook/addon-links": "^5.3.13",
     "@storybook/addons": "^5.3.13",
     "@storybook/react": "^5.3.13",
+    "@testing-library/jest-dom": "5.1.1",
+    "@testing-library/react": "9.4.0",
+    "@testing-library/user-event": "10.0.0",
     "@types/jest": "24.0.19",
     "@typescript-eslint/eslint-plugin": "2.13.0",
     "@typescript-eslint/parser": "2.13.0",
     "all-contributors-cli": "6.8.2",
     "arg": "4.1.2",
-    "ts-loader": "6.2.1",
     "babel-eslint": "10.0.3",
     "babel-loader": "8.0.6",
     "chalk": "3.0.0",
@@ -110,11 +107,14 @@
     "cz-conventional-changelog": "3.0.2",
     "edit-json-file": "1.4.0",
     "emotion-theming": "10.0.10",
+    "eslint-plugin-jest-dom": "2.0.0",
     "eslint-plugin-prettier": "3.1.2",
     "eslint-plugin-react-hooks": "2.3.0",
+    "eslint-plugin-testing-library": "2.2.3",
     "esm": "3.2.25",
     "execa": "4.0.0",
     "inquirer": "7.0.3",
+    "jest-emotion": "10.0.27",
     "lerna": "^3.15.0",
     "lint-staged": "9.2.1",
     "listr": "0.14.3",
@@ -122,27 +122,8 @@
     "npm-run-all": "4.1.5",
     "prettier": "1.19.1",
     "react": "16.12.0",
-    "react-docgen-typescript-loader": "3.3.0",
     "react-dom": "16.12.0",
     "react-lorem-component": "^0.13.0",
-    "react-transition-group": "4.3.0"
-  },
-  "bundlesize": [
-    {
-      "path": "./packages/system/dist/*.js",
-      "maxSize": "10 kB"
-    },
-    {
-      "path": "./packages/utils/dist/*.js",
-      "maxSize": "5 kB"
-    },
-    {
-      "path": "./packages/hooks/dist/*.js",
-      "maxSize": "5 kB"
-    },
-    {
-      "path": "./packages/popper/dist/*.js",
-      "maxSize": "5 kB"
-    }
-  ]
+    "ts-loader": "6.2.1"
+  }
 }

@@ -57,8 +57,6 @@
   ],
   "gitHead": "bf23c9514f184e58fb8f652bfaa38826d1b88906",
   "devDependencies": {
-    "@testing-library/jest-dom": "4.1.2",
-    "@testing-library/react": "8.0.7",
     "@types/jest": "24.0.25",
     "@types/react": "16.9.17",
     "@types/react-dom": "16.9.4",

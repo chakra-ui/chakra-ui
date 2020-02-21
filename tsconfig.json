@@ -1,23 +1,10 @@
 {
+  "extends": "./tsconfig.build.json",
   "compilerOptions": {
+    "allowJs": true,
     "outDir": "build/lib",
-    "module": "esnext",
-    "target": "es5",
-    "lib": ["es5", "es6", "es7", "es2017", "dom", "esnext"],
-    "sourceMap": true,
-    "allowJs": false,
-    "jsx": "react",
-    "importHelpers": true,
-    "moduleResolution": "node",
     "rootDirs": ["packages"],
-    "skipLibCheck": true,
-    "baseUrl": "packages",
-    "forceConsistentCasingInFileNames": true,
-    "declaration": true,
-    "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "typeRoots": ["node_modules/@types", "packages/**/*/@types"]
+    "typeRoots": ["./node_modules/@types", "./packages/**/*/@types"]
   },
   "include": ["packages/**/*", "next-env.d.ts"],
   "exclude": [

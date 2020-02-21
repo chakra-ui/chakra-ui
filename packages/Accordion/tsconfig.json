@@ -1,6 +1,12 @@
 {
-  "extends": "../../tsconfig-base.json",
+  "extends": "../../tsconfig.build.json",
   "include": ["src", "types"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@test-utils": ["../../../test/utils.tsx"]
+    }
+  },
   "exclude": [
     "**/*.spec.ts",
     "**/*.spec.tsx",
