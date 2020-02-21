@@ -18,7 +18,7 @@ import {
 export default {
   title: "NumberInput",
   decorators: [
-    story => (
+    (story: Function) => (
       <chakra.div maxW="400px" mt="40px" mx="auto">
         {story()}
       </chakra.div>

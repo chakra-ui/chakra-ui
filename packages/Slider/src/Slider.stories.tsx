@@ -10,7 +10,7 @@ import {
 
 export default {
   title: "Slider",
-  decorators: story => (
+  decorators: (story: Function) => (
     <chakra.div maxWidth="800px" mx="auto" mt="40px">
       {story()}
     </chakra.div>

@@ -5,7 +5,7 @@ import Switch from "./Switch"
 export default {
   title: "Switch",
   decorators: [
-    story => (
+    (story: Function) => (
       <chakra.div maxWidth="lg" mx="auto" mt={6} p={6}>
         {story()}
       </chakra.div>

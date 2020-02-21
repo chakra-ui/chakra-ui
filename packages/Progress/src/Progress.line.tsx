@@ -50,7 +50,7 @@ type ProgressTrackProps = Omit<PropsOf<typeof chakra.div>, "size"> & {
 
 function ProgressTrack({ size, ...props }: ProgressTrackProps) {
   const getHeight = (val: keyof typeof sizes) => sizes[val] || val
-  const height = parseResponsiveProp(size, getHeight)
+  const height = parseResponsiveProp(size as any, getHeight)
 
   return (
     <chakra.div

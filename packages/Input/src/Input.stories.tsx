@@ -8,7 +8,7 @@ import InputGroup from "./Input.group"
 export default {
   title: "Input",
   decorators: [
-    story => (
+    (story: Function) => (
       <chakra.div maxW="560px" mx="auto" mt="40px">
         {story()}
       </chakra.div>

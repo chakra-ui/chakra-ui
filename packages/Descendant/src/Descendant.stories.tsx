@@ -18,7 +18,7 @@ function Option({
 }) {
   const context = useDescendantCtx()
 
-  const ref = React.useRef<HTMLDivElement>()
+  const ref = React.useRef<HTMLDivElement>(null)
 
   const { index } = useDescendant({
     element: ref.current,

@@ -1,5 +1,5 @@
 import React from "react"
-import { render } from "../../../test/utils"
+import { render, fireEvent, wait } from "../../../test/utils"
 import "@testing-library/jest-dom/extend-expect"
 import {
   BaseAccordion,
@@ -7,6 +7,7 @@ import {
   BaseAccordionItem,
   BaseAccordionPanel,
 } from "../src/Accordion.base"
+import userEvent from "@testing-library/user-event"
 
 test("Button renders correctly", () => {
   const { asFragment } = render(
@@ -20,7 +21,7 @@ test("Button renders correctly", () => {
   expect(asFragment()).toMatchSnapshot()
 })
 
-test("It opens the accordion panel", () => {
+test("uncontrolled: It opens the accordion panel", () => {
   const { getByTestId } = render(
     <BaseAccordion defaultIndex={0}>
       <BaseAccordionItem>
@@ -34,4 +35,21 @@ test("It opens the accordion panel", () => {
 
   const button = getByTestId("button")
   expect(button).toHaveAttribute("aria-expanded", "true")
+})
+
+test("uncontrolled: toggles the accordion on click", async () => {
+  const { getByText } = render(
+    <BaseAccordion>
+      <BaseAccordionItem>
+        <BaseAccordionButton>Trigger</BaseAccordionButton>
+        <BaseAccordionPanel>Panel</BaseAccordionPanel>
+      </BaseAccordionItem>
+    </BaseAccordion>,
+  )
+
+  fireEvent.click(getByText("Trigger"))
+  expect(getByText("Trigger")).toHaveAttribute("aria-expanded", "true")
+
+  fireEvent.click(getByText("Trigger"))
+  expect(getByText("Trigger")).toHaveAttribute("aria-expanded", "false")
 })

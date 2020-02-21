@@ -1,19 +1,8 @@
-import {
-  useDisclosure,
-  // useFocusOnHide,
-  useFocusOnShow,
-  useIds,
-  useMergeRefs,
-} from "@chakra-ui/hooks"
+import { useDisclosure, useFocusOnShow, useIds } from "@chakra-ui/hooks"
 import { Placement, usePopper } from "@chakra-ui/popper"
 import * as React from "react"
-import {
-  useBlurOutside,
-  useFocusOnHide,
-  getElementAfterTrigger,
-  hasFocusWithin,
-} from "./Popover.utils"
-// import { getLastTabbableIn, ensureFocus } from "@chakra-ui/utils";
+import { useBlurOutside, useFocusOnHide } from "./Popover.utils"
+import { mergeRefs } from "@chakra-ui/utils"
 
 export interface PopoverHookProps {
   id?: string
@@ -40,7 +29,7 @@ export function usePopover(props: PopoverHookProps = {}) {
   const { isOpen, onClose, onToggle } = useDisclosure(props)
 
   const triggerRef = React.useRef<any>(null)
-  const contentRef = React.useRef<HTMLElement>(null)
+  const contentRef = React.useRef<any>(null)
 
   const [triggerId, popoverId] = useIds("popover-trigger", "popover-content")
 
@@ -81,7 +70,7 @@ export function usePopover(props: PopoverHookProps = {}) {
     onClose,
     trigger: {
       id: triggerId,
-      ref: useMergeRefs(triggerRef, reference.ref),
+      ref: mergeRefs(triggerRef, reference.ref),
       "aria-haspopup": "dialog" as React.AriaAttributes["aria-haspopup"],
       "aria-expanded": isOpen,
       "aria-controls": popoverId,
@@ -91,7 +80,7 @@ export function usePopover(props: PopoverHookProps = {}) {
       id: popoverId,
       tabIndex: -1,
       hidden: !isOpen,
-      ref: useMergeRefs(contentRef, popper.ref),
+      ref: mergeRefs(contentRef, popper.ref),
       style: popper.style,
       "aria-hidden": isOpen ? undefined : true,
       role: "dialog",

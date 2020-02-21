@@ -1,6 +1,5 @@
-import { Portal } from "@chakra-ui/portal"
 import * as React from "react"
-import { usePopover } from "."
+import { usePopover } from "./Popover.hook"
 
 export default {
   title: "Popover",
@@ -23,9 +22,6 @@ export function PopoverExample() {
       >
         This is the content <br />
         <button onClick={onClose}>Close</button>
-      </div>
-      <div style={{ float: "right" }} tabIndex={0}>
-        Other div
       </div>
     </>
   )

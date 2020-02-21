@@ -102,10 +102,13 @@ export function useAccordion(props: AccordionHookProps) {
             ? addItem(index, childIndex)
             : removeItem(index, childIndex)
           updateIndex(nextState)
-          return
+        } else {
+          if (nextIsOpen) {
+            updateIndex(childIndex)
+          } else if (allowToggle) {
+            updateIndex(-1)
+          }
         }
-        if (nextIsOpen) updateIndex(childIndex)
-        else if (allowToggle) updateIndex(-1)
       },
     })
   })
@@ -167,7 +170,7 @@ export function useAccordionItem(props: AccordionItemHookProps) {
     isFocusable,
     onChange,
     context,
-    isOpen: _,
+    isOpen: isOpenProp,
     defaultIsOpen,
     ...htmlProps
   } = props
@@ -185,7 +188,7 @@ export function useAccordionItem(props: AccordionItemHookProps) {
 
   // warn for incorrect usage
   if (__DEV__) {
-    Warning.controlledSwitching("AccordionItem", isControlled, props.isOpen)
+    Warning.controlledSwitching("AccordionItem", isControlled, isOpenProp)
     Warning.focusableNotDisabled(props)
   }
 
