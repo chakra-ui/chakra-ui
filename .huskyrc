@@ -1,6 +1,6 @@
 {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "prettier --write *.{ts,tsx}"
+      "pre-commit": "lint-staged"
     }
   }

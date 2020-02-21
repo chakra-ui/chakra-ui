@@ -1,12 +1,21 @@
 {
   "name": "@chakra-ui/dialog",
   "version": "0.0.1",
-  "description": "description",
+  "description": "An accessible modal component for React & Chakra UI",
   "keywords": [
-    "theme",
-    "theming",
-    "ui mode",
-    "ui"
+    "react",
+    "react component",
+    "modal",
+    "dialog",
+    "modal dialog",
+    "accessible modal",
+    "aria modal",
+    "a11y modal",
+    "accessible modal",
+    "modal component",
+    "react modal component",
+    "react modal",
+    "chakra"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",

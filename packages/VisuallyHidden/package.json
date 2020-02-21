@@ -1,30 +1,26 @@
 {
-  "name": "@chakra-ui/slider",
+  "name": "@chakra-ui/visuallyhidden",
   "version": "0.0.1",
-  "description": "Accessible and versatile slider component for React that implements <input type=range>",
+  "description": "A React component for adding visually hidden styles to elements",
   "keywords": [
     "react",
-    "chakra ui",
+    "component",
     "chakra",
-    "react component",
-    "slider",
-    "accessible slider",
-    "a11y slider",
-    "react a11y slider",
-    "react accessible slider",
-    "react slider",
-    "react slider component",
+    "chakra ui",
     "a11y",
-    "input range",
-    "react aria slider",
     "aria",
-    "aria slider"
+    "accessibility",
+    "accessible",
+    "visually hidden",
+    "visually hidden component",
+    "sr only",
+    "screenreader"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
   "main": "dist/index.js",
-  "module": "dist/slider.esm.js",
+  "module": "dist/visuallyhidden.esm.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
@@ -59,11 +55,10 @@
     "tslib": "1.10.0",
     "typescript": "3.7.4"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@chakra-ui/system": "0.0.1"
+  },
   "peerDependencies": {
-    "@emotion/core": "10.x",
-    "@emotion/styled": "10.x",
-    "emotion-theming": "10.x",
     "react": "16.x",
     "react-dom": "16.x"
   }
