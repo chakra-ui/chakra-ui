@@ -11,3 +11,6 @@ export * from "./SettingsIcon"
 export * from "./CheckCircleIcon"
 export * from "./LockIcon"
 export * from "./UnlockIcon"
+export * from "./ViewIcon"
+export * from "./ViewOffIcon"
+
