@@ -18,9 +18,13 @@ const [AccordionProvider, useAccordionContext] = createContext<
 
 export function BaseAccordion({
   children,
+  defaultIndex,
   ...props
 }: AccordionHookProps & PropsOf<"div">) {
-  const { children: enhancedChildren, ...context } = useAccordion({ children });
+  const { children: enhancedChildren, ...context } = useAccordion({
+    children,
+    defaultIndex,
+  });
   return (
     <AccordionProvider value={context}>
       <div data-chakra-accordion="" {...props} children={enhancedChildren} />
@@ -40,7 +44,14 @@ export function useAccordionItemState() {
 export function BaseAccordionItem(
   props: PropsOf<"div"> & AccordionItemHookProps,
 ) {
-  const { isFocusable, isDisabled, onChange, ...htmlProps } = props;
+  const {
+    isFocusable,
+    isDisabled,
+    onChange,
+    isOpen,
+    defaultIsOpen,
+    ...htmlProps
+  } = props;
 
   const context = useAccordionContext();
 

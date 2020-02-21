@@ -35,6 +35,7 @@ const selectors = {
   hidden: "&[hidden]",
   autofill: "&:-webkit-autofill",
   rtl: "[dir=rtl] &, [dir=rtl] &",
+  // paragraphSpacing: "& > p ~ p",
 };
 
 export default selectors;

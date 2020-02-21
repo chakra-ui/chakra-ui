@@ -4,6 +4,7 @@
     "allowJs": true,
     "outDir": "build/lib",
     "rootDirs": ["packages"],
+    "types": ["jest"],
     "typeRoots": ["./node_modules/@types", "./packages/**/*/@types"]
   },
   "include": ["packages/**/*", "next-env.d.ts"],

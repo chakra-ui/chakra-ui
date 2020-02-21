@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    data-chakra-accordion=""
+  >
+    <div
+      data-chakra-accordion-item=""
+    >
+      <button
+        aria-controls="accordion-panel-1"
+        aria-expanded="false"
+        data-chakra-accordion-button=""
+        id="accordion-header-1"
+      >
+        Section 1 title
+      </button>
+      <div
+        aria-labelledby="accordion-header-1"
+        context="[object Object]"
+        data-chakra-accordion-panel=""
+        hidden=""
+        id="accordion-panel-1"
+        role="region"
+      >
+        Panel 1
+      </div>
+    </div>
+  </div>
+  <div
+    class="__chakra--portal-manager"
+  />
+</DocumentFragment>
+`;

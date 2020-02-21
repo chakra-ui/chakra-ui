@@ -1,5 +1,4 @@
 module.exports = {
-  setupFilesAfterEnv: ["./test/setupTests.ts"],
+  setupFilesAfterEnv: ["@testing-library/jest-dom/extend-expect"],
   snapshotSerializers: ["jest-emotion"],
-  preset: "ts-jest/presets/js-with-babel",
 };

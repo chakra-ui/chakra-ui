@@ -4,7 +4,6 @@ import {
   useDisclosure,
   useFocusEffect,
   useIds,
-  useMergeRefs,
 } from "@chakra-ui/hooks";
 import { useTabbable } from "@chakra-ui/tabbable";
 import {
@@ -282,6 +281,7 @@ export interface AccordionItemButtonHookProps {
 }
 
 export function useAccordionItemButton(props: AccordionItemButtonHookProps) {
+  const { context, ...htmlProps } = props;
   // Read from the accordion item's context
   const {
     buttonRef,
@@ -293,16 +293,16 @@ export function useAccordionItemButton(props: AccordionItemButtonHookProps) {
     isDisabled,
     isFocusable,
     isOpen,
-  } = props.context;
+  } = context;
 
   // With useTabbable, we don't have to worry about managing when the button is disabled
   // or trigger a click on Enter or Space bar
   const tabbable = useTabbable({
-    ...props,
+    ...htmlProps,
     isDisabled,
     isFocusable,
-    onClick: composeEventHandlers(props.onClick, onClick),
-    onKeyDown: composeEventHandlers(props.onKeyDown, onKeyDown),
+    onClick: composeEventHandlers(htmlProps.onClick, onClick),
+    onKeyDown: composeEventHandlers(htmlProps.onKeyDown, onKeyDown),
   });
 
   return {
@@ -311,7 +311,7 @@ export function useAccordionItemButton(props: AccordionItemButtonHookProps) {
     "aria-expanded": isOpen,
     "aria-controls": panelId,
     id: buttonId,
-    onFocus: composeEventHandlers(props.onFocus, onFocus),
+    onFocus: composeEventHandlers(htmlProps.onFocus, onFocus),
   };
 }
 
