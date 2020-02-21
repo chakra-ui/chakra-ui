@@ -1,33 +1,15 @@
 import { useMergeRefs } from "@chakra-ui/hooks";
 import { createChakra, PropsOf, connect } from "@chakra-ui/system";
-import {
-  composeEventHandlers as compose,
-  createContext,
-} from "@chakra-ui/utils";
+import { callAllHandlers as compose, createContext } from "@chakra-ui/utils";
 import * as React from "react";
-import {
-  NumberInputHookProps,
-  NumberInputHookReturn,
-  useNumberInput,
-} from "./NumberInput.hook";
+import { NumberInputHookProps, NumberInputHookReturn, useNumberInput } from "./NumberInput.hook";
 import Icon, { IconProps } from "@chakra-ui/icon";
 
-const [NumberInputContextProvider, useNumberInputContext] = createContext<
-  NumberInputHookReturn
->();
+const [NumberInputContextProvider, useNumberInputContext] = createContext<NumberInputHookReturn>();
 
-export const BaseStepperGroup = React.forwardRef(
-  (props: PropsOf<"div">, ref: React.Ref<HTMLDivElement>) => {
-    return (
-      <div
-        ref={ref}
-        data-chakra-numberinput-stepper=""
-        aria-hidden
-        {...props}
-      />
-    );
-  },
-);
+export const BaseStepperGroup = React.forwardRef((props: PropsOf<"div">, ref: React.Ref<HTMLDivElement>) => {
+  return <div ref={ref} data-chakra-numberinput-stepper="" aria-hidden {...props} />;
+});
 
 export const NumberInputStepper = createChakra(BaseStepperGroup, {
   themeKey: "NumberInput.StepperGroup",
@@ -41,16 +23,14 @@ export const NumberInputStepper = createChakra(BaseStepperGroup, {
 
 export type NumberInputProps = NumberInputHookProps & PropsOf<"div">;
 
-export const BaseNumberInput = React.forwardRef(
-  (props: NumberInputProps, ref: React.Ref<HTMLDivElement>) => {
-    const context = useNumberInput(props);
-    return (
-      <NumberInputContextProvider value={context}>
-        <div ref={ref} data-chakra-numberinput="" {...context.htmlProps} />
-      </NumberInputContextProvider>
-    );
-  },
-);
+export const BaseNumberInput = React.forwardRef((props: NumberInputProps, ref: React.Ref<HTMLDivElement>) => {
+  const context = useNumberInput(props);
+  return (
+    <NumberInputContextProvider value={context}>
+      <div ref={ref} data-chakra-numberinput="" {...context.htmlProps} />
+    </NumberInputContextProvider>
+  );
+});
 
 export const $NumberInput = createChakra(BaseNumberInput, {
   baseStyle: {
@@ -97,23 +77,19 @@ function useStepper({
   };
 }
 
-export const BaseDecrementStepper = React.forwardRef(
-  (props: PropsOf<"div">, ref: React.Ref<HTMLDivElement>) => {
-    const spinner = useStepper({ ...props, type: "decrement" });
-    return <div ref={ref} data-chakra-numberinput-decrement="" {...spinner} />;
-  },
-);
+export const BaseDecrementStepper = React.forwardRef((props: PropsOf<"div">, ref: React.Ref<HTMLDivElement>) => {
+  const spinner = useStepper({ ...props, type: "decrement" });
+  return <div ref={ref} data-chakra-numberinput-decrement="" {...spinner} />;
+});
 
 BaseDecrementStepper.defaultProps = {
   children: <ArrowDownIcon />,
 };
 
-export const BaseIncrementStepper = React.forwardRef(
-  (props: PropsOf<"div">, ref: React.Ref<HTMLDivElement>) => {
-    const spinner = useStepper({ ...props, type: "increment" });
-    return <div ref={ref} data-chakra-numberinput-decrement="" {...spinner} />;
-  },
-);
+export const BaseIncrementStepper = React.forwardRef((props: PropsOf<"div">, ref: React.Ref<HTMLDivElement>) => {
+  const spinner = useStepper({ ...props, type: "increment" });
+  return <div ref={ref} data-chakra-numberinput-decrement="" {...spinner} />;
+});
 
 BaseIncrementStepper.defaultProps = {
   children: <ArrowUpIcon />,
@@ -133,40 +109,32 @@ const commonOptions = {
   },
 };
 
-export const $NumberIncrementStepper = createChakra(
-  BaseIncrementStepper,
-  commonOptions,
-);
+export const $NumberIncrementStepper = createChakra(BaseIncrementStepper, commonOptions);
 
-export const $NumberDecrementStepper = createChakra(
-  BaseDecrementStepper,
-  commonOptions,
-);
+export const $NumberDecrementStepper = createChakra(BaseDecrementStepper, commonOptions);
 
-export const BaseNumberInputField = React.forwardRef(
-  (props: PropsOf<"input">, ref: React.Ref<HTMLInputElement>) => {
-    const { onBlur, onFocus, onKeyDown, onChange, ...rest } = props;
-    const { input } = useNumberInputContext();
+export const BaseNumberInputField = React.forwardRef((props: PropsOf<"input">, ref: React.Ref<HTMLInputElement>) => {
+  const { onBlur, onFocus, onKeyDown, onChange, ...rest } = props;
+  const { input } = useNumberInputContext();
 
-    const inputRef = useMergeRefs(input.ref, ref);
-    const handleBlur = compose(onBlur, input.onBlur);
-    const handleFocus = compose(onFocus, input.onBlur);
-    const handleKeyDown = compose(onKeyDown, input.onKeyDown);
-    const handleChange = compose(onChange, input.onChange);
+  const inputRef = useMergeRefs(input.ref, ref);
+  const handleBlur = compose(onBlur, input.onBlur);
+  const handleFocus = compose(onFocus, input.onBlur);
+  const handleKeyDown = compose(onKeyDown, input.onKeyDown);
+  const handleChange = compose(onChange, input.onChange);
 
-    return (
-      <input
-        {...input}
-        ref={inputRef}
-        onBlur={handleBlur}
-        onFocus={handleFocus}
-        onKeyDown={handleKeyDown}
-        onChange={handleChange}
-        {...rest}
-      />
-    );
-  },
-);
+  return (
+    <input
+      {...input}
+      ref={inputRef}
+      onBlur={handleBlur}
+      onFocus={handleFocus}
+      onKeyDown={handleKeyDown}
+      onChange={handleChange}
+      {...rest}
+    />
+  );
+});
 
 interface InputOptions {
   /**
@@ -187,16 +155,12 @@ interface InputOptions {
   isFullWidth?: boolean;
 }
 
-export const $NumberInputField = createChakra<
-  typeof BaseNumberInputField,
-  InputOptions
->(BaseNumberInputField, {
+export const $NumberInputField = createChakra<typeof BaseNumberInputField, InputOptions>(BaseNumberInputField, {
   themeKey: "Input",
   baseStyle: {
     width: "100%",
   },
-  shouldForwardProp: prop =>
-    !["focusBorderColor", "errorBorderColor"].includes(prop),
+  shouldForwardProp: prop => !["focusBorderColor", "errorBorderColor"].includes(prop),
 });
 
 $NumberInputField.defaultProps = {
@@ -211,16 +175,7 @@ const {
   children: [NumberInputField, NumberDecrementStepper, NumberIncrementStepper],
 } = connect({
   parent: $NumberInput,
-  children: [
-    $NumberInputField,
-    $NumberDecrementStepper,
-    $NumberIncrementStepper,
-  ],
+  children: [$NumberInputField, $NumberDecrementStepper, $NumberIncrementStepper],
 });
 
-export {
-  NumberInput,
-  NumberInputField,
-  NumberDecrementStepper,
-  NumberIncrementStepper,
-};
+export { NumberInput, NumberInputField, NumberDecrementStepper, NumberIncrementStepper };

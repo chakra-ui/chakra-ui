@@ -1,14 +1,5 @@
-import {
-  useControllableProp,
-  useIsomorphicEffect,
-  useMergeRefs,
-} from "@chakra-ui/hooks";
-import {
-  composeEventHandlers,
-  makeDataAttr,
-  createContext,
-  visuallyHiddenStyle,
-} from "@chakra-ui/utils";
+import { useControllableProp, useIsomorphicEffect, useMergeRefs } from "@chakra-ui/hooks";
+import { callAllHandlers, makeDataAttr, createContext, visuallyHiddenStyle } from "@chakra-ui/utils";
 import * as React from "react";
 
 export interface CheckboxHookProps {
@@ -57,14 +48,9 @@ export function useCheckbox(props: CheckboxHookProps) {
 
   const ref = React.useRef<HTMLInputElement>(null);
 
-  const [checkedState, setCheckedState] = React.useState(
-    Boolean(defaultIsChecked),
-  );
+  const [checkedState, setCheckedState] = React.useState(Boolean(defaultIsChecked));
 
-  const [isControlled, isChecked] = useControllableProp(
-    checkedProp,
-    checkedState,
-  );
+  const [isControlled, isChecked] = useControllableProp(checkedProp, checkedState);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (isReadOnly || isDisabled) {
@@ -141,10 +127,10 @@ export function useCheckbox(props: CheckboxHookProps) {
       value,
       id,
       onChange: handleChange,
-      onBlur: composeEventHandlers(onBlur, handleBlur),
-      onFocus: composeEventHandlers(onFocus, handleFocus),
-      onKeyDown: composeEventHandlers(onKeyDown, handleKeyDown),
-      onKeyUp: composeEventHandlers(onKeyUp, handleKeyUp),
+      onBlur: callAllHandlers(onBlur, handleBlur),
+      onFocus: callAllHandlers(onFocus, handleFocus),
+      onKeyDown: callAllHandlers(onKeyDown, handleKeyDown),
+      onKeyUp: callAllHandlers(onKeyUp, handleKeyUp),
       required: isRequired,
       checked: isChecked,
       disabled: trulyDisabled,
@@ -159,9 +145,7 @@ export function useCheckbox(props: CheckboxHookProps) {
 
 export type CheckboxHookReturn = ReturnType<typeof useCheckbox>;
 
-const [CheckboxContextProvider, useCheckboxContext] = createContext<
-  Omit<CheckboxHookReturn, "htmlProps">
->();
+const [CheckboxContextProvider, useCheckboxContext] = createContext<Omit<CheckboxHookReturn, "htmlProps">>();
 
 export const useCheckboxState = () => useCheckboxContext()["state"];
 
@@ -169,30 +153,26 @@ export const useCheckboxState = () => useCheckboxContext()["state"];
 
 type LabelProps = CheckboxHookProps & React.HTMLAttributes<HTMLLabelElement>;
 
-export const CheckboxProvider = React.forwardRef(
-  (props: LabelProps, ref: React.Ref<HTMLLabelElement>) => {
-    const { htmlProps, ...context } = useCheckbox(props);
-    return (
-      <CheckboxContextProvider value={context}>
-        <label ref={ref} {...htmlProps}>
-          {props.children}
-        </label>
-      </CheckboxContextProvider>
-    );
-  },
-);
+export const CheckboxProvider = React.forwardRef((props: LabelProps, ref: React.Ref<HTMLLabelElement>) => {
+  const { htmlProps, ...context } = useCheckbox(props);
+  return (
+    <CheckboxContextProvider value={context}>
+      <label ref={ref} {...htmlProps}>
+        {props.children}
+      </label>
+    </CheckboxContextProvider>
+  );
+});
 
 ////////////////////////////////////////////////////////////////////////////////
 
 type InputProps = React.HTMLAttributes<HTMLInputElement>;
 
-export const CheckboxInput = React.forwardRef(
-  (props: InputProps, forwardedRef: React.Ref<HTMLInputElement>) => {
-    const { input } = useCheckboxContext();
-    const ref = useMergeRefs(input.ref, forwardedRef);
-    return <input {...props} {...input} ref={ref} />;
-  },
-);
+export const CheckboxInput = React.forwardRef((props: InputProps, forwardedRef: React.Ref<HTMLInputElement>) => {
+  const { input } = useCheckboxContext();
+  const ref = useMergeRefs(input.ref, forwardedRef);
+  return <input {...props} {...input} ref={ref} />;
+});
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -207,24 +187,10 @@ interface CustomCheckboxProps {
 
 export const CustomCheckbox = React.forwardRef(
   (
-    {
-      onPointerDown,
-      onPointerUp,
-      onPointerEnter,
-      onPointerLeave,
-      style,
-      ...props
-    }: CustomCheckboxProps,
+    { onPointerDown, onPointerUp, onPointerEnter, onPointerLeave, style, ...props }: CustomCheckboxProps,
     ref: React.Ref<any>,
   ) => {
     const { checkbox } = useCheckboxContext();
-    return (
-      <div
-        {...props}
-        {...checkbox}
-        ref={ref}
-        style={{ ...style, touchAction: "none" }}
-      />
-    );
+    return <div {...props} {...checkbox} ref={ref} style={{ ...style, touchAction: "none" }} />;
   },
 );

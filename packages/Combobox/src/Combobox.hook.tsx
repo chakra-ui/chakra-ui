@@ -1,6 +1,6 @@
 import { useDescendant, useDescendants } from "@chakra-ui/descendant";
 import { useDisclosure, useId } from "@chakra-ui/hooks";
-import { composeEventHandlers, createOnKeyDown } from "@chakra-ui/utils";
+import { callAllHandlers, createOnKeyDown } from "@chakra-ui/utils";
 import * as React from "react";
 
 export interface ComboboxHookProps {
@@ -34,10 +34,7 @@ export function useCombobox(props: ComboboxHookProps) {
 
   const { isOpen, onOpen: openMenu, onClose: closeMenu } = useDisclosure();
 
-  const descendantsContext = useDescendants<
-    HTMLDivElement,
-    { value: string; id: string }
-  >();
+  const descendantsContext = useDescendants<HTMLDivElement, { value: string; id: string }>();
 
   const { descendants } = descendantsContext;
 
@@ -73,8 +70,7 @@ export function useCombobox(props: ComboboxHookProps) {
       if (isAtFirstOption && autoComplete) {
         setFocusedValue(null);
       } else {
-        const nextOption =
-          descendants[(index - 1 + descendants.length) % descendants.length];
+        const nextOption = descendants[(index - 1 + descendants.length) % descendants.length];
         setFocusedValue(nextOption.value);
       }
     }
@@ -150,13 +146,7 @@ interface ComboBoxInputHookProps {
 }
 
 export function useComboboxInput(props: ComboBoxInputHookProps) {
-  const {
-    context,
-    onChange: onChangeProp,
-    value: valueProp,
-    onKeyDown: onKeyDownProp,
-    onFocus: onFocusProp,
-  } = props;
+  const { context, onChange: onChangeProp, value: valueProp, onKeyDown: onKeyDownProp, onFocus: onFocusProp } = props;
 
   const {
     inputValue,
@@ -204,15 +194,7 @@ export function useComboboxInput(props: ComboBoxInputHookProps) {
           },
         },
       }),
-    [
-      clearValue,
-      closeMenu,
-      focusNextOption,
-      focusPrevOption,
-      focusedValue,
-      onSelect,
-      selectValue,
-    ],
+    [clearValue, closeMenu, focusNextOption, focusPrevOption, focusedValue, onSelect, selectValue],
   );
 
   const onBlur = React.useCallback(() => {
@@ -249,26 +231,20 @@ export function useComboboxInput(props: ComboBoxInputHookProps) {
   return {
     type: "text",
     role: "combobox",
-    "aria-activedescendant": focusedValue
-      ? String(makeHash(focusedValue))
-      : undefined,
-    "aria-autocomplete": (autoComplete
-      ? "both"
-      : "list") as React.AriaAttributes["aria-autocomplete"],
+    "aria-activedescendant": focusedValue ? String(makeHash(focusedValue)) : undefined,
+    "aria-autocomplete": (autoComplete ? "both" : "list") as React.AriaAttributes["aria-autocomplete"],
     "aria-owns": menuId,
     "aria-expanded": isOpen && descendantsContext.descendants.length > 0,
     autoComplete: "off",
     autoCorrect: "off",
     ref: inputRef,
     id: inputId,
-    onChange: composeEventHandlers(onChangeProp, onChange),
-    onFocus: composeEventHandlers(onFocusProp, onFocus),
-    onKeyDown: composeEventHandlers(onKeyDownProp, onKeyDown),
+    onChange: callAllHandlers(onChangeProp, onChange),
+    onFocus: callAllHandlers(onFocusProp, onFocus),
+    onKeyDown: callAllHandlers(onKeyDownProp, onKeyDown),
     onClick,
     onBlur,
-    value: autoComplete
-      ? focusedValue || valueProp || inputValue
-      : valueProp || inputValue,
+    value: autoComplete ? focusedValue || valueProp || inputValue : valueProp || inputValue,
   };
 }
 
@@ -348,11 +324,7 @@ export function useComboboxOption({ context, value }: ComboboxOptionHookProps) {
   };
 }
 
-export function useComboboxButton({
-  context,
-}: {
-  context: ComboboxHookReturn;
-}) {
+export function useComboboxButton({ context }: { context: ComboboxHookReturn }) {
   return {
     tabindex: -1,
     type: "button",

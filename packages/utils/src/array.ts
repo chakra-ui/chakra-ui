@@ -11,9 +11,12 @@ export function removeIndex<T>(array: T[], index: number) {
   return array.filter((_, idx) => idx !== index);
 }
 
+export function addItem<T>(array: T[], item: T) {
+  return [...array, item];
+}
+
 export function removeItem<T>(array: T[], item: T) {
-  const itemIndex = array.indexOf(item);
-  return removeIndex(array, itemIndex);
+  return array.filter(eachItem => eachItem !== item);
 }
 
 export function getNextIndex(
@@ -41,9 +44,9 @@ export function getPrevIndex(index: number, itemCount: number, loop = true) {
   return getNextIndex(index, itemCount, -1, loop);
 }
 
-export function arrayToMatrix<T>(items: T[], columnCount: number): T[][] {
+export function groupItems<T>(items: T[], noOfGroups: number): T[][] {
   return items.reduce((rows: T[][], currentValue: T, index: number) => {
-    if (index % columnCount === 0) {
+    if (index % noOfGroups === 0) {
       rows.push([currentValue]);
     } else {
       rows[rows.length - 1].push(currentValue);

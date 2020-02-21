@@ -1,20 +1,7 @@
 import { isArray, isObject } from "./assertion";
 import { Dict } from "./types";
 
-const spacesAndTabs = /[ \t]{2,}/g;
-const lineStartWithSpaces = /^[ \t]*/gm;
-
-export function dedent(value: string) {
-  return value
-    .replace(spacesAndTabs, " ")
-    .replace(lineStartWithSpaces, "")
-    .trim();
-}
-
-export function parseResponsiveProp(
-  value: any[] | Dict | string | number,
-  fn: (val: any) => any,
-) {
+export function parseResponsiveProp(value: any[] | Dict | string | number, fn: (val: any) => any) {
   if (isArray(value)) {
     return value.map(fn);
   }

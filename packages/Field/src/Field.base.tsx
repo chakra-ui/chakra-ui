@@ -1,11 +1,6 @@
 import { useBoolean, useId, useIsomorphicEffect } from "@chakra-ui/hooks";
 import { PropsOf } from "@chakra-ui/system";
-import {
-  composeEventHandlers as compose,
-  createContext,
-  makeDataAttr as attr,
-  omit,
-} from "@chakra-ui/utils";
+import { callAllHandlers as compose, createContext, makeDataAttr as attr, omit } from "@chakra-ui/utils";
 import * as React from "react";
 
 export interface ControlProps {
@@ -63,21 +58,12 @@ interface FieldProviderProps extends ControlProps {
 
 type FieldContext = ReturnType<typeof useFieldProvider>;
 
-const [FieldContextProvider, useFieldContext] = createContext<FieldContext>(
-  false,
-);
+const [FieldContextProvider, useFieldContext] = createContext<FieldContext>(false);
 
 export { useFieldContext };
 
 function useFieldProvider(props: FieldProps) {
-  const {
-    id: idProp,
-    isRequired,
-    isInvalid,
-    isDisabled,
-    isLoading,
-    isReadOnly,
-  } = props;
+  const { id: idProp, isRequired, isInvalid, isDisabled, isLoading, isReadOnly } = props;
 
   // Generate all the required ids
   const uuid = useId();
@@ -120,58 +106,43 @@ function useFieldProvider(props: FieldProps) {
 
 export type FieldProps = FieldProviderProps & PropsOf<"div">;
 
-export const BaseField = React.forwardRef(
-  (props: FieldProps, ref: React.Ref<HTMLDivElement>) => {
-    const {
-      id,
-      isRequired,
-      isInvalid,
-      isDisabled,
-      label,
-      errorText,
-      helperText,
-      ...htmlProps
-    } = props;
-    const fieldContext = useFieldProvider(props);
-    return (
-      <FieldContextProvider value={fieldContext}>
-        <div role="group" ref={ref} {...htmlProps} />
-      </FieldContextProvider>
-    );
-  },
-);
+export const BaseField = React.forwardRef((props: FieldProps, ref: React.Ref<HTMLDivElement>) => {
+  const { id, isRequired, isInvalid, isDisabled, label, errorText, helperText, ...htmlProps } = props;
+  const fieldContext = useFieldProvider(props);
+  return (
+    <FieldContextProvider value={fieldContext}>
+      <div role="group" ref={ref} {...htmlProps} />
+    </FieldContextProvider>
+  );
+});
 
 //////////////////////////////////////////////////////////////////////////////
 
-export const BaseLabel = React.forwardRef<HTMLLabelElement, PropsOf<"label">>(
-  (props, ref) => {
-    const field = useFieldContext();
+export const BaseLabel = React.forwardRef<HTMLLabelElement, PropsOf<"label">>((props, ref) => {
+  const field = useFieldContext();
 
-    return (
-      <label
-        {...props}
-        ref={ref}
-        data-focus={attr(field.isFocused)}
-        data-disabled={attr(field.isDisabled)}
-        data-invalid={attr(field.isInvalid)}
-        data-loading={attr(field.isLoading)}
-        data-readonly={attr(field.isReadOnly)}
-        id={props.id || field.labelId}
-        htmlFor={props.htmlFor || field.id}
-      />
-    );
-  },
-);
+  return (
+    <label
+      {...props}
+      ref={ref}
+      data-focus={attr(field.isFocused)}
+      data-disabled={attr(field.isDisabled)}
+      data-invalid={attr(field.isInvalid)}
+      data-loading={attr(field.isLoading)}
+      data-readonly={attr(field.isReadOnly)}
+      id={props.id || field.labelId}
+      htmlFor={props.htmlFor || field.id}
+    />
+  );
+});
 
 //////////////////////////////////////////////////////////////////////////////
 
-export const BaseRequiredIndicator = React.forwardRef<HTMLSpanElement, {}>(
-  (props, ref) => {
-    const field = useFieldContext();
-    if (!field.isRequired) return null;
-    return <span aria-hidden role="presentation" ref={ref} {...props} />;
-  },
-);
+export const BaseRequiredIndicator = React.forwardRef<HTMLSpanElement, {}>((props, ref) => {
+  const field = useFieldContext();
+  if (!field.isRequired) return null;
+  return <span aria-hidden role="presentation" ref={ref} {...props} />;
+});
 
 //////////////////////////////////////////////////////////////////////////////
 
@@ -197,9 +168,7 @@ export function BaseHelpText(props: PropsOf<"div">) {
 export function BaseErrorText(props: PropsOf<"div">) {
   const context = useFieldContext();
   if (!context.isInvalid) return null;
-  return (
-    <div {...props} aria-live="polite" id={props.id || context.feedbackId} />
-  );
+  return <div {...props} aria-live="polite" id={props.id || context.feedbackId} />;
 }
 
 //////////////////////////////////////////////////////////////////////////////

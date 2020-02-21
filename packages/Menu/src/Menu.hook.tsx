@@ -1,21 +1,8 @@
 import { useDescendant, useDescendants } from "@chakra-ui/descendant";
-import {
-  useDisclosure,
-  useId,
-  useIds,
-  useMergeRefs,
-  useRapidKeydown,
-  useUpdateEffect,
-} from "@chakra-ui/hooks";
+import { useDisclosure, useId, useIds, useMergeRefs, useRapidKeydown, useUpdateEffect } from "@chakra-ui/hooks";
 import { usePopper } from "@chakra-ui/popper";
 import { useTabbable } from "@chakra-ui/tabbable";
-import {
-  composeEventHandlers,
-  createOnKeyDown,
-  getNextIndex,
-  getNextItemFromSearch,
-  getPrevIndex,
-} from "@chakra-ui/utils";
+import { callAllHandlers, createOnKeyDown, getNextIndex, getNextItemFromSearch, getPrevIndex } from "@chakra-ui/utils";
 import * as React from "react";
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -71,10 +58,7 @@ export function useMenu({ context }: { context?: MenuHookReturn }) {
   }, [isOpen]);
 
   // generate unique ids for menu and disclosure
-  const [disclosureId, menuId] = useIds(
-    `chakra-menu-disclosure`,
-    `chakra-menu-list`,
-  );
+  const [disclosureId, menuId] = useIds(`chakra-menu-disclosure`, `chakra-menu-list`);
 
   return {
     descendantsContext,
@@ -203,8 +187,8 @@ export function useMenuList(props: MenuListHookProps) {
     "aria-orientation": "vertical" as React.AriaAttributes["aria-orientation"],
     "data-placement": menu.placement,
     style: { ...htmlProps.style, ...menu.popper.style },
-    onMouseEnter: composeEventHandlers(onMouseEnter, props.onMouseEnter),
-    onKeyDown: composeEventHandlers(onKeyDown, props.onKeyDown),
+    onMouseEnter: callAllHandlers(onMouseEnter, props.onMouseEnter),
+    onKeyDown: callAllHandlers(onKeyDown, props.onKeyDown),
   };
 }
 
@@ -316,10 +300,10 @@ export function useMenuDisclosure(props: MenuDisclosureHookProps) {
     "aria-expanded": menu.isOpen,
     "aria-haspopup": "menu" as React.AriaAttributes["aria-haspopup"],
     "aria-controls": menu.menuId,
-    onClick: composeEventHandlers(onClick, props.onClick),
-    onMouseEnter: composeEventHandlers(onMouseOver, props.onMouseOver),
-    onMouseOut: composeEventHandlers(onMouseOut, props.onMouseOut),
-    onKeyDown: composeEventHandlers(onKeyDown, props.onKeyDown),
+    onClick: callAllHandlers(onClick, props.onClick),
+    onMouseEnter: callAllHandlers(onMouseOver, props.onMouseOver),
+    onMouseOut: callAllHandlers(onMouseOut, props.onMouseOut),
+    onKeyDown: callAllHandlers(onKeyDown, props.onKeyDown),
   };
 }
 

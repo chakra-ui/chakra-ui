@@ -1,82 +1,70 @@
-import { PropsOf } from "@chakra-ui/system";
-import { Omit } from "@chakra-ui/utils";
-import { createContext } from "@chakra-ui/utils/src";
-import * as React from "react";
+import { PropsOf } from "@chakra-ui/system"
+import { Omit } from "@chakra-ui/utils"
+import { createContext } from "@chakra-ui/utils/src"
+import * as React from "react"
 import {
   AccordionHookProps,
   AccordionItemHookProps,
   useAccordion,
   useAccordionItem,
-  useAccordionItemButton,
-  useAccordionItemPanel,
-} from "./Accordion.hook";
+  AccordionHookReturn,
+  AccordionItemHookReturn,
+} from "./Accordion.hook"
 
-type AccordionContext = Omit<ReturnType<typeof useAccordion>, "children">;
-const [AccordionProvider, useAccordionContext] = createContext<
+type AccordionContext = Omit<AccordionHookReturn, "children" | "htmlProps">
+const [AccordionCtxProvider, useAccordionCtx] = createContext<
   AccordionContext
->();
+>()
 
-export function BaseAccordion({
-  children,
-  defaultIndex,
-  ...props
-}: AccordionHookProps & PropsOf<"div">) {
-  const { children: enhancedChildren, ...context } = useAccordion({
-    children,
-    defaultIndex,
-  });
+export type BaseAccordionProps = AccordionHookProps &
+  Omit<PropsOf<"div">, "onChange">
+
+export function BaseAccordion(props: BaseAccordionProps) {
+  const { children, htmlProps, ...context } = useAccordion(props)
   return (
-    <AccordionProvider value={context}>
-      <div data-chakra-accordion="" {...props} children={enhancedChildren} />
-    </AccordionProvider>
-  );
+    <AccordionCtxProvider value={context}>
+      <div data-chakra-accordion="" {...htmlProps}>
+        {children}
+      </div>
+    </AccordionCtxProvider>
+  )
 }
+
+type AccordionItemContext = Omit<AccordionItemHookReturn, "htmlProps">
 
 const [AccordionItemProvider, useAccordionItemContext] = createContext<
-  ReturnType<typeof useAccordionItem>
->();
+  AccordionItemContext
+>()
 
 export function useAccordionItemState() {
-  const { isOpen, isDisabled, onClose } = useAccordionItemContext();
-  return { isOpen, isDisabled, onClose };
+  const { isOpen, onClose, onOpen } = useAccordionItemContext()
+  return { isOpen, onClose, onOpen }
 }
 
-export function BaseAccordionItem(
-  props: PropsOf<"div"> & AccordionItemHookProps,
-) {
-  const {
-    isFocusable,
-    isDisabled,
-    onChange,
-    isOpen,
-    defaultIsOpen,
-    ...htmlProps
-  } = props;
+export type BaseAccordionItemProps = PropsOf<"div"> &
+  Omit<AccordionItemHookProps, "context">
 
-  const context = useAccordionContext();
-
-  const itemContext = useAccordionItem({
-    context,
-    isFocusable,
-    isDisabled,
-    onChange,
-  });
-
+export function BaseAccordionItem(props: BaseAccordionItemProps) {
+  const accordionContext = useAccordionCtx()
+  const { htmlProps, ...context } = useAccordionItem({
+    ...props,
+    context: accordionContext,
+  })
   return (
-    <AccordionItemProvider value={itemContext}>
+    <AccordionItemProvider value={context}>
       <div data-chakra-accordion-item="" {...htmlProps} />
     </AccordionItemProvider>
-  );
+  )
 }
 
-export function BaseAccordionButton(props: PropsOf<"button">) {
-  const context = useAccordionItemContext();
-  const buttonProps = useAccordionItemButton({ context });
-  return <button data-chakra-accordion-button="" {...props} {...buttonProps} />;
+export type BaseAccordionButtonProps = PropsOf<"button">
+export function BaseAccordionButton(props: BaseAccordionButtonProps) {
+  const { getButtonProps } = useAccordionItemContext()
+  return <button data-chakra-accordion-button="" {...getButtonProps(props)} />
 }
 
-export function BaseAccordionPanel(props: PropsOf<"div">) {
-  const context = useAccordionItemContext();
-  const panelProps = useAccordionItemPanel({ context });
-  return <div data-chakra-accordion-panel="" {...props} {...panelProps} />;
+export type BaseAccordionPanelProps = PropsOf<"div">
+export function BaseAccordionPanel(props: BaseAccordionPanelProps) {
+  const { getPanelProps } = useAccordionItemContext()
+  return <div data-chakra-accordion-panel="" {...getPanelProps(props)} />
 }

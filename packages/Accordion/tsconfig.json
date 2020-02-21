@@ -6,6 +6,9 @@
     "**/*.spec.tsx",
     "**/*.test.ts",
     "**/*.test.tsx",
-    "**/*/*.stories.tsx"
+    "**/*/*.stories.tsx",
+    "./docs",
+    "./stories",
+    "./__tests__"
   ]
 }

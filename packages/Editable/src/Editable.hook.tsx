@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useControllableProp } from "@chakra-ui/hooks";
-import { composeEventHandlers, createContext } from "@chakra-ui/utils";
+import { callAllHandlers, createContext } from "@chakra-ui/utils";
 
 export interface EditableProviderProps {
   value?: string;
@@ -32,9 +32,7 @@ export function useEditableProvider(props: EditableProviderProps) {
     placeholder,
   } = props;
 
-  const [isEditing, setIsEditing] = React.useState(
-    Boolean(startWithEditView && !isDisabled),
-  );
+  const [isEditing, setIsEditing] = React.useState(Boolean(startWithEditView && !isDisabled));
   const [valueState, setValue] = React.useState<string>(defaultValue || "");
   const [isControlled, value] = useControllableProp(valueProp, valueState);
   const [previousValue, setPreviousValue] = React.useState(value);
@@ -133,15 +131,7 @@ export interface EditablePreviewProps {
 export function useEditablePreview(props: EditablePreviewProps) {
   const { context, onFocus } = props;
 
-  const {
-    isEditing,
-    isDisabled,
-    value,
-    onEdit,
-    isPreviewFocusable,
-    placeholder,
-    isValueEmpty,
-  } = context;
+  const { isEditing, isDisabled, value, onEdit, isPreviewFocusable, placeholder, isValueEmpty } = context;
 
   const getTabIndex = () => {
     if ((!isEditing || !isDisabled) && isPreviewFocusable) {
@@ -155,7 +145,7 @@ export function useEditablePreview(props: EditablePreviewProps) {
     hidden: isEditing,
     "aria-disabled": isDisabled,
     tabIndex: getTabIndex(),
-    onFocus: composeEventHandlers(onFocus, onEdit),
+    onFocus: callAllHandlers(onFocus, onEdit),
   };
 }
 
@@ -169,23 +159,8 @@ export interface EditableInputProps {
 }
 
 export function useEditableInput(props: EditableInputProps) {
-  const {
-    context,
-    onChange: onChangeProp,
-    onBlur,
-    onKeyDown: onKeyDownProp,
-  } = props;
-  const {
-    inputRef,
-    isEditing,
-    onChange,
-    onKeyDown,
-    value,
-    onSubmit,
-    placeholder,
-    submitOnBlur,
-    isDisabled,
-  } = context;
+  const { context, onChange: onChangeProp, onBlur, onKeyDown: onKeyDownProp } = props;
+  const { inputRef, isEditing, onChange, onKeyDown, value, onSubmit, placeholder, submitOnBlur, isDisabled } = context;
 
   const handleBlur = React.useCallback(() => {
     if (submitOnBlur) {
@@ -199,9 +174,9 @@ export function useEditableInput(props: EditableInputProps) {
     ref: inputRef,
     disabled: isDisabled,
     "aria-disabled": isDisabled,
-    onBlur: composeEventHandlers(onBlur, handleBlur),
+    onBlur: callAllHandlers(onBlur, handleBlur),
     value,
-    onChange: composeEventHandlers(onChangeProp, onChange),
-    onKeyDown: composeEventHandlers(onKeyDownProp, onKeyDown),
+    onChange: callAllHandlers(onChangeProp, onChange),
+    onKeyDown: callAllHandlers(onKeyDownProp, onKeyDown),
   };
 }

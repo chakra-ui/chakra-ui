@@ -18,7 +18,6 @@ exports[`Button renders correctly 1`] = `
       </button>
       <div
         aria-labelledby="accordion-header-1"
-        context="[object Object]"
         data-chakra-accordion-panel=""
         hidden=""
         id="accordion-panel-1"

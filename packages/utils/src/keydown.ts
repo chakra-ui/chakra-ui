@@ -2,7 +2,7 @@
 // https://github.com/reakit/reakit/blob/master/packages/reakit-utils/src/createOnKeyDown.ts
 
 import * as React from "react";
-import { resolveCallback } from "./function";
+import { runIfFn } from "./function";
 import { normalizeEventKey } from "./dom";
 
 type EventKeys =
@@ -51,9 +51,9 @@ export function createOnKeyDown({
   return (event: React.KeyboardEvent) => {
     if (!keyMap) return;
 
-    const finalKeyMap = resolveCallback(keyMap, event);
-    const shouldPreventDefault = resolveCallback(preventDefault, event);
-    const shouldStopPropagation = resolveCallback(stopPropagation, event);
+    const finalKeyMap = runIfFn(keyMap, event);
+    const shouldPreventDefault = runIfFn(preventDefault, event);
+    const shouldStopPropagation = runIfFn(stopPropagation, event);
 
     const eventKey = normalizeEventKey(event);
 

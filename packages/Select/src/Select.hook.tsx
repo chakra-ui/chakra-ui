@@ -1,5 +1,5 @@
 // import {
-//   composeEventHandlers,
+//   callAllHandlers,
 //   createOnKeyDown,
 //   createContext,
 // } from "@chakra-ui/utils";
@@ -89,8 +89,8 @@
 //     "aria-selected": isHighlighted ? true : undefined,
 //     "data-selected": isSelected ? "" : undefined,
 //     "data-highlighted": isHighlighted ? "" : undefined,
-//     onClick: composeEventHandlers(props.onClick, onClick),
-//     onPointerEnter: composeEventHandlers(props.onPointerEnter, onPointerEnter),
+//     onClick: callAllHandlers(props.onClick, onClick),
+//     onPointerEnter: callAllHandlers(props.onPointerEnter, onPointerEnter),
 //   };
 // }
 
@@ -135,8 +135,8 @@
 //     "aria-expanded": isOpen,
 //     "aria-haspopup": "listbox",
 //     "aria-controls": listBoxId,
-//     onClick: composeEventHandlers(props.onClick, onClick),
-//     onKeyDown: composeEventHandlers(props.onKeyDown, onKeyDown),
+//     onClick: callAllHandlers(props.onClick, onClick),
+//     onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
 //   };
 // }
 
@@ -203,8 +203,8 @@
 //     role: "listbox",
 //     hidden: !isOpen,
 //     tabIndex: -1,
-//     onKeyDown: composeEventHandlers(props.onKeyDown, onKeyDown),
-//     onBlur: composeEventHandlers(props.onBlur, onBlur),
+//     onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
+//     onBlur: callAllHandlers(props.onBlur, onBlur),
 //     "aria-activedescendant": highlightedItem ? highlightedItem.id : undefined,
 //   };
 // }

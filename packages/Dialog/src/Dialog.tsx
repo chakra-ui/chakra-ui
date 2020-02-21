@@ -1,11 +1,6 @@
 import * as React from "react";
-import { createContext, composeEventHandlers } from "@chakra-ui/utils";
-import {
-  useIds,
-  useLockBodyScroll,
-  useAriaHidden,
-  useMergeRefs,
-} from "@chakra-ui/hooks";
+import { createContext, callAllHandlers } from "@chakra-ui/utils";
+import { useIds, useLockBodyScroll, useAriaHidden, useMergeRefs } from "@chakra-ui/hooks";
 import { useOutsideClick, useStackContext } from "./Dialog.utils";
 import FocusLock from "./Dialog.focus-lock";
 import { createChakra, SystemProps } from "@chakra-ui/system";
@@ -31,11 +26,7 @@ function useDialogProvider(props: DialogProviderProps) {
   const dialogRef = React.useRef<HTMLElement>(null);
   const overlayRef = React.useRef<HTMLElement>(null);
 
-  const [dialogId, headerId, bodyId] = useIds(
-    `chakra-dialog`,
-    `chakra-dialog--header`,
-    `chakra-dialog--body`,
-  );
+  const [dialogId, headerId, bodyId] = useIds(`chakra-dialog`, `chakra-dialog--header`, `chakra-dialog--body`);
 
   useLockBodyScroll(dialogRef, isOpen);
 
@@ -103,7 +94,7 @@ function useDialogContent(props: any) {
   return {
     ...props,
     id: dialogId,
-    onKeyDown: composeEventHandlers(props.onKeyDown, onKeyDown),
+    onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
     ref,
     role: "dialog",
     tabIndex: 0,

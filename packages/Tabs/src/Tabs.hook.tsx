@@ -1,15 +1,6 @@
-import {
-  composeEventHandlers,
-  createOnKeyDown,
-  createHookContext,
-} from "@chakra-ui/utils";
+import { callAllHandlers, createOnKeyDown, createHookContext } from "@chakra-ui/utils";
 import * as React from "react";
-import {
-  useControllableProp,
-  useMergeRefs,
-  useId,
-  useIsomorphicEffect,
-} from "@chakra-ui/hooks";
+import { useControllableProp, useMergeRefs, useId, useIsomorphicEffect } from "@chakra-ui/hooks";
 import { useTabbable, TabbableProps } from "@chakra-ui/tabbable";
 
 /**
@@ -56,25 +47,12 @@ export interface TabsHookProps {
 }
 
 export function useTabs(props: TabsHookProps) {
-  const {
-    defaultIndex,
-    onChange: onChangeProp,
-    index: selectedIndexProp,
-    isManual,
-    orientation,
-  } = props;
+  const { defaultIndex, onChange: onChangeProp, index: selectedIndexProp, isManual, orientation } = props;
 
-  const [selectedIndexState, setSelectedIndex] = React.useState<number>(
-    defaultIndex || 0,
-  );
-  const [focusedIndex, setFocusedIndex] = React.useState<number>(
-    defaultIndex || 0,
-  );
+  const [selectedIndexState, setSelectedIndex] = React.useState<number>(defaultIndex || 0);
+  const [focusedIndex, setFocusedIndex] = React.useState<number>(defaultIndex || 0);
 
-  const [isControlled, selectedIndex] = useControllableProp(
-    selectedIndexProp,
-    selectedIndexState,
-  );
+  const [isControlled, selectedIndex] = useControllableProp(selectedIndexProp, selectedIndexState);
 
   // Reference to all elements with `role=tab`
   const tabNodesRef = React.useRef<HTMLElement[]>([]);
@@ -99,10 +77,7 @@ export function useTabs(props: TabsHookProps) {
     [isControlled, onChangeProp],
   );
 
-  const onFocus = React.useCallback(
-    (index: number) => setFocusedIndex(index),
-    [],
-  );
+  const onFocus = React.useCallback((index: number) => setFocusedIndex(index), []);
 
   return {
     id,
@@ -168,14 +143,10 @@ export function useTabList(props: TabListHookProps) {
   // Get all the focusable tab indexes
   // A tab is focusable if it's not disabled or is disabled and has focusable prop
   // ARIA: It's a good idea to allow users focus on disabled tabs so you tell them why it's disabled
-  const focusableIndexes = React.Children.map(
-    props.children,
-    (child: any, index) => {
-      const isTrulyDisabled =
-        child.props.isDisabled && !child.props.isFocusable;
-      return isTrulyDisabled ? null : index;
-    },
-  ).filter(child => child !== null) as number[];
+  const focusableIndexes = React.Children.map(props.children, (child: any, index) => {
+    const isTrulyDisabled = child.props.isDisabled && !child.props.isFocusable;
+    return isTrulyDisabled ? null : index;
+  }).filter(child => child !== null) as number[];
   const enabledSelectedIndex = focusableIndexes.indexOf(tabs.focusedIndex);
   const count = focusableIndexes.length;
 
@@ -232,8 +203,7 @@ export function useTabList(props: TabListHookProps) {
     };
 
     const onFocus = () => {
-      const isDisabledButFocusable =
-        child.props.isDisabled && child.props.isFocusable;
+      const isDisabledButFocusable = child.props.isDisabled && child.props.isFocusable;
       if (!tabs.isManual && !isDisabledButFocusable) {
         tabs.onChange(index);
       }
@@ -244,8 +214,8 @@ export function useTabList(props: TabListHookProps) {
       panelId: `${tabs.id}--tabpanel-${index}`,
       ref: (node: HTMLElement) => (tabs.tabNodesRef.current[index] = node),
       isSelected,
-      onClick: composeEventHandlers(child.props.onClick, onClick),
-      onFocus: composeEventHandlers(child.props.onFocus, onFocus),
+      onClick: callAllHandlers(child.props.onClick, onClick),
+      onFocus: callAllHandlers(child.props.onFocus, onFocus),
     });
   });
 
@@ -256,7 +226,7 @@ export function useTabList(props: TabListHookProps) {
     ref,
     role: "tablist",
     "aria-orientation": tabs.orientation,
-    onKeyDown: composeEventHandlers(props.onKeyDown, onKeyDown),
+    onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
     children,
   };
 }
@@ -308,13 +278,10 @@ export function useTabIndicator(): React.CSSProperties {
     const selectedTabNode = tabs.tabNodesRef.current[tabs.selectedIndex];
 
     // Get the rect of the selected tab
-    const selectedTabRect =
-      selectedTabNode && selectedTabNode.getBoundingClientRect();
+    const selectedTabRect = selectedTabNode && selectedTabNode.getBoundingClientRect();
 
     // Get the rect of the tablist
-    const tabListRect =
-      tabs.tablistRef.current &&
-      tabs.tablistRef.current.getBoundingClientRect();
+    const tabListRect = tabs.tablistRef.current && tabs.tablistRef.current.getBoundingClientRect();
 
     // Horizontal Tab: Calculate width and left distance
     if (isHorizontal && tabListRect && selectedTabRect) {
@@ -329,14 +296,7 @@ export function useTabIndicator(): React.CSSProperties {
       const height = selectedTabRect.height;
       setRect({ top, height });
     }
-  }, [
-    tabs.selectedIndex,
-    tabs.tabNodesRef,
-    tabs.tablistRef,
-    tabs.orientation,
-    isHorizontal,
-    isVertical,
-  ]);
+  }, [tabs.selectedIndex, tabs.tabNodesRef, tabs.tablistRef, tabs.orientation, isHorizontal, isVertical]);
 
   return {
     position: "absolute",

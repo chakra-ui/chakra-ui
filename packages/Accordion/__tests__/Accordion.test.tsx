@@ -21,7 +21,7 @@ test("Button renders correctly", () => {
 });
 
 test("It opens the accordion panel", () => {
-  const { getByTestId, debug } = render(
+  const { getByTestId } = render(
     <BaseAccordion defaultIndex={0}>
       <BaseAccordionItem>
         <BaseAccordionButton data-testid="button">
@@ -33,5 +33,5 @@ test("It opens the accordion panel", () => {
   );
 
   const button = getByTestId("button");
-  expect(button).toHaveAttribute("aria-expanded", "false");
+  expect(button).toHaveAttribute("aria-expanded", "true");
 });

@@ -1,6 +1,6 @@
 import { useControllableProp, useId, useDimensions } from "@chakra-ui/hooks";
 import {
-  composeEventHandlers as compose,
+  callAllHandlers as compose,
   constrainValue,
   createContext,
   createOnKeyDown,
@@ -112,10 +112,7 @@ export function useSlider(props: SliderHookProps) {
     return isReversed ? max : min;
   });
 
-  const [isControlled, derivedValue] = useControllableProp(
-    valueProp,
-    valueState,
-  );
+  const [isControlled, derivedValue] = useControllableProp(valueProp, valueState);
 
   // Constrain the value because it can't be less than min
   // or greater than max
@@ -155,9 +152,7 @@ export function useSlider(props: SliderHookProps) {
       if (trackRef.current) {
         const trackRect = getBox(trackRef.current).borderBox;
         const { clientX, clientY } = event;
-        const diff = isVertical
-          ? trackRect.bottom - clientY
-          : clientX - trackRect.left;
+        const diff = isVertical ? trackRect.bottom - clientY : clientX - trackRect.left;
 
         const length = isVertical ? trackRect.height : trackRect.width;
         let percent = diff / length;
@@ -318,9 +313,7 @@ export function useSlider(props: SliderHookProps) {
 
   const innerTrackStyle: React.CSSProperties = {
     ...trackStyle,
-    ...(isVertical
-      ? { height: `${trackPercent}%`, bottom: 0 }
-      : { width: `${trackPercent}%`, left: 0 }),
+    ...(isVertical ? { height: `${trackPercent}%`, bottom: 0 } : { width: `${trackPercent}%`, left: 0 }),
   };
 
   const labelStyle: React.CSSProperties = {
@@ -329,23 +322,10 @@ export function useSlider(props: SliderHookProps) {
   };
 
   // Support for Native slider methods
-  const stepUp = React.useCallback(() => constrain(value + keyStep), [
-    constrain,
-    keyStep,
-    value,
-  ]);
-  const stepDown = React.useCallback(() => constrain(value - keyStep), [
-    constrain,
-    keyStep,
-    value,
-  ]);
-  const reset = React.useCallback(() => constrain(defaultValue || 0), [
-    constrain,
-    defaultValue,
-  ]);
-  const stepTo = React.useCallback((value: number) => constrain(value), [
-    constrain,
-  ]);
+  const stepUp = React.useCallback(() => constrain(value + keyStep), [constrain, keyStep, value]);
+  const stepDown = React.useCallback(() => constrain(value - keyStep), [constrain, keyStep, value]);
+  const reset = React.useCallback(() => constrain(defaultValue || 0), [constrain, defaultValue]);
+  const stepTo = React.useCallback((value: number) => constrain(value), [constrain]);
 
   return {
     id,
@@ -395,13 +375,7 @@ export type SliderRootHookProps = {
 };
 
 export function useSliderRoot(props: SliderRootHookProps) {
-  const {
-    onPointerDown,
-    onPointerUp,
-    onPointerMove,
-    isDisabled,
-    rootStyle,
-  } = useSliderContext();
+  const { onPointerDown, onPointerUp, onPointerMove, isDisabled, rootStyle } = useSliderContext();
   return {
     ...props,
     tabIndex: -1,
@@ -491,9 +465,7 @@ export function useSliderMarker(props: SliderMarkerHookProps) {
 
   const markerStyle: React.CSSProperties = {
     position: "absolute",
-    ...(isVertical
-      ? { bottom: `${markerPercent}%` }
-      : { left: `${markerPercent}%` }),
+    ...(isVertical ? { bottom: `${markerPercent}%` } : { left: `${markerPercent}%` }),
   };
 
   return {

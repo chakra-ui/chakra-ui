@@ -1,11 +1,5 @@
 import { useControllableProp, useMergeRefs } from "@chakra-ui/hooks";
-import {
-  composeEventHandlers,
-  createContext,
-  makeDataAttr,
-  visuallyHiddenStyle,
-  Omit,
-} from "@chakra-ui/utils";
+import { callAllHandlers, createContext, makeDataAttr, visuallyHiddenStyle, Omit } from "@chakra-ui/utils";
 import * as React from "react";
 
 export interface RadioProps {
@@ -52,14 +46,9 @@ export function useRadio(props: RadioProps) {
 
   const ref = React.useRef<HTMLInputElement>(null);
 
-  const [checkedState, setCheckedState] = React.useState(
-    Boolean(defaultIsChecked),
-  );
+  const [checkedState, setCheckedState] = React.useState(Boolean(defaultIsChecked));
 
-  const [isControlled, isChecked] = useControllableProp(
-    checkedProp,
-    checkedState,
-  );
+  const [isControlled, isChecked] = useControllableProp(checkedProp, checkedState);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (isReadOnly || isDisabled) {
@@ -124,10 +113,10 @@ export function useRadio(props: RadioProps) {
       value,
       id,
       onChange: handleChange,
-      onBlur: composeEventHandlers(onBlur, handleBlur),
-      onFocus: composeEventHandlers(onFocus, handleFocus),
-      onKeyDown: composeEventHandlers(onKeyDown, handleKeyDown),
-      onKeyUp: composeEventHandlers(onKeyUp, handleKeyUp),
+      onBlur: callAllHandlers(onBlur, handleBlur),
+      onFocus: callAllHandlers(onFocus, handleFocus),
+      onKeyDown: callAllHandlers(onKeyDown, handleKeyDown),
+      onKeyUp: callAllHandlers(onKeyUp, handleKeyUp),
       required: isRequired,
       checked: isChecked,
       disabled: trulyDisabled,
@@ -142,41 +131,34 @@ export function useRadio(props: RadioProps) {
 
 export type UseRadioReturn = ReturnType<typeof useRadio>;
 
-const [RadioCtxProvider, useRadioContext] = createContext<
-  Omit<UseRadioReturn, "remaining">
->();
+const [RadioCtxProvider, useRadioContext] = createContext<Omit<UseRadioReturn, "remaining">>();
 
 export const useRadioState = () => useRadioContext()["state"];
 
 ////////////////////////////////////////////////////////////////////////////////
 
-type LabelProps = RadioProps &
-  Omit<React.HTMLAttributes<HTMLLabelElement>, "onChange">;
+type LabelProps = RadioProps & Omit<React.HTMLAttributes<HTMLLabelElement>, "onChange">;
 
-export const RadioProvider = React.forwardRef(
-  (props: LabelProps, ref: React.Ref<HTMLLabelElement>) => {
-    const { remaining, ...context } = useRadio(props);
-    return (
-      <RadioCtxProvider value={context}>
-        <label ref={ref} {...remaining}>
-          {props.children}
-        </label>
-      </RadioCtxProvider>
-    );
-  },
-);
+export const RadioProvider = React.forwardRef((props: LabelProps, ref: React.Ref<HTMLLabelElement>) => {
+  const { remaining, ...context } = useRadio(props);
+  return (
+    <RadioCtxProvider value={context}>
+      <label ref={ref} {...remaining}>
+        {props.children}
+      </label>
+    </RadioCtxProvider>
+  );
+});
 
 ////////////////////////////////////////////////////////////////////////////////
 
 type InputProps = React.HTMLAttributes<HTMLInputElement>;
 
-export const RadioInput = React.forwardRef(
-  (props: InputProps, forwardedRef: React.Ref<HTMLInputElement>) => {
-    const { input } = useRadioContext();
-    const ref = useMergeRefs(input.ref, forwardedRef);
-    return <input {...props} {...input} ref={ref} />;
-  },
-);
+export const RadioInput = React.forwardRef((props: InputProps, forwardedRef: React.Ref<HTMLInputElement>) => {
+  const { input } = useRadioContext();
+  const ref = useMergeRefs(input.ref, forwardedRef);
+  return <input {...props} {...input} ref={ref} />;
+});
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -191,24 +173,10 @@ interface CustomRadioProps {
 
 export const CustomRadio = React.forwardRef(
   (
-    {
-      onPointerDown,
-      onPointerUp,
-      onPointerEnter,
-      onPointerLeave,
-      style,
-      ...props
-    }: CustomRadioProps,
+    { onPointerDown, onPointerUp, onPointerEnter, onPointerLeave, style, ...props }: CustomRadioProps,
     ref: React.Ref<any>,
   ) => {
     const { checkbox } = useRadioContext();
-    return (
-      <div
-        {...props}
-        {...checkbox}
-        ref={ref}
-        style={{ ...style, touchAction: "none" }}
-      />
-    );
+    return <div {...props} {...checkbox} ref={ref} style={{ ...style, touchAction: "none" }} />;
   },
 );
