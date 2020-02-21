@@ -13,4 +13,5 @@ export * from "./LockIcon"
 export * from "./UnlockIcon"
 export * from "./ViewIcon"
 export * from "./ViewOffIcon"
+export * from "./DownloadIcon"
 
