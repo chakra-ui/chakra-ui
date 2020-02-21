@@ -1,5 +1,5 @@
-import { chakra, PropsOf } from "@chakra-ui/system";
-import * as React from "react";
+import { chakra, PropsOf } from "@chakra-ui/system"
+import * as React from "react"
 
 const fallbackIcon = {
   path: (
@@ -13,9 +13,9 @@ const fallbackIcon = {
     </g>
   ),
   viewBox: "0 0 24 24",
-};
+}
 
-export type IconProps = Omit<PropsOf<typeof chakra.svg>, "path">;
+export type IconProps = Omit<PropsOf<typeof chakra.svg>, "path">
 
 export const Icon = React.forwardRef(
   (props: IconProps, ref: React.Ref<SVGSVGElement>) => {
@@ -28,7 +28,7 @@ export const Icon = React.forwardRef(
       focusable = false,
       children,
       ...rest
-    } = props;
+    } = props
 
     const sharedProps = {
       ref,
@@ -39,15 +39,15 @@ export const Icon = React.forwardRef(
       focusable,
       role,
       flexShrink: 0,
-    };
+    }
 
     // If you're using an icon-library like `react-icons`
     if (as && typeof as !== "string") {
-      return <chakra.svg data-custom-icon as={as} {...sharedProps} {...rest} />;
+      return <chakra.svg data-custom-icon as={as} {...sharedProps} {...rest} />
     }
 
-    const iconPath = children ?? fallbackIcon.path;
-    const iconViewbox = viewBox ?? fallbackIcon.viewBox;
+    const iconPath = children ?? fallbackIcon.path
+    const iconViewbox = viewBox ?? fallbackIcon.viewBox
 
     return (
       <chakra.svg
@@ -58,8 +58,8 @@ export const Icon = React.forwardRef(
       >
         {iconPath}
       </chakra.svg>
-    );
+    )
   },
-);
+)
 
-export default Icon;
+export default Icon

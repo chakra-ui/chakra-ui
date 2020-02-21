@@ -1,10 +1,10 @@
-import sizes from "../foundations/sizes";
+import sizes from "../foundations/sizes"
 
 const compute = (size: keyof typeof sizes) => ({
   size,
   fontSize: `calc(${sizes[size] || size} / 2.5)`,
   lineHeight: sizes[size] || size,
-});
+})
 
 export default {
   baseStyle: {
@@ -25,4 +25,4 @@ export default {
     "2xl": compute("32"),
     full: { size: "full", fontSize: `calc(100% / 2.5)` },
   },
-};
+}

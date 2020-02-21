@@ -9,11 +9,11 @@
  * @see https://gist.github.com/gaearon/e7d97cdf38a2907924ea12e4ebdf3c85
  */
 
-import * as React from "react";
-import { canUseDOM } from "@chakra-ui/utils";
+import * as React from "react"
+import { canUseDOM } from "@chakra-ui/utils"
 
 export const useIsomorphicEffect = canUseDOM
   ? React.useLayoutEffect
-  : React.useEffect;
+  : React.useEffect
 
-export default useIsomorphicEffect;
+export default useIsomorphicEffect

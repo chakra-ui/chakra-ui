@@ -1,4 +1,4 @@
-import { ComponentTheme, getModeColor } from "./utils";
+import { ComponentTheme, getModeColor } from "./utils"
 
 const variantSize = {
   __default: "md",
@@ -32,7 +32,7 @@ const variantSize = {
       _checked: { transform: `translateX(1.375rem)` },
     },
   },
-};
+}
 
 const Switch: ComponentTheme = {
   baseStyle: props => ({
@@ -58,6 +58,6 @@ const Switch: ComponentTheme = {
     },
   }),
   variantSize,
-};
+}
 
-export default Switch;
+export default Switch

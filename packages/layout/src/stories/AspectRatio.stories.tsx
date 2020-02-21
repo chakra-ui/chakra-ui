@@ -1,10 +1,10 @@
-import { chakra } from "@chakra-ui/system";
-import React from "react";
-import AspectRatioBox from "../AspectRatioBox";
+import { chakra } from "@chakra-ui/system"
+import React from "react"
+import AspectRatioBox from "../AspectRatioBox"
 
 export default {
   title: "AspectRatioBox",
-};
+}
 
 export const WithVideo = () => (
   <AspectRatioBox maxW="300px" ratio={1}>
@@ -14,7 +14,7 @@ export const WithVideo = () => (
       allowFullScreen
     />
   </AspectRatioBox>
-);
+)
 
 export const WithImage = () => (
   <AspectRatioBox maxW="400px" ratio={4 / 3}>
@@ -23,7 +23,7 @@ export const WithImage = () => (
       alt="minions"
     />
   </AspectRatioBox>
-);
+)
 
 export const WithMap = () => (
   <AspectRatioBox maxW="600px" ratio={16 / 9}>
@@ -32,4 +32,4 @@ export const WithMap = () => (
       title="demo"
     />
   </AspectRatioBox>
-);
+)

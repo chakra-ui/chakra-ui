@@ -1,6 +1,6 @@
-import * as SS from "styled-system";
-import { CustomProps } from "./custom/custom.interface";
-import { PseudoProps } from "./pseudo";
+import * as SS from "styled-system"
+import { CustomProps } from "./custom/custom.interface"
+import { PseudoProps } from "./pseudo"
 
 type FontWeight =
   | "hairline"
@@ -11,12 +11,10 @@ type FontWeight =
   | "semibold"
   | "bold"
   | "extrabold"
-  | "black";
+  | "black"
 
 export interface FontWeightProp {
-  fontWeight?:
-    | SS.ResponsiveValue<FontWeight>
-    | SS.FontWeightProps["fontWeight"];
+  fontWeight?: SS.ResponsiveValue<FontWeight> | SS.FontWeightProps["fontWeight"]
 }
 
 export type SystemProps = SS.ColorProps &
@@ -33,4 +31,4 @@ export type SystemProps = SS.ColorProps &
   SS.OverflowProps &
   SS.ZIndexProps &
   PseudoProps &
-  CustomProps;
+  CustomProps

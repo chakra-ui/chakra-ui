@@ -1,7 +1,7 @@
-import React from "react";
-import Transition, { TransitionProps } from "react-transition-group/Transition";
-import { TransitionContext } from "./Transition.context";
-import { Omit } from "@chakra-ui/utils";
+import React from "react"
+import Transition, { TransitionProps } from "react-transition-group/Transition"
+import { TransitionContext } from "./Transition.context"
+import { Omit } from "@chakra-ui/utils"
 
 function getTransitionStyles(initialScale: number) {
   return {
@@ -17,15 +17,13 @@ function getTransitionStyles(initialScale: number) {
       opacity: 0,
       transform: `scale(${initialScale})`,
     },
-  };
+  }
 }
 
 interface ScaleProps extends Omit<TransitionProps, "timeout"> {
-  initialScale?: number;
-  timeout?: number;
-  children:
-    | React.ReactNode
-    | ((styles: React.CSSProperties) => React.ReactNode);
+  initialScale?: number
+  timeout?: number
+  children: React.ReactNode | ((styles: React.CSSProperties) => React.ReactNode)
 }
 
 export const ScaleFade = ({
@@ -35,19 +33,19 @@ export const ScaleFade = ({
   children,
   ...props
 }: ScaleProps) => {
-  const transitionStyles = getTransitionStyles(initialScale);
+  const transitionStyles = getTransitionStyles(initialScale)
 
-  type TransitionState = keyof typeof transitionStyles;
+  type TransitionState = keyof typeof transitionStyles
 
   const rootStyle = {
     transition: `all ${200}ms cubic-bezier(0.45, 0, 0.40, 1)`,
-  };
+  }
 
   const computeStyle = (state: TransitionState) => ({
     ...rootStyle,
     ...transitionStyles.init,
     ...transitionStyles[state],
-  });
+  })
 
   return (
     <Transition
@@ -65,7 +63,7 @@ export const ScaleFade = ({
         </TransitionContext.Provider>
       )}
     </Transition>
-  );
-};
+  )
+}
 
-export default ScaleFade;
+export default ScaleFade

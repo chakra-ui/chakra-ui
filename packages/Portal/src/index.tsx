@@ -1,2 +1,2 @@
-export * from "./PortalManager";
-export * from "./Portal";
+export * from "./PortalManager"
+export * from "./Portal"

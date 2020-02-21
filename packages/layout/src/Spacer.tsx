@@ -1,4 +1,4 @@
-import { createChakra } from "@chakra-ui/system";
+import { createChakra } from "@chakra-ui/system"
 
 export const Spacer = createChakra("div", {
   baseStyle: {
@@ -6,6 +6,6 @@ export const Spacer = createChakra("div", {
     justifySelf: "stretch",
     alignSelf: "stretch",
   },
-});
+})
 
-export default Spacer;
+export default Spacer

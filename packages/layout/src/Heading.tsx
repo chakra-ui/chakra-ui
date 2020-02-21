@@ -1,5 +1,5 @@
-import { createChakra } from "@chakra-ui/system";
+import { createChakra } from "@chakra-ui/system"
 
-const Heading = createChakra("h2", { themeKey: "Heading" });
+const Heading = createChakra("h2", { themeKey: "Heading" })
 
-export default Heading;
+export default Heading

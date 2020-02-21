@@ -3,30 +3,30 @@ import {
   CreateChakraComponent,
   forwardRef,
   PropsOf,
-} from "@chakra-ui/system";
-import { keyframes } from "@emotion/core";
-import * as React from "react";
-import { VisuallyHidden } from "@chakra-ui/layout";
+} from "@chakra-ui/system"
+import { keyframes } from "@emotion/core"
+import * as React from "react"
+import { VisuallyHidden } from "@chakra-ui/layout"
 
 const spin = keyframes`
   0% {  transform: rotate(0deg) }
   100% { transform: rotate(360deg) }
-`;
+`
 
-const BaseSpinner = createChakra("div", { themeKey: "Spinner" });
+const BaseSpinner = createChakra("div", { themeKey: "Spinner" })
 BaseSpinner.defaultProps = {
   variantSize: "md",
-};
+}
 
 export interface SpinnerOptions {
   /**
    * The color of the empty area in the spinner
    */
-  emptyColor?: string;
+  emptyColor?: string
   /**
    * The color of the spinner
    */
-  color?: string;
+  color?: string
   /**
    * The thickness of the spinner
    * @example
@@ -34,7 +34,7 @@ export interface SpinnerOptions {
    * <Spinner thickness="4px"/>
    * ```
    */
-  thickness?: string;
+  thickness?: string
   /**
    * The speed of the spinner.
    * @example
@@ -42,15 +42,15 @@ export interface SpinnerOptions {
    * <Spinner speed="0.2s"/>
    * ```
    */
-  speed?: string;
+  speed?: string
   /**
    * For accessibility, it's important to add a fallback loading text.
    * This text will be visible to screen readers.
    */
-  label?: string;
+  label?: string
 }
 
-export type SpinnerProps = PropsOf<typeof BaseSpinner> & SpinnerOptions;
+export type SpinnerProps = PropsOf<typeof BaseSpinner> & SpinnerOptions
 
 export const Spinner = forwardRef(
   (
@@ -80,8 +80,8 @@ export const Spinner = forwardRef(
       {label && <VisuallyHidden>{label}</VisuallyHidden>}
     </BaseSpinner>
   ),
-) as CreateChakraComponent<"div", SpinnerOptions>;
+) as CreateChakraComponent<"div", SpinnerOptions>
 
-Spinner.displayName = "Spinner";
+Spinner.displayName = "Spinner"
 
-export default Spinner;
+export default Spinner

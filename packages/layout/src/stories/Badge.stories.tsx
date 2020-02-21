@@ -1,11 +1,11 @@
-import React from "react";
-import Badge from "../Badge";
+import React from "react"
+import Badge from "../Badge"
 
 export default {
   title: "Badge",
-};
+}
 
-export const Basic = () => <Badge variantColor="green">Success</Badge>;
+export const Basic = () => <Badge variantColor="green">Success</Badge>
 
 export const SolidBadge = () => {
   return (
@@ -16,8 +16,8 @@ export const SolidBadge = () => {
         </Badge>
       ))}
     </React.Fragment>
-  );
-};
+  )
+}
 
 export const SubtleBadges = () => (
   <React.Fragment>
@@ -27,7 +27,7 @@ export const SubtleBadges = () => (
       </Badge>
     ))}
   </React.Fragment>
-);
+)
 
 export const OutlineBadges = () => (
   <React.Fragment>
@@ -37,4 +37,4 @@ export const OutlineBadges = () => (
       </Badge>
     ))}
   </React.Fragment>
-);
+)

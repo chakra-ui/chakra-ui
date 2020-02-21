@@ -1,8 +1,8 @@
-import { Box, BoxProps } from "@chakra-ui/layout";
-import { SystemProps } from "@chakra-ui/system";
-import { cleanChildren } from "@chakra-ui/utils";
-import * as React from "react";
-import { ButtonProps } from "./Button";
+import { Box, BoxProps } from "@chakra-ui/layout"
+import { SystemProps } from "@chakra-ui/system"
+import { cleanChildren } from "@chakra-ui/utils"
+import * as React from "react"
+import { ButtonProps } from "./Button"
 
 export interface ButtonGroupOptions
   extends Pick<ButtonProps, "variantSize" | "variant" | "variantColor"> {
@@ -10,11 +10,11 @@ export interface ButtonGroupOptions
    * If `true`, the borderRadius of button that are direct children will be altered
    * to look flushed together
    */
-  isAttached?: boolean;
-  spacing?: SystemProps["marginRight"];
+  isAttached?: boolean
+  spacing?: SystemProps["marginRight"]
 }
 
-export type ButtonGroupProps = BoxProps & ButtonGroupOptions;
+export type ButtonGroupProps = BoxProps & ButtonGroupOptions
 
 export const ButtonGroup = ({
   variantSize,
@@ -25,11 +25,11 @@ export const ButtonGroup = ({
   children,
   ...rest
 }: ButtonGroupProps) => {
-  const validChildren = cleanChildren(children);
+  const validChildren = cleanChildren(children)
 
   const clones = validChildren.map((child, index) => {
-    const isFirst = index === 0;
-    const isLast = index === validChildren.length - 1;
+    const isFirst = index === 0
+    const isLast = index === validChildren.length - 1
 
     return React.cloneElement(child as React.ReactElement<ButtonProps>, {
       variantSize,
@@ -41,10 +41,10 @@ export const ButtonGroup = ({
       ...(isLast && isAttached && { leftRadius: 0 }),
       ...(!isLast && isAttached && { borderRight: 0 }),
       ...(!isFirst && !isLast && isAttached && { borderRadius: 0 }),
-    });
-  });
+    })
+  })
 
-  return <Box display="inline-block" {...rest} children={clones} />;
-};
+  return <Box display="inline-block" {...rest} children={clones} />
+}
 
-export default ButtonGroup;
+export default ButtonGroup

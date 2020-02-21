@@ -19,7 +19,7 @@ export const typography = {
     "56px",
   ],
   lineHeights: ["16px", "20px", "24px", "28px", "32px", "40px", "56px", "64px"],
-};
+}
 
 const numericSpacing = {
   proportional: {
@@ -30,8 +30,8 @@ const numericSpacing = {
     fontFeatureSettings: "tnum",
     fontVariant: "tabular-nums",
   },
-};
+}
 
-export type Typography = typeof typography;
+export type Typography = typeof typography
 
-export default typography;
+export default typography

@@ -1,16 +1,16 @@
-import { PropsOf } from "@chakra-ui/system";
-import React from "react";
-import VisuallyHidden from "../VisuallyHidden";
+import { PropsOf } from "@chakra-ui/system"
+import React from "react"
+import VisuallyHidden from "../VisuallyHidden"
 
 export default {
   title: "Visually Hidden",
-};
+}
 
 export const Basic = () => (
   <VisuallyHidden>This is visually hidden</VisuallyHidden>
-);
+)
 
-type InputProps = PropsOf<"input">;
+type InputProps = PropsOf<"input">
 
 // Even though, it's not visible, press `Tab`
 // and use the spacebar to toggle the checked state
@@ -19,10 +19,10 @@ export const WithGeneric = () => (
     as="input"
     type="checkbox"
     ref={node => {
-      console.log(node);
+      console.log(node)
     }}
     onChange={event => {
-      console.log(event.target.checked);
+      console.log(event.target.checked)
     }}
   />
-);
+)

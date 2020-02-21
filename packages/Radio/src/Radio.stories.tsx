@@ -1,15 +1,15 @@
-import { createChakra } from "@chakra-ui/system";
-import React from "react";
-import { Radio } from "./Radio";
-import { CustomRadio, RadioInput, RadioProvider } from "./Radio.hook";
-import useRadioGroup from "./RadioGroup.hook";
+import { createChakra } from "@chakra-ui/system"
+import React from "react"
+import { Radio } from "./Radio"
+import { CustomRadio, RadioInput, RadioProvider } from "./Radio.hook"
+import useRadioGroup from "./RadioGroup.hook"
 
 export default {
   title: "Radio",
-};
+}
 
 function RadioGroupExample(props: any) {
-  const radio = useRadioGroup(props);
+  const radio = useRadioGroup(props)
   return (
     <div>
       {["Option 1", "Option 2", "Option 3"].map(opt => (
@@ -25,7 +25,7 @@ function RadioGroupExample(props: any) {
         </label>
       ))}
     </div>
-  );
+  )
 }
 
 export const ControlledExample = () => (
@@ -33,17 +33,17 @@ export const ControlledExample = () => (
     defaultValue={"opt1"}
     onChange={(val: any) => console.log(val)}
   />
-);
+)
 
-const options = ["react", "vue", "svelte"];
+const options = ["react", "vue", "svelte"]
 
 export const UIRadio = () => {
   const radio = useRadioGroup({
     name: "test",
     defaultValue: "vue",
     onChange: console.log,
-  });
-  const isChecked = (val: string) => radio.value === val;
+  })
+  const isChecked = (val: string) => radio.value === val
   return (
     <div {...radio.bind}>
       {options.map(opt => (
@@ -56,18 +56,18 @@ export const UIRadio = () => {
         />
       ))}
     </div>
-  );
-};
+  )
+}
 
-const RadioBox = createChakra(CustomRadio);
+const RadioBox = createChakra(CustomRadio)
 
 export function CompositionRadio() {
   const radio = useRadioGroup({
     name: "test",
     defaultValue: "vue",
     onChange: console.log,
-  });
-  const isChecked = (val: string) => radio.value === val;
+  })
+  const isChecked = (val: string) => radio.value === val
   return (
     <>
       {options.map(opt => (
@@ -86,5 +86,5 @@ export function CompositionRadio() {
         </RadioProvider>
       ))}
     </>
-  );
+  )
 }

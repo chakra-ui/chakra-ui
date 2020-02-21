@@ -1,25 +1,25 @@
-import { chakra, createChakra } from "@chakra-ui/system";
-import React from "react";
+import { chakra, createChakra } from "@chakra-ui/system"
+import React from "react"
 import {
   Checkbox,
   CheckboxInput,
   CheckboxProvider,
   CustomCheckbox,
   useCheckboxState,
-} from ".";
-import useCheckboxGroup from "./CheckboxGroup.hook";
+} from "."
+import useCheckboxGroup from "./CheckboxGroup.hook"
 
 export default {
   title: "Checkbox",
-};
+}
 
-export const Default = () => <Checkbox variantSize="lg" />;
+export const Default = () => <Checkbox variantSize="lg" />
 
 export function IndeterminateExample() {
-  const [checkedItems, setCheckedItems] = React.useState([false, false]);
+  const [checkedItems, setCheckedItems] = React.useState([false, false])
 
-  const allChecked = checkedItems.every(Boolean);
-  const isIndeterminate = checkedItems.some(Boolean) && !allChecked;
+  const allChecked = checkedItems.every(Boolean)
+  const isIndeterminate = checkedItems.some(Boolean) && !allChecked
 
   return (
     <>
@@ -42,15 +42,15 @@ export function IndeterminateExample() {
         />
       </chakra.div>
     </>
-  );
+  )
 }
 
-const CheckBox = createChakra(CustomCheckbox);
+const CheckBox = createChakra(CustomCheckbox)
 
 const CheckIcon = () => {
-  const { isChecked } = useCheckboxState();
-  return <>{isChecked ? "✔️" : null}</>;
-};
+  const { isChecked } = useCheckboxState()
+  return <>{isChecked ? "✔️" : null}</>
+}
 
 export const CustomComposition = () => (
   <CheckboxProvider>
@@ -65,10 +65,10 @@ export const CustomComposition = () => (
       <CheckIcon />
     </CheckBox>
   </CheckboxProvider>
-);
+)
 
 export const CheckboxGroup = () => {
-  const checkboxGroup = useCheckboxGroup({});
+  const checkboxGroup = useCheckboxGroup({})
   return (
     <div>
       <code>{JSON.stringify(checkboxGroup.value)}</code>
@@ -84,5 +84,5 @@ export const CheckboxGroup = () => {
         </Checkbox>
       ))}
     </div>
-  );
-};
+  )
+}

@@ -1,13 +1,13 @@
-import { Portal } from "@chakra-ui/portal";
-import * as React from "react";
-import { usePopover } from ".";
+import { Portal } from "@chakra-ui/portal"
+import * as React from "react"
+import { usePopover } from "."
 
 export default {
   title: "Popover",
-};
+}
 
 export function PopoverExample() {
-  const { trigger, popover, onClose } = usePopover();
+  const { trigger, popover, onClose } = usePopover()
 
   return (
     <>
@@ -28,5 +28,5 @@ export function PopoverExample() {
         Other div
       </div>
     </>
-  );
+  )
 }

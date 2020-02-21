@@ -1,7 +1,7 @@
-import { StyleFunctionProps, getModeColor as get } from "./utils";
+import { StyleFunctionProps, getModeColor as get } from "./utils"
 
 function getBaseStyle(props: StyleFunctionProps) {
-  const { variantColor: c } = props;
+  const { variantColor: c } = props
   return {
     display: "inline-flex",
     alignItems: "center",
@@ -43,16 +43,16 @@ function getBaseStyle(props: StyleFunctionProps) {
     _invalid: {
       borderColor: get(props, "red.500", "red.300"),
     },
-  };
+  }
 }
 
 const variantSize = {
   lg: { size: 5 },
   md: { size: 4 },
   sm: { size: "auto" },
-};
+}
 
 export default {
   baseStyle: getBaseStyle,
   variantSize,
-};
+}

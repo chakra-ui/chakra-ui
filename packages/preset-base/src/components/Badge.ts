@@ -1,40 +1,40 @@
-import { addOpacity, generateAlphaColors, getColor } from "@chakra-ui/color";
+import { addOpacity, generateAlphaColors, getColor } from "@chakra-ui/color"
 import {
   StyleFunctionProps,
   getModeColor as get,
   ComponentTheme,
-} from "./utils";
+} from "./utils"
 
 function getSolidStyle(props: StyleFunctionProps) {
-  const { variantColor: c } = props;
-  const darkBg = addOpacity(`${c}.500`, 0.6);
+  const { variantColor: c } = props
+  const darkBg = addOpacity(`${c}.500`, 0.6)
   return {
     bg: get(props, `${c}.500`, darkBg),
     color: get(props, `white`, `whiteAlpha.800`),
-  };
+  }
 }
 
 function getSubtleStyle(props: StyleFunctionProps) {
-  const { variantColor: c } = props;
-  const alphaColors = generateAlphaColors(`${c}.200`);
-  const darkModeBg = alphaColors[300];
+  const { variantColor: c } = props
+  const alphaColors = generateAlphaColors(`${c}.200`)
+  const darkModeBg = alphaColors[300]
 
   return {
     bg: get(props, `${c}.200`, darkModeBg),
     color: get(props, `${c}.800`, `${c}.200`),
-  };
+  }
 }
 
 function getOutlineStyle(props: StyleFunctionProps) {
-  const { variantColor: c, theme: t } = props;
-  const darkModeColor = addOpacity(`${c}.200`, 0.8)(t);
-  const lightModeColor = getColor(t, `${c}.500`);
-  const color = get(props, lightModeColor, darkModeColor);
+  const { variantColor: c, theme: t } = props
+  const darkModeColor = addOpacity(`${c}.200`, 0.8)(t)
+  const lightModeColor = getColor(t, `${c}.500`)
+  const color = get(props, lightModeColor, darkModeColor)
 
   return {
     color,
     boxShadow: `inset 0 0 0px 1px ` + color,
-  };
+  }
 }
 
 const Badge: ComponentTheme = {
@@ -54,6 +54,6 @@ const Badge: ComponentTheme = {
     outline: getOutlineStyle,
     subtle: getSubtleStyle,
   },
-};
+}
 
-export default Badge;
+export default Badge

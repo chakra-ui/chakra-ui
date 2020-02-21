@@ -1,5 +1,5 @@
-import React from "react";
-import { Global, css } from "@emotion/core";
+import React from "react"
+import { Global, css } from "@emotion/core"
 
 const CSSReset = () => (
   <Global
@@ -184,6 +184,6 @@ const CSSReset = () => (
       }
     `}
   />
-);
+)
 
-export default CSSReset;
+export default CSSReset

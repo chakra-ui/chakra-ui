@@ -108,6 +108,6 @@ export const colors = {
     100: "#e6e6fc",
     50: "#f8f9fe",
   },
-};
+}
 
-export default colors;
+export default colors

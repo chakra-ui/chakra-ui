@@ -1,4 +1,4 @@
-import { classNameDark, classNameLight } from "./constants";
+import { classNameDark, classNameLight } from "./constants"
 
 const getBodyElement = () => {
   // for SSR
@@ -7,13 +7,13 @@ const getBodyElement = () => {
       add: (token: string) => {},
       remove: (token: string) => {},
     },
-  };
+  }
 
-  return window.document?.body ?? mockBody;
-};
+  return window.document?.body ?? mockBody
+}
 
 export function syncBodyClassName(isDark: boolean) {
-  const body = getBodyElement();
-  body.classList.add(isDark ? classNameDark : classNameLight);
-  body.classList.remove(isDark ? classNameLight : classNameDark);
+  const body = getBodyElement()
+  body.classList.add(isDark ? classNameDark : classNameLight)
+  body.classList.remove(isDark ? classNameLight : classNameDark)
 }

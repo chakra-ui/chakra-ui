@@ -17,4 +17,4 @@ export default {
       textDecoration: "none",
     },
   },
-};
+}

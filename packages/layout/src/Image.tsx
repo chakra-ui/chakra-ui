@@ -1,4 +1,4 @@
-import { createChakra } from "@chakra-ui/system";
+import { createChakra } from "@chakra-ui/system"
 
-const Image = createChakra("img");
-export default Image;
+const Image = createChakra("img")
+export default Image

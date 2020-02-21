@@ -1,4 +1,4 @@
-import Badge from "./Badge";
+import Badge from "./Badge"
 
 export default {
   baseStyle: {
@@ -9,4 +9,4 @@ export default {
     radius: "sm",
   },
   variant: Badge.variant,
-};
+}

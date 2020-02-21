@@ -1,2 +1,2 @@
-export * from "./Tooltip";
-export * from  "./Tooltip.hook";
+export * from "./Tooltip"
+export * from "./Tooltip.hook"

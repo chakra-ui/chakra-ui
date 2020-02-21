@@ -1,6 +1,6 @@
 /**@jsx jsx */
-import { isFunction, isUndefined, valueToPercent } from "@chakra-ui/utils";
-import { keyframes } from "@emotion/core";
+import { isFunction, isUndefined, valueToPercent } from "@chakra-ui/utils"
+import { keyframes } from "@emotion/core"
 
 export const spin = keyframes`
   0% {
@@ -17,7 +17,7 @@ export const spin = keyframes`
     stroke-dasharray: 400, 400;
     stroke-dashoffset: -260;
   }
-`;
+`
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -28,37 +28,37 @@ export const rotate = keyframes`
   100% {
     transform: rotate(360deg);
   }
-`;
+`
 
 ////////////////////////////////////////////////////////////////////////
 
 export const progress = keyframes`
   0% { left: -40% }
   100% { left: 100% }
-`;
+`
 
 ////////////////////////////////////////////////////////////////////////
 
 export const stripe = keyframes`
   from { background-position: 1rem 0}
   to { background-position: 0 0 }
-`;
+`
 
 ////////////////////////////////////////////////////////////////////////
 
 export interface ProgressPropsOptions {
-  value?: number;
-  min: number;
-  max: number;
-  valueText?: string;
-  getValueText?: (value?: number, percent?: number) => string;
+  value?: number
+  min: number
+  max: number
+  valueText?: string
+  getValueText?: (value?: number, percent?: number) => string
 }
 
 export function getProgressProps(options: ProgressPropsOptions) {
   const percent = options.value
     ? valueToPercent(options.value, options.min, options.max)
-    : undefined;
-  const isIndeterminate = isUndefined(options.value);
+    : undefined
+  const isIndeterminate = isUndefined(options.value)
 
   return {
     bind: {
@@ -72,7 +72,7 @@ export function getProgressProps(options: ProgressPropsOptions) {
       role: "progressbar",
     },
     percent,
-  };
+  }
 }
 
-export default getProgressProps;
+export default getProgressProps

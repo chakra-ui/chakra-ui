@@ -1,2 +1,2 @@
 // export * from "./Toast";
-export * from  "./Toast.hook";
+export * from "./Toast.hook"

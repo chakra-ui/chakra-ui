@@ -1,7 +1,7 @@
-import { chakra } from "@chakra-ui/system";
-import { action } from "@storybook/addon-actions";
-import React from "react";
-import { useNumberInput } from ".";
+import { chakra } from "@chakra-ui/system"
+import { action } from "@storybook/addon-actions"
+import React from "react"
+import { useNumberInput } from "."
 import {
   BaseDecrementStepper,
   BaseIncrementStepper,
@@ -13,7 +13,7 @@ import {
   NumberInput,
   NumberInputField,
   NumberInputStepper,
-} from "./NumberInput";
+} from "./NumberInput"
 
 export default {
   title: "NumberInput",
@@ -24,7 +24,7 @@ export default {
       </chakra.div>
     ),
   ],
-};
+}
 
 export function NumberInputHook() {
   const { input, upSpinner, downSpinner, valueAsNumber } = useNumberInput({
@@ -34,7 +34,7 @@ export function NumberInputHook() {
     max: 6,
     precision: 4,
     onChange: action("onChange"),
-  });
+  })
   return (
     <div>
       <div>current: {valueAsNumber}</div>
@@ -46,7 +46,7 @@ export function NumberInputHook() {
         -
       </button>
     </div>
-  );
+  )
 }
 
 const styles: Record<string, React.CSSProperties> = {
@@ -73,7 +73,7 @@ const styles: Record<string, React.CSSProperties> = {
     width: 20,
     height: 20,
   },
-};
+}
 
 export const Base = () => (
   <BaseNumberInput style={styles.root}>
@@ -83,7 +83,7 @@ export const Base = () => (
       <BaseDecrementStepper children="-" style={styles.button} />
     </BaseStepperGroup>
   </BaseNumberInput>
-);
+)
 
 export const WithChakra = () => (
   <NumberInput>
@@ -93,4 +93,4 @@ export const WithChakra = () => (
       <NumberDecrementStepper />
     </NumberInputStepper>
   </NumberInput>
-);
+)

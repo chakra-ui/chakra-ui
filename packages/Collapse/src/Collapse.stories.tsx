@@ -1,14 +1,14 @@
-import * as React from "react";
-import useCollapse from "./Collapse";
+import * as React from "react"
+import useCollapse from "./Collapse"
 
 export default {
   title: "Collapse",
-};
+}
 
 export function Basic() {
   const collapse = useCollapse({
     defaultIsOpen: true,
-  });
+  })
   return (
     <>
       <button {...collapse.toggle}>Toggle</button>
@@ -18,7 +18,7 @@ export function Basic() {
         labore wes anderson cred nesciunt sapiente ea proident.
       </div>
     </>
-  );
+  )
 }
 
 // stories.add("changing static height", () => {

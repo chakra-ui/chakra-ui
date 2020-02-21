@@ -1,27 +1,27 @@
-import React from "react";
-import getMediaQuery from "./get-media-query";
-import { ColorModeType } from "./constants";
+import React from "react"
+import getMediaQuery from "./get-media-query"
+import { ColorModeType } from "./constants"
 
-const isBrowser = typeof window !== "undefined";
+const isBrowser = typeof window !== "undefined"
 
-const useIsomorphicEffect = isBrowser ? React.useLayoutEffect : React.useEffect;
+const useIsomorphicEffect = isBrowser ? React.useLayoutEffect : React.useEffect
 
 // Sync color mode when user changes OS preferences
 function useOSPreference(callback: (mode: ColorModeType) => void) {
   useIsomorphicEffect(() => {
-    if (!isBrowser) return;
-    const { queryList } = getMediaQuery();
+    if (!isBrowser) return
+    const { queryList } = getMediaQuery()
     const onChangePreference = (event: MediaQueryListEvent) => {
-      callback(event.matches ? "dark" : "light");
-    };
+      callback(event.matches ? "dark" : "light")
+    }
 
     try {
       // Chrome and Firefox
-      queryList.addEventListener("change", onChangePreference);
+      queryList.addEventListener("change", onChangePreference)
     } catch (err) {
       try {
         // Safari
-        queryList.addListener(onChangePreference);
+        queryList.addListener(onChangePreference)
       } catch (err) {
         // no op
       }
@@ -30,17 +30,17 @@ function useOSPreference(callback: (mode: ColorModeType) => void) {
     return () => {
       try {
         // Chrome and Firefox
-        queryList.removeEventListener("change", onChangePreference);
+        queryList.removeEventListener("change", onChangePreference)
       } catch (err) {
         try {
           // Safari
-          queryList.removeListener(onChangePreference);
+          queryList.removeListener(onChangePreference)
         } catch (err) {
           // no op
         }
       }
-    };
-  }, [callback]);
+    }
+  }, [callback])
 }
 
-export default useOSPreference;
+export default useOSPreference

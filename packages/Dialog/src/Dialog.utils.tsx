@@ -1,5 +1,5 @@
-import * as React from "react";
-import { usePortalsContext } from "@chakra-ui/portal";
+import * as React from "react"
+import { usePortalsContext } from "@chakra-ui/portal"
 
 export function useOutsideClick(
   ref: React.RefObject<HTMLElement>,
@@ -9,12 +9,12 @@ export function useOutsideClick(
 ) {
   React.useEffect(() => {
     const handler = (event: MouseEvent) => {
-      if (!ref.current) return;
+      if (!ref.current) return
 
-      const eventTarget = event.target as HTMLElement;
+      const eventTarget = event.target as HTMLElement
 
-      const isContained = ref.current.contains(eventTarget);
-      const lastDialog = dialogs[dialogs.length - 1];
+      const isContained = ref.current.contains(eventTarget)
+      const lastDialog = dialogs[dialogs.length - 1]
 
       if (!isContained && lastDialog.current === ref.current) {
         // Without this fix, the modal closes when you start dragging from
@@ -22,27 +22,27 @@ export function useOutsideClick(
         // Here, we're checking if the outside target is the overlay. It usually either
         // the overlay or a focus-lock node
         if (eventTarget === overlayRef.current) {
-          callback && callback(event);
+          callback && callback(event)
         }
       }
-    };
-    document.addEventListener("click", handler);
+    }
+    document.addEventListener("click", handler)
     return () => {
-      document.removeEventListener("click", handler);
-    };
-  }, [dialogs, callback, ref, overlayRef]);
+      document.removeEventListener("click", handler)
+    }
+  }, [dialogs, callback, ref, overlayRef])
 }
 
 export function useStackContext(ref: React.Ref<any>, isOpen?: boolean) {
-  const { modals } = usePortalsContext();
+  const { modals } = usePortalsContext()
 
   React.useEffect(() => {
-    if (!isOpen) return;
-    if (modals) modals.add(ref);
+    if (!isOpen) return
+    if (modals) modals.add(ref)
     return () => {
-      if (modals) modals.remove(ref);
-    };
-  }, [isOpen, ref, modals]);
+      if (modals) modals.remove(ref)
+    }
+  }, [isOpen, ref, modals])
 
-  return modals.value;
+  return modals.value
 }

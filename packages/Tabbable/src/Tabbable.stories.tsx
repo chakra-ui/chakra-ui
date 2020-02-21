@@ -1,23 +1,23 @@
-import { createChakra, PropsOf } from "@chakra-ui/system";
-import { SafeMerge } from "@chakra-ui/utils";
-import * as React from "react";
-import useTabbable, { TabbableProps } from "./Tabbable.hook";
+import { createChakra, PropsOf } from "@chakra-ui/system"
+import { SafeMerge } from "@chakra-ui/utils"
+import * as React from "react"
+import useTabbable, { TabbableProps } from "./Tabbable.hook"
 
 export default {
   title: "Tabbable",
-};
+}
 
 const BaseButton = React.forwardRef(
   (
     props: SafeMerge<TabbableProps, PropsOf<"button">>,
     ref: React.Ref<HTMLButtonElement>,
   ) => {
-    const tabbableProps = useTabbable({ ...props, ref });
-    return <button {...tabbableProps} />;
+    const tabbableProps = useTabbable({ ...props, ref })
+    return <button {...tabbableProps} />
   },
-);
+)
 
-const Button = createChakra(BaseButton);
+const Button = createChakra(BaseButton)
 
 export const Button_ = () => (
   <>
@@ -25,14 +25,14 @@ export const Button_ = () => (
       isDisabled
       isFocusable
       onClick={event => {
-        alert("clicked");
+        alert("clicked")
       }}
       onMouseOver={event => {
-        console.log(event);
-        console.log("over");
+        console.log(event)
+        console.log("over")
       }}
       onMouseEnter={() => {
-        console.log("enter");
+        console.log("enter")
       }}
       display="inline-flex"
       _active={{ bg: "blue", color: "white" }}
@@ -43,10 +43,10 @@ export const Button_ = () => (
 
     <button
       onClick={event => {
-        alert("clicked");
+        alert("clicked")
       }}
     >
       Native Button
     </button>
   </>
-);
+)

@@ -1,66 +1,65 @@
-import { ChangeEvent } from "react";
-import { Dict } from "./types";
+import { ChangeEvent } from "react"
+import { Dict } from "./types"
 
 // Number assertions
 export function isNumber(value: any): value is number {
-  return typeof value === "number";
+  return typeof value === "number"
 }
 
 export const isNotNumber = (value: any) =>
-  typeof value !== "number" || isNaN(value) || !isFinite(value);
+  typeof value !== "number" || isNaN(value) || !isFinite(value)
 
 export const isInteger = (value: any): value is number =>
-  String(Math.floor(Number(value))) === value;
+  String(Math.floor(Number(value))) === value
 
 // Array assertions
 export function isArray<T>(value: any): value is Array<T> {
-  return Array.isArray(value);
+  return Array.isArray(value)
 }
 
-export const isEmptyArray = (value: any) =>
-  isArray(value) && value.length === 0;
+export const isEmptyArray = (value: any) => isArray(value) && value.length === 0
 
 // Function assertions
 export function isFunction(value: any): value is Function {
-  return typeof value === "function";
+  return typeof value === "function"
 }
 
 // Generic assertions
 export const isDefined = (value: any) =>
-  typeof value !== "undefined" && value !== undefined;
+  typeof value !== "undefined" && value !== undefined
 
 export const isUndefined = (value: any): value is undefined =>
-  typeof value === "undefined" || value === undefined;
+  typeof value === "undefined" || value === undefined
 
 // Object assertions
 export const isObject = (value: any): value is Dict => {
-  const type = typeof value;
+  const type = typeof value
   return (
     value != null &&
     (type === "object" || type === "function") &&
     !isArray(value)
-  );
-};
+  )
+}
 
 export const isEmptyObject = (value: any) =>
-  isObject(value) && Object.keys(value).length === 0;
+  isObject(value) && Object.keys(value).length === 0
 
-export const isNull = (value: any): value is null => typeof value == null;
+export const isNull = (value: any): value is null => typeof value == null
 
 // String assertions
 export function isString(value: any): value is string {
-  return Object.prototype.toString.call(value) === "[object String]";
+  return Object.prototype.toString.call(value) === "[object String]"
 }
 
 // Event assertions
 export function isInputEvent(value: any): value is ChangeEvent {
-  return value && isObject(value) && isObject(value.target);
+  return value && isObject(value) && isObject(value.target)
 }
 
 // Empty assertions
 export const isEmpty = (value: any) => {
-  if (isArray(value)) return isEmptyArray(value);
-  if (isObject(value)) return isEmptyObject(value);
-  if (value == null || value === "") return true;
-  return false;
-};
+  if (isArray(value)) return isEmptyArray(value)
+  if (isObject(value)) return isEmptyObject(value)
+  if (value == null || value === "") return true
+  return false
+}

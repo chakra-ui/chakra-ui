@@ -1,56 +1,56 @@
-import * as React from "react";
+import * as React from "react"
 
 function copyToClipboard<T>(value: T) {
-  const el = document.createElement("textarea");
-  el.value = value as any;
-  el.setAttribute("readonly", "");
-  el.style.position = "absolute";
-  el.style.left = "-9999px";
-  document.body.appendChild(el);
+  const el = document.createElement("textarea")
+  el.value = value as any
+  el.setAttribute("readonly", "")
+  el.style.position = "absolute"
+  el.style.left = "-9999px"
+  document.body.appendChild(el)
 
-  let selected: any;
+  let selected: any
   if (
     document &&
     document.getSelection() &&
     (document.getSelection() as Selection).rangeCount > 0
   ) {
-    selected = (document.getSelection() as Selection).getRangeAt(0);
+    selected = (document.getSelection() as Selection).getRangeAt(0)
   } else {
-    selected = false;
+    selected = false
   }
 
-  el.select();
+  el.select()
 
-  document.execCommand("copy");
-  document.body.removeChild(el);
+  document.execCommand("copy")
+  document.body.removeChild(el)
   if (selected) {
-    (document.getSelection() as Selection).removeAllRanges();
-    (document.getSelection() as Selection).addRange(selected);
+    ;(document.getSelection() as Selection).removeAllRanges()
+    ;(document.getSelection() as Selection).addRange(selected)
   }
 }
 
 export function useClipboard<T>(value: T) {
-  const [hasCopied, setHasCopied] = React.useState(false);
+  const [hasCopied, setHasCopied] = React.useState(false)
 
   const onCopy = React.useCallback(() => {
-    copyToClipboard(value as any);
-    setHasCopied(true);
-  }, [value]);
+    copyToClipboard(value as any)
+    setHasCopied(true)
+  }, [value])
 
   React.useEffect(() => {
-    let timeoutId: any;
+    let timeoutId: any
     if (hasCopied) {
-      if (timeoutId) clearTimeout(timeoutId);
+      if (timeoutId) clearTimeout(timeoutId)
       timeoutId = setTimeout(() => {
-        setHasCopied(false);
-      }, 1500);
+        setHasCopied(false)
+      }, 1500)
     }
     return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [hasCopied]);
+      clearTimeout(timeoutId)
+    }
+  }, [hasCopied])
 
-  return { value, onCopy, hasCopied };
+  return { value, onCopy, hasCopied }
 }
 
-export default useClipboard;
+export default useClipboard

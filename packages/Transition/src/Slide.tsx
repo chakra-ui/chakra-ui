@@ -1,20 +1,20 @@
-import React from "react";
-import { Transition } from "react-transition-group";
-import { TransitionContext } from "./Transition.context";
-import { TransitionProps } from "react-transition-group/Transition";
+import React from "react"
+import { Transition } from "react-transition-group"
+import { TransitionContext } from "./Transition.context"
+import { TransitionProps } from "react-transition-group/Transition"
 
-type Placement = "left" | "right" | "bottom" | "top";
+type Placement = "left" | "right" | "bottom" | "top"
 
 interface CreateBaseStyleProps {
-  placement: Placement;
-  finalHeight?: string | number;
-  finalWidth?: string | number;
+  placement: Placement
+  finalHeight?: string | number
+  finalWidth?: string | number
 }
 
 function createBaseStyle(
   props: CreateBaseStyleProps,
 ): React.CSSProperties | undefined {
-  const { placement, finalHeight, finalWidth } = props;
+  const { placement, finalHeight, finalWidth } = props
   switch (placement) {
     case "bottom": {
       return {
@@ -23,7 +23,7 @@ function createBaseStyle(
         bottom: 0,
         left: 0,
         right: 0,
-      };
+      }
     }
     case "top": {
       return {
@@ -32,7 +32,7 @@ function createBaseStyle(
         top: 0,
         left: 0,
         right: 0,
-      };
+      }
     }
     case "left": {
       return {
@@ -41,7 +41,7 @@ function createBaseStyle(
         height: "100vh",
         left: 0,
         top: 0,
-      };
+      }
     }
     case "right": {
       return {
@@ -50,19 +50,19 @@ function createBaseStyle(
         right: 0,
         top: 0,
         height: "100vh",
-      };
+      }
     }
     default:
-      break;
+      break
   }
 }
 
 const mx = (placement: Placement, value: string) => {
-  let axis = "";
-  if (placement === "left" || placement === "right") axis = "X";
-  if (placement === "top" || placement === "bottom") axis = "Y";
-  return `translate${axis}(${value})`;
-};
+  let axis = ""
+  if (placement === "left" || placement === "right") axis = "X"
+  if (placement === "top" || placement === "bottom") axis = "Y"
+  return `translate${axis}(${value})`
+}
 
 function createTransitionStyles(placement: Placement) {
   const offset = {
@@ -70,7 +70,7 @@ function createTransitionStyles(placement: Placement) {
     top: "-100%",
     left: "-100%",
     right: "100%",
-  };
+  }
 
   return {
     init: {
@@ -82,15 +82,13 @@ function createTransitionStyles(placement: Placement) {
       opacity: 0,
       transform: mx(placement, offset[placement]),
     },
-  };
+  }
 }
 
 interface SlideProps extends Omit<TransitionProps, "timeout"> {
-  timeout?: number;
-  initialOffset?: string;
-  children:
-    | React.ReactNode
-    | ((styles: React.CSSProperties) => React.ReactNode);
+  timeout?: number
+  initialOffset?: string
+  children: React.ReactNode | ((styles: React.CSSProperties) => React.ReactNode)
 }
 
 export function Slide({
@@ -100,28 +98,28 @@ export function Slide({
   timeout = 250,
   ...props
 }: SlideProps) {
-  const transitionStyles = createTransitionStyles(placement);
+  const transitionStyles = createTransitionStyles(placement)
 
-  type TransitionState = keyof typeof transitionStyles;
+  type TransitionState = keyof typeof transitionStyles
 
   const baseStyle = createBaseStyle({
     placement,
     finalWidth: "400px",
     finalHeight: "400px",
-  });
+  })
 
   const rootStyle: React.CSSProperties = {
     position: "fixed",
     willChange: "transform",
     transition: `all ${timeout}ms cubic-bezier(0, 0, 0.2, 1)`,
-  };
+  }
 
   const computeStyle = (state: TransitionState) => ({
     ...rootStyle,
     ...baseStyle,
     ...transitionStyles.init,
     ...transitionStyles[state],
-  });
+  })
 
   return (
     <Transition
@@ -139,7 +137,7 @@ export function Slide({
         </TransitionContext.Provider>
       )}
     </Transition>
-  );
+  )
 }
 
-export default Slide;
+export default Slide

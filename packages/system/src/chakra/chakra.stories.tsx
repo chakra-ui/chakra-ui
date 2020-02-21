@@ -1,15 +1,13 @@
 /**@jsx jsx */
-import { jsx } from "../system";
-import chakra from "./chakra";
+import { jsx } from "../system"
+import chakra from "./chakra"
 
 export default {
   title: "Chakra",
-};
+}
 
 // Any html element + chakra = magic!
-export const Basic = () => (
-  <chakra.h1 color="red.400">Chakra heading</chakra.h1>
-);
+export const Basic = () => <chakra.h1 color="red.400">Chakra heading</chakra.h1>
 
 // You can add simple interactive styles
 export const Interactive1 = () => (
@@ -23,7 +21,7 @@ export const Interactive1 = () => (
   >
     Chakra anchor
   </chakra.a>
-);
+)
 
 // You can add interactive styles anyhow!
 export const Interactive2 = () => (
@@ -35,7 +33,7 @@ export const Interactive2 = () => (
   >
     Expanding Div
   </chakra.div>
-);
+)
 
 // You can pull styles from `theme.styles` and apply it to any element
 export const Apply = () => (
@@ -43,7 +41,7 @@ export const Apply = () => (
     This is a paragraph, but apply styles from{" "}
     <chakra.code fontFamily="mono">styles.h1</chakra.code>
   </chakra.p>
-);
+)
 
 // The `sx` prop requires that you use the jsx pragma at the top of the file
 export const SxProp = () => (
@@ -62,7 +60,7 @@ export const SxProp = () => (
   >
     This is a heading
   </h1>
-);
+)
 
 export const RtlStyling = () => (
   <article dir="rtl">
@@ -70,15 +68,15 @@ export const RtlStyling = () => (
       This is a heading
     </chakra.h1>
   </article>
-);
+)
 
 // You can create your own components from chakra as well.
-const Box = chakra.div;
+const Box = chakra.div
 
-const Flex = Box;
+const Flex = Box
 Flex.defaultProps = {
   display: "flex",
-};
+}
 
 export const MakingComponents = () => (
   <Flex>
@@ -94,4 +92,4 @@ export const MakingComponents = () => (
     </Box>
     <Box>Div 2</Box>
   </Flex>
-);
+)

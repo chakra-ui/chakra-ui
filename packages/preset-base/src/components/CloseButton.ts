@@ -1,4 +1,4 @@
-import { StyleFunctionProps, getModeColor } from "./utils";
+import { StyleFunctionProps, getModeColor } from "./utils"
 
 export default {
   baseStyle: (props: StyleFunctionProps) => ({
@@ -47,4 +47,4 @@ export default {
       },
     },
   },
-};
+}

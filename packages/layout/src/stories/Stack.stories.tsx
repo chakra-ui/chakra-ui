@@ -1,14 +1,14 @@
-import React from "react";
-import Box from "../Box";
-import Heading from "../Heading";
-import { Stack, StackDivider } from "../Stack";
-import Text from "../Text";
+import React from "react"
+import Box from "../Box"
+import Heading from "../Heading"
+import { Stack, StackDivider } from "../Stack"
+import Text from "../Text"
 
 ///////////////////////////////////////////////////////////////////////////////////
 
 export default {
   title: "Stack",
-};
+}
 
 export const Vertical = () => (
   <Stack spacing={4}>
@@ -16,7 +16,7 @@ export const Vertical = () => (
     <span>ahhhhh</span>
     <span>Woah!</span>
   </Stack>
-);
+)
 
 export const Inline = () => (
   <Stack w="100%" bg="blue.500" direction="row">
@@ -24,7 +24,7 @@ export const Inline = () => (
     <Box size="40px" bg={"#fff"} borderRadius="full" />
     <Box size="40px" bg={"#fff"} borderRadius="full" />
   </Stack>
-);
+)
 
 export const Reversed = () => (
   <Stack direction="column" isReversed spacing="40px" w="100%">
@@ -38,7 +38,7 @@ export const Reversed = () => (
       3
     </Box>
   </Stack>
-);
+)
 
 export const WithDivider = () => (
   <>
@@ -70,7 +70,7 @@ export const WithDivider = () => (
       </Box>
     </Stack>
   </>
-);
+)
 
 function Feature({ title, desc, ...rest }: any) {
   return (
@@ -85,7 +85,7 @@ function Feature({ title, desc, ...rest }: any) {
       <Heading fontSize="xl">{title}</Heading>
       <Text mt={4}>{desc}</Text>
     </Box>
-  );
+  )
 }
 
 export const WithContent = () => (
@@ -99,4 +99,4 @@ export const WithContent = () => (
       desc="You deserve good things. With a whooping 10-15% interest rate per annum, grow your savings."
     />
   </Stack>
-);
+)

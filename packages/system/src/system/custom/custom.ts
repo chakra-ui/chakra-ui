@@ -1,5 +1,5 @@
-import * as SS from "styled-system";
-import { Dict, isNumber } from "@chakra-ui/utils";
+import * as SS from "styled-system"
+import { Dict, isNumber } from "@chakra-ui/utils"
 
 // !important: I updated the border-radius props, kindly add it to changelog (breaking change)
 // we could possibly write a codemod for this.
@@ -135,14 +135,14 @@ export const config: Dict = {
   outlineOffset: true,
   float: true,
   willChange: true,
-};
+}
 
-config.bgAttachment = config.backgroundAttachment;
-config.textDecor = config.textDecoration;
-config.listStylePos = config.listStylePosition;
-config.listStyleImg = config.listStyleImage;
+config.bgAttachment = config.backgroundAttachment
+config.textDecor = config.textDecoration
+config.listStylePos = config.listStylePosition
+config.listStyleImg = config.listStyleImage
 
-const customProps = SS.system(config);
+const customProps = SS.system(config)
 
-export default customProps;
-export { CustomProps } from "./custom.interface";
+export default customProps
+export { CustomProps } from "./custom.interface"

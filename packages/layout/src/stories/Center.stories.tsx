@@ -1,12 +1,12 @@
-import React from "react";
-import Box from "../Box";
-import Center from "../Center";
+import React from "react"
+import Box from "../Box"
+import Center from "../Center"
 
 ///////////////////////////////////////////////////////////////////////////////////
 
 export default {
   title: "Center",
-};
+}
 
 export const flex = () => (
   <Center size="400px">
@@ -14,10 +14,10 @@ export const flex = () => (
       Box
     </Box>
   </Center>
-);
+)
 
 export const absolute = () => (
   <Center use="absolute" size="400px" bg="green.200">
     Box
   </Center>
-);
+)

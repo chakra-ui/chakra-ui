@@ -1,20 +1,20 @@
-import * as React from "react";
-import { useInputGroup } from "./Input.group";
-import { chakra, useComponentStyle, PropsOf } from "@chakra-ui/system";
-import { useIsomorphicEffect } from "@chakra-ui/hooks";
+import * as React from "react"
+import { useInputGroup } from "./Input.group"
+import { chakra, useComponentStyle, PropsOf } from "@chakra-ui/system"
+import { useIsomorphicEffect } from "@chakra-ui/hooks"
 
 const InputElement = React.forwardRef((props: any, ref: React.Ref<any>) => {
-  const { placement = "left", ...rest } = props;
+  const { placement = "left", ...rest } = props
 
-  const { variant, variantSize } = useInputGroup();
+  const { variant, variantSize } = useInputGroup()
 
   const { height, fontSize } = useComponentStyle({
     themeKey: "Input",
     variant,
     variantSize,
-  });
+  })
 
-  const placementProp = { [placement]: "0" };
+  const placementProp = { [placement]: "0" }
 
   return (
     <chakra.div
@@ -31,44 +31,44 @@ const InputElement = React.forwardRef((props: any, ref: React.Ref<any>) => {
       {...placementProp}
       {...rest}
     />
-  );
-});
+  )
+})
 
-InputElement.displayName = "InputElement";
+InputElement.displayName = "InputElement"
 
 const InputLeftElement = React.forwardRef(
   (props: PropsOf<typeof InputElement>, ref: React.Ref<HTMLDivElement>) => {
-    const group = useInputGroup();
+    const group = useInputGroup()
 
     useIsomorphicEffect(() => {
-      group.setHasLeftElement(true);
+      group.setHasLeftElement(true)
       return () => {
-        group.setHasLeftElement(false);
-      };
-    }, []);
+        group.setHasLeftElement(false)
+      }
+    }, [])
 
-    return <InputElement ref={ref} placement="left" {...props} />;
+    return <InputElement ref={ref} placement="left" {...props} />
   },
-);
+)
 
-InputLeftElement.displayName = "InputLeftElement";
+InputLeftElement.displayName = "InputLeftElement"
 
 const InputRightElement = React.forwardRef(
   (props: PropsOf<typeof InputElement>, ref: React.Ref<HTMLDivElement>) => {
-    const group = useInputGroup();
+    const group = useInputGroup()
 
     useIsomorphicEffect(() => {
-      group.setHasRightElement(true);
+      group.setHasRightElement(true)
       return () => {
-        group.setHasRightElement(false);
-      };
-    }, []);
+        group.setHasRightElement(false)
+      }
+    }, [])
 
-    return <InputElement ref={ref} placement="right" {...props} />;
+    return <InputElement ref={ref} placement="right" {...props} />
   },
-);
+)
 
-InputRightElement.displayName = "InputRightElement";
+InputRightElement.displayName = "InputRightElement"
 
-export { InputLeftElement, InputRightElement };
-export default InputElement;
+export { InputLeftElement, InputRightElement }
+export default InputElement

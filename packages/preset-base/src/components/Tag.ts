@@ -1,5 +1,5 @@
-import { ComponentTheme } from "./utils";
-import Badge from "./Badge";
+import { ComponentTheme } from "./utils"
+import Badge from "./Badge"
 
 const Tag: ComponentTheme = {
   baseStyle: {
@@ -33,6 +33,6 @@ const Tag: ComponentTheme = {
     },
   },
   variant: Badge.variant,
-};
+}
 
-export default Tag;
+export default Tag

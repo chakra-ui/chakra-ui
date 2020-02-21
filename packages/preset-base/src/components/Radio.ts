@@ -1,4 +1,4 @@
-import Checkbox from "./Checkbox";
+import Checkbox from "./Checkbox"
 
 export default {
   baseStyle: Checkbox.baseStyle,
@@ -6,4 +6,4 @@ export default {
     ...Checkbox.variantSize,
     sm: { size: 3 },
   },
-};
+}

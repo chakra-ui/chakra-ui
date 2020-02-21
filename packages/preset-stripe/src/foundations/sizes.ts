@@ -18,9 +18,9 @@ export const baseSizes = {
   "48": "12rem",
   "56": "14rem",
   "64": "16rem",
-};
+}
 
-export type BaseSizes = typeof baseSizes;
+export type BaseSizes = typeof baseSizes
 
 const largeSizes = {
   full: "100%",
@@ -36,14 +36,14 @@ const largeSizes = {
   "4xl": "56rem",
   "5xl": "64rem",
   "6xl": "72rem",
-};
+}
 
 const containers = {
   sm: "640px",
   md: "768px",
   lg: "1024px",
   xl: "1280px",
-};
+}
 
 // Actual stripe
 const maxWidths = {
@@ -52,7 +52,7 @@ const maxWidths = {
   lg: "600px",
   xl: "720px",
   "2xl": "896px",
-};
+}
 
 const height = {
   xl: "44px",
@@ -60,7 +60,7 @@ const height = {
   md: "28px",
   sm: "24px",
   xs: "20px",
-};
+}
 
 const space = [
   "2px",
@@ -74,15 +74,15 @@ const space = [
   "32px",
   "48px",
   "64px",
-];
+]
 
 const sizes = {
   ...baseSizes,
   ...largeSizes,
   containers,
-};
+}
 
 export type Sizes = typeof baseSizes &
-  typeof largeSizes & { containers: typeof containers };
+  typeof largeSizes & { containers: typeof containers }
 
-export default sizes;
+export default sizes

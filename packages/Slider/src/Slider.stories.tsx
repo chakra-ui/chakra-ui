@@ -1,12 +1,12 @@
-import { chakra, createChakra } from "@chakra-ui/system";
-import * as React from "react";
+import { chakra, createChakra } from "@chakra-ui/system"
+import * as React from "react"
 import {
   BaseSlider,
   BaseSliderFilledTrack,
   BaseSliderMark,
   BaseSliderThumb,
   BaseSliderTrack,
-} from "./Slider";
+} from "./Slider"
 
 export default {
   title: "Slider",
@@ -15,7 +15,7 @@ export default {
       {story()}
     </chakra.div>
   ),
-};
+}
 
 export function HorizontalSlider() {
   return (
@@ -47,7 +47,7 @@ export function HorizontalSlider() {
         style={{ top: 40, pointerEvents: "none" }}
       />
     </BaseSlider>
-  );
+  )
 }
 
 export function VerticalSlider() {
@@ -78,19 +78,19 @@ export function VerticalSlider() {
         style={{ left: 40, pointerEvents: "none" }}
       />
     </BaseSlider>
-  );
+  )
 }
 
-const Slider = createChakra(BaseSlider, { themeKey: "Slider.Root" });
-const SliderTrack = createChakra(BaseSliderTrack, { themeKey: "Slider.Track" });
+const Slider = createChakra(BaseSlider, { themeKey: "Slider.Root" })
+const SliderTrack = createChakra(BaseSliderTrack, { themeKey: "Slider.Track" })
 const SliderFilledTrack = createChakra(BaseSliderFilledTrack, {
   themeKey: "Slider.FilledTrack",
-});
+})
 const SliderThumb = createChakra(BaseSliderThumb, {
   themeKey: "Slider.Thumb",
-});
+})
 
-const size = "md";
+const size = "md"
 
 export function ChakraHorizontalSlider() {
   return (
@@ -99,5 +99,5 @@ export function ChakraHorizontalSlider() {
       <SliderFilledTrack variantSize={size} variantColor="blue" />
       <SliderThumb variantSize={size} children="#" size="30px" color="black" />
     </Slider>
-  );
+  )
 }

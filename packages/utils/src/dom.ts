@@ -1,12 +1,12 @@
-import * as React from "react";
+import * as React from "react"
 
-let _window: Window | undefined = undefined;
+let _window: Window | undefined = undefined
 
 // Note: Accessing "window" in IE11 is somewhat expensive, and calling "typeof window"
 // hits a memory leak, whereas aliasing it and calling "typeof _window" does not.
 // Caching the window value at the file scope lets us minimize the impact.
 try {
-  _window = window;
+  _window = window
 } catch (e) {
   /* no-op */
 }
@@ -17,13 +17,13 @@ try {
  */
 export function getWindow(rootElement?: Element | null): Window | undefined {
   if (typeof _window === "undefined") {
-    return undefined;
+    return undefined
   } else {
-    const el = rootElement as Element;
+    const el = rootElement as Element
 
     return el && el.ownerDocument && el.ownerDocument.defaultView
       ? el.ownerDocument.defaultView
-      : _window;
+      : _window
   }
 }
 
@@ -31,23 +31,23 @@ export function getWindow(rootElement?: Element | null): Window | undefined {
  * Check if we can use the DOM. Useful for SSR purposes
  */
 function getCanUseDOM() {
-  const win = getWindow();
+  const win = getWindow()
   return !!(
     typeof win !== "undefined" &&
     win.document &&
     win.document.createElement
-  );
+  )
 }
 
-export const canUseDOM = getCanUseDOM();
+export const canUseDOM = getCanUseDOM()
 
 export function normalizeEventKey(event: React.KeyboardEvent) {
-  const { key, keyCode } = event;
+  const { key, keyCode } = event
   if (keyCode >= 37 && keyCode <= 40 && key.indexOf("Arrow") !== 0) {
-    return `Arrow${key}`;
+    return `Arrow${key}`
   }
-  return key;
+  return key
 }
 
 export const makeDataAttr = (condition: boolean | undefined) =>
-  condition ? "" : undefined;
+  condition ? "" : undefined

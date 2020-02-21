@@ -1,25 +1,25 @@
-import { createChakra, PropsOf, SystemProps, chakra } from "@chakra-ui/system";
-import { Omit } from "@chakra-ui/utils";
-import * as React from "react";
-import { RadioProps, useRadio } from "./Radio.hook";
+import { createChakra, PropsOf, SystemProps, chakra } from "@chakra-ui/system"
+import { Omit } from "@chakra-ui/utils"
+import * as React from "react"
+import { RadioProps, useRadio } from "./Radio.hook"
 
-const ControlBox = createChakra("div", { themeKey: "Radio" });
+const ControlBox = createChakra("div", { themeKey: "Radio" })
 
 type OmittedRadioProps = Omit<
   PropsOf<typeof ControlBox>,
   "onChange" | "defaultChecked"
->;
+>
 
 type CustomRadioProps = OmittedRadioProps &
   Omit<PropsOf<"input">, "size" | "defaultValue" | "value"> &
   RadioProps & {
-    iconColor?: any;
-    iconSize?: SystemProps["size"];
-  };
+    iconColor?: any
+    iconSize?: SystemProps["size"]
+  }
 
 export const Radio = React.forwardRef(
   (props: CustomRadioProps, ref: React.Ref<HTMLInputElement>) => {
-    const { state, input, checkbox, remaining: rest } = useRadio(props);
+    const { state, input, checkbox, remaining: rest } = useRadio(props)
 
     return (
       <label>
@@ -47,6 +47,6 @@ export const Radio = React.forwardRef(
           </chakra.div>
         )}
       </label>
-    );
+    )
   },
-);
+)

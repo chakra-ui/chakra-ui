@@ -1,48 +1,48 @@
-import { createChakra, PropsOf, SystemProps, chakra } from "@chakra-ui/system";
-import { Omit } from "@chakra-ui/utils";
-import * as React from "react";
-import { CheckboxHookProps, useCheckbox } from "./Checkbox.hook";
-import { CheckIcon, MinusIcon } from "./Checkbox.icon";
-import { IconProps } from "@chakra-ui/icon";
+import { createChakra, PropsOf, SystemProps, chakra } from "@chakra-ui/system"
+import { Omit } from "@chakra-ui/utils"
+import * as React from "react"
+import { CheckboxHookProps, useCheckbox } from "./Checkbox.hook"
+import { CheckIcon, MinusIcon } from "./Checkbox.icon"
+import { IconProps } from "@chakra-ui/icon"
 
-const ControlBox = createChakra("span", { themeKey: "Checkbox" });
+const ControlBox = createChakra("span", { themeKey: "Checkbox" })
 
 type OmittedCheckboxProps = Omit<
   PropsOf<typeof ControlBox>,
   "onChange" | "defaultChecked"
->;
+>
 
 type CustomCheckboxProps = OmittedCheckboxProps &
   Omit<PropsOf<"input">, "size"> &
   CheckboxHookProps & {
-    iconColor?: IconProps["color"];
-    iconSize?: IconProps["size"];
-  };
+    iconColor?: IconProps["color"]
+    iconSize?: IconProps["size"]
+  }
 
 function CheckboxIcon({
   isChecked,
   isIndeterminate,
   ...props
 }: IconProps & {
-  isChecked?: boolean;
-  isIndeterminate?: boolean;
+  isChecked?: boolean
+  isIndeterminate?: boolean
 }) {
-  if (isChecked) return <CheckIcon {...props} />;
-  if (isIndeterminate) return <MinusIcon {...props} />;
-  return null;
+  if (isChecked) return <CheckIcon {...props} />
+  if (isIndeterminate) return <MinusIcon {...props} />
+  return null
 }
 
 export const Checkbox = React.forwardRef(
   (props: CustomCheckboxProps, ref: React.Ref<HTMLInputElement>) => {
-    const { state, input, checkbox, htmlProps } = useCheckbox(props);
+    const { state, input, checkbox, htmlProps } = useCheckbox(props)
 
-    const { iconSize = 3, iconColor } = props;
+    const { iconSize = 3, iconColor } = props
 
     const iconProps = {
       size: iconSize,
       color: iconColor,
       transition: "transform 240ms, opacity 240ms",
-    };
+    }
 
     return (
       <label>
@@ -71,6 +71,6 @@ export const Checkbox = React.forwardRef(
           </chakra.div>
         )}
       </label>
-    );
+    )
   },
-);
+)

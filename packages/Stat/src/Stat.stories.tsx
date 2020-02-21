@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx } from "@emotion/core";
+import { jsx } from "@emotion/core"
 import {
   Stat,
   StatArrow,
@@ -7,11 +7,11 @@ import {
   StatHelpText,
   StatLabel,
   StatNumber,
-} from "./Stat";
+} from "./Stat"
 
 export default {
   title: "Stat",
-};
+}
 
 export const Default = () => {
   return (
@@ -20,8 +20,8 @@ export const Default = () => {
       <StatNumber>£0.00</StatNumber>
       <StatHelpText>Feb 12 - Feb 28</StatHelpText>
     </Stat>
-  );
-};
+  )
+}
 
 export const WithIndicators = () => {
   return (
@@ -44,5 +44,5 @@ export const WithIndicators = () => {
         </StatHelpText>
       </Stat>
     </StatGroup>
-  );
-};
+  )
+}

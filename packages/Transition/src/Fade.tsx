@@ -1,21 +1,19 @@
-import * as React from "react";
-import Transition, { TransitionProps } from "react-transition-group/Transition";
-import { TransitionContext } from "./Transition.context";
+import * as React from "react"
+import Transition, { TransitionProps } from "react-transition-group/Transition"
+import { TransitionContext } from "./Transition.context"
 
 interface FadeProps extends Omit<TransitionProps, "timeout"> {
-  timeout?: number;
-  children:
-    | React.ReactNode
-    | ((styles: React.CSSProperties) => React.ReactNode);
+  timeout?: number
+  children: React.ReactNode | ((styles: React.CSSProperties) => React.ReactNode)
 }
 
 const transitionStyles = {
   init: { opacity: 0 },
   entered: { opacity: 1 },
   exiting: { opacity: 0 },
-};
+}
 
-type TransitionState = keyof typeof transitionStyles;
+type TransitionState = keyof typeof transitionStyles
 
 export function Fade({
   children,
@@ -27,7 +25,7 @@ export function Fade({
     ...transitionStyles.init,
     transition: `all ${timeout}ms cubic-bezier(0.175, 0.885, 0.320, 1.175)`,
     ...transitionStyles[state],
-  });
+  })
 
   return (
     <Transition
@@ -45,7 +43,7 @@ export function Fade({
         </TransitionContext.Provider>
       )}
     </Transition>
-  );
+  )
 }
 
-export default Fade;
+export default Fade

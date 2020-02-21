@@ -1,4 +1,4 @@
-import { ComponentTheme, getModeColor as get } from "./utils";
+import { ComponentTheme, getModeColor as get } from "./utils"
 
 const Slider: ComponentTheme = {
   variantSize: {
@@ -69,6 +69,6 @@ const Slider: ComponentTheme = {
       borderRadius: "sm",
     },
   }),
-};
+}
 
-export default Slider;
+export default Slider

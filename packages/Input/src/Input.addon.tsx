@@ -1,8 +1,8 @@
-import { createChakra, PropsOf, useColorModeValue } from "@chakra-ui/system";
-import * as React from "react";
-import { useInputGroup } from "./Input.group";
+import { createChakra, PropsOf, useColorModeValue } from "@chakra-ui/system"
+import * as React from "react"
+import { useInputGroup } from "./Input.group"
 
-type Placement = "left" | "right";
+type Placement = "left" | "right"
 
 function getPlacementStyles(placement: Placement) {
   if (placement === "left") {
@@ -10,7 +10,7 @@ function getPlacementStyles(placement: Placement) {
       marginRight: "-1px",
       borderRightRadius: 0,
       borderRightColor: "transparent",
-    };
+    }
   }
 
   if (placement === "right") {
@@ -18,21 +18,21 @@ function getPlacementStyles(placement: Placement) {
       order: 1,
       borderLeftRadius: 0,
       borderLeftColor: "transparent",
-    };
+    }
   }
 
-  return {};
+  return {}
 }
 
-const StyledAddon = createChakra("div", { themeKey: "Input" });
+const StyledAddon = createChakra("div", { themeKey: "Input" })
 
-type InputAddonProps = PropsOf<typeof StyledAddon> & { placement?: Placement };
+type InputAddonProps = PropsOf<typeof StyledAddon> & { placement?: Placement }
 
 export function InputAddon({ placement = "left", ...props }: InputAddonProps) {
-  const bg = useColorModeValue(`gray.100`, `whiteAlpha.300`);
-  const placementStyles = getPlacementStyles(placement);
+  const bg = useColorModeValue(`gray.100`, `whiteAlpha.300`)
+  const placementStyles = getPlacementStyles(placement)
 
-  const group = useInputGroup();
+  const group = useInputGroup()
 
   return (
     <StyledAddon
@@ -44,16 +44,16 @@ export function InputAddon({ placement = "left", ...props }: InputAddonProps) {
       variant={group?.variant || props.variant}
       variantSize={group?.variantSize || props.variantSize}
     />
-  );
+  )
 }
-InputAddon.displayName = "InputAddon";
+InputAddon.displayName = "InputAddon"
 
 export const InputLeftAddon = (props: InputAddonProps) => (
   <InputAddon placement="left" {...props} />
-);
-InputLeftAddon.displayName = "InputLeftAddon";
+)
+InputLeftAddon.displayName = "InputLeftAddon"
 
 export const InputRightAddon = (props: InputAddonProps) => (
   <InputAddon placement="right" {...props} />
-);
-InputRightAddon.displayName = "InputRightAddon";
+)
+InputRightAddon.displayName = "InputRightAddon"

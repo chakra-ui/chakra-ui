@@ -1,14 +1,12 @@
-import React from "react";
-import Transition, { TransitionProps } from "react-transition-group/Transition";
-import { TransitionContext } from "./Transition.context";
-import { Omit } from "@chakra-ui/utils";
+import React from "react"
+import Transition, { TransitionProps } from "react-transition-group/Transition"
+import { TransitionContext } from "./Transition.context"
+import { Omit } from "@chakra-ui/utils"
 
 interface SlideFadeProps extends Omit<TransitionProps, "timeout"> {
-  timeout?: number;
-  initialOffset?: string;
-  children:
-    | React.ReactNode
-    | ((styles: React.CSSProperties) => React.ReactNode);
+  timeout?: number
+  initialOffset?: string
+  children: React.ReactNode | ((styles: React.CSSProperties) => React.ReactNode)
 }
 
 function getTransitionStyles(initialOffset: string) {
@@ -25,7 +23,7 @@ function getTransitionStyles(initialOffset: string) {
       opacity: 0,
       transform: `translateY(${initialOffset})`,
     },
-  };
+  }
 }
 
 export const SlideFade = ({
@@ -35,19 +33,19 @@ export const SlideFade = ({
   children,
   ...props
 }: SlideFadeProps) => {
-  const transitionStyles = getTransitionStyles(initialOffset);
+  const transitionStyles = getTransitionStyles(initialOffset)
 
   const rootStyle = {
     transition: `all ${timeout}ms cubic-bezier(0.4, 0.14, 0.3, 1)`,
-  };
+  }
 
-  type TransitionState = keyof typeof transitionStyles;
+  type TransitionState = keyof typeof transitionStyles
 
   const computeStyle = (state: TransitionState) => ({
     ...rootStyle,
     ...transitionStyles.init,
     ...transitionStyles[state],
-  });
+  })
 
   return (
     <Transition
@@ -65,7 +63,7 @@ export const SlideFade = ({
         </TransitionContext.Provider>
       )}
     </Transition>
-  );
-};
+  )
+}
 
-export default SlideFade;
+export default SlideFade

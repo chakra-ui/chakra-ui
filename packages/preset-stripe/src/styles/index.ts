@@ -21,4 +21,4 @@ export default {
     margin: 10,
     color: "red.500",
   },
-};
+}

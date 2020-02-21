@@ -1,2 +1,2 @@
-export { default } from "./Icons";
-export * from "./Icons";
+export { default } from "./Icons"
+export * from "./Icons"

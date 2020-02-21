@@ -1,12 +1,12 @@
-import React from "react";
-import { Portal } from ".";
+import React from "react"
+import { Portal } from "."
 
 export default {
   title: "Portal",
-};
+}
 
 function Wrapper(props: any) {
-  const { offset, color, children, forwardedRef } = props;
+  const { offset, color, children, forwardedRef } = props
   return (
     <div
       style={{
@@ -25,12 +25,12 @@ function Wrapper(props: any) {
     >
       {children}
     </div>
-  );
+  )
 }
 
 export const BasicExample = () => {
-  const [isFirstOpen, setIsFirstOpen] = React.useState(false);
-  const [isSecondOpen, setIsSecondOpen] = React.useState(false);
+  const [isFirstOpen, setIsFirstOpen] = React.useState(false)
+  const [isSecondOpen, setIsSecondOpen] = React.useState(false)
   return (
     <>
       <Portal>
@@ -70,5 +70,5 @@ export const BasicExample = () => {
         </Portal>
       ) : null}
     </>
-  );
-};
+  )
+}

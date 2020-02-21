@@ -1,7 +1,7 @@
 /**@jsx jsx */
-import React from "react";
-import { chakra, PropsOf, jsx, createChakra } from "@chakra-ui/system";
-import { Icon, IconProps } from "@chakra-ui/icon";
+import React from "react"
+import { chakra, PropsOf, jsx, createChakra } from "@chakra-ui/system"
+import { Icon, IconProps } from "@chakra-ui/icon"
 
 export const Tag = createChakra("span", {
   themeKey: "Tag",
@@ -17,7 +17,7 @@ export const Tag = createChakra("span", {
     "data-chakra-tag": "",
     // tabIndex: -1,
   },
-});
+})
 
 export const TagLabel = (props: PropsOf<typeof chakra.div>) => (
   <chakra.span
@@ -26,7 +26,7 @@ export const TagLabel = (props: PropsOf<typeof chakra.div>) => (
     lineHeight="1.2"
     {...props}
   />
-);
+)
 
 export const TagIcon = (props: IconProps) => (
   <Icon
@@ -38,7 +38,7 @@ export const TagIcon = (props: IconProps) => (
       "&:last-child": { marginRight: 0 },
     }}
   />
-);
+)
 
 const TagCloseIcon = (props: IconProps) => (
   <Icon {...props}>
@@ -48,13 +48,13 @@ const TagCloseIcon = (props: IconProps) => (
       fillRule="evenodd"
     />
   </Icon>
-);
+)
 
 export const TagCloseButton = ({
   isDisabled,
   ...props
 }: {
-  isDisabled?: boolean;
+  isDisabled?: boolean
 }) => (
   <chakra.button
     data-chakra-tag-close-btn=""
@@ -79,4 +79,4 @@ export const TagCloseButton = ({
   >
     <TagCloseIcon />
   </chakra.button>
-);
+)

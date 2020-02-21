@@ -1,25 +1,25 @@
-import * as React from "react";
+import * as React from "react"
 import {
   EditableProviderProps,
   useEditableProvider,
   useEditablePreview,
   useEditableInput,
-} from "./Editable.hook";
-import { createContext } from "@chakra-ui/utils";
-import { chakra, SystemProps } from "@chakra-ui/system";
+} from "./Editable.hook"
+import { createContext } from "@chakra-ui/utils"
+import { chakra, SystemProps } from "@chakra-ui/system"
 
-type ContextType = ReturnType<typeof useEditableProvider>;
-const [EditableProvider, useEditableContext] = createContext<ContextType>();
+type ContextType = ReturnType<typeof useEditableProvider>
+const [EditableProvider, useEditableContext] = createContext<ContextType>()
 
 export function Editable(
   props: EditableProviderProps & { children: React.ReactNode },
 ) {
-  const context = useEditableProvider(props);
+  const context = useEditableProvider(props)
   return (
     <EditableProvider value={context}>
       <chakra.div children={props.children} />
     </EditableProvider>
-  );
+  )
 }
 
 const sharedProps: SystemProps = {
@@ -31,27 +31,27 @@ const sharedProps: SystemProps = {
   borderRadius: "md",
   paddingX: "3px",
   marginX: "-3px",
-};
+}
 
 export function EditablePreview(props: any) {
-  const context = useEditableContext();
-  const preview = useEditablePreview({ context });
+  const context = useEditableContext()
+  const preview = useEditablePreview({ context })
 
   const styleProps = {
     ...sharedProps,
     cursor: "text",
     outline: "none",
     opacity: context.isValueEmpty ? 0.6 : undefined,
-  };
+  }
 
-  return <chakra.span {...styleProps} {...props} {...preview} />;
+  return <chakra.span {...styleProps} {...props} {...preview} />
 }
 
-Editable.Preview = EditablePreview;
+Editable.Preview = EditablePreview
 
 export function EditableInput(props: any) {
-  const context = useEditableContext();
-  const input = useEditableInput({ context });
+  const context = useEditableContext()
+  const input = useEditableInput({ context })
 
   const styleProps: SystemProps = {
     ...sharedProps,
@@ -60,7 +60,7 @@ export function EditableInput(props: any) {
     _placeholder: {
       opacity: 0.6,
     },
-  };
+  }
 
   return (
     <chakra.input
@@ -69,10 +69,10 @@ export function EditableInput(props: any) {
       {...props}
       {...input}
     />
-  );
+  )
 }
 
-Editable.Input = EditableInput;
+Editable.Input = EditableInput
 
 export function useEditableState() {
   const {
@@ -81,12 +81,12 @@ export function useEditableState() {
     onCancel,
     onEdit,
     isDisabled,
-  } = useEditableContext();
+  } = useEditableContext()
   return {
     isEditing,
     onSubmit,
     onCancel,
     onEdit,
     isDisabled,
-  };
+  }
 }

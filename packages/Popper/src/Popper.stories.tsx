@@ -1,18 +1,18 @@
-import { useDisclosure } from "@chakra-ui/hooks";
-import React from "react";
-import usePopper from "./Popper.hook";
+import { useDisclosure } from "@chakra-ui/hooks"
+import React from "react"
+import usePopper from "./Popper.hook"
 
 export default {
   title: "Popper",
-};
+}
 
 export const Basic = () => {
-  const disclosure = useDisclosure({ defaultIsOpen: true });
+  const disclosure = useDisclosure({ defaultIsOpen: true })
 
   const { popper, reference, arrow } = usePopper({
     placement: "left",
     forceUpdate: disclosure.isOpen,
-  });
+  })
 
   return (
     <>
@@ -32,5 +32,5 @@ export const Basic = () => {
         Popper
       </div>
     </>
-  );
-};
+  )
+}

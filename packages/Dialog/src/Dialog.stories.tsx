@@ -1,10 +1,10 @@
-import { useDisclosure } from "@chakra-ui/hooks";
-import * as React from "react";
-import { Dialog, DialogContent, DialogOverlay, getBaseStyle } from "./Dialog";
+import { useDisclosure } from "@chakra-ui/hooks"
+import * as React from "react"
+import { Dialog, DialogContent, DialogOverlay, getBaseStyle } from "./Dialog"
 
 export default {
   title: "Dialog",
-};
+}
 
 const Overlay = (props: any) => (
   <DialogOverlay
@@ -16,17 +16,15 @@ const Overlay = (props: any) => (
     h="100vh"
     {...props}
   />
-);
+)
 
 const DialogContentt = (props: any) => {
-  const baseStyle = getBaseStyle({ colorMode: "dark", isCentered: true });
-  return (
-    <DialogContent maxW="600px" height="200px" {...baseStyle} {...props} />
-  );
-};
+  const baseStyle = getBaseStyle({ colorMode: "dark", isCentered: true })
+  return <DialogContent maxW="600px" height="200px" {...baseStyle} {...props} />
+}
 
 export function SimpleModal() {
-  const dialog = useDisclosure();
+  const dialog = useDisclosure()
   return (
     <>
       <button onClick={dialog.onOpen}>Open</button>
@@ -35,13 +33,13 @@ export function SimpleModal() {
         <DialogContentt>Welcome Home</DialogContentt>
       </Dialog>
     </>
-  );
+  )
 }
 
 export function NestedModal() {
-  const dialog1 = useDisclosure();
-  const dialog2 = useDisclosure();
-  const dialog3 = useDisclosure();
+  const dialog1 = useDisclosure()
+  const dialog2 = useDisclosure()
+  const dialog3 = useDisclosure()
   return (
     <>
       <button onClick={dialog1.onOpen}>Open</button>
@@ -66,5 +64,5 @@ export function NestedModal() {
         </DialogContentt>
       </Dialog>
     </>
-  );
+  )
 }

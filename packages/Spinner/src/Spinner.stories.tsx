@@ -1,9 +1,9 @@
-import * as React from "react";
-import Spinner from "./Spinner";
+import * as React from "react"
+import Spinner from "./Spinner"
 
 export default {
   title: "Spinner",
-};
+}
 
 export const Default = () => (
   <div>
@@ -11,4 +11,4 @@ export const Default = () => (
       <Spinner key={size} margin={3} color="red.500" variantSize={size} />
     ))}
   </div>
-);
+)

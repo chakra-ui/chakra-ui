@@ -1,17 +1,17 @@
-import { chakra } from "@chakra-ui/system";
-import { createContext } from "@chakra-ui/utils";
-import * as React from "react";
+import { chakra } from "@chakra-ui/system"
+import { createContext } from "@chakra-ui/utils"
+import * as React from "react"
 
 const [InputGroupProvider, useInputGroup] = createContext<{
-  variant: string;
-  variantSize: string;
-  hasLeftElement: boolean;
-  setHasLeftElement: React.Dispatch<React.SetStateAction<boolean>>;
-  hasRightElement: boolean;
-  setHasRightElement: React.Dispatch<React.SetStateAction<boolean>>;
-}>(false);
+  variant: string
+  variantSize: string
+  hasLeftElement: boolean
+  setHasLeftElement: React.Dispatch<React.SetStateAction<boolean>>
+  hasRightElement: boolean
+  setHasRightElement: React.Dispatch<React.SetStateAction<boolean>>
+}>(false)
 
-export { useInputGroup };
+export { useInputGroup }
 
 const InputGroup = ({
   children,
@@ -19,12 +19,12 @@ const InputGroup = ({
   variant = "outline",
   ...props
 }: {
-  children?: React.ReactNode;
-  variant?: string;
-  variantSize?: string;
+  children?: React.ReactNode
+  variant?: string
+  variantSize?: string
 }) => {
-  const [hasLeftElement, setHasLeftElement] = React.useState(false);
-  const [hasRightElement, setHasRightElement] = React.useState(false);
+  const [hasLeftElement, setHasLeftElement] = React.useState(false)
+  const [hasRightElement, setHasRightElement] = React.useState(false)
 
   return (
     <chakra.div display="flex" position="relative" {...props}>
@@ -40,7 +40,7 @@ const InputGroup = ({
         children={children}
       />
     </chakra.div>
-  );
-};
+  )
+}
 
-export default InputGroup;
+export default InputGroup

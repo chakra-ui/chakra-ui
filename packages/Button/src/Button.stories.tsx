@@ -1,11 +1,11 @@
-import { Stack } from "@chakra-ui/layout";
-import * as React from "react";
-import Button from "./Button";
-import ButtonGroup from "./ButtonGroup";
+import { Stack } from "@chakra-ui/layout"
+import * as React from "react"
+import Button from "./Button"
+import ButtonGroup from "./ButtonGroup"
 
 export default {
   title: "Button",
-};
+}
 
 export const Variants = () => (
   <Stack direction="row" spacing="24px">
@@ -22,7 +22,7 @@ export const Variants = () => (
       Button
     </Button>
   </Stack>
-);
+)
 
 export const Sizes = () => (
   <Stack direction="row">
@@ -39,9 +39,9 @@ export const Sizes = () => (
       Button
     </Button>
   </Stack>
-);
+)
 
-export const WithLefIcon = () => <Button variantColor="pink">Call Us</Button>;
+export const WithLefIcon = () => <Button variantColor="pink">Call Us</Button>
 
 const AddCircle = (props: any) => (
   <svg
@@ -55,21 +55,21 @@ const AddCircle = (props: any) => (
   >
     <path d="M256 48C141.1 48 48 141.1 48 256s93.1 208 208 208 208-93.1 208-208S370.9 48 256 48zm90.5 224H272v74.5c0 8.8-7.2 16-16 16-4.4 0-8.4-1.8-11.3-4.7-2.9-2.9-4.7-6.9-4.7-11.3V272h-74.5c-4.4 0-8.4-1.8-11.3-4.7-2.9-2.9-4.7-6.9-4.7-11.3 0-8.8 7.2-16 16-16H240v-74.5c0-8.8 7.2-16 16-16s16 7.2 16 16V240h74.5c8.8 0 16 7.2 16 16s-7.2 16-16 16z"></path>
   </svg>
-);
+)
 
 export const WithCustomIcon = () => (
   <Button leftIcon={AddCircle}>Call Us</Button>
-);
+)
 
 export const WithLoading = () => (
   <Button variantColor="pink" isLoading loadingText="Loading...">
     Pink Button
   </Button>
-);
+)
 
 export const WithButtonGroup = () => (
   <ButtonGroup variant="solid">
     <Button variantColor="green">Save</Button>
     <Button variant="outline">Cancel</Button>
   </ButtonGroup>
-);
+)

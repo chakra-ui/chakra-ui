@@ -1,5 +1,5 @@
-import * as React from "react";
-import useUpdateEffect from "./useUpdateEffect";
+import * as React from "react"
+import useUpdateEffect from "./useUpdateEffect"
 
 /**
  * React lifecycle hook console logs a value when it mounts
@@ -10,16 +10,16 @@ import useUpdateEffect from "./useUpdateEffect";
  */
 export function useLogger(label: string, ...values: any[]) {
   React.useEffect(() => {
-    console.log(`${label} mounted:`, ...values);
+    console.log(`${label} mounted:`, ...values)
     return () => {
-      console.log(`${label} unmounted`);
-    };
+      console.log(`${label} unmounted`)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   useUpdateEffect(() => {
-    console.log(`${label} updated:`, ...values);
-  });
+    console.log(`${label} updated:`, ...values)
+  })
 }
 
-export default useLogger;
+export default useLogger

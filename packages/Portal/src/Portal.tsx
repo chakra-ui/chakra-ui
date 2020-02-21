@@ -1,17 +1,17 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-import { usePortalsContext } from "./PortalManager";
-import { canUseDOM } from "@chakra-ui/utils";
+import * as React from "react"
+import * as ReactDOM from "react-dom"
+import { usePortalsContext } from "./PortalManager"
+import { canUseDOM } from "@chakra-ui/utils"
 
-const LayerContext = React.createContext<HTMLDivElement | null>(null);
-const useLayerContext = () => React.useContext(LayerContext);
+const LayerContext = React.createContext<HTMLDivElement | null>(null)
+const useLayerContext = () => React.useContext(LayerContext)
 
 export interface LayerProps {
-  onMount?: () => void;
-  onUnmount?: () => void;
-  mountNode?: HTMLElement;
-  index?: number;
-  children?: React.ReactNode;
+  onMount?: () => void
+  onUnmount?: () => void
+  mountNode?: HTMLElement
+  index?: number
+  children?: React.ReactNode
 }
 
 export function Portal({
@@ -22,65 +22,65 @@ export function Portal({
   children,
 }: LayerProps) {
   // To manage nested layers
-  const parentLayer = useLayerContext();
+  const parentLayer = useLayerContext()
 
   // the container to render it's children
   const [container] = React.useState(() => {
     // prepare the container for the children before inserting into the host
     if (canUseDOM) {
-      const container = document.createElement("div");
-      container.className = "__chakra--portal";
-      return container;
+      const container = document.createElement("div")
+      container.className = "__chakra--portal"
+      return container
     }
     // for ssr
-    return null;
-  });
+    return null
+  })
 
-  const layersManager = usePortalsContext();
+  const layersManager = usePortalsContext()
 
   const addLayer = React.useCallback(
     (host: HTMLElement | null) => {
       // if user specified a mount node, do nothing.
-      if (mountNode || !container) return;
+      if (mountNode || !container) return
 
       if (host) {
         // give user ability to change the index of layers
-        const elementAtIndex = index ? host.children[index] : null;
+        const elementAtIndex = index ? host.children[index] : null
 
         // if an element exists at the index, add this component before it
         if (elementAtIndex) {
-          host.insertBefore(container, elementAtIndex);
+          host.insertBefore(container, elementAtIndex)
         } else {
           // else, simply append component to the host
-          host.appendChild(container);
+          host.appendChild(container)
         }
       }
     },
     [index, mountNode, container],
-  );
+  )
 
   React.useEffect(() => {
     // if user specified a mount node, do nothing but run onMount.
     if (mountNode) {
-      onMount && onMount();
-      return;
+      onMount && onMount()
+      return
     }
 
     // If layer is nested, use the parent layer as host,
     // else, if no LayersManager exists, use document.body
-    const finalHost = parentLayer || layersManager.host || document.body;
-    addLayer(finalHost);
+    const finalHost = parentLayer || layersManager.host || document.body
+    addLayer(finalHost)
 
     return () => {
       // Remove the node when it unmounts
-      onUnmount && onUnmount();
+      onUnmount && onUnmount()
 
-      if (!container) return;
+      if (!container) return
 
       if (finalHost && finalHost.contains(container)) {
-        finalHost.removeChild(container);
+        finalHost.removeChild(container)
       }
-    };
+    }
   }, [
     onMount,
     mountNode,
@@ -89,7 +89,7 @@ export function Portal({
     onUnmount,
     layersManager.host,
     addLayer,
-  ]);
+  ])
 
   const finalChildren: React.ReactNode = layersManager.zIndex ? (
     <div
@@ -99,20 +99,20 @@ export function Portal({
     />
   ) : (
     children
-  );
+  )
 
   if (mountNode) {
-    ReactDOM.createPortal(finalChildren, mountNode);
+    ReactDOM.createPortal(finalChildren, mountNode)
   }
 
-  if (!container) return <>{finalChildren}</>;
+  if (!container) return <>{finalChildren}</>
 
   return ReactDOM.createPortal(
     <LayerContext.Provider value={container}>
       {finalChildren}
     </LayerContext.Provider>,
     container,
-  );
+  )
 }
 
-export default Portal;
+export default Portal

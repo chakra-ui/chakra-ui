@@ -36,6 +36,6 @@ const selectors = {
   autofill: "&:-webkit-autofill",
   rtl: "[dir=rtl] &, [dir=rtl] &",
   // paragraphSpacing: "& > p ~ p",
-};
+}
 
-export default selectors;
+export default selectors

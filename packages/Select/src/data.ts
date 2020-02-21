@@ -207,4 +207,4 @@ export default [
   "Yemen",
   "Zambia",
   "Zimbabwe",
-];
+]

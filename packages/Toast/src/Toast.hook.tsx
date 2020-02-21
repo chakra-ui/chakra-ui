@@ -1,20 +1,20 @@
-import * as React from "react";
-import { createThemeContext, useTheme } from "@chakra-ui/system";
-import toast from "toasted-notes";
-import { MessageOptionalOptions } from "toasted-notes/lib/ToastManager";
+import * as React from "react"
+import { createThemeContext, useTheme } from "@chakra-ui/system"
+import toast from "toasted-notes"
+import { MessageOptionalOptions } from "toasted-notes/lib/ToastManager"
 
 interface NotifyOptions {
-  position: MessageOptionalOptions["position"];
-  duration: MessageOptionalOptions["duration"];
-  render?(props: { onClose(): void; id: string }): JSX.Element;
-  title?: string;
-  description?: string;
-  isClosable?: string;
+  position: MessageOptionalOptions["position"]
+  duration: MessageOptionalOptions["duration"]
+  render?(props: { onClose(): void; id: string }): JSX.Element
+  title?: string
+  description?: string
+  isClosable?: string
 }
 
 function useToast() {
-  const theme = useTheme();
-  const [ThemeProvider] = createThemeContext(theme);
+  const theme = useTheme()
+  const [ThemeProvider] = createThemeContext(theme)
 
   function notify({
     position = "bottom",
@@ -27,7 +27,7 @@ function useToast() {
     const options = {
       position,
       duration,
-    };
+    }
 
     if (render) {
       return toast.notify(
@@ -35,7 +35,7 @@ function useToast() {
           <ThemeProvider>{render({ onClose, id })}</ThemeProvider>
         ),
         options,
-      );
+      )
     }
 
     toast.notify(
@@ -45,10 +45,10 @@ function useToast() {
         </ThemeProvider>
       ),
       options,
-    );
+    )
   }
 
-  return notify;
+  return notify
 }
 
-export default useToast;
+export default useToast

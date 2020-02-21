@@ -1,10 +1,10 @@
-import React, { Fragment } from "react";
-import { Avatar, AvatarBadge } from ".";
-import AvatarGroup from "./AvatarGroup";
+import React, { Fragment } from "react"
+import { Avatar, AvatarBadge } from "."
+import AvatarGroup from "./AvatarGroup"
 
 export default {
   title: "Avatar",
-};
+}
 
 export const Default = () => (
   <Fragment>
@@ -19,7 +19,7 @@ export const Default = () => (
       </Avatar>
     ))}
   </Fragment>
-);
+)
 
 export const AvatarGroup_ = () => (
   <AvatarGroup variantSize="md" showBorder max={4}>
@@ -41,4 +41,4 @@ export const AvatarGroup_ = () => (
       src="https://uinames.com/api/photos/female/7.jpg"
     />
   </AvatarGroup>
-);
+)

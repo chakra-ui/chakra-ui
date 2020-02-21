@@ -1,12 +1,12 @@
-import React from "react";
-import { render } from "../../../test/utils";
-import "@testing-library/jest-dom/extend-expect";
+import React from "react"
+import { render } from "../../../test/utils"
+import "@testing-library/jest-dom/extend-expect"
 import {
   BaseAccordion,
   BaseAccordionButton,
   BaseAccordionItem,
   BaseAccordionPanel,
-} from "../src/Accordion.base";
+} from "../src/Accordion.base"
 
 test("Button renders correctly", () => {
   const { asFragment } = render(
@@ -16,9 +16,9 @@ test("Button renders correctly", () => {
         <BaseAccordionPanel>Panel 1</BaseAccordionPanel>
       </BaseAccordionItem>
     </BaseAccordion>,
-  );
-  expect(asFragment()).toMatchSnapshot();
-});
+  )
+  expect(asFragment()).toMatchSnapshot()
+})
 
 test("It opens the accordion panel", () => {
   const { getByTestId } = render(
@@ -30,8 +30,8 @@ test("It opens the accordion panel", () => {
         <BaseAccordionPanel data-testid="panel">Panel 1</BaseAccordionPanel>
       </BaseAccordionItem>
     </BaseAccordion>,
-  );
+  )
 
-  const button = getByTestId("button");
-  expect(button).toHaveAttribute("aria-expanded", "true");
-});
+  const button = getByTestId("button")
+  expect(button).toHaveAttribute("aria-expanded", "true")
+})

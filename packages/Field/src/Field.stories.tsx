@@ -1,37 +1,37 @@
-import { createChakra, PropsOf } from "@chakra-ui/system";
-import * as React from "react";
-import { ErrorText, Field, HelpText, Label } from "./Field";
-import { ControlProps, useField } from "./Field.base";
+import { createChakra, PropsOf } from "@chakra-ui/system"
+import * as React from "react"
+import { ErrorText, Field, HelpText, Label } from "./Field"
+import { ControlProps, useField } from "./Field.base"
 
 export default {
   title: "FormControl",
-};
+}
 
-type OmittedTypes = "disabled" | "required" | "readOnly";
-type BaseInputProps = Omit<PropsOf<"input">, OmittedTypes> & ControlProps;
+type OmittedTypes = "disabled" | "required" | "readOnly"
+type BaseInputProps = Omit<PropsOf<"input">, OmittedTypes> & ControlProps
 
 const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
   (props, ref) => {
-    const inputProps = useField<HTMLInputElement>(props);
-    return <input ref={ref} {...inputProps} />;
+    const inputProps = useField<HTMLInputElement>(props)
+    return <input ref={ref} {...inputProps} />
   },
-);
+)
 
 const Input = createChakra<
   typeof BaseInput,
   { focusBorderColor?: string; errorBorderColor?: string }
->(BaseInput);
+>(BaseInput)
 
-type BaseTextAreaProps = Omit<PropsOf<"textarea">, OmittedTypes> & ControlProps;
+type BaseTextAreaProps = Omit<PropsOf<"textarea">, OmittedTypes> & ControlProps
 
 const BaseTextarea = React.forwardRef<HTMLTextAreaElement, BaseTextAreaProps>(
   (props, ref) => {
-    const inputProps = useField<HTMLTextAreaElement>(props);
-    return <textarea ref={ref} {...inputProps} />;
+    const inputProps = useField<HTMLTextAreaElement>(props)
+    return <textarea ref={ref} {...inputProps} />
   },
-);
+)
 
-const Textarea = createChakra(BaseTextarea);
+const Textarea = createChakra(BaseTextarea)
 
 export const InputExample = () => (
   <Field id="first-name" isRequired isInvalid>
@@ -40,7 +40,7 @@ export const InputExample = () => (
     <HelpText>Keep it very short and sweet!</HelpText>
     <ErrorText>Your First name is invalid</ErrorText>
   </Field>
-);
+)
 
 export const TextAreaExample = () => (
   <Field id="first-name" isInvalid>
@@ -50,7 +50,7 @@ export const TextAreaExample = () => (
     <HelpText>Keep it very short and sweet!</HelpText>
     <ErrorText>Your First name is invalid</ErrorText>
   </Field>
-);
+)
 
 export const Styled = () => (
   <Field id="first-name" isInvalid>
@@ -65,4 +65,4 @@ export const Styled = () => (
     />
     <ErrorText>Your First name is invalid</ErrorText>
   </Field>
-);
+)

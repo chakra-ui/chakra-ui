@@ -1,29 +1,29 @@
-import * as React from "react";
-import chakra from "../chakra/chakra";
-import connect from "../connect-theming";
-import createChakra from "./create-chakra";
-import useComponentStyle from "./use-component-style";
+import * as React from "react"
+import chakra from "../chakra/chakra"
+import connect from "../connect-theming"
+import createChakra from "./create-chakra"
+import useComponentStyle from "./use-component-style"
 
 export default {
   title: "create Chakra",
-};
+}
 
 const Button = createChakra("button", {
   themeKey: "Button",
   attrs: { type: "button" },
-});
+})
 
-Button.displayName = "Button";
+Button.displayName = "Button"
 
 Button.defaultProps = {
   variantSize: "md",
   variant: "solid",
   variantColor: "green",
-};
+}
 
 export const ButtonBasic = () => (
   <Button marginTop="40px">This is my button</Button>
-);
+)
 
 export const ButtonTheming = () => (
   <Button
@@ -35,25 +35,25 @@ export const ButtonTheming = () => (
   >
     This is my button
   </Button>
-);
+)
 
 ////////////////////////////////////////////////////////////////////
 
 const Alert = createChakra("div", {
   themeKey: "Alert",
-});
+})
 
 export const Alert_ = () => (
   <Alert variant="tradeling" variantColor="green" role="alert">
     Welcome to alert
   </Alert>
-);
+)
 
 ////////////////////////////////////////////////////////////////////
 
 const MenuList = createChakra("div", {
   themeKey: "Menu.MenuList",
-});
+})
 
 const MenuItem = createChakra("button", {
   themeKey: "Menu.MenuItem",
@@ -61,7 +61,7 @@ const MenuItem = createChakra("button", {
     padding: 3,
     textAlign: "left",
   },
-});
+})
 
 export const SubcomponentsMenulist = () => (
   <MenuList>
@@ -69,7 +69,7 @@ export const SubcomponentsMenulist = () => (
     <MenuItem>Menu 2</MenuItem>
     <MenuItem>Menu 3</MenuItem>
   </MenuList>
-);
+)
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -78,25 +78,25 @@ const TabList = createChakra("div", {
   baseStyle: {
     display: "flex",
   },
-});
+})
 
-TabList.displayName = "TabList";
+TabList.displayName = "TabList"
 
 TabList.defaultProps = {
   variant: "line",
-};
+}
 
 const Tab = createChakra("div", {
   themeKey: "Tabs.Tab",
-});
+})
 
-Tab.displayName = "Tab";
+Tab.displayName = "Tab"
 
 Tab.defaultProps = {
   variant: "line",
   variantColor: "blue",
   variantSize: "md",
-};
+}
 
 export const SubcomponentTabs = () => (
   <TabList>
@@ -105,20 +105,20 @@ export const SubcomponentTabs = () => (
       Tab 2
     </Tab>
   </TabList>
-);
+)
 
 export const UseComponentStyle = () => {
   const style = useComponentStyle({
     themeKey: "Input",
     // focusBorderColor: "gray.500",
     // errorBorderColor: "pink.500",
-  });
+  })
   return (
     <chakra.pre fontFamily="mono" fontSize="xs">
       {JSON.stringify(style, null, 4)}
     </chakra.pre>
-  );
-};
+  )
+}
 
 export const BindTheming = () => {
   const TabList = createChakra("div", {
@@ -126,16 +126,16 @@ export const BindTheming = () => {
     baseStyle: {
       display: "flex",
     },
-  });
+  })
 
   const Tab = createChakra("button", {
     themeKey: "Tabs.Tab",
-  });
+  })
 
   const {
     parent: BindTabList,
     children: [BindTab],
-  } = connect({ parent: TabList, children: [Tab] });
+  } = connect({ parent: TabList, children: [Tab] })
 
   return (
     <BindTabList variant="line" variantColor="red" variantSize="md">
@@ -143,5 +143,5 @@ export const BindTheming = () => {
       <BindTab>Tab 2</BindTab>
       <BindTab>Tab 3</BindTab>
     </BindTabList>
-  );
-};
+  )
+}

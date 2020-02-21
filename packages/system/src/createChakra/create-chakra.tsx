@@ -1,12 +1,12 @@
-import { pseudo, system, truncate } from "../system";
-import styled from "./styled";
-import { As, CreateChakraOptions } from "./types";
-import css from "../css";
+import { pseudo, system, truncate } from "../system"
+import styled from "./styled"
+import { As, CreateChakraOptions } from "./types"
+import css from "../css"
 
 const sxProp = (props: { sx: object; theme: object }) =>
-  css(props.sx)(props.theme);
+  css(props.sx)(props.theme)
 
-const cssProp = (props: { css: any }) => props.css;
+const cssProp = (props: { css: any }) => props.css
 
 /**
  * The styled wrapper allows you to create a functional component that
@@ -26,7 +26,7 @@ function createChakra<T extends As, P = {}>(
   component: T,
   options?: CreateChakraOptions<P>,
 ) {
-  return styled(component, options)(system, pseudo, truncate, sxProp, cssProp);
+  return styled(component, options)(system, pseudo, truncate, sxProp, cssProp)
 }
 
-export default createChakra;
+export default createChakra

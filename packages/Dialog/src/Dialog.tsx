@@ -1,38 +1,47 @@
-import * as React from "react";
-import { createContext, callAllHandlers } from "@chakra-ui/utils";
-import { useIds, useLockBodyScroll, useAriaHidden, useMergeRefs } from "@chakra-ui/hooks";
-import { useOutsideClick, useStackContext } from "./Dialog.utils";
-import FocusLock from "./Dialog.focus-lock";
-import { createChakra, SystemProps } from "@chakra-ui/system";
-import { Portal } from "@chakra-ui/portal";
+import * as React from "react"
+import { createContext, callAllHandlers } from "@chakra-ui/utils"
+import {
+  useIds,
+  useLockBodyScroll,
+  useAriaHidden,
+  useMergeRefs,
+} from "@chakra-ui/hooks"
+import { useOutsideClick, useStackContext } from "./Dialog.utils"
+import FocusLock from "./Dialog.focus-lock"
+import { createChakra, SystemProps } from "@chakra-ui/system"
+import { Portal } from "@chakra-ui/portal"
 
 interface DialogProviderProps {
   /**
    * If `true`, the modal when be opened.
    */
-  isOpen: boolean;
+  isOpen: boolean
   /**
    * The `id` of the modal
    */
-  id?: string;
+  id?: string
   /**
    * Callback invoked to close the modal.
    */
-  onClose: (event?: MouseEvent | KeyboardEvent) => void;
+  onClose: (event?: MouseEvent | KeyboardEvent) => void
 }
 
 function useDialogProvider(props: DialogProviderProps) {
-  const { isOpen, onClose } = props;
-  const dialogRef = React.useRef<HTMLElement>(null);
-  const overlayRef = React.useRef<HTMLElement>(null);
+  const { isOpen, onClose } = props
+  const dialogRef = React.useRef<HTMLElement>(null)
+  const overlayRef = React.useRef<HTMLElement>(null)
 
-  const [dialogId, headerId, bodyId] = useIds(`chakra-dialog`, `chakra-dialog--header`, `chakra-dialog--body`);
+  const [dialogId, headerId, bodyId] = useIds(
+    `chakra-dialog`,
+    `chakra-dialog--header`,
+    `chakra-dialog--body`,
+  )
 
-  useLockBodyScroll(dialogRef, isOpen);
+  useLockBodyScroll(dialogRef, isOpen)
 
-  const modals = useStackContext(dialogRef, isOpen);
-  useOutsideClick(dialogRef, overlayRef, modals, onClose);
-  useAriaHidden(dialogRef, isOpen);
+  const modals = useStackContext(dialogRef, isOpen)
+  useOutsideClick(dialogRef, overlayRef, modals, onClose)
+  useAriaHidden(dialogRef, isOpen)
 
   return {
     isOpen,
@@ -42,20 +51,20 @@ function useDialogProvider(props: DialogProviderProps) {
     overlayRef,
     headerId,
     bodyId,
-  };
+  }
 }
 
-type DialogProviderReturn = ReturnType<typeof useDialogProvider>;
-const [DialogCtxProvider, useDialogCtx] = createContext<DialogProviderReturn>();
+type DialogProviderReturn = ReturnType<typeof useDialogProvider>
+const [DialogCtxProvider, useDialogCtx] = createContext<DialogProviderReturn>()
 
 interface DialogProps extends DialogProviderProps {
-  children?: React.ReactNode;
+  children?: React.ReactNode
 }
 
 export function Dialog(props: DialogProps) {
-  const context = useDialogProvider(props);
+  const context = useDialogProvider(props)
 
-  if (!props.isOpen) return null;
+  if (!props.isOpen) return null
 
   return (
     <DialogCtxProvider value={context}>
@@ -63,33 +72,33 @@ export function Dialog(props: DialogProps) {
         <FocusLock restoreFocus children={props.children} />
       </Portal>
     </DialogCtxProvider>
-  );
+  )
 }
 
 function useDialogOverlay(props: any) {
-  const { overlayRef } = useDialogCtx();
+  const { overlayRef } = useDialogCtx()
   const onClick = React.useCallback((event: React.MouseEvent) => {
-    event.nativeEvent.stopImmediatePropagation();
-    event.stopPropagation();
-  }, []);
-  return { ...props, ref: overlayRef, role: "presentation", onClick };
+    event.nativeEvent.stopImmediatePropagation()
+    event.stopPropagation()
+  }, [])
+  return { ...props, ref: overlayRef, role: "presentation", onClick }
 }
 
 function useDialogContent(props: any) {
-  const { dialogId, dialogRef, headerId, bodyId, onClose } = useDialogCtx();
+  const { dialogId, dialogRef, headerId, bodyId, onClose } = useDialogCtx()
 
-  const ref = useMergeRefs(props.ref, dialogRef);
+  const ref = useMergeRefs(props.ref, dialogRef)
 
   const onKeyDown = React.useCallback(
     (event: React.KeyboardEvent) => {
       if (event.key === "Escape") {
-        event.stopPropagation();
-        event.nativeEvent.stopImmediatePropagation();
-        onClose && onClose();
+        event.stopPropagation()
+        event.nativeEvent.stopImmediatePropagation()
+        onClose && onClose()
       }
     },
     [onClose],
-  );
+  )
 
   return {
     ...props,
@@ -101,7 +110,7 @@ function useDialogContent(props: any) {
     "aria-modal": true,
     "aria-labelledby": headerId,
     "aria-describedby": bodyId,
-  };
+  }
 }
 
 export const DialogContent = createChakra("section", {
@@ -113,7 +122,7 @@ export const DialogContent = createChakra("section", {
     width: "100%",
     outline: 0,
   },
-});
+})
 
 export const DialogOverlay = createChakra("div", {
   baseStyle: {
@@ -126,16 +135,16 @@ export const DialogOverlay = createChakra("div", {
   },
   // hook: useDialogOverlay,
   // attrs: { "data-chakra-overlay": "" },
-});
+})
 
 // TODO: Move this style to the Dialog.ts in theme
 export function getBaseStyle(props: {
-  colorMode?: "light" | "dark";
-  isCentered?: boolean;
-  scrollBehavior?: "inside" | "outside";
+  colorMode?: "light" | "dark"
+  isCentered?: boolean
+  scrollBehavior?: "inside" | "outside"
 }) {
-  const { colorMode, isCentered, scrollBehavior } = props;
-  const isDark = colorMode === "dark";
+  const { colorMode, isCentered, scrollBehavior } = props
+  const isDark = colorMode === "dark"
 
   let style: SystemProps = {
     bg: isDark ? "gray.700" : "white",
@@ -143,7 +152,7 @@ export function getBaseStyle(props: {
     shadow: isDark
       ? "rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.2) 0px 5px 10px, rgba(0, 0, 0, 0.4) 0px 15px 40px"
       : "0 7px 14px 0 rgba(0,0,0, 0.1), 0 3px 6px 0 rgba(0, 0, 0, .07)",
-  };
+  }
 
   if (isCentered) {
     style = {
@@ -151,7 +160,7 @@ export function getBaseStyle(props: {
       left: "50%",
       top: "50%",
       transform: "translate3d(-50%, -50%, 0)",
-    };
+    }
   } else {
     style = {
       ...style,
@@ -159,7 +168,7 @@ export function getBaseStyle(props: {
       transform: "translateX(-50%)",
       top: "3.75rem",
       mx: "auto",
-    };
+    }
   }
 
   if (scrollBehavior === "inside") {
@@ -169,7 +178,7 @@ export function getBaseStyle(props: {
       height: "100%",
       overflow: "hidden",
       top: "3.75rem",
-    };
+    }
   }
 
   if (scrollBehavior === "outside") {
@@ -179,8 +188,8 @@ export function getBaseStyle(props: {
       overflowX: "hidden",
       marginY: "3.75rem",
       top: 0,
-    };
+    }
   }
 
-  return style;
+  return style
 }

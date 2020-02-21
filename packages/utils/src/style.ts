@@ -8,4 +8,4 @@ export const visuallyHiddenStyle: React.CSSProperties = {
   overflow: "hidden",
   whiteSpace: "nowrap",
   position: "absolute",
-};
+}

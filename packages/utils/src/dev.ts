@@ -1,23 +1,26 @@
-import { isArray, isObject } from "./assertion";
-import { Dict } from "./types";
+import { isArray, isObject } from "./assertion"
+import { Dict } from "./types"
 
-export function parseResponsiveProp(value: any[] | Dict | string | number, fn: (val: any) => any) {
+export function parseResponsiveProp(
+  value: any[] | Dict | string | number,
+  fn: (val: any) => any,
+) {
   if (isArray(value)) {
-    return value.map(fn);
+    return value.map(fn)
   }
 
   if (isObject(value)) {
     return Object.keys(value).reduce((result: Dict, key) => {
-      result[key] = fn(value[key]);
-      return result;
-    }, {});
+      result[key] = fn(value[key])
+      return result
+    }, {})
   }
 
   if (value != null) {
-    return fn(value);
+    return fn(value)
   }
 
-  return null;
+  return null
 }
 
-export { default as invariant } from "tiny-invariant";
+export { default as invariant } from "tiny-invariant"

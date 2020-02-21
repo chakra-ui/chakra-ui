@@ -1,2 +1,2 @@
-export * from "./Checkbox.hook";
-export * from "./Checkbox";
+export * from "./Checkbox.hook"
+export * from "./Checkbox"

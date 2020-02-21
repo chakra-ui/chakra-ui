@@ -6,46 +6,46 @@ import {
   forwardRef,
   jsx,
   PropsOf,
-} from "@chakra-ui/system";
-import { cleanChildren, Omit } from "@chakra-ui/utils";
-import * as React from "react";
-import { FlexProps } from "./Flex";
+} from "@chakra-ui/system"
+import { cleanChildren, Omit } from "@chakra-ui/utils"
+import * as React from "react"
+import { FlexProps } from "./Flex"
 
 interface StackOptions {
   /**
    * The space between each stack item
    */
-  spacing?: FlexProps["margin"];
+  spacing?: FlexProps["margin"]
   /**
    * The direction to stack the items.
    */
-  direction?: "row" | "column";
+  direction?: "row" | "column"
   /**
    * The content of the stack.
    */
-  children: React.ReactNode;
+  children: React.ReactNode
   /**
    * If `true`, the items will be places horizontally
    */
-  isInline?: boolean;
+  isInline?: boolean
   /**
    * If `true`, the stack will be reversed
    */
-  isReversed?: boolean;
+  isReversed?: boolean
   /**
    * If `true`, each stack item will show a divider
    */
-  divider?: React.ReactElement;
+  divider?: React.ReactElement
 }
 
 export type StackProps = Omit<FlexProps, "direction" | "flexDirection"> &
-  StackOptions;
+  StackOptions
 
-export type StackDividerProps = PropsOf<typeof chakra.hr>;
+export type StackDividerProps = PropsOf<typeof chakra.hr>
 
 export const StackDivider = (props: StackDividerProps) => (
   <chakra.hr border="0" alignSelf="stretch" {...props} />
-);
+)
 
 export const Stack = forwardRef((props: StackProps, ref: React.Ref<any>) => {
   const {
@@ -59,17 +59,17 @@ export const Stack = forwardRef((props: StackProps, ref: React.Ref<any>) => {
     isInline,
     divider,
     ...rest
-  } = props;
+  } = props
 
-  const finalDirection = isInline ? "row" : direction;
+  const finalDirection = isInline ? "row" : direction
 
   const stackStyle = {
     [finalDirection === "row" ? "marginLeft" : "marginTop"]: spacing,
-  };
+  }
 
-  const validChildren = cleanChildren(children);
+  const validChildren = cleanChildren(children)
 
-  const finalChildren = isReversed ? validChildren.reverse() : validChildren;
+  const finalChildren = isReversed ? validChildren.reverse() : validChildren
 
   const dividerStyleProps =
     finalDirection === "row"
@@ -83,14 +83,14 @@ export const Stack = forwardRef((props: StackProps, ref: React.Ref<any>) => {
           marginX: 0,
           width: "100%",
           borderBottom: "1px solid",
-        };
+        }
 
-  const hasDivider = Boolean(divider);
+  const hasDivider = Boolean(divider)
 
   const clones = finalChildren.map((child, index) => {
-    if (!hasDivider) return child;
+    if (!hasDivider) return child
 
-    const isLast = index + 1 === finalChildren.length;
+    const isLast = index + 1 === finalChildren.length
 
     if (!isLast) {
       return (
@@ -103,10 +103,10 @@ export const Stack = forwardRef((props: StackProps, ref: React.Ref<any>) => {
             ),
           ]}
         </React.Fragment>
-      );
+      )
     }
-    return child;
-  });
+    return child
+  })
 
   return (
     <chakra.div
@@ -121,7 +121,7 @@ export const Stack = forwardRef((props: StackProps, ref: React.Ref<any>) => {
     >
       {clones}
     </chakra.div>
-  );
-}) as ChakraComponent<"div", StackProps>;
+  )
+}) as ChakraComponent<"div", StackProps>
 
-export default Stack;
+export default Stack

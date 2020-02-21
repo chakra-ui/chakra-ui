@@ -1,1 +1,1 @@
-export * from "./Descendant";
+export * from "./Descendant"

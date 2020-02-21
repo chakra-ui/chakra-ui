@@ -3,11 +3,11 @@ import {
   getModeColor,
   ComponentTheme,
   NestedSystemProps,
-} from "./utils";
-import { getColor } from "@chakra-ui/color";
+} from "./utils"
+import { getColor } from "@chakra-ui/color"
 
 function getLineStyle(props: StyleFunctionProps) {
-  const { variantColor: c } = props;
+  const { variantColor: c } = props
   return {
     TabList: {
       borderBottom: "2px solid",
@@ -29,11 +29,11 @@ function getLineStyle(props: StyleFunctionProps) {
         cursor: "not-allowed",
       },
     },
-  };
+  }
 }
 
 function getEnclosedStyle(props: StyleFunctionProps) {
-  const { variantColor: c } = props;
+  const { variantColor: c } = props
   return {
     Tab: {
       borderTopRadius: "md",
@@ -51,11 +51,11 @@ function getEnclosedStyle(props: StyleFunctionProps) {
       borderBottom: "1px solid",
       borderColor: "inherit",
     },
-  };
+  }
 }
 
 function getEnclosedColoredStyle(props: StyleFunctionProps) {
-  const { variantColor: c } = props;
+  const { variantColor: c } = props
   return {
     Tab: {
       border: "1px solid",
@@ -78,11 +78,11 @@ function getEnclosedColoredStyle(props: StyleFunctionProps) {
       borderBottom: "1px solid",
       borderColor: "inherit",
     },
-  };
+  }
 }
 
 function getSoftRoundedStyle(props: any): NestedSystemProps {
-  const { variantColor: c, theme: t } = props;
+  const { variantColor: c, theme: t } = props
   return {
     Tab: {
       borderRadius: "full",
@@ -94,11 +94,11 @@ function getSoftRoundedStyle(props: any): NestedSystemProps {
       },
     },
     TabList: {},
-  };
+  }
 }
 
 function getSolidRoundedStyle(props: StyleFunctionProps): NestedSystemProps {
-  const { variantColor: c } = props;
+  const { variantColor: c } = props
   return {
     Tab: {
       borderRadius: "full",
@@ -110,7 +110,7 @@ function getSolidRoundedStyle(props: StyleFunctionProps): NestedSystemProps {
       },
     },
     TabList: {},
-  };
+  }
 }
 
 const Tabs: ComponentTheme = {
@@ -154,6 +154,6 @@ const Tabs: ComponentTheme = {
     "solid-rounded": getSolidRoundedStyle,
     unstyled: {},
   },
-};
+}
 
-export default Tabs;
+export default Tabs

@@ -1,14 +1,14 @@
-import * as React from "react";
+import * as React from "react"
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbSeparator,
-} from "./Breadcrumb";
+} from "./Breadcrumb"
 
 export default {
   title: "Breadcrumb",
-};
+}
 
 export const Default = () => (
   <Breadcrumb addSeparator={false}>
@@ -26,7 +26,7 @@ export const Default = () => (
       <BreadcrumbLink href="#">Breadcrumb 3</BreadcrumbLink>
     </BreadcrumbItem>
   </Breadcrumb>
-);
+)
 
 export const Separator = () => (
   <Breadcrumb separator=">">
@@ -42,7 +42,7 @@ export const Separator = () => (
       <BreadcrumbLink href="#">Current</BreadcrumbLink>
     </BreadcrumbItem>
   </Breadcrumb>
-);
+)
 
 export const SeparatorV2 = () => (
   <Breadcrumb separator="/">
@@ -58,4 +58,4 @@ export const SeparatorV2 = () => (
       <BreadcrumbLink href="#">Current</BreadcrumbLink>
     </BreadcrumbItem>
   </Breadcrumb>
-);
+)

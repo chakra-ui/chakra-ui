@@ -1,15 +1,16 @@
-import { storiesOf } from "@storybook/react"
 import * as React from "react"
-import { BaseAccordion } from "."
 import {
-  BaseAccordionItem,
+  BaseAccordion,
   BaseAccordionButton,
+  BaseAccordionItem,
   BaseAccordionPanel,
 } from "./Accordion.base"
 
-const stories = storiesOf("accordion", module)
+export default {
+  title: "Accordion",
+}
 
-stories.add("basic", () => (
+export const Basic = () => (
   <BaseAccordion>
     <BaseAccordionItem>
       <BaseAccordionButton>Section 1 title</BaseAccordionButton>
@@ -21,4 +22,4 @@ stories.add("basic", () => (
       <BaseAccordionPanel>Panel 2</BaseAccordionPanel>
     </BaseAccordionItem>
   </BaseAccordion>
-))
+)

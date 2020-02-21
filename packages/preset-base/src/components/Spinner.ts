@@ -6,4 +6,4 @@ export default {
     lg: { size: "2rem" },
     xl: { size: "3rem" },
   },
-};
+}

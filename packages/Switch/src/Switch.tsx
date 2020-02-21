@@ -1,25 +1,25 @@
-import React from "react";
-import { useCheckbox, CheckboxHookProps } from "@chakra-ui/checkbox";
-import { useMergeRefs } from "@chakra-ui/hooks";
-import { createChakra, PropsOf } from "@chakra-ui/system";
+import React from "react"
+import { useCheckbox, CheckboxHookProps } from "@chakra-ui/checkbox"
+import { useMergeRefs } from "@chakra-ui/hooks"
+import { createChakra, PropsOf } from "@chakra-ui/system"
 
 const SwitchRoot = createChakra("label", {
   baseStyle: {
     display: "inline-block",
     verticalAlign: "middle",
   },
-});
-const SwitchTrack = createChakra("div", { themeKey: "Switch.Track" });
-const SwitchThumb = createChakra("div", { themeKey: "Switch.Thumb" });
+})
+const SwitchTrack = createChakra("div", { themeKey: "Switch.Track" })
+const SwitchThumb = createChakra("div", { themeKey: "Switch.Thumb" })
 
 export type SwitchProps = CheckboxHookProps &
-  Omit<PropsOf<typeof SwitchRoot>, "onChange">;
+  Omit<PropsOf<typeof SwitchRoot>, "onChange">
 
 export const Switch = React.forwardRef(
   (props: SwitchProps, ref: React.Ref<HTMLInputElement>) => {
-    const { variantColor, variantSize } = props;
-    const { state, input, checkbox, htmlProps } = useCheckbox(props);
-    const ownRef = useMergeRefs(ref, input.ref);
+    const { variantColor, variantSize } = props
+    const { state, input, checkbox, htmlProps } = useCheckbox(props)
+    const ownRef = useMergeRefs(ref, input.ref)
 
     return (
       <SwitchRoot data-chakra-switch="" {...htmlProps}>
@@ -43,8 +43,8 @@ export const Switch = React.forwardRef(
           />
         </SwitchTrack>
       </SwitchRoot>
-    );
+    )
   },
-);
+)
 
-export default Switch;
+export default Switch

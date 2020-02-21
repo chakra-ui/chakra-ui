@@ -1,16 +1,16 @@
 /**@jsx jsx */
-import { ChakraComponent, forwardRef, jsx, css } from "@chakra-ui/system";
-import * as React from "react";
-import { Box, BoxProps } from "./Box";
+import { ChakraComponent, forwardRef, jsx, css } from "@chakra-ui/system"
+import * as React from "react"
+import { Box, BoxProps } from "./Box"
 
-export type AspectRatioBoxProps = BoxProps & { ratio?: number };
+export type AspectRatioBoxProps = BoxProps & { ratio?: number }
 
 export const AspectRatioBox = forwardRef(function(
   props: AspectRatioBoxProps,
   ref: React.Ref<any>,
 ) {
-  const { ratio = 4 / 3, children, ...rest } = props;
-  const child = React.Children.only(children);
+  const { ratio = 4 / 3, children, ...rest } = props
+  const child = React.Children.only(children)
   return (
     <Box
       ref={ref}
@@ -43,7 +43,7 @@ export const AspectRatioBox = forwardRef(function(
     >
       {child}
     </Box>
-  );
-}) as ChakraComponent<"div", { ratio?: number }>;
+  )
+}) as ChakraComponent<"div", { ratio?: number }>
 
-export default AspectRatioBox;
+export default AspectRatioBox

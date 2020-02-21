@@ -1,7 +1,7 @@
-import { ensureFocus, normalizeEventKey } from "@chakra-ui/utils";
-import * as React from "react";
-import { useCounter, CounterOptions } from "@chakra-ui/counter";
-import { useUpdateEffect } from "@chakra-ui/hooks";
+import { ensureFocus, normalizeEventKey } from "@chakra-ui/utils"
+import * as React from "react"
+import { useCounter, CounterOptions } from "@chakra-ui/counter"
+import { useUpdateEffect } from "@chakra-ui/hooks"
 
 export interface NumberInputHookProps extends CounterOptions {
   /**
@@ -10,7 +10,7 @@ export interface NumberInputHookProps extends CounterOptions {
    *
    * @default true
    */
-  focusInputOnChange?: boolean;
+  focusInputOnChange?: boolean
   /**
    * This controls the value update when you blur out of the input.
    * - If `true` and the value is greater than `max`, the value will be reset to `max`
@@ -18,40 +18,40 @@ export interface NumberInputHookProps extends CounterOptions {
    *
    * @default true
    */
-  clampValueOnBlur?: boolean;
+  clampValueOnBlur?: boolean
   /**
    * This is used to format the value so that screen readers
    * can speak out a more human-friendly value.
    *
    * It is used to set the `aria-valuetext` property of the input
    */
-  getAriaValueText?: (value: number | string) => string;
+  getAriaValueText?: (value: number | string) => string
   /**
    * If `true`, the input will be in readonly mode
    */
-  isReadOnly?: boolean;
+  isReadOnly?: boolean
   /**
    * If `true`, the input will have `aria-invalid` set to `true`
    */
-  isInvalid?: boolean;
+  isInvalid?: boolean
   /**
    * If `true`, the input will be disabled
    */
-  isDisabled?: boolean;
+  isDisabled?: boolean
   /**
    * Specifies the value extracted from formatter
    * @default parseFloat
    *
    */
-  parse?: (value: string) => number;
+  parse?: (value: string) => number
   /**
    * Specifies the format of the value presented
    */
-  format?: (value: string | number) => string;
+  format?: (value: string | number) => string
   /**
    * decimal separator
    */
-  decimalSeparator?: string;
+  decimalSeparator?: string
 }
 
 // TODO
@@ -74,110 +74,110 @@ export function useNumberInput(props: NumberInputHookProps = {}) {
     decimalSeparator,
     onChange: onChangeProp,
     ...htmlProps
-  } = props;
+  } = props
 
-  const counter = useCounter(props);
+  const counter = useCounter(props)
 
-  const [isFocused, setIsFocused] = React.useState(false);
+  const [isFocused, setIsFocused] = React.useState(false)
 
-  const inputRef = React.useRef<HTMLInputElement>(null);
-  const isInteractive = !(isReadOnly || isDisabled);
+  const inputRef = React.useRef<HTMLInputElement>(null)
+  const isInteractive = !(isReadOnly || isDisabled)
 
   // Focus the input then you use the spinner to change value
   useUpdateEffect(() => {
     if (focusInputOnChange && inputRef.current) {
-      ensureFocus(inputRef.current);
+      ensureFocus(inputRef.current)
     }
-  }, [counter.value, focusInputOnChange]);
+  }, [counter.value, focusInputOnChange])
 
   const increment = (step = stepProp) => {
-    if (!isInteractive) return;
-    let valueToUse = +counter.value;
+    if (!isInteractive) return
+    let valueToUse = +counter.value
     if (isNaN(valueToUse)) {
-      valueToUse = min;
+      valueToUse = min
     }
-    const nextValue = counter.clamp(valueToUse + step);
-    counter.update(nextValue);
-  };
+    const nextValue = counter.clamp(valueToUse + step)
+    counter.update(nextValue)
+  }
 
   const decrement = (step = stepProp) => {
-    if (!isInteractive) return;
-    let valueToUse = +counter.value;
+    if (!isInteractive) return
+    let valueToUse = +counter.value
     if (isNaN(valueToUse)) {
-      valueToUse = min;
+      valueToUse = min
     }
-    const nextValue = counter.clamp(valueToUse - step);
-    counter.update(nextValue);
-  };
+    const nextValue = counter.clamp(valueToUse - step)
+    counter.update(nextValue)
+  }
 
   const onChange = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      counter.update(event.target.value);
+      counter.update(event.target.value)
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [counter.update],
-  );
+  )
 
   const onKeyDown = (event: React.KeyboardEvent) => {
     if (!isAllowedKey(event)) {
-      event.preventDefault();
+      event.preventDefault()
     }
 
-    const eventKey = normalizeEventKey(event);
-    const factor = getIncrementFactor(event);
-    const valueStep = factor * stepProp;
+    const eventKey = normalizeEventKey(event)
+    const factor = getIncrementFactor(event)
+    const valueStep = factor * stepProp
 
     switch (eventKey) {
       case "ArrowUp":
-        event.preventDefault();
-        increment(valueStep);
-        break;
+        event.preventDefault()
+        increment(valueStep)
+        break
       case "ArrowDown":
-        event.preventDefault();
-        decrement(valueStep);
-        break;
+        event.preventDefault()
+        decrement(valueStep)
+        break
       case "Home":
-        event.preventDefault();
-        counter.update(min);
-        break;
+        event.preventDefault()
+        counter.update(min)
+        break
       case "End":
-        event.preventDefault();
-        counter.update(max);
-        break;
+        event.preventDefault()
+        counter.update(max)
+        break
       default:
-        break;
+        break
     }
-  };
+  }
 
   const getIncrementFactor = (event: React.KeyboardEvent) => {
-    let ratio = 1;
+    let ratio = 1
     if (event.metaKey || event.ctrlKey) {
-      ratio = 0.1;
+      ratio = 0.1
     }
     if (event.shiftKey) {
-      ratio = 10;
+      ratio = 10
     }
-    return ratio;
-  };
+    return ratio
+  }
 
   const validateAndClamp = () => {
-    if (counter.value > max) counter.update(max);
-    if (counter.value < min) counter.update(min);
-  };
+    if (counter.value > max) counter.update(max)
+    if (counter.value < min) counter.update(min)
+  }
 
   const ariaValueText =
     typeof getAriaValueText === "function"
       ? getAriaValueText(counter.value)
-      : undefined;
+      : undefined
 
-  const onFocus = () => setIsFocused(true);
+  const onFocus = () => setIsFocused(true)
 
   const onBlur = () => {
-    setIsFocused(false);
+    setIsFocused(false)
     if (clampValueOnBlur) {
-      validateAndClamp();
+      validateAndClamp()
     }
-  };
+  }
 
   return {
     value: counter.value,
@@ -236,10 +236,10 @@ export function useNumberInput(props: NumberInputHookProps = {}) {
       children: ariaValueText || counter.value,
     },
     htmlProps,
-  };
+  }
 }
 
-export type NumberInputHookReturn = ReturnType<typeof useNumberInput>;
+export type NumberInputHookReturn = ReturnType<typeof useNumberInput>
 
 /**
  * Checks if the pressed key is a number input related
@@ -248,7 +248,7 @@ export type NumberInputHookReturn = ReturnType<typeof useNumberInput>;
  * @returns {Boolean} True or false, obviously :)
  */
 function isAllowedKey(event: React.KeyboardEvent) {
-  const keyCode = event.which ? event.which : event.keyCode;
+  const keyCode = event.which ? event.which : event.keyCode
 
   const allowedKeys = [
     "Delete",
@@ -264,25 +264,25 @@ function isAllowedKey(event: React.KeyboardEvent) {
     "+",
     "-",
     ".",
-  ];
+  ]
 
-  const key = normalizeEventKey(event);
-  const ctrlKey = event.metaKey || event.ctrlKey;
+  const key = normalizeEventKey(event)
+  const ctrlKey = event.metaKey || event.ctrlKey
 
-  const isCopy = ctrlKey && key === "c";
-  const isPaste = ctrlKey && key === "v";
-  const isCut = ctrlKey && key === "x";
-  const isSelectAll = ctrlKey && key === "a";
+  const isCopy = ctrlKey && key === "c"
+  const isPaste = ctrlKey && key === "v"
+  const isCut = ctrlKey && key === "x"
+  const isSelectAll = ctrlKey && key === "a"
 
   if (allowedKeys.includes(key) || isCopy || isPaste || isCut || isSelectAll)
-    return true;
+    return true
 
-  const notTopNumberKeypad = keyCode > 31 && (keyCode < 48 || keyCode > 57);
-  const notNumericKeypad = (keyCode < 96 || keyCode > 105) && keyCode !== 110;
+  const notTopNumberKeypad = keyCode > 31 && (keyCode < 48 || keyCode > 57)
+  const notNumericKeypad = (keyCode < 96 || keyCode > 105) && keyCode !== 110
 
-  if (event.shiftKey || (notTopNumberKeypad && notNumericKeypad)) return false;
+  if (event.shiftKey || (notTopNumberKeypad && notNumericKeypad)) return false
 
-  return true;
+  return true
 }
 
-export default useNumberInput;
+export default useNumberInput

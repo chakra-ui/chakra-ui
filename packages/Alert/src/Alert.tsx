@@ -1,49 +1,49 @@
-import { Icon, IconProps } from "@chakra-ui/icon";
+import { Icon, IconProps } from "@chakra-ui/icon"
 import {
   ColorModeType,
   createChakra,
   forwardRef,
   PropsOf,
   useColorMode,
-} from "@chakra-ui/system";
-import * as React from "react";
+} from "@chakra-ui/system"
+import * as React from "react"
 
 export const statuses = {
   info: { icon: "info", color: "blue" },
   warning: { icon: "warning-2", color: "orange" },
   success: { icon: "check-circle", color: "green" },
   error: { icon: "warning", color: "red" },
-};
+}
 
 const AlertContext = React.createContext<AlertContextValue>({
   status: "success",
   variant: "solid",
-});
+})
 
-const useAlertContext = () => React.useContext(AlertContext);
+const useAlertContext = () => React.useContext(AlertContext)
 
-type AlertContextValue = Required<AlertOptions>;
+type AlertContextValue = Required<AlertOptions>
 
 export interface AlertOptions {
   /**
    * The status of the alert
    */
-  status?: keyof typeof statuses;
+  status?: keyof typeof statuses
   /**
    * The variant of the alert style to use.
    */
-  variant?: "subtle" | "solid" | "left-accent" | "top-accent";
+  variant?: "subtle" | "solid" | "left-accent" | "top-accent"
 }
 
-export type AlertProps = PropsOf<typeof AlertRoot> & AlertOptions;
+export type AlertProps = PropsOf<typeof AlertRoot> & AlertOptions
 
-const AlertRoot = createChakra("div", { themeKey: "Alert" });
+const AlertRoot = createChakra("div", { themeKey: "Alert" })
 
 const Alert = forwardRef((props: AlertProps, ref: React.Ref<any>) => {
-  const { status = "info", variant = "subtle", ...rest } = props;
-  const variantColor = statuses[status]["color"];
+  const { status = "info", variant = "subtle", ...rest } = props
+  const variantColor = statuses[status]["color"]
 
-  const context = { status, variant };
+  const context = { status, variant }
   return (
     <AlertContext.Provider value={context}>
       <AlertRoot
@@ -54,37 +54,37 @@ const Alert = forwardRef((props: AlertProps, ref: React.Ref<any>) => {
         variantColor={variantColor}
       />
     </AlertContext.Provider>
-  );
-});
+  )
+})
 
 const AlertTitle = createChakra("div", {
   baseStyle: {
     fontWeight: "bold",
     lineHeight: "normal",
   },
-});
+})
 
-const AlertDescription = createChakra("div");
+const AlertDescription = createChakra("div")
 
 const AlertIcon = (props: IconProps) => {
-  const [colorMode] = useColorMode();
-  const { status, variant } = useAlertContext();
-  const { icon, color } = statuses[status];
+  const [colorMode] = useColorMode()
+  const { status, variant } = useAlertContext()
+  const { icon, color } = statuses[status]
 
-  let style: { [K in ColorModeType]?: any } = {};
+  let style: { [K in ColorModeType]?: any } = {}
 
   if (["left-accent", "top-accent", "subtle"].includes(variant)) {
     style = {
       light: { color: `${color}.500` },
       dark: { color: `${color}.200` },
-    };
+    }
   }
 
-  const iconStyleProps = style[colorMode];
+  const iconStyleProps = style[colorMode]
 
   return (
     <Icon mt={1} mr={3} size={5} name={icon} {...iconStyleProps} {...props} />
-  );
-};
+  )
+}
 
-export { Alert, AlertTitle, AlertDescription, AlertIcon };
+export { Alert, AlertTitle, AlertDescription, AlertIcon }

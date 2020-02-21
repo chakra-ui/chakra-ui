@@ -4,29 +4,29 @@ import {
   useFocusOnShow,
   useIds,
   useMergeRefs,
-} from "@chakra-ui/hooks";
-import { Placement, usePopper } from "@chakra-ui/popper";
-import * as React from "react";
+} from "@chakra-ui/hooks"
+import { Placement, usePopper } from "@chakra-ui/popper"
+import * as React from "react"
 import {
   useBlurOutside,
   useFocusOnHide,
   getElementAfterTrigger,
   hasFocusWithin,
-} from "./Popover.utils";
+} from "./Popover.utils"
 // import { getLastTabbableIn, ensureFocus } from "@chakra-ui/utils";
 
 export interface PopoverHookProps {
-  id?: string;
-  isOpen?: boolean;
-  defaultIsOpen?: boolean;
-  initialFocusRef?: React.RefObject<any>;
-  returnFocusOnClose?: boolean;
-  gutter?: number;
-  placement?: Placement;
-  closeOnBlur?: boolean;
-  closeOnEsc?: boolean;
-  onOpen?: () => void;
-  onClose?: () => void;
+  id?: string
+  isOpen?: boolean
+  defaultIsOpen?: boolean
+  initialFocusRef?: React.RefObject<any>
+  returnFocusOnClose?: boolean
+  gutter?: number
+  placement?: Placement
+  closeOnBlur?: boolean
+  closeOnEsc?: boolean
+  onOpen?: () => void
+  onClose?: () => void
 }
 
 export function usePopover(props: PopoverHookProps = {}) {
@@ -36,45 +36,45 @@ export function usePopover(props: PopoverHookProps = {}) {
     initialFocusRef,
     placement,
     gutter,
-  } = props;
-  const { isOpen, onClose, onToggle } = useDisclosure(props);
+  } = props
+  const { isOpen, onClose, onToggle } = useDisclosure(props)
 
-  const triggerRef = React.useRef<any>(null);
-  const contentRef = React.useRef<HTMLElement>(null);
+  const triggerRef = React.useRef<any>(null)
+  const contentRef = React.useRef<HTMLElement>(null)
 
-  const [triggerId, popoverId] = useIds("popover-trigger", "popover-content");
+  const [triggerId, popoverId] = useIds("popover-trigger", "popover-content")
 
   const { popper, reference } = usePopper({
     placement,
     gutter,
     forceUpdate: isOpen,
-  });
+  })
 
   useFocusOnHide(contentRef, {
     autoFocus: true,
     visible: isOpen,
     focusRef: triggerRef,
-  });
+  })
 
   useFocusOnShow(contentRef, {
     autoFocus: true,
     visible: isOpen,
     focusRef: initialFocusRef,
-  });
+  })
 
   const onBlur = useBlurOutside(triggerRef, contentRef, {
     visible: Boolean(closeOnBlur && isOpen),
     action: onClose,
-  });
+  })
 
   const onKeyDown = React.useCallback(
     (event: React.KeyboardEvent) => {
       if (closeOnEsc && event.key === "Escape") {
-        onClose();
+        onClose()
       }
     },
     [closeOnEsc, onClose],
-  );
+  )
 
   return {
     isOpen,
@@ -98,7 +98,7 @@ export function usePopover(props: PopoverHookProps = {}) {
       onBlur: onBlur,
       onKeyDown,
     },
-  };
+  }
 }
 
-export type PopoverHookReturn = ReturnType<typeof usePopover>;
+export type PopoverHookReturn = ReturnType<typeof usePopover>

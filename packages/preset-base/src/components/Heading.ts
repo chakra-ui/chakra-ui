@@ -13,4 +13,4 @@ export default {
     sm: { fontSize: "md" },
     xs: { fontSize: "sm" },
   },
-};
+}

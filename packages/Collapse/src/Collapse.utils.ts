@@ -1,34 +1,34 @@
-import * as React from "react";
+import * as React from "react"
 
 export function getElementHeight(el: React.RefObject<HTMLElement>) {
-  if (!el || !el.current) return "auto";
-  return el.current.scrollHeight;
+  if (!el || !el.current) return "auto"
+  return el.current.scrollHeight
 }
 
 export const defaultTransitionStyles: React.CSSProperties = {
   transitionDuration: "250ms",
   transitionTimingFunction: "ease-in",
-};
+}
 
 export function join(str: string | undefined) {
   if (str) {
-    const styles = ["height"];
-    styles.push(...str.split(", "));
-    return styles.join(", ");
+    const styles = ["height"]
+    styles.push(...str.split(", "))
+    return styles.join(", ")
   }
-  return "height";
+  return "height"
 }
 
 interface TransitionOptions {
-  collapseStyles?: React.CSSProperties;
-  expandStyles?: React.CSSProperties;
+  collapseStyles?: React.CSSProperties
+  expandStyles?: React.CSSProperties
 }
 
 export function makeTransitionStyles(options: TransitionOptions) {
   const {
     expandStyles = defaultTransitionStyles,
     collapseStyles = defaultTransitionStyles,
-  } = options;
+  } = options
   return {
     expandStyles: {
       ...expandStyles,
@@ -38,5 +38,5 @@ export function makeTransitionStyles(options: TransitionOptions) {
       ...collapseStyles,
       transitionProperty: join(collapseStyles.transitionProperty),
     },
-  };
+  }
 }

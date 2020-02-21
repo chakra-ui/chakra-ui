@@ -1,20 +1,20 @@
 /**@jsx jsx */
-import { css, jsx } from "@emotion/core";
-import React from "react";
-import getProgressProps, { rotate, spin } from "./Progress.utils";
-import { chakra, PropsOf } from "@chakra-ui/system";
-import { isUndefined } from "@chakra-ui/utils";
+import { css, jsx } from "@emotion/core"
+import React from "react"
+import getProgressProps, { rotate, spin } from "./Progress.utils"
+import { chakra, PropsOf } from "@chakra-ui/system"
+import { isUndefined } from "@chakra-ui/utils"
 
-type CircleProps = PropsOf<"circle">;
+type CircleProps = PropsOf<"circle">
 
 function Circle(props: CircleProps) {
-  return <circle cx={50} cy={50} r={42} fill="transparent" {...props} />;
+  return <circle cx={50} cy={50} r={42} fill="transparent" {...props} />
 }
 
 type ShapeProps = PropsOf<"svg"> & {
-  size?: string | number;
-  isIndeterminate?: boolean;
-};
+  size?: string | number
+  isIndeterminate?: boolean
+}
 
 function Shape({ size, isIndeterminate, ...props }: ShapeProps) {
   return (
@@ -30,58 +30,58 @@ function Shape({ size, isIndeterminate, ...props }: ShapeProps) {
       }
       {...props}
     />
-  );
+  )
 }
 
 interface CircularProgressOptions {
   /**
    * The size of the circular progress in CSS units
    */
-  size?: string | number;
+  size?: string | number
   /**
    * Maximum value defining 100% progress made (must be higher than 'min')
    */
-  max?: number;
+  max?: number
   /**
    * Minimum value defining 'no progress' (must be lower than 'max')
    */
-  min?: number;
+  min?: number
   /**
    * The thickness of progress indicator as a ratio of `size`. Must be between `0` and `1`
    */
-  thickness?: string | number;
+  thickness?: string | number
   /**
    * Current progress (must be between min/max)
    */
-  value?: number;
+  value?: number
   /**
    * If `true`, the cap of the progress indicator will be rounded.
    */
-  capIsRound?: boolean;
+  capIsRound?: boolean
   /**
    * The content of the circular progress bar. If passed, the content will be inside and centered in the progress bar.
    */
-  children?: React.ReactNode;
+  children?: React.ReactNode
   /**
    * The color name of the progress track. Use a color key in the theme object
    */
-  trackColor?: string;
+  trackColor?: string
   /**
    * The color of the progress indicator. Use a color key in the theme object
    */
-  color?: string;
+  color?: string
   /**
    * The desired valueText to use in place of the value
    */
-  valueText?: string;
+  valueText?: string
   /**
    * A function that returns the desired valueText to use in place of the value
    */
-  getValueText?: (value?: number, percent?: number) => string;
+  getValueText?: (value?: number, percent?: number) => string
 }
 
 type CircularProgressProps = PropsOf<typeof chakra.div> &
-  CircularProgressOptions;
+  CircularProgressOptions
 
 export function CircularProgress(props: CircularProgressProps) {
   const {
@@ -97,7 +97,7 @@ export function CircularProgress(props: CircularProgressProps) {
     color = "#0078d4",
     trackColor = "#edebe9",
     ...rest
-  } = props;
+  } = props
 
   const progress = getProgressProps({
     min,
@@ -105,17 +105,17 @@ export function CircularProgress(props: CircularProgressProps) {
     value,
     valueText,
     getValueText,
-  });
+  })
 
-  const isIndeterminate = isUndefined(progress.percent);
+  const isIndeterminate = isUndefined(progress.percent)
 
   const determinant = isUndefined(progress.percent)
     ? undefined
-    : progress.percent * 2.64;
+    : progress.percent * 2.64
 
   const strokeDasharray = isUndefined(determinant)
     ? undefined
-    : `${determinant} ${264 - determinant}`;
+    : `${determinant} ${264 - determinant}`
 
   const indicatorProps = isIndeterminate
     ? {
@@ -129,7 +129,7 @@ export function CircularProgress(props: CircularProgressProps) {
         css: css`
           transition: stroke-dasharray 0.6s ease 0s, stroke 0.6s ease;
         `,
-      };
+      }
 
   return (
     <chakra.div
@@ -156,7 +156,7 @@ export function CircularProgress(props: CircularProgressProps) {
       </Shape>
       {children}
     </chakra.div>
-  );
+  )
 }
 
 export function CircularProgressLabel(props: PropsOf<typeof chakra.div>) {
@@ -171,5 +171,5 @@ export function CircularProgressLabel(props: PropsOf<typeof chakra.div>) {
       css={{ fontVariantNumeric: "tabular-nums" }}
       {...props}
     />
-  );
+  )
 }

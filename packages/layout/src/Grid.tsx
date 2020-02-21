@@ -1,23 +1,23 @@
-import { ChakraComponent, forwardRef } from "@chakra-ui/system";
-import * as React from "react";
-import { Box, BoxProps } from "./Box";
+import { ChakraComponent, forwardRef } from "@chakra-ui/system"
+import * as React from "react"
+import { Box, BoxProps } from "./Box"
 
 export interface GridOptions {
-  templateColumns?: BoxProps["gridTemplateColumns"];
-  gap?: BoxProps["gridGap"];
-  rowGap?: BoxProps["gridRowGap"];
-  columnGap?: BoxProps["gridColumnGap"];
-  autoFlow?: BoxProps["gridAutoFlow"];
-  autoRows?: BoxProps["gridAutoRows"];
-  autoColumns?: BoxProps["gridAutoColumns"];
-  templateRows?: BoxProps["gridTemplateRows"];
-  templateAreas?: BoxProps["gridTemplateAreas"];
-  area?: BoxProps["gridArea"];
-  column?: BoxProps["gridColumn"];
-  row?: BoxProps["gridRow"];
+  templateColumns?: BoxProps["gridTemplateColumns"]
+  gap?: BoxProps["gridGap"]
+  rowGap?: BoxProps["gridRowGap"]
+  columnGap?: BoxProps["gridColumnGap"]
+  autoFlow?: BoxProps["gridAutoFlow"]
+  autoRows?: BoxProps["gridAutoRows"]
+  autoColumns?: BoxProps["gridAutoColumns"]
+  templateRows?: BoxProps["gridTemplateRows"]
+  templateAreas?: BoxProps["gridTemplateAreas"]
+  area?: BoxProps["gridArea"]
+  column?: BoxProps["gridColumn"]
+  row?: BoxProps["gridRow"]
 }
 
-export type GridProps = BoxProps & GridOptions;
+export type GridProps = BoxProps & GridOptions
 
 export const Grid = forwardRef((props: GridProps, ref: React.Ref<any>) => {
   const {
@@ -34,7 +34,7 @@ export const Grid = forwardRef((props: GridProps, ref: React.Ref<any>) => {
     column,
     row,
     ...rest
-  } = props;
+  } = props
 
   return (
     <Box
@@ -54,7 +54,7 @@ export const Grid = forwardRef((props: GridProps, ref: React.Ref<any>) => {
       gridTemplateColumns={templateColumns}
       {...rest}
     />
-  );
-}) as ChakraComponent<"div", GridOptions>;
+  )
+}) as ChakraComponent<"div", GridOptions>
 
-export default Grid;
+export default Grid

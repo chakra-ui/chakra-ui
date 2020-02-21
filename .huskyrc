@@ -1,6 +1,6 @@
 {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "yarn workspace @chakra-ui/core lint --fix "
+      "pre-commit": "prettier --write *.{ts,tsx}"
     }
   }

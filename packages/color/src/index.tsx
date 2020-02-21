@@ -1,65 +1,65 @@
-import tiny from "tinycolor2";
-import * as system from "@styled-system/css";
+import tiny from "tinycolor2"
+import * as system from "@styled-system/css"
 
 export function getColor(theme: object, color: string, fallback?: string) {
-  const result = system.get(theme, `colors.${color}`, color);
-  const isValid = tiny(result).isValid();
-  return isValid ? result : fallback;
+  const result = system.get(theme, `colors.${color}`, color)
+  const isValid = tiny(result).isValid()
+  return isValid ? result : fallback
 }
 
-const get = getColor;
+const get = getColor
 
 export function isDark(color: string) {
   return function(theme: object) {
-    return tiny(get(theme, color)).isDark();
-  };
+    return tiny(get(theme, color)).isDark()
+  }
 }
 
 export function isLight(color: string) {
   return function(theme: object) {
-    return tiny(get(theme, color)).isLight();
-  };
+    return tiny(get(theme, color)).isLight()
+  }
 }
 
 export function addOpacity(color: string, opacity: number) {
   return function(theme: object) {
     return tiny(get(theme, color))
       .setAlpha(opacity)
-      .toRgbString();
-  };
+      .toRgbString()
+  }
 }
 
 export const mixWithWhite = (color: string, amount: number) => (
   theme: object,
-) => tiny.mix(get(theme, color), "#fff", amount).toHexString();
+) => tiny.mix(get(theme, color), "#fff", amount).toHexString()
 
 export const mixWithBlack = (color: string, amount: number) => (
   theme: object,
-) => tiny.mix(get(theme, color), "#000", amount).toHexString();
+) => tiny.mix(get(theme, color), "#000", amount).toHexString()
 
 export const darken = (color: string, amount: number) => (theme: object) =>
   tiny(get(theme, color))
     .darken(amount)
-    .toHexString();
+    .toHexString()
 
 export const lighten = (color: string, amount: number) => (theme: object) =>
   tiny(get(theme, color))
     .lighten(amount)
-    .toHexString();
+    .toHexString()
 
 export const getContrastRatio = (fg: string, bg: string) => (theme: object) =>
-  tiny.readability(get(theme, bg), get(theme, fg));
+  tiny.readability(get(theme, bg), get(theme, fg))
 
 export const passWCAGRequirement = (fg: string, bg: string) => (
   theme: object,
-) => tiny.isReadable(get(theme, bg), get(theme, fg));
+) => tiny.isReadable(get(theme, bg), get(theme, fg))
 
-export const getRandomColor = () => tiny.random().toHexString();
+export const getRandomColor = () => tiny.random().toHexString()
 
 export const getComplementary = (color: string) => (theme: object) =>
   tiny(get(theme, color))
     .complement()
-    .toHexString();
+    .toHexString()
 
 export const generateStripe = (
   size = "1rem",
@@ -76,7 +76,7 @@ export const generateStripe = (
     transparent
   )`,
   backgroundSize: `${size} ${size}`,
-});
+})
 
 export const generateAlphaColors = (color: string) => ({
   900: addOpacity(color, 0.92),
@@ -89,7 +89,7 @@ export const generateAlphaColors = (color: string) => ({
   200: addOpacity(color, 0.12),
   100: addOpacity(color, 0.08),
   50: addOpacity(color, 0.04),
-});
+})
 
 export const colorEmphasis = (
   color: string,
@@ -100,19 +100,19 @@ export const colorEmphasis = (
     medium: generateAlphaColors(color)[700],
     low: generateAlphaColors(color)[500],
     lowest: generateAlphaColors(color)[300],
-  }[emphasis]);
+  }[emphasis])
 
 export const stringToColor = (str: string) => {
-  let hash = 0;
-  if (str.length === 0) return hash.toString();
+  let hash = 0
+  if (str.length === 0) return hash.toString()
   for (let i = 0; i < str.length; i++) {
-    hash = str.charCodeAt(i) + ((hash << 5) - hash);
-    hash = hash & hash;
+    hash = str.charCodeAt(i) + ((hash << 5) - hash)
+    hash = hash & hash
   }
-  let color = "#";
+  let color = "#"
   for (let j = 0; j < 3; j++) {
-    const value = (hash >> (j * 8)) & 255;
-    color += ("00" + value.toString(16)).substr(-2);
+    const value = (hash >> (j * 8)) & 255
+    color += ("00" + value.toString(16)).substr(-2)
   }
-  return color;
-};
+  return color
+}

@@ -1,9 +1,9 @@
-import React from "react";
-import useCounter from "./Counter.hook";
+import React from "react"
+import useCounter from "./Counter.hook"
 
 export default {
   title: "Counters",
-};
+}
 
 export function HookSetup() {
   const counter = useCounter({
@@ -14,7 +14,7 @@ export function HookSetup() {
     keepWithinRange: true,
     precision: 4,
     onChange: (num, str) => console.log({ num, str }),
-  });
+  })
 
   return (
     <div>
@@ -47,5 +47,5 @@ export function HookSetup() {
         Decrement
       </button>
     </div>
-  );
+  )
 }

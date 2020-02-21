@@ -1,6 +1,6 @@
-import { chakra } from "@chakra-ui/system";
-import React from "react";
-import Switch from "./Switch";
+import { chakra } from "@chakra-ui/system"
+import React from "react"
+import Switch from "./Switch"
 
 export default {
   title: "Switch",
@@ -11,7 +11,7 @@ export default {
       </chakra.div>
     ),
   ],
-};
+}
 
 export const Base = () => (
   <>
@@ -19,7 +19,7 @@ export const Base = () => (
     <Switch variantSize="md" variantColor="blue" margin="20px" />
     <Switch variantSize="lg" variantColor="cyan" />
   </>
-);
+)
 
 export const Usage = () => (
   <chakra.div display="flex" justifyContent="center" alignItems="center">
@@ -28,4 +28,4 @@ export const Usage = () => (
     </chakra.label>
     <Switch variantColor="green" id="email-alerts" />
   </chakra.div>
-);
+)

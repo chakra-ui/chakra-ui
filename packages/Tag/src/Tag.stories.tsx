@@ -1,10 +1,10 @@
-import icons from "@chakra-ui/icon-glyphs";
-import * as React from "react";
-import { Tag, TagIcon, TagLabel } from "./Tag";
+import icons from "@chakra-ui/icon-glyphs"
+import * as React from "react"
+import { Tag, TagIcon, TagLabel } from "./Tag"
 
 export default {
   title: "Tag",
-};
+}
 
 export const Basic = () => (
   <>
@@ -16,7 +16,7 @@ export const Basic = () => (
       Gray
     </Tag>
   </>
-);
+)
 
 export const VariantColors = () => (
   <>
@@ -28,7 +28,7 @@ export const VariantColors = () => (
       Gray
     </Tag>
   </>
-);
+)
 
 export const LeftIcon = () => (
   <>
@@ -37,4 +37,4 @@ export const LeftIcon = () => (
       <TagLabel>Green</TagLabel>
     </Tag>
   </>
-);
+)

@@ -1,33 +1,33 @@
-import { Dict, isObject, memoizeOne } from "@chakra-ui/utils";
-import transformProps from "../custom/custom.utils";
-import selectors from "./pseudo.selectors";
+import { Dict, isObject, memoizeOne } from "@chakra-ui/utils"
+import transformProps from "../custom/custom.utils"
+import selectors from "./pseudo.selectors"
 
-type SelectorProp = keyof typeof selectors;
+type SelectorProp = keyof typeof selectors
 
-const hasUnderscore = (str: string) => str.startsWith("_");
+const hasUnderscore = (str: string) => str.startsWith("_")
 
-const stripUnderscore = (str: string) => str.slice(1, str.length);
+const stripUnderscore = (str: string) => str.slice(1, str.length)
 
 export const replacePseudoProp = memoizeOne((prop: string) => {
   if (hasUnderscore(prop)) {
-    const newProp = stripUnderscore(prop);
-    return selectors[newProp as SelectorProp];
+    const newProp = stripUnderscore(prop)
+    return selectors[newProp as SelectorProp]
   }
-  return prop;
-});
+  return prop
+})
 
 export const replacePseudo = (props: any) => {
-  const next: Dict = {};
+  const next: Dict = {}
   for (const prop in props) {
-    const propValue = props[prop];
-    const propKey = replacePseudoProp(prop);
+    const propValue = props[prop]
+    const propKey = replacePseudoProp(prop)
     if (isObject(propValue)) {
-      next[propKey] = replacePseudo(propValue);
+      next[propKey] = replacePseudo(propValue)
     } else {
-      next[propKey] = propValue;
+      next[propKey] = propValue
     }
   }
-  return next;
-};
+  return next
+}
 
-export const tx = (props: any) => transformProps(replacePseudo(props));
+export const tx = (props: any) => transformProps(replacePseudo(props))

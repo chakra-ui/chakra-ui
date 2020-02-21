@@ -1,9 +1,9 @@
-import { chakra } from "@chakra-ui/system";
-import * as React from "react";
-import Input from "./Input";
-import { InputLeftAddon, InputRightAddon } from "./Input.addon";
-import { InputLeftElement, InputRightElement } from "./Input.element";
-import InputGroup from "./Input.group";
+import { chakra } from "@chakra-ui/system"
+import * as React from "react"
+import Input from "./Input"
+import { InputLeftAddon, InputRightAddon } from "./Input.addon"
+import { InputLeftElement, InputRightElement } from "./Input.element"
+import InputGroup from "./Input.group"
 
 export default {
   title: "Input",
@@ -14,7 +14,7 @@ export default {
       </chakra.div>
     ),
   ],
-};
+}
 
 export const States = () => (
   <>
@@ -26,7 +26,7 @@ export const States = () => (
     <br />
     <Input isReadOnly placeholder="isReadonly" />
   </>
-);
+)
 
 export const Variants = () => (
   <>
@@ -38,7 +38,7 @@ export const Variants = () => (
     <br />
     <Input variant="unstyled" placeholder="Unstyled" />
   </>
-);
+)
 
 export const LeftAndRightAddon = () => (
   <>
@@ -55,7 +55,7 @@ export const LeftAndRightAddon = () => (
       <InputRightAddon children=".com" />
     </InputGroup>
   </>
-);
+)
 
 export const ElementInsideInput = () => (
   <>
@@ -70,11 +70,11 @@ export const ElementInsideInput = () => (
       <InputRightElement children={"C"} />
     </InputGroup>
   </>
-);
+)
 
 export function PasswordInput() {
-  const [show, setShow] = React.useState(false);
-  const handleClick = () => setShow(!show);
+  const [show, setShow] = React.useState(false)
+  const handleClick = () => setShow(!show)
 
   return (
     <InputGroup variantSize="md">
@@ -89,7 +89,7 @@ export function PasswordInput() {
         </chakra.button>
       </InputRightElement>
     </InputGroup>
-  );
+  )
 }
 
 export const FocusAndErrorColors = () => (
@@ -114,4 +114,4 @@ export const FocusAndErrorColors = () => (
     />
     <br />
   </>
-);
+)

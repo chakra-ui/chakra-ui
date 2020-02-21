@@ -1,4 +1,4 @@
-import { UnionStringArray } from "@chakra-ui/utils";
+import { UnionStringArray } from "@chakra-ui/utils"
 
 const domElements = [
   "a",
@@ -116,8 +116,8 @@ const domElements = [
   "video",
   "wbr",
   "webview",
-] as const;
+] as const
 
-export default domElements;
+export default domElements
 
-export type DOMElements = UnionStringArray<typeof domElements>;
+export type DOMElements = UnionStringArray<typeof domElements>

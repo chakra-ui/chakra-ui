@@ -1,5 +1,5 @@
-import { AnyFunction, isFunction } from "@chakra-ui/utils";
-import * as React from "react";
+import { AnyFunction, isFunction } from "@chakra-ui/utils"
+import * as React from "react"
 
 /**
  * Hook to initialize and return a constant value. Unlike `React.useMemo`, this is guaranteed to
@@ -15,13 +15,13 @@ import * as React from "react";
  * @returns The value. The identity of this value will always be the same.
  */
 export function useConst<T>(initialValue: T | (() => T)): T {
-  const ref = React.useRef<T>();
+  const ref = React.useRef<T>()
 
   if (!ref.current) {
-    ref.current = isFunction(initialValue) ? initialValue() : initialValue;
+    ref.current = isFunction(initialValue) ? initialValue() : initialValue
   }
 
-  return ref.current;
+  return ref.current
 }
 
 /**
@@ -34,11 +34,11 @@ export function useConst<T>(initialValue: T | (() => T)): T {
  * @returns The callback. The identity of this callback will always be the same.
  */
 export function useConstCallback<T extends AnyFunction>(callback: T): T {
-  const ref = React.useRef<T>();
+  const ref = React.useRef<T>()
 
   if (!ref.current) {
-    ref.current = callback;
+    ref.current = callback
   }
 
-  return ref.current;
+  return ref.current
 }

@@ -1,33 +1,28 @@
 /** @jsx jsx */
-import { generateStripe, getColor } from "@chakra-ui/color";
-import {
-  chakra,
-  PropsOf,
-  useColorModeValue,
-  useTheme,
-} from "@chakra-ui/system";
-import { isUndefined, Omit, parseResponsiveProp } from "@chakra-ui/utils";
-import { css, jsx } from "@emotion/core";
+import { generateStripe, getColor } from "@chakra-ui/color"
+import { chakra, PropsOf, useColorModeValue, useTheme } from "@chakra-ui/system"
+import { isUndefined, Omit, parseResponsiveProp } from "@chakra-ui/utils"
+import { css, jsx } from "@emotion/core"
 import {
   getProgressProps,
   progress,
   ProgressPropsOptions,
   stripe,
-} from "./Progress.utils";
+} from "./Progress.utils"
 
 ///////////////////////////////////////////////////////////////////////////
 
 export function ProgressLabel(props: PropsOf<typeof chakra.div>) {
-  return <chakra.div textAlign="center" width="100%" {...props} />;
+  return <chakra.div textAlign="center" width="100%" {...props} />
 }
 
 ///////////////////////////////////////////////////////////////////////////
 
-type ProgressIndicatorProps = PropsOf<typeof chakra.div> & ProgressPropsOptions;
+type ProgressIndicatorProps = PropsOf<typeof chakra.div> & ProgressPropsOptions
 
 function ProgressIndicator(props: ProgressIndicatorProps) {
-  const { min, max, value, ...rest } = props;
-  const progress = getProgressProps({ value, min, max });
+  const { min, max, value, ...rest } = props
+  const progress = getProgressProps({ value, min, max })
 
   return (
     <chakra.div
@@ -37,7 +32,7 @@ function ProgressIndicator(props: ProgressIndicatorProps) {
       {...progress.bind}
       {...rest}
     />
-  );
+  )
 }
 
 ///////////////////////////////////////////////////////////////////////////
@@ -47,15 +42,15 @@ const sizes = {
   md: "0.75rem",
   sm: "0.5rem",
   xs: "0.25rem",
-};
+}
 
 type ProgressTrackProps = Omit<PropsOf<typeof chakra.div>, "size"> & {
-  size?: keyof typeof sizes;
-};
+  size?: keyof typeof sizes
+}
 
 function ProgressTrack({ size, ...props }: ProgressTrackProps) {
-  const getHeight = (val: keyof typeof sizes) => sizes[val] || val;
-  const height = parseResponsiveProp(size, getHeight);
+  const getHeight = (val: keyof typeof sizes) => sizes[val] || val
+  const height = parseResponsiveProp(size, getHeight)
 
   return (
     <chakra.div
@@ -64,19 +59,19 @@ function ProgressTrack({ size, ...props }: ProgressTrackProps) {
       height={height}
       {...props}
     />
-  );
+  )
 }
 
 ///////////////////////////////////////////////////////////////////////////
 
 interface ProgressProps extends ProgressTrackProps {
-  color?: string;
-  value?: number;
-  min?: number;
-  max?: number;
-  variantSize?: keyof typeof sizes;
-  hasStripe?: boolean;
-  isAnimated?: boolean;
+  color?: string
+  value?: number
+  min?: number
+  max?: number
+  variantSize?: keyof typeof sizes
+  hasStripe?: boolean
+  isAnimated?: boolean
 }
 
 export function Progress(props: ProgressProps) {
@@ -91,28 +86,28 @@ export function Progress(props: ProgressProps) {
     children,
     borderRadius,
     ...rest
-  } = props;
+  } = props
 
   // The color of the progress track
-  const trackBg = useColorModeValue(`gray.100`, `whiteAlpha.300`);
-  const theme = useTheme();
+  const trackBg = useColorModeValue(`gray.100`, `whiteAlpha.300`)
+  const theme = useTheme()
 
   // The color of the progress indicator
-  const indicatorBg = useColorModeValue(`${color}.500`, `${color}.200`);
+  const indicatorBg = useColorModeValue(`${color}.500`, `${color}.200`)
 
   // Generate a strip style for the progress bar
   const stripeStyle = useColorModeValue(
     generateStripe(),
     generateStripe("1rem", "rgba(0,0,0,0.1)"),
-  );
+  )
 
-  const isIndeterminate = isUndefined(value);
+  const isIndeterminate = isUndefined(value)
 
-  const stripAnimation = { animation: `${stripe} 1s linear infinite` };
+  const stripAnimation = { animation: `${stripe} 1s linear infinite` }
 
   // You should not use stripe if it's indeterminate
-  const shouldAddStripe = !isIndeterminate && hasStripe;
-  const shouldAnimateStripe = shouldAddStripe && isAnimated;
+  const shouldAddStripe = !isIndeterminate && hasStripe
+  const shouldAnimateStripe = shouldAddStripe && isAnimated
 
   // generate custom styles
   //@ts-ignore
@@ -131,7 +126,7 @@ export function Progress(props: ProgressProps) {
         transparent 100%
       )`,
     }),
-  });
+  })
 
   return (
     <ProgressTrack
@@ -149,5 +144,5 @@ export function Progress(props: ProgressProps) {
         css={style}
       />
     </ProgressTrack>
-  );
+  )
 }

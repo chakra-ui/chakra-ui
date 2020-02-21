@@ -1,2 +1,2 @@
 // export * from "./Tabs";
-export * from "./Tabs.hook";
+export * from "./Tabs.hook"

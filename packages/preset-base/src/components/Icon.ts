@@ -4,8 +4,8 @@ const variantSize = {
   md: "32px",
   lg: "40px",
   xl: "48px",
-};
+}
 
 export default {
   variantSize,
-};
+}

@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from "react"
 
 export const iconPaths = {
   copy: {
@@ -532,10 +532,10 @@ export const iconPaths = {
       </g>
     ),
   },
-};
+}
 
 export type Icons = {
-  [K in keyof typeof iconPaths]: { path: JSX.Element; viewBox?: string };
-};
+  [K in keyof typeof iconPaths]: { path: JSX.Element; viewBox?: string }
+}
 
-export default iconPaths;
+export default iconPaths

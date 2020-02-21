@@ -1,2 +1,2 @@
-export * from "./Editable";
-export * from "./Editable.hook";
+export * from "./Editable"
+export * from "./Editable.hook"

@@ -1,14 +1,14 @@
-import { StyleFunctionProps, getModeColor as get } from "./utils";
-import { getColor } from "@chakra-ui/color";
+import { StyleFunctionProps, getModeColor as get } from "./utils"
+import { getColor } from "@chakra-ui/color"
 
 type InputOptions = StyleFunctionProps & {
-  focusBorderColor: string;
-  errorBorderColor: string;
-  isFullWidth?: boolean;
-};
+  focusBorderColor: string
+  errorBorderColor: string
+  isFullWidth?: boolean
+}
 
 function getOutlinedStyle(props: InputOptions) {
-  const { focusBorderColor: fc, errorBorderColor: ec, theme: t } = props;
+  const { focusBorderColor: fc, errorBorderColor: ec, theme: t } = props
   return {
     border: "1px solid",
     borderColor: get(props, "inherit", "whiteAlpha.50"),
@@ -29,11 +29,11 @@ function getOutlinedStyle(props: InputOptions) {
       borderColor: getColor(t, ec),
       boxShadow: `0 0 0 1px ${getColor(t, ec)}`,
     },
-  };
+  }
 }
 
 function getFilledStyle(props: InputOptions) {
-  const { theme: t, focusBorderColor: fc, errorBorderColor: ec } = props;
+  const { theme: t, focusBorderColor: fc, errorBorderColor: ec } = props
   return {
     border: "2px solid",
     borderColor: "transparent",
@@ -53,11 +53,11 @@ function getFilledStyle(props: InputOptions) {
     _invalid: {
       borderColor: getColor(t, ec),
     },
-  };
+  }
 }
 
 function getFlushedStyle(props: InputOptions) {
-  const { focusBorderColor: fc, errorBorderColor: ec, theme: t } = props;
+  const { focusBorderColor: fc, errorBorderColor: ec, theme: t } = props
 
   return {
     borderBottom: "2px solid",
@@ -72,14 +72,14 @@ function getFlushedStyle(props: InputOptions) {
     _invalid: {
       borderColor: getColor(t, ec),
     },
-  };
+  }
 }
 
 const unstyled = {
   bg: "transparent",
   px: 0,
   height: "auto",
-};
+}
 
 const variantSize = {
   __default: "md",
@@ -104,7 +104,7 @@ const variantSize = {
     // lineHeight: "2rem",
     radius: "sm",
   },
-};
+}
 
 export default {
   baseStyle: (props: InputOptions) => ({
@@ -123,4 +123,4 @@ export default {
     flushed: getFlushedStyle,
     unstyled,
   },
-};
+}

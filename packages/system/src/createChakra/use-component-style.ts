@@ -1,5 +1,5 @@
-import { useTheme } from "../color-mode";
-import getComponentStyles from "./get-component-style";
+import { useTheme } from "../color-mode"
+import getComponentStyles from "./get-component-style"
 
 export function useComponentStyle<T extends object>({
   variantSize,
@@ -7,11 +7,11 @@ export function useComponentStyle<T extends object>({
   themeKey,
   ...props
 }: any) {
-  const theme = useTheme() as T;
+  const theme = useTheme() as T
   return getComponentStyles(
     { variant, variantSize, theme, ...props },
     { themeKey },
-  );
+  )
 }
 
-export default useComponentStyle;
+export default useComponentStyle

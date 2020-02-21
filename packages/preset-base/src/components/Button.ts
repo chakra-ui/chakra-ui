@@ -1,5 +1,5 @@
-import { addOpacity } from "@chakra-ui/color";
-import { StyleFunctionProps, getModeColor as get } from "./utils";
+import { addOpacity } from "@chakra-ui/color"
+import { StyleFunctionProps, getModeColor as get } from "./utils"
 
 const grayGhostStyle = (props: StyleFunctionProps) => ({
   color: get(props, `inherit`, `whiteAlpha.900`),
@@ -9,16 +9,16 @@ const grayGhostStyle = (props: StyleFunctionProps) => ({
   _active: {
     bg: get(props, `gray.200`, `whiteAlpha.300`),
   },
-});
+})
 
 ////////////////////////////////////////////////////////////
 
 function getGhostStyle(props: StyleFunctionProps) {
-  const { variantColor: c, theme: t } = props;
-  if (c === "gray") return grayGhostStyle(props);
+  const { variantColor: c, theme: t } = props
+  if (c === "gray") return grayGhostStyle(props)
 
-  const darkHoverBg = addOpacity(`${c}.200`, 0.12)(t);
-  const darkActiveBg = addOpacity(`${c}.200`, 0.24)(t);
+  const darkHoverBg = addOpacity(`${c}.200`, 0.12)(t)
+  const darkActiveBg = addOpacity(`${c}.200`, 0.24)(t)
 
   return {
     color: get(props, `${c}.500`, `${c}.200`),
@@ -29,20 +29,20 @@ function getGhostStyle(props: StyleFunctionProps) {
     _active: {
       bg: get(props, `${c}.100`, darkActiveBg),
     },
-  };
+  }
 }
 
 ////////////////////////////////////////////////////////////
 
 function getOutlineStyle(props: StyleFunctionProps) {
-  const { variantColor: c } = props;
-  const borderColor = get(props, `gray.200`, `whiteAlpha.300`);
+  const { variantColor: c } = props
+  const borderColor = get(props, `gray.200`, `whiteAlpha.300`)
 
   return {
     border: "1px solid",
     borderColor: c === "gray" ? borderColor : "current",
     ...getGhostStyle(props),
-  };
+  }
 }
 
 ////////////////////////////////////////////////////////////
@@ -55,24 +55,24 @@ const graySolidStyle = (props: StyleFunctionProps) => ({
   _active: {
     bg: get(props, `gray.300`, `whiteAlpha.400`),
   },
-});
+})
 
 function getSolidStyle(props: StyleFunctionProps) {
-  const { variantColor: c } = props;
-  if (c === "gray") return graySolidStyle(props);
+  const { variantColor: c } = props
+  if (c === "gray") return graySolidStyle(props)
 
   return {
     bg: get(props, `${c}.500`, `${c}.200`),
     color: get(props, `${c}.600`, `gray.800`),
     _hover: { bg: get(props, `${c}.600`, `${c}.300`) },
     _active: { bg: get(props, `${c}.700`, `${c}.400`) },
-  };
+  }
 }
 
 ////////////////////////////////////////////////////////////
 
 function getLinkStyle(props: StyleFunctionProps) {
-  const { variantColor: c } = props;
+  const { variantColor: c } = props
   return {
     padding: 0,
     height: "auto",
@@ -84,7 +84,7 @@ function getLinkStyle(props: StyleFunctionProps) {
     _active: {
       color: get(props, `${c}.700`, `${c}.500`),
     },
-  };
+  }
 }
 
 ////////////////////////////////////////////////////////////
@@ -114,7 +114,7 @@ const variantSize = {
     fontSize: "xs",
     paddingX: 2,
   },
-};
+}
 
 ////////////////////////////////////////////////////////////
 
@@ -129,7 +129,7 @@ const unstyled = {
   margin: 0,
   padding: 0,
   textAlign: "inherit",
-};
+}
 
 const baseStyle = {
   display: "inline-flex",
@@ -153,7 +153,7 @@ const baseStyle = {
     cursor: "not-allowed",
     boxShadow: "none",
   },
-};
+}
 
 ////////////////////////////////////////////////////////////
 const Button = {
@@ -170,6 +170,6 @@ const Button = {
     link: getLinkStyle,
     outline: getOutlineStyle,
   },
-};
+}
 
-export default Button;
+export default Button

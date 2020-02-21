@@ -1,2 +1,2 @@
 // export * from "./NumberInput";
-export * from  "./NumberInput.hook";
+export * from "./NumberInput.hook"

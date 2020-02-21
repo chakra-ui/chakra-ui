@@ -12,8 +12,8 @@ const zIndices = {
   skipLink: 1600,
   toast: 1700,
   tooltip: 1800,
-};
+}
 
-export type ZIndices = typeof zIndices;
+export type ZIndices = typeof zIndices
 
-export default zIndices;
+export default zIndices

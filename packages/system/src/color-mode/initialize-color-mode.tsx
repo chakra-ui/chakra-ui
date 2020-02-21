@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from "react"
 
 export const InitializeColorMode = () => (
   <script
@@ -47,6 +47,6 @@ export const InitializeColorMode = () => (
       `,
     }}
   />
-);
+)
 
-export default InitializeColorMode;
+export default InitializeColorMode

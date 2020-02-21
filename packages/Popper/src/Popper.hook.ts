@@ -1,22 +1,22 @@
-import * as React from "react";
-import { Placement, Instance, createPopper } from "@popperjs/core";
-import { getArrowStyles } from "./Popper.utils";
+import * as React from "react"
+import { Placement, Instance, createPopper } from "@popperjs/core"
+import { getArrowStyles } from "./Popper.utils"
 
-const isBrowser = typeof window !== "undefined";
-const useIsomorphicEffect = isBrowser ? React.useLayoutEffect : React.useEffect;
+const isBrowser = typeof window !== "undefined"
+const useIsomorphicEffect = isBrowser ? React.useLayoutEffect : React.useEffect
 
-export { Placement };
+export { Placement }
 
 export interface PopperHookProps {
-  gutter?: number;
-  placement?: Placement;
-  offset?: number;
-  preventOverflow?: boolean;
-  fixed?: boolean;
-  forceUpdate?: boolean;
-  flip?: boolean;
-  arrowSize?: number;
-  eventsEnabled?: boolean;
+  gutter?: number
+  placement?: Placement
+  offset?: number
+  preventOverflow?: boolean
+  fixed?: boolean
+  forceUpdate?: boolean
+  flip?: boolean
+  arrowSize?: number
+  eventsEnabled?: boolean
 }
 
 export function usePopper(props: PopperHookProps) {
@@ -30,28 +30,28 @@ export function usePopper(props: PopperHookProps) {
     arrowSize = 10,
     gutter = arrowSize,
     eventsEnabled = true,
-  } = props;
+  } = props
 
-  const popper = React.useRef<Instance | null>(null);
-  const referenceRef = React.useRef<HTMLButtonElement>(null);
-  const popoverRef = React.useRef<HTMLDivElement>(null);
-  const arrowRef = React.useRef<HTMLDivElement>(null);
+  const popper = React.useRef<Instance | null>(null)
+  const referenceRef = React.useRef<HTMLButtonElement>(null)
+  const popoverRef = React.useRef<HTMLDivElement>(null)
+  const arrowRef = React.useRef<HTMLDivElement>(null)
 
-  const [originalPlacement, place] = React.useState(initialPlacement);
-  const [placement, setPlacement] = React.useState(initialPlacement);
-  const [offset] = React.useState(sealedOffset || [0, gutter]);
+  const [originalPlacement, place] = React.useState(initialPlacement)
+  const [placement, setPlacement] = React.useState(initialPlacement)
+  const [offset] = React.useState(sealedOffset || [0, gutter])
   const [popoverStyles, setPopoverStyles] = React.useState<React.CSSProperties>(
     {},
-  );
-  const [arrowStyles, setArrowStyles] = React.useState<React.CSSProperties>({});
+  )
+  const [arrowStyles, setArrowStyles] = React.useState<React.CSSProperties>({})
 
   const update = React.useCallback(() => {
     if (popper.current) {
-      popper.current.forceUpdate();
-      return true;
+      popper.current.forceUpdate()
+      return true
     }
-    return false;
-  }, []);
+    return false
+  }, [])
 
   useIsomorphicEffect(() => {
     if (referenceRef.current && popoverRef.current) {
@@ -98,32 +98,32 @@ export function usePopper(props: PopperHookProps) {
             phase: "write",
             enabled: true,
             fn({ state }) {
-              setPlacement(state.placement);
-              setPopoverStyles(state.styles.popper as React.CSSProperties);
-              setArrowStyles(state.styles.arrow as React.CSSProperties);
+              setPlacement(state.placement)
+              setPopoverStyles(state.styles.popper as React.CSSProperties)
+              setArrowStyles(state.styles.arrow as React.CSSProperties)
             },
           },
         ],
-      });
+      })
     }
     return () => {
       if (popper.current) {
-        popper.current.destroy();
-        popper.current = null;
+        popper.current.destroy()
+        popper.current = null
       }
-    };
-  }, [originalPlacement, fixed, forceUpdate, flip, offset, preventOverflow]);
+    }
+  }, [originalPlacement, fixed, forceUpdate, flip, offset, preventOverflow])
 
   React.useEffect(() => {
     if (forceUpdate && popper.current) {
-      popper.current.update();
+      popper.current.update()
     }
-  }, [forceUpdate]);
+  }, [forceUpdate])
 
   const computedArrowStyles: React.CSSProperties = {
     ...arrowStyles,
     ...getArrowStyles(placement, arrowSize),
-  };
+  }
 
   return {
     popperInstance: popper.current,
@@ -141,9 +141,9 @@ export function usePopper(props: PopperHookProps) {
     update,
     placement,
     place,
-  };
+  }
 }
 
-export type PopperHookReturn = ReturnType<typeof usePopper>;
+export type PopperHookReturn = ReturnType<typeof usePopper>
 
-export default usePopper;
+export default usePopper

@@ -1,5 +1,5 @@
-import { ComponentTheme, getModeColor as color } from "./utils";
-import { SystemProps } from "@chakra-ui/system";
+import { ComponentTheme, getModeColor as color } from "./utils"
+import { SystemProps } from "@chakra-ui/system"
 
 function getSizeStyle(size: "sm" | "md" | "lg"): SystemProps {
   return {
@@ -12,7 +12,7 @@ function getSizeStyle(size: "sm" | "md" | "lg"): SystemProps {
       mt: "-1px",
       borderTopWidth: 1,
     },
-  };
+  }
 }
 
 const NumberInput: ComponentTheme = {
@@ -49,6 +49,6 @@ const NumberInput: ComponentTheme = {
       Stepper: getSizeStyle("lg"),
     },
   },
-};
+}
 
-export default NumberInput;
+export default NumberInput

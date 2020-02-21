@@ -1,28 +1,28 @@
-import React from "react";
+import React from "react"
 import {
   Editable,
   EditableInput,
   EditablePreview,
   useEditableState,
-} from "./Editable";
+} from "./Editable"
 import {
   useEditableInput,
   useEditablePreview,
   useEditableProvider,
-} from "./Editable.hook";
+} from "./Editable.hook"
 
 export default {
   title: "Editable",
-};
+}
 
 export const HookSetup = () => {
   const context = useEditableProvider({
     placeholder: "Title",
     isPreviewFocusable: true,
     submitOnBlur: true,
-  });
-  const input = useEditableInput({ context });
-  const preview = useEditablePreview({ context });
+  })
+  const input = useEditableInput({ context })
+  const preview = useEditablePreview({ context })
 
   return (
     <>
@@ -30,11 +30,11 @@ export const HookSetup = () => {
       <span style={{ opacity: !context.value ? 0.7 : 1 }} {...preview} />
       {!context.isEditing && <button onClick={context.onEdit}>Edit</button>}
     </>
-  );
-};
+  )
+}
 
 const ControlButtons = () => {
-  const state = useEditableState();
+  const state = useEditableState()
   return (
     <div>
       {!state.isEditing ? (
@@ -46,8 +46,8 @@ const ControlButtons = () => {
         </>
       )}
     </div>
-  );
-};
+  )
+}
 
 export const BaseComponents = () => (
   <Editable defaultValue="testing">
@@ -55,4 +55,4 @@ export const BaseComponents = () => (
     <EditableInput />
     <ControlButtons />
   </Editable>
-);
+)

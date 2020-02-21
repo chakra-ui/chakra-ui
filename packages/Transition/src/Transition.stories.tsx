@@ -1,13 +1,13 @@
-import * as React from "react";
-import ScaleFade from "./ScaleFade";
-import { useTransitionStyle } from "./Transition.context";
-import SlideFade from "./SlideFade";
-import Fade from "./Fade";
-import Slide from "./Slide";
+import * as React from "react"
+import ScaleFade from "./ScaleFade"
+import { useTransitionStyle } from "./Transition.context"
+import SlideFade from "./SlideFade"
+import Fade from "./Fade"
+import Slide from "./Slide"
 
 export default {
   title: "Transition",
-};
+}
 
 const modalStyles: React.CSSProperties = {
   position: "fixed",
@@ -19,10 +19,10 @@ const modalStyles: React.CSSProperties = {
   height: "auto",
   backfaceVisibility: "hidden",
   transform: `translateX(-50%) translateY(-50%)`,
-};
+}
 
 function Modal(props: any) {
-  const styles = useTransitionStyle();
+  const styles = useTransitionStyle()
 
   const allStyle: React.CSSProperties = {
     background: "red",
@@ -32,13 +32,13 @@ function Modal(props: any) {
     transform: styles.transform
       ? `${modalStyles.transform} ${styles.transform}`
       : `${modalStyles.transform}`,
-  };
+  }
 
-  return <div {...props} style={allStyle} children="Animate me" />;
+  return <div {...props} style={allStyle} children="Animate me" />
 }
 
 export function ScaleFadeExample() {
-  const [isOpen, setIsOpen] = React.useState(true);
+  const [isOpen, setIsOpen] = React.useState(true)
   return (
     <>
       <button onClick={() => setIsOpen(p => !p)}>Click Me</button>
@@ -46,11 +46,11 @@ export function ScaleFadeExample() {
         <Modal />
       </ScaleFade>
     </>
-  );
+  )
 }
 
 export function SlideFadeExample() {
-  const [isOpen, setIsOpen] = React.useState(true);
+  const [isOpen, setIsOpen] = React.useState(true)
   return (
     <>
       <button onClick={() => setIsOpen(p => !p)}>Click Me</button>
@@ -58,11 +58,11 @@ export function SlideFadeExample() {
         <Modal />
       </SlideFade>
     </>
-  );
+  )
 }
 
 export function FadeExample() {
-  const [isOpen, setIsOpen] = React.useState(true);
+  const [isOpen, setIsOpen] = React.useState(true)
   return (
     <>
       <button onClick={() => setIsOpen(p => !p)}>Click Me</button>
@@ -70,23 +70,23 @@ export function FadeExample() {
         <Modal />
       </Fade>
     </>
-  );
+  )
 }
 
 function Drawer(props: any) {
-  const styles = useTransitionStyle();
+  const styles = useTransitionStyle()
 
   const allStyle: React.CSSProperties = {
     background: "red",
     position: "fixed",
     ...styles,
-  };
+  }
 
-  return <div {...props} style={allStyle} children="Animate me" />;
+  return <div {...props} style={allStyle} children="Animate me" />
 }
 
 export function SlideExample() {
-  const [isOpen, setIsOpen] = React.useState(true);
+  const [isOpen, setIsOpen] = React.useState(true)
   return (
     <>
       <button onClick={() => setIsOpen(p => !p)}>Click Me</button>
@@ -94,5 +94,5 @@ export function SlideExample() {
         <Drawer />
       </Slide>
     </>
-  );
+  )
 }

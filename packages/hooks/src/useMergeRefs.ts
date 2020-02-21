@@ -1,19 +1,16 @@
-import * as React from "react";
+import * as React from "react"
 
-type ReactRef<T> =
-  | React.Ref<T>
-  | React.RefObject<T>
-  | React.MutableRefObject<T>;
+type ReactRef<T> = React.Ref<T> | React.RefObject<T> | React.MutableRefObject<T>
 
 export function assignRef<T = any>(ref: ReactRef<T>, value: T) {
-  if (ref == null) return;
+  if (ref == null) return
   if (typeof ref === "function") {
-    ref(value);
+    ref(value)
   } else {
     try {
-      (ref as React.MutableRefObject<T>).current = value;
+      ;(ref as React.MutableRefObject<T>).current = value
     } catch (error) {
-      throw new Error(`Cannot assign value "${value}" to ref "${ref}"`);
+      throw new Error(`Cannot assign value "${value}" to ref "${ref}"`)
     }
   }
 }
@@ -21,14 +18,14 @@ export function assignRef<T = any>(ref: ReactRef<T>, value: T) {
 export function useMergeRefs<T>(...refs: (ReactRef<T> | undefined)[]) {
   return React.useMemo(() => {
     if (refs.every(ref => ref == null)) {
-      return null;
+      return null
     }
     return (node: T) => {
       refs.forEach(ref => {
-        if (ref) assignRef(ref, node);
-      });
-    };
-  }, refs);
+        if (ref) assignRef(ref, node)
+      })
+    }
+  }, refs)
 }
 
-export default useMergeRefs;
+export default useMergeRefs

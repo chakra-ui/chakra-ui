@@ -1,1 +1,1 @@
-export * from "./Popper.hook";
+export * from "./Popper.hook"

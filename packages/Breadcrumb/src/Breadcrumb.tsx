@@ -1,18 +1,18 @@
-import * as React from "react";
+import * as React from "react"
 import {
   chakra,
   forwardRef,
   ChakraComponent,
   PropsOf,
   SystemProps,
-} from "@chakra-ui/system";
-import { cleanChildren } from "@chakra-ui/utils";
+} from "@chakra-ui/system"
+import { cleanChildren } from "@chakra-ui/utils"
 
 //////////////////////////////////////////////////////////////////////
 
 type BreadcrumbSeparatorProps = PropsOf<typeof chakra.div> & {
-  spacing?: SystemProps["mx"];
-};
+  spacing?: SystemProps["mx"]
+}
 
 const BreadcrumbSeparator = forwardRef(
   ({ spacing, ...props }: BreadcrumbSeparatorProps, ref: React.Ref<any>) => (
@@ -24,15 +24,15 @@ const BreadcrumbSeparator = forwardRef(
       {...props}
     />
   ),
-) as ChakraComponent<"div", { spacing?: SystemProps["mx"] }>;
+) as ChakraComponent<"div", { spacing?: SystemProps["mx"] }>
 
-BreadcrumbSeparator.displayName = "BreadcrumbSeparator";
+BreadcrumbSeparator.displayName = "BreadcrumbSeparator"
 
 //////////////////////////////////////////////////////////////////////
 
 type BreadcrumbLinkProps = PropsOf<typeof chakra.a> & {
-  isCurrentPage?: boolean;
-};
+  isCurrentPage?: boolean
+}
 
 const BreadcrumbLink = forwardRef(
   ({ isCurrentPage, as, ...props }: BreadcrumbLinkProps, ref: React.Ref<any>) =>
@@ -41,19 +41,19 @@ const BreadcrumbLink = forwardRef(
     ) : (
       <chakra.a ref={ref} as={as} {...props} />
     ),
-) as ChakraComponent<"a", { isCurrentPage?: boolean }>;
+) as ChakraComponent<"a", { isCurrentPage?: boolean }>
 
-BreadcrumbLink.displayName = "BreadcrumbLink";
+BreadcrumbLink.displayName = "BreadcrumbLink"
 
 //////////////////////////////////////////////////////////////////////
 
 interface BreadcrumbItemOptions extends BreadcrumbProps {
-  isCurrentPage?: boolean;
-  isLastChild?: boolean;
+  isCurrentPage?: boolean
+  isLastChild?: boolean
 }
 
 export type BreadcrumbItemProps = BreadcrumbItemOptions &
-  PropsOf<typeof chakra.li>;
+  PropsOf<typeof chakra.li>
 
 const BreadcrumbItem = forwardRef(
   (props: BreadcrumbItemProps, ref: React.Ref<any>) => {
@@ -65,26 +65,26 @@ const BreadcrumbItem = forwardRef(
       spacing,
       children,
       ...rest
-    } = props;
+    } = props
 
-    const validChildren = cleanChildren(children);
+    const validChildren = cleanChildren(children)
 
     const clones = validChildren.map(child => {
       if (child.type === BreadcrumbLink) {
         return React.cloneElement(child as React.ReactElement<any>, {
           isCurrentPage,
-        });
+        })
       }
 
       if (child.type === BreadcrumbSeparator) {
         return React.cloneElement(child as React.ReactElement<any>, {
           spacing,
           children: child.props.children || separator,
-        });
+        })
       }
 
-      return child;
-    });
+      return child
+    })
 
     return (
       <chakra.li ref={ref} display="inline-flex" alignItems="center" {...rest}>
@@ -93,29 +93,29 @@ const BreadcrumbItem = forwardRef(
           <BreadcrumbSeparator spacing={spacing} children={separator} />
         )}
       </chakra.li>
-    );
+    )
   },
-);
+)
 
 //////////////////////////////////////////////////////////////////////
 
 export interface BreadcrumbOptions {
-  children?: React.ReactNode;
+  children?: React.ReactNode
   /**
    * The visual separator between each breadcrumb item
    */
-  separator?: string | React.ReactNode;
+  separator?: string | React.ReactNode
   /**
    * If `true`, the breadcrumb will add the separator automatically
    */
-  addSeparator?: boolean;
+  addSeparator?: boolean
   /**
    * The left and right margin applied to the separator
    */
-  spacing?: SystemProps["mx"];
+  spacing?: SystemProps["mx"]
 }
 
-export type BreadcrumbProps = PropsOf<typeof chakra.nav> & BreadcrumbOptions;
+export type BreadcrumbProps = PropsOf<typeof chakra.nav> & BreadcrumbOptions
 
 const Breadcrumb = forwardRef((props: BreadcrumbProps, ref: React.Ref<any>) => {
   const {
@@ -124,27 +124,27 @@ const Breadcrumb = forwardRef((props: BreadcrumbProps, ref: React.Ref<any>) => {
     addSeparator = true,
     separator = "/",
     ...rest
-  } = props;
+  } = props
 
-  const validChildren = cleanChildren(children);
-  const count = validChildren.length;
+  const validChildren = cleanChildren(children)
+  const count = validChildren.length
 
   const clones = validChildren.map((child, index) => {
-    if (!React.isValidElement(child)) return;
+    if (!React.isValidElement(child)) return
 
     return React.cloneElement(child as React.ReactElement<any>, {
       addSeparator,
       separator,
       spacing,
       isLastChild: count === index + 1,
-    });
-  });
+    })
+  })
 
   return (
     <chakra.nav ref={ref} aria-label="breadcrumb" {...rest}>
       <chakra.ol>{clones}</chakra.ol>
     </chakra.nav>
-  );
-});
+  )
+})
 
-export { Breadcrumb, BreadcrumbLink, BreadcrumbItem, BreadcrumbSeparator };
+export { Breadcrumb, BreadcrumbLink, BreadcrumbItem, BreadcrumbSeparator }

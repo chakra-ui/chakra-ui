@@ -1,7 +1,7 @@
-import css from "@styled-system/css";
-import { PseudoProps } from "./pseudo.interface";
-import { tx } from "./pseudo.utils";
-import sx from "./pseudo.selectors";
+import css from "@styled-system/css"
+import { PseudoProps } from "./pseudo.interface"
+import { tx } from "./pseudo.utils"
+import sx from "./pseudo.selectors"
 
 const pseudo = ({ theme, ...props }: { theme: object } & PseudoProps) =>
   css({
@@ -33,6 +33,6 @@ const pseudo = ({ theme, ...props }: { theme: object } & PseudoProps) =>
     [sx.placeholder]: props._placeholder,
     [sx.hidden]: props._hidden,
     [sx.rtl]: tx(props._rtl),
-  })(theme);
+  })(theme)
 
-export default pseudo;
+export default pseudo

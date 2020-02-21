@@ -1,4 +1,4 @@
-import { createChakra } from "@chakra-ui/system";
+import { createChakra } from "@chakra-ui/system"
 
 export const VisuallyHidden = createChakra("div", {
   attrs: {
@@ -14,6 +14,6 @@ export const VisuallyHidden = createChakra("div", {
       position: "absolute",
     },
   },
-});
+})
 
-export default VisuallyHidden;
+export default VisuallyHidden

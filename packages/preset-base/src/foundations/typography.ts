@@ -48,8 +48,8 @@ const typography = {
     "5xl": "3rem",
     "6xl": "4rem",
   },
-};
+}
 
-export type Typography = typeof typography;
+export type Typography = typeof typography
 
-export default typography;
+export default typography

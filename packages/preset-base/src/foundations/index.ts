@@ -1,12 +1,12 @@
-import breakpoints from "./breakpoints";
-import colors from "./colors";
-import radii from "./radius";
-import shadows from "./shadows";
-import sizes, { baseSizes } from "./sizes";
-import typography from "./typography";
-import zIndices from "./z-index";
+import breakpoints from "./breakpoints"
+import colors from "./colors"
+import radii from "./radius"
+import shadows from "./shadows"
+import sizes, { baseSizes } from "./sizes"
+import typography from "./typography"
+import zIndices from "./z-index"
 
-const space = baseSizes;
+const space = baseSizes
 
 const theme = {
   breakpoints,
@@ -17,8 +17,8 @@ const theme = {
   sizes,
   shadows,
   space,
-};
+}
 
-export type Theme = typeof theme;
+export type Theme = typeof theme
 
-export default theme;
+export default theme

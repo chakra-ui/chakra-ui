@@ -1,13 +1,13 @@
-import { StyleFunctionProps, getModeValue, getModeColor } from "./utils";
+import { StyleFunctionProps, getModeValue, getModeColor } from "./utils"
 
 function getMenuListStyle(props: StyleFunctionProps) {
-  const longShadow = `rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.2) 0px 5px 10px, rgba(0, 0, 0, 0.4) 0px 15px 40px`;
+  const longShadow = `rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.2) 0px 5px 10px, rgba(0, 0, 0, 0.4) 0px 15px 40px`
   return {
     bg: getModeColor(props, `#fff`, `gray.700`),
     shadow: getModeValue(props, `sm`, longShadow),
     color: "inherit",
     borderWidth: "1px",
-  };
+  }
 }
 
 function getMenuItemStyle(props: StyleFunctionProps) {
@@ -27,16 +27,16 @@ function getMenuItemStyle(props: StyleFunctionProps) {
       opacity: 0.4,
       cursor: "not-allowed",
     },
-  };
+  }
 }
 
 function getbaseStyle(props: StyleFunctionProps) {
   return {
     MenuList: getMenuListStyle(props),
     MenuItem: getMenuItemStyle(props),
-  };
+  }
 }
 
 export default {
   baseStyle: getbaseStyle,
-};
+}

@@ -1,40 +1,40 @@
-import * as React from "react";
-import flushable from "flushable";
+import * as React from "react"
+import flushable from "flushable"
 import {
   useUpdateEffect,
   useEventListener,
   useMergeRefs,
   useId,
-} from "@chakra-ui/hooks";
-import { usePopper, Placement } from "@chakra-ui/popper";
+} from "@chakra-ui/hooks"
+import { usePopper, Placement } from "@chakra-ui/popper"
 
-let pendingHide: flushable.FlushableOperation;
+let pendingHide: flushable.FlushableOperation
 
 function show(fn: (isHidePending: boolean) => void, delay: number) {
-  const isHidePending = pendingHide?.pending();
+  const isHidePending = pendingHide?.pending()
   if (isHidePending) {
-    pendingHide.flush();
+    pendingHide.flush()
   }
   const pendingShow = flushable(
     () => fn(isHidePending),
     isHidePending ? 0 : delay,
-  );
-  return pendingShow.cancel;
+  )
+  return pendingShow.cancel
 }
 
 function hide(fn: (flushed: boolean) => void, delay: number) {
-  pendingHide = flushable(flushed => fn(flushed), delay);
-  return pendingHide.cancel;
+  pendingHide = flushable(flushed => fn(flushed), delay)
+  return pendingHide.cancel
 }
 
 export interface TooltipHookProps {
-  hideDelay?: number;
-  showDelay?: number;
-  hideOnClick?: boolean;
-  hideOnMouseDown?: boolean;
-  onShow?(): void;
-  onHide?(): void;
-  placement?: Placement;
+  hideDelay?: number
+  showDelay?: number
+  hideOnClick?: boolean
+  hideOnMouseDown?: boolean
+  onShow?(): void
+  onHide?(): void
+  placement?: Placement
 }
 
 export function useTooltip(props: TooltipHookProps = {}) {
@@ -46,111 +46,111 @@ export function useTooltip(props: TooltipHookProps = {}) {
     onHide,
     hideOnMouseDown,
     placement,
-  } = props;
+  } = props
   // These two states are useful for animations
-  const [immediatelyHide, setImmediatelyHide] = React.useState(false);
-  const [immediatelyShow, setImmediatelyShow] = React.useState(false);
+  const [immediatelyHide, setImmediatelyHide] = React.useState(false)
+  const [immediatelyShow, setImmediatelyShow] = React.useState(false)
 
   // The actual visible state of the tooltip
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(false)
 
-  const popper = usePopper({ forceUpdate: isOpen, placement });
+  const popper = usePopper({ forceUpdate: isOpen, placement })
 
-  const ref = React.useRef<any>(null);
+  const ref = React.useRef<any>(null)
 
-  const triggerRef = useMergeRefs(ref, popper.reference.ref);
+  const triggerRef = useMergeRefs(ref, popper.reference.ref)
 
-  const cancelPendingRef = React.useRef(() => {});
+  const cancelPendingRef = React.useRef(() => {})
 
   React.useEffect(() => {
     return () => {
-      cancelPendingRef.current();
-    };
-  });
+      cancelPendingRef.current()
+    }
+  })
 
   useUpdateEffect(() => {
     if (isOpen) {
-      onShow && onShow();
+      onShow && onShow()
     } else {
-      onHide && onHide();
+      onHide && onHide()
     }
-  }, [onShow, onHide]);
+  }, [onShow, onHide])
 
   const onScroll = React.useCallback(() => {
     if (isOpen) {
-      cancelPendingRef.current();
-      setIsOpen(false);
-      setImmediatelyHide(true);
+      cancelPendingRef.current()
+      setIsOpen(false)
+      setImmediatelyHide(true)
     }
-  }, [isOpen]);
+  }, [isOpen])
 
   useEventListener("scroll", onScroll, document, {
     capture: true,
     passive: true,
-  });
+  })
 
   const hideTooltipImmediately = React.useCallback(() => {
-    cancelPendingRef.current();
-    setIsOpen(false);
-    setImmediatelyHide(true);
-  }, []);
+    cancelPendingRef.current()
+    setIsOpen(false)
+    setImmediatelyHide(true)
+  }, [])
 
   const onClick = React.useCallback(() => {
     if (hideOnClick) {
-      hideTooltipImmediately();
+      hideTooltipImmediately()
     }
-  }, [hideOnClick, hideTooltipImmediately]);
+  }, [hideOnClick, hideTooltipImmediately])
 
   const onMouseDown = React.useCallback(() => {
     if (hideOnMouseDown) {
-      hideTooltipImmediately();
+      hideTooltipImmediately()
     }
-  }, [hideOnMouseDown, hideTooltipImmediately]);
+  }, [hideOnMouseDown, hideTooltipImmediately])
 
   const showTooltip = React.useCallback(() => {
-    cancelPendingRef.current();
+    cancelPendingRef.current()
 
     if (!isOpen) {
       cancelPendingRef.current = show(immediatelyShow => {
-        setIsOpen(true);
-        setImmediatelyShow(immediatelyShow);
-      }, showDelay);
+        setIsOpen(true)
+        setImmediatelyShow(immediatelyShow)
+      }, showDelay)
     }
-  }, [isOpen, showDelay]);
+  }, [isOpen, showDelay])
 
   const hideTooltip = React.useCallback(() => {
-    cancelPendingRef.current();
+    cancelPendingRef.current()
 
     if (isOpen) {
       cancelPendingRef.current = hide(immediatelyHide => {
-        setIsOpen(false);
-        setImmediatelyHide(immediatelyHide);
-      }, hideDelay);
+        setIsOpen(false)
+        setImmediatelyHide(immediatelyHide)
+      }, hideDelay)
     }
-  }, [isOpen, hideDelay]);
+  }, [isOpen, hideDelay])
 
   const onMouseOver = React.useCallback(
     (event: React.MouseEvent) => {
       if (isOpen && event.target === (ref.current as HTMLElement)) {
-        return;
+        return
       }
-      showTooltip();
+      showTooltip()
     },
     [isOpen, showTooltip],
-  );
+  )
 
-  const tooltipId = useId("tooltip");
+  const tooltipId = useId("tooltip")
 
   // A11y: Close the tooltip if user presses escape
   const onKeyDown = React.useCallback(
     (event: KeyboardEvent) => {
       if (isOpen && event.key === "Escape") {
-        hideTooltipImmediately();
+        hideTooltipImmediately()
       }
     },
     [isOpen, hideTooltipImmediately],
-  );
-  useEventListener("keydown", onKeyDown);
+  )
+  useEventListener("keydown", onKeyDown)
 
   return {
     isOpen,
@@ -172,9 +172,9 @@ export function useTooltip(props: TooltipHookProps = {}) {
       role: "tooltip",
       ...popper.popper,
     },
-  };
+  }
 }
 
-export type TooltipHookReturn = ReturnType<typeof useTooltip>;
+export type TooltipHookReturn = ReturnType<typeof useTooltip>
 
-export default useTooltip;
+export default useTooltip

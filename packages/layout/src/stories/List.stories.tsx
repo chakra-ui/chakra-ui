@@ -1,10 +1,10 @@
 /** @jsx jsx */
-import { jsx } from "@emotion/core";
-import { List, ListItem } from "../List";
+import { jsx } from "@emotion/core"
+import { List, ListItem } from "../List"
 
 export default {
   title: "List",
-};
+}
 
 export const Default = () => (
   <List styleType="disc">
@@ -18,7 +18,7 @@ export const Default = () => (
       Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
     </ListItem>
   </List>
-);
+)
 
 export const Ordered = () => (
   <List styleType="decimal">
@@ -32,4 +32,4 @@ export const Ordered = () => (
       Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
     </ListItem>
   </List>
-);
+)

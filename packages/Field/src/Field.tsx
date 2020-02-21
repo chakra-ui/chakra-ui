@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from "react"
 import {
   BaseLabel,
   BaseRequiredIndicator,
@@ -6,12 +6,12 @@ import {
   BaseHelpText,
   useFieldContext,
   BaseField,
-} from "./Field.base";
+} from "./Field.base"
 
-import { createChakra, useColorModeValue, PropsOf } from "@chakra-ui/system";
-import { Icon } from "@chakra-ui/icon";
+import { createChakra, useColorModeValue, PropsOf } from "@chakra-ui/system"
+import { Icon } from "@chakra-ui/icon"
 
-export const Field = createChakra(BaseField);
+export const Field = createChakra(BaseField)
 
 export const Label = createChakra(BaseLabel, {
   themeKey: "Label",
@@ -27,7 +27,7 @@ export const Label = createChakra(BaseLabel, {
     verticalAlign: "middle",
     display: "inline-block",
   },
-});
+})
 
 export const RequiredIndicator = createChakra(BaseRequiredIndicator, {
   themeKey: "RequiredIndicator",
@@ -38,7 +38,7 @@ export const RequiredIndicator = createChakra(BaseRequiredIndicator, {
   attrs: {
     role: "presentation",
   },
-});
+})
 
 export const ErrorText = createChakra(BaseErrorText, {
   themeKey: "ErrorText",
@@ -49,13 +49,13 @@ export const ErrorText = createChakra(BaseErrorText, {
     display: "flex",
     alignItems: "center",
   }),
-});
+})
 
 export const ErrorIcon = (props: PropsOf<typeof Icon>) => {
-  const color = useColorModeValue(`red.500`, `red.300`);
-  const field = useFieldContext();
+  const color = useColorModeValue(`red.500`, `red.300`)
+  const field = useFieldContext()
 
-  if (!field.isInvalid) return null;
+  if (!field.isInvalid) return null
 
   return (
     <Icon color={color} {...props}>
@@ -64,8 +64,8 @@ export const ErrorIcon = (props: PropsOf<typeof Icon>) => {
         d="M11.983,0a12.206,12.206,0,0,0-8.51,3.653A11.8,11.8,0,0,0,0,12.207,11.779,11.779,0,0,0,11.8,24h.214A12.111,12.111,0,0,0,24,11.791h0A11.766,11.766,0,0,0,11.983,0ZM10.5,16.542a1.476,1.476,0,0,1,1.449-1.53h.027a1.527,1.527,0,0,1,1.523,1.47,1.475,1.475,0,0,1-1.449,1.53h-.027A1.529,1.529,0,0,1,10.5,16.542ZM11,12.5v-6a1,1,0,0,1,2,0v6a1,1,0,1,1-2,0Z"
       />
     </Icon>
-  );
-};
+  )
+}
 
 export const HelpText = createChakra(BaseHelpText, {
   themeKey: "HelpText",
@@ -75,4 +75,4 @@ export const HelpText = createChakra(BaseHelpText, {
     lineHeight: "normal",
     fontSize: "sm",
   }),
-});
+})
