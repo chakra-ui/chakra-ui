@@ -16,6 +16,4 @@ export * from "./ViewOffIcon"
 export * from "./DownloadIcon"
 export * from "./DeleteIcon"
 export * from "./RepeatIcon"
-
-
-
+export * from "./RepeatClockIcon"
