@@ -1,13 +1,13 @@
 import "@testing-library/jest-dom/extend-expect"
 import userEvent from "@testing-library/user-event"
 import React from "react"
-import { render } from "../../../test/utils"
+import { render } from "../../../../test/utils"
 import {
   BaseAccordion,
   BaseAccordionButton,
   BaseAccordionItem,
   BaseAccordionPanel,
-} from "../src/Accordion.base"
+} from "../Accordion.base"
 
 test("Button renders correctly", () => {
   const { asFragment } = render(

@@ -1,12 +1,17 @@
 {
   "name": "@chakra-ui/editable",
   "version": "0.0.1",
-  "description": "description",
+  "description": "React component used to build inline-editable components",
   "keywords": [
-    "theme",
-    "theming",
-    "ui mode",
-    "ui"
+    "chakra ui",
+    "react",
+    "inline",
+    "editable",
+    "inline editable",
+    "ui",
+    "editable text",
+    "text field",
+    "component"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
@@ -47,7 +52,10 @@
     "tslib": "1.10.0",
     "typescript": "3.7.4"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@chakra-ui/hooks": "0.0.1",
+    "@chakra-ui/utils": "0.0.1"
+  },
   "peerDependencies": {
     "@emotion/core": "10.x",
     "@emotion/styled": "10.x",

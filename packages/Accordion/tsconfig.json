@@ -1,5 +1,5 @@
 {
   "extends": "../../tsconfig.build.json",
   "include": ["src", "types"],
-  "exclude": ["docs", "stories", "tests"]
+  "exclude": ["docs", "stories", "src/tests", "**/*/*.stories.tsx"]
 }

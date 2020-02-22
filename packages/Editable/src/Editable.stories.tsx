@@ -1,48 +1,51 @@
 import React from "react"
 import {
-  Editable,
-  EditableInput,
-  EditablePreview,
+  BaseEditable,
+  BaseEditableInput,
+  BaseEditablePreview,
   useEditableState,
 } from "./Editable"
-import {
-  useEditableInput,
-  useEditablePreview,
-  useEditableProvider,
-} from "./Editable.hook"
+import { useEditable } from "./Editable.hook"
 
 export default {
   title: "Editable",
 }
 
-export const HookSetup = () => {
-  const context = useEditableProvider({
+export const HookExample = () => {
+  const {
+    getInputProps,
+    getPreviewProps,
+    isValueEmpty,
+    isEditing,
+    onEdit,
+  } = useEditable({
     placeholder: "Title",
     isPreviewFocusable: true,
     submitOnBlur: true,
   })
-  const input = useEditableInput({ context })
-  const preview = useEditablePreview({ context })
 
   return (
     <>
-      <input style={{ width: "100%" }} {...input} />
-      <span style={{ opacity: !context.value ? 0.7 : 1 }} {...preview} />
-      {!context.isEditing && <button onClick={context.onEdit}>Edit</button>}
+      <input style={{ width: "100%" }} {...getInputProps()} />
+      <span
+        style={{ opacity: isValueEmpty ? 0.7 : 1 }}
+        {...getPreviewProps()}
+      />
+      {!isEditing && <button onClick={onEdit}>Edit</button>}
     </>
   )
 }
 
-const ControlButtons = () => {
-  const state = useEditableState()
+const BaseEditableControls = () => {
+  const { isEditing, onEdit, onSubmit, onCancel } = useEditableState()
   return (
     <div>
-      {!state.isEditing ? (
-        <button onClick={state.onEdit}>Edit</button>
+      {!isEditing ? (
+        <button onClick={onEdit}>Edit</button>
       ) : (
         <>
-          <button onClick={state.onSubmit}>Save</button>
-          <button onClick={state.onCancel}>Cancel</button>
+          <button onClick={onSubmit}>Save</button>
+          <button onClick={onCancel}>Cancel</button>
         </>
       )}
     </div>
@@ -50,9 +53,9 @@ const ControlButtons = () => {
 }
 
 export const BaseComponents = () => (
-  <Editable defaultValue="testing">
-    <EditablePreview />
-    <EditableInput />
-    <ControlButtons />
-  </Editable>
+  <BaseEditable defaultValue="testing">
+    <BaseEditablePreview />
+    <BaseEditableInput />
+    <BaseEditableControls />
+  </BaseEditable>
 )

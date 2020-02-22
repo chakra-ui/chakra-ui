@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom/extend-expect"
 import { act, renderHook } from "@testing-library/react-hooks"
-import { useCounter } from "../src/Counter"
+import { useCounter } from "./Counter"
 
 test("should increment", () => {
   const { result } = renderHook(() => useCounter({ defaultValue: 0 }))
