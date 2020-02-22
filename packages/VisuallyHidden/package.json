@@ -1,5 +1,5 @@
 {
-  "name": "@chakra-ui/visuallyhidden",
+  "name": "@chakra-ui/visually-hidden",
   "version": "0.0.1",
   "description": "A React component for adding visually hidden styles to elements",
   "keywords": [

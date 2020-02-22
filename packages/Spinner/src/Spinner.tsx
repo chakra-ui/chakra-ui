@@ -6,7 +6,7 @@ import {
 } from "@chakra-ui/system"
 import { keyframes } from "@emotion/core"
 import * as React from "react"
-import { VisuallyHidden } from "@chakra-ui/layout"
+import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 
 const spin = keyframes`
   0% {  transform: rotate(0deg) }

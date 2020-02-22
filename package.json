@@ -67,7 +67,7 @@
     "switch": "yarn workspace @chakra-ui/switch",
     "tag": "yarn workspace @chakra-ui/tag",
     "icons": "yarn workspace @chakra-ui/icon-glyphs",
-    "visuallyhidden": "yarn workspace @chakra-ui/visuallyhidden"
+    "hidden": "yarn workspace @chakra-ui/visually-hidden"
   },
   "czConfig": {
     "path": "node_modules/cz-conventional-changelog"

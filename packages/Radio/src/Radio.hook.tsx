@@ -3,9 +3,9 @@ import {
   callAllHandlers,
   createContext,
   makeDataAttr,
-  visuallyHiddenStyle,
   Omit,
 } from "@chakra-ui/utils"
+import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
 import * as React from "react"
 
 export interface RadioProps {
