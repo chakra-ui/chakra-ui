@@ -41,7 +41,6 @@
     "portal": "yarn workspace @chakra-ui/portal",
     "slider": "yarn workspace @chakra-ui/slider",
     "editable": "yarn workspace @chakra-ui/editable",
-    "select": "yarn workspace @chakra-ui/select",
     "counter": "yarn workspace @chakra-ui/counter",
     "number-input": "yarn workspace @chakra-ui/number-input",
     "popover": "yarn workspace @chakra-ui/popover",
