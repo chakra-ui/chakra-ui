@@ -45,4 +45,6 @@ export * from "./SpinnerIcon"
 export * from "./CloseIcon"
 export * from "./SmallCloseIcon"
 export * from "./NotAllowedIcon"
+export * from "./TriangleDownIcon"
+export * from "./TriangleUpIcon"
 
