@@ -59,7 +59,6 @@
     "progress": "yarn workspace @chakra-ui/progress",
     "field": "yarn workspace @chakra-ui/field-base",
     "input": "yarn workspace @chakra-ui/input",
-    "combobox": "yarn workspace @chakra-ui/combobox",
     "collapse": "yarn workspace @chakra-ui/collapse",
     "stat": "yarn workspace @chakra-ui/stat",
     "toast": "yarn workspace @chakra-ui/toast",
