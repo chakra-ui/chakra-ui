@@ -50,5 +50,5 @@ export * from "./TriangleUpIcon"
 export * from "./InfoOutlineIcon"
 export * from "./BellIcon"
 export * from "./InfoIcon"
-
-
+export * from "./QuestionIcon"
+export * from "./QuestionOutlineIcon"
