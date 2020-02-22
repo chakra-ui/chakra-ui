@@ -124,6 +124,7 @@
     "react": "16.12.0",
     "react-dom": "16.12.0",
     "react-lorem-component": "^0.13.0",
+    "react-test-renderer": "16.12.0",
     "ts-loader": "6.2.1"
   }
 }

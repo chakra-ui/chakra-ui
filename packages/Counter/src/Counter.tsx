@@ -8,13 +8,11 @@ import {
 } from "@chakra-ui/utils"
 import * as React from "react"
 
-type Value = number | string
-
 export interface CounterOptions {
   /**
    * The callback fired when the value changes
    */
-  onChange?: (value?: Value, valueAsNumber?: number) => void
+  onChange?: (value?: number) => void
   /**
    * The number of decimal points used to round the value
    */
@@ -26,7 +24,7 @@ export interface CounterOptions {
   /**
    * The value of the counter. Should be less than `max` and greater than `min`
    */
-  value?: number | string
+  value?: number
   /**
    * The step used to increment or decrement the value
    * @default 1
@@ -53,7 +51,7 @@ export interface CounterOptions {
   keepWithinRange?: boolean
 }
 
-export function useCounter(props: CounterOptions) {
+export function useCounter(props: CounterOptions = {}) {
   const {
     onChange,
     precision: precisionProp,
@@ -62,43 +60,29 @@ export function useCounter(props: CounterOptions) {
     step: stepProp = 1,
     min = minSafeInteger,
     max = maxSafeInteger,
-    keepWithinRange,
+    keepWithinRange = true,
   } = props
 
-  const [valueState, setValue] = React.useState<Value>(defaultValue || 0)
-
+  const [valueState, setValue] = React.useState<number>(defaultValue || 0)
   const [isControlled, value] = useControllableProp(valueProp, valueState)
-  const [valueAsNumber, setValueAsNumber] = React.useState<number>(+value)
 
   const fallbackPrecision = Math.max(
     calculatePrecision(stepProp || 1),
-    calculatePrecision(+value || 0),
+    calculatePrecision(value || 0),
   )
 
   const precision = precisionProp || fallbackPrecision
 
-  const prevValue = React.useRef<Value>()
+  const prevValue = React.useRef<number>()
 
   const update = React.useCallback(
-    (nextValue: Value) => {
+    (nextValue: number) => {
       if (prevValue.current == nextValue) return
-
-      if (!isControlled) {
-        setValue(nextValue)
-        // Update number state if it's not the same
-        // "3.", "3.0" and "3" are considered the same
-        const isSameValue = !isNaN(+nextValue) && +nextValue === valueAsNumber
-        if (!isSameValue) {
-          setValueAsNumber(+nextValue)
-        }
-      }
-      if (onChange) {
-        onChange(nextValue, Number(nextValue))
-      }
-
+      if (!isControlled) setValue(nextValue)
+      onChange && onChange(nextValue)
       prevValue.current = nextValue
     },
-    [onChange, isControlled, valueAsNumber],
+    [onChange, isControlled],
   )
 
   const clamp = React.useCallback(
@@ -107,14 +91,14 @@ export function useCounter(props: CounterOptions) {
       if (keepWithinRange) {
         nextValue = constrainValue(nextValue, min, max)
       }
-      return roundToPrecision(nextValue, precision)
+      return +roundToPrecision(nextValue, precision)
     },
     [precision, keepWithinRange, max, min],
   )
 
   const increment = React.useCallback(
     (step: number = stepProp) => {
-      let nextValue: string | number = +value + step
+      let nextValue = value + step
       nextValue = clamp(nextValue)
       update(nextValue)
     },
@@ -123,7 +107,7 @@ export function useCounter(props: CounterOptions) {
 
   const decrement = React.useCallback(
     (step: number = stepProp) => {
-      const nextValue = clamp(+value - step)
+      const nextValue = clamp(value - step)
       update(nextValue)
     },
     [clamp, stepProp, update, value],
@@ -139,17 +123,12 @@ export function useCounter(props: CounterOptions) {
   const isAtMin = value == min
 
   return {
-    // range checks
     isOutOfRange,
     isAtMax,
     isAtMin,
     precision,
-    // state
     value,
-    valueAsNumber,
-    // actions
-    update,
-    clamp,
+    set: update,
     reset,
     increment,
     decrement,
