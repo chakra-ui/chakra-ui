@@ -1,7 +1,7 @@
-import { ensureFocus, normalizeEventKey } from "@chakra-ui/utils"
+import { ensureFocus, normalizeEventKey, throttle } from "@chakra-ui/utils"
 import * as React from "react"
 import { useCounter, CounterOptions } from "@chakra-ui/counter"
-import { useUpdateEffect } from "@chakra-ui/hooks"
+import { useUpdateEffect, useInterval } from "@chakra-ui/hooks"
 
 export interface NumberInputHookProps extends CounterOptions {
   /**
@@ -54,8 +54,82 @@ export interface NumberInputHookProps extends CounterOptions {
   decimalSeparator?: string
 }
 
-// TODO
-// Add Support for `format` and `parse`
+const TIMEOUT_DURATION = 300
+const INTERVAL_DURATION = 50
+
+type Action = "increment" | "decrement"
+type VoidFunction = () => void
+
+function useSpinner() {
+  const counter = useCounter({})
+  const { increment, decrement } = counter
+
+  const [isSpinning, setIsSpinning] = React.useState(false)
+  const [action, setAction] = React.useState<Action | null>(null)
+  const [runOnce, setRunOnce] = React.useState(true)
+
+  const timeoutRef = React.useRef<any>(null)
+  const removeTimeout = () => {
+    clearTimeout(timeoutRef.current)
+  }
+
+  useInterval(
+    () => {
+      if (action === "increment") increment()
+      if (action === "decrement") decrement()
+    },
+    isSpinning ? INTERVAL_DURATION : null,
+  )
+
+  // Function to activate the spinning and increment the value
+  const spinUp = React.useCallback(() => {
+    // increment the first fime
+    if (runOnce) increment()
+
+    // after a delay, keep incrementing at interval ("spinning up")
+    timeoutRef.current = setTimeout(() => {
+      setRunOnce(false)
+      setIsSpinning(true)
+      setAction("increment")
+    }, TIMEOUT_DURATION)
+  }, [increment, runOnce])
+
+  // Function to activate the spinning and increment the value
+  const spinDown = React.useCallback(() => {
+    // decrement the first fime
+    if (runOnce) decrement()
+
+    // after a delay, keep decrementing at interval ("spinning down")
+    timeoutRef.current = setTimeout(() => {
+      setRunOnce(false)
+      setIsSpinning(true)
+      setAction("decrement")
+    }, TIMEOUT_DURATION)
+  }, [decrement, runOnce])
+
+  // Function to stop spinng (useful for mouseup, keyup handlers)
+  const stopSpinning = React.useCallback(() => {
+    setRunOnce(true)
+    setIsSpinning(false)
+    removeTimeout()
+  }, [])
+
+  React.useEffect(() => {
+    return () => {
+      removeTimeout()
+    }
+  }, [])
+
+  // increment using throttle (useful for keydown handlers)
+  const incrementWithThrottle = throttle(INTERVAL_DURATION, () =>
+    increment(),
+  ) as VoidFunction
+
+  // decrement using throttle (useful for keydown handlers)
+  const decrementWithThrottle = throttle(INTERVAL_DURATION, () =>
+    decrement(),
+  ) as VoidFunction
+}
 
 export function useNumberInput(props: NumberInputHookProps = {}) {
   const {
@@ -218,6 +292,7 @@ export function useNumberInput(props: NumberInputHookProps = {}) {
       value: counter.value,
       role: "spinbutton",
       type: "text",
+      pattern: "[0-9]*",
       "aria-valuemin": min,
       "aria-valuemax": max,
       "aria-disabled": isDisabled,

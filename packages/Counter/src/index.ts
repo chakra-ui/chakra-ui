@@ -1,2 +1,1 @@
-// export * from "./Counter";
-export * from "./Counter.hook"
+export * from "./Counter"
