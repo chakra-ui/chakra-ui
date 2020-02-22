@@ -1,129 +1,76 @@
+import { useDimensions } from "@chakra-ui/hooks"
+import { mergeRefs } from "@chakra-ui/utils"
 import * as React from "react"
-import {
-  defaultTransitionStyles,
-  getElementHeight,
-  makeTransitionStyles,
-} from "./Collapse.utils"
-import { useId, useUpdateEffect, useDisclosure } from "@chakra-ui/hooks"
+import { animated, SpringConfig, useSpring } from "react-spring"
 
-const raf = requestAnimationFrame
-
-interface CollapseHookProps {
-  startingHeight?: number
-  collapseStyles?: React.CSSProperties
-  expandStyles?: React.CSSProperties
-  defaultIsOpen?: boolean
+export type CollapseProps = React.HTMLAttributes<HTMLDivElement> & {
   isOpen?: boolean
-  onOpen?(): void
-  onClose?(): void
+  startingHeight?: number
+  children?: React.ReactNode
+  config?: SpringConfig
+  animateOpacity?: boolean
 }
 
-function useCollapse(props: CollapseHookProps = {}) {
-  const ref = React.useRef<any>(null)
-  const uuid = useId()
+export function Collapse(props: CollapseProps) {
+  const {
+    isOpen,
+    children,
+    config,
+    startingHeight = 0,
+    animateOpacity = true,
+    ...htmlProps
+  } = props
 
-  const disclosure = useDisclosure(props)
+  const [ariaHidden, setAriaHidden] = React.useState(true)
 
-  const collapsedHeight = `${props.startingHeight || 0}px`
-  const collapsedStyles = React.useMemo(
-    () => ({
-      display: collapsedHeight === "0px" ? "none" : "block",
-      height: collapsedHeight,
-      overflow: "hidden",
-    }),
-    [collapsedHeight],
-  )
+  type ChildElement = React.ReactElement<{
+    ref: React.Ref<any>
+  }>
 
-  const { expandStyles, collapseStyles } = React.useMemo(
-    () => makeTransitionStyles(props),
-    [props],
-  )
+  let child = children
 
-  const [styles, setStyles] = React.useState<React.CSSProperties>(
-    disclosure.isOpen ? {} : collapsedStyles,
-  )
-
-  const [mountChildren, setMountChildren] = React.useState(disclosure.isOpen)
-
-  useUpdateEffect(() => {
-    if (disclosure.isOpen) {
-      raf(() => {
-        setMountChildren(true)
-
-        setStyles(prevStyles => ({
-          ...prevStyles,
-          ...expandStyles,
-          willChange: "height",
-          display: "block",
-          overflow: "hidden",
-        }))
-
-        raf(() => {
-          const height = getElementHeight(ref)
-          setStyles(prevStyles => ({ ...prevStyles, height }))
-        })
-      })
-    } else {
-      raf(() => {
-        const height = getElementHeight(ref)
-        setStyles(prevStyles => ({
-          ...prevStyles,
-          ...collapseStyles,
-          willChange: "height",
-          height,
-        }))
-
-        raf(() => {
-          setStyles(prevStyles => ({
-            ...prevStyles,
-            height: collapsedHeight,
-            overflow: "hidden",
-          }))
-        })
-      })
-    }
-  }, [disclosure.isOpen])
-
-  const onTransitionEnd = React.useCallback(
-    (event: React.TransitionEvent) => {
-      if (event.target !== ref.current) return
-
-      if (disclosure.isOpen) {
-        const height = getElementHeight(ref)
-        if (height === styles.height) {
-          setStyles({})
-        } else {
-          setStyles(prevStyles => ({ ...prevStyles, height }))
-        }
-      } else if (styles.height === collapsedHeight) {
-        setMountChildren(false)
-        setStyles(collapsedStyles)
-      }
-    },
-    [disclosure.isOpen, styles.height, collapsedHeight, collapsedStyles],
-  )
-
-  return {
-    toggle: {
-      type: "button" as React.ButtonHTMLAttributes<any>["type"],
-      role: "button",
-      id: `collapse-toggle-${uuid}`,
-      "aria-controls": `collapse-container-${uuid}`,
-      "aria-expanded": disclosure.isOpen,
-      tabIndex: 0,
-      onClick: disclosure.onToggle,
-    },
-    collapse: {
-      id: `collapse-container-${uuid}`,
-      "aria-hidden": disclosure.isOpen ? undefined : true,
-      ref,
-      onTransitionEnd,
-      style: { ...defaultTransitionStyles, ...styles },
-    },
-    isOpen: disclosure.isOpen,
-    onToggle: disclosure.onToggle,
-    mountChildren,
+  if (typeof children === "string") {
+    console.warn(
+      `Warning: You're using a string directly inside <Collapse>. We recommend that you add an <div> tag as child of <Collapse>`,
+    )
+    child = <div>{children}</div> // fallback
   }
+
+  const finalChild = React.Children.only(child) as ChildElement
+
+  const ref = React.useRef<HTMLDivElement>(null)
+
+  const boxModel = useDimensions(ref, true)
+  const height = boxModel?.borderBox.height ?? 0
+
+  const spring = useSpring({
+    height: isOpen ? height : 0,
+    opacity: isOpen ? 1 : 0,
+    onRest: props => {
+      setAriaHidden(props.height === startingHeight)
+    },
+    config: {
+      friction: 35,
+      tension: 320,
+      ...config,
+    },
+  })
+
+  return (
+    <animated.div
+      {...htmlProps}
+      aria-hidden={ariaHidden ? true : undefined}
+      style={{
+        height: spring.height,
+        overflow: "hidden",
+        ...(animateOpacity && { opacity: spring.opacity }),
+      }}
+    >
+      {React.cloneElement(finalChild, {
+        ref: mergeRefs(ref, finalChild.props.ref),
+      })}
+    </animated.div>
+  )
 }
 
-export default useCollapse
+export default Collapse

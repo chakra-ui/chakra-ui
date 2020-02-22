@@ -9,6 +9,10 @@
       "maxSize": "10 kB"
     },
     {
+      "path": "./packages/Collapse/dist/*.js",
+      "maxSize": "10 kB"
+    },
+    {
       "path": "./packages/utils/dist/*.js",
       "maxSize": "10 kB"
     },

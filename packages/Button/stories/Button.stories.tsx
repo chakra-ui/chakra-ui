@@ -1,7 +1,7 @@
 import { Stack } from "@chakra-ui/layout"
 import * as React from "react"
-import Button from "./Button"
-import ButtonGroup from "./ButtonGroup"
+import Button from "../src/Button"
+import ButtonGroup from "../src/ButtonGroup"
 
 export default {
   title: "Button",

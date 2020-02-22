@@ -6,12 +6,21 @@ type Value = string | number
 type ArrayOfValue = Value[]
 
 export interface CheckboxGroupProps {
+  /**
+   * The value of the checkbox group
+   */
   value?: ArrayOfValue
+  /**
+   * The initial value of the checkbox group
+   */
   defaultValue?: ArrayOfValue
+  /**
+   * The callback fired when any children Checkbox is checked or unchecked
+   */
   onChange?: (nextState: ArrayOfValue) => void
 }
 
-export function useCheckboxGroup(props: CheckboxGroupProps) {
+export function useCheckboxGroup(props: CheckboxGroupProps = {}) {
   const { defaultValue, value: valueProp, onChange: onChangeProp } = props
   const [valueState, setValue] = React.useState(defaultValue || [])
   const [isControlled, value] = useControllableProp(valueProp, valueState)
@@ -35,15 +44,15 @@ export function useCheckboxGroup(props: CheckboxGroupProps) {
     (eventOrValue: EventOrValue) => {
       if (!value) return
 
-      const checked = isInputEvent(eventOrValue)
+      const isChecked = isInputEvent(eventOrValue)
         ? eventOrValue.target.checked
-        : !value.includes(eventOrValue as Value)
+        : !value.includes(eventOrValue)
 
       const selectedValue = isInputEvent(eventOrValue)
         ? eventOrValue.target.value
         : eventOrValue
 
-      const nextValue = checked
+      const nextValue = isChecked
         ? addItem(value, selectedValue)
         : removeItem(value, selectedValue)
 
