@@ -84,8 +84,15 @@ Every component package must implement the following:
 
 TypeScript:
 
-- https://github.com/labs42io/clean-code-typescript
+- Clean Code Guide: https://github.com/labs42io/clean-code-typescript
+
+- Best TypeScript
+  Practices:https://github.com/typescript-cheatsheets/react-typescript-cheatsheet
 
 Testing:
 
-- https://react-testing-library-examples.netlify.com/
+- Common React testing library scenarios:
+  https://react-testing-library-examples.netlify.com/
+
+- Common Testing Practices:
+  https://github.com/mawrkus/js-unit-testing-guide#unit-tests

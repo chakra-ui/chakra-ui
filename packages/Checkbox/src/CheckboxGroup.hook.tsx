@@ -1,6 +1,6 @@
 import * as React from "react"
 import { useControllableProp } from "@chakra-ui/hooks"
-import { isInputEvent } from "@chakra-ui/utils"
+import { isInputEvent, addItem, removeItem } from "@chakra-ui/utils"
 
 type Value = string | number
 type ArrayOfValue = Value[]
@@ -29,25 +29,28 @@ export function useCheckboxGroup(props: CheckboxGroupProps) {
     [isControlled, onChangeProp],
   )
 
-  const onChange = (
-    eventOrValue: React.ChangeEvent<HTMLInputElement> | Value,
-  ) => {
-    if (!value) return
+  type EventOrValue = React.ChangeEvent<HTMLInputElement> | Value
 
-    const checked = isInputEvent(eventOrValue)
-      ? eventOrValue.target.checked
-      : !value.includes(eventOrValue as Value)
+  const onChange = React.useCallback(
+    (eventOrValue: EventOrValue) => {
+      if (!value) return
 
-    const selectedValue = isInputEvent(eventOrValue)
-      ? eventOrValue.target.value
-      : eventOrValue
+      const checked = isInputEvent(eventOrValue)
+        ? eventOrValue.target.checked
+        : !value.includes(eventOrValue as Value)
 
-    const nextValue = checked
-      ? [...value, selectedValue]
-      : value.filter(val => val !== selectedValue)
+      const selectedValue = isInputEvent(eventOrValue)
+        ? eventOrValue.target.value
+        : eventOrValue
 
-    updateValue(nextValue)
-  }
+      const nextValue = checked
+        ? addItem(value, selectedValue)
+        : removeItem(value, selectedValue)
+
+      updateValue(nextValue)
+    },
+    [updateValue, value],
+  )
 
   return {
     value: value,

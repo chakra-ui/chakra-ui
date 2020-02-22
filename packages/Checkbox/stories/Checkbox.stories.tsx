@@ -6,8 +6,8 @@ import {
   CheckboxProvider,
   CustomCheckbox,
   useCheckboxState,
-} from "."
-import useCheckboxGroup from "./CheckboxGroup.hook"
+  useCheckboxGroup,
+} from "../src"
 
 export default {
   title: "Checkbox",

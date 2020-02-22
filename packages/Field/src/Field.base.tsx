@@ -1,4 +1,4 @@
-import { useBoolean, useId, useIsomorphicEffect } from "@chakra-ui/hooks"
+import { useBooleanState, useId, useIsomorphicEffect } from "@chakra-ui/hooks"
 import { PropsOf } from "@chakra-ui/system"
 import {
   callAllHandlers as compose,
@@ -94,7 +94,7 @@ function useFieldProvider(props: FieldProps) {
   const [hasHelpText, setHasHelpText] = React.useState(false)
 
   // Let's keep track of when we focus the form element (e.g, `input`)
-  const [isFocused, onFocus, onBlur] = useBoolean(false)
+  const [isFocused, setFocus] = useBooleanState(false)
 
   const context = {
     isRequired,
@@ -103,8 +103,8 @@ function useFieldProvider(props: FieldProps) {
     isReadOnly,
     isDisabled,
     isFocused,
-    onFocus,
-    onBlur,
+    onFocus: setFocus.on,
+    onBlur: setFocus.off,
     hasHelpText,
     setHasHelpText,
     id,

@@ -1,7 +1,6 @@
 {
   "extends": "./tsconfig.build.json",
   "compilerOptions": {
-    "allowJs": true,
     "outDir": "build/lib",
     "rootDirs": ["packages"],
     "types": ["jest"],

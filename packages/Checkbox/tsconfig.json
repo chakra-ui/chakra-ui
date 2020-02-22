@@ -1,6 +1,6 @@
 {
   "extends": "../../tsconfig.build.json",
-  "include": ["src", "types"],
+  "include": ["src", "types", "stories/Checkbox.stories.tsx"],
   "exclude": [
     "**/*.spec.ts",
     "**/*.spec.tsx",
