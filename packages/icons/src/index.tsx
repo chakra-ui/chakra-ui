@@ -41,3 +41,6 @@ export * from "./StarIcon"
 export * from "./EmailIcon"
 export * from "./PhoneIcon"
 export * from "./DragHandleIcon"
+export * from "./SpinnerIcon"
+export * from "./CloseIcon"
+
