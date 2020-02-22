@@ -47,4 +47,8 @@ export * from "./SmallCloseIcon"
 export * from "./NotAllowedIcon"
 export * from "./TriangleDownIcon"
 export * from "./TriangleUpIcon"
+export * from "./InfoOutlineIcon"
+export * from "./BellIcon"
+export * from "./InfoIcon"
+
 
