@@ -43,4 +43,6 @@ export * from "./PhoneIcon"
 export * from "./DragHandleIcon"
 export * from "./SpinnerIcon"
 export * from "./CloseIcon"
+export * from "./SmallCloseIcon"
+export * from "./NotAllowedIcon"
 
