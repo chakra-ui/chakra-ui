@@ -17,5 +17,3 @@ export function ExternalLinkIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default ExternalLinkIcon

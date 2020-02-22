@@ -10,5 +10,3 @@ export function CheckIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default CheckIcon

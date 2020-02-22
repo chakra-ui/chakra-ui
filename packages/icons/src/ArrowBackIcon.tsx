@@ -1,7 +1,7 @@
 import React from "react"
 import { Icon, IconProps } from "@chakra-ui/icon"
 
-export function ArrowBackICon(props: IconProps) {
+export function ArrowBackIcon(props: IconProps) {
   return (
     <Icon viewBox="0 0 24 24" {...props}>
       <path
@@ -11,5 +11,3 @@ export function ArrowBackICon(props: IconProps) {
     </Icon>
   )
 }
-
-export default ArrowBackICon

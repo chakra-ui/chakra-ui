@@ -11,5 +11,3 @@ export function NotAllowedIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default NotAllowedIcon

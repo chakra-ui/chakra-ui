@@ -11,5 +11,3 @@ export function StarIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default StarIcon

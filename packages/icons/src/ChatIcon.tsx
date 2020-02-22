@@ -11,5 +11,3 @@ export function ChatICon(props: IconProps) {
     </Icon>
   )
 }
-
-export default ChatICon

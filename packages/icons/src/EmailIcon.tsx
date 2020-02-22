@@ -11,5 +11,3 @@ export function EmailIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default EmailIcon

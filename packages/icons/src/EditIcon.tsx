@@ -1,7 +1,7 @@
 import React from "react"
 import { Icon, IconProps } from "@chakra-ui/icon"
 
-export function EditICon(props: IconProps) {
+export function EditIcon(props: IconProps) {
   return (
     <Icon viewBox="0 0 24 24" {...props}>
       <g
@@ -16,5 +16,3 @@ export function EditICon(props: IconProps) {
     </Icon>
   )
 }
-
-export default EditICon

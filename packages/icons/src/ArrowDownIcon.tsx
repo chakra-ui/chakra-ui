@@ -11,5 +11,3 @@ export function ArrowDownIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default ArrowDownIcon

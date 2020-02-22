@@ -11,5 +11,3 @@ export function BellIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default BellIcon

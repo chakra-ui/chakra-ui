@@ -11,5 +11,3 @@ export function ChevronRightIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default ChevronRightIcon

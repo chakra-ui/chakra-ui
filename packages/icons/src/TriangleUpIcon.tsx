@@ -11,5 +11,3 @@ export function TriangleUpIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default TriangleUpIcon

@@ -44,5 +44,8 @@
   "peerDependencies": {
     "react": "16.x",
     "react-dom": "16.x"
+  },
+  "dependencies": {
+    "@chakra-ui/icon": "0.0.1"
   }
 }

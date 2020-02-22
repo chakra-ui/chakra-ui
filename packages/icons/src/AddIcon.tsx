@@ -11,5 +11,3 @@ export function AddIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default AddIcon

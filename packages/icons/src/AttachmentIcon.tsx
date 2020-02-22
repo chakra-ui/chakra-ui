@@ -11,5 +11,3 @@ export function AttachmentIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default AttachmentIcon

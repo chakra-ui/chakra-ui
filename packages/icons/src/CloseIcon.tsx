@@ -11,5 +11,3 @@ export function CloseIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default CloseIcon

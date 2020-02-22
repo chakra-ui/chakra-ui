@@ -11,5 +11,3 @@ export function LinkIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default LinkIcon

@@ -24,5 +24,3 @@ export function SunIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default SunIcon

@@ -17,5 +17,3 @@ export function PlusSquareIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default PlusSquareIcon

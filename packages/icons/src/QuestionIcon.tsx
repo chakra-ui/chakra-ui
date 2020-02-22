@@ -11,5 +11,3 @@ export function QuestionIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default QuestionIcon

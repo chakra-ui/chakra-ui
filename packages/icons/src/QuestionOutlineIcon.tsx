@@ -20,5 +20,3 @@ export function QuestionOutlineIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default QuestionOutlineIcon

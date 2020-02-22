@@ -11,5 +11,3 @@ export function PhoneIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default PhoneIcon

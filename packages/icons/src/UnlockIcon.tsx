@@ -11,5 +11,3 @@ export function UnlockIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default UnlockIcon

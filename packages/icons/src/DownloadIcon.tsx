@@ -11,5 +11,3 @@ export function DownloadIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default DownloadIcon

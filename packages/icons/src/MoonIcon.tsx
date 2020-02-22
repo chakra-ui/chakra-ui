@@ -11,5 +11,3 @@ export function MoonIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default MoonIcon

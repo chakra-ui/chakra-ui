@@ -11,5 +11,3 @@ export function ViewOffIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default ViewOffIcon

@@ -10,5 +10,3 @@ export function MinusIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default MinusIcon

@@ -1,5 +1,3 @@
-export { default } from "./Icons"
-export * from "./Icons"
 export * from "./CopyIcon"
 export * from "./SearchIcon"
 export * from "./Search2Icon"

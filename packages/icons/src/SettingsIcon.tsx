@@ -11,5 +11,3 @@ export function SettingsIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default SettingsIcon

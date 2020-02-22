@@ -12,5 +12,3 @@ export function SmallCloseIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default SmallCloseIcon

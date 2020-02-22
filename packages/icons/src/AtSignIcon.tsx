@@ -11,5 +11,3 @@ export function AtSignIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default AtSignIcon

@@ -11,5 +11,3 @@ export function RepeatIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default RepeatIcon

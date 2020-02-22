@@ -17,5 +17,3 @@ export function InfoOutlineIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default InfoOutlineIcon

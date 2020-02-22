@@ -11,5 +11,3 @@ export function DragHandleIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default DragHandleIcon

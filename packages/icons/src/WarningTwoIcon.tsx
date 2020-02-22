@@ -11,5 +11,3 @@ export function WarningTwoIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default WarningTwoIcon

@@ -11,5 +11,3 @@ export function TimeIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default TimeIcon

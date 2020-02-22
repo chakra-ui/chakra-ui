@@ -12,5 +12,3 @@ export function SmallAddIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default SmallAddIcon

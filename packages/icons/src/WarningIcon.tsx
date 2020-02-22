@@ -11,5 +11,3 @@ export function WarningIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default WarningIcon

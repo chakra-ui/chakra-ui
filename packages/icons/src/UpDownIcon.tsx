@@ -11,5 +11,3 @@ export function UpDownIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default UpDownIcon

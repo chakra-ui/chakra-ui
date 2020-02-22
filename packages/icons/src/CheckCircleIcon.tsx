@@ -11,5 +11,3 @@ export function CheckCircleIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default CheckCircleIcon

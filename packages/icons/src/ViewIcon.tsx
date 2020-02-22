@@ -11,5 +11,3 @@ export function ViewIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default ViewIcon

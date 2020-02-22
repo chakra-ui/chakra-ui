@@ -11,5 +11,3 @@ export function LockIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default LockIcon

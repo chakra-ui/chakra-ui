@@ -11,5 +11,3 @@ export function DeleteIcon(props: IconProps) {
     </Icon>
   )
 }
-
-export default DeleteIcon
