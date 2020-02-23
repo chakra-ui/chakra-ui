@@ -198,7 +198,7 @@ test("aria-contols for button is same as id for panel", () => {
 // test that aria-expanded is true/false when accordion is open/closed
 // test that panel has role=region and aria-labelledby
 test("panel has role=region and aria-labelledby", () => {
-  const { getByText, getByRole } = render(
+  const { getByText } = render(
     <BaseAccordion>
       <BaseAccordionItem>
         <BaseAccordionButton>Section 1 title</BaseAccordionButton>
