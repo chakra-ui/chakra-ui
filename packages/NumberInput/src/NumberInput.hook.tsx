@@ -205,6 +205,7 @@ export function useNumberInput(props: NumberInputHookProps = {}) {
 
   return {
     value: counter.value,
+    valueAsNumber: counter.valueAsNumber,
     isFocused,
     isDisabled,
     isReadOnly,

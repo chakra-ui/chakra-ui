@@ -8,12 +8,7 @@ import {
   BaseNumberInput,
   BaseNumberInputField,
   BaseStepperGroup,
-  NumberDecrementStepper,
-  NumberIncrementStepper,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-} from "./NumberInput"
+} from "./NumberInput.base"
 
 export default {
   title: "NumberInput",
@@ -27,7 +22,12 @@ export default {
 }
 
 export function NumberInputHook() {
-  const { input, upSpinner, downSpinner, valueAsNumber } = useNumberInput({
+  const {
+    getInputProps,
+    getIncrementButtonProps,
+    getDecrementButtonProps,
+    valueAsNumber,
+  } = useNumberInput({
     step: 0.01,
     defaultValue: 1.53,
     min: -4,
@@ -38,11 +38,11 @@ export function NumberInputHook() {
   return (
     <div>
       <div>current: {valueAsNumber}</div>
-      <button tabIndex={-1} {...upSpinner}>
+      <button tabIndex={-1} {...getIncrementButtonProps()}>
         +
       </button>
-      <input {...input} />
-      <button tabIndex={-1} {...downSpinner}>
+      <input {...getInputProps()} />
+      <button tabIndex={-1} {...getDecrementButtonProps()}>
         -
       </button>
     </div>
@@ -83,14 +83,4 @@ export const Base = () => (
       <BaseDecrementStepper children="-" style={styles.button} />
     </BaseStepperGroup>
   </BaseNumberInput>
-)
-
-export const WithChakra = () => (
-  <NumberInput>
-    <NumberInputField focusBorderColor="tomato" />
-    <NumberInputStepper>
-      <NumberIncrementStepper />
-      <NumberDecrementStepper />
-    </NumberInputStepper>
-  </NumberInput>
 )

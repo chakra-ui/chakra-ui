@@ -1,7 +1,6 @@
-import React from "react"
-import { useCheckbox, CheckboxHookProps } from "@chakra-ui/checkbox"
-import { useMergeRefs } from "@chakra-ui/hooks"
+import { CheckboxHookProps, useCheckbox } from "@chakra-ui/checkbox"
 import { createChakra, PropsOf } from "@chakra-ui/system"
+import React from "react"
 
 const SwitchRoot = createChakra("label", {
   baseStyle: {
@@ -21,23 +20,15 @@ export const Switch = React.forwardRef(
     const { state, getInputProps, getCheckboxProps, htmlProps } = useCheckbox(
       props,
     )
-    const input = getInputProps()
-    const checkbox = getCheckboxProps()
-    const ownRef = useMergeRefs(ref, input.ref)
 
     return (
       <SwitchRoot data-chakra-switch="" {...htmlProps}>
-        <input
-          data-chakra-switch-input=""
-          {...input}
-          ref={ownRef}
-          role="switch"
-        />
+        <input data-chakra-switch-input="" {...getInputProps({ ref })} />
         <SwitchTrack
           variantColor={variantColor}
           variantSize={variantSize}
           data-chakra-switch-track=""
-          {...checkbox}
+          {...getCheckboxProps()}
         >
           <SwitchThumb
             variantSize={variantSize}

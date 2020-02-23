@@ -1,4 +1,4 @@
-import icons from "@chakra-ui/icon-glyphs"
+import { AddIcon } from "@chakra-ui/icon-glyphs"
 import * as React from "react"
 import { Tag, TagIcon, TagLabel } from "./Tag"
 
@@ -33,7 +33,7 @@ export const VariantColors = () => (
 export const LeftIcon = () => (
   <>
     <Tag variantColor="cyan">
-      <TagIcon size="12px" children={icons.add.path} />
+      <TagIcon size="12px" as={AddIcon} />
       <TagLabel>Green</TagLabel>
     </Tag>
   </>
