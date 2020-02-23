@@ -7,7 +7,7 @@ import {
   BaseAccordionButton,
   BaseAccordionItem,
   BaseAccordionPanel,
-} from "../src/Accordion.base"
+} from "../Accordion.base"
 
 test("Button renders correctly", () => {
   const { asFragment } = render(

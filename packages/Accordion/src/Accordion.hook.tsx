@@ -199,10 +199,10 @@ export function useAccordionItem(props: AccordionItemHookProps) {
     focusable: isFocusable,
   })
 
-  const isFocused = index === focusedIndex
+  const shouldFocus = index === focusedIndex
 
   // focus the accordion button if it's highlighted
-  useFocusEffect(buttonRef, { shouldFocus: isFocused })
+  useFocusEffect(buttonRef, { shouldFocus })
 
   // toggle the visibility of the accordion item
   const onClick = React.useCallback(() => {
@@ -248,37 +248,31 @@ export function useAccordionItem(props: AccordionItemHookProps) {
     onClick?: React.MouseEventHandler
   }
 
-  const getButtonProps = (props: ButtonProps) => ({
-    ...props,
-    ref: mergeRefs(buttonRef, props.ref),
-    id: buttonId,
-    disabled: isDisabled,
-    "aria-expanded": isOpen,
-    "aria-controls": panelId,
-    onClick: callAllHandlers(props.onClick, onClick),
-    onFocus: callAllHandlers(props.onFocus, onFocus),
-    onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
-  })
-
-  const getPanelProps = (props: {}) => ({
-    ...props,
-    role: "region",
-    id: panelId,
-    "aria-labelledby": buttonId,
-    hidden: !isOpen,
-  })
-
   return {
-    // prop getters
-    getButtonProps,
-    getPanelProps,
-    // state
     isOpen,
     isDisabled,
     isFocusable,
-    // actions
     onOpen,
     onClose,
+    // prop getters
+    getButtonProps: (props: ButtonProps) => ({
+      ...props,
+      ref: mergeRefs(buttonRef, props.ref),
+      id: buttonId,
+      disabled: isDisabled,
+      "aria-expanded": isOpen,
+      "aria-controls": panelId,
+      onClick: callAllHandlers(props.onClick, onClick),
+      onFocus: callAllHandlers(props.onFocus, onFocus),
+      onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
+    }),
+    getPanelProps: (props: {}) => ({
+      ...props,
+      role: "region",
+      id: panelId,
+      "aria-labelledby": buttonId,
+      hidden: !isOpen,
+    }),
     // other html props (useful if you need to spread other props to root component)
     htmlProps,
   }

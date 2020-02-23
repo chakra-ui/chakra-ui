@@ -1,11 +1,11 @@
 import React from "react"
-import useCounter from "./Counter.hook"
+import { useCounter } from "./Counter"
 
 export default {
-  title: "Counters",
+  title: "Counter",
 }
 
-export function HookSetup() {
+export function Basic() {
   const counter = useCounter({
     defaultValue: 1.53,
     max: 10,
@@ -13,37 +13,17 @@ export function HookSetup() {
     step: 0.1,
     keepWithinRange: true,
     precision: 4,
-    onChange: (num, str) => console.log({ num, str }),
+    onChange: console.log,
   })
 
   return (
     <div>
       <div>current: {counter.value}</div>
       <br />
-      <button
-        // onKeyDown={event => {
-        //   if (event.key === "Enter" || event.key === " ") {
-        //     counter.incrementWithThrottle();
-        //   }
-        // }}
-        // onMouseDown={counter.keepIncrementing}
-        // onMouseUp={counter.stop}
-        onClick={() => counter.increment()}
-        disabled={counter.isAtMax}
-      >
+      <button onClick={() => counter.increment()} disabled={counter.isAtMax}>
         Increment
       </button>
-      <button
-        // onKeyDown={event => {
-        //   if (event.key === "Enter" || event.key === " ") {
-        //     counter.decrementWithThrottle();
-        //   }
-        // }}
-        onClick={() => counter.decrement()}
-        // onMouseDown={counter.keepDecrementing}
-        // onMouseUp={counter.stop}
-        disabled={counter.isAtMin}
-      >
+      <button onClick={() => counter.decrement()} disabled={counter.isAtMin}>
         Decrement
       </button>
     </div>

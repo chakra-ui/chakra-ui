@@ -1,5 +1,5 @@
 import * as React from "react"
-import Collapse from "../src/Collapse"
+import Collapse from "./Collapse"
 
 export default {
   title: "Collapse",

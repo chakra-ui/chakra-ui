@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should match snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <span
+      data-testid="preview"
+    >
+      testing
+    </span>
+    <input
+      data-testid="input"
+      hidden=""
+      value="testing"
+    />
+  </div>
+  <div
+    class="__chakra--portal-manager"
+  />
+</DocumentFragment>
+`;

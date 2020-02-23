@@ -1,5 +1,5 @@
 {
-  "name": "@chakra-ui/descendant",
+  "name": "@chakra-ui/focus-lock",
   "version": "0.0.1",
   "description": "description",
   "keywords": [
@@ -12,7 +12,7 @@
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
   "main": "dist/index.js",
-  "module": "dist/descendant.esm.js",
+  "module": "dist/focuslock.esm.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
@@ -47,9 +47,7 @@
     "tslib": "1.10.0",
     "typescript": "3.7.4"
   },
-  "dependencies": {
-    "@chakra-ui/hooks": "0.0.1"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "@emotion/core": "10.x",
     "@emotion/styled": "10.x",
