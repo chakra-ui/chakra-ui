@@ -1,7 +1,5 @@
-import "@testing-library/jest-dom/extend-expect"
-import userEvent from "@testing-library/user-event"
 import React from "react"
-import { render } from "../../../test/utils"
+import { userEvent, render } from "@chakra-ui/test-utils"
 import {
   Checkbox,
   CheckboxHiddenInput,

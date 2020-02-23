@@ -1,6 +1,5 @@
-import "@testing-library/jest-dom/extend-expect"
 import React from "react"
-import { render } from "../../../../test/utils"
+import { render } from "@chakra-ui/test-utils"
 import { Collapse } from "../Collapse"
 
 test("Collapse renders correctly", () => {

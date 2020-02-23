@@ -1,9 +1,18 @@
-import { ensureFocus, normalizeEventKey, throttle } from "@chakra-ui/utils"
+import {
+  ensureFocus,
+  normalizeEventKey,
+  callAllHandlers,
+  mergeRefs,
+} from "@chakra-ui/utils"
 import * as React from "react"
-import { useCounter, CounterOptions } from "@chakra-ui/counter"
-import { useUpdateEffect, useInterval } from "@chakra-ui/hooks"
+import { useCounter, CounterHookProps } from "@chakra-ui/counter"
+import { useUpdateEffect, useInterval, useBooleanState } from "@chakra-ui/hooks"
+import {
+  isFloatingPointNumericCharacter,
+  isValidNumericKeyboardEvent,
+} from "./NumberInput.utils"
 
-export interface NumberInputHookProps extends CounterOptions {
+export interface NumberInputHookProps extends CounterHookProps {
   /**
    * If `true`, the input will be focused as you increment
    * or decrement the value with the stepper
@@ -54,83 +63,6 @@ export interface NumberInputHookProps extends CounterOptions {
   decimalSeparator?: string
 }
 
-const TIMEOUT_DURATION = 300
-const INTERVAL_DURATION = 50
-
-type Action = "increment" | "decrement"
-type VoidFunction = () => void
-
-function useSpinner() {
-  const counter = useCounter({})
-  const { increment, decrement } = counter
-
-  const [isSpinning, setIsSpinning] = React.useState(false)
-  const [action, setAction] = React.useState<Action | null>(null)
-  const [runOnce, setRunOnce] = React.useState(true)
-
-  const timeoutRef = React.useRef<any>(null)
-  const removeTimeout = () => {
-    clearTimeout(timeoutRef.current)
-  }
-
-  useInterval(
-    () => {
-      if (action === "increment") increment()
-      if (action === "decrement") decrement()
-    },
-    isSpinning ? INTERVAL_DURATION : null,
-  )
-
-  // Function to activate the spinning and increment the value
-  const spinUp = React.useCallback(() => {
-    // increment the first fime
-    if (runOnce) increment()
-
-    // after a delay, keep incrementing at interval ("spinning up")
-    timeoutRef.current = setTimeout(() => {
-      setRunOnce(false)
-      setIsSpinning(true)
-      setAction("increment")
-    }, TIMEOUT_DURATION)
-  }, [increment, runOnce])
-
-  // Function to activate the spinning and increment the value
-  const spinDown = React.useCallback(() => {
-    // decrement the first fime
-    if (runOnce) decrement()
-
-    // after a delay, keep decrementing at interval ("spinning down")
-    timeoutRef.current = setTimeout(() => {
-      setRunOnce(false)
-      setIsSpinning(true)
-      setAction("decrement")
-    }, TIMEOUT_DURATION)
-  }, [decrement, runOnce])
-
-  // Function to stop spinng (useful for mouseup, keyup handlers)
-  const stopSpinning = React.useCallback(() => {
-    setRunOnce(true)
-    setIsSpinning(false)
-    removeTimeout()
-  }, [])
-
-  React.useEffect(() => {
-    return () => {
-      removeTimeout()
-    }
-  }, [])
-
-  // increment using throttle (useful for keydown handlers)
-  const incrementWithThrottle = throttle(INTERVAL_DURATION, () =>
-    increment(),
-  ) as VoidFunction
-
-  // decrement using throttle (useful for keydown handlers)
-  const decrementWithThrottle = throttle(INTERVAL_DURATION, () =>
-    decrement(),
-  ) as VoidFunction
-}
-
 export function useNumberInput(props: NumberInputHookProps = {}) {
   const {
     focusInputOnChange = true,
@@ -152,12 +84,11 @@ export function useNumberInput(props: NumberInputHookProps = {}) {
 
   const counter = useCounter(props)
 
-  const [isFocused, setIsFocused] = React.useState(false)
+  const [isFocused, setFocused] = useBooleanState(false)
 
   const inputRef = React.useRef<HTMLInputElement>(null)
   const isInteractive = !(isReadOnly || isDisabled)
 
-  // Focus the input then you use the spinner to change value
   useUpdateEffect(() => {
     if (focusInputOnChange && inputRef.current) {
       ensureFocus(inputRef.current)
@@ -184,16 +115,24 @@ export function useNumberInput(props: NumberInputHookProps = {}) {
     counter.update(nextValue)
   }
 
+  const spinner = useSpinner(increment, decrement)
+
   const onChange = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      counter.update(event.target.value)
+      const { value } = event.target
+      const valueChars = value.split("")
+      const sanitizedValueChars = valueChars.filter(
+        isFloatingPointNumericCharacter,
+      )
+      const sanitizedValue = sanitizedValueChars.join("")
+      counter.update(sanitizedValue)
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
     [counter.update],
   )
 
   const onKeyDown = (event: React.KeyboardEvent) => {
-    if (!isAllowedKey(event)) {
+    if (!isValidNumericKeyboardEvent(event)) {
       event.preventDefault()
     }
 
@@ -244,51 +183,46 @@ export function useNumberInput(props: NumberInputHookProps = {}) {
       ? getAriaValueText(counter.value)
       : undefined
 
-  const onFocus = () => setIsFocused(true)
-
   const onBlur = () => {
-    setIsFocused(false)
+    setFocused.off()
     if (clampValueOnBlur) {
       validateAndClamp()
     }
   }
 
+  type InputProps = {
+    ref?: React.Ref<HTMLInputElement>
+    onFocus?: React.FocusEventHandler<HTMLInputElement>
+    onBlur?: React.FocusEventHandler<HTMLInputElement>
+    onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>
+    onChange?: React.ChangeEventHandler<HTMLInputElement>
+  }
+
+  type ButtonProps = {
+    onMouseDown?: React.MouseEventHandler
+    onMouseUp?: React.MouseEventHandler
+  }
+
   return {
     value: counter.value,
-    valueAsNumber: counter.valueAsNumber,
     isFocused,
-    isDisabled: isDisabled,
-    isReadOnly: isReadOnly,
-    upSpinner: {
-      onMouseDown: counter.keepIncrementing,
-      onMouseUp: counter.stop,
+    isDisabled,
+    isReadOnly,
+    getIncrementButtonProps: (props: ButtonProps = {}) => ({
+      ...props,
+      onMouseDown: callAllHandlers(props.onMouseDown, spinner.up),
+      onMouseUp: callAllHandlers(props.onMouseUp, spinner.stop),
       disabled: counter.isAtMax,
-    },
-    downSpinner: {
-      onMouseDown: counter.keepDecrementing,
-      onMouseUp: counter.stop,
+    }),
+    getDecrementButtonProps: (props: ButtonProps = {}) => ({
+      ...props,
+      onMouseDown: callAllHandlers(props.onMouseDown, spinner.down),
+      onMouseUp: callAllHandlers(props.onMouseUp, spinner.stop),
       disabled: counter.isAtMin,
-    },
-    upButton: {
-      onClick: counter.increment,
-      "aria-label": "add",
-      ...(keepWithinRange && {
-        disabled: counter.isAtMax,
-        "aria-disabled": counter.isAtMax,
-      }),
-    },
-    downButton: {
-      onClick: counter.decrement,
-      "aria-label": "subtract",
-      ...(keepWithinRange && {
-        disabled: counter.isAtMin,
-        "aria-disabled": counter.isAtMin,
-      }),
-    },
-    input: {
-      onChange,
-      onKeyDown,
-      ref: inputRef,
+    }),
+    getInputProps: (props: InputProps = {}) => ({
+      ...props,
+      ref: mergeRefs(inputRef, props.ref),
       value: counter.value,
       role: "spinbutton",
       type: "text",
@@ -303,61 +237,92 @@ export function useNumberInput(props: NumberInputHookProps = {}) {
       disabled: isDisabled,
       autoComplete: "off",
       autoCorrect: "off",
-      onFocus,
-      onBlur,
-    },
-    hiddenLabel: {
-      "aria-live": "polite",
-      children: ariaValueText || counter.value,
-    },
+      onChange: callAllHandlers(props.onChange, onChange),
+      onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
+      onFocus: callAllHandlers(props.onFocus, setFocused.on),
+      onBlur: callAllHandlers(props.onBlur, onBlur),
+    }),
     htmlProps,
   }
 }
 
 export type NumberInputHookReturn = ReturnType<typeof useNumberInput>
 
-/**
- * Checks if the pressed key is a number input related
- *
- * @param event The keyboard event
- * @returns {Boolean} True or false, obviously :)
- */
-function isAllowedKey(event: React.KeyboardEvent) {
-  const keyCode = event.which ? event.which : event.keyCode
+const CONTINUOUS_CHANGE_DELAY = 300
+const CONTINUOUS_CHANGE_INTERVAL = 50
 
-  const allowedKeys = [
-    "Delete",
-    "Backspace",
-    "ArrowLeft",
-    "ArrowRight",
-    "Meta",
-    "Shift",
-    "Enter",
-    "Escape",
-    "Home",
-    "End",
-    "+",
-    "-",
-    ".",
-  ]
+function useSpinner(increment: Function, decrement: Function) {
+  type Action = "increment" | "decrement"
 
-  const key = normalizeEventKey(event)
-  const ctrlKey = event.metaKey || event.ctrlKey
+  // To keep incrementing/decrementing on mousedown, we call that `spinning`
+  const [isSpinning, setIsSpinning] = React.useState(false)
 
-  const isCopy = ctrlKey && key === "c"
-  const isPaste = ctrlKey && key === "v"
-  const isCut = ctrlKey && key === "x"
-  const isSelectAll = ctrlKey && key === "a"
+  // This state keeps track of the action ("increment" or "decrement")
+  const [action, setAction] = React.useState<Action | null>(null)
 
-  if (allowedKeys.includes(key) || isCopy || isPaste || isCut || isSelectAll)
-    return true
+  // To increment the value the first time you mousedown, we call that `runOnce`
+  const [runOnce, setRunOnce] = React.useState(true)
 
-  const notTopNumberKeypad = keyCode > 31 && (keyCode < 48 || keyCode > 57)
-  const notNumericKeypad = (keyCode < 96 || keyCode > 105) && keyCode !== 110
+  // Store the timeout instance id in a ref, so we can clear the timeout later
+  const timeoutRef = React.useRef<any>(null)
 
-  if (event.shiftKey || (notTopNumberKeypad && notNumericKeypad)) return false
+  // Clears the timeout from memory
+  const removeTimeout = () => clearTimeout(timeoutRef.current)
 
-  return true
+  /**
+   * useInterval hook provides a performant way to
+   * update the state value at specific interval
+   */
+  useInterval(
+    () => {
+      if (action === "increment") increment()
+      if (action === "decrement") decrement()
+    },
+    isSpinning ? CONTINUOUS_CHANGE_INTERVAL : null,
+  )
+
+  // Function to activate the spinning and increment the value
+  const up = React.useCallback(() => {
+    // increment the first fime
+    if (runOnce) increment()
+
+    // after a delay, keep incrementing at interval ("spinning up")
+    timeoutRef.current = setTimeout(() => {
+      setRunOnce(false)
+      setIsSpinning(true)
+      setAction("increment")
+    }, CONTINUOUS_CHANGE_DELAY)
+  }, [increment, runOnce])
+
+  // Function to activate the spinning and increment the value
+  const down = React.useCallback(() => {
+    // decrement the first fime
+    if (runOnce) decrement()
+
+    // after a delay, keep decrementing at interval ("spinning down")
+    timeoutRef.current = setTimeout(() => {
+      setRunOnce(false)
+      setIsSpinning(true)
+      setAction("decrement")
+    }, CONTINUOUS_CHANGE_DELAY)
+  }, [decrement, runOnce])
+
+  // Function to stop spinng (useful for mouseup, keyup handlers)
+  const stop = React.useCallback(() => {
+    setRunOnce(true)
+    setIsSpinning(false)
+    removeTimeout()
+  }, [])
+
+  /**
+   * If the component unmounts while spinning,
+   * let's clear the timeout as well
+   */
+  React.useEffect(() => {
+    return () => {
+      removeTimeout()
+    }
+  }, [])
+
+  return { up, down, stop }
 }
-
-export default useNumberInput

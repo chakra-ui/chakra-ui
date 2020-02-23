@@ -8,20 +8,23 @@ function toNumber(value: any) {
   return isNotNumber(num) ? 0 : num
 }
 
-export function roundToPrecision(value: number, precision: number) {
+export function toPrecision(value: number, precision?: number) {
   let nextValue: string | number = toNumber(value)
-  const quotient = Math.pow(10, precision == null ? 10 : precision)
-  nextValue = Math.round(nextValue * quotient) / quotient
-  nextValue = precision ? nextValue.toFixed(precision) : nextValue
-  return String(nextValue)
+  const scaleFactor = Math.pow(10, precision ?? 10)
+  nextValue = Math.round(nextValue * scaleFactor) / scaleFactor
+  return precision ? nextValue.toFixed(precision) : nextValue.toString()
 }
 
-export function calculatePrecision(value: number) {
-  const groups = /[1-9]([0]+$)|\.([0-9]*)/.exec(String(value))
-  if (!groups) return 0
-  if (groups[1]) return -groups[1].length
-  if (groups[2]) return groups[2].length
-  return 0
+export function countDecimalPlaces(value: number) {
+  if (!isFinite(value)) return 0
+
+  let e = 1
+  let p = 0
+  while (Math.round(value * e) / e !== value) {
+    e *= 10
+    p++
+  }
+  return p
 }
 
 export function valueToPercent(value: number, min: number, max: number) {
@@ -34,12 +37,14 @@ export function percentToValue(percent: number, min: number, max: number) {
 
 export function roundValueToStep(value: number, step: number) {
   const nextValue = Math.round(value / step) * step
-  const precision = calculatePrecision(step)
-  return roundToPrecision(nextValue, precision)
+  const precision = countDecimalPlaces(step)
+  return toPrecision(nextValue, precision)
 }
 
-export function constrainValue(value: number, min: number, max: number) {
-  if (value > max) return max
-  if (value < min) return min
-  return value
+export function clampValue(value: number, min: number, max: number) {
+  if (value == null) return value
+  if (max < min) {
+    throw new Error("[Chakra UI] clamp: max cannot be less than min")
+  }
+  return Math.min(Math.max(value, min), max)
 }

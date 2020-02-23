@@ -12,6 +12,9 @@ export const isNotNumber = (value: any) =>
 export const isInteger = (value: any): value is number =>
   String(Math.floor(Number(value))) === value
 
+export const isNumeric = (value: string) =>
+  value != null && (value as any) - parseFloat(value) + 1 >= 0
+
 // Array assertions
 export function isArray<T>(value: any): value is Array<T> {
   return Array.isArray(value)
@@ -44,7 +47,7 @@ export const isObject = (value: any): value is Dict => {
 export const isEmptyObject = (value: any) =>
   isObject(value) && Object.keys(value).length === 0
 
-export const isNull = (value: any): value is null => typeof value == null
+export const isNull = (value: any): value is null => value == null
 
 // String assertions
 export function isString(value: any): value is string {

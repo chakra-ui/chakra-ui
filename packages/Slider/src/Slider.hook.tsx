@@ -1,7 +1,7 @@
 import { useControllableProp, useId, useDimensions } from "@chakra-ui/hooks"
 import {
   callAllHandlers as compose,
-  constrainValue,
+  clampValue,
   createContext,
   createOnKeyDown,
   percentToValue,
@@ -119,7 +119,7 @@ export function useSlider(props: SliderHookProps) {
 
   // Constrain the value because it can't be less than min
   // or greater than max
-  const value = constrainValue(derivedValue, min, max)
+  const value = clampValue(derivedValue, min, max)
 
   const reversedValue = max - value + min
   const trackValue = isReversed ? reversedValue : value
@@ -172,7 +172,7 @@ export function useSlider(props: SliderHookProps) {
           nextValue = +roundValueToStep(nextValue, step)
         }
 
-        nextValue = constrainValue(nextValue, min, max)
+        nextValue = clampValue(nextValue, min, max)
         return nextValue
       }
     },
@@ -242,7 +242,7 @@ export function useSlider(props: SliderHookProps) {
     (value: number) => {
       let nextValue = value
       nextValue = +roundValueToStep(nextValue, keyStep)
-      nextValue = constrainValue(nextValue, min, max)
+      nextValue = clampValue(nextValue, min, max)
       updateValue(nextValue)
     },
     [keyStep, max, min, updateValue],

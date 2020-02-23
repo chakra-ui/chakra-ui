@@ -1,6 +1,5 @@
-import "@testing-library/jest-dom/extend-expect"
 import * as React from "react"
-import { render } from "../../../../test/utils"
+import { render } from "@chakra-ui/test-utils"
 import {
   BaseEditable,
   BaseEditableInput,

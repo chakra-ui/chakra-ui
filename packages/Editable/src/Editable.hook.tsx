@@ -85,8 +85,8 @@ export function useEditable(props: EditableHookProps) {
   useUpdateEffect(() => {
     if (isEditing) {
       selectAllOnFocus ? inputRef.current?.select() : inputRef.current?.focus()
+      onEditProp?.()
     }
-    onEditProp?.()
   }, [isEditing, selectAllOnFocus])
 
   const onEdit = React.useCallback(() => {

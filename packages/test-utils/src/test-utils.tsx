@@ -1,6 +1,7 @@
 import { PortalManager } from "@chakra-ui/portal"
 import theme from "@chakra-ui/preset-base"
 import { ColorMode, createThemeContext, CSSReset } from "@chakra-ui/system"
+import "@testing-library/jest-dom/extend-expect"
 import { render, RenderOptions } from "@testing-library/react"
 import * as React from "react"
 
@@ -19,7 +20,6 @@ const AllProviders = ({ children }: { children?: React.ReactNode }) => (
 const customRender = (ui: React.ReactElement, options?: RenderOptions) =>
   render(ui, { wrapper: AllProviders, ...options })
 
-// re-export everything
 export * from "@testing-library/react"
 export {
   act as invoke,
@@ -28,5 +28,4 @@ export {
   RenderHookResult,
 } from "@testing-library/react-hooks"
 export { default as userEvent } from "@testing-library/user-event"
-// override render method
 export { customRender as render }
