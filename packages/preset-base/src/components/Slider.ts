@@ -19,7 +19,7 @@ const Slider: ComponentTheme = {
       FilledTrack: { height: "2px" },
     },
   },
-  baseStyle: props => ({
+  baseStyle: (props: any) => ({
     Root: {
       width: "full",
       display: "inline-block",

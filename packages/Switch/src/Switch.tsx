@@ -18,7 +18,11 @@ export type SwitchProps = CheckboxHookProps &
 export const Switch = React.forwardRef(
   (props: SwitchProps, ref: React.Ref<HTMLInputElement>) => {
     const { variantColor, variantSize } = props
-    const { state, input, checkbox, htmlProps } = useCheckbox(props)
+    const { state, getInputProps, getCheckboxProps, htmlProps } = useCheckbox(
+      props,
+    )
+    const input = getInputProps()
+    const checkbox = getCheckboxProps()
     const ownRef = useMergeRefs(ref, input.ref)
 
     return (

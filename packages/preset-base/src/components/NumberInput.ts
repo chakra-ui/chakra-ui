@@ -16,7 +16,7 @@ function getSizeStyle(size: "sm" | "md" | "lg"): SystemProps {
 }
 
 const NumberInput: ComponentTheme = {
-  baseStyle: props => ({
+  baseStyle: (props: any) => ({
     StepperGroup: {
       width: "24px",
       margin: "1px",
