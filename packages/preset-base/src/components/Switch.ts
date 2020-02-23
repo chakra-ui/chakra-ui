@@ -35,7 +35,7 @@ const variantSize = {
 }
 
 const Switch: ComponentTheme = {
-  baseStyle: props => ({
+  baseStyle: (props: any) => ({
     Track: {
       borderRadius: "full",
       justifyContent: "flex-start",

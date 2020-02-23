@@ -8,7 +8,7 @@
     "bundlesize": "bundlesize -c bundlesize.config.json",
     "setup": "yarn && npm-run-all setup:1 setup:2 setup:3",
     "setup:1": "lerna run build --stream --scope=@chakra-ui/{utils,hooks,system,icon,color,preset-base,portal}",
-    "setup:2": "yarn layout build && yarn descendant build && yarn icons build && yarn tabbable build && yarn checkbox build && yarn popper build",
+    "setup:2": "yarn layout build && yarn descendant build && yarn icons build && yarn tabbable build && yarn hidden build  && yarn focuslock build && yarn checkbox build && yarn popper build",
     "setup:3": "yarn spinner build && yarn field build && yarn counter build",
     "commit": "git-cz",
     "clean": "lerna clean --yes",
