@@ -39,7 +39,7 @@ import { Tag, TagIcon, TagLabel, TagCloseButton } from "@chakra-ui/core";
   {["sm", "md", "lg"].map(size => (
     <Tag size={size} key={size} variantColor="cyan">
       <TagIcon icon="add" size="12px" />
-      <TagLabel>Green</TagLabel>
+      <TagLabel>Cyan</TagLabel>
     </Tag>
   ))}
 </Stack>
@@ -50,13 +50,13 @@ import { Tag, TagIcon, TagLabel, TagCloseButton } from "@chakra-ui/core";
 ```jsx
 <Stack spacing={4} isInline>
   <Tag variantColor="cyan">
-    <TagLabel>Green</TagLabel>
+    <TagLabel>Cyan</TagLabel>
     <TagIcon icon="check" size="12px" />
   </Tag>
 
   {/* You can also use custom svg icons */}
   <Tag variantColor="teal">
-    <TagLabel>Green</TagLabel>
+    <TagLabel>Teal</TagLabel>
     <TagIcon icon={MdSettings} />
   </Tag>
 </Stack>
@@ -74,7 +74,7 @@ import { Tag, TagIcon, TagLabel, TagCloseButton } from "@chakra-ui/core";
       variant="solid"
       variantColor="cyan"
     >
-      <TagLabel>Green</TagLabel>
+      <TagLabel>Cyan</TagLabel>
       <TagCloseButton />
     </Tag>
   ))}
@@ -98,8 +98,8 @@ import { Tag, TagIcon, TagLabel, TagCloseButton } from "@chakra-ui/core";
 
 ## Props
 
-| Name           | Type                         | Default | Description                             |
-| -------------- | ---------------------------- | ------- | --------------------------------------- |
-| `variant`      | `solid`, `subtle`, `outline` | `solid` | The variant style of the tag component. |
-| `size`         | `sm`, `md`, `lg`             | `md`    | The size of the tag component.          |
-| `variantColor` | `string`                     |         | The color scheme of the tag variant.    |
+| Name           | Type                         | Default  | Description                             |
+| -------------- | ---------------------------- | -------- | --------------------------------------- |
+| `variant`      | `solid`, `subtle`, `outline` | `subtle` | The variant style of the tag component. |
+| `size`         | `sm`, `md`, `lg`             | `lg`     | The size of the tag component.          |
+| `variantColor` | `string`                     | `gray`   | The color scheme of the tag variant.    |
