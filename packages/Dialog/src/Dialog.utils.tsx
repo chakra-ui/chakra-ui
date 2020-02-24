@@ -12,13 +12,12 @@ export function useOutsideClick(
       if (!ref.current) return
 
       const eventTarget = event.target as HTMLElement
-
       const isContained = ref.current.contains(eventTarget)
       const lastDialog = dialogs[dialogs.length - 1]
 
-      if (!isContained && lastDialog.current === ref.current) {
+      if (!isContained && lastDialog?.current === ref.current) {
         // Without this fix, the modal closes when you start dragging from
-        // the content and release drag outside the modal.
+        // the content and release drag outside the modal. I think this is related to focus-lock's injected nodes
         // Here, we're checking if the outside target is the overlay. It usually either
         // the overlay or a focus-lock node
         if (eventTarget === overlayRef.current) {
@@ -38,11 +37,12 @@ export function useStackContext(ref: React.Ref<any>, isOpen?: boolean) {
 
   React.useEffect(() => {
     if (!isOpen) return
-    if (modals) modals.add(ref)
+    modals.add(ref)
     return () => {
-      if (modals) modals.remove(ref)
+      modals.remove(ref)
     }
-  }, [isOpen, ref, modals])
+    //eslint-disable-next-line
+  }, [isOpen, ref])
 
   return modals.value
 }

@@ -17,6 +17,7 @@ import Slider from "./Slider"
 import NumberInput from "./NumberInput"
 import Switch from "./Switch"
 import Tag from "./Tag"
+import Dialog from "./Dialog"
 
 export default {
   Button,
@@ -38,4 +39,5 @@ export default {
   NumberInput,
   Switch,
   Tag,
+  Dialog,
 }

@@ -25,13 +25,18 @@ export function usePopover(props: PopoverHookProps = {}) {
     initialFocusRef,
     placement,
     gutter,
+    id,
   } = props
   const { isOpen, onClose, onToggle } = useDisclosure(props)
 
   const triggerRef = React.useRef<any>(null)
   const contentRef = React.useRef<any>(null)
 
-  const [triggerId, popoverId] = useIds("popover-trigger", "popover-content")
+  const [triggerId, popoverId] = useIds(
+    id,
+    "popover-trigger",
+    "popover-content",
+  )
 
   const { popper, reference } = usePopper({
     placement,

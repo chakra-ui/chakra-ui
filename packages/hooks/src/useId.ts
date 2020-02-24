@@ -1,16 +1,22 @@
 import { useUID } from "react-uid"
 
-const generatePrefix = (str: string, id: string | number) => `${str}-${id}`
+function generatePrefix(str: string, id: string | number) {
+  return `${str}-${id}`
+}
 
-export function useId(idPrefix?: string, idProp?: string) {
+export function useId(idProp?: string, idPrefix?: string) {
   const uuid = useUID()
   if (idProp) return idProp
   if (idPrefix) return generatePrefix(idPrefix, uuid)
   return uuid
 }
 
-export function useIds(...prefixes: string[]) {
+export function useIds(
+  idProp: string | null | undefined,
+  ...prefixes: string[]
+) {
   const uuid = useId()
-  const ids = prefixes.map(prefix => generatePrefix(prefix, uuid))
+  const id = idProp ?? uuid
+  const ids = prefixes.map(prefix => generatePrefix(prefix, id))
   return ids
 }

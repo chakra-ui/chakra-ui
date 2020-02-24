@@ -172,6 +172,7 @@ export function useAccordionItem(props: AccordionItemHookProps) {
     context,
     isOpen: isOpenProp,
     defaultIsOpen,
+    id,
     ...htmlProps
   } = props
   const { descendantsContext, focusedIndex, setFocusedIndex } = context
@@ -183,7 +184,7 @@ export function useAccordionItem(props: AccordionItemHookProps) {
 
   const buttonRef = React.useRef<HTMLButtonElement>(null)
 
-  const [buttonId, panelId] = useIds(`accordion-header`, `accordion-panel`)
+  const [buttonId, panelId] = useIds(id, `accordion-header`, `accordion-panel`)
 
   // warn for incorrect usage
   if (__DEV__) {
