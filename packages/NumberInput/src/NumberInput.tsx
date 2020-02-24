@@ -1,4 +1,10 @@
-import { connect, createChakra } from "@chakra-ui/system"
+import {
+  createChakra,
+  syncChild,
+  syncParent,
+  ThemingProps,
+} from "@chakra-ui/system"
+import * as React from "react"
 import {
   BaseDecrementStepper,
   BaseIncrementStepper,
@@ -85,17 +91,12 @@ $NumberInputField.defaultProps = {
 
 // Connect the parent and child components so they can share theming props.
 // This means, if you pass `variantSize` from  the parent, it'll propagate to the registered children
-const {
-  parent: NumberInput,
-  children: [NumberInputField, NumberDecrementStepper, NumberIncrementStepper],
-} = connect({
-  parent: $NumberInput,
-  children: [
-    $NumberInputField,
-    $NumberDecrementStepper,
-    $NumberIncrementStepper,
-  ],
-})
+const Context = React.createContext<ThemingProps>({})
+
+const NumberInput = syncParent($NumberInput)(Context)
+const NumberInputField = syncChild($NumberInputField)(Context)
+const NumberDecrementStepper = syncChild($NumberDecrementStepper)(Context)
+const NumberIncrementStepper = syncChild($NumberIncrementStepper)(Context)
 
 export {
   NumberInput,

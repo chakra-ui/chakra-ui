@@ -1,5 +1,4 @@
 import * as React from "react"
-import { createContext } from "@chakra-ui/utils"
 import { getDisplayName } from "./createChakra/create-chakra.utils"
 
 export interface ThemingProps {
@@ -8,53 +7,54 @@ export interface ThemingProps {
   variantColor?: string
 }
 
-export function connect<PP>({
-  parent: Parent,
-  children,
-  applyToParent,
-}: {
-  parent: React.ComponentType<PP>
-  children: React.FC[]
-  applyToParent?: boolean
-}) {
-  const [Provider, useContext] = createContext<ThemingProps>()
+/**
+ * Sync the common theme props between parent,
+ * and child.
+ *
+ * @example
+ * ```jsx
+ * const ThemingContext = React.createContext<ThemingProps>({})
+ *
+ * const DivParent = syncParent(Div)(ThemingContext)
+ * const DivChild = syncChild(Child)(ThemingContext)
+ *
+ * Now passing either variant, variantColor, or size, will affect both
+ * DivParent and DivChild
+ * ```
+ */
+export function syncParent<P>(Component: React.ComponentType<P>) {
+  return function<C extends ThemingProps>(ctx: React.Context<C>) {
+    type NewParentProps = ThemingProps & P & { children?: React.ReactNode }
 
-  // @ts-ignore
-  Provider.displayName = `${getDisplayName(Parent)}ThemeConnect`
+    const NewParent = (props: NewParentProps) => {
+      const { variantSize, variant, variantColor, ...htmlProps } = props
+      const themingProps = { variantSize, variant, variantColor }
 
-  type NewParentProps = ThemingProps & {
-    children?: React.ReactNode
-  } & PP
+      return (
+        //@ts-ignore
+        <Component {...themingProps} {...htmlProps}>
+          <ctx.Provider value={themingProps as any}>
+            {props.children}
+          </ctx.Provider>
+        </Component>
+      )
+    }
 
-  function NewParent({
-    variantSize,
-    variant,
-    variantColor,
-    ...props
-  }: NewParentProps) {
-    const themingProps = { variantSize, variant, variantColor }
-    return (
-      // @ts-ignore
-      <Parent {...(applyToParent && themingProps)} {...props}>
-        <Provider value={themingProps}>{props.children}</Provider>
-      </Parent>
-    )
+    // @ts-ignore
+    ctx.Provider.displayName = `${getDisplayName(Component)}Sync`
+
+    return NewParent
   }
-
-  NewParent.displayName = `connect(${getDisplayName(Parent)})`
-
-  function inject<P>(Element: React.ComponentType<P>) {
-    //@ts-ignore
-    const Comp = React.forwardRef((props: P, ref: P["ref"]) => {
-      const themingProps = useContext()
-      return <Element ref={ref} {...themingProps} {...props} />
-    })
-    return Comp
-  }
-
-  const newChildren = children.map(inject)
-
-  return { parent: NewParent, children: newChildren }
 }
 
-export default connect
+export function syncChild<P>(Component: React.ComponentType<P>) {
+  return function<C extends ThemingProps>(ctx: React.Context<C>) {
+    //@ts-ignore
+    const NewChild = React.forwardRef((props: P, ref: P["ref"]) => {
+      const themingProps = React.useContext(ctx)
+      return <Component ref={ref} {...themingProps} {...props} />
+    })
+
+    return NewChild as React.FC<P>
+  }
+}

@@ -13,7 +13,11 @@ export function createContext<T>(
     return context
   }
 
-  return [Context.Provider, useContext] as [React.Provider<T>, () => T]
+  return [Context.Provider, useContext, Context] as [
+    React.Provider<T>,
+    () => T,
+    React.Context<T>,
+  ]
 }
 
 export function createHookContext<P, R>(hook: (props: P) => R) {

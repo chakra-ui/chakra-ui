@@ -1,6 +1,6 @@
 import * as React from "react"
 import chakra from "../chakra/chakra"
-import connect from "../connect-theming"
+import { syncChild, syncParent, ThemingProps } from "../connect-theming"
 import createChakra from "./create-chakra"
 import useComponentStyle from "./use-component-style"
 
@@ -132,10 +132,9 @@ export const BindTheming = () => {
     themeKey: "Tabs.Tab",
   })
 
-  const {
-    parent: BindTabList,
-    children: [BindTab],
-  } = connect({ parent: TabList, children: [Tab] })
+  const ThemingContext = React.createContext<ThemingProps>({})
+  const BindTabList = syncParent(TabList)(ThemingContext)
+  const BindTab = syncChild(Tab)(ThemingContext)
 
   return (
     <BindTabList variant="line" variantColor="red" variantSize="md">
