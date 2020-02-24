@@ -16,10 +16,31 @@ export interface DialogHookProps {
    * Callback invoked to close the modal.
    */
   onClose: (event?: MouseEvent | KeyboardEvent) => void
+  /**
+   * If `true`, scrolling will be disabled on the `body` when the modal opens.
+   *  @default true
+   */
+  blockScrollOnMount?: boolean
+  /**
+   * If `true`, the modal will close when the overlay is clicked
+   * @default true
+   */
+  closeOnOverlayClick?: boolean
+  /**
+   * If `true`, the modal will close when the `Esc` key is pressed
+   * @default true
+   */
+  closeOnEsc?: boolean
 }
 
 export function useDialog(props: DialogHookProps) {
-  const { isOpen, onClose, id } = props
+  const {
+    isOpen,
+    onClose,
+    id,
+    closeOnOverlayClick = true,
+    closeOnEsc = true,
+  } = props
   const dialogRef = React.useRef<HTMLElement>(null)
   const overlayRef = React.useRef<HTMLElement>(null)
 
@@ -33,17 +54,25 @@ export function useDialog(props: DialogHookProps) {
   useLockBodyScroll(dialogRef, isOpen)
 
   const modals = useStackContext(dialogRef, isOpen)
-  useOutsideClick(dialogRef, overlayRef, modals, onClose)
+  useOutsideClick({
+    ref: dialogRef,
+    overlayRef,
+    dialogs: modals,
+    callback: onClose,
+    enabled: closeOnOverlayClick,
+  })
   useAriaHidden(dialogRef, isOpen)
 
   const onKeyDown = React.useCallback(
     (event: React.KeyboardEvent) => {
       if (event.key === "Escape") {
+        if (!closeOnEsc) return
+
         event.stopPropagation()
-        onClose && onClose()
+        onClose?.()
       }
     },
-    [onClose],
+    [onClose, closeOnEsc],
   )
 
   const onOverlayClick = React.useCallback((event: React.MouseEvent) => {

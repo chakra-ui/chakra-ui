@@ -12,17 +12,38 @@ const [DialogContextProvider, useDialogContext] = createContext<
 
 export interface DialogProps extends DialogHookProps {
   children?: React.ReactNode
+  /**
+   * The `ref` of element to receive focus when the modal opens.
+   */
   initialFocusRef?: React.RefObject<any>
+  /**
+   * The `ref` of element to receive focus when the modal closes.
+   */
   finalFocusRef?: React.RefObject<any>
-  restoreFocus?: boolean
+  /**
+   * If `true`, the modal will return focus to the element that triggered it when it closes.
+   */
+  returnFocusOnClose?: boolean
+  /**
+   *  If `true`, the modal will be centered on screen.
+   */
+  isCentered?: boolean
+  /**
+   * Where scroll behaviour should originate.
+   * - If set to `inside`, scroll only occurs within the `ModalBody`.
+   * - If set to `outside`, the entire `ModalContent` will scroll within the viewport.
+   */
+  scrollBehavior?: "inside" | "outside"
 }
 
 export function Dialog(props: DialogProps) {
   const {
     initialFocusRef,
     finalFocusRef,
-    restoreFocus = true,
+    returnFocusOnClose = true,
     children,
+    scrollBehavior,
+    isCentered,
   } = props
   const context = useDialog(props)
 
@@ -34,7 +55,7 @@ export function Dialog(props: DialogProps) {
         <FocusLock
           initialFocusRef={initialFocusRef}
           finalFocusRef={finalFocusRef}
-          restoreFocus={restoreFocus}
+          restoreFocus={returnFocusOnClose}
         >
           {children}
         </FocusLock>

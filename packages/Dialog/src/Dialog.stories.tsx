@@ -1,7 +1,7 @@
 import { useDisclosure } from "@chakra-ui/hooks"
 import * as React from "react"
 import { DialogContent, DialogOverlay } from "./Dialog"
-import { Dialog, BaseDialogOverlay, BaseDialogContent } from "./Dialog.base"
+import { Dialog, BaseDialogHeader } from "./Dialog.base"
 
 export default {
   title: "Dialog",
@@ -14,7 +14,9 @@ export function SimpleModal() {
       <button onClick={dialog.onOpen}>Open</button>
       <Dialog isOpen={dialog.isOpen} onClose={dialog.onClose}>
         <DialogOverlay />
-        <DialogContent>Welcome Home</DialogContent>
+        <DialogContent>
+          <BaseDialogHeader>Welcome Home</BaseDialogHeader>
+        </DialogContent>
       </Dialog>
     </>
   )
