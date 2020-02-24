@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    data-chakra-numberinput=""
+    data-testid="root"
+  >
+    <input
+      aria-invalid="false"
+      aria-valuemax="Infinity"
+      aria-valuemin="-Infinity"
+      aria-valuenow="0"
+      autocomplete="off"
+      autocorrect="off"
+      data-chakra-numberinput-input=""
+      data-testid="input"
+      pattern="[0-9]*"
+      role="spinbutton"
+      type="text"
+      value="0"
+    />
+    <div
+      aria-hidden="true"
+      data-chakra-numberinput-stepper=""
+      data-testid="group"
+    >
+      <div
+        data-chakra-numberinput-decrement=""
+        data-testid="up-btn"
+      >
+        +
+      </div>
+      <div
+        data-chakra-numberinput-decrement=""
+        data-testid="down-btn"
+      >
+        -
+      </div>
+    </div>
+  </div>
+  <div
+    class="__chakra--portal-manager"
+  />
+</DocumentFragment>
+`;

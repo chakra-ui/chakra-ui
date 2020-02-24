@@ -14,7 +14,8 @@ const [NumberInputContextProvider, useNumberInputContext] = createContext<
 
 type PropsOf<T extends React.ElementType> = React.ComponentProps<T>
 
-export type BaseNumberInputProps = NumberInputHookProps & PropsOf<"div">
+export type BaseNumberInputProps = NumberInputHookProps &
+  React.HTMLAttributes<HTMLDivElement>
 
 export const BaseNumberInput = React.forwardRef(
   (props: BaseNumberInputProps, ref: React.Ref<HTMLDivElement>) => {
