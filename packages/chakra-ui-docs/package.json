@@ -31,6 +31,7 @@
     "remark-images": "1.0.0",
     "remark-slug": "5.1.2",
     "remark-unwrap-images": "1.0.0",
-    "react-ga": "2.7.0"
+    "react-ga": "2.7.0",
+    "react-github-button": "0.1.11"
   }
 }

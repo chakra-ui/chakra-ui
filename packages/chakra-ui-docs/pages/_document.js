@@ -20,6 +20,7 @@ class Document extends NextDocument {
             href="../static/favicon.png"
           />
           <meta name="theme-color" content="#319795"></meta>
+          <script async defer src="https://buttons.github.io/buttons.js" />
         </Head>
         <body>
           <Main />
