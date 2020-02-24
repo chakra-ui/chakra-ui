@@ -12,15 +12,11 @@ export function FocusLock(props: FocusLockProps) {
   const { initialFocusRef, finalFocusRef, restoreFocus, children } = props
 
   const onActivation = React.useCallback(() => {
-    if (initialFocusRef?.current) {
-      initialFocusRef.current.focus()
-    }
+    initialFocusRef?.current?.focus()
   }, [initialFocusRef])
 
   const onDeactivation = React.useCallback(() => {
-    if (finalFocusRef?.current) {
-      finalFocusRef.current.focus()
-    }
+    finalFocusRef?.current?.focus()
   }, [finalFocusRef])
 
   const returnFocus = restoreFocus && !finalFocusRef

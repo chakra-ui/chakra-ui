@@ -71,7 +71,8 @@ export function useMenu({ context }: { context?: MenuHookReturn }) {
   }, [isOpen])
 
   // generate unique ids for menu and disclosure
-  const [disclosureId, menuId] = useIds(null,
+  const [disclosureId, menuId] = useIds(
+    null,
     `chakra-menu-disclosure`,
     `chakra-menu-list`,
   )
