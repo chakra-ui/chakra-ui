@@ -1,5 +1,4 @@
-import { Box, BoxProps } from "@chakra-ui/layout"
-import { SystemProps } from "@chakra-ui/system"
+import { SystemProps, chakra, PropsOf } from "@chakra-ui/system"
 import { cleanChildren } from "@chakra-ui/utils"
 import * as React from "react"
 import { ButtonProps } from "./Button"
@@ -14,7 +13,7 @@ export interface ButtonGroupOptions
   spacing?: SystemProps["marginRight"]
 }
 
-export type ButtonGroupProps = BoxProps & ButtonGroupOptions
+export type ButtonGroupProps = PropsOf<typeof chakra.div> & ButtonGroupOptions
 
 export const ButtonGroup = ({
   variantSize,
@@ -44,7 +43,7 @@ export const ButtonGroup = ({
     })
   })
 
-  return <Box display="inline-block" {...rest} children={clones} />
+  return <chakra.div display="inline-block" {...rest} children={clones} />
 }
 
 export default ButtonGroup

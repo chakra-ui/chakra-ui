@@ -1,6 +1,5 @@
 import { Icon } from "@chakra-ui/icon"
 import { chakra, createChakra, PropsOf, SystemProps } from "@chakra-ui/system"
-import { Omit } from "@chakra-ui/utils"
 import * as React from "react"
 import { Spinner } from "@chakra-ui/spinner"
 
@@ -53,6 +52,10 @@ export interface ButtonOptions {
    * Use the styled-system tokens or add custom values as a string
    */
   iconSpacing?: SystemProps["margin"]
+  /**
+   * Replace the spinner component when `isLoading` is set to `true`
+   */
+  spinner?: React.ReactElement
 }
 
 export type ButtonProps = Omit<PropsOf<typeof BaseButton>, "disabled"> &
@@ -70,6 +73,7 @@ const Button = React.forwardRef((props: ButtonProps, ref: React.Ref<any>) => {
     loadingText,
     iconSpacing = 2,
     type = "button",
+    spinner,
     ...rest
   } = props
 
@@ -88,12 +92,12 @@ const Button = React.forwardRef((props: ButtonProps, ref: React.Ref<any>) => {
         <Icon marginLeft={-1} marginRight={iconSpacing} as={leftIcon} />
       )}
       {isLoading && (
-        <Spinner
+        <chakra.span
           position={loadingText ? "relative" : "absolute"}
           marginRight={loadingText ? iconSpacing : 0}
-          color="currentColor"
-          size="1em"
-        />
+        >
+          {spinner || <Spinner color="currentColor" size="1em" />}
+        </chakra.span>
       )}
       {isLoading
         ? loadingText || <chakra.span opacity={0}>{children}</chakra.span>

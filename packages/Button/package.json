@@ -45,9 +45,14 @@
     "ts-jest": "24.0.2",
     "tsdx": "0.12.1",
     "tslib": "1.10.0",
-    "typescript": "3.7.4"
+    "typescript": "3.7.4",
+    "@chakra-ui/layout": "0.0.1"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@chakra-ui/spinner": "0.0.1",
+    "@chakra-ui/system": "0.0.1",
+    "@chakra-ui/icon": "0.0.1"
+  },
   "peerDependencies": {
     "@emotion/core": "10.x",
     "@emotion/styled": "10.x",
