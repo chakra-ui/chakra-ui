@@ -1,10 +1,11 @@
 import { FocusLock } from "@chakra-ui/focus-lock"
 import { Portal } from "@chakra-ui/portal"
-import { PropsOf } from "@chakra-ui/system"
+import { PropsOf, chakra, createChakra } from "@chakra-ui/system"
 import { createContext } from "@chakra-ui/utils"
 import * as React from "react"
 import { DialogHookProps, DialogHookReturn, useDialog } from "./Dialog.hook"
 import { useIsomorphicEffect } from "@chakra-ui/hooks"
+import { getContentStyle } from "./Dialog"
 
 const [DialogContextProvider, useDialogContext] = createContext<
   DialogHookReturn
@@ -64,12 +65,42 @@ export function Dialog(props: DialogProps) {
   )
 }
 
-export type BaseDialogContentProps = PropsOf<"section">
+export type DialogContentProps = PropsOf<typeof chakra.div>
 
-export const BaseDialogContent = (props: BaseDialogContentProps) => {
+export const DialogContent = (props: DialogContentProps) => {
   const { getDialogContentProps } = useDialogContext()
-  return <section {...getDialogContentProps(props)} />
+  const { wrapperStyle, contentStyle } = getContentStyle(true, "inside")
+  return (
+    <chakra.section
+      position="fixed"
+      left="0"
+      top="0"
+      width="100%"
+      height="100%"
+      pointerEvents="none"
+      {...wrapperStyle}
+    >
+      <ContentInner
+        position="relative"
+        pointerEvents="auto"
+        {...getDialogContentProps({})}
+        {...contentStyle}
+        {...props}
+      />
+    </chakra.section>
+  )
 }
+
+export const ContentInner = createChakra("div", {
+  themeKey: "Dialog.Content",
+  baseStyle: {
+    display: "flex",
+    flexDirection: "column",
+    width: "100%",
+    outline: 0,
+    maxWidth: "500px",
+  },
+})
 
 export type BaseDialogOverlayProps = PropsOf<"div">
 

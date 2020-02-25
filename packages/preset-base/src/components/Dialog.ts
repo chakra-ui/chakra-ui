@@ -6,7 +6,8 @@ const Dialog: ComponentTheme = {
       bg: "rgba(0,0,0,0.4)",
     },
     Content: {
-      bg: getModeColor(props, "gray.700", "white"),
+      borderRadius: "md",
+      bg: getModeColor(props, "white", "gray.700"),
       color: "inherit",
       shadow:
         props.colorMode === "dark"

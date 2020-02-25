@@ -104,7 +104,7 @@ export function useDialog(props: DialogHookProps) {
       ref: mergeRefs(props.ref, dialogRef),
       id: dialogId,
       role: "dialog",
-      tabIndex: 0,
+      tabIndex: -1,
       "aria-modal": true,
       "aria-labelledby": headerMounted ? headerId : undefined,
       "aria-describedby": bodyMounted ? bodyId : undefined,
