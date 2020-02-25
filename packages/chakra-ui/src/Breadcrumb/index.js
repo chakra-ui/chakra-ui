@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { Children, cloneElement, forwardRef } from "react";
+import { cloneElement, forwardRef } from "react";
 import Box from "../Box";
 import Link from "../Link";
 import { cleanChildren } from "../utils";
@@ -68,12 +68,12 @@ const Breadcrumb = ({
   ...rest
 }) => {
   const validChildren = cleanChildren(children);
-  const clones = validChildren((child, index) => {
+  const clones = validChildren.map((child, index) => {
     return cloneElement(child, {
       addSeparator,
       separator,
       spacing,
-      isLastChild: Children.count(children) === index + 1,
+      isLastChild: validChildren.length === index + 1,
     });
   });
 
