@@ -1,7 +1,7 @@
 import { ComponentTheme, getModeColor } from "./utils"
 
 const Dialog: ComponentTheme = {
-  baseStyle: props => ({
+  baseStyle: (props: any) => ({
     Overlay: {
       bg: "rgba(0,0,0,0.4)",
     },
