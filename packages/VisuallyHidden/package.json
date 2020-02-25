@@ -22,7 +22,9 @@
   "main": "dist/index.js",
   "module": "dist/visually-hidden.esm.js",
   "types": "dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "publishConfig": {
     "access": "public"
   },
