@@ -195,6 +195,7 @@ export const EditableInput = props => {
     onKeyDown,
     value,
     onSubmit,
+    onCancel,
     submitOnBlur,
     placeholder,
     isDisabled,
@@ -215,7 +216,7 @@ export const EditableInput = props => {
   const renderProps = {
     ref: inputRef,
     onBlur: event => {
-      submitOnBlur && onSubmit();
+      submitOnBlur ? onSubmit() : onCancel();
       if (props.onBlur) {
         props.onBlur(event);
       }
