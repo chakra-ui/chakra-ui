@@ -10,6 +10,7 @@ import Flex from "../Flex";
 import styled from "@emotion/styled-base";
 import { systemProps } from "../Box";
 import extraConfig from "../Box/config";
+import { animated } from "react-spring";
 
 const ModalHeader = props => (
   <Box
@@ -64,12 +65,14 @@ export const modalContentStyle = ({ colorMode }) => {
   return style[colorMode];
 };
 
+animated.Box = animated(Box);
+
 const ModalContent = forwardRef((props, ref) => {
   const { colorMode } = useColorMode();
   const theme = useTheme();
   const styleProps = modalContentStyle({ colorMode, theme });
   return (
-    <Box
+    <animated.Box
       as={DialogContent}
       width="100%"
       position="relative"

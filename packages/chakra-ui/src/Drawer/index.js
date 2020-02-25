@@ -73,8 +73,8 @@ const DrawerContent = forwardRef((props, ref) => {
       noStyles
       pos="fixed"
       maxWidth={_size}
-      {...placementStyles}
       {...props}
+      style={{ ...props.styles, ...placementStyles }}
     />
   );
 });

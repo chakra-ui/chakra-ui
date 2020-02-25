@@ -135,6 +135,7 @@ const NumberInputStepper = forwardRef((props, ref) => {
       margin="1px"
       position="absolute"
       right="0px"
+      zIndex="1"
       height="calc(100% - 2px)"
       {...props}
     />
