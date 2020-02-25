@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.5](/compare/@chakra-ui/docs@0.4.4...@chakra-ui/docs@0.4.5) (2020-02-25)
+
+### Bug Fixes
+
+- broken link to theme page on badge page 37a19d8
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [0.4.4](/compare/@chakra-ui/docs@0.4.3...@chakra-ui/docs@0.4.4) (2019-12-25)
 
 **Note:** Version bump only for package @chakra-ui/docs

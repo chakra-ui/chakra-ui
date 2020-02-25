@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/core@0.5.2...@chakra-ui/core@0.6.0) (2020-02-25)
+
+### Bug Fixes
+
+- Don't show tooltip after mouse leaves
+  ([44c5ae1](https://github.com/chakra-ui/chakra-ui/commit/44c5ae114ce9756e1036c410108f7486eb32f91b)),
+  closes
+  [/github.com/chakra-ui/chakra-ui/issues/319#issuecomment-569674248](https://github.com//github.com/chakra-ui/chakra-ui/issues/319/issues/issuecomment-569674248)
+- fix all children.map nullish issues
+  ([67c0243](https://github.com/chakra-ui/chakra-ui/commit/67c0243a4becd2c2509934d59e52b4a25ff199ab))
+- fix: Right addon disappears under background color on focus
+  ([d7de7d5](https://github.com/chakra-ui/chakra-ui/commit/d7de7d5f4e85ba4baba0050ad3abfa47f2cacabc)),
+  closes [#300](https://github.com/chakra-ui/chakra-ui/issues/300)
+- update breadcrumb
+  ([d1ace2e](https://github.com/chakra-ui/chakra-ui/commit/d1ace2e1a1e2b3595310185174c06664d4ba97ca))
+- wrap modal content in animated and fix numberinput
+  ([8ceaca1](https://github.com/chakra-ui/chakra-ui/commit/8ceaca1431e34ee5cc41186856cf109d079669be))
+- **button:** default CloseButton to type of button
+  ([789208f](https://github.com/chakra-ui/chakra-ui/commit/789208f0a34d8e1a36f49e3b80dc09f6f8572628))
+- **image:** add `isMounted` check on `Image` component
+  ([105c84f](https://github.com/chakra-ui/chakra-ui/commit/105c84fb34357fb3f35eb6cd8583fdc18fa774af))
+- **pseudobox:** responsive props
+  ([bac7c24](https://github.com/chakra-ui/chakra-ui/commit/bac7c24adc4edbc490aee8f75e13317b7bc2aa95))
+- wrap notify in useCallback
+  ([25e9a68](https://github.com/chakra-ui/chakra-ui/commit/25e9a68eb96c114c1feacf41c072498a8e6a89c0))
+- **button:** add default type to props
+  ([905f6cf](https://github.com/chakra-ui/chakra-ui/commit/905f6cfff781fd66cc1e455f686f3ab05bae5954))
+- **image:** don't load image if src is not defined
+  ([7559f4e](https://github.com/chakra-ui/chakra-ui/commit/7559f4ea2419359690ca7d83482cc7b8b0d22881))
+- fix more bugs
+  ([1e842de](https://github.com/chakra-ui/chakra-ui/commit/1e842de357f115f154fc45c4d670747100417ad4))
+- ignore Tab key press for keyboard navigation
+  ([5966cc6](https://github.com/chakra-ui/chakra-ui/commit/5966cc6737ddcdf84e12dfa5025825cc88d91dbf))
+- using fractions and decimals for responsive width
+  ([7257654](https://github.com/chakra-ui/chakra-ui/commit/725765481d4637825ef6548cf5cb235ea2832546)),
+  closes [#304](https://github.com/chakra-ui/chakra-ui/issues/304)
+
+### Features
+
+- **editable:** cancel on blur
+  ([37f2cbe](https://github.com/chakra-ui/chakra-ui/commit/37f2cbe7b901f2f4ab648cd10a123483ea557cfd))
+- **tagclosebutton:** added isdisabled style and types to tagclosebutton
+  ([d8375a1](https://github.com/chakra-ui/chakra-ui/commit/d8375a1586c29f4b34572950a97745b10f8ed0ec))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [0.5.2](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/core@0.5.1...@chakra-ui/core@0.5.2) (2019-12-25)
 
 ### Bug Fixes
