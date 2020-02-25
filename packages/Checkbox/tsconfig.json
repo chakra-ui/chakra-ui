@@ -1,11 +1,12 @@
 {
   "extends": "../../tsconfig.build.json",
-  "include": ["src", "types", "stories/Checkbox.stories.tsx"],
+  "include": ["src", "types"],
   "exclude": [
     "**/*.spec.ts",
     "**/*.spec.tsx",
     "**/*.test.ts",
     "**/*.test.tsx",
-    "**/*/*.stories.tsx"
+    "**/*/*.stories.tsx",
+    "src/test"
   ]
 }

@@ -1,10 +1,6 @@
 import React from "react"
 import { userEvent, render } from "@chakra-ui/test-utils"
-import {
-  Checkbox,
-  CheckboxHiddenInput,
-  CustomCheckbox,
-} from "../src/Checkbox.base"
+import { Checkbox, CheckboxHiddenInput, CustomCheckbox } from "../Checkbox.base"
 
 test("Checkbox renders correctly", () => {
   const utils = render(
