@@ -57,7 +57,7 @@ test("uncontrolled: toggles the accordion on click", () => {
 
 // test that arrow up & down moves focus to next/previous accordion
 test("arrow up & down moves focus to next/previous accordion", () => {
-  const { getByText, getByTestId } = render(
+  const { getByText } = render(
     <BaseAccordion>
       <BaseAccordionItem>
         <BaseAccordionButton>Section 1 title</BaseAccordionButton>
@@ -70,14 +70,14 @@ test("arrow up & down moves focus to next/previous accordion", () => {
       </BaseAccordionItem>
     </BaseAccordion>,
   )
-  const accordionItemOne = getByText("Section 1 title")
-  const accordionItemTwo = getByText("Section 2 title")
+  const first = getByText("Section 1 title")
+  const second = getByText("Section 2 title")
 
-  fireEvent.keyDown(accordionItemOne, { key: "ArrowDown", keyCode: 40 })
-  expect(accordionItemTwo).toHaveFocus()
+  fireEvent.keyDown(first, { key: "ArrowDown", keyCode: 40 })
+  expect(second).toHaveFocus()
 
-  fireEvent.keyDown(accordionItemTwo, { key: "ArrowUp", keyCode: 38 })
-  expect(accordionItemOne).toHaveFocus()
+  fireEvent.keyDown(second, { key: "ArrowUp", keyCode: 38 })
+  expect(first).toHaveFocus()
 })
 
 // test that home & end keys moves focus to first/last accordion
@@ -109,9 +109,81 @@ test("home & end keys moves focus to first/last accordion", () => {
   fireEvent.keyDown(first, { key: "End", keyCode: 35 })
   expect(last).toHaveFocus()
 })
+
 // test the only one accordion can be visible + is not togglable
+test("only one accordion can be visible + is not togglable", () => {
+  const { getByText } = render(
+    <BaseAccordion>
+      <BaseAccordionItem>
+        <BaseAccordionButton>First section</BaseAccordionButton>
+        <BaseAccordionPanel>Panel 1</BaseAccordionPanel>
+      </BaseAccordionItem>
+
+      <BaseAccordionItem>
+        <BaseAccordionButton>Second section</BaseAccordionButton>
+        <BaseAccordionPanel>Panel 1</BaseAccordionPanel>
+      </BaseAccordionItem>
+    </BaseAccordion>,
+  )
+
+  const firstAccordion = getByText("First section")
+
+  userEvent.click(firstAccordion)
+  expect(firstAccordion).toHaveAttribute("aria-expanded", "true")
+
+  userEvent.click(firstAccordion)
+  expect(firstAccordion).toHaveAttribute("aria-expanded", "true")
+})
 // test the only one accordion can be visible + is togglable
+test("only one accordion can be visible + is togglable", () => {
+  const { getByText } = render(
+    <BaseAccordion allowToggle>
+      <BaseAccordionItem>
+        <BaseAccordionButton>First section</BaseAccordionButton>
+        <BaseAccordionPanel>Panel 1</BaseAccordionPanel>
+      </BaseAccordionItem>
+
+      <BaseAccordionItem>
+        <BaseAccordionButton>Second section</BaseAccordionButton>
+        <BaseAccordionPanel>Panel 1</BaseAccordionPanel>
+      </BaseAccordionItem>
+    </BaseAccordion>,
+  )
+
+  const firstAccordion = getByText("First section")
+
+  userEvent.click(firstAccordion)
+  expect(firstAccordion).toHaveAttribute("aria-expanded", "true")
+
+  userEvent.click(firstAccordion)
+  expect(firstAccordion).toHaveAttribute("aria-expanded", "false")
+})
+
 // test that multiple accordions can be opened + is togglable
+test("multiple accordions can be opened + is togglable", () => {
+  const { getByText } = render(
+    <BaseAccordion allowMultiple>
+      <BaseAccordionItem>
+        <BaseAccordionButton>First section</BaseAccordionButton>
+        <BaseAccordionPanel>Panel 1</BaseAccordionPanel>
+      </BaseAccordionItem>
+
+      <BaseAccordionItem>
+        <BaseAccordionButton>Second section</BaseAccordionButton>
+        <BaseAccordionPanel>Panel 1</BaseAccordionPanel>
+      </BaseAccordionItem>
+    </BaseAccordion>,
+  )
+
+  const firstAccordion = getByText("First section")
+  const secondAccordion = getByText("Second section")
+
+  userEvent.click(firstAccordion)
+  expect(firstAccordion).toHaveAttribute("aria-expanded", "true")
+
+  userEvent.click(secondAccordion)
+  expect(firstAccordion).toHaveAttribute("aria-expanded", "true")
+})
 
 // it has the proper aria attributes
 test("has the proper aria attributes", () => {
@@ -132,55 +204,77 @@ test("has the proper aria attributes", () => {
 })
 
 // test that enter and space can toggle the visiblity
-test("enter and space can toggle the visiblity", () => {
-  const { getByTestId, getByText } = render(
-    <BaseAccordion>
-      <BaseAccordionItem data-testid="accordion-item">
-        <BaseAccordionButton>Section 1 title</BaseAccordionButton>
-        <BaseAccordionPanel>Panel 1</BaseAccordionPanel>
-      </BaseAccordionItem>
-    </BaseAccordion>,
-  )
-  const accordionItem = getByTestId("accordion-item")
-  const button = getByText("Section 1 title")
+// Issue with keyDown from testing library
+// test("enter and space can toggle the visiblity", () => {
+//   const { getByText } = render(
+//     <BaseAccordion allowToggle>
+//       <BaseAccordionItem>
+//         <BaseAccordionButton>Section 1 title</BaseAccordionButton>
+//         <BaseAccordionPanel>Panel 1</BaseAccordionPanel>
+//       </BaseAccordionItem>
 
-  fireEvent.keyPress(accordionItem, { key: "Enter", keyCode: 13 })
-  expect(button).toHaveAttribute("aria-expanded", "true")
+//       <BaseAccordionItem>
+//         <BaseAccordionButton>Section 2 title</BaseAccordionButton>
+//         <BaseAccordionPanel>Panel 2</BaseAccordionPanel>
+//       </BaseAccordionItem>
+//     </BaseAccordion>,
+//   )
 
-  fireEvent.keyPress(accordionItem, { keyCode: 32 })
-  expect(button).toHaveAttribute("aria-expanded", "false")
-})
+//   const button = getByText("Section 1 title")
+
+//   button.focus()
+
+//   fireEvent.keyDown(button, {
+//     keyCode: 13,
+//     key: "enter",
+//   })
+
+//   fireEvent.keyUp(button, {
+//     keyCode: 13,
+//     key: "enter",
+//   })
+
+//   expect(button).toHaveFocus()
+//   expect(button).toHaveAttribute("aria-expanded", "true")
+// })
 
 // test that tab moves focus to the next focusable element
 test("tab moves focus to the next focusable element", () => {
-  const { getByTestId } = render(
-    <BaseAccordion data-testid="accordion">
-      <BaseAccordionItem data-testid="one">
+  const { getByText } = render(
+    <BaseAccordion>
+      <BaseAccordionItem>
         <BaseAccordionButton>First section</BaseAccordionButton>
         <BaseAccordionPanel>Panel 1</BaseAccordionPanel>
       </BaseAccordionItem>
 
-      <BaseAccordionItem data-testid="two">
+      <BaseAccordionItem>
         <BaseAccordionButton>Second section</BaseAccordionButton>
         <BaseAccordionPanel>Panel 1</BaseAccordionPanel>
       </BaseAccordionItem>
 
-      <BaseAccordionItem data-testid="three">
+      <BaseAccordionItem>
         <BaseAccordionButton>Last section</BaseAccordionButton>
         <BaseAccordionPanel>Panel 2</BaseAccordionPanel>
       </BaseAccordionItem>
     </BaseAccordion>,
   )
-  const accordion = getByTestId("accordion")
-  const first = getByTestId("one")
+  const first = getByText("First section")
+  const second = getByText("Second section")
+  const last = getByText("Last section")
 
-  fireEvent.keyDown(accordion, { key: "Tab", keyCode: 9 })
+  userEvent.tab()
   expect(first).toHaveFocus()
+
+  userEvent.tab()
+  expect(second).toHaveFocus()
+
+  userEvent.tab()
+  expect(last).toHaveFocus()
 })
 
 // test that aria-contols for button is same as id for panel
 test("aria-contols for button is same as id for panel", () => {
-  const { getByText, getByRole } = render(
+  const { getByText } = render(
     <BaseAccordion>
       <BaseAccordionItem>
         <BaseAccordionButton>Section 1 title</BaseAccordionButton>
@@ -194,6 +288,24 @@ test("aria-contols for button is same as id for panel", () => {
 })
 
 // test that aria-expanded is true/false when accordion is open/closed
+test("aria-expanded is true/false when accordion is open/closed", () => {
+  const { getByText } = render(
+    <BaseAccordion defaultIndex={0}>
+      <BaseAccordionItem>
+        <BaseAccordionButton>Section 1 title</BaseAccordionButton>
+        <BaseAccordionPanel>Panel 1</BaseAccordionPanel>
+      </BaseAccordionItem>
+      <BaseAccordionItem>
+        <BaseAccordionButton>Section 2 title</BaseAccordionButton>
+        <BaseAccordionPanel>Panel 2</BaseAccordionPanel>
+      </BaseAccordionItem>
+    </BaseAccordion>,
+  )
+
+  const button = getByText("Section 1 title")
+  expect(button).toHaveAttribute("aria-expanded", "true")
+})
+
 // test that panel has role=region and aria-labelledby
 test("panel has role=region and aria-labelledby", () => {
   const { getByText } = render(
