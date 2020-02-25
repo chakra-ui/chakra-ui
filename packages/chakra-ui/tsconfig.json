@@ -9,7 +9,7 @@
     "strict": true,
     "noEmit": true,
     "experimentalDecorators": true,
-    "baseUrl": "./",
+    // "baseUrl": "./",
     "allowSyntheticDefaultImports": true,
     "noErrorTruncation": true,
     "allowJs": true

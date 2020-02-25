@@ -2,19 +2,18 @@
 import { jsx } from "@emotion/core";
 import { useId } from "@reach/auto-id";
 import {
+  cloneElement,
   createContext,
   forwardRef,
   useContext,
   useRef,
   useState,
-  Children,
-  cloneElement,
-  isValidElement,
 } from "react";
 import Box from "../Box";
 import Collapse from "../Collapse";
-import PseudoBox from "../PseudoBox";
 import Icon from "../Icon";
+import PseudoBox from "../PseudoBox";
+import { cleanChildren } from "../utils";
 
 const Accordion = ({
   allowMultiple,
@@ -45,9 +44,9 @@ const Accordion = ({
 
   const _index = isControlled ? index : expandedIndex;
 
-  const clones = Children.map(children, (child, childIndex) => {
-    if (!isValidElement(child)) return;
+  const validChildren = cleanChildren(children);
 
+  const clones = validChildren.map((child, childIndex) => {
     return cloneElement(child, {
       isOpen: getExpandCondition(_index, childIndex),
       onChange: isExpanded => {

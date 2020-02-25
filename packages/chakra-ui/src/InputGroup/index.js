@@ -1,22 +1,22 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { Children, cloneElement, isValidElement } from "react";
+import { cloneElement } from "react";
 import Box from "../Box";
 import Input from "../Input";
 import { inputSizes } from "../Input/styles";
 import { InputLeftElement, InputRightElement } from "../InputElement";
 import { useTheme } from "../ThemeProvider";
+import { cleanChildren } from "../utils";
 
 const InputGroup = ({ children, size = "md", ...props }) => {
   const { sizes } = useTheme();
   const height = inputSizes[size] && inputSizes[size]["height"];
   let pl = null;
   let pr = null;
+  const validChildren = cleanChildren(children);
   return (
     <Box display="flex" position="relative" {...props}>
-      {Children.map(children, child => {
-        if (!isValidElement(child)) return;
-
+      {validChildren.map(child => {
         if (child.type === InputLeftElement) {
           pl = sizes[height];
         }

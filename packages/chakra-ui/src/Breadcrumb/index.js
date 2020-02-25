@@ -1,8 +1,9 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { Children, cloneElement, forwardRef, isValidElement } from "react";
+import { Children, cloneElement, forwardRef } from "react";
 import Box from "../Box";
 import Link from "../Link";
+import { cleanChildren } from "../utils";
 
 const BreadcrumbSeparator = forwardRef(({ spacing, ...props }, ref) => {
   return (
@@ -33,9 +34,8 @@ const BreadcrumbItem = ({
   children,
   ...rest
 }) => {
-  const clones = Children.map(children, child => {
-    if (!isValidElement(child)) return;
-
+  const validChildren = cleanChildren(children);
+  const clones = validChildren.map(child => {
     if (child.type === BreadcrumbLink) {
       return cloneElement(child, { isCurrentPage });
     }
@@ -67,9 +67,8 @@ const Breadcrumb = ({
   separator = "/",
   ...rest
 }) => {
-  const clones = Children.map(children, (child, index) => {
-    if (!isValidElement(child)) return;
-
+  const validChildren = cleanChildren(children);
+  const clones = validChildren((child, index) => {
     return cloneElement(child, {
       addSeparator,
       separator,

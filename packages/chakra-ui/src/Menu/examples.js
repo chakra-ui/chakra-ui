@@ -95,3 +95,12 @@ stories.add("Bug fix", () => (
     <CustomMenu />
   </div>
 ));
+
+stories.add("empty items bug:2", () => (
+  <Menu>
+    <MenuButton as={Button} rightIcon="chevron-down">
+      <Icon name="settings" />
+    </MenuButton>
+    <MenuList></MenuList>
+  </Menu>
+));

@@ -1,21 +1,19 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
+import { useId } from "@reach/auto-id";
 import {
-  Children,
   cloneElement,
   createContext,
   forwardRef,
   useContext,
   useRef,
   useState,
-  isValidElement,
 } from "react";
-import { useId } from "@reach/auto-id";
-import { assignRef, useVariantColorWarning } from "../utils";
-import { useTabStyle, useTabListStyle } from "./styles";
-import PseudoBox from "../PseudoBox";
-import Flex from "../Flex";
 import Box from "../Box";
+import Flex from "../Flex";
+import PseudoBox from "../PseudoBox";
+import { assignRef, cleanChildren, useVariantColorWarning } from "../utils";
+import { useTabListStyle, useTabStyle } from "./styles";
 
 const Tab = forwardRef((props, ref) => {
   const { isSelected, isDisabled, id, size, ...rest } = props;
@@ -62,11 +60,11 @@ const TabList = forwardRef((props, ref) => {
 
   const allNodes = useRef([]);
 
-  const focusableIndexes = Children.map(children, (child, index) => {
-    if (isValidElement(child)) {
-      return child.props.isDisabled === true ? null : index;
-    }
-  }).filter(index => index != null);
+  const validChildren = cleanChildren(children);
+
+  const focusableIndexes = validChildren
+    .map((child, index) => (child.props.isDisabled === true ? null : index))
+    .filter(index => index != null);
 
   const enabledSelectedIndex = focusableIndexes.indexOf(selectedIndex);
   const count = focusableIndexes.length;
@@ -110,7 +108,7 @@ const TabList = forwardRef((props, ref) => {
     }
   };
 
-  const clones = Children.map(children, (child, index) => {
+  const clones = validChildren.map((child, index) => {
     let isSelected = isManual ? index === manualIndex : index === selectedIndex;
 
     const handleClick = event => {
@@ -126,14 +124,12 @@ const TabList = forwardRef((props, ref) => {
       }
     };
 
-    if (isValidElement(child)) {
-      return cloneElement(child, {
-        ref: node => (allNodes.current[index] = node),
-        isSelected,
-        onClick: handleClick,
-        id: `${id}-${index}`,
-      });
-    }
+    return cloneElement(child, {
+      ref: node => (allNodes.current[index] = node),
+      isSelected,
+      onClick: handleClick,
+      id: `${id}-${index}`,
+    });
   });
 
   return (
@@ -191,9 +187,9 @@ const TabPanels = forwardRef(({ children, ...rest }, ref) => {
     manualIndex,
   } = useContext(TabContext);
 
-  const clones = Children.map(children, (child, index) => {
-    if (!isValidElement(child)) return;
+  const validChildren = cleanChildren(children);
 
+  const clones = validChildren.map((child, index) => {
     return cloneElement(child, {
       isSelected: isManual ? index === manualIndex : index === selectedIndex,
       selectedPanelRef,

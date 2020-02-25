@@ -1,8 +1,9 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { Children, cloneElement, useState, useRef } from "react";
 import { useId } from "@reach/auto-id";
+import { cloneElement, useRef, useState } from "react";
 import Box from "../Box";
+import { cleanChildren } from "../utils";
 
 const RadioButtonGroup = ({
   name,
@@ -20,11 +21,13 @@ const RadioButtonGroup = ({
 
   const allNodes = useRef([]);
 
-  const focusableValues = Children.map(children, child =>
-    child.props.isDisabled === true ? null : child.props.value,
-  ).filter(val => val != null);
+  const validChildren = cleanChildren(children);
 
-  const allValues = Children.map(children, child => child.props.value);
+  const focusableValues = validChildren
+    .map(child => (child.props.isDisabled === true ? null : child.props.value))
+    .filter(val => val != null);
+
+  const allValues = validChildren.map(child => child.props.value);
 
   const updateIndex = index => {
     const childValue = focusableValues[index];
@@ -71,8 +74,8 @@ const RadioButtonGroup = ({
   const fallbackName = `radio-${useId()}`;
   const _name = name || fallbackName;
 
-  const clones = Children.map(children, (child, index) => {
-    const isLastChild = children.length === index + 1;
+  const clones = validChildren.map((child, index) => {
+    const isLastChild = validChildren.length === index + 1;
     const isFirstChild = index === 0;
 
     const spacingProps = isInline ? { mr: spacing } : { mb: spacing };

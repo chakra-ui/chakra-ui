@@ -1,10 +1,11 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { Children, cloneElement, isValidElement } from "react";
+import { cloneElement } from "react";
 import { avatarSizes } from "../Avatar/styles";
-import Flex from "../Flex";
 import { useColorMode } from "../ColorModeProvider";
+import Flex from "../Flex";
 import { useTheme } from "../ThemeProvider";
+import { cleanChildren } from "../utils";
 
 const MoreAvatarLabel = ({ size, label, ...props }) => {
   const borderColor = { light: "#fff", dark: "gray.800" };
@@ -43,11 +44,10 @@ const AvatarGroup = ({
   spacing = -3,
   ...rest
 }) => {
-  let count = Children.count(children);
+  const validChildren = cleanChildren(children);
+  let count = validChildren.length;
 
-  const clones = Children.map(children, (child, index) => {
-    if (!isValidElement(child)) return;
-
+  const clones = validChildren.map((child, index) => {
     if (max && index > max) {
       return null;
     }
