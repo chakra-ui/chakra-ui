@@ -1,7 +1,7 @@
-import { useDisclosure, useFocusOnShow, useIds } from "@chakra-ui/hooks"
+import { useDisclosure, useIds } from "@chakra-ui/hooks"
 import { Placement, usePopper } from "@chakra-ui/popper"
 import * as React from "react"
-import { useBlurOutside, useFocusOnHide } from "./Popover.utils"
+import { useBlurOutside, useFocusOnHide, useFocusOnShow } from "./Popover.utils"
 import { mergeRefs } from "@chakra-ui/utils"
 
 export interface PopoverHookProps {

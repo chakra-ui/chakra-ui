@@ -1,6 +1,11 @@
-import { isTabbable, getAllTabbable } from "@chakra-ui/utils"
-import * as React from "react"
 import { useUpdateEffect } from "@chakra-ui/hooks"
+import {
+  ensureFocus,
+  getAllTabbable,
+  getFirstTabbableIn,
+  isTabbable,
+} from "@chakra-ui/utils"
+import * as React from "react"
 
 export function hasFocusWithin(
   ref: React.RefObject<HTMLElement>,
@@ -79,4 +84,33 @@ export function getElementAfterTrigger(
   const targetIndex =
     elements && triggerRef.current ? elements.indexOf(triggerRef.current) : -1
   return elements && elements[targetIndex + 1]
+}
+
+export interface FocusOnShowHookOptions {
+  autoFocus?: boolean
+  visible?: boolean
+  focusRef?: React.RefObject<HTMLElement>
+}
+
+export function useFocusOnShow(
+  ref: React.RefObject<HTMLElement>,
+  options: FocusOnShowHookOptions,
+) {
+  const { visible, autoFocus, focusRef } = options
+
+  useUpdateEffect(() => {
+    const shouldFocus = visible && autoFocus
+
+    if (!shouldFocus) return
+
+    if (focusRef?.current) {
+      ensureFocus(focusRef.current)
+      return
+    }
+
+    if (ref.current) {
+      const firstTabbable = getFirstTabbableIn(ref.current, true)
+      ensureFocus(firstTabbable ?? ref.current)
+    }
+  }, [visible, autoFocus, ref, focusRef])
 }

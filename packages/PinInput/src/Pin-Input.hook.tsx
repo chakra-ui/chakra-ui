@@ -13,11 +13,9 @@ export function usePinInputState(props: PinStateHookProps = {}) {
   const { autoFocus } = props
 
   const descendantsContext = useDescendants<HTMLInputElement, {}>()
-
   const { descendants } = descendantsContext
 
   const [moveFocus, setMoveFocus] = React.useState(true)
-
   const [values, setValues] = React.useState<string[]>([])
 
   React.useEffect(() => {

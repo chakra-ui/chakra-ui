@@ -2,11 +2,12 @@ import {
   callAllHandlers,
   createOnKeyDown,
   createHookContext,
+  cleanChildren,
+  mergeRefs,
 } from "@chakra-ui/utils"
 import * as React from "react"
 import {
   useControllableProp,
-  useMergeRefs,
   useId,
   useIsomorphicEffect,
 } from "@chakra-ui/hooks"
@@ -165,16 +166,17 @@ export function useTabList(props: TabListHookProps) {
   // Read from context
   const tabs = useTabsContext()
 
+  const validChildren = cleanChildren(props.children)
+
   // Get all the focusable tab indexes
   // A tab is focusable if it's not disabled or is disabled and has focusable prop
   // ARIA: It's a good idea to allow users focus on disabled tabs so you tell them why it's disabled
-  const focusableIndexes = React.Children.map(
-    props.children,
-    (child: any, index) => {
+  const focusableIndexes = validChildren
+    .map((child: any, index) => {
       const isTrulyDisabled = child.props.isDisabled && !child.props.isFocusable
       return isTrulyDisabled ? null : index
-    },
-  ).filter(child => child !== null) as number[]
+    })
+    .filter(child => child !== null) as number[]
   const enabledSelectedIndex = focusableIndexes.indexOf(tabs.focusedIndex)
   const count = focusableIndexes.length
 
@@ -220,7 +222,7 @@ export function useTabList(props: TabListHookProps) {
   })
 
   // Enhance the children by passing some props to them
-  const children = React.Children.map(props.children, (child: any, index) => {
+  const children = validChildren.map((child: any, index) => {
     const isSelected = index === tabs.selectedIndex
 
     const onClick = () => {
@@ -248,11 +250,9 @@ export function useTabList(props: TabListHookProps) {
     })
   })
 
-  const ref = useMergeRefs(props.ref, tabs.tablistRef)
-
   return {
     ...props,
-    ref,
+    ref: mergeRefs(props.ref, tabs.tablistRef),
     role: "tablist",
     "aria-orientation": tabs.orientation,
     onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
@@ -265,9 +265,8 @@ export function useTabList(props: TabListHookProps) {
 export function useTabPanels(props: { children?: React.ReactNode }) {
   const tabs = useTabsContext()
 
-  const children = React.Children.map(props.children, (child, index) => {
-    if (!React.isValidElement(child)) return
-
+  const validChildren = cleanChildren(props.children)
+  const children = validChildren.map((child, index) => {
     return React.cloneElement(child as any, {
       isSelected: index === tabs.selectedIndex,
       id: `${tabs.id}--tabpanel-${index}`,
@@ -307,12 +306,10 @@ export function useTabIndicator(): React.CSSProperties {
     const selectedTabNode = tabs.tabNodesRef.current[tabs.selectedIndex]
 
     // Get the rect of the selected tab
-    const selectedTabRect =
-      selectedTabNode && selectedTabNode.getBoundingClientRect()
+    const selectedTabRect = selectedTabNode?.getBoundingClientRect()
 
     // Get the rect of the tablist
-    const tabListRect =
-      tabs.tablistRef.current && tabs.tablistRef.current.getBoundingClientRect()
+    const tabListRect = tabs.tablistRef.current?.getBoundingClientRect()
 
     // Horizontal Tab: Calculate width and left distance
     if (isHorizontal && tabListRect && selectedTabRect) {

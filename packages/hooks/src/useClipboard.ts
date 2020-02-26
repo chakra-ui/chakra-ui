@@ -1,56 +1,23 @@
 import * as React from "react"
+import copy from "copy-to-clipboard"
 
-function copyToClipboard<T>(value: T) {
-  const el = document.createElement("textarea")
-  el.value = value as any
-  el.setAttribute("readonly", "")
-  el.style.position = "absolute"
-  el.style.left = "-9999px"
-  document.body.appendChild(el)
-
-  let selected: any
-  if (
-    document &&
-    document.getSelection() &&
-    (document.getSelection() as Selection).rangeCount > 0
-  ) {
-    selected = (document.getSelection() as Selection).getRangeAt(0)
-  } else {
-    selected = false
-  }
-
-  el.select()
-
-  document.execCommand("copy")
-  document.body.removeChild(el)
-  if (selected) {
-    ;(document.getSelection() as Selection).removeAllRanges()
-    ;(document.getSelection() as Selection).addRange(selected)
-  }
-}
-
-export function useClipboard<T>(value: T) {
+export function useClipboard(text: string) {
   const [hasCopied, setHasCopied] = React.useState(false)
 
   const onCopy = React.useCallback(() => {
-    copyToClipboard(value as any)
-    setHasCopied(true)
-  }, [value])
+    const didCopy = copy(text)
+    setHasCopied(didCopy)
+  }, [text])
 
   React.useEffect(() => {
-    let timeoutId: any
     if (hasCopied) {
-      if (timeoutId) clearTimeout(timeoutId)
-      timeoutId = setTimeout(() => {
+      const id = setTimeout(() => {
         setHasCopied(false)
       }, 1500)
-    }
-    return () => {
-      clearTimeout(timeoutId)
+
+      return () => clearTimeout(id)
     }
   }, [hasCopied])
 
-  return { value, onCopy, hasCopied }
+  return [hasCopied, onCopy] as const
 }
-
-export default useClipboard
