@@ -57,7 +57,7 @@ function createBaseStyle(
   }
 }
 
-const mx = (placement: Placement, value: string) => {
+const getTransformStyle = (placement: Placement, value: string) => {
   let axis = ""
   if (placement === "left" || placement === "right") axis = "X"
   if (placement === "top" || placement === "bottom") axis = "Y"
@@ -75,12 +75,12 @@ function createTransitionStyles(placement: Placement) {
   return {
     init: {
       opacity: 0,
-      transform: mx(placement, offset[placement]),
+      transform: getTransformStyle(placement, offset[placement]),
     },
-    entered: { opacity: 1, transform: mx(placement, "0%") },
+    entered: { opacity: 1, transform: getTransformStyle(placement, "0%") },
     exiting: {
       opacity: 0,
-      transform: mx(placement, offset[placement]),
+      transform: getTransformStyle(placement, offset[placement]),
     },
   }
 }

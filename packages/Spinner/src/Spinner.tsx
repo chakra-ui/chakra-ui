@@ -1,12 +1,7 @@
-import {
-  createChakra,
-  CreateChakraComponent,
-  forwardRef,
-  PropsOf,
-} from "@chakra-ui/system"
+import { createChakra, PropsOf } from "@chakra-ui/system"
+import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 import { keyframes } from "@emotion/core"
 import * as React from "react"
-import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 
 const spin = keyframes`
   0% {  transform: rotate(0deg) }
@@ -52,35 +47,29 @@ export interface SpinnerOptions {
 
 export type SpinnerProps = PropsOf<typeof BaseSpinner> & SpinnerOptions
 
-export const Spinner = forwardRef(
-  (
-    {
-      label = "Loading...",
-      thickness = "2px",
-      speed = "0.45s",
-      color,
-      emptyColor = "transparent",
-      ...props
-    }: SpinnerProps,
-    ref: React.Ref<any>,
-  ) => (
-    <BaseSpinner
-      ref={ref}
-      display="inline-block"
-      borderColor="currentColor"
-      borderStyle="solid"
-      borderRadius="full"
-      borderWidth={thickness}
-      borderBottomColor={emptyColor}
-      borderLeftColor={emptyColor}
-      color={color}
-      animation={`${spin} ${speed} linear infinite`}
-      {...props}
-    >
-      {label && <VisuallyHidden>{label}</VisuallyHidden>}
-    </BaseSpinner>
-  ),
-) as CreateChakraComponent<"div", SpinnerOptions>
+export const Spinner = ({
+  label = "Loading...",
+  thickness = "2px",
+  speed = "0.45s",
+  color,
+  emptyColor = "transparent",
+  ...props
+}: SpinnerProps) => (
+  <BaseSpinner
+    display="inline-block"
+    borderColor="currentColor"
+    borderStyle="solid"
+    borderRadius="full"
+    borderWidth={thickness}
+    borderBottomColor={emptyColor}
+    borderLeftColor={emptyColor}
+    color={color}
+    animation={`${spin} ${speed} linear infinite`}
+    {...props}
+  >
+    {label && <VisuallyHidden>{label}</VisuallyHidden>}
+  </BaseSpinner>
+)
 
 Spinner.displayName = "Spinner"
 
