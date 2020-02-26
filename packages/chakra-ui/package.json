@@ -33,7 +33,8 @@
     "react-spring": "^8.0.27",
     "styled-system": "5.0.5",
     "toasted-notes": "3.0.0",
-    "use-dark-mode": "2.3.1"
+    "use-dark-mode": "2.3.1",
+    "copy-to-clipboard": "3.3.1"
   },
   "peerDependencies": {
     "@emotion/core": "10.x",

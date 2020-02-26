@@ -28,6 +28,7 @@ const Editable = forwardRef(
       isPreviewFocusable = true,
       placeholder = "Click to edit...",
       children,
+      onEdit,
       ...rest
     },
     ref,
@@ -48,6 +49,12 @@ const Editable = forwardRef(
         setIsEditing(true);
       }
     };
+
+    useEffect(() => {
+      if (isEditing) {
+        onEdit && onEdit();
+      }
+    }, [isEditing, onEdit]);
 
     useEffect(() => {
       if (isEditing && inputRef.current) {
