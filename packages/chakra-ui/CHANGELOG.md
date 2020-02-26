@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/core@0.6.0...@chakra-ui/core@0.6.1) (2020-02-26)
+
+### Bug Fixes
+
+- update editable and useclipboard hook
+  ([0fc4607](https://github.com/chakra-ui/chakra-ui/commit/0fc4607440601c6e593171823d3fd1135c505e81))
+- update icon a11y
+  ([2148d5a](https://github.com/chakra-ui/chakra-ui/commit/2148d5ab62864229984553a26c81247c88a23fdc))
+- **popover:** fix popover flickering when trigger is "hover"
+  ([a37c2a3](https://github.com/chakra-ui/chakra-ui/commit/a37c2a331c794786324c9ef63088a37af325437e))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [0.6.0](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/core@0.5.2...@chakra-ui/core@0.6.0) (2020-02-25)
 
 ### Bug Fixes

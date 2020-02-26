@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/core",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Responsive and accessible React UI components built with React and Emotion",
   "main": "dist/index.js",
   "module": "dist/es/index.js",
@@ -26,6 +26,7 @@
     "aria-hidden": "^1.1.1",
     "body-scroll-lock": "^2.6.4",
     "color": "3.1.2",
+    "copy-to-clipboard": "3.3.1",
     "exenv": "^1.2.2",
     "popper.js": "^1.15.0",
     "react-animate-height": "2.0.9",
@@ -33,8 +34,7 @@
     "react-spring": "^8.0.27",
     "styled-system": "5.0.5",
     "toasted-notes": "3.0.0",
-    "use-dark-mode": "2.3.1",
-    "copy-to-clipboard": "3.3.1"
+    "use-dark-mode": "2.3.1"
   },
   "peerDependencies": {
     "@emotion/core": "10.x",
