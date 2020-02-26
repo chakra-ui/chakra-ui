@@ -59,7 +59,12 @@ const Select = forwardRef(
       <Box position="relative" width="100%" {...root} {...rootProps}>
         <SelectInput ref={ref} color={color} {...select} />
         <SelectIconWrapper opacity={opacity} color={select.color || color}>
-          <Icon icon={icon || "chevron-down"} size={iconSize} />
+          <Icon
+            focusable="false"
+            aria-hidden="true"
+            icon={icon || "chevron-down"}
+            size={iconSize}
+          />
         </SelectIconWrapper>
       </Box>
     );

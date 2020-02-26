@@ -11,7 +11,13 @@ import { useVariantColorWarning } from "../utils";
 const ButtonIcon = ({ icon, ...props }) => {
   if (typeof icon === "string") {
     return (
-      <Icon focusable="false" name={icon} color="currentColor" {...props} />
+      <Icon
+        focusable="false"
+        aria-hidden="true"
+        name={icon}
+        color="currentColor"
+        {...props}
+      />
     );
   }
   return (
@@ -19,6 +25,7 @@ const ButtonIcon = ({ icon, ...props }) => {
       as={icon}
       data-custom-icon
       focusable="false"
+      aria-hidden="true"
       color="currentColor"
       {...props}
     />
