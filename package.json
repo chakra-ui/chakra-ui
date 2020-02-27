@@ -67,7 +67,8 @@
     "icons": "yarn workspace @chakra-ui/icon-glyphs",
     "hidden": "yarn workspace @chakra-ui/visually-hidden",
     "focuslock": "yarn workspace @chakra-ui/focus-lock",
-    "test-utils": "yarn workspace @chakra-ui/test-utils"
+    "test-utils": "yarn workspace @chakra-ui/test-utils",
+    "styled": "yarn workspace @chakra-ui/styled"
   },
   "czConfig": {
     "path": "node_modules/cz-conventional-changelog"
