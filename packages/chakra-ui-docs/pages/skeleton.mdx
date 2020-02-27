@@ -36,6 +36,24 @@ Or to wrap another component to take the same height and width
 </Skeleton>
 ```
 
+Useful when fetching remote data
+
+```js
+import { Box } from "@chakra-ui/core";
+
+function Card() {
+  const { data, loading, error } = useRemoteData();
+  if (error) return <Box children="error" />;
+  return (
+    <Box>
+      <Skeleton isLoaded={!loading}>
+        <Heading>{data.title}</Heading>
+      </Skeleton>
+    </Box>
+  );
+}
+```
+
 ### Skeleton color
 
 You can change the animation color with `colorStart` and `colorEnd`.
