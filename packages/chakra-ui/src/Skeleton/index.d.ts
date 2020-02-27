@@ -14,6 +14,10 @@ export interface ISkeleton {
    * Render only the children
    */
   isLoaded?: boolean;
+  /**
+   * The animation speed in seconds
+   */
+  speed?: number;
 }
 
 export type SkeletonProps = ISkeleton & BoxProps;

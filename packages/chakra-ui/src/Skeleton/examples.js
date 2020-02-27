@@ -40,3 +40,7 @@ stories.add("isLoaded after 1 second", () => {
 stories.add("with borderRadius", () => {
   return <Skeleton size="100px" borderRadius="100px" />;
 });
+
+stories.add("with custom speed", () => {
+  return <Skeleton size="100px" speed={2.4} borderRadius="100px" />;
+});

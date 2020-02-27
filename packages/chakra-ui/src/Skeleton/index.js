@@ -17,7 +17,7 @@ to {
 }
 `;
 
-const getStyle = ({ colorStart, colorEnd }) => css`
+const getStyle = ({ colorStart, colorEnd, speed }) => css`
   border-color: ${colorStart} !important;
   box-shadow: none !important;
 
@@ -30,7 +30,8 @@ const getStyle = ({ colorStart, colorEnd }) => css`
 
   // Transparent text will occupy space but be invisible to the user
   color: transparent !important;
-  animation: 1s linear infinite alternate ${skeletonGlow(colorStart, colorEnd)};
+  animation: ${speed}s linear infinite alternate
+    ${skeletonGlow(colorStart, colorEnd)};
   pointer-events: none;
   user-select: none;
 
@@ -51,6 +52,7 @@ const Skeleton = props => {
     colorStart = defaultStart[colorMode],
     colorEnd = defaultEnd[colorMode],
     isLoaded = false,
+    speed = 1,
     ...rest
   } = props;
   if (isLoaded) {
@@ -59,7 +61,7 @@ const Skeleton = props => {
 
   return (
     <Box
-      css={getStyle({ colorStart, colorEnd })}
+      css={getStyle({ colorStart, colorEnd, speed })}
       borderRadius="2px"
       {...rest}
     />
