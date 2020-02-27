@@ -29,7 +29,7 @@
     "copy-to-clipboard": "3.3.1",
     "exenv": "^1.2.2",
     "popper.js": "^1.15.0",
-    "react-animate-height": "2.0.9",
+    "react-animate-height": "2.0.20",
     "react-focus-lock": "^2.2.1",
     "react-spring": "^8.0.27",
     "styled-system": "5.0.5",
