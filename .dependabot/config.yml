@@ -1,0 +1,11 @@
+version: 1
+update_configs:
+  - package_manager: "javascript"
+    directory: "/packages/chakra-ui"
+    update_schedule: "live"
+    default_labels:
+      - "Type: Dependency"
+    commit_message:
+      prefix: "chore"
+      include_scope: true
+    target_branch: "master"
