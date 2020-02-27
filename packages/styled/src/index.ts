@@ -1,2 +1,2 @@
-export * from "./styled";
-export * from  "./styled.hook";
+export * from "./styled"
+export * from "./styled.types"
