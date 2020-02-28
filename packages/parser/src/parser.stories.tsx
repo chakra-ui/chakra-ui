@@ -108,12 +108,8 @@ const theme2 = {
 
 export const Test = () => {
   const result = css({
-    flexDirection: "column",
-    justifyContent: [null, "flex-start", "flex-end"],
-    color: "background",
-    height: "100%",
-    px: [2, 3, 4],
-    py: 4,
+    width: ["100%", null, "50%"],
+    color: ["red", "green", "blue"],
   })(theme2)
 
   console.log(result)

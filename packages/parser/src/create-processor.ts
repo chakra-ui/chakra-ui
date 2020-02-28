@@ -32,7 +32,8 @@ export function assignArrayValue(options: {
 
     const media = mediaQueries[index - 1]
 
-    if (!styles[media]) styles[media] = {}
+    styles[media] = styles[media] ?? {}
+    if (value == null) return
     styles[media][prop] = transform(value)
   })
 

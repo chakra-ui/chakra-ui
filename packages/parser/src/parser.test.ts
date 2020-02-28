@@ -237,7 +237,7 @@ test("handles negative top, left, bottom, and right from scale", () => {
 
 test("skip breakpoints", () => {
   const result = css({
-    width: ["100%", , "50%"],
+    width: ["100%", null, "50%"],
   })(theme)
   expect(result).toEqual({
     width: "100%",
@@ -387,7 +387,7 @@ test("returns outline color from theme", () => {
 
 test("returns correct media query order", () => {
   const result = css({
-    width: ["100%", , "50%"],
+    width: ["100%", null, "50%"],
     color: ["red", "green", "blue"],
   })(theme)
   const keys = Object.keys(result)
