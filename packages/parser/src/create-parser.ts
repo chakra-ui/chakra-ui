@@ -1,4 +1,4 @@
-import { Dict, isArray, isFunction } from "@chakra-ui/utils"
+import { Dict, isArray, isFunction, runIfFn } from "@chakra-ui/utils"
 import { createProcessor } from "./create-processor"
 import { get } from "./get"
 import { ConfigObject, transformConfig } from "./transform-config"
@@ -20,7 +20,7 @@ export function createParser(configs: ConfigObject) {
       if (prop === "theme" || configs[prop] == null) return
 
       const valueOrFn = props[prop]
-      const value = isFunction(valueOrFn) ? valueOrFn(props.theme) : valueOrFn
+      const value = runIfFn(valueOrFn, props.theme)
 
       const config = resolvedConfig[prop]
 

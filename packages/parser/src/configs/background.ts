@@ -2,7 +2,22 @@ import { createParser } from "../create-parser"
 import { ConfigObject } from "../transform-config"
 
 const config: ConfigObject = {
-  background: true,
+  bg: {
+    property: "background",
+    scale: "colors",
+  },
+  bgColor: {
+    property: "backgroundColor",
+    scale: "colors",
+  },
+  background: {
+    property: "background",
+    scale: "colors",
+  },
+  backgroundColor: {
+    property: "backgroundColor",
+    scale: "colors",
+  },
   backgroundImage: true,
   backgroundSize: true,
   backgroundPosition: true,

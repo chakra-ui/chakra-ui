@@ -12,7 +12,7 @@ export type ProcessorOptions = {
   scale?: string
 }
 
-function assignArrayValue(options: {
+export function assignArrayValue(options: {
   values: any[]
   mediaQueries: string[]
   prop: string
@@ -22,6 +22,8 @@ function assignArrayValue(options: {
   const styles: Dict = {}
 
   values.forEach((value, index) => {
+    // ignore array values longer than breakpoints
+    if (index > mediaQueries.length) return
     // Do not create a media query for the first index
     if (index === 0) {
       styles[prop] = transform(value)
