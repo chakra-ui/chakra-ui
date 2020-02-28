@@ -1,5 +1,3 @@
-import { DOMElements } from "./styled.utils"
-
 type StyleFnProps = {
   colorMode: "light" | "dark"
   theme: object
@@ -7,6 +5,8 @@ type StyleFnProps = {
 }
 
 export type ObjectOrFunction = object | ((props: StyleFnProps) => object)
+
+type ValueType<T> = T extends (...args: any) => any ? ReturnType<T> : T
 
 export interface Component {
   /**
@@ -62,11 +62,13 @@ export type PropsOf<
 
 export type As<P = any> = React.ElementType<P>
 
+type JSXElements = keyof JSX.IntrinsicElements
+
 /**
  * The styled function or object
  */
 export type Styled<T> = T &
-  { [Tag in DOMElements]: React.ForwardRefExoticComponent<PropsOf<Tag>> }
+  { [Tag in JSXElements]: React.ForwardRefExoticComponent<PropsOf<Tag>> }
 
 /**
  * Extract component's theming props

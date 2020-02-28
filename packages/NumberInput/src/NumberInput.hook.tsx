@@ -227,6 +227,7 @@ export function useNumberInput(props: NumberInputHookProps = {}) {
       value: counter.value,
       role: "spinbutton",
       type: "text",
+      inputMode: "numeric",
       pattern: "[0-9]*",
       "aria-valuemin": min,
       "aria-valuemax": max,

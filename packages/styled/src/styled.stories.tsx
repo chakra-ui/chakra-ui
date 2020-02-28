@@ -2,7 +2,7 @@ import * as React from "react"
 import { chakra } from "./styled"
 
 export default {
-  title: "@chakra-ui/styled",
+  title: "styled",
 }
 
 const theme = {
