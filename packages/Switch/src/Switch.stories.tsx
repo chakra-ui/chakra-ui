@@ -16,7 +16,7 @@ export default {
 export const Base = () => (
   <>
     <Switch variantSize="sm" variantColor="green" margin="20px" />
-    <Switch variantSize="md" variantColor="blue" margin="20px" />
+    <Switch isDisabled variantSize="md" variantColor="blue" margin="20px" />
     <Switch variantSize="lg" variantColor="cyan" />
   </>
 )
