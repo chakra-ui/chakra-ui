@@ -68,7 +68,8 @@
     "hidden": "yarn workspace @chakra-ui/visually-hidden",
     "focuslock": "yarn workspace @chakra-ui/focus-lock",
     "test-utils": "yarn workspace @chakra-ui/test-utils",
-    "styled": "yarn workspace @chakra-ui/styled"
+    "styled": "yarn workspace @chakra-ui/styled",
+    "parser": "yarn workspace @chakra-ui/parser"
   },
   "czConfig": {
     "path": "node_modules/cz-conventional-changelog"
