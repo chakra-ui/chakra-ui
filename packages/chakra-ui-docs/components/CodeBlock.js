@@ -20,6 +20,7 @@ export const liveEditorStyle = {
   overflowX: "auto",
   fontFamily: "Menlo,monospace",
   borderRadius: 10,
+  paddingTop: 10,
 };
 
 // const highlightStyle = {
