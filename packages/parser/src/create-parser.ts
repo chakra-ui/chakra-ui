@@ -1,7 +1,7 @@
-import { Dict, isFunction, isArray } from "@chakra-ui/utils"
+import { Dict, isArray, isFunction } from "@chakra-ui/utils"
 import { createProcessor } from "./create-processor"
 import { get } from "./get"
-import { ConfigObject, transformConfig, Config } from "./transform-config"
+import { ConfigObject, transformConfig } from "./transform-config"
 
 const fallbackBreakpoints = { sm: 400, md: 700, lg: 1000 }
 

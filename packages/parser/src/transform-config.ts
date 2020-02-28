@@ -9,6 +9,7 @@ export type Config =
       properties?: string[]
       scale?: string
       transform?: (value: any, scale: any) => any
+      fallbackScale?: any
     }
 
 export type ConfigObject = { [prop: string]: Config }
@@ -25,13 +26,13 @@ export function transformConfig(configs: ConfigObject, theme: any) {
       return
     }
 
-    const { property, properties, scale, transform } = config
+    const { property, properties, scale, transform, fallbackScale } = config
 
     if (property) {
       result[key] = {
         property,
         ...(!!transform && { transform }),
-        ...(!!scale && { scale: get(theme, scale, undefined) }),
+        ...(!!scale && { scale: get(theme, scale, fallbackScale) }),
       }
       return
     }
@@ -40,7 +41,7 @@ export function transformConfig(configs: ConfigObject, theme: any) {
     result[key] = properties.map(prop => ({
       property: prop,
       ...(!!transform && { transform }),
-      ...(!!scale && { scale: get(theme, scale, undefined) }),
+      ...(!!scale && { scale: get(theme, scale, fallbackScale) }),
     }))
   })
 
