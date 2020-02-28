@@ -107,15 +107,16 @@ const theme2 = {
 }
 
 export const Test = () => {
-  const style = css({
-    marginX: 2,
-    marginY: 2,
-    paddingX: 2,
-    paddingY: 2,
-    width: "large",
+  const result = css({
+    flexDirection: "column",
+    justifyContent: [null, "flex-start", "flex-end"],
+    color: "background",
+    height: "100%",
+    px: [2, 3, 4],
+    py: 4,
   })(theme2)
 
-  console.log(style)
+  console.log(result)
 
   return <div css={styles}>Testing</div>
 }

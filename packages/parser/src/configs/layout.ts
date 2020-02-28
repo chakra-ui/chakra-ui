@@ -3,20 +3,21 @@ import { isNumber } from "@chakra-ui/utils"
 import { ConfigObject } from "../transform-config"
 import { createParser } from "../create-parser"
 
-function getWidth(n: any, scale: any) {
-  return get(scale, n, !isNumber(n) || n > 1 ? n : n * 100 + "%")
+function transform(value: any, scale: any) {
+  const defaultValue = !isNumber(value) || value > 1 ? value : value * 100 + "%"
+  return get(scale, value, defaultValue)
 }
 
 const config: ConfigObject = {
   width: {
     property: "width",
     scale: "sizes",
-    transform: getWidth,
+    transform,
   },
   w: {
     property: "width",
     scale: "sizes",
-    transform: getWidth,
+    transform,
   },
   height: {
     property: "height",

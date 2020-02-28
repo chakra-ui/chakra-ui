@@ -2,7 +2,7 @@ import { Dict, isObject, runIfFn, deepmerge, isArray } from "@chakra-ui/utils"
 import { assignArrayValue } from "./create-processor"
 import { getMediaQuery } from "./media-query"
 import { parsePseudo } from "./configs/pseudo"
-import { get, getValue } from "./get"
+import { getValue, get } from "./get"
 import parser from "./parser"
 
 const css = (args: Dict) => (props: Dict) => {
@@ -19,8 +19,12 @@ const css = (args: Dict) => (props: Dict) => {
   function compute(val: any, config: any) {
     if (!config) return val
     const scale = get(theme, config.scale, config.fallbackScale)
-    const transformed = config.transform?.(scale, val) ?? getValue(val, scale)
-    return transformed
+
+    if (config.transform) {
+      return config.transform(val, scale)
+    }
+
+    return getValue(val, scale)
   }
 
   function assignArray(prop: any, values: any, config: any) {

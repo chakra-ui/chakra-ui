@@ -9,12 +9,14 @@ import position from "./configs/position"
 import shadow from "./configs/shadow"
 import space from "./configs/space"
 import typography from "./configs/typography"
+import layout from "./configs/layout"
 
 const parser = combineParsers(
   background,
   border,
   color,
   flexbox,
+  layout,
   grid,
   others,
   position,
