@@ -1,7 +1,7 @@
 import * as React from "react"
 import copy from "copy-to-clipboard"
 
-export function useClipboard (text: string) {
+export function useClipboard(text: string) {
   const [hasCopied, setHasCopied] = React.useState(false)
 
   const onCopy = React.useCallback(() => {
