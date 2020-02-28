@@ -8,6 +8,8 @@ import SEO from "../components/SEO";
 # Input
 
 Input component is a component that is used to get user input in a text field.
+It is usually used together with a [FormControl](/formcontrol) to provide an
+accessible label, validation messages, etc.
 
 ## Import
 
@@ -129,7 +131,6 @@ function Example() {
 
   return (
     <>
-      <Text mb="8px">Value: {value}</Text>
       <Input
         value={value}
         onChange={handleChange}
