@@ -54,7 +54,7 @@ const styles = parser({
 })
 
 const theme2 = {
-  breakpoints: { sm: 320, md: 600, lg: 960 },
+  // breakpoints: { sm: 320, md: 600, lg: 960 },
   colors: {
     primary: "tomato",
     secondary: "cyan",
