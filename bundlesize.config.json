@@ -23,6 +23,10 @@
     {
       "path": "./packages/popper/dist/*.js",
       "maxSize": "5 kB"
+    },
+    {
+      "path": "./packages/parser/dist/*.js",
+      "maxSize": "10 kB"
     }
   ]
 }
