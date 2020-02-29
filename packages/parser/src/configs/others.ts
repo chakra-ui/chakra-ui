@@ -7,7 +7,6 @@ const config: ConfigObject = {
   transform: true,
   transformOrigin: true,
   visibility: true,
-  whiteSpace: true,
   userSelect: true,
   pointerEvents: true,
   cursor: true,

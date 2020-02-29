@@ -11,7 +11,10 @@ const config: ConfigObject = {
   flex: true,
   flexGrow: true,
   flexShrink: true,
-  flexBasis: true,
+  flexBasis: {
+    property: "flexBasis",
+    scale: "sizes",
+  },
   justifySelf: true,
   alignSelf: true,
   order: true,

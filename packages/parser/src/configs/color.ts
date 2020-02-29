@@ -10,18 +10,7 @@ const config: ConfigObject = {
     property: "color",
     scale: "colors",
   },
-  backgroundColor: {
-    property: "backgroundColor",
-    scale: "colors",
-  },
   opacity: true,
-  bg: {
-    property: "background",
-  },
-  bgColor: {
-    property: "backgroundColor",
-    scale: "colors",
-  },
   fill: {
     property: "fill",
     scale: "colors",

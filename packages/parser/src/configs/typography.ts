@@ -33,6 +33,7 @@ const config: ConfigObject = {
   overflowWrap: true,
   textOverflow: true,
   textTransform: true,
+  whiteSpace: true,
   textDecoration: { property: "textDecoration" },
   textDecor: { property: "textDecoration" },
 }
