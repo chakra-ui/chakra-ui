@@ -24,3 +24,5 @@ export function parseResponsiveProp(
 }
 
 export { default as invariant } from "tiny-invariant"
+
+export { default as deepmerge } from "deepmerge"
