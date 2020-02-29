@@ -10,8 +10,9 @@ import shadow from "./configs/shadow"
 import space from "./configs/space"
 import typography from "./configs/typography"
 import layout from "./configs/layout"
+import { pseudoPropNames } from "./configs/pseudo.selector"
 
-const parser = combineParsers(
+export const parser = combineParsers(
   background,
   border,
   color,
@@ -24,5 +25,7 @@ const parser = combineParsers(
   space,
   typography,
 )
+
+export const propNames = [...parser.propNames, ...pseudoPropNames]
 
 export default parser

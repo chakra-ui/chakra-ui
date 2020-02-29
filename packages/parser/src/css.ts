@@ -5,7 +5,7 @@ import { parsePseudo } from "./configs/pseudo"
 import { getValue, get } from "./get"
 import parser from "./parser"
 
-const css = (args: Dict) => (props: Dict) => {
+export const css = (args: Dict) => (props: Dict) => {
   const isThemeInProps = isObject(props) && props.theme
   const theme = isThemeInProps ? props.theme : props
 
