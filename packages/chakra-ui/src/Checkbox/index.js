@@ -70,6 +70,7 @@ const Checkbox = forwardRef(
           as="input"
           type="checkbox"
           aria-label={ariaLabel}
+          aria-labelledby={ariaLabelledBy}
           id={id}
           ref={_ref}
           name={name}
