@@ -109,6 +109,8 @@ export { default as RadioButtonGroup } from "./RadioButtonGroup";
 
 export * from "./Select";
 export { default as Select } from "./Select";
+export * from "./Skeleton";
+export { default as Skeleton } from "./Skeleton";
 export * from "./Slider";
 export { default as Slider } from "./Slider";
 export * from "./Spinner";
