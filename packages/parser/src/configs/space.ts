@@ -1,5 +1,6 @@
 import { positiveOrNegative } from "../positive-or-negative"
 import { createParser } from "../create-parser"
+import { ConfigObject } from "../transform-config"
 
 const defaults = {
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
@@ -10,7 +11,7 @@ const shared = {
   fallbackScale: defaults.space,
 }
 
-const configs = {
+const configs: ConfigObject = {
   margin: {
     property: "margin",
     transform: positiveOrNegative,

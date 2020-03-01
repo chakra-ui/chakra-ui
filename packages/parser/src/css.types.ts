@@ -10,8 +10,8 @@ export type ResponsiveValue<T> = T | Array<T | null>
 export type CSSProperties = CSS.StandardProperties<number | string> &
   CSS.SvgProperties<number | string>
 
-export type CSSPseudoStyles<T = any> = {
-  [K in CSS.Pseudos]?: SystemStyleObject<T>
+export type CSSPseudoStyles<Theme = any> = {
+  [K in CSS.Pseudos]?: SystemStyleObject<Theme>
 }
 
 export type CSSObject = CSSProperties &
@@ -26,8 +26,8 @@ interface CSSOthersObjectForCSSObject {
   [propertiesName: string]: CSSInterpolation
 }
 
-interface CSSSelectorObject<T = any> {
-  [cssSelector: string]: SystemStyleObject<T>
+interface CSSSelectorObject<Theme = any> {
+  [cssSelector: string]: SystemStyleObject<Theme>
 }
 
 interface AliasesCSSProperties {
@@ -63,43 +63,34 @@ interface AllSystemCSSProperties
     AliasesCSSProperties,
     OverwriteCSSProperties {}
 
-export type SystemCSSProperties<T = any> = {
+export type SystemCSSProperties<Theme = any> = {
   [K in keyof AllSystemCSSProperties]:
     | ResponsiveValue<AllSystemCSSProperties[K]>
-    | ((theme: T) => ResponsiveValue<AllSystemCSSProperties[K]>)
+    | ((theme: Theme) => ResponsiveValue<AllSystemCSSProperties[K]>)
     | SystemStyleObject
 }
 
-interface VariantProperty {
-  variant: string
+interface ApplyProperty {
+  apply: string
 }
 
-type PseudoShorthandStyles<T = any> = {
-  [K in keyof Pseudos]: SystemStyleObject<T>
+type PseudoShorthandStyles<Theme = any> = {
+  [K in keyof Pseudos]: SystemStyleObject<Theme>
 }
 
 export type SystemStyleObject<Theme = any> =
   | SystemCSSProperties<Theme>
   | CSSPseudoStyles<Theme>
   | CSSSelectorObject<Theme>
-  | VariantProperty
+  | ApplyProperty
   | PseudoShorthandStyles<Theme>
 
-//////////////////////////////////////////////////////////////////////
+// The core style object or function
+export type StyleObject<Theme> =
+  | SystemStyleObject<Theme>
+  | ((theme: Theme) => SystemStyleObject<Theme>)
 
-const style: SystemStyleObject<{
-  shadows: [1, 2, 3]
-  fontSizes: { sm: 12 }
-}> = {
-  fontSize: 10,
-  bg: "grea",
-  boxShadow: theme => [`welcome`, `sdfdfd`],
-  "&:hover": {
-    fontKerning: "normal",
-    zIndex: "fdfdf",
-    fontSize: theme => theme.fontSizes.sm,
-  },
-}
+//////////////////////////////////////////////////////////////////////
 
 export type ThemeValue<T> =
   | T[]
@@ -114,10 +105,29 @@ export type Theme =
   | { [variantPart: string]: Theme }
 
 interface ThemeBreakPoints {
-  breakpoints: string[] | number[]
+  breakpoints: Record<string, string | number>
 }
 
+interface Font {
+  fontStyle?: string
+  fontWeight?: string
+  src: string | string[]
+}
+
+type FontFace = {
+  [font: string]: Font | Font[]
+}
+
+// const fontFace = {
+//   "Open Sans": {
+//     fontStyle: "normal",
+//     fontWeight: "normal",
+//     src: ["fonts/OpenSans.woff2", "fonts/OpenSans.ttf"],
+//   },
+// }
+
 export interface ScaleThemeProperties {
+  fontFace?: FontFace
   colors?: ThemeValue<CSS.ColorProperty>
   space?: ThemeValue<CSS.MarginProperty<number> & CSS.PaddingProperty<number>>
   fonts?: ThemeValue<CSS.FontFamilyProperty>
