@@ -1,5 +1,6 @@
 import * as CSS from "csstype"
 import { Pseudos } from "./configs/pseudo.selector"
+import { Dict } from "@chakra-ui/utils"
 
 export type StandardCSSProperties = CSS.PropertiesFallback<number | string>
 
@@ -10,13 +11,18 @@ export type ResponsiveValue<T> = T | Array<T | null>
 export type CSSProperties = CSS.StandardProperties<number | string> &
   CSS.SvgProperties<number | string>
 
-export type CSSPseudoStyles<Theme = any> = {
-  [K in CSS.Pseudos]?: SystemStyleObject<Theme>
+export type CSSPseudoSelectorProps = {
+  [K in CSS.Pseudos]?: SystemStyleObject
 }
 
-export type CSSObject = CSSProperties &
-  CSSPseudosForCSSObject &
-  CSSOthersObjectForCSSObject
+export interface CSSObject
+  extends CSSPropertiesWithMultiValues,
+    CSSPseudosForCSSObject,
+    CSSOthersObjectForCSSObject {}
+
+type CSSPropertiesWithMultiValues = {
+  [K in keyof CSSProperties]: CSSProperties[K]
+}
 
 type CSSPseudosForCSSObject = { [K in CSS.Pseudos]?: CSSObject }
 
@@ -25,9 +31,8 @@ type CSSInterpolation = undefined | number | string | CSSObject
 interface CSSOthersObjectForCSSObject {
   [propertiesName: string]: CSSInterpolation
 }
-
-interface CSSSelectorObject<Theme = any> {
-  [cssSelector: string]: SystemStyleObject<Theme>
+interface CSSSelectorObject {
+  [cssSelector: string]: SystemStyleObject
 }
 
 interface AliasesCSSProperties {
@@ -85,10 +90,10 @@ interface AllSystemCSSProperties
     AliasesCSSProperties,
     OverwriteCSSProperties {}
 
-export type SystemCSSProperties<Theme = any> = {
+export type SystemCSSProperties = {
   [K in keyof AllSystemCSSProperties]:
     | ResponsiveValue<AllSystemCSSProperties[K]>
-    | ((theme: Theme) => ResponsiveValue<AllSystemCSSProperties[K]>)
+    | ((theme: any) => ResponsiveValue<AllSystemCSSProperties[K]>)
     | SystemStyleObject
 }
 
@@ -96,53 +101,42 @@ interface ApplyProperty {
   apply: string
 }
 
-type PseudoShorthandStyles<Theme = any> = {
-  [K in keyof Pseudos]: SystemStyleObject<Theme> & { content?: string }
+type PseudoShorthandStyles = {
+  [K in keyof Pseudos]: SystemStyleObject & { content?: string }
 }
 
-export type SystemStyleObject<Theme = any> =
-  | SystemCSSProperties<Theme>
-  | CSSPseudoStyles<Theme>
-  | CSSSelectorObject<Theme>
+export type SystemStyleObject =
+  | string
+  | SystemCSSProperties
+  | CSSPseudoSelectorProps
+  | CSSSelectorObject
   | ApplyProperty
-  | PseudoShorthandStyles<Theme>
+  | PseudoShorthandStyles
 
 // The core style object or function
-export type StyleObject<Theme> =
-  | SystemStyleObject<Theme>
-  | ((theme: Theme) => SystemStyleObject<Theme>)
+export type StyleObject =
+  | SystemStyleObject
+  | ((theme: any) => SystemStyleObject)
 
 //////////////////////////////////////////////////////////////////////
 
-export type ThemeValue<T> =
-  | T[]
-  | {
-      [name: string]: T | ThemeValue<T>
-    }
+export type ThemeValue<T> = T[] | Dict<T>
+type TVal = string | number
 
-export type Theme =
-  | { [K in keyof StandardCSSProperties]: ThemeValue<StandardCSSProperties[K]> }
-  | Partial<ScaleThemeProperties>
-  | ThemeBreakPoints
-  | { [variantParts: string]: Theme }
-
-interface ThemeBreakPoints {
-  breakpoints: Record<string, string | number>
-}
-
-export interface ScaleThemeProperties {
-  colors?: ThemeValue<CSS.ColorProperty>
-  space?: ThemeValue<CSS.MarginProperty<number> & CSS.PaddingProperty<number>>
-  fonts?: ThemeValue<CSS.FontFamilyProperty>
-  fontSizes?: ThemeValue<CSS.FontSizeProperty<number>>
-  fontWeights?: ThemeValue<CSS.FontWeightProperty>
-  lineHeights?: ThemeValue<CSS.LineHeightProperty<string>>
-  letterSpacings?: ThemeValue<CSS.LetterSpacingProperty<string | number>>
-  borders?: ThemeValue<CSS.BorderProperty<{}>>
-  borderWidths?: ThemeValue<CSS.BorderWidthProperty<{}>>
-  borderStyles?: ThemeValue<CSS.LineStyle>
-  radii?: ThemeValue<CSS.BorderRadiusProperty<{}>>
-  shadows?: ThemeValue<CSS.BoxShadowProperty>
-  zIndices?: ThemeValue<CSS.ZIndexProperty>
-  sizes?: ThemeValue<CSS.HeightProperty<{}> | CSS.WidthProperty<{}>>
+export interface Theme {
+  breakpoints?: Dict<string | number>
+  colors?: ThemeValue<TVal>
+  space?: ThemeValue<TVal>
+  fonts?: ThemeValue<TVal>
+  fontSizes?: ThemeValue<TVal>
+  fontWeights?: ThemeValue<TVal>
+  lineHeights?: ThemeValue<TVal>
+  letterSpacings?: ThemeValue<TVal>
+  borders?: ThemeValue<TVal>
+  borderWidths?: ThemeValue<TVal>
+  borderStyles?: ThemeValue<TVal>
+  radii?: ThemeValue<TVal>
+  shadows?: ThemeValue<TVal>
+  zIndices?: ThemeValue<TVal>
+  sizes?: ThemeValue<TVal>
 }

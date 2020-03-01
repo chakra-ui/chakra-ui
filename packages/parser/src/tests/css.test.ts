@@ -150,7 +150,7 @@ test("works with the css prop", () => {
 })
 
 test("works with functional arguments", () => {
-  const result = css((t: any) => ({
+  const result = css(t => ({
     color: t.colors.primary,
   }))(theme)
   expect(result).toEqual({
@@ -271,7 +271,7 @@ test("ignores array values longer than breakpoints", () => {
   const result = css({
     width: [32, 64, 128, 256, 512],
   })({
-    breakpoints: ["32em", "40em"],
+    breakpoints: { sm: "32em", md: "40em" },
   })
   expect(result).toEqual({
     width: 32,
@@ -315,6 +315,7 @@ test("returns individual border styles", () => {
     borderLeftColor: "primary",
     borderLeftStyle: "thick",
   })(theme)
+
   expect(result).toEqual({
     borderTopColor: "tomato",
     borderTopWidth: 1,

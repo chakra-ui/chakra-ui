@@ -1,18 +1,24 @@
-import { Dict, isObject, runIfFn, deepmerge, isArray } from "@chakra-ui/utils"
-import { assignArrayValue } from "./create-processor"
-import { getMediaQuery } from "./media-query"
+import { deepmerge, isArray, isObject, runIfFn } from "@chakra-ui/utils"
 import { parsePseudo } from "./configs/pseudo"
-import { getValue, get } from "./get"
+import { assignArrayValue } from "./create-processor"
+import { CSSObject, StyleObject, Theme } from "./css.types"
+import { get, getValue } from "./get"
+import { getMediaQuery } from "./media-query"
 import parser from "./parser"
 
-export const css = (args: Dict) => (props: Dict) => {
-  const isThemeInProps = isObject(props) && props.theme
-  const theme = isThemeInProps ? props.theme : props
+const is = (props: any): props is { theme: Theme } => {
+  return Boolean(isObject(props) && props.theme)
+}
 
-  let result: Dict = {}
+export const css = (styleProps: StyleObject) => (
+  props: Theme | { theme: Theme },
+) => {
+  const theme = is(props) ? props.theme : props
 
-  const styleObject = runIfFn(args, theme)
-  const styles = parsePseudo(styleObject)
+  let result: CSSObject = {}
+
+  const styleObject = runIfFn(styleProps, theme)
+  const styles = parsePseudo(styleObject as any)
 
   const queries = getMediaQuery(theme.breakpoints)
 

@@ -15,7 +15,7 @@ export const toMediaQuery = (breakpoint: string | number) => {
  *
  * @param breakpoints the breakpoints in the theme
  */
-export function getMediaQuery(breakpoints: Record<any, any>) {
+export function getMediaQuery(breakpoints?: Record<any, any>) {
   const _breakpoints = breakpoints ?? { sm: "40em", md: "52em", lg: "64em" }
 
   const asArray = Object.keys(_breakpoints)

@@ -680,5 +680,4 @@ interface TruncateProps {
 }
 
 export type SystemProps<ThemeType> = StyleProps<ThemeType> &
-  PseudoProps<StyleProps<ThemeType>, { content?: string }> &
-  TruncateProps
+  PseudoProps<StyleProps<ThemeType>, { content?: string }> & {}
