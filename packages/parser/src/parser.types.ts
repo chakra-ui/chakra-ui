@@ -675,5 +675,10 @@ type PseudoProps<Props, ExtraProps = {}> =
         | PseudoProps<Props, ExtraProps>
     }
 
+interface TruncateProps {
+  isTruncated?: boolean
+}
+
 export type SystemProps<ThemeType> = StyleProps<ThemeType> &
-  PseudoProps<StyleProps<ThemeType>, { content?: string }>
+  PseudoProps<StyleProps<ThemeType>, { content?: string }> &
+  TruncateProps
