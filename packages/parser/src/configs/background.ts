@@ -29,7 +29,7 @@ const config: ConfigObject = {
   bgSize: {
     property: "backgroundSize",
   },
-  bgPos: {
+  bgPosition: {
     property: "backgroundPosition",
   },
   bgRepeat: {

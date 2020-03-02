@@ -1,3 +1,4 @@
+import * as CSS from "csstype"
 import { isNull, isArray, isObject, Dict, deepmerge } from "@chakra-ui/utils"
 import { getMediaQuery } from "./media-query"
 import { getValue } from "./get"
@@ -6,7 +7,7 @@ import { sort } from "./sort-styles"
 export type ResponsiveValue<T> = T | Array<T> | { [breakpoint: string]: T }
 
 export type ProcessorOptions = {
-  property: string
+  property: keyof CSS.Properties
   value?: ResponsiveValue<string | number>
   transform?: (value: any, scale: any) => any
   scale?: string

@@ -15,7 +15,12 @@ export default {
 
 export const Base = () => (
   <>
-    <Switch variantSize="sm" variantColor="green" margin="20px" />
+    <Switch
+      isIndeterminate
+      variantSize="sm"
+      variantColor="green"
+      margin="20px"
+    />
     <Switch isDisabled variantSize="md" variantColor="blue" margin="20px" />
     <Switch variantSize="lg" variantColor="cyan" />
   </>
@@ -29,3 +34,15 @@ export const Usage = () => (
     <Switch variantColor="green" id="email-alerts" />
   </chakra.div>
 )
+
+export const Controlled = () => {
+  const [value, setValue] = React.useState(false)
+
+  return (
+    <Switch
+      isChecked={value}
+      variantColor="green"
+      onChange={e => setValue(e.target.checked)}
+    />
+  )
+}

@@ -1,5 +1,5 @@
 import * as React from "react"
-import { isFunction } from "./assertion"
+import { isFunction, isString } from "./assertion"
 
 export function createContext<T>(
   strict = true,
@@ -62,4 +62,10 @@ export function mergeRefs<T>(...refs: (ReactRef<T> | undefined)[]) {
   return (value: T) => {
     refs.forEach(ref => assignRef(ref, value))
   }
+}
+
+export function getDisplayName(primitive: any) {
+  return isString(primitive)
+    ? primitive
+    : primitive.displayName || primitive.name || "ChakraComponent"
 }

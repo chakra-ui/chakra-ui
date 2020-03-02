@@ -86,3 +86,15 @@
 //     </div>
 //   )
 // }
+
+import * as React from "react"
+import { Checkbox, CheckboxHiddenInput, CustomCheckbox } from "./Checkbox.base"
+
+export const Base = () => {
+  return (
+    <Checkbox>
+      <CheckboxHiddenInput />
+      <CustomCheckbox>This is custom checkbox</CustomCheckbox>
+    </Checkbox>
+  )
+}

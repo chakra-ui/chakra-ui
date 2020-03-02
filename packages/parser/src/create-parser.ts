@@ -1,4 +1,4 @@
-import { Dict, isArray, isFunction, runIfFn } from "@chakra-ui/utils"
+import { Dict, isArray, runIfFn } from "@chakra-ui/utils"
 import { createProcessor } from "./create-processor"
 import { get } from "./get"
 import { ConfigObject, transformConfig } from "./transform-config"
