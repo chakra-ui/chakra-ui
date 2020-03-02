@@ -54,10 +54,22 @@ const Select = forwardRef(
     const opacity = props.isReadOnly || props.isDisabled ? 0.5 : null;
 
     const [root, select] = splitProps(props);
+    const backgroundColor =
+      colorMode === "dark" &&
+      (typeof select.variant === "undefined" ||
+        select.variant === "" ||
+        select.variant === "outline")
+        ? "gray.750"
+        : "inherit";
 
     return (
       <Box position="relative" width="100%" {...root} {...rootProps}>
-        <SelectInput ref={ref} color={color} {...select} />
+        <SelectInput
+          ref={ref}
+          color={color}
+          backgroundColor={select.backgroundColor || backgroundColor}
+          {...select}
+        />
         <SelectIconWrapper opacity={opacity} color={select.color || color}>
           <Icon
             focusable="false"
