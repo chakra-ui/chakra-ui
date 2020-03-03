@@ -1,6 +1,7 @@
 import { Dict, isEmptyObject, runIfFn, deepmerge } from "@chakra-ui/utils"
 import { get } from "./get"
 import css from "./css"
+import { CSSObject } from "./css.types"
 
 export function isSubcomponent(themeKey: string) {
   return themeKey.split(".").length > 1
@@ -65,7 +66,7 @@ function has(val: any): val is object {
 }
 
 export function getComponentStyles(props: any, themeKey: string) {
-  let styles: Dict = {}
+  let styles: CSSObject = {}
 
   if (!themeKey) return undefined
 

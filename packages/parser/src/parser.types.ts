@@ -679,5 +679,6 @@ interface TruncateProps {
   isTruncated?: boolean
 }
 
-export type SystemProps<ThemeType> = StyleProps<ThemeType> &
-  PseudoProps<StyleProps<ThemeType>, { content?: string }> & {}
+export type SystemProps<ThemeType = RequiredTheme> = StyleProps<ThemeType> &
+  PseudoProps<StyleProps<ThemeType>, { content?: string }> &
+  TruncateProps

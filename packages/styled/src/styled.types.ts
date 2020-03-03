@@ -1,3 +1,5 @@
+import { SystemProps } from "@chakra-ui/parser"
+
 type StyleFnProps = {
   colorMode: "light" | "dark"
   theme: object
@@ -49,8 +51,33 @@ export interface BaseTheme {
 }
 
 export interface StyledOptions<T extends BaseTheme> {
+  /**
+   * The key of this component in `theme.components`.
+   * Ideally, this should be the name of the component
+   */
   themeKey?: keyof T["components"]
+  /**
+   * Additional props to attach to the component
+   * You can use a function to make it dynamic
+   */
   attrs?: React.AllHTMLAttributes<any>
+  /**
+   * Base style object to apply to this component
+   * NB: This style is theme-aware so you can use all style props
+   */
+  baseStyle?: SystemProps<T>
+  /**
+   * A boolean indicating if the component should avoid re-rendering
+   * when props haven't changed. This uses `React.memo(...)`
+   */
+  pure?: boolean
+  /**
+   * Whether we should forward prop to the underlying component.
+   *
+   * Useful when using `createChakra` with custom components, or using
+   * custom prop name to control component styles.
+   */
+  shouldForwardProp?(propName: string): boolean
 }
 
 /**
@@ -68,7 +95,9 @@ type JSXElements = keyof JSX.IntrinsicElements
  * The styled function or object
  */
 export type Styled<T> = T &
-  { [Tag in JSXElements]: React.ForwardRefExoticComponent<PropsOf<Tag>> }
+  {
+    [Tag in JSXElements]: React.ForwardRefExoticComponent<PropsOf<Tag>>
+  }
 
 /**
  * Extract component's theming props
@@ -99,3 +128,12 @@ export type AllProps<
 > = object extends ThemingProps<T, O>
   ? PropsOf<C> & { children?: React.ReactNode } & ThemingProps<T, O>
   : PropsOf<C> & { children?: React.ReactNode }
+
+export interface ChakraComponent<C extends As, T extends BaseTheme, O> {
+  (props: AllProps<C, T, O> & SystemProps<{}>): JSX.Element
+  displayName?: string
+  defaultProps?: Partial<PropsOf<C> & SystemProps<{}>>
+  propTypes?: {
+    [prop: string]: React.Validator<any>
+  }
+}

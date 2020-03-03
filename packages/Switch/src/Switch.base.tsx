@@ -51,7 +51,7 @@ export const SwitchTrack = forwardRef(
   (props: any, ref: React.Ref<HTMLDivElement>) => {
     const { getCheckboxProps } = useCheckboxContext()
     return (
-      <div ref={ref} {...getCheckboxProps(props)}>
+      <div ref={ref} {...(getCheckboxProps(props) as any)}>
         {props.children}
       </div>
     )
