@@ -68,6 +68,7 @@ interface ICustomConfig {
   transition?: StyledSystem.ResponsiveValue<CSS["transition"]>;
   objectFit?: StyledSystem.ResponsiveValue<CSS["objectFit"]>;
   objectPosition?: StyledSystem.ResponsiveValue<CSS["objectPosition"]>;
+  visibility?: StyledSystem.ResponsiveValue<CSS["visibility"]>;
 
   // Ellipsis alias
   wordBreak?: StyledSystem.ResponsiveValue<CSS["wordBreak"]>;
