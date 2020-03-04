@@ -52,8 +52,8 @@ const { styled, ThemeProvider } = chakra(theme)
 const Button = styled("button", { themeKey: "Button" })
 
 export const SampleButton = () => (
-  <div>
-    <ThemeProvider>
+  <ThemeProvider>
+    <div>
       <Button
         size="small"
         variant="solid"
@@ -65,22 +65,27 @@ export const SampleButton = () => (
       >
         Theme Button
       </Button>
-    </ThemeProvider>
 
-    <styled.h1 isTruncated marginX="20px" fontSize="40px" color="pink">
-      Welcome truncate Welcome truncateWelcome truncateWelcome truncateWelcome
-      truncateWelcome truncateWelcome truncateWelcome truncateWelcome truncate
-    </styled.h1>
-    <styled.button
-      type="submit"
-      onClick={() => {
-        console.log("clicked")
-      }}
-    >
-      Welcome home
-    </styled.button>
-    <styled.ul>
-      <styled.li>This is the same</styled.li>
-    </styled.ul>
-  </div>
+      <styled.h1 isTruncated marginX="20px" fontSize="40px" color="pink">
+        Welcome truncate Welcome truncateWelcome truncateWelcome truncateWelcome
+        truncateWelcome truncateWelcome truncateWelcome truncateWelcome truncate
+      </styled.h1>
+      <styled.button
+        bg="pink"
+        disabled
+        color="white"
+        padding="8px 12px"
+        type="submit"
+        _active={{ bg: "red", cursor: "pointer" }}
+        onClick={() => {
+          console.log("clicked")
+        }}
+      >
+        Welcome home
+      </styled.button>
+      <styled.ul>
+        <styled.li>This is the same</styled.li>
+      </styled.ul>
+    </div>
+  </ThemeProvider>
 )

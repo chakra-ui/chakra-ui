@@ -8,8 +8,6 @@ type StyleFnProps = {
 
 export type ObjectOrFunction = object | ((props: StyleFnProps) => object)
 
-type ValueType<T> = T extends (...args: any) => any ? ReturnType<T> : T
-
 export interface Component {
   /**
    * The display name of the component, Pascal cased
@@ -92,14 +90,6 @@ export type As<P = any> = React.ElementType<P>
 type JSXElements = keyof JSX.IntrinsicElements
 
 /**
- * The styled function or object
- */
-export type Styled<T> = T &
-  {
-    [Tag in JSXElements]: React.ForwardRefExoticComponent<PropsOf<Tag>>
-  }
-
-/**
  * Extract component's theming props
  */
 export type ThemingProps<T extends BaseTheme, O> = O extends {
@@ -130,7 +120,7 @@ export type AllProps<
   : PropsOf<C> & { children?: React.ReactNode }
 
 export interface ChakraComponent<C extends As, T extends BaseTheme, O> {
-  (props: AllProps<C, T, O> & SystemProps<{}>): JSX.Element
+  (props: AllProps<C, T, O> & SystemProps<{}> & { as?: As }): JSX.Element
   displayName?: string
   defaultProps?: Partial<PropsOf<C> & SystemProps<{}>>
   propTypes?: {
