@@ -1,4 +1,5 @@
-import * as React from "react"
+/**@jsx jsx */
+import { jsx } from "./jsx"
 import { chakra } from "./styled"
 
 export default {
@@ -66,7 +67,11 @@ export const SampleButton = () => (
         Theme Button
       </Button>
 
-      <styled.h1 isTruncated marginX="20px" fontSize="40px" color="pink">
+      <span sx={{ bg: "white", color: "black", _hover: { bg: "pink" } }}>
+        Before
+      </span>
+
+      <styled.h1 isTruncated mt={4} fontSize="40px" color="pink">
         Welcome truncate Welcome truncateWelcome truncateWelcome truncateWelcome
         truncateWelcome truncateWelcome truncateWelcome truncateWelcome truncate
       </styled.h1>

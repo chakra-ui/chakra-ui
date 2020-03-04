@@ -1,10 +1,8 @@
-// All credits goes to theme-ui for this
 import { Dict, runIfFn } from "@chakra-ui/utils"
 import { jsx as emotion } from "@emotion/core"
-import css from "@styled-system/css"
-import { SystemStyleObject } from "@chakra-ui/parser"
+import { SystemStyleObject, css } from "@chakra-ui/parser"
 
-const getCSS = (props: { sx?: object; css?: object }) => {
+const getCSS = (props: { sx?: any; css?: any }) => {
   if (!props.sx && !props.css) return undefined
   return (theme: object) => {
     const styles = css(props.sx)(theme)
@@ -32,15 +30,17 @@ export const jsx = (
 ) => emotion.apply(undefined, [type, parseProps(props), ...children])
 
 declare module "react" {
-  // eslint-disable-next-line
-  interface DOMAttributes<T> extends SystemStyleObject {}
+  interface DOMAttributes<T> {
+    sx?: SystemStyleObject
+  }
 }
 
 declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
+  // eslint-disable-next-line
   namespace JSX {
-    // eslint-disable-next-line
-    interface IntrinsicAttributes extends SystemStyleObject {}
+    interface IntrinsicAttributes {
+      sx?: SystemStyleObject
+    }
   }
 }
 

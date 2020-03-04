@@ -1,4 +1,4 @@
-import { SystemProps } from "@chakra-ui/parser"
+import { SystemProps, SystemStyleObject } from "@chakra-ui/parser"
 
 type StyleFnProps = {
   colorMode: "light" | "dark"
@@ -116,11 +116,18 @@ export type AllProps<
   T extends BaseTheme,
   O
 > = object extends ThemingProps<T, O>
-  ? PropsOf<C> & { children?: React.ReactNode } & ThemingProps<T, O>
-  : PropsOf<C> & { children?: React.ReactNode }
+  ? PropsOf<C> & ThemingProps<T, O>
+  : PropsOf<C>
 
 export interface ChakraComponent<C extends As, T extends BaseTheme, O> {
-  (props: AllProps<C, T, O> & SystemProps<{}> & { as?: As }): JSX.Element
+  (
+    props: AllProps<C, T, O> &
+      SystemProps<{}> & {
+        as?: As
+        children?: React.ReactNode
+        sx?: SystemStyleObject
+      },
+  ): JSX.Element
   displayName?: string
   defaultProps?: Partial<PropsOf<C> & SystemProps<{}>>
   propTypes?: {
