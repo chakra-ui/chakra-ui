@@ -3,6 +3,7 @@ import React from "react"
 import { Radio } from "./Radio"
 import { CustomRadio, RadioInput, RadioProvider } from "./Radio.hook"
 import useRadioGroup from "./RadioGroup.hook"
+import { BaseRadio } from "./Radio.base"
 
 export default {
   title: "Radio",
@@ -26,6 +27,10 @@ function RadioGroupExample(props: any) {
       ))}
     </div>
   )
+}
+
+export function Base() {
+  return <BaseRadio />
 }
 
 export const ControlledExample = () => (

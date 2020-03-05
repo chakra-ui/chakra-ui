@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Radio input renders correctly 1`] = `
+<DocumentFragment>
+<div id="root">
+<div>
+<label>
+<input type="radio" value="">
+<span style="margin: 10px;">Option</span>
+</label>
+</div>
+<div class="__chakra--portal-manager"></div>
+</div>
+</DocumentFragment>
+`;
