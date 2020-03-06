@@ -69,29 +69,17 @@ export type DialogContentProps = PropsOf<typeof chakra.div>
 
 export const DialogContent = (props: DialogContentProps) => {
   const { getDialogContentProps } = useDialogContext()
-  const { wrapperStyle, contentStyle } = getContentStyle(true, "inside")
+  const { contentStyle } = getContentStyle(true, "inside")
   return (
-    <chakra.section
-      position="fixed"
-      left="0"
-      top="0"
-      width="100%"
-      height="100%"
-      pointerEvents="none"
-      {...wrapperStyle}
-    >
-      <ContentInner
-        position="relative"
-        pointerEvents="auto"
-        {...getDialogContentProps({})}
-        {...contentStyle}
-        {...props}
-      />
-    </chakra.section>
+    <StyledDialogContent
+      {...getDialogContentProps()}
+      {...contentStyle}
+      {...props}
+    />
   )
 }
 
-export const ContentInner = createChakra("div", {
+export const StyledDialogContent = createChakra("div", {
   themeKey: "Dialog.Content",
   baseStyle: {
     display: "flex",

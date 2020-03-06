@@ -1,8 +1,15 @@
 import React from "react"
-import { Portal } from "."
+import { Portal, PortalManager } from "."
 
 export default {
   title: "Portal",
+  decorators: [
+    (StoryFn: any) => (
+      <PortalManager>
+        <StoryFn />
+      </PortalManager>
+    ),
+  ],
 }
 
 function Wrapper(props: any) {

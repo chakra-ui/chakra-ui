@@ -10,12 +10,7 @@ import * as React from "react"
 import { css, getComponentStyles } from "@chakra-ui/parser"
 import jsx from "./jsx"
 import { CSSObject, ThemeContext } from "@emotion/core"
-import {
-  StyledOptions,
-  BaseTheme,
-  ChakraComponent,
-  ChakraComponentV2,
-} from "./styled.types"
+import { StyledOptions, BaseTheme, ChakraComponent } from "./styled.types"
 import {
   filterProps,
   removeStyleProps,
@@ -92,7 +87,7 @@ function createStyled<C extends As, T extends BaseTheme = BaseTheme>(
 
     const Component = options?.pure ? React.memo(Styled) : Styled
 
-    return Component as ChakraComponentV2<C, T, StyledOptions<T>>
+    return Component as ChakraComponent<C, T, StyledOptions<T>>
   }
 }
 

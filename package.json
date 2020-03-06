@@ -14,7 +14,7 @@
     "clean": "lerna clean --yes",
     "bootstrap": "yarn clean && lerna bootstrap --use-workspaces",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook -c .storybook",
+    "build-storybook": "build-storybook",
     "docs": "yarn workspace @chakra-ui/docs dev",
     "docs:now": "cd packages/chakra-ui-docs && now",
     "build": "lerna exec --parallel yarn build --ignore @chakra-ui/docs",
@@ -90,17 +90,13 @@
     "@commitlint/config-conventional": "8.2.0",
     "@emotion/core": "10.0.10",
     "@emotion/styled": "10.0.11",
-    "@storybook/addon-actions": "5.3.14",
-    "@storybook/addon-docs": "^5.3.14",
-    "@storybook/addon-knobs": "5.3.14",
-    "@storybook/addon-links": "^5.3.14",
-    "@storybook/addons": "^5.3.14",
     "@storybook/react": "5.3.14",
+    "@storybook/addon-actions": "5.3.14",
+    "@storybook/addon-knobs": "5.3.14",
     "@testing-library/jest-dom": "5.1.1",
     "@testing-library/react": "9.4.0",
     "@testing-library/react-hooks": "3.2.1",
     "@testing-library/user-event": "10.0.0",
-    "react-test-renderer": "16.12.0",
     "@types/jest": "24.0.25",
     "@typescript-eslint/eslint-plugin": "2.13.0",
     "@typescript-eslint/parser": "2.13.0",
@@ -129,7 +125,11 @@
     "prettier": "1.19.1",
     "react": "16.12.0",
     "react-dom": "16.12.0",
+    "react-icons": "3.9.0",
     "react-lorem-component": "^0.13.0",
-    "ts-loader": "6.2.1"
-  }
+    "react-test-renderer": "16.12.0",
+    "ts-loader": "6.2.1",
+    "tsconfig-paths-webpack-plugin": "3.2.0"
+  },
+  "dependencies": {}
 }

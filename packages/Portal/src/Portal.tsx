@@ -36,6 +36,7 @@ export function Portal({
     return null
   })
 
+  console.log(usePortalsContext())
   const layersManager = usePortalsContext()
 
   const addLayer = React.useCallback(
@@ -68,7 +69,7 @@ export function Portal({
 
     // If layer is nested, use the parent layer as host,
     // else, if no LayersManager exists, use document.body
-    const finalHost = parentLayer || layersManager.host || document.body
+    const finalHost = parentLayer ?? layersManager?.host ?? document.body
     addLayer(finalHost)
 
     return () => {
@@ -87,11 +88,11 @@ export function Portal({
     container,
     parentLayer,
     onUnmount,
-    layersManager.host,
+    layersManager,
     addLayer,
   ])
 
-  const finalChildren: React.ReactNode = layersManager.zIndex ? (
+  const finalChildren: React.ReactNode = layersManager?.zIndex ? (
     <div
       className="__chakra--zIndex-wrapper"
       style={{ zIndex: layersManager.zIndex }}

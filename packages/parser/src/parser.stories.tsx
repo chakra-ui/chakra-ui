@@ -26,7 +26,7 @@ const spaceConfig = {
   },
 }
 
-const parser = createParser(spaceConfig)
+const parser = createParser(spaceConfig as any)
 
 const theme = {
   breakpoints: { mobile: 400, tablet: 700, desktop: 1000 },

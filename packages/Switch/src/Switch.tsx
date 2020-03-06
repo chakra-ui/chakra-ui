@@ -28,7 +28,7 @@ export const Switch = React.forwardRef(
           variantColor={variantColor}
           variantSize={variantSize}
           data-chakra-switch-track=""
-          {...getCheckboxProps()}
+          {...(getCheckboxProps() as any)}
         >
           <SwitchThumb
             variantSize={variantSize}

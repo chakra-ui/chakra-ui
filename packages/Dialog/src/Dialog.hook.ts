@@ -99,7 +99,7 @@ export function useDialog(props: DialogHookProps) {
     bodyId,
     setBodyMounted,
     setHeaderMounted,
-    getDialogContentProps: (props: DialogContentProps) => ({
+    getDialogContentProps: (props: DialogContentProps = {}) => ({
       ...props,
       ref: mergeRefs(props.ref, dialogRef),
       id: dialogId,
@@ -110,7 +110,7 @@ export function useDialog(props: DialogHookProps) {
       "aria-describedby": bodyMounted ? bodyId : undefined,
       onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
     }),
-    getDialogOverlayProps: (props: DialogOverlayProps) => ({
+    getDialogOverlayProps: (props: DialogOverlayProps = {}) => ({
       ...props,
       ref: mergeRefs(props.ref, overlayRef),
       role: "presentation",

@@ -9,7 +9,7 @@ import {
 } from "./Field.base"
 
 import { createChakra, useColorModeValue, PropsOf } from "@chakra-ui/system"
-import { Icon } from "@chakra-ui/icon"
+import Icon from "@chakra-ui/icon"
 
 export const Field = createChakra(BaseField)
 

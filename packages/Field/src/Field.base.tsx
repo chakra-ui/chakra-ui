@@ -4,7 +4,6 @@ import {
   callAllHandlers as compose,
   createContext,
   makeDataAttr as attr,
-  omit,
 } from "@chakra-ui/utils"
 import * as React from "react"
 

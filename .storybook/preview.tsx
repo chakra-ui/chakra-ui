@@ -7,12 +7,12 @@ import {
   CSSReset,
 } from "@chakra-ui/system"
 import { Global } from "@emotion/core"
+import { addDecorator } from "@storybook/react"
 import * as React from "react"
-import { ColorModeProvider } from "@chakra-ui/color-mode"
 
 const [ThemeProvider] = createThemeContext(theme)
 
-const setup = (story: () => any) => (
+addDecorator((storyFn: any) => (
   <PortalManager>
     <ThemeProvider>
       <ColorModeProvider>
@@ -25,10 +25,8 @@ const setup = (story: () => any) => (
             },
           }}
         />
-        {story()}
+        {storyFn()}
       </ColorModeProvider>
     </ThemeProvider>
   </PortalManager>
-)
-
-export default setup
+))
