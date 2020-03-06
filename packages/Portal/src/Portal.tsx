@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import * as React from "react"
 import * as ReactDOM from "react-dom"
 import { usePortalsContext } from "./PortalManager"
@@ -87,7 +88,7 @@ export function Portal({
     container,
     parentLayer,
     onUnmount,
-    layersManager,
+    layersManager.host,
     addLayer,
   ])
 
