@@ -5,7 +5,7 @@ module.exports = ({ config }) => {
       {
         loader: require.resolve("ts-loader"),
         options: {
-          reportFiles: ["**/**/*.{ts|tsx}"],
+          reportFiles: ["**/**/*.stories.{ts|tsx}"],
         },
       },
     ],
