@@ -30,7 +30,7 @@ export function getWindow(rootElement?: Element | null): Window | undefined {
 /**
  * Check if we can use the DOM. Useful for SSR purposes
  */
-function getCanUseDOM() {
+function getIsBrowser() {
   const win = getWindow()
   return !!(
     typeof win !== "undefined" &&
@@ -39,7 +39,7 @@ function getCanUseDOM() {
   )
 }
 
-export const canUseDOM = getCanUseDOM()
+export const isBrowser = getIsBrowser()
 
 export function normalizeEventKey(event: React.KeyboardEvent) {
   const { key, keyCode } = event

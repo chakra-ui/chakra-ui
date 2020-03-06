@@ -1,7 +1,7 @@
 import * as React from "react"
 import * as ReactDOM from "react-dom"
 import { usePortalsContext } from "./PortalManager"
-import { canUseDOM } from "@chakra-ui/utils"
+import { isBrowser } from "@chakra-ui/utils"
 
 const LayerContext = React.createContext<HTMLDivElement | null>(null)
 const useLayerContext = () => React.useContext(LayerContext)
@@ -27,7 +27,7 @@ export function Portal({
   // the container to render it's children
   const [container] = React.useState(() => {
     // prepare the container for the children before inserting into the host
-    if (canUseDOM) {
+    if (isBrowser) {
       const container = document.createElement("div")
       container.className = "__chakra--portal"
       return container

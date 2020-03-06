@@ -10,9 +10,9 @@
  */
 
 import * as React from "react"
-import { canUseDOM } from "@chakra-ui/utils"
+import { isBrowser } from "@chakra-ui/utils"
 
-export const useIsomorphicEffect = canUseDOM
+export const useIsomorphicEffect = isBrowser
   ? React.useLayoutEffect
   : React.useEffect
 

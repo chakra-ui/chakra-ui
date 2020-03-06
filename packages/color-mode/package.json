@@ -1,5 +1,5 @@
 {
-  "name": "name",
+  "name": "@chakra-ui/color-mode",
   "version": "0.0.1",
   "description": "description",
   "keywords": [
@@ -12,7 +12,7 @@
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
   "main": "dist/index.js",
-  "module": "dist/name.esm.js",
+  "module": "dist/color-mode.esm.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
@@ -48,7 +48,8 @@
     "typescript": "3.7.4"
   },
   "dependencies": {
-    "@chakra-ui/utils": "0.0.1"
+    "@chakra-ui/utils": "0.0.1",
+    "@chakra-ui/hooks": "0.0.1"
   },
   "peerDependencies": {
     "react": "16.x",

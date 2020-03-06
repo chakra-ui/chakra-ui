@@ -1,12 +1,12 @@
 import * as React from "react"
-import { canUseDOM, FunctionArguments } from "@chakra-ui/utils"
+import { isBrowser, FunctionArguments } from "@chakra-ui/utils"
 
 type AddEventLister = FunctionArguments<typeof document.addEventListener>
 
 export function useEventListener(
   event: keyof WindowEventMap,
   handler: (event: any) => void,
-  environment: Document | null = canUseDOM ? document : null,
+  environment: Document | null = isBrowser ? document : null,
   options?: AddEventLister[2],
 ) {
   const savedHandler = React.useRef(handler)
