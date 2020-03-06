@@ -29,14 +29,13 @@ export function Portal({
     // prepare the container for the children before inserting into the host
     if (isBrowser) {
       const container = document.createElement("div")
-      container.className = "__chakra--portal"
+      container.className = "chakra-portal"
       return container
     }
     // for ssr
     return null
   })
 
-  console.log(usePortalsContext())
   const layersManager = usePortalsContext()
 
   const addLayer = React.useCallback(
@@ -94,7 +93,7 @@ export function Portal({
 
   const finalChildren: React.ReactNode = layersManager?.zIndex ? (
     <div
-      className="__chakra--zIndex-wrapper"
+      className="chakra-zIndex-wrapper"
       style={{ zIndex: layersManager.zIndex }}
       children={children}
     />

@@ -1,4 +1,3 @@
-import { PortalManager } from "@chakra-ui/portal"
 import theme from "@chakra-ui/preset-base"
 import {
   ColorMode,
@@ -13,20 +12,18 @@ import * as React from "react"
 const [ThemeProvider] = createThemeContext(theme)
 
 addDecorator((storyFn: any) => (
-  <PortalManager>
-    <ThemeProvider>
-      <ColorModeProvider>
-        <CSSReset />
-        <ColorMode />
-        <Global
-          styles={{
-            "*": {
-              fontFamily: "system-ui",
-            },
-          }}
-        />
-        {storyFn()}
-      </ColorModeProvider>
-    </ThemeProvider>
-  </PortalManager>
+  <ThemeProvider>
+    <ColorModeProvider>
+      <CSSReset />
+      <ColorMode />
+      <Global
+        styles={{
+          "*": {
+            fontFamily: "system-ui",
+          },
+        }}
+      />
+      {storyFn()}
+    </ColorModeProvider>
+  </ThemeProvider>
 ))

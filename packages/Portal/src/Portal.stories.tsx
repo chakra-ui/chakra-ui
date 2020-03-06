@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React from "react"
 import { Portal, PortalManager } from "."
 
@@ -12,8 +13,17 @@ export default {
   ],
 }
 
+export const basicPortal = () => {
+  return (
+    <>
+      <p>Welcome</p>
+      <Portal>This text has been portaled</Portal>
+    </>
+  )
+}
+
 function Wrapper(props: any) {
-  const { offset, color, children, forwardedRef } = props
+  const { offset, color, children } = props
   return (
     <div
       style={{
@@ -28,54 +38,26 @@ function Wrapper(props: any) {
         backgroundColor: color,
         textAlign: "center",
       }}
-      ref={forwardedRef}
     >
       {children}
     </div>
   )
 }
 
-export const BasicExample = () => {
-  const [isFirstOpen, setIsFirstOpen] = React.useState(false)
-  const [isSecondOpen, setIsSecondOpen] = React.useState(false)
+export const nestedPortals = () => {
   return (
-    <>
+    <Portal>
+      <Wrapper color="red">Welcome</Wrapper>
       <Portal>
-        <Wrapper color="red">Welcome</Wrapper>
+        <Wrapper offset="40%" color="green">
+          Welcome
+        </Wrapper>
         <Portal>
-          <Wrapper offset="40%" color="green">
+          <Wrapper offset="30%" color="tomato">
             Welcome
           </Wrapper>
-          <Portal>
-            <Wrapper offset="30%" color="yellow">
-              Welcome
-            </Wrapper>
-          </Portal>
         </Portal>
       </Portal>
-
-      <button onClick={() => setIsFirstOpen(true)}>Render Red Portal</button>
-
-      {isFirstOpen ? (
-        <Portal>
-          <Wrapper color="rgba(255, 190, 190, 0.86)">
-            <button onClick={() => setIsFirstOpen(false)}>Close</button>
-          </Wrapper>
-        </Portal>
-      ) : null}
-      <br />
-      <br />
-      <button onClick={() => setIsSecondOpen(true)}>
-        Render Orange Portal
-      </button>
-
-      {isSecondOpen ? (
-        <Portal>
-          <Wrapper color="rgba(255, 212, 135, 0.86)" offset="48%">
-            <button onClick={() => setIsSecondOpen(false)}>Close</button>
-          </Wrapper>
-        </Portal>
-      ) : null}
-    </>
+    </Portal>
   )
 }

@@ -58,7 +58,7 @@ export function PortalManager({ children, zIndex }: LayerManagerProps) {
   return (
     <PortalsProvider value={context}>
       {children}
-      <div className="__chakra--portal-manager" ref={hostRef} />
+      <div className="chakra-portal-manager" ref={hostRef} />
     </PortalsProvider>
   )
 }
