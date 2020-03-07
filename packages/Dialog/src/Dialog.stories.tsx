@@ -1,18 +1,27 @@
 import { useDisclosure } from "@chakra-ui/hooks"
+import { PortalManager } from "@chakra-ui/portal"
+import { chakra, createChakra } from "@chakra-ui/system"
+import { Fade, SlideFade } from "@chakra-ui/transition"
 import * as React from "react"
+//@ts-ignore
+import Lorem from "react-lorem-component"
 import { DialogOverlay } from "./Dialog"
 import {
+  BaseDialogBody,
+  BaseDialogHeader,
   Dialog,
   DialogContent,
-  BaseDialogHeader,
-  BaseDialogBody,
 } from "./Dialog.base"
-import { createChakra, chakra } from "@chakra-ui/system"
-import { PortalManager } from "@chakra-ui/portal"
 
 export default {
   title: "Dialog",
-  decorators: [(story: Function) => <PortalManager>{story()}</PortalManager>],
+  decorators: [
+    (StoryFn: Function) => (
+      <PortalManager>
+        <StoryFn />
+      </PortalManager>
+    ),
+  ],
 }
 
 const DialogHeader = createChakra(BaseDialogHeader, {
@@ -45,25 +54,48 @@ export function SimpleModal() {
     <>
       <button onClick={dialog.onOpen}>Open</button>
       <Dialog isOpen={dialog.isOpen} onClose={dialog.onClose}>
-        <DialogOverlay>
+        <DialogContent>
           <DialogContent>
             <DialogHeader>Welcome Home</DialogHeader>
             <DialogBody>
-              This is some more content
-              <input placeholder="testing" />
+              <Lorem count={1} />
             </DialogBody>
             <DialogFooter>
               <chakra.div flex="1" />
               <chakra.div>
-                <Button variantColor="gray" mr="12px">
+                <Button onClick={dialog.onClose} variantColor="gray" mr="12px">
                   Cancel
                 </Button>
                 <Button variantColor="blue">Save</Button>
               </chakra.div>
             </DialogFooter>
           </DialogContent>
-        </DialogOverlay>
+        </DialogContent>
       </Dialog>
+    </>
+  )
+}
+export function AnimatedModal() {
+  const dialog = useDisclosure()
+  return (
+    <>
+      <button onClick={dialog.onOpen}>Open</button>
+      <Fade timeout={400} in={dialog.isOpen}>
+        {styles => (
+          <Dialog isOpen={true} onClose={dialog.onClose}>
+            <DialogOverlay style={styles}>
+              <SlideFade in={dialog.isOpen} {...{ unmountOnExit: false }}>
+                {styles => (
+                  <DialogContent padding={4} mx="auto" mt="40px" style={styles}>
+                    <Lorem count={1} />
+                    <Button variantColor="blue">Save</Button>
+                  </DialogContent>
+                )}
+              </SlideFade>
+            </DialogOverlay>
+          </Dialog>
+        )}
+      </Fade>
     </>
   )
 }

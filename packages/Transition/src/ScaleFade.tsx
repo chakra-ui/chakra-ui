@@ -1,7 +1,6 @@
 import React from "react"
-import Transition, { TransitionProps } from "react-transition-group/Transition"
-import { TransitionContext } from "./Transition.context"
-import { Omit } from "@chakra-ui/utils"
+import Transition from "react-transition-group/Transition"
+import { TransitionContext, TransitionProps } from "./Transition.utils"
 
 function getTransitionStyles(initialScale: number) {
   return {
@@ -20,10 +19,8 @@ function getTransitionStyles(initialScale: number) {
   }
 }
 
-interface ScaleProps extends Omit<TransitionProps, "timeout"> {
+interface ScaleProps extends TransitionProps {
   initialScale?: number
-  timeout?: number
-  children: React.ReactNode | ((styles: React.CSSProperties) => React.ReactNode)
 }
 
 export const ScaleFade = ({

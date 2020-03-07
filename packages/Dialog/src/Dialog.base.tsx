@@ -43,10 +43,11 @@ export function Dialog(props: DialogProps) {
     initialFocusRef,
     finalFocusRef,
     returnFocusOnClose = true,
+    isOpen = true,
   } = props
   const context = useDialog(props)
 
-  if (!props.isOpen) return null
+  if (!isOpen) return null
 
   return (
     <DialogContextProvider value={context}>
@@ -71,9 +72,8 @@ export const DialogContent = (props: DialogContentProps) => {
   return (
     <StyledDialogContent
       data-chakra-dialog-content=""
-      {...getDialogContentProps()}
+      {...getDialogContentProps(props)}
       {...contentStyle}
-      {...props}
     />
   )
 }
@@ -86,7 +86,7 @@ export const StyledDialogContent = createChakra("div", {
     width: "100%",
     maxWidth: "500px",
     _focus: {
-      outline: "2px solid red",
+      outline: 0,
     },
   },
 })

@@ -1,6 +1,6 @@
 import * as React from "react"
 import ScaleFade from "./ScaleFade"
-import { useTransitionStyle } from "./Transition.context"
+import { useTransitionStyle } from "./Transition.utils"
 import SlideFade from "./SlideFade"
 import Fade from "./Fade"
 import Slide from "./Slide"

@@ -30,7 +30,8 @@ export interface DialogHookProps {
    * If `true`, the modal will close when the `Esc` key is pressed
    * @default true
    */
-  closeOnEsc?: boolean
+  closeOnEsc?: boolean;
+
 }
 
 export function useDialog(props: DialogHookProps) {

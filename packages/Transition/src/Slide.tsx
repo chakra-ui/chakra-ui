@@ -1,7 +1,6 @@
 import React from "react"
 import { Transition } from "react-transition-group"
-import { TransitionContext } from "./Transition.context"
-import { TransitionProps } from "react-transition-group/Transition"
+import { TransitionContext, TransitionProps } from "./Transition.utils"
 
 type Placement = "left" | "right" | "bottom" | "top"
 
@@ -85,19 +84,19 @@ function createTransitionStyles(placement: Placement) {
   }
 }
 
-interface SlideProps extends Omit<TransitionProps, "timeout"> {
-  timeout?: number
-  initialOffset?: string
-  children: React.ReactNode | ((styles: React.CSSProperties) => React.ReactNode)
+interface SlideProps extends TransitionProps {
+  placement?: Placement
 }
 
-export function Slide({
-  children,
-  in: inProp,
-  placement = "left",
-  timeout = 250,
-  ...props
-}: SlideProps) {
+export function Slide(props: SlideProps) {
+  const {
+    children,
+    in: inProp,
+    placement = "left",
+    timeout = 250,
+    ...rest
+  } = props
+
   const transitionStyles = createTransitionStyles(placement)
 
   type TransitionState = keyof typeof transitionStyles
@@ -127,7 +126,7 @@ export function Slide({
       in={inProp}
       timeout={{ enter: 50, exit: timeout }}
       unmountOnExit
-      {...props}
+      {...rest}
     >
       {(state: TransitionState) => (
         <TransitionContext.Provider value={computeStyle(state)}>

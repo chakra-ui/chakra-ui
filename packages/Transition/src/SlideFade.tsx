@@ -1,12 +1,9 @@
 import React from "react"
-import Transition, { TransitionProps } from "react-transition-group/Transition"
-import { TransitionContext } from "./Transition.context"
-import { Omit } from "@chakra-ui/utils"
+import Transition from "react-transition-group/Transition"
+import { TransitionContext, TransitionProps } from "./Transition.utils"
 
-interface SlideFadeProps extends Omit<TransitionProps, "timeout"> {
-  timeout?: number
+interface SlideFadeProps extends TransitionProps {
   initialOffset?: string
-  children: React.ReactNode | ((styles: React.CSSProperties) => React.ReactNode)
 }
 
 function getTransitionStyles(initialOffset: string) {
@@ -26,13 +23,15 @@ function getTransitionStyles(initialOffset: string) {
   }
 }
 
-export const SlideFade = ({
-  in: inProp,
-  initialOffset = "20px",
-  timeout = 150,
-  children,
-  ...props
-}: SlideFadeProps) => {
+export const SlideFade = (props: SlideFadeProps) => {
+  const {
+    in: inProp,
+    initialOffset = "20px",
+    timeout = 150,
+    children,
+    ...rest
+  } = props
+
   const transitionStyles = getTransitionStyles(initialOffset)
 
   const rootStyle = {
@@ -53,7 +52,7 @@ export const SlideFade = ({
       in={inProp}
       timeout={{ enter: 50, exit: timeout }}
       unmountOnExit
-      {...props}
+      {...rest}
     >
       {(state: TransitionState) => (
         <TransitionContext.Provider value={computeStyle(state)}>
