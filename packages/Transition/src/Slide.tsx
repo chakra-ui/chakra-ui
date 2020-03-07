@@ -84,7 +84,7 @@ function createTransitionStyles(placement: Placement) {
   }
 }
 
-interface SlideProps extends TransitionProps {
+export interface SlideProps extends TransitionProps {
   placement?: Placement
 }
 
