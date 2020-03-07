@@ -1,4 +1,4 @@
-import { Icon, IconProps } from "@chakra-ui/icon"
+import { IconProps } from "@chakra-ui/icon"
 import {
   ColorModeType,
   createChakra,
@@ -7,12 +7,18 @@ import {
   useColorMode,
 } from "@chakra-ui/system"
 import * as React from "react"
+import {
+  InfoIcon,
+  WarningTwoIcon,
+  CheckCircleIcon,
+  WarningIcon,
+} from "@chakra-ui/icon-glyphs"
 
 export const statuses = {
-  info: { icon: "info", color: "blue" },
-  warning: { icon: "warning-2", color: "orange" },
-  success: { icon: "check-circle", color: "green" },
-  error: { icon: "warning", color: "red" },
+  info: { icon: InfoIcon, color: "blue" },
+  warning: { icon: WarningTwoIcon, color: "orange" },
+  success: { icon: CheckCircleIcon, color: "green" },
+  error: { icon: WarningIcon, color: "red" },
 }
 
 const AlertContext = React.createContext<AlertContextValue>({
@@ -69,7 +75,7 @@ const AlertDescription = createChakra("div")
 const AlertIcon = (props: IconProps) => {
   const [colorMode] = useColorMode()
   const { status, variant } = useAlertContext()
-  const { icon, color } = statuses[status]
+  const { icon: Icon, color } = statuses[status]
 
   let style: { [K in ColorModeType]?: any } = {}
 
@@ -80,11 +86,9 @@ const AlertIcon = (props: IconProps) => {
     }
   }
 
-  const iconStyleProps = style[colorMode]
+  const styles = style[colorMode]
 
-  return (
-    <Icon mt={1} mr={3} size={5} name={icon} {...iconStyleProps} {...props} />
-  )
+  return <Icon mt={1} mr={3} size={5} {...styles} {...props} />
 }
 
 export { Alert, AlertTitle, AlertDescription, AlertIcon }

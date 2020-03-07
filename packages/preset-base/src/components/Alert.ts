@@ -8,8 +8,8 @@ import {
 function getSubtleStyle(props: StyleFunctionProps) {
   const { theme: t, variantColor: c } = props
   const lightBg = getColor(t, `${c}.100`, c)
-  const darkBg = colorEmphasis(`${c}.200`, "lowest")
-
+  //@ts-ignore
+  const darkBg = colorEmphasis(`${c}.200`, "lowest")(t)
   return { bg: get(props, lightBg, darkBg) }
 }
 

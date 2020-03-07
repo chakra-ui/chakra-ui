@@ -1,9 +1,9 @@
 import { chakra } from "@chakra-ui/system"
 import * as React from "react"
-import { Alert, AlertDescription, AlertIcon, AlertTitle } from "../src/Alert"
+import { Alert, AlertDescription, AlertIcon, AlertTitle } from "./Alert"
 
 export default {
-  title: "Accordion",
+  title: "Alert",
 }
 
 export const Basic = () => (
@@ -28,14 +28,18 @@ export const Subtle = () => (
   </Alert>
 )
 
-export const Solid = () => (
-  <Alert
-    status="error"
-    variant="solid"
-    maxWidth="sm"
-    mx="auto"
-    alignItems="start"
-  >
+export const LeftAccent = () => (
+  <Alert variant="left-accent" maxWidth="sm" mx="auto" alignItems="start">
+    <AlertIcon />
+    <chakra.div flex="1">
+      <AlertTitle>Holy Smokes</AlertTitle>
+      <AlertDescription>Something just happened!</AlertDescription>
+    </chakra.div>
+  </Alert>
+)
+
+export const TopAccent = () => (
+  <Alert variant="top-accent" maxWidth="sm" mx="auto" alignItems="start">
     <AlertIcon />
     <chakra.div flex="1">
       <AlertTitle>Holy Smokes</AlertTitle>
