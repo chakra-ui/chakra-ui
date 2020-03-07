@@ -1,5 +1,6 @@
 import * as React from "react"
 import { createContext } from "@chakra-ui/utils"
+import { useIsomorphicEffect, useForceUpdate } from "@chakra-ui/hooks"
 
 export interface PortalsContextType {
   host: HTMLElement
@@ -28,12 +29,11 @@ export function PortalManager({ children, zIndex }: LayerManagerProps) {
   const hostRef = React.useRef<HTMLDivElement>(null)
 
   // force an update so the Provider works correctly
-  const [, forceUpdate] = React.useState()
-  React.useEffect(() => {
-    forceUpdate({})
+  const forceUpdate = useForceUpdate()
+  useIsomorphicEffect(() => {
+    forceUpdate()
   }, [])
 
-  // Just a hack to help me manage multiple modals
   const [modals, setModals] = React.useState<any[]>([])
   const add = React.useCallback(
     modal => setModals((modals: any) => [...modals, modal]),

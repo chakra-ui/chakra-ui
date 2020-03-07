@@ -23,6 +23,7 @@ export function FocusLock(props: FocusLockProps) {
 
   return (
     <ReactFocusLock
+      autoFocus
       onActivation={onActivation}
       onDeactivation={onDeactivation}
       returnFocus={returnFocus}

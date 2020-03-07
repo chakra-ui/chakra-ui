@@ -1,7 +1,7 @@
 import { useAriaHidden, useIds, useLockBodyScroll } from "@chakra-ui/hooks"
 import { callAllHandlers, mergeRefs } from "@chakra-ui/utils"
 import * as React from "react"
-import { useOutsideClick, useStackContext } from "./Dialog.utils"
+import { useStackContext } from "./Dialog.utils"
 
 export interface DialogHookProps {
   /**
@@ -52,44 +52,58 @@ export function useDialog(props: DialogHookProps) {
   )
 
   useLockBodyScroll(dialogRef, isOpen)
-
-  const modals = useStackContext(dialogRef, isOpen)
-  useOutsideClick({
-    ref: dialogRef,
-    overlayRef,
-    dialogs: modals,
-    callback: onClose,
-    enabled: closeOnOverlayClick,
-  })
   useAriaHidden(dialogRef, isOpen)
 
-  const onKeyDown = React.useCallback(
+  const modals = useStackContext(dialogRef, isOpen)
+
+  const mouseDownTarget = React.useRef<EventTarget | null>(null)
+
+  const handleMouseDown = React.useCallback((event: React.MouseEvent) => {
+    mouseDownTarget.current = event.target
+  }, [])
+
+  const handleKeyDown = React.useCallback(
     (event: React.KeyboardEvent) => {
       if (event.key === "Escape") {
-        if (!closeOnEsc) return
-
         event.stopPropagation()
+        closeOnEsc && onClose?.()
+      }
+    },
+    [closeOnEsc, onClose],
+  )
+
+  const lastDialog = modals[modals.length - 1]
+
+  const onOverlayClick = React.useCallback(
+    (event: React.MouseEvent) => {
+      event.stopPropagation()
+
+      const isLast = lastDialog?.current === dialogRef.current
+
+      if (
+        mouseDownTarget.current === event.target &&
+        isLast &&
+        closeOnOverlayClick
+      ) {
         onClose?.()
       }
     },
-    [onClose, closeOnEsc],
+    [lastDialog, onClose, closeOnOverlayClick],
   )
-
-  const onOverlayClick = React.useCallback((event: React.MouseEvent) => {
-    event.stopPropagation()
-  }, [])
 
   const [headerMounted, setHeaderMounted] = React.useState(false)
   const [bodyMounted, setBodyMounted] = React.useState(false)
 
   type DialogContentProps = {
     ref?: React.Ref<any>
-    onKeyDown?: React.KeyboardEventHandler
+    onClick?: React.MouseEventHandler
   }
 
   type DialogOverlayProps = {
     ref?: React.Ref<any>
     onClick?: React.MouseEventHandler
+    onMouseDown?: React.MouseEventHandler
+    onKeyDown?: React.KeyboardEventHandler
   }
 
   return {
@@ -108,13 +122,14 @@ export function useDialog(props: DialogHookProps) {
       "aria-modal": true,
       "aria-labelledby": headerMounted ? headerId : undefined,
       "aria-describedby": bodyMounted ? bodyId : undefined,
-      onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
+      onClick: callAllHandlers(props.onClick, event => event.stopPropagation()),
     }),
     getDialogOverlayProps: (props: DialogOverlayProps = {}) => ({
       ...props,
       ref: mergeRefs(props.ref, overlayRef),
-      role: "presentation",
       onClick: callAllHandlers(props.onClick, onOverlayClick),
+      onKeyDown: callAllHandlers(props.onKeyDown, handleKeyDown),
+      onMouseDown: callAllHandlers(props.onMouseDown, handleMouseDown),
     }),
   }
 }

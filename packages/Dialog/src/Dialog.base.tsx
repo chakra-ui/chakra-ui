@@ -1,11 +1,11 @@
 import { FocusLock } from "@chakra-ui/focus-lock"
+import { useIsomorphicEffect } from "@chakra-ui/hooks"
 import { Portal } from "@chakra-ui/portal"
-import { PropsOf, chakra, createChakra } from "@chakra-ui/system"
+import { chakra, createChakra, PropsOf } from "@chakra-ui/system"
 import { createContext } from "@chakra-ui/utils"
 import * as React from "react"
-import { DialogHookProps, DialogHookReturn, useDialog } from "./Dialog.hook"
-import { useIsomorphicEffect } from "@chakra-ui/hooks"
 import { getContentStyle } from "./Dialog"
+import { DialogHookProps, DialogHookReturn, useDialog } from "./Dialog.hook"
 
 const [DialogContextProvider, useDialogContext] = createContext<
   DialogHookReturn
@@ -39,12 +39,10 @@ export interface DialogProps extends DialogHookProps {
 
 export function Dialog(props: DialogProps) {
   const {
+    children,
     initialFocusRef,
     finalFocusRef,
     returnFocusOnClose = true,
-    children,
-    scrollBehavior,
-    isCentered,
   } = props
   const context = useDialog(props)
 
@@ -72,6 +70,7 @@ export const DialogContent = (props: DialogContentProps) => {
   const { contentStyle } = getContentStyle(true, "inside")
   return (
     <StyledDialogContent
+      data-chakra-dialog-content=""
       {...getDialogContentProps()}
       {...contentStyle}
       {...props}
@@ -85,8 +84,10 @@ export const StyledDialogContent = createChakra("div", {
     display: "flex",
     flexDirection: "column",
     width: "100%",
-    outline: 0,
     maxWidth: "500px",
+    _focus: {
+      outline: "2px solid red",
+    },
   },
 })
 
@@ -94,7 +95,7 @@ export type BaseDialogOverlayProps = PropsOf<"div">
 
 export const BaseDialogOverlay = (props: BaseDialogOverlayProps) => {
   const { getDialogOverlayProps } = useDialogContext()
-  return <div {...getDialogOverlayProps(props)} />
+  return <div data-chakra-dialog-overlay="" {...getDialogOverlayProps(props)} />
 }
 
 export type BaseDialogHeaderProps = PropsOf<"header">
@@ -107,7 +108,7 @@ export const BaseDialogHeader = (props: BaseDialogOverlayProps) => {
     return () => setHeaderMounted(false)
   }, [])
 
-  return <header id={headerId} {...props} />
+  return <header data-chakra-dialog-header="" id={headerId} {...props} />
 }
 
 export type BaseDialogBodyProps = PropsOf<"div">
@@ -120,5 +121,5 @@ export const BaseDialogBody = (props: BaseDialogBodyProps) => {
     return () => setBodyMounted(false)
   }, [])
 
-  return <div id={bodyId} {...props} />
+  return <div data-chakra-dialog-body="" id={bodyId} {...props} />
 }

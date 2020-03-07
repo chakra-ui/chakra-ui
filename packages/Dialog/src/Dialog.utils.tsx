@@ -24,14 +24,16 @@ export function useOutsideClick({
       const isContained = ref.current.contains(eventTarget)
       const lastDialog = dialogs[dialogs.length - 1]
 
+      console.log({ isContained, lastDialog, ref })
+
       if (!isContained && lastDialog?.current === ref.current) {
         // Without this fix, the modal closes when you start dragging from
         // the content and release drag outside the modal. I think this is related to focus-lock's injected nodes
         // Here, we're checking if the outside target is the overlay. It usually either
         // the overlay or a focus-lock node
-        if (eventTarget === overlayRef.current) {
-          callback?.(event)
-        }
+        callback?.(event)
+        // if (eventTarget === overlayRef.current) {
+        // }
       }
     }
     document.addEventListener("click", handler)
