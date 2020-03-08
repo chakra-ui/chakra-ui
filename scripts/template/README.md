@@ -1,4 +1,9 @@
-Base Package
+# Component Name
 
-Don't run any npm script in here. It's just a basic folder to enable us create
-new packages faster.
+A Quick description of the component
+
+## Installation
+
+```sh
+yarn add @chakra-ui/<component>
+```

@@ -1,4 +1,10 @@
-Base Package
+# Avatar
 
-Don't run any npm script in here. It's just a basic folder to enable us create
-new packages faster.
+The Avatar component is used to represent user, and displays the profile
+picture, initials or fallback icon.
+
+## Installation
+
+```sh
+yarn add @chakra-ui/avatar
+```

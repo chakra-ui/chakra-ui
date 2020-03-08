@@ -1,4 +1,9 @@
-Base Package
+# Close Button
 
-Don't run any npm script in here. It's just a basic folder to enable us create
-new packages faster.
+A Close button components for Chakra UI
+
+## Installation
+
+```sh
+yarn add @chakra-ui/close-button
+```

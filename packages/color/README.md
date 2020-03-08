@@ -1,6 +1,8 @@
-Color manipulation helpers for Chakra UI
+# Color manipulation helpers for Chakra UI
 
-```bash
+## Installation
+
+```sh
 npm i @chakra-ui/color
 ```
 

@@ -1,4 +1,10 @@
-Base Package
+# Alert
 
-Don't run any npm script in here. It's just a basic folder to enable us create
-new packages faster.
+A react component used to alert users of a particular screen area that needs
+user action
+
+## Installation
+
+```sh
+yarn add @chakra-ui/alert
+```

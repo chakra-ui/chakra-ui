@@ -1,4 +1,10 @@
-Base Package
+# Button
 
-Don't run any npm script in here. It's just a basic folder to enable us create
-new packages faster.
+Buttons are used as triggers for actions. They are used in forms, toolbars,
+dialog footers and as stand-alone action triggers.
+
+## Installation
+
+```sh
+yarn add @chakra-ui/button
+```

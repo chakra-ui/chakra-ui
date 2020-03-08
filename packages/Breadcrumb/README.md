@@ -1,4 +1,10 @@
-Base Package
+# Breadcrumbs
 
-Don't run any npm script in here. It's just a basic folder to enable us create
-new packages faster.
+Breadcrumbs help users visualize their current location in relation to the rest
+of the website or application by showing the hierarchy of pages.
+
+## Installation
+
+```sh
+yarn add @chakra-ui/breadcrumb
+```

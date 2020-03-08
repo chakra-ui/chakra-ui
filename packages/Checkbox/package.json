@@ -1,12 +1,16 @@
 {
   "name": "@chakra-ui/checkbox",
   "version": "0.0.1",
-  "description": "description",
+  "description": "A React Checkbox component for use in forms",
   "keywords": [
-    "theme",
-    "theming",
-    "ui mode",
-    "ui"
+    "react",
+    "checkbox",
+    "custom-checkbox",
+    "checkbox-hook",
+    "react hook",
+    "input",
+    "chakra-ui",
+    "use-checkbox"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",

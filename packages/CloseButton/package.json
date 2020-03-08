@@ -1,18 +1,19 @@
 {
   "name": "@chakra-ui/close-button",
   "version": "0.0.1",
-  "description": "description",
+  "description": "A React and Chakra UI close button component.",
   "keywords": [
-    "theme",
-    "theming",
-    "ui mode",
-    "ui"
+    "close-button",
+    "button",
+    "icon-button",
+    "react",
+    "close-icon"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
   "main": "dist/index.js",
-  "module": "dist/closebutton.esm.js",
+  "module": "dist/close-button.esm.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
@@ -47,11 +48,11 @@
     "tslib": "1.10.0",
     "typescript": "3.7.4"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@chakra-ui/system": "0.0.1",
+    "@chakra-ui/icon": "0.0.1"
+  },
   "peerDependencies": {
-    "@emotion/core": "10.x",
-    "@emotion/styled": "10.x",
-    "emotion-theming": "10.x",
     "react": "16.x",
     "react-dom": "16.x"
   }

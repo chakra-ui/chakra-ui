@@ -1,4 +1,10 @@
-Base Package
+# Checkbox
 
-Don't run any npm script in here. It's just a basic folder to enable us create
-new packages faster.
+Checkbox component is used in forms when a user needs to select multiple values
+from several options.
+
+## Installation
+
+```sh
+yarn add @chakra-ui/checkbox
+```

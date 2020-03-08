@@ -1,4 +1,10 @@
-Base Package
+# Color Mode
 
-Don't run any npm script in here. It's just a basic folder to enable us create
-new packages faster.
+React component that adds support for light mode and dark mode using
+`localStorage` and `matchMedia`.
+
+## Installation
+
+```sh
+npm i @chakra-ui/color-mode
+```
