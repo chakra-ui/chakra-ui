@@ -1,12 +1,15 @@
 {
   "name": "@chakra-ui/live-region",
   "version": "0.0.1",
-  "description": "description",
+  "description": "Aria live region for React components",
   "keywords": [
-    "theme",
-    "theming",
-    "ui mode",
-    "ui"
+    "aria",
+    "screenreader",
+    "feedback",
+    "accessbility",
+    "a11y",
+    "react",
+    "chakra ui"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",

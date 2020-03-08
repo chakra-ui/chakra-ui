@@ -7,7 +7,8 @@
     "component",
     "ui",
     "react",
-    "primitives"
+    "primitives",
+    "chakra ui"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
@@ -50,10 +51,11 @@
   },
   "dependencies": {
     "@chakra-ui/utils": "0.0.1",
-    "@chakra-ui/system": "0.0.1"
+    "@chakra-ui/system": "0.0.1",
+    "@chakra-ui/icon": "0.0.1",
+    "@chakra-ui/hooks": "0.0.1"
   },
   "peerDependencies": {
-    "@emotion/core": "10.x",
     "react": "16.x",
     "react-dom": "16.x"
   }

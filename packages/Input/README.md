@@ -1,4 +1,9 @@
-Base Package
+# Input
 
-Don't run any npm script in here. It's just a basic folder to enable us create
-new packages faster.
+Input component is a component that is used to get user input in a text field.
+
+## Installation
+
+```sh
+npm i @chakra-ui/input
+```
