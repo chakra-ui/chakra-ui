@@ -1,4 +1,10 @@
-Base Package
+# Menu
 
-Don't run any npm script in here. It's just a basic folder to enable us create
-new packages faster.
+An accessible dropdown menu for the common dropdown menu button design pattern.
+Menu uses roving tabIndex for focus management.
+
+## Installation
+
+```sh
+yarn add @chakra-ui/menu
+```

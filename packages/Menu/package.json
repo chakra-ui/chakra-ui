@@ -1,12 +1,16 @@
 {
   "name": "@chakra-ui/menu",
   "version": "0.0.1",
-  "description": "description",
+  "description": "A React component to render accessible menus",
   "keywords": [
-    "theme",
-    "theming",
-    "ui mode",
-    "ui"
+    "menu",
+    "menu button",
+    "aria menu",
+    "accessible",
+    "wai aria",
+    "react",
+    "component",
+    "chakra ui"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
@@ -49,7 +53,11 @@
   },
   "dependencies": {
     "@chakra-ui/utils": "0.0.1",
-    "@chakra-ui/hooks": "0.0.1"
+    "@chakra-ui/hooks": "0.0.1",
+    "@chakra-ui/system": "0.0.1",
+    "@chakra-ui/popper": "0.0.1",
+    "@chakra-ui/tabbable": "0.0.1",
+    "@chakra-ui/descendant": "0.0.1"
   },
   "peerDependencies": {
     "@emotion/core": "10.x",

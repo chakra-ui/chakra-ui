@@ -1,4 +1,11 @@
-Base Package
+# Popover
 
-Don't run any npm script in here. It's just a basic folder to enable us create
-new packages faster.
+Popover is a non-modal dialog that floats around a trigger. It's used to display
+contextual information to the user, and should be paired with a clickable
+trigger element.
+
+## Installation
+
+```sh
+yarn add @chakra-ui/popover
+```

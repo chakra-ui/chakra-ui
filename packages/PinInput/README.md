@@ -1,4 +1,11 @@
-Base Package
+# Pin Input
 
-Don't run any npm script in here. It's just a basic folder to enable us create
-new packages faster.
+The PinCode component is optimized for entering sequences of digits. The most
+common application is for entering single-use security codes. It is optimized
+for entering digits quickly.
+
+## Installation
+
+```sh
+yarn add @chakra-ui/pin-input
+```
