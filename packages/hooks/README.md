@@ -1,11 +1,9 @@
-# `chakra-ui-hooks`
+# Hooks
 
-> TODO: description
+A collection of React Hooks for Chakra Ui components.
 
-## Usage
+## Installation
 
-```
-const chakraUiHooks = require('chakra-ui-hooks');
-
-// TODO: DEMONSTRATE API
+```sh
+npm i @chakra-ui/hooks
 ```

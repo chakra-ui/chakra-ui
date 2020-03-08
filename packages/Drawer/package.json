@@ -1,12 +1,18 @@
 {
   "name": "@chakra-ui/drawer",
   "version": "0.0.1",
-  "description": "description",
+  "description": "React component the renders a Drawer from the edges of the screen",
   "keywords": [
-    "theme",
-    "theming",
-    "ui mode",
-    "ui"
+    "drawer",
+    "modal",
+    "dialog",
+    "modal dialog",
+    "slide",
+    "transition",
+    "accessible",
+    "a11y",
+    "react",
+    "chakra-ui"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
@@ -48,7 +54,6 @@
     "typescript": "3.7.4"
   },
   "dependencies": {
-    "@chakra-ui/utils": "0.0.1",
     "@chakra-ui/dialog": "0.0.1",
     "@chakra-ui/transition": "0.0.1"
   },

@@ -1,4 +1,13 @@
-Base Package
+# Descendant
 
-Don't run any npm script in here. It's just a basic folder to enable us create
-new packages faster.
+A descendant index solution for better accessibility support in compound
+components.
+
+> **Note 🚨:** This package is primarily intended for internal use by the Chakra
+> UI library. You should not use it directly in your production projects.
+
+## Installation
+
+```sh
+npm i @chakra-ui/descendants
+```

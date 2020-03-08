@@ -57,9 +57,6 @@
     "@chakra-ui/utils": "0.0.1"
   },
   "peerDependencies": {
-    "@emotion/core": "10.x",
-    "@emotion/styled": "10.x",
-    "emotion-theming": "10.x",
     "react": "16.x",
     "react-dom": "16.x"
   }

@@ -1,4 +1,9 @@
-Base Package
+# Icon
 
-Don't run any npm script in here. It's just a basic folder to enable us create
-new packages faster.
+A base React icon component for Chakra UI.
+
+## Installation
+
+```sh
+npm i @chakra-ui/icon
+```

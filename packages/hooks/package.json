@@ -3,19 +3,18 @@
   "version": "0.0.1",
   "description": "React hooks for Chakra components",
   "keywords": [
-    "hooks"
+    "hooks",
+    "react",
+    "chakra ui",
+    "utilities"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/hooks.esm.js",
-  "directories": {
-    "lib": "lib",
-    "test": "__tests__"
-  },
   "files": [
-    "lib"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"

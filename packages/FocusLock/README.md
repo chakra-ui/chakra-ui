@@ -1,4 +1,4 @@
-Base Package
+# Focus Lock
 
-Don't run any npm script in here. It's just a basic folder to enable us create
-new packages faster.
+A React component that traps focus within an element. It's useful for modal
+dialogs and popovers.

@@ -1,5 +1,5 @@
 import { invoke, renderHook } from "@chakra-ui/test-utils"
-import { useCounter } from "./Counter.hook"
+import { useCounter } from "../Counter.hook"
 
 test("should increment", () => {
   const { result } = renderHook(() => useCounter({ defaultValue: 0 }))

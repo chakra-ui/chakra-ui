@@ -1,4 +1,11 @@
-Base Package
+# Drawer
 
-Don't run any npm script in here. It's just a basic folder to enable us create
-new packages faster.
+The Drawer component is a panel that slides out from the edge of the screen. It
+can be useful when you need users to complete a task or view some details
+without leaving the current page.
+
+## Installation
+
+```sh
+npm i @chakra-ui/drawer
+```

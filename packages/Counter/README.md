@@ -1,4 +1,10 @@
-Base Package
+# Counter
 
-Don't run any npm script in here. It's just a basic folder to enable us create
-new packages faster.
+A React component that provides counter functionalities. Can be used to create
+number-inputs, countdown, or countup timers.
+
+## Installation
+
+```sh
+npm i @chakra-ui/counter
+```
