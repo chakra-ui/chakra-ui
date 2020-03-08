@@ -1,6 +1,5 @@
-import { createChakra, PropsOf } from "@chakra-ui/system"
+import { createChakra, PropsOf, keyframes } from "@chakra-ui/system"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
-import { keyframes } from "@emotion/core"
 import * as React from "react"
 
 const spin = keyframes`

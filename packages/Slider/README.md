@@ -1,4 +1,9 @@
-Base Package
+# Slider
 
-Don't run any npm script in here. It's just a basic folder to enable us create
-new packages faster.
+The Slider is used to allow users to make selections from a range of values.
+
+## Installation
+
+```sh
+npm i @chakra-ui/slider
+```

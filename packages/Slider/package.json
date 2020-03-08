@@ -1,19 +1,18 @@
 {
   "name": "@chakra-ui/slider",
   "version": "0.0.1",
-  "description": "Accessible and versatile slider component for React that implements <input type=range>",
+  "description": "Accessible slider component for React that implements <input type=range>",
   "keywords": [
     "react",
     "chakra ui",
     "chakra",
-    "react component",
+    "component",
     "slider",
-    "accessible slider",
+    "accessible",
     "a11y slider",
     "react a11y slider",
     "react accessible slider",
     "react slider",
-    "react slider component",
     "a11y",
     "input range",
     "react aria slider",
@@ -59,7 +58,11 @@
     "tslib": "1.10.0",
     "typescript": "3.7.4"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@chakra-ui/hooks": "0.0.1",
+    "@chakra-ui/system": "0.0.1",
+    "@chakra-ui/utils": "0.0.1"
+  },
   "peerDependencies": {
     "@emotion/core": "10.x",
     "@emotion/styled": "10.x",

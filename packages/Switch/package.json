@@ -1,12 +1,15 @@
 {
   "name": "@chakra-ui/switch",
   "version": "0.0.1",
-  "description": "description",
+  "description": "A React component to view and switch between on or off states.",
   "keywords": [
-    "theme",
-    "theming",
-    "ui mode",
-    "ui"
+    "switch",
+    "toggle",
+    "component",
+    "input",
+    "react",
+    "custom checkbox",
+    "chakra ui"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
@@ -48,6 +51,7 @@
     "typescript": "3.7.4"
   },
   "dependencies": {
+    "@chakra-ui/utils": "0.0.1",
     "@chakra-ui/system": "0.0.1",
     "@chakra-ui/checkbox": "0.0.1"
   },

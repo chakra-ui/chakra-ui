@@ -1,4 +1,14 @@
-Base Package
+# Tabs
 
-Don't run any npm script in here. It's just a basic folder to enable us create
-new packages faster.
+An accessible tabs component.
+
+The `Tab` and `TabPanel` elements are associated by their order in the tree.
+None of the components are empty wrappers, each is associated with a real DOM
+element in the document, giving you maximum control over styling and
+composition.
+
+## Installation
+
+```sh
+npm i @chakra-ui/tabs
+```

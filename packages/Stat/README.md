@@ -1,4 +1,9 @@
-Base Package
+# Stat
 
-Don't run any npm script in here. It's just a basic folder to enable us create
-new packages faster.
+As the name implies, the Stat component is used to display some statistics.
+
+## Installation
+
+```sh
+npm i @chakra-ui/stat
+```

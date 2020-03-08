@@ -1,4 +1,10 @@
-Base Package
+# Switch
 
-Don't run any npm script in here. It's just a basic folder to enable us create
-new packages faster.
+The Switch component is used as an alternative for the checkbox component,
+switch between enabled or disabled states.
+
+## Installation
+
+```sh
+npm i @chakra-ui/switch
+```
