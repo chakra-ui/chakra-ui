@@ -1,4 +1,9 @@
-Base Package
+# Visuall Hidden
 
-Don't run any npm script in here. It's just a basic folder to enable us create
-new packages faster.
+A React component for adding visually hidden styles to elements
+
+## Installation
+
+```sh
+npm i @chakra-ui/visually-hidden
+```

@@ -1,11 +1,12 @@
-# `chakra-utils`
+# Utilites
 
-> TODO: description
+Shared utilities for various Chakra UI components
 
-## Usage
+> **Note **: This package is intended for internal use by the Chakra UI
+> components.
 
-```
-const chakraUtils = require('chakra-utils');
+## Installation
 
-// TODO: DEMONSTRATE API
+```sh
+npm i @chakra-ui/utils
 ```

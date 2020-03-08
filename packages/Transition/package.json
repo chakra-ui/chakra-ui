@@ -1,12 +1,14 @@
 {
   "name": "@chakra-ui/transition",
   "version": "0.0.1",
-  "description": "description",
+  "description": "Common transition components for Chakra UI",
   "keywords": [
-    "theme",
-    "theming",
-    "ui mode",
-    "ui"
+    "transition",
+    "animation",
+    "react",
+    "react transition group",
+    "motion",
+    "chakra ui"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
@@ -49,11 +51,9 @@
   },
   "dependencies": {
     "react-transition-group": "4.3.0",
-    "@types/react-transition-group": "2.0.9",
-    "react-spring": "8.0.27"
+    "@types/react-transition-group": "2.0.9"
   },
   "peerDependencies": {
-    "@emotion/core": "10.x",
     "react": "16.x",
     "react-dom": "16.x"
   }

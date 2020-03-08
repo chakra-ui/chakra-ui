@@ -8,12 +8,8 @@
   "main": "dist/index.js",
   "module": "dist/utils.esm.js",
   "types": "dist/index.d.ts",
-  "directories": {
-    "lib": "lib",
-    "test": "__tests__"
-  },
   "files": [
-    "lib"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"

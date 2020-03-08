@@ -1,5 +1,4 @@
 /**@jsx jsx */
-import React from "react"
 import { chakra, PropsOf, jsx, createChakra } from "@chakra-ui/system"
 import { Icon, IconProps } from "@chakra-ui/icon"
 

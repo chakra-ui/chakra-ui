@@ -1,4 +1,10 @@
-Base Package
+# Tag
 
-Don't run any npm script in here. It's just a basic folder to enable us create
-new packages faster.
+This component is displayed as an accessible tag with an optional link and/or
+button to remove it.
+
+## Installation
+
+```sh
+npm i @chakra-ui/tag
+```

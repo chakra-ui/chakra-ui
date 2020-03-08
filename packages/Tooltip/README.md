@@ -1,10 +1,10 @@
-# Chakra UI Tooltip
+# Tooltip
 
-Welcome to `@chakra-ui/tooltip`
+Use this component to display extra information about an element by displaying a
+floating description.
 
-## Major Inspiration
+## Installation
 
-- Tooltip component in Atlaskit by Atlassian.
-  [Here](https://bitbucket.org/atlassian/atlaskit-mk-2/src/master/packages/core/tooltip/src/components/Tooltip.tsx)
-
-- Tooltip compoonent in Reach UI
+```sh
+npm i @chakra-ui/tooltip
+```
