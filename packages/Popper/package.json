@@ -1,12 +1,17 @@
 {
   "name": "@chakra-ui/popper",
   "version": "0.0.1",
-  "description": "description",
+  "description": "A React component and hooks wrapper for popper.js",
   "keywords": [
-    "theme",
-    "theming",
-    "ui mode",
-    "ui"
+    "react",
+    "popper",
+    "popover",
+    "tooltips",
+    "popper.js",
+    "positioning",
+    "ui",
+    "chakra ui",
+    "component"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",

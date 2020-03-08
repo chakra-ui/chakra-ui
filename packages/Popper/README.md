@@ -1,4 +1,10 @@
-Base Package
+# Popper
 
-Don't run any npm script in here. It's just a basic folder to enable us create
-new packages faster.
+A React hooks wrapper for popper.js to dynamic positioning of containers around
+a reference.
+
+## Installation
+
+```sh
+yarn add @chakra-ui/popper
+```

@@ -10,5 +10,5 @@ composition.
 ## Installation
 
 ```sh
-npm i @chakra-ui/tabs
+yarn add @chakra-ui/tabs
 ```

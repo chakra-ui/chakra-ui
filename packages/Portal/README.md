@@ -1,4 +1,11 @@
-Base Package
+# Portal
 
-Don't run any npm script in here. It's just a basic folder to enable us create
-new packages faster.
+A wrapper for rendering components in React Portals, with support for nested
+portals and stacking. No need to use z-index at all with this portal, that's
+right!
+
+## Installation
+
+```sh
+yarn add @chakra-ui/portal
+```

@@ -1,12 +1,15 @@
 {
   "name": "@chakra-ui/portal",
   "version": "0.0.1",
-  "description": "description",
+  "description": "A React component for rendering modals, popovers, etc. in portals",
   "keywords": [
-    "theme",
-    "theming",
-    "ui mode",
-    "ui"
+    "react",
+    "portal",
+    "nested portal",
+    "z-index",
+    "stacking",
+    "management",
+    "chakra ui"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
@@ -48,7 +51,8 @@
     "typescript": "3.7.4"
   },
   "dependencies": {
-    "@chakra-ui/utils": "0.0.1"
+    "@chakra-ui/utils": "0.0.1",
+    "@chakra-ui/hooks": "0.0.1"
   },
   "peerDependencies": {
     "react": "16.x",

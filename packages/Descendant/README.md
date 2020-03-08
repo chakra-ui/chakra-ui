@@ -9,5 +9,5 @@ components.
 ## Installation
 
 ```sh
-npm i @chakra-ui/descendants
+yarn add @chakra-ui/descendants
 ```

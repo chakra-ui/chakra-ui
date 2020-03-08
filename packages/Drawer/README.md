@@ -7,5 +7,5 @@ without leaving the current page.
 ## Installation
 
 ```sh
-npm i @chakra-ui/drawer
+yarn add @chakra-ui/drawer
 ```

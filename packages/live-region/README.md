@@ -6,5 +6,5 @@ software.
 ## Installation
 
 ```sh
-npm i @chakra-ui/live-region
+yarn add @chakra-ui/live-region
 ```

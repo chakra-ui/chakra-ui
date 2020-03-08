@@ -7,5 +7,5 @@ it.
 ## Installation
 
 ```sh
-npm i @chakra-ui/editable
+yarn add @chakra-ui/editable
 ```

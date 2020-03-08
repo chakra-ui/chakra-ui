@@ -6,5 +6,5 @@ number-inputs, countdown, or countup timers.
 ## Installation
 
 ```sh
-npm i @chakra-ui/counter
+yarn add @chakra-ui/counter
 ```

@@ -7,8 +7,5 @@
     "**/*.test.ts",
     "**/*.test.tsx",
     "**/*/*.stories.tsx"
-  ],
-  "compilerOptions": {
-    "rootDir": "./"
-  }
+  ]
 }

@@ -6,5 +6,5 @@ switch between enabled or disabled states.
 ## Installation
 
 ```sh
-npm i @chakra-ui/switch
+yarn add @chakra-ui/switch
 ```

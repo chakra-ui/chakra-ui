@@ -6,5 +6,5 @@ floating description.
 ## Installation
 
 ```sh
-npm i @chakra-ui/tooltip
+yarn add @chakra-ui/tooltip
 ```

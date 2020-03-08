@@ -6,5 +6,5 @@ React component that adds support for light mode and dark mode using
 ## Installation
 
 ```sh
-npm i @chakra-ui/color-mode
+yarn add @chakra-ui/color-mode
 ```

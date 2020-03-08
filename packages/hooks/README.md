@@ -5,5 +5,5 @@ A collection of React Hooks for Chakra Ui components.
 ## Installation
 
 ```sh
-npm i @chakra-ui/hooks
+yarn add @chakra-ui/hooks
 ```

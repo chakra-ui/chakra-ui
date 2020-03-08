@@ -6,5 +6,5 @@ button to remove it.
 ## Installation
 
 ```sh
-npm i @chakra-ui/tag
+yarn add @chakra-ui/tag
 ```
