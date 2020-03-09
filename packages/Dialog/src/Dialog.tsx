@@ -1,15 +1,16 @@
+import { CloseButton, CloseButtonProps } from "@chakra-ui/close-button"
 import { FocusLock } from "@chakra-ui/focus-lock"
 import { useIsomorphicEffect } from "@chakra-ui/hooks"
 import { Portal } from "@chakra-ui/portal"
 import { chakra, createChakra, PropsOf } from "@chakra-ui/system"
 import { createContext } from "@chakra-ui/utils"
-import { CloseButton, CloseButtonProps } from "@chakra-ui/close-button"
 import * as React from "react"
 import { DialogHookProps, DialogHookReturn, useDialog } from "./Dialog.hook"
 
-const [DialogContextProvider, useDialogContext] = createContext<
-  DialogHookReturn
->()
+type DialogContext = DialogHookReturn &
+  Pick<DialogProps, "isCentered" | "scrollBehavior">
+
+const [DialogContextProvider, useDialogContext] = createContext<DialogContext>()
 
 export interface DialogProps extends DialogHookProps {
   children?: React.ReactNode
@@ -44,8 +45,11 @@ export function Dialog(props: DialogProps) {
     finalFocusRef,
     returnFocusOnClose = true,
     isOpen = true,
+    scrollBehavior = "outside",
+    isCentered,
   } = props
-  const context = useDialog(props)
+
+  const context = { ...useDialog(props), scrollBehavior, isCentered }
 
   if (!isOpen) return null
 
@@ -67,17 +71,17 @@ export function Dialog(props: DialogProps) {
 export type DialogContentProps = PropsOf<typeof chakra.div>
 
 export const DialogContent = (props: DialogContentProps) => {
-  const { getDialogContentProps } = useDialogContext()
+  const { getDialogContentProps, scrollBehavior } = useDialogContext()
   return (
     <StyledContent
       data-chakra-dialog-content=""
-      scrollBehavior="inside"
+      scrollBehavior={scrollBehavior}
       {...getDialogContentProps(props)}
     />
   )
 }
 
-const StyledContent = createChakra("div", {
+const StyledContent = createChakra("section", {
   themeKey: "Dialog.Content",
   baseStyle: (props: any) => ({
     display: "flex",
@@ -85,9 +89,10 @@ const StyledContent = createChakra("div", {
     position: "relative",
     width: "100%",
     maxWidth: "500px",
+    marginY: "3.75rem",
     maxHeight:
       props.scrollBehavior === "inside" ? "calc(100vh - 7.5rem)" : undefined,
-    overflow: props.scrollBehavior === "inside" ? "hidden auto" : undefined,
+    overflow: props.scrollBehavior === "inside" ? "auto" : undefined,
     _focus: {
       outline: 0,
     },
@@ -97,12 +102,16 @@ const StyledContent = createChakra("div", {
 export type DialogOverlayProps = PropsOf<typeof StyledOverlay>
 
 export const DialogOverlay = (props: DialogOverlayProps) => {
-  const { getDialogOverlayProps } = useDialogContext()
+  const {
+    getDialogOverlayProps,
+    scrollBehavior,
+    isCentered,
+  } = useDialogContext()
   return (
     <StyledOverlay
       data-chakra-dialog-overlay=""
-      scrollBehavior="inside"
-      isCentered={true}
+      scrollBehavior={scrollBehavior}
+      isCentered={isCentered}
       {...getDialogOverlayProps(props as any)}
     />
   )
@@ -113,14 +122,15 @@ const StyledOverlay = createChakra("div", {
   baseStyle: (props: any) => ({
     display: "flex",
     justifyContent: "center",
-    alignItems: props.isCentered ? "center" : undefined,
-    paddingY: "7.5rem",
+    alignItems: props.isCentered ? "center" : "flex-start",
+    overflow: props.scrollBehavior === "inside" ? "hidden" : "auto",
     position: "fixed",
-    overflow: props.scrollBehavior === "inside" ? "hidden" : undefined,
     left: 0,
     top: 0,
-    width: "100vw",
-    height: "100vh",
+    bottom: 0,
+    right: 0,
+    width: "100%",
+    height: "100%",
   }),
   shouldForwardProp(prop) {
     return !["scrollBehavior", "isCentered"].includes(prop)
