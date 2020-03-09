@@ -1,6 +1,6 @@
 /**@jsx jsx */
 import { isFunction, isUndefined, valueToPercent } from "@chakra-ui/utils"
-import { keyframes } from "@emotion/core"
+import { keyframes } from "@chakra-ui/system"
 
 export const spin = keyframes`
   0% {

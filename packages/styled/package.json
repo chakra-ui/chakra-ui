@@ -48,7 +48,8 @@
     "typescript": "3.7.4"
   },
   "dependencies": {
-    "@emotion/core": "10.0.10"
+    "@emotion/core": "10.0.10",
+    "@chakra-ui/parser": "0.0.1"
   },
   "peerDependencies": {
     "react": "16.x",

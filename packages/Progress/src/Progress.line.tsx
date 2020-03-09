@@ -1,8 +1,15 @@
 /** @jsx jsx */
 import { generateStripe, getColor } from "@chakra-ui/color"
-import { chakra, PropsOf, useColorModeValue, useTheme } from "@chakra-ui/system"
+import {
+  chakra,
+  PropsOf,
+  useColorModeValue,
+  useTheme,
+  jsx,
+  css,
+} from "@chakra-ui/system"
 import { isUndefined, Omit, parseResponsiveProp } from "@chakra-ui/utils"
-import { css, jsx } from "@emotion/core"
+// import { css, jsx } from "@emotion/core"
 import {
   getProgressProps,
   progress,

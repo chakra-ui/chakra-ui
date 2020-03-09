@@ -17,7 +17,7 @@
     "build-storybook": "build-storybook",
     "docs": "yarn workspace @chakra-ui/docs dev",
     "docs:now": "cd packages/chakra-ui-docs && now",
-    "build": "lerna exec --parallel yarn build --ignore @chakra-ui/docs",
+    "build": "lerna exec yarn build --ignore @chakra-ui/docs",
     "test": "yarn workspace @chakra-ui/core test",
     "link:all": "npx lerna link",
     "core": "yarn workspace @chakra-ui/core",
