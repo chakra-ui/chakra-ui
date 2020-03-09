@@ -41,9 +41,17 @@ export interface AlertOptions {
   variant?: "subtle" | "solid" | "left-accent" | "top-accent"
 }
 
-export type AlertProps = PropsOf<typeof AlertRoot> & AlertOptions
+export type AlertProps = PropsOf<typeof StyledAlert> & AlertOptions
 
-const AlertRoot = createChakra("div", { themeKey: "Alert" })
+const StyledAlert = createChakra("div", {
+  themeKey: "Alert.Root",
+  baseStyle: {
+    display: "flex",
+    alignItems: "center",
+    position: "relative",
+    overflow: "hidden",
+  },
+})
 
 const Alert = forwardRef((props: AlertProps, ref: React.Ref<any>) => {
   const { status = "info", variant = "subtle", ...rest } = props
@@ -52,7 +60,7 @@ const Alert = forwardRef((props: AlertProps, ref: React.Ref<any>) => {
   const context = { status, variant }
   return (
     <AlertContext.Provider value={context}>
-      <AlertRoot
+      <StyledAlert
         ref={ref}
         role="alert"
         variant={variant}
@@ -64,13 +72,14 @@ const Alert = forwardRef((props: AlertProps, ref: React.Ref<any>) => {
 })
 
 const AlertTitle = createChakra("div", {
+  themeKey: "Alert.Title",
   baseStyle: {
     fontWeight: "bold",
     lineHeight: "normal",
   },
 })
 
-const AlertDescription = createChakra("div")
+const AlertDescription = createChakra("div", { themeKey: "Alert.Description" })
 
 const AlertIcon = (props: IconProps) => {
   const [colorMode] = useColorMode()

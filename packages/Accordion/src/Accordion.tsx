@@ -11,6 +11,7 @@ import {
 } from "./Accordion.hook"
 
 type AccordionContext = Omit<AccordionHookReturn, "children" | "htmlProps">
+
 const [AccordionCtxProvider, useAccordionCtx] = createContext<
   AccordionContext
 >()
@@ -44,7 +45,7 @@ export function useAccordionItemState() {
   return { isOpen, onClose, onOpen }
 }
 
-export type AccordionItemProps = PropsOf<"div"> &
+export type AccordionItemProps = PropsOf<typeof StyledAccordionItem> &
   Omit<AccordionItemHookProps, "context">
 
 export function AccordionItem(props: AccordionItemProps) {
@@ -64,14 +65,14 @@ const StyledAccordionItem = createChakra("div", {
   themeKey: "Accordion.Item",
 })
 
-export type AccordionButtonProps = PropsOf<"button">
+export type AccordionButtonProps = PropsOf<typeof StyledAccordionButton>
 
 export function AccordionButton(props: AccordionButtonProps) {
   const { getButtonProps } = useAccordionItemContext()
   return (
     <StyledAccordionButton
       data-chakra-accordion-button=""
-      {...getButtonProps(props)}
+      {...getButtonProps(props as any)}
     />
   )
 }

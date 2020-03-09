@@ -1,34 +1,32 @@
 import React from "react"
 import { userEvent, render, fireEvent } from "@chakra-ui/test-utils"
 import {
-  BaseAccordion,
-  BaseAccordionButton,
-  BaseAccordionItem,
-  BaseAccordionPanel,
-} from "../Accordion.base"
+  Accordion,
+  AccordionButton,
+  AccordionItem,
+  AccordionPanel,
+} from "../Accordion"
 
 test("Button renders correctly", () => {
   const { asFragment } = render(
-    <BaseAccordion>
-      <BaseAccordionItem>
-        <BaseAccordionButton>Section 1 title</BaseAccordionButton>
-        <BaseAccordionPanel>Panel 1</BaseAccordionPanel>
-      </BaseAccordionItem>
-    </BaseAccordion>,
+    <Accordion>
+      <AccordionItem>
+        <AccordionButton>Section 1 title</AccordionButton>
+        <AccordionPanel>Panel 1</AccordionPanel>
+      </AccordionItem>
+    </Accordion>,
   )
   expect(asFragment()).toMatchSnapshot()
 })
 
 test("uncontrolled: It opens the accordion panel", () => {
   const { getByTestId } = render(
-    <BaseAccordion defaultIndex={0}>
-      <BaseAccordionItem>
-        <BaseAccordionButton data-testid="button">
-          Section 1 title
-        </BaseAccordionButton>
-        <BaseAccordionPanel data-testid="panel">Panel 1</BaseAccordionPanel>
-      </BaseAccordionItem>
-    </BaseAccordion>,
+    <Accordion defaultIndex={0}>
+      <AccordionItem>
+        <AccordionButton data-testid="button">Section 1 title</AccordionButton>
+        <AccordionPanel data-testid="panel">Panel 1</AccordionPanel>
+      </AccordionItem>
+    </Accordion>,
   )
 
   const button = getByTestId("button")
@@ -37,12 +35,12 @@ test("uncontrolled: It opens the accordion panel", () => {
 
 test("uncontrolled: toggles the accordion on click", () => {
   const { getByText } = render(
-    <BaseAccordion>
-      <BaseAccordionItem>
-        <BaseAccordionButton>Trigger</BaseAccordionButton>
-        <BaseAccordionPanel>Panel</BaseAccordionPanel>
-      </BaseAccordionItem>
-    </BaseAccordion>,
+    <Accordion>
+      <AccordionItem>
+        <AccordionButton>Trigger</AccordionButton>
+        <AccordionPanel>Panel</AccordionPanel>
+      </AccordionItem>
+    </Accordion>,
   )
 
   const trigger = getByText("Trigger")
@@ -58,17 +56,17 @@ test("uncontrolled: toggles the accordion on click", () => {
 // test that arrow up & down moves focus to next/previous accordion
 test("arrow up & down moves focus to next/previous accordion", () => {
   const { getByText } = render(
-    <BaseAccordion>
-      <BaseAccordionItem>
-        <BaseAccordionButton>Section 1 title</BaseAccordionButton>
-        <BaseAccordionPanel>Panel 1</BaseAccordionPanel>
-      </BaseAccordionItem>
+    <Accordion>
+      <AccordionItem>
+        <AccordionButton>Section 1 title</AccordionButton>
+        <AccordionPanel>Panel 1</AccordionPanel>
+      </AccordionItem>
 
-      <BaseAccordionItem>
-        <BaseAccordionButton>Section 2 title</BaseAccordionButton>
-        <BaseAccordionPanel>Panel 2</BaseAccordionPanel>
-      </BaseAccordionItem>
-    </BaseAccordion>,
+      <AccordionItem>
+        <AccordionButton>Section 2 title</AccordionButton>
+        <AccordionPanel>Panel 2</AccordionPanel>
+      </AccordionItem>
+    </Accordion>,
   )
   const first = getByText("Section 1 title")
   const second = getByText("Section 2 title")
@@ -83,22 +81,22 @@ test("arrow up & down moves focus to next/previous accordion", () => {
 // test that home & end keys moves focus to first/last accordion
 test("home & end keys moves focus to first/last accordion", () => {
   const { getByText } = render(
-    <BaseAccordion>
-      <BaseAccordionItem>
-        <BaseAccordionButton>First section</BaseAccordionButton>
-        <BaseAccordionPanel>Panel 1</BaseAccordionPanel>
-      </BaseAccordionItem>
+    <Accordion>
+      <AccordionItem>
+        <AccordionButton>First section</AccordionButton>
+        <AccordionPanel>Panel 1</AccordionPanel>
+      </AccordionItem>
 
-      <BaseAccordionItem>
-        <BaseAccordionButton>Second section</BaseAccordionButton>
-        <BaseAccordionPanel>Panel 1</BaseAccordionPanel>
-      </BaseAccordionItem>
+      <AccordionItem>
+        <AccordionButton>Second section</AccordionButton>
+        <AccordionPanel>Panel 1</AccordionPanel>
+      </AccordionItem>
 
-      <BaseAccordionItem>
-        <BaseAccordionButton>Last section</BaseAccordionButton>
-        <BaseAccordionPanel>Panel 2</BaseAccordionPanel>
-      </BaseAccordionItem>
-    </BaseAccordion>,
+      <AccordionItem>
+        <AccordionButton>Last section</AccordionButton>
+        <AccordionPanel>Panel 2</AccordionPanel>
+      </AccordionItem>
+    </Accordion>,
   )
   const first = getByText("First section")
   const last = getByText("Last section")
@@ -113,17 +111,17 @@ test("home & end keys moves focus to first/last accordion", () => {
 // test the only one accordion can be visible + is not togglable
 test("only one accordion can be visible + is not togglable", () => {
   const { getByText } = render(
-    <BaseAccordion>
-      <BaseAccordionItem>
-        <BaseAccordionButton>First section</BaseAccordionButton>
-        <BaseAccordionPanel>Panel 1</BaseAccordionPanel>
-      </BaseAccordionItem>
+    <Accordion>
+      <AccordionItem>
+        <AccordionButton>First section</AccordionButton>
+        <AccordionPanel>Panel 1</AccordionPanel>
+      </AccordionItem>
 
-      <BaseAccordionItem>
-        <BaseAccordionButton>Second section</BaseAccordionButton>
-        <BaseAccordionPanel>Panel 1</BaseAccordionPanel>
-      </BaseAccordionItem>
-    </BaseAccordion>,
+      <AccordionItem>
+        <AccordionButton>Second section</AccordionButton>
+        <AccordionPanel>Panel 1</AccordionPanel>
+      </AccordionItem>
+    </Accordion>,
   )
 
   const firstAccordion = getByText("First section")
@@ -137,17 +135,17 @@ test("only one accordion can be visible + is not togglable", () => {
 // test the only one accordion can be visible + is togglable
 test("only one accordion can be visible + is togglable", () => {
   const { getByText } = render(
-    <BaseAccordion allowToggle>
-      <BaseAccordionItem>
-        <BaseAccordionButton>First section</BaseAccordionButton>
-        <BaseAccordionPanel>Panel 1</BaseAccordionPanel>
-      </BaseAccordionItem>
+    <Accordion allowToggle>
+      <AccordionItem>
+        <AccordionButton>First section</AccordionButton>
+        <AccordionPanel>Panel 1</AccordionPanel>
+      </AccordionItem>
 
-      <BaseAccordionItem>
-        <BaseAccordionButton>Second section</BaseAccordionButton>
-        <BaseAccordionPanel>Panel 1</BaseAccordionPanel>
-      </BaseAccordionItem>
-    </BaseAccordion>,
+      <AccordionItem>
+        <AccordionButton>Second section</AccordionButton>
+        <AccordionPanel>Panel 1</AccordionPanel>
+      </AccordionItem>
+    </Accordion>,
   )
 
   const firstAccordion = getByText("First section")
@@ -162,17 +160,17 @@ test("only one accordion can be visible + is togglable", () => {
 // test that multiple accordions can be opened + is togglable
 test("multiple accordions can be opened + is togglable", () => {
   const { getByText } = render(
-    <BaseAccordion allowMultiple>
-      <BaseAccordionItem>
-        <BaseAccordionButton>First section</BaseAccordionButton>
-        <BaseAccordionPanel>Panel 1</BaseAccordionPanel>
-      </BaseAccordionItem>
+    <Accordion allowMultiple>
+      <AccordionItem>
+        <AccordionButton>First section</AccordionButton>
+        <AccordionPanel>Panel 1</AccordionPanel>
+      </AccordionItem>
 
-      <BaseAccordionItem>
-        <BaseAccordionButton>Second section</BaseAccordionButton>
-        <BaseAccordionPanel>Panel 1</BaseAccordionPanel>
-      </BaseAccordionItem>
-    </BaseAccordion>,
+      <AccordionItem>
+        <AccordionButton>Second section</AccordionButton>
+        <AccordionPanel>Panel 1</AccordionPanel>
+      </AccordionItem>
+    </Accordion>,
   )
 
   const firstAccordion = getByText("First section")
@@ -188,12 +186,12 @@ test("multiple accordions can be opened + is togglable", () => {
 // it has the proper aria attributes
 test("has the proper aria attributes", () => {
   const { getByText } = render(
-    <BaseAccordion>
-      <BaseAccordionItem>
-        <BaseAccordionButton>Section 1 title</BaseAccordionButton>
-        <BaseAccordionPanel>Panel 1</BaseAccordionPanel>
-      </BaseAccordionItem>
-    </BaseAccordion>,
+    <Accordion>
+      <AccordionItem>
+        <AccordionButton>Section 1 title</AccordionButton>
+        <AccordionPanel>Panel 1</AccordionPanel>
+      </AccordionItem>
+    </Accordion>,
   )
   const button = getByText("Section 1 title")
   const panel = getByText("Panel 1")
@@ -207,17 +205,17 @@ test("has the proper aria attributes", () => {
 // Issue with keyDown from testing library
 // test("enter and space can toggle the visiblity", () => {
 //   const { getByText } = render(
-//     <BaseAccordion allowToggle>
-//       <BaseAccordionItem>
-//         <BaseAccordionButton>Section 1 title</BaseAccordionButton>
-//         <BaseAccordionPanel>Panel 1</BaseAccordionPanel>
-//       </BaseAccordionItem>
+//     <Accordion allowToggle>
+//       <AccordionItem>
+//         <AccordionButton>Section 1 title</AccordionButton>
+//         <AccordionPanel>Panel 1</AccordionPanel>
+//       </AccordionItem>
 
-//       <BaseAccordionItem>
-//         <BaseAccordionButton>Section 2 title</BaseAccordionButton>
-//         <BaseAccordionPanel>Panel 2</BaseAccordionPanel>
-//       </BaseAccordionItem>
-//     </BaseAccordion>,
+//       <AccordionItem>
+//         <AccordionButton>Section 2 title</AccordionButton>
+//         <AccordionPanel>Panel 2</AccordionPanel>
+//       </AccordionItem>
+//     </Accordion>,
 //   )
 
 //   const button = getByText("Section 1 title")
@@ -241,22 +239,22 @@ test("has the proper aria attributes", () => {
 // test that tab moves focus to the next focusable element
 test("tab moves focus to the next focusable element", () => {
   const { getByText } = render(
-    <BaseAccordion>
-      <BaseAccordionItem>
-        <BaseAccordionButton>First section</BaseAccordionButton>
-        <BaseAccordionPanel>Panel 1</BaseAccordionPanel>
-      </BaseAccordionItem>
+    <Accordion>
+      <AccordionItem>
+        <AccordionButton>First section</AccordionButton>
+        <AccordionPanel>Panel 1</AccordionPanel>
+      </AccordionItem>
 
-      <BaseAccordionItem>
-        <BaseAccordionButton>Second section</BaseAccordionButton>
-        <BaseAccordionPanel>Panel 1</BaseAccordionPanel>
-      </BaseAccordionItem>
+      <AccordionItem>
+        <AccordionButton>Second section</AccordionButton>
+        <AccordionPanel>Panel 1</AccordionPanel>
+      </AccordionItem>
 
-      <BaseAccordionItem>
-        <BaseAccordionButton>Last section</BaseAccordionButton>
-        <BaseAccordionPanel>Panel 2</BaseAccordionPanel>
-      </BaseAccordionItem>
-    </BaseAccordion>,
+      <AccordionItem>
+        <AccordionButton>Last section</AccordionButton>
+        <AccordionPanel>Panel 2</AccordionPanel>
+      </AccordionItem>
+    </Accordion>,
   )
   const first = getByText("First section")
   const second = getByText("Second section")
@@ -275,12 +273,12 @@ test("tab moves focus to the next focusable element", () => {
 // test that aria-contols for button is same as id for panel
 test("aria-contols for button is same as id for panel", () => {
   const { getByText } = render(
-    <BaseAccordion>
-      <BaseAccordionItem>
-        <BaseAccordionButton>Section 1 title</BaseAccordionButton>
-        <BaseAccordionPanel>Panel 1</BaseAccordionPanel>
-      </BaseAccordionItem>
-    </BaseAccordion>,
+    <Accordion>
+      <AccordionItem>
+        <AccordionButton>Section 1 title</AccordionButton>
+        <AccordionPanel>Panel 1</AccordionPanel>
+      </AccordionItem>
+    </Accordion>,
   )
   const button = getByText("Section 1 title")
   const panel = getByText("Panel 1")
@@ -290,16 +288,16 @@ test("aria-contols for button is same as id for panel", () => {
 // test that aria-expanded is true/false when accordion is open/closed
 test("aria-expanded is true/false when accordion is open/closed", () => {
   const { getByText } = render(
-    <BaseAccordion defaultIndex={0}>
-      <BaseAccordionItem>
-        <BaseAccordionButton>Section 1 title</BaseAccordionButton>
-        <BaseAccordionPanel>Panel 1</BaseAccordionPanel>
-      </BaseAccordionItem>
-      <BaseAccordionItem>
-        <BaseAccordionButton>Section 2 title</BaseAccordionButton>
-        <BaseAccordionPanel>Panel 2</BaseAccordionPanel>
-      </BaseAccordionItem>
-    </BaseAccordion>,
+    <Accordion defaultIndex={0}>
+      <AccordionItem>
+        <AccordionButton>Section 1 title</AccordionButton>
+        <AccordionPanel>Panel 1</AccordionPanel>
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionButton>Section 2 title</AccordionButton>
+        <AccordionPanel>Panel 2</AccordionPanel>
+      </AccordionItem>
+    </Accordion>,
   )
 
   const button = getByText("Section 1 title")
@@ -309,12 +307,12 @@ test("aria-expanded is true/false when accordion is open/closed", () => {
 // test that panel has role=region and aria-labelledby
 test("panel has role=region and aria-labelledby", () => {
   const { getByText } = render(
-    <BaseAccordion>
-      <BaseAccordionItem>
-        <BaseAccordionButton>Section 1 title</BaseAccordionButton>
-        <BaseAccordionPanel>Panel 1</BaseAccordionPanel>
-      </BaseAccordionItem>
-    </BaseAccordion>,
+    <Accordion>
+      <AccordionItem>
+        <AccordionButton>Section 1 title</AccordionButton>
+        <AccordionPanel>Panel 1</AccordionPanel>
+      </AccordionItem>
+    </Accordion>,
   )
   const panel = getByText("Panel 1")
 
