@@ -19,7 +19,7 @@
     "version": "yarn build"
   },
   "dependencies": {
-    "@reach/auto-id": "0.2.0",
+    "@reach/auto-id": "0.8.6",
     "@styled-system/css": "5.0.13",
     "@styled-system/should-forward-prop": "5.0.12",
     "@types/styled-system": "5.0.1",
