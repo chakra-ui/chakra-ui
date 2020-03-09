@@ -5,13 +5,14 @@ import { Fade, SlideFade } from "@chakra-ui/transition"
 import * as React from "react"
 //@ts-ignore
 import Lorem from "react-lorem-component"
-import { DialogOverlay } from "./Dialog"
 import {
-  BaseDialogBody,
-  BaseDialogHeader,
   Dialog,
+  DialogBody,
   DialogContent,
-} from "./Dialog.base"
+  DialogFooter,
+  DialogHeader,
+  DialogOverlay,
+} from "./Dialog"
 
 export default {
   title: "Dialog",
@@ -23,28 +24,6 @@ export default {
     ),
   ],
 }
-
-const DialogHeader = createChakra(BaseDialogHeader, {
-  themeKey: "Dialog.Header",
-})
-
-const DialogBody = createChakra(BaseDialogBody, {
-  themeKey: "Dialog.Body",
-  baseStyle: {
-    flex: "1 1 auto",
-    overflowY: "auto",
-    overflowX: "hidden",
-  },
-})
-
-const DialogFooter = createChakra("footer", {
-  themeKey: "Dialog.Footer",
-  baseStyle: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-})
 
 const Button = createChakra("button", { themeKey: "Button" })
 

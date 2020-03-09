@@ -1,4 +1,11 @@
-Base Package
+# Dialog
 
-Don't run any npm script in here. It's just a basic folder to enable us create
-new packages faster.
+A dialog is a window overlaid on either the primary window or another dialog
+window. Contents behind a modal dialog are **inert** meaning that users cannot
+interact with content behind the dialog.
+
+## Installation
+
+```sh
+yarn add @chakra-ui/dialog
+```

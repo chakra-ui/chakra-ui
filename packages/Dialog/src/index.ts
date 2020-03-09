@@ -1,2 +1,2 @@
 export * from "./Dialog"
-export * from "./Dialog.base"
+export * from "./Dialog.hook"

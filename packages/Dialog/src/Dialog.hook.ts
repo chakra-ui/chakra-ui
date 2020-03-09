@@ -54,7 +54,7 @@ export function useDialog(props: DialogHookProps) {
   useLockBodyScroll(dialogRef, isOpen)
   useAriaHidden(dialogRef, isOpen)
 
-  const modals = useStackContext(dialogRef, isOpen)
+  const dialogs = useStackContext(dialogRef, isOpen)
 
   const mouseDownTarget = React.useRef<EventTarget | null>(null)
 
@@ -72,7 +72,7 @@ export function useDialog(props: DialogHookProps) {
     [closeOnEsc, onClose],
   )
 
-  const lastDialog = modals[modals.length - 1]
+  const lastDialog = dialogs[dialogs.length - 1]
 
   const onOverlayClick = React.useCallback(
     (event: React.MouseEvent) => {
