@@ -22,7 +22,7 @@
     "@reach/auto-id": "0.8.6",
     "@styled-system/css": "5.1.5",
     "@styled-system/should-forward-prop": "5.1.5",
-    "@types/styled-system": "5.0.1",
+    "@types/styled-system": "5.1.9",
     "aria-hidden": "^1.1.1",
     "body-scroll-lock": "^2.6.4",
     "color": "3.1.2",
