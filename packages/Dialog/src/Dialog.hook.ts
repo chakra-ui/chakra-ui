@@ -1,9 +1,19 @@
 import { useAriaHidden, useIds, useLockBodyScroll } from "@chakra-ui/hooks"
+import { usePortalsContext } from "@chakra-ui/portal"
 import { callAllHandlers, mergeRefs } from "@chakra-ui/utils"
 import * as React from "react"
-import { useStackContext } from "./Dialog.utils"
 
 export interface DialogHookProps {
+  /**
+   * Where scroll behaviour should originate.
+   * - If set to `inside`, scroll only occurs within the `ModalBody`.
+   * - If set to `outside`, the entire `ModalContent` will scroll within the viewport.
+   */
+  scrollBehavior?: "inside" | "outside"
+  /**
+   *  If `true`, the modal will be centered on screen.
+   */
+  isCentered?: boolean
   /**
    * If `true`, the modal when be opened.
    */
@@ -40,6 +50,7 @@ export function useDialog(props: DialogHookProps) {
     id,
     closeOnOverlayClick = true,
     closeOnEsc = true,
+    blockScrollOnMount = true,
   } = props
   const dialogRef = React.useRef<HTMLElement>(null)
   const overlayRef = React.useRef<HTMLElement>(null)
@@ -51,7 +62,7 @@ export function useDialog(props: DialogHookProps) {
     `chakra-dialog--body`,
   )
 
-  useLockBodyScroll(dialogRef, isOpen)
+  useLockBodyScroll(dialogRef, isOpen && blockScrollOnMount)
   useAriaHidden(dialogRef, isOpen)
 
   const dialogs = useStackContext(dialogRef, isOpen)
@@ -80,12 +91,8 @@ export function useDialog(props: DialogHookProps) {
 
       const isLast = lastDialog?.current === dialogRef.current
 
-      if (
-        mouseDownTarget.current === event.target &&
-        isLast &&
-        closeOnOverlayClick
-      ) {
-        onClose?.()
+      if (mouseDownTarget.current === event.target && isLast) {
+        closeOnOverlayClick && onClose?.()
       }
     },
     [lastDialog, onClose, closeOnOverlayClick],
@@ -135,3 +142,18 @@ export function useDialog(props: DialogHookProps) {
 }
 
 export type DialogHookReturn = ReturnType<typeof useDialog>
+
+function useStackContext(ref: React.Ref<any>, isOpen?: boolean) {
+  const { modals } = usePortalsContext()
+
+  React.useEffect(() => {
+    if (!isOpen) return
+    modals?.add(ref)
+    return () => {
+      modals?.remove(ref)
+    }
+    //eslint-disable-next-line
+  }, [isOpen, ref])
+
+  return modals?.value
+}
