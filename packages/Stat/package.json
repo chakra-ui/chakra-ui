@@ -39,16 +39,16 @@
     "version": "yarn build"
   },
   "devDependencies": {
-    "@types/jest": "24.0.25",
-    "@types/react": "16.9.17",
-    "@types/react-dom": "16.9.4",
-    "husky": "3.1.0",
-    "react": "16.12.0",
-    "react-dom": "16.12.0",
-    "ts-jest": "24.0.2",
-    "tsdx": "0.12.1",
-    "tslib": "1.10.0",
-    "typescript": "3.7.4"
+    "@types/jest": "25.1.4",
+    "@types/react": "16.9.23",
+    "@types/react-dom": "16.9.5",
+    "husky": "4.2.3",
+    "react": "16.13.0",
+    "react-dom": "16.13.0",
+    "ts-jest": "25.2.1",
+    "tsdx": "0.12.3",
+    "tslib": "1.11.1",
+    "typescript": "3.8.3"
   },
   "dependencies": {
     "@chakra-ui/system": "0.0.1",
