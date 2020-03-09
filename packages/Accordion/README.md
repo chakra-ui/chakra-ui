@@ -1,4 +1,10 @@
-# Welcome to Chakra's useAccordion hook
+# Accordion
+
+## Installation
+
+```sh
+yarn add @chakra-ui/accordion
+```
 
 ## Core Requirements
 

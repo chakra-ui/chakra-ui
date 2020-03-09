@@ -1,25 +1,25 @@
 import * as React from "react"
 import {
-  BaseAccordion,
-  BaseAccordionButton,
-  BaseAccordionItem,
-  BaseAccordionPanel,
-} from "./Accordion.base"
+  Accordion,
+  AccordionButton,
+  AccordionItem,
+  AccordionPanel,
+} from "./Accordion"
 
 export default {
   title: "Accordion",
 }
 
 export const Basic = () => (
-  <BaseAccordion>
-    <BaseAccordionItem>
-      <BaseAccordionButton>Section 1 title</BaseAccordionButton>
-      <BaseAccordionPanel>Panel 1</BaseAccordionPanel>
-    </BaseAccordionItem>
+  <Accordion>
+    <AccordionItem>
+      <AccordionButton>Section 1 title</AccordionButton>
+      <AccordionPanel>Panel 1</AccordionPanel>
+    </AccordionItem>
 
-    <BaseAccordionItem>
-      <BaseAccordionButton>Section 2 title</BaseAccordionButton>
-      <BaseAccordionPanel>Panel 2</BaseAccordionPanel>
-    </BaseAccordionItem>
-  </BaseAccordion>
+    <AccordionItem>
+      <AccordionButton>Section 2 title</AccordionButton>
+      <AccordionPanel>Panel 2</AccordionPanel>
+    </AccordionItem>
+  </Accordion>
 )
