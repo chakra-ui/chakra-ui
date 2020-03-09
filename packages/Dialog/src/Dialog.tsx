@@ -3,6 +3,7 @@ import { useIsomorphicEffect } from "@chakra-ui/hooks"
 import { Portal } from "@chakra-ui/portal"
 import { chakra, createChakra, PropsOf } from "@chakra-ui/system"
 import { createContext } from "@chakra-ui/utils"
+import { CloseButton, CloseButtonProps } from "@chakra-ui/close-button"
 import * as React from "react"
 import { DialogHookProps, DialogHookReturn, useDialog } from "./Dialog.hook"
 
@@ -81,6 +82,7 @@ const StyledContent = createChakra("div", {
   baseStyle: (props: any) => ({
     display: "flex",
     flexDirection: "column",
+    position: "relative",
     width: "100%",
     maxWidth: "500px",
     maxHeight:
@@ -165,3 +167,17 @@ export const DialogFooter = createChakra("footer", {
     justifyContent: "space-between",
   },
 })
+
+export const DialogCloseButton = (props: CloseButtonProps) => {
+  const { onClose } = useDialogContext()
+  return (
+    <CloseButton
+      onClick={onClose as any}
+      position="absolute"
+      top="8px"
+      right="12px"
+      data-chakra-dialog-close-btn=""
+      {...props}
+    />
+  )
+}

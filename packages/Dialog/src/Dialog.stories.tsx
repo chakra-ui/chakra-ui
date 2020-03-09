@@ -3,8 +3,6 @@ import { PortalManager } from "@chakra-ui/portal"
 import { chakra, createChakra } from "@chakra-ui/system"
 import { Fade, SlideFade } from "@chakra-ui/transition"
 import * as React from "react"
-//@ts-ignore
-import Lorem from "react-lorem-component"
 import {
   Dialog,
   DialogBody,
@@ -12,6 +10,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogOverlay,
+  DialogCloseButton,
 } from "./Dialog"
 
 export default {
@@ -33,11 +32,15 @@ export function SimpleModal() {
     <>
       <button onClick={dialog.onOpen}>Open</button>
       <Dialog isOpen={dialog.isOpen} onClose={dialog.onClose}>
-        <DialogContent>
+        <DialogOverlay>
           <DialogContent>
+            <DialogCloseButton />
             <DialogHeader>Welcome Home</DialogHeader>
             <DialogBody>
-              <Lorem count={1} />
+              Sit nulla est ex deserunt exercitation anim occaecat. Nostrud
+              ullamco deserunt aute id consequat veniam incididunt duis in sint
+              irure nisi. Mollit officia cillum Lorem ullamco minim nostrud elit
+              officia tempor esse quis.
             </DialogBody>
             <DialogFooter>
               <chakra.div flex="1" />
@@ -49,7 +52,7 @@ export function SimpleModal() {
               </chakra.div>
             </DialogFooter>
           </DialogContent>
-        </DialogContent>
+        </DialogOverlay>
       </Dialog>
     </>
   )
@@ -63,10 +66,13 @@ export function AnimatedModal() {
         {styles => (
           <Dialog isOpen={true} onClose={dialog.onClose}>
             <DialogOverlay style={styles}>
-              <SlideFade in={dialog.isOpen} {...{ unmountOnExit: false }}>
+              <SlideFade in={dialog.isOpen} unmountOnExit={false}>
                 {styles => (
                   <DialogContent padding={4} mx="auto" mt="40px" style={styles}>
-                    <Lorem count={1} />
+                    Sit nulla est ex deserunt exercitation anim occaecat.
+                    Nostrud ullamco deserunt aute id consequat veniam incididunt
+                    duis in sint irure nisi. Mollit officia cillum Lorem ullamco
+                    minim nostrud elit officia tempor esse quis.
                     <Button variantColor="blue">Save</Button>
                   </DialogContent>
                 )}

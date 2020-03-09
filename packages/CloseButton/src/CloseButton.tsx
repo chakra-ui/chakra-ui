@@ -4,6 +4,12 @@ import { Icon, IconProps } from "@chakra-ui/icon"
 
 const Button = createChakra("button", {
   themeKey: "CloseButton.Button",
+  baseStyle: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexShrink: 0,
+  },
   attrs: {
     type: "button",
     "aria-label": "Close",
@@ -25,7 +31,9 @@ const ButtonIcon = createChakra(CloseIcon, {
   themeKey: "CloseButton.Icon",
 })
 
-export function CloseButton(props: PropsOf<typeof Button>) {
+export type CloseButtonProps = PropsOf<typeof Button>
+
+export function CloseButton(props: CloseButtonProps) {
   const { variantSize, ...rest } = props
   return (
     <Button outline="0" variantSize={variantSize} {...rest}>
