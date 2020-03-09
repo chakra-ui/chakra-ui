@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@reach/auto-id": "0.8.6",
-    "@styled-system/css": "5.0.13",
+    "@styled-system/css": "5.1.5",
     "@styled-system/should-forward-prop": "5.1.5",
     "@types/styled-system": "5.0.1",
     "aria-hidden": "^1.1.1",
