@@ -3,7 +3,7 @@ import { createThemeContext, useTheme } from "@chakra-ui/system"
 import toast from "toasted-notes"
 import { MessageOptionalOptions } from "toasted-notes/lib/ToastManager"
 
-interface NotifyOptions {
+export interface NotifyOptions {
   position: MessageOptionalOptions["position"]
   duration: MessageOptionalOptions["duration"]
   render?(props: { onClose(): void; id: string }): JSX.Element
@@ -12,7 +12,7 @@ interface NotifyOptions {
   isClosable?: string
 }
 
-function useToast() {
+export function useToast() {
   const theme = useTheme()
   const [ThemeProvider] = createThemeContext(theme)
 

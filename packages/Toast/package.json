@@ -49,7 +49,8 @@
   },
   "dependencies": {
     "toasted-notes": "3.2.0",
-    "react-spring": "^8.0.0"
+    "react-spring": "^8.0.0",
+    "@chakra-ui/system": "0.0.1"
   },
   "peerDependencies": {
     "@emotion/core": "10.x",

@@ -36,7 +36,8 @@
     "version": "yarn build"
   },
   "dependencies": {
-    "@chakra-ui/color": "0.0.1"
+    "@chakra-ui/color": "0.0.1",
+    "@chakra-ui/system": "0.0.1"
   },
   "devDependencies": {
     "@types/jest": "24.0.25",

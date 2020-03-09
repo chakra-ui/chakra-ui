@@ -48,8 +48,8 @@
     "typescript": "3.7.4"
   },
   "dependencies": {
-    "@chakra-ui/utils": "0.0.1",
     "@chakra-ui/system": "0.0.1",
+    "@chakra-ui/utils": "0.0.1",
     "@chakra-ui/icon-glyphs": "0.0.1",
     "@chakra-ui/counter": "0.0.1"
   },
