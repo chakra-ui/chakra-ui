@@ -2,7 +2,7 @@ import * as React from "react"
 import { createContext } from "@chakra-ui/utils"
 import { useIsomorphicEffect, useForceUpdate } from "@chakra-ui/hooks"
 
-export interface PortalsContextType {
+export interface PortalsContext {
   host: HTMLElement
   zIndex?: number
   modals: {
@@ -12,9 +12,9 @@ export interface PortalsContextType {
   }
 }
 
-const [PortalsProvider, usePortalsContext] = createContext<PortalsContextType>(
-  false,
-)
+const [PortalsProvider, usePortalsContext] = createContext<PortalsContext>({
+  strict: false,
+})
 
 export { usePortalsContext }
 

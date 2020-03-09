@@ -2,14 +2,18 @@ import { chakra } from "@chakra-ui/system"
 import { createContext } from "@chakra-ui/utils"
 import * as React from "react"
 
-const [InputGroupProvider, useInputGroup] = createContext<{
+interface InputGroupContext {
   variant: string
   variantSize: string
   hasLeftElement: boolean
   setHasLeftElement: React.Dispatch<React.SetStateAction<boolean>>
   hasRightElement: boolean
   setHasRightElement: React.Dispatch<React.SetStateAction<boolean>>
-}>(false)
+}
+
+const [InputGroupProvider, useInputGroup] = createContext<InputGroupContext>({
+  strict: false,
+})
 
 export { useInputGroup }
 

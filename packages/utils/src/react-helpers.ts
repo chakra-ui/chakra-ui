@@ -1,15 +1,29 @@
 import * as React from "react"
 import { isFunction, isString } from "./assertion"
 
-export function createContext<T>(
-  strict = true,
-  message = "useContext must be inside a Provider with a value",
-) {
+export interface CreateContextOptions {
+  /** If `true`, will throw an error if context is null or undefined */
+  strict?: boolean
+  /** Error message to throw if the context is undefined */
+  errorMessage?: string
+  /** The display name of the context */
+  name?: string
+}
+
+export function createContext<T>(options: CreateContextOptions = {}) {
+  const {
+    strict = true,
+    errorMessage = "useContext must be inside a Provider with a value",
+    name,
+  } = options
+
   const Context = React.createContext<T | undefined>(undefined)
+
+  Context.displayName = name
 
   function useContext() {
     const context = React.useContext(Context)
-    if (!context && strict) throw new Error(message)
+    if (!context && strict) throw new Error(errorMessage)
     return context
   }
 

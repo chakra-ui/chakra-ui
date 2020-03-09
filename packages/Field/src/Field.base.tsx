@@ -62,9 +62,9 @@ interface FieldProviderProps extends ControlProps {
 
 type FieldContext = ReturnType<typeof useFieldProvider>
 
-const [FieldContextProvider, useFieldContext] = createContext<FieldContext>(
-  false,
-)
+const [FieldContextProvider, useFieldContext] = createContext<FieldContext>({
+  strict: false,
+})
 
 export { useFieldContext }
 
