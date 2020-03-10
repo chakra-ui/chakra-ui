@@ -10,7 +10,7 @@ function getSubtleStyle(props: StyleFunctionProps) {
   const lightBg = getColor(t, `${c}.100`, c)
   //@ts-ignore
   const darkBg = colorEmphasis(`${c}.200`, "lowest")(t)
-  return { bg: get(props, lightBg, darkBg) }
+  return { Root: { bg: get(props, lightBg, darkBg) } }
 }
 
 function getLeftAccentStyle(props: StyleFunctionProps) {
@@ -22,7 +22,7 @@ function getLeftAccentStyle(props: StyleFunctionProps) {
       paddingLeft: 3,
       borderLeft: "4px solid",
       borderColor,
-      ...getSubtleStyle(props),
+      ...getSubtleStyle(props)["Root"],
     },
   }
 }
@@ -36,7 +36,7 @@ function getTopAccentStyle(props: StyleFunctionProps) {
       paddingTop: 2,
       borderTop: "4px solid",
       borderColor,
-      ...getSubtleStyle(props),
+      ...getSubtleStyle(props)["Root"],
     },
   }
 }

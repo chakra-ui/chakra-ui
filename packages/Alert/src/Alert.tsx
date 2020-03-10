@@ -13,6 +13,7 @@ import {
   CheckCircleIcon,
   WarningIcon,
 } from "@chakra-ui/icon-glyphs"
+import { createContext } from "@chakra-ui/utils"
 
 export const statuses = {
   info: { icon: InfoIcon, color: "blue" },
@@ -21,14 +22,9 @@ export const statuses = {
   error: { icon: WarningIcon, color: "red" },
 }
 
-const AlertContext = React.createContext<AlertContextValue>({
-  status: "success",
-  variant: "solid",
-})
+type AlertContext = Required<AlertOptions>
 
-const useAlertContext = () => React.useContext(AlertContext)
-
-type AlertContextValue = Required<AlertOptions>
+const [AlertContextProvider, useAlertContext] = createContext<AlertContext>()
 
 export interface AlertOptions {
   /**
@@ -59,7 +55,7 @@ const Alert = forwardRef((props: AlertProps, ref: React.Ref<any>) => {
 
   const context = { status, variant }
   return (
-    <AlertContext.Provider value={context}>
+    <AlertContextProvider value={context}>
       <StyledAlert
         ref={ref}
         role="alert"
@@ -67,7 +63,7 @@ const Alert = forwardRef((props: AlertProps, ref: React.Ref<any>) => {
         {...rest}
         variantColor={variantColor}
       />
-    </AlertContext.Provider>
+    </AlertContextProvider>
   )
 })
 
