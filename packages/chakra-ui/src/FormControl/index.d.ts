@@ -18,6 +18,10 @@ interface IFormControl {
    * If `true` set the form control to the disabled state.
    */
   isDisabled?: boolean;
+  /**
+   * If `true` set the form control to the read only state.
+   */
+  isReadOnly?: boolean;
 }
 
 export type FormControlProps = IFormControl & BoxProps;
