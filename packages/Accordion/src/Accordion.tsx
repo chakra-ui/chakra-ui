@@ -1,5 +1,6 @@
 import { PropsOf, createChakra } from "@chakra-ui/system"
 import { Omit, createContext } from "@chakra-ui/utils"
+import { ChevronDownIcon, IconProps } from "@chakra-ui/icon-glyphs"
 import * as React from "react"
 import {
   AccordionHookProps,
@@ -103,3 +104,21 @@ export function AccordionPanel(props: AccordionPanelProps) {
 const StyledAccordionPanel = createChakra("div", {
   themeKey: "Accordion.Panel",
 })
+
+export type AccordionIconProps = IconProps
+
+export function AccordionIcon(props: AccordionIconProps) {
+  const { isOpen, isDisabled } = useAccordionItemContext()
+  return (
+    <ChevronDownIcon
+      aria-hidden
+      focusable="false"
+      size="1.25em"
+      opacity={isDisabled ? 0.4 : 1}
+      transform={isOpen ? "rotate(-180deg)" : undefined}
+      transition="transform 0.2s"
+      transformOrigin="center"
+      {...props}
+    />
+  )
+}

@@ -4,6 +4,7 @@ import {
   AccordionButton,
   AccordionItem,
   AccordionPanel,
+  AccordionIcon,
 } from "./Accordion"
 import { chakra } from "@chakra-ui/system"
 
@@ -32,6 +33,7 @@ export const allowToggle = () => (
         <chakra.div flex="1" textAlign="left">
           Section 1 title
         </chakra.div>
+        <AccordionIcon />
       </AccordionButton>
       <AccordionPanel pb={4}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -46,6 +48,7 @@ export const allowToggle = () => (
         <chakra.div flex="1" textAlign="left">
           Section 2 title
         </chakra.div>
+        <AccordionIcon />
       </AccordionButton>
       <AccordionPanel pb={4}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -64,6 +67,7 @@ export const allowMultiple = () => (
         <chakra.div flex="1" textAlign="left">
           Section 1 title
         </chakra.div>
+        <AccordionIcon />
       </AccordionButton>
       <AccordionPanel pb={4}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -78,6 +82,7 @@ export const allowMultiple = () => (
         <chakra.div flex="1" textAlign="left">
           Section 2 title
         </chakra.div>
+        <AccordionIcon />
       </AccordionButton>
       <AccordionPanel pb={4}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
