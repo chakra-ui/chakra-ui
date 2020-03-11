@@ -37,8 +37,43 @@ stories.add("isLoaded after 1 second", () => {
   );
 });
 
+stories.add("no fade in", () => {
+  const [isLoaded, setLoaded] = React.useState(false);
+  React.useEffect(() => {
+    setTimeout(() => setLoaded(true), 1000);
+  }, []);
+
+  return (
+    <Skeleton fadeInDuration={0} width="100px" isLoaded={isLoaded}>
+      <span>Chakra ui is cool</span>
+    </Skeleton>
+  );
+});
+
 stories.add("with borderRadius", () => {
   return <Skeleton size="100px" borderRadius="100px" />;
+});
+
+stories.add("isLoaded loop", () => {
+  const [isLoaded, setLoaded] = React.useState(false);
+  React.useEffect(() => {
+    const intervalId = setInterval(() => setLoaded(x => !x), 1000);
+    return () => clearInterval(intervalId);
+  }, []);
+
+  return (
+    <Box position="relative">
+      <Box height="100px" border="solid 1px black">
+        Content
+      </Box>
+      <Skeleton width="100px" isLoaded={isLoaded}>
+        <span>Chakra ui is cool</span>
+      </Skeleton>
+      <Box height="100px" border="solid 1px black">
+        Content
+      </Box>
+    </Box>
+  );
 });
 
 stories.add("with custom speed", () => {

@@ -43,6 +43,15 @@ const getStyle = ({ colorStart, colorEnd, speed }) => css`
   }
 `;
 
+const fadeIn = keyframes`
+from { opacity: 0; }
+to   { opacity: 1; }
+`;
+
+const fadeInCss = duration => css`
+  animation: ${fadeIn} ${duration}s;
+`;
+
 const Skeleton = props => {
   const { colors } = useTheme();
   const { colorMode } = useColorMode();
@@ -52,11 +61,12 @@ const Skeleton = props => {
     colorStart = defaultStart[colorMode],
     colorEnd = defaultEnd[colorMode],
     isLoaded = false,
+    fadeInDuration = 0.2,
     speed = 1,
     ...rest
   } = props;
   if (isLoaded) {
-    return <Box {...rest} />;
+    return <Box css={fadeInCss(fadeInDuration)} {...rest} />;
   }
 
   return (
