@@ -31,7 +31,7 @@ import {
   FormErrorText,
   FormHelperText,
   FormErrorIcon,
-} from "@chakra-ui/form-control";
+} from "@chakra-ui/form-control"
 ```
 
 ## Basic Usage

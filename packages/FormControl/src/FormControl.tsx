@@ -1,11 +1,12 @@
 import { useBooleanState, useId, useIsomorphicEffect } from "@chakra-ui/hooks"
-import { PropsOf } from "@chakra-ui/system"
+import { PropsOf, createChakra, useColorModeValue } from "@chakra-ui/system"
 import {
-  callAllHandlers as compose,
+  callAllHandlers,
   createContext,
   makeDataAttr as attr,
 } from "@chakra-ui/utils"
 import * as React from "react"
+import Icon from "@chakra-ui/icon"
 
 export interface ControlProps {
   /**
@@ -80,7 +81,7 @@ function useFieldProvider(props: FieldProps) {
 
   // Generate all the required ids
   const uuid = useId()
-  const id = idProp || `input-${uuid}`
+  const id = idProp || `field-${uuid}`
 
   const labelId = `${id}-label`
   const feedbackId = `${id}-feedback`
@@ -117,9 +118,11 @@ function useFieldProvider(props: FieldProps) {
 
 //////////////////////////////////////////////////////////////////////////////
 
+const StyledField = createChakra("div")
+
 export type FieldProps = FieldProviderProps & PropsOf<"div">
 
-export const BaseField = React.forwardRef(
+export const Field = React.forwardRef(
   (props: FieldProps, ref: React.Ref<HTMLDivElement>) => {
     const {
       id,
@@ -134,7 +137,12 @@ export const BaseField = React.forwardRef(
     const fieldContext = useFieldProvider(props)
     return (
       <FieldContextProvider value={fieldContext}>
-        <div role="group" ref={ref} {...htmlProps} />
+        <StyledField
+          data-chakra-field=""
+          role="group"
+          ref={ref}
+          {...htmlProps}
+        />
       </FieldContextProvider>
     )
   },
@@ -142,12 +150,30 @@ export const BaseField = React.forwardRef(
 
 //////////////////////////////////////////////////////////////////////////////
 
-export const BaseLabel = React.forwardRef<HTMLLabelElement, PropsOf<"label">>(
+const StyledLabel = createChakra("label", {
+  themeKey: "Label",
+  baseStyle: {
+    fontSize: "md",
+    paddingRight: "12px",
+    paddingBottom: "4px",
+    opacity: 1,
+    _disabled: {
+      opacity: 0.4,
+    },
+    textAlign: "left",
+    verticalAlign: "middle",
+    display: "inline-block",
+  },
+})
+
+export type LabelProps = PropsOf<typeof StyledLabel>
+
+export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
   (props, ref) => {
     const field = useFieldContext()
 
     return (
-      <label
+      <StyledLabel
         {...props}
         ref={ref}
         data-focus={attr(field.isFocused)}
@@ -164,17 +190,41 @@ export const BaseLabel = React.forwardRef<HTMLLabelElement, PropsOf<"label">>(
 
 //////////////////////////////////////////////////////////////////////////////
 
-export const BaseRequiredIndicator = React.forwardRef<HTMLSpanElement, {}>(
+const StyledIndicator = createChakra("span", {
+  themeKey: "RequiredIndicator",
+  baseStyle: props => ({
+    marginLeft: 1,
+    color: props.colorMode === "dark" ? "red.300" : "red.500",
+  }),
+})
+
+export type RequiredIndicatorProps = PropsOf<typeof StyledIndicator>
+
+export const RequiredIndicator = React.forwardRef<HTMLSpanElement, {}>(
   (props, ref) => {
     const field = useFieldContext()
     if (!field.isRequired) return null
-    return <span aria-hidden role="presentation" ref={ref} {...props} />
+    return (
+      <StyledIndicator aria-hidden role="presentation" ref={ref} {...props} />
+    )
   },
 )
 
 //////////////////////////////////////////////////////////////////////////////
 
-export function BaseHelpText(props: PropsOf<"div">) {
+const StyledHelpText = createChakra("div", {
+  themeKey: "HelpText",
+  baseStyle: props => ({
+    marginTop: 2,
+    color: props.colorMode === "dark" ? "whiteAlpha.600" : "gray.500",
+    lineHeight: "normal",
+    fontSize: "sm",
+  }),
+})
+
+export type HelpTextProps = PropsOf<typeof StyledHelpText>
+
+export function HelpText(props: HelpTextProps) {
   const field = useFieldContext()
 
   /**
@@ -188,16 +238,33 @@ export function BaseHelpText(props: PropsOf<"div">) {
     }
   }, [])
 
-  return <div {...props} id={props.id || field.helpTextId} />
+  return <StyledHelpText {...props} id={props.id || field.helpTextId} />
 }
 
 //////////////////////////////////////////////////////////////////////////////
 
-export function BaseErrorText(props: PropsOf<"div">) {
+const StyledErrorText = createChakra("div", {
+  themeKey: "ErrorText",
+  baseStyle: props => ({
+    color: props.colorMode === "dark" ? "red.300" : "red.500",
+    marginTop: 2,
+    fontSize: "sm",
+    display: "flex",
+    alignItems: "center",
+  }),
+})
+
+export type ErrorTextProps = PropsOf<typeof StyledErrorText>
+
+export function ErrorText(props: ErrorTextProps) {
   const context = useFieldContext()
   if (!context.isInvalid) return null
   return (
-    <div {...props} aria-live="polite" id={props.id || context.feedbackId} />
+    <StyledErrorText
+      {...props}
+      aria-live="polite"
+      id={props.id || context.feedbackId}
+    />
   )
 }
 
@@ -226,7 +293,25 @@ export function useField<T extends HTMLElement>(props: FieldElementProps<T>) {
     "aria-required": props.isRequired || field?.isRequired,
     "aria-readonly": props.isReadOnly || field?.isReadOnly,
     "aria-describedby": ariaDescribedBy || undefined,
-    onFocus: compose(field?.onFocus, props.onFocus),
-    onBlur: compose(field?.onBlur, props.onBlur),
+    onFocus: callAllHandlers(field?.onFocus, props.onFocus),
+    onBlur: callAllHandlers(field?.onBlur, props.onBlur),
   }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+
+export const ErrorIcon = (props: PropsOf<typeof Icon>) => {
+  const color = useColorModeValue(`red.500`, `red.300`)
+  const field = useFieldContext()
+
+  if (!field.isInvalid) return null
+
+  return (
+    <Icon color={color} {...props}>
+      <path
+        fill="currentColor"
+        d="M11.983,0a12.206,12.206,0,0,0-8.51,3.653A11.8,11.8,0,0,0,0,12.207,11.779,11.779,0,0,0,11.8,24h.214A12.111,12.111,0,0,0,24,11.791h0A11.766,11.766,0,0,0,11.983,0ZM10.5,16.542a1.476,1.476,0,0,1,1.449-1.53h.027a1.527,1.527,0,0,1,1.523,1.47,1.475,1.475,0,0,1-1.449,1.53h-.027A1.529,1.529,0,0,1,10.5,16.542ZM11,12.5v-6a1,1,0,0,1,2,0v6a1,1,0,1,1-2,0Z"
+      />
+    </Icon>
+  )
 }

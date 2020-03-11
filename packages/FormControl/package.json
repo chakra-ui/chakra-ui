@@ -1,5 +1,5 @@
 {
-  "name": "@chakra-ui/field-base",
+  "name": "@chakra-ui/form-control",
   "version": "0.0.1",
   "description": "React component to provide validation states to form fields",
   "keywords": [
@@ -17,7 +17,7 @@
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
   "main": "dist/index.js",
-  "module": "dist/field-base.esm.js",
+  "module": "dist/form-control.esm.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"

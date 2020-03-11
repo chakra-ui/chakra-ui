@@ -1,37 +1,42 @@
 import { createChakra, PropsOf } from "@chakra-ui/system"
 import * as React from "react"
-import { ErrorText, Field, HelpText, Label } from "./Field"
-import { ControlProps, useField } from "./Field.base"
+import {
+  ErrorText,
+  Field,
+  HelpText,
+  Label,
+  useField,
+  ControlProps,
+} from "./FormControl"
 
 export default {
   title: "FormControl",
 }
 
 type OmittedTypes = "disabled" | "required" | "readOnly"
-type BaseInputProps = Omit<PropsOf<"input">, OmittedTypes> & ControlProps
+type InputProps = Omit<PropsOf<typeof StyledInput>, OmittedTypes> & ControlProps
 
-const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
-  (props, ref) => {
-    const inputProps = useField<HTMLInputElement>(props)
-    return <input ref={ref} {...inputProps} />
-  },
-)
-
-const Input = createChakra<
-  typeof BaseInput,
+// Create an input that consumes useField
+const StyledInput = createChakra<
+  "input",
   { focusBorderColor?: string; errorBorderColor?: string }
->(BaseInput)
+>("input", { themeKey: "Input" })
 
-type BaseTextAreaProps = Omit<PropsOf<"textarea">, OmittedTypes> & ControlProps
+const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+  const inputProps = useField<HTMLInputElement>(props)
+  return <StyledInput ref={ref} {...inputProps} />
+})
 
-const BaseTextarea = React.forwardRef<HTMLTextAreaElement, BaseTextAreaProps>(
+type TextAreaProps = Omit<PropsOf<"textarea">, OmittedTypes> & ControlProps
+
+// Create a textarea that consumes useField
+const StyledTextarea = createChakra("textarea")
+const Textarea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
   (props, ref) => {
     const inputProps = useField<HTMLTextAreaElement>(props)
-    return <textarea ref={ref} {...inputProps} />
+    return <StyledTextarea ref={ref} {...inputProps} />
   },
 )
-
-const Textarea = createChakra(BaseTextarea)
 
 export const InputExample = () => (
   <Field id="first-name" isRequired isInvalid>

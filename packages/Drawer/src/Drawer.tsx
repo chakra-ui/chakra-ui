@@ -35,4 +35,10 @@ export function DrawerContent(props: DialogContentProps) {
   return <DialogContent position="fixed" style={styles} {...props} />
 }
 
-export { DialogOverlay as DrawerOverlay } from "@chakra-ui/dialog"
+export {
+  DialogOverlay as DrawerOverlay,
+  DialogBody as DrawerBody,
+  DialogHeader as DrawerHeader,
+  DialogFooter as DrawerFooter,
+  DialogCloseButton as DrawerCloseButton,
+} from "@chakra-ui/dialog"

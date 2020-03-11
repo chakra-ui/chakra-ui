@@ -53,7 +53,7 @@
     "transition": "yarn workspace @chakra-ui/transition",
     "live-region": "yarn workspace @chakra-ui/live-region",
     "progress": "yarn workspace @chakra-ui/progress",
-    "field": "yarn workspace @chakra-ui/field-base",
+    "form": "yarn workspace @chakra-ui/form-control",
     "input": "yarn workspace @chakra-ui/input",
     "collapse": "yarn workspace @chakra-ui/collapse",
     "stat": "yarn workspace @chakra-ui/stat",

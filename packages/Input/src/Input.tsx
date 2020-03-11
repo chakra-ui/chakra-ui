@@ -1,5 +1,5 @@
 import * as React from "react"
-import { useField, ControlProps } from "@chakra-ui/field-base"
+import { useField, ControlProps } from "@chakra-ui/form-control"
 import {
   createChakra,
   PropsOf,
