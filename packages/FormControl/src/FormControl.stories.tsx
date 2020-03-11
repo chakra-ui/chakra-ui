@@ -1,10 +1,10 @@
 import { createChakra, PropsOf } from "@chakra-ui/system"
 import * as React from "react"
 import {
-  ErrorText,
-  Field,
-  HelpText,
-  Label,
+  FormErrorMessage,
+  FormControl,
+  FormHelperText,
+  FormLabel,
   useField,
   ControlProps,
 } from "./FormControl"
@@ -39,28 +39,26 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
 )
 
 export const InputExample = () => (
-  <Field id="first-name" isRequired isInvalid>
-    <Label>First name:</Label>
+  <FormControl id="first-name" isRequired isInvalid>
+    <FormLabel>First name:</FormLabel>
     <Input placeholder="First Name" />
-    <HelpText>Keep it very short and sweet!</HelpText>
-    <ErrorText>Your First name is invalid</ErrorText>
-  </Field>
+    <FormHelperText>Keep it very short and sweet!</FormHelperText>
+    <FormErrorMessage>Your First name is invalid</FormErrorMessage>
+  </FormControl>
 )
 
 export const TextAreaExample = () => (
-  <Field id="first-name" isInvalid>
-    <Label>First name:</Label>
-    <br />
+  <FormControl id="first-name" isInvalid>
+    <FormLabel>First name:</FormLabel>
     <Textarea placeholder="First Name" />
-    <HelpText>Keep it very short and sweet!</HelpText>
-    <ErrorText>Your First name is invalid</ErrorText>
-  </Field>
+    <FormHelperText>Keep it very short and sweet!</FormHelperText>
+    <FormErrorMessage>Your First name is invalid</FormErrorMessage>
+  </FormControl>
 )
 
 export const Styled = () => (
-  <Field id="first-name" isInvalid>
-    <Label>First name:</Label>
-    <br />
+  <FormControl id="first-name" isInvalid>
+    <FormLabel>First name:</FormLabel>
     <Input
       variant="outline"
       variantSize="sm"
@@ -68,6 +66,6 @@ export const Styled = () => (
       width="100%"
       focusBorderColor="red.200"
     />
-    <ErrorText>Your First name is invalid</ErrorText>
-  </Field>
+    <FormErrorMessage>Your First name is invalid</FormErrorMessage>
+  </FormControl>
 )

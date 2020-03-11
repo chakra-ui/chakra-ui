@@ -37,7 +37,7 @@ export interface ControlProps {
   isLoading?: boolean
 }
 
-interface FieldProviderProps extends ControlProps {
+interface FormControlContext extends ControlProps {
   /**
    * The label text used to inform users as to what information is
    * requested for a text field.
@@ -61,7 +61,7 @@ interface FieldProviderProps extends ControlProps {
   id?: string
 }
 
-type FieldContext = ReturnType<typeof useFieldProvider>
+type FieldContext = ReturnType<typeof useFormControl>
 
 const [FieldContextProvider, useFieldContext] = createContext<FieldContext>({
   strict: false,
@@ -69,7 +69,7 @@ const [FieldContextProvider, useFieldContext] = createContext<FieldContext>({
 
 export { useFieldContext }
 
-function useFieldProvider(props: FieldProps) {
+function useFormControl(props: FormControlContext) {
   const {
     id: idProp,
     isRequired,
@@ -118,12 +118,13 @@ function useFieldProvider(props: FieldProps) {
 
 //////////////////////////////////////////////////////////////////////////////
 
-const StyledField = createChakra("div")
+const StyledFormControl = createChakra("div")
 
-export type FieldProps = FieldProviderProps & PropsOf<"div">
+export type FormControlProps = FormControlContext &
+  PropsOf<typeof StyledFormControl>
 
-export const Field = React.forwardRef(
-  (props: FieldProps, ref: React.Ref<HTMLDivElement>) => {
+export const FormControl = React.forwardRef(
+  (props: FormControlProps, ref: React.Ref<HTMLDivElement>) => {
     const {
       id,
       isRequired,
@@ -134,11 +135,11 @@ export const Field = React.forwardRef(
       helperText,
       ...htmlProps
     } = props
-    const fieldContext = useFieldProvider(props)
+    const fieldContext = useFormControl(props)
     return (
       <FieldContextProvider value={fieldContext}>
-        <StyledField
-          data-chakra-field=""
+        <StyledFormControl
+          data-chakra-form-control=""
           role="group"
           ref={ref}
           {...htmlProps}
@@ -150,7 +151,7 @@ export const Field = React.forwardRef(
 
 //////////////////////////////////////////////////////////////////////////////
 
-const StyledLabel = createChakra("label", {
+const StyledFormLabel = createChakra("label", {
   themeKey: "Label",
   baseStyle: {
     fontSize: "md",
@@ -166,15 +167,16 @@ const StyledLabel = createChakra("label", {
   },
 })
 
-export type LabelProps = PropsOf<typeof StyledLabel>
+export type FormLabelProps = PropsOf<typeof StyledFormLabel>
 
-export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
+export const FormLabel = React.forwardRef<HTMLLabelElement, FormLabelProps>(
   (props, ref) => {
     const field = useFieldContext()
 
     return (
-      <StyledLabel
+      <StyledFormLabel
         {...props}
+        data-chakra-form-label=""
         ref={ref}
         data-focus={attr(field.isFocused)}
         data-disabled={attr(field.isDisabled)}
@@ -205,14 +207,20 @@ export const RequiredIndicator = React.forwardRef<HTMLSpanElement, {}>(
     const field = useFieldContext()
     if (!field.isRequired) return null
     return (
-      <StyledIndicator aria-hidden role="presentation" ref={ref} {...props} />
+      <StyledIndicator
+        data-chakra-required-indicator=""
+        aria-hidden
+        role="presentation"
+        ref={ref}
+        {...props}
+      />
     )
   },
 )
 
 //////////////////////////////////////////////////////////////////////////////
 
-const StyledHelpText = createChakra("div", {
+const StyledFormHelperText = createChakra("div", {
   themeKey: "HelpText",
   baseStyle: props => ({
     marginTop: 2,
@@ -222,13 +230,13 @@ const StyledHelpText = createChakra("div", {
   }),
 })
 
-export type HelpTextProps = PropsOf<typeof StyledHelpText>
+export type HelpTextProps = PropsOf<typeof StyledFormHelperText>
 
-export function HelpText(props: HelpTextProps) {
+export function FormHelperText(props: HelpTextProps) {
   const field = useFieldContext()
 
   /**
-   * Notify the field context when the BaseHelpText is rendered on
+   * Notify the field context when the help text is rendered on
    * screen, so we can apply the correct `aria-describedby` to the field (e.g. input, textarea)
    */
   useIsomorphicEffect(() => {
@@ -238,12 +246,18 @@ export function HelpText(props: HelpTextProps) {
     }
   }, [])
 
-  return <StyledHelpText {...props} id={props.id || field.helpTextId} />
+  return (
+    <StyledFormHelperText
+      data-chakra-form-helper-text=""
+      {...props}
+      id={props.id || field.helpTextId}
+    />
+  )
 }
 
 //////////////////////////////////////////////////////////////////////////////
 
-const StyledErrorText = createChakra("div", {
+const StyledErrorMessage = createChakra("div", {
   themeKey: "ErrorText",
   baseStyle: props => ({
     color: props.colorMode === "dark" ? "red.300" : "red.500",
@@ -254,13 +268,14 @@ const StyledErrorText = createChakra("div", {
   }),
 })
 
-export type ErrorTextProps = PropsOf<typeof StyledErrorText>
+export type FormErrorMessageProps = PropsOf<typeof StyledErrorMessage>
 
-export function ErrorText(props: ErrorTextProps) {
+export function FormErrorMessage(props: FormErrorMessageProps) {
   const context = useFieldContext()
   if (!context.isInvalid) return null
   return (
-    <StyledErrorText
+    <StyledErrorMessage
+      data-chakra-form-error-message=""
       {...props}
       aria-live="polite"
       id={props.id || context.feedbackId}
@@ -270,13 +285,13 @@ export function ErrorText(props: ErrorTextProps) {
 
 //////////////////////////////////////////////////////////////////////////////
 
-export type FieldElementProps<T extends HTMLElement> = ControlProps & {
+export type FieldHookProps<T extends HTMLElement> = ControlProps & {
   id?: string
   onFocus?: React.FocusEventHandler<T>
   onBlur?: React.FocusEventHandler<T>
 }
 
-export function useField<T extends HTMLElement>(props: FieldElementProps<T>) {
+export function useField<T extends HTMLElement>(props: FieldHookProps<T>) {
   const field = useFieldContext()
   const describedBy: string[] = []
 
@@ -300,14 +315,16 @@ export function useField<T extends HTMLElement>(props: FieldElementProps<T>) {
 
 //////////////////////////////////////////////////////////////////////////////
 
-export const ErrorIcon = (props: PropsOf<typeof Icon>) => {
+export type FormErrorIconProps = PropsOf<typeof Icon>
+
+export const FormErrorIcon = (props: FormErrorIconProps) => {
   const color = useColorModeValue(`red.500`, `red.300`)
   const field = useFieldContext()
 
   if (!field.isInvalid) return null
 
   return (
-    <Icon color={color} {...props}>
+    <Icon data-form-error-icon="" color={color} {...props}>
       <path
         fill="currentColor"
         d="M11.983,0a12.206,12.206,0,0,0-8.51,3.653A11.8,11.8,0,0,0,0,12.207,11.779,11.779,0,0,0,11.8,24h.214A12.111,12.111,0,0,0,24,11.791h0A11.766,11.766,0,0,0,11.983,0ZM10.5,16.542a1.476,1.476,0,0,1,1.449-1.53h.027a1.527,1.527,0,0,1,1.523,1.47,1.475,1.475,0,0,1-1.449,1.53h-.027A1.529,1.529,0,0,1,10.5,16.542ZM11,12.5v-6a1,1,0,0,1,2,0v6a1,1,0,1,1-2,0Z"

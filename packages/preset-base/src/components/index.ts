@@ -19,6 +19,7 @@ import Switch from "./Switch"
 import Tabs from "./Tabs"
 import Tag from "./Tag"
 import Tooltip from "./Tooltip"
+import Kbd from "./Kbd"
 
 export default {
   Accordion,
@@ -42,4 +43,5 @@ export default {
   Switch,
   Tag,
   Dialog,
+  Kbd,
 }
