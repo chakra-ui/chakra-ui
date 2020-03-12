@@ -1,56 +1,67 @@
+import { ArrowDownIcon, ArrowUpIcon } from "@chakra-ui/icon-glyphs"
+import { createChakra, PropsOf, ThemingProps } from "@chakra-ui/system"
+import { createContext } from "@chakra-ui/utils"
+import React from "react"
 import {
-  createChakra,
-  syncChild,
-  syncParent,
-  ThemingProps,
-} from "@chakra-ui/system"
-import * as React from "react"
-import {
-  BaseDecrementStepper,
-  BaseIncrementStepper,
-  BaseNumberInput,
-  BaseNumberInputField,
-  BaseStepperGroup,
-} from "./NumberInput.base"
+  NumberInputHookProps,
+  NumberInputHookReturn,
+  useNumberInput,
+} from "./NumberInput.hook"
 
-export const NumberInputStepper = createChakra(BaseStepperGroup, {
-  themeKey: "NumberInput.StepperGroup",
-  baseStyle: {
-    display: "flex",
-    flexDir: "column",
-    top: "0",
-    zIndex: 1,
-  },
-})
+type NumberInputContext = Omit<NumberInputHookReturn, "htmlProps"> &
+  ThemingProps
 
-export const $NumberInput = createChakra(BaseNumberInput, {
+const [NumberInputContextProvider, useNumberInputContext] = createContext<
+  NumberInputContext
+>()
+
+export type NumberInputProps = NumberInputHookProps &
+  Omit<PropsOf<typeof StyledRoot>, "onChange" | "value" | "defaultValue">
+
+const StyledRoot = createChakra("div", {
+  themeKey: "NumberInput.Root",
   baseStyle: {
     position: "relative",
   },
 })
 
-const commonOptions = {
-  themeKey: "NumberInput.Stepper",
-  baseStyle: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    flex: 1,
-    transition: "all 0.3s",
-    userSelect: "none",
-    cursor: "pointer",
-    lineHeight: "normal",
+export const NumberInput = React.forwardRef(
+  (props: NumberInputProps, ref: React.Ref<HTMLDivElement>) => {
+    const { htmlProps, ...context } = useNumberInput(props)
+    const { variant, variantSize, variantColor } = props
+    return (
+      <NumberInputContextProvider
+        value={{ ...context, variant, variantSize, variantColor }}
+      >
+        <StyledRoot ref={ref} data-chakra-numberinput="" {...htmlProps} />
+      </NumberInputContextProvider>
+    )
   },
-}
-
-export const $NumberIncrementStepper = createChakra(
-  BaseIncrementStepper,
-  commonOptions,
 )
 
-export const $NumberDecrementStepper = createChakra(
-  BaseDecrementStepper,
-  commonOptions,
+export const StyledStepperGroup = createChakra("div", {
+  themeKey: "NumberInput.StepperGroup",
+  baseStyle: {
+    display: "flex",
+    flexDirection: "column",
+    top: "0",
+    zIndex: 1,
+  },
+})
+
+export type NumberInputStepperProps = PropsOf<typeof StyledStepperGroup>
+
+export const NumberInputStepper = React.forwardRef(
+  (props: NumberInputStepperProps, ref: React.Ref<HTMLDivElement>) => {
+    return (
+      <StyledStepperGroup
+        ref={ref}
+        data-chakra-numberinput-stepper=""
+        aria-hidden
+        {...props}
+      />
+    )
+  },
 )
 
 interface InputOptions {
@@ -72,10 +83,7 @@ interface InputOptions {
   isFullWidth?: boolean
 }
 
-export const $NumberInputField = createChakra<
-  typeof BaseNumberInputField,
-  InputOptions
->(BaseNumberInputField, {
+const StyledInput = createChakra<"input", InputOptions>("input", {
   themeKey: "Input",
   baseStyle: {
     width: "100%",
@@ -84,23 +92,99 @@ export const $NumberInputField = createChakra<
     !["focusBorderColor", "errorBorderColor"].includes(prop),
 })
 
-$NumberInputField.defaultProps = {
+export type NumberInputFieldProps = PropsOf<typeof StyledInput>
+
+export const NumberInputField = React.forwardRef(
+  (props: NumberInputFieldProps, ref: React.Ref<HTMLInputElement>) => {
+    const {
+      getInputProps,
+      variant,
+      variantSize,
+      variantColor,
+    } = useNumberInputContext()
+    return (
+      <StyledInput
+        variant={variant}
+        variantSize={variantSize}
+        variantColor={variantColor}
+        data-chakra-numberinput-input=""
+        {...getInputProps({ ...props, ref })}
+      />
+    )
+  },
+)
+
+NumberInputField.defaultProps = {
   focusBorderColor: "blue.500",
   errorBorderColor: "red.500",
 }
 
-// Connect the parent and child components so they can share theming props.
-// This means, if you pass `variantSize` from  the parent, it'll propagate to the registered children
-const Context = React.createContext<ThemingProps>({})
+const commonOptions = {
+  themeKey: "NumberInput.Stepper",
+  baseStyle: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flex: 1,
+    transition: "all 0.3s",
+    userSelect: "none",
+    cursor: "pointer",
+    lineHeight: "normal",
+  },
+}
 
-const NumberInput = syncParent($NumberInput)(Context)
-const NumberInputField = syncChild($NumberInputField)(Context)
-const NumberDecrementStepper = syncChild($NumberDecrementStepper)(Context)
-const NumberIncrementStepper = syncChild($NumberIncrementStepper)(Context)
+export const StyledDecrementButton = createChakra("div", commonOptions)
 
-export {
-  NumberInput,
-  NumberInputField,
-  NumberDecrementStepper,
-  NumberIncrementStepper,
+export type NumberDecrementStepperProps = PropsOf<typeof StyledDecrementButton>
+
+export const NumberDecrementStepper = React.forwardRef(
+  (props: NumberDecrementStepperProps, ref: React.Ref<any>) => {
+    const {
+      getDecrementButtonProps,
+      variant,
+      variantSize,
+      variantColor,
+    } = useNumberInputContext()
+    return (
+      <StyledDecrementButton
+        variant={variant}
+        variantSize={variantSize}
+        variantColor={variantColor}
+        data-chakra-numberinput-decrement=""
+        {...getDecrementButtonProps({ ...props, ref } as any)}
+      />
+    )
+  },
+)
+
+NumberDecrementStepper.defaultProps = {
+  children: <ArrowDownIcon />,
+}
+
+const StyledIncrementButton = createChakra("div", commonOptions)
+
+export type NumberIncrementStepperProps = PropsOf<typeof StyledIncrementButton>
+
+export const NumberIncrementStepper = React.forwardRef(
+  (props: NumberIncrementStepperProps, ref: React.Ref<any>) => {
+    const {
+      getIncrementButtonProps,
+      variant,
+      variantSize,
+      variantColor,
+    } = useNumberInputContext()
+    return (
+      <StyledIncrementButton
+        variant={variant}
+        variantSize={variantSize}
+        variantColor={variantColor}
+        data-chakra-numberinput-decrement=""
+        {...getIncrementButtonProps({ ...props, ref } as any)}
+      />
+    )
+  },
+)
+
+NumberIncrementStepper.defaultProps = {
+  children: <ArrowUpIcon />,
 }

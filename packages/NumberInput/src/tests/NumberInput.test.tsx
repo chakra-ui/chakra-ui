@@ -2,23 +2,23 @@ import { userEvent, render, renderHook, fireEvent } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { useNumberInput } from "../NumberInput.hook"
 import {
-  BaseNumberInput,
-  BaseNumberInputField,
-  BaseDecrementStepper,
-  BaseIncrementStepper,
-  BaseStepperGroup,
-  BaseNumberInputProps,
-} from "../NumberInput.base"
+  NumberInput,
+  NumberInputField,
+  NumberDecrementStepper,
+  NumberIncrementStepper,
+  NumberInputStepper,
+  NumberInputProps,
+} from "../NumberInput"
 
-function Component(props: BaseNumberInputProps) {
+function Component(props: NumberInputProps) {
   return (
-    <BaseNumberInput data-testid="root" {...props}>
-      <BaseNumberInputField data-testid="input" />
-      <BaseStepperGroup data-testid="group">
-        <BaseIncrementStepper children="+" data-testid="up-btn" />
-        <BaseDecrementStepper children="-" data-testid="down-btn" />
-      </BaseStepperGroup>
-    </BaseNumberInput>
+    <NumberInput data-testid="root" {...props}>
+      <NumberInputField data-testid="input" />
+      <NumberInputStepper data-testid="group">
+        <NumberIncrementStepper children="+" data-testid="up-btn" />
+        <NumberDecrementStepper children="-" data-testid="down-btn" />
+      </NumberInputStepper>
+    </NumberInput>
   )
 }
 

@@ -1,14 +1,14 @@
 import { chakra } from "@chakra-ui/system"
 import { action } from "@storybook/addon-actions"
 import React from "react"
-import { useNumberInput } from "."
+import { useNumberInput } from "./NumberInput.hook"
 import {
-  BaseDecrementStepper,
-  BaseIncrementStepper,
-  BaseNumberInput,
-  BaseNumberInputField,
-  BaseStepperGroup,
-} from "./NumberInput.base"
+  NumberDecrementStepper,
+  NumberIncrementStepper,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+} from "./NumberInput"
 
 export default {
   title: "NumberInput",
@@ -76,11 +76,11 @@ const styles: Record<string, React.CSSProperties> = {
 }
 
 export const Base = () => (
-  <BaseNumberInput style={styles.root}>
-    <BaseNumberInputField style={styles.field} />
-    <BaseStepperGroup style={styles.group}>
-      <BaseIncrementStepper children="+" style={styles.button} />
-      <BaseDecrementStepper children="-" style={styles.button} />
-    </BaseStepperGroup>
-  </BaseNumberInput>
+  <NumberInput style={styles.root}>
+    <NumberInputField style={styles.field} />
+    <NumberInputStepper style={styles.group}>
+      <NumberIncrementStepper children="+" style={styles.button} />
+      <NumberDecrementStepper children="-" style={styles.button} />
+    </NumberInputStepper>
+  </NumberInput>
 )
