@@ -118,7 +118,7 @@ const App = ({ children }) => (
 ```
 
 Optionally, you can wrap your application with the `ColorModeProvider` so you
-can toggle beween light and dark mode within your app.
+can toggle between light and dark mode within your app.
 
 2. Now you can start using components like so!:
 
