@@ -6,8 +6,8 @@ import {
 } from "./utils"
 
 function getSolidStyle(props: StyleFunctionProps) {
-  const { variantColor: c } = props
-  const darkBg = addOpacity(`${c}.500`, 0.6)
+  const { variantColor: c, theme: t } = props
+  const darkBg = addOpacity(`${c}.500`, 0.6)(t)
   return {
     bg: get(props, `${c}.500`, darkBg),
     color: get(props, `white`, `whiteAlpha.800`),
@@ -15,9 +15,9 @@ function getSolidStyle(props: StyleFunctionProps) {
 }
 
 function getSubtleStyle(props: StyleFunctionProps) {
-  const { variantColor: c } = props
+  const { variantColor: c, theme: t } = props
   const alphaColors = generateAlphaColors(`${c}.200`)
-  const darkModeBg = alphaColors[300]
+  const darkModeBg = alphaColors[300](t)
 
   return {
     bg: get(props, `${c}.200`, darkModeBg),

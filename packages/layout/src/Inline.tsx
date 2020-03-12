@@ -1,19 +1,25 @@
 import React from "react"
-import { chakra, useTheme, css, PropsOf } from "@chakra-ui/system"
-import { cleanChildren, parseResponsiveProp } from "@chakra-ui/utils"
+import { chakra, useTheme, css, PropsOf, SystemProps } from "@chakra-ui/system"
+import {
+  cleanChildren,
+  parseResponsiveProp as responsive,
+} from "@chakra-ui/utils"
 
-type InlineProps = PropsOf<typeof chakra.div> & { spacing?: string | number }
+type InlineProps = PropsOf<typeof chakra.div> & {
+  spacing?: SystemProps["margin"]
+  justify?: SystemProps["justifyContent"]
+}
 
 export const Inline = React.forwardRef<any, InlineProps>(
-  ({ spacing = 2, children, ...props }, ref) => {
+  ({ spacing = 2, children, justify, ...props }, ref) => {
     const theme = useTheme()
 
-    const liSpacing = parseResponsiveProp(spacing, val => {
+    const liSpacing = responsive(spacing, val => {
       const { margin } = css({ margin: val })(theme)
       return `calc(${margin} / 2)`
     })
 
-    const ulSpacing = parseResponsiveProp(spacing, val => {
+    const ulSpacing = responsive(spacing, val => {
       const { margin } = css({ margin: val })(theme)
       return `calc(${margin} / 2 * -1)`
     })
@@ -33,7 +39,7 @@ export const Inline = React.forwardRef<any, InlineProps>(
         <chakra.ul
           display="flex"
           flexWrap="wrap"
-          justifyContent="flex-start"
+          justifyContent={justify}
           listStyleType="none"
           padding="0"
           margin={ulSpacing}
