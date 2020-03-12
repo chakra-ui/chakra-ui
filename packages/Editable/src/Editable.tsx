@@ -29,7 +29,7 @@ const StyledPreview = createChakra("span", { themeKey: "Editable.Preview" })
 
 export type EditablePreviewProps = PropsOf<typeof StyledPreview>
 
-export function EditablePreview(props: any) {
+export function EditablePreview(props: EditablePreviewProps) {
   const { getPreviewProps } = useEditableContext()
   return (
     <StyledPreview
