@@ -1,18 +1,18 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-const arg = require("arg");
-const inquirer = require("inquirer");
-const chalk = require("chalk");
-const editJsonFile = require("edit-json-file");
-const fs = require("fs");
-const Listr = require("listr");
-const ncp = require("ncp");
-const path = require("path");
-const { promisify } = require("util");
-const execa = require("execa");
+const arg = require("arg")
+const inquirer = require("inquirer")
+const chalk = require("chalk")
+const editJsonFile = require("edit-json-file")
+const fs = require("fs")
+const Listr = require("listr")
+const ncp = require("ncp")
+const path = require("path")
+const { promisify } = require("util")
+const execa = require("execa")
 
-const access = promisify(fs.access);
-const copy = promisify(ncp);
+const access = promisify(fs.access)
+const copy = promisify(ncp)
 
 function parseArgsIntoOptions(rawArgs) {
   const args = arg(
@@ -24,63 +24,63 @@ function parseArgsIntoOptions(rawArgs) {
     {
       argv: rawArgs.slice(2),
     },
-  );
+  )
 
-  const inlineArgs = args._;
+  const inlineArgs = args._
 
   return {
     noHook: args["--no-hook"] || false,
     asSingleFile: args["--file"] || false,
     noCopy: args["--empty"] || false,
     component: inlineArgs[0],
-  };
+  }
 }
 
 async function promptForMissingOptions(options) {
-  const questions = [];
+  const questions = []
   if (!options.component) {
     questions.push({
       type: "input",
       name: "component",
       message: "What component would you like to create",
-    });
+    })
   }
 
-  const answers = await inquirer.prompt(questions);
+  const answers = await inquirer.prompt(questions)
 
   return {
     ...options,
     component: options.component || answers.component,
-  };
+  }
 }
 
 async function copyTemplateFiles(options) {
-  const templateDir = path.resolve(__dirname, "template");
-  console.log(templateDir);
+  const templateDir = path.resolve(__dirname, "template")
+  console.log(templateDir)
 
-  options.templateDir = templateDir;
-  options.targetDir = `packages/${options.component}`;
+  options.templateDir = templateDir
+  options.targetDir = `packages/${options.component}`
 
   try {
-    await access(templateDir, fs.constants.R_OK);
+    await access(templateDir, fs.constants.R_OK)
   } catch {
-    console.error(`%s Invalid template name`, chalk.red.bold("ERROR"));
-    process.exit(1);
+    console.error(`%s Invalid template name`, chalk.red.bold("ERROR"))
+    process.exit(1)
   }
 
   return copy(options.templateDir, options.targetDir, {
     clobber: false,
-  });
+  })
 }
 
 function createFile(filePath, fileContent = "") {
   fs.writeFile(filePath, fileContent, error => {
     if (error) {
-      console.log(`Failed to create ${filePath}`, chalk.red.bold("ERROR"));
-      throw error;
+      console.log(`Failed to create ${filePath}`, chalk.red.bold("ERROR"))
+      throw error
     }
-    console.log(`Create ${filePath}`, chalk.green.bold("DONE"));
-  });
+    console.log(`Create ${filePath}`, chalk.green.bold("DONE"))
+  })
 }
 
 const hookContent = component => `
@@ -97,7 +97,7 @@ export function use${component}(props: ${component}Props){
 }
 
 export default use${component}
-`;
+`
 
 const componentContent = component => `
 import * as React from "react"
@@ -109,99 +109,98 @@ export function ${component}(props: ${component}Props){
 }
 
 export default ${component}
-`;
+`
 
 const storiesContent = component => `
 import * as React from "react"
 
 export default {
-  title: ""
+  title: "${component}"
 }
 
 export const BasicExample = () =><div>Component goes here</div>
-`;
+`
 
-function createFiles(options) {
-  if (options.asSingleFile) {
-    createFile(`${options.component}.tsx`, componentContent(options.component));
+function createFiles({ component, noHook, asSingleFile }) {
+  if (asSingleFile) {
+    createFile(`${component}.tsx`, componentContent(component))
   } else {
     const files = [
-      [`${options.component}.tsx`, componentContent],
-      [`${options.component}.stories.tsx`, storiesContent],
+      [`${component}.tsx`, componentContent],
+      [`${component}.stories.tsx`, storiesContent],
       [`index.ts`],
-    ];
+    ]
 
-    if (!options.noHook) {
-      files.push([`${options.component}.hook.tsx`, hookContent]);
+    if (!noHook) {
+      files.push([`${component}.hook.tsx`, hookContent])
     }
 
-    const fileDir = `packages/${options.component}/src/`;
+    const fileDir = `packages/${component}/src/`
     files.forEach(([file, fileContent]) => {
-      console.log(file);
-      const filePath = fileDir + file;
+      const filePath = fileDir + file
       createFile(
         filePath,
         typeof fileContent === "function"
-          ? fileContent(options.component)
+          ? fileContent(component)
           : fileContent,
-      );
-    });
+      )
+    })
   }
 }
 
 function createDirectory(options) {
-  const dir = options.component;
+  const dir = options.component
   try {
     if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir);
+      fs.mkdirSync(dir)
     }
   } catch (err) {
-    console.error(err);
+    console.error(err)
   }
 }
 
 function appendToSrc(options) {
-  let content = `export * from "./${options.component}";`;
+  let content = `export * from "./${options.component}";`
   if (!options.noHook) {
-    content = content.concat(`\nexport * from  "./${options.component}.hook";`);
+    content = content.concat(`\nexport * from  "./${options.component}.hook";`)
   }
-  const path = getPath(options);
+  const path = getPath(options)
   fs.appendFile(`${path}/src/index.ts`, content, "utf8", function(err) {
-    if (err) throw err;
-    console.log("Data is appended to file successfully.");
-  });
+    if (err) throw err
+    console.log("Data is appended to file successfully.")
+  })
 }
 
 function getPath(options) {
-  return `packages/${options.component}`;
+  return `packages/${options.component}`
 }
 
 function createPackageDir(options) {
   options = {
     ...options,
     component: getPath(options),
-  };
-  createDirectory(options);
+  }
+  createDirectory(options)
 }
 
 // Edits the package JSON file
 function editPackageJson(options) {
-  const path = getPath(options);
-  const name = options.component.toLowerCase();
-  const file = editJsonFile(`${path}/package.json`);
-  file.set("name", `@chakra-ui/${name}`);
-  file.set("module", `dist/${name}.esm.js`);
-  file.save();
+  const path = getPath(options)
+  const name = options.component.toLowerCase()
+  const file = editJsonFile(`${path}/package.json`)
+  file.set("name", `@chakra-ui/${name}`)
+  file.set("module", `dist/${name}.esm.js`)
+  file.save()
 }
 
 function editRootPackageJson(options) {
-  const name = options.component.toLowerCase();
-  const file = editJsonFile(`package.json`);
+  const name = options.component.toLowerCase()
+  const file = editJsonFile(`package.json`)
   file.set(
     `scripts.${options.component.toLowerCase()}`,
     `yarn workspace @chakra-ui/${name}`,
-  );
-  file.save();
+  )
+  file.save()
 }
 
 async function createPackage(options) {
@@ -234,24 +233,24 @@ async function createPackage(options) {
       task: async () => {
         const result = await execa("yarn", ["install"], {
           cwd: process.cwd(),
-        });
+        })
         if (result.failed) {
-          return Promise.reject(new Error("Failed to run yarn install"));
+          return Promise.reject(new Error("Failed to run yarn install"))
         }
       },
     },
-  ]);
+  ])
 
-  await tasks.run();
+  await tasks.run()
 
-  console.log("%s Project ready", chalk.green.bold("DONE"));
-  return true;
+  console.log("%s Project ready", chalk.green.bold("DONE"))
+  return true
 }
 
 async function run(args) {
-  let options = parseArgsIntoOptions(args);
-  options = await promptForMissingOptions(options);
-  await createPackage(options);
+  let options = parseArgsIntoOptions(args)
+  options = await promptForMissingOptions(options)
+  await createPackage(options)
 }
 
-run(process.argv);
+run(process.argv)

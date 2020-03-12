@@ -68,7 +68,8 @@
     "styled": "yarn workspace @chakra-ui/styled",
     "parser": "yarn workspace @chakra-ui/parser",
     "color-mode": "yarn workspace @chakra-ui/color-mode",
-    "drawer": "yarn workspace @chakra-ui/drawer"
+    "drawer": "yarn workspace @chakra-ui/drawer",
+    "textarea": "yarn workspace @chakra-ui/textarea"
   },
   "czConfig": {
     "path": "node_modules/cz-conventional-changelog"

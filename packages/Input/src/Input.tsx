@@ -6,15 +6,6 @@ import { useInputGroup } from "./Input.group"
 
 type OmittedTypes = "disabled" | "required" | "readOnly"
 
-type BaseInputProps = Omit<PropsOf<"input">, OmittedTypes> & ControlProps
-
-const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
-  (props, ref) => {
-    const inputProps = useField<HTMLInputElement>(props)
-    return <input ref={ref} {...inputProps} />
-  },
-)
-
 interface InputOptions {
   /**
    * The border color when the input is focused. Use color keys in `theme.colors`
@@ -34,7 +25,10 @@ interface InputOptions {
   isFullWidth?: boolean
 }
 
-const StyledInput = createChakra<typeof BaseInput, InputOptions>(BaseInput, {
+export type InputProps = Omit<PropsOf<typeof StyledInput>, OmittedTypes> &
+  ControlProps
+
+const StyledInput = createChakra<"input", InputOptions>("input", {
   themeKey: "Input",
   shouldForwardProp: prop =>
     !["focusBorderColor", "errorBorderColor"].includes(prop),
@@ -42,8 +36,9 @@ const StyledInput = createChakra<typeof BaseInput, InputOptions>(BaseInput, {
 
 StyledInput.displayName = "StyledInput"
 
-const Input = React.forwardRef(
-  (props: PropsOf<typeof StyledInput>, ref: React.Ref<HTMLInputElement>) => {
+export const Input = React.forwardRef(
+  (props: InputProps, ref: React.Ref<HTMLInputElement>) => {
+    const inputProps = useField<HTMLInputElement>(props)
     const group = useInputGroup()
 
     const variant = group?.variant || props.variant
@@ -58,11 +53,11 @@ const Input = React.forwardRef(
     return (
       <StyledInput
         ref={ref}
-        {...(group?.hasRightElement && { paddingRight: height })}
-        {...(group?.hasLeftElement && { paddingLeft: height })}
-        {...props}
+        {...inputProps}
         variant={variant}
         variantSize={variantSize}
+        {...(group?.hasRightElement && { paddingRight: height })}
+        {...(group?.hasLeftElement && { paddingLeft: height })}
       />
     )
   },
@@ -75,5 +70,3 @@ Input.defaultProps = {
   focusBorderColor: "blue.500",
   errorBorderColor: "red.500",
 }
-
-export default Input

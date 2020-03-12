@@ -1,9 +1,13 @@
 import { chakra } from "@chakra-ui/system"
 import * as React from "react"
-import Input from "./Input"
-import { InputLeftAddon, InputRightAddon } from "./Input.addon"
-import { InputLeftElement, InputRightElement } from "./Input.element"
-import InputGroup from "./Input.group"
+import {
+  Input,
+  InputLeftAddon,
+  InputRightAddon,
+  InputLeftElement,
+  InputRightElement,
+  InputGroup,
+} from "."
 
 export default {
   title: "Input",

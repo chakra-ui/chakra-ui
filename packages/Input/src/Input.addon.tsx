@@ -26,7 +26,9 @@ function getPlacementStyles(placement: Placement) {
 
 const StyledAddon = createChakra("div", { themeKey: "Input" })
 
-type InputAddonProps = PropsOf<typeof StyledAddon> & { placement?: Placement }
+export type InputAddonProps = PropsOf<typeof StyledAddon> & {
+  placement?: Placement
+}
 
 export function InputAddon({ placement = "left", ...props }: InputAddonProps) {
   const bg = useColorModeValue(`gray.100`, `whiteAlpha.300`)

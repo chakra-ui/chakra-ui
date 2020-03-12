@@ -3,40 +3,46 @@ import { useInputGroup } from "./Input.group"
 import { chakra, useComponentStyle, PropsOf } from "@chakra-ui/system"
 import { useIsomorphicEffect } from "@chakra-ui/hooks"
 
-const InputElement = React.forwardRef((props: any, ref: React.Ref<any>) => {
-  const { placement = "left", ...rest } = props
+export type InputElementProps = PropsOf<typeof chakra.div> & {
+  placement?: "left" | "right"
+}
 
-  const { variant, variantSize } = useInputGroup()
+export const InputElement = React.forwardRef(
+  (props: InputElementProps, ref: React.Ref<any>) => {
+    const { placement = "left", ...rest } = props
 
-  const { height, fontSize } = useComponentStyle({
-    themeKey: "Input",
-    variant,
-    variantSize,
-  })
+    const { variant, variantSize } = useInputGroup()
 
-  const placementProp = { [placement]: "0" }
+    const { height, fontSize } = useComponentStyle({
+      themeKey: "Input",
+      variant,
+      variantSize,
+    })
 
-  return (
-    <chakra.div
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      position="absolute"
-      height={height}
-      minWidth={height}
-      fontSize={fontSize}
-      top="0"
-      zIndex={2}
-      ref={ref}
-      {...placementProp}
-      {...rest}
-    />
-  )
-})
+    const placementProp = { [placement]: "0" }
+
+    return (
+      <chakra.div
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        position="absolute"
+        height={height}
+        minWidth={height}
+        fontSize={fontSize}
+        top="0"
+        zIndex={2}
+        ref={ref}
+        {...placementProp}
+        {...rest}
+      />
+    )
+  },
+)
 
 InputElement.displayName = "InputElement"
 
-const InputLeftElement = React.forwardRef(
+export const InputLeftElement = React.forwardRef(
   (props: PropsOf<typeof InputElement>, ref: React.Ref<HTMLDivElement>) => {
     const group = useInputGroup()
 
@@ -53,7 +59,7 @@ const InputLeftElement = React.forwardRef(
 
 InputLeftElement.displayName = "InputLeftElement"
 
-const InputRightElement = React.forwardRef(
+export const InputRightElement = React.forwardRef(
   (props: PropsOf<typeof InputElement>, ref: React.Ref<HTMLDivElement>) => {
     const group = useInputGroup()
 
@@ -69,6 +75,3 @@ const InputRightElement = React.forwardRef(
 )
 
 InputRightElement.displayName = "InputRightElement"
-
-export { InputLeftElement, InputRightElement }
-export default InputElement
