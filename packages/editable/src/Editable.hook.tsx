@@ -111,7 +111,9 @@ export function useEditable(props: EditableHookProps) {
   const onChange = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const { value } = event.target
-      if (!isControlled) setValue(value)
+      if (!isControlled) {
+        setValue(value)
+      }
       onChangeProp?.(value)
     },
     [onChangeProp, isControlled],

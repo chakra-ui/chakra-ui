@@ -2,20 +2,24 @@
 
 exports[`should match snapshot 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    class="css-0"
+    data-chakra-editable=""
+  >
     <span
+      class="css-0"
+      data-chakra-editable-preview=""
       data-testid="preview"
     >
       testing
     </span>
     <input
+      class="css-0"
+      data-chakra-editable-input=""
       data-testid="input"
       hidden=""
       value="testing"
     />
   </div>
-  <div
-    class="__chakra--portal-manager"
-  />
 </DocumentFragment>
 `;
