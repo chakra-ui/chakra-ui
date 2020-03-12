@@ -1,8 +1,16 @@
 import * as React from "react"
-import { storiesOf } from "@storybook/react"
+import { toast } from "./Toast.class"
 
 export default {
   title: "Toast",
 }
 
-export const Default = () => <div>Let's show the toaster</div>
+export const basic = () => (
+  <button
+    onClick={() => {
+      toast.notify("This is a toast, mehn!", { position: "bottom" })
+    }}
+  >
+    Add Toast
+  </button>
+)

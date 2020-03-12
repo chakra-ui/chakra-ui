@@ -1,42 +1,25 @@
 import * as React from "react"
-import Transition from "react-transition-group/Transition"
-import { TransitionContext, TransitionProps } from "./Transition.utils"
+import { Transition, TransitionProps, TransitionStyles } from "./Transition"
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface FadeProps extends TransitionProps {}
+export type FadeProps = Omit<TransitionProps, "styles" | "timeout"> & {
+  timeout?: number
+}
 
-const transitionStyles = {
+const styles: TransitionStyles = {
   init: { opacity: 0 },
   entered: { opacity: 1 },
   exiting: { opacity: 0 },
 }
 
-type TransitionState = keyof typeof transitionStyles
-
 export function Fade(props: FadeProps) {
-  const { children, in: inProp, timeout = 250, ...rest } = props
-  const computeStyle = (state: TransitionState) => ({
-    ...transitionStyles.init,
-    transition: `all ${timeout}ms cubic-bezier(0.175, 0.885, 0.320, 1.175)`,
-    ...transitionStyles[state],
-  })
-
+  const { timeout = 250, ...rest } = props
   return (
     <Transition
-      appear
-      in={inProp}
+      transition={`all ${timeout}ms cubic-bezier(0.175, 0.885, 0.320, 1.175)`}
+      styles={styles}
       timeout={{ enter: 50, exit: timeout }}
-      unmountOnExit
       {...rest}
-    >
-      {(state: TransitionState) => (
-        <TransitionContext.Provider value={computeStyle(state)}>
-          {typeof children === "function"
-            ? children(computeStyle(state))
-            : children}
-        </TransitionContext.Provider>
-      )}
-    </Transition>
+    />
   )
 }
 

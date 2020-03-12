@@ -1,12 +1,7 @@
-import * as React from "react"
-import { useField, ControlProps } from "@chakra-ui/form-control"
-import {
-  createChakra,
-  PropsOf,
-  forwardRef,
-  useComponentStyle,
-} from "@chakra-ui/system"
+import { ControlProps, useField } from "@chakra-ui/form-control"
+import { createChakra, PropsOf, useComponentStyle } from "@chakra-ui/system"
 import { Omit } from "@chakra-ui/utils"
+import * as React from "react"
 import { useInputGroup } from "./Input.group"
 
 type OmittedTypes = "disabled" | "required" | "readOnly"

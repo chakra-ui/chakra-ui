@@ -1,12 +1,12 @@
 import * as React from "react"
 import { createThemeContext, useTheme } from "@chakra-ui/system"
-import toast from "toasted-notes"
-import { MessageOptionalOptions } from "toasted-notes/lib/ToastManager"
+import { toast } from "./Toast.class"
+import { ToastOptions, Callback } from "./Toast.types"
 
 export interface NotifyOptions {
-  position: MessageOptionalOptions["position"]
-  duration: MessageOptionalOptions["duration"]
-  render?(props: { onClose(): void; id: string }): JSX.Element
+  position: ToastOptions["position"]
+  duration: ToastOptions["duration"]
+  render?(props: Callback): React.ReactNode
   title?: string
   description?: string
   isClosable?: string
@@ -31,9 +31,7 @@ export function useToast() {
 
     if (render) {
       return toast.notify(
-        ({ onClose, id }) => (
-          <ThemeProvider>{render({ onClose, id })}</ThemeProvider>
-        ),
+        props => <ThemeProvider>{render(props)}</ThemeProvider>,
         options,
       )
     }

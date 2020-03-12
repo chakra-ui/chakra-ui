@@ -1,9 +1,11 @@
 import React from "react"
-import Transition from "react-transition-group/Transition"
-import { TransitionContext, TransitionProps } from "./Transition.utils"
+import { Transition, TransitionProps } from "./Transition"
 
-interface SlideFadeProps extends TransitionProps {
+export type SlideFadeProps = Omit<TransitionProps, "styles" | "timeout"> & {
+  /** The initial offset to slide from */
   initialOffset?: string
+  /** The transition timeout */
+  timeout?: number
 }
 
 function getTransitionStyles(initialOffset: string) {
@@ -14,7 +16,7 @@ function getTransitionStyles(initialOffset: string) {
     },
     entered: {
       opacity: 1,
-      transform: "translateY(0px)",
+      transform: `translateY(0px)`,
     },
     exiting: {
       opacity: 0,
@@ -24,45 +26,16 @@ function getTransitionStyles(initialOffset: string) {
 }
 
 export const SlideFade = (props: SlideFadeProps) => {
-  const {
-    in: inProp,
-    initialOffset = "20px",
-    timeout = 150,
-    children,
-    ...rest
-  } = props
+  const { initialOffset = "20px", timeout = 150, ...rest } = props
 
-  const transitionStyles = getTransitionStyles(initialOffset)
-
-  const rootStyle = {
-    transition: `all ${timeout}ms cubic-bezier(0.4, 0.14, 0.3, 1)`,
-  }
-
-  type TransitionState = keyof typeof transitionStyles
-
-  const computeStyle = (state: TransitionState) => ({
-    ...rootStyle,
-    ...transitionStyles.init,
-    ...transitionStyles[state],
-  })
+  const styles = getTransitionStyles(initialOffset)
 
   return (
     <Transition
-      appear
-      in={inProp}
+      styles={styles}
+      transition={`all ${timeout}ms cubic-bezier(0.4, 0.14, 0.3, 1)`}
       timeout={{ enter: 50, exit: timeout }}
-      unmountOnExit
       {...rest}
-    >
-      {(state: TransitionState) => (
-        <TransitionContext.Provider value={computeStyle(state)}>
-          {typeof children === "function"
-            ? children(computeStyle(state))
-            : children}
-        </TransitionContext.Provider>
-      )}
-    </Transition>
+    />
   )
 }
-
-export default SlideFade

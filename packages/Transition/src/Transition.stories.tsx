@@ -1,9 +1,5 @@
 import * as React from "react"
-import ScaleFade from "./ScaleFade"
-import { useTransitionStyle } from "./Transition.utils"
-import SlideFade from "./SlideFade"
-import Fade from "./Fade"
-import Slide from "./Slide"
+import { ScaleFade, SlideFade, Fade, Slide } from "."
 
 export default {
   title: "Transition",
@@ -16,25 +12,21 @@ const modalStyles: React.CSSProperties = {
   width: "50%",
   maxWidth: "630px",
   minWidth: "320px",
+  background: "red",
+  minHeight: 300,
   height: "auto",
   backfaceVisibility: "hidden",
   transform: `translateX(-50%) translateY(-50%)`,
 }
 
-function Modal(props: any) {
-  const styles = useTransitionStyle()
+type DivProps = React.HTMLAttributes<HTMLDivElement>
 
-  const allStyle: React.CSSProperties = {
-    background: "red",
-    minHeight: 300,
-    ...modalStyles,
-    ...styles,
-    transform: styles.transform
-      ? `${modalStyles.transform} ${styles.transform}`
-      : `${modalStyles.transform}`,
-  }
-
-  return <div {...props} style={allStyle} children="Animate me" />
+function Modal(props: DivProps) {
+  return (
+    <div {...props} style={{ ...modalStyles, ...props.style }}>
+      Animate me
+    </div>
+  )
 }
 
 export function ScaleFadeExample() {
@@ -43,7 +35,16 @@ export function ScaleFadeExample() {
     <>
       <button onClick={() => setIsOpen(p => !p)}>Click Me</button>
       <ScaleFade in={isOpen}>
-        <Modal />
+        {styles => (
+          <Modal
+            style={{
+              ...styles,
+              transform: styles.transform
+                ? `${modalStyles.transform} ${styles.transform}`
+                : `${modalStyles.transform}`,
+            }}
+          />
+        )}
       </ScaleFade>
     </>
   )
@@ -55,7 +56,16 @@ export function SlideFadeExample() {
     <>
       <button onClick={() => setIsOpen(p => !p)}>Click Me</button>
       <SlideFade in={isOpen}>
-        <Modal />
+        {styles => (
+          <Modal
+            style={{
+              ...styles,
+              transform: styles.transform
+                ? `${modalStyles.transform} ${styles.transform}`
+                : `${modalStyles.transform}`,
+            }}
+          />
+        )}
       </SlideFade>
     </>
   )
@@ -66,23 +76,17 @@ export function FadeExample() {
   return (
     <>
       <button onClick={() => setIsOpen(p => !p)}>Click Me</button>
-      <Fade in={isOpen}>
-        <Modal />
-      </Fade>
+      <Fade in={isOpen}>{styles => <Modal style={styles} />}</Fade>
     </>
   )
 }
 
-function Drawer(props: any) {
-  const styles = useTransitionStyle()
-
-  const allStyle: React.CSSProperties = {
-    background: "red",
-    position: "fixed",
-    ...styles,
-  }
-
-  return <div {...props} style={allStyle} children="Animate me" />
+function Drawer(props: DivProps) {
+  return (
+    <div {...props} style={{ background: "red", ...props.style }}>
+      Animate Me
+    </div>
+  )
 }
 
 export function SlideExample() {
@@ -91,7 +95,7 @@ export function SlideExample() {
     <>
       <button onClick={() => setIsOpen(p => !p)}>Click Me</button>
       <Slide placement="bottom" in={isOpen}>
-        <Drawer />
+        {styles => <Drawer style={styles} />}
       </Slide>
     </>
   )

@@ -1,24 +1,13 @@
 import React from "react"
-import { Transition } from "react-transition-group"
-import { TransitionContext, TransitionProps } from "./Transition.utils"
+import { Transition, TransitionProps } from "./Transition"
 
-type Placement = "left" | "right" | "bottom" | "top"
+export type Placement = "left" | "right" | "bottom" | "top"
 
-interface CreateBaseStyleProps {
-  placement: Placement
-  finalHeight?: string | number
-  finalWidth?: string | number
-}
-
-function createBaseStyle(
-  props: CreateBaseStyleProps,
-): React.CSSProperties | undefined {
-  const { placement, finalHeight, finalWidth } = props
+function createBaseStyle(placement: Placement) {
   switch (placement) {
     case "bottom": {
       return {
         maxWidth: "100vw",
-        height: finalHeight,
         bottom: 0,
         left: 0,
         right: 0,
@@ -27,7 +16,6 @@ function createBaseStyle(
     case "top": {
       return {
         maxWidth: "100vw",
-        height: finalHeight,
         top: 0,
         left: 0,
         right: 0,
@@ -36,7 +24,6 @@ function createBaseStyle(
     case "left": {
       return {
         width: "100%",
-        ...(finalWidth && { maxWidth: finalWidth }),
         height: "100vh",
         left: 0,
         top: 0,
@@ -45,7 +32,6 @@ function createBaseStyle(
     case "right": {
       return {
         width: "100%",
-        ...(finalWidth && { maxWidth: finalWidth }),
         right: 0,
         top: 0,
         height: "100vh",
@@ -63,7 +49,7 @@ const getTransformStyle = (placement: Placement, value: string) => {
   return `translate${axis}(${value})`
 }
 
-function createTransitionStyles(placement: Placement) {
+function getTransitionStyles(placement: Placement) {
   const offset = {
     bottom: "100%",
     top: "-100%",
@@ -73,68 +59,41 @@ function createTransitionStyles(placement: Placement) {
 
   return {
     init: {
-      opacity: 0,
       transform: getTransformStyle(placement, offset[placement]),
     },
-    entered: { opacity: 1, transform: getTransformStyle(placement, "0%") },
+    entered: { transform: getTransformStyle(placement, "0%") },
     exiting: {
-      opacity: 0,
       transform: getTransformStyle(placement, offset[placement]),
     },
   }
 }
 
-export interface SlideProps extends TransitionProps {
+export type SlideProps = Omit<TransitionProps, "styles" | "timeout"> & {
+  /** The direction to slide drawer from */
   placement?: Placement
+  /** The transition timeout */
+  timeout?: number
 }
 
 export function Slide(props: SlideProps) {
-  const {
-    children,
-    in: inProp,
-    placement = "left",
-    timeout = 250,
-    ...rest
-  } = props
+  const { placement = "left", timeout = 250, children, ...rest } = props
 
-  const transitionStyles = createTransitionStyles(placement)
+  const styles = getTransitionStyles(placement)
 
-  type TransitionState = keyof typeof transitionStyles
-
-  const baseStyle = createBaseStyle({
-    placement,
-    finalWidth: "400px",
-    finalHeight: "400px",
-  })
-
-  const rootStyle: React.CSSProperties = {
+  const positionStyles: React.CSSProperties = {
     position: "fixed",
     willChange: "transform",
-    transition: `all ${timeout}ms cubic-bezier(0, 0, 0.2, 1)`,
+    ...createBaseStyle(placement),
   }
-
-  const computeStyle = (state: TransitionState) => ({
-    ...rootStyle,
-    ...baseStyle,
-    ...transitionStyles.init,
-    ...transitionStyles[state],
-  })
 
   return (
     <Transition
-      appear
-      in={inProp}
+      styles={styles}
+      transition={`all ${timeout}ms cubic-bezier(0, 0, 0.2, 1)`}
       timeout={{ enter: 50, exit: timeout }}
-      unmountOnExit
       {...rest}
     >
-      {(state: TransitionState) => (
-        <TransitionContext.Provider value={computeStyle(state)}>
-          {typeof children === "function"
-            ? children(computeStyle(state))
-            : children}
-        </TransitionContext.Provider>
-      )}
+      {styles => children({ ...positionStyles, ...styles })}
     </Transition>
   )
 }
