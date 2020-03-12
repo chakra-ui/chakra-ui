@@ -5,30 +5,47 @@ import {
   EditableHookReturn,
 } from "./Editable.hook"
 import { createContext } from "@chakra-ui/utils"
+import { createChakra, PropsOf } from "@chakra-ui/system"
 
 type EditableContext = Omit<EditableHookReturn, "htmlProps">
+
 const [EditableProvider, useEditableContext] = createContext<EditableContext>()
 
-type BaseEditableProps = EditableHookProps &
-  Omit<React.ComponentProps<"div">, "onChange" | "value">
+const StyledEditable = createChakra("div", { themeKey: "Editable.Root" })
 
-export function BaseEditable(props: BaseEditableProps) {
+export type EditableProps = EditableHookProps &
+  Omit<PropsOf<typeof StyledEditable>, "onChange" | "value">
+
+export function Editable(props: EditableProps) {
   const { htmlProps, ...context } = useEditable(props)
   return (
     <EditableProvider value={context}>
-      <div {...htmlProps} />
+      <StyledEditable data-chakra-editable="" {...htmlProps} />
     </EditableProvider>
   )
 }
 
-export function BaseEditablePreview(props: any) {
+const StyledPreview = createChakra("span", { themeKey: "Editable.Preview" })
+
+export type EditablePreviewProps = PropsOf<typeof StyledPreview>
+
+export function EditablePreview(props: any) {
   const { getPreviewProps } = useEditableContext()
-  return <span {...getPreviewProps(props)} />
+  return (
+    <StyledPreview
+      data-chakra-editable-preview=""
+      {...getPreviewProps(props)}
+    />
+  )
 }
 
-export function BaseEditableInput(props: any) {
+const StyledInput = createChakra("input", { themeKey: "Editable.Input" })
+
+export type EditableInputProps = PropsOf<typeof StyledInput>
+
+export function EditableInput(props: any) {
   const { getInputProps } = useEditableContext()
-  return <input {...getInputProps(props)} />
+  return <StyledInput data-chakra-editable-input="" {...getInputProps(props)} />
 }
 
 export function useEditableState() {

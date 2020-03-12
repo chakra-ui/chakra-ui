@@ -1,8 +1,8 @@
 import React from "react"
 import {
-  BaseEditable,
-  BaseEditableInput,
-  BaseEditablePreview,
+  Editable,
+  EditableInput,
+  EditablePreview,
   useEditableState,
 } from "./Editable"
 import { useEditable } from "./Editable.hook"
@@ -36,7 +36,7 @@ export const HookExample = () => {
   )
 }
 
-const BaseEditableControls = () => {
+const EditableControls = () => {
   const { isEditing, onEdit, onSubmit, onCancel } = useEditableState()
   return (
     <div>
@@ -53,9 +53,9 @@ const BaseEditableControls = () => {
 }
 
 export const BaseComponents = () => (
-  <BaseEditable defaultValue="testing">
-    <BaseEditablePreview />
-    <BaseEditableInput />
-    <BaseEditableControls />
-  </BaseEditable>
+  <Editable defaultValue="testing">
+    <EditablePreview />
+    <EditableInput />
+    <EditableControls />
+  </Editable>
 )
