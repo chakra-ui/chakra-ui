@@ -35,7 +35,6 @@
     "dequal": "1.0.0",
     "memoize-one": "5.1.1",
     "css-box-model": "1.2.0",
-    "tiny-invariant": "1.0.6",
     "deepmerge": "4.2.2"
   },
   "devDependencies": {

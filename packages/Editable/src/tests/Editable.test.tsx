@@ -1,17 +1,13 @@
 import * as React from "react"
 import { render } from "@chakra-ui/test-utils"
-import {
-  BaseEditable,
-  BaseEditableInput,
-  BaseEditablePreview,
-} from "../Editable"
+import { Editable, EditableInput, EditablePreview } from "../Editable"
 
 test("should match snapshot", () => {
   const utils = render(
-    <BaseEditable defaultValue="testing">
-      <BaseEditablePreview data-testid="preview" />
-      <BaseEditableInput data-testid="input" />
-    </BaseEditable>,
+    <Editable defaultValue="testing">
+      <EditablePreview data-testid="preview" />
+      <EditableInput data-testid="input" />
+    </Editable>,
   )
 
   expect(utils.asFragment()).toMatchSnapshot()
@@ -19,10 +15,10 @@ test("should match snapshot", () => {
 
 test("should render properly", () => {
   const utils = render(
-    <BaseEditable defaultValue="testing">
-      <BaseEditablePreview data-testid="preview" />
-      <BaseEditableInput data-testid="input" />
-    </BaseEditable>,
+    <Editable defaultValue="testing">
+      <EditablePreview data-testid="preview" />
+      <EditableInput data-testid="input" />
+    </Editable>,
   )
 
   const preview = utils.getByTestId("preview")

@@ -26,27 +26,9 @@ export const Inline = () => (
   </Stack>
 )
 
-export const Reversed = () => (
-  <Stack direction="column" isReversed spacing="40px" w="100%">
-    <Box w="100%" h="40px" bg="yellow.200">
-      1
-    </Box>
-    <Box w="100%" h="40px" bg="tomato">
-      2
-    </Box>
-    <Box w="100%" h="40px" bg="pink.100">
-      3
-    </Box>
-  </Stack>
-)
-
-export const WithDivider = () => (
+export const Responsive = () => (
   <>
-    <Stack
-      isInline
-      divider={<StackDivider borderColor="red.200" />}
-      spacing="40px"
-    >
+    <Stack direction={["column", "row"]} spacing="40px" w="100%">
       <Box w="100%" h="40px" bg="yellow.200">
         1
       </Box>
@@ -58,7 +40,45 @@ export const WithDivider = () => (
       </Box>
     </Stack>
 
-    <Stack divider={<StackDivider borderColor="red.200" />} spacing="40px">
+    <Stack
+      mt={10}
+      direction={["column", "row"]}
+      divider={<StackDivider borderColor="red.200" />}
+      spacing={4}
+    >
+      <Box w="100%" h="40px" bg="yellow.200">
+        1
+      </Box>
+      <Box w="100%" h="40px" bg="tomato">
+        2
+      </Box>
+      <Box w="100%" h="40px" bg="pink.100">
+        3
+      </Box>
+    </Stack>
+  </>
+)
+
+export const WithDivider = () => (
+  <>
+    <Stack divider={<StackDivider borderColor="red.200" />} spacing={4}>
+      <Box w="100%" h="40px" bg="yellow.200">
+        1
+      </Box>
+      <Box w="100%" h="40px" bg="tomato">
+        2
+      </Box>
+      <Box w="100%" h="40px" bg="pink.100">
+        3
+      </Box>
+    </Stack>
+
+    <Stack
+      mt={10}
+      direction="row"
+      divider={<StackDivider borderColor="red.200" />}
+      spacing={4}
+    >
       <Box w="100%" h="40px" bg="yellow.200">
         1
       </Box>
@@ -89,7 +109,7 @@ function Feature({ title, desc, ...rest }: any) {
 }
 
 export const WithContent = () => (
-  <Stack direction="row" isReversed spacing={8}>
+  <Stack direction="row" spacing={8}>
     <Feature
       title="Plan Money"
       desc="The future can be even brighter but a goal without a plan is just a wish"
