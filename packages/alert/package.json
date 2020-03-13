@@ -1,0 +1,62 @@
+{
+  "name": "@chakra-ui/alert",
+  "version": "0.0.1",
+  "description": "A React and Chakra component used to alert users of a particular screen area that needs user action",
+  "keywords": [
+    "alert",
+    "notice",
+    "react",
+    "chakra ui",
+    "ui",
+    "component"
+  ],
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/alert.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --env=jsdom",
+    "lint": "tsdx lint src",
+    "version": "yarn build"
+  },
+  "devDependencies": {
+    "@types/jest": "25.1.4",
+    "@types/react": "16.9.23",
+    "@types/react-dom": "16.9.5",
+    "husky": "4.2.3",
+    "react": "16.13.0",
+    "react-dom": "16.13.0",
+    "ts-jest": "25.2.1",
+    "tsdx": "0.12.3",
+    "tslib": "1.11.1",
+    "typescript": "3.8.3"
+  },
+  "dependencies": {
+    "@chakra-ui/icon": "0.0.1",
+    "@chakra-ui/system": "0.0.1",
+    "@chakra-ui/icons": "0.0.1",
+    "@chakra-ui/utils": "0.0.1"
+  },
+  "peerDependencies": {
+    "react": "16.x",
+    "react-dom": "16.x"
+  }
+}

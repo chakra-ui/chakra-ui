@@ -1,0 +1,60 @@
+{
+  "name": "@chakra-ui/descendant",
+  "version": "0.0.1",
+  "description": "description",
+  "keywords": [
+    "theme",
+    "theming",
+    "ui mode",
+    "ui"
+  ],
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/descendant.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --env=jsdom",
+    "lint": "tsdx lint src",
+    "version": "yarn build"
+  },
+  "devDependencies": {
+    "@types/jest": "25.1.4",
+    "@types/react": "16.9.23",
+    "@types/react-dom": "16.9.5",
+    "husky": "4.2.3",
+    "react": "16.13.0",
+    "react-dom": "16.13.0",
+    "ts-jest": "25.2.1",
+    "tsdx": "0.12.3",
+    "tslib": "1.11.1",
+    "typescript": "3.8.3"
+  },
+  "dependencies": {
+    "@chakra-ui/hooks": "0.0.1"
+  },
+  "peerDependencies": {
+    "@emotion/core": "10.x",
+    "@emotion/styled": "10.x",
+    "emotion-theming": "10.x",
+    "react": "16.x",
+    "react-dom": "16.x"
+  }
+}

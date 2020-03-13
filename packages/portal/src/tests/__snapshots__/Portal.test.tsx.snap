@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render nested portal 1`] = `
+<DocumentFragment>
+  <div
+    class="chakra-portal-manager"
+  >
+    <div
+      class="chakra-portal"
+    >
+      This is a portal.
+      <div
+        class="chakra-portal"
+      >
+        This is a nested portal
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`should render portal 1`] = `
+<DocumentFragment>
+  <div
+    class="chakra-portal-manager"
+  >
+    <div
+      class="chakra-portal"
+    >
+      This is a portal
+    </div>
+  </div>
+</DocumentFragment>
+`;
