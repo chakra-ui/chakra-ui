@@ -6,11 +6,11 @@ import {
   useColorMode,
   Link,
   Stack,
-} from "@chakra-ui/core";
-import { jsx } from "@emotion/core";
-import { DiGithubBadge } from "react-icons/di";
-import Logo from "./Logo";
-import { Container } from "../pages";
+} from "@chakra-ui/core"
+import { jsx } from "@emotion/core"
+import { DiGithubBadge } from "react-icons/di"
+import Logo from "./Logo"
+import { Container } from "../pages"
 
 const StorybookIcon = props => (
   <svg
@@ -37,11 +37,11 @@ const StorybookIcon = props => (
       mask="url(#IconifyId-16cf64ad71c-1b4c9-9)"
     />
   </svg>
-);
+)
 
 const Header = props => {
-  const { colorMode, toggleColorMode } = useColorMode();
-  const bg = { light: "white", dark: "gray.800" };
+  const { colorMode, toggleColorMode } = useColorMode()
+  const bg = { light: "white", dark: "gray.800" }
   return (
     <Box
       pos="fixed"
@@ -93,7 +93,7 @@ const Header = props => {
         </Flex>
       </Container>
     </Box>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

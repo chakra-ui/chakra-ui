@@ -1,7 +1,7 @@
-import { Box, Heading } from "@chakra-ui/core";
-import React from "react";
-import components from "./components";
-import { ComponentLink, stringToUrl, TopNavLink } from "./NavLink";
+import { Box, Heading } from "@chakra-ui/core"
+import React from "react"
+import components from "./components"
+import { ComponentLink, stringToUrl, TopNavLink } from "./NavLink"
 
 const topNavLinks = [
   "Getting Started",
@@ -11,9 +11,9 @@ const topNavLinks = [
   "Responsive Styles",
   "Theme",
   "Recipes",
-];
+]
 
-const utilsNavLinks = ["useClipboard", "useDisclosure", "useTheme"];
+const utilsNavLinks = ["useClipboard", "useDisclosure", "useTheme"]
 
 const NavGroupHeading = props => (
   <Heading
@@ -24,7 +24,7 @@ const NavGroupHeading = props => (
     textTransform="uppercase"
     {...props}
   />
-);
+)
 
 export const SideNavContent = ({
   contentHeight = "calc(100vh - 4rem)",
@@ -71,7 +71,7 @@ export const SideNavContent = ({
       </Box>
     </Box>
   </Box>
-);
+)
 
 const SideNavContainer = props => (
   <Box
@@ -83,14 +83,14 @@ const SideNavContainer = props => (
     right="0"
     {...props}
   />
-);
+)
 
 const SideNav = props => {
   return (
     <SideNavContainer {...props}>
       <SideNavContent />
     </SideNavContainer>
-  );
-};
+  )
+}
 
-export default SideNav;
+export default SideNav

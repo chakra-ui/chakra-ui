@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 const NoFlashSript = () => (
   <script
@@ -49,6 +49,6 @@ const NoFlashSript = () => (
 `,
     }}
   />
-);
+)
 
-export default NoFlashSript;
+export default NoFlashSript

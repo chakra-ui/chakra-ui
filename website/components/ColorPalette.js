@@ -1,18 +1,18 @@
 /** @jsx jsx */
-import { jsx } from "@emotion/core";
-import { Box, Flex, Grid, useTheme } from "@chakra-ui/core";
+import { jsx } from "@emotion/core"
+import { Box, Flex, Grid, useTheme } from "@chakra-ui/core"
 
 export const ColorPalette = ({ color, name, ...props }) => {
-  const theme = useTheme();
-  let colorCode = color;
-  const [shade, hue] = color.split(".");
+  const theme = useTheme()
+  let colorCode = color
+  const [shade, hue] = color.split(".")
 
   if (shade && hue) {
-    colorCode = theme.colors[shade][hue];
+    colorCode = theme.colors[shade][hue]
   }
 
   if (color in theme.colors && typeof theme.colors[color] === "string") {
-    colorCode = theme.colors[color];
+    colorCode = theme.colors[color]
   }
 
   return (
@@ -25,16 +25,16 @@ export const ColorPalette = ({ color, name, ...props }) => {
         <Box textTransform="uppercase">{colorCode}</Box>
       </Box>
     </Flex>
-  );
-};
+  )
+}
 
 export const ColorPalettes = ({ color }) => {
-  const theme = useTheme();
-  const keys = Object.keys(theme.colors[color]);
+  const theme = useTheme()
+  const keys = Object.keys(theme.colors[color])
   return keys.map(item => (
     <ColorPalette color={`${color}.${item}`} name={`${color} ${item}`} />
-  ));
-};
+  ))
+}
 
 export const ColorWrapper = props => (
   <Grid
@@ -43,4 +43,4 @@ export const ColorWrapper = props => (
     templateColumns="repeat( auto-fit, minmax(200px, 1fr) )"
     {...props}
   />
-);
+)

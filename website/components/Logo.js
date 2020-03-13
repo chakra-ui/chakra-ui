@@ -1,9 +1,9 @@
 /** @jsx jsx */
-import { useColorMode, Box } from "@chakra-ui/core";
-import { jsx } from "@emotion/core";
+import { useColorMode, Box } from "@chakra-ui/core"
+import { jsx } from "@emotion/core"
 
 const Logo = props => {
-  const { colorMode } = useColorMode();
+  const { colorMode } = useColorMode()
 
   return (
     <Box
@@ -37,7 +37,7 @@ const Logo = props => {
         </linearGradient>
       </defs>
     </Box>
-  );
-};
+  )
+}
 
-export default Logo;
+export default Logo

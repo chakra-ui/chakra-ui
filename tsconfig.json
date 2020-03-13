@@ -6,7 +6,7 @@
     "types": ["jest"],
     "typeRoots": ["./node_modules/@types", "./packages/**/*/@types"]
   },
-  "include": ["packages/**/*", "next-env.d.ts"],
+  "include": ["packages/**/*", "next-env.d.ts", "docs"],
   "exclude": [
     "node_modules",
     "build",

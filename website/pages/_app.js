@@ -5,17 +5,17 @@ import {
   Link,
   Text,
   ThemeProvider,
-} from "@chakra-ui/core";
-import { MDXProvider } from "@mdx-js/react";
-import { DefaultSeo } from "next-seo";
-import { useRouter } from "next/router";
-import React from "react";
-import DocsHeader from "../components/DocsHeader";
-import MDXComponents from "../components/MDXComponents";
-import SideNav from "../components/SideNav";
-import seo from "../seo.config";
+} from "@chakra-ui/core"
+import { MDXProvider } from "@mdx-js/react"
+import { DefaultSeo } from "next-seo"
+import { useRouter } from "next/router"
+import React from "react"
+import DocsHeader from "../components/DocsHeader"
+import MDXComponents from "../components/MDXComponents"
+import SideNav from "../components/SideNav"
+import seo from "../seo.config"
 
-const Main = props => <Box as="main" mx="auto" mb="3rem" {...props} />;
+const Main = props => <Box as="main" mx="auto" mb="3rem" {...props} />
 
 const Footer = props => (
   <Box textAlign="center" pt="12" pb="4" fontSize="sm" opacity="0.6" {...props}>
@@ -37,7 +37,7 @@ const Footer = props => (
       </Link>
     </Text>
   </Box>
-);
+)
 
 const DocsLayout = ({ children }) => (
   <Box>
@@ -50,19 +50,19 @@ const DocsLayout = ({ children }) => (
       </Main>
     </Box>
   </Box>
-);
+)
 
-const HomeLayout = ({ children }) => <Box>{children}</Box>;
+const HomeLayout = ({ children }) => <Box>{children}</Box>
 
 export default ({ Component, pageProps }) => {
   // const [isOpen, setIsOpen] = useState(false);
-  const router = useRouter();
-  let Layout;
+  const router = useRouter()
+  let Layout
 
   if (router.pathname === "/") {
-    Layout = HomeLayout;
+    Layout = HomeLayout
   } else {
-    Layout = DocsLayout;
+    Layout = DocsLayout
   }
 
   return (
@@ -77,5 +77,5 @@ export default ({ Component, pageProps }) => {
         </MDXProvider>
       </ColorModeProvider>
     </ThemeProvider>
-  );
-};
+  )
+}

@@ -5,31 +5,31 @@ import {
   useDisclosure,
   DrawerOverlay,
   DrawerContent,
-} from "@chakra-ui/core";
-import React, { useEffect } from "react";
-import { MdDehaze } from "react-icons/md";
-import { SideNavContent } from "./SideNav";
-import { useRouter } from "next/router";
+} from "@chakra-ui/core"
+import React, { useEffect } from "react"
+import { MdDehaze } from "react-icons/md"
+import { SideNavContent } from "./SideNav"
+import { useRouter } from "next/router"
 
 const useRouteChanged = callback => {
-  const router = useRouter();
+  const router = useRouter()
   useEffect(() => {
     const handleRouteChange = url => {
-      callback();
-      console.log("App is changing to: ", url);
-    };
+      callback()
+      console.log("App is changing to: ", url)
+    }
 
-    router.events.on("routeChangeComplete", handleRouteChange);
+    router.events.on("routeChangeComplete", handleRouteChange)
 
     return () => {
-      router.events.off("routeChangeComplete", handleRouteChange);
-    };
-  }, [router.events, callback]);
-};
+      router.events.off("routeChangeComplete", handleRouteChange)
+    }
+  }, [router.events, callback])
+}
 
 const MobileNav = () => {
-  const { isOpen, onToggle, onClose } = useDisclosure();
-  useRouteChanged(onClose);
+  const { isOpen, onToggle, onClose } = useDisclosure()
+  useRouteChanged(onClose)
 
   return (
     <>
@@ -50,7 +50,7 @@ const MobileNav = () => {
         </DrawerContent>
       </Drawer>
     </>
-  );
-};
+  )
+}
 
-export default MobileNav;
+export default MobileNav

@@ -8,21 +8,21 @@ import {
   PseudoBox,
   Text,
   useColorMode,
-} from "@chakra-ui/core";
-import { jsx } from "@emotion/core";
-import NextLink from "next/link";
-import { forwardRef } from "react";
-import CodeBlock from "./CodeBlock";
+} from "@chakra-ui/core"
+import { jsx } from "@emotion/core"
+import NextLink from "next/link"
+import { forwardRef } from "react"
+import CodeBlock from "./CodeBlock"
 
-const Pre = props => <Box my="2em" borderRadius="sm" {...props} />;
+const Pre = props => <Box my="2em" borderRadius="sm" {...props} />
 
 const Table = props => (
   <Box as="table" textAlign="left" mt="32px" width="full" {...props} />
-);
+)
 
 const THead = props => {
-  const { colorMode } = useColorMode();
-  const bg = { light: "gray.50", dark: "whiteAlpha.100" };
+  const { colorMode } = useColorMode()
+  const bg = { light: "gray.50", dark: "whiteAlpha.100" }
   return (
     <Box
       as="th"
@@ -32,8 +32,8 @@ const THead = props => {
       fontSize="sm"
       {...props}
     />
-  );
-};
+  )
+}
 
 const TData = props => (
   <Box
@@ -45,7 +45,7 @@ const TData = props => (
     whiteSpace="normal"
     {...props}
   />
-);
+)
 
 const Link = forwardRef((props, ref) => (
   <PseudoBox
@@ -59,7 +59,7 @@ const Link = forwardRef((props, ref) => (
     _focus={{ boxShadow: "outline" }}
     {...props}
   />
-));
+))
 
 const DocsHeading = props => (
   <Heading
@@ -99,7 +99,7 @@ const DocsHeading = props => (
       )}
     </Box>
   </Heading>
-);
+)
 
 const MDXComponents = {
   h1: props => <Heading as="h1" size="xl" my="1em" {...props}></Heading>,
@@ -143,7 +143,7 @@ const MDXComponents = {
       {...props}
     />
   ),
-};
+}
 
 // const ChakraProvider = ({ children, theme }) => {
 //   return (
@@ -156,4 +156,4 @@ const MDXComponents = {
 //   );
 // };
 
-export default MDXComponents;
+export default MDXComponents

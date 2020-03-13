@@ -47,5 +47,5 @@ const components = [
   "Textarea",
   "Toast",
   "Tooltip",
-];
-export default components;
+]
+export default components

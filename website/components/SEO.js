@@ -1,5 +1,5 @@
-import React from "react";
-import { NextSeo } from "next-seo";
+import React from "react"
+import { NextSeo } from "next-seo"
 
 function SEO({ description, title }) {
   return (
@@ -8,7 +8,7 @@ function SEO({ description, title }) {
       description={description}
       titleTemplate={`Chakra UI | %s`}
     />
-  );
+  )
 }
 
-export default SEO;
+export default SEO

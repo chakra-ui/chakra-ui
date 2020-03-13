@@ -30,6 +30,6 @@ const SEO = {
     site: "@chakra-ui",
     cardType: "summary_large_image",
   },
-};
+}
 
-export default SEO;
+export default SEO

@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx } from "@emotion/core";
+import { jsx } from "@emotion/core"
 import {
   Box,
   Heading,
@@ -10,20 +10,20 @@ import {
   Flex,
   Stack,
   Link,
-} from "@chakra-ui/core";
-import Header from "../components/Header";
-import { DiGithubBadge } from "react-icons/di";
-import { MdAccessibility, MdPalette, MdGrain, MdEmail } from "react-icons/md";
-import { IoLogoTwitter, IoLogoLinkedin } from "react-icons/io";
-import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
-import theme from "prism-react-renderer/themes/nightOwl";
-import * as Chakra from "@chakra-ui/core";
-import * as ReactMdIcons from "react-icons/md";
-import NextLink from "next/link";
+} from "@chakra-ui/core"
+import Header from "../components/Header"
+import { DiGithubBadge } from "react-icons/di"
+import { MdAccessibility, MdPalette, MdGrain, MdEmail } from "react-icons/md"
+import { IoLogoTwitter, IoLogoLinkedin } from "react-icons/io"
+import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live"
+import theme from "prism-react-renderer/themes/nightOwl"
+import * as Chakra from "@chakra-ui/core"
+import * as ReactMdIcons from "react-icons/md"
+import NextLink from "next/link"
 
 export const Container = props => (
   <Box width="full" maxWidth="1280px" mx="auto" px={6} {...props} />
-);
+)
 
 const Feature = ({ title, icon, children, ...props }) => {
   return (
@@ -42,8 +42,8 @@ const Feature = ({ title, icon, children, ...props }) => {
       </Heading>
       <Text>{children}</Text>
     </Box>
-  );
-};
+  )
+}
 
 const sampleCode = `
 // Sample component from airbnb.com
@@ -71,13 +71,13 @@ const sampleCode = `
     <Text ml={1} fontsize="sm"><b>4.84</b> (190)</Text>
   </Flex>
 </Box>
-`;
+`
 
 const FooterLink = ({ icon, href }) => (
   <Link display="inline-block" href={href} isExternal>
     <Box as={icon} size="6" color="gray.400" />
   </Link>
-);
+)
 
 export default () => {
   return (
@@ -222,5 +222,5 @@ export default () => {
         </Stack>
       </Box>
     </Box>
-  );
-};
+  )
+}

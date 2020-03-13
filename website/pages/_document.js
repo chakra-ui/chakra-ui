@@ -1,5 +1,5 @@
-import React from "react";
-import NextDocument, { Html, Head, Main, NextScript } from "next/document";
+import React from "react"
+import NextDocument, { Html, Head, Main, NextScript } from "next/document"
 
 const GTMScript = () => (
   <script
@@ -11,7 +11,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-PLT3CZ5');`,
     }}
   ></script>
-);
+)
 
 const GTMNoScript = () => (
   <noscript>
@@ -23,12 +23,12 @@ const GTMNoScript = () => (
       style={{ display: "none", visibility: "hidden" }}
     ></iframe>
   </noscript>
-);
+)
 
 class Document extends NextDocument {
   static async getInitialProps(ctx) {
-    const initialProps = await NextDocument.getInitialProps(ctx);
-    return { ...initialProps };
+    const initialProps = await NextDocument.getInitialProps(ctx)
+    return { ...initialProps }
   }
 
   render() {
@@ -52,8 +52,8 @@ class Document extends NextDocument {
           <NextScript />
         </body>
       </Html>
-    );
+    )
   }
 }
 
-export default Document;
+export default Document

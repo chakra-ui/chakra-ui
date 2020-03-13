@@ -1,12 +1,12 @@
-import React from "react";
-import { Flex, Link } from "@chakra-ui/core";
+import React from "react"
+import { Flex, Link } from "@chakra-ui/core"
 
-const PaginationLink = props => <Link fontWeight="bold" {...props} />;
+const PaginationLink = props => <Link fontWeight="bold" {...props} />
 
 export const Pagination = ({ linkComponent, routes = [], route }) => {
-  const index = routes.indexOf(route);
-  const previous = routes[index - 1];
-  const next = routes[index + 1];
+  const index = routes.indexOf(route)
+  const previous = routes[index - 1]
+  const next = routes[index + 1]
 
   return (
     <Flex justify="space-between">
@@ -21,7 +21,7 @@ export const Pagination = ({ linkComponent, routes = [], route }) => {
         </PaginationLink>
       )}
     </Flex>
-  );
-};
+  )
+}
 
-export default Pagination;
+export default Pagination

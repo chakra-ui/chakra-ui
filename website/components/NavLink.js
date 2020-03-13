@@ -1,33 +1,33 @@
-import { Box, PseudoBox, useColorMode } from "@chakra-ui/core";
-import NextLink from "next/link";
-import { useRouter } from "next/router";
-import React, { cloneElement, forwardRef } from "react";
+import { Box, PseudoBox, useColorMode } from "@chakra-ui/core"
+import NextLink from "next/link"
+import { useRouter } from "next/router"
+import React, { cloneElement, forwardRef } from "react"
 
 const NavLink = ({ children, ...props }) => {
-  const router = useRouter();
-  let isActive = false;
+  const router = useRouter()
+  let isActive = false
 
   if (router.pathname === props.href) {
-    isActive = true;
+    isActive = true
   }
 
   return (
     <NextLink passHref {...props}>
       {typeof children === "function" ? children(isActive) : children}
     </NextLink>
-  );
-};
+  )
+}
 
 export const stringToUrl = (str, path = "/") => {
   return `${path}${str
     .toLowerCase()
     .split(" ")
-    .join("-")}`;
-};
+    .join("-")}`
+}
 
 export const SideNavLink = forwardRef(({ children, icon, ...props }, ref) => {
-  const { colorMode } = useColorMode();
-  const color = { light: "gray.700", dark: "whiteAlpha.700" };
+  const { colorMode } = useColorMode()
+  const color = { light: "gray.700", dark: "whiteAlpha.700" }
   return (
     <PseudoBox
       ref={ref}
@@ -49,8 +49,8 @@ export const SideNavLink = forwardRef(({ children, icon, ...props }, ref) => {
       {icon && cloneElement(icon, { mr: 3 })}
       <Box>{children}</Box>
     </PseudoBox>
-  );
-});
+  )
+})
 
 export const TopNavLink = forwardRef(({ href, ...props }, ref) => {
   return (
@@ -65,14 +65,14 @@ export const TopNavLink = forwardRef(({ href, ...props }, ref) => {
         />
       )}
     </NavLink>
-  );
-});
+  )
+})
 
 export const ComponentLink = forwardRef(({ href, ...props }, ref) => {
-  const { colorMode } = useColorMode();
-  const hoverColor = { light: "gray.900", dark: "whiteAlpha.900" };
-  const activeColor = { light: "teal.800", dark: "teal.200" };
-  const activeBg = { light: "teal.50", dark: "#308c7a4d" };
+  const { colorMode } = useColorMode()
+  const hoverColor = { light: "gray.900", dark: "whiteAlpha.900" }
+  const activeColor = { light: "teal.800", dark: "teal.200" }
+  const activeBg = { light: "teal.50", dark: "#308c7a4d" }
 
   return (
     <NavLink href={href}>
@@ -94,5 +94,5 @@ export const ComponentLink = forwardRef(({ href, ...props }, ref) => {
         />
       )}
     </NavLink>
-  );
-});
+  )
+})

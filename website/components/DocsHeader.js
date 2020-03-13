@@ -8,11 +8,11 @@ import {
   InputLeftElement,
   IconButton,
   useColorMode,
-} from "@chakra-ui/core";
-import { jsx } from "@emotion/core";
-import { DiGithubBadge } from "react-icons/di";
-import Logo from "./Logo";
-import MobileNav from "./MobileNav";
+} from "@chakra-ui/core"
+import { jsx } from "@emotion/core"
+import { DiGithubBadge } from "react-icons/di"
+import Logo from "./Logo"
+import MobileNav from "./MobileNav"
 
 const SearchBox = props => (
   <InputGroup {...props}>
@@ -27,11 +27,11 @@ const SearchBox = props => (
       borderRadius="lg"
     />
   </InputGroup>
-);
+)
 
 const DocsHeader = props => {
-  const { colorMode, toggleColorMode } = useColorMode();
-  const bg = { light: "white", dark: "gray.800" };
+  const { colorMode, toggleColorMode } = useColorMode()
+  const bg = { light: "white", dark: "gray.800" }
   return (
     <Box
       pos="fixed"
@@ -94,7 +94,7 @@ const DocsHeader = props => {
         </Flex>
       </Flex>
     </Box>
-  );
-};
+  )
+}
 
-export default DocsHeader;
+export default DocsHeader
