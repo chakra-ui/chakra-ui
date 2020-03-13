@@ -44,4 +44,6 @@ export default {
   Tag,
   Dialog,
   Kbd,
+  Select: Input,
+  Textarea: Input,
 }

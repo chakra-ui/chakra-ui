@@ -62,8 +62,8 @@ function getFlushedStyle(props: InputOptions) {
   return {
     borderBottom: "2px solid",
     borderColor: "inherit",
-    radius: 0,
-    px: 0,
+    borderRadius: 0,
+    paddingX: 0,
     bg: "transparent",
     _focus: {
       zIndex: 1,
@@ -77,7 +77,7 @@ function getFlushedStyle(props: InputOptions) {
 
 const unstyled = {
   bg: "transparent",
-  px: 0,
+  paddingX: 0,
   height: "auto",
 }
 
@@ -85,24 +85,21 @@ const variantSize = {
   __default: "md",
   lg: {
     fontSize: "lg",
-    px: 4,
+    paddingX: 4,
     height: 12,
-    // lineHeight: "3rem",
-    radius: "md",
+    borderRadius: "md",
   },
   md: {
     fontSize: "md",
-    px: 4,
+    paddingX: 4,
     height: 10,
-    // lineHeight: "2.5rem",
-    radius: "md",
+    borderRadius: "md",
   },
   sm: {
     fontSize: "sm",
-    px: 3,
+    paddingX: 3,
     height: 8,
-    // lineHeight: "2rem",
-    radius: "sm",
+    borderRadius: "sm",
   },
 }
 

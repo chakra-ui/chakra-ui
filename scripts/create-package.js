@@ -121,7 +121,9 @@ export default {
 export const BasicExample = () =><div>Component goes here</div>
 `
 
-function createFiles({ component, noHook, asSingleFile }) {
+function createFiles(options) {
+  const { component, noHook, asSingleFile } = options
+
   if (asSingleFile) {
     createFile(`${component}.tsx`, componentContent(component))
   } else {
@@ -135,9 +137,12 @@ function createFiles({ component, noHook, asSingleFile }) {
       files.push([`${component}.hook.tsx`, hookContent])
     }
 
-    const fileDir = `packages/${component}/src/`
+    const srcDirectory = `packages/${component}/src/`
+
+    createDirectory(srcDirectory)
+
     files.forEach(([file, fileContent]) => {
-      const filePath = fileDir + file
+      const filePath = srcDirectory + file
       createFile(
         filePath,
         typeof fileContent === "function"
@@ -148,58 +153,62 @@ function createFiles({ component, noHook, asSingleFile }) {
   }
 }
 
-function createDirectory(options) {
-  const dir = options.component
+// Create a new folder at the specified path
+function createDirectory(path) {
   try {
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir)
+    if (!fs.existsSync(path)) {
+      fs.mkdirSync(path)
     }
   } catch (err) {
-    console.error(err)
+    console.error(`[createDirectory]: Failed to create director at ${path}`)
   }
 }
 
+// Add index.ts file to the src/ folder
 function appendToSrc(options) {
-  let content = `export * from "./${options.component}";`
-  if (!options.noHook) {
-    content = content.concat(`\nexport * from  "./${options.component}.hook";`)
+  const { component, noHook } = options
+  let content = `export * from "./${component}";`
+
+  if (!noHook) {
+    content = content.concat(`\nexport * from  "./${component}.hook";`)
   }
-  const path = getPath(options)
-  fs.appendFile(`${path}/src/index.ts`, content, "utf8", function(err) {
-    if (err) throw err
+
+  const path = getPath(component)
+
+  fs.appendFile(`${path}/src/index.ts`, content, "utf8", error => {
+    if (error) throw error
     console.log("Data is appended to file successfully.")
   })
 }
 
-function getPath(options) {
-  return `packages/${options.component}`
+function getPath(component) {
+  return `packages/${component}`
 }
 
 function createPackageDir(options) {
-  options = {
-    ...options,
-    component: getPath(options),
-  }
-  createDirectory(options)
+  createDirectory(getPath(options.component))
 }
 
-// Edits the package JSON file
+// Edits the package.json of the component package
 function editPackageJson(options) {
-  const path = getPath(options)
-  const name = options.component.toLowerCase()
+  const { component } = options
+  const path = getPath(component)
+
+  const package = component.toLowerCase()
   const file = editJsonFile(`${path}/package.json`)
-  file.set("name", `@chakra-ui/${name}`)
-  file.set("module", `dist/${name}.esm.js`)
+
+  file.set("package", `@chakra-ui/${package}`)
+  file.set("module", `dist/${package}.esm.js`)
   file.save()
 }
 
+// Adds workspace shortcut to package.json scripts
 function editRootPackageJson(options) {
-  const name = options.component.toLowerCase()
+  const { component } = options
+  const package = component.toLowerCase()
   const file = editJsonFile(`package.json`)
-  file.set(
-    `scripts.${options.component.toLowerCase()}`,
-    `yarn workspace @chakra-ui/${name}`,
-  )
+
+  file.set(`scripts.${package}`, `yarn workspace @chakra-ui/${package}`)
   file.save()
 }
 
