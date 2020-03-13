@@ -1,4 +1,4 @@
-import { AnyFunction, isFunction } from "@chakra-ui/utils"
+import { isFunction } from "@chakra-ui/utils"
 import * as React from "react"
 
 /**
@@ -19,25 +19,6 @@ export function useConst<T>(initialValue: T | (() => T)): T {
 
   if (!ref.current) {
     ref.current = isFunction(initialValue) ? initialValue() : initialValue
-  }
-
-  return ref.current
-}
-
-/**
- * Hook to ensure a callback function always has the same identity.
- * Unlike `React.useCallback`, this is guaranteed to always return the same value.
- *
- * If the callback should ever change based on dependencies, use `React.useCallback` instead.
- *
- * @param callback - The callback. Only the first value passed is respected.
- * @returns The callback. The identity of this callback will always be the same.
- */
-export function useConstCallback<T extends AnyFunction>(callback: T): T {
-  const ref = React.useRef<T>()
-
-  if (!ref.current) {
-    ref.current = callback
   }
 
   return ref.current

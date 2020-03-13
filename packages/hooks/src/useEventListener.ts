@@ -1,5 +1,6 @@
 import * as React from "react"
 import { isBrowser, FunctionArguments } from "@chakra-ui/utils"
+import useLatestRef from "./useLatestRef"
 
 type AddEventLister = FunctionArguments<typeof document.addEventListener>
 
@@ -9,10 +10,7 @@ export function useEventListener(
   environment: Document | null = isBrowser ? document : null,
   options?: AddEventLister[2],
 ) {
-  const savedHandler = React.useRef(handler)
-  React.useEffect(() => {
-    savedHandler.current = handler
-  }, [handler])
+  const savedHandler = useLatestRef(handler)
 
   React.useEffect(() => {
     if (environment == null) return
@@ -22,7 +20,7 @@ export function useEventListener(
     return () => {
       environment.removeEventListener(event, eventListener, options)
     }
-  }, [event, environment, options])
+  }, [event, environment, options, savedHandler])
 }
 
 export default useEventListener
