@@ -1,9 +1,10 @@
 import { useMediaQuery } from "@chakra-ui/hooks"
 import * as React from "react"
+import { useTheme, get } from "@chakra-ui/system"
 
 interface VisibilityProps {
   breakpoint: string
-  hide: boolean
+  hide?: boolean
   children: React.ReactNode
 }
 
@@ -16,56 +17,39 @@ function Visibility(props: VisibilityProps) {
   return rendered as React.ReactElement
 }
 
-export interface HideAtProps {
-  breakpoint: string
-  children?: React.ReactNode
-}
+export type HideProps = ShowProps
 
-export const HideAt = ({ breakpoint, children }: HideAtProps) => {
-  const value = `(max-width: ${breakpoint})`
+export const Hide = (props: HideProps) => {
+  const { breakpoint = "", children, below, above } = props
+
+  const query = below
+    ? `(max-width: ${below})`
+    : above
+    ? `(min-width: ${above})`
+    : breakpoint
+
   return (
-    <Visibility breakpoint={value} hide={true}>
-      {children}
-    </Visibility>
-  )
-}
-
-export interface ShowAtProps {
-  breakpoint: string
-  children?: React.ReactNode
-}
-
-export const ShowAt = ({ breakpoint, children }: ShowAtProps) => {
-  const value = `(max-width: ${breakpoint})`
-  return (
-    <Visibility breakpoint={value} hide={false}>
+    <Visibility breakpoint={query} hide={true}>
       {children}
     </Visibility>
   )
 }
 
 export interface ShowProps {
-  query: string
-  children: React.ReactNode
-}
-
-export const Show = ({ query, children }: ShowProps) => {
-  return (
-    <Visibility breakpoint={query} hide={false}>
-      {children}
-    </Visibility>
-  )
-}
-
-interface HideProps {
-  query: string
+  breakpoint?: string
+  below?: string
+  above?: string
   children?: React.ReactNode
 }
 
-export const Hide = ({ query, children }: HideProps) => {
-  return (
-    <Visibility breakpoint={query} hide={true}>
-      {children}
-    </Visibility>
-  )
+export const Show = (props: ShowProps) => {
+  const { breakpoint = "", children, below, above } = props
+
+  const query = below
+    ? `(max-width: ${below})`
+    : above
+    ? `(min-width: ${above})`
+    : breakpoint
+
+  return <Visibility breakpoint={query}>{children}</Visibility>
 }

@@ -1,30 +1,30 @@
 import React from "react"
-import { Hide, HideAt, Show, ShowAt } from "../Visibility"
+import { Hide, Show } from "../Visibility"
 
 export default {
   title: "Visibility",
 }
 
-export const ShowAt_ = () => (
-  <ShowAt breakpoint="320px">
-    <div>Hey! I'll show at 320px</div>
-  </ShowAt>
+export const Show_ = () => (
+  <Show above="320px">
+    <div>Hey! I'll show above 320px</div>
+  </Show>
 )
 
-export const HideAt_ = () => (
-  <HideAt breakpoint="320px">
-    <div>Hallos! I'll hide at 320px</div>
-  </HideAt>
+export const Hide_ = () => (
+  <Hide above="768px">
+    <div>Hallos! I'll hide above 768px</div>
+  </Hide>
 )
 
 export const HideWithQuery = () => (
-  <Hide query="(max-width: 400px)">
+  <Hide breakpoint="(max-width: 400px)">
     <div>Hallos! I'll be hide at 400px</div>
   </Hide>
 )
 
 export const ShowWithQuery = () => (
-  <Show query="(max-width: 400px)">
+  <Show breakpoint="(max-width: 400px)">
     <div>Hallos! I'll be show at 400px</div>
   </Show>
 )
