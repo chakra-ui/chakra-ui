@@ -35,15 +35,13 @@ export const ButtonGroup = ({
       variantColor: child.props.variantColor || variantColor,
       variant: child.props.variant || variant,
       _focus: { boxShadow: "outline", zIndex: 1 },
-      ...(!isLast && !isAttached && { mr: spacing }),
-      ...(isFirst && isAttached && { rightRadius: 0 }),
-      ...(isLast && isAttached && { leftRadius: 0 }),
-      ...(!isLast && isAttached && { borderRight: 0 }),
+      ...(!isLast && !isAttached && { marginRight: spacing }),
+      ...(isFirst && isAttached && { borderRightRadius: 0 }),
+      ...(isLast && isAttached && { borderLeftRadius: 0 }),
+      ...(!isLast && isAttached && { borderRightRadius: 0 }),
       ...(!isFirst && !isLast && isAttached && { borderRadius: 0 }),
     })
   })
 
   return <chakra.div display="inline-block" {...rest} children={clones} />
 }
-
-export default ButtonGroup

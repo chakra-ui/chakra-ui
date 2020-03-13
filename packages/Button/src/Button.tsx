@@ -3,9 +3,9 @@ import { chakra, createChakra, PropsOf, SystemProps } from "@chakra-ui/system"
 import * as React from "react"
 import { Spinner } from "@chakra-ui/spinner"
 
-const BaseButton = createChakra("button", { themeKey: "Button" })
+const StyledButton = createChakra("button", { themeKey: "Button" })
 
-BaseButton.defaultProps = {
+StyledButton.defaultProps = {
   variant: "solid",
   variantSize: "md",
   variantColor: "gray",
@@ -58,56 +58,58 @@ export interface ButtonOptions {
   spinner?: React.ReactElement
 }
 
-export type ButtonProps = Omit<PropsOf<typeof BaseButton>, "disabled"> &
+export type ButtonProps = Omit<PropsOf<typeof StyledButton>, "disabled"> &
   ButtonOptions
 
-const Button = React.forwardRef((props: ButtonProps, ref: React.Ref<any>) => {
-  const {
-    isDisabled,
-    isLoading,
-    isActive,
-    isFullWidth,
-    children,
-    leftIcon,
-    rightIcon,
-    loadingText,
-    iconSpacing = 2,
-    type = "button",
-    spinner,
-    ...rest
-  } = props
+export const Button = React.forwardRef(
+  (props: ButtonProps, ref: React.Ref<any>) => {
+    const {
+      isDisabled,
+      isLoading,
+      isActive,
+      isFullWidth,
+      children,
+      leftIcon,
+      rightIcon,
+      loadingText,
+      iconSpacing = 2,
+      type = "button",
+      spinner,
+      ...rest
+    } = props
 
-  return (
-    <BaseButton
-      disabled={isDisabled || isLoading}
-      aria-disabled={isDisabled || isLoading}
-      ref={ref}
-      type={type}
-      width={isFullWidth ? "full" : undefined}
-      data-active={isActive ? "" : undefined}
-      data-loading={isLoading ? "" : undefined}
-      {...rest}
-    >
-      {leftIcon && !isLoading && (
-        <Icon marginLeft={-1} marginRight={iconSpacing} as={leftIcon} />
-      )}
-      {isLoading && (
-        <chakra.span
-          position={loadingText ? "relative" : "absolute"}
-          marginRight={loadingText ? iconSpacing : 0}
-        >
-          {spinner || <Spinner color="currentColor" size="1em" />}
-        </chakra.span>
-      )}
-      {isLoading
-        ? loadingText || <chakra.span opacity={0}>{children}</chakra.span>
-        : children}
-      {rightIcon && !isLoading && (
-        <Icon marginRight={-1} marginLeft={iconSpacing} as={rightIcon} />
-      )}
-    </BaseButton>
-  )
-})
+    return (
+      <StyledButton
+        disabled={isDisabled || isLoading}
+        aria-disabled={isDisabled || isLoading}
+        ref={ref}
+        type={type}
+        width={isFullWidth ? "full" : undefined}
+        data-active={isActive ? "" : undefined}
+        data-loading={isLoading ? "" : undefined}
+        {...rest}
+      >
+        {leftIcon && !isLoading && (
+          <Icon marginLeft={-1} marginRight={iconSpacing} as={leftIcon} />
+        )}
+        {isLoading && (
+          <chakra.span
+            position={loadingText ? "relative" : "absolute"}
+            marginRight={loadingText ? iconSpacing : 0}
+          >
+            {spinner || <Spinner color="currentColor" size="1em" />}
+          </chakra.span>
+        )}
+        {isLoading
+          ? loadingText || <chakra.span opacity={0}>{children}</chakra.span>
+          : children}
+        {rightIcon && !isLoading && (
+          <Icon marginRight={-1} marginLeft={iconSpacing} as={rightIcon} />
+        )}
+      </StyledButton>
+    )
+  },
+)
 
 Button.displayName = "Button"
 

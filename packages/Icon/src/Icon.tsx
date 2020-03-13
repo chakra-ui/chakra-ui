@@ -1,4 +1,4 @@
-import { chakra, PropsOf } from "@chakra-ui/system"
+import { PropsOf, createChakra } from "@chakra-ui/system"
 import * as React from "react"
 
 const fallbackIcon = {
@@ -15,51 +15,57 @@ const fallbackIcon = {
   viewBox: "0 0 24 24",
 }
 
-export type IconProps = Omit<PropsOf<typeof chakra.svg>, "path">
+const StyledSvg = createChakra("svg")
 
-export const Icon = React.forwardRef(
-  (props: IconProps, ref: React.Ref<SVGSVGElement>) => {
-    const {
-      as,
-      size = "1em",
-      viewBox,
-      color = "currentColor",
-      role = "presentation",
-      focusable = false,
-      children,
-      ...rest
-    } = props
+export type IconProps = PropsOf<typeof StyledSvg>
 
-    const sharedProps = {
-      ref,
-      display: "inline-block",
-      lineHeight: "1em",
-      size,
-      color,
-      focusable,
-      role,
-      flexShrink: 0,
-    }
+export function Icon(props: IconProps) {
+  const {
+    as,
+    size = "1em",
+    viewBox,
+    color = "currentColor",
+    role = "presentation",
+    focusable = false,
+    children,
+    ...rest
+  } = props
 
-    // If you're using an icon-library like `react-icons`
-    if (as && typeof as !== "string") {
-      return <chakra.svg data-custom-icon as={as} {...sharedProps} {...rest} />
-    }
+  const sharedProps = {
+    display: "inline-block",
+    lineHeight: "1em",
+    size,
+    color,
+    focusable,
+    role,
+    flexShrink: 0,
+  }
 
-    const iconPath = children ?? fallbackIcon.path
-    const iconViewbox = viewBox ?? fallbackIcon.viewBox
-
+  // If you're using an icon-library like `react-icons`
+  if (as && typeof as !== "string") {
     return (
-      <chakra.svg
+      <StyledSvg
+        data-chakra-custom-icon=""
+        as={as}
         {...sharedProps}
-        verticalAlign="middle"
-        viewBox={iconViewbox}
         {...rest}
-      >
-        {iconPath}
-      </chakra.svg>
+      />
     )
-  },
-)
+  }
+
+  const iconPath = children ?? fallbackIcon.path
+  const iconViewbox = viewBox ?? fallbackIcon.viewBox
+
+  return (
+    <StyledSvg
+      verticalAlign="middle"
+      viewBox={iconViewbox}
+      {...sharedProps}
+      {...rest}
+    >
+      {iconPath}
+    </StyledSvg>
+  )
+}
 
 export default Icon
