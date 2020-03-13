@@ -1,5 +1,5 @@
 {
-  "name": "@chakra-ui/icon-glyphs",
+  "name": "@chakra-ui/icons",
   "version": "0.0.1",
   "description": "Chakra UI icons",
   "author": "Segun Adebayo <sage@adebayosegun.com>",
@@ -7,7 +7,7 @@
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "module": "dist/icon-glyphs.esm.js",
+  "module": "dist/icons.esm.js",
   "files": [
     "dist"
   ],

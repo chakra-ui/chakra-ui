@@ -1,6 +1,6 @@
 import { PropsOf, createChakra } from "@chakra-ui/system"
 import { Omit, createContext } from "@chakra-ui/utils"
-import { ChevronDownIcon, IconProps } from "@chakra-ui/icon-glyphs"
+import { ChevronDownIcon, IconProps } from "@chakra-ui/icons"
 import * as React from "react"
 import {
   AccordionHookProps,

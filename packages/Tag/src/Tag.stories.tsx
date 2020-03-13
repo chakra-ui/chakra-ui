@@ -1,4 +1,4 @@
-import { AddIcon } from "@chakra-ui/icon-glyphs"
+import { AddIcon } from "@chakra-ui/icons"
 import * as React from "react"
 import { Tag, TagIcon, TagLabel } from "./Tag"
 

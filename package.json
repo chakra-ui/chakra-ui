@@ -61,7 +61,7 @@
     "close-button": "yarn workspace @chakra-ui/close-button",
     "switch": "yarn workspace @chakra-ui/switch",
     "tag": "yarn workspace @chakra-ui/tag",
-    "icons": "yarn workspace @chakra-ui/icon-glyphs",
+    "icons": "yarn workspace @chakra-ui/icons",
     "hidden": "yarn workspace @chakra-ui/visually-hidden",
     "focuslock": "yarn workspace @chakra-ui/focus-lock",
     "test-utils": "yarn workspace @chakra-ui/test-utils",
@@ -71,7 +71,8 @@
     "drawer": "yarn workspace @chakra-ui/drawer",
     "textarea": "yarn workspace @chakra-ui/textarea",
     "image": "yarn workspace @chakra-ui/image",
-    "select": "yarn workspace @chakra-ui/select"
+    "select": "yarn workspace @chakra-ui/select",
+    "alert-dialog": "yarn workspace @chakra-ui/alert-dialog"
   },
   "czConfig": {
     "path": "node_modules/cz-conventional-changelog"

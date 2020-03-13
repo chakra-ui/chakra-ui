@@ -1,18 +1,22 @@
 {
-  "name": "@chakra-ui/number-input",
+  "name": "@chakra-ui/alert-dialog",
   "version": "0.0.1",
-  "description": "description",
+  "description": "React component for accessible alert or confirm dialog",
   "keywords": [
-    "theme",
-    "theming",
-    "ui mode",
-    "ui"
+    "confirm",
+    "alert dialog",
+    "alert",
+    "react",
+    "component",
+    "accessible",
+    "dialog",
+    "modal"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
   "main": "dist/index.js",
-  "module": "dist/numberinput.esm.js",
+  "module": "dist/alert-dialog.esm.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
@@ -45,18 +49,13 @@
     "ts-jest": "25.2.1",
     "tsdx": "0.12.3",
     "tslib": "1.11.1",
-    "typescript": "3.8.3"
+    "typescript": "3.8.3",
+    "@chakra-ui/system": "0.0.1"
   },
   "dependencies": {
-    "@chakra-ui/system": "0.0.1",
-    "@chakra-ui/utils": "0.0.1",
-    "@chakra-ui/icons": "0.0.1",
-    "@chakra-ui/counter": "0.0.1"
+    "@chakra-ui/dialog": "0.0.1"
   },
   "peerDependencies": {
-    "@emotion/core": "10.x",
-    "@emotion/styled": "10.x",
-    "emotion-theming": "10.x",
     "react": "16.x",
     "react-dom": "16.x"
   }

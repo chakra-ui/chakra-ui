@@ -12,7 +12,7 @@ import {
   WarningTwoIcon,
   CheckCircleIcon,
   WarningIcon,
-} from "@chakra-ui/icon-glyphs"
+} from "@chakra-ui/icons"
 import { createContext } from "@chakra-ui/utils"
 
 export const statuses = {

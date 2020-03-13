@@ -1,7 +1,7 @@
 import { Stack } from "@chakra-ui/layout"
 import * as React from "react"
 import { Button, ButtonGroup, IconButton } from "."
-import { PhoneIcon, AddIcon } from "@chakra-ui/icon-glyphs"
+import { PhoneIcon, AddIcon } from "@chakra-ui/icons"
 
 export default {
   title: "Button",

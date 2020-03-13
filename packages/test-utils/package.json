@@ -49,7 +49,9 @@
     "@testing-library/react": "9.4.0",
     "@testing-library/react-hooks": "3.2.1",
     "@testing-library/user-event": "10.0.0",
-    "react-test-renderer": "16.12.0"
+    "react-test-renderer": "16.12.0",
+    "jest-axe": "3.4.0",
+    "@types/jest-axe": "3.2.1"
   },
   "peerDependencies": {
     "react": "16.x",

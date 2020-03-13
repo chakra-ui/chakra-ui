@@ -26,3 +26,6 @@ export {
 } from "@testing-library/react-hooks"
 export { default as userEvent } from "@testing-library/user-event"
 export { customRender as render }
+
+// Used to check for common accessbility violations
+export * from "jest-axe"

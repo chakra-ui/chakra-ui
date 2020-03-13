@@ -104,6 +104,7 @@ export function useDialog(props: DialogHookProps) {
   type DialogContentProps = {
     ref?: React.Ref<any>
     onClick?: React.MouseEventHandler
+    role?: string
   }
 
   type DialogOverlayProps = {
@@ -124,7 +125,7 @@ export function useDialog(props: DialogHookProps) {
       ...props,
       ref: mergeRefs(props.ref, dialogRef),
       id: dialogId,
-      role: "dialog",
+      role: props.role || "dialog",
       tabIndex: -1,
       "aria-modal": true,
       "aria-labelledby": headerMounted ? headerId : undefined,

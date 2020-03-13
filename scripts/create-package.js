@@ -197,7 +197,7 @@ function editPackageJson(options) {
   const package = component.toLowerCase()
   const file = editJsonFile(`${path}/package.json`)
 
-  file.set("package", `@chakra-ui/${package}`)
+  file.set("name", `@chakra-ui/${package}`)
   file.set("module", `dist/${package}.esm.js`)
   file.save()
 }
