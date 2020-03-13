@@ -1,8 +1,8 @@
 <br />
 
 <p align="center">
-  <a href="https://github.com/reakit/reakit/tree/master/logo">
-    <img src="https://github.com/chakra-ui/chakra-ui/blob/master/logo/logo-colored@2x.png?raw=true" alt="Reakit symbol" width="300" />
+  <a href="https://github.com/chakra-ui/chakra-ui">
+    <img src="https://github.com/chakra-ui/chakra-ui/blob/master/logo/logo-colored@2x.png?raw=true" alt="Chakra logo" width="300" />
   </a>
 </p>
 
@@ -111,9 +111,8 @@ can toggle beween light and dark mode within your app.
 2. Now you can start using components like so!:
 
 ```jsx
-import { Button } from "@chakra-ui/core";
-
-<Button>I just consumed some ⚡️Chakra!</Button>;
+import { Button } from "@chakra-ui/core"
+;<Button>I just consumed some ⚡️Chakra!</Button>
 ```
 
 ## CodeSandbox
