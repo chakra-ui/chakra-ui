@@ -1,13 +1,17 @@
-import { useDimensions } from "@chakra-ui/hooks"
+import { useDimensions, useBooleanState } from "@chakra-ui/hooks"
+import { chakra, PropsOf } from "@chakra-ui/system"
+import {
+  Transition,
+  TransitionProps,
+  TransitionStyles,
+} from "@chakra-ui/transition"
 import { mergeRefs } from "@chakra-ui/utils"
 import * as React from "react"
-import { animated, SpringConfig, useSpring } from "react-spring"
 
-export type CollapseProps = React.HTMLAttributes<HTMLDivElement> & {
+export type CollapseProps = PropsOf<typeof chakra.div> & {
   isOpen?: boolean
   startingHeight?: number
-  children?: React.ReactNode
-  config?: SpringConfig
+  config?: TransitionProps["styles"]
   animateOpacity?: boolean
 }
 
@@ -18,10 +22,10 @@ export function Collapse(props: CollapseProps) {
     config,
     startingHeight = 0,
     animateOpacity = true,
-    ...htmlProps
+    ...rest
   } = props
 
-  const [ariaHidden, setAriaHidden] = React.useState(true)
+  const [ariaHidden, setAriaHidden] = useBooleanState(true)
 
   type ChildElement = React.ReactElement<{
     ref: React.Ref<any>
@@ -43,33 +47,53 @@ export function Collapse(props: CollapseProps) {
   const boxModel = useDimensions(ref, true)
   const height = boxModel?.borderBox.height ?? 0
 
-  const spring = useSpring({
-    height: isOpen ? height : 0,
-    opacity: isOpen ? 1 : 0,
-    onRest: props => {
-      setAriaHidden(props.height === startingHeight)
+  const styles: TransitionStyles = {
+    init: {
+      height: startingHeight,
+      opacity: startingHeight ? 1 : 0,
     },
-    config: {
-      friction: 35,
-      tension: 320,
-      ...config,
+    entered: {
+      height,
+      opacity: 1,
+      transform: "translateY(0)",
     },
-  })
+    exiting: {
+      height: startingHeight,
+      opacity: startingHeight ? 1 : 0,
+      transform: "translateY(-0.5rem)",
+    },
+  }
 
   return (
-    <animated.div
-      {...htmlProps}
-      aria-hidden={ariaHidden ? true : undefined}
-      style={{
-        height: spring.height,
-        overflow: "hidden",
-        ...(animateOpacity && { opacity: spring.opacity }),
-      }}
+    <Transition
+      in={isOpen}
+      styles={styles}
+      onEntered={setAriaHidden.off}
+      onExited={setAriaHidden.on}
+      timeout={{ enter: 50, exit: 200 }}
+      transition={
+        "height 200ms ease,opacity 200ms ease-in-out, transform 200ms ease-in-out"
+      }
+      unmountOnExit={false}
     >
-      {React.cloneElement(finalChild, {
-        ref: mergeRefs(ref, finalChild.props.ref),
-      })}
-    </animated.div>
+      {styles => (
+        <chakra.div
+          data-chakra-collapse=""
+          {...rest}
+          aria-hidden={ariaHidden ? true : undefined}
+          style={{
+            ...styles,
+            overflow: "hidden",
+            opacity: animateOpacity ? styles.opacity : 1,
+            ...rest.style,
+          }}
+        >
+          {React.cloneElement(finalChild, {
+            ref: mergeRefs(ref, finalChild.props.ref),
+          })}
+        </chakra.div>
+      )}
+    </Transition>
   )
 }
 

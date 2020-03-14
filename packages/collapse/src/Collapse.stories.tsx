@@ -1,16 +1,17 @@
 import * as React from "react"
 import Collapse from "./Collapse"
+import { useDisclosure } from "@chakra-ui/hooks"
 
 export default {
   title: "Collapse",
 }
 
 export function SampleSpring() {
-  const [open, setOpen] = React.useState(false)
+  const { isOpen, onToggle } = useDisclosure()
   return (
     <>
-      <button onClick={() => setOpen(t => !t)}>Click</button>
-      <Collapse isOpen={open} animateOpacity={false}>
+      <button onClick={onToggle}>Click</button>
+      <Collapse isOpen={isOpen}>
         <div style={{ padding: 20, background: "tomato", color: "white" }}>
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
@@ -22,6 +23,22 @@ export function SampleSpring() {
           more recently with desktop publishing software like Aldus PageMaker
           including versions of Lorem Ipsum.
         </div>
+      </Collapse>
+    </>
+  )
+}
+
+export function WithStringAsChild() {
+  const { isOpen, onToggle } = useDisclosure()
+  return (
+    <>
+      <button style={{ marginBottom: 10 }} onClick={onToggle}>
+        Click
+      </button>
+      <Collapse isOpen={isOpen}>
+        Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry. Lorem Ipsum has been the industry's standard dummy text ever
+        since the 1500s, when an unknown printer took a galley of type and
       </Collapse>
     </>
   )
