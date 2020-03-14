@@ -2,26 +2,33 @@ import * as React from "react"
 import { createContext } from "@chakra-ui/utils"
 import { useIsomorphicEffect, useForceUpdate } from "@chakra-ui/hooks"
 
-export interface PortalsContext {
-  host: HTMLElement
+export interface PortalManagerContext {
+  node: HTMLElement
   zIndex?: number
 }
 
-const [PortalsProvider, usePortalsContext] = createContext<PortalsContext>({
+const [PortalManagerProvider, usePortalManager] = createContext<
+  PortalManagerContext
+>({
   strict: false,
 })
 
-export { usePortalsContext }
+export { usePortalManager }
 
-interface LayerManagerProps {
+export interface PortalManagerProps {
   children?: React.ReactNode
   zIndex?: number
 }
 
-// This component should be used once in the root
-export function PortalManager({ children, zIndex }: LayerManagerProps) {
+/**
+ * Manage multiple portals within an application
+ * Inspired by BaseWeb's LayerManager component
+ */
+export function PortalManager(props: PortalManagerProps) {
+  const { children, zIndex } = props
+
   // The element that wraps the stacked layers
-  const hostRef = React.useRef<HTMLDivElement>(null)
+  const ref = React.useRef<HTMLDivElement>(null)
 
   // force an update so the Provider works correctly
   const forceUpdate = useForceUpdate()
@@ -30,20 +37,18 @@ export function PortalManager({ children, zIndex }: LayerManagerProps) {
   }, [])
 
   // let's detect if use has mutiple instances of this component
-  const parent = usePortalsContext()
+  const parentManager = usePortalManager()
 
-  // Broadcast the host element via context
-  // If user passed a stacking context (aka z-index), send that as well
   const context = {
-    host: parent?.host || hostRef.current,
+    node: parentManager?.node || ref.current,
     zIndex,
   }
 
   return (
-    <PortalsProvider value={context}>
+    <PortalManagerProvider value={context}>
       {children}
-      <div className="chakra-portal-manager" ref={hostRef} />
-    </PortalsProvider>
+      <div className="chakra-portal-manager" ref={ref} />
+    </PortalManagerProvider>
   )
 }
 
