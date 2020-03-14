@@ -110,6 +110,7 @@ export interface MenuListHookProps {
   onKeyDown?: React.KeyboardEventHandler
   context: MenuHookReturn
   style?: React.CSSProperties
+  hidden?: boolean
 }
 
 export function useMenuList(props: MenuListHookProps) {

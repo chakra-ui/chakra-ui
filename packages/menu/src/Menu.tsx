@@ -13,6 +13,11 @@ const [MenuContextProvider, useMenuContext] = createContext<MenuHookReturn>({
   strict: false,
 })
 
+export function useMenuState() {
+  const { isOpen, onClose } = useMenuContext()
+  return { isOpen, onClose }
+}
+
 export function Menu(props: { children: React.ReactNode }) {
   const parentMenu = useMenuContext()
   const context = useMenu({ context: parentMenu })
@@ -63,7 +68,12 @@ export const MenuList = React.forwardRef(
     const ownRef = mergeRefs(ownProps.ref, ref)
 
     return (
-      <StyledMenuList data-chakra-menu-list="" {...ownProps} ref={ownRef} />
+      <StyledMenuList
+        data-chakra-menu-list=""
+        {...ownProps}
+        {...(props.hidden != null && { hidden: props.hidden })}
+        ref={ownRef}
+      />
     )
   },
 )
