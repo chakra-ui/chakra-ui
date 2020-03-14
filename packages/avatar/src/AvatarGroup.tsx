@@ -20,7 +20,7 @@ interface AvatarGroupOptions {
   /**
    * The space between the avatars in the group.
    */
-  spacing?: SystemProps["marginLeft"]
+  spacing?: SystemProps["margin"]
   /**
    * The maximum number of visible avatars
    */
@@ -28,20 +28,20 @@ interface AvatarGroupOptions {
 }
 
 export type AvatarGroupProps = AvatarGroupOptions & AvatarProps
-type AvatarElement = React.ReactElement<AvatarProps>
 
-export const AvatarGroup = ({
-  children,
-  borderColor,
-  max,
-  spacing = -3,
-  variantSize,
-  ...rest
-}: AvatarGroupProps) => {
+export const AvatarGroup = (props: AvatarGroupProps) => {
+  const {
+    children,
+    borderColor,
+    max,
+    spacing = -3,
+    variantSize,
+    ...rest
+  } = props
+
   const validChildren = cleanChildren(children)
 
   const childrenWithinMax = max ? validChildren.slice(0, max) : validChildren
-  console.log(childrenWithinMax)
 
   const remainingAvatarCount = max && validChildren.length - max
 
@@ -49,8 +49,11 @@ export const AvatarGroup = ({
   // to overlap the avatars
   const reversedChildren = childrenWithinMax.reverse()
 
+  type AvatarElement = React.ReactElement<AvatarProps>
+
   const clones = reversedChildren.map((child, index) => {
     const isFirstAvatar = index === 0
+
     return React.cloneElement(child as AvatarElement, {
       marginRight: isFirstAvatar ? 0 : spacing,
       variantSize,

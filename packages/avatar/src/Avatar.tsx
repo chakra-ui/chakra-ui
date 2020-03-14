@@ -1,7 +1,7 @@
 import { isDark, stringToColor } from "@chakra-ui/color"
+import { useImage } from "@chakra-ui/image"
 import {
   chakra,
-  ChakraComponent,
   createChakra,
   forwardRef,
   PropsOf,
@@ -11,7 +11,7 @@ import {
 import { SafeMerge } from "@chakra-ui/utils"
 import * as React from "react"
 
-export interface AvatarOptions {
+interface AvatarOptions {
   /**
    * The name of the person in the avatar.
    *
@@ -51,8 +51,10 @@ export interface AvatarOptions {
   onError?: () => void
 }
 
-export const AvatarBadge = forwardRef(
-  (props: PropsOf<typeof chakra.div>, ref: React.Ref<any>) => {
+export type AvatarBadgeProps = PropsOf<typeof chakra.div>
+
+export const AvatarBadge = React.forwardRef(
+  (props: AvatarBadgeProps, ref: React.Ref<any>) => {
     const borderColor = useColorModeValue("white", "gray.800")
     return (
       <chakra.div
@@ -71,7 +73,7 @@ export const AvatarBadge = forwardRef(
       />
     )
   },
-) as ChakraComponent<"div">
+)
 
 const getInitials = (name: string) => {
   const [firstName, lastName] = name.split(" ")
@@ -90,13 +92,13 @@ export type AvatarNameProps = SafeMerge<
   { name: AvatarOptions["name"] }
 >
 
-const AvatarName = ({ name, ...props }: AvatarNameProps) => (
+const AvatarName = ({ name, ...rest }: AvatarNameProps) => (
   <chakra.div
     textAlign="center"
     textTransform="uppercase"
     fontWeight="normal"
     aria-label={name}
-    {...props}
+    {...rest}
     children={name ? getInitials(name) : null}
   />
 )
@@ -112,22 +114,17 @@ const DefaultAvatar = (props: BoxProps) => (
   </chakra.div>
 )
 
-const AvatarRoot = createChakra("div", { themeKey: "Avatar" })
+const StyledAvatar = createChakra("div", { themeKey: "Avatar" })
 
-export type AvatarProps = SafeMerge<PropsOf<typeof AvatarRoot>, AvatarOptions>
+export type AvatarProps = SafeMerge<PropsOf<typeof StyledAvatar>, AvatarOptions>
 
-export const Avatar = forwardRef(function(
-  { src, name, showBorder, borderColor, onError, ...props }: AvatarProps,
-  ref: React.Ref<any>,
-) {
-  const [hasLoaded, setHasLoaded] = React.useState(true)
+export const Avatar = forwardRef((props: AvatarProps, ref: React.Ref<any>) => {
+  const { src, name, showBorder, borderColor, onError, ...rest } = props
 
-  const onLoadError = React.useCallback(() => {
-    setHasLoaded(false)
-    onError && onError()
-  }, [onError])
+  const status = useImage({ src, onError })
+  const hasLoaded = status === "loaded"
 
-  const getChildren = () => {
+  const renderChildren = () => {
     if (src && hasLoaded) {
       return (
         <chakra.img
@@ -136,17 +133,16 @@ export const Avatar = forwardRef(function(
           objectFit="cover"
           src={src}
           alt={name}
-          onError={onLoadError}
         />
       )
     }
 
     if (src && !hasLoaded) {
-      if (name) {
-        return <AvatarName name={name} />
-      } else {
-        return <DefaultAvatar aria-label={name} />
-      }
+      return name ? (
+        <AvatarName name={name} />
+      ) : (
+        <DefaultAvatar aria-label={name} />
+      )
     }
 
     if (!src && name) {
@@ -159,21 +155,22 @@ export const Avatar = forwardRef(function(
   const bg = name ? stringToColor(name) : "gray.400"
   const color = name ? (isDark(bg) ? "#fff" : "gray.800") : "#fff"
 
-  const dafaultBorderColor = useColorModeValue("#fff", "gray.800")
+  const defaultBorderColor = useColorModeValue("#fff", "gray.800")
+
   const styleProps = {
     bg,
     color,
     ...(showBorder && {
       border: "2px solid",
-      borderColor: borderColor || dafaultBorderColor,
+      borderColor: borderColor || defaultBorderColor,
     }),
   }
 
   return (
-    <AvatarRoot ref={ref} verticalAlign="top" {...styleProps} {...props}>
-      {getChildren()}
+    <StyledAvatar ref={ref} verticalAlign="top" {...styleProps} {...rest}>
+      {renderChildren()}
       {props.children}
-    </AvatarRoot>
+    </StyledAvatar>
   )
 })
 
