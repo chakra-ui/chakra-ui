@@ -1,7 +1,7 @@
 import { useAriaHidden, useIds, useLockBodyScroll } from "@chakra-ui/hooks"
-import { usePortalsContext } from "@chakra-ui/portal"
 import { callAllHandlers, mergeRefs } from "@chakra-ui/utils"
 import * as React from "react"
+import { useDialogManager, manager } from "./Dialog.manager"
 
 export interface DialogHookProps {
   /**
@@ -10,10 +10,6 @@ export interface DialogHookProps {
    * - If set to `outside`, the entire `ModalContent` will scroll within the viewport.
    */
   scrollBehavior?: "inside" | "outside"
-  /**
-   *  If `true`, the modal will be centered on screen.
-   */
-  isCentered?: boolean
   /**
    * If `true`, the modal when be opened.
    */
@@ -41,6 +37,15 @@ export interface DialogHookProps {
    * @default true
    */
   closeOnEsc?: boolean
+  /**
+   * Callback fired when the overlay is clicked.
+   */
+  onOverlayClick?: () => void
+  /**
+   * Callback fired when the escape key is pressed,
+   * `closeOnEsc` is set to `false` and focus is within dialog
+   */
+  onEscapeKeyDown?: () => void
 }
 
 export function useDialog(props: DialogHookProps) {
@@ -51,7 +56,9 @@ export function useDialog(props: DialogHookProps) {
     closeOnOverlayClick = true,
     closeOnEsc = true,
     blockScrollOnMount = true,
+    onOverlayClick: onOverlayClickProp,
   } = props
+
   const dialogRef = React.useRef<HTMLElement>(null)
   const overlayRef = React.useRef<HTMLElement>(null)
 
@@ -64,16 +71,15 @@ export function useDialog(props: DialogHookProps) {
 
   useLockBodyScroll(dialogRef, isOpen && blockScrollOnMount)
   useAriaHidden(dialogRef, isOpen)
-
-  const dialogs = useStackContext(dialogRef, isOpen)
+  useDialogManager(dialogRef, isOpen)
 
   const mouseDownTarget = React.useRef<EventTarget | null>(null)
 
-  const handleMouseDown = React.useCallback((event: React.MouseEvent) => {
+  const onMouseDown = React.useCallback((event: React.MouseEvent) => {
     mouseDownTarget.current = event.target
   }, [])
 
-  const handleKeyDown = React.useCallback(
+  const onKeyDown = React.useCallback(
     (event: React.KeyboardEvent) => {
       if (event.key === "Escape") {
         event.stopPropagation()
@@ -83,19 +89,20 @@ export function useDialog(props: DialogHookProps) {
     [closeOnEsc, onClose],
   )
 
-  const lastDialog = dialogs[dialogs.length - 1]
-
   const onOverlayClick = React.useCallback(
     (event: React.MouseEvent) => {
       event.stopPropagation()
 
-      const isLast = lastDialog?.current === dialogRef.current
+      // Make sure the event starts and ends on the same DOM element.
+      if (mouseDownTarget.current !== event.target) return
 
-      if (mouseDownTarget.current === event.target && isLast) {
+      onOverlayClickProp?.()
+
+      if (manager.isTopDialog(dialogRef)) {
         closeOnOverlayClick && onClose?.()
       }
     },
-    [lastDialog, onClose, closeOnOverlayClick],
+    [onClose, closeOnOverlayClick, onOverlayClickProp],
   )
 
   const [headerMounted, setHeaderMounted] = React.useState(false)
@@ -136,25 +143,10 @@ export function useDialog(props: DialogHookProps) {
       ...props,
       ref: mergeRefs(props.ref, overlayRef),
       onClick: callAllHandlers(props.onClick, onOverlayClick),
-      onKeyDown: callAllHandlers(props.onKeyDown, handleKeyDown),
-      onMouseDown: callAllHandlers(props.onMouseDown, handleMouseDown),
+      onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
+      onMouseDown: callAllHandlers(props.onMouseDown, onMouseDown),
     }),
   }
 }
 
 export type DialogHookReturn = ReturnType<typeof useDialog>
-
-function useStackContext(ref: React.Ref<any>, isOpen?: boolean) {
-  const { modals } = usePortalsContext()
-
-  React.useEffect(() => {
-    if (!isOpen) return
-    modals?.add(ref)
-    return () => {
-      modals?.remove(ref)
-    }
-    //eslint-disable-next-line
-  }, [isOpen, ref])
-
-  return modals?.value
-}

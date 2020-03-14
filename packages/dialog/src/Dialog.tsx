@@ -186,7 +186,6 @@ export const DialogCloseButton = (props: CloseButtonProps) => {
       position="absolute"
       top="8px"
       right="12px"
-      data-chakra-dialog-close-btn=""
       {...props}
     />
   )

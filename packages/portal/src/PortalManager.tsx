@@ -5,11 +5,6 @@ import { useIsomorphicEffect, useForceUpdate } from "@chakra-ui/hooks"
 export interface PortalsContext {
   host: HTMLElement
   zIndex?: number
-  modals: {
-    value: any[]
-    add: (modal: any) => void
-    remove: (modal: any) => void
-  }
 }
 
 const [PortalsProvider, usePortalsContext] = createContext<PortalsContext>({
@@ -34,16 +29,6 @@ export function PortalManager({ children, zIndex }: LayerManagerProps) {
     forceUpdate()
   }, [])
 
-  const [modals, setModals] = React.useState<any[]>([])
-  const add = React.useCallback(
-    modal => setModals((modals: any) => [...modals, modal]),
-    [],
-  )
-  const remove = React.useCallback(
-    modal => setModals(modals => modals.filter(_modal => _modal !== modal)),
-    [],
-  )
-
   // let's detect if use has mutiple instances of this component
   const parent = usePortalsContext()
 
@@ -52,7 +37,6 @@ export function PortalManager({ children, zIndex }: LayerManagerProps) {
   const context = {
     host: parent?.host || hostRef.current,
     zIndex,
-    modals: { value: modals, add, remove },
   }
 
   return (
