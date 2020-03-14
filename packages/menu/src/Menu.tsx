@@ -1,14 +1,13 @@
+import { createChakra, PropsOf } from "@chakra-ui/system"
+import { createContext, mergeRefs } from "@chakra-ui/utils"
 import * as React from "react"
 import {
   MenuHookReturn,
   useMenu,
-  useMenuDisclosure,
-  useMenuList,
+  useMenuButton,
   useMenuItem,
-  MenuItemHookProps,
+  useMenuList,
 } from "./Menu.hook"
-import { createContext, mergeRefs } from "@chakra-ui/utils"
-import { PropsOf, createChakra } from "@chakra-ui/system"
 
 const [MenuContextProvider, useMenuContext] = createContext<MenuHookReturn>({
   strict: false,
@@ -38,7 +37,7 @@ export const MenuButton = React.forwardRef(
     const { isSubmenu, ...rest } = props
 
     const context = useMenuContext()
-    const ownProps = useMenuDisclosure({ context, ...rest })
+    const ownProps = useMenuButton({ context, ...rest })
     const ownRef = mergeRefs(ref, ownProps.ref)
 
     const Comp = isSubmenu ? StyledMenuItem : StyledMenuButton
@@ -52,7 +51,8 @@ export type MenuListProps = PropsOf<typeof StyledMenuList>
 const StyledMenuList = createChakra("div", {
   themeKey: "Menu.MenuList",
   baseStyle: {
-    minWidth: "200px",
+    maxWidth: "120px",
+    fontSize: "sm",
   },
 })
 

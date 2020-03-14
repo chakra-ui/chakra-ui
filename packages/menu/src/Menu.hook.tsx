@@ -3,8 +3,7 @@ import {
   useDisclosure,
   useId,
   useIds,
-  useMergeRefs,
-  useRapidKeydown,
+  useShortcut,
   useUpdateEffect,
 } from "@chakra-ui/hooks"
 import { usePopper } from "@chakra-ui/popper"
@@ -15,12 +14,19 @@ import {
   getNextIndex,
   getNextItemFromSearch,
   getPrevIndex,
+  mergeRefs,
 } from "@chakra-ui/utils"
 import * as React from "react"
 
 ///////////////////////////////////////////////////////////////////////////////////
 
-export function useMenu({ context }: { context?: MenuHookReturn }) {
+export type MenuHookProps = {
+  context?: MenuHookReturn
+  id?: string
+}
+
+export function useMenu(props: MenuHookProps) {
+  const { context, id } = props
   /**
    *
    * if this menu is a nested menu, that means
@@ -38,11 +44,12 @@ export function useMenu({ context }: { context?: MenuHookReturn }) {
   const menuRef = React.useRef<HTMLDivElement>(null)
   const disclosureRef = React.useRef<HTMLButtonElement>(null)
 
-  // Add some popper.js for dymanic positioning
-  const { placement, popper, reference, popperInstance } = usePopper({
+  // Add some popper.js for dynamic positioning
+  const { placement, popper, reference } = usePopper({
     placement: !hasParent ? "bottom-start" : "right-start",
     fixed: true,
     forceUpdate: isOpen,
+    gutter: hasParent ? 0 : undefined,
   })
 
   const [focusedIndex, setFocusedIndex] = React.useState(-1)
@@ -71,11 +78,7 @@ export function useMenu({ context }: { context?: MenuHookReturn }) {
   }, [isOpen])
 
   // generate unique ids for menu and disclosure
-  const [disclosureId, menuId] = useIds(
-    null,
-    `chakra-menu-disclosure`,
-    `chakra-menu-list`,
-  )
+  const [disclosureId, menuId] = useIds(id, `menu-disclosure`, `menu-list`)
 
   return {
     descendantsContext,
@@ -110,7 +113,7 @@ export interface MenuListHookProps {
 }
 
 export function useMenuList(props: MenuListHookProps) {
-  const { context: menu, ...htmlProps } = props
+  const { context: menu, ...rest } = props
   const {
     focusedIndex,
     setFocusedIndex,
@@ -153,17 +156,17 @@ export function useMenuList(props: MenuListHookProps) {
     }
   }
 
-  const [onSearch] = useRapidKeydown()
+  const onSearch = useShortcut()
 
   const onKeyDown = createOnKeyDown({
     stopPropagation: event => {
       if (event.key === "Escape" && hasParent) return false
       return true
     },
-    onKeyDown: onSearch(str => {
+    onKeyDown: onSearch(keysSoFar => {
       const nextItem = getNextItemFromSearch(
         descendants,
-        str,
+        keysSoFar,
         node => node.element?.textContent || "",
         descendants[focusedIndex],
       )
@@ -192,10 +195,10 @@ export function useMenuList(props: MenuListHookProps) {
   })
 
   // merge all the refs
-  const ref = useMergeRefs(menu.menuRef, menu.popper.ref)
+  const ref = mergeRefs(menu.menuRef, menu.popper.ref)
 
   return {
-    ...htmlProps,
+    ...rest,
     ref,
     tabIndex: -1,
     role: "menu",
@@ -203,7 +206,7 @@ export function useMenuList(props: MenuListHookProps) {
     hidden: !menu.isOpen,
     "aria-orientation": "vertical" as React.AriaAttributes["aria-orientation"],
     "data-placement": menu.placement,
-    style: { ...htmlProps.style, ...menu.popper.style },
+    style: { ...rest.style, ...menu.popper.style },
     onMouseEnter: callAllHandlers(onMouseEnter, props.onMouseEnter),
     onKeyDown: callAllHandlers(onKeyDown, props.onKeyDown),
   }
@@ -211,7 +214,7 @@ export function useMenuList(props: MenuListHookProps) {
 
 //////////////////////////////////////////////////////////////////////////////
 
-export interface MenuDisclosureHookProps {
+export interface MenuButtonHookProps {
   onMouseOver?: React.MouseEventHandler
   onClick?: React.MouseEventHandler
   onMouseOut?: React.MouseEventHandler
@@ -219,7 +222,7 @@ export interface MenuDisclosureHookProps {
   context: MenuHookReturn
 }
 
-export function useMenuDisclosure(props: MenuDisclosureHookProps) {
+export function useMenuButton(props: MenuButtonHookProps) {
   const { context: menu, ...htmlProps } = props
   const {
     setFocusedIndex,
@@ -265,8 +268,10 @@ export function useMenuDisclosure(props: MenuDisclosureHookProps) {
   const onMouseOut = (event: React.MouseEvent) => {
     // if we mouseout to any menuitem within parent menu
     // we'll close the nested menu
-    const parentMenuNode = menu.parent?.menuRef.current
-    if (parentMenuNode?.contains(event.target as HTMLElement)) {
+    const parentMenuList = menu.parent?.menuRef.current
+    const target = event.currentTarget as HTMLElement
+
+    if (parentMenuList?.contains(target)) {
       menu.onClose()
     }
   }
@@ -290,10 +295,11 @@ export function useMenuDisclosure(props: MenuDisclosureHookProps) {
   }, [onOpen, setFocusedIndex, descendants])
 
   const onKeyDown = createOnKeyDown({
-    // stopPropagation: event => !hasParent && event.key !== "Escape",
     keyMap: {
       Enter: () => {
-        // not sure of this yet.
+        openAndFocusFirstItem()
+      },
+      " ": () => {
         openAndFocusFirstItem()
       },
       ArrowDown: () => {
@@ -308,7 +314,7 @@ export function useMenuDisclosure(props: MenuDisclosureHookProps) {
     },
   })
 
-  const ref = useMergeRefs(menu.disclosureRef, menu.reference.ref)
+  const ref = mergeRefs(menu.disclosureRef, menu.reference.ref)
 
   return {
     ...htmlProps,
@@ -375,9 +381,7 @@ export function useMenuItem(props: MenuItemHookProps) {
         menuNode.focus()
       }
 
-      if (onMouseOutProp) {
-        onMouseOutProp(event)
-      }
+      onMouseOutProp?.(event)
     },
     [menuRef, onMouseOutProp],
   )
@@ -390,9 +394,7 @@ export function useMenuItem(props: MenuItemHookProps) {
         return
       }
 
-      if (onClickProp) {
-        onClickProp(event)
-      }
+      onClickProp?.(event)
 
       // close the current menu
       menu.onClose()

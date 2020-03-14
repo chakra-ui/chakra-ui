@@ -1,9 +1,16 @@
-import { createChakra } from "@chakra-ui/system"
+import { chakra } from "@chakra-ui/system"
 import * as React from "react"
-import { MenuButton, MenuItem, MenuList, Menu } from "./Menu"
+import { Menu, MenuButton, MenuItem, MenuList } from "./Menu"
 
 export default {
   title: "Menu",
+  decorators: [
+    (story: Function) => (
+      <chakra.div maxWidth="500px" mx="auto" mt="40px">
+        {story()}
+      </chakra.div>
+    ),
+  ],
 }
 
 const Submenu = React.forwardRef<HTMLButtonElement, {}>((props, ref) => {

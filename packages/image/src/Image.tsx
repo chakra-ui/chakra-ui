@@ -42,6 +42,7 @@ export const Image = React.forwardRef(
           src={fallbackSrc}
           htmlHeight={htmlHeight}
           htmlWidth={htmlWidth}
+          {...rest}
         />
       )
     }

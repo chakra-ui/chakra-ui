@@ -6,7 +6,7 @@ function getMenuListStyle(props: StyleFunctionProps) {
     bg: getModeColor(props, `#fff`, `gray.700`),
     shadow: getModeValue(props, `sm`, longShadow),
     color: "inherit",
-    borderWidth: "1px",
+    outline: 0,
   }
 }
 
@@ -15,13 +15,17 @@ function getMenuItemStyle(props: StyleFunctionProps) {
     width: "100%",
     flex: "0 0 auto",
     userSelect: "none",
+    textAlign: "left",
     transition: "background-color 220ms, color 220ms",
+    outline: 0,
     _active: {
       bg: getModeValue(props, `gray.200`, `whiteAlpha.200`),
     },
     _focus: {
       bg: getModeValue(props, `gray.100`, `whiteAlpha.100`),
-      outline: 0,
+    },
+    _expanded: {
+      bg: getModeValue(props, `gray.100`, `whiteAlpha.100`),
     },
     _disabled: {
       opacity: 0.4,
