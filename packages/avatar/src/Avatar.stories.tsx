@@ -6,7 +6,19 @@ export default {
   title: "Avatar",
 }
 
-export const Default = () => (
+export const NoImage = () => (
+  <Avatar variantSize="md" name="Uchiha Itachi">
+    <AvatarBadge size="1.25em" bg="green.500" />
+  </Avatar>
+)
+
+export const NoImageAndName = () => (
+  <Avatar variantSize="md">
+    <AvatarBadge size="1.25em" bg="green.500" />
+  </Avatar>
+)
+
+export const WithSizes = () => (
   <Fragment>
     {["xs", "sm", "md", "lg", "xl", "2xl"].map(size => (
       <Avatar
@@ -21,8 +33,8 @@ export const Default = () => (
   </Fragment>
 )
 
-export const AvatarGroup_ = () => (
-  <AvatarGroup variantSize="md" showBorder max={4}>
+export const avatarGroup = () => (
+  <AvatarGroup variantSize="lg" showBorder max={4}>
     <Avatar
       name="Daniel Powell"
       src="https://uinames.com/api/photos/male/16.jpg"
