@@ -13,12 +13,15 @@ import {
 
 type AccordionContext = Omit<AccordionHookReturn, "children" | "htmlProps">
 
-const [AccordionCtxProvider, useAccordionCtx] = createContext<
+const [AccordionCtxProvider, useAccordionContext] = createContext<
   AccordionContext
 >()
 
+const StyledAccordion = createChakra("div", {
+  themeKey: "Accordion.Root",
+})
 export type AccordionProps = AccordionHookProps &
-  Omit<PropsOf<"div">, "onChange">
+  Omit<PropsOf<typeof StyledAccordion>, "onChange">
 
 export function Accordion(props: AccordionProps) {
   const { children, htmlProps, ...context } = useAccordion(props)
@@ -30,10 +33,6 @@ export function Accordion(props: AccordionProps) {
     </AccordionCtxProvider>
   )
 }
-
-const StyledAccordion = createChakra("div", {
-  themeKey: "Accordion.Root",
-})
 
 type AccordionItemContext = Omit<AccordionItemHookReturn, "htmlProps">
 
@@ -50,7 +49,7 @@ export type AccordionItemProps = PropsOf<typeof StyledAccordionItem> &
   Omit<AccordionItemHookProps, "context">
 
 export function AccordionItem(props: AccordionItemProps) {
-  const accordionContext = useAccordionCtx()
+  const accordionContext = useAccordionContext()
   const { htmlProps, ...context } = useAccordionItem({
     ...props,
     context: accordionContext,
@@ -66,6 +65,17 @@ const StyledAccordionItem = createChakra("div", {
   themeKey: "Accordion.Item",
 })
 
+const StyledAccordionButton = createChakra("button", {
+  themeKey: "Accordion.Button",
+  baseStyle: {
+    display: "flex",
+    alignItems: "center",
+    width: "100%",
+    transition: "all 0.2s",
+    outline: 0,
+  },
+})
+
 export type AccordionButtonProps = PropsOf<typeof StyledAccordionButton>
 
 export function AccordionButton(props: AccordionButtonProps) {
@@ -78,19 +88,13 @@ export function AccordionButton(props: AccordionButtonProps) {
   )
 }
 
-const StyledAccordionButton = createChakra("button", {
-  themeKey: "Accordion.Button",
-  baseStyle: {
-    display: "flex",
-    alignItems: "center",
-    width: "100%",
-    transition: "all 0.2s",
-    outline: 0,
-  },
+const StyledAccordionPanel = createChakra("div", {
+  themeKey: "Accordion.Panel",
 })
 
 export type AccordionPanelProps = PropsOf<typeof StyledAccordionPanel>
 
+//TODO: use Collapse component here instead of `hidden`
 export function AccordionPanel(props: AccordionPanelProps) {
   const { getPanelProps } = useAccordionItemContext()
   return (
@@ -100,10 +104,6 @@ export function AccordionPanel(props: AccordionPanelProps) {
     />
   )
 }
-
-const StyledAccordionPanel = createChakra("div", {
-  themeKey: "Accordion.Panel",
-})
 
 export type AccordionIconProps = IconProps
 
