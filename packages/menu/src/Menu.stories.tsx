@@ -1,33 +1,20 @@
 import { createChakra } from "@chakra-ui/system"
 import * as React from "react"
-import { BaseMenuButton, BaseMenuItem, BaseMenuList, Menu } from "./Menu.base"
+import { MenuButton, MenuItem, MenuList, Menu } from "./Menu"
 
 export default {
   title: "Menu",
 }
 
-const MenuButton = createChakra(BaseMenuButton, { themeKey: "Button" })
-
-const MenuList = createChakra(BaseMenuList, {
-  themeKey: "Menu.MenuList",
-  baseStyle: {
-    minWidth: "200px",
-  },
-})
-
 const Submenu = React.forwardRef<HTMLButtonElement, {}>((props, ref) => {
   return (
     <Menu>
-      <BaseMenuButton
-        ref={ref}
-        style={{ width: "100%", textAlign: "left" }}
-        {...props}
-      >
+      <MenuButton isSubmenu ref={ref} {...props}>
         Submenu >>
-      </BaseMenuButton>
+      </MenuButton>
       <MenuList>
-        <BaseMenuItem>Menu 1</BaseMenuItem>
-        <BaseMenuItem>Menu 2</BaseMenuItem>
+        <MenuItem>Menu 1</MenuItem>
+        <MenuItem>Menu 2</MenuItem>
       </MenuList>
     </Menu>
   )
@@ -40,17 +27,17 @@ export function SampleMenu() {
         Open menu
       </MenuButton>
       <MenuList>
-        <BaseMenuItem>Menu 1</BaseMenuItem>
-        <BaseMenuItem>Menu 2</BaseMenuItem>
-        <BaseMenuItem
+        <MenuItem>Menu 1</MenuItem>
+        <MenuItem>Menu 2</MenuItem>
+        <MenuItem
           onClick={() => {
             console.log("menu 3 clicked")
           }}
         >
           Menu 3
-        </BaseMenuItem>
-        <BaseMenuItem as={Submenu} />
-        <BaseMenuItem>Menu 4</BaseMenuItem>
+        </MenuItem>
+        <MenuItem as={Submenu} />
+        <MenuItem>Menu 4</MenuItem>
       </MenuList>
     </Menu>
   )
