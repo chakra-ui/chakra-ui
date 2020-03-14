@@ -1,6 +1,7 @@
 import { chakra } from "@chakra-ui/system"
 import * as React from "react"
 import { Menu, MenuButton, MenuItem, MenuList } from "./Menu"
+import { Portal } from "@chakra-ui/portal"
 
 export default {
   title: "Menu",
@@ -13,26 +14,86 @@ export default {
   ],
 }
 
-const Submenu = React.forwardRef<HTMLButtonElement, {}>((props, ref) => {
-  return (
-    <Menu>
-      <MenuButton isSubmenu ref={ref} {...props}>
-        Submenu >>
-      </MenuButton>
+export const basic = () => (
+  <Menu>
+    <MenuButton variant="solid" variantColor="green" variantSize="sm">
+      Open menu
+    </MenuButton>
+    <MenuList>
+      <MenuItem>Menu 1</MenuItem>
+      <MenuItem>Menu 2</MenuItem>
+      <MenuItem>Menu 3</MenuItem>
+      <MenuItem>Menu 4</MenuItem>
+    </MenuList>
+  </Menu>
+)
+
+export const disabledMenuItem = () => (
+  <Menu>
+    <MenuButton variant="solid" variantColor="green" variantSize="sm">
+      Open menu
+    </MenuButton>
+    <MenuList>
+      <MenuItem>Menu 1</MenuItem>
+      <MenuItem>Menu 2</MenuItem>
+      <MenuItem isDisabled>Menu 3</MenuItem>
+      <MenuItem>Menu 4</MenuItem>
+    </MenuList>
+  </Menu>
+)
+
+export const disabledButFocusableMenuItem = () => (
+  <Menu>
+    <MenuButton variant="solid" variantColor="green" variantSize="sm">
+      Open menu
+    </MenuButton>
+    <MenuList>
+      <MenuItem>Menu 1</MenuItem>
+      <MenuItem>Menu 2</MenuItem>
+      <MenuItem isDisabled isFocusable>
+        Menu 3
+      </MenuItem>
+      <MenuItem>Menu 4</MenuItem>
+    </MenuList>
+  </Menu>
+)
+
+export const withPortal = () => (
+  <Menu>
+    <MenuButton variant="solid" variantColor="green" variantSize="sm">
+      Open menu
+    </MenuButton>
+    <Portal>
+      <MenuList>
+        <MenuItem>Menu 1</MenuItem>
+        <MenuItem>Menu 2</MenuItem>
+        <MenuItem>Menu 3</MenuItem>
+        <MenuItem>Menu 4</MenuItem>
+      </MenuList>
+    </Portal>
+  </Menu>
+)
+
+const Submenu = React.forwardRef<HTMLButtonElement, {}>((props, ref) => (
+  <Menu>
+    <MenuButton isSubmenu ref={ref} {...props}>
+      Submenu >>
+    </MenuButton>
+    <Portal>
       <MenuList>
         <MenuItem>Menu 1</MenuItem>
         <MenuItem>Menu 2</MenuItem>
       </MenuList>
-    </Menu>
-  )
-})
+    </Portal>
+  </Menu>
+))
 
-export function SampleMenu() {
-  return (
-    <Menu>
-      <MenuButton variant="solid" variantColor="green" variantSize="sm">
-        Open menu
-      </MenuButton>
+export const nestedMenus = () => (
+  <Menu>
+    <MenuButton variant="solid" variantColor="green" variantSize="sm">
+      Open menu
+    </MenuButton>
+    <Portal>
       <MenuList>
         <MenuItem>Menu 1</MenuItem>
         <MenuItem>Menu 2</MenuItem>
@@ -46,6 +107,6 @@ export function SampleMenu() {
         <MenuItem as={Submenu} />
         <MenuItem>Menu 4</MenuItem>
       </MenuList>
-    </Menu>
-  )
-}
+    </Portal>
+  </Menu>
+)
