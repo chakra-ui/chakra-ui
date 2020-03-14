@@ -1,5 +1,5 @@
 import * as React from "react"
-import useControllableProp from "./useControllableProp"
+import { useControllableProp } from "./useControllableProp"
 import usePrevious from "./usePrevious"
 
 export interface UseDisclosureOptions {

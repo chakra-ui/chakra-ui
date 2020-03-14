@@ -1,22 +1,40 @@
 import * as React from "react"
 import { useDescendants, useDescendant } from "@chakra-ui/descendant"
+import { useControllableState } from "@chakra-ui/hooks"
 
-export interface PinStateHookProps {
+export interface PinInputHookProps {
   autoFocus?: boolean
   value?: string
   defaultValue?: string
-  onChange?: (nextValue: string) => void
-  onComplete?: () => void
+  onChange?: (value: string) => void
+  onComplete?: (value: string) => void
+  placeholder?: string
 }
 
-export function usePinInputState(props: PinStateHookProps = {}) {
-  const { autoFocus } = props
+function toArray(value?: string) {
+  return value?.split("")
+}
+
+export function usePinInput(props: PinInputHookProps = {}) {
+  const {
+    autoFocus,
+    value,
+    defaultValue,
+    onChange,
+    onComplete,
+    placeholder = "○",
+  } = props
 
   const descendantsContext = useDescendants<HTMLInputElement, {}>()
   const { descendants } = descendantsContext
 
   const [moveFocus, setMoveFocus] = React.useState(true)
-  const [values, setValues] = React.useState<string[]>([])
+
+  const [values, setValues] = useControllableState<string[]>({
+    defaultValue: toArray(defaultValue) || [],
+    value: toArray(value),
+    onChange: values => onChange?.(values.join("")),
+  })
 
   React.useEffect(() => {
     if (autoFocus) {
@@ -28,6 +46,7 @@ export function usePinInputState(props: PinStateHookProps = {}) {
   const focusNext = React.useCallback(
     (index: number) => {
       if (!moveFocus) return
+
       const nextInput = descendants[index + 1]
       nextInput?.element?.focus()
     },
@@ -39,9 +58,15 @@ export function usePinInputState(props: PinStateHookProps = {}) {
       const nextValues = [...values]
       nextValues[index] = value
       setValues(nextValues)
-      focusNext(index)
+
+      // if we're at the last input, call onComplete (no need to move focus)
+      if (index === descendants.length - 1) {
+        onComplete?.(nextValues.join(""))
+      } else {
+        focusNext(index)
+      }
     },
-    [values, focusNext],
+    [values, setValues, focusNext, onComplete, descendants.length],
   )
 
   const clear = React.useCallback(() => {
@@ -49,7 +74,7 @@ export function usePinInputState(props: PinStateHookProps = {}) {
     setValues(values)
     const firstInput = descendants[0]
     firstInput.element?.focus()
-  }, [descendants])
+  }, [descendants, setValues])
 
   return {
     descendantsContext,
@@ -58,16 +83,18 @@ export function usePinInputState(props: PinStateHookProps = {}) {
     setValues,
     setMoveFocus,
     clear,
+    onComplete,
+    placeholder,
   }
 }
 
-type PinInputHookReturn = ReturnType<typeof usePinInputState>
+export type PinInputHookReturn = ReturnType<typeof usePinInput>
 
-export interface PinInputHookProps {
+export interface PinInputFieldHookProps {
   context: PinInputHookReturn
 }
 
-export function usePinInput(props: PinInputHookProps) {
+export function usePinInputField(props: PinInputFieldHookProps) {
   const { context } = props
 
   const ref = React.useRef<HTMLInputElement>(null)
@@ -78,7 +105,9 @@ export function usePinInput(props: PinInputHookProps) {
     setMoveFocus,
     setValues,
     descendantsContext,
+    placeholder,
   } = context
+
   const { descendants } = descendantsContext
 
   const { index } = useDescendant({
@@ -184,7 +213,6 @@ export function usePinInput(props: PinInputHookProps) {
     inputMode: "numeric" as React.InputHTMLAttributes<any>["inputMode"],
     "aria-label": "Please enter your pin code",
     autoComplete: "not-allowed",
-    placeholder: hasFocus ? "" : "○",
-    size: 1,
+    placeholder: hasFocus ? "" : placeholder,
   }
 }

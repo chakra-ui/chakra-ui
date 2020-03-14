@@ -1,24 +1,24 @@
 import * as React from "react"
-import { usePinInput, usePinInputState } from "./Pin-Input.hook"
+import { PinInput, PinInputField, usePinInput, usePinInputField } from "."
 
 export default {
   title: "PinInput",
 }
 
-export function Basic() {
-  const context = usePinInputState({ autoFocus: true })
-  const input1 = usePinInput({ context })
-  const input2 = usePinInput({ context })
-  const input3 = usePinInput({ context })
-  const input4 = usePinInput({ context })
+const style: React.CSSProperties = {
+  width: 40,
+  height: 40,
+  textAlign: "center",
+  color: "black",
+  margin: 4,
+}
 
-  const style: React.CSSProperties = {
-    width: 40,
-    height: 40,
-    textAlign: "center",
-    color: "black",
-    margin: 4,
-  }
+export function HookExample() {
+  const context = usePinInput({ autoFocus: true })
+  const input1 = usePinInputField({ context })
+  const input2 = usePinInputField({ context })
+  const input3 = usePinInputField({ context })
+  const input4 = usePinInputField({ context })
 
   return (
     <div>
@@ -27,5 +27,15 @@ export function Basic() {
       <input style={style} {...input3} />
       <input style={style} {...input4} />
     </div>
+  )
+}
+
+export function ComponentExample() {
+  return (
+    <PinInput defaultValue="234">
+      <PinInputField />
+      <PinInputField />
+      <PinInputField />
+    </PinInput>
   )
 }

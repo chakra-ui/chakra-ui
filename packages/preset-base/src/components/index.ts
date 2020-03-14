@@ -20,6 +20,7 @@ import Tabs from "./Tabs"
 import Tag from "./Tag"
 import Tooltip from "./Tooltip"
 import Kbd from "./Kbd"
+import PinInput from "./PinInput"
 
 export default {
   Accordion,
@@ -46,4 +47,5 @@ export default {
   Kbd,
   Select: Input,
   Textarea: Input,
+  PinInput,
 }
