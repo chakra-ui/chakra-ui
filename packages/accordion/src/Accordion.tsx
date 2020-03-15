@@ -10,6 +10,7 @@ import {
   AccordionHookReturn,
   AccordionItemHookReturn,
 } from "./Accordion.hook"
+import { Collapse } from "@chakra-ui/collapse"
 
 type AccordionContext = Omit<AccordionHookReturn, "children" | "htmlProps">
 
@@ -94,14 +95,15 @@ const StyledAccordionPanel = createChakra("div", {
 
 export type AccordionPanelProps = PropsOf<typeof StyledAccordionPanel>
 
-//TODO: use Collapse component here instead of `hidden`
 export function AccordionPanel(props: AccordionPanelProps) {
-  const { getPanelProps } = useAccordionItemContext()
+  const { getPanelProps, isOpen } = useAccordionItemContext()
+  // remove hidden prop, 'coz we're using collapse height transition
+  const { hidden, ...panelProps } = getPanelProps(props)
+
   return (
-    <StyledAccordionPanel
-      data-chakra-accordion-panel=""
-      {...getPanelProps(props)}
-    />
+    <Collapse isOpen={isOpen}>
+      <StyledAccordionPanel data-chakra-accordion-panel="" {...panelProps} />
+    </Collapse>
   )
 }
 

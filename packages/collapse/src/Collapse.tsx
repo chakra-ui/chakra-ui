@@ -13,6 +13,7 @@ export type CollapseProps = PropsOf<typeof chakra.div> & {
   startingHeight?: number
   config?: TransitionProps["styles"]
   animateOpacity?: boolean
+  transition?: string
 }
 
 export function Collapse(props: CollapseProps) {
@@ -22,6 +23,7 @@ export function Collapse(props: CollapseProps) {
     config,
     startingHeight = 0,
     animateOpacity = true,
+    transition = "height 200ms ease, opacity 200ms ease, transform 200ms ease",
     ...rest
   } = props
 
@@ -67,13 +69,11 @@ export function Collapse(props: CollapseProps) {
   return (
     <Transition
       in={isOpen}
-      styles={styles}
+      styles={config || styles}
       onEntered={setAriaHidden.off}
       onExited={setAriaHidden.on}
       timeout={{ enter: 50, exit: 200 }}
-      transition={
-        "height 200ms ease,opacity 200ms ease-in-out, transform 200ms ease-in-out"
-      }
+      transition={transition}
       unmountOnExit={false}
     >
       {styles => (
