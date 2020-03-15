@@ -16,7 +16,7 @@ function getContainer(container) {
 
 const Portal = forwardRef(
   ({ children, container, isDisabled = false, onRendered }, ref) => {
-    const [mountNode, setMountNode] = useState(null);
+    const [mountNode, setMountNode] = useState(getContainer(container));
     const handleRef = useForkRef(children.ref, ref);
 
     useEnhancedEffect(() => {
