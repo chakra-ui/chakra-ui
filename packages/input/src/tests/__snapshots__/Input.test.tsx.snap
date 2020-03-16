@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Elements inside input render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="css-kjafn5"
+  >
+    <div
+      class="css-195dcim"
+    >
+      <span>
+        Hello
+      </span>
+    </div>
+    <input
+      class="css-akp8x6"
+    />
+    <div
+      class="css-ygk1zy"
+    >
+      <span>
+        World
+      </span>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Input addons render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="css-kjafn5"
+  >
+    <div
+      class="css-15ieis2"
+    >
+      https://
+    </div>
+    <input
+      class="css-dxqzdn"
+    />
+    <div
+      class="css-1fcpa9l"
+    >
+      .com
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Input renders correctly 1`] = `
+<DocumentFragment>
+  <input
+    class="css-dxqzdn"
+  />
+</DocumentFragment>
+`;
