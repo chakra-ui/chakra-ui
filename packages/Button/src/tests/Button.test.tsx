@@ -1,6 +1,6 @@
 import * as React from "react"
 import { render } from "@chakra-ui/test-utils"
-import { EmailIcon, ArrowForwardIcon } from "@chakra-ui/icon-glyphs"
+import { EmailIcon, ArrowForwardIcon } from "@chakra-ui/icons"
 import { ButtonGroup } from "../ButtonGroup"
 import Button from "../Button"
 
