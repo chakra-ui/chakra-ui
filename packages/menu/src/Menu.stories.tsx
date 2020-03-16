@@ -2,7 +2,17 @@ import { Portal } from "@chakra-ui/portal"
 import { chakra } from "@chakra-ui/system"
 import { FadeProps, Fade } from "@chakra-ui/transition"
 import * as React from "react"
-import { Menu, MenuButton, MenuItem, MenuList, useMenuState } from "./Menu"
+import {
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  useMenuState,
+  MenuGroup,
+  MenuOptionGroup,
+  MenuItemOption,
+  MenuDivider,
+} from "./Menu"
 
 export default {
   title: "Menu",
@@ -142,5 +152,56 @@ export const withTransition = () => (
         </MenuList>
       )}
     </MenuTransition>
+  </Menu>
+)
+
+export const withGroupedItems = () => (
+  <Menu>
+    <MenuButton variant="solid" variantColor="green" variantSize="sm">
+      Open menu
+    </MenuButton>
+    <MenuList minWidth="240px">
+      <MenuGroup title="Group 1">
+        <MenuItem>Share...</MenuItem>
+        <MenuItem>Move...</MenuItem>
+      </MenuGroup>
+      <MenuGroup title="Group 2">
+        <MenuItem isDisabled>Rename...</MenuItem>
+        <MenuItem>Delete...</MenuItem>
+      </MenuGroup>
+    </MenuList>
+  </Menu>
+)
+
+export const withMenuRadio = () => (
+  <Menu closeOnSelect={false}>
+    <MenuButton variant="solid" variantColor="green" variantSize="sm">
+      Open menu
+    </MenuButton>
+
+    <MenuList minWidth="240px">
+      <MenuOptionGroup defaultValue="val1" title="Order" type="radio">
+        <MenuItemOption _checked={{ color: "blue.500" }} value="val-1">
+          Option 1
+        </MenuItemOption>
+        <MenuItemOption _checked={{ color: "blue.500" }} value="val-2">
+          Option 2
+        </MenuItemOption>
+      </MenuOptionGroup>
+
+      <MenuDivider />
+
+      <MenuOptionGroup title="Country" type="checkbox">
+        <MenuItemOption _checked={{ color: "blue.500" }} value="email">
+          Email
+        </MenuItemOption>
+        <MenuItemOption _checked={{ color: "blue.500" }} value="phone">
+          Phone
+        </MenuItemOption>
+        <MenuItemOption _checked={{ color: "blue.500" }} value="country">
+          Country
+        </MenuItemOption>
+      </MenuOptionGroup>
+    </MenuList>
   </Menu>
 )

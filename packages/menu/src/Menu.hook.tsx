@@ -5,6 +5,7 @@ import {
   useIds,
   useShortcut,
   useUpdateEffect,
+  useControllableState,
 } from "@chakra-ui/hooks"
 import { usePopper } from "@chakra-ui/popper"
 import { useTabbable } from "@chakra-ui/tabbable"
@@ -15,6 +16,11 @@ import {
   getNextItemFromSearch,
   getPrevIndex,
   mergeRefs,
+  cleanChildren,
+  isString,
+  isArray,
+  addItem,
+  removeItem,
 } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -23,10 +29,14 @@ import * as React from "react"
 export type MenuHookProps = {
   context?: MenuHookReturn
   id?: string
+  closeOnSelect?: boolean
+  // TODO: Implement these
+  closeOnBlur?: boolean
+  autoSelect?: boolean
 }
 
 export function useMenu(props: MenuHookProps) {
-  const { context, id } = props
+  const { context, id, closeOnSelect = true } = props
   /**
    *
    * if this menu is a nested menu, that means
@@ -96,6 +106,7 @@ export function useMenu(props: MenuHookProps) {
     menuRef,
     disclosureRef,
     focusedIndex,
+    closeOnSelect,
     setFocusedIndex,
   }
 }
@@ -157,20 +168,23 @@ export function useMenuList(props: MenuListHookProps) {
     }
   }
 
-  const onSearch = useShortcut()
+  const onCharacterPress = useShortcut({
+    preventDefault: event => event.key !== " ",
+  })
 
   const onKeyDown = createOnKeyDown({
     stopPropagation: event => {
       if (event.key === "Escape" && hasParent) return false
       return true
     },
-    onKeyDown: onSearch(keysSoFar => {
+    onKeyDown: onCharacterPress(character => {
       const nextItem = getNextItemFromSearch(
         descendants,
-        keysSoFar,
+        character,
         node => node.element?.textContent || "",
         descendants[focusedIndex],
       )
+
       if (nextItem) {
         const index = descendants.indexOf(nextItem)
         setFocusedIndex(index)
@@ -350,7 +364,14 @@ export function useMenuItem(props: MenuItemHookProps) {
     isFocusable,
     ...htmlProps
   } = props
-  const { descendantsContext, setFocusedIndex, focusedIndex, menuRef } = menu
+
+  const {
+    descendantsContext,
+    setFocusedIndex,
+    focusedIndex,
+    menuRef,
+    closeOnSelect,
+  } = menu
 
   const ref = React.useRef<HTMLDivElement>(null)
   const id = useId(undefined, `chakra-menu-item`)
@@ -389,7 +410,7 @@ export function useMenuItem(props: MenuItemHookProps) {
 
   const onClick = React.useCallback(
     (event: React.MouseEvent) => {
-      // If we're clicking on an menuitem that's a disclosure
+      // If we're clicking on an menuitem that's a menu-button for a submenu
       // ignore the click
       if (event.currentTarget.hasAttribute("aria-controls")) {
         return
@@ -397,7 +418,9 @@ export function useMenuItem(props: MenuItemHookProps) {
 
       onClickProp?.(event)
 
-      // close the current menu
+      if (!closeOnSelect) return
+
+      // close the current menu only if closeOnSelect is `true`
       menu.onClose()
 
       // close all parent menus recursively
@@ -407,7 +430,7 @@ export function useMenuItem(props: MenuItemHookProps) {
         next = next.parent
       }
     },
-    [menu, onClickProp],
+    [menu, onClickProp, closeOnSelect],
   )
 
   const isFocused = index === focusedIndex
@@ -432,8 +455,109 @@ export function useMenuItem(props: MenuItemHookProps) {
     ...htmlProps,
     ...tabbable,
     id,
-    role: "menuitem",
     onMouseOut,
+    role: "menuitem",
     tabIndex: isFocused ? 0 : -1,
+  }
+}
+
+export type MenuOptionHookProps = MenuItemHookProps & {
+  value?: string
+  isChecked?: string
+  type?: "radio" | "checkbox"
+}
+
+export function useMenuOption(props: MenuOptionHookProps) {
+  const {
+    context: menu,
+    onMouseOut,
+    onClick,
+    isDisabled,
+    isFocusable,
+    type = "radio",
+    isChecked,
+    ...rest
+  } = props
+
+  const ownProps = useMenuItem({
+    isDisabled,
+    isFocusable,
+    context: menu,
+    onClick,
+  })
+
+  return {
+    ...rest,
+    ...ownProps,
+    role: `menuitem${type}`,
+    "aria-checked": isChecked as React.AriaAttributes["aria-checked"],
+  }
+}
+
+export interface MenuOptionGroupHookProps {
+  value?: string | string[]
+  defaultValue?: string | string[]
+  type?: "radio" | "checkbox"
+  onChange?: (value: string | string[]) => void
+  children?: React.ReactNode
+}
+
+export function useMenuOptionGroup(props: MenuOptionGroupHookProps) {
+  const {
+    children,
+    type = "radio",
+    value: valueProp,
+    defaultValue,
+    onChange,
+    ...rest
+  } = props
+
+  const isRadio = type === "radio"
+
+  const fallback = isRadio ? "" : []
+
+  const [value, setValue] = useControllableState({
+    defaultValue: defaultValue || fallback,
+    value: valueProp,
+    onChange,
+  })
+
+  const handleChange = React.useCallback(
+    (selectedValue: string) => {
+      if (type === "radio") {
+        setValue(selectedValue)
+      }
+
+      if (type === "checkbox" && isArray(value)) {
+        const nextValue = value.includes(selectedValue)
+          ? removeItem(value, selectedValue)
+          : addItem(value, selectedValue)
+
+        setValue(nextValue)
+      }
+    },
+    [value, setValue, type],
+  )
+
+  const validChildren = cleanChildren(children)
+
+  const clones = validChildren.map(child =>
+    React.cloneElement(child, {
+      type,
+      key: child.props.value,
+      onClick: (event: React.MouseEvent) => {
+        handleChange(child.props.value)
+        child.props?.onClick?.(event)
+      },
+      isChecked:
+        type === "radio"
+          ? child.props.value === value
+          : value.includes(child.props.value),
+    }),
+  )
+
+  return {
+    ...rest,
+    children: clones,
   }
 }

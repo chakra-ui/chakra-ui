@@ -16,7 +16,7 @@ type HTMLProps = Pick<
   | "tabIndex"
 >
 
-export interface TabbableProps extends HTMLProps {
+export interface TabbableHookProps extends HTMLProps {
   /**
    * If `true`, the element will be disabled.
    * It will set the `disabled` HTML attribute
@@ -37,8 +37,9 @@ export interface TabbableProps extends HTMLProps {
   clickOnSpace?: boolean
 }
 
-export function useTabbable(props: TabbableProps) {
+export function useTabbable(props: TabbableHookProps) {
   const {
+    ref: htmlRef,
     isDisabled,
     isFocusable,
     clickOnEnter = true,
@@ -79,20 +80,18 @@ export function useTabbable(props: TabbableProps) {
 
       ;(event.currentTarget as HTMLElement).focus()
 
-      if (onClick) {
-        onClick(event)
-      }
+      onClick?.(event)
     },
     [isDisabled, onClick],
   )
 
   const handleKeyDown = React.useCallback(
     (event: React.KeyboardEvent) => {
-      if (onKeyDown) {
-        onKeyDown(event)
-      }
+      onKeyDown?.(event)
 
-      if (isDisabled) return
+      if (isDisabled) {
+        return
+      }
 
       const shouldEnterClick = clickOnEnter && event.key === "Enter"
 
@@ -113,11 +112,12 @@ export function useTabbable(props: TabbableProps) {
 
   const handleKeyUp = React.useCallback(
     (event: React.KeyboardEvent) => {
-      if (onKeyUp) {
-        onKeyUp(event)
+      onKeyUp?.(event)
+
+      if (isDisabled) {
+        return
       }
 
-      if (isDisabled) return
       const shouldSpaceClick = clickOnSpace && event.key === " "
 
       if (!isButton && shouldSpaceClick) {
@@ -141,9 +141,7 @@ export function useTabbable(props: TabbableProps) {
         setIsPressed(true)
       }
 
-      if (onMouseDown) {
-        onMouseDown(event)
-      }
+      onMouseDown?.(event)
     },
     [isDisabled, isButton, onMouseDown],
   )
@@ -154,9 +152,7 @@ export function useTabbable(props: TabbableProps) {
         setIsPressed(false)
       }
 
-      if (onMouseUp) {
-        onMouseUp(event)
-      }
+      onMouseUp?.(event)
     },
     [onMouseUp, isButton],
   )
@@ -168,14 +164,12 @@ export function useTabbable(props: TabbableProps) {
         return
       }
 
-      if (onMouseOver) {
-        onMouseOver(event)
-      }
+      onMouseOver?.(event)
     },
     [isDisabled, onMouseOver],
   )
 
-  const ref = useMergeRefs(props.ref, refCallback)
+  const ref = useMergeRefs(htmlRef, refCallback)
 
   if (isButton) {
     return {

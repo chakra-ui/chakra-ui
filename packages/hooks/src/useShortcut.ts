@@ -5,7 +5,14 @@ function isPrintableCharacter(event: React.KeyboardEvent) {
   return key.length == 1 || (key.length > 1 && /[^a-zA-Z0-9]/.test(key))
 }
 
-export function useShortcut(timeout = 300) {
+interface ShortcutHookProps {
+  timeout?: number
+  preventDefault?: (event: React.KeyboardEvent) => boolean
+}
+
+export function useShortcut(props: ShortcutHookProps = {}) {
+  const { timeout = 300, preventDefault = () => true } = props
+
   const [keys, setKeys] = React.useState<string[]>([])
   const timeoutId = React.useRef<any>()
 
@@ -44,8 +51,10 @@ export function useShortcut(timeout = 300) {
       if (isPrintableCharacter(event)) {
         const keysCopy = keys.concat(event.key)
 
-        event.preventDefault()
-        event.stopPropagation()
+        if (preventDefault(event)) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
 
         setKeys(keysCopy)
         callback(keysCopy.join(""))
