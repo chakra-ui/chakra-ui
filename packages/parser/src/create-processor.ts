@@ -105,7 +105,7 @@ export function createProcessor(breakpoints: Dict) {
         return
       }
 
-      styles = deepmerge(styles, { [property]: value })
+      styles[property] = assign(value)
     },
     value: () => sort(styles),
   }

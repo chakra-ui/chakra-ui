@@ -1,62 +1,45 @@
+import { parser } from "@chakra-ui/parser"
 import { ThemeContext } from "@emotion/core"
 import * as React from "react"
+import { As, JSXElements } from "./component.types"
 import createStyled from "./create-styled"
-import { As, BaseTheme, StyledOptions, ChakraComponent } from "./styled.types"
-import { domElements } from "./styled.utils"
-import { parser, css, pseudoSelectors } from "@chakra-ui/parser"
+import { ChakraComponent, Options } from "./styled.types"
+import { domElements, pseudo, truncate } from "./styled.utils"
 
-function pseudo({ theme, ...props }: any) {
-  let result = {}
-  for (const prop in props) {
-    if (prop in pseudoSelectors) {
-      const style = css({ [prop]: props[prop] })(theme)
-      result = { ...result, ...style }
-    }
-  }
-  return result
+type StyledFunctionOrComponent = (<T extends As, P = {}>(
+  component: T,
+  options?: Options<T, P>,
+) => ChakraComponent<T, P>) &
+  { [T in JSXElements]: ChakraComponent<T, {}> }
+
+function styled<T extends As, P = {}>(component: T, options?: Options<T, P>) {
+  return createStyled(component, options)(parser, pseudo, truncate)
 }
 
-function truncate({ isTruncated }: any) {
-  if (isTruncated) {
-    return {
-      overflow: "hidden",
-      textOverflow: "ellipsis",
-      whiteSpace: "nowrap",
+export const chakra = styled as StyledFunctionOrComponent
+domElements.forEach(tag => {
+  //@ts-ignore
+  chakra[tag] = styled(tag)
+})
+
+export function createTheming<T extends object>(theme: T) {
+  const ThemeProvider: React.FC = ({ children }) => {
+    const outerTheme = React.useContext(ThemeContext)
+    const mergedTheme = { ...outerTheme, ...theme }
+    return <ThemeContext.Provider value={mergedTheme} children={children} />
+  }
+
+  function useTheme() {
+    const theme = React.useContext(
+      (ThemeContext as unknown) as React.Context<T | undefined>,
+    )
+
+    if (!theme) {
+      throw Error("useTheme must be within a ThemeProvider")
     }
-  }
-}
 
-export function chakra<T extends BaseTheme>(theme: T) {
-  function styled<C extends As, O extends StyledOptions<T>>(
-    component: C,
-    options?: O,
-  ) {
-    return createStyled(component, options)(parser, pseudo, truncate)
+    return theme
   }
 
-  type AsFunction = <C extends As, O extends StyledOptions<T>>(
-    component: C,
-    options?: O,
-  ) => ChakraComponent<C, T, O>
-
-  type AsObject = {
-    [C in keyof JSX.IntrinsicElements]: ChakraComponent<C, T, {}>
-  }
-
-  type Augmented = AsFunction & AsObject
-
-  const augmented = (styled as unknown) as Augmented
-
-  domElements.forEach(tag => {
-    //@ts-ignore
-    augmented[tag] = styled(tag)
-  })
-
-  const ThemeProvider: React.FC = ({ children }) => (
-    <ThemeContext.Provider value={theme} children={children} />
-  )
-
-  const useTheme = () => React.useContext(ThemeContext) as T
-
-  return { styled: augmented, ThemeProvider, useTheme }
+  return [ThemeProvider, useTheme] as const
 }

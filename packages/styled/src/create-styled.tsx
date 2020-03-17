@@ -10,16 +10,16 @@ import * as React from "react"
 import { css, getComponentStyles } from "@chakra-ui/parser"
 import jsx from "./jsx"
 import { CSSObject, ThemeContext } from "@emotion/core"
-import { StyledOptions, BaseTheme, ChakraComponent } from "./styled.types"
+import { Options, ChakraComponent } from "./styled.types"
 import {
   filterProps,
   removeStyleProps,
   customShouldForwardProp,
 } from "./should-forward-prop"
 
-function createStyled<C extends As, T extends BaseTheme = BaseTheme>(
-  component: C,
-  options?: StyledOptions<T>,
+function createStyled<T extends As, P = {}>(
+  component: T,
+  options?: Options<T, P>,
 ) {
   return function(...interpolations: any[]) {
     const Styled = React.forwardRef(
@@ -82,12 +82,11 @@ function createStyled<C extends As, T extends BaseTheme = BaseTheme>(
       },
     )
 
-    //@ts-ignore
     Styled.displayName = `chakra(${getDisplayName(component)})`
 
     const Component = options?.pure ? React.memo(Styled) : Styled
 
-    return Component as ChakraComponent<C, T, StyledOptions<T>>
+    return Component as ChakraComponent<T, P>
   }
 }
 

@@ -33,13 +33,13 @@ function isPropValid(prop: string): boolean {
 }
 
 export function filterProps(props: Dict) {
-  const result: Dict = {}
+  const validProps: Dict = {}
   for (const prop in props) {
     if (!isPropValid(prop)) continue
     const propKey = isValidHTMLProp(prop) ? validHTMLProps[prop] : prop
-    result[propKey] = props[prop]
+    validProps[propKey] = props[prop]
   }
-  return result
+  return validProps
 }
 
 export function removeStyleProps(props: Dict) {
@@ -54,11 +54,11 @@ export function customShouldForwardProp(
   fn: (propName: string) => boolean,
   props: Dict,
 ) {
-  const result: Dict = {}
+  const validProps: Dict = {}
   for (const prop in props) {
     if (fn(prop)) {
-      result[prop] = props[prop]
+      validProps[prop] = props[prop]
     }
   }
-  return result
+  return validProps
 }

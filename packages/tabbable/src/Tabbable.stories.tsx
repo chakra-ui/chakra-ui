@@ -1,7 +1,7 @@
 import { createChakra, PropsOf } from "@chakra-ui/system"
 import { SafeMerge } from "@chakra-ui/utils"
 import * as React from "react"
-import useTabbable, { TabbableProps } from "./Tabbable.hook"
+import { TabbableHookProps, useTabbable } from "./Tabbable.hook"
 
 export default {
   title: "Tabbable",
@@ -9,7 +9,7 @@ export default {
 
 const BaseButton = React.forwardRef(
   (
-    props: SafeMerge<TabbableProps, PropsOf<"button">>,
+    props: SafeMerge<TabbableHookProps, PropsOf<"button">>,
     ref: React.Ref<HTMLButtonElement>,
   ) => {
     const tabbableProps = useTabbable({ ...props, ref })

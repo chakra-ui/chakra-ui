@@ -1,96 +1,59 @@
 /**@jsx jsx */
 import { jsx } from "./jsx"
-import { chakra } from "./styled"
+import { chakra, createTheming } from "./styled"
+import theme from "@chakra-ui/preset-base"
 
 export default {
   title: "styled",
 }
 
-const theme = {
+const customTheme = {
+  ...theme,
   components: {
     Button: {
-      defaultProps: {
-        variant: "solid",
-        size: "small",
-      },
-      sizes: {
-        small: {
-          fontSize: 12,
-          padding: "8px",
-        },
-        large: {},
-        xlarge: {},
-      },
       variants: {
-        outline: {
-          border: "2px solid",
-          borderColor: "red.400",
-        },
         solid: {
-          bg: "tomato",
+          bg: "green.400",
           color: "white",
-          _hover: {
-            bg: "green",
+          _active: {
+            bg: "green.500",
           },
         },
       },
-    },
-    Checkbox: {
       sizes: {
-        sm: {},
-        lg: {},
-      },
-      variants: {
-        error: {},
-        success: {},
+        lg: {
+          padding: 20,
+          fontSize: 17,
+        },
+        sm: {
+          padding: 10,
+          fontSize: "sm",
+        },
       },
     },
   },
 }
 
-const { styled, ThemeProvider } = chakra(theme)
+const [ThemeProvider, useTheme] = createTheming(customTheme)
 
-const Button = styled("button", { themeKey: "Button" })
+const Button = chakra("button", { themeKey: "Button" })
 
-export const SampleButton = () => (
-  <ThemeProvider>
-    <div>
-      <Button
-        size="small"
-        variant="solid"
-        data-sdfdfd=""
-        onClick={() => {
-          console.log("clicked")
-        }}
-        _active={{ bg: "yellow", color: "black" }}
+export const Sample = () => {
+  return (
+    <ThemeProvider>
+      <chakra.h1
+        as="a"
+        href="www.google.com"
+        color="green.200"
+        margin="20px"
+        fontWeight="bold"
+        _hover={{ color: "red.200" }}
       >
-        Theme Button
+        Welcome home buddy
+      </chakra.h1>
+      <Button variant="solid" size="sm">
+        Click me
       </Button>
-
-      <span sx={{ bg: "white", color: "black", _hover: { bg: "pink" } }}>
-        Before
-      </span>
-
-      <styled.h1 isTruncated mt={4} fontSize="40px" color="pink">
-        Welcome truncate Welcome truncateWelcome truncateWelcome truncateWelcome
-        truncateWelcome truncateWelcome truncateWelcome truncateWelcome truncate
-      </styled.h1>
-      <styled.button
-        bg="pink"
-        disabled
-        color="white"
-        padding="8px 12px"
-        type="submit"
-        _active={{ bg: "red", cursor: "pointer" }}
-        onClick={() => {
-          console.log("clicked")
-        }}
-      >
-        Welcome home
-      </styled.button>
-      <styled.ul>
-        <styled.li>This is the same</styled.li>
-      </styled.ul>
-    </div>
-  </ThemeProvider>
-)
+    </ThemeProvider>
+  )
+}

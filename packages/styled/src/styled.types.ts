@@ -1,4 +1,6 @@
-import { SystemProps, SystemStyleObject } from "@chakra-ui/parser"
+import { SystemProps, TruncateProps } from "@chakra-ui/parser"
+import { Component, As, PropsOf } from "./component.types"
+import { ValidHTMLProps } from "./should-forward-prop"
 
 type StyleFnProps = {
   colorMode: "light" | "dark"
@@ -8,7 +10,7 @@ type StyleFnProps = {
 
 export type ObjectOrFunction = object | ((props: StyleFnProps) => object)
 
-export interface Component {
+export interface ComponentTheme {
   /**
    * The display name of the component, Pascal cased
    */
@@ -44,26 +46,21 @@ export interface Component {
   }
 }
 
-export interface BaseTheme {
-  components: { [name: string]: Component }
-}
-
-export interface StyledOptions<T extends BaseTheme> {
+export interface Options<T extends As, P = {}> {
   /**
    * The key of this component in `theme.components`.
-   * Ideally, this should be the name of the component
    */
-  themeKey?: keyof T["components"]
+  themeKey?: string
   /**
    * Additional props to attach to the component
    * You can use a function to make it dynamic
    */
-  attrs?: React.AllHTMLAttributes<any>
+  attrs?: PropsOf<T> & P
   /**
    * Base style object to apply to this component
    * NB: This style is theme-aware so you can use all style props
    */
-  baseStyle?: SystemProps<T>
+  baseStyle?: SystemProps
   /**
    * A boolean indicating if the component should avoid re-rendering
    * when props haven't changed. This uses `React.memo(...)`
@@ -78,59 +75,29 @@ export interface StyledOptions<T extends BaseTheme> {
   shouldForwardProp?(propName: string): boolean
 }
 
-/**
- * Extract the props of any element or component
- */
-export type PropsOf<
-  E extends keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>
-> = JSX.LibraryManagedAttributes<E, React.ComponentPropsWithRef<E>>
+export type ChakraProps = SystemProps &
+  TruncateProps &
+  ValidHTMLProps & {
+    variant?: string
+    size?: string
+    colorScheme?: string
+  }
 
-export type As<P = any> = React.ElementType<P>
+export type ChakraComponent<T extends As, P> = Component<T, P & ChakraProps>
 
-type JSXElements = keyof JSX.IntrinsicElements
-
-/**
- * Extract component's theming props
- */
-export type ThemingProps<T extends BaseTheme, O> = O extends {
-  themeKey: string
-}
-  ? T["components"][O["themeKey"]] extends undefined
+export type ExtractThemingProps<
+  T extends { components: any },
+  K
+> = K extends string
+  ? T["components"][K] extends undefined
     ? undefined
-    : T["components"][O["themeKey"]] extends {
+    : T["components"][K] extends {
         variants: infer V
       }
-    ? T["components"][O["themeKey"]] extends { sizes: infer S }
+    ? T["components"][K] extends { sizes: infer S }
       ? { variant?: keyof V; size?: keyof S }
       : { variant?: keyof V }
-    : T["components"][O["themeKey"]] extends { sizes: infer S }
+    : T["components"][K] extends { sizes: infer S }
     ? { size?: keyof S }
     : undefined
   : undefined
-
-/**
- * Merge theming props with component props (if theming props exists)
- */
-export type AllProps<
-  C extends As,
-  T extends BaseTheme,
-  O
-> = object extends ThemingProps<T, O>
-  ? PropsOf<C> & ThemingProps<T, O>
-  : PropsOf<C>
-
-export interface ChakraComponent<C extends As, T extends BaseTheme, O> {
-  (
-    props: AllProps<C, T, O> &
-      SystemProps<{}> & {
-        as?: As
-        children?: React.ReactNode
-        sx?: SystemStyleObject
-      },
-  ): JSX.Element
-  displayName?: string
-  defaultProps?: Partial<PropsOf<C> & SystemProps<{}>>
-  propTypes?: {
-    [prop: string]: React.Validator<any>
-  }
-}

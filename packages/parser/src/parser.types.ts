@@ -675,7 +675,7 @@ type PseudoProps<Props, ExtraProps = {}> =
         | PseudoProps<Props, ExtraProps>
     }
 
-interface TruncateProps {
+export interface TruncateProps {
   isTruncated?: boolean
 }
 

@@ -1,32 +1,32 @@
 /**@jsx jsx */
 import { jsx } from "@emotion/core"
-import { createParser } from "./create-parser"
+import { parser } from "."
 import css from "./css"
 
 export default {
   title: "Parser",
 }
 
-const spaceConfig = {
-  padding: {
-    property: "padding",
-    scale: "space",
-  },
-  paddingX: {
-    properties: ["paddingLeft", "paddingRight"],
-    scale: "space",
-  },
-  paddingY: {
-    properties: ["paddingTop", "paddingBottom"],
-    scale: "space",
-  },
-  marginX: {
-    properties: ["marginLeft", "marginRight"],
-    scale: "space",
-  },
-}
+// const spaceConfig = {
+//   padding: {
+//     property: "padding",
+//     scale: "space",
+//   },
+//   paddingX: {
+//     properties: ["paddingLeft", "paddingRight"],
+//     scale: "space",
+//   },
+//   paddingY: {
+//     properties: ["paddingTop", "paddingBottom"],
+//     scale: "space",
+//   },
+//   marginX: {
+//     properties: ["marginLeft", "marginRight"],
+//     scale: "space",
+//   },
+// }
 
-const parser = createParser(spaceConfig as any)
+// const parser = createParser(spaceConfig as any)
 
 const theme = {
   breakpoints: { mobile: 400, tablet: 700, desktop: 1000 },
@@ -34,6 +34,10 @@ const theme = {
   colors: {
     primary: "rebeccapurple",
     secondary: "tomato",
+    green: {
+      100: "baba",
+      200: "mama",
+    },
   },
   fontSizes: {
     sm: "14px",
@@ -50,8 +54,11 @@ const theme = {
 const styles = parser({
   theme,
   marginX: [2, 4],
+  color: "green.200",
   paddingY: { all: "12px", mobile: 4, desktop: "90px" },
 })
+
+console.log(styles)
 
 const theme2 = {
   // breakpoints: { sm: 320, md: 600, lg: 960 },
@@ -111,8 +118,6 @@ export const Test = () => {
     width: ["100%", null, "50%"],
     color: ["red", "green", "blue"],
   })(theme2)
-
-  console.log(result)
 
   return <div css={styles}>Testing</div>
 }
