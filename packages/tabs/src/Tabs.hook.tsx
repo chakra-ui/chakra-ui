@@ -11,7 +11,7 @@ import {
   useId,
   useIsomorphicEffect,
 } from "@chakra-ui/hooks"
-import { useTabbable, TabbableProps } from "@chakra-ui/tabbable"
+import { useTabbable, TabbableHookProps } from "@chakra-ui/tabbable"
 
 /**
 |--------------------------------------------------
@@ -126,7 +126,7 @@ export { TabsProvider }
 
 ////////////////////////////////////////////////////////////////////////
 
-export interface TabHookProps extends TabbableProps {
+export interface TabHookProps extends TabbableHookProps {
   id?: string
   isSelected?: boolean
   panelId?: string
