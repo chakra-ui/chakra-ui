@@ -1,6 +1,5 @@
 import { SystemProps, TruncateProps } from "@chakra-ui/parser"
 import { ValidHTMLProps } from "./should-forward-prop"
-import { DOMElements } from "./styled.utils"
 
 type StyleFnProps = {
   colorMode: "light" | "dark"
@@ -84,50 +83,26 @@ export type ChakraProps = SystemProps &
     children?: React.ReactNode
   }
 
-type MergePropsOf<P, T extends As> = {} extends P
-  ? Omit<P, keyof PropsOf<T>> & PropsOf<T>
-  : PropsOf<T>
-
-// export type PropsWithAs<T extends As, P> = P &
-//   Omit<PropsOf<T>, keyof P> & {
-//     as?: T
-//   }
-
-// export type Component<T extends As, P = {}> = {
-//   <TT extends As>(props: PropsWithAs<PropsOf<T>, TT>): JSX.Element
-//   (props: PropsOf<T>): JSX.Element
-// }
-
 export type As = React.ElementType<any>
 
 export type PropsOf<T extends As> = React.ComponentPropsWithRef<T>
 
-//////////////////////////////////////////////////////////////////////
-
 export type PropsWithAs<P, T extends As> = P &
-  Omit<React.ComponentProps<T>, "as" | keyof P> & {
+  Omit<PropsOf<T>, "as" | keyof P> & {
     as?: T
-    children?: React.ReactNode
   }
 
-export type Component<T extends As, O> = {
-  <TT extends As>(
-    props: PropsWithAs<O, TT> & { as: TT } & ChakraProps,
-  ): JSX.Element
-  (props: PropsWithAs<O, T> & ChakraProps): JSX.Element
+type BaseComponent<T extends As> =
+  | ((props: PropsOf<T> & ChakraProps) => JSX.Element)
+  | (<TT extends As = T>(
+      props: PropsWithAs<PropsOf<T>, TT> & ChakraProps,
+    ) => JSX.Element)
+
+export type Component<T extends As, P> = BaseComponent<T> & {
   displayName?: string
-  propTypes?: React.WeakValidationMap<PropsOf<T> & O>
-  defaultProps?: Partial<PropsOf<T> & O & ChakraProps>
+  propTypes?: React.WeakValidationMap<PropsOf<T> & P>
+  defaultProps?: Partial<PropsOf<T> & P & ChakraProps>
 }
-
-/////////////////////////////////////////////////////////////////////////////
-
-// export interface ChakraComponent<T extends As, P> {
-//   <PP>(props: MergePropsOf<PP, T> & ChakraProps & P): JSX.Element
-//   displayName?: string
-//   propTypes?: React.WeakValidationMap<PropsOf<T> & P>
-//   defaultProps?: Partial<PropsOf<T> & P>
-// }
 
 export type ExtractThemingProps<
   T extends { components: any },

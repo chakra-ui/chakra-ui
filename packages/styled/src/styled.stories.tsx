@@ -37,7 +37,7 @@ const customTheme = {
 
 const [ThemeProvider, useTheme] = createTheming(customTheme)
 
-const Button = chakra.create("button", { themeKey: "Button" })
+const Button = chakra("button", { themeKey: "Button" })
 
 export const Sample = () => {
   return (
@@ -49,13 +49,14 @@ export const Sample = () => {
         margin="20px"
         fontWeight="bold"
         _hover={{ color: "red.200" }}
+        marginLeft="30px"
       >
         Welcome home buddy
       </chakra.h1>
-      <Button bigi="" asjdsbk ashjd variant="solid" size="sm">
+      <Button variant="solid" size="sm">
         Click me
       </Button>
-      <chakra.button bigi="" asjhsds sdsd>
+      <chakra.button as="label" htmlFor="dfdf">
         Click me
       </chakra.button>
     </ThemeProvider>
