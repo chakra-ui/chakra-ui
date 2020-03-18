@@ -51,7 +51,7 @@
     "@chakra-ui/utils": "0.0.1",
     "@types/body-scroll-lock": "2.6.1",
     "aria-hidden": "^1.1.1",
-    "body-scroll-lock": "^2.6.4",
+    "body-scroll-lock": "^3.0.1",
     "compute-scroll-into-view": "1.0.11",
     "react-uid": "2.2.0",
     "copy-to-clipboard": "3.3.1"
