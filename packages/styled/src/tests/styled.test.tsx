@@ -1,6 +1,6 @@
 import * as React from "react"
-import { render } from "@chakra-ui/test-utils"
-import { chakra } from ".."
+import { render, wait } from "@chakra-ui/test-utils"
+import { chakra, jsx } from ".."
 
 test("as jsx element", () => {
   const Div = chakra("div")
@@ -86,3 +86,69 @@ test("it allows pass through props", () => {
 
   expect(tools.asFragment()).toMatchSnapshot()
 })
+
+test("it renders with base style", () => {
+  const Div = chakra("div", {
+    baseStyle: {
+      padding: "40px",
+      margin: "30px",
+    },
+  })
+  const tools = render(<Div>Hey!</Div>)
+
+  expect(tools.asFragment()).toMatchSnapshot()
+
+  expect(tools.getByText("Hey!")).toHaveStyle(`padding: 40px; margin: 30px`)
+})
+
+test("it renders component using theme key", () => {
+  const Badge = chakra("span", {
+    themeKey: "Badge",
+  })
+
+  const tools = render(<Badge>Badge</Badge>)
+
+  expect(tools.asFragment()).toMatchSnapshot()
+})
+
+test("attrs option works correctly", () => {
+  const Button = chakra("button", {
+    themeKey: "Button",
+    attrs: {
+      type: "button",
+    },
+  })
+
+  const tools = render(<Button>Click</Button>)
+
+  expect(tools.asFragment()).toMatchSnapshot()
+
+  expect(tools.getByText("Click")).toHaveAttribute("type", "button")
+})
+
+test("it forwards ref to element correctly", () => {
+  const Button = chakra("button")
+
+  const Setup = () => {
+    const ref = React.useRef<HTMLButtonElement>(null)
+
+    React.useEffect(() => {
+      ref.current?.focus()
+    }, [])
+
+    return <Button ref={ref}>Click</Button>
+  }
+
+  const tools = render(<Setup />)
+
+  wait(() => {
+    expect(tools.getAllByText("Click")).toHaveFocus()
+  })
+})
+
+// test.todo("sx prop works on jsx element", () => {
+//   const tools = render(<button sx={{ margin: "40px" }}>Click</button>)
+//   expect(tools.getByText("Click")).toHaveStyle(`margin: 40px`)
+// })
+
+// test.todo("css prop works correctly")

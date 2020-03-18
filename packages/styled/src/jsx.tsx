@@ -13,13 +13,18 @@ const getCSS = (props: { sx?: any; css?: any }) => {
 
 const parseProps = (props: any) => {
   if (!props) return null
+
   const next: Dict = {}
+
   for (const key in props) {
     if (key === "sx") continue
     next[key] = props[key]
   }
+
   const css = getCSS(props)
+
   if (css) next.css = css
+
   return next
 }
 

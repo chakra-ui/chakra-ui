@@ -58,8 +58,6 @@ const styles = parser({
   paddingY: { all: "12px", mobile: 4, desktop: "90px" },
 })
 
-console.log(styles)
-
 const theme2 = {
   // breakpoints: { sm: 320, md: 600, lg: 960 },
   colors: {

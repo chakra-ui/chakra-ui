@@ -12,7 +12,7 @@ type ChakraDOMComponents = {
 }
 
 type CreateChakraComponent = {
-  <T extends As>(comp: T, options?: any): Component<T, {}>
+  <T extends As>(comp: T, options?: Options<T, {}>): Component<T, {}>
 }
 
 export const chakra = (styled as unknown) as CreateChakraComponent &
