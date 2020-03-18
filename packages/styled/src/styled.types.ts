@@ -1,6 +1,6 @@
 import { SystemProps, TruncateProps } from "@chakra-ui/parser"
-import { Component, As, PropsOf } from "./component.types"
 import { ValidHTMLProps } from "./should-forward-prop"
+import { DOMElements } from "./styled.utils"
 
 type StyleFnProps = {
   colorMode: "light" | "dark"
@@ -81,9 +81,53 @@ export type ChakraProps = SystemProps &
     variant?: string
     size?: string
     colorScheme?: string
+    children?: React.ReactNode
   }
 
-export type ChakraComponent<T extends As, P> = Component<T, P & ChakraProps>
+type MergePropsOf<P, T extends As> = {} extends P
+  ? Omit<P, keyof PropsOf<T>> & PropsOf<T>
+  : PropsOf<T>
+
+// export type PropsWithAs<T extends As, P> = P &
+//   Omit<PropsOf<T>, keyof P> & {
+//     as?: T
+//   }
+
+// export type Component<T extends As, P = {}> = {
+//   <TT extends As>(props: PropsWithAs<PropsOf<T>, TT>): JSX.Element
+//   (props: PropsOf<T>): JSX.Element
+// }
+
+export type As = React.ElementType<any>
+
+export type PropsOf<T extends As> = React.ComponentPropsWithRef<T>
+
+//////////////////////////////////////////////////////////////////////
+
+export type PropsWithAs<P, T extends As> = P &
+  Omit<React.ComponentProps<T>, "as" | keyof P> & {
+    as?: T
+    children?: React.ReactNode
+  }
+
+export type Component<T extends As, O> = {
+  <TT extends As>(
+    props: PropsWithAs<O, TT> & { as: TT } & ChakraProps,
+  ): JSX.Element
+  (props: PropsWithAs<O, T> & ChakraProps): JSX.Element
+  displayName?: string
+  propTypes?: React.WeakValidationMap<PropsOf<T> & O>
+  defaultProps?: Partial<PropsOf<T> & O & ChakraProps>
+}
+
+/////////////////////////////////////////////////////////////////////////////
+
+// export interface ChakraComponent<T extends As, P> {
+//   <PP>(props: MergePropsOf<PP, T> & ChakraProps & P): JSX.Element
+//   displayName?: string
+//   propTypes?: React.WeakValidationMap<PropsOf<T> & P>
+//   defaultProps?: Partial<PropsOf<T> & P>
+// }
 
 export type ExtractThemingProps<
   T extends { components: any },

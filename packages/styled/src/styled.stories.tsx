@@ -1,6 +1,7 @@
 /**@jsx jsx */
 import { jsx } from "./jsx"
-import { chakra, createTheming } from "./styled"
+import { chakra } from "./styled"
+import { createTheming } from "./create-theming"
 import theme from "@chakra-ui/preset-base"
 
 export default {
@@ -36,7 +37,7 @@ const customTheme = {
 
 const [ThemeProvider, useTheme] = createTheming(customTheme)
 
-const Button = chakra("button", { themeKey: "Button" })
+const Button = chakra.create("button", { themeKey: "Button" })
 
 export const Sample = () => {
   return (
@@ -51,9 +52,12 @@ export const Sample = () => {
       >
         Welcome home buddy
       </chakra.h1>
-      <Button variant="solid" size="sm">
+      <Button bigi="" asjdsbk ashjd variant="solid" size="sm">
         Click me
       </Button>
+      <chakra.button bigi="" asjhsds sdsd>
+        Click me
+      </chakra.button>
     </ThemeProvider>
   )
 }
