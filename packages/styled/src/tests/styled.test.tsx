@@ -1,6 +1,7 @@
 import * as React from "react"
 import { render, wait } from "@chakra-ui/test-utils"
 import { chakra, jsx } from ".."
+import { ThemeProvider } from "../styled.stories"
 
 test("as jsx element", () => {
   const Div = chakra("div")
@@ -106,7 +107,11 @@ test("it renders component using theme key", () => {
     themeKey: "Badge",
   })
 
-  const tools = render(<Badge>Badge</Badge>)
+  const tools = render(
+    <ThemeProvider>
+      <Badge>Badge</Badge>
+    </ThemeProvider>,
+  )
 
   expect(tools.asFragment()).toMatchSnapshot()
 })
@@ -119,7 +124,11 @@ test("attrs option works correctly", () => {
     },
   })
 
-  const tools = render(<Button>Click</Button>)
+  const tools = render(
+    <ThemeProvider>
+      <Button>Click</Button>
+    </ThemeProvider>,
+  )
 
   expect(tools.asFragment()).toMatchSnapshot()
 

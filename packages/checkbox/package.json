@@ -59,7 +59,6 @@
     "@chakra-ui/visually-hidden": "0.0.1"
   },
   "peerDependencies": {
-    "@emotion/core": "10.x",
     "react": "16.x",
     "react-dom": "16.x"
   }

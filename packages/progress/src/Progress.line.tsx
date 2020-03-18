@@ -9,7 +9,6 @@ import {
   css,
 } from "@chakra-ui/system"
 import { isUndefined, Omit, parseResponsiveProp } from "@chakra-ui/utils"
-// import { css, jsx } from "@emotion/core"
 import {
   getProgressProps,
   progress,

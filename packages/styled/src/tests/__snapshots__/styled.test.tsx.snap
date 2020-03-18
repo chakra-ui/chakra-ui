@@ -23,7 +23,7 @@ exports[`chakra elements - renders with style props 1`] = `
 exports[`chakra function - renders currently 2`] = `
 <DocumentFragment>
   <button
-    class="css-gnqum9"
+    class="css-1odjher"
   >
     Click me
   </button>
@@ -41,7 +41,9 @@ exports[`it allows pass through props 1`] = `
 
 exports[`it renders component using theme key 1`] = `
 <DocumentFragment>
-  <span>
+  <span
+    class="css-1k45lh6"
+  >
     Badge
   </span>
 </DocumentFragment>

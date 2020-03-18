@@ -11,6 +11,12 @@ export default {
 const customTheme = {
   ...theme,
   components: {
+    Badge: {
+      baseStyle: {
+        padding: "5px",
+        textTransform: "uppercase",
+      },
+    },
     Button: {
       variants: {
         solid: {
@@ -36,6 +42,7 @@ const customTheme = {
 }
 
 const [ThemeProvider, useTheme] = createTheming(customTheme)
+export { ThemeProvider }
 
 const Button = chakra("button", { themeKey: "Button" })
 

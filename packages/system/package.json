@@ -62,10 +62,10 @@
     "@types/styled-system__should-forward-prop": "5.1.0",
     "styled-system": "5.0.5",
     "use-dark-mode": "2.3.1",
-    "@chakra-ui/utils": "0.0.1"
+    "@chakra-ui/utils": "0.0.1",
+    "@emotion/core": "10.0.28"
   },
   "peerDependencies": {
-    "@emotion/core": "10.x",
     "react": "16.x",
     "react-dom": "16.x"
   }

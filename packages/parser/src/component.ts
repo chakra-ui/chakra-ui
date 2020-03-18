@@ -26,37 +26,55 @@ const modifierMap = {
   variants: "variant",
 }
 
+function hasThemingProps(props: any) {
+  if (!props) return false
+  return Object.keys(props).some(item =>
+    Object.values(modifierMap).includes(item),
+  )
+}
+
 export function getModifierStyles(
-  props: Dict,
-  themeKey: string,
+  props: Dict | undefined,
+  themeKey: string | undefined,
   modifiers = Object.keys(modifierMap),
 ) {
-  if (!themeKey) return undefined
+  // if no theme key was passed or no prop was passed, bail out
+  if (!themeKey || !props) return undefined
 
+  // for nested component keys ("Menu.List"), let's split to get the parent and child
   const [parent, component] = themeKey.split(".")
 
-  const itExists = !!get(props.theme, `components.${parent}`)
+  // check that the parent theme exists
+  const itExists = get(props.theme, `components.${parent}`) != null
+
   if (!itExists) return undefined
 
-  const defaultProps = get(props.theme, `components.${parent}.defaultProps`)
+  const defaultProps = get(props.theme, `components.${parent}.defaultProps`) as
+    | Dict
+    | undefined
 
   let styles: Dict = {}
 
-  modifiers.forEach(modifier => {
+  for (const modifier of modifiers) {
     const _modifier = modifierMap[modifier as keyof typeof modifierMap]
-    const value = props[_modifier] ?? defaultProps[_modifier]
+
+    const propValue = props[_modifier] ?? defaultProps?.[_modifier]
+
+    if (!propValue) continue
+
     const styleObjectOrFn = get(
       props.theme,
-      `components.${parent}.${modifier}.${value}`,
+      `components.${parent}.${modifier}.${propValue}`,
     )
 
-    if (!styleObjectOrFn) return undefined
+    if (!styleObjectOrFn) continue
+
     const computedStyles = runIfFn(styleObjectOrFn, props)
 
     styles = isSubcomponent(themeKey)
       ? deepmerge(styles, computedStyles[component])
       : deepmerge(styles, computedStyles)
-  })
+  }
 
   return styles
 }

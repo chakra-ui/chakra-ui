@@ -33,9 +33,6 @@
     "react-spring": "8.0.27"
   },
   "peerDependencies": {
-    "@emotion/core": "10.x",
-    "@emotion/styled": "10.x",
-    "emotion-theming": "10.x",
     "react": "16.x",
     "react-dom": "16.x"
   },
