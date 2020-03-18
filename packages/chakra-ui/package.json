@@ -24,7 +24,7 @@
     "@styled-system/should-forward-prop": "5.1.5",
     "@types/styled-system": "5.1.9",
     "aria-hidden": "^1.1.1",
-    "body-scroll-lock": "^2.6.4",
+    "body-scroll-lock": "^3.0.1",
     "color": "3.1.2",
     "copy-to-clipboard": "3.3.1",
     "exenv": "^1.2.2",
