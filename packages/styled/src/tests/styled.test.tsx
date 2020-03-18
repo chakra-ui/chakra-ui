@@ -1,5 +1,5 @@
 /**@jsx jsx */
-import { render, wait, waitForDomChange } from "@chakra-ui/test-utils"
+import { render } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { chakra, jsx } from ".."
 import { ThemeProvider } from "../styled.stories"

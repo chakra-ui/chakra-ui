@@ -72,7 +72,8 @@
     "textarea": "yarn workspace @chakra-ui/textarea",
     "image": "yarn workspace @chakra-ui/image",
     "select": "yarn workspace @chakra-ui/select",
-    "alert-dialog": "yarn workspace @chakra-ui/alert-dialog"
+    "alert-dialog": "yarn workspace @chakra-ui/alert-dialog",
+    "css-reset": "yarn workspace @chakra-ui/css-reset"
   },
   "czConfig": {
     "path": "node_modules/cz-conventional-changelog"
