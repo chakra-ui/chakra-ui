@@ -58,3 +58,13 @@ exports[`it renders with base style 1`] = `
   </div>
 </DocumentFragment>
 `;
+
+exports[`sx prop works on jsx element 1`] = `
+<DocumentFragment>
+  <button
+    class="css-1qapnz0"
+  >
+    Click
+  </button>
+</DocumentFragment>
+`;

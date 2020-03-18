@@ -1,5 +1,6 @@
+/**@jsx jsx */
+import { render, wait, waitForDomChange } from "@chakra-ui/test-utils"
 import * as React from "react"
-import { render, wait } from "@chakra-ui/test-utils"
 import { chakra, jsx } from ".."
 import { ThemeProvider } from "../styled.stories"
 
@@ -150,14 +151,15 @@ test("it forwards ref to element correctly", () => {
 
   const tools = render(<Setup />)
 
-  wait(() => {
-    expect(tools.getAllByText("Click")).toHaveFocus()
-  })
+  expect(tools.getByText("Click")).toHaveFocus()
 })
 
-// test.todo("sx prop works on jsx element", () => {
-//   const tools = render(<button sx={{ margin: "40px" }}>Click</button>)
-//   expect(tools.getByText("Click")).toHaveStyle(`margin: 40px`)
-// })
+test("sx prop works on jsx element", () => {
+  const tools = render(<button sx={{ margin: "40px" }}>Click</button>)
+
+  expect(tools.asFragment()).toMatchSnapshot()
+
+  expect(tools.getByText("Click").getAttribute("class")).toContain("css")
+})
 
 // test.todo("css prop works correctly")

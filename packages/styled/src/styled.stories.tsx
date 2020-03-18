@@ -66,6 +66,7 @@ export const Sample = () => {
       <chakra.button as="label" htmlFor="dfdf">
         Click me
       </chakra.button>
+      <h1 sx={{ marginTop: 40 }}>Welcome</h1>
     </ThemeProvider>
   )
 }
