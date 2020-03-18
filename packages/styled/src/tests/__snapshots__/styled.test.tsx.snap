@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`chakra elements - renders with style props 1`] = `
+<DocumentFragment>
+  <div
+    class="css-y1gt6f"
+  >
+    Welcome
+  </div>
+</DocumentFragment>
+`;
+
+exports[`chakra function - renders currently 2`] = `
+<DocumentFragment>
+  <button
+    class="css-gnqum9"
+  >
+    Click me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`it allows pass through props 1`] = `
+<DocumentFragment>
+  <img
+    data-testid="img"
+    width="60px"
+  />
+</DocumentFragment>
+`;
