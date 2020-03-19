@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render without errors 1`] = `
+<DocumentFragment>
+  <button>
+    Hover me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`shows on mouseover and closes on mouseout 1`] = `
+<DocumentFragment>
+  <button
+    aria-describedby="tooltip-7"
+  >
+    Hover me
+  </button>
+</DocumentFragment>
+`;

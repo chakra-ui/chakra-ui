@@ -58,6 +58,10 @@ export interface TooltipHookProps {
    * The Popper.js placement of the tooltip
    */
   placement?: Placement
+  /**
+   * Custom `id` to use in place of `uuid`
+   */
+  id?: string
 }
 
 export function useTooltip(props: TooltipHookProps = {}) {
@@ -69,6 +73,7 @@ export function useTooltip(props: TooltipHookProps = {}) {
     onHide,
     hideOnMouseDown,
     placement,
+    id,
   } = props
   // These two states are useful for animations
   const [immediatelyHide, setImmediatelyHide] = React.useState(false)
@@ -156,7 +161,7 @@ export function useTooltip(props: TooltipHookProps = {}) {
     [isOpen, showTooltip],
   )
 
-  const tooltipId = useId("tooltip")
+  const tooltipId = useId(id, "tooltip")
 
   // A11y: Close the tooltip if user presses escape
   const onKeyDown = React.useCallback(
