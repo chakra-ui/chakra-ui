@@ -3,6 +3,7 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 import Box from "../Box";
 import Skeleton from ".";
+import { Text, ColorModeProvider, CSSReset, Stack } from "../";
 
 const stories = storiesOf("Skeleton", module);
 stories.addDecorator(withKnobs);
@@ -78,4 +79,18 @@ stories.add("isLoaded loop", () => {
 
 stories.add("with custom speed", () => {
   return <Skeleton size="100px" speed={2.4} borderRadius="100px" />;
+});
+
+stories.add("with dark mode", () => {
+  return (
+    <ColorModeProvider value="dark">
+      <CSSReset />
+      <Stack>
+        <Text>Some text</Text>
+        <Skeleton size="100px" />
+        <Skeleton size="100px" />
+        <Skeleton size="100px" />
+      </Stack>
+    </ColorModeProvider>
+  );
 });

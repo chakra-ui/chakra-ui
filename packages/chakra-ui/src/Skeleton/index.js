@@ -20,7 +20,7 @@ to {
 const getStyle = ({ colorStart, colorEnd, speed }) => css`
   border-color: ${colorStart} !important;
   box-shadow: none !important;
-
+  opacity: 0.7;
   // do not !important this for Firefox support
   background: ${colorStart};
 
@@ -56,13 +56,13 @@ const Skeleton = props => {
   const { colors } = useTheme();
   const { colorMode } = useColorMode();
   const defaultStart = { light: colors.gray[100], dark: colors.gray[800] };
-  const defaultEnd = { light: colors.gray[400], dark: colors.gray[500] };
+  const defaultEnd = { light: colors.gray[400], dark: colors.gray[600] };
   const {
     colorStart = defaultStart[colorMode],
     colorEnd = defaultEnd[colorMode],
     isLoaded = false,
-    fadeInDuration = 0.2,
-    speed = 1,
+    fadeInDuration = 0.3,
+    speed = 0.8,
     ...rest
   } = props;
   if (isLoaded) {
