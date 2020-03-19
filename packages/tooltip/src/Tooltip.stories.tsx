@@ -1,14 +1,15 @@
 import * as React from "react"
-import useTooltip from "./Tooltip.hook"
-import { createChakra } from "@chakra-ui/system"
-import { Portal } from "@chakra-ui/portal"
+import { useTooltip } from "./Tooltip.hook"
+import { Tooltip } from "./Tooltip"
 
 export default {
   title: "Tooltip",
 }
 
-const Tooltip = ({ children }: any) => {
-  const { trigger, isOpen, tooltip } = useTooltip()
+const HookTooltip = ({ children }: any) => {
+  const { getTriggerProps, getTooltipProps, isOpen } = useTooltip()
+  const trigger = getTriggerProps()
+  const tooltip = getTooltipProps()
   return (
     <>
       <button {...trigger}>Hover me</button>
@@ -30,31 +31,17 @@ const Tooltip = ({ children }: any) => {
   )
 }
 
-export const Basic = () => <Tooltip>This is me</Tooltip>
+export const Basic = () => <HookTooltip>This is me</HookTooltip>
 
 export const MultipleTooltips = () => (
   <>
-    <Tooltip>This is tip 1</Tooltip>
-    <Tooltip>This is tip 2</Tooltip>
+    <HookTooltip>This is tip 1</HookTooltip>
+    <HookTooltip>This is tip 2</HookTooltip>
   </>
 )
 
-const StyledTooltip = createChakra("div", { themeKey: "Tooltip" })
-
-const ChakraTooltip = ({ children }: any) => {
-  const { trigger, isOpen, tooltip } = useTooltip({ placement: "right" })
-  return (
-    <>
-      <button {...trigger}>Hover me</button>
-      {isOpen && (
-        <Portal>
-          <StyledTooltip {...tooltip}>{children}</StyledTooltip>
-        </Portal>
-      )}
-    </>
-  )
-}
-
-export const WithChakra = () => (
-  <ChakraTooltip>Chakra powered tooltip</ChakraTooltip>
+export const ChakraTooltip = () => (
+  <Tooltip label="This is a chakra tooltip">
+    <button>Hover me</button>
+  </Tooltip>
 )

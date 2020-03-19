@@ -1,8 +1,6 @@
 import { useUID } from "react-uid"
 
-type Id = string | number
-
-function generatePrefix(prefix: string, id: Id) {
+function generatePrefix(prefix: string, id: string) {
   return `${prefix}-${id}`
 }
 
@@ -12,10 +10,11 @@ function generatePrefix(prefix: string, id: Id) {
  * @param idProp the external id passed from the user
  * @param prefix prefix to append before the id
  */
-export function useId(idProp?: Id, prefix?: string) {
+export function useId(idProp?: string, prefix?: string) {
   const uuid = useUID()
   const id = idProp ?? uuid
-  return prefix ? generatePrefix(prefix, id) : id
+  const result = prefix ? generatePrefix(prefix, id) : id
+  return result as string
 }
 
 /**
@@ -32,7 +31,7 @@ export function useId(idProp?: Id, prefix?: string) {
  * // menuId will be `menu-52`
  * ```
  */
-export function useIds(idProp?: Id, ...prefixes: string[]) {
+export function useIds(idProp?: string, ...prefixes: string[]) {
   const id = useId(idProp)
   const ids = prefixes.map(prefix => generatePrefix(prefix, id))
   return ids

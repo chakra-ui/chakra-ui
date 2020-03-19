@@ -7,6 +7,7 @@ import {
   useId,
 } from "@chakra-ui/hooks"
 import { usePopper, Placement } from "@chakra-ui/popper"
+import { callAllHandlers, mergeRefs } from "@chakra-ui/utils"
 
 let pendingHide: flushable.FlushableOperation
 
@@ -28,12 +29,34 @@ function hide(fn: (flushed: boolean) => void, delay: number) {
 }
 
 export interface TooltipHookProps {
+  /**
+   * Delay (in ms) before hiding the tooltip
+   */
   hideDelay?: number
+  /**
+   * Delay (in ms) before showing the tooltip
+   */
   showDelay?: number
+  /**
+   * If `true`, the tooltip will hide on click
+   */
   hideOnClick?: boolean
+  /**
+   * If `true`, the tooltip will hide while the mouse
+   * is down
+   */
   hideOnMouseDown?: boolean
+  /**
+   * Callback to run when the tooltip opens
+   */
   onShow?(): void
+  /**
+   * Callback to run when the tooltip closes
+   */
   onHide?(): void
+  /**
+   * The Popper.js placement of the tooltip
+   */
   placement?: Placement
 }
 
@@ -63,17 +86,12 @@ export function useTooltip(props: TooltipHookProps = {}) {
   const cancelPendingRef = React.useRef(() => {})
 
   React.useEffect(() => {
-    return () => {
-      cancelPendingRef.current()
-    }
+    return () => cancelPendingRef.current()
   })
 
   useUpdateEffect(() => {
-    if (isOpen) {
-      onShow && onShow()
-    } else {
-      onHide && onHide()
-    }
+    const action = isOpen ? onShow : onHide
+    action?.()
   }, [onShow, onHide])
 
   const onScroll = React.useCallback(() => {
@@ -89,7 +107,7 @@ export function useTooltip(props: TooltipHookProps = {}) {
     passive: true,
   })
 
-  const hideTooltipImmediately = React.useCallback(() => {
+  const hideImmediately = React.useCallback(() => {
     cancelPendingRef.current()
     setIsOpen(false)
     setImmediatelyHide(true)
@@ -97,15 +115,15 @@ export function useTooltip(props: TooltipHookProps = {}) {
 
   const onClick = React.useCallback(() => {
     if (hideOnClick) {
-      hideTooltipImmediately()
+      hideImmediately()
     }
-  }, [hideOnClick, hideTooltipImmediately])
+  }, [hideOnClick, hideImmediately])
 
   const onMouseDown = React.useCallback(() => {
     if (hideOnMouseDown) {
-      hideTooltipImmediately()
+      hideImmediately()
     }
-  }, [hideOnMouseDown, hideTooltipImmediately])
+  }, [hideOnMouseDown, hideImmediately])
 
   const showTooltip = React.useCallback(() => {
     cancelPendingRef.current()
@@ -131,9 +149,8 @@ export function useTooltip(props: TooltipHookProps = {}) {
 
   const onMouseOver = React.useCallback(
     (event: React.MouseEvent) => {
-      if (isOpen && event.target === (ref.current as HTMLElement)) {
-        return
-      }
+      const isSelf = event.target === (ref.current as HTMLElement)
+      if (isOpen && isSelf) return
       showTooltip()
     },
     [isOpen, showTooltip],
@@ -145,10 +162,10 @@ export function useTooltip(props: TooltipHookProps = {}) {
   const onKeyDown = React.useCallback(
     (event: KeyboardEvent) => {
       if (isOpen && event.key === "Escape") {
-        hideTooltipImmediately()
+        hideImmediately()
       }
     },
-    [isOpen, hideTooltipImmediately],
+    [isOpen, hideImmediately],
   )
   useEventListener("keydown", onKeyDown)
 
@@ -157,24 +174,25 @@ export function useTooltip(props: TooltipHookProps = {}) {
     setIsOpen,
     immediatelyHide,
     immediatelyShow,
-    trigger: {
-      ref: triggerRef,
-      onMouseOut: hideTooltip,
-      onMouseOver,
-      onClick,
-      onMouseDown,
-      onFocus: showTooltip,
-      onBlur: hideTooltip,
+    getTriggerProps: (props: any = {}) => ({
+      ...props,
+      ref: mergeRefs(props.ref, triggerRef),
+      onMouseOut: callAllHandlers(props.onMouseOut, hideTooltip),
+      onMouseOver: callAllHandlers(props.onMouseOver, onMouseOver),
+      onClick: callAllHandlers(props.onClick, onClick),
+      onMouseDown: callAllHandlers(props.onMouseDown, onMouseDown),
+      onFocus: callAllHandlers(props.onFocus, showTooltip),
+      onBlur: callAllHandlers(props.onBlur, hideTooltip),
       "aria-describedby": isOpen ? tooltipId : undefined,
-    },
-    tooltip: {
+    }),
+    getTooltipProps: (props: any = {}) => ({
+      ...props,
       id: tooltipId,
       role: "tooltip",
-      ...popper.popper,
-    },
+      ref: mergeRefs(props.ref, popper.popper.ref),
+      style: { ...props.style, ...popper.popper.style },
+    }),
   }
 }
 
 export type TooltipHookReturn = ReturnType<typeof useTooltip>
-
-export default useTooltip
