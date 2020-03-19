@@ -1,5 +1,5 @@
 import { chakra, createChakra, SystemProps } from "@chakra-ui/system"
-import { cleanChildren } from "@chakra-ui/utils"
+import { getValidChildren } from "@chakra-ui/utils"
 import * as React from "react"
 import { AvatarProps } from "./Avatar"
 
@@ -39,7 +39,7 @@ export const AvatarGroup = (props: AvatarGroupProps) => {
     ...rest
   } = props
 
-  const validChildren = cleanChildren(children)
+  const validChildren = getValidChildren(children)
 
   const childrenWithinMax = max ? validChildren.slice(0, max) : validChildren
 

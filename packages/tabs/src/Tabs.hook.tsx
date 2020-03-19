@@ -2,7 +2,7 @@ import {
   callAllHandlers,
   createOnKeyDown,
   createHookContext,
-  cleanChildren,
+  getValidChildren,
   mergeRefs,
 } from "@chakra-ui/utils"
 import * as React from "react"
@@ -166,7 +166,7 @@ export function useTabList(props: TabListHookProps) {
   // Read from context
   const tabs = useTabsContext()
 
-  const validChildren = cleanChildren(props.children)
+  const validChildren = getValidChildren(props.children)
 
   // Get all the focusable tab indexes
   // A tab is focusable if it's not disabled or is disabled and has focusable prop
@@ -265,7 +265,7 @@ export function useTabList(props: TabListHookProps) {
 export function useTabPanels(props: { children?: React.ReactNode }) {
   const tabs = useTabsContext()
 
-  const validChildren = cleanChildren(props.children)
+  const validChildren = getValidChildren(props.children)
   const children = validChildren.map((child, index) => {
     return React.cloneElement(child as any, {
       isSelected: index === tabs.selectedIndex,

@@ -1,7 +1,7 @@
 import React from "react"
 import { chakra, useTheme, css, PropsOf, SystemProps } from "@chakra-ui/system"
 import {
-  cleanChildren,
+  getValidChildren,
   parseResponsiveProp as responsive,
 } from "@chakra-ui/utils"
 
@@ -24,7 +24,7 @@ export const Inline = React.forwardRef<any, InlineProps>(
       return `calc(${margin} / 2 * -1)`
     })
 
-    const validChildren = cleanChildren(children)
+    const validChildren = getValidChildren(children)
 
     const clones = validChildren.map((child, index) => {
       return (

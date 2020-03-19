@@ -1,5 +1,5 @@
 import { SystemProps, chakra, PropsOf } from "@chakra-ui/system"
-import { cleanChildren } from "@chakra-ui/utils"
+import { getValidChildren } from "@chakra-ui/utils"
 import * as React from "react"
 import { ButtonProps } from "./Button"
 
@@ -24,7 +24,7 @@ export const ButtonGroup = ({
   children,
   ...rest
 }: ButtonGroupProps) => {
-  const validChildren = cleanChildren(children)
+  const validChildren = getValidChildren(children)
 
   const clones = validChildren.map((child, index) => {
     const isFirst = index === 0

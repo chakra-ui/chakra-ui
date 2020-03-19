@@ -16,7 +16,7 @@ import {
   getNextItemFromSearch,
   getPrevIndex,
   mergeRefs,
-  cleanChildren,
+  getValidChildren,
   isString,
   isArray,
   addItem,
@@ -539,7 +539,7 @@ export function useMenuOptionGroup(props: MenuOptionGroupHookProps) {
     [value, setValue, type],
   )
 
-  const validChildren = cleanChildren(children)
+  const validChildren = getValidChildren(children)
 
   const clones = validChildren.map(child =>
     React.cloneElement(child, {

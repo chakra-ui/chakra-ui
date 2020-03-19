@@ -1,4 +1,5 @@
 import { isNotNumber } from "./assertion"
+import { warn } from "./dev"
 
 export const minSafeInteger = Number.MIN_SAFE_INTEGER || -9007199254740991
 export const maxSafeInteger = Number.MAX_SAFE_INTEGER || 9007199254740991
@@ -43,8 +44,11 @@ export function roundValueToStep(value: number, step: number) {
 
 export function clampValue(value: number, min: number, max: number) {
   if (value == null) return value
-  if (max < min) {
-    throw new Error("[Chakra UI] clamp: max cannot be less than min")
-  }
+
+  warn({
+    condition: max < min,
+    message: "[Chakra UI] clamp: max cannot be less than min",
+  })
+
   return Math.min(Math.max(value, min), max)
 }

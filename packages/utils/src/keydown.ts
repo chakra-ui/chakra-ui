@@ -28,10 +28,7 @@ type EventKeys =
 type KeyMapReturn = (event: React.KeyboardEvent) => any
 type KeyMap = Partial<Record<EventKeys, KeyMapReturn>>
 
-interface Options {
-  /**
-   * The event keys you'd like to handle
-   */
+export interface CreateOnKeyDownOptions {
   keyMap?: KeyMap
   onKey?: (event: React.KeyboardEvent) => any
   preventDefault?: boolean | ((event: React.KeyboardEvent) => boolean)
@@ -40,14 +37,16 @@ interface Options {
   shouldKeyDown?: (event: React.KeyboardEvent) => boolean
 }
 
-export function createOnKeyDown({
-  keyMap,
-  onKey,
-  stopPropagation,
-  onKeyDown,
-  shouldKeyDown = () => true,
-  preventDefault = true,
-}: Options) {
+export function createOnKeyDown(options: CreateOnKeyDownOptions) {
+  const {
+    keyMap,
+    onKey,
+    stopPropagation,
+    onKeyDown,
+    shouldKeyDown = () => true,
+    preventDefault = true,
+  } = options
+
   return (event: React.KeyboardEvent) => {
     if (!keyMap) return
 
@@ -59,17 +58,16 @@ export function createOnKeyDown({
 
     if (eventKey in finalKeyMap) {
       const action = finalKeyMap[eventKey as EventKeys]
+
       if (typeof action === "function" && shouldKeyDown(event)) {
         if (shouldPreventDefault) event.preventDefault()
         if (shouldStopPropagation) event.stopPropagation()
-        if (onKey) onKey(event)
+        onKey?.(event)
         action(event)
         return
       }
     }
 
-    if (onKeyDown) {
-      onKeyDown(event)
-    }
+    onKeyDown?.(event)
   }
 }

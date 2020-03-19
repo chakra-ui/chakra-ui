@@ -6,7 +6,7 @@ import {
   PropsOf,
   SystemProps,
 } from "@chakra-ui/system"
-import { cleanChildren } from "@chakra-ui/utils"
+import { getValidChildren } from "@chakra-ui/utils"
 
 //////////////////////////////////////////////////////////////////////
 
@@ -67,7 +67,7 @@ const BreadcrumbItem = forwardRef(
       ...rest
     } = props
 
-    const validChildren = cleanChildren(children)
+    const validChildren = getValidChildren(children)
 
     const clones = validChildren.map(child => {
       if (child.type === BreadcrumbLink) {
@@ -126,7 +126,7 @@ const Breadcrumb = forwardRef((props: BreadcrumbProps, ref: React.Ref<any>) => {
     ...rest
   } = props
 
-  const validChildren = cleanChildren(children)
+  const validChildren = getValidChildren(children)
   const count = validChildren.length
 
   const clones = validChildren.map((child, index) => {

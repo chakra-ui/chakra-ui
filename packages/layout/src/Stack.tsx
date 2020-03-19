@@ -9,7 +9,7 @@ import {
   ResponsiveValue,
 } from "@chakra-ui/system"
 import {
-  cleanChildren,
+  getValidChildren,
   Omit,
   parseResponsiveProp as responsive,
 } from "@chakra-ui/utils"
@@ -72,7 +72,7 @@ export const Stack = forwardRef((props: StackProps, ref: React.Ref<any>) => {
     [dir === "column" ? "marginLeft" : "marginTop"]: 0,
   }))
 
-  const validChildren = cleanChildren(children)
+  const validChildren = getValidChildren(children)
 
   const dividerStyles = responsive(direction, dir => {
     if (dir === "row") {

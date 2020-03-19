@@ -10,7 +10,7 @@ import {
   getNextIndex,
   getPrevIndex,
   isArray,
-  cleanChildren,
+  getValidChildren,
   addItem,
   removeItem,
   mergeRefs,
@@ -82,7 +82,7 @@ export function useAccordion(props: AccordionHookProps) {
     [isControlled, onChange],
   )
 
-  const validChildren = cleanChildren(props.children)
+  const validChildren = getValidChildren(props.children)
 
   const children = validChildren.map((child, childIndex) => {
     const isExpanded = isArray(index)

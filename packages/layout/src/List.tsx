@@ -1,6 +1,6 @@
 import { createChakra, PropsOf, SystemProps } from "@chakra-ui/system"
 import * as React from "react"
-import { cleanChildren } from "@chakra-ui/utils"
+import { getValidChildren } from "@chakra-ui/utils"
 import { Icon, IconProps } from "@chakra-ui/icon"
 
 const StyledList = createChakra("ul")
@@ -20,7 +20,7 @@ export const List = React.forwardRef(
       spacing,
       ...rest
     } = props
-    const validChildren = cleanChildren(children)
+    const validChildren = getValidChildren(children)
     return (
       <StyledList
         ref={ref}
