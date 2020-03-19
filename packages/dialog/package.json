@@ -58,6 +58,7 @@
     "@chakra-ui/transition": "0.0.1"
   },
   "dependencies": {
+    "aria-hidden": "^1.1.1",
     "@chakra-ui/hooks": "0.0.1",
     "@chakra-ui/portal": "0.0.1",
     "@chakra-ui/utils": "0.0.1",

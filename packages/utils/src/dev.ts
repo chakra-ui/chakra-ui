@@ -20,4 +20,10 @@ export function parseResponsiveProp(prop: any, mapper: (val: any) => any) {
   return null
 }
 
+export function warn(options: { condition: boolean; message: string }) {
+  if (options.condition && process.env.NODE_ENV !== "production") {
+    console.warn(options.message)
+  }
+}
+
 export { default as deepmerge } from "deepmerge"

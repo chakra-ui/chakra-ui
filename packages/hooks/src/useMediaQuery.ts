@@ -4,6 +4,11 @@ import { useIsomorphicEffect } from "./useIsomorphicEffect"
 
 const isSupported = (api: string) => isBrowser && api in window
 
+/**
+ * React hook that tracks state of a CSS media query
+ *
+ * @param query the media query to match
+ */
 export function useMediaQuery(query: string) {
   const [matches, setMatches] = React.useState(() => {
     if (!isSupported("matchMedia")) return false
@@ -27,5 +32,3 @@ export function useMediaQuery(query: string) {
 
   return [matches, setMatches] as const
 }
-
-export default useMediaQuery

@@ -27,5 +27,3 @@ export function useMergeRefs<T>(...refs: (ReactRef<T> | undefined)[]) {
     }
   }, refs)
 }
-
-export default useMergeRefs

@@ -1,15 +1,15 @@
 import * as React from "react"
-import { useControllableProp } from "./useControllableProp"
-import usePrevious from "./usePrevious"
+import { useControllableProp } from "./useControllable"
+import { usePrevious } from "./usePrevious"
 
-export interface UseDisclosureOptions {
+export interface DisclosureHookProps {
   isOpen?: boolean
   defaultIsOpen?: boolean
-  onClose?: () => void
-  onOpen?: () => void
+  onClose?(): void
+  onOpen?(): void
 }
 
-export function useDisclosure(props: UseDisclosureOptions = {}) {
+export function useDisclosure(props: DisclosureHookProps = {}) {
   const { onClose: onCloseProp, onOpen: onOpenProp } = props
 
   const [isOpenState, setIsOpen] = React.useState(props.defaultIsOpen || false)
@@ -36,8 +36,8 @@ export function useDisclosure(props: UseDisclosureOptions = {}) {
   }, [isControlled, onOpenProp])
 
   const onToggle = React.useCallback(() => {
-    if (isOpen) onClose()
-    else onOpen()
+    const action = isOpen ? onClose : onOpen
+    action()
   }, [isOpen, onOpen, onClose])
 
   return {
@@ -50,6 +50,4 @@ export function useDisclosure(props: UseDisclosureOptions = {}) {
   }
 }
 
-export type UseDisclosureReturn = ReturnType<typeof useDisclosure>
-
-export default useDisclosure
+export type DisclosureHookReturn = ReturnType<typeof useDisclosure>

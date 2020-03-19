@@ -16,5 +16,3 @@ export const useUpdateEffect: typeof React.useEffect = (effect, deps) => {
 
   return mounted.current
 }
-
-export default useUpdateEffect

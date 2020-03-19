@@ -54,3 +54,15 @@ export const DarkMode = (props: ColorModeProviderProps) => (
 export const LightMode = (props: ColorModeProviderProps) => (
   <ColorModeProvider mode="light" {...props} />
 )
+
+export function getColorModeValue<T>(lightModeValue: T, darkModeValue: T) {
+  return function(colorMode: ColorMode) {
+    const value = { light: lightModeValue, dark: darkModeValue }
+    return value[colorMode]
+  }
+}
+
+export function useColorModeValue<T>(lightModeValue: T, darkModeValue: T) {
+  const [colorMode] = useColorMode()
+  return getColorModeValue(lightModeValue, darkModeValue)(colorMode)
+}

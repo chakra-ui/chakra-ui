@@ -1,8 +1,13 @@
 import * as React from "react"
 
-export type InitialState = boolean | (() => boolean)
+type InitialState = boolean | (() => boolean)
 
-export function useBooleanState(initialState: InitialState) {
+/**
+ * Reack hook to manage boolean (on - off) states
+ *
+ * @param initialState the initial boolean state value
+ */
+export function useBooleanState(initialState: InitialState = false) {
   const [value, setValue] = React.useState(initialState)
 
   const on = React.useCallback(() => {
@@ -19,5 +24,3 @@ export function useBooleanState(initialState: InitialState) {
 
   return [value, { on, off, toggle, set: setValue }] as const
 }
-
-export default useBooleanState

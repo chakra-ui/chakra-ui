@@ -15,5 +15,3 @@ import { isBrowser } from "@chakra-ui/utils"
 export const useIsomorphicEffect = isBrowser
   ? React.useLayoutEffect
   : React.useEffect
-
-export default useIsomorphicEffect

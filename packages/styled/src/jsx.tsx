@@ -2,38 +2,50 @@ import { Dict, runIfFn } from "@chakra-ui/utils"
 import { jsx as emotion } from "@emotion/core"
 import { SystemStyleObject, css } from "@chakra-ui/parser"
 
-const getCSS = (props: { sx?: any; css?: any }) => {
+function getCSS(props: { sx?: any; css?: any }) {
   if (!props.sx && !props.css) return undefined
+  // leverage emotion's css function interpolation to access the theme
   return (theme: object) => {
-    const styles = css(props.sx)(theme)
-    const raw = runIfFn(props.css, theme)
-    return [styles, raw]
+    // process the theme-aware sx prop
+    const sxStyles = css(props.sx)(theme)
+    // process the css prop
+    // (NB: This is not theme-aware, and you can't use shorthand style props)
+    const cssStyles = runIfFn(props.css, theme)
+    /**
+     * return an array value and allow emotion do the rest.
+     * By default, emotion can handle array style values
+     */
+    return [sxStyles, cssStyles]
   }
 }
 
-const parseProps = (props: any) => {
+function parse(props: Dict | undefined) {
   if (!props) return null
 
-  const next: Dict = {}
+  const computedProps: Dict = {}
 
-  for (const key in props) {
-    if (key === "sx") continue
-    next[key] = props[key]
+  for (const prop in props) {
+    if (prop === "sx") continue
+    computedProps[prop] = props[prop]
   }
 
   const css = getCSS(props)
 
-  if (css) next.css = css
+  if (css) computedProps.css = css
 
-  return next
+  return computedProps
 }
 
 export const jsx = (
   type: React.ElementType,
   props: object,
   ...children: React.ReactNode[]
-) => emotion.apply(undefined, [type, parseProps(props), ...children])
+) => emotion.apply(undefined, [type, parse(props), ...children])
 
+/**
+ * Merge `sx` into the react module declaration,
+ * so it can be accessible anywhere jsx is imported
+ */
 declare module "react" {
   interface DOMAttributes<T> {
     sx?: SystemStyleObject

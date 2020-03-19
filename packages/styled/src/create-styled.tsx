@@ -92,7 +92,7 @@ function createStyled<T extends As, P>(component: T, options?: Options<T, P>) {
           computedProps = { ...computedProps, ...attrsProps }
         }
 
-        if (!isTag) removeStyleProps(computedProps)
+        if (!isTag) computedProps = removeStyleProps(computedProps)
 
         computedProps.style = {
           ...props?.style,

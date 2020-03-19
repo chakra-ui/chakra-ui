@@ -1,15 +1,29 @@
 import * as React from "react"
 
+/**
+ * Checks if the key pressed is a printable character
+ * and can be used for shortcut navigation
+ *
+ * @param event the keyboard event
+ */
 function isPrintableCharacter(event: React.KeyboardEvent) {
   const { key } = event
   return key.length == 1 || (key.length > 1 && /[^a-zA-Z0-9]/.test(key))
 }
 
-interface ShortcutHookProps {
+export interface ShortcutHookProps {
   timeout?: number
   preventDefault?: (event: React.KeyboardEvent) => boolean
 }
 
+type Callback = (keysSoFar: string) => void
+
+/**
+ * React hook that provides an enhanced keydown handler,
+ * that's used for key navigation within menus, select dropdowns.
+ *
+ * @param props the shortcut options
+ */
 export function useShortcut(props: ShortcutHookProps = {}) {
   const { timeout = 300, preventDefault = () => true } = props
 
@@ -32,12 +46,8 @@ export function useShortcut(props: ShortcutHookProps = {}) {
   }
 
   React.useEffect(() => {
-    return () => {
-      flush()
-    }
+    return () => flush()
   }, [])
-
-  type Callback = (keysSoFar: string) => void
 
   function onKeyDown(callback: Callback) {
     return (event: React.KeyboardEvent) => {
@@ -66,5 +76,3 @@ export function useShortcut(props: ShortcutHookProps = {}) {
 
   return onKeyDown
 }
-
-export default useShortcut

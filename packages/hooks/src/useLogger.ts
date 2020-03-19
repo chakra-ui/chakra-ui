@@ -1,8 +1,8 @@
 import * as React from "react"
-import useUpdateEffect from "./useUpdateEffect"
+import { useUpdateEffect } from "./useUpdateEffect"
 
 /**
- * React lifecycle hook console logs a value when it mounts
+ * React hook to console-log a value when it mounts
  * and as it updates.
  *
  * @param label a label for the component
@@ -21,5 +21,3 @@ export function useLogger(label: string, ...values: any[]) {
     console.log(`${label} updated:`, ...values)
   })
 }
-
-export default useLogger

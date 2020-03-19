@@ -1,7 +1,13 @@
 import * as React from "react"
 import { getBox, BoxModel } from "@chakra-ui/utils"
-import useIsomorphicEffect from "./useIsomorphicEffect"
+import { useIsomorphicEffect } from "./useIsomorphicEffect"
 
+/**
+ * Reack hook to measure a component's dimensions
+ *
+ * @param ref ref of the component to measure
+ * @param observe if `true`, resize and scroll observers will be turned on
+ */
 export function useDimensions(
   ref: React.RefObject<HTMLElement>,
   observe?: boolean,
@@ -41,5 +47,3 @@ export function useDimensions(
 
   return dimensions
 }
-
-export default useDimensions

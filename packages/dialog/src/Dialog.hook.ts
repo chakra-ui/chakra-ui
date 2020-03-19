@@ -1,7 +1,8 @@
-import { useAriaHidden, useIds, useLockBodyScroll } from "@chakra-ui/hooks"
+import { useIds, useLockBodyScroll } from "@chakra-ui/hooks"
 import { callAllHandlers, mergeRefs } from "@chakra-ui/utils"
+import * as AriaHidden from "aria-hidden"
 import * as React from "react"
-import { useDialogManager, manager } from "./Dialog.manager"
+import { manager, useDialogManager } from "./Dialog.manager"
 
 export interface DialogHookProps {
   /**
@@ -150,3 +151,23 @@ export function useDialog(props: DialogHookProps) {
 }
 
 export type DialogHookReturn = ReturnType<typeof useDialog>
+
+export function useAriaHidden(
+  ref: React.RefObject<HTMLElement>,
+  activate: boolean,
+) {
+  React.useEffect(() => {
+    if (!ref.current) return
+
+    let undoAriaHidden: AriaHidden.Undo | null = null
+    const elementNode = ref.current
+
+    if (activate && elementNode) {
+      undoAriaHidden = AriaHidden.hideOthers(elementNode)
+    }
+
+    return () => {
+      if (activate && undoAriaHidden) undoAriaHidden()
+    }
+  }, [activate, ref])
+}

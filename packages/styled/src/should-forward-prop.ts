@@ -1,8 +1,8 @@
 import { propNames } from "@chakra-ui/parser"
-import { Dict, memoizeOne } from "@chakra-ui/utils"
+import { Dict, memoizeOne, omit } from "@chakra-ui/utils"
 import isValidAttribute from "@emotion/is-prop-valid"
 
-const allProps = [...propNames, "variant", "size", "colorScheme"]
+const stylePropNames = [...propNames, "variant", "size", "colorScheme"]
 
 function createShouldForwardProp(props: any) {
   const regex = new RegExp(`^(${props.join("|")})$`)
@@ -11,7 +11,7 @@ function createShouldForwardProp(props: any) {
   )
 }
 
-const shouldForwardProp = createShouldForwardProp(allProps)
+const shouldForwardProp = createShouldForwardProp(stylePropNames)
 
 export type ValidHTMLProps = {
   htmlWidth?: string | number
@@ -43,11 +43,7 @@ export function filterProps(props: Dict) {
 }
 
 export function removeStyleProps(props: Dict) {
-  for (const prop in props) {
-    if (allProps.includes(prop)) {
-      delete props[prop]
-    }
-  }
+  return omit(props, stylePropNames) as Dict
 }
 
 export function customShouldForwardProp(
