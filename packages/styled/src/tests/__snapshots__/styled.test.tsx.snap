@@ -1,5 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`apply property in theme works correctly 1`] = `
+<DocumentFragment>
+  <code
+    class="css-i84ezk"
+  >
+    code
+  </code>
+</DocumentFragment>
+`;
+
 exports[`attrs option works correctly 1`] = `
 <DocumentFragment>
   <button

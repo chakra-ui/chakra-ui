@@ -3,19 +3,21 @@ import * as React from "react"
 import { useSyncBetweenTabs, useUpdateBodyClassName } from "./color-mode.hooks"
 import { ColorMode, darkModeQuery } from "./color-mode.utils"
 
-type ContextType = [ColorMode, () => void]
+export { ColorMode }
 
-const Context = React.createContext<ContextType>(["light", () => {}])
+type ColorModeContext = [ColorMode, () => void]
 
-export const useColorMode = () => {
+const Context = React.createContext<ColorModeContext>(["light", () => {}])
+
+export function useColorMode() {
   const context = React.useContext(Context)
-  if (context === undefined) {
-    throw Error("context is undefined")
+  if (context == null) {
+    throw Error("useColorMode can only be used within ColorModeProvider")
   }
   return context
 }
 
-interface ColorModeProviderProps {
+export interface ColorModeProviderProps {
   mode?: ColorMode
   children?: React.ReactNode
 }
@@ -41,7 +43,7 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
     ? [manualMode, manualToggle]
     : [colorMode, toggleColorMode]
 
-  const _context = context as ContextType
+  const _context = context as ColorModeContext
 
   return <Context.Provider value={_context} children={children} />
 }

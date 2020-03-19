@@ -6,14 +6,14 @@ import { get, getValue } from "./get"
 import { getMediaQuery } from "./media-query"
 import parser from "./parser"
 
-const is = (props: any): props is { theme: Theme } => {
+const hasTheme = (props: any): props is { theme: Theme } => {
   return Boolean(isObject(props) && props.theme)
 }
 
 export const css = (styleProps: StyleObject) => (
   props: Theme | { theme: Theme },
 ) => {
-  const theme = is(props) ? props.theme : props
+  const theme = hasTheme(props) ? props.theme : props
 
   let result: CSSObject = {}
 
@@ -81,8 +81,7 @@ export const css = (styleProps: StyleObject) => (
 
     if (config?.properties) {
       config.properties.forEach((prop: any) => {
-        const computedStyles = compute(val, config)
-        result[prop] = computedStyles
+        result[prop] = compute(val, config)
       })
       continue
     }
@@ -93,8 +92,7 @@ export const css = (styleProps: StyleObject) => (
       continue
     }
 
-    const computedStyles = { [key]: compute(val, config) }
-    result = deepmerge(result, computedStyles)
+    result[key] = compute(val, config)
   }
 
   return result

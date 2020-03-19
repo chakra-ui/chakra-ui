@@ -51,6 +51,7 @@
   "dependencies": {
     "@emotion/is-prop-valid": "0.8.8",
     "@emotion/core": "10.0.28",
+    "@chakra-ui/color-mode": "0.0.1",
     "@chakra-ui/utils": "0.0.1",
     "@chakra-ui/parser": "0.0.1"
   },

@@ -1,23 +1,20 @@
 import { isArray, isObject } from "./assertion"
 import { Dict } from "./types"
 
-export function parseResponsiveProp(
-  value: any[] | Dict | string | number,
-  fn: (val: any) => any,
-) {
-  if (isArray(value)) {
-    return value.map(fn)
+export function parseResponsiveProp(prop: any, mapper: (val: any) => any) {
+  if (isArray(prop)) {
+    return prop.map(mapper)
   }
 
-  if (isObject(value)) {
-    return Object.keys(value).reduce((result: Dict, key) => {
-      result[key] = fn(value[key])
+  if (isObject(prop)) {
+    return Object.keys(prop).reduce((result: Dict, key) => {
+      result[key] = mapper(prop[key])
       return result
     }, {})
   }
 
-  if (value != null) {
-    return fn(value)
+  if (prop != null) {
+    return mapper(prop)
   }
 
   return null

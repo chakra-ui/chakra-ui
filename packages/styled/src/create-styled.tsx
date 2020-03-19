@@ -1,38 +1,62 @@
+import { css, getComponentStyles } from "@chakra-ui/parser"
 import {
+  As,
   Dict,
   getDisplayName,
   isEmptyObject,
-  runIfFn,
-  As,
   isString,
+  runIfFn,
 } from "@chakra-ui/utils"
+import { CSSObject } from "@emotion/core"
 import * as React from "react"
-import { css, getComponentStyles } from "@chakra-ui/parser"
+import { useChakra } from "./hooks"
 import jsx from "./jsx"
-import { CSSObject, ThemeContext } from "@emotion/core"
-import { Options, Component } from "./styled.types"
 import {
+  customShouldForwardProp,
   filterProps,
   removeStyleProps,
-  customShouldForwardProp,
 } from "./should-forward-prop"
+import { Component, Options } from "./styled.types"
 
 function createStyled<T extends As, P>(component: T, options?: Options<T, P>) {
   return function(...interpolations: any[]) {
     const Styled = React.forwardRef(
       ({ as, ...props }: any, ref: React.Ref<any>) => {
-        const theme = React.useContext(ThemeContext)
+        // Get the color mode and theme from context
+        const { theme, colorMode } = useChakra()
 
+        // We'll store the final css object of style props here
         let computedStyles: CSSObject = {}
 
-        const propsWithTheme = { theme, ...props }
+        // For each style interpolation, we'll pass the theme and colorMode
+        const propsWithTheme = { theme, colorMode, ...props }
 
+        /**
+         * Users can pass a base style to the component options, let's resolve it
+         *
+         * @example
+         * const Button = chakra("button", {
+         *  baseStyle: {
+         *    margin: 4,
+         *    color: "red.300"
+         *  }
+         * })
+         */
         if (options?.baseStyle) {
           const baseStyleObject = runIfFn(options.baseStyle, propsWithTheme)
           const baseStyle = css(baseStyleObject)(theme)
           computedStyles = { ...computedStyles, ...baseStyle }
         }
 
+        /**
+         * Users can pass a theme key to reference styles in the theme, let's resolve it.
+         * Styles will be read from `theme.components.<themeKey>`
+         *
+         * @example
+         * const Button = chakra("button", {
+         *  themeKey: "Button"
+         * })
+         */
         if (options?.themeKey) {
           const componentStyles = getComponentStyles(
             propsWithTheme,
@@ -41,6 +65,7 @@ function createStyled<T extends As, P>(component: T, options?: Options<T, P>) {
           computedStyles = { ...computedStyles, ...componentStyles }
         }
 
+        // Resolve each interpolation and add result to final style
         interpolations.forEach(interpolation => {
           const style = runIfFn(interpolation, propsWithTheme)
           computedStyles = { ...computedStyles, ...style }
@@ -51,6 +76,17 @@ function createStyled<T extends As, P>(component: T, options?: Options<T, P>) {
 
         let computedProps: Dict = isTag ? filterProps(props) : { ...props }
 
+        /**
+         * Users can pass a html attributes to component options, let's resolve it.
+         * Attributes will be passed to the underlying dom element
+         *
+         * @example
+         * const Button = chakra("button", {
+         *  attrs: {
+         *    type: "submit"
+         *  }
+         * })
+         */
         if (options?.attrs) {
           const attrsProps = runIfFn(options.attrs, propsWithTheme)
           computedProps = { ...computedProps, ...attrsProps }
@@ -63,7 +99,18 @@ function createStyled<T extends As, P>(component: T, options?: Options<T, P>) {
           ...options?.attrs?.style,
         }
 
-        // If user passed should forward prop, evaluate it.
+        /**
+         * Users can pass an option to control how props are forwarded
+         *
+         * @example
+         * const Button = chakra("button", {
+         *  attrs: props => ({
+         *    type: "submit",
+         *    disabled: props.isDisabled
+         *  }),
+         * shouldForwardProps: prop => prop !== "isDisabled"
+         * })
+         */
         if (options?.shouldForwardProp) {
           computedProps = customShouldForwardProp(
             options.shouldForwardProp,
@@ -71,16 +118,26 @@ function createStyled<T extends As, P>(component: T, options?: Options<T, P>) {
           )
         }
 
+        // check if style is empty, we don't want to pass css prop to jsx if it's empty
+        const isStyleEmpty = isEmptyObject(computedStyles)
+
+        /**
+         * Create the element using emotion's jsx, similar to React.createElement
+         * but it allows us pass a css object as prop and it'll convert it to a className
+         */
+
         return jsx(element, {
           ref,
           ...computedProps,
-          ...(!isEmptyObject(computedStyles) && { css: computedStyles }),
+          ...(!isStyleEmpty && { css: computedStyles }),
         })
       },
     )
 
+    // Compute the display name of the final component
     Styled.displayName = `chakra(${getDisplayName(component)})`
 
+    // [Optimization] users can pass a pure option to memoize this component
     const Component = options?.pure ? React.memo(Styled) : Styled
 
     return Component as Component<T, P>

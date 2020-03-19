@@ -667,7 +667,7 @@ export type StyleProps<ThemeType extends Theme = RequiredTheme> = SpaceProps &
   PositionProps<ThemeType> &
   OtherProps<ThemeType>
 
-type PseudoProps<Props, ExtraProps = {}> =
+type PseudoProps<Props, ExtraProps = { content?: string }> =
   | (Props & ExtraProps)
   | {
       [K in keyof Pseudos]:
@@ -680,5 +680,5 @@ export interface TruncateProps {
 }
 
 export type SystemProps<ThemeType = RequiredTheme> = StyleProps<ThemeType> &
-  PseudoProps<StyleProps<ThemeType>, { content?: string }> &
+  PseudoProps<StyleProps<ThemeType>> &
   TruncateProps

@@ -2,7 +2,7 @@
 import { render } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { chakra, jsx } from ".."
-import { ThemeProvider } from "../styled.stories"
+import { ThemeProvider } from "../theme.sample"
 
 test("as jsx element", () => {
   const Div = chakra("div")
@@ -162,4 +162,20 @@ test("sx prop works on jsx element", () => {
   expect(tools.getByText("Click").getAttribute("class")).toContain("css")
 })
 
-// test.todo("css prop works correctly")
+test.todo("css prop works correctly")
+
+test("apply property in theme works correctly", () => {
+  /**
+   * Note: check theme.sample.ts to see the theme. it looks like this.
+   *
+   * Code: {
+   *  baseStyle: {
+   *    apply: "components.Badge.baseStyle"
+   *  }
+   * }
+   */
+  const Code = chakra("code", { themeKey: "Code" })
+  const tools = render(<Code>code</Code>)
+  expect(tools.asFragment()).toMatchSnapshot()
+  expect(tools.getByText("code").getAttribute("class")).toContain("css")
+})
