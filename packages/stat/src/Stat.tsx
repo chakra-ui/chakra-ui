@@ -2,7 +2,8 @@ import * as React from "react"
 import { createChakra } from "@chakra-ui/system"
 import { Icon, IconProps } from "@chakra-ui/icon"
 
-const StatLabel = createChakra("p", {
+export const StatLabel = createChakra("p", {
+  themeKey: "Stat.Label",
   baseStyle: {
     fontWeight: "medium",
     fontSize: "sm",
@@ -11,7 +12,8 @@ const StatLabel = createChakra("p", {
 
 StatLabel.displayName = "StatLabel"
 
-const StatHelpText = createChakra("p", {
+export const StatHelpText = createChakra("p", {
+  themeKey: "Stat.HelpText",
   baseStyle: {
     fontSize: "sm",
     opacity: 0.8,
@@ -21,7 +23,8 @@ const StatHelpText = createChakra("p", {
 
 StatHelpText.displayName = "StatHelpText"
 
-const StatNumber = createChakra("p", {
+export const StatNumber = createChakra("p", {
+  themeKey: "Stat.Number",
   baseStyle: {
     fontSize: "2xl",
     verticalAlign: "baseline",
@@ -31,7 +34,7 @@ const StatNumber = createChakra("p", {
 
 StatNumber.displayName = "StatNumber"
 
-const StatDownArrow = (props: IconProps) => (
+export const StatDownArrow = (props: IconProps) => (
   <Icon mr={1} size="14px" color="red.400" verticalAlign="middle" {...props}>
     <path
       fill="currentColor"
@@ -40,7 +43,7 @@ const StatDownArrow = (props: IconProps) => (
   </Icon>
 )
 
-const StatUpArrow = (props: IconProps) => (
+export const StatUpArrow = (props: IconProps) => (
   <Icon mr={1} size="14px" color="green.400" verticalAlign="middle" {...props}>
     <path
       fill="currentColor"
@@ -49,7 +52,9 @@ const StatUpArrow = (props: IconProps) => (
   </Icon>
 )
 
-function StatArrow(props: IconProps & { type?: "increase" | "decrease" }) {
+export function StatArrow(
+  props: IconProps & { type?: "increase" | "decrease" },
+) {
   const { type, ...rest } = props
   return type === "increase" ? (
     <StatUpArrow {...rest} />
@@ -60,7 +65,8 @@ function StatArrow(props: IconProps & { type?: "increase" | "decrease" }) {
 
 StatArrow.displayName = "StatArrow"
 
-const Stat = createChakra("div", {
+export const Stat = createChakra("div", {
+  themeKey: "Stat.Root",
   baseStyle: {
     flex: "1",
     // position: "absolute",
@@ -70,7 +76,7 @@ const Stat = createChakra("div", {
 
 Stat.displayName = "Stat"
 
-const StatGroup = createChakra("div", {
+export const StatGroup = createChakra("div", {
   baseStyle: {
     display: "flex",
     flexWrap: "wrap",
@@ -80,5 +86,3 @@ const StatGroup = createChakra("div", {
 })
 
 StatGroup.displayName = "StatGroup"
-
-export { StatLabel, StatNumber, Stat, StatHelpText, StatArrow, StatGroup }

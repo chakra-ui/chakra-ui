@@ -49,6 +49,6 @@ export function normalizeEventKey(event: React.KeyboardEvent) {
 export const makeDataAttr = (condition: boolean | undefined) =>
   condition ? "" : undefined
 
-export function ownerDocument(node?: HTMLElement) {
+export function getOwnerDocument(node?: HTMLElement) {
   return node?.ownerDocument || document
 }
