@@ -1,5 +1,5 @@
 import { useTheme } from "../theme-provider"
-import getComponentStyles from "./get-component-style"
+import { getComponentStyles, getComponentDefaults } from "./get-component-style"
 
 export function useComponentStyle<T extends object>({
   variantSize,
@@ -14,4 +14,7 @@ export function useComponentStyle<T extends object>({
   )
 }
 
-export default useComponentStyle
+export function useComponentDefaults(themeKey: string) {
+  const theme = useTheme()
+  return getComponentDefaults(theme, themeKey)
+}

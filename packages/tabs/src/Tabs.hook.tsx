@@ -61,7 +61,7 @@ export interface TabsHookProps {
 export function useTabs(props: TabsHookProps) {
   const {
     defaultIndex,
-    onChange: onChangeProp,
+    onChange,
     index: indexProp,
     isManual,
     orientation = "horizontal",
@@ -74,7 +74,7 @@ export function useTabs(props: TabsHookProps) {
   const [selectedIndex, setSelectedIndex] = useControllableState({
     defaultValue: defaultIndex ?? 0,
     value: indexProp,
-    onChange: onChangeProp,
+    onChange,
     propsMap: {
       value: "index",
       defaultValue: "defaultIndex",

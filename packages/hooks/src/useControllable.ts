@@ -68,18 +68,16 @@ export function useControllableState<T>(props: ControllableStateHookProps<T>) {
   } = props
 
   const [valueState, setValue] = React.useState(defaultValue as T)
+
   const isControlled = isDefined(valueProp)
-
-  const previousValueProp = usePrevious(valueProp)
-
-  const wasControlled = isDefined(previousValueProp)
+  const wasControlled = usePrevious(isControlled)
 
   const prevMode = wasControlled ? "a controlled" : "an uncontrolled"
   const mode = isControlled ? "uncontrolled" : "controlled"
 
   // don't switch from controlled to uncontrolled
   warn({
-    condition: isControlled !== wasControlled,
+    condition: Boolean(isControlled) !== Boolean(wasControlled),
     message:
       `Warning: ${name} is changing from ${prevMode} to ${mode} component. ` +
       `Components should not switch from controlled to uncontrolled (or vice versa). ` +

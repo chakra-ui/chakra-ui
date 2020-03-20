@@ -1,4 +1,9 @@
-import { PropsOf, createChakra, chakra } from "@chakra-ui/system"
+import {
+  PropsOf,
+  createChakra,
+  chakra,
+  useComponentDefaults,
+} from "@chakra-ui/system"
 import * as React from "react"
 import {
   useTab,
@@ -25,14 +30,18 @@ export type TabsProps = TabsHookProps & ThemingProps
 const [ThemingProvider, useThemingContext] = createContext<ThemingProps>()
 
 export function Tabs(props: TabsProps) {
+  // get the default theming props for variant and variantSize
+  const defaults = useComponentDefaults("Tabs") as any
+
   const {
     children,
-    variant,
-    variantSize,
+    variant = defaults.variant,
+    variantSize = defaults.variantSize,
     variantColor,
     isFitted,
     ...rest
   } = props
+
   return (
     <TabsProvider {...rest}>
       <ThemingProvider value={{ variant, variantSize, variantColor, isFitted }}>

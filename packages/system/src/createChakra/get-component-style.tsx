@@ -51,7 +51,10 @@ function getVariantStyle(props: any, themeKey: string) {
   return componentStyle
 }
 
-function getComponentStyles<P>(props: any, options?: CreateChakraOptions<P>) {
+export function getComponentStyles<P>(
+  props: any,
+  options?: CreateChakraOptions<P>,
+) {
   let componentStyle: Dict = {}
 
   const themeKey = options?.themeKey
@@ -74,4 +77,8 @@ function getComponentStyles<P>(props: any, options?: CreateChakraOptions<P>) {
   return componentStyle
 }
 
-export default getComponentStyles
+export function getComponentDefaults(theme: any, themeKey: string) {
+  const defaultVariant = get(theme, `components.${themeKey}.variant.__default`)
+  const defaultSize = get(theme, `components.${themeKey}.variantSize.__default`)
+  return { variantSize: defaultSize, variant: defaultVariant }
+}

@@ -14,7 +14,7 @@ export default {
 }
 
 export const Basic = () => (
-  <Tabs variant="line" variantColor="blue">
+  <Tabs variantColor="blue">
     <TabList>
       <Tab>Settings</Tab>
       <Tab>Billings</Tab>

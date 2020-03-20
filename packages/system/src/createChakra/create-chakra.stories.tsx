@@ -2,7 +2,7 @@ import * as React from "react"
 import chakra from "../chakra/chakra"
 import { syncChild, syncParent, ThemingProps } from "../connect-theming"
 import createChakra from "./create-chakra"
-import useComponentStyle from "./use-component-style"
+import { useComponentStyle } from "./use-component-style"
 
 export default {
   title: "create Chakra",

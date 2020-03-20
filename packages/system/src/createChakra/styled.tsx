@@ -11,7 +11,7 @@ import {
   filterStylePropNames,
   filterProps,
 } from "./create-chakra.utils"
-import getComponentStyles from "./get-component-style"
+import { getComponentStyles } from "./get-component-style"
 import { As, CreateChakraComponent, CreateChakraOptions } from "./types"
 
 export function styled<T extends As, P = {}>(
