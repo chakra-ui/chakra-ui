@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import * as React from "react"
 import * as ReactDOM from "react-dom"
-import { usePortalManager } from "./PortalManager"
+import { usePortalManager } from "./Portal.manager"
 import { isBrowser, createContext } from "@chakra-ui/utils"
 
 const [
