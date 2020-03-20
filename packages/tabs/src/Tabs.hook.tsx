@@ -16,7 +16,7 @@ import * as React from "react"
 
 export interface TabsHookProps {
   /**
-   * The orientation of the tablist.
+   * The orientation of the tab list.
    */
   orientation?: "vertical" | "horizontal"
   /**

@@ -19,10 +19,22 @@ import {
 import { createContext } from "@chakra-ui/utils"
 
 type ThemingProps = {
+  /**
+   * The style of the tabs to use
+   */
   variant?: string
+  /**
+   * The size of the tab (affects the font-size and padding).
+   */
   variantSize?: string
+  /**
+   * The color scheme of the tabs
+   */
   variantColor?: string
-  isFitted?: string
+  /**
+   * If `true`, tabs will stretch to width of the tablist.
+   */
+  isFitted?: boolean
 }
 
 export type TabsProps = TabsHookProps & ThemingProps
@@ -62,8 +74,14 @@ export type TabProps = TabHookProps & PropsOf<typeof StyledTab>
 
 export const Tab = React.forwardRef((props: TabProps, ref: React.Ref<any>) => {
   const tabProps = useTab({ ...props, ref })
-  const themingProps = useThemingContext()
-  return <StyledTab {...themingProps} {...tabProps} />
+  const { isFitted, ...themingProps } = useThemingContext()
+  return (
+    <StyledTab
+      flex={isFitted ? 1 : undefined}
+      {...themingProps}
+      {...tabProps}
+    />
+  )
 })
 
 const StyledTabList = createChakra("div", { themeKey: "Tabs.TabList" })
