@@ -1,8 +1,8 @@
 import { useDimensions, useTimeout } from "@chakra-ui/hooks"
 import { Transition } from "@chakra-ui/transition"
+import { isFunction } from "@chakra-ui/utils"
 import ReachAlert from "@reach/alert"
 import React from "react"
-import { isFunction } from "@chakra-ui/utils"
 import { ToastOptions, ToastPosition } from "./Toast.types"
 
 const getStyle = (position: ToastPosition) => {
@@ -29,17 +29,15 @@ export function Toast(props: ToastProps) {
   const {
     id,
     message,
-    position,
     onRequestRemove,
     requestClose = false,
+    position = "bottom",
     duration = 5000,
   } = props
 
   const ref = React.useRef<HTMLDivElement>(null)
   const [timeout, setTimeout] = React.useState(duration)
   const [show, setShow] = React.useState(true)
-
-  const isFromTop = position.includes("top")
 
   const onMouseEnter = () => {
     setTimeout(null)
@@ -70,17 +68,22 @@ export function Toast(props: ToastProps) {
   const style = React.useMemo(() => getStyle(position), [position])
 
   const res = useDimensions(ref)
-  const selfHeight = res?.borderBox.height ?? 0
+  const height = res?.contentBox.height ?? 0
 
+  const isTop = position.includes("top")
+
+  // TODO: Make it possible to configure this toast transition
+  // from `theme.transitions.toast`
+  const initialTransform = isTop ? `-${height}px` : 0
   const styles = {
     init: {
       opacity: 0,
       height: 0,
-      transform: `translateY(${isFromTop ? "-100%" : 0}) scale(1)`,
+      transform: `translateY(${initialTransform}) scale(1)`,
     },
     entered: {
       opacity: 1,
-      height: selfHeight,
+      height,
       transform: `translateY(0) scale(1)`,
     },
     exiting: {

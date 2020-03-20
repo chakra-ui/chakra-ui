@@ -13,8 +13,8 @@ export const Basic = () => {
       onClick={() => {
         toast({
           title: "This is a toast, mehn!",
-          position: "top",
           description: "Hello I'm here to help",
+          position: "top-right",
         })
       }}
     >

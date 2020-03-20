@@ -9,7 +9,7 @@ const isBrowser =
 const PORTAL_ID = "chakra-toast-portal"
 
 class Toaster {
-  createNotification?: Function
+  createToast?: Function
   removeAll?: Function
   closeToast?: Function
 
@@ -37,13 +37,13 @@ class Toaster {
     removeAll: Function,
     closeToast: Function,
   ) => {
-    this.createNotification = createToast
+    this.createToast = createToast
     this.removeAll = removeAll
     this.closeToast = closeToast
   }
 
   notify = (message: ToastMessage, options: Partial<ToastOptions> = {}) =>
-    this.createNotification?.(message, options)
+    this.createToast?.(message, options)
 
   close = (id: string, position: ToastPosition) => {
     this.closeToast?.(id, position)

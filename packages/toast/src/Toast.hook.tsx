@@ -1,5 +1,5 @@
-import { createThemeContext, useTheme } from "@chakra-ui/system"
-import { isString } from "@chakra-ui/utils"
+import { createThemeContext, useTheme, chakra } from "@chakra-ui/system"
+import { isString, isFunction } from "@chakra-ui/utils"
 import * as React from "react"
 import { toast } from "./Toast.class"
 import { RenderProps, ToastOptions } from "./Toast.types"
@@ -23,12 +23,19 @@ const Close = (props: any) => (
   </button>
 )
 
-const Alert = ({ id, title, onClose, children }: any) => (
-  <div id={id} data-toast-alert="">
+const Toast = ({ id, title, onClose, children }: any) => (
+  <chakra.div
+    bg="tomato"
+    color="white"
+    padding="20px"
+    margin="10px"
+    id={id}
+    data-toast-alert=""
+  >
     {isString(title) ? <div data-toaster-alert-text="">{title}</div> : title}
     {children}
     {onClose && <Close onClick={onClose} />}
-  </div>
+  </chakra.div>
 )
 
 export function useToast() {
@@ -36,32 +43,21 @@ export function useToast() {
   const [ThemeProvider] = createThemeContext(theme)
 
   function notify(options: NotifyOptions) {
-    const {
-      position = "bottom",
-      duration = 5000,
-      render,
-      title,
-      description,
-    } = options
-
-    const optionsWithDefault = { ...options, duration, position }
-
-    if (render) {
-      return toast.notify(
-        props => <ThemeProvider>{render(props)}</ThemeProvider>,
-        optionsWithDefault,
-      )
-    }
+    const { render, title, description } = options
 
     toast.notify(
-      ({ onClose, id }) => (
+      props => (
         <ThemeProvider>
-          <Alert id={id} title={title} onClose={onClose}>
-            {description}
-          </Alert>
+          {isFunction(render) ? (
+            render(props)
+          ) : (
+            <Toast title={title} {...props}>
+              {description}
+            </Toast>
+          )}
         </ThemeProvider>
       ),
-      optionsWithDefault,
+      options,
     )
   }
 
