@@ -15,5 +15,6 @@ yarn-error.log
 packages/*/.rpt2_cache
 packages/*/.rts2_cache*
 .next
+.idea
 # Local Netlify folder
 .netlify
