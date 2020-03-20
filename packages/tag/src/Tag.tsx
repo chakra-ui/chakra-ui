@@ -1,6 +1,8 @@
-/**@jsx jsx */
-import { chakra, PropsOf, jsx, createChakra } from "@chakra-ui/system"
+import React from "react"
+import { chakra, PropsOf, createChakra } from "@chakra-ui/system"
 import { Icon, IconProps } from "@chakra-ui/icon"
+
+export type TagProps = PropsOf<typeof Tag>
 
 export const Tag = createChakra("span", {
   themeKey: "Tag",
@@ -11,14 +13,11 @@ export const Tag = createChakra("span", {
     fontWeight: "medium",
     lineHeight: "1.2",
   },
-  attrs: {
-    //@ts-ignore
-    "data-chakra-tag": "",
-    // tabIndex: -1,
-  },
 })
 
-export const TagLabel = (props: PropsOf<typeof chakra.div>) => (
+export type TagLabelProps = PropsOf<typeof chakra.div>
+
+export const TagLabel = (props: TagLabelProps) => (
   <chakra.span
     data-chakra-tag-label=""
     isTruncated
@@ -30,6 +29,7 @@ export const TagLabel = (props: PropsOf<typeof chakra.div>) => (
 export const TagIcon = (props: IconProps) => (
   <Icon
     data-chakra-tag-icon=""
+    verticalAlign="top"
     mx="0.5rem"
     {...props}
     sx={{
@@ -40,42 +40,44 @@ export const TagIcon = (props: IconProps) => (
 )
 
 const TagCloseIcon = (props: IconProps) => (
-  <Icon {...props}>
+  <Icon focusable="false" role="presentation" size="100%" {...props}>
     <path
-      d="M9.41 8l2.29-2.29c.19-.18.3-.43.3-.71a1.003 1.003 0 0 0-1.71-.71L8 6.59l-2.29-2.3a1.003 1.003 0 0 0-1.42 1.42L6.59 8 4.3 10.29c-.19.18-.3.43-.3.71a1.003 1.003 0 0 0 1.71.71L8 9.41l2.29 2.29c.18.19.43.3.71.3a1.003 1.003 0 0 0 .71-1.71L9.41 8z"
       fill="currentColor"
-      fillRule="evenodd"
+      d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
     />
   </Icon>
 )
 
-export const TagCloseButton = ({
-  isDisabled,
-  ...props
-}: {
+export type TagCloseButtonProps = Omit<
+  PropsOf<typeof chakra.button>,
+  "disabled"
+> & {
   isDisabled?: boolean
-}) => (
-  <chakra.button
-    data-chakra-tag-close-btn=""
-    display="flex"
-    opacity={0.5}
-    mt="-2px"
-    mr="-6px"
-    size="1.25rem"
-    outline="none"
-    cursor="pointer"
-    color="inherit"
-    padding="2px 2px 2px 0"
-    _disabled={{ opacity: 0.4 }}
-    _focus={{
-      boxShadow: "outline",
-      bg: "rgba(0, 0, 0, 0.14)",
-    }}
-    _hover={{ opacity: 0.8 }}
-    _active={{ opacity: 1 }}
-    disabled={isDisabled}
-    {...props}
-  >
-    <TagCloseIcon />
-  </chakra.button>
-)
+}
+
+export const TagCloseButton = (props: TagCloseButtonProps) => {
+  const {
+    isDisabled,
+    children = <TagCloseIcon verticalAlign="inherit" />,
+    ...rest
+  } = props
+  return (
+    <chakra.button
+      fontSize="1em"
+      size="1em"
+      borderRadius="sm"
+      marginLeft="6px"
+      _disabled={{ opacity: 0.4 }}
+      outline="0"
+      _focus={{
+        boxShadow: "outline",
+        bg: "rgba(0, 0, 0, 0.14)",
+      }}
+      _hover={{ opacity: 0.8 }}
+      _active={{ opacity: 1 }}
+      disabled={isDisabled}
+      children={children}
+      {...rest}
+    />
+  )
+}

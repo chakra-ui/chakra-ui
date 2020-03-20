@@ -2,8 +2,6 @@ import { ControlProps, useField } from "@chakra-ui/form-control"
 import { createChakra, PropsOf } from "@chakra-ui/system"
 import * as React from "react"
 
-type OmittedTypes = "disabled" | "required" | "readOnly"
-
 interface TextareaOptions {
   /**
    * The border color when the textarea is focused. Use color keys in `theme.colors`
@@ -29,6 +27,8 @@ const StyledTextarea = createChakra<"textarea", TextareaOptions>("textarea", {
     !["focusBorderColor", "errorBorderColor"].includes(prop),
 })
 
+type OmittedTypes = "disabled" | "required" | "readOnly"
+
 export type TextareaProps = Omit<PropsOf<typeof StyledTextarea>, OmittedTypes> &
   ControlProps
 
@@ -39,7 +39,7 @@ export const Textarea = React.forwardRef(
   },
 )
 
-Textarea.displayName = "Input"
+Textarea.displayName = "Textares"
 
 Textarea.defaultProps = {
   isFullWidth: true,
