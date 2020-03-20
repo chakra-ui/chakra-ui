@@ -8,7 +8,6 @@ import {
   SystemProps,
   useColorModeValue,
 } from "@chakra-ui/system"
-import { SafeMerge } from "@chakra-ui/utils"
 import * as React from "react"
 
 interface AvatarOptions {
@@ -87,10 +86,7 @@ const getInitials = (name: string) => {
 
 type BoxProps = PropsOf<typeof chakra.div>
 
-export type AvatarNameProps = SafeMerge<
-  BoxProps,
-  { name: AvatarOptions["name"] }
->
+export type AvatarNameProps = BoxProps & Pick<AvatarOptions, "name">
 
 const AvatarName = ({ name, ...rest }: AvatarNameProps) => (
   <chakra.div
@@ -116,7 +112,7 @@ const DefaultAvatar = (props: BoxProps) => (
 
 const StyledAvatar = createChakra("div", { themeKey: "Avatar" })
 
-export type AvatarProps = SafeMerge<PropsOf<typeof StyledAvatar>, AvatarOptions>
+export type AvatarProps = PropsOf<typeof StyledAvatar> & AvatarOptions
 
 export const Avatar = forwardRef((props: AvatarProps, ref: React.Ref<any>) => {
   const { src, name, showBorder, borderColor, onError, ...rest } = props
