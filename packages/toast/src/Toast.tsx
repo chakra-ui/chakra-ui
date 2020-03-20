@@ -1,7 +1,8 @@
-import { useTimeout } from "@chakra-ui/hooks"
+import { useDimensions, useTimeout } from "@chakra-ui/hooks"
 import { Transition } from "@chakra-ui/transition"
 import ReachAlert from "@reach/alert"
 import React from "react"
+import { isFunction } from "@chakra-ui/utils"
 import { ToastOptions, ToastPosition } from "./Toast.types"
 
 const getStyle = (position: ToastPosition) => {
@@ -20,32 +21,11 @@ const getStyle = (position: ToastPosition) => {
   return style
 }
 
-const Close = (props: any) => (
-  <button
-    data-toaster-alert-close-btn=""
-    type="button"
-    aria-label="Close"
-    {...props}
-  >
-    <span aria-hidden="true">×</span>
-  </button>
-)
-
-const Alert = ({ id, title, onClose }: any) => {
-  return (
-    <div id={id} data-toaster-alert="">
-      {typeof title === "string" ? (
-        <div data-toaster-alert-text="">{title}</div>
-      ) : (
-        title
-      )}
-
-      {onClose && <Close onClick={onClose} />}
-    </div>
-  )
+export type ToastProps = ToastOptions & {
+  requestClose?: boolean
 }
 
-export function Toast(props: ToastOptions & { requestClose?: boolean }) {
+export function Toast(props: ToastProps) {
   const {
     id,
     message,
@@ -89,28 +69,8 @@ export function Toast(props: ToastOptions & { requestClose?: boolean }) {
 
   const style = React.useMemo(() => getStyle(position), [position])
 
-  const renderMessage = () => {
-    if (typeof message === "string" || React.isValidElement(message)) {
-      return <Alert id={id} title={message} onClose={close} />
-    }
-
-    if (typeof message === "function") {
-      return message({
-        id,
-        onClose: close,
-      })
-    }
-
-    return null
-  }
-
-  const [selfHeight, setSelfHeight] = React.useState(0)
-
-  React.useEffect(() => {
-    if (!ref.current) return
-    const { height } = ref.current.getBoundingClientRect()
-    setSelfHeight(height)
-  }, [show, selfHeight])
+  const res = useDimensions(ref)
+  const selfHeight = res?.borderBox.height ?? 0
 
   const styles = {
     init: {
@@ -140,7 +100,9 @@ export function Toast(props: ToastOptions & { requestClose?: boolean }) {
           style={{ ...style, ...styles }}
         >
           <div ref={ref} data-toast-inner="" style={{ pointerEvents: "auto" }}>
-            <ReachAlert>{renderMessage()}</ReachAlert>
+            <ReachAlert>
+              {isFunction(message) ? message({ id, onClose: close }) : message}
+            </ReachAlert>
           </div>
         </div>
       )}

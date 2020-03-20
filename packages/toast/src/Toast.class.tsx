@@ -8,12 +8,6 @@ const isBrowser =
 
 const PORTAL_ID = "chakra-toast-portal"
 
-function createDiv(attrs: { id: string; className?: string }) {
-  const el = document.createElement("div")
-  el.id = attrs.id
-  return el
-}
-
 class Toaster {
   createNotification?: Function
   removeAll?: Function
@@ -27,38 +21,32 @@ class Toaster {
     if (existingPortalElement) {
       portalElement = existingPortalElement
     } else {
-      const el = createDiv({ id: PORTAL_ID })
-      if (document.body != null) {
-        document.body.appendChild(el)
-      }
+      const el = document.createElement("div")
+      el.id = PORTAL_ID
+      document.body?.appendChild(el)
       portalElement = el
     }
 
     render(<ToastManager notify={this.bindNotify} />, portalElement)
   }
 
-  closeAll = () => {
-    if (this.removeAll) {
-      this.removeAll()
-    }
-  }
+  closeAll = () => this.removeAll?.()
 
-  bindNotify = (fn: Function, removeAll: Function, closeToast: Function) => {
-    this.createNotification = fn
+  bindNotify = (
+    createToast: Function,
+    removeAll: Function,
+    closeToast: Function,
+  ) => {
+    this.createNotification = createToast
     this.removeAll = removeAll
     this.closeToast = closeToast
   }
 
-  notify = (message: ToastMessage, options: Partial<ToastOptions> = {}) => {
-    if (this.createNotification) {
-      return this.createNotification(message, options)
-    }
-  }
+  notify = (message: ToastMessage, options: Partial<ToastOptions> = {}) =>
+    this.createNotification?.(message, options)
 
   close = (id: string, position: ToastPosition) => {
-    if (this.closeToast) {
-      this.closeToast(id, position)
-    }
+    this.closeToast?.(id, position)
   }
 }
 

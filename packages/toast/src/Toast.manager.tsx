@@ -8,15 +8,24 @@ interface Props {
 
 type State = { [K in ToastPosition]: ToastOptions[] }
 
+type CreateToastOptions = Partial<
+  Pick<ToastOptions, "type" | "duration" | "position">
+>
+
 /**
  * Manages the creation, and removal of toasts
  * across all corners ("top", "bottom", etc.)
  */
 export class ToastManager extends React.Component<Props, State> {
-  // static id generator for each toast
+  /**
+   * Static id counter to create unique ids
+   * for each toast
+   */
   static counter = 0
 
-  // state to track all the toast across all corners
+  /**
+   * State to track all the toast across all positions
+   */
   state: State = {
     top: [],
     "top-left": [],
@@ -31,11 +40,11 @@ export class ToastManager extends React.Component<Props, State> {
     props.notify(this.notify, this.closeAll, this.closeToast)
   }
 
-  // calling the notify function, creates a toast at the specified position
-  notify = (
-    message: ToastMessage,
-    options: Partial<Pick<ToastOptions, "type" | "duration" | "position">>,
-  ) => {
+  /**
+   * Function to actually create a toast and add it
+   * to state at the specified position
+   */
+  notify = (message: ToastMessage, options: CreateToastOptions) => {
     const toast = this.createToast(message, options)
     const { position, id } = toast
 
@@ -60,21 +69,24 @@ export class ToastManager extends React.Component<Props, State> {
     return { id, position }
   }
 
+  /**
+   * Close all toasts at once
+   */
   closeAll = () => {
-    Object.keys(this.state).forEach(positions => {
+    for (const positions in this.state) {
       const _positions = positions as keyof State
       const toasts = this.state[_positions]
 
       toasts.forEach(toast => {
         this.closeToast(toast.id, _positions)
       })
-    })
+    }
   }
 
-  createToast = (
-    message: ToastMessage,
-    options: Partial<Pick<ToastOptions, "type" | "duration" | "position">>,
-  ) => {
+  /**
+   * Create properties for a new toast
+   */
+  createToast = (message: ToastMessage, options: CreateToastOptions) => {
     const id = ++ToastManager.counter
 
     const position = options?.position ?? "top"
@@ -85,31 +97,30 @@ export class ToastManager extends React.Component<Props, State> {
       position,
       showing: true,
       duration: options.duration ?? 5000,
-      onRequestRemove: () => this.removeToast(String(id), position),
+      onRequestRemove: () => this.deleteToast(String(id), position),
       type: options.type,
     }
   }
 
   /**
-   * Function that requests to close a toast based on it's id and positio
+   * Requests to close a toast based on it's id and position
    */
   closeToast = (id: string, position: ToastPosition) => {
     this.setState(prevState => {
       return {
         ...prevState,
-        [position]: prevState[position].map(toast => {
-          if (toast.id !== id) return toast
-          return {
-            ...toast,
-            requestClose: true,
-          }
-        }),
+        [position]: prevState[position].map(toast => ({
+          ...toast,
+          requestClose: toast.id === id,
+        })),
       }
     })
   }
 
-  // Function that actually removes the toast
-  removeToast = (id: string, position: ToastPosition) => {
+  /**
+   * Delete a toast record at it's position
+   */
+  deleteToast = (id: string, position: ToastPosition) => {
     this.setState(prevState => {
       return {
         ...prevState,
@@ -118,7 +129,9 @@ export class ToastManager extends React.Component<Props, State> {
     })
   }
 
-  // compute the styles for each toast positions
+  /**
+   * Compute the style of a toast based on it's position
+   */
   getStyle = (position: ToastPosition) => {
     const style: React.CSSProperties = {
       maxWidth: "560px",

@@ -6,15 +6,12 @@ export type ToastPosition =
   | "bottom-right"
   | "bottom-left"
 
-export interface Callback {
+export interface RenderProps {
   id: string
   onClose(): void
 }
 
-export type ToastMessage =
-  | React.ReactNode
-  | ((callback: Callback) => React.ReactNode)
-  | string
+export type ToastMessage = (props: RenderProps) => React.ReactNode
 
 export interface ToastOptions {
   message: ToastMessage
