@@ -1,32 +1,57 @@
-import { createChakra } from "@chakra-ui/system"
 import React from "react"
-import { TabsProvider } from "."
-import * as Base from "./Tabs.base"
+import { Tabs, TabList, Tab, TabIndicator, TabPanels, TabPanel } from "."
+import { chakra } from "@chakra-ui/system"
 
 export default {
   title: "Tabs",
+  decorators: [
+    (story: Function) => (
+      <chakra.div maxWidth="500px" mt="100px" mx="auto">
+        {story()}
+      </chakra.div>
+    ),
+  ],
 }
 
-const Tab = createChakra(Base.BaseTab)
-const TabList = createChakra(Base.BaseTabList)
-const TabPanel = createChakra(Base.BaseTabPanel)
-
-export const BaseTabComponents = () => (
-  <TabsProvider orientation="horizontal">
+export const Basic = () => (
+  <Tabs variant="line" variantColor="blue">
     <TabList>
       <Tab>Settings</Tab>
-      <Tab isDisabled isFocusable>
-        Billings
-      </Tab>
+      <Tab>Billings</Tab>
       <Tab>Preferences</Tab>
       <Tab>Shut Down</Tab>
     </TabList>
-    <Base.BaseTabIndicator />
-    <Base.BaseTabPanels>
+    <TabPanels>
       <TabPanel>Settings</TabPanel>
       <TabPanel>Billings</TabPanel>
       <TabPanel>Preferences</TabPanel>
       <TabPanel>Shut Down</TabPanel>
-    </Base.BaseTabPanels>
-  </TabsProvider>
+    </TabPanels>
+  </Tabs>
+)
+
+export const WithIndicator = () => (
+  <Tabs variant="unstyled" isManual>
+    <TabList>
+      <Tab>Settings</Tab>
+      <Tab>Billings</Tab>
+      <Tab>Preferences</Tab>
+      <Tab>Shut Down</Tab>
+    </TabList>
+
+    <TabIndicator
+      mt="-33px"
+      zIndex={-1}
+      height="34px"
+      bg="green.400"
+      borderRadius="6px"
+    />
+
+    <TabPanels>
+      <TabPanel>Settings</TabPanel>
+      <TabPanel>Billings</TabPanel>
+      <TabPanel>Preferences</TabPanel>
+      <TabPanel>Shut Down</TabPanel>
+    </TabPanels>
+  </Tabs>
 )
