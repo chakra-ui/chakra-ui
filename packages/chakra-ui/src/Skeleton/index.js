@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { Fragment } from "react";
+import { Fragment, useMemo } from "react";
 import { useTheme } from "../ThemeProvider";
 import { useColorMode } from "../ColorModeProvider";
 import { css, jsx, keyframes } from "@emotion/core";
@@ -61,21 +61,21 @@ const Skeleton = props => {
     colorStart = defaultStart[colorMode],
     colorEnd = defaultEnd[colorMode],
     isLoaded = false,
-    fadeInDuration = 0.3,
+    fadeInDuration = 0.4,
     speed = 0.8,
     ...rest
   } = props;
-  if (isLoaded) {
-    return <Box css={fadeInCss(fadeInDuration)} {...rest} />;
-  }
-
-  return (
-    <Box
-      css={getStyle({ colorStart, colorEnd, speed })}
-      borderRadius="2px"
-      {...rest}
-    />
+  const fadeInStyle = useMemo(() => fadeInCss(fadeInDuration), [
+    fadeInDuration,
+  ]);
+  const skeletonStyle = useMemo(
+    () => getStyle({ colorStart, colorEnd, speed }),
+    [colorStart, colorEnd, speed],
   );
+  if (isLoaded) {
+    return <Box css={fadeInStyle} {...rest} />;
+  }
+  return <Box css={skeletonStyle} borderRadius="2px" {...rest} />;
 };
 
 export default Skeleton;
