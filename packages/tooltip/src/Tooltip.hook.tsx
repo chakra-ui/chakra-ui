@@ -1,13 +1,13 @@
-import * as React from "react"
-import flushable from "flushable"
 import {
-  useUpdateEffect,
+  useDisclosure,
   useEventListener,
-  useMergeRefs,
   useId,
+  useMergeRefs,
 } from "@chakra-ui/hooks"
-import { usePopper, Placement } from "@chakra-ui/popper"
+import { Placement, usePopper, PopperHookProps } from "@chakra-ui/popper"
 import { callAllHandlers, mergeRefs } from "@chakra-ui/utils"
+import flushable from "flushable"
+import * as React from "react"
 
 let pendingHide: flushable.FlushableOperation
 
@@ -31,10 +31,20 @@ function hide(fn: (flushed: boolean) => void, delay: number) {
 export interface TooltipHookProps {
   /**
    * Delay (in ms) before hiding the tooltip
+   * @default 200ms
+   *
+   * Note: This value will not be respected when switching quickly
+   * between two tooltip triggers. We manage that internally and
+   * ensure the other tooltip shows immediately.
    */
   hideDelay?: number
   /**
    * Delay (in ms) before showing the tooltip
+   * @default 200ms
+   *
+   * Note: This value will not be respected when switching quickly
+   * between two tooltip triggers. We manage that internally and
+   * ensure the other tooltip shows immediately.
    */
   showDelay?: number
   /**
@@ -47,11 +57,11 @@ export interface TooltipHookProps {
    */
   hideOnMouseDown?: boolean
   /**
-   * Callback to run when the tooltip opens
+   * Callback to run when the tooltip shows
    */
   onShow?(): void
   /**
-   * Callback to run when the tooltip closes
+   * Callback to run when the tooltip hides
    */
   onHide?(): void
   /**
@@ -62,6 +72,19 @@ export interface TooltipHookProps {
    * Custom `id` to use in place of `uuid`
    */
   id?: string
+  /**
+   * If `true`, the tooltip will be shown (in controlled mode)
+   */
+  isOpen?: boolean
+  /**
+   * If `true`, the tooltip will be initially shown
+   */
+  defaultIsOpen?: boolean
+  /**
+   * The size of the arrow in css units (numeric)
+   * @default 10 ( = 10px )
+   */
+  arrowSize?: PopperHookProps["arrowSize"]
 }
 
 export function useTooltip(props: TooltipHookProps = {}) {
@@ -74,38 +97,40 @@ export function useTooltip(props: TooltipHookProps = {}) {
     hideOnMouseDown,
     placement,
     id,
+    isOpen: isOpenProp,
+    defaultIsOpen,
+    arrowSize = 10,
   } = props
-  // These two states are useful for animations
-  const [immediatelyHide, setImmediatelyHide] = React.useState(false)
-  const [immediatelyShow, setImmediatelyShow] = React.useState(false)
 
-  // The actual visible state of the tooltip
-  const [isOpen, setIsOpen] = React.useState(false)
+  const { isOpen, onOpen: open, onClose: close } = useDisclosure({
+    isOpen: isOpenProp,
+    defaultIsOpen,
+    onOpen: onShow,
+    onClose: onHide,
+  })
 
-  const popper = usePopper({ forceUpdate: isOpen, placement })
+  const popper = usePopper({
+    forceUpdate: isOpen,
+    placement,
+    arrowSize,
+  })
 
   const ref = React.useRef<any>(null)
 
   const triggerRef = useMergeRefs(ref, popper.reference.ref)
 
-  const cancelPendingRef = React.useRef(() => {})
+  const cancelPendingSetStateRef = React.useRef(() => {})
 
   React.useEffect(() => {
-    return () => cancelPendingRef.current()
-  })
-
-  useUpdateEffect(() => {
-    const action = isOpen ? onShow : onHide
-    action?.()
-  }, [onShow, onHide])
+    return () => cancelPendingSetStateRef.current()
+  }, [])
 
   const onScroll = React.useCallback(() => {
     if (isOpen) {
-      cancelPendingRef.current()
-      setIsOpen(false)
-      setImmediatelyHide(true)
+      cancelPendingSetStateRef.current()
+      close()
     }
-  }, [isOpen])
+  }, [isOpen, close])
 
   useEventListener("scroll", onScroll, document, {
     capture: true,
@@ -113,10 +138,9 @@ export function useTooltip(props: TooltipHookProps = {}) {
   })
 
   const hideImmediately = React.useCallback(() => {
-    cancelPendingRef.current()
-    setIsOpen(false)
-    setImmediatelyHide(true)
-  }, [])
+    cancelPendingSetStateRef.current()
+    close()
+  }, [close])
 
   const onClick = React.useCallback(() => {
     if (hideOnClick) {
@@ -131,26 +155,24 @@ export function useTooltip(props: TooltipHookProps = {}) {
   }, [hideOnMouseDown, hideImmediately])
 
   const showTooltip = React.useCallback(() => {
-    cancelPendingRef.current()
+    cancelPendingSetStateRef.current()
 
     if (!isOpen) {
-      cancelPendingRef.current = show(immediatelyShow => {
-        setIsOpen(true)
-        setImmediatelyShow(immediatelyShow)
+      cancelPendingSetStateRef.current = show(() => {
+        open()
       }, showDelay)
     }
-  }, [isOpen, showDelay])
+  }, [isOpen, showDelay, open])
 
   const hideTooltip = React.useCallback(() => {
-    cancelPendingRef.current()
+    cancelPendingSetStateRef.current()
 
     if (isOpen) {
-      cancelPendingRef.current = hide(immediatelyHide => {
-        setIsOpen(false)
-        setImmediatelyHide(immediatelyHide)
+      cancelPendingSetStateRef.current = hide(() => {
+        close()
       }, hideDelay)
     }
-  }, [isOpen, hideDelay])
+  }, [isOpen, hideDelay, close])
 
   const onMouseOver = React.useCallback(
     (event: React.MouseEvent) => {
@@ -176,9 +198,9 @@ export function useTooltip(props: TooltipHookProps = {}) {
 
   return {
     isOpen,
-    setIsOpen,
-    immediatelyHide,
-    immediatelyShow,
+    show: open,
+    hide: close,
+    placement: popper.placement,
     getTriggerProps: (props: any = {}) => ({
       ...props,
       ref: mergeRefs(props.ref, triggerRef),
@@ -196,6 +218,11 @@ export function useTooltip(props: TooltipHookProps = {}) {
       role: "tooltip",
       ref: mergeRefs(props.ref, popper.popper.ref),
       style: { ...props.style, ...popper.popper.style },
+    }),
+    getArrowProps: (props: any = {}) => ({
+      ...props,
+      ref: mergeRefs(props.ref, popper.arrow.ref),
+      style: { ...props.style, ...popper.arrow.style },
     }),
   }
 }

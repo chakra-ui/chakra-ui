@@ -22,7 +22,7 @@ export interface PopperHookProps {
 export function usePopper(props: PopperHookProps) {
   const {
     placement: initialPlacement = "bottom",
-    offset: sealedOffset,
+    offset: offsetProp,
     preventOverflow = true,
     fixed = false,
     forceUpdate = true,
@@ -39,7 +39,7 @@ export function usePopper(props: PopperHookProps) {
 
   const [originalPlacement, place] = React.useState(initialPlacement)
   const [placement, setPlacement] = React.useState(initialPlacement)
-  const [offset] = React.useState(sealedOffset || [0, gutter])
+  const [offset] = React.useState(offsetProp || [0, gutter])
   const [popoverStyles, setPopoverStyles] = React.useState<React.CSSProperties>(
     {},
   )
@@ -115,8 +115,8 @@ export function usePopper(props: PopperHookProps) {
   }, [originalPlacement, fixed, forceUpdate, flip, offset, preventOverflow])
 
   React.useEffect(() => {
-    if (forceUpdate && popper.current) {
-      popper.current.update()
+    if (forceUpdate) {
+      popper.current?.forceUpdate()
     }
   }, [forceUpdate])
 

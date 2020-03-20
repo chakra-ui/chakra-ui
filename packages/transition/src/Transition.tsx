@@ -1,8 +1,8 @@
 import * as React from "react"
 import CSSTransition, {
-  TransitionStatus,
   EndHandler,
   EnterHandler,
+  TransitionStatus,
   ExitHandler,
   TransitionProps as TProps,
 } from "react-transition-group/Transition"
@@ -23,9 +23,11 @@ export interface TransitionProps {
   styles: TransitionStyles
 }
 
+export type TransitionStyleState = "init" | "entered" | "exiting"
+
 export type TransitionStyles = {
-  [K in TransitionStatus]?: React.CSSProperties
-} & { init?: React.CSSProperties }
+  [K in TransitionStyleState]?: React.CSSProperties
+}
 
 export { TransitionStatus }
 
@@ -42,6 +44,7 @@ export function Transition(props: TransitionProps) {
   const computedStyle = (state: TransitionStatus) => ({
     ...styles.init,
     transition,
+    //@ts-ignore
     ...styles[state],
   })
 

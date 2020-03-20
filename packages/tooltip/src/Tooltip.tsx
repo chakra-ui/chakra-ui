@@ -31,14 +31,28 @@ export type TooltipProps = PropsOf<typeof StyledTooltip> &
      * in a `<span/>` with `tabIndex=0`
      */
     shouldWrapChildren?: boolean
+    /**
+     * If `true`, the tooltip will show an arrow tip
+     */
+    hasArrow?: boolean
   }
 
 export function Tooltip(props: TooltipProps) {
-  const { children, label, shouldWrapChildren, "aria-label": ariaLabel } = props
+  const {
+    children,
+    label,
+    shouldWrapChildren,
+    "aria-label": ariaLabel,
+    hasArrow,
+    ...rest
+  } = props
 
-  const { isOpen, getTriggerProps, getTooltipProps, ...rest } = useTooltip(
-    props,
-  )
+  const {
+    isOpen,
+    getTriggerProps,
+    getTooltipProps,
+    getArrowProps,
+  } = useTooltip(props)
 
   let trigger: React.ReactElement
 
@@ -69,10 +83,17 @@ export function Tooltip(props: TooltipProps) {
       {trigger}
       {isOpen && (
         <Portal>
-          <StyledTooltip {...tooltipProps}>
+          <StyledTooltip data-chakra-tooltip="" {...tooltipProps}>
             {label}
             {hasAriaLabel && (
               <VisuallyHidden {...hiddenProps}>{ariaLabel}</VisuallyHidden>
+            )}
+            {hasArrow && (
+              <chakra.div
+                data-chakra-arrow=""
+                bg="inherit"
+                {...getArrowProps()}
+              />
             )}
           </StyledTooltip>
         </Portal>

@@ -1,15 +1,32 @@
+import { chakra } from "@chakra-ui/system"
 import * as React from "react"
-import { useTooltip } from "./Tooltip.hook"
-import { Tooltip } from "./Tooltip"
+import { Tooltip, useTooltip } from "."
+import { Transition } from "@chakra-ui/transition"
+import { Portal } from "@chakra-ui/portal"
 
 export default {
   title: "Tooltip",
+  decorators: [
+    (story: Function) => (
+      <chakra.div maxWidth="400px" mx="auto" mt="200px">
+        {story()}
+      </chakra.div>
+    ),
+  ],
 }
 
 const HookTooltip = ({ children }: any) => {
-  const { getTriggerProps, getTooltipProps, isOpen } = useTooltip()
+  const {
+    getTriggerProps,
+    getTooltipProps,
+    getArrowProps,
+    isOpen,
+  } = useTooltip()
+
   const trigger = getTriggerProps()
   const tooltip = getTooltipProps()
+  const arrow = getArrowProps({ style: { background: "inherit" } })
+
   return (
     <>
       <button {...trigger}>Hover me</button>
@@ -18,7 +35,7 @@ const HookTooltip = ({ children }: any) => {
         {...tooltip}
         style={{
           ...tooltip.style,
-          background: "hsla(0, 0%, 0%, 0.75)",
+          background: "tomato",
           color: "white",
           border: "none",
           borderRadius: "4px",
@@ -26,6 +43,7 @@ const HookTooltip = ({ children }: any) => {
         }}
       >
         {children}
+        <div {...arrow} />
       </div>
     </>
   )
@@ -40,8 +58,92 @@ export const MultipleTooltips = () => (
   </>
 )
 
-export const ChakraTooltip = () => (
+const TransitionTooltip = ({ children }: any) => {
+  const {
+    getTriggerProps,
+    getTooltipProps,
+    getArrowProps,
+    isOpen,
+  } = useTooltip()
+
+  const trigger = getTriggerProps()
+  const tooltip = getTooltipProps()
+  const arrow = getArrowProps({ style: { background: "inherit" } })
+
+  return (
+    <>
+      <button {...trigger}>Hover me</button>
+      <Transition
+        in={isOpen}
+        timeout={100}
+        styles={{
+          init: {
+            opacity: 0,
+            transform: `scale(0.9)`,
+          },
+          entered: {
+            opacity: 1,
+            transform: `scale(1)`,
+          },
+          exiting: {
+            opacity: 0,
+            transform: `scale(0.9)`,
+          },
+        }}
+      >
+        {styles => (
+          <Portal>
+            <div
+              {...tooltip}
+              style={{
+                ...tooltip.style,
+                background: "tomato",
+                color: "white",
+                border: "none",
+                borderRadius: "4px",
+                padding: "0.5em 1em",
+                ...styles,
+              }}
+            >
+              {children}
+              <div {...arrow} />
+            </div>
+          </Portal>
+        )}
+      </Transition>
+    </>
+  )
+}
+
+export const WithTransition = () => (
+  <>
+    <TransitionTooltip>Fade! This is tooltip </TransitionTooltip>
+    <span style={{ margin: 0 }} />
+    <TransitionTooltip>Fade! This is tooltip </TransitionTooltip>
+  </>
+)
+
+export const withButton = () => (
   <Tooltip label="This is a chakra tooltip">
     <button>Hover me</button>
+  </Tooltip>
+)
+
+export const withString = () => (
+  <Tooltip label="This is a chakra tooltip">Hover me</Tooltip>
+)
+
+export const withAriaLabel = () => (
+  <Tooltip
+    hasArrow
+    bg="tomato"
+    color="white"
+    label="Notifications"
+    aria-label="3 Notifications"
+  >
+    <button style={{ fontSize: 25 }}>
+      <span>🔔</span>
+      <span>3</span>
+    </button>
   </Tooltip>
 )
