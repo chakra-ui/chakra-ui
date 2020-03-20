@@ -1,23 +1,6 @@
 import React from "react"
-import { userEvent, render, fireEvent } from "@chakra-ui/test-utils"
-import {
-  SwitchRoot,
-  SwitchInput,
-  SwitchThumb,
-  SwitchTrack,
-} from "../Switch.base"
-import Switch from "../Switch"
-
-const Component = (props: any) => {
-  return (
-    <SwitchRoot {...props} data-testid="root">
-      <SwitchInput data-testid="input" />
-      <SwitchTrack data-testid="track">
-        <SwitchThumb data-testid="thumb" />
-      </SwitchTrack>
-    </SwitchRoot>
-  )
-}
+import { userEvent, render } from "@chakra-ui/test-utils"
+import { Switch } from "../Switch"
 
 test("Switch renders correctly", () => {
   const utils = render(<Switch />)
@@ -25,74 +8,55 @@ test("Switch renders correctly", () => {
 })
 
 test("Uncontrolled - should check and uncheck", () => {
-  const { getByTestId } = render(<Component />)
+  const { container } = render(<Switch />)
+  const input = container.querySelector("input") as HTMLInputElement
 
-  const root = getByTestId("root")
-  const input = getByTestId("input")
-  const track = getByTestId("track")
-  const thumb = getByTestId("thumb")
-
-  userEvent.click(root)
+  userEvent.click(input)
   expect(input).toBeChecked()
-  expect(thumb).toHaveAttribute("data-checked")
-  expect(track).toHaveAttribute("data-checked")
 
-  userEvent.click(root)
+  userEvent.click(input)
   expect(input).not.toBeChecked()
-  expect(thumb).not.toHaveAttribute("data-checked")
-  expect(track).not.toHaveAttribute("data-checked")
 })
 
 test("Uncontrolled - should not check if disabled", () => {
-  const { getByTestId } = render(<Component isDisabled />)
-
-  const root = getByTestId("root")
-  const input = getByTestId("input")
-  const track = getByTestId("track")
+  const { container } = render(<Switch isDisabled />)
+  const input = container.querySelector("input") as HTMLInputElement
 
   expect(input).toBeDisabled()
-  expect(track).toHaveAttribute("data-disabled")
 
-  userEvent.click(root)
-
+  userEvent.click(input)
   expect(input).not.toBeChecked()
-  expect(track).not.toHaveAttribute("data-checked")
-})
-
-test("indeterminate state", () => {
-  const { getByTestId } = render(<Component isIndeterminate />)
-
-  const track = getByTestId("track")
-
-  expect(track).toHaveAttribute("data-mixed")
 })
 
 test("Controlled - should check and uncheck", () => {
-  let value = false
-  const onChange = jest.fn(e => (value = e.target.checked))
+  const ControlledSwitch = ({ onChange }: any) => {
+    const [checked, setChecked] = React.useState(false)
+    return (
+      <Switch
+        isChecked={checked}
+        onChange={e => {
+          onChange?.()
+          setChecked(e.target.checked)
+        }}
+      />
+    )
+  }
 
-  const { getByTestId, rerender } = render(
-    <Component isChecked={value} onChange={onChange} />,
-  )
+  const onChange = jest.fn()
 
-  const root = getByTestId("root")
-  const thumb = getByTestId("thumb")
+  const { container } = render(<ControlledSwitch onChange={onChange} />)
 
-  expect(thumb).not.toHaveAttribute("data-checked")
+  const input = container.querySelector("input") as HTMLInputElement
 
-  userEvent.click(root)
+  expect(input).not.toBeChecked()
+
+  userEvent.click(input)
+
+  expect(input).toBeChecked()
   expect(onChange).toHaveBeenCalled()
 
-  rerender(<Component isChecked={value} onChange={onChange} />)
+  userEvent.click(input)
 
+  expect(input).not.toBeChecked()
   expect(onChange).toHaveBeenCalled()
-  expect(thumb).toHaveAttribute("data-checked")
-
-  userEvent.click(root)
-  expect(onChange).toHaveBeenCalled()
-
-  rerender(<Component isChecked={value} onChange={onChange} />)
-
-  expect(onChange).toHaveBeenCalled()
-  expect(thumb).not.toHaveAttribute("data-checked")
 })

@@ -1,6 +1,6 @@
 import { chakra } from "@chakra-ui/system"
 import React from "react"
-import Switch from "./Switch"
+import { Switch } from "./Switch"
 
 export default {
   title: "Switch",
@@ -15,12 +15,7 @@ export default {
 
 export const Base = () => (
   <>
-    <Switch
-      isIndeterminate
-      variantSize="sm"
-      variantColor="green"
-      margin="20px"
-    />
+    <Switch variantSize="sm" variantColor="green" margin="20px" />
     <Switch isDisabled variantSize="md" variantColor="blue" margin="20px" />
     <Switch variantSize="lg" variantColor="cyan" />
   </>

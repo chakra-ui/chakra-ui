@@ -23,8 +23,5 @@ exports[`Switch renders correctly 1`] = `
       />
     </div>
   </label>
-  <div
-    class="__chakra--portal-manager"
-  />
 </DocumentFragment>
 `;

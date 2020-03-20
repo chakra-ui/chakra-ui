@@ -2,44 +2,45 @@ import { CheckboxHookProps, useCheckbox } from "@chakra-ui/checkbox"
 import { createChakra, PropsOf } from "@chakra-ui/system"
 import React from "react"
 
-const SwitchRoot = createChakra("label", {
+const StyledRoot = createChakra("label", {
   baseStyle: {
     display: "inline-block",
     verticalAlign: "middle",
   },
 })
-const SwitchTrack = createChakra("div", { themeKey: "Switch.Track" })
-const SwitchThumb = createChakra("div", { themeKey: "Switch.Thumb" })
 
-export type SwitchProps = CheckboxHookProps &
-  Omit<PropsOf<typeof SwitchRoot>, "onChange">
+const StyledTrack = createChakra("div", { themeKey: "Switch.Track" })
+
+const StyledThumb = createChakra("div", { themeKey: "Switch.Thumb" })
+
+export type SwitchProps = Omit<CheckboxHookProps, "isIndeterminate"> &
+  Omit<PropsOf<typeof StyledRoot>, "onChange" | "defaultChecked">
 
 export const Switch = React.forwardRef(
   (props: SwitchProps, ref: React.Ref<HTMLInputElement>) => {
-    const { variantColor, variantSize } = props
+    const { variantColor, variantSize, variant } = props
     const { state, getInputProps, getCheckboxProps, htmlProps } = useCheckbox(
       props,
     )
 
+    const themingProps = { variantColor, variantSize, variant }
+
     return (
-      <SwitchRoot data-chakra-switch="" {...htmlProps}>
+      <StyledRoot data-chakra-switch="" {...htmlProps}>
         <input data-chakra-switch-input="" {...getInputProps({ ref })} />
-        <SwitchTrack
-          variantColor={variantColor}
-          variantSize={variantSize}
+        <StyledTrack
+          {...themingProps}
           data-chakra-switch-track=""
           {...(getCheckboxProps() as any)}
         >
-          <SwitchThumb
-            variantSize={variantSize}
+          <StyledThumb
+            {...themingProps}
             data-chakra-switch-thumb=""
             data-checked={state.isChecked ? "" : undefined}
             data-hover={state.isHovered ? "" : undefined}
           />
-        </SwitchTrack>
-      </SwitchRoot>
+        </StyledTrack>
+      </StyledRoot>
     )
   },
 )
-
-export default Switch
