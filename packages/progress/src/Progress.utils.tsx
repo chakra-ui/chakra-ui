@@ -1,4 +1,3 @@
-/**@jsx jsx */
 import { isFunction, isUndefined, valueToPercent } from "@chakra-ui/utils"
 import { keyframes } from "@chakra-ui/system"
 
@@ -19,32 +18,20 @@ export const spin = keyframes`
   }
 `
 
-////////////////////////////////////////////////////////////////////////
-
 export const rotate = keyframes`
-   0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+   0% { transform: rotate(0deg) }
+  100% { transform: rotate(360deg) }
 `
-
-////////////////////////////////////////////////////////////////////////
 
 export const progress = keyframes`
   0% { left: -40% }
   100% { left: 100% }
 `
 
-////////////////////////////////////////////////////////////////////////
-
 export const stripe = keyframes`
   from { background-position: 1rem 0}
   to { background-position: 0 0 }
 `
-
-////////////////////////////////////////////////////////////////////////
 
 export interface ProgressPropsOptions {
   value?: number
@@ -74,5 +61,3 @@ export function getProgressProps(options: ProgressPropsOptions) {
     percent,
   }
 }
-
-export default getProgressProps

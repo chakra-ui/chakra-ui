@@ -126,7 +126,8 @@
     "react-lorem-component": "^0.13.0",
     "react-test-renderer": "16.13.0",
     "ts-loader": "6.2.1",
-    "tsconfig-paths-webpack-plugin": "3.2.0"
+    "tsconfig-paths-webpack-plugin": "3.2.0",
+    "pepjs": "0.5.2"
   },
   "dependencies": {}
 }

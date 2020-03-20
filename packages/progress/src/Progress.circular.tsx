@@ -1,7 +1,7 @@
 /**@jsx jsx */
 import { css, jsx } from "@emotion/core"
 import React from "react"
-import getProgressProps, { rotate, spin } from "./Progress.utils"
+import { getProgressProps, rotate, spin } from "./Progress.utils"
 import { chakra, PropsOf } from "@chakra-ui/system"
 import { isUndefined } from "@chakra-ui/utils"
 

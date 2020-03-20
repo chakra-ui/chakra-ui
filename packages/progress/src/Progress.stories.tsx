@@ -1,6 +1,6 @@
 import * as React from "react"
 import { CircularProgress, CircularProgressLabel } from "./Progress.circular"
-import { Progress } from "./Progress.line"
+import { Progress } from "./Progress"
 
 export default {
   title: "Progress",
@@ -26,7 +26,7 @@ export const WithSizes = () => (
   </div>
 )
 
-export const WithNnimation = () => (
+export const WithAnimation = () => (
   <Progress color="green" hasStripe isAnimated value={20} />
 )
 
