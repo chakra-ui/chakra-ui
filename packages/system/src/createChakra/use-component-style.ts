@@ -1,4 +1,4 @@
-import { useTheme } from "../color-mode"
+import { useTheme } from "../theme-provider"
 import getComponentStyles from "./get-component-style"
 
 export function useComponentStyle<T extends object>({

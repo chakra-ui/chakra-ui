@@ -1,9 +1,7 @@
 import { Dict, isFunction, isString } from "@chakra-ui/utils"
 import { isPropValid, validHTMLProps } from "../system"
-import propNames from "../system/prop-names"
 import { isValidHTMLProp } from "../system/is-prop-valid"
-import { useTheme } from "../color-mode"
-import getComponentStyles from "./get-component-style"
+import propNames from "../system/prop-names"
 
 export function getDisplayName(primitive: any) {
   return isString(primitive)

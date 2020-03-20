@@ -1,13 +1,11 @@
 import theme from "@chakra-ui/preset-base"
-import { ColorMode, createThemeContext, CSSReset } from "@chakra-ui/system"
+import { ColorMode, ThemeProvider, CSSReset } from "@chakra-ui/system"
 import "@testing-library/jest-dom/extend-expect"
 import { render, RenderOptions } from "@testing-library/react"
 import * as React from "react"
 
-const [ThemeProvider] = createThemeContext(theme)
-
 const AllProviders = ({ children }: { children?: React.ReactNode }) => (
-  <ThemeProvider>
+  <ThemeProvider theme={theme}>
     <CSSReset />
     <ColorMode />
     {children}

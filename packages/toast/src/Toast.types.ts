@@ -19,7 +19,6 @@ export interface ToastOptions {
   duration: number | null
   type: ToastType
   onRequestRemove(): void
-  onRequestClose(): void
   showing: boolean
   position: ToastPosition
 }

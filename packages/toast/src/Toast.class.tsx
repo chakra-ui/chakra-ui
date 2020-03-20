@@ -30,7 +30,9 @@ class Toaster {
     render(<ToastManager notify={this.bindNotify} />, portalElement)
   }
 
-  closeAll = () => this.removeAll?.()
+  closeAll = () => {
+    this.removeAll?.()
+  }
 
   bindNotify = (
     createToast: Function,
@@ -42,11 +44,12 @@ class Toaster {
     this.closeToast = closeToast
   }
 
-  notify = (message: ToastMessage, options: Partial<ToastOptions> = {}) =>
-    this.createToast?.(message, options)
+  notify = (message: ToastMessage, options: Partial<ToastOptions> = {}) => {
+    return this.createToast?.(message, options)
+  }
 
-  close = (id: string, position: ToastPosition) => {
-    this.closeToast?.(id, position)
+  close = (toast: { id: string; position: ToastPosition }) => {
+    this.closeToast?.(toast.id, toast.position)
   }
 }
 

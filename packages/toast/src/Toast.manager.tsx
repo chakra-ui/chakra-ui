@@ -3,7 +3,7 @@ import { Toast } from "./Toast"
 import { ToastPosition, ToastOptions, ToastMessage } from "./Toast.types"
 
 interface Props {
-  notify: (fn: Function, closeAll: Function, close: Function) => void
+  notify: (createToast: Function, closeAll: Function, close: Function) => void
 }
 
 type State = { [K in ToastPosition]: ToastOptions[] }
@@ -73,14 +73,18 @@ export class ToastManager extends React.Component<Props, State> {
    * Close all toasts at once
    */
   closeAll = () => {
-    for (const positions in this.state) {
-      const _positions = positions as keyof State
-      const toasts = this.state[_positions]
+    this.setState(prevState => {
+      const nextState = { ...prevState }
 
-      toasts.forEach(toast => {
-        this.closeToast(toast.id, _positions)
-      })
-    }
+      for (const position in nextState) {
+        const _position = position as keyof State
+        nextState[_position] = nextState[_position].map(toast => {
+          return { ...toast, requestClose: true }
+        })
+      }
+
+      return nextState
+    })
   }
 
   /**
@@ -96,7 +100,7 @@ export class ToastManager extends React.Component<Props, State> {
       message,
       position,
       showing: true,
-      duration: options.duration ?? 5000,
+      duration: options.duration,
       onRequestRemove: () => this.deleteToast(String(id), position),
       type: options.type,
     }

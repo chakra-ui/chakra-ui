@@ -1,15 +1,38 @@
-import { createThemeContext, useTheme, chakra } from "@chakra-ui/system"
+import { ThemeProvider, useTheme, chakra } from "@chakra-ui/system"
 import { isString, isFunction } from "@chakra-ui/utils"
 import * as React from "react"
 import { toast } from "./Toast.class"
 import { RenderProps, ToastOptions } from "./Toast.types"
 
 export interface NotifyOptions {
+  /**
+   * The placement of the toast
+   */
   position?: ToastOptions["position"]
+  /**
+   * The delay before a toast hides (in milliseconds)
+   * @default 5000 ( = 5000ms )
+   */
   duration?: ToastOptions["duration"]
+  /**
+   * Render a component toast component.
+   * Any component passed will receive 2 props:
+   * `id` and `onClose`.
+   *
+   * @param props props passed to custom component
+   */
   render?(props: RenderProps): React.ReactNode
+  /**
+   * The title of the toast
+   */
   title?: string
+  /**
+   * The description of the toast
+   */
   description?: string
+  /**
+   * If `true`, toast will show a close button
+   */
   isClosable?: string
 }
 
@@ -23,31 +46,35 @@ const Close = (props: any) => (
   </button>
 )
 
-const Toast = ({ id, title, onClose, children }: any) => (
-  <chakra.div
-    bg="tomato"
-    color="white"
-    padding="20px"
-    margin="10px"
-    id={id}
-    data-toast-alert=""
-  >
-    {isString(title) ? <div data-toaster-alert-text="">{title}</div> : title}
-    {children}
-    {onClose && <Close onClick={onClose} />}
-  </chakra.div>
-)
+const Toast = ({ id, title, onClose, children }: any) => {
+  return (
+    <chakra.div
+      bg="white"
+      color="gray.800"
+      padding="1rem"
+      margin="8px"
+      id={id}
+      data-toast-alert=""
+      boxShadow="rgba(52, 58, 64, 0.15) 0px 1px 10px 0px,
+    rgba(52, 58, 64, 0.1) 0px 6px 12px 0px,
+    rgba(52, 58, 64, 0.12) 0px 6px 15px -2px"
+    >
+      {isString(title) ? <div data-toaster-alert-text="">{title}</div> : title}
+      {children}
+      {onClose && <Close onClick={onClose} />}
+    </chakra.div>
+  )
+}
 
 export function useToast() {
   const theme = useTheme()
-  const [ThemeProvider] = createThemeContext(theme)
 
   function notify(options: NotifyOptions) {
     const { render, title, description } = options
 
     toast.notify(
       props => (
-        <ThemeProvider>
+        <ThemeProvider theme={theme}>
           {isFunction(render) ? (
             render(props)
           ) : (
