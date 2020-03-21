@@ -6,7 +6,7 @@
   </a>
 </p>
 
-<h1 align="center">Build Accessible React Apps with Speed ⚡️</h1>
+<h1 align="center">快速搭建React应用⚡️</h1>
 
 <br>
 
@@ -21,35 +21,35 @@
 </p>
 <br />
 
-Chakra UI provides a set of accessible, reusable and composable React components
-that make it super easy to create websites and apps.
+查克拉UI提供无障碍、可复用、模块化的React组件，
+轻而易举搭建React应用。
 
-## Looking for the documentation?
+## 文档在哪?
 
-Here over here => https://chakra-ui.com
+在这里 => https://chakra-ui.com
 
-## Features
+## 功能
 
-- Ease of Styling: Chakra UI contains a set of layout components like `Box` and
-  `Stack` that make it easy to style your components by passing props.
-  [Learn more](https://chakra-ui.com/style-props)
-- Flexible & composable: Chakra UI components are built on top of a React UI
-  Primitive for endless composability.
-- Accessible: Chakra UI components follows the WAI-ARIA guidelines
-  specifications and have the right `aria-*` attributes.
-- Dark Mode 😍: Most components in Chakra UI are dark mode compatible.
+- 轻松写样式：查克拉UI提供包括`Box`和`Stack`等布局组件。
+  只需定义属性，即可轻松完成样式。
+  [了解更多](https://chakra-ui.com/style-props)
+- 灵活模块：查克拉UI组件基于React的UI原则，
+  可无尽组合。
+- 无障碍：查克拉UI组件遵从WAI-ARIA无障碍指南，
+  并且拥有正确的`aria-*`属性。
+- 深色模式😍：大多数查克拉UI组件适配深色模式。
 
-## Support Chakra UI 💖
+## 支持查克拉UI💖
 
-By donating \$5 or more you can support the ongoing development of this project. We'll appreciate some support. Thank you to all our supporters! 🙏 [[Contribute](https://opencollective.com/chakra-ui/contribute)]
+你可以捐赠5美元或更多，来支持这个项目的延续。我们由衷感谢您的支持。谢谢你们！🙏 [[捐赠](https://opencollective.com/chakra-ui/contribute)]
 
-#### Individuals
+#### 个人
 
 <a href="https://opencollective.com/chakra-ui"><img src="https://opencollective.com/chakra-ui/individuals.svg?width=890"></a>
 
-#### Organizations
+#### 团体
 
-Support this project with your organization. Your logo will show up here with a link to your website. [[Contribute](https://opencollective.com/chakra-ui/contribute)]
+如果作为团体支持我们的项目，我们会在这里附上链有你们网站的标志。 [[捐赠](https://opencollective.com/chakra-ui/contribute)]
 
 <a href="https://opencollective.com/chakra-ui/organization/0/website"><img src="https://opencollective.com/chakra-ui/organization/0/avatar.svg"></a>
 <a href="https://opencollective.com/chakra-ui/organization/1/website"><img src="https://opencollective.com/chakra-ui/organization/1/avatar.svg"></a>
@@ -63,52 +63,51 @@ Support this project with your organization. Your logo will show up here with a 
 <a href="https://opencollective.com/chakra-ui/organization/9/website"><img src="https://opencollective.com/chakra-ui/organization/9/avatar.svg"></a>
 
 
-## Testimonials
+## 背书
 
-> People throw React component libraries and design systems at me regularly.
-> This might be the best one I've seen. The APIs are simple but composable and
-> the accessibility on the couple components I looked is complete.
+> 经常有人向我安利各种React组件库和设计系统。
+> 但查克拉UI应该是我见过最好用的。
+> 它的接口简单、模块化，而且组件的无障碍化也很完善。
 >
-> Great work @thesegunadebayo, really inspiring work. –
-> [Ryan Florence](https://twitter.com/ryanflorence/status/1169260008069947392)
+> 好样的@thesegunadebayo，你的作品很有启发性。 –
+> [Ryan Florence](https://twitter.com/ryanflorence/status/1169260008069947392)(react-router创始人)
 
-> Awesome new open-source component library from @thesegunadebayo. Really
-> impressive stuff! –
-> [Colm Tuite](https://twitter.com/colmtuite/status/1169622886052782081)
+> @thesegunadebayo创作的新一代开源组件库，超赞。
+> 令人印象深刻！ –
+> [Colm Tuite](https://twitter.com/colmtuite/status/1169622886052782081)（Modulz创始人）
 
-> This is incredible work. Amazing job Segun! –
-> [Lee Robinson](https://twitter.com/leeerob/status/1169330130361159682)
+> 难以置信的佳作。非常出色Segun！ –
+> [Lee Robinson](https://twitter.com/leeerob/status/1169330130361159682)(masteringnextjs.com作者)
 
-> Chakra UI is glorious! I love the consistent use of focus styling and the
-> subtle animation –
-> [Guillermo ▲](https://twitter.com/rauchg/status/1169632334389248000)
+> 查克拉UI太好用了！
+> 我喜欢它一致的聚焦样式和精致的动画效果。 –
+> [Guillermo ▲](https://twitter.com/rauchg/status/1169632334389248000)（ZEIT CEO）
 
 
-## Installing Chakra UI
+## 安装查克拉UI
 
-To use Chakra UI components, all you need to do is install the `@chakra-ui/core`
-package and its peer dependencies:
+想使用查克拉UI组件，
+你只需安装`@chakra-ui/core`和其依赖包：
 
 ```sh
 $ yarn add @chakra-ui/core @emotion/core @emotion/styled emotion-theming
 
-# or
+# 或者
 
 $ npm install @chakra-ui/core @emotion/core @emotion/styled emotion-theming
 ```
 
-## Usage
+## 用法
 
-To start using the components, please follow these steps:
+依照以下步骤，使用组件：
 
-1. Wrap your application with the `ThemeProvider` provided by
-   **@chakra-ui/core**. We recommend that you also add the `CSSReset` component
-   to remove all browser styling.
+1. 用**@chakra-ui/core**提供的`ThemeProvider`包裹你的应用。
+   我们推荐你添加`CSSReset`组件，以移除所有浏览器样式。
 
 ```jsx
 import { ThemeProvider, CSSReset } from "@chakra-ui/core".
 
-// Do this at the root of your application
+// 在应用根文件添加以下代码
 const App = ({ children }) => (
   <ThemeProvider>
     <CSSReset />
@@ -117,25 +116,25 @@ const App = ({ children }) => (
 );
 ```
 
-Optionally, you can wrap your application with the `ColorModeProvider` so you
-can toggle between light and dark mode within your app.
+你也可以用`ColorModeProvider`包裹你的应用，
+这样你就可以在明亮和深色模式间切换。
 
-2. Now you can start using components like so!:
+2. 现在你就可以这样使用组件了！：
 
 ```jsx
 import { Button } from "@chakra-ui/core";
 
-<Button>I just consumed some ⚡️Chakra!</Button>;
+<Button>⚡查克拉8万！️</Button>;
 ```
 
-## CodeSandbox
+## 代码沙盒
 
 - JavaScript: https://codesandbox.io/s/chakra-js-starter-lzzg9
 - Typescript: https://codesandbox.io/s/chakra-ts-starter-pomi8
 
 
-## Contributors
+## 贡献者
 
-This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)]
+感谢所有贡献者让这个项目长盛不衰。 [[贡献](CONTRIBUTING.md)]
 
 <a href="https://github.com/chakra-ui/chakra-ui/graphs/contributors"><img src="https://opencollective.com/chakra-ui/contributors.svg?width=890&button=false" /></a>
