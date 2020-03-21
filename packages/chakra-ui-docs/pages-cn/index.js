@@ -46,7 +46,7 @@ const Feature = ({ title, icon, children, ...props }) => {
 };
 
 const sampleCode = `
-// airbnb.com 样例组件
+// airbnb.com样例组件
 
 <Box>
   <Image rounded="md" src="https://bit.ly/2k1H1t6"/>
