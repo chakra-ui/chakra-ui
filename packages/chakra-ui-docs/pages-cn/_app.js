@@ -21,14 +21,15 @@ const Main = props => <Box as="main" mx="auto" mb="3rem" {...props} />;
 const Footer = props => (
   <Box textAlign="center" pt="12" pb="4" fontSize="sm" opacity="0.6" {...props}>
     <Text>
-      Proudly made in{" "}
+      尼日利亚
       <span aria-label="Nigeria" role="img">
         🇳🇬
-      </span>{" "}
+      </span>
+      出品
     </Text>
-    <Text mt="5">Released under the MIT License.</Text>
+    <Text mt="5">遵从MIT许可发行。</Text>
     <Text>
-      Copyright &copy; {new Date().getFullYear()}{" "}
+      版权 &copy; {new Date().getFullYear()}{" "}
       <Link
         color="teal.500"
         href="https://twitter.com/thesegunadebayo"
