@@ -35,7 +35,7 @@ Here over here => https://chakra-ui.com
   [Learn more](https://chakra-ui.com/style-props)
 - Flexible & composable: Chakra UI components are built on top of a React UI
   Primitive for endless composability.
-- Accessible. Chakra UI components follows the WAI-ARIA guidelines
+- Accessible: Chakra UI components follows the WAI-ARIA guidelines
   specifications and have the right `aria-*` attributes.
 - Dark Mode 😍: Most components in Chakra UI are dark mode compatible.
 
@@ -136,6 +136,6 @@ import { Button } from "@chakra-ui/core";
 
 ## Contributors
 
-This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)]
 
 <a href="https://github.com/chakra-ui/chakra-ui/graphs/contributors"><img src="https://opencollective.com/chakra-ui/contributors.svg?width=890&button=false" /></a>
