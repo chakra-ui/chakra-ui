@@ -6,19 +6,19 @@ import SEO from "../components/SEO";
 Chakra UI comes with a default theme, so this step is optional."
 />
 
-# Getting Started
+# 开始上手
 
-Install Chakra UI and its peer dependencies.
+安装查克拉UI和其依赖包。
 
 ```bash
 npm install @chakra-ui/core @emotion/core @emotion/styled emotion-theming
 ```
 
-Create a theme object to include custom color, typography, and layout values.
-Chakra UI comes with a default theme, so this step is optional.
+创建一个主题对象，包括自定义颜色、字体和布局。
+查克拉UI自带默认主题，所以这一步为自选。
 
 ```js
-// example theme.js
+// theme.js示例
 export default {
   breakpoints: ["30em", "48em", "62em", "80em"],
   fonts: {
@@ -41,12 +41,12 @@ export default {
 };
 ```
 
-You can also extend the theme to add your custom colors, fonts, etc.
+你也可以扩展主题，加入自定义的颜色、字体等。
 
 ```js
 import { theme } from "@chakra-ui/core";
 
-// Let's say you want to add custom colors
+// 比如你想加入自定义颜色
 const customTheme = {
   ...theme,
   colors: {
@@ -60,35 +60,32 @@ const customTheme = {
 };
 ```
 
-Add the theme to your application with the `ThemeProvider`, passing in the theme
-object as a prop.
+用`ThemeProvider`为你的应用加入主题，主题对象为`ThemeProvider`的属性。
 
 ```jsx live=false
 import React from "react";
 import { ThemeProvider } from "@chakra-ui/core";
 
-// Use at the root of your app
+// 在应用根文件使用
 <ThemeProvider theme={customTheme}>{props.children}</ThemeProvider>;
 ```
 
-## Using components
+## 使用组件
 
-Simply import components by name from `@chakra-ui/core` package, as demonstrated
-below.
+按名称输入`@chakra-ui/core`中的组件,
+示例如下。
 
 ```js
 import { Button } from "@chakra-ui/core";
 ```
 
-## Injecting global styles
+## 注入全局样式
 
-Sometimes you may need to apply css reset styles to your application. Chakra UI
-exports a `CSSReset` that'll remove browser default styles. It's heavily
-inspired by
-[Tailwind's preflight](https://unpkg.com/tailwindcss@1.1.2/dist/base.css)
+有时你可能需要重置css样式。查克拉UI输出的`CSSReset`可以移除浏览器默认样式。
+这是受[Tailwind的预检](https://unpkg.com/tailwindcss@1.1.2/dist/base.css)所启发。
 
-> 🚨 We highly recommend that you add the `CSSReset` at the root of your
-> application to ensure all components work correctly.
+> 🚨 我们强烈建议在应用根文件加入`CSSReset`，
+> 以确保所有组件正确运行。
 
 ```jsx live=false
 // import customTheme from "./theme"
@@ -103,44 +100,42 @@ function App({ children }) {
 }
 ```
 
-## Adding Icons
+## 加入图标
 
-You can use custom icons from standard libraries like
-[react-icons](https://react-icons.netlify.com) or you can add the icon `path` in
-the theme object.
+你可以用标准库[react-icons](https://react-icons.netlify.com)中的自定义图标，
+你也可以在主题对象中加入图标`path`。
 
-To add the icon to the theme object, add the `icons` key as shown below.
+在主题对象中加图标，只需如下面示例定义`icons`键。
 
 ```js
 // theme.js
 export default {
   icons: {
-    // Add Chakra's icons
+    // 加入查克拉图标
     ...theme.icons,
-    // Your custom icons
+    // 你的自定义图标
     search: {
-      // The <path/> or <g> element for the svg. Note the use of  `fill=currentColor`
+      // svg用<path/>或<g> 注意`fill=currentColor`的使用
       path: (
         <path
           fill="currentColor"
           d="M23.384,21.619,16.855,15.09a9.284,9.284,0,1,0-1.768,1.768l6.529,6.529a1.266,1.266,0,0,0,1.768,0A1.251,1.251,0,0,0,23.384,21.619ZM2.75,9.5a6.75,6.75,0,1,1,6.75,6.75A6.758,6.758,0,0,1,2.75,9.5Z"
         />
       ),
-      // This is the viewBox of the icon.
+      // 这是图标的视框
       viewBox: "0 0 24 24",
     },
   },
 };
 ```
 
-Once you add the icons, you can then use them within the `Icon` component, like
-this;
+加入图标后，你可以如下面示例在`Icon`组件中使用：
 
 ```jsx live=true
 <Icon name="search" color="red.500" />
 ```
 
-## Contributing
+## 贡献你的才华
 
-Please see our [contribution guidelines](/contributing) to learn how you can
-contribute to this project.
+如果你想为这个项目贡献你的才华，
+请参见[贡献指南](/contributing)。
