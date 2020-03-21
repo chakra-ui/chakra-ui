@@ -18,14 +18,17 @@ each group. To learn more about it, you can also check the
 ```jsx live=false
 import { Box } from "@chakra-ui/core";
 
-// m={2} refers to the value of `theme.space[2]`
+// default space for margin and padding from styled-system
+// const space = [0, 4, 8, 16, 32, 64, 128, 256, 512]
+
+// m={2} refers to the value of `theme.space[2]`(`8px`)
 <Box m={2}>Tomato</Box>;
 
 // You can also use custom values
 <Box maxW="960px" mx="auto" />;
 
-// sets margin `8px` on all viewports and `16px` from the first breakpoint and up
-<Box m={["8px", "16px"]} />;
+// sets margin `theme.space[2]`(`8px`) on all viewports and `theme.space[3]`(`16px`) from the first breakpoint and up
+<Box m={[2, 3]} />;
 ```
 
 | Prop                  | CSS Property                       | Theme Key |
