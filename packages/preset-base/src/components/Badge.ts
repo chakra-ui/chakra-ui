@@ -1,11 +1,7 @@
 import { addOpacity, generateAlphaColors, getColor } from "@chakra-ui/color"
-import {
-  StyleFunctionProps,
-  getModeColor as get,
-  ComponentTheme,
-} from "./utils"
+import { Props, getModeColor as get, ComponentTheme } from "./utils"
 
-function getSolidStyle(props: StyleFunctionProps) {
+function getSolidStyle(props: Props) {
   const { variantColor: c, theme: t } = props
   const darkBg = addOpacity(`${c}.500`, 0.6)(t)
   return {
@@ -14,7 +10,7 @@ function getSolidStyle(props: StyleFunctionProps) {
   }
 }
 
-function getSubtleStyle(props: StyleFunctionProps) {
+function getSubtleStyle(props: Props) {
   const { variantColor: c, theme: t } = props
   const alphaColors = generateAlphaColors(`${c}.200`)
   const darkModeBg = alphaColors[300](t)
@@ -25,7 +21,7 @@ function getSubtleStyle(props: StyleFunctionProps) {
   }
 }
 
-function getOutlineStyle(props: StyleFunctionProps) {
+function getOutlineStyle(props: Props) {
   const { variantColor: c, theme: t } = props
   const darkModeColor = addOpacity(`${c}.200`, 0.8)(t)
   const lightModeColor = getColor(t, `${c}.500`)

@@ -1,6 +1,13 @@
 import * as React from "react"
 import { SystemProps, ValidHTMLProps } from "../system"
 
+export interface ThemingProps {
+  variantSize?: string
+  variant?: string
+  variantColor?: string
+  orientation?: "vertical" | "horizontal"
+}
+
 export type As<P = any> = React.ReactType<P>
 
 export type PropsOf<T extends As> = React.ComponentPropsWithRef<T>
@@ -15,16 +22,7 @@ type GenericMiddleware<G, P, T extends As> = {} extends G
   ? MergeGeneric<G, P, T>
   : MergePropsOf<P, T>
 
-export interface CustomizableProps {
-  variant?: string
-  variantSize?: string
-  variantColor?: string
-}
-
-export interface ChakraProps
-  extends SystemProps,
-    ValidHTMLProps,
-    CustomizableProps {
+export interface ChakraProps extends SystemProps, ValidHTMLProps, ThemingProps {
   as?: React.ElementType
   isTruncated?: boolean
   children?: React.ReactNode
@@ -52,12 +50,12 @@ export interface CreateChakraOptions<P> {
    * Additional props to attach to the component
    * You can use a function to make it dynamic
    */
-  attrs?: PropsFunctionOrObject<P>
+  attrs?: ComponentAttrs<P>
   /**
    * Base style object to apply to this component
    * NB: This style is theme-aware so you can use all style props
    */
-  baseStyle?: StyleFunctionOrObject<P>
+  baseStyle?: BaseStyle<P>
   /**
    * A boolean indicating if the component should avoid re-rendering
    * when props haven't changed. This uses `React.memo(...)`
@@ -72,12 +70,12 @@ export interface CreateChakraOptions<P> {
   shouldForwardProp?(propName: string): boolean
 }
 
-type StyleFunctionOrObject<P> =
-  | SystemProps
-  | ((props: P & { colorMode?: "light" | "dark" }) => SystemProps)
+type ColorModeProp = { colorMode?: "light" | "dark" }
 
-type PropsFunctionOrObject<P> =
+type BaseStyle<P> =
+  | SystemProps
+  | ((props: P & ThemingProps & ColorModeProp) => SystemProps)
+
+type ComponentAttrs<P> =
   | React.AllHTMLAttributes<any>
-  | ((
-      props: P & { colorMode?: "light" | "dark" },
-    ) => React.AllHTMLAttributes<any>)
+  | ((props: P & ColorModeProp) => React.AllHTMLAttributes<any>)

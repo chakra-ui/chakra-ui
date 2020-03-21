@@ -1,7 +1,7 @@
 import { addOpacity } from "@chakra-ui/color"
-import { StyleFunctionProps, getModeColor as get } from "./utils"
+import { Props, getModeColor as get } from "./utils"
 
-const grayGhostStyle = (props: StyleFunctionProps) => ({
+const grayGhostStyle = (props: Props) => ({
   color: get(props, `inherit`, `whiteAlpha.900`),
   _hover: {
     bg: get(props, `gray.100`, `whiteAlpha.200`),
@@ -13,7 +13,7 @@ const grayGhostStyle = (props: StyleFunctionProps) => ({
 
 ////////////////////////////////////////////////////////////
 
-function getGhostStyle(props: StyleFunctionProps) {
+function getGhostStyle(props: Props) {
   const { variantColor: c, theme: t } = props
   if (c === "gray") return grayGhostStyle(props)
 
@@ -34,7 +34,7 @@ function getGhostStyle(props: StyleFunctionProps) {
 
 ////////////////////////////////////////////////////////////
 
-function getOutlineStyle(props: StyleFunctionProps) {
+function getOutlineStyle(props: Props) {
   const { variantColor: c } = props
   const borderColor = get(props, `gray.200`, `whiteAlpha.300`)
 
@@ -47,7 +47,7 @@ function getOutlineStyle(props: StyleFunctionProps) {
 
 ////////////////////////////////////////////////////////////
 
-const graySolidStyle = (props: StyleFunctionProps) => ({
+const graySolidStyle = (props: Props) => ({
   bg: get(props, `gray.100`, `whiteAlpha.200`),
   _hover: {
     bg: get(props, `gray.200`, `whiteAlpha.300`),
@@ -57,7 +57,7 @@ const graySolidStyle = (props: StyleFunctionProps) => ({
   },
 })
 
-function getSolidStyle(props: StyleFunctionProps) {
+function getSolidStyle(props: Props) {
   const { variantColor: c } = props
   if (c === "gray") return graySolidStyle(props)
 
@@ -71,7 +71,7 @@ function getSolidStyle(props: StyleFunctionProps) {
 
 ////////////////////////////////////////////////////////////
 
-function getLinkStyle(props: StyleFunctionProps) {
+function getLinkStyle(props: Props) {
   const { variantColor: c } = props
   return {
     padding: 0,

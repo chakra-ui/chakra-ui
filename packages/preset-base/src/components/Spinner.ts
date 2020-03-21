@@ -1,4 +1,6 @@
-export default {
+import { ComponentTheme } from "./utils"
+
+const Spinner: ComponentTheme = {
   variantSize: {
     xs: { size: "0.75rem" },
     sm: { size: "1rem" },
@@ -7,3 +9,5 @@ export default {
     xl: { size: "3rem" },
   },
 }
+
+export default Spinner

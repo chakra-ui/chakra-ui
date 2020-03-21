@@ -1,7 +1,7 @@
-import { StyleFunctionProps, getModeColor } from "./utils"
+import { Props, getModeColor } from "./utils"
 
 export default {
-  baseStyle: (props: StyleFunctionProps) => ({
+  baseStyle: (props: Props) => ({
     Button: {
       borderRadius: "md",
       transition: "all 0.2s",

@@ -1,48 +1,37 @@
 import { Theme } from "../foundations"
 import { getColor } from "@chakra-ui/color"
-import { SystemProps } from "@chakra-ui/system"
+import { SystemProps, ThemingProps } from "@chakra-ui/system"
 
-export type NestedSystemProps =
-  | SystemProps
-  | Record<string, SystemProps>
-  | Record<string, Record<string, SystemProps>>
+export type StyleProps = SystemProps | { [Component: string]: SystemProps }
 
 export type ComponentStyle<P = {}> =
-  | NestedSystemProps
-  | ((props: StyleFunctionProps & P) => NestedSystemProps)
+  | StyleProps
+  | ((props: Props & P) => StyleProps)
 
 export interface ComponentTheme<P = {}> {
-  baseStyle?: ComponentStyle<P>
-  variant?: { __default?: string } & Record<string, ComponentStyle<P> | string>
-  variantSize?: { __default?: string } & Record<
-    string,
-    ComponentStyle<P> | string
-  >
+  baseStyle?: ComponentStyle<P & ThemingProps>
+  variant?: { __default?: string } & {
+    [Variant: string]: ComponentStyle<P> | string
+  }
+  variantSize?: { __default?: string } & {
+    [Size: string]: ComponentStyle<P> | string
+  }
 }
 
-export interface StyleFunctionProps {
+export interface Props {
   variantColor: string
+  orientation: "horizontal" | "vertical"
   colorMode: "light" | "dark"
   theme: Theme
 }
 
-type ModeValue = string | ((theme: object) => string)
-
-export function getModeValue(
-  props: any,
-  lightValue: ModeValue,
-  darkValue: ModeValue,
-) {
+export function getModeValue(props: any, lightValue: any, darkValue: any) {
   if (props.colorMode === "light") return lightValue
   if (props.colorMode === "dark") return darkValue
   return undefined
 }
 
-export function getModeColor(
-  props: any,
-  lightValue: ModeValue,
-  darkValue: ModeValue,
-): any {
+export function getModeColor(props: any, lightValue: any, darkValue: any): any {
   if (props.colorMode === "light") {
     return typeof lightValue === "function"
       ? lightValue
@@ -54,4 +43,14 @@ export function getModeColor(
       : getColor(props.theme, darkValue, props.variantColor)
   }
   return undefined
+}
+
+export function getOrientationStyle<T>(options: {
+  orientation?: "vertical" | "horizontal"
+  vertical: T
+  horizontal: T
+}) {
+  const { orientation, vertical, horizontal } = options
+  if (!orientation) return {}
+  return orientation === "vertical" ? vertical : horizontal
 }

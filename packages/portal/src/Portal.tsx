@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import * as React from "react"
-import * as ReactDOM from "react-dom"
+import { createPortal } from "react-dom"
 import { usePortalManager } from "./Portal.manager"
 import { isBrowser, createContext } from "@chakra-ui/utils"
 
@@ -12,18 +12,14 @@ const [
 })
 
 export interface PortalProps {
-  onMount?: () => void
-  onUnmount?: () => void
+  onMount?(): void
+  onUnmount?(): void
   mountNode?: HTMLElement
-  index?: number
   children?: React.ReactNode
 }
 
 export function Portal(props: PortalProps) {
-  const { onMount, onUnmount, mountNode, index, children } = props
-
-  // To manage nested layers
-  const parentPortal = usePortalContext()
+  const { onMount, onUnmount, mountNode, children } = props
 
   // the portalNode to render it's children
   const [portalNode] = React.useState(() => {
@@ -36,25 +32,22 @@ export function Portal(props: PortalProps) {
     return null
   })
 
+  // To manage nested layers
+  const parentPortal = usePortalContext()
+
+  // If there's a PortalManager rendered,
+  // let's read from it
   const manager = usePortalManager()
 
-  const appendTo = React.useCallback(
-    (node: HTMLElement | null) => {
+  const append = React.useCallback(
+    (container: HTMLElement | null) => {
       // if user specified a mount node, do nothing.
-      if (mountNode || !portalNode || !node) return
+      if (mountNode || !portalNode || !container) return
 
-      // give user ability to change the index of layers
-      const elementAtIndex = index ? node.children[index] : null
-
-      // if an element exists at the index, add this component before it
-      if (elementAtIndex) {
-        node.insertBefore(portalNode, elementAtIndex)
-      } else {
-        // else, simply append component to the node
-        node.appendChild(portalNode)
-      }
+      // else, simply append component to the portal node
+      container.appendChild(portalNode)
     },
-    [index, mountNode, portalNode],
+    [mountNode, portalNode],
   )
 
   React.useEffect(() => {
@@ -66,17 +59,17 @@ export function Portal(props: PortalProps) {
 
     // If portal is nested, use the parent portal as host,
     // else, if no manager exists, use document.body
-    const parent = parentPortal ?? manager?.node ?? document.body
+    const container = parentPortal ?? manager?.node ?? document.body
 
-    appendTo(parent)
+    append(container)
 
     return () => {
       onUnmount?.()
 
       if (!portalNode) return
 
-      if (parent?.contains(portalNode)) {
-        parent?.removeChild(portalNode)
+      if (container?.contains(portalNode)) {
+        container?.removeChild(portalNode)
       }
     }
   }, [
@@ -86,7 +79,7 @@ export function Portal(props: PortalProps) {
     parentPortal,
     onUnmount,
     manager && manager.node,
-    appendTo,
+    append,
   ])
 
   const _children = manager?.zIndex ? (
@@ -100,17 +93,15 @@ export function Portal(props: PortalProps) {
   )
 
   if (mountNode) {
-    ReactDOM.createPortal(_children, mountNode)
+    return createPortal(_children, mountNode)
   }
 
-  if (!portalNode) return <>{_children}</>
+  if (!portalNode) return <React.Fragment>{_children}</React.Fragment>
 
-  return ReactDOM.createPortal(
+  return createPortal(
     <PortalContextProvider value={portalNode}>
       {_children}
     </PortalContextProvider>,
     portalNode,
   )
 }
-
-export default Portal

@@ -1,12 +1,7 @@
-import {
-  StyleFunctionProps,
-  getModeColor,
-  ComponentTheme,
-  NestedSystemProps,
-} from "./utils"
+import { Props, getModeColor, ComponentTheme, StyleProps } from "./utils"
 import { getColor } from "@chakra-ui/color"
 
-function getLineStyle(props: StyleFunctionProps) {
+function getLineStyle(props: Props) {
   const { variantColor: c } = props
   return {
     TabList: {
@@ -32,7 +27,7 @@ function getLineStyle(props: StyleFunctionProps) {
   }
 }
 
-function getEnclosedStyle(props: StyleFunctionProps) {
+function getEnclosedStyle(props: Props) {
   const { variantColor: c } = props
   return {
     Tab: {
@@ -54,7 +49,7 @@ function getEnclosedStyle(props: StyleFunctionProps) {
   }
 }
 
-function getEnclosedColoredStyle(props: StyleFunctionProps) {
+function getEnclosedColoredStyle(props: Props) {
   const { variantColor: c } = props
   return {
     Tab: {
@@ -81,7 +76,7 @@ function getEnclosedColoredStyle(props: StyleFunctionProps) {
   }
 }
 
-function getSoftRoundedStyle(props: any): NestedSystemProps {
+function getSoftRoundedStyle(props: any): StyleProps {
   const { variantColor: c, theme: t } = props
   return {
     Tab: {
@@ -97,7 +92,7 @@ function getSoftRoundedStyle(props: any): NestedSystemProps {
   }
 }
 
-function getSolidRoundedStyle(props: StyleFunctionProps): NestedSystemProps {
+function getSolidRoundedStyle(props: Props): StyleProps {
   const { variantColor: c } = props
   return {
     Tab: {

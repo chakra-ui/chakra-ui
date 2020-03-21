@@ -1,7 +1,7 @@
-import { StyleFunctionProps, getModeColor as get } from "./utils"
+import { Props, getModeColor as get } from "./utils"
 import { getColor } from "@chakra-ui/color"
 
-type InputOptions = StyleFunctionProps & {
+type InputOptions = Props & {
   focusBorderColor: string
   errorBorderColor: string
   isFullWidth?: boolean

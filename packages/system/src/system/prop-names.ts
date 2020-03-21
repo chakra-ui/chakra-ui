@@ -50,6 +50,7 @@ propNames = propNames.concat(
   "variant",
   "variantColor",
   "variantSize",
+  "orientation",
 )
 
 export default propNames

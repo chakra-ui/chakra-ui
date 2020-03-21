@@ -1,6 +1,6 @@
-import { StyleFunctionProps, getModeColor as get } from "./utils"
+import { Props, getModeColor as get } from "./utils"
 
-function getBaseStyle(props: StyleFunctionProps) {
+function getBaseStyle(props: Props) {
   const { variantColor: c } = props
   return {
     display: "inline-flex",

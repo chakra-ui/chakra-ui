@@ -7,10 +7,7 @@ import {
   screen,
   waitForDomChange,
   axe,
-  toHaveNoViolations,
 } from "@chakra-ui/test-utils"
-
-expect.extend(toHaveNoViolations)
 
 beforeAll(() => {
   jest.useFakeTimers()

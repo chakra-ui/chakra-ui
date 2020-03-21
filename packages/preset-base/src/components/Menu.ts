@@ -1,6 +1,6 @@
-import { StyleFunctionProps, getModeValue, getModeColor } from "./utils"
+import { Props, getModeValue, getModeColor } from "./utils"
 
-function getMenuListStyle(props: StyleFunctionProps) {
+function getMenuListStyle(props: Props) {
   const longShadow = `rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.2) 0px 5px 10px, rgba(0, 0, 0, 0.4) 0px 15px 40px`
   return {
     bg: getModeColor(props, `#fff`, `gray.700`),
@@ -10,7 +10,7 @@ function getMenuListStyle(props: StyleFunctionProps) {
   }
 }
 
-function getMenuItemStyle(props: StyleFunctionProps) {
+function getMenuItemStyle(props: Props) {
   return {
     width: "100%",
     flex: "0 0 auto",
@@ -34,7 +34,7 @@ function getMenuItemStyle(props: StyleFunctionProps) {
   }
 }
 
-function getbaseStyle(props: StyleFunctionProps) {
+function getbaseStyle(props: Props) {
   return {
     MenuList: getMenuListStyle(props),
     MenuItem: getMenuItemStyle(props),

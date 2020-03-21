@@ -1,4 +1,6 @@
-export default {
+import { ComponentTheme } from "./utils"
+
+const Link: ComponentTheme = {
   baseStyle: {
     transition: `all 0.15s ease-out`,
     cursor: "pointer",
@@ -12,9 +14,11 @@ export default {
       boxShadow: "outline",
     },
     _disabled: {
-      opacity: "0.4",
+      opacity: 0.4,
       cursor: "not-allowed",
       textDecoration: "none",
     },
   },
 }
+
+export default Link

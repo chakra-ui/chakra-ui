@@ -32,15 +32,17 @@ function getVariantPropStyle(props: any, prop: any, themeKey: string) {
   if (!ObjectOrFn) return undefined
 
   let baseStyle = runIfFn(ObjectOrFn, props)
+
   if (isSubcomponent(themeKey)) {
     baseStyle = baseStyle[component]
   }
+
   return baseStyle
 }
 
 function getVariantStyle(props: any, themeKey: string) {
   let componentStyle = {}
-  const themableProps = ["variantSize", "variant"] as const
+  const themableProps = ["variantSize", "variant"]
 
   for (const prop of themableProps) {
     const styleObject = getVariantPropStyle(props, prop, themeKey)
@@ -80,5 +82,8 @@ export function getComponentStyles<P>(
 export function getComponentDefaults(theme: any, themeKey: string) {
   const defaultVariant = get(theme, `components.${themeKey}.variant.__default`)
   const defaultSize = get(theme, `components.${themeKey}.variantSize.__default`)
-  return { variantSize: defaultSize, variant: defaultVariant }
+  return {
+    variantSize: defaultSize,
+    variant: defaultVariant,
+  }
 }
