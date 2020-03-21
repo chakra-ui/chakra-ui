@@ -17,7 +17,7 @@ import {
   callAllHandlers,
 } from "@chakra-ui/utils"
 import * as React from "react"
-import * as Warning from "./Accordion.warning"
+import * as warn from "./Accordion.warning"
 
 const __DEV__ = process.env.NODE_ENV !== "production"
 
@@ -114,10 +114,10 @@ export function useAccordion(props: AccordionHookProps) {
   })
 
   if (__DEV__) {
-    Warning.allowMultiple(props)
-    Warning.allowMultipleAndAllowToggle(props)
-    Warning.controlledAndNoChange(props)
-    Warning.controlledSwitching("Accordion", isControlled, indexProp)
+    warn.allowMultiple(props)
+    warn.allowMultipleAndAllowToggle(props)
+    warn.controlledAndNoChange(props)
+    warn.controlledSwitching("Accordion", isControlled, indexProp)
   }
 
   return {
@@ -188,8 +188,8 @@ export function useAccordionItem(props: AccordionItemHookProps) {
 
   // warn for incorrect usage
   if (__DEV__) {
-    Warning.controlledSwitching("AccordionItem", isControlled, isOpenProp)
-    Warning.focusableNotDisabled(props)
+    warn.controlledSwitching("AccordionItem", isControlled, isOpenProp)
+    warn.focusableNotDisabled(props)
   }
 
   // hook to register this accordion item for focus management
@@ -208,7 +208,7 @@ export function useAccordionItem(props: AccordionItemHookProps) {
   // toggle the visibility of the accordion item
   const onClick = React.useCallback(() => {
     if (!isControlled) onToggle()
-    if (onChange) onChange(!isOpen)
+    onChange?.(!isOpen)
     setFocusedIndex(index)
   }, [isControlled, onToggle, onChange, isOpen, setFocusedIndex, index])
 

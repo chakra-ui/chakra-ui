@@ -1,4 +1,4 @@
-import { useUpdateEffect } from "@chakra-ui/hooks"
+import { useUpdateEffect, useEventListener } from "@chakra-ui/hooks"
 import {
   ensureFocus,
   getAllTabbable,
@@ -11,15 +11,11 @@ export function hasFocusWithin(
   ref: React.RefObject<HTMLElement>,
   event: React.FocusEvent,
 ) {
-  if (!document.activeElement || !ref || !ref.current) return false
-
-  const hasFocus =
-    ref.current &&
-    ref.current.contains(
-      (event.relatedTarget || document.activeElement) as HTMLElement,
-    )
-
-  return hasFocus
+  if (!document.activeElement || !ref.current) {
+    return false
+  }
+  const target = (event.relatedTarget || document.activeElement) as HTMLElement
+  return ref.current.contains(target)
 }
 
 export function useBlurOutside(
@@ -30,17 +26,12 @@ export function useBlurOutside(
     visible: boolean
   },
 ) {
-  React.useEffect(() => {
-    const element = buttonRef.current
-    if (!element) return undefined
+  const onMouseDown = (event: MouseEvent) => {
+    if (!buttonRef.current) return
+    event.preventDefault()
+  }
 
-    const preventDefault = (event: MouseEvent) => event.preventDefault()
-    element.addEventListener("mousedown", preventDefault)
-
-    return () => {
-      element.removeEventListener("mousedown", preventDefault)
-    }
-  }, [buttonRef])
+  useEventListener("mousedown", onMouseDown)
 
   return (event: React.FocusEvent) => {
     const shouldClose = options.visible && !hasFocusWithin(containerRef, event)
@@ -59,20 +50,21 @@ export function useFocusOnHide(
 
   useUpdateEffect(() => {
     const element = ref.current
-    if (!shouldFocus || !element) return undefined
+
+    if (!shouldFocus || !element) {
+      return undefined
+    }
+
     const preventFocus =
       document.activeElement &&
       element &&
       !element.contains(document.activeElement) &&
       isTabbable(document.activeElement)
 
-    if (preventFocus) return
-
-    const focusEl = focusRef?.current
-
-    if (focusEl) {
-      focusEl.focus()
+    if (preventFocus) {
+      return
     }
+    focusRef?.current?.focus()
   }, [autoFocus, focusRef, visible, ref])
 }
 
