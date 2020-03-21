@@ -1,8 +1,7 @@
-import { createTheming } from "./create-theming"
-import theme from "@chakra-ui/preset-base"
+import defaultTheme from "@chakra-ui/preset-base"
 
-const customTheme = {
-  ...theme,
+const theme = {
+  ...defaultTheme,
   components: {
     Badge: {
       baseStyle: {
@@ -39,6 +38,4 @@ const customTheme = {
   },
 }
 
-const [ThemeProvider, useTheme] = createTheming(customTheme)
-
-export { ThemeProvider, useTheme }
+export default theme

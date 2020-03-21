@@ -1,15 +1,13 @@
 /**@jsx jsx */
-import { jsx } from "./jsx"
-import { chakra } from "./styled"
-import { ThemeProvider } from "./theme.sample"
-import { useComponentStyle } from "./hooks"
+import { chakra, jsx, ThemeProvider, useComponentStyle } from "."
 import { ColorModeProvider } from "@chakra-ui/color-mode"
+import theme from "./theme.sample"
 
 export default {
   title: "styled",
   decorators: [
     (Story: Function) => (
-      <ThemeProvider>
+      <ThemeProvider theme={theme}>
         <ColorModeProvider>
           <Story />
         </ColorModeProvider>
@@ -18,7 +16,9 @@ export default {
   ],
 }
 
-const Button = chakra("button", { themeKey: "Button" })
+const Button = chakra("button", {
+  themeKey: "Button",
+})
 
 export const Sample = () => {
   return (

@@ -47,7 +47,7 @@ export interface Options<ComponentType extends As, ExtraProps = {}> {
    * Additional props to attach to the component
    * You can use a function to make it dynamic
    */
-  attrs?: ComponentAttrs<ComponentType, ExtraProps>
+  attrs?: ComponentAttrs<ComponentType>
   /**
    * Base style object to apply to this component
    * NB: This style is theme-aware so you can use all style props
@@ -73,10 +73,7 @@ type BaseStyle<P> =
   | SystemProps
   | ((props: P & ThemingProps & ColorModeProps) => SystemProps)
 
-type ComponentAttrs<T extends As, ExtraProps> = PropsOf<T> &
-  ExtraProps &
-  ThemingProps &
-  ColorModeProps
+type ComponentAttrs<T extends As> = PropsOf<T> | ((props: any) => PropsOf<T>)
 
 export type ThemingProps = {
   variant?: string
@@ -101,11 +98,11 @@ export type PropsWithAs<P, T extends As> = P &
     as?: T
   }
 
-export type ChakraComponent<T extends As, P> = {
+export type ChakraComponent<T extends As, P = {}> = {
   <TT extends As = T>(
-    props: PropsWithAs<PropsOf<T>, TT> & ChakraProps,
+    props: PropsWithAs<PropsOf<T>, TT> & ChakraProps & P,
   ): JSX.Element
-  (props: PropsOf<T> & ChakraProps): JSX.Element
+  (props: PropsOf<T> & P & ChakraProps): JSX.Element
   displayName?: string
   propTypes?: React.WeakValidationMap<PropsOf<T> & P>
   defaultProps?: Partial<PropsOf<T> & P & ChakraProps>

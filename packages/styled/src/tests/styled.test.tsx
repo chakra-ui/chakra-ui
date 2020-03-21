@@ -1,8 +1,8 @@
 /**@jsx jsx */
 import { render } from "@chakra-ui/test-utils"
 import * as React from "react"
-import { chakra, jsx } from ".."
-import { ThemeProvider } from "../theme.sample"
+import { chakra, jsx, ThemeProvider } from ".."
+import theme from "../theme.sample"
 
 test("as jsx element", () => {
   const Div = chakra("div")
@@ -109,7 +109,7 @@ test("it renders component using theme key", () => {
   })
 
   const tools = render(
-    <ThemeProvider>
+    <ThemeProvider theme={theme}>
       <Badge>Badge</Badge>
     </ThemeProvider>,
   )
@@ -126,7 +126,7 @@ test("attrs option works correctly", () => {
   })
 
   const tools = render(
-    <ThemeProvider>
+    <ThemeProvider theme={theme}>
       <Button>Click</Button>
     </ThemeProvider>,
   )
