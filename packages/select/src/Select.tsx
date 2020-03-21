@@ -5,10 +5,11 @@ import {
   createChakra,
   SystemProps,
   useColorModeValue,
+  layoutPropNames,
 } from "@chakra-ui/system"
 import { ControlProps, useField } from "@chakra-ui/form-control"
 import { Icon, IconProps } from "@chakra-ui/icon"
-import { splitProps } from "./Select.utils"
+import { split } from "@chakra-ui/utils"
 
 type OmittedTypes = "disabled" | "required" | "readOnly"
 
@@ -94,12 +95,12 @@ export function SelectIcon(props: IconProps) {
 
 export const Select = React.forwardRef(
   (props: SelectProps, ref: React.Ref<HTMLSelectElement>) => {
-    const { rootProps, icon = SelectIcon, iconSize = 5, ...otherProps } = props
+    const { rootProps, icon = SelectIcon, iconSize = 5, ...rest } = props
 
     const color = useColorModeValue("inherit", "whiteAlpha.800")
     const opacity = props.isReadOnly || props.isDisabled ? 0.5 : undefined
 
-    const [root, select] = splitProps(otherProps)
+    const [select, root] = split(rest, layoutPropNames as any)
 
     return (
       <chakra.div position="relative" {...root} {...rootProps}>

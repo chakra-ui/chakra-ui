@@ -1,52 +1,73 @@
-import { createChakra, PropsOf, SystemProps, chakra } from "@chakra-ui/system"
-import { Omit } from "@chakra-ui/utils"
+import {
+  createChakra,
+  PropsOf,
+  ThemingProps,
+  chakra,
+  useComponentDefaults,
+  layoutPropNames,
+} from "@chakra-ui/system"
 import * as React from "react"
-import { RadioProps, useRadio } from "./Radio.hook"
+import { RadioHookProps, useRadio } from "./Radio.hook"
+import { split } from "@chakra-ui/utils"
 
-const ControlBox = createChakra("div", { themeKey: "Radio" })
+const StyledRadio = createChakra("div", {
+  themeKey: "Radio",
+  baseStyle: {
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexShrink: 0,
+  },
+})
 
-type OmittedRadioProps = Omit<
-  PropsOf<typeof ControlBox>,
-  "onChange" | "defaultChecked"
->
-
-type CustomRadioProps = OmittedRadioProps &
-  Omit<PropsOf<"input">, "size" | "defaultValue" | "value"> &
-  RadioProps & {
-    iconColor?: any
-    iconSize?: SystemProps["size"]
-  }
+export type RadioProps = RadioHookProps &
+  ThemingProps &
+  Omit<PropsOf<typeof StyledRadio>, "onChange" | "defaultChecked">
 
 export const Radio = React.forwardRef(
-  (props: CustomRadioProps, ref: React.Ref<HTMLInputElement>) => {
-    const { state, input, checkbox, remaining: rest } = useRadio(props)
+  (props: RadioProps, ref: React.Ref<HTMLInputElement>) => {
+    const defaults = useComponentDefaults("Radio")
+
+    const {
+      variantColor = "blue",
+      variant = defaults.variant,
+      variantSize = defaults.variantSize,
+      children,
+      ...radioProps
+    } = props
+
+    const themingProps = { variant, variantColor, variantSize }
+
+    const { getInputProps, getCheckboxProps, htmlProps: rest } = useRadio(
+      radioProps,
+    )
+
+    const [rootStyles, radioStyles] = split(rest, layoutPropNames as any)
 
     return (
-      <label>
-        <input {...input} ref={ref} />
-        <ControlBox
-          variantSize="lg"
-          variantColor="blue"
-          verticalAlign="top"
-          borderRadius="full"
-          {...checkbox}
-          {...rest}
-        >
-          {state.isChecked && (
-            <chakra.span bg="currentColor" borderRadius="full" size="50%" />
-          )}
-        </ControlBox>
-        {props.children && (
+      <chakra.label
+        display="inline-flex"
+        alignItems="center"
+        verticalAlign="top"
+        {...rootStyles}
+      >
+        <input {...getInputProps({ ref })} />
+        <StyledRadio
+          {...themingProps}
+          {...radioStyles}
+          {...getCheckboxProps()}
+        />
+        {children && (
           <chakra.div
-            ml={2}
-            fontSize={props.variantSize}
+            marginLeft="0.5rem"
+            fontSize={variantSize}
             userSelect="none"
             opacity={props.isDisabled ? 0.4 : 1}
           >
-            {props.children}
+            {children}
           </chakra.div>
         )}
-      </label>
+      </chakra.label>
     )
   },
 )

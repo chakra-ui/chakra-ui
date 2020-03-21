@@ -1,95 +1,104 @@
-import { createChakra } from "@chakra-ui/system"
 import React from "react"
-import { Radio } from "./Radio"
-import { CustomRadio, RadioInput, RadioProvider } from "./Radio.hook"
-import useRadioGroup from "./RadioGroup.hook"
-import { BaseRadio } from "./Radio.base"
+import { useRadio, Radio, useRadioGroup } from "."
+import { chakra } from "@chakra-ui/system"
+import { Stack } from "@chakra-ui/layout"
 
 export default {
   title: "Radio",
+  decorators: [
+    (story: Function) => (
+      <chakra.div maxWidth="500px" mx="auto" mt="40px">
+        {story()}
+      </chakra.div>
+    ),
+  ],
 }
 
-function RadioGroupExample(props: any) {
-  const radio = useRadioGroup(props)
+export const RadioOnly = () => (
+  <Radio marginTop="40px" variantSize="lg" variantColor="green">
+    I'm a radio
+  </Radio>
+)
+
+function RadioGroup(props: any) {
+  const options = ["Option 1", "Option 2", "Option 3"]
+
+  const { getRadioProps, getRootProps } = useRadioGroup(props)
+
   return (
-    <div>
-      {["Option 1", "Option 2", "Option 3"].map(opt => (
-        <label>
-          <input
-            type="radio"
-            value={opt}
-            checked={radio.value === opt}
-            onChange={radio.onChange}
-            name={radio.name}
-          />
-          <span style={{ margin: 10 }}>{opt}</span>
+    <div {...getRootProps()}>
+      {options.map(value => (
+        <label key={value}>
+          <input type="radio" {...getRadioProps({ value })} />
+          <span style={{ margin: 10 }}>{value}</span>
         </label>
       ))}
     </div>
   )
 }
 
-export function Base() {
-  return <BaseRadio />
-}
-
-export const ControlledExample = () => (
-  <RadioGroupExample
-    defaultValue={"opt1"}
-    onChange={(val: any) => console.log(val)}
-  />
+export const radioGroup = () => (
+  <RadioGroup isNative defaultValue={"Option 1"} onChange={console.log} />
 )
 
-const options = ["react", "vue", "svelte"]
+export const WithTheming = () => {
+  const options = ["react", "vue", "svelte"]
 
-export const UIRadio = () => {
-  const radio = useRadioGroup({
+  const { getRootProps, getRadioProps } = useRadioGroup({
     name: "test",
     defaultValue: "vue",
     onChange: console.log,
   })
-  const isChecked = (val: string) => radio.value === val
+
   return (
-    <div {...radio.bind}>
-      {options.map(opt => (
-        <Radio
-          {...radio}
-          isChecked={isChecked(opt)}
-          value={opt}
-          variantSize="md"
-          children={opt}
-        />
+    <Stack spacing="20px" direction="row" {...getRootProps()}>
+      {options.map(value => (
+        <Radio key={value} {...getRadioProps({ value })}>
+          {value}
+        </Radio>
       ))}
-    </div>
+    </Stack>
   )
 }
 
-const RadioBox = createChakra(CustomRadio)
+function RadioButton(props: any) {
+  const { children, ...rest } = props
+  const { getInputProps, getCheckboxProps } = useRadio(rest)
 
-export function CompositionRadio() {
-  const radio = useRadioGroup({
+  return (
+    <chakra.label>
+      <input {...getInputProps()} />
+      <chakra.div
+        {...getCheckboxProps()}
+        display="inline-block"
+        border="1px solid gray"
+        _checked={{ bg: "tomato", color: "white" }}
+        _focus={{ outline: "3px dotted red" }}
+        px={5}
+        py={3}
+      >
+        {children}
+      </chakra.div>
+    </chakra.label>
+  )
+}
+
+export function CustomRadioCard() {
+  const options = ["react", "vue", "svelte"]
+
+  const { getRootProps, getRadioProps } = useRadioGroup({
     name: "test",
     defaultValue: "vue",
     onChange: console.log,
   })
-  const isChecked = (val: string) => radio.value === val
+
   return (
-    <>
-      {options.map(opt => (
-        <RadioProvider {...radio} value={opt} isChecked={isChecked(opt)}>
-          <RadioInput />
-          <RadioBox
-            display="inline-block"
-            border="1px solid gray"
-            _checked={{ bg: "tomato", color: "white" }}
-            _focus={{ outline: "3px dotted red" }}
-            px={5}
-            py={3}
-          >
-            {opt}
-          </RadioBox>
-        </RadioProvider>
+    <Stack direction="row" {...getRootProps()}>
+      {options.map(option => (
+        <RadioButton {...getRadioProps({ value: option })}>
+          {option}
+        </RadioButton>
       ))}
-    </>
+    </Stack>
   )
 }
