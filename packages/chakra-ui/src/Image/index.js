@@ -21,7 +21,7 @@ export const useHasImageLoaded = ({ src, onLoad, onError }) => {
       }
     };
 
-    image.onError = event => {
+    image.onerror = event => {
       if (isMounted.current) {
         setHasLoaded(false);
         onError && onError(event);
