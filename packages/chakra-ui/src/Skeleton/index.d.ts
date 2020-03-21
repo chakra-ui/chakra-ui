@@ -18,6 +18,10 @@ export interface ISkeleton {
    * The animation speed in seconds
    */
   speed?: number;
+  /**
+   * The fadeIn duration in seconds
+   */
+  fadeInDuration?: number;
 }
 
 export type SkeletonProps = ISkeleton & BoxProps;

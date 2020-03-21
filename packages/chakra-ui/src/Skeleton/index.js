@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { Fragment } from "react";
+import { Fragment, useMemo } from "react";
 import { useTheme } from "../ThemeProvider";
 import { useColorMode } from "../ColorModeProvider";
 import { css, jsx, keyframes } from "@emotion/core";
@@ -20,7 +20,7 @@ to {
 const getStyle = ({ colorStart, colorEnd, speed }) => css`
   border-color: ${colorStart} !important;
   box-shadow: none !important;
-
+  opacity: 0.7;
   // do not !important this for Firefox support
   background: ${colorStart};
 
@@ -43,29 +43,39 @@ const getStyle = ({ colorStart, colorEnd, speed }) => css`
   }
 `;
 
+const fadeIn = keyframes`
+from { opacity: 0; }
+to   { opacity: 1; }
+`;
+
+const fadeInCss = duration => css`
+  animation: ${fadeIn} ${duration}s;
+`;
+
 const Skeleton = props => {
   const { colors } = useTheme();
   const { colorMode } = useColorMode();
   const defaultStart = { light: colors.gray[100], dark: colors.gray[800] };
-  const defaultEnd = { light: colors.gray[400], dark: colors.gray[500] };
+  const defaultEnd = { light: colors.gray[400], dark: colors.gray[600] };
   const {
     colorStart = defaultStart[colorMode],
     colorEnd = defaultEnd[colorMode],
     isLoaded = false,
-    speed = 1,
+    fadeInDuration = 0.4,
+    speed = 0.8,
     ...rest
   } = props;
-  if (isLoaded) {
-    return <Fragment children={props.children} />;
-  }
-
-  return (
-    <Box
-      css={getStyle({ colorStart, colorEnd, speed })}
-      borderRadius="2px"
-      {...rest}
-    />
+  const fadeInStyle = useMemo(() => fadeInCss(fadeInDuration), [
+    fadeInDuration,
+  ]);
+  const skeletonStyle = useMemo(
+    () => getStyle({ colorStart, colorEnd, speed }),
+    [colorStart, colorEnd, speed],
   );
+  if (isLoaded) {
+    return <Box css={fadeInStyle} {...rest} />;
+  }
+  return <Box css={skeletonStyle} borderRadius="2px" {...rest} />;
 };
 
 export default Skeleton;
