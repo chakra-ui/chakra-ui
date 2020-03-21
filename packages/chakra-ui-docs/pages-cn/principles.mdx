@@ -1,33 +1,29 @@
-# Design Principles
+# 设计原则
 
-Chakra UI is established on principles that keep its components fairly
-consistent. Understanding these concepts will help you better contribute to
-Chakra UI.
+查克拉UI遵从组件一致的原则。理解以下概念有助于你为查克拉UI做出更大的贡献。
 
-Our goal is to design simple, composable components that cater to real life UI
-design problems. In order to do that, we developed a set of principles that help
-us always be on that path.
+我们的目标是设计简易、模块化的组件，以解决现实中的设计难题。
+因此，我们提出如下原则，让我们不忘初心。
 
-- **Style Props:** All component styles can be overriden or extended via style
-  props to reduce the use of `css` prop or `styled()`. Compose new components
-  from `Box` or `PseudoBox`.
+- **样式属性：** 所有组件样式可被覆写或通过样式属性扩展，
+  以减少`css`属性或`styled()`的使用。
+  建议用`Box`或`PseudoBox`组合新组件。
 
-- **Simplicity:** Strive to keep the component API fairly simple and show real
-  world scenarios of using the component.
+- **简易：** 尽量保持组件接口简单易懂，
+  同时展示现实场景中的使用。
 
-- **Composition:** Break down components into smaller parts with minimal props
-  to keep complexity low, and compose them together. This will ensure that the
-  styles and functionality are flexible and extensible.
+- **模块化：** 为了降低复杂度、方便组装，
+  将组件分拆成具有最少属性的部件。
+  这样能确保样式和功能灵活、可延展。
 
-- **Accessibility:** When creating a component, keep accessibility top of mind.
-  This includes keyboard navigation, focus management, color contrast, voice
-  over, and the correct `aria-*` attributes.
+- **无障碍：** 创建组件时，考虑无障碍使用性。
+  包括键盘导航、聚焦管理、颜色对比、旁白和正确的`aria-*`属性。
 
-- **Dark Mode:** Try to make components dark mode compatible. Use our
-  `ColorModeProvider`, `useColorMode` hook to handle styling.
-  [Learn more about Dark mode](/color-mode)
+- **深色模式：** 尝试让组件兼容深色模式。
+  使用钩子`ColorModeProvider`和`useColorMode`处理样式。
+  [深色模式了解更多](/color-mode)
 
-- **Naming Props:** We all know naming is the hardest thing in this industry.
-  Generally, ensure a prop name is indicative of what it does. Boolean props
-  should be named using auxilliary verbs such as `does`, `has`, `is` and
-  `should`. For example, `Button` uses `isDisabled`, `isLoading`, etc.
+- **属性命名：** 众所周知，命名是最让人头痛的。
+  通常名称应该揭示他的功能。
+  布尔属性应该用`does`、`has`、`is`、`should`等助动词命名。
+  例如`Button`的属性`isDisabled`、`isLoading`等等。
