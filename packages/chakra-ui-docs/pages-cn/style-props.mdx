@@ -1,0 +1,389 @@
+# Style Props
+
+Style props are a way to alter the style of a component by simply passing props
+to it. It helps to save time by providing helpful shorthand ways to style
+components.
+
+Chakra UI uses [Styled System](https://styled-system.com/) to achieve this. We
+extend styled-system's utilities to provide other helpful shorthands.
+
+## Style Props Reference
+
+The following table shows a list of every style prop and the properties within
+each group. To learn more about it, you can also check the
+[Styled System docs](https://styled-system.com/api):
+
+### Margin & padding
+
+```jsx live=false
+import { Box } from "@chakra-ui/core";
+
+// m={2} refers to the value of `theme.space[2]`
+<Box m={2}>Tomato</Box>;
+
+// You can also use custom values
+<Box maxW="960px" mx="auto" />;
+
+// sets margin `8px` on all viewports and `16px` from the first breakpoint and up
+<Box m={[2, 3]} />;
+```
+
+| Prop                  | CSS Property                       | Theme Key |
+| --------------------- | ---------------------------------- | --------- |
+| `m`, `margin`         | `margin`                           | `space`   |
+| `mt`, `marginTop`     | `margin-top`                       | `space`   |
+| `mr`, `marginRight`   | `margin-right`                     | `space`   |
+| `mb`, `marginBottom`  | `margin-bottom`                    | `space`   |
+| `ml`, `marginLeft`    | `margin-left`                      | `space`   |
+| `mx`                  | `margin-left` and `margin-right`   | `space`   |
+| `my`                  | `margin-top` and `margin-bottom`   | `space`   |
+| `p`, `padding`        | `padding`                          | `space`   |
+| `pt`, `paddingTop`    | `padding-top`                      | `space`   |
+| `pr`, `paddingRight`  | `padding-right`                    | `space`   |
+| `pb`, `paddingBottom` | `padding-bottom`                   | `space`   |
+| `pl`, `paddingLeft`   | `padding-left`                     | `space`   |
+| `px`                  | `padding-left` and `padding-right` | `space`   |
+| `py`                  | `padding-top` and `padding-bottom` | `space`   |
+
+### Color & background color
+
+```jsx live=false
+import { Box } from "@chakra-ui/core";
+
+// picks up a nested color value using dot notation
+// => `theme.colors.gray[50]`
+<Box color='gray.50' />
+
+// raw CSS color value
+<Box color='#f00' />
+
+// background colors
+<Box bg='tomato' />
+
+// verbose prop
+<Box backgroundColor='tomato' />
+```
+
+| Prop                    | CSS Property       | Theme Key |
+| ----------------------- | ------------------ | --------- |
+| `color`                 | `color`            | `colors`  |
+| `bg`, `backgroundColor` | `background-color` | `colors`  |
+| `opacity`               | `opacity`          | none      |
+
+### Typography
+
+```jsx live=false
+import { Text } from "@chakra-ui/core";
+
+// font-size of `theme.fontSizes.md`
+<Text fontSize="md" />
+
+// font-size `32px`
+<Text fontSize={32} />
+
+// font-size `'2em'`
+<Text fontSize='2em' />
+
+// text-align `left` on all viewports and `center` from the first breakpoint and up
+<Text textAlign={[ 'left', 'center' ]} />
+```
+
+| Prop             | CSS Property      | Theme Key        |
+| ---------------- | ----------------- | ---------------- |
+| `fontFamily`     | `font-family`     | `fonts`          |
+| `fontSize`       | `font-size`       | `fontSizes`      |
+| `fontWeight`     | `font-weight`     | `fontWeights`    |
+| `lineHeight`     | `line-height`     | `lineHeights`    |
+| `letterSpacing`  | `letter-spacing`  | `letterSpacings` |
+| `textAlign`      | `text-align`      | none             |
+| `fontStyle`      | `font-style`      | none             |
+| `textTransform`  | `text-transform`  | none             |
+| `textDecoration` | `text-decoration` | none             |
+
+### Layout, width and height
+
+```jsx live=false
+import { Box } from "@chakra-ui/core";
+
+// verbose
+<Box width="100%" height={32} />;
+
+// shorthand
+<Box w="100%" h="32px" />;
+
+// width `50%`
+<Box w={1/2} />
+
+// width `256px`
+<Box w={256} />
+
+// width `'40px'`
+<Box w='40px' />
+
+```
+
+| Prop                | CSS Property     | Theme Key |
+| ------------------- | ---------------- | --------- |
+| `w`, `width`        | `width`          | `sizes`   |
+| `h`, `height`       | `height`         | `sizes`   |
+| `minW`, `minWidth`  | `min-width`      | `sizes`   |
+| `maxW`, `maxWidth`  | `max-width`      | `sizes`   |
+| `minH`, `minHeight` | `min-height`     | `sizes`   |
+| `maxH`, `maxHeight` | `max-height`     | `sizes`   |
+| `d`, `display`      | `display`        | none      |
+| `size`              | `width` `height` | `sizes`   |
+| `verticalAlign`     | `vertical-align` | none      |
+| `overflow`          | `overflow`       | none      |
+| `overflowX`         | `overflowX`      | none      |
+| `overflowY`         | `overflowY`      | none      |
+
+### Flexbox
+
+```jsx live=false
+import { Box, Flex } from "@chakra-ui/core";
+
+// verbose
+<Box display="flex" alignItems="center" justifyContent="space-between">
+  Box with Flex props
+</Box>;
+
+// shorthand using the `Flex` component
+<Flex align="center" justify="center">
+  Flex Container
+</Flex>;
+```
+
+> Note: Props in `*` will only work if you use the `Flex` component.
+
+| Prop                                      | CSS Property       | Theme Key |
+| ----------------------------------------- | ------------------ | --------- |
+| `alignItems`, \*`align`                   | `align-items`      | none      |
+| `alignContent`                            | `align-content`    | none      |
+| `justifyItems`                            | `justify-items`    | none      |
+| `justifyContent`, \*`justify`             | `justify-content`  | none      |
+| `flexWrap`, \*`wrap`                      | `flex-wrap`        | none      |
+| `flexDirection`, `flexDir`, \*`direction` | `flex-direction`   | none      |
+| `flex`                                    | `flex` (shorthand) | none      |
+| `flexGrow`                                | `flex-grow`        | none      |
+| `flexShrink`                              | `flex-shrink`      | none      |
+| `flexBasis`                               | `flex-basis`       | none      |
+| `justifySelf`                             | `justify-self`     | none      |
+| `alignSelf`                               | `align-self`       | none      |
+| `order`                                   | `order`            | none      |
+
+### Grid Layout
+
+```jsx live=false
+import { Box, Grid } from "@chakra-ui/core";
+
+// verbose
+<Box display="grid" gridGap={2} gridAutoFlow="row dense">
+  Grid
+</Box>;
+
+// shorthand using the `Grid` component
+<Grid gap={2} autoFlow="row dense">
+  Grid
+</Grid>;
+```
+
+> Note: Props in `*` will only work if you use the `Grid` component.
+
+| Prop                                       | CSS Property            | Theme Key |
+| ------------------------------------------ | ----------------------- | --------- |
+| `gridGap`, \*`gap`                         | `grid-gap`              | `space`   |
+| `gridRowGap`, \*`rowGap`                   | `grid-row-gap`          | `space`   |
+| `gridColumnGap`, \*`columnGap`             | `grid-column-gap`       | `space`   |
+| `gridColumn`, \*`column`                   | `grid-column`           | none      |
+| `gridRow`, \*`row`                         | `grid-row`              | none      |
+| `gridArea`, \*`area`                       | `grid-area`             | none      |
+| `gridAutoFlow`, \*`autoFlow`               | `grid-auto-flow`        | none      |
+| `gridAutoRows`, \*`autoRows`               | `grid-auto-rows`        | none      |
+| `gridAutoColumns`, \*`autoColumns`         | `grid-auto-columns`     | none      |
+| `gridTemplateRows`, \*`templateRows`       | `grid-template-rows`    | none      |
+| `gridTemplateColumns`, \*`templateColumns` | `grid-template-columns` | none      |
+| `gridTemplateAreas`, \*`templateAreas`     | `grid-template-areas`   | none      |
+
+### Background
+
+```jsx live=false
+import { Box } from "@chakra-ui/core";
+
+// verbose
+<Box
+  backgroundImage="url('/images/kyuubi.png')"
+  backgroundPosition="center"
+  backgroundRepeat="no-repeat"
+/>;
+
+// shorthand
+<Box bgImage="url('/images/gaara.png')" bgPos="center" bgRepeat="no-repeat" />;
+```
+
+| Prop                                  | CSS Property            | Theme Key |
+| ------------------------------------- | ----------------------- | --------- |
+| `background`                          | `background`            | none      |
+| `bgImage`, `backgroundImage`          | `background-image`      | none      |
+| `bgSize`, `backgroundSize`            | `background-size`       | none      |
+| `bgPos`,`backgroundPosition`          | `background-position`   | none      |
+| `bgRepeat`,`backgroundRepeat`         | `background-repeat`     | none      |
+| `bgAttachment`,`backgroundAttachment` | `background-attachment` | none      |
+
+### Borders
+
+```jsx live=false
+import { Box } from "@chakra-ui/core";
+
+<Box border="1px" borderRadius="md" borderColor="gray.200">
+  Card
+</Box>;
+```
+
+| Prop                | CSS Property                   | Theme Field    |
+| ------------------- | ------------------------------ | -------------- |
+| `border`            | `border`                       | `borders`      |
+| `borderWidth`       | `border-width`                 | `borderWidths` |
+| `borderStyle`       | `border-style`                 | `borderStyles` |
+| `borderColor`       | `border-color`                 | `colors`       |
+| `borderTop`         | `border-top`                   | `borders`      |
+| `borderTopWidth`    | `border-top-width`             | `borderWidths` |
+| `borderTopStyle`    | `border-top-style`             | `borderStyles` |
+| `borderTopColor`    | `border-top-color`             | `colors`       |
+| `borderRight`       | `border-right`                 | `borders`      |
+| `borderRightWidth`  | `border-right-width`           | `borderWidths` |
+| `borderRightStyle`  | `border-right-style`           | `borderStyles` |
+| `borderRightColor`  | `border-right-color`           | `colors`       |
+| `borderBottom`      | `border-bottom`                | `borders`      |
+| `borderBottomWidth` | `border-bottom-width`          | `borderWidths` |
+| `borderBottomStyle` | `border-bottom-style`          | `borderStyles` |
+| `borderBottomColor` | `border-bottom-color`          | `colors`       |
+| `borderLeft`        | `border-left`                  | `borders`      |
+| `borderLeftWidth`   | `border-left-width`            | `borderWidths` |
+| `borderLeftStyle`   | `border-left-style`            | `borderStyles` |
+| `borderLeftColor`   | `border-left-color`            | `colors`       |
+| `borderX`           | `border-left` & `border-right` | `borders`      |
+| `borderY`           | `border-top` & `border-bottom` | `borders`      |
+
+### Border Radius
+
+```jsx live=false
+import { Button } from "@chakra-ui/core";
+
+// This button will have no right borderRadius
+<Button roundedRight="0">Button 1</Button>;
+
+// This button will have no left borderRadius*/
+<Button roundedLeft="0">Button 2</Button>;
+
+// top left and top right radius will be `theme.radii.md` => 4px
+<Button roundedTop="md">Button 2</Button>;
+```
+
+| Prop                                            | CSS Property                                               | Theme Field |
+| ----------------------------------------------- | ---------------------------------------------------------- | ----------- |
+| `rounded`, `borderRadius`                       | `border-radius`                                            | `radii`     |
+| `roundedTopLeft`, `borderTopLeftRadius`         | `border-top-left-radius`                                   | `radii`     |
+| `roundedTopRight`, `borderTopRightRadius`       | `border-top-right-radius`                                  | `radii`     |
+| `roundedBottomRight`, `borderBottomRightRadius` | `border-bottom-right-radius`                               | `radii`     |
+| `roundedBottomLeft`, `borderBottomLeftRadius`   | `border-bottom-left-radius`                                | `radii`     |
+| `roundedTop`                                    | `border-top-left-radius` & `border-top-right-radius`       | `radii`     |
+| `roundedRight`                                  | `border-top-right-radius` & `border-bottom-right-radius`   | `radii`     |
+| `roundedBottom`                                 | `border-bottom-left-radius` & `border-bottom-right-radius` | `radii`     |
+| `roundedLeft`                                   | `border-top-left-radius` & `border-bottom-left-radius`     | `radii`     |
+
+### Position
+
+```jsx live=false
+import { Box } from "@chakra-ui/core";
+
+// verbose
+<Box position="absolute">Cover</Box>;
+
+// shorthand
+<Box pos="absolute">Cover</Box>;
+
+<Box pos="absolute" top="0" left="0">
+  Absolute with top and left
+</Box>;
+
+<Box pos="fixed" w="100%" zIndex={2}>
+  Fixed with zIndex
+</Box>;
+```
+
+| Prop             | CSS Property | Theme Field |
+| ---------------- | ------------ | ----------- |
+| `pos`,`position` | `position`   | none        |
+| `zIndex`         | `z-index`    | `zIndices`  |
+| `top`            | `top`        | `space`     |
+| `right`          | `right`      | `space`     |
+| `bottom`         | `bottom`     | `space`     |
+| `left`           | `left`       | `space`     |
+
+### Shadow
+
+```jsx live=false
+import { Box, Text } from "@chakra-ui/core";
+
+// text-shadow will be `theme.shadows.sm`
+// box-shadow will be `theme.shadows.md`
+<Box textShadow="sm" boxShadow="md" />;
+
+// raw CSS values
+<Text textShadow="2px 2px #ff0000" boxShadow="5px 10px #888888">
+  Text with shadows
+</Text>;
+```
+
+| Prop                 | CSS Property  | Theme Field |
+| -------------------- | ------------- | ----------- |
+| `textShadow`         | `text-shadow` | `shadows`   |
+| `shadow`,`boxShadow` | `box-shadow`  | `shadows`   |
+
+### Other Props
+
+Asides all the common style props listed above, all component will accept the
+following props:
+
+| Prop              | CSS Property       | Theme Field |
+| ----------------- | ------------------ | ----------- |
+| `animation`       | `animation`        | none        |
+| `appearance`      | `appearance`       | none        |
+| `transform`       | `transform`        | none        |
+| `transformOrigin` | `transform-origin` | none        |
+| `visibility`      | `visibility`       | none        |
+| `whiteSpace`      | `white-space`      | none        |
+| `userSelect`      | `user-select`      | none        |
+| `pointerEvents`   | `pointer-events`   | none        |
+| `wordBreak`       | `word-break`       | none        |
+| `overflowWrap`    | `overflow-wrap`    | none        |
+| `textOverflow`    | `text-overflow`    | none        |
+| `boxSizing`       | `box-sizing`       | none        |
+| `cursor`          | `cursor`           | none        |
+| `resize`          | `resize`           | none        |
+| `transition`      | `transition`       | none        |
+| `objectFit`       | `object-fit`       | none        |
+| `objectPosition`  | `object-position`  | none        |
+| `objectPosition`  | `object-position`  | none        |
+| `fill`            | `fill`             | `colors`    |
+| `stroke`          | `stroke`           | `colors`    |
+| `outline`         | `outline`          | none        |
+
+## The `as` prop
+
+The `as` prop is a feature that all of our components get from
+`@emotion/styled`. It allows you to pass a HTML tag or another component to a
+Chakra component to be rendered as the base tag of that component along with all
+it's styles and props.
+
+For example, say you are using a Button component, and you need to make it a
+link instead. You can compose `a` and Button like this:
+
+```jsx
+<Button as="a" target="_blank" variant="outline" href="https://chakra-ui.com">
+  Hello
+</Button>
+```
+
+This allows you to use all of the `Button` props and all of the `<a>` props
+without having to wrap the Button in an `a` component.
