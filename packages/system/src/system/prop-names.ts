@@ -33,6 +33,14 @@ const SS = compose(
   colorStyle,
 )
 
+const layoutFn = compose(space, layout, flexbox, grid, position) as {
+  propNames: string[]
+}
+export const layoutPropNames = [
+  ...layoutFn.propNames,
+  ...["w", "h", ",minW", "maxW", "h", "minH", "maxH", "pos"],
+]
+
 const pseudoPropNames = Object.keys(selectors).map(prop => `_${prop}`)
 
 let propNames: string[] = []
