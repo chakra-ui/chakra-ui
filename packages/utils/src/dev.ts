@@ -1,4 +1,4 @@
-import { isArray, isObject } from "./assertion"
+import { isArray, isObject, __DEV__ } from "./assertion"
 import { Dict } from "./types"
 
 export function parseResponsiveProp(prop: any, mapper: (val: any) => any) {
@@ -21,8 +21,14 @@ export function parseResponsiveProp(prop: any, mapper: (val: any) => any) {
 }
 
 export function warn(options: { condition: boolean; message: string }) {
-  if (options.condition && process.env.NODE_ENV !== "production") {
+  if (options.condition && __DEV__) {
     console.warn(options.message)
+  }
+}
+
+export function error(options: { condition: boolean; message: string }) {
+  if (options.condition && __DEV__) {
+    throw new Error(options.message)
   }
 }
 

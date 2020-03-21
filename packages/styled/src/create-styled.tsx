@@ -8,6 +8,7 @@ import {
   runIfFn,
 } from "@chakra-ui/utils"
 import { CSSObject } from "@emotion/core"
+import hoist from "hoist-non-react-statics"
 import * as React from "react"
 import { useChakra } from "./hooks"
 import jsx from "./jsx"
@@ -16,7 +17,7 @@ import {
   filterProps,
   removeStyleProps,
 } from "./should-forward-prop"
-import { Component, Options } from "./styled.types"
+import { ChakraComponent, Options } from "./styled.types"
 
 function createStyled<T extends As, P>(component: T, options?: Options<T, P>) {
   return function(...interpolations: any[]) {
@@ -138,9 +139,15 @@ function createStyled<T extends As, P>(component: T, options?: Options<T, P>) {
     Styled.displayName = `chakra(${getDisplayName(component)})`
 
     // [Optimization] users can pass a pure option to memoize this component
-    const Component = options?.pure ? React.memo(Styled) : Styled
+    const StyledComponent = options?.pure ? React.memo(Styled) : Styled
 
-    return Component as Component<T, P>
+    // hoist all non-react statics attached to the `component` prop
+    const Component = hoist(
+      StyledComponent,
+      component as React.ComponentType<any>,
+    )
+
+    return Component as ChakraComponent<T, P>
   }
 }
 

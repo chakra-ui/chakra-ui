@@ -66,3 +66,5 @@ export const isEmpty = (value: any) => {
   if (value == null || value === "") return true
   return false
 }
+
+export const __DEV__ = process.env.NODE_ENV !== "production"

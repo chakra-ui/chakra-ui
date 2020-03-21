@@ -1,13 +1,6 @@
 import { SystemProps, TruncateProps } from "@chakra-ui/parser"
 import { ValidHTMLProps } from "./should-forward-prop"
-
-type StyleFnProps = {
-  colorMode: "light" | "dark"
-  theme: object
-  colorScheme: string
-}
-
-export type ObjectOrFunction = object | ((props: StyleFnProps) => object)
+import { ColorMode } from "@chakra-ui/color-mode"
 
 export interface ComponentTheme {
   /**
@@ -17,7 +10,7 @@ export interface ComponentTheme {
   /**
    * The initial styles to be applied to the component
    */
-  baseStyles?: object
+  baseStyle?: object
   /**
    * The component's visual style variants
    */
@@ -45,7 +38,7 @@ export interface ComponentTheme {
   }
 }
 
-export interface Options<T extends As, P = {}> {
+export interface Options<ComponentType extends As, ExtraProps = {}> {
   /**
    * The key of this component in `theme.components`.
    */
@@ -54,12 +47,12 @@ export interface Options<T extends As, P = {}> {
    * Additional props to attach to the component
    * You can use a function to make it dynamic
    */
-  attrs?: PropsOf<T> & P
+  attrs?: ComponentAttrs<ComponentType, ExtraProps>
   /**
    * Base style object to apply to this component
    * NB: This style is theme-aware so you can use all style props
    */
-  baseStyle?: SystemProps
+  baseStyle?: BaseStyle<ExtraProps>
   /**
    * A boolean indicating if the component should avoid re-rendering
    * when props haven't changed. This uses `React.memo(...)`
@@ -74,12 +67,28 @@ export interface Options<T extends As, P = {}> {
   shouldForwardProp?(propName: string): boolean
 }
 
+type ColorModeProps = { colorMode?: ColorMode }
+
+type BaseStyle<P> =
+  | SystemProps
+  | ((props: P & ThemingProps & ColorModeProps) => SystemProps)
+
+type ComponentAttrs<T extends As, ExtraProps> = PropsOf<T> &
+  ExtraProps &
+  ThemingProps &
+  ColorModeProps
+
+export type ThemingProps = {
+  variant?: string
+  size?: string
+  colorScheme?: string
+  orientation?: "vertical" | "horizontal"
+}
+
 export type ChakraProps = SystemProps &
   TruncateProps &
-  ValidHTMLProps & {
-    variant?: string
-    size?: string
-    colorScheme?: string
+  ValidHTMLProps &
+  ThemingProps & {
     children?: React.ReactNode
   }
 
@@ -92,13 +101,11 @@ export type PropsWithAs<P, T extends As> = P &
     as?: T
   }
 
-type BaseComponent<T extends As> =
-  | ((props: PropsOf<T> & ChakraProps) => JSX.Element)
-  | (<TT extends As = T>(
-      props: PropsWithAs<PropsOf<T>, TT> & ChakraProps,
-    ) => JSX.Element)
-
-export type Component<T extends As, P> = BaseComponent<T> & {
+export type ChakraComponent<T extends As, P> = {
+  <TT extends As = T>(
+    props: PropsWithAs<PropsOf<T>, TT> & ChakraProps,
+  ): JSX.Element
+  (props: PropsOf<T> & ChakraProps): JSX.Element
   displayName?: string
   propTypes?: React.WeakValidationMap<PropsOf<T> & P>
   defaultProps?: Partial<PropsOf<T> & P & ChakraProps>

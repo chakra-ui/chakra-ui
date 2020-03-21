@@ -1,6 +1,6 @@
 export * from "@chakra-ui/color-mode"
 export * from "@chakra-ui/parser"
-export * from "./create-theming"
+export * from "./theme-provider"
 export * from "./hooks"
 export * from "./jsx"
 export * from "./styled"

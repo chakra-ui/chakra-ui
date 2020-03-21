@@ -146,6 +146,6 @@ export function getComponentStyles(props: any, themeKey: string) {
   return styles
 }
 
-function getComponentDefaults(theme: any, themeKey: string) {
+export function getComponentDefaults(theme: any, themeKey: string) {
   return get(theme, `components.${themeKey}.defaultProps`)
 }

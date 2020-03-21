@@ -1,7 +1,7 @@
 import * as React from "react"
 import { useColorMode } from "@chakra-ui/color-mode"
 import { ThemeContext } from "@emotion/core"
-import { getComponentStyles } from "@chakra-ui/parser"
+import { getComponentStyles, getComponentDefaults } from "@chakra-ui/parser"
 
 export function useChakra<Theme extends object = object>() {
   const [colorMode, setColorMode] = useColorMode()
@@ -20,4 +20,9 @@ export function useComponentStyle(props: ComponentStyleHookProps) {
   const { size, variant, colorScheme, themeKey } = props
   const theme = React.useContext(ThemeContext)
   return getComponentStyles({ variant, size, theme, colorScheme }, themeKey)
+}
+
+export function useComponentDefaults(themeKey: string) {
+  const theme = React.useContext(ThemeContext)
+  return getComponentDefaults(theme, themeKey)
 }
