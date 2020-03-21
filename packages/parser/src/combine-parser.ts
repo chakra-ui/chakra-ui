@@ -1,13 +1,18 @@
 import { createParser, Parser } from "./create-parser"
-import { Dict } from "@chakra-ui/utils"
 
+/**
+ * Combine multiple style prop parsers
+ * into a single parser.
+ *
+ * @param parsers list of parsers
+ */
 export function combineParsers(...parsers: Parser[]) {
-  let config: Dict = {}
+  let config: Parser["config"] = {}
 
-  parsers.forEach(parser => {
-    if (!parser || !parser.config) return
+  for (const parser of parsers) {
+    if (!parser || !parser.config) continue
     config = { ...config, ...parser.config }
-  })
+  }
 
   const parser = createParser(config)
   parser.config = config

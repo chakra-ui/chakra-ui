@@ -1,20 +1,29 @@
 import * as CSS from "csstype"
-import { get } from "./get"
-import { isNull } from "@chakra-ui/utils"
+import { isNull, get, Dict } from "@chakra-ui/utils"
 
 export interface ConfigStyle {
-  /** The CSS property to use in the returned style object (overridden by `properties` if present). */
+  /**
+   * The CSS property to use in the returned style object
+   * (overridden by `properties` if present).
+   */
   property?: keyof CSS.Properties
   /**
-   * An array of multiple properties (e.g. `['marginLeft', 'marginRight']`) to which this style's value will be
-   * assigned (overrides `property` when present).
+   * An array of css properties (e.g. `['marginLeft', 'marginRight']`)
+   * the prop maps to.
    */
   properties?: Array<keyof CSS.Properties>
-  /** A string referencing a key in the `theme` object. */
+  /**
+   * A reference to theme scale for this property or properties.
+   */
   scale?: string
-  /** A fallback scale object for when there isn't one defined in the `theme` object. */
+  /**
+   * A fallback scale object if scale is not found
+   * in theme
+   */
   fallbackScale?: any
-  /** A function to transform the raw value based on the scale. */
+  /**
+   * A function to transform the raw value based on the scale.
+   */
   transform?: (value: any, scale?: any) => any
 }
 
@@ -22,36 +31,57 @@ export type Config = null | true | ConfigStyle
 
 export type ConfigObject = { [prop: string]: Config }
 
+/**
+ * Transform an object of style props config to it's raw values.
+ *
+ * @param configs the config object
+ * @param theme the theme object
+ */
 export function transformConfig(configs: ConfigObject, theme: any) {
-  const result: any = {}
-  Object.keys(configs).forEach(key => {
-    const config = configs[key]
+  const transformedConfig: Dict = {}
 
+  Object.keys(configs).forEach(prop => {
+    const config = configs[prop]
+
+    /**
+     * if config doesn't exist for this prop,
+     * return (no-op)
+     */
     if (isNull(config)) return
 
+    /**
+     * If config is `true`, then it maps directly
+     * to the css property.
+     *
+     * This is useful in providing a css property
+     * as a style prop.
+     */
     if (config === true) {
-      result[key] = { property: key }
+      transformedConfig[prop] = { property: prop }
       return
     }
 
     const { property, properties, scale, transform, fallbackScale } = config
 
+    const scaleFromTheme = scale && get(theme, scale, fallbackScale)
+
     if (property) {
-      result[key] = {
+      transformedConfig[prop] = {
         property,
         ...(!!transform && { transform }),
-        ...(!!scale && { scale: get(theme, scale, fallbackScale) }),
+        ...(!!scale && { scale: scaleFromTheme }),
       }
       return
     }
 
-    //@ts-ignore
-    result[key] = properties.map(prop => ({
-      property: prop,
-      ...(!!transform && { transform }),
-      ...(!!scale && { scale: get(theme, scale, fallbackScale) }),
-    }))
+    if (properties) {
+      transformedConfig[prop] = properties.map(prop => ({
+        property: prop,
+        ...(!!transform && { transform }),
+        ...(!!scale && { scale: scaleFromTheme }),
+      }))
+    }
   })
 
-  return result
+  return transformedConfig
 }

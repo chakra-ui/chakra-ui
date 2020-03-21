@@ -1,5 +1,4 @@
-import { get } from "../get"
-import { isNumber } from "@chakra-ui/utils"
+import { isNumber, get } from "@chakra-ui/utils"
 import { ConfigObject } from "../transform-config"
 import { createParser } from "../create-parser"
 

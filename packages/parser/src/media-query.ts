@@ -1,8 +1,8 @@
-import { isString } from "@chakra-ui/utils"
+import { isString, Dict } from "@chakra-ui/utils"
 
 /**
  * Converts a breakpoint unit to css media query string
- * @param breakpoint breakpoint as number or css unit
+ * @param breakpoint  - breakpoint as number or css unit
  */
 export const toMediaQuery = (breakpoint: string | number) => {
   const str = isString(breakpoint) ? breakpoint : `${breakpoint}px`
@@ -13,9 +13,9 @@ export const toMediaQuery = (breakpoint: string | number) => {
  * Format the breakpoints object in theme to
  * array and object css media query string
  *
- * @param breakpoints the breakpoints in the theme
+ * @param breakpoints - the breakpoints in the theme
  */
-export function getMediaQuery(breakpoints?: Record<any, any>) {
+export function getMediaQuery(breakpoints?: Dict) {
   const _breakpoints = breakpoints ?? { sm: "40em", md: "52em", lg: "64em" }
 
   const asArray = Object.keys(_breakpoints)
@@ -26,7 +26,7 @@ export function getMediaQuery(breakpoints?: Record<any, any>) {
   const asObject = Object.keys(_breakpoints).reduce((result, point) => {
     result[point] = toMediaQuery(_breakpoints[point])
     return result
-  }, {} as any)
+  }, {} as Dict)
 
   return { asArray, asObject }
 }

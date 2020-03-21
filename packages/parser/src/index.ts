@@ -1,6 +1,5 @@
 export * from "./css"
 export { StyleObject, SystemStyleObject, CSSObject } from "./css.types"
-export * from "./get"
 export * from "./create-parser"
 export * from "./parser"
 export * from "./configs/pseudo.selector"

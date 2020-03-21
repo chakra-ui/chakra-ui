@@ -1,8 +1,14 @@
-import { deepmerge, isArray, isObject, runIfFn } from "@chakra-ui/utils"
+import {
+  deepmerge,
+  get,
+  getWithDefault,
+  isArray,
+  isObject,
+  runIfFn,
+} from "@chakra-ui/utils"
+import assignArrayValue from "./assign-array-value"
 import { parsePseudo } from "./configs/pseudo"
-import { assignArrayValue } from "./create-processor"
 import { CSSObject, StyleObject, Theme } from "./css.types"
-import { get, getValue } from "./get"
 import { getMediaQuery } from "./media-query"
 import parser from "./parser"
 
@@ -10,9 +16,9 @@ const hasTheme = (props: any): props is { theme: Theme } => {
   return Boolean(isObject(props) && props.theme)
 }
 
-export const css = (styleProps: StyleObject) => (
-  props: Theme | { theme: Theme },
-) => {
+type PropsOrTheme = Theme | { theme: Theme }
+
+export const css = (styleProps: StyleObject) => (props: PropsOrTheme) => {
   const theme = hasTheme(props) ? props.theme : props
 
   let result: CSSObject = {}
@@ -30,7 +36,7 @@ export const css = (styleProps: StyleObject) => (
       return config.transform(val, scale)
     }
 
-    return getValue(val, scale)
+    return getWithDefault(val, scale)
   }
 
   function assignArray(prop: any, values: any, config: any) {

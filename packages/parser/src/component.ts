@@ -1,21 +1,35 @@
-import { Dict, isEmptyObject, runIfFn, deepmerge } from "@chakra-ui/utils"
-import { get } from "./get"
+import { Dict, isEmptyObject, runIfFn, deepmerge, get } from "@chakra-ui/utils"
 import css from "./css"
 import { CSSObject } from "./css.types"
 
+/**
+ * Check if a theme key refers to a components
+ * or sub-component
+ *
+ * @param themeKey the theme key
+ */
 export function isSubcomponent(themeKey: string) {
   return themeKey.split(".").length > 1
 }
 
+/**
+ * Gets the base styles of a component based
+ * on the theme key
+ *
+ * @param props the props object including the theme
+ * @param themeKey the component's theme key
+ */
 export function getBaseStyle(props: Dict, themeKey: string) {
-  const [parent, component] = themeKey.split(".")
+  const [component, subComponent] = themeKey.split(".")
 
-  const baseStyleOrFn = get(props.theme, `components.${parent}.baseStyle`)
-  if (!baseStyleOrFn) return undefined
-  let baseStyle = runIfFn(baseStyleOrFn, props)
+  const styleObjectOrFn = get(props.theme, `components.${component}.baseStyle`)
+
+  if (!styleObjectOrFn) return undefined
+
+  let baseStyle = runIfFn(styleObjectOrFn, props)
 
   if (isSubcomponent(themeKey)) {
-    baseStyle = baseStyle[component]
+    baseStyle = baseStyle[subComponent]
   }
 
   return baseStyle
@@ -26,79 +40,112 @@ const modifierMap = {
   variants: "variant",
 }
 
-function hasThemingProps(props: any) {
-  if (!props) return false
-  return Object.keys(props).some(item =>
-    Object.values(modifierMap).includes(item),
-  )
-}
-
+/**
+ * Gets the modifier styles for a component.
+ * Chakra UI assumes that most component will need
+ * only `variants` and `sizes` modifiers
+ *
+ * @param props the props object (or component props)
+ * @param themeKey the component's theme key
+ * @param modifiers modifiers we support (for now, it's just variant, and size)
+ */
 export function getModifierStyles(
   props: Dict | undefined,
   themeKey: string | undefined,
   modifiers = Object.keys(modifierMap),
 ) {
-  // if no theme key was passed or no prop was passed, bail out
+  /**
+   * if no theme key was passed or no prop was passed, bail out
+   */
   if (!themeKey || !props) return undefined
 
-  // for nested component keys ("Menu.List"), let's split to get the parent and child
-  const [parent, component] = themeKey.split(".")
+  /**
+   * For nested component theme key, for example "Menu.MenuList",
+   * let's split into component and sub-component.
+   */
+  const [component, subComponent] = themeKey.split(".")
 
-  // check that the parent theme exists
-  const itExists = get(props.theme, `components.${parent}`) != null
+  /**
+   * Check that the component styles exists in the theme object
+   */
+  const itExists = get(props.theme, `components.${component}`) != null
 
   if (!itExists) return undefined
 
-  const defaultProps = get(props.theme, `components.${parent}.defaultProps`) as
+  /**
+   * Get the default modifier values defined in theme
+   */
+  const defaultProps = getComponentDefaults(props.theme, component) as
     | Dict
     | undefined
 
   let styles: Dict = {}
 
+  /**
+   * Iterate through each modifier (mostly variants and sizes),
+   * can compute the styles based on theme.
+   */
   for (const modifier of modifiers) {
     const _modifier = modifierMap[modifier as keyof typeof modifierMap]
 
-    const propValue = props[_modifier] ?? defaultProps?.[_modifier]
+    const value = props[_modifier] ?? defaultProps?.[_modifier]
 
-    if (!propValue) continue
+    if (!value) continue
 
     const styleObjectOrFn = get(
       props.theme,
-      `components.${parent}.${modifier}.${propValue}`,
+      `components.${component}.${modifier}.${value}`,
     )
 
     if (!styleObjectOrFn) continue
 
-    const computedStyles = runIfFn(styleObjectOrFn, props)
+    const style = runIfFn(styleObjectOrFn, props)
 
     styles = isSubcomponent(themeKey)
-      ? deepmerge(styles, computedStyles[component])
-      : deepmerge(styles, computedStyles)
+      ? deepmerge(styles, style[subComponent])
+      : deepmerge(styles, style)
   }
 
   return styles
 }
 
-function has(val: any): val is object {
+/**
+ * Check if a style object is not empty
+ * @param val the style object
+ */
+function notEmpty(val: any): val is object {
   return val && !isEmptyObject(val)
 }
 
+/**
+ * Computes the styles for a component based on the
+ * defined theme key
+ *
+ * @param props the component props object
+ * @param themeKey the component's theme key
+ */
 export function getComponentStyles(props: any, themeKey: string) {
   let styles: CSSObject = {}
 
   if (!themeKey) return undefined
 
   const baseStyleObject = getBaseStyle(props, themeKey)
-  if (has(baseStyleObject)) {
+
+  if (notEmpty(baseStyleObject)) {
     const baseStyle = css(baseStyleObject)(props.theme)
     styles = deepmerge(styles, baseStyle)
   }
 
   const modiferStyleObject = getModifierStyles(props, themeKey)
-  if (has(modiferStyleObject)) {
+
+  if (notEmpty(modiferStyleObject)) {
     const modiferStyle = css(modiferStyleObject)(props.theme)
     styles = deepmerge(styles, modiferStyle)
   }
 
   return styles
+}
+
+function getComponentDefaults(theme: any, themeKey: string) {
+  return get(theme, `components.${themeKey}.defaultProps`)
 }
