@@ -80,7 +80,7 @@ Support this project with your organization. Your logo will show up here with a 
 > [Lee Robinson](https://twitter.com/leeerob/status/1169330130361159682)
 
 > Chakra UI is glorious! I love the consistent use of focus styling and the
-> subtle animation –
+> subtle animation. –
 > [Guillermo ▲](https://twitter.com/rauchg/status/1169632334389248000)
 
 
