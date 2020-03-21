@@ -1,0 +1,277 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`calculateTextCrop() should work for case #1 1`] = `
+Object {
+  "textNodeStyles": Object {
+    "&::before": Object {
+      "content": "\\"\\"",
+      "display": "block",
+      "marginBottom": Array [
+        "-0.48780em",
+      ],
+    },
+    "lineHeight": Array [
+      1.2,
+    ],
+    "transform": Array [
+      "translateY(0.21951em)",
+    ],
+  },
+}
+`;
+
+exports[`calculateTextCrop() should work for case #2 1`] = `
+Object {
+  "textNodeStyles": Object {
+    "&::before": Object {
+      "content": "\\"\\"",
+      "display": "block",
+      "marginBottom": Array [
+        "-0.45122em",
+      ],
+    },
+    "lineHeight": Array [
+      1.2,
+    ],
+    "transform": Array [
+      "translateY(0.24390em)",
+    ],
+  },
+}
+`;
+
+exports[`calculateTextCrop() should work for case #3 1`] = `
+Object {
+  "textNodeStyles": Object {
+    "&::before": Object {
+      "content": "\\"\\"",
+      "display": "block",
+      "marginBottom": Array [
+        "-0.48780em",
+        "-0.45122em",
+      ],
+    },
+    "lineHeight": Array [
+      1.2,
+      1.2,
+    ],
+    "transform": Array [
+      "translateY(0.21951em)",
+      "translateY(0.24390em)",
+    ],
+  },
+}
+`;
+
+exports[`calculateTextCrop() should work for case #4 1`] = `
+Object {
+  "textNodeStyles": Object {
+    "&::before": Object {
+      "content": "\\"\\"",
+      "display": "block",
+      "marginBottom": Array [
+        "-0.48780em",
+      ],
+    },
+    "lineHeight": Array [
+      1.2,
+    ],
+    "transform": Array [
+      "translateY(0.21951em)",
+    ],
+  },
+}
+`;
+
+exports[`calculateTextCrop() should work for case #5 1`] = `
+Object {
+  "textNodeStyles": Object {
+    "&::before": Object {
+      "content": "\\"\\"",
+      "display": "block",
+      "marginBottom": Array [
+        "-0.68780em",
+      ],
+    },
+    "lineHeight": Array [
+      1.4,
+    ],
+    "transform": Array [
+      "translateY(0.31951em)",
+    ],
+  },
+}
+`;
+
+exports[`calculateTextCrop() should work for case #6 1`] = `
+Object {
+  "textNodeStyles": Object {
+    "&::before": Object {
+      "content": "\\"\\"",
+      "display": "block",
+      "marginBottom": Array [
+        "-0.91280em",
+      ],
+    },
+    "lineHeight": Array [
+      1.625,
+    ],
+    "transform": Array [
+      "translateY(0.43201em)",
+    ],
+  },
+}
+`;
+
+exports[`calculateTextCrop() should work for case #7 1`] = `
+Object {
+  "textNodeStyles": Object {
+    "&::before": Object {
+      "content": "\\"\\"",
+      "display": "block",
+      "marginBottom": Array [
+        "-0.48780em",
+        "-0.91280em",
+      ],
+    },
+    "lineHeight": Array [
+      1.2,
+      1.625,
+    ],
+    "transform": Array [
+      "translateY(0.21951em)",
+      "translateY(0.43201em)",
+    ],
+  },
+}
+`;
+
+exports[`calculateTextCrop() should work for case #8 1`] = `
+Object {
+  "textNodeStyles": Object {
+    "&::before": Object {
+      "content": "\\"\\"",
+      "display": "block",
+      "marginBottom": Array [
+        "-0.48780em",
+        "-0.91280em",
+      ],
+    },
+    "lineHeight": Array [
+      1.2,
+      1.625,
+    ],
+    "transform": Array [
+      "translateY(0.21951em)",
+      "translateY(0.43201em)",
+    ],
+  },
+}
+`;
+
+exports[`calculateTextCrop() should work for case #9 1`] = `
+Object {
+  "textNodeStyles": Object {
+    "&::before": Object {
+      "content": "\\"\\"",
+      "display": "block",
+      "marginBottom": Array [
+        "-0.91280em",
+        "-0.91280em",
+        "-1.28780em",
+        "-1.28780em",
+      ],
+    },
+    "lineHeight": Array [
+      1.625,
+      1.625,
+      2,
+      2,
+    ],
+    "transform": Array [
+      "translateY(0.43201em)",
+      "translateY(0.43201em)",
+      "translateY(0.61951em)",
+      "translateY(0.61951em)",
+    ],
+  },
+}
+`;
+
+exports[`calculateTextCrop() should work for case #10 1`] = `
+Object {
+  "textNodeStyles": Object {
+    "&::before": Object {
+      "content": "\\"\\"",
+      "display": "block",
+      "marginBottom": Array [
+        "-0.91280em",
+        "-0.78780em",
+        "-1.28780em",
+        "-1.28780em",
+      ],
+    },
+    "lineHeight": Array [
+      1.625,
+      1.5,
+      2,
+      2,
+    ],
+    "transform": Array [
+      "translateY(0.43201em)",
+      "translateY(0.36951em)",
+      "translateY(0.61951em)",
+      "translateY(0.61951em)",
+    ],
+  },
+}
+`;
+
+exports[`calculateTextCrop() should work for case #11 1`] = `
+Object {
+  "textNodeStyles": Object {
+    "&::before": Object {
+      "content": "\\"\\"",
+      "display": "block",
+      "marginBottom": Array [
+        "-0.62622em",
+        "-1.28780em",
+      ],
+    },
+    "lineHeight": Array [
+      1.375,
+      2,
+    ],
+    "transform": Array [
+      "translateY(0.33140em)",
+      "translateY(0.61951em)",
+    ],
+  },
+}
+`;
+
+exports[`calculateTextCrop() should work for case #12 1`] = `
+Object {
+  "textNodeStyles": Object {
+    "&::before": Object {
+      "content": "\\"\\"",
+      "display": "block",
+      "marginBottom": Array [
+        "-0.62622em",
+        "-0.66280em",
+        "-1.28780em",
+      ],
+    },
+    "lineHeight": Array [
+      1.375,
+      1.375,
+      2,
+    ],
+    "transform": Array [
+      "translateY(0.33140em)",
+      "translateY(0.30701em)",
+      "translateY(0.61951em)",
+    ],
+  },
+}
+`;
