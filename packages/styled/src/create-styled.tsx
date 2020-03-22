@@ -95,11 +95,6 @@ function createStyled<T extends As, P>(component: T, options?: Options<T, P>) {
 
         if (!isTag) computedProps = removeStyleProps(computedProps)
 
-        computedProps.style = {
-          ...props?.style,
-          ...options?.attrs?.style,
-        }
-
         /**
          * Users can pass an option to control how props are forwarded
          *

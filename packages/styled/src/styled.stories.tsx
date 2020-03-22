@@ -2,6 +2,7 @@
 import { chakra, jsx, ThemeProvider, useComponentStyle } from "."
 import { ColorModeProvider } from "@chakra-ui/color-mode"
 import theme from "./theme.sample"
+import { motion } from "framer-motion"
 
 export default {
   title: "styled",
@@ -16,8 +17,19 @@ export default {
   ],
 }
 
-const Button = chakra("button", {
+interface Props {
+  isDisabled?: boolean
+}
+
+const Button = chakra<"button", Props>("button", {
   themeKey: "Button",
+  attrs: props => ({
+    type: "button" as any,
+    disabled: props.isDisabled,
+  }),
+  baseStyle: props => ({
+    opacity: props.isDisabled ? 0.4 : 1,
+  }),
 })
 
 export const Sample = () => {
@@ -41,6 +53,25 @@ export const Sample = () => {
     </div>
   )
 }
+
+export const WithFramer = () => (
+  <chakra.div
+    width="40px"
+    height="40px"
+    mx="auto"
+    mt="60px"
+    bg="tomato"
+    as={motion.div}
+    animate={{
+      scale: [1, 2, 2, 1, 1],
+      rotate: [0, 0, 270, 270, 0],
+      borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+    }}
+    whileHover={{
+      scale: 1.4,
+    }}
+  />
+)
 
 export const AtlasKitButton = () => {
   return (

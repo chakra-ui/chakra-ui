@@ -38,7 +38,7 @@ export interface ComponentTheme {
   }
 }
 
-export interface Options<ComponentType extends As, ExtraProps = {}> {
+export interface Options<T extends As, P = {}> {
   /**
    * The key of this component in `theme.components`.
    */
@@ -47,12 +47,12 @@ export interface Options<ComponentType extends As, ExtraProps = {}> {
    * Additional props to attach to the component
    * You can use a function to make it dynamic
    */
-  attrs?: ComponentAttrs<ComponentType>
+  attrs?: ComponentAttrs<T>
   /**
    * Base style object to apply to this component
    * NB: This style is theme-aware so you can use all style props
    */
-  baseStyle?: BaseStyle<ExtraProps>
+  baseStyle?: BaseStyle<P>
   /**
    * A boolean indicating if the component should avoid re-rendering
    * when props haven't changed. This uses `React.memo(...)`
@@ -98,11 +98,13 @@ export type PropsWithAs<P, T extends As> = P &
     as?: T
   }
 
-export type ChakraComponent<T extends As, P = {}> = {
-  <TT extends As = T>(
-    props: PropsWithAs<PropsOf<T>, TT> & ChakraProps & P,
-  ): JSX.Element
-  (props: PropsOf<T> & P & ChakraProps): JSX.Element
+type Factory<T extends As, P> =
+  | ((props: PropsOf<T> & P & ChakraProps) => JSX.Element)
+  | (<TT extends As = T>(
+      props: PropsWithAs<PropsOf<T>, TT> & ChakraProps & P,
+    ) => JSX.Element)
+
+export type ChakraComponent<T extends As, P = {}> = Factory<T, P> & {
   displayName?: string
   propTypes?: React.WeakValidationMap<PropsOf<T> & P>
   defaultProps?: Partial<PropsOf<T> & P & ChakraProps>
