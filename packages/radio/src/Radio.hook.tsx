@@ -1,9 +1,5 @@
 import { useBooleanState, useControllableProp } from "@chakra-ui/hooks"
-import {
-  callAllHandlers,
-  makeDataAttr as attr,
-  mergeRefs,
-} from "@chakra-ui/utils"
+import { callAllHandlers, attr, mergeRefs } from "@chakra-ui/utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
 import * as React from "react"
 

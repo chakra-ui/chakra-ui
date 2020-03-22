@@ -2,6 +2,7 @@ import { Icon } from "@chakra-ui/icon"
 import { chakra, createChakra, PropsOf, SystemProps } from "@chakra-ui/system"
 import * as React from "react"
 import { Spinner } from "@chakra-ui/spinner"
+import { attr } from "@chakra-ui/utils"
 
 const StyledButton = createChakra("button", { themeKey: "Button" })
 
@@ -84,9 +85,9 @@ export const Button = React.forwardRef(
         aria-disabled={isDisabled || isLoading}
         ref={ref}
         type={type}
-        width={isFullWidth ? "full" : undefined}
-        data-active={isActive ? "" : undefined}
-        data-loading={isLoading ? "" : undefined}
+        width={isFullWidth ? "100%" : undefined}
+        data-active={attr(isActive)}
+        data-loading={attr(isLoading)}
         {...rest}
       >
         {leftIcon && !isLoading && (

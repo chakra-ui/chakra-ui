@@ -11,7 +11,7 @@ import {
   roundValueToStep,
   valueToPercent,
   getBox,
-  makeDataAttr as attr,
+  attr,
   callAllHandlers,
   mergeRefs,
 } from "@chakra-ui/utils"
@@ -87,7 +87,15 @@ export interface SliderHookProps {
    * The static string to use used for `aria-valuetext`
    */
   "aria-valuetext"?: string
+  /**
+   * The static string to use used for `aria-label`
+   * if no visible label is used.
+   */
   "aria-label"?: string
+  /**
+   * The static string `aria-labelledby` that points to the
+   * ID of the element that serves as label for the slider
+   */
   "aria-labelledby"?: string
 }
 

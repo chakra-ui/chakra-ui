@@ -15,8 +15,20 @@ type OmittedCheckboxProps = Omit<
 type CustomCheckboxProps = OmittedCheckboxProps &
   Omit<PropsOf<"input">, "size"> &
   CheckboxHookProps & {
+    /**
+     * The color of the check icon
+     */
     iconColor?: IconProps["color"]
+    /**
+     * The size of the check icon
+     * @default 0.75rem
+     */
     iconSize?: IconProps["size"]
+    /**
+     * The spacing between the checkbox and it's label text
+     * @default 0.5rem
+     */
+    labelSpacing?: SystemProps["marginLeft"]
   }
 
 export const Checkbox = React.forwardRef(
@@ -25,32 +37,39 @@ export const Checkbox = React.forwardRef(
       props,
     )
 
-    const { iconSize = 3, iconColor } = props
-
-    const iconProps = {
-      size: iconSize,
-      color: iconColor,
-      transition: "transform 240ms, opacity 240ms",
-    }
+    const {
+      iconSize = "0.75rem",
+      iconColor,
+      labelSpacing = "0.5rem",
+      variant,
+      variantColor = "blue",
+      variantSize = "lg",
+    } = props
 
     return (
-      <chakra.label {...htmlProps}>
-        <input {...getInputProps({ ref })} />
+      <chakra.label data-chakra-checkbox="" {...htmlProps}>
+        <input data-chakra-checkbox-input="" {...getInputProps({ ref })} />
         <ControlBox
-          variantSize="lg"
-          variantColor="blue"
+          data-chakra-checkbox-control=""
+          variant={variant}
+          variantSize={variantSize}
+          variantColor={variantColor}
           verticalAlign="top"
           {...getCheckboxProps()}
         >
           <CheckboxIcon
+            data-chakra-checkbox-icon=""
             isChecked={state.isChecked}
             isIndeterminate={state.isIndeterminate}
-            {...iconProps}
+            size={iconSize}
+            color={iconColor}
+            transition="transform 240ms, opacity 240ms"
           />
         </ControlBox>
         {props.children && (
           <chakra.div
-            ml={2}
+            data-chakra-checkbox-label=""
+            marginLeft={labelSpacing}
             fontSize={props.variantSize}
             userSelect="none"
             opacity={props.isDisabled ? 0.4 : 1}

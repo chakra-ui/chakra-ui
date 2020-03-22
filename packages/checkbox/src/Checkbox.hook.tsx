@@ -3,7 +3,7 @@ import {
   useControllableProp,
   useIsomorphicEffect,
 } from "@chakra-ui/hooks"
-import { callAllHandlers, makeDataAttr, mergeRefs } from "@chakra-ui/utils"
+import { callAllHandlers, attr, mergeRefs } from "@chakra-ui/utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
 import * as React from "react"
 
@@ -181,13 +181,13 @@ export function useCheckbox(props: CheckboxHookProps) {
     // prop getters
     getCheckboxProps: (props: CustomCheckboxProps = {}) => ({
       ...props,
-      "data-active": makeDataAttr(isActive),
-      "data-hover": makeDataAttr(isHovered),
-      "data-checked": makeDataAttr(isChecked),
-      "data-focus": makeDataAttr(isFocused),
-      "data-mixed": makeDataAttr(isIndeterminate),
-      "data-disabled": makeDataAttr(isDisabled),
-      "data-readonly": makeDataAttr(isReadOnly),
+      "data-active": attr(isActive),
+      "data-hover": attr(isHovered),
+      "data-checked": attr(isChecked),
+      "data-focus": attr(isFocused),
+      "data-mixed": attr(isIndeterminate),
+      "data-disabled": attr(isDisabled),
+      "data-readonly": attr(isReadOnly),
       "aria-hidden": true,
       onPointerDown: callAllHandlers(props.onPointerDown, setActive.on),
       onPointerUp: callAllHandlers(props.onPointerUp, setActive.off),
