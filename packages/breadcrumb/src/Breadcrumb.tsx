@@ -1,20 +1,12 @@
-import * as React from "react"
-import {
-  chakra,
-  forwardRef,
-  ChakraComponent,
-  PropsOf,
-  SystemProps,
-} from "@chakra-ui/system"
+import { chakra, PropsOf, SystemProps } from "@chakra-ui/styled"
 import { getValidChildren } from "@chakra-ui/utils"
-
-//////////////////////////////////////////////////////////////////////
+import * as React from "react"
 
 export type BreadcrumbSeparatorProps = PropsOf<typeof chakra.div> & {
   spacing?: SystemProps["mx"]
 }
 
-export const BreadcrumbSeparator = forwardRef(
+export const BreadcrumbSeparator = React.forwardRef(
   ({ spacing, ...props }: BreadcrumbSeparatorProps, ref: React.Ref<any>) => (
     <chakra.div
       ref={ref}
@@ -24,30 +16,26 @@ export const BreadcrumbSeparator = forwardRef(
       {...props}
     />
   ),
-) as ChakraComponent<"div", { spacing?: SystemProps["mx"] }>
+)
 
 BreadcrumbSeparator.displayName = "BreadcrumbSeparator"
-
-//////////////////////////////////////////////////////////////////////
 
 export type BreadcrumbLinkProps = PropsOf<typeof chakra.a> & {
   isCurrentPage?: boolean
 }
 
-export const BreadcrumbLink = forwardRef(
+export const BreadcrumbLink = React.forwardRef(
   ({ isCurrentPage, as, ...props }: BreadcrumbLinkProps, ref: React.Ref<any>) =>
     isCurrentPage ? (
       <chakra.span ref={ref} aria-current="page" {...props} />
     ) : (
       <chakra.a ref={ref} as={as} {...props} />
     ),
-) as ChakraComponent<"a", { isCurrentPage?: boolean }>
+)
 
 BreadcrumbLink.displayName = "BreadcrumbLink"
 
-//////////////////////////////////////////////////////////////////////
-
-interface BreadcrumbItemOptions extends BreadcrumbProps {
+type BreadcrumbItemOptions = BreadcrumbProps & {
   isCurrentPage?: boolean
   isLastChild?: boolean
 }
@@ -55,7 +43,7 @@ interface BreadcrumbItemOptions extends BreadcrumbProps {
 export type BreadcrumbItemProps = BreadcrumbItemOptions &
   PropsOf<typeof chakra.li>
 
-export const BreadcrumbItem = forwardRef(
+export const BreadcrumbItem = React.forwardRef(
   (props: BreadcrumbItemProps, ref: React.Ref<any>) => {
     const {
       isCurrentPage,
@@ -97,8 +85,6 @@ export const BreadcrumbItem = forwardRef(
   },
 )
 
-//////////////////////////////////////////////////////////////////////
-
 export interface BreadcrumbOptions {
   children?: React.ReactNode
   /**
@@ -117,7 +103,7 @@ export interface BreadcrumbOptions {
 
 export type BreadcrumbProps = PropsOf<typeof chakra.nav> & BreadcrumbOptions
 
-export const Breadcrumb = forwardRef(
+export const Breadcrumb = React.forwardRef(
   (props: BreadcrumbProps, ref: React.Ref<any>) => {
     const {
       children,

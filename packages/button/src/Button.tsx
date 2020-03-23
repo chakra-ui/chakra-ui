@@ -1,15 +1,15 @@
 import { Icon } from "@chakra-ui/icon"
-import { chakra, createChakra, PropsOf, SystemProps } from "@chakra-ui/system"
+import { chakra, PropsOf, SystemProps } from "@chakra-ui/styled"
 import * as React from "react"
 import { Spinner } from "@chakra-ui/spinner"
 import { attr } from "@chakra-ui/utils"
 
-const StyledButton = createChakra("button", { themeKey: "Button" })
+const StyledButton = chakra("button", { themeKey: "Button" })
 
 StyledButton.defaultProps = {
   variant: "solid",
-  variantSize: "md",
-  variantColor: "gray",
+  size: "md",
+  colorScheme: "gray",
 }
 
 export interface ButtonOptions {
@@ -52,7 +52,7 @@ export interface ButtonOptions {
    * The space between the button icon and label.
    * Use the styled-system tokens or add custom values as a string
    */
-  iconSpacing?: SystemProps["margin"]
+  iconSpacing?: SystemProps["marginRight"]
   /**
    * Replace the spinner component when `isLoading` is set to `true`
    */
@@ -73,7 +73,7 @@ export const Button = React.forwardRef(
       leftIcon,
       rightIcon,
       loadingText,
-      iconSpacing = 2,
+      iconSpacing = "0.5rem",
       type = "button",
       spinner,
       ...rest
@@ -91,7 +91,11 @@ export const Button = React.forwardRef(
         {...rest}
       >
         {leftIcon && !isLoading && (
-          <Icon marginLeft={-1} marginRight={iconSpacing} as={leftIcon} />
+          <Icon
+            marginLeft={-1}
+            marginRight={iconSpacing as any}
+            as={leftIcon}
+          />
         )}
         {isLoading && (
           <chakra.span
@@ -105,7 +109,11 @@ export const Button = React.forwardRef(
           ? loadingText || <chakra.span opacity={0}>{children}</chakra.span>
           : children}
         {rightIcon && !isLoading && (
-          <Icon marginRight={-1} marginLeft={iconSpacing} as={rightIcon} />
+          <Icon
+            marginRight={-1}
+            marginLeft={iconSpacing as any}
+            as={rightIcon}
+          />
         )}
       </StyledButton>
     )
@@ -113,5 +121,3 @@ export const Button = React.forwardRef(
 )
 
 Button.displayName = "Button"
-
-export default Button

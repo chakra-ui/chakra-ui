@@ -1,11 +1,11 @@
-import { createChakra, PropsOf, SystemProps, chakra } from "@chakra-ui/system"
+import { chakra, PropsOf, SystemProps } from "@chakra-ui/styled"
 import { Omit } from "@chakra-ui/utils"
 import * as React from "react"
 import { CheckboxHookProps, useCheckbox } from "./Checkbox.hook"
 import { CheckboxIcon } from "./Checkbox.icon"
 import { IconProps } from "@chakra-ui/icon"
 
-const ControlBox = createChakra("span", { themeKey: "Checkbox" })
+const ControlBox = chakra("span", { themeKey: "Checkbox" })
 
 type OmittedCheckboxProps = Omit<
   PropsOf<typeof ControlBox>,
@@ -42,8 +42,8 @@ export const Checkbox = React.forwardRef(
       iconColor,
       labelSpacing = "0.5rem",
       variant,
-      variantColor = "blue",
-      variantSize = "lg",
+      colorScheme = "blue",
+      size = "lg",
     } = props
 
     return (
@@ -52,8 +52,8 @@ export const Checkbox = React.forwardRef(
         <ControlBox
           data-chakra-checkbox-control=""
           variant={variant}
-          variantSize={variantSize}
-          variantColor={variantColor}
+          size={size}
+          colorScheme={colorScheme}
           verticalAlign="top"
           {...getCheckboxProps()}
         >
@@ -70,7 +70,7 @@ export const Checkbox = React.forwardRef(
           <chakra.div
             data-chakra-checkbox-label=""
             marginLeft={labelSpacing}
-            fontSize={props.variantSize}
+            fontSize={props.size}
             userSelect="none"
             opacity={props.isDisabled ? 0.4 : 1}
           >

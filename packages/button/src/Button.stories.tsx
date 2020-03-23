@@ -1,7 +1,7 @@
+import { AddIcon } from "@chakra-ui/icons"
 import { Stack } from "@chakra-ui/layout"
 import * as React from "react"
-import { Button, ButtonGroup, IconButton } from "."
-import { PhoneIcon, AddIcon } from "@chakra-ui/icons"
+import { Button } from "."
 
 export default {
   title: "Button",
@@ -49,16 +49,16 @@ export const WithLoading = () => (
   </Button>
 )
 
-export const WithButtonGroup = () => (
-  <ButtonGroup variant="solid">
-    <Button variantColor="green">Save</Button>
-    <Button variant="outline">Cancel</Button>
-  </ButtonGroup>
-)
+// export const WithButtonGroup = () => (
+//   <ButtonGroup variant="solid">
+//     <Button variantColor="green">Save</Button>
+//     <Button variant="outline">Cancel</Button>
+//   </ButtonGroup>
+// )
 
-export const iconButton = () => (
-  <ButtonGroup>
-    <IconButton fontSize="24px" aria-label="Add to friends" icon={AddIcon} />
-    <IconButton aria-label="Call us now" isRound icon={PhoneIcon} />
-  </ButtonGroup>
-)
+// export const iconButton = () => (
+//   <ButtonGroup>
+//     <IconButton fontSize="24px" aria-label="Add to friends" icon={AddIcon} />
+//     <IconButton aria-label="Call us now" isRound icon={PhoneIcon} />
+//   </ButtonGroup>
+// )
