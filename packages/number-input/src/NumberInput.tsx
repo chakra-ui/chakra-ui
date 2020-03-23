@@ -105,6 +105,7 @@ export const NumberInputField = React.forwardRef(
     return (
       <StyledInput
         variant={variant}
+        //@ts-ignore
         size={size as any}
         colorScheme={colorScheme}
         data-chakra-numberinput-input=""

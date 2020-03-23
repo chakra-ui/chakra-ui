@@ -54,6 +54,7 @@ export const Input = React.forwardRef(
         ref={ref}
         {...inputProps}
         variant={variant}
+        //@ts-ignore
         size={size}
         {...(group?.hasRightElement && { paddingRight: inputStyle?.height })}
         {...(group?.hasLeftElement && { paddingLeft: inputStyle?.height })}

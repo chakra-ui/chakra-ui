@@ -1,17 +1,15 @@
+import { Omit } from "@chakra-ui/utils"
 import * as CSS from "csstype"
 import { Pseudos } from "./configs/pseudo.selector"
-import { Dict } from "@chakra-ui/utils"
 
-export type StandardCSSProperties = CSS.PropertiesFallback<number | string>
+type StandardCSSProperties = CSS.PropertiesFallback<number | string>
 
-type Omit<T, K> = Pick<T, Exclude<keyof T, K>>
+type Responsive<T> = T | Array<T | null>
 
-export type ResponsiveValue<T> = T | Array<T | null>
-
-export type CSSProperties = CSS.StandardProperties<number | string> &
+type CSSProperties = CSS.StandardProperties<number | string> &
   CSS.SvgProperties<number | string>
 
-export type CSSPseudoSelectorProps = {
+type CSSPseudoSelectorProps = {
   [K in CSS.Pseudos]?: SystemStyleObject
 }
 
@@ -90,10 +88,11 @@ interface AllSystemCSSProperties
     AliasesCSSProperties,
     OverwriteCSSProperties {}
 
-export type SystemCSSProperties = {
+type SystemCSSProperties = {
   [K in keyof AllSystemCSSProperties]:
-    | ResponsiveValue<AllSystemCSSProperties[K]>
-    | ((theme: any) => ResponsiveValue<AllSystemCSSProperties[K]>)
+    | string
+    | Responsive<AllSystemCSSProperties[K]>
+    | ((theme: any) => Responsive<AllSystemCSSProperties[K]>)
     | SystemStyleObject
 }
 
@@ -101,42 +100,18 @@ interface ApplyProperty {
   apply: string
 }
 
-type PseudoShorthandStyles = {
-  [K in keyof Pseudos]: SystemStyleObject & { content?: string }
+type PseudoStyles = {
+  [K in keyof Pseudos]?: SystemStyleObject & { content?: string }
 }
 
 export type SystemStyleObject =
-  | string
   | SystemCSSProperties
   | CSSPseudoSelectorProps
   | CSSSelectorObject
   | ApplyProperty
-  | PseudoShorthandStyles
+  | PseudoStyles
 
 // The core style object or function
-export type StyleObject =
+export type StyleObjectOrFn =
   | SystemStyleObject
   | ((theme: any) => SystemStyleObject)
-
-//////////////////////////////////////////////////////////////////////
-
-export type ThemeValue<T> = T[] | Dict<T>
-type TVal = string | number
-
-export interface Theme {
-  breakpoints?: Dict<string | number>
-  colors?: ThemeValue<TVal>
-  space?: ThemeValue<TVal>
-  fonts?: ThemeValue<TVal>
-  fontSizes?: ThemeValue<TVal>
-  fontWeights?: ThemeValue<TVal>
-  lineHeights?: ThemeValue<TVal>
-  letterSpacings?: ThemeValue<TVal>
-  borders?: ThemeValue<TVal>
-  borderWidths?: ThemeValue<TVal>
-  borderStyles?: ThemeValue<TVal>
-  radii?: ThemeValue<TVal>
-  shadows?: ThemeValue<TVal>
-  zIndices?: ThemeValue<TVal>
-  sizes?: ThemeValue<TVal>
-}

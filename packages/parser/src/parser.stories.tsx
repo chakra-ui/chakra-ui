@@ -13,8 +13,8 @@ const theme = {
     primary: "rebeccapurple",
     secondary: "tomato",
     green: {
-      100: "baba",
-      200: "mama",
+      100: "tomato",
+      200: "pink",
     },
   },
   fontSizes: {
@@ -33,6 +33,7 @@ const styles = parser({
   theme,
   marginX: [2, 4],
   color: "green.200",
+  fontSize: "md",
   paddingY: { all: "12px", mobile: 4, desktop: "90px" },
 })
 
@@ -94,6 +95,8 @@ export const Test = () => {
     width: ["100%", null, "50%"],
     color: ["red", "green", "blue"],
   })(theme2)
+
+  console.log(result)
 
   return <div css={styles}>Testing</div>
 }

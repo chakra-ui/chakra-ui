@@ -1,9 +1,9 @@
-import { css, Global } from "@emotion/core"
+import { Global } from "@emotion/core"
 import React from "react"
 
 const CSSReset = () => (
   <Global
-    styles={css`
+    styles={`
       body,
       html {
         height: 100%;
@@ -20,7 +20,7 @@ const CSSReset = () => (
       *:before,
       *:after {
         border-width: 0;
-        border-style: "solid";
+        border-style: solid;
         box-sizing: inherit;
       }
 

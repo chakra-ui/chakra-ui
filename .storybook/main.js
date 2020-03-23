@@ -2,11 +2,15 @@ const path = require("path")
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin")
 
 module.exports = {
-  stories: ["../packages/styled/**/*.stories.tsx"],
+  stories: ["../packages/parser/**/*.stories.tsx"],
   webpackFinal: async config => {
     config.module.rules.push({
       test: /\.(ts|tsx)$/,
-      use: [{ loader: require.resolve("ts-loader") }],
+      use: [
+        {
+          loader: require.resolve("ts-loader"),
+        },
+      ],
     })
 
     config.resolve.plugins = [

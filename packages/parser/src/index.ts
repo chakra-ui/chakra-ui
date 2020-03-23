@@ -1,5 +1,5 @@
 export * from "./css"
-export { StyleObject, SystemStyleObject, CSSObject } from "./css.types"
+export * from "./css.types"
 export * from "./create-parser"
 export * from "./parser"
 export * from "./combine-parser"

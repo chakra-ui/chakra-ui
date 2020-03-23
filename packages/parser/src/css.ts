@@ -5,25 +5,26 @@ import {
   isArray,
   isObject,
   runIfFn,
+  Dict,
 } from "@chakra-ui/utils"
 import { parsePseudo } from "./configs/pseudo"
-import { CSSObject, StyleObject, Theme } from "./css.types"
+import { CSSObject, SystemStyleObject, StyleObjectOrFn } from "./css.types"
 import { getMediaQuery, assignArrayValue } from "./utils"
 import { parser } from "./parser"
 
-const hasTheme = (props: any): props is { theme: Theme } => {
+const hasTheme = (props: any): props is { theme: Dict } => {
   return Boolean(isObject(props) && props.theme)
 }
 
-type PropsOrTheme = Theme | { theme: Theme }
+type PropsOrTheme = Dict | { theme: Dict }
 
-export const css = (styleProps: StyleObject) => (props: PropsOrTheme) => {
+export const css = (input: StyleObjectOrFn) => (props: PropsOrTheme) => {
   const theme = hasTheme(props) ? props.theme : props
 
   let result: CSSObject = {}
 
-  const styleObject = runIfFn(styleProps, theme)
-  const styles = parsePseudo(styleObject as any)
+  const styleObject = runIfFn(input, theme)
+  const styles = parsePseudo(styleObject)
 
   const queries = getMediaQuery(theme.breakpoints)
 
