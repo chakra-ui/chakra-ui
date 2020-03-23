@@ -1,10 +1,10 @@
 import React from "react"
-import { chakra, PropsOf, createChakra } from "@chakra-ui/system"
+import { chakra, PropsOf } from "@chakra-ui/styled"
 import { Icon, IconProps } from "@chakra-ui/icon"
 
 export type TagProps = PropsOf<typeof Tag>
 
-export const Tag = createChakra("span", {
+export const Tag = chakra("span", {
   themeKey: "Tag",
   baseStyle: {
     display: "inline-flex",

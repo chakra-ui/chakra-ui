@@ -1,4 +1,4 @@
-// import { chakra, createChakra } from "@chakra-ui/system"
+// import { chakra } from "@chakra-ui/styled"
 // import React from "react"
 // import {
 //   Checkbox,
@@ -45,7 +45,7 @@
 //   )
 // }
 
-// const CheckBox = createChakra(CustomCheckbox)
+// const CheckBox = chakra(CustomCheckbox)
 
 // const CheckIcon = () => {
 //   const { isChecked } = useCheckboxState()

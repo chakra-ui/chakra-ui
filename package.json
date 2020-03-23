@@ -24,7 +24,6 @@
     "hooks": "yarn workspace @chakra-ui/hooks",
     "utils": "yarn workspace @chakra-ui/utils",
     "layout": "yarn workspace @chakra-ui/layout",
-    "system": "yarn workspace @chakra-ui/system",
     "preset": "yarn workspace @chakra-ui/preset-base",
     "color": "yarn workspace @chakra-ui/color",
     "create-pkg": "node scripts/create-package.js",

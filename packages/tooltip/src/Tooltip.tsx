@@ -1,11 +1,11 @@
 import * as React from "react"
 import { useTooltip, TooltipHookProps } from "./Tooltip.hook"
-import { createChakra, chakra, PropsOf } from "@chakra-ui/system"
+import { chakra, PropsOf } from "@chakra-ui/styled"
 import { Portal } from "@chakra-ui/portal"
 import { isString, omit, pick } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 
-const StyledTooltip = createChakra("div", { themeKey: "Tooltip" })
+const StyledTooltip = chakra("div", { themeKey: "Tooltip" })
 
 export type TooltipProps = PropsOf<typeof StyledTooltip> &
   TooltipHookProps & {

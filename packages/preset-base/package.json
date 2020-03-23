@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "@chakra-ui/color": "0.0.1",
-    "@chakra-ui/system": "0.0.1"
+    "@chakra-ui/styled": "0.0.1"
   },
   "devDependencies": {
     "@types/jest": "25.1.4",

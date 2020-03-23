@@ -1,6 +1,6 @@
 import { Theme } from "../foundations"
 import { getColor } from "@chakra-ui/color"
-import { SystemProps, ThemingProps } from "@chakra-ui/system"
+import { SystemProps, ThemingProps } from "@chakra-ui/styled"
 
 export type StyleProps = SystemProps | { [Component: string]: SystemProps }
 

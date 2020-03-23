@@ -1,4 +1,4 @@
-import { createChakra } from "@chakra-ui/system"
+import { chakra } from "@chakra-ui/styled"
 import React from "react"
 
 export const visuallyHiddenStyle: React.CSSProperties = {
@@ -13,16 +13,19 @@ export const visuallyHiddenStyle: React.CSSProperties = {
   position: "absolute",
 }
 
-export const VisuallyHiddenInput = React.forwardRef<
-  HTMLInputElement,
-  React.InputHTMLAttributes<HTMLInputElement>
->((props, ref) => <input ref={ref} style={visuallyHiddenStyle} {...props} />)
+export const VisuallyHiddenInput = chakra("input", {
+  attrs: {
+    style: visuallyHiddenStyle,
+  },
+})
 
-export const ScreenReader = (props: React.ComponentProps<"span">) => (
-  <span style={visuallyHiddenStyle} {...props} />
-)
+export const ScreenReader = chakra("span", {
+  attrs: {
+    style: visuallyHiddenStyle,
+  },
+})
 
-export const VisuallyHidden = createChakra("span", {
+export const VisuallyHidden = chakra("span", {
   attrs: {
     style: visuallyHiddenStyle,
   },

@@ -1,9 +1,4 @@
-import {
-  PropsOf,
-  createChakra,
-  chakra,
-  useComponentDefaults,
-} from "@chakra-ui/system"
+import { PropsOf, chakra, useComponentDefaults } from "@chakra-ui/styled"
 import * as React from "react"
 import {
   useTab,
@@ -26,11 +21,11 @@ type ThemingProps = {
   /**
    * The size of the tab (affects the font-size and padding).
    */
-  variantSize?: string
+  size?: string
   /**
    * The color scheme of the tabs
    */
-  variantColor?: string
+  colorScheme?: string
   /**
    * If `true`, tabs will stretch to width of the tablist.
    */
@@ -42,28 +37,28 @@ export type TabsProps = TabsHookProps & ThemingProps
 const [ThemingProvider, useThemingContext] = createContext<ThemingProps>()
 
 export function Tabs(props: TabsProps) {
-  // get the default theming props for variant and variantSize
+  // get the default theming props for variant and size
   const defaults = useComponentDefaults("Tabs") as any
 
   const {
     children,
     variant = defaults.variant,
-    variantSize = defaults.variantSize,
-    variantColor,
+    size = defaults.size,
+    colorScheme,
     isFitted,
     ...rest
   } = props
 
   return (
     <TabsProvider {...rest}>
-      <ThemingProvider value={{ variant, variantSize, variantColor, isFitted }}>
+      <ThemingProvider value={{ variant, size, colorScheme, isFitted }}>
         {children}
       </ThemingProvider>
     </TabsProvider>
   )
 }
 
-const StyledTab = createChakra("button", {
+const StyledTab = chakra("button", {
   themeKey: "Tabs.Tab",
   baseStyle: {
     outline: "0",
@@ -84,7 +79,7 @@ export const Tab = React.forwardRef((props: TabProps, ref: React.Ref<any>) => {
   )
 })
 
-const StyledTabList = createChakra("div", { themeKey: "Tabs.TabList" })
+const StyledTabList = chakra("div", { themeKey: "Tabs.TabList" })
 
 export type TabListProps = TabListHookProps & PropsOf<typeof StyledTabList>
 
@@ -96,7 +91,7 @@ export const TabList = React.forwardRef(
   },
 )
 
-const StyledTabPanel = createChakra("div", {
+const StyledTabPanel = chakra("div", {
   themeKey: "Tabs.TabPanel",
   baseStyle: {
     padding: 4,

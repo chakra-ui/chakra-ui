@@ -1,4 +1,4 @@
-import { createChakra, PropsOf } from "@chakra-ui/system"
+import { chakra, PropsOf } from "@chakra-ui/styled"
 import * as React from "react"
 import {
   FormErrorMessage,
@@ -17,7 +17,7 @@ type OmittedTypes = "disabled" | "required" | "readOnly"
 type InputProps = Omit<PropsOf<typeof StyledInput>, OmittedTypes> & ControlProps
 
 // Create an input that consumes useField
-const StyledInput = createChakra<
+const StyledInput = chakra<
   "input",
   { focusBorderColor?: string; errorBorderColor?: string }
 >("input", { themeKey: "Input" })
@@ -30,7 +30,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 type TextAreaProps = Omit<PropsOf<"textarea">, OmittedTypes> & ControlProps
 
 // Create a textarea that consumes useField
-const StyledTextarea = createChakra("textarea")
+const StyledTextarea = chakra("textarea")
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
   (props, ref) => {
     const inputProps = useField<HTMLTextAreaElement>(props)

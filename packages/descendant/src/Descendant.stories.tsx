@@ -1,4 +1,4 @@
-import { chakra } from "@chakra-ui/system"
+import { chakra } from "@chakra-ui/styled"
 import React from "react"
 import { useDescendant, useDescendants } from "./"
 import { createDescendantsContext } from "./Descendant"

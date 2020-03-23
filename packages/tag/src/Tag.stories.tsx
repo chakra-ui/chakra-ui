@@ -1,13 +1,13 @@
 import { AddIcon } from "@chakra-ui/icons"
 import * as React from "react"
 import { Tag, TagIcon, TagLabel, TagCloseButton } from "./Tag"
-import { chakra } from "@chakra-ui/system"
+import { chakra } from "@chakra-ui/styled"
 import { Avatar } from "@chakra-ui/avatar"
 
 export default {
   title: "Tag",
   decorators: [
-    story => (
+    (story: Function) => (
       <chakra.div maxW="600px" mx="auto" mt="40px">
         {story()}
       </chakra.div>
@@ -17,23 +17,23 @@ export default {
 
 export const Basic = () => (
   <>
-    <Tag variantSize="sm" variantColor="gray">
+    <Tag size="sm" colorScheme="gray">
       Gray
     </Tag>
-    <Tag variantColor="gray">Gray</Tag>
-    <Tag variantSize="lg" variantColor="gray">
+    <Tag colorScheme="gray">Gray</Tag>
+    <Tag size="lg" colorScheme="gray">
       Gray
     </Tag>
   </>
 )
 
-export const VariantColors = () => (
+export const colorSchemes = () => (
   <>
-    <Tag variantSize="sm" variantColor="green">
+    <Tag size="sm" colorScheme="green">
       Gray
     </Tag>
-    <Tag variantColor="pink">Gray</Tag>
-    <Tag variantSize="lg" variantColor="blue">
+    <Tag colorScheme="pink">Gray</Tag>
+    <Tag size="lg" colorScheme="blue">
       Gray
     </Tag>
   </>
@@ -41,7 +41,7 @@ export const VariantColors = () => (
 
 export const LeftIcon = () => (
   <>
-    <Tag variantColor="cyan">
+    <Tag colorScheme="cyan">
       <TagIcon size="12px" as={AddIcon} />
       <TagLabel>Green</TagLabel>
     </Tag>
@@ -50,17 +50,17 @@ export const LeftIcon = () => (
 
 export const WithCloseButton = () => (
   <>
-    <Tag variant="solid" variantSize="sm" variantColor="cyan">
+    <Tag variant="solid" size="sm" colorScheme="cyan">
       <TagLabel>Tab Label</TagLabel>
       <TagCloseButton />
     </Tag>
 
-    <Tag variant="solid" variantSize="md" variantColor="cyan">
+    <Tag variant="solid" size="md" colorScheme="cyan">
       <TagLabel>Tab Label</TagLabel>
       <TagCloseButton />
     </Tag>
 
-    <Tag variant="solid" variantSize="lg" variantColor="cyan">
+    <Tag variant="solid" size="lg" colorScheme="cyan">
       <TagLabel>Tab Label</TagLabel>
       <TagCloseButton />
     </Tag>
@@ -68,10 +68,10 @@ export const WithCloseButton = () => (
 )
 
 export const WithCustomElement = () => (
-  <Tag variantSize="lg" variantColor="red" borderRadius="full">
+  <Tag size="lg" colorScheme="red" borderRadius="full">
     <Avatar
       src="https://bit.ly/sage-adebayo"
-      variantSize="xs"
+      size="xs"
       name="Segun Adebayo"
       ml={-1}
       mr={2}

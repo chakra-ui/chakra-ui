@@ -1,6 +1,6 @@
 import React from "react"
 import { Tabs, TabList, Tab, TabIndicator, TabPanels, TabPanel } from "."
-import { chakra } from "@chakra-ui/system"
+import { chakra } from "@chakra-ui/styled"
 
 export default {
   title: "Tabs",
@@ -14,7 +14,7 @@ export default {
 }
 
 export const Basic = () => (
-  <Tabs variantColor="blue">
+  <Tabs colorScheme="blue">
     <TabList>
       <Tab>Settings</Tab>
       <Tab>Billings</Tab>

@@ -1,5 +1,5 @@
 import { ControlProps, useField } from "@chakra-ui/form-control"
-import { createChakra, PropsOf } from "@chakra-ui/system"
+import { chakra, PropsOf } from "@chakra-ui/styled"
 import * as React from "react"
 
 interface TextareaOptions {
@@ -21,7 +21,7 @@ interface TextareaOptions {
   isFullWidth?: boolean
 }
 
-const StyledTextarea = createChakra<"textarea", TextareaOptions>("textarea", {
+const StyledTextarea = chakra<"textarea", TextareaOptions>("textarea", {
   themeKey: "Textarea",
   shouldForwardProp: prop =>
     !["focusBorderColor", "errorBorderColor"].includes(prop),

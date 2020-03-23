@@ -1,4 +1,4 @@
-import { createChakra, PropsOf } from "@chakra-ui/system"
+import { chakra, PropsOf } from "@chakra-ui/styled"
 import { SafeMerge } from "@chakra-ui/utils"
 import * as React from "react"
 import { TabbableHookProps, useTabbable } from "./Tabbable.hook"
@@ -17,7 +17,7 @@ const BaseButton = React.forwardRef(
   },
 )
 
-const Button = createChakra(BaseButton)
+const Button = chakra(BaseButton)
 
 export const Button_ = () => (
   <>

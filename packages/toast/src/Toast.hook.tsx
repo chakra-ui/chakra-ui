@@ -1,4 +1,4 @@
-import { ThemeProvider, useTheme, chakra } from "@chakra-ui/system"
+import { ThemeProvider, useTheme, chakra } from "@chakra-ui/styled"
 import { isString, isFunction } from "@chakra-ui/utils"
 import * as React from "react"
 import { toast } from "./Toast.class"

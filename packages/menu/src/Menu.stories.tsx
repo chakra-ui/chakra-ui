@@ -1,5 +1,5 @@
 import { Portal } from "@chakra-ui/portal"
-import { chakra } from "@chakra-ui/system"
+import { chakra } from "@chakra-ui/styled"
 import { FadeProps, Fade } from "@chakra-ui/transition"
 import * as React from "react"
 import {
