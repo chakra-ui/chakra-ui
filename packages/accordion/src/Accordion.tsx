@@ -1,4 +1,4 @@
-import { PropsOf, createChakra } from "@chakra-ui/system"
+import { PropsOf, chakra } from "@chakra-ui/styled"
 import { Omit, createContext } from "@chakra-ui/utils"
 import { ChevronDownIcon, IconProps } from "@chakra-ui/icons"
 import * as React from "react"
@@ -18,7 +18,7 @@ const [AccordionCtxProvider, useAccordionContext] = createContext<
   AccordionContext
 >()
 
-const StyledAccordion = createChakra("div", {
+const StyledAccordion = chakra("div", {
   themeKey: "Accordion.Root",
 })
 export type AccordionProps = AccordionHookProps &
@@ -62,11 +62,11 @@ export function AccordionItem(props: AccordionItemProps) {
   )
 }
 
-const StyledAccordionItem = createChakra("div", {
+const StyledAccordionItem = chakra("div", {
   themeKey: "Accordion.Item",
 })
 
-const StyledAccordionButton = createChakra("button", {
+const StyledAccordionButton = chakra("button", {
   themeKey: "Accordion.Button",
   baseStyle: {
     display: "flex",
@@ -89,7 +89,7 @@ export function AccordionButton(props: AccordionButtonProps) {
   )
 }
 
-const StyledAccordionPanel = createChakra("div", {
+const StyledAccordionPanel = chakra("div", {
   themeKey: "Accordion.Panel",
 })
 

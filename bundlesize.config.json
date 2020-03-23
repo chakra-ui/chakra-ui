@@ -5,6 +5,10 @@
       "maxSize": "10 kB"
     },
     {
+      "path": "./packages/styled/dist/*.js",
+      "maxSize": "30 kB"
+    },
+    {
       "path": "./packages/Accordion/dist/*.js",
       "maxSize": "10 kB"
     },

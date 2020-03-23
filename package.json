@@ -89,6 +89,7 @@
     }
   },
   "devDependencies": {
+    "bundlesize": "0.18.0",
     "@commitlint/cli": "8.3.5",
     "@commitlint/config-conventional": "8.3.4",
     "@emotion/core": "10.0.28",

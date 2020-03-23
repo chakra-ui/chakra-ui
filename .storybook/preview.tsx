@@ -1,26 +1,18 @@
+import CSSReset from "@chakra-ui/css-reset"
 import theme from "@chakra-ui/preset-base"
 import {
-  ColorMode,
   ColorModeProvider,
+  GlobalStyle,
   ThemeProvider,
-  CSSReset,
-} from "@chakra-ui/system"
-import { Global } from "@emotion/core"
+} from "@chakra-ui/styled"
 import { addDecorator } from "@storybook/react"
 import * as React from "react"
 
 addDecorator((storyFn: any) => (
   <ThemeProvider theme={theme}>
     <ColorModeProvider>
+      <GlobalStyle />
       <CSSReset />
-      <ColorMode />
-      <Global
-        styles={{
-          "*": {
-            fontFamily: "system-ui",
-          },
-        }}
-      />
       {storyFn()}
     </ColorModeProvider>
   </ThemeProvider>

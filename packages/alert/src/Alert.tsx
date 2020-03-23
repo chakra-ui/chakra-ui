@@ -1,11 +1,5 @@
 import { IconProps } from "@chakra-ui/icon"
-import {
-  ColorModeType,
-  createChakra,
-  forwardRef,
-  PropsOf,
-  useColorMode,
-} from "@chakra-ui/system"
+import { ColorMode, chakra, PropsOf, useColorMode } from "@chakra-ui/styled"
 import * as React from "react"
 import {
   InfoIcon,
@@ -39,7 +33,7 @@ export interface AlertOptions {
 
 export type AlertProps = PropsOf<typeof StyledAlert> & AlertOptions
 
-const StyledAlert = createChakra("div", {
+const StyledAlert = chakra("div", {
   themeKey: "Alert.Root",
   baseStyle: {
     display: "flex",
@@ -49,25 +43,27 @@ const StyledAlert = createChakra("div", {
   },
 })
 
-const Alert = forwardRef((props: AlertProps, ref: React.Ref<any>) => {
-  const { status = "info", variant = "subtle", ...rest } = props
-  const variantColor = statuses[status]["color"]
+export const Alert = React.forwardRef(
+  (props: AlertProps, ref: React.Ref<any>) => {
+    const { status = "info", variant = "subtle", ...rest } = props
+    const variantColor = statuses[status]["color"]
 
-  const context = { status, variant }
-  return (
-    <AlertContextProvider value={context}>
-      <StyledAlert
-        ref={ref}
-        role="alert"
-        variant={variant}
-        {...rest}
-        variantColor={variantColor}
-      />
-    </AlertContextProvider>
-  )
-})
+    const context = { status, variant }
+    return (
+      <AlertContextProvider value={context}>
+        <StyledAlert
+          ref={ref}
+          role="alert"
+          variant={variant}
+          {...rest}
+          variantColor={variantColor}
+        />
+      </AlertContextProvider>
+    )
+  },
+)
 
-const AlertTitle = createChakra("div", {
+export const AlertTitle = chakra("div", {
   themeKey: "Alert.Title",
   baseStyle: {
     fontWeight: "bold",
@@ -75,14 +71,14 @@ const AlertTitle = createChakra("div", {
   },
 })
 
-const AlertDescription = createChakra("div", { themeKey: "Alert.Description" })
+export const AlertDescription = chakra("div", { themeKey: "Alert.Description" })
 
-const AlertIcon = (props: IconProps) => {
+export const AlertIcon = (props: IconProps) => {
   const [colorMode] = useColorMode()
   const { status, variant } = useAlertContext()
   const { icon: Icon, color } = statuses[status]
 
-  let style: { [K in ColorModeType]?: any } = {}
+  let style: { [K in ColorMode]?: any } = {}
 
   if (["left-accent", "top-accent", "subtle"].includes(variant)) {
     style = {
@@ -95,5 +91,3 @@ const AlertIcon = (props: IconProps) => {
 
   return <Icon mt={1} mr={3} size={5} {...styles} {...props} />
 }
-
-export { Alert, AlertTitle, AlertDescription, AlertIcon }

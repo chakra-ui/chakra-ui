@@ -8,7 +8,7 @@ import {
   AlertDialogContent,
   AlertDialogOverlay,
 } from "."
-import { createChakra } from "@chakra-ui/system"
+import { chakra } from "@chakra-ui/styled"
 
 export default {
   title: "AlertDialog",
@@ -21,10 +21,10 @@ export default {
   ],
 }
 
-const Button = createChakra("button", { themeKey: "Button" })
+const Button = chakra("button", { themeKey: "Button" })
 Button.defaultProps = {
   variant: "solid",
-  variantColor: "gray",
+  colorScheme: "gray",
 }
 
 export const BasicUsage = () => {
@@ -54,7 +54,7 @@ export const BasicUsage = () => {
               <Button ref={cancelRef} onClick={onClose}>
                 Nevermind
               </Button>
-              <Button variantColor="red" ml={3}>
+              <Button colorScheme="red" ml={3}>
                 Yes, delete
               </Button>
             </AlertDialogFooter>
