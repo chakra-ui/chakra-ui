@@ -1,4 +1,4 @@
-import { createChakra, PropsOf } from "@chakra-ui/system"
+import { chakra, PropsOf } from "@chakra-ui/styled"
 import { createContext } from "@chakra-ui/utils"
 import * as React from "react"
 import {
@@ -41,7 +41,7 @@ interface InputOptions {
   errorBorderColor?: string
 }
 
-const StyledInput = createChakra<"input", InputOptions>("input", {
+const StyledInput = chakra<"input", InputOptions>("input", {
   themeKey: "PinInput",
   shouldForwardProp: prop =>
     !["focusBorderColor", "errorBorderColor"].includes(prop),

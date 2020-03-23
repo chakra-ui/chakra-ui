@@ -1,8 +1,8 @@
 import * as React from "react"
-import { createChakra } from "@chakra-ui/system"
+import { chakra } from "@chakra-ui/styled"
 import { Icon, IconProps } from "@chakra-ui/icon"
 
-export const StatLabel = createChakra("p", {
+export const StatLabel = chakra("p", {
   themeKey: "Stat.Label",
   baseStyle: {
     fontWeight: "medium",
@@ -12,7 +12,7 @@ export const StatLabel = createChakra("p", {
 
 StatLabel.displayName = "StatLabel"
 
-export const StatHelpText = createChakra("p", {
+export const StatHelpText = chakra("p", {
   themeKey: "Stat.HelpText",
   baseStyle: {
     fontSize: "sm",
@@ -23,7 +23,7 @@ export const StatHelpText = createChakra("p", {
 
 StatHelpText.displayName = "StatHelpText"
 
-export const StatNumber = createChakra("p", {
+export const StatNumber = chakra("p", {
   themeKey: "Stat.Number",
   baseStyle: {
     fontSize: "2xl",
@@ -65,18 +65,17 @@ export function StatArrow(
 
 StatArrow.displayName = "StatArrow"
 
-export const Stat = createChakra("div", {
+export const Stat = chakra("div", {
   themeKey: "Stat.Root",
   baseStyle: {
     flex: "1",
-    // position: "absolute",
     paddingRight: 4,
   },
 })
 
 Stat.displayName = "Stat"
 
-export const StatGroup = createChakra("div", {
+export const StatGroup = chakra("div", {
   baseStyle: {
     display: "flex",
     flexWrap: "wrap",

@@ -1,4 +1,4 @@
-import { createChakra, PropsOf, keyframes } from "@chakra-ui/system"
+import { chakra, PropsOf, keyframes } from "@chakra-ui/styled"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 import * as React from "react"
 
@@ -7,9 +7,9 @@ const spin = keyframes`
   100% { transform: rotate(360deg) }
 `
 
-const BaseSpinner = createChakra("div", { themeKey: "Spinner" })
-BaseSpinner.defaultProps = {
-  variantSize: "md",
+const StyledSpinner = chakra("div", { themeKey: "Spinner" })
+StyledSpinner.defaultProps = {
+  size: "md",
 }
 
 export interface SpinnerOptions {
@@ -44,7 +44,7 @@ export interface SpinnerOptions {
   label?: string
 }
 
-export type SpinnerProps = PropsOf<typeof BaseSpinner> & SpinnerOptions
+export type SpinnerProps = PropsOf<typeof StyledSpinner> & SpinnerOptions
 
 export const Spinner = ({
   label = "Loading...",
@@ -54,7 +54,7 @@ export const Spinner = ({
   emptyColor = "transparent",
   ...props
 }: SpinnerProps) => (
-  <BaseSpinner
+  <StyledSpinner
     display="inline-block"
     borderColor="currentColor"
     borderStyle="solid"
@@ -67,7 +67,7 @@ export const Spinner = ({
     {...props}
   >
     {label && <VisuallyHidden>{label}</VisuallyHidden>}
-  </BaseSpinner>
+  </StyledSpinner>
 )
 
 Spinner.displayName = "Spinner"

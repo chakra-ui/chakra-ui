@@ -1,16 +1,15 @@
 import {
-  createChakra,
   PropsOf,
   ThemingProps,
   chakra,
   useComponentDefaults,
   layoutPropNames,
-} from "@chakra-ui/system"
+} from "@chakra-ui/styled"
 import * as React from "react"
 import { RadioHookProps, useRadio } from "./Radio.hook"
 import { split } from "@chakra-ui/utils"
 
-const StyledRadio = createChakra("div", {
+const StyledRadio = chakra("div", {
   themeKey: "Radio",
   baseStyle: {
     display: "inline-flex",
@@ -29,14 +28,14 @@ export const Radio = React.forwardRef(
     const defaults = useComponentDefaults("Radio")
 
     const {
-      variantColor = "blue",
+      colorScheme = "blue",
       variant = defaults.variant,
-      variantSize = defaults.variantSize,
+      size = defaults.size,
       children,
       ...radioProps
     } = props
 
-    const themingProps = { variant, variantColor, variantSize }
+    const themingProps = { variant, colorScheme, size }
 
     const { getInputProps, getCheckboxProps, htmlProps: rest } = useRadio(
       radioProps,
@@ -60,7 +59,7 @@ export const Radio = React.forwardRef(
         {children && (
           <chakra.div
             marginLeft="0.5rem"
-            fontSize={variantSize}
+            fontSize={size}
             userSelect="none"
             opacity={props.isDisabled ? 0.4 : 1}
           >

@@ -1,9 +1,9 @@
 import {
   PropsOf,
-  createChakra,
+  chakra,
   ThemingProps,
   useComponentDefaults,
-} from "@chakra-ui/system"
+} from "@chakra-ui/styled"
 import * as React from "react"
 import { SliderHookProps, useSlider, SliderHookReturn } from "./Slider.hook"
 import { createContext } from "@chakra-ui/utils"
@@ -26,7 +26,7 @@ export type SliderProps = SliderHookProps &
   ThemingProps &
   Omit<PropsOf<typeof StyledSlider>, "onChange" | "size">
 
-const StyledSlider = createChakra("div", {
+const StyledSlider = chakra("div", {
   themeKey: "Slider.Root",
   baseStyle: {
     display: "inline-block",
@@ -39,13 +39,13 @@ export function Slider(props: SliderProps) {
   const defaults = useComponentDefaults("Slider")
   const {
     variant = defaults.variant,
-    variantSize = defaults.variantSize,
+    size = defaults.size,
     orientation = "horizontal",
-    variantColor,
+    colorScheme,
     ...sliderProps
   } = props
 
-  const themingProps = { variant, variantColor, variantSize, orientation }
+  const themingProps = { variant, colorScheme, size, orientation }
 
   const { htmlProps, getInputProps, getRootProps, ...context } = useSlider({
     ...sliderProps,
@@ -69,7 +69,7 @@ export function Slider(props: SliderProps) {
   )
 }
 
-const StyledThumb = createChakra("div", {
+const StyledThumb = chakra("div", {
   themeKey: "Slider.Thumb",
   baseStyle: {
     display: "flex",
@@ -94,7 +94,7 @@ export function SliderThumb(props: SliderThumbProps) {
   )
 }
 
-const StyledTrack = createChakra("div", {
+const StyledTrack = chakra("div", {
   themeKey: "Slider.Track",
   baseStyle: {
     overflow: "hidden",
@@ -116,7 +116,7 @@ export function SliderTrack(props: SliderTrackProps) {
   )
 }
 
-const StyledInnerTrack = createChakra("div", {
+const StyledInnerTrack = chakra("div", {
   themeKey: "Slider.FilledTrack",
   baseStyle: {
     width: "inherit",
@@ -141,7 +141,7 @@ export function SliderFilledTrack(props: SliderInnerTrackProps) {
 
 export type SliderMarkProps = PropsOf<typeof StyledMarker> & { value: number }
 
-const StyledMarker = createChakra("div")
+const StyledMarker = chakra("div")
 
 export function SliderMark(props: SliderMarkProps) {
   const { getMarkerProps } = useSliderContext()

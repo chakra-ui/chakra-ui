@@ -2,11 +2,9 @@ import * as React from "react"
 import {
   chakra,
   PropsOf,
-  createChakra,
-  SystemProps,
   useColorModeValue,
   layoutPropNames,
-} from "@chakra-ui/system"
+} from "@chakra-ui/styled"
 import { ControlProps, useField } from "@chakra-ui/form-control"
 import { Icon, IconProps } from "@chakra-ui/icon"
 import { split } from "@chakra-ui/utils"
@@ -52,7 +50,7 @@ const SelectIconWrapper = (props: SelectIconWrapperProps) => (
   />
 )
 
-const StyledSelect = createChakra<"select", SelectOptions>("select", {
+const StyledSelect = chakra<"select", SelectOptions>("select", {
   themeKey: "Select",
   shouldForwardProp: prop =>
     !["focusBorderColor", "errorBorderColor"].includes(prop),
@@ -76,10 +74,12 @@ export const SelectField = React.forwardRef(
   },
 )
 
-export type SelectProps = SelectFieldProps & {
-  rootProps?: Omit<SystemProps, "color">
+type Props = PropsOf<typeof chakra.div>
+
+export type SelectProps = Props & {
+  rootProps?: Omit<Props, "color">
   icon?: React.ElementType
-  iconSize?: SystemProps["size"]
+  iconSize?: any
 }
 
 export function SelectIcon(props: IconProps) {
@@ -114,7 +114,13 @@ export const Select = React.forwardRef(
           {...select}
         />
         <SelectIconWrapper opacity={opacity} color={select.color || color}>
-          <Icon focusable="false" aria-hidden as={icon} size={iconSize} />
+          <Icon
+            focusable="false"
+            aria-hidden
+            as={icon}
+            width={iconSize}
+            height={iconSize}
+          />
         </SelectIconWrapper>
       </chakra.div>
     )

@@ -1,8 +1,6 @@
-/**@jsx jsx */
-import { css, jsx } from "@emotion/core"
-import React from "react"
+import * as React from "react"
 import { getProgressProps, rotate, spin } from "./Progress.utils"
-import { chakra, PropsOf } from "@chakra-ui/system"
+import { chakra, PropsOf, css } from "@chakra-ui/styled"
 import { isUndefined } from "@chakra-ui/utils"
 
 type CircleProps = PropsOf<"circle">
@@ -11,14 +9,14 @@ function Circle(props: CircleProps) {
   return <circle cx={50} cy={50} r={42} fill="transparent" {...props} />
 }
 
-type ShapeProps = PropsOf<"svg"> & {
+type ShapeProps = PropsOf<typeof chakra.svg> & {
   size?: string | number
   isIndeterminate?: boolean
 }
 
 function Shape({ size, isIndeterminate, ...props }: ShapeProps) {
   return (
-    <svg
+    <chakra.svg
       width={size}
       height={size}
       viewBox="0 0 100 100"

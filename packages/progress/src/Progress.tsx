@@ -1,14 +1,13 @@
-/** @jsx jsx */
 import { generateStripe, getColor } from "@chakra-ui/color"
 import {
   chakra,
+  css,
   PropsOf,
   useColorModeValue,
   useTheme,
-  jsx,
-  css,
-} from "@chakra-ui/system"
+} from "@chakra-ui/styled"
 import { isUndefined, Omit, parseResponsiveProp } from "@chakra-ui/utils"
+import * as React from "react"
 import {
   getProgressProps,
   progress,
@@ -16,13 +15,9 @@ import {
   stripe,
 } from "./Progress.utils"
 
-///////////////////////////////////////////////////////////////////////////
-
 export function ProgressLabel(props: PropsOf<typeof chakra.div>) {
   return <chakra.div textAlign="center" width="100%" {...props} />
 }
-
-///////////////////////////////////////////////////////////////////////////
 
 type ProgressIndicatorProps = PropsOf<typeof chakra.div> & ProgressPropsOptions
 
@@ -40,8 +35,6 @@ function ProgressIndicator(props: ProgressIndicatorProps) {
     />
   )
 }
-
-///////////////////////////////////////////////////////////////////////////
 
 const sizes = {
   lg: "1rem",
@@ -67,8 +60,6 @@ function ProgressTrack({ size, ...props }: ProgressTrackProps) {
     />
   )
 }
-
-///////////////////////////////////////////////////////////////////////////
 
 interface ProgressProps extends ProgressTrackProps {
   color?: string

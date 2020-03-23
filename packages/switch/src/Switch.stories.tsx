@@ -1,4 +1,4 @@
-import { chakra } from "@chakra-ui/system"
+import { chakra } from "@chakra-ui/styled"
 import React from "react"
 import { Switch } from "./Switch"
 
@@ -15,9 +15,9 @@ export default {
 
 export const Base = () => (
   <>
-    <Switch variantSize="sm" variantColor="green" margin="20px" />
-    <Switch isDisabled variantSize="md" variantColor="blue" margin="20px" />
-    <Switch variantSize="lg" variantColor="cyan" />
+    <Switch size="sm" colorScheme="green" margin="20px" />
+    <Switch isDisabled size="md" colorScheme="blue" margin="20px" />
+    <Switch size="lg" colorScheme="cyan" />
   </>
 )
 
@@ -26,7 +26,7 @@ export const Usage = () => (
     <chakra.label htmlFor="email-alerts" mr="16px">
       Enable email alerts?
     </chakra.label>
-    <Switch variantColor="green" id="email-alerts" />
+    <Switch colorScheme="green" id="email-alerts" />
   </chakra.div>
 )
 
@@ -36,7 +36,7 @@ export const Controlled = () => {
   return (
     <Switch
       isChecked={value}
-      variantColor="green"
+      colorScheme="green"
       onChange={e => setValue(e.target.checked)}
     />
   )

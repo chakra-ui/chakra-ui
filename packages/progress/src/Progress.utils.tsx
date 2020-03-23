@@ -1,5 +1,5 @@
 import { isFunction, isUndefined, valueToPercent } from "@chakra-ui/utils"
-import { keyframes } from "@chakra-ui/system"
+import { keyframes } from "@chakra-ui/styled"
 
 export const spin = keyframes`
   0% {

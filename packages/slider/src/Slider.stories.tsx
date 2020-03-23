@@ -1,4 +1,4 @@
-import { chakra, createChakra } from "@chakra-ui/system"
+import { chakra } from "@chakra-ui/styled"
 import * as React from "react"
 import {
   Slider,
@@ -21,7 +21,7 @@ export default {
 
 export function HorizontalSlider() {
   return (
-    <Slider variantColor="red">
+    <Slider colorScheme="red">
       <SliderTrack>
         <SliderFilledTrack />
       </SliderTrack>
@@ -33,7 +33,7 @@ export function HorizontalSlider() {
 
 export function VerticalSlider() {
   return (
-    <Slider variantColor="red" orientation="vertical">
+    <Slider colorScheme="red" orientation="vertical">
       <SliderTrack>
         <SliderFilledTrack />
       </SliderTrack>
@@ -45,7 +45,7 @@ export function VerticalSlider() {
 
 export function ChakraHorizontalSlider() {
   return (
-    <Slider variantColor="blue" defaultValue={40}>
+    <Slider colorScheme="blue" defaultValue={40}>
       <SliderTrack>
         <SliderFilledTrack />
       </SliderTrack>

@@ -1,32 +1,32 @@
 import { CheckboxHookProps, useCheckbox } from "@chakra-ui/checkbox"
-import { createChakra, PropsOf } from "@chakra-ui/system"
+import { chakra, PropsOf } from "@chakra-ui/styled"
 import React from "react"
 
-const StyledRoot = createChakra("label", {
+const StyledSwitch = chakra("label", {
   baseStyle: {
     display: "inline-block",
     verticalAlign: "middle",
   },
 })
 
-const StyledTrack = createChakra("div", { themeKey: "Switch.Track" })
+const StyledTrack = chakra("div", { themeKey: "Switch.Track" })
 
-const StyledThumb = createChakra("div", { themeKey: "Switch.Thumb" })
+const StyledThumb = chakra("div", { themeKey: "Switch.Thumb" })
 
 export type SwitchProps = Omit<CheckboxHookProps, "isIndeterminate"> &
-  Omit<PropsOf<typeof StyledRoot>, "onChange" | "defaultChecked">
+  Omit<PropsOf<typeof StyledSwitch>, "onChange" | "defaultChecked">
 
 export const Switch = React.forwardRef(
   (props: SwitchProps, ref: React.Ref<HTMLInputElement>) => {
-    const { variantColor, variantSize, variant } = props
+    const { colorScheme, size, variant } = props
     const { state, getInputProps, getCheckboxProps, htmlProps } = useCheckbox(
       props,
     )
 
-    const themingProps = { variantColor, variantSize, variant }
+    const themingProps = { colorScheme, size, variant }
 
     return (
-      <StyledRoot data-chakra-switch="" {...htmlProps}>
+      <StyledSwitch data-chakra-switch="" {...htmlProps}>
         <input data-chakra-switch-input="" {...getInputProps({ ref })} />
         <StyledTrack
           {...themingProps}
@@ -40,7 +40,7 @@ export const Switch = React.forwardRef(
             data-hover={state.isHovered ? "" : undefined}
           />
         </StyledTrack>
-      </StyledRoot>
+      </StyledSwitch>
     )
   },
 )

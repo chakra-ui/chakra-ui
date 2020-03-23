@@ -1,6 +1,6 @@
 import React from "react"
 import { useRadio, Radio, useRadioGroup } from "."
-import { chakra } from "@chakra-ui/system"
+import { chakra } from "@chakra-ui/styled"
 import { Stack } from "@chakra-ui/layout"
 
 export default {
