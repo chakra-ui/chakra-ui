@@ -41,5 +41,3 @@ const config: ConfigObject = {
 }
 
 export const background = createParser(config)
-
-export default background

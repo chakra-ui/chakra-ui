@@ -141,5 +141,3 @@ const configs: ConfigObject = {
 }
 
 export const space = createParser(configs)
-
-export default space

@@ -67,4 +67,3 @@ const config: ConfigObject = {
 }
 
 export const layout = createParser(config)
-export default layout

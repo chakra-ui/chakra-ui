@@ -1,16 +1,18 @@
 import { combineParsers } from "./combine-parser"
-import background from "./configs/background"
-import border from "./configs/border"
-import color from "./configs/color"
-import flexbox from "./configs/flexbox"
-import grid from "./configs/grid"
-import others from "./configs/others"
-import position from "./configs/position"
-import shadow from "./configs/shadow"
-import space from "./configs/space"
-import typography from "./configs/typography"
-import layout from "./configs/layout"
-import { pseudoPropNames } from "./configs/pseudo.selector"
+import {
+  background,
+  border,
+  color,
+  flexbox,
+  grid,
+  others,
+  position,
+  shadow,
+  space,
+  typography,
+  layout,
+  pseudoPropNames,
+} from "./configs"
 
 export const parser = combineParsers(
   background,
@@ -26,6 +28,14 @@ export const parser = combineParsers(
   typography,
 )
 
-export const propNames = [...parser.propNames, ...pseudoPropNames]
+export const layoutPropNames = combineParsers(
+  space,
+  layout,
+  flexbox,
+  grid,
+  position,
+) as {
+  propNames: string[]
+}
 
-export default parser
+export const propNames = [...parser.propNames, ...pseudoPropNames]

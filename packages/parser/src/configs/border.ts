@@ -129,5 +129,3 @@ const config: ConfigObject = {
 }
 
 export const border = createParser(config)
-
-export default border

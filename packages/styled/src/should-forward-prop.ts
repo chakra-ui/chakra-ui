@@ -2,7 +2,13 @@ import { propNames } from "@chakra-ui/parser"
 import { Dict, memoizeOne, omit } from "@chakra-ui/utils"
 import isValidAttribute from "@emotion/is-prop-valid"
 
-const stylePropNames = [...propNames, "variant", "size", "colorScheme"]
+const stylePropNames = [
+  ...propNames,
+  "variant",
+  "size",
+  "colorScheme",
+  "orientation",
+]
 
 function createShouldForwardProp(props: any) {
   const regex = new RegExp(`^(${props.join("|")})$`)

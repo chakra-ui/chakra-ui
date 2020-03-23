@@ -42,5 +42,3 @@ const config: ConfigObject = {
 }
 
 export const position = createParser(config)
-
-export default position

@@ -1,32 +1,10 @@
 /**@jsx jsx */
 import { jsx } from "@emotion/core"
-import { parser } from "."
-import css from "./css"
+import { parser, css } from "."
 
 export default {
   title: "Parser",
 }
-
-// const spaceConfig = {
-//   padding: {
-//     property: "padding",
-//     scale: "space",
-//   },
-//   paddingX: {
-//     properties: ["paddingLeft", "paddingRight"],
-//     scale: "space",
-//   },
-//   paddingY: {
-//     properties: ["paddingTop", "paddingBottom"],
-//     scale: "space",
-//   },
-//   marginX: {
-//     properties: ["marginLeft", "marginRight"],
-//     scale: "space",
-//   },
-// }
-
-// const parser = createParser(spaceConfig as any)
 
 const theme = {
   breakpoints: { mobile: 400, tablet: 700, desktop: 1000 },

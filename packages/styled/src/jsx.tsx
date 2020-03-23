@@ -56,6 +56,11 @@ declare global {
   // eslint-disable-next-line
   namespace JSX {
     interface IntrinsicAttributes {
+      /**
+       * The sx prop lets you style elements inline, using values from your
+       * theme. To use the sx prop, add the custom pragma as a comment to the
+       * top of your module and import the jsx function.
+       */
       sx?: SystemStyleObject
     }
   }

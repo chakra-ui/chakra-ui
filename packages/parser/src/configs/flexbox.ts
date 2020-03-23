@@ -24,5 +24,3 @@ const config: ConfigObject = {
 }
 
 export const flexbox = createParser(config)
-
-export default flexbox

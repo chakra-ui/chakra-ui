@@ -34,4 +34,3 @@ const config: ConfigObject = {
 }
 
 export const grid = createParser(config)
-export default grid

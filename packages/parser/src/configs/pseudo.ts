@@ -24,5 +24,3 @@ export function parsePseudo(props: Dict) {
 
   return next
 }
-
-export default parsePseudo

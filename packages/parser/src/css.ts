@@ -10,7 +10,7 @@ import assignArrayValue from "./assign-array-value"
 import { parsePseudo } from "./configs/pseudo"
 import { CSSObject, StyleObject, Theme } from "./css.types"
 import { getMediaQuery } from "./media-query"
-import parser from "./parser"
+import { parser } from "./parser"
 
 const hasTheme = (props: any): props is { theme: Theme } => {
   return Boolean(isObject(props) && props.theme)
@@ -48,12 +48,12 @@ export const css = (styleProps: StyleObject) => (props: PropsOrTheme) => {
     })
   }
 
-  for (const key in styles) {
-    const styleValue = styles[key]
+  for (const prop in styles) {
+    const styleValue = styles[prop]
     const val = runIfFn(styleValue, theme)
-    const config = parser.config[key] as any
+    const config = parser.config[prop] as any
 
-    if (key === "apply") {
+    if (prop === "apply") {
       const extendStyles = css(get(theme, val))(theme)
       result = deepmerge(result, extendStyles)
       continue
@@ -61,7 +61,7 @@ export const css = (styleProps: StyleObject) => (props: PropsOrTheme) => {
 
     if (isObject(val)) {
       const computedStyles = compute(val, config)
-      result[key] = css(computedStyles)(theme)
+      result[prop] = css(computedStyles)(theme)
       continue
     }
 
@@ -80,7 +80,7 @@ export const css = (styleProps: StyleObject) => (props: PropsOrTheme) => {
         continue
       }
 
-      const computedStyles = assignArray(key, val, config)
+      const computedStyles = assignArray(prop, val, config)
       result = deepmerge(result, computedStyles)
       continue
     }
@@ -98,10 +98,8 @@ export const css = (styleProps: StyleObject) => (props: PropsOrTheme) => {
       continue
     }
 
-    result[key] = compute(val, config)
+    result[prop] = compute(val, config)
   }
 
   return result
 }
-
-export default css

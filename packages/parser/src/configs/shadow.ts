@@ -10,5 +10,3 @@ export const shadow = createParser({
     scale: "shadows",
   },
 })
-
-export default shadow

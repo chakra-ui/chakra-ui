@@ -21,5 +21,4 @@ const config: ConfigObject = {
   listStyleImage: true,
 }
 
-const others = createParser(config)
-export default others
+export const others = createParser(config)

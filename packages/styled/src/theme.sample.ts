@@ -15,6 +15,10 @@ const theme = {
       },
     },
     Button: {
+      defaultProps: {
+        variant: "solid",
+        size: "lg",
+      },
       variants: {
         solid: {
           bg: "green.400",
@@ -26,13 +30,23 @@ const theme = {
       },
       sizes: {
         lg: {
-          padding: 20,
+          padding: "12px 24px",
           fontSize: 17,
         },
         sm: {
-          padding: 10,
+          padding: "8px 16px",
           fontSize: "sm",
         },
+      },
+    },
+  },
+  styles: {
+    ...defaultTheme.styles,
+    h1: {
+      fontSize: "40px",
+      color: "pink.400",
+      _hover: {
+        color: "pink.700",
       },
     },
   },

@@ -76,16 +76,49 @@ type BaseStyle<P> =
 type ComponentAttrs<T extends As> = PropsOf<T> | ((props: any) => PropsOf<T>)
 
 export type ThemingProps = {
+  /**
+   * The variant (or visual style) of the component.
+   * Components can have multiple variants.
+   */
   variant?: string
+  /**
+   * The size of the component.
+   * Components can come in differnt sizes.
+   */
   size?: string
+  /**
+   * The color scheme of the component.
+   * Mostly used to style component `variants`
+   */
   colorScheme?: string
+  /**
+   * The orientation of the component.
+   * Mostly used to change component `baseStyle`
+   * or `variants` style
+   */
   orientation?: "vertical" | "horizontal"
+}
+
+export type ApplyProp = {
+  /**
+   * Reference styles from any component or key in the theme.
+   *
+   * @example
+   *
+   * ```jsx
+   * <chakra.div apply="styles.h3">This is a div</chakra.div>
+   * ```
+   *
+   * This will apply styles defined in `theme.styles.h3`
+   */
+  apply?: string
 }
 
 export type ChakraProps = SystemProps &
   TruncateProps &
   ValidHTMLProps &
-  ThemingProps & {
+  ThemingProps &
+  ApplyProp & {
     children?: React.ReactNode
   }
 
@@ -98,18 +131,23 @@ export type PropsWithAs<P, T extends As> = P &
     as?: T
   }
 
-type Factory<T extends As, P> =
-  | ((props: PropsOf<T> & P & ChakraProps) => JSX.Element)
-  | (<TT extends As = T>(
-      props: PropsWithAs<PropsOf<T>, TT> & ChakraProps & P,
-    ) => JSX.Element)
-
-export type ChakraComponent<T extends As, P = {}> = Factory<T, P> & {
+export type ChakraComponent<T extends As, P = {}> = {
+  (props: PropsOf<T> & P & ChakraProps): JSX.Element
+  <TT extends As = T>(
+    props: PropsWithAs<PropsOf<T>, TT> & ChakraProps & P,
+  ): JSX.Element
   displayName?: string
   propTypes?: React.WeakValidationMap<PropsOf<T> & P>
   defaultProps?: Partial<PropsOf<T> & P & ChakraProps>
 }
 
+/**
+ * Extracts the component theming (variant, size) props that
+ * should be used.
+ *
+ * @param T the theme object
+ * @param K the theme key of the component
+ */
 export type ExtractThemingProps<
   T extends { components: any },
   K

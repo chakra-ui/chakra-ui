@@ -1,4 +1,4 @@
-import { UnionStringArray } from "@chakra-ui/utils"
+import { UnionStringArray, get } from "@chakra-ui/utils"
 import { css, pseudoSelectors } from "@chakra-ui/parser"
 
 export const domElements = [
@@ -121,7 +121,7 @@ export const domElements = [
 
 export type DOMElements = UnionStringArray<typeof domElements>
 
-export function pseudo({ theme, ...props }: any) {
+export function pseudoProps({ theme, ...props }: any) {
   let result = {}
   for (const prop in props) {
     if (prop in pseudoSelectors) {
@@ -132,12 +132,24 @@ export function pseudo({ theme, ...props }: any) {
   return result
 }
 
-export function truncate({ isTruncated }: any) {
+export function truncateProp({ isTruncated }: any) {
   if (isTruncated) {
     return {
       overflow: "hidden",
       textOverflow: "ellipsis",
       whiteSpace: "nowrap",
     }
+  }
+}
+
+export function applyProp(tag: React.ElementType) {
+  return ({ theme, apply: applyProp }: any) => {
+    const shouldAutoApply = theme?.settings?.autoApplyStylesToElements
+    const defaultApply = !!shouldAutoApply ? `styles.${tag}` : undefined
+    const apply = applyProp ?? defaultApply
+
+    if (!apply) return undefined
+
+    return css({ apply })(theme)
   }
 }

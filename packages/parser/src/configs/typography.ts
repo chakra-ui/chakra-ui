@@ -39,4 +39,3 @@ const config: ConfigObject = {
 }
 
 export const typography = createParser(config)
-export default typography

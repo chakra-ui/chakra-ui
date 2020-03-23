@@ -19,6 +19,8 @@ const CSSReset = () => (
       *,
       *:before,
       *:after {
+        border-width: 0;
+        border-style: "solid";
         box-sizing: inherit;
       }
 

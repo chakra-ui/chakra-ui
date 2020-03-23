@@ -1,5 +1,5 @@
 import { Dict, isEmptyObject, runIfFn, deepmerge, get } from "@chakra-ui/utils"
-import css from "./css"
+import { css } from "./css"
 import { CSSObject } from "./css.types"
 
 /**

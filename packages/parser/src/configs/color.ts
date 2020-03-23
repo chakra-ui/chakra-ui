@@ -28,4 +28,3 @@ const config: ConfigObject = {
 }
 
 export const color = createParser(config)
-export default color

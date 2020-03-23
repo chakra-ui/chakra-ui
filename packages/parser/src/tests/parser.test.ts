@@ -1,4 +1,4 @@
-import parser from "../parser"
+import { parser } from "../parser"
 
 const theme = {
   breakpoints: { mobile: 320, tablet: 768, desktop: 1000 },
