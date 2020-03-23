@@ -1,14 +1,14 @@
 import { ComponentTheme, getModeColor } from "./utils"
 
-const variantSize: ComponentTheme["variantSize"] = {
-  __default: "md",
+const sizes: ComponentTheme["sizes"] = {
   sm: {
     Track: {
       width: "1.375rem",
       height: "0.75rem",
     },
     Thumb: {
-      size: "0.75rem",
+      width: "0.75rem",
+      height: "0.75rem",
       _checked: { transform: `translateX(0.625rem)` },
     },
   },
@@ -18,7 +18,8 @@ const variantSize: ComponentTheme["variantSize"] = {
       height: "1rem",
     },
     Thumb: {
-      size: "1rem",
+      width: "1rem",
+      height: "1rem",
       _checked: { transform: `translateX(0.875rem)` },
     },
   },
@@ -28,14 +29,18 @@ const variantSize: ComponentTheme["variantSize"] = {
       height: "1.5rem",
     },
     Thumb: {
-      size: "1.5rem",
+      width: "1.5rem",
+      height: "1.5rem",
       _checked: { transform: `translateX(1.375rem)` },
     },
   },
 }
 
 const Switch: ComponentTheme = {
-  baseStyle: props => ({
+  defaultProps: {
+    size: "md",
+  },
+  baseStyle: (props: any) => ({
     Track: {
       borderRadius: "full",
       justifyContent: "flex-start",
@@ -57,7 +62,7 @@ const Switch: ComponentTheme = {
       transform: `translateX(0)`,
     },
   }),
-  variantSize,
+  sizes,
 }
 
 export default Switch

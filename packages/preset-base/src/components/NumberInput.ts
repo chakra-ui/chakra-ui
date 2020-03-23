@@ -16,6 +16,9 @@ function getSizeStyle(size: "sm" | "md" | "lg"): SystemProps {
 }
 
 const NumberInput: ComponentTheme = {
+  defaultProps: {
+    size: "md",
+  },
   baseStyle: (props: any) => ({
     StepperGroup: {
       width: "24px",
@@ -37,8 +40,7 @@ const NumberInput: ComponentTheme = {
       },
     },
   }),
-  variantSize: {
-    __default: "md",
+  sizes: {
     sm: {
       Stepper: getSizeStyle("sm"),
     },

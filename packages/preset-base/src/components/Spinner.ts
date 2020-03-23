@@ -1,12 +1,12 @@
 import { ComponentTheme } from "./utils"
 
 const Spinner: ComponentTheme = {
-  variantSize: {
-    xs: { size: "0.75rem" },
-    sm: { size: "1rem" },
-    md: { size: "1.5rem" },
-    lg: { size: "2rem" },
-    xl: { size: "3rem" },
+  sizes: {
+    xs: { width: "0.75rem", height: "0.75rem" },
+    sm: { width: "1rem", height: "1rem" },
+    md: { width: "1.5rem", height: "1.5rem" },
+    lg: { width: "2rem", height: "2rem" },
+    xl: { width: "3rem", height: "3rem" },
   },
 }
 

@@ -9,11 +9,16 @@ export type ComponentStyle<P = {}> =
   | ((props: Props & P) => StyleProps)
 
 export interface ComponentTheme<P = {}> {
+  defaultProps?: {
+    variant?: string
+    colorScheme?: string
+    size?: string
+  }
   baseStyle?: ComponentStyle<P & ThemingProps>
-  variant?: { __default?: string } & {
+  variants?: {
     [Variant: string]: ComponentStyle<P> | string
   }
-  variantSize?: { __default?: string } & {
+  sizes?: {
     [Size: string]: ComponentStyle<P> | string
   }
 }

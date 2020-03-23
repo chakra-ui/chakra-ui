@@ -1,11 +1,16 @@
 import Checkbox from "./Checkbox"
 import { ComponentTheme } from "./utils"
 
-const Radio: ComponentTheme = {
-  baseStyle: props => ({
+const Radio = {
+  defaultProps: {
+    size: "md",
+  },
+  baseStyle: (props: any) => ({
+    //@ts-ignore
     ...Checkbox.baseStyle(props),
     borderRadius: "full",
     _checked: {
+      //@ts-ignore
       ...Checkbox.baseStyle(props)["_checked"],
       _before: {
         content: `""`,
@@ -17,8 +22,8 @@ const Radio: ComponentTheme = {
       },
     },
   }),
-  variantSize: {
-    ...Checkbox.variantSize,
+  sizes: {
+    ...Checkbox.sizes,
     sm: { size: 3 },
   },
 }

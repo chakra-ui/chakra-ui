@@ -1,7 +1,10 @@
 import { Props, getModeColor as get, ComponentTheme } from "./utils"
 
-const Checkbox = {
-  baseStyle: (props: Props) => {
+const Checkbox: ComponentTheme = {
+  defaultProps: {
+    size: "md",
+  },
+  baseStyle: (props: any) => {
     const { variantColor: c } = props
     return {
       display: "inline-flex",
@@ -46,11 +49,10 @@ const Checkbox = {
       },
     }
   },
-  variantSize: {
-    __default: "md",
-    lg: { size: 5 },
-    md: { size: 4 },
-    sm: { size: "auto" },
+  sizes: {
+    lg: { width: 5, height: 5 },
+    md: { width: 4, height: 4 },
+    sm: { height: "auto", width: "auto" },
   },
 }
 

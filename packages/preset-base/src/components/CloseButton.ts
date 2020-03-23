@@ -1,6 +1,9 @@
-import { Props, getModeColor } from "./utils"
+import { Props, getModeColor, ComponentTheme } from "./utils"
 
-export default {
+const CloseButton: ComponentTheme = {
+  defaultProps: {
+    size: "md",
+  },
   baseStyle: (props: Props) => ({
     Button: {
       borderRadius: "md",
@@ -16,31 +19,38 @@ export default {
       },
     },
   }),
-  variantSize: {
-    __default: "md",
+  sizes: {
     lg: {
       Button: {
-        size: "40px",
+        width: "40px",
+        height: "40px",
       },
       Icon: {
-        size: "16px",
+        width: "16px",
+        height: "16px",
       },
     },
     md: {
       Button: {
-        size: "32px",
+        width: "32px",
+        height: "32px",
       },
       Icon: {
-        size: "12px",
+        width: "12px",
+        height: "12px",
       },
     },
     sm: {
       Button: {
-        size: "24px",
+        width: "24px",
+        height: "24px",
       },
       Icon: {
-        size: "10px",
+        width: "10px",
+        height: "10px",
       },
     },
   },
 }
+
+export default CloseButton

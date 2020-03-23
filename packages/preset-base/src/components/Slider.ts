@@ -5,9 +5,12 @@ import {
 } from "./utils"
 
 const Slider: ComponentTheme = {
-  variantSize: {
-    __default: "md",
-    lg: props => ({
+  defaultProps: {
+    size: "md",
+  },
+  sizes: {
+    //@ts-ignore
+    lg: (props: any) => ({
       Thumb: { size: "16px" },
       Track: getOrientationStyle({
         orientation: props.orientation,
@@ -15,7 +18,8 @@ const Slider: ComponentTheme = {
         vertical: { width: "4px" },
       }),
     }),
-    md: props => ({
+    //@ts-ignore
+    md: (props: any) => ({
       Thumb: { size: "14px" },
       Track: getOrientationStyle({
         orientation: props.orientation,
@@ -23,7 +27,8 @@ const Slider: ComponentTheme = {
         vertical: { width: "4px" },
       }),
     }),
-    sm: props => ({
+    //@ts-ignore
+    sm: (props: any) => ({
       Thumb: { size: "10px" },
       Track: getOrientationStyle({
         orientation: props.orientation,
@@ -32,7 +37,8 @@ const Slider: ComponentTheme = {
       }),
     }),
   },
-  baseStyle: props => ({
+  //@ts-ignore
+  baseStyle: (props: any) => ({
     Root: {
       _disabled: {
         opacity: 0.6,

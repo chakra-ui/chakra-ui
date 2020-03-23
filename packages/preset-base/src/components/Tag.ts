@@ -2,14 +2,17 @@ import { ComponentTheme } from "./utils"
 import Badge from "./Badge"
 
 const Tag: ComponentTheme = {
+  defaultProps: {
+    size: "md",
+    variant: "subtle",
+  },
   baseStyle: {
     outline: 0,
     _focus: {
       boxShadow: "outline",
     },
   },
-  variantSize: {
-    __default: "md",
+  sizes: {
     sm: {
       minHeight: "1.25rem",
       minWidth: "1.25rem",
@@ -32,7 +35,7 @@ const Tag: ComponentTheme = {
       paddingX: 3,
     },
   },
-  variant: Badge.variant,
+  variants: Badge.variants,
 }
 
 export default Tag

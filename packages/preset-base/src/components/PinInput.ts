@@ -1,10 +1,14 @@
 import Input from "./Input"
+import { ComponentTheme } from "./utils"
 
-const PinInput = {
+const PinInput: ComponentTheme = {
+  defaultProps: {
+    variant: "outline",
+    size: "md",
+  },
   baseStyle: Input.baseStyle,
-  variant: Input.variant,
-  variantSize: {
-    __default: "md",
+  variants: Input.variants,
+  sizes: {
     lg: {
       fontSize: "lg",
       width: 12,

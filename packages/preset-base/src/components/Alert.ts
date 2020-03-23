@@ -48,14 +48,16 @@ function getSolidStyle(props: Props) {
 }
 
 const Alert: ComponentTheme = {
+  defaultProps: {
+    variant: "subtle",
+  },
   baseStyle: {
     Root: {
       paddingX: 4,
       paddingY: 3,
     },
   },
-  variant: {
-    __default: "subtle",
+  variants: {
     solid: getSolidStyle,
     subtle: getSubtleStyle,
     "left-accent": getLeftAccentStyle,

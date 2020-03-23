@@ -1,13 +1,13 @@
-import { Props, getModeColor as get } from "./utils"
+import { Props, getModeColor as get, ComponentTheme } from "./utils"
 import { getColor } from "@chakra-ui/color"
 
-type InputOptions = Props & {
-  focusBorderColor: string
-  errorBorderColor: string
-  isFullWidth?: boolean
-}
+// type InputProps = Props & {
+//   focusBorderColor: string
+//   errorBorderColor: string
+//   isFullWidth?: boolean
+// }
 
-function getOutlinedStyle(props: InputOptions) {
+function getOutlinedStyle(props: any): any {
   const { focusBorderColor: fc, errorBorderColor: ec, theme: t } = props
   return {
     border: "1px solid",
@@ -32,7 +32,7 @@ function getOutlinedStyle(props: InputOptions) {
   }
 }
 
-function getFilledStyle(props: InputOptions) {
+function getFilledStyle(props: any): any {
   const { theme: t, focusBorderColor: fc, errorBorderColor: ec } = props
   return {
     border: "2px solid",
@@ -56,7 +56,7 @@ function getFilledStyle(props: InputOptions) {
   }
 }
 
-function getFlushedStyle(props: InputOptions) {
+function getFlushedStyle(props: any): any {
   const { focusBorderColor: fc, errorBorderColor: ec, theme: t } = props
 
   return {
@@ -81,8 +81,7 @@ const unstyled = {
   height: "auto",
 }
 
-const variantSize = {
-  __default: "md",
+const sizes = {
   lg: {
     fontSize: "lg",
     paddingX: 4,
@@ -103,8 +102,12 @@ const variantSize = {
   },
 }
 
-export default {
-  baseStyle: (props: InputOptions) => ({
+const Input: ComponentTheme = {
+  defaultProps: {
+    size: "md",
+    variant: "outline",
+  },
+  baseStyle: (props: any) => ({
     width: props.isFullWidth ? "100%" : "auto",
     display: "flex",
     alignItems: "center",
@@ -112,12 +115,13 @@ export default {
     transition: "all 0.2s",
     outline: "none",
   }),
-  variantSize,
-  variant: {
-    __default: "outline",
+  sizes,
+  variants: {
     outline: getOutlinedStyle,
     filled: getFilledStyle,
     flushed: getFlushedStyle,
     unstyled,
   },
 }
+
+export default Input

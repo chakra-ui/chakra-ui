@@ -1,13 +1,15 @@
 import { ComponentTheme } from "./utils"
 
 const Icon: ComponentTheme = {
-  variantSize: {
-    __default: "md",
-    xs: { size: "16px" },
-    sm: { size: "24px" },
-    md: { size: "32px" },
-    lg: { size: "40px" },
-    xl: { size: "48px" },
+  defaultProps: {
+    size: "md",
+  },
+  sizes: {
+    xs: { width: "16px", height: "16px" },
+    sm: { width: "24px", height: "24px" },
+    md: { width: "32px", height: "32px" },
+    lg: { width: "40px", height: "40px" },
+    xl: { width: "48px", height: "48px" },
   },
 }
 

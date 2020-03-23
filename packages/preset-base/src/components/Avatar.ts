@@ -1,7 +1,8 @@
 import sizes from "../foundations/sizes"
 
 const compute = (size: keyof typeof sizes) => ({
-  size,
+  width: size,
+  height: size,
   fontSize: `calc(${sizes[size] || size} / 2.5)`,
   lineHeight: sizes[size] || size,
 })
@@ -15,7 +16,7 @@ export default {
     justifyContent: "center",
     position: "relative",
   },
-  variantSize: {
+  sizes: {
     "2xs": compute("4"),
     xs: compute("6"),
     sm: compute("8"),

@@ -8,12 +8,12 @@ import {
 import { addDecorator } from "@storybook/react"
 import * as React from "react"
 
-addDecorator((storyFn: any) => (
+addDecorator((StoryFn: Function) => (
   <ThemeProvider theme={theme}>
     <ColorModeProvider>
       <GlobalStyle />
       <CSSReset />
-      {storyFn()}
+      <StoryFn />
     </ColorModeProvider>
   </ThemeProvider>
 ))

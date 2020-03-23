@@ -89,7 +89,7 @@ function getLinkStyle(props: Props) {
 
 ////////////////////////////////////////////////////////////
 
-const variantSize = {
+const Sizes = {
   lg: {
     height: 12,
     minWidth: 12,
@@ -157,13 +157,13 @@ const baseStyle = {
 
 ////////////////////////////////////////////////////////////
 const Button = {
-  baseStyle,
-  variantSize: {
-    __default: "md",
-    ...variantSize,
+  defaultProps: {
+    variant: "solid",
+    size: "md",
   },
-  variant: {
-    __default: "solid",
+  baseStyle,
+  Sizes,
+  variants: {
     unstyled,
     solid: getSolidStyle,
     ghost: getGhostStyle,

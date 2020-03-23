@@ -1,6 +1,7 @@
 import Badge from "./Badge"
+import { ComponentTheme } from "./utils"
 
-export default {
+const Code: ComponentTheme = {
   baseStyle: {
     display: "inline-block",
     fontFamily: "mono",
@@ -8,5 +9,6 @@ export default {
     paddingX: "0.2em",
     radius: "sm",
   },
-  variant: Badge.variant,
-}
+  variants: Badge.variants,
+} as any
+export default Code

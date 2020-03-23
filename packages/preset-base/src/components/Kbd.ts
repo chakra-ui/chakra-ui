@@ -1,7 +1,7 @@
 import { ComponentTheme, getModeColor } from "./utils"
 
 const Kbd: ComponentTheme = {
-  baseStyle: props => ({
+  baseStyle: (props: any) => ({
     bg: getModeColor(props, "gray.100", "whiteAlpha"),
     borderRadius: "md",
     border: "1px",

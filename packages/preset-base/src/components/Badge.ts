@@ -34,6 +34,9 @@ function getOutlineStyle(props: Props) {
 }
 
 const Badge: ComponentTheme = {
+  defaultProps: {
+    variant: "subtle",
+  },
   baseStyle: {
     display: "inline-block",
     paddingX: 1,
@@ -44,8 +47,7 @@ const Badge: ComponentTheme = {
     whiteSpace: "nowrap",
     verticalAlign: "middle",
   },
-  variant: {
-    __default: "subtle",
+  variants: {
     solid: getSolidStyle,
     outline: getOutlineStyle,
     subtle: getSubtleStyle,

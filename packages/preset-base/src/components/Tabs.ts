@@ -109,6 +109,10 @@ function getSolidRoundedStyle(props: Props): StyleProps {
 }
 
 const Tabs: ComponentTheme = {
+  defaultProps: {
+    size: "md",
+    variant: "line",
+  },
   baseStyle: {
     Tab: {
       display: "flex",
@@ -125,8 +129,7 @@ const Tabs: ComponentTheme = {
       display: "flex",
     },
   },
-  variantSize: {
-    __default: "md",
+  sizes: {
     sm: {
       Tab: { padding: "0.25rem 1rem", fontSize: "0.85rem" },
     },
@@ -140,8 +143,7 @@ const Tabs: ComponentTheme = {
       },
     },
   },
-  variant: {
-    __default: "line",
+  variants: {
     line: getLineStyle,
     enclosed: getEnclosedStyle,
     "soft-rounded": getSoftRoundedStyle,
