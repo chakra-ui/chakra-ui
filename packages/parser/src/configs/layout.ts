@@ -1,5 +1,5 @@
 import { isNumber, get } from "@chakra-ui/utils"
-import { ConfigObject } from "../transform-config"
+import { ConfigObject } from "../utils/transform-config"
 import { createParser } from "../create-parser"
 
 function transform(value: any, scale: any) {

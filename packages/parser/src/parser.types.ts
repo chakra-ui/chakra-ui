@@ -11,10 +11,42 @@ export type ObjectOrArray<T, K extends keyof any = keyof any> =
 
 export type RequiredTheme = Required<Theme>
 
-export type ResponsiveValue<T, ThemeType extends Theme = RequiredTheme> =
+export type Responsive<T, ThemeType extends Theme = RequiredTheme> =
   | T
   | Array<T | null>
   | { [key in keyof ThemeType["breakpoints"]]?: T }
+
+export interface Component {
+  /**
+   * The initial styles to be applied to the component
+   */
+  baseStyle?: any
+  /**
+   * The component's visual style variants
+   */
+  variants?: any
+  /**
+   * The component's size variations
+   */
+  sizes?: any
+  /**
+   * The default props to apply to the component
+   */
+  defaultProps?: {
+    /**
+     * The default variant to use (in variants)
+     */
+    variant?: string
+    /**
+     * The default size to use (in sizes)
+     */
+    size?: string
+    /**
+     * The default color scheme to use (if variants are defined as functions)
+     */
+    colorScheme?: string
+  }
+}
 
 export interface Theme<P = TLength> {
   breakpoints?: Record<string, string | number>
@@ -32,627 +64,428 @@ export interface Theme<P = TLength> {
   radii?: ObjectOrArray<CSS.BorderRadiusProperty<P>>
   shadows?: ObjectOrArray<CSS.BoxShadowProperty>
   zIndices?: ObjectOrArray<CSS.ZIndexProperty>
+  components?: Record<string, Component>
 }
 
+/**
+ * Extract the possible theme value type
+ * based on the scale.
+ *
+ * @example
+ *
+ * type Result = ThemeValue<"space", { space: [4, 5] }>
+ * // => Result: number
+ *
+ * type Result = ThemeValue<"space", { space: { sm: 4, md: 5 } }>
+ * // => Result: "sm" | "md"
+ */
 export type ThemeValue<
-  K extends keyof ThemeType,
-  ThemeType,
-  Scale = any
-> = ThemeType[K] extends Scale[]
+  Scale extends keyof Theme,
+  Theme
+> = Theme[Scale] extends any[]
   ? number
-  : ThemeType[K] extends Record<infer E, Scale>
-  ? E
-  : ThemeType[K] extends ObjectOrArray<infer F>
+  : Theme[Scale] extends Record<infer Keys, any>
+  ? Keys
+  : Theme[Scale] extends ObjectOrArray<infer F>
   ? F
   : never
 
+/**
+ * Types for space related CSS properties
+ * @see `/configs/space.ts` for the style configurations
+ */
 export interface SpaceProps<
   ThemeType extends Theme = RequiredTheme,
-  Scale = ThemeValue<"space", ThemeType>
+  Value = ThemeValue<"space", ThemeType>
 > {
-  m?: ResponsiveValue<Scale, ThemeType>
-  margin?: ResponsiveValue<Scale, ThemeType>
-  mt?: ResponsiveValue<Scale, ThemeType>
-  marginTop?: ResponsiveValue<Scale, ThemeType>
-  mr?: ResponsiveValue<Scale, ThemeType>
-  marginRight?: ResponsiveValue<Scale, ThemeType>
-  mb?: ResponsiveValue<Scale, ThemeType>
-  marginBottom?: ResponsiveValue<Scale, ThemeType>
-  ml?: ResponsiveValue<Scale, ThemeType>
-  marginLeft?: ResponsiveValue<Scale, ThemeType>
-  mx?: ResponsiveValue<Scale, ThemeType>
-  marginX?: ResponsiveValue<Scale, ThemeType>
-  my?: ResponsiveValue<Scale, ThemeType>
-  marginY?: ResponsiveValue<Scale, ThemeType>
-  p?: ResponsiveValue<Scale, ThemeType>
-  padding?: ResponsiveValue<Scale, ThemeType>
-  pt?: ResponsiveValue<Scale, ThemeType>
-  paddingTop?: ResponsiveValue<Scale, ThemeType>
-  pr?: ResponsiveValue<Scale, ThemeType>
-  paddingRight?: ResponsiveValue<Scale, ThemeType>
-  pb?: ResponsiveValue<Scale, ThemeType>
-  paddingBottom?: ResponsiveValue<Scale, ThemeType>
-  pl?: ResponsiveValue<Scale, ThemeType>
-  paddingLeft?: ResponsiveValue<Scale, ThemeType>
-  px?: ResponsiveValue<Scale, ThemeType>
-  paddingX?: ResponsiveValue<Scale, ThemeType>
-  py?: ResponsiveValue<Scale, ThemeType>
-  paddingY?: ResponsiveValue<Scale, ThemeType>
-}
-
-/////////////////////////////////////////////////////////////////
-
-export interface TextColorProps<
-  ThemeType extends Theme = RequiredTheme,
-  Scale = ThemeValue<"colors", ThemeType>
-> {
-  textColor?: ResponsiveValue<Scale, ThemeType>
-  color?: ResponsiveValue<Scale, ThemeType>
-}
-
-export interface BackgroundColorProps<
-  ThemeType extends Theme = RequiredTheme,
-  Scale = ThemeValue<"colors", ThemeType>
-> {
-  bg?: ResponsiveValue<Scale, ThemeType>
-  bgColor?: ResponsiveValue<Scale, ThemeType>
-  backgroundColor?: ResponsiveValue<Scale, ThemeType>
-  fill?: ResponsiveValue<Scale, ThemeType>
-  stroke?: ResponsiveValue<Scale, ThemeType>
-}
-
-export interface OpacityProps<ThemeType extends Theme = RequiredTheme> {
-  opacity?: ResponsiveValue<CSS.GlobalsNumber, ThemeType>
+  /** Margin on top, left, bottom and right */
+  m?: Responsive<Value, ThemeType>
+  /** Margin on top, left, bottom and right */
+  margin?: Responsive<Value, ThemeType>
+  /** Margin on top */
+  mt?: Responsive<Value, ThemeType>
+  /** Margin on top */
+  marginTop?: Responsive<Value, ThemeType>
+  /** Margin on right */
+  mr?: Responsive<Value, ThemeType>
+  /** Margin on right */
+  marginRight?: Responsive<Value, ThemeType>
+  /** Margin on bottom */
+  mb?: Responsive<Value, ThemeType>
+  /** Margin on bottom */
+  marginBottom?: Responsive<Value, ThemeType>
+  /** Margin on left */
+  ml?: Responsive<Value, ThemeType>
+  /** Margin on left */
+  marginLeft?: Responsive<Value, ThemeType>
+  /** Margin on left and right */
+  mx?: Responsive<Value, ThemeType>
+  /** Margin on left and right */
+  marginX?: Responsive<Value, ThemeType>
+  /** Margin on top and bottom */
+  my?: Responsive<Value, ThemeType>
+  /** Margin on top and bottom */
+  marginY?: Responsive<Value, ThemeType>
+  /** Padding on top, left, bottom and right */
+  p?: Responsive<Value, ThemeType>
+  /** Padding on top, left, bottom and right */
+  padding?: Responsive<Value, ThemeType>
+  /** Padding on top */
+  pt?: Responsive<Value, ThemeType>
+  /** Padding on top */
+  paddingTop?: Responsive<Value, ThemeType>
+  /** Padding on right */
+  pr?: Responsive<Value, ThemeType>
+  /** Padding on right */
+  paddingRight?: Responsive<Value, ThemeType>
+  /** Padding on bottom */
+  pb?: Responsive<Value, ThemeType>
+  /** Padding on bottom */
+  paddingBottom?: Responsive<Value, ThemeType>
+  /** Padding on left */
+  pl?: Responsive<Value, ThemeType>
+  /** Padding on left */
+  paddingLeft?: Responsive<Value, ThemeType>
+  /** Padding on left and right */
+  px?: Responsive<Value, ThemeType>
+  /** Padding on left and right */
+  paddingX?: Responsive<Value, ThemeType>
+  /** Padding on top and bottom */
+  py?: Responsive<Value, ThemeType>
+  /** Padding on top and bottom */
+  paddingY?: Responsive<Value, ThemeType>
 }
 
 /**
- * Types for background properties
- * @see /configs/parser/color.ts
+ * Types for color related CSS properties
+ * @see `/configs/color.ts` for the style configurations
  */
 export interface ColorProps<
   ThemeType extends Theme = RequiredTheme,
-  Scale = ThemeValue<"colors", ThemeType>
->
-  extends TextColorProps<ThemeType, Scale>,
-    BackgroundColorProps<ThemeType, Scale>,
-    OpacityProps {}
-
-/////////////////////////////////////////////////////////////////
-
-export interface FontSizeProps<
-  ThemeType extends Theme = RequiredTheme,
-  Scale = ThemeValue<"fontSizes", ThemeType>
+  Value = ThemeValue<"colors", ThemeType>
 > {
-  fontSize?: ResponsiveValue<Scale, ThemeType>
+  /** The CSS `color` property */
+  textColor?: Responsive<Value, ThemeType>
+  /** The CSS `color` property */
+  color?: Responsive<Value, ThemeType>
+  /** The CSS `background` property */
+  bg?: Responsive<Value, ThemeType>
+  /** The CSS `background-color` property */
+  bgColor?: Responsive<Value, ThemeType>
+  /** The CSS `background-color` property */
+  backgroundColor?: Responsive<Value, ThemeType>
+  /** The CSS `fill` property for icon svgs and paths */
+  fill?: Responsive<Value, ThemeType>
+  /** The CSS `stroke` property for icon svgs and paths */
+  stroke?: Responsive<Value, ThemeType>
+  /** The CSS `opacity` property  */
+  opacity?: Responsive<CSS.GlobalsNumber, ThemeType>
 }
-
-export interface FontFamilyProps<ThemeType extends Theme = RequiredTheme> {
-  fontFamily?: ResponsiveValue<CSS.FontFamilyProperty, ThemeType>
-}
-
-export interface FontWeightProps<
-  ThemeType extends Theme = RequiredTheme,
-  Scale = ThemeValue<"fontWeights", ThemeType>
-> {
-  fontWeight?: ResponsiveValue<Scale, ThemeType>
-}
-
-export interface LineHeightProps<
-  ThemeType extends Theme = RequiredTheme,
-  Scale = ThemeValue<"lineHeights", ThemeType>
-> {
-  lineHeight?: ResponsiveValue<Scale, ThemeType>
-}
-
-export interface TextAlignProps<ThemeType extends Theme = RequiredTheme> {
-  textAlign?: ResponsiveValue<CSS.TextAlignProperty, ThemeType>
-}
-
-export interface FontStyleProps<ThemeType extends Theme = RequiredTheme> {
-  fontStyle?: ResponsiveValue<CSS.FontStyleProperty, ThemeType>
-}
-
-export interface LetterSpacingProps<
-  ThemeType extends Theme = RequiredTheme,
-  Scale = ThemeValue<"letterSpacings", ThemeType>
-> {
-  letterSpacing?: ResponsiveValue<Scale, ThemeType>
-}
-
-export interface TypographyProps<ThemeType extends Theme = RequiredTheme>
-  extends FontFamilyProps<ThemeType>,
-    FontSizeProps<ThemeType>,
-    FontWeightProps<ThemeType>,
-    LineHeightProps<ThemeType>,
-    LetterSpacingProps<ThemeType>,
-    FontStyleProps<ThemeType>,
-    TextAlignProps<ThemeType> {
-  wordBreak?: ResponsiveValue<CSS.WordBreakProperty, ThemeType>
-  overflowWrap?: ResponsiveValue<CSS.OverflowWrapProperty, ThemeType>
-  textOverflow?: ResponsiveValue<CSS.TextOverflowProperty, ThemeType>
-  textTransform?: ResponsiveValue<CSS.TextTransformProperty, ThemeType>
-  whiteSpace?: ResponsiveValue<CSS.WhiteSpaceProperty, ThemeType>
-  textDecoration?: ResponsiveValue<
-    CSS.TextDecorationProperty<TLength>,
-    ThemeType
-  >
-  textDecor?: ResponsiveValue<CSS.TextDecorationProperty<TLength>, ThemeType>
-}
-
-/////////////////////////////////////////////////////////////////
-
-export interface DisplayProps<ThemeType extends Theme = RequiredTheme> {
-  display?: ResponsiveValue<CSS.DisplayProperty, ThemeType>
-}
-
-export interface WidthProps<
-  ThemeType extends Theme = RequiredTheme,
-  Scale = CSS.WidthProperty<TLength>
-> {
-  width?: ResponsiveValue<Scale, ThemeType>
-  w?: ResponsiveValue<Scale, ThemeType>
-}
-
-export interface MaxWidthProps<
-  ThemeType extends Theme = RequiredTheme,
-  Scale = CSS.MaxWidthProperty<TLength>
-> {
-  maxWidth?: ResponsiveValue<Scale, ThemeType>
-  maxW?: ResponsiveValue<Scale, ThemeType>
-}
-
-export interface MinWidthProps<
-  ThemeType extends Theme = RequiredTheme,
-  Scale = CSS.MinWidthProperty<TLength>
-> {
-  minWidth?: ResponsiveValue<Scale, ThemeType>
-  minW?: ResponsiveValue<Scale, ThemeType>
-}
-
-export interface HeightProps<
-  ThemeType extends Theme = RequiredTheme,
-  Scale = CSS.HeightProperty<TLength>
-> {
-  height?: ResponsiveValue<Scale, ThemeType>
-  h?: ResponsiveValue<Scale, ThemeType>
-}
-
-export interface MaxHeightProps<
-  ThemeType extends Theme = RequiredTheme,
-  Scale = CSS.MaxHeightProperty<TLength>
-> {
-  maxHeight?: ResponsiveValue<Scale, ThemeType>
-  maxH?: ResponsiveValue<Scale, ThemeType>
-}
-
-export interface MinHeightProps<
-  ThemeType extends Theme = RequiredTheme,
-  Scale = CSS.MinHeightProperty<TLength>
-> {
-  minHeight?: ResponsiveValue<Scale, ThemeType>
-  minH?: ResponsiveValue<Scale, ThemeType>
-}
-
-export interface VerticalAlignProps<
-  ThemeType extends Theme = RequiredTheme,
-  Scale = CSS.VerticalAlignProperty<TLength>
-> {
-  verticalAlign?: ResponsiveValue<Scale, ThemeType>
-}
-
-export interface LayoutProps<ThemeType extends Theme = RequiredTheme>
-  extends WidthProps<ThemeType>,
-    HeightProps<ThemeType>,
-    MinWidthProps<ThemeType>,
-    MinHeightProps<ThemeType>,
-    MaxWidthProps<ThemeType>,
-    MaxHeightProps<ThemeType>,
-    DisplayProps<ThemeType>,
-    VerticalAlignProps<ThemeType>,
-    OverflowProps<ThemeType> {}
-
-/////////////////////////////////////////////////////////////////
-
-export interface AlignItemsProps<ThemeType extends Theme = RequiredTheme> {
-  alignItems?: ResponsiveValue<CSS.AlignItemsProperty, ThemeType>
-}
-
-export interface AlignContentProps<ThemeType extends Theme = RequiredTheme> {
-  alignContent?: ResponsiveValue<CSS.AlignContentProperty, ThemeType>
-}
-
-export interface JustifyItemsProps<ThemeType extends Theme = RequiredTheme> {
-  justifyItems?: ResponsiveValue<CSS.JustifyItemsProperty, ThemeType>
-}
-
-export interface JustifyContentProps<ThemeType extends Theme = RequiredTheme> {
-  justifyContent?: ResponsiveValue<CSS.JustifyContentProperty, ThemeType>
-}
-
-export interface FlexWrapProps<ThemeType extends Theme = RequiredTheme> {
-  flexWrap?: ResponsiveValue<CSS.FlexWrapProperty, ThemeType>
-}
-
-export interface FlexBasisProps<
-  ThemeType extends Theme = RequiredTheme,
-  Scale = CSS.FlexBasisProperty<TLength>
-> {
-  flexBasis?: ResponsiveValue<Scale, ThemeType>
-}
-
-export interface FlexDirectionProps<ThemeType extends Theme = RequiredTheme> {
-  flexDirection?: ResponsiveValue<CSS.FlexDirectionProperty, ThemeType>
-  flexDir?: ResponsiveValue<CSS.FlexDirectionProperty, ThemeType>
-}
-
-export interface FlexProps<
-  ThemeType extends Theme = RequiredTheme,
-  Scale = CSS.FlexProperty<TLength>
-> {
-  flex?: ResponsiveValue<Scale, ThemeType>
-}
-
-export interface JustifySelfProps<ThemeType extends Theme = RequiredTheme> {
-  justifySelf?: ResponsiveValue<CSS.JustifySelfProperty, ThemeType>
-}
-
-export interface AlignSelfProps<ThemeType extends Theme = RequiredTheme> {
-  alignSelf?: ResponsiveValue<CSS.AlignSelfProperty, ThemeType>
-}
-
-export interface OrderProps<ThemeType extends Theme = RequiredTheme> {
-  order?: ResponsiveValue<CSS.GlobalsNumber, ThemeType>
-}
-
-export interface FlexGrowProps<ThemeType extends Theme = RequiredTheme> {
-  flexGrow?: ResponsiveValue<CSS.GlobalsNumber, ThemeType>
-}
-
-export interface FlexShrinkProps<ThemeType extends Theme = RequiredTheme> {
-  flexShrink?: ResponsiveValue<CSS.GlobalsNumber, ThemeType>
-}
-
-export interface FlexboxProps<ThemeType extends Theme = RequiredTheme>
-  extends AlignItemsProps<ThemeType>,
-    AlignContentProps<ThemeType>,
-    JustifyItemsProps<ThemeType>,
-    JustifyContentProps<ThemeType>,
-    FlexWrapProps<ThemeType>,
-    FlexDirectionProps<ThemeType>,
-    FlexProps<ThemeType>,
-    FlexGrowProps<ThemeType>,
-    FlexShrinkProps<ThemeType>,
-    FlexBasisProps<ThemeType>,
-    JustifySelfProps<ThemeType>,
-    AlignSelfProps<ThemeType>,
-    OrderProps<ThemeType> {}
-
-/////////////////////////////////////////////////////////////////
-
-export interface GridGapProps<
-  ThemeType extends Theme = RequiredTheme,
-  Scale = CSS.GridGapProperty<TLength>
-> {
-  gridGap?: ResponsiveValue<Scale, ThemeType>
-}
-
-export interface GridColumnGapProps<
-  ThemeType extends Theme = RequiredTheme,
-  Scale = CSS.GridColumnGapProperty<TLength>
-> {
-  gridColumnGap?: ResponsiveValue<Scale, ThemeType>
-}
-
-export interface GridRowGapProps<
-  ThemeType extends Theme = RequiredTheme,
-  Scale = CSS.GridRowGapProperty<TLength>
-> {
-  gridRowGap?: ResponsiveValue<Scale, ThemeType>
-}
-
-export interface GridColumnProps<ThemeType extends Theme = RequiredTheme> {
-  gridColumn?: ResponsiveValue<CSS.GridColumnProperty, ThemeType>
-}
-
-export interface GridRowProps<ThemeType extends Theme = RequiredTheme> {
-  gridRow?: ResponsiveValue<CSS.GridRowProperty, ThemeType>
-}
-
-export interface GridAutoFlowProps<ThemeType extends Theme = RequiredTheme> {
-  gridAutoFlow?: ResponsiveValue<CSS.GridAutoFlowProperty, ThemeType>
-}
-
-export interface GridAutoColumnsProps<
-  ThemeType extends Theme = RequiredTheme,
-  Scale = CSS.GridAutoColumnsProperty<TLength>
-> {
-  gridAutoColumns?: ResponsiveValue<Scale, ThemeType>
-}
-
-export interface GridAutoRowsProps<
-  ThemeType extends Theme = RequiredTheme,
-  Scale = CSS.GridAutoRowsProperty<TLength>
-> {
-  gridAutoRows?: ResponsiveValue<Scale, ThemeType>
-}
-
-export interface GridTemplateColumnsProps<
-  ThemeType extends Theme = RequiredTheme,
-  Scale = CSS.GridTemplateColumnsProperty<TLength>
-> {
-  gridTemplateColumns?: ResponsiveValue<Scale, ThemeType>
-}
-
-export interface GridTemplateRowsProps<
-  ThemeType extends Theme = RequiredTheme,
-  Scale = CSS.GridTemplateRowsProperty<TLength>
-> {
-  gridTemplateRows?: ResponsiveValue<Scale, ThemeType>
-}
-
-export interface GridTemplateAreasProps<
-  ThemeType extends Theme = RequiredTheme
-> {
-  gridTemplateAreas?: ResponsiveValue<CSS.GridTemplateAreasProperty, ThemeType>
-}
-
-export interface GridAreaProps<ThemeType extends Theme = RequiredTheme> {
-  gridArea?: ResponsiveValue<CSS.GridAreaProperty, ThemeType>
-}
-
-export interface GridProps<ThemeType extends Theme = RequiredTheme>
-  extends GridGapProps<ThemeType>,
-    GridColumnGapProps<ThemeType>,
-    GridRowGapProps<ThemeType>,
-    GridColumnProps<ThemeType>,
-    GridRowProps<ThemeType>,
-    GridAutoFlowProps<ThemeType>,
-    GridAutoColumnsProps<ThemeType>,
-    GridAutoRowsProps<ThemeType>,
-    GridTemplateColumnsProps<ThemeType>,
-    GridTemplateRowsProps<ThemeType>,
-    GridTemplateAreasProps<ThemeType>,
-    GridAreaProps<ThemeType> {
-  placeItems?: ResponsiveValue<CSS.PlaceItemsProperty, ThemeType>
-}
-
-/////////////////////////////////////////////////////////////////
-
-export interface BorderWidthProps<
-  ThemeType extends Theme = RequiredTheme,
-  Scale = ThemeValue<"borderWidths", ThemeType>
-> {
-  borderWidth?: ResponsiveValue<Scale, ThemeType>
-  borderTopWidth?: ResponsiveValue<Scale, ThemeType>
-  borderBottomWidth?: ResponsiveValue<Scale, ThemeType>
-  borderLeftWidth?: ResponsiveValue<Scale, ThemeType>
-  borderRightWidth?: ResponsiveValue<Scale, ThemeType>
-}
-
-export interface BorderStyleProps<ThemeType extends Theme = RequiredTheme> {
-  borderStyle?: ResponsiveValue<CSS.BorderStyleProperty, ThemeType>
-  borderTopStyle?: ResponsiveValue<CSS.BorderTopStyleProperty, ThemeType>
-  borderBottomStyle?: ResponsiveValue<CSS.BorderBottomStyleProperty, ThemeType>
-  borderLeftStyle?: ResponsiveValue<CSS.BorderLeftStyleProperty, ThemeType>
-  borderRightStyle?: ResponsiveValue<CSS.BorderRightStyleProperty, ThemeType>
-}
-
-export interface BorderColorProps<
-  ThemeType extends Theme = RequiredTheme,
-  Scale = ThemeValue<"colors", ThemeType>
-> {
-  borderColor?: ResponsiveValue<Scale, ThemeType>
-  borderTopColor?: ResponsiveValue<Scale, ThemeType>
-  borderBottomColor?: ResponsiveValue<Scale, ThemeType>
-  borderLeftColor?: ResponsiveValue<Scale, ThemeType>
-  borderRightColor?: ResponsiveValue<Scale, ThemeType>
-}
-
-export interface BorderTopProps<
-  ThemeType extends Theme = RequiredTheme,
-  Scale = CSS.BorderTopProperty<TLength>
-> {
-  borderTop?: ResponsiveValue<Scale, ThemeType>
-}
-
-export interface BorderRightProps<
-  ThemeType extends Theme = RequiredTheme,
-  Scale = CSS.BorderRightProperty<TLength>
-> {
-  borderRight?: ResponsiveValue<Scale, ThemeType>
-}
-
-export interface BorderBottomProps<
-  ThemeType extends Theme = RequiredTheme,
-  Scale = CSS.BorderBottomProperty<TLength>
-> {
-  borderBottom?: ResponsiveValue<Scale, ThemeType>
-}
-
-export interface BorderLeftProps<
-  ThemeType extends Theme = RequiredTheme,
-  Scale = CSS.BorderLeftProperty<TLength>
-> {
-  borderLeft?: ResponsiveValue<Scale, ThemeType>
-}
-
-export interface BorderRadiusProps<
-  ThemeType extends Theme = RequiredTheme,
-  Scale = ThemeValue<"radii", ThemeType>
-> {
-  borderRadius?: ResponsiveValue<Scale, ThemeType>
-  borderTopRadius?: ResponsiveValue<Scale, ThemeType>
-  borderRightRadius?: ResponsiveValue<Scale, ThemeType>
-  borderBottomRadius?: ResponsiveValue<Scale, ThemeType>
-  borderLeftRadius?: ResponsiveValue<Scale, ThemeType>
-  borderTopLeftRadius?: ResponsiveValue<Scale, ThemeType>
-  borderTopRightRadius?: ResponsiveValue<Scale, ThemeType>
-  borderBottomLeftRadius?: ResponsiveValue<Scale, ThemeType>
-  borderBottomRightRadius?: ResponsiveValue<Scale, ThemeType>
-}
-
-export interface OutlineProps<ThemeType extends Theme = RequiredTheme> {
-  outline?: ResponsiveValue<CSS.OutlineProperty<TLength>, ThemeType>
-  outlineColor?: ResponsiveValue<ThemeValue<"colors", ThemeType>, ThemeType>
-  outlineOffset?: ResponsiveValue<CSS.OutlineOffsetProperty<TLength>, ThemeType>
-}
-
-export interface BordersProps<ThemeType extends Theme = RequiredTheme>
-  extends BorderProps<ThemeType>,
-    BorderTopProps<ThemeType>,
-    BorderRightProps<ThemeType>,
-    BorderBottomProps<ThemeType>,
-    BorderLeftProps<ThemeType>,
-    BorderWidthProps<ThemeType>,
-    BorderColorProps<ThemeType>,
-    BorderStyleProps<ThemeType>,
-    BorderRadiusProps<ThemeType>,
-    OutlineProps<ThemeType> {}
 
 /**
- * Types for background properties
- * @see /configs/parser/border.ts
+ * Types for typography related CSS properties
+ * @see `/configs/typography.ts` for the style configurations
  */
-export interface BorderProps<
-  ThemeType extends Theme = RequiredTheme,
-  Scale = CSS.BorderProperty<TLength>
->
-  extends BorderWidthProps<ThemeType>,
-    BorderStyleProps<ThemeType>,
-    BorderColorProps<ThemeType>,
-    BorderRadiusProps<ThemeType>,
-    BorderTopProps<ThemeType>,
-    BorderRightProps<ThemeType>,
-    BorderBottomProps<ThemeType>,
-    BorderLeftProps<ThemeType> {
-  border?: ResponsiveValue<Scale, ThemeType>
-  borderX?: ResponsiveValue<Scale, ThemeType>
-  borderY?: ResponsiveValue<Scale, ThemeType>
+export interface TypographyProps<ThemeType extends Theme = RequiredTheme> {
+  /** The CSS `font-weight` property  */
+  fontWeight?: Responsive<ThemeValue<"fontWeights", ThemeType>, ThemeType>
+  /** The CSS `line-height` property  */
+  lineHeight?: Responsive<ThemeValue<"lineHeights", ThemeType>, ThemeType>
+  /** The CSS `line-height` property  */
+  letterSpacing?: Responsive<ThemeValue<"letterSpacings", ThemeType>, ThemeType>
+  /** The CSS `font-size` property  */
+  fontSize?: Responsive<ThemeValue<"fontSizes", ThemeType>, ThemeType>
+  /** The CSS `font-family` property  */
+  fontFamily?: Responsive<CSS.FontFamilyProperty, ThemeType>
+  /** The CSS `text-align` property  */
+  textAlign?: Responsive<CSS.TextAlignProperty, ThemeType>
+  /** The CSS `font-style` property  */
+  fontStyle?: Responsive<CSS.FontStyleProperty, ThemeType>
+  /** The CSS `word-break` property  */
+  wordBreak?: Responsive<CSS.WordBreakProperty, ThemeType>
+  /** The CSS `overflow-wrap` property  */
+  overflowWrap?: Responsive<CSS.OverflowWrapProperty, ThemeType>
+  /** The CSS `text-overflow` property  */
+  textOverflow?: Responsive<CSS.TextOverflowProperty, ThemeType>
+  /** The CSS `text-transform` property  */
+  textTransform?: Responsive<CSS.TextTransformProperty, ThemeType>
+  /** The CSS `white-space` property  */
+  whiteSpace?: Responsive<CSS.WhiteSpaceProperty, ThemeType>
+  /** The CSS `text-decoration` property  */
+  textDecoration?: Responsive<CSS.TextDecorationProperty<TLength>, ThemeType>
+  /** The CSS `text-decoration` property  */
+  textDecor?: Responsive<CSS.TextDecorationProperty<TLength>, ThemeType>
 }
 
-/////////////////////////////////////////////////////////////////
+/**
+ * Types for layout related CSS properties
+ * @see `/configs/layout.ts` for the style configurations
+ */
+export interface LayoutProps<ThemeType extends Theme = RequiredTheme> {
+  /** The CSS `display` property  */
+  display?: Responsive<CSS.DisplayProperty, ThemeType>
+  /** The CSS `width` property  */
+  width?: Responsive<CSS.WidthProperty<TLength>, ThemeType>
+  /** The CSS `width` property  */
+  w?: Responsive<CSS.WidthProperty<TLength>, ThemeType>
+  /** The CSS `max-width` property  */
+  maxWidth?: Responsive<CSS.MaxWidthProperty<TLength>, ThemeType>
+  /** The CSS `max-width` property  */
+  maxW?: Responsive<CSS.MaxWidthProperty<TLength>, ThemeType>
+  /** The CSS `min-width` property  */
+  minWidth?: Responsive<CSS.MinWidthProperty<TLength>, ThemeType>
+  /** The CSS `min-width` property  */
+  minW?: Responsive<CSS.MinWidthProperty<TLength>, ThemeType>
+  /** The CSS `height` property  */
+  height?: Responsive<CSS.HeightProperty<TLength>, ThemeType>
+  /** The CSS `height` property  */
+  h?: Responsive<CSS.HeightProperty<TLength>, ThemeType>
+  /** The CSS `max-height` property  */
+  maxHeight?: Responsive<CSS.MaxHeightProperty<TLength>, ThemeType>
+  /** The CSS `max-height` property  */
+  maxH?: Responsive<CSS.MaxHeightProperty<TLength>, ThemeType>
+  /** The CSS `min-height` property  */
+  minHeight?: Responsive<CSS.MinHeightProperty<TLength>, ThemeType>
+  /** The CSS `min-height` property  */
+  minH?: Responsive<CSS.MinHeightProperty<TLength>, ThemeType>
+  /** The CSS `vertical-align` property  */
+  verticalAlign?: Responsive<CSS.VerticalAlignProperty<TLength>, ThemeType>
+  /** The CSS `overflow` property  */
+  overflow?: Responsive<CSS.OverflowProperty, ThemeType>
+  /** The CSS `overflow-x` property  */
+  overflowX?: Responsive<CSS.OverflowXProperty, ThemeType>
+  /** The CSS `overflow-y` property  */
+  overflowY?: Responsive<CSS.OverflowYProperty, ThemeType>
+  /** The CSS `box-sizing` property  */
+  boxSizing?: CSS.BoxSizingProperty
+}
 
+/**
+ * Types for flexbox related CSS properties
+ * @see `/configs/flexbox.ts` for the style configurations
+ */
+export interface FlexboxProps<ThemeType extends Theme = RequiredTheme> {
+  /** The CSS `align-items` property  */
+  alignItems?: Responsive<CSS.AlignItemsProperty, ThemeType>
+  /** The CSS `align-content` property  */
+  alignContent?: Responsive<CSS.AlignContentProperty, ThemeType>
+  /** The CSS `justify-items` property  */
+  justifyItems?: Responsive<CSS.JustifyItemsProperty, ThemeType>
+  /** The CSS `justify-content` property  */
+  justifyContent?: Responsive<CSS.JustifyContentProperty, ThemeType>
+  /** The CSS `flex-wrap` property  */
+  flexWrap?: Responsive<CSS.FlexWrapProperty, ThemeType>
+  /** The CSS `flex-basis` property  */
+  flexBasis?: Responsive<CSS.FlexBasisProperty<TLength>, ThemeType>
+  /** The CSS `flex-direction` property  */
+  flexDirection?: Responsive<CSS.FlexDirectionProperty, ThemeType>
+  /** The CSS `flex-direction` property  */
+  flexDir?: Responsive<CSS.FlexDirectionProperty, ThemeType>
+  /** The CSS `flex` property  */
+  flex?: Responsive<CSS.FlexProperty<TLength>, ThemeType>
+  /** The CSS `justify-self` property  */
+  justifySelf?: Responsive<CSS.JustifySelfProperty, ThemeType>
+  /** The CSS `align-self` property  */
+  alignSelf?: Responsive<CSS.AlignSelfProperty, ThemeType>
+  /** The CSS `order` property  */
+  order?: Responsive<CSS.GlobalsNumber, ThemeType>
+  /** The CSS `flex-grow` property  */
+  flexGrow?: Responsive<CSS.GlobalsNumber, ThemeType>
+  /** The CSS `flex-shrink` property  */
+  flexShrink?: Responsive<CSS.GlobalsNumber, ThemeType>
+}
+
+/**
+ * Types for grid related CSS properties
+ * @see `/configs/grid.ts` for the style configurations
+ */
+export interface GridProps<ThemeType extends Theme = RequiredTheme> {
+  /** The CSS `grid-gap` property  */
+  gridGap?: Responsive<CSS.GridGapProperty<TLength>, ThemeType>
+  /** The CSS `grid-column-gap` property  */
+  gridColumnGap?: Responsive<CSS.GridColumnGapProperty<TLength>, ThemeType>
+  /** The CSS `grid-row-gap` property  */
+  gridRowGap?: Responsive<CSS.GridRowGapProperty<TLength>, ThemeType>
+  /** The CSS `grid-column` property  */
+  gridColumn?: Responsive<CSS.GridColumnProperty, ThemeType>
+  /** The CSS `grid-row` property  */
+  gridRow?: Responsive<CSS.GridRowProperty, ThemeType>
+  /** The CSS `grid-auto-flow` property  */
+  gridAutoFlow?: Responsive<CSS.GridAutoFlowProperty, ThemeType>
+  /** The CSS `grid-auto-columns` property  */
+  gridAutoColumns?: Responsive<CSS.GridAutoColumnsProperty<TLength>, ThemeType>
+  /** The CSS `grid-auto-rows` property  */
+  gridAutoRows?: Responsive<CSS.GridAutoRowsProperty<TLength>, ThemeType>
+  /** The CSS `grid-template-columns` property  */
+  gridTemplateColumns?: Responsive<
+    CSS.GridTemplateColumnsProperty<TLength>,
+    ThemeType
+  >
+  /** The CSS `grid-template-rows` property  */
+  gridTemplateRows?: Responsive<
+    CSS.GridTemplateRowsProperty<TLength>,
+    ThemeType
+  >
+  /** The CSS `grid-template-areas` property  */
+  gridTemplateAreas?: Responsive<CSS.GridTemplateAreasProperty, ThemeType>
+  /** The CSS `grid-areas` property  */
+  gridArea?: Responsive<CSS.GridAreaProperty, ThemeType>
+  /** The CSS `place-items` property  */
+  placeItems?: Responsive<CSS.PlaceItemsProperty, ThemeType>
+}
+
+/**
+ * Types for border properties
+ * @see `/configs/border.ts`
+ */
+export interface BordersProps<ThemeType extends Theme = RequiredTheme> {
+  /** The CSS `border-width` property  */
+  borderWidth?: Responsive<ThemeValue<"borderWidths", ThemeType>, ThemeType>
+  /** The CSS `border-top-width` property  */
+  borderTopWidth?: Responsive<ThemeValue<"borderWidths", ThemeType>, ThemeType>
+  /** The CSS `border-bottom-width` property  */
+  borderBottomWidth?: Responsive<
+    ThemeValue<"borderWidths", ThemeType>,
+    ThemeType
+  >
+  /** The CSS `border-left-width` property  */
+  borderLeftWidth?: Responsive<ThemeValue<"borderWidths", ThemeType>, ThemeType>
+  /** The CSS `border-right-width` property  */
+  borderRightWidth?: Responsive<
+    ThemeValue<"borderWidths", ThemeType>,
+    ThemeType
+  >
+  /** The CSS `border-style` property  */
+  borderStyle?: Responsive<CSS.BorderStyleProperty, ThemeType>
+  /** The CSS `border-top-style` property  */
+  borderTopStyle?: Responsive<CSS.BorderTopStyleProperty, ThemeType>
+  /** The CSS `border-bottom-style` property  */
+  borderBottomStyle?: Responsive<CSS.BorderBottomStyleProperty, ThemeType>
+  /** The CSS `border-left-style` property  */
+  borderLeftStyle?: Responsive<CSS.BorderLeftStyleProperty, ThemeType>
+  /** The CSS `border-right-styles` property  */
+  borderRightStyle?: Responsive<CSS.BorderRightStyleProperty, ThemeType>
+  /** The CSS `border-color` property  */
+  borderColor?: Responsive<ThemeValue<"colors", ThemeType>, ThemeType>
+  /** The CSS `border-top-color` property  */
+  borderTopColor?: Responsive<ThemeValue<"colors", ThemeType>, ThemeType>
+  /** The CSS `border-bottom-color` property  */
+  borderBottomColor?: Responsive<ThemeValue<"colors", ThemeType>, ThemeType>
+  /** The CSS `border-left-color` property  */
+  borderLeftColor?: Responsive<ThemeValue<"colors", ThemeType>, ThemeType>
+  /** The CSS `border-right-color` property  */
+  borderRightColor?: Responsive<ThemeValue<"colors", ThemeType>, ThemeType>
+  /** The CSS `border-top` property  */
+  borderTop?: Responsive<CSS.BorderTopProperty<TLength>, ThemeType>
+  /** The CSS `border-right` property  */
+  borderRight?: Responsive<CSS.BorderRightProperty<TLength>, ThemeType>
+  /** The CSS `border-bottom` property  */
+  borderBottom?: Responsive<CSS.BorderBottomProperty<TLength>, ThemeType>
+  /** The CSS `border-left` property  */
+  borderLeft?: Responsive<CSS.BorderLeftProperty<TLength>, ThemeType>
+  /** The CSS `border-radius` property  */
+  borderRadius?: Responsive<ThemeValue<"radii", ThemeType>, ThemeType>
+  /** The CSS `border-top-radius` property  */
+  borderTopRadius?: Responsive<ThemeValue<"radii", ThemeType>, ThemeType>
+  /** The CSS `border-right-radius` property  */
+  borderRightRadius?: Responsive<ThemeValue<"radii", ThemeType>, ThemeType>
+  /** The CSS `border-bottom-radius` property  */
+  borderBottomRadius?: Responsive<ThemeValue<"radii", ThemeType>, ThemeType>
+  /** The CSS `border-left-radius` property  */
+  borderLeftRadius?: Responsive<ThemeValue<"radii", ThemeType>, ThemeType>
+  /** The CSS `border-top-left-radius` property  */
+  borderTopLeftRadius?: Responsive<ThemeValue<"radii", ThemeType>, ThemeType>
+  /** The CSS `border-top-right-radius` property  */
+  borderTopRightRadius?: Responsive<ThemeValue<"radii", ThemeType>, ThemeType>
+  /** The CSS `border-bottom-left-radius` property  */
+  borderBottomLeftRadius?: Responsive<ThemeValue<"radii", ThemeType>, ThemeType>
+  /** The CSS `border-bottom-right-radius` property  */
+  borderBottomRightRadius?: Responsive<
+    ThemeValue<"radii", ThemeType>,
+    ThemeType
+  >
+  /** The CSS `border` property  */
+  border?: Responsive<CSS.BorderProperty<TLength>, ThemeType>
+  /** The CSS `border-right` and `border-left` property  */
+  borderX?: Responsive<CSS.BorderProperty<TLength>, ThemeType>
+  /** The CSS `border-top` and `border-bottom` property  */
+  borderY?: Responsive<CSS.BorderProperty<TLength>, ThemeType>
+  /** The CSS `outline` property  */
+  outline?: Responsive<CSS.OutlineProperty<TLength>, ThemeType>
+  /** The CSS `outline-color` property  */
+  outlineColor?: Responsive<ThemeValue<"colors", ThemeType>, ThemeType>
+  /** The CSS `outline-offset` property  */
+  outlineOffset?: Responsive<CSS.OutlineOffsetProperty<TLength>, ThemeType>
+}
+
+/**
+ * Types for box and text shadow properties
+ * @see /configs/shadow.ts
+ */
 export interface ShadowProps<
   ThemeType extends Theme = RequiredTheme,
   Scale = CSS.BoxShadowProperty | number | ThemeValue<"shadows", ThemeType>
 > {
-  boxShadow?: ResponsiveValue<Scale, ThemeType>
-  textShadow?: ResponsiveValue<Scale, ThemeType>
+  boxShadow?: Responsive<Scale, ThemeType>
+  textShadow?: Responsive<Scale, ThemeType>
 }
 
-/////////////////////////////////////////////////////////////////
-
-export interface OverflowProps<ThemeType extends Theme = RequiredTheme> {
-  overflow?: ResponsiveValue<CSS.OverflowProperty, ThemeType>
-  overflowX?: ResponsiveValue<CSS.OverflowXProperty, ThemeType>
-  overflowY?: ResponsiveValue<CSS.OverflowYProperty, ThemeType>
-  boxSizing?: CSS.BoxSizingProperty
-}
-
-/////////////////////////////////////////////////////////////////
 /**
  * Types for background properties
- * @see /configs/parser/background.ts
+ * @see /configs/background.ts
  */
 export interface BackgroundProps<ThemeType extends Theme = RequiredTheme> {
-  background?: ResponsiveValue<CSS.BackgroundProperty<TLength>, ThemeType>
-  bgImage?: ResponsiveValue<CSS.BackgroundImageProperty, ThemeType>
-  backgroundImage?: ResponsiveValue<CSS.BackgroundImageProperty, ThemeType>
-  bgRepeat?: ResponsiveValue<CSS.BackgroundRepeatProperty, ThemeType>
-  backgroundRepeat?: ResponsiveValue<CSS.BackgroundRepeatProperty, ThemeType>
-  bgSize?: ResponsiveValue<CSS.BackgroundSizeProperty<TLength>, ThemeType>
-  backgroundSize?: ResponsiveValue<
-    CSS.BackgroundSizeProperty<TLength>,
-    ThemeType
-  >
-  bgAttachment?: ResponsiveValue<CSS.BackgroundAttachmentProperty, ThemeType>
-  backgroundAttachment?: ResponsiveValue<
-    CSS.BackgroundAttachmentProperty,
-    ThemeType
-  >
-  bgPosition?: ResponsiveValue<
-    CSS.BackgroundPositionProperty<TLength>,
-    ThemeType
-  >
-  backgroundPosition?: ResponsiveValue<
+  background?: Responsive<CSS.BackgroundProperty<TLength>, ThemeType>
+  bgImage?: Responsive<CSS.BackgroundImageProperty, ThemeType>
+  backgroundImage?: Responsive<CSS.BackgroundImageProperty, ThemeType>
+  bgRepeat?: Responsive<CSS.BackgroundRepeatProperty, ThemeType>
+  backgroundRepeat?: Responsive<CSS.BackgroundRepeatProperty, ThemeType>
+  bgSize?: Responsive<CSS.BackgroundSizeProperty<TLength>, ThemeType>
+  backgroundSize?: Responsive<CSS.BackgroundSizeProperty<TLength>, ThemeType>
+  bgAttachment?: Responsive<CSS.BackgroundAttachmentProperty, ThemeType>
+  backgroundAttachment?: Responsive<CSS.BackgroundAttachmentProperty, ThemeType>
+  bgPosition?: Responsive<CSS.BackgroundPositionProperty<TLength>, ThemeType>
+  backgroundPosition?: Responsive<
     CSS.BackgroundPositionProperty<TLength>,
     ThemeType
   >
 }
 
-/////////////////////////////////////////////////////////////////
-
-export interface ZIndexProps<
-  ThemeType extends Theme = RequiredTheme,
-  Scale = ThemeValue<"zIndices", ThemeType> | CSS.ZIndexProperty
-> {
-  zIndex?: ResponsiveValue<Scale, ThemeType>
+/**
+ * Types for position CSS properties
+ * @see /configs/position.ts
+ */
+export interface PositionProps<ThemeType extends Theme = RequiredTheme> {
+  zIndex?: Responsive<
+    ThemeValue<"zIndices", ThemeType> | CSS.ZIndexProperty,
+    ThemeType
+  >
+  top?: Responsive<CSS.TopProperty<TLength>, ThemeType>
+  right?: Responsive<CSS.RightProperty<TLength>, ThemeType>
+  bottom?: Responsive<CSS.BottomProperty<TLength>, ThemeType>
+  left?: Responsive<CSS.LeftProperty<TLength>, ThemeType>
+  pos?: Responsive<CSS.PositionProperty, ThemeType>
+  position?: Responsive<CSS.PositionProperty, ThemeType>
 }
-
-export interface TopProps<
-  ThemeType extends Theme = RequiredTheme,
-  Scale = CSS.TopProperty<TLength>
-> {
-  top?: ResponsiveValue<Scale, ThemeType>
-}
-
-export interface RightProps<
-  ThemeType extends Theme = RequiredTheme,
-  Scale = CSS.RightProperty<TLength>
-> {
-  right?: ResponsiveValue<Scale, ThemeType>
-}
-
-export interface BottomProps<
-  ThemeType extends Theme = RequiredTheme,
-  Scale = CSS.BottomProperty<TLength>
-> {
-  bottom?: ResponsiveValue<Scale, ThemeType>
-}
-
-export interface LeftProps<
-  ThemeType extends Theme = RequiredTheme,
-  Scale = CSS.LeftProperty<TLength>
-> {
-  left?: ResponsiveValue<Scale, ThemeType>
-}
-
-export interface PositionProps<ThemeType extends Theme = RequiredTheme>
-  extends ZIndexProps<ThemeType>,
-    TopProps<ThemeType>,
-    RightProps<ThemeType>,
-    BottomProps<ThemeType>,
-    LeftProps<ThemeType> {
-  pos?: ResponsiveValue<CSS.PositionProperty, ThemeType>
-  position?: ResponsiveValue<CSS.PositionProperty, ThemeType>
-}
-
-/////////////////////////////////////////////////////////////////
 
 export interface OtherProps<ThemeType extends Theme = RequiredTheme> {
-  animation?: ResponsiveValue<CSS.AnimationProperty, ThemeType>
-  appearance?: ResponsiveValue<CSS.AppearanceProperty, ThemeType>
-  transform?: ResponsiveValue<CSS.TransformProperty, ThemeType>
-  transformOrigin?: ResponsiveValue<
-    CSS.TransformOriginProperty<TLength>,
-    ThemeType
-  >
-  visibility?: ResponsiveValue<CSS.VisibilityProperty, ThemeType>
-  userSelect?: ResponsiveValue<CSS.UserSelectProperty, ThemeType>
-  pointerEvents?: ResponsiveValue<CSS.PointerEventsProperty, ThemeType>
-  cursor?: ResponsiveValue<CSS.CursorProperty, ThemeType>
-  resize?: ResponsiveValue<CSS.ResizeProperty, ThemeType>
-  transition?: ResponsiveValue<CSS.TransitionProperty, ThemeType>
-  objectFit?: ResponsiveValue<CSS.ObjectFitProperty, ThemeType>
-  objectPosition?: ResponsiveValue<
-    CSS.ObjectPositionProperty<TLength>,
-    ThemeType
-  >
-  float?: ResponsiveValue<CSS.FloatProperty, ThemeType>
-  willChange?: ResponsiveValue<CSS.WillChangeProperty, ThemeType>
-  listStyleType?: ResponsiveValue<CSS.ListStyleTypeProperty, ThemeType>
-  listStylePosition?: ResponsiveValue<CSS.ListStylePositionProperty, ThemeType>
-  listStyleImage?: ResponsiveValue<CSS.ListStyleImageProperty, ThemeType>
+  animation?: Responsive<CSS.AnimationProperty, ThemeType>
+  appearance?: Responsive<CSS.AppearanceProperty, ThemeType>
+  transform?: Responsive<CSS.TransformProperty, ThemeType>
+  transformOrigin?: Responsive<CSS.TransformOriginProperty<TLength>, ThemeType>
+  visibility?: Responsive<CSS.VisibilityProperty, ThemeType>
+  userSelect?: Responsive<CSS.UserSelectProperty, ThemeType>
+  pointerEvents?: Responsive<CSS.PointerEventsProperty, ThemeType>
+  cursor?: Responsive<CSS.CursorProperty, ThemeType>
+  resize?: Responsive<CSS.ResizeProperty, ThemeType>
+  transition?: Responsive<CSS.TransitionProperty, ThemeType>
+  objectFit?: Responsive<CSS.ObjectFitProperty, ThemeType>
+  objectPosition?: Responsive<CSS.ObjectPositionProperty<TLength>, ThemeType>
+  float?: Responsive<CSS.FloatProperty, ThemeType>
+  willChange?: Responsive<CSS.WillChangeProperty, ThemeType>
+  listStyleType?: Responsive<CSS.ListStyleTypeProperty, ThemeType>
+  listStylePosition?: Responsive<CSS.ListStylePositionProperty, ThemeType>
+  listStyleImage?: Responsive<CSS.ListStyleImageProperty, ThemeType>
 }
 
 export type StyleProps<ThemeType extends Theme = RequiredTheme> = SpaceProps &
@@ -667,18 +500,16 @@ export type StyleProps<ThemeType extends Theme = RequiredTheme> = SpaceProps &
   PositionProps<ThemeType> &
   OtherProps<ThemeType>
 
-type PseudoProps<Props, ExtraProps = { content?: string }> =
-  | (Props & ExtraProps)
-  | {
-      [K in keyof Pseudos]:
-        | (Props & ExtraProps)
-        | PseudoProps<Props, ExtraProps>
-    }
+export type PseudoProps<ThemeType = RequiredTheme> = {
+  [K in keyof Pseudos]?:
+    | (StyleProps<ThemeType> & { content?: string })
+    | PseudoProps<ThemeType>
+}
 
 export interface TruncateProps {
   isTruncated?: boolean
 }
 
 export type SystemProps<ThemeType = RequiredTheme> = StyleProps<ThemeType> &
-  PseudoProps<StyleProps<ThemeType>> &
+  PseudoProps<ThemeType> &
   TruncateProps

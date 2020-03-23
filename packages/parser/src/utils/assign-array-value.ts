@@ -85,5 +85,3 @@ export function assignArrayValue(options: AssignArrayOptions) {
 
   return styles
 }
-
-export default assignArrayValue

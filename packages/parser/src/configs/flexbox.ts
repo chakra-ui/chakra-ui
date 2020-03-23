@@ -1,5 +1,5 @@
 import { createParser } from "../create-parser"
-import { ConfigObject } from "../transform-config"
+import { ConfigObject } from "../utils/transform-config"
 
 const config: ConfigObject = {
   alignItems: true,

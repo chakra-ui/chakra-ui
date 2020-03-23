@@ -1,6 +1,5 @@
-import { positiveOrNegative } from "../positive-or-negative"
 import { createParser } from "../create-parser"
-import { ConfigObject } from "../transform-config"
+import { ConfigObject, positiveOrNegative } from "../utils"
 
 const defaults = {
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
@@ -140,4 +139,13 @@ const configs: ConfigObject = {
   },
 }
 
+/**
+ * Converts shorthand or longhand margin and padding props to margin and padding CSS declarations
+ *
+ * - Numbers from 0-4 (or the length of theme.space) are converted to values on the spacing scale.
+ * - Negative values can be used for negative margins.
+ * - Numbers greater than the length of the theme.space array are converted to raw pixel values.
+ * - String values are passed as raw CSS values.
+ * - Array values are converted into responsive values.
+ */
 export const space = createParser(configs)

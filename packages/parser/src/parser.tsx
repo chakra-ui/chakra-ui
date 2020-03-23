@@ -34,8 +34,6 @@ export const layoutPropNames = combineParsers(
   flexbox,
   grid,
   position,
-) as {
-  propNames: string[]
-}
+)
 
 export const propNames = [...parser.propNames, ...pseudoPropNames]

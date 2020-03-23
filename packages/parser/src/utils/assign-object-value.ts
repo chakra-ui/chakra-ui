@@ -78,5 +78,3 @@ export function assignObjectValue(options: AssignObjectOptions) {
 
   return styles
 }
-
-export default assignObjectValue

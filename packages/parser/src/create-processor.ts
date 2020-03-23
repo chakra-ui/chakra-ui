@@ -7,10 +7,12 @@ import {
   deepmerge,
   getWithDefault,
 } from "@chakra-ui/utils"
-import { getMediaQuery } from "./media-query"
-import { sort } from "./sort-styles"
-import assignArrayValue from "./assign-array-value"
-import assignObjectValue from "./assign-object-value"
+import {
+  sort,
+  assignArrayValue,
+  assignObjectValue,
+  getMediaQuery,
+} from "./utils"
 
 export type ResponsiveValue<T> = T | Array<T> | { [breakpoint: string]: T }
 

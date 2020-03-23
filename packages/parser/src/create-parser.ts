@@ -1,13 +1,14 @@
 import { Dict, isArray, runIfFn, get } from "@chakra-ui/utils"
 import { createProcessor } from "./create-processor"
-import { ConfigObject, transformConfig } from "./transform-config"
+import { ConfigObject, transformConfig } from "./utils/transform-config"
+import { SystemProps } from "./parser.types"
 
 const fallbackBreakpoints = { sm: 400, md: 700, lg: 1000 }
 
 export function createParser(configs: ConfigObject) {
-  const cache: Dict = {}
+  const cache: { breakpoints?: Dict } = {}
 
-  const parser = (props: Dict) => {
+  const parser = (props: SystemProps & { theme: object }) => {
     /**
      * Get the breakpoints from theme or cache
      */
@@ -17,7 +18,7 @@ export function createParser(configs: ConfigObject) {
     /**
      * Create a style processor based on the breakpoints
      */
-    const processor = createProcessor(cache.breakpoints)
+    const processor = createProcessor(cache.breakpoints as Dict)
 
     const allConfigs = transformConfig(configs, props.theme)
 
@@ -27,7 +28,7 @@ export function createParser(configs: ConfigObject) {
        */
       if (prop === "theme" || configs[prop] == null) continue
 
-      const valueOrFn = props[prop]
+      const valueOrFn = props[prop as keyof typeof props]
       const value = runIfFn(valueOrFn, props.theme)
 
       /**

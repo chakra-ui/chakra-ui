@@ -6,10 +6,9 @@ import {
   isObject,
   runIfFn,
 } from "@chakra-ui/utils"
-import assignArrayValue from "./assign-array-value"
 import { parsePseudo } from "./configs/pseudo"
 import { CSSObject, StyleObject, Theme } from "./css.types"
-import { getMediaQuery } from "./media-query"
+import { getMediaQuery, assignArrayValue } from "./utils"
 import { parser } from "./parser"
 
 const hasTheme = (props: any): props is { theme: Theme } => {

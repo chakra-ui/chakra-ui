@@ -1,4 +1,4 @@
-import { ConfigObject } from "../transform-config"
+import { ConfigObject } from "../utils/transform-config"
 import { createParser } from "../create-parser"
 
 const config: ConfigObject = {

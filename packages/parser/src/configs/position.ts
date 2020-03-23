@@ -1,6 +1,6 @@
-import { ConfigObject } from "../transform-config"
+import { ConfigObject } from "../utils/transform-config"
 import { createParser } from "../create-parser"
-import { positiveOrNegative } from "../positive-or-negative"
+import { positiveOrNegative } from "../utils/positive-or-negative"
 
 const defaults = {
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
