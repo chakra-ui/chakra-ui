@@ -1,5 +1,5 @@
-import { createChakra, PropsOf } from "@chakra-ui/system"
+import { chakra, PropsOf } from "@chakra-ui/styled"
 
-export const Box = createChakra("div")
+export const Box = chakra("div")
+
 export type BoxProps = PropsOf<typeof Box>
-export default Box

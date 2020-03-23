@@ -1,6 +1,6 @@
 import * as React from "react"
 import { useInputGroup } from "./Input.group"
-import { chakra, useComponentStyle, PropsOf } from "@chakra-ui/system"
+import { chakra, useComponentStyle, PropsOf } from "@chakra-ui/styled"
 import { useIsomorphicEffect } from "@chakra-ui/hooks"
 
 export type InputElementProps = PropsOf<typeof chakra.div> & {
@@ -11,12 +11,12 @@ export const InputElement = React.forwardRef(
   (props: InputElementProps, ref: React.Ref<any>) => {
     const { placement = "left", ...rest } = props
 
-    const { variant, variantSize } = useInputGroup()
+    const { variant, size } = useInputGroup()
 
-    const { height, fontSize } = useComponentStyle({
+    const inputStyle = useComponentStyle({
       themeKey: "Input",
       variant,
-      variantSize,
+      size,
     })
 
     const placementProp = { [placement]: "0" }
@@ -27,9 +27,9 @@ export const InputElement = React.forwardRef(
         alignItems="center"
         justifyContent="center"
         position="absolute"
-        height={height}
-        minWidth={height}
-        fontSize={fontSize}
+        height={inputStyle?.height}
+        minWidth={inputStyle?.height}
+        fontSize={inputStyle?.fontSize}
         top="0"
         zIndex={2}
         ref={ref}

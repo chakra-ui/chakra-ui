@@ -1,5 +1,5 @@
 import { useDimensions, useBooleanState } from "@chakra-ui/hooks"
-import { chakra, PropsOf } from "@chakra-ui/system"
+import { chakra, PropsOf } from "@chakra-ui/styled"
 import {
   Transition,
   TransitionProps,
@@ -96,5 +96,3 @@ export function Collapse(props: CollapseProps) {
     </Transition>
   )
 }
-
-export default Collapse

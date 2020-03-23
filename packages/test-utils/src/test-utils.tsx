@@ -1,5 +1,6 @@
 import theme from "@chakra-ui/preset-base"
-import { ColorMode, ThemeProvider, CSSReset } from "@chakra-ui/system"
+import { GlobalStyle, ThemeProvider } from "@chakra-ui/styled"
+import CSSReset from "@chakra-ui/css-reset"
 import "@testing-library/jest-dom/extend-expect"
 import { render, RenderOptions } from "@testing-library/react"
 import * as React from "react"
@@ -10,7 +11,7 @@ expect.extend(toHaveNoViolations)
 const AllProviders = ({ children }: { children?: React.ReactNode }) => (
   <ThemeProvider theme={theme}>
     <CSSReset />
-    <ColorMode />
+    <GlobalStyle />
     {children}
   </ThemeProvider>
 )

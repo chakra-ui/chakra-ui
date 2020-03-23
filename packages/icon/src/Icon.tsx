@@ -1,4 +1,4 @@
-import { PropsOf, createChakra } from "@chakra-ui/system"
+import { PropsOf, chakra } from "@chakra-ui/styled"
 import * as React from "react"
 
 const fallbackIcon = {
@@ -15,7 +15,7 @@ const fallbackIcon = {
   viewBox: "0 0 24 24",
 }
 
-const StyledSvg = createChakra("svg")
+const StyledSvg = chakra("svg")
 
 export type IconProps = PropsOf<typeof StyledSvg>
 

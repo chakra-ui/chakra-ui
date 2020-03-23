@@ -1,22 +1,17 @@
-import {
-  createChakra,
-  CreateChakraComponent,
-  forwardRef,
-  PropsOf,
-} from "@chakra-ui/system"
-import React from "react"
+import { chakra, PropsOf } from "@chakra-ui/styled"
+import * as React from "react"
 
 interface DividerOptions {
   orientation?: "horizontal" | "vertical"
 }
 
-export type DividerProps = PropsOf<typeof BaseDivider> & DividerOptions
+export type DividerProps = PropsOf<typeof StyledDivider> & DividerOptions
 
-const BaseDivider = createChakra("hr", { themeKey: "Divider" })
+const StyledDivider = chakra("hr", { themeKey: "Divider" })
 
-const Divider = forwardRef(
+const Divider = React.forwardRef(
   ({ orientation, ...props }: DividerProps, ref: React.Ref<any>) => (
-    <BaseDivider
+    <StyledDivider
       ref={ref}
       marginY="8px"
       role="separator"
@@ -28,6 +23,6 @@ const Divider = forwardRef(
       {...props}
     />
   ),
-) as CreateChakraComponent<"hr", DividerOptions>
+)
 
 export default Divider

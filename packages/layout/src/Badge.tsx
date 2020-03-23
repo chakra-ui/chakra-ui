@@ -1,9 +1,8 @@
-import { createChakra } from "@chakra-ui/system"
+import { chakra } from "@chakra-ui/styled"
 
-const Badge = createChakra("div", { themeKey: "Badge" })
+export const Badge = chakra("div", { themeKey: "Badge" })
+
 Badge.defaultProps = {
   variant: "subtle",
-  variantColor: "gray",
+  colorScheme: "gray",
 }
-
-export default Badge

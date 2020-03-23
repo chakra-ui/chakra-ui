@@ -1,6 +1,6 @@
-import { chakra } from "@chakra-ui/system"
+import { chakra } from "@chakra-ui/styled"
 import React from "react"
-import AspectRatioBox from "../AspectRatioBox"
+import { AspectRatioBox } from ".."
 
 export default {
   title: "AspectRatioBox",

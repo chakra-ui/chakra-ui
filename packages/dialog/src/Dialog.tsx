@@ -2,7 +2,7 @@ import { CloseButton, CloseButtonProps } from "@chakra-ui/close-button"
 import { FocusLock } from "@chakra-ui/focus-lock"
 import { useIsomorphicEffect } from "@chakra-ui/hooks"
 import { Portal } from "@chakra-ui/portal"
-import { chakra, createChakra, PropsOf } from "@chakra-ui/system"
+import { chakra, PropsOf } from "@chakra-ui/styled"
 import { createContext } from "@chakra-ui/utils"
 import * as React from "react"
 import { DialogHookProps, DialogHookReturn, useDialog } from "./Dialog.hook"
@@ -81,7 +81,7 @@ export const DialogContent = (props: DialogContentProps) => {
   )
 }
 
-const StyledContent = createChakra("section", {
+const StyledContent = chakra("section", {
   themeKey: "Dialog.Content",
   baseStyle: (props: any) => ({
     display: "flex",
@@ -117,7 +117,7 @@ export const DialogOverlay = (props: DialogOverlayProps) => {
   )
 }
 
-const StyledOverlay = createChakra("div", {
+const StyledOverlay = chakra("div", {
   themeKey: "Dialog.Overlay",
   baseStyle: (props: any) => ({
     display: "flex",
@@ -150,7 +150,7 @@ export const DialogHeader = (props: DialogHeaderProps) => {
   return <StyledHeader data-chakra-dialog-header="" id={headerId} {...props} />
 }
 
-const StyledHeader = createChakra("header", {
+const StyledHeader = chakra("header", {
   themeKey: "Dialog.Header",
 })
 
@@ -167,9 +167,9 @@ export const DialogBody = (props: DialogBodyProps) => {
   return <StyledBody data-chakra-dialog-body="" id={bodyId} {...props} />
 }
 
-const StyledBody = createChakra("div", { themeKey: "Dialog.Body" })
+const StyledBody = chakra("div", { themeKey: "Dialog.Body" })
 
-export const DialogFooter = createChakra("footer", {
+export const DialogFooter = chakra("footer", {
   themeKey: "Dialog.Footer",
   baseStyle: {
     display: "flex",

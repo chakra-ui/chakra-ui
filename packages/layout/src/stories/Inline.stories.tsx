@@ -1,15 +1,15 @@
 import React from "react"
-import { Inline } from "../Inline"
-import { createChakra } from "@chakra-ui/system"
+import { Inline } from ".."
+import { chakra } from "@chakra-ui/styled"
 
 export default {
   title: "Inline",
 }
 
-const Badge = createChakra("span", { themeKey: "Badge" })
+const Badge = chakra("span", { themeKey: "Badge" })
 Badge.defaultProps = {
   variant: "solid",
-  variantColor: "blue",
+  colorScheme: "blue",
 }
 
 export const basic = () => {

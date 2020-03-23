@@ -1,5 +1,3 @@
-import { createChakra } from "@chakra-ui/system"
+import { chakra } from "@chakra-ui/styled"
 
-const Heading = createChakra("h2", { themeKey: "Heading" })
-
-export default Heading
+export const Heading = chakra("h2", { themeKey: "Heading" })

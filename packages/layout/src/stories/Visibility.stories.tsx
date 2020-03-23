@@ -1,17 +1,17 @@
 import React from "react"
-import { Hide, Show } from "../Visibility"
+import { Hide, Show } from ".."
 
 export default {
   title: "Visibility",
 }
 
-export const Show_ = () => (
+export const show = () => (
   <Show above="320px">
     <div>Hey! I'll show above 320px</div>
   </Show>
 )
 
-export const Hide_ = () => (
+export const hide = () => (
   <Hide above="768px">
     <div>Hallos! I'll hide above 768px</div>
   </Hide>

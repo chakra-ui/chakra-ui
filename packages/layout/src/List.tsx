@@ -1,9 +1,9 @@
-import { createChakra, PropsOf, SystemProps } from "@chakra-ui/system"
+import { chakra, PropsOf, SystemProps } from "@chakra-ui/styled"
 import * as React from "react"
 import { getValidChildren } from "@chakra-ui/utils"
 import { Icon, IconProps } from "@chakra-ui/icon"
 
-const StyledList = createChakra("ul")
+const StyledList = chakra("ul")
 
 export type ListProps = PropsOf<typeof StyledList> & {
   styleType?: SystemProps["listStyleType"]
@@ -41,10 +41,8 @@ export const List = React.forwardRef(
 
 List.displayName = "List"
 
-export const ListItem = createChakra("li")
+export const ListItem = chakra("li")
 ListItem.displayName = "ListItem"
 
 export const ListIcon = (props: IconProps) => <Icon mr={2} {...props} />
 ListIcon.displayName = "ListIcon"
-
-export default List

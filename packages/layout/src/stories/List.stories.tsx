@@ -1,6 +1,5 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/core"
-import { List, ListItem } from "../List"
+import React from "react"
+import { List, ListItem } from ".."
 
 export default {
   title: "List",

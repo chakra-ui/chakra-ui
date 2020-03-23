@@ -1,4 +1,4 @@
-import { createChakra, PropsOf } from "@chakra-ui/system"
+import { chakra, PropsOf } from "@chakra-ui/styled"
 import * as React from "react"
 import { ImageHookProps, useImage } from "./Image.hook"
 
@@ -23,7 +23,7 @@ type CustomImageProps = {
   htmlHeight?: string | number
 }
 
-const StyledImage = createChakra("img")
+const StyledImage = chakra("img")
 
 export type ImageProps = ImageHookProps &
   PropsOf<typeof StyledImage> &

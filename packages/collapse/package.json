@@ -55,7 +55,8 @@
   "dependencies": {
     "@chakra-ui/transition": "0.0.1",
     "@chakra-ui/hooks": "0.0.1",
-    "@chakra-ui/utils": "0.0.1"
+    "@chakra-ui/utils": "0.0.1",
+    "@chakra-ui/styled": "0.0.1"
   },
   "peerDependencies": {
     "react": "16.x",

@@ -1,9 +1,9 @@
 import * as React from "react"
-import { chakra, PropsOf } from "@chakra-ui/system"
+import { chakra, PropsOf } from "@chakra-ui/styled"
 
 type Props = PropsOf<typeof chakra.div> & { axis?: "x" | "y" | "both" }
 
-function AbsoluteCenter({ axis = "both", ...props }: Props) {
+export function AbsoluteCenter({ axis = "both", ...props }: Props) {
   const center = {
     x: { left: "50%", transform: `translateX(-50%)` },
     y: { top: "50%", transform: `translateY(-50%)` },
@@ -13,7 +13,7 @@ function AbsoluteCenter({ axis = "both", ...props }: Props) {
   return <chakra.div position="absolute" {...center[axis]} {...props} />
 }
 
-function FlexCenter({ axis = "both", ...props }: Props) {
+export function FlexCenter({ axis = "both", ...props }: Props) {
   const center = {
     x: { justifyContent: "center" },
     y: { alignItems: "center" },
@@ -31,7 +31,7 @@ function GridCenter({ axis = "both", ...props }: Props) {
   return <chakra.div display="grid" {...center[axis]} {...props} />
 }
 
-function Center(props: Props & { use?: "absolute" | "flex" | "grid" }) {
+export function Center(props: Props & { use?: "absolute" | "flex" | "grid" }) {
   const { use = "flex", ...rest } = props
   const components = {
     flex: FlexCenter,
@@ -42,5 +42,3 @@ function Center(props: Props & { use?: "absolute" | "flex" | "grid" }) {
 
   return <Component {...rest} />
 }
-
-export default Center

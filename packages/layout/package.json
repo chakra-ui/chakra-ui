@@ -51,7 +51,7 @@
   },
   "dependencies": {
     "@chakra-ui/utils": "0.0.1",
-    "@chakra-ui/system": "0.0.1",
+    "@chakra-ui/styled": "0.0.1",
     "@chakra-ui/icon": "0.0.1",
     "@chakra-ui/hooks": "0.0.1"
   },

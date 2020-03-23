@@ -1,6 +1,5 @@
 import { ControlProps, useField } from "@chakra-ui/form-control"
-import { createChakra, PropsOf, useComponentStyle } from "@chakra-ui/system"
-import { Omit } from "@chakra-ui/utils"
+import { chakra, PropsOf, useComponentStyle } from "@chakra-ui/styled"
 import * as React from "react"
 import { useInputGroup } from "./Input.group"
 
@@ -28,7 +27,7 @@ interface InputOptions {
 export type InputProps = Omit<PropsOf<typeof StyledInput>, OmittedTypes> &
   ControlProps
 
-const StyledInput = createChakra<"input", InputOptions>("input", {
+const StyledInput = chakra<"input", InputOptions>("input", {
   themeKey: "Input",
   shouldForwardProp: prop =>
     !["focusBorderColor", "errorBorderColor"].includes(prop),
@@ -42,12 +41,12 @@ export const Input = React.forwardRef(
     const group = useInputGroup()
 
     const variant = group?.variant || props.variant
-    const variantSize = group?.variantSize || props.variantSize
+    const size = group?.size || props.size
 
-    const { height } = useComponentStyle({
+    const inputStyle = useComponentStyle({
       themeKey: "Input",
       variant,
-      variantSize,
+      size,
     })
 
     return (
@@ -55,9 +54,9 @@ export const Input = React.forwardRef(
         ref={ref}
         {...inputProps}
         variant={variant}
-        variantSize={variantSize}
-        {...(group?.hasRightElement && { paddingRight: height })}
-        {...(group?.hasLeftElement && { paddingLeft: height })}
+        size={size}
+        {...(group?.hasRightElement && { paddingRight: inputStyle?.height })}
+        {...(group?.hasLeftElement && { paddingLeft: inputStyle?.height })}
       />
     )
   },

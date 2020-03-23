@@ -1,11 +1,9 @@
-import { createChakra } from "@chakra-ui/system"
+import { chakra } from "@chakra-ui/styled"
 
-export const Spacer = createChakra("div", {
+export const Spacer = chakra("div", {
   baseStyle: {
     flex: 1,
     justifySelf: "stretch",
     alignSelf: "stretch",
   },
 })
-
-export default Spacer

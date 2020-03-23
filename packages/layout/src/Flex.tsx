@@ -1,8 +1,7 @@
-import { ChakraComponent, forwardRef } from "@chakra-ui/system"
 import * as React from "react"
 import { Box, BoxProps } from "./Box"
 
-interface FlexOptions {
+export interface FlexOptions {
   /**
    * Shorthand for Styled-System `alignItems` prop
    */
@@ -31,21 +30,21 @@ interface FlexOptions {
 
 export type FlexProps = BoxProps & FlexOptions
 
-const Flex = forwardRef((props: FlexProps, ref: React.Ref<any>) => {
-  const { direction, align, justify, wrap, basis, grow, ...rest } = props
-  return (
-    <Box
-      ref={ref}
-      display="flex"
-      flexDirection={direction}
-      alignItems={align}
-      justifyContent={justify}
-      flexWrap={wrap}
-      flexBasis={basis}
-      flexGrow={grow}
-      {...rest}
-    />
-  )
-}) as ChakraComponent<"div", FlexOptions>
-
-export default Flex
+export const Flex = React.forwardRef(
+  (props: FlexProps, ref: React.Ref<any>) => {
+    const { direction, align, justify, wrap, basis, grow, ...rest } = props
+    return (
+      <Box
+        ref={ref}
+        display="flex"
+        flexDirection={direction}
+        alignItems={align}
+        justifyContent={justify}
+        flexWrap={wrap}
+        flexBasis={basis}
+        flexGrow={grow}
+        {...rest}
+      />
+    )
+  },
+)

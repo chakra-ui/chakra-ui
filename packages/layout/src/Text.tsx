@@ -1,5 +1,3 @@
-import { createChakra } from "@chakra-ui/system"
+import { chakra } from "@chakra-ui/styled"
 
-const Text = createChakra("p", { themeKey: "Text" })
-
-export default Text
+export const Text = chakra("p", { themeKey: "Text" })

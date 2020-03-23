@@ -1,4 +1,4 @@
-import { createChakra, PropsOf, useColorModeValue } from "@chakra-ui/system"
+import { chakra, PropsOf, useColorModeValue } from "@chakra-ui/styled"
 import * as React from "react"
 import { useInputGroup } from "./Input.group"
 
@@ -24,7 +24,7 @@ function getPlacementStyles(placement: Placement) {
   return {}
 }
 
-const StyledAddon = createChakra("div", { themeKey: "Input" })
+const StyledAddon = chakra("div", { themeKey: "Input" })
 
 export type InputAddonProps = PropsOf<typeof StyledAddon> & {
   placement?: Placement
@@ -44,7 +44,7 @@ export function InputAddon({ placement = "left", ...props }: InputAddonProps) {
       {...placementStyles}
       {...props}
       variant={group?.variant || props.variant}
-      variantSize={group?.variantSize || props.variantSize}
+      size={group?.size || props.size}
     />
   )
 }

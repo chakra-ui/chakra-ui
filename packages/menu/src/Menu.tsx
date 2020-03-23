@@ -1,4 +1,4 @@
-import { createChakra, PropsOf, chakra } from "@chakra-ui/system"
+import { chakra, PropsOf } from "@chakra-ui/styled"
 import { createContext, mergeRefs } from "@chakra-ui/utils"
 import * as React from "react"
 import {
@@ -40,8 +40,8 @@ export type MenuButtonProps = PropsOf<typeof StyledMenuButton> & {
 }
 
 // change the themekey to menu.button
-const StyledMenuButton = createChakra("button", { themeKey: "Button" })
-const StyledMenuItem = createChakra("button", {
+const StyledMenuButton = chakra("button", { themeKey: "Button" })
+const StyledMenuItem = chakra("button", {
   themeKey: "Menu.MenuItem",
   baseStyle: { padding: 3 },
 })
@@ -62,7 +62,7 @@ export const MenuButton = React.forwardRef(
 
 export type MenuListProps = PropsOf<typeof StyledMenuList>
 
-const StyledMenuList = createChakra("div", {
+const StyledMenuList = chakra("div", {
   themeKey: "Menu.MenuList",
   baseStyle: {
     maxWidth: "120px",
@@ -121,7 +121,7 @@ export const MenuOptionGroup = (props: any) => {
   return <MenuGroup title={props.title} children={children} {...rest} />
 }
 
-const StyledMenuGroup = createChakra("div")
+const StyledMenuGroup = chakra("div")
 
 export const MenuGroup = (props: any) => {
   const { title, children, ...rest } = props

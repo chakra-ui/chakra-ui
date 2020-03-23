@@ -38,7 +38,6 @@
   "dependencies": {
     "tinycolor2": "1.4.1",
     "@types/tinycolor2": "1.4.2",
-    "@styled-system/css": "5.1.4",
-    "@types/styled-system__css": "5.0.4"
+    "@chakra-ui/utils": "0.0.1"
   }
 }

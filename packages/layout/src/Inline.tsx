@@ -1,5 +1,5 @@
 import React from "react"
-import { chakra, useTheme, css, PropsOf, SystemProps } from "@chakra-ui/system"
+import { chakra, useTheme, css, PropsOf, SystemProps } from "@chakra-ui/styled"
 import {
   getValidChildren,
   parseResponsiveProp as responsive,
@@ -15,11 +15,13 @@ export const Inline = React.forwardRef<any, InlineProps>(
     const theme = useTheme()
 
     const liSpacing = responsive(spacing, val => {
+      //@ts-ignore
       const { margin } = css({ margin: val })(theme)
       return `calc(${margin} / 2)`
     })
 
-    const ulSpacing = responsive(spacing, val => {
+    const ulSpacing = responsive(spacing, (val: string) => {
+      //@ts-ignore
       const { margin } = css({ margin: val })(theme)
       return `calc(${margin} / 2 * -1)`
     })

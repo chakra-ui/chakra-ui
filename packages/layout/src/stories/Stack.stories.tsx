@@ -1,8 +1,5 @@
 import React from "react"
-import Box from "../Box"
-import Heading from "../Heading"
-import { Stack, StackDivider } from "../Stack"
-import Text from "../Text"
+import { Box, Stack, StackDivider, Heading, Text } from ".."
 
 ///////////////////////////////////////////////////////////////////////////////////
 

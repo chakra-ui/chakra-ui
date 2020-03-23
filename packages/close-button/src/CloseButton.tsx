@@ -1,8 +1,8 @@
 import React from "react"
-import { createChakra, PropsOf } from "@chakra-ui/system"
+import { chakra, PropsOf } from "@chakra-ui/styled"
 import { Icon, IconProps } from "@chakra-ui/icon"
 
-const Button = createChakra("button", {
+const Button = chakra("button", {
   themeKey: "CloseButton.Button",
   baseStyle: {
     display: "flex",
@@ -27,17 +27,17 @@ function CloseIcon(props: IconProps) {
   )
 }
 
-const ButtonIcon = createChakra(CloseIcon, {
+const ButtonIcon = chakra(CloseIcon, {
   themeKey: "CloseButton.Icon",
 })
 
 export type CloseButtonProps = PropsOf<typeof Button>
 
 export function CloseButton(props: CloseButtonProps) {
-  const { variantSize, ...rest } = props
+  const { size, ...rest } = props
   return (
-    <Button outline="0" variantSize={variantSize} {...rest}>
-      <ButtonIcon variantSize={variantSize} />
+    <Button outline="0" size={size} {...rest}>
+      <ButtonIcon size={size} />
     </Button>
   )
 }

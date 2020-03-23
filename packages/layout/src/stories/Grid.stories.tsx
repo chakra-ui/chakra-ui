@@ -1,6 +1,5 @@
 import React from "react"
-import Box from "../Box"
-import SimpleGrid from "../SimpleGrid"
+import { Box, SimpleGrid } from ".."
 
 export default {
   title: "SimpleGrid",

@@ -1,6 +1,6 @@
 import { useDisclosure } from "@chakra-ui/hooks"
 import { PortalManager } from "@chakra-ui/portal"
-import { chakra, createChakra } from "@chakra-ui/system"
+import { chakra } from "@chakra-ui/styled"
 import { Fade, SlideFade } from "@chakra-ui/transition"
 import * as React from "react"
 import {
@@ -24,7 +24,7 @@ export default {
   ],
 }
 
-const Button = createChakra("button", { themeKey: "Button" })
+const Button = chakra("button", { themeKey: "Button" })
 
 export function SimpleModal() {
   const dialog = useDisclosure()
@@ -45,10 +45,10 @@ export function SimpleModal() {
             <DialogFooter>
               <chakra.div flex="1" />
               <chakra.div>
-                <Button onClick={dialog.onClose} variantColor="gray" mr="12px">
+                <Button onClick={dialog.onClose} colorScheme="gray" mr="12px">
                   Cancel
                 </Button>
-                <Button variantColor="blue">Save</Button>
+                <Button colorScheme="blue">Save</Button>
               </chakra.div>
             </DialogFooter>
           </DialogContent>
@@ -73,7 +73,7 @@ export function AnimatedModal() {
                     Nostrud ullamco deserunt aute id consequat veniam incididunt
                     duis in sint irure nisi. Mollit officia cillum Lorem ullamco
                     minim nostrud elit officia tempor esse quis.
-                    <Button variantColor="blue">Save</Button>
+                    <Button colorScheme="blue">Save</Button>
                   </DialogContent>
                 )}
               </SlideFade>
@@ -104,8 +104,8 @@ export function NestedModal() {
             </DialogBody>
             <DialogFooter>
               <chakra.div flex="1" />
-              <Button variantColor="gray">Button 2</Button>
-              <Button variantColor="pink" onClick={second.onOpen}>
+              <Button colorScheme="gray">Button 2</Button>
+              <Button colorScheme="pink" onClick={second.onOpen}>
                 Open Nested
               </Button>
             </DialogFooter>
@@ -115,7 +115,7 @@ export function NestedModal() {
                   <DialogHeader>Modal 2 Title</DialogHeader>
                   <DialogFooter>
                     <chakra.div flex="1" />
-                    <Button variantColor="blue" onClick={third.onOpen}>
+                    <Button colorScheme="blue" onClick={third.onOpen}>
                       Open Nested 2
                     </Button>
                   </DialogFooter>

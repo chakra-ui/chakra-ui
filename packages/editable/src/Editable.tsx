@@ -5,13 +5,13 @@ import {
   EditableHookReturn,
 } from "./Editable.hook"
 import { createContext } from "@chakra-ui/utils"
-import { createChakra, PropsOf } from "@chakra-ui/system"
+import { chakra, PropsOf } from "@chakra-ui/styled"
 
 type EditableContext = Omit<EditableHookReturn, "htmlProps">
 
 const [EditableProvider, useEditableContext] = createContext<EditableContext>()
 
-const StyledEditable = createChakra("div", { themeKey: "Editable.Root" })
+const StyledEditable = chakra("div", { themeKey: "Editable.Root" })
 
 export type EditableProps = EditableHookProps &
   Omit<PropsOf<typeof StyledEditable>, "onChange" | "value">
@@ -25,7 +25,7 @@ export function Editable(props: EditableProps) {
   )
 }
 
-const StyledPreview = createChakra("span", { themeKey: "Editable.Preview" })
+const StyledPreview = chakra("span", { themeKey: "Editable.Preview" })
 
 export type EditablePreviewProps = PropsOf<typeof StyledPreview>
 
@@ -39,7 +39,7 @@ export function EditablePreview(props: EditablePreviewProps) {
   )
 }
 
-const StyledInput = createChakra("input", { themeKey: "Editable.Input" })
+const StyledInput = chakra("input", { themeKey: "Editable.Input" })
 
 export type EditableInputProps = PropsOf<typeof StyledInput>
 

@@ -1,5 +1,5 @@
 import { useBooleanState, useId, useIsomorphicEffect } from "@chakra-ui/hooks"
-import { PropsOf, createChakra, useColorModeValue } from "@chakra-ui/system"
+import { PropsOf, chakra, useColorModeValue } from "@chakra-ui/styled"
 import { callAllHandlers, createContext, attr } from "@chakra-ui/utils"
 import * as React from "react"
 import Icon from "@chakra-ui/icon"
@@ -114,7 +114,7 @@ function useFormControl(props: FormControlContext) {
 
 //////////////////////////////////////////////////////////////////////////////
 
-const StyledFormControl = createChakra("div")
+const StyledFormControl = chakra("div")
 
 export type FormControlProps = FormControlContext &
   PropsOf<typeof StyledFormControl>
@@ -147,7 +147,7 @@ export const FormControl = React.forwardRef(
 
 //////////////////////////////////////////////////////////////////////////////
 
-const StyledFormLabel = createChakra("label", {
+const StyledFormLabel = chakra("label", {
   themeKey: "Label",
   baseStyle: {
     fontSize: "md",
@@ -188,7 +188,7 @@ export const FormLabel = React.forwardRef<HTMLLabelElement, FormLabelProps>(
 
 //////////////////////////////////////////////////////////////////////////////
 
-const StyledIndicator = createChakra("span", {
+const StyledIndicator = chakra("span", {
   themeKey: "RequiredIndicator",
   baseStyle: props => ({
     marginLeft: 1,
@@ -216,7 +216,7 @@ export const RequiredIndicator = React.forwardRef<HTMLSpanElement, {}>(
 
 //////////////////////////////////////////////////////////////////////////////
 
-const StyledFormHelperText = createChakra("div", {
+const StyledFormHelperText = chakra("div", {
   themeKey: "HelpText",
   baseStyle: props => ({
     marginTop: 2,
@@ -253,7 +253,7 @@ export function FormHelperText(props: HelpTextProps) {
 
 //////////////////////////////////////////////////////////////////////////////
 
-const StyledErrorMessage = createChakra("div", {
+const StyledErrorMessage = chakra("div", {
   themeKey: "ErrorText",
   baseStyle: props => ({
     color: props.colorMode === "dark" ? "red.300" : "red.500",

@@ -1,10 +1,10 @@
-import { chakra, PropsOf, ThemingProps } from "@chakra-ui/system"
+import { chakra, PropsOf, ThemingProps } from "@chakra-ui/styled"
 import { createContext } from "@chakra-ui/utils"
 import * as React from "react"
 
 interface InputGroupContext {
   variant: string
-  variantSize: string
+  size: string
   hasLeftElement: boolean
   setHasLeftElement: React.Dispatch<React.SetStateAction<boolean>>
   hasRightElement: boolean
@@ -20,7 +20,7 @@ export { useInputGroup }
 export type InputGroupProps = PropsOf<typeof chakra.div> & ThemingProps
 
 export const InputGroup = (props: InputGroupProps) => {
-  const { children, variantSize = "md", variant = "outline", ...rest } = props
+  const { children, size = "md", variant = "outline", ...rest } = props
   const [hasLeftElement, setHasLeftElement] = React.useState(false)
   const [hasRightElement, setHasRightElement] = React.useState(false)
 
@@ -28,7 +28,7 @@ export const InputGroup = (props: InputGroupProps) => {
     <chakra.div display="flex" position="relative" {...rest}>
       <InputGroupProvider
         value={{
-          variantSize,
+          size,
           variant,
           hasLeftElement,
           setHasLeftElement,

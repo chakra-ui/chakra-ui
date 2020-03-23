@@ -1,10 +1,8 @@
-import { createChakra } from "@chakra-ui/system"
+import { chakra } from "@chakra-ui/styled"
 
-export const Code = createChakra("code", { themeKey: "Code" })
+export const Code = chakra("code", { themeKey: "Code" })
 
 Code.defaultProps = {
-  variantColor: "gray",
+  colorScheme: "gray",
   variant: "subtle",
 }
-
-export default Code

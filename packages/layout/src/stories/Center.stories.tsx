@@ -1,8 +1,5 @@
 import React from "react"
-import Box from "../Box"
-import Center from "../Center"
-
-///////////////////////////////////////////////////////////////////////////////////
+import { Box, Center } from ".."
 
 export default {
   title: "Center",
