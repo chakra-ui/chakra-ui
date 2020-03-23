@@ -1,9 +1,9 @@
-import { chakra, createChakra, SystemProps } from "@chakra-ui/system"
+import { chakra, SystemProps } from "@chakra-ui/styled"
 import { getValidChildren } from "@chakra-ui/utils"
 import * as React from "react"
 import { AvatarProps } from "./Avatar"
 
-const MoreAvatarLabel = createChakra("div", {
+const MoreAvatarLabel = chakra("div", {
   themeKey: "Avatar",
   baseStyle: props => ({
     bg: props.colorMode === "light" ? "gray.200" : "whiteAlpha.400",
@@ -35,7 +35,7 @@ export const AvatarGroup = (props: AvatarGroupProps) => {
     borderColor,
     max,
     spacing = -3,
-    variantSize,
+    colorScheme,
     ...rest
   } = props
 
@@ -56,7 +56,7 @@ export const AvatarGroup = (props: AvatarGroupProps) => {
 
     return React.cloneElement(child as AvatarElement, {
       marginRight: isFirstAvatar ? 0 : spacing,
-      variantSize,
+      colorScheme,
       borderColor: child.props["borderColor"] || borderColor,
       showBorder: true,
     })
@@ -72,7 +72,7 @@ export const AvatarGroup = (props: AvatarGroupProps) => {
     >
       {remainingAvatarCount && (
         <MoreAvatarLabel
-          variantSize={variantSize}
+          colorScheme={colorScheme}
           marginLeft={spacing}
           children={`+${remainingAvatarCount}`}
         />

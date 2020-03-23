@@ -1,6 +1,5 @@
 import React, { Fragment } from "react"
-import { Avatar, AvatarBadge } from "."
-import AvatarGroup from "./AvatarGroup"
+import { Avatar, AvatarBadge, AvatarGroup } from "."
 
 export default {
   title: "Avatar",

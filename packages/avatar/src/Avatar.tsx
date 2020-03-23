@@ -2,12 +2,10 @@ import { isDark, stringToColor } from "@chakra-ui/color"
 import { useImage } from "@chakra-ui/image"
 import {
   chakra,
-  createChakra,
-  forwardRef,
   PropsOf,
   SystemProps,
   useColorModeValue,
-} from "@chakra-ui/system"
+} from "@chakra-ui/styled"
 import * as React from "react"
 
 interface AvatarOptions {
@@ -110,64 +108,64 @@ const DefaultAvatar = (props: BoxProps) => (
   </chakra.div>
 )
 
-const StyledAvatar = createChakra("div", { themeKey: "Avatar" })
+const StyledAvatar = chakra("div", { themeKey: "Avatar" })
 
 export type AvatarProps = PropsOf<typeof StyledAvatar> & AvatarOptions
 
-export const Avatar = forwardRef((props: AvatarProps, ref: React.Ref<any>) => {
-  const { src, name, showBorder, borderColor, onError, ...rest } = props
+export const Avatar = React.forwardRef(
+  (props: AvatarProps, ref: React.Ref<any>) => {
+    const { src, name, showBorder, borderColor, onError, ...rest } = props
 
-  const status = useImage({ src, onError })
-  const hasLoaded = status === "loaded"
+    const status = useImage({ src, onError })
+    const hasLoaded = status === "loaded"
 
-  const renderChildren = () => {
-    if (src && hasLoaded) {
-      return (
-        <chakra.img
-          size="100%"
-          borderRadius="full"
-          objectFit="cover"
-          src={src}
-          alt={name}
-        />
-      )
+    const renderChildren = () => {
+      if (src && hasLoaded) {
+        return (
+          <chakra.img
+            size="100%"
+            borderRadius="full"
+            objectFit="cover"
+            src={src}
+            alt={name}
+          />
+        )
+      }
+
+      if (src && !hasLoaded) {
+        return name ? (
+          <AvatarName name={name} />
+        ) : (
+          <DefaultAvatar aria-label={name} />
+        )
+      }
+
+      if (!src && name) {
+        return <AvatarName name={name} />
+      }
+
+      return <DefaultAvatar aria-label={name} />
     }
 
-    if (src && !hasLoaded) {
-      return name ? (
-        <AvatarName name={name} />
-      ) : (
-        <DefaultAvatar aria-label={name} />
-      )
+    const bg = name ? stringToColor(name) : "gray.400"
+    const color = name ? (isDark(bg) ? "#fff" : "gray.800") : "#fff"
+
+    const defaultBorderColor = useColorModeValue("#fff", "gray.800")
+
+    const styleProps = {
+      bg,
+      color,
+      ...(showBorder && {
+        border: "2px solid",
+        borderColor: borderColor || defaultBorderColor,
+      }),
     }
 
-    if (!src && name) {
-      return <AvatarName name={name} />
-    }
-
-    return <DefaultAvatar aria-label={name} />
-  }
-
-  const bg = name ? stringToColor(name) : "gray.400"
-  const color = name ? (isDark(bg) ? "#fff" : "gray.800") : "#fff"
-
-  const defaultBorderColor = useColorModeValue("#fff", "gray.800")
-
-  const styleProps = {
-    bg,
-    color,
-    ...(showBorder && {
-      border: "2px solid",
-      borderColor: borderColor || defaultBorderColor,
-    }),
-  }
-
-  return (
-    <StyledAvatar ref={ref} verticalAlign="top" {...styleProps} {...rest}>
-      {renderChildren()}
-      {props.children}
-    </StyledAvatar>
-  )
-})
-
-export default Avatar
+    return (
+      <StyledAvatar ref={ref} verticalAlign="top" {...styleProps} {...rest}>
+        {renderChildren()}
+        {props.children}
+      </StyledAvatar>
+    )
+  },
+)
