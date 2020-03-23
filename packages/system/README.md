@@ -1,71 +1,89 @@
-## Component Framework for Chakra UI
+# Chakra Styled
 
-We're currently looking to create a unified component framework to create
-styled-system enabled components.
+```tsx
+type Props = {
+  colorMode: "light" | "dark"
+  theme: Object
+  colorScheme: string
+}
 
-## Basic API
+type ObjectOrFunction = Object | ((props: Props) => Object)
 
-We'll provide a `chakra` function, just like `styled-component`. Users can
-create any component using the `chakra.[element]`. The resulting component will
-be a styled component and have all system props.
+type Component = {
+  name: string
+  baseStyle: ObjectOrFunction
+  variants: ObjectOrFunction
+  sizes: ObjectOrFunction
+  defaultProps: {
+    size: string
+    variant: string
+    colorScheme: string
+  }
+}
 
-```jsx
-<chakra.button>This is a chakra button</chakra.button>
+type Theme = {
+  dir: "ltr" | "rtl"
+  breakpoints: Object
+  colors: Object
+  spacing: Object
+  sizes: Object
+  shadows: Object
+  borders: Object
+  radii: Object
+  fontWeights: Object
+  lineHeights: Object
+  fontSizes: Object
+  letterSpacings: Object
+  fonts: Object
+  components: { [name: string]: Component }
+  styles: {
+    root: { light: Object; dark: Object }
+    [element: string]: Object
+  }
+  config: {
+    useColorSchemeMediaQuery: boolean
+    autoApplyStylesToElement: boolean
+    autoConvertToRtl: boolean
+  }
+}
 ```
 
-## Ability to apply styles from theme
+## Ideal API for next release
 
-All chakra components can apply a style prop
+```tsx
+// import the chakra system
+import { chakra, ChakraProps, merge } from "@chakra-ui/system"
 
-```jsx
-<chakra.h2 apply="styles.h1">This is a chakra heading</chakra.h2>
-```
+// invoke system with your custom theme, get strongly typed providers
+const { styled, ThemeProvider, useTheme, useComponentStyle } = chakra(theme)
 
-## Create custom components
-
-We'll expose an utility function `createChakra` to help you create components
-that have system props and is also fully typed, with support for generics.
-
-Let's say we want to create a link button that read it's styles from theme
-
-```jsx
-const LinkButton = createChakra(Link, {
-  themeKey: "components.button",
+// create components using styled
+const Button = styled('button', {
+  baseStyle: {},
+  themeKey: 'Button',
+  attrs: {},
+  shouldForwardProps: () => {},
 });
-```
 
-Now let's say we need to consume a hook within the component, here's what we'll
-do
 
-```jsx
-const Button = createChakra("button", {
-  hook: useButton,
-  themeKey: "components.button",
-});
-```
+// if themekey was passed, then the component will have colorScheme, size, and variant Props
+<Button colorScheme="red" variant="outline" size="md"> Click me </Button>
 
-The resulting component will be able to access 3 key props, `variant`,
-`variantColor`, `variantSize`
+//NB: remove support for size prop, preserve it for components only
 
-```jsx
-<Button variantColor="green" isDisabled variant="solid" variantSize="md">
-  Button
-</Button>
-```
+// consume styled directly
+<styled.h1 apply="styles.h4"> This is a heading </styled.h1>
 
-## Without createChakra
+// create color-mode package
+import { useColorMode, ColorModeProvider, InitializeColorMode } from "@chakra-ui/color-mode"
 
-Without this utility, here's how you might need to consume a hook, which doesn't
-feel like a good experience. Create chakra only makes this more convenient.
+// create css-reset component
+import CSSReset from "@chakra-ui/css-reset"
 
-```jsx
-const Tab = forwardRef(
-  (
-    props: React.ComponentProps<typeof chakra.button> & UseTabOptions,
-    ref: React.Ref<any>,
-  ) => {
-    const tab = useTab(props, ref);
-    return <chakra.button {...tab} />;
-  },
-);
+// users can use their custom styled functions with other components
+import { styled } from "./system"
+import { Link } from "@reach/router"
+
+// common link as button scenario
+const LinkButton = styled(Link, { themeKey: "Button" })
 ```

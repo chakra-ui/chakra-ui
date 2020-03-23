@@ -3,7 +3,7 @@ import {
   chakra,
   ThemingProps,
   useComponentDefaults,
-} from "@chakra-ui/styled"
+} from "@chakra-ui/system"
 import * as React from "react"
 import { SliderHookProps, useSlider, SliderHookReturn } from "./Slider.hook"
 import { createContext } from "@chakra-ui/utils"

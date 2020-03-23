@@ -1,4 +1,4 @@
-import { chakra } from "@chakra-ui/styled"
+import { chakra } from "@chakra-ui/system"
 import React from "react"
 import { Switch } from "./Switch"
 

@@ -1,4 +1,4 @@
-import { chakra } from "@chakra-ui/styled"
+import { chakra } from "@chakra-ui/system"
 import * as React from "react"
 import { Tooltip, useTooltip } from "."
 import { Transition } from "@chakra-ui/transition"

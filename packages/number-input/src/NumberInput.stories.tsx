@@ -1,4 +1,4 @@
-import { chakra } from "@chakra-ui/styled"
+import { chakra } from "@chakra-ui/system"
 import { action } from "@storybook/addon-actions"
 import React from "react"
 import { useNumberInput } from "./NumberInput.hook"

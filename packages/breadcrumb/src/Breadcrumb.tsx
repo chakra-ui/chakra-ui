@@ -1,4 +1,4 @@
-import { chakra, PropsOf, SystemProps } from "@chakra-ui/styled"
+import { chakra, PropsOf, SystemProps } from "@chakra-ui/system"
 import { getValidChildren } from "@chakra-ui/utils"
 import * as React from "react"
 

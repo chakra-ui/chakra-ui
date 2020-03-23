@@ -1,5 +1,5 @@
 import React from "react"
-import { chakra, useTheme, css, PropsOf, SystemProps } from "@chakra-ui/styled"
+import { chakra, useTheme, css, PropsOf, SystemProps } from "@chakra-ui/system"
 import {
   getValidChildren,
   parseResponsiveProp as responsive,

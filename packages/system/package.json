@@ -1,7 +1,7 @@
 {
   "name": "@chakra-ui/system",
   "version": "0.0.1",
-  "description": "Chakra UI System",
+  "description": "Chakra UI system primitives",
   "keywords": [
     "system",
     "styled-component",
@@ -41,8 +41,6 @@
     "version": "yarn build"
   },
   "devDependencies": {
-    "@types/react-router-dom": "5.1.3",
-    "react-router-dom": "5.1.2",
     "@types/jest": "25.1.4",
     "@types/react": "16.9.23",
     "@types/react-dom": "16.9.5",
@@ -52,18 +50,18 @@
     "ts-jest": "25.2.1",
     "tsdx": "0.12.3",
     "tslib": "1.11.1",
-    "typescript": "3.8.3"
+    "typescript": "3.8.3",
+    "@chakra-ui/preset-base": "0.0.1",
+    "framer-motion": "1.10.0"
   },
   "dependencies": {
-    "@styled-system/css": "5.1.4",
-    "@types/styled-system__css": "5.0.4",
-    "@styled-system/should-forward-prop": "5.0.12",
-    "@types/styled-system": "5.0.1",
-    "@types/styled-system__should-forward-prop": "5.1.0",
-    "styled-system": "5.0.5",
-    "use-dark-mode": "2.3.1",
+    "@emotion/is-prop-valid": "0.8.8",
+    "@emotion/core": "10.0.28",
+    "hoist-non-react-statics": "3.3.2",
+    "@types/hoist-non-react-statics": "3.3.1",
+    "@chakra-ui/color-mode": "0.0.1",
     "@chakra-ui/utils": "0.0.1",
-    "@emotion/core": "10.0.28"
+    "@chakra-ui/parser": "0.0.1"
   },
   "peerDependencies": {
     "react": "16.x",

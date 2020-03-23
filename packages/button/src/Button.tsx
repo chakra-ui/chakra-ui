@@ -1,5 +1,5 @@
 import { Icon } from "@chakra-ui/icon"
-import { chakra, PropsOf, SystemProps } from "@chakra-ui/styled"
+import { chakra, PropsOf, SystemProps } from "@chakra-ui/system"
 import * as React from "react"
 import { Spinner } from "@chakra-ui/spinner"
 import { attr } from "@chakra-ui/utils"

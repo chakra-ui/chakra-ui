@@ -1,5 +1,5 @@
 import * as React from "react"
-import { chakra, PropsOf } from "@chakra-ui/styled"
+import { chakra, PropsOf } from "@chakra-ui/system"
 
 type Props = PropsOf<typeof chakra.div> & { axis?: "x" | "y" | "both" }
 

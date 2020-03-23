@@ -1,5 +1,5 @@
 /**@jsx jsx */
-import { css, jsx } from "@chakra-ui/styled"
+import { css, jsx } from "@chakra-ui/system"
 import * as React from "react"
 import { Box, BoxProps } from "./Box"
 

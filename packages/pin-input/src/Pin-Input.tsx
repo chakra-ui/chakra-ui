@@ -1,4 +1,4 @@
-import { chakra, PropsOf } from "@chakra-ui/styled"
+import { chakra, PropsOf } from "@chakra-ui/system"
 import { createContext } from "@chakra-ui/utils"
 import * as React from "react"
 import {

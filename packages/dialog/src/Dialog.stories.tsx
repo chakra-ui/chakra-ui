@@ -1,6 +1,6 @@
 import { useDisclosure } from "@chakra-ui/hooks"
 import { PortalManager } from "@chakra-ui/portal"
-import { chakra } from "@chakra-ui/styled"
+import { chakra } from "@chakra-ui/system"
 import { Fade, SlideFade } from "@chakra-ui/transition"
 import * as React from "react"
 import {

@@ -1,5 +1,5 @@
 import { ComponentTheme, getModeColor as color } from "./utils"
-import { SystemProps } from "@chakra-ui/styled"
+import { SystemProps } from "@chakra-ui/system"
 
 function getSizeStyle(size: "sm" | "md" | "lg"): SystemProps {
   return {

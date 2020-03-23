@@ -6,7 +6,7 @@ import {
   AccordionPanel,
   AccordionIcon,
 } from "./Accordion"
-import { chakra } from "@chakra-ui/styled"
+import { chakra } from "@chakra-ui/system"
 
 export default {
   title: "Accordion",

@@ -1,5 +1,5 @@
 import { useBooleanState, useId, useIsomorphicEffect } from "@chakra-ui/hooks"
-import { PropsOf, chakra, useColorModeValue } from "@chakra-ui/styled"
+import { PropsOf, chakra, useColorModeValue } from "@chakra-ui/system"
 import { callAllHandlers, createContext, attr } from "@chakra-ui/utils"
 import * as React from "react"
 import Icon from "@chakra-ui/icon"

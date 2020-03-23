@@ -62,7 +62,7 @@
     "@chakra-ui/hooks": "0.0.1",
     "@chakra-ui/portal": "0.0.1",
     "@chakra-ui/utils": "0.0.1",
-    "@chakra-ui/styled": "0.0.1",
+    "@chakra-ui/system": "0.0.1",
     "@chakra-ui/focus-lock": "0.0.1",
     "@chakra-ui/close-button": "0.0.1"
   },

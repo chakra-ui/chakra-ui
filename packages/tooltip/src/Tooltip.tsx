@@ -1,6 +1,6 @@
 import * as React from "react"
 import { useTooltip, TooltipHookProps } from "./Tooltip.hook"
-import { chakra, PropsOf } from "@chakra-ui/styled"
+import { chakra, PropsOf } from "@chakra-ui/system"
 import { Portal } from "@chakra-ui/portal"
 import { isString, omit, pick } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"

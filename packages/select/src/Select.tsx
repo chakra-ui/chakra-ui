@@ -4,7 +4,7 @@ import {
   PropsOf,
   useColorModeValue,
   layoutPropNames,
-} from "@chakra-ui/styled"
+} from "@chakra-ui/system"
 import { ControlProps, useField } from "@chakra-ui/form-control"
 import { Icon, IconProps } from "@chakra-ui/icon"
 import { split } from "@chakra-ui/utils"

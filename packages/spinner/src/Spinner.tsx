@@ -1,4 +1,4 @@
-import { chakra, PropsOf, keyframes } from "@chakra-ui/styled"
+import { chakra, PropsOf, keyframes } from "@chakra-ui/system"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 import * as React from "react"
 

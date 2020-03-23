@@ -4,7 +4,7 @@ import {
   ColorModeProvider,
   GlobalStyle,
   ThemeProvider,
-} from "@chakra-ui/styled"
+} from "@chakra-ui/system"
 import { addDecorator } from "@storybook/react"
 import * as React from "react"
 

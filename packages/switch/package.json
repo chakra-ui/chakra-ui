@@ -51,7 +51,7 @@
     "typescript": "3.8.3"
   },
   "dependencies": {
-    "@chakra-ui/styled": "0.0.1",
+    "@chakra-ui/system": "0.0.1",
     "@chakra-ui/checkbox": "0.0.1"
   },
   "peerDependencies": {

@@ -1,5 +1,5 @@
 import * as React from "react"
-import { chakra } from "@chakra-ui/styled"
+import { chakra } from "@chakra-ui/system"
 import { Icon, IconProps } from "@chakra-ui/icon"
 
 export const StatLabel = chakra("p", {

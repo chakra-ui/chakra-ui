@@ -8,7 +8,7 @@ import {
   AlertDialogContent,
   AlertDialogOverlay,
 } from "."
-import { chakra } from "@chakra-ui/styled"
+import { chakra } from "@chakra-ui/system"
 
 export default {
   title: "AlertDialog",

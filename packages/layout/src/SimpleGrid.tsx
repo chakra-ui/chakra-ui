@@ -1,4 +1,4 @@
-import { ResponsiveValue } from "@chakra-ui/styled"
+import { ResponsiveValue } from "@chakra-ui/system"
 import {
   parseResponsiveProp as responsive,
   isNumber,

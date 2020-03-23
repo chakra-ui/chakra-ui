@@ -1,4 +1,4 @@
-import { chakra, PropsOf, useColorModeValue } from "@chakra-ui/styled"
+import { chakra, PropsOf, useColorModeValue } from "@chakra-ui/system"
 import * as React from "react"
 import { useInputGroup } from "./Input.group"
 

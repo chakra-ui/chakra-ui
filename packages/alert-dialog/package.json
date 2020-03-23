@@ -50,7 +50,7 @@
     "tsdx": "0.12.3",
     "tslib": "1.11.1",
     "typescript": "3.8.3",
-    "@chakra-ui/styled": "0.0.1"
+    "@chakra-ui/system": "0.0.1"
   },
   "dependencies": {
     "@chakra-ui/dialog": "0.0.1"

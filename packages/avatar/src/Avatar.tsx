@@ -5,7 +5,7 @@ import {
   PropsOf,
   SystemProps,
   useColorModeValue,
-} from "@chakra-ui/styled"
+} from "@chakra-ui/system"
 import * as React from "react"
 
 interface AvatarOptions {

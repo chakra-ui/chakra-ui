@@ -1,4 +1,4 @@
-import { chakra, PropsOf } from "@chakra-ui/styled"
+import { chakra, PropsOf } from "@chakra-ui/system"
 import * as React from "react"
 
 export const Link = chakra("a", {

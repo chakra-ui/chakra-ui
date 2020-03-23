@@ -1,6 +1,6 @@
 import React from "react"
 import { Tabs, TabList, Tab, TabIndicator, TabPanels, TabPanel } from "."
-import { chakra } from "@chakra-ui/styled"
+import { chakra } from "@chakra-ui/system"
 
 export default {
   title: "Tabs",

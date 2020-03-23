@@ -1,6 +1,6 @@
 import * as React from "react"
 import { useInputGroup } from "./Input.group"
-import { chakra, useComponentStyle, PropsOf } from "@chakra-ui/styled"
+import { chakra, useComponentStyle, PropsOf } from "@chakra-ui/system"
 import { useIsomorphicEffect } from "@chakra-ui/hooks"
 
 export type InputElementProps = PropsOf<typeof chakra.div> & {

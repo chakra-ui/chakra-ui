@@ -1,3 +1,3 @@
-import { chakra } from "@chakra-ui/styled"
+import { chakra } from "@chakra-ui/system"
 
 export const Kbd = chakra("kbd", { themeKey: "Kbd" })

@@ -1,5 +1,5 @@
 import { useDimensions, useBooleanState } from "@chakra-ui/hooks"
-import { chakra, PropsOf } from "@chakra-ui/styled"
+import { chakra, PropsOf } from "@chakra-ui/system"
 import {
   Transition,
   TransitionProps,

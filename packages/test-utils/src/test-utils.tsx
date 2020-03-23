@@ -1,5 +1,5 @@
 import theme from "@chakra-ui/preset-base"
-import { GlobalStyle, ThemeProvider } from "@chakra-ui/styled"
+import { GlobalStyle, ThemeProvider } from "@chakra-ui/system"
 import CSSReset from "@chakra-ui/css-reset"
 import "@testing-library/jest-dom/extend-expect"
 import { render, RenderOptions } from "@testing-library/react"

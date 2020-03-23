@@ -1,4 +1,4 @@
-import { PropsOf, chakra, useComponentDefaults } from "@chakra-ui/styled"
+import { PropsOf, chakra, useComponentDefaults } from "@chakra-ui/system"
 import * as React from "react"
 import {
   useTab,

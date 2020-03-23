@@ -1,7 +1,7 @@
 import { AddIcon } from "@chakra-ui/icons"
 import * as React from "react"
 import { Tag, TagIcon, TagLabel, TagCloseButton } from "./Tag"
-import { chakra } from "@chakra-ui/styled"
+import { chakra } from "@chakra-ui/system"
 import { Avatar } from "@chakra-ui/avatar"
 
 export default {

@@ -4,7 +4,7 @@ import {
   PropsOf,
   ResponsiveValue,
   SystemProps,
-} from "@chakra-ui/styled"
+} from "@chakra-ui/system"
 import {
   getValidChildren,
   parseResponsiveProp as responsive,

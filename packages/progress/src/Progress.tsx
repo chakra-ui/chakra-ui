@@ -5,7 +5,7 @@ import {
   PropsOf,
   useColorModeValue,
   useTheme,
-} from "@chakra-ui/styled"
+} from "@chakra-ui/system"
 import { isUndefined, Omit, parseResponsiveProp } from "@chakra-ui/utils"
 import * as React from "react"
 import {

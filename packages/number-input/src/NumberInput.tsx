@@ -1,5 +1,5 @@
 import { ArrowDownIcon, ArrowUpIcon } from "@chakra-ui/icons"
-import { chakra, PropsOf, ThemingProps, SystemProps } from "@chakra-ui/styled"
+import { chakra, PropsOf, ThemingProps, SystemProps } from "@chakra-ui/system"
 import { createContext } from "@chakra-ui/utils"
 import React from "react"
 import {

@@ -1,5 +1,5 @@
 import { CheckboxHookProps, useCheckbox } from "@chakra-ui/checkbox"
-import { chakra, PropsOf } from "@chakra-ui/styled"
+import { chakra, PropsOf } from "@chakra-ui/system"
 import React from "react"
 
 const StyledSwitch = chakra("label", {

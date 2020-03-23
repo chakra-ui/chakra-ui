@@ -1,4 +1,4 @@
-import { chakra, PropsOf, SystemProps } from "@chakra-ui/styled"
+import { chakra, PropsOf, SystemProps } from "@chakra-ui/system"
 import { Omit } from "@chakra-ui/utils"
 import * as React from "react"
 import { CheckboxHookProps, useCheckbox } from "./Checkbox.hook"

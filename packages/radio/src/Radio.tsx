@@ -4,7 +4,7 @@ import {
   chakra,
   useComponentDefaults,
   layoutPropNames,
-} from "@chakra-ui/styled"
+} from "@chakra-ui/system"
 import * as React from "react"
 import { RadioHookProps, useRadio } from "./Radio.hook"
 import { split } from "@chakra-ui/utils"

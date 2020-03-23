@@ -1,5 +1,5 @@
 import React from "react"
-import { chakra, PropsOf } from "@chakra-ui/styled"
+import { chakra, PropsOf } from "@chakra-ui/system"
 import { Icon, IconProps } from "@chakra-ui/icon"
 
 export type TagProps = PropsOf<typeof Tag>

@@ -5,7 +5,7 @@ import {
   EditableHookReturn,
 } from "./Editable.hook"
 import { createContext } from "@chakra-ui/utils"
-import { chakra, PropsOf } from "@chakra-ui/styled"
+import { chakra, PropsOf } from "@chakra-ui/system"
 
 type EditableContext = Omit<EditableHookReturn, "htmlProps">
 

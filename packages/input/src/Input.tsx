@@ -1,5 +1,5 @@
 import { ControlProps, useField } from "@chakra-ui/form-control"
-import { chakra, PropsOf, useComponentStyle } from "@chakra-ui/styled"
+import { chakra, PropsOf, useComponentStyle } from "@chakra-ui/system"
 import * as React from "react"
 import { useInputGroup } from "./Input.group"
 

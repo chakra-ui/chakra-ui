@@ -1,6 +1,6 @@
 import React from "react"
 import { Inline } from ".."
-import { chakra } from "@chakra-ui/styled"
+import { chakra } from "@chakra-ui/system"
 
 export default {
   title: "Inline",

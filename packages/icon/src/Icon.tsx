@@ -1,4 +1,4 @@
-import { PropsOf, chakra } from "@chakra-ui/styled"
+import { PropsOf, chakra } from "@chakra-ui/system"
 import * as React from "react"
 
 const fallbackIcon = {

@@ -1,5 +1,5 @@
 import { IconProps } from "@chakra-ui/icon"
-import { ColorMode, chakra, PropsOf, useColorMode } from "@chakra-ui/styled"
+import { ColorMode, chakra, PropsOf, useColorMode } from "@chakra-ui/system"
 import * as React from "react"
 import {
   InfoIcon,
