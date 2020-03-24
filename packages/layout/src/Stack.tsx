@@ -5,10 +5,7 @@ import {
   Responsive,
   SystemProps,
 } from "@chakra-ui/system"
-import {
-  getValidChildren,
-  parseResponsiveProp as responsive,
-} from "@chakra-ui/utils"
+import { getValidChildren, mapResponsive } from "@chakra-ui/utils"
 import * as React from "react"
 import { FlexOptions } from "./Flex"
 
@@ -54,19 +51,19 @@ export const Stack = React.forwardRef(
 
     const styles: any = {}
 
-    styles.flexDirection = responsive(direction, dir =>
-      dir === "row" ? "row" : "column",
+    styles.flexDirection = mapResponsive(direction, value =>
+      value === "row" ? "row" : "column",
     )
 
-    styles[selector] = responsive(direction, dir => ({
-      [dir === "column" ? "marginTop" : "marginLeft"]: spacing,
-      [dir === "column" ? "marginLeft" : "marginTop"]: 0,
+    styles[selector] = mapResponsive(direction, value => ({
+      [value === "column" ? "marginTop" : "marginLeft"]: spacing,
+      [value === "column" ? "marginLeft" : "marginTop"]: 0,
     }))
 
     const validChildren = getValidChildren(children)
 
-    const dividerStyles = responsive(direction, dir => {
-      if (dir === "row") {
+    const dividerStyles = mapResponsive(direction, value => {
+      if (value === "row") {
         return {
           marginX: spacing,
           marginY: 0,

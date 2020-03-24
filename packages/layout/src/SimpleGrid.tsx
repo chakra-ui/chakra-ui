@@ -1,9 +1,5 @@
 import { Responsive } from "@chakra-ui/system"
-import {
-  parseResponsiveProp as responsive,
-  isNumber,
-  isNull,
-} from "@chakra-ui/utils"
+import { mapResponsive, isNumber, isNull } from "@chakra-ui/utils"
 import * as React from "react"
 import { Grid, GridProps } from "./Grid"
 
@@ -61,14 +57,18 @@ export const SimpleGrid = React.forwardRef(
   },
 )
 
-const toPx = (n: string | number) => (isNumber(n) ? n + "px" : n)
+const toPx = (n: string | number) => {
+  return isNumber(n) ? n + "px" : n
+}
 
-function widthToColumns(width: any) {
-  return responsive(width, val =>
-    isNull(val) ? null : `repeat(auto-fit, minmax(${toPx(val)}, 1fr))`,
+const widthToColumns = (width: any) => {
+  return mapResponsive(width, value =>
+    isNull(value) ? null : `repeat(auto-fit, minmax(${toPx(value)}, 1fr))`,
   )
 }
 
-function countToColumns(count: any) {
-  return responsive(count, val => (isNull(val) ? null : `repeat(${val}, 1fr)`))
+const countToColumns = (count: any) => {
+  return mapResponsive(count, value =>
+    isNull(value) ? null : `repeat(${value}, 1fr)`,
+  )
 }

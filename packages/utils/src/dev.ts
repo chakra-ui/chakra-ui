@@ -1,7 +1,7 @@
 import { isArray, isObject, __DEV__ } from "./assertion"
 import { Dict } from "./types"
 
-export function parseResponsiveProp(prop: any, mapper: (val: any) => any) {
+export function mapResponsive(prop: any, mapper: (val: any) => any) {
   if (isArray(prop)) {
     return prop.map(mapper)
   }
