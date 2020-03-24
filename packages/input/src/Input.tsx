@@ -42,8 +42,6 @@ const StyledInput = chakra<"input", InputOptions>("input", {
     !["focusBorderColor", "errorBorderColor"].includes(prop),
 })
 
-StyledInput.displayName = "StyledInput"
-
 export const Input = React.forwardRef(
   (props: InputProps, ref: React.Ref<HTMLInputElement>) => {
     const inputProps = useField<HTMLInputElement>(props)
@@ -58,12 +56,13 @@ export const Input = React.forwardRef(
       size,
     })
 
+    const themingProps = { variant, size } as any
+
     return (
       <StyledInput
         ref={ref}
         {...inputProps}
-        variant={variant}
-        size={size}
+        {...themingProps}
         {...(group?.hasRightElement && { paddingRight: inputStyle?.height })}
         {...(group?.hasLeftElement && { paddingLeft: inputStyle?.height })}
       />

@@ -150,7 +150,7 @@ function notEmpty(val: any): val is object {
  * @param themeKey the component's theme key
  */
 export function getComponentStyles(
-  props: ModifierStyleProps & { colorMode: string },
+  props: ModifierStyleProps & { colorMode?: string },
   themeKey: string,
 ) {
   let styles: CSSObject = {}
