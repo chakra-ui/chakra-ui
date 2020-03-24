@@ -2,7 +2,7 @@ import { colorEmphasis, getColor } from "@chakra-ui/color"
 import { Props, getModeColor as get, ComponentTheme } from "./utils"
 
 function getSubtleStyle(props: Props) {
-  const { theme: t, variantColor: c } = props
+  const { theme: t, colorScheme: c } = props
   const lightBg = getColor(t, `${c}.100`, c)
   //@ts-ignore
   const darkBg = colorEmphasis(`${c}.200`, "lowest")(t)
@@ -10,7 +10,7 @@ function getSubtleStyle(props: Props) {
 }
 
 function getLeftAccentStyle(props: Props) {
-  const { variantColor: c } = props
+  const { colorScheme: c } = props
   const borderColor = get(props, `${c}.500`, `${c}.200`)
 
   return {
@@ -24,7 +24,7 @@ function getLeftAccentStyle(props: Props) {
 }
 
 function getTopAccentStyle(props: Props) {
-  const { variantColor: c } = props
+  const { colorScheme: c } = props
   const borderColor = get(props, `${c}.500`, `${c}.200`)
 
   return {
@@ -38,7 +38,7 @@ function getTopAccentStyle(props: Props) {
 }
 
 function getSolidStyle(props: Props) {
-  const { variantColor: c } = props
+  const { colorScheme: c } = props
   return {
     Root: {
       bg: get(props, `${c}.500`, `${c}.200`),

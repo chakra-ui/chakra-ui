@@ -24,7 +24,7 @@ export interface ComponentTheme<P = {}> {
 }
 
 export interface Props {
-  variantColor: string
+  colorScheme: string
   orientation: "horizontal" | "vertical"
   colorMode: "light" | "dark"
   theme: Theme
@@ -40,12 +40,12 @@ export function getModeColor(props: any, lightValue: any, darkValue: any): any {
   if (props.colorMode === "light") {
     return typeof lightValue === "function"
       ? lightValue
-      : getColor(props.theme, lightValue, props.variantColor)
+      : getColor(props.theme, lightValue, props.colorScheme)
   }
   if (props.colorMode === "dark") {
     return typeof darkValue === "function"
       ? darkValue
-      : getColor(props.theme, darkValue, props.variantColor)
+      : getColor(props.theme, darkValue, props.colorScheme)
   }
   return undefined
 }

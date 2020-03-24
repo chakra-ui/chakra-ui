@@ -14,7 +14,7 @@ const grayGhostStyle = (props: Props) => ({
 ////////////////////////////////////////////////////////////
 
 function getGhostStyle(props: Props) {
-  const { variantColor: c, theme: t } = props
+  const { colorScheme: c, theme: t } = props
   if (c === "gray") return grayGhostStyle(props)
 
   const darkHoverBg = addOpacity(`${c}.200`, 0.12)(t)
@@ -35,7 +35,7 @@ function getGhostStyle(props: Props) {
 ////////////////////////////////////////////////////////////
 
 function getOutlineStyle(props: Props) {
-  const { variantColor: c } = props
+  const { colorScheme: c } = props
   const borderColor = get(props, `gray.200`, `whiteAlpha.300`)
 
   return {
@@ -58,7 +58,8 @@ const graySolidStyle = (props: Props) => ({
 })
 
 function getSolidStyle(props: Props) {
-  const { variantColor: c } = props
+  const { colorScheme: c } = props
+  console.log(props)
   if (c === "gray") return graySolidStyle(props)
 
   return {
@@ -72,7 +73,7 @@ function getSolidStyle(props: Props) {
 ////////////////////////////////////////////////////////////
 
 function getLinkStyle(props: Props) {
-  const { variantColor: c } = props
+  const { colorScheme: c } = props
   return {
     padding: 0,
     height: "auto",
@@ -89,7 +90,7 @@ function getLinkStyle(props: Props) {
 
 ////////////////////////////////////////////////////////////
 
-const Sizes = {
+const sizes = {
   lg: {
     height: 12,
     minWidth: 12,
@@ -160,9 +161,10 @@ const Button = {
   defaultProps: {
     variant: "solid",
     size: "md",
+    colorScheme: "gray",
   },
   baseStyle,
-  Sizes,
+  sizes,
   variants: {
     unstyled,
     solid: getSolidStyle,

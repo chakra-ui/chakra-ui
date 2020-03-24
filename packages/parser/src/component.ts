@@ -40,6 +40,24 @@ const modifierMap = {
   variants: "variant",
 }
 
+type Modifiers = {
+  variant?: string
+  colorScheme?: string
+  size?: string
+}
+
+type ModifiersWithTheme = Modifiers & { theme?: object }
+
+function filter(object: Dict) {
+  const result = { ...object }
+  for (const item in result) {
+    if (typeof result[item] === "undefined") {
+      delete result[item]
+    }
+  }
+  return result
+}
+
 /**
  * Gets the modifier styles for a component.
  * Chakra UI assumes that most component will need
@@ -50,7 +68,7 @@ const modifierMap = {
  * @param modifiers modifiers we support (for now, it's just variant, and size)
  */
 export function getModifierStyles(
-  props: Dict | undefined,
+  props: ModifiersWithTheme,
   themeKey: string | undefined,
   modifiers = Object.keys(modifierMap),
 ) {
@@ -82,13 +100,21 @@ export function getModifierStyles(
   let styles: Dict = {}
 
   /**
+   * Merge the props with defaultProps defined in theme
+   * to provider sensible fallbacks
+   */
+  const computedProps = defaultProps
+    ? { ...defaultProps, ...filter(props) }
+    : props
+
+  /**
    * Iterate through each modifier (mostly variants and sizes),
    * can compute the styles based on theme.
    */
   for (const modifier of modifiers) {
     const _modifier = modifierMap[modifier as keyof typeof modifierMap]
 
-    const value = props[_modifier] ?? defaultProps?.[_modifier]
+    const value = computedProps[_modifier as keyof typeof props]
 
     if (!value) continue
 
@@ -99,7 +125,7 @@ export function getModifierStyles(
 
     if (!styleObjectOrFn) continue
 
-    const style = runIfFn(styleObjectOrFn, props)
+    const style = runIfFn(styleObjectOrFn, computedProps)
 
     styles = isSubcomponent(themeKey)
       ? deepmerge(styles, style[subComponent])
@@ -124,10 +150,13 @@ function notEmpty(val: any): val is object {
  * @param props the component props object
  * @param themeKey the component's theme key
  */
-export function getComponentStyles(props: any, themeKey: string) {
+export function getComponentStyles(
+  props: ModifiersWithTheme & { colorMode: string },
+  themeKey: string,
+) {
   let styles: CSSObject = {}
 
-  if (!themeKey) return undefined
+  if (!themeKey || !props.theme) return undefined
 
   const baseStyleObject = getBaseStyle(props, themeKey)
 
@@ -146,14 +175,8 @@ export function getComponentStyles(props: any, themeKey: string) {
   return styles
 }
 
-type Defaults = {
-  colorScheme?: string
-  size?: string
-  variant?: string
-}
-
 export function getComponentDefaults(theme: any, themeKey: string) {
   return get(theme, `components.${themeKey}.defaultProps`) as
-    | Defaults
+    | Modifiers
     | undefined
 }

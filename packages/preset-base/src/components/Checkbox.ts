@@ -5,7 +5,7 @@ const Checkbox: ComponentTheme = {
     size: "md",
   },
   baseStyle: (props: any) => {
-    const { variantColor: c } = props
+    const { colorScheme: c } = props
     return {
       display: "inline-flex",
       alignItems: "center",

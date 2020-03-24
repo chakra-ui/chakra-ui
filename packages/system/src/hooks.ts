@@ -19,7 +19,11 @@ interface ComponentStyleHookProps {
 export function useComponentStyle(props: ComponentStyleHookProps) {
   const { size, variant, colorScheme, themeKey } = props
   const theme = React.useContext(ThemeContext)
-  return getComponentStyles({ variant, size, theme, colorScheme }, themeKey)
+  const [colorMode] = useColorMode()
+  return getComponentStyles(
+    { variant, size, theme, colorScheme, colorMode },
+    themeKey,
+  )
 }
 
 export function useComponentDefaults(themeKey: string) {

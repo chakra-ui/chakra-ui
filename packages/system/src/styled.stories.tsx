@@ -1,22 +1,9 @@
 /**@jsx jsx */
-import { chakra, jsx, ThemeProvider, useComponentStyle } from "."
-import { ColorModeProvider } from "@chakra-ui/color-mode"
-import theme from "./theme.sample"
 import { motion } from "framer-motion"
-import { GlobalStyle } from "./global"
+import { chakra, jsx, useComponentStyle } from "."
 
 export default {
   title: "styled",
-  decorators: [
-    (Story: Function) => (
-      <ThemeProvider theme={theme}>
-        <ColorModeProvider>
-          <GlobalStyle />
-          <Story />
-        </ColorModeProvider>
-      </ThemeProvider>
-    ),
-  ],
 }
 
 /**
@@ -141,6 +128,7 @@ export const UseComponentStyle = () => {
   const style = useComponentStyle({
     themeKey: "Button",
     variant: "solid",
+    size: "lg",
   })
 
   return (

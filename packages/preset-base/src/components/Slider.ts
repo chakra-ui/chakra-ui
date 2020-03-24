@@ -91,7 +91,7 @@ const Slider: ComponentTheme = {
       }),
     },
     FilledTrack: {
-      bg: get(props, `${props.variantColor}.500`, `${props.variantColor}.200`),
+      bg: get(props, `${props.colorScheme}.500`, `${props.colorScheme}.200`),
     },
   }),
 }

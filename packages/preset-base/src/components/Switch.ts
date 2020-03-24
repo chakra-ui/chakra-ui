@@ -53,7 +53,7 @@ const Switch: ComponentTheme = {
         opacity: 0.4,
         cursor: "not-allowed",
       },
-      _checked: { bg: `${props.variantColor}.500` },
+      _checked: { bg: `${props.colorScheme}.500` },
     },
     Thumb: {
       bg: "white",

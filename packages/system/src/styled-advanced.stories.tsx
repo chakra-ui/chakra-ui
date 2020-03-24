@@ -1,21 +1,8 @@
 /**@jsx jsx */
-import { ColorModeProvider } from "@chakra-ui/color-mode"
-import { chakra, jsx, ThemeProvider } from "."
-import { GlobalStyle } from "./global"
-import theme from "./theme.sample"
+import { chakra, jsx } from "."
 
 export default {
   title: "styled (advanced)",
-  decorators: [
-    (Story: Function) => (
-      <ThemeProvider theme={theme}>
-        <ColorModeProvider>
-          <GlobalStyle />
-          <Story />
-        </ColorModeProvider>
-      </ThemeProvider>
-    ),
-  ],
 }
 
 /**
