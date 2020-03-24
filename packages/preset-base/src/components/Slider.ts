@@ -1,35 +1,28 @@
-import {
-  ComponentTheme,
-  getModeColor as get,
-  getOrientationStyle,
-} from "./utils"
+import { ComponentTheme, mode, getOrientationStyle } from "./utils"
 
 const Slider: ComponentTheme = {
   defaultProps: {
     size: "md",
   },
   sizes: {
-    //@ts-ignore
-    lg: (props: any) => ({
-      Thumb: { size: "16px" },
+    lg: props => ({
+      Thumb: { width: "16px", height: "16px" },
       Track: getOrientationStyle({
         orientation: props.orientation,
         horizontal: { height: "4px" },
         vertical: { width: "4px" },
       }),
     }),
-    //@ts-ignore
-    md: (props: any) => ({
-      Thumb: { size: "14px" },
+    md: props => ({
+      Thumb: { width: "14px", height: "14px" },
       Track: getOrientationStyle({
         orientation: props.orientation,
         horizontal: { height: "4px" },
         vertical: { width: "4px" },
       }),
     }),
-    //@ts-ignore
-    sm: (props: any) => ({
-      Thumb: { size: "10px" },
+    sm: props => ({
+      Thumb: { width: "10px", height: "10px" },
       Track: getOrientationStyle({
         orientation: props.orientation,
         horizontal: { height: "2px" },
@@ -37,8 +30,7 @@ const Slider: ComponentTheme = {
       }),
     }),
   },
-  //@ts-ignore
-  baseStyle: (props: any) => ({
+  baseStyle: props => ({
     Root: {
       _disabled: {
         opacity: 0.6,
@@ -53,9 +45,9 @@ const Slider: ComponentTheme = {
     },
     Track: {
       borderRadius: "sm",
-      bg: get(props, "gray.200", "whiteAlpha.200"),
+      bg: mode("gray.200", "whiteAlpha.200")(props),
       _disabled: {
-        bg: get(props, "gray.300", "whiteAlpha.300"),
+        bg: mode("gray.300", "whiteAlpha.300")(props),
       },
     },
     Thumb: {
@@ -70,7 +62,7 @@ const Slider: ComponentTheme = {
         boxShadow: "outline",
       },
       _disabled: {
-        backgroundColor: "gray.300",
+        bg: "gray.300",
       },
       ...getOrientationStyle({
         orientation: props.orientation,
@@ -91,7 +83,7 @@ const Slider: ComponentTheme = {
       }),
     },
     FilledTrack: {
-      bg: get(props, `${props.colorScheme}.500`, `${props.colorScheme}.200`),
+      bg: mode(`${props.colorScheme}.500`, `${props.colorScheme}.200`)(props),
     },
   }),
 }

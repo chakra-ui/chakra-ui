@@ -1,4 +1,4 @@
-import { ComponentTheme, getModeColor as color } from "./utils"
+import { ComponentTheme, mode } from "./utils"
 import { SystemProps } from "@chakra-ui/system"
 
 function getSizeStyle(size: "sm" | "md" | "lg"): SystemProps {
@@ -19,7 +19,7 @@ const NumberInput: ComponentTheme = {
   defaultProps: {
     size: "md",
   },
-  baseStyle: (props: any) => ({
+  baseStyle: props => ({
     StepperGroup: {
       width: "24px",
       margin: "1px",
@@ -29,10 +29,10 @@ const NumberInput: ComponentTheme = {
     },
     Stepper: {
       borderLeft: "1px solid",
-      borderColor: color(props, "inherit", "whiteAlpha.300"),
-      color: color(props, "inherit", "whiteAlpha.800"),
+      borderColor: mode("inherit", "whiteAlpha.300")(props),
+      color: mode("inherit", "whiteAlpha.800")(props),
       _active: {
-        bg: color(props, "gray.200", "whiteAlpha.300"),
+        bg: mode("gray.200", "whiteAlpha.300")(props),
       },
       _disabled: {
         opacity: 0.4,

@@ -2,10 +2,7 @@ import Input from "./Input"
 import { ComponentTheme } from "./utils"
 
 const PinInput: ComponentTheme = {
-  defaultProps: {
-    variant: "outline",
-    size: "md",
-  },
+  defaultProps: Input.defaultProps,
   baseStyle: Input.baseStyle,
   variants: Input.variants,
   sizes: {

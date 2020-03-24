@@ -1,87 +1,117 @@
 import tiny from "tinycolor2"
-import { get } from "@chakra-ui/utils"
+import { get, Dict } from "@chakra-ui/utils"
 
-export function getColor(theme: object, color: string, fallback?: string) {
-  const result = get(theme, `colors.${color}`, color)
-  const isValid = tiny(result).isValid()
-  return isValid ? result : fallback
+/**
+ * Get the color raw value from theme
+ * @param theme - the theme object
+ * @param color - the color path ("green.200")
+ * @param fallback - the fallback color
+ */
+export const getColor = (theme: Dict, color: string, fallback?: string) => {
+  const raw = get(theme, `colors.${color}`, color)
+  const isValid = tiny(raw).isValid()
+  return isValid ? raw : fallback
 }
 
 /**
- * Determines whether the given color is "light" or "dark".
- *
- * @param color the color in hex, rgb, or hsl
+ * Determines if the tone of given color is "light" or "dark"
+ * @param color - the color in hex, rgb, or hsl
  */
-export function tone(color: string) {
-  return function(theme: object) {
-    const isDark = tiny(getColor(theme, color)).isDark()
-    return isDark ? "dark" : "light"
-  }
+export const tone = (color: string) => (theme: Dict) => {
+  const isDark = tiny(getColor(theme, color)).isDark()
+  return isDark ? "dark" : "light"
 }
 
-export function isDark(color: string) {
-  return function(theme: object) {
-    return tiny(getColor(theme, color)).isDark()
-  }
+/**
+ * Determines if a color tone is "dark"
+ * @param color - the color in hex, rgb, or hsl
+ */
+export const isDark = (color: string) => (theme: Dict) =>
+  tone(color)(theme) === "dark"
+
+/**
+ * Determines if a color tone is "light"
+ * @param color - the color in hex, rgb, or hsl
+ */
+export const isLight = (color: string) => (theme: Dict) =>
+  tone(color)(theme) === "light"
+
+/**
+ * Make a color transparent
+ * @param color - the color in hex, rgb, or hsl
+ * @param amount - the amount white to add
+ */
+export const opacity = (color: string, opacity: number) => (theme: Dict) => {
+  const raw = getColor(theme, color)
+  return tiny(raw)
+    .setAlpha(opacity)
+    .toRgbString()
 }
 
-export function isLight(color: string) {
-  return function(theme: object) {
-    return tiny(getColor(theme, color)).isLight()
-  }
+/**
+ * Add white to a color
+ * @param color - the color in hex, rgb, or hsl
+ * @param amount - the amount white to add (0-1)
+ */
+export const tint = (color: string, amount: number) => (theme: Dict) => {
+  const raw = getColor(theme, color)
+  return tiny.mix(raw, "#fff", amount).toHexString()
 }
 
-export function addOpacity(color: string, opacity: number) {
-  return function(theme: object) {
-    return tiny(getColor(theme, color))
-      .setAlpha(opacity)
-      .toRgbString()
-  }
+/**
+ * Add black to a color
+ * @param color - the color in hex, rgb, or hsl
+ * @param amount - the amount white to add (0-1)
+ */
+export const shade = (color: string, amount: number) => (theme: Dict) => {
+  const raw = getColor(theme, color)
+  return tiny.mix(raw, "#000", amount).toHexString()
 }
 
-export const mixWithWhite = (color: string, amount: number) => (
-  theme: object,
-) => tiny.mix(getColor(theme, color), "#fff", amount).toHexString()
-
-export const mixWithBlack = (color: string, amount: number) => (
-  theme: object,
-) => tiny.mix(getColor(theme, color), "#000", amount).toHexString()
-
-export function darken(color: string, amount: number) {
-  return function(theme: object) {
-    return tiny(getColor(theme, color))
-      .darken(amount)
-      .toHexString()
-  }
+/**
+ * Darken a specified color
+ * @param color - the color in hex, rgb, or hsl
+ * @param amount - the amount white to add (0-1)
+ */
+export const darken = (color: string, amount: number) => (theme: Dict) => {
+  const raw = getColor(theme, color)
+  return tiny(raw)
+    .darken(amount)
+    .toHexString()
 }
 
-export function lighten(color: string, amount: number) {
-  return function(theme: object) {
-    return tiny(getColor(theme, color))
-      .lighten(amount)
-      .toHexString()
-  }
-}
+export const lighten = (color: string, amount: number) => (theme: Dict) =>
+  tiny(getColor(theme, color))
+    .lighten(amount)
+    .toHexString()
 
-export function getContrastRatio(
-  foregroundColor: string,
-  backgroundColor: string,
-) {
-  return function(theme: object) {
-    return tiny.readability(
-      getColor(theme, backgroundColor),
-      getColor(theme, foregroundColor),
-    )
-  }
-}
+/**
+ * Checks the contract ratio of between 2 colors,
+ * based on the Web Content Accessibility Guidelines (Version 2.0).
+ *
+ * @param fg - the foreground or text color
+ * @param bg - the background color
+ */
+export const contrast = (fg: string, bg: string) => (theme: Dict) =>
+  tiny.readability(getColor(theme, bg), getColor(theme, fg))
 
-export const passWCAGRequirement = (fg: string, bg: string) => (
-  theme: object,
-) => tiny.isReadable(getColor(theme, bg), getColor(theme, fg))
+/**
+ * Checks if a color meets the Web Content Accessibility
+ * Guidelines (Version 2.0) for constract ratio.
+ *
+ * @param fg - the foreground or text color
+ * @param bg - the background color
+ */
+export const isAccessible = (
+  fg: string,
+  bg: string,
+  options?: tiny.WCAG2Options,
+) => (theme: Dict) =>
+  tiny.isReadable(getColor(theme, bg), getColor(theme, fg), options)
 
-export const getRandomColor = () => tiny.random().toHexString()
+export const random = () => tiny.random().toHexString()
 
-export const getComplementary = (color: string) => (theme: object) =>
+export const complementary = (color: string) => (theme: Dict) =>
   tiny(getColor(theme, color))
     .complement()
     .toHexString()
@@ -110,30 +140,29 @@ export function generateStripe(
  *
  * @param color
  */
-export function generateAlphaColors(color: string) {
-  return {
-    900: addOpacity(color, 0.92),
-    800: addOpacity(color, 0.8),
-    700: addOpacity(color, 0.6),
-    600: addOpacity(color, 0.48),
-    500: addOpacity(color, 0.38),
-    400: addOpacity(color, 0.24),
-    300: addOpacity(color, 0.16),
-    200: addOpacity(color, 0.12),
-    100: addOpacity(color, 0.08),
-    50: addOpacity(color, 0.04),
-  }
-}
+export const toAlphas = (color: string) => ({
+  900: opacity(color, 0.92),
+  800: opacity(color, 0.8),
+  700: opacity(color, 0.6),
+  600: opacity(color, 0.48),
+  500: opacity(color, 0.38),
+  400: opacity(color, 0.24),
+  300: opacity(color, 0.16),
+  200: opacity(color, 0.12),
+  100: opacity(color, 0.08),
+  50: opacity(color, 0.04),
+})
 
 type Emphasis = "high" | "medium" | "low" | "lowest"
 
-export function colorEmphasis(color: string, emphasis: Emphasis) {
-  return {
-    high: color,
-    medium: generateAlphaColors(color)[700],
-    low: generateAlphaColors(color)[500],
-    lowest: generateAlphaColors(color)[300],
-  }[emphasis]
+export const ink = (color: string, emphasis: Emphasis) => {
+  const values = {
+    high: toAlphas(color)[900],
+    medium: toAlphas(color)[700],
+    low: toAlphas(color)[500],
+    lowest: toAlphas(color)[300],
+  }
+  return values[emphasis]
 }
 
 export function stringToColor(str: string) {

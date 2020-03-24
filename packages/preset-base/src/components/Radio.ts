@@ -1,22 +1,23 @@
 import Checkbox from "./Checkbox"
 import { ComponentTheme } from "./utils"
 
-const Radio = {
+const baseStyle = Checkbox.baseStyle as Function
+
+const Radio: ComponentTheme = {
   defaultProps: {
     size: "md",
   },
-  baseStyle: (props: any) => ({
-    //@ts-ignore
-    ...Checkbox.baseStyle(props),
+  baseStyle: props => ({
+    ...baseStyle(props),
     borderRadius: "full",
     _checked: {
-      //@ts-ignore
-      ...Checkbox.baseStyle(props)["_checked"],
+      ...baseStyle(props)["_checked"],
       _before: {
         content: `""`,
         display: "inline-block",
         position: "relative",
-        size: "50%",
+        width: "50%",
+        height: "50%",
         borderRadius: "50%",
         bg: "currentColor",
       },
@@ -24,7 +25,7 @@ const Radio = {
   }),
   sizes: {
     ...Checkbox.sizes,
-    sm: { size: 3 },
+    sm: { width: 3, height: 3 },
   },
 }
 

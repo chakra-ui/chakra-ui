@@ -5,7 +5,17 @@ import { CheckboxHookProps, useCheckbox } from "./Checkbox.hook"
 import { CheckboxIcon } from "./Checkbox.icon"
 import { IconProps } from "@chakra-ui/icon"
 
-const ControlBox = chakra("span", { themeKey: "Checkbox" })
+const ControlBox = chakra("span", {
+  themeKey: "Checkbox",
+  baseStyle: {
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    verticalAlign: "top",
+    userSelect: "none",
+    flexShrink: 0,
+  },
+})
 
 type OmittedCheckboxProps = Omit<
   PropsOf<typeof ControlBox>,

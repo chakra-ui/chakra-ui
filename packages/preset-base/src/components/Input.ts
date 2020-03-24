@@ -1,23 +1,17 @@
-import { Props, getModeColor as get, ComponentTheme } from "./utils"
 import { getColor } from "@chakra-ui/color"
+import { ComponentTheme, mode } from "./utils"
 
-// type InputProps = Props & {
-//   focusBorderColor: string
-//   errorBorderColor: string
-//   isFullWidth?: boolean
-// }
-
-function getOutlinedStyle(props: any): any {
+function getOutlineStyle(props: any) {
   const { focusBorderColor: fc, errorBorderColor: ec, theme: t } = props
   return {
     border: "1px solid",
-    borderColor: get(props, "inherit", "whiteAlpha.50"),
-    bg: get(props, "white", "whiteAlpha.100"),
+    borderColor: mode("inherit", "whiteAlpha.50")(props),
+    bg: mode("white", "whiteAlpha.100")(props),
     _hover: {
-      borderColor: get(props, "gray.300", "whiteAlpha.200"),
+      borderColor: mode("gray.300", "whiteAlpha.200")(props),
     },
     _disabled: {
-      opacity: "0.4",
+      opacity: 0.4,
       cursor: "not-allowed",
     },
     _focus: {
@@ -32,17 +26,17 @@ function getOutlinedStyle(props: any): any {
   }
 }
 
-function getFilledStyle(props: any): any {
+function getFilledStyle(props: any) {
   const { theme: t, focusBorderColor: fc, errorBorderColor: ec } = props
   return {
     border: "2px solid",
     borderColor: "transparent",
-    bg: get(props, "gray.100", "whiteAlpha.50"),
+    bg: mode("gray.100", "whiteAlpha.50")(props),
     _hover: {
-      bg: get(props, "gray.200", "whiteAlpha.100"),
+      bg: mode("gray.200", "whiteAlpha.100")(props),
     },
     _disabled: {
-      opacity: "0.4",
+      opacity: 0.4,
       cursor: "not-allowed",
     },
     _focus: {
@@ -56,9 +50,8 @@ function getFilledStyle(props: any): any {
   }
 }
 
-function getFlushedStyle(props: any): any {
+function getFlushedStyle(props: any) {
   const { focusBorderColor: fc, errorBorderColor: ec, theme: t } = props
-
   return {
     borderBottom: "2px solid",
     borderColor: "inherit",
@@ -107,17 +100,9 @@ const Input: ComponentTheme = {
     size: "md",
     variant: "outline",
   },
-  baseStyle: (props: any) => ({
-    width: props.isFullWidth ? "100%" : "auto",
-    display: "flex",
-    alignItems: "center",
-    position: "relative",
-    transition: "all 0.2s",
-    outline: "none",
-  }),
   sizes,
   variants: {
-    outline: getOutlinedStyle,
+    outline: getOutlineStyle,
     filled: getFilledStyle,
     flushed: getFlushedStyle,
     unstyled,

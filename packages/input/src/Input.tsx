@@ -29,6 +29,15 @@ export type InputProps = Omit<PropsOf<typeof StyledInput>, OmittedTypes> &
 
 const StyledInput = chakra<"input", InputOptions>("input", {
   themeKey: "Input",
+  baseStyle: props => ({
+    width: props.isFullWidth ? "100%" : "auto",
+    display: "flex",
+    alignItems: "center",
+    position: "relative",
+    transition: "all 0.2s",
+    outline: "none",
+  }),
+
   shouldForwardProp: prop =>
     !["focusBorderColor", "errorBorderColor"].includes(prop),
 })
@@ -41,7 +50,7 @@ export const Input = React.forwardRef(
     const group = useInputGroup()
 
     const variant = group?.variant || props.variant
-    const size = group?.size || props.size
+    const size = (group?.size || props.size) as any
 
     const inputStyle = useComponentStyle({
       themeKey: "Input",
@@ -54,7 +63,6 @@ export const Input = React.forwardRef(
         ref={ref}
         {...inputProps}
         variant={variant}
-        //@ts-ignore
         size={size}
         {...(group?.hasRightElement && { paddingRight: inputStyle?.height })}
         {...(group?.hasLeftElement && { paddingLeft: inputStyle?.height })}

@@ -1,4 +1,4 @@
-import { Props, getModeColor, ComponentTheme, StyleProps } from "./utils"
+import { Props, mode, ComponentTheme, StyleProps } from "./utils"
 import { getColor } from "@chakra-ui/color"
 
 function getLineStyle(props: Props) {
@@ -13,11 +13,11 @@ function getLineStyle(props: Props) {
       borderColor: "transparent",
       marginBottom: "-2px",
       _selected: {
-        color: getModeColor(props, `${c}.600`, `${c}.300`),
+        color: mode(`${c}.600`, `${c}.300`)(props),
         borderColor: "currentColor",
       },
       _active: {
-        bg: getModeColor(props, "gray.200", "whiteAlpha.300"),
+        bg: mode("gray.200", "whiteAlpha.300")(props),
       },
       _disabled: {
         opacity: 0.4,
@@ -36,9 +36,9 @@ function getEnclosedStyle(props: Props) {
       borderColor: "transparent",
       marginBottom: "-1px",
       _selected: {
-        color: getModeColor(props, `${c}.600`, `${c}.300`),
+        color: mode(`${c}.600`, `${c}.300`)(props),
         borderColor: "inherit",
-        borderBottomColor: getModeColor(props, `white`, `gray.800`),
+        borderBottomColor: mode(`white`, `gray.800`)(props),
       },
     },
     TabList: {
@@ -55,14 +55,14 @@ function getEnclosedColoredStyle(props: Props) {
     Tab: {
       border: "1px solid",
       borderColor: "inherit",
-      bg: getModeColor(props, `gray.50`, `whiteAlpha.50`),
+      bg: mode(`gray.50`, `whiteAlpha.50`)(props),
       marginBottom: "-1px",
       _notLast: {
         mr: "-1px",
       },
       _selected: {
-        bg: getModeColor(props, `#fff`, "gray.800"),
-        color: getModeColor(props, `${c}.600`, `${c}.300`),
+        bg: mode(`#fff`, "gray.800")(props),
+        color: mode(`${c}.600`, `${c}.300`)(props),
         borderColor: "inherit",
         borderTopColor: "currentColor",
         borderBottomColor: "transparent",
@@ -98,10 +98,10 @@ function getSolidRoundedStyle(props: Props): StyleProps {
     Tab: {
       borderRadius: "full",
       fontWeight: "semibold",
-      color: getModeColor(props, "gray.600", "inherit"),
+      color: mode("gray.600", "inherit")(props),
       _selected: {
-        color: getModeColor(props, `#fff`, "gray.800"),
-        bg: getModeColor(props, `${c}.600`, `${c}.300`),
+        color: mode(`#fff`, "gray.800")(props),
+        bg: mode(`${c}.600`, `${c}.300`)(props),
       },
     },
     TabList: {},
@@ -115,10 +115,6 @@ const Tabs: ComponentTheme = {
   },
   baseStyle: {
     Tab: {
-      display: "flex",
-      cursor: "pointer",
-      alignItems: "center",
-      justifyContent: "center",
       transition: "all 0.2s",
       _focus: {
         zIndex: 1,
@@ -131,15 +127,24 @@ const Tabs: ComponentTheme = {
   },
   sizes: {
     sm: {
-      Tab: { padding: "0.25rem 1rem", fontSize: "0.85rem" },
+      Tab: {
+        paddingY: "0.25rem",
+        paddingX: "1rem",
+        fontSize: "0.85rem",
+      },
     },
     md: {
-      Tab: { fontSize: "1rem", padding: "0.5rem 1rem" },
+      Tab: {
+        fontSize: "1rem",
+        paddingY: "0.5rem",
+        paddingX: "1rem",
+      },
     },
     lg: {
       Tab: {
         fontSize: "1.15rem",
-        padding: "0.75rem 1rem",
+        paddingY: "0.75rem",
+        paddingX: "1rem",
       },
     },
   },

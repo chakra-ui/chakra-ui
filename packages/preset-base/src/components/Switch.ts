@@ -1,4 +1,4 @@
-import { ComponentTheme, getModeColor } from "./utils"
+import { ComponentTheme, mode } from "./utils"
 
 const sizes: ComponentTheme["sizes"] = {
   sm: {
@@ -40,14 +40,14 @@ const Switch: ComponentTheme = {
   defaultProps: {
     size: "md",
   },
-  baseStyle: (props: any) => ({
+  baseStyle: props => ({
     Track: {
       borderRadius: "full",
       justifyContent: "flex-start",
       boxSizing: "content-box",
       padding: "2px",
       cursor: "pointer",
-      bg: getModeColor(props, "gray.300", "whiteAlpha.400"),
+      bg: mode("gray.300", "whiteAlpha.400")(props),
       _focus: { boxShadow: "outline" },
       _disabled: {
         opacity: 0.4,

@@ -50,6 +50,15 @@ export function getModeColor(props: any, lightValue: any, darkValue: any): any {
   return undefined
 }
 
+export function mode<T = string>(light: T, dark: T) {
+  return (props: Props) => (props.colorMode === "light" ? light : dark)
+}
+
+export function orientation<T = string>(horizontal: T, vertical: T) {
+  return (props: Props) =>
+    props.orientation === "horizontal" ? horizontal : vertical
+}
+
 export function getOrientationStyle<T>(options: {
   orientation?: "vertical" | "horizontal"
   vertical: T

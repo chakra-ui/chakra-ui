@@ -1,18 +1,16 @@
-import { colorEmphasis, getColor } from "@chakra-ui/color"
-import { Props, getModeColor as get, ComponentTheme } from "./utils"
+import { ink, getColor } from "@chakra-ui/color"
+import { Props, ComponentTheme, mode } from "./utils"
 
 function getSubtleStyle(props: Props) {
   const { theme: t, colorScheme: c } = props
-  const lightBg = getColor(t, `${c}.100`, c)
-  //@ts-ignore
-  const darkBg = colorEmphasis(`${c}.200`, "lowest")(t)
-  return { Root: { bg: get(props, lightBg, darkBg) } }
+  const light = getColor(t, `${c}.100`, c)
+  const dark = ink(`${c}.200`, "lowest")(t)
+  return { Root: { bg: mode(light, dark)(props) } }
 }
 
 function getLeftAccentStyle(props: Props) {
   const { colorScheme: c } = props
-  const borderColor = get(props, `${c}.500`, `${c}.200`)
-
+  const borderColor = mode(`${c}.500`, `${c}.200`)(props)
   return {
     Root: {
       paddingLeft: 3,
@@ -25,13 +23,11 @@ function getLeftAccentStyle(props: Props) {
 
 function getTopAccentStyle(props: Props) {
   const { colorScheme: c } = props
-  const borderColor = get(props, `${c}.500`, `${c}.200`)
-
   return {
     Root: {
       paddingTop: 2,
       borderTop: "4px solid",
-      borderColor,
+      borderColor: mode(`${c}.500`, `${c}.200`)(props),
       ...getSubtleStyle(props)["Root"],
     },
   }
@@ -41,8 +37,8 @@ function getSolidStyle(props: Props) {
   const { colorScheme: c } = props
   return {
     Root: {
-      bg: get(props, `${c}.500`, `${c}.200`),
-      color: get(props, `white`, `gray.900`),
+      bg: mode(`${c}.500`, `${c}.200`)(props),
+      color: mode(`white`, `gray.900`)(props),
     },
   }
 }

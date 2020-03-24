@@ -2,8 +2,8 @@ import React from "react"
 import { chakra, PropsOf } from "@chakra-ui/system"
 import { Icon, IconProps } from "@chakra-ui/icon"
 
-const Button = chakra("button", {
-  themeKey: "CloseButton.Button",
+const StyledButton = chakra("button", {
+  themeKey: "CloseButton",
   baseStyle: {
     display: "flex",
     alignItems: "center",
@@ -27,18 +27,18 @@ function CloseIcon(props: IconProps) {
   )
 }
 
-const ButtonIcon = chakra(CloseIcon, {
-  themeKey: "CloseButton.Icon",
-})
-
-export type CloseButtonProps = PropsOf<typeof Button>
+export type CloseButtonProps = PropsOf<typeof StyledButton>
 
 export function CloseButton(props: CloseButtonProps) {
-  const { size, ...rest } = props
+  const {
+    size,
+    children = <CloseIcon width="1em" height="1em" />,
+    ...rest
+  } = props
   return (
-    <Button outline="0" size={size} {...rest}>
-      <ButtonIcon size={size} />
-    </Button>
+    <StyledButton outline="0" size={size} {...rest}>
+      {children}
+    </StyledButton>
   )
 }
 

@@ -4,13 +4,21 @@ import * as React from "react"
 import { Spinner } from "@chakra-ui/spinner"
 import { attr } from "@chakra-ui/utils"
 
-const StyledButton = chakra("button", { themeKey: "Button" })
-
-StyledButton.defaultProps = {
-  variant: "solid",
-  size: "md",
-  colorScheme: "gray",
-}
+const StyledButton = chakra("button", {
+  themeKey: "Button",
+  baseStyle: {
+    display: "inline-flex",
+    appearance: "none",
+    alignItems: "center",
+    justifyContent: "center",
+    transition: "all 250ms",
+    userSelect: "none",
+    position: "relative",
+    whiteSpace: "nowrap",
+    verticalAlign: "middle",
+    outline: "none",
+  },
+})
 
 export interface ButtonOptions {
   /**

@@ -1,6 +1,9 @@
 import { ComponentTheme } from "./utils"
 
 const Spinner: ComponentTheme = {
+  defaultProps: {
+    size: "md",
+  },
   sizes: {
     xs: { width: "0.75rem", height: "0.75rem" },
     sm: { width: "1rem", height: "1rem" },

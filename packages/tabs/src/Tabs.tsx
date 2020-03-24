@@ -62,6 +62,10 @@ const StyledTab = chakra("button", {
   themeKey: "Tabs.Tab",
   baseStyle: {
     outline: "0",
+    display: "flex",
+    cursor: "pointer",
+    alignItems: "center",
+    justifyContent: "center",
   },
 })
 

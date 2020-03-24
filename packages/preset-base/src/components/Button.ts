@@ -1,13 +1,13 @@
-import { addOpacity } from "@chakra-ui/color"
-import { Props, getModeColor as get } from "./utils"
+import { opacity } from "@chakra-ui/color"
+import { Props, getModeColor as get, mode, ComponentTheme } from "./utils"
 
 const grayGhostStyle = (props: Props) => ({
-  color: get(props, `inherit`, `whiteAlpha.900`),
+  color: mode(`inherit`, `whiteAlpha.900`)(props),
   _hover: {
-    bg: get(props, `gray.100`, `whiteAlpha.200`),
+    bg: mode(`gray.100`, `whiteAlpha.200`)(props),
   },
   _active: {
-    bg: get(props, `gray.200`, `whiteAlpha.300`),
+    bg: mode(`gray.200`, `whiteAlpha.300`)(props),
   },
 })
 
@@ -17,17 +17,17 @@ function getGhostStyle(props: Props) {
   const { colorScheme: c, theme: t } = props
   if (c === "gray") return grayGhostStyle(props)
 
-  const darkHoverBg = addOpacity(`${c}.200`, 0.12)(t)
-  const darkActiveBg = addOpacity(`${c}.200`, 0.24)(t)
+  const darkHover = opacity(`${c}.200`, 0.12)(t)
+  const darkActive = opacity(`${c}.200`, 0.24)(t)
 
   return {
-    color: get(props, `${c}.500`, `${c}.200`),
+    color: mode(`${c}.500`, `${c}.200`)(props),
     bg: "transparent",
     _hover: {
-      bg: get(props, `${c}.50`, darkHoverBg),
+      bg: mode(`${c}.50`, darkHover)(props),
     },
     _active: {
-      bg: get(props, `${c}.100`, darkActiveBg),
+      bg: mode(`${c}.100`, darkActive)(props),
     },
   }
 }
@@ -36,11 +36,11 @@ function getGhostStyle(props: Props) {
 
 function getOutlineStyle(props: Props) {
   const { colorScheme: c } = props
-  const borderColor = get(props, `gray.200`, `whiteAlpha.300`)
+  const borderColor = mode(`gray.200`, `whiteAlpha.300`)(props)
 
   return {
     border: "1px solid",
-    borderColor: c === "gray" ? borderColor : "current",
+    borderColor: c === "gray" ? borderColor : "currentColor",
     ...getGhostStyle(props),
   }
 }
@@ -48,25 +48,25 @@ function getOutlineStyle(props: Props) {
 ////////////////////////////////////////////////////////////
 
 const graySolidStyle = (props: Props) => ({
-  bg: get(props, `gray.100`, `whiteAlpha.200`),
+  bg: mode(`gray.100`, `whiteAlpha.200`)(props),
   _hover: {
-    bg: get(props, `gray.200`, `whiteAlpha.300`),
+    bg: mode(`gray.200`, `whiteAlpha.300`)(props),
   },
   _active: {
-    bg: get(props, `gray.300`, `whiteAlpha.400`),
+    bg: mode(`gray.300`, `whiteAlpha.400`)(props),
   },
 })
 
 function getSolidStyle(props: Props) {
   const { colorScheme: c } = props
-  console.log(props)
+
   if (c === "gray") return graySolidStyle(props)
 
   return {
-    bg: get(props, `${c}.500`, `${c}.200`),
-    color: get(props, `${c}.600`, `gray.800`),
-    _hover: { bg: get(props, `${c}.600`, `${c}.300`) },
-    _active: { bg: get(props, `${c}.700`, `${c}.400`) },
+    bg: mode(`${c}.500`, `${c}.200`)(props),
+    color: mode(`${c}.600`, `gray.800`)(props),
+    _hover: { bg: mode(`${c}.600`, `${c}.300`)(props) },
+    _active: { bg: mode(`${c}.700`, `${c}.400`)(props) },
   }
 }
 
@@ -78,12 +78,12 @@ function getLinkStyle(props: Props) {
     padding: 0,
     height: "auto",
     lineHeight: "normal",
-    color: get(props, `${c}.500`, `${c}.200`),
+    color: mode(`${c}.500`, `${c}.200`)(props),
     _hover: {
       textDecoration: "underline",
     },
     _active: {
-      color: get(props, `${c}.700`, `${c}.500`),
+      color: mode(`${c}.700`, `${c}.500`)(props),
     },
   }
 }
@@ -120,7 +120,6 @@ const sizes = {
 ////////////////////////////////////////////////////////////
 
 const unstyled = {
-  userSelect: "inherit",
   bg: "none",
   border: 0,
   color: "inherit",
@@ -129,41 +128,28 @@ const unstyled = {
   lineHeight: "inherit",
   margin: 0,
   padding: 0,
-  textAlign: "inherit",
-}
-
-const baseStyle = {
-  display: "inline-flex",
-  appearance: "none",
-  alignItems: "center",
-  justifyContent: "center",
-  transition: "all 250ms",
-  userSelect: "none",
-  position: "relative",
-  whiteSpace: "nowrap",
-  verticalAlign: "middle",
-  lineHeight: "1.2",
-  outline: "none",
-  borderRadius: "md",
-  fontWeight: "semibold",
-  _focus: {
-    boxShadow: "outline",
-  },
-  _disabled: {
-    opacity: 0.4,
-    cursor: "not-allowed",
-    boxShadow: "none",
-  },
 }
 
 ////////////////////////////////////////////////////////////
-const Button = {
+const Button: ComponentTheme = {
   defaultProps: {
     variant: "solid",
     size: "md",
     colorScheme: "gray",
   },
-  baseStyle,
+  baseStyle: {
+    lineHeight: "1.2",
+    borderRadius: "md",
+    fontWeight: "semibold",
+    _focus: {
+      boxShadow: "outline",
+    },
+    _disabled: {
+      opacity: 0.4,
+      cursor: "not-allowed",
+      boxShadow: "none",
+    },
+  },
   sizes,
   variants: {
     unstyled,

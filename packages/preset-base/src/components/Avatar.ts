@@ -1,4 +1,5 @@
 import sizes from "../foundations/sizes"
+import { ComponentTheme } from "./utils"
 
 const compute = (size: keyof typeof sizes) => ({
   width: size,
@@ -7,12 +8,15 @@ const compute = (size: keyof typeof sizes) => ({
   lineHeight: sizes[size] || size,
 })
 
-export default {
+const Avatar: ComponentTheme = {
+  defaultProps: {
+    size: "md",
+  },
   baseStyle: {
     display: "inline-flex",
     borderRadius: "full",
     alignItems: "center",
-    flexShrink: "0",
+    flexShrink: 0,
     justifyContent: "center",
     position: "relative",
   },
@@ -24,6 +28,7 @@ export default {
     lg: compute("16"),
     xl: compute("24"),
     "2xl": compute("32"),
-    full: { size: "full", fontSize: `calc(100% / 2.5)` },
+    full: { width: "100%", height: "100%", fontSize: `calc(100% / 2.5)` },
   },
 }
+export default Avatar
