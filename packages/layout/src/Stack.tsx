@@ -2,7 +2,7 @@ import {
   chakra,
   css,
   PropsOf,
-  ResponsiveValue,
+  Responsive,
   SystemProps,
 } from "@chakra-ui/system"
 import {
@@ -12,7 +12,7 @@ import {
 import * as React from "react"
 import { FlexOptions } from "./Flex"
 
-type StackDirection = ResponsiveValue<"row" | "column">
+type StackDirection = Responsive<"row" | "column">
 
 type StackOptions = Pick<FlexOptions, "align" | "justify" | "wrap"> & {
   /**

@@ -146,6 +146,14 @@ export function getComponentStyles(props: any, themeKey: string) {
   return styles
 }
 
+type Defaults = {
+  colorScheme?: string
+  size?: string
+  variant?: string
+}
+
 export function getComponentDefaults(theme: any, themeKey: string) {
-  return get(theme, `components.${themeKey}.defaultProps`)
+  return get(theme, `components.${themeKey}.defaultProps`) as
+    | Defaults
+    | undefined
 }

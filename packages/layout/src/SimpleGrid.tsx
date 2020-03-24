@@ -1,4 +1,4 @@
-import { ResponsiveValue } from "@chakra-ui/system"
+import { Responsive } from "@chakra-ui/system"
 import {
   parseResponsiveProp as responsive,
   isNumber,
@@ -15,7 +15,7 @@ interface SimpleGridOptions {
   /**
    * The number of columns
    */
-  columns?: ResponsiveValue<number>
+  columns?: Responsive<number>
   /**
    * The gap between the grid items
    */

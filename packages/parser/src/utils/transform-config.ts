@@ -1,10 +1,6 @@
 import * as CSS from "csstype"
 import { isNull, get, Dict } from "@chakra-ui/utils"
 
-type ObjectOrArray<T> = Dict<T> | T[]
-
-export type Scale = ObjectOrArray<number | string>
-
 export interface ConfigStyle {
   /**
    * The CSS property to use in the returned style object
@@ -28,7 +24,7 @@ export interface ConfigStyle {
   /**
    * A function to transform the raw value based on the scale.
    */
-  transform?: (value: any, scale?: Scale) => any
+  transform?: (value: any, scale?: any) => any
 }
 
 export type Config = null | true | ConfigStyle

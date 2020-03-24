@@ -1,7 +1,6 @@
 import { isNumber, isString, get } from "@chakra-ui/utils"
-import { Scale } from "./transform-config"
 
-export function positiveOrNegative(value: string | number, scale: Scale) {
+export function positiveOrNegative(value: string | number, scale: any) {
   if (!isNumber(value) || value >= 0) {
     return get(scale, value, value)
   }

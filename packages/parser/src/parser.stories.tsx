@@ -91,12 +91,12 @@ const theme2 = {
 }
 
 export const Test = () => {
-  const result = css({
-    width: ["100%", null, "50%"],
-    color: ["red", "green", "blue"],
-  })(theme2)
+  // const result = css({
+  //   width: ["100%", null, "50%"],
+  //   color: ["red", "green", "blue"],
+  // })(theme2)
 
-  console.log(result)
+  // console.log(result)
 
   return <div css={styles}>Testing</div>
 }
