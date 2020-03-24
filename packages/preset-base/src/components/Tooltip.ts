@@ -1,16 +1,16 @@
-import { getModeColor, ComponentTheme } from "./utils"
+import { mode, ComponentTheme } from "./utils"
 
 const Tooltip: ComponentTheme = {
-  baseStyle: (props: any) => ({
+  baseStyle: props => ({
     paddingX: "8px",
     paddingY: "2px",
-    backgroundColor: getModeColor(props, `gray.700`, `gray.300`),
-    color: getModeColor(props, `whiteAlpha.900`, `gray.900`),
+    bg: mode(`gray.700`, `gray.300`)(props),
+    color: mode(`whiteAlpha.900`, `gray.900`)(props),
     borderRadius: "sm",
     fontWeight: "medium",
     pointerEvents: "none",
     fontSize: "sm",
-    shadow: "md",
+    boxShadow: "md",
     maxWidth: "320px",
   }),
 }

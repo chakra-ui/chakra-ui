@@ -3,19 +3,20 @@ import { Props, ComponentTheme, mode } from "./utils"
 
 function getSubtleStyle(props: Props) {
   const { theme: t, colorScheme: c } = props
+
   const light = getColor(t, `${c}.100`, c)
   const dark = ink(`${c}.200`, "lowest")(t)
+
   return { Root: { bg: mode(light, dark)(props) } }
 }
 
 function getLeftAccentStyle(props: Props) {
   const { colorScheme: c } = props
-  const borderColor = mode(`${c}.500`, `${c}.200`)(props)
   return {
     Root: {
       paddingLeft: 3,
       borderLeft: "4px solid",
-      borderColor,
+      borderColor: mode(`${c}.500`, `${c}.200`)(props),
       ...getSubtleStyle(props)["Root"],
     },
   }
