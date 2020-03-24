@@ -40,14 +40,6 @@ const modifierMap = {
   variants: "variant",
 }
 
-type Modifiers = {
-  variant?: string
-  colorScheme?: string
-  size?: string
-}
-
-type ModifiersWithTheme = Modifiers & { theme?: object }
-
 function filter(object: Dict) {
   const result = { ...object }
   for (const item in result) {
@@ -56,6 +48,13 @@ function filter(object: Dict) {
     }
   }
   return result
+}
+
+type ModifierStyleProps = {
+  variant?: string
+  colorScheme?: string
+  size?: string
+  theme?: Dict
 }
 
 /**
@@ -68,7 +67,7 @@ function filter(object: Dict) {
  * @param modifiers modifiers we support (for now, it's just variant, and size)
  */
 export function getModifierStyles(
-  props: ModifiersWithTheme,
+  props: ModifierStyleProps,
   themeKey: string | undefined,
   modifiers = Object.keys(modifierMap),
 ) {
@@ -151,7 +150,7 @@ function notEmpty(val: any): val is object {
  * @param themeKey the component's theme key
  */
 export function getComponentStyles(
-  props: ModifiersWithTheme & { colorMode: string },
+  props: ModifierStyleProps & { colorMode: string },
   themeKey: string,
 ) {
   let styles: CSSObject = {}
@@ -175,8 +174,10 @@ export function getComponentStyles(
   return styles
 }
 
+type DefaultModifiers = Omit<ModifierStyleProps, "theme">
+
 export function getComponentDefaults(theme: any, themeKey: string) {
   return get(theme, `components.${themeKey}.defaultProps`) as
-    | Modifiers
+    | DefaultModifiers
     | undefined
 }
