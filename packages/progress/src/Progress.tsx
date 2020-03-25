@@ -1,7 +1,7 @@
 import { generateStripe, getColor } from "@chakra-ui/color"
 import {
   chakra,
-  css,
+  cssFn,
   PropsOf,
   useColorModeValue,
   useTheme,
@@ -104,11 +104,11 @@ export function Progress(props: ProgressProps) {
 
   // You should not use stripe if it's indeterminate
   const shouldAddStripe = !isIndeterminate && hasStripe
+
   const shouldAnimateStripe = shouldAddStripe && isAnimated
 
   // generate custom styles
-  //@ts-ignore
-  const style = css({
+  const style = cssFn({
     ...(shouldAddStripe && stripeStyle),
     ...(shouldAnimateStripe && stripAnimation),
     ...(isIndeterminate && {

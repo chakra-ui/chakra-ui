@@ -2,12 +2,12 @@ import { chakra, css, PropsOf, SystemProps, useTheme } from "@chakra-ui/system"
 import { getValidChildren, mapResponsive } from "@chakra-ui/utils"
 import React from "react"
 
-export type InlineProps = PropsOf<typeof chakra.div> & {
+export type ClusterProps = PropsOf<typeof chakra.div> & {
   spacing?: SystemProps["margin"]
   justify?: SystemProps["justifyContent"]
 }
 
-export const Inline = React.forwardRef<any, InlineProps>(
+export const Cluster = React.forwardRef<any, ClusterProps>(
   ({ spacing = 2, children, justify, ...props }, ref) => {
     const theme = useTheme()
 
@@ -45,5 +45,3 @@ export const Inline = React.forwardRef<any, InlineProps>(
     )
   },
 )
-
-export default Inline

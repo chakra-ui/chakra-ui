@@ -1,9 +1,9 @@
 import React from "react"
-import { Inline } from ".."
+import { Cluster } from ".."
 import { chakra } from "@chakra-ui/system"
 
 export default {
-  title: "Inline",
+  title: "Cluster",
 }
 
 const Badge = chakra("span", { themeKey: "Badge" })
@@ -14,12 +14,12 @@ Badge.defaultProps = {
 
 export const basic = () => {
   return (
-    <Inline spacing="40px">
+    <Cluster spacing="40px">
       <Badge>Badge 1</Badge>
       <Badge>Badge 2</Badge>
       <Badge>Badge 3</Badge>
       <Badge>Badge 4</Badge>
-    </Inline>
+    </Cluster>
   )
 }
 const Placeholder = (props: any) => (
@@ -31,7 +31,7 @@ const Placeholder = (props: any) => (
 
 export const placeholder = () => {
   return (
-    <Inline spacing={5}>
+    <Cluster spacing={5}>
       <Placeholder />
       <Placeholder />
       <Placeholder />
@@ -43,13 +43,13 @@ export const placeholder = () => {
       <Placeholder />
       <Placeholder />
       <Placeholder />
-    </Inline>
+    </Cluster>
   )
 }
 
 export const responsive = () => {
   return (
-    <Inline spacing={["12px", "24px"]} justify={["center", "flex-start"]}>
+    <Cluster spacing={["12px", "24px"]} justify={["center", "flex-start"]}>
       <Placeholder />
       <Placeholder />
       <Placeholder />
@@ -61,6 +61,6 @@ export const responsive = () => {
       <Placeholder />
       <Placeholder />
       <Placeholder />
-    </Inline>
+    </Cluster>
   )
 }
