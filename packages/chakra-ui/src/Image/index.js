@@ -3,14 +3,16 @@ import { jsx } from "@emotion/core";
 import { useEffect, useState, forwardRef, useRef } from "react";
 import Box from "../Box";
 
-export const useHasImageLoaded = ({ src, onLoad, onError }) => {
+export function useHasImageLoaded(props) {
+  const { src, onLoad, onError, enabled = true } = props;
   const isMounted = useRef(true);
   const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
-    if (!src) {
+    if (!src || !enabled) {
       return;
     }
+
     const image = new window.Image();
     image.src = src;
 
@@ -27,7 +29,7 @@ export const useHasImageLoaded = ({ src, onLoad, onError }) => {
         onError && onError(event);
       }
     };
-  }, [src, onLoad, onError]);
+  }, [src, onLoad, onError, enabled]);
 
   useEffect(() => {
     return () => {
@@ -36,7 +38,7 @@ export const useHasImageLoaded = ({ src, onLoad, onError }) => {
   }, []);
 
   return hasLoaded;
-};
+}
 
 const NativeImage = forwardRef(
   ({ htmlWidth, htmlHeight, alt, ...props }, ref) => (
@@ -44,18 +46,22 @@ const NativeImage = forwardRef(
   ),
 );
 
-const Image = forwardRef(
-  ({ src, fallbackSrc, onError, onLoad, ignoreFallback, ...props }, ref) => {
-    const hasLoaded = useHasImageLoaded({ src, onLoad, onError });
-    let imageProps;
-    if (ignoreFallback) {
-      imageProps = { src, onLoad, onError };
-    } else {
-      imageProps = { src: hasLoaded ? src : fallbackSrc };
-    }
-    return <Box as={NativeImage} ref={ref} {...imageProps} {...props} />;
-  },
-);
+const Image = forwardRef((props, ref) => {
+  const { src, fallbackSrc, onError, onLoad, ignoreFallback, ...rest } = props;
+
+  const hasLoaded = useHasImageLoaded({
+    src,
+    onLoad,
+    onError,
+    enabled: !Boolean(ignoreFallback),
+  });
+
+  const imageProps = ignoreFallback
+    ? { src, onLoad, onError }
+    : { src: hasLoaded ? src : fallbackSrc };
+
+  return <Box as={NativeImage} ref={ref} {...imageProps} {...rest} />;
+});
 
 Image.displayName = "Image";
 
