@@ -20,6 +20,12 @@ export interface UseFormControlProps {
   isReadOnly?: boolean;
 }
 
+/**
+ * React hook to read from props passed to the `FormControl` component
+ * It's mostly used to design custom form control components.
+ *
+ * @param props props passed to the input control
+ */
 export function useFormControl(props: UseFormControlProps): UseFormControlProps;
 
 export interface IFormControl extends UseFormControlProps {
