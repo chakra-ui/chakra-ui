@@ -1,8 +1,5 @@
-import { chakra } from "@chakra-ui/system"
+import { chakra, PropsOf } from "@chakra-ui/system"
+
+export type BadgeProps = PropsOf<typeof Badge>
 
 export const Badge = chakra("div", { themeKey: "Badge" })
-
-Badge.defaultProps = {
-  variant: "subtle",
-  colorScheme: "gray",
-}

@@ -1,3 +1,4 @@
-import { chakra } from "@chakra-ui/system"
+import { chakra, PropsOf } from "@chakra-ui/system"
 
+export type TextProps = PropsOf<typeof Text>
 export const Text = chakra("p", { themeKey: "Text" })

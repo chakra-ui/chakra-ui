@@ -5,11 +5,13 @@ import { Icon, IconProps } from "@chakra-ui/icon"
 
 const StyledList = chakra("ul")
 
-export type ListProps = PropsOf<typeof StyledList> & {
+interface ListOptions {
   styleType?: SystemProps["listStyleType"]
   stylePosition?: SystemProps["listStylePosition"]
   spacing?: SystemProps["margin"]
 }
+
+export type ListProps = PropsOf<typeof StyledList> & ListOptions
 
 export const List = React.forwardRef(
   (props: ListProps, ref: React.Ref<any>) => {
@@ -26,7 +28,6 @@ export const List = React.forwardRef(
         ref={ref}
         listStyleType={styleType}
         listStylePosition={stylePosition}
-        data-chakra-list=""
         {...rest}
       >
         {validChildren.map((child, index) => {

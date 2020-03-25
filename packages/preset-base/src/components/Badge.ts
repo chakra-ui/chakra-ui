@@ -38,6 +38,7 @@ function getOutlineStyle(props: Props) {
 const Badge: ComponentTheme = {
   defaultProps: {
     variant: "subtle",
+    colorScheme: "gray",
   },
   baseStyle: {
     display: "inline-block",

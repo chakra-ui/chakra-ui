@@ -1,19 +1,6 @@
 import { chakra, PropsOf } from "@chakra-ui/system"
 import * as React from "react"
 
-export const Link = chakra("a", {
-  themeKey: "Link",
-  attrs: (props: LinkOptions) => ({
-    tabIndex: props.isDisabled ? -1 : undefined,
-    "aria-disabled": props.isDisabled || undefined,
-    onClick: event => {
-      props.isDisabled ? event.preventDefault() : props.onClick
-    },
-    ...(props.isExternal && { target: "_blank", rel: "noopener noreferrer" }),
-  }),
-  shouldForwardProp: prop => !["isExternal", "isDisabled"].includes(prop),
-})
-
 interface LinkOptions {
   /**
    *  If `true`, the link will open in new tab
@@ -23,9 +10,22 @@ interface LinkOptions {
    * If `true`, the link will be disabled and not tabbable
    */
   isDisabled?: boolean
-  onClick?: React.MouseEventHandler<HTMLAnchorElement>
+  onClick?: React.MouseEventHandler
 }
 
-export type LinkProps = PropsOf<typeof Link> & LinkOptions
+export type LinkProps = PropsOf<typeof Link>
+
+export const Link = chakra<"a", LinkOptions>("a", {
+  themeKey: "Link",
+  attrs: props => ({
+    tabIndex: props.isDisabled ? -1 : undefined,
+    "aria-disabled": props.isDisabled || undefined,
+    onClick: event => {
+      props.isDisabled ? event.preventDefault() : props.onClick
+    },
+    ...(props.isExternal && { target: "_blank", rel: "noopener noreferrer" }),
+  }),
+  shouldForwardProp: prop => !["isExternal", "isDisabled"].includes(prop),
+})
 
 Link.displayName = "Link"

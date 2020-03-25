@@ -1,50 +1,46 @@
-import * as React from "react"
-import { Box, BoxProps } from "./Box"
+import { chakra, PropsOf, ChakraProps } from "@chakra-ui/system"
 
 export interface FlexOptions {
   /**
-   * Shorthand for Styled-System `alignItems` prop
+   * Shorthand for `alignItems` style prop
    */
-  align?: BoxProps["alignItems"]
+  align?: ChakraProps["alignItems"]
   /**
-   * Shorthand for Styled-System `justifyContent` prop
+   * Shorthand for `justifyContent` style prop
    */
-  justify?: BoxProps["justifyContent"]
+  justify?: ChakraProps["justifyContent"]
   /**
-   * Shorthand for Styled-System `flexWrap` prop
+   * Shorthand for `flexWrap` style prop
    */
-  wrap?: BoxProps["flexWrap"]
+  wrap?: ChakraProps["flexWrap"]
   /**
-   * Shorthand for Styled-System `flexDirection` prop
+   * Shorthand for `flexDirection` style prop
    */
-  direction?: BoxProps["flexDirection"]
+  direction?: ChakraProps["flexDirection"]
   /**
-   * Shorthand for Styled-System `flexBasis` prop
+   * Shorthand for `flexBasis` style prop
    */
-  basis?: BoxProps["flexBasis"]
+  basis?: ChakraProps["flexBasis"]
   /**
-   * Shorthand for Styled-System `flexGrow` prop
+   * Shorthand for `flexGrow` style prop
    */
-  grow?: BoxProps["flexGrow"]
+  grow?: ChakraProps["flexGrow"]
+  /**
+   * Shorthand for `flexShrink` style prop
+   */
+  shrink?: ChakraProps["flexShrink"]
 }
 
-export type FlexProps = BoxProps & FlexOptions
+export type FlexProps = PropsOf<typeof Flex>
 
-export const Flex = React.forwardRef(
-  (props: FlexProps, ref: React.Ref<any>) => {
-    const { direction, align, justify, wrap, basis, grow, ...rest } = props
-    return (
-      <Box
-        ref={ref}
-        display="flex"
-        flexDirection={direction}
-        alignItems={align}
-        justifyContent={justify}
-        flexWrap={wrap}
-        flexBasis={basis}
-        flexGrow={grow}
-        {...rest}
-      />
-    )
-  },
-)
+export const Flex = chakra<"div", FlexOptions>("div", {
+  baseStyle: props => ({
+    display: "flex",
+    flexDirection: props.direction,
+    alignItems: props.align,
+    justifyContent: props.justify,
+    flexWrap: props.wrap,
+    flexBasis: props.basis,
+    flexGrow: props.grow,
+  }),
+})

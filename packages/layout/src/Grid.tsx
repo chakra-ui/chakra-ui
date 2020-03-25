@@ -1,59 +1,36 @@
-import * as React from "react"
-import { Box, BoxProps } from "./Box"
+import { chakra, PropsOf, ChakraProps } from "@chakra-ui/system"
 
 export interface GridOptions {
-  templateColumns?: BoxProps["gridTemplateColumns"]
-  gap?: BoxProps["gridGap"]
-  rowGap?: BoxProps["gridRowGap"]
-  columnGap?: BoxProps["gridColumnGap"]
-  autoFlow?: BoxProps["gridAutoFlow"]
-  autoRows?: BoxProps["gridAutoRows"]
-  autoColumns?: BoxProps["gridAutoColumns"]
-  templateRows?: BoxProps["gridTemplateRows"]
-  templateAreas?: BoxProps["gridTemplateAreas"]
-  area?: BoxProps["gridArea"]
-  column?: BoxProps["gridColumn"]
-  row?: BoxProps["gridRow"]
+  templateColumns?: ChakraProps["gridTemplateColumns"]
+  gap?: ChakraProps["gridGap"]
+  rowGap?: ChakraProps["gridRowGap"]
+  columnGap?: ChakraProps["gridColumnGap"]
+  autoFlow?: ChakraProps["gridAutoFlow"]
+  autoRows?: ChakraProps["gridAutoRows"]
+  autoColumns?: ChakraProps["gridAutoColumns"]
+  templateRows?: ChakraProps["gridTemplateRows"]
+  templateAreas?: ChakraProps["gridTemplateAreas"]
+  area?: ChakraProps["gridArea"]
+  column?: ChakraProps["gridColumn"]
+  row?: ChakraProps["gridRow"]
 }
 
-export type GridProps = BoxProps & GridOptions
+export type GridProps = PropsOf<typeof Grid>
 
-export const Grid = React.forwardRef(
-  (props: GridProps, ref: React.Ref<any>) => {
-    const {
-      gap,
-      rowGap,
-      columnGap,
-      autoFlow,
-      autoRows,
-      autoColumns,
-      templateRows,
-      templateColumns,
-      templateAreas,
-      area,
-      column,
-      row,
-      ...rest
-    } = props
-
-    return (
-      <Box
-        ref={ref}
-        display="grid"
-        gridArea={area}
-        gridTemplateAreas={templateAreas}
-        gridGap={gap}
-        gridRowGap={rowGap}
-        gridColumnGap={columnGap}
-        gridAutoColumns={autoColumns}
-        gridColumn={column}
-        gridRow={row}
-        gridAutoFlow={autoFlow}
-        gridAutoRows={autoRows}
-        gridTemplateRows={templateRows}
-        gridTemplateColumns={templateColumns}
-        {...rest}
-      />
-    )
-  },
-)
+export const Grid = chakra<"div", GridOptions>("div", {
+  baseStyle: props => ({
+    display: "grid",
+    gridArea: props.area,
+    gridTemplateAreas: props.templateAreas,
+    gridGap: props.gap,
+    gridRowGap: props.rowGap,
+    gridColumnGap: props.columnGap,
+    gridAutoColumns: props.autoColumns,
+    gridColumn: props.column,
+    gridRow: props.row,
+    gridAutoFlow: props.autoFlow,
+    gridAutoRows: props.autoRows,
+    gridTemplateRows: props.templateRows,
+    gridTemplateColumns: props.templateColumns,
+  }),
+})
