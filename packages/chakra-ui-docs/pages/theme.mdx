@@ -223,27 +223,35 @@ Tailwind CSS. The values are proportional, so 1 spacing unit is equal to
 > **Mental model:** If you need a spacing of `40px`, divide it by `4`. That'll
 > give you `10`. Then use it in your component.
 
-| Name | Space   | Pixels |                                   |
-| ---- | ------- | ------ | --------------------------------- |
-| 0    | 0       | 0px    | <Box bg="pink.200" h="4" w="0"/>  |
-| px   | 1px     | 1px    | <Box bg="pink.200" h="4" w="px"/> |
-| 1    | 0.25rem | 4px    | <Box bg="pink.200" h="4" w="1"/>  |
-| 2    | 0.5rem  | 8px    | <Box bg="pink.200" h="4" w="2"/>  |
-| 3    | 0.75rem | 12px   | <Box bg="pink.200" h="4" w="3"/>  |
-| 4    | 1rem    | 16px   | <Box bg="pink.200" h="4" w="4"/>  |
-| 5    | 1.25rem | 20px   | <Box bg="pink.200" h="4" w="5"/>  |
-| 6    | 1.5rem  | 24px   | <Box bg="pink.200" h="4" w="6"/>  |
-| 8    | 2rem    | 32px   | <Box bg="pink.200" h="4" w="8"/>  |
-| 10   | 2.5rem  | 40px   | <Box bg="pink.200" h="4" w="10"/> |
-| 12   | 3rem    | 48px   | <Box bg="pink.200" h="4" w="12"/> |
-| 16   | 4rem    | 64px   | <Box bg="pink.200" h="4" w="16"/> |
-| 20   | 5rem    | 80px   | <Box bg="pink.200" h="4" w="20"/> |
-| 24   | 6rem    | 96px   | <Box bg="pink.200" h="4" w="24"/> |
-| 32   | 8rem    | 128px  | <Box bg="pink.200" h="4" w="32"/> |
-| 40   | 10rem   | 160px  | <Box bg="pink.200" h="4" w="40"/> |
-| 48   | 12rem   | 192px  | <Box bg="pink.200" h="4" w="48"/> |
-| 56   | 14rem   | 224px  | <Box bg="pink.200" h="4" w="56"/> |
-| 64   | 16rem   | 256px  | <Box bg="pink.200" h="4" w="64"/> |
+| Name | Space (in `rem`) | Pixels |                                   |
+| ---- | ---------------- | ------ | --------------------------------- |
+| 0    | 0                | 0px    | <Box bg="pink.200" h="4" w="0"/>  |
+| px   | 1px              | 1px    | <Box bg="pink.200" h="4" w="px"/> |
+| 1    | 0.25rem          | 4px    | <Box bg="pink.200" h="4" w="1"/>  |
+| 2    | 0.5rem           | 8px    | <Box bg="pink.200" h="4" w="2"/>  |
+| 3    | 0.75rem          | 12px   | <Box bg="pink.200" h="4" w="3"/>  |
+| 4    | 1rem             | 16px   | <Box bg="pink.200" h="4" w="4"/>  |
+| 5    | 1.25rem          | 20px   | <Box bg="pink.200" h="4" w="5"/>  |
+| 6    | 1.5rem           | 24px   | <Box bg="pink.200" h="4" w="6"/>  |
+| 8    | 2rem             | 32px   | <Box bg="pink.200" h="4" w="8"/>  |
+| 10   | 2.5rem           | 40px   | <Box bg="pink.200" h="4" w="10"/> |
+| 12   | 3rem             | 48px   | <Box bg="pink.200" h="4" w="12"/> |
+| 16   | 4rem             | 64px   | <Box bg="pink.200" h="4" w="16"/> |
+| 20   | 5rem             | 80px   | <Box bg="pink.200" h="4" w="20"/> |
+| 24   | 6rem             | 96px   | <Box bg="pink.200" h="4" w="24"/> |
+| 32   | 8rem             | 128px  | <Box bg="pink.200" h="4" w="32"/> |
+| 40   | 10rem            | 160px  | <Box bg="pink.200" h="4" w="40"/> |
+| 48   | 12rem            | 192px  | <Box bg="pink.200" h="4" w="48"/> |
+| 56   | 14rem            | 224px  | <Box bg="pink.200" h="4" w="56"/> |
+| 64   | 16rem            | 256px  | <Box bg="pink.200" h="4" w="64"/> |
+
+**Note:** This is `rem` units are relative to the root or html font size which
+is `16px` by default. Chakra leaves this value unaltered.
+
+Changing the root font size will make the `pixel` values above altered and
+you'll need to calculate the corresponding pixel value yourself.
+
+The simple calcuation is `remValue * rootFontSize = pixelValue`
 
 ## Sizes
 
