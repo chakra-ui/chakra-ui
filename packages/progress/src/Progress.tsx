@@ -1,7 +1,7 @@
 import { generateStripe, getColor } from "@chakra-ui/color"
 import {
   chakra,
-  cssFn,
+  style,
   PropsOf,
   useColorModeValue,
   useTheme,
@@ -108,7 +108,7 @@ export function Progress(props: ProgressProps) {
   const shouldAnimateStripe = shouldAddStripe && isAnimated
 
   // generate custom styles
-  const style = cssFn({
+  const cssStyles = style({
     ...(shouldAddStripe && stripeStyle),
     ...(shouldAnimateStripe && stripAnimation),
     ...(isIndeterminate && {
@@ -138,7 +138,7 @@ export function Progress(props: ProgressProps) {
         value={value}
         bg={indicatorBg}
         borderRadius={borderRadius}
-        css={style}
+        css={cssStyles}
       />
     </ProgressTrack>
   )

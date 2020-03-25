@@ -1,5 +1,4 @@
-/**@jsx jsx */
-import { css, jsx } from "@chakra-ui/system"
+import { style } from "@chakra-ui/system"
 import * as React from "react"
 import { Box, BoxProps } from "./Box"
 
@@ -21,7 +20,7 @@ export const AspectRatioBox = React.forwardRef(function(
         display: "block",
         paddingBottom: `${(1 / ratio) * 100}%`,
       }}
-      css={css({
+      css={style({
         "& > *": {
           overflow: "hidden",
           position: "absolute",
@@ -35,7 +34,7 @@ export const AspectRatioBox = React.forwardRef(function(
           width: "100%",
           height: "100%",
         },
-        "& > img": {
+        "& > img, & > video": {
           objectFit: "cover",
         },
       })}

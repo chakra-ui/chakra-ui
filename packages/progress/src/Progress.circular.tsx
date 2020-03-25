@@ -1,6 +1,6 @@
 import * as React from "react"
 import { getProgressProps, rotate, spin } from "./Progress.utils"
-import { chakra, PropsOf, cssFn } from "@chakra-ui/system"
+import { chakra, PropsOf, style } from "@chakra-ui/system"
 import { isUndefined } from "@chakra-ui/utils"
 
 type CircleProps = PropsOf<"circle">
@@ -22,7 +22,7 @@ function Shape({ size, isIndeterminate, ...props }: ShapeProps) {
       viewBox="0 0 100 100"
       css={
         isIndeterminate &&
-        cssFn`
+        style`
           animation: ${rotate} 2s linear infinite;
         `
       }
@@ -117,14 +117,14 @@ export function CircularProgress(props: CircularProgressProps) {
 
   const indicatorProps = isIndeterminate
     ? {
-        css: cssFn`
+        css: style`
           animation: ${spin} 1.5s linear infinite;
         `,
       }
     : {
         strokeDashoffset: 66,
         strokeDasharray,
-        css: cssFn`
+        css: style`
           transition: stroke-dasharray 0.6s ease 0s, stroke 0.6s ease;
         `,
       }
