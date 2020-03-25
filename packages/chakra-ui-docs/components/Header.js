@@ -10,21 +10,9 @@ import {
 import { jsx } from "@emotion/core";
 import { DiGithubBadge } from "react-icons/di";
 import Logo from "./Logo";
+import GitHubButton from "./GitHubButton";
 import { Container } from "../pages";
 import { StorybookIcon } from "./Storybook-icon";
-
-const GitHubButton = () => (
-  <a
-    className="github-button"
-    href="https://github.com/chakra-ui/chakra-ui"
-    data-icon="octicon-star"
-    data-size="large"
-    data-show-count="true"
-    aria-label="Star chakra-ui/chakra-ui on GitHub"
-  >
-    Star
-  </a>
-);
 
 const Header = props => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -44,7 +32,12 @@ const Header = props => {
       {...props}
     >
       <Container h="100%">
-        <Flex size="100%" px="6" align="center" justify="space-between">
+        <Flex
+          size="100%"
+          px={["0", "0", "6"]}
+          align="center"
+          justify="space-between"
+        >
           <Box
             as="a"
             d="block"
@@ -55,7 +48,7 @@ const Header = props => {
           </Box>
           <Flex align="center" color="gray.500">
             <Stack align="center" isInline spacing="3">
-              <Box as="span" mb="-8px">
+              <Box as="span" mb="-8px" display={["none", "flex"]}>
                 <GitHubButton />
               </Box>
               <Link
