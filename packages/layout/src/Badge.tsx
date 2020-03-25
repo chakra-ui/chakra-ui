@@ -7,6 +7,6 @@ export const Badge = chakra("span", {
   baseStyle: {
     display: "inline-block",
     whiteSpace: "nowrap",
-    verticalAlign: "middle",
+    verticalAlign: "top",
   },
 })

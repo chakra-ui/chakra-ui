@@ -6,6 +6,6 @@ export const Code = chakra("code", {
   baseStyle: {
     display: "inline-block",
     whiteSpace: "nowrap",
-    verticalAlign: "middle",
+    verticalAlign: "top",
   },
 })
