@@ -1,4 +1,4 @@
-import { UnionStringArray, get } from "@chakra-ui/utils"
+import { UnionStringArray, get, Dict } from "@chakra-ui/utils"
 import { css, pseudoSelectors } from "@chakra-ui/parser"
 
 export const domElements = [

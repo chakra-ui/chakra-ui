@@ -1,15 +1,8 @@
 import React from "react"
-import { Cluster } from ".."
-import { chakra } from "@chakra-ui/system"
+import { Badge, Cluster } from ".."
 
 export default {
   title: "Cluster",
-}
-
-const Badge = chakra("span", { themeKey: "Badge" })
-Badge.defaultProps = {
-  variant: "solid",
-  colorScheme: "blue",
 }
 
 export const basic = () => {

@@ -5,7 +5,7 @@ import { SystemStyleObject, css } from "@chakra-ui/parser"
 function getCSS(props: { sx?: any; css?: any }) {
   if (!props.sx && !props.css) return undefined
   // leverage emotion's css function interpolation to access the theme
-  return (theme: object) => {
+  return (theme: Dict) => {
     // process the theme-aware sx prop
     const sxStyles = css(props.sx)(theme)
     // process the css prop
@@ -38,7 +38,7 @@ function parse(props: Dict | undefined) {
 
 export const jsx = (
   type: React.ElementType,
-  props: object,
+  props: Dict,
   ...children: React.ReactNode[]
 ) => emotion.apply(undefined, [type, parse(props), ...children])
 

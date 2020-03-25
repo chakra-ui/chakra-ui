@@ -117,16 +117,15 @@ function createStyled<T extends As, P>(component: T, options?: Options<T, P>) {
         // check if style is empty, we don't want to pass css prop to jsx if it's empty
         const isStyleEmpty = isEmptyObject(computedStyles)
 
+        computedProps.css = isStyleEmpty
+          ? computedProps.css
+          : { ...computedStyles, ...computedProps.css }
+
         /**
          * Create the element using emotion's jsx, similar to React.createElement
          * but it allows us pass a css object as prop and it'll convert it to a className
          */
-
-        return jsx(element, {
-          ref,
-          ...computedProps,
-          ...(!isStyleEmpty && { css: computedStyles }),
-        })
+        return jsx(element, { ref, ...computedProps })
       },
     )
 

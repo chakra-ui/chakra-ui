@@ -35,7 +35,9 @@ const isValidHTMLProp = (value: any): value is keyof ValidHTMLProps =>
   value in validHTMLProps
 
 function isPropValid(prop: string): boolean {
-  return prop in validHTMLProps ? true : shouldForwardProp(prop)
+  const shouldPassThrough =
+    prop in validHTMLProps || prop === "sx" || prop === "css"
+  return shouldPassThrough ? true : shouldForwardProp(prop)
 }
 
 export function filterProps(props: Dict) {
