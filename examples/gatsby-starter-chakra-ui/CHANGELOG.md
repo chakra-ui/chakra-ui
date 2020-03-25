@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.8](/compare/gatsby-starter-chakra-ui@0.0.7...gatsby-starter-chakra-ui@0.0.8) (2020-03-25)
+
+**Note:** Version bump only for package gatsby-starter-chakra-ui
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [0.0.7](/compare/gatsby-starter-chakra-ui@0.0.6...gatsby-starter-chakra-ui@0.0.7) (2020-02-26)
 
 **Note:** Version bump only for package gatsby-starter-chakra-ui

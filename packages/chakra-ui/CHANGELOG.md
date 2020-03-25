@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/core@0.6.1...@chakra-ui/core@0.7.0) (2020-03-25)
+
+### Bug Fixes
+
+- image hook and key errors
+  ([5fa1895](https://github.com/chakra-ui/chakra-ui/commit/5fa1895a7ad4eadb423bb6af6674433768ea1ef8))
+- **types:** export use form-control and disclosure hook return
+  ([8598046](https://github.com/chakra-ui/chakra-ui/commit/85980461200addb9e1e4d5cfd5160edf31065e88))
+- add visibility prop to BoxProps
+  ([f3ec71d](https://github.com/chakra-ui/chakra-ui/commit/f3ec71dc7699a07722293b7a315f8e96ec739760))
+- export skeleton not badge
+  ([bd02904](https://github.com/chakra-ui/chakra-ui/commit/bd029045977b08b61ae6253cbd2bedf2ad97b521))
+- import useTheme with relative import
+  ([81a844a](https://github.com/chakra-ui/chakra-ui/commit/81a844a16a843dc8f95074d86ba0100c52a5e97c))
+- key warning and export use-form-control
+  ([50ab37c](https://github.com/chakra-ui/chakra-ui/commit/50ab37c3eecda928a1f2ce0a43df76cdcd394e1b))
+
+### Features
+
+- **checkbox:** add aria-labelledby attribute to input
+  ([d808fbe](https://github.com/chakra-ui/chakra-ui/commit/d808fbe095862685aa507d05e1331651a053d6af))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [0.6.1](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/core@0.6.0...@chakra-ui/core@0.6.1) (2020-02-26)
 
 ### Bug Fixes
