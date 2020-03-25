@@ -25,10 +25,7 @@ export const useFormControl = props => {
 
 const FormControlContext = createContext();
 
-export const useFormControlContext = () => {
-  const context = useContext(FormControlContext);
-  return context;
-};
+export const useFormControlContext = () => useContext(FormControlContext);
 
 const FormControl = forwardRef(
   ({ isInvalid, isRequired, isDisabled, isReadOnly, ...rest }, ref) => {

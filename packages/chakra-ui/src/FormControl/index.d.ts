@@ -1,11 +1,7 @@
 import { BoxProps } from "../Box";
 import * as React from "react";
 
-interface IFormControl {
-  /**
-   * Content of the form control.
-   */
-  children?: React.ReactNode;
+export interface UseFormControlProps {
   /**
    * If `true` set the form control to the invalid state.
    */
@@ -22,6 +18,15 @@ interface IFormControl {
    * If `true` set the form control to the read only state.
    */
   isReadOnly?: boolean;
+}
+
+export function useFormControl(props: UseFormControlProps): UseFormControlProps;
+
+export interface IFormControl extends UseFormControlProps {
+  /**
+   * Content of the form control.
+   */
+  children?: React.ReactNode;
 }
 
 export type FormControlProps = IFormControl & BoxProps;
