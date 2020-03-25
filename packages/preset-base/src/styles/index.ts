@@ -1,9 +1,8 @@
-const mode = (light: string, dark: string) => (props: any) =>
-  props.colorMode === "light" ? light : dark
+import { mode, Styles } from "../components/utils"
 
-export default {
-  root: (props: any) => ({
-    fontFamily: "SF Mono",
+const styles: Styles = {
+  root: props => ({
+    fontFamily: "body",
     color: mode("gray.800", "whiteAlpha.900")(props),
     bg: mode("white", "gray.800")(props),
     "*::placeholder": {
@@ -24,3 +23,5 @@ export default {
     color: "red.500",
   },
 }
+
+export default styles

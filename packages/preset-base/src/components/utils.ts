@@ -1,3 +1,4 @@
+import React from "react"
 import { Theme } from "../foundations"
 import { SystemProps, ThemingProps } from "@chakra-ui/system"
 
@@ -37,6 +38,10 @@ export function orientation<T = string>(horizontal: T, vertical: T) {
   return (props: Props) =>
     props.orientation === "horizontal" ? horizontal : vertical
 }
+
+export type Styles = {
+  [K in keyof JSX.IntrinsicElements]?: SystemProps
+} & { root?: SystemProps | ((props: Props) => SystemProps) }
 
 export function getOrientationStyle<T>(options: {
   orientation?: "vertical" | "horizontal"

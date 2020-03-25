@@ -41,14 +41,11 @@ const Badge: ComponentTheme = {
     colorScheme: "gray",
   },
   baseStyle: {
-    display: "inline-block",
     paddingX: 1,
     textTransform: "uppercase",
     fontSize: "xs",
     borderRadius: "sm",
     fontWeight: "bold",
-    whiteSpace: "nowrap",
-    verticalAlign: "middle",
   },
   variants: {
     solid: getSolidStyle,
