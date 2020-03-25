@@ -1,15 +1,13 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
+import { useId } from "@reach/auto-id";
 import {
-  Children,
   cloneElement,
-  useState,
-  useRef,
   forwardRef,
   useImperativeHandle,
-  isValidElement,
+  useRef,
+  useState,
 } from "react";
-import { useId } from "@reach/auto-id";
 import Box from "../Box";
 import { cleanChildren } from "../utils";
 
@@ -57,6 +55,7 @@ const RadioGroup = forwardRef(
 
       return (
         <Box
+          key={index}
           display={isInline ? "inline-block" : "block"}
           {...(!isLastRadio && spacingProps)}
         >

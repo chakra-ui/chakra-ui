@@ -9,17 +9,28 @@ import {
   IconButton,
   useColorMode,
 } from "@chakra-ui/core";
-import { jsx } from "@emotion/core";
+import { jsx, css } from "@emotion/core";
 import { DiGithubBadge } from "react-icons/di";
 import Logo from "./Logo";
 import MobileNav from "./MobileNav";
 
+const styles = css`
+  .algolia-autocomplete {
+    display: block !important;
+  }
+
+  .algolia-docsearch-suggestion--wrapper {
+    /* display: none !important; */
+  }
+`;
+
 const SearchBox = props => (
-  <InputGroup {...props}>
+  <InputGroup css={styles} {...props}>
     <InputLeftElement>
       <Icon name="search" color="gray.500" />
     </InputLeftElement>
     <Input
+      id="algolia-search"
       variant="filled"
       placeholder="Search the docs "
       _focusBorderColor="teal"
@@ -59,8 +70,8 @@ const DocsHeader = props => {
         </Flex>
         <SearchBox
           display={{ sm: "none", md: "block" }}
+          maxWidth="2xl"
           visibility="hidden"
-          maxWidth="3xl"
           mx="auto"
           flex="1"
         />
