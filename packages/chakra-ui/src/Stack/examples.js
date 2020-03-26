@@ -72,3 +72,8 @@ stories.add("Reverse example in docs", () => (
     />
   </Stack>
 ));
+
+stories.add("Using a ref", () => {
+  const ref = React.useRef();
+  return <Stack ref={ref} spacing={8}></Stack>;
+});
