@@ -8,8 +8,8 @@ import { createContext } from "@chakra-ui/utils"
 import * as React from "react"
 
 interface InputGroupContext {
-  variant: string
-  size: string
+  variant: string | undefined
+  size: string | undefined
   hasLeftElement: boolean
   setHasLeftElement: React.Dispatch<React.SetStateAction<boolean>>
   hasRightElement: boolean
