@@ -1,5 +1,6 @@
 import React from "react"
 import { chakra, PropsOf, ChakraProps } from "@chakra-ui/system"
+import { __DEV__ } from "@chakra-ui/utils"
 
 export interface FlexOptions {
   /**
@@ -48,4 +49,8 @@ export function Flex(props: FlexProps) {
       {...rest}
     />
   )
+}
+
+if (__DEV__) {
+  Flex.displayName = "Flex"
 }

@@ -1,4 +1,5 @@
 import { chakra, PropsOf } from "@chakra-ui/system"
+import { __DEV__ } from "@chakra-ui/utils"
 
 export type CodeProps = PropsOf<typeof Code>
 
@@ -10,3 +11,7 @@ export const Code = chakra("code", {
     verticalAlign: "top",
   },
 })
+
+if (__DEV__) {
+  Code.displayName = "Code"
+}

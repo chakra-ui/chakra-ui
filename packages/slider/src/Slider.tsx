@@ -38,8 +38,8 @@ const StyledSlider = chakra("div", {
 export function Slider(props: SliderProps) {
   const defaults = useComponentDefaults("Slider")
   const {
-    variant = defaults.variant,
-    size = defaults.size,
+    variant = defaults?.variant,
+    size = defaults?.size,
     orientation = "horizontal",
     colorScheme,
     ...sliderProps

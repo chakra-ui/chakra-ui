@@ -26,6 +26,10 @@ const config: ConfigObject = {
     property: "height",
     scale: "sizes",
   },
+  boxSize: {
+    properties: ["width", "height"],
+    scale: "sizes",
+  },
   minWidth: {
     property: "minWidth",
     scale: "sizes",

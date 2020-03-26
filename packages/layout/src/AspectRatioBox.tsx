@@ -1,3 +1,4 @@
+import { __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { Box, BoxProps } from "./Box"
 
@@ -58,3 +59,7 @@ export const AspectRatioBox = React.forwardRef(
     )
   },
 )
+
+if (__DEV__) {
+  AspectRatioBox.displayName = "AspectRatioBox"
+}

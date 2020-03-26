@@ -228,6 +228,8 @@ export interface LayoutProps<ThemeType extends Theme = RequiredTheme> {
   width?: Responsive<CSS.WidthProperty<TLength>, ThemeType>
   /** The CSS `width` property  */
   w?: Responsive<CSS.WidthProperty<TLength>, ThemeType>
+  /** The CSS `width` and `height` property  */
+  boxSize?: Responsive<CSS.WidthProperty<TLength>, ThemeType>
   /** The CSS `max-width` property  */
   maxWidth?: Responsive<CSS.MaxWidthProperty<TLength>, ThemeType>
   /** The CSS `max-width` property  */

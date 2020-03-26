@@ -8,7 +8,7 @@ import {
   Dict,
 } from "@chakra-ui/utils"
 import { parsePseudo } from "./configs/pseudo"
-import { CSSObject, SystemStyleObject, StyleObjectOrFn } from "./css.types"
+import { CSSObject, StyleObjectOrFn } from "./css.types"
 import { getMediaQuery, assignArrayValue } from "./utils"
 import { parser } from "./parser"
 

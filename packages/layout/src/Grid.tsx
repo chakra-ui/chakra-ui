@@ -1,5 +1,6 @@
 import React from "react"
 import { chakra, PropsOf, ChakraProps } from "@chakra-ui/system"
+import { __DEV__ } from "@chakra-ui/utils"
 
 export type GridProps = PropsOf<typeof chakra.div> & GridOptions
 
@@ -23,6 +24,10 @@ export function Grid(props: GridProps) {
       {...rest}
     />
   )
+}
+
+if (__DEV__) {
+  Grid.displayName = "Grid"
 }
 
 export interface GridOptions {

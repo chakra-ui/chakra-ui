@@ -1,5 +1,5 @@
 import { chakra, css, PropsOf, SystemProps, useTheme } from "@chakra-ui/system"
-import { getValidChildren, mapResponsive } from "@chakra-ui/utils"
+import { getValidChildren, mapResponsive, __DEV__ } from "@chakra-ui/utils"
 import React from "react"
 
 export type ClusterProps = PropsOf<typeof chakra.div> & {
@@ -45,3 +45,7 @@ export const Cluster = React.forwardRef<any, ClusterProps>(
     )
   },
 )
+
+if (__DEV__) {
+  Cluster.displayName = "Cluster"
+}

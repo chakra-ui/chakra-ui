@@ -18,7 +18,7 @@
     "build": "lerna exec yarn build --no-private --ignore @chakra-ui/core",
     "build:changed": "lerna run build --since origin/dev-ts",
     "test": "lerna exec yarn test --no-private --ignore @chakra-ui/core",
-    "boot": "yarn install && yarn build",
+    "boot": "yarn install && yarn bootstrap && yarn build",
     "core": "yarn workspace @chakra-ui/core",
     "icon": "yarn workspace @chakra-ui/icon",
     "hooks": "yarn workspace @chakra-ui/hooks",
