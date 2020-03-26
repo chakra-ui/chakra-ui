@@ -4,8 +4,9 @@ import {
   PropsOf,
   Responsive,
   SystemProps,
+  useTheme,
 } from "@chakra-ui/system"
-import { getValidChildren, mapResponsive } from "@chakra-ui/utils"
+import { getValidChildren, mapResponsive, __DEV__ } from "@chakra-ui/utils"
 import React, { cloneElement, forwardRef } from "react"
 import { FlexOptions } from "./Flex"
 
@@ -81,10 +82,14 @@ export const Stack = forwardRef((props: StackProps, ref: React.Ref<any>) => {
 
   const hasDivider = Boolean(divider)
 
+  const theme = useTheme()
+
   const clones = validChildren.map((child, index) => {
     if (!hasDivider) return child
 
     const isLast = index + 1 === validChildren.length
+
+    // console.log(css({ "&": dividerStyles })(theme))
 
     if (!isLast) {
       return (
@@ -100,6 +105,11 @@ export const Stack = forwardRef((props: StackProps, ref: React.Ref<any>) => {
     return child
   })
 
+  const getStyle = (theme: any) => {
+    if (hasDivider) return undefined
+    return css({ [selector]: styles[selector] })(theme)
+  }
+
   return (
     <chakra.div
       ref={ref}
@@ -108,10 +118,14 @@ export const Stack = forwardRef((props: StackProps, ref: React.Ref<any>) => {
       justifyContent={justify}
       flexDirection={styles.flexDirection}
       flexWrap={wrap}
-      css={!hasDivider ? css({ [selector]: styles[selector] }) : undefined}
+      sx={getStyle as any}
       {...rest}
     >
       {clones}
     </chakra.div>
   )
 })
+
+if (__DEV__) {
+  Stack.displayName = "Stack"
+}

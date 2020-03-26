@@ -112,8 +112,8 @@ function createStyled<T extends As, P>(component: T, options?: Options<T, P>) {
         const isStyleEmpty = isEmptyObject(computedStyles)
 
         computedProps.css = isStyleEmpty
-          ? computedProps.css
-          : { ...computedStyles, ...computedProps.css }
+          ? runIfFn(computedProps.css, theme)
+          : { ...computedStyles, ...runIfFn(computedProps.css, theme) }
 
         /**
          * Create the element using emotion's jsx, similar to React.createElement

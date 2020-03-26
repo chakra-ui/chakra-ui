@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/utils"
 import { parsePseudo } from "./configs/pseudo"
 import { CSSObject, StyleObjectOrFn } from "./css.types"
-import { getMediaQuery, assignArrayValue } from "./utils"
+import { getMediaQuery, assignArrayValue, StyleConfig } from "./utils"
 import { parser } from "./parser"
 
 const hasTheme = (props: any): props is { theme: Dict } => {
@@ -50,8 +50,10 @@ export const css = (input: StyleObjectOrFn) => (props: PropsOrTheme) => {
 
   for (const prop in styles) {
     const styleValue = styles[prop]
+
     const val = runIfFn(styleValue, theme)
-    const config = parser.config[prop] as any
+
+    const config = parser.config[prop] as StyleConfig | undefined
 
     if (prop === "apply") {
       const extendStyles = css(get(theme, val))(theme)
@@ -80,7 +82,11 @@ export const css = (input: StyleObjectOrFn) => (props: PropsOrTheme) => {
         continue
       }
 
-      const computedStyles = assignArray(prop, val, config)
+      // If no config exists and val is still an array
+      // run it through `css` in-case it contains style props
+      const _val = val.map((v: any) => css(v)(theme))
+
+      const computedStyles = assignArray(prop, _val, config)
       result = deepmerge(result, computedStyles)
       continue
     }

@@ -1,7 +1,7 @@
 import * as CSS from "csstype"
 import { isNull, get, Dict } from "@chakra-ui/utils"
 
-export interface ConfigStyle {
+export interface StyleConfig {
   /**
    * The CSS property to use in the returned style object
    * (overridden by `properties` if present).
@@ -27,7 +27,7 @@ export interface ConfigStyle {
   transform?: (value: any, scale?: any) => any
 }
 
-export type Config = null | true | ConfigStyle
+export type Config = null | true | StyleConfig
 
 export type ConfigObject = { [prop: string]: Config }
 

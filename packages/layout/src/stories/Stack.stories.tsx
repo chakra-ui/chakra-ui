@@ -17,43 +17,43 @@ export const Vertical = () => (
 
 export const Inline = () => (
   <Stack w="100%" bg="blue.500" direction="row">
-    <Box size="40px" bg={"#fff"} borderRadius="full" />
-    <Box size="40px" bg={"#fff"} borderRadius="full" />
-    <Box size="40px" bg={"#fff"} borderRadius="full" />
+    <Box boxSize="40px" bg={"#fff"} borderRadius="full" />
+    <Box boxSize="40px" bg={"#fff"} borderRadius="full" />
+    <Box boxSize="40px" bg={"#fff"} borderRadius="full" />
   </Stack>
 )
 
 export const Responsive = () => (
-  <>
-    <Stack direction={["column", "row"]} spacing="40px" w="100%">
-      <Box w="100%" h="40px" bg="yellow.200">
-        1
-      </Box>
-      <Box w="100%" h="40px" bg="tomato">
-        2
-      </Box>
-      <Box w="100%" h="40px" bg="pink.100">
-        3
-      </Box>
-    </Stack>
+  <Stack direction={["column", "row"]} spacing="40px" w="100%">
+    <Box w="100%" h="40px" bg="yellow.200">
+      1
+    </Box>
+    <Box w="100%" h="40px" bg="tomato">
+      2
+    </Box>
+    <Box w="100%" h="40px" bg="pink.100">
+      3
+    </Box>
+  </Stack>
+)
 
-    <Stack
-      mt={10}
-      direction={["column", "row"]}
-      divider={<StackDivider borderColor="red.200" />}
-      spacing={4}
-    >
-      <Box w="100%" h="40px" bg="yellow.200">
-        1
-      </Box>
-      <Box w="100%" h="40px" bg="tomato">
-        2
-      </Box>
-      <Box w="100%" h="40px" bg="pink.100">
-        3
-      </Box>
-    </Stack>
-  </>
+export const WithResponsiveDivider = () => (
+  <Stack
+    mt={10}
+    direction={["column", "row"]}
+    divider={<StackDivider borderColor="red.200" />}
+    spacing={4}
+  >
+    <Box w="100%" h="40px" bg="yellow.200">
+      1
+    </Box>
+    <Box w="100%" h="40px" bg="tomato">
+      2
+    </Box>
+    <Box w="100%" h="40px" bg="pink.100">
+      3
+    </Box>
+  </Stack>
 )
 
 export const WithDivider = () => (
