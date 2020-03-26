@@ -1,5 +1,5 @@
 import { __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import React, { forwardRef, Children } from "react"
 import { Box, BoxProps } from "./Box"
 
 interface AspectRatioBoxOptions {
@@ -14,15 +14,16 @@ interface AspectRatioBoxOptions {
 export type AspectRatioBoxProps = BoxProps & AspectRatioBoxOptions
 
 /**
- * AspectRatioBox component is used to embed responsive videos, images,
- * maps that fit a specific aspect ratio.
+ * AspectRatioBox
+ *
+ * Mostly useful for cropping media (videos, images and maps) to a desired aspect ratio.
  *
  * @see Docs https://chakra-ui.com/aspectratiobox
  */
-export const AspectRatioBox = React.forwardRef(
+export const AspectRatioBox = forwardRef(
   (props: AspectRatioBoxProps, ref: React.Ref<any>) => {
     const { ratio = 4 / 3, children, ...rest } = props
-    const child = React.Children.only(children)
+    const child = Children.only(children)
 
     return (
       <Box

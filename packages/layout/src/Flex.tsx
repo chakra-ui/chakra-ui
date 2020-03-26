@@ -1,4 +1,4 @@
-import React from "react"
+import React, { forwardRef } from "react"
 import { chakra, PropsOf, ChakraProps } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 
@@ -35,11 +35,20 @@ export interface FlexOptions {
 
 export type FlexProps = PropsOf<typeof chakra.div> & FlexOptions
 
-export function Flex(props: FlexProps) {
+/**
+ * Flex
+ *
+ * Used to create flex layouts. It renders a `div` with `display: flex` and
+ * comes with helpful style shorthand.
+ *
+ * @see Docs https://chakra-ui.com/flex
+ */
+export const Flex = forwardRef((props: FlexProps, ref: React.Ref<any>) => {
   const { direction, align, justify, wrap, basis, grow, ...rest } = props
   return (
     <chakra.div
-      display={"flex"}
+      ref={ref}
+      display="flex"
       flexDirection={props.direction}
       alignItems={props.align}
       justifyContent={props.justify}
@@ -49,7 +58,7 @@ export function Flex(props: FlexProps) {
       {...rest}
     />
   )
-}
+})
 
 if (__DEV__) {
   Flex.displayName = "Flex"

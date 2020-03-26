@@ -1,13 +1,22 @@
-import React from "react"
+import React, { forwardRef } from "react"
 import { chakra, PropsOf, ChakraProps } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 
 export type GridProps = PropsOf<typeof chakra.div> & GridOptions
 
-export function Grid(props: GridProps) {
+/**
+ * Grid
+ *
+ * Used to create grid layouts. It renders a `div` with `display: grid` and
+ * comes with helpful style shorthand.
+ *
+ * @see Docs https://chakra-ui.com/grid
+ */
+export const Grid = forwardRef((props: GridProps, ref: React.Ref<any>) => {
   const { direction, align, justify, wrap, basis, grow, ...rest } = props
   return (
     <chakra.div
+      ref={ref}
       display={"grid"}
       gridArea={props.area}
       gridTemplateAreas={props.templateAreas}
@@ -24,7 +33,7 @@ export function Grid(props: GridProps) {
       {...rest}
     />
   )
-}
+})
 
 if (__DEV__) {
   Grid.displayName = "Grid"
