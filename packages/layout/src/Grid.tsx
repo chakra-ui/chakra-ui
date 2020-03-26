@@ -1,24 +1,29 @@
+import React from "react"
 import { chakra, PropsOf, ChakraProps } from "@chakra-ui/system"
 
-export type GridProps = PropsOf<typeof Grid>
+export type GridProps = PropsOf<typeof chakra.div> & GridOptions
 
-export const Grid = chakra<"div", GridOptions>("div", {
-  baseStyle: props => ({
-    display: "grid",
-    gridArea: props.area,
-    gridTemplateAreas: props.templateAreas,
-    gridGap: props.gap,
-    gridRowGap: props.rowGap,
-    gridColumnGap: props.columnGap,
-    gridAutoColumns: props.autoColumns,
-    gridColumn: props.column,
-    gridRow: props.row,
-    gridAutoFlow: props.autoFlow,
-    gridAutoRows: props.autoRows,
-    gridTemplateRows: props.templateRows,
-    gridTemplateColumns: props.templateColumns,
-  }),
-})
+export function Grid(props: GridProps) {
+  const { direction, align, justify, wrap, basis, grow, ...rest } = props
+  return (
+    <chakra.div
+      display={"grid"}
+      gridArea={props.area}
+      gridTemplateAreas={props.templateAreas}
+      gridGap={props.gap}
+      gridRowGap={props.rowGap}
+      gridColumnGap={props.columnGap}
+      gridAutoColumns={props.autoColumns}
+      gridColumn={props.column}
+      gridRow={props.row}
+      gridAutoFlow={props.autoFlow}
+      gridAutoRows={props.autoRows}
+      gridTemplateRows={props.templateRows}
+      gridTemplateColumns={props.templateColumns}
+      {...rest}
+    />
+  )
+}
 
 export interface GridOptions {
   /**

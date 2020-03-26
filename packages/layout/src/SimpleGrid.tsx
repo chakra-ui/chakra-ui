@@ -1,5 +1,5 @@
 import { Responsive } from "@chakra-ui/system"
-import { mapResponsive, isNumber, isNull } from "@chakra-ui/utils"
+import { mapResponsive, isNumber, isNull, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { Grid, GridProps } from "./Grid"
 
@@ -55,6 +55,10 @@ export const SimpleGrid = React.forwardRef(
     )
   },
 )
+
+if (__DEV__) {
+  SimpleGrid.displayName = "SimpleGrid"
+}
 
 const toPx = (n: string | number) => {
   return isNumber(n) ? n + "px" : n

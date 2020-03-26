@@ -1,12 +1,5 @@
 import { css, getComponentStyles } from "@chakra-ui/parser"
-import {
-  As,
-  Dict,
-  getDisplayName,
-  isEmptyObject,
-  isString,
-  runIfFn,
-} from "@chakra-ui/utils"
+import { As, Dict, isEmptyObject, isString, runIfFn } from "@chakra-ui/utils"
 import { CSSObject } from "@emotion/core"
 import hoist from "hoist-non-react-statics"
 import * as React from "react"
@@ -18,6 +11,7 @@ import {
   removeStyleProps,
 } from "./should-forward-prop"
 import { ChakraComponent, Options } from "./styled.types"
+import { getDisplayName } from "./styled.utils"
 
 function createStyled<T extends As, P>(component: T, options?: Options<T, P>) {
   return function(...interpolations: any[]) {
@@ -130,7 +124,7 @@ function createStyled<T extends As, P>(component: T, options?: Options<T, P>) {
     )
 
     // Compute the display name of the final component
-    Styled.displayName = `chakra(${getDisplayName(component)})`
+    Styled.displayName = getDisplayName(component)
 
     // [Optimization] users can pass a pure option to memoize this component
     const StyledComponent = options?.pure ? React.memo(Styled) : Styled

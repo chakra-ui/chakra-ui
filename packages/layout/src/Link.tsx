@@ -1,15 +1,19 @@
 import { chakra, PropsOf } from "@chakra-ui/system"
 import * as React from "react"
+import { __DEV__ } from "@chakra-ui/utils"
+
+/**
+ * @todo Add to migration guide
+ *
+ * A11y: We removed `isDisabled` prop from link. A link should never be
+ * allowed to be disabled.
+ */
 
 interface LinkOptions {
   /**
    *  If `true`, the link will open in new tab
    */
   isExternal?: boolean
-  /**
-   * If `true`, the link will be disabled and not tabbable
-   */
-  isDisabled?: boolean
   /**
    * Function called when the link is clicked
    */
@@ -23,12 +27,13 @@ export const Link = chakra<"a", LinkOptions>("a", {
   attrs: props => ({
     tabIndex: props.isDisabled ? -1 : undefined,
     "aria-disabled": props.isDisabled || undefined,
-    onClick: event => {
-      props.isDisabled ? event.preventDefault() : props.onClick
-    },
-    ...(props.isExternal && { target: "_blank", rel: "noopener noreferrer" }),
+    ...(props.isExternal && {
+      target: "_blank",
+      rel: "noopener noreferrer",
+    }),
   }),
-  shouldForwardProp: prop => !["isExternal", "isDisabled"].includes(prop),
 })
 
-Link.displayName = "Link"
+if (__DEV__) {
+  Link.displayName = "Link"
+}

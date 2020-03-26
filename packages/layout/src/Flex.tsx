@@ -1,3 +1,4 @@
+import React from "react"
 import { chakra, PropsOf, ChakraProps } from "@chakra-ui/system"
 
 export interface FlexOptions {
@@ -31,17 +32,20 @@ export interface FlexOptions {
   shrink?: ChakraProps["flexShrink"]
 }
 
-export type FlexProps = PropsOf<typeof Flex>
+export type FlexProps = PropsOf<typeof chakra.div> & FlexOptions
 
-export const Flex = chakra<"div", FlexOptions>("div", {
-  baseStyle: props => ({
-    display: "flex",
-    flexDirection: props.direction,
-    alignItems: props.align,
-    justifyContent: props.justify,
-    flexWrap: props.wrap,
-    flexBasis: props.basis,
-    flexGrow: props.grow,
-  }),
-  shouldForwardProp: prop => !["direction"].includes(prop),
-})
+export function Flex(props: FlexProps) {
+  const { direction, align, justify, wrap, basis, grow, ...rest } = props
+  return (
+    <chakra.div
+      display={"flex"}
+      flexDirection={props.direction}
+      alignItems={props.align}
+      justifyContent={props.justify}
+      flexWrap={props.wrap}
+      flexBasis={props.basis}
+      flexGrow={props.grow}
+      {...rest}
+    />
+  )
+}

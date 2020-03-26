@@ -1,5 +1,6 @@
-import { UnionStringArray, get, Dict } from "@chakra-ui/utils"
+import React from "react"
 import { css, pseudoSelectors } from "@chakra-ui/parser"
+import { isString, UnionStringArray, __DEV__ } from "@chakra-ui/utils"
 
 export const domElements = [
   "a",
@@ -152,4 +153,30 @@ export function applyProp(tag: React.ElementType) {
 
     return css({ apply })(theme)
   }
+}
+
+export default function isTag(target: any) {
+  return (
+    isString(target) &&
+    (__DEV__ ? target.charAt(0) === target.charAt(0).toLowerCase() : true)
+  )
+}
+
+/**
+ * Get the display name of a component.
+ * It's really useful when debugging in Dev Tools.
+ *
+ * @param primitive the react element or component type
+ */
+export function getDisplayName(primitive: any) {
+  return isTag(primitive) ? `chakra.${primitive}` : getComponentName(primitive)
+}
+
+function getComponentName(primitive: React.ComponentType | string) {
+  return (
+    (__DEV__ ? isString(primitive) && primitive : false) ||
+    (!isString(primitive) && primitive.displayName) ||
+    (!isString(primitive) && primitive.name) ||
+    "Component"
+  )
 }

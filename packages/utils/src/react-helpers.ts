@@ -115,15 +115,3 @@ export function mergeRefs<T>(...refs: (ReactRef<T> | undefined)[]) {
     refs.forEach(ref => assignRef(ref, value))
   }
 }
-
-/**
- * Get the display name of a component.
- * It's really useful when debugging in Dev Tools.
- *
- * @param primitive the react element or component type
- */
-export function getDisplayName(primitive: any) {
-  return isString(primitive)
-    ? primitive
-    : primitive.displayName || primitive.name || "ChakraComponent"
-}
