@@ -38,12 +38,12 @@ const [ThemingProvider, useThemingContext] = createContext<ThemingProps>()
 
 export function Tabs(props: TabsProps) {
   // get the default theming props for variant and size
-  const defaults = useComponentDefaults("Tabs") as any
+  const defaults = useComponentDefaults("Tabs")
 
   const {
     children,
-    variant = defaults.variant,
-    size = defaults.size,
+    variant = defaults?.variant,
+    size = defaults?.size,
     colorScheme,
     isFitted,
     ...rest

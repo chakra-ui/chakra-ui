@@ -29,8 +29,8 @@ export const Radio = React.forwardRef(
 
     const {
       colorScheme = "blue",
-      variant = defaults.variant,
-      size = defaults.size,
+      variant = defaults?.variant,
+      size = defaults?.size,
       children,
       ...radioProps
     } = props
