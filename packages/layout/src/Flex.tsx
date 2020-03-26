@@ -43,4 +43,5 @@ export const Flex = chakra<"div", FlexOptions>("div", {
     flexBasis: props.basis,
     flexGrow: props.grow,
   }),
+  shouldForwardProp: prop => !["direction"].includes(prop),
 })

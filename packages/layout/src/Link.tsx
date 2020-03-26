@@ -10,7 +10,10 @@ interface LinkOptions {
    * If `true`, the link will be disabled and not tabbable
    */
   isDisabled?: boolean
-  onClick?: React.MouseEventHandler
+  /**
+   * Function called when the link is clicked
+   */
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>
 }
 
 export type LinkProps = PropsOf<typeof Link>

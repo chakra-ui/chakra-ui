@@ -26,21 +26,20 @@ interface SimpleGridOptions {
   spacingY?: GridProps["gridGap"]
 }
 
-type SimpleGridProps = GridProps & SimpleGridOptions
+export type SimpleGridProps = GridProps & SimpleGridOptions
 
 export const SimpleGrid = React.forwardRef(
-  (
-    {
+  (props: SimpleGridProps, ref: React.Ref<any>) => {
+    const {
       columns,
       spacingX,
       spacingY,
       spacing,
       minChildWidth,
-      ...props
-    }: SimpleGridProps,
-    ref: React.Ref<any>,
-  ) => {
-    const templateColumns = !!minChildWidth
+      ...rest
+    } = props
+
+    const templateColumns = Boolean(minChildWidth)
       ? widthToColumns(minChildWidth)
       : countToColumns(columns)
 
@@ -51,7 +50,7 @@ export const SimpleGrid = React.forwardRef(
         columnGap={spacingX}
         rowGap={spacingY}
         templateColumns={templateColumns || undefined}
-        {...props}
+        {...rest}
       />
     )
   },

@@ -12,10 +12,14 @@ export const basic = () => (
 )
 
 export const spacer = () => (
-  <Flex size="500px" direction={{ base: "column", md: "row" }}>
-    <Box color="tomato">Box 1</Box>
+  <Flex color="white" direction={{ base: "column", md: "row" }}>
+    <Box bg="pink.500" w="100px" h="100px">
+      Box 1
+    </Box>
     <Spacer />
-    <Box color="yellow.200">Box 2</Box>
+    <Box bg="green.500" w="100px" h="100px">
+      Box 2
+    </Box>
   </Flex>
 )
 

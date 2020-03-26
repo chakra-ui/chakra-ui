@@ -12,8 +12,8 @@ export const show = () => (
 )
 
 export const hide = () => (
-  <Hide above="768px">
-    <div>Hallos! I'll hide above 768px</div>
+  <Hide below="768px">
+    <div>Hallos! I'll hide below 768px</div>
   </Hide>
 )
 

@@ -5,16 +5,12 @@ export default {
   title: "Center",
 }
 
+// Container (marginX: auto, max-width: 800px, paddingX: 20px)
+
 export const flex = () => (
-  <Center size="400px">
-    <Box size="200px" bg="green.200">
+  <Center bg="#da3d6929" w="400px" h="400px">
+    <Box p="40px" bg="green.600">
       Box
     </Box>
-  </Center>
-)
-
-export const absolute = () => (
-  <Center use="absolute" size="400px" bg="green.200">
-    Box
   </Center>
 )

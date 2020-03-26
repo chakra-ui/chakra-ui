@@ -1,4 +1,6 @@
-import { chakra } from "@chakra-ui/system"
+import { chakra, PropsOf } from "@chakra-ui/system"
+
+export type SpacerProps = PropsOf<typeof Spacer>
 
 export const Spacer = chakra("div", {
   baseStyle: {

@@ -17,6 +17,6 @@ export const Divider = chakra<"hr", DividerOptions>("hr", {
   },
   attrs: props => ({
     role: "separator",
-    "aria-orientation": props.orientation,
+    "aria-orientation": props.orientation || "horizontal",
   }),
 })

@@ -54,9 +54,9 @@ export function getPrevIndex(index: number, count: number, loop = true) {
   return getNextIndex(index, count, -1, loop)
 }
 
-export function groupItems<T>(items: T[], noOfGroups: number): T[][] {
-  return items.reduce((rows: T[][], currentValue: T, index: number) => {
-    if (index % noOfGroups === 0) {
+export function chunk<T>(array: T[], size: number): T[][] {
+  return array.reduce((rows: T[][], currentValue: T, index: number) => {
+    if (index % size === 0) {
       rows.push([currentValue])
     } else {
       rows[rows.length - 1].push(currentValue)

@@ -43,7 +43,7 @@ export const pseudoSelectors = {
   /**
    * Styles for CSS selector `&:hover`
    */
-  _hover: "&:hover, &[data-hover]",
+  _hover: "&:hover, &[data-hover], &[data-state=hover]",
   /**
    * Styles for CSS Selector `&:active`
    */
@@ -53,7 +53,10 @@ export const pseudoSelectors = {
    *
    */
   _focus: "&:focus, &[data-focus], &[data-state=focused]",
-  _highlighted: "&[data-highlighted]",
+  /**
+   * Styles for the highlighted state.
+   */
+  _highlighted: "&[data-highlighted], &[data-state=highlighted]",
   /**
    * Styles to apply when a child of this element has received focus
    * - CSS Selector `&:focus-within`
@@ -73,7 +76,8 @@ export const pseudoSelectors = {
   /**
    * Styles for CSS Selector `&:readonly`
    */
-  _readOnly: "&[aria-readonly=true], &[readonly], &[data-readonly]",
+  _readOnly:
+    "&[aria-readonly=true], &[readonly], &[data-readonly], &[data-state=readonly]",
   /**
    * Styles for CSS selector `&:before`
    *
@@ -121,6 +125,9 @@ export const pseudoSelectors = {
    */
   _invalid:
     "&[aria-invalid=true], &[data-invalid], &:invalid, &[data-state=invalid]",
+  /**
+   * Styles to
+   */
   _valid: "&[data-valid], &:valid, &[data-state=valid]",
   /**
    * Styles for CSS Selector `&[aria-busy=true]` or `&[data-loading=true]`.
