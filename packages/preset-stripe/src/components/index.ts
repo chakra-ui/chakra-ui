@@ -1,6 +1,6 @@
 export default {
   Avatar: {
-    variantSize: {
+    sizes: {
       sm: "16px",
       md: "20px",
       lg: "28px",
@@ -9,7 +9,7 @@ export default {
     },
   },
   Spinner: {
-    variantSize: {
+    sizes: {
       sm: "12px",
       md: "16px",
       lg: "24px",

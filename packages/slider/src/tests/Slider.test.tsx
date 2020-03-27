@@ -5,7 +5,7 @@ import { Slider, SliderFilledTrack, SliderThumb, SliderTrack } from ".."
 describe("rendering", () => {
   test("should render correctly", () => {
     const { asFragment } = render(
-      <Slider aria-label="slider-1" variantColor="red">
+      <Slider aria-label="slider-1" colorScheme="red">
         <SliderTrack>
           <SliderFilledTrack />
         </SliderTrack>
@@ -19,7 +19,7 @@ describe("rendering", () => {
 describe("accessibility", () => {
   test("should not have basic a11y issues", async () => {
     const { getByTestId } = render(
-      <Slider aria-label="slider-1" data-testid="slider" variantColor="red">
+      <Slider aria-label="slider-1" data-testid="slider" colorScheme="red">
         <SliderTrack>
           <SliderFilledTrack />
         </SliderTrack>
@@ -37,7 +37,7 @@ describe("user events", () => {
     const { getByRole } = render(
       <Slider
         aria-label="slider-2"
-        variantColor="red"
+        colorScheme="red"
         defaultValue={defaultValue}
       >
         <SliderTrack>

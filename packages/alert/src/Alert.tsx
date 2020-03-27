@@ -1,6 +1,12 @@
 import { IconProps } from "@chakra-ui/icon"
-import { ColorMode, chakra, PropsOf, useColorMode } from "@chakra-ui/system"
-import * as React from "react"
+import {
+  ColorMode,
+  chakra,
+  PropsOf,
+  useColorMode,
+  useComponentDefaults,
+} from "@chakra-ui/system"
+import React, { forwardRef } from "react"
 import {
   InfoIcon,
   WarningTwoIcon,
@@ -43,25 +49,31 @@ const StyledAlert = chakra("div", {
   },
 })
 
-export const Alert = React.forwardRef(
-  (props: AlertProps, ref: React.Ref<any>) => {
-    const { status = "info", variant = "subtle", ...rest } = props
-    const variantColor = statuses[status]["color"]
+export const Alert = forwardRef((props: AlertProps, ref: React.Ref<any>) => {
+  const defaults = useComponentDefaults("Alert")
 
-    const context = { status, variant }
-    return (
-      <AlertContextProvider value={context}>
-        <StyledAlert
-          ref={ref}
-          role="alert"
-          variant={variant}
-          {...rest}
-          variantColor={variantColor}
-        />
-      </AlertContextProvider>
-    )
-  },
-)
+  const {
+    status = "info",
+    variant = defaults?.variant || "subtle",
+    ...rest
+  } = props
+
+  const colorScheme = statuses[status]["color"]
+
+  const context = { status, variant }
+
+  return (
+    <AlertContextProvider value={context as AlertContext}>
+      <StyledAlert
+        ref={ref}
+        role="alert"
+        variant={variant}
+        {...rest}
+        colorScheme={colorScheme}
+      />
+    </AlertContextProvider>
+  )
+})
 
 export const AlertTitle = chakra("div", {
   themeKey: "Alert.Title",

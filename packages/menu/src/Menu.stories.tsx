@@ -27,7 +27,7 @@ export default {
 
 export const basic = () => (
   <Menu>
-    <MenuButton variant="solid" variantColor="green" variantSize="sm">
+    <MenuButton variant="solid" colorScheme="green" size="sm">
       Open menu
     </MenuButton>
     <MenuList>
@@ -41,7 +41,7 @@ export const basic = () => (
 
 export const disabledMenuItem = () => (
   <Menu>
-    <MenuButton variant="solid" variantColor="green" variantSize="sm">
+    <MenuButton variant="solid" colorScheme="green" size="sm">
       Open menu
     </MenuButton>
     <MenuList>
@@ -55,7 +55,7 @@ export const disabledMenuItem = () => (
 
 export const disabledButFocusableMenuItem = () => (
   <Menu>
-    <MenuButton variant="solid" variantColor="green" variantSize="sm">
+    <MenuButton variant="solid" colorScheme="green" size="sm">
       Open menu
     </MenuButton>
     <MenuList>
@@ -71,7 +71,7 @@ export const disabledButFocusableMenuItem = () => (
 
 export const withPortal = () => (
   <Menu>
-    <MenuButton variant="solid" variantColor="green" variantSize="sm">
+    <MenuButton variant="solid" colorScheme="green" size="sm">
       Open menu
     </MenuButton>
     <Portal>
@@ -101,7 +101,7 @@ const Submenu = React.forwardRef<HTMLButtonElement, {}>((props, ref) => (
 
 export const nestedMenus = () => (
   <Menu>
-    <MenuButton variant="solid" variantColor="green" variantSize="sm">
+    <MenuButton variant="solid" colorScheme="green" size="sm">
       Open menu
     </MenuButton>
     <Portal>
@@ -129,7 +129,7 @@ const MenuTransition = (props: FadeProps) => {
 
 export const withTransition = () => (
   <Menu>
-    <MenuButton variant="solid" variantColor="green" variantSize="sm">
+    <MenuButton variant="solid" colorScheme="green" size="sm">
       Open menu
     </MenuButton>
     <MenuTransition>
@@ -157,7 +157,7 @@ export const withTransition = () => (
 
 export const withGroupedItems = () => (
   <Menu>
-    <MenuButton variant="solid" variantColor="green" variantSize="sm">
+    <MenuButton variant="solid" colorScheme="green" size="sm">
       Open menu
     </MenuButton>
     <MenuList minWidth="240px">
@@ -175,7 +175,7 @@ export const withGroupedItems = () => (
 
 export const withMenuRadio = () => (
   <Menu closeOnSelect={false}>
-    <MenuButton variant="solid" variantColor="green" variantSize="sm">
+    <MenuButton variant="solid" colorScheme="green" size="sm">
       Open menu
     </MenuButton>
 

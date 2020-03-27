@@ -6,13 +6,13 @@ export default {
 }
 
 export const NoImage = () => (
-  <Avatar variantSize="md" name="Uchiha Itachi">
+  <Avatar size="md" name="Uchiha Itachi">
     <AvatarBadge size="1.25em" bg="green.500" />
   </Avatar>
 )
 
 export const NoImageAndName = () => (
-  <Avatar variantSize="md">
+  <Avatar size="md">
     <AvatarBadge size="1.25em" bg="green.500" />
   </Avatar>
 )
@@ -22,7 +22,7 @@ export const WithSizes = () => (
     {["xs", "sm", "md", "lg", "xl", "2xl"].map(size => (
       <Avatar
         mr={2}
-        variantSize={size}
+        size={size}
         name="Uchiha Itachi"
         src="https://uinames.com/api/photos/female/18.jpg"
       >
@@ -33,7 +33,7 @@ export const WithSizes = () => (
 )
 
 export const avatarGroup = () => (
-  <AvatarGroup variantSize="lg" showBorder max={4}>
+  <AvatarGroup size="lg" showBorder max={4}>
     <Avatar
       name="Daniel Powell"
       src="https://uinames.com/api/photos/male/16.jpg"

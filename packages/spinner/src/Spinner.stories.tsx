@@ -8,7 +8,7 @@ export default {
 export const Default = () => (
   <div>
     {["xl", "lg", "md", "sm", "xs"].map(size => (
-      <Spinner key={size} margin={3} color="red.500" variantSize={size} />
+      <Spinner key={size} margin={3} color="red.500" size={size} />
     ))}
   </div>
 )

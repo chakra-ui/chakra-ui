@@ -1,6 +1,6 @@
 import { parser as systemProps } from "@chakra-ui/parser"
 import createStyled from "./create-styled"
-import { As, Options, ChakraComponent } from "./styled.types"
+import { As, Options, ChakraComponent, PropsOf } from "./styled.types"
 import {
   pseudoProps,
   truncateProp,

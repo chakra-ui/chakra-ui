@@ -1,4 +1,4 @@
-import * as React from "react"
+import React, { forwardRef } from "react"
 import {
   chakra,
   PropsOf,
@@ -7,7 +7,7 @@ import {
 } from "@chakra-ui/system"
 import { ControlProps, useField } from "@chakra-ui/form-control"
 import { Icon, IconProps } from "@chakra-ui/icon"
-import { split } from "@chakra-ui/utils"
+import { split, Dict, __DEV__ } from "@chakra-ui/utils"
 
 type OmittedTypes = "disabled" | "required" | "readOnly"
 
@@ -28,6 +28,14 @@ interface SelectOptions {
    * If `true`, the textarea element will span the full width of it's parent
    */
   isFullWidth?: boolean
+  /**
+   * The placeholder for the select. We render an `<option/>` element that has
+   * empty value.
+   *
+   * ```jsx
+   * <option value="">{placeholder}</option>
+   * ```
+   */
   placeholder?: string
 }
 
@@ -76,12 +84,6 @@ export const SelectField = React.forwardRef(
 
 type Props = PropsOf<typeof chakra.div>
 
-export type SelectProps = Props & {
-  rootProps?: Omit<Props, "color">
-  icon?: React.ElementType
-  iconSize?: any
-}
-
 export function SelectIcon(props: IconProps) {
   return (
     <Icon viewBox="0 0 24 24" {...props}>
@@ -93,7 +95,16 @@ export function SelectIcon(props: IconProps) {
   )
 }
 
-export const Select = React.forwardRef(
+export type SelectProps = Omit<Props, "ref"> &
+  ControlProps &
+  SelectOptions & {
+    rootProps?: Omit<Props, "color">
+    icon?: React.ElementType
+    iconSize?: any
+    ref?: React.Ref<HTMLSelectElement>
+  }
+
+export const Select = forwardRef(
   (props: SelectProps, ref: React.Ref<HTMLSelectElement>) => {
     const { rootProps, icon = SelectIcon, iconSize = 5, ...rest } = props
 
@@ -111,7 +122,7 @@ export const Select = React.forwardRef(
           paddingRight="2rem"
           ref={ref}
           color={color}
-          {...select}
+          {...(select as Dict)}
         />
         <SelectIconWrapper opacity={opacity} color={select.color || color}>
           <Icon
@@ -127,7 +138,9 @@ export const Select = React.forwardRef(
   },
 )
 
-Select.displayName = "Select"
+if (__DEV__) {
+  Select.displayName = "Select"
+}
 
 Select.defaultProps = {
   isFullWidth: true,

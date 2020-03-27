@@ -13,19 +13,25 @@ export default {
   title: "FormControl",
 }
 
-type OmittedTypes = "disabled" | "required" | "readOnly"
-type InputProps = Omit<PropsOf<typeof StyledInput>, OmittedTypes> & ControlProps
+type OmittedTypes = "disabled" | "required" | "readOnly" | "size"
+
+type InputProps = Omit<PropsOf<typeof StyledInput>, OmittedTypes> &
+  ControlProps & {
+    // Input component as `size` by default so it resolves to `never`
+    // Omitted it from types in L16 and added back here.
+    size?: string
+  }
 
 // Create an input that consumes useField
-const StyledInput = chakra<
-  "input",
-  { focusBorderColor?: string; errorBorderColor?: string }
->("input", { themeKey: "Input" })
+type Props = { focusBorderColor?: string; errorBorderColor?: string }
+const StyledInput = chakra<"input", Props>("input", { themeKey: "Input" })
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-  const inputProps = useField<HTMLInputElement>(props)
-  return <StyledInput ref={ref} {...inputProps} />
-})
+const Input = React.forwardRef(
+  (props: InputProps, ref: React.Ref<HTMLInputElement>) => {
+    const inputProps = useField<HTMLInputElement>(props)
+    return <StyledInput ref={ref} {...inputProps} />
+  },
+)
 
 type TextAreaProps = Omit<PropsOf<"textarea">, OmittedTypes> & ControlProps
 
@@ -61,7 +67,7 @@ export const Styled = () => (
     <FormLabel>First name:</FormLabel>
     <Input
       variant="outline"
-      variantSize="sm"
+      size="sm"
       placeholder="First Name"
       width="100%"
       focusBorderColor="red.200"

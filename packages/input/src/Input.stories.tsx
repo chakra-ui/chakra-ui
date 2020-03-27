@@ -53,7 +53,7 @@ export const LeftAndRightAddon = () => (
 
     <br />
 
-    <InputGroup variantSize="sm">
+    <InputGroup size="sm">
       <InputLeftAddon children="https://" />
       <Input borderRadius="0" placeholder="website.com" />
       <InputRightAddon children=".com" />
@@ -81,7 +81,7 @@ export function PasswordInput() {
   const handleClick = () => setShow(!show)
 
   return (
-    <InputGroup variantSize="md">
+    <InputGroup size="md">
       <Input
         pr="4.5rem"
         type={show ? "text" : "password"}

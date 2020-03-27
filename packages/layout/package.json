@@ -47,7 +47,9 @@
     "ts-jest": "25.2.1",
     "tsdx": "0.12.3",
     "tslib": "1.11.1",
-    "typescript": "3.8.3"
+    "typescript": "3.8.3",
+    "react-router-dom": "5.1.2",
+    "@types/react-router-dom": "5.1.3"
   },
   "dependencies": {
     "@chakra-ui/utils": "0.0.1",

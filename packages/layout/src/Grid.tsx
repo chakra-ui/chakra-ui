@@ -13,11 +13,25 @@ export type GridProps = PropsOf<typeof chakra.div> & GridOptions
  * @see Docs https://chakra-ui.com/grid
  */
 export const Grid = forwardRef((props: GridProps, ref: React.Ref<any>) => {
-  const { direction, align, justify, wrap, basis, grow, ...rest } = props
+  const {
+    area,
+    templateAreas,
+    gap,
+    rowGap,
+    columnGap,
+    column,
+    row,
+    autoFlow,
+    autoRows,
+    templateRows,
+    templateColumns,
+    ...rest
+  } = props
+
   return (
     <chakra.div
       ref={ref}
-      display={"grid"}
+      display="grid"
       gridArea={props.area}
       gridTemplateAreas={props.templateAreas}
       gridGap={props.gap}
