@@ -7,7 +7,7 @@
   ],
   "scripts": {
     "commit": "git-cz",
-    "postinstall": "yarn core:build",
+    "postinstall": "yarn build",
     "clean": "lerna clean --yes",
     "bootstrap": "yarn clean && lerna bootstrap --use-workspaces",
     "storybook": "start-storybook -p 6006",
