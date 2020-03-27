@@ -6,8 +6,8 @@ export default {
 }
 
 export const show = () => (
-  <Show above="320px">
-    <div>Hey! I'll show above 320px</div>
+  <Show above="sm">
+    <div>Hey! I'll show above sm (480px)</div>
   </Show>
 )
 

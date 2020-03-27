@@ -1,0 +1,83 @@
+# Migration Notes
+
+## Major
+
+- Support for `size` has been deprecated. Use `boxSize` prop. We've reserved the
+  `size` prop to refer to component size variants.
+
+For example, `<Button size="md">Click</Button>`
+
+```jsx
+// before
+<Box size="40px" />
+
+// after
+<chakra.div boxSize="40px"/>
+```
+
+- Addition of chakra jsx elements to make it even easier to style components
+  without having to use the `as` prop in Box
+
+```jsx
+// before
+<Box as="h2" fontSize="40px" />
+
+// after
+<chakra.h2 fontSize="40px"/>
+
+// still want Box? No problem!
+const Box = chakra.div
+
+<Box>This is your box</Box>
+```
+
+- [Link] Due to accessbility reasons, We're deprecating the `isDisabled` prop
+  from link. A link should never be allowed to be disabled.
+
+- [Stack] To reduce the API surface, we're deprecating the `isInline` and
+  `isReversed` prop in favor of `direction` prop
+
+- New components ✨: We've add new layout components such as Cluster, Spacer,
+  Center and Visibility
+
+## Improvements
+
+Stack
+
+- Support for responsive `direction` and `spacing` prop
+
+```jsx
+// before
+// how the heck do I make this responsive ?? 😡
+<Stack isInline>
+  <Box />
+  <Box />
+</Stack>
+
+// after
+// cool! now that's amazing 🤩
+<Stack direction={["column", "row"]}>
+  <Box />
+  <Box />
+</Stack>
+```
+
+- Support for divider prop between stacked element. Dividers also work with
+  responsive direction and spacing.
+
+```jsx
+// before
+// how the heck do I add a divider ?? 😡
+<Stack isInline>
+  <Box />
+  <Divider />
+  <Box />
+</Stack>
+
+// after
+// cool! now that's amazing 🤩
+<Stack divider={<StackDivider />}>
+  <Box />
+  <Box />
+</Stack>
+```

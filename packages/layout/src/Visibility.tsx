@@ -1,5 +1,7 @@
 import { useMediaQuery } from "@chakra-ui/hooks"
-import * as React from "react"
+import { useTheme } from "@chakra-ui/system"
+import { Dict, get } from "@chakra-ui/utils"
+import React from "react"
 
 interface VisibilityProps {
   breakpoint: string
@@ -7,9 +9,19 @@ interface VisibilityProps {
   children: React.ReactNode
 }
 
+/**
+ * Visibility
+ * 
+ * React component to control the visibility of it's
+ * children based on the current breakpoint
+
+ * @see Docs https://chakra-ui.com/visibility
+ */
 function Visibility(props: VisibilityProps) {
   const { breakpoint, hide, children } = props
+
   const [show] = useMediaQuery(breakpoint)
+
   const isVisible = hide ? !show : show
 
   const rendered = isVisible ? children : null
@@ -18,18 +30,29 @@ function Visibility(props: VisibilityProps) {
 
 export type HideProps = ShowProps
 
-export const Hide = (props: HideProps) => {
-  const { breakpoint = "", children, below, above } = props
+const getBreakpoint = (theme: Dict, value: any) =>
+  get(theme, `breakpoints.${value}`, value)
 
-  const query = below
-    ? `(max-width: ${below})`
-    : above
-    ? `(min-width: ${above})`
+const useQuery = (props: any) => {
+  const { breakpoint = "", below, above } = props
+  const theme = useTheme()
+  const bpBelow = getBreakpoint(theme, below)
+  const bpAbove = getBreakpoint(theme, above)
+
+  const query = bpBelow
+    ? `(max-width: ${bpBelow})`
+    : bpAbove
+    ? `(min-width: ${bpAbove})`
     : breakpoint
 
+  return query
+}
+
+export const Hide = (props: HideProps) => {
+  const query = useQuery(props)
   return (
     <Visibility breakpoint={query} hide={true}>
-      {children}
+      {props.children}
     </Visibility>
   )
 }
@@ -42,13 +65,6 @@ export interface ShowProps {
 }
 
 export const Show = (props: ShowProps) => {
-  const { breakpoint = "", children, below, above } = props
-
-  const query = below
-    ? `(max-width: ${below})`
-    : above
-    ? `(min-width: ${above})`
-    : breakpoint
-
-  return <Visibility breakpoint={query}>{children}</Visibility>
+  const query = useQuery(props)
+  return <Visibility breakpoint={query}>{props.children}</Visibility>
 }

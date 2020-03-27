@@ -2,13 +2,6 @@ import { chakra, PropsOf } from "@chakra-ui/system"
 import * as React from "react"
 import { __DEV__ } from "@chakra-ui/utils"
 
-/**
- * @todo Add to migration guide
- *
- * A11y: We removed `isDisabled` prop from link. A link should never be
- * allowed to be disabled.
- */
-
 interface LinkOptions {
   /**
    *  If `true`, the link will open in new tab
@@ -22,6 +15,13 @@ interface LinkOptions {
 
 export type LinkProps = PropsOf<typeof Link>
 
+/**
+ * Link
+ *
+ * Links are accessible elements used primarily for navigation.
+ *
+ * @see Docs https://chakra-ui.com/link
+ */
 export const Link = chakra<"a", LinkOptions>("a", {
   themeKey: "Link",
   attrs: props => ({
