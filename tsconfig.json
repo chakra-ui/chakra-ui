@@ -1,19 +1,24 @@
 {
-  "extends": "./tsconfig.build.json",
   "compilerOptions": {
-    "outDir": "build/lib",
-    "rootDirs": ["packages"],
-    "types": ["jest"],
-    "typeRoots": ["./node_modules/@types", "./packages/**/*/@types"]
-  },
-  "include": ["packages/**/*", "next-env.d.ts", "docs"],
-  "exclude": [
-    "node_modules",
-    "build",
-    "scripts",
-    "**/*.spec.ts",
-    "**/*.spec.tsx",
-    "**/*.test.ts",
-    "**/*.test.tsx"
-  ]
+    "target": "es2018",
+    "module": "esnext",
+    "lib": ["dom", "esnext"],
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "jsx": "react",
+    "skipLibCheck": true,
+    "importHelpers": true,
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "strictPropertyInitialization": true,
+    "noFallthroughCasesInSwitch": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "preserveSymlinks": true
+  }
 }
