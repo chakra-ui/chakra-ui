@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`as - prop works correctly 1`] = `
+<DocumentFragment>
+  <a
+    class="css-0"
+    href="www.google.com"
+  >
+    This is box
+  </a>
+</DocumentFragment>
+`;
+
+exports[`should render box correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="css-0"
+  >
+    This is box
+  </div>
+</DocumentFragment>
+`;

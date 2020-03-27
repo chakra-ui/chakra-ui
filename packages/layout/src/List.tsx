@@ -20,6 +20,13 @@ interface ListOptions {
 
 export type ListProps = PropsOf<typeof chakra.ul> & ListOptions
 
+/**
+ * List
+ *
+ * List is used to display list items, it renders a `<ul>` by default.
+ *
+ * @see Docs https://chakra-ui.com/list
+ */
 export const List = forwardRef((props: ListProps, ref: React.Ref<any>) => {
   const {
     children,

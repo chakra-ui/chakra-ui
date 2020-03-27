@@ -31,14 +31,14 @@ const Box = chakra.div
 <Box>This is your box</Box>
 ```
 
-- [Link] Due to accessbility reasons, We're deprecating the `isDisabled` prop
+- [Link] Due to accessibility reasons, We're deprecating the `isDisabled` prop
   from link. A link should never be allowed to be disabled.
 
 - [Stack] To reduce the API surface, we're deprecating the `isInline` and
   `isReversed` prop in favor of `direction` prop
 
-- New components ✨: We've add new layout components such as Cluster, Spacer,
-  Center and Visibility
+- New components ✨: We've added new layout components such as Cluster, Spacer,
+  and Center.
 
 ## Improvements
 

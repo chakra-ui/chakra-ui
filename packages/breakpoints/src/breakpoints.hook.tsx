@@ -22,8 +22,14 @@ type Listener = {
 
 const toMediaString = (val: any) => (isNumber(val) ? `${val}px` : val)
 
+/**
+ * Create a media query string from the breakpoints,
+ * using a combination of `min-width` and `max-width`.
+ *
+ * @param breakpoints the breakpoint object in theme
+ */
 const createMediaQueries = (breakpoints: Dict) => {
-  // sort the breakpoints in desc order
+  // sort the breakpoints in descending order
   const sorted = Object.keys(breakpoints).sort(
     (a, b) => parseInt(breakpoints[b]) - parseInt(breakpoints[a]),
   )
@@ -61,7 +67,11 @@ const createMediaQueries = (breakpoints: Dict) => {
  *
  * React hook for getting the current responsive media breakpoint.
  *
- * @param defaultBreakpoint default breakpoint name (in non-window environments like SSR)
+ * @param defaultBreakpoint default breakpoint name
+ * (in non-window environments like SSR)
+ *
+ * For SSR, you can use a package like [is-mobile](https://github.com/juliangruber/is-mobile)
+ * to get the default breakpoint value from the user-agent
  */
 
 export function useBreakpoint(defaultBreakpoint?: string) {
