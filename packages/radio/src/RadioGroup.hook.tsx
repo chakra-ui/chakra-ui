@@ -18,7 +18,7 @@ export interface RadioGroupHookProps {
   isNative?: boolean
 }
 
-export function useRadioGroup(props: RadioGroupHookProps) {
+export function useRadioGroup(props: RadioGroupHookProps = {}) {
   const {
     onChange: onChangeProp,
     value: valueProp,

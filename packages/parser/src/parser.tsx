@@ -28,12 +28,8 @@ export const parser = combineParsers(
   typography,
 )
 
-export const layoutPropNames = combineParsers(
-  space,
-  layout,
-  flexbox,
-  grid,
-  position,
-)
+const layoutParser = combineParsers(space, layout, flexbox, grid, position)
+
+export const layoutPropNames = layoutParser.propNames
 
 export const propNames = [...parser.propNames, ...pseudoPropNames]
