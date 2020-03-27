@@ -58,7 +58,7 @@ export interface RadioHookProps {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-export function useRadio(props: RadioHookProps) {
+export function useRadio(props: RadioHookProps = {}) {
   const {
     defaultIsChecked,
     isChecked: isCheckedProp,
