@@ -1,20 +1,20 @@
 {
-  "name": "@chakra-ui/layout",
+  "name": "@chakra-ui/breakpoints",
   "version": "0.0.1",
-  "description": "Chakra UI layout components that give you massive speed",
+  "description": "A React hook for changing properties or visibility of a component based on media breakpoint",
   "keywords": [
-    "layout",
-    "component",
-    "ui",
+    "chakra ui",
+    "breakpoint",
+    "matchMedia",
     "react",
-    "primitives",
-    "chakra ui"
+    "responsive",
+    "viewport"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
   "main": "dist/index.js",
-  "module": "dist/layout.esm.js",
+  "module": "dist/breakpoints.esm.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
@@ -51,8 +51,8 @@
   },
   "dependencies": {
     "@chakra-ui/utils": "0.0.1",
-    "@chakra-ui/system": "0.0.1",
-    "@chakra-ui/icon": "0.0.1"
+    "@chakra-ui/hooks": "0.0.1",
+    "@chakra-ui/system": "0.0.1"
   },
   "peerDependencies": {
     "react": "16.x",
