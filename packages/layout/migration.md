@@ -37,8 +37,10 @@ const Box = chakra.div
 - [Stack] To reduce the API surface, we're deprecating the `isInline` and
   `isReversed` prop in favor of `direction` prop
 
-- New components ✨: We've added new layout components such as Cluster, Spacer,
-  and Center.
+- New components ✨: We've added new layout components such as Wrap, Spacer, and
+  Center.
+
+- AspectRatioBox now renamed to just `AspectRatio` to keep it concise
 
 ## Improvements
 

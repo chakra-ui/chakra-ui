@@ -5,7 +5,7 @@ A Quick description of the component
 ## Installation
 
 ```sh
-yarn add @chakra-ui/<component>
+yarn add @chakra-ui/media-query
 ```
 
 ## Inspirations

@@ -1,18 +1,18 @@
 import React from "react"
-import { Badge, Cluster } from ".."
+import { Badge, Wrap } from ".."
 
 export default {
-  title: "Cluster",
+  title: "Wrap",
 }
 
 export const basic = () => {
   return (
-    <Cluster spacing="40px">
+    <Wrap spacing="40px">
       <Badge>Badge 1</Badge>
       <Badge>Badge 2</Badge>
       <Badge>Badge 3</Badge>
       <Badge>Badge 4</Badge>
-    </Cluster>
+    </Wrap>
   )
 }
 const Placeholder = (props: any) => (
@@ -24,7 +24,7 @@ const Placeholder = (props: any) => (
 
 export const placeholder = () => {
   return (
-    <Cluster spacing={5}>
+    <Wrap spacing={5}>
       <Placeholder />
       <Placeholder />
       <Placeholder />
@@ -36,13 +36,13 @@ export const placeholder = () => {
       <Placeholder />
       <Placeholder />
       <Placeholder />
-    </Cluster>
+    </Wrap>
   )
 }
 
 export const responsive = () => {
   return (
-    <Cluster spacing={["12px", "24px"]} justify={["center", "flex-start"]}>
+    <Wrap spacing={["12px", "24px"]} justify={["center", "flex-start"]}>
       <Placeholder />
       <Placeholder />
       <Placeholder />
@@ -54,6 +54,6 @@ export const responsive = () => {
       <Placeholder />
       <Placeholder />
       <Placeholder />
-    </Cluster>
+    </Wrap>
   )
 }

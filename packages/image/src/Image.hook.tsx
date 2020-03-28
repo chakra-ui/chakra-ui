@@ -32,6 +32,7 @@ export function useImage(props: ImageHookProps) {
     flush()
 
     const img = new Image()
+
     img.onload = event => {
       flush()
       setStatus("loaded")

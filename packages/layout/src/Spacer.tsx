@@ -3,6 +3,15 @@ import { __DEV__ } from "@chakra-ui/utils"
 
 export type SpacerProps = PropsOf<typeof Spacer>
 
+/**
+ * Spacer
+ *
+ * Spacer creates an adjustable, empty `div` that
+ * can be used to tune the spacing between elements
+ * in a flex container.
+ *
+ * It will take up any available space.
+ */
 export const Spacer = chakra("div", {
   baseStyle: {
     flex: 1,

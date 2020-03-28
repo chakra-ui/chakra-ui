@@ -1,7 +1,7 @@
 {
-  "name": "@chakra-ui/breakpoints",
+  "name": "@chakra-ui/media-query",
   "version": "0.0.1",
-  "description": "A React hook for changing properties or visibility of a component based on media breakpoint",
+  "description": "A React hook for changing properties or visibility of a component based on css media query",
   "keywords": [
     "chakra ui",
     "breakpoint",
@@ -14,7 +14,7 @@
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
   "main": "dist/index.js",
-  "module": "dist/breakpoints.esm.js",
+  "module": "dist/media-query.esm.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
