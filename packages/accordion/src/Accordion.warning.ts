@@ -1,4 +1,4 @@
-import { isArray, warn, isUndefined } from "@chakra-ui/utils"
+import { isArray, warn, isUndefined, isEmptyArray } from "@chakra-ui/utils"
 import { AccordionHookProps, AccordionItemHookProps } from "./Accordion.hook"
 
 export function allowMultiple(props: AccordionHookProps) {

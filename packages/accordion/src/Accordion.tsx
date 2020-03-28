@@ -1,22 +1,22 @@
-import { PropsOf, chakra } from "@chakra-ui/system"
-import {
-  Omit,
-  createContext,
-  __DEV__,
-  NodeOrRenderProp,
-  isFunction,
-} from "@chakra-ui/utils"
+import { Collapse } from "@chakra-ui/collapse"
 import { ChevronDownIcon, IconProps } from "@chakra-ui/icons"
+import { chakra, PropsOf } from "@chakra-ui/system"
+import {
+  createContext,
+  isFunction,
+  NodeOrRenderProp,
+  Omit,
+  __DEV__,
+} from "@chakra-ui/utils"
 import React, { forwardRef } from "react"
 import {
   AccordionHookProps,
+  AccordionHookReturn,
   AccordionItemHookProps,
+  AccordionItemHookReturn,
   useAccordion,
   useAccordionItem,
-  AccordionHookReturn,
-  AccordionItemHookReturn,
 } from "./Accordion.hook"
-import { Collapse } from "@chakra-ui/collapse"
 
 type AccordionContext = Omit<AccordionHookReturn, "children" | "htmlProps">
 
@@ -62,7 +62,7 @@ if (__DEV__) {
 
 ///////////////////////////////////////////////////////////////////////////
 
-type AccordionItemContext = Omit<AccordionItemHookReturn, "htmlProps">
+type AccordionItemContext = Omit<AccordionItemHookReturn, "getRootProps">
 
 const [AccordionItemCtxProvider, useAccordionItemContext] = createContext<
   AccordionItemContext
@@ -76,6 +76,7 @@ const [AccordionItemCtxProvider, useAccordionItemContext] = createContext<
  */
 const StyledItem = chakra("div", {
   themeKey: "Accordion.Item",
+  pure: true,
 })
 
 export type AccordionItemProps = Omit<PropsOf<typeof StyledItem>, "children"> &
@@ -95,7 +96,7 @@ export const AccordionItem = forwardRef(
   (props: AccordionItemProps, ref: React.Ref<any>) => {
     const accordionContext = useAccordionContext()
 
-    const { htmlProps, ...context } = useAccordionItem({
+    const { getRootProps, ...context } = useAccordionItem({
       ...props,
       context: accordionContext,
     })
@@ -104,7 +105,7 @@ export const AccordionItem = forwardRef(
 
     return (
       <AccordionItemCtxProvider value={context}>
-        <StyledItem ref={ref} data-chakra-accordion-item="" {...htmlProps}>
+        <StyledItem data-chakra-accordion-item="" {...getRootProps({ ref })}>
           {isFunction(children)
             ? children({
                 isExpanded: !!context.isOpen,
@@ -154,7 +155,10 @@ export type AccordionButtonProps = PropsOf<typeof StyledButton>
  * AccordionButton
  *
  * The button that expands and collapses an accordion item.
- * It must be a child of `AccordionItem`
+ * It must be a child of `AccordionItem`.
+ *
+ * Note 🚨: Each accordion button must be wrapped in an heading tag,
+ * that is appropriate for the information architecture of the page.
  */
 export const AccordionButton = forwardRef(
   (props: AccordionButtonProps, ref: React.Ref<any>) => {

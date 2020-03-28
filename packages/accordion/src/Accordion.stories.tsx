@@ -12,15 +12,26 @@ export default {
   title: "Accordion",
 }
 
+/**
+ * By default, only one accordion can be visible
+ * at a time, and it can't be toggled.
+ *
+ * Note 🚨: Each accordion button must be wrapped in an heading tag,
+ * that is appropriate for the information architecture of the page.
+ */
 export const Basic = () => (
   <Accordion>
     <AccordionItem>
-      <AccordionButton>Section 1 title</AccordionButton>
+      <h2>
+        <AccordionButton>Section 1 title</AccordionButton>
+      </h2>
       <AccordionPanel>Panel 1</AccordionPanel>
     </AccordionItem>
 
     <AccordionItem>
-      <AccordionButton>Section 2 title</AccordionButton>
+      <h2>
+        <AccordionButton>Section 2 title</AccordionButton>
+      </h2>
       <AccordionPanel>Panel 2</AccordionPanel>
     </AccordionItem>
   </Accordion>

@@ -21,7 +21,7 @@ import { Box, Flex, Stack, Grid, Wrap, AspectRatio } from "@chakra-ui/layout"
 
 ## Usage
 
-Box is just `div` on steroids. It gives you the ability to pass style props
+Box is just a `div` on steroids. It gives you the ability to pass style props
 
 ```jsx
 <Box color="tomato" _hover={{ bg: "red.500", color: "white" }}>
