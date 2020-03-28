@@ -11,6 +11,8 @@ export type SpacerProps = PropsOf<typeof Spacer>
  * in a flex container.
  *
  * It will take up any available space.
+ *
+ * @see Docs https://chakra-ui.com/spacer
  */
 export const Spacer = chakra("div", {
   baseStyle: {
