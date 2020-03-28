@@ -5,8 +5,16 @@ export default {
   title: "Badge",
 }
 
-export const Basic = () => <Badge colorScheme="green">Success</Badge>
+/**
+ * Badges will use the `subtle` variant and gray color scheme by default.
+ *
+ * @see `/preset-base/components/Badge.ts`
+ */
+export const Basic = () => <Badge>Success</Badge>
 
+/**
+ * Badge comes in several color schemes for a give variant
+ */
 export const SolidBadge = () => {
   return (
     <React.Fragment>

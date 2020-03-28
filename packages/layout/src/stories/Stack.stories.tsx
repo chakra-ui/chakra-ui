@@ -1,8 +1,6 @@
 import React from "react"
 import { Box, Stack, StackDivider, Heading, Text } from ".."
 
-///////////////////////////////////////////////////////////////////////////////////
-
 export default {
   title: "Stack",
 }
@@ -58,7 +56,7 @@ export const WithResponsiveDivider = () => (
 
 export const WithDivider = () => (
   <>
-    <Stack divider={<StackDivider borderColor="red.200" />} spacing={4}>
+    <Stack divider={<StackDivider />} spacing={4}>
       <Box w="100%" h="40px" bg="yellow.200">
         1
       </Box>
@@ -70,12 +68,7 @@ export const WithDivider = () => (
       </Box>
     </Stack>
 
-    <Stack
-      mt={10}
-      direction="row"
-      divider={<StackDivider borderColor="red.200" />}
-      spacing={4}
-    >
+    <Stack mt={10} direction="row" divider={<StackDivider />} spacing={4}>
       <Box w="100%" h="40px" bg="yellow.200">
         1
       </Box>
@@ -89,18 +82,18 @@ export const WithDivider = () => (
   </>
 )
 
-function Feature({ title, desc, ...rest }: any) {
+function Feature({ title, children, ...rest }: any) {
   return (
     <Box
-      p={5}
-      shadow="md"
+      padding={5}
+      boxShadow="md"
       borderWidth="1px"
       flex="1"
       borderRadius="md"
       {...rest}
     >
-      <Heading fontSize="xl">{title}</Heading>
-      <Text mt={4}>{desc}</Text>
+      <Heading size="md">{title}</Heading>
+      <Text mt={2}>{children}</Text>
     </Box>
   )
 }
@@ -109,11 +102,11 @@ export const WithContent = () => (
   <Stack direction="row" spacing={8}>
     <Feature
       title="Plan Money"
-      desc="The future can be even brighter but a goal without a plan is just a wish"
+      children="The future can be even brighter but a goal without a plan is just a wish"
     />
     <Feature
       title="Save Money"
-      desc="You deserve good things. With a whooping 10-15% interest rate per annum, grow your savings."
+      children="You deserve good things. With a whooping 10-15% interest rate per annum, grow your savings."
     />
   </Stack>
 )
