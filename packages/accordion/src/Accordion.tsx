@@ -1,7 +1,7 @@
 import { PropsOf, chakra } from "@chakra-ui/system"
-import { Omit, createContext } from "@chakra-ui/utils"
+import { Omit, createContext, __DEV__ } from "@chakra-ui/utils"
 import { ChevronDownIcon, IconProps } from "@chakra-ui/icons"
-import * as React from "react"
+import React, { forwardRef } from "react"
 import {
   AccordionHookProps,
   AccordionItemHookProps,
@@ -18,55 +18,109 @@ const [AccordionCtxProvider, useAccordionContext] = createContext<
   AccordionContext
 >()
 
-const StyledAccordion = chakra("div", {
+/**
+ * Theming
+ *
+ * To style the wrapper `div` of the accordion,change the styles in
+ * `theme.components.Accordion` under the `Root` key
+ */
+const StyledRoot = chakra("div", {
   themeKey: "Accordion.Root",
 })
-export type AccordionProps = AccordionHookProps &
-  Omit<PropsOf<typeof StyledAccordion>, "onChange">
 
+export type AccordionProps = AccordionHookProps &
+  Omit<PropsOf<typeof StyledRoot>, "onChange">
+
+/**
+ * Accordion
+ *
+ * The wrapper that provides context and focus management
+ * for all accordion items.
+ *
+ * It wraps all accordion items in a `div` for better grouping.
+ */
 export function Accordion(props: AccordionProps) {
   const { children, htmlProps, ...context } = useAccordion(props)
   return (
     <AccordionCtxProvider value={context}>
-      <StyledAccordion data-chakra-accordion="" {...htmlProps}>
+      <StyledRoot data-chakra-accordion="" {...htmlProps}>
         {children}
-      </StyledAccordion>
+      </StyledRoot>
     </AccordionCtxProvider>
   )
 }
 
+if (__DEV__) {
+  Accordion.displayName = "Accordion"
+}
+
+///////////////////////////////////////////////////////////////////////////
+
 type AccordionItemContext = Omit<AccordionItemHookReturn, "htmlProps">
 
-const [AccordionItemProvider, useAccordionItemContext] = createContext<
+const [AccordionItemCtxProvider, useAccordionItemContext] = createContext<
   AccordionItemContext
 >()
 
-export function useAccordionItemState() {
-  const { isOpen, onClose, onOpen } = useAccordionItemContext()
-  return { isOpen, onClose, onOpen }
-}
-
-export type AccordionItemProps = PropsOf<typeof StyledAccordionItem> &
-  Omit<AccordionItemHookProps, "context">
-
-export function AccordionItem(props: AccordionItemProps) {
-  const accordionContext = useAccordionContext()
-  const { htmlProps, ...context } = useAccordionItem({
-    ...props,
-    context: accordionContext,
-  })
-  return (
-    <AccordionItemProvider value={context}>
-      <StyledAccordionItem data-chakra-accordion-item="" {...htmlProps} />
-    </AccordionItemProvider>
-  )
-}
-
-const StyledAccordionItem = chakra("div", {
+/**
+ * Theming
+ *
+ * To style the wrapper `div` of the accordion item,change the styles in
+ * `theme.components.Accordion` under the `Item` key
+ */
+const StyledItem = chakra("div", {
   themeKey: "Accordion.Item",
 })
 
-const StyledAccordionButton = chakra("button", {
+export type AccordionItemProps = PropsOf<typeof StyledItem> &
+  Omit<AccordionItemHookProps, "context">
+
+/**
+ * AccordionItem
+ *
+ * This represents a single accordion and provides the open-close
+ * behavior when the accordion button is clicked.
+ *
+ * It also provides context for the accordion button and panel.
+ */
+export const AccordionItem = forwardRef(
+  (props: AccordionItemProps, ref: React.Ref<any>) => {
+    const accordionContext = useAccordionContext()
+
+    const { htmlProps, ...context } = useAccordionItem({
+      ...props,
+      context: accordionContext,
+    })
+
+    return (
+      <AccordionItemCtxProvider value={context}>
+        <StyledItem ref={ref} data-chakra-accordion-item="" {...htmlProps} />
+      </AccordionItemCtxProvider>
+    )
+  },
+)
+
+if (__DEV__) {
+  AccordionItem.displayName = "AccordionItem"
+}
+
+/**
+ * React hook to get the state and actions of an accordion item
+ */
+export function useAccordionItemState() {
+  const { isOpen, isDisabled, onClose, onOpen } = useAccordionItemContext()
+  return { isOpen, onClose, isDisabled, onOpen }
+}
+
+///////////////////////////////////////////////////////////////////////////
+
+/**
+ * Theming
+ *
+ * To style all accordion buttons, change the styles in
+ * `theme.components.Accordion` under the `Button` key
+ */
+const StyledButton = chakra("button", {
   themeKey: "Accordion.Button",
   baseStyle: {
     display: "flex",
@@ -77,38 +131,83 @@ const StyledAccordionButton = chakra("button", {
   },
 })
 
-export type AccordionButtonProps = PropsOf<typeof StyledAccordionButton>
+export type AccordionButtonProps = PropsOf<typeof StyledButton>
 
-export function AccordionButton(props: AccordionButtonProps) {
-  const { getButtonProps } = useAccordionItemContext()
-  return (
-    <StyledAccordionButton
-      data-chakra-accordion-button=""
-      {...getButtonProps(props as any)}
-    />
-  )
+/**
+ * AccordionButton
+ *
+ * The button that expands and collapses an accordion item.
+ * It must be a child of `AccordionItem`
+ */
+export const AccordionButton = forwardRef(
+  (props: AccordionButtonProps, ref: React.Ref<any>) => {
+    const { getButtonProps } = useAccordionItemContext()
+    return (
+      <StyledButton
+        data-chakra-accordion-button=""
+        {...getButtonProps({ ...props, ref })}
+      />
+    )
+  },
+)
+
+if (__DEV__) {
+  AccordionButton.displayName = "AccordionButton"
 }
 
-const StyledAccordionPanel = chakra("div", {
+///////////////////////////////////////////////////////////////////////////
+
+/**
+ * Theming
+ *
+ * To style all accordion panels,change the styles in
+ * `theme.components.Accordion` under the `Panel` key
+ */
+const StyledPanel = chakra("div", {
   themeKey: "Accordion.Panel",
 })
 
-export type AccordionPanelProps = PropsOf<typeof StyledAccordionPanel>
+export type AccordionPanelProps = PropsOf<typeof StyledPanel>
 
-export function AccordionPanel(props: AccordionPanelProps) {
-  const { getPanelProps, isOpen } = useAccordionItemContext()
-  // remove hidden prop, 'coz we're using collapse height transition
-  const { hidden, ...panelProps } = getPanelProps(props)
+/**
+ * AccordionPanel
+ *
+ * The panel that holds the content for each accordion.
+ * It shows and hides based on the state login from the `AccordionItem`.
+ *
+ * It uses the `Collapse` component to animate it's height.
+ */
+export const AccordionPanel = forwardRef(
+  (props: AccordionPanelProps, ref: React.Ref<any>) => {
+    const { getPanelProps, isOpen } = useAccordionItemContext()
+    /**
+     * remove `hidden` prop, 'coz we're using height animation
+     */
+    const { hidden, ...panelProps } = getPanelProps({ ...props, ref })
 
-  return (
-    <Collapse isOpen={isOpen}>
-      <StyledAccordionPanel data-chakra-accordion-panel="" {...panelProps} />
-    </Collapse>
-  )
+    return (
+      <Collapse isOpen={isOpen}>
+        <StyledPanel data-chakra-accordion-panel="" {...panelProps} />
+      </Collapse>
+    )
+  },
+)
+
+if (__DEV__) {
+  AccordionPanel.displayName = "AccordionPanel"
 }
+
+///////////////////////////////////////////////////////////////////////////
 
 export type AccordionIconProps = IconProps
 
+/**
+ * AccordionIcon
+ *
+ * The icon that gives a visual cue of the open/close state of the accordion item.
+ *
+ * It rotates `180deg` based on the open/close state.
+ */
 export function AccordionIcon(props: AccordionIconProps) {
   const { isOpen, isDisabled } = useAccordionItemContext()
   return (
@@ -123,4 +222,8 @@ export function AccordionIcon(props: AccordionIconProps) {
       {...props}
     />
   )
+}
+
+if (__DEV__) {
+  AccordionIcon.displayName = "AccordionIcon"
 }

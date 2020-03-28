@@ -1,6 +1,6 @@
 # Migration Notes
 
-## Major
+## Changes
 
 - Support for `size` has been deprecated. Use `boxSize` prop. We've reserved the
   `size` prop to refer to component size variants.
@@ -51,7 +51,7 @@ const Box = chakra.div
 
 - All components can now take the pseudo style props (`_hover`, `_active`, etc.)
 
-## Improvements
+## Features
 
 Stack
 
