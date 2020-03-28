@@ -11,24 +11,27 @@ exports[`Button renders correctly 1`] = `
       <button
         aria-controls="accordion-panel-1"
         aria-expanded="false"
+        class="css-so65e"
         data-chakra-accordion-button=""
-        id="accordion-header-1"
+        id="accordion-button-1"
       >
         Section 1 title
       </button>
       <div
-        aria-labelledby="accordion-header-1"
-        data-chakra-accordion-panel=""
         hidden=""
-        id="accordion-panel-1"
-        role="region"
+        id="collapse-mock"
       >
-        Panel 1
+        <div
+          aria-labelledby="accordion-button-1"
+          class="css-t2ecxu"
+          data-chakra-accordion-panel=""
+          id="accordion-panel-1"
+          role="region"
+        >
+          Panel 1
+        </div>
       </div>
     </div>
   </div>
-  <div
-    class="__chakra--portal-manager"
-  />
 </DocumentFragment>
 `;

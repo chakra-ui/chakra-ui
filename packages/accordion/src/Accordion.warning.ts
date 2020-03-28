@@ -1,10 +1,13 @@
-import { isArray, warn } from "@chakra-ui/utils"
+import { isArray, warn, isUndefined } from "@chakra-ui/utils"
 import { AccordionHookProps, AccordionItemHookProps } from "./Accordion.hook"
 
 export function allowMultiple(props: AccordionHookProps) {
   const index = props.index || props.defaultIndex
+  const condition =
+    !isUndefined(index) && !isArray(index) && props.allowMultiple
+
   warn({
-    condition: Boolean(props.allowMultiple && !isArray(index)),
+    condition: !!condition,
     message: `If 'allowMultiple' is passed, then 'index' or 'defaultIndex' must be an array. You passed: ${typeof index},`,
   })
 }
