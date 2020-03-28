@@ -37,3 +37,5 @@ export const VisuallyHiddenInput = chakra("input", {
     style: visuallyHiddenStyle,
   },
 })
+
+export default VisuallyHidden
