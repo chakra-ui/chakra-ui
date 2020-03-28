@@ -1,7 +1,7 @@
 {
   "name": "@chakra-ui/visually-hidden",
   "version": "0.0.1",
-  "description": "A React component for adding visually hidden styles to elements",
+  "description": "A React component that visually hides it's content",
   "keywords": [
     "react",
     "component",
@@ -13,7 +13,7 @@
     "accessible",
     "visually hidden",
     "visually hidden component",
-    "sr only",
+    "sr-only",
     "screenreader"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",

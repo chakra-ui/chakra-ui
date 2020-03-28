@@ -47,6 +47,9 @@ const StyledAlert = chakra("div", {
     position: "relative",
     overflow: "hidden",
   },
+  attrs: {
+    role: "alert",
+  },
 })
 
 export const Alert = forwardRef((props: AlertProps, ref: React.Ref<any>) => {
@@ -66,7 +69,6 @@ export const Alert = forwardRef((props: AlertProps, ref: React.Ref<any>) => {
     <AlertContextProvider value={context as AlertContext}>
       <StyledAlert
         ref={ref}
-        role="alert"
         variant={variant}
         {...rest}
         colorScheme={colorScheme}

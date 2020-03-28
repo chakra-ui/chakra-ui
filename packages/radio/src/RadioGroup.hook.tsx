@@ -1,23 +1,45 @@
 import * as React from "react"
 import { useControllableProp, useId } from "@chakra-ui/hooks"
-import { isInputEvent, mergeRefs } from "@chakra-ui/utils"
+import { isInputEvent, mergeRefs, Dict } from "@chakra-ui/utils"
 
 type Value = string | number
+
 type EventOrValue = React.ChangeEvent<HTMLInputElement> | Value
 
 export interface RadioGroupHookProps {
+  /**
+   * The value of the radio to be `checked`
+   * (in controlled mode)
+   */
   value?: Value
+  /**
+   * The value of the radio to be `checked`
+   * initially (in uncontrolled mode)
+   */
   defaultValue?: Value
+  /**
+   * Function called once a radio is checked
+   * @param nextValue the value of the checked radio
+   */
   onChange?(nextValue: Value): void
+  /**
+   * The `name` attribute forwarded to each `radio` element
+   */
   name?: string
   /**
    * If `true`, input elements will receive
-   * `checked` attribute rather than the
-   * default `isChecked`
+   * `checked` attribute instead of `isChecked`.
+   *
+   * This assumes, you're using native radio inputs
    */
   isNative?: boolean
 }
 
+/**
+ * useRadioGroup
+ *
+ * React hook to manage a group of radio inputs
+ */
 export function useRadioGroup(props: RadioGroupHookProps = {}) {
   const {
     onChange: onChangeProp,
@@ -27,6 +49,7 @@ export function useRadioGroup(props: RadioGroupHookProps = {}) {
   } = props
 
   const [valueState, setValue] = React.useState<Value>(defaultValue || "")
+
   const [isControlled, derivedValue] = useControllableProp(
     valueProp,
     valueState,
@@ -81,7 +104,7 @@ export function useRadioGroup(props: RadioGroupHookProps = {}) {
       setValue,
     },
     state: { value: derivedValue },
-    getRadioProps: (props: any = {}) => ({
+    getRadioProps: (props: Dict = {}) => ({
       ...props,
       name,
       onChange,
@@ -90,7 +113,7 @@ export function useRadioGroup(props: RadioGroupHookProps = {}) {
         ? { checked: props.value === derivedValue }
         : { isChecked: props.value === derivedValue }),
     }),
-    getRootProps: (props: any = {}) => ({
+    getRootProps: (props: Dict = {}) => ({
       ...props,
       ref: mergeRefs(props.ref, rootRef),
       role: "radiogroup",
