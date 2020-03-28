@@ -160,10 +160,6 @@ interface AccordionItemHookOptions {
    */
   isOpen?: boolean
   /**
-   * If `true`, expands the accordion by on initial mount.
-   */
-  defaultIsOpen?: boolean
-  /**
    * If `true`, the accordion item will be disabled.
    */
   isDisabled?: boolean
