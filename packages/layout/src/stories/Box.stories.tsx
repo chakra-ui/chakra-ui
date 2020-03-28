@@ -1,5 +1,5 @@
 import React from "react"
-import { Box, Flex, Spacer, Wrap } from ".."
+import { Box, Flex, Spacer, Wrap, Kbd } from ".."
 
 export default {
   title: "Box",
@@ -10,6 +10,8 @@ export const basic = () => (
     Welcome to Box
   </Box>
 )
+
+export const kbd = () => <Kbd>Ctrl + L</Kbd>
 
 export const spacer = () => (
   <Flex color="white" direction={{ base: "column", md: "row" }}>

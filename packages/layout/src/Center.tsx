@@ -1,7 +1,8 @@
 import { chakra, PropsOf } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
+import React, { forwardRef, Children } from "react"
 
-export type CenterProps = PropsOf<typeof Center>
+export type CenterProps = PropsOf<typeof chakra.div>
 
 /**
  * Center
@@ -12,12 +13,23 @@ export type CenterProps = PropsOf<typeof Center>
  *
  * @see Docs https://chakra-ui.com/center
  */
-export const Center = chakra("div", {
-  baseStyle: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
+export const Center = forwardRef((props: CenterProps, ref: React.Ref<any>) => {
+  const { children, ...rest } = props
+
+  // enforce a single child
+  const child = Children.only(children)
+
+  return (
+    <chakra.div
+      ref={ref}
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      {...rest}
+    >
+      {child}
+    </chakra.div>
+  )
 })
 
 if (__DEV__) {

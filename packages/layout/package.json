@@ -5,7 +5,13 @@
   "keywords": [
     "layout",
     "component",
+    "grid",
+    "stack",
+    "wrap",
+    "box",
+    "aspect ratio",
     "ui",
+    "badge",
     "react",
     "primitives",
     "chakra ui"

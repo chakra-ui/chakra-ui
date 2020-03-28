@@ -42,6 +42,8 @@ const Box = chakra.div
 
 - AspectRatioBox now renamed to just `AspectRatio` to keep it concise
 
+- All components can now take the pseudo style props (`_hover`, `_active`, etc.)
+
 ## Improvements
 
 Stack
