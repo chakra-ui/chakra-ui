@@ -12,8 +12,8 @@ export interface RadioGroupHookProps {
   name?: string
   /**
    * If `true`, input elements will receive
-   * `checked` attribute rather than the
-   * default `isChecked`
+   * `isChecked` attribute rather than the
+   * default `checked`
    */
   isNative?: boolean
 }
@@ -86,8 +86,8 @@ export function useRadioGroup(props: RadioGroupHookProps = {}) {
       onChange,
       value: props.value,
       ...(isNative
-        ? { checked: props.value === derivedValue }
-        : { isChecked: props.value === derivedValue }),
+        ? { isChecked: props.value === derivedValue }
+        : { checked: props.value === derivedValue }),
     }),
     getRootProps: (props: any = {}) => ({
       ...props,
