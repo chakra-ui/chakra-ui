@@ -3,7 +3,7 @@ import { BoxProps } from "../Box";
 
 interface IPseudoBoxProps {
   /**
-   * Styles for CSS selector `&:after`
+   * Styles for CSS selector `&::after`
    *
    * NOTE:When using this, ensure the `content` is wrapped in a backtick.
    * @example
@@ -13,7 +13,7 @@ interface IPseudoBoxProps {
    */
   _after?: BoxProps;
   /**
-   * Styles for CSS selector `&:before`
+   * Styles for CSS selector `&::before`
    *
    * NOTE:When using this, ensure the `content` is wrapped in a backtick.
    * @example

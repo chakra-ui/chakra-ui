@@ -77,8 +77,8 @@ const PseudoBox = styled(Box)(
       [checked]: tx(_checked),
       [pressed]: tx(_pressed),
       [groupHover]: tx(_groupHover),
-      "&:before": tx(_before),
-      "&:after": tx(_after),
+      "&::before": tx(_before),
+      "&::after": tx(_after),
       "&:focus-within": tx(_focusWithin),
       "&::placeholder": _placeholder,
     });

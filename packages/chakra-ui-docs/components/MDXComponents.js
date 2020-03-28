@@ -69,7 +69,7 @@ const DocsHeading = props => (
       "&[id]": {
         pointerEvents: "none",
       },
-      "&[id]:before": {
+      "&[id]::before": {
         display: "block",
         height: " 6rem",
         marginTop: "-6rem",
