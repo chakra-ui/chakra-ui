@@ -12,6 +12,7 @@ import {
   Link,
 } from "@chakra-ui/core";
 import Header from "../components/Header";
+import GitHubButton from "../components/GitHubButton";
 import { DiGithubBadge } from "react-icons/di";
 import { MdAccessibility, MdPalette, MdGrain, MdEmail } from "react-icons/md";
 import { IoLogoTwitter, IoLogoLinkedin } from "react-icons/io";
@@ -100,16 +101,16 @@ export default () => {
               React applications.
             </Text>
 
-            <Box mt="6">
+            <Box mt="4">
               <NextLink href="/getting-started" passHref>
-                <Button size="lg" as="a" variantColor="teal">
+                <Button size="lg" as="a" variantColor="teal" m={2}>
                   Get Started
                 </Button>
               </NextLink>
               <Button
                 as="a"
                 size="lg"
-                ml={4}
+                m={2}
                 href="https://github.com/chakra-ui/chakra-ui/"
                 target="__blank"
                 leftIcon={props => <DiGithubBadge size="1.5em" {...props} />}
@@ -117,6 +118,10 @@ export default () => {
                 GitHub
               </Button>
             </Box>
+
+            <Flex mt="4" display={["flex", "none"]} justify="center">
+              <GitHubButton />
+            </Flex>
           </Box>
         </Container>
       </Box>
