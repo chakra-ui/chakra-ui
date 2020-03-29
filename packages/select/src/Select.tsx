@@ -106,7 +106,13 @@ export type SelectProps = Omit<Props, "ref"> &
 
 export const Select = forwardRef(
   (props: SelectProps, ref: React.Ref<HTMLSelectElement>) => {
-    const { rootProps, icon = SelectIcon, iconSize = 5, ...rest } = props
+    const {
+      rootProps,
+      placeholder,
+      icon = SelectIcon,
+      iconSize = 5,
+      ...rest
+    } = props
 
     const color = useColorModeValue("inherit", "whiteAlpha.800")
     const opacity = props.isReadOnly || props.isDisabled ? 0.5 : undefined
@@ -122,6 +128,7 @@ export const Select = forwardRef(
           paddingRight="2rem"
           ref={ref}
           color={color}
+          placeholder={placeholder}
           {...(select as Dict)}
         />
         <SelectIconWrapper opacity={opacity} color={select.color || color}>
