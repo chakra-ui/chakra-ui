@@ -26,3 +26,13 @@ export const FallbackElementExample = () => (
     fallback={<div style={{ width: 240, height: 240, background: "red" }} />}
   />
 )
+
+export const withFit = () => (
+  <Image
+    src="https://bit.ly/sage-adebayo"
+    fallbackSrc="https://via.placeholder.com/240"
+    fit="cover"
+    width="400px"
+    height="300px"
+  />
+)

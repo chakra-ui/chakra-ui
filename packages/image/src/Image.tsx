@@ -1,9 +1,9 @@
 import { chakra, PropsOf, SystemProps } from "@chakra-ui/system"
-import * as React from "react"
+import React, { forwardRef, Ref, ReactElement } from "react"
 import { ImageHookProps, useImage } from "./Image.hook"
-import { __DEV__ } from "@chakra-ui/utils"
+import { __DEV__, omit } from "@chakra-ui/utils"
 
-type ImageOptions = {
+interface ImageOptions {
   /**
    * Fallback image `src` to show if image is loading or image fails.
    *
@@ -13,7 +13,7 @@ type ImageOptions = {
   /**
    * Fallback element to show if image is loading or image fails.
    */
-  fallback?: React.ReactElement
+  fallback?: ReactElement
   /**
    * The native HTML `width` attribute to the passed to the `img`
    */
@@ -40,19 +40,37 @@ export type ImageProps = ImageHookProps &
   PropsOf<typeof StyledImage> &
   ImageOptions
 
-export const Image = React.forwardRef(
-  (props: ImageProps, ref: React.Ref<HTMLImageElement>) => {
-    const status = useImage(props)
+/**
+ * React component that renders an image with support
+ * for fallbacks
+ *
+ * @see Docs https://chakra-ui.com/image
+ */
+export const Image = forwardRef(
+  (props: ImageProps, ref: Ref<HTMLImageElement>) => {
     const { fallbackSrc, fallback, src, align, fit, ...rest } = props
 
-    const shared = { ref, objectFit: fit, objectPosition: align, ...rest }
+    const status = useImage(props)
+
+    const shared = {
+      ref,
+      objectFit: fit,
+      objectPosition: align,
+      ...omit(rest, ["onError", "onLoad"]),
+    }
 
     if (status !== "loaded") {
       if (fallback) return fallback
-      return <StyledImage src={fallbackSrc} {...shared} />
+      return (
+        <StyledImage
+          data-chakra-image-placeholder=""
+          src={fallbackSrc}
+          {...shared}
+        />
+      )
     }
 
-    return <StyledImage src={src} {...shared} />
+    return <StyledImage src={src} data-chakra-image="" {...shared} />
   },
 )
 

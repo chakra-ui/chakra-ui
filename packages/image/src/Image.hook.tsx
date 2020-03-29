@@ -1,9 +1,18 @@
-import React from "react"
 import { useIsomorphicEffect } from "@chakra-ui/hooks"
+import { useCallback, useRef, useState } from "react"
 
 export type ImageHookProps = {
+  /**
+   * The image `src` attribute
+   */
   src?: string
+  /**
+   * The image `srcset` attribute
+   */
   srcSet?: string
+  /**
+   * The image `sizes` attribute
+   */
   sizes?: string
   /**
    * A callback for when the image `src` has been loaded
@@ -17,21 +26,46 @@ export type ImageHookProps = {
 
 type Status = "loading" | "failed" | "pending" | "loaded"
 
+/**
+ * React hook that loads an image in the browser,
+ * and let's us know the `status` so we can show image
+ * fallback if it's still `pending`
+ *
+ * @returns the status of the image loading progress
+ *
+ * @example
+ * ```jsx
+ * function App(){
+ *   const status = useImage({ src: "image.png" })
+ *   return status === "loaded" ? <img src="image.png" /> : <Placeholder />
+ * }
+ * ```
+ */
 export function useImage(props: ImageHookProps) {
   const { src, srcSet, onLoad, onError, sizes } = props
 
-  const [status, setStatus] = React.useState<Status>(() => {
+  const [status, setStatus] = useState<Status>(() => {
     return src ? "loading" : "pending"
   })
 
-  const imageRef = React.useRef<HTMLImageElement | null>()
+  const imageRef = useRef<HTMLImageElement | null>()
 
-  const load = React.useCallback(() => {
+  const load = useCallback(() => {
     if (!src) return
 
     flush()
 
     const img = new Image()
+
+    img.src = src
+
+    if (srcSet) {
+      img.srcset = srcSet
+    }
+
+    if (sizes) {
+      img.sizes = sizes
+    }
 
     img.onload = event => {
       flush()
@@ -42,16 +76,6 @@ export function useImage(props: ImageHookProps) {
       flush()
       setStatus("failed")
       onError?.(error)
-    }
-
-    img.src = src
-
-    if (srcSet) {
-      img.srcset = srcSet
-    }
-
-    if (sizes) {
-      img.sizes = sizes
     }
 
     imageRef.current = img
