@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Select renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="css-79elbk"
+  >
+    <select
+      class="css-13bgkkf"
+      placeholder="Select an option"
+    >
+      <option
+        value=""
+      >
+        Select an option
+      </option>
+    </select>
+    <div
+      class="css-y2lw6n"
+    >
+      <svg
+        aria-hidden="true"
+        class="css-1hbz3kw"
+        data-chakra-custom-icon=""
+        focusable="false"
+        role="presentation"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </div>
+</DocumentFragment>
+`;
