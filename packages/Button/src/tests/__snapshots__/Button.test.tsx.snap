@@ -3,7 +3,7 @@
 exports[`Button renders correctly 1`] = `
 <DocumentFragment>
   <button
-    class="css-1fz6oat"
+    class="css-1ax3zce"
     type="button"
   />
 </DocumentFragment>
@@ -15,12 +15,12 @@ exports[`Button renders with icons 1`] = `
     class="css-1baulvz"
   >
     <button
-      class="css-1ge7njb"
+      class="css-w134wy"
       type="button"
     >
       <svg
-        class="css-1dk3y56"
-        data-custom-icon="true"
+        class="css-4e9yzq"
+        data-chakra-custom-icon=""
         focusable="false"
         role="presentation"
         viewBox="0 0 24 24"
@@ -39,13 +39,13 @@ exports[`Button renders with icons 1`] = `
       Email
     </button>
     <button
-      class="css-1y8ygh8"
+      class="css-1gkcy1z"
       type="button"
     >
       Arrow Forward
       <svg
-        class="css-1dit7v4"
-        data-custom-icon="true"
+        class="css-g5lpqx"
+        data-chakra-custom-icon=""
         focusable="false"
         role="presentation"
         viewBox="0 0 24 24"
@@ -64,19 +64,18 @@ exports[`shows spinner and loading text if isLoading and loadingText 1`] = `
 <DocumentFragment>
   <button
     aria-disabled="true"
-    class="css-1fz6oat"
+    class="css-1ax3zce"
     data-loading=""
     disabled=""
     type="button"
   >
     <span
-      class="css-b3c9b9"
+      class="css-9pkng7"
     >
       <div
-        class="css-17h8g1z"
+        class="css-1vi2ulp"
       >
         <span
-          class="css-0"
           style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
         >
           Loading...
@@ -92,19 +91,18 @@ exports[`shows spinner if isLoading 1`] = `
 <DocumentFragment>
   <button
     aria-disabled="true"
-    class="css-1fz6oat"
+    class="css-1ax3zce"
     data-loading=""
     disabled=""
     type="button"
   >
     <span
-      class="css-1o26g5g"
+      class="css-18fo44r"
     >
       <div
-        class="css-17h8g1z"
+        class="css-1vi2ulp"
       >
         <span
-          class="css-0"
           style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
         >
           Loading...

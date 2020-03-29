@@ -3,14 +3,12 @@
 exports[`AvatarGroup renders correctly 1`] = `
 <DocumentFragment>
   <div
-    class="css-m1jxd9"
+    class="css-18l6sx6"
   >
     <div
-      class="css-1uwbxn"
+      class="css-1v8mor7"
     >
-      <div
-        class="css-uwwqev"
-      >
+      <div>
         <svg
           fill="#fff"
           role="img"

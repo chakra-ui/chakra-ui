@@ -1,3 +1,4 @@
+import { Booleanish } from "./types"
 import React from "react"
 
 let _window: Window | undefined = undefined
@@ -46,8 +47,10 @@ export function normalizeEventKey(event: React.KeyboardEvent) {
   return isArrowKey ? `Arrow${key}` : key
 }
 
-export const attr = (condition: boolean | undefined) =>
-  condition ? "" : undefined
+export const attr = (condition: boolean | undefined) => {
+  const value = condition ? "" : undefined
+  return value as Booleanish
+}
 
 export function getOwnerDocument(node?: HTMLElement) {
   return node?.ownerDocument || document

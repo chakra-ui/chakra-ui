@@ -3,11 +3,11 @@
 exports[`Alert renders correctly 1`] = `
 <DocumentFragment>
   <div
-    class="css-rzlmyh"
+    class="css-crswnv"
     role="alert"
   >
     <svg
-      class="css-1keygne"
+      class="css-ovxd2s"
       focusable="false"
       role="presentation"
       viewBox="0 0 24 24"
@@ -18,12 +18,12 @@ exports[`Alert renders correctly 1`] = `
       />
     </svg>
     <div
-      class="css-11a523j"
+      class="css-13rx6m1"
     >
       Alert title
     </div>
     <div
-      class="css-0"
+      class="css-qkn75e"
     >
       Alert description
     </div>

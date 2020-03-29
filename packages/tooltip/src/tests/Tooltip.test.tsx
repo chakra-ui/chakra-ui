@@ -41,9 +41,9 @@ test("should have no violations", async () => {
     jest.advanceTimersByTime(200)
   })
 
-  await waitForDomChange()
+  const tooltip = screen.queryByRole("tooltip") as HTMLElement
 
-  axe(screen.queryByRole("tooltip") as any).then(res => {
+  axe(tooltip).then(res => {
     expect(res).toHaveNoViolations()
   })
 })
@@ -63,7 +63,7 @@ test("shows on mouseover and closes on mouseout", async () => {
     jest.advanceTimersByTime(200)
   })
 
-  await waitForDomChange()
+  // await waitForDomChange()
 
   expect(tools.asFragment()).toMatchSnapshot()
   expect(screen.getByText(buttonLabel)).toBeInTheDocument()

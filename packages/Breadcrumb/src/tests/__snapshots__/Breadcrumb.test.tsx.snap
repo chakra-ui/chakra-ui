@@ -4,16 +4,12 @@ exports[`Breadcrumb renders correctly 1`] = `
 <DocumentFragment>
   <nav
     aria-label="breadcrumb"
-    class="css-0"
   >
-    <ol
-      class="css-0"
-    >
+    <ol>
       <li
-        class="css-18biwo"
+        class="css-uooi3e"
       >
         <a
-          class="css-0"
           href="#"
         >
           Link 1
@@ -26,10 +22,9 @@ exports[`Breadcrumb renders correctly 1`] = `
         </span>
       </li>
       <li
-        class="css-18biwo"
+        class="css-uooi3e"
       >
         <a
-          class="css-0"
           href="#"
         >
           Link 2
@@ -42,11 +37,9 @@ exports[`Breadcrumb renders correctly 1`] = `
         </span>
       </li>
       <li
-        class="css-18biwo"
+        class="css-uooi3e"
       >
-        <a
-          class="css-0"
-        >
+        <a>
           Link 3
         </a>
       </li>

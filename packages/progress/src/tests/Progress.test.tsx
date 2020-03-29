@@ -5,15 +5,9 @@ import { Progress, CircularProgress } from ".."
 test("Progress renders correctly", () => {
   const { asFragment } = render(
     <div>
-      <Progress color="green" variantSize="sm" value={20} />
-      <Progress color="blue" variantSize="md" hasStripe value={40} />
-      <Progress
-        color="yellow"
-        variantSize="lg"
-        hasStripe
-        isAnimated
-        value={80}
-      />
+      <Progress color="green" size="sm" value={20} />
+      <Progress color="blue" size="md" hasStripe value={40} />
+      <Progress color="yellow" size="lg" hasStripe isAnimated value={80} />
     </div>,
   )
   expect(asFragment()).toMatchSnapshot()
@@ -35,7 +29,7 @@ test("CircularProgress renders correctly", () => {
 })
 
 test("Progress: has the proper aria, data, and role attributes", () => {
-  const utils = render(<Progress color="green" variantSize="sm" value={20} />)
+  const utils = render(<Progress color="green" size="sm" value={20} />)
   const progress = utils.getByRole("progressbar")
 
   expect(progress).not.toHaveAttribute("data-indeterminate")
@@ -45,7 +39,7 @@ test("Progress: has the proper aria, data, and role attributes", () => {
   expect(progress).not.toHaveAttribute("aria-valuetext")
 
   // rerender as indeterminate
-  utils.rerender(<Progress color="green" variantSize="sm" value={undefined} />)
+  utils.rerender(<Progress color="green" size="sm" value={undefined} />)
 
   expect(progress).toHaveAttribute("data-indeterminate")
   expect(progress).not.toHaveAttribute("aria-valuenow")

@@ -3,7 +3,7 @@
 exports[`Icon renders a third-party icon correctly 1`] = `
 <DocumentFragment>
   <svg
-    class="css-1jvcoqg"
+    class="css-10damqg"
     data-chakra-custom-icon=""
     fill="currentColor"
     focusable="false"
@@ -25,7 +25,7 @@ exports[`Icon renders a third-party icon correctly 1`] = `
 exports[`Icon renders correctly 1`] = `
 <DocumentFragment>
   <svg
-    class="css-74todn"
+    class="css-5vc9i4"
     focusable="false"
     role="presentation"
     viewBox="0 0 24 24"

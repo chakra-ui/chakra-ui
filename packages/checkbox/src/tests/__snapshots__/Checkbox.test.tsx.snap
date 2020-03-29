@@ -14,8 +14,5 @@ exports[`Checkbox renders correctly 1`] = `
       This is custom checkbox
     </div>
   </label>
-  <div
-    class="__chakra--portal-manager"
-  />
 </DocumentFragment>
 `;

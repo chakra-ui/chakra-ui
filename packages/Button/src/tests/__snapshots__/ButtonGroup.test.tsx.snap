@@ -6,25 +6,25 @@ exports[`ButtonGroup renders correctly 1`] = `
     class="css-1baulvz"
   >
     <button
-      class="css-1ge7njb"
+      class="css-w134wy"
       type="button"
     >
       Button 1
     </button>
     <button
-      class="css-1ge7njb"
+      class="css-w134wy"
       type="button"
     >
       Button 2
     </button>
     <button
-      class="css-1ge7njb"
+      class="css-w134wy"
       type="button"
     >
       Button 3
     </button>
     <button
-      class="css-1y8ygh8"
+      class="css-1gkcy1z"
       type="button"
     >
       Button 4

@@ -3,12 +3,11 @@
 exports[`FormControl renders correctly in default state 1`] = `
 <DocumentFragment>
   <div
-    class="css-0"
     data-chakra-form-control=""
     role="group"
   >
     <label
-      class="css-14m7lnm"
+      class="css-1itjpji"
       data-chakra-form-label=""
       for="name"
       id="name-label"
@@ -17,7 +16,7 @@ exports[`FormControl renders correctly in default state 1`] = `
     </label>
     <input
       aria-describedby="name-helptext"
-      class="css-npwrnz"
+      class="css-19laueo"
       id="name"
       placeholder="Name"
     />
@@ -35,12 +34,11 @@ exports[`FormControl renders correctly in default state 1`] = `
 exports[`FormControl renders correctly when invalid 1`] = `
 <DocumentFragment>
   <div
-    class="css-0"
     data-chakra-form-control=""
     role="group"
   >
     <label
-      class="css-14m7lnm"
+      class="css-1itjpji"
       data-chakra-form-label=""
       data-invalid=""
       for="name"
@@ -51,7 +49,7 @@ exports[`FormControl renders correctly when invalid 1`] = `
     <input
       aria-describedby="name-feedback name-helptext"
       aria-invalid="true"
-      class="css-npwrnz"
+      class="css-19laueo"
       id="name"
       placeholder="Name"
     />
@@ -63,7 +61,7 @@ exports[`FormControl renders correctly when invalid 1`] = `
       Enter your name please!
     </div>
     <svg
-      class="css-5upt0k"
+      class="css-12js7id"
       data-form-error-icon=""
       focusable="false"
       role="presentation"
@@ -89,12 +87,11 @@ exports[`FormControl renders correctly when invalid 1`] = `
 exports[`FormControl renders correctly when required 1`] = `
 <DocumentFragment>
   <div
-    class="css-0"
     data-chakra-form-control=""
     role="group"
   >
     <label
-      class="css-14m7lnm"
+      class="css-1itjpji"
       data-chakra-form-label=""
       for="name"
       id="name-label"
@@ -110,7 +107,7 @@ exports[`FormControl renders correctly when required 1`] = `
     <input
       aria-describedby="name-helptext"
       aria-required="true"
-      class="css-npwrnz"
+      class="css-19laueo"
       id="name"
       placeholder="Name"
     />

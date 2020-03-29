@@ -1,5 +1,5 @@
 import * as React from "react"
-import { createChakra, PropsOf } from "@chakra-ui/system"
+import { chakra, PropsOf } from "@chakra-ui/system"
 import { render, fireEvent } from "@chakra-ui/test-utils"
 import {
   FormControl,
@@ -16,7 +16,7 @@ type OmittedTypes = "disabled" | "required" | "readOnly"
 type InputProps = Omit<PropsOf<typeof StyledInput>, OmittedTypes> & ControlProps
 
 // Create an input that consumes useField
-const StyledInput = createChakra<
+const StyledInput = chakra<
   "input",
   { focusBorderColor?: string; errorBorderColor?: string }
 >("input", { themeKey: "Input" })

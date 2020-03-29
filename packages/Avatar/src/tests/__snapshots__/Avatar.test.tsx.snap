@@ -3,11 +3,9 @@
 exports[`Avatar renders correctly 1`] = `
 <DocumentFragment>
   <div
-    class="css-1r76fty"
+    class="css-1tld0yf"
   >
-    <div
-      class="css-uwwqev"
-    >
+    <div>
       <svg
         fill="#fff"
         role="img"
@@ -30,11 +28,9 @@ exports[`Avatar renders correctly 1`] = `
 exports[`Avatar with AvatarBadge renders correctly 1`] = `
 <DocumentFragment>
   <div
-    class="css-1r76fty"
+    class="css-1tld0yf"
   >
-    <div
-      class="css-uwwqev"
-    >
+    <div>
       <svg
         fill="#fff"
         role="img"
@@ -51,7 +47,7 @@ exports[`Avatar with AvatarBadge renders correctly 1`] = `
       </svg>
     </div>
     <div
-      class="css-9pupvf"
+      class="css-uyjfqb"
     />
   </div>
 </DocumentFragment>
