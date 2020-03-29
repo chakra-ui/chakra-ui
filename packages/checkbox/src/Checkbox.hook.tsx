@@ -66,7 +66,7 @@ export interface CheckboxHookProps {
   id?: string
 }
 
-export function useCheckbox(props: CheckboxHookProps) {
+export function useCheckbox(props: CheckboxHookProps = {}) {
   const {
     defaultIsChecked,
     isChecked: checkedProp,
