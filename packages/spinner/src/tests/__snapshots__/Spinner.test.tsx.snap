@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Spinner renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="css-1nibdme"
+  >
+    <span
+      style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
+    >
+      Loading...
+    </span>
+  </div>
+</DocumentFragment>
+`;
