@@ -24,3 +24,10 @@ web apps. It should shop the following:
     return <Button size={size}>This is a box</Button>
   }
   ```
+
+## Status
+
+- Get code from:
+  https://github.com/kripod/react-hooks/tree/master/packages/web-api-hooks
+
+NB: With add proper attribution, mention @kripod and link to repo code.

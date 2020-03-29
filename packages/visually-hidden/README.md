@@ -1,7 +1,8 @@
 # @chakra-ui/visually-hidden
 
-A React component that visually hides it's content but exposes it to
-screen-readers.
+The visually hidden component styles itself so that it’s content is not visible,
+but it is available to assistive technologies like screen readers and other text
+to speech programs.
 
 ## Installation
 
@@ -28,3 +29,8 @@ import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 // for visually hidden input fields
 <VisuallyHiddenInput type="checkbox" defaultChecked/>
 ```
+
+## References
+
+- https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+- https://a11yproject.com/posts/how-to-hide-content/
