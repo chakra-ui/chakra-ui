@@ -38,6 +38,7 @@ type Status = "loading" | "failed" | "pending" | "loaded"
  * @returns the status of the image loading progress
  *
  * @example
+ *
  * ```jsx
  * function App(){
  *   const status = useImage({ src: "image.png" })

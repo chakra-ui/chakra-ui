@@ -1,11 +1,17 @@
-import { chakra, SystemProps } from "@chakra-ui/system"
+import {
+  chakra,
+  SystemProps,
+  useComponentDefaults,
+  PropsOf,
+} from "@chakra-ui/system"
 import { getValidChildren } from "@chakra-ui/utils"
 import * as React from "react"
-import { AvatarProps } from "./Avatar"
+import { AvatarProps, baseStyle } from "./Avatar"
 
-const MoreAvatarLabel = chakra("div", {
+const MoreAvatar = chakra("span", {
   themeKey: "Avatar",
   baseStyle: props => ({
+    ...baseStyle,
     bg: props.colorMode === "light" ? "gray.200" : "whiteAlpha.400",
   }),
 })
@@ -27,59 +33,72 @@ interface AvatarGroupOptions {
   max?: number
 }
 
-export type AvatarGroupProps = AvatarGroupOptions & AvatarProps
+export type AvatarGroupProps = AvatarGroupOptions & PropsOf<typeof StyledGroup>
 
+const StyledGroup = chakra("div", {
+  baseStyle: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    flexDirection: "row-reverse",
+  },
+  attrs: {
+    role: "group",
+  },
+})
+
+/**
+ * AvatarGroup
+ *
+ * React component to displays a number of avatars grouped together in a stack.
+ */
 export const AvatarGroup = (props: AvatarGroupProps) => {
+  const defaults = useComponentDefaults("Avatar")
+
   const {
     children,
     borderColor,
     max,
     spacing = -3,
-    colorScheme,
+    size = defaults?.size,
     ...rest
   } = props
 
   const validChildren = getValidChildren(children)
 
+  // get the avatars within the max
   const childrenWithinMax = max ? validChildren.slice(0, max) : validChildren
 
-  const remainingAvatarCount = max && validChildren.length - max
+  // get the remaining avatar count
+  const moreAvatarCount = max && validChildren.length - max
 
-  // Reversing the children is a great way to avoid using zIndex
-  // to overlap the avatars
+  /**
+   * Reversing the children is a great way to avoid using zIndex
+   * to overlap the avatars
+   */
   const reversedChildren = childrenWithinMax.reverse()
-
-  type AvatarElement = React.ReactElement<AvatarProps>
 
   const clones = reversedChildren.map((child, index) => {
     const isFirstAvatar = index === 0
 
-    return React.cloneElement(child as AvatarElement, {
+    return React.cloneElement(child as any, {
       marginRight: isFirstAvatar ? 0 : spacing,
-      colorScheme,
-      borderColor: child.props["borderColor"] || borderColor,
+      size,
+      borderColor: child.props.borderColor || borderColor,
       showBorder: true,
     })
   })
 
   return (
-    <chakra.div
-      display="flex"
-      alignItems="center"
-      justifyContent="flex-end"
-      flexDirection="row-reverse"
-      {...rest}
-    >
-      {remainingAvatarCount && (
-        <MoreAvatarLabel
-          colorScheme={colorScheme}
+    <StyledGroup data-chakra-avatar-group="" {...rest}>
+      {moreAvatarCount && (
+        <MoreAvatar
+          size={size}
           marginLeft={spacing}
-          children={`+${remainingAvatarCount}`}
+          children={`+${moreAvatarCount}`}
         />
       )}
       {clones}
-    </chakra.div>
+    </StyledGroup>
   )
 }
-
-export default AvatarGroup
