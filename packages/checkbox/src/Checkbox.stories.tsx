@@ -1,5 +1,6 @@
 import * as React from "react"
 import { Checkbox } from "./Checkbox"
+import { CheckboxGroup } from "./CheckboxGroup"
 import { useCheckbox } from "."
 
 export default {
@@ -122,4 +123,17 @@ export const Controlled = () => {
   }
 
   return <Checkbox isChecked={value} onChange={handleChange} />
+}
+
+export const CheckboxGroupExample = () => {
+  return (
+    <CheckboxGroup
+      defaultValue={["one", "two"]}
+      onChange={value => console.log(value)}
+    >
+      <Checkbox value="one">One</Checkbox>
+      <Checkbox value="two">Two</Checkbox>
+      <Checkbox value="three">Three</Checkbox>
+    </CheckboxGroup>
+  )
 }
