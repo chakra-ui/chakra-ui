@@ -4,6 +4,7 @@ import { isInputEvent, addItem, removeItem } from "@chakra-ui/utils"
 
 type Value = string | number
 type ArrayOfValue = Value[]
+type EventOrValue = React.ChangeEvent<HTMLInputElement> | Value
 
 export interface CheckboxGroupProps {
   /**
@@ -19,6 +20,17 @@ export interface CheckboxGroupProps {
    */
   onChange?: (nextState: ArrayOfValue) => void
 }
+
+///////////////////////////////////////////////////////////////////////////
+
+/**
+ * useCheckboxGroup
+ *
+ * React hook that provides all the state management logic
+ * for a group of checkboxes.
+ *
+ * It is consumed by the `CheckboxGroup` component
+ */
 
 export function useCheckboxGroup(props: CheckboxGroupProps = {}) {
   const { defaultValue, value: valueProp, onChange: onChangeProp } = props
@@ -37,8 +49,6 @@ export function useCheckboxGroup(props: CheckboxGroupProps = {}) {
     },
     [isControlled, onChangeProp],
   )
-
-  type EventOrValue = React.ChangeEvent<HTMLInputElement> | Value
 
   const onChange = React.useCallback(
     (eventOrValue: EventOrValue) => {

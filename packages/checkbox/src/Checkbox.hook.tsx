@@ -66,6 +66,17 @@ export interface CheckboxHookProps {
   id?: string
 }
 
+///////////////////////////////////////////////////////////////////////////
+
+/**
+ * useCheckbox
+ *
+ * React hook that provides all the state and focus management logic
+ * for a checkbox.
+ *
+ * It is consumed by the `Checkbox` component
+ */
+
 export function useCheckbox(props: CheckboxHookProps) {
   const {
     defaultIsChecked,

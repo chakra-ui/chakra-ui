@@ -1,9 +1,7 @@
 {
   "name": "chakra-ui",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": ["packages/*"],
   "scripts": {
     "bundlesize": "bundlesize -c bundlesize.config.json",
     "commit": "git-cz",
@@ -79,9 +77,7 @@
     "path": "node_modules/cz-conventional-changelog"
   },
   "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
+    "extends": ["@commitlint/config-conventional"]
   },
   "config": {
     "commitizen": {
