@@ -39,6 +39,8 @@ export function Icon(props: IconProps) {
     focusable,
     role,
     flexShrink: 0,
+    width: size,
+    height: size,
   }
 
   // If you're using an icon-library like `react-icons`

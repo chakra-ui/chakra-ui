@@ -142,7 +142,9 @@ export const withAriaLabel = () => (
     aria-label="3 Notifications"
   >
     <button style={{ fontSize: 25 }}>
-      <span>🔔</span>
+      <span role="img" aria-label="notification">
+        🔔
+      </span>
       <span>3</span>
     </button>
   </Tooltip>

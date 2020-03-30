@@ -1,6 +1,21 @@
-import React from "react"
-import { userEvent, render } from "@chakra-ui/test-utils"
+import * as React from "react"
+import { render, userEvent, renderHook, invoke } from "@chakra-ui/test-utils"
 import { Checkbox, useCheckbox, CheckboxHookProps } from ".."
+        
+test("Checkbox renders correctly", () => {
+  const utils = render(<Checkbox />)
+  expect(utils.asFragment()).toMatchSnapshot()
+})
+
+test("useCheckbox should return object", () => {
+  const { result } = renderHook(() => useCheckbox({}))
+  expect(typeof result.current).toBe("object")
+})
+
+test("useCheckbox should return object with 4 keys", () => {
+  const { result } = renderHook(() => useCheckbox({}))
+  expect(Object.keys(result.current).length).toEqual(4)
+})
 
 test("Checkbox renders correctly", () => {
   const utils = render(<Checkbox>This is custom checkbox</Checkbox>)
