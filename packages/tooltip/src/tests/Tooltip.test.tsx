@@ -1,13 +1,6 @@
+import { act, axe, fireEvent, render, screen } from "@chakra-ui/test-utils"
 import React from "react"
 import { Tooltip } from ".."
-import {
-  render,
-  act,
-  fireEvent,
-  screen,
-  waitForDomChange,
-  axe,
-} from "@chakra-ui/test-utils"
 
 beforeAll(() => {
   jest.useFakeTimers()
@@ -41,9 +34,9 @@ test("should have no violations", async () => {
     jest.advanceTimersByTime(200)
   })
 
-  await waitForDomChange()
+  const tooltip = screen.queryByRole("tooltip") as HTMLElement
 
-  axe(screen.queryByRole("tooltip") as any).then(res => {
+  axe(tooltip).then(res => {
     expect(res).toHaveNoViolations()
   })
 })
@@ -63,7 +56,7 @@ test("shows on mouseover and closes on mouseout", async () => {
     jest.advanceTimersByTime(200)
   })
 
-  await waitForDomChange()
+  // await waitForDomChange()
 
   expect(tools.asFragment()).toMatchSnapshot()
   expect(screen.getByText(buttonLabel)).toBeInTheDocument()

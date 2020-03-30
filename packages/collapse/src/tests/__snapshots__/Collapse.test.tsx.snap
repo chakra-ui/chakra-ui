@@ -4,9 +4,8 @@ exports[`Collapse renders correctly 1`] = `
 <DocumentFragment>
   <div
     aria-hidden="true"
-    class="css-0"
     data-chakra-collapse=""
-    style="height: 0px; opacity: 0; transition: height 200ms ease,opacity 200ms ease-in-out, transform 200ms ease-in-out; overflow: hidden;"
+    style="height: 0px; opacity: 0; transition: height 200ms ease, opacity 200ms ease, transform 200ms ease; overflow: hidden;"
   >
     <div>
       sfsjdfkbfkjdfdjksf

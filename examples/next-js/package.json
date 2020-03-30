@@ -1,0 +1,20 @@
+{
+  "name": "next-js",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "alias": {
+    "react": "../../node_modules/react",
+    "react-dom": "../../node_modules/react-dom",
+    "@chakra-ui/system": "../../node_modules/@chakra-ui/system",
+    "@chakra-ui/image": "../../node_modules/@chakra-ui/image",
+    "@chakra-ui/preset-base": "../../node_modules/@chakra-ui/preset-base"
+  },
+  "dependencies": {
+    "next": "9.3.2"
+  }
+}

@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Popover renders correctly 1`] = `
+<DocumentFragment>
+  <div>
+    <button
+      aria-controls="popover-content-1"
+      aria-expanded="false"
+      aria-haspopup="dialog"
+      id="popover-trigger-1"
+    >
+      Open
+    </button>
+    <div
+      aria-hidden="true"
+      hidden=""
+      id="popover-content-1"
+      role="dialog"
+      style="position: absolute; top: 10px; left: 0px;"
+      tabindex="-1"
+    >
+      Popover content
+    </div>
+    <button>
+      Close
+    </button>
+  </div>
+</DocumentFragment>
+`;

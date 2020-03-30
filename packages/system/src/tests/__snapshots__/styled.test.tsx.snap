@@ -3,7 +3,7 @@
 exports[`apply property in theme works correctly 1`] = `
 <DocumentFragment>
   <code
-    class="css-i84ezk"
+    class="css-pc6dmb"
   >
     code
   </code>
@@ -13,6 +13,7 @@ exports[`apply property in theme works correctly 1`] = `
 exports[`attrs option works correctly 1`] = `
 <DocumentFragment>
   <button
+    class="css-159gof9"
     type="button"
   >
     Click
@@ -33,7 +34,7 @@ exports[`chakra elements - renders with style props 1`] = `
 exports[`chakra function - renders currently 2`] = `
 <DocumentFragment>
   <button
-    class="css-1odjher"
+    class="css-gmtise"
   >
     Click me
   </button>

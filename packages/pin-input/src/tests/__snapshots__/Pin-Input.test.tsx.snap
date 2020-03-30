@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PinInput renders correctly 1`] = `
+<DocumentFragment>
+  <div>
+    <input
+      aria-label="Please enter your pin code"
+      autocomplete="not-allowed"
+      inputmode="numeric"
+      placeholder="○"
+      value=""
+    />
+    <input
+      aria-label="Please enter your pin code"
+      autocomplete="not-allowed"
+      inputmode="numeric"
+      placeholder="○"
+      value=""
+    />
+    <input
+      aria-label="Please enter your pin code"
+      autocomplete="not-allowed"
+      inputmode="numeric"
+      placeholder="○"
+      value=""
+    />
+  </div>
+</DocumentFragment>
+`;

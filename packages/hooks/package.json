@@ -30,7 +30,7 @@
     "prebuild": "rimraf dist",
     "start": "tsdx watch",
     "build": "tsdx build",
-    "test": "tsdx test --env=jsdom",
+    "test": "tsdx test --env=jsdom --passWithNoTests",
     "lint": "tsdx lint src",
     "version": "yarn build"
   },
@@ -51,7 +51,7 @@
     "@types/body-scroll-lock": "2.6.1",
     "body-scroll-lock": "^3.0.1",
     "compute-scroll-into-view": "1.0.11",
-    "react-uid": "2.2.0",
+    "@reach/auto-id": "0.9.0",
     "copy-to-clipboard": "3.3.1"
   },
   "peerDependencies": {

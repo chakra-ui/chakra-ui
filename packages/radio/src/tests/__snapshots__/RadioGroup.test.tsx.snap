@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RadioGroup renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    role="radiogroup"
+  >
+    <label>
+      <input
+        name="radio-1"
+        type="radio"
+        value="a"
+      />
+      <span>
+        a
+      </span>
+    </label>
+    <label>
+      <input
+        name="radio-1"
+        type="radio"
+        value="b"
+      />
+      <span>
+        b
+      </span>
+    </label>
+  </div>
+</DocumentFragment>
+`;

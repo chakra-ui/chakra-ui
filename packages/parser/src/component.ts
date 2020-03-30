@@ -124,11 +124,19 @@ export function getModifierStyles(
 
     if (!styleObjectOrFn) continue
 
-    const style = runIfFn(styleObjectOrFn, computedProps)
+    const style = runIfFn(styleObjectOrFn, computedProps) as Dict | undefined
 
-    styles = isSubcomponent(themeKey)
-      ? deepmerge(styles, style[subComponent])
-      : deepmerge(styles, style)
+    if (!style) continue
+
+    const subcomponentStyle = style[subComponent]
+
+    const _isSubcomponent = isSubcomponent(themeKey)
+
+    if (_isSubcomponent && subcomponentStyle) {
+      styles = deepmerge(styles, subcomponentStyle)
+    } else {
+      styles = deepmerge(styles, style)
+    }
   }
 
   return styles

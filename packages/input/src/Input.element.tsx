@@ -1,7 +1,7 @@
 import * as React from "react"
 import { useInputGroup } from "./Input.group"
 import { chakra, useComponentStyle, PropsOf } from "@chakra-ui/system"
-import { useIsomorphicEffect } from "@chakra-ui/hooks"
+import { useSafeLayoutEffect } from "@chakra-ui/hooks"
 
 export type InputElementProps = PropsOf<typeof chakra.div> & {
   placement?: "left" | "right"
@@ -46,7 +46,7 @@ export const InputLeftElement = React.forwardRef(
   (props: PropsOf<typeof InputElement>, ref: React.Ref<HTMLDivElement>) => {
     const group = useInputGroup()
 
-    useIsomorphicEffect(() => {
+    useSafeLayoutEffect(() => {
       group.setHasLeftElement(true)
       return () => {
         group.setHasLeftElement(false)
@@ -63,7 +63,7 @@ export const InputRightElement = React.forwardRef(
   (props: PropsOf<typeof InputElement>, ref: React.Ref<HTMLDivElement>) => {
     const group = useInputGroup()
 
-    useIsomorphicEffect(() => {
+    useSafeLayoutEffect(() => {
       group.setHasRightElement(true)
       return () => {
         group.setHasRightElement(false)

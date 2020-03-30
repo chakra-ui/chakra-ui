@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CircularProgress renders correctly 1`] = `
+<DocumentFragment>
+  <div>
+    <div
+      aria-valuemax="100"
+      aria-valuemin="0"
+      aria-valuenow="20"
+      class="css-1nv241x"
+      role="progressbar"
+    >
+      <svg
+        class="css-yqm9dt"
+        viewBox="0 0 100 100"
+      >
+        <circle
+          cx="50"
+          cy="50"
+          data-chakra-progress-track=""
+          fill="transparent"
+          r="42"
+          stroke="#edebe9"
+          stroke-width="5px"
+        />
+        <circle
+          css="You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."
+          cx="50"
+          cy="50"
+          data-chakra-progress-indicator=""
+          fill="transparent"
+          r="42"
+          stroke="#0078d4"
+          stroke-dasharray="52.800000000000004 211.2"
+          stroke-dashoffset="66"
+          stroke-width="5px"
+        />
+      </svg>
+    </div>
+    <div
+      aria-valuemax="100"
+      aria-valuemin="0"
+      aria-valuenow="60"
+      class="css-12hrydv"
+      role="progressbar"
+    >
+      <svg
+        class="css-wslvd"
+        viewBox="0 0 100 100"
+      >
+        <circle
+          cx="50"
+          cy="50"
+          data-chakra-progress-track=""
+          fill="transparent"
+          r="42"
+          stroke="transparent"
+          stroke-width="10"
+        />
+        <circle
+          css="You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."
+          cx="50"
+          cy="50"
+          data-chakra-progress-indicator=""
+          fill="transparent"
+          r="42"
+          stroke="#0078d4"
+          stroke-dasharray="158.4 105.6"
+          stroke-dashoffset="66"
+          stroke-width="10"
+        />
+      </svg>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Progress renders correctly 1`] = `
+<DocumentFragment>
+  <div>
+    <div
+      class="css-7g4473"
+    >
+      <div
+        aria-valuemax="100"
+        aria-valuemin="0"
+        aria-valuenow="20"
+        class="css-1xdhyk6"
+        role="progressbar"
+      />
+    </div>
+    <div
+      class="css-ib5rfm"
+    >
+      <div
+        aria-valuemax="100"
+        aria-valuemin="0"
+        aria-valuenow="40"
+        class="css-1546ynt"
+        role="progressbar"
+      />
+    </div>
+    <div
+      class="css-120z5g9"
+    >
+      <div
+        aria-valuemax="100"
+        aria-valuemin="0"
+        aria-valuenow="80"
+        class="css-d77dwy"
+        role="progressbar"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
