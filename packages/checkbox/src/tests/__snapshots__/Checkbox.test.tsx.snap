@@ -16,6 +16,12 @@ exports[`Checkbox renders correctly 1`] = `
       class="css-164w5gg"
       data-chakra-checkbox-control=""
     />
+    <div
+      class="css-zkit1y"
+      data-chakra-checkbox-label=""
+    >
+      This is custom checkbox
+    </div>
   </label>
 </DocumentFragment>
 `;

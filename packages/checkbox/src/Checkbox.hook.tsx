@@ -77,7 +77,7 @@ export interface CheckboxHookProps {
  * It is consumed by the `Checkbox` component
  */
 
-export function useCheckbox(props: CheckboxHookProps) {
+export function useCheckbox(props: CheckboxHookProps = {}) {
   const {
     defaultIsChecked,
     isChecked: checkedProp,

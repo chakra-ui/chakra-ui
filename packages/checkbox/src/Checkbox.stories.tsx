@@ -1,8 +1,19 @@
 import * as React from "react"
-import { Checkbox } from "./Checkbox"
+import { Checkbox } from "./Checkbox"   
+import { useCheckbox } from "."
 
 export default {
   title: "Checkbox",
+}
+    
+export const Base = () => {
+  const { htmlProps, getInputProps, getCheckboxProps } = useCheckbox()
+  return (
+    <label {...htmlProps}>
+      <input {...getInputProps()} />
+      <div {...getCheckboxProps()}>This is custom checkbox</div>
+    </label>
+  )
 }
 
 /**
