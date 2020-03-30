@@ -88,13 +88,14 @@
 // }
 
 import * as React from "react"
-import { Checkbox, CheckboxHiddenInput, CustomCheckbox } from "./Checkbox.base"
+import { useCheckbox } from "."
 
 export const Base = () => {
+  const { htmlProps, getInputProps, getCheckboxProps } = useCheckbox()
   return (
-    <Checkbox>
-      <CheckboxHiddenInput />
-      <CustomCheckbox>This is custom checkbox</CustomCheckbox>
-    </Checkbox>
+    <label {...htmlProps}>
+      <input {...getInputProps()} />
+      <div {...getCheckboxProps()}>This is custom checkbox</div>
+    </label>
   )
 }

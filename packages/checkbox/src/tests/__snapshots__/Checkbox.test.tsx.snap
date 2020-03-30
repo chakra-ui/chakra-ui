@@ -2,14 +2,23 @@
 
 exports[`Checkbox renders correctly 1`] = `
 <DocumentFragment>
-  <label>
+  <label
+    data-chakra-checkbox=""
+  >
     <input
+      data-chakra-checkbox-input=""
       style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
       type="checkbox"
       value=""
     />
-    <div
+    <span
       aria-hidden="true"
+      class="css-164w5gg"
+      data-chakra-checkbox-control=""
+    />
+    <div
+      class="css-zkit1y"
+      data-chakra-checkbox-label=""
     >
       This is custom checkbox
     </div>
