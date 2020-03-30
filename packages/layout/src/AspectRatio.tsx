@@ -2,7 +2,7 @@ import { __DEV__ } from "@chakra-ui/utils"
 import React, { forwardRef, Children } from "react"
 import { Box, BoxProps } from "./Box"
 
-interface AspectRatioBoxOptions {
+interface AspectRatioOptions {
   /**
    * The aspect ratio of the Box. Common values are:
    *
@@ -11,17 +11,17 @@ interface AspectRatioBoxOptions {
   ratio?: number
 }
 
-export type AspectRatioBoxProps = BoxProps & AspectRatioBoxOptions
+export type AspectRatioProps = BoxProps & AspectRatioOptions
 
 /**
- * AspectRatioBox
+ * AspectRatio
  *
  * Mostly useful for cropping media (videos, images and maps) to a desired aspect ratio.
  *
- * @see Docs https://chakra-ui.com/aspectratiobox
+ * @see Docs https://chakra-ui.com/aspectratio
  */
-export const AspectRatioBox = forwardRef(
-  (props: AspectRatioBoxProps, ref: React.Ref<any>) => {
+export const AspectRatio = forwardRef(
+  (props: AspectRatioProps, ref: React.Ref<any>) => {
     const { ratio = 4 / 3, children, ...rest } = props
     const child = Children.only(children)
 
@@ -62,5 +62,5 @@ export const AspectRatioBox = forwardRef(
 )
 
 if (__DEV__) {
-  AspectRatioBox.displayName = "AspectRatioBox"
+  AspectRatio.displayName = "AspectRatio"
 }

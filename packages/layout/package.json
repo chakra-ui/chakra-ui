@@ -5,7 +5,13 @@
   "keywords": [
     "layout",
     "component",
+    "grid",
+    "stack",
+    "wrap",
+    "box",
+    "aspect ratio",
     "ui",
+    "badge",
     "react",
     "primitives",
     "chakra ui"
@@ -33,7 +39,7 @@
     "prebuild": "rimraf dist",
     "start": "tsdx watch",
     "build": "tsdx build",
-    "test": "tsdx test --env=jsdom",
+    "test": "tsdx test --env=jsdom --passWithNoTests",
     "lint": "tsdx lint src",
     "version": "yarn build"
   },
@@ -47,13 +53,14 @@
     "ts-jest": "25.2.1",
     "tsdx": "0.12.3",
     "tslib": "1.11.1",
-    "typescript": "3.8.3"
+    "typescript": "3.8.3",
+    "react-router-dom": "5.1.2",
+    "@types/react-router-dom": "5.1.3"
   },
   "dependencies": {
     "@chakra-ui/utils": "0.0.1",
     "@chakra-ui/system": "0.0.1",
-    "@chakra-ui/icon": "0.0.1",
-    "@chakra-ui/hooks": "0.0.1"
+    "@chakra-ui/icon": "0.0.1"
   },
   "peerDependencies": {
     "react": "16.x",

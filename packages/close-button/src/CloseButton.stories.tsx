@@ -8,6 +8,6 @@ export default {
 export const Default = () => (
   <>
     <CloseButton />
-    <CloseButton variantSize="sm" />
+    <CloseButton size="sm" />
   </>
 )

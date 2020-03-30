@@ -24,6 +24,12 @@ const CSSReset = () => (
         box-sizing: inherit;
       }
 
+      *{
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+      }
+
       body,
       h1,
       h2,
@@ -149,10 +155,6 @@ const CSSReset = () => (
         border-top-width: 1px;
       }
 
-      img {
-        border-style: solid;
-      }
-
       textarea {
         resize: vertical;
       }
@@ -173,6 +175,7 @@ const CSSReset = () => (
 
       table {
         border-collapse: collapse;
+        border-spacing: 0;
         width: 100%;
       }
 

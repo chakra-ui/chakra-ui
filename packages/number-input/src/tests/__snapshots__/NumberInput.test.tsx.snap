@@ -3,6 +3,7 @@
 exports[`it renders correctly 1`] = `
 <DocumentFragment>
   <div
+    class="css-1upr3a3"
     data-chakra-numberinput=""
     data-testid="root"
   >
@@ -13,8 +14,10 @@ exports[`it renders correctly 1`] = `
       aria-valuenow="0"
       autocomplete="off"
       autocorrect="off"
+      class="css-mzgasn"
       data-chakra-numberinput-input=""
       data-testid="input"
+      inputmode="numeric"
       pattern="[0-9]*"
       role="spinbutton"
       type="text"
@@ -22,16 +25,19 @@ exports[`it renders correctly 1`] = `
     />
     <div
       aria-hidden="true"
+      class="css-1xu548d"
       data-chakra-numberinput-stepper=""
       data-testid="group"
     >
       <div
+        class="css-4efg03"
         data-chakra-numberinput-decrement=""
         data-testid="up-btn"
       >
         +
       </div>
       <div
+        class="css-4efg03"
         data-chakra-numberinput-decrement=""
         data-testid="down-btn"
       >
@@ -39,8 +45,5 @@ exports[`it renders correctly 1`] = `
       </div>
     </div>
   </div>
-  <div
-    class="__chakra--portal-manager"
-  />
 </DocumentFragment>
 `;

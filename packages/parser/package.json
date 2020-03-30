@@ -33,7 +33,7 @@
     "build": "concurrently yarn:build:*",
     "build:esm": "tsc --project tsconfig.build.json",
     "build:cjs": "tsc --project tsconfig.build.json --module CommonJS --outDir dist/cjs",
-    "test": "tsdx test --env=jsdom",
+    "test": "tsdx test --env=jsdom --passWithNoTests",
     "lint": "tsdx lint src",
     "version": "yarn build"
   },

@@ -66,7 +66,7 @@ interface ProgressProps extends ProgressTrackProps {
   value?: number
   min?: number
   max?: number
-  variantSize?: keyof typeof sizes
+  size?: keyof typeof sizes
   hasStripe?: boolean
   isAnimated?: boolean
 }
@@ -77,7 +77,7 @@ export function Progress(props: ProgressProps) {
     value,
     min = 0,
     max = 100,
-    variantSize = "md",
+    size = "md",
     hasStripe,
     isAnimated,
     children,
@@ -127,7 +127,7 @@ export function Progress(props: ProgressProps) {
 
   return (
     <ProgressTrack
-      size={variantSize}
+      size={size}
       bg={trackBg}
       borderRadius={borderRadius}
       {...rest}

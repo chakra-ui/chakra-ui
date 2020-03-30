@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tag renders correctly 1`] = `
+<DocumentFragment>
+  <span
+    class="css-1qa246m"
+  >
+    A
+  </span>
+  <span
+    class="css-1qa246m"
+  >
+    <span
+      class="css-1h8gyx6"
+      data-chakra-tag-label=""
+    >
+      B
+    </span>
+    <button
+      class="css-1w1jg1l"
+    >
+      <svg
+        class="css-1h9aafa"
+        focusable="false"
+        role="presentation"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+  </span>
+  <span
+    class="css-1qa246m"
+  >
+    <svg
+      class="css-1bpodrw"
+      data-chakra-custom-icon=""
+      data-chakra-tag-icon=""
+      focusable="false"
+      role="presentation"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M0,12a1.5,1.5,0,0,0,1.5,1.5h8.75a.25.25,0,0,1,.25.25V22.5a1.5,1.5,0,0,0,3,0V13.75a.25.25,0,0,1,.25-.25H22.5a1.5,1.5,0,0,0,0-3H13.75a.25.25,0,0,1-.25-.25V1.5a1.5,1.5,0,0,0-3,0v8.75a.25.25,0,0,1-.25.25H1.5A1.5,1.5,0,0,0,0,12Z"
+        fill="currentColor"
+      />
+    </svg>
+    <span
+      class="css-1h8gyx6"
+      data-chakra-tag-label=""
+    >
+      C
+    </span>
+    <button
+      class="css-1w1jg1l"
+    >
+      <svg
+        class="css-1h9aafa"
+        focusable="false"
+        role="presentation"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+  </span>
+</DocumentFragment>
+`;

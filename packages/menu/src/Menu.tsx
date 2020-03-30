@@ -88,9 +88,7 @@ export const MenuList = React.forwardRef(
 )
 
 export type MenuItemProps = PropsOf<typeof StyledMenuItem> &
-  Omit<MenuItemHookProps, "context"> & {
-    as?: React.ElementType
-  }
+  Omit<MenuItemHookProps, "context">
 
 export const MenuItem = React.forwardRef(
   (props: MenuItemProps, ref: React.Ref<any>) => {

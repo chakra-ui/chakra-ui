@@ -19,3 +19,9 @@ export type FunctionArguments<T extends Function> = T extends (
   : never
 
 export type Dict<T = any> = Record<string, T>
+
+export type NodeOrRenderProp<P> =
+  | React.ReactNode
+  | ((props: P) => React.ReactNode)
+
+export type Booleanish = boolean | "true" | "false"

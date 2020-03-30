@@ -1,6 +1,6 @@
 import {
   useId,
-  useIsomorphicEffect,
+  useSafeLayoutEffect,
   useControllableState,
 } from "@chakra-ui/hooks"
 import { TabbableHookProps, useTabbable } from "@chakra-ui/tabbable"
@@ -174,7 +174,10 @@ export function useTabList(props: TabListHookProps) {
    */
   const focusableIndexes = validChildren
     .map((child: any, index) => {
-      const isTrulyDisabled = child.props.isDisabled && !child.props.isFocusable
+      const { isDisabled, isFocusable } = child.props
+
+      const isTrulyDisabled = isDisabled && !isFocusable
+
       return isTrulyDisabled ? null : index
     })
     .filter(child => child !== null) as number[]
@@ -221,6 +224,8 @@ export function useTabList(props: TabListHookProps) {
 
   // Enhance the children by passing some props to them
   const children = validChildren.map((child: any, index) => {
+    const { isDisabled, isFocusable } = child.props
+
     const isSelected = index === tabs.selectedIndex
 
     const onClick = () => {
@@ -229,9 +234,11 @@ export function useTabList(props: TabListHookProps) {
     }
 
     const onFocus = () => {
-      const isDisabledButFocusable =
-        child.props.isDisabled && child.props.isFocusable
-      if (!tabs.isManual && !isDisabledButFocusable) {
+      const isDisabledButFocusable = isDisabled && isFocusable
+
+      const selectionFollowsFocus = !tabs.isManual && !isDisabledButFocusable
+
+      if (selectionFollowsFocus) {
         tabs.onChange?.(index)
       }
     }
@@ -242,7 +249,7 @@ export function useTabList(props: TabListHookProps) {
 
     const ref = mergeRefs(refCallback, child.props.ref)
 
-    return React.cloneElement(child as any, {
+    return React.cloneElement(child, {
       id: `${tabs.id}--tab-${index}`,
       panelId: `${tabs.id}--tabpanel-${index}`,
       ref,
@@ -327,7 +334,7 @@ export function useTabIndicator(): React.CSSProperties {
   const [hasMeasured, setHasMeasured] = React.useState(false)
 
   // Update the selected tab rect when the selectedIndex changes
-  useIsomorphicEffect(() => {
+  useSafeLayoutEffect(() => {
     if (isUndefined(tabs.selectedIndex)) return
 
     const selectedTabNode = tabs.tabNodesRef.current[tabs.selectedIndex]

@@ -11,18 +11,18 @@ export const BasicUsage = () => <Progress value={50} />
 export const WithThemeColor = () => <Progress color="pink" value={20} />
 
 export const Indeterminate = () => (
-  <Progress margin="20px" variantSize="xs" value={undefined} />
+  <Progress margin="20px" size="xs" value={undefined} />
 )
 
 export const WithStripe = () => <Progress color="green" hasStripe value={20} />
 
 export const WithSizes = () => (
   <div>
-    <Progress color="green" variantSize="sm" value={20} />
+    <Progress color="green" size="sm" value={20} />
     <br />
-    <Progress color="green" variantSize="md" value={20} />
+    <Progress color="green" size="md" value={20} />
     <br />
-    <Progress color="green" variantSize="lg" value={20} />
+    <Progress color="green" size="lg" value={20} />
   </div>
 )
 

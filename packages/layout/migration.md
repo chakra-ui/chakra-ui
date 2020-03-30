@@ -1,6 +1,6 @@
 # Migration Notes
 
-## Major
+## Changes
 
 - Support for `size` has been deprecated. Use `boxSize` prop. We've reserved the
   `size` prop to refer to component size variants.
@@ -31,16 +31,27 @@ const Box = chakra.div
 <Box>This is your box</Box>
 ```
 
-- [Link] Due to accessbility reasons, We're deprecating the `isDisabled` prop
+- [Link] Due to accessibility reasons, We're deprecating the `isDisabled` prop
   from link. A link should never be allowed to be disabled.
 
 - [Stack] To reduce the API surface, we're deprecating the `isInline` and
   `isReversed` prop in favor of `direction` prop
 
-- New components ✨: We've add new layout components such as Cluster, Spacer,
-  Center and Visibility
+- [Stack] We're deprecating support for `shouldWrapChildren` prop because we now
+  use css to manage the stack rather than `React.cloneElement`. Thanks to
+  [https://github.com/chakra-ui/chakra-ui/pull/277]
 
-## Improvements
+- [Stack] We're constrained Stack's direction to only `row` and `column`.
+  Support for reversing the direction is no longer available.
+
+- New components ✨: We've added new layout components such as Wrap, Spacer, and
+  Center.
+
+- AspectRatioBox now renamed to just `AspectRatio` to keep it concise
+
+- All components can now take the pseudo style props (`_hover`, `_active`, etc.)
+
+## Features
 
 Stack
 

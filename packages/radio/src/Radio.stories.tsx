@@ -15,7 +15,7 @@ export default {
 }
 
 export const RadioOnly = () => (
-  <Radio marginTop="40px" variantSize="lg" variantColor="green">
+  <Radio marginTop="40px" size="lg" colorScheme="green">
     I'm a radio
   </Radio>
 )

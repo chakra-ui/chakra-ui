@@ -13,7 +13,7 @@
 //   title: "Checkbox",
 // }
 
-// export const Default = () => <Checkbox variantSize="lg" />
+// export const Default = () => <Checkbox size="lg" />
 
 // export function IndeterminateExample() {
 //   const [checkedItems, setCheckedItems] = React.useState([false, false])

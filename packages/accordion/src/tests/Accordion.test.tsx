@@ -1,11 +1,20 @@
 import React from "react"
-import { userEvent, render, fireEvent } from "@chakra-ui/test-utils"
+import { userEvent, render, fireEvent, wait } from "@chakra-ui/test-utils"
 import {
   Accordion,
   AccordionButton,
   AccordionItem,
   AccordionPanel,
 } from "../Accordion"
+
+jest.mock("@chakra-ui/collapse", () => {
+  const Collapse = jest.fn(({ children, isOpen }) => (
+    <div id="collapse-mock" hidden={!isOpen}>
+      {children}
+    </div>
+  ))
+  return { Collapse }
+})
 
 test("Button renders correctly", () => {
   const { asFragment } = render(
@@ -33,7 +42,7 @@ test("uncontrolled: It opens the accordion panel", () => {
   expect(button).toHaveAttribute("aria-expanded", "true")
 })
 
-test("uncontrolled: toggles the accordion on click", () => {
+test("uncontrolled: toggles the accordion on click", async () => {
   const { getByText } = render(
     <Accordion>
       <AccordionItem>
@@ -47,10 +56,12 @@ test("uncontrolled: toggles the accordion on click", () => {
 
   userEvent.click(trigger)
   expect(trigger).toHaveAttribute("aria-expanded", "true")
+  await wait()
 
   // you can't toggle an accordion without passing `allowToggle`
   userEvent.click(trigger)
   expect(trigger).toHaveAttribute("aria-expanded", "true")
+  await wait()
 })
 
 // test that arrow up & down moves focus to next/previous accordion
@@ -200,41 +211,6 @@ test("has the proper aria attributes", () => {
   expect(button).toHaveAttribute("aria-expanded")
   expect(panel).toHaveAttribute("aria-labelledby")
 })
-
-// test that enter and space can toggle the visiblity
-// Issue with keyDown from testing library
-// test("enter and space can toggle the visiblity", () => {
-//   const { getByText } = render(
-//     <Accordion allowToggle>
-//       <AccordionItem>
-//         <AccordionButton>Section 1 title</AccordionButton>
-//         <AccordionPanel>Panel 1</AccordionPanel>
-//       </AccordionItem>
-
-//       <AccordionItem>
-//         <AccordionButton>Section 2 title</AccordionButton>
-//         <AccordionPanel>Panel 2</AccordionPanel>
-//       </AccordionItem>
-//     </Accordion>,
-//   )
-
-//   const button = getByText("Section 1 title")
-
-//   button.focus()
-
-//   fireEvent.keyDown(button, {
-//     keyCode: 13,
-//     key: "enter",
-//   })
-
-//   fireEvent.keyUp(button, {
-//     keyCode: 13,
-//     key: "enter",
-//   })
-
-//   expect(button).toHaveFocus()
-//   expect(button).toHaveAttribute("aria-expanded", "true")
-// })
 
 // test that tab moves focus to the next focusable element
 test("tab moves focus to the next focusable element", () => {

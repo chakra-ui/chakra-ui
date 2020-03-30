@@ -1,6 +1,6 @@
 import { Responsive } from "@chakra-ui/system"
 import { mapResponsive, isNumber, isNull, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import React, { forwardRef } from "react"
 import { Grid, GridProps } from "./Grid"
 
 interface SimpleGridOptions {
@@ -28,7 +28,15 @@ interface SimpleGridOptions {
 
 export type SimpleGridProps = GridProps & SimpleGridOptions
 
-export const SimpleGrid = React.forwardRef(
+/**
+ * SimpleGrid
+ *
+ * React component make that providers a simpler interface, and
+ * make its easy to create responsive grid layouts.
+ *
+ * @see Docs https://chakra-ui.com/simplegrid
+ */
+export const SimpleGrid = forwardRef(
   (props: SimpleGridProps, ref: React.Ref<any>) => {
     const {
       columns,
@@ -49,7 +57,7 @@ export const SimpleGrid = React.forwardRef(
         gap={spacing}
         columnGap={spacingX}
         rowGap={spacingY}
-        templateColumns={templateColumns || undefined}
+        templateColumns={templateColumns}
         {...rest}
       />
     )

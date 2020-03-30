@@ -4,9 +4,13 @@ import {
   PropsOf,
   Responsive,
   SystemProps,
-  useTheme,
 } from "@chakra-ui/system"
-import { getValidChildren, mapResponsive, __DEV__ } from "@chakra-ui/utils"
+import {
+  Dict,
+  getValidChildren,
+  mapResponsive,
+  __DEV__,
+} from "@chakra-ui/utils"
 import React, { cloneElement, forwardRef } from "react"
 import { FlexOptions } from "./Flex"
 
@@ -35,6 +39,17 @@ export const StackDivider = chakra("hr", {
   baseStyle: { border: 0, alignSelf: "stretch" },
 })
 
+/**
+ * Stack
+ *
+ * Used to stack elements in the horizontal or vertical direction,
+ * and apply a space or/and divider between each child.
+ *
+ * It uses `display: flex` internally and renders a `div`.
+ *
+ * @see Docs https://chakra-ui.com/stack
+ *
+ */
 export const Stack = forwardRef((props: StackProps, ref: React.Ref<any>) => {
   const {
     direction = "column",
@@ -82,14 +97,10 @@ export const Stack = forwardRef((props: StackProps, ref: React.Ref<any>) => {
 
   const hasDivider = Boolean(divider)
 
-  const theme = useTheme()
-
   const clones = validChildren.map((child, index) => {
     if (!hasDivider) return child
 
     const isLast = index + 1 === validChildren.length
-
-    // console.log(css({ "&": dividerStyles })(theme))
 
     if (!isLast) {
       return (
@@ -105,7 +116,7 @@ export const Stack = forwardRef((props: StackProps, ref: React.Ref<any>) => {
     return child
   })
 
-  const getStyle = (theme: any) => {
+  const getStyle = (theme: Dict) => {
     if (hasDivider) return undefined
     return css({ [selector]: styles[selector] })(theme)
   }

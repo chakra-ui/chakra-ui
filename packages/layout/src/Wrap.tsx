@@ -2,30 +2,34 @@ import { chakra, css, PropsOf, SystemProps, useTheme } from "@chakra-ui/system"
 import { getValidChildren, mapResponsive, __DEV__ } from "@chakra-ui/utils"
 import React, { forwardRef } from "react"
 
-export type ClusterProps = PropsOf<typeof chakra.div> & {
+export type WrapProps = PropsOf<typeof chakra.div> & {
   /**
    * The space between the clustered child elements
    */
   spacing?: SystemProps["margin"]
   /**
-   * The `justify-content` value (for horizontal alignment)
+   * The `justify-content` value (for cross-axis alignment)
    */
   justify?: SystemProps["justifyContent"]
+  /**
+   * The `align-items` value (for main axis alignment)
+   */
+  align?: SystemProps["alignItems"]
 }
 
 /**
- * Cluster
+ * Wrap
  *
  * Layout component used to stack elements that differ in length
  * and are liable to wrap.
  *
  * Common use cases:
  * - Buttons that appear together at the end of forms
- * - Lists of tags, keywords, or other meta information.
+ * - Lists of tags and chips
  *
- * @see Docs https://chakra-ui.com/cluster
+ * @see Docs https://chakra-ui.com/wrap
  */
-export const Cluster = forwardRef<any, ClusterProps>((props, ref) => {
+export const Wrap = forwardRef((props: WrapProps, ref: React.Ref<any>) => {
   const { spacing = 2, children, justify, ...rest } = props
 
   const theme = useTheme()
@@ -65,5 +69,5 @@ export const Cluster = forwardRef<any, ClusterProps>((props, ref) => {
 })
 
 if (__DEV__) {
-  Cluster.displayName = "Cluster"
+  Wrap.displayName = "Wrap"
 }

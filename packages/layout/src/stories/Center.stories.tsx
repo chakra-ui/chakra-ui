@@ -1,16 +1,21 @@
 import React from "react"
 import { Box, Center } from ".."
+import { FaPhone } from "react-icons/fa"
 
 export default {
   title: "Center",
 }
 
-// Container (marginX: auto, max-width: 800px, paddingX: 20px)
-
-export const flex = () => (
+export const basic = () => (
   <Center bg="#da3d6929" w="400px" h="400px">
     <Box p="40px" bg="green.600">
       Box
     </Box>
+  </Center>
+)
+
+export const iconWithFrame = () => (
+  <Center bg="green.500" color="white" boxSize="40px" borderRadius="full">
+    <FaPhone />
   </Center>
 )

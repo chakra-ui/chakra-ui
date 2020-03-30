@@ -131,11 +131,13 @@ export type PropsWithAs<P, T extends As> = P &
     as?: T
   }
 
-export type ChakraComponent<T extends As, P = {}> = {
-  (props: PropsOf<T> & P & ChakraProps): JSX.Element
-  <TT extends As = T>(
-    props: PropsWithAs<PropsOf<T>, TT> & ChakraProps & P,
-  ): JSX.Element
+type Factory<T extends As, P> =
+  | ((props: PropsOf<T> & P & ChakraProps & { as?: As }) => JSX.Element)
+  | (<TT extends As = T>(
+      props: PropsWithAs<PropsOf<T>, TT> & ChakraProps & P,
+    ) => JSX.Element)
+
+export type ChakraComponent<T extends As, P = {}> = Factory<T, P> & {
   displayName?: string
   propTypes?: React.WeakValidationMap<PropsOf<T> & P>
   defaultProps?: Partial<PropsOf<T> & P & ChakraProps>

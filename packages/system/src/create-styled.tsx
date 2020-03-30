@@ -1,5 +1,12 @@
 import { css, getComponentStyles } from "@chakra-ui/parser"
-import { As, Dict, isEmptyObject, isString, runIfFn } from "@chakra-ui/utils"
+import {
+  As,
+  Dict,
+  isEmptyObject,
+  isString,
+  runIfFn,
+  isUndefined,
+} from "@chakra-ui/utils"
 import { CSSObject } from "@emotion/core"
 import hoist from "hoist-non-react-statics"
 import * as React from "react"
@@ -114,6 +121,17 @@ function createStyled<T extends As, P>(component: T, options?: Options<T, P>) {
         computedProps.css = isStyleEmpty
           ? runIfFn(computedProps.css, theme)
           : { ...computedStyles, ...runIfFn(computedProps.css, theme) }
+
+        /**
+         * This helps to prevent scenarios where no styles was passed
+         * to the component but emotion generate a `css-0` className.
+         */
+        if (
+          isEmptyObject(computedProps.css) ||
+          isUndefined(computedProps.css)
+        ) {
+          delete computedProps.css
+        }
 
         /**
          * Create the element using emotion's jsx, similar to React.createElement

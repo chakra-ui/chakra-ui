@@ -14,11 +14,11 @@ exports[`Switch renders correctly 1`] = `
     />
     <div
       aria-hidden="true"
-      class="css-an0rh8"
+      class="css-j9x52o"
       data-chakra-switch-track=""
     >
       <div
-        class="css-1sqpo8x"
+        class="css-6y46ei"
         data-chakra-switch-thumb=""
       />
     </div>

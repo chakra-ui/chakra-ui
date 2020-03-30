@@ -1,6 +1,6 @@
 import * as React from "react"
 import { createContext } from "@chakra-ui/utils"
-import { useIsomorphicEffect, useForceUpdate } from "@chakra-ui/hooks"
+import { useSafeLayoutEffect, useForceUpdate } from "@chakra-ui/hooks"
 
 export interface PortalManagerContext {
   node: HTMLElement
@@ -43,7 +43,7 @@ export function PortalManager(props: PortalManagerProps) {
   const forceUpdate = useForceUpdate()
 
   // force an update on mount so the Provider works correctly
-  useIsomorphicEffect(() => {
+  useSafeLayoutEffect(() => {
     forceUpdate()
   }, [])
 

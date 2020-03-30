@@ -1,4 +1,4 @@
-import { useBooleanState, useId, useIsomorphicEffect } from "@chakra-ui/hooks"
+import { useBooleanState, useId, useSafeLayoutEffect } from "@chakra-ui/hooks"
 import { PropsOf, chakra, useColorModeValue } from "@chakra-ui/system"
 import { callAllHandlers, createContext, attr } from "@chakra-ui/utils"
 import * as React from "react"
@@ -235,7 +235,7 @@ export function FormHelperText(props: HelpTextProps) {
    * Notify the field context when the help text is rendered on
    * screen, so we can apply the correct `aria-describedby` to the field (e.g. input, textarea)
    */
-  useIsomorphicEffect(() => {
+  useSafeLayoutEffect(() => {
     field.setHasHelpText(true)
     return () => {
       field.setHasHelpText(false)

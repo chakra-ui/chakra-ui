@@ -40,7 +40,7 @@ export const SelectStates = () => (
 export const SelectSizes = () => (
   <Stack spacing={4}>
     {["sm", "md", "lg"].map(size => (
-      <Select key={size} placeholder="Placeholder" variantSize={size} />
+      <Select key={size} placeholder="Placeholder" size={size} />
     ))}
   </Stack>
 )

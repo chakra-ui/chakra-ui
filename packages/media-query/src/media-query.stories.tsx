@@ -1,8 +1,8 @@
 import React from "react"
-import { Hide, Show } from ".."
+import { Hide, Show, useBreakpoint } from "."
 
 export default {
-  title: "Visibility",
+  title: "Breakpoints",
 }
 
 export const show = () => (
@@ -12,7 +12,7 @@ export const show = () => (
 )
 
 export const hide = () => (
-  <Hide below="768px">
+  <Hide below="md">
     <div>Hallos! I'll hide below 768px</div>
   </Hide>
 )
@@ -28,3 +28,13 @@ export const ShowWithQuery = () => (
     <div>Hallos! I'll be show at 400px</div>
   </Show>
 )
+
+export const BreakpointHook = () => {
+  const breakpoint = useBreakpoint()
+  const isMobile = breakpoint === "sm" || breakpoint === "base"
+  return (
+    <code style={{ fontSize: isMobile ? 15 : 30 }}>
+      The current breakpoint is {JSON.stringify(breakpoint, null, 2)}!
+    </code>
+  )
+}

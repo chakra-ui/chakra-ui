@@ -1,16 +1,21 @@
-import { SystemProps, chakra, PropsOf } from "@chakra-ui/system"
+import { SystemProps, chakra, PropsOf, ThemingProps } from "@chakra-ui/system"
 import { getValidChildren } from "@chakra-ui/utils"
 import * as React from "react"
 import { ButtonProps } from "./Button"
 
-export interface ButtonGroupOptions
-  extends Pick<ButtonProps, "size" | "variant" | "colorScheme"> {
+export type ButtonGroupOptions = Omit<ThemingProps, "orientation"> & {
   /**
-   * If `true`, the borderRadius of button that are direct children will be altered
+   * If `true`, the borderRadius of buttons will be altered
    * to look flushed together
    */
   isAttached?: boolean
+  /**
+   * Spacing between each button
+   */
   spacing?: SystemProps["marginRight"]
+  /**
+   * The buttons to group
+   */
   children?: React.ReactNode
 }
 

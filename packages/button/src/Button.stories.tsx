@@ -9,16 +9,16 @@ export default {
 
 export const Variants = () => (
   <Stack direction="row" spacing="24px">
-    <Button variantColor="teal" variant="solid">
+    <Button colorScheme="teal" variant="solid">
       Button
     </Button>
-    <Button variantColor="teal" variant="outline">
+    <Button colorScheme="teal" variant="outline">
       Button
     </Button>
-    <Button variantColor="teal" variant="ghost">
+    <Button colorScheme="teal" variant="ghost">
       Button
     </Button>
-    <Button variantColor="teal" variant="link">
+    <Button colorScheme="teal" variant="link">
       Button
     </Button>
   </Stack>
@@ -26,16 +26,16 @@ export const Variants = () => (
 
 export const Sizes = () => (
   <Stack direction="row">
-    <Button variantColor="blue" variantSize="xs">
+    <Button colorScheme="blue" size="xs">
       Button
     </Button>
-    <Button variantColor="blue" variantSize="sm">
+    <Button colorScheme="blue" size="sm">
       Button
     </Button>
-    <Button variantColor="blue" variantSize="md">
+    <Button colorScheme="blue" size="md">
       Button
     </Button>
-    <Button variantColor="blue" variantSize="lg">
+    <Button colorScheme="blue" size="lg">
       Button
     </Button>
   </Stack>
@@ -44,14 +44,14 @@ export const Sizes = () => (
 export const WithCustomIcon = () => <Button leftIcon={AddIcon}>Call Us</Button>
 
 export const WithLoading = () => (
-  <Button variantColor="pink" isLoading loadingText="Loading...">
+  <Button colorScheme="pink" isLoading loadingText="Loading...">
     Pink Button
   </Button>
 )
 
 // export const WithButtonGroup = () => (
 //   <ButtonGroup variant="solid">
-//     <Button variantColor="green">Save</Button>
+//     <Button colorScheme="green">Save</Button>
 //     <Button variant="outline">Cancel</Button>
 //   </ButtonGroup>
 // )

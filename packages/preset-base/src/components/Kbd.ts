@@ -4,7 +4,7 @@ const Kbd: ComponentTheme = {
   baseStyle: props => ({
     bg: mode("gray.100", "whiteAlpha")(props),
     borderRadius: "md",
-    border: "1px",
+    border: "1px solid",
     borderColor: "inherit",
     borderBottomWidth: "3px",
     fontSize: "0.8em",
