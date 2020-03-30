@@ -2174,6 +2174,14 @@
     prop-types "^15.7.2"
     tslib "^1.10.0"
 
+"@reach/auto-id@0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@reach/auto-id/-/auto-id-0.9.0.tgz#73b5d34bcf432f3e73b235b9dcaa89ea05a0d4db"
+  integrity sha512-9/aXl+dT0pOenvpkB2kkmQnpMDlmSk8ZkBYmYFzFz3eA4PZFNuXcHVzQevFRhc0HVlskPjxwPNf92EkI9rdFOw==
+  dependencies:
+    "@reach/utils" "^0.9.0"
+    tslib "^1.10.0"
+
 "@reach/router@^1.2.1":
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/@reach/router/-/router-1.3.3.tgz#58162860dce6c9449d49be86b0561b5ef46d80db"
@@ -2188,6 +2196,14 @@
   version "0.8.6"
   resolved "https://registry.yarnpkg.com/@reach/utils/-/utils-0.8.6.tgz#41c7ac8b7699d0e663bda773398ae1c459679ee3"
   integrity sha512-ec9Ea99LQhlBoMKsJ7n2GYD3u3a0IHDLcfbA50C6aDKnSFvVYSPkF2Iav3fQ07VGfe+FuNGi0iYi1qkE8uSmDw==
+  dependencies:
+    tslib "^1.10.0"
+    warning "^4.0.3"
+
+"@reach/utils@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@reach/utils/-/utils-0.9.0.tgz#ee47c25c79eb2f98e6c0e728a2672075cc9991d5"
+  integrity sha512-cmiykRaxuCysVTsSY3PgrLjySnEIt1PLiSYKh5rAH8nYyEmaOCtw0vaNItFAiqQIjfrxkixmcUE8dyD8kqVuJA==
   dependencies:
     tslib "^1.10.0"
     warning "^4.0.3"
@@ -12220,11 +12236,6 @@ react-transition-group@^2.2.1:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
     react-lifecycles-compat "^3.0.4"
-
-react-uid@2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/react-uid/-/react-uid-2.2.0.tgz#0f77e1e0594fbf29fc4fe528cc9aa415c5bf9159"
-  integrity sha512-z+g5+hFOQ08hCfrGcJ1PNs+cmvH8Uq2CVzCmPeWBsUi5A4W4NWXR5jouledzy3oSKGMU9HOzf8zFuGi15TXJoQ==
 
 react@16.13.0, react@^16.13.0, react@^16.8.3:
   version "16.13.0"

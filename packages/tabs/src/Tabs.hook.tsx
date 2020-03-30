@@ -1,6 +1,6 @@
 import {
   useId,
-  useIsomorphicEffect,
+  useSafeLayoutEffect,
   useControllableState,
 } from "@chakra-ui/hooks"
 import { TabbableHookProps, useTabbable } from "@chakra-ui/tabbable"
@@ -334,7 +334,7 @@ export function useTabIndicator(): React.CSSProperties {
   const [hasMeasured, setHasMeasured] = React.useState(false)
 
   // Update the selected tab rect when the selectedIndex changes
-  useIsomorphicEffect(() => {
+  useSafeLayoutEffect(() => {
     if (isUndefined(tabs.selectedIndex)) return
 
     const selectedTabNode = tabs.tabNodesRef.current[tabs.selectedIndex]

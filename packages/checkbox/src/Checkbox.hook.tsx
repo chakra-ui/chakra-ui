@@ -1,7 +1,7 @@
 import {
   useBooleanState,
   useControllableProp,
-  useIsomorphicEffect,
+  useSafeLayoutEffect,
 } from "@chakra-ui/hooks"
 import { callAllHandlers, attr, mergeRefs } from "@chakra-ui/utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
@@ -127,7 +127,7 @@ export function useCheckbox(props: CheckboxHookProps) {
     ],
   )
 
-  useIsomorphicEffect(() => {
+  useSafeLayoutEffect(() => {
     if (!ref.current) return
     ref.current.indeterminate = Boolean(isIndeterminate)
   }, [isIndeterminate])

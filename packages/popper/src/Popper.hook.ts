@@ -3,7 +3,7 @@ import { Placement, Instance, createPopper } from "@popperjs/core"
 import { getArrowStyles } from "./Popper.utils"
 
 const isBrowser = typeof window !== "undefined"
-const useIsomorphicEffect = isBrowser ? React.useLayoutEffect : React.useEffect
+const useSafeLayoutEffect = isBrowser ? React.useLayoutEffect : React.useEffect
 
 export { Placement }
 
@@ -53,7 +53,7 @@ export function usePopper(props: PopperHookProps) {
     return false
   }, [])
 
-  useIsomorphicEffect(() => {
+  useSafeLayoutEffect(() => {
     if (referenceRef.current && popoverRef.current) {
       popper.current = createPopper(referenceRef.current, popoverRef.current, {
         placement: originalPlacement,

@@ -1,4 +1,4 @@
-import { useIsomorphicEffect } from "@chakra-ui/hooks"
+import { useSafeLayoutEffect } from "@chakra-ui/hooks"
 import { useCallback, useRef, useState } from "react"
 
 export type ImageHookProps = {
@@ -89,7 +89,7 @@ export function useImage(props: ImageHookProps) {
     }
   }
 
-  useIsomorphicEffect(() => {
+  useSafeLayoutEffect(() => {
     if (status === "loading") {
       load()
     }
