@@ -7,4 +7,20 @@ from several options.
 
 ```sh
 yarn add @chakra-ui/checkbox
+
+# or
+
+npm i @chakra-ui/checkbox
+```
+
+## Import component
+
+```jsx
+import { Checkbox } from "@chakra-ui/checkbox"
+```
+
+## Usage
+
+```jsx
+<Checkbox>This is a checkbox</Checkbox>
 ```
