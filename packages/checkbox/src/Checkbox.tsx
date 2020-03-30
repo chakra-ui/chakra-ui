@@ -5,6 +5,16 @@ import { CheckboxHookProps, useCheckbox } from "./Checkbox.hook"
 import { CheckboxIcon } from "./Checkbox.icon"
 import { IconProps } from "@chakra-ui/icon"
 
+/**
+ * ControlBox
+ *
+ * Wrapper element around checkbox check icon. Style appropriately to
+ * match checked state of the checbox.
+ *
+ * To style the element, change the styles in
+ * `theme.components.Checkbox`
+ */
+
 const ControlBox = chakra("span", {
   themeKey: "Checkbox",
   baseStyle: {
@@ -16,6 +26,8 @@ const ControlBox = chakra("span", {
     flexShrink: 0,
   },
 })
+
+///////////////////////////////////////////////////////////////////////////
 
 type OmittedCheckboxProps = Omit<
   PropsOf<typeof ControlBox>,
@@ -41,6 +53,15 @@ type CustomCheckboxProps = OmittedCheckboxProps &
     labelSpacing?: SystemProps["marginLeft"]
   }
 
+///////////////////////////////////////////////////////////////////////////
+
+/**
+ * Checkbox
+ *
+ * Checkbox component is used in forms when a user needs to select
+ * multiple values from several options.
+ */
+
 export const Checkbox = React.forwardRef(
   (props: CustomCheckboxProps, ref: React.Ref<HTMLInputElement>) => {
     const { state, getInputProps, getCheckboxProps, htmlProps } = useCheckbox(
@@ -57,7 +78,14 @@ export const Checkbox = React.forwardRef(
     } = props
 
     return (
-      <chakra.label data-chakra-checkbox="" {...htmlProps}>
+      <chakra.label
+        cursor="pointer"
+        display="inline-flex"
+        alignItems="center"
+        verticalAlign="top"
+        data-chakra-checkbox=""
+        {...htmlProps}
+      >
         <input data-chakra-checkbox-input="" {...getInputProps({ ref })} />
         <ControlBox
           data-chakra-checkbox-control=""

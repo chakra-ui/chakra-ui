@@ -1,25 +1,39 @@
-import React from "react"
-import { userEvent, render } from "@chakra-ui/test-utils"
-import { Checkbox, CheckboxHiddenInput, CustomCheckbox } from "../Checkbox.base"
-import { CheckboxHookProps } from "../Checkbox.hook"
+import * as React from "react"
+import { render, userEvent, renderHook, invoke } from "@chakra-ui/test-utils"
+import { Checkbox, useCheckbox, CheckboxHookProps } from ".."
 
 test("Checkbox renders correctly", () => {
-  const utils = render(
-    <Checkbox>
-      <CheckboxHiddenInput />
-      <CustomCheckbox>This is custom checkbox</CustomCheckbox>
-    </Checkbox>,
-  )
+  const utils = render(<Checkbox />)
+  expect(utils.asFragment()).toMatchSnapshot()
+})
+
+test("useCheckbox should return object", () => {
+  const { result } = renderHook(() => useCheckbox({}))
+  expect(typeof result.current).toBe("object")
+})
+
+test("useCheckbox should return object with 4 keys", () => {
+  const { result } = renderHook(() => useCheckbox({}))
+  expect(Object.keys(result.current).length).toEqual(4)
+})
+
+test("Checkbox renders correctly", () => {
+  const utils = render(<Checkbox>This is custom checkbox</Checkbox>)
   expect(utils.asFragment()).toMatchSnapshot()
 })
 
 test("Uncontrolled - should check and uncheck", () => {
-  const utils = render(
-    <Checkbox>
-      <CheckboxHiddenInput data-testid="input" />
-      <CustomCheckbox>Checkbox</CustomCheckbox>
-    </Checkbox>,
-  )
+  const Component = () => {
+    const { htmlProps, getInputProps, getCheckboxProps } = useCheckbox()
+
+    return (
+      <label {...htmlProps}>
+        <input data-testid="input" {...getInputProps()} />
+        <div {...getCheckboxProps()}>Checkbox</div>
+      </label>
+    )
+  }
+  const utils = render(<Component />)
 
   const input = utils.getByTestId("input")
   const checkbox = utils.getByText("Checkbox")
@@ -36,12 +50,19 @@ test("Uncontrolled - should check and uncheck", () => {
 })
 
 test("Uncontrolled - should not check if disabled", () => {
-  const utils = render(
-    <Checkbox isDisabled>
-      <CheckboxHiddenInput data-testid="input" />
-      <CustomCheckbox>Checkbox</CustomCheckbox>
-    </Checkbox>,
-  )
+  const Component = () => {
+    const { htmlProps, getInputProps, getCheckboxProps } = useCheckbox({
+      isDisabled: true,
+    })
+
+    return (
+      <label {...htmlProps}>
+        <input data-testid="input" {...getInputProps()} />
+        <div {...getCheckboxProps()}>Checkbox</div>
+      </label>
+    )
+  }
+  const utils = render(<Component />)
 
   const input = utils.getByTestId("input")
   const checkbox = utils.getByText("Checkbox")
@@ -56,14 +77,21 @@ test("Uncontrolled - should not check if disabled", () => {
 })
 
 test("indeterminate state", () => {
-  const { getByText } = render(
-    <Checkbox isIndeterminate>
-      <CheckboxHiddenInput data-testid="input" />
-      <CustomCheckbox>Checkbox</CustomCheckbox>
-    </Checkbox>,
-  )
+  const Component = () => {
+    const { htmlProps, getInputProps, getCheckboxProps } = useCheckbox({
+      isIndeterminate: true,
+    })
 
-  const checkbox = getByText("Checkbox")
+    return (
+      <label {...htmlProps}>
+        <input data-testid="input" {...getInputProps()} />
+        <div {...getCheckboxProps()}>Checkbox</div>
+      </label>
+    )
+  }
+  const utils = render(<Component />)
+
+  const checkbox = utils.getByText("Checkbox")
   expect(checkbox).toHaveAttribute("data-mixed")
 })
 
@@ -72,29 +100,27 @@ test("Controlled - should check and uncheck", () => {
   const onChange = jest.fn(e => (checked = e.target.checked))
 
   const Component = (props: CheckboxHookProps) => {
+    const { htmlProps, getInputProps, getCheckboxProps } = useCheckbox(props)
+
     return (
-      <Checkbox {...props}>
-        <CheckboxHiddenInput data-testid="input" />
-        <CustomCheckbox data-testid="checkbox">
-          This is custom checkbox
-        </CustomCheckbox>
-      </Checkbox>
+      <label {...htmlProps}>
+        <input data-testid="input" {...getInputProps()} />
+        <div {...getCheckboxProps()}>Checkbox</div>
+      </label>
     )
   }
 
-  const { getByTestId, rerender } = render(
-    <Component isChecked={checked} onChange={onChange} />,
-  )
+  const utils = render(<Component isChecked={checked} onChange={onChange} />)
 
-  const input = getByTestId("input")
-  const checkbox = getByTestId("checkbox")
+  const input = utils.getByTestId("input")
+  const checkbox = utils.getByText("Checkbox")
 
   expect(input).not.toHaveAttribute("data-checked")
 
   userEvent.click(checkbox)
   expect(onChange).toHaveBeenCalled()
 
-  rerender(<Component isChecked={checked} onChange={onChange} />)
+  utils.rerender(<Component isChecked={checked} onChange={onChange} />)
 
   expect(onChange).toHaveBeenCalled()
   expect(checkbox).toHaveAttribute("data-checked")
@@ -102,7 +128,7 @@ test("Controlled - should check and uncheck", () => {
   userEvent.click(checkbox)
   expect(onChange).toHaveBeenCalled()
 
-  rerender(<Component isChecked={checked} onChange={onChange} />)
+  utils.rerender(<Component isChecked={checked} onChange={onChange} />)
 
   expect(onChange).toHaveBeenCalled()
   expect(checkbox).not.toHaveAttribute("data-checked")
