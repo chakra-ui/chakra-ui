@@ -151,6 +151,11 @@ const CSSReset = () => (
         -webkit-appearance: none !important;
       }
 
+      ::-webkit-file-upload-button {
+        -webkit-appearance: button;
+        font: inherit;
+      }
+
       hr {
         border-top-width: 1px;
       }
@@ -168,6 +173,11 @@ const CSSReset = () => (
         background: transparent;
         padding: 0;
       }
+
+      details {
+        display: block;
+      }
+    
 
       button::-moz-focus-inner {
         border: 0 !important;
@@ -197,6 +207,10 @@ const CSSReset = () => (
         padding: 0;
         line-height: inherit;
         color: inherit;
+      }
+
+      [hidden] {
+        display: none !important;
       }
 
       pre,
