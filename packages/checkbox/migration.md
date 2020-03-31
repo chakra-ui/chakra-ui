@@ -75,7 +75,7 @@ CheckboxGroup
 </CheckboxGroup>
 ```
 
-- Support for responsive `direction` and `spacing` prop
+- Support for responsive `direction` and `spacing`. This allows the group of checkboxes wrap around the parent element automagically.
 
 ```jsx
 <CheckboxGroup
