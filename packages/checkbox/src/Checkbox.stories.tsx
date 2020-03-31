@@ -129,6 +129,10 @@ export const Controlled = () => {
   return <Checkbox isChecked={value} onChange={handleChange} />
 }
 
+/**
+ * Default CheckboxGroup
+ */
+
 export const CheckboxGroupExample = () => {
   return (
     <CheckboxGroup
@@ -136,6 +140,49 @@ export const CheckboxGroupExample = () => {
       direction={["column", "row"]}
       defaultValue={["one", "two"]}
       onChange={value => console.log(value)}
+    >
+      <Checkbox value="one">One</Checkbox>
+      <Checkbox value="two">Two</Checkbox>
+      <Checkbox value="three">Three</Checkbox>
+    </CheckboxGroup>
+  )
+}
+
+/**
+ * CheckboxGroup with responsive spacing and direction
+ */
+
+export const ResponsiveCheckboxGroup = () => {
+  return (
+    <CheckboxGroup
+      spacing={[2, 4, 6]}
+      direction={["column", "row"]}
+      defaultValue={["one", "two"]}
+      onChange={value => console.log(value)}
+    >
+      <Checkbox value="one">One</Checkbox>
+      <Checkbox value="two">Two</Checkbox>
+      <Checkbox value="three">Three</Checkbox>
+    </CheckboxGroup>
+  )
+}
+
+/**
+ * Controlled CheckboxGroup
+ */
+
+type Value = string | number
+type ArrayOfValue = Value[]
+
+export const ControlledCheckboxGroup = () => {
+  const [value, setValue] = React.useState<ArrayOfValue>(["one", "two"])
+  return (
+    <CheckboxGroup
+      value={value}
+      onChange={value => {
+        console.log(value)
+        setValue(value)
+      }}
     >
       <Checkbox value="one">One</Checkbox>
       <Checkbox value="two">Two</Checkbox>
