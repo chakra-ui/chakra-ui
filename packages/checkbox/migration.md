@@ -33,7 +33,7 @@ CheckboxGroup
   <Checkbox value="three">Three</Checkbox>
 </CheckboxGroup>
 
-// before
+// after
 <CheckboxGroup direction="row" defaultValue={["one", "two"]}>
   <Checkbox value="one">One</Checkbox>
   <Checkbox value="two">Two</Checkbox>
@@ -57,13 +57,13 @@ Checkbox
 <Checkbox iconSize="1rem">Option</Checkbox>
 ```
 
-- Support for `iconSize` prop to customize the size of the check icon
+- Support for `labelSpacing` prop to customize the spacing between the checkbox and label text
 
 ```jsx
 <Checkbox labelSpacing="1rem">Option</Checkbox>
 ```
 
-- The `useCheckbox` hook is exported with state and focus management logic for use in create tailor made checkbox component for your application
+- The `useCheckbox` hook is exported with state and focus management logic for use in creating tailor-made checkbox component for your application
 
 CheckboxGroup
 
@@ -77,7 +77,7 @@ CheckboxGroup
 </CheckboxGroup>
 ```
 
-- Support for responsive `direction` and `spacing`. This allows the group of checkboxes wrap around the parent element automagically.
+- Support for responsive `direction` and `spacing` props. This allows the group of checkboxes to wrap around the parent element automagically.
 
 ```jsx
 <CheckboxGroup
@@ -93,4 +93,4 @@ CheckboxGroup
 </CheckboxGroup>
 ```
 
-- The `useCheckboxGroup` hook is exported with state management logic for use in create tailor made checkbox component for your application
+- The `useCheckboxGroup` hook is exported with state management logic for use in creating tailor-made checkbox component for your application
