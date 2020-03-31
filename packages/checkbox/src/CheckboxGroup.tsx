@@ -36,7 +36,7 @@ export type CheckboxGroupProps = CheckboxGroupHookProps &
  */
 
 export const CheckboxGroup = React.forwardRef(
-  (props: CheckboxGroupProps, ref: React.Ref<HTMLInputElement>) => {
+  (props: CheckboxGroupProps, ref: React.Ref<any>) => {
     const {
       name,
       colorScheme,

@@ -166,12 +166,9 @@ test("Controlled CheckboxGroup", () => {
   let checked = ["one", "two"]
   const onChange = jest.fn(value => (checked = value))
 
-  const Component = ({
-    value,
-    onChange,
-  }: Pick<CheckboxGroupProps, "onChange" | "value">) => {
+  const Component = (props: CheckboxGroupProps) => {
     return (
-      <CheckboxGroup value={value} onChange={onChange}>
+      <CheckboxGroup {...props}>
         <Checkbox value="one">One</Checkbox>
         <Checkbox value="two">Two</Checkbox>
         <Checkbox value="three">Three</Checkbox>
