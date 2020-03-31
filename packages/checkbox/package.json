@@ -10,7 +10,10 @@
     "react hook",
     "input",
     "chakra-ui",
-    "use-checkbox"
+    "use-checkbox",
+    "checkboxGroup",
+    "checkbox-group-hook",
+    "use-checbox-group"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
