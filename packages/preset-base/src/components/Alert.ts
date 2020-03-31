@@ -7,7 +7,14 @@ function getSubtleStyle(props: Props) {
   const light = getColor(t, `${c}.100`, c)
   const dark = ink(`${c}.200`, "lowest")(t)
 
-  return { Root: { bg: mode(light, dark)(props) } }
+  const bg = mode(light, dark)(props)
+
+  return {
+    Root: { bg },
+    Icon: {
+      color: mode(`${c}.500`, `${c}.200`)(props),
+    },
+  }
 }
 
 function getLeftAccentStyle(props: Props) {
@@ -18,6 +25,9 @@ function getLeftAccentStyle(props: Props) {
       borderLeft: "4px solid",
       borderColor: mode(`${c}.500`, `${c}.200`)(props),
       ...getSubtleStyle(props)["Root"],
+    },
+    Icon: {
+      color: mode(`${c}.500`, `${c}.200`)(props),
     },
   }
 }
@@ -30,6 +40,9 @@ function getTopAccentStyle(props: Props) {
       borderTop: "4px solid",
       borderColor: mode(`${c}.500`, `${c}.200`)(props),
       ...getSubtleStyle(props)["Root"],
+    },
+    Icon: {
+      color: mode(`${c}.500`, `${c}.200`)(props),
     },
   }
 }
@@ -52,6 +65,10 @@ const Alert: ComponentTheme = {
     Root: {
       paddingX: 4,
       paddingY: 3,
+    },
+    Icon: {
+      marginRight: 3,
+      boxSize: 5,
     },
   },
   variants: {

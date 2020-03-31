@@ -1,25 +1,39 @@
 import * as React from "react"
-import { render } from "@chakra-ui/test-utils"
-import { Alert, AlertDescription, AlertIcon, AlertTitle } from "../Alert"
+import { render, axe } from "@chakra-ui/test-utils"
+import { Alert, AlertDescription, AlertIcon, AlertTitle } from ".."
 
-test("Alert renders correctly", () => {
-  const { asFragment } = render(
+test("should have no accessibility issue", async () => {
+  const tools = render(
     <Alert>
       <AlertIcon />
       <AlertTitle>Alert title</AlertTitle>
       <AlertDescription>Alert description</AlertDescription>
     </Alert>,
   )
-  expect(asFragment()).toMatchSnapshot()
+
+  const results = await axe(tools.container)
+  expect(results).toHaveNoViolations()
 })
 
-test("alert has role=alert", () => {
-  const { getByRole } = render(
+test("should render correctly", () => {
+  const tools = render(
     <Alert>
       <AlertIcon />
       <AlertTitle>Alert title</AlertTitle>
       <AlertDescription>Alert description</AlertDescription>
     </Alert>,
   )
-  getByRole("alert")
+  expect(tools.asFragment()).toMatchSnapshot()
+})
+
+test("should have role='alert'", () => {
+  const tools = render(
+    <Alert>
+      <AlertIcon />
+      <AlertTitle>Alert title</AlertTitle>
+      <AlertDescription>Alert description</AlertDescription>
+    </Alert>,
+  )
+  const alert = tools.getByRole("alert")
+  expect(alert).toBeInTheDocument()
 })

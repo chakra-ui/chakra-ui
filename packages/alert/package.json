@@ -1,14 +1,14 @@
 {
   "name": "@chakra-ui/alert",
   "version": "0.0.1",
-  "description": "A React and Chakra component used to alert users of a particular screen area that needs user action",
+  "description": "A React component used to alert users of a particular screen area that needs user action",
   "keywords": [
     "alert",
     "notice",
+    "notification",
     "react",
     "chakra ui",
-    "ui",
-    "component"
+    "ui"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
