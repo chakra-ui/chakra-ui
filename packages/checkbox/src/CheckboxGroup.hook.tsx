@@ -72,7 +72,7 @@ export function useCheckboxGroup(props: CheckboxGroupHookProps = {}) {
   )
 
   return {
-    value: value,
+    value,
     onChange,
     setValue: updateValue,
   }

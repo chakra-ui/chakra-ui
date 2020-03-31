@@ -83,6 +83,10 @@ export const Sizes = () => {
   )
 }
 
+/**
+ * The indeterminate property can help to achieve a 'check all' effect.
+ */
+
 export const Indeterminate = () => {
   const [checkedItems, setCheckedItems] = React.useState([false, false])
 
@@ -128,6 +132,8 @@ export const Controlled = () => {
 export const CheckboxGroupExample = () => {
   return (
     <CheckboxGroup
+      spacing={[2, 4, 6]}
+      direction={["column", "row"]}
       defaultValue={["one", "two"]}
       onChange={value => console.log(value)}
     >

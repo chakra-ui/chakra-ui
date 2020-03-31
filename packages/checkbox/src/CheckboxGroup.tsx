@@ -1,15 +1,39 @@
 import * as React from "react"
-import { chakra, PropsOf, SystemProps } from "@chakra-ui/system"
+import { chakra, PropsOf, SystemProps, css, useTheme } from "@chakra-ui/system"
 import { useId } from "@chakra-ui/hooks"
 import { useCheckboxGroup, CheckboxGroupHookProps } from "./CheckboxGroup.hook"
-import { getValidChildren, omit, __DEV__ } from "@chakra-ui/utils"
+import {
+  getValidChildren,
+  omit,
+  __DEV__,
+  mapResponsive,
+} from "@chakra-ui/utils"
 
-type CheckboxGroupProps = CheckboxGroupHookProps &
+export type CheckboxGroupProps = CheckboxGroupHookProps &
   Omit<PropsOf<typeof chakra.div>, "onChange" | "value"> & {
+    /**
+     * The name of the checkbox group
+     */
     name?: string
-    isInline?: boolean
+    /**
+     * The space between the children checkboxes
+     */
     spacing?: SystemProps["margin"]
+    /**
+     * The direction to stack the children checkboxes
+     */
+    direction?: SystemProps["flexDirection"]
   }
+
+/**
+ * CheckboxGroup
+ *
+ * Used for multiple checkboxes which are bound in one group,
+ * and it indicates whether one or more options are selected.
+ *
+ * @see Docs https://chakra-ui.com/checkbox
+ *
+ */
 
 export const CheckboxGroup = React.forwardRef(
   (props: CheckboxGroupProps, ref: React.Ref<HTMLInputElement>) => {
@@ -17,31 +41,35 @@ export const CheckboxGroup = React.forwardRef(
       name,
       colorScheme,
       size,
-      isInline,
       spacing = 2,
+      direction = "row",
       children,
       ...rest
     } = props
+    const theme = useTheme()
 
     const _name = useId(name, "checkbox")
     const { value, onChange } = useCheckboxGroup(props)
 
+    const childSpacing = mapResponsive(spacing, value => {
+      const { margin } = css({ margin: value })(theme)
+      return `calc(${margin} / 2)`
+    })
+
+    const containerSpacing = mapResponsive(spacing, value => {
+      const { margin } = css({ margin: value })(theme)
+      return `calc(${margin} / 2 * -1)`
+    })
+
     const validChildren = getValidChildren(children)
 
     const clones = validChildren.map((child, index) => {
-      const isLastCheckbox = validChildren.length === index + 1
-      const spacingProps = isInline ? { mr: spacing } : { mb: spacing }
-
       return (
-        <chakra.div
-          key={index}
-          display={isInline ? "inline-block" : "block"}
-          {...(!isLastCheckbox && spacingProps)}
-        >
+        <chakra.div key={index} margin={childSpacing}>
           {React.cloneElement(child, {
             size,
-            colorScheme,
             onChange,
+            colorScheme,
             name: `${_name}-${index}`,
             isChecked: value.includes(child.props.value),
           })}
@@ -50,7 +78,15 @@ export const CheckboxGroup = React.forwardRef(
     })
 
     return (
-      <chakra.div ref={ref} role="group" {...omit(rest, ["onChange"])}>
+      <chakra.div
+        ref={ref}
+        role="group"
+        display="flex"
+        flexWrap="wrap"
+        flexDirection={direction}
+        margin={containerSpacing}
+        {...omit(rest, ["onChange"])}
+      >
         {clones}
       </chakra.div>
     )
