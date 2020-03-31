@@ -1,15 +1,24 @@
 import * as React from "react"
 import { PopoverHookReturn, PopoverHookProps, usePopover } from "./Popover.hook"
-import { createContext, NodeOrRenderProp } from "@chakra-ui/utils"
+import { createContext, NodeOrRenderProp, isFunction } from "@chakra-ui/utils"
 import { chakra, PropsOf } from "@chakra-ui/system"
 import { Portal } from "@chakra-ui/portal"
 import { useSafeLayoutEffect } from "@chakra-ui/hooks"
+import { CloseButton } from "@chakra-ui/close-button"
 
-type PopoverContext = PopoverHookReturn
-
-const [PopoverCtxProvider, usePopoverContext] = createContext<PopoverContext>()
+const [PopoverCtxProvider, usePopoverContext] = createContext<
+  PopoverHookReturn
+>()
 
 export type PopoverProps = PopoverHookProps & {
+  /**
+   * If `true` the popover content will be displayed within a Portal.
+   */
+  usePortal?: boolean
+  /**
+   * The content of the popover. It's usually the `PopoverTrigger`,
+   * and `PopoverContent`
+   */
   children?: NodeOrRenderProp<{ isOpen: boolean; onClose(): void }>
 }
 
@@ -23,9 +32,10 @@ export type PopoverProps = PopoverHookProps & {
 export const Popover = (props: PopoverProps) => {
   const { children } = props
   const context = usePopover(props)
+
   return (
     <PopoverCtxProvider value={context}>
-      {typeof children === "function"
+      {isFunction(children)
         ? children({ isOpen: context.isOpen, onClose: context.onClose })
         : children}
     </PopoverCtxProvider>
@@ -57,8 +67,20 @@ export type PopoverContentProps = PropsOf<typeof StyledContent> & {
 
 const StyledContent = chakra("section", {
   themeKey: "Popover.Content",
+  baseStyle: {
+    width: "100%",
+    position: "relative",
+    display: "flex",
+    flexDirection: "column",
+  },
 })
 
+/**
+ * PopoverContent
+ *
+ * The popover's content wrapper that includes all
+ * accessibility requirements for a popover
+ */
 export const PopoverContent = React.forwardRef(
   (props: PopoverContentProps, ref: React.Ref<any>) => {
     const { usePortal, ...rest } = props
@@ -78,12 +100,25 @@ export const PopoverContent = React.forwardRef(
   },
 )
 
+/**
+ * Theming
+ *
+ * To change the global styles of Popover Header,
+ * go to `theme.components.Popover` under the `Header` key
+ */
 const StyledHeader = chakra("header", {
   themeKey: "Popover.Header",
 })
 
 export type PopoverHeaderProps = PropsOf<typeof StyledHeader>
 
+/**
+ * Popover Header
+ *
+ * This servers as the accessible header or label
+ * for the popover's content and it's first announced by
+ * screenreaders.
+ */
 export const PopoverHeader = React.forwardRef(
   (props: PopoverHeaderProps, ref: React.Ref<any>) => {
     const { headerId, setHasHeader } = usePopoverContext()
@@ -134,3 +169,24 @@ export const PopoverBody = React.forwardRef(
     return <StyledBody {...props} id={bodyId} ref={ref} />
   },
 )
+
+/**
+ * PopoverCloseButton
+ *
+ * The button to close the popover
+ */
+export const PopoverCloseButton = (props: any) => {
+  const { onClose } = usePopoverContext()
+  return (
+    <CloseButton
+      size="sm"
+      onClick={onClose}
+      position="absolute"
+      borderRadius="md"
+      top={1}
+      right={2}
+      padding={2}
+      {...props}
+    />
+  )
+}

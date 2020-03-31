@@ -6,6 +6,7 @@ import {
   PopoverContent,
   PopoverHeader,
   PopoverBody,
+  PopoverCloseButton,
 } from "."
 import { chakra } from "@chakra-ui/system"
 
@@ -62,6 +63,7 @@ export const basic = () => (
         <button>Welcome home</button>
       </PopoverTrigger>
       <PopoverContent usePortal>
+        <PopoverCloseButton />
         <PopoverHeader>Submit now</PopoverHeader>
         <PopoverBody>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
@@ -69,5 +71,7 @@ export const basic = () => (
         </PopoverBody>
       </PopoverContent>
     </Popover>
+
+    <input />
   </>
 )

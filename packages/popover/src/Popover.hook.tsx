@@ -5,9 +5,25 @@ import { useBlurOutside, useFocusOnHide, useFocusOnShow } from "./Popover.utils"
 import { mergeRefs, Dict, callAllHandlers } from "@chakra-ui/utils"
 
 export interface PopoverHookProps {
+  /**
+   * The html `id` attribute of the popover.
+   * If not provided, we generate a unique id.
+   *
+   * This `id` is also used to auto-generate the `aria-labelledby`
+   * and `aria-decribedby` attributes that points to the `PopoverHeader` and `PopoverBody`
+   */
   id?: string
+  /**
+   * If `true`, the popover will be opened in controlled mode.
+   */
   isOpen?: boolean
+  /**
+   * If `true`, the popover will be initially opened.
+   */
   defaultIsOpen?: boolean
+  /**
+   * The `ref` of the element that should receive focus when the popover opens.
+   */
   initialFocusRef?: React.RefObject<any>
   /**
    * If `true`, focus will be returned to the element that triggers the popover
@@ -19,11 +35,31 @@ export interface PopoverHookProps {
    * when the popover opens
    */
   autoFocus?: boolean
+  /**
+   * The gap (in pixels) to apply between the popover and the target.
+   * Used by `popper.js`
+   */
   gutter?: number
+  /**
+   * The placment of the popover
+   */
   placement?: Placement
+  /**
+   * If `true`, the popover will close when you blur out it by
+   * clicking outside or tabbing out
+   */
   closeOnBlur?: boolean
+  /**
+   * If `true`, the popover will close when you hit the `Esc` key
+   */
   closeOnEsc?: boolean
+  /**
+   * Callback fired when the popover opens
+   */
   onOpen?: () => void
+  /**
+   * Callback fired when the popover closes
+   */
   onClose?: () => void
 }
 
