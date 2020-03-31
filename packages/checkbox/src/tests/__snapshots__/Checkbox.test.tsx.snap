@@ -3,14 +3,44 @@
 exports[`Checkbox renders correctly 1`] = `
 <DocumentFragment>
   <label
+    class="css-zv9087"
     data-chakra-checkbox=""
   >
-    <input
-      data-chakra-checkbox-input=""
-      style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
-      type="checkbox"
-      value=""
+    <div
+      class="css-79elbk"
+    >
+      <input
+        data-chakra-checkbox-input=""
+        style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
+        type="checkbox"
+        value=""
+      />
+    </div>
+    <span
+      aria-hidden="true"
+      class="css-164w5gg"
+      data-chakra-checkbox-control=""
     />
+  </label>
+</DocumentFragment>
+`;
+
+exports[`Checkbox renders correctly 2`] = `
+<DocumentFragment>
+  <label
+    class="css-zv9087"
+    data-chakra-checkbox=""
+  >
+    <div
+      class="css-79elbk"
+    >
+      <input
+        data-chakra-checkbox-input=""
+        style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
+        type="checkbox"
+        value=""
+      />
+    </div>
     <span
       aria-hidden="true"
       class="css-164w5gg"
