@@ -63,6 +63,8 @@ Checkbox
 <Checkbox labelSpacing="1rem">Option</Checkbox>
 ```
 
+- The `useCheckbox` hook is exported with state and focus management logic for use in create tailor made checkbox component for your application
+
 CheckboxGroup
 
 - Support for `spacing` prop to customize the space between the children checkboxes
@@ -90,3 +92,5 @@ CheckboxGroup
   <Checkbox value="four">Four</Checkbox>
 </CheckboxGroup>
 ```
+
+- The `useCheckboxGroup` hook is exported with state management logic for use in create tailor made checkbox component for your application

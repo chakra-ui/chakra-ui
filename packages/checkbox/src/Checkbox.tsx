@@ -79,6 +79,18 @@ export const Checkbox = React.forwardRef(
       size = "lg",
     } = props
 
+    // Prevent onBlur being fired when the checkbox label is clicked
+    const handleMouseDown = (event: React.MouseEvent<HTMLInputElement>) => {
+      event.preventDefault()
+      event.stopPropagation()
+    }
+
+    // Prevent onBlur being fired when the checkbox label is touched
+    const handleTouchStart = (event: React.TouchEvent<HTMLInputElement>) => {
+      event.preventDefault()
+      event.stopPropagation()
+    }
+
     return (
       <chakra.label
         cursor="pointer"
@@ -88,7 +100,9 @@ export const Checkbox = React.forwardRef(
         data-chakra-checkbox=""
         {...htmlProps}
       >
-        <input data-chakra-checkbox-input="" {...getInputProps({ ref })} />
+        <chakra.div position="relative">
+          <input data-chakra-checkbox-input="" {...getInputProps({ ref })} />
+        </chakra.div>
         <ControlBox
           data-chakra-checkbox-control=""
           variant={variant}
@@ -112,6 +126,8 @@ export const Checkbox = React.forwardRef(
             marginLeft={labelSpacing}
             fontSize={props.size}
             userSelect="none"
+            onMouseDown={handleMouseDown}
+            onTouchStart={handleTouchStart}
             opacity={props.isDisabled ? 0.4 : 1}
           >
             {props.children}

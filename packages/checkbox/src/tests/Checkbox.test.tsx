@@ -1,6 +1,7 @@
 import * as React from "react"
 import { render, userEvent, renderHook, invoke } from "@chakra-ui/test-utils"
 import { Checkbox, useCheckbox, CheckboxHookProps } from ".."
+import { CheckboxGroup } from "../CheckboxGroup"
 
 test("Checkbox renders correctly", () => {
   const utils = render(<Checkbox />)

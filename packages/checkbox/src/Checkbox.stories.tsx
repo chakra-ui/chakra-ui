@@ -21,7 +21,7 @@ export const Base = () => {
  * A simple checkbox component.
  */
 
-export const Basic = () => <Checkbox />
+export const Basic = () => <Checkbox>Hello</Checkbox>
 
 /**
  * Pass the `isDisabled` prop set to true, to have the checkbox in the

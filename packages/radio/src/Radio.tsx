@@ -43,6 +43,18 @@ export const Radio = React.forwardRef(
 
     const [rootStyles, radioStyles] = split(rest, layoutPropNames as any)
 
+    // Prevent onBlur being fired when the checkbox label is clicked
+    const handleMouseDown = (event: React.MouseEvent<HTMLInputElement>) => {
+      event.preventDefault()
+      event.stopPropagation()
+    }
+
+    // Prevent onBlur being fired when the checkbox label is touched
+    const handleTouchStart = (event: React.TouchEvent<HTMLInputElement>) => {
+      event.preventDefault()
+      event.stopPropagation()
+    }
+
     return (
       <chakra.label
         display="inline-flex"
@@ -61,6 +73,8 @@ export const Radio = React.forwardRef(
             marginLeft="0.5rem"
             fontSize={size}
             userSelect="none"
+            onMouseDown={handleMouseDown}
+            onTouchStart={handleTouchStart}
             opacity={props.isDisabled ? 0.4 : 1}
           >
             {children}
