@@ -5,7 +5,7 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbSeparator,
-} from "../Breadcrumb"
+} from ".."
 
 test("Breadcrumb renders correctly", () => {
   const { asFragment } = render(

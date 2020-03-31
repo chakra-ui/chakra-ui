@@ -1,5 +1,6 @@
 import * as React from "react"
 import { render, userEvent, fireEvent } from "@chakra-ui/test-utils"
+import { PortalManager } from "@chakra-ui/portal"
 import {
   Dialog,
   DialogBody,
@@ -8,8 +9,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogOverlay,
-} from "../Dialog"
-import { PortalManager } from "@chakra-ui/portal"
+} from ".."
 
 test("Dialog renders correctly", () => {
   const { asFragment } = render(
