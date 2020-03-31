@@ -7,7 +7,7 @@ import { useSafeLayoutEffect } from "@chakra-ui/hooks"
 import { CloseButton } from "@chakra-ui/close-button"
 
 const [PopoverCtxProvider, usePopoverContext] = createContext<
-  PopoverHookReturn
+  PopoverHookReturn & { usePortal?: boolean }
 >()
 
 export type PopoverProps = PopoverHookProps & {
@@ -30,11 +30,11 @@ export type PopoverProps = PopoverHookProps & {
  * action or to guide users through a new experience.
  */
 export const Popover = (props: PopoverProps) => {
-  const { children } = props
-  const context = usePopover(props)
+  const { children, usePortal, ...hookProps } = props
+  const context = usePopover(hookProps)
 
   return (
-    <PopoverCtxProvider value={context}>
+    <PopoverCtxProvider value={{ ...context, usePortal }}>
       {isFunction(children)
         ? children({ isOpen: context.isOpen, onClose: context.onClose })
         : children}
@@ -55,16 +55,17 @@ export const PopoverTrigger = (props: PopoverTriggerProps) => {
 
   // enforce a single child
   const child = React.Children.only(children) as React.ReactElement<any>
-
   const { getTriggerProps } = usePopoverContext()
 
   return React.cloneElement(child, getTriggerProps(child.props))
 }
 
-export type PopoverContentProps = PropsOf<typeof StyledContent> & {
-  usePortal?: boolean
-}
-
+/**
+ * Theming
+ *
+ * To change the global styles of Popover Content,
+ * go to `theme.components.Popover` under the `Content` key
+ */
 const StyledContent = chakra("section", {
   themeKey: "Popover.Content",
   baseStyle: {
@@ -75,6 +76,8 @@ const StyledContent = chakra("section", {
   },
 })
 
+export type PopoverContentProps = PropsOf<typeof StyledContent>
+
 /**
  * PopoverContent
  *
@@ -83,9 +86,7 @@ const StyledContent = chakra("section", {
  */
 export const PopoverContent = React.forwardRef(
   (props: PopoverContentProps, ref: React.Ref<any>) => {
-    const { usePortal, ...rest } = props
-
-    const { getPopoverProps } = usePopoverContext()
+    const { getPopoverProps, usePortal } = usePopoverContext()
 
     const Wrapper = usePortal ? Portal : React.Fragment
 
@@ -93,7 +94,7 @@ export const PopoverContent = React.forwardRef(
       <Wrapper>
         <StyledContent
           data-chakra-popover-content=""
-          {...getPopoverProps({ ...rest, ref })}
+          {...getPopoverProps({ ...props, ref })}
         />
       </Wrapper>
     )
@@ -189,4 +190,11 @@ export const PopoverCloseButton = (props: any) => {
       {...props}
     />
   )
+}
+
+const StyledArrow = chakra("div")
+
+export const PopoverArrow = (props: any) => {
+  const { getArrowProps } = usePopoverContext()
+  return <StyledArrow bg="inherit" {...getArrowProps(props)} />
 }

@@ -61,6 +61,10 @@ export interface PopoverHookProps {
    * Callback fired when the popover closes
    */
   onClose?: () => void
+  /**
+   * The size of the popover arrow
+   */
+  arrowSize?: number
 }
 
 export function usePopover(props: PopoverHookProps = {}) {
@@ -71,6 +75,7 @@ export function usePopover(props: PopoverHookProps = {}) {
     placement,
     gutter,
     id,
+    arrowSize,
   } = props
   const { isOpen, onClose, onToggle } = useDisclosure(props)
 
@@ -92,6 +97,7 @@ export function usePopover(props: PopoverHookProps = {}) {
     placement,
     gutter,
     forceUpdate: isOpen,
+    arrowSize,
   })
 
   useFocusOnHide(popoverRef, {

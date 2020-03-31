@@ -6,6 +6,7 @@ import {
   PopoverContent,
   PopoverHeader,
   PopoverBody,
+  PopoverArrow,
   PopoverCloseButton,
 } from "."
 import { chakra } from "@chakra-ui/system"
@@ -43,13 +44,34 @@ export function PopoverExample() {
   )
 }
 
+const Button = chakra("button", {
+  themeKey: "Button",
+  baseStyle: {
+    outline: 0,
+  },
+})
+
+export const simple = () => (
+  <Popover closeOnBlur={false}>
+    <PopoverTrigger>
+      <Button mt="180px">Trigger</Button>
+    </PopoverTrigger>
+    <PopoverContent>
+      <PopoverArrow />
+      <PopoverCloseButton />
+      <PopoverHeader>Confirmation!</PopoverHeader>
+      <PopoverBody>Are you sure you want to have that milkshake?</PopoverBody>
+    </PopoverContent>
+  </Popover>
+)
+
 export const basic = () => (
   <>
-    <Popover placement="top">
+    <Popover usePortal placement="top">
       <PopoverTrigger>
         <button>Welcome home</button>
       </PopoverTrigger>
-      <PopoverContent usePortal>
+      <PopoverContent>
         <PopoverHeader>Submit now</PopoverHeader>
         <PopoverBody>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
@@ -62,7 +84,7 @@ export const basic = () => (
       <PopoverTrigger>
         <button>Welcome home</button>
       </PopoverTrigger>
-      <PopoverContent usePortal>
+      <PopoverContent>
         <PopoverCloseButton />
         <PopoverHeader>Submit now</PopoverHeader>
         <PopoverBody>
