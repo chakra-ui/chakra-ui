@@ -8,8 +8,6 @@ import {
   removeItem,
   getNextIndex,
   getPrevIndex,
-  chunk,
-  getNextItemFromSearch,
 } from "../array"
 
 // yarn utils test
