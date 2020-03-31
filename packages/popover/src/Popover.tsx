@@ -4,11 +4,11 @@ import { createContext, NodeOrRenderProp, isFunction } from "@chakra-ui/utils"
 import { chakra, PropsOf } from "@chakra-ui/system"
 import { Portal } from "@chakra-ui/portal"
 import { useSafeLayoutEffect } from "@chakra-ui/hooks"
-import { CloseButton } from "@chakra-ui/close-button"
+import { CloseButton, CloseButtonProps } from "@chakra-ui/close-button"
 
-const [PopoverCtxProvider, usePopoverContext] = createContext<
-  PopoverHookReturn & { usePortal?: boolean }
->()
+type PopoverContext = PopoverHookReturn & { usePortal?: boolean }
+
+const [PopoverCtxProvider, usePopoverContext] = createContext<PopoverContext>()
 
 export type PopoverProps = PopoverHookProps & {
   /**
@@ -48,13 +48,9 @@ export const Popover = (props: PopoverProps) => {
  * The trigger for the popover. It must be an interactive element
  * such as `button` or `a`.
  */
-export type PopoverTriggerProps = { children?: React.ReactNode }
-
-export const PopoverTrigger = (props: PopoverTriggerProps) => {
-  const { children } = props
-
+export const PopoverTrigger: React.FC = props => {
   // enforce a single child
-  const child = React.Children.only(children) as React.ReactElement<any>
+  const child = React.Children.only(props.children) as React.ReactElement<any>
   const { getTriggerProps } = usePopoverContext()
 
   return React.cloneElement(child, getTriggerProps(child.props))
@@ -171,12 +167,14 @@ export const PopoverBody = React.forwardRef(
   },
 )
 
+export type PopoverCloseButtonProps = CloseButtonProps
+
 /**
  * PopoverCloseButton
  *
  * The button to close the popover
  */
-export const PopoverCloseButton = (props: any) => {
+export const PopoverCloseButton = (props: CloseButtonProps) => {
   const { onClose } = usePopoverContext()
   return (
     <CloseButton
@@ -194,7 +192,9 @@ export const PopoverCloseButton = (props: any) => {
 
 const StyledArrow = chakra("div")
 
-export const PopoverArrow = (props: any) => {
+export type PopoverArrowProps = PropsOf<typeof StyledArrow>
+
+export const PopoverArrow = (props: PopoverArrowProps) => {
   const { getArrowProps } = usePopoverContext()
   return <StyledArrow bg="inherit" {...getArrowProps(props)} />
 }
