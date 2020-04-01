@@ -85,6 +85,35 @@ export const TextAreaExample = () => (
   </FormControl>
 )
 
+type SelectProps = Omit<PropsOf<"select">, OmittedTypes> & FormControlOptions
+
+const StyledSelect = chakra<"select", Props>("select", {
+  themeKey: "Textarea",
+})
+
+const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
+  (props, ref) => {
+    const inputProps = useFormControl<HTMLSelectElement>(props)
+    return <StyledSelect ref={ref} {...inputProps} />
+  },
+)
+
+export const SelectExample = () => (
+  <FormControl id="first-name" isInvalid>
+    <FormLabel>First name</FormLabel>
+    <Select>
+      <option>Option 1</option>
+      <option>Option 2</option>
+      <option>Option 3</option>
+    </Select>
+    <FormHelperText>Keep it very short and sweet!</FormHelperText>
+    <FormErrorMessage>
+      <FormErrorIcon />
+      Your First name is invalid
+    </FormErrorMessage>
+  </FormControl>
+)
+
 /**
  * You can style the label when the input is focused,
  * simply pass the `_focus` pseudo prop
