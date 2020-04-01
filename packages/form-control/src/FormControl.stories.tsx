@@ -1,13 +1,13 @@
 import { chakra, PropsOf } from "@chakra-ui/system"
 import * as React from "react"
 import {
-  FormErrorMessage,
+  FormControlOptions,
   FormControl,
+  FormErrorIcon,
+  FormErrorMessage,
   FormHelperText,
   FormLabel,
-  useField,
-  FormErrorIcon,
-  ControlProps,
+  useFormControl,
 } from "."
 
 export default {
@@ -24,13 +24,13 @@ export default {
 type OmittedTypes = "disabled" | "required" | "readOnly" | "size"
 
 type InputProps = Omit<PropsOf<typeof StyledInput>, OmittedTypes> &
-  ControlProps & {
+  FormControlOptions & {
     // Input component as `size` by default so it resolves to `never`
     // Omitted it from types in Line 16 and added back here.
     size?: string
   }
 
-// Create an input that consumes useField
+// Create an input that consumes useFormControl
 type Props = { focusBorderColor?: string; errorBorderColor?: string }
 
 const StyledInput = chakra<"input", Props>("input", {
@@ -39,7 +39,7 @@ const StyledInput = chakra<"input", Props>("input", {
 
 const Input = React.forwardRef(
   (props: InputProps, ref: React.Ref<HTMLInputElement>) => {
-    const inputProps = useField<HTMLInputElement>(props)
+    const inputProps = useFormControl<HTMLInputElement>(props)
     return <StyledInput ref={ref} {...inputProps} />
   },
 )
@@ -53,9 +53,10 @@ export const InputExample = () => (
   </FormControl>
 )
 
-type TextAreaProps = Omit<PropsOf<"textarea">, OmittedTypes> & ControlProps
+type TextAreaProps = Omit<PropsOf<"textarea">, OmittedTypes> &
+  FormControlOptions
 
-// Create a textarea that consumes useField
+// Create a textarea that consumes useFormControl
 const StyledTextarea = chakra<"textarea", Props>("textarea", {
   baseStyle: {
     paddingY: "8px",
@@ -67,7 +68,7 @@ const StyledTextarea = chakra<"textarea", Props>("textarea", {
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
   (props, ref) => {
-    const inputProps = useField<HTMLTextAreaElement>(props)
+    const inputProps = useFormControl<HTMLTextAreaElement>(props)
     return <StyledTextarea ref={ref} {...inputProps} />
   },
 )
@@ -84,6 +85,10 @@ export const TextAreaExample = () => (
   </FormControl>
 )
 
+/**
+ * You can style the label when the input is focused,
+ * simply pass the `_focus` pseudo prop
+ */
 export const StylingFocus = () => (
   <FormControl id="first-name">
     <FormLabel _focus={{ color: "blue.300" }}>First name</FormLabel>

@@ -1,4 +1,4 @@
-import { ControlProps, useField } from "@chakra-ui/form-control"
+import { FormControlOptions, useFormControl } from "@chakra-ui/form-control"
 import { chakra, PropsOf, useComponentStyle } from "@chakra-ui/system"
 import * as React from "react"
 import { useInputGroup } from "./Input.group"
@@ -26,7 +26,7 @@ interface InputOptions {
 }
 
 export type InputProps = Omit<PropsOf<typeof StyledInput>, OmittedTypes> &
-  ControlProps
+  FormControlOptions
 
 const StyledInput = chakra<"input", InputOptions>("input", {
   themeKey: "Input",
@@ -36,7 +36,7 @@ const StyledInput = chakra<"input", InputOptions>("input", {
 
 export const Input = React.forwardRef(
   (props: InputProps, ref: React.Ref<HTMLInputElement>) => {
-    const inputProps = useField<HTMLInputElement>(props)
+    const inputProps = useFormControl<HTMLInputElement>(props)
     const group = useInputGroup()
 
     const variant = group?.variant || props.variant

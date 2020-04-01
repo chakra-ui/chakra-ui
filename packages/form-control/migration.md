@@ -5,8 +5,8 @@
 - `FormControl` now exposes most of it's internal functions and hooks so you can
   leverage in building custom components.
 
-- Now export `useField`, the hook you can consume in any custom form elements
-  you build.
+- Now export `useFormControl`, the hook you can consume in any custom form
+  elements you build.
 
 - We've improved the accessibility of the `FormControl` component. Here are the
   changes:

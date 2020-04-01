@@ -1,10 +1,10 @@
 import { useBooleanState, useId, useSafeLayoutEffect } from "@chakra-ui/hooks"
 import Icon from "@chakra-ui/icon"
 import { chakra, PropsOf, useComponentStyle } from "@chakra-ui/system"
-import { attr, callAllHandlers, createContext } from "@chakra-ui/utils"
+import { attr, callAllHandlers, createContext, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-export interface ControlProps {
+export interface FormControlOptions {
   /**
    * If `true`, the form control will required. This has 2 side effects:
    * - The `FormLabel` will show a required indicator
@@ -33,7 +33,7 @@ export interface ControlProps {
   isLoading?: boolean
 }
 
-interface FormControlContext extends ControlProps {
+interface FormControlContext extends FormControlOptions {
   /**
    * The label text used to inform users as to what information is
    * requested for a text field.
@@ -57,15 +57,17 @@ interface FormControlContext extends ControlProps {
   id?: string
 }
 
-type FieldContext = ReturnType<typeof useFormControl>
+type FieldContext = ReturnType<typeof useFormControlProvider>
 
-const [FieldContextProvider, useFieldContext] = createContext<FieldContext>({
+const [FormControlCtxProvider, useFormControlContext] = createContext<
+  FieldContext
+>({
   strict: false,
 })
 
-export { useFieldContext }
+export { useFormControlContext }
 
-function useFormControl(props: FormControlContext) {
+function useFormControlProvider(props: FormControlContext) {
   const {
     id: idProp,
     isRequired,
@@ -115,6 +117,10 @@ function useFormControl(props: FormControlContext) {
 //////////////////////////////////////////////////////////////////////////////
 
 const StyledFormControl = chakra("div", {
+  themeKey: "Form.Root",
+  baseStyle: {
+    position: "relative",
+  },
   attrs: {
     role: "group",
   },
@@ -145,15 +151,19 @@ export const FormControl = React.forwardRef(
       ...rest
     } = props
 
-    const fieldContext = useFormControl(props)
+    const context = useFormControlProvider(props)
 
     return (
-      <FieldContextProvider value={fieldContext}>
+      <FormControlCtxProvider value={context}>
         <StyledFormControl data-chakra-form-control="" ref={ref} {...rest} />
-      </FieldContextProvider>
+      </FormControlCtxProvider>
     )
   },
 )
+
+if (__DEV__) {
+  FormControl.displayName = "FormControl"
+}
 
 //////////////////////////////////////////////////////////////////////////////
 /**
@@ -181,7 +191,7 @@ export type FormLabelProps = PropsOf<typeof StyledLabel>
  */
 export const FormLabel = React.forwardRef(
   (props: FormLabelProps, ref: React.Ref<HTMLLabelElement>) => {
-    const field = useFieldContext()
+    const field = useFormControlContext()
 
     return (
       <StyledLabel
@@ -199,6 +209,10 @@ export const FormLabel = React.forwardRef(
     )
   },
 )
+
+if (__DEV__) {
+  FormLabel.displayName = "FormLabel"
+}
 
 //////////////////////////////////////////////////////////////////////////////
 
@@ -227,7 +241,7 @@ export type RequiredIndicatorProps = PropsOf<typeof StyledIndicator>
  */
 export const RequiredIndicator = React.forwardRef(
   (props: RequiredIndicatorProps, ref: React.Ref<any>) => {
-    const field = useFieldContext()
+    const field = useFormControlContext()
 
     if (!field?.isRequired) return null
 
@@ -236,6 +250,10 @@ export const RequiredIndicator = React.forwardRef(
     )
   },
 )
+
+if (__DEV__) {
+  RequiredIndicator.displayName = "RequiredIndicator"
+}
 
 //////////////////////////////////////////////////////////////////////////////
 
@@ -259,7 +277,7 @@ export type HelpTextProps = PropsOf<typeof StyledHelperText>
  * types in values should be provided
  */
 export function FormHelperText(props: HelpTextProps) {
-  const field = useFieldContext()
+  const field = useFormControlContext()
 
   /**
    * Notify the field context when the help text is rendered on
@@ -279,6 +297,10 @@ export function FormHelperText(props: HelpTextProps) {
       id={props.id ?? field?.helpTextId}
     />
   )
+}
+
+if (__DEV__) {
+  FormHelperText.displayName = "FormHelperText"
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -309,7 +331,7 @@ export type FormErrorMessageProps = PropsOf<typeof StyledErrorText>
  * and suggest clear instrctions on how to fix it.
  */
 export function FormErrorMessage(props: FormErrorMessageProps) {
-  const field = useFieldContext()
+  const field = useFormControlContext()
 
   if (!field?.isInvalid) return null
 
@@ -322,16 +344,20 @@ export function FormErrorMessage(props: FormErrorMessageProps) {
   )
 }
 
+if (__DEV__) {
+  FormErrorMessage.displayName = "FormErrorMessage"
+}
+
 //////////////////////////////////////////////////////////////////////////////
 
-export type FieldHookProps<T extends HTMLElement> = ControlProps & {
+export type FormElementProps<T extends HTMLElement> = FormControlOptions & {
   id?: string
   onFocus?: React.FocusEventHandler<T>
   onBlur?: React.FocusEventHandler<T>
 }
 
 /**
- * useField
+ * useFormControl
  *
  * React hook that provides the props that should be spread on to
  * input fields (`input`, `select`, `textarea`, etc.).
@@ -339,8 +365,10 @@ export type FieldHookProps<T extends HTMLElement> = ControlProps & {
  * It provides a convenient way to control a form fields, validation
  * and helper text.
  */
-export function useField<T extends HTMLElement>(props: FieldHookProps<T>) {
-  const field = useFieldContext()
+export function useFormControl<T extends HTMLElement>(
+  props: FormElementProps<T>,
+) {
+  const field = useFormControlContext()
   const describedBy: string[] = []
 
   if (field?.isInvalid) describedBy.push(field.feedbackId)
@@ -373,7 +401,7 @@ export type FormErrorIconProps = PropsOf<typeof Icon>
  */
 export const FormErrorIcon = (props: FormErrorIconProps) => {
   const styles = useComponentStyle({ themeKey: "Form.ErrorIcon" })
-  const field = useFieldContext()
+  const field = useFormControlContext()
 
   if (!field?.isInvalid) return null
 
@@ -385,4 +413,8 @@ export const FormErrorIcon = (props: FormErrorIconProps) => {
       />
     </Icon>
   )
+}
+
+if (__DEV__) {
+  FormErrorIcon.displayName = "FormErrorIcon"
 }

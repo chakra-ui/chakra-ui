@@ -1,34 +1,36 @@
-# Form Control
+# @chakra-ui/form-control
 
-This component is used to manange form controls such input fields, checkbox and
-radio buttons. It provides components and context that make your form fields
-accessible by default.
+Form Control component is used to manange form controls such input fields,
+checkbox and radio buttons. It provides components and context that make your
+form fields accessible by default.
 
 - **FormControl** - the top level component that provides context
 - **FormLabel** - the visible form control label
-- **FormHelpText** - the from control's assistive text that guides the user. If
-  added, it hides when there's an error in the field.
-- **FormErrorText** - the form control's error feedback. If there's a help text
-  visible when the control is invalid, it replaces the help text, to prevent
-  content shift
+- **FormHelperText** - the from control's assistive text that guides the user.
+  If added, it hides when there's an error in the field.
+- **FormErrorMessage** - the form control's error feedback. If there's a help
+  text visible when the control is invalid, it replaces the help text, to
+  prevent content shift
 - **FormErrorIcon** - an icon that indicates the error state for colorbind
   users.
 
-## Import guide
-
-Install the form control package
+## Installation
 
 ```sh
+yarn add @chakra-ui/form-control
+
+# or
+
 npm install @chakra-ui/form-control
 ```
 
-then import the components
+## Import component
 
 ```jsx
 import {
   FormControl,
   FormLabel,
-  FormErrorText,
+  FormErrorMessage,
   FormHelperText,
   FormErrorIcon,
 } from "@chakra-ui/form-control"
@@ -50,7 +52,7 @@ component to be fully accessible.
   // automatically gets `id` and hides if `isInvalid` is passed to `FormControl`
   <FormHelpText>Keep your first name short</FormHelpText>
   // automatically gets `id` and shows if `isInvalid` is passed to `FormControl`
-  <FormErrorText>First name is invalid</FormErrorText>
+  <FormErrorMessage>First name is invalid</FormErrorMessage>
 </FormControl>
 ```
 
@@ -63,7 +65,7 @@ component to be fully accessible.
     <Checkbox>Naruto</Checkbox>
     <Checkbox>Boruto</Checkbox>
   </CheckboxGroup>
-  <FormErrorText>C'mon! You must select one</FormErrorText>
+  <FormErrorMessage>C'mon! You must select one</FormErrorMessage>
 </FormControl>
 ```
 
@@ -95,23 +97,7 @@ To change the required indicator beside the `FormLabel`, simply pass the
     <Checkbox>Naruto</Checkbox>
     <Checkbox>Boruto</Checkbox>
   </CheckboxGroup>
-  <FormErrorText>C'mon! You must select one</FormErrorText>
-</FormControl>
-```
-
-## Save Time
-
-You don't always have to import `FormLabel` and `FormErrorText` components for
-every form control. As a shortcut, you can simply pass the `label` and
-`errorMessage` props to `FormControl` and it'll work just the same!
-
-```jsx
-<FormControl
-  label="Tell us about yourself:"
-  helpText="Keep it short and sweet!"
-  errorText="C'mon! You must select one"
->
-  <Textarea />
+  <FormErrorMessage>C'mon! You must select one</FormErrorMessage>
 </FormControl>
 ```
 
