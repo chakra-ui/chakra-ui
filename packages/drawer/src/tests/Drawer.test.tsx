@@ -1,7 +1,7 @@
 import * as React from "react"
 import { render } from "@chakra-ui/test-utils"
 import { PortalManager } from "@chakra-ui/portal"
-import { Drawer } from "../Drawer"
+import { Drawer } from ".."
 
 test("Drawer renders correctly", () => {
   const { asFragment } = render(

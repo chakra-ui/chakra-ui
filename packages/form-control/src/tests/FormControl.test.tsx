@@ -10,7 +10,7 @@ import {
   RequiredIndicator,
   useField,
   ControlProps,
-} from "../FormControl"
+} from ".."
 
 type OmittedTypes = "disabled" | "required" | "readOnly"
 type InputProps = Omit<PropsOf<typeof StyledInput>, OmittedTypes> & ControlProps

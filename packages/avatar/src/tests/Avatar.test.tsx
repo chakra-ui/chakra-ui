@@ -1,6 +1,6 @@
 import * as React from "react"
 import { render } from "@chakra-ui/test-utils"
-import { Avatar, AvatarBadge } from "../Avatar"
+import { Avatar, AvatarBadge } from ".."
 
 test("Avatar renders correctly", () => {
   const { asFragment } = render(<Avatar />)
