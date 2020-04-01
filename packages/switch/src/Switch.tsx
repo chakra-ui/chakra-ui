@@ -2,6 +2,12 @@ import { CheckboxHookProps, useCheckbox } from "@chakra-ui/checkbox"
 import { chakra, PropsOf } from "@chakra-ui/system"
 import React from "react"
 
+/**
+ * StyledSwitch
+ *
+ * Wrapper element around the Switch component
+ */
+
 const StyledSwitch = chakra("label", {
   baseStyle: {
     display: "inline-block",
@@ -9,7 +15,25 @@ const StyledSwitch = chakra("label", {
   },
 })
 
+/**
+ * Switch Track
+ *
+ * Element for the Switch track
+ *
+ * To style the element, change the styles in
+ * `theme.components.Switch` under the `Track` key
+ */
+
 const StyledTrack = chakra("div", { themeKey: "Switch.Track" })
+
+/**
+ * Switch Thumb
+ *
+ * Element for the Switch thumb
+ *
+ * To style the element, change the styles in
+ * `theme.components.Switch` under the `Thumb` key
+ */
 
 const StyledThumb = chakra("div", { themeKey: "Switch.Thumb" })
 
