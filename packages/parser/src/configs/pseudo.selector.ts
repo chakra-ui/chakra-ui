@@ -79,7 +79,7 @@ export const pseudoSelectors = {
   _readOnly:
     "&[aria-readonly=true], &[readonly], &[data-readonly], &[data-state=readonly]",
   /**
-   * Styles for CSS selector `&:before`
+   * Styles for CSS selector `&::before`
    *
    * NOTE:When using this, ensure the `content` is wrapped in a backtick.
    * @example
@@ -87,9 +87,9 @@ export const pseudoSelectors = {
    * <Box _before={{content:`""` }}/>
    * ```
    */
-  _before: "&:before",
+  _before: "&::before",
   /**
-   * Styles for CSS selector `&:after`
+   * Styles for CSS selector `&::after`
    *
    * NOTE:When using this, ensure the `content` is wrapped in a backtick.
    * @example
@@ -97,7 +97,7 @@ export const pseudoSelectors = {
    * <Box _after={{content:`""` }}/>
    * ```
    */
-  _after: "&:after",
+  _after: "&::after",
   _empty: "&:empty",
   /**
    * Styles to apply when the ARIA attribute `aria-expanded` is `true`
