@@ -22,6 +22,7 @@ import Tooltip from "./Tooltip"
 import Kbd from "./Kbd"
 import PinInput from "./PinInput"
 import Popover from "./Popover"
+import Form from "./Form"
 
 export default {
   Accordion,
@@ -50,4 +51,5 @@ export default {
   Textarea: Input,
   PinInput,
   Popover,
+  Form,
 }

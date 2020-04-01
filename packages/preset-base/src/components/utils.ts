@@ -1,4 +1,3 @@
-import React from "react"
 import { Theme } from "../foundations"
 import { SystemProps, ThemingProps } from "@chakra-ui/system"
 
@@ -6,10 +5,10 @@ export type StyleProps = SystemProps | { [Component: string]: SystemProps }
 
 export type ComponentStyle<P = {}> =
   | StyleProps
-  | ((props: Props & P) => StyleProps)
+  | ((props: Props & Required<P>) => StyleProps)
 
 export interface ComponentTheme<P = {}> {
-  defaultProps?: {
+  defaultProps?: P & {
     variant?: string
     colorScheme?: string
     size?: string
