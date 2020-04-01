@@ -7,4 +7,42 @@ switch between enabled or disabled states.
 
 ```sh
 yarn add @chakra-ui/switch
+
+# or
+
+npm i @chakra-ui/switch
+```
+
+## Import component
+
+```jsx
+import { Switch } from "@chakra-ui/switch"
+```
+
+## Basic Usage
+
+```jsx
+<Switch />
+```
+
+## Sizes
+
+Pass the `size` prop to change the size of the switch.
+
+```jsx
+<>
+  <Switch size="sm" marginLeft="1rem" colorScheme="green" />
+
+  <Switch size="md" marginLeft="1rem" colorScheme="green" />
+
+  <Switch size="lg" marginLeft="1rem" colorScheme="green" />
+</>
+```
+
+## Switch background color
+
+You can change the checked background color of the `switch` by passing the `colorScheme` prop
+
+```jsx
+<Switch colorScheme="blue" />
 ```
