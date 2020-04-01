@@ -39,7 +39,7 @@ Pass the `size` prop to change the size of the switch.
 </>
 ```
 
-## Switch background color
+## Switch background-color
 
 You can change the checked background color of the `switch` by passing the `colorScheme` prop
 
