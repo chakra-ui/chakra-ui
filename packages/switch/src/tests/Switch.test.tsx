@@ -1,4 +1,4 @@
-import React from "react"
+import * as React from "react"
 import { userEvent, render } from "@chakra-ui/test-utils"
 import { Switch } from ".."
 
