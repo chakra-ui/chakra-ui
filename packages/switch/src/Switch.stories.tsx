@@ -1,6 +1,6 @@
 import { chakra } from "@chakra-ui/system"
 import React from "react"
-import { Switch } from "./Switch"
+import { Switch } from "."
 
 export default {
   title: "Switch",
@@ -77,7 +77,7 @@ export const Sizes = () => {
 }
 
 /**
- * Controlled Switch
+ * Controlled switch
  */
 
 export const Controlled = () => {
