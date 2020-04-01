@@ -18,7 +18,7 @@ const StyledSwitch = chakra("label", {
 /**
  * Switch Track
  *
- * Element for the Switch thumb
+ * Element for the Switch track
  *
  * To style the element, change the styles in
  * `theme.components.Switch` under the `Track` key
