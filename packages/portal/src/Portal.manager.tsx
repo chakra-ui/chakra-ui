@@ -1,13 +1,13 @@
 import * as React from "react"
-import { createContext } from "@chakra-ui/utils"
+import { createContext, __DEV__ } from "@chakra-ui/utils"
 import { useSafeLayoutEffect, useForceUpdate } from "@chakra-ui/hooks"
 
-export interface PortalManagerContext {
+interface PortalManagerContext {
   node: HTMLElement
   zIndex?: number
 }
 
-const [PortalManagerProvider, usePortalManager] = createContext<
+const [PortalManagerCtxProvider, usePortalManager] = createContext<
   PortalManagerContext
 >({
   strict: false,
@@ -31,23 +31,33 @@ export interface PortalManagerProps {
 }
 
 /**
- * Manage multiple portals within an application
+ * PortalManager
+ *
+ * Used to manage multiple portals within an application.
+ * It must be render only once, at the root of your application.
+ *
  * Inspired by BaseWeb's LayerManager component
  */
 export function PortalManager(props: PortalManagerProps) {
   const { children, zIndex } = props
 
-  // The element that wraps the stacked layers
+  /**
+   * The element that wraps the stacked layers
+   */
   const ref = React.useRef<HTMLDivElement>(null)
 
   const forceUpdate = useForceUpdate()
 
-  // force an update on mount so the Provider works correctly
+  /**
+   * force an update on mount so the Provider works correctly
+   */
   useSafeLayoutEffect(() => {
     forceUpdate()
   }, [])
 
-  // let's detect if use has mutiple instances of this component
+  /**
+   * let's detect if use has mutiple instances of this component
+   */
   const parentManager = usePortalManager()
 
   const context = {
@@ -56,9 +66,13 @@ export function PortalManager(props: PortalManagerProps) {
   }
 
   return (
-    <PortalManagerProvider value={context}>
+    <PortalManagerCtxProvider value={context}>
       {children}
       <div className="chakra-portal-manager" ref={ref} />
-    </PortalManagerProvider>
+    </PortalManagerCtxProvider>
   )
+}
+
+if (__DEV__) {
+  PortalManager.displayName = "PortalManager"
 }
