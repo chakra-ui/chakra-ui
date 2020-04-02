@@ -28,7 +28,7 @@ export interface ControllableStateHookProps<T> {
   /**
    * The condition to update the state
    */
-  shouldUpdate?: boolean
+  shouldUpdate?: (prevState: T, state: T) => boolean
   /**
    * The component name (for warnings)
    */
@@ -62,7 +62,7 @@ export function useControllableState<T>(props: ControllableStateHookProps<T>) {
     value: valueProp,
     defaultValue,
     onChange,
-    shouldUpdate = true,
+    shouldUpdate = () => true,
     name = "Component",
     propsMap = defaultPropsMap,
   } = props
@@ -70,41 +70,44 @@ export function useControllableState<T>(props: ControllableStateHookProps<T>) {
   const [valueState, setValue] = React.useState(defaultValue as T)
 
   const isControlled = isDefined(valueProp)
-  const wasControlled = usePrevious(isControlled)
+  // const wasControlled = usePrevious(isControlled)
 
-  const prevMode = wasControlled ? "a controlled" : "an uncontrolled"
-  const mode = isControlled ? "uncontrolled" : "controlled"
+  // const prevMode = wasControlled ? "a controlled" : "an uncontrolled"
+  // const mode = isControlled ? "a controlled" : "an uncontrolled"
 
-  // don't switch from controlled to uncontrolled
-  warn({
-    condition: Boolean(isControlled) !== Boolean(wasControlled),
-    message:
-      `Warning: ${name} is changing from ${prevMode} to ${mode} component. ` +
-      `Components should not switch from controlled to uncontrolled (or vice versa). ` +
-      `Decide between using controlled or uncontrolled for the lifetime of the component. ` +
-      `More info: https://fb.me/react-controlled-components`,
-  })
+  // // don't switch from controlled to uncontrolled
+  // warn({
+  //   condition: Boolean(isControlled) !== Boolean(wasControlled),
+  //   message:
+  //     `Warning: ${name} is changing from ${prevMode} to ${mode} component. ` +
+  //     `Components should not switch from controlled to uncontrolled (or vice versa). ` +
+  //     `Decide between using controlled or uncontrolled for the lifetime of the component. ` +
+  //     `More info: https://fb.me/react-controlled-components`,
+  // })
 
-  // value and defaultValue are mutually exclusive, use one or the other
-  warn({
-    condition: isDefined(defaultValue) && isDefined(valueProp),
-    message:
-      `Warning: You provided both '${propsMap["value"]}' and '${propsMap["defaultValue"]}' to ${name}. ` +
-      `components must be either controlled or uncontrolled. If you want a controlled component, ` +
-      `use the '${propsMap["value"]}' with an '${propsMap["onChange"]}' handler. ` +
-      `If you want an uncontrolled component, remove the ${propsMap["value"]} prop and use '${propsMap["defaultValue"]}' instead. "` +
-      `More info: https://fb.me/react-controlled-components`,
-  })
+  // // value and defaultValue are mutually exclusive, use one or the other
+  // warn({
+  //   condition: isDefined(defaultValue) && isDefined(valueProp),
+  //   message:
+  //     `Warning: You provided both '${propsMap["value"]}' and '${propsMap["defaultValue"]}' to ${name}. ` +
+  //     `components must be either controlled or uncontrolled. If you want a controlled component, ` +
+  //     `use the '${propsMap["value"]}' with an '${propsMap["onChange"]}' handler. ` +
+  //     `If you want an uncontrolled component, remove the ${propsMap["value"]} prop and use '${propsMap["defaultValue"]}' instead. "` +
+  //     `More info: https://fb.me/react-controlled-components`,
+  // })
 
   const value = isControlled ? (valueProp as T) : valueState
 
   const updateValue = React.useCallback(
     (next: React.SetStateAction<T>) => {
-      if (!shouldUpdate) return
-
-      if (!isControlled) setValue(next)
-
       const nextValue = runIfFn(next, value)
+      const shouldUpdateState = shouldUpdate(value, nextValue)
+
+      if (!shouldUpdateState) return
+
+      if (!isControlled) {
+        setValue(next)
+      }
 
       onChange?.(nextValue)
     },

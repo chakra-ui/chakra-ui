@@ -1,23 +1,36 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-import React from "react"
+import * as React from "react"
 import { Portal, PortalManager } from "."
 
 export default {
   title: "Portal",
   decorators: [
-    (StoryFn: any) => (
+    (Story: Function) => (
       <PortalManager>
-        <StoryFn />
+        <Story />
       </PortalManager>
     ),
   ],
 }
 
-export const basicPortal = () => {
+export const BasicPortal = () => (
+  <>
+    <p>Welcome</p>
+    <Portal>This text has been portaled</Portal>
+  </>
+)
+
+export const WithMountRef = () => {
+  const ref = React.useRef<HTMLDivElement>(null)
+
   return (
     <>
       <p>Welcome</p>
-      <Portal>This text has been portaled</Portal>
+      <Portal container={() => ref.current}>
+        <span>This text has been portaled</span>
+      </Portal>
+      <div id="iframe" ref={ref}>
+        Portal Div
+      </div>
     </>
   )
 }
@@ -44,7 +57,7 @@ function Wrapper(props: any) {
   )
 }
 
-export const nestedPortals = () => {
+export const NestedPortals = () => {
   return (
     <Portal>
       <Wrapper color="red">Welcome</Wrapper>

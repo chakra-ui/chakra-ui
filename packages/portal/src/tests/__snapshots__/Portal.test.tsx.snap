@@ -1,34 +1,90 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should render nested portal 1`] = `
-<DocumentFragment>
-  <div
-    class="chakra-portal-manager"
-  >
+exports[`should render in a different node 1`] = `
+<body>
+  <div>
     <div
-      class="chakra-portal"
+      data-testid="parent"
     >
-      This is a portal.
+      <h1
+        data-testid="child-1"
+      >
+        Foo
+      </h1>
+    </div>
+    <div
+      class="chakra-portal-manager"
+    >
       <div
         class="chakra-portal"
       >
-        This is a nested portal
+        <h1
+          data-testid="child-2"
+        >
+          Foo
+        </h1>
       </div>
     </div>
   </div>
-</DocumentFragment>
+</body>
+`;
+
+exports[`should render into a custom container 1`] = `
+<body>
+  <div>
+    <div
+      data-testid="container"
+    >
+      <div
+        class="chakra-portal"
+      >
+        <h1
+          data-testid="heading"
+        >
+          Hello world
+        </h1>
+      </div>
+    </div>
+    <div
+      class="chakra-portal-manager"
+    />
+  </div>
+</body>
+`;
+
+exports[`should render nested portal 1`] = `
+<body>
+  <div>
+    <div
+      class="chakra-portal-manager"
+    >
+      <div
+        class="chakra-portal"
+      >
+        This is a portal.
+        <div
+          class="chakra-portal"
+        >
+          This is a nested portal
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
 `;
 
 exports[`should render portal 1`] = `
-<DocumentFragment>
-  <div
-    class="chakra-portal-manager"
-  >
+<body>
+  <div>
     <div
-      class="chakra-portal"
+      class="chakra-portal-manager"
     >
-      This is a portal
+      <div
+        class="chakra-portal"
+      >
+        This is a portal
+      </div>
     </div>
   </div>
-</DocumentFragment>
+</body>
 `;

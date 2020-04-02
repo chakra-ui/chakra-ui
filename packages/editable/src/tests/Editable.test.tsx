@@ -3,26 +3,26 @@ import { render, userEvent, fireEvent } from "@chakra-ui/test-utils"
 import { Editable, EditableInput, EditablePreview } from ".."
 
 test("should match snapshot", () => {
-  const utils = render(
+  const tools = render(
     <Editable defaultValue="testing">
       <EditablePreview data-testid="preview" />
       <EditableInput data-testid="input" />
     </Editable>,
   )
 
-  expect(utils.asFragment()).toMatchSnapshot()
+  expect(tools.asFragment()).toMatchSnapshot()
 })
 
 test("should render properly", () => {
-  const utils = render(
+  const tools = render(
     <Editable defaultValue="testing">
       <EditablePreview data-testid="preview" />
       <EditableInput data-testid="input" />
     </Editable>,
   )
 
-  const preview = utils.getByTestId("preview")
-  const input = utils.getByTestId("input")
+  const preview = tools.getByTestId("preview")
+  const input = tools.getByTestId("input")
 
   expect(input).toHaveAttribute("hidden")
   expect(preview).toHaveTextContent("testing")
@@ -34,7 +34,7 @@ test("uncontrolled: handles callbacks correctly", async () => {
   const onSubmit = jest.fn()
   const onEdit = jest.fn()
 
-  const utils = render(
+  const tools = render(
     <Editable
       onChange={onChange}
       onCancel={onCancel}
@@ -46,8 +46,8 @@ test("uncontrolled: handles callbacks correctly", async () => {
       <EditableInput data-testid="input" />
     </Editable>,
   )
-  const preview = utils.getByTestId("preview")
-  const input = utils.getByTestId("input")
+  const preview = tools.getByTestId("preview")
+  const input = tools.getByTestId("input")
 
   // calls `onEdit` when preview is focused
   fireEvent.focus(preview)
@@ -81,20 +81,28 @@ test("controlled: handles callbacks correctly", () => {
   const onSubmit = jest.fn()
   const onEdit = jest.fn()
 
-  const utils = render(
-    <Editable
-      onChange={onChange}
-      onCancel={onCancel}
-      onSubmit={onSubmit}
-      onEdit={onEdit}
-      value="Hello "
-    >
-      <EditablePreview data-testid="preview" />
-      <EditableInput data-testid="input" />
-    </Editable>,
-  )
-  const preview = utils.getByTestId("preview")
-  const input = utils.getByTestId("input")
+  const Component = () => {
+    const [value, setValue] = React.useState("Hello ")
+    return (
+      <Editable
+        onChange={val => {
+          setValue(val)
+          onChange(val)
+        }}
+        onCancel={onCancel}
+        onSubmit={onSubmit}
+        onEdit={onEdit}
+        value={value}
+      >
+        <EditablePreview data-testid="preview" />
+        <EditableInput data-testid="input" />
+      </Editable>
+    )
+  }
+
+  const tools = render(<Component />)
+  const preview = tools.getByTestId("preview")
+  const input = tools.getByTestId("input")
 
   // calls `onEdit` when preview is focused
   fireEvent.focus(preview)
@@ -106,11 +114,19 @@ test("controlled: handles callbacks correctly", () => {
 
   // calls `onSubmit` with `value`
   fireEvent.keyDown(input, { key: "Enter" })
-  expect(onSubmit).toHaveBeenCalledWith("Hello ")
+  expect(onSubmit).toHaveBeenCalledWith("Hello World")
 
-  // calls `onCancel` with `value`
+  expect(input).not.toBeVisible()
+  fireEvent.focus(preview)
+
+  // update the input value
+  userEvent.type(input, "Rasengan")
+
+  // press `Escape`
   fireEvent.keyDown(input, { key: "Escape" })
-  expect(onSubmit).toHaveBeenCalledWith("Hello ")
+
+  // calls `onCancel` with previous `value`
+  expect(onSubmit).toHaveBeenCalledWith("Hello World")
 })
 
 test("handles preview and input callbacks", () => {
@@ -119,7 +135,7 @@ test("handles preview and input callbacks", () => {
   const onChange = jest.fn()
   const onKeyDown = jest.fn()
 
-  const utils = render(
+  const tools = render(
     <Editable defaultValue="Hello ">
       <EditablePreview onFocus={onFocus} data-testid="preview" />
       <EditableInput
@@ -130,8 +146,8 @@ test("handles preview and input callbacks", () => {
       />
     </Editable>,
   )
-  const preview = utils.getByTestId("preview")
-  const input = utils.getByTestId("input")
+  const preview = tools.getByTestId("preview")
+  const input = tools.getByTestId("input")
 
   // calls `onFocus` when preview is focused
   fireEvent.focus(preview)
@@ -145,26 +161,24 @@ test("handles preview and input callbacks", () => {
   fireEvent.keyDown(input, { key: "Escape" })
   expect(onKeyDown).toHaveBeenCalled()
 
-  // calls `onBlur` when focus leaves input
-  fireEvent.focus(preview)
-  expect(onBlur).toHaveBeenCalled()
+  expect(input).toHaveAttribute("hidden")
 })
 
 test("has the proper aria attributes", () => {
-  const utils = render(
+  const tools = render(
     <Editable defaultValue="">
       <EditablePreview data-testid="preview" />
       <EditableInput data-testid="input" />
     </Editable>,
   )
-  const preview = utils.getByTestId("preview")
-  const input = utils.getByTestId("input")
+  const preview = tools.getByTestId("preview")
+  const input = tools.getByTestId("input")
 
   // preview and input do not have aria-disabled when `Editable` is not disabled
   expect(preview).not.toHaveAttribute("aria-disabled")
   expect(input).not.toHaveAttribute("aria-disabled")
 
-  utils.rerender(
+  tools.rerender(
     <Editable isDisabled defaultValue="">
       <EditablePreview data-testid="preview" />
       <EditableInput data-testid="input" />
@@ -178,13 +192,13 @@ test("has the proper aria attributes", () => {
 
 test("can submit on blur", () => {
   const onSubmit = jest.fn()
-  const utils = render(
+  const tools = render(
     <Editable submitOnBlur onSubmit={onSubmit} defaultValue="testing">
       <EditablePreview data-testid="preview" />
       <EditableInput data-testid="input" />
     </Editable>,
   )
-  const input = utils.getByTestId("input")
+  const input = tools.getByTestId("input")
 
   fireEvent.blur(input)
   expect(onSubmit).toHaveBeenCalledWith("testing")
