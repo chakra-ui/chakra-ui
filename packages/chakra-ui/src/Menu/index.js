@@ -32,6 +32,7 @@ const Menu = ({
   closeOnSelect = true,
   defaultActiveIndex,
   placement,
+  usePortal,
 }) => {
   const { colorMode } = useColorMode();
 
@@ -45,20 +46,20 @@ const Menu = ({
   const buttonId = `menubutton-${useId()}`;
 
   const focusableItems = useRef(null);
-  const menuRef = useRef(null);
   const buttonRef = useRef(null);
+  const [menuRef, setMenuRef] = useState(null);
 
   useEffect(() => {
-    if (_isOpen && menuRef && menuRef.current) {
-      let focusables = getFocusables(menuRef.current).filter(node =>
+    if (_isOpen && menuRef) {
+      let focusables = getFocusables(menuRef).filter(node =>
         ["menuitem", "menuitemradio", "menuitemcheckbox"].includes(
           node.getAttribute("role"),
         ),
       );
-      focusableItems.current = menuRef.current ? focusables : [];
+      focusableItems.current = menuRef ? focusables : [];
       initTabIndex();
     }
-  }, [_isOpen]);
+  }, [_isOpen, menuRef]);
 
   const updateTabIndex = index => {
     if (focusableItems.current.length > 0) {
@@ -87,7 +88,7 @@ const Menu = ({
   const wasPreviouslyOpen = usePrevious(_isOpen);
 
   useEffect(() => {
-    if (activeIndex !== -1) {
+    if (activeIndex !== -1 && focusableItems.current) {
       focusableItems.current[activeIndex] &&
         focusableItems.current[activeIndex].focus();
       updateTabIndex(activeIndex);
@@ -96,7 +97,7 @@ const Menu = ({
       buttonRef.current && buttonRef.current.focus();
     }
     if (activeIndex === -1 && _isOpen) {
-      menuRef.current && menuRef.current.focus();
+      menuRef && menuRef.focus();
     }
   }, [activeIndex, _isOpen, buttonRef, menuRef, wasPreviouslyOpen]);
 
@@ -146,6 +147,8 @@ const Menu = ({
     closeMenu,
     buttonRef,
     menuRef,
+    setMenuRef,
+    usePortal,
     focusableItems,
     placement,
     menuId,
@@ -251,10 +254,12 @@ const MenuList = ({ onKeyDown, onBlur, ...props }) => {
     focusableItems,
     buttonRef,
     menuId,
+    setMenuRef,
     buttonId,
     menuRef,
     closeOnBlur,
     placement,
+    usePortal,
   } = useMenuContext();
 
   const handleKeyDown = event => {
@@ -299,9 +304,9 @@ const MenuList = ({ onKeyDown, onBlur, ...props }) => {
     if (
       closeOnBlur &&
       isOpen &&
-      menuRef.current &&
+      menuRef &&
       buttonRef.current &&
-      !menuRef.current.contains(event.relatedTarget) &&
+      !menuRef.contains(event.relatedTarget) &&
       !buttonRef.current.contains(event.relatedTarget)
     ) {
       closeMenu();
@@ -314,7 +319,7 @@ const MenuList = ({ onKeyDown, onBlur, ...props }) => {
 
   return (
     <Popper
-      usePortal={false}
+      usePortal={usePortal}
       isOpen={isOpen}
       anchorEl={buttonRef.current}
       placement={placement}
@@ -324,7 +329,7 @@ const MenuList = ({ onKeyDown, onBlur, ...props }) => {
       minW="3xs"
       rounded="md"
       role="menu"
-      ref={menuRef}
+      ref={setMenuRef}
       id={menuId}
       py={2}
       aria-labelledby={buttonId}
