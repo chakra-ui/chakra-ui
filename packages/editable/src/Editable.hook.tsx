@@ -40,16 +40,16 @@ export interface EditableHookProps {
   /**
    * Callback invoked when user changes input.
    */
-  onChange?: (nextValue?: string) => void
+  onChange?: (nextValue: string) => void
   /**
    * Callback invoked when user cancels input with the `Esc` key.
    * It provides the last confirmed value as argument.
    */
-  onCancel?: (previousValue?: string) => void
+  onCancel?: (previousValue: string) => void
   /**
    * Callback invoked when user confirms value with `enter` key or by blurring input.
    */
-  onSubmit?: (nextValue?: string) => void
+  onSubmit?: (nextValue: string) => void
   /**
    * Callback invoked once the user enters edit mode.
    */
@@ -104,6 +104,7 @@ export function useEditable(props: EditableHookProps = {}) {
 
   // ref to help focus the input in edit mode
   const inputRef = React.useRef<HTMLInputElement>(null)
+  const previewRef = React.useRef<any>(null)
 
   const editButtonRef = React.useRef<HTMLButtonElement>(null)
 
@@ -179,6 +180,7 @@ export function useEditable(props: EditableHookProps = {}) {
     onSubmit,
     getPreviewProps: (props: Dict = {}) => ({
       ...props,
+      ref: mergeRefs(props.ref, previewRef),
       children: isValueEmpty ? placeholder : value,
       hidden: isEditing,
       "aria-disabled": isDisabled ? true : undefined,

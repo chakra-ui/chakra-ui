@@ -6,12 +6,15 @@ exports[`should match snapshot 1`] = `
     data-chakra-editable=""
   >
     <span
+      class="css-gsjxgq"
       data-chakra-editable-preview=""
       data-testid="preview"
+      tabindex="0"
     >
       testing
     </span>
     <input
+      class="css-1qupasc"
       data-chakra-editable-input=""
       data-testid="input"
       hidden=""

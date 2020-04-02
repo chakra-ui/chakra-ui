@@ -34,7 +34,11 @@ export const UseEditableHook = () => {
     <>
       <input
         style={{ width: "auto", background: "transparent" }}
-        {...getInputProps()}
+        {...getInputProps({
+          onBlur: () => {
+            console.log("blur")
+          },
+        })}
       />
       <span
         style={{ opacity: isValueEmpty ? 0.7 : 1 }}
@@ -80,6 +84,7 @@ export const editable = () => (
     textAlign="center"
     isPreviewFocusable={false}
     submitOnBlur={false}
+    onChange={console.log}
   >
     <EditablePreview />
     <EditableInput />
