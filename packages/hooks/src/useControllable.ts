@@ -28,7 +28,7 @@ export interface ControllableStateHookProps<T> {
   /**
    * The condition to update the state
    */
-  shouldUpdate?: boolean
+  shouldUpdate?: (prevState: T, state: T) => boolean
   /**
    * The component name (for warnings)
    */
@@ -62,7 +62,7 @@ export function useControllableState<T>(props: ControllableStateHookProps<T>) {
     value: valueProp,
     defaultValue,
     onChange,
-    shouldUpdate = true,
+    shouldUpdate = () => true,
     name = "Component",
     propsMap = defaultPropsMap,
   } = props
@@ -100,11 +100,14 @@ export function useControllableState<T>(props: ControllableStateHookProps<T>) {
 
   const updateValue = React.useCallback(
     (next: React.SetStateAction<T>) => {
-      if (!shouldUpdate) return
-
-      if (!isControlled) setValue(next)
-
       const nextValue = runIfFn(next, value)
+      const shouldUpdateState = shouldUpdate(value, nextValue)
+
+      if (!shouldUpdateState) return
+
+      if (!isControlled) {
+        setValue(next)
+      }
 
       onChange?.(nextValue)
     },
