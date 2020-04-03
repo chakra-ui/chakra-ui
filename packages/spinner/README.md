@@ -50,7 +50,7 @@ Change the background color of the moving section of the spinner by passing the
 
 ## Spinner with empty area color
 
-Change the background color of the spinner's by passing the `emptyColor` prop.
+Change the background color of the spinner by passing the `emptyColor` prop.
 
 ```jsx
 <Spinner color="red.500" emptyColor="gray.200" />
@@ -59,7 +59,9 @@ Change the background color of the spinner's by passing the `emptyColor` prop.
 ## Spinner with different speed
 
 Change the spinner's animation speed area by passing the `speed` prop. The unit
-of the value is seconds
+of the value matches the
+[`animation-duration CSS property`](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-duration)
+property.
 
 ```jsx
 <Spinner color="red.500" emptyColor="gray.200" speed="0.65s" />
