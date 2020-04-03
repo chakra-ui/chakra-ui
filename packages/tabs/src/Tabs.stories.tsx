@@ -17,7 +17,9 @@ export const Basic = () => (
   <Tabs colorScheme="blue">
     <TabList>
       <Tab>Settings</Tab>
-      <Tab>Billings</Tab>
+      <Tab isDisabled isFocusable>
+        Billings
+      </Tab>
       <Tab>Preferences</Tab>
       <Tab>Shut Down</Tab>
     </TabList>
@@ -34,7 +36,7 @@ export const WithIndicator = () => (
   <Tabs variant="unstyled" isManual>
     <TabList>
       <Tab>Settings</Tab>
-      <Tab>Billings</Tab>
+      <Tab isDisabled>Billings</Tab>
       <Tab>Preferences</Tab>
       <Tab>Shut Down</Tab>
     </TabList>
