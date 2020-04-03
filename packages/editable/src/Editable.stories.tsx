@@ -91,3 +91,16 @@ export const editable = () => (
     <EditableControls />
   </Editable>
 )
+
+export function CodeSandboxTopbar() {
+  return (
+    <chakra.div py="4" display="flex" alignItems="center">
+      <chakra.p fontWeight="medium">My Sandboxes</chakra.p>
+      <chakra.span mx="3">/</chakra.span>
+      <Editable defaultValue="chakra-ui-demo">
+        <EditableInput _focus={{ boxShadow: "none" }} />
+        <EditablePreview />
+      </Editable>
+    </chakra.div>
+  )
+}

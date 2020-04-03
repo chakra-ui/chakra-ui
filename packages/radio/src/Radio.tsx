@@ -23,6 +23,15 @@ export type RadioProps = RadioHookProps &
   ThemingProps &
   Omit<PropsOf<typeof StyledRadio>, "onChange" | "defaultChecked">
 
+/**
+ * Radio
+ *
+ * Radio component is used in forms when a user needs to select a single value from
+ * several options.
+ *
+ * @see Docs https://chakra-ui.com/radio
+ */
+
 export const Radio = React.forwardRef(
   (props: RadioProps, ref: React.Ref<HTMLInputElement>) => {
     const defaults = useComponentDefaults("Radio")
