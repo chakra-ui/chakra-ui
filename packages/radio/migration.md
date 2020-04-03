@@ -29,14 +29,14 @@ RadioGroup
 
 ```jsx
 // before
-<RadioGroup isInline defaultValue={["one", "two"]}>
+<RadioGroup isInline defaultValue="one">
   <Radio value="one">One</Radio>
   <Radio value="two">Two</Radio>
   <Radio value="three">Three</Radio>
 </RadioGroup>
 
 // after
-<RadioGroup direction="row" defaultValue={["one", "two"]}>
+<RadioGroup direction="row" defaultValue="one">
   <Radio value="one">One</Radio>
   <Radio value="two">Two</Radio>
   <Radio value="three">Three</Radio>
@@ -55,7 +55,7 @@ RadioGroup
 - Support for `spacing` prop to customize the space between the children radios
 
 ```jsx
-<RadioGroup spacing={6}>
+<RadioGroup spacing={6} defaultValue="one">
   <Radio value="one">One</Radio>
   <Radio value="two">Two</Radio>
   <Radio value="three">Three</Radio>
@@ -68,8 +68,8 @@ RadioGroup
 ```jsx
 <RadioGroup
   spacing={[2, 4, 6]}
+  defaultValue="one"
   direction={["column", "row"]}
-  defaultValue={["one", "two"]}
   onChange={value => console.log(value)}
 >
   <Radio value="one">One</Radio>

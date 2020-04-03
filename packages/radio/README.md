@@ -31,7 +31,7 @@ RadioGroup is used to bind multiple radios into a group, and it indicates
 whether which option is selected.
 
 ```jsx
-<RadioGroup defaultValue={["one", "two"]}>
+<RadioGroup defaultValue="one">
   <Radio value="one">One</Radio>
   <Radio value="two">Two</Radio>
   <Radio value="three">Three</Radio>
