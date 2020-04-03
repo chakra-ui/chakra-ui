@@ -1,5 +1,5 @@
 import * as React from "react"
-import { isFunction, isString } from "./assertion"
+import { isFunction } from "./assertion"
 
 export interface CreateContextOptions {
   /**
@@ -44,28 +44,6 @@ export function createContext<ContextType>(options: CreateContextOptions = {}) {
   return [Context.Provider, useContext, Context] as CreateContextReturn<
     ContextType
   >
-}
-
-/**
- * Creates a Provider and context hook from any react hook
- * @param hook
- */
-export function createHookContext<HookProps, HookReturn>(
-  hook: (props: HookProps) => HookReturn,
-) {
-  const [ContextProvider, useContext] = createContext<HookReturn>()
-
-  const Provider: React.FC<HookProps> = props => {
-    const context = hook(props)
-    const memoContext = React.useMemo(() => context, [context])
-
-    return React.createElement(ContextProvider, {
-      value: memoContext,
-      children: props.children,
-    })
-  }
-  const useProviderContext = () => useContext()
-  return [Provider, useProviderContext] as const
 }
 
 /**
