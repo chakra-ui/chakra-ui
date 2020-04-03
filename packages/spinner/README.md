@@ -60,7 +60,7 @@ Change the background color of the spinner by passing the `emptyColor` prop.
 
 Change the spinner's animation speed area by passing the `speed` prop. The unit
 of the value matches the
-[`animation-duration CSS property`](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-duration)
+[`animation-duration` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-duration)
 property.
 
 ```jsx
