@@ -9,7 +9,7 @@ export default {
  * A simple spinner.
  */
 
-export const basic = () => <Spinner color="red.500" />
+export const basic = () => <Spinner />
 
 /**
  * Pass the `color` prop to change the background color of
@@ -25,7 +25,7 @@ export const color = () => <Spinner color="red.500" />
 export const size = () => (
   <div>
     {["xl", "lg", "md", "sm", "xs"].map(size => (
-      <Spinner key={size} margin={3} color="red.500" size={size} />
+      <Spinner key={size} margin={3} color="green.500" size={size} />
     ))}
   </div>
 )
@@ -35,7 +35,7 @@ export const size = () => (
  */
 
 export const speed = () => (
-  <Spinner color="red.500" emptyColor="gray.200" speed="0.65s" />
+  <Spinner color="blue.500" emptyColor="gray.200" speed="0.8s" />
 )
 
 /**
