@@ -39,7 +39,8 @@ export const speed = () => (
 )
 
 /**
- * Pass the `emptyColor` prop to change the background color of the spinner.
+ * Pass the `emptyColor` prop to change the background color
+ * of the empty area of the spinner.
  */
 
 export const emptyColor = () => (

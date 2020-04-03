@@ -1,6 +1,6 @@
 # Spinner
 
-Spinners provide a visual cue that an action is processing awaiting a course of
+Spinners provide a visual cue that an action is processing, awaiting a course of
 change or a result.
 
 ## Installation

@@ -62,8 +62,8 @@ export type SpinnerProps = PropsOf<typeof StyledSpinner> & SpinnerOptions
 /**
  * Spinner
  *
- * A a “presentational” loading indicator used on a page or a component, while it’s loading or before it renders.
- * It doesn’t have any semantic meaning.
+ * A “presentational” loading indicator used on a page or a component,
+ * while it’s loading or before it renders. It doesn’t have any semantic meaning.
  */
 
 export const Spinner = ({
