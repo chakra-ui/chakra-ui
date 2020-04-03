@@ -1,6 +1,6 @@
 import * as React from "react"
 import { render } from "@chakra-ui/test-utils"
-import { CloseButton } from "../CloseButton"
+import { CloseButton } from ".."
 
 test("CloseButton renders correctly", () => {
   const { asFragment } = render(<CloseButton />)

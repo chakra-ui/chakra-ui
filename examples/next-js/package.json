@@ -15,6 +15,6 @@
     "@chakra-ui/preset-base": "../../node_modules/@chakra-ui/preset-base"
   },
   "dependencies": {
-    "next": "9.3.2"
+    "next": "9.3.3"
   }
 }

@@ -5,7 +5,7 @@ import { getArrowStyles } from "./Popper.utils"
 const isBrowser = typeof window !== "undefined"
 const useSafeLayoutEffect = isBrowser ? React.useLayoutEffect : React.useEffect
 
-export { Placement }
+export type { Placement }
 
 export interface PopperHookProps {
   gutter?: number

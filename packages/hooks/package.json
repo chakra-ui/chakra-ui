@@ -11,8 +11,8 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/index.js",
-  "module": "dist/hooks.esm.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
   "files": [
     "dist"
   ],
@@ -27,9 +27,11 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "scripts": {
-    "prebuild": "rimraf dist",
+    "clean": "rimraf dist",
     "start": "tsdx watch",
-    "build": "tsdx build",
+    "build": "concurrently yarn:build:*",
+    "build:esm": "tsc --project tsconfig.build.json",
+    "build:cjs": "tsc --project tsconfig.build.json --module CommonJS --outDir dist/cjs",
     "test": "tsdx test --env=jsdom --passWithNoTests",
     "lint": "tsdx lint src",
     "version": "yarn build"
@@ -38,6 +40,7 @@
     "@types/jest": "25.1.4",
     "@types/react": "16.9.23",
     "@types/react-dom": "16.9.5",
+    "concurrently": "5.1.0",
     "husky": "4.2.3",
     "react": "16.13.0",
     "react-dom": "16.13.0",
@@ -57,5 +60,6 @@
   "peerDependencies": {
     "react": "16.x",
     "react-dom": "16.x"
-  }
+  },
+  "types": "dist/esm/index.d.ts"
 }

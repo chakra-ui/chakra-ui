@@ -68,6 +68,8 @@ TypeScript:
 
 Testing:
 
+- [Chakra Component Test Checklist](COMPONENT_TEST_CHECKLIST.md)
+
 - Common React testing library scenarios:
   https://react-testing-library-examples.netlify.com/
 

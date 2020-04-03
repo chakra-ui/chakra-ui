@@ -76,7 +76,6 @@ const [AccordionItemCtxProvider, useAccordionItemContext] = createContext<
  */
 const StyledItem = chakra("div", {
   themeKey: "Accordion.Item",
-  pure: true,
 })
 
 export type AccordionItemProps = Omit<PropsOf<typeof StyledItem>, "children"> &

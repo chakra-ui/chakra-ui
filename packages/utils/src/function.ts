@@ -1,3 +1,4 @@
+import { default as _memoizeOne } from "memoize-one"
 import { FunctionArguments } from "./types"
 import { isFunction } from "./assertion"
 
@@ -19,4 +20,4 @@ export function callAllHandlers<T extends (event: any) => void>(
   }
 }
 
-export { default as memoizeOne } from "memoize-one"
+export const memoizeOne = _memoizeOne

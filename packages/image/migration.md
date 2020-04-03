@@ -10,8 +10,7 @@
 - Support for `align` prop to specify how to align the image within it's
   dimension. It uses the `object-position` property
 
-- Support for custom `fallback` component incase you don't want to use
-  `fallbackSrc`
+- Support for custom `fallback` component
 
 # TBD
 

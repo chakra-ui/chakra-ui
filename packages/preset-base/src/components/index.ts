@@ -21,6 +21,9 @@ import Tag from "./Tag"
 import Tooltip from "./Tooltip"
 import Kbd from "./Kbd"
 import PinInput from "./PinInput"
+import Popover from "./Popover"
+import Form from "./Form"
+import Editable from "./Editable"
 
 export default {
   Accordion,
@@ -48,4 +51,7 @@ export default {
   Select: Input,
   Textarea: Input,
   PinInput,
+  Popover,
+  Form,
+  Editable,
 }

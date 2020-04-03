@@ -29,7 +29,7 @@ export type TransitionStyles = {
   [K in TransitionStyleState]?: React.CSSProperties
 }
 
-export { TransitionStatus }
+export type { TransitionStatus }
 
 export function Transition(props: TransitionProps) {
   const {

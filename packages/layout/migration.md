@@ -73,7 +73,7 @@ Stack
 </Stack>
 ```
 
-- Support for divider prop between stacked element. Dividers also work with
+- Support for `divider` prop between stacked element. Dividers also work with
   responsive direction and spacing.
 
 ```jsx

@@ -3,7 +3,7 @@ import * as React from "react"
 import { useSyncBetweenTabs, useUpdateBodyClassName } from "./color-mode.hooks"
 import { ColorMode, darkModeQuery } from "./color-mode.utils"
 
-export { ColorMode }
+export type { ColorMode }
 
 type ColorModeContext = [ColorMode, () => void]
 

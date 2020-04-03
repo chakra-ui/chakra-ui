@@ -6,7 +6,7 @@ import * as React from "react"
  * @param value the value to track
  */
 export function usePrevious<T>(value: T) {
-  const valueRef = React.useRef<T | null>(null)
+  const valueRef = React.useRef<T>()
 
   React.useEffect(() => {
     valueRef.current = value

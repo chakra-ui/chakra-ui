@@ -33,6 +33,10 @@ export interface RadioGroupHookProps {
    * This assumes, you're using native radio inputs
    */
   isNative?: boolean
+  /**
+   * The `ref` of the wrapper element of the radio group
+   */
+  ref?: React.Ref<any>
 }
 
 /**

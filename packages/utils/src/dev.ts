@@ -1,3 +1,4 @@
+import { default as _deepmerge } from "deepmerge"
 import { isArray, isObject, __DEV__ } from "./assertion"
 import { Dict } from "./types"
 
@@ -32,4 +33,4 @@ export function error(options: { condition: boolean; message: string }) {
   }
 }
 
-export { default as deepmerge } from "deepmerge"
+export const deepmerge = _deepmerge

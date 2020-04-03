@@ -1,7 +1,8 @@
-import defaultTheme from "@chakra-ui/preset-base"
+// TODO fix circular dependency
+// import defaultTheme from "@chakra-ui/preset-base"
 
 const theme = {
-  ...defaultTheme,
+  // ...defaultTheme,
   components: {
     Badge: {
       baseStyle: {
@@ -41,7 +42,7 @@ const theme = {
     },
   },
   styles: {
-    ...defaultTheme.styles,
+    // ...defaultTheme.styles,
     h1: {
       fontSize: "40px",
       color: "pink.400",
