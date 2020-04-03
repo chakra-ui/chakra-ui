@@ -4,7 +4,8 @@
 
 Checkbox
 
-- Support for the `variantColor` prop has been deprecated. Use `colorScheme` prop instead.
+- Support for the `variantColor` prop has been deprecated. Use `colorScheme`
+  prop instead.
 
 For example, `<Checkbox colorScheme="blue">Option</Checkbox>`
 
@@ -16,12 +17,13 @@ For example, `<Checkbox colorScheme="blue">Option</Checkbox>`
 <Checkbox colorScheme="blue">Option</Checkbox>
 ```
 
-- Support for the `isFullWidth` prop has been deprecated. The Checkbox takes up the
-  width of the parent by default.
+- Support for the `isFullWidth` prop has been deprecated. The Checkbox takes up
+  the width of the parent by default.
 
 CheckboxGroup
 
-- To reduce the API surface, we're deprecating the `isInline` prop in favor of `direction` prop for the orientation of the checkbox group
+- To reduce the API surface, we're deprecating the `isInline` prop in favor of
+  `direction` prop for the orientation of the checkbox group
 
 - The `direction` prop takes either `row` or `column` orientation.
 
@@ -57,17 +59,20 @@ Checkbox
 <Checkbox iconSize="1rem">Option</Checkbox>
 ```
 
-- Support for `labelSpacing` prop to customize the spacing between the checkbox and label text
+- Support for `labelSpacing` prop to customize the spacing between the checkbox
+  and label text
 
 ```jsx
 <Checkbox labelSpacing="1rem">Option</Checkbox>
 ```
 
-- The `useCheckbox` hook is exported with state and focus management logic for use in creating tailor-made checkbox component for your application
+- The `useCheckbox` hook is exported with state and focus management logic for
+  use in creating tailor-made checkbox component for your application
 
 CheckboxGroup
 
-- Support for `spacing` prop to customize the space between the children checkboxes
+- Support for `spacing` prop to customize the space between the children
+  checkboxes
 
 ```jsx
 <CheckboxGroup spacing={6}>
@@ -77,7 +82,8 @@ CheckboxGroup
 </CheckboxGroup>
 ```
 
-- Support for responsive `direction` and `spacing` props. This allows the group of checkboxes to wrap around the parent element automagically.
+- Support for responsive `direction` and `spacing` props. This allows the group
+  of checkboxes to wrap around the parent element automagically.
 
 ```jsx
 <CheckboxGroup
@@ -93,4 +99,5 @@ CheckboxGroup
 </CheckboxGroup>
 ```
 
-- The `useCheckboxGroup` hook is exported with state management logic for use in creating tailor-made checkbox component for your application
+- The `useCheckboxGroup` hook is exported with state management logic for use in
+  creating tailor-made checkbox group component for your application
