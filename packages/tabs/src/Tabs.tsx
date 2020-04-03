@@ -53,7 +53,9 @@ const [ThemingContextProvider, useThemingContext] = createContext<
  * any DOM node.
  */
 export function Tabs(props: TabsProps) {
-  // get the default theming props for variant and size
+  /**
+   * get the default props for `variant` and `size` from `theme.components.Tabs`
+   */
   const defaults = useComponentDefaults("Tabs")
 
   const {
@@ -137,7 +139,7 @@ export const TabList = React.forwardRef(
     const context = useTabsContext()
 
     const tablistProps = useTabList({ ...props, ref, context })
-    const themingProps = useThemingContext()
+    const { isFitted, ...themingProps } = useThemingContext()
 
     return <StyledTabList {...themingProps} {...tablistProps} />
   },
