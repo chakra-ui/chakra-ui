@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
 import { useTheme } from '../ThemeProvider';
-import {generateMediaQueries, findActiveQueries, isEqualish} from './utils';
+import { generateMediaQueries, findActiveQueries, isEqualish } from './utils';
 
 export default function useActiveBreakpoint(){
     const { breakpoints } = useTheme();

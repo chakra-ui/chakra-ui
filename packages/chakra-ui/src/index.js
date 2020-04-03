@@ -99,6 +99,7 @@ export { default as theme } from "./theme";
 export { default as ThemeProvider } from "./ThemeProvider";
 export * from "./ThemeProvider";
 
+export { default as useActiveBreakpoint } from "./useActiveBreakpoint";
 export { default as useClipboard } from "./useClipboard";
 export { default as useDisclosure } from "./useDisclosure";
 export { default as usePrevious } from "./usePrevious";
