@@ -1,14 +1,14 @@
-import * as React from "react"
-import { mergeRefs, attr, SafeMerge } from "@chakra-ui/utils"
 import { chakra, PropsOf } from "@chakra-ui/system"
-import { Clickable } from "."
+import { SafeMerge } from "@chakra-ui/utils"
+import * as React from "react"
+import { ClickableHookProps, useClickable } from "."
 
 export type ClickableProps = SafeMerge<
   ClickableHookProps,
   PropsOf<typeof chakra.button>
 >
 
-export const Clickable = React.forwardRef(
+const Clickable = React.forwardRef(
   (props: ClickableProps, ref: React.Ref<any>) => {
     const clickable = useClickable({ ...props, ref })
     return <chakra.button display="inline-flex" {...clickable} />
@@ -23,10 +23,18 @@ export const button = () => (
   <>
     <Clickable
       as="div"
-      onClick={event => {
+      onClick={() => {
         alert("clicked")
       }}
-      _active={{ bg: "blue", color: "white" }}
+      _active={{ bg: "blue.500", color: "white" }}
+      _disabled={{ opacity: 0.4, pointerEvents: "none" }}
+    >
+      Clickable
+    </Clickable>
+
+    <Clickable
+      isDisabled
+      isFocusable
       _disabled={{ opacity: 0.4, pointerEvents: "none" }}
     >
       Clickable
