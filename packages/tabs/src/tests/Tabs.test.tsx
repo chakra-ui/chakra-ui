@@ -1,12 +1,6 @@
+import { axe, fireEvent, render } from "@chakra-ui/test-utils"
 import React from "react"
-import {
-  render,
-  axe,
-  fireEvent,
-  wait,
-  waitForDomChange,
-} from "@chakra-ui/test-utils"
-import { Tabs, TabList, TabPanel, TabPanels, Tab } from ".."
+import { Tab, TabList, TabPanel, TabPanels, Tabs } from ".."
 
 test("should no accessibility issues", async () => {
   const { container } = render(

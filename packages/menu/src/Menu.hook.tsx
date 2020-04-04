@@ -376,7 +376,7 @@ export function useMenuItem(props: MenuItemHookProps) {
   const ref = React.useRef<HTMLDivElement>(null)
   const id = useId(undefined, `chakra-menu-item`)
 
-  const { index } = useDescendant({
+  const index = useDescendant({
     element: ref.current,
     context: descendantsContext,
     disabled: isDisabled,

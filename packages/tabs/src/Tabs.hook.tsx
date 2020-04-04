@@ -82,6 +82,7 @@ export function useTabs(props: TabsHookProps) {
     defaultValue: defaultIndex ?? 0,
     value: index,
     onChange,
+    shouldUpdate: (prevIndex, nextIndex) => prevIndex !== nextIndex,
     propsMap: {
       value: "index",
       defaultValue: "defaultIndex",
@@ -111,7 +112,7 @@ export function useTabs(props: TabsHookProps) {
    *
    * The manager will only hold references to "Tab 1" and "Tab 3", since `Tab 2` is disabled
    */
-  const enabledTabsManager = useDescendants()
+  const enabledTabsContext = useDescendants()
 
   /**
    * This manager is used to store all tab nodes whether disabled or not.
@@ -127,7 +128,7 @@ export function useTabs(props: TabsHookProps) {
    *
    * We need this for correct indexing of tabs in event a tab is disabled
    */
-  const allTabsManager = useDescendants()
+  const allTabsContext = useDescendants()
 
   /**
    * generate a unique id or use user-provided id for
@@ -143,8 +144,8 @@ export function useTabs(props: TabsHookProps) {
     setFocusedIndex,
     isManual,
     orientation,
-    enabledTabsManager,
-    allTabsManager,
+    enabledTabsContext,
+    allTabsContext,
   }
 }
 
@@ -172,17 +173,17 @@ export function useTabList<P extends TabListHookProps>(props: P) {
     setFocusedIndex,
     focusedIndex,
     orientation,
-    enabledTabsManager,
+    enabledTabsContext,
   } = context
 
-  const count = enabledTabsManager.descendants.length
+  const count = enabledTabsContext.descendants.length
 
   /**
    * Function to update the selected tab index
    * @param index the next focused index
    */
   const setIndex = (index: number) => {
-    const tab = enabledTabsManager.descendants[index]
+    const tab = enabledTabsContext.descendants[index]
     if (tab?.element) {
       tab.element.focus()
       setFocusedIndex(index)
@@ -248,10 +249,9 @@ export function useTab<P extends TabHookProps>(props: P) {
   const { isDisabled, isFocusable, context, ...htmlProps } = props
 
   const {
-    enabledTabsManager,
-    allTabsManager,
+    enabledTabsContext,
+    allTabsContext,
     selectedIndex,
-    setFocusedIndex,
     setSelectedIndex,
     isManual,
     id,
@@ -265,28 +265,29 @@ export function useTab<P extends TabHookProps>(props: P) {
    *
    * In this case, it registers the tab only if it's enabled and focusable
    */
-  const { index } = useDescendant({
+  useDescendant({
     disabled: isDisabled,
     focusable: isFocusable,
-    context: enabledTabsManager,
+    context: enabledTabsContext,
     element: ref.current,
   })
 
-  // In this case, it registers the tab (whether disabled or not)
+  /**
+   * In this case, it registers the tab (whether disabled or not)
+   */
   useDescendant({
-    context: allTabsManager,
+    context: allTabsContext,
     element: ref.current,
   })
 
-  const computedIndex = allTabsManager.descendants.findIndex(
+  const computedIndex = allTabsContext.descendants.findIndex(
     item => item.element === ref.current,
   )
 
   const isSelected = computedIndex === selectedIndex
 
   const onClick = () => {
-    setFocusedIndex(index)
-    setSelectedIndex(index)
+    setSelectedIndex(computedIndex)
   }
 
   const onFocus = () => {
@@ -308,16 +309,14 @@ export function useTab<P extends TabHookProps>(props: P) {
 
   const type: "button" | "submit" | "reset" = "button"
 
-  const panelId = `${id}--tabpanel-${index}`
-
   return {
     ...tabbable,
-    id: `${id}--tab-${index}`,
+    id: makeTabId(id, computedIndex),
     role: "tab",
     tabIndex: isSelected ? 0 : -1,
     type,
     "aria-selected": isSelected ? true : undefined,
-    "aria-controls": panelId,
+    "aria-controls": makeTabPanelId(id, computedIndex),
     onFocus: callAllHandlers(props.onFocus, onFocus),
   }
 }
@@ -335,8 +334,6 @@ type TabPanelsHookProps = {
  *
  * It returns a cloned version of it's children with
  * all functionality included.
- *
- * @param props props object for the tab panels
  */
 export function useTabPanels<P extends TabPanelsHookProps>(props: P) {
   const { context, ...htmlProps } = props
@@ -348,7 +345,7 @@ export function useTabPanels<P extends TabPanelsHookProps>(props: P) {
   const children = validChildren.map((child, index) =>
     React.cloneElement(child as Child, {
       isSelected: index === selectedIndex,
-      id: `${id}--tabpanel-${index}`,
+      id: makeTabPanelId(id, index),
     }),
   )
 
@@ -380,7 +377,7 @@ export function useTabPanel(props: Dict) {
  * the indicator.
  */
 export function useTabIndicator(context: TabsHookReturn): React.CSSProperties {
-  const { selectedIndex, orientation, enabledTabsManager } = context
+  const { selectedIndex, orientation, allTabsContext } = context
 
   const isHorizontal = orientation === "horizontal"
   const isVertical = orientation === "vertical"
@@ -397,7 +394,7 @@ export function useTabIndicator(context: TabsHookReturn): React.CSSProperties {
   useSafeLayoutEffect(() => {
     if (isUndefined(selectedIndex)) return
 
-    const tab = enabledTabsManager.descendants[selectedIndex]
+    const tab = allTabsContext.descendants[selectedIndex]
     const tabRect = tab?.element?.getBoundingClientRect()
 
     // Horizontal Tab: Calculate width and left distance
@@ -421,11 +418,19 @@ export function useTabIndicator(context: TabsHookReturn): React.CSSProperties {
     return () => {
       cancelAnimationFrame(id)
     }
-  }, [selectedIndex, isHorizontal, isVertical, enabledTabsManager.descendants])
+  }, [selectedIndex, isHorizontal, isVertical, allTabsContext.descendants])
 
   return {
     position: "absolute",
     transition: hasMeasured ? "all 200ms cubic-bezier(0, 0, 0.2, 1)" : "none",
     ...rect,
   }
+}
+
+function makeTabId(id: string, index: number) {
+  return `${id}--tab-${index}`
+}
+
+function makeTabPanelId(id: string, index: number) {
+  return `${id}--tabpanel-${index}`
 }

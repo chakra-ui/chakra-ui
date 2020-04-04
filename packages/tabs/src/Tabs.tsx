@@ -110,6 +110,7 @@ export const Tab = React.forwardRef((props: TabProps, ref: React.Ref<any>) => {
   const { isFitted, ...themingProps } = useThemingContext()
   return (
     <StyledTab
+      data-chakra-tab=""
       flex={isFitted ? 1 : undefined}
       {...themingProps}
       {...tabProps}
@@ -141,7 +142,13 @@ export const TabList = React.forwardRef(
     const tablistProps = useTabList({ ...props, ref, context })
     const { isFitted, ...themingProps } = useThemingContext()
 
-    return <StyledTabList {...themingProps} {...tablistProps} />
+    return (
+      <StyledTabList
+        data-chakra-tablist=""
+        {...themingProps}
+        {...tablistProps}
+      />
+    )
   },
 )
 
@@ -165,7 +172,7 @@ export type TabPanelProps = PropsOf<typeof StyledTabPanel>
 export const TabPanel = React.forwardRef(
   (props: TabPanelProps, ref: React.Ref<any>) => {
     const tabpanelProps = useTabPanel({ ...props, ref })
-    return <StyledTabPanel {...tabpanelProps} />
+    return <StyledTabPanel data-chakra-tabpanel="" {...tabpanelProps} />
   },
 )
 
@@ -182,7 +189,7 @@ export type TabPanelsProps = PropsOf<typeof chakra.div>
 export function TabPanels(props: TabPanelsProps) {
   const context = useTabsContext()
   const panelsProp = useTabPanels({ ...props, context })
-  return <chakra.div {...panelsProp} />
+  return <chakra.div data-chakra-tabpanels="" {...panelsProp} />
 }
 
 export type TabIndicatorProps = PropsOf<typeof chakra.div>
@@ -196,5 +203,11 @@ export type TabIndicatorProps = PropsOf<typeof chakra.div>
 export function TabIndicator(props: TabIndicatorProps) {
   const context = useTabsContext()
   const styles = useTabIndicator(context)
-  return <chakra.div {...props} style={{ ...props.style, ...styles }} />
+  return (
+    <chakra.div
+      data-chakra-tab-indicator=""
+      {...props}
+      style={{ ...props.style, ...styles }}
+    />
+  )
 }

@@ -63,7 +63,7 @@ export function useDescendant<T extends HTMLElement, P>(
     indexProp ??
     descendants.findIndex(descendant => descendant.element === element)
 
-  return { index, descendants }
+  return index
 }
 
 export function useDescendants<T extends HTMLElement, P>() {
