@@ -11,7 +11,9 @@ interface IPseudoBoxProps {
    * <PseudoBox _after={{content:`""` }}/>
    * ```
    */
-  _after?: BoxProps;
+  _after?: BoxProps & {
+    content: string;
+  };
   /**
    * Styles for CSS selector `&:before`
    *
@@ -21,7 +23,9 @@ interface IPseudoBoxProps {
    * <PseudoBox _before={{content:`""` }}/>
    * ```
    */
-  _before?: BoxProps;
+  _before?: BoxProps & {
+    content: string;
+  };
   /**
    * Styles for CSS selector `&:focus`
    *
