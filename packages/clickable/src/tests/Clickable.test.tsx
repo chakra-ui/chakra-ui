@@ -20,7 +20,7 @@ test("should render correctly", () => {
   `)
 })
 
-test("render disabled focusable", () => {
+test("should render when disabled and focusable", () => {
   const tools = render(
     <Clickable isDisabled isFocusable>
       clickable
@@ -37,7 +37,7 @@ test("render disabled focusable", () => {
   `)
 })
 
-test("click", () => {
+test("should click correctly", () => {
   const fn = jest.fn()
   const tools = render(<Clickable onClick={fn}>clickable</Clickable>)
   const clickable = tools.getByText("clickable")
@@ -47,7 +47,7 @@ test("click", () => {
   expect(fn).toHaveBeenCalledTimes(1)
 })
 
-test("click disabled", () => {
+test("should not click if disabled", () => {
   const fn = jest.fn()
 
   const tools = render(
@@ -61,7 +61,7 @@ test("click disabled", () => {
   expect(fn).toHaveBeenCalledTimes(0)
 })
 
-test("focus disabled", () => {
+test("should not focus if disabled", () => {
   const tools = render(<Clickable isDisabled>clickable</Clickable>)
   const clickable = tools.getByText("clickable")
 
@@ -70,7 +70,7 @@ test("focus disabled", () => {
   expect(clickable).not.toHaveFocus()
 })
 
-test("non-native button space/enter", () => {
+test("non-native: should click on press `space` or `enter`", () => {
   const fn = jest.fn()
   const tools = render(
     <Clickable as="div" onClick={fn}>
