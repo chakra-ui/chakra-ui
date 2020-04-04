@@ -4,7 +4,7 @@ import {
   useControllableState,
 } from "@chakra-ui/hooks"
 import { useDescendant, useDescendants } from "@chakra-ui/descendant"
-import { TabbableHookProps, useTabbable } from "@chakra-ui/tabbable"
+import { ClickableHookProps, useClickable } from "@chakra-ui/clickable"
 import {
   callAllHandlers,
   createOnKeyDown,
@@ -229,7 +229,7 @@ export function useTabList<P extends TabListHookProps>(props: P) {
 
 export type TabListHookReturn = ReturnType<typeof useTabList>
 
-export interface TabHookProps extends TabbableHookProps {
+export interface TabHookProps extends ClickableHookProps {
   id?: string
   isSelected?: boolean
   panelId?: string
@@ -241,7 +241,7 @@ export interface TabHookProps extends TabbableHookProps {
  * Tabs hook to manage each tab button.
  *
  * A tab can be disabled and focusable, or both,
- * hence the use of `useTabbable` to handle this scenario
+ * hence the use of `useClickable` to handle this scenario
  *
  * @param props props object for tab button
  */
@@ -299,7 +299,7 @@ export function useTab<P extends TabHookProps>(props: P) {
     }
   }
 
-  const tabbable = useTabbable({
+  const clickable = useClickable({
     ...htmlProps,
     ref: mergeRefs(ref, props.ref),
     isDisabled,
@@ -310,7 +310,7 @@ export function useTab<P extends TabHookProps>(props: P) {
   const type: "button" | "submit" | "reset" = "button"
 
   return {
-    ...tabbable,
+    ...clickable,
     id: makeTabId(id, computedIndex),
     role: "tab",
     tabIndex: isSelected ? 0 : -1,

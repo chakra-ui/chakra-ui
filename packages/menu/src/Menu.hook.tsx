@@ -8,7 +8,7 @@ import {
   useControllableState,
 } from "@chakra-ui/hooks"
 import { usePopper } from "@chakra-ui/popper"
-import { useTabbable } from "@chakra-ui/tabbable"
+import { useClickable } from "@chakra-ui/clickable"
 import {
   callAllHandlers,
   createOnKeyDown,
@@ -443,7 +443,7 @@ export function useMenuItem(props: MenuItemHookProps) {
     }
   }, [isFocused])
 
-  const tabbable = useTabbable({
+  const tabbable = useClickable({
     onClick,
     onMouseOver,
     ref,

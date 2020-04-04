@@ -4,7 +4,7 @@ import { chakra, PropsOf } from "@chakra-ui/system"
 import {
   createContext,
   isFunction,
-  NodeOrRenderProp,
+  ReactNodeOrRenderProp,
   Omit,
   __DEV__,
 } from "@chakra-ui/utils"
@@ -80,7 +80,10 @@ const StyledItem = chakra("div", {
 
 export type AccordionItemProps = Omit<PropsOf<typeof StyledItem>, "children"> &
   Omit<AccordionItemHookProps, "context"> & {
-    children?: NodeOrRenderProp<{ isExpanded: boolean; isDisabled: boolean }>
+    children?: ReactNodeOrRenderProp<{
+      isExpanded: boolean
+      isDisabled: boolean
+    }>
   }
 
 /**

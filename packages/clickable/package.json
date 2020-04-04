@@ -1,18 +1,19 @@
 {
-  "name": "@chakra-ui/tabbable",
+  "name": "@chakra-ui/clickable",
   "version": "0.0.1",
-  "description": "description",
+  "description": "React hook and component that implements native button interactions",
   "keywords": [
-    "theme",
-    "theming",
-    "ui mode",
-    "ui"
+    "chakra ui",
+    "clickable",
+    "tabbable",
+    "button",
+    "div button"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
   "main": "dist/index.js",
-  "module": "dist/tabbable.esm.js",
+  "module": "dist/clickable.esm.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
@@ -46,11 +47,10 @@
     "tsdx": "0.12.3",
     "tslib": "1.11.1",
     "typescript": "3.8.3",
-    "@chakra-ui/utils": "0.0.1",
     "@chakra-ui/system": "0.0.1"
   },
   "dependencies": {
-    "@chakra-ui/hooks": "0.0.1"
+    "@chakra-ui/utils": "0.0.1"
   },
   "peerDependencies": {
     "react": "16.x",
