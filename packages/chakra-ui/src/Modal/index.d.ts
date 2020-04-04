@@ -52,7 +52,7 @@ export interface IModal {
    */
   preserveScrollBarGap?: boolean;
   /**
-   * If `true`, the focus retention will be enabled on the modal
+   * If `true`, the focus retention will be enabled on the modal.
    * @default true
    */
   preserveFocusLock?: boolean;
