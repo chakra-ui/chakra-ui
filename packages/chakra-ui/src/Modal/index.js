@@ -76,6 +76,7 @@ const Modal = ({
   scrollBehavior = "outside",
   isCentered,
   addAriaLabels = true,
+  preserveFocusLock = true,
   preserveScrollBarGap,
   formatIds = id => ({
     content: `modal-${id}`,
@@ -149,6 +150,7 @@ const Modal = ({
     blockScrollOnMount,
     closeOnEsc,
     closeOnOverlayClick,
+    preserveFocusLock,
     returnFocusOnClose,
     contentRef,
     scrollBehavior,
@@ -186,6 +188,7 @@ const Modal = ({
     <ModalContext.Provider value={context}>
       <Portal container={mountRef.current}>
         <FocusLock
+          disabled={!preserveFocusLock}
           returnFocus={returnFocusOnClose && !finalFocusRef}
           onActivation={activateFocusLock}
           onDeactivation={deactivateFocusLock}

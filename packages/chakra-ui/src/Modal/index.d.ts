@@ -52,6 +52,11 @@ export interface IModal {
    */
   preserveScrollBarGap?: boolean;
   /**
+   * If `true`, the focus retention will be enabled on the modal
+   * @default true
+   */
+  preserveFocusLock?: boolean;
+  /**
    * The content of the modal.
    */
   children: React.ReactNode;
