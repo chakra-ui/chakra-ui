@@ -10,7 +10,7 @@ export const BasicUsage = () => <Progress value={50} />
 
 export const WithThemeColor = () => <Progress color="pink" value={20} />
 
-export const Indeterminate = () => (
+export const linearIndeterminate = () => (
   <Progress margin="20px" size="xs" value={undefined} />
 )
 
@@ -30,12 +30,12 @@ export const WithAnimation = () => (
   <Progress color="green" hasStripe isAnimated value={20} />
 )
 
-export const CircularProgress_ = () => (
+export const circularProgress = () => (
   <CircularProgress size="120px" value={60}>
     <CircularProgressLabel>60%</CircularProgressLabel>
   </CircularProgress>
 )
 
-export const Indeterminate_ = () => (
-  <CircularProgress trackColor="transparent" thickness={10} value={undefined} />
+export const circularIndeterminate = () => (
+  <CircularProgress trackColor="transparent" size="200px" value={undefined} />
 )

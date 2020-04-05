@@ -108,7 +108,7 @@ export function Progress(props: ProgressProps) {
   const shouldAnimateStripe = shouldAddStripe && isAnimated
 
   // generate custom styles
-  const cssStyles = style({
+  const cssStyles = {
     ...(shouldAddStripe && stripeStyle),
     ...(shouldAnimateStripe && stripAnimation),
     ...(isIndeterminate && {
@@ -123,7 +123,7 @@ export function Progress(props: ProgressProps) {
         transparent 100%
       )`,
     }),
-  })
+  }
 
   return (
     <ProgressTrack
@@ -138,7 +138,7 @@ export function Progress(props: ProgressProps) {
         value={value}
         bg={indicatorBg}
         borderRadius={borderRadius}
-        css={cssStyles}
+        css={cssStyles as any}
       />
     </ProgressTrack>
   )
