@@ -11,6 +11,9 @@ function loadScript(src, container) {
   return script;
 }
 
+export const useEnhancedEffect =
+  typeof window !== "undefined" ? React.useLayoutEffect : React.useEffect;
+
 function CarbonAd() {
   const ref = React.useRef(null);
 
@@ -69,7 +72,7 @@ function CarbonAd() {
     }
   `;
 
-  React.useEffect(() => {
+  useEnhancedEffect(() => {
     const scriptEl = document.getElementById("_carbonads_js");
 
     if (!ref.current || !!scriptEl) return;
