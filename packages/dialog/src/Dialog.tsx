@@ -44,6 +44,14 @@ export interface DialogProps extends DialogHookProps, ThemingProps {
   scrollBehavior?: "inside" | "outside"
 }
 
+/**
+ * Dialog
+ *
+ * React component that provides context, theming, and accessbility properties
+ * to all other dialog components.
+ *
+ * It doesn't render any DOM node.
+ */
 export function Dialog(props: DialogProps) {
   const defaults = useComponentDefaults("Dialog")
 
@@ -84,8 +92,40 @@ export function Dialog(props: DialogProps) {
   )
 }
 
-export type DialogContentProps = PropsOf<typeof chakra.div>
+type ContentOptions = Pick<DialogProps, "scrollBehavior">
 
+/**
+ * DialogContent - Theming
+ *
+ * To style the dialog content globally, change the styles in
+ * `theme.components.Dialog` under the `Content` key
+ */
+const StyledContent = chakra<"section", ContentOptions>("section", {
+  themeKey: "Dialog.Content",
+  baseStyle: props => ({
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-start",
+    position: "relative",
+    width: "100%",
+    marginY: "3.75rem",
+    maxHeight:
+      props.scrollBehavior === "inside" ? "calc(100vh - 7.5rem)" : undefined,
+    overflow: props.scrollBehavior === "inside" ? "auto" : undefined,
+    _focus: {
+      outline: 0,
+    },
+  }),
+})
+
+export type DialogContentProps = PropsOf<typeof StyledContent>
+
+/**
+ * DialogContent
+ *
+ * React component used to group dialog's content. It has all the
+ * necessary `aria-*` properties to indicate that it's a modal dialog
+ */
 export const DialogContent = (props: DialogContentProps) => {
   const {
     getDialogContentProps,
@@ -105,28 +145,44 @@ export const DialogContent = (props: DialogContentProps) => {
   )
 }
 
-type ContentOptions = Pick<DialogProps, "scrollBehavior">
+type OverlayOptions = Pick<DialogProps, "isCentered" | "scrollBehavior">
 
-const StyledContent = chakra<"section", ContentOptions>("section", {
-  themeKey: "Dialog.Content",
+/**
+ * DialogOverlay - Theming
+ *
+ * To style the dialog overlay globally, change the styles in
+ * `theme.components.Dialog` under the `Overlay` key
+ */
+const StyledOverlay = chakra<"div", OverlayOptions>("div", {
+  themeKey: "Dialog.Overlay",
   baseStyle: props => ({
     display: "flex",
-    flexDirection: "column",
-    alignItems: "flex-start",
-    position: "relative",
+    justifyContent: "center",
+    alignItems: props.isCentered ? "center" : "flex-start",
+    overflow: props.scrollBehavior === "inside" ? "hidden" : "auto",
+    position: "fixed",
+    left: 0,
+    top: 0,
+    bottom: 0,
+    right: 0,
     width: "100%",
-    marginY: "3.75rem",
-    maxHeight:
-      props.scrollBehavior === "inside" ? "calc(100vh - 7.5rem)" : undefined,
-    overflow: props.scrollBehavior === "inside" ? "auto" : undefined,
-    _focus: {
-      outline: 0,
-    },
+    height: "100%",
   }),
+  shouldForwardProp(prop) {
+    return !["scrollBehavior", "isCentered"].includes(prop)
+  },
 })
 
 export type DialogOverlayProps = PropsOf<typeof StyledOverlay>
 
+/**
+ * DialogOverlay
+ *
+ * React component that renders a backdrop behind the dialog. It's
+ * also used as a wrapper for the dialog content for better positioning.
+ *
+ * @see Docs https://chakra-ui.com/dialog
+ */
 export const DialogOverlay = (props: DialogOverlayProps) => {
   const {
     getDialogOverlayProps,
@@ -148,33 +204,32 @@ export const DialogOverlay = (props: DialogOverlayProps) => {
   )
 }
 
-type OverlayOptions = Pick<DialogProps, "isCentered" | "scrollBehavior">
-
-const StyledOverlay = chakra<"div", OverlayOptions>("div", {
-  themeKey: "Dialog.Overlay",
-  baseStyle: props => ({
-    display: "flex",
-    justifyContent: "center",
-    alignItems: props.isCentered ? "center" : "flex-start",
-    overflow: props.scrollBehavior === "inside" ? "hidden" : "auto",
-    position: "fixed",
-    left: 0,
-    top: 0,
-    bottom: 0,
-    right: 0,
-    width: "100%",
-    height: "100%",
-  }),
-  shouldForwardProp(prop) {
-    return !["scrollBehavior", "isCentered"].includes(prop)
-  },
-})
-
 export type DialogHeaderProps = PropsOf<typeof StyledHeader>
 
+/**
+ * DialogHeader - Theming
+ *
+ * To style the dialog header globally, change the styles in
+ * `theme.components.Dialog` under the `Header` key
+ */
+const StyledHeader = chakra("header", {
+  themeKey: "Dialog.Header",
+})
+
+/**
+ * DialogHeader
+ *
+ * React component that houses the title of the dialog.
+ *
+ * @see Docs https://chakra-ui.com/dialog
+ */
 export const DialogHeader = (props: DialogHeaderProps) => {
   const { headerId, setHeaderMounted } = useDialogContext()
 
+  /**
+   * Notify us if this component was rendered or used
+   * so we can append `aria-labelledby` automatically
+   */
   useSafeLayoutEffect(() => {
     setHeaderMounted(true)
     return () => setHeaderMounted(false)
@@ -183,15 +238,30 @@ export const DialogHeader = (props: DialogHeaderProps) => {
   return <StyledHeader data-chakra-dialog-header="" id={headerId} {...props} />
 }
 
-const StyledHeader = chakra("header", {
-  themeKey: "Dialog.Header",
-})
+export type DialogBodyProps = PropsOf<typeof StyledBody>
 
-export type DialogBodyProps = PropsOf<"div">
+/**
+ * DialogBody - Theming
+ *
+ * To style the dialog body globally, change the styles in
+ * `theme.components.Dialog` under the `Body` key
+ */
+const StyledBody = chakra("div", { themeKey: "Dialog.Body" })
 
+/**
+ * DialogBody
+ *
+ * React component that houses the main content of the dialog.
+ *
+ * @see Docs https://chakra-ui.com/dialog
+ */
 export const DialogBody = (props: DialogBodyProps) => {
   const { bodyId, setBodyMounted } = useDialogContext()
 
+  /**
+   * Notify us if this component was rendered or used
+   * so we can append `aria-describedby` automatically
+   */
   useSafeLayoutEffect(() => {
     setBodyMounted(true)
     return () => setBodyMounted(false)
@@ -200,8 +270,13 @@ export const DialogBody = (props: DialogBodyProps) => {
   return <StyledBody data-chakra-dialog-body="" id={bodyId} {...props} />
 }
 
-const StyledBody = chakra("div", { themeKey: "Dialog.Body" })
-
+/**
+ * DialogFooter
+ *
+ * React component that houses the action buttons of the dialog.
+ *
+ * @see Docs https://chakra-ui.com/dialog
+ */
 export const DialogFooter = chakra("footer", {
   themeKey: "Dialog.Footer",
   baseStyle: {
@@ -211,6 +286,13 @@ export const DialogFooter = chakra("footer", {
   },
 })
 
+/**
+ * DialogCloseButton
+ *
+ * React component used closes the dialog. You don't need
+ * to pass the `onClick` to it, it's reads the `onClose` action from the
+ * dialog context.
+ */
 export const DialogCloseButton = (props: CloseButtonProps) => {
   const { onClose } = useDialogContext()
   return (

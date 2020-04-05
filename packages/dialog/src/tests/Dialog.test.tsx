@@ -1,5 +1,5 @@
 import * as React from "react"
-import { render, userEvent, fireEvent } from "@chakra-ui/test-utils"
+import { render, userEvent, axe, press } from "@chakra-ui/test-utils"
 import { PortalManager } from "@chakra-ui/portal"
 import {
   Dialog,
@@ -14,7 +14,7 @@ import {
 const renderWithPortal = (ui: React.ReactElement) =>
   render(<PortalManager>{ui}</PortalManager>)
 
-test("Dialog renders correctly", () => {
+test("should render correctly", () => {
   const tools = renderWithPortal(
     <Dialog isOpen onClose={jest.fn()}>
       <DialogOverlay>
@@ -30,40 +30,77 @@ test("Dialog renders correctly", () => {
   expect(tools.asFragment()).toMatchSnapshot()
 })
 
-test("has the proper aria attributes", () => {
+test("should have no accessibility violations", async () => {
   const tools = renderWithPortal(
     <Dialog isOpen onClose={jest.fn()}>
       <DialogOverlay>
         <DialogContent>
+          <DialogHeader>Dialog header</DialogHeader>
+          <DialogCloseButton />
+          <DialogBody>Dialog body</DialogBody>
+          <DialogFooter>Dialog footer</DialogFooter>
+        </DialogContent>
+      </DialogOverlay>
+    </Dialog>,
+  )
+
+  const result = await axe(tools.container)
+  expect(result).toHaveNoViolations()
+})
+
+test("should have the proper 'aria' attributes", () => {
+  const tools = renderWithPortal(
+    <Dialog isOpen onClose={jest.fn()}>
+      <DialogOverlay>
+        <DialogContent data-testid="dialog">
           <DialogHeader>Dialog header</DialogHeader>
           <DialogBody>Dialog body</DialogBody>
         </DialogContent>
       </DialogOverlay>
     </Dialog>,
   )
-  // dialog is labelled by the header
-  const dialog = tools.getByLabelText("Dialog header")
 
-  expect(dialog).toHaveAttribute("role", "dialog")
+  const dialog = tools.getByTestId("dialog")
+
+  /**
+   * should have `aria-modal` set to `true`
+   */
   expect(dialog).toHaveAttribute("aria-modal", "true")
-  expect(dialog).toHaveAttribute("aria-describedby", "chakra-dialog--body-3")
+  expect(dialog).toHaveAttribute("role", "dialog")
+
+  /**
+   * The id of `DialogBody` should equal the `aria-describedby` of the dialog
+   */
+  expect(tools.getByText("Dialog body").id).toEqual(
+    dialog.getAttribute("aria-describedby"),
+  )
+
+  /**
+   * The id of `DialogHeader` should equal the `aria-labelledby` of the dialog
+   */
+  expect(tools.getByText("Dialog header").id).toEqual(
+    dialog.getAttribute("aria-labelledby"),
+  )
 })
 
-test("clicking the close button calls the onClose callback", () => {
+test("should fire 'onClose' callback when close button is clicked", () => {
   const onClose = jest.fn()
+
   const tools = renderWithPortal(
     <Dialog isOpen onClose={onClose}>
       <DialogOverlay>
         <DialogContent>
           <DialogHeader>Dialog header</DialogHeader>
-          <DialogCloseButton />
+          <DialogCloseButton data-testid="close" />
         </DialogContent>
       </DialogOverlay>
     </Dialog>,
   )
 
-  // click the close button
-  fireEvent.click(tools.getByLabelText("Close"))
+  /**
+   * click the close button
+   */
+  userEvent.click(tools.getByTestId("close"))
 
   expect(onClose).toHaveBeenCalled()
 })
@@ -80,12 +117,14 @@ test('clicking overlay or pressing "esc" calls the onClose callback', () => {
       </DialogOverlay>
     </Dialog>,
   )
+
   const overlay = tools.getByTestId("overlay")
 
   userEvent.click(overlay)
-  fireEvent.keyDown(overlay, { key: "Escape", keyCode: 27 })
+  expect(onClose).toHaveBeenCalled()
 
-  expect(onClose).toHaveBeenCalledTimes(2)
+  press.Escape(overlay)
+  expect(onClose).toHaveBeenCalled()
 })
 
 test("focuses the initial focus ref when opened", () => {
@@ -114,14 +153,18 @@ test("focuses the initial focus ref when opened", () => {
   }
   const tools = renderWithPortal(<Component />)
 
-  // click button, opening the modal
-  fireEvent.click(tools.getByTestId("button"))
+  /**
+   * User clicks button to open the dialog
+   */
+  userEvent.click(tools.getByTestId("button"))
 
-  // input is now the active element
-  expect(document.activeElement).toEqual(tools.getByTestId("input"))
+  /**
+   * We focus the input right away!
+   */
+  expect(tools.getByTestId("input")).toHaveFocus()
 })
 
-test("returns focus when closed", () => {
+test("should return focus to button when closed", () => {
   const Component = () => {
     const [isOpen, setIsOpen] = React.useState(false)
     const buttonRef = React.useRef(null)
@@ -142,7 +185,7 @@ test("returns focus when closed", () => {
           <DialogOverlay>
             <DialogContent>
               <DialogHeader>Dialog header</DialogHeader>
-              <DialogCloseButton />
+              <DialogCloseButton data-testid="close" />
               <DialogBody>Dialog body</DialogBody>
             </DialogContent>
           </DialogOverlay>
@@ -154,11 +197,11 @@ test("returns focus when closed", () => {
   const button = tools.getByTestId("button")
 
   // make sure button isn't focused at the start
-  expect(document.activeElement).not.toEqual(button)
+  expect(button).not.toHaveFocus()
 
   // open and close the modal
-  fireEvent.click(button)
-  fireEvent.click(tools.getByLabelText("Close"))
+  userEvent.click(button)
+  userEvent.click(tools.getByTestId("close"))
 
-  expect(document.activeElement).toEqual(button)
+  expect(button).toHaveFocus()
 })

@@ -51,6 +51,12 @@ export interface DialogHookProps {
   useInert?: boolean
 }
 
+/**
+ * Dialog hook that manages all the logic for the dialog widget
+ * and returns prop getters, state and actions.
+ *
+ * @param props
+ */
 export function useDialog(props: DialogHookProps) {
   const {
     isOpen,
@@ -173,6 +179,15 @@ export function useDialog(props: DialogHookProps) {
 
 export type DialogHookReturn = ReturnType<typeof useDialog>
 
+/**
+ * Dialog hook to polyfill `aria-modal`.
+ *
+ * It applies `aria-hidden` to elements behind the modal
+ * to indicate that they're `inert`.
+ *
+ * @param ref React ref of the node
+ * @param shouldHide whether `aria-hidden` should be applied
+ */
 export function useAriaHidden(
   ref: React.RefObject<HTMLElement>,
   shouldHide: boolean,

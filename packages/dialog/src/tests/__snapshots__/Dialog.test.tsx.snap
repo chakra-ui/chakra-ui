@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Dialog renders correctly 1`] = `
+exports[`should render correctly 1`] = `
 <DocumentFragment>
   <div
     class="chakra-portal-manager"
