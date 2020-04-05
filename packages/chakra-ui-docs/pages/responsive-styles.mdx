@@ -4,6 +4,8 @@ Chakra UI support responsive styles out of the box. Instead of manually adding
 `@media` queries and adding nested styles throughout your code, Chakra UI allows
 you provide array values to add mobile-first responsive styles.
 
+<carbon-ad></carbon-ad>
+
 > We use the `@media(min-width)` media queries to ensure values are
 > mobile-first.
 
@@ -64,7 +66,9 @@ It'll generate a CSS that looks like this
 }
 ```
 
-___NOTE___: In the shortcut example `'100%'` is used instead of `1` because in the default Chakra UI theme, `theme.sizes[1] = 0.25rem`. This means that using a prop like `width={1}` will render a width of 4px and not `'100%'`
+**_NOTE_**: In the shortcut example `'100%'` is used instead of `1` because in
+the default Chakra UI theme, `theme.sizes[1] = 0.25rem`. This means that using a
+prop like `width={1}` will render a width of 4px and not `'100%'`
 
 The equivalent of this style if you passed it as an object.
 

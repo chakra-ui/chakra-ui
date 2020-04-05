@@ -13,6 +13,7 @@ import { jsx } from "@emotion/core";
 import NextLink from "next/link";
 import { forwardRef } from "react";
 import CodeBlock from "./CodeBlock";
+import CarbonAd from "./CarbonAd";
 
 const Pre = props => <Box my="2em" rounded="sm" {...props} />;
 
@@ -102,6 +103,7 @@ const DocsHeading = props => (
 );
 
 const MDXComponents = {
+  "carbon-ad": CarbonAd,
   h1: props => <Heading as="h1" size="xl" my="1em" {...props}></Heading>,
   h2: props => (
     <DocsHeading

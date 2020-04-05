@@ -5,6 +5,8 @@ itself when the close button is clicked, or after a timeout — the default is 5
 seconds. The toast component is used to give feedback to users after an action
 has taken place.
 
+<carbon-ad></carbon-ad>
+
 Toasts can be configured to appear at either the top or the bottom of an
 application window, and it is possible to have more than one toast onscreen at a
 time.
@@ -167,7 +169,7 @@ function PositionExample() {
 | `isClosable`  | `boolean`                                                               | `false`  | If `true` adds a close button to the toast.                          |
 | `onClose`     | `function`                                                              |          | Callback function to close the toast.                                |
 | `description` | `string`                                                                |          | The description of the toast.                                        |
-| `status`      | `success`, `error`, `warning`, `info`                                  |          | The status of the toast.                                             |
+| `status`      | `success`, `error`, `warning`, `info`                                   |          | The status of the toast.                                             |
 | `duration`    | `number`                                                                | `5000ms` | Duration before dismiss in milliseconds, or `null` to never dismiss. |
 | `position`    | `top`, `top-left`, `top-right`, `bottom`, `bottom-left`, `bottom-right` | `bottom` | Position the toast will popup out from.                              |
 | `render`      | `(props: {onClose:() => void, id: string}) => React.ReactNode`          |          | The description of the toast.                                        |

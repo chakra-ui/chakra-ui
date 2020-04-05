@@ -7,7 +7,10 @@ import SEO from "../components/SEO";
 
 # CSSReset
 
-CSSReset is a component used to apply low-level CSS rules to allow complete, bug-free and consistent styling by Chakra.
+CSSReset is a component used to apply low-level CSS rules to allow complete,
+bug-free and consistent styling by Chakra.
+
+<carbon-ad></carbon-ad>
 
 ## Import
 
@@ -17,14 +20,15 @@ import { CSSReset } from "@chakra-ui/core";
 
 ## Usage
 
-Include CSSReset as a child of ColorModeProvider in order to automatically style tags like `<html>` according to the color mode.
+Include CSSReset as a child of ColorModeProvider in order to automatically style
+tags like `<html>` according to the color mode.
 
 ```jsx live=false
 <ThemeProvider>
-    <ColorModeProvider>
-        <CSSReset />
-        <Component />
-    </ColorModeProvider>
+  <ColorModeProvider>
+    <CSSReset />
+    <Component />
+  </ColorModeProvider>
 </ThemeProvider>
 ```
 
@@ -53,7 +57,7 @@ To create a custom config, first define it and adjust colors as needed:
 
 ```jsx live=false
 const customConfig = theme => ({
-    light: {
+  light: {
     color: theme.colors.someCustomColor[400],
     bg: undefined,
     borderColor: theme.colors.gray[200],
@@ -65,22 +69,22 @@ const customConfig = theme => ({
     borderColor: theme.colors.whiteAlpha[300],
     placeholderColor: theme.colors.whiteAlpha[400],
   },
-})
+});
 ```
 
 And then pass it to the CSSReset component:
 
 ```jsx live=false
 <ThemeProvider>
-    <ColorModeProvider>
-        <CSSReset config={customConfig} />
-        <Component />
-    </ColorModeProvider>
+  <ColorModeProvider>
+    <CSSReset config={customConfig} />
+    <Component />
+  </ColorModeProvider>
 </ThemeProvider>
 ```
 
 ## Props
 
-| Name           | Type              | Default         | Description                           |
-| -------------- | ----------------- | --------------- | ------------------------------------- |
-| `config`       | `object`          | defaultConfig   | Configuration object.                 |
+| Name     | Type     | Default       | Description           |
+| -------- | -------- | ------------- | --------------------- |
+| `config` | `object` | defaultConfig | Configuration object. |
