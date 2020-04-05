@@ -26,59 +26,58 @@ exports[`Dialog renders correctly 1`] = `
         data-focus-lock-disabled="false"
       >
         <div
-          aria-hidden="true"
-          class="css-13vwfqb"
-          data-aria-hidden="true"
+          class="css-1klbp1o"
           data-chakra-dialog-overlay=""
-        />
-        <section
-          aria-describedby="chakra-dialog--body-1"
-          aria-labelledby="chakra-dialog--header-1"
-          aria-modal="true"
-          class="css-1mmk8z2"
-          data-chakra-dialog-content=""
-          id="chakra-dialog-1"
-          role="dialog"
-          tabindex="-1"
         >
-          <header
-            class="css-1kd6u6h"
-            data-chakra-dialog-header=""
-            id="chakra-dialog--header-1"
+          <section
+            aria-describedby="chakra-dialog--body-1"
+            aria-labelledby="chakra-dialog--header-1"
+            aria-modal="true"
+            class="css-105rhdj"
+            data-chakra-dialog-content=""
+            id="chakra-dialog-1"
+            role="dialog"
+            tabindex="-1"
           >
-            Dialog header
-          </header>
-          <button
-            aria-label="Close"
-            class="css-9u5sub"
-            type="button"
-          >
-            <svg
-              aria-hidden="true"
-              class="css-lhet7y"
-              focusable="false"
-              role="presentation"
-              viewBox="0 0 24 24"
+            <header
+              class="css-99ylup"
+              data-chakra-dialog-header=""
+              id="chakra-dialog--header-1"
             >
-              <path
-                d="M.439,21.44a1.5,1.5,0,0,0,2.122,2.121L11.823,14.3a.25.25,0,0,1,.354,0l9.262,9.263a1.5,1.5,0,1,0,2.122-2.121L14.3,12.177a.25.25,0,0,1,0-.354l9.263-9.262A1.5,1.5,0,0,0,21.439.44L12.177,9.7a.25.25,0,0,1-.354,0L2.561.44A1.5,1.5,0,0,0,.439,2.561L9.7,11.823a.25.25,0,0,1,0,.354Z"
-                fill="currentColor"
-              />
-            </svg>
-          </button>
-          <div
-            class="css-5recyo"
-            data-chakra-dialog-body=""
-            id="chakra-dialog--body-1"
-          >
-            Dialog body
-          </div>
-          <footer
-            class="css-kz99la"
-          >
-            Dialog footer
-          </footer>
-        </section>
+              Dialog header
+            </header>
+            <button
+              aria-label="Close"
+              class="css-f0tj8y"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="css-9na4ut"
+                focusable="false"
+                role="presentation"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M.439,21.44a1.5,1.5,0,0,0,2.122,2.121L11.823,14.3a.25.25,0,0,1,.354,0l9.262,9.263a1.5,1.5,0,1,0,2.122-2.121L14.3,12.177a.25.25,0,0,1,0-.354l9.263-9.262A1.5,1.5,0,0,0,21.439.44L12.177,9.7a.25.25,0,0,1-.354,0L2.561.44A1.5,1.5,0,0,0,.439,2.561L9.7,11.823a.25.25,0,0,1,0,.354Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </button>
+            <div
+              class="css-qjt6jp"
+              data-chakra-dialog-body=""
+              id="chakra-dialog--body-1"
+            >
+              Dialog body
+            </div>
+            <footer
+              class="css-1k0710x"
+            >
+              Dialog footer
+            </footer>
+          </section>
+        </div>
       </div>
       <div
         aria-hidden="true"

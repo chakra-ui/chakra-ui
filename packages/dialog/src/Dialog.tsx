@@ -2,17 +2,23 @@ import { CloseButton, CloseButtonProps } from "@chakra-ui/close-button"
 import { FocusLock } from "@chakra-ui/focus-lock"
 import { useSafeLayoutEffect } from "@chakra-ui/hooks"
 import { Portal } from "@chakra-ui/portal"
-import { chakra, PropsOf } from "@chakra-ui/system"
+import {
+  chakra,
+  PropsOf,
+  ThemingProps,
+  useComponentDefaults,
+} from "@chakra-ui/system"
 import { createContext } from "@chakra-ui/utils"
 import * as React from "react"
 import { DialogHookProps, DialogHookReturn, useDialog } from "./Dialog.hook"
 
 type DialogContext = DialogHookReturn &
-  Pick<DialogProps, "isCentered" | "scrollBehavior">
+  Pick<DialogProps, "isCentered" | "scrollBehavior"> &
+  Pick<ThemingProps, "variant" | "size">
 
 const [DialogContextProvider, useDialogContext] = createContext<DialogContext>()
 
-export interface DialogProps extends DialogHookProps {
+export interface DialogProps extends DialogHookProps, ThemingProps {
   children?: React.ReactNode
   /**
    * The `ref` of element to receive focus when the modal opens.
@@ -39,6 +45,8 @@ export interface DialogProps extends DialogHookProps {
 }
 
 export function Dialog(props: DialogProps) {
+  const defaults = useComponentDefaults("Dialog")
+
   const {
     children,
     initialFocusRef,
@@ -46,10 +54,18 @@ export function Dialog(props: DialogProps) {
     returnFocusOnClose = true,
     isOpen = true,
     scrollBehavior = "outside",
+    size = defaults?.size,
+    variant = defaults?.variant,
     isCentered,
   } = props
 
-  const context = { ...useDialog(props), scrollBehavior, isCentered }
+  const context = {
+    ...useDialog(props),
+    scrollBehavior,
+    isCentered,
+    size,
+    variant,
+  }
 
   if (!isOpen) return null
 
@@ -71,9 +87,17 @@ export function Dialog(props: DialogProps) {
 export type DialogContentProps = PropsOf<typeof chakra.div>
 
 export const DialogContent = (props: DialogContentProps) => {
-  const { getDialogContentProps, scrollBehavior } = useDialogContext()
+  const {
+    getDialogContentProps,
+    scrollBehavior,
+    variant,
+    size,
+  } = useDialogContext()
+
   return (
     <StyledContent
+      variant={variant}
+      size={size}
       data-chakra-dialog-content=""
       scrollBehavior={scrollBehavior}
       {...getDialogContentProps(props)}
@@ -81,14 +105,16 @@ export const DialogContent = (props: DialogContentProps) => {
   )
 }
 
-const StyledContent = chakra("section", {
+type ContentOptions = Pick<DialogProps, "scrollBehavior">
+
+const StyledContent = chakra<"section", ContentOptions>("section", {
   themeKey: "Dialog.Content",
-  baseStyle: (props: any) => ({
+  baseStyle: props => ({
     display: "flex",
     flexDirection: "column",
+    alignItems: "flex-start",
     position: "relative",
     width: "100%",
-    maxWidth: "500px",
     marginY: "3.75rem",
     maxHeight:
       props.scrollBehavior === "inside" ? "calc(100vh - 7.5rem)" : undefined,
@@ -106,20 +132,27 @@ export const DialogOverlay = (props: DialogOverlayProps) => {
     getDialogOverlayProps,
     scrollBehavior,
     isCentered,
+    variant,
+    size,
   } = useDialogContext()
+
   return (
     <StyledOverlay
+      variant={variant}
+      size={size}
       data-chakra-dialog-overlay=""
       scrollBehavior={scrollBehavior}
       isCentered={isCentered}
-      {...getDialogOverlayProps(props as any)}
+      {...getDialogOverlayProps(props)}
     />
   )
 }
 
-const StyledOverlay = chakra("div", {
+type OverlayOptions = Pick<DialogProps, "isCentered" | "scrollBehavior">
+
+const StyledOverlay = chakra<"div", OverlayOptions>("div", {
   themeKey: "Dialog.Overlay",
-  baseStyle: (props: any) => ({
+  baseStyle: props => ({
     display: "flex",
     justifyContent: "center",
     alignItems: props.isCentered ? "center" : "flex-start",
@@ -182,7 +215,7 @@ export const DialogCloseButton = (props: CloseButtonProps) => {
   const { onClose } = useDialogContext()
   return (
     <CloseButton
-      onClick={onClose as any}
+      onClick={onClose}
       position="absolute"
       top="8px"
       right="12px"

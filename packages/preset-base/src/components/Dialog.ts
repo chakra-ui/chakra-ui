@@ -1,6 +1,15 @@
 import { ComponentTheme, mode } from "./utils"
 
+/**
+ * Since the `maxWidth` prop references theme.sizes internally,
+ * we can leverage that to size our dialogs.
+ */
+const size = (value: string) => ({ Content: { maxWidth: value } })
+
 const Dialog: ComponentTheme = {
+  defaultProps: {
+    size: "md",
+  },
   baseStyle: props => ({
     Overlay: {
       bg: "rgba(0,0,0,0.4)",
@@ -29,6 +38,19 @@ const Dialog: ComponentTheme = {
       paddingY: 4,
     },
   }),
+  sizes: {
+    xs: size("xs"),
+    sm: size("sm"),
+    md: size("md"),
+    lg: size("lg"),
+    xl: size("xl"),
+    "2xl": size("2xl"),
+    "3xl": size("3xl"),
+    "4xl": size("4xl"),
+    "5xl": size("5xl"),
+    "6xl": size("6xl"),
+    full: size("full"),
+  },
 }
 
 export default Dialog

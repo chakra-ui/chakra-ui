@@ -16,7 +16,7 @@ export interface DialogHookProps {
   /**
    * Callback invoked to close the modal.
    */
-  onClose: (event?: MouseEvent | KeyboardEvent) => void
+  onClose(): void
   /**
    * If `true`, scrolling will be disabled on the `body` when the modal opens.
    *  @default true
@@ -37,8 +37,7 @@ export interface DialogHookProps {
    */
   onOverlayClick?(): void
   /**
-   * Callback fired when the escape key is pressed,
-   * `closeOnEsc` is set to `false` and focus is within dialog
+   * Callback fired when the escape key is pressed and focus is within dialog
    */
   onEscapeKeyDown?(): void
   /**
@@ -62,10 +61,11 @@ export function useDialog(props: DialogHookProps) {
     blockScrollOnMount = true,
     useInert = true,
     onOverlayClick: onOverlayClickProp,
+    onEscapeKeyDown,
   } = props
 
-  const dialogRef = React.useRef<HTMLElement>(null)
-  const overlayRef = React.useRef<HTMLElement>(null)
+  const dialogRef = React.useRef<any>(null)
+  const overlayRef = React.useRef<any>(null)
 
   const [dialogId, headerId, bodyId] = useIds(
     id,
@@ -104,9 +104,11 @@ export function useDialog(props: DialogHookProps) {
         if (closeOnEsc) {
           onClose?.()
         }
+
+        onEscapeKeyDown?.()
       }
     },
-    [closeOnEsc, onClose],
+    [closeOnEsc, onClose, onEscapeKeyDown],
   )
 
   const onOverlayClick = React.useCallback(
@@ -123,8 +125,6 @@ export function useDialog(props: DialogHookProps) {
        */
       if (mouseDownTarget.current !== event.target) return
 
-      onOverlayClickProp?.()
-
       /**
        * When you click on the overlay, we want to remove only the topmost dialog
        */
@@ -132,6 +132,7 @@ export function useDialog(props: DialogHookProps) {
         if (closeOnOverlayClick) {
           onClose?.()
         }
+        onOverlayClickProp?.()
       }
     },
     [onClose, closeOnOverlayClick, onOverlayClickProp],

@@ -11,36 +11,38 @@ import {
   DialogOverlay,
 } from ".."
 
+const renderWithPortal = (ui: React.ReactElement) =>
+  render(<PortalManager>{ui}</PortalManager>)
+
 test("Dialog renders correctly", () => {
-  const { asFragment } = render(
-    <PortalManager>
-      <Dialog isOpen onClose={jest.fn()}>
-        <DialogOverlay />
+  const tools = renderWithPortal(
+    <Dialog isOpen onClose={jest.fn()}>
+      <DialogOverlay>
         <DialogContent>
           <DialogHeader>Dialog header</DialogHeader>
           <DialogCloseButton />
           <DialogBody>Dialog body</DialogBody>
           <DialogFooter>Dialog footer</DialogFooter>
         </DialogContent>
-      </Dialog>
-    </PortalManager>,
+      </DialogOverlay>
+    </Dialog>,
   )
-  expect(asFragment()).toMatchSnapshot()
+  expect(tools.asFragment()).toMatchSnapshot()
 })
 
 test("has the proper aria attributes", () => {
-  const { getByLabelText } = render(
-    <PortalManager>
-      <Dialog isOpen onClose={jest.fn()}>
+  const tools = renderWithPortal(
+    <Dialog isOpen onClose={jest.fn()}>
+      <DialogOverlay>
         <DialogContent>
           <DialogHeader>Dialog header</DialogHeader>
           <DialogBody>Dialog body</DialogBody>
         </DialogContent>
-      </Dialog>
-    </PortalManager>,
+      </DialogOverlay>
+    </Dialog>,
   )
   // dialog is labelled by the header
-  const dialog = getByLabelText("Dialog header")
+  const dialog = tools.getByLabelText("Dialog header")
 
   expect(dialog).toHaveAttribute("role", "dialog")
   expect(dialog).toHaveAttribute("aria-modal", "true")
@@ -49,37 +51,36 @@ test("has the proper aria attributes", () => {
 
 test("clicking the close button calls the onClose callback", () => {
   const onClose = jest.fn()
-  const { getByLabelText } = render(
-    <PortalManager>
-      <Dialog isOpen onClose={onClose}>
+  const tools = renderWithPortal(
+    <Dialog isOpen onClose={onClose}>
+      <DialogOverlay>
         <DialogContent>
           <DialogHeader>Dialog header</DialogHeader>
           <DialogCloseButton />
         </DialogContent>
-      </Dialog>
-    </PortalManager>,
+      </DialogOverlay>
+    </Dialog>,
   )
 
   // click the close button
-  fireEvent.click(getByLabelText("Close"))
+  fireEvent.click(tools.getByLabelText("Close"))
 
   expect(onClose).toHaveBeenCalled()
 })
 
 test('clicking overlay or pressing "esc" calls the onClose callback', () => {
   const onClose = jest.fn()
-  const { getByTestId } = render(
-    <PortalManager>
-      <Dialog isOpen onClose={onClose}>
-        <DialogOverlay data-testid="overlay" />
+  const tools = renderWithPortal(
+    <Dialog isOpen onClose={onClose}>
+      <DialogOverlay data-testid="overlay">
         <DialogContent>
           <DialogHeader>Dialog header</DialogHeader>
           <DialogBody>Dialog body</DialogBody>
         </DialogContent>
-      </Dialog>
-    </PortalManager>,
+      </DialogOverlay>
+    </Dialog>,
   )
-  const overlay = getByTestId("overlay")
+  const overlay = tools.getByTestId("overlay")
 
   userEvent.click(overlay)
   fireEvent.keyDown(overlay, { key: "Escape", keyCode: 27 })
@@ -92,30 +93,32 @@ test("focuses the initial focus ref when opened", () => {
     const [isOpen, setIsOpen] = React.useState(false)
     const inputRef = React.useRef(null)
     return (
-      <PortalManager>
+      <>
         <button data-testid="button" onClick={() => setIsOpen(true)}>
           Open
         </button>
         <Dialog isOpen={isOpen} initialFocusRef={inputRef} onClose={jest.fn()}>
-          <DialogContent>
-            <DialogHeader>Dialog header</DialogHeader>
-            <DialogBody>
-              <input />
-              <input />
-              <input data-testid="input" ref={inputRef} />
-            </DialogBody>
-          </DialogContent>
+          <DialogOverlay>
+            <DialogContent>
+              <DialogHeader>Dialog header</DialogHeader>
+              <DialogBody>
+                <input />
+                <input />
+                <input data-testid="input" ref={inputRef} />
+              </DialogBody>
+            </DialogContent>
+          </DialogOverlay>
         </Dialog>
-      </PortalManager>
+      </>
     )
   }
-  const { getByTestId } = render(<Component />)
+  const tools = renderWithPortal(<Component />)
 
   // click button, opening the modal
-  fireEvent.click(getByTestId("button"))
+  fireEvent.click(tools.getByTestId("button"))
 
   // input is now the active element
-  expect(document.activeElement).toEqual(getByTestId("input"))
+  expect(document.activeElement).toEqual(tools.getByTestId("input"))
 })
 
 test("returns focus when closed", () => {
@@ -123,7 +126,7 @@ test("returns focus when closed", () => {
     const [isOpen, setIsOpen] = React.useState(false)
     const buttonRef = React.useRef(null)
     return (
-      <PortalManager>
+      <>
         <button
           ref={buttonRef}
           data-testid="button"
@@ -136,24 +139,26 @@ test("returns focus when closed", () => {
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
         >
-          <DialogContent>
-            <DialogHeader>Dialog header</DialogHeader>
-            <DialogCloseButton />
-            <DialogBody>Dialog body</DialogBody>
-          </DialogContent>
+          <DialogOverlay>
+            <DialogContent>
+              <DialogHeader>Dialog header</DialogHeader>
+              <DialogCloseButton />
+              <DialogBody>Dialog body</DialogBody>
+            </DialogContent>
+          </DialogOverlay>
         </Dialog>
-      </PortalManager>
+      </>
     )
   }
-  const { getByLabelText, getByTestId } = render(<Component />)
-  const button = getByTestId("button")
+  const tools = renderWithPortal(<Component />)
+  const button = tools.getByTestId("button")
 
   // make sure button isn't focused at the start
   expect(document.activeElement).not.toEqual(button)
 
   // open and close the modal
   fireEvent.click(button)
-  fireEvent.click(getByLabelText("Close"))
+  fireEvent.click(tools.getByLabelText("Close"))
 
   expect(document.activeElement).toEqual(button)
 })

@@ -6,6 +6,9 @@ import { render, RenderOptions } from "@testing-library/react"
 import * as React from "react"
 import { toHaveNoViolations } from "jest-axe"
 
+// import serializer from "jest-emotion"
+// expect.addSnapshotSerializer(serializer)
+
 expect.extend(toHaveNoViolations)
 
 const AllProviders = ({ children }: { children?: React.ReactNode }) => (
