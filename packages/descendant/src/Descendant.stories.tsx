@@ -20,7 +20,7 @@ function Option({
 
   const ref = React.useRef<HTMLDivElement>(null)
 
-  const { index } = useDescendant({
+  const index = useDescendant({
     element: ref.current,
     value,
     disabled,

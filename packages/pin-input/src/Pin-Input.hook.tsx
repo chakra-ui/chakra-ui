@@ -110,7 +110,7 @@ export function usePinInputField(props: PinInputFieldHookProps) {
 
   const { descendants } = descendantsContext
 
-  const { index } = useDescendant({
+  const index = useDescendant({
     context: descendantsContext,
     element: ref.current,
   })

@@ -20,7 +20,7 @@ export type FunctionArguments<T extends Function> = T extends (
 
 export type Dict<T = any> = Record<string, T>
 
-export type NodeOrRenderProp<P> =
+export type ReactNodeOrRenderProp<P> =
   | React.ReactNode
   | ((props: P) => React.ReactNode)
 

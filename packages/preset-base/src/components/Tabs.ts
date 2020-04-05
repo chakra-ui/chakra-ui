@@ -112,6 +112,7 @@ const Tabs: ComponentTheme = {
   defaultProps: {
     size: "md",
     variant: "line",
+    colorScheme: "blue",
   },
   baseStyle: {
     Tab: {

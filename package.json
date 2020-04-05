@@ -45,7 +45,7 @@
     "button": "yarn workspace @chakra-ui/button",
     "tooltip": "yarn workspace @chakra-ui/tooltip",
     "descendant": "yarn workspace @chakra-ui/descendant",
-    "tabbable": "yarn workspace @chakra-ui/tabbable",
+    "clickable": "yarn workspace @chakra-ui/clickable",
     "pin-input": "yarn workspace @chakra-ui/pin-input",
     "avatar": "yarn workspace @chakra-ui/avatar",
     "spinner": "yarn workspace @chakra-ui/spinner",

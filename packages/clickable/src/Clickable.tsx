@@ -1,22 +1,10 @@
 import * as React from "react"
-import { useMergeRefs } from "@chakra-ui/hooks"
+import { mergeRefs, attr } from "@chakra-ui/utils"
 
-type HTMLAttributes = React.HTMLAttributes<Element> &
-  React.RefAttributes<Element>
+type HTMLAttributes = React.HTMLAttributes<any> & React.RefAttributes<any>
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>
 
-type HTMLProps = Pick<
-  HTMLAttributes,
-  | "onMouseOver"
-  | "onMouseDown"
-  | "onMouseUp"
-  | "onClick"
-  | "onKeyDown"
-  | "onKeyUp"
-  | "ref"
-  | "tabIndex"
->
-
-export interface TabbableHookProps extends HTMLProps {
+export interface ClickableHookProps extends HTMLAttributes {
   /**
    * If `true`, the element will be disabled.
    * It will set the `disabled` HTML attribute
@@ -28,16 +16,24 @@ export interface TabbableHookProps extends HTMLProps {
    */
   isFocusable?: boolean
   /**
-   * Whether or not trigger click on pressing ```Enter```.
+   * Whether or not trigger click on pressing `Enter`.
    */
   clickOnEnter?: boolean
   /**
-   * Whether or not trigger click on pressing ```Space```.
+   * Whether or not trigger click on pressing `Space`.
    */
   clickOnSpace?: boolean
 }
 
-export function useTabbable(props: TabbableHookProps) {
+/**
+ * useClickable
+ *
+ * React hook that implements all the interactions of a native `button`
+ * component with support for making it focusable even if it's disabled.
+ *
+ * It can be used with both native button elements or other elements (like `div`).
+ */
+export function useClickable(props: ClickableHookProps = {}) {
   const {
     ref: htmlRef,
     isDisabled,
@@ -53,16 +49,22 @@ export function useTabbable(props: TabbableHookProps) {
     onMouseOver,
     ...htmlProps
   } = props
-  // We'll use this to track if the element is a button element
+  /**
+   * We'll use this to track if the element is a button element
+   */
   const [isButton, setIsButton] = React.useState(true)
 
-  // For custom button implementation, we'll use this to track when
-  // we mouse down on the button, to enable use style it's ":active" style
-  const [isPressed, setIsPressed] = React.useState(false)
+  /**
+   * For custom button implementation, we'll use this to track when
+   * we mouse down on the button, to enable use style it's ":active" style
+   */
+  const [isActive, setIsActive] = React.useState(false)
 
-  // The ref callback that fires as soon as the dom node is ready
+  /**
+   * The ref callback that fires as soon as the dom node is ready
+   */
   const refCallback = React.useCallback(node => {
-    if (node && node.tagName !== "BUTTON") {
+    if (node?.tagName !== "BUTTON") {
       setIsButton(false)
     }
   }, [])
@@ -78,8 +80,8 @@ export function useTabbable(props: TabbableHookProps) {
         return
       }
 
-      ;(event.currentTarget as HTMLElement).focus()
-
+      const self = event.currentTarget as HTMLElement
+      self.focus()
       onClick?.(event)
     },
     [isDisabled, onClick],
@@ -89,41 +91,43 @@ export function useTabbable(props: TabbableHookProps) {
     (event: React.KeyboardEvent) => {
       onKeyDown?.(event)
 
-      if (isDisabled) {
+      if (isDisabled || event.defaultPrevented || event.metaKey) {
         return
       }
 
-      const shouldEnterClick = clickOnEnter && event.key === "Enter"
+      const shouldClickOnEnter = clickOnEnter && event.key === "Enter"
+      const shouldClickOnSpace = clickOnSpace && event.key === " "
 
-      if (!isButton && event.key === " ") {
+      if (!isButton && shouldClickOnSpace) {
         event.preventDefault()
-        setIsPressed(true)
+        setIsActive(true)
         return
       }
 
-      if (!isButton && shouldEnterClick) {
+      if (!isButton && shouldClickOnEnter) {
         event.preventDefault()
-        ;(event.currentTarget as HTMLElement).click()
+        const self = event.currentTarget as HTMLElement
+        self.click()
         return
       }
     },
-    [isDisabled, isButton, onKeyDown, clickOnEnter],
+    [isDisabled, isButton, onKeyDown, clickOnEnter, clickOnSpace],
   )
 
   const handleKeyUp = React.useCallback(
     (event: React.KeyboardEvent) => {
       onKeyUp?.(event)
 
-      if (isDisabled) {
-        return
-      }
+      if (isDisabled || event.defaultPrevented || event.metaKey) return
 
-      const shouldSpaceClick = clickOnSpace && event.key === " "
+      const shouldClickOnSpace = clickOnSpace && event.key === " "
 
-      if (!isButton && shouldSpaceClick) {
+      if (!isButton && shouldClickOnSpace) {
         event.preventDefault()
-        setIsPressed(false)
-        ;(event.currentTarget as HTMLElement).click()
+        setIsActive(false)
+
+        const self = event.currentTarget as HTMLElement
+        self.click()
       }
     },
     [clickOnSpace, isButton, isDisabled, onKeyUp],
@@ -138,7 +142,7 @@ export function useTabbable(props: TabbableHookProps) {
       }
 
       if (!isButton) {
-        setIsPressed(true)
+        setIsActive(true)
       }
 
       onMouseDown?.(event)
@@ -149,7 +153,7 @@ export function useTabbable(props: TabbableHookProps) {
   const handleMouseUp = React.useCallback(
     (event: React.MouseEvent) => {
       if (!isButton) {
-        setIsPressed(false)
+        setIsActive(false)
       }
 
       onMouseUp?.(event)
@@ -169,13 +173,13 @@ export function useTabbable(props: TabbableHookProps) {
     [isDisabled, onMouseOver],
   )
 
-  const ref = useMergeRefs(htmlRef, refCallback)
+  const ref = mergeRefs(htmlRef, refCallback)
 
   if (isButton) {
     return {
       ...htmlProps,
       ref,
-      type: "button" as React.ButtonHTMLAttributes<any>["type"],
+      type: "button" as ButtonProps["type"],
       "aria-disabled": trulyDisabled ? undefined : isDisabled,
       disabled: trulyDisabled,
       onClick: handleClick,
@@ -191,7 +195,7 @@ export function useTabbable(props: TabbableHookProps) {
     ...htmlProps,
     ref,
     role: "button",
-    "data-active": isPressed || undefined,
+    "data-active": attr(isActive),
     "aria-disabled": isDisabled,
     tabIndex: trulyDisabled ? undefined : tabIndex,
     onClick: handleClick,
@@ -202,5 +206,3 @@ export function useTabbable(props: TabbableHookProps) {
     onMouseOver: handleMouseOver,
   }
 }
-
-export default useTabbable
