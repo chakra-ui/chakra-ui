@@ -1,5 +1,5 @@
 {
-  "name": "@chakra-ui/dialog",
+  "name": "@chakra-ui/modal",
   "version": "0.0.1",
   "description": "An accessible dialog (modal) component for React & Chakra UI",
   "keywords": [
@@ -21,7 +21,7 @@
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
   "main": "dist/index.js",
-  "module": "dist/dialog.esm.js",
+  "module": "dist/modal.esm.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"

@@ -1,14 +1,14 @@
 import {
   chakra,
+  PropsOf,
   SystemProps,
   useThemeDefaultProps,
-  PropsOf,
 } from "@chakra-ui/system"
 import { getValidChildren } from "@chakra-ui/utils"
 import * as React from "react"
-import { AvatarProps, baseStyle } from "./Avatar"
+import { baseStyle } from "./Avatar"
 
-const MoreAvatar = chakra("span", {
+const AvatarExcessLabel = chakra("span", {
   themeKey: "Avatar",
   baseStyle: props => ({
     ...baseStyle,
@@ -92,7 +92,7 @@ export const AvatarGroup = (props: AvatarGroupProps) => {
   return (
     <StyledGroup data-chakra-avatar-group="" {...rest}>
       {moreAvatarCount && (
-        <MoreAvatar
+        <AvatarExcessLabel
           size={size}
           marginLeft={spacing}
           children={`+${moreAvatarCount}`}

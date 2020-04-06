@@ -27,24 +27,24 @@ exports[`should render correctly 1`] = `
       >
         <div
           class="css-1klbp1o"
-          data-chakra-dialog-overlay=""
+          data-chakra-modal-overlay=""
         >
           <section
-            aria-describedby="chakra-dialog--body-1"
-            aria-labelledby="chakra-dialog--header-1"
+            aria-describedby="chakra-modal--body-1"
+            aria-labelledby="chakra-modal--header-1"
             aria-modal="true"
-            class="css-105rhdj"
-            data-chakra-dialog-content=""
-            id="chakra-dialog-1"
+            class="css-1l02ijt"
+            data-chakra-modal-content=""
+            id="chakra-modal-1"
             role="dialog"
             tabindex="-1"
           >
             <header
               class="css-99ylup"
-              data-chakra-dialog-header=""
-              id="chakra-dialog--header-1"
+              data-chakra-modal-header=""
+              id="chakra-modal--header-1"
             >
-              Dialog header
+              Modal header
             </header>
             <button
               aria-label="Close"
@@ -66,15 +66,15 @@ exports[`should render correctly 1`] = `
             </button>
             <div
               class="css-qjt6jp"
-              data-chakra-dialog-body=""
-              id="chakra-dialog--body-1"
+              data-chakra-modal-body=""
+              id="chakra-modal--body-1"
             >
-              Dialog body
+              Modal body
             </div>
             <footer
-              class="css-1k0710x"
+              class="css-ku8rqf"
             >
-              Dialog footer
+              Modal footer
             </footer>
           </section>
         </div>

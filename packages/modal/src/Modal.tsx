@@ -8,26 +8,26 @@ import {
   ThemingProps,
   useThemeDefaultProps,
 } from "@chakra-ui/system"
-import { createContext } from "@chakra-ui/utils"
+import { createContext, callAllHandlers } from "@chakra-ui/utils"
 import * as React from "react"
-import { DialogHookProps, DialogHookReturn, useDialog } from "./Dialog.hook"
+import { ModalHookProps, ModalHookReturn, useModal } from "./Modal.hook"
 
-type DialogContext = DialogHookReturn &
-  Pick<DialogProps, "isCentered" | "scrollBehavior"> &
+type ModalContext = ModalHookReturn &
+  Pick<ModalProps, "isCentered" | "scrollBehavior"> &
   Pick<ThemingProps, "variant" | "size">
 
-const [DialogContextProvider, useDialogContext] = createContext<DialogContext>()
+const [ModalContextProvider, useModalContext] = createContext<ModalContext>()
 
-export interface DialogProps extends DialogHookProps, ThemingProps {
+export interface ModalProps extends ModalHookProps, ThemingProps {
   children?: React.ReactNode
   /**
    * The `ref` of element to receive focus when the modal opens.
    */
-  initialFocusRef?: React.RefObject<any>
+  initialFocusRef?: React.RefObject<HTMLElement>
   /**
    * The `ref` of element to receive focus when the modal closes.
    */
-  finalFocusRef?: React.RefObject<any>
+  finalFocusRef?: React.RefObject<HTMLElement>
   /**
    * If `true`, the modal will return focus to the element that triggered it when it closes.
    * @default true
@@ -53,14 +53,14 @@ export interface DialogProps extends DialogHookProps, ThemingProps {
    * other surrounding elements.
    *
    * 🚨Warning: We don't recommend doing this because it hurts the
-   * accessbility of the dialog, based on WAI-ARIA specifications.
+   * accessbility of the modal, based on WAI-ARIA specifications.
    *
    * @default true
    */
   shouldTrapFocus?: boolean
   /**
-   * If `true`, the dialog will autofocus the first enabled and interative
-   * element within the `DialogContent`
+   * If `true`, the modal will autofocus the first enabled and interative
+   * element within the `ModalContent`
    *
    * @default true
    */
@@ -68,15 +68,15 @@ export interface DialogProps extends DialogHookProps, ThemingProps {
 }
 
 /**
- * Dialog
+ * Modal
  *
  * React component that provides context, theming, and accessbility properties
- * to all other dialog components.
+ * to all other modal components.
  *
  * It doesn't render any DOM node.
  */
-export function Dialog(props: DialogProps) {
-  const defaults = useThemeDefaultProps("Dialog")
+export function Modal(props: ModalProps) {
+  const defaults = useThemeDefaultProps("Modal")
 
   const {
     children,
@@ -93,7 +93,7 @@ export function Dialog(props: DialogProps) {
   } = props
 
   const context = {
-    ...useDialog(props),
+    ...useModal(props),
     scrollBehavior,
     isCentered,
     size,
@@ -103,7 +103,7 @@ export function Dialog(props: DialogProps) {
   if (!isOpen) return null
 
   return (
-    <DialogContextProvider value={context}>
+    <ModalContextProvider value={context}>
       <Portal>
         <FocusLock
           autoFocus={shouldAutoFocus}
@@ -115,20 +115,20 @@ export function Dialog(props: DialogProps) {
           {children}
         </FocusLock>
       </Portal>
-    </DialogContextProvider>
+    </ModalContextProvider>
   )
 }
 
-type ContentOptions = Pick<DialogProps, "scrollBehavior">
+type ContentOptions = Pick<ModalProps, "scrollBehavior">
 
 /**
- * DialogContent - Theming
+ * ModalContent - Theming
  *
- * To style the dialog content globally, change the styles in
- * `theme.components.Dialog` under the `Content` key
+ * To style the modal content globally, change the styles in
+ * `theme.components.Modal` under the `Content` key
  */
 const StyledContent = chakra<"section", ContentOptions>("section", {
-  themeKey: "Dialog.Content",
+  themeKey: "Modal.Content",
   baseStyle: props => ({
     display: "flex",
     flexDirection: "column",
@@ -144,43 +144,38 @@ const StyledContent = chakra<"section", ContentOptions>("section", {
   }),
 })
 
-export type DialogContentProps = PropsOf<typeof StyledContent>
+export type ModalContentProps = PropsOf<typeof StyledContent>
 
 /**
- * DialogContent
+ * ModalContent
  *
- * React component used to group dialog's content. It has all the
- * necessary `aria-*` properties to indicate that it's a modal dialog
+ * React component used to group modal's content. It has all the
+ * necessary `aria-*` properties to indicate that it's a modal modal
  */
-export const DialogContent = (props: DialogContentProps) => {
-  const {
-    getDialogContentProps,
-    scrollBehavior,
-    variant,
-    size,
-  } = useDialogContext()
+export const ModalContent = (props: ModalContentProps) => {
+  const { getContentProps, scrollBehavior, variant, size } = useModalContext()
 
   return (
     <StyledContent
       variant={variant}
       size={size}
-      data-chakra-dialog-content=""
+      data-chakra-modal-content=""
       scrollBehavior={scrollBehavior}
-      {...getDialogContentProps(props)}
+      {...getContentProps(props)}
     />
   )
 }
 
-type OverlayOptions = Pick<DialogProps, "isCentered" | "scrollBehavior">
+type OverlayOptions = Pick<ModalProps, "isCentered" | "scrollBehavior">
 
 /**
- * DialogOverlay - Theming
+ * ModalOverlay - Theming
  *
- * To style the dialog overlay globally, change the styles in
- * `theme.components.Dialog` under the `Overlay` key
+ * To style the modal overlay globally, change the styles in
+ * `theme.components.Modal` under the `Overlay` key
  */
 const StyledOverlay = chakra<"div", OverlayOptions>("div", {
-  themeKey: "Dialog.Overlay",
+  themeKey: "Modal.Overlay",
   baseStyle: props => ({
     display: "flex",
     justifyContent: "center",
@@ -199,58 +194,58 @@ const StyledOverlay = chakra<"div", OverlayOptions>("div", {
   },
 })
 
-export type DialogOverlayProps = PropsOf<typeof StyledOverlay>
+export type ModalOverlayProps = PropsOf<typeof StyledOverlay>
 
 /**
- * DialogOverlay
+ * ModalOverlay
  *
- * React component that renders a backdrop behind the dialog. It's
- * also used as a wrapper for the dialog content for better positioning.
+ * React component that renders a backdrop behind the modal. It's
+ * also used as a wrapper for the modal content for better positioning.
  *
- * @see Docs https://chakra-ui.com/dialog
+ * @see Docs https://chakra-ui.com/modal
  */
-export const DialogOverlay = (props: DialogOverlayProps) => {
+export const ModalOverlay = (props: ModalOverlayProps) => {
   const {
-    getDialogOverlayProps,
+    getOverlayProps,
     scrollBehavior,
     isCentered,
     variant,
     size,
-  } = useDialogContext()
+  } = useModalContext()
 
   return (
     <StyledOverlay
       variant={variant}
       size={size}
-      data-chakra-dialog-overlay=""
+      data-chakra-modal-overlay=""
       scrollBehavior={scrollBehavior}
       isCentered={isCentered}
-      {...getDialogOverlayProps(props)}
+      {...getOverlayProps(props)}
     />
   )
 }
 
-export type DialogHeaderProps = PropsOf<typeof StyledHeader>
+export type ModalHeaderProps = PropsOf<typeof StyledHeader>
 
 /**
- * DialogHeader - Theming
+ * ModalHeader - Theming
  *
- * To style the dialog header globally, change the styles in
- * `theme.components.Dialog` under the `Header` key
+ * To style the modal header globally, change the styles in
+ * `theme.components.Modal` under the `Header` key
  */
 const StyledHeader = chakra("header", {
-  themeKey: "Dialog.Header",
+  themeKey: "Modal.Header",
 })
 
 /**
- * DialogHeader
+ * ModalHeader
  *
- * React component that houses the title of the dialog.
+ * React component that houses the title of the modal.
  *
- * @see Docs https://chakra-ui.com/dialog
+ * @see Docs https://chakra-ui.com/modal
  */
-export const DialogHeader = (props: DialogHeaderProps) => {
-  const { headerId, setHeaderMounted } = useDialogContext()
+export const ModalHeader = (props: ModalHeaderProps) => {
+  const { headerId, setHeaderMounted } = useModalContext()
 
   /**
    * Notify us if this component was rendered or used
@@ -261,28 +256,28 @@ export const DialogHeader = (props: DialogHeaderProps) => {
     return () => setHeaderMounted(false)
   }, [])
 
-  return <StyledHeader data-chakra-dialog-header="" id={headerId} {...props} />
+  return <StyledHeader data-chakra-modal-header="" id={headerId} {...props} />
 }
 
-export type DialogBodyProps = PropsOf<typeof StyledBody>
+export type ModalBodyProps = PropsOf<typeof StyledBody>
 
 /**
- * DialogBody - Theming
+ * ModalBody - Theming
  *
- * To style the dialog body globally, change the styles in
- * `theme.components.Dialog` under the `Body` key
+ * To style the modal body globally, change the styles in
+ * `theme.components.Modal` under the `Body` key
  */
-const StyledBody = chakra("div", { themeKey: "Dialog.Body" })
+const StyledBody = chakra("div", { themeKey: "Modal.Body" })
 
 /**
- * DialogBody
+ * ModalBody
  *
- * React component that houses the main content of the dialog.
+ * React component that houses the main content of the modal.
  *
- * @see Docs https://chakra-ui.com/dialog
+ * @see Docs https://chakra-ui.com/modal
  */
-export const DialogBody = (props: DialogBodyProps) => {
-  const { bodyId, setBodyMounted } = useDialogContext()
+export const ModalBody = (props: ModalBodyProps) => {
+  const { bodyId, setBodyMounted } = useModalContext()
 
   /**
    * Notify us if this component was rendered or used
@@ -293,18 +288,18 @@ export const DialogBody = (props: DialogBodyProps) => {
     return () => setBodyMounted(false)
   }, [])
 
-  return <StyledBody data-chakra-dialog-body="" id={bodyId} {...props} />
+  return <StyledBody data-chakra-modal-body="" id={bodyId} {...props} />
 }
 
 /**
- * DialogFooter
+ * ModalFooter
  *
- * React component that houses the action buttons of the dialog.
+ * React component that houses the action buttons of the modal.
  *
- * @see Docs https://chakra-ui.com/dialog
+ * @see Docs https://chakra-ui.com/modal
  */
-export const DialogFooter = chakra("footer", {
-  themeKey: "Dialog.Footer",
+export const ModalFooter = chakra("footer", {
+  themeKey: "Modal.Footer",
   baseStyle: {
     display: "flex",
     alignItems: "center",
@@ -313,21 +308,21 @@ export const DialogFooter = chakra("footer", {
 })
 
 /**
- * DialogCloseButton
+ * ModalCloseButton
  *
- * React component used closes the dialog. You don't need
+ * React component used closes the modal. You don't need
  * to pass the `onClick` to it, it's reads the `onClose` action from the
- * dialog context.
+ * modal context.
  */
-export const DialogCloseButton = (props: CloseButtonProps) => {
-  const { onClose } = useDialogContext()
+export const ModalCloseButton = (props: CloseButtonProps) => {
+  const { onClose } = useModalContext()
   return (
     <CloseButton
-      onClick={onClose}
       position="absolute"
       top="8px"
       right="12px"
       {...props}
+      onClick={callAllHandlers(props.onClick, onClose)}
     />
   )
 }

@@ -6,7 +6,7 @@ import Button from "./Button"
 import Checkbox from "./Checkbox"
 import CloseButton from "./CloseButton"
 import Code from "./Code"
-import Dialog from "./Dialog"
+import Modal from "./Modal"
 import Heading from "./Heading"
 import Input from "./Input"
 import Link from "./Link"
@@ -46,7 +46,7 @@ export default {
   NumberInput,
   Switch,
   Tag,
-  Dialog,
+  Modal,
   Kbd,
   Select: Input,
   Textarea: Input,

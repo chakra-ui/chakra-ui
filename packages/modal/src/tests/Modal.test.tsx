@@ -2,13 +2,13 @@ import * as React from "react"
 import { render, userEvent, axe, press } from "@chakra-ui/test-utils"
 import { PortalManager } from "@chakra-ui/portal"
 import {
-  Dialog,
-  DialogBody,
-  DialogCloseButton,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogOverlay,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
 } from ".."
 
 const renderWithPortal = (ui: React.ReactElement) =>
@@ -16,32 +16,32 @@ const renderWithPortal = (ui: React.ReactElement) =>
 
 test("should render correctly", () => {
   const tools = renderWithPortal(
-    <Dialog isOpen onClose={jest.fn()}>
-      <DialogOverlay>
-        <DialogContent>
-          <DialogHeader>Dialog header</DialogHeader>
-          <DialogCloseButton />
-          <DialogBody>Dialog body</DialogBody>
-          <DialogFooter>Dialog footer</DialogFooter>
-        </DialogContent>
-      </DialogOverlay>
-    </Dialog>,
+    <Modal isOpen onClose={jest.fn()}>
+      <ModalOverlay>
+        <ModalContent>
+          <ModalHeader>Modal header</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>Modal body</ModalBody>
+          <ModalFooter>Modal footer</ModalFooter>
+        </ModalContent>
+      </ModalOverlay>
+    </Modal>,
   )
   expect(tools.asFragment()).toMatchSnapshot()
 })
 
 test("should have no accessibility violations", async () => {
   const tools = renderWithPortal(
-    <Dialog isOpen onClose={jest.fn()}>
-      <DialogOverlay>
-        <DialogContent>
-          <DialogHeader>Dialog header</DialogHeader>
-          <DialogCloseButton />
-          <DialogBody>Dialog body</DialogBody>
-          <DialogFooter>Dialog footer</DialogFooter>
-        </DialogContent>
-      </DialogOverlay>
-    </Dialog>,
+    <Modal isOpen onClose={jest.fn()}>
+      <ModalOverlay>
+        <ModalContent>
+          <ModalHeader>Modal header</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>Modal body</ModalBody>
+          <ModalFooter>Modal footer</ModalFooter>
+        </ModalContent>
+      </ModalOverlay>
+    </Modal>,
   )
 
   const result = await axe(tools.container)
@@ -50,17 +50,17 @@ test("should have no accessibility violations", async () => {
 
 test("should have the proper 'aria' attributes", () => {
   const tools = renderWithPortal(
-    <Dialog isOpen onClose={jest.fn()}>
-      <DialogOverlay>
-        <DialogContent data-testid="dialog">
-          <DialogHeader>Dialog header</DialogHeader>
-          <DialogBody>Dialog body</DialogBody>
-        </DialogContent>
-      </DialogOverlay>
-    </Dialog>,
+    <Modal isOpen onClose={jest.fn()}>
+      <ModalOverlay>
+        <ModalContent data-testid="modal">
+          <ModalHeader>Modal header</ModalHeader>
+          <ModalBody>Modal body</ModalBody>
+        </ModalContent>
+      </ModalOverlay>
+    </Modal>,
   )
 
-  const dialog = tools.getByTestId("dialog")
+  const dialog = tools.getByTestId("modal")
 
   /**
    * should have `aria-modal` set to `true`
@@ -71,14 +71,14 @@ test("should have the proper 'aria' attributes", () => {
   /**
    * The id of `DialogBody` should equal the `aria-describedby` of the dialog
    */
-  expect(tools.getByText("Dialog body").id).toEqual(
+  expect(tools.getByText("Modal body").id).toEqual(
     dialog.getAttribute("aria-describedby"),
   )
 
   /**
    * The id of `DialogHeader` should equal the `aria-labelledby` of the dialog
    */
-  expect(tools.getByText("Dialog header").id).toEqual(
+  expect(tools.getByText("Modal header").id).toEqual(
     dialog.getAttribute("aria-labelledby"),
   )
 })
@@ -87,14 +87,14 @@ test("should fire 'onClose' callback when close button is clicked", () => {
   const onClose = jest.fn()
 
   const tools = renderWithPortal(
-    <Dialog isOpen onClose={onClose}>
-      <DialogOverlay>
-        <DialogContent>
-          <DialogHeader>Dialog header</DialogHeader>
-          <DialogCloseButton data-testid="close" />
-        </DialogContent>
-      </DialogOverlay>
-    </Dialog>,
+    <Modal isOpen onClose={onClose}>
+      <ModalOverlay>
+        <ModalContent>
+          <ModalHeader>Modal header</ModalHeader>
+          <ModalCloseButton data-testid="close" />
+        </ModalContent>
+      </ModalOverlay>
+    </Modal>,
   )
 
   /**
@@ -108,14 +108,14 @@ test("should fire 'onClose' callback when close button is clicked", () => {
 test('clicking overlay or pressing "esc" calls the onClose callback', () => {
   const onClose = jest.fn()
   const tools = renderWithPortal(
-    <Dialog isOpen onClose={onClose}>
-      <DialogOverlay data-testid="overlay">
-        <DialogContent>
-          <DialogHeader>Dialog header</DialogHeader>
-          <DialogBody>Dialog body</DialogBody>
-        </DialogContent>
-      </DialogOverlay>
-    </Dialog>,
+    <Modal isOpen onClose={onClose}>
+      <ModalOverlay data-testid="overlay">
+        <ModalContent>
+          <ModalHeader>Modal header</ModalHeader>
+          <ModalBody>Modal body</ModalBody>
+        </ModalContent>
+      </ModalOverlay>
+    </Modal>,
   )
 
   const overlay = tools.getByTestId("overlay")
@@ -136,25 +136,25 @@ test("focuses the initial focus ref when opened", () => {
         <button data-testid="button" onClick={() => setIsOpen(true)}>
           Open
         </button>
-        <Dialog isOpen={isOpen} initialFocusRef={inputRef} onClose={jest.fn()}>
-          <DialogOverlay>
-            <DialogContent>
-              <DialogHeader>Dialog header</DialogHeader>
-              <DialogBody>
+        <Modal isOpen={isOpen} initialFocusRef={inputRef} onClose={jest.fn()}>
+          <ModalOverlay>
+            <ModalContent>
+              <ModalHeader>Modal header</ModalHeader>
+              <ModalBody>
                 <input />
                 <input />
                 <input data-testid="input" ref={inputRef} />
-              </DialogBody>
-            </DialogContent>
-          </DialogOverlay>
-        </Dialog>
+              </ModalBody>
+            </ModalContent>
+          </ModalOverlay>
+        </Modal>
       </>
     )
   }
   const tools = renderWithPortal(<Component />)
 
   /**
-   * User clicks button to open the dialog
+   * User clicks button to open the modal
    */
   userEvent.click(tools.getByTestId("button"))
 
@@ -177,19 +177,19 @@ test("should return focus to button when closed", () => {
         >
           Open
         </button>
-        <Dialog
+        <Modal
           finalFocusRef={buttonRef}
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
         >
-          <DialogOverlay>
-            <DialogContent>
-              <DialogHeader>Dialog header</DialogHeader>
-              <DialogCloseButton data-testid="close" />
-              <DialogBody>Dialog body</DialogBody>
-            </DialogContent>
-          </DialogOverlay>
-        </Dialog>
+          <ModalOverlay>
+            <ModalContent>
+              <ModalHeader>Modal header</ModalHeader>
+              <ModalCloseButton data-testid="close" />
+              <ModalBody>Modal body</ModalBody>
+            </ModalContent>
+          </ModalOverlay>
+        </Modal>
       </>
     )
   }

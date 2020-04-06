@@ -2,11 +2,11 @@ import { ComponentTheme, mode } from "./utils"
 
 /**
  * Since the `maxWidth` prop references theme.sizes internally,
- * we can leverage that to size our dialogs.
+ * we can leverage that to size our modals.
  */
 const size = (value: string) => ({ Content: { maxWidth: value } })
 
-const Dialog: ComponentTheme = {
+const Modal: ComponentTheme = {
   defaultProps: {
     size: "md",
   },
@@ -53,4 +53,4 @@ const Dialog: ComponentTheme = {
   },
 }
 
-export default Dialog
+export default Modal

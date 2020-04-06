@@ -4,17 +4,17 @@ import { chakra } from "@chakra-ui/system"
 import { Fade, SlideFade } from "@chakra-ui/transition"
 import * as React from "react"
 import {
-  Dialog,
-  DialogBody,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogOverlay,
-  DialogCloseButton,
-} from "./Dialog"
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  ModalCloseButton,
+} from "./Modal"
 
 export default {
-  title: "Dialog",
+  title: "Modal",
   decorators: [
     (StoryFn: Function) => (
       <PortalManager>
@@ -38,29 +38,29 @@ export function BasicUsage() {
     <>
       <Button onClick={onOpen}>Open</Button>
 
-      <Dialog isOpen={isOpen} onClose={onClose}>
-        <DialogOverlay>
-          <DialogContent>
-            <DialogCloseButton />
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay>
+          <ModalContent>
+            <ModalCloseButton />
 
-            <DialogHeader>Welcome Home</DialogHeader>
+            <ModalHeader>Welcome Home</ModalHeader>
 
-            <DialogBody>
+            <ModalBody>
               Sit nulla est ex deserunt exercitation anim occaecat. Nostrud
               ullamco deserunt aute id consequat veniam incididunt duis in sint
               irure nisi. Mollit officia cillum Lorem ullamco minim nostrud elit
               officia tempor esse quis.
-            </DialogBody>
+            </ModalBody>
 
-            <DialogFooter>
+            <ModalFooter>
               <Button onClick={onClose} colorScheme="gray" mr="12px">
                 Cancel
               </Button>
               <Button colorScheme="blue">Save</Button>
-            </DialogFooter>
-          </DialogContent>
-        </DialogOverlay>
-      </Dialog>
+            </ModalFooter>
+          </ModalContent>
+        </ModalOverlay>
+      </Modal>
     </>
   )
 }
@@ -83,53 +83,53 @@ export function ReturnFocus() {
         Open Modal
       </Button>
 
-      <Dialog finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
-        <DialogOverlay>
-          <DialogContent>
-            <DialogHeader>Dialog Title</DialogHeader>
-            <DialogCloseButton />
-            <DialogBody>
+      <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay>
+          <ModalContent>
+            <ModalHeader>Modal Title</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
               Sit nulla est ex deserunt exercitation anim occaecat. Nostrud
               ullamco deserunt aute id consequat veniam incididunt duis in sint
               irure nisi. Mollit officia cillum Lorem ullamco minim nostrud elit
               officia tempor esse quis.
-            </DialogBody>
+            </ModalBody>
 
-            <DialogFooter>
+            <ModalFooter>
               <Button colorScheme="blue" mr={3} onClick={onClose}>
                 Close
               </Button>
               <Button variant="ghost">Secondary Action</Button>
-            </DialogFooter>
-          </DialogContent>
-        </DialogOverlay>
-      </Dialog>
+            </ModalFooter>
+          </ModalContent>
+        </ModalOverlay>
+      </Modal>
     </>
   )
 }
 
 export function AnimatedModal() {
-  const dialog = useDisclosure()
+  const modal = useDisclosure()
   return (
     <>
-      <button onClick={dialog.onOpen}>Open</button>
-      <Fade timeout={400} in={dialog.isOpen}>
+      <button onClick={modal.onOpen}>Open</button>
+      <Fade timeout={400} in={modal.isOpen}>
         {styles => (
-          <Dialog isOpen={true} onClose={dialog.onClose}>
-            <DialogOverlay style={styles}>
-              <SlideFade in={dialog.isOpen} unmountOnExit={false}>
+          <Modal isOpen={true} onClose={modal.onClose}>
+            <ModalOverlay style={styles}>
+              <SlideFade in={modal.isOpen} unmountOnExit={false}>
                 {styles => (
-                  <DialogContent padding={4} mx="auto" mt="40px" style={styles}>
+                  <ModalContent padding={4} mx="auto" mt="40px" style={styles}>
                     Sit nulla est ex deserunt exercitation anim occaecat.
                     Nostrud ullamco deserunt aute id consequat veniam incididunt
                     duis in sint irure nisi. Mollit officia cillum Lorem ullamco
                     minim nostrud elit officia tempor esse quis.
                     <Button colorScheme="blue">Save</Button>
-                  </DialogContent>
+                  </ModalContent>
                 )}
               </SlideFade>
-            </DialogOverlay>
-          </Dialog>
+            </ModalOverlay>
+          </Modal>
         )}
       </Fade>
     </>
@@ -143,46 +143,46 @@ export function NestedModal() {
   return (
     <>
       <button onClick={first.onOpen}>Open</button>
-      <Dialog isOpen={first.isOpen} onClose={first.onClose}>
-        <DialogOverlay>
-          <DialogContent>
-            <DialogHeader>Modal Title</DialogHeader>
-            <DialogBody>
+      <Modal isOpen={first.isOpen} onClose={first.onClose}>
+        <ModalOverlay>
+          <ModalContent>
+            <ModalHeader>Modal Title</ModalHeader>
+            <ModalBody>
               Sit nulla est ex deserunt exercitation anim occaecat. Nostrud
               ullamco deserunt aute id consequat veniam incididunt duis in sint
               irure nisi. Mollit officia cillum Lorem ullamco minim nostrud elit
               officia tempor esse quis.
-            </DialogBody>
-            <DialogFooter>
+            </ModalBody>
+            <ModalFooter>
               <chakra.div flex="1" />
               <Button colorScheme="gray">Button 2</Button>
               <Button colorScheme="pink" onClick={second.onOpen}>
                 Open Nested
               </Button>
-            </DialogFooter>
-            <Dialog isOpen={second.isOpen} onClose={second.onClose}>
-              <DialogOverlay>
-                <DialogContent>
-                  <DialogHeader>Modal 2 Title</DialogHeader>
-                  <DialogFooter>
+            </ModalFooter>
+            <Modal isOpen={second.isOpen} onClose={second.onClose}>
+              <ModalOverlay>
+                <ModalContent>
+                  <ModalHeader>Modal 2 Title</ModalHeader>
+                  <ModalFooter>
                     <chakra.div flex="1" />
                     <Button colorScheme="blue" onClick={third.onOpen}>
                       Open Nested 2
                     </Button>
-                  </DialogFooter>
-                  <Dialog isOpen={third.isOpen} onClose={third.onClose}>
-                    <DialogOverlay>
-                      <DialogContent>
-                        <DialogHeader tabIndex={0}>Modal 3 Title</DialogHeader>
-                      </DialogContent>
-                    </DialogOverlay>
-                  </Dialog>
-                </DialogContent>
-              </DialogOverlay>
-            </Dialog>
-          </DialogContent>
-        </DialogOverlay>
-      </Dialog>
+                  </ModalFooter>
+                  <Modal isOpen={third.isOpen} onClose={third.onClose}>
+                    <ModalOverlay>
+                      <ModalContent>
+                        <ModalHeader tabIndex={0}>Modal 3 Title</ModalHeader>
+                      </ModalContent>
+                    </ModalOverlay>
+                  </Modal>
+                </ModalContent>
+              </ModalOverlay>
+            </Modal>
+          </ModalContent>
+        </ModalOverlay>
+      </Modal>
     </>
   )
 }
