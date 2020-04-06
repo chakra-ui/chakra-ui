@@ -30,18 +30,41 @@ export interface DialogProps extends DialogHookProps, ThemingProps {
   finalFocusRef?: React.RefObject<any>
   /**
    * If `true`, the modal will return focus to the element that triggered it when it closes.
+   * @default true
    */
-  returnFocusOnClose?: boolean
+  shouldReturnFocus?: boolean
   /**
    *  If `true`, the modal will be centered on screen.
+   * @default false
    */
   isCentered?: boolean
   /**
    * Where scroll behaviour should originate.
    * - If set to `inside`, scroll only occurs within the `ModalBody`.
    * - If set to `outside`, the entire `ModalContent` will scroll within the viewport.
+   *
+   * @default "outside"
    */
   scrollBehavior?: "inside" | "outside"
+  /**
+   * If `false`, focus lock will be disabled completely.
+   *
+   * This is useful in situations where you still need to interact with
+   * other surrounding elements.
+   *
+   * 🚨Warning: We don't recommend doing this because it hurts the
+   * accessbility of the dialog, based on WAI-ARIA specifications.
+   *
+   * @default true
+   */
+  shouldTrapFocus?: boolean
+  /**
+   * If `true`, the dialog will autofocus the first enabled and interative
+   * element within the `DialogContent`
+   *
+   * @default true
+   */
+  shouldAutoFocus?: boolean
 }
 
 /**
@@ -59,11 +82,13 @@ export function Dialog(props: DialogProps) {
     children,
     initialFocusRef,
     finalFocusRef,
-    returnFocusOnClose = true,
+    shouldReturnFocus = true,
     isOpen = true,
     scrollBehavior = "outside",
     size = defaults?.size,
     variant = defaults?.variant,
+    shouldTrapFocus = true,
+    shouldAutoFocus = true,
     isCentered,
   } = props
 
@@ -81,9 +106,11 @@ export function Dialog(props: DialogProps) {
     <DialogContextProvider value={context}>
       <Portal>
         <FocusLock
+          autoFocus={shouldAutoFocus}
+          isDisabled={!shouldTrapFocus}
           initialFocusRef={initialFocusRef}
           finalFocusRef={finalFocusRef}
-          restoreFocus={returnFocusOnClose}
+          restoreFocus={shouldReturnFocus}
         >
           {children}
         </FocusLock>
@@ -105,7 +132,6 @@ const StyledContent = chakra<"section", ContentOptions>("section", {
   baseStyle: props => ({
     display: "flex",
     flexDirection: "column",
-    alignItems: "flex-start",
     position: "relative",
     width: "100%",
     marginY: "3.75rem",
@@ -282,7 +308,7 @@ export const DialogFooter = chakra("footer", {
   baseStyle: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "flex-end",
   },
 })
 

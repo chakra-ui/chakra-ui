@@ -6,32 +6,32 @@ import { manager, useDialogManager } from "./Dialog.manager"
 
 export interface DialogHookProps {
   /**
-   * If `true`, the modal when be opened.
+   * If `true`, the dialog when be opened.
    */
   isOpen: boolean
   /**
-   * The `id` of the modal
+   * The `id` of the dialog
    */
   id?: string
   /**
-   * Callback invoked to close the modal.
+   * Callback invoked to close the dialog.
    */
   onClose(): void
   /**
-   * If `true`, scrolling will be disabled on the `body` when the modal opens.
+   * If `true`, scrolling will be disabled on the `body` when the dialog opens.
    *  @default true
    */
-  blockScrollOnMount?: boolean
+  shouldBlockScroll?: boolean
   /**
-   * If `true`, the modal will close when the overlay is clicked
+   * If `true`, the dialog will close when the overlay is clicked
    * @default true
    */
-  closeOnOverlayClick?: boolean
+  shouldCloseOnOverlayClick?: boolean
   /**
-   * If `true`, the modal will close when the `Esc` key is pressed
+   * If `true`, the dialog will close when the `Esc` key is pressed
    * @default true
    */
-  closeOnEsc?: boolean
+  shouldCloseOnEsc?: boolean
   /**
    * Callback fired when the overlay is clicked.
    */
@@ -39,10 +39,10 @@ export interface DialogHookProps {
   /**
    * Callback fired when the escape key is pressed and focus is within dialog
    */
-  onEscapeKeyDown?(): void
+  onEsc?(): void
   /**
-   * A11y: If `true`, the siblings of the `Modal` will have `aria-hidden`
-   * set to `true` so that screen readers can only see the `Modal`.
+   * A11y: If `true`, the siblings of the `dialog` will have `aria-hidden`
+   * set to `true` so that screen readers can only see the `dialog`.
    *
    * This is commonly known as making the other elements **inert**
    *
@@ -62,12 +62,12 @@ export function useDialog(props: DialogHookProps) {
     isOpen,
     onClose,
     id,
-    closeOnOverlayClick = true,
-    closeOnEsc = true,
-    blockScrollOnMount = true,
+    shouldCloseOnOverlayClick = true,
+    shouldCloseOnEsc = true,
+    shouldBlockScroll = true,
     useInert = true,
     onOverlayClick: onOverlayClickProp,
-    onEscapeKeyDown,
+    onEsc,
   } = props
 
   const dialogRef = React.useRef<any>(null)
@@ -81,9 +81,9 @@ export function useDialog(props: DialogHookProps) {
   )
 
   /**
-   * Hook used to block scrolling once the modal is open
+   * Hook used to block scrolling once the dialog is open
    */
-  useLockBodyScroll(dialogRef, isOpen && blockScrollOnMount)
+  useLockBodyScroll(dialogRef, isOpen && shouldBlockScroll)
   /**
    * Hook used to polyfill `aria-modal` for older browsers.
    * It uses `aria-hidden` to all other nodes.
@@ -107,14 +107,14 @@ export function useDialog(props: DialogHookProps) {
       if (event.key === "Escape") {
         event.stopPropagation()
 
-        if (closeOnEsc) {
+        if (shouldCloseOnEsc) {
           onClose?.()
         }
 
-        onEscapeKeyDown?.()
+        onEsc?.()
       }
     },
-    [closeOnEsc, onClose, onEscapeKeyDown],
+    [shouldCloseOnEsc, onClose, onEsc],
   )
 
   const onOverlayClick = React.useCallback(
@@ -135,13 +135,13 @@ export function useDialog(props: DialogHookProps) {
        * When you click on the overlay, we want to remove only the topmost dialog
        */
       if (manager.isTopDialog(dialogRef)) {
-        if (closeOnOverlayClick) {
+        if (shouldCloseOnOverlayClick) {
           onClose?.()
         }
         onOverlayClickProp?.()
       }
     },
-    [onClose, closeOnOverlayClick, onOverlayClickProp],
+    [onClose, shouldCloseOnOverlayClick, onOverlayClickProp],
   )
 
   const [headerMounted, setHeaderMounted] = React.useState(false)

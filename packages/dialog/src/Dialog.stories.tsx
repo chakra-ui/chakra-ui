@@ -24,32 +24,39 @@ export default {
   ],
 }
 
-const Button = chakra("button", { themeKey: "Button" })
+const Button = chakra("button", {
+  themeKey: "Button",
+  baseStyle: {
+    outline: 0,
+    transition: "all 0.2s",
+  },
+})
 
-export function SimpleModal() {
-  const dialog = useDisclosure()
+export function BasicUsage() {
+  const { isOpen, onOpen, onClose } = useDisclosure()
   return (
     <>
-      <button onClick={dialog.onOpen}>Open</button>
-      <Dialog isOpen={dialog.isOpen} onClose={dialog.onClose}>
+      <Button onClick={onOpen}>Open</Button>
+
+      <Dialog isOpen={isOpen} onClose={onClose}>
         <DialogOverlay>
           <DialogContent>
             <DialogCloseButton />
+
             <DialogHeader>Welcome Home</DialogHeader>
+
             <DialogBody>
               Sit nulla est ex deserunt exercitation anim occaecat. Nostrud
               ullamco deserunt aute id consequat veniam incididunt duis in sint
               irure nisi. Mollit officia cillum Lorem ullamco minim nostrud elit
               officia tempor esse quis.
             </DialogBody>
+
             <DialogFooter>
-              <chakra.div flex="1" />
-              <chakra.div>
-                <Button onClick={dialog.onClose} colorScheme="gray" mr="12px">
-                  Cancel
-                </Button>
-                <Button colorScheme="blue">Save</Button>
-              </chakra.div>
+              <Button onClick={onClose} colorScheme="gray" mr="12px">
+                Cancel
+              </Button>
+              <Button colorScheme="blue">Save</Button>
             </DialogFooter>
           </DialogContent>
         </DialogOverlay>
@@ -57,6 +64,50 @@ export function SimpleModal() {
     </>
   )
 }
+
+export function ReturnFocus() {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const finalRef = React.useRef()
+
+  return (
+    <>
+      <chakra.div
+        ref={finalRef}
+        tabIndex={-1}
+        aria-label="Focus moved to this box"
+      >
+        Some other content that'll receive focus on close.
+      </chakra.div>
+
+      <Button mt={4} onClick={onOpen}>
+        Open Modal
+      </Button>
+
+      <Dialog finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
+        <DialogOverlay>
+          <DialogContent>
+            <DialogHeader>Dialog Title</DialogHeader>
+            <DialogCloseButton />
+            <DialogBody>
+              Sit nulla est ex deserunt exercitation anim occaecat. Nostrud
+              ullamco deserunt aute id consequat veniam incididunt duis in sint
+              irure nisi. Mollit officia cillum Lorem ullamco minim nostrud elit
+              officia tempor esse quis.
+            </DialogBody>
+
+            <DialogFooter>
+              <Button colorScheme="blue" mr={3} onClick={onClose}>
+                Close
+              </Button>
+              <Button variant="ghost">Secondary Action</Button>
+            </DialogFooter>
+          </DialogContent>
+        </DialogOverlay>
+      </Dialog>
+    </>
+  )
+}
+
 export function AnimatedModal() {
   const dialog = useDisclosure()
   return (
