@@ -6,7 +6,7 @@ import {
   chakra,
   PropsOf,
   ThemingProps,
-  useComponentDefaults,
+  useThemeDefaultProps,
 } from "@chakra-ui/system"
 import { createContext } from "@chakra-ui/utils"
 import * as React from "react"
@@ -53,7 +53,7 @@ export interface DialogProps extends DialogHookProps, ThemingProps {
  * It doesn't render any DOM node.
  */
 export function Dialog(props: DialogProps) {
-  const defaults = useComponentDefaults("Dialog")
+  const defaults = useThemeDefaultProps("Dialog")
 
   const {
     children,

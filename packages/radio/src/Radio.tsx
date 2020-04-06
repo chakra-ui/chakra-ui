@@ -2,7 +2,7 @@ import {
   PropsOf,
   ThemingProps,
   chakra,
-  useComponentDefaults,
+  useThemeDefaultProps,
   layoutPropNames,
 } from "@chakra-ui/system"
 import * as React from "react"
@@ -34,7 +34,7 @@ export type RadioProps = RadioHookProps &
 
 export const Radio = React.forwardRef(
   (props: RadioProps, ref: React.Ref<HTMLInputElement>) => {
-    const defaults = useComponentDefaults("Radio")
+    const defaults = useThemeDefaultProps("Radio")
 
     const {
       colorScheme = "blue",

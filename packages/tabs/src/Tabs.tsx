@@ -1,4 +1,4 @@
-import { PropsOf, chakra, useComponentDefaults } from "@chakra-ui/system"
+import { PropsOf, chakra, useThemeDefaultProps } from "@chakra-ui/system"
 import * as React from "react"
 import {
   useTab,
@@ -56,7 +56,7 @@ export function Tabs(props: TabsProps) {
   /**
    * get the default props for `variant` and `size` from `theme.components.Tabs`
    */
-  const defaults = useComponentDefaults("Tabs")
+  const defaults = useThemeDefaultProps("Tabs")
 
   const {
     children,

@@ -4,7 +4,7 @@ import {
   WarningIcon,
   WarningTwoIcon,
 } from "@chakra-ui/icons"
-import { chakra, PropsOf, useComponentDefaults } from "@chakra-ui/system"
+import { chakra, PropsOf, useThemeDefaultProps } from "@chakra-ui/system"
 import { createContext } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -53,7 +53,7 @@ const StyledAlert = chakra("div", {
  */
 export const Alert = React.forwardRef(
   (props: AlertProps, ref: React.Ref<any>) => {
-    const defaults = useComponentDefaults("Alert")
+    const defaults = useThemeDefaultProps("Alert")
 
     const { status = "info", variant = defaults?.variant, ...rest } = props
     const colorScheme = ALERT_STATUSES[status]["color"]

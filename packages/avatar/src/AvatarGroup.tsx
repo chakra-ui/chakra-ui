@@ -1,7 +1,7 @@
 import {
   chakra,
   SystemProps,
-  useComponentDefaults,
+  useThemeDefaultProps,
   PropsOf,
 } from "@chakra-ui/system"
 import { getValidChildren } from "@chakra-ui/utils"
@@ -53,7 +53,7 @@ const StyledGroup = chakra("div", {
  * React component to displays a number of avatars grouped together in a stack.
  */
 export const AvatarGroup = (props: AvatarGroupProps) => {
-  const defaults = useComponentDefaults("Avatar")
+  const defaults = useThemeDefaultProps("Avatar")
 
   const {
     children,
