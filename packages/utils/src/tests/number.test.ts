@@ -21,7 +21,7 @@ test("valueToPercent - 'value: 5, min: 1, max: 11' should equal 50", () => {
 })
 
 test("percentToValue - 'percent: 50, min: 0, max: 10' should equal 5", () => {
-  expect(percentToValue(50, 0, 10)).toStrictEqual(5)
+  expect(percentToValue(50, 0, 10)).toStrictEqual(500)
 })
 
 test("roundValueToStep - 'value: 5, step: 2' should equal '6'", () => {
