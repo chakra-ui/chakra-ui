@@ -1,30 +1,27 @@
+import { useClickable } from "@chakra-ui/clickable"
 import { useDescendant, useDescendants } from "@chakra-ui/descendant"
 import {
+  useControllableState,
   useDisclosure,
   useId,
   useIds,
   useShortcut,
   useUpdateEffect,
-  useControllableState,
 } from "@chakra-ui/hooks"
 import { usePopper } from "@chakra-ui/popper"
-import { useClickable } from "@chakra-ui/clickable"
 import {
+  addItem,
   callAllHandlers,
   createOnKeyDown,
   getNextIndex,
   getNextItemFromSearch,
   getPrevIndex,
-  mergeRefs,
   getValidChildren,
-  isString,
   isArray,
-  addItem,
+  mergeRefs,
   removeItem,
 } from "@chakra-ui/utils"
 import * as React from "react"
-
-///////////////////////////////////////////////////////////////////////////////////
 
 export type MenuHookProps = {
   context?: MenuHookReturn
@@ -52,7 +49,7 @@ export function useMenu(props: MenuHookProps) {
 
   // prepare the reference to the menu and disclosure
   const menuRef = React.useRef<HTMLDivElement>(null)
-  const disclosureRef = React.useRef<HTMLButtonElement>(null)
+  const buttonRef = React.useRef<HTMLButtonElement>(null)
 
   // Add some popper.js for dynamic positioning
   const { placement, popper, reference } = usePopper({
@@ -83,7 +80,7 @@ export function useMenu(props: MenuHookProps) {
    */
   useUpdateEffect(() => {
     if (!isOpen && !hasParent) {
-      disclosureRef.current?.focus()
+      buttonRef.current?.focus()
     }
   }, [isOpen])
 
@@ -104,7 +101,7 @@ export function useMenu(props: MenuHookProps) {
     onOpen,
     onClose,
     menuRef,
-    disclosureRef,
+    buttonRef,
     focusedIndex,
     closeOnSelect,
     setFocusedIndex,
@@ -146,7 +143,7 @@ export function useMenuList(props: MenuListHookProps) {
       }
       // If we're clicking on a menuitem that's a disclosure,
       // don't do anything
-      if (event.target === menu.disclosureRef.current) {
+      if (event.target === menu.buttonRef.current) {
         return
       }
       // otherwise, onClose the menu
@@ -203,7 +200,7 @@ export function useMenuList(props: MenuListHookProps) {
       ArrowLeft: () => {
         if (!hasParent) return
         menu.onClose()
-        const node = menu.disclosureRef.current
+        const node = menu.buttonRef.current
         node?.focus()
       },
     },
@@ -314,22 +311,25 @@ export function useMenuButton(props: MenuButtonHookProps) {
       Enter: () => {
         openAndFocusFirstItem()
       },
-      " ": () => {
-        openAndFocusFirstItem()
-      },
       ArrowDown: () => {
-        if (!hasParent) openAndFocusFirstItem()
+        if (!hasParent) {
+          openAndFocusFirstItem()
+        }
       },
       ArrowUp: () => {
-        if (!hasParent) showAndFocusLastItem()
+        if (!hasParent) {
+          showAndFocusLastItem()
+        }
       },
       ArrowRight: () => {
-        if (hasParent) openAndFocusFirstItem()
+        if (hasParent) {
+          openAndFocusFirstItem()
+        }
       },
     },
   })
 
-  const ref = mergeRefs(menu.disclosureRef, menu.reference.ref)
+  const ref = mergeRefs(menu.buttonRef, menu.reference.ref)
 
   return {
     ...htmlProps,
