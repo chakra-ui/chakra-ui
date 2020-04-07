@@ -2,7 +2,7 @@ import {
   PropsOf,
   chakra,
   ThemingProps,
-  useComponentDefaults,
+  useThemeDefaultProps,
 } from "@chakra-ui/system"
 import * as React from "react"
 import { SliderHookProps, useSlider, SliderHookReturn } from "./Slider.hook"
@@ -36,7 +36,7 @@ const StyledSlider = chakra("div", {
 })
 
 export function Slider(props: SliderProps) {
-  const defaults = useComponentDefaults("Slider")
+  const defaults = useThemeDefaultProps("Slider")
   const {
     variant = defaults?.variant,
     size = defaults?.size,

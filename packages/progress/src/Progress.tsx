@@ -1,11 +1,5 @@
 import { generateStripe, getColor } from "@chakra-ui/color"
-import {
-  chakra,
-  style,
-  PropsOf,
-  useColorModeValue,
-  useTheme,
-} from "@chakra-ui/system"
+import { chakra, PropsOf, useColorModeValue, useTheme } from "@chakra-ui/system"
 import { isUndefined, Omit, mapResponsive } from "@chakra-ui/utils"
 import * as React from "react"
 import {

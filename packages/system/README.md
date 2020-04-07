@@ -1,89 +1,126 @@
-# Chakra Styled
+# @chakra-ui/system
 
-```tsx
-type Props = {
-  colorMode: "light" | "dark"
-  theme: Object
-  colorScheme: string
-}
+Styled API for creating atomic, theme-aware component styling.
 
-type ObjectOrFunction = Object | ((props: Props) => Object)
+## Installation
 
-type Component = {
-  name: string
-  baseStyle: ObjectOrFunction
-  variants: ObjectOrFunction
-  sizes: ObjectOrFunction
-  defaultProps: {
-    size: string
-    variant: string
-    colorScheme: string
-  }
-}
+```sh
+yarn add @chakra-ui/system
 
-type Theme = {
-  dir: "ltr" | "rtl"
-  breakpoints: Object
-  colors: Object
-  spacing: Object
-  sizes: Object
-  shadows: Object
-  borders: Object
-  radii: Object
-  fontWeights: Object
-  lineHeights: Object
-  fontSizes: Object
-  letterSpacings: Object
-  fonts: Object
-  components: { [name: string]: Component }
-  styles: {
-    root: { light: Object; dark: Object }
-    [element: string]: Object
-  }
-  config: {
-    useColorSchemeMediaQuery: boolean
-    autoApplyStylesToElement: boolean
-    autoConvertToRtl: boolean
-  }
-}
+# or
+
+npm i @chakra-ui/system
 ```
 
-## Ideal API for next release
+## Problem
 
-```tsx
-// import the chakra system
-import { chakra, ChakraProps, merge } from "@chakra-ui/system"
+In modern web development, we have lots of solutions and architectures that have
+tried to unify how components are styled. We've seen CSS architectures like BEM,
+SMACSS, etc, and frameworks like theme-ui, and Tailwind CSS.
 
-// invoke system with your custom theme, get strongly typed providers
-const { styled, ThemeProvider, useTheme, useComponentStyle } = chakra(theme)
+While these solutions work great, we think there still a sheer amount of work
+required to create a fully customizable, theme-aware component.
 
-// create components using styled
-const Button = styled('button', {
-  baseStyle: {},
-  themeKey: 'Button',
-  attrs: {},
-  shouldForwardProps: () => {},
-});
+## Solutions
 
+### Chakra Elements
 
-// if themekey was passed, then the component will have colorScheme, size, and variant Props
-<Button colorScheme="red" variant="outline" size="md"> Click me </Button>
+Chakra provides enhanced JSX elements that can be styled directly via props, or
+can accept the common `sx` prop for custom styles.
 
-//NB: remove support for size prop, preserve it for components only
+We'll provide a chakra function, just like styled-component. Users can create
+any component using the `chakra.[element]`. The resulting component will be a
+styled component and have all system props.
 
-// consume styled directly
-<styled.h1 apply="styles.h4"> This is a heading </styled.h1>
+```jsx
+<chakra.button bg="green.200" _hover={{ bg: "green.300" }}>
+  Click me
+</chakra.button>
 
-// create color-mode package
-import { useColorMode, ColorModeProvider, InitializeColorMode } from "@chakra-ui/color-mode"
+<chakra.h1 fontSize="lg"> Heading </chakra.h1>
 
-// create css-reset component
-import CSSReset from "@chakra-ui/css-reset"
+// create your own box
+const Box = chakra.div
 
-// users can use their custom styled functions with other components
-import { styled } from "./system"
-import { Link } from "@reach/router"
+// you can still use the `as` prop
+<Box as="h1">This is my box</Box>
 
-// common link as button scenario
-const LinkButton = styled(Link, { themeKey: "Button" })
+// for custom components
+const ChakraPowered = chakra(YourComponent)
+
+// TS: chakra will infer the types of Link and
+// make it available in props
+<chakra.a as={Link} to="/home"> Click me</chakra.a>
+```
+
+### Chakra Component API
+
+A way to define themable components in chakra. We believe most re-usable, atomic
+components have the following modifiers:
+
+- Size: It has different size variations (small, medium, large)
+- Variant: It has different visual style (outline, solid, ghost)
+- Color scheme (Optional): For a given variant, it can have several color
+  scheme. For example, an outline button with a red color scheme.
+- Color mode (Optional): Components also change their visual styles based on the
+  user preferred color mode (light or dark)
+
+Our goal with this component API to design a common interface to style any
+component give these characteristics. Here's how it works:
+
+```jsx
+// 1. create a component schema in your theme
+const theme = {
+	colors: {
+    green: {
+      light: "#dfdfdf",
+      normal: "#dfdfdf",
+      dark: "#d566Df",
+      darker: "#dfd56f"
+    },
+		blue: {}
+  },
+  components: {
+    Button: {
+      defaultProps: {
+        variant: "solid",
+        size: "md",
+				colorScheme: "blue"
+      },
+      variants: {
+				// props has colorScheme, colorMode (light mode or dark mode)
+        solid: props => ({
+          bg: `${props.colorScheme}.normal`,
+          color: "white",
+        }),
+        outline: {
+          border: "2px",
+          borderColor: "green.normal"
+        }
+      },
+      sizes: {
+        sm: {
+          padding: 20,
+          fontSize: 12
+        },
+        md: {
+          padding: 40,
+          fontSize: 15
+        }
+      }
+    }
+  }
+};
+
+// 2. create or import Button from chakra-ui
+import { Button } from "@chakra-ui/core"
+
+// or your own button
+const Button = chakra("button", { themeKey: "Button" })
+
+// 3. use the button. It'll have the visual props defined in defaultProps
+<Button>Click me</Button>
+
+// 4. override the defaultProps
+<Button variant="outline" colorScheme="green">Click me</Button>
 ```

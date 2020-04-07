@@ -34,7 +34,7 @@
     "checkbox": "yarn workspace @chakra-ui/checkbox",
     "radio": "yarn workspace @chakra-ui/radio",
     "tabs": "yarn workspace @chakra-ui/tabs",
-    "dialog": "yarn workspace @chakra-ui/dialog",
+    "modal": "yarn workspace @chakra-ui/modal",
     "portal": "yarn workspace @chakra-ui/portal",
     "slider": "yarn workspace @chakra-ui/slider",
     "editable": "yarn workspace @chakra-ui/editable",

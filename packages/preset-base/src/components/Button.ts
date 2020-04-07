@@ -64,7 +64,7 @@ function getSolidStyle(props: Props) {
 
   return {
     bg: mode(`${c}.500`, `${c}.200`)(props),
-    color: mode(`${c}.600`, `gray.800`)(props),
+    color: mode(`white`, `gray.800`)(props),
     _hover: { bg: mode(`${c}.600`, `${c}.300`)(props) },
     _active: { bg: mode(`${c}.700`, `${c}.400`)(props) },
   }

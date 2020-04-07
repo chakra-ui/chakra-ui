@@ -54,7 +54,7 @@
     "typescript": "3.8.3"
   },
   "dependencies": {
-    "@chakra-ui/dialog": "0.0.1",
+    "@chakra-ui/modal": "0.0.1",
     "@chakra-ui/transition": "0.0.1"
   },
   "peerDependencies": {

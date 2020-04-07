@@ -1,16 +1,16 @@
 import * as React from "react"
 import { Slide, SlideProps } from "@chakra-ui/transition"
 import {
-  Dialog,
-  DialogProps,
-  DialogContentProps,
-  DialogContent,
-} from "@chakra-ui/dialog"
+  Modal,
+  ModalProps,
+  ModalContentProps,
+  ModalContent,
+} from "@chakra-ui/modal"
 
 const DrawerContext = React.createContext<React.CSSProperties>({})
 const useDrawerContext = () => React.useContext(DrawerContext)
 
-export interface DrawerProps extends DialogProps {
+export interface DrawerProps extends ModalProps {
   placement?: SlideProps["placement"]
   isFullHeight?: boolean
 }
@@ -21,24 +21,24 @@ export function Drawer(props: DrawerProps) {
     <Slide in={isOpen} placement={placement}>
       {styles => (
         <DrawerContext.Provider value={styles}>
-          <Dialog isOpen={true} onClose={onClose} {...rest}>
+          <Modal isOpen={true} onClose={onClose} {...rest}>
             {children}
-          </Dialog>
+          </Modal>
         </DrawerContext.Provider>
       )}
     </Slide>
   )
 }
 
-export function DrawerContent(props: DialogContentProps) {
+export function DrawerContent(props: ModalContentProps) {
   const styles = useDrawerContext()
-  return <DialogContent position="fixed" style={styles} {...props} />
+  return <ModalContent position="fixed" style={styles} {...props} />
 }
 
 export {
-  DialogOverlay as DrawerOverlay,
-  DialogBody as DrawerBody,
-  DialogHeader as DrawerHeader,
-  DialogFooter as DrawerFooter,
-  DialogCloseButton as DrawerCloseButton,
-} from "@chakra-ui/dialog"
+  ModalOverlay as DrawerOverlay,
+  ModalBody as DrawerBody,
+  ModalHeader as DrawerHeader,
+  ModalFooter as DrawerFooter,
+  ModalCloseButton as DrawerCloseButton,
+} from "@chakra-ui/modal"

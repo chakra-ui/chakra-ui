@@ -2,7 +2,7 @@ import {
   chakra,
   PropsOf,
   ThemingProps,
-  useComponentDefaults,
+  useThemeDefaultProps,
 } from "@chakra-ui/system"
 import { createContext } from "@chakra-ui/utils"
 import * as React from "react"
@@ -25,7 +25,7 @@ export { useInputGroup }
 export type InputGroupProps = PropsOf<typeof chakra.div> & ThemingProps
 
 export const InputGroup = (props: InputGroupProps) => {
-  const defaults = useComponentDefaults("Input")
+  const defaults = useThemeDefaultProps("Input")
 
   const {
     children,

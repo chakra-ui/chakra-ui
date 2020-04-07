@@ -9,6 +9,11 @@ import { FormControlOptions, useFormControl } from "@chakra-ui/form-control"
 import { Icon, IconProps } from "@chakra-ui/icon"
 import { split, Dict, __DEV__ } from "@chakra-ui/utils"
 
+/**
+ * @todo look into this PR and fix accordingly
+ * https://github.com/chakra-ui/chakra-ui/pull/464/files
+ */
+
 type OmittedTypes = "disabled" | "required" | "readOnly"
 
 interface SelectOptions {

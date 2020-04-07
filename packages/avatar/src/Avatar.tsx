@@ -46,6 +46,11 @@ interface AvatarOptions {
    * Function called when image failed to load
    */
   onError?(): void
+  /**
+   * The default avatar used as fallback when `name`, and `src`
+   * is not specified.
+   */
+  fallbackAvatar?: React.ReactElement
 }
 
 export type AvatarBadgeProps = PropsOf<typeof chakra.div>
@@ -84,7 +89,7 @@ export const AvatarBadge = React.forwardRef(
  * Gets the initials of a user based on the name
  * @param name the name passed
  */
-const getInitials = (name: string) => {
+function getInitials(name: string) {
   const [firstName, lastName] = name.split(" ")
 
   if (firstName && lastName) {
@@ -109,8 +114,9 @@ const AvatarName = ({ name, ...rest }: AvatarNameProps) => (
     fontWeight="normal"
     aria-label={name}
     {...rest}
-    children={name ? getInitials(name) : null}
-  />
+  >
+    {name ? getInitials(name) : null}
+  </chakra.div>
 )
 
 /**

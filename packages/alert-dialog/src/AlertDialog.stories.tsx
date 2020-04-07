@@ -22,10 +22,6 @@ export default {
 }
 
 const Button = chakra("button", { themeKey: "Button" })
-Button.defaultProps = {
-  variant: "solid",
-  colorScheme: "gray",
-}
 
 export const BasicUsage = () => {
   const [isOpen, setIsOpen] = React.useState(false)

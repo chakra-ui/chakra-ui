@@ -9,11 +9,9 @@ export function isNumber(value: any): value is number {
 export const isNotNumber = (value: any) =>
   typeof value !== "number" || isNaN(value) || !isFinite(value)
 
-export const isInteger = (value: any): value is number =>
-  String(Math.floor(Number(value))) === value
-
-export const isNumeric = (value: string) =>
-  value != null && (value as any) - parseFloat(value) + 1 >= 0
+export function isNumeric(value: any) {
+  return value != null && value - parseFloat(value) + 1 >= 0
+}
 
 // Array assertions
 export function isArray<T>(value: any): value is Array<T> {
