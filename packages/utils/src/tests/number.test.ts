@@ -1,5 +1,4 @@
 // yarn utils test
-import { getFirstItem } from "../array"
 import {
   toPrecision,
   countDecimalPlaces,
