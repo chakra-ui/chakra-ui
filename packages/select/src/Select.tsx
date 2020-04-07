@@ -5,9 +5,14 @@ import {
   useColorModeValue,
   layoutPropNames,
 } from "@chakra-ui/system"
-import { ControlProps, useField } from "@chakra-ui/form-control"
+import { FormControlOptions, useFormControl } from "@chakra-ui/form-control"
 import { Icon, IconProps } from "@chakra-ui/icon"
 import { split, Dict, __DEV__ } from "@chakra-ui/utils"
+
+/**
+ * @todo look into this PR and fix accordingly
+ * https://github.com/chakra-ui/chakra-ui/pull/464/files
+ */
 
 type OmittedTypes = "disabled" | "required" | "readOnly"
 
@@ -68,11 +73,11 @@ export type SelectFieldProps = Omit<
   PropsOf<typeof StyledSelect>,
   OmittedTypes
 > &
-  ControlProps
+  FormControlOptions
 
 export const SelectField = React.forwardRef(
   (props: SelectFieldProps, ref: React.Ref<HTMLSelectElement>) => {
-    const fieldProps = useField<HTMLSelectElement>(props)
+    const fieldProps = useFormControl<HTMLSelectElement>(props)
     return (
       <StyledSelect ref={ref} {...fieldProps}>
         {props.placeholder && <option value="">{props.placeholder}</option>}
@@ -96,7 +101,7 @@ export function SelectIcon(props: IconProps) {
 }
 
 export type SelectProps = Omit<Props, "ref"> &
-  ControlProps &
+  FormControlOptions &
   SelectOptions & {
     rootProps?: Omit<Props, "color">
     icon?: React.ElementType

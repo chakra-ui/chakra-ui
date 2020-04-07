@@ -7,4 +7,9 @@ module.exports = {
     "@chakra-ui/system": "<rootDir>/packages/styled",
   },
   transformIgnorePatterns: ["^.+\\.js$"],
+  collectCoverageFrom: [
+    "**/**/*.{ts,tsx}",
+    "!**/node_modules/**",
+    "!**/vendor/**",
+  ],
 }

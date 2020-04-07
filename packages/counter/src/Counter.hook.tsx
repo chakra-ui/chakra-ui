@@ -10,7 +10,7 @@ import * as React from "react"
 
 type StringOrNumber = string | number
 
-export interface CounterHookProps {
+export interface UseCounterProps {
   /**
    * The callback fired when the value changes
    */
@@ -53,7 +53,7 @@ export interface CounterHookProps {
   keepWithinRange?: boolean
 }
 
-export function useCounter(props: CounterHookProps = {}) {
+export function useCounter(props: UseCounterProps = {}) {
   const {
     onChange,
     precision: precisionProp,
@@ -176,4 +176,4 @@ export function useCounter(props: CounterHookProps = {}) {
   }
 }
 
-export type CounterHookReturn = ReturnType<typeof useCounter>
+export type UseCounterReturn = ReturnType<typeof useCounter>

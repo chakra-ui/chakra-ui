@@ -1,13 +1,13 @@
 import {
   useBooleanState,
   useControllableProp,
-  useIsomorphicEffect,
+  useSafeLayoutEffect,
 } from "@chakra-ui/hooks"
 import { callAllHandlers, attr, mergeRefs } from "@chakra-ui/utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
 import * as React from "react"
 
-export interface CheckboxHookProps {
+export interface UseCheckboxProps {
   /**
    * If `true`, the checkbox will be checked.
    * You'll need to pass `onChange` to update it's value (since it's now controlled)
@@ -66,7 +66,18 @@ export interface CheckboxHookProps {
   id?: string
 }
 
-export function useCheckbox(props: CheckboxHookProps) {
+///////////////////////////////////////////////////////////////////////////
+
+/**
+ * useCheckbox
+ *
+ * React hook that provides all the state and focus management logic
+ * for a checkbox.
+ *
+ * It is consumed by the `Checkbox` component
+ */
+
+export function useCheckbox(props: UseCheckboxProps = {}) {
   const {
     defaultIsChecked,
     isChecked: checkedProp,
@@ -127,7 +138,7 @@ export function useCheckbox(props: CheckboxHookProps) {
     ],
   )
 
-  useIsomorphicEffect(() => {
+  useSafeLayoutEffect(() => {
     if (!ref.current) return
     ref.current.indeterminate = Boolean(isIndeterminate)
   }, [isIndeterminate])
@@ -219,6 +230,4 @@ export function useCheckbox(props: CheckboxHookProps) {
   }
 }
 
-export type CheckboxHookReturn = ReturnType<typeof useCheckbox>
-
-export default useCheckbox
+export type UseCheckboxReturn = ReturnType<typeof useCheckbox>

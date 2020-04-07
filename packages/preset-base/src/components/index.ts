@@ -6,7 +6,7 @@ import Button from "./Button"
 import Checkbox from "./Checkbox"
 import CloseButton from "./CloseButton"
 import Code from "./Code"
-import Dialog from "./Dialog"
+import Modal from "./Modal"
 import Heading from "./Heading"
 import Input from "./Input"
 import Link from "./Link"
@@ -21,6 +21,9 @@ import Tag from "./Tag"
 import Tooltip from "./Tooltip"
 import Kbd from "./Kbd"
 import PinInput from "./PinInput"
+import Popover from "./Popover"
+import Form from "./Form"
+import Editable from "./Editable"
 
 export default {
   Accordion,
@@ -43,9 +46,12 @@ export default {
   NumberInput,
   Switch,
   Tag,
-  Dialog,
+  Modal,
   Kbd,
   Select: Input,
   Textarea: Input,
   PinInput,
+  Popover,
+  Form,
+  Editable,
 }

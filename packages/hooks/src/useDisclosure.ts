@@ -2,14 +2,14 @@ import * as React from "react"
 import { useControllableProp } from "./useControllable"
 import { usePrevious } from "./usePrevious"
 
-export interface DisclosureHookProps {
+export interface UseDisclosureProps {
   isOpen?: boolean
   defaultIsOpen?: boolean
   onClose?(): void
   onOpen?(): void
 }
 
-export function useDisclosure(props: DisclosureHookProps = {}) {
+export function useDisclosure(props: UseDisclosureProps = {}) {
   const { onClose: onCloseProp, onOpen: onOpenProp } = props
 
   const [isOpenState, setIsOpen] = React.useState(props.defaultIsOpen || false)
@@ -50,4 +50,4 @@ export function useDisclosure(props: DisclosureHookProps = {}) {
   }
 }
 
-export type DisclosureHookReturn = ReturnType<typeof useDisclosure>
+export type UseDisclosureReturn = ReturnType<typeof useDisclosure>

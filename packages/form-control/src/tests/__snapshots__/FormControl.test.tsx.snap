@@ -3,11 +3,12 @@
 exports[`FormControl renders correctly in default state 1`] = `
 <DocumentFragment>
   <div
+    class="css-79elbk"
     data-chakra-form-control=""
     role="group"
   >
     <label
-      class="css-1itjpji"
+      class="css-1q2bw9z"
       data-chakra-form-label=""
       for="name"
       id="name-label"
@@ -16,7 +17,7 @@ exports[`FormControl renders correctly in default state 1`] = `
     </label>
     <input
       aria-describedby="name-helptext"
-      class="css-19laueo"
+      class="css-8b1ui0"
       id="name"
       placeholder="Name"
     />
@@ -34,11 +35,12 @@ exports[`FormControl renders correctly in default state 1`] = `
 exports[`FormControl renders correctly when invalid 1`] = `
 <DocumentFragment>
   <div
+    class="css-79elbk"
     data-chakra-form-control=""
     role="group"
   >
     <label
-      class="css-1itjpji"
+      class="css-1q2bw9z"
       data-chakra-form-label=""
       data-invalid=""
       for="name"
@@ -49,7 +51,7 @@ exports[`FormControl renders correctly when invalid 1`] = `
     <input
       aria-describedby="name-feedback name-helptext"
       aria-invalid="true"
-      class="css-19laueo"
+      class="css-8b1ui0"
       id="name"
       placeholder="Name"
     />
@@ -61,7 +63,8 @@ exports[`FormControl renders correctly when invalid 1`] = `
       Enter your name please!
     </div>
     <svg
-      class="css-12js7id"
+      aria-hidden="true"
+      class="css-1gn1kov"
       data-form-error-icon=""
       focusable="false"
       role="presentation"
@@ -74,7 +77,7 @@ exports[`FormControl renders correctly when invalid 1`] = `
     </svg>
     <div
       aria-live="polite"
-      class="css-1szpew0"
+      class="css-v1r939"
       data-chakra-form-error-message=""
       id="name-feedback"
     >
@@ -87,11 +90,12 @@ exports[`FormControl renders correctly when invalid 1`] = `
 exports[`FormControl renders correctly when required 1`] = `
 <DocumentFragment>
   <div
+    class="css-79elbk"
     data-chakra-form-control=""
     role="group"
   >
     <label
-      class="css-1itjpji"
+      class="css-1q2bw9z"
       data-chakra-form-label=""
       for="name"
       id="name-label"
@@ -107,7 +111,7 @@ exports[`FormControl renders correctly when required 1`] = `
     <input
       aria-describedby="name-helptext"
       aria-required="true"
-      class="css-19laueo"
+      class="css-8b1ui0"
       id="name"
       placeholder="Name"
     />

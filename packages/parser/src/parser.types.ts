@@ -73,13 +73,13 @@ export interface Theme<P = TLength> {
  *
  * @example
  *
- * type Result = ThemeValue<"space", { space: [4, 5] }>
+ * type Result = ThemeScale<"space", { space: [4, 5] }>
  * // => Result: number
  *
- * type Result = ThemeValue<"space", { space: { sm: 4, md: 5 } }>
+ * type Result = ThemeScale<"space", { space: { sm: 4, md: 5 } }>
  * // => Result: "sm" | "md"
  */
-export type ThemeValue<
+export type ThemeScale<
   Scale extends keyof Theme,
   Theme
 > = Theme[Scale] extends any[]
@@ -96,7 +96,7 @@ export type ThemeValue<
  */
 export interface SpaceProps<
   ThemeType extends Theme = RequiredTheme,
-  Value = ThemeValue<"space", ThemeType>
+  Value = ThemeScale<"space", ThemeType>
 > {
   /** Margin on top, left, bottom and right */
   m?: Responsive<Value, ThemeType>
@@ -162,7 +162,7 @@ export interface SpaceProps<
  */
 export interface ColorProps<
   ThemeType extends Theme = RequiredTheme,
-  Value = ThemeValue<"colors", ThemeType>
+  Value = ThemeScale<"colors", ThemeType>
 > {
   /** The CSS `color` property */
   textColor?: Responsive<Value, ThemeType>
@@ -188,13 +188,13 @@ export interface ColorProps<
  */
 export interface TypographyProps<ThemeType extends Theme = RequiredTheme> {
   /** The CSS `font-weight` property  */
-  fontWeight?: Responsive<ThemeValue<"fontWeights", ThemeType>, ThemeType>
+  fontWeight?: Responsive<ThemeScale<"fontWeights", ThemeType>, ThemeType>
   /** The CSS `line-height` property  */
-  lineHeight?: Responsive<ThemeValue<"lineHeights", ThemeType>, ThemeType>
+  lineHeight?: Responsive<ThemeScale<"lineHeights", ThemeType>, ThemeType>
   /** The CSS `line-height` property  */
-  letterSpacing?: Responsive<ThemeValue<"letterSpacings", ThemeType>, ThemeType>
+  letterSpacing?: Responsive<ThemeScale<"letterSpacings", ThemeType>, ThemeType>
   /** The CSS `font-size` property  */
-  fontSize?: Responsive<ThemeValue<"fontSizes", ThemeType>, ThemeType>
+  fontSize?: Responsive<ThemeScale<"fontSizes", ThemeType>, ThemeType>
   /** The CSS `font-family` property  */
   fontFamily?: Responsive<CSS.FontFamilyProperty, ThemeType>
   /** The CSS `text-align` property  */
@@ -342,19 +342,19 @@ export interface GridProps<ThemeType extends Theme = RequiredTheme> {
  */
 export interface BordersProps<ThemeType extends Theme = RequiredTheme> {
   /** The CSS `border-width` property  */
-  borderWidth?: Responsive<ThemeValue<"borderWidths", ThemeType>, ThemeType>
+  borderWidth?: Responsive<ThemeScale<"borderWidths", ThemeType>, ThemeType>
   /** The CSS `border-top-width` property  */
-  borderTopWidth?: Responsive<ThemeValue<"borderWidths", ThemeType>, ThemeType>
+  borderTopWidth?: Responsive<ThemeScale<"borderWidths", ThemeType>, ThemeType>
   /** The CSS `border-bottom-width` property  */
   borderBottomWidth?: Responsive<
-    ThemeValue<"borderWidths", ThemeType>,
+    ThemeScale<"borderWidths", ThemeType>,
     ThemeType
   >
   /** The CSS `border-left-width` property  */
-  borderLeftWidth?: Responsive<ThemeValue<"borderWidths", ThemeType>, ThemeType>
+  borderLeftWidth?: Responsive<ThemeScale<"borderWidths", ThemeType>, ThemeType>
   /** The CSS `border-right-width` property  */
   borderRightWidth?: Responsive<
-    ThemeValue<"borderWidths", ThemeType>,
+    ThemeScale<"borderWidths", ThemeType>,
     ThemeType
   >
   /** The CSS `border-style` property  */
@@ -368,15 +368,15 @@ export interface BordersProps<ThemeType extends Theme = RequiredTheme> {
   /** The CSS `border-right-styles` property  */
   borderRightStyle?: Responsive<CSS.BorderRightStyleProperty, ThemeType>
   /** The CSS `border-color` property  */
-  borderColor?: Responsive<ThemeValue<"colors", ThemeType>, ThemeType>
+  borderColor?: Responsive<ThemeScale<"colors", ThemeType>, ThemeType>
   /** The CSS `border-top-color` property  */
-  borderTopColor?: Responsive<ThemeValue<"colors", ThemeType>, ThemeType>
+  borderTopColor?: Responsive<ThemeScale<"colors", ThemeType>, ThemeType>
   /** The CSS `border-bottom-color` property  */
-  borderBottomColor?: Responsive<ThemeValue<"colors", ThemeType>, ThemeType>
+  borderBottomColor?: Responsive<ThemeScale<"colors", ThemeType>, ThemeType>
   /** The CSS `border-left-color` property  */
-  borderLeftColor?: Responsive<ThemeValue<"colors", ThemeType>, ThemeType>
+  borderLeftColor?: Responsive<ThemeScale<"colors", ThemeType>, ThemeType>
   /** The CSS `border-right-color` property  */
-  borderRightColor?: Responsive<ThemeValue<"colors", ThemeType>, ThemeType>
+  borderRightColor?: Responsive<ThemeScale<"colors", ThemeType>, ThemeType>
   /** The CSS `border-top` property  */
   borderTop?: Responsive<CSS.BorderTopProperty<TLength>, ThemeType>
   /** The CSS `border-right` property  */
@@ -386,24 +386,24 @@ export interface BordersProps<ThemeType extends Theme = RequiredTheme> {
   /** The CSS `border-left` property  */
   borderLeft?: Responsive<CSS.BorderLeftProperty<TLength>, ThemeType>
   /** The CSS `border-radius` property  */
-  borderRadius?: Responsive<ThemeValue<"radii", ThemeType>, ThemeType>
+  borderRadius?: Responsive<ThemeScale<"radii", ThemeType>, ThemeType>
   /** The CSS `border-top-radius` property  */
-  borderTopRadius?: Responsive<ThemeValue<"radii", ThemeType>, ThemeType>
+  borderTopRadius?: Responsive<ThemeScale<"radii", ThemeType>, ThemeType>
   /** The CSS `border-right-radius` property  */
-  borderRightRadius?: Responsive<ThemeValue<"radii", ThemeType>, ThemeType>
+  borderRightRadius?: Responsive<ThemeScale<"radii", ThemeType>, ThemeType>
   /** The CSS `border-bottom-radius` property  */
-  borderBottomRadius?: Responsive<ThemeValue<"radii", ThemeType>, ThemeType>
+  borderBottomRadius?: Responsive<ThemeScale<"radii", ThemeType>, ThemeType>
   /** The CSS `border-left-radius` property  */
-  borderLeftRadius?: Responsive<ThemeValue<"radii", ThemeType>, ThemeType>
+  borderLeftRadius?: Responsive<ThemeScale<"radii", ThemeType>, ThemeType>
   /** The CSS `border-top-left-radius` property  */
-  borderTopLeftRadius?: Responsive<ThemeValue<"radii", ThemeType>, ThemeType>
+  borderTopLeftRadius?: Responsive<ThemeScale<"radii", ThemeType>, ThemeType>
   /** The CSS `border-top-right-radius` property  */
-  borderTopRightRadius?: Responsive<ThemeValue<"radii", ThemeType>, ThemeType>
+  borderTopRightRadius?: Responsive<ThemeScale<"radii", ThemeType>, ThemeType>
   /** The CSS `border-bottom-left-radius` property  */
-  borderBottomLeftRadius?: Responsive<ThemeValue<"radii", ThemeType>, ThemeType>
+  borderBottomLeftRadius?: Responsive<ThemeScale<"radii", ThemeType>, ThemeType>
   /** The CSS `border-bottom-right-radius` property  */
   borderBottomRightRadius?: Responsive<
-    ThemeValue<"radii", ThemeType>,
+    ThemeScale<"radii", ThemeType>,
     ThemeType
   >
   /** The CSS `border` property  */
@@ -415,7 +415,7 @@ export interface BordersProps<ThemeType extends Theme = RequiredTheme> {
   /** The CSS `outline` property  */
   outline?: Responsive<CSS.OutlineProperty<TLength>, ThemeType>
   /** The CSS `outline-color` property  */
-  outlineColor?: Responsive<ThemeValue<"colors", ThemeType>, ThemeType>
+  outlineColor?: Responsive<ThemeScale<"colors", ThemeType>, ThemeType>
   /** The CSS `outline-offset` property  */
   outlineOffset?: Responsive<CSS.OutlineOffsetProperty<TLength>, ThemeType>
 }
@@ -426,7 +426,7 @@ export interface BordersProps<ThemeType extends Theme = RequiredTheme> {
  */
 export interface ShadowProps<
   ThemeType extends Theme = RequiredTheme,
-  Scale = CSS.BoxShadowProperty | number | ThemeValue<"shadows", ThemeType>
+  Scale = CSS.BoxShadowProperty | number | ThemeScale<"shadows", ThemeType>
 > {
   boxShadow?: Responsive<Scale, ThemeType>
   textShadow?: Responsive<Scale, ThemeType>
@@ -459,18 +459,25 @@ export interface BackgroundProps<ThemeType extends Theme = RequiredTheme> {
  */
 export interface PositionProps<ThemeType extends Theme = RequiredTheme> {
   zIndex?: Responsive<
-    ThemeValue<"zIndices", ThemeType> | CSS.ZIndexProperty,
+    ThemeScale<"zIndices", ThemeType> | CSS.ZIndexProperty,
     ThemeType
   >
   top?: Responsive<CSS.TopProperty<TLength>, ThemeType>
   right?: Responsive<CSS.RightProperty<TLength>, ThemeType>
   bottom?: Responsive<CSS.BottomProperty<TLength>, ThemeType>
   left?: Responsive<CSS.LeftProperty<TLength>, ThemeType>
+  /** The CSS `left`, `right`, `top`, `bottom` property  */
+  inset?: Responsive<CSS.LeftProperty<TLength>, ThemeType>
+  /** The CSS `left`, and `right` property  */
+  insetX?: Responsive<CSS.LeftProperty<TLength>, ThemeType>
+  /** The CSS `top`, and `bottom` property  */
+  insetY?: Responsive<CSS.LeftProperty<TLength>, ThemeType>
+  /** The CSS `position` property  */
   pos?: Responsive<CSS.PositionProperty, ThemeType>
   position?: Responsive<CSS.PositionProperty, ThemeType>
 }
 
-export interface OtherProps<ThemeType extends Theme = RequiredTheme> {
+export interface OtherCSSProps<ThemeType extends Theme = RequiredTheme> {
   animation?: Responsive<CSS.AnimationProperty, ThemeType>
   appearance?: Responsive<CSS.AppearanceProperty, ThemeType>
   transform?: Responsive<CSS.TransformProperty, ThemeType>
@@ -500,7 +507,7 @@ export type StyleProps<ThemeType extends Theme = RequiredTheme> = SpaceProps &
   ShadowProps<ThemeType> &
   BackgroundProps<ThemeType> &
   PositionProps<ThemeType> &
-  OtherProps<ThemeType>
+  OtherCSSProps<ThemeType>
 
 export type PseudoProps<ThemeType = RequiredTheme> = {
   [K in keyof Pseudos]?:

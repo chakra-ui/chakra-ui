@@ -1,28 +1,29 @@
 import {
-  PropsOf,
   chakra,
+  PropsOf,
   ThemingProps,
-  useComponentDefaults,
+  useThemeDefaultProps,
 } from "@chakra-ui/system"
-import * as React from "react"
-import { SliderHookProps, useSlider, SliderHookReturn } from "./Slider.hook"
 import { createContext } from "@chakra-ui/utils"
+import * as React from "react"
+import { useSlider, UseSliderProps, UseSliderReturn } from "./Slider.hook"
 
 type SliderContext = Omit<
-  SliderHookReturn,
+  UseSliderReturn,
   "htmlProps" | "getInputProps" | "getRootProps"
 >
 
 const [SliderProvider, useSliderContext] = createContext<SliderContext>({
   strict: true,
-  errorMessage: "useSliderContext can only be used within SliderProvider",
+  errorMessage:
+    "[Chakra UI]: useSliderContext can only be used within SliderProvider",
 })
 
 export { SliderProvider, useSliderContext }
 
 const [ThemingProvider, useThemingContext] = createContext<ThemingProps>()
 
-export type SliderProps = SliderHookProps &
+export type SliderProps = UseSliderProps &
   ThemingProps &
   Omit<PropsOf<typeof StyledSlider>, "onChange" | "size">
 
@@ -36,7 +37,7 @@ const StyledSlider = chakra("div", {
 })
 
 export function Slider(props: SliderProps) {
-  const defaults = useComponentDefaults("Slider")
+  const defaults = useThemeDefaultProps("Slider")
   const {
     variant = defaults?.variant,
     size = defaults?.size,

@@ -1,7 +1,7 @@
-import { useIsomorphicEffect } from "@chakra-ui/hooks"
-import { useCallback, useRef, useState } from "react"
+import { useSafeLayoutEffect } from "@chakra-ui/hooks"
+import * as React from "react"
 
-export type ImageHookProps = {
+export type UseImageProps = {
   /**
    * The image `src` attribute
    */
@@ -22,6 +22,10 @@ export type ImageHookProps = {
    * A callback for when there was an error loading the image `src`
    */
   onError?(error: string | Event): void
+  /**
+   * If `true`, opt out of the `fallbackSrc` logic and use as `img`
+   */
+  ignoreFallback?: boolean
 }
 
 type Status = "loading" | "failed" | "pending" | "loaded"
@@ -34,6 +38,7 @@ type Status = "loading" | "failed" | "pending" | "loaded"
  * @returns the status of the image loading progress
  *
  * @example
+ *
  * ```jsx
  * function App(){
  *   const status = useImage({ src: "image.png" })
@@ -41,16 +46,16 @@ type Status = "loading" | "failed" | "pending" | "loaded"
  * }
  * ```
  */
-export function useImage(props: ImageHookProps) {
-  const { src, srcSet, onLoad, onError, sizes } = props
+export function useImage(props: UseImageProps) {
+  const { src, srcSet, onLoad, onError, sizes, ignoreFallback } = props
 
-  const [status, setStatus] = useState<Status>(() => {
+  const [status, setStatus] = React.useState<Status>(() => {
     return src ? "loading" : "pending"
   })
 
-  const imageRef = useRef<HTMLImageElement | null>()
+  const imageRef = React.useRef<HTMLImageElement | null>()
 
-  const load = useCallback(() => {
+  const load = React.useCallback(() => {
     if (!src) return
 
     flush()
@@ -89,7 +94,13 @@ export function useImage(props: ImageHookProps) {
     }
   }
 
-  useIsomorphicEffect(() => {
+  useSafeLayoutEffect(() => {
+    /**
+     * If user opts out of the fallback/placeholder
+     * logic, let's bail out.
+     */
+    if (ignoreFallback) return
+
     if (status === "loading") {
       load()
     }
@@ -98,5 +109,11 @@ export function useImage(props: ImageHookProps) {
     }
   }, [status, load])
 
-  return status
+  /**
+   * If user opts out of the fallback/placeholder
+   * logic, let's just return 'loaded'
+   */
+  return ignoreFallback ? "loaded" : status
 }
+
+export type UseImageReturn = ReturnType<typeof useImage>

@@ -1,6 +1,6 @@
 import * as React from "react"
 import { getBox, BoxModel } from "@chakra-ui/utils"
-import { useIsomorphicEffect } from "./useIsomorphicEffect"
+import { useSafeLayoutEffect } from "./useSafeLayoutEffect"
 
 /**
  * Reack hook to measure a component's dimensions
@@ -15,7 +15,7 @@ export function useDimensions(
   const [dimensions, setDimensions] = React.useState<BoxModel | null>(null)
   const rafId = React.useRef<number>()
 
-  useIsomorphicEffect(() => {
+  useSafeLayoutEffect(() => {
     if (!ref.current) return
 
     const node = ref.current
@@ -34,14 +34,18 @@ export function useDimensions(
       window.addEventListener("scroll", measure)
 
       return () => {
-        rafId.current && cancelAnimationFrame(rafId.current)
+        if (rafId.current) {
+          cancelAnimationFrame(rafId.current)
+        }
         window.removeEventListener("resize", measure)
         window.removeEventListener("scroll", measure)
       }
     }
 
     return () => {
-      rafId.current && cancelAnimationFrame(rafId.current)
+      if (rafId.current) {
+        cancelAnimationFrame(rafId.current)
+      }
     }
   }, [ref, observe])
 

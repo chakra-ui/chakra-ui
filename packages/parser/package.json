@@ -1,12 +1,18 @@
 {
   "name": "@chakra-ui/parser",
   "version": "0.0.1",
-  "description": "description",
+  "description": "Style function for css-in-js building component libraries",
   "keywords": [
     "theme",
     "theming",
-    "ui mode",
-    "ui"
+    "style",
+    "system",
+    "styled",
+    "shorthand",
+    "component",
+    "functions",
+    "parser",
+    "chakra ui"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
@@ -52,9 +58,6 @@
     "csstype": "2.6.9"
   },
   "peerDependencies": {
-    "@emotion/core": "10.x",
-    "@emotion/styled": "10.x",
-    "emotion-theming": "10.x",
     "react": "16.x",
     "react-dom": "16.x"
   }

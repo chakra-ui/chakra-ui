@@ -1,5 +1,5 @@
 import * as React from "react"
-import { useIsomorphicEffect, useForceUpdate } from "@chakra-ui/hooks"
+import { useSafeLayoutEffect, useForceUpdate } from "@chakra-ui/hooks"
 
 export type Descendant<T extends HTMLElement, P = {}> = P & {
   element: T | null
@@ -43,7 +43,7 @@ export function useDescendant<T extends HTMLElement, P>(
   const forceUpdate = useForceUpdate()
   const { register, unregister, descendants } = context
 
-  useIsomorphicEffect(() => {
+  useSafeLayoutEffect(() => {
     if (!element) forceUpdate()
 
     // Don't register this descendant if it's disabled and not focusable
@@ -63,7 +63,7 @@ export function useDescendant<T extends HTMLElement, P>(
     indexProp ??
     descendants.findIndex(descendant => descendant.element === element)
 
-  return { index, descendants }
+  return index
 }
 
 export function useDescendants<T extends HTMLElement, P>() {

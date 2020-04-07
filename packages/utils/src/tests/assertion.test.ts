@@ -1,8 +1,6 @@
-// yarn utils test
 import {
   isNumber,
   isNotNumber,
-  isInteger,
   isNumeric,
   isArray,
   isEmptyArray,
@@ -23,10 +21,6 @@ test("isNumber - '1' should equal false", () => {
 
 test("isNotNumber - '1' should equal true", () => {
   expect(isNotNumber("1")).toStrictEqual(true)
-})
-
-test("isInteger - 1.2 should equal false", () => {
-  expect(isInteger(1.2)).toStrictEqual(false)
 })
 
 test("isNumeric - '1.2' should equal true", () => {
@@ -75,4 +69,38 @@ test("isInputEvent - { target: {} } should equal true", () => {
 
 test("isEmpty - [] should equal true", () => {
   expect(isEmpty([])).toStrictEqual(true)
+})
+
+test("is number", () => {
+  expect(isNumber(1.2)).toBeTruthy()
+  expect(isNumber("20")).toBeFalsy()
+})
+
+test("is integer", () => {
+  expect(isNumeric("1.3")).toBeTruthy()
+  expect(isNumeric("2.03")).toBeTruthy()
+
+  expect(isNumeric("2.03.34")).toBeFalsy()
+  expect(isNumeric("dfd")).toBeFalsy()
+})
+
+test("is object", () => {
+  expect(isObject([])).toBeFalsy()
+  expect(isObject({})).toBeTruthy()
+})
+
+test("is empty", () => {
+  expect(isEmpty([])).toBeTruthy()
+  expect(isEmpty({})).toBeTruthy()
+  expect(isEmpty("")).toBeTruthy()
+  expect(isEmpty(null)).toBeTruthy()
+
+  expect(isEmpty([1, 2])).toBeFalsy()
+  expect(isEmpty({ a: 2 })).toBeFalsy()
+  expect(isEmpty("df")).toBeFalsy()
+})
+
+test("is empty object", () => {
+  expect(isEmptyObject({})).toBeTruthy()
+  expect(isEmptyObject({ a: 3 })).toBeFalsy()
 })

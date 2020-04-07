@@ -26,7 +26,7 @@ export function useComponentStyle(props: ComponentStyleHookProps) {
   )
 }
 
-export function useComponentDefaults(themeKey: string) {
+export function useThemeDefaultProps(themeKey: string) {
   const theme = React.useContext(ThemeContext)
   return getComponentDefaults(theme, themeKey)
 }

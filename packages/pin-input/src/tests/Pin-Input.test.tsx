@@ -1,9 +1,9 @@
 import * as React from "react"
 import { render, userEvent, fireEvent } from "@chakra-ui/test-utils"
-import { usePinInput, usePinInputField, PinInputHookProps } from ".."
+import { usePinInput, usePinInputField, UsePinInputProps } from ".."
 
-const TestComponent = (contextProps: PinInputHookProps = {}) => {
-  const context = usePinInput(contextProps)
+const Component = (props: UsePinInputProps = {}) => {
+  const context = usePinInput(props)
   const input1 = usePinInputField({ context })
   const input2 = usePinInputField({ context })
   const input3 = usePinInputField({ context })
@@ -38,7 +38,7 @@ test("PinInput renders correctly", () => {
 })
 
 test("has the proper aria attributes", () => {
-  const utils = render(<TestComponent />)
+  const utils = render(<Component />)
 
   expect(utils.queryAllByLabelText("Please enter your pin code")).toHaveLength(
     3,
@@ -46,13 +46,13 @@ test("has the proper aria attributes", () => {
 })
 
 test("can autofocus the first field", () => {
-  const utils = render(<TestComponent autoFocus />)
+  const utils = render(<Component autoFocus />)
 
   expect(document.activeElement).toEqual(utils.getByTestId("1"))
 })
 
 test("typing in an input automatically moves focus to the next item", () => {
-  const utils = render(<TestComponent />)
+  const utils = render(<Component />)
 
   userEvent.type(utils.getByTestId("1"), "1")
   expect(document.activeElement).toEqual(utils.getByTestId("2"))
@@ -61,7 +61,7 @@ test("typing in an input automatically moves focus to the next item", () => {
 })
 
 test("pressing backspace moves to the previous input and clears", () => {
-  const utils = render(<TestComponent />)
+  const utils = render(<Component />)
 
   // type in the first two inputs
   userEvent.type(utils.getByTestId("1"), "1")
@@ -80,7 +80,7 @@ test("pressing backspace moves to the previous input and clears", () => {
 
 test("filling out all inputs calls the complete callback", () => {
   const onComplete = jest.fn()
-  const utils = render(<TestComponent onComplete={onComplete} />)
+  const utils = render(<Component onComplete={onComplete} />)
 
   userEvent.type(utils.getByTestId("1"), "1")
   userEvent.type(utils.getByTestId("2"), "2")

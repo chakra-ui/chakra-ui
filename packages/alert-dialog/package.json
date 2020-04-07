@@ -53,7 +53,7 @@
     "@chakra-ui/system": "0.0.1"
   },
   "dependencies": {
-    "@chakra-ui/dialog": "0.0.1"
+    "@chakra-ui/modal": "0.0.1"
   },
   "peerDependencies": {
     "react": "16.x",

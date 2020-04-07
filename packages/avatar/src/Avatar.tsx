@@ -1,11 +1,5 @@
-import { isDark, stringToColor } from "@chakra-ui/color"
 import { useImage } from "@chakra-ui/image"
-import {
-  chakra,
-  PropsOf,
-  SystemProps,
-  useColorModeValue,
-} from "@chakra-ui/system"
+import { chakra, PropsOf, SystemProps } from "@chakra-ui/system"
 import * as React from "react"
 
 interface AvatarOptions {
@@ -45,34 +39,39 @@ interface AvatarOptions {
   /**
    * Function called when image failed to load
    */
-  onError?: () => void
+  onError?(): void
+  /**
+   * The default avatar used as fallback when `name`, and `src`
+   * is not specified.
+   */
+  fallbackAvatar?: React.ElementType
 }
 
-export type AvatarBadgeProps = PropsOf<typeof chakra.div>
-
-export const AvatarBadge = React.forwardRef(
-  (props: AvatarBadgeProps, ref: React.Ref<any>) => {
-    const borderColor = useColorModeValue("white", "gray.800")
-    return (
-      <chakra.div
-        ref={ref}
-        position="absolute"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        transform="translate(25%, 25%)"
-        bottom="0"
-        right="0"
-        border="0.2em solid"
-        borderColor={borderColor}
-        borderRadius="full"
-        {...props}
-      />
-    )
+/**
+ * AvatarBadge
+ *
+ * React component used to show extra badge to the top-right
+ * or bottom-right corner of an avatar.
+ */
+export const AvatarBadge = chakra("div", {
+  themeKey: "Avatar.Badge",
+  baseStyle: {
+    position: "absolute",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    right: "0",
+    bottom: "0",
   },
-)
+})
 
-const getInitials = (name: string) => {
+export type AvatarBadgeProps = PropsOf<typeof AvatarBadge>
+
+/**
+ * Gets the initials of a user based on the name
+ * @param name the name passed
+ */
+function getInitials(name: string) {
   const [firstName, lastName] = name.split(" ")
 
   if (firstName && lastName) {
@@ -84,86 +83,129 @@ const getInitials = (name: string) => {
 
 type BoxProps = PropsOf<typeof chakra.div>
 
-export type AvatarNameProps = BoxProps & Pick<AvatarOptions, "name">
+export type InitialsAvatarProps = BoxProps & Pick<AvatarOptions, "name">
 
-const AvatarName = ({ name, ...rest }: AvatarNameProps) => (
-  <chakra.div
-    textAlign="center"
-    textTransform="uppercase"
-    fontWeight="normal"
-    aria-label={name}
-    {...rest}
-    children={name ? getInitials(name) : null}
-  />
+/**
+ * The avatar name container
+ */
+const InitialsAvatar = (props: InitialsAvatarProps) => {
+  const { name, ...rest } = props
+  return (
+    <chakra.div data-chakra-avatar-name="" aria-label={name} {...rest}>
+      {name ? getInitials(name) : null}
+    </chakra.div>
+  )
+}
+
+/**
+ * Fallback avatar react component.
+ * This should be a generic svg used to represent an avatar
+ */
+const GenericAvatar = () => (
+  <svg
+    fill="#fff"
+    style={{ width: "100%", height: "100%" }}
+    viewBox="0 0 128 128"
+    role="img"
+  >
+    <path d="M103,102.1388 C93.094,111.92 79.3504,118 64.1638,118 C48.8056,118 34.9294,111.768 25,101.7892 L25,95.2 C25,86.8096 31.981,80 40.6,80 L87.4,80 C96.019,80 103,86.8096 103,95.2 L103,102.1388 Z" />
+    <path d="M63.9961647,24 C51.2938136,24 41,34.2938136 41,46.9961647 C41,59.7061864 51.2938136,70 63.9961647,70 C76.6985159,70 87,59.7061864 87,46.9961647 C87,34.2938136 76.6985159,24 63.9961647,24" />
+  </svg>
 )
 
-const DefaultAvatar = (props: BoxProps) => (
-  <chakra.div size="100%" {...props}>
-    <svg fill="#fff" viewBox="0 0 128 128" role="img">
-      <g>
-        <path d="M103,102.1388 C93.094,111.92 79.3504,118 64.1638,118 C48.8056,118 34.9294,111.768 25,101.7892 L25,95.2 C25,86.8096 31.981,80 40.6,80 L87.4,80 C96.019,80 103,86.8096 103,95.2 L103,102.1388 Z" />
-        <path d="M63.9961647,24 C51.2938136,24 41,34.2938136 41,46.9961647 C41,59.7061864 51.2938136,70 63.9961647,70 C76.6985159,70 87,59.7061864 87,46.9961647 C87,34.2938136 76.6985159,24 63.9961647,24" />
-      </g>
-    </svg>
-  </chakra.div>
-)
+export const baseStyle: SystemProps = {
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  textAlign: "center",
+  textTransform: "uppercase",
+  fontWeight: "medium",
+  position: "relative",
+  flexShrink: 0,
+}
 
-const StyledAvatar = chakra("div", { themeKey: "Avatar" })
+/**
+ * Theming
+ *
+ * To style the avatar globally, change the styles in
+ * `theme.components.Avatar` under the `Root` key
+ */
+const StyledAvatar = chakra<"span", { name?: string }>("span", {
+  themeKey: "Avatar.Root",
+  baseStyle,
+  shouldForwardProp: prop => !["name"].includes(prop),
+})
 
 export type AvatarProps = PropsOf<typeof StyledAvatar> & AvatarOptions
 
+/**
+ * Avatar
+ *
+ * React component that renders an user avatar with
+ * support for fallback avatar and name-only avatars
+ */
 export const Avatar = React.forwardRef(
   (props: AvatarProps, ref: React.Ref<any>) => {
-    const { src, name, showBorder, borderColor, onError, ...rest } = props
+    const {
+      src,
+      name,
+      showBorder,
+      borderRadius = "full",
+      onError,
+      fallbackAvatar,
+      ...rest
+    } = props
 
+    // fallback avatar as a react component
+    const FallbackAvatar = fallbackAvatar ?? GenericAvatar
+
+    // use the image hook to only show the image when it has loaded
     const status = useImage({ src, onError })
+
     const hasLoaded = status === "loaded"
 
-    const renderChildren = () => {
+    const getAvatar = () => {
+      /**
+       * If `src` was passed and the image has loaded, we'll show it
+       */
       if (src && hasLoaded) {
         return (
           <chakra.img
-            size="100%"
-            borderRadius="full"
+            data-chakra-avatar-img=""
+            width="100%"
+            height="100%"
             objectFit="cover"
+            borderRadius={borderRadius}
             src={src}
             alt={name}
           />
         )
       }
 
-      if (src && !hasLoaded) {
-        return name ? (
-          <AvatarName name={name} />
-        ) : (
-          <DefaultAvatar aria-label={name} />
-        )
+      /**
+       * Fallback avatar applies under 2 conditions:
+       * - If `src` was passed and the image has not loaded or failed to load
+       * - If `src` wasn't passed
+       *
+       * In this case, we'll show either the name avatar or default avatar
+       */
+      const showFallback = !src || (src && !hasLoaded)
+
+      if (showFallback) {
+        return name ? <InitialsAvatar name={name} /> : <FallbackAvatar />
       }
-
-      if (!src && name) {
-        return <AvatarName name={name} />
-      }
-
-      return <DefaultAvatar aria-label={name} />
-    }
-
-    const bg = name ? stringToColor(name) : "gray.400"
-    const color = name ? (isDark(bg) ? "#fff" : "gray.800") : "#fff"
-
-    const defaultBorderColor = useColorModeValue("#fff", "gray.800")
-
-    const styleProps = {
-      bg,
-      color,
-      ...(showBorder && {
-        border: "2px solid",
-        borderColor: borderColor || defaultBorderColor,
-      }),
     }
 
     return (
-      <StyledAvatar ref={ref} verticalAlign="top" {...styleProps} {...rest}>
-        {renderChildren()}
+      <StyledAvatar
+        ref={ref}
+        data-chakra-avatar=""
+        borderRadius={borderRadius}
+        borderWidth={showBorder ? "2px" : undefined}
+        name={name}
+        {...rest}
+      >
+        {getAvatar()}
         {props.children}
       </StyledAvatar>
     )

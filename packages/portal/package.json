@@ -1,14 +1,13 @@
 {
   "name": "@chakra-ui/portal",
   "version": "0.0.1",
-  "description": "A React component for rendering modals, popovers, etc. in portals",
+  "description": "React component used to render children outside the DOM hierarchy of the parent component",
   "keywords": [
     "react",
     "portal",
     "nested portal",
     "z-index",
-    "stacking",
-    "management",
+    "layer",
     "chakra ui"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",

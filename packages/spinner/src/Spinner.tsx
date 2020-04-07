@@ -2,10 +2,23 @@ import { chakra, PropsOf, keyframes } from "@chakra-ui/system"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 import * as React from "react"
 
+/**
+ * Spinner CSS animation keyframe
+ */
+
 const spin = keyframes`
   0% {  transform: rotate(0deg) }
   100% { transform: rotate(360deg) }
 `
+
+/**
+ * StyledSpinner
+ *
+ * Wrapper element of the spinner component
+ *
+ * To style the element, change the styles in
+ * `theme.components.Spinner`
+ */
 
 const StyledSpinner = chakra("div", { themeKey: "Spinner" })
 StyledSpinner.defaultProps = {
@@ -45,6 +58,13 @@ export interface SpinnerOptions {
 }
 
 export type SpinnerProps = PropsOf<typeof StyledSpinner> & SpinnerOptions
+
+/**
+ * Spinner
+ *
+ * A “presentational” loading indicator used on a page or a component,
+ * while it’s loading or before it renders. It doesn’t have any semantic meaning.
+ */
 
 export const Spinner = ({
   label = "Loading...",

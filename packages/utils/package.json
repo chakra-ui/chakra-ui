@@ -23,6 +23,7 @@
     "start": "tsdx watch",
     "build": "tsdx build",
     "test": "tsdx test --env=jsdom --passWithNoTests",
+    "test:cov": "tsdx test --coverage",
     "lint": "tsdx lint src",
     "version": "yarn build"
   },

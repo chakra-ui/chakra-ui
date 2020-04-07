@@ -1,21 +1,14 @@
-import { IconProps } from "@chakra-ui/icon"
 import {
-  ColorMode,
-  chakra,
-  PropsOf,
-  useColorMode,
-  useComponentDefaults,
-} from "@chakra-ui/system"
-import React, { forwardRef } from "react"
-import {
-  InfoIcon,
-  WarningTwoIcon,
   CheckCircleIcon,
+  InfoIcon,
   WarningIcon,
+  WarningTwoIcon,
 } from "@chakra-ui/icons"
+import { chakra, PropsOf, useThemeDefaultProps } from "@chakra-ui/system"
 import { createContext } from "@chakra-ui/utils"
+import * as React from "react"
 
-export const statuses = {
+export const ALERT_STATUSES = {
   info: { icon: InfoIcon, color: "blue" },
   warning: { icon: WarningTwoIcon, color: "orange" },
   success: { icon: CheckCircleIcon, color: "green" },
@@ -26,15 +19,15 @@ type AlertContext = Required<AlertOptions>
 
 const [AlertContextProvider, useAlertContext] = createContext<AlertContext>()
 
-export interface AlertOptions {
+interface AlertOptions {
   /**
    * The status of the alert
    */
-  status?: keyof typeof statuses
+  status?: keyof typeof ALERT_STATUSES
   /**
    * The variant of the alert style to use.
    */
-  variant?: "subtle" | "solid" | "left-accent" | "top-accent"
+  variant?: string
 }
 
 export type AlertProps = PropsOf<typeof StyledAlert> & AlertOptions
@@ -52,30 +45,35 @@ const StyledAlert = chakra("div", {
   },
 })
 
-export const Alert = forwardRef((props: AlertProps, ref: React.Ref<any>) => {
-  const defaults = useComponentDefaults("Alert")
+/**
+ * Alert
+ *
+ * React component used to communicate the state or status of a
+ * page, feature or action
+ */
+export const Alert = React.forwardRef(
+  (props: AlertProps, ref: React.Ref<any>) => {
+    const defaults = useThemeDefaultProps("Alert")
 
-  const {
-    status = "info",
-    variant = defaults?.variant || "subtle",
-    ...rest
-  } = props
+    const { status = "info", variant = defaults?.variant, ...rest } = props
+    const colorScheme = ALERT_STATUSES[status]["color"]
 
-  const colorScheme = statuses[status]["color"]
+    const context = { status, variant }
 
-  const context = { status, variant }
+    return (
+      <AlertContextProvider value={context as AlertContext}>
+        <StyledAlert
+          ref={ref}
+          variant={variant}
+          colorScheme={colorScheme}
+          {...rest}
+        />
+      </AlertContextProvider>
+    )
+  },
+)
 
-  return (
-    <AlertContextProvider value={context as AlertContext}>
-      <StyledAlert
-        ref={ref}
-        variant={variant}
-        {...rest}
-        colorScheme={colorScheme}
-      />
-    </AlertContextProvider>
-  )
-})
+export type AlertTitleProps = PropsOf<typeof AlertTitle>
 
 export const AlertTitle = chakra("div", {
   themeKey: "Alert.Title",
@@ -85,23 +83,35 @@ export const AlertTitle = chakra("div", {
   },
 })
 
-export const AlertDescription = chakra("div", { themeKey: "Alert.Description" })
+/**
+ * AlertDescription
+ *
+ * The description of the alert to be announced by screen
+ * readers.
+ */
+export const AlertDescription = chakra("div", {
+  themeKey: "Alert.Description",
+  baseStyle: {
+    display: "inline-block",
+  },
+})
 
-export const AlertIcon = (props: IconProps) => {
-  const [colorMode] = useColorMode()
+const StyledWrapper = chakra("span", { themeKey: "Alert.Icon" })
+
+export type AlertIconProps = PropsOf<typeof StyledWrapper>
+
+/**
+ * AlertIcon
+ *
+ * The visual icon for the alert that changes based on the `status` prop.
+ */
+export const AlertIcon = (props: AlertIconProps) => {
   const { status, variant } = useAlertContext()
-  const { icon: Icon, color } = statuses[status]
+  const { icon: Icon, color: colorScheme } = ALERT_STATUSES[status]
 
-  let style: { [K in ColorMode]?: any } = {}
-
-  if (["left-accent", "top-accent", "subtle"].includes(variant)) {
-    style = {
-      light: { color: `${color}.500` },
-      dark: { color: `${color}.200` },
-    }
-  }
-
-  const styles = style[colorMode]
-
-  return <Icon mt={1} mr={3} size={5} {...styles} {...props} />
+  return (
+    <StyledWrapper variant={variant} colorScheme={colorScheme} {...props}>
+      <Icon boxSize="100%" />
+    </StyledWrapper>
+  )
 }

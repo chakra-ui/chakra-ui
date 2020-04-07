@@ -1,6 +1,6 @@
 import { useMediaQuery } from "@chakra-ui/hooks"
 import * as React from "react"
-import { useSyncBetweenTabs, useUpdateBodyClassName } from "./color-mode.hooks"
+import { useSyncBetweenTabs, useUpdateBodyClassName } from "./color-mode.hook"
 import { ColorMode, darkModeQuery } from "./color-mode.utils"
 
 export { ColorMode }

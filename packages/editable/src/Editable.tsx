@@ -1,26 +1,53 @@
 import * as React from "react"
 import {
   useEditable,
-  EditableHookProps,
-  EditableHookReturn,
+  UseEditableProps,
+  UseEditableReturn,
 } from "./Editable.hook"
-import { createContext } from "@chakra-ui/utils"
+import {
+  createContext,
+  isFunction,
+  ReactNodeOrRenderProp,
+} from "@chakra-ui/utils"
 import { chakra, PropsOf } from "@chakra-ui/system"
 
-type EditableContext = Omit<EditableHookReturn, "htmlProps">
+type EditableContext = Omit<UseEditableReturn, "htmlProps">
 
 const [EditableProvider, useEditableContext] = createContext<EditableContext>()
 
 const StyledEditable = chakra("div", { themeKey: "Editable.Root" })
 
-export type EditableProps = EditableHookProps &
-  Omit<PropsOf<typeof StyledEditable>, "onChange" | "value">
+type RenderProps = Pick<
+  UseEditableReturn,
+  "isEditing" | "onSubmit" | "onCancel" | "onEdit"
+>
 
+type Omitted = "onChange" | "value" | "children" | "defaultValue"
+
+export type EditableProps = UseEditableProps &
+  Omit<PropsOf<typeof StyledEditable>, Omitted> & {
+    children?: ReactNodeOrRenderProp<RenderProps>
+  }
+
+/**
+ * Editable
+ *
+ * The wrapper that provides context and logic for all editable
+ * components. It renders a `div`
+ */
 export function Editable(props: EditableProps) {
   const { htmlProps, ...context } = useEditable(props)
+
+  const { isEditing, onSubmit, onCancel, onEdit } = context
+  const renderProps = { isEditing, onSubmit, onCancel, onEdit }
+
   return (
     <EditableProvider value={context}>
-      <StyledEditable data-chakra-editable="" {...htmlProps} />
+      <StyledEditable data-chakra-editable="" {...htmlProps}>
+        {isFunction(props.children)
+          ? props.children(renderProps)
+          : props.children}
+      </StyledEditable>
     </EditableProvider>
   )
 }
@@ -28,6 +55,12 @@ export function Editable(props: EditableProps) {
 const StyledPreview = chakra("span", { themeKey: "Editable.Preview" })
 
 export type EditablePreviewProps = PropsOf<typeof StyledPreview>
+
+/**
+ * EditablePreview
+ *
+ * The `span` used to display the final value, in the `preview` mode
+ */
 
 export function EditablePreview(props: EditablePreviewProps) {
   const { getPreviewProps } = useEditableContext()
@@ -43,11 +76,20 @@ const StyledInput = chakra("input", { themeKey: "Editable.Input" })
 
 export type EditableInputProps = PropsOf<typeof StyledInput>
 
-export function EditableInput(props: any) {
+/**
+ * EditableInput
+ *
+ * The input used in the `edit` mode
+ */
+export function EditableInput(props: EditableInputProps) {
   const { getInputProps } = useEditableContext()
   return <StyledInput data-chakra-editable-input="" {...getInputProps(props)} />
 }
 
+/**
+ * React hook use to gain access to the editable state
+ * and actions.
+ */
 export function useEditableState() {
   const {
     isEditing,
@@ -56,11 +98,32 @@ export function useEditableState() {
     onEdit,
     isDisabled,
   } = useEditableContext()
+
   return {
     isEditing,
     onSubmit,
     onCancel,
     onEdit,
     isDisabled,
+  }
+}
+
+/**
+ * React hook use to create controls for the
+ * editable component
+ */
+export function useEditableControls() {
+  const {
+    isEditing,
+    getEditButtonProps,
+    getCancelButtonProps,
+    getSubmitButtonProps,
+  } = useEditableContext()
+
+  return {
+    isEditing,
+    getEditButtonProps,
+    getCancelButtonProps,
+    getSubmitButtonProps,
   }
 }

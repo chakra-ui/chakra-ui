@@ -1,7 +1,8 @@
-import { ControlProps, useField } from "@chakra-ui/form-control"
+import { FormControlOptions, useFormControl } from "@chakra-ui/form-control"
 import { chakra, PropsOf, useComponentStyle } from "@chakra-ui/system"
 import * as React from "react"
 import { useInputGroup } from "./Input.group"
+import { __DEV__ } from "@chakra-ui/utils"
 
 type OmittedTypes = "disabled" | "required" | "readOnly"
 
@@ -25,26 +26,17 @@ interface InputOptions {
 }
 
 export type InputProps = Omit<PropsOf<typeof StyledInput>, OmittedTypes> &
-  ControlProps
+  FormControlOptions
 
 const StyledInput = chakra<"input", InputOptions>("input", {
   themeKey: "Input",
-  baseStyle: props => ({
-    width: props.isFullWidth ? "100%" : "auto",
-    display: "flex",
-    alignItems: "center",
-    position: "relative",
-    transition: "all 0.2s",
-    outline: "none",
-  }),
-
   shouldForwardProp: prop =>
     !["focusBorderColor", "errorBorderColor"].includes(prop),
 })
 
 export const Input = React.forwardRef(
   (props: InputProps, ref: React.Ref<HTMLInputElement>) => {
-    const inputProps = useField<HTMLInputElement>(props)
+    const inputProps = useFormControl<HTMLInputElement>(props)
     const group = useInputGroup()
 
     const variant = group?.variant || props.variant
@@ -70,10 +62,6 @@ export const Input = React.forwardRef(
   },
 )
 
-Input.displayName = "Input"
-
-Input.defaultProps = {
-  isFullWidth: true,
-  focusBorderColor: "blue.500",
-  errorBorderColor: "red.500",
+if (__DEV__) {
+  Input.displayName = "Input"
 }

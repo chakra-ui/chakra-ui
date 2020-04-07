@@ -10,10 +10,10 @@ import {
 } from "react"
 
 /**
- * @todo use the `useTabbable` hook here
+ * @todo use the `useClickable` hook here
  * to manage the isFocusable & isDisabled props
  */
-export interface RadioHookProps {
+export interface UseRadioProps {
   /**
    * id assigned to input
    */
@@ -64,7 +64,7 @@ export interface RadioHookProps {
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
-export function useRadio(props: RadioHookProps = {}) {
+export function useRadio(props: UseRadioProps = {}) {
   const {
     defaultIsChecked,
     isChecked: isCheckedProp,
@@ -174,4 +174,4 @@ export function useRadio(props: RadioHookProps = {}) {
   }
 }
 
-export type RadioHookReturn = ReturnType<typeof useRadio>
+export type UseRadioReturn = ReturnType<typeof useRadio>
