@@ -1,8 +1,8 @@
 import * as React from "react"
 import {
   useEditable,
-  EditableHookProps,
-  EditableHookReturn,
+  UseEditableProps,
+  UseEditableReturn,
 } from "./Editable.hook"
 import {
   createContext,
@@ -11,20 +11,20 @@ import {
 } from "@chakra-ui/utils"
 import { chakra, PropsOf } from "@chakra-ui/system"
 
-type EditableContext = Omit<EditableHookReturn, "htmlProps">
+type EditableContext = Omit<UseEditableReturn, "htmlProps">
 
 const [EditableProvider, useEditableContext] = createContext<EditableContext>()
 
 const StyledEditable = chakra("div", { themeKey: "Editable.Root" })
 
 type RenderProps = Pick<
-  EditableHookReturn,
+  UseEditableReturn,
   "isEditing" | "onSubmit" | "onCancel" | "onEdit"
 >
 
 type Omitted = "onChange" | "value" | "children" | "defaultValue"
 
-export type EditableProps = EditableHookProps &
+export type EditableProps = UseEditableProps &
   Omit<PropsOf<typeof StyledEditable>, Omitted> & {
     children?: ReactNodeOrRenderProp<RenderProps>
   }

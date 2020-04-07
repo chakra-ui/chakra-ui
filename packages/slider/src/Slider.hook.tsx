@@ -19,7 +19,7 @@ import * as React from "react"
 
 // http://muffinman.io/aria-progress-range-slider/
 
-export interface SliderHookProps {
+export interface UseSliderProps {
   /**
    * The minimum allowed value of the slider. Cannot be greater than max.
    * @default 0
@@ -99,7 +99,7 @@ export interface SliderHookProps {
   "aria-labelledby"?: string
 }
 
-export function useSlider(props: SliderHookProps) {
+export function useSlider(props: UseSliderProps) {
   const {
     min = 0,
     max = 100,
@@ -420,14 +420,14 @@ export function useSlider(props: SliderHookProps) {
   }
 }
 
-export type SliderHookReturn = ReturnType<typeof useSlider>
+export type UseSliderReturn = ReturnType<typeof useSlider>
 
 /**
  * Get the value based on orientation
  * @param options
  */
 function getOrientationValue<T>(options: {
-  orientation: SliderHookProps["orientation"]
+  orientation: UseSliderProps["orientation"]
   vertical: T
   horizontal: T
 }) {

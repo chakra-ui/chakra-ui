@@ -5,14 +5,14 @@ import {
   mergeRefs,
 } from "@chakra-ui/utils"
 import * as React from "react"
-import { useCounter, CounterHookProps } from "@chakra-ui/counter"
+import { useCounter, UseCounterProps } from "@chakra-ui/counter"
 import { useUpdateEffect, useInterval, useBooleanState } from "@chakra-ui/hooks"
 import {
   isFloatingPointNumericCharacter,
   isValidNumericKeyboardEvent,
 } from "./NumberInput.utils"
 
-export interface NumberInputHookProps extends CounterHookProps {
+export interface UseNumberInputProps extends UseCounterProps {
   /**
    * If `true`, the input will be focused as you increment
    * or decrement the value with the stepper
@@ -63,7 +63,7 @@ export interface NumberInputHookProps extends CounterHookProps {
   decimalSeparator?: string
 }
 
-export function useNumberInput(props: NumberInputHookProps = {}) {
+export function useNumberInput(props: UseNumberInputProps = {}) {
   const {
     focusInputOnChange = true,
     clampValueOnBlur = true,
@@ -248,7 +248,7 @@ export function useNumberInput(props: NumberInputHookProps = {}) {
   }
 }
 
-export type NumberInputHookReturn = ReturnType<typeof useNumberInput>
+export type UseNumberInputReturn = ReturnType<typeof useNumberInput>
 
 const CONTINUOUS_CHANGE_DELAY = 300
 const CONTINUOUS_CHANGE_INTERVAL = 50

@@ -23,8 +23,8 @@ import {
 } from "@chakra-ui/utils"
 import * as React from "react"
 
-export type MenuHookProps = {
-  context?: MenuHookReturn
+export type UseMenuProps = {
+  context?: UseMenuReturn
   id?: string
   closeOnSelect?: boolean
   // TODO: Implement these
@@ -32,7 +32,7 @@ export type MenuHookProps = {
   autoSelect?: boolean
 }
 
-export function useMenu(props: MenuHookProps) {
+export function useMenu(props: UseMenuProps) {
   const { context, id, closeOnSelect = true } = props
   /**
    *
@@ -109,14 +109,14 @@ export function useMenu(props: MenuHookProps) {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface MenuHookReturn extends ReturnType<typeof useMenu> {}
+export interface UseMenuReturn extends ReturnType<typeof useMenu> {}
 
 //////////////////////////////////////////////////////////////////////////////
 
 export interface MenuListHookProps {
   onMouseEnter?: React.MouseEventHandler
   onKeyDown?: React.KeyboardEventHandler
-  context: MenuHookReturn
+  context: UseMenuReturn
   style?: React.CSSProperties
   hidden?: boolean
 }
@@ -231,7 +231,7 @@ export interface MenuButtonHookProps {
   onClick?: React.MouseEventHandler
   onMouseOut?: React.MouseEventHandler
   onKeyDown?: React.KeyboardEventHandler
-  context: MenuHookReturn
+  context: UseMenuReturn
 }
 
 export function useMenuButton(props: MenuButtonHookProps) {
@@ -347,15 +347,15 @@ export function useMenuButton(props: MenuButtonHookProps) {
 
 ///////////////////////////////////////////////////////////////////////////////////
 
-export interface MenuItemHookProps {
+export interface UseMenuItemProps {
   onMouseOut?: React.MouseEventHandler
-  context: MenuHookReturn
+  context: UseMenuReturn
   onClick?: React.MouseEventHandler
   isDisabled?: boolean
   isFocusable?: boolean
 }
 
-export function useMenuItem(props: MenuItemHookProps) {
+export function useMenuItem(props: UseMenuItemProps) {
   const {
     context: menu,
     onMouseOut: onMouseOutProp,
@@ -461,13 +461,13 @@ export function useMenuItem(props: MenuItemHookProps) {
   }
 }
 
-export type MenuOptionHookProps = MenuItemHookProps & {
+export type UseMenuOptionProps = UseMenuItemProps & {
   value?: string
   isChecked?: string
   type?: "radio" | "checkbox"
 }
 
-export function useMenuOption(props: MenuOptionHookProps) {
+export function useMenuOption(props: UseMenuOptionProps) {
   const {
     context: menu,
     onMouseOut,
@@ -494,7 +494,7 @@ export function useMenuOption(props: MenuOptionHookProps) {
   }
 }
 
-export interface MenuOptionGroupHookProps {
+export interface UseMenuOptionGroupProps {
   value?: string | string[]
   defaultValue?: string | string[]
   type?: "radio" | "checkbox"
@@ -502,7 +502,7 @@ export interface MenuOptionGroupHookProps {
   children?: React.ReactNode
 }
 
-export function useMenuOptionGroup(props: MenuOptionGroupHookProps) {
+export function useMenuOptionGroup(props: UseMenuOptionGroupProps) {
   const {
     children,
     type = "radio",

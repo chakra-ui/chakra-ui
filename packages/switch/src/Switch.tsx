@@ -1,13 +1,13 @@
-import { CheckboxHookProps, useCheckbox } from "@chakra-ui/checkbox"
+import { UseCheckboxProps, useCheckbox } from "@chakra-ui/checkbox"
 import { chakra, PropsOf } from "@chakra-ui/system"
-import React from "react"
+import * as React from "react"
+import { __DEV__ } from "@chakra-ui/utils"
 
 /**
  * StyledSwitch
  *
  * Wrapper element around the Switch component
  */
-
 const StyledSwitch = chakra("label", {
   baseStyle: {
     display: "inline-block",
@@ -37,7 +37,7 @@ const StyledTrack = chakra("div", { themeKey: "Switch.Track" })
 
 const StyledThumb = chakra("div", { themeKey: "Switch.Thumb" })
 
-export type SwitchProps = Omit<CheckboxHookProps, "isIndeterminate"> &
+export type SwitchProps = Omit<UseCheckboxProps, "isIndeterminate"> &
   Omit<PropsOf<typeof StyledSwitch>, "onChange" | "defaultChecked">
 
 export const Switch = React.forwardRef(
@@ -68,3 +68,7 @@ export const Switch = React.forwardRef(
     )
   },
 )
+
+if (__DEV__) {
+  Switch.displayName = "Switch"
+}

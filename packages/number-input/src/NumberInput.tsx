@@ -1,21 +1,20 @@
 import { ArrowDownIcon, ArrowUpIcon } from "@chakra-ui/icons"
-import { chakra, PropsOf, ThemingProps, SystemProps } from "@chakra-ui/system"
+import { chakra, PropsOf, SystemProps, ThemingProps } from "@chakra-ui/system"
 import { createContext } from "@chakra-ui/utils"
 import React from "react"
 import {
-  NumberInputHookProps,
-  NumberInputHookReturn,
   useNumberInput,
+  UseNumberInputProps,
+  UseNumberInputReturn,
 } from "./NumberInput.hook"
 
-type NumberInputContext = Omit<NumberInputHookReturn, "htmlProps"> &
-  ThemingProps
+type NumberInputContext = Omit<UseNumberInputReturn, "htmlProps"> & ThemingProps
 
 const [NumberInputContextProvider, useNumberInputContext] = createContext<
   NumberInputContext
 >()
 
-export type NumberInputProps = NumberInputHookProps &
+export type NumberInputProps = UseNumberInputProps &
   Omit<PropsOf<typeof StyledRoot>, "onChange" | "value" | "defaultValue">
 
 const StyledRoot = chakra("div", {

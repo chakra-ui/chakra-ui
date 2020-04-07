@@ -6,8 +6,8 @@ import {
   layoutPropNames,
 } from "@chakra-ui/system"
 import * as React from "react"
-import { RadioHookProps, useRadio } from "./Radio.hook"
-import { split } from "@chakra-ui/utils"
+import { UseRadioProps, useRadio } from "./Radio.hook"
+import { split, __DEV__ } from "@chakra-ui/utils"
 
 const StyledRadio = chakra("div", {
   themeKey: "Radio",
@@ -19,7 +19,7 @@ const StyledRadio = chakra("div", {
   },
 })
 
-export type RadioProps = RadioHookProps &
+export type RadioProps = UseRadioProps &
   ThemingProps &
   Omit<PropsOf<typeof StyledRadio>, "onChange" | "defaultChecked">
 
@@ -93,3 +93,7 @@ export const Radio = React.forwardRef(
     )
   },
 )
+
+if (__DEV__) {
+  Radio.displayName = "Radio"
+}

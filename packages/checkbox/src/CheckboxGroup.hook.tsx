@@ -6,7 +6,7 @@ type Value = string | number
 type ArrayOfValue = Value[]
 type EventOrValue = React.ChangeEvent<HTMLInputElement> | Value
 
-export interface CheckboxGroupHookProps {
+export interface UseCheckboxGroupProps {
   /**
    * The value of the checkbox group
    */
@@ -32,7 +32,7 @@ export interface CheckboxGroupHookProps {
  * It is consumed by the `CheckboxGroup` component
  */
 
-export function useCheckboxGroup(props: CheckboxGroupHookProps = {}) {
+export function useCheckboxGroup(props: UseCheckboxGroupProps = {}) {
   const { defaultValue, value: valueProp, onChange: onChangeProp } = props
   const [valueState, setValue] = React.useState(defaultValue || [])
   const [isControlled, value] = useControllableProp(valueProp, valueState)

@@ -2,7 +2,7 @@ import * as React from "react"
 import { useDescendants, useDescendant } from "@chakra-ui/descendant"
 import { useControllableState } from "@chakra-ui/hooks"
 
-export interface PinInputHookProps {
+export interface UsePinInputProps {
   autoFocus?: boolean
   value?: string
   defaultValue?: string
@@ -15,7 +15,7 @@ function toArray(value?: string) {
   return value?.split("")
 }
 
-export function usePinInput(props: PinInputHookProps = {}) {
+export function usePinInput(props: UsePinInputProps = {}) {
   const {
     autoFocus,
     value,
@@ -88,13 +88,13 @@ export function usePinInput(props: PinInputHookProps = {}) {
   }
 }
 
-export type PinInputHookReturn = ReturnType<typeof usePinInput>
+export type UsePinInputReturn = ReturnType<typeof usePinInput>
 
-export interface PinInputFieldHookProps {
-  context: PinInputHookReturn
+export interface UsePinInputFieldProps {
+  context: UsePinInputReturn
 }
 
-export function usePinInputField(props: PinInputFieldHookProps) {
+export function usePinInputField(props: UsePinInputFieldProps) {
   const { context } = props
 
   const ref = React.useRef<HTMLInputElement>(null)

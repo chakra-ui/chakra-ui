@@ -59,7 +59,7 @@ export function useBlurOutside(
   }
 }
 
-export interface FocusOnHideHookOptions {
+export interface UseFocusOnHideOptions {
   focusRef: React.RefObject<HTMLElement>
   autoFocus?: boolean
   visible?: boolean
@@ -74,7 +74,7 @@ export interface FocusOnHideHookOptions {
  */
 export function useFocusOnHide(
   popoverRef: React.RefObject<HTMLElement>,
-  options: FocusOnHideHookOptions,
+  options: UseFocusOnHideOptions,
 ) {
   const { focusRef, autoFocus, visible } = options
 
@@ -120,7 +120,7 @@ export function useFocusOnHide(
   }, [autoFocus, focusRef, visible, popoverRef])
 }
 
-export interface FocusOnShowHookOptions {
+export interface UseFocusOnShowOptions {
   autoFocus?: boolean
   visible?: boolean
   focusRef?: React.RefObject<HTMLElement>
@@ -135,7 +135,7 @@ export interface FocusOnShowHookOptions {
  */
 export function useFocusOnShow(
   popoverRef: React.RefObject<HTMLElement>,
-  options: FocusOnShowHookOptions,
+  options: UseFocusOnShowOptions,
 ) {
   const { visible, autoFocus, focusRef } = options
 

@@ -4,7 +4,7 @@ import {
   useControllableState,
 } from "@chakra-ui/hooks"
 import { useDescendant, useDescendants } from "@chakra-ui/descendant"
-import { ClickableHookProps, useClickable } from "@chakra-ui/clickable"
+import { UseClickableProps, useClickable } from "@chakra-ui/clickable"
 import {
   callAllHandlers,
   createOnKeyDown,
@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/utils"
 import * as React from "react"
 
-export interface TabsHookProps {
+export interface UseTabsProps {
   /**
    * The orientation of the tab list.
    */
@@ -55,7 +55,7 @@ export interface TabsHookProps {
  *
  * @see Docs https://chakra-ui.com/useTabs
  */
-export function useTabs(props: TabsHookProps) {
+export function useTabs(props: UseTabsProps) {
   const {
     defaultIndex,
     onChange,
@@ -149,15 +149,15 @@ export function useTabs(props: TabsHookProps) {
   }
 }
 
-export type TabsHookReturn = ReturnType<typeof useTabs>
+export type UseTabsReturn = ReturnType<typeof useTabs>
 
 type Child = React.ReactElement<any>
 
-export interface TabListHookProps {
+export interface UseTabListProps {
   children?: React.ReactNode
   onKeyDown?: React.KeyboardEventHandler
   ref?: React.Ref<any>
-  context: TabsHookReturn
+  context: UseTabsReturn
 }
 
 /**
@@ -166,7 +166,7 @@ export interface TabListHookProps {
  *
  * @param props props object for the tablist
  */
-export function useTabList<P extends TabListHookProps>(props: P) {
+export function useTabList<P extends UseTabListProps>(props: P) {
   const { context, ...htmlProps } = props
 
   const {
@@ -227,13 +227,13 @@ export function useTabList<P extends TabListHookProps>(props: P) {
   }
 }
 
-export type TabListHookReturn = ReturnType<typeof useTabList>
+export type UseTabListReturn = ReturnType<typeof useTabList>
 
-export interface TabHookProps extends ClickableHookProps {
+export interface UseTabProps extends UseClickableProps {
   id?: string
   isSelected?: boolean
   panelId?: string
-  context: TabsHookReturn
+  context: UseTabsReturn
   onFocus?: React.FocusEventHandler
 }
 
@@ -245,7 +245,7 @@ export interface TabHookProps extends ClickableHookProps {
  *
  * @param props props object for tab button
  */
-export function useTab<P extends TabHookProps>(props: P) {
+export function useTab<P extends UseTabProps>(props: P) {
   const { isDisabled, isFocusable, context, ...htmlProps } = props
 
   const {
@@ -321,9 +321,9 @@ export function useTab<P extends TabHookProps>(props: P) {
   }
 }
 
-type TabPanelsHookProps = {
+export interface UseTabPanelsProps {
   children?: React.ReactNode
-  context: TabsHookReturn
+  context: UseTabsReturn
 }
 
 /**
@@ -335,7 +335,7 @@ type TabPanelsHookProps = {
  * It returns a cloned version of it's children with
  * all functionality included.
  */
-export function useTabPanels<P extends TabPanelsHookProps>(props: P) {
+export function useTabPanels<P extends UseTabPanelsProps>(props: P) {
   const { context, ...htmlProps } = props
 
   const { id, selectedIndex } = context
@@ -376,7 +376,7 @@ export function useTabPanel(props: Dict) {
  * of the active tab, and return that as CSS style for
  * the indicator.
  */
-export function useTabIndicator(context: TabsHookReturn): React.CSSProperties {
+export function useTabIndicator(context: UseTabsReturn): React.CSSProperties {
   const { selectedIndex, orientation, allTabsContext } = context
 
   const isHorizontal = orientation === "horizontal"

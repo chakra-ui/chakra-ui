@@ -2,9 +2,10 @@ import * as React from "react"
 import { mergeRefs, attr } from "@chakra-ui/utils"
 
 type HTMLAttributes = React.HTMLAttributes<any> & React.RefAttributes<any>
+
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>
 
-export interface ClickableHookProps extends HTMLAttributes {
+export interface UseClickableProps extends HTMLAttributes {
   /**
    * If `true`, the element will be disabled.
    * It will set the `disabled` HTML attribute
@@ -33,7 +34,7 @@ export interface ClickableHookProps extends HTMLAttributes {
  *
  * It can be used with both native button elements or other elements (like `div`).
  */
-export function useClickable(props: ClickableHookProps = {}) {
+export function useClickable(props: UseClickableProps = {}) {
   const {
     ref: htmlRef,
     isDisabled,
@@ -206,3 +207,5 @@ export function useClickable(props: ClickableHookProps = {}) {
     onMouseOver: handleMouseOver,
   }
 }
+
+export type UseClickableReturn = ReturnType<typeof useClickable>

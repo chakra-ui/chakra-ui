@@ -1,7 +1,7 @@
 import * as React from "react"
 import { chakra, PropsOf, SystemProps, css, useTheme } from "@chakra-ui/system"
 import { useId } from "@chakra-ui/hooks"
-import { useCheckboxGroup, CheckboxGroupHookProps } from "./CheckboxGroup.hook"
+import { useCheckboxGroup, UseCheckboxGroupProps } from "./CheckboxGroup.hook"
 import {
   getValidChildren,
   omit,
@@ -9,7 +9,7 @@ import {
   mapResponsive,
 } from "@chakra-ui/utils"
 
-export type CheckboxGroupProps = CheckboxGroupHookProps &
+export type CheckboxGroupProps = UseCheckboxGroupProps &
   Omit<PropsOf<typeof chakra.div>, "onChange" | "value"> & {
     /**
      * The name of the checkbox group

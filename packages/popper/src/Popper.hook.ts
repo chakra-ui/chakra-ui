@@ -3,11 +3,12 @@ import { Placement, Instance, createPopper } from "@popperjs/core"
 import { getArrowStyles } from "./Popper.utils"
 
 const isBrowser = typeof window !== "undefined"
+
 const useSafeLayoutEffect = isBrowser ? React.useLayoutEffect : React.useEffect
 
 export { Placement }
 
-export interface PopperHookProps {
+export interface UsePopperProps {
   gutter?: number
   placement?: Placement
   offset?: number
@@ -19,7 +20,7 @@ export interface PopperHookProps {
   eventsEnabled?: boolean
 }
 
-export function usePopper(props: PopperHookProps) {
+export function usePopper(props: UsePopperProps) {
   const {
     placement: initialPlacement = "bottom",
     offset: offsetProp,
@@ -144,6 +145,4 @@ export function usePopper(props: PopperHookProps) {
   }
 }
 
-export type PopperHookReturn = ReturnType<typeof usePopper>
-
-export default usePopper
+export type UsePopperReturn = ReturnType<typeof usePopper>

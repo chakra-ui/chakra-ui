@@ -1,6 +1,6 @@
 import * as React from "react"
 import { render, fireEvent, wait } from "@chakra-ui/test-utils"
-import { Radio, useRadioGroup, RadioGroupHookProps } from ".."
+import { Radio, useRadioGroup, UseRadioGroupProps } from ".."
 
 test("RadioGroup renders correctly", () => {
   const Component = () => {
@@ -24,7 +24,7 @@ test("RadioGroup renders correctly", () => {
 })
 
 test("works with Radio component", () => {
-  const Component = (props: RadioGroupHookProps = {}) => {
+  const Component = (props: UseRadioGroupProps = {}) => {
     const { getRootProps, getRadioProps } = useRadioGroup(props)
 
     return (
@@ -40,7 +40,7 @@ test("works with Radio component", () => {
 })
 
 test("uncontrolled: correctly manages state", () => {
-  const Component = (props: RadioGroupHookProps = {}) => {
+  const Component = (props: UseRadioGroupProps = {}) => {
     const { getRootProps, getRadioProps } = useRadioGroup(props)
 
     return (
@@ -61,7 +61,7 @@ test("uncontrolled: correctly manages state", () => {
 })
 
 test("controlled: correctly manages state", () => {
-  const Component = (props: RadioGroupHookProps = {}) => {
+  const Component = (props: UseRadioGroupProps = {}) => {
     const { getRootProps, getRadioProps } = useRadioGroup(props)
 
     return (
@@ -107,7 +107,7 @@ test("setValue action allows setting specific value", () => {
 })
 
 describe("focus action", () => {
-  const Component = (props: RadioGroupHookProps = {}) => {
+  const Component = (props: UseRadioGroupProps = {}) => {
     const {
       getRootProps,
       getRadioProps,

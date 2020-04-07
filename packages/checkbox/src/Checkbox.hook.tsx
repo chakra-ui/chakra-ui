@@ -7,7 +7,7 @@ import { callAllHandlers, attr, mergeRefs } from "@chakra-ui/utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
 import * as React from "react"
 
-export interface CheckboxHookProps {
+export interface UseCheckboxProps {
   /**
    * If `true`, the checkbox will be checked.
    * You'll need to pass `onChange` to update it's value (since it's now controlled)
@@ -77,7 +77,7 @@ export interface CheckboxHookProps {
  * It is consumed by the `Checkbox` component
  */
 
-export function useCheckbox(props: CheckboxHookProps = {}) {
+export function useCheckbox(props: UseCheckboxProps = {}) {
   const {
     defaultIsChecked,
     isChecked: checkedProp,
@@ -230,6 +230,4 @@ export function useCheckbox(props: CheckboxHookProps = {}) {
   }
 }
 
-export type CheckboxHookReturn = ReturnType<typeof useCheckbox>
-
-export default useCheckbox
+export type UseCheckboxReturn = ReturnType<typeof useCheckbox>

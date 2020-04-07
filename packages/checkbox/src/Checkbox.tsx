@@ -1,7 +1,7 @@
 import { chakra, PropsOf, SystemProps } from "@chakra-ui/system"
 import { Omit } from "@chakra-ui/utils"
 import * as React from "react"
-import { CheckboxHookProps, useCheckbox } from "./Checkbox.hook"
+import { UseCheckboxProps, useCheckbox } from "./Checkbox.hook"
 import { CheckboxIcon } from "./Checkbox.icon"
 import { IconProps } from "@chakra-ui/icon"
 
@@ -36,7 +36,7 @@ type OmittedCheckboxProps = Omit<
 
 export type CheckboxProps = OmittedCheckboxProps &
   Omit<PropsOf<"input">, "size"> &
-  CheckboxHookProps & {
+  UseCheckboxProps & {
     /**
      * The color of the check icon
      */

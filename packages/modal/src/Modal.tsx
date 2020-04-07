@@ -8,17 +8,17 @@ import {
   ThemingProps,
   useThemeDefaultProps,
 } from "@chakra-ui/system"
-import { createContext, callAllHandlers } from "@chakra-ui/utils"
+import { callAllHandlers, createContext, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { ModalHookProps, ModalHookReturn, useModal } from "./Modal.hook"
+import { useModal, UseModalProps, UseModalReturn } from "./Modal.hook"
 
-type ModalContext = ModalHookReturn &
+type ModalContext = UseModalReturn &
   Pick<ModalProps, "isCentered" | "scrollBehavior"> &
   Pick<ThemingProps, "variant" | "size">
 
 const [ModalContextProvider, useModalContext] = createContext<ModalContext>()
 
-export interface ModalProps extends ModalHookProps, ThemingProps {
+export interface ModalProps extends UseModalProps, ThemingProps {
   children?: React.ReactNode
   /**
    * The `ref` of element to receive focus when the modal opens.
@@ -119,6 +119,10 @@ export function Modal(props: ModalProps) {
   )
 }
 
+if (__DEV__) {
+  Modal.displayName = "Modal"
+}
+
 type ContentOptions = Pick<ModalProps, "scrollBehavior">
 
 /**
@@ -164,6 +168,10 @@ export const ModalContent = (props: ModalContentProps) => {
       {...getContentProps(props)}
     />
   )
+}
+
+if (__DEV__) {
+  ModalContent.displayName = "ModalContent"
 }
 
 type OverlayOptions = Pick<ModalProps, "isCentered" | "scrollBehavior">
@@ -225,6 +233,10 @@ export const ModalOverlay = (props: ModalOverlayProps) => {
   )
 }
 
+if (__DEV__) {
+  ModalOverlay.displayName = "ModalOverlay"
+}
+
 export type ModalHeaderProps = PropsOf<typeof StyledHeader>
 
 /**
@@ -259,6 +271,10 @@ export const ModalHeader = (props: ModalHeaderProps) => {
   return <StyledHeader data-chakra-modal-header="" id={headerId} {...props} />
 }
 
+if (__DEV__) {
+  ModalHeader.displayName = "ModalHeader"
+}
+
 export type ModalBodyProps = PropsOf<typeof StyledBody>
 
 /**
@@ -291,6 +307,10 @@ export const ModalBody = (props: ModalBodyProps) => {
   return <StyledBody data-chakra-modal-body="" id={bodyId} {...props} />
 }
 
+if (__DEV__) {
+  ModalBody.displayName = "ModalBody"
+}
+
 /**
  * ModalFooter
  *
@@ -306,6 +326,10 @@ export const ModalFooter = chakra("footer", {
     justifyContent: "flex-end",
   },
 })
+
+if (__DEV__) {
+  ModalFooter.displayName = "ModalFooter"
+}
 
 /**
  * ModalCloseButton
@@ -325,4 +349,8 @@ export const ModalCloseButton = (props: CloseButtonProps) => {
       onClick={callAllHandlers(props.onClick, onClose)}
     />
   )
+}
+
+if (__DEV__) {
+  ModalCloseButton.displayName = "ModalCloseButton"
 }

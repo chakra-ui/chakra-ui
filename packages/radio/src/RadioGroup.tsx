@@ -5,10 +5,10 @@ import {
   mapResponsive,
   omit,
 } from "@chakra-ui/utils"
-import { useRadioGroup, RadioGroupHookProps } from "./RadioGroup.hook"
+import { useRadioGroup, UseRadioGroupProps } from "./RadioGroup.hook"
 import { chakra, useTheme, css, SystemProps, PropsOf } from "@chakra-ui/system"
 
-export type RadioGroupProps = RadioGroupHookProps &
+export type RadioGroupProps = UseRadioGroupProps &
   Omit<PropsOf<typeof chakra.div>, "onChange" | "value"> & {
     /**
      * The name of the radio group
@@ -45,8 +45,11 @@ export const RadioGroup = React.forwardRef(
       children,
       ...rest
     } = props
+
     const theme = useTheme()
+
     const validChildren = getValidChildren(children)
+
     const { getRootProps, getRadioProps } = useRadioGroup({ ...props, ref })
 
     const childSpacing = mapResponsive(spacing, value => {

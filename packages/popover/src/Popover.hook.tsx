@@ -4,7 +4,7 @@ import * as React from "react"
 import { useBlurOutside, useFocusOnHide, useFocusOnShow } from "./Popover.utils"
 import { mergeRefs, Dict, callAllHandlers } from "@chakra-ui/utils"
 
-export interface PopoverHookProps {
+export interface UsePopoverProps {
   /**
    * The html `id` attribute of the popover.
    * If not provided, we generate a unique id.
@@ -67,7 +67,7 @@ export interface PopoverHookProps {
   arrowSize?: number
 }
 
-export function usePopover(props: PopoverHookProps = {}) {
+export function usePopover(props: UsePopoverProps = {}) {
   const {
     closeOnBlur = true,
     closeOnEsc = true,
@@ -167,4 +167,4 @@ export function usePopover(props: PopoverHookProps = {}) {
   }
 }
 
-export type PopoverHookReturn = ReturnType<typeof usePopover>
+export type UsePopoverReturn = ReturnType<typeof usePopover>
