@@ -466,11 +466,18 @@ export interface PositionProps<ThemeType extends Theme = RequiredTheme> {
   right?: Responsive<CSS.RightProperty<TLength>, ThemeType>
   bottom?: Responsive<CSS.BottomProperty<TLength>, ThemeType>
   left?: Responsive<CSS.LeftProperty<TLength>, ThemeType>
+  /** The CSS `left`, `right`, `top`, `bottom` property  */
+  inset?: Responsive<CSS.LeftProperty<TLength>, ThemeType>
+  /** The CSS `left`, and `right` property  */
+  insetX?: Responsive<CSS.LeftProperty<TLength>, ThemeType>
+  /** The CSS `top`, and `bottom` property  */
+  insetY?: Responsive<CSS.LeftProperty<TLength>, ThemeType>
+  /** The CSS `position` property  */
   pos?: Responsive<CSS.PositionProperty, ThemeType>
   position?: Responsive<CSS.PositionProperty, ThemeType>
 }
 
-export interface OtherProps<ThemeType extends Theme = RequiredTheme> {
+export interface OtherCSSProps<ThemeType extends Theme = RequiredTheme> {
   animation?: Responsive<CSS.AnimationProperty, ThemeType>
   appearance?: Responsive<CSS.AppearanceProperty, ThemeType>
   transform?: Responsive<CSS.TransformProperty, ThemeType>
@@ -500,7 +507,7 @@ export type StyleProps<ThemeType extends Theme = RequiredTheme> = SpaceProps &
   ShadowProps<ThemeType> &
   BackgroundProps<ThemeType> &
   PositionProps<ThemeType> &
-  OtherProps<ThemeType>
+  OtherCSSProps<ThemeType>
 
 export type PseudoProps<ThemeType = RequiredTheme> = {
   [K in keyof Pseudos]?:
