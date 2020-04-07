@@ -3,7 +3,7 @@ import {
   useControllableProp,
   useSafeLayoutEffect,
 } from "@chakra-ui/hooks"
-import { callAllHandlers, attr, mergeRefs } from "@chakra-ui/utils"
+import { callAllHandlers, dataAttr, mergeRefs } from "@chakra-ui/utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
 import * as React from "react"
 
@@ -192,13 +192,13 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     // prop getters
     getCheckboxProps: (props: CustomCheckboxProps = {}) => ({
       ...props,
-      "data-active": attr(isActive),
-      "data-hover": attr(isHovered),
-      "data-checked": attr(isChecked),
-      "data-focus": attr(isFocused),
-      "data-mixed": attr(isIndeterminate),
-      "data-disabled": attr(isDisabled),
-      "data-readonly": attr(isReadOnly),
+      "data-active": dataAttr(isActive),
+      "data-hover": dataAttr(isHovered),
+      "data-checked": dataAttr(isChecked),
+      "data-focus": dataAttr(isFocused),
+      "data-mixed": dataAttr(isIndeterminate),
+      "data-disabled": dataAttr(isDisabled),
+      "data-readonly": dataAttr(isReadOnly),
       "aria-hidden": true,
       onPointerDown: callAllHandlers(props.onPointerDown, setActive.on),
       onPointerUp: callAllHandlers(props.onPointerUp, setActive.off),

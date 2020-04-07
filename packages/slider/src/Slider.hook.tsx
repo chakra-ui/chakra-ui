@@ -11,9 +11,11 @@ import {
   roundValueToStep,
   valueToPercent,
   getBox,
-  attr,
+  dataAttr,
+  ariaAttr,
   callAllHandlers,
   mergeRefs,
+  Dict,
 } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -344,28 +346,28 @@ export function useSlider(props: UseSliderProps) {
       isDragging: isPointerDown,
     },
     actions,
-    getRootProps: (props: any = {}) => ({
+    getRootProps: (props: Dict = {}) => ({
       ...props,
       tabIndex: -1,
-      "aria-disabled": attr(isDisabled),
-      "data-focused": attr(isFocused),
+      "aria-disabled": ariaAttr(isDisabled),
+      "data-focused": dataAttr(isFocused),
       onPointerDown: callAllHandlers(props.onPointerDown, onPointerDown),
       onPointerUp: callAllHandlers(props.onPointerUp, onPointerUp),
       onPointerMove: callAllHandlers(props.onPointerMove, onPointerMove),
       style: { ...props.style, ...rootStyle },
     }),
-    getTrackProps: (props: any = {}) => ({
+    getTrackProps: (props: Dict = {}) => ({
       ...props,
       ref: mergeRefs(props.ref, trackRef),
       id: trackId,
-      "data-disabled": attr(isDisabled),
+      "data-disabled": dataAttr(isDisabled),
       style: { ...props.style, ...trackStyle },
     }),
-    getInnerTrackProps: (props: any = {}) => ({
+    getInnerTrackProps: (props: Dict = {}) => ({
       ...props,
       style: { ...props.style, ...innerTrackStyle },
     }),
-    getThumbProps: (props: any = {}) => ({
+    getThumbProps: (props: Dict = {}) => ({
       ...props,
       ref: thumbRef,
       role: "slider",
@@ -376,7 +378,7 @@ export function useSlider(props: UseSliderProps) {
       "aria-valuemax": max,
       "aria-valuenow": value,
       "aria-orientation": orientation,
-      "aria-disabled": attr(isDisabled),
+      "aria-disabled": ariaAttr(isDisabled),
       "aria-label": ariaLabel,
       "aria-labelledby": ariaLabel ? undefined : ariaLabelledBy,
       style: { ...props.style, ...thumbStyle },
@@ -384,7 +386,7 @@ export function useSlider(props: UseSliderProps) {
       onFocus: callAllHandlers(props.onFocus, setFocused.on),
       onBlur: callAllHandlers(props.onBlur, setFocused.off),
     }),
-    getMarkerProps: (props: any) => {
+    getMarkerProps: (props: Dict) => {
       const isInRange = !(props.value < min || props.value > max)
       const isHighlighted = value >= props.value
       const markerPercent = valueToPercent(props.value, min, max)
@@ -403,13 +405,13 @@ export function useSlider(props: UseSliderProps) {
         ...props,
         role: "presentation",
         "aria-hidden": true,
-        "data-disabled": attr(isDisabled),
-        "data-invalid": attr(!isInRange),
-        "data-highlighted": attr(isHighlighted),
+        "data-disabled": dataAttr(isDisabled),
+        "data-invalid": dataAttr(!isInRange),
+        "data-highlighted": dataAttr(isHighlighted),
         style: { ...props.style, ...markerStyle },
       }
     },
-    getInputProps: (props: any = {}) => ({
+    getInputProps: (props: Dict = {}) => ({
       ...props,
       type: "hidden",
       value,

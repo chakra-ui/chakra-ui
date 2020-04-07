@@ -34,7 +34,7 @@ export interface UseNumberInputProps extends UseCounterProps {
    *
    * It is used to set the `aria-valuetext` property of the input
    */
-  getAriaValueText?: (value: number | string) => string
+  getAriaValueText?(value: number | string): string
   /**
    * If `true`, the input will be in readonly mode
    */
@@ -52,11 +52,11 @@ export interface UseNumberInputProps extends UseCounterProps {
    * @default parseFloat
    *
    */
-  parse?: (value: string) => number
+  parse?(value: string): number
   /**
    * Specifies the format of the value presented
    */
-  format?: (value: string | number) => string
+  format?(value: string | number): string
   /**
    * decimal separator
    */
@@ -84,9 +84,10 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
 
   const counter = useCounter(props)
 
-  const [isFocused, setFocused] = useBooleanState(false)
+  const [isFocused, setFocused] = useBooleanState()
 
   const inputRef = React.useRef<HTMLInputElement>(null)
+
   const isInteractive = !(isReadOnly || isDisabled)
 
   useUpdateEffect(() => {
@@ -97,20 +98,26 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
 
   const increment = (step = stepProp) => {
     if (!isInteractive) return
+
     let valueToUse = +counter.value
+
     if (isNaN(valueToUse)) {
       valueToUse = min
     }
+
     const nextValue = counter.clamp(valueToUse + step)
     counter.update(nextValue)
   }
 
   const decrement = (step = stepProp) => {
     if (!isInteractive) return
+
     let valueToUse = +counter.value
+
     if (isNaN(valueToUse)) {
       valueToUse = min
     }
+
     const nextValue = counter.clamp(valueToUse - step)
     counter.update(nextValue)
   }
@@ -119,12 +126,13 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
 
   const onChange = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      const { value } = event.target
-      const valueChars = value.split("")
-      const sanitizedValueChars = valueChars.filter(
+      const valueCharacters = event.target.value.split("")
+
+      const sanitizedValueCharacters = valueCharacters.filter(
         isFloatingPointNumericCharacter,
       )
-      const sanitizedValue = sanitizedValueChars.join("")
+
+      const sanitizedValue = sanitizedValueCharacters.join("")
       counter.update(sanitizedValue)
     },
     // eslint-disable-next-line
@@ -174,8 +182,13 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
   }
 
   const validateAndClamp = () => {
-    if (counter.value > max) counter.update(max)
-    if (counter.value < min) counter.update(min)
+    if (counter.value > max) {
+      counter.update(max)
+    }
+
+    if (counter.value < min) {
+      counter.update(min)
+    }
   }
 
   const ariaValueText =
@@ -185,18 +198,13 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
 
   const onBlur = () => {
     setFocused.off()
+
     if (clampValueOnBlur) {
       validateAndClamp()
     }
   }
 
-  type InputProps = {
-    ref?: React.Ref<HTMLInputElement>
-    onFocus?: React.FocusEventHandler<HTMLInputElement>
-    onBlur?: React.FocusEventHandler<HTMLInputElement>
-    onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>
-    onChange?: React.ChangeEventHandler<HTMLInputElement>
-  }
+  type InputProps = React.ComponentPropsWithRef<"input">
 
   type ButtonProps = {
     onMouseDown?: React.MouseEventHandler
@@ -221,13 +229,13 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       onMouseUp: callAllHandlers(props.onMouseUp, spinner.stop),
       disabled: counter.isAtMin,
     }),
-    getInputProps: (props: InputProps = {}) => ({
+    getInputProps: (props: InputProps = {}): InputProps => ({
       ...props,
       ref: mergeRefs(inputRef, props.ref),
       value: counter.value,
       role: "spinbutton",
       type: "text",
-      inputMode: "numeric" as React.InputHTMLAttributes<any>["inputMode"],
+      inputMode: "numeric",
       pattern: "[0-9]*",
       "aria-valuemin": min,
       "aria-valuemax": max,
