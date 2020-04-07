@@ -25,3 +25,7 @@ export type ReactNodeOrRenderProp<P> =
   | ((props: P) => React.ReactNode)
 
 export type Booleanish = boolean | "true" | "false"
+
+export type ObjectOrArray<T, K extends keyof any = keyof any> =
+  | T[]
+  | Record<K, T>
