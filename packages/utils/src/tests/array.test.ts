@@ -147,7 +147,7 @@ test("chunk - 'array: [1, 2, 3, 4], size: 2' should equal [ [ 1, 2 ], [ 3, 4 ] ]
   ])
 })
 
-test(" - 'items: ['Cheese', 'Butter', 'Ice cream'], searchString: ice, itemToString: (item) => (item.toString()), currentItem: Butter' should equal [ [ 1, 2 ], [ 3, 4 ] ]", () => {
+test("getNextItemFromSearch - 'items: ['Cheese', 'Butter', 'Ice cream'], searchString: ice, itemToString: (item) => (item.toString()), currentItem: Butter' should equal [ [ 1, 2 ], [ 3, 4 ] ]", () => {
   expect(
     getNextItemFromSearch(
       ["Cheese", "Butter", "Ice cream"],

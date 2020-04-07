@@ -1,4 +1,3 @@
-// yarn utils test
 import {
   toPrecision,
   countDecimalPlaces,

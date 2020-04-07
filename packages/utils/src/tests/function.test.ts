@@ -1,4 +1,3 @@
-// yarn utils test
 import { runIfFn, callAllHandlers } from "../function"
 
 test("runIfFn - 'valueOrFn: () => 1 + 1' should equal 2", () => {

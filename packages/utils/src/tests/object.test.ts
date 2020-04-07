@@ -1,4 +1,3 @@
-// yarn utils test
 import { omit, pick, split, get, getWithDefault } from "../object"
 
 test("omit - 'object: { a: 1, b: 2 }, keys: ['a']' should equal { b: 2 }", () => {
