@@ -2,42 +2,6 @@ import { SystemProps, TruncateProps } from "@chakra-ui/parser"
 import { ValidHTMLProps } from "./should-forward-prop"
 import { ColorMode } from "@chakra-ui/color-mode"
 
-export interface ComponentTheme {
-  /**
-   * The display name of the component, Pascal cased
-   */
-  name?: string
-  /**
-   * The initial styles to be applied to the component
-   */
-  baseStyle?: object
-  /**
-   * The component's visual style variants
-   */
-  variants?: object
-  /**
-   * The component's size variations
-   */
-  sizes?: object
-  /**
-   * The default props to apply to the component
-   */
-  defaultProps?: {
-    /**
-     * The default variant to use (in variants)
-     */
-    variant?: string
-    /**
-     * The default size to use (in sizes)
-     */
-    size?: string
-    /**
-     * The default color scheme to use (if variants are defined as functions)
-     */
-    colorScheme?: string
-  }
-}
-
 export interface Options<T extends As, P = {}> {
   /**
    * The key of this component in `theme.components`.
@@ -47,7 +11,7 @@ export interface Options<T extends As, P = {}> {
    * Additional props to attach to the component
    * You can use a function to make it dynamic
    */
-  attrs?: ComponentAttrs<T>
+  attrs?: Attrs<T>
   /**
    * Base style object to apply to this component
    * NB: This style is theme-aware so you can use all style props
@@ -64,7 +28,7 @@ export interface Options<T extends As, P = {}> {
    * Useful when using `createChakra` with custom components, or using
    * custom prop name to control component styles.
    */
-  shouldForwardProp?(propName: string): boolean
+  shouldForwardProp?(prop: string): boolean
 }
 
 type ColorModeProps = { colorMode?: ColorMode }
@@ -73,7 +37,7 @@ type BaseStyle<P> =
   | SystemProps
   | ((props: P & ThemingProps & ColorModeProps) => SystemProps)
 
-type ComponentAttrs<T extends As> = PropsOf<T> | ((props: any) => PropsOf<T>)
+type Attrs<T extends As> = PropsOf<T> | ((props: any) => PropsOf<T>)
 
 export type ThemingProps = {
   /**
@@ -83,7 +47,7 @@ export type ThemingProps = {
   variant?: string
   /**
    * The size of the component.
-   * Components can come in differnt sizes.
+   * Components can come in different sizes.
    */
   size?: string
   /**
@@ -124,6 +88,9 @@ export type ChakraProps = SystemProps &
 
 export type As = React.ElementType<any>
 
+/**
+ * Extract the props of a React element or component
+ */
 export type PropsOf<T extends As> = React.ComponentPropsWithRef<T>
 
 export type PropsWithAs<P, T extends As> = P &
@@ -147,8 +114,8 @@ export type ChakraComponent<T extends As, P = {}> = Factory<T, P> & {
  * Extracts the component theming (variant, size) props that
  * should be used.
  *
- * @param T the theme object
- * @param K the theme key of the component
+ * @template T the theme object
+ * @template K the theme key of the component
  */
 export type ExtractThemingProps<
   T extends { components: any },
