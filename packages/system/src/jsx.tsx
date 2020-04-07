@@ -47,7 +47,7 @@ export const jsx = (
  * so it can be accessible anywhere jsx is imported
  */
 declare module "react" {
-  interface DOMAttributes<T> {
+  interface Attributes {
     sx?: SystemStyleObject
   }
 }
