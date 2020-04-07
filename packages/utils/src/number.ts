@@ -33,7 +33,7 @@ export function valueToPercent(value: number, min: number, max: number) {
 }
 
 export function percentToValue(percent: number, min: number, max: number) {
-  return (max - min) * percent + min
+  return (max - min) * (percent / 100) + min
 }
 
 export function roundValueToStep(value: number, step: number) {
