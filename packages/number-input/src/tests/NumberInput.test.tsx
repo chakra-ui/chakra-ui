@@ -22,11 +22,15 @@ function Component(props: NumberInputProps) {
   )
 }
 
-// https://github.com/palantir/blueprint/blob/3aa56473d253f5287e0960759bee367a9ff3e045/packages/core/test/controls/numericInputTests.tsx
+/**
+ * Get some inspiration here
+ * https://github.com/palantir/blueprint/blob/3aa56473d253f5287e0960759bee367a9ff3e045/packages/core/test/controls/numericInputTests.tsx
+ * https://github.com/deberoppa7/react-numeric-input/blob/master/src/index.test.js
+ */
 
 test("it renders correctly", () => {
-  const utils = render(<Component />)
-  expect(utils.asFragment()).toMatchSnapshot()
+  const tools = render(<Component />)
+  expect(tools.asFragment()).toMatchSnapshot()
 })
 
 test("has value of 0 by default", () => {
@@ -35,10 +39,10 @@ test("has value of 0 by default", () => {
 })
 
 test("should increment when I press increment button", () => {
-  const utils = render(<Component />)
+  const tools = render(<Component />)
 
-  const upBtn = utils.getByTestId("up-btn")
-  const input = utils.getByTestId("input")
+  const upBtn = tools.getByTestId("up-btn")
+  const input = tools.getByTestId("input")
 
   userEvent.click(upBtn)
   expect(input).toHaveValue("1")
@@ -49,9 +53,9 @@ test("should increment when I press increment button", () => {
 
 test("should call onChange on value change", () => {
   const onChange = jest.fn()
-  const utils = render(<Component onChange={onChange} />)
+  const tools = render(<Component onChange={onChange} />)
 
-  const upBtn = utils.getByTestId("up-btn")
+  const upBtn = tools.getByTestId("up-btn")
 
   userEvent.click(upBtn)
 
@@ -60,9 +64,9 @@ test("should call onChange on value change", () => {
 })
 
 test("should constrain value onBlur", () => {
-  const utils = render(<Component max={30} />)
+  const tools = render(<Component max={30} />)
 
-  const input = utils.getByTestId("input")
+  const input = tools.getByTestId("input")
 
   userEvent.type(input, "34.50")
   fireEvent.blur(input)

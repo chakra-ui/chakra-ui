@@ -1,12 +1,20 @@
 {
   "name": "@chakra-ui/number-input",
   "version": "0.0.1",
-  "description": "description",
+  "description": "An accessible numeric input alternative to <input type='number' />",
   "keywords": [
     "theme",
     "theming",
-    "ui mode",
-    "ui"
+    "chakra ui",
+    "accessible",
+    "input",
+    "input number",
+    "numeric input",
+    "stepper input",
+    "input",
+    "number",
+    "spinner",
+    "spin button"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
