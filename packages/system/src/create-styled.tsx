@@ -144,6 +144,8 @@ function createStyled<T extends As, P>(component: T, options?: Options<T, P>) {
     // Compute the display name of the final component
     Styled.displayName = getDisplayName(component)
 
+    Styled.defaultProps = (component as any).defaultProps
+
     // [Optimization] users can pass a pure option to memoize this component
     const StyledComponent = options?.pure ? React.memo(Styled) : Styled
 

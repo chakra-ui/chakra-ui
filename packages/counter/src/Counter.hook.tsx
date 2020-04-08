@@ -5,16 +5,15 @@ import {
   maxSafeInteger,
   minSafeInteger,
   toPrecision,
+  StringOrNumber,
 } from "@chakra-ui/utils"
 import * as React from "react"
-
-type StringOrNumber = string | number
 
 export interface UseCounterProps {
   /**
    * The callback fired when the value changes
    */
-  onChange?: (valueAsNumber: number, valueAsString: string) => void
+  onChange?(valueAsString: string, valueAsNumber: number): void
   /**
    * The number of decimal points used to round the value
    */
@@ -65,10 +64,15 @@ export function useCounter(props: UseCounterProps = {}) {
     keepWithinRange = true,
   } = props
 
-  // Let's keep the current here and initialize it with the defaultValue
-  const [valueState, setValue] = React.useState<StringOrNumber>(
-    defaultValue || 0,
-  )
+  const [valueState, setValue] = React.useState<StringOrNumber>(() => {
+    if (!defaultValue) return ""
+
+    const decimalPlaces = getDecimalPlaces(parse(defaultValue), stepProp)
+    const precision = precisionProp ?? decimalPlaces
+
+    const value = parse(defaultValue)
+    return toPrecision(value, precision)
+  })
 
   /**
    * Because the component that consumes this hook can be controlled or uncontrolled
@@ -76,56 +80,37 @@ export function useCounter(props: UseCounterProps = {}) {
    */
   const [isControlled, value] = useControllableProp(valueProp, valueState)
 
+  // let value: StringOrNumber = computedValue
+
+  const decimalPlaces = getDecimalPlaces(parse(value), stepProp)
+
+  const precision = precisionProp ?? decimalPlaces
+
+  // value = toPrecision(value, precision)
+
   /**
    * While the state can be a number/string (due to precision logic)
    * We'll create a state to store only the number value
    */
-  const [valueAsNumber, setValueAsNumber] = React.useState<number>(+value)
+  // const [valueAsNumber, setValueAsNumber] = React.useState<number>(parse(value))
 
-  /**
-   * Get the decimal places from the value or step
-   *
-   * @example If no precision prop was passed and
-   * value = 4, step = 0.01
-   *
-   * Then precision (or decimal places) is 2
-   */
-  const decimalPlaces = Math.max(
-    countDecimalPlaces(stepProp || 1),
-    countDecimalPlaces(+value || 0),
-  )
-
-  const precision = precisionProp || decimalPlaces
-
-  // If we've reached the max and `keepWithinRange` is true
-  // We don't want to fired unnecessary updates, let's store the prev value here
-  const prevValue = React.useRef<StringOrNumber>()
-
-  // Function to update value in state and invoke the `onChange` callback
   const update = React.useCallback(
-    (nextValue: number | string) => {
-      if (prevValue.current == nextValue) return
-
-      if (!isControlled) {
-        setValue(nextValue)
-        // Update number state if it's not the same
-        // "3.", "3.0" and "3" are considered the same
-        const isSameValue = !isNaN(+nextValue) && +nextValue === valueAsNumber
-        if (!isSameValue) setValueAsNumber(+nextValue)
-      }
-      onChange?.(+nextValue, nextValue.toString())
-      prevValue.current = nextValue
+    (next: StringOrNumber) => {
+      if (!isControlled) setValue(next)
+      onChange?.(next.toString(), parse(next))
     },
-    [onChange, valueAsNumber, isControlled],
+    [onChange, isControlled],
   )
 
   // Function to clamp the value and round it to the precision
   const clamp = React.useCallback(
     (value: number) => {
       let nextValue = value
+
       if (keepWithinRange) {
         nextValue = clampValue(nextValue, min, max)
       }
+
       return toPrecision(nextValue, precision)
     },
     [precision, keepWithinRange, max, min],
@@ -133,9 +118,9 @@ export function useCounter(props: UseCounterProps = {}) {
 
   // Function to increment the value based on specified step
   const increment = React.useCallback(
-    (step: number = stepProp) => {
-      let nextValue: string | number = +value + step
-      nextValue = clamp(nextValue)
+    (step = stepProp) => {
+      let nextValue: StringOrNumber = parse(value) + step
+      nextValue = clamp(nextValue as number)
       update(nextValue)
     },
     [clamp, stepProp, update, value],
@@ -143,23 +128,25 @@ export function useCounter(props: UseCounterProps = {}) {
 
   // Function to decrement the value based on specified step
   const decrement = React.useCallback(
-    (step: number = stepProp) => {
-      const nextValue = clamp(+value - step)
+    (step = stepProp) => {
+      let nextValue: StringOrNumber = parse(value) - step
+      nextValue = clamp(nextValue as number)
       update(nextValue)
     },
     [clamp, stepProp, update, value],
   )
 
   // Function to reset the state to the initial value or 0
-  const reset = React.useCallback(() => update(defaultValue || 0), [
-    defaultValue,
-    update,
-  ])
+  const reset = React.useCallback(() => {
+    update(defaultValue ?? 0)
+  }, [defaultValue, update])
+
+  const valueAsNumber = parse(value)
 
   // Common range checks
-  const isOutOfRange = value > max || value < min
-  const isAtMax = value == max
-  const isAtMin = value == min
+  const isOutOfRange = valueAsNumber > max || valueAsNumber < min
+  const isAtMax = valueAsNumber == max
+  const isAtMin = valueAsNumber == min
 
   return {
     isOutOfRange,
@@ -177,3 +164,14 @@ export function useCounter(props: UseCounterProps = {}) {
 }
 
 export type UseCounterReturn = ReturnType<typeof useCounter>
+
+function parse(value: StringOrNumber) {
+  value = value.toString()
+  return parseFloat(value.replace(/[^\w\.-]+/g, ""))
+}
+
+export function getDecimalPlaces(value: number, step: number) {
+  const stepDecimalPlaces = countDecimalPlaces(step || 1)
+  const valueDecimalPlaces = countDecimalPlaces(value || 0)
+  return Math.max(stepDecimalPlaces, valueDecimalPlaces)
+}

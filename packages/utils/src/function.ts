@@ -21,7 +21,7 @@ export function callAllHandlers<T extends (event: any) => void>(
 
 export { default as memoizeOne } from "memoize-one"
 
-export function runOnce(fn?: Function | null) {
+export function once(fn?: Function | null) {
   let result: any
 
   return function(this: any, ...args: any[]) {
