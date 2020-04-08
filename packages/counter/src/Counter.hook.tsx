@@ -66,12 +66,7 @@ export function useCounter(props: UseCounterProps = {}) {
 
   const [valueState, setValue] = React.useState<StringOrNumber>(() => {
     if (!defaultValue) return ""
-
-    const decimalPlaces = getDecimalPlaces(parse(defaultValue), stepProp)
-    const precision = precisionProp ?? decimalPlaces
-
-    const value = parse(defaultValue)
-    return toPrecision(value, precision)
+    return cast(defaultValue, stepProp, precisionProp)
   })
 
   /**
@@ -96,7 +91,9 @@ export function useCounter(props: UseCounterProps = {}) {
 
   const update = React.useCallback(
     (next: StringOrNumber) => {
-      if (!isControlled) setValue(next)
+      if (!isControlled) {
+        setValue(next.toString())
+      }
       onChange?.(next.toString(), parse(next))
     },
     [onChange, isControlled],
@@ -141,6 +138,13 @@ export function useCounter(props: UseCounterProps = {}) {
     update(defaultValue ?? 0)
   }, [defaultValue, update])
 
+  const castValue = React.useCallback(
+    (value: StringOrNumber) => {
+      update(cast(value, stepProp, precision))
+    },
+    [precision, stepProp, update],
+  )
+
   const valueAsNumber = parse(value)
 
   // Common range checks
@@ -160,18 +164,21 @@ export function useCounter(props: UseCounterProps = {}) {
     increment,
     decrement,
     clamp,
+    cast: castValue,
   }
 }
 
 export type UseCounterReturn = ReturnType<typeof useCounter>
 
 function parse(value: StringOrNumber) {
-  value = value.toString()
-  return parseFloat(value.replace(/[^\w\.-]+/g, ""))
+  return parseFloat(value.toString().replace(/[^\w\.-]+/g, ""))
 }
 
-export function getDecimalPlaces(value: number, step: number) {
-  const stepDecimalPlaces = countDecimalPlaces(step || 1)
-  const valueDecimalPlaces = countDecimalPlaces(value || 0)
-  return Math.max(stepDecimalPlaces, valueDecimalPlaces)
+function getDecimalPlaces(value: number, step: number) {
+  return Math.max(countDecimalPlaces(step), countDecimalPlaces(value))
+}
+
+function cast(value: StringOrNumber, step: number, precision?: number) {
+  const decimalPlaces = getDecimalPlaces(parse(value), step)
+  return toPrecision(parse(value), precision ?? decimalPlaces)
 }

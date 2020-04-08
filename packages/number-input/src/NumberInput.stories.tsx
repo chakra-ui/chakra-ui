@@ -23,13 +23,20 @@ export default {
 const Input = chakra("input", { themeKey: "Input" })
 const Button = chakra("button", { themeKey: "Button" })
 
+const format = (num: any) => "$" + num
+const parse = (val: any) => val.replace(/^\$/, "")
+
 export function NumberInputHook() {
+  const [val, setVal] = React.useState<any>("1.53")
+
   const props = {
     step: 0.01,
-    defaultValue: 1.53,
+    // defaultValue: 1.53,
+    value: format(val),
     min: -4,
     max: 6,
-    onChange: console.log,
+    precision: 2,
+    onChange: val => setVal(parse(val)),
   }
 
   const {

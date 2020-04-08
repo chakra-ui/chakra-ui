@@ -1,18 +1,20 @@
+import { useCounter, UseCounterProps } from "@chakra-ui/counter"
+import { useBooleanState } from "@chakra-ui/hooks"
 import {
-  ensureFocus,
-  normalizeEventKey,
   callAllHandlers,
+  Dict,
+  ensureFocus,
   mergeRefs,
+  normalizeEventKey,
+  StringOrNumber,
 } from "@chakra-ui/utils"
 import * as React from "react"
-import { useCounter, UseCounterProps } from "@chakra-ui/counter"
-import { useUpdateEffect, useInterval, useBooleanState } from "@chakra-ui/hooks"
+import { useSpinner } from "./NumberInput.spinner"
 import {
   isFloatingPointNumericCharacter,
   isValidNumericKeyboardEvent,
   parse,
 } from "./NumberInput.utils"
-import { useSpinner } from "./NumberInput.spinner"
 
 export interface UseNumberInputProps extends UseCounterProps {
   /**
@@ -49,10 +51,6 @@ export interface UseNumberInputProps extends UseCounterProps {
    * If `true`, the input will be disabled
    */
   isDisabled?: boolean
-  /**
-   * decimal separator
-   */
-  decimalSeparator?: string
 }
 
 export function useNumberInput(props: UseNumberInputProps = {}) {
@@ -67,7 +65,6 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     isDisabled,
     getAriaValueText,
     isInvalid,
-    decimalSeparator,
     onChange: onChangeProp,
     ...htmlProps
   } = props
@@ -80,49 +77,29 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
 
   const isInteractive = !(isReadOnly || isDisabled)
 
-  useUpdateEffect(() => {
-    if (focusInputOnChange && inputRef.current) {
-      ensureFocus(inputRef.current)
-    }
-  }, [counter.value, focusInputOnChange])
-
   const increment = (step = stepProp) => {
-    if (!isInteractive) return
-
-    let valueToUse = parse(counter.value)
-
-    if (isNaN(valueToUse)) {
-      valueToUse = min
+    if (isInteractive) {
+      counter.increment(step)
     }
-
-    const nextValue = counter.clamp(valueToUse + step)
-    counter.update(nextValue)
   }
 
   const decrement = (step = stepProp) => {
-    if (!isInteractive) return
-
-    let valueToUse = parse(counter.value)
-
-    if (isNaN(valueToUse)) {
-      valueToUse = min
+    if (isInteractive) {
+      counter.decrement(step)
     }
-
-    const nextValue = counter.clamp(valueToUse - step)
-    counter.update(nextValue)
   }
 
   const spinner = useSpinner(increment, decrement)
 
   const onChange = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      const valueCharacters = event.target.value.split("")
+      const characters = event.target.value.split("")
 
-      const sanitizedValueCharacters = valueCharacters.filter(
+      const sanitizedCharacters = characters.filter(
         isFloatingPointNumericCharacter,
       )
 
-      const sanitizedValue = sanitizedValueCharacters.join("")
+      const sanitizedValue = sanitizedCharacters.join("")
       counter.update(sanitizedValue)
     },
     // eslint-disable-next-line
@@ -171,20 +148,24 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     return ratio
   }
 
-  const validateAndClamp = () => {
-    if (counter.value > max) {
-      counter.update(max)
-    }
-
-    if (counter.value < min) {
-      counter.update(min)
-    }
-  }
-
   const ariaValueText =
     typeof getAriaValueText === "function"
       ? getAriaValueText(counter.value)
       : undefined
+
+  const validateAndClamp = () => {
+    let next = counter.value as StringOrNumber
+
+    if (counter.valueAsNumber < min) {
+      next = min
+    }
+
+    if (counter.valueAsNumber > max) {
+      next = max
+    }
+
+    counter.cast(next)
+  }
 
   const onBlur = () => {
     setFocused.off()
@@ -194,11 +175,22 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     }
   }
 
-  type InputProps = React.ComponentPropsWithRef<"input">
+  const focusInput = () => {
+    if (focusInputOnChange && inputRef.current) {
+      ensureFocus(inputRef.current)
+    }
+  }
 
-  type ButtonProps = {
-    onMouseDown?: React.MouseEventHandler
-    onMouseUp?: React.MouseEventHandler
+  const spinUp = (event: React.MouseEvent) => {
+    event.preventDefault()
+    spinner.up()
+    focusInput()
+  }
+
+  const spinDown = (event: React.MouseEvent) => {
+    event.preventDefault()
+    spinner.down()
+    focusInput()
   }
 
   return {
@@ -207,19 +199,19 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     isFocused,
     isDisabled,
     isReadOnly,
-    getIncrementButtonProps: (props: ButtonProps = {}) => ({
+    getIncrementButtonProps: (props: Dict = {}) => ({
       ...props,
-      onMouseDown: callAllHandlers(props.onMouseDown, spinner.up),
+      onMouseDown: callAllHandlers(props.onMouseDown, spinUp),
       onMouseUp: callAllHandlers(props.onMouseUp, spinner.stop),
-      disabled: counter.isAtMax,
+      disabled: keepWithinRange && counter.isAtMax,
     }),
-    getDecrementButtonProps: (props: ButtonProps = {}) => ({
+    getDecrementButtonProps: (props: Dict = {}) => ({
       ...props,
-      onMouseDown: callAllHandlers(props.onMouseDown, spinner.down),
+      onMouseDown: callAllHandlers(props.onMouseDown, spinDown),
       onMouseUp: callAllHandlers(props.onMouseUp, spinner.stop),
-      disabled: counter.isAtMin,
+      disabled: keepWithinRange && counter.isAtMin,
     }),
-    getInputProps: (props: InputProps = {}) => ({
+    getInputProps: (props: Dict = {}) => ({
       ...props,
       ref: mergeRefs(inputRef, props.ref),
       value: counter.value,
