@@ -13,7 +13,6 @@ import { useSpinner } from "./NumberInput.spinner"
 import {
   isFloatingPointNumericCharacter,
   isValidNumericKeyboardEvent,
-  parse,
 } from "./NumberInput.utils"
 
 export interface UseNumberInputProps extends UseCounterProps {
@@ -38,7 +37,7 @@ export interface UseNumberInputProps extends UseCounterProps {
    *
    * It is used to set the `aria-valuetext` property of the input
    */
-  getAriaValueText?(value: number | string): string
+  getAriaValueText?(value: StringOrNumber): string
   /**
    * If `true`, the input will be in readonly mode
    */
@@ -53,6 +52,16 @@ export interface UseNumberInputProps extends UseCounterProps {
   isDisabled?: boolean
 }
 
+/**
+ * React hook that implements the WAI-ARIA Spin Button widget
+ * and used to create numeric input fields.
+ *
+ * It returns prop getters you can use to build your own
+ * custom number inputs.
+ *
+ * @see WAI-ARIA https://www.w3.org/TR/wai-aria-practices-1.1/#spinbutton
+ * @see Docs     https://www.chakra-ui.com/useNumberInput
+ */
 export function useNumberInput(props: UseNumberInputProps = {}) {
   const {
     focusInputOnChange = true,
@@ -69,8 +78,18 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     ...htmlProps
   } = props
 
+  /**
+   * Leverage the `useCounter` hook since it provides
+   * the functionality to `increment`, `decrement` and `update`
+   * counter values
+   */
   const counter = useCounter(props)
 
+  /**
+   * Keep track of the focused state of the input,
+   * so user can this to change the styles of the
+   * `spinners`, maybe :)
+   */
   const [isFocused, setFocused] = useBooleanState()
 
   const inputRef = React.useRef<HTMLInputElement>(null)
@@ -89,40 +108,54 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     }
   }
 
+  /**
+   * Leverage the `useSpinner` hook to spin the input's value
+   * when long press on the up and down buttons.
+   *
+   * This leverages `setInterval` internally
+   */
   const spinner = useSpinner(increment, decrement)
 
-  const onChange = React.useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const characters = event.target.value.split("")
-
-      const sanitizedCharacters = characters.filter(
-        isFloatingPointNumericCharacter,
-      )
-
-      const sanitizedValue = sanitizedCharacters.join("")
-      counter.update(sanitizedValue)
-    },
-    // eslint-disable-next-line
-    [counter.update],
-  )
+  /**
+   * The `onChange` handler filters out any character typed
+   * that isn't floating point compatible.
+   */
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const characters = event.target.value
+      .split("")
+      .filter(isFloatingPointNumericCharacter)
+      .join("")
+    counter.update(characters)
+  }
 
   const onKeyDown = (event: React.KeyboardEvent) => {
+    /**
+     * only allow valid numeric keys
+     */
     if (!isValidNumericKeyboardEvent(event)) {
       event.preventDefault()
     }
 
+    /**
+     * Keyboard Accessibility
+     *
+     * We want to increase or decrease the input's value
+     * based on if the user the arrow keys.
+     *
+     * @see https://www.w3.org/TR/wai-aria-practices-1.1/#keyboard-interaction-17
+     */
+    const stepFactor = getStepFactor(event) * stepProp
+
     const eventKey = normalizeEventKey(event)
-    const factor = getIncrementFactor(event)
-    const valueStep = factor * stepProp
 
     switch (eventKey) {
       case "ArrowUp":
         event.preventDefault()
-        increment(valueStep)
+        increment(stepFactor)
         break
       case "ArrowDown":
         event.preventDefault()
-        decrement(valueStep)
+        decrement(stepFactor)
         break
       case "Home":
         event.preventDefault()
@@ -137,7 +170,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     }
   }
 
-  const getIncrementFactor = (event: React.KeyboardEvent) => {
+  const getStepFactor = (event: React.KeyboardEvent) => {
     let ratio = 1
     if (event.metaKey || event.ctrlKey) {
       ratio = 0.1
@@ -148,13 +181,22 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     return ratio
   }
 
-  const ariaValueText =
-    typeof getAriaValueText === "function"
-      ? getAriaValueText(counter.value)
-      : undefined
+  /**
+   * If user would like to use a human-readable representation
+   * of the value, rather than the value itself they can pass `getAriaValueText`
+   *
+   * @see https://www.w3.org/TR/wai-aria-practices-1.1/#wai-aria-roles-states-and-properties-18
+   * @see https://www.w3.org/TR/wai-aria-1.1/#aria-valuetext
+   */
+  const ariaValueText = getAriaValueText?.(counter.value)
 
+  /**
+   * Function that clamps the input's value on blur
+   */
   const validateAndClamp = () => {
     let next = counter.value as StringOrNumber
+
+    if (next === "") return
 
     if (counter.valueAsNumber < min) {
       next = min
@@ -164,6 +206,12 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       next = max
     }
 
+    /**
+     * `counter.cast` does 2 things:
+     *
+     * - sanitize the value by using parseFloat and some Regex
+     * - used to round value to computed precision or decimal points
+     */
     counter.cast(next)
   }
 
@@ -201,15 +249,27 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     isReadOnly,
     getIncrementButtonProps: (props: Dict = {}) => ({
       ...props,
+      role: "button",
+      tabIndex: -1,
       onMouseDown: callAllHandlers(props.onMouseDown, spinUp),
       onMouseUp: callAllHandlers(props.onMouseUp, spinner.stop),
+      onMouseLeave: callAllHandlers(props.onMouseUp, spinner.stop),
+      onTouchStart: callAllHandlers(props.onTouchStart, spinUp),
+      onTouchEnd: callAllHandlers(props.onTouchEnd, spinner.stop),
       disabled: keepWithinRange && counter.isAtMax,
+      "aria-disabled": keepWithinRange && counter.isAtMax,
     }),
     getDecrementButtonProps: (props: Dict = {}) => ({
       ...props,
+      role: "button",
+      tabIndex: -1,
       onMouseDown: callAllHandlers(props.onMouseDown, spinDown),
+      onMouseLeave: callAllHandlers(props.onMouseUp, spinner.stop),
       onMouseUp: callAllHandlers(props.onMouseUp, spinner.stop),
+      onTouchStart: callAllHandlers(props.onTouchStart, spinDown),
+      onTouchEnd: callAllHandlers(props.onTouchEnd, spinner.stop),
       disabled: keepWithinRange && counter.isAtMin,
+      "aria-disabled": keepWithinRange && counter.isAtMin,
     }),
     getInputProps: (props: Dict = {}) => ({
       ...props,

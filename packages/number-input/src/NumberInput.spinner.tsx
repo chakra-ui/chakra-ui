@@ -3,20 +3,27 @@ import * as React from "react"
 
 /**
  * When click and hold on a button - the speed of auto changing the value.
- * This is a static property and can be modified if needed.
  */
 const CONTINUOUS_CHANGE_INTERVAL = 50
 
 /**
  * When click and hold on a button - the delay before auto changing the value.
- * This is a static property and can be modified if needed.
  */
 const CONTINUOUS_CHANGE_DELAY = 300
 
-export function useSpinner(increment: Function, decrement: Function) {
-  type Action = "increment" | "decrement"
+type Action = "increment" | "decrement"
 
-  // To keep incrementing/decrementing on mousedown, we call that `spinning`
+/**
+ * React hook used in the number input to spin it's
+ * value on long press of the spin buttons
+ *
+ * @param increment the function to increment
+ * @param decrement the function to decrement
+ */
+export function useSpinner(increment: Function, decrement: Function) {
+  /**
+   * To keep incrementing/decrementing on press, we call that `spinning`
+   */
   const [isSpinning, setIsSpinning] = React.useState(false)
 
   // This state keeps track of the action ("increment" or "decrement")
@@ -50,7 +57,9 @@ export function useSpinner(increment: Function, decrement: Function) {
   // Function to activate the spinning and increment the value
   const up = React.useCallback(() => {
     // increment the first fime
-    if (runOnce) increment()
+    if (runOnce) {
+      increment()
+    }
 
     // after a delay, keep incrementing at interval ("spinning up")
     timeoutRef.current = setTimeout(() => {
@@ -63,7 +72,9 @@ export function useSpinner(increment: Function, decrement: Function) {
   // Function to activate the spinning and increment the value
   const down = React.useCallback(() => {
     // decrement the first fime
-    if (runOnce) decrement()
+    if (runOnce) {
+      decrement()
+    }
 
     // after a delay, keep decrementing at interval ("spinning down")
     timeoutRef.current = setTimeout(() => {

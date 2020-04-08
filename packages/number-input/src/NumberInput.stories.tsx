@@ -33,7 +33,7 @@ export function NumberInputHook() {
     step: 0.01,
     // defaultValue: 1.53,
     value: format(val),
-    min: -4,
+    min: 1,
     max: 6,
     precision: 2,
     onChange: val => setVal(parse(val)),
@@ -62,38 +62,12 @@ export function NumberInputHook() {
   )
 }
 
-const styles: Record<string, React.CSSProperties> = {
-  root: {
-    position: "relative",
-  },
-  field: {
-    backgroundColor: "black",
-    color: "white",
-    width: "100%",
-    padding: 10,
-  },
-  group: {
-    display: "flex",
-    flexDirection: "column",
-    position: "absolute",
-    top: 0,
-    right: 0,
-  },
-  button: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    width: 20,
-    height: 20,
-  },
-}
-
 export const Base = () => (
-  <NumberInput style={styles.root}>
-    <NumberInputField style={styles.field} />
-    <NumberInputStepper style={styles.group}>
-      <NumberIncrementStepper children="+" style={styles.button} />
-      <NumberDecrementStepper children="-" style={styles.button} />
+  <NumberInput max={50} min={10}>
+    <NumberInputField />
+    <NumberInputStepper>
+      <NumberIncrementStepper />
+      <NumberDecrementStepper />
     </NumberInputStepper>
   </NumberInput>
 )

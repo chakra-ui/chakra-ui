@@ -1,6 +1,6 @@
-import { ArrowDownIcon, ArrowUpIcon } from "@chakra-ui/icons"
-import { chakra, PropsOf, SystemProps, ThemingProps } from "@chakra-ui/system"
-import { createContext } from "@chakra-ui/utils"
+import { TriangleDownIcon, TriangleUpIcon } from "@chakra-ui/icons"
+import { chakra, PropsOf, ThemingProps } from "@chakra-ui/system"
+import { createContext, __DEV__ } from "@chakra-ui/utils"
 import React from "react"
 import {
   useNumberInput,
@@ -12,7 +12,12 @@ type NumberInputContext = Omit<UseNumberInputReturn, "htmlProps"> & ThemingProps
 
 const [NumberInputContextProvider, useNumberInputContext] = createContext<
   NumberInputContext
->()
+>({
+  name: "NumberInputContext",
+  strict: true,
+  errorMessage:
+    "[Chakra UI]: `useNumberInputContext` must be used within `NumberInputContextProvider` ",
+})
 
 export type NumberInputProps = UseNumberInputProps &
   Omit<PropsOf<typeof StyledRoot>, "onChange" | "value" | "defaultValue">
@@ -27,16 +32,25 @@ const StyledRoot = chakra("div", {
 export const NumberInput = React.forwardRef(
   (props: NumberInputProps, ref: React.Ref<HTMLDivElement>) => {
     const { htmlProps, ...context } = useNumberInput(props)
+
     const { variant, size, colorScheme } = props
+
+    const contextValue = React.useMemo(
+      () => ({ ...context, variant, size, colorScheme }),
+      [colorScheme, context, size, variant],
+    )
+
     return (
-      <NumberInputContextProvider
-        value={{ ...context, variant, size, colorScheme }}
-      >
+      <NumberInputContextProvider value={contextValue}>
         <StyledRoot ref={ref} data-chakra-numberinput="" {...htmlProps} />
       </NumberInputContextProvider>
     )
   },
 )
+
+if (__DEV__) {
+  NumberInput.displayName = "NumberInput"
+}
 
 export const StyledStepperGroup = chakra("div", {
   themeKey: "NumberInput.StepperGroup",
@@ -62,6 +76,10 @@ export const NumberInputStepper = React.forwardRef(
     )
   },
 )
+
+if (__DEV__) {
+  NumberInputStepper.displayName = "NumberInputStepper"
+}
 
 interface InputOptions {
   /**
@@ -101,11 +119,12 @@ export const NumberInputField = React.forwardRef(
       size,
       colorScheme,
     } = useNumberInputContext()
+
     return (
       <StyledInput
         variant={variant}
-        //@ts-ignore
-        size={size as any}
+        //@ts-ignore `size` is a valid `input` prop and it clashes with the size theming prop.
+        size={size}
         colorScheme={colorScheme}
         data-chakra-numberinput-input=""
         {...getInputProps({ ...props, ref })}
@@ -114,28 +133,25 @@ export const NumberInputField = React.forwardRef(
   },
 )
 
-NumberInputField.defaultProps = {
-  focusBorderColor: "blue.500",
-  errorBorderColor: "red.500",
+if (__DEV__) {
+  NumberInputField.displayName = "NumberInputField"
 }
 
-const baseStyle: SystemProps = {
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  flex: 1,
-  transition: "all 0.3s",
-  userSelect: "none",
-  cursor: "pointer",
-  lineHeight: "normal",
-}
-
-export const StyledDecrementButton = chakra("div", {
+export const StyledStepper = chakra("div", {
   themeKey: "NumberInput.Stepper",
-  baseStyle: baseStyle,
+  baseStyle: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flex: 1,
+    transition: "all 0.3s",
+    userSelect: "none",
+    cursor: "pointer",
+    lineHeight: "normal",
+  },
 })
 
-export type NumberDecrementStepperProps = PropsOf<typeof StyledDecrementButton>
+export type NumberDecrementStepperProps = PropsOf<typeof StyledStepper>
 
 export const NumberDecrementStepper = React.forwardRef(
   (props: NumberDecrementStepperProps, ref: React.Ref<any>) => {
@@ -146,27 +162,24 @@ export const NumberDecrementStepper = React.forwardRef(
       colorScheme,
     } = useNumberInputContext()
     return (
-      <StyledDecrementButton
+      <StyledStepper
         variant={variant}
         size={size}
         colorScheme={colorScheme}
         data-chakra-numberinput-decrement=""
-        {...getDecrementButtonProps({ ...props, ref } as any)}
-      />
+        {...getDecrementButtonProps({ ...props, ref })}
+      >
+        {props.children ?? <TriangleDownIcon />}
+      </StyledStepper>
     )
   },
 )
 
-NumberDecrementStepper.defaultProps = {
-  children: <ArrowDownIcon />,
+if (__DEV__) {
+  NumberDecrementStepper.displayName = "NumberDecrementStepper"
 }
 
-const StyledIncrementButton = chakra("div", {
-  themeKey: "NumberInput.Stepper",
-  baseStyle: baseStyle,
-})
-
-export type NumberIncrementStepperProps = PropsOf<typeof StyledIncrementButton>
+export type NumberIncrementStepperProps = PropsOf<typeof StyledStepper>
 
 export const NumberIncrementStepper = React.forwardRef(
   (props: NumberIncrementStepperProps, ref: React.Ref<any>) => {
@@ -176,18 +189,21 @@ export const NumberIncrementStepper = React.forwardRef(
       size,
       colorScheme,
     } = useNumberInputContext()
+
     return (
-      <StyledIncrementButton
+      <StyledStepper
         variant={variant}
         size={size}
         colorScheme={colorScheme}
         data-chakra-numberinput-decrement=""
-        {...getIncrementButtonProps({ ...props, ref } as any)}
-      />
+        {...getIncrementButtonProps({ ...props, ref })}
+      >
+        {props.children ?? <TriangleUpIcon />}
+      </StyledStepper>
     )
   },
 )
 
-NumberIncrementStepper.defaultProps = {
-  children: <ArrowUpIcon />,
+if (__DEV__) {
+  NumberIncrementStepper.displayName = "NumberIncrementStepper"
 }
