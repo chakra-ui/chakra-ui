@@ -1,7 +1,7 @@
 /**@jsx jsx */
 import { jsx, css } from "@emotion/core";
 import React from "react";
-import { useTheme } from "@chakra-ui/core";
+import { useTheme, useColorMode } from "@chakra-ui/core";
 
 function loadScript(src, container) {
   const script = document.createElement("script");
@@ -18,6 +18,9 @@ function CarbonAd() {
   const ref = React.useRef(null);
 
   const theme = useTheme();
+  const { colorMode } = useColorMode();
+
+  const bg = { light: theme.colors.gray[50], dark: "rgba(36, 70, 93, 0.32)" };
 
   const carbonAd = css`
     display: block;
@@ -26,8 +29,8 @@ function CarbonAd() {
     max-width: 480px;
     min-height: 132px;
     border-radius: ${theme.radii.sm};
-    background-color: ${theme.colors.gray[50]};
-    color: ${theme.colors.gray[800]};
+    background-color: ${bg[colorMode]};
+    color: inherit;
 
     @media (max-width: 480px) {
       font-size: 0.875em;

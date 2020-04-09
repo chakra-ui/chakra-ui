@@ -10,7 +10,7 @@ const GitHubButton = () => (
     data-icon="octicon-star"
     data-size="large"
     data-show-count="true"
-    aria-label="Star chakra-ui/chakra-ui on GitHub"
+    aria-label="Star Chakra UI on GitHub"
   >
     Star
   </Box>

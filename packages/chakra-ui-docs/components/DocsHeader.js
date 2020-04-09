@@ -8,11 +8,13 @@ import {
   InputLeftElement,
   IconButton,
   useColorMode,
+  PseudoBox,
 } from "@chakra-ui/core";
 import { jsx, css } from "@emotion/core";
 import { DiGithubBadge } from "react-icons/di";
 import Logo from "./Logo";
 import MobileNav from "./MobileNav";
+import SponsorButton from "./SponsorButton";
 
 const styles = css`
   .algolia-autocomplete {
@@ -40,24 +42,56 @@ const SearchBox = props => (
   </InputGroup>
 );
 
+const Header = props => (
+  <Box
+    pos="fixed"
+    as="header"
+    top="0"
+    zIndex="4"
+    left="0"
+    right="0"
+    borderBottomWidth="1px"
+    width="full"
+    height="4rem"
+    {...props}
+  />
+);
+
+const GithubLink = props => (
+  <PseudoBox
+    as="a"
+    href="https://github.com/chakra-ui/chakra-ui/tree/master/packages/chakra-ui"
+    rel="noopener noreferrer"
+    target="_blank"
+    aria-label="Go to Chakra UI's Github Repo"
+    outline="0"
+    transition="all 0.2s"
+    borderRadius="md"
+    _focus={{
+      boxShadow: "outline",
+    }}
+    {...props}
+  >
+    <Box as={DiGithubBadge} size="8" color="current" />
+  </PseudoBox>
+);
+
+const ThemeSwitch = props => (
+  <IconButton
+    variant="ghost"
+    color="current"
+    ml="2"
+    fontSize="20px"
+    {...props}
+  />
+);
+
 const DocsHeader = props => {
   const { colorMode, toggleColorMode } = useColorMode();
   const bg = { light: "white", dark: "gray.800" };
   return (
-    <Box
-      pos="fixed"
-      as="header"
-      top="0"
-      zIndex="4"
-      bg={bg[colorMode]}
-      left="0"
-      right="0"
-      borderBottomWidth="1px"
-      width="full"
-      height="4rem"
-      {...props}
-    >
-      <Flex size="100%" px="6" align="center">
+    <Header bg={bg[colorMode]} {...props}>
+      <Flex size="100%" px="6" align="center" justify="space-between">
         <Flex align="center" mr={5}>
           <Box
             as="a"
@@ -68,13 +102,13 @@ const DocsHeader = props => {
             <Logo />
           </Box>
         </Flex>
-        <SearchBox
+        {/* <SearchBox
           display={{ sm: "none", md: "block" }}
           maxWidth="2xl"
           visibility="hidden"
           mx="auto"
           flex="1"
-        />
+        /> */}
         <Flex
           flex={{ sm: "1", md: "none" }}
           ml={5}
@@ -82,29 +116,20 @@ const DocsHeader = props => {
           color="gray.500"
           justify="flex-end"
         >
-          <Box
-            as="a"
-            href="https://github.com/chakra-ui/chakra-ui/tree/master/packages/chakra-ui"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <Box as={DiGithubBadge} size="8" color="current" />
-          </Box>
-          <IconButton
+          <SponsorButton />
+          <GithubLink />
+          <ThemeSwitch
             aria-label={`Switch to ${
               colorMode === "light" ? "dark" : "light"
             } mode`}
-            variant="ghost"
-            color="current"
-            ml="2"
-            fontSize="20px"
             onClick={toggleColorMode}
             icon={colorMode === "light" ? "moon" : "sun"}
           />
+
           <MobileNav />
         </Flex>
       </Flex>
-    </Box>
+    </Header>
   );
 };
 

@@ -40,6 +40,7 @@ const MobileNav = () => {
         variant="ghost"
         icon={MdDehaze}
         onClick={onToggle}
+        marginRight="-16px"
       />
       <Drawer size="xs" isOpen={isOpen} placement="left" onClose={onClose}>
         <DrawerOverlay />
