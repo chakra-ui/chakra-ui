@@ -1,24 +1,33 @@
-import { userEvent, render, renderHook, fireEvent } from "@chakra-ui/test-utils"
+import {
+  axe,
+  fireEvent,
+  render,
+  renderHook,
+  userEvent,
+} from "@chakra-ui/test-utils"
 import * as React from "react"
 import {
-  NumberInput,
-  NumberInputField,
   NumberDecrementStepper,
   NumberIncrementStepper,
-  NumberInputStepper,
+  NumberInput,
+  NumberInputField,
   NumberInputProps,
+  NumberInputStepper,
   useNumberInput,
 } from ".."
 
-function Component(props: NumberInputProps) {
-  return (
-    <NumberInput data-testid="root" {...props}>
-      <NumberInputField data-testid="input" />
-      <NumberInputStepper data-testid="group">
-        <NumberIncrementStepper children="+" data-testid="up-btn" />
-        <NumberDecrementStepper children="-" data-testid="down-btn" />
-      </NumberInputStepper>
-    </NumberInput>
+function renderComponent(props: NumberInputProps = {}) {
+  return render(
+    <>
+      <label htmlFor="input">Select number:</label>
+      <NumberInput id="input" data-testid="root" {...props}>
+        <NumberInputField data-testid="input" />
+        <NumberInputStepper data-testid="group">
+          <NumberIncrementStepper children="+" data-testid="up-btn" />
+          <NumberDecrementStepper children="-" data-testid="down-btn" />
+        </NumberInputStepper>
+      </NumberInput>
+    </>,
   )
 }
 
@@ -28,48 +37,71 @@ function Component(props: NumberInputProps) {
  * https://github.com/deberoppa7/react-numeric-input/blob/master/src/index.test.js
  */
 
-test("it renders correctly", () => {
-  const tools = render(<Component />)
+test("should render correctly", () => {
+  const tools = renderComponent()
   expect(tools.asFragment()).toMatchSnapshot()
 })
 
-test("has value of 0 by default", () => {
-  const { result } = renderHook(() => useNumberInput())
-  expect(result.current.value).toBe(0)
+test("should have no acessibility violations", async () => {
+  const tools = renderComponent()
+  const result = await axe(tools.container)
+  expect(result).toHaveNoViolations()
 })
 
-test("should increment when I press increment button", () => {
-  const tools = render(<Component />)
+test("should start with empty string", () => {
+  const { result } = renderHook(() => useNumberInput())
+  expect(result.current.value).toBe("")
+})
+
+test("should increment on press increment button", () => {
+  const tools = renderComponent()
 
   const upBtn = tools.getByTestId("up-btn")
   const input = tools.getByTestId("input")
 
-  userEvent.click(upBtn)
+  fireEvent.mouseDown(upBtn)
+  // since the input's value is empty, this will set it to `step`
+  // which is `1` by default
   expect(input).toHaveValue("1")
 
-  userEvent.dblClick(upBtn)
-  expect(input).toHaveValue("3")
+  fireEvent.mouseDown(upBtn)
+  expect(input).toHaveValue("2")
 })
 
 test("should call onChange on value change", () => {
   const onChange = jest.fn()
-  const tools = render(<Component onChange={onChange} />)
+  const tools = renderComponent({ onChange })
 
   const upBtn = tools.getByTestId("up-btn")
 
   userEvent.click(upBtn)
 
   expect(onChange).toBeCalled()
-  expect(onChange).toBeCalledWith(1, "1")
+  expect(onChange).toBeCalledWith("1", 1)
 })
 
 test("should constrain value onBlur", () => {
-  const tools = render(<Component max={30} />)
+  const tools = renderComponent({ max: 30 })
 
   const input = tools.getByTestId("input")
 
-  userEvent.type(input, "34.50")
+  userEvent.type(input, "34.55")
+
+  // value is beyond max so it should reset to `max`
   fireEvent.blur(input)
 
-  expect(input).toHaveValue("30")
+  expect(input).toHaveValue("30.00")
+})
+
+test("should focus input on spin", () => {
+  const tools = renderComponent()
+
+  const input = tools.getByTestId("input")
+  const upBtn = tools.getByTestId("up-btn")
+
+  fireEvent.mouseDown(upBtn)
+  expect(input).toHaveValue("1")
+
+  // for some reason, .toHaveFocus assertion doesn't work
+  expect(tools.getByTestId("input")).toEqual(document.activeElement)
 })

@@ -43,9 +43,11 @@ export interface UseCounterProps {
   max?: number
   /**
    * This controls the value update behavior in general.
+   *
    * - If `true` and you use the stepper or up/down arrow keys,
    *  the value will not exceed the `max` or go lower than `min`
-   * - Else, the value will be allowed to go out of range.
+   *
+   * - If `false`, the value will be allowed to go out of range.
    *
    * @default true
    */
@@ -65,7 +67,7 @@ export function useCounter(props: UseCounterProps = {}) {
   } = props
 
   const [valueState, setValue] = React.useState<StringOrNumber>(() => {
-    if (!defaultValue) return ""
+    if (defaultValue == null) return ""
     return cast(defaultValue, stepProp, precisionProp)
   })
 
@@ -75,19 +77,9 @@ export function useCounter(props: UseCounterProps = {}) {
    */
   const [isControlled, value] = useControllableProp(valueProp, valueState)
 
-  // let value: StringOrNumber = computedValue
-
   const decimalPlaces = getDecimalPlaces(parse(value), stepProp)
 
   const precision = precisionProp ?? decimalPlaces
-
-  // value = toPrecision(value, precision)
-
-  /**
-   * While the state can be a number/string (due to precision logic)
-   * We'll create a state to store only the number value
-   */
-  // const [valueAsNumber, setValueAsNumber] = React.useState<number>(parse(value))
 
   const update = React.useCallback(
     (next: StringOrNumber) => {
@@ -113,30 +105,56 @@ export function useCounter(props: UseCounterProps = {}) {
     [precision, keepWithinRange, max, min],
   )
 
-  // Function to increment the value based on specified step
   const increment = React.useCallback(
     (step = stepProp) => {
-      let nextValue: StringOrNumber = parse(value) + step
-      nextValue = clamp(nextValue as number)
-      update(nextValue)
+      let next: StringOrNumber
+
+      /**
+       * Let's follow the native browser behavior for
+       * scenarios where the input starts empty ("")
+       */
+      if (value === "") {
+        /**
+         * If `min` is set, native input, starts at the `min`.
+         * Else, it starts at `step`
+         */
+        next = props.min?.toString() ?? parse("0") + step
+      } else {
+        next = parse(value) + step
+      }
+
+      next = clamp(next as number)
+      update(next)
     },
-    [clamp, stepProp, update, value],
+    [clamp, stepProp, update, value, props.min],
   )
 
-  // Function to decrement the value based on specified step
   const decrement = React.useCallback(
     (step = stepProp) => {
-      let nextValue: StringOrNumber = parse(value) - step
-      nextValue = clamp(nextValue as number)
-      update(nextValue)
+      let next: StringOrNumber
+
+      // Same thing here. We'll follow native implementation
+      if (value === "") {
+        next = props.min?.toString() ?? parse("0") - step
+      } else {
+        next = parse(value) - step
+      }
+
+      next = clamp(next as number)
+      update(next)
     },
-    [clamp, stepProp, update, value],
+    [clamp, stepProp, update, value, props.min],
   )
 
-  // Function to reset the state to the initial value or 0
   const reset = React.useCallback(() => {
-    update(defaultValue ?? 0)
-  }, [defaultValue, update])
+    let next: StringOrNumber
+    if (defaultValue == null) {
+      next = ""
+    } else {
+      next = cast(defaultValue, stepProp, precisionProp)
+    }
+    update(next)
+  }, [defaultValue, precisionProp, stepProp, update])
 
   const castValue = React.useCallback(
     (value: StringOrNumber) => {
@@ -147,7 +165,9 @@ export function useCounter(props: UseCounterProps = {}) {
 
   const valueAsNumber = parse(value)
 
-  // Common range checks
+  /**
+   * Common range checks
+   */
   const isOutOfRange = valueAsNumber > max || valueAsNumber < min
   const isAtMax = valueAsNumber == max
   const isAtMin = valueAsNumber == min

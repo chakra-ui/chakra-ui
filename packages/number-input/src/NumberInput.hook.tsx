@@ -7,6 +7,9 @@ import {
   mergeRefs,
   normalizeEventKey,
   StringOrNumber,
+  ariaAttr,
+  minSafeInteger,
+  maxSafeInteger,
 } from "@chakra-ui/utils"
 import * as React from "react"
 import { useSpinner } from "./NumberInput.spinner"
@@ -50,6 +53,10 @@ export interface UseNumberInputProps extends UseCounterProps {
    * If `true`, the input will be disabled
    */
   isDisabled?: boolean
+  /**
+   * The `id` to use for the number input field.
+   */
+  id?: string
 }
 
 /**
@@ -61,20 +68,22 @@ export interface UseNumberInputProps extends UseCounterProps {
  *
  * @see WAI-ARIA https://www.w3.org/TR/wai-aria-practices-1.1/#spinbutton
  * @see Docs     https://www.chakra-ui.com/useNumberInput
+ * @see WHATWG   https://html.spec.whatwg.org/multipage/input.html#number-state-(type=number)
  */
 export function useNumberInput(props: UseNumberInputProps = {}) {
   const {
     focusInputOnChange = true,
     clampValueOnBlur = true,
     keepWithinRange = true,
-    min = -Infinity,
-    max = Infinity,
+    min = minSafeInteger,
+    max = maxSafeInteger,
     step: stepProp = 1,
     isReadOnly,
     isDisabled,
     getAriaValueText,
     isInvalid,
     onChange: onChangeProp,
+    id,
     ...htmlProps
   } = props
 
@@ -257,7 +266,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       onTouchStart: callAllHandlers(props.onTouchStart, spinUp),
       onTouchEnd: callAllHandlers(props.onTouchEnd, spinner.stop),
       disabled: keepWithinRange && counter.isAtMax,
-      "aria-disabled": keepWithinRange && counter.isAtMax,
+      "aria-disabled": ariaAttr(keepWithinRange && counter.isAtMax),
     }),
     getDecrementButtonProps: (props: Dict = {}) => ({
       ...props,
@@ -269,10 +278,11 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       onTouchStart: callAllHandlers(props.onTouchStart, spinDown),
       onTouchEnd: callAllHandlers(props.onTouchEnd, spinner.stop),
       disabled: keepWithinRange && counter.isAtMin,
-      "aria-disabled": keepWithinRange && counter.isAtMin,
+      "aria-disabled": ariaAttr(keepWithinRange && counter.isAtMin),
     }),
     getInputProps: (props: Dict = {}) => ({
       ...props,
+      id,
       ref: mergeRefs(inputRef, props.ref),
       value: counter.value,
       role: "spinbutton",
@@ -282,7 +292,9 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       "aria-valuemin": min,
       "aria-valuemax": max,
       "aria-disabled": isDisabled,
-      "aria-valuenow": counter.valueAsNumber,
+      "aria-valuenow": isNaN(counter.valueAsNumber)
+        ? undefined
+        : counter.valueAsNumber,
       "aria-invalid": isInvalid || counter.isOutOfRange,
       "aria-valuetext": ariaValueText,
       readOnly: isReadOnly,
