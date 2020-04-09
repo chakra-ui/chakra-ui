@@ -2,7 +2,7 @@
 
 ## Changes
 
-Checkbox
+### Checkbox
 
 - Support for the `variantColor` prop has been deprecated. Use `colorScheme`
   prop instead.
@@ -20,7 +20,7 @@ For example, `<Checkbox colorScheme="blue">Option</Checkbox>`
 - Support for the `isFullWidth` prop has been deprecated. The Checkbox takes up
   the width of the parent by default.
 
-CheckboxGroup
+### CheckboxGroup
 
 - To reduce the API surface, we're deprecating the `isInline` prop in favor of
   `direction` prop for the orientation of the checkbox group
@@ -45,7 +45,7 @@ CheckboxGroup
 
 ## Features
 
-Checkbox
+### Checkbox
 
 - Support for `iconColor` prop to customize the color of the check icon
 
@@ -69,7 +69,7 @@ Checkbox
 - The `useCheckbox` hook is exported with state and focus management logic for
   use in creating tailor-made checkbox component for your application
 
-CheckboxGroup
+### CheckboxGroup
 
 - Support for `spacing` prop to customize the space between the children
   checkboxes

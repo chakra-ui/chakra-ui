@@ -177,7 +177,11 @@ export function useTooltip(props: UseTooltipProps = {}) {
   const onMouseOver = React.useCallback(
     (event: React.MouseEvent) => {
       const isSelf = event.target === (ref.current as HTMLElement)
-      if (isOpen && isSelf) return
+
+      if (isOpen && isSelf) {
+        return
+      }
+
       showTooltip()
     },
     [isOpen, showTooltip],

@@ -1,5 +1,5 @@
 import * as React from "react"
-import { mergeRefs, attr } from "@chakra-ui/utils"
+import { mergeRefs, dataAttr } from "@chakra-ui/utils"
 
 type HTMLAttributes = React.HTMLAttributes<any> & React.RefAttributes<any>
 
@@ -196,7 +196,7 @@ export function useClickable(props: UseClickableProps = {}) {
     ...htmlProps,
     ref,
     role: "button",
-    "data-active": attr(isActive),
+    "data-active": dataAttr(isActive),
     "aria-disabled": isDisabled,
     tabIndex: trulyDisabled ? undefined : tabIndex,
     onClick: handleClick,

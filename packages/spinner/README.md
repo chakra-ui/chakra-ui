@@ -1,4 +1,4 @@
-# Spinner
+# @chakra-ui/spinner
 
 Spinners provide a visual cue that an action is processing, awaiting a course of
 change or a result.
@@ -31,10 +31,10 @@ Change the size of the spinner by passing the `size` prop.
 
 ```jsx
 <>
-  <Spinner size="xs" marginRight={3} />
-  <Spinner size="sm" marginRight={3} />
-  <Spinner size="md" marginRight={3} />
-  <Spinner size="lg" marginRight={3} />
+  <Spinner size="xs" />
+  <Spinner size="sm" />
+  <Spinner size="md" />
+  <Spinner size="lg" />
   <Spinner size="xl" />
 </>
 ```

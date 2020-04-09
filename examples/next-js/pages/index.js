@@ -2,6 +2,7 @@ import Head from "next/head"
 import { chakra, ThemeProvider } from "@chakra-ui/system"
 import theme from "@chakra-ui/preset-base"
 import { Image } from "@chakra-ui/image"
+import { Stack } from "@chakra-ui/layout"
 
 const Home = () => (
   <ThemeProvider theme={theme}>
@@ -14,7 +15,7 @@ const Home = () => (
       <main>
         <h1 className="title">
           Welcome to <a href="https://nextjs.org">Next.js!</a>
-          <chakra.h1 fontSize="20px">Welcome to chakra</chakra.h1>
+          <chakra.div fontSize="20px">Welcome to chakra</chakra.div>
           <Image
             src="https://bit.ly/sage-adebayo"
             fallbackSrc="https://via.placeholder.com/240"
@@ -23,6 +24,12 @@ const Home = () => (
             height="300px"
           />
         </h1>
+
+        <Stack direction="row" spacing="40px">
+          <div>Welcome home</div>
+          <div>Welcome home</div>
+          <div>Welcome home</div>
+        </Stack>
 
         <p className="description">
           Get started by editing <code>pages/index.js</code>

@@ -95,7 +95,7 @@ export const Stack = forwardRef((props: StackProps, ref: React.Ref<any>) => {
     }
   })
 
-  const hasDivider = Boolean(divider)
+  const hasDivider = !!divider
 
   const clones = validChildren.map((child, index) => {
     if (!hasDivider) return child

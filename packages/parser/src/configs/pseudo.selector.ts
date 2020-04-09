@@ -123,12 +123,12 @@ export const pseudoSelectors = {
    * Styles to apply when the ARIA attribute `aria-invalid` is `true`
    * - CSS selector `&[aria-invalid=true]`
    */
-  _invalid:
-    "&[aria-invalid=true], &[data-invalid], &:invalid, &[data-state=invalid]",
+  _invalid: "&[aria-invalid=true], &[data-invalid], &[data-state=invalid]",
   /**
-   * Styles to
+   * Styles for the valid state
+   * - CSS selector `&[data-valid], &[data-state=valid]`
    */
-  _valid: "&[data-valid], &:valid, &[data-state=valid]",
+  _valid: "&[data-valid], &[data-state=valid]",
   /**
    * Styles for CSS Selector `&[aria-busy=true]` or `&[data-loading=true]`.
    * Useful for styling loading states

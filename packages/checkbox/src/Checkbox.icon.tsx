@@ -10,17 +10,13 @@ const CheckIcon = (props: IconProps) => (
   </Icon>
 )
 
-///////////////////////////////////////////////////////////////////////////
-
 const MinusIcon = (props: IconProps) => (
   <Icon {...props}>
     <rect fill="currentColor" height="4" width="20" x="2" y="10" />
   </Icon>
 )
 
-///////////////////////////////////////////////////////////////////////////
-
-type CheckboxIconProps = IconProps & {
+export type CheckboxIconProps = IconProps & {
   isChecked?: boolean
   isIndeterminate?: boolean
 }
@@ -28,12 +24,21 @@ type CheckboxIconProps = IconProps & {
 /**
  * CheckboxIcon
  *
- * Icon for visually indicating the checked or indeterminate state of a checkbox
+ * Icon for visually indicating the checked or indeterminate
+ * state of a checkbox
+ *
+ * @todo allow users pass their own icon svgs
  */
-
 export function CheckboxIcon(props: CheckboxIconProps) {
   const { isChecked, isIndeterminate, ...rest } = props
-  if (isChecked) return <CheckIcon {...rest} />
-  if (isIndeterminate) return <MinusIcon {...rest} />
+
+  if (isChecked) {
+    return <CheckIcon {...rest} />
+  }
+
+  if (isIndeterminate) {
+    return <MinusIcon {...rest} />
+  }
+
   return null
 }

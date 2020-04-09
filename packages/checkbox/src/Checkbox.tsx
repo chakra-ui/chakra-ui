@@ -1,21 +1,17 @@
 import { chakra, PropsOf, SystemProps } from "@chakra-ui/system"
-import { Omit } from "@chakra-ui/utils"
+import { Omit, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { UseCheckboxProps, useCheckbox } from "./Checkbox.hook"
 import { CheckboxIcon } from "./Checkbox.icon"
 import { IconProps } from "@chakra-ui/icon"
 
 /**
- * ControlBox
+ * Checkbox - Theming
  *
- * Wrapper element around checkbox check icon. Style appropriately to
- * match checked state of the checbox.
- *
- * To style the element, change the styles in
+ * To style the checkbox globally, change the styles in
  * `theme.components.Checkbox`
  */
-
-const ControlBox = chakra("span", {
+const StyledCheckbox = chakra("span", {
   themeKey: "Checkbox",
   baseStyle: {
     display: "inline-flex",
@@ -24,17 +20,16 @@ const ControlBox = chakra("span", {
     verticalAlign: "top",
     userSelect: "none",
     flexShrink: 0,
+    transition: "transform 240ms, opacity 240ms",
   },
 })
 
-///////////////////////////////////////////////////////////////////////////
-
-type OmittedCheckboxProps = Omit<
-  PropsOf<typeof ControlBox>,
+type Omitted = Omit<
+  PropsOf<typeof StyledCheckbox>,
   "onChange" | "defaultChecked"
 >
 
-export type CheckboxProps = OmittedCheckboxProps &
+export type CheckboxProps = Omitted &
   Omit<PropsOf<"input">, "size"> &
   UseCheckboxProps & {
     /**
@@ -53,17 +48,14 @@ export type CheckboxProps = OmittedCheckboxProps &
     labelSpacing?: SystemProps["marginLeft"]
   }
 
-///////////////////////////////////////////////////////////////////////////
-
 /**
  * Checkbox
  *
- * Checkbox component is used in forms when a user needs to select
+ * React component used in forms when a user needs to select
  * multiple values from several options.
  *
  * @see Docs https://chakra-ui.com/checkbox
  */
-
 export const Checkbox = React.forwardRef(
   (props: CheckboxProps, ref: React.Ref<HTMLInputElement>) => {
     const { state, getInputProps, getCheckboxProps, htmlProps } = useCheckbox(
@@ -72,21 +64,17 @@ export const Checkbox = React.forwardRef(
 
     const {
       iconSize = "0.75rem",
-      iconColor,
       labelSpacing = "0.5rem",
+      iconColor,
       variant,
-      colorScheme = "blue",
-      size = "lg",
+      colorScheme,
+      size,
     } = props
 
-    // Prevent onBlur being fired when the checkbox label is clicked
-    const handleMouseDown = (event: React.MouseEvent<HTMLInputElement>) => {
-      event.preventDefault()
-      event.stopPropagation()
-    }
-
-    // Prevent onBlur being fired when the checkbox label is touched
-    const handleTouchStart = (event: React.TouchEvent<HTMLInputElement>) => {
+    /**
+     * Prevent the `input` onBlur being fired when you mousedown on the checkbox label
+     */
+    const stop = (event: React.SyntheticEvent) => {
       event.preventDefault()
       event.stopPropagation()
     }
@@ -103,7 +91,7 @@ export const Checkbox = React.forwardRef(
         <chakra.div position="relative">
           <input data-chakra-checkbox-input="" {...getInputProps({ ref })} />
         </chakra.div>
-        <ControlBox
+        <StyledCheckbox
           data-chakra-checkbox-control=""
           variant={variant}
           size={size}
@@ -117,17 +105,16 @@ export const Checkbox = React.forwardRef(
             isIndeterminate={state.isIndeterminate}
             size={iconSize}
             color={iconColor}
-            transition="transform 240ms, opacity 240ms"
           />
-        </ControlBox>
+        </StyledCheckbox>
         {props.children && (
           <chakra.div
             data-chakra-checkbox-label=""
             marginLeft={labelSpacing}
             fontSize={props.size}
             userSelect="none"
-            onMouseDown={handleMouseDown}
-            onTouchStart={handleTouchStart}
+            onMouseDown={stop}
+            onTouchStart={stop}
             opacity={props.isDisabled ? 0.4 : 1}
           >
             {props.children}
@@ -137,3 +124,7 @@ export const Checkbox = React.forwardRef(
     )
   },
 )
+
+if (__DEV__) {
+  Checkbox.displayName = "Checkbox"
+}

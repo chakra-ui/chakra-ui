@@ -1,7 +1,12 @@
 import { useBooleanState, useId, useSafeLayoutEffect } from "@chakra-ui/hooks"
 import Icon from "@chakra-ui/icon"
 import { chakra, PropsOf, useComponentStyle } from "@chakra-ui/system"
-import { attr, callAllHandlers, createContext, __DEV__ } from "@chakra-ui/utils"
+import {
+  dataAttr,
+  callAllHandlers,
+  createContext,
+  __DEV__,
+} from "@chakra-ui/utils"
 import * as React from "react"
 
 export interface FormControlOptions {
@@ -198,11 +203,11 @@ export const FormLabel = React.forwardRef(
         {...props}
         data-chakra-form-label=""
         ref={ref}
-        data-focus={attr(field?.isFocused)}
-        data-disabled={attr(field?.isDisabled)}
-        data-invalid={attr(field?.isInvalid)}
-        data-loading={attr(field?.isLoading)}
-        data-readonly={attr(field?.isReadOnly)}
+        data-focus={dataAttr(field?.isFocused)}
+        data-disabled={dataAttr(field?.isDisabled)}
+        data-invalid={dataAttr(field?.isInvalid)}
+        data-loading={dataAttr(field?.isLoading)}
+        data-readonly={dataAttr(field?.isReadOnly)}
         id={props.id ?? field?.labelId}
         htmlFor={props.htmlFor ?? field?.id}
       />

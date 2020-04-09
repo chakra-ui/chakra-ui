@@ -34,7 +34,6 @@ export type CheckboxGroupProps = UseCheckboxGroupProps &
  * @see Docs https://chakra-ui.com/checkbox
  *
  */
-
 export const CheckboxGroup = React.forwardRef(
   (props: CheckboxGroupProps, ref: React.Ref<any>) => {
     const {
@@ -48,7 +47,7 @@ export const CheckboxGroup = React.forwardRef(
     } = props
     const theme = useTheme()
 
-    const _name = useId(name, "checkbox")
+    const computedName = useId(name, "checkbox")
     const { value, onChange } = useCheckboxGroup(props)
 
     const childSpacing = mapResponsive(spacing, value => {
@@ -70,7 +69,7 @@ export const CheckboxGroup = React.forwardRef(
             size,
             onChange,
             colorScheme,
-            name: `${_name}-${index}`,
+            name: `${computedName}-${index}`,
             isChecked: value.includes(child.props.value),
           })}
         </chakra.div>

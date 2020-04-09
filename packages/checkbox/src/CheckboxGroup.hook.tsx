@@ -1,27 +1,28 @@
 import * as React from "react"
 import { useControllableProp } from "@chakra-ui/hooks"
-import { isInputEvent, addItem, removeItem } from "@chakra-ui/utils"
+import {
+  isInputEvent,
+  addItem,
+  removeItem,
+  StringOrNumber,
+} from "@chakra-ui/utils"
 
-type Value = string | number
-type ArrayOfValue = Value[]
-type EventOrValue = React.ChangeEvent<HTMLInputElement> | Value
+type EventOrValue = React.ChangeEvent<HTMLInputElement> | StringOrNumber
 
 export interface UseCheckboxGroupProps {
   /**
    * The value of the checkbox group
    */
-  value?: ArrayOfValue
+  value?: StringOrNumber[]
   /**
    * The initial value of the checkbox group
    */
-  defaultValue?: ArrayOfValue
+  defaultValue?: StringOrNumber[]
   /**
    * The callback fired when any children Checkbox is checked or unchecked
    */
-  onChange?: (nextState: ArrayOfValue) => void
+  onChange?: (value: StringOrNumber[]) => void
 }
-
-///////////////////////////////////////////////////////////////////////////
 
 /**
  * useCheckboxGroup
@@ -38,7 +39,7 @@ export function useCheckboxGroup(props: UseCheckboxGroupProps = {}) {
   const [isControlled, value] = useControllableProp(valueProp, valueState)
 
   const updateValue = React.useCallback(
-    (nextState: Value[]) => {
+    (nextState: StringOrNumber[]) => {
       if (!isControlled) {
         setValue(nextState)
       }
