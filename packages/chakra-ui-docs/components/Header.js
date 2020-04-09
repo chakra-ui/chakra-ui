@@ -8,29 +8,18 @@ import {
   Stack,
 } from "@chakra-ui/core";
 import { jsx } from "@emotion/core";
-import { DiGithubBadge } from "react-icons/di";
 import Logo from "./Logo";
 import GitHubButton from "./GitHubButton";
 import { Container } from "../pages";
 import { StorybookIcon } from "./Storybook-icon";
+import { Header as HeaderContainer, GithubLink } from "./DocsHeader";
+import SponsorButton from "./SponsorButton";
 
 const Header = props => {
   const { colorMode, toggleColorMode } = useColorMode();
   const bg = { light: "white", dark: "gray.800" };
   return (
-    <Box
-      pos="fixed"
-      as="header"
-      top="0"
-      zIndex="4"
-      bg={bg[colorMode]}
-      left="0"
-      right="0"
-      borderBottomWidth="1px"
-      width="full"
-      height="4rem"
-      {...props}
-    >
+    <HeaderContainer bg={bg[colorMode]} {...props}>
       <Container h="100%">
         <Flex
           size="100%"
@@ -38,27 +27,25 @@ const Header = props => {
           align="center"
           justify="space-between"
         >
-          <Box
-            as="a"
-            d="block"
-            href="/"
-            aria-label="Chakra UI, Back to homepage"
-          >
+          <Box display="flex" alignItems="center">
             <Logo />
+            <Box ml="5" mb="-8px" display={["none", "flex"]}>
+              <GitHubButton />
+            </Box>
           </Box>
           <Flex align="center" color="gray.500">
+            <SponsorButton mr="4" />
             <Stack align="center" isInline spacing="3">
-              <Box as="span" mb="-8px" display={["none", "flex"]}>
-                <GitHubButton />
-              </Box>
+              <GithubLink />
               <Link
+                size="32px"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                borderRadius="md"
                 isExternal
-                href="https://github.com/chakra-ui/chakra-ui/tree/master/packages/chakra-ui"
+                href="https://chakra-ui.netlify.com"
               >
-                <Box as={DiGithubBadge} size="8" color="current" />
-              </Link>
-
-              <Link isExternal href="https://chakra-ui.netlify.com">
                 <Box as={StorybookIcon} size="6" color="current" />
               </Link>
             </Stack>
@@ -76,7 +63,7 @@ const Header = props => {
           </Flex>
         </Flex>
       </Container>
-    </Box>
+    </HeaderContainer>
   );
 };
 

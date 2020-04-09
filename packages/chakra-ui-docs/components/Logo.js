@@ -1,8 +1,9 @@
 /** @jsx jsx */
-import { useColorMode, Box } from "@chakra-ui/core";
+import { useColorMode, Box, Link } from "@chakra-ui/core";
 import { jsx } from "@emotion/core";
+import NextLink from "next/link";
 
-const Logo = props => {
+const LogoSvg = props => {
   const { colorMode } = useColorMode();
 
   return (
@@ -39,5 +40,18 @@ const Logo = props => {
     </Box>
   );
 };
+
+const Logo = props => (
+  <NextLink href="/" passHref>
+    <Link
+      borderRadius="md"
+      display="block"
+      aria-label="Chakra UI, Back to homepage"
+      {...props}
+    >
+      <LogoSvg />
+    </Link>
+  </NextLink>
+);
 
 export default Logo;

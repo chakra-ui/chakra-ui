@@ -42,7 +42,7 @@ const SearchBox = props => (
   </InputGroup>
 );
 
-const Header = props => (
+export const Header = props => (
   <Box
     pos="fixed"
     as="header"
@@ -57,7 +57,7 @@ const Header = props => (
   />
 );
 
-const GithubLink = props => (
+export const GithubLink = props => (
   <PseudoBox
     as="a"
     href="https://github.com/chakra-ui/chakra-ui/tree/master/packages/chakra-ui"
@@ -93,22 +93,8 @@ const DocsHeader = props => {
     <Header bg={bg[colorMode]} {...props}>
       <Flex size="100%" px="6" align="center" justify="space-between">
         <Flex align="center" mr={5}>
-          <Box
-            as="a"
-            style={{ display: "block" }}
-            href="/"
-            aria-label="Chakra UI, Back to homepage"
-          >
-            <Logo />
-          </Box>
+          <Logo />
         </Flex>
-        {/* <SearchBox
-          display={{ sm: "none", md: "block" }}
-          maxWidth="2xl"
-          visibility="hidden"
-          mx="auto"
-          flex="1"
-        /> */}
         <Flex
           flex={{ sm: "1", md: "none" }}
           ml={5}
