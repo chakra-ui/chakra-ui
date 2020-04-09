@@ -1,4 +1,4 @@
-# Checkbox
+# @chakra-ui/checkbox
 
 Checkbox component is used in forms when a user needs to select multiple values
 from several options.
@@ -27,8 +27,8 @@ import { Checkbox } from "@chakra-ui/checkbox"
 
 ### CheckboxGroup
 
-CheckboxGroup is used to bind multiple checkboxes into a group,
-and it indicates whether one or more options are selected.
+CheckboxGroup is used to bind multiple checkboxes into a group, and it indicates
+whether one or more options are selected.
 
 ```jsx
 <CheckboxGroup defaultValue={["one", "two"]}>
