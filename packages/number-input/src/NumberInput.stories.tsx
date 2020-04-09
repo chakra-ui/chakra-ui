@@ -8,6 +8,7 @@ import {
   NumberInputField,
   NumberInputStepper,
 } from "./NumberInput"
+import { Stack } from "@chakra-ui/layout"
 
 export default {
   title: "NumberInput",
@@ -23,46 +24,65 @@ export default {
 const Input = chakra("input", { themeKey: "Input" })
 const Button = chakra("button", { themeKey: "Button" })
 
-const format = (num: any) => "$" + num
-const parse = (val: any) => val.replace(/^\$/, "")
-
-export function NumberInputHook() {
-  const [val, setVal] = React.useState<any>("1.53")
-
-  const props = {
+export const HookUsage = () => {
+  const {
+    getInputProps,
+    getIncrementButtonProps,
+    getDecrementButtonProps,
+    valueAsNumber,
+  } = useNumberInput({
     step: 0.01,
-    // defaultValue: 1.53,
-    value: format(val),
+    defaultValue: 1.53,
     min: 1,
     max: 6,
     precision: 2,
-    onChange: val => setVal(parse(val)),
-  }
+  })
+
+  return (
+    <>
+      <div>current: {valueAsNumber}</div>
+      <chakra.div display="flex">
+        <Button {...getIncrementButtonProps()}>+</Button>
+        <Input {...(getInputProps() as any)} />
+        <Button {...getDecrementButtonProps()}>-</Button>
+      </chakra.div>
+    </>
+  )
+}
+
+const format = (val: string) => `$` + val
+const parse = (val: string) => val.replace(/^\$/, "")
+
+export const HookWithFormatAndParse = () => {
+  const [value, setValue] = React.useState<string>("1.53")
 
   const {
     getInputProps,
     getIncrementButtonProps,
     getDecrementButtonProps,
     valueAsNumber,
-  } = useNumberInput(props)
+  } = useNumberInput({
+    step: 0.01,
+    value: format(value),
+    min: 1,
+    max: 6,
+    precision: 2,
+    onChange: valueString => setValue(parse(valueString)),
+  })
 
   return (
     <>
       <div>current: {valueAsNumber}</div>
       <chakra.div display="flex">
-        <Button tabIndex={-1} {...getIncrementButtonProps()}>
-          +
-        </Button>
+        <Button {...getIncrementButtonProps()}>+</Button>
         <Input {...(getInputProps() as any)} />
-        <Button tabIndex={-1} {...getDecrementButtonProps()}>
-          -
-        </Button>
+        <Button {...getDecrementButtonProps()}>-</Button>
       </chakra.div>
     </>
   )
 }
 
-export const Base = () => (
+export const usage = () => (
   <NumberInput max={50} min={10}>
     <NumberInputField />
     <NumberInputStepper>
@@ -70,4 +90,87 @@ export const Base = () => (
       <NumberDecrementStepper />
     </NumberInputStepper>
   </NumberInput>
+)
+
+export const withMinAndMax = () => (
+  <NumberInput defaultValue={15} min={10} max={20}>
+    <NumberInputField />
+    <NumberInputStepper>
+      <NumberIncrementStepper />
+      <NumberDecrementStepper />
+    </NumberInputStepper>
+  </NumberInput>
+)
+
+export const withStep = () => (
+  <NumberInput step={5} defaultValue={15} min={10} max={30}>
+    <NumberInputField />
+    <NumberInputStepper>
+      <NumberIncrementStepper />
+      <NumberDecrementStepper />
+    </NumberInputStepper>
+  </NumberInput>
+)
+
+export const withPrecision = () => (
+  <NumberInput defaultValue={15} precision={2} step={0.2}>
+    <NumberInputField />
+    <NumberInputStepper>
+      <NumberIncrementStepper />
+      <NumberDecrementStepper />
+    </NumberInputStepper>
+  </NumberInput>
+)
+
+export const withClampValueDisabled = () => (
+  <NumberInput defaultValue={15} max={30} clampValueOnBlur={false}>
+    <NumberInputField />
+    <NumberInputStepper>
+      <NumberIncrementStepper />
+      <NumberDecrementStepper />
+    </NumberInputStepper>
+  </NumberInput>
+)
+
+export const allowOutOfRange = () => (
+  <NumberInput
+    defaultValue={15}
+    max={10}
+    keepWithinRange={false}
+    clampValueOnBlur={false}
+  >
+    <NumberInputField />
+    <NumberInputStepper>
+      <NumberIncrementStepper />
+      <NumberDecrementStepper />
+    </NumberInputStepper>
+  </NumberInput>
+)
+
+export const inputSizes = () => (
+  <Stack>
+    <NumberInput size="sm" defaultValue={15} min={10}>
+      <NumberInputField />
+      <NumberInputStepper>
+        <NumberIncrementStepper />
+        <NumberDecrementStepper />
+      </NumberInputStepper>
+    </NumberInput>
+
+    <NumberInput size="md" defaultValue={15} min={10}>
+      <NumberInputField />
+      <NumberInputStepper>
+        <NumberIncrementStepper />
+        <NumberDecrementStepper />
+      </NumberInputStepper>
+    </NumberInput>
+
+    <NumberInput size="lg" defaultValue={15} min={10}>
+      <NumberInputField />
+      <NumberInputStepper>
+        <NumberIncrementStepper />
+        <NumberDecrementStepper />
+      </NumberInputStepper>
+    </NumberInput>
+  </Stack>
 )

@@ -13,7 +13,7 @@ export type ContainerProps = PropsOf<typeof chakra.div>
  *
  * It also sets a default max-width of `60ch` (60 characters).
  */
-const Container = chakra("div", {
+export const Container = chakra("div", {
   baseStyle: {
     width: "100%",
     mx: "auto",

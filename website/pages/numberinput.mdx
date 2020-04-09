@@ -1,4 +1,4 @@
-import SEO from "../components/SEO";
+import SEO from "../components/SEO"
 
 <SEO
   title="NumberInput"
@@ -36,7 +36,7 @@ import {
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
-} from "@chakra-ui/core";
+} from "@chakra-ui/core"
 ```
 
 ## Usage
@@ -211,8 +211,8 @@ example of how to do that.
 
 ```jsx
 function SliderInput() {
-  const [value, setValue] = React.useState(0);
-  const handleChange = value => setValue(value);
+  const [value, setValue] = React.useState(0)
+  const handleChange = value => setValue(value)
 
   return (
     <Flex>
@@ -233,7 +233,7 @@ function SliderInput() {
         />
       </Slider>
     </Flex>
-  );
+  )
 }
 ```
 
@@ -258,7 +258,17 @@ function SliderInput() {
 - Holding down <kbd>Shift</kbd> and pressing <kbd>⬆</kbd> or <kbd>⬇</kbd> will
   update the value by `10 * step`
 - Holding down <kbd>Ctrl</kbd> or <kbd>⌘</kbd>, and pressing <kbd>⬆</kbd> or
-   <kbd>⬆</kbd> will update the value by `0.1 * step`
+
+  <kbd>⬆</kbd>
+  will
+  update
+  the
+  value
+  by
+  `0.1
+  \\\*
+  step`
+
 - Long press the Up and down stepper buttons will update the value at intervals.
 
 ## Props
