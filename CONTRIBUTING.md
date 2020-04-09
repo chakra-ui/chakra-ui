@@ -1,128 +1,172 @@
-# Contributing
+Thanks for showing interest to contribute to Chakra UI 💖, you rock!
 
-If you're reading this, you're awesome! Thank you for helping us make this
-project great and being a part of the Chakra UI community. Here are a few
-guidelines that will help you along the way.
+When it comes to open source, there are different ways you can contribute, all
+of which are valuable. Here's few guidelines that should help you as you prepare
+your contribution.
 
-## Branch naming convention
+- [Setup](#setup)
+- [Development](#development)
+  - [Tooling](#tooling)
+  - [Commands](#commands)
+    - [Package Aliasing and Yarn Workspace](#package-aliasing-and-yarn-workspace)
+  - [Documentation](#documentation)
+  - [Storybook](#storybook)
+- [Think you found a bug?](#think-you-found-a-bug)
+- [Proposing new or changed API?](#proposing-new-or-changed-api)
+- [Making a Pull Request?](#making-a-pull-request)
+  - [Steps to PR](#steps-to-pr)
+  - [Tests](#tests)
+- [Want to write a blog post or tutorial](#want-to-write-a-blog-post-or-tutorial)
+- [Want to help improve the docs?](#want-to-help-improve-the-docs)
+- [License](#license)
 
-Branches created to address issues should be named in the following format:
+## Setup
 
-- Issue Type/Issue-ID-Issue Summary
+The following steps will get you setup to contribute changes to this repo:
 
-`Issue Type` - Shows the type of issue being worked on, and could be any one of
-the following:
+1. Fork the repo (click the <kbd>Fork</kbd> button at the top right of
+   [this page](https://github.com/chakra-ui/chakra-ui))
 
-- fix (any fix to an existing feature to correct an anomaly).
-- feature (a new, working functionality).
-- chore (a task that doesn't change the behavior of the library. e.g
-  documentation, tests addition, etc).
+2. Clone your fork locally
 
-`Issue ID` - The issue ID assigned by Github.
+```sh
+# in a terminal, cd to parent directory where you want your clone to be, then
+git clone https://github.com/<your_github_username>/chakra-ui.git
 
-`Issue Summary` - Short description of the issue being worked on.
-
-## Submitting a pull request
-
-Chakra UI is a community project, so pull requests are always welcome. But
-before working on a large change, it is best to open an issue first to discuss
-it with the maintainers. If no issue exists addressing the change you would like
-implemented, feel free to create one.
-
-If you decide to work on an already opened issue, do check the comments thread
-of that particular issue just incase someone else is already working on a fix.
-Should there be no one assigned that issue, indicate you are working on that
-issue by leaving a comment in the thread. This is to ensure nobody else takes up
-that same issue.
-
-Assuming you get the green light to work on the opened issue, the following
-steps would guide you on how to submit a PR:-
-
-- Create a fork of the chakra-ui repository
-- Create a branch out of the `master` branch of your forked repository,
-  following the branch naming convention above.
-- It is advisable to make atomic commits, as this would help other maintainers
-  understand the changes made. Also, working on small changes per single PR is
-  advisable as those are easy to review and maintain.
-- When you are sure your change works as intended, proceed to raise a PR against
-  the `chakra-ui` master branch
-
-## Getting Started
-
-This project uses
-
-- [Lerna](https://lerna.js.org/) to manage multiple libs
-- [Storybook](https://storybook.js.org/) for a great development experience
-- [Next](https://nextjs.org/) for a blazing fast website.
-
-Before doing anything else, run these commands:
-
-```
-git clone git@github.com:chakra-ui/chakra-ui.git
 cd chakra-ui
-yarn install
-yarn bootstrap
-yarn build
 ```
 
-## Root Repo Scripts:
+3. Setup all dependencies and build. Chakra UI uses `yarn`, so simply run
+   `yarn boot`. This command will install dependencies, bootstrap the repo using
+   `lerna` and build all packages.
 
-```sh
-yarn bootstrap    # bootstraps lerna so all dependencies get
-                  # linked for cross-component development
+> If you run into any issues during this step, kindly reach out to the Chakra UI
+> React team here: https://discord.gg/dQHfcWF
 
-yarn storybook        # starts storybook server
+## Development
 
-yarn docs         # runs the documentation site locally
+To improve our development process, we've setup a couple of systems. Chakra UI
+uses a monorepo structure, this means each component is it's own package and can
+use consumed independently.
 
-yarn build        # build the component library
+### Tooling
 
-yarn release      # publishes changed packages
+- [Lerna](https://lerna.js.org/) to manage installation of dependencies and
+  running various scripts. We also have yarn workspaces enabled by default.
+- [Storybook](https://storybook.js.org/) for rapid UI component development and
+  testing
+- [Testing Library](https://testing-library.com/) for testing components and
+  hooks
+- [Next](https://nextjs.org/) for a blazing fast documentation website.
+
+### Commands
+
+**`yarn bootstrap`**: bootstraps the entire project and symlinks all
+dependencies for cross-component development
+
+**`yarn storybook`**: starts storybook server and loads stories in files that
+ends with `.stories.tsx`
+
+**`yarn docs`**: run the documentation site locally
+
+**`yarn build`**: run build for all component packages
+
+**`yarn test`**: run test for all component packages
+
+**`yarn release`**: publish changed packages
+
+**`yarn [package] <cmd>`**: Run a command on the specific package you're working
+on. You can run `build`, `test`, `lint` commands
+
+#### Package Aliasing and Yarn Workspace
+
+Since we're using lerna monorepo + yarn workspaces by default, this enables us
+to run commands within component package directly from the root.
+
+Each component is named this way `@chakra-ui/[component]`. Let's say we want to
+build the checkbox component. Here's how to do it:
+
+```bash
+yarn workspace @chakra-ui/button build
+
+# or
+
+lerna run build --scope @chakra-ui/button
 ```
 
-### Running the documentation site
+**Shortcut:** To make this shorter and more convenient, we've added an alias for
+each component in the root `package.json`. Now you can simple do:
 
-The documentation site is built with Next but we created a simple command to run
-it.
+```bash
+# to build
+yarn button build
 
-```sh
-yarn docs
+# to test
+yarn button test
+yarn button test --watch
+
+# to lint
+yarn button lint
 ```
 
-You can now access the documentation site [locally](http://localhost:3000).
-Changes to the docs will hot reload the site.
+This is alias is particularly useful when you're working on a specific component
+and want to avoid running the command for all components.
 
-### Building locally
+### Documentation
 
-Just run `yarn build`
+The documentation site is built with Next.js. If you'd like to contribute to the
+docs, simply run `yarn docs`
 
-### Coding style
+### Storybook
+
+When you run `yarn storybook`,
+
+## Think you found a bug?
+
+Please conform to the issue template and provide a clear path to reproduction
+with a code example. The best way to show a bug is by sending a CodeSandbox link
+
+You may wish to use our starters to help you get going:
+
+- JavaScript Starter: https://codesandbox.io/s/chakra-ui-javascript-lzzg9
+- TypeScript Starter: https://codesandbox.io/s/chakra-ui-typescript-pomi8
+
+## Proposing new or changed API?
+
+Please provide thoughtful comments and some sample API code. Proposals that
+don't line up with our roadmap or doesn't have a thoughtful explanation will be
+closed.
+
+## Making a Pull Request?
+
+Pull requests need only the :+1: of two or more collaborators to be merged; when
+the PR author is a collaborator, that counts as one.
+
+### Steps to PR
+
+- Fork of the chakra-ui repository and clone your fork
+- Switch to the `dev-ts` branch and run `yarn boot`
+- Create a new branch out of the `dev-ts` branch. We follow the convention
+  `[type/scope]`. For example `fix/accordion-hook`, `docs/menu-typo`
+
+  - `type` can be either `docs`, `fix`, `feat`, `build`, or any other
+    conventional commit type
+  - `scope` is just a short id that describes the scope of work.
+
+### Tests
+
+All commits that fix bugs or add features need a test.
+
+> **Dear Chakra team:** Please do not merge code without tests
+
+## Want to write a blog post or tutorial
+
+That would be amazing! Reach out to the core team here:
+https://discord.gg/dQHfcWF. We would love to support you anyway we can.
+
+## Want to help improve the docs?
 
 TODO
-
-## How do I add a new demo in the documentation?
-
-TODO
-
-#### Edit the page Markdown file.
-
-The Markdown file is the source for the website documentation. So, whatever you
-wrote there will be reflected on the website.
-
-In this case, the file you need to edit is `packages/docs/pages/`, and I'm going
-to add a description about the component.
-
-## How do I use my local distribution of chakra-ui in any project?
-
-First, you have to build your local distribution of Chakra UI:
-
-```sh
-# From the root of the project
-yarn build
-```
-
-Now, every time you import from `@chakra-ui/*` in your project, it is going to
-use your local distribution.
 
 ## License
 
