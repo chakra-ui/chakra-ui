@@ -1,10 +1,7 @@
-import { chakra, PropsOf, keyframes } from "@chakra-ui/system"
+import { chakra, keyframes, PropsOf } from "@chakra-ui/system"
+import { __DEV__ } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 import * as React from "react"
-
-/**
- * Spinner CSS animation keyframe
- */
 
 const spin = keyframes`
   0% {  transform: rotate(0deg) }
@@ -12,18 +9,12 @@ const spin = keyframes`
 `
 
 /**
- * StyledSpinner
+ * Spinner - Theming
  *
- * Wrapper element of the spinner component
- *
- * To style the element, change the styles in
+ * To style the spinner component globally, change the styles in
  * `theme.components.Spinner`
  */
-
 const StyledSpinner = chakra("div", { themeKey: "Spinner" })
-StyledSpinner.defaultProps = {
-  size: "md",
-}
 
 export interface SpinnerOptions {
   /**
@@ -62,32 +53,40 @@ export type SpinnerProps = PropsOf<typeof StyledSpinner> & SpinnerOptions
 /**
  * Spinner
  *
- * A “presentational” loading indicator used on a page or a component,
- * while it’s loading or before it renders. It doesn’t have any semantic meaning.
+ * React component used to indicate the loading state of a page or a component,
+ *
+ * It renders a `div` by default
+ *
+ * @see Docs https://chakra-ui.com/spinner
  */
+export const Spinner = (props: SpinnerProps) => {
+  const {
+    label = "Loading...",
+    thickness = "2px",
+    speed = "0.45s",
+    color,
+    emptyColor = "transparent",
+    ...rest
+  } = props
 
-export const Spinner = ({
-  label = "Loading...",
-  thickness = "2px",
-  speed = "0.45s",
-  color,
-  emptyColor = "transparent",
-  ...props
-}: SpinnerProps) => (
-  <StyledSpinner
-    display="inline-block"
-    borderColor="currentColor"
-    borderStyle="solid"
-    borderRadius="full"
-    borderWidth={thickness}
-    borderBottomColor={emptyColor}
-    borderLeftColor={emptyColor}
-    color={color}
-    animation={`${spin} ${speed} linear infinite`}
-    {...props}
-  >
-    {label && <VisuallyHidden>{label}</VisuallyHidden>}
-  </StyledSpinner>
-)
+  return (
+    <StyledSpinner
+      display="inline-block"
+      borderColor="currentColor"
+      borderStyle="solid"
+      borderRadius="full"
+      borderWidth={thickness}
+      borderBottomColor={emptyColor}
+      borderLeftColor={emptyColor}
+      color={color}
+      animation={`${spin} ${speed} linear infinite`}
+      {...rest}
+    >
+      {label && <VisuallyHidden>{label}</VisuallyHidden>}
+    </StyledSpinner>
+  )
+}
 
-Spinner.displayName = "Spinner"
+if (__DEV__) {
+  Spinner.displayName = "Spinner"
+}

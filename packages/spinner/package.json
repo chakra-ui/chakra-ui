@@ -49,6 +49,7 @@
   },
   "dependencies": {
     "@chakra-ui/system": "0.0.1",
+    "@chakra-ui/utils": "0.0.1",
     "@chakra-ui/visually-hidden": "0.0.1"
   },
   "peerDependencies": {
