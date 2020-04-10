@@ -3,6 +3,8 @@ import {
   PropsOf,
   ThemingProps,
   useThemeDefaultProps,
+  ThemingProvider,
+  useThemingContext,
 } from "@chakra-ui/system"
 import { createContext } from "@chakra-ui/utils"
 import * as React from "react"
@@ -21,8 +23,6 @@ const [SliderProvider, useSliderContext] = createContext<SliderContext>({
 
 export { SliderProvider, useSliderContext }
 
-const [ThemingProvider, useThemingContext] = createContext<ThemingProps>()
-
 export type SliderProps = UseSliderProps &
   ThemingProps &
   Omit<PropsOf<typeof StyledSlider>, "onChange" | "size">
@@ -38,6 +38,7 @@ const StyledSlider = chakra("div", {
 
 export function Slider(props: SliderProps) {
   const defaults = useThemeDefaultProps("Slider")
+
   const {
     variant = defaults?.variant,
     size = defaults?.size,
