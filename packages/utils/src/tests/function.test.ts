@@ -1,23 +1,17 @@
 import { runIfFn, callAllHandlers } from "../function"
 
-test("runIfFn - 'valueOrFn: () => 1 + 1' should equal 2", () => {
+test("should run function if function or else return value", () => {
   expect(runIfFn(() => 1 + 1)).toStrictEqual(2)
-})
-
-test("runIfFn - 'valueOrFn: 2' should equal 2", () => {
   expect(runIfFn(2)).toStrictEqual(2)
 })
 
-test("callAllHandlers - 'fns: () => {val1 = 1+1}, () => {val2 = 2 + 2}' should equal {val1: 2, val2: 4}", () => {
+test("should call passed all functions", () => {
   let val1 = 0
   let val2 = 0
-  callAllHandlers(
-    () => {
-      val1 = 1 + 1
-    },
-    () => {
-      val2 = 2 + 2
-    },
-  )({} as any)
-  expect({ val1, val2 }).toStrictEqual({ val1: 2, val2: 4 })
+  const func1 = () => val1++
+  const func2 = () => (val2 += 2)
+
+  callAllHandlers(func1, func2)({} as any)
+  expect(val1).toStrictEqual(1)
+  expect(val2).toStrictEqual(2)
 })
