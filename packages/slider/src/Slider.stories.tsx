@@ -26,7 +26,7 @@ export function HorizontalSlider() {
         <SliderFilledTrack />
       </SliderTrack>
       <SliderThumb />
-      <SliderMark value={90} children="90%" top="30px" />
+      <SliderMark value={90} children="90%" top="20px" />
     </Slider>
   )
 }

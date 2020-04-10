@@ -33,4 +33,8 @@ export function useEventListener(
       doc.removeEventListener(event, listener, options)
     }
   }, [event, doc, options, savedHandler])
+
+  return () => {
+    doc?.removeEventListener(event, savedHandler.current, options)
+  }
 }
