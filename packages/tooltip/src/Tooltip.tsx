@@ -1,5 +1,5 @@
 import * as React from "react"
-import { useTooltip, TooltipHookProps } from "./Tooltip.hook"
+import { useTooltip, UseTooltipProps } from "./Tooltip.hook"
 import { chakra, PropsOf } from "@chakra-ui/system"
 import { Portal } from "@chakra-ui/portal"
 import { isString, omit, pick } from "@chakra-ui/utils"
@@ -8,7 +8,7 @@ import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 const StyledTooltip = chakra("div", { themeKey: "Tooltip" })
 
 export type TooltipProps = PropsOf<typeof StyledTooltip> &
-  TooltipHookProps & {
+  UseTooltipProps & {
     /**
      * The react component to use as the
      * trigger for the tooltip

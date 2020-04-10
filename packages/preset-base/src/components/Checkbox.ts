@@ -3,6 +3,7 @@ import { ComponentTheme, mode } from "./utils"
 const Checkbox: ComponentTheme = {
   defaultProps: {
     size: "md",
+    colorScheme: "blue",
   },
   baseStyle: props => {
     const { colorScheme: c } = props

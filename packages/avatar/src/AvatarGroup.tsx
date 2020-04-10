@@ -9,11 +9,11 @@ import * as React from "react"
 import { baseStyle } from "./Avatar"
 
 const AvatarExcessLabel = chakra("span", {
-  themeKey: "Avatar",
-  baseStyle: props => ({
+  themeKey: "Avatar.ExcessLabel",
+  baseStyle: {
     ...baseStyle,
-    bg: props.colorMode === "light" ? "gray.200" : "whiteAlpha.400",
-  }),
+    borderRadius: "full",
+  },
 })
 
 interface AvatarGroupOptions {
@@ -66,10 +66,14 @@ export const AvatarGroup = (props: AvatarGroupProps) => {
 
   const validChildren = getValidChildren(children)
 
-  // get the avatars within the max
+  /**
+   * get the avatars within the max
+   */
   const childrenWithinMax = max ? validChildren.slice(0, max) : validChildren
 
-  // get the remaining avatar count
+  /**
+   * get the remaining avatar count
+   */
   const moreAvatarCount = max && validChildren.length - max
 
   /**
@@ -81,7 +85,7 @@ export const AvatarGroup = (props: AvatarGroupProps) => {
   const clones = reversedChildren.map((child, index) => {
     const isFirstAvatar = index === 0
 
-    return React.cloneElement(child as any, {
+    return React.cloneElement(child as React.ReactElement<any>, {
       marginRight: isFirstAvatar ? 0 : spacing,
       size,
       borderColor: child.props.borderColor || borderColor,

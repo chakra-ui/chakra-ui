@@ -1,7 +1,7 @@
 import { useSafeLayoutEffect } from "@chakra-ui/hooks"
 import * as React from "react"
 
-export type ImageHookProps = {
+export type UseImageProps = {
   /**
    * The image `src` attribute
    */
@@ -46,7 +46,7 @@ type Status = "loading" | "failed" | "pending" | "loaded"
  * }
  * ```
  */
-export function useImage(props: ImageHookProps) {
+export function useImage(props: UseImageProps) {
   const { src, srcSet, onLoad, onError, sizes, ignoreFallback } = props
 
   const [status, setStatus] = React.useState<Status>(() => {
@@ -115,3 +115,5 @@ export function useImage(props: ImageHookProps) {
    */
   return ignoreFallback ? "loaded" : status
 }
+
+export type UseImageReturn = ReturnType<typeof useImage>

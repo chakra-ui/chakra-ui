@@ -115,10 +115,10 @@ import { Button } from "@chakra-ui/core"
 ;<Button>I just consumed some ⚡️Chakra!</Button>
 ```
 
-## CodeSandbox
+## CodeSandbox Templates
 
-- JavaScript: https://codesandbox.io/s/chakra-js-starter-1dkwi
-- Typescript: https://codesandbox.io/s/chakra-ts-starter-1r38l
+- JavaScript Starter: https://codesandbox.io/s/chakra-ui-javascript-lzzg9
+- TypeScript Starter: https://codesandbox.io/s/chakra-ui-typescript-pomi8
 
 ## Contributing
 

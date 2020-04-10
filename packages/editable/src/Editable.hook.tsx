@@ -9,7 +9,7 @@ import {
 import * as React from "react"
 import { PropsOf } from "@chakra-ui/system"
 
-export interface EditableHookProps {
+export interface UseEditableProps {
   /**
    * The value of the Editable in both edit & preview mode
    */
@@ -70,7 +70,7 @@ export interface EditableHookProps {
  *
  * @see Docs https://chakra-ui.com/useEditable
  */
-export function useEditable(props: EditableHookProps = {}) {
+export function useEditable(props: UseEditableProps = {}) {
   const {
     onChange: onChangeProp,
     onCancel: onCancelProp,
@@ -222,4 +222,4 @@ export function useEditable(props: EditableHookProps = {}) {
   }
 }
 
-export type EditableHookReturn = ReturnType<typeof useEditable>
+export type UseEditableReturn = ReturnType<typeof useEditable>

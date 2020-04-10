@@ -1,7 +1,7 @@
 import * as React from "react"
 import { chakra, PropsOf, SystemProps, css, useTheme } from "@chakra-ui/system"
 import { useId } from "@chakra-ui/hooks"
-import { useCheckboxGroup, CheckboxGroupHookProps } from "./CheckboxGroup.hook"
+import { useCheckboxGroup, UseCheckboxGroupProps } from "./CheckboxGroup.hook"
 import {
   getValidChildren,
   omit,
@@ -9,7 +9,7 @@ import {
   mapResponsive,
 } from "@chakra-ui/utils"
 
-export type CheckboxGroupProps = CheckboxGroupHookProps &
+export type CheckboxGroupProps = UseCheckboxGroupProps &
   Omit<PropsOf<typeof chakra.div>, "onChange" | "value"> & {
     /**
      * The name of the checkbox group
@@ -34,7 +34,6 @@ export type CheckboxGroupProps = CheckboxGroupHookProps &
  * @see Docs https://chakra-ui.com/checkbox
  *
  */
-
 export const CheckboxGroup = React.forwardRef(
   (props: CheckboxGroupProps, ref: React.Ref<any>) => {
     const {
@@ -48,7 +47,7 @@ export const CheckboxGroup = React.forwardRef(
     } = props
     const theme = useTheme()
 
-    const _name = useId(name, "checkbox")
+    const computedName = useId(name, "checkbox")
     const { value, onChange } = useCheckboxGroup(props)
 
     const childSpacing = mapResponsive(spacing, value => {
@@ -70,7 +69,7 @@ export const CheckboxGroup = React.forwardRef(
             size,
             onChange,
             colorScheme,
-            name: `${_name}-${index}`,
+            name: `${computedName}-${index}`,
             isChecked: value.includes(child.props.value),
           })}
         </chakra.div>

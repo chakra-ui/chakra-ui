@@ -1,20 +1,21 @@
-import * as React from "react"
-import { PopoverHookReturn, PopoverHookProps, usePopover } from "./Popover.hook"
+import { CloseButton, CloseButtonProps } from "@chakra-ui/close-button"
+import { useSafeLayoutEffect } from "@chakra-ui/hooks"
+import { Portal } from "@chakra-ui/portal"
+import { chakra, PropsOf } from "@chakra-ui/system"
 import {
   createContext,
-  ReactNodeOrRenderProp,
   isFunction,
+  ReactNodeOrRenderProp,
+  __DEV__,
 } from "@chakra-ui/utils"
-import { chakra, PropsOf } from "@chakra-ui/system"
-import { Portal } from "@chakra-ui/portal"
-import { useSafeLayoutEffect } from "@chakra-ui/hooks"
-import { CloseButton, CloseButtonProps } from "@chakra-ui/close-button"
+import * as React from "react"
+import { usePopover, UsePopoverProps, UsePopoverReturn } from "./Popover.hook"
 
-type PopoverContext = PopoverHookReturn & { usePortal?: boolean }
+type PopoverContext = UsePopoverReturn & { usePortal?: boolean }
 
 const [PopoverCtxProvider, usePopoverContext] = createContext<PopoverContext>()
 
-export type PopoverProps = PopoverHookProps & {
+export type PopoverProps = UsePopoverProps & {
   /**
    * If `true` the popover content will be displayed within a Portal.
    */
@@ -46,6 +47,10 @@ export const Popover = (props: PopoverProps) => {
   )
 }
 
+if (__DEV__) {
+  Popover.displayName = "Popover"
+}
+
 /**
  * PopoverTrigger
  *
@@ -58,6 +63,10 @@ export const PopoverTrigger: React.FC = props => {
   const { getTriggerProps } = usePopoverContext()
 
   return React.cloneElement(child, getTriggerProps(child.props))
+}
+
+if (__DEV__) {
+  PopoverTrigger.displayName = "PopoverTrigger"
 }
 
 /**
@@ -101,6 +110,10 @@ export const PopoverContent = React.forwardRef(
   },
 )
 
+if (__DEV__) {
+  PopoverContent.displayName = "PopoverContent"
+}
+
 /**
  * Theming
  *
@@ -140,6 +153,10 @@ export const PopoverHeader = React.forwardRef(
   },
 )
 
+if (__DEV__) {
+  PopoverHeader.displayName = "PopoverHeader"
+}
+
 export type PopoverBodyProps = PropsOf<typeof StyledBody>
 
 /**
@@ -171,6 +188,10 @@ export const PopoverBody = React.forwardRef(
   },
 )
 
+if (__DEV__) {
+  PopoverBody.displayName = "PopoverBody"
+}
+
 export type PopoverCloseButtonProps = CloseButtonProps
 
 /**
@@ -194,11 +215,21 @@ export const PopoverCloseButton = (props: CloseButtonProps) => {
   )
 }
 
-const StyledArrow = chakra("div")
+if (__DEV__) {
+  PopoverCloseButton.displayName = "PopoverCloseButton"
+}
+
+const StyledArrow = chakra("div", {
+  themeKey: "Popover.Arrow",
+})
 
 export type PopoverArrowProps = PropsOf<typeof StyledArrow>
 
 export const PopoverArrow = (props: PopoverArrowProps) => {
   const { getArrowProps } = usePopoverContext()
   return <StyledArrow bg="inherit" {...getArrowProps(props)} />
+}
+
+if (__DEV__) {
+  PopoverArrow.displayName = "PopoverArrow"
 }

@@ -1,16 +1,17 @@
 import { ComponentTheme, mode } from "./utils"
-import { SystemProps } from "@chakra-ui/system"
 
-function getSizeStyle(size: "sm" | "md" | "lg"): SystemProps {
+function getSizeStyle(size: "sm" | "md" | "lg") {
   return {
-    fontSize: size === "sm" ? "11px" : "15px",
-    _first: {
-      borderTopRightRadius: size === "sm" ? 1 : 3,
-    },
-    _last: {
-      borderBottomRightRadius: size === "sm" ? 1 : 3,
-      mt: "-1px",
-      borderTopWidth: 1,
+    Stepper: {
+      fontSize: size === "lg" ? "14px" : "10px",
+      _first: {
+        borderTopRightRadius: size === "lg" ? 3 : 1,
+      },
+      _last: {
+        borderBottomRightRadius: size === "lg" ? 3 : 1,
+        marginTop: "-1px",
+        borderTopWidth: 1,
+      },
     },
   }
 }
@@ -41,15 +42,9 @@ const NumberInput: ComponentTheme = {
     },
   }),
   sizes: {
-    sm: {
-      Stepper: getSizeStyle("sm"),
-    },
-    md: {
-      Stepper: getSizeStyle("md"),
-    },
-    lg: {
-      Stepper: getSizeStyle("lg"),
-    },
+    sm: getSizeStyle("sm"),
+    md: getSizeStyle("md"),
+    lg: getSizeStyle("lg"),
   },
 }
 

@@ -4,7 +4,7 @@ import { Undo, hideOthers } from "aria-hidden"
 import * as React from "react"
 import { manager, useModalManager } from "./Modal.manager"
 
-export interface ModalHookProps {
+export interface UseModalProps {
   /**
    * If `true`, the modal when be opened.
    */
@@ -57,7 +57,7 @@ export interface ModalHookProps {
  *
  * @param props
  */
-export function useModal(props: ModalHookProps) {
+export function useModal(props: UseModalProps) {
   const {
     isOpen,
     onClose,
@@ -177,7 +177,7 @@ export function useModal(props: ModalHookProps) {
   }
 }
 
-export type ModalHookReturn = ReturnType<typeof useModal>
+export type UseModalReturn = ReturnType<typeof useModal>
 
 /**
  * Modal hook to polyfill `aria-modal`.

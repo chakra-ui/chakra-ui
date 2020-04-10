@@ -18,7 +18,7 @@ import * as warn from "./Accordion.warning"
 
 export type ExpandedIndex = number | number[]
 
-export interface AccordionHookProps {
+export interface UseAccordionProps {
   /**
    * If `true`, multiple accordion items can be expanded at once.
    */
@@ -58,7 +58,7 @@ type AccordionElement = React.ReactElement<{
  *
  * It is consumed by the `Accordion` component
  */
-export function useAccordion(props: AccordionHookProps) {
+export function useAccordion(props: UseAccordionProps) {
   const {
     onChange,
     defaultIndex,
@@ -150,11 +150,11 @@ export function useAccordion(props: AccordionHookProps) {
   }
 }
 
-export type AccordionHookReturn = ReturnType<typeof useAccordion>
+export type UseAccordionReturn = ReturnType<typeof useAccordion>
 
 //////////////////////////////////////////////////////////////////////
 
-interface AccordionItemHookOptions {
+interface UseAccordionItemOptions {
   /**
    * If `true`, expands the accordion in the controlled mode.
    */
@@ -177,8 +177,8 @@ interface AccordionItemHookOptions {
   onChange?: (isOpen: boolean) => void
 }
 
-export type AccordionItemHookProps = AccordionItemHookOptions & {
-  context: Omit<AccordionHookReturn, "children" | "htmlProps">
+export type UseAccordionItemProps = UseAccordionItemOptions & {
+  context: Omit<UseAccordionReturn, "children" | "htmlProps">
 }
 
 /**
@@ -187,7 +187,7 @@ export type AccordionItemHookProps = AccordionItemHookOptions & {
  * React hook that provides the open/close functionality
  * for an accordion item and it's children
  */
-export function useAccordionItem(props: AccordionItemHookProps) {
+export function useAccordionItem(props: UseAccordionItemProps) {
   const {
     isDisabled,
     isFocusable,
@@ -309,4 +309,4 @@ export function useAccordionItem(props: AccordionItemHookProps) {
   }
 }
 
-export type AccordionItemHookReturn = ReturnType<typeof useAccordionItem>
+export type UseAccordionItemReturn = ReturnType<typeof useAccordionItem>

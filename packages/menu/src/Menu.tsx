@@ -1,20 +1,20 @@
 import { chakra, PropsOf } from "@chakra-ui/system"
-import { createContext, mergeRefs } from "@chakra-ui/utils"
+import { createContext, mergeRefs, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import {
-  MenuHookReturn,
   useMenu,
   useMenuButton,
-  useMenuOption,
   useMenuItem,
+  UseMenuItemProps,
   useMenuList,
-  MenuItemHookProps,
-  MenuOptionHookProps,
+  useMenuOption,
   useMenuOptionGroup,
-  MenuHookProps,
+  UseMenuOptionProps,
+  UseMenuProps,
+  UseMenuReturn,
 } from "./Menu.hook"
 
-const [MenuContextProvider, useMenuContext] = createContext<MenuHookReturn>({
+const [MenuContextProvider, useMenuContext] = createContext<UseMenuReturn>({
   strict: false,
 })
 
@@ -23,7 +23,7 @@ export function useMenuState() {
   return { isOpen, onClose }
 }
 
-export type MenuProps = Omit<MenuHookProps, "context"> & {
+export type MenuProps = Omit<UseMenuProps, "context"> & {
   children: React.ReactNode
 }
 
@@ -35,15 +35,17 @@ export function Menu(props: MenuProps) {
   )
 }
 
+if (__DEV__) {
+  Menu.displayName = "Menu"
+}
+
 export type MenuButtonProps = PropsOf<typeof StyledMenuButton> & {
   isSubmenu?: boolean
 }
 
 // change the themekey to menu.button
-const StyledMenuButton = chakra("button", { themeKey: "Button" })
-const StyledMenuItem = chakra("button", {
-  themeKey: "Menu.MenuItem",
-  baseStyle: { padding: 3 },
+const StyledMenuButton = chakra("button", {
+  themeKey: "Button",
 })
 
 export const MenuButton = React.forwardRef(
@@ -59,6 +61,10 @@ export const MenuButton = React.forwardRef(
     return <Comp data-chakra-menu-button="" {...ownProps} ref={ownRef} />
   },
 )
+
+if (__DEV__) {
+  MenuButton.displayName = "MenuButton"
+}
 
 export type MenuListProps = PropsOf<typeof StyledMenuList>
 
@@ -87,8 +93,17 @@ export const MenuList = React.forwardRef(
   },
 )
 
+if (__DEV__) {
+  MenuList.displayName = "MenuList"
+}
+
+const StyledMenuItem = chakra("button", {
+  themeKey: "Menu.MenuItem",
+  baseStyle: { padding: 3 },
+})
+
 export type MenuItemProps = PropsOf<typeof StyledMenuItem> &
-  Omit<MenuItemHookProps, "context">
+  Omit<UseMenuItemProps, "context">
 
 export const MenuItem = React.forwardRef(
   (props: MenuItemProps, ref: React.Ref<any>) => {
@@ -100,7 +115,11 @@ export const MenuItem = React.forwardRef(
   },
 )
 
-export type MenuItemOptionProps = Omit<MenuOptionHookProps, "context"> &
+if (__DEV__) {
+  MenuItem.displayName = "MenuItem"
+}
+
+export type MenuItemOptionProps = Omit<UseMenuOptionProps, "context"> &
   PropsOf<typeof StyledMenuItem>
 
 export const MenuItemOption = React.forwardRef(
@@ -112,6 +131,10 @@ export const MenuItemOption = React.forwardRef(
     return <StyledMenuItem {...ownProps} ref={ownRef} />
   },
 )
+
+if (__DEV__) {
+  MenuItemOption.displayName = "MenuItemOption"
+}
 
 export const MenuOptionGroup = (props: any) => {
   //@ts-ignore
@@ -142,15 +165,23 @@ export const MenuGroup = (props: any) => {
   )
 }
 
-MenuGroup.displayName = "MenuGroup"
+if (__DEV__) {
+  MenuGroup.displayName = "MenuGroup"
+}
 
 //TODO: Implement these
 export const MenuItemCommand = () => {}
-MenuItemCommand.displayName = "MenuItemCommand"
+
+if (__DEV__) {
+  MenuItemCommand.displayName = "MenuItemCommand"
+}
 
 //TODO: Implement these
 export const MenuItemIcon = () => {}
-MenuItemIcon.displayName = "MenuItemIcon"
+
+if (__DEV__) {
+  MenuItemIcon.displayName = "MenuItemIcon"
+}
 
 export type MenuDividerProps = PropsOf<typeof chakra.hr>
 
@@ -167,4 +198,6 @@ export const MenuDivider = (props: MenuDividerProps) => (
   />
 )
 
-MenuDivider.displayName = "MenuDivider"
+if (__DEV__) {
+  MenuDivider.displayName = "MenuDivider"
+}

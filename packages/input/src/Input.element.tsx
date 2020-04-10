@@ -2,6 +2,7 @@ import * as React from "react"
 import { useInputGroup } from "./Input.group"
 import { chakra, useComponentStyle, PropsOf } from "@chakra-ui/system"
 import { useSafeLayoutEffect } from "@chakra-ui/hooks"
+import { __DEV__ } from "@chakra-ui/utils"
 
 export type InputElementProps = PropsOf<typeof chakra.div> & {
   placement?: "left" | "right"
@@ -40,10 +41,12 @@ export const InputElement = React.forwardRef(
   },
 )
 
-InputElement.displayName = "InputElement"
+if (__DEV__) {
+  InputElement.displayName = "InputElement"
+}
 
 export const InputLeftElement = React.forwardRef(
-  (props: PropsOf<typeof InputElement>, ref: React.Ref<HTMLDivElement>) => {
+  (props: PropsOf<typeof InputElement>, ref: React.Ref<any>) => {
     const group = useInputGroup()
 
     useSafeLayoutEffect(() => {
@@ -57,10 +60,12 @@ export const InputLeftElement = React.forwardRef(
   },
 )
 
-InputLeftElement.displayName = "InputLeftElement"
+if (__DEV__) {
+  InputLeftElement.displayName = "InputLeftElement"
+}
 
 export const InputRightElement = React.forwardRef(
-  (props: PropsOf<typeof InputElement>, ref: React.Ref<HTMLDivElement>) => {
+  (props: PropsOf<typeof InputElement>, ref: React.Ref<any>) => {
     const group = useInputGroup()
 
     useSafeLayoutEffect(() => {
@@ -74,4 +79,6 @@ export const InputRightElement = React.forwardRef(
   },
 )
 
-InputRightElement.displayName = "InputRightElement"
+if (__DEV__) {
+  InputRightElement.displayName = "InputRightElement"
+}

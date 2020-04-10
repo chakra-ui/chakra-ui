@@ -1,21 +1,22 @@
-import { PropsOf, chakra, useThemeDefaultProps } from "@chakra-ui/system"
+import { chakra, PropsOf, useThemeDefaultProps } from "@chakra-ui/system"
+import { createContext, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import {
   useTab,
-  useTabs,
   useTabIndicator,
   useTabList,
+  UseTabListProps,
   useTabPanel,
-  TabsHookReturn,
   useTabPanels,
-  TabHookProps,
-  TabListHookProps,
-  TabsHookProps,
+  UseTabProps,
+  useTabs,
+  UseTabsProps,
+  UseTabsReturn,
 } from "./Tabs.hook"
-import { createContext } from "@chakra-ui/utils"
 
-const [TabsContextProvider, useTabsContext] = createContext<TabsHookReturn>({
+const [TabsContextProvider, useTabsContext] = createContext<UseTabsReturn>({
   strict: true,
+  name: "TabsContext",
   errorMessage:
     "Chakra UI: useTabsContext can only be used within TabsContextProvider",
 })
@@ -39,7 +40,7 @@ type ThemingProps = {
   isFitted?: boolean
 }
 
-export type TabsProps = TabsHookProps &
+export type TabsProps = UseTabsProps &
   ThemingProps & { children?: React.ReactNode }
 
 const [ThemingContextProvider, useThemingContext] = createContext<
@@ -79,6 +80,10 @@ export function Tabs(props: TabsProps) {
   )
 }
 
+if (__DEV__) {
+  Tabs.displayName = "Tabs"
+}
+
 /**
  * Tabs - Theming
  *
@@ -95,7 +100,7 @@ const StyledTab = chakra("button", {
   },
 })
 
-export type TabProps = Omit<TabHookProps, "context"> & PropsOf<typeof StyledTab>
+export type TabProps = Omit<UseTabProps, "context"> & PropsOf<typeof StyledTab>
 
 /**
  * Tabs
@@ -118,6 +123,10 @@ export const Tab = React.forwardRef((props: TabProps, ref: React.Ref<any>) => {
   )
 })
 
+if (__DEV__) {
+  Tab.displayName = "Tab"
+}
+
 /**
  * TabList - Theming
  *
@@ -126,7 +135,7 @@ export const Tab = React.forwardRef((props: TabProps, ref: React.Ref<any>) => {
  */
 const StyledTabList = chakra("div", { themeKey: "Tabs.TabList" })
 
-export type TabListProps = Omit<TabListHookProps, "context"> &
+export type TabListProps = Omit<UseTabListProps, "context"> &
   PropsOf<typeof StyledTabList>
 
 /**
@@ -152,6 +161,10 @@ export const TabList = React.forwardRef(
   },
 )
 
+if (__DEV__) {
+  TabList.displayName = "TabList"
+}
+
 /**
  * TabPanel - Theming
  *
@@ -176,6 +189,10 @@ export const TabPanel = React.forwardRef(
   },
 )
 
+if (__DEV__) {
+  TabPanel.displayName = "TabPanel"
+}
+
 export type TabPanelsProps = PropsOf<typeof chakra.div>
 
 /**
@@ -190,6 +207,10 @@ export function TabPanels(props: TabPanelsProps) {
   const context = useTabsContext()
   const panelsProp = useTabPanels({ ...props, context })
   return <chakra.div data-chakra-tabpanels="" {...panelsProp} />
+}
+
+if (__DEV__) {
+  TabPanels.displayName = "TabPanels"
 }
 
 export type TabIndicatorProps = PropsOf<typeof chakra.div>
@@ -210,4 +231,8 @@ export function TabIndicator(props: TabIndicatorProps) {
       style={{ ...props.style, ...styles }}
     />
   )
+}
+
+if (__DEV__) {
+  TabIndicator.displayName = "TabIndicator"
 }

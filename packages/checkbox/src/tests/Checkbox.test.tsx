@@ -1,11 +1,11 @@
+import { render, renderHook, userEvent } from "@chakra-ui/test-utils"
 import * as React from "react"
-import { render, userEvent, renderHook, invoke } from "@chakra-ui/test-utils"
 import {
   Checkbox,
-  useCheckbox,
-  CheckboxHookProps,
   CheckboxGroup,
   CheckboxGroupProps,
+  useCheckbox,
+  UseCheckboxProps,
 } from ".."
 
 test("Checkbox renders correctly", () => {
@@ -105,7 +105,7 @@ test("Controlled - should check and uncheck", () => {
   let checked = false
   const onChange = jest.fn(e => (checked = e.target.checked))
 
-  const Component = (props: CheckboxHookProps) => {
+  const Component = (props: UseCheckboxProps) => {
     const { htmlProps, getInputProps, getCheckboxProps } = useCheckbox(props)
 
     return (

@@ -1,18 +1,24 @@
+import { useCounter, UseCounterProps } from "@chakra-ui/counter"
+import { useBooleanState } from "@chakra-ui/hooks"
 import {
-  ensureFocus,
-  normalizeEventKey,
   callAllHandlers,
+  Dict,
+  ensureFocus,
   mergeRefs,
+  normalizeEventKey,
+  StringOrNumber,
+  ariaAttr,
+  minSafeInteger,
+  maxSafeInteger,
 } from "@chakra-ui/utils"
 import * as React from "react"
-import { useCounter, CounterHookProps } from "@chakra-ui/counter"
-import { useUpdateEffect, useInterval, useBooleanState } from "@chakra-ui/hooks"
+import { useSpinner } from "./NumberInput.spinner"
 import {
   isFloatingPointNumericCharacter,
   isValidNumericKeyboardEvent,
 } from "./NumberInput.utils"
 
-export interface NumberInputHookProps extends CounterHookProps {
+export interface UseNumberInputProps extends UseCounterProps {
   /**
    * If `true`, the input will be focused as you increment
    * or decrement the value with the stepper
@@ -34,7 +40,7 @@ export interface NumberInputHookProps extends CounterHookProps {
    *
    * It is used to set the `aria-valuetext` property of the input
    */
-  getAriaValueText?: (value: number | string) => string
+  getAriaValueText?(value: StringOrNumber): string
   /**
    * If `true`, the input will be in readonly mode
    */
@@ -48,106 +54,117 @@ export interface NumberInputHookProps extends CounterHookProps {
    */
   isDisabled?: boolean
   /**
-   * Specifies the value extracted from formatter
-   * @default parseFloat
-   *
+   * The `id` to use for the number input field.
    */
-  parse?: (value: string) => number
-  /**
-   * Specifies the format of the value presented
-   */
-  format?: (value: string | number) => string
-  /**
-   * decimal separator
-   */
-  decimalSeparator?: string
+  id?: string
 }
 
-export function useNumberInput(props: NumberInputHookProps = {}) {
+/**
+ * React hook that implements the WAI-ARIA Spin Button widget
+ * and used to create numeric input fields.
+ *
+ * It returns prop getters you can use to build your own
+ * custom number inputs.
+ *
+ * @see WAI-ARIA https://www.w3.org/TR/wai-aria-practices-1.1/#spinbutton
+ * @see Docs     https://www.chakra-ui.com/useNumberInput
+ * @see WHATWG   https://html.spec.whatwg.org/multipage/input.html#number-state-(type=number)
+ */
+export function useNumberInput(props: UseNumberInputProps = {}) {
   const {
     focusInputOnChange = true,
     clampValueOnBlur = true,
     keepWithinRange = true,
-    min = -Infinity,
-    max = Infinity,
+    min = minSafeInteger,
+    max = maxSafeInteger,
     step: stepProp = 1,
     isReadOnly,
     isDisabled,
     getAriaValueText,
     isInvalid,
-    parse,
-    format,
-    decimalSeparator,
     onChange: onChangeProp,
+    id,
     ...htmlProps
   } = props
 
+  /**
+   * Leverage the `useCounter` hook since it provides
+   * the functionality to `increment`, `decrement` and `update`
+   * counter values
+   */
   const counter = useCounter(props)
 
-  const [isFocused, setFocused] = useBooleanState(false)
+  /**
+   * Keep track of the focused state of the input,
+   * so user can this to change the styles of the
+   * `spinners`, maybe :)
+   */
+  const [isFocused, setFocused] = useBooleanState()
 
   const inputRef = React.useRef<HTMLInputElement>(null)
+
   const isInteractive = !(isReadOnly || isDisabled)
 
-  useUpdateEffect(() => {
-    if (focusInputOnChange && inputRef.current) {
-      ensureFocus(inputRef.current)
-    }
-  }, [counter.value, focusInputOnChange])
-
   const increment = (step = stepProp) => {
-    if (!isInteractive) return
-    let valueToUse = +counter.value
-    if (isNaN(valueToUse)) {
-      valueToUse = min
+    if (isInteractive) {
+      counter.increment(step)
     }
-    const nextValue = counter.clamp(valueToUse + step)
-    counter.update(nextValue)
   }
 
   const decrement = (step = stepProp) => {
-    if (!isInteractive) return
-    let valueToUse = +counter.value
-    if (isNaN(valueToUse)) {
-      valueToUse = min
+    if (isInteractive) {
+      counter.decrement(step)
     }
-    const nextValue = counter.clamp(valueToUse - step)
-    counter.update(nextValue)
   }
 
+  /**
+   * Leverage the `useSpinner` hook to spin the input's value
+   * when long press on the up and down buttons.
+   *
+   * This leverages `setInterval` internally
+   */
   const spinner = useSpinner(increment, decrement)
 
-  const onChange = React.useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const { value } = event.target
-      const valueChars = value.split("")
-      const sanitizedValueChars = valueChars.filter(
-        isFloatingPointNumericCharacter,
-      )
-      const sanitizedValue = sanitizedValueChars.join("")
-      counter.update(sanitizedValue)
-    },
-    // eslint-disable-next-line
-    [counter.update],
-  )
+  /**
+   * The `onChange` handler filters out any character typed
+   * that isn't floating point compatible.
+   */
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const characters = event.target.value
+      .split("")
+      .filter(isFloatingPointNumericCharacter)
+      .join("")
+    counter.update(characters)
+  }
 
   const onKeyDown = (event: React.KeyboardEvent) => {
+    /**
+     * only allow valid numeric keys
+     */
     if (!isValidNumericKeyboardEvent(event)) {
       event.preventDefault()
     }
 
+    /**
+     * Keyboard Accessibility
+     *
+     * We want to increase or decrease the input's value
+     * based on if the user the arrow keys.
+     *
+     * @see https://www.w3.org/TR/wai-aria-practices-1.1/#keyboard-interaction-17
+     */
+    const stepFactor = getStepFactor(event) * stepProp
+
     const eventKey = normalizeEventKey(event)
-    const factor = getIncrementFactor(event)
-    const valueStep = factor * stepProp
 
     switch (eventKey) {
       case "ArrowUp":
         event.preventDefault()
-        increment(valueStep)
+        increment(stepFactor)
         break
       case "ArrowDown":
         event.preventDefault()
-        decrement(valueStep)
+        decrement(stepFactor)
         break
       case "Home":
         event.preventDefault()
@@ -162,7 +179,7 @@ export function useNumberInput(props: NumberInputHookProps = {}) {
     }
   }
 
-  const getIncrementFactor = (event: React.KeyboardEvent) => {
+  const getStepFactor = (event: React.KeyboardEvent) => {
     let ratio = 1
     if (event.metaKey || event.ctrlKey) {
       ratio = 0.1
@@ -173,34 +190,64 @@ export function useNumberInput(props: NumberInputHookProps = {}) {
     return ratio
   }
 
-  const validateAndClamp = () => {
-    if (counter.value > max) counter.update(max)
-    if (counter.value < min) counter.update(min)
-  }
+  /**
+   * If user would like to use a human-readable representation
+   * of the value, rather than the value itself they can pass `getAriaValueText`
+   *
+   * @see https://www.w3.org/TR/wai-aria-practices-1.1/#wai-aria-roles-states-and-properties-18
+   * @see https://www.w3.org/TR/wai-aria-1.1/#aria-valuetext
+   */
+  const ariaValueText = getAriaValueText?.(counter.value)
 
-  const ariaValueText =
-    typeof getAriaValueText === "function"
-      ? getAriaValueText(counter.value)
-      : undefined
+  /**
+   * Function that clamps the input's value on blur
+   */
+  const validateAndClamp = () => {
+    let next = counter.value as StringOrNumber
+
+    if (next === "") return
+
+    if (counter.valueAsNumber < min) {
+      next = min
+    }
+
+    if (counter.valueAsNumber > max) {
+      next = max
+    }
+
+    /**
+     * `counter.cast` does 2 things:
+     *
+     * - sanitize the value by using parseFloat and some Regex
+     * - used to round value to computed precision or decimal points
+     */
+    counter.cast(next)
+  }
 
   const onBlur = () => {
     setFocused.off()
+
     if (clampValueOnBlur) {
       validateAndClamp()
     }
   }
 
-  type InputProps = {
-    ref?: React.Ref<HTMLInputElement>
-    onFocus?: React.FocusEventHandler<HTMLInputElement>
-    onBlur?: React.FocusEventHandler<HTMLInputElement>
-    onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>
-    onChange?: React.ChangeEventHandler<HTMLInputElement>
+  const focusInput = () => {
+    if (focusInputOnChange && inputRef.current) {
+      ensureFocus(inputRef.current)
+    }
   }
 
-  type ButtonProps = {
-    onMouseDown?: React.MouseEventHandler
-    onMouseUp?: React.MouseEventHandler
+  const spinUp = (event: React.MouseEvent) => {
+    event.preventDefault()
+    spinner.up()
+    focusInput()
+  }
+
+  const spinDown = (event: React.MouseEvent) => {
+    event.preventDefault()
+    spinner.down()
+    focusInput()
   }
 
   return {
@@ -209,30 +256,45 @@ export function useNumberInput(props: NumberInputHookProps = {}) {
     isFocused,
     isDisabled,
     isReadOnly,
-    getIncrementButtonProps: (props: ButtonProps = {}) => ({
+    getIncrementButtonProps: (props: Dict = {}) => ({
       ...props,
-      onMouseDown: callAllHandlers(props.onMouseDown, spinner.up),
+      role: "button",
+      tabIndex: -1,
+      onMouseDown: callAllHandlers(props.onMouseDown, spinUp),
       onMouseUp: callAllHandlers(props.onMouseUp, spinner.stop),
-      disabled: counter.isAtMax,
+      onMouseLeave: callAllHandlers(props.onMouseUp, spinner.stop),
+      onTouchStart: callAllHandlers(props.onTouchStart, spinUp),
+      onTouchEnd: callAllHandlers(props.onTouchEnd, spinner.stop),
+      disabled: keepWithinRange && counter.isAtMax,
+      "aria-disabled": ariaAttr(keepWithinRange && counter.isAtMax),
     }),
-    getDecrementButtonProps: (props: ButtonProps = {}) => ({
+    getDecrementButtonProps: (props: Dict = {}) => ({
       ...props,
-      onMouseDown: callAllHandlers(props.onMouseDown, spinner.down),
+      role: "button",
+      tabIndex: -1,
+      onMouseDown: callAllHandlers(props.onMouseDown, spinDown),
+      onMouseLeave: callAllHandlers(props.onMouseUp, spinner.stop),
       onMouseUp: callAllHandlers(props.onMouseUp, spinner.stop),
-      disabled: counter.isAtMin,
+      onTouchStart: callAllHandlers(props.onTouchStart, spinDown),
+      onTouchEnd: callAllHandlers(props.onTouchEnd, spinner.stop),
+      disabled: keepWithinRange && counter.isAtMin,
+      "aria-disabled": ariaAttr(keepWithinRange && counter.isAtMin),
     }),
-    getInputProps: (props: InputProps = {}) => ({
+    getInputProps: (props: Dict = {}) => ({
       ...props,
+      id,
       ref: mergeRefs(inputRef, props.ref),
       value: counter.value,
       role: "spinbutton",
       type: "text",
-      inputMode: "numeric" as React.InputHTMLAttributes<any>["inputMode"],
+      inputMode: "numeric" as any,
       pattern: "[0-9]*",
       "aria-valuemin": min,
       "aria-valuemax": max,
       "aria-disabled": isDisabled,
-      "aria-valuenow": counter.valueAsNumber,
+      "aria-valuenow": isNaN(counter.valueAsNumber)
+        ? undefined
+        : counter.valueAsNumber,
       "aria-invalid": isInvalid || counter.isOutOfRange,
       "aria-valuetext": ariaValueText,
       readOnly: isReadOnly,
@@ -248,83 +310,4 @@ export function useNumberInput(props: NumberInputHookProps = {}) {
   }
 }
 
-export type NumberInputHookReturn = ReturnType<typeof useNumberInput>
-
-const CONTINUOUS_CHANGE_DELAY = 300
-const CONTINUOUS_CHANGE_INTERVAL = 50
-
-function useSpinner(increment: Function, decrement: Function) {
-  type Action = "increment" | "decrement"
-
-  // To keep incrementing/decrementing on mousedown, we call that `spinning`
-  const [isSpinning, setIsSpinning] = React.useState(false)
-
-  // This state keeps track of the action ("increment" or "decrement")
-  const [action, setAction] = React.useState<Action | null>(null)
-
-  // To increment the value the first time you mousedown, we call that `runOnce`
-  const [runOnce, setRunOnce] = React.useState(true)
-
-  // Store the timeout instance id in a ref, so we can clear the timeout later
-  const timeoutRef = React.useRef<any>(null)
-
-  // Clears the timeout from memory
-  const removeTimeout = () => clearTimeout(timeoutRef.current)
-
-  /**
-   * useInterval hook provides a performant way to
-   * update the state value at specific interval
-   */
-  useInterval(
-    () => {
-      if (action === "increment") increment()
-      if (action === "decrement") decrement()
-    },
-    isSpinning ? CONTINUOUS_CHANGE_INTERVAL : null,
-  )
-
-  // Function to activate the spinning and increment the value
-  const up = React.useCallback(() => {
-    // increment the first fime
-    if (runOnce) increment()
-
-    // after a delay, keep incrementing at interval ("spinning up")
-    timeoutRef.current = setTimeout(() => {
-      setRunOnce(false)
-      setIsSpinning(true)
-      setAction("increment")
-    }, CONTINUOUS_CHANGE_DELAY)
-  }, [increment, runOnce])
-
-  // Function to activate the spinning and increment the value
-  const down = React.useCallback(() => {
-    // decrement the first fime
-    if (runOnce) decrement()
-
-    // after a delay, keep decrementing at interval ("spinning down")
-    timeoutRef.current = setTimeout(() => {
-      setRunOnce(false)
-      setIsSpinning(true)
-      setAction("decrement")
-    }, CONTINUOUS_CHANGE_DELAY)
-  }, [decrement, runOnce])
-
-  // Function to stop spinng (useful for mouseup, keyup handlers)
-  const stop = React.useCallback(() => {
-    setRunOnce(true)
-    setIsSpinning(false)
-    removeTimeout()
-  }, [])
-
-  /**
-   * If the component unmounts while spinning,
-   * let's clear the timeout as well
-   */
-  React.useEffect(() => {
-    return () => {
-      removeTimeout()
-    }
-  }, [])
-
-  return { up, down, stop }
-}
+export type UseNumberInputReturn = ReturnType<typeof useNumberInput>

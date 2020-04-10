@@ -11,15 +11,17 @@ import {
   roundValueToStep,
   valueToPercent,
   getBox,
-  attr,
+  dataAttr,
+  ariaAttr,
   callAllHandlers,
   mergeRefs,
+  Dict,
 } from "@chakra-ui/utils"
 import * as React from "react"
 
 // http://muffinman.io/aria-progress-range-slider/
 
-export interface SliderHookProps {
+export interface UseSliderProps {
   /**
    * The minimum allowed value of the slider. Cannot be greater than max.
    * @default 0
@@ -55,15 +57,15 @@ export interface SliderHookProps {
   /**
    * function gets called whenever the user starts dragging the slider handle
    */
-  onChangeStart?: (value: number) => void
+  onChangeStart?(value: number): void
   /**
    * function gets called whenever the user stops dragging the slider handle.
    */
-  onChangeEnd?: (value: number) => void
+  onChangeEnd?(value: number): void
   /**
    * function gets called whenever the slider handle is being dragged or clicked
    */
-  onChange?: (value: number) => void
+  onChange?(value: number): void
   /**
    * The base `id` to use for the slider and it's components
    */
@@ -82,7 +84,7 @@ export interface SliderHookProps {
    * It's mostly used to generate a more human-readable
    * representation of the value for assistive technologies
    */
-  getAriaValueText?: (value: number) => string
+  getAriaValueText?(value: number): string
   /**
    * The static string to use used for `aria-valuetext`
    */
@@ -99,7 +101,7 @@ export interface SliderHookProps {
   "aria-labelledby"?: string
 }
 
-export function useSlider(props: SliderHookProps) {
+export function useSlider(props: UseSliderProps) {
   const {
     min = 0,
     max = 100,
@@ -229,25 +231,25 @@ export function useSlider(props: SliderHookProps) {
   )
 
   const tenSteps = (max - min) / 10
-  const keyStep = step || (max - min) / 100
+  const stepSize = step || (max - min) / 100
 
   const constrain = React.useCallback(
     (value: number) => {
       let nextValue = value
-      nextValue = +roundValueToStep(nextValue, keyStep)
+      nextValue = parseFloat(roundValueToStep(nextValue, stepSize))
       nextValue = clampValue(nextValue, min, max)
       updateValue(nextValue)
     },
-    [keyStep, max, min, updateValue],
+    [stepSize, max, min, updateValue],
   )
 
   const onKeyDown = createOnKeyDown({
     stopPropagation: true,
     keyMap: {
-      ArrowRight: () => constrain(value + keyStep),
-      ArrowUp: () => constrain(value + keyStep),
-      ArrowLeft: () => constrain(value - keyStep),
-      ArrowDown: () => constrain(value - keyStep),
+      ArrowRight: () => constrain(value + stepSize),
+      ArrowUp: () => constrain(value + stepSize),
+      ArrowLeft: () => constrain(value - stepSize),
+      ArrowDown: () => constrain(value - stepSize),
       PageUp: () => constrain(value + tenSteps),
       PageDown: () => constrain(value - tenSteps),
       Home: () => constrain(min),
@@ -329,12 +331,12 @@ export function useSlider(props: SliderHookProps) {
   // Support for Native slider methods
   const actions = React.useMemo(
     () => ({
-      stepUp: () => constrain(value + keyStep),
-      stepDown: () => constrain(value - keyStep),
+      stepUp: () => constrain(value + stepSize),
+      stepDown: () => constrain(value - stepSize),
       reset: () => constrain(defaultValue || 0),
       stepTo: (value: number) => constrain(value),
     }),
-    [constrain, value, keyStep, defaultValue],
+    [constrain, value, stepSize, defaultValue],
   )
 
   return {
@@ -344,28 +346,28 @@ export function useSlider(props: SliderHookProps) {
       isDragging: isPointerDown,
     },
     actions,
-    getRootProps: (props: any = {}) => ({
+    getRootProps: (props: Dict = {}) => ({
       ...props,
       tabIndex: -1,
-      "aria-disabled": attr(isDisabled),
-      "data-focused": attr(isFocused),
+      "aria-disabled": ariaAttr(isDisabled),
+      "data-focused": dataAttr(isFocused),
       onPointerDown: callAllHandlers(props.onPointerDown, onPointerDown),
       onPointerUp: callAllHandlers(props.onPointerUp, onPointerUp),
       onPointerMove: callAllHandlers(props.onPointerMove, onPointerMove),
       style: { ...props.style, ...rootStyle },
     }),
-    getTrackProps: (props: any = {}) => ({
+    getTrackProps: (props: Dict = {}) => ({
       ...props,
       ref: mergeRefs(props.ref, trackRef),
       id: trackId,
-      "data-disabled": attr(isDisabled),
+      "data-disabled": dataAttr(isDisabled),
       style: { ...props.style, ...trackStyle },
     }),
-    getInnerTrackProps: (props: any = {}) => ({
+    getInnerTrackProps: (props: Dict = {}) => ({
       ...props,
       style: { ...props.style, ...innerTrackStyle },
     }),
-    getThumbProps: (props: any = {}) => ({
+    getThumbProps: (props: Dict = {}) => ({
       ...props,
       ref: thumbRef,
       role: "slider",
@@ -376,7 +378,7 @@ export function useSlider(props: SliderHookProps) {
       "aria-valuemax": max,
       "aria-valuenow": value,
       "aria-orientation": orientation,
-      "aria-disabled": attr(isDisabled),
+      "aria-disabled": ariaAttr(isDisabled),
       "aria-label": ariaLabel,
       "aria-labelledby": ariaLabel ? undefined : ariaLabelledBy,
       style: { ...props.style, ...thumbStyle },
@@ -384,7 +386,7 @@ export function useSlider(props: SliderHookProps) {
       onFocus: callAllHandlers(props.onFocus, setFocused.on),
       onBlur: callAllHandlers(props.onBlur, setFocused.off),
     }),
-    getMarkerProps: (props: any) => {
+    getMarkerProps: (props: Dict) => {
       const isInRange = !(props.value < min || props.value > max)
       const isHighlighted = value >= props.value
       const markerPercent = valueToPercent(props.value, min, max)
@@ -403,13 +405,13 @@ export function useSlider(props: SliderHookProps) {
         ...props,
         role: "presentation",
         "aria-hidden": true,
-        "data-disabled": attr(isDisabled),
-        "data-invalid": attr(!isInRange),
-        "data-highlighted": attr(isHighlighted),
+        "data-disabled": dataAttr(isDisabled),
+        "data-invalid": dataAttr(!isInRange),
+        "data-highlighted": dataAttr(isHighlighted),
         style: { ...props.style, ...markerStyle },
       }
     },
-    getInputProps: (props: any = {}) => ({
+    getInputProps: (props: Dict = {}) => ({
       ...props,
       type: "hidden",
       value,
@@ -420,14 +422,14 @@ export function useSlider(props: SliderHookProps) {
   }
 }
 
-export type SliderHookReturn = ReturnType<typeof useSlider>
+export type UseSliderReturn = ReturnType<typeof useSlider>
 
 /**
  * Get the value based on orientation
  * @param options
  */
 function getOrientationValue<T>(options: {
-  orientation: SliderHookProps["orientation"]
+  orientation: UseSliderProps["orientation"]
   vertical: T
   horizontal: T
 }) {

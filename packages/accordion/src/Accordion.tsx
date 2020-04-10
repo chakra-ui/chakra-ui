@@ -10,15 +10,15 @@ import {
 } from "@chakra-ui/utils"
 import React, { forwardRef } from "react"
 import {
-  AccordionHookProps,
-  AccordionHookReturn,
-  AccordionItemHookProps,
-  AccordionItemHookReturn,
+  UseAccordionProps,
+  UseAccordionReturn,
+  UseAccordionItemProps,
+  UseAccordionItemReturn,
   useAccordion,
   useAccordionItem,
 } from "./Accordion.hook"
 
-type AccordionContext = Omit<AccordionHookReturn, "children" | "htmlProps">
+type AccordionContext = Omit<UseAccordionReturn, "children" | "htmlProps">
 
 const [AccordionCtxProvider, useAccordionContext] = createContext<
   AccordionContext
@@ -34,7 +34,7 @@ const StyledRoot = chakra("div", {
   themeKey: "Accordion.Root",
 })
 
-export type AccordionProps = AccordionHookProps &
+export type AccordionProps = UseAccordionProps &
   Omit<PropsOf<typeof StyledRoot>, "onChange">
 
 /**
@@ -62,7 +62,7 @@ if (__DEV__) {
 
 ///////////////////////////////////////////////////////////////////////////
 
-type AccordionItemContext = Omit<AccordionItemHookReturn, "getRootProps">
+type AccordionItemContext = Omit<UseAccordionItemReturn, "getRootProps">
 
 const [AccordionItemCtxProvider, useAccordionItemContext] = createContext<
   AccordionItemContext
@@ -79,7 +79,7 @@ const StyledItem = chakra("div", {
 })
 
 export type AccordionItemProps = Omit<PropsOf<typeof StyledItem>, "children"> &
-  Omit<AccordionItemHookProps, "context"> & {
+  Omit<UseAccordionItemProps, "context"> & {
     children?: ReactNodeOrRenderProp<{
       isExpanded: boolean
       isDisabled: boolean

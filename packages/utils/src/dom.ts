@@ -47,9 +47,14 @@ export function normalizeEventKey(event: React.KeyboardEvent) {
   return isArrowKey ? `Arrow${key}` : key
 }
 
-export const attr = (condition: boolean | undefined) => {
+export const dataAttr = (condition: boolean | undefined) => {
   const value = condition ? "" : undefined
   return value as Booleanish
+}
+
+export const ariaAttr = (condition: boolean | undefined) => {
+  const value = condition ? true : undefined
+  return value
 }
 
 export function getOwnerDocument(node?: HTMLElement) {
