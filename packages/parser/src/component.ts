@@ -1,4 +1,4 @@
-import { Dict, isEmptyObject, runIfFn, deepmerge, get } from "@chakra-ui/utils"
+import { Dict, isEmptyObject, runIfFn, merge, get } from "@chakra-ui/utils"
 import { css } from "./css"
 import { CSSObject } from "./css.types"
 
@@ -133,9 +133,9 @@ export function getModifierStyles(
     const _isSubcomponent = isSubcomponent(themeKey)
 
     if (_isSubcomponent && subcomponentStyle) {
-      styles = deepmerge(styles, subcomponentStyle)
+      styles = merge(styles, subcomponentStyle)
     } else {
-      styles = deepmerge(styles, style)
+      styles = merge(styles, style)
     }
   }
 
@@ -169,14 +169,14 @@ export function getComponentStyles(
 
   if (notEmpty(baseStyleObject)) {
     const baseStyle = css(baseStyleObject)(props.theme)
-    styles = deepmerge(styles, baseStyle)
+    styles = merge(styles, baseStyle)
   }
 
   const modiferStyleObject = getModifierStyles(props, themeKey)
 
   if (notEmpty(modiferStyleObject)) {
     const modiferStyle = css(modiferStyleObject)(props.theme)
-    styles = deepmerge(styles, modiferStyle)
+    styles = merge(styles, modiferStyle)
   }
 
   return styles

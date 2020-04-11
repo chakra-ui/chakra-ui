@@ -13,7 +13,7 @@ import {
   clampValue,
   createOnKeyDown,
   dataAttr,
-  deepmerge as merge,
+  merge,
   Dict,
   ensureFocus,
   getBox,
