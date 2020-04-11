@@ -60,10 +60,8 @@ function createStyled<T extends As, P>(component: T, options?: Options<T, P>) {
          * })
          */
         if (options?.themeKey) {
-          const componentStyles = getComponentStyles(
-            propsWithTheme,
-            options.themeKey as string,
-          )
+          //@ts-ignore
+          const componentStyles = getComponentStyles(propsWithTheme, options)
           computedStyles = { ...computedStyles, ...componentStyles }
         }
 

@@ -29,6 +29,14 @@ export interface Options<T extends As, P = {}> {
    * custom prop name to control component styles.
    */
   shouldForwardProp?(prop: string): boolean
+  /**
+   * The component's visual style variants
+   */
+  variants?: Variants<P>
+  /**
+   * The component's size variations
+   */
+  sizes?: Sizes<P>
 }
 
 type ColorModeProps = { colorMode?: ColorMode }
@@ -133,3 +141,31 @@ export type ExtractThemingProps<
     ? { size?: keyof S }
     : undefined
   : undefined
+
+type Variants<P> = {
+  [variant: string]: ComponentStyle<P> | string
+}
+
+/**
+ * The component's size variations
+ */
+type Sizes<P> = {
+  [size: string]: ComponentStyle<P> | string
+}
+
+/**
+ * The component style can either be a style object or  a function that returns a
+ * style object.
+ */
+type ComponentStyle<P = {}> =
+  | StyleProps
+  | ((props: ModifierStyleProps & Required<P>) => StyleProps)
+
+type StyleProps = SystemProps | { [component: string]: SystemProps }
+
+interface ModifierStyleProps {
+  colorScheme: string
+  orientation: "horizontal" | "vertical"
+  colorMode: "light" | "dark"
+  theme: Record<string, any>
+}

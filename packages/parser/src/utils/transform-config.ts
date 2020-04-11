@@ -37,7 +37,7 @@ export type ConfigObject = { [prop: string]: Config }
  * @param configs the config object
  * @param theme the theme object
  */
-export function transformConfig(configs: ConfigObject, theme: any) {
+export function transformConfig(configs: ConfigObject, theme: Dict) {
   const transformedConfig: Dict = {}
 
   Object.keys(configs).forEach(prop => {

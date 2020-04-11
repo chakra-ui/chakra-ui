@@ -30,7 +30,7 @@ export type AssignArrayOptions = {
  *
  * ```js
  * const result = assignArrayValue({
- *  values: ["20px", "40px", "60px"]
+ *  values: ["20px", "40px", "60px"],
  *  mediaQueries: ["@media(min-width: 320px)", "@media(min-width: 760px)", "@media(min-width: 960px)"],
  *  prop: "margin",
  *  transform: val => val

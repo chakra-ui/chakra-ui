@@ -1,4 +1,5 @@
 const theme = {
+  space: { sm: 4, md: 12, lg: 24, xl: 40 },
   components: {
     Button: {
       defaultProps: {
