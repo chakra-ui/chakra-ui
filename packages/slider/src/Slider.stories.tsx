@@ -21,7 +21,7 @@ export default {
 
 export function HorizontalSlider() {
   return (
-    <Slider colorScheme="red">
+    <Slider colorScheme="red" onChangeEnd={console.log}>
       <SliderTrack>
         <SliderFilledTrack />
       </SliderTrack>
@@ -33,7 +33,7 @@ export function HorizontalSlider() {
 
 export function VerticalSlider() {
   return (
-    <Slider colorScheme="red" orientation="vertical">
+    <Slider colorScheme="red" isReversed orientation="vertical">
       <SliderTrack>
         <SliderFilledTrack />
       </SliderTrack>

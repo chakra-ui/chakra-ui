@@ -13,11 +13,11 @@ import {
   clampValue,
   createOnKeyDown,
   dataAttr,
-  merge,
   Dict,
   ensureFocus,
   getBox,
   getOwnerDocument,
+  merge,
   mergeRefs,
   percentToValue,
   roundValueToStep,
@@ -105,6 +105,17 @@ export interface UseSliderProps {
   "aria-labelledby"?: string
 }
 
+type EventSource = "mouse" | "touch" | "keyboard"
+
+/**
+ * Reack hook that implements an accessible range slider.
+ *
+ * It's an alternative to `<input type="range" />`, and returns
+ * prop getters for the component parts
+ *
+ * @see Docs     https://chakra-ui.com/slider
+ * @see WAI-ARIA https://www.w3.org/TR/wai-aria-practices-1.1/#slider
+ */
 export function useSlider(props: UseSliderProps) {
   const {
     min = 0,
@@ -129,22 +140,36 @@ export function useSlider(props: UseSliderProps) {
 
   const [isDragging, setDragging] = useBooleanState()
   const [isFocused, setFocused] = useBooleanState()
-  const [source, setSource] = React.useState<"mouse" | "touch" | "keyboard">()
+  const [eventSource, setEventSource] = React.useState<EventSource>()
 
+  // Enable the slider handle controlled and uncontrolled scenarios
   const [sliderValue, updateValue] = useControllableState({
     value: valueProp,
     defaultValue: defaultValue ?? getDefaultValue(min, max),
     onChange,
+    shouldUpdate: (prev, next) => prev !== next,
   })
 
+  /**
+   * Slider uses DOM APIs to add and remove event listeners.
+   * Noticed some issues with React's synthetic events.
+   *
+   * We use `ref` to save the functions used to remove
+   * the event listeners.
+   *
+   * Ideally, we'll love to use pointer-events API but it's
+   * not fully supported in all browsers.
+   */
   const mouseDownDetach = React.useRef<Function>()
   const touchstartDetach = React.useRef<Function>()
   const touchendDetach = React.useRef<Function>()
   const mouseupDetach = React.useRef<Function>()
   const touchcancelDetach = React.useRef<Function>()
 
-  // Constrain the value because it can't be less than min
-  // or greater than max
+  /**
+   * Constrain the value because it can't be less than min
+   * or greater than max
+   */
   const value = clampValue(sliderValue, min, max)
   const prev = React.useRef<number>()
 
@@ -159,14 +184,18 @@ export function useSlider(props: UseSliderProps) {
   const thumbRef = React.useRef<any>(null)
   const rootRef = React.useRef<any>(null)
 
+  // Generate unique ids for component parts
   const [thumbId, trackId] = useIds(idProp, `slider-thumb`, `slider-track`)
 
+  /**
+   * Get relative value of slider from the event by tracking
+   * how far you clicked within the track to determine the value
+   */
   const getValueFromPointer = React.useCallback(
-    (event: any) => {
+    event => {
       if (!trackRef.current) return
 
       const trackRect = getBox(trackRef.current).borderBox
-
       const { clientX, clientY } = event.touches?.[0] ?? event
 
       const diff = isVertical
@@ -194,28 +223,50 @@ export function useSlider(props: UseSliderProps) {
   )
 
   const tenSteps = (max - min) / 10
-  const stepSize = step || (max - min) / 100
+  const oneStep = step || (max - min) / 100
 
   const constrain = React.useCallback(
     (value: number) => {
       prev.current = value
-      value = parseFloat(roundValueToStep(value, stepSize))
+      value = parseFloat(roundValueToStep(value, oneStep))
       value = clampValue(value, min, max)
       updateValue(value)
     },
-    [stepSize, max, min, updateValue],
+    [oneStep, max, min, updateValue],
   )
 
+  const actions = React.useMemo(
+    () => ({
+      stepUp: (step = oneStep) => {
+        const next = isReversed ? value - step : value + step
+        constrain(next)
+      },
+      stepDown: (step = oneStep) => {
+        const next = isReversed ? value + step : value - step
+        constrain(next)
+      },
+      reset: () => constrain(defaultValue || 0),
+      stepTo: (value: number) => constrain(value),
+    }),
+    [constrain, isReversed, value, oneStep, defaultValue],
+  )
+
+  /**
+   * Keyboard interaction to ensure users can operate
+   * the slider using only their keyboard.
+   *
+   * @see https://www.w3.org/TR/wai-aria-practices-1.1/#slider_kbd_interaction
+   */
   const onKeyDown = createOnKeyDown({
     stopPropagation: true,
-    onKey: () => setSource("keyboard"),
+    onKey: () => setEventSource("keyboard"),
     keyMap: {
-      ArrowRight: () => constrain(value + stepSize),
-      ArrowUp: () => constrain(value + stepSize),
-      ArrowLeft: () => constrain(value - stepSize),
-      ArrowDown: () => constrain(value - stepSize),
-      PageUp: () => constrain(value + tenSteps),
-      PageDown: () => constrain(value - tenSteps),
+      ArrowRight: () => actions.stepUp(),
+      ArrowUp: () => actions.stepUp(),
+      ArrowLeft: () => actions.stepDown(),
+      ArrowDown: () => actions.stepDown(),
+      PageUp: () => actions.stepUp(tenSteps),
+      PageDown: () => actions.stepDown(tenSteps),
       Home: () => constrain(min),
       End: () => constrain(max),
     },
@@ -227,12 +278,19 @@ export function useSlider(props: UseSliderProps) {
    */
   const valueText = getAriaValueText?.(value) ?? ariaValueText
 
+  /**
+   * Measure the dimensions of the thumb so
+   * we can center it within the track properly
+   */
   const thumbBoxModel = useDimensions(thumbRef)
   const thumbRect = thumbBoxModel?.borderBox ?? {
     width: 0,
     height: 0,
   }
 
+  /**
+   * Compute styles for all component parts.
+   */
   const thumbStyle: React.CSSProperties = {
     position: "absolute",
     userSelect: "none",
@@ -288,21 +346,14 @@ export function useSlider(props: UseSliderProps) {
     ...trackStyle,
     ...getOrientationValue({
       orientation,
-      vertical: { height: `${trackPercent}%`, bottom: 0 },
-      horizontal: { width: `${trackPercent}%`, left: 0 },
+      vertical: isReversed
+        ? { height: `${100 - trackPercent}%`, top: 0 }
+        : { height: `${trackPercent}%`, bottom: 0 },
+      horizontal: isReversed
+        ? { width: `${100 - trackPercent}%`, right: 0 }
+        : { width: `${trackPercent}%`, left: 0 },
     }),
   }
-
-  // Support for Native slider methods
-  const actions = React.useMemo(
-    () => ({
-      stepUp: () => constrain(value + stepSize),
-      stepDown: () => constrain(value - stepSize),
-      reset: () => constrain(defaultValue || 0),
-      stepTo: (value: number) => constrain(value),
-    }),
-    [constrain, value, stepSize, defaultValue],
-  )
 
   useUpdateEffect(() => {
     if (thumbRef.current) {
@@ -312,18 +363,25 @@ export function useSlider(props: UseSliderProps) {
 
   useUpdateEffect(() => {
     const shouldUpdate =
-      !isDragging && source !== "keyboard" && prev.current !== value
+      !isDragging && eventSource !== "keyboard" && prev.current !== value
 
     if (shouldUpdate) {
       onChangeEnd?.(value)
     }
-  }, [isDragging, onChangeEnd, value, source])
+
+    if (eventSource === "keyboard") {
+      onChangeEnd?.(value)
+    }
+  }, [isDragging, onChangeEnd, value, eventSource])
 
   const onMouseDown = useEventCallback((event: MouseEvent) => {
-    // prevent update if it's right-click
+    /**
+     * Prevent update if it's right-click
+     */
     if (event.button != 0) return
 
     if (isDisabled || !rootRef.current) return
+
     setDragging.on()
     prev.current = value
     onChangeStart?.(value)
@@ -334,7 +392,7 @@ export function useSlider(props: UseSliderProps) {
       const nextValue = getValueFromPointer(event)
 
       if (nextValue && nextValue !== value) {
-        setSource("mouse")
+        setEventSource("mouse")
         updateValue(nextValue)
       }
     }
@@ -370,7 +428,7 @@ export function useSlider(props: UseSliderProps) {
       const nextValue = getValueFromPointer(event)
 
       if (nextValue && nextValue !== value) {
-        setSource("touch")
+        setEventSource("touch")
         updateValue(nextValue)
       }
     }
@@ -387,19 +445,29 @@ export function useSlider(props: UseSliderProps) {
     doc.addEventListener("touchend", clean)
     doc.addEventListener("touchcancel", clean)
 
-    touchendDetach.current = () => doc.removeEventListener("touchend", clean)
+    touchendDetach.current = () => {
+      doc.removeEventListener("touchend", clean)
+    }
+
     touchcancelDetach.current = () => {
       doc.removeEventListener("touchcancel", clean)
     }
   })
 
+  /**
+   * Remove all event handlers
+   */
+  const detach = () => {
+    mouseDownDetach.current?.()
+    touchstartDetach.current?.()
+    touchendDetach.current?.()
+    touchcancelDetach.current?.()
+    mouseupDetach.current?.()
+  }
+
   useUpdateEffect(() => {
     if (!isDragging) {
-      mouseDownDetach.current?.()
-      touchstartDetach.current?.()
-      touchendDetach.current?.()
-      touchcancelDetach.current?.()
-      mouseupDetach.current?.()
+      detach()
     }
   }, [isDragging])
 
@@ -470,8 +538,14 @@ export function useSlider(props: UseSliderProps) {
         pointerEvents: "none",
         ...getOrientationValue({
           orientation,
-          vertical: { bottom: `${markerPercent}%` },
-          horizontal: { left: `${markerPercent}%` },
+          vertical: {
+            bottom: isReversed
+              ? `${100 - markerPercent}%`
+              : `${markerPercent}%`,
+          },
+          horizontal: {
+            left: isReversed ? `${100 - markerPercent}%` : `${markerPercent}%`,
+          },
         }),
       }
 
@@ -502,10 +576,10 @@ export type UseSliderReturn = ReturnType<typeof useSlider>
  * Get the value based on orientation
  * @param options
  */
-function getOrientationValue<T>(options: {
+function getOrientationValue(options: {
   orientation: UseSliderProps["orientation"]
-  vertical: T
-  horizontal: T
+  vertical: React.CSSProperties
+  horizontal: React.CSSProperties
 }) {
   const { orientation, vertical, horizontal } = options
   return orientation === "vertical" ? vertical : horizontal
