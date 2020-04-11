@@ -100,8 +100,11 @@ export function getModifierStyles(
      */
     const modifierInOptions = options?.[modifier as keyof ChakraOptions]
 
+    const modifierStylesOrFn =
+      modifierInOptions && runIfFn(modifierInOptions, props)
+
     const modifierStylesInOptions =
-      modifierInOptions?.[value as keyof typeof modifierInOptions]
+      modifierStylesOrFn?.[value as keyof typeof modifierInOptions]
 
     /**
      * Get styles from options if it exists else, get styles from theme
