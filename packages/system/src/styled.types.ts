@@ -32,11 +32,11 @@ export interface Options<T extends As, P = {}> {
   /**
    * The component's visual style variants
    */
-  variants?: Variants<P>
+  variants?: ModifierStyle<P>
   /**
    * The component's size variations
    */
-  sizes?: Sizes<P>
+  sizes?: ModifierStyle<P>
 }
 
 type ColorModeProps = { colorMode?: ColorMode }
@@ -142,28 +142,17 @@ export type ExtractThemingProps<
     : undefined
   : undefined
 
-type Variants<P> = {
-  [variant: string]: ComponentStyle<P> | string
-}
-
-/**
- * The component's size variations
- */
-type Sizes<P> = {
-  [size: string]: ComponentStyle<P> | string
-}
-
 /**
  * The component style can either be a style object or  a function that returns a
  * style object.
  */
-type ComponentStyle<P = {}> =
+type ModifierStyle<P> =
   | StyleProps
-  | ((props: ModifierStyleProps & Required<P>) => StyleProps)
+  | ((props: ModifierProps & Required<P>) => StyleProps)
 
 type StyleProps = SystemProps | { [component: string]: SystemProps }
 
-interface ModifierStyleProps {
+interface ModifierProps {
   colorScheme: string
   orientation: "horizontal" | "vertical"
   colorMode: "light" | "dark"
