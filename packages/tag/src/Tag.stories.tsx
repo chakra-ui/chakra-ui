@@ -59,9 +59,9 @@ export const colorSchemes = () => (
 )
 
 /**
- * Tag component can contain an Icon. This is done by using the `TagIcon` component.
+ * The tag component can contain an Icon. This is done by using the `TagIcon` component.
  * Positioning the tag icon can be done by placing it before (left side)
- * or after (right side)the tag component
+ * or after (right side) the tag component
  */
 
 export const LeftIcon = () => (

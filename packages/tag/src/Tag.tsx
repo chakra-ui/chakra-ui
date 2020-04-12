@@ -101,6 +101,8 @@ export const TagCloseButton = (props: TagCloseButtonProps) => {
       size="1em"
       borderRadius="sm"
       marginLeft="6px"
+      display="flex"
+      alignItems="center"
       _disabled={{ opacity: 0.4 }}
       outline="0"
       _focus={{
