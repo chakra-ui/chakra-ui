@@ -1,6 +1,6 @@
 import { generateStripe, getColor } from "@chakra-ui/color"
 import { chakra, PropsOf, useColorModeValue, useTheme } from "@chakra-ui/system"
-import { isUndefined, Omit, mapResponsive } from "@chakra-ui/utils"
+import { isUndefined, Omit, mapResponsive, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import {
   getProgressProps,
@@ -9,11 +9,35 @@ import {
   stripe,
 } from "./Progress.utils"
 
+/**
+ * ProgressLabel
+ *
+ * Progress component label. In most cases it's a numeric indicator of the progress component's value
+ */
+
 export function ProgressLabel(props: PropsOf<typeof chakra.div>) {
-  return <chakra.div textAlign="center" width="100%" {...props} />
+  return (
+    <chakra.div
+      left="50%"
+      top="50%"
+      width="100%"
+      lineHeight="1"
+      fontSize="0.75rem"
+      textAlign="center"
+      position="absolute"
+      transform="translate(-50%, -50%)"
+      {...props}
+    />
+  )
 }
 
 type ProgressIndicatorProps = PropsOf<typeof chakra.div> & ProgressPropsOptions
+
+/**
+ * ProgressIndicator
+ *
+ * Visual indicator of the progress component's value
+ */
 
 function ProgressIndicator(props: ProgressIndicatorProps) {
   const { min, max, value, ...rest } = props
@@ -40,6 +64,12 @@ const sizes = {
 type ProgressTrackProps = Omit<PropsOf<typeof chakra.div>, "size"> & {
   size?: keyof typeof sizes
 }
+
+/**
+ * ProgressTrack
+ *
+ * Wrapper element which houses the progress indicator and progress label
+ */
 
 function ProgressTrack({ size, ...props }: ProgressTrackProps) {
   const getHeight = (val: keyof typeof sizes) => sizes[val] || val
@@ -131,9 +161,15 @@ export function Progress(props: ProgressProps) {
         max={max}
         value={value}
         bg={indicatorBg}
-        borderRadius={borderRadius}
         css={cssStyles as any}
+        borderRadius={borderRadius}
       />
+      {children}
     </ProgressTrack>
   )
+}
+
+if (__DEV__) {
+  Progress.displayName = "Progress"
+  ProgressLabel.displayName = "ProgressLabel"
 }
