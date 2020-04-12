@@ -43,7 +43,7 @@ export const Size = () => (
 
 /**
  * Pass the `colorScheme` prop to use any color in the theme object to
- * change the color of the tag component
+ * change the background color of the tag component
  */
 
 export const colorSchemes = () => (

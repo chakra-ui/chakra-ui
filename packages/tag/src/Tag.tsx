@@ -1,6 +1,7 @@
 import React from "react"
 import { chakra, PropsOf } from "@chakra-ui/system"
 import { Icon, IconProps } from "@chakra-ui/icon"
+import { __DEV__ } from "@chakra-ui/utils"
 
 export type TagProps = PropsOf<typeof Tag>
 
@@ -113,4 +114,11 @@ export const TagCloseButton = (props: TagCloseButtonProps) => {
       {...rest}
     />
   )
+}
+
+if (__DEV__) {
+  Tag.displayName = "Tag"
+  TagIcon.displayName = "TagIcon"
+  TagLabel.displayName = "TagLabel"
+  TagCloseButton.displayName = "TagCloseButton"
 }
