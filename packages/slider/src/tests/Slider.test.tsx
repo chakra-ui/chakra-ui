@@ -1,5 +1,5 @@
+import { axe, press, render } from "@chakra-ui/test-utils"
 import React from "react"
-import { render, axe, fireEvent } from "@chakra-ui/test-utils"
 import { Slider, SliderFilledTrack, SliderThumb, SliderTrack } from ".."
 
 describe("rendering", () => {
@@ -49,16 +49,16 @@ describe("user events", () => {
 
     const thumb = getByRole("slider")
 
-    fireEvent.keyDown(thumb, { key: "ArrowRight" })
+    press.ArrowRight(thumb)
     expect(thumb).toHaveAttribute("aria-valuenow", "11")
 
-    fireEvent.keyDown(thumb, { key: "ArrowRight" })
+    press.ArrowRight(thumb)
     expect(thumb).toHaveAttribute("aria-valuenow", "12")
 
-    fireEvent.keyDown(thumb, { key: "Home" })
+    press.Home(thumb)
     expect(thumb).toHaveAttribute("aria-valuenow", "0")
 
-    fireEvent.keyDown(thumb, { key: "End" })
+    press.End(thumb)
     expect(thumb).toHaveAttribute("aria-valuenow", "100")
   })
 })

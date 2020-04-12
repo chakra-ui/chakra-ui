@@ -1,5 +1,5 @@
 import {
-  deepmerge,
+  merge,
   get,
   getWithDefault,
   isArray,
@@ -64,7 +64,7 @@ export const css = (input: StyleObjectOrFn) => (props: PropsOrTheme) => {
 
     if (prop === "apply") {
       const extendStyles = css(get(theme, val))(theme)
-      result = deepmerge(result, extendStyles)
+      result = merge(result, extendStyles)
       continue
     }
 
@@ -78,14 +78,14 @@ export const css = (input: StyleObjectOrFn) => (props: PropsOrTheme) => {
       if (config?.properties) {
         config.properties.forEach((prop: any) => {
           const computedStyles = assignArray(prop, val, config)
-          result = deepmerge(result, computedStyles)
+          result = merge(result, computedStyles)
         })
         continue
       }
 
       if (config?.property) {
         const computedStyles = assignArray(config.property, val, config)
-        result = deepmerge(result, computedStyles)
+        result = merge(result, computedStyles)
         continue
       }
 
@@ -94,7 +94,7 @@ export const css = (input: StyleObjectOrFn) => (props: PropsOrTheme) => {
       const _val = val.map((v: any) => css(v)(theme))
 
       const computedStyles = assignArray(prop, _val, config)
-      result = deepmerge(result, computedStyles)
+      result = merge(result, computedStyles)
       continue
     }
 

@@ -21,19 +21,19 @@ export default {
 
 export function HorizontalSlider() {
   return (
-    <Slider colorScheme="red">
+    <Slider colorScheme="red" onChangeEnd={console.log}>
       <SliderTrack>
         <SliderFilledTrack />
       </SliderTrack>
       <SliderThumb />
-      <SliderMark value={90} children="90%" top="30px" />
+      <SliderMark value={90} children="90%" top="20px" />
     </Slider>
   )
 }
 
 export function VerticalSlider() {
   return (
-    <Slider colorScheme="red" orientation="vertical">
+    <Slider colorScheme="red" isReversed orientation="vertical">
       <SliderTrack>
         <SliderFilledTrack />
       </SliderTrack>

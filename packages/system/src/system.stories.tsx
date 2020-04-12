@@ -6,6 +6,42 @@ export default {
   title: "styled",
 }
 
+const ThemedButton = chakra<"button", { isDisabled?: boolean }>("button", {
+  variants: {
+    solid: {
+      bg: "green.500",
+      color: "white",
+      _active: {
+        bg: "green.600",
+      },
+    },
+    outline: {
+      border: "2px solid",
+      borderColor: "green.200",
+      _active: {
+        borderColor: "green.300",
+      },
+    },
+  },
+  sizes: props => ({
+    small: {
+      padding: 2,
+      fontSize: "sm",
+    },
+    big: {
+      padding: 4,
+      fontSize: "md",
+    },
+  }),
+})
+
+ThemedButton.defaultProps = {
+  variant: "solid",
+  size: "small",
+}
+
+export const InlineVariants = () => <ThemedButton>Click me</ThemedButton>
+
 /**
  * Chakra UI works on most jsx elements,
  * so you can simple do `chakra.<element>`

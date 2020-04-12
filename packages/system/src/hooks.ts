@@ -22,7 +22,7 @@ export function useComponentStyle(props: ComponentStyleHookProps) {
   const [colorMode] = useColorMode()
   return getComponentStyles(
     { variant, size, theme, colorScheme, colorMode },
-    themeKey,
+    { themeKey },
   )
 }
 

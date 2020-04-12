@@ -1,18 +1,12 @@
 import {
   getBaseStyle,
-  isSubcomponent,
   getModifierStyles,
   getComponentStyles,
 } from "../component"
 import theme from "./theme"
 
-test("should eval subcomponents", () => {
-  const result = isSubcomponent("Tab.TabList")
-  expect(result).toBeTruthy()
-})
-
 test("should get the base styles", () => {
-  const result = getBaseStyle({ theme }, "Button")
+  const result = getBaseStyle({ theme }, { themeKey: "Button" })
   expect(result).toEqual({
     padding: 20,
     fontSize: 14,
@@ -21,19 +15,19 @@ test("should get the base styles", () => {
 })
 
 test("should get functional base styles", () => {
-  const result = getBaseStyle({ theme }, "Badge")
+  const result = getBaseStyle({ theme }, { themeKey: "Badge" })
   expect(result).toEqual({
     padding: 40,
   })
 })
 
 test("should get the base styles for sub-components", () => {
-  const result = getBaseStyle({ theme }, "Tabs.Tab")
+  const result = getBaseStyle({ theme }, { themeKey: "Tabs.Tab" })
   expect(result).toEqual({ fontSize: 14, color: "pink" })
 })
 
 test("should use default props", () => {
-  const result = getModifierStyles({ theme }, "Button")
+  const result = getModifierStyles({ theme }, { themeKey: "Button" })
   expect(result).toEqual({
     padding: 10,
     fontSize: 12,
@@ -46,7 +40,10 @@ test("should use default props", () => {
 })
 
 test("variant: should use correct modifier style", () => {
-  const result = getModifierStyles({ theme, variant: "outline" }, "Button")
+  const result = getModifierStyles(
+    { theme, variant: "outline" },
+    { themeKey: "Button" },
+  )
   expect(result).toEqual({
     padding: 10,
     fontSize: 12,
@@ -61,7 +58,7 @@ test("variant: should use correct modifier style", () => {
 test("size: should use correct modifier style", () => {
   const result = getModifierStyles(
     { theme, variant: "solid", size: "large" },
-    "Button",
+    { themeKey: "Button" },
   )
   expect(result).toEqual({
     padding: 16,
@@ -77,7 +74,7 @@ test("size: should use correct modifier style", () => {
 test("should get component style", () => {
   const result = getComponentStyles(
     { theme, variant: "solid", size: "large" },
-    "Button",
+    { themeKey: "Button" },
   )
   expect(result).toEqual({
     padding: 16,

@@ -4,7 +4,7 @@ import {
   isArray,
   isObject,
   Dict,
-  deepmerge,
+  merge,
   getWithDefault,
 } from "@chakra-ui/utils"
 import {
@@ -50,7 +50,7 @@ export function createProcessor(breakpoints: Dict) {
           mediaQueries: queries.asArray,
         })
 
-        styles = deepmerge(styles, style)
+        styles = merge(styles, style)
 
         return
       }
@@ -63,7 +63,7 @@ export function createProcessor(breakpoints: Dict) {
           mediaQueries: queries.asObject,
         })
 
-        styles = deepmerge(styles, style)
+        styles = merge(styles, style)
 
         return
       }
