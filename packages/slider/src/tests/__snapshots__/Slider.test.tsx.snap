@@ -5,7 +5,7 @@ exports[`rendering should render correctly 1`] = `
   <div
     class="css-g86jye"
     data-chakra-slider=""
-    style="position: relative; user-select: none; padding-top: 0px; padding-bottom: 0px;"
+    style="position: relative; user-select: none; outline: 0; padding-top: 0px; padding-bottom: 0px;"
     tabindex="-1"
   >
     <div

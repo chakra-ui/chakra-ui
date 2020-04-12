@@ -10,10 +10,7 @@ import { createContext } from "@chakra-ui/utils"
 import * as React from "react"
 import { useSlider, UseSliderProps, UseSliderReturn } from "./Slider.hook"
 
-type SliderContext = Omit<
-  UseSliderReturn,
-  "htmlProps" | "getInputProps" | "getRootProps"
->
+type SliderContext = Omit<UseSliderReturn, "getInputProps" | "getRootProps">
 
 const [SliderProvider, useSliderContext] = createContext<SliderContext>({
   strict: true,
@@ -49,7 +46,7 @@ export function Slider(props: SliderProps) {
 
   const themingProps = { variant, colorScheme, size, orientation }
 
-  const { htmlProps, getInputProps, getRootProps, ...context } = useSlider({
+  const { getInputProps, getRootProps, ...context } = useSlider({
     ...sliderProps,
     orientation,
   })
@@ -60,7 +57,7 @@ export function Slider(props: SliderProps) {
         <StyledSlider
           data-chakra-slider=""
           {...themingProps}
-          {...getRootProps(htmlProps)}
+          {...getRootProps()}
         >
           {props.children}
           <input {...getInputProps()} />

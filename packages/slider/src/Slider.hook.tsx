@@ -491,6 +491,7 @@ export function useSlider(props: UseSliderProps) {
     actions,
     getRootProps: (props: Dict = {}) => ({
       ...props,
+      ...htmlProps,
       ref: mergeRefs(props.ref, rootRef),
       tabIndex: -1,
       "aria-disabled": ariaAttr(isDisabled),
@@ -565,8 +566,6 @@ export function useSlider(props: UseSliderProps) {
       value,
       name,
     }),
-    // quick hack to get the remaining props
-    htmlProps,
   }
 }
 
