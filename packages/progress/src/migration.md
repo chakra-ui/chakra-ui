@@ -13,3 +13,16 @@ import {
   CircularProgressLabel,
 } from "@chakra-ui/progress"
 ```
+
+- Support for the `color` prop has been deprecated. Use `colorScheme` prop
+  instead.
+
+For example, `<Progress colorScheme="blue"/>`
+
+```jsx
+// before
+<Progress color="blue"/>
+
+// after
+<Progress colorScheme="blue"/>
+```

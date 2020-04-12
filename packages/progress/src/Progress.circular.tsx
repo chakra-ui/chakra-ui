@@ -171,20 +171,9 @@ export function CircularProgress(props: CircularProgressProps) {
  * of the circular progress component's value
  */
 
-export function CircularProgressLabel(props: PropsOf<typeof chakra.div>) {
-  return (
-    <chakra.div
-      position="absolute"
-      left="50%"
-      top="50%"
-      lineHeight="1"
-      transform="translate(-50%, -50%)"
-      fontSize="0.25em"
-      css={{ fontVariantNumeric: "tabular-nums" }}
-      {...props}
-    />
-  )
-}
+export const CircularProgressLabel = chakra("div", {
+  themeKey: "Progress.Label",
+})
 
 if (__DEV__) {
   CircularProgress.displayName = "CircularProgress"

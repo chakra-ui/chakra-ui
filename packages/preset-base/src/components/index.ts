@@ -24,6 +24,7 @@ import PinInput from "./PinInput"
 import Popover from "./Popover"
 import Form from "./Form"
 import Editable from "./Editable"
+import Progress from "./Progress"
 
 export default {
   Accordion,
@@ -54,4 +55,5 @@ export default {
   Popover,
   Form,
   Editable,
+  Progress,
 }

@@ -21,7 +21,7 @@ export const basicUsage = () => <Progress value={50} />
  * indicator of the progress component
  */
 
-export const withThemeColor = () => <Progress color="pink" value={20} />
+export const withThemeColor = () => <Progress colorScheme="pink" value={20} />
 
 /**
  * Pass the `value` prop as `undefined` to put the progress component in
@@ -29,7 +29,7 @@ export const withThemeColor = () => <Progress color="pink" value={20} />
  */
 
 export const linearIndeterminate = () => (
-  <Progress margin="20px" size="xs" value={undefined} />
+  <Progress margin="20px" colorScheme="red" size="xs" value={undefined} />
 )
 
 /**
@@ -46,7 +46,9 @@ export const labelledLinearProgress = () => (
  * Pass the `hasStripe` prop to have a beautiful gradient to create a striped effect
  */
 
-export const withStripe = () => <Progress color="green" hasStripe value={20} />
+export const withStripe = () => (
+  <Progress colorScheme="green" hasStripe value={20} />
+)
 
 /**
  * Pass the `size` prop to change the height of the progress component.
@@ -55,11 +57,11 @@ export const withStripe = () => <Progress color="green" hasStripe value={20} />
 
 export const withSizes = () => (
   <div>
-    <Progress color="green" size="sm" value={20} />
+    <Progress colorScheme="green" size="sm" value={20} />
     <br />
-    <Progress color="green" size="md" value={20} />
+    <Progress colorScheme="green" size="md" value={20} />
     <br />
-    <Progress color="green" size="lg" value={20} />
+    <Progress colorScheme="green" size="lg" value={20} />
   </div>
 )
 
@@ -69,7 +71,7 @@ export const withSizes = () => (
  */
 
 export const withAnimation = () => (
-  <Progress color="green" hasStripe isAnimated value={20} />
+  <Progress colorScheme="green" hasStripe isAnimated value={20} />
 )
 
 /**
