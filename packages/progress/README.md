@@ -128,3 +128,39 @@ circular progress
   <CircularProgressLabel>60%</CircularProgressLabel>
 </CircularProgress>
 ```
+
+## Accessibility
+
+- Progress has a role set to progressbar to denote that it's a progress bar
+- Progress has aria-valuenow set to the percentage completion value passed to
+  the component, to ensure the progress percent is visible to screen readers.
+
+## Note
+
+The CircularProgress and the Spinner may seem to serve the same purpose, but
+semantically, they don't. In the `indeterminate` state the have the following
+difference.
+
+### CircularProgress
+
+It's used to denote the progress of a determinate operation. Take for example an
+image upload operation:
+
+- Before upload begins, the upload progress is indeterminate (at this point,
+  it’s just spinning),
+- Once we know the size of the image and begin upload (using axios) then we
+  update the progress value of the CircularProgress (at this point, it shows the
+  progress). CircularProgress also comes with the aria-\* attributes to make its
+  progress value accessible to screenreaders.
+
+CircularProgress also comes with the aria-\* attributes to make its progress
+value accessible to screenreaders.
+
+### Spinner
+
+It's more of a “presentational” loading indicator you can use on a page or a
+component, while it’s loading or before it renders. It doesn’t have any semantic
+meaning.
+
+To give meaning to a Spinner/loading indicator, ARIA standards require that you
+mark the area of the component/page that’s loading with `aria-busy=true`.
