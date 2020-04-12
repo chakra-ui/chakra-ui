@@ -5,7 +5,7 @@ import {
   useMergeRefs,
 } from "@chakra-ui/hooks"
 import { Placement, usePopper, UsePopperProps } from "@chakra-ui/popper"
-import { callAllHandlers, mergeRefs } from "@chakra-ui/utils"
+import { callAllHandlers, mergeRefs, Dict } from "@chakra-ui/utils"
 import flushable from "flushable"
 import * as React from "react"
 
@@ -205,7 +205,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
     show: open,
     hide: close,
     placement: popper.placement,
-    getTriggerProps: (props: any = {}) => ({
+    getTriggerProps: (props: Dict = {}) => ({
       ...props,
       ref: mergeRefs(props.ref, triggerRef),
       onMouseOut: callAllHandlers(props.onMouseOut, hideTooltip),
@@ -216,14 +216,14 @@ export function useTooltip(props: UseTooltipProps = {}) {
       onBlur: callAllHandlers(props.onBlur, hideTooltip),
       "aria-describedby": isOpen ? tooltipId : undefined,
     }),
-    getTooltipProps: (props: any = {}) => ({
+    getTooltipProps: (props: Dict = {}) => ({
       ...props,
       id: tooltipId,
       role: "tooltip",
       ref: mergeRefs(props.ref, popper.popper.ref),
       style: { ...props.style, ...popper.popper.style },
     }),
-    getArrowProps: (props: any = {}) => ({
+    getArrowProps: (props: Dict = {}) => ({
       ...props,
       ref: mergeRefs(props.ref, popper.arrow.ref),
       style: { ...props.style, ...popper.arrow.style },
