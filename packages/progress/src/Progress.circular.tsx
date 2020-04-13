@@ -173,6 +173,14 @@ export function CircularProgress(props: CircularProgressProps) {
 
 export const CircularProgressLabel = chakra("div", {
   themeKey: "Progress.Label",
+  baseStyle: {
+    top: "50%",
+    left: "50%",
+    width: "100%",
+    textAlign: "center",
+    position: "absolute",
+    transform: "translate(-50%, -50%)",
+  },
 })
 
 if (__DEV__) {

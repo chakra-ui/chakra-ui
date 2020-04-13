@@ -15,7 +15,17 @@ import {
  * Progress component label. In most cases it's a numeric indicator of the progress component's value
  */
 
-export const ProgressLabel = chakra("div", { themeKey: "Progress.Label" })
+export const ProgressLabel = chakra("div", {
+  themeKey: "Progress.Label",
+  baseStyle: {
+    top: "50%",
+    left: "50%",
+    width: "100%",
+    textAlign: "center",
+    position: "absolute",
+    transform: "translate(-50%, -50%)",
+  },
+})
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -27,7 +37,9 @@ type ProgressIndicatorProps = PropsOf<typeof chakra.div> & ProgressPropsOptions
  * Visual indicator of the progress component's value
  */
 
-const StyledIndicator = chakra("div", { themeKey: "Progress.Indicator" })
+const StyledIndicator = chakra("div", {
+  themeKey: "Progress.Indicator",
+})
 
 function ProgressIndicator(props: ProgressIndicatorProps) {
   const { min, max, value, ...rest } = props
@@ -52,7 +64,13 @@ type ProgressTrackProps = PropsOf<typeof chakra.div>
  * Wrapper element which houses the progress indicator and progress label
  */
 
-const ProgressTrack = chakra("div", { themeKey: "Progress.Track" })
+const ProgressTrack = chakra("div", {
+  themeKey: "Progress.Track",
+  baseStyle: {
+    overflow: "hidden",
+    position: "relative",
+  },
+})
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -51,18 +51,10 @@ const Progress: ProgressTheme = {
   },
   baseStyle: props => ({
     Label: {
-      top: "50%",
-      left: "50%",
-      width: "100%",
       lineHeight: "1",
       fontSize: "0.25em",
-      textAlign: "center",
-      position: "absolute",
-      transform: "translate(-50%, -50%)",
     },
     Track: {
-      overflow: "hidden",
-      position: "relative",
       bg: mode(`gray.100`, `whiteAlpha.300`)(props),
     },
     Indicator: {
