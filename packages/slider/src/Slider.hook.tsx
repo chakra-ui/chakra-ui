@@ -84,6 +84,10 @@ export interface UseSliderProps {
    */
   isDisabled?: boolean
   /**
+   * If `true`, the slider will be in `read-only` state
+   */
+  isReadOnly?: boolean
+  /**
    * Function that returns the `aria-valuetext` for screen readers.
    * It's mostly used to generate a more human-readable
    * representation of the value for assistive technologies
@@ -127,6 +131,7 @@ export function useSlider(props: UseSliderProps) {
     orientation,
     id: idProp,
     isDisabled,
+    isReadOnly,
     onChangeStart,
     onChangeEnd,
     step = 1,
@@ -142,8 +147,12 @@ export function useSlider(props: UseSliderProps) {
   const [isFocused, setFocused] = useBooleanState()
   const [eventSource, setEventSource] = React.useState<EventSource>()
 
-  // Enable the slider handle controlled and uncontrolled scenarios
-  const [sliderValue, updateValue] = useControllableState({
+  const isInteractive = !(isDisabled || isReadOnly)
+
+  /**
+   * Enable the slider handle controlled and uncontrolled scenarios
+   */
+  const [computedValue, setValue] = useControllableState({
     value: valueProp,
     defaultValue: defaultValue ?? getDefaultValue(min, max),
     onChange,
@@ -160,17 +169,13 @@ export function useSlider(props: UseSliderProps) {
    * Ideally, we'll love to use pointer-events API but it's
    * not fully supported in all browsers.
    */
-  const mouseDownDetach = React.useRef<Function>()
-  const touchstartDetach = React.useRef<Function>()
-  const touchendDetach = React.useRef<Function>()
-  const mouseupDetach = React.useRef<Function>()
-  const touchcancelDetach = React.useRef<Function>()
+  const cleanUpRef = React.useRef<Dict<Function>>({})
 
   /**
    * Constrain the value because it can't be less than min
    * or greater than max
    */
-  const value = clampValue(sliderValue, min, max)
+  const value = clampValue(computedValue, min, max)
   const prev = React.useRef<number>()
 
   const reversedValue = max - value + min
@@ -179,12 +184,16 @@ export function useSlider(props: UseSliderProps) {
 
   const isVertical = orientation === "vertical"
 
-  // Let's keep a reference to the slider track and thumb
+  /**
+   * Let's keep a reference to the slider track and thumb
+   */
   const trackRef = React.useRef<any>(null)
   const thumbRef = React.useRef<any>(null)
   const rootRef = React.useRef<any>(null)
 
-  // Generate unique ids for component parts
+  /**
+   * Generate unique ids for component parts
+   */
   const [thumbId, trackId] = useIds(idProp, `slider-thumb`, `slider-track`)
 
   /**
@@ -227,12 +236,14 @@ export function useSlider(props: UseSliderProps) {
 
   const constrain = React.useCallback(
     (value: number) => {
+      // bail out if slider isn't interactive
+      if (!isInteractive) return
       prev.current = value
       value = parseFloat(roundValueToStep(value, oneStep))
       value = clampValue(value, min, max)
-      updateValue(value)
+      setValue(value)
     },
-    [oneStep, max, min, updateValue],
+    [oneStep, max, min, setValue, isInteractive],
   )
 
   const actions = React.useMemo(
@@ -380,7 +391,7 @@ export function useSlider(props: UseSliderProps) {
      */
     if (event.button != 0) return
 
-    if (isDisabled || !rootRef.current) return
+    if (!isInteractive || !rootRef.current) return
 
     setDragging.on()
     prev.current = value
@@ -393,7 +404,7 @@ export function useSlider(props: UseSliderProps) {
 
       if (nextValue && nextValue !== value) {
         setEventSource("mouse")
-        updateValue(nextValue)
+        setValue(nextValue)
       }
     }
 
@@ -407,13 +418,13 @@ export function useSlider(props: UseSliderProps) {
     }
 
     doc.addEventListener("mouseup", clean)
-    mouseupDetach.current = () => {
+    cleanUpRef.current.mouseup = () => {
       doc.removeEventListener("mouseup", clean)
     }
   })
 
   const onTouchStart = useEventCallback((event: TouchEvent) => {
-    if (isDisabled || !rootRef.current) return
+    if (!isInteractive || !rootRef.current) return
 
     // Prevent scrolling for touch events
     event.preventDefault()
@@ -429,7 +440,7 @@ export function useSlider(props: UseSliderProps) {
 
       if (nextValue && nextValue !== value) {
         setEventSource("touch")
-        updateValue(nextValue)
+        setValue(nextValue)
       }
     }
 
@@ -445,11 +456,11 @@ export function useSlider(props: UseSliderProps) {
     doc.addEventListener("touchend", clean)
     doc.addEventListener("touchcancel", clean)
 
-    touchendDetach.current = () => {
+    cleanUpRef.current.touchend = () => {
       doc.removeEventListener("touchend", clean)
     }
 
-    touchcancelDetach.current = () => {
+    cleanUpRef.current.touchcancel = () => {
       doc.removeEventListener("touchcancel", clean)
     }
   })
@@ -458,12 +469,18 @@ export function useSlider(props: UseSliderProps) {
    * Remove all event handlers
    */
   const detach = () => {
-    mouseDownDetach.current?.()
-    touchstartDetach.current?.()
-    touchendDetach.current?.()
-    touchcancelDetach.current?.()
-    mouseupDetach.current?.()
+    Object.values(cleanUpRef.current).forEach(cleanup => {
+      cleanup?.()
+    })
+    cleanUpRef.current = {}
   }
+
+  /**
+   * Ensure we clean up listeners when slider unmounts
+   */
+  React.useEffect(() => {
+    return () => detach()
+  }, [])
 
   useUpdateEffect(() => {
     if (!isDragging) {
@@ -471,12 +488,13 @@ export function useSlider(props: UseSliderProps) {
     }
   }, [isDragging])
 
-  mouseDownDetach.current = useEventListener(
+  cleanUpRef.current.mousedown = useEventListener(
     "mousedown",
     onMouseDown,
     rootRef.current,
   )
-  touchstartDetach.current = useEventListener(
+
+  cleanUpRef.current.touchstart = useEventListener(
     "touchstart",
     onTouchStart,
     rootRef.current,
@@ -522,6 +540,7 @@ export function useSlider(props: UseSliderProps) {
       "aria-valuenow": value,
       "aria-orientation": orientation,
       "aria-disabled": ariaAttr(isDisabled),
+      "aria-readonly": ariaAttr(isReadOnly),
       "aria-label": ariaLabel,
       "aria-labelledby": ariaLabel ? undefined : ariaLabelledBy,
       style: merge(props.style, thumbStyle),

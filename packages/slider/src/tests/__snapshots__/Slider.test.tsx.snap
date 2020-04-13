@@ -10,13 +10,11 @@ exports[`rendering should render correctly 1`] = `
   >
     <div
       class="css-1usnb2a"
-      data-chakra-slider-track=""
       id="slider-track-1"
       style="position: absolute; top: 50%; transform: translateY(-50%); width: 100%;"
     >
       <div
         class="css-2w30ji"
-        data-chakra-slider-filled-track=""
         style="position: absolute; top: 50%; transform: translateY(-50%); width: 50%; left: 0px;"
       />
     </div>
@@ -27,7 +25,6 @@ exports[`rendering should render correctly 1`] = `
       aria-valuemin="0"
       aria-valuenow="50"
       class="css-13rtom0"
-      data-chakra-slider-thumb=""
       id="slider-thumb-1"
       role="slider"
       style="position: absolute; user-select: none;"
