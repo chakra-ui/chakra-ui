@@ -29,7 +29,7 @@ export const Basic = () => (
  * Pass the `size` prop to change the size of the tag component
  */
 
-export const Size = () => (
+export const Sizes = () => (
   <>
     <Tag size="sm" colorScheme="gray">
       Gray
@@ -65,21 +65,17 @@ export const colorSchemes = () => (
  */
 
 export const LeftIcon = () => (
-  <>
-    <Tag colorScheme="cyan">
-      <TagIcon size="12px" as={AddIcon} />
-      <TagLabel>Green</TagLabel>
-    </Tag>
-  </>
+  <Tag colorScheme="cyan">
+    <TagIcon size="12px" as={AddIcon} />
+    <TagLabel>Green</TagLabel>
+  </Tag>
 )
 
 export const RightIcon = () => (
-  <>
-    <Tag colorScheme="cyan">
-      <TagLabel>Green</TagLabel>
-      <TagIcon size="12px" as={AddIcon} />
-    </Tag>
-  </>
+  <Tag colorScheme="cyan">
+    <TagLabel>Green</TagLabel>
+    <TagIcon size="12px" as={AddIcon} />
+  </Tag>
 )
 
 /**
