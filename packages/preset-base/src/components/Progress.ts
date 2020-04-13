@@ -1,24 +1,28 @@
-import { ComponentTheme, mode } from "./utils"
 import { getColor } from "@chakra-ui/color"
+import { ComponentTheme, mode } from "./utils"
 
-const getProgressBg = (props: any) => {
+type ProgressTheme = ComponentTheme<{ isIndeterminate?: boolean }>
+
+const getProgressBg: ProgressTheme["baseStyle"] = props => {
   const indicatorBg = mode(
     `${props.colorScheme}.500`,
     `${props.colorScheme}.200`,
   )(props)
 
   if (props.isIndeterminate) {
-    return `linear-gradient(
+    return {
+      bg: `linear-gradient(
         to right,
         transparent 0%,
         ${getColor(props.theme, indicatorBg)} 50%,
         transparent 100%
-      )`
+      )`,
+    }
   }
-  return indicatorBg
+  return { bg: indicatorBg }
 }
 
-const sizes: ComponentTheme["sizes"] = {
+const sizes: ProgressTheme["sizes"] = {
   xs: {
     Track: {
       height: "0.25rem",
@@ -41,7 +45,7 @@ const sizes: ComponentTheme["sizes"] = {
   },
 }
 
-const Progress: ComponentTheme = {
+const Progress: ProgressTheme = {
   defaultProps: {
     size: "md",
   },
@@ -64,7 +68,7 @@ const Progress: ComponentTheme = {
     Indicator: {
       height: "100%",
       transition: "all 0.3s",
-      bg: getProgressBg(props),
+      ...getProgressBg(props),
     },
   }),
   sizes,
