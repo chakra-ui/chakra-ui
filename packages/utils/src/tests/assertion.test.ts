@@ -1,9 +1,18 @@
 import {
   isNumber,
+  isNotNumber,
   isNumeric,
+  isArray,
+  isEmptyArray,
+  isFunction,
+  isDefined,
+  isUndefined,
   isObject,
-  isEmpty,
   isEmptyObject,
+  isNull,
+  isString,
+  isInputEvent,
+  isEmpty,
 } from "../assertion"
 
 test("is number", () => {
@@ -38,4 +47,41 @@ test("is empty", () => {
 test("is empty object", () => {
   expect(isEmptyObject({})).toBeTruthy()
   expect(isEmptyObject({ a: 3 })).toBeFalsy()
+})
+
+test("is not number", () => {
+  expect(isNotNumber("1")).toBeTruthy()
+  expect(isNotNumber(1)).toBeFalsy()
+})
+
+test("is array", () => {
+  expect(isArray([1])).toBeTruthy()
+})
+
+test("is empty array", () => {
+  expect(isEmptyArray([])).toBeTruthy()
+})
+
+test("is function", () => {
+  expect(isFunction(() => {})).toBeTruthy()
+})
+
+test("is defined", () => {
+  expect(isDefined("1")).toBeTruthy()
+})
+
+test("is undefined", () => {
+  expect(isUndefined(undefined)).toBeTruthy()
+})
+
+test("is null", () => {
+  expect(isNull(null)).toBeTruthy()
+})
+
+test("is string", () => {
+  expect(isString("1")).toBeTruthy()
+})
+
+test("is input event", () => {
+  expect(isInputEvent({ target: {} })).toBeTruthy()
 })
