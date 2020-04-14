@@ -19,7 +19,7 @@ npm i @chakra-ui/switch
 import { Switch } from "@chakra-ui/switch"
 ```
 
-## Basic Usage
+## Usage
 
 ```jsx
 <Switch />
