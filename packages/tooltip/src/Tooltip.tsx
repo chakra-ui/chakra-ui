@@ -47,9 +47,6 @@ export function Tooltip(props: TooltipProps) {
     ...rest
   } = props
 
-  // enforce a single child
-  const child = React.Children.only(children) as React.ReactElement
-
   const {
     isOpen,
     getTriggerProps,
@@ -59,13 +56,19 @@ export function Tooltip(props: TooltipProps) {
 
   const shouldWrap = isString(children) || shouldWrapChildren
 
-  const trigger = shouldWrap ? (
-    <chakra.span tabIndex={0} {...getTriggerProps()}>
-      {child}
-    </chakra.span>
-  ) : (
-    React.cloneElement(child, getTriggerProps(child.props))
-  )
+  let trigger: React.ReactElement
+
+  if (shouldWrap) {
+    trigger = (
+      <chakra.span tabIndex={0} {...getTriggerProps()}>
+        {children}
+      </chakra.span>
+    )
+  } else {
+    // ensure tooltip has only one child node
+    const child = React.Children.only(children) as React.ReactElement
+    trigger = React.cloneElement(child, getTriggerProps(child.props))
+  }
 
   const hasAriaLabel = !!ariaLabel
 
@@ -83,8 +86,8 @@ export function Tooltip(props: TooltipProps) {
    *
    * @see https://github.com/chakra-ui/chakra-ui/issues/601
    */
-  if (!label || !ariaLabel) {
-    return child
+  if (!(label || ariaLabel)) {
+    return <>{children}</>
   }
 
   return (

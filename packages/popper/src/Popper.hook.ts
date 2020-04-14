@@ -115,10 +115,12 @@ export function usePopper(props: UsePopperProps) {
     }
   }, [originalPlacement, fixed, forceUpdate, flip, offset, preventOverflow])
 
-  React.useEffect(() => {
-    if (forceUpdate) {
-      popper.current?.forceUpdate()
-    }
+  useSafeLayoutEffect(() => {
+    requestAnimationFrame(() => {
+      if (forceUpdate) {
+        popper.current?.forceUpdate()
+      }
+    })
   }, [forceUpdate])
 
   const computedArrowStyles: React.CSSProperties = {
