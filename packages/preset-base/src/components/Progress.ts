@@ -4,50 +4,41 @@ import { ComponentTheme, mode } from "./utils"
 type ProgressTheme = ComponentTheme<{ isIndeterminate?: boolean }>
 
 const getProgressBg: ProgressTheme["baseStyle"] = props => {
-  const indicatorBg = mode(
-    `${props.colorScheme}.500`,
-    `${props.colorScheme}.200`,
-  )(props)
+  const { colorScheme: c, theme: t } = props
+  const bg = mode(`${c}.500`, `${c}.200`)(props)
 
   if (props.isIndeterminate) {
     return {
       bg: `linear-gradient(
         to right,
         transparent 0%,
-        ${getColor(props.theme, indicatorBg)} 50%,
+        ${getColor(t, bg)} 50%,
         transparent 100%
       )`,
     }
   }
-  return { bg: indicatorBg }
+  return { bg }
 }
 
 const sizes: ProgressTheme["sizes"] = {
   xs: {
-    Track: {
-      height: "0.25rem",
-    },
+    Track: { height: "0.25rem" },
   },
   sm: {
-    Track: {
-      height: "0.5rem",
-    },
+    Track: { height: "0.5rem" },
   },
   md: {
-    Track: {
-      height: "0.75rem",
-    },
+    Track: { height: "0.75rem" },
   },
   lg: {
-    Track: {
-      height: "1rem",
-    },
+    Track: { height: "1rem" },
   },
 }
 
 const Progress: ProgressTheme = {
   defaultProps: {
     size: "md",
+    colorScheme: "blue",
   },
   baseStyle: props => ({
     Label: {

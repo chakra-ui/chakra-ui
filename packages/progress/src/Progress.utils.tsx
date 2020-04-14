@@ -48,18 +48,24 @@ export const stripe = keyframes`
   to { background-position: 0 0 }
 `
 
-export interface ProgressPropsOptions {
+export interface GetProgressPropsOptions {
   value?: number
   min: number
   max: number
   valueText?: string
-  getValueText?: (value?: number, percent?: number) => string
+  getValueText?(value?: number, percent?: number): string
 }
 
-export function getProgressProps(options: ProgressPropsOptions) {
+/**
+ * Get the common `aria-*` attributes for both the linear and circular
+ * progress components.
+ */
+export function getProgressProps(options: GetProgressPropsOptions) {
   const percent = options.value
     ? valueToPercent(options.value, options.min, options.max)
     : undefined
+
+  // A progressbar is indeterminate when the `value` is undefined
   const isIndeterminate = isUndefined(options.value)
 
   return {

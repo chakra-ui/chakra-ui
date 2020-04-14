@@ -1,7 +1,7 @@
 import * as React from "react"
 import { getProgressProps, rotate, spin } from "./Progress.utils"
 import { chakra, PropsOf } from "@chakra-ui/system"
-import { isUndefined, __DEV__ } from "@chakra-ui/utils"
+import { isUndefined, __DEV__, StringOrNumber } from "@chakra-ui/utils"
 
 type CircleProps = PropsOf<typeof chakra.circle>
 
@@ -10,13 +10,16 @@ type CircleProps = PropsOf<typeof chakra.circle>
  *
  * SVG circle element visually indicating the shape of the component
  */
+const Circle = (props: CircleProps) => (
+  <chakra.circle cx={50} cy={50} r={42} fill="transparent" {...props} />
+)
 
-function Circle(props: CircleProps) {
-  return <chakra.circle cx={50} cy={50} r={42} fill="transparent" {...props} />
+if (__DEV__) {
+  Circle.displayName = "Circle"
 }
 
 type ShapeProps = PropsOf<typeof chakra.svg> & {
-  size?: string | number
+  size?: StringOrNumber
   isIndeterminate?: boolean
 }
 
@@ -25,28 +28,28 @@ type ShapeProps = PropsOf<typeof chakra.svg> & {
  *
  * SVG wrapper element for the component's circular shape
  */
-
-function Shape({ size, isIndeterminate, ...props }: ShapeProps) {
+function Shape(props: ShapeProps) {
+  const { size, isIndeterminate, ...rest } = props
   return (
     <chakra.svg
       width={size}
       height={size}
       viewBox="0 0 100 100"
-      css={{
-        ...(isIndeterminate && {
-          animation: `${rotate} 2s linear infinite`,
-        }),
-      }}
-      {...props}
+      animation={isIndeterminate ? `${rotate} 2s linear infinite` : undefined}
+      {...rest}
     />
   )
+}
+
+if (__DEV__) {
+  Shape.displayName = "Shape"
 }
 
 interface CircularProgressOptions {
   /**
    * The size of the circular progress in CSS units
    */
-  size?: string | number
+  size?: StringOrNumber
   /**
    * Maximum value defining 100% progress made (must be higher than 'min')
    */
@@ -58,7 +61,7 @@ interface CircularProgressOptions {
   /**
    * The thickness of progress indicator as a ratio of `size`. Must be between `0` and `1`
    */
-  thickness?: string | number
+  thickness?: StringOrNumber
   /**
    * Current progress (must be between min/max)
    */
@@ -86,12 +89,30 @@ interface CircularProgressOptions {
   /**
    * A function that returns the desired valueText to use in place of the value
    */
-  getValueText?: (value?: number, percent?: number) => string
+  getValueText?(value?: number, percent?: number): string
 }
 
-type CircularProgressProps = PropsOf<typeof chakra.div> &
+const StyledProgress = chakra("div", {
+  baseStyle: {
+    display: "inline-block",
+    position: "relative",
+    verticalAlign: "middle",
+  },
+})
+
+export type CircularProgressProps = PropsOf<typeof StyledProgress> &
   CircularProgressOptions
 
+/**
+ * React component used to indicate the progress of an activity.
+ *
+ * It's built using `svg` and `circle` components with support for
+ * theming and `indeterminate` state
+ *
+ * @see Docs https://chakra-ui.com/progress
+ *
+ * @todo add theming support for circular progress
+ */
 export function CircularProgress(props: CircularProgressProps) {
   const {
     size = "48px",
@@ -102,7 +123,7 @@ export function CircularProgress(props: CircularProgressProps) {
     value,
     capIsRound,
     children,
-    thickness = "5px",
+    thickness = "10px",
     color = "#0078d4",
     trackColor = "#edebe9",
     ...rest
@@ -137,11 +158,9 @@ export function CircularProgress(props: CircularProgressProps) {
       }
 
   return (
-    <chakra.div
+    <StyledProgress
+      data-chakra-progress=""
       fontSize={size}
-      display="inline-block"
-      pos="relative"
-      verticalAlign="middle"
       {...progress.bind}
       {...rest}
     >
@@ -160,8 +179,12 @@ export function CircularProgress(props: CircularProgressProps) {
         />
       </Shape>
       {children}
-    </chakra.div>
+    </StyledProgress>
   )
+}
+
+if (__DEV__) {
+  CircularProgress.displayName = "CircularProgress"
 }
 
 /**
@@ -170,10 +193,9 @@ export function CircularProgress(props: CircularProgressProps) {
  * CircularProgress component label. In most cases it's a numeric indicator
  * of the circular progress component's value
  */
-
 export const CircularProgressLabel = chakra("div", {
-  themeKey: "Progress.Label",
   baseStyle: {
+    fontSize: "0.24em",
     top: "50%",
     left: "50%",
     width: "100%",
@@ -184,6 +206,7 @@ export const CircularProgressLabel = chakra("div", {
 })
 
 if (__DEV__) {
-  CircularProgress.displayName = "CircularProgress"
   CircularProgressLabel.displayName = "CircularProgressLabel"
 }
+
+export type CircularProgressLabelProps = PropsOf<typeof CircularProgressLabel>
