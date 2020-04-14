@@ -59,10 +59,17 @@ if (__DEV__) {
 }
 
 const TagCloseIcon = (props: IconProps) => (
-  <Icon focusable="false" role="presentation" size="100%" {...props}>
+  <Icon
+    focusable="false"
+    verticalAlign="inherit"
+    role="presentation"
+    boxSize="100%"
+    viewBox="0 0 512 512"
+    {...props}
+  >
     <path
       fill="currentColor"
-      d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+      d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"
     />
   </Icon>
 )
@@ -81,12 +88,15 @@ export type TagCloseButtonProps = Omit<
 const StyledButton = chakra("button", {
   baseStyle: {
     fontSize: "1em",
-    width: "1em",
-    height: "1em",
+    width: "1.25rem",
+    height: "1.25rem",
     borderRadius: "sm",
-    marginLeft: "6px",
+    marginLeft: "0.375rem",
+    marginRight: "-1",
     display: "flex",
     alignItems: "center",
+    transition: "all 0.2s",
+    opacity: 0.5,
     _disabled: { opacity: 0.4 },
     outline: "0",
     _focus: {
@@ -106,11 +116,7 @@ const StyledButton = chakra("button", {
  * @see Docs https://chakra-ui/tag
  */
 export const TagCloseButton = (props: TagCloseButtonProps) => {
-  const {
-    isDisabled,
-    children = <TagCloseIcon verticalAlign="inherit" />,
-    ...rest
-  } = props
+  const { isDisabled, children = <TagCloseIcon />, ...rest } = props
   return <StyledButton disabled={isDisabled} children={children} {...rest} />
 }
 
