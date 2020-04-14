@@ -1,37 +1,29 @@
 import * as React from "react"
 import { Textarea } from "./Textarea"
+import { chakra } from "@chakra-ui/system"
 
 export default {
   title: "Textarea",
+  decorators: [
+    (story: Function) => (
+      <chakra.div maxW="500px" mt="40px" mx="auto">
+        {story()}
+      </chakra.div>
+    ),
+  ],
 }
 
-/**
- * A simple textarea
- */
+export const basic = () => <Textarea defaultValue="This is a textarea" />
 
-export const BasicExample = () => <Textarea defaultValue="This is a textarea" />
-
-/**
- * Pass the `isDisabled` prop to put the textarea in the disabled state
- */
-
-export const Disabled = () => (
+export const disabled = () => (
   <Textarea isDisabled placeholder="A disabled textarea" />
 )
 
-/**
- * Pass the `isInvalid` prop to put the textarea in the invalid state
- */
-
-export const Invalid = () => (
+export const invalid = () => (
   <Textarea isInvalid placeholder="An invalid textarea" />
 )
 
-/**
- * Pass the `size` prop to change the size of the textarea
- */
-
-export const Sizes = () => (
+export const withSizes = () => (
   <>
     <Textarea
       size="sm"
@@ -50,16 +42,11 @@ export const Sizes = () => (
   </>
 )
 
-/**
- * A controlled textarea
- */
-
 export const Controlled = () => {
   const [value, setValue] = React.useState("")
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const inputValue = e.target.value
-    setValue(inputValue)
+  const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setValue(e.target.value)
   }
 
   return (
@@ -69,16 +56,12 @@ export const Controlled = () => {
         mt="8px"
         value={value}
         placeholder="Enter value"
-        onChange={handleInputChange}
+        onChange={onChange}
       />
     </>
   )
 }
 
-/**
- * Pass the `resize` prop to resize to textarea in the vertical or horizontal direction
- */
-
-export const Resize = () => (
+export const withResize = () => (
   <Textarea placeholder="Here is a sample placeholder" resize="horizontal" />
 )

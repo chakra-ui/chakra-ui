@@ -1,6 +1,6 @@
 import { FormControlOptions, useFormControl } from "@chakra-ui/form-control"
 import { chakra, PropsOf } from "@chakra-ui/system"
-import * as React from "react"
+import React, { forwardRef, Ref } from "react"
 import { __DEV__ } from "@chakra-ui/utils"
 
 interface TextareaOptions {
@@ -22,21 +22,34 @@ interface TextareaOptions {
   isFullWidth?: boolean
 }
 
+/**
+ * Textarea - Theming
+ *
+ * To style the textarea component globally, change the styles in
+ * `theme.components.Textarea`
+ */
 const StyledTextarea = chakra<"textarea", TextareaOptions>("textarea", {
   themeKey: "Textarea",
   shouldForwardProp: prop =>
     !["focusBorderColor", "errorBorderColor"].includes(prop),
 })
 
-type OmittedTypes = "disabled" | "required" | "readOnly"
+type Omitted = "disabled" | "required" | "readOnly"
 
-export type TextareaProps = Omit<PropsOf<typeof StyledTextarea>, OmittedTypes> &
+export type TextareaProps = Omit<PropsOf<typeof StyledTextarea>, Omitted> &
   FormControlOptions
 
-export const Textarea = React.forwardRef(
-  (props: TextareaProps, ref: React.Ref<HTMLTextAreaElement>) => {
+/**
+ * Textarea
+ *
+ * React component used to enter an amount of text that's longer than a single line
+ *
+ * @see Docs https://chakra-ui.com/textarea
+ */
+export const Textarea = forwardRef(
+  (props: TextareaProps, ref: Ref<HTMLTextAreaElement>) => {
     const fieldProps = useFormControl<HTMLTextAreaElement>(props)
-    return <StyledTextarea ref={ref} {...fieldProps} />
+    return <StyledTextarea data-chakra-textarea="" ref={ref} {...fieldProps} />
   },
 )
 

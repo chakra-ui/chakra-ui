@@ -25,6 +25,7 @@ import Popover from "./Popover"
 import Form from "./Form"
 import Editable from "./Editable"
 import Progress from "./Progress"
+import Textarea from "./Textarea"
 
 export default {
   Accordion,
@@ -50,7 +51,7 @@ export default {
   Modal,
   Kbd,
   Select: Input,
-  Textarea: Input,
+  Textarea,
   PinInput,
   Popover,
   Form,
