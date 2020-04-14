@@ -16,7 +16,7 @@ export const BasicExample = () => <Textarea defaultValue="This is a textarea" />
  */
 
 export const Disabled = () => (
-  <Textarea isDisabled placeholder="An disabled textarea" />
+  <Textarea isDisabled placeholder="A disabled textarea" />
 )
 
 /**

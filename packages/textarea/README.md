@@ -25,7 +25,7 @@ import { Textarea } from "@chakra-ui/textarea"
 Pass the `isDisabled` prop to put the textarea in the disabled state
 
 ```jsx
-<Textarea isDisabled placeholder="An disabled textarea" />
+<Textarea isDisabled placeholder="A disabled textarea" />
 ```
 
 ## Invalid
