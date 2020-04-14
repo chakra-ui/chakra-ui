@@ -20,7 +20,7 @@ exports[`Tag renders correctly 1`] = `
       class="css-1w1jg1l"
     >
       <svg
-        class="css-1h9aafa"
+        class="css-clmwf0"
         focusable="false"
         role="presentation"
         viewBox="0 0 24 24"
@@ -36,7 +36,7 @@ exports[`Tag renders correctly 1`] = `
     class="css-1qa246m"
   >
     <svg
-      class="css-1bpodrw"
+      class="css-185pyue"
       data-chakra-custom-icon=""
       data-chakra-tag-icon=""
       focusable="false"
@@ -58,7 +58,7 @@ exports[`Tag renders correctly 1`] = `
       class="css-1w1jg1l"
     >
       <svg
-        class="css-1h9aafa"
+        class="css-clmwf0"
         focusable="false"
         role="presentation"
         viewBox="0 0 24 24"

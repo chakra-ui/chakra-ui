@@ -1,8 +1,18 @@
 import React from "react"
 import { chakra, PropsOf } from "@chakra-ui/system"
 import { Icon, IconProps } from "@chakra-ui/icon"
+import { __DEV__ } from "@chakra-ui/utils"
 
 export type TagProps = PropsOf<typeof Tag>
+
+/**
+ * Tag
+ *
+ * The tag component is used to label or categorize UI elements.
+ *
+ * To style the element, change the styles in
+ * `theme.components.Tag`
+ */
 
 export const Tag = chakra("span", {
   themeKey: "Tag",
@@ -17,6 +27,12 @@ export const Tag = chakra("span", {
 
 export type TagLabelProps = PropsOf<typeof chakra.div>
 
+/**
+ * TagLabel
+ *
+ * The text label of the tag
+ */
+
 export const TagLabel = (props: TagLabelProps) => (
   <chakra.span
     data-chakra-tag-label=""
@@ -25,6 +41,12 @@ export const TagLabel = (props: TagLabelProps) => (
     {...props}
   />
 )
+
+/**
+ * TagIcon
+ *
+ * The tag icon. This can be positioned on either side of the tag
+ */
 
 export const TagIcon = (props: IconProps) => (
   <Icon
@@ -38,6 +60,12 @@ export const TagIcon = (props: IconProps) => (
     }}
   />
 )
+
+/**
+ * TagCloseIcon
+ *
+ * The icon of the tag close button
+ */
 
 const TagCloseIcon = (props: IconProps) => (
   <Icon focusable="false" role="presentation" size="100%" {...props}>
@@ -55,6 +83,12 @@ export type TagCloseButtonProps = Omit<
   isDisabled?: boolean
 }
 
+/**
+ * TagCloseButton
+ *
+ * The tag close button. This is used to close "remove" the tag
+ */
+
 export const TagCloseButton = (props: TagCloseButtonProps) => {
   const {
     isDisabled,
@@ -67,6 +101,8 @@ export const TagCloseButton = (props: TagCloseButtonProps) => {
       size="1em"
       borderRadius="sm"
       marginLeft="6px"
+      display="flex"
+      alignItems="center"
       _disabled={{ opacity: 0.4 }}
       outline="0"
       _focus={{
@@ -80,4 +116,11 @@ export const TagCloseButton = (props: TagCloseButtonProps) => {
       {...rest}
     />
   )
+}
+
+if (__DEV__) {
+  Tag.displayName = "Tag"
+  TagIcon.displayName = "TagIcon"
+  TagLabel.displayName = "TagLabel"
+  TagCloseButton.displayName = "TagCloseButton"
 }

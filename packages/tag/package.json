@@ -16,9 +16,7 @@
   "main": "dist/index.js",
   "module": "dist/tag.esm.js",
   "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "publishConfig": {
     "access": "public"
   },
@@ -51,7 +49,8 @@
   },
   "dependencies": {
     "@chakra-ui/system": "0.0.1",
-    "@chakra-ui/icon": "0.0.1"
+    "@chakra-ui/icon": "0.0.1",
+    "@chakra-ui/utils": "0.0.1"
   },
   "peerDependencies": {
     "react": "16.x",
