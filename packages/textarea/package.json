@@ -6,7 +6,11 @@
     "theme",
     "theming",
     "ui mode",
-    "ui"
+    "ui",
+    "textarea",
+    "form",
+    "form-control",
+    "chakra"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
