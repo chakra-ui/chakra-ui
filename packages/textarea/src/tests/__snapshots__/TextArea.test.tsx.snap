@@ -3,7 +3,7 @@
 exports[`Textarea renders correctly 1`] = `
 <DocumentFragment>
   <textarea
-    class="css-gkmmq4"
+    class="css-1ug6p1x"
   >
     hello
   </textarea>
