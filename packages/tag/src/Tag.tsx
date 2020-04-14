@@ -16,6 +16,7 @@ export const Tag = chakra("span", {
   themeKey: "Tag",
   baseStyle: {
     display: "inline-flex",
+    verticalAlign: "top",
     alignItems: "center",
     maxWidth: "100%",
     fontWeight: "medium",
@@ -30,34 +31,31 @@ if (__DEV__) {
 export type TagLabelProps = PropsOf<typeof TagLabel>
 
 export const TagLabel = chakra("span", {
-  baseStyle: {
-    isTruncated: true,
-    lineHeight: 1.2,
-  },
+  baseStyle: { lineHeight: 1.2 },
 })
+
+TagLabel.defaultProps = {
+  isTruncated: true,
+}
 
 if (__DEV__) {
   TagLabel.displayName = "TagLabel"
 }
 
-/**
- * TagIcon
- *
- * Tag component used on either side of the tag label
- */
-export const TagIcon = (props: IconProps) => (
-  <Icon
-    data-chakra-tag-icon=""
-    verticalAlign="top"
-    marginX="0.5rem"
-    _first={{ marginLeft: 0 }}
-    _last={{ marginRight: 0 }}
-    {...props}
-  />
+export const TagLeftIcon = (props: IconProps) => (
+  <Icon verticalAlign="top" marginRight="0.5rem" {...props} />
 )
 
 if (__DEV__) {
-  TagIcon.displayName = "TagIcon"
+  TagLeftIcon.displayName = "TagLeftIcon"
+}
+
+export const TagRightIcon = (props: IconProps) => (
+  <Icon verticalAlign="top" marginLeft="0.5rem" {...props} />
+)
+
+if (__DEV__) {
+  TagRightIcon.displayName = "TagRightIcon"
 }
 
 const TagCloseIcon = (props: IconProps) => (

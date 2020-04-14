@@ -3,8 +3,9 @@ import Badge from "./Badge"
 
 const Tag: ComponentTheme = {
   defaultProps: {
-    size: "md",
+    size: "lg",
     variant: "subtle",
+    colorScheme: "gray",
   },
   baseStyle: {
     outline: 0,

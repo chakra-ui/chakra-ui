@@ -147,6 +147,9 @@ test("should resolve positive or negative values", () => {
 
   const r5 = positiveOrNegative("-40em", theme.space)
   expect(r5).toEqual("-40em")
+
+  const r6 = positiveOrNegative(-1, { "1": "0.25rem" })
+  expect(r6).toEqual("-0.25rem")
 })
 
 test("should sort styles", () => {

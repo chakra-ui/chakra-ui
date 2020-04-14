@@ -1,8 +1,9 @@
 import { AddIcon } from "@chakra-ui/icons"
 import * as React from "react"
-import { Tag, TagIcon, TagLabel, TagCloseButton } from "./Tag"
+import { Tag, TagLeftIcon, TagLabel, TagRightIcon, TagCloseButton } from "./Tag"
 import { chakra } from "@chakra-ui/system"
 import { Avatar } from "@chakra-ui/avatar"
+import { MdSettings } from "react-icons/md"
 
 export default {
   title: "Tag",
@@ -15,29 +16,13 @@ export default {
   ],
 }
 
-/**
- * A simple tag component
- */
+export const basic = () => <Tag>Gray</Tag>
 
-export const Basic = () => (
+export const withSizes = () => (
   <>
+    <Tag size="sm">Gray</Tag>
     <Tag>Gray</Tag>
-  </>
-)
-
-/**
- * Pass the `size` prop to change the size of the tag component
- */
-
-export const Sizes = () => (
-  <>
-    <Tag size="sm" colorScheme="gray">
-      Gray
-    </Tag>
-    <Tag colorScheme="gray">Gray</Tag>
-    <Tag size="lg" colorScheme="gray">
-      Gray
-    </Tag>
+    <Tag size="lg">Gray</Tag>
   </>
 )
 
@@ -64,25 +49,32 @@ export const colorSchemes = () => (
  * or after (right side) the tag component
  */
 
-export const LeftIcon = () => (
+export const withLeftIcon = () => (
   <Tag colorScheme="cyan">
-    <TagIcon size="12px" as={AddIcon} />
+    <TagLeftIcon size="12px" as={AddIcon} />
     <TagLabel>Green</TagLabel>
   </Tag>
 )
 
-export const RightIcon = () => (
-  <Tag colorScheme="cyan">
-    <TagLabel>Green</TagLabel>
-    <TagIcon size="12px" as={AddIcon} />
-  </Tag>
+export const withRightIcon = () => (
+  <>
+    <Tag colorScheme="cyan">
+      <TagLabel>Green</TagLabel>
+      <TagRightIcon boxSize="12px" as={AddIcon} />
+    </Tag>
+
+    <Tag variant="solid" colorScheme="teal">
+      <TagLabel>Teal</TagLabel>
+      <TagRightIcon as={MdSettings} />
+    </Tag>
+  </>
 )
 
 /**
  * Use the `TagCloseButton` to apply a close button to the tag component.
  */
 
-export const WithCloseButton = () => (
+export const withCloseButton = () => (
   <>
     <Tag variant="solid" size="sm" colorScheme="cyan">
       <TagLabel>Tab Label</TagLabel>
@@ -106,14 +98,14 @@ export const WithCloseButton = () => (
  * within the tag component.
  */
 
-export const WithCustomElement = () => (
+export const withCustomElement = () => (
   <Tag size="lg" colorScheme="red" borderRadius="full">
     <Avatar
       src="https://bit.ly/sage-adebayo"
       size="xs"
       name="Segun Adebayo"
-      ml={-1}
-      mr={2}
+      marginLeft={-1}
+      marginRight={2}
     />
     <TagLabel>Segun</TagLabel>
     <TagCloseButton />
