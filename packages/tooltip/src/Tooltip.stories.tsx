@@ -80,15 +80,15 @@ const TransitionTooltip = ({ children }: any) => {
         styles={{
           init: {
             opacity: 0,
-            // transform: `scale(0.9)`,
+            transform: `scale(0.9)`,
           },
           entered: {
             opacity: 1,
-            // transform: `scale(1)`,
+            transform: `scale(1)`,
           },
           exiting: {
             opacity: 0,
-            // transform: `scale(0.9)`,
+            transform: `scale(0.9)`,
           },
         }}
       >

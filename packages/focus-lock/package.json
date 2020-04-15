@@ -45,10 +45,10 @@
     "react-dom": "16.13.0",
     "ts-jest": "25.2.1",
     "tsdx": "0.12.3",
-    "tslib": "1.11.1",
     "typescript": "3.8.3"
   },
   "dependencies": {
+    "tslib": "1.11.1",
     "react-focus-lock": "^2.1.0"
   },
   "peerDependencies": {
