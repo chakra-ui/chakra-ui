@@ -149,3 +149,18 @@ export const withAriaLabel = () => (
     </button>
   </Tooltip>
 )
+
+export const issue607 = () => (
+  <div
+    style={{
+      position: "fixed",
+      background: "red",
+      height: "100px",
+      width: "200px",
+    }}
+  >
+    <Tooltip label="Hello" aria-label="hello">
+      Hi
+    </Tooltip>
+  </div>
+)
