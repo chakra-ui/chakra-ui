@@ -2,15 +2,23 @@ import { useMediaQuery } from "@chakra-ui/hooks"
 import * as React from "react"
 import { useSyncBetweenTabs, useUpdateBodyClassName } from "./color-mode.hook"
 import { ColorMode, darkModeQuery } from "./color-mode.utils"
+import { __DEV__ } from "@chakra-ui/utils"
 
 export { ColorMode }
 
 type ColorModeContext = [ColorMode, () => void]
 
-const Context = React.createContext<ColorModeContext>(["light", () => {}])
+export const ColorModeContext = React.createContext<ColorModeContext>([
+  "light",
+  () => {},
+])
+
+if (__DEV__) {
+  ColorModeContext.displayName = "ColorModeContext"
+}
 
 export function useColorMode() {
-  const context = React.useContext(Context)
+  const context = React.useContext(ColorModeContext)
   if (context == null) {
     throw Error("useColorMode can only be used within ColorModeProvider")
   }
@@ -18,12 +26,12 @@ export function useColorMode() {
 }
 
 export interface ColorModeProviderProps {
-  mode?: ColorMode
+  value?: ColorMode
   children?: React.ReactNode
 }
 
 export function ColorModeProvider(props: ColorModeProviderProps) {
-  const { children, mode } = props
+  const { children, value } = props
 
   const [isDark, setIsDark] = useMediaQuery(darkModeQuery)
 
@@ -34,25 +42,38 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
   useSyncBetweenTabs(setIsDark)
 
   const [manualMode, setManualMode] = React.useState<ColorMode | undefined>(
-    mode,
+    value,
   )
-  const manualToggle = () =>
-    setManualMode(prev => (prev === "light" ? "dark" : prev))
 
-  const context = mode
+  /**
+   * In some cases, the user wants fully control the colormode
+   * without using `useColorMode`, let's ensure we sync the value
+   * prop with state.
+   *
+   * @see https://github.com/chakra-ui/chakra-ui/issues/573
+   */
+  React.useEffect(() => {
+    setManualMode(value)
+  }, [value])
+
+  const manualToggle = () => {
+    setManualMode(prev => (prev === "light" ? "dark" : "light"))
+  }
+
+  const context = value
     ? [manualMode, manualToggle]
     : [colorMode, toggleColorMode]
 
-  const _context = context as ColorModeContext
+  const _context = React.useMemo(() => context, [context]) as ColorModeContext
 
-  return <Context.Provider value={_context} children={children} />
+  return <ColorModeContext.Provider value={_context} children={children} />
 }
 
 export const DarkMode = (props: ColorModeProviderProps) => (
-  <ColorModeProvider mode="dark" {...props} />
+  <ColorModeProvider value="dark" {...props} />
 )
 export const LightMode = (props: ColorModeProviderProps) => (
-  <ColorModeProvider mode="light" {...props} />
+  <ColorModeProvider value="light" {...props} />
 )
 
 export function getColorModeValue<T>(lightModeValue: T, darkModeValue: T) {
