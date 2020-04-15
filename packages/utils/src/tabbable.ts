@@ -1,17 +1,14 @@
 // Really great work done by Diego Haz on this one
 // https://github.com/reakit/reakit/blob/master/packages/reakit-utils/src/tabbable.ts
 
-export function hasDisplayNone(element: Element) {
-  return window.getComputedStyle(element).display === "none"
-}
+export const hasDisplayNone = (element: Element) =>
+  window.getComputedStyle(element).display === "none"
 
-export function hasTabIndex(element: Element) {
-  return element.hasAttribute("tabindex")
-}
+export const hasTabIndex = (element: Element) =>
+  element.hasAttribute("tabindex")
 
-export function hasNegativeTabIndex(element: HTMLElement) {
-  return hasTabIndex(element) && element.tabIndex === -1
-}
+export const hasNegativeTabIndex = (element: HTMLElement) =>
+  hasTabIndex(element) && element.tabIndex === -1
 
 export function isDisabled(element: HTMLElement) {
   return (
@@ -63,17 +60,15 @@ export function isFocusable(element: Element) {
   return hasTabIndex(element)
 }
 
-function defaultIsActive(element: Element) {
-  return document.activeElement === element
-}
+const isActiveElement = (element: Element) => document.activeElement === element
 
 type EnsureFocusOptions = FocusOptions & {
-  isActive?: typeof defaultIsActive
+  isActive?: typeof isActiveElement
 }
 
 export function ensureFocus(
   element: HTMLElement,
-  { isActive = defaultIsActive, preventScroll }: EnsureFocusOptions = {},
+  { isActive = isActiveElement, preventScroll }: EnsureFocusOptions = {},
 ) {
   if (isActive(element)) return -1
   return requestAnimationFrame(() => {

@@ -3,6 +3,7 @@ import * as React from "react"
 import { Tooltip, useTooltip } from "."
 import { Transition } from "@chakra-ui/transition"
 import { Portal } from "@chakra-ui/portal"
+import { Modal, ModalContent, ModalOverlay } from "@chakra-ui/modal"
 
 export default {
   title: "Tooltip",
@@ -79,15 +80,15 @@ const TransitionTooltip = ({ children }: any) => {
         styles={{
           init: {
             opacity: 0,
-            transform: `scale(0.9)`,
+            // transform: `scale(0.9)`,
           },
           entered: {
             opacity: 1,
-            transform: `scale(1)`,
+            // transform: `scale(1)`,
           },
           exiting: {
             opacity: 0,
-            transform: `scale(0.9)`,
+            // transform: `scale(0.9)`,
           },
         }}
       >
@@ -163,4 +164,54 @@ export const issue607 = () => (
       Hi
     </Tooltip>
   </div>
+)
+
+export const WithModal = () => {
+  const [showDialog, setShowDialog] = React.useState(false)
+  return (
+    <div>
+      <button onClick={() => setShowDialog(true)}>Show Dialog</button>
+      <Modal isOpen={showDialog} onClose={() => setShowDialog(false)}>
+        <ModalOverlay>
+          <ModalContent height="300px">
+            <div>
+              <button onClick={() => setShowDialog(false)}>Close Dialog</button>
+              <Tooltip label="Notifications">
+                <button style={{ fontSize: 25 }}>
+                  <span aria-hidden>🔔</span>
+                </button>
+              </Tooltip>
+              <Tooltip label="Settings">
+                <button style={{ fontSize: 25 }}>
+                  <span aria-hidden>⚙️</span>
+                </button>
+              </Tooltip>
+              <Tooltip label="Your files are safe with us">
+                <button style={{ fontSize: 25 }}>
+                  <span aria-hidden>💾</span> Save
+                </button>
+              </Tooltip>
+
+              <div style={{ float: "right" }}>
+                <Tooltip label="Notifications" aria-label="3 Notifications">
+                  <button style={{ fontSize: 25 }}>
+                    <span>🔔</span>
+                    <span>3</span>
+                  </button>
+                </Tooltip>
+              </div>
+            </div>
+          </ModalContent>
+        </ModalOverlay>
+      </Modal>
+    </div>
+  )
+}
+
+export const withDisabledButton = () => (
+  <Tooltip label="Oh oh oh, oh oh">
+    <button style={{ fontSize: 25, pointerEvents: "all" }} disabled>
+      Can't Touch This
+    </button>
+  </Tooltip>
 )

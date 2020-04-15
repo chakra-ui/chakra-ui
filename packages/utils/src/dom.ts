@@ -1,5 +1,5 @@
 import { Booleanish } from "./types"
-import React from "react"
+import * as React from "react"
 
 let _window: Window | undefined = undefined
 
@@ -16,9 +16,8 @@ try {
  * Helper to get the window object. The helper will make sure to use a cached variable
  * of "window", to avoid overhead and memory leaks in IE11.
  */
-export function getWindow(node?: HTMLElement | null): Window | undefined {
-  return node?.ownerDocument?.defaultView ?? _window
-}
+export const getWindow = (node?: HTMLElement | null) =>
+  node?.ownerDocument?.defaultView ?? _window
 
 /**
  * Check if we can use the DOM. Useful for SSR purposes
@@ -47,16 +46,13 @@ export function normalizeEventKey(event: React.KeyboardEvent) {
   return isArrowKey ? `Arrow${key}` : key
 }
 
-export const dataAttr = (condition: boolean | undefined) => {
-  const value = condition ? "" : undefined
-  return value as Booleanish
-}
+export const dataAttr = (condition: boolean | undefined) =>
+  (condition ? "" : undefined) as Booleanish
 
-export const ariaAttr = (condition: boolean | undefined) => {
-  const value = condition ? true : undefined
-  return value
-}
+export const ariaAttr = (condition: boolean | undefined) =>
+  condition ? true : undefined
 
-export function getOwnerDocument(node?: HTMLElement) {
-  return node?.ownerDocument || document
-}
+export const getOwnerDocument = (node?: HTMLElement) =>
+  node?.ownerDocument || document
+
+export const cx = (...classNames: any[]) => classNames.filter(Boolean).join(" ")

@@ -7,46 +7,49 @@ import {
 import { Placement, usePopper, UsePopperProps } from "@chakra-ui/popper"
 import { callAllHandlers, mergeRefs, Dict } from "@chakra-ui/utils"
 import flushable from "flushable"
-import React, { useRef, useCallback, useEffect } from "react"
+import * as React from "react"
+import { useRef, useCallback, useEffect } from "react"
 
-let pendingHide: flushable.FlushableOperation
+let hideOperation: flushable.FlushableOperation
+let activeId: string | null = null
 
 function show(fn: (isHidePending: boolean) => void, delay: number) {
-  const isHidePending = pendingHide?.pending()
+  // check if hide has not been executed
+  const isHidePending = hideOperation?.pending()
 
+  // immediately execute hide if it has not been executed
   if (isHidePending) {
-    pendingHide.flush()
+    hideOperation.flush()
   }
 
-  const pendingShow = flushable(
+  // setup the show operation using flushable
+  const showOperation = flushable(
     () => fn(isHidePending),
     isHidePending ? 0 : delay,
   )
-  return pendingShow.cancel
+
+  // return a function to cancel show() from executing
+  // in the case of multiple tooltips
+  return showOperation.cancel
 }
 
 function hide(fn: (flushed: boolean) => void, delay: number) {
-  pendingHide = flushable(flushed => fn(flushed), delay)
-  return pendingHide.cancel
+  // setup the hide operation using flushable
+  hideOperation = flushable(flushed => fn(flushed), delay)
+
+  // return a function to cancel hide() from executing
+  return hideOperation.cancel
 }
 
 export interface UseTooltipProps {
   /**
    * Delay (in ms) before hiding the tooltip
    * @default 200ms
-   *
-   * Note: This value will not be respected when switching quickly
-   * between two tooltip triggers. We manage that internally and
-   * ensure the other tooltip shows immediately.
    */
   hideDelay?: number
   /**
    * Delay (in ms) before showing the tooltip
    * @default 200ms
-   *
-   * Note: This value will not be respected when switching quickly
-   * between two tooltip triggers. We manage that internally and
-   * ensure the other tooltip shows immediately.
    */
   showDelay?: number
   /**
@@ -117,30 +120,18 @@ export function useTooltip(props: UseTooltipProps = {}) {
     arrowSize,
   })
 
+  const tooltipId = useId(id, "tooltip")
+
   const ref = useRef<any>(null)
-
   const triggerRef = useMergeRefs(ref, popper.reference.ref)
-
-  const cancelPendingSetStateRef = useRef(() => {})
+  const flushRef = useRef<Function>()
 
   useEffect(() => {
-    return () => cancelPendingSetStateRef.current()
+    return () => flushRef.current?.()
   }, [])
 
-  const onScroll = useCallback(() => {
-    if (isOpen) {
-      cancelPendingSetStateRef.current()
-      close()
-    }
-  }, [isOpen, close])
-
-  useEventListener("scroll", onScroll, document, {
-    capture: true,
-    passive: true,
-  })
-
   const hideImmediately = useCallback(() => {
-    cancelPendingSetStateRef.current()
+    flushRef.current?.()
     close()
   }, [close])
 
@@ -157,20 +148,27 @@ export function useTooltip(props: UseTooltipProps = {}) {
   }, [hideOnMouseDown, hideImmediately])
 
   const showTooltip = useCallback(() => {
-    cancelPendingSetStateRef.current()
+    flushRef.current?.()
+
+    if (tooltipId !== activeId) {
+      hideImmediately()
+    }
+
+    activeId = tooltipId
 
     if (!isOpen) {
-      cancelPendingSetStateRef.current = show(() => {
+      flushRef.current = show(() => {
         open()
       }, showDelay)
     }
-  }, [isOpen, showDelay, open])
+  }, [isOpen, showDelay, open, tooltipId, hideImmediately])
 
   const hideTooltip = useCallback(() => {
-    cancelPendingSetStateRef.current()
+    flushRef.current?.()
+    activeId = null
 
     if (isOpen) {
-      cancelPendingSetStateRef.current = hide(() => {
+      flushRef.current = hide(() => {
         close()
       }, hideDelay)
     }
@@ -188,8 +186,6 @@ export function useTooltip(props: UseTooltipProps = {}) {
     },
     [isOpen, showTooltip],
   )
-
-  const tooltipId = useId(id, "tooltip")
 
   // A11y: Close the tooltip if user presses escape
   const onKeyDown = useCallback(
