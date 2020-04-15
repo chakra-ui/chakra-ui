@@ -16,7 +16,10 @@ type ModalContext = UseModalReturn &
   Pick<ModalProps, "isCentered" | "scrollBehavior"> &
   Pick<ThemingProps, "variant" | "size">
 
-const [ModalContextProvider, useModalContext] = createContext<ModalContext>()
+const [ModalContextProvider, useModalContext] = createContext<ModalContext>({
+  strict: true,
+  name: "ModalContext",
+})
 
 export interface ModalProps extends UseModalProps, ThemingProps {
   children?: React.ReactNode
@@ -133,19 +136,20 @@ type ContentOptions = Pick<ModalProps, "scrollBehavior">
  */
 const StyledContent = chakra<"section", ContentOptions>("section", {
   themeKey: "Modal.Content",
-  baseStyle: props => ({
-    display: "flex",
-    flexDirection: "column",
-    position: "relative",
-    width: "100%",
-    marginY: "3.75rem",
-    maxHeight:
-      props.scrollBehavior === "inside" ? "calc(100vh - 7.5rem)" : undefined,
-    overflow: props.scrollBehavior === "inside" ? "auto" : undefined,
-    _focus: {
-      outline: 0,
-    },
-  }),
+  baseStyle: props => {
+    return {
+      display: "flex",
+      flexDirection: "column",
+      position: "relative",
+      width: "100%",
+      marginY: "3.75rem",
+      maxHeight:
+        props.scrollBehavior === "inside" ? "calc(100vh - 7.5rem)" : undefined,
+      _focus: {
+        outline: 0,
+      },
+    }
+  },
 })
 
 export type ModalContentProps = PropsOf<typeof StyledContent>
@@ -247,6 +251,7 @@ export type ModalHeaderProps = PropsOf<typeof StyledHeader>
  */
 const StyledHeader = chakra("header", {
   themeKey: "Modal.Header",
+  baseStyle: { flex: 0 },
 })
 
 /**
@@ -283,7 +288,13 @@ export type ModalBodyProps = PropsOf<typeof StyledBody>
  * To style the modal body globally, change the styles in
  * `theme.components.Modal` under the `Body` key
  */
-const StyledBody = chakra("div", { themeKey: "Modal.Body" })
+const StyledBody = chakra<"div", Pick<ModalProps, "scrollBehavior">>("div", {
+  themeKey: "Modal.Body",
+  baseStyle: props => ({
+    flex: 1,
+    overflow: props.scrollBehavior === "inside" ? "auto" : undefined,
+  }),
+})
 
 /**
  * ModalBody
@@ -293,7 +304,7 @@ const StyledBody = chakra("div", { themeKey: "Modal.Body" })
  * @see Docs https://chakra-ui.com/modal
  */
 export const ModalBody = (props: ModalBodyProps) => {
-  const { bodyId, setBodyMounted } = useModalContext()
+  const { bodyId, setBodyMounted, scrollBehavior } = useModalContext()
 
   /**
    * Notify us if this component was rendered or used
@@ -304,7 +315,14 @@ export const ModalBody = (props: ModalBodyProps) => {
     return () => setBodyMounted(false)
   }, [])
 
-  return <StyledBody data-chakra-modal-body="" id={bodyId} {...props} />
+  return (
+    <StyledBody
+      scrollBehavior={scrollBehavior}
+      data-chakra-modal-body=""
+      id={bodyId}
+      {...props}
+    />
+  )
 }
 
 if (__DEV__) {
@@ -324,6 +342,7 @@ export const ModalFooter = chakra("footer", {
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-end",
+    flex: 0,
   },
 })
 
