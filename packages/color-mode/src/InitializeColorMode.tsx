@@ -6,6 +6,12 @@ const noFlash = `(function() { try {
   document.body.classList.add('chakra-ui-' + mode);
 } catch (e) {} })();`
 
+/**
+ * Script to add to the root of your application to help prevent
+ * flash of color mode that can happen during page load.
+ *
+ * This is particular useful for SSR in Gatsby or Next.js
+ */
 export const InitializeColorMode = () => (
   <script
     key="chakra-ui-no-flash"

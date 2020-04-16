@@ -1,9 +1,9 @@
-import { noop, __DEV__, merge, Dict } from "@chakra-ui/utils"
+import { useTheme } from "@chakra-ui/system"
+import { Dict, merge, noop, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { createContext, FC, ReactNode, useContext } from "react"
 import { useColorModeState } from "./color-mode.hook"
 import { ColorMode } from "./color-mode.utils"
-import { useTheme } from "@chakra-ui/system"
 
 export { ColorMode }
 
@@ -15,6 +15,10 @@ if (__DEV__) {
   ColorModeContext.displayName = "ColorModeContext"
 }
 
+/**
+ * React hook that reads from `ColorModeProvider` context
+ * Returns the color mode and function to toggle it
+ */
 export const useColorMode = () => useContext(ColorModeContext)
 
 export interface ColorModeProviderProps {
@@ -22,6 +26,10 @@ export interface ColorModeProviderProps {
   children?: ReactNode
 }
 
+/**
+ * Provides context for the color mode based on config in `theme`
+ * Returns the color mode and function to toggle the color mode
+ */
 export const ColorModeProvider: FC = props => {
   const theme = useTheme() as Dict
 
@@ -33,7 +41,6 @@ export const ColorModeProvider: FC = props => {
   const config = merge(fallbackConfig, theme.config ?? {}) as any
 
   const [colorMode, setColorMode] = useColorModeState(config)
-
   const toggle = () => setColorMode(colorMode === "light" ? "dark" : "light")
 
   const context = [colorMode, toggle] as ColorModeContext
@@ -45,6 +52,9 @@ if (__DEV__) {
   ColorModeProvider.displayName = "ColorModeProvider"
 }
 
+/**
+ * Locks the color mode to `dark`, without any way to change it.
+ */
 export const DarkMode: FC = props => (
   <ColorModeContext.Provider value={["dark", noop]} {...props} />
 )
@@ -53,6 +63,9 @@ if (__DEV__) {
   DarkMode.displayName = "DarkMode"
 }
 
+/**
+ * Locks the color mode to `light` without any way to change it.
+ */
 export const LightMode: FC = props => (
   <ColorModeContext.Provider value={["light", noop]} {...props} />
 )
@@ -61,10 +74,28 @@ if (__DEV__) {
   LightMode.displayName = "LightMode"
 }
 
+/**
+ * Change value based on color mode
+ *
+ * @param light the light mode value
+ * @param dark the dark mode value
+ */
 export const getColorModeValue = (light: any, dark: any) => {
   return (colorMode: ColorMode) => (colorMode === "light" ? light : dark)
 }
 
+/**
+ * Change value based on color mode.
+ *
+ * @param light the light mode value
+ * @param dark the dark mode value
+ *
+ * @example
+ *
+ * ```js
+ * const Icon = useColorModeValue(MoonIcon, SunIcon)
+ * ```
+ */
 export const useColorModeValue = (light: any, dark: any) => {
   const [colorMode] = useColorMode()
   return getColorModeValue(light, dark)(colorMode)

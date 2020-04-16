@@ -5,13 +5,15 @@
   "keywords": [
     "react",
     "theming",
-    "ui-mode",
     "ui",
-    "light-mode",
-    "dark-mode",
-    "color-mode",
+    "light mode",
+    "use dark mode",
+    "dark mode",
+    "color mode",
     "hook",
-    "chakra-ui"
+    "color scheme",
+    "media query",
+    "chakra ui"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
