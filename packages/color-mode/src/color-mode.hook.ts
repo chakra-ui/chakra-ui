@@ -8,13 +8,6 @@ import {
   syncBodyClassName,
 } from "./color-mode.utils"
 
-interface Theme {
-  config?: {
-    initialColorMode?: ColorMode
-    useSystemColorMode?: boolean
-  }
-}
-
 function useSyncBodyClass(mode: string) {
   useEffect(() => {
     requestAnimationFrame(() => {
@@ -34,18 +27,23 @@ function useSyncSystemColorMode(fn: Function, enabled: boolean) {
   }, [callback, enabled])
 }
 
-export function useColorModeState<T extends Theme>(theme: T) {
+interface Options {
+  initialColorMode?: ColorMode
+  useSystemColorMode?: boolean
+}
+
+export function useColorModeState<T extends Options>(options?: T) {
   const [mode, setMode] = useState<ColorMode>(
-    theme.config?.initialColorMode || "light",
+    options?.initialColorMode || "light",
   )
 
   useSyncBodyClass(mode)
-  useSyncSystemColorMode(setMode, !!theme.config?.useSystemColorMode)
+  useSyncSystemColorMode(setMode, !!options?.useSystemColorMode)
 
   useEffect(() => {
     const stored = storage.get()
 
-    if (!stored && theme.config?.useSystemColorMode) {
+    if (!stored && options?.useSystemColorMode) {
       setMode(getColorScheme)
       return
     }

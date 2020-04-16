@@ -1,5 +1,7 @@
+import { isBrowser, noop } from "@chakra-ui/utils"
+
 const isStorageSupported = typeof Storage !== "undefined"
-const isMediaSupported = window.hasOwnProperty("matchMedia")
+const isMediaSupported = isBrowser ? window.hasOwnProperty("matchMedia") : false
 
 export const storageKey = "chakra-ui-color-mode"
 
@@ -9,13 +11,13 @@ export const classNameDark = `chakra-ui-dark`
 export type ColorMode = "light" | "dark"
 
 export const storage = {
-  get(fallbackValue?: ColorMode) {
+  get(init?: ColorMode) {
     const _isStorageSupported =
       isStorageSupported && !!window.localStorage.getItem(storageKey)
 
     const value = _isStorageSupported
       ? window.localStorage.getItem(storageKey)
-      : fallbackValue
+      : init
 
     return value as ColorMode | undefined
   },
@@ -26,26 +28,20 @@ export const storage = {
   },
 }
 
-export const getBodyElement = () => {
-  const mockBody = {
-    classList: {
-      add: () => {},
-      remove: () => {},
-    },
-  }
-
-  return window.document?.body ?? mockBody
+const mockBody = {
+  classList: { add: noop, remove: noop },
 }
 
+export const body = isBrowser ? document.body : mockBody
+
 export function syncBodyClassName(isDark: boolean) {
-  const body = getBodyElement()
   body.classList.add(isDark ? classNameDark : classNameLight)
   body.classList.remove(isDark ? classNameLight : classNameDark)
 }
 
 function getMediaQuery(query: string) {
-  const mql = window.matchMedia?.(query)
-  const matches = !!mql.media === mql.matches
+  const mediaQueryList = window.matchMedia?.(query)
+  const matches = !!mediaQueryList.media === mediaQueryList.matches
   return matches
 }
 
@@ -62,13 +58,21 @@ export function getColorScheme() {
   return "light"
 }
 
-export function addListener(fn: Function) {
-  if (!isMediaSupported) return undefined
-  const mql = window.matchMedia(darkQuery)
-  const listener = () => fn(!!mql.matches ? "dark" : "light")
-  mql.addListener(listener)
+export function addListener(callback: Function) {
+  if (!isMediaSupported) {
+    return undefined
+  }
+
+  const mediaQueryList = window.matchMedia(darkQuery)
+
+  const listener = () => {
+    callback(!!mediaQueryList.matches ? "dark" : "light")
+  }
+
   listener()
+  mediaQueryList.addListener(listener)
+
   return () => {
-    mql.removeListener(listener)
+    mediaQueryList.removeListener(listener)
   }
 }

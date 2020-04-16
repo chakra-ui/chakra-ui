@@ -7,10 +7,6 @@ export default class Document extends NextDocument {
     return { ...initialProps }
   }
 
-  componentDidMount() {
-    console.log("window.localStorage")
-  }
-
   render() {
     return (
       <Html>

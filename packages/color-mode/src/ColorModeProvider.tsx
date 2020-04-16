@@ -1,32 +1,38 @@
-import { __DEV__, noop } from "@chakra-ui/utils"
+import { noop, __DEV__, merge, Dict } from "@chakra-ui/utils"
 import * as React from "react"
-import { ColorMode } from "./color-mode.utils"
+import { createContext, FC, ReactNode, useContext } from "react"
 import { useColorModeState } from "./color-mode.hook"
+import { ColorMode } from "./color-mode.utils"
+import { useTheme } from "@chakra-ui/system"
 
 export { ColorMode }
 
 type ColorModeContext = [ColorMode, () => void]
 
-export const ColorModeContext = React.createContext<ColorModeContext>([
-  "light",
-  noop,
-])
+export const ColorModeContext = createContext<ColorModeContext>(["light", noop])
 
 if (__DEV__) {
   ColorModeContext.displayName = "ColorModeContext"
 }
 
-export const useColorMode = () => React.useContext(ColorModeContext)
+export const useColorMode = () => useContext(ColorModeContext)
 
 export interface ColorModeProviderProps {
   value?: ColorMode
-  children?: React.ReactNode
+  children?: ReactNode
 }
 
-export const ColorModeProvider: React.FC = props => {
-  const [colorMode, setColorMode] = useColorModeState({
-    config: { useSystemColorMode: true },
-  })
+export const ColorModeProvider: FC = props => {
+  const theme = useTheme() as Dict
+
+  const fallbackConfig = {
+    useSystemColorMode: false,
+    initialColorMode: "light",
+  }
+
+  const config = merge(fallbackConfig, theme.config ?? {}) as any
+
+  const [colorMode, setColorMode] = useColorModeState(config)
 
   const toggle = () => setColorMode(colorMode === "light" ? "dark" : "light")
 
@@ -39,7 +45,7 @@ if (__DEV__) {
   ColorModeProvider.displayName = "ColorModeProvider"
 }
 
-export const DarkMode: React.FC = props => (
+export const DarkMode: FC = props => (
   <ColorModeContext.Provider value={["dark", noop]} {...props} />
 )
 
@@ -47,7 +53,7 @@ if (__DEV__) {
   DarkMode.displayName = "DarkMode"
 }
 
-export const LightMode: React.FC = props => (
+export const LightMode: FC = props => (
   <ColorModeContext.Provider value={["light", noop]} {...props} />
 )
 
@@ -55,14 +61,11 @@ if (__DEV__) {
   LightMode.displayName = "LightMode"
 }
 
-export function getColorModeValue<T>(lightModeValue: T, darkModeValue: T) {
-  return (colorMode: ColorMode) => {
-    const value = { light: lightModeValue, dark: darkModeValue }
-    return value[colorMode]
-  }
+export const getColorModeValue = (light: any, dark: any) => {
+  return (colorMode: ColorMode) => (colorMode === "light" ? light : dark)
 }
 
-export function useColorModeValue<T>(lightModeValue: T, darkModeValue: T) {
+export const useColorModeValue = (light: any, dark: any) => {
   const [colorMode] = useColorMode()
-  return getColorModeValue(lightModeValue, darkModeValue)(colorMode)
+  return getColorModeValue(light, dark)(colorMode)
 }
