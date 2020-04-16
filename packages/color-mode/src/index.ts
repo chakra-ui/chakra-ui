@@ -1,2 +1,2 @@
 export * from "./ColorModeProvider"
-export * from "./InitializeColorModeScript"
+export * from "./InitializeColorMode"

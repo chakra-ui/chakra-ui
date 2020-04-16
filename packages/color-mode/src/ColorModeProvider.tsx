@@ -1,8 +1,7 @@
-import { useMediaQuery } from "@chakra-ui/hooks"
+import { __DEV__, noop } from "@chakra-ui/utils"
 import * as React from "react"
-import { useSyncBetweenTabs, useUpdateBodyClassName } from "./color-mode.hook"
-import { ColorMode, darkModeQuery, storage } from "./color-mode.utils"
-import { __DEV__ } from "@chakra-ui/utils"
+import { ColorMode } from "./color-mode.utils"
+import { useColorModeState } from "./color-mode.hook"
 
 export { ColorMode }
 
@@ -10,69 +9,54 @@ type ColorModeContext = [ColorMode, () => void]
 
 export const ColorModeContext = React.createContext<ColorModeContext>([
   "light",
-  () => {},
+  noop,
 ])
 
 if (__DEV__) {
   ColorModeContext.displayName = "ColorModeContext"
 }
 
-export function useColorMode() {
-  const context = React.useContext(ColorModeContext)
-  if (context == null) {
-    throw Error("useColorMode can only be used within ColorModeProvider")
-  }
-  return context
-}
+export const useColorMode = () => React.useContext(ColorModeContext)
 
 export interface ColorModeProviderProps {
   value?: ColorMode
   children?: React.ReactNode
 }
 
-export function ColorModeProvider(props: ColorModeProviderProps) {
-  const { children, value } = props
+export const ColorModeProvider: React.FC = props => {
+  const [colorMode, setColorMode] = useColorModeState({
+    config: { useSystemColorMode: true },
+  })
 
-  const [isDark, setIsDark] = useMediaQuery(darkModeQuery)
+  const toggle = () => setColorMode(colorMode === "light" ? "dark" : "light")
 
-  const colorMode: ColorMode = isDark ? "dark" : "light"
-  const toggleColorMode = () => setIsDark(prev => !prev)
+  const context = [colorMode, toggle] as ColorModeContext
 
-  const [manualMode, setManualMode] = React.useState<ColorMode | undefined>(
-    () => storage.get(value),
-  )
-
-  const manualToggle = () => {
-    setManualMode(prev => (prev === "light" ? "dark" : "light"))
-  }
-
-  const state = value ? manualMode === "dark" : isDark
-
-  const setState = value
-    ? setManualMode
-    : (mode: ColorMode) => setIsDark(mode === "dark")
-
-  useUpdateBodyClassName(state)
-  useSyncBetweenTabs(setState)
-
-  const context = value
-    ? [manualMode, manualToggle]
-    : [colorMode, toggleColorMode]
-
-  const _context = React.useMemo(() => context, [context]) as ColorModeContext
-
-  return <ColorModeContext.Provider value={_context} children={children} />
+  return <ColorModeContext.Provider value={context} {...props} />
 }
 
-export const DarkMode = (props: ColorModeProviderProps) => (
-  <ColorModeProvider value="dark" {...props} />
-)
-export const LightMode = (props: ColorModeProviderProps) => (
-  <ColorModeProvider value="light" {...props} />
+if (__DEV__) {
+  ColorModeProvider.displayName = "ColorModeProvider"
+}
+
+export const DarkMode: React.FC = props => (
+  <ColorModeContext.Provider value={["dark", noop]} {...props} />
 )
 
+if (__DEV__) {
+  DarkMode.displayName = "DarkMode"
+}
+
+export const LightMode: React.FC = props => (
+  <ColorModeContext.Provider value={["light", noop]} {...props} />
+)
+
+if (__DEV__) {
+  LightMode.displayName = "LightMode"
+}
+
 export function getColorModeValue<T>(lightModeValue: T, darkModeValue: T) {
-  return function(colorMode: ColorMode) {
+  return (colorMode: ColorMode) => {
     const value = { light: lightModeValue, dark: darkModeValue }
     return value[colorMode]
   }

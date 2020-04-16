@@ -33,3 +33,5 @@ export function once(fn?: Function | null) {
     return result
   }
 }
+
+export const noop = () => {}

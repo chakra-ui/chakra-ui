@@ -49,6 +49,7 @@
     "react-dom": "16.13.0",
     "ts-jest": "25.2.1",
     "tsdx": "0.12.3",
+    "@chakra-ui/system": "0.0.1",
     "typescript": "3.8.3"
   },
   "dependencies": {
@@ -57,6 +58,7 @@
     "@chakra-ui/hooks": "0.0.1"
   },
   "peerDependencies": {
+    "@chakra-ui/system": "0.0.1",
     "react": "16.x",
     "react-dom": "16.x"
   }

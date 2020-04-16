@@ -1,59 +1,65 @@
-import { useEventListener, useSafeLayoutEffect } from "@chakra-ui/hooks"
-import { useEffect } from "react"
+import { useLatestRef } from "@chakra-ui/hooks"
+import { useEffect, useState } from "react"
 import {
-  storage,
-  storageKey,
-  syncBodyClassName,
+  addListener,
   ColorMode,
+  getColorScheme,
+  storage,
+  syncBodyClassName,
 } from "./color-mode.utils"
 
-export function useUpdateBodyClassName(value: boolean) {
-  useEffect(() => {
-    storage.set(value ? "dark" : "light")
-    syncBodyClassName(value)
-  }, [value])
-
-  useSafeLayoutEffect(() => {
-    const mode = storage.get()
-    syncBodyClassName(mode ? mode === "dark" : value)
-  }, [])
-}
-
-export function useSyncBetweenTabs(fn: (mode: ColorMode) => void) {
-  const handler = (event: StorageEvent) => {
-    if (!event.newValue || event.key !== storageKey) return
-    fn(event.newValue as ColorMode)
+interface Theme {
+  config?: {
+    initialColorMode?: ColorMode
+    useSystemColorMode?: boolean
   }
-  useEventListener("storage", handler)
 }
 
-// export function useLocalStorage(key: string, initialValue = "") {
-//   const [value, setValue] = useState(
-//     () => window.localStorage.getItem(key) || initialValue,
-//   )
+function useSyncBodyClass(mode: string) {
+  useEffect(() => {
+    requestAnimationFrame(() => {
+      syncBodyClassName(mode === "dark")
+    })
+  }, [mode])
+}
 
-//   const setItem = (newValue: string) => {
-//     setValue(newValue)
-//     window.localStorage.setItem(key, newValue)
-//   }
+function useSyncSystemColorMode(fn: Function, enabled: boolean) {
+  const callback = useLatestRef(fn)
+  useEffect(() => {
+    if (!enabled) return
+    const removeListener = addListener(callback.current)
+    return () => {
+      removeListener?.()
+    }
+  }, [callback, enabled])
+}
 
-//   useEffect(() => {
-//     const newValue = window.localStorage.getItem(key)
-//     if (value !== newValue) {
-//       setValue(newValue || initialValue)
-//     }
-//   }, [initialValue, key, value])
+export function useColorModeState<T extends Theme>(theme: T) {
+  const [mode, setMode] = useState<ColorMode>(
+    theme.config?.initialColorMode || "light",
+  )
 
-//   const handleStorage = useCallback(
-//     (event: StorageEvent) => {
-//       if (event.key === key && event.newValue !== value) {
-//         setValue(event.newValue || initialValue)
-//       }
-//     },
-//     [initialValue, key, value],
-//   )
+  useSyncBodyClass(mode)
+  useSyncSystemColorMode(setMode, !!theme.config?.useSystemColorMode)
 
-//   useEventListener("storage", handleStorage)
+  useEffect(() => {
+    const stored = storage.get()
 
-//   return [value, setItem] as const
-// }
+    if (!stored && theme.config?.useSystemColorMode) {
+      setMode(getColorScheme)
+      return
+    }
+
+    if (!stored || stored === mode) return
+    setMode(stored)
+    // eslint-disable-next-line
+  }, [])
+
+  useEffect(() => {
+    if (mode) {
+      storage.set(mode)
+    }
+  }, [mode])
+
+  return [mode, setMode] as const
+}

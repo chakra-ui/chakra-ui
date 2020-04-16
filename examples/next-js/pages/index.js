@@ -1,11 +1,18 @@
 import { Image } from "@chakra-ui/image"
 import { Stack } from "@chakra-ui/layout"
-import { chakra, useColorMode } from "@chakra-ui/system"
+import {
+  chakra,
+  useColorMode,
+  useColorModeValue,
+  DarkMode,
+} from "@chakra-ui/system"
+import { Button } from "@chakra-ui/button"
 import Head from "next/head"
 
 function Switcher() {
-  const [colorMode, toggleMode] = useColorMode()
-  return <button onClick={toggleMode}>Current mode: {colorMode}</button>
+  const [, toggleMode] = useColorMode()
+  const text = useColorModeValue("light-man", "dark-man")
+  return <button onClick={toggleMode}>Current mode: {text}</button>
 }
 
 const Home = () => (
@@ -24,6 +31,12 @@ const Home = () => (
         width="400px"
         height="300px"
       />
+
+      <chakra.div bg="gray.800" padding={4}>
+        <DarkMode>
+          <Button colorScheme="green">Welcome</Button>
+        </DarkMode>
+      </chakra.div>
 
       <Switcher />
 

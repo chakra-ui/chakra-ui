@@ -9,7 +9,7 @@ import theme from "@chakra-ui/preset-base"
 
 export default ({ Component, pageProps }) => (
   <ThemeProvider theme={theme}>
-    <ColorModeProvider value="light">
+    <ColorModeProvider>
       <CSSReset />
       <GlobalStyle />
       <Component {...pageProps} />
