@@ -11,22 +11,27 @@ export const darkModeQuery = "(prefers-color-scheme: dark)"
 
 export const storage = {
   get(fallbackValue?: ColorMode) {
-    const canGetValue = isSupported && !!window.localStorage.getItem(storageKey)
-    const value = canGetValue
+    const _isSupported =
+      isSupported && !!window.localStorage.getItem(storageKey)
+
+    const value = _isSupported
       ? window.localStorage.getItem(storageKey)
       : fallbackValue
+
     return value as ColorMode | undefined
   },
   set(value: ColorMode) {
-    return isSupported && window.localStorage.setItem(storageKey, value)
+    if (isSupported) {
+      window.localStorage.setItem(storageKey, value)
+    }
   },
 }
 
 export const getBodyElement = () => {
   const mockBody = {
     classList: {
-      add: (token: string) => {},
-      remove: (token: string) => {},
+      add: () => {},
+      remove: () => {},
     },
   }
 

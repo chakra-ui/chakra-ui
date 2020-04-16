@@ -1,7 +1,7 @@
 import { useMediaQuery } from "@chakra-ui/hooks"
 import * as React from "react"
 import { useSyncBetweenTabs, useUpdateBodyClassName } from "./color-mode.hook"
-import { ColorMode, darkModeQuery } from "./color-mode.utils"
+import { ColorMode, darkModeQuery, storage } from "./color-mode.utils"
 import { __DEV__ } from "@chakra-ui/utils"
 
 export { ColorMode }
@@ -38,27 +38,22 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
   const colorMode: ColorMode = isDark ? "dark" : "light"
   const toggleColorMode = () => setIsDark(prev => !prev)
 
-  useUpdateBodyClassName(isDark)
-  useSyncBetweenTabs(setIsDark)
-
   const [manualMode, setManualMode] = React.useState<ColorMode | undefined>(
-    value,
+    () => storage.get(value),
   )
-
-  /**
-   * In some cases, the user wants fully control the colormode
-   * without using `useColorMode`, let's ensure we sync the value
-   * prop with state.
-   *
-   * @see https://github.com/chakra-ui/chakra-ui/issues/573
-   */
-  React.useEffect(() => {
-    setManualMode(value)
-  }, [value])
 
   const manualToggle = () => {
     setManualMode(prev => (prev === "light" ? "dark" : "light"))
   }
+
+  const state = value ? manualMode === "dark" : isDark
+
+  const setState = value
+    ? setManualMode
+    : (mode: ColorMode) => setIsDark(mode === "dark")
+
+  useUpdateBodyClassName(state)
+  useSyncBetweenTabs(setState)
 
   const context = value
     ? [manualMode, manualToggle]
