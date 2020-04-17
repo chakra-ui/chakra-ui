@@ -6,7 +6,7 @@ exports[`Select renders correctly 1`] = `
     class="css-79elbk"
   >
     <select
-      class="css-13bgkkf"
+      class="css-1v8qzl1"
       placeholder="Select an option"
     >
       <option
@@ -20,7 +20,7 @@ exports[`Select renders correctly 1`] = `
     >
       <svg
         aria-hidden="true"
-        class="css-1hbz3kw"
+        class="css-1x49k8y"
         data-chakra-custom-icon=""
         focusable="false"
         role="presentation"
