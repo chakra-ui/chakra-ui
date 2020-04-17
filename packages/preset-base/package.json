@@ -42,7 +42,12 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/color": "0.0.1",
+    "@chakra-ui/color": "0.0.1"
+  },
+  "devDependencies": {
+    "@chakra-ui/system": "0.0.1"
+  },
+  "peerDependencies": {
     "@chakra-ui/system": "0.0.1"
   }
 }

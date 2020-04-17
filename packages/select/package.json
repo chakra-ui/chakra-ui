@@ -47,10 +47,12 @@
     "@chakra-ui/icon": "0.0.1",
     "@chakra-ui/utils": "0.0.1"
   },
+  "devDependencies": {
+    "@chakra-ui/system": "0.0.1"
+  },
   "peerDependencies": {
     "@chakra-ui/system": "0.0.1",
     "react": "16.x",
     "react-dom": "16.x"
-  },
-  "package": "@chakra-ui/select"
+  }
 }

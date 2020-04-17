@@ -17,7 +17,7 @@
     "strictPropertyInitialization": true,
     "jsx": "react",
     "esModuleInterop": true,
-    "preserveSymlinks": true,
+    // "preserveSymlinks": true,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": false,
     "emitDecoratorMetadata": false,

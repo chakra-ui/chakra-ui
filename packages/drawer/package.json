@@ -52,6 +52,9 @@
     "@chakra-ui/modal": "0.0.1",
     "@chakra-ui/transition": "0.0.1"
   },
+  "devDependencies": {
+    "@chakra-ui/system": "0.0.1"
+  },
   "peerDependencies": {
     "@chakra-ui/system": "0.0.1",
     "react": "16.x",

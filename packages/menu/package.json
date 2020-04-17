@@ -53,6 +53,9 @@
     "@chakra-ui/clickable": "0.0.1",
     "@chakra-ui/descendant": "0.0.1"
   },
+  "devDependencies": {
+    "@chakra-ui/system": "0.0.1"
+  },
   "peerDependencies": {
     "@chakra-ui/system": "0.0.1",
     "react": "16.x",

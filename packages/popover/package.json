@@ -51,6 +51,9 @@
     "@chakra-ui/portal": "0.0.1",
     "@chakra-ui/close-button": "0.0.1"
   },
+  "devDependencies": {
+    "@chakra-ui/system": "0.0.1"
+  },
   "peerDependencies": {
     "@chakra-ui/system": "0.0.1",
     "react": "16.x",

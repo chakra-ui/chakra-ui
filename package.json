@@ -6,7 +6,7 @@
   ],
   "scripts": {
     "boot": "yarn install && yarn bootstrap && yarn build",
-    "build": "lerna exec yarn build --no-private --ignore @chakra-ui/core",
+    "build": "lerna run build --no-private --ignore @chakra-ui/core --stream",
     "build:changed": "lerna exec yarn build --since origin/dev-ts",
     "test": "lerna exec --no-private --ignore @chakra-ui/core -- yarn test -u",
     "lint": "lerna exec --no-private --ignore @chakra-ui/core -- yarn lint",
