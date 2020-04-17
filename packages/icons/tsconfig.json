@@ -28,5 +28,6 @@
     },
     "jsx": "react",
     "esModuleInterop": true
-  }
+  },
+  "extends": "../../tsconfig.json"
 }

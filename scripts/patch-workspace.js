@@ -1,6 +1,5 @@
 import fs from "fs-utils"
 import shell from "shelljs"
-import inquirer from "inquirer"
 import editJson from "edit-json-file"
 import prettier from "prettier"
 import chalk from "chalk"
@@ -59,7 +58,7 @@ function updateScripts(options) {
   editPackageJson(options.dir, scripts, `scripts`)
 }
 
-async function updateDevDependies(options) {
+function updateDevDependies(options) {
   const pkgJson = getPackageJson(options.dir)
   const devDeps = pkgJson.get("devDependencies")
 
@@ -70,30 +69,7 @@ async function updateDevDependies(options) {
     return
   }
 
-  const { deleteDevDeps } = await inquirer.prompt([
-    {
-      name: "deleteDevDeps",
-      type: "confirm",
-      message: "Remove all devDependencies?",
-    },
-  ])
-
-  if (deleteDevDeps) {
-    deletePackageJson(options.dir, "devDependencies")
-  } else {
-    const { selectedDevDeps } = await inquirer.prompt([
-      {
-        name: "selectedDevDeps",
-        type: "checkbox",
-        message: "Select devDependencies to remove",
-        choices: Object.keys(devDeps),
-      },
-    ])
-
-    for (const dep of selectedDevDeps) {
-      deletePackageJson(options.dir, `devDependencies.${dep}`)
-    }
-  }
+  deletePackageJson(options.dir, "devDependencies")
 }
 
 function updateTSConfig(options) {
