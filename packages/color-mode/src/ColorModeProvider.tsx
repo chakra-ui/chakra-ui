@@ -1,4 +1,4 @@
-import { useTheme } from "@chakra-ui/system"
+import { ThemeContext } from "@emotion/core"
 import { Dict, merge, noop, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { createContext, FC, ReactNode, useContext } from "react"
@@ -31,7 +31,7 @@ export interface ColorModeProviderProps {
  * Returns the color mode and function to toggle the color mode
  */
 export const ColorModeProvider: FC = props => {
-  const theme = useTheme() as Dict
+  const theme = useContext(ThemeContext) as Dict
 
   const fallbackConfig = {
     useSystemColorMode: false,
