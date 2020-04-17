@@ -105,9 +105,9 @@
     "fs-utils": "0.7.0",
     "rimraf": "3.0.2",
     "@emotion/styled": "10.0.27",
-    "@storybook/addon-actions": "5.3.17",
-    "@storybook/addon-knobs": "5.3.17",
-    "@storybook/react": "5.3.17",
+    "@storybook/addon-actions": "5.3.18",
+    "@storybook/addon-knobs": "5.3.18",
+    "@storybook/react": "5.3.18",
     "@typescript-eslint/eslint-plugin": "2.24.0",
     "@typescript-eslint/parser": "2.24.0",
     "all-contributors-cli": "6.14.0",
@@ -141,6 +141,5 @@
     "react-test-renderer": "16.13.0",
     "ts-loader": "6.2.1",
     "tsconfig-paths-webpack-plugin": "3.2.0"
-  },
-  "dependencies": {}
+  }
 }
