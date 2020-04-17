@@ -111,6 +111,11 @@ function bootstrap(options) {
   })
 }
 
+function deleteNodeModule(options) {
+  const path = fs.resolve(options.dir, "node_modules")
+  shell.rm("-rf", path)
+}
+
 async function builder(options) {
   const tasks = [
     {
@@ -137,15 +142,19 @@ async function builder(options) {
       title: "bootstrap and run commands",
       task: () => bootstrap(options),
     },
+    {
+      title: "delete node_modules",
+      task: () => deleteNodeModule(options),
+    },
   ]
 
   for (const item of tasks) {
     const { title, task } = item
-    chalk.green(title)
     await task()
+    console.log(`%s ${title}`, chalk.green.bold("DONE"))
   }
 
-  console.log("%s Project ready", chalk.green.bold("DONE"))
+  console.log("%s All done!", chalk.green.bold("DONE"))
   return true
 }
 
