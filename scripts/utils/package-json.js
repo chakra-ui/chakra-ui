@@ -10,8 +10,7 @@ export function getPackageJson(dir) {
 export function deletePackageJson(dir, key) {
   const pkgJson = getPackageJson(dir)
   pkgJson.unset(key)
-  // pkgJson.save()
-  console.log(pkgJson)
+  pkgJson.save()
 }
 
 /**
@@ -36,5 +35,5 @@ export function editPackageJson(dir, content, group) {
     }
   }
 
-  // pkgJson.save()
+  pkgJson.save()
 }

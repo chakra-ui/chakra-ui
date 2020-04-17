@@ -1,6 +1,9 @@
 import fs from "fs-utils"
 import shell from "shelljs"
-import inquirer from "inquirer"
+import inquirer from "listr-inquirer"
+import editJson from "edit-json-file"
+import Listr from "listr"
+import chalk from "chalk"
 import {
   editPackageJson,
   deletePackageJson,
@@ -8,27 +11,25 @@ import {
 } from "./utils/package-json"
 import getPackageInfo from "./utils/get-package-info"
 
-function setupJestConfig(dir) {
-  // setup jest config
-  const jestConfigExists = fs.exists(dir, "jest.config.js")
+function setupJestConfig(options) {
+  const jestConfigExists = fs.exists(options.dir, "jest.config.js")
 
   if (!jestConfigExists) {
-    shell.exec(`${cmd} ts-jest config:init`)
+    shell.exec(`${options.cmd} ts-jest config:init`)
   }
 }
 
-function updateEntryPoints(dir) {
-  // edit entry points
+function updateEntryPoints(options) {
   const entryPoints = {
     main: "dist/cjs",
     module: "dist/esm",
     types: "dist/types",
   }
 
-  editPackageJson(dir, entryPoints)
+  editPackageJson(options.dir, entryPoints)
 }
 
-function updateScripts(dir) {
+function updateScripts(options) {
   const scripts = {
     prebuild: "rimraf dist",
     start: "nodemon --exec yarn build --watch src",
@@ -44,11 +45,11 @@ function updateScripts(dir) {
     lint: "concurrently yarn:lint:*",
   }
 
-  editPackageJson(dir, scripts, `scripts`)
+  editPackageJson(options.dir, scripts, `scripts`)
 }
 
-async function updateDevDependies(dir) {
-  const pkgJson = getPackageJson(dir)
+function updateDevDependies(options) {
+  const pkgJson = getPackageJson(options.dir)
   const devDeps = pkgJson.get("devDependencies")
 
   if (!!devDeps) {
@@ -58,45 +59,50 @@ async function updateDevDependies(dir) {
     return
   }
 
-  const { deleteDevDeps } = await inquirer.prompt([
-    {
-      name: "deleteDevDeps",
-      type: "confirm",
-      message: "Remove all devDependencies?",
-    },
-  ])
-
-  if (deleteDevDeps) {
-    deletePackageJson(dir, "devDependencies")
-  } else {
-    const { selectedDevDeps } = inquirer.prompt([
+  return inquirer(
+    [
       {
-        name: "selectedDevDeps",
-        type: "checkbox",
-        message: "Select dependencies to install",
-        choices: Object.keys(devDeps),
+        name: "deleteDevDeps",
+        type: "confirm",
+        message: "Remove all devDependencies?",
       },
-    ])
-
-    selectedDevDeps.forEach(key => {
-      deletePackageJson(dir, `devDependencies.${key}`)
-    })
-  }
+    ],
+    ({ deleteDevDeps }) => {
+      if (deleteDevDeps) {
+        deletePackageJson(options.dir, "devDependencies")
+      } else {
+        inquirer(
+          [
+            {
+              name: "selectedDevDeps",
+              type: "checkbox",
+              message: "Select dependencies to install",
+              choices: Object.keys(devDeps),
+            },
+          ],
+          ({ selectedDevDeps }) => {
+            selectedDevDeps.forEach(key => {
+              deletePackageJson(dir, `devDependencies.${key}`)
+            })
+          },
+        )
+      }
+    },
+  )
 }
 
-function updateTSConfig(dir) {
-  // update the tsConfig
-  const tsConfigPath = fs.resolve(dir, "package.json")
+function updateTSConfig(options) {
+  const tsConfigPath = fs.resolve(options.dir, "tsconfig.json")
   const tsConfig = editJson(tsConfigPath)
   tsConfig.set("extends", "../../tsconfig.json")
   tsConfig.save()
 }
 
-function bootstrap() {
+function bootstrap(options) {
   shell.exec("yarn bootstrap")
-  const commands = ["lint", "test", "build", "test"]
+  const commands = ["lint", "build"]
   commands.forEach(script => {
-    shell.exec(`${cmd} ${script}`)
+    shell.exec(`${options.cmd} ${script}`)
   })
 }
 
@@ -104,27 +110,27 @@ async function builder(options) {
   const tasks = new Listr([
     {
       title: "Setup jest config",
-      task: () => setupJestConfig(options.dir),
+      task: () => setupJestConfig(options),
     },
     {
       title: "Update entry points in package.json",
-      task: () => updateEntryPoints(options.dir),
+      task: () => updateEntryPoints(options),
     },
     {
       title: "Update scripts in package.json",
-      task: () => updateScripts(options.dir),
+      task: () => updateScripts(options),
     },
     {
       title: "Update devDependencies in package.json",
-      task: () => updateDevDependies(options.dir),
+      task: () => updateDevDependies(options),
     },
     {
       title: "update ts config",
-      task: () => updateTSConfig(options.dir),
+      task: () => updateTSConfig(options),
     },
     {
       title: "bootstrap and run commands",
-      task: () => bootstrap(),
+      task: () => bootstrap(options),
     },
   ])
 
