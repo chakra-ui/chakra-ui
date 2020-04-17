@@ -126,6 +126,7 @@
     "eslint-plugin-react-hooks": "2.5.0",
     "eslint-plugin-testing-library": "2.2.3",
     "esm": "3.2.25",
+    "husky": "4.2.3",
     "execa": "4.0.0",
     "inquirer": "7.1.0",
     "jest-emotion": "10.0.32",

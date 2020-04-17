@@ -44,7 +44,6 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "tsdx": "0.12.3",
     "@chakra-ui/utils": "0.0.1",
     "@chakra-ui/hooks": "0.0.1"
   },
