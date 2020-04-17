@@ -23,7 +23,6 @@ async function setupJestConfig(options) {
     },
     transformIgnorePatterns: ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
     setupFilesAfterEnv: ["@testing-library/jest-dom/extend-expect"],
-    snapshotSerializers: ["jest-emotion"],
   }
 
   const content = `module.exports = ${JSON.stringify(jestConfig)}`
@@ -84,7 +83,7 @@ function updateDevDependies(options) {
       if (deleteDevDeps) {
         deletePackageJson(options.dir, "devDependencies")
       } else {
-        inquirer(
+        return inquirer(
           [
             {
               name: "selectedDevDeps",

@@ -53,7 +53,11 @@ test("should get component default props in theme", () => {
 test("should get color mode and theme", () => {
   const Component = () => {
     const chakra = useChakra()
-    return <React.Fragment>{JSON.stringify(chakra, null, 2)}</React.Fragment>
+    return (
+      <React.Fragment>
+        {JSON.stringify(Object.keys(chakra), null, 2)}
+      </React.Fragment>
+    )
   }
   const tools = render(<Component />)
   expect(tools.asFragment()).toMatchSnapshot()
