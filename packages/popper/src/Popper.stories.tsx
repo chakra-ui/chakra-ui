@@ -1,5 +1,5 @@
 import { useDisclosure } from "@chakra-ui/hooks"
-import React from "react"
+import * as React from "react"
 import { usePopper } from "."
 
 export default {

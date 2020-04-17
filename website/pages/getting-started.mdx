@@ -1,4 +1,4 @@
-import SEO from "../components/SEO";
+import SEO from "../components/SEO"
 
 <SEO
   title="Getting Started"
@@ -38,13 +38,13 @@ export default {
     "5xl": "3rem",
     "6xl": "4rem",
   },
-};
+}
 ```
 
 You can also extend the theme to add your custom colors, fonts, etc.
 
 ```js
-import { theme } from "@chakra-ui/core";
+import { theme } from "@chakra-ui/core"
 
 // Let's say you want to add custom colors
 const customTheme = {
@@ -57,18 +57,18 @@ const customTheme = {
       700: "#2a69ac",
     },
   },
-};
+}
 ```
 
 Add the theme to your application with the `ThemeProvider`, passing in the theme
 object as a prop.
 
 ```jsx live=false
-import React from "react";
-import { ThemeProvider } from "@chakra-ui/core";
+import * as React from "react"
+import { ThemeProvider } from "@chakra-ui/core"
 
 // Use at the root of your app
-<ThemeProvider theme={customTheme}>{props.children}</ThemeProvider>;
+;<ThemeProvider theme={customTheme}>{props.children}</ThemeProvider>
 ```
 
 ## Using components
@@ -77,7 +77,7 @@ Simply import components by name from `@chakra-ui/core` package, as demonstrated
 below.
 
 ```js
-import { Button } from "@chakra-ui/core";
+import { Button } from "@chakra-ui/core"
 ```
 
 ## Injecting global styles
@@ -99,7 +99,7 @@ function App({ children }) {
       <CSSReset />
       {children}
     </ThemeProvider>
-  );
+  )
 }
 ```
 
@@ -130,7 +130,7 @@ export default {
       viewBox: "0 0 24 24",
     },
   },
-};
+}
 ```
 
 Once you add the icons, you can then use them within the `Icon` component, like

@@ -1,5 +1,5 @@
 import { chakra } from "@chakra-ui/system"
-import React from "react"
+import * as React from "react"
 import { useNumberInput } from "./NumberInput.hook"
 import {
   NumberDecrementStepper,

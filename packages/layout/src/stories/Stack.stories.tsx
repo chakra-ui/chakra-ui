@@ -1,4 +1,4 @@
-import React from "react"
+import * as React from "react"
 import { Box, Stack, StackDivider, Heading, Text } from ".."
 
 export default {

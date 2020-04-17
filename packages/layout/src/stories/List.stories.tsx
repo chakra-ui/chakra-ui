@@ -1,4 +1,4 @@
-import React from "react"
+import * as React from "react"
 import { List, ListItem, Box, Text, ListIcon } from ".."
 import { FaCheck, FaPhone, FaAccessibleIcon } from "react-icons/fa"
 

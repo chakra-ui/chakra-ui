@@ -1,4 +1,4 @@
-import React from "react"
+import * as React from "react"
 import { css, pseudoSelectors } from "@chakra-ui/parser"
 import { isString, UnionStringArray, __DEV__ } from "@chakra-ui/utils"
 

@@ -1,5 +1,5 @@
 import { render, act } from "@chakra-ui/test-utils"
-import React from "react"
+import * as React from "react"
 import { Image, ImageProps } from ".."
 
 const src = "https://image.xyz/source"

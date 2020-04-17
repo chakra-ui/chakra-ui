@@ -1,4 +1,4 @@
-import React from "react"
+import * as React from "react"
 import { Transition, TransitionProps } from "./Transition"
 
 export type Placement = "left" | "right" | "bottom" | "top"
