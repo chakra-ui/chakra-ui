@@ -90,9 +90,9 @@ async function updateDevDependies(options) {
       },
     ])
 
-    selectedDevDeps.forEach(key => {
-      deletePackageJson(dir, `devDependencies.${key}`)
-    })
+    for (const dep of selectedDevDeps) {
+      deletePackageJson(options.dir, `devDependencies.${dep}`)
+    }
   }
 }
 

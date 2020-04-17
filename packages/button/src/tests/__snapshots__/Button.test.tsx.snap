@@ -19,7 +19,7 @@ exports[`Button renders with icons 1`] = `
       type="button"
     >
       <svg
-        class="css-4e9yzq"
+        class="css-c999u7"
         data-chakra-custom-icon=""
         focusable="false"
         role="presentation"
@@ -44,7 +44,7 @@ exports[`Button renders with icons 1`] = `
     >
       Arrow Forward
       <svg
-        class="css-g5lpqx"
+        class="css-1lchrlh"
         data-chakra-custom-icon=""
         focusable="false"
         role="presentation"

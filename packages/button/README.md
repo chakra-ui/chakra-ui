@@ -7,4 +7,14 @@ dialog footers and as stand-alone action triggers.
 
 ```sh
 yarn add @chakra-ui/button
+
+# or
+
+npm i @chakra-ui/button
+```
+
+## Import component
+
+```jsx
+import { Button } from "@chakra-ui/button"
 ```
