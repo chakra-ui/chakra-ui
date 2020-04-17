@@ -1,8 +1,7 @@
 import fs from "fs-utils"
 import shell from "shelljs"
-import inquirer from "listr-inquirer"
+import inquirer from "inquirer"
 import editJson from "edit-json-file"
-import Listr from "listr"
 import prettier from "prettier"
 import chalk from "chalk"
 import {
@@ -60,7 +59,7 @@ function updateScripts(options) {
   editPackageJson(options.dir, scripts, `scripts`)
 }
 
-function updateDevDependies(options) {
+async function updateDevDependies(options) {
   const pkgJson = getPackageJson(options.dir)
   const devDeps = pkgJson.get("devDependencies")
 
@@ -71,36 +70,30 @@ function updateDevDependies(options) {
     return
   }
 
-  return inquirer(
-    [
-      {
-        name: "deleteDevDeps",
-        type: "confirm",
-        message: "Remove all devDependencies?",
-      },
-    ],
-    ({ deleteDevDeps }) => {
-      if (deleteDevDeps) {
-        deletePackageJson(options.dir, "devDependencies")
-      } else {
-        return inquirer(
-          [
-            {
-              name: "selectedDevDeps",
-              type: "checkbox",
-              message: "Select dependencies to install",
-              choices: Object.keys(devDeps),
-            },
-          ],
-          ({ selectedDevDeps }) => {
-            selectedDevDeps.forEach(key => {
-              deletePackageJson(dir, `devDependencies.${key}`)
-            })
-          },
-        )
-      }
+  const { deleteDevDeps } = await inquirer.prompt([
+    {
+      name: "deleteDevDeps",
+      type: "confirm",
+      message: "Remove all devDependencies?",
     },
-  )
+  ])
+
+  if (deleteDevDeps) {
+    deletePackageJson(options.dir, "devDependencies")
+  } else {
+    const { selectedDevDeps } = await inquirer.prompt([
+      {
+        name: "selectedDevDeps",
+        type: "checkbox",
+        message: "Select devDependencies to remove",
+        choices: Object.keys(devDeps),
+      },
+    ])
+
+    selectedDevDeps.forEach(key => {
+      deletePackageJson(dir, `devDependencies.${key}`)
+    })
+  }
 }
 
 function updateTSConfig(options) {
@@ -112,14 +105,14 @@ function updateTSConfig(options) {
 
 function bootstrap(options) {
   shell.exec("yarn bootstrap")
-  const commands = ["lint", "build"]
+  const commands = ["lint", "build", "test"]
   commands.forEach(script => {
     shell.exec(`${options.cmd} ${script}`)
   })
 }
 
 async function builder(options) {
-  const tasks = new Listr([
+  const tasks = [
     {
       title: "Setup jest config",
       task: () => setupJestConfig(options),
@@ -134,7 +127,7 @@ async function builder(options) {
     },
     {
       title: "Update devDependencies in package.json",
-      task: () => updateDevDependies(options),
+      task: async () => await updateDevDependies(options),
     },
     {
       title: "update ts config",
@@ -144,9 +137,13 @@ async function builder(options) {
       title: "bootstrap and run commands",
       task: () => bootstrap(options),
     },
-  ])
+  ]
 
-  await tasks.run()
+  for (const item of tasks) {
+    const { title, task } = item
+    chalk.green(title)
+    await task()
+  }
 
   console.log("%s Project ready", chalk.green.bold("DONE"))
   return true

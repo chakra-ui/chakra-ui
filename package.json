@@ -132,7 +132,6 @@
     "lerna": "3.20.2",
     "lint-staged": "10.0.8",
     "listr": "0.14.3",
-    "listr-inquirer": "0.1.0",
     "ncp": "2.0.0",
     "prettier": "1.19.1",
     "react": "^16.13.0",
