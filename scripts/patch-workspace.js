@@ -3,6 +3,7 @@ import shell from "shelljs"
 import inquirer from "listr-inquirer"
 import editJson from "edit-json-file"
 import Listr from "listr"
+import prettier from "prettier"
 import chalk from "chalk"
 import {
   editPackageJson,
@@ -11,12 +12,24 @@ import {
 } from "./utils/package-json"
 import getPackageInfo from "./utils/get-package-info"
 
-function setupJestConfig(options) {
-  const jestConfigExists = fs.exists(options.dir, "jest.config.js")
-
-  if (!jestConfigExists) {
-    shell.exec(`${options.cmd} ts-jest config:init`)
+async function setupJestConfig(options) {
+  const path = fs.resolve(options.dir, "jest.config.js")
+  const jestConfig = {
+    preset: "ts-jest",
+    testEnvironment: "node",
+    collectCoverageFrom: ["src/**/*.{ts,tsx,js,jsx}"],
+    transform: {
+      ".(ts|tsx)$": "ts-jest/dist",
+    },
+    transformIgnorePatterns: ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
+    setupFilesAfterEnv: ["@testing-library/jest-dom/extend-expect"],
+    snapshotSerializers: ["jest-emotion"],
   }
+
+  const content = `module.exports = ${JSON.stringify(jestConfig)}`
+  const formatted = prettier.format(content, { semi: false, parser: "babel" })
+
+  fs.writeFileSync(path, formatted)
 }
 
 function updateEntryPoints(options) {
