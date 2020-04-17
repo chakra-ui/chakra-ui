@@ -26,7 +26,7 @@
     "build:types": "tsc --emitDeclarationOnly --declaration true --declarationDir dist/types",
     "build": "concurrently yarn:build:*",
     "test": "jest --env=jsdom --passWithNoTests",
-    "test:cov": "jest --coverage",
+    "test:cov": "yarn test --coverage",
     "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
     "lint:types": "tsc --noEmit",
     "lint": "concurrently yarn:lint:*"
