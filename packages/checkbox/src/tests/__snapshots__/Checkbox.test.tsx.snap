@@ -18,7 +18,7 @@ exports[`Checkbox renders correctly 1`] = `
     </div>
     <span
       aria-hidden="true"
-      class="css-164w5gg"
+      class="css-czoe34"
       data-chakra-checkbox-control=""
     />
   </label>
@@ -43,7 +43,7 @@ exports[`Checkbox renders correctly 2`] = `
     </div>
     <span
       aria-hidden="true"
-      class="css-164w5gg"
+      class="css-czoe34"
       data-chakra-checkbox-control=""
     />
     <div
