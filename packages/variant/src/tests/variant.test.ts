@@ -1,4 +1,12 @@
 import { createVariant, textStyle, layerStyle } from ".."
+import { combineParsers, color } from "@chakra-ui/parser"
+
+interface Props {
+  /**
+   * component variant
+   */
+  variant?: string
+}
 
 test("variant returns style objects from theme", () => {
   const parser = createVariant({
@@ -6,7 +14,7 @@ test("variant returns style objects from theme", () => {
     prop: "variant",
   })
 
-  const a = parser({
+  const result = parser<Props>({
     theme: {
       colors: {
         brand: "papayawhip",
@@ -20,26 +28,22 @@ test("variant returns style objects from theme", () => {
     },
     variant: "primary",
   })
-  expect(a).toEqual({
+
+  expect(result).toEqual({
     padding: "32px",
     background: "papayawhip",
   })
 })
 
 test("variant - merge values", () => {
-  const parser = createVariant({
+  const variant = createVariant({
     prop: "variant",
     themeKey: "typography",
-    defaultValue: "primary",
-    values: {
-      secondary: {
-        fontSize: "40px",
-        color: "yellow",
-      },
-    },
   })
 
-  const result = parser({
+  const parser = combineParsers(variant, color)
+
+  const result = parser<Props>({
     theme: {
       typography: {
         primary: {
@@ -48,11 +52,13 @@ test("variant - merge values", () => {
         },
       },
     },
+    variant: "primary",
+    color: "tomato",
   })
 
   expect(result).toEqual({
     fontSize: "32px",
-    color: "#fff",
+    color: "tomato",
   })
 })
 
@@ -103,7 +109,7 @@ test("does not throw when no variants are found", () => {
 
   let style: any
   expect(() => {
-    style = comp({ variant: "beep" })
+    style = comp<Props>({ variant: "beep", theme: {} })
   }).not.toThrow()
 
   expect(style).toEqual({})

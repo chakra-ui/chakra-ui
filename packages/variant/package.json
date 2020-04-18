@@ -42,6 +42,7 @@
   },
   "dependencies": {
     "@chakra-ui/css": "0.0.1",
+    "@chakra-ui/parser": "0.0.1",
     "@chakra-ui/utils": "0.0.1"
   }
 }

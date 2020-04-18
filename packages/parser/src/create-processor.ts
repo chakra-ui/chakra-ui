@@ -19,8 +19,9 @@ export type ResponsiveValue<T> = T | Array<T> | { [breakpoint: string]: T }
 export type ProcessorOptions = {
   property: keyof CSS.Properties
   value?: ResponsiveValue<string | number>
-  transform?: (value: any, scale: any) => any
+  transform?: (value: any, scale: any, props?: any) => any
   scale?: string
+  props?: any
 }
 
 /**
@@ -36,9 +37,15 @@ export function createProcessor(breakpoints: Dict) {
 
   return {
     apply(options: ProcessorOptions) {
-      const { property, transform = getWithDefault, value, scale } = options
+      const {
+        property,
+        transform = getWithDefault,
+        value,
+        scale,
+        props,
+      } = options
 
-      const assign = (value: any) => transform(value, scale)
+      const assign = (value: any) => transform(value, scale, props)
 
       if (isNull(value)) return
 
@@ -68,7 +75,12 @@ export function createProcessor(breakpoints: Dict) {
         return
       }
 
-      styles[property] = assign(value)
+      if (property) {
+        styles[property] = assign(value)
+        return
+      }
+
+      styles = merge(styles, assign(value))
     },
     value: () => sort(styles),
   }
