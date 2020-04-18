@@ -13,7 +13,7 @@ exports[`Elements inside input render correctly 1`] = `
       </span>
     </div>
     <input
-      class="css-1uo5at1"
+      class="css-1qbfd7b"
     />
     <div
       class="css-1rlfk3i"
@@ -32,15 +32,15 @@ exports[`Input addons render correctly 1`] = `
     class="css-kjafn5"
   >
     <div
-      class="css-n0opdk"
+      class="css-iggo13"
     >
       https://
     </div>
     <input
-      class="css-wjqyrl"
+      class="css-1ug6p1x"
     />
     <div
-      class="css-1b6io1m"
+      class="css-1sqyofe"
     >
       .com
     </div>
@@ -51,7 +51,7 @@ exports[`Input addons render correctly 1`] = `
 exports[`Input renders correctly 1`] = `
 <DocumentFragment>
   <input
-    class="css-wjqyrl"
+    class="css-1ug6p1x"
   />
 </DocumentFragment>
 `;

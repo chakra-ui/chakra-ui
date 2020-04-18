@@ -34,6 +34,12 @@ const StyledInput = chakra<"input", InputOptions>("input", {
     !["focusBorderColor", "errorBorderColor"].includes(prop),
 })
 
+/**
+ * Input
+ *
+ *
+ */
+
 export const Input = React.forwardRef(
   (props: InputProps, ref: React.Ref<HTMLInputElement>) => {
     const inputProps = useFormControl<HTMLInputElement>(props)
