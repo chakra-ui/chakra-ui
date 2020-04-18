@@ -224,10 +224,10 @@ async function createPackage(options) {
       task: () => createFiles(options),
       skip: () => options.noCopy === true,
     },
-    {
-      title: "Edit package.json",
-      task: () => editPackageJson(options),
-    },
+    // {
+    //   title: "Edit package.json",
+    //   task: () => editPackageJson(options),
+    // },
     {
       title: "Add export to src/index",
       task: () => appendToSrc(options),
