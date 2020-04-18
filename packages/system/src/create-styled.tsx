@@ -1,4 +1,5 @@
-import { css, getComponentStyles } from "@chakra-ui/parser"
+import { css } from "@chakra-ui/css"
+import { getComponentStyles } from "./component"
 import {
   As,
   Dict,
@@ -47,7 +48,7 @@ function createStyled<T extends As, P>(component: T, options?: Options<T, P>) {
         if (options?.baseStyle) {
           const baseStyleObject = runIfFn(options.baseStyle, propsWithTheme)
           const baseStyle = css(baseStyleObject)(theme)
-          computedStyles = { ...computedStyles, ...baseStyle }
+          computedStyles = { ...computedStyles, ...baseStyle } as CSSObject
         }
 
         /**
@@ -61,7 +62,10 @@ function createStyled<T extends As, P>(component: T, options?: Options<T, P>) {
          */
         if (options) {
           const componentStyles = getComponentStyles(propsWithTheme, options)
-          computedStyles = { ...computedStyles, ...componentStyles }
+          computedStyles = {
+            ...computedStyles,
+            ...componentStyles,
+          } as CSSObject
         }
 
         // Resolve each interpolation and add result to final style

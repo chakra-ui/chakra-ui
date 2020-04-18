@@ -1,5 +1,5 @@
 import { get, runIfFn } from "@chakra-ui/utils"
-import { isSubcomponent } from "../utils"
+import { isSubcomponent } from "./utils"
 import { ModifierStyleProps, ChakraOptions } from "./types"
 
 /**

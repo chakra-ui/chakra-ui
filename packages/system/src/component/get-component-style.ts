@@ -1,7 +1,5 @@
-import { merge } from "@chakra-ui/utils"
-import { css } from "../css"
-import { CSSObject } from "../css.types"
-import { isNotEmpty } from "../utils"
+import { merge, isNotEmptyObject } from "@chakra-ui/utils"
+import { css, CSSObject } from "@chakra-ui/css"
 import { getBaseStyle } from "./get-base-style"
 import { getModifierStyles } from "./get-modifier-style"
 import { ChakraOptions, ModifierStyleProps } from "./types"
@@ -22,14 +20,14 @@ export function getComponentStyles(props: Props, options?: ChakraOptions) {
 
   const baseStyleObject = getBaseStyle(props, options)
 
-  if (isNotEmpty(baseStyleObject)) {
+  if (isNotEmptyObject(baseStyleObject)) {
     const baseStyle = css(baseStyleObject)(props.theme)
     styles = merge(styles, baseStyle)
   }
 
   const modiferStyleObject = getModifierStyles(props, options)
 
-  if (isNotEmpty(modiferStyleObject)) {
+  if (isNotEmptyObject(modiferStyleObject)) {
     const modiferStyle = css(modiferStyleObject)(props.theme)
     styles = merge(styles, modiferStyle)
   }

@@ -1,5 +1,5 @@
 import { Dict, get, merge, runIfFn } from "@chakra-ui/utils"
-import { filterUndefined, isSubcomponent } from "../utils"
+import { filterUndefined, isSubcomponent } from "./utils"
 import { ChakraOptions, ModifierStyleProps } from "./types"
 import { getComponentDefaults } from "./get-default-props"
 

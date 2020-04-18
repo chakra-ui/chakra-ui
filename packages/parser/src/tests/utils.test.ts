@@ -1,26 +1,13 @@
 import {
-  filterUndefined,
-  isSubcomponent,
   assignArrayValue,
   assignObjectValue,
-  getMediaQuery,
-  isNotEmpty,
-  transformConfig,
   ConfigObject,
+  getMediaQuery,
   positiveOrNegative,
   sort,
+  transformConfig,
 } from "../utils"
 import theme from "./theme"
-
-test("should filter undefined values in object", () => {
-  const result = filterUndefined({ variant: undefined, colorScheme: "red" })
-  expect(result).toMatchObject({ colorScheme: "red" })
-})
-
-test("should return `true` if key is for subcomponent", () => {
-  const result = isSubcomponent("Tab.TabList")
-  expect(result).toBeTruthy()
-})
 
 test("should assign array value", () => {
   const result = assignArrayValue({
@@ -87,11 +74,6 @@ test("should convert media query to array & object", () => {
       },
     }
   `)
-})
-
-test("should check is object is not empty", () => {
-  expect(isNotEmpty({})).toBeFalsy()
-  expect(isNotEmpty({ size: "sm" })).toBeTruthy()
 })
 
 test("should transform configs", () => {

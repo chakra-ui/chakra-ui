@@ -1,0 +1,129 @@
+```tsx
+const theme = {
+  layerStyles: {
+    card: {
+      bg: "blue.500",
+      boxShadow: "elevated",
+      borderRadius: "md",
+      border: "2px solid red.500",
+    },
+    checkbox: {
+      apply: "layerStyles.card",
+      _hover: {
+        bg: "red.200",
+      },
+    },
+  },
+  textStyles: {
+    "heading-xxl": {
+      fontSize: "md",
+      fontFamily: "mono",
+      fontWeight: "bold",
+      lineHeight: "tall",
+      letterSpacing: "wide",
+      textTransform: "uppercase",
+      verticalAlign: "middle",
+    },
+  },
+  components: {
+    Heading: {
+      sizes: {
+        sm: {
+          apply: "textStyles.heading-xxl",
+          textAlign: "left",
+        },
+      },
+    },
+  },
+}
+
+/**
+ * Layer Styles allow you to save a combination of
+ * styling attributes to use again on other layers.
+ */
+interface LayerStyles {
+  color: string
+  bg: string
+  border: string
+  borderRadius: string
+  boxShadow: string
+  filter: string
+  opacity: string
+  blendMode: string
+  bgBlendMode: string
+}
+
+/**
+ * Text styles are like layer styles for typography.
+ */
+interface TextStyles {
+  fontFamily: string
+  fontSize: string
+  fontWeight: string
+  lineHeight: string
+  letterSpacing: string
+  textDecoration: string
+  textTransform: string
+  opacity: string
+}
+
+const components = {
+  Label: {
+    apply: "textStyle.formLabel",
+    color: "red",
+  },
+  Input: {
+    baseStyle: {
+      apply: "layerStyle.input",
+    },
+    sizes: {
+      sm: {
+        apply: "textStyle.button",
+        paddingX: "4px",
+      },
+    },
+  },
+}
+
+const sizes = options =>
+  createVariant({
+    prop: "size",
+    defaultValue: "md",
+    scale: `components.${options.themeKey}.sizes`,
+    values: {},
+  })
+
+const variants = options =>
+  createVariant({
+    prop: "variant",
+    defaultValue: "solid",
+    scale: `components.${options.themeKey}.variants`,
+    values: {},
+  })
+
+const baseStyle = options =>
+  get(theme, `components.${options.themeKey}.baseStyle`)
+
+const component = options => pipe(baseStyle, sizes, variants)(options)
+
+// lineClamp
+const lineClamp = props =>
+  props.lineClamp && {
+    textOverflow: "ellipsis",
+    overflow: "hidden",
+    whiteSpace: "nowrap",
+    WebKitLineClamp: props.lineClamp,
+  }
+
+const styled = (tag, options) => {
+  return createStyled(tag, options)(
+    styleProps,
+    component(options),
+    lineClamp,
+    css,
+    sx,
+  )
+}
+
+const layout = createStyleProp({ fontWeight: true })
+```

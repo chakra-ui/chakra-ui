@@ -69,3 +69,13 @@ export function getWithDefault(path: any, scale: any) {
 }
 
 export { merge }
+
+export function filterUndefined(object: Dict) {
+  const result = { ...object }
+  for (const item in result) {
+    if (typeof result[item] === "undefined") {
+      delete result[item]
+    }
+  }
+  return result
+}

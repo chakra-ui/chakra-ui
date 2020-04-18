@@ -1,5 +1,6 @@
 import * as React from "react"
-import { css, pseudoSelectors } from "@chakra-ui/parser"
+import { pseudoSelectors } from "@chakra-ui/parser"
+import { css } from "@chakra-ui/css"
 import { isString, UnionStringArray, __DEV__ } from "@chakra-ui/utils"
 
 export const domElements = [

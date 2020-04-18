@@ -1,6 +1,6 @@
 import { Omit } from "@chakra-ui/utils"
 import * as CSS from "csstype"
-import { Pseudos } from "./configs/pseudo.selector"
+import { Pseudos } from "@chakra-ui/parser"
 
 type StandardCSSProperties = CSS.PropertiesFallback<number | string>
 

@@ -1,6 +1,6 @@
 import { createContext, split } from "@chakra-ui/utils"
-import { ThemingProps } from "./styled.types"
-import { useThemeDefaultProps } from "./hooks"
+import { ThemingProps } from "../styled.types"
+import { useThemeDefaultProps } from "../hooks"
 
 const [ThemingProvider, useThemingContext] = createContext<ThemingProps>({
   strict: false,
