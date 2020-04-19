@@ -37,7 +37,7 @@ const StyledInput = chakra<"input", InputOptions>("input", {
 /**
  * Input
  *
- *
+ * Element that allows users enter single valued data.
  */
 
 export const Input = React.forwardRef(

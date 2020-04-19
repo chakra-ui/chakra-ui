@@ -29,7 +29,39 @@ export const Basic = () => {
 }
 
 /**
+ * A controlled input component
+ */
+
+export const Controlled = () => {
+  const [value, setValue] = React.useState("")
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
+    setValue(event.target.value)
+
+  return (
+    <Input
+      value={value}
+      onChange={handleChange}
+      placeholder="Controlled input"
+    />
+  )
+}
+
+/**
+ * Pass the `size` prop to change the size and height of the input component.
  *
+ *  @type {('sm'|'md'|'lg' })}
+ */
+
+export const Sizes = () => {
+  return ["sm", "md", "lg"].map(size => (
+    <Input placeholder="This is an input component" />
+  ))
+}
+
+/**
+ * - Pass the `isInvalid` prop to put the input component in an invalid state
+ * - Pass the `isDisabled` prop to put the input component in a disabled state
+ * - Pass the `isReadOnly` prop to put the input component in a read-only state
  */
 
 export const States = () => (
@@ -41,6 +73,13 @@ export const States = () => (
   </>
 )
 
+/**
+ * Control the visual appearance of the input component
+ * by passing the `variant` prop.
+ *
+ * @type {('outline'|'filled'|'flushed'|'unstyled' })}
+ */
+
 export const Variants = () => (
   <>
     <Input variant="outline" placeholder="Outline" marginBottom="1rem" />
@@ -49,6 +88,15 @@ export const Variants = () => (
     <Input variant="unstyled" placeholder="Unstyled" />
   </>
 )
+
+/**
+ * Add addons to the left and right of the input component,
+ * using the InputGroup, InputAddon, InputLeftAddon and
+ * InputRightAddon components.
+ *
+ * Any react child component can be used inside the input
+ * component.
+ */
 
 export const LeftAndRightAddon = () => (
   <>
@@ -67,6 +115,14 @@ export const LeftAndRightAddon = () => (
   </>
 )
 
+/**
+ * Example of a custom element inside the input component using the InputGroup,
+ * InputLeftElement and InputRightElement components.
+ *
+ * Any valid html element or react component can be used inside the input
+ * component.
+ */
+
 export const ElementInsideInput = () => (
   <>
     <InputGroup>
@@ -81,6 +137,11 @@ export const ElementInsideInput = () => (
     </InputGroup>
   </>
 )
+
+/**
+ * PasswordInput component composed with InputGroup, Input
+ * and InputRightElement components
+ */
 
 export function PasswordInput() {
   const [show, setShow] = React.useState(false)
@@ -101,6 +162,17 @@ export function PasswordInput() {
     </InputGroup>
   )
 }
+
+/**
+ * Pass the `focusBorderColor` prop to change the border color of
+ * the input component in the focused state
+ *
+ * Pass the `errorBorderColor` prop to change the border color of
+ * the input component in the invalid state
+ *
+ * The value of these props can be set to a color in the theme object,
+ * or a raw CSS value.
+ */
 
 export const FocusAndErrorColors = () => (
   <>
