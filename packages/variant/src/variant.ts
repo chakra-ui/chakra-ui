@@ -1,6 +1,6 @@
 import { css, SystemStyleObject } from "@chakra-ui/css"
-import { Dict, get, runIfFn } from "@chakra-ui/utils"
-import { createParser, StyleConfig } from "@chakra-ui/parser"
+import { Dict, get, runIfFn, merge } from "@chakra-ui/utils"
+import { createParser, StyleConfig, combineParsers } from "@chakra-ui/parser"
 
 export interface CreateVariantOptions {
   prop: string
@@ -38,3 +38,38 @@ export const layerStyle = createVariant({
   themeKey: "layerStyles",
   prop: "layerStyle",
 })
+
+const sizes = (options: any) =>
+  createVariant({
+    prop: "size",
+    themeKey: `components.${options.themeKey}.sizes`,
+  })
+
+const variants = (options: any) =>
+  createVariant({
+    prop: "variant",
+    themeKey: `components.${options.themeKey}.variants`,
+  })
+
+const baseStyle = (options: any) => (props: any) =>
+  get(props.theme, `components.${options.themeKey}.baseStyle`)
+
+export function createComponent(options: any) {
+  const { prop, themeKey } = options
+
+  const parser = combineParsers(sizes(options), variants(options))
+
+  return (props: any) => {
+    let result: any = {}
+    const defaults = get(props.theme, `components.${themeKey}.defaultProps`)
+
+    for (const prop of parser.propNames) {
+      props[prop] = props[prop] ?? defaults[prop]
+      const base = baseStyle(options)(props)
+      const out = merge(base ?? {}, parser(props) ?? {})
+      result = merge(result, out)
+    }
+
+    return result
+  }
+}
