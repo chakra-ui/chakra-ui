@@ -3,11 +3,30 @@ import { useDescendants, useDescendant } from "@chakra-ui/descendant"
 import { useControllableState } from "@chakra-ui/hooks"
 
 export interface UsePinInputProps {
+  /**
+   * If `true`, the pin input receives focus on mount
+   */
   autoFocus?: boolean
+  /**
+   * The value of the the pin input. This is the value
+   * that will be returned when the pin input is filled
+   */
   value?: string
+  /**
+   * The default value of the pin input
+   */
   defaultValue?: string
+  /**
+   * Function called on input change
+   */
   onChange?: (value: string) => void
+  /**
+   * Function called when all inputs have valid values
+   */
   onComplete?: (value: string) => void
+  /**
+   * The placeholder for the pin input
+   */
   placeholder?: string
 }
 
