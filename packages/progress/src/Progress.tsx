@@ -172,7 +172,7 @@ export function Progress(props: ProgressProps) {
   /**
    * Generate styles for stripe and stripe animation
    */
-  const css: CSSObject = {
+  const css = {
     ...(shouldAddStripe && stripeStyle),
     ...(shouldAnimateStripe && stripAnimation),
     ...(isIndeterminate && {
