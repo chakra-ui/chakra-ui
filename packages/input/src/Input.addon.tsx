@@ -52,8 +52,11 @@ export function InputAddon({ placement = "left", ...props }: InputAddonProps) {
   return (
     <StyledAddon
       flex="0 0 auto"
-      whiteSpace="nowrap"
       bg={bg}
+      width="auto"
+      display="flex"
+      alignItems="center"
+      whiteSpace="nowrap"
       {...placementStyles}
       {...props}
       variant={group?.variant || props.variant}

@@ -54,7 +54,7 @@ export const Controlled = () => {
 
 export const Sizes = () => {
   return ["sm", "md", "lg"].map(size => (
-    <Input placeholder="This is an input component" />
+    <Input marginBottom="1rem" placeholder="This is an input component" />
   ))
 }
 
@@ -125,7 +125,7 @@ export const LeftAndRightAddon = () => (
 
 export const ElementInsideInput = () => (
   <>
-    <InputGroup>
+    <InputGroup marginBottom="1rem">
       <InputLeftElement children={"P"} />
       <Input type="phone" placeholder="Phone number" />
     </InputGroup>
