@@ -54,7 +54,11 @@ export const Controlled = () => {
 
 export const Sizes = () => {
   return ["sm", "md", "lg"].map(size => (
-    <Input marginBottom="1rem" placeholder="This is an input component" />
+    <Input
+      size={size}
+      marginBottom="1rem"
+      placeholder="This is an input component"
+    />
   ))
 }
 
