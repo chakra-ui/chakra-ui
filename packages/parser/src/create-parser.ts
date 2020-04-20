@@ -5,7 +5,7 @@ import { SystemProps } from "./parser.types"
 
 const fallbackBreakpoints = { sm: 400, md: 700, lg: 1000 }
 
-export function createParser(Config: Config) {
+export function createParser(styleConfig: Config) {
   const cache: { breakpoints?: Dict } = {}
 
   const parser = <P = {}>(props: SystemProps & { theme: Dict } & P) => {
@@ -20,13 +20,13 @@ export function createParser(Config: Config) {
      */
     const processor = createProcessor(cache.breakpoints as Dict)
 
-    const allConfigs = transformConfig(Config, props.theme)
+    const allConfigs = transformConfig(styleConfig, props.theme)
 
     for (const prop in props) {
       /**
        * No need to process if prop is theme, or there's no configs for this prop
        */
-      if (prop === "theme" || Config[prop] == null) continue
+      if (prop === "theme" || styleConfig[prop] == null) continue
 
       const valueOrFn = props[prop as keyof typeof props]
       const value = runIfFn(valueOrFn, props.theme)
@@ -58,8 +58,8 @@ export function createParser(Config: Config) {
     return processor.value()
   }
 
-  parser.config = Config
-  parser.propNames = Object.keys(Config)
+  parser.config = styleConfig
+  parser.propNames = Object.keys(styleConfig)
 
   return parser
 }

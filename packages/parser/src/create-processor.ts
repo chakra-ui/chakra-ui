@@ -12,15 +12,33 @@ import {
   assignArrayValue,
   assignObjectValue,
   getMediaQuery,
+  Prop,
 } from "./utils"
 
-export type ResponsiveValue<T> = T | Array<T> | { [breakpoint: string]: T }
-
-export type ProcessorOptions = {
+export type CreateProcessorOptions = {
+  /**
+   * The CSS property the value maps to
+   */
   property: keyof CSS.Properties
-  value?: ResponsiveValue<string | number>
+  /**
+   * The responsive value
+   */
+  value?: Prop<string | number>
+  /**
+   * Function to transform the value
+   *
+   * @param value the value object or array
+   * @param scale the theme key
+   * @param props the prop object that includes the theme
+   */
   transform?: (value: any, scale: any, props?: any) => any
+  /**
+   * The theme scale (raw values) to use
+   */
   scale?: string
+  /**
+   * The props object that includes the theme.
+   */
   props?: any
 }
 
@@ -36,7 +54,7 @@ export function createProcessor(breakpoints: Dict) {
   const queries = getMediaQuery(breakpoints)
 
   return {
-    apply(options: ProcessorOptions) {
+    apply(options: CreateProcessorOptions) {
       const {
         property,
         transform = getWithDefault,
@@ -45,7 +63,9 @@ export function createProcessor(breakpoints: Dict) {
         props,
       } = options
 
-      const assign = (value: any) => transform(value, scale, props)
+      const assign = (objectOrArray: any) => {
+        return transform(objectOrArray, scale, props)
+      }
 
       if (isNull(value)) return
 

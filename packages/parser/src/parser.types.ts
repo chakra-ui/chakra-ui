@@ -14,7 +14,7 @@ import {
 } from "./configs"
 import { PseudoProps } from "./pseudo"
 
-export type Length = string | number
+type Length = string | number
 
 export type ThemeKey<T, K extends keyof any = keyof any> = T[] | Record<K, T>
 
