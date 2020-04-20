@@ -1,13 +1,13 @@
 import { parser as systemProps } from "@chakra-ui/parser"
 import createStyled from "./create-styled"
-import { As, ChakraComponent, Options } from "./styled.types"
+import { As, ChakraComponent, Options } from "./system.types"
 import {
   applyProp,
   domElements,
   DOMElements,
   pseudoProps,
   truncateProp,
-} from "./styled.utils"
+} from "./system.utils"
 
 function styled<T extends As, P = {}>(component: T, options?: Options<T, P>) {
   return createStyled<T, P>(component, options)(

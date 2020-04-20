@@ -15,7 +15,7 @@ import {
 } from "./configs"
 import { PseudoProps } from "./pseudo"
 
-type Length = string | number
+type Length = string | 0 | number
 
 export type ThemeKey<T, K extends keyof any = keyof any> = T[] | Record<K, T>
 
@@ -65,9 +65,9 @@ export interface Theme {
   fontWeights?: ThemeKey<CSS.FontWeightProperty>
   lineHeights?: ThemeKey<CSS.LineHeightProperty<Length>>
   letterSpacings?: ThemeKey<CSS.LetterSpacingProperty<Length>>
-  sizes?: ThemeKey<CSS.HeightProperty<{}> | CSS.WidthProperty<{}>>
-  borders?: ThemeKey<CSS.BorderProperty<{}>>
-  borderStyles?: ThemeKey<CSS.BorderProperty<{}>>
+  sizes?: ThemeKey<CSS.HeightProperty<Length> | CSS.WidthProperty<Length>>
+  borders?: ThemeKey<CSS.BorderProperty<Length>>
+  borderStyles?: ThemeKey<CSS.BorderProperty<Length>>
   borderWidths?: ThemeKey<CSS.BorderWidthProperty<Length>>
   radii?: ThemeKey<CSS.BorderRadiusProperty<Length>>
   shadows?: ThemeKey<CSS.BoxShadowProperty>

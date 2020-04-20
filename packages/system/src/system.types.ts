@@ -2,7 +2,7 @@ import { SystemProps, TruncateProps } from "@chakra-ui/parser"
 import { ValidHTMLProps } from "./should-forward-prop"
 import { ColorMode } from "@chakra-ui/color-mode"
 
-export interface Options<T extends As, P = {}> {
+export interface Options<T extends As, P> {
   /**
    * The key of this component in `theme.components`.
    */
