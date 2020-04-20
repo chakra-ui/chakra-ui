@@ -1,12 +1,13 @@
 import { css } from "../css"
 
 const theme = {
-  // breakpoints: { sm: "40em", md: "52em", lg: "64em" },
+  breakpoints: { sm: "40em", md: "52em", lg: "64em" },
   colors: {
     primary: "tomato",
     secondary: "cyan",
   },
   fontSizes: [12, 14, 16, 24, 36],
+  space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   fonts: {
     monospace: "Menlo, monospace",
   },
@@ -58,6 +59,7 @@ test("returns system props styles", () => {
     color: "primary",
     fontSize: [2, 3, 4],
   })({ theme })
+
   expect(result).toEqual({
     fontSize: 16,
     "@media screen and (min-width: 40em)": {

@@ -24,16 +24,16 @@ const theme = {
 }
 
 test("should parse array and object styles", () => {
-  const result = parser({
+  const styles = parser({
     theme,
     color: "green.200",
     marginX: [2, 4],
     paddingY: { all: "12px", mobile: 4, desktop: "90px" },
   })
 
-  expect(result).toBeDefined()
+  expect(styles).toBeDefined()
 
-  expect(result).toEqual({
+  expect(styles).toEqual({
     color: "papayawhip",
     marginLeft: 8,
     marginRight: 8,

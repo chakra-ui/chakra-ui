@@ -3,7 +3,7 @@ export type Nil = null | undefined
 type ArrayProp<T> = Array<T | null>
 
 interface ObjectProp<T> {
-  [breakpoint: string]: T
+  [breakpoint: string]: T | null
 }
 
 type ResponsiveProp<T> = ArrayProp<T> | ObjectProp<T>

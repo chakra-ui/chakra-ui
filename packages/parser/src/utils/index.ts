@@ -1,5 +1,5 @@
-export * from "./assign-array-value"
-export * from "./assign-object-value"
+export * from "./assign-array"
+export * from "./assign-object"
 export * from "./get-media-query"
 export * from "./positive-or-negative"
 export * from "./sort-styles"

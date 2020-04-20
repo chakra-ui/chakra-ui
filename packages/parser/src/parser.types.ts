@@ -11,6 +11,7 @@ import {
   OtherProps,
   BackgroundProps,
   ShadowProps,
+  OutlineProps,
 } from "./configs"
 import { PseudoProps } from "./pseudo"
 
@@ -104,6 +105,7 @@ export type StyleProps = SpaceProps &
   ShadowProps &
   BackgroundProps &
   PositionProps &
+  OutlineProps &
   OtherProps
 
 export interface TruncateProps {

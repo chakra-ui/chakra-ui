@@ -1,6 +1,6 @@
 import { Dict } from "@chakra-ui/utils"
 
-export type AssignObjectOptions = {
+interface Options {
   /**
    * Object representation of responsive value
    * @example { sm: "40px", md: "90px" }
@@ -30,7 +30,7 @@ export type AssignObjectOptions = {
  * For example
  *
  * ```js
- * const result = assignObjectValue({
+ * const result = assignObject({
  *  values: { base: "20px", sm: "40px", md: "60px" }
  *  mediaQueries: { sm: "@media(min-width: 320px)", md: "@media(min-width: 768px)" },
  *  prop: "margin",
@@ -39,16 +39,16 @@ export type AssignObjectOptions = {
  *
  * result = {
  *   margin: "20px",
- *   `@media(min-width: 320px)`: {
+ *   "@media(min-width: 320px)": {
  *     margin: "40px"
  *   },
- *   `@media(min-width: 768px)`: {
+ *   "@media(min-width: 768px)": {
  *     margin: "60px"
  *   }
  * }
  * ```
  */
-export function assignObjectValue(options: AssignObjectOptions) {
+export function assignObject(options: Options) {
   const { values, prop, transform, mediaQueries } = options
 
   const styles: Dict = {}
@@ -62,7 +62,7 @@ export function assignObjectValue(options: AssignObjectOptions) {
      * marginTop = { base: "30px", md: "40px" }
      *
      * `base` doesn't exist in breakpoints so we'll
-     * use it as the base value for all breakpoints
+     * use it as the value for all breakpoints
      */
     if (mediaQueries[breakpoint] == null) {
       styles[prop] = transform(value)

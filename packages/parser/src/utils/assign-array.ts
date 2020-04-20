@@ -1,6 +1,6 @@
 import { Dict } from "@chakra-ui/utils"
 
-export type AssignArrayOptions = {
+interface Options {
   /**
    * Array of responsive values to assign
    */
@@ -29,7 +29,7 @@ export type AssignArrayOptions = {
  * For example
  *
  * ```js
- * const result = assignArrayValue({
+ * const result = assignArray({
  *  values: ["20px", "40px", "60px"],
  *  mediaQueries: ["@media(min-width: 320px)", "@media(min-width: 760px)", "@media(min-width: 960px)"],
  *  prop: "margin",
@@ -47,7 +47,7 @@ export type AssignArrayOptions = {
  * }
  * ```
  */
-export function assignArrayValue(options: AssignArrayOptions) {
+export function assignArray(options: Options) {
   const { values, prop, transform, mediaQueries } = options
 
   const styles: Dict = {}

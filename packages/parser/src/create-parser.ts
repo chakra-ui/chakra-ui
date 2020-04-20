@@ -1,30 +1,32 @@
 import { Dict, isArray, runIfFn, get } from "@chakra-ui/utils"
 import { createProcessor } from "./create-processor"
-import { Config, transformConfig } from "./utils"
 import { SystemProps } from "./parser.types"
+import { Config, transformConfig } from "./utils"
 
 const fallbackBreakpoints = { sm: 400, md: 700, lg: 1000 }
+
+type ParserProps<P> = SystemProps & { theme: Dict } & P
 
 export function createParser(styleConfig: Config) {
   const cache: { breakpoints?: Dict } = {}
 
-  const parser = <P = {}>(props: SystemProps & { theme: Dict } & P) => {
+  const parser = <P = {}>(props: ParserProps<P>) => {
     /**
      * Get the breakpoints from theme or cache
      */
     cache.breakpoints =
-      cache.breakpoints || get(props.theme, "breakpoints", fallbackBreakpoints)
+      cache.breakpoints ?? get(props.theme, "breakpoints", fallbackBreakpoints)
 
     /**
      * Create a style processor based on the breakpoints
      */
     const processor = createProcessor(cache.breakpoints as Dict)
 
-    const allConfigs = transformConfig(styleConfig, props.theme)
+    const _config = transformConfig(styleConfig, props.theme)
 
     for (const prop in props) {
       /**
-       * No need to process if prop is theme, or there's no configs for this prop
+       * No need to process if prop is `theme`, or there's no config for prop
        */
       if (prop === "theme" || styleConfig[prop] == null) continue
 
@@ -34,24 +36,25 @@ export function createParser(styleConfig: Config) {
       /**
        * Get the config for the style prop
        */
-      const config = allConfigs[prop]
+      const config = _config[prop]
 
       /**
-       * Apply each config to get the generate style object.
+       * Apply each prop's config to get the generate style object.
        *
        * If it's an array config:
        *
        * @example
        * marginX = ["marginLeft", "marginRight"]
        *
-       * We'll apply `marginLeft`, and then `marginRight`
+       * We'll expand it to `marginLeft` and `marginRight`
        */
       if (isArray(config)) {
-        config.forEach((propConfig: any) => {
-          processor.apply({ ...propConfig, value, props })
+        config.forEach((opt: any) => {
+          processor.apply({ ...opt, value, props })
         })
       } else {
-        processor.apply({ ...config, value, props })
+        const options = { ...config, value, props }
+        processor.apply(options)
       }
     }
 

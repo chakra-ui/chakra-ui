@@ -126,4 +126,19 @@ const styled = (tag, options) => {
 }
 
 const layout = createStyleProp({ fontWeight: true })
+
+function Sample() {
+  return (
+    <Button
+      themeKey="menu.button"
+      components={{
+        leftIcon: <Icon.Phone />,
+        rightIcon: <Icon.ChevronRight />,
+        spinner: <Loader />,
+      }}
+    >
+      Click me
+    </Button>
+  )
+}
 ```

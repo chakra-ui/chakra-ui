@@ -13,5 +13,5 @@
     "strict": false
   },
   "exclude": ["../node_modules"],
-  "include": ["../packages", "../node_modules/@chakra-ui"]
+  "include": ["../packages/css", "../node_modules/@chakra-ui"]
 }

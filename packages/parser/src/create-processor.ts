@@ -7,15 +7,9 @@ import {
   merge,
   getWithDefault,
 } from "@chakra-ui/utils"
-import {
-  sort,
-  assignArrayValue,
-  assignObjectValue,
-  getMediaQuery,
-  Prop,
-} from "./utils"
+import { sort, assignArray, assignObject, getMediaQuery, Prop } from "./utils"
 
-export type CreateProcessorOptions = {
+interface Options {
   /**
    * The CSS property the value maps to
    */
@@ -54,7 +48,7 @@ export function createProcessor(breakpoints: Dict) {
   const queries = getMediaQuery(breakpoints)
 
   return {
-    apply(options: CreateProcessorOptions) {
+    apply(options: Options) {
       const {
         property,
         transform = getWithDefault,
@@ -70,7 +64,7 @@ export function createProcessor(breakpoints: Dict) {
       if (isNull(value)) return
 
       if (isArray(value)) {
-        const style = assignArrayValue({
+        const style = assignArray({
           values: value,
           prop: property,
           transform: assign,
@@ -78,12 +72,11 @@ export function createProcessor(breakpoints: Dict) {
         })
 
         styles = merge(styles, style)
-
         return
       }
 
       if (isObject(value)) {
-        const style = assignObjectValue({
+        const style = assignObject({
           values: value,
           prop: property,
           transform: assign,
@@ -91,7 +84,6 @@ export function createProcessor(breakpoints: Dict) {
         })
 
         styles = merge(styles, style)
-
         return
       }
 

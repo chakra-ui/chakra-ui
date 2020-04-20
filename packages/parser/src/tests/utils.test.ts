@@ -1,6 +1,6 @@
 import {
-  assignArrayValue,
-  assignObjectValue,
+  assignArray,
+  assignObject,
   Config,
   getMediaQuery,
   positiveOrNegative,
@@ -10,7 +10,7 @@ import {
 import theme from "./theme"
 
 test("should assign array value", () => {
-  const result = assignArrayValue({
+  const result = assignArray({
     values: ["20px", "40px", "60px"],
     mediaQueries: [
       "@media(min-width: 320px)",
@@ -21,21 +21,19 @@ test("should assign array value", () => {
     transform: val => val,
   })
 
-  expect(result).toMatchInlineSnapshot(`
-    Object {
-      "@media(min-width: 320px)": Object {
-        "margin": "40px",
-      },
-      "@media(min-width: 760px)": Object {
-        "margin": "60px",
-      },
-      "margin": "20px",
-    }
-  `)
+  expect(result).toEqual({
+    margin: "20px",
+    "@media(min-width: 320px)": {
+      margin: "40px",
+    },
+    "@media(min-width: 760px)": {
+      margin: "60px",
+    },
+  })
 })
 
 test("should assign object value", () => {
-  const result = assignObjectValue({
+  const result = assignObject({
     values: { base: "20px", sm: "40px", md: "60px" },
     mediaQueries: {
       sm: "@media(min-width: 320px)",
@@ -45,73 +43,55 @@ test("should assign object value", () => {
     transform: val => val,
   })
 
-  expect(result).toMatchInlineSnapshot(`
-    Object {
-      "@media(min-width: 320px)": Object {
-        "margin": "40px",
-      },
-      "@media(min-width: 768px)": Object {
-        "margin": "60px",
-      },
-      "margin": "20px",
-    }
-  `)
+  expect(result).toEqual({
+    margin: "20px",
+    "@media(min-width: 320px)": {
+      margin: "40px",
+    },
+    "@media(min-width: 768px)": {
+      margin: "60px",
+    },
+  })
 })
 
 test("should convert media query to array & object", () => {
   const result = getMediaQuery({ sm: 420, md: 768, lg: 1200 })
-  expect(result).toMatchInlineSnapshot(`
-    Object {
-      "asArray": Array [
-        "@media screen and (min-width: 420px)",
-        "@media screen and (min-width: 768px)",
-        "@media screen and (min-width: 1200px)",
-      ],
-      "asObject": Object {
-        "lg": "@media screen and (min-width: 1200px)",
-        "md": "@media screen and (min-width: 768px)",
-        "sm": "@media screen and (min-width: 420px)",
-      },
-    }
-  `)
+  expect(result).toEqual({
+    asArray: [
+      "@media screen and (min-width: 420px)",
+      "@media screen and (min-width: 768px)",
+      "@media screen and (min-width: 1200px)",
+    ],
+    asObject: {
+      sm: "@media screen and (min-width: 420px)",
+      md: "@media screen and (min-width: 768px)",
+      lg: "@media screen and (min-width: 1200px)",
+    },
+  })
 })
 
-test("should transform configs", () => {
-  const configs: Config = {
+test("should transform style configs", () => {
+  const config: Config = {
     boxShadow: true,
     paddingX: {
       properties: ["paddingLeft", "paddingRight"],
       scale: "space",
     },
   }
-  const result = transformConfig(configs, theme)
-  expect(result).toMatchInlineSnapshot(`
-    Object {
-      "boxShadow": Object {
-        "property": "boxShadow",
+  const result = transformConfig(config, theme)
+  expect(result).toEqual({
+    boxShadow: { property: "boxShadow" },
+    paddingX: [
+      {
+        property: "paddingLeft",
+        scale: { lg: 24, md: 12, sm: 4, xl: 40 },
       },
-      "paddingX": Array [
-        Object {
-          "property": "paddingLeft",
-          "scale": Object {
-            "lg": 24,
-            "md": 12,
-            "sm": 4,
-            "xl": 40,
-          },
-        },
-        Object {
-          "property": "paddingRight",
-          "scale": Object {
-            "lg": 24,
-            "md": 12,
-            "sm": 4,
-            "xl": 40,
-          },
-        },
-      ],
-    }
-  `)
+      {
+        property: "paddingRight",
+        scale: { lg: 24, md: 12, sm: 4, xl: 40 },
+      },
+    ],
+  })
 })
 
 test("should resolve positive or negative values", () => {
@@ -148,18 +128,16 @@ test("should sort styles", () => {
     border: "2px solid",
   })
 
-  expect(result).toMatchInlineSnapshot(`
-    Object {
-      "@media(min-width: 320px)": Object {
-        "margin": "40px",
-      },
-      "@media(min-width: 768px)": Object {
-        "margin": "60px",
-      },
-      "border": "2px solid",
-      "borderLeft": "2px solid",
-      "color": "pink",
-      "margin": "20px",
-    }
-  `)
+  expect(result).toEqual({
+    "@media(min-width: 320px)": {
+      margin: "40px",
+    },
+    "@media(min-width: 768px)": {
+      margin: "60px",
+    },
+    border: "2px solid",
+    borderLeft: "2px solid",
+    color: "pink",
+    margin: "20px",
+  })
 })
