@@ -1,5 +1,7 @@
+import { Dict, get } from "@chakra-ui/utils"
 import * as CSS from "csstype"
-import { isNull, get, Dict } from "@chakra-ui/utils"
+
+type Scale = Dict<string | number> | Array<string | number>
 
 export interface StyleConfig {
   /**
@@ -24,67 +26,78 @@ export interface StyleConfig {
   /**
    * A function to transform the raw value based on the scale.
    */
-  transform?: (value: any, scale: any, props: any) => any
+  transform?: (value: any, scale: Scale, props: any) => any
 }
 
-export type Config = null | true | StyleConfig
-
-export type ConfigObject = { [prop: string]: Config }
+export type Config = { [prop: string]: StyleConfig | null | true }
 
 /**
  * Transform an object of style props config to it's raw values.
  *
- * @param configs the config object
+ * @param config the parser config object
  * @param theme the theme object
  */
-export function transformConfig(configs: ConfigObject, theme: Dict) {
-  const transformedConfig: Dict = {}
+export function transformConfig(config: Config, theme: Dict) {
+  const result: Dict = {}
 
-  Object.keys(configs).forEach(prop => {
-    const config = configs[prop]
+  Object.keys(config).forEach(prop => {
+    const propConfig = config[prop]
 
     /**
-     * if config doesn't exist for this prop,
-     * return (no-op)
+     * if a config doesn't exist for this style prop, return (no-op)
      */
-    if (isNull(config)) return
+    if (propConfig === null) return
 
     /**
-     * If config is `true`, then it maps directly
+     * If prop's config is `true`, then it maps directly
      * to the css property.
      *
-     * This is useful in providing a css property
+     * This is useful in providing a regular css property
      * as a style prop.
      */
-    if (config === true) {
-      transformedConfig[prop] = { property: prop }
+    if (propConfig === true) {
+      result[prop] = { property: prop }
       return
     }
 
-    const { property, properties, scale, transform, fallbackScale } = config
+    const { property, properties, scale, transform, fallbackScale } = propConfig
 
-    const scaleFromTheme = scale && get(theme, scale, fallbackScale)
+    const _scale = scale && get(theme, scale, fallbackScale)
 
     if (property) {
-      transformedConfig[prop] = {
-        property,
-        ...(!!transform && { transform }),
-        ...(!!scale && { scale: scaleFromTheme }),
+      result[prop] = { property }
+
+      if (transform) {
+        result[prop]["transform"] = transform
       }
+
+      if (scale) {
+        result[prop]["scale"] = _scale
+      }
+
       return
     }
 
     if (properties) {
-      transformedConfig[prop] = properties.map(prop => ({
-        property: prop,
-        ...(!!transform && { transform }),
-        ...(!!scale && { scale: scaleFromTheme }),
-      }))
+      result[prop] = properties.map(property => {
+        const mapResult: Dict = { property }
+
+        if (transform) {
+          mapResult["transform"] = transform
+        }
+
+        if (scale) {
+          mapResult["scale"] = _scale
+        }
+
+        return mapResult
+      })
+
       return
     }
 
-    transformedConfig[prop] = config
+    result[prop] = propConfig
   })
 
-  return transformedConfig
+  return result
 }

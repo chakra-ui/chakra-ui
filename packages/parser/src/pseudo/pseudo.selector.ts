@@ -136,14 +136,17 @@ export const pseudoSelectors = {
   _loading: "&[data-loading], &[aria-busy=true], &[data-state=loading]",
   /**
    * Styles to apply when the ARIA attribute `aria-selected` is `true`
+   *
    * - CSS selector `&[aria-selected=true]`
    */
   _selected: "&[aria-selected=true], &[data-selected], &[data-state=selected]",
   /**
    * Styles for CSS Selector `[hidden=true]`
-   * Useful for styling the hidden state
    */
   _hidden: "&[hidden], &[data-hidden]",
+  /**
+   * Styles for CSS Selector `&:-webkit-autofill`
+   */
   _autofill: "&:-webkit-autofill",
   /**
    * Styles for CSS Selector `&:nth-child(even)`
@@ -177,19 +180,36 @@ export const pseudoSelectors = {
   _indeterminate:
     "&:indeterminate, &[aria-checked=mixed], &[data-indeterminate], &[data-state=mixed]",
   /**
-   * Styles to apply when you hover on a parent that has `role=group`.
+   * Styles to apply when parent is hovered
    */
   _groupHover: toGroup(group.hover),
+  /**
+   * Styles to apply when parent is focused
+   */
   _groupFocus: toGroup(group.focus),
+  /**
+   * Styles to apply when parent is active
+   */
   _groupActive: toGroup(group.active),
+  /**
+   * Styles to apply when parent is disabled
+   */
   _groupDisabled: toGroup(group.disabled),
+  /**
+   * Styles to apply when parent is invalid
+   */
   _groupInvalid: toGroup(group.invalid),
+  /**
+   * Styles to apply when parent is checked
+   */
   _groupChecked: toGroup(group.checked),
   /**
    * Styles for CSS Selector `&::placeholder`.
-   * Useful for inputs
    */
   _placeholder: "&::placeholder",
+  /**
+   * Styles for CSS Selector `&:fullscreen`.
+   */
   _fullScreen: "&:fullscreen",
   /**
    * Styles for CSS Selector `&::selection`

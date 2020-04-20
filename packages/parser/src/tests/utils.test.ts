@@ -1,7 +1,7 @@
 import {
   assignArrayValue,
   assignObjectValue,
-  ConfigObject,
+  Config,
   getMediaQuery,
   positiveOrNegative,
   sort,
@@ -77,7 +77,7 @@ test("should convert media query to array & object", () => {
 })
 
 test("should transform configs", () => {
-  const configs: ConfigObject = {
+  const configs: Config = {
     boxShadow: true,
     paddingX: {
       properties: ["paddingLeft", "paddingRight"],

@@ -13,7 +13,8 @@ export function createVariant(options: CreateVariantOptions) {
 
   const sx: StyleConfig = {
     transform: (value: any, scale: any, props: any) => {
-      const styleObjectOrFn = get(props.theme, `${scale}.${value}`, null)
+      const styleObjectOrFn =
+        get(props.theme, `${scale}.${value}`) ?? get(values, value)
       const styleObject = runIfFn(styleObjectOrFn, props)
       return css(styleObject)(props.theme)
     },
@@ -39,32 +40,36 @@ export const layerStyle = createVariant({
   prop: "layerStyle",
 })
 
-const sizes = (options: any) =>
-  createVariant({
+const sizes = (options: any) => {
+  return createVariant({
     prop: "size",
     themeKey: `components.${options.themeKey}.sizes`,
+    values: options.sizes,
   })
+}
 
 const variants = (options: any) =>
   createVariant({
     prop: "variant",
     themeKey: `components.${options.themeKey}.variants`,
+    values: options.variants,
   })
 
 const baseStyle = (options: any) => (props: any) =>
   get(props.theme, `components.${options.themeKey}.baseStyle`)
 
 export function createComponent(options: any) {
-  const { prop, themeKey } = options
-
   const parser = combineParsers(sizes(options), variants(options))
 
   return (props: any) => {
     let result: any = {}
-    const defaults = get(props.theme, `components.${themeKey}.defaultProps`)
+    const defaults = get(
+      props.theme,
+      `components.${options.themeKey}.defaultProps`,
+    )
 
     for (const prop of parser.propNames) {
-      props[prop] = props[prop] ?? defaults[prop]
+      props[prop] = props[prop] ?? defaults?.[prop]
       const base = baseStyle(options)(props)
       const out = merge(base ?? {}, parser(props) ?? {})
       result = merge(result, out)

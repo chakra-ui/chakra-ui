@@ -155,3 +155,45 @@ test("variant - with default props", () => {
     fontSize: "40px",
   })
 })
+
+test("variant - with default props", () => {
+  const parser = createComponent({
+    prop: "variant",
+    themeKey: "button",
+    sizes: {
+      sm: {
+        fontSize: 10,
+        padding: 4,
+      },
+      md: {
+        fontSize: 16,
+        padding: 10,
+      },
+    },
+    variants: {
+      solid: {
+        bg: "red",
+        color: "white",
+      },
+      outline: {
+        border: "2px",
+        borderColor: "red",
+      },
+    },
+  })
+
+  const result = parser({
+    theme: {},
+    size: "md",
+    variant: "outline",
+  })
+
+  expect(result).toMatchInlineSnapshot(`
+    Object {
+      "border": "2px",
+      "borderColor": "red",
+      "fontSize": 16,
+      "padding": 10,
+    }
+  `)
+})

@@ -1,14 +1,14 @@
 import { Dict, isArray, runIfFn, get } from "@chakra-ui/utils"
 import { createProcessor } from "./create-processor"
-import { ConfigObject, transformConfig } from "./utils/transform-config"
+import { Config, transformConfig } from "./utils"
 import { SystemProps } from "./parser.types"
 
 const fallbackBreakpoints = { sm: 400, md: 700, lg: 1000 }
 
-export function createParser(configObject: ConfigObject) {
+export function createParser(Config: Config) {
   const cache: { breakpoints?: Dict } = {}
 
-  const parser = <P = {}>(props: SystemProps & { theme: object } & P) => {
+  const parser = <P = {}>(props: SystemProps & { theme: Dict } & P) => {
     /**
      * Get the breakpoints from theme or cache
      */
@@ -20,13 +20,13 @@ export function createParser(configObject: ConfigObject) {
      */
     const processor = createProcessor(cache.breakpoints as Dict)
 
-    const allConfigs = transformConfig(configObject, props.theme)
+    const allConfigs = transformConfig(Config, props.theme)
 
     for (const prop in props) {
       /**
        * No need to process if prop is theme, or there's no configs for this prop
        */
-      if (prop === "theme" || configObject[prop] == null) continue
+      if (prop === "theme" || Config[prop] == null) continue
 
       const valueOrFn = props[prop as keyof typeof props]
       const value = runIfFn(valueOrFn, props.theme)
@@ -58,8 +58,8 @@ export function createParser(configObject: ConfigObject) {
     return processor.value()
   }
 
-  parser.config = configObject
-  parser.propNames = Object.keys(configObject)
+  parser.config = Config
+  parser.propNames = Object.keys(Config)
 
   return parser
 }
