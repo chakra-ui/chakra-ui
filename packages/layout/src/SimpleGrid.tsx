@@ -1,4 +1,4 @@
-import { Responsive } from "@chakra-ui/system"
+import { Prop } from "@chakra-ui/system"
 import { mapResponsive, isNumber, isNull, __DEV__ } from "@chakra-ui/utils"
 import React, { forwardRef } from "react"
 import { Grid, GridProps } from "./Grid"
@@ -11,7 +11,7 @@ interface SimpleGridOptions {
   /**
    * The number of columns
    */
-  columns?: Responsive<number>
+  columns?: Prop<number>
   /**
    * The gap between the grid items
    */

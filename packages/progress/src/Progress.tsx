@@ -3,7 +3,6 @@ import {
   chakra,
   PropsOf,
   useColorModeValue,
-  CSSObject,
   useThemeDefaultProps,
 } from "@chakra-ui/system"
 import { isUndefined, __DEV__ } from "@chakra-ui/utils"
