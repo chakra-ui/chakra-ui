@@ -1,4 +1,4 @@
-import { render, renderHook, userEvent } from "@chakra-ui/test-utils"
+import { render, renderHook, fireEvent } from "@chakra-ui/test-utils"
 import * as React from "react"
 import {
   Checkbox,
@@ -9,23 +9,23 @@ import {
 } from ".."
 
 test("Checkbox renders correctly", () => {
-  const utils = render(<Checkbox />)
-  expect(utils.asFragment()).toMatchSnapshot()
+  const tools = render(<Checkbox />)
+  expect(tools.asFragment()).toMatchSnapshot()
 })
 
 test("useCheckbox should return object", () => {
-  const { result } = renderHook(() => useCheckbox({}))
+  const { result } = renderHook(() => useCheckbox())
   expect(typeof result.current).toBe("object")
 })
 
 test("useCheckbox should return object with 4 keys", () => {
-  const { result } = renderHook(() => useCheckbox({}))
+  const { result } = renderHook(() => useCheckbox())
   expect(Object.keys(result.current).length).toEqual(4)
 })
 
 test("Checkbox renders correctly", () => {
-  const utils = render(<Checkbox>This is custom checkbox</Checkbox>)
-  expect(utils.asFragment()).toMatchSnapshot()
+  const tools = render(<Checkbox>This is custom checkbox</Checkbox>)
+  expect(tools.asFragment()).toMatchSnapshot()
 })
 
 test("Uncontrolled - should check and uncheck", () => {
@@ -35,22 +35,24 @@ test("Uncontrolled - should check and uncheck", () => {
     return (
       <label {...htmlProps}>
         <input data-testid="input" {...getInputProps()} />
-        <div {...getCheckboxProps()}>Checkbox</div>
+        <div data-testid="checkbox" {...getCheckboxProps()}>
+          Checkbox
+        </div>
       </label>
     )
   }
-  const utils = render(<Component />)
+  const tools = render(<Component />)
 
-  const input = utils.getByTestId("input")
-  const checkbox = utils.getByText("Checkbox")
+  const input = tools.getByTestId("input")
+  const checkbox = tools.getByTestId("checkbox")
 
   // click the first time, it's checked
-  userEvent.click(checkbox)
+  fireEvent.click(input)
   expect(input).toBeChecked()
   expect(checkbox).toHaveAttribute("data-checked")
 
   // click the second time, it's unchecked
-  userEvent.click(checkbox)
+  fireEvent.click(input)
   expect(input).not.toBeChecked()
   expect(checkbox).not.toHaveAttribute("data-checked")
 })
@@ -68,15 +70,15 @@ test("Uncontrolled - should not check if disabled", () => {
       </label>
     )
   }
-  const utils = render(<Component />)
+  const tools = render(<Component />)
 
-  const input = utils.getByTestId("input")
-  const checkbox = utils.getByText("Checkbox")
+  const input = tools.getByTestId("input")
+  const checkbox = tools.getByText("Checkbox")
 
   expect(input).toBeDisabled()
   expect(checkbox).toHaveAttribute("data-disabled")
 
-  userEvent.click(checkbox)
+  fireEvent.click(checkbox)
 
   expect(input).not.toBeChecked()
   expect(checkbox).not.toHaveAttribute("data-checked")
@@ -95,9 +97,9 @@ test("indeterminate state", () => {
       </label>
     )
   }
-  const utils = render(<Component />)
+  const tools = render(<Component />)
 
-  const checkbox = utils.getByText("Checkbox")
+  const checkbox = tools.getByText("Checkbox")
   expect(checkbox).toHaveAttribute("data-mixed")
 })
 
@@ -116,26 +118,26 @@ test("Controlled - should check and uncheck", () => {
     )
   }
 
-  const utils = render(<Component isChecked={checked} onChange={onChange} />)
+  const tools = render(<Component isChecked={checked} onChange={onChange} />)
 
-  const input = utils.getByTestId("input")
-  const checkbox = utils.getByText("Checkbox")
+  const input = tools.getByTestId("input")
+  const checkbox = tools.getByText("Checkbox")
 
   expect(input).not.toHaveAttribute("data-checked")
 
-  userEvent.click(checkbox)
+  fireEvent.click(checkbox)
   expect(onChange).toHaveBeenCalled()
 
   // change props
-  utils.rerender(<Component isChecked={checked} onChange={onChange} />)
+  tools.rerender(<Component isChecked={checked} onChange={onChange} />)
 
   expect(onChange).toHaveBeenCalled()
   expect(checkbox).toHaveAttribute("data-checked")
 
-  userEvent.click(checkbox)
+  fireEvent.click(checkbox)
   expect(onChange).toHaveBeenCalled()
 
-  utils.rerender(<Component isChecked={checked} onChange={onChange} />)
+  tools.rerender(<Component isChecked={checked} onChange={onChange} />)
 
   expect(onChange).toHaveBeenCalled()
   expect(checkbox).not.toHaveAttribute("data-checked")
@@ -151,16 +153,16 @@ test("CheckboxGroup Uncontrolled - default values should be check", () => {
       </CheckboxGroup>
     )
   }
-  const utils = render(<Component />)
-  const checkboxOne = utils.container.querySelectorAll("input")[0]
-  const checkboxTwo = utils.container.querySelectorAll("input")[1]
-  const checkboxThree = utils.container.querySelectorAll("input")[2]
+  const tools = render(<Component />)
+  const checkboxOne = tools.container.querySelectorAll("input")[0]
+  const checkboxTwo = tools.container.querySelectorAll("input")[1]
+  const checkboxThree = tools.container.querySelectorAll("input")[2]
 
   expect(checkboxOne).toBeChecked()
   expect(checkboxTwo).toBeChecked()
   expect(checkboxThree).not.toBeChecked()
 
-  userEvent.click(checkboxThree)
+  fireEvent.click(checkboxThree)
 
   expect(checkboxOne).toBeChecked()
   expect(checkboxTwo).toBeChecked()
@@ -180,19 +182,19 @@ test("Controlled CheckboxGroup", () => {
       </CheckboxGroup>
     )
   }
-  const utils = render(<Component value={checked} onChange={onChange} />)
-  const checkboxOne = utils.container.querySelectorAll("input")[0]
-  const checkboxTwo = utils.container.querySelectorAll("input")[1]
-  const checkboxThree = utils.container.querySelectorAll("input")[2]
+  const tools = render(<Component value={checked} onChange={onChange} />)
+  const [checkboxOne, checkboxTwo, checkboxThree] = Array.from(
+    tools.container.querySelectorAll("input"),
+  )
 
   expect(checkboxOne).toBeChecked()
   expect(checkboxTwo).toBeChecked()
   expect(checkboxThree).not.toBeChecked()
 
-  userEvent.click(checkboxThree)
+  fireEvent.click(checkboxThree)
 
   // change props
-  utils.rerender(<Component value={checked} onChange={onChange} />)
+  tools.rerender(<Component value={checked} onChange={onChange} />)
 
   expect(onChange).toHaveBeenCalled()
   expect(checked).toEqual(["one", "two", "three"])

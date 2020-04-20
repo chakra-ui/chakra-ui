@@ -7,8 +7,8 @@
   "scripts": {
     "boot": "yarn install && yarn bootstrap && yarn build",
     "build": "lerna run build --no-private --stream",
-    "test": "lerna run --no-private -- yarn test --stream",
-    "lint": "lerna run --no-private -- yarn lint --stream",
+    "test": "lerna run test --no-private --stream",
+    "lint": "lerna run lint --no-private --stream",
     "storybook": "start-storybook -p 6006",
     "clean": "lerna clean --yes",
     "bootstrap": "lerna bootstrap --use-workspaces",
