@@ -4,10 +4,10 @@ module.exports = {
   title: "Chakra UI",
   // snippets: './playroom/snippets.js',
   frameComponent: "./.playroom/FrameComponent.jsx",
-  widths: [320, 375, 768, 1024],
+  widths: [320, 768, 1024, 1400],
   exampleCode: `
-    <Stack>
+    <Box>
       Hello World!
-    </Stack>
+    </Box>
   `,
 }
