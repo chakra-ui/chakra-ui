@@ -1,53 +1,15 @@
-import shell from "shelljs"
-import fs from "fs-utils"
-import prettier from "prettier"
 import editJson from "edit-json-file"
+import fs from "fs-utils"
+import getLernaPackages from "./utils/get-lerna-pkgs"
 
-const omittedPkgs = [
-  "core",
-  "preset-base",
-  "preset-stripe",
-  "icons",
-  "transition",
-  "utils",
-  "hooks",
-  "parser",
-  "color-mode",
-  "layout",
-]
+const pkgs = getLernaPackages()
 
-const pkgs = shell.exec("lerna ls --toposort --json --loglevel silent")
-
-const pkgArray = JSON.parse(pkgs)
-  .map(pkg => pkg.name)
-  .filter(pkg => {
-    const name = pkg.split("/")[1]
-    return !omittedPkgs.includes(name)
-  })
-
-let content = ""
-pkgArray.forEach(pkg => {
-  content += `export * from "${pkg}"\n`
+pkgs.forEach(pkg => {
+  const path = fs.resolve("packages", pkg.folder, "package.json")
+  const pkgJson = editJson(path)
+  pkgJson.set(
+    "scripts.start",
+    'nodemon --exec yarn build -e ts,tsx --ignore dist/ --ignore src/tests/ --ignore "*.stories.tsx"',
+  )
+  pkgJson.save()
 })
-
-content = prettier.format(content, { semi: false, parser: "typescript" })
-
-const coreDir = fs.resolve("packages/core/src", "index.tsx")
-
-try {
-  fs.writeFileSync(coreDir, content)
-} catch (e) {
-  console.log(e)
-}
-
-const pkgJson = editJson("packages/core/package.json")
-pkgJson.unset("dependencies")
-
-pkgArray.forEach(pkg => {
-  const { version } = JSON.parse(pkgs).find(i => i.name == pkg)
-  pkgJson.set(`dependencies.${pkg}`, version)
-})
-
-pkgJson.save()
-
-shell.exec("yarn core build")

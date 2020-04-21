@@ -20,7 +20,7 @@
   },
   "scripts": {
     "prebuild": "rimraf dist",
-    "start": "nodemon --exec yarn build --watch src",
+    "start": "nodemon --exec yarn build -e ts,tsx --ignore dist/ --ignore src/tests/ --ignore \"*.stories.tsx\"",
     "build:esm": "tsc --module esnext --outDir dist/esm --declaration false",
     "build:cjs": "tsc --module commonjs --outDir dist/cjs --declaration false",
     "build:types": "tsc --emitDeclarationOnly --declaration true --declarationDir dist/types",

@@ -29,7 +29,7 @@
   },
   "scripts": {
     "prebuild": "rimraf dist",
-    "start": "nodemon --exec yarn build --watch src",
+    "start": "nodemon --exec yarn build -e ts,tsx --ignore dist/ --ignore src/tests/ --ignore \"*.stories.tsx\"",
     "build": "concurrently yarn:build:*",
     "test": "jest --env=jsdom --passWithNoTests",
     "lint": "concurrently yarn:lint:*",
