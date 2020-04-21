@@ -40,7 +40,7 @@ exports[`should render correctly 1`] = `
             tabindex="-1"
           >
             <header
-              class="css-99ylup"
+              class="css-ohklxy"
               data-chakra-modal-header=""
               id="chakra-modal--header-1"
             >
@@ -65,14 +65,14 @@ exports[`should render correctly 1`] = `
               </svg>
             </button>
             <div
-              class="css-qjt6jp"
+              class="css-3ntn22"
               data-chakra-modal-body=""
               id="chakra-modal--body-1"
             >
               Modal body
             </div>
             <footer
-              class="css-ku8rqf"
+              class="css-g6i3l1"
             >
               Modal footer
             </footer>

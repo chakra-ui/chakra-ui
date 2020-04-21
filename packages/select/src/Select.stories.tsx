@@ -1,5 +1,5 @@
 import { Stack, Box } from "@chakra-ui/layout"
-import React from "react"
+import * as React from "react"
 import { Select } from "./index"
 
 export default {

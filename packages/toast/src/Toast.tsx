@@ -2,7 +2,7 @@ import { useDimensions, useTimeout } from "@chakra-ui/hooks"
 import { Transition } from "@chakra-ui/transition"
 import { isFunction } from "@chakra-ui/utils"
 import ReachAlert from "@reach/alert"
-import React from "react"
+import * as React from "react"
 import { ToastOptions, ToastPosition } from "./Toast.types"
 
 const getStyle = (position: ToastPosition) => {

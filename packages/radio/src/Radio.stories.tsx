@@ -1,4 +1,4 @@
-import React from "react"
+import * as React from "react"
 import { useRadio, Radio, useRadioGroup, RadioGroup } from "."
 import { chakra } from "@chakra-ui/system"
 import { Stack } from "@chakra-ui/layout"

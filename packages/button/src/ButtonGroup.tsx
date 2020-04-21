@@ -1,7 +1,6 @@
-import { SystemProps, chakra, PropsOf, ThemingProps } from "@chakra-ui/system"
-import { getValidChildren } from "@chakra-ui/utils"
+import { chakra, PropsOf, SystemProps, ThemingProps } from "@chakra-ui/system"
+import { getValidChildren, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { ButtonProps } from "./Button"
 
 export type ButtonGroupOptions = Omit<ThemingProps, "orientation"> & {
   /**
@@ -21,22 +20,24 @@ export type ButtonGroupOptions = Omit<ThemingProps, "orientation"> & {
 
 export type ButtonGroupProps = PropsOf<typeof chakra.div> & ButtonGroupOptions
 
-export const ButtonGroup = ({
-  size,
-  colorScheme,
-  variant,
-  isAttached,
-  spacing = 2,
-  children,
-  ...rest
-}: ButtonGroupProps) => {
+export const ButtonGroup = (props: ButtonGroupProps) => {
+  const {
+    size,
+    colorScheme,
+    variant,
+    isAttached,
+    spacing = 2,
+    children,
+    ...rest
+  } = props
+
   const validChildren = getValidChildren(children)
 
   const clones = validChildren.map((child, index) => {
     const isFirst = index === 0
     const isLast = index === validChildren.length - 1
 
-    return React.cloneElement(child as React.ReactElement<ButtonProps>, {
+    return React.cloneElement(child as any, {
       size,
       colorScheme: child.props.colorScheme || colorScheme,
       variant: child.props.variant || variant,
@@ -50,4 +51,8 @@ export const ButtonGroup = ({
   })
 
   return <chakra.div display="inline-block" {...rest} children={clones} />
+}
+
+if (__DEV__) {
+  ButtonGroup.displayName = "ButtonGroup"
 }

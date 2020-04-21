@@ -1,4 +1,11 @@
-import { omit, pick, split, get, getWithDefault } from "../object"
+import {
+  omit,
+  pick,
+  split,
+  get,
+  getWithDefault,
+  filterUndefined,
+} from "../object"
 
 const object = { a: 1, b: 2, c: { d: 3 } }
 
@@ -21,4 +28,9 @@ test("should get value of specified path in object", () => {
 test("should get value of specified path in object or return path as default if value not found", () => {
   expect(getWithDefault("c.d", object)).toStrictEqual(3)
   expect(getWithDefault("c.e", object)).toStrictEqual("c.e")
+})
+
+test("should filter undefined values in object", () => {
+  const result = filterUndefined({ variant: undefined, colorScheme: "red" })
+  expect(result).toMatchObject({ colorScheme: "red" })
 })

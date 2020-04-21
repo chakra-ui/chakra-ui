@@ -19,7 +19,7 @@ To enable this behavior within your apps, wrap your application in a
 `ColorModeProvider` below the `ThemeProvider`
 
 ```jsx live=false
-import React from "react"
+import * as React from "react"
 import { ColorModeProvider } from "@chakra-ui/color-mode"
 import theme from "./theme"
 

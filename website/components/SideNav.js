@@ -1,5 +1,5 @@
 import { Box, Heading } from "@chakra-ui/core"
-import React from "react"
+import * as React from "react"
 import components from "./components"
 import { ComponentLink, stringToUrl, TopNavLink } from "./NavLink"
 

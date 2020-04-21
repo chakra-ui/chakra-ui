@@ -7,20 +7,33 @@ import {
   merge,
   getWithDefault,
 } from "@chakra-ui/utils"
-import {
-  sort,
-  assignArrayValue,
-  assignObjectValue,
-  getMediaQuery,
-} from "./utils"
+import { sort, assignArray, assignObject, getMediaQuery, Prop } from "./utils"
 
-export type ResponsiveValue<T> = T | Array<T> | { [breakpoint: string]: T }
-
-export type ProcessorOptions = {
+interface Options {
+  /**
+   * The CSS property the value maps to
+   */
   property: keyof CSS.Properties
-  value?: ResponsiveValue<string | number>
-  transform?: (value: any, scale: any) => any
+  /**
+   * The responsive value
+   */
+  value?: Prop<string | number>
+  /**
+   * Function to transform the value
+   *
+   * @param value the value object or array
+   * @param scale the theme key
+   * @param props the prop object that includes the theme
+   */
+  transform?: (value: any, scale: any, props?: any) => any
+  /**
+   * The theme scale (raw values) to use
+   */
   scale?: string
+  /**
+   * The props object that includes the theme.
+   */
+  props?: any
 }
 
 /**
@@ -35,15 +48,23 @@ export function createProcessor(breakpoints: Dict) {
   const queries = getMediaQuery(breakpoints)
 
   return {
-    apply(options: ProcessorOptions) {
-      const { property, transform = getWithDefault, value, scale } = options
+    apply(options: Options) {
+      const {
+        property,
+        transform = getWithDefault,
+        value,
+        scale,
+        props,
+      } = options
 
-      const assign = (value: any) => transform(value, scale)
+      const assign = (objectOrArray: any) => {
+        return transform(objectOrArray, scale, props)
+      }
 
       if (isNull(value)) return
 
       if (isArray(value)) {
-        const style = assignArrayValue({
+        const style = assignArray({
           values: value,
           prop: property,
           transform: assign,
@@ -51,12 +72,11 @@ export function createProcessor(breakpoints: Dict) {
         })
 
         styles = merge(styles, style)
-
         return
       }
 
       if (isObject(value)) {
-        const style = assignObjectValue({
+        const style = assignObject({
           values: value,
           prop: property,
           transform: assign,
@@ -64,11 +84,15 @@ export function createProcessor(breakpoints: Dict) {
         })
 
         styles = merge(styles, style)
-
         return
       }
 
-      styles[property] = assign(value)
+      if (property) {
+        styles[property] = assign(value)
+        return
+      }
+
+      styles = merge(styles, assign(value))
     },
     value: () => sort(styles),
   }

@@ -7,7 +7,8 @@ exports[`CircularProgress renders correctly 1`] = `
       aria-valuemax="100"
       aria-valuemin="0"
       aria-valuenow="20"
-      class="css-1nv241x"
+      class="css-1y6yrgs"
+      data-chakra-progress=""
       role="progressbar"
     >
       <svg
@@ -15,25 +16,22 @@ exports[`CircularProgress renders correctly 1`] = `
         viewBox="0 0 100 100"
       >
         <circle
+          class="css-1bhxzgy"
           cx="50"
           cy="50"
           data-chakra-progress-track=""
-          fill="transparent"
           r="42"
-          stroke="#edebe9"
-          stroke-width="5px"
+          stroke-width="10px"
         />
         <circle
-          css="You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."
+          class="css-19d1oa6"
           cx="50"
           cy="50"
           data-chakra-progress-indicator=""
-          fill="transparent"
           r="42"
-          stroke="#0078d4"
           stroke-dasharray="52.800000000000004 211.2"
           stroke-dashoffset="66"
-          stroke-width="5px"
+          stroke-width="10px"
         />
       </svg>
     </div>
@@ -41,7 +39,8 @@ exports[`CircularProgress renders correctly 1`] = `
       aria-valuemax="100"
       aria-valuemin="0"
       aria-valuenow="60"
-      class="css-12hrydv"
+      class="css-2sdpfm"
+      data-chakra-progress=""
       role="progressbar"
     >
       <svg
@@ -49,22 +48,19 @@ exports[`CircularProgress renders correctly 1`] = `
         viewBox="0 0 100 100"
       >
         <circle
+          class="css-10yax4m"
           cx="50"
           cy="50"
           data-chakra-progress-track=""
-          fill="transparent"
           r="42"
-          stroke="transparent"
           stroke-width="10"
         />
         <circle
-          css="You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."
+          class="css-19d1oa6"
           cx="50"
           cy="50"
           data-chakra-progress-indicator=""
-          fill="transparent"
           r="42"
-          stroke="#0078d4"
           stroke-dasharray="158.4 105.6"
           stroke-dashoffset="66"
           stroke-width="10"
@@ -79,35 +75,35 @@ exports[`Progress renders correctly 1`] = `
 <DocumentFragment>
   <div>
     <div
-      class="css-7g4473"
+      class="css-1u9qiqa"
     >
       <div
         aria-valuemax="100"
         aria-valuemin="0"
         aria-valuenow="20"
-        class="css-1xdhyk6"
+        class="css-itu61o"
         role="progressbar"
       />
     </div>
     <div
-      class="css-ib5rfm"
+      class="css-1cnp07i"
     >
       <div
         aria-valuemax="100"
         aria-valuemin="0"
         aria-valuenow="40"
-        class="css-1546ynt"
+        class="css-ho6rpv"
         role="progressbar"
       />
     </div>
     <div
-      class="css-120z5g9"
+      class="css-r4wshk"
     >
       <div
         aria-valuemax="100"
         aria-valuemin="0"
         aria-valuenow="80"
-        class="css-d77dwy"
+        class="css-l6d435"
         role="progressbar"
       />
     </div>

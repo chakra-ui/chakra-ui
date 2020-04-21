@@ -3,7 +3,6 @@ import {
   chakra,
   PropsOf,
   useColorModeValue,
-  CSSObject,
   useThemeDefaultProps,
 } from "@chakra-ui/system"
 import { isUndefined, __DEV__ } from "@chakra-ui/utils"
@@ -172,7 +171,7 @@ export function Progress(props: ProgressProps) {
   /**
    * Generate styles for stripe and stripe animation
    */
-  const css: CSSObject = {
+  const css = {
     ...(shouldAddStripe && stripeStyle),
     ...(shouldAnimateStripe && stripAnimation),
     ...(isIndeterminate && {

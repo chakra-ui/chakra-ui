@@ -1,4 +1,4 @@
-import React from "react"
+import * as React from "react"
 import { Toast } from "./Toast"
 import { ToastPosition, ToastOptions, ToastMessage } from "./Toast.types"
 

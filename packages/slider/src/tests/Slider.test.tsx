@@ -1,5 +1,5 @@
 import { axe, press, render } from "@chakra-ui/test-utils"
-import React from "react"
+import * as React from "react"
 import { Slider, SliderFilledTrack, SliderThumb, SliderTrack } from ".."
 
 describe("rendering", () => {

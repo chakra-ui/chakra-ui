@@ -45,6 +45,10 @@ export const isObject = (value: any): value is Dict => {
 export const isEmptyObject = (value: any) =>
   isObject(value) && Object.keys(value).length === 0
 
+export function isNotEmptyObject(value: any): value is object {
+  return value && !isEmptyObject(value)
+}
+
 export const isNull = (value: any): value is null => value == null
 
 // String assertions

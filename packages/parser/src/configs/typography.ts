@@ -1,11 +1,8 @@
-import { ConfigObject } from "../utils/transform-config"
+import * as CSS from "csstype"
+import { Config, Prop, Length } from "../utils"
 import { createParser } from "../create-parser"
 
-const defaults = {
-  fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 72],
-}
-
-const config: ConfigObject = {
+const config: Config = {
   fontFamily: {
     property: "fontFamily",
     scale: "fonts",
@@ -13,7 +10,6 @@ const config: ConfigObject = {
   fontSize: {
     property: "fontSize",
     scale: "fontSizes",
-    fallbackScale: defaults.fontSizes,
   },
   fontWeight: {
     property: "fontWeight",
@@ -36,6 +32,68 @@ const config: ConfigObject = {
   whiteSpace: true,
   textDecoration: { property: "textDecoration" },
   textDecor: { property: "textDecoration" },
+}
+
+/**
+ * Types for typography related CSS properties
+ */
+export interface TypographyProps {
+  /**
+   * The CSS `font-weight` property
+   */
+  fontWeight?: Prop<CSS.FontWeightProperty | "medium" | "light" | "semibold">
+  /**
+   * The CSS `line-height` property
+   */
+  lineHeight?: Prop<CSS.LineHeightProperty<Length>>
+  /**
+   * The CSS `line-height` property
+   */
+  letterSpacing?: Prop<CSS.LetterSpacingProperty<Length>>
+  /**
+   * The CSS `font-size` property
+   */
+  fontSize?: Prop<CSS.FontSizeProperty<Length>>
+  /**
+   * The CSS `font-family` property
+   */
+  fontFamily?: Prop<CSS.FontFamilyProperty>
+  /**
+   * The CSS `text-align` property
+   */
+  textAlign?: Prop<CSS.TextAlignProperty>
+  /**
+   * The CSS `font-style` property
+   */
+  fontStyle?: Prop<CSS.FontStyleProperty>
+  /**
+   * The CSS `word-break` property
+   */
+  wordBreak?: Prop<CSS.WordBreakProperty>
+  /**
+   * The CSS `overflow-wrap` property
+   */
+  overflowWrap?: Prop<CSS.OverflowWrapProperty>
+  /**
+   * The CSS `text-overflow` property
+   */
+  textOverflow?: Prop<CSS.TextOverflowProperty>
+  /**
+   * The CSS `text-transform` property
+   */
+  textTransform?: Prop<CSS.TextTransformProperty>
+  /**
+   * The CSS `white-space` property
+   */
+  whiteSpace?: Prop<CSS.WhiteSpaceProperty>
+  /**
+   * The CSS `text-decoration` property
+   */
+  textDecoration?: Prop<CSS.TextDecorationProperty<Length>>
+  /**
+   * The CSS `text-decoration` property
+   */
+  textDecor?: Prop<CSS.TextDecorationProperty<Length>>
 }
 
 export const typography = createParser(config)
