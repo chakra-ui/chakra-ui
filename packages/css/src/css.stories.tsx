@@ -64,6 +64,10 @@ export const example = () => {
     color: "primary",
     h1: {
       py: [3, 4],
+      _hover: {
+        margin: [2, 3],
+        bg: "secondary",
+      },
     },
   })({ theme })
 
