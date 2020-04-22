@@ -3,7 +3,7 @@ import * as React from "react"
 import { useInputGroup } from "./Input.group"
 import { __DEV__ } from "@chakra-ui/utils"
 
-export type Placement = "left" | "right"
+type Placement = "left" | "right"
 
 function getPlacementStyles(placement: Placement) {
   if (placement === "left") {
