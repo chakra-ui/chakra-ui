@@ -24,12 +24,6 @@ const CSSReset = () => (
         box-sizing: inherit;
       }
 
-      *{
-        font-family: inherit;
-        font-size: inherit;
-        line-height: inherit;
-      }
-
       body,
       h1,
       h2,
@@ -231,6 +225,11 @@ const CSSReset = () => (
       object {
         display: block;
       }
+
+  .js-focus-visible :focus:not([data-focus-visible-added]) {
+     outline: none;
+     box-shadow: none;
+   }
     `}
   />
 )

@@ -1,14 +1,25 @@
-import { AddIcon } from "@chakra-ui/icons"
-import { Stack } from "@chakra-ui/layout"
+import { ArrowForwardIcon, EmailIcon } from "@chakra-ui/icons"
+import { MdBuild, MdCall } from "react-icons/md"
+import { Stack, Container } from "@chakra-ui/layout"
 import * as React from "react"
+import "focus-visible/dist/focus-visible"
 import { Button } from "."
 
 export default {
   title: "Button",
+  decorators: [
+    (Story: any) => (
+      <Container mt="40px">
+        <Story />
+      </Container>
+    ),
+  ],
 }
 
-export const Variants = () => (
-  <Stack direction="row" spacing="24px">
+export const basic = () => <Button colorScheme="green">Button</Button>
+
+export const withVariants = () => (
+  <Stack direction="row" spacing="24px" align="center">
     <Button colorScheme="teal" variant="solid">
       Button
     </Button>
@@ -24,8 +35,8 @@ export const Variants = () => (
   </Stack>
 )
 
-export const Sizes = () => (
-  <Stack direction="row">
+export const withSizes = () => (
+  <Stack direction="row" align="center">
     <Button colorScheme="blue" size="xs">
       Button
     </Button>
@@ -41,11 +52,57 @@ export const Sizes = () => (
   </Stack>
 )
 
-export const WithCustomIcon = () => <Button leftIcon={AddIcon}>Call Us</Button>
+export const WithIcon = () => (
+  <Stack direction="row" spacing={4} align="center">
+    <Button leftIcon={<EmailIcon />} colorScheme="teal" variant="solid">
+      Email
+    </Button>
+    <Button
+      rightIcon={<ArrowForwardIcon />}
+      colorScheme="teal"
+      variant="outline"
+    >
+      Call us
+    </Button>
+  </Stack>
+)
+
+export const withReactIcons = () => (
+  <Stack direction="row" spacing={4} align="center">
+    <Button leftIcon={<MdBuild />} colorScheme="pink" variant="solid">
+      Settings
+    </Button>
+    <Button rightIcon={<MdCall />} colorScheme="blue" variant="outline">
+      Call us
+    </Button>
+  </Stack>
+)
 
 export const WithLoading = () => (
-  <Button colorScheme="pink" isLoading loadingText="Loading...">
-    Pink Button
+  <Stack direction="row" spacing={4} align="center">
+    <Button isLoading colorScheme="teal" variant="solid">
+      Email
+    </Button>
+    <Button
+      isLoading
+      loadingText="Submitting..."
+      colorScheme="teal"
+      variant="outline"
+    >
+      Submit
+    </Button>
+  </Stack>
+)
+
+export const customComposition = () => (
+  <Button
+    size="md"
+    height="48px"
+    width="200px"
+    border="2px solid"
+    borderColor="green.500"
+  >
+    Button
   </Button>
 )
 

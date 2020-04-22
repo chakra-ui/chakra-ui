@@ -94,6 +94,7 @@
     }
   },
   "devDependencies": {
+    "focus-visible": "5.1.0",
     "playroom": "0.16.1",
     "webpack-dev-server": "3.10.3",
     "@commitlint/cli": "8.3.5",
