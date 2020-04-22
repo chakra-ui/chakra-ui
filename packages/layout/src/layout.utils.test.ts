@@ -47,11 +47,8 @@ describe("fillArray()", () => {
 
 describe("convertToArray()", () => {
   const theme: any = {
-    breakpoints: ["A", "B", "C"],
+    breakpoints: { sm: "2em", md: "5em", lg: "10em" },
   }
-  theme.breakpoints.sm = theme.breakpoints[0]
-  theme.breakpoints.md = theme.breakpoints[1]
-  theme.breakpoints.lg = theme.breakpoints[2]
 
   it("should work for a single value", () => {
     expect(convertToArray(theme, 1.3)).toEqual([1.3])
