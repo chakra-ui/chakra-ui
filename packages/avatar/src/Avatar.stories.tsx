@@ -43,9 +43,9 @@ const GenericAvatar = () => (
  * Without a `src` or `name` attribute, the avatar
  * will show a default svg avatar icon
  */
-export const WithDefaultAvatar = () => (
+export const WithCustomIcon = () => (
   <AvatarGroup spacing="40px">
-    <Avatar fallbackAvatar={GenericAvatar} />
+    <Avatar icon={GenericAvatar} />
     <Avatar />
   </AvatarGroup>
 )
