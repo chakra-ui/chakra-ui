@@ -1,142 +1,252 @@
+import * as CSS from "csstype"
 import { createParser } from "../create-parser"
-import { ConfigObject, positiveOrNegative } from "../utils"
+import { Config, positiveOrNegative, Prop, Length } from "../utils"
 
-const defaults = {
-  space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
-}
-
-const shared = {
-  scale: "space",
-  fallbackScale: defaults.space,
-}
-
-const configs: ConfigObject = {
+const configs: Config = {
   margin: {
     property: "margin",
     transform: positiveOrNegative,
-    ...shared,
+    scale: "space",
   },
   m: {
     property: "margin",
     transform: positiveOrNegative,
-    ...shared,
+    scale: "space",
   },
   marginTop: {
     property: "marginTop",
     transform: positiveOrNegative,
-    ...shared,
+    scale: "space",
   },
   mt: {
     property: "marginTop",
     transform: positiveOrNegative,
-    ...shared,
+    scale: "space",
   },
   marginRight: {
     property: "marginRight",
     transform: positiveOrNegative,
-    ...shared,
+    scale: "space",
   },
   mr: {
     property: "marginRight",
     transform: positiveOrNegative,
-    ...shared,
+    scale: "space",
   },
   marginBottom: {
     property: "marginBottom",
     transform: positiveOrNegative,
-    ...shared,
+    scale: "space",
   },
   mb: {
     property: "marginBottom",
     transform: positiveOrNegative,
-    ...shared,
+    scale: "space",
   },
   marginLeft: {
     property: "marginLeft",
     transform: positiveOrNegative,
-    ...shared,
+    scale: "space",
   },
   ml: {
     property: "marginLeft",
     transform: positiveOrNegative,
-    ...shared,
+    scale: "space",
   },
   marginX: {
     properties: ["marginLeft", "marginRight"],
     transform: positiveOrNegative,
-    ...shared,
+    scale: "space",
   },
   mx: {
     properties: ["marginLeft", "marginRight"],
     transform: positiveOrNegative,
-    ...shared,
+    scale: "space",
   },
   marginY: {
     properties: ["marginTop", "marginBottom"],
     transform: positiveOrNegative,
-    ...shared,
+    scale: "space",
   },
   my: {
     properties: ["marginTop", "marginBottom"],
     transform: positiveOrNegative,
-    ...shared,
+    scale: "space",
   },
   padding: {
     property: "padding",
-    ...shared,
+    scale: "space",
   },
   p: {
     property: "padding",
-    ...shared,
+    scale: "space",
   },
   paddingTop: {
     property: "paddingTop",
-    ...shared,
+    scale: "space",
   },
   pt: {
     property: "paddingTop",
-    ...shared,
+    scale: "space",
   },
   paddingRight: {
     property: "paddingRight",
-    ...shared,
+    scale: "space",
   },
   pr: {
     property: "paddingRight",
-    ...shared,
+    scale: "space",
   },
   paddingBottom: {
     property: "paddingBottom",
-    ...shared,
+    scale: "space",
   },
   pb: {
     property: "paddingBottom",
-    ...shared,
+    scale: "space",
   },
   paddingLeft: {
     property: "paddingLeft",
-    ...shared,
+    scale: "space",
   },
   pl: {
     property: "paddingLeft",
-    ...shared,
+    scale: "space",
   },
   paddingX: {
     properties: ["paddingLeft", "paddingRight"],
-    ...shared,
+    scale: "space",
   },
   px: {
     properties: ["paddingLeft", "paddingRight"],
-    ...shared,
+    scale: "space",
   },
   paddingY: {
     properties: ["paddingTop", "paddingBottom"],
-    ...shared,
+    scale: "space",
   },
   py: {
     properties: ["paddingTop", "paddingBottom"],
-    ...shared,
+    scale: "space",
   },
+}
+
+/**
+ * Types for space related CSS properties
+ */
+export interface SpaceProps {
+  /**
+   * Margin on top, left, bottom and right
+   */
+  m?: Prop<CSS.MarginProperty<Length>>
+  /**
+   * Margin on top, left, bottom and right
+   */
+  margin?: Prop<CSS.MarginProperty<Length>>
+  /**
+   * Margin on top
+   */
+  mt?: Prop<CSS.MarginProperty<Length>>
+  /**
+   * Margin on top
+   */
+  marginTop?: Prop<CSS.MarginTopProperty<Length>>
+  /**
+   * Margin on right
+   */
+  mr?: Prop<CSS.MarginRightProperty<Length>>
+  /**
+   * Margin on right
+   */
+  marginRight?: Prop<CSS.MarginRightProperty<Length>>
+  /**
+   * Margin on bottom
+   */
+  mb?: Prop<CSS.MarginBottomProperty<Length>>
+  /**
+   * Margin on bottom
+   */
+  marginBottom?: Prop<CSS.MarginBottomProperty<Length>>
+  /**
+   * Margin on left
+   */
+  ml?: Prop<CSS.MarginLeftProperty<Length>>
+  /**
+   * Margin on left
+   */
+  marginLeft?: Prop<CSS.MarginLeftProperty<Length>>
+  /**
+   * Margin on left and right
+   */
+  mx?: Prop<CSS.MarginProperty<Length>>
+  /**
+   * Margin on left and right
+   */
+  marginX?: Prop<CSS.MarginProperty<Length>>
+  /**
+   * Margin on top and bottom
+   */
+  my?: Prop<CSS.MarginProperty<Length>>
+  /**
+   * Margin on top and bottom
+   */
+  marginY?: Prop<CSS.MarginProperty<Length>>
+  /**
+   * Padding on top, left, bottom and right
+   */
+  p?: Prop<CSS.PaddingProperty<Length>>
+  /**
+   * Padding on top, left, bottom and right
+   */
+  padding?: Prop<CSS.PaddingProperty<Length>>
+  /**
+   * Padding on top
+   */
+  pt?: Prop<CSS.PaddingTopProperty<Length>>
+  /**
+   * Padding on top
+   */
+  paddingTop?: Prop<CSS.PaddingTopProperty<Length>>
+  /**
+   * Padding on right
+   */
+  pr?: Prop<CSS.PaddingRightProperty<Length>>
+  /**
+   * Padding on right
+   */
+  paddingRight?: Prop<CSS.PaddingRightProperty<Length>>
+  /**
+   * Padding on bottom
+   */
+  pb?: Prop<CSS.PaddingBottomProperty<Length>>
+  /**
+   * Padding on bottom
+   */
+  paddingBottom?: Prop<CSS.PaddingBottomProperty<Length>>
+  /**
+   * Padding on left
+   */
+  pl?: Prop<CSS.PaddingLeftProperty<Length>>
+  /**
+   * Padding on left
+   */
+  paddingLeft?: Prop<CSS.PaddingLeftProperty<Length>>
+  /**
+   * Padding on left and right
+   */
+  px?: Prop<CSS.PaddingProperty<Length>>
+  /**
+   * Padding on left and right
+   */
+  paddingX?: Prop<CSS.PaddingProperty<Length>>
+  /**
+   * Padding on top and bottom
+   */
+  py?: Prop<CSS.PaddingProperty<Length>>
+  /**
+   * Padding on top and bottom
+   */
+  paddingY?: Prop<CSS.PaddingProperty<Length>>
 }
 
 /**

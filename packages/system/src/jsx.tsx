@@ -1,6 +1,6 @@
 import { Dict, runIfFn } from "@chakra-ui/utils"
 import { jsx as emotion } from "@emotion/core"
-import { SystemStyleObject, css } from "@chakra-ui/parser"
+import { SystemStyleObject, css } from "@chakra-ui/css"
 
 function getCSS(props: { sx?: any; css?: any }) {
   if (!props.sx && !props.css) return undefined

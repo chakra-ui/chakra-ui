@@ -10,16 +10,16 @@ To enable this behavior within your apps, wrap your application in a
 `ColorModeProvider`
 
 ```jsx live=false
-import React from "react";
-import { ThemeProvider, ColorModeProvider } from "@chakra-ui/core";
-import customTheme from "./theme";
+import * as React from "react"
+import { ThemeProvider, ColorModeProvider } from "@chakra-ui/core"
+import customTheme from "./theme"
 
 function TurnOnColorMode({ children }) {
   return (
     <ThemeProvider theme={customTheme}>
       <ColorModeProvider>{children}</ColorModeProvider>
     </ThemeProvider>
-  );
+  )
 }
 ```
 
@@ -27,14 +27,14 @@ Then you can use the hook `useColorMode` within your application.
 
 ```jsx
 function ColorModeExample() {
-  const { colorMode, toggleColorMode } = useColorMode();
+  const { colorMode, toggleColorMode } = useColorMode()
   return (
     <header>
       <Button onClick={toggleColorMode}>
         Toggle {colorMode === "light" ? "Dark" : "Light"}
       </Button>
     </header>
-  );
+  )
 }
 ```
 
@@ -47,9 +47,9 @@ styles of your component.
 
 ```jsx
 function StyleColorMode() {
-  const { colorMode, toggleColorMode } = useColorMode();
-  const bgColor = { light: "red.500", dark: "red.200" };
-  const color = { light: "white", dark: "gray.800" };
+  const { colorMode, toggleColorMode } = useColorMode()
+  const bgColor = { light: "red.500", dark: "red.200" }
+  const color = { light: "white", dark: "gray.800" }
 
   return (
     <>
@@ -60,7 +60,7 @@ function StyleColorMode() {
         Toggle Mode
       </Button>
     </>
-  );
+  )
 }
 ```
 
@@ -74,7 +74,7 @@ light and dark modes. To achieve this, wrap the component in `LightMode` or
 
 ```jsx
 function Example() {
-  const { colorMode, toggleColorMode } = useColorMode();
+  const { colorMode, toggleColorMode } = useColorMode()
 
   return (
     <Stack shouldWrapChildren isInline>
@@ -94,6 +94,6 @@ function Example() {
         Toggle Mode
       </Button>
     </Stack>
-  );
+  )
 }
 ```

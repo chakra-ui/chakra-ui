@@ -1,4 +1,4 @@
-import React from "react"
+import * as React from "react"
 import { Tabs, TabList, Tab, TabIndicator, TabPanels, TabPanel } from "."
 import { chakra } from "@chakra-ui/system"
 

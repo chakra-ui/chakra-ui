@@ -1,35 +1,31 @@
 {
   "files": [
     {
-      "path": "./packages/system/dist/*.js",
+      "path": "packages/system/dist/esm/*.js",
       "maxSize": "10 kB"
     },
     {
-      "path": "./packages/styled/dist/*.js",
-      "maxSize": "30 kB"
-    },
-    {
-      "path": "./packages/Accordion/dist/*.js",
+      "path": "packages/Accordion/dist/esm/*.js",
       "maxSize": "10 kB"
     },
     {
-      "path": "./packages/Collapse/dist/*.js",
+      "path": "packages/Collapse/dist/esm/*.js",
       "maxSize": "10 kB"
     },
     {
-      "path": "./packages/utils/dist/*.js",
+      "path": "packages/utils/dist/esm/*.js",
       "maxSize": "10 kB"
     },
     {
-      "path": "./packages/hooks/dist/*.js",
+      "path": "packages/hooks/dist/esm/*.js",
       "maxSize": "5 kB"
     },
     {
-      "path": "./packages/popper/dist/*.js",
+      "path": "packages/popper/dist/esm/*.js",
       "maxSize": "5 kB"
     },
     {
-      "path": "./packages/parser/dist/*.js",
+      "path": "packages/parser/dist/esm/*.js",
       "maxSize": "10 kB"
     }
   ]

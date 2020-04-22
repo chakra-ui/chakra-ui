@@ -1,13 +1,13 @@
 {
   "name": "@chakra-ui/utils",
   "version": "0.0.1",
-  "description": "All utilties for Chakra Components and Types",
+  "description": "Common utilties and types for Chakra UI",
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/index.js",
-  "module": "dist/utils.esm.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/cjs",
+  "module": "dist/esm",
+  "types": "dist/types",
   "files": [
     "dist"
   ],
@@ -20,32 +20,24 @@
   },
   "scripts": {
     "prebuild": "rimraf dist",
-    "start": "tsdx watch",
-    "build": "tsdx build",
-    "test": "tsdx test --env=jsdom --passWithNoTests",
-    "test:cov": "tsdx test --coverage",
-    "lint": "tsdx lint src",
-    "version": "yarn build"
+    "start": "nodemon --exec yarn build --watch src",
+    "build:esm": "tsc --module esnext --outDir dist/esm --declaration false",
+    "build:cjs": "tsc --module commonjs --outDir dist/cjs --declaration false",
+    "build:types": "tsc --emitDeclarationOnly --declaration true --declarationDir dist/types",
+    "build": "concurrently yarn:build:*",
+    "test": "jest --env=jsdom --passWithNoTests",
+    "test:cov": "yarn test --coverage",
+    "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
+    "lint:types": "tsc --noEmit",
+    "lint": "concurrently yarn:lint:*"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "tslib": "1.11.1",
     "memoize-one": "5.1.1",
     "css-box-model": "1.2.0",
     "deepmerge": "4.2.2"
-  },
-  "devDependencies": {
-    "@types/jest": "25.1.4",
-    "@types/react": "16.9.23",
-    "@types/react-dom": "16.9.5",
-    "husky": "4.2.3",
-    "react": "16.13.0",
-    "react-dom": "16.13.0",
-    "ts-jest": "25.2.1",
-    "tsdx": "0.12.3",
-    "typescript": "3.8.3"
   },
   "peerDependencies": {
     "react": "16.x"

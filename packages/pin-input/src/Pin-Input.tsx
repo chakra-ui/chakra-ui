@@ -1,4 +1,4 @@
-import { chakra, PropsOf } from "@chakra-ui/system"
+import { chakra, PropsOf, ThemingProps } from "@chakra-ui/system"
 import { createContext, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import {
@@ -8,10 +8,11 @@ import {
   usePinInputField,
 } from "./Pin-Input.hook"
 
-type PinInputContext = UsePinInputReturn & {
-  isDisabled?: boolean
-  isInvalid?: boolean
-}
+type PinInputContext = UsePinInputReturn &
+  ThemingProps & {
+    isDisabled?: boolean
+    isInvalid?: boolean
+  }
 
 const [PinInputCtxProvider, usePinInputContext] = createContext<
   PinInputContext
@@ -21,15 +22,23 @@ const [PinInputCtxProvider, usePinInputContext] = createContext<
     "[Chakra UI]: usePinInputContext can only be used within a PinInputCtxProvider",
 })
 
-export type PinInputProps = UsePinInputProps & {
-  children: React.ReactNode
-  isDisabled?: boolean
-  isInvalid?: boolean
-}
+export type PinInputProps = UsePinInputProps &
+  ThemingProps & {
+    children: React.ReactNode
+    isDisabled?: boolean
+    isInvalid?: boolean
+  }
 
 export function PinInput(props: PinInputProps) {
-  const { children, isDisabled, isInvalid } = props
-  const context = { ...usePinInput(props), isDisabled, isInvalid }
+  const { children, isDisabled, isInvalid, size, variant, colorScheme } = props
+  const context = {
+    ...usePinInput(props),
+    isDisabled,
+    isInvalid,
+    size,
+    variant,
+    colorScheme,
+  }
 
   return <PinInputCtxProvider value={context}>{children}</PinInputCtxProvider>
 }
@@ -38,7 +47,9 @@ if (__DEV__) {
   PinInput.displayName = "PinInput"
 }
 
-export type PinInputFieldProps = PropsOf<typeof StyledInput>
+export type PinInputFieldProps = Omit<PropsOf<typeof StyledInput>, "size"> & {
+  size?: string
+}
 
 interface InputOptions {
   focusBorderColor?: string
@@ -54,11 +65,14 @@ const StyledInput = chakra<"input", InputOptions>("input", {
 export function PinInputField(props: PinInputFieldProps) {
   const context = usePinInputContext()
   const hookProps = usePinInputField({ context })
+  const { size, variant, colorScheme } = context
+  const themingProps = { size, variant, colorScheme } as any
   return (
     <StyledInput
       textAlign="center"
       disabled={context.isDisabled}
       aria-invalid={context.isInvalid}
+      {...themingProps}
       {...props}
       {...hookProps}
     />

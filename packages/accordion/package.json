@@ -18,9 +18,9 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/index.js",
-  "module": "dist/accordion.esm.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/cjs",
+  "module": "dist/esm",
+  "types": "dist/types",
   "files": [
     "dist"
   ],
@@ -36,23 +36,17 @@
   },
   "scripts": {
     "prebuild": "rimraf dist",
-    "start": "tsdx watch",
-    "build": "tsdx build",
-    "test": "tsdx test --env=jsdom --passWithNoTests",
-    "lint": "tsdx lint src",
-    "version": "yarn build"
-  },
-  "devDependencies": {
-    "@types/jest": "25.1.4",
-    "@types/react": "16.9.23",
-    "@types/react-dom": "16.9.5",
-    "husky": "4.2.3",
-    "react": "16.13.0",
-    "react-dom": "16.13.0",
-    "ts-jest": "25.2.1",
-    "tsdx": "0.12.3",
-    "@chakra-ui/system": "0.0.1",
-    "typescript": "3.8.3"
+    "start": "nodemon --exec yarn build --watch src",
+    "build": "concurrently yarn:build:*",
+    "test": "jest --env=jsdom --passWithNoTests",
+    "lint": "concurrently yarn:lint:*",
+    "version": "yarn build",
+    "build:esm": "tsc --module esnext --outDir dist/esm --declaration false",
+    "build:cjs": "tsc --module commonjs --outDir dist/cjs --declaration false",
+    "build:types": "tsc --emitDeclarationOnly --declaration true --declarationDir dist/types",
+    "test:cov": "yarn test --coverage",
+    "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
+    "lint:types": "tsc --noEmit"
   },
   "dependencies": {
     "tslib": "1.11.1",
@@ -61,6 +55,9 @@
     "@chakra-ui/icons": "0.0.1",
     "@chakra-ui/utils": "0.0.1",
     "@chakra-ui/collapse": "0.0.1"
+  },
+  "devDependencies": {
+    "@chakra-ui/system": "0.0.1"
   },
   "peerDependencies": {
     "@chakra-ui/system": "0.0.1",

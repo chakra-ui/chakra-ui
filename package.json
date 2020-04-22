@@ -6,10 +6,9 @@
   ],
   "scripts": {
     "boot": "yarn install && yarn bootstrap && yarn build",
-    "build": "lerna exec yarn build --no-private --ignore @chakra-ui/core",
-    "build:changed": "lerna exec yarn build --since origin/dev-ts",
-    "test": "lerna exec --no-private --ignore @chakra-ui/core -- yarn test -u",
-    "lint": "lerna exec --no-private --ignore @chakra-ui/core -- yarn lint",
+    "build": "lerna run build --no-private --stream",
+    "test": "lerna run test --no-private --stream",
+    "lint": "lerna run lint --no-private --stream",
     "storybook": "start-storybook -p 6006",
     "clean": "lerna clean --yes",
     "bootstrap": "lerna bootstrap --use-workspaces",
@@ -18,6 +17,7 @@
     "build-storybook": "build-storybook",
     "version": "lerna version --no-push",
     "release": "lerna publish",
+    "patch": "node -r esm scripts/patch-workspace.js",
     "create-pkg": "node scripts/create-package.js",
     "docs": "yarn workspace @chakra-ui/docs dev",
     "docs:now": "cd packages/chakra-ui-docs && now",
@@ -74,7 +74,9 @@
     "select": "yarn workspace @chakra-ui/select",
     "alert-dialog": "yarn workspace @chakra-ui/alert-dialog",
     "css-reset": "yarn workspace @chakra-ui/css-reset",
-    "media-query": "yarn workspace @chakra-ui/media-query"
+    "media-query": "yarn workspace @chakra-ui/media-query",
+    "css": "yarn workspace @chakra-ui/css",
+    "variant": "yarn workspace @chakra-ui/variant"
   },
   "czConfig": {
     "path": "node_modules/cz-conventional-changelog"
@@ -93,10 +95,20 @@
     "@commitlint/cli": "8.3.5",
     "@commitlint/config-conventional": "8.3.4",
     "@emotion/core": "10.0.28",
+    "concurrently": "5.1.0",
+    "nodemon": "2.0.2",
+    "shelljs": "0.8.3",
+    "@types/shelljs": "0.7.9",
+    "@types/jest": "25.2.1",
+    "jest": "25.2.7",
+    "ts-jest": "25.3.1",
+    "typescript": "3.8.3",
+    "fs-utils": "0.7.0",
+    "rimraf": "3.0.2",
     "@emotion/styled": "10.0.27",
-    "@storybook/addon-actions": "5.3.17",
-    "@storybook/addon-knobs": "5.3.17",
-    "@storybook/react": "5.3.17",
+    "@storybook/addon-actions": "5.3.18",
+    "@storybook/addon-knobs": "5.3.18",
+    "@storybook/react": "5.3.18",
     "@typescript-eslint/eslint-plugin": "2.24.0",
     "@typescript-eslint/parser": "2.24.0",
     "all-contributors-cli": "6.14.0",
@@ -115,6 +127,8 @@
     "eslint-plugin-react-hooks": "2.5.0",
     "eslint-plugin-testing-library": "2.2.3",
     "esm": "3.2.25",
+    "eslint": "6.8.0",
+    "husky": "4.2.3",
     "execa": "4.0.0",
     "inquirer": "7.1.0",
     "jest-emotion": "10.0.32",
@@ -122,7 +136,6 @@
     "lint-staged": "10.0.8",
     "listr": "0.14.3",
     "ncp": "2.0.0",
-    "pepjs": "0.5.2",
     "prettier": "1.19.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
@@ -131,6 +144,5 @@
     "react-test-renderer": "16.13.0",
     "ts-loader": "6.2.1",
     "tsconfig-paths-webpack-plugin": "3.2.0"
-  },
-  "dependencies": {}
+  }
 }

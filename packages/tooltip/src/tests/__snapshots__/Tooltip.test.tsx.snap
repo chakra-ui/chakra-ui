@@ -11,7 +11,7 @@ exports[`should render without errors 1`] = `
 exports[`shows on mouseover and closes on mouseout 1`] = `
 <DocumentFragment>
   <button
-    aria-describedby="tooltip-8"
+    aria-describedby="tooltip-11"
   >
     Hover me
   </button>
