@@ -130,7 +130,7 @@ if (__DEV__) {
 const ButtonIcon = (props: PropsOf<typeof chakra.span>) => {
   const a11yProps = {
     "aria-hidden": true,
-    focusable: true,
+    focusable: false,
   }
 
   const children = isValidElement(props.children)

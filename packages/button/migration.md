@@ -7,13 +7,17 @@
 
   Here's what I mean
 
-  ```jsx
+  ```tsx
   // before
-  <Button leftIcon={PhoneIcon}>Call</Button>
+  const Before = () => <Button leftIcon={PhoneIcon}>Call</Button>
 
   // after
-  <Button leftIcon={<PhoneIcon/>}>Call</Button>
+  const After = () => <Button leftIcon={<PhoneIcon />}>Call</Button>
   ```
+
+- Change `variantColor` prop to `colorScheme` for better intuitiveness.
+
+## New Features
 
 - Spinner uses the same alignment as the leftIcon and respects the `iconSpacing`
 
