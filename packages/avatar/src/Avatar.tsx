@@ -44,7 +44,8 @@ interface AvatarOptions {
    * The default avatar used as fallback when `name`, and `src`
    * is not specified.
    */
-  fallbackAvatar?: React.ElementType
+  icon?: React.ElementType
+  getInitials?(name?: string): string
 }
 
 /**
@@ -71,7 +72,7 @@ export type AvatarBadgeProps = PropsOf<typeof AvatarBadge>
  * Gets the initials of a user based on the name
  * @param name the name passed
  */
-function getInitials(name: string) {
+function initials(name: string) {
   const [firstName, lastName] = name.split(" ")
 
   if (firstName && lastName) {
@@ -83,16 +84,17 @@ function getInitials(name: string) {
 
 type BoxProps = PropsOf<typeof chakra.div>
 
-export type InitialsAvatarProps = BoxProps & Pick<AvatarOptions, "name">
+export type InitialsAvatarProps = BoxProps &
+  Pick<AvatarOptions, "name" | "getInitials">
 
 /**
  * The avatar name container
  */
 const InitialsAvatar = (props: InitialsAvatarProps) => {
-  const { name, ...rest } = props
+  const { name, getInitials, ...rest } = props
   return (
     <chakra.div data-chakra-avatar-name="" aria-label={name} {...rest}>
-      {name ? getInitials(name) : null}
+      {name ? getInitials?.(name) : null}
     </chakra.div>
   )
 }
@@ -152,12 +154,10 @@ export const Avatar = React.forwardRef(
       showBorder,
       borderRadius = "full",
       onError,
-      fallbackAvatar,
+      getInitials = initials,
+      icon: AvatarIcon = GenericAvatar,
       ...rest
     } = props
-
-    // fallback avatar as a react component
-    const FallbackAvatar = fallbackAvatar ?? GenericAvatar
 
     // use the image hook to only show the image when it has loaded
     const status = useImage({ src, onError })
@@ -192,7 +192,11 @@ export const Avatar = React.forwardRef(
       const showFallback = !src || (src && !hasLoaded)
 
       if (showFallback) {
-        return name ? <InitialsAvatar name={name} /> : <FallbackAvatar />
+        return name ? (
+          <InitialsAvatar getInitials={getInitials} name={name} />
+        ) : (
+          <AvatarIcon />
+        )
       }
     }
 

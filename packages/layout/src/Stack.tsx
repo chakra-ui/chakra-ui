@@ -34,10 +34,10 @@ export const StackDivider = chakra("hr", {
 })
 
 /**
- * Stack
+ * Stacks help you easily create flexible and automatically distributed layouts
  *
- * Used to stack elements in the horizontal or vertical direction,
- * and apply a space or/and divider between each child.
+ * You can stack elements in the horizontal or vertical direction,
+ * and apply a space or/and divider between each element.
  *
  * It uses `display: flex` internally and renders a `div`.
  *
@@ -48,7 +48,7 @@ export const Stack = forwardRef((props: StackProps, ref: React.Ref<any>) => {
   const {
     direction = "column",
     justify = "flex-start",
-    align,
+    align = "center",
     spacing = 2,
     wrap,
     children,
@@ -110,7 +110,7 @@ export const Stack = forwardRef((props: StackProps, ref: React.Ref<any>) => {
     return child
   })
 
-  const getStyle = (theme: Dict) => {
+  const sx = (theme: Dict) => {
     if (hasDivider) return undefined
     return css({ [selector]: styles[selector] })(theme)
   }
@@ -123,7 +123,7 @@ export const Stack = forwardRef((props: StackProps, ref: React.Ref<any>) => {
       justifyContent={justify}
       flexDirection={styles.flexDirection}
       flexWrap={wrap}
-      sx={getStyle as any}
+      sx={sx as any}
       {...rest}
     >
       {clones}
@@ -133,4 +133,20 @@ export const Stack = forwardRef((props: StackProps, ref: React.Ref<any>) => {
 
 if (__DEV__) {
   Stack.displayName = "Stack"
+}
+
+export const HStack = (props: StackProps) => (
+  <Stack align="center" {...props} direction="row" />
+)
+
+if (__DEV__) {
+  HStack.displayName = "HStack"
+}
+
+export const VStack = (props: StackProps) => (
+  <Stack align="center" {...props} direction="column" />
+)
+
+if (__DEV__) {
+  VStack.displayName = "VStack"
 }

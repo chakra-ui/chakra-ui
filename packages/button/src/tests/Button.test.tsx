@@ -11,8 +11,8 @@ test("Button renders correctly", () => {
 test("Button renders with icons", () => {
   const { asFragment } = render(
     <ButtonGroup>
-      <Button leftIcon={EmailIcon}>Email</Button>
-      <Button rightIcon={ArrowForwardIcon}>Arrow Forward</Button>
+      <Button leftIcon={<EmailIcon />}>Email</Button>
+      <Button rightIcon={<ArrowForwardIcon />}>Arrow Forward</Button>
     </ButtonGroup>,
   )
   expect(asFragment()).toMatchSnapshot()

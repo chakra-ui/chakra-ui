@@ -109,8 +109,6 @@ export const isAccessible = (
 ) => (theme: Dict) =>
   tiny.isReadable(getColor(theme, bg), getColor(theme, fg), options)
 
-export const random = () => tiny.random().toHexString()
-
 export const complementary = (color: string) => (theme: Dict) =>
   tiny(getColor(theme, color))
     .complement()
@@ -178,4 +176,22 @@ export function stringToColor(str: string) {
     color += ("00" + value.toString(16)).substr(-2)
   }
   return color
+}
+
+export function randomColor() {
+  return tiny.random().toHexString()
+}
+
+randomColor.fromString = stringToColor
+randomColor.fromList = randomFromList
+
+function randomFromList(str: string, list: string[]) {
+  let index = 0
+  if (str.length === 0) return list[0]
+  for (let i = 0; i < str.length; i++) {
+    index = str.charCodeAt(i) + ((index << 5) - index)
+    index = index & index
+  }
+  index = ((index % list.length) + list.length) % list.length
+  return list[index]
 }

@@ -16,9 +16,9 @@ export type ContainerProps = PropsOf<typeof chakra.div>
 export const Container = chakra("div", {
   baseStyle: {
     width: "100%",
-    mx: "auto",
+    marginX: "auto",
     maxWidth: "60ch",
-    boxSizing: "content-box",
+    paddingX: "1rem",
   },
 })
 
