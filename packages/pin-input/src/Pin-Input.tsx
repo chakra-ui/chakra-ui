@@ -11,11 +11,11 @@ import {
 export type PinInputContext = UsePinInputReturn &
   ThemingProps & {
     /**
-     * Sets the pin input component in the disabled state
+     * Sets the pin input component to the disabled state
      */
     isDisabled?: boolean
     /**
-     * Sets the pin input component in the invalid state
+     * Sets the pin input component to the invalid state
      */
     isInvalid?: boolean
   }
