@@ -62,10 +62,10 @@ export const Sizes = () => {
     <>
       {["sm", "md", "lg"].map((size, i) => (
         <div key={i} style={{ marginBottom: "1rem" }}>
-          <PinInput defaultValue="234">
-            <PinInputField size={size} />
-            <PinInputField size={size} />
-            <PinInputField size={size} />
+          <PinInput size={size} defaultValue="234">
+            <PinInputField />
+            <PinInputField />
+            <PinInputField />
           </PinInput>
           <br />
         </div>

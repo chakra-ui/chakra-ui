@@ -8,9 +8,15 @@ import {
   usePinInputField,
 } from "./Pin-Input.hook"
 
-type PinInputContext = UsePinInputReturn &
+export type PinInputContext = UsePinInputReturn &
   ThemingProps & {
+    /**
+     * Sets the pin input component in the disabled state
+     */
     isDisabled?: boolean
+    /**
+     * Sets the pin input component in the invalid state
+     */
     isInvalid?: boolean
   }
 
@@ -24,8 +30,17 @@ const [PinInputCtxProvider, usePinInputContext] = createContext<
 
 export type PinInputProps = UsePinInputProps &
   ThemingProps & {
+    /**
+     * The children of the pin input component
+     */
     children: React.ReactNode
+    /**
+     * If `true`, the pin input component is put in the disabled state
+     */
     isDisabled?: boolean
+    /**
+     * If `true`, the pin input component is put in the invalid state
+     */
     isInvalid?: boolean
   }
 
@@ -52,7 +67,17 @@ export type PinInputFieldProps = Omit<PropsOf<typeof StyledInput>, "size"> & {
 }
 
 interface InputOptions {
+  /**
+   * The border color when the input is focused. Use color keys in `theme.colors`
+   * @example
+   * focusBorderColor = "blue.500"
+   */
   focusBorderColor?: string
+  /**
+   * The border color when the input is invalid. Use color keys in `theme.colors`
+   * @example
+   * errorBorderColor = "red.500"
+   */
   errorBorderColor?: string
 }
 
