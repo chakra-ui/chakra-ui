@@ -5,10 +5,9 @@ import {
   GlobalStyle,
   ThemeProvider,
 } from "@chakra-ui/system"
-import { addDecorator } from "@storybook/react"
 import * as React from "react"
 
-export const ChakraProvider: React.FC = ({ children }) => (
+export default ({ children }) => (
   <ThemeProvider theme={theme}>
     <ColorModeProvider>
       <GlobalStyle />
@@ -17,9 +16,3 @@ export const ChakraProvider: React.FC = ({ children }) => (
     </ColorModeProvider>
   </ThemeProvider>
 )
-
-addDecorator((StoryFn: Function) => (
-  <ChakraProvider>
-    <StoryFn />
-  </ChakraProvider>
-))

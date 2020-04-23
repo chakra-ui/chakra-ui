@@ -16,3 +16,6 @@
 - Theming Support: All design related decisions for the Avatar are located in
   `theme.componenents.Avatar`. this means you can customize to suit your brand
   needs.
+
+- Added `getInitials` prop to allow users manage how initials are generated from
+  name

@@ -17,6 +17,8 @@
     "build-storybook": "build-storybook",
     "version": "lerna version --no-push",
     "release": "lerna publish",
+    "playroom": "playroom start",
+    "playroom:build": "playroom build",
     "patch": "node -r esm scripts/patch-workspace.js",
     "create-pkg": "node scripts/create-package.js",
     "docs": "yarn workspace @chakra-ui/docs dev",
@@ -92,6 +94,9 @@
     }
   },
   "devDependencies": {
+    "focus-visible": "5.1.0",
+    "playroom": "0.16.1",
+    "webpack-dev-server": "3.10.3",
     "@commitlint/cli": "8.3.5",
     "@commitlint/config-conventional": "8.3.4",
     "@emotion/core": "10.0.28",

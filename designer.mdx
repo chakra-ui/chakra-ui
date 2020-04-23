@@ -29,7 +29,7 @@ const theme = {
     Heading: {
       sizes: {
         sm: {
-          apply: "textStyles.heading-xxl",
+          textStyle: "heading-xxl",
           textAlign: "left",
         },
       },
@@ -129,16 +129,31 @@ const layout = createStyleProp({ fontWeight: true })
 
 function Sample() {
   return (
-    <Button
-      themeKey="menu.button"
-      components={{
-        leftIcon: <Icon.Phone />,
-        rightIcon: <Icon.ChevronRight />,
-        spinner: <Loader />,
-      }}
-    >
-      Click me
-    </Button>
+    <>
+      <Button
+        isLoading
+        leftIcon={<Icons.Phone />}
+        rightIcon={<Icons.ChevronRight />}
+        spinner={<Spinner />}
+      >
+        Click me
+      </Button>
+
+      <Avatar
+        getBg={utils.getRandColor}
+        getInitials={utils.getInitials} // ensure we clamp the return value to 2 characters
+        icon={<Icons.User />}
+        size="sm"
+        name="Segun Adebayo"
+        src="image.png"
+      />
+
+      <MenuItem icon={<Icons.Phone />} submenuIcon={<Icons.ChevronRight />}>
+        Welcome Home
+      </MenuItem>
+
+      <MenuItemRadio icon={<Icons.Check />} children="Checkme" />
+    </>
   )
 }
 ```

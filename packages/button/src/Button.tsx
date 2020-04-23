@@ -1,9 +1,14 @@
-import { Icon } from "@chakra-ui/icon"
 import { Spinner } from "@chakra-ui/spinner"
 import { chakra, PropsOf, SystemProps } from "@chakra-ui/system"
 import { dataAttr, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { ElementType, forwardRef, ReactElement, Ref } from "react"
+import {
+  forwardRef,
+  ReactElement,
+  Ref,
+  cloneElement,
+  isValidElement,
+} from "react"
 
 const StyledButton = chakra("button", {
   themeKey: "Button",
@@ -51,12 +56,12 @@ export interface ButtonOptions {
    * If added, the button will show an icon before the button's label.
    * Use the icon key in `theme.iconPath`
    */
-  leftIcon?: ElementType
+  leftIcon?: ReactElement
   /**
    * If added, the button will show an icon after the button's label.
    * Use the icon key in `theme.iconPath`
    */
-  rightIcon?: ElementType
+  rightIcon?: ReactElement
   /**
    * The space between the button icon and label.
    * Use the styled-system tokens or add custom values as a string
@@ -99,21 +104,20 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<any>) => {
       {...rest}
     >
       {leftIcon && !isLoading && (
-        <Icon marginLeft={-1} marginRight={iconSpacing} as={leftIcon} />
+        <ButtonIcon ml={-1} mr={iconSpacing} children={leftIcon} />
       )}
       {isLoading && (
-        <chakra.span
-          position={loadingText ? "relative" : "absolute"}
-          marginRight={loadingText ? iconSpacing : 0}
-        >
-          {spinner || <Spinner color="currentColor" size="1em" />}
-        </chakra.span>
+        <ButtonSpinner
+          spacing={iconSpacing}
+          label={loadingText}
+          children={spinner}
+        />
       )}
       {isLoading
-        ? loadingText || <chakra.span opacity={0}>{children}</chakra.span>
+        ? loadingText || <chakra.span opacity={0} children={children} />
         : children}
       {rightIcon && !isLoading && (
-        <Icon marginRight={-1} marginLeft={iconSpacing} as={rightIcon} />
+        <ButtonIcon ml={iconSpacing} mr={-1} children={rightIcon} />
       )}
     </StyledButton>
   )
@@ -121,4 +125,51 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<any>) => {
 
 if (__DEV__) {
   Button.displayName = "Button"
+}
+
+const ButtonIcon = (props: PropsOf<typeof chakra.span>) => {
+  const a11yProps = {
+    "aria-hidden": true,
+    focusable: false,
+  }
+
+  const children = isValidElement(props.children)
+    ? cloneElement(props.children, a11yProps)
+    : props.children
+
+  return <chakra.span {...props}>{children}</chakra.span>
+}
+
+if (__DEV__) {
+  ButtonIcon.displayName = "ButtonIcon"
+}
+
+type ButtonSpinnerProps = PropsOf<typeof chakra.div> & {
+  label?: string
+  spacing?: SystemProps["margin"]
+}
+
+const ButtonSpinner = (props: ButtonSpinnerProps) => {
+  const {
+    label,
+    spacing,
+    children = <Spinner color="currentColor" width="1em" height="1em" />,
+    ...rest
+  } = props
+
+  return (
+    <chakra.div
+      fontSize="1em"
+      lineHeight="normal"
+      position={label ? "relative" : "absolute"}
+      // ml={label ? -1 : 0}
+      mr={label ? spacing : 0}
+      {...rest}
+      children={children}
+    />
+  )
+}
+
+if (__DEV__) {
+  ButtonSpinner.displayName = "ButtonSpinner"
 }
