@@ -67,7 +67,6 @@ export const Sizes = () => {
             <PinInputField />
             <PinInputField />
           </PinInput>
-          <br />
         </div>
       ))}
     </>
