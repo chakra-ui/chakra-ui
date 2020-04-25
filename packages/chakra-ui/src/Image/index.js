@@ -4,7 +4,7 @@ import { useEffect, useState, forwardRef, useRef } from "react";
 import Box from "../Box";
 
 export function useHasImageLoaded(props) {
-  const { src, onLoad, onError, enabled = true } = props;
+  const { src, onLoad, onError, crossOrigin, enabled = true } = props;
   const isMounted = useRef(true);
   const [hasLoaded, setHasLoaded] = useState(false);
 
@@ -14,6 +14,11 @@ export function useHasImageLoaded(props) {
     }
 
     const image = new window.Image();
+
+    if (crossOrigin) {
+      image.crossOrigin = crossOrigin;
+    }
+
     image.src = src;
 
     image.onload = event => {
@@ -29,7 +34,7 @@ export function useHasImageLoaded(props) {
         onError && onError(event);
       }
     };
-  }, [src, onLoad, onError, enabled]);
+  }, [src, onLoad, onError, crossOrigin, enabled]);
 
   useEffect(() => {
     return () => {
@@ -47,12 +52,21 @@ const NativeImage = forwardRef(
 );
 
 const Image = forwardRef((props, ref) => {
-  const { src, fallbackSrc, onError, onLoad, ignoreFallback, ...rest } = props;
+  const {
+    src,
+    fallbackSrc,
+    onError,
+    onLoad,
+    ignoreFallback,
+    crossOrigin,
+    ...rest
+  } = props;
 
   const hasLoaded = useHasImageLoaded({
     src,
     onLoad,
     onError,
+    crossOrigin,
     enabled: !Boolean(ignoreFallback),
   });
 
@@ -60,7 +74,15 @@ const Image = forwardRef((props, ref) => {
     ? { src, onLoad, onError }
     : { src: hasLoaded ? src : fallbackSrc };
 
-  return <Box as={NativeImage} ref={ref} {...imageProps} {...rest} />;
+  return (
+    <Box
+      as={NativeImage}
+      ref={ref}
+      crossOrigin={crossOrigin}
+      {...imageProps}
+      {...rest}
+    />
+  );
 });
 
 Image.displayName = "Image";
