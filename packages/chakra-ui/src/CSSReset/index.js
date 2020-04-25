@@ -29,10 +29,12 @@ const CSSReset = ({ config }) => {
       : defaultConfig(theme);
 
     const { color, bg, borderColor, placeholderColor } = _config[colorMode];
+    const { lineHeights } = theme
+    const lineHeight = lineHeights && lineHeights.base ? lineHeights.base : 1.5
 
     return css`
       html {
-        line-height: 1.5;
+        line-height: ${lineHeight};
         color: ${color};
         background-color: ${bg};
       }
