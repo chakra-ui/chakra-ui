@@ -26,7 +26,7 @@ that make it super easy to create websites and apps.
 
 ## Looking for the documentation?
 
-Here over here => https://chakra-ui.com
+Head over here => https://chakra-ui.com
 
 ## Features
 
