@@ -5,6 +5,7 @@
     "packages/*"
   ],
   "scripts": {
+    "codesandbox:ci": "yarn install && yarn bootstrap",
     "boot": "yarn install && yarn bootstrap && yarn build",
     "build": "lerna run build --no-private --stream",
     "test": "lerna run test --no-private --stream",
