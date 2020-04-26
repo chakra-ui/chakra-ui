@@ -9,7 +9,10 @@ export interface Options<T extends As, P> {
   themeKey?: string
   /**
    * Additional props to attach to the component
-   * You can use a function to make it dynamic
+   * You can use a function to make it dynamic.
+   *
+   * NB: Adding `P` to this type leads to weird issues,
+   * so we types `props` in `Attrs` to be any for now.
    */
   attrs?: Attrs<T>
   /**
@@ -97,22 +100,76 @@ export type ChakraProps = SystemProps &
 export type As = React.ElementType<any>
 
 /**
- * Extract the props of a React element or component
+ * Extract the props of a React element or component, but omit
+ * chakra's theming props.
+ *
+ * The `input` component prompted this decision because `size` is a
+ * valid input prop but it clashed with Chakra's `size` theming props.
+ *
+ * To solve this, we've created `htmlSize` prop which will be converted
+ * to `size` internally. So we now have
+ *
+ * - size: for chakra theming
+ * - htmlSize: for native element's size prop
  */
-export type PropsOf<T extends As> = React.ComponentPropsWithRef<T>
+export type PropsOf<T extends As> = Omit<
+  React.ComponentPropsWithRef<T>,
+  keyof ThemingProps
+>
 
-export type PropsWithAs<P, T extends As> = P &
+export type WithAs<P, T extends As> = P &
   Omit<PropsOf<T>, "as" | keyof P> & {
     as?: T
   }
 
-type Factory<T extends As, P> =
-  | ((props: PropsOf<T> & P & ChakraProps & { as?: As }) => JSX.Element)
-  | (<TT extends As = T>(
-      props: PropsWithAs<PropsOf<T>, TT> & ChakraProps & P,
-    ) => JSX.Element)
+/**
+ * Integrating with `framer-motion` makes transition prop throw
+ * an error, since `transition` is part of Chakra's props.
+ *
+ * To support `framer-motion`, we'll omit transition prop from chakra props
+ * if you do this `chakra(motion.div)`
+ */
+export type WithChakra<P> = P extends { transition?: any }
+  ? P & Omit<ChakraProps, "transition">
+  : P & ChakraProps
 
-export type ChakraComponent<T extends As, P = {}> = Factory<T, P> & {
+/**
+ * This is most clunky part of the types :), bare with me.
+ *
+ * Here's the thing, to support the `as` polymorphic prop we need to express
+ * any component as a regular component that takes chakra props, and
+ * an extensible component that can expand it's types based on the `as` prop
+ */
+
+/**
+ * Regular component means:
+ *
+ * - Read the props of the component using the `PropsOf` utility
+ * - Add Chakra props to it using `withChakra`
+ * - Add the `as` prop. in this case, it doesn't do anything special.
+ * - Return a JSX Element
+ */
+type RegularComponent<T extends As, P> = (
+  props: WithChakra<PropsOf<T>> & P & { as?: As },
+) => JSX.Element
+
+/**
+ * Extensible component means:
+ *
+ * - Read the props of the component using the `PropsOf` utility
+ * - Use a typescript generic `TT` to store the component passed in the `as` prop
+ * - Use the `WithAs` to merge the base component prop with `as` component prop
+ * - Add Chakra props to the resulting types.
+ */
+type ExtensibleComponent<T extends As, P> = <TT extends As = T>(
+  props: WithChakra<WithAs<PropsOf<T>, TT>> & P,
+) => JSX.Element
+
+type Component<T extends As, P> =
+  | RegularComponent<T, P>
+  | ExtensibleComponent<T, P>
+
+export type ChakraComponent<T extends As, P = {}> = Component<T, P> & {
   displayName?: string
   propTypes?: React.WeakValidationMap<PropsOf<T> & P>
   defaultProps?: Partial<PropsOf<T> & P & ChakraProps>
