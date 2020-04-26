@@ -95,6 +95,7 @@
     }
   },
   "devDependencies": {
+    "react-spinners": "0.8.1",
     "focus-visible": "5.1.0",
     "playroom": "0.16.1",
     "webpack-dev-server": "3.10.3",

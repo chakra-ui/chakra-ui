@@ -3,6 +3,7 @@ import { MdBuild, MdCall } from "react-icons/md"
 import { Stack, Container } from "@chakra-ui/layout"
 import * as React from "react"
 import "focus-visible/dist/focus-visible"
+import { BeatLoader } from "react-spinners"
 import { Button } from "."
 
 export default {
@@ -80,9 +81,18 @@ export const withReactIcons = () => (
 
 export const WithLoading = () => (
   <Stack direction="row" spacing={4} align="center">
-    <Button isLoading colorScheme="teal" variant="solid">
+    <Button isLoading colorScheme="teal">
       Email
     </Button>
+
+    <Button
+      isLoading
+      colorScheme="blue"
+      spinner={<BeatLoader size={8} color="white" />}
+    >
+      Click me
+    </Button>
+
     <Button
       isLoading
       loadingText="Submitting..."
