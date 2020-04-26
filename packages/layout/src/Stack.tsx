@@ -56,6 +56,10 @@ export const Stack = forwardRef((props: StackProps, ref: React.Ref<any>) => {
     ...rest
   } = props
 
+  /**
+   * If we ever run into SSR issues with this, check this post to find a fix for it:
+   * @see https://medium.com/@emmenko/patching-lobotomized-owl-selector-for-emotion-ssr-5a582a3c424c
+   */
   const selector = "> * + *"
 
   const styles = {

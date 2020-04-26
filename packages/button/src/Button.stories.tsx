@@ -1,10 +1,16 @@
-import { ArrowForwardIcon, EmailIcon } from "@chakra-ui/icons"
-import { MdBuild, MdCall } from "react-icons/md"
-import { Stack, Container } from "@chakra-ui/layout"
-import * as React from "react"
+import {
+  ArrowForwardIcon,
+  ChevronDownIcon,
+  EmailIcon,
+  PhoneIcon,
+  SearchIcon,
+} from "@chakra-ui/icons"
+import { Container, Stack } from "@chakra-ui/layout"
 import "focus-visible/dist/focus-visible"
+import * as React from "react"
+import { MdBuild, MdCall } from "react-icons/md"
 import { BeatLoader } from "react-spinners"
-import { Button } from "."
+import { Button, ButtonGroup, IconButton } from "."
 
 export default {
   title: "Button",
@@ -116,16 +122,36 @@ export const customComposition = () => (
   </Button>
 )
 
-// export const WithButtonGroup = () => (
-//   <ButtonGroup variant="solid">
-//     <Button colorScheme="green">Save</Button>
-//     <Button variant="outline">Cancel</Button>
-//   </ButtonGroup>
-// )
+export const iconButton = () => (
+  <>
+    <IconButton aria-label="Search database" icon={<SearchIcon />} />
 
-// export const iconButton = () => (
-//   <ButtonGroup>
-//     <IconButton fontSize="24px" aria-label="Add to friends" icon={AddIcon} />
-//     <IconButton aria-label="Call us now" isRound icon={PhoneIcon} />
-//   </ButtonGroup>
-// )
+    <IconButton
+      colorScheme="blue"
+      aria-label="Search database"
+      icon={<SearchIcon />}
+    />
+
+    <IconButton colorScheme="teal" aria-label="Call Segun" size="lg">
+      <PhoneIcon />
+    </IconButton>
+  </>
+)
+
+export const WithButtonGroup = () => (
+  <ButtonGroup variant="solid">
+    <Button colorScheme="green">Save</Button>
+    <Button variant="outline">Cancel</Button>
+  </ButtonGroup>
+)
+
+export const splitButton = () => (
+  <ButtonGroup colorScheme="green">
+    <Button marginRight="1px">Save</Button>
+    <IconButton
+      fontSize="2xl"
+      aria-label="Add to friends"
+      icon={<ChevronDownIcon />}
+    />
+  </ButtonGroup>
+)
