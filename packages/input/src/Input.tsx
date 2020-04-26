@@ -4,7 +4,7 @@ import * as React from "react"
 import { useInputGroup } from "./Input.group"
 import { __DEV__ } from "@chakra-ui/utils"
 
-type OmittedTypes = "disabled" | "required" | "readOnly"
+type OmittedTypes = "disabled" | "required" | "readOnly" | "size"
 
 interface InputOptions {
   /**
@@ -23,11 +23,13 @@ interface InputOptions {
    * If `true`, the input element will span the full width of it's parent
    */
   isFullWidth?: boolean
-  size?: any
 }
 
-export type InputProps = Omit<PropsOf<typeof StyledInput>, OmittedTypes> &
-  FormControlOptions
+export interface InputProps
+  extends Omit<PropsOf<typeof StyledInput>, OmittedTypes>,
+    FormControlOptions {
+  size?: string
+}
 
 const StyledInput = chakra<"input", InputOptions>("input", {
   themeKey: "Input",
@@ -55,7 +57,7 @@ export const Input = React.forwardRef(
       size,
     })
 
-    const themingProps = { variant, size }
+    const themingProps = { variant, size } as any
 
     return (
       <StyledInput

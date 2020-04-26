@@ -112,10 +112,7 @@ export type As = React.ElementType<any>
  * - size: for chakra theming
  * - htmlSize: for native element's size prop
  */
-export type PropsOf<T extends As> = Omit<
-  React.ComponentPropsWithRef<T>,
-  keyof ThemingProps
->
+export type PropsOf<T extends As> = React.ComponentPropsWithRef<T>
 
 export type WithAs<P, T extends As> = P &
   Omit<PropsOf<T>, "as" | keyof P> & {
