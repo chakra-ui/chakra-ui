@@ -115,13 +115,18 @@ export function truncateProp({ isTruncated }: any) {
 }
 
 export function applyProp(tag: React.ElementType) {
-  return ({ theme, apply: applyProp }: any) => {
-    const shouldAutoApply = theme?.settings?.autoApplyStylesToElements
+  return (props: any) => {
+    const { theme, apply: applyProp } = props
+    const shouldAutoApply = theme?.config?.shouldMapStylesToElement
     const defaultApply = !!shouldAutoApply ? `styles.${tag}` : undefined
     const apply = applyProp ?? defaultApply
 
     if (!apply) return undefined
 
+    /**
+     * css function knows how to resolve the `apply` prop
+     * so need to use `get(...)` function.
+     */
     return css({ apply })(theme)
   }
 }

@@ -1,7 +1,7 @@
 import { mode, Styles } from "../components/utils"
 
 const styles: Styles = {
-  root: props => ({
+  global: props => ({
     fontFamily: "body",
     color: mode("gray.800", "whiteAlpha.900")(props),
     bg: mode("white", "gray.800")(props),
