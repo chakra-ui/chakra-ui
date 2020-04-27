@@ -1,49 +1,50 @@
-import React, { forwardRef } from "react"
-import { chakra, PropsOf, ChakraProps } from "@chakra-ui/system"
+import * as React from "react"
+import { forwardRef, Ref } from "react"
+import { chakra, PropsOf, SystemProps } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 
 export interface FlexOptions {
   /**
    * Shorthand for `alignItems` style prop
    */
-  align?: ChakraProps["alignItems"]
+  align?: SystemProps["alignItems"]
   /**
    * Shorthand for `justifyContent` style prop
    */
-  justify?: ChakraProps["justifyContent"]
+  justify?: SystemProps["justifyContent"]
   /**
    * Shorthand for `flexWrap` style prop
    */
-  wrap?: ChakraProps["flexWrap"]
+  wrap?: SystemProps["flexWrap"]
   /**
    * Shorthand for `flexDirection` style prop
    */
-  direction?: ChakraProps["flexDirection"]
+  direction?: SystemProps["flexDirection"]
   /**
    * Shorthand for `flexBasis` style prop
    */
-  basis?: ChakraProps["flexBasis"]
+  basis?: SystemProps["flexBasis"]
   /**
    * Shorthand for `flexGrow` style prop
    */
-  grow?: ChakraProps["flexGrow"]
+  grow?: SystemProps["flexGrow"]
   /**
    * Shorthand for `flexShrink` style prop
    */
-  shrink?: ChakraProps["flexShrink"]
+  shrink?: SystemProps["flexShrink"]
 }
 
 export type FlexProps = PropsOf<typeof chakra.div> & FlexOptions
 
 /**
- * Flex
+ * React component used to create flexbox layouts.
  *
- * Used to create flex layouts. It renders a `div` with `display: flex` and
+ * It renders a `div` with `display: flex` and
  * comes with helpful style shorthand.
  *
  * @see Docs https://chakra-ui.com/flex
  */
-export const Flex = forwardRef((props: FlexProps, ref: React.Ref<any>) => {
+export const Flex = forwardRef((props: FlexProps, ref: Ref<any>) => {
   const { direction, align, justify, wrap, basis, grow, ...rest } = props
   return (
     <chakra.div

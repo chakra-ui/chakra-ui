@@ -51,12 +51,10 @@
   "dependencies": {
     "tslib": "1.11.1",
     "@chakra-ui/spinner": "0.0.1",
-    "@chakra-ui/icon": "0.0.1",
     "@chakra-ui/utils": "0.0.1"
   },
   "peerDependencies": {
     "react": "16.x",
-    "@chakra-ui/system": "0.0.1",
-    "react-dom": "16.x"
+    "@chakra-ui/system": "0.0.1"
   }
 }
