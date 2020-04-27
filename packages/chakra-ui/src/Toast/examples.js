@@ -15,7 +15,7 @@ stories.addDecorator(story => {
 
 stories.add("Default", () => {
   const Toaster = () => {
-    const toast = useToast();
+    const { toast } = useToast();
     return (
       <Button
         onClick={() =>
@@ -38,7 +38,7 @@ stories.add("Default", () => {
 
 stories.add("Custom Component", () => {
   const Toaster = () => {
-    const toast = useToast();
+    const { toast } = useToast();
     return (
       <Button
         onClick={() =>
@@ -54,6 +54,36 @@ stories.add("Custom Component", () => {
       >
         Show Toast
       </Button>
+    );
+  };
+
+  return <Toaster />;
+});
+
+stories.add("Programatically remove toasts", () => {
+  const Toaster = () => {
+    const { toast, closeAll } = useToast();
+
+    return (
+      <>
+        <Button
+          onClick={() =>
+            toast({
+              position: "bottom-left",
+              render: () => (
+                <Box m={3} color="white" p={3} bg="blue.500">
+                  Hello World
+                </Box>
+              ),
+            })
+          }
+        >
+          Show Toast
+        </Button>
+        <Button ml={3} variantColor="red" onClick={() => closeAll()}>
+          Remove Toast
+        </Button>
+      </>
     );
   };
 

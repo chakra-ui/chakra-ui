@@ -100,7 +100,10 @@ function useToast() {
     [theme],
   );
 
-  return notify;
+  return {
+    toast: notify,
+    closeAll: toaster.closeAll,
+  };
 }
 
 export default useToast;

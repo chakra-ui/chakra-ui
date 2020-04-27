@@ -11,6 +11,15 @@ Toasts can be configured to appear at either the top or the bottom of an
 application window, and it is possible to have more than one toast onscreen at a
 time.
 
+## Return value
+
+The `useToast` hook returns an object with the following fields:
+
+| Name       | Type       | Default | Description                              |
+| ---------- | ---------- | ------- | ---------------------------------------- |
+| `toast`    | `function` |         | Function that displays the toast         |
+| `closeAll` | `function` |         | Function to programatically remove toast |
+
 ## Import
 
 ```js
@@ -21,7 +30,7 @@ import { useToast } from "@chakra-ui/core";
 
 ```jsx
 function ToastExample() {
-  const toast = useToast();
+  const { toast } = useToast();
   return (
     <Button
       onClick={() =>
@@ -46,7 +55,7 @@ Display a custom component instead of the default Toast UI.
 
 ```jsx
 function Example() {
-  const toast = useToast();
+  const { toast } = useToast();
   return (
     <Button
       onClick={() =>
@@ -70,7 +79,7 @@ function Example() {
 
 ```jsx
 function Example() {
-  const toast = useToast();
+  const { toast } = useToast();
   return (
     <Button
       onClick={() =>
@@ -93,7 +102,7 @@ function Example() {
 
 ```jsx
 function Example() {
-  const toast = useToast();
+  const { toast } = useToast();
   return (
     <Button
       onClick={() =>
@@ -116,7 +125,7 @@ function Example() {
 
 ```jsx
 function ErrorToast() {
-  const toast = useToast();
+  const { toast } = useToast();
   return (
     <Button
       onClick={() =>
@@ -141,7 +150,7 @@ Using the `position` prop you can adjust where your toast will be popup from.
 
 ```jsx
 function PositionExample() {
-  const toast = useToast();
+  const { toast } = useToast();
   return (
     <Button
       onClick={() =>
@@ -161,7 +170,37 @@ function PositionExample() {
 }
 ```
 
-## Props
+## Programatically remove toasts
+
+Use the `closeAll` function provided by the `useToast` hook to programatically
+remove toasts.
+
+```jsx
+function RemoveToastExample() {
+  const { toast, closeAll } = useToast();
+  return (
+    <>
+    <Button
+      onClick={() =>
+        toast({
+          position: "bottom-left",
+          title: "Account created.",
+          description: "We've created your account for you.",
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+        })
+      }
+    >
+      Show Toast
+    </Button>
+    <Button onClick={() => closeAll()} />Remove Toasts</Button>
+    </>
+  );
+}
+```
+
+## `toast` Props
 
 | Name          | Type                                                                    | Default  | Description                                                          |
 | ------------- | ----------------------------------------------------------------------- | -------- | -------------------------------------------------------------------- |
