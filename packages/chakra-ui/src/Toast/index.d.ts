@@ -35,6 +35,9 @@ interface RenderOption {
   render?: (props: { onClose: () => void; id: string }) => React.ReactNode;
 }
 export type useToastOptions = IToast & RenderOption;
-declare const useToast: () => (props: useToastOptions) => void;
+declare const useToast: () => {
+  toast: (props: useToastOptions) => void;
+  closeAll: () => void;
+};
 
 export default useToast;
