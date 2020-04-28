@@ -9,7 +9,7 @@ const getDefaults = (props: VariantProps) => ({
   errorBorderColor: props.errorBorderColor || mode("red.500", "red.300")(props),
 })
 
-function getOutlineStyle(props: VariantProps): StyleProps {
+function getOutlineStyle (props: VariantProps): StyleProps {
   const { theme: t } = props
 
   const { focusBorderColor: fc, errorBorderColor: ec } = getDefaults(props)
@@ -37,7 +37,7 @@ function getOutlineStyle(props: VariantProps): StyleProps {
   }
 }
 
-function getFilledStyle(props: VariantProps): StyleProps {
+function getFilledStyle (props: VariantProps): StyleProps {
   const { theme: t } = props
 
   const { focusBorderColor: fc, errorBorderColor: ec } = getDefaults(props)
@@ -64,7 +64,7 @@ function getFilledStyle(props: VariantProps): StyleProps {
   }
 }
 
-function getFlushedStyle(props: VariantProps): StyleProps {
+function getFlushedStyle (props: VariantProps): StyleProps {
   const { theme: t } = props
 
   const { focusBorderColor: fc, errorBorderColor: ec } = getDefaults(props)
@@ -91,7 +91,7 @@ const unstyled = {
   height: "auto",
 }
 
-const sizes = {
+const sizes: InputTheme["sizes"] = {
   lg: {
     fontSize: "lg",
     paddingX: 4,

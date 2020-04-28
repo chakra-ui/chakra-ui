@@ -19,7 +19,7 @@ export function GlobalStyle() {
     <Global
       styles={props => {
         const { theme, colorMode } = props
-        const styleOrFn = get(theme, "styles.root")
+        const styleOrFn = get(theme, "styles.global")
         if (!styleOrFn) return
 
         const globalStyle = runIfFn(styleOrFn, { colorMode })

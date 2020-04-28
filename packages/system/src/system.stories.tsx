@@ -6,6 +6,23 @@ export default {
   title: "styled",
 }
 
+const Motion = chakra(motion.div)
+
+export const WithFramerMotion = () => (
+  <Motion
+    boxSize="40px"
+    bg="red.300"
+    drag
+    whileTap={{ scale: 1.3 }}
+    dragConstraints={{
+      top: 0,
+      left: 0,
+      right: 50,
+      bottom: 50,
+    }}
+  />
+)
+
 const ThemedButton = chakra<"button", { isDisabled?: boolean }>("button", {
   variants: {
     solid: {
@@ -71,7 +88,7 @@ export const InteractiveStyles = () => (
 
 /**
  * TypeScript
- * ====
+ * ==
  *
  * Chakra makes it possible to create styled chakra components
  * from your existing component.

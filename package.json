@@ -5,6 +5,7 @@
     "packages/*"
   ],
   "scripts": {
+    "codesandbox:ci": "yarn install && yarn bootstrap",
     "boot": "yarn install && yarn bootstrap && yarn build",
     "build": "lerna run build --no-private --stream",
     "test": "lerna run test --no-private --stream",
@@ -94,6 +95,7 @@
     }
   },
   "devDependencies": {
+    "react-spinners": "0.8.1",
     "focus-visible": "5.1.0",
     "playroom": "0.16.1",
     "webpack-dev-server": "3.10.3",

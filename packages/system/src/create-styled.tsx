@@ -150,7 +150,7 @@ function createStyled<T extends As, P = {}>(
     // hoist all non-react statics attached to the `component` prop
     const Component = hoist(StyledComponent, component as ComponentType<any>)
 
-    return Component as ChakraComponent<T, {}>
+    return Component as ChakraComponent<T, P>
   }
 }
 
