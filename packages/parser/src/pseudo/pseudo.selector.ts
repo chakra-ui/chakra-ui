@@ -1,4 +1,4 @@
-import { AnyFunction } from "@chakra-ui/utils"
+import { AnyFunction, objectKeys } from "@chakra-ui/utils"
 
 const group = {
   hover: (selector: string) => `${selector}:hover &, ${selector}[data-hover] &`,
@@ -219,4 +219,4 @@ export const pseudoSelectors = {
 
 export type Pseudos = typeof pseudoSelectors
 
-export const pseudoPropNames = Object.keys(pseudoSelectors) as (keyof Pseudos)[]
+export const pseudoPropNames = objectKeys(pseudoSelectors)

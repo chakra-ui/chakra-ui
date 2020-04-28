@@ -7,20 +7,26 @@ export type ToastPosition =
   | "bottom-left"
 
 export interface RenderProps {
-  id: string
+  id: ToastId
   onClose(): void
 }
 
 export type ToastMessage = (props: RenderProps) => React.ReactNode
 
+export type ToastId = string | number
+
 export interface ToastOptions {
   message: ToastMessage
-  id: string
+  id: ToastId
   duration: number | null
-  type: ToastType
+  type: Status
   onRequestRemove(): void
   showing: boolean
   position: ToastPosition
 }
 
-export type ToastType = "default" | "success" | "error" | "warning"
+export type ToastState = { [K in ToastPosition]: ToastOptions[] }
+
+export type Status = "default" | "success" | "error" | "warning"
+
+export type UpdateFn = (val: ToastState) => void

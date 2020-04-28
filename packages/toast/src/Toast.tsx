@@ -39,6 +39,10 @@ export function Toast(props: ToastProps) {
   const [timeout, setTimeout] = React.useState(duration)
   const [show, setShow] = React.useState(true)
 
+  React.useEffect(() => {
+    setTimeout(duration)
+  }, [duration])
+
   const onMouseEnter = () => {
     setTimeout(null)
   }

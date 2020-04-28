@@ -72,7 +72,7 @@ export function useToast() {
   function notify(options: NotifyOptions) {
     const { render, title, description } = options
 
-    toast.notify(
+    return toast.notify(
       props => (
         <ThemeProvider theme={theme}>
           {isFunction(render) ? (

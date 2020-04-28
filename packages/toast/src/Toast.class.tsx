@@ -1,55 +1,61 @@
-import { render } from "react-dom"
+import { isBrowser } from "@chakra-ui/utils"
 import * as React from "react"
-import { ToastManager } from "./Toast.manager"
-import { ToastMessage, ToastPosition, ToastOptions } from "./Toast.types"
-
-const isBrowser =
-  typeof window !== "undefined" && typeof window.document !== "undefined"
+import { render } from "react-dom"
+import { Methods, ToastManager } from "./Toast.manager"
+import {
+  ToastId,
+  ToastMessage,
+  ToastOptions,
+  ToastPosition,
+} from "./Toast.types"
 
 const PORTAL_ID = "chakra-toast-portal"
 
 class Toaster {
-  createToast?: Function
-  removeAll?: Function
-  closeToast?: Function
+  private createToast?: Function
+  private removeAll?: Function
+  private closeToast?: Function
+  private updateToast?: Function
 
   constructor() {
     if (!isBrowser) return
-    let portalElement: HTMLElement
-    const existingPortalElement = document.getElementById(PORTAL_ID)
 
-    if (existingPortalElement) {
-      portalElement = existingPortalElement
+    let portal: HTMLElement
+    const existingPortal = document.getElementById(PORTAL_ID)
+
+    if (existingPortal) {
+      portal = existingPortal
     } else {
-      const el = document.createElement("div")
-      el.id = PORTAL_ID
-      document.body?.appendChild(el)
-      portalElement = el
+      const div = document.createElement("div")
+      div.id = PORTAL_ID
+      document.body?.appendChild(div)
+      portal = div
     }
 
-    render(<ToastManager notify={this.bindNotify} />, portalElement)
+    render(<ToastManager notify={this.bindFunctions} />, portal)
   }
 
-  closeAll = () => {
-    this.removeAll?.()
-  }
-
-  bindNotify = (
-    createToast: Function,
-    removeAll: Function,
-    closeToast: Function,
-  ) => {
-    this.createToast = createToast
-    this.removeAll = removeAll
-    this.closeToast = closeToast
+  private bindFunctions = (methods: Methods) => {
+    this.createToast = methods.notify
+    this.removeAll = methods.closeAll
+    this.closeToast = methods.close
+    this.updateToast = methods.update
   }
 
   notify = (message: ToastMessage, options: Partial<ToastOptions> = {}) => {
     return this.createToast?.(message, options)
   }
 
-  close = (toast: { id: string; position: ToastPosition }) => {
+  close = (toast: { id: ToastId; position: ToastPosition }) => {
     this.closeToast?.(toast.id, toast.position)
+  }
+
+  closeAll = () => {
+    this.removeAll?.()
+  }
+
+  update = (id: ToastId, options: Partial<ToastOptions> = {}) => {
+    this.updateToast?.(id, options)
   }
 }
 
