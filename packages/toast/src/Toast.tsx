@@ -3,6 +3,7 @@ import { Transition } from "@chakra-ui/transition"
 import { isFunction } from "@chakra-ui/utils"
 import ReachAlert from "@reach/alert"
 import * as React from "react"
+import { useEffect, useState, useRef, useMemo } from "react"
 import { ToastOptions, ToastPosition } from "./Toast.types"
 
 const getStyle = (position: ToastPosition) => {
@@ -35,20 +36,20 @@ export function Toast(props: ToastProps) {
     duration = 5000,
   } = props
 
-  const ref = React.useRef<HTMLDivElement>(null)
-  const [timeout, setTimeout] = React.useState(duration)
-  const [show, setShow] = React.useState(true)
+  const ref = useRef<HTMLDivElement>(null)
+  const [delay, setDelay] = useState(duration)
+  const [show, setShow] = useState(true)
 
-  React.useEffect(() => {
-    setTimeout(duration)
+  useEffect(() => {
+    setDelay(duration)
   }, [duration])
 
   const onMouseEnter = () => {
-    setTimeout(null)
+    setDelay(null)
   }
 
   const onMouseLeave = () => {
-    setTimeout(duration)
+    setDelay(duration)
   }
 
   const onExited = () => {
@@ -61,24 +62,27 @@ export function Toast(props: ToastProps) {
     setShow(false)
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (requestClose) {
       setShow(false)
     }
   }, [requestClose])
 
-  useTimeout(close, timeout)
+  useTimeout(close, delay)
 
-  const style = React.useMemo(() => getStyle(position), [position])
+  const positionStyle = useMemo(() => getStyle(position), [position])
 
   const res = useDimensions(ref)
   const height = res?.contentBox.height ?? 0
 
   const isTop = position.includes("top")
 
-  // TODO: Make it possible to configure this toast transition
-  // from `theme.transitions.toast`
+  /**
+   * TODO: Make it possible to configure this toast transition
+   * from `theme.transitions.toast`
+   */
   const initialTransform = isTop ? `-${height}px` : 0
+
   const styles = {
     init: {
       opacity: 0,
@@ -93,20 +97,36 @@ export function Toast(props: ToastProps) {
     exiting: {
       opacity: 0,
       height: 0,
-      transform: `translateY(0) scale(0.4)`,
+      transform: `translateY(0) scale(0.9)`,
     },
   }
 
   return (
-    <Transition styles={styles} in={show} onExited={onExited}>
-      {styles => (
+    <Transition
+      styles={styles}
+      /**
+       * We use the `easeInOutQuint` from https://easings.net/en#
+       */
+      transition="all 0.3s cubic-bezier(0.23, 1, 0.32, 1)"
+      in={show}
+      onExited={onExited}
+    >
+      {transitionStyle => (
         <div
           data-toast=""
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
-          style={{ ...style, ...styles }}
+          style={{
+            willChange: "transform, height, opacity",
+            ...positionStyle,
+            ...transitionStyle,
+          }}
         >
-          <div ref={ref} data-toast-inner="" style={{ pointerEvents: "auto" }}>
+          <div
+            ref={ref}
+            data-toast-inner=""
+            style={{ pointerEvents: "auto", minWidth: 300, maxWidth: 560 }}
+          >
             <ReachAlert>
               {isFunction(message) ? message({ id, onClose: close }) : message}
             </ReachAlert>

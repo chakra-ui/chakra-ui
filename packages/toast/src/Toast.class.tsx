@@ -2,12 +2,7 @@ import { isBrowser } from "@chakra-ui/utils"
 import * as React from "react"
 import { render } from "react-dom"
 import { Methods, ToastManager } from "./Toast.manager"
-import {
-  ToastId,
-  ToastMessage,
-  ToastOptions,
-  ToastPosition,
-} from "./Toast.types"
+import { ToastId, ToastMessage, ToastOptions } from "./Toast.types"
 
 const PORTAL_ID = "chakra-toast-portal"
 
@@ -16,6 +11,7 @@ class Toaster {
   private removeAll?: Function
   private closeToast?: Function
   private updateToast?: Function
+  private isToastActive?: Function
 
   constructor() {
     if (!isBrowser) return
@@ -40,14 +36,15 @@ class Toaster {
     this.removeAll = methods.closeAll
     this.closeToast = methods.close
     this.updateToast = methods.update
+    this.isToastActive = methods.isActive
   }
 
   notify = (message: ToastMessage, options: Partial<ToastOptions> = {}) => {
     return this.createToast?.(message, options)
   }
 
-  close = (toast: { id: ToastId; position: ToastPosition }) => {
-    this.closeToast?.(toast.id, toast.position)
+  close = (id: ToastId) => {
+    this.closeToast?.(id)
   }
 
   closeAll = () => {
@@ -56,6 +53,10 @@ class Toaster {
 
   update = (id: ToastId, options: Partial<ToastOptions> = {}) => {
     this.updateToast?.(id, options)
+  }
+
+  isActive = (id: ToastId) => {
+    return this.isToastActive?.(id)
   }
 }
 

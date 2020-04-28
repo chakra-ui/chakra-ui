@@ -1,7 +1,12 @@
 import * as React from "react"
 import { Toast } from "./Toast"
-import { ToastMessage, ToastOptions, ToastPosition } from "./Toast.types"
-import { addToast, findToast, isVisible } from "./Toast.utils"
+import {
+  ToastMessage,
+  ToastOptions,
+  ToastPosition,
+  ToastId,
+} from "./Toast.types"
+import { addToast, findToast, isVisible, getToastPosition } from "./Toast.utils"
 import { objectKeys } from "@chakra-ui/utils"
 
 export interface Methods {
@@ -9,6 +14,7 @@ export interface Methods {
   closeAll: Function
   close: Function
   update: Function
+  isActive: Function
 }
 
 interface Props {
@@ -52,6 +58,7 @@ export class ToastManager extends React.Component<Props, State> {
       closeAll: this.closeAll,
       close: this.closeToast,
       update: this.updateToast,
+      isActive: this.isVisible,
     }
 
     props.notify(methods)
@@ -129,8 +136,12 @@ export class ToastManager extends React.Component<Props, State> {
   /**
    * Requests to close a toast based on it's id and position
    */
-  closeToast = (id: string, position: ToastPosition) => {
+  closeToast = (id: string) => {
     this.setState(prevState => {
+      const position = getToastPosition(prevState, id)
+
+      if (!position) return prevState
+
       return {
         ...prevState,
         [position]: prevState[position].map(toast => ({
@@ -144,7 +155,7 @@ export class ToastManager extends React.Component<Props, State> {
   /**
    * Delete a toast record at it's position
    */
-  deleteToast = (id: string, position: ToastPosition) => {
+  deleteToast = (id: ToastId, position: ToastPosition) => {
     this.setState(prevState => {
       return {
         ...prevState,
@@ -153,14 +164,17 @@ export class ToastManager extends React.Component<Props, State> {
     })
   }
 
-  isVisible = (id: string) => isVisible(this.state, id)
+  isVisible = (id: ToastId) => {
+    const { position } = findToast(this.state, id)
+    return Boolean(position)
+  }
 
   /**
    * Compute the style of a toast based on it's position
    */
   getStyle = (position: ToastPosition) => {
     const style: React.CSSProperties = {
-      maxWidth: "560px",
+      // maxWidth: "560px",
       position: "fixed",
       zIndex: 5500,
       pointerEvents: "none",
@@ -199,8 +213,14 @@ export class ToastManager extends React.Component<Props, State> {
           id={"chakra-toast-manager-" + position}
           style={this.getStyle(position)}
         >
-          {toasts.map(toast => {
-            return <Toast position={position} key={toast.id} {...toast} />
+          {toasts.map((toast, index) => {
+            return (
+              <Toast
+                position={position}
+                key={`${toast.id}-${index}`}
+                {...toast}
+              />
+            )
           })}
         </span>
       )

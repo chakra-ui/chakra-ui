@@ -1,11 +1,11 @@
-import { ToastPosition, ToastOptions, ToastState } from "./Toast.types"
+import { ToastPosition, ToastOptions, ToastState, ToastId } from "./Toast.types"
 import { objectKeys } from "@chakra-ui/utils"
 
-export function findById(arr: ToastOptions[], id: string) {
+export function findById(arr: ToastOptions[], id: ToastId) {
   return arr.find(toast => toast.id === id)
 }
 
-export function findToast(toasts: ToastState, id: string) {
+export function findToast(toasts: ToastState, id: ToastId) {
   const position = getToastPosition(toasts, id)
 
   const index = position
@@ -18,7 +18,7 @@ export function findToast(toasts: ToastState, id: string) {
   }
 }
 
-export function getToastPosition(toasts: ToastState, id: string) {
+export function getToastPosition(toasts: ToastState, id: ToastId) {
   let position: ToastPosition | undefined
 
   objectKeys(toasts).forEach(pos => {
