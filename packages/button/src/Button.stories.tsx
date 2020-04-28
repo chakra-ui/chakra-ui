@@ -6,7 +6,7 @@ import {
   SearchIcon,
 } from "@chakra-ui/icons"
 import { Container, Stack, VStack, HStack } from "@chakra-ui/layout"
-import "focus-visible/dist/focus-visible"
+// import "focus-visible/dist/focus-visible"
 import * as React from "react"
 import { MdBuild, MdCall } from "react-icons/md"
 import { FaFacebook, FaTwitter } from "react-icons/fa"

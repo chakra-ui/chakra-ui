@@ -10,7 +10,7 @@ const Motion = chakra(motion.div)
 
 export const WithFramerMotion = () => (
   <Motion
-    boxSize="40px"
+    as="h1"
     bg="red.300"
     drag
     whileTap={{ scale: 1.3 }}

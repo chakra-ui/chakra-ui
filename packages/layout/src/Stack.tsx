@@ -139,7 +139,10 @@ if (__DEV__) {
   Stack.displayName = "Stack"
 }
 
-export const HStack = (props: StackProps) => (
+/**
+ * Layout component that stacks its children horizontally
+ */
+export const HStack = (props: Omit<StackProps, "direction">) => (
   <Stack align="center" {...props} direction="row" />
 )
 
@@ -147,7 +150,10 @@ if (__DEV__) {
   HStack.displayName = "HStack"
 }
 
-export const VStack = (props: StackProps) => (
+/**
+ * Layout component that stacks its children vertically
+ */
+export const VStack = (props: Omit<StackProps, "direction">) => (
   <Stack align="center" {...props} direction="column" />
 )
 

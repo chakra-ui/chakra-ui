@@ -128,7 +128,7 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<any>) => {
       variant={variant}
       colorScheme={colorScheme}
       size={size}
-      _focus={!!group ? _focus : undefined}
+      {...(!!group && { _focus })}
       {...rest}
     >
       {leftIcon && !isLoading && (
