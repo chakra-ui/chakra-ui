@@ -14,7 +14,7 @@ import { split, Dict, __DEV__ } from "@chakra-ui/utils"
  * https://github.com/chakra-ui/chakra-ui/pull/464/files
  */
 
-type OmittedTypes = "disabled" | "required" | "readOnly"
+type OmittedTypes = "disabled" | "required" | "readOnly" | "value"
 
 interface SelectOptions {
   /**
@@ -75,6 +75,12 @@ export type SelectFieldProps = Omit<
 > &
   FormControlOptions
 
+/**
+ * SelectField
+ *
+ *
+ */
+
 export const SelectField = React.forwardRef(
   (props: SelectFieldProps, ref: React.Ref<HTMLSelectElement>) => {
     const fieldProps = useFormControl<HTMLSelectElement>(props)
@@ -90,6 +96,12 @@ export const SelectField = React.forwardRef(
 
 type Props = PropsOf<typeof chakra.div>
 
+/**
+ * SelectIcon
+ *
+ * Arrow icon for Chakra UI's select component
+ */
+
 export function SelectIcon(props: IconProps) {
   return (
     <Icon viewBox="0 0 24 24" {...props}>
@@ -104,11 +116,19 @@ export function SelectIcon(props: IconProps) {
 export type SelectProps = Omit<Props, "ref"> &
   FormControlOptions &
   SelectOptions & {
+    value?: string
     rootProps?: Omit<Props, "color">
     icon?: React.ElementType
     iconSize?: any
     ref?: React.Ref<HTMLSelectElement>
   }
+
+/**
+ * Select
+ *
+ * A component which allows selection of one item from a list of options.
+ *
+ */
 
 export const Select = forwardRef(
   (props: SelectProps, ref: React.Ref<HTMLSelectElement>) => {
@@ -124,10 +144,9 @@ export const Select = forwardRef(
     const opacity = props.isReadOnly || props.isDisabled ? 0.5 : undefined
 
     const [select, root] = split(rest, layoutPropNames as any)
-    console.log({ select, root })
 
     return (
-      <chakra.div position="relative" {...root} {...rootProps}>
+      <chakra.div position="relative" {...rootProps}>
         <SelectField
           appearance="none"
           width="100%"
