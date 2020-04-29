@@ -105,6 +105,10 @@ const defaults = {
   variant: "solid",
 } as const
 
+/**
+ * React hook used to create a function that can be used
+ * to show toasts in an application.
+ */
 export function useToast() {
   const theme = useTheme()
 
@@ -135,7 +139,7 @@ export function useToast() {
 
     if (!id) return
 
-    const opts = merge(defaults, rest)
+    const opts = merge(defaults, rest) as any
 
     toast.update(id, {
       ...opts,

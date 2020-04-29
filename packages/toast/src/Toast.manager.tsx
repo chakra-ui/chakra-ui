@@ -24,7 +24,7 @@ interface Props {
 type State = { [K in ToastPosition]: ToastOptions[] }
 
 type CreateToastOptions = Partial<
-  Pick<ToastOptions, "type" | "duration" | "position" | "id">
+  Pick<ToastOptions, "status" | "duration" | "position" | "id">
 >
 
 /**
@@ -93,6 +93,10 @@ export class ToastManager extends React.Component<Props, State> {
     return id
   }
 
+  /**
+   * Update a specific toast with new options based on the
+   * passed `id`
+   */
   updateToast = (id: ToastId, options: CreateToastOptions) => {
     this.setState(prevState => {
       const nextState = { ...prevState }
@@ -132,10 +136,9 @@ export class ToastManager extends React.Component<Props, State> {
       id,
       message,
       position,
-      showing: true,
       duration: options.duration,
       onRequestRemove: () => this.removeToast(String(id), position),
-      type: options.type,
+      status: options.status,
     }
   }
 
