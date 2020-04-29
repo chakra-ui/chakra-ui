@@ -1,5 +1,5 @@
 import * as React from "react"
-import { useToast } from "."
+import useToast from "."
 import { Button } from "@chakra-ui/button"
 import { chakra } from "@chakra-ui/system"
 
@@ -60,7 +60,7 @@ export function CustomRender() {
         toast({
           position: "top-right",
           render: () => (
-            <chakra.div m={3} color="white" p={3} bg="blue.500">
+            <chakra.div m={2} color="white" p={3} bg="blue.500">
               Hello World
             </chakra.div>
           ),
@@ -130,8 +130,9 @@ export function ErrorToast() {
 }
 
 export const AllSides = () => {
-  const t = useToast()
-  const pos = [
+  const toast = useToast()
+
+  const positions = [
     "top-left",
     "top",
     "top-right",
@@ -139,12 +140,13 @@ export const AllSides = () => {
     "bottom",
     "bottom-right",
   ] as const
+
   return (
     <>
       <button
         onClick={() => {
-          pos.forEach(p => {
-            t({ position: p, title: p })
+          positions.forEach(p => {
+            toast({ position: p, title: p })
           })
         }}
       >

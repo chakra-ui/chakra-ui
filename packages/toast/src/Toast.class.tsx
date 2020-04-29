@@ -7,11 +7,11 @@ import { ToastId, ToastMessage, ToastOptions } from "./Toast.types"
 const PORTAL_ID = "chakra-toast-portal"
 
 class Toaster {
-  private createToast?: Function
-  private removeAll?: Function
-  private closeToast?: Function
-  private updateToast?: Function
-  private isToastActive?: Function
+  private createToast?: Methods["notify"]
+  private removeAll?: Methods["closeAll"]
+  private closeToast?: Methods["close"]
+  private updateToast?: Methods["update"]
+  private isToastActive?: Methods["isActive"]
 
   constructor() {
     if (!isBrowser) return

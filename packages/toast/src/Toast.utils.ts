@@ -29,7 +29,7 @@ export function getToastPosition(toasts: ToastState, id: ToastId) {
   return position
 }
 
-export function isVisible(toasts: ToastState, id: string) {
+export function isVisible(toasts: ToastState, id: ToastId) {
   let found: any
 
   Object.values(toasts).forEach(toasts => {

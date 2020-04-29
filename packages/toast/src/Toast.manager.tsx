@@ -10,11 +10,11 @@ import {
 import { findToast, getToastPosition } from "./Toast.utils"
 
 export interface Methods {
-  notify: Function
-  closeAll: Function
-  close: Function
-  update: Function
-  isActive: Function
+  notify: (message: ToastMessage, options: CreateToastOptions) => ToastId
+  closeAll: () => void
+  close: (id: ToastId) => void
+  update: (id: ToastId, options: CreateToastOptions) => void
+  isActive: (id: ToastId) => boolean
 }
 
 interface Props {
@@ -70,6 +70,7 @@ export class ToastManager extends React.Component<Props, State> {
    */
   notify = (message: ToastMessage, options: CreateToastOptions) => {
     const toast = this.createToast(message, options)
+    const { position, id } = toast
 
     this.setState(prevToasts => {
       /**
@@ -89,12 +90,10 @@ export class ToastManager extends React.Component<Props, State> {
       }
     })
 
-    const { position, id } = toast
-
-    return { id, position }
+    return id
   }
 
-  updateToast = (id: string, options: CreateToastOptions) => {
+  updateToast = (id: ToastId, options: CreateToastOptions) => {
     this.setState(prevState => {
       const nextState = { ...prevState }
       const { position, index } = findToast(nextState, id)

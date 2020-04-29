@@ -154,3 +154,5 @@ export function useToast() {
 
   return toastImpl
 }
+
+export default useToast
