@@ -1,9 +1,10 @@
-import { useDimensions, useTimeout } from "@chakra-ui/hooks"
+import { useTimeout } from "@chakra-ui/hooks"
 import { Transition } from "@chakra-ui/transition"
 import { isFunction } from "@chakra-ui/utils"
 import ReachAlert from "@reach/alert"
+import { useRect } from "@reach/rect"
 import * as React from "react"
-import { useEffect, useState, useRef, useMemo } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { ToastOptions, ToastPosition } from "./Toast.types"
 
 const getStyle = (position: ToastPosition) => {
@@ -70,24 +71,26 @@ export function Toast(props: ToastProps) {
 
   useTimeout(close, delay)
 
-  const positionStyle = useMemo(() => getStyle(position), [position])
+  const style = useMemo(() => getStyle(position), [position])
 
-  const res = useDimensions(ref)
-  const height = res?.contentBox.height ?? 0
+  const rect = useRect(ref)
+  const height = rect?.height ?? 0
 
   const isTop = position.includes("top")
 
   /**
-   * TODO: Make it possible to configure this toast transition
+   * @todo
+   *
+   * Make it possible to configure this toast transition
    * from `theme.transitions.toast`
    */
-  const initialTransform = isTop ? `-${height}px` : 0
+  const y = isTop ? `-${height}px` : 0
 
   const styles = {
     init: {
       opacity: 0,
       height: 0,
-      transform: `translateY(${initialTransform}) scale(1)`,
+      transform: `translateY(${y}) scale(1)`,
     },
     entered: {
       opacity: 1,
@@ -111,21 +114,21 @@ export function Toast(props: ToastProps) {
       in={show}
       onExited={onExited}
     >
-      {transitionStyle => (
+      {styles => (
         <div
           data-toast=""
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
           style={{
             willChange: "transform, height, opacity",
-            ...positionStyle,
-            ...transitionStyle,
+            ...style,
+            ...styles,
           }}
         >
           <div
             ref={ref}
             data-toast-inner=""
-            style={{ pointerEvents: "auto", minWidth: 300, maxWidth: 560 }}
+            style={{ pointerEvents: "auto", maxWidth: 560, minWidth: 300 }}
           >
             <ReachAlert>
               {isFunction(message) ? message({ id, onClose: close }) : message}

@@ -21,17 +21,13 @@ export function ToastExample() {
     <>
       <Button
         onClick={() => {
-          if (toast.isActive(id)) {
-            return
-          }
-
+          if (toast.isActive(id)) return
           toast({
             id,
             title: "Error Connecting...",
-            description:
-              "You do not have permissions to perform this action. Please contact your system administrator to request the appropriate access rights.",
+            description: "You do not have permissions to perform this action.",
             status: "error",
-            duration: 4000,
+            duration: null,
             isClosable: true,
           })
         }}
@@ -42,10 +38,10 @@ export function ToastExample() {
       <button
         onClick={() =>
           toast.update(id, {
-            title: "Testing update!!!",
-            description: "Thanks for trying!",
+            title: "Hooray 🥳🥳🥳!!!",
+            description: "You now have permissions to perform this action.",
             status: "success",
-            duration: null,
+            duration: 3000,
           })
         }
       >
@@ -130,5 +126,30 @@ export function ErrorToast() {
     >
       Show Error Toast
     </Button>
+  )
+}
+
+export const AllSides = () => {
+  const t = useToast()
+  const pos = [
+    "top-left",
+    "top",
+    "top-right",
+    "bottom-left",
+    "bottom",
+    "bottom-right",
+  ] as const
+  return (
+    <>
+      <button
+        onClick={() => {
+          pos.forEach(p => {
+            t({ position: p, title: p })
+          })
+        }}
+      >
+        Trigger
+      </button>
+    </>
   )
 }

@@ -28,10 +28,7 @@ export interface UseToastOptions {
   duration?: ToastOptions["duration"]
   /**
    * Render a component toast component.
-   * Any component passed will receive 2 props:
-   * `id` and `onClose`.
-   *
-   * @param props props passed to custom component
+   * Any component passed will receive 2 props: `id` and `onClose`.
    */
   render?(props: RenderProps): React.ReactNode
   /**
@@ -54,6 +51,12 @@ export interface UseToastOptions {
    * The status of the toast.
    */
   status?: keyof typeof ALERT_STATUSES
+  /**
+   * The `id` of the toast.
+   *
+   * Mostly used when you need to prevent duplicate.
+   * By default, we generate a unique `id` for each toast
+   */
   id?: ToastId
 }
 
@@ -98,10 +101,10 @@ const Toast = (props: any) => {
 }
 
 const defaults = {
-  description: 5000,
+  duration: 5000,
   position: "bottom",
   variant: "solid",
-}
+} as const
 
 export function useToast() {
   const theme = useTheme()

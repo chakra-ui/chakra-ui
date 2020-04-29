@@ -29,25 +29,6 @@ export function getToastPosition(toasts: ToastState, id: ToastId) {
   return position
 }
 
-export function addToast(toasts: ToastState, toast: ToastOptions) {
-  const { position } = toast
-  /**
-   * - If the toast is positioned at the top edges, the
-   * recent toast stacks on top of the other toasts.
-   *
-   * - If the toast is positioned at the bottom edges, the recent
-   * toast stacks below the other toasts.
-   */
-  const isTop = position.includes("top")
-
-  return {
-    ...toasts,
-    [position]: isTop
-      ? [toast, ...toasts[position]]
-      : [...toasts[position], toast],
-  }
-}
-
 export function isVisible(toasts: ToastState, id: string) {
   let found: any
 
