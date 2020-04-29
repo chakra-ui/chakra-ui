@@ -181,7 +181,9 @@ export const FocusAndErrorColors = () => (
 )
 
 /**
- * Even though the select comes with predefined styles, you can override pretty much any property.
+ * Even though the select comes with predefined styles,
+ * you can override pretty much any property.
+ *
  * Here's we'll override the background color.
  */
 

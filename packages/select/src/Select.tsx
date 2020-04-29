@@ -18,19 +18,19 @@ type OmittedTypes = "disabled" | "required" | "readOnly" | "value"
 
 interface SelectOptions {
   /**
-   * The border color when the textarea is focused. Use color keys in `theme.colors`
+   * The border color when the select is focused. Use color keys in `theme.colors`
    * @example
    * focusBorderColor = "blue.500"
    */
   focusBorderColor?: string
   /**
-   * The border color when the textarea is invalid. Use color keys in `theme.colors`
+   * The border color when the select is invalid. Use color keys in `theme.colors`
    * @example
    * errorBorderColor = "red.500"
    */
   errorBorderColor?: string
   /**
-   * If `true`, the textarea element will span the full width of it's parent
+   * If `true`, the select element will span the full width of it's parent
    */
   isFullWidth?: boolean
   /**
