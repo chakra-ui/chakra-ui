@@ -135,7 +135,9 @@ export const Select = forwardRef(
           color={color}
           placeholder={placeholder}
           {...(select as Dict)}
-        />
+        >
+          {props.children}
+        </SelectField>
         <SelectIconWrapper opacity={opacity} color={select.color || color}>
           <Icon
             focusable="false"
