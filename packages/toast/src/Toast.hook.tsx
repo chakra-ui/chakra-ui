@@ -67,7 +67,6 @@ const Toast = (props: any) => {
 
   return (
     <Alert
-      width="100%"
       status={status}
       variant={variant}
       id={id}
