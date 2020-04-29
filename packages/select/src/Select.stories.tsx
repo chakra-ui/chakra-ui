@@ -101,7 +101,7 @@ export const SelectSizes = () => (
 )
 
 /**
- * A controlled input component
+ * A controlled select component
  */
 
 export const SelectControlled = () => {
@@ -126,6 +126,7 @@ export const SelectControlled = () => {
 /**
  * Pass the `icon` prop to change the arrow icon of the select
  * component to a custom icon.
+ *
  * You also have access to the `iconSize` prop to change the size of
  * the custom arrow icon.
  */
@@ -141,3 +142,54 @@ export const SelectIcon = () => {
   )
   return <Select icon={SelectIcon} placeholder="Placeholder" size="md" />
 }
+
+/**
+ * Pass the `focusBorderColor` prop to change the border color of
+ * the select component in the focused state
+ *
+ * Pass the `errorBorderColor` prop to change the border color of
+ * the select component in the invalid state
+ *
+ * The value of these props can be set to a color in the theme object,
+ * or a raw CSS value.
+ */
+
+export const FocusAndErrorColors = () => (
+  <Stack>
+    <Select
+      focusBorderColor="lime"
+      placeholder="Here is a sample placeholder"
+    />
+    <Select
+      focusBorderColor="pink.400"
+      placeholder="Here is a sample placeholder"
+    />
+    <br />
+    <Select
+      isInvalid
+      errorBorderColor="red.300"
+      placeholder="Here is a sample placeholder"
+    />
+    <br />
+    <Select
+      isInvalid
+      errorBorderColor="crimson"
+      placeholder="Here is a sample placeholder"
+    />
+    <br />
+  </Stack>
+)
+
+/**
+ * Even though the select comes with predefined styles, you can override pretty much any property.
+ * Here's we'll override the background color.
+ */
+
+export const OverrideStyles = () => (
+  <Select
+    color="white"
+    borderColor="tomato"
+    backgroundColor="tomato"
+    placeholder="Woohoo! A new background color!"
+  />
+)

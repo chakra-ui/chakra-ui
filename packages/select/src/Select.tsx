@@ -78,7 +78,7 @@ export type SelectFieldProps = Omit<
 /**
  * SelectField
  *
- *
+ * A component that combines a select with props for validation and helper text.
  */
 
 export const SelectField = React.forwardRef(
@@ -93,6 +93,10 @@ export const SelectField = React.forwardRef(
     )
   },
 )
+
+if (__DEV__) {
+  SelectField.displayName = "SelectField"
+}
 
 type Props = PropsOf<typeof chakra.div>
 
@@ -111,6 +115,10 @@ export function SelectIcon(props: IconProps) {
       />
     </Icon>
   )
+}
+
+if (__DEV__) {
+  SelectIcon.displayName = "SelectIcon"
 }
 
 export type SelectProps = Omit<Props, "ref"> &
