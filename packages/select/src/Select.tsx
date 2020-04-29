@@ -78,10 +78,11 @@ export type SelectFieldProps = Omit<
 export const SelectField = React.forwardRef(
   (props: SelectFieldProps, ref: React.Ref<HTMLSelectElement>) => {
     const fieldProps = useFormControl<HTMLSelectElement>(props)
+    const { children, placeholder, ...rest } = props
     return (
-      <StyledSelect ref={ref} {...fieldProps}>
-        {props.placeholder && <option value="">{props.placeholder}</option>}
-        {props.children}
+      <StyledSelect ref={ref} {...rest} {...fieldProps}>
+        {placeholder && <option value="">{placeholder}</option>}
+        {children}
       </StyledSelect>
     )
   },
@@ -123,6 +124,7 @@ export const Select = forwardRef(
     const opacity = props.isReadOnly || props.isDisabled ? 0.5 : undefined
 
     const [select, root] = split(rest, layoutPropNames as any)
+    console.log({ select, root })
 
     return (
       <chakra.div position="relative" {...root} {...rootProps}>
@@ -134,6 +136,7 @@ export const Select = forwardRef(
           ref={ref}
           color={color}
           placeholder={placeholder}
+          {...root}
           {...(select as Dict)}
         >
           {props.children}
