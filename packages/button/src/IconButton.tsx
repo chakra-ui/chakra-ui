@@ -1,4 +1,3 @@
-import Icon from "@chakra-ui/icon"
 import { __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { Button, ButtonProps } from "./Button"

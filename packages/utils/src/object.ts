@@ -79,3 +79,6 @@ export function filterUndefined(object: Dict) {
   }
   return result
 }
+
+export const objectKeys = <T extends Dict>(obj: T) =>
+  (Object.keys(obj) as unknown) as (keyof T)[]

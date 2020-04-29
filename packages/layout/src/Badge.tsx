@@ -4,9 +4,7 @@ import { __DEV__ } from "@chakra-ui/utils"
 export type BadgeProps = PropsOf<typeof Badge>
 
 /**
- * Badge
- *
- * Mostly used to add notifications,messages, or
+ * React component used to display notifications, messages, or
  * statuses in different shapes and sizes.
  *
  * @see Docs https://chakra-ui.com/badge

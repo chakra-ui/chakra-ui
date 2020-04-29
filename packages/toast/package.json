@@ -43,9 +43,12 @@
   },
   "dependencies": {
     "tslib": "1.11.1",
+    "@reach/rect": "0.10.1",
     "@chakra-ui/transition": "0.0.1",
     "@chakra-ui/hooks": "0.0.1",
     "@chakra-ui/utils": "0.0.1",
+    "@chakra-ui/alert": "0.0.1",
+    "@chakra-ui/close-button": "0.0.1",
     "@reach/alert": "0.8.6"
   },
   "devDependencies": {

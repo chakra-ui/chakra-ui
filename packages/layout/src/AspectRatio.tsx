@@ -14,15 +14,16 @@ interface AspectRatioOptions {
 export type AspectRatioProps = BoxProps & AspectRatioOptions
 
 /**
- * AspectRatio
- *
- * Mostly useful for cropping media (videos, images and maps) to a desired aspect ratio.
+ * React component used to cropping media (videos, images and maps)
+ * to a desired aspect ratio.
  *
  * @see Docs https://chakra-ui.com/aspectratio
  */
 export const AspectRatio = forwardRef(
   (props: AspectRatioProps, ref: React.Ref<any>) => {
     const { ratio = 4 / 3, children, ...rest } = props
+
+    // enforce single child
     const child = Children.only(children)
 
     return (

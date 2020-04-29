@@ -1,4 +1,4 @@
-import { Dict, get } from "@chakra-ui/utils"
+import { Dict, get, objectKeys } from "@chakra-ui/utils"
 import * as CSS from "csstype"
 
 type Scale = Dict<string | number> | Array<string | number>
@@ -40,7 +40,7 @@ export type Config = { [prop: string]: StyleConfig | null | true }
 export function transformConfig(config: Config, theme: Dict) {
   const result: Dict = {}
 
-  Object.keys(config).forEach(prop => {
+  objectKeys(config).forEach(prop => {
     const propConfig = config[prop]
 
     /**

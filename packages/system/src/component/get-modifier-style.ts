@@ -1,4 +1,4 @@
-import { Dict, get, merge, runIfFn } from "@chakra-ui/utils"
+import { Dict, get, merge, runIfFn, objectKeys } from "@chakra-ui/utils"
 import { filterUndefined, isSubcomponent } from "./utils"
 import { ChakraOptions, ModifierStyleProps } from "./types"
 import { getComponentDefaults } from "./get-default-props"
@@ -30,7 +30,7 @@ function checkModifiers(
 export function getModifierStyles(
   props: ModifierStyleProps,
   options?: ChakraOptions,
-  modifiers = Object.keys(modifierMap),
+  modifiers = objectKeys(modifierMap),
 ) {
   /**
    * if no theme key was passed or no prop was passed, bail out

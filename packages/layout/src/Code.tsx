@@ -4,8 +4,6 @@ import { __DEV__ } from "@chakra-ui/utils"
 export type CodeProps = PropsOf<typeof Code>
 
 /**
- * Code
- *
  * React component to render inline code snippets.
  *
  * @see Docs https://chakra-ui.com/code

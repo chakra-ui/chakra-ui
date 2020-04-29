@@ -1,19 +1,17 @@
 import { chakra, PropsOf } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
-import React, { forwardRef, Children } from "react"
+import * as React from "react"
+import { forwardRef, Children, Ref } from "react"
 
 export type CenterProps = PropsOf<typeof chakra.div>
 
 /**
- * Center
- *
- * Used to horizontally and vertically center its child within itself.
- *
+ * React component used to horizontally and vertically center its child.
  * It uses the popular `display: flex` centering technique.
  *
  * @see Docs https://chakra-ui.com/center
  */
-export const Center = forwardRef((props: CenterProps, ref: React.Ref<any>) => {
+export const Center = forwardRef((props: CenterProps, ref: Ref<any>) => {
   const { children, ...rest } = props
 
   // enforce a single child
