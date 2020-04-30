@@ -31,6 +31,13 @@ export interface InputProps
   size?: string
 }
 
+/**
+ * Input - Theming
+ *
+ * To style the input globally, change the styles in
+ * `theme.components.Input`
+ */
+
 const StyledInput = chakra<"input", InputOptions>("input", {
   themeKey: "Input",
   shouldForwardProp: prop =>
