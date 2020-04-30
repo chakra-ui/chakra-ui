@@ -12,6 +12,10 @@ export default {
   title: "Stat",
 }
 
+/**
+ * Default Stat component
+ */
+
 export const Default = () => {
   return (
     <Stat>
@@ -21,6 +25,10 @@ export const Default = () => {
     </Stat>
   )
 }
+
+/**
+ * Stat component with indicators
+ */
 
 export const WithIndicators = () => {
   return (

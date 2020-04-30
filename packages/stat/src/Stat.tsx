@@ -1,6 +1,7 @@
 import * as React from "react"
 import { chakra } from "@chakra-ui/system"
 import { Icon, IconProps } from "@chakra-ui/icon"
+import { __DEV__ } from "@chakra-ui/utils"
 
 export const StatLabel = chakra("p", {
   themeKey: "Stat.Label",
@@ -10,7 +11,9 @@ export const StatLabel = chakra("p", {
   },
 })
 
-StatLabel.displayName = "StatLabel"
+if (__DEV__) {
+  StatLabel.displayName = "StatLabel"
+}
 
 export const StatHelpText = chakra("p", {
   themeKey: "Stat.HelpText",
@@ -21,7 +24,9 @@ export const StatHelpText = chakra("p", {
   },
 })
 
-StatHelpText.displayName = "StatHelpText"
+if (__DEV__) {
+  StatHelpText.displayName = "StatHelpText"
+}
 
 export const StatNumber = chakra("p", {
   themeKey: "Stat.Number",
@@ -32,7 +37,9 @@ export const StatNumber = chakra("p", {
   },
 })
 
-StatNumber.displayName = "StatNumber"
+if (__DEV__) {
+  StatNumber.displayName = "StatNumber"
+}
 
 export const StatDownArrow = (props: IconProps) => (
   <Icon mr={1} size="14px" color="red.400" verticalAlign="middle" {...props}>
@@ -43,6 +50,10 @@ export const StatDownArrow = (props: IconProps) => (
   </Icon>
 )
 
+if (__DEV__) {
+  StatDownArrow.displayName = "StatDownArrow"
+}
+
 export const StatUpArrow = (props: IconProps) => (
   <Icon mr={1} size="14px" color="green.400" verticalAlign="middle" {...props}>
     <path
@@ -52,9 +63,18 @@ export const StatUpArrow = (props: IconProps) => (
   </Icon>
 )
 
-export function StatArrow(
-  props: IconProps & { type?: "increase" | "decrease" },
-) {
+if (__DEV__) {
+  StatUpArrow.displayName = "StatUpArrow"
+}
+
+export type StatArrowProps = IconProps & {
+  /**
+   * Type of the stat arrow
+   */
+  type?: "increase" | "decrease"
+}
+
+export function StatArrow(props: StatArrowProps) {
   const { type, ...rest } = props
   return type === "increase" ? (
     <StatUpArrow {...rest} />
@@ -63,7 +83,9 @@ export function StatArrow(
   )
 }
 
-StatArrow.displayName = "StatArrow"
+if (__DEV__) {
+  StatArrow.displayName = "StatArrow"
+}
 
 export const Stat = chakra("div", {
   themeKey: "Stat.Root",
@@ -73,7 +95,9 @@ export const Stat = chakra("div", {
   },
 })
 
-Stat.displayName = "Stat"
+if (__DEV__) {
+  Stat.displayName = "Stat"
+}
 
 export const StatGroup = chakra("div", {
   baseStyle: {
@@ -84,4 +108,6 @@ export const StatGroup = chakra("div", {
   },
 })
 
-StatGroup.displayName = "StatGroup"
+if (__DEV__) {
+  StatGroup.displayName = "StatGroup"
+}
