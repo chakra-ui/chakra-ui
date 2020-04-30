@@ -1,6 +1,16 @@
 import * as React from "react"
 import { chakra } from "@chakra-ui/system"
 import { Icon, IconProps } from "@chakra-ui/icon"
+import { __DEV__ } from "@chakra-ui/utils"
+
+/**
+ * StatLabel
+ *
+ * The label for the stat card. This is usually the heading for the card.
+ *
+ * To style the StatLabel globally, change the styles in
+ * `theme.components.Stat.Label`
+ */
 
 export const StatLabel = chakra("p", {
   themeKey: "Stat.Label",
@@ -10,7 +20,18 @@ export const StatLabel = chakra("p", {
   },
 })
 
-StatLabel.displayName = "StatLabel"
+if (__DEV__) {
+  StatLabel.displayName = "StatLabel"
+}
+
+/**
+ * StatHelpText
+ *
+ * Additional context and information about the stat.
+ *
+ * To style the StatHelpText globally, change the styles in
+ * `theme.components.Stat.HelpText`
+ */
 
 export const StatHelpText = chakra("p", {
   themeKey: "Stat.HelpText",
@@ -21,7 +42,18 @@ export const StatHelpText = chakra("p", {
   },
 })
 
-StatHelpText.displayName = "StatHelpText"
+if (__DEV__) {
+  StatHelpText.displayName = "StatHelpText"
+}
+
+/**
+ * StatNumber
+ *
+ * Numerical value representation of the stat.
+ *
+ *To style the StatNumber globally, change the styles in
+ * `theme.components.Stat.Number`
+ */
 
 export const StatNumber = chakra("p", {
   themeKey: "Stat.Number",
@@ -32,7 +64,15 @@ export const StatNumber = chakra("p", {
   },
 })
 
-StatNumber.displayName = "StatNumber"
+if (__DEV__) {
+  StatNumber.displayName = "StatNumber"
+}
+
+/**
+ * StatDownArrow
+ *
+ * Indicator arrow to show a decrease in the stat.
+ */
 
 export const StatDownArrow = (props: IconProps) => (
   <Icon mr={1} size="14px" color="red.400" verticalAlign="middle" {...props}>
@@ -43,6 +83,16 @@ export const StatDownArrow = (props: IconProps) => (
   </Icon>
 )
 
+if (__DEV__) {
+  StatDownArrow.displayName = "StatDownArrow"
+}
+
+/**
+ * StatUpArrow
+ *
+ * Indicator arrow to show an increase in the stat.
+ */
+
 export const StatUpArrow = (props: IconProps) => (
   <Icon mr={1} size="14px" color="green.400" verticalAlign="middle" {...props}>
     <path
@@ -52,9 +102,21 @@ export const StatUpArrow = (props: IconProps) => (
   </Icon>
 )
 
-export function StatArrow(
-  props: IconProps & { type?: "increase" | "decrease" },
-) {
+if (__DEV__) {
+  StatUpArrow.displayName = "StatUpArrow"
+}
+
+export type StatArrowProps = IconProps & {
+  type?: "increase" | "decrease"
+}
+
+/**
+ * StatArrow
+ *
+ * Indicator arrow to show an increase or a decrease in the stat.
+ */
+
+export function StatArrow(props: StatArrowProps) {
   const { type, ...rest } = props
   return type === "increase" ? (
     <StatUpArrow {...rest} />
@@ -63,7 +125,18 @@ export function StatArrow(
   )
 }
 
-StatArrow.displayName = "StatArrow"
+if (__DEV__) {
+  StatArrow.displayName = "StatArrow"
+}
+
+/**
+ * Stat
+ *
+ * A component to display statistic numbers.
+ *
+ *To style the Stat globally, change the styles in
+ * `theme.components.Stat.Root`
+ */
 
 export const Stat = chakra("div", {
   themeKey: "Stat.Root",
@@ -73,7 +146,15 @@ export const Stat = chakra("div", {
   },
 })
 
-Stat.displayName = "Stat"
+if (__DEV__) {
+  Stat.displayName = "Stat"
+}
+
+/**
+ * StatGroup
+ *
+ * The component to group multiple stats together
+ */
 
 export const StatGroup = chakra("div", {
   baseStyle: {
@@ -84,4 +165,6 @@ export const StatGroup = chakra("div", {
   },
 })
 
-StatGroup.displayName = "StatGroup"
+if (__DEV__) {
+  StatGroup.displayName = "StatGroup"
+}
