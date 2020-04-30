@@ -6,7 +6,7 @@ import {
   StatHelpText,
   StatLabel,
   StatNumber,
-} from "./Stat"
+} from "."
 
 export default {
   title: "Stat",
