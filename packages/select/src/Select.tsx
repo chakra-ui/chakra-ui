@@ -14,23 +14,23 @@ import { split, Dict, __DEV__ } from "@chakra-ui/utils"
  * https://github.com/chakra-ui/chakra-ui/pull/464/files
  */
 
-type OmittedTypes = "disabled" | "required" | "readOnly"
+type OmittedTypes = "disabled" | "required" | "readOnly" | "value"
 
 interface SelectOptions {
   /**
-   * The border color when the textarea is focused. Use color keys in `theme.colors`
+   * The border color when the select is focused. Use color keys in `theme.colors`
    * @example
    * focusBorderColor = "blue.500"
    */
   focusBorderColor?: string
   /**
-   * The border color when the textarea is invalid. Use color keys in `theme.colors`
+   * The border color when the select is invalid. Use color keys in `theme.colors`
    * @example
    * errorBorderColor = "red.500"
    */
   errorBorderColor?: string
   /**
-   * If `true`, the textarea element will span the full width of it's parent
+   * If `true`, the select element will span the full width of it's parent
    */
   isFullWidth?: boolean
   /**
@@ -75,19 +75,36 @@ export type SelectFieldProps = Omit<
 > &
   FormControlOptions
 
+/**
+ * SelectField
+ *
+ * A component that combines a select with props for validation and helper text.
+ */
+
 export const SelectField = React.forwardRef(
   (props: SelectFieldProps, ref: React.Ref<HTMLSelectElement>) => {
     const fieldProps = useFormControl<HTMLSelectElement>(props)
+    const { children, placeholder, ...rest } = props
     return (
-      <StyledSelect ref={ref} {...fieldProps}>
-        {props.placeholder && <option value="">{props.placeholder}</option>}
-        {props.children}
+      <StyledSelect ref={ref} {...rest} {...fieldProps}>
+        {placeholder && <option value="">{placeholder}</option>}
+        {children}
       </StyledSelect>
     )
   },
 )
 
+if (__DEV__) {
+  SelectField.displayName = "SelectField"
+}
+
 type Props = PropsOf<typeof chakra.div>
+
+/**
+ * SelectIcon
+ *
+ * Arrow icon for Chakra UI's select component
+ */
 
 export function SelectIcon(props: IconProps) {
   return (
@@ -100,14 +117,26 @@ export function SelectIcon(props: IconProps) {
   )
 }
 
+if (__DEV__) {
+  SelectIcon.displayName = "SelectIcon"
+}
+
 export type SelectProps = Omit<Props, "ref"> &
   FormControlOptions &
   SelectOptions & {
+    value?: string
     rootProps?: Omit<Props, "color">
     icon?: React.ElementType
     iconSize?: any
     ref?: React.Ref<HTMLSelectElement>
   }
+
+/**
+ * Select
+ *
+ * A component which allows selection of one item from a list of options.
+ *
+ */
 
 export const Select = forwardRef(
   (props: SelectProps, ref: React.Ref<HTMLSelectElement>) => {
@@ -125,7 +154,7 @@ export const Select = forwardRef(
     const [select, root] = split(rest, layoutPropNames as any)
 
     return (
-      <chakra.div position="relative" {...root} {...rootProps}>
+      <chakra.div position="relative" {...rootProps}>
         <SelectField
           appearance="none"
           width="100%"
@@ -134,8 +163,11 @@ export const Select = forwardRef(
           ref={ref}
           color={color}
           placeholder={placeholder}
+          {...root}
           {...(select as Dict)}
-        />
+        >
+          {props.children}
+        </SelectField>
         <SelectIconWrapper opacity={opacity} color={select.color || color}>
           <Icon
             focusable="false"
