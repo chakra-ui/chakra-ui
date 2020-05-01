@@ -4,11 +4,11 @@ import {
   SystemProps,
   useThemeDefaultProps,
 } from "@chakra-ui/system"
-import { getValidChildren } from "@chakra-ui/utils"
+import { getValidChildren, cx } from "@chakra-ui/utils"
 import * as React from "react"
 import { baseStyle } from "./Avatar"
 
-const AvatarExcessLabel = chakra("span", {
+const ExcessLabel = chakra("span", {
   themeKey: "Avatar.ExcessLabel",
   baseStyle: {
     ...baseStyle,
@@ -41,9 +41,6 @@ const StyledGroup = chakra("div", {
     alignItems: "center",
     justifyContent: "flex-end",
     flexDirection: "row-reverse",
-  },
-  attrs: {
-    role: "group",
   },
 })
 
@@ -94,11 +91,16 @@ export const AvatarGroup = (props: AvatarGroupProps) => {
   })
 
   return (
-    <StyledGroup data-chakra-avatar-group="" {...rest}>
+    <StyledGroup
+      {...rest}
+      role="group"
+      className={cx("chakra-avatar-group", rest.className)}
+    >
       {moreAvatarCount && (
-        <AvatarExcessLabel
+        <ExcessLabel
+          className="chakra-avatar-group__excess"
           size={size}
-          marginLeft={spacing}
+          ml={spacing}
           children={`+${moreAvatarCount}`}
         />
       )}
