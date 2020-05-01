@@ -4,12 +4,16 @@ exports[`Breadcrumb renders correctly 1`] = `
 <DocumentFragment>
   <nav
     aria-label="breadcrumb"
+    class="chakra-breadcrumb"
   >
-    <ol>
+    <ol
+      class="chakra-breadcrumb__list"
+    >
       <li
-        class="css-uooi3e"
+        class="chakra-breadcrumb__list-item css-uooi3e"
       >
         <a
+          class="chakra-breadcrumb__link css-1ceyw39"
           href="#"
         >
           Link 1
@@ -22,9 +26,10 @@ exports[`Breadcrumb renders correctly 1`] = `
         </span>
       </li>
       <li
-        class="css-uooi3e"
+        class="chakra-breadcrumb__list-item css-uooi3e"
       >
         <a
+          class="chakra-breadcrumb__link css-1ceyw39"
           href="#"
         >
           Link 2
@@ -37,11 +42,14 @@ exports[`Breadcrumb renders correctly 1`] = `
         </span>
       </li>
       <li
-        class="css-uooi3e"
+        class="chakra-breadcrumb__list-item css-uooi3e"
       >
-        <a>
+        <span
+          aria-current="page"
+          class="chakra-breadcrumb__link"
+        >
           Link 3
-        </a>
+        </span>
       </li>
     </ol>
   </nav>

@@ -55,7 +55,6 @@
     "@chakra-ui/icon": "0.0.1"
   },
   "devDependencies": {
-    "react-router-dom": "5.1.2",
     "@chakra-ui/system": "0.0.1"
   },
   "peerDependencies": {

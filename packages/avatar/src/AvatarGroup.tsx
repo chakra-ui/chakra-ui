@@ -58,6 +58,7 @@ export const AvatarGroup = (props: AvatarGroupProps) => {
     max,
     spacing = -3,
     size = defaults?.size,
+    className,
     ...rest
   } = props
 
@@ -71,7 +72,7 @@ export const AvatarGroup = (props: AvatarGroupProps) => {
   /**
    * get the remaining avatar count
    */
-  const moreAvatarCount = max && validChildren.length - max
+  const excess = max && validChildren.length - max
 
   /**
    * Reversing the children is a great way to avoid using zIndex
@@ -92,16 +93,16 @@ export const AvatarGroup = (props: AvatarGroupProps) => {
 
   return (
     <StyledGroup
-      {...rest}
       role="group"
-      className={cx("chakra-avatar-group", rest.className)}
+      className={cx("chakra-avatar-group", className)}
+      {...rest}
     >
-      {moreAvatarCount && (
+      {excess && (
         <ExcessLabel
           className="chakra-avatar-group__excess"
           size={size}
           ml={spacing}
-          children={`+${moreAvatarCount}`}
+          children={`+${excess}`}
         />
       )}
       {clones}

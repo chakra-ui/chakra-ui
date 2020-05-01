@@ -95,6 +95,8 @@
     }
   },
   "devDependencies": {
+    "react-router-dom": "5.1.2",
+    "@types/react-router-dom": "4.2.6",
     "react-spinners": "0.8.1",
     "focus-visible": "5.1.0",
     "playroom": "0.17.3",

@@ -1,31 +1,30 @@
 import * as React from "react"
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbSeparator,
-} from "./Breadcrumb"
+import { BrowserRouter, Link } from "react-router-dom"
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "."
+import { ChevronRightIcon } from "@chakra-ui/icons"
 
 export default {
   title: "Breadcrumb",
 }
 
 export const Default = () => (
-  <Breadcrumb addSeparator={false}>
-    <BreadcrumbItem>
-      <BreadcrumbLink href="#">Breadcrumb 1</BreadcrumbLink>
-      <BreadcrumbSeparator />
-    </BreadcrumbItem>
+  <BrowserRouter>
+    <Breadcrumb spacing="4">
+      <BreadcrumbItem>
+        <BreadcrumbLink as={Link} to="/home" replace>
+          Breadcrumb 1
+        </BreadcrumbLink>
+      </BreadcrumbItem>
 
-    <BreadcrumbItem>
-      <BreadcrumbLink href="#">Breadcrumb 2</BreadcrumbLink>
-      <BreadcrumbSeparator />
-    </BreadcrumbItem>
+      <BreadcrumbItem>
+        <BreadcrumbLink href="#">Breadcrumb 2</BreadcrumbLink>
+      </BreadcrumbItem>
 
-    <BreadcrumbItem isCurrentPage>
-      <BreadcrumbLink href="#">Breadcrumb 3</BreadcrumbLink>
-    </BreadcrumbItem>
-  </Breadcrumb>
+      <BreadcrumbItem isCurrentPage>
+        <BreadcrumbLink href="#">Breadcrumb 3</BreadcrumbLink>
+      </BreadcrumbItem>
+    </Breadcrumb>
+  </BrowserRouter>
 )
 
 export const Separator = () => (
@@ -45,17 +44,17 @@ export const Separator = () => (
 )
 
 export const SeparatorV2 = () => (
-  <Breadcrumb separator="/">
+  <Breadcrumb spacing="8px" separator={<ChevronRightIcon color="gray.300" />}>
     <BreadcrumbItem>
-      <BreadcrumbLink href="#">Home</BreadcrumbLink>
+      <BreadcrumbLink href="/">Home</BreadcrumbLink>
     </BreadcrumbItem>
 
     <BreadcrumbItem>
-      <BreadcrumbLink href="#">About</BreadcrumbLink>
+      <BreadcrumbLink href="/about">About</BreadcrumbLink>
     </BreadcrumbItem>
 
     <BreadcrumbItem isCurrentPage>
-      <BreadcrumbLink href="#">Current</BreadcrumbLink>
+      <BreadcrumbLink href="/contact">Contact</BreadcrumbLink>
     </BreadcrumbItem>
   </Breadcrumb>
 )

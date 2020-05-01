@@ -95,12 +95,12 @@ export type InitialsAvatarProps = DivProps &
  * The avatar name container
  */
 const InitialsAvatar = (props: InitialsAvatarProps) => {
-  const { name, getInitials, ...rest } = props
+  const { name, getInitials, className, ...rest } = props
   return (
     <chakra.div
       aria-label={name}
+      className={cx("chakra-avatar__name", className)}
       {...rest}
-      className={cx("chakra-avatar__name", rest.className)}
     >
       {name ? getInitials?.(name) : null}
     </chakra.div>
@@ -170,6 +170,7 @@ export const Avatar = React.forwardRef(
       onError,
       getInitials = initials,
       icon = <GenericAvatar />,
+      className,
       ...rest
     } = props
 
@@ -223,8 +224,8 @@ export const Avatar = React.forwardRef(
         borderRadius={borderRadius}
         borderWidth={showBorder ? "2px" : undefined}
         name={name}
+        className={cx("chakra-avatar", className)}
         {...rest}
-        className={cx("chakra-avatar", rest.className)}
       >
         {getAvatar()}
         {props.children}
