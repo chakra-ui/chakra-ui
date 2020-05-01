@@ -2,9 +2,9 @@ import { useBooleanState, useId, useSafeLayoutEffect } from "@chakra-ui/hooks"
 import Icon from "@chakra-ui/icon"
 import { chakra, PropsOf, useComponentStyle } from "@chakra-ui/system"
 import {
-  dataAttr,
   callAllHandlers,
   createContext,
+  dataAttr,
   __DEV__,
 } from "@chakra-ui/utils"
 import * as React from "react"
@@ -119,8 +119,6 @@ function useFormControlProvider(props: FormControlContext) {
   return context
 }
 
-//////////////////////////////////////////////////////////////////////////////
-
 const StyledFormControl = chakra("div", {
   themeKey: "Form.Root",
   baseStyle: {
@@ -170,9 +168,8 @@ if (__DEV__) {
   FormControl.displayName = "FormControl"
 }
 
-//////////////////////////////////////////////////////////////////////////////
 /**
- * Theming
+ * Label - Theming
  *
  * To style form labels globally, change the styles in `theme.components.FormLabel`
  */
@@ -187,12 +184,12 @@ const StyledLabel = chakra("label", {
 export type FormLabelProps = PropsOf<typeof StyledLabel>
 
 /**
- * Formlabel
+ * Used to enhance the usability of form controls.
  *
- * React component that enhances the usability of form controls.
+ * It is used to inform users as to what information
+ * is requested for a form field.
  *
- * A `FormLabel` is used to inform users as to what information
- * is requested for a form field. Every form field should have a `FormLabel`.
+ * ♿️ Accessibilty: Every form field should have a form label.
  */
 export const FormLabel = React.forwardRef(
   (props: FormLabelProps, ref: React.Ref<HTMLLabelElement>) => {
@@ -219,8 +216,6 @@ if (__DEV__) {
   FormLabel.displayName = "FormLabel"
 }
 
-//////////////////////////////////////////////////////////////////////////////
-
 /**
  * RequiredIndicator - Theming
  *
@@ -238,11 +233,8 @@ const StyledIndicator = chakra("span", {
 export type RequiredIndicatorProps = PropsOf<typeof StyledIndicator>
 
 /**
- * Required Indicator
- *
  * Used to show a "required" text or an asterisks (*) to indicate that
  * a field is required.
- *
  */
 export const RequiredIndicator = React.forwardRef(
   (props: RequiredIndicatorProps, ref: React.Ref<any>) => {
@@ -259,8 +251,6 @@ export const RequiredIndicator = React.forwardRef(
 if (__DEV__) {
   RequiredIndicator.displayName = "RequiredIndicator"
 }
-
-//////////////////////////////////////////////////////////////////////////////
 
 /**
  * FormHelperText - Theming
@@ -308,8 +298,6 @@ if (__DEV__) {
   FormHelperText.displayName = "FormHelperText"
 }
 
-//////////////////////////////////////////////////////////////////////////////
-
 /**
  * ErrorText Theming
  *
@@ -330,8 +318,6 @@ const StyledErrorText = chakra("div", {
 export type FormErrorMessageProps = PropsOf<typeof StyledErrorText>
 
 /**
- * FormErrorMessage
- *
  * Used to provide feedback about an invalid input,
  * and suggest clear instrctions on how to fix it.
  */
@@ -353,8 +339,6 @@ if (__DEV__) {
   FormErrorMessage.displayName = "FormErrorMessage"
 }
 
-//////////////////////////////////////////////////////////////////////////////
-
 export type FormElementProps<T extends HTMLElement> = FormControlOptions & {
   id?: string
   onFocus?: React.FocusEventHandler<T>
@@ -362,8 +346,6 @@ export type FormElementProps<T extends HTMLElement> = FormControlOptions & {
 }
 
 /**
- * useFormControl
- *
  * React hook that provides the props that should be spread on to
  * input fields (`input`, `select`, `textarea`, etc.).
  *
@@ -394,13 +376,9 @@ export function useFormControl<T extends HTMLElement>(
   }
 }
 
-//////////////////////////////////////////////////////////////////////////////
-
 export type FormErrorIconProps = PropsOf<typeof Icon>
 
 /**
- * FormErrorIcon
- *
  * Used as the visual indicator that a field is invalid or
  * a field has incorrect values.
  */

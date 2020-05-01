@@ -47,7 +47,6 @@
   "dependencies": {
     "tslib": "1.11.1",
     "@chakra-ui/form-control": "0.0.1",
-    "@chakra-ui/icon": "0.0.1",
     "@chakra-ui/utils": "0.0.1"
   },
   "devDependencies": {

@@ -1,15 +1,14 @@
-import { Stack, Box } from "@chakra-ui/layout"
-import { Icon } from "@chakra-ui/icon"
+import { Box, Stack, Container } from "@chakra-ui/layout"
 import * as React from "react"
-import { Select } from "./index"
+import { Select } from "."
 
 export default {
   title: "Select",
   decorators: [
     (story: Function) => (
-      <Box maxWidth="400px" mx="auto" mt="40px">
+      <Container maxWidth="400px" mt="40px">
         {story()}
-      </Box>
+      </Container>
     ),
   ],
 }
@@ -19,7 +18,7 @@ export default {
  */
 
 export const BasicUsage = () => (
-  <Select placeholder="Select option">
+  <Select color="pink.500" placeholder="Select option">
     <option value="Option 1">Option 1</option>
     <option value="Option 2">Option 2</option>
     <option value="Option 3">Option 3</option>
@@ -106,7 +105,7 @@ export const SelectSizes = () => (
 
 export const SelectControlled = () => {
   const [value, setValue] = React.useState("")
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setValue(event.target.value)
   }
 
@@ -131,16 +130,27 @@ export const SelectControlled = () => {
  * the custom arrow icon.
  */
 
+const UpDownIcon = (props: any) => (
+  <svg viewBox="0 0 6 15" fill="none" stroke="currentColor" {...props}>
+    <path d="M5 5.5L3 3.5L1 5.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="M5 9.5L3 11.5L1 9.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+)
+
 export const SelectIcon = () => {
-  const SelectIcon = () => (
-    <Icon viewBox="0 0 24 24">
-      <path
-        fill="currentColor"
-        d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"
-      />
-    </Icon>
+  return (
+    <Select
+      isDisabled
+      icon={<UpDownIcon />}
+      iconSize="6"
+      placeholder="Placeholder"
+      size="md"
+    />
   )
-  return <Select icon={SelectIcon} placeholder="Placeholder" size="md" />
 }
 
 /**
@@ -191,7 +201,7 @@ export const OverrideStyles = () => (
   <Select
     color="white"
     borderColor="tomato"
-    backgroundColor="tomato"
+    bg="tomato"
     placeholder="Woohoo! A new background color!"
   />
 )

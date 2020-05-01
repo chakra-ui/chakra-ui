@@ -1,11 +1,13 @@
-import * as React from "react"
 import { useColorMode } from "@chakra-ui/color-mode"
+import { css, StyleObjectOrFn } from "@chakra-ui/css"
 import { ThemeContext } from "@emotion/core"
-import { getComponentStyles, getComponentDefaults } from "./component"
+import * as React from "react"
+import { getComponentDefaults, getComponentStyles } from "./component"
+import { Dict } from "@chakra-ui/utils"
 
-export function useChakra<Theme extends object = object>() {
+export function useChakra<T extends Dict = Dict>() {
   const [colorMode, setColorMode] = useColorMode()
-  const theme = React.useContext(ThemeContext) as Theme
+  const theme = React.useContext(ThemeContext) as T
   return { colorMode, setColorMode, theme }
 }
 
@@ -29,4 +31,9 @@ export function useComponentStyle(props: ComponentStyleHookProps) {
 export function useThemeDefaultProps(themeKey: string) {
   const theme = React.useContext(ThemeContext)
   return getComponentDefaults(theme, themeKey)
+}
+
+export function useCss(styles: StyleObjectOrFn) {
+  const theme = React.useContext(ThemeContext)
+  return css(styles)(theme)
 }
