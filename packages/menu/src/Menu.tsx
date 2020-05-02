@@ -16,6 +16,7 @@ import {
 
 const [MenuContextProvider, useMenuContext] = createContext<UseMenuReturn>({
   strict: false,
+  name: "MenuContext",
 })
 
 export function useMenuState() {
@@ -28,8 +29,8 @@ export type MenuProps = Omit<UseMenuProps, "context"> & {
 }
 
 export function Menu(props: MenuProps) {
-  const parentMenu = useMenuContext()
-  const context = useMenu({ context: parentMenu, ...props })
+  const parentCtx = useMenuContext()
+  const context = useMenu({ context: parentCtx, ...props })
   return (
     <MenuContextProvider value={context}>{props.children}</MenuContextProvider>
   )

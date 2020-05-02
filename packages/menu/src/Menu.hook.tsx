@@ -23,78 +23,123 @@ import {
 } from "@chakra-ui/utils"
 import * as React from "react"
 
-export type UseMenuProps = {
+export interface UseMenuProps {
+  /**
+   * The parent menu's context
+   */
   context?: UseMenuReturn
+  /**
+   * Unique id to be used by menu and it's children
+   */
   id?: string
+  /**
+   * If `true`, the menu will close when a menu item is
+   * clicked
+   */
   closeOnSelect?: boolean
-  // TODO: Implement these
+  /**
+   * If `true`, the menu will close when you click outside
+   * the menu list
+   */
   closeOnBlur?: boolean
+  /**
+   * If `true`, the first enabled menu item will be selected
+   * when the menu opens.
+   */
   autoSelect?: boolean
 }
 
+/**
+ * React Hook to manage a menu
+ *
+ * It provides the logic and will be used with react context
+ * to propagate it's return value to all children
+ */
 export function useMenu(props: UseMenuProps) {
-  const { context, id, closeOnSelect = true } = props
+  const {
+    context,
+    id,
+    closeOnSelect = true,
+    closeOnBlur = true,
+    autoSelect = true,
+  } = props
+
   /**
-   *
-   * if this menu is a nested menu, that means
-   * there's a parent menu and a parent MenuContext
+   * If this menu is a nested menu, that means
+   * there's a parent menu context
    */
-  const parent = context
+  const parentMenu = context
 
-  // Check if this menu is a nested menu or top level menu
-  const hasParent = Boolean(parent)
+  /**
+   * Check if this menu is a nested menu or top level menu
+   */
+  const hasParentMenu = Boolean(parentMenu)
 
-  // Regular open and close stuff
+  /**
+   * Regular open and close stuff
+   */
   const { isOpen, onOpen, onClose, onToggle } = useDisclosure()
 
-  // prepare the reference to the menu and disclosure
+  /**
+   * Prepare the reference to the menu and disclosure
+   */
   const menuRef = React.useRef<HTMLDivElement>(null)
   const buttonRef = React.useRef<HTMLButtonElement>(null)
 
-  // Add some popper.js for dynamic positioning
+  /**
+   * Add some popper.js for dynamic positioning
+   */
   const { placement, popper, reference } = usePopper({
-    placement: !hasParent ? "bottom-start" : "right-start",
+    placement: !hasParentMenu ? "bottom-start" : "right-start",
     fixed: true,
     forceUpdate: isOpen,
-    gutter: hasParent ? 0 : undefined,
+    gutter: hasParentMenu ? 0 : undefined,
   })
 
   const [focusedIndex, setFocusedIndex] = React.useState(-1)
 
-  const descendantsContext = useDescendants<HTMLDivElement, {}>()
+  /**
+   * We use this context to register all menu items nodes
+   */
+  const domContext = useDescendants<HTMLDivElement, {}>()
 
   /**
-   * If a parent menu is closed,
-   * this ensure all nested menu are closed as well
+   * Safety: If a parent menu is closed, we need to ensure
+   * all children menus are closed as well
    */
   React.useEffect(() => {
-    if (!parent) return
-    if (isOpen && hasParent && !parent.isOpen) {
+    if (!parentMenu) return
+
+    const parentIsNotOpen = hasParentMenu && !parentMenu.isOpen
+
+    if (isOpen && parentIsNotOpen) {
       onClose()
     }
-  }, [isOpen, onClose, parent, hasParent])
+  }, [isOpen, onClose, parentMenu, hasParentMenu])
 
   /**
-   * Let's focus the top-level disclosure when we close
-   * the menu
+   * Let's focus the top-level disclosure when we close the menu
    */
   useUpdateEffect(() => {
-    if (!isOpen && !hasParent) {
+    if (!isOpen && !hasParentMenu) {
       buttonRef.current?.focus()
     }
-  }, [isOpen])
+  }, [isOpen, hasParentMenu])
 
-  // generate unique ids for menu and disclosure
-  const [disclosureId, menuId] = useIds(id, `menu-disclosure`, `menu-list`)
+  /**
+   * Generate unique ids for menu's list and button
+   */
+  const [buttonId, menuId] = useIds(id, `menu-button`, `menu-list`)
 
   return {
-    descendantsContext,
+    domContext,
     popper,
     placement,
     reference,
-    disclosureId,
+    buttonId,
     menuId,
-    parent,
+    parentMenu,
+    hasParentMenu,
     orientation: "vertical",
     isOpen,
     onToggle,
@@ -104,64 +149,104 @@ export function useMenu(props: UseMenuProps) {
     buttonRef,
     focusedIndex,
     closeOnSelect,
+    closeOnBlur,
+    autoSelect,
     setFocusedIndex,
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface UseMenuReturn extends ReturnType<typeof useMenu> {}
 
-//////////////////////////////////////////////////////////////////////////////
+/**
+ * React Hook to manage a menu list.
+ *
+ * The assumption here is that the `useMenu` hook is used
+ * in a component higher up the tree.
+ *
+ * The hook tree will look like this:
+ *
+ * - useMenu (return value is passed to useMenuList)
+ *   - useMenuList (return value is passed to useMenuItem)
+ *     - useMenuItem
+ */
 
-export interface MenuListHookProps {
+export interface UseMenuListProps {
   onMouseEnter?: React.MouseEventHandler
   onKeyDown?: React.KeyboardEventHandler
+  /**
+   * Return value from `useMenu` hook
+   */
   context: UseMenuReturn
   style?: React.CSSProperties
   hidden?: boolean
 }
 
-export function useMenuList(props: MenuListHookProps) {
+export function useMenuList(props: UseMenuListProps) {
   const { context: menu, ...rest } = props
+
   const {
     focusedIndex,
     setFocusedIndex,
-    descendantsContext: { descendants },
+    hasParentMenu,
+    closeOnBlur,
+    buttonRef,
+    menuRef,
+    isOpen,
+    onClose,
+    onOpen,
+    domContext: { descendants },
   } = menu
 
-  // then check if this menu is a nested menu
-  const hasParent = Boolean(menu.parent)
-
-  // side effect to close this menu on outside click
+  /**
+   * Effect to close this menu on outside click
+   */
   React.useEffect(() => {
     const click = (event: MouseEvent) => {
-      // if the menu is not open, don't do anything
-      if (!menu.isOpen) return
-      // if the click is within the menu container, don't do anything
-      if (menu.menuRef.current?.contains(event.target as HTMLElement)) {
+      /**
+       * if the menu is not open, don't do anything
+       */
+      if (!isOpen) return
+
+      /**
+       * if the click is within the menu container, don't do anything
+       */
+      if (menuRef.current?.contains(event.target as HTMLElement)) {
         return
       }
-      // If we're clicking on a menuitem that's a disclosure,
-      // don't do anything
-      if (event.target === menu.buttonRef.current) {
+
+      /**
+       * Nested menu: If we're clicking on a `menuitem` that's a button for another
+       * menu, don't do anything.
+       */
+      if (event.target === buttonRef.current) {
         return
       }
-      // otherwise, onClose the menu
-      menu.onClose()
+
+      /**
+       * Otherwise, close the menu provided `closeOnBlur` is set to `true`
+       */
+      if (closeOnBlur) {
+        onClose()
+      }
     }
-    // add the event listener for click
+    /**
+     * add the event listener for click
+     */
     document.addEventListener("click", click)
     return () => {
-      // remove the event listener, to avoid memory leak
+      /**
+       * remove the event listener, to avoid memory leak
+       */
       document.removeEventListener("click", click)
     }
-  }, [menu, hasParent])
+  }, [onClose, hasParentMenu, closeOnBlur, buttonRef, menuRef, isOpen])
 
   const onMouseEnter = () => {
-    // If we're in a nested menu,
-    // keep the menu open when we mouse into it
-    if (hasParent) {
-      menu.onOpen()
+    /**
+     * If we're in a nested menu, keep the menu open when we mouse into it
+     */
+    if (hasParentMenu) {
+      onOpen()
     }
   }
 
@@ -171,7 +256,9 @@ export function useMenuList(props: MenuListHookProps) {
 
   const onKeyDown = createOnKeyDown({
     stopPropagation: event => {
-      if (event.key === "Escape" && hasParent) return false
+      if (event.key === "Escape" && hasParentMenu) {
+        return false
+      }
       return true
     },
     onKeyDown: onCharacterPress(character => {
@@ -198,7 +285,7 @@ export function useMenuList(props: MenuListHookProps) {
         setFocusedIndex(prevIndex)
       },
       ArrowLeft: () => {
-        if (!hasParent) return
+        if (!hasParentMenu) return
         menu.onClose()
         const node = menu.buttonRef.current
         node?.focus()
@@ -206,12 +293,9 @@ export function useMenuList(props: MenuListHookProps) {
     },
   })
 
-  // merge all the refs
-  const ref = mergeRefs(menu.menuRef, menu.popper.ref)
-
   return {
     ...rest,
-    ref,
+    ref: mergeRefs(menu.menuRef, menu.popper.ref),
     tabIndex: -1,
     role: "menu",
     id: menu.menuId,
@@ -219,14 +303,16 @@ export function useMenuList(props: MenuListHookProps) {
     "aria-orientation": "vertical" as React.AriaAttributes["aria-orientation"],
     "data-placement": menu.placement,
     style: { ...rest.style, ...menu.popper.style },
-    onMouseEnter: callAllHandlers(onMouseEnter, props.onMouseEnter),
-    onKeyDown: callAllHandlers(onKeyDown, props.onKeyDown),
+    onMouseEnter: callAllHandlers(props.onMouseEnter, onMouseEnter),
+    onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
   }
 }
 
-//////////////////////////////////////////////////////////////////////////////
+/**
+ * MenuButton Hook
+ */
 
-export interface MenuButtonHookProps {
+export interface UseMenuButtonProps {
   onMouseOver?: React.MouseEventHandler
   onClick?: React.MouseEventHandler
   onMouseOut?: React.MouseEventHandler
@@ -234,21 +320,21 @@ export interface MenuButtonHookProps {
   context: UseMenuReturn
 }
 
-export function useMenuButton(props: MenuButtonHookProps) {
+export function useMenuButton(props: UseMenuButtonProps) {
   const { context: menu, ...htmlProps } = props
   const {
     setFocusedIndex,
     onOpen,
-    descendantsContext: { descendants },
+    domContext: { descendants },
   } = menu
 
   // check if this disclosure is for a nested menu
   // in this case, it's both a disclosure and menu item
-  const hasParent = Boolean(menu.parent)
+  const hasParentMenu = Boolean(menu.parentMenu)
 
   const onClick = () => {
     // if it's the top-level disclosure, toggle the menu
-    if (!hasParent) {
+    if (!hasParentMenu) {
       if (menu.isOpen) {
         menu.onClose()
       } else {
@@ -260,7 +346,7 @@ export function useMenuButton(props: MenuButtonHookProps) {
   const onMouseOver = (event: React.MouseEvent) => {
     // top-level disclosure don't open on mouseover
     // so we do nothing
-    if (!hasParent) return
+    if (!hasParentMenu) return
 
     const self = event.currentTarget as HTMLElement
 
@@ -280,7 +366,7 @@ export function useMenuButton(props: MenuButtonHookProps) {
   const onMouseOut = (event: React.MouseEvent) => {
     // if we mouseout to any menuitem within parent menu
     // we'll close the nested menu
-    const parentMenuList = menu.parent?.menuRef.current
+    const parentMenuList = menu.parentMenu?.menuRef.current
     const target = event.currentTarget as HTMLElement
 
     if (parentMenuList?.contains(target)) {
@@ -307,45 +393,46 @@ export function useMenuButton(props: MenuButtonHookProps) {
   }, [onOpen, setFocusedIndex, descendants])
 
   const onKeyDown = createOnKeyDown({
+    preventDefault: false,
     keyMap: {
       Enter: () => {
         openAndFocusFirstItem()
       },
       ArrowDown: () => {
-        if (!hasParent) {
+        if (!hasParentMenu) {
           openAndFocusFirstItem()
         }
       },
       ArrowUp: () => {
-        if (!hasParent) {
+        if (!hasParentMenu) {
           showAndFocusLastItem()
         }
       },
       ArrowRight: () => {
-        if (hasParent) {
+        if (hasParentMenu) {
           openAndFocusFirstItem()
         }
       },
     },
   })
 
-  const ref = mergeRefs(menu.buttonRef, menu.reference.ref)
-
   return {
     ...htmlProps,
-    ref,
-    id: menu.disclosureId,
+    ref: mergeRefs(menu.buttonRef, menu.reference.ref),
+    id: menu.buttonId,
     "aria-expanded": menu.isOpen,
     "aria-haspopup": "menu" as React.AriaAttributes["aria-haspopup"],
     "aria-controls": menu.menuId,
-    onClick: callAllHandlers(onClick, props.onClick),
-    onMouseEnter: callAllHandlers(onMouseOver, props.onMouseOver),
-    onMouseOut: callAllHandlers(onMouseOut, props.onMouseOut),
-    onKeyDown: callAllHandlers(onKeyDown, props.onKeyDown),
+    onClick: callAllHandlers(props.onClick, onClick),
+    onMouseEnter: callAllHandlers(props.onMouseOver, onMouseOver),
+    onMouseOut: callAllHandlers(props.onMouseOut, onMouseOut),
+    onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
   }
 }
 
-///////////////////////////////////////////////////////////////////////////////////
+/**
+ * MenuItem Hook
+ */
 
 export interface UseMenuItemProps {
   onMouseOut?: React.MouseEventHandler
@@ -366,7 +453,7 @@ export function useMenuItem(props: UseMenuItemProps) {
   } = props
 
   const {
-    descendantsContext,
+    domContext,
     setFocusedIndex,
     focusedIndex,
     menuRef,
@@ -378,7 +465,7 @@ export function useMenuItem(props: UseMenuItemProps) {
 
   const index = useDescendant({
     element: ref.current,
-    context: descendantsContext,
+    context: domContext,
     disabled: isDisabled,
     focusable: isFocusable,
   })
@@ -424,10 +511,10 @@ export function useMenuItem(props: UseMenuItemProps) {
       menu.onClose()
 
       // close all parent menus recursively
-      let next = menu.parent
+      let next = menu.parentMenu
       while (next != null) {
         next.onClose()
-        next = next.parent
+        next = next.parentMenu
       }
     },
     [menu, onClickProp, closeOnSelect],
