@@ -55,6 +55,10 @@ export interface UseMenuProps {
    * @default true
    */
   autoSelect?: boolean
+  /**
+   * If `false`, the menu button will not receive focus when it closes.
+   */
+  returnFocusOnClose?: boolean
 }
 
 /**
@@ -70,6 +74,7 @@ export function useMenu(props: UseMenuProps) {
     closeOnSelect = true,
     closeOnBlur = true,
     autoSelect = true,
+    returnFocusOnClose = true,
   } = props
 
   /**
@@ -130,7 +135,7 @@ export function useMenu(props: UseMenuProps) {
    */
   useUpdateEffect(() => {
     if (!isOpen && !hasParentMenu) {
-      buttonRef.current?.focus()
+      returnFocusOnClose && buttonRef.current?.focus()
     }
   }, [isOpen, hasParentMenu])
 
@@ -202,6 +207,7 @@ export function useMenuList(props: UseMenuListProps) {
     focusedIndex,
     setFocusedIndex,
     hasParentMenu,
+    parentMenu,
     closeOnBlur,
     buttonRef,
     menuRef,
@@ -244,7 +250,10 @@ export function useMenuList(props: UseMenuListProps) {
        * Nested menu: Don't trigger close if we're clicking on a menu item that doubles
        * as a menu button
        */
-      if (target.hasAttribute("aria-controls")) {
+      const cond1 = target?.parentElement?.hasAttribute("aria-controls")
+      const cond2 = target?.hasAttribute("aria-controls")
+
+      if (cond1 || cond2) {
         return
       }
 
@@ -344,16 +353,19 @@ export function useMenuList(props: UseMenuListProps) {
     },
   })
 
-  const onBlur = (e: React.FocusEvent<HTMLElement>) => {
-    const target = (e.relatedTarget || document.activeElement) as HTMLElement
-    const isWithinSelf = menuRef.current?.contains(target)
-    const isInParent = menu.parentMenu?.menuRef.current?.contains(target)
-    const isMenuButton = target === buttonRef.current
+  const onBlur = useCallback(
+    (e: React.FocusEvent<HTMLElement>) => {
+      const target = (e.relatedTarget || document.activeElement) as HTMLElement
+      const isWithinSelf = menuRef.current?.contains(target)
+      const isInParent = parentMenu?.menuRef.current?.contains(target)
+      const isMenuButton = target === buttonRef.current
 
-    if (!isWithinSelf && hasParentMenu && !isMenuButton && isInParent) {
-      onClose()
-    }
-  }
+      if (!isWithinSelf && hasParentMenu && !isMenuButton && isInParent) {
+        onClose()
+      }
+    },
+    [menuRef, parentMenu, buttonRef, hasParentMenu, onClose],
+  )
 
   return {
     ...htmlProps,
@@ -381,9 +393,9 @@ export function useMenuList(props: UseMenuListProps) {
  */
 
 export interface UseMenuButtonProps {
-  onMouseOver?: React.MouseEventHandler
+  onMouseEnter?: React.MouseEventHandler
   onClick?: React.MouseEventHandler
-  onMouseOut?: React.MouseEventHandler
+  onMouseLeave?: React.MouseEventHandler
   onKeyDown?: React.KeyboardEventHandler
   className?: string
   /**
@@ -407,31 +419,65 @@ export function useMenuButton(props: UseMenuButtonProps) {
     domContext: { descendants },
   } = menu
 
+  const openAndFocusMenu = useCallback(() => {
+    onOpen()
+    requestAnimationFrame(() => {
+      menuRef.current?.focus()
+    })
+  }, [onOpen, menuRef])
+
+  const openAndFocusFirstItem = useCallback(() => {
+    onOpen()
+    setFocusedIndex(0)
+    requestAnimationFrame(() => {
+      descendants[0].element?.focus()
+    })
+  }, [descendants, onOpen, setFocusedIndex])
+
+  const openAndFocusLastItem = useCallback(() => {
+    onOpen()
+    const lastIndex = descendants.length - 1
+    setFocusedIndex(lastIndex)
+    requestAnimationFrame(() => {
+      descendants[lastIndex].element?.focus()
+    })
+  }, [onOpen, setFocusedIndex, descendants])
+
   /**
    * Click handler for the top-level menu button
    */
-  const onClick = () => {
-    /**
-     * Prevent this action if it's not top-level button
-     */
-    if (hasParentMenu) {
-      return
-    }
-
-    if (isOpen) {
-      onClose()
-    }
-
-    if (!isOpen) {
-      if (autoSelect) {
-        openAndFocusFirstItem()
-      } else {
-        openAndFocusMenu()
+  const onClick = React.useCallback(
+    (event: React.MouseEvent) => {
+      /**
+       * Prevent this action if it's not top-level button
+       */
+      if (hasParentMenu) {
+        return
       }
-    }
-  }
 
-  const onMouseOver = (event: React.MouseEvent) => {
+      if (isOpen) {
+        onClose()
+      }
+
+      if (!isOpen) {
+        if (autoSelect) {
+          openAndFocusFirstItem()
+        } else {
+          openAndFocusMenu()
+        }
+      }
+    },
+    [
+      autoSelect,
+      hasParentMenu,
+      isOpen,
+      onClose,
+      openAndFocusFirstItem,
+      openAndFocusMenu,
+    ],
+  )
+
+  const onMouseEnter = (event: React.MouseEvent) => {
     /**
      * Prevent this action if button it's a top-level menu button,
      * since top-level menus don't open on mouse-over but on click.
@@ -459,7 +505,7 @@ export function useMenuButton(props: UseMenuButtonProps) {
     }, 200)
   }
 
-  const onMouseOut = (event: React.MouseEvent) => {
+  const onMouseLeave = (event: React.MouseEvent) => {
     /**
      * If we mouseout to any menu item within parent menu
      * we'll close the nested menu
@@ -471,30 +517,6 @@ export function useMenuButton(props: UseMenuButtonProps) {
       onClose()
     }
   }
-
-  const openAndFocusMenu = useCallback(() => {
-    onOpen()
-    requestAnimationFrame(() => {
-      menuRef.current?.focus()
-    })
-  }, [onOpen, menuRef])
-
-  const openAndFocusFirstItem = useCallback(() => {
-    onOpen()
-    setFocusedIndex(0)
-    requestAnimationFrame(() => {
-      descendants[0].element?.focus()
-    })
-  }, [descendants, onOpen, setFocusedIndex])
-
-  const openAndFocusLastItem = useCallback(() => {
-    onOpen()
-    const lastIndex = descendants.length - 1
-    setFocusedIndex(lastIndex)
-    requestAnimationFrame(() => {
-      descendants[lastIndex].element?.focus()
-    })
-  }, [onOpen, setFocusedIndex, descendants])
 
   const onKeyDown = createOnKeyDown({
     preventDefault: !hasParentMenu,
@@ -530,8 +552,8 @@ export function useMenuButton(props: UseMenuButtonProps) {
     "aria-haspopup": "menu" as React.AriaAttributes["aria-haspopup"],
     "aria-controls": menu.menuId,
     onClick: callAllHandlers(props.onClick, onClick),
-    onMouseEnter: callAllHandlers(props.onMouseOver, onMouseOver),
-    onMouseOut: callAllHandlers(props.onMouseOut, onMouseOut),
+    onMouseEnter: callAllHandlers(props.onMouseEnter, onMouseEnter),
+    onMouseLeave: callAllHandlers(props.onMouseLeave, onMouseLeave),
     onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
   }
 }
@@ -588,11 +610,11 @@ export function useMenuItem(props: UseMenuItemProps) {
     focusable: isFocusable,
   })
 
-  const onMouseOver = useCallback(() => {
+  const onMouseEnter = useCallback(() => {
     setFocusedIndex(index)
   }, [setFocusedIndex, index])
 
-  const onMouseOut = useCallback(() => {
+  const onMouseLeave = useCallback(() => {
     setFocusedIndex(-1)
   }, [setFocusedIndex])
 
@@ -625,18 +647,20 @@ export function useMenuItem(props: UseMenuItemProps) {
 
   useUpdateEffect(() => {
     if (isFocused && !trulyDisabled) {
-      ref.current?.focus()
+      requestAnimationFrame(() => {
+        ref.current?.focus()
+      })
     } else {
-      if (document.activeElement === ref.current) {
+      if (document.activeElement !== menuRef.current) {
         menuRef.current?.focus()
       }
     }
-  }, [isFocused, trulyDisabled, menuRef])
+  }, [isFocused, trulyDisabled])
 
   const tabbable = useClickable({
     onClick,
-    onMouseOver,
-    onMouseOut,
+    onMouseEnter,
+    onMouseLeave,
     ref,
     isDisabled,
     isFocusable,

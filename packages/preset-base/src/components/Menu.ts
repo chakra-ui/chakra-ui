@@ -17,7 +17,6 @@ const getMenuListStyle = (props: Props): ChakraProps => {
 
 const getMenuItemStyle = (props: Props): ChakraProps => ({
   width: "100%",
-  transition: "background-color 220ms, color 220ms",
   outline: 0,
   textDecoration: "none",
   paddingY: "0.4rem",

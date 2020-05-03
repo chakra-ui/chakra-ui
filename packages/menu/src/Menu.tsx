@@ -53,6 +53,7 @@ const StyledMenuButton = chakra("button", {
     outline: 0,
     transition: "all 0.2s",
   },
+  pure: true,
 })
 
 const SubmenuSvg = (props: PropsOf<"svg">) => (
@@ -84,10 +85,8 @@ export const MenuButton = React.forwardRef(
 
       return (
         <React.Fragment>
-          <chakra.span pointerEvents="none" flex="1">
-            {props.children}
-          </chakra.span>
-          <MenuItemIcon pointerEvents="none" children={submenuIcon} />
+          <chakra.span flex="1">{props.children}</chakra.span>
+          <MenuItemIcon mr="-0.5rem" children={submenuIcon} />
         </React.Fragment>
       )
     }
@@ -108,6 +107,7 @@ export type MenuListProps = PropsOf<typeof StyledMenuList>
 
 const StyledMenuList = chakra("div", {
   themeKey: "Menu.MenuList",
+  pure: true,
 })
 
 export const MenuList = React.forwardRef(
@@ -139,6 +139,7 @@ const StyledMenuItem = chakra("button", {
     textAlign: "left",
     flex: "0 0 auto",
   },
+  pure: true,
 })
 
 export type MenuItemProps = PropsOf<typeof StyledMenuItem> &
@@ -215,7 +216,10 @@ if (__DEV__) {
   MenuOptionGroup.displayName = "MenuOptionGroup"
 }
 
-const StyledTitle = chakra("p", { themeKey: "Menu.MenuGroupTitle" })
+const StyledTitle = chakra("p", {
+  themeKey: "Menu.MenuGroupTitle",
+  pure: true,
+})
 
 export type MenuGroupProps = PropsOf<typeof StyledTitle>
 
@@ -246,6 +250,7 @@ export const MenuItemCommand = chakra("span", {
   attrs: {
     className: "chakra-menu__command",
   },
+  pure: true,
 })
 
 if (__DEV__) {

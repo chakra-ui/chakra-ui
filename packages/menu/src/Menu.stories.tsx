@@ -37,8 +37,8 @@ const words = [
 
 export const basic = () => (
   <Menu>
-    <MenuButton variant="solid" colorScheme="green" size="sm">
-      Open menu
+    <MenuButton variant="solid" colorScheme="teal" size="sm">
+      Open Wakanda menu
     </MenuButton>
     <MenuList>
       {words.map(word => (
@@ -101,12 +101,12 @@ export const withPortal = () => (
 const Submenu2 = React.forwardRef<HTMLButtonElement, {}>((props, ref) => (
   <Menu>
     <MenuButton isSubmenu ref={ref} {...props}>
-      Submenu
+      Other
     </MenuButton>
     <Portal>
       <MenuList>
-        <MenuItem>Menu 1</MenuItem>
-        <MenuItem>Menu 2</MenuItem>
+        <MenuItem>Twitch</MenuItem>
+        <MenuItem>Pinterest</MenuItem>
       </MenuList>
     </Portal>
   </Menu>
@@ -115,13 +115,13 @@ const Submenu2 = React.forwardRef<HTMLButtonElement, {}>((props, ref) => (
 const Submenu = React.forwardRef<HTMLButtonElement, {}>((props, ref) => (
   <Menu>
     <MenuButton isSubmenu ref={ref} {...props}>
-      Submenu
+      Other
     </MenuButton>
     <Portal>
       <MenuList>
-        <MenuItem>Menu 1</MenuItem>
-        <MenuItem>Menu 2</MenuItem>
-        <MenuItem as={Submenu2}>Submenu 2 >> </MenuItem>
+        <MenuItem>Twitter</MenuItem>
+        <MenuItem>Facebook</MenuItem>
+        <MenuItem as={Submenu2} />
       </MenuList>
     </Portal>
   </Menu>
@@ -129,22 +129,14 @@ const Submenu = React.forwardRef<HTMLButtonElement, {}>((props, ref) => (
 
 export const nestedMenus = () => (
   <Menu>
-    <MenuButton variant="solid" colorScheme="green" size="sm">
-      Open menu
-    </MenuButton>
+    <MenuButton colorScheme="teal">Open menu</MenuButton>
     <Portal>
       <MenuList>
-        <MenuItem>Menu 1</MenuItem>
-        <MenuItem>Menu 2</MenuItem>
-        <MenuItem
-          onClick={() => {
-            console.log("menu 3 clicked")
-          }}
-        >
-          Menu 3
-        </MenuItem>
+        <MenuItem command="⌘T">New Tab</MenuItem>
+        <MenuItem command="⌘N">New Window</MenuItem>
+        <MenuItem command="⌘⇧N">Open Closed Tab</MenuItem>
         <MenuItem as={Submenu} />
-        <MenuItem>Menu 4</MenuItem>
+        <MenuItem command="⌘O">Open File...</MenuItem>
       </MenuList>
     </Portal>
   </Menu>
