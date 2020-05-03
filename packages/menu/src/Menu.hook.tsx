@@ -55,10 +55,6 @@ export interface UseMenuProps {
    * @default true
    */
   autoSelect?: boolean
-  /**
-   * If `false`, the menu button will not receive focus when it closes.
-   */
-  returnFocusOnClose?: boolean
 }
 
 /**
@@ -74,7 +70,6 @@ export function useMenu(props: UseMenuProps) {
     closeOnSelect = true,
     closeOnBlur = true,
     autoSelect = true,
-    returnFocusOnClose = true,
   } = props
 
   /**
@@ -135,7 +130,7 @@ export function useMenu(props: UseMenuProps) {
    */
   useUpdateEffect(() => {
     if (!isOpen && !hasParentMenu) {
-      returnFocusOnClose && buttonRef.current?.focus()
+      buttonRef.current?.focus()
     }
   }, [isOpen, hasParentMenu])
 

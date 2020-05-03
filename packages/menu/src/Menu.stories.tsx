@@ -101,7 +101,7 @@ export const withPortal = () => (
 const Submenu2 = React.forwardRef<HTMLButtonElement, {}>((props, ref) => (
   <Menu>
     <MenuButton isSubmenu ref={ref} {...props}>
-      Submenu >>
+      Submenu
     </MenuButton>
     <Portal>
       <MenuList>
@@ -115,7 +115,7 @@ const Submenu2 = React.forwardRef<HTMLButtonElement, {}>((props, ref) => (
 const Submenu = React.forwardRef<HTMLButtonElement, {}>((props, ref) => (
   <Menu>
     <MenuButton isSubmenu ref={ref} {...props}>
-      Submenu >>
+      Submenu
     </MenuButton>
     <Portal>
       <MenuList>

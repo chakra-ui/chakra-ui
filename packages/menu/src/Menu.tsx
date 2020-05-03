@@ -55,9 +55,23 @@ const StyledMenuButton = chakra("button", {
   },
 })
 
+const SubmenuSvg = (props: PropsOf<"svg">) => (
+  <svg
+    stroke="currentColor"
+    fill="currentColor"
+    strokeWidth="0"
+    viewBox="0 0 512 512"
+    height="1.2em"
+    width="1.2em"
+    {...props}
+  >
+    <path d="M192 128l128 128-128 128z" />
+  </svg>
+)
+
 export const MenuButton = React.forwardRef(
   (props: MenuButtonProps, ref: React.Ref<any>) => {
-    const { isSubmenu, children, submenuIcon, ...rest } = props
+    const { isSubmenu, children, submenuIcon = <SubmenuSvg />, ...rest } = props
 
     const context = useMenuContext()
     const ownProps = useMenuButton({ context, ...rest })
@@ -70,8 +84,10 @@ export const MenuButton = React.forwardRef(
 
       return (
         <React.Fragment>
-          <chakra.span flex="1">{props.children}</chakra.span>
-          <MenuItemIcon children={submenuIcon} />
+          <chakra.span pointerEvents="none" flex="1">
+            {props.children}
+          </chakra.span>
+          <MenuItemIcon pointerEvents="none" children={submenuIcon} />
         </React.Fragment>
       )
     }
