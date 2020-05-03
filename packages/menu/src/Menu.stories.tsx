@@ -13,6 +13,7 @@ import {
   MenuItemOption,
   MenuDivider,
 } from "./Menu"
+import { FaSearch, FaUndoAlt, FaTruck, FaUnlink } from "react-icons/fa"
 
 export default {
   title: "Menu",
@@ -25,16 +26,24 @@ export default {
   ],
 }
 
+const words = [
+  "About Visual Studio Code",
+  "Check for updates",
+  "Preferences",
+  "Services",
+  "Hide Visual Studio Code",
+  "Show All",
+]
+
 export const basic = () => (
-  <Menu autoSelect={false}>
+  <Menu>
     <MenuButton variant="solid" colorScheme="green" size="sm">
       Open menu
     </MenuButton>
     <MenuList>
-      <MenuItem>Menu 1</MenuItem>
-      <MenuItem>Menu 2</MenuItem>
-      <MenuItem>Menu 3</MenuItem>
-      <MenuItem>Menu 4</MenuItem>
+      {words.map(word => (
+        <MenuItem key={word}>{word}</MenuItem>
+      ))}
     </MenuList>
   </Menu>
 )
@@ -45,10 +54,14 @@ export const disabledMenuItem = () => (
       Open menu
     </MenuButton>
     <MenuList>
-      <MenuItem>Menu 1</MenuItem>
-      <MenuItem>Menu 2</MenuItem>
-      <MenuItem isDisabled>Menu 3</MenuItem>
-      <MenuItem>Menu 4</MenuItem>
+      <MenuItem color="gray.700" icon={<FaSearch />} command="⌥T">
+        Search
+      </MenuItem>
+      <MenuItem icon={<FaUndoAlt />}>Undo</MenuItem>
+      <MenuItem isDisabled icon={<FaTruck />}>
+        Delivery
+      </MenuItem>
+      <MenuItem icon={<FaUnlink />}>Unlink</MenuItem>
     </MenuList>
   </Menu>
 )

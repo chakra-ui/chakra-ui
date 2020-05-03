@@ -1,4 +1,4 @@
-import { chakra, PropsOf } from "@chakra-ui/system"
+import { chakra, PropsOf, SystemProps } from "@chakra-ui/system"
 import { createContext, mergeRefs, __DEV__, cx } from "@chakra-ui/utils"
 import * as React from "react"
 import {
@@ -12,6 +12,7 @@ import {
   UseMenuOptionProps,
   UseMenuProps,
   UseMenuReturn,
+  UseMenuOptionGroupProps,
 } from "./Menu.hook"
 
 const [MenuContextProvider, useMenuContext] = createContext<UseMenuReturn>({
@@ -42,16 +43,21 @@ if (__DEV__) {
 
 export type MenuButtonProps = PropsOf<typeof StyledMenuButton> & {
   isSubmenu?: boolean
+  submenuIcon?: React.ReactElement
 }
 
 // change the themekey to menu.button
 const StyledMenuButton = chakra("button", {
   themeKey: "Button",
+  baseStyle: {
+    outline: 0,
+    transition: "all 0.2s",
+  },
 })
 
 export const MenuButton = React.forwardRef(
   (props: MenuButtonProps, ref: React.Ref<any>) => {
-    const { isSubmenu, ...rest } = props
+    const { isSubmenu, children, submenuIcon, ...rest } = props
 
     const context = useMenuContext()
     const ownProps = useMenuButton({ context, ...rest })
@@ -59,7 +65,22 @@ export const MenuButton = React.forwardRef(
 
     const Comp = isSubmenu ? StyledMenuItem : StyledMenuButton
 
-    return <Comp {...ownProps} ref={ownRef} />
+    const getChildren = () => {
+      if (!isSubmenu) return props.children
+
+      return (
+        <React.Fragment>
+          <chakra.span flex="1">{props.children}</chakra.span>
+          <MenuItemIcon children={submenuIcon} />
+        </React.Fragment>
+      )
+    }
+
+    return (
+      <Comp {...ownProps} ref={ownRef}>
+        {getChildren()}
+      </Comp>
+    )
   },
 )
 
@@ -71,10 +92,6 @@ export type MenuListProps = PropsOf<typeof StyledMenuList>
 
 const StyledMenuList = chakra("div", {
   themeKey: "Menu.MenuList",
-  baseStyle: {
-    maxWidth: "120px",
-    fontSize: "sm",
-  },
 })
 
 export const MenuList = React.forwardRef(
@@ -99,19 +116,53 @@ if (__DEV__) {
 
 const StyledMenuItem = chakra("button", {
   themeKey: "Menu.MenuItem",
-  baseStyle: { padding: 3 },
+  baseStyle: {
+    userSelect: "none",
+    display: "flex",
+    alignItems: "center",
+    textAlign: "left",
+    flex: "0 0 auto",
+  },
 })
 
 export type MenuItemProps = PropsOf<typeof StyledMenuItem> &
-  Omit<UseMenuItemProps, "context">
+  Omit<UseMenuItemProps, "context"> & {
+    /**
+     * The icon to render before the menu item's label.
+     */
+    icon?: React.ReactElement
+    /**
+     * The spacing between the icon and menu item's label
+     */
+    iconSpacing?: SystemProps["mr"]
+    /**
+     * Right-aligned label text content, useful for displaying hotkeys.
+     */
+    command?: string
+  }
 
 export const MenuItem = React.forwardRef(
   (props: MenuItemProps, ref: React.Ref<any>) => {
+    const {
+      icon,
+      iconSpacing = "0.75rem",
+      command,
+      children,
+      ...htmlProps
+    } = props
+
     const context = useMenuContext()
-    const ownProps = useMenuItem({ context, ...props })
+
+    const ownProps = useMenuItem({ context, ...htmlProps })
     const ownRef = mergeRefs(ownProps.ref, ref)
 
-    return <StyledMenuItem {...ownProps} ref={ownRef} />
+    return (
+      <StyledMenuItem {...ownProps} ref={ownRef}>
+        {icon && <MenuItemIcon mr={iconSpacing} children={icon} />}
+        <chakra.span flex="1">{children}</chakra.span>
+        {command && <MenuItemCommand children={command} />}
+      </StyledMenuItem>
+    )
   },
 )
 
@@ -136,32 +187,37 @@ if (__DEV__) {
   MenuItemOption.displayName = "MenuItemOption"
 }
 
-export const MenuOptionGroup = (props: any) => {
-  //@ts-ignore
-  const { children, title, ...rest } = useMenuOptionGroup(props)
-  return <MenuGroup title={title} children={children} {...rest} />
+export type MenuOptionGroupProps = UseMenuOptionGroupProps &
+  Omit<MenuGroupProps, "value" | "default" | "onChange">
+
+export const MenuOptionGroup = (props: MenuOptionGroupProps) => {
+  const { children, ...rest } = useMenuOptionGroup(props)
+  return <MenuGroup title={props.title} children={children} {...rest} />
 }
 
-const StyledMenuGroup = chakra("div")
+if (__DEV__) {
+  MenuOptionGroup.displayName = "MenuOptionGroup"
+}
 
-export const MenuGroup = (props: any) => {
-  const { title, children, ...rest } = props
+const StyledTitle = chakra("p", { themeKey: "Menu.MenuGroupTitle" })
+
+export type MenuGroupProps = PropsOf<typeof StyledTitle>
+
+export const MenuGroup = (props: MenuGroupProps) => {
+  const { title, children, className, ...rest } = props
 
   return (
-    <StyledMenuGroup className="chakra-menu__group" role="group">
+    <chakra.div className="chakra-menu__group" role="group">
       {title && (
-        <chakra.p
-          marginX={3}
-          marginY={2}
-          fontWeight="semibold"
-          fontSize="sm"
+        <StyledTitle
+          className={cx("chakra-menu__group__title", className)}
           {...rest}
         >
           {title}
-        </chakra.p>
+        </StyledTitle>
       )}
       {children}
-    </StyledMenuGroup>
+    </chakra.div>
   )
 }
 
@@ -169,15 +225,40 @@ if (__DEV__) {
   MenuGroup.displayName = "MenuGroup"
 }
 
-//TODO: Implement these
-export const MenuItemCommand = () => {}
+export const MenuItemCommand = chakra("span", {
+  baseStyle: { opacity: 0.6 },
+  attrs: {
+    className: "chakra-menu__command",
+  },
+})
 
 if (__DEV__) {
   MenuItemCommand.displayName = "MenuItemCommand"
 }
 
-//TODO: Implement these
-export const MenuItemIcon = () => {}
+export const MenuItemIcon = (props: PropsOf<typeof chakra.div>) => {
+  const { className, children, ...rest } = props
+
+  const child = React.Children.only(children)
+
+  const clone = React.isValidElement(child)
+    ? React.cloneElement(child, {
+        focusable: "false",
+        "aria-hidden": true,
+        className: cx("chakra-menu__icon", child.props.className),
+      })
+    : null
+
+  return (
+    <chakra.span
+      flexShrink={0}
+      className={cx("chakra-menu__icon-wrapper", props.className)}
+      {...rest}
+    >
+      {clone}
+    </chakra.span>
+  )
+}
 
 if (__DEV__) {
   MenuItemIcon.displayName = "MenuItemIcon"

@@ -22,6 +22,7 @@ import {
   removeItem,
   cx,
   isString,
+  dataAttr,
 } from "@chakra-ui/utils"
 import * as React from "react"
 import { useEffect, useCallback, useRef, cloneElement, useState } from "react"
@@ -38,6 +39,8 @@ export interface UseMenuProps {
   /**
    * If `true`, the menu will close when a menu item is
    * clicked
+   *
+   * @default true
    */
   closeOnSelect?: boolean
   /**
@@ -48,8 +51,14 @@ export interface UseMenuProps {
   /**
    * If `true`, the first enabled menu item will be selected
    * when the menu opens.
+   *
+   * @default true
    */
   autoSelect?: boolean
+  /**
+   * If `false`, the menu button will not receive focus when it closes.
+   */
+  returnFocusOnClose?: boolean
 }
 
 /**
@@ -65,6 +74,7 @@ export function useMenu(props: UseMenuProps) {
     closeOnSelect = true,
     closeOnBlur = true,
     autoSelect = true,
+    returnFocusOnClose = true,
   } = props
 
   /**
@@ -125,7 +135,7 @@ export function useMenu(props: UseMenuProps) {
    */
   useUpdateEffect(() => {
     if (!isOpen && !hasParentMenu) {
-      buttonRef.current?.focus()
+      returnFocusOnClose && buttonRef.current?.focus()
     }
   }, [isOpen, hasParentMenu])
 
@@ -173,14 +183,8 @@ export interface UseMenuReturn extends ReturnType<typeof useMenu> {}
  * React Hook to manage a menu list.
  *
  * The assumption here is that the `useMenu` hook is used
- * in a component higher up the tree.
- *
- * The hook tree will look like this:
- *
- * - useMenu (return value is passed to useMenuList & useMenuButton)
- *   - useMenuButton
- *   - useMenuList (return value is passed to useMenuItem)
- *     - useMenuItem
+ * in a component higher up the tree, and it's return value
+ * is passed as `context` to this hook.
  */
 
 export interface UseMenuListProps {
@@ -526,6 +530,7 @@ export function useMenuButton(props: UseMenuButtonProps) {
     ref: mergeRefs(menu.buttonRef, menu.reference.ref),
     className: cx("chakra-menu__menu-button", htmlProps.className),
     id: menu.buttonId,
+    "data-active": dataAttr(menu.isOpen),
     "aria-expanded": menu.isOpen,
     "aria-haspopup": "menu" as React.AriaAttributes["aria-haspopup"],
     "aria-controls": menu.menuId,
