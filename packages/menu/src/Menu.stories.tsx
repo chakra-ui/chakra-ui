@@ -26,7 +26,7 @@ export default {
 }
 
 export const basic = () => (
-  <Menu>
+  <Menu autoSelect={false}>
     <MenuButton variant="solid" colorScheme="green" size="sm">
       Open menu
     </MenuButton>
@@ -85,6 +85,20 @@ export const withPortal = () => (
   </Menu>
 )
 
+const Submenu2 = React.forwardRef<HTMLButtonElement, {}>((props, ref) => (
+  <Menu>
+    <MenuButton isSubmenu ref={ref} {...props}>
+      Submenu >>
+    </MenuButton>
+    <Portal>
+      <MenuList>
+        <MenuItem>Menu 1</MenuItem>
+        <MenuItem>Menu 2</MenuItem>
+      </MenuList>
+    </Portal>
+  </Menu>
+))
+
 const Submenu = React.forwardRef<HTMLButtonElement, {}>((props, ref) => (
   <Menu>
     <MenuButton isSubmenu ref={ref} {...props}>
@@ -94,6 +108,7 @@ const Submenu = React.forwardRef<HTMLButtonElement, {}>((props, ref) => (
       <MenuList>
         <MenuItem>Menu 1</MenuItem>
         <MenuItem>Menu 2</MenuItem>
+        <MenuItem as={Submenu2}>Submenu 2 >> </MenuItem>
       </MenuList>
     </Portal>
   </Menu>

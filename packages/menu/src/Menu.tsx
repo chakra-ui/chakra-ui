@@ -1,5 +1,5 @@
 import { chakra, PropsOf } from "@chakra-ui/system"
-import { createContext, mergeRefs, __DEV__ } from "@chakra-ui/utils"
+import { createContext, mergeRefs, __DEV__, cx } from "@chakra-ui/utils"
 import * as React from "react"
 import {
   useMenu,
@@ -59,7 +59,7 @@ export const MenuButton = React.forwardRef(
 
     const Comp = isSubmenu ? StyledMenuItem : StyledMenuButton
 
-    return <Comp data-chakra-menu-button="" {...ownProps} ref={ownRef} />
+    return <Comp {...ownProps} ref={ownRef} />
   },
 )
 
@@ -85,7 +85,6 @@ export const MenuList = React.forwardRef(
 
     return (
       <StyledMenuList
-        data-chakra-menu-list=""
         {...ownProps}
         {...(props.hidden != null && { hidden: props.hidden })}
         ref={ownRef}
@@ -140,7 +139,7 @@ if (__DEV__) {
 export const MenuOptionGroup = (props: any) => {
   //@ts-ignore
   const { children, title, ...rest } = useMenuOptionGroup(props)
-  return <MenuGroup title={props.title} children={children} {...rest} />
+  return <MenuGroup title={title} children={children} {...rest} />
 }
 
 const StyledMenuGroup = chakra("div")
@@ -149,7 +148,7 @@ export const MenuGroup = (props: any) => {
   const { title, children, ...rest } = props
 
   return (
-    <StyledMenuGroup role="group">
+    <StyledMenuGroup className="chakra-menu__group" role="group">
       {title && (
         <chakra.p
           marginX={3}
@@ -196,6 +195,7 @@ export const MenuDivider = (props: MenuDividerProps) => (
     marginTop="0.5rem"
     marginBottom="1rem"
     {...props}
+    className={cx("chakra-menu__divider", props.className)}
   />
 )
 

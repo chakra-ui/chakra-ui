@@ -20,8 +20,11 @@ import {
   isArray,
   mergeRefs,
   removeItem,
+  cx,
+  isString,
 } from "@chakra-ui/utils"
 import * as React from "react"
+import { useEffect, useCallback, useRef, cloneElement, useState } from "react"
 
 export interface UseMenuProps {
   /**
@@ -83,8 +86,8 @@ export function useMenu(props: UseMenuProps) {
   /**
    * Prepare the reference to the menu and disclosure
    */
-  const menuRef = React.useRef<HTMLDivElement>(null)
-  const buttonRef = React.useRef<HTMLButtonElement>(null)
+  const menuRef = useRef<HTMLDivElement>(null)
+  const buttonRef = useRef<HTMLButtonElement>(null)
 
   /**
    * Add some popper.js for dynamic positioning
@@ -96,10 +99,10 @@ export function useMenu(props: UseMenuProps) {
     gutter: hasParentMenu ? 0 : undefined,
   })
 
-  const [focusedIndex, setFocusedIndex] = React.useState(-1)
+  const [focusedIndex, setFocusedIndex] = useState(-1)
 
   /**
-   * We use this context to register all menu items nodes
+   * Context to register all menu item nodes
    */
   const domContext = useDescendants<HTMLDivElement, {}>()
 
@@ -107,7 +110,7 @@ export function useMenu(props: UseMenuProps) {
    * Safety: If a parent menu is closed, we need to ensure
    * all children menus are closed as well
    */
-  React.useEffect(() => {
+  useEffect(() => {
     if (!parentMenu) return
 
     const parentIsNotOpen = hasParentMenu && !parentMenu.isOpen
@@ -118,13 +121,22 @@ export function useMenu(props: UseMenuProps) {
   }, [isOpen, onClose, parentMenu, hasParentMenu])
 
   /**
-   * Let's focus the top-level disclosure when we close the menu
+   * Focus the top-level disclosure when we close the menu
    */
   useUpdateEffect(() => {
     if (!isOpen && !hasParentMenu) {
       buttonRef.current?.focus()
     }
   }, [isOpen, hasParentMenu])
+
+  /**
+   * Reset the focused index if the menu is closed
+   */
+  useEffect(() => {
+    if (!isOpen) {
+      setFocusedIndex(-1)
+    }
+  }, [isOpen])
 
   /**
    * Generate unique ids for menu's list and button
@@ -165,24 +177,27 @@ export interface UseMenuReturn extends ReturnType<typeof useMenu> {}
  *
  * The hook tree will look like this:
  *
- * - useMenu (return value is passed to useMenuList)
+ * - useMenu (return value is passed to useMenuList & useMenuButton)
+ *   - useMenuButton
  *   - useMenuList (return value is passed to useMenuItem)
  *     - useMenuItem
  */
 
 export interface UseMenuListProps {
   onMouseEnter?: React.MouseEventHandler
+  onBlur?: React.FocusEventHandler
   onKeyDown?: React.KeyboardEventHandler
   /**
    * Return value from `useMenu` hook
    */
   context: UseMenuReturn
   style?: React.CSSProperties
+  className?: string
   hidden?: boolean
 }
 
 export function useMenuList(props: UseMenuListProps) {
-  const { context: menu, ...rest } = props
+  const { context: menu, ...htmlProps } = props
 
   const {
     focusedIndex,
@@ -194,14 +209,18 @@ export function useMenuList(props: UseMenuListProps) {
     isOpen,
     onClose,
     onOpen,
+    popper,
+    menuId,
+    placement,
     domContext: { descendants },
   } = menu
 
   /**
    * Effect to close this menu on outside click
    */
-  React.useEffect(() => {
+  useEffect(() => {
     const click = (event: MouseEvent) => {
+      const target = event.target as HTMLElement
       /**
        * if the menu is not open, don't do anything
        */
@@ -210,7 +229,7 @@ export function useMenuList(props: UseMenuListProps) {
       /**
        * if the click is within the menu container, don't do anything
        */
-      if (menuRef.current?.contains(event.target as HTMLElement)) {
+      if (menuRef.current?.contains(target)) {
         return
       }
 
@@ -218,7 +237,15 @@ export function useMenuList(props: UseMenuListProps) {
        * Nested menu: If we're clicking on a `menuitem` that's a button for another
        * menu, don't do anything.
        */
-      if (event.target === buttonRef.current) {
+      if (target === buttonRef.current) {
+        return
+      }
+
+      /**
+       * Nested menu: Don't trigger close if we're clicking on a menu item that doubles
+       * as a menu button
+       */
+      if (target.hasAttribute("aria-controls")) {
         return
       }
 
@@ -250,11 +277,21 @@ export function useMenuList(props: UseMenuListProps) {
     }
   }
 
+  /**
+   * Hook that creates a keydown event handler that listens
+   * to printable keyboard character press
+   */
   const onCharacterPress = useShortcut({
     preventDefault: event => event.key !== " ",
   })
 
   const onKeyDown = createOnKeyDown({
+    /**
+     * Allow `Escape` key to propagate to it's parent
+     * which will trigger close for all parent menus.
+     *
+     * In any other case, don't allow propagation
+     */
     stopPropagation: event => {
       if (event.key === "Escape" && hasParentMenu) {
         return false
@@ -262,6 +299,10 @@ export function useMenuList(props: UseMenuListProps) {
       return true
     },
     onKeyDown: onCharacterPress(character => {
+      /**
+       * Typeahead: Based on current character pressed,
+       * find the next item to be selected
+       */
       const nextItem = getNextItemFromSearch(
         descendants,
         character,
@@ -275,7 +316,14 @@ export function useMenuList(props: UseMenuListProps) {
       }
     }),
     keyMap: {
-      Escape: menu.onClose,
+      Escape: () => {
+        onClose()
+        let next = menu.parentMenu
+        while (next != null) {
+          next.onClose()
+          next = next.parentMenu
+        }
+      },
       ArrowDown: () => {
         const nextIndex = getNextIndex(focusedIndex, descendants.length)
         setFocusedIndex(nextIndex)
@@ -285,31 +333,52 @@ export function useMenuList(props: UseMenuListProps) {
         setFocusedIndex(prevIndex)
       },
       ArrowLeft: () => {
-        if (!hasParentMenu) return
-        menu.onClose()
-        const node = menu.buttonRef.current
-        node?.focus()
+        /**
+         * If this is a nested menu, and user presses `ArrowLeft`,
+         * we'll close the nested menu and move back to the parent menu
+         */
+        if (hasParentMenu) {
+          onClose()
+          buttonRef.current?.focus()
+        }
       },
     },
   })
 
+  const onBlur = (e: React.FocusEvent<HTMLElement>) => {
+    const target = (e.relatedTarget || document.activeElement) as HTMLElement
+    const isWithinSelf = menuRef.current?.contains(target)
+    const isInParent = menu.parentMenu?.menuRef.current?.contains(target)
+    const isMenuButton = target === buttonRef.current
+
+    if (!isWithinSelf && hasParentMenu && !isMenuButton && isInParent) {
+      onClose()
+    }
+  }
+
   return {
-    ...rest,
-    ref: mergeRefs(menu.menuRef, menu.popper.ref),
+    ...htmlProps,
+    className: cx("chakra-menu__menu-list", htmlProps.className),
+    ref: mergeRefs(menuRef, popper.ref),
     tabIndex: -1,
     role: "menu",
-    id: menu.menuId,
-    hidden: !menu.isOpen,
+    id: menuId,
+    hidden: !isOpen,
     "aria-orientation": "vertical" as React.AriaAttributes["aria-orientation"],
-    "data-placement": menu.placement,
-    style: { ...rest.style, ...menu.popper.style },
+    "data-placement": placement,
+    style: { ...htmlProps.style, ...popper.style },
     onMouseEnter: callAllHandlers(props.onMouseEnter, onMouseEnter),
     onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
+    onBlur: callAllHandlers(props.onBlur, onBlur),
   }
 }
 
 /**
- * MenuButton Hook
+ * React Hook to manage a menu button.
+ *
+ * The assumption here is that the `useMenu` hook is used
+ * in a component higher up the tree, and it's return value
+ * is passed as `context` to this hook.
  */
 
 export interface UseMenuButtonProps {
@@ -317,45 +386,73 @@ export interface UseMenuButtonProps {
   onClick?: React.MouseEventHandler
   onMouseOut?: React.MouseEventHandler
   onKeyDown?: React.KeyboardEventHandler
+  className?: string
+  /**
+   * Return value from `useMenu` hook
+   */
   context: UseMenuReturn
 }
 
 export function useMenuButton(props: UseMenuButtonProps) {
   const { context: menu, ...htmlProps } = props
+
   const {
     setFocusedIndex,
     onOpen,
+    hasParentMenu,
+    isOpen,
+    onClose,
+    parentMenu,
+    autoSelect,
+    menuRef,
     domContext: { descendants },
   } = menu
 
-  // check if this disclosure is for a nested menu
-  // in this case, it's both a disclosure and menu item
-  const hasParentMenu = Boolean(menu.parentMenu)
-
+  /**
+   * Click handler for the top-level menu button
+   */
   const onClick = () => {
-    // if it's the top-level disclosure, toggle the menu
-    if (!hasParentMenu) {
-      if (menu.isOpen) {
-        menu.onClose()
-      } else {
+    /**
+     * Prevent this action if it's not top-level button
+     */
+    if (hasParentMenu) {
+      return
+    }
+
+    if (isOpen) {
+      onClose()
+    }
+
+    if (!isOpen) {
+      if (autoSelect) {
         openAndFocusFirstItem()
+      } else {
+        openAndFocusMenu()
       }
     }
   }
 
   const onMouseOver = (event: React.MouseEvent) => {
-    // top-level disclosure don't open on mouseover
-    // so we do nothing
+    /**
+     * Prevent this action if button it's a top-level menu button,
+     * since top-level menus don't open on mouse-over but on click.
+     *
+     * Only nested menus open on mouse over.
+     */
     if (!hasParentMenu) return
 
     const self = event.currentTarget as HTMLElement
 
-    // open the nested menu after a delay
+    /**
+     * Open the nested menu after a delay
+     */
     setTimeout(() => {
       if (self.contains(document.activeElement)) {
-        menu.onOpen()
-        // if this menu item hasn't received focus due to browser
-        // issues, force it to focus
+        onOpen()
+        /**
+         * If this menu item hasn't received focus due to browser
+         * issues, force it to focus
+         */
         if (document.activeElement !== self) {
           self.focus()
         }
@@ -364,26 +461,34 @@ export function useMenuButton(props: UseMenuButtonProps) {
   }
 
   const onMouseOut = (event: React.MouseEvent) => {
-    // if we mouseout to any menuitem within parent menu
-    // we'll close the nested menu
-    const parentMenuList = menu.parentMenu?.menuRef.current
+    /**
+     * If we mouseout to any menu item within parent menu
+     * we'll close the nested menu
+     */
+    const parentMenuList = parentMenu?.menuRef.current
     const target = event.currentTarget as HTMLElement
 
     if (parentMenuList?.contains(target)) {
-      menu.onClose()
+      onClose()
     }
   }
 
-  const openAndFocusFirstItem = React.useCallback(() => {
+  const openAndFocusMenu = useCallback(() => {
     onOpen()
-    const firstIndex = 0
-    setFocusedIndex(firstIndex)
     requestAnimationFrame(() => {
-      descendants[firstIndex].element?.focus()
+      menuRef.current?.focus()
+    })
+  }, [onOpen, menuRef])
+
+  const openAndFocusFirstItem = useCallback(() => {
+    onOpen()
+    setFocusedIndex(0)
+    requestAnimationFrame(() => {
+      descendants[0].element?.focus()
     })
   }, [descendants, onOpen, setFocusedIndex])
 
-  const showAndFocusLastItem = React.useCallback(() => {
+  const openAndFocusLastItem = useCallback(() => {
     onOpen()
     const lastIndex = descendants.length - 1
     setFocusedIndex(lastIndex)
@@ -393,7 +498,7 @@ export function useMenuButton(props: UseMenuButtonProps) {
   }, [onOpen, setFocusedIndex, descendants])
 
   const onKeyDown = createOnKeyDown({
-    preventDefault: false,
+    preventDefault: !hasParentMenu,
     keyMap: {
       Enter: () => {
         openAndFocusFirstItem()
@@ -405,7 +510,7 @@ export function useMenuButton(props: UseMenuButtonProps) {
       },
       ArrowUp: () => {
         if (!hasParentMenu) {
-          showAndFocusLastItem()
+          openAndFocusLastItem()
         }
       },
       ArrowRight: () => {
@@ -419,6 +524,7 @@ export function useMenuButton(props: UseMenuButtonProps) {
   return {
     ...htmlProps,
     ref: mergeRefs(menu.buttonRef, menu.reference.ref),
+    className: cx("chakra-menu__menu-button", htmlProps.className),
     id: menu.buttonId,
     "aria-expanded": menu.isOpen,
     "aria-haspopup": "menu" as React.AriaAttributes["aria-haspopup"],
@@ -431,15 +537,23 @@ export function useMenuButton(props: UseMenuButtonProps) {
 }
 
 /**
- * MenuItem Hook
+ * React Hook to manage a menu item.
+ *
+ * The assumption here is that the `useMenu` hook is used
+ * in a component higher up the tree, and it's return value
+ * is passed as `context` to this hook.
  */
 
 export interface UseMenuItemProps {
   onMouseOut?: React.MouseEventHandler
+  /**
+   * Return value from `useMenu` hook
+   */
   context: UseMenuReturn
   onClick?: React.MouseEventHandler
   isDisabled?: boolean
   isFocusable?: boolean
+  className?: string
 }
 
 export function useMenuItem(props: UseMenuItemProps) {
@@ -456,13 +570,17 @@ export function useMenuItem(props: UseMenuItemProps) {
     domContext,
     setFocusedIndex,
     focusedIndex,
-    menuRef,
     closeOnSelect,
+    onClose,
+    menuRef,
   } = menu
 
-  const ref = React.useRef<HTMLDivElement>(null)
-  const id = useId(undefined, `chakra-menu-item`)
+  const ref = useRef<HTMLDivElement>(null)
+  const id = `menuitem-${useId()}`
 
+  /**
+   * Register the menuitem's node into the domContext
+   */
   const index = useDescendant({
     element: ref.current,
     context: domContext,
@@ -470,69 +588,55 @@ export function useMenuItem(props: UseMenuItemProps) {
     focusable: isFocusable,
   })
 
-  const onMouseOver = React.useCallback(
+  const onMouseOver = useCallback(() => {
+    setFocusedIndex(index)
+  }, [setFocusedIndex, index])
+
+  const onMouseOut = useCallback(() => {
+    setFocusedIndex(-1)
+  }, [setFocusedIndex])
+
+  const onClick = useCallback(
     (event: React.MouseEvent) => {
-      if (!event.currentTarget) return
-      const self = event.currentTarget as HTMLElement
-      self.focus()
-      setFocusedIndex(index)
-    },
-    [setFocusedIndex, index],
-  )
-
-  const onMouseOut = React.useCallback(
-    (event: React.MouseEvent) => {
-      const menuNode = menuRef.current
-      const self = event.currentTarget as HTMLElement
-      self.blur()
-
-      if (document.activeElement === document.body && menuNode) {
-        menuNode.focus()
-      }
-
-      onMouseOutProp?.(event)
-    },
-    [menuRef, onMouseOutProp],
-  )
-
-  const onClick = React.useCallback(
-    (event: React.MouseEvent) => {
-      // If we're clicking on an menuitem that's a menu-button for a submenu
-      // ignore the click
+      /**
+       * If we're clicking on an menuitem that's a menu-button
+       * for a submenu ignore the click
+       */
       if (event.currentTarget.hasAttribute("aria-controls")) {
+        event.preventDefault()
         return
       }
 
       onClickProp?.(event)
 
-      if (!closeOnSelect) return
-
-      // close the current menu only if closeOnSelect is `true`
-      menu.onClose()
-
-      // close all parent menus recursively
-      let next = menu.parentMenu
-      while (next != null) {
-        next.onClose()
-        next = next.parentMenu
+      /**
+       * Close menu and parent menu's if `closeOnSelect` is set to `true`
+       */
+      if (closeOnSelect) {
+        onClose()
       }
     },
-    [menu, onClickProp, closeOnSelect],
+    [onClose, onClickProp, closeOnSelect],
   )
 
   const isFocused = index === focusedIndex
 
-  React.useEffect(() => {
-    if (!ref.current) return
+  const trulyDisabled = isDisabled && !isFocusable
 
-    if (isFocused && document.activeElement !== ref.current) {
-      ref.current.focus()
+  useUpdateEffect(() => {
+    if (isFocused && !trulyDisabled) {
+      ref.current?.focus()
+    } else {
+      if (document.activeElement === ref.current) {
+        menuRef.current?.focus()
+      }
     }
-  }, [isFocused])
+  }, [isFocused, trulyDisabled, menuRef])
 
   const tabbable = useClickable({
     onClick,
     onMouseOver,
+    onMouseOut,
     ref,
     isDisabled,
     isFocusable,
@@ -541,8 +645,8 @@ export function useMenuItem(props: UseMenuItemProps) {
   return {
     ...htmlProps,
     ...tabbable,
+    className: cx("chakra-menu__menuitem", htmlProps.className),
     id,
-    onMouseOut,
     role: "menuitem",
     tabIndex: isFocused ? 0 : -1,
   }
@@ -563,7 +667,7 @@ export function useMenuOption(props: UseMenuOptionProps) {
     isFocusable,
     type = "radio",
     isChecked,
-    ...rest
+    ...htmlProps
   } = props
 
   const ownProps = useMenuItem({
@@ -574,8 +678,9 @@ export function useMenuOption(props: UseMenuOptionProps) {
   })
 
   return {
-    ...rest,
+    ...htmlProps,
     ...ownProps,
+    className: cx("chakra-menu__menuitem-option", htmlProps.className),
     role: `menuitem${type}`,
     "aria-checked": isChecked as React.AriaAttributes["aria-checked"],
   }
@@ -587,6 +692,7 @@ export interface UseMenuOptionGroupProps {
   type?: "radio" | "checkbox"
   onChange?: (value: string | string[]) => void
   children?: React.ReactNode
+  className?: string
 }
 
 export function useMenuOptionGroup(props: UseMenuOptionGroupProps) {
@@ -596,7 +702,7 @@ export function useMenuOptionGroup(props: UseMenuOptionGroupProps) {
     value: valueProp,
     defaultValue,
     onChange,
-    ...rest
+    ...htmlProps
   } = props
 
   const isRadio = type === "radio"
@@ -604,14 +710,14 @@ export function useMenuOptionGroup(props: UseMenuOptionGroupProps) {
   const fallback = isRadio ? "" : []
 
   const [value, setValue] = useControllableState({
-    defaultValue: defaultValue || fallback,
+    defaultValue: defaultValue ?? fallback,
     value: valueProp,
     onChange,
   })
 
-  const handleChange = React.useCallback(
+  const handleChange = useCallback(
     (selectedValue: string) => {
-      if (type === "radio") {
+      if (type === "radio" && isString(value)) {
         setValue(selectedValue)
       }
 
@@ -628,23 +734,27 @@ export function useMenuOptionGroup(props: UseMenuOptionGroupProps) {
 
   const validChildren = getValidChildren(children)
 
-  const clones = validChildren.map(child =>
-    React.cloneElement(child, {
+  const clones = validChildren.map(child => {
+    const onClick = (event: React.MouseEvent) => {
+      handleChange(child.props.value)
+      child.props.onClick?.(event)
+    }
+
+    const isChecked =
+      type === "radio"
+        ? child.props.value === value
+        : value.includes(child.props.value)
+
+    return cloneElement(child, {
       type,
-      key: child.props.value,
-      onClick: (event: React.MouseEvent) => {
-        handleChange(child.props.value)
-        child.props?.onClick?.(event)
-      },
-      isChecked:
-        type === "radio"
-          ? child.props.value === value
-          : value.includes(child.props.value),
-    }),
-  )
+      onClick,
+      isChecked,
+    })
+  })
 
   return {
-    ...rest,
+    ...htmlProps,
+    className: cx("chakra-menu__option-group", htmlProps.className),
     children: clones,
   }
 }

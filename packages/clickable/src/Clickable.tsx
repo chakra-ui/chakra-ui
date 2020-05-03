@@ -197,7 +197,7 @@ export function useClickable(props: UseClickableProps = {}) {
     ref,
     role: "button",
     "data-active": dataAttr(isActive),
-    "aria-disabled": isDisabled,
+    "aria-disabled": !!isDisabled,
     tabIndex: trulyDisabled ? undefined : tabIndex,
     onClick: handleClick,
     onMouseDown: handleMouseDown,
