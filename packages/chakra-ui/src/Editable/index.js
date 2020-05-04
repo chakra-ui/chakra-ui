@@ -93,7 +93,7 @@ const Editable = forwardRef(
         return;
       }
 
-      if (key === "Enter") {
+      if (key === "Enter" && !event.shiftKey && !event.metaKey) {
         handleSubmit();
       }
     };
