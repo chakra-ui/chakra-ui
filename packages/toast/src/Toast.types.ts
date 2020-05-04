@@ -54,6 +54,10 @@ export interface ToastOptions {
    * The position of the toast
    */
   position: ToastPosition
+  /**
+   * Callback function to run side effects after the toast has closed.
+   */
+  onCloseComplete?(): void
 }
 
 export type ToastState = { [K in ToastPosition]: ToastOptions[] }

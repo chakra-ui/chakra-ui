@@ -58,6 +58,10 @@ export interface UseToastOptions {
    * By default, we generate a unique `id` for each toast
    */
   id?: ToastId
+  /**
+   * Callback function to run side effects after the toast has closed.
+   */
+  onCloseComplete?: () => void
 }
 
 export type IToast = UseToastOptions

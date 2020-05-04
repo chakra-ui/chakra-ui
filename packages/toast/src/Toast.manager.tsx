@@ -24,7 +24,10 @@ interface Props {
 type State = { [K in ToastPosition]: ToastOptions[] }
 
 type CreateToastOptions = Partial<
-  Pick<ToastOptions, "status" | "duration" | "position" | "id">
+  Pick<
+    ToastOptions,
+    "status" | "duration" | "position" | "id" | "onCloseComplete"
+  >
 >
 
 /**
@@ -137,6 +140,7 @@ export class ToastManager extends React.Component<Props, State> {
       message,
       position,
       duration: options.duration,
+      onCloseComplete: options.onCloseComplete,
       onRequestRemove: () => this.removeToast(String(id), position),
       status: options.status,
     }

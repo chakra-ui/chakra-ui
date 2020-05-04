@@ -16,6 +16,7 @@ export function Toast(props: ToastProps) {
   const {
     id,
     message,
+    onCloseComplete,
     onRequestRemove,
     requestClose = false,
     position = "bottom",
@@ -42,6 +43,7 @@ export function Toast(props: ToastProps) {
     if (!show) {
       onRequestRemove()
     }
+    onCloseComplete?.()
   }
 
   const close = () => {

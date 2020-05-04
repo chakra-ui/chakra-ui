@@ -29,6 +29,9 @@ export function ToastExample() {
             status: "error",
             duration: null,
             isClosable: true,
+            onCloseComplete: () => {
+              console.log("hello")
+            },
           })
         }}
       >
