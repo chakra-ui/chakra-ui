@@ -9,4 +9,4 @@ of things
   `toast.closeAll` methods
 - Add support to programmatically update a toast using `toast.update` method.
 - Add Support for `onCloseComplete` prop, a callback function to run side
-  effects after the toast has closed.
+  effects after the toast component has closed.
