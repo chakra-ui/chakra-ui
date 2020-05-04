@@ -1,6 +1,6 @@
 import { Portal } from "@chakra-ui/portal"
 import { chakra } from "@chakra-ui/system"
-import { FadeProps, Fade } from "@chakra-ui/transition"
+import { SlideFade } from "@chakra-ui/transition"
 import * as React from "react"
 import {
   Menu,
@@ -14,6 +14,7 @@ import {
   MenuDivider,
 } from "./Menu"
 import { FaSearch, FaUndoAlt, FaTruck, FaUnlink } from "react-icons/fa"
+import { Transition } from "react-transition-group"
 
 export default {
   title: "Menu",
@@ -35,7 +36,7 @@ const words = [
   "Show All",
 ]
 
-export const basic = () => (
+export const Basic = () => (
   <Menu>
     <MenuButton variant="solid" colorScheme="teal" size="sm">
       Open Wakanda menu
@@ -48,7 +49,7 @@ export const basic = () => (
   </Menu>
 )
 
-export const disabledMenuItem = () => (
+export const WithDisabledItem = () => (
   <Menu>
     <MenuButton variant="solid" colorScheme="green" size="sm">
       Open menu
@@ -66,7 +67,7 @@ export const disabledMenuItem = () => (
   </Menu>
 )
 
-export const disabledButFocusableMenuItem = () => (
+export const WithDisabledButFocusableItem = () => (
   <Menu>
     <MenuButton variant="solid" colorScheme="green" size="sm">
       Open menu
@@ -82,7 +83,7 @@ export const disabledButFocusableMenuItem = () => (
   </Menu>
 )
 
-export const withPortal = () => (
+export const WithPortal = () => (
   <Menu>
     <MenuButton variant="solid" colorScheme="green" size="sm">
       Open menu
@@ -100,7 +101,7 @@ export const withPortal = () => (
 
 const Submenu2 = React.forwardRef<HTMLButtonElement, {}>((props, ref) => (
   <Menu>
-    <MenuButton isSubmenu ref={ref} {...props}>
+    <MenuButton ref={ref} {...props}>
       Other
     </MenuButton>
     <Portal>
@@ -114,7 +115,7 @@ const Submenu2 = React.forwardRef<HTMLButtonElement, {}>((props, ref) => (
 
 const Submenu = React.forwardRef<HTMLButtonElement, {}>((props, ref) => (
   <Menu>
-    <MenuButton isSubmenu ref={ref} {...props}>
+    <MenuButton ref={ref} {...props}>
       Other
     </MenuButton>
     <Portal>
@@ -127,9 +128,11 @@ const Submenu = React.forwardRef<HTMLButtonElement, {}>((props, ref) => (
   </Menu>
 ))
 
-export const nestedMenus = () => (
+export const WithNestedMenu = () => (
   <Menu>
-    <MenuButton colorScheme="teal">Open menu</MenuButton>
+    <MenuButton size="sm" colorScheme="teal">
+      Open menu
+    </MenuButton>
     <Portal>
       <MenuList>
         <MenuItem command="⌘T">New Tab</MenuItem>
@@ -142,32 +145,59 @@ export const nestedMenus = () => (
   </Menu>
 )
 
-const MenuTransition = (props: FadeProps) => {
+const MenuTransition = (props: any) => {
   const menu = useMenuState()
-  return <Fade in={menu.isOpen} unmountOnExit={false} {...props} />
+
+  const styles = {
+    base: {
+      opacity: 0,
+      transform: `scale(0.6)`,
+      transition: `all 200ms cubic-bezier(0.175, 0.885, 0.320, 1.175)`,
+    },
+    entering: {
+      opacity: 1,
+      transform: `scale(0.6)`,
+    },
+    entered: {
+      opacity: 1,
+      transform: `scale(1)`,
+    },
+    exiting: {
+      opacity: 0,
+      transform: `scale(0.6)`,
+    },
+  } as any
+
+  const res = (state: any) => ({ ...styles.base, ...styles[state] })
+
+  return (
+    <Transition
+      appear
+      mountOnEnter
+      unmountOnExit={false}
+      timeout={{ enter: 0, exit: 200 }}
+      in={menu.isOpen}
+      {...props}
+    >
+      {state => {
+        console.log(state)
+        return props.children(res(state))
+      }}
+    </Transition>
+  )
 }
 
-export const withTransition = () => (
+export const WithTransition = () => (
   <Menu>
     <MenuButton variant="solid" colorScheme="green" size="sm">
       Open menu
     </MenuButton>
     <MenuTransition>
-      {styles => (
-        <MenuList
-          style={{ ...styles, transformOrigin: "center" }}
-          hidden={false}
-        >
+      {(styles: any) => (
+        <MenuList style={styles}>
           <MenuItem>Menu 1</MenuItem>
           <MenuItem>Menu 2</MenuItem>
-          <MenuItem
-            onClick={() => {
-              console.log("menu 3 clicked")
-            }}
-          >
-            Menu 3
-          </MenuItem>
-          <MenuItem as={Submenu} />
+          <MenuItem>Menu 3</MenuItem>
           <MenuItem>Menu 4</MenuItem>
         </MenuList>
       )}

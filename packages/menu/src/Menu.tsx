@@ -42,7 +42,6 @@ if (__DEV__) {
 }
 
 export type MenuButtonProps = PropsOf<typeof StyledMenuButton> & {
-  isSubmenu?: boolean
   submenuIcon?: React.ReactElement
 }
 
@@ -72,11 +71,14 @@ const SubmenuSvg = (props: PropsOf<"svg">) => (
 
 export const MenuButton = React.forwardRef(
   (props: MenuButtonProps, ref: React.Ref<any>) => {
-    const { isSubmenu, children, submenuIcon = <SubmenuSvg />, ...rest } = props
+    const { children, submenuIcon = <SubmenuSvg />, ...rest } = props
 
     const context = useMenuContext()
+
     const ownProps = useMenuButton({ context, ...rest })
     const ownRef = mergeRefs(ref, ownProps.ref)
+
+    const isSubmenu = context.hasParentMenu
 
     const Comp = isSubmenu ? StyledMenuItem : StyledMenuButton
 

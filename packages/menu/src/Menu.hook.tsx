@@ -239,21 +239,19 @@ export function useMenuList(props: UseMenuListProps) {
       }
 
       /**
-       * Nested menu: If we're clicking on a `menuitem` that's a button for another
-       * menu, don't do anything.
-       */
-      if (target === buttonRef.current) {
-        return
-      }
-
-      /**
        * Nested menu: Don't trigger close if we're clicking on a menu item that doubles
-       * as a menu button
+       * as a menu button.
+       *
+       * The reason for `cond1` and `cond2` is that the event target might be an element
+       * inside the `MenuItem` (e.g the span that wraps the label), so we need to check
+       * the target and the target's parent as well.
        */
-      const cond1 = target?.parentElement?.hasAttribute("aria-controls")
-      const cond2 = target?.hasAttribute("aria-controls")
+      const parentIsButton = target?.parentElement?.hasAttribute(
+        "aria-controls",
+      )
+      const isButton = target?.hasAttribute("aria-controls")
 
-      if (cond1 || cond2) {
+      if (parentIsButton || isButton) {
         return
       }
 
@@ -430,7 +428,8 @@ export function useMenuButton(props: UseMenuButtonProps) {
     onOpen()
     setFocusedIndex(0)
     requestAnimationFrame(() => {
-      descendants[0].element?.focus()
+      const first = descendants[0]
+      first?.element?.focus()
     })
   }, [descendants, onOpen, setFocusedIndex])
 
@@ -439,7 +438,8 @@ export function useMenuButton(props: UseMenuButtonProps) {
     const lastIndex = descendants.length - 1
     setFocusedIndex(lastIndex)
     requestAnimationFrame(() => {
-      descendants[lastIndex].element?.focus()
+      const last = descendants[lastIndex]
+      last?.element?.focus()
     })
   }, [onOpen, setFocusedIndex, descendants])
 
@@ -611,12 +611,14 @@ export function useMenuItem(props: UseMenuItemProps) {
   })
 
   const onMouseEnter = useCallback(() => {
+    if (isDisabled) return
     setFocusedIndex(index)
-  }, [setFocusedIndex, index])
+  }, [setFocusedIndex, index, isDisabled])
 
   const onMouseLeave = useCallback(() => {
+    if (isDisabled) return
     setFocusedIndex(-1)
-  }, [setFocusedIndex])
+  }, [setFocusedIndex, isDisabled])
 
   const onClick = useCallback(
     (event: React.MouseEvent) => {
