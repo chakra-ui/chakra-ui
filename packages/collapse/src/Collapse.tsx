@@ -78,6 +78,7 @@ export const Collapse = forwardRef(
         onExited={() => setHidden(true)}
         timeout={{ enter: 50, exit: 200 }}
         transition={transition}
+        unmountOnExit={false}
       >
         {styles => (
           <chakra.div
