@@ -49,15 +49,14 @@
   "dependencies": {
     "tslib": "1.11.1",
     "@chakra-ui/transition": "0.0.1",
-    "@chakra-ui/hooks": "0.0.1",
-    "@chakra-ui/utils": "0.0.1"
+    "@chakra-ui/utils": "0.0.1",
+    "@reach/rect": "0.10.1"
   },
   "devDependencies": {
     "@chakra-ui/system": "0.0.1"
   },
   "peerDependencies": {
     "@chakra-ui/system": "0.0.1",
-    "react": "16.x",
-    "react-dom": "16.x"
+    "react": "16.x"
   }
 }

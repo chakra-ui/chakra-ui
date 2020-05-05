@@ -1,12 +1,13 @@
-import { useDimensions, useBooleanState } from "@chakra-ui/hooks"
 import { chakra, PropsOf } from "@chakra-ui/system"
 import {
   Transition,
   TransitionProps,
   TransitionStyles,
 } from "@chakra-ui/transition"
-import { mergeRefs } from "@chakra-ui/utils"
+import { ariaAttr, cx, mergeRefs, __DEV__ } from "@chakra-ui/utils"
+import { useRect } from "@reach/rect"
 import * as React from "react"
+import { cloneElement, forwardRef, useState } from "react"
 
 export type CollapseProps = PropsOf<typeof chakra.div> & {
   isOpen?: boolean
@@ -16,83 +17,92 @@ export type CollapseProps = PropsOf<typeof chakra.div> & {
   transition?: string
 }
 
-export function Collapse(props: CollapseProps) {
-  const {
-    isOpen,
-    children,
-    config,
-    startingHeight = 0,
-    animateOpacity = true,
-    transition = "height 200ms ease, opacity 200ms ease, transform 200ms ease",
-    ...rest
-  } = props
+export const Collapse = forwardRef(
+  (props: CollapseProps, forwardedRef: React.Ref<any>) => {
+    const {
+      isOpen,
+      children,
+      config,
+      startingHeight = 0,
+      animateOpacity = true,
+      className,
+      style: htmlStyle,
+      transition = "height 200ms ease, opacity 200ms ease, transform 200ms ease",
+      ...rest
+    } = props
 
-  const [ariaHidden, setAriaHidden] = useBooleanState(true)
+    const [hidden, setHidden] = useState(true)
 
-  type ChildElement = React.ReactElement<{
-    ref: React.Ref<any>
-  }>
+    type ChildElement = React.ReactElement<{
+      ref: React.Ref<any>
+    }>
 
-  let child = children
+    let child = children
 
-  if (typeof children === "string") {
-    console.warn(
-      `Warning: You're using a string directly inside <Collapse>. We recommend that you add an <div> tag as child of <Collapse>`,
+    if (typeof children === "string") {
+      console.warn(
+        `Warning: You're using a string directly inside <Collapse>. We recommend that you add an <div> tag as child of <Collapse>`,
+      )
+      child = <div>{children}</div> // fallback
+    }
+
+    const _child = React.Children.only(child) as ChildElement
+
+    const ref = React.useRef<HTMLDivElement>(null)
+
+    const rect = useRect(ref, true)
+    const height = rect?.height ?? 0
+
+    const styles: TransitionStyles = {
+      init: {
+        height: startingHeight,
+        opacity: startingHeight ? 1 : 0,
+      },
+      entered: {
+        height,
+        opacity: 1,
+        transform: "translateY(0)",
+      },
+      exiting: {
+        height: startingHeight,
+        opacity: startingHeight ? 1 : 0,
+        transform: "translateY(-0.5rem)",
+      },
+    }
+
+    return (
+      <Transition
+        in={isOpen}
+        styles={config || styles}
+        onEntered={() => setHidden(false)}
+        onExited={() => setHidden(true)}
+        timeout={{ enter: 50, exit: 200 }}
+        transition={transition}
+      >
+        {styles => (
+          <chakra.div
+            ref={forwardedRef}
+            className={cx("chakra-collapse", className)}
+            aria-hidden={ariaAttr(hidden)}
+            {...rest}
+            style={{
+              ...styles,
+              overflow: "hidden",
+              opacity: animateOpacity ? styles.opacity : 1,
+              willChange: "height, opacity",
+              ...htmlStyle,
+            }}
+          >
+            {cloneElement(_child, {
+              ref: mergeRefs(ref, _child.props.ref),
+            })}
+          </chakra.div>
+        )}
+      </Transition>
     )
-    child = <div>{children}</div> // fallback
-  }
+  },
+)
 
-  const finalChild = React.Children.only(child) as ChildElement
-
-  const ref = React.useRef<HTMLDivElement>(null)
-
-  const boxModel = useDimensions(ref, true)
-  const height = boxModel?.borderBox.height ?? 0
-
-  const styles: TransitionStyles = {
-    init: {
-      height: startingHeight,
-      opacity: startingHeight ? 1 : 0,
-    },
-    entered: {
-      height,
-      opacity: 1,
-      transform: "translateY(0)",
-    },
-    exiting: {
-      height: startingHeight,
-      opacity: startingHeight ? 1 : 0,
-      transform: "translateY(-0.5rem)",
-    },
-  }
-
-  return (
-    <Transition
-      in={isOpen}
-      styles={config || styles}
-      onEntered={setAriaHidden.off}
-      onExited={setAriaHidden.on}
-      timeout={{ enter: 50, exit: 200 }}
-      transition={transition}
-      unmountOnExit={false}
-    >
-      {styles => (
-        <chakra.div
-          data-chakra-collapse=""
-          {...rest}
-          aria-hidden={ariaHidden ? true : undefined}
-          style={{
-            ...styles,
-            overflow: "hidden",
-            opacity: animateOpacity ? styles.opacity : 1,
-            ...rest.style,
-          }}
-        >
-          {React.cloneElement(finalChild, {
-            ref: mergeRefs(ref, finalChild.props.ref),
-          })}
-        </chakra.div>
-      )}
-    </Transition>
-  )
+if (__DEV__) {
+  Collapse.displayName = "Collapse"
 }
