@@ -1,4 +1,5 @@
 import * as React from "react"
+import { forwardRef, useMemo } from "react"
 import { chakra, PropsOf, SystemProps, css, useTheme } from "@chakra-ui/system"
 import { useId } from "@chakra-ui/hooks"
 import { useCheckboxGroup, UseCheckboxGroupProps } from "./CheckboxGroup.hook"
@@ -7,6 +8,7 @@ import {
   omit,
   __DEV__,
   mapResponsive,
+  createContext,
 } from "@chakra-ui/utils"
 
 export type CheckboxGroupProps = UseCheckboxGroupProps &
@@ -25,6 +27,11 @@ export type CheckboxGroupProps = UseCheckboxGroupProps &
     direction?: SystemProps["flexDirection"]
   }
 
+const [CheckboxGroupCtxProvider, useCheckboxGroupCtx] = createContext<any>({
+  name: "CheckboxGroupContext",
+  strict: false,
+})
+
 /**
  * CheckboxGroup
  *
@@ -34,7 +41,7 @@ export type CheckboxGroupProps = UseCheckboxGroupProps &
  * @see Docs https://chakra-ui.com/checkbox
  *
  */
-export const CheckboxGroup = React.forwardRef(
+export const CheckboxGroup = forwardRef(
   (props: CheckboxGroupProps, ref: React.Ref<any>) => {
     const {
       name,
@@ -76,18 +83,27 @@ export const CheckboxGroup = React.forwardRef(
       )
     })
 
+    const ctx = useMemo(() => ({ size, onChange, colorScheme, value }), [
+      size,
+      onChange,
+      colorScheme,
+      value,
+    ])
+
     return (
-      <chakra.div
-        ref={ref}
-        role="group"
-        display="flex"
-        flexWrap="wrap"
-        flexDirection={direction}
-        margin={containerSpacing}
-        {...omit(rest, ["onChange"])}
-      >
-        {clones}
-      </chakra.div>
+      <CheckboxGroupCtxProvider value={ctx}>
+        <chakra.div
+          ref={ref}
+          role="group"
+          display="flex"
+          flexWrap="wrap"
+          flexDirection={direction}
+          margin={containerSpacing}
+          {...omit(rest, ["onChange"])}
+        >
+          {clones}
+        </chakra.div>
+      </CheckboxGroupCtxProvider>
     )
   },
 )

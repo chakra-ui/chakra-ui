@@ -23,6 +23,7 @@ import {
   cx,
   isString,
   dataAttr,
+  ensureFocus,
 } from "@chakra-ui/utils"
 import * as React from "react"
 import { useEffect, useCallback, useRef, cloneElement, useState } from "react"
@@ -74,7 +75,6 @@ export function useMenu(props: UseMenuProps) {
     closeOnSelect = true,
     closeOnBlur = true,
     autoSelect = true,
-    returnFocusOnClose = true,
   } = props
 
   /**
@@ -135,7 +135,9 @@ export function useMenu(props: UseMenuProps) {
    */
   useUpdateEffect(() => {
     if (!isOpen && !hasParentMenu) {
-      returnFocusOnClose && buttonRef.current?.focus()
+      if (buttonRef.current) {
+        ensureFocus(buttonRef.current)
+      }
     }
   }, [isOpen, hasParentMenu])
 
@@ -345,7 +347,9 @@ export function useMenuList(props: UseMenuListProps) {
          */
         if (hasParentMenu) {
           onClose()
-          buttonRef.current?.focus()
+          if (buttonRef.current) {
+            ensureFocus(buttonRef.current)
+          }
         }
       },
     },
@@ -419,28 +423,28 @@ export function useMenuButton(props: UseMenuButtonProps) {
 
   const openAndFocusMenu = useCallback(() => {
     onOpen()
-    requestAnimationFrame(() => {
-      menuRef.current?.focus()
-    })
+    if (menuRef.current) {
+      ensureFocus(menuRef.current)
+    }
   }, [onOpen, menuRef])
 
   const openAndFocusFirstItem = useCallback(() => {
     onOpen()
     setFocusedIndex(0)
-    requestAnimationFrame(() => {
-      const first = descendants[0]
-      first?.element?.focus()
-    })
+    const first = descendants[0]
+    if (first?.element) {
+      ensureFocus(first.element)
+    }
   }, [descendants, onOpen, setFocusedIndex])
 
   const openAndFocusLastItem = useCallback(() => {
     onOpen()
     const lastIndex = descendants.length - 1
     setFocusedIndex(lastIndex)
-    requestAnimationFrame(() => {
-      const last = descendants[lastIndex]
-      last?.element?.focus()
-    })
+    const last = descendants[lastIndex]
+    if (last?.element) {
+      ensureFocus(last.element)
+    }
   }, [onOpen, setFocusedIndex, descendants])
 
   /**
@@ -615,6 +619,12 @@ export function useMenuItem(props: UseMenuItemProps) {
     setFocusedIndex(index)
   }, [setFocusedIndex, index, isDisabled])
 
+  const onMouseMove = useCallback(() => {
+    if (document.activeElement !== ref.current) {
+      onMouseEnter()
+    }
+  }, [onMouseEnter])
+
   const onMouseLeave = useCallback(() => {
     if (isDisabled) return
     setFocusedIndex(-1)
@@ -649,9 +659,9 @@ export function useMenuItem(props: UseMenuItemProps) {
 
   useUpdateEffect(() => {
     if (isFocused && !trulyDisabled) {
-      requestAnimationFrame(() => {
-        ref.current?.focus()
-      })
+      if (ref.current) {
+        ensureFocus(ref.current)
+      }
     } else {
       if (document.activeElement !== menuRef.current) {
         menuRef.current?.focus()
@@ -662,6 +672,7 @@ export function useMenuItem(props: UseMenuItemProps) {
   const tabbable = useClickable({
     onClick,
     onMouseEnter,
+    onMouseMove,
     onMouseLeave,
     ref,
     isDisabled,

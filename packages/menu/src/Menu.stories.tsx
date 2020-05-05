@@ -1,20 +1,19 @@
 import { Portal } from "@chakra-ui/portal"
 import { chakra } from "@chakra-ui/system"
-import { SlideFade } from "@chakra-ui/transition"
 import * as React from "react"
+import { FaSearch, FaTruck, FaUndoAlt, FaUnlink } from "react-icons/fa"
+import Transition, { TransitionStatus } from "react-transition-group/Transition"
 import {
   Menu,
   MenuButton,
-  MenuItem,
-  MenuList,
-  useMenuState,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuItemOption,
   MenuDivider,
+  MenuGroup,
+  MenuItem,
+  MenuItemOption,
+  MenuList,
+  MenuOptionGroup,
+  useMenuState,
 } from "./Menu"
-import { FaSearch, FaUndoAlt, FaTruck, FaUnlink } from "react-icons/fa"
-import { Transition } from "react-transition-group"
 
 export default {
   title: "Menu",
@@ -145,44 +144,55 @@ export const WithNestedMenu = () => (
   </Menu>
 )
 
-const MenuTransition = (props: any) => {
+const MenuTransition = (props: {
+  children: (styles: any) => React.ReactNode
+}) => {
   const menu = useMenuState()
 
   const styles = {
     base: {
       opacity: 0,
-      transform: `scale(0.6)`,
-      transition: `all 200ms cubic-bezier(0.175, 0.885, 0.320, 1.175)`,
-    },
-    entering: {
-      opacity: 1,
-      transform: `scale(0.6)`,
+      transformOrigin: "top left",
+      transform: "scale(0.8)",
+      transitionTimingFunction: "cubic-bezier(0.175, 0.885, 0.320, 1.175)",
+      transitionProperty: "opacity, transform",
+      transitionDuration: "150ms",
+      willChange: "opacity, transform",
     },
     entered: {
       opacity: 1,
-      transform: `scale(1)`,
+      transform: "scale(1)",
     },
     exiting: {
       opacity: 0,
-      transform: `scale(0.6)`,
+      transform: "scale(0.8)",
     },
   } as any
 
-  const res = (state: any) => ({ ...styles.base, ...styles[state] })
+  const getStyle = (state: TransitionStatus) => ({
+    ...styles.base,
+    ...styles[state],
+  })
 
   return (
     <Transition
-      appear
-      mountOnEnter
-      unmountOnExit={false}
-      timeout={{ enter: 0, exit: 200 }}
-      in={menu.isOpen}
-      {...props}
-    >
-      {state => {
-        console.log(state)
-        return props.children(res(state))
+      onEnter={node => {
+        node.hidden = false
       }}
+      onExited={node => {
+        node.hidden = true
+        node.style.pointerEvents = null
+      }}
+      onExit={node => {
+        node.hidden = false
+      }}
+      onExiting={node => {
+        node.style.pointerEvents = "none"
+      }}
+      timeout={{ enter: 0, exit: 150 }}
+      in={menu.isOpen}
+    >
+      {state => props.children(getStyle(state))}
     </Transition>
   )
 }
@@ -193,8 +203,8 @@ export const WithTransition = () => (
       Open menu
     </MenuButton>
     <MenuTransition>
-      {(styles: any) => (
-        <MenuList style={styles}>
+      {styles => (
+        <MenuList css={styles}>
           <MenuItem>Menu 1</MenuItem>
           <MenuItem>Menu 2</MenuItem>
           <MenuItem>Menu 3</MenuItem>

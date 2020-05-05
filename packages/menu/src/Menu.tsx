@@ -118,13 +118,7 @@ export const MenuList = React.forwardRef(
     const ownProps = useMenuList({ context, ...props })
     const ownRef = mergeRefs(ownProps.ref, ref)
 
-    return (
-      <StyledMenuList
-        {...ownProps}
-        {...(props.hidden != null && { hidden: props.hidden })}
-        ref={ownRef}
-      />
-    )
+    return <StyledMenuList {...ownProps} ref={ownRef} />
   },
 )
 
