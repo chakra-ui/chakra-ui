@@ -1,16 +1,15 @@
+import { Image } from "@chakra-ui/image"
 import { Portal } from "@chakra-ui/portal"
 import { chakra } from "@chakra-ui/system"
-import { ensureFocus } from "@chakra-ui/utils"
-import { Image } from "@chakra-ui/image"
 import * as React from "react"
 import {
+  FaChevronDown,
   FaSearch,
   FaTruck,
   FaUndoAlt,
   FaUnlink,
-  FaChevronDown,
 } from "react-icons/fa"
-import Transition, { TransitionStatus } from "react-transition-group/Transition"
+import { MenuTransition } from "./"
 import {
   Menu,
   MenuButton,
@@ -20,9 +19,7 @@ import {
   MenuItemOption,
   MenuList,
   MenuOptionGroup,
-  useMenuContext,
 } from "./Menu"
-import "focus-visible"
 
 export default {
   title: "Menu",
@@ -153,60 +150,60 @@ export const WithNestedMenu = () => (
   </Menu>
 )
 
-const MenuTransition = (props: {
-  children: (styles: any) => React.ReactNode
-}) => {
-  const menu = useMenuContext()
+// const MenuTransition = (props: {
+//   children: (styles: any) => React.ReactNode
+// }) => {
+//   const menu = useMenuContext()
 
-  const styles = {
-    base: {
-      opacity: 0,
-      transformOrigin: "top left",
-      transform: "scale(0.8)",
-      transitionTimingFunction: "cubic-bezier(0.175, 0.885, 0.320, 1.175)",
-      transitionProperty: "opacity, transform",
-      transitionDuration: "150ms",
-      willChange: "opacity, transform",
-    },
-    entered: {
-      opacity: 1,
-      transform: "scale(1)",
-    },
-    exiting: {
-      opacity: 0,
-      transform: "scale(0.8)",
-    },
-  } as any
+//   const styles = {
+//     base: {
+//       opacity: 0,
+//       transformOrigin: "top left",
+//       transform: "scale(0.8)",
+//       transitionTimingFunction: "cubic-bezier(0.175, 0.885, 0.320, 1.175)",
+//       transitionProperty: "opacity, transform",
+//       transitionDuration: "150ms",
+//       willChange: "opacity, transform",
+//     },
+//     entered: {
+//       opacity: 1,
+//       transform: "scale(1)",
+//     },
+//     exiting: {
+//       opacity: 0,
+//       transform: "scale(0.8)",
+//     },
+//   } as any
 
-  const getStyle = (state: TransitionStatus) => ({
-    ...styles.base,
-    ...styles[state],
-  })
+//   const getStyle = (state: TransitionStatus) => ({
+//     ...styles.base,
+//     ...styles[state],
+//   })
 
-  return (
-    <Transition
-      onEnter={node => {
-        node.hidden = false
-      }}
-      onExited={node => {
-        node.hidden = true
-        node.style.pointerEvents = null
-        // persist focus restoration
-        ensureFocus(menu.buttonRef.current)
-      }}
-      onExit={node => {
-        node.hidden = undefined
-      }}
-      onExiting={node => {
-        node.style.pointerEvents = "none"
-      }}
-      timeout={{ enter: 0, exit: 150 }}
-      in={menu.isOpen}
-    >
-      {state => props.children(getStyle(state))}
-    </Transition>
-  )
-}
+//   return (
+//     <Transition
+//       onEnter={node => {
+//         node.hidden = false
+//       }}
+//       onExited={node => {
+//         node.hidden = true
+//         node.style.pointerEvents = null
+//         // persist focus restoration
+//         ensureFocus(menu.buttonRef.current)
+//       }}
+//       onExit={node => {
+//         node.hidden = undefined
+//       }}
+//       onExiting={node => {
+//         node.style.pointerEvents = "none"
+//       }}
+//       timeout={{ enter: 0, exit: 150 }}
+//       in={menu.isOpen}
+//     >
+//       {state => props.children(getStyle(state))}
+//     </Transition>
+//   )
+// }
 
 export const WithTransition = () => (
   <Menu>
@@ -215,7 +212,7 @@ export const WithTransition = () => (
     </MenuButton>
     <MenuTransition>
       {styles => (
-        <MenuList css={styles}>
+        <MenuList css={styles as any}>
           <MenuItem>Menu 1</MenuItem>
           <MenuItem>Menu 2</MenuItem>
           <MenuItem>Menu 3</MenuItem>
@@ -376,11 +373,15 @@ export const SplitButton = () => (
       >
         <FaChevronDown />
       </MenuButton>
-      <MenuList minW="160px">
-        <MenuItem fontSize="14px">Menu 1</MenuItem>
-        <MenuItem fontSize="14px">Menu 2</MenuItem>
-        <MenuItem fontSize="14px">Menu 3</MenuItem>
-      </MenuList>
+      <MenuTransition transformOrigin="top right">
+        {styles => (
+          <MenuList minW="160px" css={styles as any}>
+            <MenuItem fontSize="14px">Menu 1</MenuItem>
+            <MenuItem fontSize="14px">Menu 2</MenuItem>
+            <MenuItem fontSize="14px">Menu 3</MenuItem>
+          </MenuList>
+        )}
+      </MenuTransition>
     </Menu>
   </chakra.div>
 )
