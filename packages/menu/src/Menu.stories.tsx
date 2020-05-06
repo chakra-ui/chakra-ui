@@ -1,7 +1,15 @@
 import { Portal } from "@chakra-ui/portal"
 import { chakra } from "@chakra-ui/system"
+import { ensureFocus } from "@chakra-ui/utils"
+import { Image } from "@chakra-ui/image"
 import * as React from "react"
-import { FaSearch, FaTruck, FaUndoAlt, FaUnlink } from "react-icons/fa"
+import {
+  FaSearch,
+  FaTruck,
+  FaUndoAlt,
+  FaUnlink,
+  FaChevronDown,
+} from "react-icons/fa"
 import Transition, { TransitionStatus } from "react-transition-group/Transition"
 import {
   Menu,
@@ -12,7 +20,7 @@ import {
   MenuItemOption,
   MenuList,
   MenuOptionGroup,
-  useMenuState,
+  useMenuContext,
 } from "./Menu"
 
 export default {
@@ -147,7 +155,7 @@ export const WithNestedMenu = () => (
 const MenuTransition = (props: {
   children: (styles: any) => React.ReactNode
 }) => {
-  const menu = useMenuState()
+  const menu = useMenuContext()
 
   const styles = {
     base: {
@@ -182,9 +190,11 @@ const MenuTransition = (props: {
       onExited={node => {
         node.hidden = true
         node.style.pointerEvents = null
+        // persist focus restoration
+        ensureFocus(menu.buttonRef.current)
       }}
       onExit={node => {
-        node.hidden = false
+        node.hidden = undefined
       }}
       onExiting={node => {
         node.style.pointerEvents = "none"
@@ -240,28 +250,112 @@ export const withMenuRadio = () => (
     </MenuButton>
 
     <MenuList minWidth="240px">
+      <MenuItem icon={<FaUndoAlt />}>Undo</MenuItem>
+
+      <MenuDivider />
+
       <MenuOptionGroup defaultValue="val1" title="Order" type="radio">
-        <MenuItemOption _checked={{ color: "blue.500" }} value="val-1">
-          Option 1
-        </MenuItemOption>
-        <MenuItemOption _checked={{ color: "blue.500" }} value="val-2">
-          Option 2
-        </MenuItemOption>
+        <MenuItemOption value="val-1">Option 1</MenuItemOption>
+        <MenuItemOption value="val-2">Option 2</MenuItemOption>
       </MenuOptionGroup>
 
       <MenuDivider />
 
       <MenuOptionGroup title="Country" type="checkbox">
-        <MenuItemOption _checked={{ color: "blue.500" }} value="email">
-          Email
-        </MenuItemOption>
-        <MenuItemOption _checked={{ color: "blue.500" }} value="phone">
-          Phone
-        </MenuItemOption>
-        <MenuItemOption _checked={{ color: "blue.500" }} value="country">
-          Country
-        </MenuItemOption>
+        <MenuItemOption value="email">Email</MenuItemOption>
+        <MenuItemOption value="phone">Phone</MenuItemOption>
+        <MenuItemOption value="country">Country</MenuItemOption>
       </MenuOptionGroup>
     </MenuList>
+  </Menu>
+)
+
+export const WithInternalState = () => (
+  <Menu>
+    {({ isOpen }) => (
+      <React.Fragment>
+        <MenuButton>{isOpen ? "Close" : "Open"}</MenuButton>
+        <MenuList>
+          <MenuItem>Download</MenuItem>
+          <MenuItem onClick={() => alert("Kagebunshin")}>
+            Create a Copy
+          </MenuItem>
+        </MenuList>
+      </React.Fragment>
+    )}
+  </Menu>
+)
+
+export const WithLetterNavigation = () => (
+  <Menu>
+    <MenuButton
+      px={4}
+      py={2}
+      transition="all 0.2s"
+      borderRadius="md"
+      borderWidth="1px"
+      _hover={{ bg: "gray.100" }}
+      _expanded={{ bg: "red.200" }}
+      _focus={{ outline: 0, boxShadow: "outline" }}
+    >
+      File <FaChevronDown />
+    </MenuButton>
+    <MenuList>
+      <MenuItem>New File</MenuItem>
+      <MenuItem>New Window</MenuItem>
+      <MenuDivider />
+      <MenuItem>Open...</MenuItem>
+      <MenuItem>Save File</MenuItem>
+    </MenuList>
+  </Menu>
+)
+
+export const JustAnotherExample = () => (
+  <Menu>
+    <MenuButton>Your Cats</MenuButton>
+    <MenuList>
+      <MenuItem minH="48px">
+        <Image
+          boxSize="2rem"
+          borderRadius="full"
+          src="https://placekitten.com/100/100"
+          alt="Fluffybuns the destroyer"
+          mr="12px"
+        />
+        <span>Fluffybuns the Destroyer</span>
+      </MenuItem>
+      <MenuItem minH="40px">
+        <Image
+          boxSize="2rem"
+          borderRadius="full"
+          src="https://placekitten.com/120/120"
+          alt="Simon the pensive"
+          mr="12px"
+        />
+        <span>Simon the pensive</span>
+      </MenuItem>
+    </MenuList>
+  </Menu>
+)
+
+export const WithLink = () => (
+  <Menu>
+    <MenuButton>Actions</MenuButton>
+    <MenuList>
+      <MenuItem>Download</MenuItem>
+      <MenuItem>Create a Copy</MenuItem>
+      <MenuItem>Mark as Draft</MenuItem>
+      <MenuItem>Delete</MenuItem>
+      <MenuItem as="a" href="#">
+        Attend a Workshop
+      </MenuItem>
+    </MenuList>
+  </Menu>
+)
+
+export const EmptyMenu = () => (
+  <Menu>
+    <MenuButton>Actions</MenuButton>
+    <MenuList></MenuList>
   </Menu>
 )

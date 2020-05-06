@@ -356,8 +356,9 @@ export function useMenuList(props: UseMenuListProps) {
   })
 
   const onBlur = useCallback(
-    (e: React.FocusEvent<HTMLElement>) => {
-      const target = (e.relatedTarget || document.activeElement) as HTMLElement
+    (event: React.FocusEvent<HTMLElement>) => {
+      const target = (event.relatedTarget ||
+        document.activeElement) as HTMLElement
       const isWithinSelf = menuRef.current?.contains(target)
       const isInParent = parentMenu?.menuRef.current?.contains(target)
       const isMenuButton = target === buttonRef.current
@@ -431,20 +432,12 @@ export function useMenuButton(props: UseMenuButtonProps) {
   const openAndFocusFirstItem = useCallback(() => {
     onOpen()
     setFocusedIndex(0)
-    const first = descendants[0]
-    if (first?.element) {
-      ensureFocus(first.element)
-    }
-  }, [descendants, onOpen, setFocusedIndex])
+  }, [onOpen, setFocusedIndex])
 
   const openAndFocusLastItem = useCallback(() => {
     onOpen()
     const lastIndex = descendants.length - 1
     setFocusedIndex(lastIndex)
-    const last = descendants[lastIndex]
-    if (last?.element) {
-      ensureFocus(last.element)
-    }
   }, [onOpen, setFocusedIndex, descendants])
 
   /**
