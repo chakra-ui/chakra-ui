@@ -10,4 +10,8 @@ components.
 
 ```sh
 yarn add @chakra-ui/descendants
+
+# or
+
+npm i @chakra-ui/descendants
 ```
