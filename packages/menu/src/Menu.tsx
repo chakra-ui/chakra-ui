@@ -333,9 +333,7 @@ if (__DEV__) {
 
 export const MenuItemCommand = chakra("span", {
   baseStyle: { opacity: 0.6 },
-  attrs: {
-    className: "chakra-menu__command",
-  },
+  attrs: { className: "chakra-menu__command" },
   pure: true,
 })
 

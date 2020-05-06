@@ -22,6 +22,7 @@ import {
   MenuOptionGroup,
   useMenuContext,
 } from "./Menu"
+import "focus-visible"
 
 export default {
   title: "Menu",
@@ -353,9 +354,33 @@ export const WithLink = () => (
   </Menu>
 )
 
-export const EmptyMenu = () => (
-  <Menu>
-    <MenuButton>Actions</MenuButton>
-    <MenuList></MenuList>
-  </Menu>
+const Button = chakra("button", {
+  themeKey: "Button",
+  baseStyle: {
+    outline: 0,
+    transition: "all 0.3s",
+  },
+})
+
+export const SplitButton = () => (
+  <chakra.div display="flex">
+    <Button variant="outline" size="sm" borderRightRadius="0" mr="-1px">
+      Welcome
+    </Button>
+    <Menu placement="bottom-end" gutter={4}>
+      <MenuButton
+        variant="outline"
+        size="sm"
+        fontSize="xs"
+        borderLeftRadius="0"
+      >
+        <FaChevronDown />
+      </MenuButton>
+      <MenuList minW="160px">
+        <MenuItem fontSize="14px">Menu 1</MenuItem>
+        <MenuItem fontSize="14px">Menu 2</MenuItem>
+        <MenuItem fontSize="14px">Menu 3</MenuItem>
+      </MenuList>
+    </Menu>
+  </chakra.div>
 )

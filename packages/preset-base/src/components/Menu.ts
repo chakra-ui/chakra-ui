@@ -12,7 +12,8 @@ const getMenuListStyle = (props: Props): SystemProps => {
     minWidth: "3xs",
     paddingY: "2",
     borderRadius: "md",
-    borderWidth: "1px solid",
+    border: "1px solid",
+    borderColor: "inherit",
   }
 }
 

@@ -8,7 +8,7 @@ import {
   useShortcut,
   useUpdateEffect,
 } from "@chakra-ui/hooks"
-import { usePopper } from "@chakra-ui/popper"
+import { usePopper, UsePopperProps } from "@chakra-ui/popper"
 import {
   addItem,
   callAllHandlers,
@@ -28,7 +28,7 @@ import {
 import * as React from "react"
 import { useEffect, useCallback, useRef, cloneElement, useState } from "react"
 
-export interface UseMenuProps {
+export interface UseMenuProps extends UsePopperProps {
   /**
    * The parent menu's context
    */
@@ -56,10 +56,6 @@ export interface UseMenuProps {
    * @default true
    */
   autoSelect?: boolean
-  /**
-   * If `false`, the menu button will not receive focus when it closes.
-   */
-  returnFocusOnClose?: boolean
 }
 
 /**
@@ -75,6 +71,10 @@ export function useMenu(props: UseMenuProps) {
     closeOnSelect = true,
     closeOnBlur = true,
     autoSelect = true,
+    placement: placementProp = "bottom-start",
+    gutter,
+    fixed = true,
+    preventOverflow,
   } = props
 
   /**
@@ -103,10 +103,11 @@ export function useMenu(props: UseMenuProps) {
    * Add some popper.js for dynamic positioning
    */
   const { placement, popper, reference } = usePopper({
-    placement: !hasParentMenu ? "bottom-start" : "right-start",
-    fixed: true,
+    placement: !hasParentMenu ? placementProp : "right-start",
+    fixed,
     forceUpdate: isOpen,
-    gutter: hasParentMenu ? 0 : undefined,
+    gutter: hasParentMenu ? 0 : gutter,
+    preventOverflow,
   })
 
   const [focusedIndex, setFocusedIndex] = useState(-1)
