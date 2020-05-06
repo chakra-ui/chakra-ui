@@ -1,4 +1,4 @@
-import * as React from "react"
+import { useRef, useEffect } from "react"
 
 /**
  * React hook to persist any value between renders,
@@ -7,9 +7,9 @@ import * as React from "react"
  * @param value the value or function to persist
  */
 export function useLatestRef<T>(value: T) {
-  const ref = React.useRef(value)
+  const ref = useRef(value)
 
-  React.useEffect(() => {
+  useEffect(() => {
     ref.current = value
   }, [value])
 

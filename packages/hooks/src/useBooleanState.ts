@@ -1,4 +1,4 @@
-import * as React from "react"
+import { useCallback, useState } from "react"
 
 type InitialState = boolean | (() => boolean)
 
@@ -8,17 +8,17 @@ type InitialState = boolean | (() => boolean)
  * @param initialState the initial boolean state value
  */
 export function useBooleanState(initialState: InitialState = false) {
-  const [value, setValue] = React.useState(initialState)
+  const [value, setValue] = useState(initialState)
 
-  const on = React.useCallback(() => {
+  const on = useCallback(() => {
     setValue(true)
   }, [])
 
-  const off = React.useCallback(() => {
+  const off = useCallback(() => {
     setValue(false)
   }, [])
 
-  const toggle = React.useCallback(() => {
+  const toggle = useCallback(() => {
     setValue(prev => !prev)
   }, [])
 

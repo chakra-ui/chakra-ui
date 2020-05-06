@@ -1,4 +1,4 @@
-import * as React from "react"
+import { useRef, useEffect } from "react"
 
 /**
  * React hook that tracks previous value
@@ -6,9 +6,9 @@ import * as React from "react"
  * @param value the value to track
  */
 export function usePrevious<T>(value: T) {
-  const valueRef = React.useRef<T>()
+  const valueRef = useRef<T>()
 
-  React.useEffect(() => {
+  useEffect(() => {
     valueRef.current = value
   }, [value])
 
