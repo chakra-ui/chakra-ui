@@ -5,7 +5,7 @@ const baseStyle = (props: Props) => {
 
   return {
     Control: {
-      transition: "background-color 120ms, box-shadow 250ms",
+      transition: "box-shadow 250ms",
       border: "2px solid",
       borderRadius: "sm",
       borderColor: "inherit",

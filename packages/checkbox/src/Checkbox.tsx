@@ -112,14 +112,14 @@ export const Checkbox = React.forwardRef(
 
     const _className = cx("chakra-checkbox", className)
 
+    const theming = { variant, size, colorScheme }
+
     return (
       <StyledWrapper {...htmlProps} className={_className}>
         <input className="chakra-checkbox__input" {...getInputProps({ ref })} />
         <StyledControl
           className="chakra-checkbox__control"
-          variant={variant}
-          size={size}
-          colorScheme={colorScheme}
+          {...theming}
           verticalAlign="top"
           {...getCheckboxProps()}
         >
@@ -135,9 +135,7 @@ export const Checkbox = React.forwardRef(
         {children && (
           <StyledLabel
             className="chakra-checkbox__label"
-            variant={variant}
-            size={size}
-            colorScheme={colorScheme}
+            {...theming}
             marginLeft={labelSpacing}
             userSelect="none"
             onMouseDown={stop}

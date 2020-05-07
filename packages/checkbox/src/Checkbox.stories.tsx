@@ -129,9 +129,11 @@ export const ControlledCheckboxGroup = () => {
         setValue(value)
       }}
     >
-      <Checkbox value="one">One</Checkbox>
-      <Checkbox value="two">Two</Checkbox>
-      <Checkbox value="three">Three</Checkbox>
+      <HStack spacing="40px">
+        <Checkbox value="one">One</Checkbox>
+        <Checkbox value="two">Two</Checkbox>
+        <Checkbox value="three">Three</Checkbox>
+      </HStack>
     </CheckboxGroup>
   )
 }
