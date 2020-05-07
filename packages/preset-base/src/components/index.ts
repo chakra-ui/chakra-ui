@@ -26,6 +26,7 @@ import Form from "./Form"
 import Editable from "./Editable"
 import Progress from "./Progress"
 import Textarea from "./Textarea"
+import Stat from "./Stat"
 
 export default {
   Accordion,
@@ -57,4 +58,5 @@ export default {
   Form,
   Editable,
   Progress,
+  Stat,
 }

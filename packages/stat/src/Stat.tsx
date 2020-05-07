@@ -1,24 +1,45 @@
 import * as React from "react"
-import { chakra } from "@chakra-ui/system"
+import { forwardRef } from "react"
+import {
+  chakra,
+  PropsOf,
+  ThemingProvider,
+  useThemingContext,
+  useThemeDefaultProps,
+} from "@chakra-ui/system"
 import { Icon, IconProps } from "@chakra-ui/icon"
-import { __DEV__ } from "@chakra-ui/utils"
+import { __DEV__, cx } from "@chakra-ui/utils"
+import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 
 /**
- * StatLabel
+ * Learn the Semantic HTML for stats:
+ * @see Post https://www.bitdegree.org/learn/html-dl
+ */
+
+const StyledLabel = chakra("dt", {
+  themeKey: "Stat.Label",
+})
+
+export type StatLabelProps = PropsOf<typeof StyledLabel>
+
+/**
+ * StatLabel - Theming
  *
  * The label for the stat card. This is usually the heading for the card.
  *
  * To style the StatLabel globally, change the styles in
- * `theme.components.Stat.Label`
+ * `theme.components.Stat` under the `Label` key.
  */
-
-export const StatLabel = chakra("p", {
-  themeKey: "Stat.Label",
-  baseStyle: {
-    fontWeight: "medium",
-    fontSize: "sm",
+export const StatLabel = forwardRef(
+  (props: StatLabelProps, ref: React.Ref<any>) => {
+    const { className, ...rest } = props
+    const theming = useThemingContext()
+    const _className = cx("chakra-stat__label", className)
+    return (
+      <StyledLabel ref={ref} className={_className} {...theming} {...rest} />
+    )
   },
-})
+)
 
 if (__DEV__) {
   StatLabel.displayName = "StatLabel"
@@ -32,15 +53,22 @@ if (__DEV__) {
  * To style the StatHelpText globally, change the styles in
  * `theme.components.Stat.HelpText`
  */
-
-export const StatHelpText = chakra("p", {
+const StyledHelpText = chakra("p", {
   themeKey: "Stat.HelpText",
-  baseStyle: {
-    fontSize: "sm",
-    opacity: 0.8,
-    marginBottom: 2,
-  },
 })
+
+export type StatHelpTextProps = PropsOf<typeof StyledHelpText>
+
+export const StatHelpText = forwardRef(
+  (props: StatHelpTextProps, ref: React.Ref<any>) => {
+    const { className, ...rest } = props
+    const theming = useThemingContext()
+    const _className = cx("chakra-stat__help-text", className)
+    return (
+      <StyledHelpText ref={ref} className={_className} {...theming} {...rest} />
+    )
+  },
+)
 
 if (__DEV__) {
   StatHelpText.displayName = "StatHelpText"
@@ -55,14 +83,22 @@ if (__DEV__) {
  * `theme.components.Stat.Number`
  */
 
-export const StatNumber = chakra("p", {
+export const StyledNumber = chakra("dd", {
   themeKey: "Stat.Number",
-  baseStyle: {
-    fontSize: "2xl",
-    verticalAlign: "baseline",
-    fontWeight: "semibold",
-  },
 })
+
+export type StatNumberProps = PropsOf<typeof StyledNumber>
+
+export const StatNumber = forwardRef(
+  (props: StatNumberProps, ref: React.Ref<any>) => {
+    const { className, ...rest } = props
+    const theming = useThemingContext()
+    const _className = cx("chakra-stat__number", className)
+    return (
+      <StyledNumber ref={ref} className={_className} {...theming} {...rest} />
+    )
+  },
+)
 
 if (__DEV__) {
   StatNumber.displayName = "StatNumber"
@@ -117,11 +153,18 @@ export type StatArrowProps = IconProps & {
  */
 
 export function StatArrow(props: StatArrowProps) {
-  const { type, ...rest } = props
-  return type === "increase" ? (
-    <StatUpArrow {...rest} />
-  ) : (
-    <StatDownArrow {...rest} />
+  const { type, "aria-label": ariaLabel, ...rest } = props
+
+  const Icon = type === "increase" ? StatUpArrow : StatDownArrow
+  const defaultAriaLabel = type === "increase" ? "increased by" : "decreased by"
+
+  const label = ariaLabel || defaultAriaLabel
+
+  return (
+    <React.Fragment>
+      <VisuallyHidden children={label} />
+      <Icon aria-hidden {...rest} />
+    </React.Fragment>
   )
 }
 
@@ -134,16 +177,41 @@ if (__DEV__) {
  *
  * A component to display statistic numbers.
  *
- *To style the Stat globally, change the styles in
+ * To style the Stat globally, change the styles in
  * `theme.components.Stat.Root`
  */
 
-export const Stat = chakra("div", {
-  themeKey: "Stat.Root",
+const StyledStat = chakra("div", {
   baseStyle: {
     flex: "1",
     paddingRight: 4,
   },
+})
+
+export type StatProps = PropsOf<typeof StyledStat>
+
+export const Stat = forwardRef((props: StatProps, ref: React.Ref<any>) => {
+  const defaults = useThemeDefaultProps("Stat")
+  const {
+    size = defaults?.size,
+    variant = defaults?.variant,
+    colorScheme = defaults?.colorScheme,
+    className,
+    children,
+    ...rest
+  } = props
+
+  const theming = { size, variant, colorScheme }
+
+  const _className = cx("chakra-stat", className)
+
+  return (
+    <ThemingProvider value={theming}>
+      <StyledStat className={_className} ref={ref} {...rest}>
+        <dl>{children}</dl>
+      </StyledStat>
+    </ThemingProvider>
+  )
 })
 
 if (__DEV__) {
@@ -163,6 +231,7 @@ export const StatGroup = chakra("div", {
     justifyContent: "space-around",
     alignItems: "flex-start",
   },
+  attrs: { role: "group" },
 })
 
 if (__DEV__) {
