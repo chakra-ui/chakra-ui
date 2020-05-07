@@ -2,12 +2,8 @@
 
 ## Changes
 
-### Checkbox
-
 - Support for the `variantColor` prop has been deprecated. Use `colorScheme`
   prop instead.
-
-For example, `<Checkbox colorScheme="blue">Option</Checkbox>`
 
 ```jsx
 // before
@@ -20,32 +16,35 @@ For example, `<Checkbox colorScheme="blue">Option</Checkbox>`
 - Support for the `isFullWidth` prop has been deprecated. The Checkbox takes up
   the width of the parent by default.
 
-### CheckboxGroup
+  To allow for better layout composition, the `CheckboxGroup` component no
+  longer supports the any style prop.
 
-- To reduce the API surface, we're deprecating the `isInline` prop in favor of
-  `direction` prop for the orientation of the checkbox group
-
-- The `direction` prop takes either `row` or `column` orientation.
+  You can only pass `size`, `variant`, and `colorScheme` in addition to typical
+  group props which are used to control the states of the checkbox.
 
 ```jsx
 // before
-<CheckboxGroup isInline defaultValue={["one", "two"]}>
+<CheckboxGroup isInline spacing="40px" defaultValue={["one", "two"]}>
   <Checkbox value="one">One</Checkbox>
   <Checkbox value="two">Two</Checkbox>
   <Checkbox value="three">Three</Checkbox>
 </CheckboxGroup>
 
 // after
-<CheckboxGroup direction="row" defaultValue={["one", "two"]}>
-  <Checkbox value="one">One</Checkbox>
-  <Checkbox value="two">Two</Checkbox>
-  <Checkbox value="three">Three</Checkbox>
+<CheckboxGroup defaultValue={["one", "two"]}>
+  <HStack spacing="40px">
+    <Checkbox value="one">One</Checkbox>
+    <Checkbox value="two">Two</Checkbox>
+    <Checkbox value="three">Three</Checkbox>
+  </HStack>
 </CheckboxGroup>
 ```
 
-## Features
+We believe a checkbox group's layout should be managed 100% by the context it's
+used it, or based on design requirements. The group can stacked (`Stack`),
+placed in a grid (`SimpleGrid`) or made to wrap automatically (`Wrap`).
 
-### Checkbox
+## Features
 
 - Support for `iconColor` prop to customize the color of the check icon
 
@@ -69,35 +68,5 @@ For example, `<Checkbox colorScheme="blue">Option</Checkbox>`
 - The `useCheckbox` hook is exported with state and focus management logic for
   use in creating tailor-made checkbox component for your application
 
-### CheckboxGroup
-
-- Support for `spacing` prop to customize the space between the children
-  checkboxes
-
-```jsx
-<CheckboxGroup spacing={6}>
-  <Checkbox value="one">One</Checkbox>
-  <Checkbox value="two">Two</Checkbox>
-  <Checkbox value="three">Three</Checkbox>
-</CheckboxGroup>
-```
-
-- Support for responsive `direction` and `spacing` props. This allows the group
-  of checkboxes to wrap around the parent element automagically.
-
-```jsx
-<CheckboxGroup
-  spacing={[2, 4, 6]}
-  direction={["column", "row"]}
-  defaultValue={["one", "two"]}
-  onChange={value => console.log(value)}
->
-  <Checkbox value="one">One</Checkbox>
-  <Checkbox value="two">Two</Checkbox>
-  <Checkbox value="three">Three</Checkbox>
-  <Checkbox value="four">Four</Checkbox>
-</CheckboxGroup>
-```
-
-- The `useCheckboxGroup` hook is exported with state management logic for use in
+* The `useCheckboxGroup` hook is exported with state management logic for use in
   creating tailor-made checkbox group component for your application
