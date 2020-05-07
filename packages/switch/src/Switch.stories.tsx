@@ -81,7 +81,7 @@ export const Sizes = () => {
  */
 
 export const Controlled = () => {
-  const [value, setValue] = React.useState(false)
+  const [value, setValue] = React.useState(true)
 
   return (
     <Switch
