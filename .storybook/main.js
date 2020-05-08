@@ -2,7 +2,7 @@ const path = require("path")
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin")
 
 module.exports = {
-  stories: ["../packages/input/**/*.stories.tsx"],
+  stories: ["../packages/accordion/**/*.stories.tsx"],
   webpackFinal: async config => {
     config.module.rules.push({
       test: /\.(ts|tsx)$/,
