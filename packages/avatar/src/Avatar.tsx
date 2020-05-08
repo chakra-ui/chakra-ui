@@ -1,7 +1,8 @@
 import { useImage } from "@chakra-ui/image"
 import { chakra, PropsOf, SystemProps } from "@chakra-ui/system"
 import * as React from "react"
-import { cx } from "@chakra-ui/utils"
+import { forwardRef, Ref, cloneElement } from "react"
+import { cx, __DEV__ } from "@chakra-ui/utils"
 
 interface AvatarOptions {
   /**
@@ -68,7 +69,14 @@ export const AvatarBadge = chakra("div", {
     right: "0",
     bottom: "0",
   },
+  attrs: props => ({
+    className: cx("chakra-avatar__badge", props.className),
+  }),
 })
+
+if (__DEV__) {
+  AvatarBadge.displayName = "AvatarBadge"
+}
 
 export type AvatarBadgeProps = PropsOf<typeof AvatarBadge>
 
@@ -88,7 +96,7 @@ function initials(name: string) {
 
 type DivProps = PropsOf<typeof chakra.div>
 
-export type InitialsAvatarProps = DivProps &
+type InitialsAvatarProps = DivProps &
   Pick<AvatarOptions, "name" | "getInitials">
 
 /**
@@ -96,12 +104,9 @@ export type InitialsAvatarProps = DivProps &
  */
 const InitialsAvatar = (props: InitialsAvatarProps) => {
   const { name, getInitials, className, ...rest } = props
+  const _className = cx("chakra-avatar__name", className)
   return (
-    <chakra.div
-      aria-label={name}
-      className={cx("chakra-avatar__name", className)}
-      {...rest}
-    >
+    <chakra.div aria-label={name} className={_className} {...rest}>
       {name ? getInitials?.(name) : null}
     </chakra.div>
   )
@@ -111,7 +116,7 @@ const InitialsAvatar = (props: InitialsAvatarProps) => {
  * Fallback avatar react component.
  * This should be a generic svg used to represent an avatar
  */
-const GenericAvatar = (props: PropsOf<"svg">) => (
+const DefaultIcon = (props: PropsOf<"svg">) => (
   <svg
     viewBox="0 0 128 128"
     color="#fff"
@@ -160,76 +165,78 @@ export type AvatarProps = PropsOf<typeof StyledAvatar> & AvatarOptions
  * React component that renders an user avatar with
  * support for fallback avatar and name-only avatars
  */
-export const Avatar = React.forwardRef(
-  (props: AvatarProps, ref: React.Ref<any>) => {
-    const {
-      src,
-      name,
-      showBorder,
-      borderRadius = "full",
-      onError,
-      getInitials = initials,
-      icon = <GenericAvatar />,
-      className,
-      ...rest
-    } = props
+export const Avatar = forwardRef((props: AvatarProps, ref: Ref<any>) => {
+  const {
+    src,
+    name,
+    showBorder,
+    borderRadius = "full",
+    onError,
+    getInitials = initials,
+    icon = <DefaultIcon />,
+    className,
+    ...rest
+  } = props
 
-    // use the image hook to only show the image when it has loaded
-    const status = useImage({ src, onError })
+  // use the image hook to only show the image when it has loaded
+  const status = useImage({ src, onError })
 
-    const hasLoaded = status === "loaded"
+  const hasLoaded = status === "loaded"
 
-    const getAvatar = () => {
-      /**
-       * If `src` was passed and the image has loaded, we'll show it
-       */
-      if (src && hasLoaded) {
-        return (
-          <chakra.img
-            className="chakra-avatar__img"
-            width="100%"
-            height="100%"
-            objectFit="cover"
-            borderRadius={borderRadius}
-            src={src}
-            alt={name}
-          />
-        )
-      }
-
-      /**
-       * Fallback avatar applies under 2 conditions:
-       * - If `src` was passed and the image has not loaded or failed to load
-       * - If `src` wasn't passed
-       *
-       * In this case, we'll show either the name avatar or default avatar
-       */
-      const showFallback = !src || (src && !hasLoaded)
-
-      if (showFallback) {
-        return name ? (
-          <InitialsAvatar getInitials={getInitials} name={name} />
-        ) : (
-          React.cloneElement(icon, {
-            role: "img",
-            className: cx("chakra-avatar__icon", icon.props.className),
-          })
-        )
-      }
+  const getAvatar = () => {
+    /**
+     * If `src` was passed and the image has loaded, we'll show it
+     */
+    if (src && hasLoaded) {
+      return (
+        <chakra.img
+          className="chakra-avatar__img"
+          width="100%"
+          height="100%"
+          objectFit="cover"
+          borderRadius={borderRadius}
+          src={src}
+          alt={name}
+        />
+      )
     }
 
-    return (
-      <StyledAvatar
-        ref={ref}
-        borderRadius={borderRadius}
-        borderWidth={showBorder ? "2px" : undefined}
-        name={name}
-        className={cx("chakra-avatar", className)}
-        {...rest}
-      >
-        {getAvatar()}
-        {props.children}
-      </StyledAvatar>
-    )
-  },
-)
+    /**
+     * Fallback avatar applies under 2 conditions:
+     * - If `src` was passed and the image has not loaded or failed to load
+     * - If `src` wasn't passed
+     *
+     * In this case, we'll show either the name avatar or default avatar
+     */
+    const showFallback = !src || (src && !hasLoaded)
+
+    if (showFallback) {
+      return name ? (
+        <InitialsAvatar getInitials={getInitials} name={name} />
+      ) : (
+        cloneElement(icon, {
+          role: "img",
+          className: cx("chakra-avatar__icon", icon.props.className),
+        })
+      )
+    }
+  }
+
+  return (
+    <StyledAvatar
+      ref={ref}
+      borderRadius={borderRadius}
+      borderWidth={showBorder ? "2px" : undefined}
+      name={name}
+      className={cx("chakra-avatar", className)}
+      {...rest}
+    >
+      {getAvatar()}
+      {props.children}
+    </StyledAvatar>
+  )
+})
+
+if (__DEV__) {
+  Avatar.displayName = "Avatar"
+}

@@ -57,10 +57,9 @@ export const WithCustomIcon = () => (
  * as defined in your component theme
  */
 export const WithSizes = () => (
-  <React.Fragment>
+  <Stack direction="row" spacing="24px">
     {["xs", "sm", "md", "lg", "xl", "2xl"].map(size => (
       <Avatar
-        mr={2}
         size={size}
         name="Uchiha Itachi"
         src="https://uinames.com/api/photos/female/18.jpg"
@@ -68,7 +67,7 @@ export const WithSizes = () => (
         <AvatarBadge boxSize="1.25em" bg="green.500" />
       </Avatar>
     ))}
-  </React.Fragment>
+  </Stack>
 )
 
 /**
@@ -76,7 +75,7 @@ export const WithSizes = () => (
  * multiple avatars and add some space between them
  */
 export const avatarGroup = () => (
-  <AvatarGroup size="lg" showBorder max={3}>
+  <AvatarGroup size="lg" max={3}>
     <Avatar name="Ryan Florence" src="https://bit.ly/ryan-florence" />
     <Avatar name="Kent Dodds" src="https://bit.ly/kent-c-dodds" />
     <Avatar name="Prosper Otemuyiwa" src="https://bit.ly/prosper-baba" />
