@@ -51,9 +51,9 @@ test("has the proper aria attributes", () => {
 
   // isLoading sets aria-disabled="true"
   rerender(<Button isLoading>Hello</Button>)
-  expect(button).toHaveAttribute("aria-disabled", "true")
+  expect(button).toHaveAttribute("data-loading", "")
 
   // isDisabled sets aria-disabled="true"
   rerender(<Button isDisabled>Hello</Button>)
-  expect(button).toHaveAttribute("aria-disabled", "true")
+  expect(button).toHaveAttribute("disabled", "")
 })

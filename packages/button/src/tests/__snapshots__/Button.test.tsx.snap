@@ -3,7 +3,7 @@
 exports[`Button renders correctly 1`] = `
 <DocumentFragment>
   <button
-    class="css-1ax3zce"
+    class="chakra-button css-1ax3zce"
     type="button"
   />
 </DocumentFragment>
@@ -12,14 +12,15 @@ exports[`Button renders correctly 1`] = `
 exports[`Button renders with icons 1`] = `
 <DocumentFragment>
   <div
-    class="css-1baulvz"
+    class="chakra-button__group css-15xvw7i"
+    role="group"
   >
     <button
-      class="css-w134wy"
+      class="chakra-button css-1gkcy1z"
       type="button"
     >
       <span
-        class="css-hurga0"
+        class="chakra-button__icon css-hurga0"
       >
         <svg
           aria-hidden="true"
@@ -43,12 +44,12 @@ exports[`Button renders with icons 1`] = `
       Email
     </button>
     <button
-      class="css-1gkcy1z"
+      class="chakra-button css-1gkcy1z"
       type="button"
     >
       Arrow Forward
       <span
-        class="css-xc68f7"
+        class="chakra-button__icon css-xc68f7"
       >
         <svg
           aria-hidden="true"
@@ -71,14 +72,13 @@ exports[`Button renders with icons 1`] = `
 exports[`shows spinner and loading text if isLoading and loadingText 1`] = `
 <DocumentFragment>
   <button
-    aria-disabled="true"
-    class="css-1ax3zce"
+    class="chakra-button css-1ax3zce"
     data-loading=""
     disabled=""
     type="button"
   >
     <div
-      class="css-1tdm926"
+      class="chakra-button__spinner css-1tdm926"
     >
       <div
         class="css-1413of5"
@@ -98,14 +98,13 @@ exports[`shows spinner and loading text if isLoading and loadingText 1`] = `
 exports[`shows spinner if isLoading 1`] = `
 <DocumentFragment>
   <button
-    aria-disabled="true"
-    class="css-1ax3zce"
+    class="chakra-button css-1ax3zce"
     data-loading=""
     disabled=""
     type="button"
   >
     <div
-      class="css-fwyoyo"
+      class="chakra-button__spinner css-fwyoyo"
     >
       <div
         class="css-1413of5"

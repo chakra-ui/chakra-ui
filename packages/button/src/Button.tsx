@@ -6,7 +6,7 @@ import {
   useComponentStyle,
   pseudoSelectors,
 } from "@chakra-ui/system"
-import { dataAttr, __DEV__, merge, Dict } from "@chakra-ui/utils"
+import { dataAttr, __DEV__, merge, Dict, cx } from "@chakra-ui/utils"
 import * as React from "react"
 import {
   forwardRef,
@@ -98,6 +98,7 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<any>) => {
     variant = group?.variant,
     colorScheme = group?.colorScheme,
     size = group?.size,
+    className,
     ...rest
   } = props
 
@@ -117,6 +118,8 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<any>) => {
   const focusSelector = pseudoSelectors["_focus"]
   const _focus = merge(styles?.[focusSelector] ?? {}, { zIndex: 1 })
 
+  const _className = cx("chakra-button", className)
+
   return (
     <StyledButton
       disabled={isDisabled || isLoading}
@@ -128,6 +131,7 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<any>) => {
       variant={variant}
       colorScheme={colorScheme}
       size={size}
+      className={_className}
       {...(!!group && { _focus })}
       {...rest}
     >
@@ -165,7 +169,13 @@ const ButtonIcon = (props: PropsOf<typeof chakra.span>) => {
     ? cloneElement(props.children, a11yProps)
     : props.children
 
-  return <chakra.span {...props}>{children}</chakra.span>
+  return (
+    <chakra.span
+      className="chakra-button__icon"
+      {...props}
+      children={children}
+    />
+  )
 }
 
 if (__DEV__) {
@@ -182,8 +192,11 @@ const ButtonSpinner = (props: ButtonSpinnerProps) => {
     label,
     spacing,
     children = <Spinner color="currentColor" width="1em" height="1em" />,
+    className,
     ...rest
   } = props
+
+  const _className = cx("chakra-button__spinner", className)
 
   return (
     <chakra.div
@@ -191,6 +204,7 @@ const ButtonSpinner = (props: ButtonSpinnerProps) => {
       lineHeight="normal"
       position={label ? "relative" : "absolute"}
       mr={label ? spacing : 0}
+      className={_className}
       {...rest}
       children={children}
     />
