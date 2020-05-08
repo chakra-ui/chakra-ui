@@ -1,4 +1,3 @@
-import { useSafeLayoutEffect } from "@chakra-ui/hooks"
 import {
   chakra,
   PropsOf,
@@ -7,7 +6,7 @@ import {
 } from "@chakra-ui/system"
 import { createContext, cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { useState } from "react"
+import { forwardRef, useState, Ref } from "react"
 
 type GroupContext = Omit<ReturnType<typeof useProvider>, "htmlProps">
 
@@ -20,8 +19,8 @@ export { useInputGroup }
 
 export type InputGroupProps = PropsOf<typeof chakra.div> & ThemingProps
 
-export const InputGroup = React.forwardRef(
-  (props: InputGroupProps, ref: React.Ref<any>) => {
+export const InputGroup = forwardRef(
+  (props: InputGroupProps, ref: Ref<any>) => {
     const { className, ...rest } = props
     const { htmlProps, ...context } = useProvider(rest)
 

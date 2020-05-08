@@ -7,24 +7,17 @@ import { useInputGroup } from "./Input.group"
 
 type Placement = "left" | "right"
 
-function getPlacementStyles(placement: Placement) {
-  if (placement === "left") {
-    return {
-      marginRight: "-1px",
-      borderRightRadius: 0,
-      borderRightColor: "transparent",
-    }
-  }
-
-  if (placement === "right") {
-    return {
-      marginRight: "-1px",
-      borderLeftRadius: 0,
-      borderLeftColor: "transparent",
-    }
-  }
-
-  return {}
+const placements = {
+  left: {
+    marginRight: "-1px",
+    borderRightRadius: 0,
+    borderRightColor: "transparent",
+  },
+  right: {
+    marginRight: "-1px",
+    borderLeftRadius: 0,
+    borderLeftColor: "transparent",
+  },
 }
 
 /**
@@ -58,7 +51,7 @@ export const InputAddon = forwardRef(
   (props: InputAddonProps, ref: Ref<any>) => {
     const { placement = "left", ...rest } = props
 
-    const placementStyles = getPlacementStyles(placement)
+    const placementStyles = placements[placement] ?? {}
     const group = useInputGroup()
 
     return (

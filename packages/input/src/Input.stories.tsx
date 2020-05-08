@@ -33,13 +33,7 @@ export default {
   ],
 }
 
-/**
- * A simple input component
- */
-
-export const Basic = () => {
-  return <Input placeholder="Basic input" />
-}
+export const Basic = () => <Input placeholder="Basic input" />
 
 export const Controlled = () => {
   const [value, setValue] = React.useState("Starting...")
