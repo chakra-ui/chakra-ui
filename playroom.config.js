@@ -1,5 +1,5 @@
 module.exports = {
-  components: "@chakra-ui/button",
+  components: "@chakra-ui/input",
   outputPath: "./dist/playroom",
   title: "Chakra UI",
   // snippets: './playroom/snippets.js',
