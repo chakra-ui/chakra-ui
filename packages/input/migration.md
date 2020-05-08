@@ -13,3 +13,5 @@
 
 - Input now has BEM structured `className` attached to the DOM nodes to make it
   easier to spot the components in the "inspector" .
+
+- Input now uses `paddingY` instead of `height` for it's block height
