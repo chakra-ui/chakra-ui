@@ -55,4 +55,5 @@ export type Icons =
   | "warning-2"
   | "arrow-up-down"
   | "check"
-  | "minus";
+  | "minus"
+  | string;
