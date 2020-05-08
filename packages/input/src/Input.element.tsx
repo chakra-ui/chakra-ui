@@ -1,30 +1,25 @@
 import * as React from "react"
+import { forwardRef } from "react"
 import { useInputGroup } from "./Input.group"
 import { chakra, useComponentStyle, PropsOf } from "@chakra-ui/system"
 import { useSafeLayoutEffect } from "@chakra-ui/hooks"
-import { __DEV__ } from "@chakra-ui/utils"
+import { __DEV__, mergeRefs, cx } from "@chakra-ui/utils"
 
 export type InputElementProps = PropsOf<typeof chakra.div> & {
   placement?: "left" | "right"
 }
 
-/**
- * InputElement
- *
- * Element to append or prepend to an input
- */
-
-export const InputElement = React.forwardRef(
+export const InputElement = forwardRef(
   (props: InputElementProps, ref: React.Ref<any>) => {
     const { placement = "left", ...rest } = props
 
-    const { variant, size } = useInputGroup()
+    const group = useInputGroup()
 
-    const inputStyle = useComponentStyle({
+    const input = useComponentStyle({
       themeKey: "Input",
-      variant,
-      size,
-    })
+      variant: group?.variant,
+      size: group?.size,
+    }) as InputElementProps
 
     const placementProp = { [placement]: "0" }
 
@@ -34,9 +29,9 @@ export const InputElement = React.forwardRef(
         alignItems="center"
         justifyContent="center"
         position="absolute"
-        height={inputStyle?.height}
-        minWidth={inputStyle?.height}
-        fontSize={inputStyle?.fontSize}
+        paddingX={input?.paddingLeft}
+        paddingY={input?.paddingTop}
+        fontSize={input?.fontSize}
         top="0"
         zIndex={2}
         ref={ref}
@@ -51,24 +46,26 @@ if (__DEV__) {
   InputElement.displayName = "InputElement"
 }
 
-/**
- * InputLeftElement
- *
- * Element to append to the left of an input
- */
-
-export const InputLeftElement = React.forwardRef(
+export const InputLeftElement = forwardRef(
   (props: PropsOf<typeof InputElement>, ref: React.Ref<any>) => {
-    const group = useInputGroup()
+    const { leftElement } = useInputGroup()
 
     useSafeLayoutEffect(() => {
-      group.setHasLeftElement(true)
-      return () => {
-        group.setHasLeftElement(false)
-      }
+      leftElement?.setMounted(true)
+      return () => leftElement?.setMounted(false)
     }, [])
 
-    return <InputElement ref={ref} placement="left" {...props} />
+    const _ref = mergeRefs(ref, leftElement?.ref)
+    const _className = cx("chakra-input__left-element", props.className)
+
+    return (
+      <InputElement
+        ref={_ref}
+        placement="left"
+        {...props}
+        className={_className}
+      />
+    )
   },
 )
 
@@ -76,24 +73,26 @@ if (__DEV__) {
   InputLeftElement.displayName = "InputLeftElement"
 }
 
-/**
- * InputRightElement
- *
- * Element to append to the right of an input
- */
-
-export const InputRightElement = React.forwardRef(
+export const InputRightElement = forwardRef(
   (props: PropsOf<typeof InputElement>, ref: React.Ref<any>) => {
-    const group = useInputGroup()
+    const { rightElement } = useInputGroup()
 
     useSafeLayoutEffect(() => {
-      group.setHasRightElement(true)
-      return () => {
-        group.setHasRightElement(false)
-      }
+      rightElement?.setMounted(true)
+      return () => rightElement?.setMounted(false)
     }, [])
 
-    return <InputElement ref={ref} placement="right" {...props} />
+    const _ref = mergeRefs(ref, rightElement?.ref)
+    const _className = cx("chakra-input__right-element", props.className)
+
+    return (
+      <InputElement
+        ref={_ref}
+        placement="right"
+        {...props}
+        className={_className}
+      />
+    )
   },
 )
 

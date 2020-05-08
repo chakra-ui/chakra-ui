@@ -1,68 +1,98 @@
+import { useDimensions, useSafeLayoutEffect } from "@chakra-ui/hooks"
 import {
   chakra,
   PropsOf,
   ThemingProps,
   useThemeDefaultProps,
 } from "@chakra-ui/system"
-import { createContext, __DEV__ } from "@chakra-ui/utils"
+import { createContext, cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
+import { useRef, useState } from "react"
 
-interface InputGroupContext {
-  variant?: string
-  size?: string
-  hasLeftElement: boolean
-  setHasLeftElement: React.Dispatch<React.SetStateAction<boolean>>
-  hasRightElement: boolean
-  setHasRightElement: React.Dispatch<React.SetStateAction<boolean>>
-}
+type GroupContext = Omit<ReturnType<typeof useProvider>, "htmlProps">
 
-const [InputGroupProvider, useInputGroup] = createContext<InputGroupContext>({
+const [InputGroupProvider, useInputGroup] = createContext<GroupContext>({
   strict: false,
+  name: "InputGroupContext",
 })
 
 export { useInputGroup }
 
 export type InputGroupProps = PropsOf<typeof chakra.div> & ThemingProps
 
-/**
- * InputGroup
- *
- * Wrapper element used to enhance an input with an InputAddon
- * or an InputElement
- */
+export const InputGroup = React.forwardRef(
+  (props: InputGroupProps, ref: React.Ref<any>) => {
+    const { className, ...rest } = props
+    const { htmlProps, ...context } = useProvider(rest)
 
-export const InputGroup = (props: InputGroupProps) => {
+    const _className = cx("chakra-input__group", className)
+
+    return (
+      <chakra.div
+        className={_className}
+        ref={ref}
+        width="100%"
+        display="flex"
+        position="relative"
+        {...htmlProps}
+      >
+        <InputGroupProvider value={context} children={props.children} />
+      </chakra.div>
+    )
+  },
+)
+
+if (__DEV__) {
+  InputGroup.displayName = "InputGroup"
+}
+
+function useMeasurement() {
+  const [hasMeasured, setHasMeasured] = useState(false)
+  const [mounted, setMounted] = useState(false)
+  const ref = useRef<any>(null)
+
+  const rect = useDimensions(ref, true)?.borderBox
+  useSafeLayoutEffect(() => {
+    if (rect) {
+      setHasMeasured(true)
+    }
+  }, [rect])
+
+  return { ref, rect, mounted, setMounted, hasMeasured }
+}
+
+type UseMeasurementReturn = ReturnType<typeof useMeasurement>
+
+function useMounted() {
+  const [mounted, setMounted] = useState(false)
+  return { mounted, setMounted }
+}
+
+type UseMountedReturn = ReturnType<typeof useMounted>
+
+function useProvider(props: any) {
   const defaults = useThemeDefaultProps("Input")
 
   const {
     children,
     size = defaults?.size,
     variant = defaults?.variant,
-    ...rest
+    ...htmlProps
   } = props
 
-  const [hasLeftElement, setHasLeftElement] = React.useState(false)
-  const [hasRightElement, setHasRightElement] = React.useState(false)
+  const leftElement = useMeasurement() as UseMeasurementReturn | undefined
+  const rightElement = useMeasurement() as UseMeasurementReturn | undefined
 
-  const context = React.useMemo(
-    () => ({
-      size,
-      variant,
-      hasLeftElement,
-      setHasLeftElement,
-      hasRightElement,
-      setHasRightElement,
-    }),
-    [hasLeftElement, hasRightElement, size, variant],
-  )
+  const leftAddon = useMounted() as UseMountedReturn | undefined
+  const rightAddon = useMounted() as UseMountedReturn | undefined
 
-  return (
-    <chakra.div display="flex" position="relative" {...rest}>
-      <InputGroupProvider value={context}>{children}</InputGroupProvider>
-    </chakra.div>
-  )
-}
-
-if (__DEV__) {
-  InputGroup.displayName = "InputGroup"
+  return {
+    leftElement,
+    rightElement,
+    leftAddon,
+    rightAddon,
+    htmlProps,
+    size,
+    variant,
+  }
 }

@@ -9,6 +9,7 @@ import Code from "./Code"
 import Modal from "./Modal"
 import Heading from "./Heading"
 import Input from "./Input"
+import InputAddon from "./InputAddon"
 import Link from "./Link"
 import Menu from "./Menu"
 import NumberInput from "./NumberInput"
@@ -43,6 +44,7 @@ export default {
   Checkbox,
   Radio,
   Input,
+  InputAddon,
   Tooltip,
   CloseButton,
   Slider,
