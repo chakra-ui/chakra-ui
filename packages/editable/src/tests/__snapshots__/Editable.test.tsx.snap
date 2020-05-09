@@ -3,19 +3,17 @@
 exports[`should match snapshot 1`] = `
 <DocumentFragment>
   <div
-    data-chakra-editable=""
+    class="chakra-editable"
   >
     <span
-      class="css-gsjxgq"
-      data-chakra-editable-preview=""
+      class="chakra-editable__preview css-gsjxgq"
       data-testid="preview"
       tabindex="0"
     >
       testing
     </span>
     <input
-      class="css-1qupasc"
-      data-chakra-editable-input=""
+      class="chakra-editable__input css-1qupasc"
       data-testid="input"
       hidden=""
       value="testing"

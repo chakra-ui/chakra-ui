@@ -12,7 +12,7 @@ const theme = {
     secondary: "cyan",
   },
   fontSizes: [12, 14, 16, 24, 36],
-  space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
+  space: [0, 4, 8, 12, 16, 32, 64, 128, 256, 512],
   fonts: {
     monospace: "Menlo, monospace",
   },
@@ -59,18 +59,19 @@ const theme = {
   },
 }
 
+const selectors = {
+  first: "> *:first-of-type:not(:last-of-type)",
+  middle: "> *:not(:first-of-type):not(:last-of-type)",
+  last: "> *:not(:first-of-type):last-of-type",
+}
+
 export const example = () => {
   const result = css({
-    color: "primary",
-    h1: {
-      py: [3, 4],
-      _hover: {
-        margin: [2, 3],
-        bg: "secondary",
-      },
-    },
-  })({ theme })
+    flexDirection: ["column", "row"],
+    [selectors.first]: [{ borderRightRadius: 0 }, { borderBottomRadius: 0 }],
+    [selectors.middle]: { borderRadius: 0 },
+    [selectors.last]: [{ borderLeftRadius: 0 }, { borderTopRadius: 0 }],
+  })(theme)
 
-  console.log(result)
-  return <div>Crack the bug</div>
+  return <pre>{JSON.stringify(result, null, 4)}</pre>
 }

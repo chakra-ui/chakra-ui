@@ -80,3 +80,25 @@ export function getOrientationStyle<T>(options: {
   if (!orientation) return {}
   return orientation === "vertical" ? vertical : horizontal
 }
+
+/**
+ * Copies the styles from a component sizes or variants to another component
+ * under a speicifed key.
+ *
+ * @param source The component theme object to copy
+ * @param component The component string to copy to
+ */
+export function copy(source: any, component: string) {
+  const result = {} as any
+
+  for (const k in source) {
+    const value = source[k]
+    if (typeof value === "function") {
+      result[k] = (props: any) => ({ [component]: value(props) })
+    } else {
+      result[k] = { [component]: value }
+    }
+  }
+
+  return result
+}

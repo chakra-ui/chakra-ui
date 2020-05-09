@@ -1,4 +1,4 @@
-import * as React from "react"
+import { useEffect } from "react"
 import { useUpdateEffect } from "./useUpdateEffect"
 
 /**
@@ -9,7 +9,7 @@ import { useUpdateEffect } from "./useUpdateEffect"
  * @param values parameters to log
  */
 export function useLogger(label: string, ...values: any[]) {
-  React.useEffect(() => {
+  useEffect(() => {
     console.log(`${label} mounted:`, ...values)
     return () => {
       console.log(`${label} unmounted`)

@@ -1,28 +1,23 @@
-import { chakra, PropsOf, useColorModeValue } from "@chakra-ui/system"
+import { useSafeLayoutEffect } from "@chakra-ui/hooks"
+import { chakra, PropsOf } from "@chakra-ui/system"
+import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
+import { forwardRef, Ref } from "react"
 import { useInputGroup } from "./Input.group"
-import { __DEV__ } from "@chakra-ui/utils"
 
 type Placement = "left" | "right"
 
-function getPlacementStyles(placement: Placement) {
-  if (placement === "left") {
-    return {
-      marginRight: "-1px",
-      borderRightRadius: 0,
-      borderRightColor: "transparent",
-    }
-  }
-
-  if (placement === "right") {
-    return {
-      order: 1,
-      borderLeftRadius: 0,
-      borderLeftColor: "transparent",
-    }
-  }
-
-  return {}
+const placements = {
+  left: {
+    marginRight: "-1px",
+    borderRightRadius: 0,
+    borderRightColor: "transparent",
+  },
+  right: {
+    marginRight: "-1px",
+    borderLeftRadius: 0,
+    borderLeftColor: "transparent",
+  },
 }
 
 /**
@@ -31,7 +26,16 @@ function getPlacementStyles(placement: Placement) {
  * Wrapper element around the InputAddon component
  */
 
-const StyledAddon = chakra("div", { themeKey: "Input" })
+const StyledAddon = chakra("div", {
+  themeKey: "InputAddon",
+  baseStyle: {
+    flex: "0 0 auto",
+    width: "auto",
+    display: "flex",
+    alignItems: "center",
+    whiteSpace: "nowrap",
+  },
+})
 
 export type InputAddonProps = PropsOf<typeof StyledAddon> & {
   placement?: Placement
@@ -43,27 +47,24 @@ export type InputAddonProps = PropsOf<typeof StyledAddon> & {
  * Element to append or prepend to an input
  */
 
-export function InputAddon({ placement = "left", ...props }: InputAddonProps) {
-  const bg = useColorModeValue(`gray.100`, `whiteAlpha.300`)
-  const placementStyles = getPlacementStyles(placement)
+export const InputAddon = forwardRef(
+  (props: InputAddonProps, ref: Ref<any>) => {
+    const { placement = "left", ...rest } = props
 
-  const group = useInputGroup()
+    const placementStyles = placements[placement] ?? {}
+    const group = useInputGroup()
 
-  return (
-    <StyledAddon
-      flex="0 0 auto"
-      bg={bg}
-      width="auto"
-      display="flex"
-      alignItems="center"
-      whiteSpace="nowrap"
-      {...placementStyles}
-      {...props}
-      variant={group?.variant || props.variant}
-      size={group?.size || props.size}
-    />
-  )
-}
+    return (
+      <StyledAddon
+        ref={ref}
+        {...placementStyles}
+        {...rest}
+        variant={group?.variant || props.variant}
+        size={group?.size || props.size}
+      />
+    )
+  },
+)
 
 if (__DEV__) {
   InputAddon.displayName = "InputAddon"
@@ -75,9 +76,22 @@ if (__DEV__) {
  * Element to append to the left of an input
  */
 
-export const InputLeftAddon = (props: InputAddonProps) => (
-  <InputAddon placement="left" {...props} />
-)
+export const InputLeftAddon = (props: InputAddonProps) => {
+  const { leftAddon } = useInputGroup()
+
+  useSafeLayoutEffect(() => {
+    leftAddon?.mount()
+    return () => leftAddon?.unmount()
+  }, [])
+
+  return (
+    <InputAddon
+      placement="left"
+      {...props}
+      className={cx("chakra-input__left-addon", props.className)}
+    />
+  )
+}
 
 if (__DEV__) {
   InputLeftAddon.displayName = "InputLeftAddon"
@@ -89,9 +103,22 @@ if (__DEV__) {
  * Element to append to the right of an input
  */
 
-export const InputRightAddon = (props: InputAddonProps) => (
-  <InputAddon placement="right" {...props} />
-)
+export const InputRightAddon = (props: InputAddonProps) => {
+  const { rightAddon } = useInputGroup()
+
+  useSafeLayoutEffect(() => {
+    rightAddon?.mount()
+    return () => rightAddon?.unmount()
+  }, [])
+
+  return (
+    <InputAddon
+      placement="right"
+      {...props}
+      className={cx("chakra-input__right-addon", props.className)}
+    />
+  )
+}
 
 if (__DEV__) {
   InputRightAddon.displayName = "InputRightAddon"

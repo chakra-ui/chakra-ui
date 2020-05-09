@@ -28,17 +28,16 @@ export const UseEditableHook = () => {
     isValueEmpty,
     isEditing,
     onEdit,
-  } = useEditable({ placeholder: "Title..." })
+  } = useEditable({
+    placeholder: "Title...",
+    submitOnBlur: false,
+  })
 
   return (
     <>
       <input
         style={{ width: "auto", background: "transparent" }}
-        {...getInputProps({
-          onBlur: () => {
-            console.log("blur")
-          },
-        })}
+        {...getInputProps()}
       />
       <span
         style={{ opacity: isValueEmpty ? 0.7 : 1 }}
@@ -77,10 +76,10 @@ const EditableControls = () => {
   )
 }
 
-export const editable = () => (
+export const Basic = () => (
   <Editable
     defaultValue="Rasengan ⚡️"
-    fontSize="2xl"
+    fontSize="xl"
     textAlign="center"
     isPreviewFocusable={false}
     submitOnBlur={false}
@@ -92,7 +91,7 @@ export const editable = () => (
   </Editable>
 )
 
-export function CodeSandboxTopbar() {
+export const CodeSandboxTopbar = () => {
   return (
     <chakra.div py="4" display="flex" alignItems="center">
       <chakra.p fontWeight="medium">My Sandboxes</chakra.p>

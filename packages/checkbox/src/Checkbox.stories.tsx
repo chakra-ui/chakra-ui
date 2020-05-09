@@ -1,91 +1,50 @@
 import * as React from "react"
-import { Checkbox } from "./Checkbox"
-import { CheckboxGroup } from "./CheckboxGroup"
-import { useCheckbox } from "."
+import { useCheckbox, CheckboxGroup, Checkbox } from "."
+import { Stack, Container, VStack, HStack } from "@chakra-ui/layout"
 
 export default {
   title: "Checkbox",
+  decorators: [(story: Function) => <Container mt="40px">{story()}</Container>],
 }
 
-export const Base = () => {
-  const { htmlProps, getInputProps, getCheckboxProps } = useCheckbox()
+export const CheckboxWithHooks = () => {
+  const { state, htmlProps, getInputProps, getCheckboxProps } = useCheckbox()
   return (
     <label {...htmlProps}>
       <input {...getInputProps()} />
-      <div {...getCheckboxProps()}>This is custom checkbox</div>
+      <div {...getCheckboxProps()}>{JSON.stringify(state, null, 4)}</div>
     </label>
   )
 }
 
-/**
- * A simple checkbox component.
- */
-
-export const Basic = () => <Checkbox>Hello</Checkbox>
-
-/**
- * Pass the `isDisabled` prop set to true, to have the checkbox in the
- * disabled state.
- */
+export const Basic = () => <Checkbox colorScheme="green">Hello</Checkbox>
 
 export const Disabled = () => <Checkbox isDisabled children="Disabled" />
 
-/**
- * Pass the `isReadOnly` prop set to true, to have the checkbox in the
- * readonly state.
- */
-
 export const Readonly = () => <Checkbox isReadOnly children="Readonly" />
-
-/**
- * Pass the `isInvalid` prop set to true, to have the checkbox in the
- * invalid state.
- */
 
 export const Invalid = () => <Checkbox isInvalid children="Invalid" />
 
-/**
- * Customise the checkbox appearance with colors set in your theme.
- * Pass the `colorScheme` prop as a color from your theme to change the
- * background of the checkbox.
- *
- * Pass the `color` prop to change the color of the checkbox label.
- */
-
-export const Custom = () => {
+export const withColorScheme = () => {
   return (
-    <>
-      <Checkbox
-        defaultIsChecked
-        marginRight="1rem"
-        colorScheme="red"
-        children="Hello world"
-      />
-      <Checkbox defaultIsChecked color="#bbaa82" children="Hello world" />
-    </>
+    <VStack>
+      <Checkbox defaultIsChecked colorScheme="red" children="Hello world" />
+      <Checkbox defaultIsChecked children="Hello world" />
+    </VStack>
   )
 }
-
-/**
- * Pass the `size` prop to change the size of the Checkbox.
- * Values can be either sm, md or lg.
- */
 
 export const Sizes = () => {
   const sizes = ["sm", "md", "lg"]
 
   return (
-    <>
+    <HStack>
       {sizes.map(size => (
         <Checkbox size={size} marginLeft="1rem" />
       ))}
-    </>
+    </HStack>
   )
 }
-
-/**
- * The indeterminate property can help to achieve a 'check all' effect.
- */
 
 export const Indeterminate = () => {
   const [checkedItems, setCheckedItems] = React.useState([false, false])
@@ -101,23 +60,21 @@ export const Indeterminate = () => {
         onChange={e => setCheckedItems([e.target.checked, e.target.checked])}
         children="Parent Checkbox"
       />
-      <Checkbox
-        isChecked={checkedItems[0]}
-        onChange={e => setCheckedItems([e.target.checked, checkedItems[1]])}
-        children="Child Checkbox 1"
-      />
-      <Checkbox
-        isChecked={checkedItems[1]}
-        onChange={e => setCheckedItems([checkedItems[0], e.target.checked])}
-        children="Child Checkbox 2"
-      />
+      <VStack ml="6" mt="2" align="start">
+        <Checkbox
+          isChecked={checkedItems[0]}
+          onChange={e => setCheckedItems([e.target.checked, checkedItems[1]])}
+          children="Child Checkbox 1"
+        />
+        <Checkbox
+          isChecked={checkedItems[1]}
+          onChange={e => setCheckedItems([checkedItems[0], e.target.checked])}
+          children="Child Checkbox 2"
+        />
+      </VStack>
     </>
   )
 }
-
-/**
- * A controlled checkbox
- */
 
 export const Controlled = () => {
   const [value, setValue] = React.useState(false)
@@ -129,47 +86,35 @@ export const Controlled = () => {
   return <Checkbox isChecked={value} onChange={handleChange} />
 }
 
-/**
- * Default CheckboxGroup
- */
-
 export const CheckboxGroupExample = () => {
   return (
     <CheckboxGroup
-      spacing={[2, 4, 6]}
-      direction={["column", "row"]}
       defaultValue={["one", "two"]}
       onChange={value => console.log(value)}
     >
-      <Checkbox value="one">One</Checkbox>
-      <Checkbox value="two">Two</Checkbox>
-      <Checkbox value="three">Three</Checkbox>
+      <Stack align="start" direction={["column", "row"]} spacing={[2, 4, 6]}>
+        <Checkbox value="one">One</Checkbox>
+        <Checkbox value="two">Two</Checkbox>
+        <Checkbox value="three">Three</Checkbox>
+      </Stack>
     </CheckboxGroup>
   )
 }
-
-/**
- * CheckboxGroup with responsive spacing and direction
- */
 
 export const ResponsiveCheckboxGroup = () => {
   return (
     <CheckboxGroup
-      spacing={[2, 4, 6]}
-      direction={["column", "row"]}
       defaultValue={["one", "two"]}
       onChange={value => console.log(value)}
     >
-      <Checkbox value="one">One</Checkbox>
-      <Checkbox value="two">Two</Checkbox>
-      <Checkbox value="three">Three</Checkbox>
+      <Stack spacing={[2, 4, 6]} direction={["column", "row"]}>
+        <Checkbox value="one">One</Checkbox>
+        <Checkbox value="two">Two</Checkbox>
+        <Checkbox value="three">Three</Checkbox>
+      </Stack>
     </CheckboxGroup>
   )
 }
-
-/**
- * Controlled CheckboxGroup
- */
 
 type Value = string | number
 type ArrayOfValue = Value[]
@@ -184,9 +129,11 @@ export const ControlledCheckboxGroup = () => {
         setValue(value)
       }}
     >
-      <Checkbox value="one">One</Checkbox>
-      <Checkbox value="two">Two</Checkbox>
-      <Checkbox value="three">Three</Checkbox>
+      <HStack spacing="40px">
+        <Checkbox value="one">One</Checkbox>
+        <Checkbox value="two">Two</Checkbox>
+        <Checkbox value="three">Three</Checkbox>
+      </HStack>
     </CheckboxGroup>
   )
 }

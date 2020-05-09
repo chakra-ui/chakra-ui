@@ -1,4 +1,4 @@
-import * as React from "react"
+import { useEffect } from "react"
 import { useLatestRef } from "./useLatestRef"
 
 /**
@@ -10,7 +10,7 @@ import { useLatestRef } from "./useLatestRef"
 export function useTimeout(callback: Function, delay: number | null) {
   const savedCallback = useLatestRef(callback)
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (delay == null) return
 
     const timeoutId = setTimeout(() => {

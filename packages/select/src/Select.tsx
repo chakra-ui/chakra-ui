@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/system"
 import { split, __DEV__, cx } from "@chakra-ui/utils"
 import * as React from "react"
-import { cloneElement, forwardRef } from "react"
+import { cloneElement, forwardRef, Ref } from "react"
 
 type Omitted = "disabled" | "required" | "readOnly" | "size"
 
@@ -59,8 +59,8 @@ export type SelectFieldProps = Omit<PropsOf<typeof StyledSelect>, Omitted> & {
 /**
  * The native `select` element enhanced for accessibility and validation.
  */
-export const SelectField = React.forwardRef(
-  (props: SelectFieldProps, ref: React.Ref<HTMLSelectElement>) => {
+export const SelectField = forwardRef(
+  (props: SelectFieldProps, ref: Ref<HTMLSelectElement>) => {
     const { children, placeholder, ...rest } = props
     const fieldProps = useFormControl<HTMLSelectElement>(props)
 

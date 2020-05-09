@@ -4,10 +4,12 @@ import { chakra, PropsOf, useComponentStyle } from "@chakra-ui/system"
 import {
   callAllHandlers,
   createContext,
+  cx,
   dataAttr,
   __DEV__,
 } from "@chakra-ui/utils"
 import * as React from "react"
+import { forwardRef, Ref } from "react"
 
 export interface FormControlOptions {
   /**
@@ -62,17 +64,18 @@ interface FormControlContext extends FormControlOptions {
   id?: string
 }
 
-type FieldContext = ReturnType<typeof useFormControlProvider>
+type FieldContext = Omit<ReturnType<typeof useProvider>, "htmlProps">
 
 const [FormControlCtxProvider, useFormControlContext] = createContext<
   FieldContext
 >({
   strict: false,
+  name: "FormControlContext",
 })
 
 export { useFormControlContext }
 
-function useFormControlProvider(props: FormControlContext) {
+function useProvider(props: FormControlContext) {
   const {
     id: idProp,
     isRequired,
@@ -80,6 +83,7 @@ function useFormControlProvider(props: FormControlContext) {
     isDisabled,
     isLoading,
     isReadOnly,
+    ...htmlProps
   } = props
 
   // Generate all the required ids
@@ -97,7 +101,7 @@ function useFormControlProvider(props: FormControlContext) {
   const [hasHelpText, setHasHelpText] = useBooleanState()
 
   // Let's keep track of when we focus the form element (e.g, `input`)
-  const [isFocused, setFocus] = useBooleanState(false)
+  const [isFocused, setFocus] = useBooleanState()
 
   const context = {
     isRequired,
@@ -114,6 +118,7 @@ function useFormControlProvider(props: FormControlContext) {
     labelId,
     feedbackId,
     helpTextId,
+    htmlProps,
   }
 
   return context
@@ -122,6 +127,7 @@ function useFormControlProvider(props: FormControlContext) {
 const StyledFormControl = chakra("div", {
   themeKey: "Form.Root",
   baseStyle: {
+    width: "100%",
     position: "relative",
   },
   attrs: {
@@ -141,24 +147,15 @@ export type FormControlProps = FormControlContext &
  * This is commonly used in form elements such as `input`,
  * `select`, `textarea`, etc.
  */
-export const FormControl = React.forwardRef(
-  (props: FormControlProps, ref: React.Ref<any>) => {
-    const {
-      id,
-      isRequired,
-      isInvalid,
-      isDisabled,
-      label,
-      errorText,
-      helperText,
-      ...rest
-    } = props
+export const FormControl = forwardRef(
+  (props: FormControlProps, ref: Ref<any>) => {
+    const { htmlProps, ...context } = useProvider(props)
 
-    const context = useFormControlProvider(props)
+    const _className = cx("chakra-form-control", props.className)
 
     return (
       <FormControlCtxProvider value={context}>
-        <StyledFormControl data-chakra-form-control="" ref={ref} {...rest} />
+        <StyledFormControl ref={ref} {...htmlProps} className={_className} />
       </FormControlCtxProvider>
     )
   },
@@ -191,26 +188,24 @@ export type FormLabelProps = PropsOf<typeof StyledLabel>
  *
  * ♿️ Accessibilty: Every form field should have a form label.
  */
-export const FormLabel = React.forwardRef(
-  (props: FormLabelProps, ref: React.Ref<HTMLLabelElement>) => {
-    const field = useFormControlContext()
+export const FormLabel = forwardRef((props: FormLabelProps, ref: Ref<any>) => {
+  const field = useFormControlContext()
 
-    return (
-      <StyledLabel
-        {...props}
-        data-chakra-form-label=""
-        ref={ref}
-        data-focus={dataAttr(field?.isFocused)}
-        data-disabled={dataAttr(field?.isDisabled)}
-        data-invalid={dataAttr(field?.isInvalid)}
-        data-loading={dataAttr(field?.isLoading)}
-        data-readonly={dataAttr(field?.isReadOnly)}
-        id={props.id ?? field?.labelId}
-        htmlFor={props.htmlFor ?? field?.id}
-      />
-    )
-  },
-)
+  return (
+    <StyledLabel
+      {...props}
+      className={cx("chakra-form__label", props.className)}
+      ref={ref}
+      data-focus={dataAttr(field?.isFocused)}
+      data-disabled={dataAttr(field?.isDisabled)}
+      data-invalid={dataAttr(field?.isInvalid)}
+      data-loading={dataAttr(field?.isLoading)}
+      data-readonly={dataAttr(field?.isReadOnly)}
+      id={props.id ?? field?.labelId}
+      htmlFor={props.htmlFor ?? field?.id}
+    />
+  )
+})
 
 if (__DEV__) {
   FormLabel.displayName = "FormLabel"
@@ -236,15 +231,15 @@ export type RequiredIndicatorProps = PropsOf<typeof StyledIndicator>
  * Used to show a "required" text or an asterisks (*) to indicate that
  * a field is required.
  */
-export const RequiredIndicator = React.forwardRef(
-  (props: RequiredIndicatorProps, ref: React.Ref<any>) => {
+export const RequiredIndicator = forwardRef(
+  (props: RequiredIndicatorProps, ref: Ref<any>) => {
     const field = useFormControlContext()
 
     if (!field?.isRequired) return null
 
-    return (
-      <StyledIndicator data-chakra-required-indicator="" ref={ref} {...props} />
-    )
+    const _className = cx("chakra-form__required-indicator", props.className)
+
+    return <StyledIndicator ref={ref} {...props} className={_className} />
   },
 )
 
@@ -271,28 +266,31 @@ export type HelpTextProps = PropsOf<typeof StyledHelperText>
  * about the field, such as how it will be used and what
  * types in values should be provided
  */
-export function FormHelperText(props: HelpTextProps) {
-  const field = useFormControlContext()
+export const FormHelperText = forwardRef(
+  (props: HelpTextProps, ref: Ref<any>) => {
+    const field = useFormControlContext()
 
-  /**
-   * Notify the field context when the help text is rendered on
-   * screen, so we can apply the correct `aria-describedby` to the field (e.g. input, textarea)
-   */
-  useSafeLayoutEffect(() => {
-    field?.setHasHelpText.on()
-    return () => {
-      field?.setHasHelpText.off()
-    }
-  }, [])
+    /**
+     * Notify the field context when the help text is rendered on
+     * screen, so we can apply the correct `aria-describedby` to the field (e.g. input, textarea)
+     */
+    useSafeLayoutEffect(() => {
+      field?.setHasHelpText.on()
+      return () => field?.setHasHelpText.off()
+    }, [])
 
-  return (
-    <StyledHelperText
-      data-chakra-form-helper-text=""
-      {...props}
-      id={props.id ?? field?.helpTextId}
-    />
-  )
-}
+    const _className = cx("chakra-form__helper-text", props.className)
+
+    return (
+      <StyledHelperText
+        ref={ref}
+        {...props}
+        className={_className}
+        id={props.id ?? field?.helpTextId}
+      />
+    )
+  },
+)
 
 if (__DEV__) {
   FormHelperText.displayName = "FormHelperText"
@@ -321,19 +319,24 @@ export type FormErrorMessageProps = PropsOf<typeof StyledErrorText>
  * Used to provide feedback about an invalid input,
  * and suggest clear instrctions on how to fix it.
  */
-export function FormErrorMessage(props: FormErrorMessageProps) {
-  const field = useFormControlContext()
+export const FormErrorMessage = forwardRef(
+  (props: FormErrorMessageProps, ref: Ref<any>) => {
+    const field = useFormControlContext()
 
-  if (!field?.isInvalid) return null
+    if (!field?.isInvalid) return null
 
-  return (
-    <StyledErrorText
-      data-chakra-form-error-message=""
-      {...props}
-      id={props.id || field?.feedbackId}
-    />
-  )
-}
+    const _className = cx("chakra-form__error-message", props.className)
+
+    return (
+      <StyledErrorText
+        ref={ref}
+        {...props}
+        className={_className}
+        id={props.id ?? field?.feedbackId}
+      />
+    )
+  },
+)
 
 if (__DEV__) {
   FormErrorMessage.displayName = "FormErrorMessage"
@@ -358,13 +361,23 @@ export function useFormControl<T extends HTMLElement>(
   const field = useFormControlContext()
   const describedBy: string[] = []
 
-  if (field?.isInvalid) describedBy.push(field.feedbackId)
+  if (field?.isInvalid) {
+    /**
+     * Error message must be described first
+     * in all scenarios
+     */
+    if (describedBy.length > 0) {
+      describedBy.unshift(field.feedbackId)
+    } else {
+      describedBy.push(field.feedbackId)
+    }
+  }
   if (field?.hasHelpText) describedBy.push(field.helpTextId)
   const ariaDescribedBy = describedBy.join(" ")
 
   return {
     ...props,
-    id: props.id || field?.id,
+    id: props.id ?? field?.id,
     disabled: props.isDisabled || field?.isDisabled,
     readOnly: props.isReadOnly || field?.isReadOnly,
     "aria-invalid": props.isInvalid || field?.isInvalid,
@@ -382,21 +395,25 @@ export type FormErrorIconProps = PropsOf<typeof Icon>
  * Used as the visual indicator that a field is invalid or
  * a field has incorrect values.
  */
-export const FormErrorIcon = (props: FormErrorIconProps) => {
-  const styles = useComponentStyle({ themeKey: "Form.ErrorIcon" })
-  const field = useFormControlContext()
+export const FormErrorIcon = forwardRef(
+  (props: FormErrorIconProps, ref: Ref<any>) => {
+    const styles = useComponentStyle({ themeKey: "Form.ErrorIcon" })
+    const field = useFormControlContext()
 
-  if (!field?.isInvalid) return null
+    if (!field?.isInvalid) return null
 
-  return (
-    <Icon data-form-error-icon="" aria-hidden sx={styles} {...props}>
-      <path
-        fill="currentColor"
-        d="M11.983,0a12.206,12.206,0,0,0-8.51,3.653A11.8,11.8,0,0,0,0,12.207,11.779,11.779,0,0,0,11.8,24h.214A12.111,12.111,0,0,0,24,11.791h0A11.766,11.766,0,0,0,11.983,0ZM10.5,16.542a1.476,1.476,0,0,1,1.449-1.53h.027a1.527,1.527,0,0,1,1.523,1.47,1.475,1.475,0,0,1-1.449,1.53h-.027A1.529,1.529,0,0,1,10.5,16.542ZM11,12.5v-6a1,1,0,0,1,2,0v6a1,1,0,1,1-2,0Z"
-      />
-    </Icon>
-  )
-}
+    const _className = cx("chakra-form__error-icon", props.className)
+
+    return (
+      <Icon ref={ref} aria-hidden sx={styles} {...props} className={_className}>
+        <path
+          fill="currentColor"
+          d="M11.983,0a12.206,12.206,0,0,0-8.51,3.653A11.8,11.8,0,0,0,0,12.207,11.779,11.779,0,0,0,11.8,24h.214A12.111,12.111,0,0,0,24,11.791h0A11.766,11.766,0,0,0,11.983,0ZM10.5,16.542a1.476,1.476,0,0,1,1.449-1.53h.027a1.527,1.527,0,0,1,1.523,1.47,1.475,1.475,0,0,1-1.449,1.53h-.027A1.529,1.529,0,0,1,10.5,16.542ZM11,12.5v-6a1,1,0,0,1,2,0v6a1,1,0,1,1-2,0Z"
+        />
+      </Icon>
+    )
+  },
+)
 
 if (__DEV__) {
   FormErrorIcon.displayName = "FormErrorIcon"

@@ -13,6 +13,9 @@ const config: Config = {
   cursor: true,
   resize: true,
   transition: true,
+  transitionProperty: true,
+  transitionDuration: true,
+  transitionTimingFunction: true,
   objectFit: true,
   objectPosition: true,
   float: true,
@@ -63,6 +66,18 @@ export interface OtherProps {
    * The CSS `transition` property
    */
   transition?: Prop<CSS.TransitionProperty>
+  /**
+   * The CSS `transition-property` property
+   */
+  transitionProperty?: Prop<CSS.TransitionPropertyProperty>
+  /**
+   * The CSS `transition-timing-function` property
+   */
+  transitionTimingFunction?: Prop<CSS.TransitionTimingFunctionProperty>
+  /**
+   * The CSS `transition-duration` property
+   */
+  transitionDuration?: Prop<string>
   /**
    * The CSS `object-fit` property
    */

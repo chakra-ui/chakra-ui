@@ -1,16 +1,15 @@
 {
   "name": "@chakra-ui/textarea",
   "version": "0.0.1",
-  "description": "description",
+  "description": "Textarea React component for Chakra UI",
   "keywords": [
     "theme",
     "theming",
-    "ui mode",
-    "ui",
     "textarea",
     "form",
+    "react",
     "form-control",
-    "chakra"
+    "chakra ui"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
@@ -55,7 +54,6 @@
   },
   "peerDependencies": {
     "@chakra-ui/system": "0.0.1",
-    "react": "16.x",
-    "react-dom": "16.x"
+    "react": "16.x"
   }
 }

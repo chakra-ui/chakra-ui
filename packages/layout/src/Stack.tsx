@@ -1,4 +1,11 @@
-import { chakra, css, PropsOf, Prop, SystemProps } from "@chakra-ui/system"
+import {
+  chakra,
+  css,
+  PropsOf,
+  Prop,
+  SystemProps,
+  useTheme,
+} from "@chakra-ui/system"
 import {
   Dict,
   getValidChildren,
@@ -63,9 +70,7 @@ export const Stack = forwardRef((props: StackProps, ref: React.Ref<any>) => {
   const selector = "> * + *"
 
   const styles = {
-    flexDirection: mapResponsive(direction, value =>
-      value === "row" ? "row" : "column",
-    ),
+    flexDirection: direction,
     [selector]: mapResponsive(direction, value => ({
       [value === "column" ? "marginTop" : "marginLeft"]: spacing,
       [value === "column" ? "marginLeft" : "marginTop"]: 0,

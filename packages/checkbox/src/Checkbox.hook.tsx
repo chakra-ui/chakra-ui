@@ -159,7 +159,6 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
   )
 
   return {
-    // states
     state: {
       isInvalid,
       isFocused,
@@ -171,21 +170,21 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       isReadOnly,
       isRequired,
     },
-    // prop getters
     getCheckboxProps: (props: CustomCheckboxProps = {}) => ({
       ...props,
       "data-active": dataAttr(isActive),
       "data-hover": dataAttr(isHovered),
       "data-checked": dataAttr(isChecked),
       "data-focus": dataAttr(isFocused),
-      "data-mixed": dataAttr(isIndeterminate),
+      "data-indeterminate": dataAttr(isIndeterminate),
       "data-disabled": dataAttr(isDisabled),
+      "data-invalid": dataAttr(isInvalid),
       "data-readonly": dataAttr(isReadOnly),
       "aria-hidden": true,
-      onPointerDown: callAllHandlers(props.onPointerDown, setActive.on),
-      onPointerUp: callAllHandlers(props.onPointerUp, setActive.off),
-      onPointerEnter: callAllHandlers(props.onPointerEnter, setHovered.on),
-      onPointerLeave: callAllHandlers(props.onPointerLeave, setHovered.off),
+      onMouseDown: callAllHandlers(props.onMouseDown, setActive.on),
+      onMouseUp: callAllHandlers(props.onMouseUp, setActive.off),
+      onMouseEnter: callAllHandlers(props.onMouseEnter, setHovered.on),
+      onMouseLeave: callAllHandlers(props.onMouseLeave, setHovered.off),
       style: { touchAction: "none", ...props.style },
     }),
     getInputProps: (props: HiddenInputProps = {}) => ({
@@ -215,10 +214,10 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
 export type UseCheckboxReturn = ReturnType<typeof useCheckbox>
 
 interface CustomCheckboxProps {
-  onPointerDown?: React.PointerEventHandler
-  onPointerUp?: React.PointerEventHandler
-  onPointerEnter?: React.PointerEventHandler
-  onPointerLeave?: React.PointerEventHandler
+  onMouseDown?: React.MouseEventHandler
+  onMouseUp?: React.MouseEventHandler
+  onMouseEnter?: React.MouseEventHandler
+  onMouseLeave?: React.MouseEventHandler
   style?: React.CSSProperties
   children?: React.ReactNode
 }

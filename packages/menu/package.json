@@ -51,14 +51,14 @@
     "@chakra-ui/hooks": "0.0.1",
     "@chakra-ui/popper": "0.0.1",
     "@chakra-ui/clickable": "0.0.1",
-    "@chakra-ui/descendant": "0.0.1"
+    "@chakra-ui/descendant": "0.0.1",
+    "@chakra-ui/transition": "0.0.1"
   },
   "devDependencies": {
     "@chakra-ui/system": "0.0.1"
   },
   "peerDependencies": {
     "@chakra-ui/system": "0.0.1",
-    "react": "16.x",
-    "react-dom": "16.x"
+    "react": "16.x"
   }
 }

@@ -1,4 +1,4 @@
-import * as React from "react"
+import { useEffect, RefObject } from "react"
 import { enableBodyScroll, disableBodyScroll } from "body-scroll-lock"
 
 /**
@@ -8,10 +8,10 @@ import { enableBodyScroll, disableBodyScroll } from "body-scroll-lock"
  * @param shouldLock if `true`, scroll lock will be applied
  */
 export function useLockBodyScroll(
-  ref: React.RefObject<HTMLElement>,
+  ref: RefObject<HTMLElement>,
   shouldLock?: boolean,
 ) {
-  React.useEffect(() => {
+  useEffect(() => {
     const node = ref.current
 
     if (!node || !shouldLock) return undefined

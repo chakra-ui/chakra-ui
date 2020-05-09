@@ -1,4 +1,4 @@
-import * as React from "react"
+import { useEffect } from "react"
 import { isBrowser, FunctionArguments } from "@chakra-ui/utils"
 import { useLatestRef } from "./useLatestRef"
 
@@ -20,7 +20,7 @@ export function useEventListener(
 ) {
   const savedHandler = useLatestRef(handler)
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!doc) return
 
     const listener = (event: any) => {

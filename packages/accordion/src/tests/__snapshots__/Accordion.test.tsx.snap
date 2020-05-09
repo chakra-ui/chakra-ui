@@ -3,16 +3,15 @@
 exports[`Button renders correctly 1`] = `
 <DocumentFragment>
   <div
-    data-chakra-accordion=""
+    class="chakra-accordion"
   >
     <div
-      data-chakra-accordion-item=""
+      class="chakra-accordion__item css-1wbdjbz"
     >
       <button
         aria-controls="accordion-panel-1"
         aria-expanded="false"
-        class="css-so65e"
-        data-chakra-accordion-button=""
+        class="chakra-accordion__button css-6g63oq"
         id="accordion-button-1"
       >
         Section 1 title
@@ -23,8 +22,7 @@ exports[`Button renders correctly 1`] = `
       >
         <div
           aria-labelledby="accordion-button-1"
-          class="css-t2ecxu"
-          data-chakra-accordion-panel=""
+          class="chakra-accordion__panel css-wxchgh"
           id="accordion-panel-1"
           role="region"
         >

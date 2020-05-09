@@ -8,7 +8,7 @@ import {
   useShortcut,
   useUpdateEffect,
 } from "@chakra-ui/hooks"
-import { usePopper } from "@chakra-ui/popper"
+import { usePopper, UsePopperProps } from "@chakra-ui/popper"
 import {
   addItem,
   callAllHandlers,
@@ -23,11 +23,12 @@ import {
   cx,
   isString,
   dataAttr,
+  ensureFocus,
 } from "@chakra-ui/utils"
 import * as React from "react"
 import { useEffect, useCallback, useRef, cloneElement, useState } from "react"
 
-export interface UseMenuProps {
+export interface UseMenuProps extends UsePopperProps {
   /**
    * The parent menu's context
    */
@@ -55,10 +56,6 @@ export interface UseMenuProps {
    * @default true
    */
   autoSelect?: boolean
-  /**
-   * If `false`, the menu button will not receive focus when it closes.
-   */
-  returnFocusOnClose?: boolean
 }
 
 /**
@@ -74,7 +71,10 @@ export function useMenu(props: UseMenuProps) {
     closeOnSelect = true,
     closeOnBlur = true,
     autoSelect = true,
-    returnFocusOnClose = true,
+    placement: placementProp = "bottom-start",
+    gutter,
+    fixed = true,
+    preventOverflow,
   } = props
 
   /**
@@ -103,10 +103,11 @@ export function useMenu(props: UseMenuProps) {
    * Add some popper.js for dynamic positioning
    */
   const { placement, popper, reference } = usePopper({
-    placement: !hasParentMenu ? "bottom-start" : "right-start",
-    fixed: true,
+    placement: !hasParentMenu ? placementProp : "right-start",
+    fixed,
     forceUpdate: isOpen,
-    gutter: hasParentMenu ? 0 : undefined,
+    gutter: hasParentMenu ? 0 : gutter,
+    preventOverflow,
   })
 
   const [focusedIndex, setFocusedIndex] = useState(-1)
@@ -135,7 +136,9 @@ export function useMenu(props: UseMenuProps) {
    */
   useUpdateEffect(() => {
     if (!isOpen && !hasParentMenu) {
-      returnFocusOnClose && buttonRef.current?.focus()
+      if (buttonRef.current) {
+        ensureFocus(buttonRef.current)
+      }
     }
   }, [isOpen, hasParentMenu])
 
@@ -345,15 +348,18 @@ export function useMenuList(props: UseMenuListProps) {
          */
         if (hasParentMenu) {
           onClose()
-          buttonRef.current?.focus()
+          if (buttonRef.current) {
+            ensureFocus(buttonRef.current)
+          }
         }
       },
     },
   })
 
   const onBlur = useCallback(
-    (e: React.FocusEvent<HTMLElement>) => {
-      const target = (e.relatedTarget || document.activeElement) as HTMLElement
+    (event: React.FocusEvent<HTMLElement>) => {
+      const target = (event.relatedTarget ||
+        document.activeElement) as HTMLElement
       const isWithinSelf = menuRef.current?.contains(target)
       const isInParent = parentMenu?.menuRef.current?.contains(target)
       const isMenuButton = target === buttonRef.current
@@ -419,28 +425,20 @@ export function useMenuButton(props: UseMenuButtonProps) {
 
   const openAndFocusMenu = useCallback(() => {
     onOpen()
-    requestAnimationFrame(() => {
-      menuRef.current?.focus()
-    })
+    if (menuRef.current) {
+      ensureFocus(menuRef.current)
+    }
   }, [onOpen, menuRef])
 
   const openAndFocusFirstItem = useCallback(() => {
     onOpen()
     setFocusedIndex(0)
-    requestAnimationFrame(() => {
-      const first = descendants[0]
-      first?.element?.focus()
-    })
-  }, [descendants, onOpen, setFocusedIndex])
+  }, [onOpen, setFocusedIndex])
 
   const openAndFocusLastItem = useCallback(() => {
     onOpen()
     const lastIndex = descendants.length - 1
     setFocusedIndex(lastIndex)
-    requestAnimationFrame(() => {
-      const last = descendants[lastIndex]
-      last?.element?.focus()
-    })
   }, [onOpen, setFocusedIndex, descendants])
 
   /**
@@ -615,6 +613,12 @@ export function useMenuItem(props: UseMenuItemProps) {
     setFocusedIndex(index)
   }, [setFocusedIndex, index, isDisabled])
 
+  const onMouseMove = useCallback(() => {
+    if (document.activeElement !== ref.current) {
+      onMouseEnter()
+    }
+  }, [onMouseEnter])
+
   const onMouseLeave = useCallback(() => {
     if (isDisabled) return
     setFocusedIndex(-1)
@@ -649,9 +653,9 @@ export function useMenuItem(props: UseMenuItemProps) {
 
   useUpdateEffect(() => {
     if (isFocused && !trulyDisabled) {
-      requestAnimationFrame(() => {
-        ref.current?.focus()
-      })
+      if (ref.current) {
+        ensureFocus(ref.current)
+      }
     } else {
       if (document.activeElement !== menuRef.current) {
         menuRef.current?.focus()
@@ -662,6 +666,7 @@ export function useMenuItem(props: UseMenuItemProps) {
   const tabbable = useClickable({
     onClick,
     onMouseEnter,
+    onMouseMove,
     onMouseLeave,
     ref,
     isDisabled,
