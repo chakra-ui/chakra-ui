@@ -77,7 +77,7 @@ test("handles events and callbacks correctly", () => {
   const input = utils.getByTestId("input")
   const checkbox = utils.getByTestId("checkbox")
 
-  // pointer up and down
+  // mouse up and down
   fireEvent.mouseDown(checkbox)
   expect(checkbox).toHaveAttribute("data-active")
   expect(checkboxProps.onMouseDown).toHaveBeenCalled()
@@ -85,10 +85,6 @@ test("handles events and callbacks correctly", () => {
   fireEvent.mouseUp(checkbox)
   expect(checkbox).not.toHaveAttribute("data-active")
   expect(checkboxProps.onMouseUp).toHaveBeenCalled()
-
-  // pointer enter and leave should be tested here, but I'm not sure they're
-  // correctly supported in jsdom. was unable to get `fireEvent.pointerEnter` or
-  // `fireEvent.pointerLeave` to have any effect whatsoever.
 
   // on change
   fireEvent.click(input)

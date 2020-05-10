@@ -1,7 +1,7 @@
 import * as React from "react"
 import { useRadio, Radio, useRadioGroup, RadioGroup } from "."
 import { chakra } from "@chakra-ui/system"
-import { Stack, VStack, Wrap, SimpleGrid, Container } from "@chakra-ui/layout"
+import { Stack, Wrap, SimpleGrid, Container } from "@chakra-ui/layout"
 import { UseRadioProps } from "./Radio.hook"
 
 export default {
@@ -42,11 +42,11 @@ export const WithSizes = () => {
 export const radioGroup = () => {
   return (
     <RadioGroup defaultValue="Option 1" onChange={console.log}>
-      <VStack>
+      <Stack>
         <Radio value="Option 1">Option 1</Radio>
         <Radio value="Option 2">Option 2</Radio>
         <Radio value="Option 3">Option 3</Radio>
-      </VStack>
+      </Stack>
     </RadioGroup>
   )
 }
@@ -54,11 +54,11 @@ export const radioGroup = () => {
 export const GroupWithStack = () => {
   return (
     <RadioGroup defaultValue="Option 1" onChange={console.log}>
-      <VStack>
+      <Stack>
         <Radio value="Option 1">Option 1</Radio>
         <Radio value="Option 2">Option 2</Radio>
         <Radio value="Option 3">Option 3</Radio>
-      </VStack>
+      </Stack>
     </RadioGroup>
   )
 }
