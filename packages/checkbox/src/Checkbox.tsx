@@ -4,13 +4,13 @@ import * as React from "react"
 import { UseCheckboxProps, useCheckbox } from "./Checkbox.hook"
 import { CheckboxIcon } from "./Checkbox.icon"
 import { IconProps } from "@chakra-ui/icon"
-import { useCheckboxGroupCtx } from "./CheckboxGroup"
+import { useCheckboxGroupContext } from "./CheckboxGroup"
 
 /**
  * Checkbox - Theming
  *
  * To style the checkbox globally, change the styles in
- * `theme.components.Checkbox`
+ * `theme.components.Checkbox` under the `Control` key
  */
 const StyledControl = chakra("div", {
   themeKey: "Checkbox.Control",
@@ -73,7 +73,7 @@ export type CheckboxProps = Omitted &
  */
 export const Checkbox = React.forwardRef(
   (props: CheckboxProps, ref: React.Ref<HTMLInputElement>) => {
-    const group = useCheckboxGroupCtx()
+    const group = useCheckboxGroupContext()
 
     const {
       iconSize = "0.625rem",
@@ -84,6 +84,7 @@ export const Checkbox = React.forwardRef(
       size = group?.size,
       className,
       children,
+      ...checkboxProps
     } = props
 
     let isChecked = props.isChecked
@@ -97,7 +98,7 @@ export const Checkbox = React.forwardRef(
     }
 
     const { state, getInputProps, getCheckboxProps, htmlProps } = useCheckbox({
-      ...props,
+      ...checkboxProps,
       isChecked,
       onChange,
     })
