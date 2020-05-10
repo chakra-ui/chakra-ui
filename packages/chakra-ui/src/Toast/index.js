@@ -61,6 +61,7 @@ function useToast() {
       status,
       variant = "solid",
       isClosable,
+      onClose: handleOnClose,
     }) => {
       const options = {
         position,
@@ -71,7 +72,13 @@ function useToast() {
         return toaster.notify(
           ({ onClose, id }) => (
             <ThemeProvider theme={theme}>
-              {render({ onClose, id })}
+              {render({
+                onClose: () => {
+                  onClose();
+                  handleOnClose && handleOnClose();
+                },
+                id,
+              })}
             </ThemeProvider>
           ),
           options,
@@ -83,7 +90,10 @@ function useToast() {
           <ThemeProvider theme={theme}>
             <Toast
               {...{
-                onClose,
+                onClose: () => {
+                  onClose();
+                  handleOnClose && handleOnClose();
+                },
                 id,
                 title,
                 description,
