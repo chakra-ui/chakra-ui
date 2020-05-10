@@ -60,7 +60,7 @@ export const Header = props => (
 export const GithubLink = props => (
   <PseudoBox
     as="a"
-    href="https://github.com/chakra-ui/chakra-ui/tree/master/packages/chakra-ui"
+    href="https://github.com/chakra-ui/chakra-ui"
     rel="noopener noreferrer"
     target="_blank"
     aria-label="Go to Chakra UI's Github Repo"
