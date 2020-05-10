@@ -1,0 +1,191 @@
+# Theming API
+
+Chakra provides a built-in theming API that enables users to build fully
+customizable and highly reusable theme-aware components directly from the
+`theme`.
+
+We believe that most reusable, atomic components have the following modifiers:
+
+- Size: A component has different sizes variations (small, medium, large)
+- Variant: A component has different visual styles (outline, solid, ghost)
+- Color Scheme (Optional): For a given component variant, it can have several
+  color schemes. For example, an outline button with a red color scheme.
+- Color Mode (Optional): Components change their visual styles based on the
+  user's preferred color mode (light or dark).
+
+Our goal with the theming API is to make it easy to create variants or update
+component styles directly from the theme.
+
+## Component Theming
+
+Add a `theme.components` object to access the theming API. Each key of the
+`components` object stores configuration for theming various aspects of a
+component. Here's a simple example of setting an `outline` variant for `Button`:
+
+```jsx
+const theme = {
+  colors: {
+    green: "#34eb3d",
+  },
+  components: {
+    Button: {
+      variants: {
+        outline: {
+          border: "2px",
+          borderColor: "green.normal",
+        },
+      },
+    },
+  },
+}
+
+<Button variant="outline">Click Me</Button>
+```
+
+Components are themed using the `sizes` and `variants` modifiers, along with the
+`defaultProps` and `baseStyle` objects. See the following sections for more
+information on how these are used.
+
+## Modifiers
+
+Modifiers represent named `sizes` or `variants` for a component. A modifier is
+defined by creating an object of theme-aware style props.
+
+Let's look at an example of defining a size modifier (`small`) and a variant
+modifier (`outline`) for `Button`:
+
+```jsx
+const theme = {
+  colors: {
+    green: "#34ed3d",
+  },
+  components: {
+    Button: {
+      sizes: {
+        small: {
+          padding: 20,
+          fontSize: 12,
+        },
+      },
+      variants: {
+        outline: {
+          border: "2px",
+          borderColor: "green",
+        },
+      },
+    },
+  },
+}
+
+<Button size="small" variant="outline">I'm a small outline button!</Button>
+```
+
+## Dynamic Modifiers
+
+In addition to the object modifiers we saw above, a modifier can also be defined
+as a function that returns an object of theme-aware style props.
+
+Defining a modifier as a function allows you to dynamically style your
+components based on the `theme`, current `colorMode`, and any modifier props
+passed to the component (`variant`, `size`, and `colorScheme`).
+
+Let's define a dynamic `outline` variant modifier on `Button`:
+
+```jsx
+const theme = {
+  colors: {
+    green: {
+      light: "#34eb3d",
+    },
+    red: {
+      light: '#fc2c03'
+    }
+  },
+  components: {
+    Button: {
+      variants: {
+        outline: ({theme, colorMode, variant, size, colorScheme}) => ({
+          border: "2px",
+          color: `${colorScheme}.light`,
+        }),
+      },
+    },
+  },
+}
+
+<Button variant="outline" colorScheme="green">I'm a green outline button!</Button>
+<Button variant="outline" colorScheme="red">I'm a red outline button!</Button>
+```
+
+???????????????????? what happens if the colorscheme doesn't exist??????????????
+
+## `defaultProps`
+
+The `defaultProps` key of a component theming object allows you to specify the
+default modifiers (`variant`, `size`, and `colorScheme`) for a component. Here's
+an example:
+
+```jsx
+const theme = {
+  colors: {
+    green: "#34eb3d",
+    red: "#fc2c03",
+  },
+  components: {
+    Button: {
+      defaultProps: {
+        size: "small",
+        variant: "outline",
+        colorScheme: "green",
+      },
+      sizes: {
+        small: {
+          padding: 20,
+          fontSize: 12,
+        },
+        medium: {
+          padding: 40,
+          fontSize: 16,
+        },
+      },
+      variants: {
+        outline: ({ theme, colorMode, variant, size, colorScheme }) => ({
+          border: "2px",
+          color: colorScheme,
+        }),
+      },
+    },
+  },
+}
+
+<Button>I'm a small, green outline button thanks to default props!</Button>
+<Button size="small" variant="outline" colorScheme="green">
+  I'm the same button!
+</Button>
+
+<Button colorScheme="red">
+  I'm a small outline button, but I'm red because I overrode the default colorScheme
+</Button>
+```
+
+## `baseStyle`
+
+The `baseStyle` key of a component theming object allows you to specify base
+theme-aware style props that are used on all instances of the component. These
+are overriden by any modifiers or props, so they're great at setting sensible
+default styles. Here's an example:
+
+```jsx
+const theme = {
+  components: {
+    Button: {
+      baseStyle: {
+        padding: 20
+      }
+    }
+  }
+}
+
+<Button>I have a padding of 20!</Button>
+<Button padding={40}>I have a padding of 40!</Button>
+```
