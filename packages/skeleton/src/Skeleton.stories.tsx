@@ -1,4 +1,3 @@
-import { withKnobs } from "@storybook/addon-knobs"
 import * as React from "react"
 import { Skeleton } from "."
 import { chakra, DarkMode } from "@chakra-ui/system"
@@ -7,7 +6,6 @@ import { Stack } from "@chakra-ui/layout"
 export default {
   title: "Skeleton",
   decorators: [
-    withKnobs,
     (story: Function) => (
       <chakra.div maxWidth="md" mt="40px" mx="auto">
         {story()}
@@ -32,7 +30,7 @@ export const IsLoaded = () => {
   }, [])
 
   return (
-    <Skeleton width="100px" isLoaded={isLoaded}>
+    <Skeleton isLoaded={isLoaded}>
       <span>Chakra ui is cool</span>
     </Skeleton>
   )
@@ -45,7 +43,7 @@ export const FadeIn = () => {
   }, [])
 
   return (
-    <Skeleton fadeInDuration={0} width="100px" isLoaded={isLoaded}>
+    <Skeleton fadeInDuration={0} isLoaded={isLoaded}>
       <span>Chakra ui is cool</span>
     </Skeleton>
   )
@@ -63,14 +61,14 @@ export const WithIsLoaded = () => {
   }, [])
 
   return (
-    <chakra.div position="relative">
-      <chakra.div height="100px" border="solid 1px black">
+    <chakra.div>
+      <chakra.div height="100px" borderWidth="1px">
         Content
       </chakra.div>
       <Skeleton width="100px" isLoaded={isLoaded}>
         <span>Chakra ui is cool</span>
       </Skeleton>
-      <chakra.div height="100px" border="solid 1px black">
+      <chakra.div height="100px" borderWidth="1px">
         Content
       </chakra.div>
     </chakra.div>

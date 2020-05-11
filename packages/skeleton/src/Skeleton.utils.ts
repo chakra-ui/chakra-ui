@@ -27,16 +27,16 @@ export function getStyle(options: GetStyleOptions): Interpolation {
 
   return {
     borderColor: colorStart,
-    boxShadow: "none",
-    opacity: 0.7,
     background: colorEnd,
-    backgroundClip: "padding-box",
-    cursor: "default",
-    color: "transparent",
     animation: `${speed}s linear infinite alternate ${animation(
       colorStart,
       colorEnd,
     )}`,
+    boxShadow: "none",
+    opacity: 0.7,
+    backgroundClip: "padding-box",
+    cursor: "default",
+    color: "transparent",
     pointerEvents: "none",
     userSelect: "none",
     "&::before, &::after, *": {
@@ -50,10 +50,8 @@ from { opacity: 0; }
 to   { opacity: 1; }
 `
 
-export const fadeInCss = (duration: number) => {
-  const styles = {
+export const fadeInCss = (duration: number): Interpolation => {
+  return {
     animation: `${fadeIn} ${duration}s`,
-  } as const
-
-  return styles
+  }
 }
