@@ -1,46 +1,72 @@
-import { chakra, PropsOf, useColorModeValue, useToken } from "@chakra-ui/system"
+import { chakra, PropsOf, keyframes } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { fadeInCss, getStyle } from "./Skeleton.utils"
 
 export interface SkeletonOptions {
   /**
    * The color at the animation start
    */
-  colorStart?: string
+  startColor?: string
   /**
    * The color at the animation end
    */
-  colorEnd?: string
+  endColor?: string
   /**
-   * Render only the children
+   * If `true`, it'll render it's children with a nice fade transition
    */
   isLoaded?: boolean
   /**
    * The animation speed in seconds
+   * @default
+   * 0.8
    */
   speed?: number
   /**
    * The fadeIn duration in seconds
+   *
+   * @default
+   * 0.4
    */
   duration?: number
 }
 
-const StyledSkeleton = chakra("div", {
+export interface Options {
+  startColor?: string
+  endColor?: string
+  speed?: number
+}
+
+const StyledSkeleton = chakra<"div", Options>("div", {
   themeKey: "Skeleton",
+  baseStyle: {
+    boxShadow: "none",
+    opacity: 0.7,
+    borderRadius: "2px",
+    //@ts-ignore - Fix this later
+    backgroundClip: "padding-box",
+    cursor: "default",
+    color: "transparent",
+    pointerEvents: "none",
+    userSelect: "none",
+    "&::before, &::after, *": {
+      visibility: "hidden",
+    },
+  },
 })
 
 export type ISkeleton = SkeletonOptions
 
 export type SkeletonProps = SkeletonOptions & PropsOf<typeof chakra.div>
 
-export const Skeleton = (props: SkeletonProps) => {
-  const defaultStart = useColorModeValue("gray.100", "gray.800")
-  const defaultEnd = useColorModeValue("gray.400", "gray.600")
+const fadeIn = keyframes`
+from { opacity: 0; }
+to   { opacity: 1; }
+`
 
+export const Skeleton = (props: SkeletonProps) => {
   const {
-    colorStart = defaultStart,
-    colorEnd = defaultEnd,
+    startColor,
+    endColor,
     isLoaded,
     duration = 0.4,
     speed = 0.8,
@@ -48,28 +74,24 @@ export const Skeleton = (props: SkeletonProps) => {
     ...rest
   } = props
 
-  const fadeInStyle = fadeInCss(duration)
-
-  const fromBg = useToken("colors", colorStart)
-  const toBg = useToken("colors", colorEnd)
-
-  const skeletonStyle = getStyle({
-    colorStart: fromBg,
-    colorEnd: toBg,
-    speed,
-  })
-
   const _className = cx("chakra-skeleton", className)
 
   if (isLoaded) {
-    return <chakra.div className={_className} css={fadeInStyle} {...rest} />
+    return (
+      <chakra.div
+        className={_className}
+        css={{ animation: `${fadeIn} ${duration}s` }}
+        {...rest}
+      />
+    )
   }
 
   return (
     <StyledSkeleton
+      startColor={startColor}
+      endColor={endColor}
+      speed={speed}
       className={_className}
-      css={skeletonStyle}
-      borderRadius="2px"
       {...rest}
     />
   )
@@ -78,3 +100,8 @@ export const Skeleton = (props: SkeletonProps) => {
 if (__DEV__) {
   Skeleton.displayName = "Skeleton"
 }
+
+export const range = (count: number) =>
+  Array(count)
+    .fill(1)
+    .map((_, idx) => idx + 1)
