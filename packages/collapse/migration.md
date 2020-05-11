@@ -14,7 +14,7 @@
   `height 200ms ease, opacity 200ms ease, transform 200ms ease` and it can be
   customized to suit your UI needs.
 
-- A `style` prop which is passed to style the appear, entered and exiting
+- A `config` prop which is passed to style the appear, entered and exiting
   transition states of the Collapse.
 
 - Collapse now has BEM structured `className` attached to the DOM nodes to make
