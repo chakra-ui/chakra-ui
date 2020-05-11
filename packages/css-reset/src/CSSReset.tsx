@@ -4,16 +4,9 @@ import * as React from "react"
 export const CSSReset = () => (
   <Global
     styles={`
-      body,
       html {
-        height: 100%;
-        width: 100%;
-        box-sizing: border-box;
-        -webkit-font-smoothing: antialiased;
+        line-height: 1.15;
         -webkit-text-size-adjust: 100%;
-        text-rendering: optimizelegibility;
-        -ms-overflow-style: -ms-autohiding-scrollbar;
-        text-decoration-skip-ink: auto;
       }
 
       *,
@@ -24,41 +17,39 @@ export const CSSReset = () => (
         box-sizing: inherit;
       }
 
-      body,
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6,
-      p,
-      dl,
-      dd,
-      blockquote,
-      ol,
-      ul {
+      body {
         margin: 0;
-        padding: 0;
-        font-weight: normal;
       }
 
-      var,
-      address,
-      dfn,
-      cite {
-        font-style: italic;
+      main {
+        display: block;
       }
 
-      img,
-      video {
-        border-style: none;
-        max-width: 100%;
-        height: auto;
+      hr {
+        box-sizing: content-box;
+        height: 0;
+        overflow: visible;
       }
 
-      img,
-      fieldset {
-        border: 0;
+      pre {
+        font-family: monospace, monospace;
+        font-size: 1em;
+      }
+
+      a {
+        background-color: transparent;
+      }
+
+      abbr[title] {
+        border-bottom: none;
+        text-decoration: underline;
+        -webkit-text-decoration: underline dotted;
+        text-decoration: underline dotted;
+      }
+
+      b,
+      strong {
+        font-weight: bolder;
       }
 
       code,
@@ -66,10 +57,6 @@ export const CSSReset = () => (
       samp {
         font-family: monospace, monospace;
         font-size: 1em;
-      }
-
-      abbr {
-        cursor: help;
       }
 
       small {
@@ -92,6 +79,10 @@ export const CSSReset = () => (
         top: -0.5em;
       }
 
+      img {
+        border-style: none;
+      }
+
       button,
       input,
       optgroup,
@@ -99,7 +90,18 @@ export const CSSReset = () => (
       textarea {
         font-family: inherit;
         font-size: 100%;
+        line-height: 1.15;
         margin: 0;
+      }
+
+      button,
+      input {
+        overflow: visible;
+      }
+
+      button,
+      select {
+        text-transform: none;
       }
 
       button::-moz-focus-inner,
@@ -107,6 +109,11 @@ export const CSSReset = () => (
       [type="reset"]::-moz-focus-inner,
       [type="submit"]::-moz-focus-inner {
         border-style: none;
+        padding: 0;
+      }
+
+      fieldset {
+        padding: 0.35em 0.75em 0.625em;
       }
 
       legend {
@@ -116,6 +123,10 @@ export const CSSReset = () => (
         max-width: 100%;
         padding: 0;
         white-space: normal;
+      }
+
+      progress {
+        vertical-align: baseline;
       }
 
       textarea {
@@ -151,8 +162,79 @@ export const CSSReset = () => (
         font: inherit;
       }
 
+      details {
+        display: block;
+      }
+
+      summary {
+        display: list-item;
+      }
+
+      template {
+        display: none;
+      }
+
+      [hidden] {
+        display: none !important;
+      }
+
+      html {
+        box-sizing: border-box;
+        font-family: sans-serif;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      blockquote,
+      dl,
+      dd,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      hr,
+      figure,
+      p,
+      pre {
+        margin: 0;
+      }
+
+      button {
+        background: transparent;
+        padding: 0;
+      }
+
+      fieldset {
+        margin: 0;
+        padding: 0;
+      }
+
+      ol,
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        font-family: system-ui;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        -webkit-text-size-adjust: 100%;
+        text-rendering: optimizelegibility;
+      }
+
       hr {
         border-top-width: 1px;
+      }
+
+      img {
+        border-style: solid;
       }
 
       textarea {
@@ -164,34 +246,27 @@ export const CSSReset = () => (
         cursor: pointer;
       }
 
-      button {
-        background: transparent;
-        padding: 0;
-      }
-
-      details {
-        display: block;
-      }
-    
-
       button::-moz-focus-inner {
         border: 0 !important;
       }
 
       table {
         border-collapse: collapse;
-        border-spacing: 0;
-        width: 100%;
       }
 
-      td,
-      th {
-        border: none;
-        text-align: left;
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-size: inherit;
+        font-weight: inherit;
       }
 
-      caption {
-        text-align: left;
+      a {
+        color: inherit;
+        text-decoration: inherit;
       }
 
       button,
@@ -204,16 +279,11 @@ export const CSSReset = () => (
         color: inherit;
       }
 
-      [hidden] {
-        display: none !important;
-      }
-
       pre,
       code,
       kbd,
       samp {
-        font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
-          monospace;
+        font-family: monospace;
       }
 
       img,
@@ -225,12 +295,19 @@ export const CSSReset = () => (
       embed,
       object {
         display: block;
+        vertical-align: middle;
       }
 
-  .js-focus-visible :focus:not([data-focus-visible-added]) {
-     outline: none;
-     box-shadow: none;
-   }
+      img,
+      video {
+        max-width: 100%;
+        height: auto;
+      }
+
+      .js-focus-visible :focus:not([data-focus-visible-added]) {
+        outline: none;
+        box-shadow: none;
+      }
     `}
   />
 )

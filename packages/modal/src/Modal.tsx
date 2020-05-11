@@ -1,14 +1,14 @@
 import { CloseButton, CloseButtonProps } from "@chakra-ui/close-button"
 import { FocusLock } from "@chakra-ui/focus-lock"
 import { useSafeLayoutEffect } from "@chakra-ui/hooks"
-import { Portal } from "@chakra-ui/portal"
+import { Portal, PortalProps } from "@chakra-ui/portal"
 import {
   chakra,
   PropsOf,
   ThemingProps,
   useThemeDefaultProps,
 } from "@chakra-ui/system"
-import { callAllHandlers, createContext, __DEV__ } from "@chakra-ui/utils"
+import { callAllHandlers, createContext, __DEV__, cx } from "@chakra-ui/utils"
 import * as React from "react"
 import { useModal, UseModalProps, UseModalReturn } from "./Modal.hook"
 
@@ -35,7 +35,7 @@ export interface ModalProps extends UseModalProps, ThemingProps {
    * If `true`, the modal will return focus to the element that triggered it when it closes.
    * @default true
    */
-  shouldReturnFocus?: boolean
+  shouldReturnFocusOnClose?: boolean
   /**
    *  If `true`, the modal will be centered on screen.
    * @default false
@@ -68,6 +68,11 @@ export interface ModalProps extends UseModalProps, ThemingProps {
    * @default true
    */
   shouldAutoFocus?: boolean
+  /**
+   * Function that will be called to get the parent element
+   * that the modal will be attached to.
+   */
+  getContainer?: PortalProps["getContainer"]
 }
 
 /**
@@ -85,14 +90,15 @@ export function Modal(props: ModalProps) {
     children,
     initialFocusRef,
     finalFocusRef,
-    shouldReturnFocus = true,
-    isOpen = true,
+    shouldReturnFocusOnClose = true,
+    isOpen,
     scrollBehavior = "outside",
     size = defaults?.size,
     variant = defaults?.variant,
     shouldTrapFocus = true,
     shouldAutoFocus = true,
     isCentered,
+    getContainer,
   } = props
 
   const context = {
@@ -107,13 +113,13 @@ export function Modal(props: ModalProps) {
 
   return (
     <ModalContextProvider value={context}>
-      <Portal>
+      <Portal getContainer={getContainer}>
         <FocusLock
           autoFocus={shouldAutoFocus}
           isDisabled={!shouldTrapFocus}
           initialFocusRef={initialFocusRef}
           finalFocusRef={finalFocusRef}
-          restoreFocus={shouldReturnFocus}
+          restoreFocus={shouldReturnFocusOnClose}
         >
           {children}
         </FocusLock>
@@ -160,19 +166,25 @@ export type ModalContentProps = PropsOf<typeof StyledContent>
  * React component used to group modal's content. It has all the
  * necessary `aria-*` properties to indicate that it's a modal modal
  */
-export const ModalContent = (props: ModalContentProps) => {
-  const { getContentProps, scrollBehavior, variant, size } = useModalContext()
+export const ModalContent = React.forwardRef(
+  (props: ModalContentProps, ref: React.Ref<any>) => {
+    const { className, ...rest } = props
+    const { getContentProps, scrollBehavior, variant, size } = useModalContext()
 
-  return (
-    <StyledContent
-      variant={variant}
-      size={size}
-      data-chakra-modal-content=""
-      scrollBehavior={scrollBehavior}
-      {...getContentProps(props)}
-    />
-  )
-}
+    const _className = cx("chakra-modal__content", className)
+    const theming = { variant, size }
+
+    return (
+      <StyledContent
+        ref={ref}
+        className={_className}
+        scrollBehavior={scrollBehavior}
+        {...theming}
+        {...getContentProps(rest)}
+      />
+    )
+  },
+)
 
 if (__DEV__) {
   ModalContent.displayName = "ModalContent"
@@ -216,26 +228,32 @@ export type ModalOverlayProps = PropsOf<typeof StyledOverlay>
  *
  * @see Docs https://chakra-ui.com/modal
  */
-export const ModalOverlay = (props: ModalOverlayProps) => {
-  const {
-    getOverlayProps,
-    scrollBehavior,
-    isCentered,
-    variant,
-    size,
-  } = useModalContext()
+export const ModalOverlay = React.forwardRef(
+  (props: ModalOverlayProps, ref: React.Ref<any>) => {
+    const { className, ...rest } = props
+    const {
+      getOverlayProps,
+      scrollBehavior,
+      isCentered,
+      variant,
+      size,
+    } = useModalContext()
 
-  return (
-    <StyledOverlay
-      variant={variant}
-      size={size}
-      data-chakra-modal-overlay=""
-      scrollBehavior={scrollBehavior}
-      isCentered={isCentered}
-      {...getOverlayProps(props)}
-    />
-  )
-}
+    const theming = { variant, size }
+    const _className = cx("chakra-modal__overlay", className)
+
+    return (
+      <StyledOverlay
+        ref={ref}
+        className={_className}
+        scrollBehavior={scrollBehavior}
+        isCentered={isCentered}
+        {...theming}
+        {...getOverlayProps(rest)}
+      />
+    )
+  },
+)
 
 if (__DEV__) {
   ModalOverlay.displayName = "ModalOverlay"
@@ -261,20 +279,28 @@ const StyledHeader = chakra("header", {
  *
  * @see Docs https://chakra-ui.com/modal
  */
-export const ModalHeader = (props: ModalHeaderProps) => {
-  const { headerId, setHeaderMounted } = useModalContext()
+export const ModalHeader = React.forwardRef(
+  (props: ModalHeaderProps, ref: React.Ref<any>) => {
+    const { className, ...rest } = props
 
-  /**
-   * Notify us if this component was rendered or used
-   * so we can append `aria-labelledby` automatically
-   */
-  useSafeLayoutEffect(() => {
-    setHeaderMounted(true)
-    return () => setHeaderMounted(false)
-  }, [])
+    const { headerId, setHeaderMounted } = useModalContext()
 
-  return <StyledHeader data-chakra-modal-header="" id={headerId} {...props} />
-}
+    /**
+     * Notify us if this component was rendered or used
+     * so we can append `aria-labelledby` automatically
+     */
+    useSafeLayoutEffect(() => {
+      setHeaderMounted(true)
+      return () => setHeaderMounted(false)
+    }, [])
+
+    const _className = cx("chakra-modal__header", className)
+
+    return (
+      <StyledHeader ref={ref} className={_className} id={headerId} {...rest} />
+    )
+  },
+)
 
 if (__DEV__) {
   ModalHeader.displayName = "ModalHeader"
@@ -303,27 +329,33 @@ const StyledBody = chakra<"div", Pick<ModalProps, "scrollBehavior">>("div", {
  *
  * @see Docs https://chakra-ui.com/modal
  */
-export const ModalBody = (props: ModalBodyProps) => {
-  const { bodyId, setBodyMounted, scrollBehavior } = useModalContext()
+export const ModalBody = React.forwardRef(
+  (props: ModalBodyProps, ref: React.Ref<any>) => {
+    const { className, ...rest } = props
+    const { bodyId, setBodyMounted, scrollBehavior } = useModalContext()
 
-  /**
-   * Notify us if this component was rendered or used
-   * so we can append `aria-describedby` automatically
-   */
-  useSafeLayoutEffect(() => {
-    setBodyMounted(true)
-    return () => setBodyMounted(false)
-  }, [])
+    /**
+     * Notify us if this component was rendered or used
+     * so we can append `aria-describedby` automatically
+     */
+    useSafeLayoutEffect(() => {
+      setBodyMounted(true)
+      return () => setBodyMounted(false)
+    }, [])
 
-  return (
-    <StyledBody
-      scrollBehavior={scrollBehavior}
-      data-chakra-modal-body=""
-      id={bodyId}
-      {...props}
-    />
-  )
-}
+    const _className = cx("chakra-modal__body", className)
+
+    return (
+      <StyledBody
+        ref={ref}
+        scrollBehavior={scrollBehavior}
+        className={_className}
+        id={bodyId}
+        {...rest}
+      />
+    )
+  },
+)
 
 if (__DEV__) {
   ModalBody.displayName = "ModalBody"
@@ -344,6 +376,9 @@ export const ModalFooter = chakra("footer", {
     justifyContent: "flex-end",
     flex: 0,
   },
+  attrs: props => ({
+    className: cx("chakra-modal__footer", props.className),
+  }),
 })
 
 if (__DEV__) {
@@ -357,18 +392,26 @@ if (__DEV__) {
  * to pass the `onClick` to it, it's reads the `onClose` action from the
  * modal context.
  */
-export const ModalCloseButton = (props: CloseButtonProps) => {
-  const { onClose } = useModalContext()
-  return (
-    <CloseButton
-      position="absolute"
-      top="8px"
-      right="12px"
-      {...props}
-      onClick={callAllHandlers(props.onClick, onClose)}
-    />
-  )
-}
+export const ModalCloseButton = React.forwardRef(
+  (props: CloseButtonProps, ref: React.Ref<any>) => {
+    const { onClick, className, ...rest } = props
+    const { onClose } = useModalContext()
+
+    const _className = cx("chakra-modal__close-btn", className)
+
+    return (
+      <CloseButton
+        ref={ref}
+        position="absolute"
+        top="8px"
+        right="12px"
+        className={_className}
+        onClick={callAllHandlers(onClick, onClose)}
+        {...rest}
+      />
+    )
+  },
+)
 
 if (__DEV__) {
   ModalCloseButton.displayName = "ModalCloseButton"

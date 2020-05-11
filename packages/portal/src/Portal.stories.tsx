@@ -25,7 +25,7 @@ export const WithMountRef = () => {
   return (
     <>
       <p>Welcome</p>
-      <Portal container={() => ref.current}>
+      <Portal getContainer={() => ref.current}>
         <span>This text has been portaled</span>
       </Portal>
       <div id="iframe" ref={ref}>

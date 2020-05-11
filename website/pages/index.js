@@ -102,7 +102,7 @@ export default () => {
 
             <Box mt="6">
               <NextLink href="/getting-started" passHref>
-                <Button size="lg" as="a" variantColor="teal">
+                <Button size="lg" as="a" colorScheme="teal">
                   Get Started
                 </Button>
               </NextLink>
