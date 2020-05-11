@@ -6,10 +6,10 @@
   ],
   "scripts": {
     "codesandbox:ci": "yarn install && yarn bootstrap",
-    "boot": "yarn install && yarn bootstrap && yarn build",
-    "build": "lerna run build --no-private --stream",
-    "test": "lerna run test --no-private --stream",
-    "lint": "lerna run lint --no-private --stream",
+    "boot": "yarn install && yarn bootstrap && yarn build && yarn storybook",
+    "build": "lerna run build --ignore @chakra-ui/test-utils --stream",
+    "test": "lerna run test --ignore @chakra-ui/test-utils --stream",
+    "lint": "lerna run lint --ignore @chakra-ui/test-utils --stream",
     "storybook": "start-storybook -p 6006",
     "clean": "lerna clean --yes",
     "bootstrap": "lerna bootstrap --use-workspaces",
@@ -79,7 +79,8 @@
     "css-reset": "yarn workspace @chakra-ui/css-reset",
     "media-query": "yarn workspace @chakra-ui/media-query",
     "css": "yarn workspace @chakra-ui/css",
-    "variant": "yarn workspace @chakra-ui/variant"
+    "variant": "yarn workspace @chakra-ui/variant",
+    "skeleton": "yarn workspace @chakra-ui/skeleton"
   },
   "czConfig": {
     "path": "node_modules/cz-conventional-changelog"
