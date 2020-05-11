@@ -1,13 +1,10 @@
-/** @jsx jsx */
-import { useColorMode, Box } from "@chakra-ui/core"
-import { jsx } from "@emotion/core"
+import { useColorMode, chakra } from "@chakra-ui/core"
 
 const Logo = props => {
-  const { colorMode } = useColorMode()
+  const [colorMode] = useColorMode()
 
   return (
-    <Box
-      as="svg"
+    <chakra.svg
       height="8"
       width="auto"
       viewBox="0 0 998 257"
@@ -36,7 +33,7 @@ const Logo = props => {
           <stop offset="1" stopColor="#29C6B7" />
         </linearGradient>
       </defs>
-    </Box>
+    </chakra.svg>
   )
 }
 
