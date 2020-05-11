@@ -1,6 +1,89 @@
-# Accordion
+# Migration Notes to v1
 
-## Changes 🔧
+## Upgrade steps for all users
+
+- ### Adjust imports
+
+  Chakra was refactored to use many separate packages under the hood. This
+  enables you to only import the absolute minimum of what you need from Chakra
+  for your personal use-case.
+
+  ```js
+  import { Input } from "@chakra-ui/input"
+  import { chakra } from "@chakra-ui/system"
+  ```
+
+  Besides that, all commonly used components such as e.g. `Box`, `Input` and
+  `Accordion` are still exported from `@chakra-ui/core`.
+
+  However, a few less often components/utilities used were separated in order to
+  be grouped with similar tools or to elevate their importance:
+
+  - #### ColorModeProvider, ThemeProvider & GlobalStyle
+
+    ```js
+    import {
+      ColorModeProvider,
+      ThemeProvider,
+      GlobalStyle,
+    } from "@chakra-ui/system"
+    ```
+
+  - #### CSSReset
+
+    ```js
+    import CSSReset from "@chakra-ui/css-reset"
+    ```
+
+- ### Add GlobalStyle as direct child of ThemeProvider
+
+  // TODO
+
+- ### Explicitly use default theme when not using a custom theme
+
+  The theme coming with `@chakra-ui` as known from the docs is no longer applied
+  by default. For this purpose, please use:
+
+  ```jsx
+  import CSSReset from "@chakra-ui/css-reset"
+  import theme from "@chakra-ui/preset-base"
+  import {
+    ColorModeProvider,
+    ThemeProvider,
+    GlobalStyle,
+  } from "@chakra-ui/system"
+
+  function App() {
+    return (
+      <ThemeProvider theme={theme}>
+        <ColorModeProvider>
+          <CSSReset />
+          <GlobalStyle />
+          {/* your app */}
+        </ColorModeProvider>
+      </ThemeProvider>
+    )
+  }
+  ```
+
+- ### Replace `variantColor` | `color` prop with `colorScheme`
+
+  Support for both `variantColor` and `color` prop has been deprecated. Use the
+  `colorScheme` prop instead.
+
+* ### On Layout components such as `Box`, replace `size` prop with `boxSize`
+
+  Support for `size` has been deprecated. Use the `boxSize` prop instead. We've
+  reserved the `size` prop to refer to component size variants, e.g. on
+  `<Button size="md">button</Button>`.
+
+* ### Rename `AspectRatioBox` to `AspectRatio`
+
+# Changelog
+
+## Accordion
+
+### Changes 🔧
 
 - We've changed `AccordionHeader` to `AccordionButton`. This is to remove the
   notion that it's a header when it's actually a `button`.
@@ -13,17 +96,17 @@
   `Accordion`. We think most users don't do this by default but it's worth
   noting.
 
-## Features ⚡️
+### Features ⚡️
 
-- Keyboard Navigation: Accordion now support keyboard navigation between
+- Keyboard Navigation: `Accordion` now support keyboard navigation between
   accordion buttons. Pressing the up and down arrow keys will move focus between
   each button.
 
-# Avatar
+## Avatar
 
-## Improvements 🚀
+### Improvements 🚀
 
-- AvatarGroup now stacks each avatar without using `z-index`. As much as
+- `AvatarGroup` now stacks each avatar without using `z-index`. As much as
   possible, we'll like to do away with zIndex.
 
 - You can now use your custom fallback avatar svg. Simply pass `fallbackAvatar`
@@ -41,16 +124,16 @@
 - Added `getInitials` prop to allow users manage how initials are generated from
   name
 
-# Breadcrumb
+## Breadcrumb
 
-## Changes 🔧
+### Changes 🔧
 
 - Remove support for `addSeparator` prop to reduce API surface area
 - Change `separator` prop accept `string` or `React.ReactElement`
 
-# Button
+## Button
 
-## Changes 🔧
+### Changes 🔧
 
 - Ensure consistent usage of the `icon` prop. `leftIcon` and `rightIcon` props
   are now accepts a react element not react element type.
@@ -65,7 +148,7 @@
 
 - Change `variantColor` prop to `colorScheme` for better intuitiveness.
 
-## Features ⚡️
+### Features ⚡️
 
 - Add support for `spinner` prop to allow you render custom spinners.
 
@@ -79,9 +162,9 @@
   </Button>
   ```
 
-# Checkbox
+## Checkbox
 
-## Changes 🔧
+### Changes 🔧
 
 - Support for the `variantColor` prop has been deprecated. Use `colorScheme`
   prop instead.
@@ -94,8 +177,8 @@
   <Checkbox colorScheme="blue">Option</Checkbox>
   ```
 
-- Support for the `isFullWidth` prop has been deprecated. The Checkbox takes up
-  the width of the parent by default.
+- Support for the `isFullWidth` prop has been deprecated. The `Checkbox` takes
+  up the width of the parent by default.
 
   To allow for better layout composition, the `CheckboxGroup` component no
   longer supports the any style prop.
@@ -125,7 +208,7 @@ We believe a checkbox group's layout should be managed 100% by the context it's
 used it, or based on design requirements. The group can stacked (`Stack`),
 placed in a grid (`SimpleGrid`) or made to wrap automatically (`Wrap`).
 
-## Features ⚡️
+### Features ⚡️
 
 - Support for `iconColor` prop to customize the color of the check icon
 
@@ -152,7 +235,7 @@ placed in a grid (`SimpleGrid`) or made to wrap automatically (`Wrap`).
 * The `useCheckboxGroup` hook is exported with state management logic for use in
   creating tailor-made checkbox group component for your application
 
-# ColorMode
+## ColorMode
 
 We've updated the color mode to support the following scenatios
 
@@ -200,7 +283,7 @@ We've updated the color mode to support the following scenatios
    }
    ```
 
-## Fixes 🩹
+### Fixes 🩹
 
 - Color mode now persists correctly when you refresh the page. All you need to
   do is to add `InitialColorMode` script as the first child in of `body`.
@@ -231,9 +314,9 @@ We've updated the color mode to support the following scenatios
   }
   ```
 
-# CSSReset
+## CSSReset
 
-## Changes 🔧
+### Changes 🔧
 
 - Add `focus-visible` support to CSS Reset. All you need to do is to install
   `focus-visible` and import it at the root of your application
@@ -246,16 +329,16 @@ We've updated the color mode to support the following scenatios
   import "focus-visible/dist/focus-visible"
   ```
 
-## Notes on using focus visible
+### Notes on using focus visible
 
 Removing focus styles for mouse interactions might have negative impacts on
 users with with low vision or cognitive impairments.
 
 https://github.com/WICG/focus-visible/issues/128
 
-# FormControl
+## FormControl
 
-## Changes 🔧
+### Changes 🔧
 
 - `FormControl` now exposes most of it's internal functions and hooks so you can
   leverage in building custom components.
@@ -283,13 +366,13 @@ https://github.com/WICG/focus-visible/issues/128
   `FormErrorMessage` won't be visible, the only way to make it visible is by
   passing `isInvalid` and setting it to `true`
 
-# Image
+## Image
 
-## Fixes 🩹
+### Fixes 🩹
 
 - Resolved the common SSR issue with Next.js
 
-## Features ⚡️
+### Features ⚡️
 
 - Support for `fit` prop to specify how to fit an image within it's dimension.
   It uses the `object-fit` property
@@ -299,13 +382,13 @@ https://github.com/WICG/focus-visible/issues/128
 
 - Support for custom `fallback` component
 
-## TBD
+### TBD || TODO
 
 - Support for fade-in or blur-in entrace animation for image?
 
 - Support for Modern image formats?
 
-# Input
+## Input
 
 - When using `InputElement`, You no longer need to pass any padding properties
   to the `Input`, `InputGroup` will smartly measure and apply the necessary
@@ -323,9 +406,13 @@ https://github.com/WICG/focus-visible/issues/128
 
 - Input now uses `paddingY` instead of `height` for it's block height
 
-# Layout
+## Layout
 
-## Changes 🔧
+### Changes 🔧
+
+- All components can now take the pseudo style props (`_hover`, `_active`, etc.)
+
+- AspectRatioBox now renamed to just `AspectRatio` to keep it concise
 
 - Support for `size` has been deprecated. Use `boxSize` prop. We've reserved the
   `size` prop to refer to component size variants.
@@ -339,7 +426,7 @@ https://github.com/WICG/focus-visible/issues/128
   ```
 
 - Addition of chakra jsx elements to make it even easier to style components
-  without having to use the `as` prop in Box
+  without having to use the `as` prop in `Box`
 
   ```jsx
   // before
@@ -354,27 +441,28 @@ https://github.com/WICG/focus-visible/issues/128
   <Box>This is your box</Box>
   ```
 
-- [Link] Due to accessibility reasons, We're deprecating the `isDisabled` prop
-  from link. A link should never be allowed to be disabled.
+#### Link
 
-- [Stack] To reduce the API surface, we're deprecating the `isInline` and
-  `isReversed` prop in favor of `direction` prop
+- Due to accessibility reasons, we're deprecating the `isDisabled` prop from
+  link. A link should never be allowed to be disabled.
 
-- [Stack] We're deprecating support for `shouldWrapChildren` prop because we now
-  use css to manage the stack rather than `React.cloneElement`. Thanks to
+#### Stack
+
+- To reduce the API surface, we're deprecating the `isInline` and `isReversed`
+  prop in favor of `direction` prop
+
+- We're deprecating support for `shouldWrapChildren` prop because we now use css
+  to manage the stack rather than `React.cloneElement`. Thanks to
   [https://github.com/chakra-ui/chakra-ui/pull/277]
 
-- [Stack] We're constrained Stack's direction to only `row` and `column`.
-  Support for reversing the direction is no longer available.
+- We constrained a `Stack`s direction to only `row` and `column`. Support for
+  reversing the direction is no longer available.
 
-- New components ✨: We've added new layout components such as Wrap, Spacer, and
-  Center.
+#### New components ✨
 
-- AspectRatioBox now renamed to just `AspectRatio` to keep it concise
+- We've added new layout components such as `Wrap`, `Spacer`, and `Center`.
 
-- All components can now take the pseudo style props (`_hover`, `_active`, etc.)
-
-## Features ⚡️
+### Features ⚡️
 
 Stack
 
@@ -412,9 +500,9 @@ Stack
   </Stack>
   ```
 
-# Menu
+## Menu
 
-## Features ⚡️
+### Features ⚡️
 
 - Added support for nested menus or submenus
 
@@ -510,22 +598,18 @@ Stack
 
 - Moved to Popper V2 🥳
 
-## Fixes 🩹
+### Fixes 🩹
 
 - Fixed issue with `as` prop for `MenuItem`
-
 - Fixed issue with Link not navigating to the specified `href` value
-
 - Fixed issue where menu popper gets cut off when component is far right
-
 - Fixed issue where Menu throws if no `MenuItem` exist
-
 - Fixed issue where `closeOnSelect` doesn't work on navigation with when using
   `MenuItem` as link
 
-# Modal
+## Modal
 
-## Changes 🔧
+### Changes 🔧
 
 - Removed support for `addAriaLabels` and `formatIds` prop in favor of passing a
   top-level `id` prop to the modal, and we'll handle the rest.
@@ -561,13 +645,13 @@ Stack
   </Modal>
   ```
 
-- You only pass `size` values defined in the component's theme. Hard-coded
+- You only pass `size` values defined in the components theme. Hard-coded
   values, will be ignored. Simply update the styles in `theme.components.Modal`
   to reflect your custom values
 
 - Ability to disable focus trap
 
-## Props Changes
+### Props Changes
 
 We updated the prop names for boolean props to match our naming convention. All
 boolean prop must start with `should`, `is`, or `has`
@@ -579,7 +663,7 @@ boolean prop must start with `should`, `is`, or `has`
 | `blockScrollOnMount`  | `shouldBlockScroll`         |
 | `closeOnEsc`          | `shouldCloseOnEsc`          |
 
-## New Props
+### New Props
 
 - `shouldTrapFocus` : to help disable focus trap
 - `shouldAutoFocus` : to help disable auto focusing on the first interactive
@@ -587,37 +671,40 @@ boolean prop must start with `should`, `is`, or `has`
 - `onOverlayClick`: callback fired when the overlay is clicked
 - `onEsc`: callback fired when `esc` is pressed
 
-# NumberInput
+## NumberInput
 
-## Improvements 🚀
-
-- Fixed issue where an error if the input value is greater than the `max` prop
-  when focus is blurred `#584`
-
-- Fixed issue where deleting sole digit sets value to 0 (which may be invalid)
-  `#533`
-
-- Fixed issue where input returns `NaN` value after multiple dots `#364`
-
-- Fixed issue where passing `id` to the `NumberInput` and adding a `label` with
-  `htmlFor` that points to that `id` doesn't focus the input `#515`
-
-- Add example where consumers can format and parse number input values `#438`
-
-## New ✨
+### Improvements 🚀
 
 - Export `useNumberInput` so you can build custom numberinput UI
 
-# Portal
+- Add example where consumers can format and parse number input values (see
+  [#438](https://github.com/chakra-ui/chakra-ui/pull/438))
 
-## Changes 🔧
+### Fixes 🩹
 
-- Now have a `PortalManager`, we use this portal manager a container for all
-  portals. This helps us manage the stacking of portaled elements without the
-  need for z-index.
+- Fixed issue where an error if the input value is greater than the `max` prop
+  when focus is blurred (see
+  [#584](https://github.com/chakra-ui/chakra-ui/pull/584))
 
-- Removed `isDisabled` prop. If you want to use a Portal, then there's no point
-  having this prop. Can be replaced within your component with this.
+- Fixed issue where deleting sole digit sets value to 0 (which may be invalid)
+  (see [#533](https://github.com/chakra-ui/chakra-ui/pull/533))
+
+- Fixed issue where input returns `NaN` value after multiple dots (see
+  [#364](https://github.com/chakra-ui/chakra-ui/pull/364))
+
+- Fixed issue where passing `id` to the `NumberInput` and adding a `label` with
+  `htmlFor` that points to that `id` doesn't focus the input (see
+  [#515](https://github.com/chakra-ui/chakra-ui/pull/515))
+
+## Portal
+
+### Changes 🔧
+
+- `PortalManager`: used to manage a container for all portals. This helps us
+  manage the stacking of portaled elements without the need for z-index.
+
+- Removed `isDisabled` prop. If you want to use a `Portal`, then there's no
+  point having this prop. Can be replaced within your component with this.
 
   ```jsx
   const Component = prop.isDisabled ? React.Fragment : Portal
@@ -627,9 +714,9 @@ boolean prop must start with `should`, `is`, or `has`
 
 - `container` prop is now a function that returns an `HTMLElement`
 
-# Progress
+## Progress
 
-## Changes 🔧
+### Changes 🔧
 
 - The `Progress` and `CircularProgress` components are now under the same
   package.
@@ -655,7 +742,7 @@ boolean prop must start with `should`, `is`, or `has`
 
 - Added Support for `isIndeterminate` prop in the `Progress` component
 
-## CircularProgress
+### CircularProgress
 
 - `trackColor` prop now takes a specific color in theme or valid `css` color.
   This means you're now in full control of the styles.
@@ -666,11 +753,11 @@ boolean prop must start with `should`, `is`, or `has`
 - `thickness` props now takes the actual thickness of the progress bar, not the
   thickness ratio.
 
-# Radio
+## Radio
 
-## Changes 🔧
+### Changes 🔧
 
-Radio
+#### Radio
 
 - Support for the `variantColor` prop has been deprecated. Use `colorScheme`
   prop instead.
@@ -686,7 +773,7 @@ Radio
 - Support for the `isFullWidth` prop has been deprecated. The Radio takes up the
   width of the parent by default.
 
-RadioGroup
+#### RadioGroup
 
 - To reduce the API surface, we're deprecating the `isInline` prop in favor of
   `direction` prop for the orientation of the Radio group
@@ -709,14 +796,14 @@ RadioGroup
   </RadioGroup>
   ```
 
-## Features ⚡️
+### Features ⚡️
 
-Radio
+#### Radio
 
 - The `useRadio` hook is exported with state and focus management logic for use
   in creating tailor-made radio component for your application
 
-RadioGroup
+#### RadioGroup
 
 - Support for `spacing` prop to customize the space between the children radios
 
@@ -748,9 +835,9 @@ RadioGroup
 - The `useRadioGroup` hook is exported with state management logic for use in
   creating tailor-made radio group component for your application
 
-# Slider
+## Slider
 
-## Changes 🔧
+### Changes 🔧
 
 - We've a minor update to the structure of the slider markup. Since the filled
   track is considered visually to be inside the track, we tried to update the
@@ -785,9 +872,9 @@ RadioGroup
 
 - Export the `useSlider` hook to help users manage and build custom slider UIs
 
-# Popover
+## Popover
 
-## Changes 🔧
+### Changes 🔧
 
 - `returnFocusOnClose` has been changed to just `returnFocus` to keep it
   concise.
@@ -795,18 +882,18 @@ RadioGroup
 - `autoFocus` prop to allow users control whether the popover should
   automatically receive focus when it opens.
 
-# Stat
+## Stat
 
-## Changes 🔧
+### Changes 🔧
 
 - We improved the semantic HTML structure of the Stat components to use `dl`,
   `dd`, and `dt` tags.
 
 - We added theming support for the Stat components.
 
-# Switch
+## Switch
 
-## Changes 🔧
+### Changes 🔧
 
 - Support for the `color` prop has been deprecated. Use `colorScheme` prop
   instead.
@@ -819,16 +906,15 @@ RadioGroup
   <Switch colorScheme="blue"/>
   ```
 
-# System
+## System
 
 This is a new package that forms the foundation of all chakra components.
 
-## Custom styled implementation
+### Custom styled implementation
 
-You can create chakra's enhanced components in 2 ways:
+You can create chakra-enhanced components in 2 ways:
 
-1.  Use the chakra element syntax (It's the easy to avoid naming components.
-    Lol). Components create this way:
+1.  Use the chakra element syntax
 
     - Provides a simple syntax that reduces the need to use the `as` prop.
     - Allow you map styles defined in `theme.styles.[element]` to
@@ -877,7 +963,7 @@ You can create chakra's enhanced components in 2 ways:
     <Button size="small">Click me</Button>
     ```
 
-## Theme Configurations
+### Theme Configurations
 
 ```jsx
 const theme = {
@@ -892,14 +978,14 @@ const theme = {
 }
 ```
 
-# Tabs
+## Tabs
 
 - We have renamed the `variantColor` prop to `colorScheme`
 - Added `useTabIndicator` to help users build animated active tab indicators
 
-# Tags
+## Tags
 
-## Changes 🔧
+### Changes 🔧
 
 - Support for the `variantColor` prop has been deprecated. Use `colorScheme`
   prop instead.
@@ -921,17 +1007,16 @@ const theme = {
   </Tag>
   ```
 
-# Textarea
+## Textarea
 
-## Fixes 🩹
+### Fixes 🩹
 
-- We've fixed the typings for the Textarea component, it now supports `rows` and
-  `cols` and any other native `textarea` prop.
+- Now supports all native `textarea` props.
 
-# Toast
+## Toast
 
 There are no breaking changes to the Toast component but we've improved a couple
-of things
+of things:
 
 - Removed `react-spring` as dependency in favor of `react-transition-group`
 - Add support for duplicate toast prevention using `toast.isActive` method
@@ -941,17 +1026,17 @@ of things
 - Add Support for `onCloseComplete` prop, a callback function to run side
   effects after the toast component has closed.
 
-# Tooltip
+## Tooltip
 
-## Changes 🔧
+### Changes 🔧
 
 - Added support for `hideOnClick` prop
 - Added support for `hideOnMouseDown` prop
 - Improved tooltip rendering logic
 
-# VisuallyHidden
+## VisuallyHidden
 
-## Features ⚡️
+### Features ⚡️
 
 - `VisuallyHidden` now supports the `as` prop and can infer the types from the
   element type passed.
