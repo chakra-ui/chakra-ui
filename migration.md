@@ -1,6 +1,6 @@
 # Accordion
 
-## Changes
+## Changes 🔧
 
 - We've changed `AccordionHeader` to `AccordionButton`. This is to remove the
   notion that it's a header when it's actually a `button`.
@@ -13,7 +13,7 @@
   `Accordion`. We think most users don't do this by default but it's worth
   noting.
 
-## Features
+## Features ⚡️
 
 - Keyboard Navigation: Accordion now support keyboard navigation between
   accordion buttons. Pressing the up and down arrow keys will move focus between
@@ -21,7 +21,7 @@
 
 # Avatar
 
-## Improvements
+## Improvements 🚀
 
 - AvatarGroup now stacks each avatar without using `z-index`. As much as
   possible, we'll like to do away with zIndex.
@@ -43,14 +43,14 @@
 
 # Breadcrumb
 
-## Changes
+## Changes 🔧
 
 - Remove support for `addSeparator` prop to reduce API surface area
 - Change `separator` prop accept `string` or `React.ReactElement`
 
 # Button
 
-## Changes
+## Changes 🔧
 
 - Ensure consistent usage of the `icon` prop. `leftIcon` and `rightIcon` props
   are now accepts a react element not react element type.
@@ -65,7 +65,7 @@
 
 - Change `variantColor` prop to `colorScheme` for better intuitiveness.
 
-## Features
+## Features ⚡️
 
 - Add support for `spinner` prop to allow you render custom spinners.
 
@@ -81,7 +81,7 @@
 
 # Checkbox
 
-## Changes
+## Changes 🔧
 
 - Support for the `variantColor` prop has been deprecated. Use `colorScheme`
   prop instead.
@@ -125,7 +125,7 @@ We believe a checkbox group's layout should be managed 100% by the context it's
 used it, or based on design requirements. The group can stacked (`Stack`),
 placed in a grid (`SimpleGrid`) or made to wrap automatically (`Wrap`).
 
-## Features
+## Features ⚡️
 
 - Support for `iconColor` prop to customize the color of the check icon
 
@@ -200,7 +200,7 @@ We've updated the color mode to support the following scenatios
    }
    ```
 
-## Fixes
+## Fixes 🩹
 
 - Color mode now persists correctly when you refresh the page. All you need to
   do is to add `InitialColorMode` script as the first child in of `body`.
@@ -233,7 +233,7 @@ We've updated the color mode to support the following scenatios
 
 # CSSReset
 
-## Changes
+## Changes 🔧
 
 - Add `focus-visible` support to CSS Reset. All you need to do is to install
   `focus-visible` and import it at the root of your application
@@ -255,7 +255,7 @@ https://github.com/WICG/focus-visible/issues/128
 
 # FormControl
 
-## Changes
+## Changes 🔧
 
 - `FormControl` now exposes most of it's internal functions and hooks so you can
   leverage in building custom components.
@@ -285,11 +285,11 @@ https://github.com/WICG/focus-visible/issues/128
 
 # Image
 
-## Fixes
+## Fixes 🩹
 
 - Resolved the common SSR issue with Next.js
 
-## Features
+## Features ⚡️
 
 - Support for `fit` prop to specify how to fit an image within it's dimension.
   It uses the `object-fit` property
@@ -325,7 +325,7 @@ https://github.com/WICG/focus-visible/issues/128
 
 # Layout
 
-## Changes
+## Changes 🔧
 
 - Support for `size` has been deprecated. Use `boxSize` prop. We've reserved the
   `size` prop to refer to component size variants.
@@ -374,7 +374,7 @@ https://github.com/WICG/focus-visible/issues/128
 
 - All components can now take the pseudo style props (`_hover`, `_active`, etc.)
 
-## Features
+## Features ⚡️
 
 Stack
 
@@ -510,7 +510,7 @@ Stack
 
 - Moved to Popper V2 🥳
 
-## Fixes
+## Fixes 🩹
 
 - Fixed issue with `as` prop for `MenuItem`
 
@@ -525,7 +525,7 @@ Stack
 
 # Modal
 
-## Changes
+## Changes 🔧
 
 - Removed support for `addAriaLabels` and `formatIds` prop in favor of passing a
   top-level `id` prop to the modal, and we'll handle the rest.
@@ -610,7 +610,7 @@ boolean prop must start with `should`, `is`, or `has`
 
 # Portal
 
-## Changes
+## Changes 🔧
 
 - Now have a `PortalManager`, we use this portal manager a container for all
   portals. This helps us manage the stacking of portaled elements without the
@@ -629,7 +629,7 @@ boolean prop must start with `should`, `is`, or `has`
 
 # Progress
 
-## Changes
+## Changes 🔧
 
 - The `Progress` and `CircularProgress` components are now under the same
   package.
@@ -668,7 +668,7 @@ boolean prop must start with `should`, `is`, or `has`
 
 # Radio
 
-## Changes
+## Changes 🔧
 
 Radio
 
@@ -709,7 +709,7 @@ RadioGroup
   </RadioGroup>
   ```
 
-## Features
+## Features ⚡️
 
 Radio
 
@@ -750,7 +750,7 @@ RadioGroup
 
 # Slider
 
-## Changes
+## Changes 🔧
 
 - We've a minor update to the structure of the slider markup. Since the filled
   track is considered visually to be inside the track, we tried to update the
@@ -787,7 +787,7 @@ RadioGroup
 
 # Popover
 
-## Changes
+## Changes 🔧
 
 - `returnFocusOnClose` has been changed to just `returnFocus` to keep it
   concise.
@@ -797,7 +797,7 @@ RadioGroup
 
 # Stat
 
-## Changes
+## Changes 🔧
 
 - We improved the semantic HTML structure of the Stat components to use `dl`,
   `dd`, and `dt` tags.
@@ -806,7 +806,7 @@ RadioGroup
 
 # Switch
 
-## Changes
+## Changes 🔧
 
 - Support for the `color` prop has been deprecated. Use `colorScheme` prop
   instead.
@@ -899,7 +899,7 @@ const theme = {
 
 # Tags
 
-## Changes
+## Changes 🔧
 
 - Support for the `variantColor` prop has been deprecated. Use `colorScheme`
   prop instead.
@@ -923,7 +923,7 @@ const theme = {
 
 # Textarea
 
-## Fixes
+## Fixes 🩹
 
 - We've fixed the typings for the Textarea component, it now supports `rows` and
   `cols` and any other native `textarea` prop.
@@ -943,7 +943,7 @@ of things
 
 # Tooltip
 
-## Changes
+## Changes 🔧
 
 - Added support for `hideOnClick` prop
 - Added support for `hideOnMouseDown` prop
@@ -951,7 +951,7 @@ of things
 
 # VisuallyHidden
 
-## Features
+## Features ⚡️
 
 - `VisuallyHidden` now supports the `as` prop and can infer the types from the
   element type passed.
