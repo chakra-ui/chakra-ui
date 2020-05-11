@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/system",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Chakra UI system primitives",
   "keywords": [
     "system",
@@ -54,10 +54,10 @@
     "@emotion/core": "10.0.28",
     "hoist-non-react-statics": "3.3.2",
     "@types/hoist-non-react-statics": "3.3.1",
-    "@chakra-ui/color-mode": "0.0.1",
-    "@chakra-ui/utils": "0.0.1",
-    "@chakra-ui/css": "0.0.1",
-    "@chakra-ui/parser": "0.0.1"
+    "@chakra-ui/color-mode": "1.0.0",
+    "@chakra-ui/utils": "1.0.0",
+    "@chakra-ui/css": "1.0.0",
+    "@chakra-ui/parser": "1.0.0"
   },
   "peerDependencies": {
     "react": "16.x"

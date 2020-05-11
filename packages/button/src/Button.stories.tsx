@@ -5,7 +5,7 @@ import {
   PhoneIcon,
   SearchIcon,
 } from "@chakra-ui/icons"
-import { Container, Stack, VStack, HStack } from "@chakra-ui/layout"
+import { Container, Stack } from "@chakra-ui/layout"
 // import "focus-visible/dist/focus-visible"
 import * as React from "react"
 import { MdBuild, MdCall } from "react-icons/md"
@@ -27,7 +27,7 @@ export default {
 export const basic = () => <Button colorScheme="green">Button</Button>
 
 export const withVariants = () => (
-  <HStack spacing="24px">
+  <Stack spacing="24px">
     <Button colorScheme="teal" variant="solid">
       Button
     </Button>
@@ -40,11 +40,11 @@ export const withVariants = () => (
     <Button colorScheme="teal" variant="link">
       Button
     </Button>
-  </HStack>
+  </Stack>
 )
 
 export const withSizes = () => (
-  <HStack>
+  <Stack>
     <Button colorScheme="blue" size="xs">
       Button
     </Button>
@@ -57,11 +57,11 @@ export const withSizes = () => (
     <Button colorScheme="blue" size="lg">
       Button
     </Button>
-  </HStack>
+  </Stack>
 )
 
 export const WithIcon = () => (
-  <HStack spacing={4}>
+  <Stack spacing={4}>
     <Button leftIcon={<EmailIcon />} colorScheme="teal" variant="solid">
       Email
     </Button>
@@ -72,7 +72,7 @@ export const WithIcon = () => (
     >
       Call us
     </Button>
-  </HStack>
+  </Stack>
 )
 
 export const withReactIcons = () => (
@@ -124,7 +124,7 @@ export const customComposition = () => (
 )
 
 export const iconButton = () => (
-  <HStack>
+  <Stack>
     <IconButton aria-label="Search database" icon={<SearchIcon />} />
 
     <IconButton
@@ -136,7 +136,7 @@ export const iconButton = () => (
     <IconButton colorScheme="teal" aria-label="Call Segun" size="lg">
       <PhoneIcon />
     </IconButton>
-  </HStack>
+  </Stack>
 )
 
 export const WithButtonGroup = () => (
@@ -158,12 +158,12 @@ export const splitButton = () => (
 )
 
 export const socialButton = () => (
-  <HStack>
+  <Stack>
     <Button colorScheme="facebook" leftIcon={<FaFacebook />}>
       Facebook
     </Button>
     <Button colorScheme="twitter" leftIcon={<FaTwitter />}>
       Twitter
     </Button>
-  </HStack>
+  </Stack>
 )

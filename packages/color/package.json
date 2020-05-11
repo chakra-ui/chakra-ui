@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/color",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Helps with color manipulation",
   "keywords": [
     "theme",
@@ -44,6 +44,6 @@
   "dependencies": {
     "tinycolor2": "1.4.1",
     "@types/tinycolor2": "1.4.2",
-    "@chakra-ui/utils": "0.0.1"
+    "@chakra-ui/utils": "1.0.0"
   }
 }

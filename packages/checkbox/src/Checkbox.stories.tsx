@@ -1,6 +1,6 @@
 import * as React from "react"
 import { useCheckbox, CheckboxGroup, Checkbox } from "."
-import { Stack, Container, VStack, HStack } from "@chakra-ui/layout"
+import { Stack, Container } from "@chakra-ui/layout"
 
 export default {
   title: "Checkbox",
@@ -27,10 +27,10 @@ export const Invalid = () => <Checkbox isInvalid children="Invalid" />
 
 export const withColorScheme = () => {
   return (
-    <VStack>
+    <Stack>
       <Checkbox defaultIsChecked colorScheme="red" children="Hello world" />
       <Checkbox defaultIsChecked children="Hello world" />
-    </VStack>
+    </Stack>
   )
 }
 
@@ -38,11 +38,11 @@ export const Sizes = () => {
   const sizes = ["sm", "md", "lg"]
 
   return (
-    <HStack>
+    <Stack>
       {sizes.map(size => (
         <Checkbox size={size} marginLeft="1rem" />
       ))}
-    </HStack>
+    </Stack>
   )
 }
 
@@ -60,7 +60,7 @@ export const Indeterminate = () => {
         onChange={e => setCheckedItems([e.target.checked, e.target.checked])}
         children="Parent Checkbox"
       />
-      <VStack ml="6" mt="2" align="start">
+      <Stack ml="6" mt="2" align="start">
         <Checkbox
           isChecked={checkedItems[0]}
           onChange={e => setCheckedItems([e.target.checked, checkedItems[1]])}
@@ -71,7 +71,7 @@ export const Indeterminate = () => {
           onChange={e => setCheckedItems([checkedItems[0], e.target.checked])}
           children="Child Checkbox 2"
         />
-      </VStack>
+      </Stack>
     </>
   )
 }
@@ -129,11 +129,11 @@ export const ControlledCheckboxGroup = () => {
         setValue(value)
       }}
     >
-      <HStack spacing="40px">
+      <Stack direction="row" spacing="40px">
         <Checkbox value="one">One</Checkbox>
         <Checkbox value="two">Two</Checkbox>
         <Checkbox value="three">Three</Checkbox>
-      </HStack>
+      </Stack>
     </CheckboxGroup>
   )
 }
