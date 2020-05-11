@@ -1,7 +1,5 @@
 # Accordion
 
-# Migration Notes
-
 ## Changes
 
 - We've changed `AccordionHeader` to `AccordionButton`. This is to remove the
@@ -23,8 +21,6 @@
 
 # Avatar
 
-# Migration Notes
-
 ## Improvements
 
 - AvatarGroup now stacks each avatar without using `z-index`. As much as
@@ -39,15 +35,13 @@
   circular avatars.
 
 - Theming Support: All design related decisions for the Avatar are located in
-  `theme.componenents.Avatar`. this means you can customize to suit your brand
+  `theme.components.Avatar`. this means you can customize to suit your brand
   needs.
 
 - Added `getInitials` prop to allow users manage how initials are generated from
   name
 
 # Breadcrumb
-
-# Migration Notes
 
 ## Changes
 
@@ -56,16 +50,12 @@
 
 # Button
 
-# Migration Notes
-
 ## Changes
 
 - Ensure consistent usage of the `icon` prop. `leftIcon` and `rightIcon` props
   are now accepts a react element not react element type.
 
-  Here's what I mean
-
-  ```tsx
+  ```jsx
   // before
   const Before = () => <Button leftIcon={PhoneIcon}>Call</Button>
 
@@ -75,36 +65,34 @@
 
 - Change `variantColor` prop to `colorScheme` for better intuitiveness.
 
-## New Features
+## Features
 
 - Add support for `spinner` prop to allow you render custom spinners.
 
-```jsx
-<Button
-  isLoading
-  colorScheme="blue"
-  spinner={<BeatLoader size={8} color="white" />}
->
-  Click me
-</Button>
-```
+  ```jsx
+  <Button
+    isLoading
+    colorScheme="blue"
+    spinner={<BeatLoader size={8} color="white" />}
+  >
+    Click me
+  </Button>
+  ```
 
 # Checkbox
-
-# Migration Notes
 
 ## Changes
 
 - Support for the `variantColor` prop has been deprecated. Use `colorScheme`
   prop instead.
 
-```jsx
-// before
-<Checkbox variantColor="blue">Option</Checkbox>
+  ```jsx
+  // before
+  <Checkbox variantColor="blue">Option</Checkbox>
 
-// after
-<Checkbox colorScheme="blue">Option</Checkbox>
-```
+  // after
+  <Checkbox colorScheme="blue">Option</Checkbox>
+  ```
 
 - Support for the `isFullWidth` prop has been deprecated. The Checkbox takes up
   the width of the parent by default.
@@ -115,23 +103,23 @@
   You can only pass `size`, `variant`, and `colorScheme` in addition to typical
   group props which are used to control the states of the checkbox.
 
-```jsx
-// before
-<CheckboxGroup isInline spacing="40px" defaultValue={["one", "two"]}>
-  <Checkbox value="one">One</Checkbox>
-  <Checkbox value="two">Two</Checkbox>
-  <Checkbox value="three">Three</Checkbox>
-</CheckboxGroup>
-
-// after
-<CheckboxGroup defaultValue={["one", "two"]}>
-  <HStack spacing="40px">
+  ```jsx
+  // before
+  <CheckboxGroup isInline spacing="40px" defaultValue={["one", "two"]}>
     <Checkbox value="one">One</Checkbox>
     <Checkbox value="two">Two</Checkbox>
     <Checkbox value="three">Three</Checkbox>
-  </HStack>
-</CheckboxGroup>
-```
+  </CheckboxGroup>
+
+  // after
+  <CheckboxGroup defaultValue={["one", "two"]}>
+    <HStack spacing="40px">
+      <Checkbox value="one">One</Checkbox>
+      <Checkbox value="two">Two</Checkbox>
+      <Checkbox value="three">Three</Checkbox>
+    </HStack>
+  </CheckboxGroup>
+  ```
 
 We believe a checkbox group's layout should be managed 100% by the context it's
 used it, or based on design requirements. The group can stacked (`Stack`),
@@ -141,22 +129,22 @@ placed in a grid (`SimpleGrid`) or made to wrap automatically (`Wrap`).
 
 - Support for `iconColor` prop to customize the color of the check icon
 
-```jsx
-<Checkbox iconColor="blue">Option</Checkbox>
-```
+  ```jsx
+  <Checkbox iconColor="blue">Option</Checkbox>
+  ```
 
 - Support for `iconSize` prop to customize the size of the check icon
 
-```jsx
-<Checkbox iconSize="1rem">Option</Checkbox>
-```
+  ```jsx
+  <Checkbox iconSize="1rem">Option</Checkbox>
+  ```
 
 - Support for `labelSpacing` prop to customize the spacing between the checkbox
   and label text
 
-```jsx
-<Checkbox labelSpacing="1rem">Option</Checkbox>
-```
+  ```jsx
+  <Checkbox labelSpacing="1rem">Option</Checkbox>
+  ```
 
 - The `useCheckbox` hook is exported with state and focus management logic for
   use in creating tailor-made checkbox component for your application
@@ -166,101 +154,97 @@ placed in a grid (`SimpleGrid`) or made to wrap automatically (`Wrap`).
 
 # ColorMode
 
-# Migration Notes
-
 We've updated the color mode to support the following scenatios
 
 1. Ability to start with dark mode by default, but also want users to toggle it.
    To support this, add `theme.config.initialColorMode` to the theme.
 
-```jsx
-const theme = {
-  config: {
-    initialColorMode: "dark", // "light" | "dark"
-  },
-}
-```
+   ```jsx
+   const theme = {
+     config: {
+       initialColorMode: "dark", // "light" | "dark"
+     },
+   }
+   ```
 
-> NB: For this to work correctly, ensure you don't have `chakra-ui-color-mode`
-> set in the your `localStorage`.
->
-> We use `localStorage` as the source of truth and use the `initialColorMode`
-> value when the value doesn't exist in `localStorage`
+   > NB: For this to work correctly, ensure you don't have
+   > `chakra-ui-color-mode` set in the your `localStorage`.
+   >
+   > We use `localStorage` as the source of truth and use the `initialColorMode`
+   > value when the value doesn't exist in `localStorage`
 
 2. Ability to lock color mode in certain aspects of UI, this doesn't change
 
-```jsx
-import { DarkMode, LightMode } from "@chakra-ui/color-mode"
+   ```jsx
+   import { DarkMode, LightMode } from "@chakra-ui/color-mode"
 
-// Here, the button is locked to dark mode and can't be changed
-function Example() {
-  return (
-    <DarkMode>
-      <Button>Click me</Button>
-    </DarkMode>
-  )
-}
-```
+   // Here, the button is locked to dark mode and can't be changed
+   function Example() {
+     return (
+       <DarkMode>
+         <Button>Click me</Button>
+       </DarkMode>
+     )
+   }
+   ```
 
 3. Ability to use system color mode preference. To support this, add
    `theme.config.useSystemColorMode`. This also updates the color mode whenever
    user changes this preference from their OS.
 
-```jsx
-const theme = {
-  config: {
-    useSystemColorMode: true,
-  },
-}
-```
+   ```jsx
+   const theme = {
+     config: {
+       useSystemColorMode: true,
+     },
+   }
+   ```
 
 ## Fixes
 
 - Color mode now persists correctly when you refresh the page. All you need to
   do is to add `InitialColorMode` script as the first child in of `body`.
 
-Here's an example with Next.js
+  Here's an example with Next.js
 
-```jsx
-// pages/_app.js
-export default class Document extends NextDocument {
-  static async getInitialProps(ctx) {
-    const initialProps = await NextDocument.getInitialProps(ctx)
-    return { ...initialProps }
-  }
+  ```jsx
+  // pages/_app.js
+  export default class Document extends NextDocument {
+    static async getInitialProps(ctx) {
+      const initialProps = await NextDocument.getInitialProps(ctx)
+      return { ...initialProps }
+    }
 
-  render() {
-    return (
-      <Html>
-        <Head />
-        <body>
-          {/* Here's the script 👇  */}
-          <InitializeColorMode />
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    )
+    render() {
+      return (
+        <Html>
+          <Head />
+          <body>
+            {/* Here's the script 👇  */}
+            <InitializeColorMode />
+            <Main />
+            <NextScript />
+          </body>
+        </Html>
+      )
+    }
   }
-}
-```
+  ```
 
 # CSSReset
-
-# Migration Notes
 
 ## Changes
 
 - Add `focus-visible` support to CSS Reset. All you need to do is to install
   `focus-visible` and import it at the root of your application
 
-```sh
-# as a dependency
-yarn add focus-visible
+  ```sh
+  # as a dependency
+  yarn add focus-visible
 
-# at the root of your application
-import "focus-visible/dist/focus-visible"
-```
+  # at the root of your application
+  import "focus-visible/dist/focus-visible"
+  ```
 
 ## Notes on using focus visible
 
@@ -270,8 +254,6 @@ users with with low vision or cognitive impairments.
 https://github.com/WICG/focus-visible/issues/128
 
 # FormControl
-
-# Migration Notes
 
 ## Changes
 
@@ -303,11 +285,11 @@ https://github.com/WICG/focus-visible/issues/128
 
 # Image
 
-# Fixes
+## Fixes
 
 - Resolved the common SSR issue with Next.js
 
-# Features
+## Features
 
 - Support for `fit` prop to specify how to fit an image within it's dimension.
   It uses the `object-fit` property
@@ -317,15 +299,13 @@ https://github.com/WICG/focus-visible/issues/128
 
 - Support for custom `fallback` component
 
-# TBD
+## TBD
 
 - Support for fade-in or blur-in entrace animation for image?
 
 - Support for Modern image formats?
 
 # Input
-
-# Migration Notes
 
 - When using `InputElement`, You no longer need to pass any padding properties
   to the `Input`, `InputGroup` will smartly measure and apply the necessary
@@ -345,38 +325,34 @@ https://github.com/WICG/focus-visible/issues/128
 
 # Layout
 
-# Migration Notes
-
 ## Changes
 
 - Support for `size` has been deprecated. Use `boxSize` prop. We've reserved the
   `size` prop to refer to component size variants.
 
-For example, `<Button size="md">Click</Button>`
+  ```jsx
+  // before
+  <Box size="40px" />
 
-```jsx
-// before
-<Box size="40px" />
-
-// after
-<chakra.div boxSize="40px"/>
-```
+  // after
+  <chakra.div boxSize="40px"/>
+  ```
 
 - Addition of chakra jsx elements to make it even easier to style components
   without having to use the `as` prop in Box
 
-```jsx
-// before
-<Box as="h2" fontSize="40px" />
+  ```jsx
+  // before
+  <Box as="h2" fontSize="40px" />
 
-// after
-<chakra.h2 fontSize="40px"/>
+  // after
+  <chakra.h2 fontSize="40px"/>
 
-// still want Box? No problem!
-const Box = chakra.div
+  // still want Box? No problem!
+  const Box = chakra.div
 
-<Box>This is your box</Box>
-```
+  <Box>This is your box</Box>
+  ```
 
 - [Link] Due to accessibility reasons, We're deprecating the `isDisabled` prop
   from link. A link should never be allowed to be disabled.
@@ -404,143 +380,137 @@ Stack
 
 - Support for responsive `direction` and `spacing` prop
 
-```jsx
-// before
-// how the heck do I make this responsive ?? 😡
-<Stack isInline>
-  <Box />
-  <Box />
-</Stack>
+  ```jsx
+  // before
+  <Stack isInline>
+    <Box />
+    <Box />
+  </Stack>
 
-// after
-// cool! now that's amazing 🤩
-<Stack direction={["column", "row"]}>
-  <Box />
-  <Box />
-</Stack>
-```
+  // after
+  <Stack direction={["column", "row"]}>
+    <Box />
+    <Box />
+  </Stack>
+  ```
 
 - Support for `divider` prop between stacked element. Dividers also work with
   responsive direction and spacing.
 
-```jsx
-// before
-// how the heck do I add a divider ?? 😡
-<Stack isInline>
-  <Box />
-  <Divider />
-  <Box />
-</Stack>
+  ```jsx
+  // before
+  <Stack isInline>
+    <Box />
+      <Divider />
+    <Box />
+  </Stack>
 
-// after
-// cool! now that's amazing 🤩
-<Stack divider={<StackDivider />}>
-  <Box />
-  <Box />
-</Stack>
-```
+  // after
+  <Stack divider={<StackDivider />}>
+    <Box />
+    <Box />
+  </Stack>
+  ```
 
 # Menu
 
-# Migration Notes
+## Features ⚡️
 
-## New Features ⚡️
+- Added support for nested menus or submenus
 
-Added support for nested menus or submenus
+  ```jsx
+  const PreferencesMenu = forwardRef((props, ref) => {
+    return (
+      <Menu>
+        <MenuButton ref={ref} {...props}>
+          Preferences
+        </MenuButton>
+        <MenuList>
+          <MenuItem>Settings</MenuItem>
+          <MenuItem isDisabled>Extensions</MenuItem>
+          <MenuSeparator />
+          <MenuItem>Keyboard shortcuts</MenuItem>
+        </MenuList>
+      </Menu>
+    )
+  })
 
-```jsx
-const PreferencesMenu = forwardRef((props, ref) => {
-  return (
-    <Menu>
-      <MenuButton ref={ref} {...props}>
-        Preferences
-      </MenuButton>
-      <MenuList>
-        <MenuItem>Settings</MenuItem>
-        <MenuItem isDisabled>Extensions</MenuItem>
-        <MenuSeparator />
-        <MenuItem>Keyboard shortcuts</MenuItem>
-      </MenuList>
-    </Menu>
-  )
-})
+  function Example() {
+    return (
+      <Menu>
+        <MenuButton>Code</MenuButton>
+        <MenuList>
+          <MenuItem>About Visual Studio Code</MenuItem>
+          <MenuItem>Check for Updates...</MenuItem>
+          <MenuSeparator />
+          <MenuItem as={PreferencesMenu} />
+        </MenuList>
+      </Menu>
+    )
+  }
+  ```
 
-function Example() {
-  return (
-    <Menu>
-      <MenuButton>Code</MenuButton>
-      <MenuList>
-        <MenuItem>About Visual Studio Code</MenuItem>
-        <MenuItem>Check for Updates...</MenuItem>
-        <MenuSeparator />
-        <MenuItem as={PreferencesMenu} />
-      </MenuList>
-    </Menu>
-  )
-}
-```
+- Support for menu icons and commands (or hotkeys)
 
-Support for menu icons and commands (or hotkeys
-
-```jsx
-<Menu>
-  <MenuButton size="sm" colorScheme="teal">
-    Open menu
-  </MenuButton>
-  <MenuList>
-    <MenuItem command="⌘T">New Tab</MenuItem>
-    <MenuItem command="⌘N">New Window</MenuItem>
-    <MenuItem command="⌘⇧N">Open Closed Tab</MenuItem>
-    <MenuItem command="⌘O">Open File...</MenuItem>
-  </MenuList>
-</Menu>
-```
-
-Support for menu transitions and animations
-
-> It's important to use the `css` or `sx` prop for the transitions to work
-> properly. For some reason, it doesn't work with the `style` native prop
-
-```jsx
-<Menu>
-  <MenuButton size="sm" colorScheme="teal">
-    Open menu
-  </MenuButton>
-  <MenuTransition>
-    {styles => (
-      <MenuList css={styles}>
-        <MenuItem command="⌘T">New Tab</MenuItem>
-        <MenuItem command="⌘N">New Window</MenuItem>
-        <MenuItem command="⌘⇧N">Open Closed Tab</MenuItem>
-        <MenuItem command="⌘O">Open File...</MenuItem>
-      </MenuList>
-    )}
-  </MenuTransition>
-</Menu>
-```
-
-Added support for Portals. Just wrap the `MenuList` in the `Portal` component
-and you're good to go!
-
-```jsx
-<Menu>
-  <MenuButton size="sm" colorScheme="teal">
-    Open menu
-  </MenuButton>
-  <Portal>
+  ```jsx
+  <Menu>
+    <MenuButton size="sm" colorScheme="teal">
+      Open menu
+    </MenuButton>
     <MenuList>
-      <MenuItem>Menu 1</MenuItem>
-      <MenuItem>New Window</MenuItem>
-      <MenuItem>Open Closed Tab</MenuItem>
-      <MenuItem>Open File</MenuItem>
+      <MenuItem command="⌘T">New Tab</MenuItem>
+      <MenuItem command="⌘N">New Window</MenuItem>
+      <MenuItem command="⌘⇧N">Open Closed Tab</MenuItem>
+      <MenuItem command="⌘O">Open File...</MenuItem>
     </MenuList>
-  </Portal>
-</Menu>
-```
+  </Menu>
+  ```
 
-Moved to Popper V2 🥳
+- Support for menu transitions and animations
 
-## Bug Fixes
+  > It's important to use the `css` or `sx` prop for the transitions to work
+  > properly. For some reason, it doesn't work with the `style` native prop
+
+  ```jsx
+  <Menu>
+    <MenuButton size="sm" colorScheme="teal">
+      Open menu
+    </MenuButton>
+    <MenuTransition>
+      {styles => (
+        <MenuList css={styles}>
+          <MenuItem command="⌘T">New Tab</MenuItem>
+          <MenuItem command="⌘N">New Window</MenuItem>
+          <MenuItem command="⌘⇧N">Open Closed Tab</MenuItem>
+          <MenuItem command="⌘O">Open File...</MenuItem>
+        </MenuList>
+      )}
+    </MenuTransition>
+  </Menu>
+  ```
+
+- Added support for Portals. Just wrap the `MenuList` in the `Portal` component
+  and you're good to go!
+
+  ```jsx
+  <Menu>
+    <MenuButton size="sm" colorScheme="teal">
+      Open menu
+    </MenuButton>
+    <Portal>
+      <MenuList>
+        <MenuItem>Menu 1</MenuItem>
+        <MenuItem>New Window</MenuItem>
+        <MenuItem>Open Closed Tab</MenuItem>
+        <MenuItem>Open File</MenuItem>
+      </MenuList>
+    </Portal>
+  </Menu>
+  ```
+
+- Moved to Popper V2 🥳
+
+## Fixes
 
 - Fixed issue with `as` prop for `MenuItem`
 
@@ -555,8 +525,6 @@ Moved to Popper V2 🥳
 
 # Modal
 
-# Migration Notes
-
 ## Changes
 
 - Removed support for `addAriaLabels` and `formatIds` prop in favor of passing a
@@ -568,30 +536,30 @@ Moved to Popper V2 🥳
 - You need to wrap the `ModalContent` within the `ModalOverlay` component. This
   helps to make the final DOM structure of the modal component cleaner.
 
-```jsx
-// before
-<Modal>
-  <ModalOverlay />
-  <ModalContent>
-    <ModalHeader>Modal header</ModalHeader>
-    <ModalCloseButton />
-    <ModalBody>Modal body</ModalBody>
-    <ModalFooter>Modal footer</ModalFooter>
-  </ModalContent>
-</Modal>
-
-// after
-<Modal>
-  <ModalOverlay>
+  ```jsx
+  // before
+  <Modal>
+    <ModalOverlay />
     <ModalContent>
       <ModalHeader>Modal header</ModalHeader>
       <ModalCloseButton />
       <ModalBody>Modal body</ModalBody>
       <ModalFooter>Modal footer</ModalFooter>
     </ModalContent>
-  </ModalOverlay>
-</Modal>
-```
+  </Modal>
+
+  // after
+  <Modal>
+    <ModalOverlay>
+      <ModalContent>
+        <ModalHeader>Modal header</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody>Modal body</ModalBody>
+        <ModalFooter>Modal footer</ModalFooter>
+      </ModalContent>
+    </ModalOverlay>
+  </Modal>
+  ```
 
 - You only pass `size` values defined in the component's theme. Hard-coded
   values, will be ignored. Simply update the styles in `theme.components.Modal`
@@ -621,8 +589,6 @@ boolean prop must start with `should`, `is`, or `has`
 
 # NumberInput
 
-# Migration Notes
-
 ## Improvements 🚀
 
 - Fixed issue where an error if the input value is greater than the `max` prop
@@ -644,8 +610,6 @@ boolean prop must start with `should`, `is`, or `has`
 
 # Portal
 
-# Migration Notes
-
 ## Changes
 
 - Now have a `PortalManager`, we use this portal manager a container for all
@@ -665,50 +629,44 @@ boolean prop must start with `should`, `is`, or `has`
 
 # Progress
 
-# Migration Notes
-
 ## Changes
 
 - The `Progress` and `CircularProgress` components are now under the same
   package.
 
-```jsx
-import {
-  Progress,
-  ProgressLabel
-  CircularProgress,
-  CircularProgressLabel,
-} from "@chakra-ui/progress"
-```
+  ```jsx
+  import {
+    Progress,
+    ProgressLabel
+    CircularProgress,
+    CircularProgressLabel,
+  } from "@chakra-ui/progress"
+  ```
 
 - Support for `color` prop has been deprecated. Use `colorScheme` prop instead.
 
-For example, `<Progress colorScheme="blue"/>`
+  ```jsx
+  // before
+  <Progress color="blue"/>
 
-```jsx
-// before
-<Progress color="blue"/>
-
-// after
-<Progress colorScheme="blue"/>
-```
+  // after
+  <Progress colorScheme="blue"/>
+  ```
 
 - Added Support for `isIndeterminate` prop in the `Progress` component
 
-### CircularProgress
+## CircularProgress
 
 - `trackColor` prop now takes a specific color in theme or valid `css` color.
   This means you're now in full control of the styles.
 
-Use the `useColorModeValue` hook to change the `trackColor` and `color` based on
-color mode.
+  Use the `useColorModeValue` hook to change the `trackColor` and `color` based
+  on color mode.
 
 - `thickness` props now takes the actual thickness of the progress bar, not the
   thickness ratio.
 
 # Radio
-
-# Migration Notes
 
 ## Changes
 
@@ -717,15 +675,13 @@ Radio
 - Support for the `variantColor` prop has been deprecated. Use `colorScheme`
   prop instead.
 
-For example, `<Radio colorScheme="blue">Option</Radio>`
+  ```jsx
+  // before
+  <Radio variantColor="blue">Option</Radio>
 
-```jsx
-// before
-<Radio variantColor="blue">Option</Radio>
-
-// after
-<Radio colorScheme="blue">Option</Radio>
-```
+  // after
+  <Radio colorScheme="blue">Option</Radio>
+  ```
 
 - Support for the `isFullWidth` prop has been deprecated. The Radio takes up the
   width of the parent by default.
@@ -737,21 +693,21 @@ RadioGroup
 
 - The `direction` prop takes either `row` or `column` orientation.
 
-```jsx
-// before
-<RadioGroup isInline defaultValue="one">
+  ```jsx
+  // before
+  <RadioGroup isInline defaultValue="one">
   <Radio value="one">One</Radio>
   <Radio value="two">Two</Radio>
   <Radio value="three">Three</Radio>
-</RadioGroup>
+  </RadioGroup>
 
-// after
-<RadioGroup direction="row" defaultValue="one">
+  // after
+  <RadioGroup direction="row" defaultValue="one">
   <Radio value="one">One</Radio>
   <Radio value="two">Two</Radio>
   <Radio value="three">Three</Radio>
-</RadioGroup>
-```
+  </RadioGroup>
+  ```
 
 ## Features
 
@@ -764,37 +720,35 @@ RadioGroup
 
 - Support for `spacing` prop to customize the space between the children radios
 
-```jsx
-<RadioGroup spacing={6} defaultValue="one">
-  <Radio value="one">One</Radio>
-  <Radio value="two">Two</Radio>
-  <Radio value="three">Three</Radio>
-</RadioGroup>
-```
+  ```jsx
+  <RadioGroup spacing={6} defaultValue="one">
+    <Radio value="one">One</Radio>
+    <Radio value="two">Two</Radio>
+    <Radio value="three">Three</Radio>
+  </RadioGroup>
+  ```
 
 - Support for responsive `direction` and `spacing` props. This allows the group
   of children radios to wrap around the parent element automagically.
 
-```jsx
-<RadioGroup
-  spacing={[2, 4, 6]}
-  defaultValue="one"
-  direction={["column", "row"]}
-  onChange={value => console.log(value)}
->
-  <Radio value="one">One</Radio>
-  <Radio value="two">Two</Radio>
-  <Radio value="three">Three</Radio>
-  <Radio value="four">Four</Radio>
-</RadioGroup>
-```
+  ```jsx
+  <RadioGroup
+    spacing={[2, 4, 6]}
+    defaultValue="one"
+    direction={["column", "row"]}
+    onChange={value => console.log(value)}
+  >
+    <Radio value="one">One</Radio>
+    <Radio value="two">Two</Radio>
+    <Radio value="three">Three</Radio>
+    <Radio value="four">Four</Radio>
+  </RadioGroup>
+  ```
 
 - The `useRadioGroup` hook is exported with state management logic for use in
   creating tailor-made radio group component for your application
 
 # Slider
-
-# Migration Notes
 
 ## Changes
 
@@ -802,22 +756,22 @@ RadioGroup
   track is considered visually to be inside the track, we tried to update the
   markup to also depict that.
 
-```jsx
-// before
-<Slider defaultValue={30}>
+  ```jsx
+  // before
+  <Slider defaultValue={30}>
   <SliderTrack />
   <SliderFilledTrack />
   <SliderThumb />
-</Slider>
+  </Slider>
 
-// after
-<Slider defaultValue={30}>
+  // after
+  <Slider defaultValue={30}>
   <SliderTrack>
-    <SliderFilledTrack />
+      <SliderFilledTrack />
   </SliderTrack>
   <SliderThumb />
-</Slider>
-```
+  </Slider>
+  ```
 
 - Added support for `isReversed`, which allows users reverse the direction and
   functionality of the slider. This is mostly useful for `rtl` purposes.
@@ -833,8 +787,6 @@ RadioGroup
 
 # Popover
 
-# Migration Notes
-
 ## Changes
 
 - `returnFocusOnClose` has been changed to just `returnFocus` to keep it
@@ -845,8 +797,6 @@ RadioGroup
 
 # Stat
 
-# Migration Notes
-
 ## Changes
 
 - We improved the semantic HTML structure of the Stat components to use `dl`,
@@ -856,26 +806,20 @@ RadioGroup
 
 # Switch
 
-# Migration Notes
-
 ## Changes
 
 - Support for the `color` prop has been deprecated. Use `colorScheme` prop
   instead.
 
-For example, `<Switch colorScheme="blue"/>`
+  ```jsx
+  // before
+  <Switch color="blue"/>
 
-```jsx
-// before
-<Switch color="blue"/>
-
-// after
-<Switch colorScheme="blue"/>
-```
+  // after
+  <Switch colorScheme="blue"/>
+  ```
 
 # System
-
-# Migration Notes
 
 This is a new package that forms the foundation of all chakra components.
 
@@ -885,50 +829,53 @@ You can create chakra's enhanced components in 2 ways:
 
 1.  Use the chakra element syntax (It's the easy to avoid naming components.
     Lol). Components create this way:
+
     - Provides a simple syntax that reduces the need to use the `as` prop.
     - Allow you map styles defined in `theme.styles.[element]` to
       `chakra.[element]` components
 
-```jsx
-<chakra.button bg="red.200" _hover={{ bg: "red.300" }}>
-  Click me
-</chakra.button>
-```
+    ```jsx
+    <chakra.button bg="red.200" _hover={{ bg: "red.300" }}>
+      Click me
+    </chakra.button>
+    ```
 
-2. Use the chakra factory method. This approach is more powerful and can be used
-   to create custom themed components on the fly. Components created this way
-   can:
-   - Have base or default styles applied automatically
-   - Link to styles in theme object (following our component theming convention)
-   - Create variants, sizes, and color schemes right away
+2.  Use the chakra factory method. This approach is more powerful and can be
+    used to create custom themed components on the fly. Components created this
+    way can:
 
-```jsx
-const Button = chakra.button("button", {
-  // define base styles
-  baseStyle: {
-    display: "flex",
-    border: "0",
-  },
-  // define button sizes
-  sizes: {
-    small: {
-      padding: "8px",
-      fontSize: "12px",
-    },
-    medium: {
-      padding: "24px",
-      fontSize: "16px",
-    },
-    large: {
-      padding: "40px",
-      fontSize: "32px",
-    },
-  },
-})
+    - Have base or default styles applied automatically
+    - Link to styles in theme object (following our component theming
+      convention)
+    - Create variants, sizes, and color schemes right away
 
-// this will have baseStyle + sizes.small styles
-<Button size="small">Click me</Button>
-```
+    ```jsx
+    const Button = chakra.button("button", {
+      // define base styles
+      baseStyle: {
+        display: "flex",
+        border: "0",
+      },
+      // define button sizes
+      sizes: {
+        small: {
+        padding: "8px",
+        fontSize: "12px",
+        },
+        medium: {
+        padding: "24px",
+        fontSize: "16px",
+        },
+        large: {
+        padding: "40px",
+        fontSize: "32px",
+        },
+      },
+    })
+
+    // this will have baseStyle + sizes.small styles
+    <Button size="small">Click me</Button>
+    ```
 
 ## Theme Configurations
 
@@ -947,43 +894,34 @@ const theme = {
 
 # Tabs
 
-# Migration Notes
-
 - We have renamed the `variantColor` prop to `colorScheme`
-
 - Added `useTabIndicator` to help users build animated active tab indicators
 
 # Tags
-
-# Migration Notes
 
 ## Changes
 
 - Support for the `variantColor` prop has been deprecated. Use `colorScheme`
   prop instead.
 
-For example, `<Tag colorScheme="blue"/>`
+  ```jsx
+  // before
+  <Tag variantColor="blue"/>
 
-```jsx
-// before
-<Tag variantColor="blue"/>
+  // after
+  <Tag colorScheme="blue"/>
+  ```
 
-// after
-<Tag colorScheme="blue"/>
-```
+- Support for the `isDisabled` prop for the `TagCloseButton`
 
-- Support for the `isDisabled` prop for the TagCloseButton
-
-```jsx
-<Tag variant="solid" size="sm" colorScheme="cyan">
-  <TagLabel>Tab Label</TagLabel>
-  <TagCloseButton isDisabled={true} />
-</Tag>
-```
+  ```jsx
+  <Tag variant="solid" size="sm" colorScheme="cyan">
+    <TagLabel>Tab Label</TagLabel>
+    <TagCloseButton isDisabled={true} />
+  </Tag>
+  ```
 
 # Textarea
-
-# Migration Notes
 
 ## Fixes
 
@@ -991,8 +929,6 @@ For example, `<Tag colorScheme="blue"/>`
   `cols` and any other native `textarea` prop.
 
 # Toast
-
-# Migration Notes
 
 There are no breaking changes to the Toast component but we've improved a couple
 of things
@@ -1007,8 +943,6 @@ of things
 
 # Tooltip
 
-# Migration Notes
-
 ## Changes
 
 - Added support for `hideOnClick` prop
@@ -1016,8 +950,6 @@ of things
 - Improved tooltip rendering logic
 
 # VisuallyHidden
-
-# Migration Notes
 
 ## Features
 
