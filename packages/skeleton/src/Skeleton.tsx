@@ -14,7 +14,7 @@ export interface SkeletonOptions {
   /**
    * If `true`, it'll render it's children with a nice fade transition
    */
-  isLoaded?: boolean
+  hasLoaded?: boolean
   /**
    * The animation speed in seconds
    * @default
@@ -27,16 +27,10 @@ export interface SkeletonOptions {
    * @default
    * 0.4
    */
-  duration?: number
+  fadeDuration?: number
 }
 
-export interface Options {
-  startColor?: string
-  endColor?: string
-  speed?: number
-}
-
-const StyledSkeleton = chakra<"div", Options>("div", {
+const StyledSkeleton = chakra<"div", SkeletonOptions>("div", {
   themeKey: "Skeleton",
   baseStyle: {
     boxShadow: "none",
@@ -56,19 +50,19 @@ const StyledSkeleton = chakra<"div", Options>("div", {
 
 export type ISkeleton = SkeletonOptions
 
-export type SkeletonProps = SkeletonOptions & PropsOf<typeof chakra.div>
+export type SkeletonProps = PropsOf<typeof StyledSkeleton>
 
 const fadeIn = keyframes`
-from { opacity: 0; }
-to   { opacity: 1; }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 `
 
 export const Skeleton = (props: SkeletonProps) => {
   const {
     startColor,
     endColor,
-    isLoaded,
-    duration = 0.4,
+    hasLoaded,
+    fadeDuration = 0.4,
     speed = 0.8,
     className,
     ...rest
@@ -76,11 +70,11 @@ export const Skeleton = (props: SkeletonProps) => {
 
   const _className = cx("chakra-skeleton", className)
 
-  if (isLoaded) {
+  if (hasLoaded) {
     return (
       <chakra.div
         className={_className}
-        css={{ animation: `${fadeIn} ${duration}s` }}
+        css={{ animation: `${fadeIn} ${fadeDuration}s` }}
         {...rest}
       />
     )
@@ -101,7 +95,57 @@ if (__DEV__) {
   Skeleton.displayName = "Skeleton"
 }
 
-export const range = (count: number) =>
+const range = (count: number) =>
   Array(count)
     .fill(1)
     .map((_, idx) => idx + 1)
+
+export type SkeletonTextProps = SkeletonProps & {
+  noOfLines?: number
+  spacing?: SkeletonProps["margin"]
+  skeletonHeight?: SkeletonProps["height"]
+  startColor?: SkeletonProps["startColor"]
+  endColor?: SkeletonProps["endColor"]
+}
+
+export function SkeletonText(props: SkeletonTextProps) {
+  const {
+    noOfLines = 3,
+    spacing = "0.5rem",
+    skeletonHeight = "0.5rem",
+    className,
+    startColor,
+    endColor,
+    ...rest
+  } = props
+
+  const numbers = range(noOfLines)
+
+  const getWidth = (index: number) => {
+    if (noOfLines > 1) {
+      return index === numbers.length ? "80%" : "100%"
+    }
+    return "100%"
+  }
+
+  const _className = cx("chakra-skeleton__group", className)
+
+  return (
+    <chakra.div className={_className} {...rest}>
+      {numbers.map(number => (
+        <Skeleton
+          key={number}
+          height={skeletonHeight}
+          mb={number === numbers.length ? "0" : spacing}
+          width={getWidth(number)}
+          startColor={startColor}
+          endColor={endColor}
+        />
+      ))}
+    </chakra.div>
+  )
+}
+
+export const SkeletonCircle = ({ size = "2rem", ...rest }: SkeletonProps) => (
+  <Skeleton borderRadius="full" boxSize={size} {...rest} />
+)

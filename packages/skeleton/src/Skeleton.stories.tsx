@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Skeleton } from "."
+import { Skeleton, SkeletonText, SkeletonCircle } from "."
 import { chakra, DarkMode } from "@chakra-ui/system"
 import { Stack } from "@chakra-ui/layout"
 
@@ -7,14 +7,21 @@ export default {
   title: "Skeleton",
   decorators: [
     (story: Function) => (
-      <chakra.div maxWidth="md" mt="40px" mx="auto">
+      <chakra.div maxW="md" mt="40px" mx="auto">
         {story()}
       </chakra.div>
     ),
   ],
 }
 
-export const Basic = () => <Skeleton height="20px" />
+// Get more examples from here:
+// https://danilowoz.com/create-content-loader/
+
+export const Basic = () => <Skeleton h="20px" />
+
+export const Text = () => (
+  <SkeletonText padding="20px" borderWidth="1px" borderRadius="lg" />
+)
 
 export const AsContainer = () => (
   <Skeleton>
@@ -22,53 +29,60 @@ export const AsContainer = () => (
   </Skeleton>
 )
 
-export const IsLoaded = () => {
-  const [isLoaded, setLoaded] = React.useState(false)
+export const WithFade = () => {
+  const [hasLoaded, setHasLoaded] = React.useState(false)
 
   React.useEffect(() => {
-    setTimeout(() => setLoaded(true), 1000)
+    setTimeout(() => setHasLoaded(true), 1000)
   }, [])
 
   return (
-    <Skeleton isLoaded={isLoaded}>
+    <Skeleton hasLoaded={hasLoaded}>
       <span>Chakra ui is cool</span>
     </Skeleton>
   )
 }
 
-export const FadeIn = () => {
-  const [isLoaded, setLoaded] = React.useState(false)
+export const WithNoFade = () => {
+  const [hasLoaded, setHasLoaded] = React.useState(false)
+
   React.useEffect(() => {
-    setTimeout(() => setLoaded(true), 1000)
+    setTimeout(() => setHasLoaded(true), 1000)
   }, [])
 
   return (
-    <Skeleton fadeInDuration={0} isLoaded={isLoaded}>
+    <Skeleton fadeDuration={0} hasLoaded={hasLoaded}>
       <span>Chakra ui is cool</span>
     </Skeleton>
   )
 }
 
-export const WithBorderRadius = () => (
-  <Skeleton boxSize="100px" borderRadius="100px" />
+export const Circle = () => <SkeletonCircle />
+
+export const Combined = () => (
+  <chakra.div padding="6" boxShadow="lg" bg="white">
+    <SkeletonCircle size="10" />
+    <SkeletonText mt="4" noOfLines={4} spacing="4" />
+  </chakra.div>
 )
 
 export const WithIsLoaded = () => {
-  const [isLoaded, setLoaded] = React.useState(false)
+  const [hasLoaded, setHasLoaded] = React.useState(false)
+
   React.useEffect(() => {
-    const intervalId = setInterval(() => setLoaded(x => !x), 1000)
+    const intervalId = setInterval(() => setHasLoaded(x => !x), 1000)
     return () => clearInterval(intervalId)
   }, [])
 
   return (
     <chakra.div>
-      <chakra.div height="100px" borderWidth="1px">
+      <chakra.div h="100px" borderWidth="1px">
         Content
       </chakra.div>
-      <Skeleton width="100px" isLoaded={isLoaded}>
+      <Skeleton w="100px" hasLoaded={hasLoaded}>
         <span>Chakra ui is cool</span>
       </Skeleton>
-      <chakra.div height="100px" borderWidth="1px">
+      <chakra.div h="100px" borderWidth="1px">
         Content
       </chakra.div>
     </chakra.div>
