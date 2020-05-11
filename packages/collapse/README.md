@@ -60,3 +60,29 @@ function Example() {
   )
 }
 ```
+
+## Note
+
+The `startingHeight` prop is passed directly to the `Transition` component which
+uses the `react-transition-group` package under the hood, hence you won't be
+able to pass Chakra UI's theme values as a value for the prop.
+
+## With string as child
+
+```jsx
+function Example() {
+  const { isOpen, onToggle } = useDisclosure()
+  return (
+    <>
+      <button style={{ marginBottom: 10 }} onClick={onToggle}>
+        Click
+      </button>
+      <Collapse isOpen={isOpen}>
+        Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry. Lorem Ipsum has been the industry's standard dummy text ever
+        since the 1500s, when an unknown printer took a galley of type and
+      </Collapse>
+    </>
+  )
+}
+```

@@ -27,7 +27,7 @@ export type CollapseProps = PropsOf<typeof chakra.div> & {
    */
   startingHeight?: number
   /**
-   * Custom styles for the collapse Transition component
+   * Custom styles for the Transition component's appear, entered and exiting states
    */
   config?: TransitionProps["styles"]
   /**
