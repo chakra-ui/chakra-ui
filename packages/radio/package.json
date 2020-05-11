@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/radio",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A React component to render custom Radio input types",
   "keywords": [
     "radio",
@@ -45,15 +45,15 @@
   },
   "dependencies": {
     "tslib": "1.11.1",
-    "@chakra-ui/hooks": "0.0.1",
-    "@chakra-ui/visually-hidden": "0.0.1",
-    "@chakra-ui/utils": "0.0.1"
+    "@chakra-ui/hooks": "1.0.0",
+    "@chakra-ui/visually-hidden": "1.0.0",
+    "@chakra-ui/utils": "1.0.0"
   },
   "devDependencies": {
-    "@chakra-ui/system": "0.0.1"
+    "@chakra-ui/system": "1.0.0"
   },
   "peerDependencies": {
-    "@chakra-ui/system": "0.0.1",
+    "@chakra-ui/system": "1.0.0",
     "react": "16.x",
     "react-dom": "16.x"
   }

@@ -1,4 +1,4 @@
-import SEO from "../components/SEO";
+import SEO from "../components/SEO"
 
 <SEO
   title="Accordion"
@@ -18,7 +18,7 @@ Chakra UI exports 5 accordion related components.
 - `Accordion`: The wrapper that uses cloneElement to pass it's prop to the
   `AccordionItem`.
 - `AccordionItem`: A single accordion item.
-- `AccordionHeader`: The button that toggles the expand/collapse state of the
+- `AccordionButton`: The button that toggles the expand/collapse state of the
   accordion item.
 - `AccordionPanel`: The container for the details to be revealed.
 - `AccordionIcon`: A `chevron-down` icon that rotates based on the
@@ -28,10 +28,10 @@ Chakra UI exports 5 accordion related components.
 import {
   Accordion,
   AccordionItem,
-  AccordionHeader,
+  AccordionButton,
   AccordionPanel,
   AccordionIcon,
-} from "@chakra-ui/core";
+} from "@chakra-ui/core"
 ```
 
 ## Usage
@@ -42,12 +42,12 @@ expanding another.
 ```jsx
 <Accordion>
   <AccordionItem>
-    <AccordionHeader>
+    <AccordionButton>
       <Box flex="1" textAlign="left">
         Section 1 title
       </Box>
       <AccordionIcon />
-    </AccordionHeader>
+    </AccordionButton>
     <AccordionPanel pb={4}>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -57,12 +57,12 @@ expanding another.
   </AccordionItem>
 
   <AccordionItem>
-    <AccordionHeader>
+    <AccordionButton>
       <Box flex="1" textAlign="left">
         Section 2 title
       </Box>
       <AccordionIcon />
-    </AccordionHeader>
+    </AccordionButton>
     <AccordionPanel pb={4}>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -84,12 +84,12 @@ to be expanded at once.
 ```jsx
 <Accordion defaultIndex={[0]} allowMultiple>
   <AccordionItem>
-    <AccordionHeader>
+    <AccordionButton>
       <Box flex="1" textAlign="left">
         Section 1 title
       </Box>
       <AccordionIcon />
-    </AccordionHeader>
+    </AccordionButton>
     <AccordionPanel pb={4}>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -99,12 +99,12 @@ to be expanded at once.
   </AccordionItem>
 
   <AccordionItem>
-    <AccordionHeader>
+    <AccordionButton>
       <Box flex="1" textAlign="left">
         Section 2 title
       </Box>
       <AccordionIcon />
-    </AccordionHeader>
+    </AccordionButton>
     <AccordionPanel pb={4}>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -122,12 +122,12 @@ If you set `allowToggle` to true, any expanded item may be collapsed again.
 ```jsx
 <Accordion allowToggle>
   <AccordionItem>
-    <AccordionHeader>
+    <AccordionButton>
       <Box flex="1" textAlign="left">
         Section 1 title
       </Box>
       <AccordionIcon />
-    </AccordionHeader>
+    </AccordionButton>
     <AccordionPanel pb={4}>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -137,12 +137,12 @@ If you set `allowToggle` to true, any expanded item may be collapsed again.
   </AccordionItem>
 
   <AccordionItem>
-    <AccordionHeader>
+    <AccordionButton>
       <Box flex="1" textAlign="left">
         Section 2 title
       </Box>
       <AccordionIcon />
-    </AccordionHeader>
+    </AccordionButton>
     <AccordionPanel pb={4}>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -155,25 +155,27 @@ If you set `allowToggle` to true, any expanded item may be collapsed again.
 
 ### Styling the expanded state
 
-The `AccordionHeader` component has `aria-expanded` set to `true` or `false`
+The `AccordionButton` component has `aria-expanded` set to `true` or `false`
 depending on the state of the `AccordionItem`. Use the style prop `_expanded` to
 style this state.
 
 ```jsx
-<AccordionItem>
-  <AccordionHeader _expanded={{ bg: "tomato", color: "white" }}>
-    <Box flex="1" textAlign="left">
-      Click me to see a different style
-    </Box>
-    <AccordionIcon />
-  </AccordionHeader>
-  <AccordionPanel>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat.
-  </AccordionPanel>
-</AccordionItem>
+<Accordion>
+  <AccordionItem>
+    <AccordionButton _expanded={{ bg: "tomato", color: "white" }}>
+      <Box flex="1" textAlign="left">
+        Click me to see a different style
+      </Box>
+      <AccordionIcon />
+    </AccordionButton>
+    <AccordionPanel>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat.
+    </AccordionPanel>
+  </AccordionItem>
+</Accordion>
 ```
 
 ### Accessing the internal state
@@ -184,12 +186,12 @@ render prop. It provides 2 internal state `isExpanded`, and `isDisabled`.
 ```jsx
 <Accordion allowMultiple>
   <AccordionItem>
-    <AccordionHeader>
+    <AccordionButton>
       <Box flex="1" textAlign="left">
         Section 2 title
       </Box>
       <AccordionIcon />
-    </AccordionHeader>
+    </AccordionButton>
     <AccordionPanel pb={4}>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -201,12 +203,12 @@ render prop. It provides 2 internal state `isExpanded`, and `isDisabled`.
   <AccordionItem>
     {({ isExpanded }) => (
       <>
-        <AccordionHeader>
+        <AccordionButton>
           <Box flex="1" textAlign="left">
             Section 2 title
           </Box>
           <Icon size="12px" name={isExpanded ? "minus" : "add"} />
-        </AccordionHeader>
+        </AccordionButton>
         <AccordionPanel pb={4}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -235,7 +237,7 @@ toggle (expand or collapse) the accordion.
 | index         | `NumberOrArrayOfNumber`           |         | The index(es) of the expanded accordion item                                                              |
 | defaultIndex  | `NumberOrArrayOfNumber`           |         | The initial index(es) of the expanded accordion item                                                      |
 | onChange      | `(NumberOrArrayOfNumber) => void` |         | The callback invoked when accordion items are expanded or collapsed.                                      |
-| children      | `ReactNode`                       |         | The content of the accordion. The children must be the `AccordionHeader` and `AccordionPanel` components. |
+| children      | `ReactNode`                       |         | The content of the accordion. The children must be the `AccordionButton` and `AccordionPanel` components. |
 
 ### AccordionItem Props
 
@@ -246,13 +248,13 @@ toggle (expand or collapse) the accordion.
 | id            | `string`                                  |         | A unique `id` for the accordion item.                                                                     |
 | isDisabled    | `boolean`                                 |         | If `true`, the accordion header will be disabled.                                                         |
 | onChange      | `(NumberOrArrayOfNumber) => void`         |         | The callback fired when the accordion is expanded/collapsed.                                              |
-| children      | `ReactNode`, `(RenderProps) => ReactNode` |         | The content of the accordion. The children must be the `AccordionHeader` and `AccordionPanel` components. |
+| children      | `ReactNode`, `(RenderProps) => ReactNode` |         | The content of the accordion. The children must be the `AccordionButton` and `AccordionPanel` components. |
 
 <br />
 
-### AccordionHeader Props
+### AccordionButton Props
 
-AccordionHeader renders a `button` and composes `PseudoBox`, this means you can
+AccordionButton renders a `button` and composes `PseudoBox`, this means you can
 style it by passing the pseudo style props `_expanded`, `_disabled`, `_hover`,
 etc.
 

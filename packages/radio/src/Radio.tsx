@@ -1,16 +1,18 @@
 import {
-  PropsOf,
-  ThemingProps,
   chakra,
-  useThemeDefaultProps,
   layoutPropNames,
+  PropsOf,
+  SystemProps,
+  ThemingProps,
 } from "@chakra-ui/system"
+import { cx, split, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { UseRadioProps, useRadio } from "./Radio.hook"
-import { split, __DEV__ } from "@chakra-ui/utils"
+import { forwardRef, Ref } from "react"
+import { useRadio, UseRadioProps } from "./Radio.hook"
+import { useRadioGroupContext } from "./RadioGroup"
 
-const StyledRadio = chakra("div", {
-  themeKey: "Radio",
+const StyledControl = chakra("div", {
+  themeKey: "Radio.Control",
   baseStyle: {
     display: "inline-flex",
     alignItems: "center",
@@ -19,9 +21,22 @@ const StyledRadio = chakra("div", {
   },
 })
 
+const StyledLabel = chakra("div", {
+  themeKey: "Radio.Label",
+  baseStyle: {
+    userSelect: "none",
+  },
+})
+
 export type RadioProps = UseRadioProps &
   ThemingProps &
-  Omit<PropsOf<typeof StyledRadio>, "onChange" | "defaultChecked">
+  Omit<PropsOf<typeof StyledControl>, "onChange" | "defaultChecked"> & {
+    /**
+     * The spacing between the checkbox and it's label text
+     * @default 0.5rem
+     */
+    labelSpacing?: SystemProps["marginLeft"]
+  }
 
 /**
  * Radio
@@ -31,63 +46,62 @@ export type RadioProps = UseRadioProps &
  *
  * @see Docs https://chakra-ui.com/radio
  */
-
-export const Radio = React.forwardRef(
-  (props: RadioProps, ref: React.Ref<HTMLInputElement>) => {
-    const defaults = useThemeDefaultProps("Radio")
+export const Radio = forwardRef(
+  (props: RadioProps, ref: Ref<HTMLInputElement>) => {
+    const group = useRadioGroupContext()
 
     const {
-      colorScheme = "blue",
-      variant = defaults?.variant,
-      size = defaults?.size,
+      labelSpacing = "0.5rem",
+      colorScheme = group?.colorScheme,
+      variant = group?.variant,
+      size = group?.size,
       children,
       ...radioProps
     } = props
 
-    const themingProps = { variant, colorScheme, size }
-
-    const { getInputProps, getCheckboxProps, htmlProps: rest } = useRadio(
-      radioProps,
-    )
-
-    const [rootStyles, radioStyles] = split(rest, layoutPropNames as any)
-
-    // Prevent onBlur being fired when the checkbox label is clicked
-    const handleMouseDown = (event: React.MouseEvent<HTMLInputElement>) => {
-      event.preventDefault()
-      event.stopPropagation()
+    let isChecked = props.isChecked
+    if (group?.value && props.value) {
+      isChecked = group.value === props.value
     }
 
-    // Prevent onBlur being fired when the checkbox label is touched
-    const handleTouchStart = (event: React.TouchEvent<HTMLInputElement>) => {
-      event.preventDefault()
-      event.stopPropagation()
+    let onChange = props.onChange
+    if (group?.onChange && props.value) {
+      onChange = group.onChange
     }
+
+    const theming = { variant, colorScheme, size }
+
+    const {
+      getInputProps,
+      getCheckboxProps,
+      getLabelProps,
+      htmlProps: rest,
+    } = useRadio({ ...radioProps, isChecked, onChange })
+
+    const [layoutProps, otherProps] = split(rest, layoutPropNames as any)
 
     return (
       <chakra.label
+        className="chakra-radio"
         display="inline-flex"
         alignItems="center"
         verticalAlign="top"
-        {...rootStyles}
+        {...layoutProps}
       >
-        <input {...getInputProps({ ref })} />
-        <StyledRadio
-          {...themingProps}
-          {...radioStyles}
-          {...getCheckboxProps()}
+        <input className="chakra-radio__input" {...getInputProps({ ref })} />
+        <StyledControl
+          {...theming}
+          {...getCheckboxProps(otherProps)}
+          className={cx("chakra-radio__control", props.className)}
         />
         {children && (
-          <chakra.div
-            marginLeft="0.5rem"
-            fontSize={size}
-            userSelect="none"
-            onMouseDown={handleMouseDown}
-            onTouchStart={handleTouchStart}
-            opacity={props.isDisabled ? 0.4 : 1}
-          >
-            {children}
-          </chakra.div>
+          <StyledLabel
+            className="chakra-radio__label"
+            {...theming}
+            {...getLabelProps()}
+            marginLeft={labelSpacing}
+            children={children}
+          />
         )}
       </chakra.label>
     )

@@ -1,5 +1,5 @@
+import { fireEvent, render } from "@chakra-ui/test-utils"
 import * as React from "react"
-import { render, fireEvent, wait } from "@chakra-ui/test-utils"
 import { Radio, useRadioGroup, UseRadioGroupProps } from ".."
 
 test("RadioGroup renders correctly", () => {
@@ -84,11 +84,7 @@ test("controlled: correctly manages state", () => {
 
 test("setValue action allows setting specific value", () => {
   const Component = () => {
-    const {
-      getRootProps,
-      getRadioProps,
-      actions: { setValue },
-    } = useRadioGroup()
+    const { getRootProps, getRadioProps, setValue } = useRadioGroup()
 
     return (
       <>
@@ -108,11 +104,10 @@ test("setValue action allows setting specific value", () => {
 
 describe("focus action", () => {
   const Component = (props: UseRadioGroupProps = {}) => {
-    const {
-      getRootProps,
-      getRadioProps,
-      actions: { focus },
-    } = useRadioGroup({ isNative: true, ...props })
+    const { getRootProps, getRadioProps, focus } = useRadioGroup({
+      isNative: true,
+      ...props,
+    })
 
     return (
       <>

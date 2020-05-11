@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/toast",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "description",
   "keywords": [
     "theme",
@@ -44,18 +44,18 @@
   "dependencies": {
     "tslib": "1.11.1",
     "@reach/rect": "0.10.1",
-    "@chakra-ui/transition": "0.0.1",
-    "@chakra-ui/hooks": "0.0.1",
-    "@chakra-ui/utils": "0.0.1",
-    "@chakra-ui/alert": "0.0.1",
-    "@chakra-ui/close-button": "0.0.1",
+    "@chakra-ui/transition": "1.0.0",
+    "@chakra-ui/hooks": "1.0.0",
+    "@chakra-ui/utils": "1.0.0",
+    "@chakra-ui/alert": "1.0.0",
+    "@chakra-ui/close-button": "1.0.0",
     "@reach/alert": "0.8.6"
   },
   "devDependencies": {
-    "@chakra-ui/system": "0.0.1"
+    "@chakra-ui/system": "1.0.0"
   },
   "peerDependencies": {
-    "@chakra-ui/system": "0.0.1",
+    "@chakra-ui/system": "1.0.0",
     "react": "16.x",
     "react-dom": "16.x"
   }

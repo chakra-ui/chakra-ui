@@ -2,6 +2,7 @@ import {
   Box,
   ColorModeProvider,
   CSSReset,
+  GlobalStyle,
   Link,
   Text,
   ThemeProvider,
@@ -14,6 +15,7 @@ import DocsHeader from "../components/DocsHeader"
 import MDXComponents from "../components/MDXComponents"
 import SideNav from "../components/SideNav"
 import seo from "../seo.config"
+import theme from "@chakra-ui/preset-base"
 
 const Main = props => <Box as="main" mx="auto" mb="3rem" {...props} />
 
@@ -66,9 +68,10 @@ export default ({ Component, pageProps }) => {
   }
 
   return (
-    <ThemeProvider>
-      <ColorModeProvider value="light">
+    <ThemeProvider theme={theme}>
+      <ColorModeProvider>
         <CSSReset />
+        <GlobalStyle />
         <MDXProvider components={MDXComponents}>
           <Layout>
             <DefaultSeo {...seo} />
