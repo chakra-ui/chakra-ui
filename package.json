@@ -2,16 +2,17 @@
   "name": "chakra-ui",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "website"
   ],
   "scripts": {
     "codesandbox:ci": "yarn install && yarn bootstrap",
     "boot": "yarn install && yarn bootstrap && yarn build && yarn storybook",
-    "build": "lerna run build --ignore @chakra-ui/test-utils --stream",
-    "test": "lerna run test --ignore @chakra-ui/test-utils --stream",
-    "lint": "lerna run lint --ignore @chakra-ui/test-utils --stream",
+    "build": "lerna run build --ignore @chakra-ui/test-utils --no-private --stream",
+    "test": "lerna run test --no-private --stream",
+    "lint": "lerna run lint --no-private --stream",
     "storybook": "start-storybook -p 6006",
-    "clean": "lerna clean --yes",
+    "clean": "lerna clean --yes && rimraf node_modules",
     "bootstrap": "lerna bootstrap --use-workspaces",
     "bundlesize": "bundlesize -c bundlesize.config.json",
     "commit": "git-cz",

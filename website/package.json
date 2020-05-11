@@ -9,7 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@chakra-ui/core": "file:../packages/core",
+    "@chakra-ui/core": "1.0.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-lorem-component": "^0.13.0",

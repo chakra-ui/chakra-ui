@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/icon",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A base React component for icons",
   "keywords": [
     "react",
@@ -44,13 +44,13 @@
   },
   "dependencies": {
     "tslib": "1.11.1",
-    "@chakra-ui/utils": "0.0.1"
+    "@chakra-ui/utils": "1.0.0"
   },
   "devDependencies": {
-    "@chakra-ui/system": "0.0.1"
+    "@chakra-ui/system": "1.0.0"
   },
   "peerDependencies": {
-    "@chakra-ui/system": "0.0.1",
+    "@chakra-ui/system": "1.0.0",
     "react": "16.x"
   }
 }

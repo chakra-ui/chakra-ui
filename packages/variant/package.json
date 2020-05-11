@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/variant",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "description",
   "keywords": [
     "theme",
@@ -41,8 +41,8 @@
     "lint": "concurrently yarn:lint:*"
   },
   "dependencies": {
-    "@chakra-ui/css": "0.0.1",
-    "@chakra-ui/parser": "0.0.1",
-    "@chakra-ui/utils": "0.0.1"
+    "@chakra-ui/css": "1.0.0",
+    "@chakra-ui/parser": "1.0.0",
+    "@chakra-ui/utils": "1.0.0"
   }
 }
