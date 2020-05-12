@@ -93,7 +93,8 @@ inspired by
 > application to ensure all components work correctly.
 
 ```jsx live=false
-// import customTheme from "./theme"
+import { ThemeProvider, CSSReset } from '@chakra-ui/core'
+import customTheme from "./theme"
 
 function App({ children }) {
   return (
