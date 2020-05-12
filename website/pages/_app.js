@@ -58,29 +58,23 @@ const DocsLayout = ({ children }) => (
 const HomeLayout = ({ children }) => <Box>{children}</Box>
 
 export default ({ Component, pageProps }) => {
-  // const [isOpen, setIsOpen] = useState(false);
   const router = useRouter()
-  let Layout
-
-  if (router.pathname === "/") {
-    Layout = HomeLayout
-  } else {
-    Layout = DocsLayout
-  }
+  const isHomePage = router.pathname === "/"
+  const Layout = isHomePage ? HomeLayout : DocsLayout
 
   return (
     <ThemeProvider theme={theme}>
       <ColorModeProvider>
         <CSSReset />
         <GlobalStyle />
-        <PortalManager>
-          <MDXProvider components={MDXComponents}>
-            <Layout>
-              <DefaultSeo {...seo} />
+        <MDXProvider components={MDXComponents}>
+          <Layout>
+            <DefaultSeo {...seo} />
+            <PortalManager>
               <Component {...pageProps} />
-            </Layout>
-          </MDXProvider>
-        </PortalManager>
+            </PortalManager>
+          </Layout>
+        </MDXProvider>
       </ColorModeProvider>
     </ThemeProvider>
   )

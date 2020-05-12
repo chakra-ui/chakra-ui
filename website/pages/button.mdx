@@ -1,4 +1,4 @@
-import SEO from "../components/SEO";
+import SEO from "../components/SEO"
 
 <SEO
   title="Button"
@@ -15,13 +15,13 @@ operation.
 ## Import
 
 ```js
-import { Button } from "@chakra-ui/core";
+import { Button } from "@chakra-ui/core"
 ```
 
 ## Usage
 
 ```jsx
-<Button variantColor="green">Button</Button>
+<Button colorScheme="green">Button</Button>
 ```
 
 ### Button Sizes
@@ -30,20 +30,20 @@ Use the `size` prop to change the size of the button. You can set the value to
 `xs`, `sm`, `md`, or `lg`.
 
 ```jsx
-<ButtonGroup spacing={4}>
-  <Button variantColor="teal" size="xs">
+<Stack spacing={4} direction="row" align="center">
+  <Button colorScheme="teal" size="xs">
     Button
   </Button>
-  <Button variantColor="teal" size="sm">
+  <Button colorScheme="teal" size="sm">
     Button
   </Button>
-  <Button variantColor="teal" size="md">
+  <Button colorScheme="teal" size="md">
     Button
   </Button>
-  <Button variantColor="teal" size="lg">
+  <Button colorScheme="teal" size="lg">
     Button
   </Button>
-</ButtonGroup>
+</Stack>
 ```
 
 ### Button Variant
@@ -52,20 +52,20 @@ Use the `variant` prop to change the visual style of the Button. You can set the
 value to `solid`, `ghost`, `outline`, or `link`.
 
 ```jsx
-<ButtonGroup spacing={4}>
-  <Button variantColor="teal" variant="solid">
+<Stack direction="row" spacing={4} align="center">
+  <Button colorScheme="teal" variant="solid">
     Button
   </Button>
-  <Button variantColor="teal" variant="outline">
+  <Button colorScheme="teal" variant="outline">
     Button
   </Button>
-  <Button variantColor="teal" variant="ghost">
+  <Button colorScheme="teal" variant="ghost">
     Button
   </Button>
-  <Button variantColor="teal" variant="link">
+  <Button colorScheme="teal" variant="link">
     Button
   </Button>
-</ButtonGroup>
+</Stack>
 ```
 
 ### Button with Icon
@@ -74,14 +74,14 @@ You can add left and right icons to the Button components.
 [See how to add icons](/icon) to your project
 
 ```jsx
-<ButtonGroup spacing={4}>
-  <Button leftIcon="email" variantColor="teal" variant="solid">
+<Stack direction="row" spacing={4}>
+  <Button leftIcon={<EmailIcon />} colorScheme="teal" variant="solid">
     Email
   </Button>
-  <Button rightIcon="arrow-forward" variantColor="teal" variant="outline">
+  <Button rightIcon={<ArrowForwardIcon />} colorScheme="teal" variant="outline">
     Call us
   </Button>
-</ButtonGroup>
+</Stack>
 ```
 
 You can also use icons from popular libraries like
@@ -89,14 +89,15 @@ You can also use icons from popular libraries like
 
 ```jsx
 // -> import {MdBuild , MdCall} from "react-icons/md"
-<ButtonGroup spacing={4}>
-  <Button leftIcon={MdBuild} variantColor="pink" variant="solid">
+
+<Stack direction="row" spacing={4}>
+  <Button leftIcon={<MdBuild />} colorScheme="pink" variant="solid">
     Settings
   </Button>
-  <Button rightIcon={MdCall} variantColor="blue" variant="outline">
+  <Button rightIcon={<MdCall />} colorScheme="blue" variant="outline">
     Call us
   </Button>
-</ButtonGroup>
+</Stack>
 ```
 
 ### Button loading state
@@ -107,19 +108,19 @@ spinner and the loading text. Otherwise, the button will take the width of the
 text label and show only the spinner
 
 ```jsx
-<ButtonGroup spacing={4}>
-  <Button isLoading variantColor="teal" variant="solid">
+<Stack direction="row" spacing={4}>
+  <Button isLoading colorScheme="teal" variant="solid">
     Email
   </Button>
   <Button
     isLoading
     loadingText="Submitting"
-    variantColor="teal"
+    colorScheme="teal"
     variant="outline"
   >
     Submit
   </Button>
-</ButtonGroup>
+</Stack>
 ```
 
 ## Accessibility
@@ -130,8 +131,8 @@ text label and show only the spinner
 ## Composition
 
 Button composes [PseudoBox](/pseudobox) and all props you pass (variant,
-variantColor, etc.) are converted to style props. This means you can override
-any style of the Button via props.
+colorScheme, etc.) are converted to style props. This means you can override any
+style of the Button via props.
 
 ```jsx
 // The size prop affects the height of the button
@@ -157,7 +158,7 @@ style props to style the button.
 
 ```jsx
 // Button from facebook.com
-<PseudoBox
+<Box
   as="button"
   height="24px"
   lineHeight="1.2"
@@ -182,20 +183,20 @@ style props to style the button.
   }}
 >
   Join Group
-</PseudoBox>
+</Box>
 ```
 
 ## Props
 
-The Button composes the `PseudoBox` component so you can pass props for
-`PseudoBox`. These are props related to the Button component.
+The Button composes the `Box` component so you can pass props for `Box`. These
+are props related to the Button component.
 
-| Name           | Type                                              | Default | Description                                                                                               |
-| -------------- | ------------------------------------------------- | ------- | --------------------------------------------------------------------------------------------------------- |
-| `aria-label`   | `string`                                          |         | The label of the button                                                                                   |
-| `variantColor` | `string`                                          |         | The color of the button. Use the colors passed in `theme.colors`.                                         |
-| `variant`      | `outline`, `ghost`, `unstyled` , `link` , `solid` | `solid` | The variant of the button style to use.                                                                   |
-| `isDisabled`   | `boolean`                                         |         | If `true`, the button will be disabled.                                                                   |
-| `isLoading`    | `boolean`                                         |         | If `true`, the button will show a spinner.                                                                |
-| `loadingText`  | `string`                                          |         | The label to show in the button when `isLoading` is true. If no text is passed, it only shows the spinner |
-| `size`         | `sm`, `md`, `lg`                                  | `md`    | The size of the button.                                                                                   |
+| Name          | Type                                              | Default | Description                                                                                               |
+| ------------- | ------------------------------------------------- | ------- | --------------------------------------------------------------------------------------------------------- |
+| `aria-label`  | `string`                                          |         | The label of the button                                                                                   |
+| `colorScheme` | `string`                                          |         | The color of the button. Use the colors passed in `theme.colors`.                                         |
+| `variant`     | `outline`, `ghost`, `unstyled` , `link` , `solid` | `solid` | The variant of the button style to use.                                                                   |
+| `isDisabled`  | `boolean`                                         |         | If `true`, the button will be disabled.                                                                   |
+| `isLoading`   | `boolean`                                         |         | If `true`, the button will show a spinner.                                                                |
+| `loadingText` | `string`                                          |         | The label to show in the button when `isLoading` is true. If no text is passed, it only shows the spinner |
+| `size`        | `sm`, `md`, `lg`                                  | `md`    | The size of the button.                                                                                   |

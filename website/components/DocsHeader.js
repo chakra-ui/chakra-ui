@@ -1,21 +1,19 @@
-/** @jsx jsx */
 import {
-  Box,
+  chakra,
   Flex,
   Icon,
+  IconButton,
   Input,
   InputGroup,
   InputLeftElement,
-  IconButton,
+  useColorModeValue,
   useColorMode,
-  chakra,
 } from "@chakra-ui/core"
-import { jsx } from "@emotion/core"
-import { DiGithubBadge } from "react-icons/di"
-import Logo from "./Logo"
 import NextLink from "next/link"
-import MobileNav from "./MobileNav"
+import { DiGithubBadge } from "react-icons/di"
 import { FaMoon, FaSun } from "react-icons/fa"
+import Logo from "./Logo"
+import MobileNav from "./MobileNav"
 
 const SearchBox = props => (
   <InputGroup {...props}>
@@ -33,15 +31,15 @@ const SearchBox = props => (
 )
 
 const DocsHeader = props => {
+  const bg = useColorModeValue("white", "gray.800")
+  const Svg = useColorModeValue(FaMoon, FaSun)
   const [colorMode, toggleColorMode] = useColorMode()
-  const bg = { light: "white", dark: "gray.800" }
   return (
-    <Box
+    <chakra.header
       pos="fixed"
-      as="header"
       top="0"
       zIndex="4"
-      bg={bg[colorMode]}
+      bg={bg}
       left="0"
       right="0"
       borderBottomWidth="1px"
@@ -72,7 +70,6 @@ const DocsHeader = props => {
           justify="flex-end"
         >
           <chakra.a
-            as="a"
             href="https://github.com/chakra-ui/chakra-ui/tree/master/packages/chakra-ui"
             rel="noopener noreferrer"
             target="_blank"
@@ -84,16 +81,16 @@ const DocsHeader = props => {
               colorMode === "light" ? "dark" : "light"
             } mode`}
             variant="ghost"
-            color="current"
+            color="currentColor"
             ml="2"
             fontSize="20px"
             onClick={toggleColorMode}
-            icon={colorMode === "light" ? <FaMoon /> : <FaSun />}
+            icon={<Svg />}
           />
           <MobileNav />
         </Flex>
       </Flex>
-    </Box>
+    </chakra.header>
   )
 }
 
