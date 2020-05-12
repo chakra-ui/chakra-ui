@@ -13,6 +13,7 @@ const Modal: ComponentTheme = {
   baseStyle: props => ({
     Overlay: {
       bg: "rgba(0,0,0,0.4)",
+      zIndex: "overlay",
     },
     Content: {
       borderRadius: "md",

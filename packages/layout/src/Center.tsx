@@ -1,7 +1,6 @@
 import { chakra, PropsOf } from "@chakra-ui/system"
-import { __DEV__ } from "@chakra-ui/utils"
+import { __DEV__, cx } from "@chakra-ui/utils"
 import * as React from "react"
-import { forwardRef, Children, Ref } from "react"
 
 export type CenterProps = PropsOf<typeof chakra.div>
 
@@ -11,24 +10,29 @@ export type CenterProps = PropsOf<typeof chakra.div>
  *
  * @see Docs https://chakra-ui.com/center
  */
-export const Center = forwardRef((props: CenterProps, ref: Ref<any>) => {
-  const { children, ...rest } = props
+export const Center = React.forwardRef(
+  (props: CenterProps, ref: React.Ref<any>) => {
+    const { children, className, ...rest } = props
 
-  // enforce a single child
-  const child = Children.only(children)
+    // enforce a single child
+    const child = React.Children.only(children)
 
-  return (
-    <chakra.div
-      ref={ref}
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      {...rest}
-    >
-      {child}
-    </chakra.div>
-  )
-})
+    const _className = cx("chakra-center", className)
+
+    return (
+      <chakra.div
+        ref={ref}
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        className={_className}
+        {...rest}
+      >
+        {child}
+      </chakra.div>
+    )
+  },
+)
 
 if (__DEV__) {
   Center.displayName = "Center"

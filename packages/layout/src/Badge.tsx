@@ -1,5 +1,5 @@
 import { chakra, PropsOf } from "@chakra-ui/system"
-import { __DEV__ } from "@chakra-ui/utils"
+import { __DEV__, cx } from "@chakra-ui/utils"
 
 export type BadgeProps = PropsOf<typeof Badge>
 
@@ -14,8 +14,11 @@ export const Badge = chakra("span", {
   baseStyle: {
     display: "inline-block",
     whiteSpace: "nowrap",
-    verticalAlign: "top",
+    verticalAlign: "middle",
   },
+  attrs: props => ({
+    className: cx("chakra-badge", props.className),
+  }),
 })
 
 if (__DEV__) {

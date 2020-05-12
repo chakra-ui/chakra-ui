@@ -6,6 +6,7 @@ import {
   Link,
   Text,
   ThemeProvider,
+  PortalManager,
 } from "@chakra-ui/core"
 import { MDXProvider } from "@mdx-js/react"
 import { DefaultSeo } from "next-seo"
@@ -72,12 +73,14 @@ export default ({ Component, pageProps }) => {
       <ColorModeProvider>
         <CSSReset />
         <GlobalStyle />
-        <MDXProvider components={MDXComponents}>
-          <Layout>
-            <DefaultSeo {...seo} />
-            <Component {...pageProps} />
-          </Layout>
-        </MDXProvider>
+        <PortalManager>
+          <MDXProvider components={MDXComponents}>
+            <Layout>
+              <DefaultSeo {...seo} />
+              <Component {...pageProps} />
+            </Layout>
+          </MDXProvider>
+        </PortalManager>
       </ColorModeProvider>
     </ThemeProvider>
   )

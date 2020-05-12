@@ -1,5 +1,9 @@
 import { ThemeContext } from "@emotion/core"
 import * as React from "react"
+import { Dict } from "@chakra-ui/utils"
+import { GlobalStyle } from "./global"
+import { ColorModeProvider } from "@chakra-ui/color-mode"
+import CSSReset from "@chakra-ui/css-reset"
 
 export type ThemeProviderProps = {
   children?: React.ReactNode
@@ -27,4 +31,32 @@ export function useTheme<T extends object = object>() {
   }
 
   return theme
+}
+
+export type ChakraProviderProps = {
+  theme: Dict
+  children: React.ReactNode
+  includeCSSReset?: boolean
+  includeColorMode?: boolean
+}
+
+export function ChakraProvider(props: ChakraProviderProps) {
+  const {
+    children,
+    theme,
+    includeCSSReset = true,
+    includeColorMode = true,
+  } = props
+
+  const ModeProvider = includeColorMode ? ColorModeProvider : React.Fragment
+
+  return (
+    <ThemeProvider theme={theme}>
+      <ModeProvider>
+        {includeCSSReset && <CSSReset />}
+        <GlobalStyle />
+        {children}
+      </ModeProvider>
+    </ThemeProvider>
+  )
 }

@@ -57,7 +57,8 @@
     "@chakra-ui/color-mode": "1.0.0",
     "@chakra-ui/utils": "1.0.0",
     "@chakra-ui/css": "1.0.0",
-    "@chakra-ui/parser": "1.0.0"
+    "@chakra-ui/parser": "1.0.0",
+    "@chakra-ui/css-reset": "1.0.0"
   },
   "peerDependencies": {
     "react": "16.x"
