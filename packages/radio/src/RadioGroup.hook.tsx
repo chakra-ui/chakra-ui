@@ -44,6 +44,7 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
     defaultValue,
     name: nameProp,
     isNative,
+    ...htmlProps
   } = props
 
   const [valueState, setValue] = useState<StringOrNumber>(defaultValue || "")
@@ -114,6 +115,7 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
     setValue,
     value,
     onChange,
+    htmlProps,
   }
 }
 

@@ -1,7 +1,6 @@
-import { ThemingProps } from "@chakra-ui/system"
-import { createContext, __DEV__ } from "@chakra-ui/utils"
+import { ThemingProps, chakra, PropsOf } from "@chakra-ui/system"
+import { createContext, __DEV__, cx } from "@chakra-ui/utils"
 import * as React from "react"
-import { useMemo, forwardRef, Ref } from "react"
 import {
   useRadioGroup,
   UseRadioGroupProps,
@@ -24,6 +23,7 @@ const [RadioGroupContextProvider, useRadioGroupContext] = createContext<
 export { useRadioGroupContext }
 
 export type RadioGroupProps = UseRadioGroupProps &
+  Omit<PropsOf<typeof chakra.div>, "onChange" | "value" | "defaultValue"> &
   Omit<ThemingProps, "orientation"> & { children: React.ReactNode }
 
 /**
@@ -32,12 +32,26 @@ export type RadioGroupProps = UseRadioGroupProps &
  *
  * @see Docs https://chakra-ui.com/radio
  */
-export const RadioGroup = forwardRef(
-  (props: RadioGroupProps, ref: Ref<any>) => {
-    const { colorScheme, size, variant, children } = props
-    const { value, onChange, getRootProps, name } = useRadioGroup(props)
+export const RadioGroup = React.forwardRef(
+  (props: RadioGroupProps, ref: React.Ref<any>) => {
+    const {
+      colorScheme,
+      size,
+      variant,
+      children,
+      className,
+      ...radioGroupProps
+    } = props
 
-    const group = useMemo(
+    const {
+      value,
+      onChange,
+      getRootProps,
+      name,
+      htmlProps: rest,
+    } = useRadioGroup(radioGroupProps)
+
+    const group = React.useMemo(
       () => ({
         name,
         size,
@@ -49,9 +63,14 @@ export const RadioGroup = forwardRef(
       [size, name, onChange, colorScheme, value, variant],
     )
 
+    const groupProps = getRootProps({ ref, ...rest })
+    const _className = cx("chakra-radio-group", className)
+
     return (
       <RadioGroupContextProvider value={group}>
-        <div {...getRootProps({ ref })}>{children}</div>
+        <chakra.div {...groupProps} className={_className}>
+          {children}
+        </chakra.div>
       </RadioGroupContextProvider>
     )
   },

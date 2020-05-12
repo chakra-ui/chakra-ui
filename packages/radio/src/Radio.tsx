@@ -7,7 +7,6 @@ import {
 } from "@chakra-ui/system"
 import { cx, split, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { forwardRef, Ref } from "react"
 import { useRadio, UseRadioProps } from "./Radio.hook"
 import { useRadioGroupContext } from "./RadioGroup"
 
@@ -46,8 +45,8 @@ export type RadioProps = UseRadioProps &
  *
  * @see Docs https://chakra-ui.com/radio
  */
-export const Radio = forwardRef(
-  (props: RadioProps, ref: Ref<HTMLInputElement>) => {
+export const Radio = React.forwardRef(
+  (props: RadioProps, ref: React.Ref<HTMLInputElement>) => {
     const group = useRadioGroupContext()
 
     const {

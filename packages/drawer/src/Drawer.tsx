@@ -5,6 +5,8 @@ import {
   ModalProps,
   ModalContentProps,
   ModalContent,
+  ModalOverlayProps,
+  ModalOverlay,
 } from "@chakra-ui/modal"
 
 const DrawerContext = React.createContext<React.CSSProperties>({})
@@ -30,13 +32,34 @@ export function Drawer(props: DrawerProps) {
   )
 }
 
-export function DrawerContent(props: ModalContentProps) {
-  const styles = useDrawerContext()
-  return <ModalContent position="fixed" style={styles} {...props} />
-}
+export const DrawerContent = React.forwardRef(
+  (props: ModalContentProps, ref: React.Ref<any>) => {
+    /**
+     * We don't want to animate the opacity of the drawer
+     */
+    const { opacity, ...styles } = useDrawerContext()
+    return (
+      <ModalContent
+        ref={ref}
+        position="fixed"
+        style={styles}
+        marginTop="0"
+        marginBottom="0"
+        borderRadius="0"
+        {...props}
+      />
+    )
+  },
+)
+
+export const DrawerOverlay = React.forwardRef(
+  (props: ModalOverlayProps, ref: React.Ref<any>) => {
+    const styles = useDrawerContext() as any
+    return <ModalOverlay opacity={styles.opacity} ref={ref} {...props} />
+  },
+)
 
 export {
-  ModalOverlay as DrawerOverlay,
   ModalBody as DrawerBody,
   ModalHeader as DrawerHeader,
   ModalFooter as DrawerFooter,
