@@ -1,13 +1,13 @@
 import { Prop } from "@chakra-ui/system"
 import { mapResponsive, isNumber, isNull, __DEV__ } from "@chakra-ui/utils"
 import React, { forwardRef } from "react"
-import { Grid, GridOptionProps } from "./Grid"
+import { Grid, GridProps } from "./Grid"
 
 interface SimpleGridOptions {
   /**
    * The width at which child elements will break into columns. Pass a number for pixel values or a string for any other valid CSS length.
    */
-  minChildWidth?: GridOptionProps["minWidth"]
+  minChildWidth?: GridProps["minWidth"]
   /**
    * The number of columns
    */
@@ -15,18 +15,18 @@ interface SimpleGridOptions {
   /**
    * The gap between the grid items
    */
-  spacing?: GridOptionProps["gridGap"]
+  spacing?: GridProps["gridGap"]
   /**
    * The column gap between the grid items
    */
-  spacingX?: GridOptionProps["gridGap"]
+  spacingX?: GridProps["gridGap"]
   /**
    * The row gap between the grid items
    */
-  spacingY?: GridOptionProps["gridGap"]
+  spacingY?: GridProps["gridGap"]
 }
 
-export type SimpleGridProps = GridOptionProps & SimpleGridOptions
+export type SimpleGridProps = GridProps & SimpleGridOptions
 
 /**
  * SimpleGrid
