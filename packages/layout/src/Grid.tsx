@@ -3,7 +3,7 @@ import { forwardRef, Ref } from "react"
 import { chakra, PropsOf, ChakraProps } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 
-export type GridProps = PropsOf<typeof chakra.div> & GridOptions
+export type GridOptionProps = PropsOf<typeof chakra.div> & GridOptions
 
 /**
  * React component used to create grid layouts.
@@ -13,7 +13,7 @@ export type GridProps = PropsOf<typeof chakra.div> & GridOptions
  *
  * @see Docs https://chakra-ui.com/grid
  */
-export const Grid = forwardRef((props: GridProps, ref: Ref<any>) => {
+export const Grid = forwardRef((props: GridOptionProps, ref: Ref<any>) => {
   const {
     area,
     templateAreas,

@@ -215,3 +215,19 @@ export const withDisabledButton = () => (
     </button>
   </Tooltip>
 )
+
+export const withIsOpenProp = () => (
+  <Tooltip label="Hello world" isOpen={true}>
+    <button style={{ fontSize: 25, pointerEvents: "all" }} disabled>
+      Can't Touch This
+    </button>
+  </Tooltip>
+)
+
+export const withDefaultIsOpenProp = () => (
+  <Tooltip label="Hello world" defaultIsOpen={true}>
+    <button style={{ fontSize: 25, pointerEvents: "all" }} disabled>
+      Can't Touch This
+    </button>
+  </Tooltip>
+)

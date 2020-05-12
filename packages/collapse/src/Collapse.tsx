@@ -17,10 +17,28 @@ import {
 } from "react"
 
 export type CollapseProps = PropsOf<typeof chakra.div> & {
+  /**
+   * If `true`, the content will be visible
+   */
   isOpen?: boolean
+  /**
+   * The height you want the content in it's collapsed state.
+   * @default 0
+   */
   startingHeight?: number
+  /**
+   * Custom styles for the Transition component's appear, entered and exiting states
+   */
   config?: TransitionProps["styles"]
+  /**
+   * If `true`, the opacity of the content will be animated
+   * @default true
+   */
   animateOpacity?: boolean
+  /**
+   * The CSS `transition` to apply for the collapse animation
+   * @default "height 200ms ease, opacity 200ms ease, transform 200ms ease"
+   */
   transition?: string
 }
 
