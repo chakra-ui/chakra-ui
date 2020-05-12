@@ -1,7 +1,6 @@
 import { PropsOf, chakra } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { forwardRef, Ref } from "react"
 
 const fallbackIcon = {
   path: (
@@ -21,56 +20,58 @@ const StyledSvg = chakra("svg", { themeKey: "Icon" })
 
 export type IconProps = PropsOf<typeof StyledSvg>
 
-export const Icon = forwardRef((props: IconProps, ref: Ref<any>) => {
-  const {
-    as,
-    size,
-    boxSize = "1em",
-    viewBox,
-    color = "currentColor",
-    role = "presentation",
-    focusable = false,
-    children,
-    className,
-    ...rest
-  } = props
+export const Icon = React.forwardRef(
+  (props: IconProps, ref: React.Ref<any>) => {
+    const {
+      as,
+      size,
+      boxSize = "1em",
+      viewBox,
+      color = "currentColor",
+      role = "presentation",
+      focusable = false,
+      children,
+      className,
+      ...rest
+    } = props
 
-  const _className = cx("chakra-icon", className)
+    const _className = cx("chakra-icon", className)
 
-  const sharedProps = {
-    ref,
-    display: "inline-block",
-    lineHeight: "1em",
-    size,
-    color,
-    focusable,
-    role,
-    flexShrink: 0,
-    boxSize,
-    className: _className,
-  }
+    const sharedProps = {
+      ref,
+      display: "inline-block",
+      lineHeight: "1em",
+      size,
+      color,
+      focusable,
+      role,
+      flexShrink: 0,
+      boxSize,
+      className: _className,
+    }
 
-  /**
-   * If you're using an icon library like `react-icons`
-   */
-  if (as && typeof as !== "string") {
-    return <StyledSvg as={as} {...sharedProps} {...rest} />
-  }
+    /**
+     * If you're using an icon library like `react-icons`
+     */
+    if (as && typeof as !== "string") {
+      return <StyledSvg as={as} {...sharedProps} {...rest} />
+    }
 
-  const _path = children ?? fallbackIcon.path
-  const _viewBox = viewBox ?? fallbackIcon.viewBox
+    const _path = children ?? fallbackIcon.path
+    const _viewBox = viewBox ?? fallbackIcon.viewBox
 
-  return (
-    <StyledSvg
-      verticalAlign="middle"
-      viewBox={_viewBox}
-      {...sharedProps}
-      {...rest}
-    >
-      {_path}
-    </StyledSvg>
-  )
-})
+    return (
+      <StyledSvg
+        verticalAlign="middle"
+        viewBox={_viewBox}
+        {...sharedProps}
+        {...rest}
+      >
+        {_path}
+      </StyledSvg>
+    )
+  },
+)
 
 if (__DEV__) {
   Icon.displayName = "Icon"

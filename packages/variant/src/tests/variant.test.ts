@@ -1,5 +1,5 @@
 import { createVariant, textStyle, layerStyle, createComponent } from ".."
-import { combineParsers, color } from "@chakra-ui/parser"
+import { combineParsers, parser } from "@chakra-ui/parser"
 
 interface Props {
   /**
@@ -41,9 +41,9 @@ test("variant - merge values", () => {
     themeKey: "typography",
   })
 
-  const parser = combineParsers(variant, color)
+  const system = combineParsers(variant, parser)
 
-  const result = parser<Props>({
+  const result = system<Props>({
     theme: {
       typography: {
         primary: {

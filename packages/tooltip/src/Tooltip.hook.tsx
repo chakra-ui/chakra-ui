@@ -122,6 +122,12 @@ export function useTooltip(props: UseTooltipProps = {}) {
 
   const tooltipId = useId(id, "tooltip")
 
+  useEffect(() => {
+    if (isOpen) {
+      activeId = tooltipId
+    }
+  }, [isOpen, tooltipId])
+
   const ref = useRef<any>(null)
   const triggerRef = useMergeRefs(ref, popper.reference.ref)
   const flushRef = useRef<Function>()
@@ -176,7 +182,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
 
   const onMouseOver = useCallback(
     (event: React.MouseEvent) => {
-      const isSelf = event.target === (ref.current as HTMLElement)
+      const isSelf = event.currentTarget === (ref.current as HTMLElement)
 
       if (isOpen && isSelf) {
         return
@@ -187,7 +193,9 @@ export function useTooltip(props: UseTooltipProps = {}) {
     [isOpen, showTooltip],
   )
 
-  // A11y: Close the tooltip if user presses escape
+  /**
+   * Accessibility: Close the tooltip if user presses escape
+   */
   const onKeyDown = useCallback(
     (event: KeyboardEvent) => {
       if (isOpen && event.key === "Escape") {

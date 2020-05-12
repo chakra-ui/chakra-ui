@@ -4,7 +4,13 @@ import { ComponentTheme, mode } from "./utils"
  * Since the `maxWidth` prop references theme.sizes internally,
  * we can leverage that to size our modals.
  */
-const size = (value: string) => ({ Content: { maxWidth: value } })
+function getSize(value: string) {
+  return {
+    Content: {
+      maxWidth: value,
+    },
+  }
+}
 
 const Modal: ComponentTheme = {
   defaultProps: {
@@ -13,13 +19,12 @@ const Modal: ComponentTheme = {
   baseStyle: props => ({
     Overlay: {
       bg: "rgba(0,0,0,0.4)",
-      zIndex: "overlay",
     },
     Content: {
       borderRadius: "md",
       bg: mode("white", "gray.700")(props),
       color: "inherit",
-      shadow: mode(
+      boxShadow: mode(
         "0 7px 14px 0 rgba(0,0,0, 0.1), 0 3px 6px 0 rgba(0, 0, 0, .07)",
         "rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.2) 0px 5px 10px, rgba(0, 0, 0, 0.4) 0px 15px 40px",
       )(props),
@@ -40,17 +45,17 @@ const Modal: ComponentTheme = {
     },
   }),
   sizes: {
-    xs: size("xs"),
-    sm: size("sm"),
-    md: size("md"),
-    lg: size("lg"),
-    xl: size("xl"),
-    "2xl": size("2xl"),
-    "3xl": size("3xl"),
-    "4xl": size("4xl"),
-    "5xl": size("5xl"),
-    "6xl": size("6xl"),
-    full: size("full"),
+    xs: getSize("xs"),
+    sm: getSize("sm"),
+    md: getSize("md"),
+    lg: getSize("lg"),
+    xl: getSize("xl"),
+    "2xl": getSize("2xl"),
+    "3xl": getSize("3xl"),
+    "4xl": getSize("4xl"),
+    "5xl": getSize("5xl"),
+    "6xl": getSize("6xl"),
+    full: getSize("full"),
   },
 }
 
