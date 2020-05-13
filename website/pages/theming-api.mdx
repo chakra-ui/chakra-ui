@@ -22,7 +22,7 @@ Add a `theme.components` object to access the theming API. Each key of the
 `components` object stores configuration for theming various aspects of a
 component. Here's a simple example of setting an `outline` variant for `Button`:
 
-```jsx
+```tsx
 const theme = {
   colors: {
     green: "#34eb3d",
@@ -48,13 +48,25 @@ information on how these are used.
 
 ## Modifiers
 
+We believe that most reusable, atomic components have the following modifiers:
+
+- Size: A component has different sizes variations (small, medium, large)
+- Variant: A component has different visual styles (outline, solid, ghost)
+- Color Scheme (Optional): For a given component variant, it can have several
+  color schemes. For example, an outline button with a red color scheme.
+- Color Mode (Optional): Components change their visual styles based on the
+  user's preferred color mode (light or dark).
+
+Our goal with the theming API is to make it easy to create variants or update
+component styles directly from the theme.
+
 Modifiers represent named `sizes` or `variants` for a component. A modifier is
 defined by creating an object of theme-aware style props.
 
 Let's look at an example of defining a size modifier (`small`) and a variant
 modifier (`outline`) for `Button`:
 
-```jsx
+```tsx
 const theme = {
   colors: {
     green: "#34ed3d",
@@ -91,7 +103,7 @@ passed to the component (`variant`, `size`, and `colorScheme`).
 
 Let's define a dynamic `outline` variant modifier on `Button`:
 
-```jsx
+```tsx
 const theme = {
   colors: {
     green: {
@@ -125,7 +137,7 @@ The `defaultProps` key of a component theming object allows you to specify the
 default modifiers (`variant`, `size`, and `colorScheme`) for a component. Here's
 an example:
 
-```jsx
+```tsx
 const theme = {
   colors: {
     green: "#34eb3d",
@@ -175,7 +187,7 @@ theme-aware style props that are used on all instances of the component. These
 are overriden by any modifiers or props, so they're great at setting sensible
 default styles. Here's an example:
 
-```jsx
+```tsx
 const theme = {
   components: {
     Button: {
