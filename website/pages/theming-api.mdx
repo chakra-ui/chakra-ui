@@ -242,3 +242,57 @@ const theme = {
 <Button>I have the base padding of 20!</Button>
 <Button padding={40}>I have a padding of 40!</Button>
 ```
+
+## `themeKey`
+
+Each component can be associated with a `themeKey`. The value of `themeKey` is
+the name of the component that is used when defining your component theming
+objects.
+
+All Chakra components are defined with a `themeKey`, and any components created
+using `chakra` take a `themeKey` option. In this way, you can create custom
+components that hook into the modifiers, default props, and base styles you
+define in `theme`.
+
+```tsx
+const MyButton = chakra('button', {themeKey: 'Button'})
+
+// the built-in Chakra Button and MyButton share the same definitions in your theme
+<Button>I'm a button</Button>
+<MyButton>I look just like the above button!</MyButton>
+```
+
+## Theming subcomponents
+
+Many complex components in Chakra are not a single component, but multiple
+components that are composed together.
+
+An example of this is Chakra's `Accordion`: `Accordion`, `AccordionItem`,
+`AccordionButton`, `AccordionPanel`, and `AccordionIcon`.
+
+In cases like this, component theming objects can be nested according to their
+parent using `themeKey`. `Accordion` uses a `themeKey` of `Accordion.Root`,
+`AccordionItem` uses `Accordion.Item`, etc.
+
+Chakra will then look for a nested component theming object in `theme`:
+
+```tsx
+const theme = {
+  components: {
+    Accordion: {
+      Root: {
+        defaultProps: {},
+        baseStyle: {},
+        sizes: {},
+        variants: {},
+      },
+      Item: {
+        defaultProps: {},
+        baseStyle: {},
+        sizes: {},
+        variants: {},
+      },
+    },
+  },
+}
+```
