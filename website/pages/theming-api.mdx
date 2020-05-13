@@ -1,7 +1,7 @@
-# Theming API
+# Component Theming
 
-Chakra provides a built-in theming API that enables users to build fully
-customizable and highly reusable theme-aware components directly from the
+Chakra provides a built-in component theming API that enables you to build fully
+customizable and highly reusable theme-aware components directly from your
 `theme`.
 
 We believe that most reusable, atomic components have the following modifiers:
@@ -13,123 +13,160 @@ We believe that most reusable, atomic components have the following modifiers:
 - Color Mode (Optional): Components change their visual styles based on the
   user's preferred color mode (light or dark).
 
-Our goal with the theming API is to make it easy to create variants or update
-component styles directly from the theme.
+Our goal with the component theming API is to design a common interface to style
+any component given these characteristics. Here's how it works:
 
-## Component Theming
-
-Add a `theme.components` object to access the theming API. Each key of the
-`components` object stores configuration for theming various aspects of a
-component. Here's a simple example of setting an `outline` variant for `Button`:
-
-```tsx
+```jsx
+// 1. create a component schema in your theme
 const theme = {
-  colors: {
-    green: "#34eb3d",
+	colors: {
+    green: {
+      light: "#dfdfdf",
+      normal: "#dfdfdf",
+      dark: "#d566Df",
+      darker: "#dfd56f"
+    },
+		blue: {}
   },
   components: {
     Button: {
+      defaultProps: {
+        variant: "solid",
+        size: "md",
+				colorScheme: "blue"
+      },
       variants: {
+				// props has colorScheme, colorMode (light mode or dark mode)
+        solid: props => ({
+          bg: `${props.colorScheme}.normal`,
+          color: "white",
+        }),
         outline: {
           border: "2px",
-          borderColor: "green.normal",
-        },
+          borderColor: "green.normal"
+        }
       },
-    },
-  },
-}
+      sizes: {
+        sm: {
+          padding: 20,
+          fontSize: 12
+        },
+        md: {
+          padding: 40,
+          fontSize: 15
+        }
+      }
+    }
+  }
+};
 
-<Button variant="outline">Click Me</Button>
+// 2. create or import Button from chakra-ui
+import { Button } from "@chakra-ui/core"
+
+// or your own button
+const Button = chakra("button", { themeKey: "Button" })
+
+// 3. use the button. It'll have the visual props defined in defaultProps
+<Button>Click me</Button>
+
+// 4. override the defaultProps
+<Button variant="outline" colorScheme="green">Click me</Button>
 ```
 
-Components are themed using the `sizes` and `variants` modifiers, along with the
-`defaultProps` and `baseStyle` objects. See the following sections for more
-information on how these are used.
+The following sections provide more detail into how each piece of the component
+theming API works.
 
-## Modifiers
+## Defining sizes and variants
 
-We believe that most reusable, atomic components have the following modifiers:
+To define size and variant modifiers for your component, add `sizes` and
+`variants` objects to your component's theming object. The keys of these objects
+are the names of the modifiers, which can then be referenced by your component
+as props.
 
-- Size: A component has different sizes variations (small, medium, large)
-- Variant: A component has different visual styles (outline, solid, ghost)
-- Color Scheme (Optional): For a given component variant, it can have several
-  color schemes. For example, an outline button with a red color scheme.
-- Color Mode (Optional): Components change their visual styles based on the
-  user's preferred color mode (light or dark).
+Each size and variant is an object of theme-aware style props, allowing you to
+theme your components with your `theme`.
 
-Our goal with the theming API is to make it easy to create variants or update
-component styles directly from the theme.
-
-Modifiers represent named `sizes` or `variants` for a component. A modifier is
-defined by creating an object of theme-aware style props.
-
-Let's look at an example of defining a size modifier (`small`) and a variant
-modifier (`outline`) for `Button`:
+As an example, we'll define a `small` size and `outline` variant for `Button`:
 
 ```tsx
 const theme = {
-  colors: {
-    green: "#34ed3d",
-  },
   components: {
     Button: {
       sizes: {
+        // defines a size with the name of `small`
         small: {
           padding: 20,
-          fontSize: 12,
-        },
+          fontSize: 12
+        }
       },
       variants: {
+        // defines a variant with the name of `outline`
         outline: {
-          border: "2px",
-          borderColor: "green",
-        },
-      },
-    },
-  },
+          border: '2px',
+          borderColor: 'green'
+        }
+      }
+    }
+  }
 }
 
+<Button size="small">I'm a small button!</Button>
+<Button variant="outline">I'm an outline button!</Button>
 <Button size="small" variant="outline">I'm a small outline button!</Button>
 ```
 
-## Dynamic Modifiers
+## Using color scheme and color mode
 
-In addition to the object modifiers we saw above, a modifier can also be defined
-as a function that returns an object of theme-aware style props.
+Sizes and variants can also be defined as functions. These functions receive the
+component `size`, `variant`, and `colorScheme` props passed to the component
+when rendered, along with the entire `theme` object and the current `colorMode`,
+and return an object of theme-aware style props.
 
-Defining a modifier as a function allows you to dynamically style your
-components based on the `theme`, current `colorMode`, and any modifier props
-passed to the component (`variant`, `size`, and `colorScheme`).
+Dynamically defining your modifiers as functions allows you to conditionally
+render your components based on the `colorScheme` prop and current `colorMode`.
 
-Let's define a dynamic `outline` variant modifier on `Button`:
+Here's an example of `outline` and `solid` variants for `Button` that use the
+`colorScheme` prop passed to the component to determine which color to use:
 
 ```tsx
 const theme = {
   colors: {
     green: {
-      light: "#34eb3d",
+      normal: '#00ff00'
     },
     red: {
-      light: '#fc2c03'
+      normal: '#ff0000'
     }
   },
   components: {
     Button: {
       variants: {
-        outline: ({theme, colorMode, variant, size, colorScheme}) => ({
-          border: "2px",
-          color: `${colorScheme}.light`,
+        outline: ({size, variant, colorScheme, colorMode, theme}) => ({
+          border: '2px',
+          borderColor: `${colorScheme}.normal`
         }),
-      },
-    },
-  },
+        solid: ({size, variant, colorScheme, colorMode, theme}) => ({
+          color: 'white',
+          bg: `${colorScheme}.normal`
+        })
+      }
+    }
+  }
 }
 
-<Button variant="outline" colorScheme="green">I'm a green outline button!</Button>
-<Button variant="outline" colorScheme="red">I'm a red outline button!</Button>
+<Button variant="outline" colorScheme="green">
+  I'm a green outline button!
+</Button>
+<Button variant="outline" colorScheme="red">
+  I'm a red outline button!
+</Button>
+<Button variant="solid" colorScheme="green">
+  I'm a button with a green background!
+</Button>
+<Button variant="solid" colorScheme="red">
+  I'm a button with a red background!
+</Button>
 ```
-
-???????????????????? what happens if the colorscheme doesn't exist??????????????
 
 ## `defaultProps`
 
@@ -165,6 +202,10 @@ const theme = {
           border: "2px",
           color: colorScheme,
         }),
+        solid: ({size, variant, colorScheme, colorMode, theme}) => ({
+          color: 'white',
+          bg: `${colorScheme}.normal`
+        })
       },
     },
   },
@@ -198,6 +239,6 @@ const theme = {
   }
 }
 
-<Button>I have a padding of 20!</Button>
+<Button>I have the base padding of 20!</Button>
 <Button padding={40}>I have a padding of 40!</Button>
 ```
