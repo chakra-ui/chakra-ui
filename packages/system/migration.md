@@ -67,3 +67,29 @@ const theme = {
   },
 }
 ```
+
+## Caveats
+
+- When using framer motion's primitives and chakra. You can't use the `as` prop
+  afterwards. Here's what I mean
+
+```jsx
+const Motion = chakra(motion.div)
+
+// you can't use the `as` prop in the `Motion` component.
+// If you do, it won't work.
+export const WithFramerMotion = () => (
+  <Motion
+    boxSize="40px"
+    bg="red.300"
+    drag
+    whileTap={{ scale: 1.3 }}
+    dragConstraints={{
+      top: 0,
+      left: 0,
+      right: 50,
+      bottom: 50,
+    }}
+  />
+)
+```
