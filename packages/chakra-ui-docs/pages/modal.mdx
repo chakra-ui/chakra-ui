@@ -417,6 +417,53 @@ function SizeExample() {
 }
 ```
 
+### Minimum gap around the Modal
+
+By default, when a modal is displayed in a mobile device, there is no gap on the
+sides. If you prefer there to be a gap, you can pass the `minGap` prop to
+specify a desired thickness.
+
+```jsx
+function MinimumGap() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [gap, setGap] = React.useState();
+
+  const handleGapClick = minGap => {
+    setGap(minGap);
+    onOpen();
+  };
+
+  const gapSizes = [
+    { label: "No Gap (default)", minGap: undefined },
+    { label: "10px Gap", minGap: "10px" },
+  ];
+
+  return (
+    <>
+      {gapSizes.map(({ label, minGap }) => (
+        <Button onClick={() => handleGapClick(minGap)} key={label} m={4}>
+          {label}
+        </Button>
+      ))}
+
+      <Modal onClose={onClose} isOpen={isOpen}>
+        <ModalOverlay />
+        <ModalContent minGap={gap}>
+          <ModalHeader>View from a Mobile Screen</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Lorem count={10} />
+          </ModalBody>
+          <ModalFooter>
+            <Button>Close</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
+  );
+}
+```
+
 ### Preserving the scrollbar gap
 
 By default, scrolling is blocked when the modal opens. This can lead to

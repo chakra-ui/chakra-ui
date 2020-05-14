@@ -76,6 +76,7 @@ const Modal = ({
   scrollBehavior = "outside",
   isCentered,
   addAriaLabels = true,
+  minGap = 0,
   preserveScrollBarGap,
   formatIds = id => ({
     content: `modal-${id}`,
@@ -223,7 +224,10 @@ ModalOverlay.displayName = "ModalOverlay";
 ////////////////////////////////////////////////////////////////////////
 
 const ModalContent = React.forwardRef(
-  ({ onClick, children, zIndex = "modal", noStyles, ...props }, ref) => {
+  (
+    { onClick, children, zIndex = "modal", minGap, noStyles, ...props },
+    ref,
+  ) => {
     const {
       contentRef,
       onClose,
@@ -291,6 +295,13 @@ const ModalContent = React.forwardRef(
         overflowY: "auto",
         overflowX: "hidden",
       };
+
+      if (minGap) {
+        wrapperStyle = {
+          ...wrapperStyle,
+          padding: minGap,
+        };
+      }
 
       contentStyle = {
         ...contentStyle,
