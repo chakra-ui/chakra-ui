@@ -1,4 +1,4 @@
-import { SystemProps, TruncateProps } from "@chakra-ui/parser"
+import { SystemProps } from "@chakra-ui/parser"
 import { ValidHTMLProps } from "./should-forward-prop"
 import { ColorMode } from "@chakra-ui/color-mode"
 
@@ -74,7 +74,7 @@ export type ThemingProps = {
   orientation?: "vertical" | "horizontal"
 }
 
-export type ApplyProp = {
+export interface ApplyProp {
   /**
    * Reference styles from any component or key in the theme.
    *
@@ -89,28 +89,30 @@ export type ApplyProp = {
   apply?: string
 }
 
-export type ChakraProps = SystemProps &
-  TruncateProps &
-  ValidHTMLProps &
-  ThemingProps &
-  ApplyProp & {
-    children?: React.ReactNode
-  }
+interface TruncateProps {
+  /**
+   * if `true`, it'll render an ellipsis when the text exceeds the width of the viewport or maxWidth set.
+   */
+  isTruncated?: boolean
+  /**
+   * Used to truncate text at a specific number of lines
+   */
+  lineClamp?: number
+}
+
+export interface ChakraProps
+  extends SystemProps,
+    TruncateProps,
+    ValidHTMLProps,
+    ThemingProps,
+    ApplyProp {
+  children?: React.ReactNode
+}
 
 export type As = React.ElementType<any>
 
 /**
- * Extract the props of a React element or component, but omit
- * chakra's theming props.
- *
- * The `input` component prompted this decision because `size` is a
- * valid input prop but it clashed with Chakra's `size` theming props.
- *
- * To solve this, we've created `htmlSize` prop which will be converted
- * to `size` internally. So we now have
- *
- * - size: for chakra theming
- * - htmlSize: for native element's size prop
+ * Extract the props of a React element or component
  */
 export type PropsOf<T extends As> = React.ComponentPropsWithRef<T>
 
