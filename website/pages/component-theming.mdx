@@ -2,7 +2,7 @@
 
 Chakra provides a built-in component theming API that enables you to build fully
 customizable and highly reusable theme-aware components directly from your
-`theme`.
+[`theme`](/theme).
 
 We believe that most reusable, atomic components have the following modifiers:
 
@@ -26,17 +26,17 @@ const theme = {
       dark: "#d566Df",
       darker: "#dfd56f"
     },
-		blue: {}
+    blue: {}
   },
   components: {
     Button: {
       defaultProps: {
         variant: "solid",
         size: "md",
-				colorScheme: "blue"
+        colorScheme: "blue"
       },
       variants: {
-				// props has colorScheme, colorMode (light mode or dark mode)
+        // props has colorScheme, colorMode (light mode or dark mode)
         solid: props => ({
           bg: `${props.colorScheme}.normal`,
           color: "white",
@@ -168,11 +168,11 @@ const theme = {
 </Button>
 ```
 
-## `defaultProps`
+## Default Props
 
 The `defaultProps` key of a component theming object allows you to specify the
-default modifiers (`variant`, `size`, and `colorScheme`) for a component. Here's
-an example:
+default props that are passed for your component. This is especially useful for
+setting defaults modifiers. Here's an example:
 
 ```tsx
 const theme = {
@@ -221,7 +221,7 @@ const theme = {
 </Button>
 ```
 
-## `baseStyle`
+## Base Style
 
 The `baseStyle` key of a component theming object allows you to specify base
 theme-aware style props that are used on all instances of the component. These
@@ -243,7 +243,23 @@ const theme = {
 <Button padding={40}>I have a padding of 40!</Button>
 ```
 
-## `themeKey`
+`baseStyle` can also be defined as an option to `chakra`:
+
+```tsx
+const MyButton = chakra('button', {
+  baseStyle: {
+    padding: 20
+  }
+})
+
+<MyButton>I have a padding of 20</MyButton>
+```
+
+If `baseStyle` is defined using `chakra` and also in the `theme` using
+`themeKey`, the objects are merged together, with any values in `theme` taking
+precedence.
+
+## Theme Key
 
 Each component can be associated with a `themeKey`. The value of `themeKey` is
 the name of the component that is used when defining your component theming
@@ -262,7 +278,7 @@ const MyButton = chakra('button', {themeKey: 'Button'})
 <MyButton>I look just like the above button!</MyButton>
 ```
 
-## Theming subcomponents
+## Theming Subcomponents
 
 Many complex components in Chakra are not a single component, but multiple
 components that are composed together.
@@ -296,3 +312,16 @@ const theme = {
   },
 }
 ```
+
+- each component should have a section titled theming
+
+  - list the `themeKey`
+  - short explanation of how you can style/theme the component
+  - link the theming api
+
+- `apply`
+- `textStyles`
+- `layerStyles`
+
+- `createStyled` with custom interpolations?
+- `createStyleProp` ?
