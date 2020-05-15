@@ -192,6 +192,8 @@ if (__DEV__) {
   PopoverBody.displayName = "PopoverBody"
 }
 
+export const PopoverFooter = chakra("footer", { themeKey: "Popover.Footer" })
+
 export type PopoverCloseButtonProps = CloseButtonProps
 
 /**

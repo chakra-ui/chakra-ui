@@ -97,7 +97,7 @@ interface TruncateProps {
   /**
    * Used to truncate text at a specific number of lines
    */
-  lineClamp?: number
+  noOfLines?: number
 }
 
 interface LayerStyles {

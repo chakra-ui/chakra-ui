@@ -110,14 +110,14 @@ export function pseudoProps({ theme, ...props }: any) {
   return result
 }
 
-export function truncateProp({ isTruncated, lineClamp }: any) {
-  if (isNumber(lineClamp)) {
+export function truncateProp({ isTruncated, noOfLines }: any) {
+  if (isNumber(noOfLines)) {
     return {
       overflow: "hidden",
       textOverflow: "ellipsis",
       display: "-webkit-box",
       WebkitBoxOrient: "vertical",
-      WebkitLineClamp: lineClamp,
+      WebkitLineClamp: noOfLines,
     }
   }
 

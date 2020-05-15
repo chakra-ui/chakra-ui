@@ -13,7 +13,7 @@ const Code: ComponentTheme = {
 }
 
 export const CodeTokens = {
-  variants: BadgeTokens,
+  variants: BadgeTokens.variants,
 }
 
 export default Code

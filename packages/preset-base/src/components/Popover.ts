@@ -15,14 +15,18 @@ const Popover: ComponentTheme = {
       },
     },
     Header: {
-      px: 3,
-      py: 2,
+      paddingX: 3,
+      paddingY: 2,
       borderBottomWidth: "1px",
     },
     Body: {
-      px: 3,
-      py: 2,
-      borderBottomWidth: "1px",
+      paddingX: 3,
+      paddingY: 2,
+    },
+    Footer: {
+      paddingX: 3,
+      paddingY: 2,
+      borderTopWidth: "1px",
     },
   }),
 }
