@@ -8,7 +8,13 @@ import {
   ThemingProps,
   useThemeDefaultProps,
 } from "@chakra-ui/system"
-import { callAllHandlers, createContext, __DEV__, cx } from "@chakra-ui/utils"
+import {
+  callAllHandlers,
+  createContext,
+  mergeRefs,
+  __DEV__,
+  cx,
+} from "@chakra-ui/utils"
 import * as React from "react"
 import { useModal, UseModalProps, UseModalReturn } from "./Modal.hook"
 
@@ -170,17 +176,18 @@ export const ModalContent = React.forwardRef(
   (props: ModalContentProps, ref: React.Ref<any>) => {
     const { className, ...rest } = props
     const { getContentProps, scrollBehavior, variant, size } = useModalContext()
+    const contentProps = getContentProps(rest)
+    contentProps.ref = mergeRefs(ref, contentProps.ref)
 
     const _className = cx("chakra-modal__content", className)
     const theming = { variant, size }
 
     return (
       <StyledContent
-        ref={ref}
         className={_className}
         scrollBehavior={scrollBehavior}
         {...theming}
-        {...getContentProps(rest)}
+        {...contentProps}
       />
     )
   },
@@ -238,18 +245,19 @@ export const ModalOverlay = React.forwardRef(
       variant,
       size,
     } = useModalContext()
+    const overlayProps = getOverlayProps(rest)
+    overlayProps.ref = mergeRefs(ref, overlayProps.ref)
 
     const theming = { variant, size }
     const _className = cx("chakra-modal__overlay", className)
 
     return (
       <StyledOverlay
-        ref={ref}
         className={_className}
         scrollBehavior={scrollBehavior}
         isCentered={isCentered}
         {...theming}
-        {...getOverlayProps(rest)}
+        {...overlayProps}
       />
     )
   },
