@@ -136,7 +136,7 @@
 ### Changes 🔧
 
 - Ensure consistent usage of the `icon` prop. `leftIcon` and `rightIcon` props
-  are now accepts a react element not react element type.
+  are now accepts a react element, just like <Suspense />
 
   ```jsx
   // before
@@ -146,7 +146,8 @@
   const After = () => <Button leftIcon={<PhoneIcon />}>Call</Button>
   ```
 
-- Change `variantColor` prop to `colorScheme` for better intuitiveness.
+- Support for `variantColor` prop has been deprecated. Use the `colorScheme`
+  prop instead.
 
 ### Features ⚡️
 
@@ -232,7 +233,7 @@ placed in a grid (`SimpleGrid`) or made to wrap automatically (`Wrap`).
 - The `useCheckbox` hook is exported with state and focus management logic for
   use in creating tailor-made checkbox component for your application
 
-* The `useCheckboxGroup` hook is exported with state management logic for use in
+- The `useCheckboxGroup` hook is exported with state management logic for use in
   creating tailor-made checkbox group component for your application
 
 ## ColorMode
@@ -256,7 +257,7 @@ We've updated the color mode to support the following scenatios
    > We use `localStorage` as the source of truth and use the `initialColorMode`
    > value when the value doesn't exist in `localStorage`
 
-2. Ability to lock color mode in certain aspects of UI, this doesn't change
+2. Ability to lock color mode in certain aspects of UI, this is unchanged
 
    ```jsx
    import { DarkMode, LightMode } from "@chakra-ui/color-mode"
