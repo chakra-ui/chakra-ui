@@ -44,7 +44,7 @@ export const MenuTransition = (props: MenuTransitionProps) => {
       }}
       onExited={node => {
         node.hidden = true
-        node.style.pointerEvents = "auto"
+        node.style.pointerEvents = null
         if (menu.buttonRef.current) {
           ensureFocus(menu.buttonRef.current)
         }
