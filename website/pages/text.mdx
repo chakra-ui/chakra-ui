@@ -88,7 +88,7 @@ Element** to see the element that gets rendered in html.
 
 ## Baseline Crop
 
-`Text` and `Heading` elements have a prop called `baselineCrop`. This prop
+`Text` and `Heading` elements have a prop called `isBaselineCropped`. This prop
 allows us to remove the extra white space that normally appears above and below
 text.
 
@@ -97,8 +97,8 @@ text.
 
 ### One-Time Setup
 
-In order to use `baselineCrop`, you must measure your font manually and enter
-those measurements into the `baselineCrop` key in your theme.
+In order to use `isBaselineCropped`, you must measure your font manually and
+enter those measurements into the `baselineCrop` key in your theme.
 
 How to measure your font(s):
 
@@ -131,7 +131,7 @@ const myTheme = {
 
 ```html
 <Box height="10px" width="100%" bg="green.800" />
-<Text baselineCrop>Mark Dalgleish: Meme Lord</Text>
+<Text isBaselineCropped>Mark Dalgleish: Meme Lord</Text>
 <Box height="10px" width="100%" bg="green.800" />
 ```
 
@@ -139,6 +139,6 @@ const myTheme = {
 
 Text composes the [Box](/box) component, so you can pass all `Box` style props.
 
-| Name           | Type      | Default | Description                       |
-| -------------- | --------- | ------- | --------------------------------- |
-| `baselineCrop` | `boolean` |         | See `Baseline Crop` section above |
+| Name                | Type      | Default | Description                       |
+| ------------------- | --------- | ------- | --------------------------------- |
+| `isBaselineCropped` | `boolean` |         | See `Baseline Crop` section above |

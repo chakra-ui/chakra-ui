@@ -86,15 +86,16 @@ prop. No need to write `css` or `styled()`
 
 ## Baseline Crop
 
-The `Heading` (and `Text`) components support a prop called `baselineCrop`. This
-prop allows us to remove the extra white space that normally appears above and
-below text. See the [documentation for the `Text` component](/text) for details.
+The `Heading` (and `Text`) components support a prop called `isBaselineCropped`.
+This prop allows us to remove the extra white space that normally appears above
+and below text. See the [documentation for the `Text` component](/text) for
+details.
 
 ## Props
 
 The Heading composes the [Box](/box) component, so you can pass all `Box` props.
 
-| Name           | Type                                 | Default | Description                       |
-| -------------- | ------------------------------------ | ------- | --------------------------------- |
-| `size`         | `2xl`, `xl` , `lg`, `md`, `sm`, `xs` | `xl`    | The size of the heading.          |
-| `baselineCrop` | `boolean`                            |         | See `Baseline Crop` section above |
+| Name                | Type                                 | Default | Description                       |
+| ------------------- | ------------------------------------ | ------- | --------------------------------- |
+| `size`              | `2xl`, `xl` , `lg`, `md`, `sm`, `xs` | `xl`    | The size of the heading.          |
+| `isBaselineCropped` | `boolean`                            |         | See `Baseline Crop` section above |
