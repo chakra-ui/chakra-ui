@@ -75,7 +75,7 @@ const Switch: ComponentTheme = {
 }
 
 export const SwitchTokens = {
-  SIZES: {
+  sizes: {
     sm: "sm",
     md: "md",
     lg: "lg",

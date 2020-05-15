@@ -33,7 +33,7 @@
   - Handling light/dark mode
     - Reading from the OS color preference
     - Set initial color mode
-    - Add a mode switch
+    - Add button to switch mode
 
 - Advanced
 

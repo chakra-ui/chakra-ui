@@ -63,7 +63,7 @@ const theme = {
     // whether to use the system color mode by default
     useSystemColorMode: false, // true | false
     // whether to automatically map styles defined in theme.styles.[element] to chakra.[element]
-    shouldMapStylesToElement: false, // true | false
+    shouldMapElementToStyles: false, // true | false
   },
 }
 ```
@@ -93,3 +93,5 @@ export const WithFramerMotion = () => (
   />
 )
 ```
+
+- Added support for `lineClamp`, `textStyle`, and `layerStyle`

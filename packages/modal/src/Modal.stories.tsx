@@ -1,7 +1,7 @@
 import { useDisclosure } from "@chakra-ui/hooks"
 import { PortalManager } from "@chakra-ui/portal"
 import { chakra } from "@chakra-ui/system"
-import { Fade, SlideFade } from "@chakra-ui/transition"
+import { Fade, SlideFade, ScaleFade } from "@chakra-ui/transition"
 import * as React from "react"
 import {
   Modal,
@@ -131,16 +131,16 @@ export function ReturnFocus() {
   )
 }
 
-export function AnimatedModal() {
+export function SlideAnimation() {
   const modal = useDisclosure()
   return (
     <>
       <button onClick={modal.onOpen}>Open</button>
-      <Fade timeout={400} in={modal.isOpen}>
+      <Fade timeout={300} in={modal.isOpen}>
         {styles => (
           <Modal isOpen={true} onClose={modal.onClose}>
             <ModalOverlay style={styles}>
-              <SlideFade in={modal.isOpen} unmountOnExit={false}>
+              <SlideFade timeout={150} in={modal.isOpen} unmountOnExit={false}>
                 {styles => (
                   <ModalContent padding={4} mx="auto" mt="40px" style={styles}>
                     Sit nulla est ex deserunt exercitation anim occaecat.
@@ -151,6 +151,34 @@ export function AnimatedModal() {
                   </ModalContent>
                 )}
               </SlideFade>
+            </ModalOverlay>
+          </Modal>
+        )}
+      </Fade>
+    </>
+  )
+}
+
+export function ScaleAnimation() {
+  const modal = useDisclosure()
+  return (
+    <>
+      <button onClick={modal.onOpen}>Open</button>
+      <Fade timeout={300} in={modal.isOpen}>
+        {styles => (
+          <Modal isOpen={true} onClose={modal.onClose}>
+            <ModalOverlay style={styles}>
+              <ScaleFade timeout={150} in={modal.isOpen} unmountOnExit={false}>
+                {styles => (
+                  <ModalContent padding={4} mx="auto" mt="40px" style={styles}>
+                    Sit nulla est ex deserunt exercitation anim occaecat.
+                    Nostrud ullamco deserunt aute id consequat veniam incididunt
+                    duis in sint irure nisi. Mollit officia cillum Lorem ullamco
+                    minim nostrud elit officia tempor esse quis.
+                    <Button colorScheme="blue">Save</Button>
+                  </ModalContent>
+                )}
+              </ScaleFade>
             </ModalOverlay>
           </Modal>
         )}

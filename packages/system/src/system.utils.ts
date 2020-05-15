@@ -142,7 +142,7 @@ export function layerStyleProp({ layerStyle, textStyle, theme }: any) {
 export function applyProp(tag: React.ElementType) {
   return (props: any) => {
     const { theme, apply: applyProp } = props
-    const shouldAutoApply = theme?.config?.shouldMapStylesToElement
+    const shouldAutoApply = theme?.config?.shouldMapElementToStyles
     const defaultApply = !!shouldAutoApply ? `styles.${tag}` : undefined
     const apply = applyProp ?? defaultApply
 

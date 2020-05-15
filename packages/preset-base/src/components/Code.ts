@@ -1,4 +1,4 @@
-import Badge from "./Badge"
+import Badge, { BadgeTokens } from "./Badge"
 import { ComponentTheme } from "./utils"
 
 const Code: ComponentTheme = {
@@ -10,6 +10,10 @@ const Code: ComponentTheme = {
     borderRadius: "sm",
   },
   variants: Badge.variants,
+}
+
+export const CodeTokens = {
+  variants: BadgeTokens,
 }
 
 export default Code

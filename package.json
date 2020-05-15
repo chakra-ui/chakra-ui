@@ -154,6 +154,7 @@
     "react-lorem-component": "^0.13.0",
     "react-test-renderer": "16.13.0",
     "ts-loader": "6.2.1",
-    "tsconfig-paths-webpack-plugin": "3.2.0"
+    "tsconfig-paths-webpack-plugin": "3.2.0",
+    "yalc": "1.0.0-pre.35"
   }
 }

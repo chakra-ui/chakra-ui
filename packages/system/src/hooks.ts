@@ -1,6 +1,6 @@
 import { useColorMode } from "@chakra-ui/color-mode"
 import { css, StyleObjectOrFn } from "@chakra-ui/css"
-import { Dict, get } from "@chakra-ui/utils"
+import { Dict, get, StringOrNumber } from "@chakra-ui/utils"
 import { getComponentDefaults, getComponentStyles } from "./component"
 import { useTheme } from "./theme-provider"
 
@@ -36,8 +36,12 @@ export function useCss(styles: StyleObjectOrFn) {
   return css(styles)(theme)
 }
 
-export function useToken(scale: string, token: string | number) {
+export function useToken(
+  scale: string,
+  token: StringOrNumber,
+  fallback?: StringOrNumber,
+) {
   const theme = useTheme()
   const path = `${scale}.${token}`
-  return get(theme, path, token)
+  return get(theme, path, fallback ?? token)
 }

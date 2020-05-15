@@ -66,4 +66,12 @@ const Checkbox: ComponentTheme = {
   sizes,
 }
 
+export const CheckboxTokens = {
+  sizes: {
+    lg: "lg",
+    sm: "sm",
+    md: "md",
+  },
+}
+
 export default Checkbox

@@ -1,4 +1,4 @@
-import Checkbox from "./Checkbox"
+import Checkbox, { CheckboxTokens } from "./Checkbox"
 import { ComponentTheme } from "./utils"
 
 const baseStyle = Checkbox.baseStyle as any
@@ -31,5 +31,7 @@ const Radio: ComponentTheme = {
     },
   },
 }
+
+export const RadioTokens = CheckboxTokens
 
 export default Radio

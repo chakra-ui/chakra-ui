@@ -12,12 +12,12 @@ const styles: TransitionStyles = {
 }
 
 export function Fade(props: FadeProps) {
-  const { timeout = 250, ...rest } = props
+  const { timeout = 150, ...rest } = props
   return (
     <Transition
       transition={`all ${timeout}ms cubic-bezier(0.175, 0.885, 0.320, 1.175)`}
       styles={styles}
-      timeout={{ enter: 50, exit: timeout }}
+      timeout={{ enter: 0, exit: timeout }}
       {...rest}
     />
   )

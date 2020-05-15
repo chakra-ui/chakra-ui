@@ -14,7 +14,7 @@ const Spinner: ComponentTheme = {
 }
 
 export const SpinnerTokens = {
-  SIZES: {
+  sizes: {
     xs: "xs",
     sm: "sm",
     md: "md",
