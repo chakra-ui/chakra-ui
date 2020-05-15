@@ -100,12 +100,24 @@ interface TruncateProps {
   lineClamp?: number
 }
 
+interface LayerStyles {
+  /**
+   * apply styles defined in `theme.layerStyles`
+   */
+  layerStyle?: string
+  /**
+   * apply styles defined in `theme.textStyles`
+   */
+  textStyle?: string
+}
+
 export interface ChakraProps
   extends SystemProps,
     TruncateProps,
     ValidHTMLProps,
     ThemingProps,
-    ApplyProp {
+    ApplyProp,
+    LayerStyles {
   children?: React.ReactNode
 }
 
