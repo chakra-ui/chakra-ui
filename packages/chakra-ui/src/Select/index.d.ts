@@ -58,6 +58,10 @@ export type SelectProps = ISelect & {
    * The size of the icon
    */
   iconSize?: BoxProps["size"];
+  /**
+   * The color of the icon
+   */
+  iconColor?: BoxProps["color"];
 };
 
 declare const Select: React.FC<SelectProps>;

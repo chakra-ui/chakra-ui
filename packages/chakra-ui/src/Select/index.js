@@ -48,7 +48,7 @@ const SelectInput = forwardRef(function SelectInput(
 });
 
 const Select = forwardRef(
-  ({ rootProps, icon, iconSize = 5, ...props }, ref) => {
+  ({ rootProps, icon, iconSize = 5, iconColor, ...props }, ref) => {
     const { colorMode } = useColorMode();
     const color = colorMode === "dark" ? "whiteAlpha.800" : "inherit";
     const opacity = props.isReadOnly || props.isDisabled ? 0.5 : null;
@@ -58,7 +58,10 @@ const Select = forwardRef(
     return (
       <Box position="relative" width="100%" {...root} {...rootProps}>
         <SelectInput ref={ref} color={color} {...select} />
-        <SelectIconWrapper opacity={opacity} color={select.color || color}>
+        <SelectIconWrapper
+          opacity={opacity}
+          color={iconColor || select.color || color}
+        >
           <Icon
             focusable="false"
             aria-hidden="true"
