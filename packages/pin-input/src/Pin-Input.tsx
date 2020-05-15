@@ -101,6 +101,7 @@ export const PinInputField = React.forwardRef(
 
     return (
       <StyledInput
+        ref={ref}
         textAlign="center"
         disabled={context.isDisabled}
         aria-invalid={ariaAttr(context.isInvalid)}

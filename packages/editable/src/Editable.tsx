@@ -4,7 +4,6 @@ import {
   cx,
   isFunction,
   ReactNodeOrRenderProp,
-  mergeRefs,
 } from "@chakra-ui/utils"
 import * as React from "react"
 import { forwardRef, Ref } from "react"
@@ -72,11 +71,10 @@ export const EditablePreview = forwardRef(
   (props: EditablePreviewProps, ref: Ref<any>) => {
     const { getPreviewProps } = useEditableContext()
     const previewProps = getPreviewProps(props)
-    previewProps.ref = mergeRefs(ref, previewProps.ref)
 
     const _className = cx("chakra-editable__preview", props.className)
 
-    return <StyledPreview {...previewProps} className={_className} />
+    return <StyledPreview ref={ref} {...previewProps} className={_className} />
   },
 )
 
