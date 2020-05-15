@@ -113,7 +113,7 @@
     "@types/jest": "25.2.1",
     "jest": "25.2.7",
     "ts-jest": "25.3.1",
-    "typescript": "3.8.3",
+    "typescript": "3.9.2",
     "fs-utils": "0.7.0",
     "rimraf": "3.0.2",
     "@emotion/styled": "10.0.27",
