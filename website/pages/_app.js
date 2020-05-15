@@ -2,9 +2,11 @@ import {
   Box,
   ColorModeProvider,
   CSSReset,
+  GlobalStyle,
   Link,
   Text,
   ThemeProvider,
+  PortalManager,
 } from "@chakra-ui/core"
 import { MDXProvider } from "@mdx-js/react"
 import { DefaultSeo } from "next-seo"
@@ -14,6 +16,7 @@ import DocsHeader from "../components/DocsHeader"
 import MDXComponents from "../components/MDXComponents"
 import SideNav from "../components/SideNav"
 import seo from "../seo.config"
+import theme from "@chakra-ui/preset-base"
 
 const Main = props => <Box as="main" mx="auto" mb="3rem" {...props} />
 
@@ -55,24 +58,21 @@ const DocsLayout = ({ children }) => (
 const HomeLayout = ({ children }) => <Box>{children}</Box>
 
 export default ({ Component, pageProps }) => {
-  // const [isOpen, setIsOpen] = useState(false);
   const router = useRouter()
-  let Layout
-
-  if (router.pathname === "/") {
-    Layout = HomeLayout
-  } else {
-    Layout = DocsLayout
-  }
+  const isHomePage = router.pathname === "/"
+  const Layout = isHomePage ? HomeLayout : DocsLayout
 
   return (
-    <ThemeProvider>
-      <ColorModeProvider value="light">
+    <ThemeProvider theme={theme}>
+      <ColorModeProvider>
         <CSSReset />
+        <GlobalStyle />
         <MDXProvider components={MDXComponents}>
           <Layout>
             <DefaultSeo {...seo} />
-            <Component {...pageProps} />
+            <PortalManager>
+              <Component {...pageProps} />
+            </PortalManager>
           </Layout>
         </MDXProvider>
       </ColorModeProvider>

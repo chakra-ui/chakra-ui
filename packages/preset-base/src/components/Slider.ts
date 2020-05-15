@@ -88,4 +88,12 @@ const Slider: ComponentTheme = {
   }),
 }
 
+export const SliderTokens = {
+  sizes: {
+    lg: "lg",
+    sm: "sm",
+    md: "md",
+  },
+}
+
 export default Slider

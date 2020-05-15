@@ -1,7 +1,8 @@
 import { FormControlOptions, useFormControl } from "@chakra-ui/form-control"
-import { chakra, PropsOf } from "@chakra-ui/system"
+import { chakra, PropsOf, useComponentStyle } from "@chakra-ui/system"
 import { __DEV__, cx } from "@chakra-ui/utils"
 import * as React from "react"
+import { forwardRef, Ref } from "react"
 import { useInputGroup } from "./Input.group"
 
 type OmittedTypes = "disabled" | "required" | "readOnly" | "size"
@@ -50,8 +51,8 @@ const StyledInput = chakra<"input", InputOptions>("input", {
  * Element that allows users enter single valued data.
  */
 
-export const Input = React.forwardRef(
-  (props: InputProps, ref: React.Ref<HTMLInputElement>) => {
+export const Input = forwardRef(
+  (props: InputProps, ref: Ref<HTMLInputElement>) => {
     const inputProps = useFormControl<HTMLInputElement>(props)
     const group = useInputGroup()
 
@@ -60,21 +61,27 @@ export const Input = React.forwardRef(
 
     const theming = { variant, size } as any
 
+    const inputStyle = useComponentStyle({
+      themeKey: "Input",
+      variant,
+      size,
+    })
+
     const groupProps = {} as InputProps
 
-    if (group?.leftElement?.hasMeasured) {
-      groupProps.paddingLeft = group?.leftElement.rect?.width
+    if (group?.leftElement?.isMounted) {
+      groupProps.paddingLeft = inputStyle?.minHeight
     }
 
-    if (group?.rightElement?.hasMeasured) {
-      groupProps.paddingRight = group?.rightElement.rect?.width
+    if (group?.rightElement?.isMounted) {
+      groupProps.paddingRight = inputStyle?.minHeight
     }
 
-    if (group?.leftAddon?.mounted) {
+    if (group?.leftAddon?.isMounted) {
       groupProps.borderLeftRadius = 0
     }
 
-    if (group?.rightAddon?.mounted) {
+    if (group?.rightAddon?.isMounted) {
       groupProps.borderRightRadius = 0
     }
 

@@ -16,6 +16,10 @@ export type WrapProps = PropsOf<typeof chakra.div> & {
    * The `align-items` value (for main axis alignment)
    */
   align?: SystemProps["alignItems"]
+  /**
+   * The `flex-direction` value
+   */
+  direction?: SystemProps["flexDirection"]
 }
 
 /**
@@ -29,7 +33,7 @@ export type WrapProps = PropsOf<typeof chakra.div> & {
  * @see Docs https://chakra-ui.com/wrap
  */
 export const Wrap = forwardRef((props: WrapProps, ref: Ref<any>) => {
-  const { spacing = 2, children, justify, ...rest } = props
+  const { spacing = "0.5rem", children, justify, direction, ...rest } = props
 
   const theme = useTheme()
 
@@ -52,11 +56,12 @@ export const Wrap = forwardRef((props: WrapProps, ref: Ref<any>) => {
   ))
 
   return (
-    <chakra.div ref={ref} overflow="hidden" {...rest}>
+    <chakra.div ref={ref} {...rest}>
       <chakra.ul
         display="flex"
         flexWrap="wrap"
         justifyContent={justify}
+        flexDirection={direction}
         listStyleType="none"
         padding="0"
         margin={ulSpacing}

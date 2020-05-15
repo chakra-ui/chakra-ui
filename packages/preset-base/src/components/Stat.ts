@@ -29,7 +29,7 @@ const Stat: ComponentTheme = {
 }
 
 export const StatTokens = {
-  SIZES: {
+  sizes: {
     md: "md",
   },
 }

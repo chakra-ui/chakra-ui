@@ -7,6 +7,7 @@ import {
   DOMElements,
   pseudoProps,
   truncateProp,
+  layerStyleProp,
 } from "./system.utils"
 
 function styled<T extends As, P = {}>(component: T, options?: Options<T, P>) {
@@ -15,6 +16,7 @@ function styled<T extends As, P = {}>(component: T, options?: Options<T, P>) {
     pseudoProps,
     applyProp(component),
     truncateProp,
+    layerStyleProp,
   )
 }
 

@@ -7,8 +7,10 @@ import {
   ReactNodeOrRenderProp,
   Omit,
   __DEV__,
+  cx,
 } from "@chakra-ui/utils"
-import React, { forwardRef } from "react"
+import * as React from "react"
+import { forwardRef, Ref } from "react"
 import {
   UseAccordionProps,
   UseAccordionReturn,
@@ -45,16 +47,19 @@ export type AccordionProps = UseAccordionProps &
  *
  * It wraps all accordion items in a `div` for better grouping.
  */
-export function Accordion(props: AccordionProps) {
+export const Accordion = forwardRef((props: AccordionProps, ref: Ref<any>) => {
   const { children, htmlProps, ...context } = useAccordion(props)
+
+  const _className = cx("chakra-accordion", props.className)
+
   return (
     <AccordionCtxProvider value={context}>
-      <StyledRoot data-chakra-accordion="" {...htmlProps}>
+      <StyledRoot {...htmlProps} className={_className}>
         {children}
       </StyledRoot>
     </AccordionCtxProvider>
   )
-}
+})
 
 if (__DEV__) {
   Accordion.displayName = "Accordion"
@@ -95,7 +100,7 @@ export type AccordionItemProps = Omit<PropsOf<typeof StyledItem>, "children"> &
  * It also provides context for the accordion button and panel.
  */
 export const AccordionItem = forwardRef(
-  (props: AccordionItemProps, ref: React.Ref<any>) => {
+  (props: AccordionItemProps, ref: Ref<any>) => {
     const accordionContext = useAccordionContext()
 
     const { getRootProps, ...context } = useAccordionItem({
@@ -103,11 +108,13 @@ export const AccordionItem = forwardRef(
       context: accordionContext,
     })
 
-    const { children } = props
+    const { children, className } = props
+
+    const _className = cx("chakra-accordion__item", className)
 
     return (
       <AccordionItemCtxProvider value={context}>
-        <StyledItem data-chakra-accordion-item="" {...getRootProps({ ref })}>
+        <StyledItem {...getRootProps({ ref })} className={_className}>
           {isFunction(children)
             ? children({
                 isExpanded: !!context.isOpen,
@@ -163,14 +170,11 @@ export type AccordionButtonProps = PropsOf<typeof StyledButton>
  * that is appropriate for the information architecture of the page.
  */
 export const AccordionButton = forwardRef(
-  (props: AccordionButtonProps, ref: React.Ref<any>) => {
+  (props: AccordionButtonProps, ref: Ref<any>) => {
+    const _className = cx("chakra-accordion__button", props.className)
     const { getButtonProps } = useAccordionItemContext()
-    return (
-      <StyledButton
-        data-chakra-accordion-button=""
-        {...getButtonProps({ ...props, ref })}
-      />
-    )
+    const buttonProps = getButtonProps({ ...props, ref })
+    return <StyledButton {...buttonProps} className={_className} />
   },
 )
 
@@ -201,16 +205,22 @@ export type AccordionPanelProps = PropsOf<typeof StyledPanel>
  * It uses the `Collapse` component to animate it's height.
  */
 export const AccordionPanel = forwardRef(
-  (props: AccordionPanelProps, ref: React.Ref<any>) => {
+  (props: AccordionPanelProps, ref: Ref<any>) => {
     const { getPanelProps, isOpen } = useAccordionItemContext()
     /**
      * remove `hidden` prop, 'coz we're using height animation
      */
     const { hidden, ...panelProps } = getPanelProps({ ...props, ref })
 
+    const _className = cx("chakra-accordion__panel", props.className)
+
     return (
       <Collapse isOpen={isOpen}>
-        <StyledPanel data-chakra-accordion-panel="" {...panelProps} />
+        <StyledPanel
+          {...panelProps}
+          className={_className}
+          transition="height 150ms ease-in-out, opacity 150ms ease-in-out, transform 150ms ease-in-out"
+        />
       </Collapse>
     )
   },
@@ -237,7 +247,8 @@ export function AccordionIcon(props: AccordionIconProps) {
     <ChevronDownIcon
       aria-hidden
       focusable="false"
-      size="1.25em"
+      width="1.25em"
+      height="1.25em"
       opacity={isDisabled ? 0.4 : 1}
       transform={isOpen ? "rotate(-180deg)" : undefined}
       transition="transform 0.2s"

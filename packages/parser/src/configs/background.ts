@@ -27,8 +27,12 @@ const config: Config = {
   backgroundPosition: true,
   backgroundRepeat: true,
   backgroundAttachment: true,
+  backgroundBlendMode: true,
   bgImage: {
     property: "backgroundImage",
+  },
+  bgBlendMode: {
+    property: "backgroundBlendMode",
   },
   bgSize: {
     property: "backgroundSize",
@@ -68,6 +72,14 @@ export interface BackgroundProps {
    * The CSS `background-image` property
    */
   backgroundImage?: Prop<CSS.BackgroundImageProperty>
+  /**
+   * The CSS `background-blend-mode` property
+   */
+  backgroundBlendMode?: Prop<CSS.BackgroundBlendModeProperty>
+  /**
+   * The CSS `background-blend-mode` property
+   */
+  bgBlendMode?: Prop<CSS.BackgroundBlendModeProperty>
   /**
    * The CSS `background-size` property
    */

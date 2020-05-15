@@ -3,7 +3,7 @@ import {
   useControllableProp,
   useSafeLayoutEffect,
 } from "@chakra-ui/hooks"
-import { callAllHandlers, dataAttr, mergeRefs } from "@chakra-ui/utils"
+import { callAllHandlers, dataAttr, mergeRefs, Dict } from "@chakra-ui/utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
 import * as React from "react"
 
@@ -207,6 +207,24 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       "aria-disabled": isDisabled,
       style: visuallyHiddenStyle,
     }),
+    getLabelProps: (props: Dict = {}) => {
+      /**
+       * Prevent `onBlur` being fired when the checkbox label is touched
+       */
+      const stop = (event: React.SyntheticEvent) => {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+      return {
+        ...props,
+        style: { ...props.style, touchAction: "none" },
+        onMouseDown: callAllHandlers(props.onMouseDown, stop),
+        onTouchStart: callAllHandlers(props.onTouchState, stop),
+        "data-disabled": dataAttr(isDisabled),
+        " data-checked": dataAttr(isChecked),
+        "data-invalid": dataAttr(isInvalid),
+      }
+    },
     htmlProps,
   }
 }

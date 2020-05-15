@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/focus-lock",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "React focus lock for all Chakra components",
   "keywords": [
     "react focus lock",

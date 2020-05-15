@@ -63,6 +63,9 @@ const config: Config = {
     property: "maxHeight",
     scale: "sizes",
   },
+  d: {
+    property: "display",
+  },
   overflow: true,
   overflowX: true,
   overflowY: true,
@@ -79,6 +82,10 @@ export interface LayoutProps {
    * The CSS `display` property
    */
   display?: Prop<CSS.DisplayProperty>
+  /**
+   * The CSS `display` property
+   */
+  d?: Prop<CSS.DisplayProperty>
   /**
    * The CSS `width` property
    */

@@ -6,8 +6,9 @@ import { useSafeLayoutEffect } from "@chakra-ui/hooks"
 
 type PortalContext = HTMLDivElement | null
 
-const [PortalCtxProvider, usePortalContext] = createContext<PortalContext>({
+const [PortalContextProvider, usePortalContext] = createContext<PortalContext>({
   strict: false,
+  name: "PortalContext",
 })
 
 export interface PortalProps {
@@ -23,7 +24,7 @@ export interface PortalProps {
    * Function that will be called to get the parent element
    * that the portal will be attached to.
    */
-  container?: () => HTMLElement
+  getContainer?: () => HTMLElement
   /**
    * The content or node you'll like to portal
    */
@@ -39,7 +40,7 @@ export interface PortalProps {
  * @see Docs https://chakra-ui.com/portal
  */
 export function Portal(props: PortalProps) {
-  const { onMount, onUnmount, children, container: containerProp } = props
+  const { onMount, onUnmount, children, getContainer } = props
 
   /**
    * Generate the portal's dom node. We'll wrap the children
@@ -80,7 +81,7 @@ export function Portal(props: PortalProps) {
 
   useSafeLayoutEffect(() => {
     // get the custom container from the container prop
-    const mountNode = containerProp?.()
+    const customContainer = getContainer?.()
 
     /**
      * We need to know where to mount this portal, we have 4 options:
@@ -90,7 +91,7 @@ export function Portal(props: PortalProps) {
      * - else use document.body as containers
      */
     const container =
-      mountNode ?? parentPortal ?? manager?.node ?? document.body
+      customContainer ?? parentPortal ?? manager?.node ?? document.body
 
     /**
      * Append portal node to the computed container
@@ -109,7 +110,7 @@ export function Portal(props: PortalProps) {
       }
     }
   }, [
-    containerProp,
+    getContainer,
     portal,
     parentPortal,
     onMount,
@@ -131,7 +132,9 @@ export function Portal(props: PortalProps) {
   }
 
   return createPortal(
-    <PortalCtxProvider value={portal}>{finalChildren}</PortalCtxProvider>,
+    <PortalContextProvider value={portal}>
+      {finalChildren}
+    </PortalContextProvider>,
     portal,
   )
 }

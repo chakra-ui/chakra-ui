@@ -8,11 +8,34 @@ import {
 } from "@chakra-ui/system"
 import { Button } from "@chakra-ui/button"
 import Head from "next/head"
+import {
+  Input,
+  InputLeftAddon,
+  InputRightAddon,
+  InputLeftElement,
+  InputRightElement,
+  InputGroup,
+} from "@chakra-ui/input"
 
 function Switcher() {
   const [, toggleMode] = useColorMode()
   const text = useColorModeValue("light-man", "dark-man")
   return <button onClick={toggleMode}>Current mode: {text}</button>
+}
+
+const InputGrouper = () => {
+  const [bool, setBool] = React.useState(false)
+  return (
+    <>
+      <InputGroup maxWidth="400px">
+        <InputLeftElement color="gray.300" fontSize="1.2em" children="$23" />
+        <Input placeholder="Enter amount" />
+        {bool && <InputRightElement children={"C"} />}
+      </InputGroup>
+      <button onClick={() => setBool(s => !s)}>Add Right Element</button>
+      <br />
+    </>
+  )
 }
 
 const Home = () => (
@@ -37,6 +60,13 @@ const Home = () => (
           <Button colorScheme="green">Welcome</Button>
         </DarkMode>
       </chakra.div>
+
+      <InputGroup>
+        <InputLeftElement children={"+234"} />
+        <Input type="phone" placeholder="Phone number" />
+      </InputGroup>
+
+      <InputGrouper />
 
       <Switcher />
 

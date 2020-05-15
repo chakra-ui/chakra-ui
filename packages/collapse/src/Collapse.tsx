@@ -7,14 +7,48 @@ import {
 import { ariaAttr, cx, mergeRefs, __DEV__ } from "@chakra-ui/utils"
 import { useRect } from "@reach/rect"
 import * as React from "react"
-import { cloneElement, forwardRef, useState } from "react"
+import {
+  cloneElement,
+  forwardRef,
+  useState,
+  Children,
+  useRef,
+  Ref,
+} from "react"
 
 export type CollapseProps = PropsOf<typeof chakra.div> & {
+  /**
+   * If `true`, the content will be visible
+   */
   isOpen?: boolean
+  /**
+   * The height you want the content in it's collapsed state.
+   * @default 0
+   */
   startingHeight?: number
+  /**
+   * Custom styles for the Transition component's appear, entered and exiting states
+   */
   config?: TransitionProps["styles"]
+  /**
+   * If `true`, the opacity of the content will be animated
+   * @default true
+   */
   animateOpacity?: boolean
-  transition?: string
+  /**
+   * The CSS `transition-duration` (in ms) to apply for the collapse animation
+   *
+   * @default
+   * 150
+   */
+  timeout?: number
+  /**
+   * The CSS `transition-timing-function` to apply for the collapse animation
+   *
+   * @default
+   * "ease"
+   */
+  easing?: string
 }
 
 export const Collapse = forwardRef(
@@ -27,28 +61,30 @@ export const Collapse = forwardRef(
       animateOpacity = true,
       className,
       style: htmlStyle,
-      transition = "height 200ms ease, opacity 200ms ease, transform 200ms ease",
+      timeout = 150,
+      easing = "ease",
       ...rest
     } = props
 
+    const getStr = (property: string) => `${property} ${timeout}ms ${easing}`
+
+    const transition = `${getStr("height")}, ${getStr("opacity")}, ${getStr(
+      "transform",
+    )}`
+
     const [hidden, setHidden] = useState(true)
 
-    type ChildElement = React.ReactElement<{
-      ref: React.Ref<any>
-    }>
+    type ChildElement = React.ReactElement<{ ref: Ref<any> }>
 
     let child = children
 
     if (typeof children === "string") {
-      console.warn(
-        `Warning: You're using a string directly inside <Collapse>. We recommend that you add an <div> tag as child of <Collapse>`,
-      )
-      child = <div>{children}</div> // fallback
+      child = <div>{children}</div>
     }
 
-    const _child = React.Children.only(child) as ChildElement
+    const _child = Children.only(child) as ChildElement
 
-    const ref = React.useRef<HTMLDivElement>(null)
+    const ref = useRef<HTMLDivElement>(null)
 
     const rect = useRect(ref, true)
     const height = rect?.height ?? 0
@@ -66,7 +102,7 @@ export const Collapse = forwardRef(
       exiting: {
         height: startingHeight,
         opacity: startingHeight ? 1 : 0,
-        transform: "translateY(-0.5rem)",
+        transform: startingHeight > 0 ? "translateY(0)" : "translateY(-0.5rem)",
       },
     }
 
@@ -76,7 +112,7 @@ export const Collapse = forwardRef(
         styles={config || styles}
         onEntered={() => setHidden(false)}
         onExited={() => setHidden(true)}
-        timeout={{ enter: 50, exit: 200 }}
+        timeout={{ enter: 0, exit: timeout }}
         transition={transition}
         unmountOnExit={false}
       >
@@ -90,7 +126,7 @@ export const Collapse = forwardRef(
               ...styles,
               overflow: "hidden",
               opacity: animateOpacity ? styles.opacity : 1,
-              willChange: "height, opacity",
+              willChange: "height, opacity, transform",
               ...htmlStyle,
             }}
           >

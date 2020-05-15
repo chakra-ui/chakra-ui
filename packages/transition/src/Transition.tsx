@@ -35,13 +35,13 @@ export function Transition(props: TransitionProps) {
   const {
     styles,
     in: inProp,
-    timeout = 200,
+    timeout = 150,
     transition = `all ${timeout}ms ease-in-out`,
     children,
     ...rest
   } = props
 
-  const computedStyle = (state: TransitionStatus) => ({
+  const getStyle = (state: TransitionStatus) => ({
     ...styles.init,
     transition,
     //@ts-ignore
@@ -50,7 +50,7 @@ export function Transition(props: TransitionProps) {
 
   return (
     <CSSTransition appear unmountOnExit in={inProp} timeout={timeout} {...rest}>
-      {state => children(computedStyle(state))}
+      {state => children(getStyle(state))}
     </CSSTransition>
   )
 }

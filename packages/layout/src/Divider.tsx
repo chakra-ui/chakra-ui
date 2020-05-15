@@ -1,5 +1,5 @@
 import { chakra, PropsOf } from "@chakra-ui/system"
-import { __DEV__ } from "@chakra-ui/utils"
+import { __DEV__, cx } from "@chakra-ui/utils"
 
 interface DividerOptions {
   orientation?: "horizontal" | "vertical"
@@ -26,6 +26,7 @@ export const Divider = chakra<"hr", DividerOptions>("hr", {
   attrs: props => ({
     role: "separator",
     "aria-orientation": props.orientation || "horizontal",
+    className: cx("chakra-divider", props.className),
   }),
 })
 

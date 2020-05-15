@@ -1,35 +1,33 @@
 import { chakra } from "@chakra-ui/system"
 import * as React from "react"
-import { Alert, AlertDescription, AlertIcon, AlertTitle } from "./Alert"
+import { Alert, AlertDescription, AlertIcon, AlertTitle } from "."
+import { Container } from "@chakra-ui/layout"
 
 export default {
   title: "Alert",
+  decorators: [(story: Function) => <Container mt={4}>{story()}</Container>],
 }
 
 export const Basic = () => (
-  <Alert status="error" variant="solid" justifyContent="center">
+  <Alert status="error" variant="solid" borderRadius="md">
     <AlertIcon />
-    <AlertTitle display="inline-block" mr={2}>
-      Your browser is outdated!
-    </AlertTitle>
-    <AlertDescription display="inline-block">
-      Your Chakra experience may be degraded.
-    </AlertDescription>
+    <AlertTitle mr={2}>Outdated</AlertTitle>
+    <AlertDescription>Your Chakra experience may be degraded.</AlertDescription>
   </Alert>
 )
 
 export const Subtle = () => (
-  <Alert status="success" maxWidth="sm" mx="auto" alignItems="start">
+  <Alert status="success" mx="auto" alignItems="start">
     <AlertIcon />
     <chakra.div flex="1">
-      <AlertTitle>Holy Smokes!</AlertTitle>
+      <AlertTitle>Holy Smokes</AlertTitle>
       <AlertDescription>Something just happened!</AlertDescription>
     </chakra.div>
   </Alert>
 )
 
 export const LeftAccent = () => (
-  <Alert variant="left-accent" maxWidth="sm" mx="auto" alignItems="start">
+  <Alert variant="left-accent" mx="auto" alignItems="start">
     <AlertIcon />
     <chakra.div flex="1">
       <AlertTitle>Holy Smokes</AlertTitle>
@@ -39,7 +37,7 @@ export const LeftAccent = () => (
 )
 
 export const TopAccent = () => (
-  <Alert variant="top-accent" maxWidth="sm" mx="auto" alignItems="start">
+  <Alert variant="top-accent" mx="auto" alignItems="start">
     <AlertIcon />
     <chakra.div flex="1">
       <AlertTitle>Holy Smokes</AlertTitle>

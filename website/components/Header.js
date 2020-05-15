@@ -1,4 +1,3 @@
-/** @jsx jsx */
 import {
   Box,
   Flex,
@@ -6,11 +5,12 @@ import {
   useColorMode,
   Link,
   Stack,
+  chakra,
 } from "@chakra-ui/core"
-import { jsx } from "@emotion/core"
 import { DiGithubBadge } from "react-icons/di"
 import Logo from "./Logo"
 import { Container } from "../pages"
+import { FaMoon, FaSun } from "react-icons/fa"
 
 const StorybookIcon = props => (
   <svg
@@ -40,12 +40,11 @@ const StorybookIcon = props => (
 )
 
 const Header = props => {
-  const { colorMode, toggleColorMode } = useColorMode()
+  const [colorMode, toggleColorMode] = useColorMode()
   const bg = { light: "white", dark: "gray.800" }
   return (
-    <Box
+    <chakra.header
       pos="fixed"
-      as="header"
       top="0"
       zIndex="4"
       bg={bg[colorMode]}
@@ -57,22 +56,22 @@ const Header = props => {
       {...props}
     >
       <Container h="100%">
-        <Flex size="100%" px="6" align="center" justify="space-between">
-          <Box
+        <Flex boxSize="100%" px="6" align="center" justify="space-between">
+          <chakra.a
             as="a"
-            d="block"
+            display="block"
             href="/"
             aria-label="Chakra UI, Back to homepage"
           >
             <Logo />
-          </Box>
+          </chakra.a>
           <Flex align="center" color="gray.500">
-            <Stack align="center" isInline spacing="3">
+            <Stack align="center" direction="row" spacing="3">
               <Link
                 isExternal
                 href="https://github.com/chakra-ui/chakra-ui/tree/master/packages/chakra-ui"
               >
-                <Box as={DiGithubBadge} size="8" color="current" />
+                <Box as={DiGithubBadge} boxSize="8" color="current" />
               </Link>
               {/* <Link isExternal href="https://chakra-ui.netlify.com">
                 <Box as={StorybookIcon} size="6" color="current" />
@@ -87,12 +86,12 @@ const Header = props => {
               ml="2"
               fontSize="20px"
               onClick={toggleColorMode}
-              icon={colorMode === "light" ? "moon" : "sun"}
+              icon={colorMode === "light" ? <FaMoon /> : <FaSun />}
             />
           </Flex>
         </Flex>
       </Container>
-    </Box>
+    </chakra.header>
   )
 }
 

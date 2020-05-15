@@ -11,8 +11,6 @@ const grayGhostStyle = (props: Props) => ({
   },
 })
 
-////////////////////////////////////////////////////////////
-
 function getGhostStyle(props: Props) {
   const { colorScheme: c, theme: t } = props
   if (c === "gray") return grayGhostStyle(props)
@@ -32,8 +30,6 @@ function getGhostStyle(props: Props) {
   }
 }
 
-////////////////////////////////////////////////////////////
-
 function getOutlineStyle(props: Props) {
   const { colorScheme: c } = props
   const borderColor = mode(`gray.200`, `whiteAlpha.300`)(props)
@@ -44,8 +40,6 @@ function getOutlineStyle(props: Props) {
     ...getGhostStyle(props),
   }
 }
-
-////////////////////////////////////////////////////////////
 
 const graySolidStyle = (props: Props) => ({
   bg: mode(`gray.100`, `whiteAlpha.200`)(props),
@@ -70,8 +64,6 @@ function getSolidStyle(props: Props) {
   }
 }
 
-////////////////////////////////////////////////////////////
-
 function getLinkStyle(props: Props) {
   const { colorScheme: c } = props
   return {
@@ -87,8 +79,6 @@ function getLinkStyle(props: Props) {
     },
   }
 }
-
-////////////////////////////////////////////////////////////
 
 const sizes = {
   lg: {
@@ -157,6 +147,20 @@ const Button: ComponentTheme = {
     ghost: getGhostStyle,
     link: getLinkStyle,
     outline: getOutlineStyle,
+  },
+}
+
+export const ButtonTokens = {
+  sizes: {
+    lg: "lg",
+    sm: "sm",
+    md: "md",
+    xs: "xs",
+  },
+  variants: {
+    solid: "solid",
+    subtle: "subtle",
+    outline: "outline",
   },
 }
 

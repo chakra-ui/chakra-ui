@@ -1,4 +1,4 @@
-import SEO from "../components/SEO";
+import SEO from "../components/SEO"
 
 <SEO
   title="Avatars"
@@ -21,13 +21,13 @@ Chakra UI exports 2 avatar related components:
 - `AvatarGroup`: A wrapper to stack multiple Avatars together.
 
 ```js
-import { Avatar, AvatarBadge } from "@chakra-ui/core";
+import { Avatar, AvatarBadge } from "@chakra-ui/core"
 ```
 
 ## Usage
 
 ```jsx
-<Stack isInline>
+<Stack direction="row">
   <Avatar name="Dan Abrahmov" src="https://bit.ly/dan-abramov" />
   <Avatar name="Kola Tioluwani" src="https://bit.ly/tioluwani-kolawole" />
   <Avatar name="Kent Dodds" src="https://bit.ly/kent-c-dodds" />
@@ -43,7 +43,7 @@ import { Avatar, AvatarBadge } from "@chakra-ui/core";
 The Avatar component comes in 7 sizes
 
 ```jsx
-<Stack isInline>
+<Stack direction="row">
   <Avatar size="2xs" name="Dan Abrahmov" src="https://bit.ly/dan-abramov" />
   <Avatar
     size="xs"
@@ -71,7 +71,7 @@ If there was an error loading the `src` of the avatar, there are 2 fallbacks:
 - If there's no `name` prop, we use a default avatar.
 
 ```jsx
-<Stack isInline>
+<Stack direction="row">
   <Avatar name="Oshigaki Kisame" src="https://bit.ly/broken-link" />
   <Avatar name="Sasuke Uchiha" src="https://bit.ly/broken-link" />
   <Avatar src="https://bit.ly/broken-link" />
@@ -84,14 +84,14 @@ In some products, you might need show a badge on the right corner of the avatar,
 what we call a **badge**. Here's an example that shows if the user is online:
 
 ```jsx
-<Stack isInline spacing={4}>
+<Stack direction="row" spacing={4}>
   <Avatar>
-    <AvatarBadge size="1.25em" bg="green.500" />
+    <AvatarBadge boxSize="1.25em" bg="green.500" />
   </Avatar>
 
   {/* You can also change the borderColor and bg of the badge */}
   <Avatar>
-    <AvatarBadge borderColor="papayawhip" bg="tomato" size="1.25em" />
+    <AvatarBadge borderColor="papayawhip" bg="tomato" boxSize="1.25em" />
   </Avatar>
 </Stack>
 ```

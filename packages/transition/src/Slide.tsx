@@ -76,7 +76,7 @@ export type SlideProps = Omit<TransitionProps, "styles" | "timeout"> & {
 }
 
 export function Slide(props: SlideProps) {
-  const { placement = "left", timeout = 250, children, ...rest } = props
+  const { placement = "left", timeout = 150, children, ...rest } = props
 
   const styles = getTransitionStyles(placement)
 
@@ -90,7 +90,7 @@ export function Slide(props: SlideProps) {
     <Transition
       styles={styles}
       transition={`all ${timeout}ms cubic-bezier(0, 0, 0.2, 1)`}
-      timeout={{ enter: 50, exit: timeout }}
+      timeout={{ enter: 0, exit: timeout }}
       {...rest}
     >
       {styles => children({ ...positionStyles, ...styles })}

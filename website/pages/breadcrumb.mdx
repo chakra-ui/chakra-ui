@@ -1,4 +1,4 @@
-import SEO from "../components/SEO";
+import SEO from "../components/SEO"
 
 <SEO
   title="Breadcrumb"
@@ -29,7 +29,7 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbSeparator,
-} from "@chakra-ui/core";
+} from "@chakra-ui/core"
 ```
 
 ## Usage
@@ -78,10 +78,7 @@ icon.
 ### Using an icon as the separator
 
 ```jsx
-<Breadcrumb
-  spacing="8px"
-  separator={<Icon color="gray.300" name="chevron-right" />}
->
+<Breadcrumb spacing="8px" separator={<ChevronRightIcon color="gray.300" />}>
   <BreadcrumbItem>
     <BreadcrumbLink href="/">Home</BreadcrumbLink>
   </BreadcrumbItem>
@@ -92,33 +89,6 @@ icon.
 
   <BreadcrumbItem isCurrentPage>
     <BreadcrumbLink href="/contact">Contact</BreadcrumbLink>
-  </BreadcrumbItem>
-</Breadcrumb>
-```
-
-### Styling the Separator
-
-To gain control over the style of the breadcrumb separator. Set `addSeparator`
-to false, and manually add the `BreadcrumbSeparator` as a child of the
-`BreadcrumbItem`.
-
-You can then pass the style props to change the styling. You can also override
-the content of the `BreadcrumbSeparator` by passing its children.
-
-```jsx
-<Breadcrumb addSeparator={false}>
-  <BreadcrumbItem>
-    <BreadcrumbLink href="#">Breadcrumb 1</BreadcrumbLink>
-    <BreadcrumbSeparator color="tomato" fontSize="10px" fontWeight="bold" />
-  </BreadcrumbItem>
-
-  <BreadcrumbItem>
-    <BreadcrumbLink href="#">Breadcrumb 2</BreadcrumbLink>
-    <BreadcrumbSeparator color="firebrick" fontSize="20px" />
-  </BreadcrumbItem>
-
-  <BreadcrumbItem isCurrentPage>
-    <BreadcrumbLink href="#">Breadcrumb 3</BreadcrumbLink>
   </BreadcrumbItem>
 </Breadcrumb>
 ```

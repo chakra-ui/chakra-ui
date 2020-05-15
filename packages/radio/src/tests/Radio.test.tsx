@@ -53,8 +53,8 @@ test("has proper aria and data attributes", async () => {
 test("handles events and callbacks correctly", () => {
   const hookProps = { onChange: jest.fn() }
   const checkboxProps = {
-    onPointerDown: jest.fn(),
-    onPointerUp: jest.fn(),
+    onMouseDown: jest.fn(),
+    onMouseUp: jest.fn(),
   }
   const inputProps = {
     onChange: jest.fn(),
@@ -77,18 +77,14 @@ test("handles events and callbacks correctly", () => {
   const input = utils.getByTestId("input")
   const checkbox = utils.getByTestId("checkbox")
 
-  // pointer up and down
-  fireEvent.pointerDown(checkbox)
+  // mouse up and down
+  fireEvent.mouseDown(checkbox)
   expect(checkbox).toHaveAttribute("data-active")
-  expect(checkboxProps.onPointerDown).toHaveBeenCalled()
+  expect(checkboxProps.onMouseDown).toHaveBeenCalled()
 
-  fireEvent.pointerUp(checkbox)
+  fireEvent.mouseUp(checkbox)
   expect(checkbox).not.toHaveAttribute("data-active")
-  expect(checkboxProps.onPointerUp).toHaveBeenCalled()
-
-  // pointer enter and leave should be tested here, but I'm not sure they're
-  // correctly supported in jsdom. was unable to get `fireEvent.pointerEnter` or
-  // `fireEvent.pointerLeave` to have any effect whatsoever.
+  expect(checkboxProps.onMouseUp).toHaveBeenCalled()
 
   // on change
   fireEvent.click(input)

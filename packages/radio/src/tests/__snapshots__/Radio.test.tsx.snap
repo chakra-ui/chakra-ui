@@ -3,16 +3,17 @@
 exports[`Radio renders correctly 1`] = `
 <DocumentFragment>
   <label
-    class="css-h82fce"
+    class="chakra-radio css-h82fce"
   >
     <input
+      class="chakra-radio__input"
       style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
       type="radio"
       value=""
     />
     <div
       aria-hidden="true"
-      class="css-1n7xslh"
+      class="chakra-radio__control css-ga0kq6"
     />
   </label>
 </DocumentFragment>

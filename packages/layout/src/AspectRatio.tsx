@@ -1,5 +1,5 @@
-import { __DEV__ } from "@chakra-ui/utils"
-import React, { forwardRef, Children } from "react"
+import { __DEV__, cx } from "@chakra-ui/utils"
+import * as React from "react"
 import { Box, BoxProps } from "./Box"
 
 interface AspectRatioOptions {
@@ -19,17 +19,20 @@ export type AspectRatioProps = BoxProps & AspectRatioOptions
  *
  * @see Docs https://chakra-ui.com/aspectratio
  */
-export const AspectRatio = forwardRef(
+export const AspectRatio = React.forwardRef(
   (props: AspectRatioProps, ref: React.Ref<any>) => {
-    const { ratio = 4 / 3, children, ...rest } = props
+    const { ratio = 4 / 3, children, className, ...rest } = props
 
     // enforce single child
-    const child = Children.only(children)
+    const child = React.Children.only(children)
+
+    const _className = cx("chakra-aspect-ratio", className)
 
     return (
       <Box
         ref={ref}
         position="relative"
+        className={_className}
         _before={{
           height: 0,
           content: `""`,

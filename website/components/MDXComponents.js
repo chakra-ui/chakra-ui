@@ -1,43 +1,32 @@
-/** @jsx jsx */
 import {
   Box,
-  Callout,
   Code,
   Heading,
   Kbd,
-  PseudoBox,
   Text,
-  useColorMode,
+  chakra,
+  Alert,
+  useColorModeValue,
 } from "@chakra-ui/core"
-import { jsx } from "@emotion/core"
 import NextLink from "next/link"
-import { forwardRef } from "react"
+import * as React from "react"
 import CodeBlock from "./CodeBlock"
 
-const Pre = props => <Box my="2em" borderRadius="sm" {...props} />
+const Pre = props => <chakra.div my="2em" borderRadius="sm" {...props} />
 
 const Table = props => (
-  <Box as="table" textAlign="left" mt="32px" width="full" {...props} />
+  <chakra.table textAlign="left" mt="32px" width="full" {...props} />
 )
 
 const THead = props => {
-  const { colorMode } = useColorMode()
-  const bg = { light: "gray.50", dark: "whiteAlpha.100" }
+  const bg = useColorModeValue("gray.50", "whiteAlpha.100")
   return (
-    <Box
-      as="th"
-      bg={bg[colorMode]}
-      fontWeight="semibold"
-      p={2}
-      fontSize="sm"
-      {...props}
-    />
+    <chakra.th bg={bg} fontWeight="semibold" p={2} fontSize="sm" {...props} />
   )
 }
 
 const TData = props => (
-  <Box
-    as="td"
+  <chakra.td
     p={2}
     borderTopWidth="1px"
     borderColor="inherit"
@@ -47,8 +36,8 @@ const TData = props => (
   />
 )
 
-const Link = forwardRef((props, ref) => (
-  <PseudoBox
+const Link = React.forwardRef((props, ref) => (
+  <chakra.a
     as="a"
     ref={ref}
     color="teal.500"
@@ -80,12 +69,11 @@ const DocsHeading = props => (
     }}
     {...props}
   >
-    <Box pointerEvents="auto">
+    <chakra.div pointerEvents="auto">
       {props.children}
       {props.id && (
-        <PseudoBox
+        <chakra.a
           aria-label="anchor"
-          as="a"
           color="teal.500"
           fontWeight="normal"
           outline="none"
@@ -95,9 +83,9 @@ const DocsHeading = props => (
           href={`#${props.id}`}
         >
           #
-        </PseudoBox>
+        </chakra.a>
       )}
-    </Box>
+    </chakra.div>
   </Heading>
 )
 
@@ -115,13 +103,13 @@ const MDXComponents = {
     <DocsHeading as="h3" size="md" fontWeight="medium" {...props}></DocsHeading>
   ),
   inlineCode: props => (
-    <Code variantColor="yellow" fontSize="0.84em" {...props} />
+    <Code colorScheme="yellow" fontSize="0.84em" {...props} />
   ),
   code: CodeBlock,
   pre: Pre,
   kbd: Kbd,
   br: props => <Box height="24px" {...props} />,
-  hr: props => <Box as="hr" borderTopWidth="1px" my={8} {...props} />,
+  hr: props => <chakra.hr borderTopWidth="1px" my={8} {...props} />,
   table: Table,
   th: THead,
   td: TData,
@@ -130,12 +118,13 @@ const MDXComponents = {
       <Link {...props} />
     </NextLink>
   ),
-  p: props => <Text as="p" mt={4} lineHeight="tall" {...props} />,
-  ul: props => <Box as="ul" pt="8px" pl="16px" {...props} />,
-  ol: props => <Box as="ol" pt="8px" pl="16px" {...props} />,
-  li: props => <Box as="li" pb="4px" {...props} />,
+  p: props => <Text mt={4} lineHeight="tall" {...props} />,
+  ul: props => <chakra.ul pt="8px" pl="16px" {...props} />,
+  ol: props => <chakra.ol pt="8px" pl="16px" {...props} />,
+  li: props => <chakra.li pb="4px" {...props} />,
   blockquote: props => (
-    <Callout
+    <Alert
+      role="presentation"
       mt={4}
       variant="left-accent"
       status="warning"
@@ -144,16 +133,5 @@ const MDXComponents = {
     />
   ),
 }
-
-// const ChakraProvider = ({ children, theme }) => {
-//   return (
-//     <ThemeProvider theme={theme}>
-//       <ColorModeProvider>
-//         <CSSReset />
-//         {children}
-//       </ColorModeProvider>
-//     </ThemeProvider>
-//   );
-// };
 
 export default MDXComponents

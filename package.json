@@ -2,16 +2,17 @@
   "name": "chakra-ui",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "website"
   ],
   "scripts": {
     "codesandbox:ci": "yarn install && yarn bootstrap",
-    "boot": "yarn install && yarn bootstrap && yarn build",
-    "build": "lerna run build --no-private --stream",
+    "boot": "yarn install && yarn bootstrap && yarn build && yarn storybook",
+    "build": "lerna run build --ignore @chakra-ui/test-utils --no-private --stream",
     "test": "lerna run test --no-private --stream",
     "lint": "lerna run lint --no-private --stream",
     "storybook": "start-storybook -p 6006",
-    "clean": "lerna clean --yes",
+    "clean": "lerna clean --yes && rimraf node_modules",
     "bootstrap": "lerna bootstrap --use-workspaces",
     "bundlesize": "bundlesize -c bundlesize.config.json",
     "commit": "git-cz",
@@ -79,7 +80,8 @@
     "css-reset": "yarn workspace @chakra-ui/css-reset",
     "media-query": "yarn workspace @chakra-ui/media-query",
     "css": "yarn workspace @chakra-ui/css",
-    "variant": "yarn workspace @chakra-ui/variant"
+    "variant": "yarn workspace @chakra-ui/variant",
+    "skeleton": "yarn workspace @chakra-ui/skeleton"
   },
   "czConfig": {
     "path": "node_modules/cz-conventional-changelog"
@@ -111,7 +113,7 @@
     "@types/jest": "25.2.1",
     "jest": "25.2.7",
     "ts-jest": "25.3.1",
-    "typescript": "3.8.3",
+    "typescript": "3.9.2",
     "fs-utils": "0.7.0",
     "rimraf": "3.0.2",
     "@emotion/styled": "10.0.27",
@@ -152,6 +154,7 @@
     "react-lorem-component": "^0.13.0",
     "react-test-renderer": "16.13.0",
     "ts-loader": "6.2.1",
-    "tsconfig-paths-webpack-plugin": "3.2.0"
+    "tsconfig-paths-webpack-plugin": "3.2.0",
+    "yalc": "1.0.0-pre.35"
   }
 }

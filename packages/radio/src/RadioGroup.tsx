@@ -1,87 +1,77 @@
+import { ThemingProps, chakra, PropsOf } from "@chakra-ui/system"
+import { createContext, __DEV__, cx } from "@chakra-ui/utils"
 import * as React from "react"
 import {
-  __DEV__,
-  getValidChildren,
-  mapResponsive,
-  omit,
-} from "@chakra-ui/utils"
-import { useRadioGroup, UseRadioGroupProps } from "./RadioGroup.hook"
-import { chakra, useTheme, css, SystemProps, PropsOf } from "@chakra-ui/system"
+  useRadioGroup,
+  UseRadioGroupProps,
+  UseRadioGroupReturn,
+} from "./RadioGroup.hook"
+
+export type RadioGroupContext = Pick<
+  UseRadioGroupReturn,
+  "onChange" | "value" | "name"
+> &
+  Omit<ThemingProps, "orientation">
+
+const [RadioGroupContextProvider, useRadioGroupContext] = createContext<
+  RadioGroupContext
+>({
+  name: "RadioGroupContext",
+  strict: false,
+})
+
+export { useRadioGroupContext }
 
 export type RadioGroupProps = UseRadioGroupProps &
-  Omit<PropsOf<typeof chakra.div>, "onChange" | "value"> & {
-    /**
-     * The name of the radio group
-     */
-    name?: string
-    /**
-     * The space between the children radios
-     */
-    spacing?: SystemProps["margin"]
-    /**
-     * The direction to stack the children radios
-     */
-    direction?: SystemProps["flexDirection"]
-  }
+  Omit<PropsOf<typeof chakra.div>, "onChange" | "value" | "defaultValue"> &
+  Omit<ThemingProps, "orientation"> & { children: React.ReactNode }
 
 /**
- * RadioGroup
- *
  * Used for multiple radios which are bound in one group,
  * and it indicates which option is selected.
  *
  * @see Docs https://chakra-ui.com/radio
- *
  */
-
 export const RadioGroup = React.forwardRef(
   (props: RadioGroupProps, ref: React.Ref<any>) => {
     const {
-      name,
       colorScheme,
       size,
-      spacing = 2,
-      direction = "row",
+      variant,
       children,
-      ...rest
+      className,
+      ...radioGroupProps
     } = props
 
-    const theme = useTheme()
+    const {
+      value,
+      onChange,
+      getRootProps,
+      name,
+      htmlProps: rest,
+    } = useRadioGroup(radioGroupProps)
 
-    const validChildren = getValidChildren(children)
+    const group = React.useMemo(
+      () => ({
+        name,
+        size,
+        onChange,
+        colorScheme,
+        value,
+        variant,
+      }),
+      [size, name, onChange, colorScheme, value, variant],
+    )
 
-    const { getRootProps, getRadioProps } = useRadioGroup({ ...props, ref })
-
-    const childSpacing = mapResponsive(spacing, value => {
-      const { margin } = css({ margin: value })(theme)
-      return `calc(${margin} / 2)`
-    })
-
-    const containerSpacing = mapResponsive(spacing, value => {
-      const { margin } = css({ margin: value })(theme)
-      return `calc(${margin} / 2 * -1)`
-    })
-
-    const clones = validChildren.map((child, index) => {
-      return (
-        <chakra.div key={index} margin={childSpacing}>
-          {React.cloneElement(child, getRadioProps(child.props))}
-        </chakra.div>
-      )
-    })
+    const groupProps = getRootProps({ ref, ...rest })
+    const _className = cx("chakra-radio-group", className)
 
     return (
-      <chakra.div
-        display="flex"
-        flexWrap="wrap"
-        role="radiogroup"
-        {...getRootProps()}
-        flexDirection={direction}
-        margin={containerSpacing}
-        {...omit(rest, ["onChange"])}
-      >
-        {clones}
-      </chakra.div>
+      <RadioGroupContextProvider value={group}>
+        <chakra.div {...groupProps} className={_className}>
+          {children}
+        </chakra.div>
+      </RadioGroupContextProvider>
     )
   },
 )

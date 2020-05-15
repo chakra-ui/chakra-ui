@@ -16,11 +16,11 @@
 - Support for the `isFullWidth` prop has been deprecated. The Checkbox takes up
   the width of the parent by default.
 
-  To allow for better layout composition, the `CheckboxGroup` component no
-  longer supports the any style prop.
+- To allow for better layout composition, the `CheckboxGroup` component no
+  longer manages the layout of the radio buttons.
 
-  You can only pass `size`, `variant`, and `colorScheme` in addition to typical
-  group props which are used to control the states of the checkbox.
+- You can only pass `size`, `variant`, and `colorScheme` in addition to typical
+  checbox group's props which are used to control the states of the checkbox.
 
 ```jsx
 // before
@@ -32,11 +32,11 @@
 
 // after
 <CheckboxGroup defaultValue={["one", "two"]}>
-  <HStack spacing="40px">
+  <Stack spacing="40px">
     <Checkbox value="one">One</Checkbox>
     <Checkbox value="two">Two</Checkbox>
     <Checkbox value="three">Three</Checkbox>
-  </HStack>
+  </Stack>
 </CheckboxGroup>
 ```
 
@@ -49,7 +49,7 @@ placed in a grid (`SimpleGrid`) or made to wrap automatically (`Wrap`).
 - Support for `iconColor` prop to customize the color of the check icon
 
 ```jsx
-<Checkbox iconColor="blue">Option</Checkbox>
+<Checkbox iconColor="blue.500">Option</Checkbox>
 ```
 
 - Support for `iconSize` prop to customize the size of the check icon

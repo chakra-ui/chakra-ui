@@ -17,8 +17,8 @@ const ArrowIcon = (props: IconProps) => (
   </Icon>
 )
 
-export const CustomIcon = () => <ArrowIcon size="40px" color="red.100" />
+export const CustomIcon = () => <ArrowIcon boxSize="40px" color="red.100" />
 
 export const UsingReactIcon = () => (
-  <Icon as={Md3DRotation} size="40px" color="tomato" />
+  <Icon as={Md3DRotation} boxSize="40px" color="tomato" />
 )

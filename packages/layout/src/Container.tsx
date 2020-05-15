@@ -1,5 +1,5 @@
 import { chakra, PropsOf } from "@chakra-ui/system"
-import { __DEV__ } from "@chakra-ui/utils"
+import { __DEV__, cx } from "@chakra-ui/utils"
 
 export type ContainerProps = PropsOf<typeof chakra.div>
 
@@ -18,6 +18,9 @@ export const Container = chakra("div", {
     maxWidth: "60ch",
     paddingX: "1rem",
   },
+  attrs: props => ({
+    className: cx("chakra-container", props.className),
+  }),
 })
 
 if (__DEV__) {
