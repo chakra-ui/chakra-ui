@@ -9,12 +9,8 @@ const myTheme = {
   ...theme,
   baselineCrop: {
     body: {
-      topCrop: 10,
-      bottomCrop: 9,
-    },
-    mono: {
-      topCrop: 8.5,
-      bottomCrop: 10,
+      topCrop: 12,
+      bottomCrop: 11,
     },
   },
 }

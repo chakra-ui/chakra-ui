@@ -6,7 +6,7 @@ Text is the used to render text and paragraphs within an interface. It renders a
 ## Import
 
 ```js
-import { Text } from "@chakra-ui/core";
+import { Text } from "@chakra-ui/core"
 ```
 
 ## Changing the font size
@@ -84,6 +84,55 @@ Element** to see the element that gets rendered in html.
   <br />
   <Text as="sup">sup</Text>
 </>
+```
+
+## Baseline Crop
+
+`Text` and `Heading` elements have a prop called `baselineCrop`. This prop
+allows us to remove the extra white space that normally appears above and below
+text.
+
+> Note: This feature requires some manual setup in your theme file in order to
+> function. See `One-time Setup` section below for details.
+
+### One-Time Setup
+
+In order to use `baselineCrop`, you must measure your font manually and enter
+those measurements into the `baselineCrop` key in your theme.
+
+How to measure your font(s):
+
+1. Navigate to this website: <http://text-crop.eightshapes.com/>
+2. Select your font in the dropdown or use `Custom Font` option.
+3. Choose size `48` and line-height `1.2`.
+4. Move the top/bottom crop lines until they line up with the `Cap Height` and
+   `Baseline` of your font.
+5. Insert the values into your theme
+
+```js
+const myTheme = {
+  //...
+  baselineCrop: {
+    // replace `body` with key of the font in your theme's `fonts` object that you measured
+    body: {
+      topCrop: 10, // use the value you measured above
+      bottomCrop: 9, // use the value you measured above
+    },
+    // Other fonts go here
+  },
+  //...
+}
+```
+
+6. Repeat this for each font in your app, adding another entry to your theme
+   under `baselineCrop`.
+
+### Usage
+
+```html
+<Box height="10px" width="100%" bg="green.800" />
+<Text baselineCrop>Mark Dalgleish: Meme Lord</Text>
+<Box height="10px" width="100%" bg="green.800" />
 ```
 
 ## Props

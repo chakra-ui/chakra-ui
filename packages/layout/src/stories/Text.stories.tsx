@@ -8,12 +8,12 @@ const myTheme = {
   ...theme,
   baselineCrop: {
     body: {
-      topCrop: 10,
-      bottomCrop: 9,
+      topCrop: 12,
+      bottomCrop: 11,
     },
     mono: {
-      topCrop: 8.5,
-      bottomCrop: 10,
+      topCrop: 9,
+      bottomCrop: 12,
     },
   },
 }
@@ -25,7 +25,9 @@ export default {
 export const Basic = () => <Text>Kame-hame-ha!</Text>
 
 const examples = [
-  <Text isBaselineCropped>Basic Crop</Text>,
+  <Text fontFamily="mono" fontSize="3xl" isBaselineCropped>
+    Basic Crop
+  </Text>,
   <Text isBaselineCropped lineHeight={1.5}>
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos vel ab dolore
     eius mollitia culpa pariatur maxime, tempora in molestias aspernatur
