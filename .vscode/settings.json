@@ -1,4 +1,9 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
-  "grammarly.userWords": []
+  "eslint.validate": [
+    "typescript",
+    "typescriptreact",
+    "javascript",
+    "javascriptreact"
+  ]
 }

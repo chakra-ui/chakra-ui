@@ -1,0 +1,51 @@
+---
+title: "useDisclosure"
+---
+
+# useDisclosure
+
+`useDisclosure` is a custom hook to help handle common `open`, `close`, or
+`toggle` scenarios. It can be used to control feedback component such as
+[Modal](/modal), [AlertDialog](/alertdialog), [Drawer](/drawer), etc.
+
+## Import
+
+```js
+import { useDisclosure } from "@chakra-ui/core"
+```
+
+## Return value
+
+The `useDisclosure` hook returns an object with the following fields:
+
+| Name       | Type       | Default | Description                                                         |
+| ---------- | ---------- | ------- | ------------------------------------------------------------------- |
+| `isOpen`   | `boolean`  | `false` | If `true` set the controlled component to it's visible state.       |
+| `onClose`  | `function` |         | Callback function to set a falsy value for the `isOpen` parameter.  |
+| `onOpen`   | `function` |         | Callback function to set a truthy value for the `isOpen` parameter. |
+| `onToggle` | `function` |         | Callback function to toggle the value of the `isOpen` parameter.    |
+
+## Usage
+
+```jsx
+function Example() {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+  return (
+    <>
+      <Button onClick={onOpen}>Open Drawer</Button>
+      <Drawer placement="right" onClose={onClose} isOpen={isOpen}>
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerHeader borderBottomWidth="1px">Basic Drawer</DrawerHeader>
+          <DrawerBody>
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
+    </>
+  )
+}
+```

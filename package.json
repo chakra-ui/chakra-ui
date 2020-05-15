@@ -5,7 +5,7 @@
     "packages/*",
     "examples/*",
     "tooling/*",
-    "website"
+    "docs"
   ],
   "scripts": {
     "codesandbox:ci": "yarn install && yarn bootstrap",
@@ -25,8 +25,8 @@
     "playroom:build": "playroom build",
     "patch": "node -r esm scripts/patch-workspace.js",
     "create-pkg": "node scripts/create-package.js",
-    "docs": "yarn workspace @chakra-ui/docs dev",
-    "docs:now": "cd packages/chakra-ui-docs && now",
+    "docs": "yarn workspace @chakra-ui/docs",
+    "docs:now": "cd docs && now",
     "core": "yarn workspace @chakra-ui/core",
     "icon": "yarn workspace @chakra-ui/icon",
     "hooks": "yarn workspace @chakra-ui/hooks",
