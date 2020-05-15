@@ -284,7 +284,7 @@ We've updated the color mode to support the following scenatios
    }
    ```
 
-### Fixes 🩹
+### Fixes 🚑
 
 - Color mode now persists correctly when you refresh the page. All you need to
   do is to add `InitialColorMode` script as the first child in of `body`.
@@ -369,7 +369,7 @@ https://github.com/WICG/focus-visible/issues/128
 
 ## Image
 
-### Fixes 🩹
+### Fixes 🚑
 
 - Resolved the common SSR issue with Next.js
 
@@ -597,9 +597,9 @@ Stack
   </Menu>
   ```
 
-- Moved to Popper V2 🥳
+- Moved to Popper V2 :tada:
 
-### Fixes 🩹
+### Fixes 🚑
 
 - Fixed issue with `as` prop for `MenuItem`
 - Fixed issue with Link not navigating to the specified `href` value
@@ -681,7 +681,7 @@ boolean prop must start with `should`, `is`, or `has`
 - Add example where consumers can format and parse number input values (see
   [#438](https://github.com/chakra-ui/chakra-ui/pull/438))
 
-### Fixes 🩹
+### Fixes 🚑
 
 - Fixed issue where an error if the input value is greater than the `max` prop
   when focus is blurred (see
@@ -784,16 +784,16 @@ boolean prop must start with `should`, `is`, or `has`
   ```jsx
   // before
   <RadioGroup isInline defaultValue="one">
-  <Radio value="one">One</Radio>
-  <Radio value="two">Two</Radio>
-  <Radio value="three">Three</Radio>
+    <Radio value="one">One</Radio>
+    <Radio value="two">Two</Radio>
+    <Radio value="three">Three</Radio>
   </RadioGroup>
 
   // after
   <RadioGroup direction="row" defaultValue="one">
-  <Radio value="one">One</Radio>
-  <Radio value="two">Two</Radio>
-  <Radio value="three">Three</Radio>
+    <Radio value="one">One</Radio>
+    <Radio value="two">Two</Radio>
+    <Radio value="three">Three</Radio>
   </RadioGroup>
   ```
 
@@ -847,17 +847,17 @@ boolean prop must start with `should`, `is`, or `has`
   ```jsx
   // before
   <Slider defaultValue={30}>
-  <SliderTrack />
-  <SliderFilledTrack />
-  <SliderThumb />
+    <SliderTrack />
+    <SliderFilledTrack />
+    <SliderThumb />
   </Slider>
 
   // after
   <Slider defaultValue={30}>
-  <SliderTrack>
+    <SliderTrack>
       <SliderFilledTrack />
-  </SliderTrack>
-  <SliderThumb />
+    </SliderTrack>
+    <SliderThumb />
   </Slider>
   ```
 
@@ -1010,7 +1010,7 @@ const theme = {
 
 ## Textarea
 
-### Fixes 🩹
+### Fixes 🚑
 
 - Now supports all native `textarea` props.
 
