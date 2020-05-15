@@ -5,11 +5,21 @@ const Icon: ComponentTheme = {
     size: "md",
   },
   sizes: {
-    xs: { boxSize: "16px" },
-    sm: { boxSize: "24px" },
-    md: { boxSize: "32px" },
-    lg: { boxSize: "40px" },
     xl: { boxSize: "48px" },
+    lg: { boxSize: "40px" },
+    md: { boxSize: "32px" },
+    sm: { boxSize: "24px" },
+    xs: { boxSize: "16px" },
+  },
+}
+
+export const IconTokens = {
+  sizes: {
+    xl: "xl",
+    lg: "lg",
+    md: "md",
+    sm: "sm",
+    xs: "xs",
   },
 }
 

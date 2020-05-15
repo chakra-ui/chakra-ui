@@ -9,6 +9,7 @@ import Code from "./Code"
 import Modal from "./Modal"
 import Heading from "./Heading"
 import Input from "./Input"
+import InputAddon from "./InputAddon"
 import Link from "./Link"
 import Menu from "./Menu"
 import NumberInput from "./NumberInput"
@@ -26,6 +27,8 @@ import Form from "./Form"
 import Editable from "./Editable"
 import Progress from "./Progress"
 import Textarea from "./Textarea"
+import Stat from "./Stat"
+import Skeleton from "./Skeleton"
 
 export default {
   Accordion,
@@ -42,6 +45,7 @@ export default {
   Checkbox,
   Radio,
   Input,
+  InputAddon,
   Tooltip,
   CloseButton,
   Slider,
@@ -57,4 +61,6 @@ export default {
   Form,
   Editable,
   Progress,
+  Stat,
+  Skeleton,
 }

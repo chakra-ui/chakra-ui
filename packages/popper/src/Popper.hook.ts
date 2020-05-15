@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Placement, Instance, createPopper } from "@popperjs/core"
+import { Placement, Instance, createPopper, Modifier } from "@popperjs/core"
 import { getArrowStyles } from "./Popper.utils"
 
 const isBrowser = typeof window !== "undefined"
@@ -18,6 +18,7 @@ export interface UsePopperProps {
   flip?: boolean
   arrowSize?: number
   eventsEnabled?: boolean
+  modifiers?: Modifier<any>[]
 }
 
 export function usePopper(props: UsePopperProps) {
@@ -31,6 +32,7 @@ export function usePopper(props: UsePopperProps) {
     arrowSize = 10,
     gutter = arrowSize,
     eventsEnabled = true,
+    modifiers,
   } = props
 
   const popper = React.useRef<Instance | null>(null)
@@ -54,6 +56,8 @@ export function usePopper(props: UsePopperProps) {
     return false
   }, [])
 
+  const modifiersOverride = modifiers ?? []
+
   useSafeLayoutEffect(() => {
     if (referenceRef.current && popoverRef.current) {
       popper.current = createPopper(referenceRef.current, popoverRef.current, {
@@ -76,7 +80,7 @@ export function usePopper(props: UsePopperProps) {
           },
           {
             name: "computeStyles",
-            options: { gpuAcceleration: false },
+            options: { gpuAcceleration: false, adaptive: false },
           },
           {
             name: "offset",
@@ -104,6 +108,7 @@ export function usePopper(props: UsePopperProps) {
               setArrowStyles(state.styles.arrow as React.CSSProperties)
             },
           },
+          ...modifiersOverride,
         ],
       })
     }

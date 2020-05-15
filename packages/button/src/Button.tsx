@@ -1,6 +1,12 @@
 import { Spinner } from "@chakra-ui/spinner"
-import { chakra, PropsOf, SystemProps } from "@chakra-ui/system"
-import { dataAttr, __DEV__ } from "@chakra-ui/utils"
+import {
+  chakra,
+  PropsOf,
+  SystemProps,
+  useComponentStyle,
+  pseudoSelectors,
+} from "@chakra-ui/system"
+import { dataAttr, __DEV__, merge, Dict, cx } from "@chakra-ui/utils"
 import * as React from "react"
 import {
   forwardRef,
@@ -9,6 +15,7 @@ import {
   cloneElement,
   isValidElement,
 } from "react"
+import { useButtonGroup } from "./ButtonGroup"
 
 const StyledButton = chakra("button", {
   themeKey: "Button",
@@ -54,17 +61,14 @@ export interface ButtonOptions {
   type?: "button" | "reset" | "submit"
   /**
    * If added, the button will show an icon before the button's label.
-   * Use the icon key in `theme.iconPath`
    */
   leftIcon?: ReactElement
   /**
    * If added, the button will show an icon after the button's label.
-   * Use the icon key in `theme.iconPath`
    */
   rightIcon?: ReactElement
   /**
    * The space between the button icon and label.
-   * Use the styled-system tokens or add custom values as a string
    */
   iconSpacing?: SystemProps["marginRight"]
   /**
@@ -77,6 +81,8 @@ export type ButtonProps = Omit<PropsOf<typeof StyledButton>, "disabled"> &
   ButtonOptions
 
 export const Button = forwardRef((props: ButtonProps, ref: Ref<any>) => {
+  const group = useButtonGroup()
+
   const {
     isDisabled,
     isLoading,
@@ -89,18 +95,44 @@ export const Button = forwardRef((props: ButtonProps, ref: Ref<any>) => {
     iconSpacing = "0.5rem",
     type = "button",
     spinner,
+    variant = group?.variant,
+    colorScheme = group?.colorScheme,
+    size = group?.size,
+    className,
     ...rest
   } = props
+
+  const styles = useComponentStyle({
+    themeKey: "Button",
+    variant,
+    size,
+    colorScheme,
+  }) as Dict
+
+  /**
+   * When button is used within ButtonGroup (i.e flushed with sibling buttons),
+   * it's important to add a `zIndex` when it's focused to it doesn't look funky.
+   *
+   * So let's read the component styles and then add `zIndex` to it.
+   */
+  const focusSelector = pseudoSelectors["_focus"]
+  const _focus = merge(styles?.[focusSelector] ?? {}, { zIndex: 1 })
+
+  const _className = cx("chakra-button", className)
 
   return (
     <StyledButton
       disabled={isDisabled || isLoading}
-      aria-disabled={isDisabled || isLoading}
       ref={ref}
       type={type}
       width={isFullWidth ? "100%" : undefined}
       data-active={dataAttr(isActive)}
       data-loading={dataAttr(isLoading)}
+      variant={variant}
+      colorScheme={colorScheme}
+      size={size}
+      className={_className}
+      {...(!!group && { _focus })}
       {...rest}
     >
       {leftIcon && !isLoading && (
@@ -137,7 +169,13 @@ const ButtonIcon = (props: PropsOf<typeof chakra.span>) => {
     ? cloneElement(props.children, a11yProps)
     : props.children
 
-  return <chakra.span {...props}>{children}</chakra.span>
+  return (
+    <chakra.span
+      className="chakra-button__icon"
+      {...props}
+      children={children}
+    />
+  )
 }
 
 if (__DEV__) {
@@ -154,16 +192,19 @@ const ButtonSpinner = (props: ButtonSpinnerProps) => {
     label,
     spacing,
     children = <Spinner color="currentColor" width="1em" height="1em" />,
+    className,
     ...rest
   } = props
+
+  const _className = cx("chakra-button__spinner", className)
 
   return (
     <chakra.div
       fontSize="1em"
       lineHeight="normal"
       position={label ? "relative" : "absolute"}
-      // ml={label ? -1 : 0}
       mr={label ? spacing : 0}
+      className={_className}
       {...rest}
       children={children}
     />

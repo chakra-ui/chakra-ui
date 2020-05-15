@@ -17,7 +17,7 @@ const utilsNavLinks = ["useClipboard", "useDisclosure", "useTheme"]
 
 const NavGroupHeading = props => (
   <Heading
-    fontSize="xs"
+    size="xs"
     color="gray.400"
     letterSpacing="wide"
     mb={2}

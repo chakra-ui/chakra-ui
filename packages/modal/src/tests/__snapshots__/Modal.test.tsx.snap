@@ -26,34 +26,31 @@ exports[`should render correctly 1`] = `
         data-focus-lock-disabled="false"
       >
         <div
-          class="css-1klbp1o"
-          data-chakra-modal-overlay=""
+          class="chakra-modal__overlay css-1klbp1o"
         >
           <section
             aria-describedby="chakra-modal--body-1"
             aria-labelledby="chakra-modal--header-1"
             aria-modal="true"
-            class="css-1l02ijt"
-            data-chakra-modal-content=""
+            class="chakra-modal__content css-1l02ijt"
             id="chakra-modal-1"
             role="dialog"
             tabindex="-1"
           >
             <header
-              class="css-ohklxy"
-              data-chakra-modal-header=""
+              class="chakra-modal__header css-ohklxy"
               id="chakra-modal--header-1"
             >
               Modal header
             </header>
             <button
               aria-label="Close"
-              class="css-f0tj8y"
+              class="chakra-modal__close-btn css-wvhjba"
               type="button"
             >
               <svg
                 aria-hidden="true"
-                class="css-9na4ut"
+                class="chakra-icon css-9na4ut"
                 focusable="false"
                 role="presentation"
                 viewBox="0 0 24 24"
@@ -65,14 +62,13 @@ exports[`should render correctly 1`] = `
               </svg>
             </button>
             <div
-              class="css-3ntn22"
-              data-chakra-modal-body=""
+              class="chakra-modal__body css-3ntn22"
               id="chakra-modal--body-1"
             >
               Modal body
             </div>
             <footer
-              class="css-g6i3l1"
+              class="chakra-modal__footer css-g6i3l1"
             >
               Modal footer
             </footer>

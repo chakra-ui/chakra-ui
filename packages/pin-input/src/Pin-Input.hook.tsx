@@ -1,13 +1,34 @@
 import * as React from "react"
 import { useDescendants, useDescendant } from "@chakra-ui/descendant"
 import { useControllableState } from "@chakra-ui/hooks"
+import { mergeRefs, callAllHandlers } from "@chakra-ui/utils"
+import { useState, useCallback, useEffect } from "react"
 
 export interface UsePinInputProps {
+  /**
+   * If `true`, the pin input receives focus on mount
+   */
   autoFocus?: boolean
+  /**
+   * The value of the the pin input. This is the value
+   * that will be returned when the pin input is filled
+   */
   value?: string
+  /**
+   * The default value of the pin input
+   */
   defaultValue?: string
+  /**
+   * Function called on input change
+   */
   onChange?: (value: string) => void
+  /**
+   * Function called when all inputs have valid values
+   */
   onComplete?: (value: string) => void
+  /**
+   * The placeholder for the pin input
+   */
   placeholder?: string
 }
 
@@ -25,10 +46,10 @@ export function usePinInput(props: UsePinInputProps = {}) {
     placeholder = "○",
   } = props
 
-  const descendantsContext = useDescendants<HTMLInputElement, {}>()
-  const { descendants } = descendantsContext
+  const domContext = useDescendants<HTMLInputElement, {}>()
+  const { descendants } = domContext
 
-  const [moveFocus, setMoveFocus] = React.useState(true)
+  const [moveFocus, setMoveFocus] = useState(true)
 
   const [values, setValues] = useControllableState<string[]>({
     defaultValue: toArray(defaultValue) || [],
@@ -36,14 +57,14 @@ export function usePinInput(props: UsePinInputProps = {}) {
     onChange: values => onChange?.(values.join("")),
   })
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (autoFocus) {
       const firstInput = descendants[0]
       firstInput?.element?.focus()
     }
   }, [descendants, autoFocus])
 
-  const focusNext = React.useCallback(
+  const focusNext = useCallback(
     (index: number) => {
       if (!moveFocus) return
 
@@ -53,7 +74,7 @@ export function usePinInput(props: UsePinInputProps = {}) {
     [descendants, moveFocus],
   )
 
-  const setValue = React.useCallback(
+  const setValue = useCallback(
     (value: string, index: number) => {
       const nextValues = [...values]
       nextValues[index] = value
@@ -77,7 +98,7 @@ export function usePinInput(props: UsePinInputProps = {}) {
   }, [descendants, setValues])
 
   return {
-    descendantsContext,
+    domContext,
     setValue,
     values,
     setValues,
@@ -92,10 +113,15 @@ export type UsePinInputReturn = ReturnType<typeof usePinInput>
 
 export interface UsePinInputFieldProps {
   context: UsePinInputReturn
+  ref?: React.Ref<HTMLInputElement>
+  onChange?: React.ChangeEventHandler
+  onKeyDown?: React.KeyboardEventHandler
+  onFocus?: React.FocusEventHandler
+  onBlur?: React.FocusEventHandler
 }
 
 export function usePinInputField(props: UsePinInputFieldProps) {
-  const { context } = props
+  const { context, ref: forwardedRef, ...htmlProps } = props
 
   const ref = React.useRef<HTMLInputElement>(null)
 
@@ -104,14 +130,14 @@ export function usePinInputField(props: UsePinInputFieldProps) {
     values,
     setMoveFocus,
     setValues,
-    descendantsContext,
+    domContext,
     placeholder,
   } = context
 
-  const { descendants } = descendantsContext
+  const { descendants } = domContext
 
   const index = useDescendant({
-    context: descendantsContext,
+    context: domContext,
     element: ref.current,
   })
 
@@ -130,7 +156,7 @@ export function usePinInputField(props: UsePinInputFieldProps) {
     [],
   )
 
-  const onChange = React.useCallback(
+  const onChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const eventValue = event.target.value
       const currentValue = values[index]
@@ -172,7 +198,7 @@ export function usePinInputField(props: UsePinInputFieldProps) {
     ],
   )
 
-  const onKeyDown = React.useCallback(
+  const onKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
       if (event.key === "Backspace") {
         //@ts-ignore
@@ -191,24 +217,25 @@ export function usePinInputField(props: UsePinInputFieldProps) {
     [descendants, index, setValue, setMoveFocus],
   )
 
-  const [hasFocus, setHasFocus] = React.useState(false)
+  const [hasFocus, setHasFocus] = useState(false)
 
-  const onFocus = React.useCallback(() => {
+  const onFocus = useCallback(() => {
     setHasFocus(true)
   }, [])
 
-  const onBlur = React.useCallback(() => {
+  const onBlur = useCallback(() => {
     setHasFocus(false)
   }, [])
 
   const value = values[index] || ""
 
   return {
-    ref,
-    onChange,
-    onKeyDown,
-    onFocus,
-    onBlur,
+    ...htmlProps,
+    ref: mergeRefs(ref, forwardedRef),
+    onChange: callAllHandlers(htmlProps.onChange, onChange),
+    onKeyDown: callAllHandlers(htmlProps.onKeyDown, onKeyDown),
+    onFocus: callAllHandlers(htmlProps.onFocus, onFocus),
+    onBlur: callAllHandlers(htmlProps.onBlur, onBlur),
     value,
     inputMode: "numeric" as React.InputHTMLAttributes<any>["inputMode"],
     "aria-label": "Please enter your pin code",

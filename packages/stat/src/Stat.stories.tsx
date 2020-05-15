@@ -6,11 +6,15 @@ import {
   StatHelpText,
   StatLabel,
   StatNumber,
-} from "./Stat"
+} from "."
 
 export default {
   title: "Stat",
 }
+
+/**
+ * Default Stat component
+ */
 
 export const Default = () => {
   return (
@@ -21,6 +25,10 @@ export const Default = () => {
     </Stat>
   )
 }
+
+/**
+ * Stat component with indicators
+ */
 
 export const WithIndicators = () => {
   return (

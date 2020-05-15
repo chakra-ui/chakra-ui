@@ -3,7 +3,7 @@ import ReactDOM from "react-dom"
 
 let portalContainer
 
-var canUseDom = !!(
+const canUseDom = !!(
   typeof window !== "undefined" &&
   window.document &&
   window.document.createElement

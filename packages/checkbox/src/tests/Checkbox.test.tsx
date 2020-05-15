@@ -100,7 +100,7 @@ test("indeterminate state", () => {
   const tools = render(<Component />)
 
   const checkbox = tools.getByText("Checkbox")
-  expect(checkbox).toHaveAttribute("data-mixed")
+  expect(checkbox).toHaveAttribute("data-indeterminate")
 })
 
 test("Controlled - should check and uncheck", () => {

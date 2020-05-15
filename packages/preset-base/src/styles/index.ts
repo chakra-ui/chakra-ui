@@ -1,7 +1,7 @@
 import { mode, Styles } from "../components/utils"
 
 const styles: Styles = {
-  root: props => ({
+  global: props => ({
     fontFamily: "body",
     color: mode("gray.800", "whiteAlpha.900")(props),
     bg: mode("white", "gray.800")(props),
@@ -12,6 +12,8 @@ const styles: Styles = {
     "*, *::before, &::after": {
       borderColor: mode("gray.200", "whiteAlpha.300")(props),
     },
+    fontFeatureSettings: `"pnum"`,
+    fontVariantNumeric: "proportional-nums",
   }),
   h1: {
     fontSize: 40,

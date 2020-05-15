@@ -1,11 +1,6 @@
 import * as React from "react"
 import { render } from "@chakra-ui/test-utils"
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbSeparator,
-} from ".."
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from ".."
 
 test("Breadcrumb renders correctly", () => {
   const { asFragment } = render(
@@ -16,8 +11,8 @@ test("Breadcrumb renders correctly", () => {
       <BreadcrumbItem>
         <BreadcrumbLink href="#">Link 2</BreadcrumbLink>
       </BreadcrumbItem>
-      <BreadcrumbItem>
-        <BreadcrumbLink isCurrentPage>Link 3</BreadcrumbLink>
+      <BreadcrumbItem isCurrentPage>
+        <BreadcrumbLink>Link 3</BreadcrumbLink>
       </BreadcrumbItem>
     </Breadcrumb>,
   )
@@ -48,20 +43,6 @@ test("has the proper aria-attributes", () => {
 
   // separator receives presentation="role"
   expect(getAllByRole("presentation")).toHaveLength(2)
-})
-
-test("separators can be disabled", () => {
-  const { queryByText } = render(
-    <Breadcrumb addSeparator={false}>
-      <BreadcrumbItem>
-        <BreadcrumbLink href="#">Link 1</BreadcrumbLink>
-      </BreadcrumbItem>
-      <BreadcrumbItem>
-        <BreadcrumbLink href="#">Link 2</BreadcrumbLink>
-      </BreadcrumbItem>
-    </Breadcrumb>,
-  )
-  expect(queryByText("/")).toBeNull()
 })
 
 test("seperator can be changed", () => {

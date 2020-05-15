@@ -4,13 +4,9 @@ import { __DEV__ } from "@chakra-ui/utils"
 export type SpacerProps = PropsOf<typeof Spacer>
 
 /**
- * Spacer
+ * A flexible flex spacer that expands along the major axis of its containing flex layout.
  *
- * Spacer creates an adjustable, empty `div` that
- * can be used to tune the spacing between elements
- * in a flex container.
- *
- * It will take up any available space.
+ * It renders a `div` by default, and takes up any available space.
  *
  * @see Docs https://chakra-ui.com/spacer
  */

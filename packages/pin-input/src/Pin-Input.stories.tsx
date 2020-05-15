@@ -13,6 +13,12 @@ const style: React.CSSProperties = {
   margin: 4,
 }
 
+/**
+ * PinInput hook example
+ *
+ * use the `usePinInput` and `usePinInputField` to create a custom PinInput component
+ */
+
 export function HookExample() {
   const context = usePinInput({ autoFocus: true })
   const input1 = usePinInputField({ context })
@@ -30,9 +36,59 @@ export function HookExample() {
   )
 }
 
+/**
+ * Chakra UI PinInput component example
+ */
+
 export function ComponentExample() {
   return (
     <PinInput defaultValue="234">
+      <PinInputField />
+      <PinInputField />
+      <PinInputField />
+    </PinInput>
+  )
+}
+
+/**
+ * Sizes
+ *
+ * Pass the `size` prop to change the height of the input elements
+ * of the PinInput component
+ */
+
+export const Sizes = () => {
+  return (
+    <>
+      {["sm", "md", "lg"].map((size, i) => (
+        <div key={i} style={{ marginBottom: "1rem" }}>
+          <PinInput size={size} defaultValue="234">
+            <PinInputField />
+            <PinInputField />
+            <PinInputField />
+          </PinInput>
+        </div>
+      ))}
+    </>
+  )
+}
+
+/**
+ * Controlled PinInput component
+ */
+
+export const Controlled = () => {
+  const [value, setValue] = React.useState("")
+
+  const handleChange = (value: string) => {
+    setValue(value)
+  }
+
+  const handleComplete = (value: string) => {
+    console.log(value)
+  }
+  return (
+    <PinInput value={value} onChange={handleChange} onComplete={handleComplete}>
       <PinInputField />
       <PinInputField />
       <PinInputField />

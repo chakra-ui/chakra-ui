@@ -1,5 +1,5 @@
 import { useTheme } from "@chakra-ui/system"
-import { Dict, isNumber } from "@chakra-ui/utils"
+import { Dict, isNumber, objectKeys } from "@chakra-ui/utils"
 import { useCallback, useEffect, useMemo, useState } from "react"
 
 /**
@@ -117,7 +117,7 @@ const toMediaString = (val: any) => (isNumber(val) ? `${val}px` : val)
  */
 const createMediaQueries = (breakpoints: Dict) => {
   // sort the breakpoints in descending order
-  const sorted = Object.keys(breakpoints).sort(
+  const sorted = objectKeys(breakpoints).sort(
     (a, b) => parseInt(breakpoints[b]) - parseInt(breakpoints[a]),
   )
 

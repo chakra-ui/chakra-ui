@@ -1,4 +1,4 @@
-import Input, { InputProps } from "./Input"
+import Input, { InputProps, InputTokens } from "./Input"
 import { ComponentTheme } from "./utils"
 
 const PinInput: ComponentTheme<InputProps> = {
@@ -25,6 +25,15 @@ const PinInput: ComponentTheme<InputProps> = {
       borderRadius: "sm",
     },
   },
+}
+
+export const PinInputTokens = {
+  sizes: {
+    lg: "lg",
+    md: "md",
+    sm: "sm",
+  },
+  variants: InputTokens.variants,
 }
 
 export default PinInput

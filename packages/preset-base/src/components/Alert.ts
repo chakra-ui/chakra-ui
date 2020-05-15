@@ -79,4 +79,13 @@ const Alert: ComponentTheme = {
   },
 }
 
+export const AlertTokens = {
+  variants: {
+    solid: "solid",
+    subtle: "subtle",
+    "left-accent": "left-accent",
+    "top-accent": "top-accent",
+  },
+}
+
 export default Alert

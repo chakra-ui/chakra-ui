@@ -57,4 +57,13 @@ const Progress: ProgressTheme = {
   sizes,
 }
 
+export const ProgressTokens = {
+  sizes: {
+    lg: "lg",
+    sm: "sm",
+    md: "md",
+    xs: "xs",
+  },
+}
+
 export default Progress

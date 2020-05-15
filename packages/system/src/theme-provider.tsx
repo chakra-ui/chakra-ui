@@ -1,5 +1,9 @@
+import { ColorModeProvider } from "@chakra-ui/color-mode"
+import { createContext } from "@chakra-ui/utils"
 import { ThemeContext } from "@emotion/core"
 import * as React from "react"
+import { ThemingProps } from "./system.types"
+import { GlobalStyle } from "./global"
 
 export type ThemeProviderProps = {
   children?: React.ReactNode
@@ -28,3 +32,24 @@ export function useTheme<T extends object = object>() {
 
   return theme
 }
+
+export type ChakraProviderProps = ThemeProviderProps
+
+export function ChakraProvider(props: ChakraProviderProps) {
+  const { theme, children } = props
+  return (
+    <ThemeProvider theme={theme}>
+      <ColorModeProvider>
+        <GlobalStyle />
+        {children}
+      </ColorModeProvider>
+    </ThemeProvider>
+  )
+}
+
+const [ThemingProvider, useThemingContext] = createContext<ThemingProps>({
+  strict: false,
+  name: "ComponentTheme",
+})
+
+export { ThemingProvider, useThemingContext }

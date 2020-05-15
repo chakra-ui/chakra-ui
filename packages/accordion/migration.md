@@ -2,7 +2,7 @@
 
 ## Changes
 
-- We've changed `AccordionHeader` to `AccordionButton`. This is to remove the
+- We've renamed `AccordionHeader` to `AccordionButton`. This is to remove the
   notion that it's a header when it's actually a `button`.
 
   WAI-ARIA guidelines require that accordion buttons be wrapped in the

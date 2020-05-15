@@ -1,11 +1,18 @@
 import { chakra } from "@chakra-ui/system"
 import * as React from "react"
-import { useDescendant, useDescendants } from "./"
-import { createDescendantsContext } from "./Descendant"
+import { useDescendant, useDescendants } from "."
+import { createContext } from "@chakra-ui/utils"
+import { DescendantContext } from "./Descendant"
 
 export default {
   title: "Descendants",
 }
+
+type Context = DescendantContext<HTMLDivElement, { value?: string }>
+
+const [Provider, useDescendantCtx] = createContext<Context>({
+  name: "DescendantContext",
+})
 
 function Option({
   value,
@@ -35,14 +42,9 @@ function Option({
   )
 }
 
-const [DescendantsProvider, useDescendantCtx] = createDescendantsContext<
-  HTMLDivElement,
-  { value?: string }
->()
-
 function Select({ children }: { children?: React.ReactNode }) {
   const context = useDescendants<HTMLDivElement, { value?: string }>()
-  return <DescendantsProvider value={context}>{children}</DescendantsProvider>
+  return <Provider value={context}>{children}</Provider>
 }
 
 export const Default = () => (

@@ -1,4 +1,4 @@
-import SEO from "../components/SEO";
+import SEO from "../components/SEO"
 
 <SEO
   title="Badge"
@@ -12,7 +12,7 @@ Badges are used to highlight an item's status for quick recognition.
 ## Import
 
 ```js
-import { Badge } from "@chakra-ui/core";
+import { Badge } from "@chakra-ui/core"
 ```
 
 ## Usage
@@ -23,16 +23,16 @@ import { Badge } from "@chakra-ui/core";
 
 ### Badge Color
 
-Pass the `variantColor` prop to customize the color of the Badge. `variantColor`
+Pass the `colorScheme` prop to customize the color of the Badge. `colorScheme`
 can be any **color key** that exists in the `theme.colors`.
 [Learn more about theming](/theming).
 
 ```jsx
-<Stack isInline>
+<Stack direction="row">
   <Badge>Default</Badge>
-  <Badge variantColor="green">Success</Badge>
-  <Badge variantColor="red">Removed</Badge>
-  <Badge variantColor="purple">New</Badge>
+  <Badge colorScheme="green">Success</Badge>
+  <Badge colorScheme="red">Removed</Badge>
+  <Badge colorScheme="purple">New</Badge>
 </Stack>
 ```
 
@@ -42,14 +42,14 @@ Pass the variant prop and set to either `subtle`, `solid`, or `outline` to get a
 different style.
 
 ```jsx
-<Stack isInline>
-  <Badge variant="outline" variantColor="green">
+<Stack direction="row">
+  <Badge variant="outline" colorScheme="green">
     Default
   </Badge>
-  <Badge variant="solid" variantColor="green">
+  <Badge variant="solid" colorScheme="green">
     Success
   </Badge>
-  <Badge variant="subtle" variantColor="green">
+  <Badge variant="subtle" colorScheme="green">
     Removed
   </Badge>
 </Stack>
@@ -63,7 +63,7 @@ different style.
   <Box ml="3">
     <Text fontWeight="bold">
       Segun Adebayo
-      <Badge ml="1" variantColor="green">
+      <Badge ml="1" colorScheme="green">
         New
       </Badge>
     </Text>
@@ -77,7 +77,7 @@ You can also change the size of the badge by passing `fontSize` prop.
 ```jsx
 <Text fontSize="xl" fontWeight="bold">
   Segun Adebayo
-  <Badge ml="1" fontSize="0.8em" variantColor="green">
+  <Badge ml="1" fontSize="0.8em" colorScheme="green">
     New
   </Badge>
 </Text>
@@ -87,7 +87,7 @@ You can also change the size of the badge by passing `fontSize` prop.
 
 The Badge component composes `Box` component so you can pass props for `Box`.
 
-| Name           | Type                         | Default  | Description                                                            |
-| -------------- | ---------------------------- | -------- | ---------------------------------------------------------------------- |
-| `variant`      | `solid`, `subtle`, `outline` | `subtle` | The style variant of the badge                                         |
-| `variantColor` | `string`                     | `gray`   | The color scheme to use for the badge. Must be a key in `theme.colors` |
+| Name          | Type                         | Default  | Description                                                            |
+| ------------- | ---------------------------- | -------- | ---------------------------------------------------------------------- |
+| `variant`     | `solid`, `subtle`, `outline` | `subtle` | The style variant of the badge                                         |
+| `colorScheme` | `string`                     | `gray`   | The color scheme to use for the badge. Must be a key in `theme.colors` |

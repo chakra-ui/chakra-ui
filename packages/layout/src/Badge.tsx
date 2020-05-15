@@ -1,12 +1,10 @@
 import { chakra, PropsOf } from "@chakra-ui/system"
-import { __DEV__ } from "@chakra-ui/utils"
+import { __DEV__, cx } from "@chakra-ui/utils"
 
 export type BadgeProps = PropsOf<typeof Badge>
 
 /**
- * Badge
- *
- * Mostly used to add notifications,messages, or
+ * React component used to display notifications, messages, or
  * statuses in different shapes and sizes.
  *
  * @see Docs https://chakra-ui.com/badge
@@ -16,8 +14,11 @@ export const Badge = chakra("span", {
   baseStyle: {
     display: "inline-block",
     whiteSpace: "nowrap",
-    verticalAlign: "top",
+    verticalAlign: "middle",
   },
+  attrs: props => ({
+    className: cx("chakra-badge", props.className),
+  }),
 })
 
 if (__DEV__) {

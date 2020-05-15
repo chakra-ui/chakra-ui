@@ -1,6 +1,7 @@
 import { chakra, css, PropsOf, SystemProps, useTheme } from "@chakra-ui/system"
 import { getValidChildren, mapResponsive, __DEV__ } from "@chakra-ui/utils"
-import React, { forwardRef } from "react"
+import * as React from "react"
+import { forwardRef, Ref } from "react"
 
 export type WrapProps = PropsOf<typeof chakra.div> & {
   /**
@@ -15,11 +16,13 @@ export type WrapProps = PropsOf<typeof chakra.div> & {
    * The `align-items` value (for main axis alignment)
    */
   align?: SystemProps["alignItems"]
+  /**
+   * The `flex-direction` value
+   */
+  direction?: SystemProps["flexDirection"]
 }
 
 /**
- * Wrap
- *
  * Layout component used to stack elements that differ in length
  * and are liable to wrap.
  *
@@ -29,8 +32,8 @@ export type WrapProps = PropsOf<typeof chakra.div> & {
  *
  * @see Docs https://chakra-ui.com/wrap
  */
-export const Wrap = forwardRef((props: WrapProps, ref: React.Ref<any>) => {
-  const { spacing = 2, children, justify, ...rest } = props
+export const Wrap = forwardRef((props: WrapProps, ref: Ref<any>) => {
+  const { spacing = "0.5rem", children, justify, direction, ...rest } = props
 
   const theme = useTheme()
 
@@ -53,17 +56,17 @@ export const Wrap = forwardRef((props: WrapProps, ref: React.Ref<any>) => {
   ))
 
   return (
-    <chakra.div ref={ref} overflow="hidden" {...rest}>
+    <chakra.div ref={ref} {...rest}>
       <chakra.ul
         display="flex"
         flexWrap="wrap"
         justifyContent={justify}
+        flexDirection={direction}
         listStyleType="none"
         padding="0"
         margin={ulSpacing}
-      >
-        {clones}
-      </chakra.ul>
+        children={clones}
+      />
     </chakra.div>
   )
 })

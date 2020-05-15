@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/preset-stripe",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Get your components looking like stripe's",
   "keywords": [
     "theme",

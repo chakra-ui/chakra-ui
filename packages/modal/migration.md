@@ -49,7 +49,7 @@ boolean prop must start with `should`, `is`, or `has`
 
 | Old Prop              | New Prop                    |
 | --------------------- | --------------------------- |
-| `returnFocusOnClose`  | `shouldReturnFocus`         |
+| `returnFocusOnClose`  | `shouldReturnFocusOnClose`  |
 | `closeOnOverlayClick` | `shouldCloseOnOverlayClick` |
 | `blockScrollOnMount`  | `shouldBlockScroll`         |
 | `closeOnEsc`          | `shouldCloseOnEsc`          |

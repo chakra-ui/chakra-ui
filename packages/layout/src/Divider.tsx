@@ -1,5 +1,5 @@
 import { chakra, PropsOf } from "@chakra-ui/system"
-import { __DEV__ } from "@chakra-ui/utils"
+import { __DEV__, cx } from "@chakra-ui/utils"
 
 interface DividerOptions {
   orientation?: "horizontal" | "vertical"
@@ -8,12 +8,9 @@ interface DividerOptions {
 export type DividerProps = PropsOf<typeof Divider>
 
 /**
- * Divider
+ * Layout component used to visually separate content in a list or group.
  *
- * Used to group content in lists and layouts.
- *
- * It display a thin horizontal or vertical line,
- * and renders a `hr` tag.
+ * It display a thin horizontal or vertical line, and renders a `hr` tag.
  *
  * @see Docs https://chakra-ui.com/code
  */
@@ -29,6 +26,7 @@ export const Divider = chakra<"hr", DividerOptions>("hr", {
   attrs: props => ({
     role: "separator",
     "aria-orientation": props.orientation || "horizontal",
+    className: cx("chakra-divider", props.className),
   }),
 })
 

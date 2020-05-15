@@ -3,23 +3,17 @@
 exports[`Checkbox renders correctly 1`] = `
 <DocumentFragment>
   <label
-    class="css-zv9087"
-    data-chakra-checkbox=""
+    class="chakra-checkbox css-1elxtiq"
   >
+    <input
+      class="chakra-checkbox__input"
+      style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
+      type="checkbox"
+      value=""
+    />
     <div
-      class="css-79elbk"
-    >
-      <input
-        data-chakra-checkbox-input=""
-        style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
-        type="checkbox"
-        value=""
-      />
-    </div>
-    <span
       aria-hidden="true"
-      class="css-czoe34"
-      data-chakra-checkbox-control=""
+      class="chakra-checkbox__control css-r1uwzp"
     />
   </label>
 </DocumentFragment>
@@ -28,27 +22,20 @@ exports[`Checkbox renders correctly 1`] = `
 exports[`Checkbox renders correctly 2`] = `
 <DocumentFragment>
   <label
-    class="css-zv9087"
-    data-chakra-checkbox=""
+    class="chakra-checkbox css-1elxtiq"
   >
-    <div
-      class="css-79elbk"
-    >
-      <input
-        data-chakra-checkbox-input=""
-        style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
-        type="checkbox"
-        value=""
-      />
-    </div>
-    <span
-      aria-hidden="true"
-      class="css-czoe34"
-      data-chakra-checkbox-control=""
+    <input
+      class="chakra-checkbox__input"
+      style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
+      type="checkbox"
+      value=""
     />
     <div
-      class="css-zkit1y"
-      data-chakra-checkbox-label=""
+      aria-hidden="true"
+      class="chakra-checkbox__control css-r1uwzp"
+    />
+    <div
+      class="chakra-checkbox__label css-k4agny"
     >
       This is custom checkbox
     </div>

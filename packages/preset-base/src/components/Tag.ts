@@ -1,5 +1,5 @@
 import { ComponentTheme } from "./utils"
-import Badge from "./Badge"
+import Badge, { BadgeTokens } from "./Badge"
 
 const Tag: ComponentTheme = {
   defaultProps: {
@@ -37,6 +37,15 @@ const Tag: ComponentTheme = {
     },
   },
   variants: Badge.variants,
+}
+
+export const TagTokens = {
+  sizes: {
+    sm: "sm",
+    md: "md",
+    lg: "lg",
+  },
+  variants: BadgeTokens.variants,
 }
 
 export default Tag

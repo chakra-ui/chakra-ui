@@ -5,6 +5,7 @@ import shadows from "./shadows"
 import sizes, { baseSizes } from "./sizes"
 import typography from "./typography"
 import zIndices from "./z-index"
+import borders from "./borders"
 
 const space = baseSizes
 
@@ -17,6 +18,7 @@ const theme = {
   sizes,
   shadows,
   space,
+  borders,
 }
 
 export type Theme = typeof theme

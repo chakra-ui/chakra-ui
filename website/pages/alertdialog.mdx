@@ -1,4 +1,4 @@
-import SEO from "../components/SEO";
+import SEO from "../components/SEO"
 
 <SEO
   title="Alert Dialog"
@@ -11,7 +11,7 @@ or action."
 AlertDialog component is used interrupt the user with a mandatory confirmation
 or action.
 
-> 🚨 Version (v0.3.2) introduced a breaking change to this component's API.
+> 🚨 Version (v1.0.0) introduced a breaking change to this component's API.
 > Kindly update accordingly.
 
 ## Import
@@ -34,7 +34,7 @@ import {
   AlertDialogHeader,
   AlertDialogContent,
   AlertDialogOverlay,
-} from "@chakra-ui/core";
+} from "@chakra-ui/core"
 ```
 
 ## Usage
@@ -48,13 +48,13 @@ to prevent users from accidentally confirming the destructive action.
 
 ```jsx
 function AlertDialogExample() {
-  const [isOpen, setIsOpen] = React.useState();
-  const onClose = () => setIsOpen(false);
-  const cancelRef = React.useRef();
+  const [isOpen, setIsOpen] = React.useState()
+  const onClose = () => setIsOpen(false)
+  const cancelRef = React.useRef()
 
   return (
     <>
-      <Button variantColor="red" onClick={() => setIsOpen(true)}>
+      <Button colorScheme="red" onClick={() => setIsOpen(true)}>
         Delete Customer
       </Button>
 
@@ -63,28 +63,29 @@ function AlertDialogExample() {
         leastDestructiveRef={cancelRef}
         onClose={onClose}
       >
-        <AlertDialogOverlay />
-        <AlertDialogContent>
-          <AlertDialogHeader fontSize="lg" fontWeight="bold">
-            Delete Customer
-          </AlertDialogHeader>
+        <AlertDialogOverlay>
+          <AlertDialogContent>
+            <AlertDialogHeader fontSize="lg" fontWeight="bold">
+              Delete Customer
+            </AlertDialogHeader>
 
-          <AlertDialogBody>
-            Are you sure? You can't undo this action afterwards.
-          </AlertDialogBody>
+            <AlertDialogBody>
+              Are you sure? You can't undo this action afterwards.
+            </AlertDialogBody>
 
-          <AlertDialogFooter>
-            <Button ref={cancelRef} onClick={onClose}>
-              Cancel
-            </Button>
-            <Button variantColor="red" onClick={onClose} ml={3}>
-              Delete
-            </Button>
-          </AlertDialogFooter>
-        </AlertDialogContent>
+            <AlertDialogFooter>
+              <Button ref={cancelRef} onClick={onClose}>
+                Cancel
+              </Button>
+              <Button colorScheme="red" onClick={onClose} ml={3}>
+                Delete
+              </Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialogOverlay>
       </AlertDialog>
     </>
-  );
+  )
 }
 ```
 
@@ -100,9 +101,9 @@ provide simple transitions.
 
 ```jsx
 function TransitionExample() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = React.useRef();
-  const cancelRef = React.useRef();
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const btnRef = React.useRef()
+  const cancelRef = React.useRef()
 
   return (
     <>
@@ -139,7 +140,7 @@ function TransitionExample() {
         )}
       </Scale>
     </>
-  );
+  )
 }
 ```
 

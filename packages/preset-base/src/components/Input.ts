@@ -1,6 +1,11 @@
 import { getColor } from "@chakra-ui/color"
 import { ComponentTheme, mode, Props, StyleProps } from "./utils"
 
+export interface InputProps {
+  focusBorderColor?: string
+  errorBorderColor?: string
+}
+
 type VariantProps = Props & Required<InputProps>
 
 const getDefaults = (props: VariantProps) => ({
@@ -91,30 +96,28 @@ const unstyled = {
   height: "auto",
 }
 
-const sizes = {
+const sizes: InputTheme["sizes"] = {
   lg: {
     fontSize: "lg",
     paddingX: 4,
-    height: 12,
+    paddingY: 2,
+    minHeight: 12,
     borderRadius: "md",
   },
   md: {
     fontSize: "md",
     paddingX: 4,
-    height: 10,
+    paddingY: 2,
+    minHeight: 10,
     borderRadius: "md",
   },
   sm: {
     fontSize: "sm",
     paddingX: 3,
-    height: 8,
+    paddingY: 1,
+    minHeight: 8,
     borderRadius: "sm",
   },
-}
-
-export type InputProps = {
-  focusBorderColor?: string
-  errorBorderColor?: string
 }
 
 export type InputTheme = ComponentTheme<InputProps>
@@ -127,7 +130,9 @@ const Input: InputTheme = {
   baseStyle: {
     width: "100%",
     outline: 0,
-    transition: "all 0.2s",
+    lineHeight: 1,
+    transitionDuration: "0.2s",
+    transitionProperty: "box-shadow, border, color, background-color",
   },
   sizes,
   variants: {
@@ -135,6 +140,20 @@ const Input: InputTheme = {
     filled: getFilledStyle,
     flushed: getFlushedStyle,
     unstyled,
+  },
+}
+
+export const InputTokens = {
+  sizes: {
+    sm: "sm",
+    md: "md",
+    lg: "lg",
+  },
+  variants: {
+    outline: "outline",
+    filled: "filled",
+    flushed: "flushed",
+    unstyled: "unstyled",
   },
 }
 

@@ -16,9 +16,7 @@ export type TextProps = PropsOf<typeof BaseText> & ExtraTextProps
 const BaseText = chakra("p", { themeKey: "Text" })
 
 /**
- * Text
- *
- * Just to render texts or paragraphs.
+ * Used to render texts or paragraphs.
  *
  * @see Docs https://chakra-ui.com/text
  */

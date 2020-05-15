@@ -1,4 +1,4 @@
-import { Box, PseudoBox, useColorMode } from "@chakra-ui/core"
+import { Box, useColorMode, chakra } from "@chakra-ui/core"
 import NextLink from "next/link"
 import { useRouter } from "next/router"
 import React, { cloneElement, forwardRef } from "react"
@@ -26,29 +26,28 @@ export const stringToUrl = (str, path = "/") => {
 }
 
 export const SideNavLink = forwardRef(({ children, icon, ...props }, ref) => {
-  const { colorMode } = useColorMode()
+  const [colorMode] = useColorMode()
   const color = { light: "gray.700", dark: "whiteAlpha.700" }
   return (
-    <PseudoBox
+    <chakra.a
       ref={ref}
-      as="a"
       mx={-2}
       display="flex"
       cursor="pointer"
-      align="center"
+      alignItems="center"
       px="2"
       py="1"
       transition="all 0.2s"
       fontWeight="medium"
       outline="none"
-      _focus={{ shadow: "outline" }}
+      _focus={{ boxShadow: "outline" }}
       color={color[colorMode]}
       _notFirst={{ mt: 1 }}
       {...props}
     >
       {icon && cloneElement(icon, { mr: 3 })}
       <Box>{children}</Box>
-    </PseudoBox>
+    </chakra.a>
   )
 })
 
@@ -69,7 +68,7 @@ export const TopNavLink = forwardRef(({ href, ...props }, ref) => {
 })
 
 export const ComponentLink = forwardRef(({ href, ...props }, ref) => {
-  const { colorMode } = useColorMode()
+  const [colorMode] = useColorMode()
   const hoverColor = { light: "gray.900", dark: "whiteAlpha.900" }
   const activeColor = { light: "teal.800", dark: "teal.200" }
   const activeBg = { light: "teal.50", dark: "#308c7a4d" }
@@ -88,7 +87,6 @@ export const ComponentLink = forwardRef(({ href, ...props }, ref) => {
             bg: activeBg[colorMode],
             borderRadius: "sm",
             color: activeColor[colorMode],
-            _hover: {},
           })}
           {...props}
         />

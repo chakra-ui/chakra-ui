@@ -63,13 +63,13 @@ export function orientation<T = string>(horizontal: T, vertical: T) {
     props.orientation === "horizontal" ? horizontal : vertical
 }
 
-type RootStyles = { root?: SystemProps | ((props: Props) => SystemProps) }
+type GlobalStyles = { global?: SystemProps | ((props: Props) => SystemProps) }
 
 type ElementStyles = {
   [K in keyof JSX.IntrinsicElements]?: SystemProps
 }
 
-export type Styles = ElementStyles & RootStyles
+export type Styles = ElementStyles & GlobalStyles
 
 export function getOrientationStyle<T>(options: {
   orientation?: "vertical" | "horizontal"
@@ -79,4 +79,26 @@ export function getOrientationStyle<T>(options: {
   const { orientation, vertical, horizontal } = options
   if (!orientation) return {}
   return orientation === "vertical" ? vertical : horizontal
+}
+
+/**
+ * Copies the styles from a component sizes or variants to another component
+ * under a speicifed key.
+ *
+ * @param source The component theme object to copy
+ * @param component The component string to copy to
+ */
+export function copy(source: any, component: string) {
+  const result = {} as any
+
+  for (const k in source) {
+    const value = source[k]
+    if (typeof value === "function") {
+      result[k] = (props: any) => ({ [component]: value(props) })
+    } else {
+      result[k] = { [component]: value }
+    }
+  }
+
+  return result
 }

@@ -1,5 +1,6 @@
 import * as React from "react"
 import NextDocument, { Html, Head, Main, NextScript } from "next/document"
+import { InitializeColorMode } from "@chakra-ui/core"
 
 const GTMScript = () => (
   <script
@@ -38,16 +39,12 @@ class Document extends NextDocument {
           <GTMScript />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta title="Chakra Design System" />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="96x96"
-            href="../static/favicon.png"
-          />
+          <link rel="icon" type="image/png" sizes="96x96" href="/favicon.png" />
           <meta name="theme-color" content="#319795"></meta>
         </Head>
         <body>
           <GTMNoScript />
+          <InitializeColorMode />
           <Main />
           <NextScript />
         </body>

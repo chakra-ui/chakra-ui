@@ -3,23 +3,20 @@
 exports[`Switch renders correctly 1`] = `
 <DocumentFragment>
   <label
-    class="css-v7ibj3"
-    data-chakra-switch=""
+    class="chakra-switch css-v7ibj3"
   >
     <input
-      data-chakra-switch-input=""
+      class="chakra-switch__input"
       style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
       type="checkbox"
       value=""
     />
     <div
       aria-hidden="true"
-      class="css-j9x52o"
-      data-chakra-switch-track=""
+      class="chakra-switch__track css-1qiw92k"
     >
       <div
-        class="css-6y46ei"
-        data-chakra-switch-thumb=""
+        class="chakra-switch__thumb css-6y46ei"
       />
     </div>
   </label>

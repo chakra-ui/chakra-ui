@@ -26,7 +26,6 @@ const config: Config = {
     scale: "space",
     transform: positiveOrNegative,
   },
-
   top: {
     property: "top",
     scale: "space",

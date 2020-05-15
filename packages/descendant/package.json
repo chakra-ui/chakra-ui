@@ -1,12 +1,16 @@
 {
   "name": "@chakra-ui/descendant",
-  "version": "0.0.1",
-  "description": "description",
+  "version": "1.0.0",
+  "description": "Register child nodes of a react element for better accessibility",
   "keywords": [
-    "theme",
-    "theming",
-    "ui mode",
-    "ui"
+    "dom",
+    "children",
+    "accessbility",
+    "descendants",
+    "child",
+    "hooks",
+    "chakra ui",
+    "react"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
@@ -43,7 +47,7 @@
   },
   "dependencies": {
     "tslib": "1.11.1",
-    "@chakra-ui/hooks": "0.0.1"
+    "@chakra-ui/hooks": "1.0.0"
   },
   "peerDependencies": {
     "react": "16.x"

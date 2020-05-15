@@ -28,5 +28,5 @@ test("renders an icon by default", () => {
   const icon = utils.getByRole("presentation", { hidden: true })
 
   expect(icon).toHaveAttribute("aria-hidden", "true")
-  expect(icon).toHaveAttribute("data-chakra-custom-icon", "")
+  expect(icon).toHaveClass("chakra-select__icon")
 })

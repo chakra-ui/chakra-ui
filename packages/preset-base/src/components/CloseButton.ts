@@ -7,6 +7,11 @@ const CloseButton: ComponentTheme = {
   baseStyle: props => ({
     borderRadius: "md",
     transition: "all 0.2s",
+    _disabled: {
+      opacity: 0.4,
+      cursor: "not-allowed",
+      boxShadow: "none",
+    },
     _hover: {
       bg: mode(`blackAlpha.100`, `whiteAlpha.100`)(props),
     },
@@ -33,6 +38,14 @@ const CloseButton: ComponentTheme = {
       height: "24px",
       fontSize: "10px",
     },
+  },
+}
+
+export const CloseButtonTokens = {
+  sizes: {
+    lg: "lg",
+    sm: "sm",
+    md: "md",
   },
 }
 

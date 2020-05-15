@@ -1,57 +1,44 @@
-import { chakra, PropsOf, SystemProps, ThemingProps } from "@chakra-ui/system"
-import { getValidChildren, __DEV__ } from "@chakra-ui/utils"
+import { chakra, PropsOf, ThemingProps } from "@chakra-ui/system"
+import { createContext, __DEV__, cx } from "@chakra-ui/utils"
 import * as React from "react"
+import { forwardRef, Ref } from "react"
 
-export type ButtonGroupOptions = Omit<ThemingProps, "orientation"> & {
-  /**
-   * If `true`, the borderRadius of buttons will be altered
-   * to look flushed together
-   */
-  isAttached?: boolean
-  /**
-   * Spacing between each button
-   */
-  spacing?: SystemProps["marginRight"]
-  /**
-   * The buttons to group
-   */
-  children?: React.ReactNode
-}
+export type ButtonGroupProps = PropsOf<typeof chakra.div>
 
-export type ButtonGroupProps = PropsOf<typeof chakra.div> & ButtonGroupOptions
+const [ButtonGroupCtxProvider, useButtonGroup] = createContext<ThemingProps>({
+  strict: false,
+  name: "ButtonGroupContext",
+})
 
-export const ButtonGroup = (props: ButtonGroupProps) => {
-  const {
-    size,
-    colorScheme,
-    variant,
-    isAttached,
-    spacing = 2,
-    children,
-    ...rest
-  } = props
+export { useButtonGroup }
 
-  const validChildren = getValidChildren(children)
+export const ButtonGroup = forwardRef(
+  (props: ButtonGroupProps, ref: Ref<any>) => {
+    const { size, colorScheme, variant, className, ...rest } = props
 
-  const clones = validChildren.map((child, index) => {
-    const isFirst = index === 0
-    const isLast = index === validChildren.length - 1
+    const css = {
+      "> *:first-of-type:not(:last-of-type)": { borderRightRadius: 0 },
+      "> *:not(:first-of-type):not(:last-of-type)": { borderRadius: 0 },
+      "> *:not(:first-of-type):last-of-type": { borderLeftRadius: 0 },
+    }
 
-    return React.cloneElement(child as any, {
-      size,
-      colorScheme: child.props.colorScheme || colorScheme,
-      variant: child.props.variant || variant,
-      _focus: { boxShadow: "outline", zIndex: 1 },
-      ...(!isLast && !isAttached && { marginRight: spacing }),
-      ...(isFirst && isAttached && { borderRightRadius: 0 }),
-      ...(isLast && isAttached && { borderLeftRadius: 0 }),
-      ...(!isLast && isAttached && { borderRightRadius: 0 }),
-      ...(!isFirst && !isLast && isAttached && { borderRadius: 0 }),
-    })
-  })
+    const _className = cx("chakra-button__group", className)
 
-  return <chakra.div display="inline-block" {...rest} children={clones} />
-}
+    return (
+      <ButtonGroupCtxProvider value={{ size, colorScheme, variant }}>
+        <chakra.div
+          ref={ref}
+          display="flex"
+          role="group"
+          whiteSpace="nowrap"
+          sx={css}
+          className={_className}
+          {...rest}
+        />
+      </ButtonGroupCtxProvider>
+    )
+  },
+)
 
 if (__DEV__) {
   ButtonGroup.displayName = "ButtonGroup"

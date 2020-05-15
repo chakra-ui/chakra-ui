@@ -1,7 +1,8 @@
 import { chakra, keyframes, PropsOf } from "@chakra-ui/system"
-import { __DEV__ } from "@chakra-ui/utils"
+import { __DEV__, cx } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 import * as React from "react"
+import { forwardRef } from "react"
 
 const spin = keyframes`
   0% {  transform: rotate(0deg) }
@@ -14,9 +15,17 @@ const spin = keyframes`
  * To style the spinner component globally, change the styles in
  * `theme.components.Spinner`
  */
-const StyledSpinner = chakra("div", { themeKey: "Spinner" })
+const StyledSpinner = chakra("div", {
+  themeKey: "Spinner",
+  baseStyle: {
+    display: "inline-block",
+    borderColor: "currentColor",
+    borderStyle: "solid",
+    borderRadius: "full",
+  },
+})
 
-export interface SpinnerOptions {
+interface SpinnerOptions {
   /**
    * The color of the empty area in the spinner
    */
@@ -59,33 +68,36 @@ export type SpinnerProps = PropsOf<typeof StyledSpinner> & SpinnerOptions
  *
  * @see Docs https://chakra-ui.com/spinner
  */
-export const Spinner = (props: SpinnerProps) => {
-  const {
-    label = "Loading...",
-    thickness = "2px",
-    speed = "0.45s",
-    color,
-    emptyColor = "transparent",
-    ...rest
-  } = props
+export const Spinner = forwardRef(
+  (props: SpinnerProps, ref: React.Ref<any>) => {
+    const {
+      label = "Loading...",
+      thickness = "2px",
+      speed = "0.45s",
+      color,
+      emptyColor = "transparent",
+      className,
+      ...rest
+    } = props
 
-  return (
-    <StyledSpinner
-      display="inline-block"
-      borderColor="currentColor"
-      borderStyle="solid"
-      borderRadius="full"
-      borderWidth={thickness}
-      borderBottomColor={emptyColor}
-      borderLeftColor={emptyColor}
-      color={color}
-      animation={`${spin} ${speed} linear infinite`}
-      {...rest}
-    >
-      {label && <VisuallyHidden>{label}</VisuallyHidden>}
-    </StyledSpinner>
-  )
-}
+    const _className = cx("chakra-spinner", className)
+
+    return (
+      <StyledSpinner
+        ref={ref}
+        borderWidth={thickness}
+        borderBottomColor={emptyColor}
+        borderLeftColor={emptyColor}
+        color={color}
+        animation={`${spin} ${speed} linear infinite`}
+        className={_className}
+        {...rest}
+      >
+        {label && <VisuallyHidden>{label}</VisuallyHidden>}
+      </StyledSpinner>
+    )
+  },
+)
 
 if (__DEV__) {
   Spinner.displayName = "Spinner"

@@ -70,4 +70,17 @@ const Avatar: ComponentTheme<{ name?: string }> = {
   },
 }
 
+export const AvatarTokens = {
+  sizes: {
+    "2xs": "2xs",
+    xs: "xs",
+    sm: "sm",
+    md: "md",
+    lg: "lg",
+    xl: "xl",
+    "2xl": "2xl",
+    full: "full",
+  },
+}
+
 export default Avatar
