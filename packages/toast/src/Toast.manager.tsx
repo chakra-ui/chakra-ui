@@ -226,7 +226,7 @@ export class ToastManager extends React.Component<Props, State> {
           style={this.getStyle(position)}
         >
           {toasts.map(toast => (
-            <Toast position={position} key={toast.id} {...toast} />
+            <Toast key={toast.id} {...toast} />
           ))}
         </span>
       )

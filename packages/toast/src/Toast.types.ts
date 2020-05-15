@@ -62,6 +62,6 @@ export interface ToastOptions {
 
 export type ToastState = { [K in ToastPosition]: ToastOptions[] }
 
-export type Status = "default" | "success" | "error" | "warning"
+export type Status = "default" | "success" | "error" | "warning" | "info"
 
 export type UpdateFn = (val: ToastState) => void
