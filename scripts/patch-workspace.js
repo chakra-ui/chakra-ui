@@ -46,7 +46,7 @@ function updateScripts(options) {
     "build:esm": "tsc --module esnext --outDir dist/esm --declaration false",
     "build:cjs": "tsc --module commonjs --outDir dist/cjs --declaration false",
     "build:types":
-      "tsc --emitDeclarationOnly --declaration true --declarationDir dist/types",
+      "tsc --emitDeclarationOnly --declaration --declarationMap --declarationDir dist/types",
     build: "concurrently yarn:build:*",
     test: "jest --env=jsdom --passWithNoTests",
     "test:cov": "yarn test --coverage",
