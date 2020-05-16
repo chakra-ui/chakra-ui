@@ -70,7 +70,7 @@ export function useModal(props: UseModalProps) {
     onEsc,
   } = props
 
-  const contentRef = React.useRef<any>(null)
+  const dialogRef = React.useRef<any>(null)
   const overlayRef = React.useRef<any>(null)
 
   const [contentId, headerId, bodyId] = useIds(
@@ -83,18 +83,18 @@ export function useModal(props: UseModalProps) {
   /**
    * Hook used to block scrolling once the modal is open
    */
-  useLockBodyScroll(contentRef, isOpen && shouldBlockScroll)
+  useLockBodyScroll(dialogRef, isOpen && shouldBlockScroll)
   /**
    * Hook used to polyfill `aria-modal` for older browsers.
    * It uses `aria-hidden` to all other nodes.
    *
    * @see https://developer.paciellogroup.com/blog/2018/06/the-current-state-of-modal-dialog-accessibility/
    */
-  useAriaHidden(contentRef, isOpen && useInert)
+  useAriaHidden(dialogRef, isOpen && useInert)
   /**
    * Hook use to manage multiple or nested modals
    */
-  useModalManager(contentRef, isOpen)
+  useModalManager(dialogRef, isOpen)
 
   const mouseDownTarget = React.useRef<EventTarget | null>(null)
 
@@ -134,7 +134,7 @@ export function useModal(props: UseModalProps) {
       /**
        * When you click on the overlay, we want to remove only the topmost modal
        */
-      if (manager.isTopModal(contentRef)) {
+      if (manager.isTopModal(dialogRef)) {
         if (shouldCloseOnOverlayClick) {
           onClose?.()
         }
@@ -156,7 +156,7 @@ export function useModal(props: UseModalProps) {
     setHeaderMounted,
     getContentProps: (props: Dict = {}) => ({
       ...props,
-      ref: mergeRefs(props.ref, contentRef),
+      ref: mergeRefs(props.ref, dialogRef),
       id: contentId,
       role: props.role || "dialog",
       tabIndex: -1,

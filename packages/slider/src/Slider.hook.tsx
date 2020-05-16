@@ -1,5 +1,5 @@
 import {
-  useBooleanState,
+  useBoolean,
   useControllableState,
   useDimensions,
   useEventCallback,
@@ -143,8 +143,8 @@ export function useSlider(props: UseSliderProps) {
     ...htmlProps
   } = props
 
-  const [isDragging, setDragging] = useBooleanState()
-  const [isFocused, setFocused] = useBooleanState()
+  const [isDragging, setDragging] = useBoolean()
+  const [isFocused, setFocused] = useBoolean()
   const [eventSource, setEventSource] = React.useState<EventSource>()
 
   const isInteractive = !(isDisabled || isReadOnly)

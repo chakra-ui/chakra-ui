@@ -1,4 +1,4 @@
-import { useBooleanState, useId, useSafeLayoutEffect } from "@chakra-ui/hooks"
+import { useBoolean, useId, useSafeLayoutEffect } from "@chakra-ui/hooks"
 import Icon from "@chakra-ui/icon"
 import { chakra, PropsOf, useComponentStyle } from "@chakra-ui/system"
 import {
@@ -98,10 +98,10 @@ function useProvider(props: FormControlContext) {
    * Track of when the `FormHelperText` has been rendered.
    * We use this to append it's id the the `aria-describedby` of the `input`
    */
-  const [hasHelpText, setHasHelpText] = useBooleanState()
+  const [hasHelpText, setHasHelpText] = useBoolean()
 
   // Let's keep track of when we focus the form element (e.g, `input`)
-  const [isFocused, setFocus] = useBooleanState()
+  const [isFocused, setFocus] = useBoolean()
 
   const context = {
     isRequired,

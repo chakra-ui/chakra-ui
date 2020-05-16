@@ -7,7 +7,7 @@ type InitialState = boolean | (() => boolean)
  *
  * @param initialState the initial boolean state value
  */
-export function useBooleanState(initialState: InitialState = false) {
+export function useBoolean(initialState: InitialState = false) {
   const [value, setValue] = useState(initialState)
 
   const on = useCallback(() => {
@@ -22,5 +22,5 @@ export function useBooleanState(initialState: InitialState = false) {
     setValue(prev => !prev)
   }, [])
 
-  return [value, { on, off, toggle, set: setValue }] as const
+  return [value, { on, off, toggle }] as const
 }
