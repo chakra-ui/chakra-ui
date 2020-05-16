@@ -85,9 +85,22 @@ if (__DEV__) {
 type RootProps = Omit<PropsOf<typeof chakra.div>, "color">
 
 export interface SelectProps extends SelectFieldProps {
+  /**
+   * Props to forward to the root `div` element
+   */
   rootProps?: RootProps
+  /**
+   * The icon element to use in the select
+   */
   icon?: React.ReactElement<any>
+  /**
+   * The size of the select dropdown icon
+   */
   iconSize?: any
+  /**
+   * The color of the select dropdown icon
+   */
+  iconColor?: string
 }
 
 /**
@@ -100,6 +113,7 @@ export const Select = forwardRef(
       placeholder,
       icon,
       iconSize = "1.25rem",
+      iconColor,
       color,
       isFullWidth,
       ...rest
@@ -125,7 +139,7 @@ export const Select = forwardRef(
         <SelectIcon
           opacity={opacity}
           iconSize={iconSize}
-          iconColor={styles?.color}
+          iconColor={iconColor || styles?.color}
           children={icon}
         />
       </chakra.div>

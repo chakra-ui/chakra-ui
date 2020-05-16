@@ -1,5 +1,5 @@
 import {
-  useBooleanState,
+  useBoolean,
   useControllableProp,
   useSafeLayoutEffect,
 } from "@chakra-ui/hooks"
@@ -93,9 +93,9 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     ...htmlProps
   } = props
 
-  const [isFocused, setFocused] = useBooleanState()
-  const [isHovered, setHovered] = useBooleanState()
-  const [isActive, setActive] = useBooleanState()
+  const [isFocused, setFocused] = useBoolean()
+  const [isHovered, setHovered] = useBoolean()
+  const [isActive, setActive] = useBoolean()
 
   const ref = React.useRef<HTMLInputElement>(null)
 

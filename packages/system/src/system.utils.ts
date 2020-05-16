@@ -1,7 +1,13 @@
 import * as React from "react"
 import { pseudoSelectors } from "@chakra-ui/parser"
 import { css } from "@chakra-ui/css"
-import { isString, UnionStringArray, __DEV__ } from "@chakra-ui/utils"
+import {
+  isString,
+  UnionStringArray,
+  __DEV__,
+  isNumber,
+  get,
+} from "@chakra-ui/utils"
 
 /**
  * Carefully selected html elements for chakra components.
@@ -104,7 +110,17 @@ export function pseudoProps({ theme, ...props }: any) {
   return result
 }
 
-export function truncateProp({ isTruncated }: any) {
+export function truncateProp({ isTruncated, noOfLines }: any) {
+  if (isNumber(noOfLines)) {
+    return {
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      display: "-webkit-box",
+      WebkitBoxOrient: "vertical",
+      WebkitLineClamp: noOfLines,
+    }
+  }
+
   if (isTruncated) {
     return {
       overflow: "hidden",
@@ -114,10 +130,19 @@ export function truncateProp({ isTruncated }: any) {
   }
 }
 
+export function layerStyleProp({ layerStyle, textStyle, theme }: any) {
+  if (layerStyle) {
+    return get(theme, `layerStyles.${layerStyle}`)
+  }
+  if (textStyle) {
+    return get(theme, `textStyles.${textStyle}`)
+  }
+}
+
 export function applyProp(tag: React.ElementType) {
   return (props: any) => {
     const { theme, apply: applyProp } = props
-    const shouldAutoApply = theme?.config?.shouldMapStylesToElement
+    const shouldAutoApply = theme?.config?.shouldMapElementToStyles
     const defaultApply = !!shouldAutoApply ? `styles.${tag}` : undefined
     const apply = applyProp ?? defaultApply
 

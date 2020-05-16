@@ -10,7 +10,7 @@ const Motion = chakra(motion.div)
 
 export const WithFramerMotion = () => (
   <Motion
-    as="h1"
+    boxSize="40px"
     bg="red.300"
     drag
     whileTap={{ scale: 1.3 }}
@@ -23,7 +23,15 @@ export const WithFramerMotion = () => (
   />
 )
 
-const ThemedButton = chakra<"button", { isDisabled?: boolean }>("button", {
+export const LineClamp = () => (
+  <chakra.div noOfLines={2}>
+    Used to truncate the text with an ellipsis after computing the text layout,
+    including line wrapping, such that the total number of lines does not exceed
+    this number.
+  </chakra.div>
+)
+
+const ThemedButton = chakra("button", {
   variants: {
     solid: {
       bg: "green.500",
@@ -40,7 +48,7 @@ const ThemedButton = chakra<"button", { isDisabled?: boolean }>("button", {
       },
     },
   },
-  sizes: props => ({
+  sizes: {
     small: {
       padding: 2,
       fontSize: "sm",
@@ -49,7 +57,7 @@ const ThemedButton = chakra<"button", { isDisabled?: boolean }>("button", {
       padding: 4,
       fontSize: "md",
     },
-  }),
+  },
 })
 
 ThemedButton.defaultProps = {

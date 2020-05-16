@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Slide, SlideProps } from "@chakra-ui/transition"
+import { Slide, SlideProps, Fade } from "@chakra-ui/transition"
 import {
   Modal,
   ModalProps,
@@ -9,35 +9,62 @@ import {
   ModalOverlay,
 } from "@chakra-ui/modal"
 
-const DrawerContext = React.createContext<React.CSSProperties>({})
-const useDrawerContext = () => React.useContext(DrawerContext)
+interface TransitionStyles {
+  content: React.CSSProperties
+  overlay: React.CSSProperties
+}
+
+const TransitionContext = React.createContext<TransitionStyles>({
+  content: {},
+  overlay: {},
+})
+TransitionContext.displayName = "TransitionContext"
+const useTransitionContext = () => React.useContext(TransitionContext)
 
 export interface DrawerProps extends ModalProps {
   placement?: SlideProps["placement"]
   isFullHeight?: boolean
 }
 
-export function Drawer(props: DrawerProps) {
-  const { isOpen, onClose, placement = "right", children, ...rest } = props
+export interface DrawerTransitionProps {
+  in: boolean
+  children: (styles: TransitionStyles) => React.ReactNode
+  placement: SlideProps["placement"]
+}
+
+export function DrawerTransition(props: DrawerTransitionProps) {
+  const { in: inProp, children, placement } = props
   return (
-    <Slide in={isOpen} placement={placement}>
-      {styles => (
-        <DrawerContext.Provider value={styles}>
-          <Modal isOpen={true} onClose={onClose} {...rest}>
-            {children}
-          </Modal>
-        </DrawerContext.Provider>
+    <Slide in={inProp} placement={placement}>
+      {contentStyle => (
+        <Fade in={inProp}>
+          {overlayStyle =>
+            children({ content: contentStyle, overlay: overlayStyle })
+          }
+        </Fade>
       )}
     </Slide>
   )
 }
 
+export function Drawer(props: DrawerProps) {
+  const { isOpen, onClose, placement = "right", children, ...rest } = props
+  return (
+    <DrawerTransition in={isOpen} placement={placement}>
+      {styles => (
+        <TransitionContext.Provider value={styles}>
+          <Modal isOpen={true} onClose={onClose} {...rest}>
+            {children}
+          </Modal>
+        </TransitionContext.Provider>
+      )}
+    </DrawerTransition>
+  )
+}
+
 export const DrawerContent = React.forwardRef(
   (props: ModalContentProps, ref: React.Ref<any>) => {
-    /**
-     * We don't want to animate the opacity of the drawer
-     */
-    const { opacity, ...styles } = useDrawerContext()
+    const { content: styles } = useTransitionContext()
     return (
       <ModalContent
         ref={ref}
@@ -54,8 +81,15 @@ export const DrawerContent = React.forwardRef(
 
 export const DrawerOverlay = React.forwardRef(
   (props: ModalOverlayProps, ref: React.Ref<any>) => {
-    const styles = useDrawerContext() as any
-    return <ModalOverlay opacity={styles.opacity} ref={ref} {...props} />
+    const { overlay: styles } = useTransitionContext()
+    return (
+      <ModalOverlay
+        style={styles}
+        transition={"all 0.2s"}
+        ref={ref}
+        {...props}
+      />
+    )
   },
 )
 

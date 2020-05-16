@@ -1,4 +1,4 @@
-import { useBooleanState, useControllableProp } from "@chakra-ui/hooks"
+import { useBoolean, useControllableProp } from "@chakra-ui/hooks"
 import {
   dataAttr,
   ariaAttr,
@@ -86,9 +86,9 @@ export function useRadio(props: UseRadioProps = {}) {
     ...htmlProps
   } = props
 
-  const [isFocused, setFocused] = useBooleanState()
-  const [isHovered, setHovering] = useBooleanState()
-  const [isActive, setActive] = useBooleanState()
+  const [isFocused, setFocused] = useBoolean()
+  const [isHovered, setHovering] = useBoolean()
+  const [isActive, setActive] = useBoolean()
 
   const ref = useRef<HTMLInputElement>(null)
 

@@ -4,7 +4,7 @@
   "description": "Responsive and accessible React UI components built with React and Emotion",
   "main": "dist/cjs",
   "module": "dist/esm",
-  "typings": "dist/index.d.ts",
+  "typings": "dist/types",
   "files": [
     "dist"
   ],

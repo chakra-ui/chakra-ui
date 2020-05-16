@@ -1,7 +1,7 @@
 import { ComponentTheme } from "./utils"
 import { SystemProps } from "@chakra-ui/system"
 
-const sharedProps: SystemProps = {
+const base: SystemProps = {
   fontSize: "inherit",
   fontWeight: "inherit",
   textAlign: "inherit",
@@ -15,12 +15,12 @@ const sharedProps: SystemProps = {
 const Editable: ComponentTheme = {
   baseStyle: {
     Preview: {
-      ...sharedProps,
+      ...base,
       cursor: "text",
       display: "inline-block",
     },
     Input: {
-      ...sharedProps,
+      ...base,
       outline: 0,
       width: "full",
       _focus: {

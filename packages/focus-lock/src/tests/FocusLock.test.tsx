@@ -8,7 +8,7 @@ test("focuses an element on render", () => {
       <FocusLock>
         <input data-testid="input" />
         <input />
-        <input />>
+        <input />
       </FocusLock>
     )
   }

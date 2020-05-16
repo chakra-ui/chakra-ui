@@ -1,10 +1,15 @@
 import * as React from "react"
 import { Transition, TransitionProps } from "./Transition"
 
-export type SlideFadeProps = Omit<TransitionProps, "styles" | "timeout"> & {
-  /** The initial offset to slide from */
+export interface SlideFadeProps
+  extends Omit<TransitionProps, "styles" | "timeout"> {
+  /**
+   * The initial offset to slide from
+   */
   initialOffset?: string
-  /** The transition timeout */
+  /**
+   * The transition timeout
+   */
   timeout?: number
 }
 
@@ -34,7 +39,7 @@ export const SlideFade = (props: SlideFadeProps) => {
     <Transition
       styles={styles}
       transition={`all ${timeout}ms cubic-bezier(0.4, 0.14, 0.3, 1)`}
-      timeout={{ enter: 50, exit: timeout }}
+      timeout={{ enter: 0, exit: timeout }}
       {...rest}
     />
   )

@@ -1,4 +1,4 @@
-import { useDisclosure, useIds, useBooleanState } from "@chakra-ui/hooks"
+import { useDisclosure, useIds, useBoolean } from "@chakra-ui/hooks"
 import { Placement, usePopper } from "@chakra-ui/popper"
 import * as React from "react"
 import { useBlurOutside, useFocusOnHide, useFocusOnShow } from "./Popover.utils"
@@ -83,8 +83,8 @@ export function usePopover(props: UsePopoverProps = {}) {
   const triggerRef = React.useRef<any>(null)
   const popoverRef = React.useRef<any>(null)
 
-  const [hasHeader, setHasHeader] = useBooleanState()
-  const [hasBody, setHasBody] = useBooleanState()
+  const [hasHeader, setHasHeader] = useBoolean()
+  const [hasBody, setHasBody] = useBoolean()
 
   const [triggerId, popoverId, headerId, bodyId] = useIds(
     id,

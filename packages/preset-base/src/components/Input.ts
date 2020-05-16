@@ -143,4 +143,18 @@ const Input: InputTheme = {
   },
 }
 
+export const InputTokens = {
+  sizes: {
+    sm: "sm",
+    md: "md",
+    lg: "lg",
+  },
+  variants: {
+    outline: "outline",
+    filled: "filled",
+    flushed: "flushed",
+    unstyled: "unstyled",
+  },
+}
+
 export default Input

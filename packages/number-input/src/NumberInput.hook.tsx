@@ -1,5 +1,5 @@
 import { useCounter, UseCounterProps } from "@chakra-ui/counter"
-import { useBooleanState } from "@chakra-ui/hooks"
+import { useBoolean } from "@chakra-ui/hooks"
 import {
   callAllHandlers,
   Dict,
@@ -99,7 +99,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
    * so user can this to change the styles of the
    * `spinners`, maybe :)
    */
-  const [isFocused, setFocused] = useBooleanState()
+  const [isFocused, setFocused] = useBoolean()
 
   const inputRef = React.useRef<HTMLInputElement>(null)
 

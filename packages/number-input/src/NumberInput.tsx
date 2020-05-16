@@ -3,7 +3,6 @@ import {
   chakra,
   PropsOf,
   ThemingProvider,
-  useSplitThemingProps,
   useThemingContext,
 } from "@chakra-ui/system"
 import { createContext, __DEV__ } from "@chakra-ui/utils"
@@ -56,18 +55,16 @@ const StyledRoot = chakra("div", {
  */
 export const NumberInput = React.forwardRef(
   (props: NumberInputProps, ref: React.Ref<HTMLDivElement>) => {
-    const [themingProps, componentProps] = useSplitThemingProps(
-      props,
-      "NumberInput",
-    )
+    const { size, variant, colorScheme, ...componentProps } = props
+    const theming = { size, variant, colorScheme }
 
     const { htmlProps, ...context } = useNumberInput(componentProps)
     const _context = React.useMemo(() => context, [context])
 
     return (
-      <ThemingProvider value={themingProps}>
+      <ThemingProvider value={theming}>
         <NumberInputContextProvider value={_context}>
-          <StyledRoot ref={ref} {...themingProps} {...htmlProps} />
+          <StyledRoot ref={ref} {...theming} {...htmlProps} />
         </NumberInputContextProvider>
       </ThemingProvider>
     )
@@ -111,8 +108,8 @@ export type NumberInputStepperProps = PropsOf<typeof StyledStepperGroup>
  */
 export const NumberInputStepper = React.forwardRef(
   (props: NumberInputStepperProps, ref: React.Ref<any>) => {
-    const themingProps = useThemingContext()
-    return <StyledStepperGroup ref={ref} {...themingProps} {...props} />
+    const theming = useThemingContext()
+    return <StyledStepperGroup ref={ref} {...theming} {...props} />
   },
 )
 
@@ -169,16 +166,16 @@ export type NumberInputFieldProps = PropsOf<typeof StyledInput>
  */
 export const NumberInputField = React.forwardRef(
   (props: NumberInputFieldProps, ref: React.Ref<HTMLInputElement>) => {
-    const themingProps = useThemingContext()
+    const theming = useThemingContext()
 
     const { getInputProps } = useNumberInputContext()
     const htmlProps = getInputProps({ ...props, ref })
 
     return (
       <StyledInput
-        {...themingProps}
+        {...theming}
         //@ts-ignore `size` is a valid `input` prop and it clashes with the size theming prop.
-        size={themingProps?.size}
+        size={theming?.size}
         {...htmlProps}
       />
     )
@@ -221,13 +218,13 @@ export type NumberDecrementStepperProps = PropsOf<typeof StyledStepper>
  */
 export const NumberDecrementStepper = React.forwardRef(
   (props: NumberDecrementStepperProps, ref: React.Ref<any>) => {
-    const themingProps = useThemingContext()
+    const theming = useThemingContext()
 
     const { getDecrementButtonProps } = useNumberInputContext()
     const htmlProps = getDecrementButtonProps({ ...props, ref })
 
     return (
-      <StyledStepper {...themingProps} {...htmlProps}>
+      <StyledStepper {...theming} {...htmlProps}>
         {props.children ?? <TriangleDownIcon />}
       </StyledStepper>
     )
@@ -249,13 +246,13 @@ export type NumberIncrementStepperProps = PropsOf<typeof StyledStepper>
  */
 export const NumberIncrementStepper = React.forwardRef(
   (props: NumberIncrementStepperProps, ref: React.Ref<any>) => {
-    const themingProps = useThemingContext()
+    const theming = useThemingContext()
 
     const { getIncrementButtonProps } = useNumberInputContext()
     const htmlProps = getIncrementButtonProps({ ...props, ref })
 
     return (
-      <StyledStepper {...themingProps} {...htmlProps}>
+      <StyledStepper {...theming} {...htmlProps}>
         {props.children ?? <TriangleUpIcon />}
       </StyledStepper>
     )
