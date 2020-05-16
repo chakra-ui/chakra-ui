@@ -3,14 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@types/jest": "25.1.4",
-    "@types/node": "12.7.11",
-    "@types/react": "16.9.23",
-    "@types/react-dom": "16.9.5",
-    "react": "16.13.0",
-    "react-dom": "16.13.0",
-    "react-scripts": "3.2.0",
-    "typescript": "3.9.2"
+    "@chakra-ui/core": "latest",
+    "@chakra-ui/preset-base": "latest",
+    "react-scripts": "3.4.1"
   },
   "scripts": {
     "start": "react-scripts start",

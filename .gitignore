@@ -20,3 +20,4 @@ packages/*/.rts2_cache*
 # Local Netlify folder
 .netlify
 .idea
+*.env
