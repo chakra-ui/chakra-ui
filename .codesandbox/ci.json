@@ -1,6 +1,6 @@
 {
   "installCommand": "codesandbox:ci",
   "buildCommand": "build",
-  "packages": ["./", "packages/core", "packages/system"],
+  "packages": ["packages/system"],
   "sandboxes": ["tender-leakey-6ms6x"]
 }
