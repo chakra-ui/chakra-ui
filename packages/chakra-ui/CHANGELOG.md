@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/core@0.7.0...@chakra-ui/core@0.8.0) (2020-05-16)
+
+### Bug Fixes
+
+- **ts:** add typing for content pseudobox property
+  ([e2fb824](https://github.com/chakra-ui/chakra-ui/commit/e2fb82406796efc5a902128772c0e7cc5e422eb4))
+- make component typings discoverable
+  ([898d4f3](https://github.com/chakra-ui/chakra-ui/commit/898d4f3685a377d7914b0150503796b6eb3261bd))
+
+### Features
+
+- add iconColor prop to <Select />
+  ([968ca80](https://github.com/chakra-ui/chakra-ui/commit/968ca80d916f691ed26515a6e80c43d01eb25d9f))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [0.7.0](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/core@0.6.1...@chakra-ui/core@0.7.0) (2020-03-25)
 
 ### Bug Fixes
