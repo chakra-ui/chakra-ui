@@ -122,7 +122,6 @@ const CodeBlock = ({
   const language = className && className.replace(/language-/, "");
   const { onCopy, hasCopied } = useClipboard(editorCode);
 
-  const { colorMode } = useColorMode();
   const themes = { light: lightTheme, dark: darkTheme };
   const theme = themes["dark"];
 
@@ -130,7 +129,6 @@ const CodeBlock = ({
     theme,
     language,
     code: editorCode,
-    transformCode: code => "/** @jsx mdx */" + code,
     scope: {
       ...Chakra,
       ...Formik,
