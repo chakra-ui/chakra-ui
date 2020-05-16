@@ -3,9 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@chakra-ui/core": "latest",
-    "@chakra-ui/preset-base": "latest",
-    "react-scripts": "3.4.1"
+    "@chakra-ui/core": "1.0.0",
+    "@chakra-ui/preset-base": "1.0.0",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "5.7.0",
+    "@testing-library/react": "10.0.4",
+    "@types/jest": "^25.2.0",
+    "@types/react": "16.9.23",
+    "@types/react-dom": "16.9.8",
+    "react-scripts": "3.4.1",
+    "typescript": "3.9.2"
   },
   "scripts": {
     "start": "react-scripts start",

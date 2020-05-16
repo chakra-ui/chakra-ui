@@ -7,14 +7,12 @@
     "build": "next build",
     "start": "next start"
   },
-  "alias": {
-    "react": "../../node_modules/react",
-    "react-dom": "../../node_modules/react-dom",
-    "@chakra-ui/system": "../../node_modules/@chakra-ui/system",
-    "@chakra-ui/image": "../../node_modules/@chakra-ui/image",
-    "@chakra-ui/preset-base": "../../node_modules/@chakra-ui/preset-base"
-  },
   "dependencies": {
-    "next": "9.3.3"
+    "@chakra-ui/system": "1.0.0",
+    "@chakra-ui/image": "1.0.0",
+    "@chakra-ui/preset-base": "1.0.0",
+    "next": "9.3.3",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
   }
 }
