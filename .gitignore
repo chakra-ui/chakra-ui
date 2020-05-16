@@ -17,3 +17,4 @@ packages/*/.rts2_cache*
 .next
 # Local Netlify folder
 .netlify
+.vercel
