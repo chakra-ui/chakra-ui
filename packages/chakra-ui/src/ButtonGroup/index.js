@@ -1,18 +1,20 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { cloneElement } from "react";
+import { cloneElement, forwardRef } from "react";
 import Box from "../Box";
 import { cleanChildren } from "../utils";
 
-const ButtonGroup = ({
-  size,
-  variantColor,
-  variant,
-  isAttached,
-  spacing = 2,
-  children,
-  ...rest
-}) => {
+const ButtonGroup = forwardRef((props, ref) => {
+  const {
+    size,
+    variantColor,
+    variant,
+    isAttached,
+    spacing = 2,
+    children,
+    ...rest
+  } = props;
+
   const validChildren = cleanChildren(children);
   const clones = validChildren.map((child, index) => {
     const isFirst = index === 0;
@@ -33,10 +35,10 @@ const ButtonGroup = ({
   });
 
   return (
-    <Box display="inline-block" {...rest}>
+    <Box ref={ref} display="inline-block" {...rest}>
       {clones}
     </Box>
   );
-};
+});
 
 export default ButtonGroup;
