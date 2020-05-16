@@ -165,6 +165,14 @@ export const pseudoSelectors = {
    */
   _last: "&:last-of-type",
   /**
+   * Styles for CSS Selector `&:not(:first-of-type)`
+   */
+  _notFirst: "&:not(:first-of-type)",
+  /**
+   * Styles for CSS Selector `&:not(:last-of-type)`
+   */
+  _notLast: "&:not(:last-of-type)",
+  /**
    * Styles for CSS Selector `&:visited`
    */
   _visited: "&:visited",
