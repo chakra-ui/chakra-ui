@@ -45,7 +45,7 @@
     "version": "yarn build",
     "build:esm": "tsc --module esnext --outDir dist/esm --declaration false",
     "build:cjs": "tsc --module commonjs --outDir dist/cjs --declaration false",
-    "build:types": "tsc --emitDeclarationOnly --declaration true --declarationDir dist/types",
+    "build:types": "tsc --emitDeclarationOnly --declaration --declarationMap --declarationDir dist/types",
     "test:cov": "yarn test --coverage",
     "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
     "lint:types": "tsc --noEmit"
