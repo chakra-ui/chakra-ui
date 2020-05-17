@@ -12,6 +12,7 @@ module.exports = {
         component: require.resolve("./src/components/layout"),
       },
     },
+    `gatsby-plugin-chakra-ui`,
     `gatsby-plugin-lodash`,
     `gatsby-plugin-mdx`,
     "gatsby-plugin-catch-links",
