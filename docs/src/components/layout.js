@@ -7,10 +7,16 @@ import SideNav from "./docs/SideNav"
 import Header from "./header"
 import { Footer } from "./footer"
 
-const HomeLayout = ({ children }) => <div>{children}</div>
+const HomeLayout = ({ children }) => (
+  <div>
+    <Header isConstrained />
+    {children}
+  </div>
+)
 
 const SidebarLayout = ({ children }) => (
   <MDXProvider components={MDXComponents}>
+    <Header />
     <Box>
       <SideNav
         display={["none", null, "block"]}
@@ -41,7 +47,6 @@ const Layout = ({ children, pageContext }) => {
 
   return (
     <Box>
-      <Header />
       <Container>{children}</Container>
     </Box>
   )

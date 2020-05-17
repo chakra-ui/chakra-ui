@@ -9,9 +9,9 @@ import {
   chakra,
 } from "@chakra-ui/core"
 import { DiGithubBadge } from "react-icons/di"
-import Logo from "./logo"
-// import { Container } from "../../docs/pages"
 import { FaMoon, FaSun } from "react-icons/fa"
+import { Container } from "./container"
+import Logo from "./logo"
 
 const StorybookIcon = props => (
   <svg
@@ -40,8 +40,49 @@ const StorybookIcon = props => (
   </svg>
 )
 
-const Header = props => {
+const HeaderContent = () => {
   const [colorMode, toggleColorMode] = useColorMode()
+
+  return (
+    <Flex boxSize="100%" px="6" align="center" justify="space-between">
+      <chakra.a
+        as="a"
+        display="block"
+        href="/"
+        aria-label="Chakra UI, Back to homepage"
+      >
+        <Logo />
+      </chakra.a>
+      <Flex align="center" color="gray.500">
+        <Stack align="center" direction="row" spacing="3">
+          <Link
+            isExternal
+            href="https://github.com/chakra-ui/chakra-ui/tree/master/packages/chakra-ui"
+          >
+            <Box as={DiGithubBadge} boxSize="8" color="current" />
+          </Link>
+          <Link isExternal href="https://chakra-ui.netlify.com">
+            <Box as={StorybookIcon} boxSize="6" color="current" />
+          </Link>
+        </Stack>
+        <IconButton
+          aria-label={`Switch to ${
+            colorMode === "light" ? "dark" : "light"
+          } mode`}
+          variant="ghost"
+          color="current"
+          ml="2"
+          fontSize="20px"
+          onClick={toggleColorMode}
+          icon={colorMode === "light" ? <FaMoon /> : <FaSun />}
+        />
+      </Flex>
+    </Flex>
+  )
+}
+
+const Header = ({ isConstrained, ...props }) => {
+  const [colorMode] = useColorMode()
   const bg = { light: "white", dark: "gray.800" }
   return (
     <chakra.header
@@ -56,42 +97,13 @@ const Header = props => {
       height="4rem"
       {...props}
     >
-      {/* <Container h="100%"> */}
-      <Flex boxSize="100%" px="6" align="center" justify="space-between">
-        <chakra.a
-          as="a"
-          display="block"
-          href="/"
-          aria-label="Chakra UI, Back to homepage"
-        >
-          <Logo />
-        </chakra.a>
-        <Flex align="center" color="gray.500">
-          <Stack align="center" direction="row" spacing="3">
-            <Link
-              isExternal
-              href="https://github.com/chakra-ui/chakra-ui/tree/master/packages/chakra-ui"
-            >
-              <Box as={DiGithubBadge} boxSize="8" color="current" />
-            </Link>
-            <Link isExternal href="https://chakra-ui.netlify.com">
-              <Box as={StorybookIcon} boxSize="6" color="current" />
-            </Link>
-          </Stack>
-          <IconButton
-            aria-label={`Switch to ${
-              colorMode === "light" ? "dark" : "light"
-            } mode`}
-            variant="ghost"
-            color="current"
-            ml="2"
-            fontSize="20px"
-            onClick={toggleColorMode}
-            icon={colorMode === "light" ? <FaMoon /> : <FaSun />}
-          />
-        </Flex>
-      </Flex>
-      {/* </Container> */}
+      {isConstrained ? (
+        <Container h="100%">
+          <HeaderContent />
+        </Container>
+      ) : (
+        <HeaderContent />
+      )}
     </chakra.header>
   )
 }
