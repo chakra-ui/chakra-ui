@@ -56,7 +56,7 @@ const MainLinks = () => {
   const nodes = sortByOrder(main.nodes)
 
   return nodes.map(({ frontmatter: { title }, fields: { slug } }) => (
-    <TopNavLink key={title} href={`/${slug}`}>
+    <TopNavLink key={title} href={slug}>
       {title}
     </TopNavLink>
   ))
@@ -67,7 +67,7 @@ const ComponentLinks = () => {
   const nodes = sortByTitle(components.nodes)
 
   return nodes.map(({ frontmatter: { title }, fields: { slug } }) => (
-    <ComponentLink key={title} href={`/${slug}`}>
+    <ComponentLink key={title} href={slug}>
       {upperFirst(camelCase(title))}
     </ComponentLink>
   ))
@@ -78,7 +78,7 @@ const UtilitiesLinks = () => {
   const nodes = sortByTitle(utilities.nodes)
 
   return nodes.map(({ frontmatter: { title }, fields: { slug } }) => (
-    <ComponentLink key={title} href={`/${slug}`}>
+    <ComponentLink key={title} href={slug}>
       {title}
     </ComponentLink>
   ))

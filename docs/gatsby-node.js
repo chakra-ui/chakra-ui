@@ -1,11 +1,23 @@
 const path = require("path")
+const { createFilePath } = require("gatsby-source-filesystem")
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
   // only adds fields to `Mdx` nodes
   if (node.internal.type === `Mdx`) {
-    const { slug, collection } = processMdxFileNode(getNode(node.parent))
+    // get the `collection` using the parent `File` node's `relativeDirectory`
+    const { relativeDirectory } = getNode(node.parent)
+    const collection = relativeDirectory.length ? relativeDirectory : "main"
+
+    // use `gatsby-source-filesystem` to create our slug
+    const relativeFilePath = createFilePath({
+      node,
+      getNode,
+      basePath: "pages",
+      trailingSlash: false,
+    })
+    const slug = relativeFilePath.toLowerCase()
 
     // create `slug` field (`node.fields.slug`)
     createNodeField({
@@ -63,31 +75,4 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     })
   })
-}
-
-/**
- * Determine the `slug` and `collection` for an mdx `File` node.
- *
- * slug: the url path for the node (`/usedisclosure`)
- *
- * collection: the collection the node belongs to the
- *  (`utilities/useDisclosure.mdx` belongs to `utilities`; `getting-started.mdx`
- *  belongs to `main`)
- */
-const processMdxFileNode = node => {
-  // example file: "src/pages/utilities/useDisclosure.mdx"
-  // name: "useDisclosure"
-  // relativePath: "utilities/useDisclosure.mdx"
-  const { name, relativeDirectory } = node
-
-  // collection is just the relativeDirectory. this way we can identify and
-  // group pages that belong together, like components or utilities
-  const collection = relativeDirectory.length ? relativeDirectory : "main"
-
-  const slug = name.toLowerCase()
-
-  return {
-    collection,
-    slug,
-  }
 }
