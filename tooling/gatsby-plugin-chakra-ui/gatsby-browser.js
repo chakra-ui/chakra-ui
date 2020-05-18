@@ -4,23 +4,22 @@ import {
   ColorModeProvider,
   CSSReset,
   GlobalStyle,
+  PortalManager,
 } from "@chakra-ui/core"
 import theme from "./src/theme"
 
 export const wrapRootElement = (
   { element },
   { isResettingCSS = true, isUsingColorMode = true },
-) => (
-  <ThemeProvider theme={theme}>
-    <GlobalStyle />
-    {isResettingCSS && !isUsingColorMode && <CSSReset />}
-    {isUsingColorMode ? (
-      <ColorModeProvider>
+) => {
+  const ModeProvider = isUsingColorMode ? ColorModeProvider : React.Fragment
+  return (
+    <ThemeProvider theme={theme}>
+      <ModeProvider>
+        <GlobalStyle />
         {isResettingCSS && <CSSReset />}
-        {element}
-      </ColorModeProvider>
-    ) : (
-      element
-    )}
-  </ThemeProvider>
-)
+        <PortalManager>{element}</PortalManager>
+      </ModeProvider>
+    </ThemeProvider>
+  )
+}
