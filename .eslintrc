@@ -25,5 +25,13 @@
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "@typescript-eslint/member-delimiter-style": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["docs/gatsby-*.js"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off"
+      }
+    }
+  ]
 }

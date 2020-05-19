@@ -1,0 +1,172 @@
+---
+title: "Radio"
+---
+
+# Radio
+
+Radios are used when only one choice may be selected in a series of options.
+
+Native HTML radios are 100% accessible by default, so we used a
+[very common CSS technique](https://dev.to/lkopacz/create-custom-keyboard-accessible-radio-buttons-22eh)
+to style the radio.
+
+The Radio component composes `ControlBox`, a component we created to make it
+easy to style sibling inputs. [Check it out](/controlbox)
+
+## Installation
+
+```js
+import { Radio, RadioGroup } from "@chakra-ui/core"
+```
+
+### Usage
+
+```jsx
+function RadioExample() {
+  const [value, setValue] = React.useState("1")
+  return (
+    <RadioGroup onChange={e => setValue(e.target.value)} value={value}>
+      <Radio value="1">First</Radio>
+      <Radio value="2">Second</Radio>
+      <Radio value="3">Third</Radio>
+    </RadioGroup>
+  )
+}
+```
+
+### Radio with custom color
+
+You can override the color scheme of the Radio to any color key specified in
+`theme.colors`.
+
+```jsx
+<RadioGroup defaultValue="2" spacing={5} isInline>
+  <Radio variantColor="red" value="1">
+    Radio
+  </Radio>
+  <Radio variantColor="green" value="2">
+    Radio
+  </Radio>
+</RadioGroup>
+```
+
+### Radio sizes
+
+The checkbox comes with 3 sizes
+
+```jsx
+<Stack>
+  <Radio size="sm" name="1" variantColor="red">
+    Radio
+  </Radio>
+  <Radio size="md" name="1" variantColor="green">
+    Radio
+  </Radio>
+  <Radio size="lg" name="1" variantColor="orange" defaultChecked>
+    Radio
+  </Radio>
+</Stack>
+```
+
+### Disabled radios
+
+```jsx
+<RadioGroup defaultValue="1">
+  <Radio value="1" isDisabled>
+    Checked
+  </Radio>
+  <Radio value="2">Unchecked</Radio>
+  <Radio value="3">Unchecked</Radio>
+</RadioGroup>
+```
+
+### Horizontal alignment
+
+```jsx
+<RadioGroup isInline spacing={4} defaultValue="1">
+  <Radio value="1" isDisabled>
+    Radio 1
+  </Radio>
+  <Radio value="2">Radio 2</Radio>
+  <Radio value="3">Radio 3</Radio>
+</RadioGroup>
+```
+
+### Invalid Checkbox
+
+```jsx
+<Radio isInvalid>Radio</Radio>
+```
+
+### Custom Radio Buttons
+
+In some cases, you might need to create components that work like radios but
+don't look like radios. Chakra exports a `RadioButtonGroup` to help with this
+scenario. Here's what you need to do:
+
+1. Create a component that accepts the `isChecked` and `isDisabled` props. Be
+   sure to `forwardRef` to the component because it's used for keyboard
+   accessibility.
+2. Add the component as children of `RadioButtonGroup` and pass a `value` prop
+   to it.
+3. If you pass `isDisabled` to any of it's children, it'll be skipped in the
+   keyboard navigation.
+
+```jsx isManual=true
+// Step 1: Create a component that accepts `isChecked` and `isDisabled` prop
+const CustomRadio = React.forwardRef((props, ref) => {
+  const { isChecked, isDisabled, value, ...rest } = props
+  return (
+    <Button
+      ref={ref}
+      variantColor={isChecked ? "red" : "gray"}
+      aria-checked={isChecked}
+      role="radio"
+      isDisabled={isDisabled}
+      {...rest}
+    />
+  )
+})
+
+// Step 2: Add `CustomRadio` as children of `RadioButtonGroup`
+function Example() {
+  return (
+    <RadioButtonGroup
+      defaultValue="rad2"
+      onChange={val => console.log(val)}
+      isInline
+    >
+      <CustomRadio value="rad1">CustomRadio 1</CustomRadio>
+      <CustomRadio value="rad2">CustomRadio 2</CustomRadio>
+      <CustomRadio value="rad3">CustomRadio 3</CustomRadio>
+      {/* This child will be skipped in keyboard navigation */}
+      <CustomRadio isDisabled value="rad4">
+        CustomRadio 4
+      </CustomRadio>
+    </RadioButtonGroup>
+  )
+}
+
+render(<Example />)
+```
+
+## Props
+
+| Name             | Type                 | Default | Description                                                                                                           |
+| ---------------- | -------------------- | ------- | --------------------------------------------------------------------------------------------------------------------- |
+| id               | `string`             |         | The id assigned to input field                                                                                        |
+| name             | `string`             |         | The name of the input field in a radio (Useful for form submission)                                                   |
+| value            | `string` or `number` |         | The value to be used in the radio input. This is the value that will be returned on form submission                   |
+| variantColor     | `string`             |         | The color of the radio when it's checked. This should be one of the color keys in the theme (e.g."green", "red")      |
+| defaultIsChecked | `boolean`            |         | If `true`, the radio will be initially checked                                                                        |
+| isChecked        | `boolean`            |         | If `true`, the radio will be checked. You'll need to pass `onChange` to update it's value (since it's now controlled) |
+| isFullWidth      | `boolean`            |         | If `true`, the radio should take up the full width of the parent                                                      |
+| size             | `sm`, `md`, `lg`     | `md`    | The size (width and height) of the radio                                                                              |
+| isDisabled       | `boolean`            |         | If `true`, the radio will be disabled                                                                                 |
+| isInvalid        | `boolean`            |         | If `true`, the radio is marked as invalid. Changes style of unchecked state                                           |
+| children         | `React.ReactNode`    |         | The children of the radio                                                                                             |
+| onChange         | `function`           |         | Function called when the state of the radio changes                                                                   |
+| onBlur           | `function`           |         | Function called when you blur out of the radio                                                                        |
+| onFocus          | `function`           |         | Function called when the radio receive focus                                                                          |
+| aria-label       | `string`             |         | An accessible label for the radio in event there's no visible label or `children` was passed                          |
+| aria-labelledby  | `string`             |         | Id that points to the label for the radio in event no `children` was passed                                           |

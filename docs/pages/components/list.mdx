@@ -1,0 +1,78 @@
+---
+title: "List"
+---
+
+# List
+
+List is used to display list items, it renders a `<ul>` by default.
+
+## Import
+
+```js
+import { List, ListItem, ListIcon } from "@chakra-ui/core"
+```
+
+## Unordered List
+
+```jsx
+<List styleType="disc">
+  <ListItem>Lorem ipsum dolor sit amet</ListItem>
+  <ListItem>Consectetur adipiscing elit</ListItem>
+  <ListItem>Integer molestie lorem at massa</ListItem>
+  <ListItem>Facilisis in pretium nisl aliquet</ListItem>
+</List>
+```
+
+## Ordered List
+
+```jsx
+<List as="ol" styleType="decimal">
+  <ListItem>Lorem ipsum dolor sit amet</ListItem>
+  <ListItem>Consectetur adipiscing elit</ListItem>
+  <ListItem>Integer molestie lorem at massa</ListItem>
+  <ListItem>Facilisis in pretium nisl aliquet</ListItem>
+</List>
+```
+
+## Unstyled List with icon
+
+Add nice icons to the list item by using the `ListIcon` component. You can pass
+the name of the icon or custom icons. The icon is sized relative to the font
+size of the list item.
+
+```jsx
+<List spacing={3}>
+  <ListItem>
+    <ListIcon icon="check-circle" color="green.500" />
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit
+  </ListItem>
+  <ListItem>
+    <ListIcon icon="check-circle" color="green.500" />
+    Assumenda, quia temporibus eveniet a libero incidunt suscipit
+  </ListItem>
+  <ListItem>
+    <ListIcon icon="check-circle" color="green.500" />
+    Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
+  </ListItem>
+  {/* You can also use custom icons from react-icons */}
+  <ListItem>
+    <ListIcon icon={MdSettings} color="green.500" />
+    Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
+  </ListItem>
+</List>
+```
+
+## Props
+
+### List Props
+
+| Name      | Type                             | Default  | Description                             |
+| --------- | -------------------------------- | -------- | --------------------------------------- |
+| styleType | `string`                         | `none`   | The CSS value for `list-style-type`     |
+| stylePos  | `string`                         | `inside` | The CSS value for `list-style-position` |
+| spacing   | `StyledSystem.MarginBottomProps` |          | The space between each list item        |
+
+### List Item Props
+
+ListItem composes [PseudoBox](/pseudobox) so you pass all style props, and
+pseudo style props.

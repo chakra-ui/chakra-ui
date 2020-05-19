@@ -1,0 +1,188 @@
+---
+title: "Checkbox"
+description:
+  "Checkbox component is used in forms when a user needs to select multiple
+  values from several options."
+---
+
+# Checkbox
+
+Checkbox component is used in forms when a user needs to select multiple values
+from several options.
+
+Native HTML checkboxes are 100% accessible by default, so we used a
+[very common CSS technique](https://dev.to/lkopacz/create-custom-keyboard-accessible-checkboxes-2036)
+to style the checkboxes.
+
+The Checkbox component composes [ControlBox](/controlbox), a component we
+created to make it easy to style an element based on sibling inputs.
+
+## Import
+
+```js
+import { Checkbox, CheckboxGroup } from "@chakra-ui/core"
+```
+
+## Usage
+
+Basic usage of checkbox.
+
+```jsx
+<Checkbox defaultIsChecked>Checkbox</Checkbox>
+```
+
+### Disabled Checkbox
+
+```jsx
+<Stack spacing={10} isInline>
+  <Checkbox isDisabled>Checkbox</Checkbox>
+  <Checkbox isDisabled defaultIsChecked>
+    Checkbox
+  </Checkbox>
+</Stack>
+```
+
+### Checkbox with custom color
+
+You can override the color scheme of the checkbox to any color key specified in
+`theme.colors`.
+
+```jsx
+<Stack spacing={10} isInline>
+  <Checkbox variantColor="red" defaultIsChecked>
+    Checkbox
+  </Checkbox>
+  <Checkbox variantColor="green" defaultIsChecked>
+    Checkbox
+  </Checkbox>
+</Stack>
+```
+
+### Checkbox sizes
+
+Pass the `size` prop to change the size of the Checkbox. Values can be either
+`sm`, `md` or `lg`.
+
+```jsx
+<Stack spacing={10} isInline>
+  <Checkbox size="sm" variantColor="red">
+    Checkbox
+  </Checkbox>
+  <Checkbox size="md" variantColor="green" defaultIsChecked>
+    Checkbox
+  </Checkbox>
+  <Checkbox size="lg" variantColor="orange" defaultIsChecked>
+    Checkbox
+  </Checkbox>
+</Stack>
+```
+
+### Invalid Checkbox
+
+```jsx
+<Checkbox isInvalid>Checkbox</Checkbox>
+```
+
+### Indeterminate
+
+```jsx
+function IndeterminateExample() {
+  const [checkedItems, setCheckedItems] = React.useState([false, false])
+
+  const allChecked = checkedItems.every(Boolean)
+  const isIndeterminate = checkedItems.some(Boolean) && !allChecked
+
+  return (
+    <>
+      <Checkbox
+        isChecked={allChecked}
+        isIndeterminate={isIndeterminate}
+        onChange={e => setCheckedItems([e.target.checked, e.target.checked])}
+        children="Parent Checkbox"
+      />
+      <Stack pl={6} mt={1} spacing={1}>
+        <Checkbox
+          isChecked={checkedItems[0]}
+          onChange={e => setCheckedItems([e.target.checked, checkedItems[1]])}
+          children="Child Checkbox 1"
+        />
+        <Checkbox
+          isChecked={checkedItems[1]}
+          onChange={e => setCheckedItems([checkedItems[0], e.target.checked])}
+          children="Child Checkbox 2"
+        />
+      </Stack>
+    </>
+  )
+}
+```
+
+### CheckboxGroup
+
+Chakra exports a `CheckboxGroup` component to help manage the checked state of
+it's children.
+
+```jsx
+<CheckboxGroup variantColor="green" defaultValue={["naruto", "kakashi"]}>
+  <Checkbox value="naruto">Naruto</Checkbox>
+  <Checkbox value="sasuke">Sasuke</Checkbox>
+  <Checkbox value="kakashi">kakashi</Checkbox>
+</CheckboxGroup>
+```
+
+You can also make checkbox group appear horizontally by passing the `isInline`
+prop.
+
+```jsx
+<CheckboxGroup
+  isInline
+  spacing={8}
+  variantColor="teal"
+  defaultValue={["itachi", "kisame"]}
+>
+  <Checkbox value="itachi">Itachi</Checkbox>
+  <Checkbox value="madara">Madara</Checkbox>
+  <Checkbox value="kisame">Kisame</Checkbox>
+</CheckboxGroup>
+```
+
+## Props
+
+### Checkbox Props
+
+| Name             | Type                 | Default | Description                                                                                                              |
+| ---------------- | -------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------ |
+| id               | `string`             |         | The id assigned to input field                                                                                           |
+| name             | `string`             |         | The name of the input field in a checkbox (Useful for form submission)                                                   |
+| value            | `string` or `number` |         | The value to be used in the checkbox input. This is the value that will be returned on form submission.                  |
+| variantColor     | `string`             |         | The color of the checkbox when it's checked. This should be one of the color keys in the theme (e.g."green", "red")      |
+| defaultIsChecked | `boolean`            |         | If `true`, the checkbox will be initially checked.                                                                       |
+| isChecked        | `boolean`            |         | If `true`, the checkbox will be checked. You'll need to pass `onChange` to update it's value (since it's now controlled) |
+| isIndeterminate  | `boolean`            |         | If `true`, the checkbox will be indeterminate. This only affects the icon shown inside checkbox                          |
+| isFullWidth      | `boolean`            |         | If `true`, the checkbox should take up the full width of the parent.                                                     |
+| size             | `sm`, `md`, `lg`     | `md`    | The size (width and height) of the checkbox                                                                              |
+| isDisabled       | `boolean`            |         | If `true`, the checkbox will be disabled                                                                                 |
+| isInvalid        | `boolean`            |         | If `true`, the checkbox is marked as invalid. Changes style of unchecked state.                                          |
+| children         | `React.ReactNode`    |         | The children of the checkbox.                                                                                            |
+| onChange         | `function`           |         | Function called when the state of the checkbox changes.                                                                  |
+| onBlur           | `function`           |         | Function called when you blur out of the checkbox.                                                                       |
+| onFocus          | `function`           |         | Function called when the checkbox receive focus.                                                                         |
+| aria-label       | `string`             |         | An accessible label for the checkbox in event there's no visible label or `children` passed                              |
+| aria-labelledby  | `string`             |         | Id that points to the label for the checkbox in event no `children` was passed                                           |
+
+### CheckboxGroup Props
+
+CheckboxGroup composes `Box` so you can pass all `Box` props.
+
+| Name         | Type                                       | Default | Description                                                                                                         |
+| ------------ | ------------------------------------------ | ------- | ------------------------------------------------------------------------------------------------------------------- |
+| id           | `string`                                   |         | The id of the checkbox group.                                                                                       |
+| name         | `string`                                   |         | The name of the checkbox group. This attribute is                                                                   |
+| value        | `Array<Checkbox["value"]>`                 |         | The value of the checkbox group                                                                                     |
+| defaultValue | `Array<Checkbox["value"]>`                 |         | The initial value of the checkbox group                                                                             |
+| variantColor | `string`                                   |         | The color of the checkbox when it's checked. This should be one of the color keys in the theme (e.g."green", "red") |
+| onChange     | `(values: Array<Checkbox["value"]>): void` |         | The callback fired when any children Checkbox is checked or unchecked                                               |
+| children     | `React.ReactNode`                          |         | The content of the checkbox group. Must be the `Checkbox` component                                                 |
+| spacing      | `StyledSystem.MarginProps`                 | `8px`   | The space between each checkbox                                                                                     |
+| size         | `sm`, `md`, `lg`                           | `md`    | The size of the checkbox, it's forwarded to all children checkbox.                                                  |
+| isInline     | `boolean`                                  |         | If `true`, the checkboxes will aligned horizontally.                                                                |

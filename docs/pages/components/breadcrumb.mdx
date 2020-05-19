@@ -1,0 +1,183 @@
+---
+title: "Breadcrumb"
+description:
+  "Breadcrumbs, or a breadcrumb navigation, can help to enhance how users
+  navigate to previous page levels of a website, especially if that website has
+  many pages or products."
+---
+
+# Breadcrumb
+
+Breadcrumbs, or a breadcrumb navigation, can help to enhance how users navigate
+to previous page levels of a website, especially if that website has many pages
+or products.
+
+## Import
+
+Chakra UI exports 4 breadcrumb related components:
+
+- `Breadcrumb`: The parent container for breadcrumbs.
+- `BreadcrumbItem`: Individual breadcrumb element containing a link and a
+  divider.
+- `BreadcrumbLink`: The breadcrumb link, obviously.
+- `BreadcrumbSeparator`: The visual separator between each breadcrumb
+
+```js
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
+} from "@chakra-ui/core"
+```
+
+## Usage
+
+Add `isCurrentPage` prop to the `BreadcrumbItem` that matches the current path.
+When this prop is present, the `BreadcrumbItem` doesn't have a separator, and
+the `BreadcrumbLink` has `aria-current` set to `page`.
+
+```jsx
+<Breadcrumb>
+  <BreadcrumbItem>
+    <BreadcrumbLink href="#">Home</BreadcrumbLink>
+  </BreadcrumbItem>
+
+  <BreadcrumbItem>
+    <BreadcrumbLink href="#">Docs</BreadcrumbLink>
+  </BreadcrumbItem>
+
+  <BreadcrumbItem isCurrentPage>
+    <BreadcrumbLink href="#">Breadcrumb</BreadcrumbLink>
+  </BreadcrumbItem>
+</Breadcrumb>
+```
+
+### Separators
+
+Change the separator used in the breadcrumb by passing a string, like `-` or an
+icon.
+
+```jsx
+<Breadcrumb separator="-">
+  <BreadcrumbItem>
+    <BreadcrumbLink href="/">Home</BreadcrumbLink>
+  </BreadcrumbItem>
+
+  <BreadcrumbItem>
+    <BreadcrumbLink href="/about">About</BreadcrumbLink>
+  </BreadcrumbItem>
+
+  <BreadcrumbItem isCurrentPage>
+    <BreadcrumbLink href="/contact">Contact</BreadcrumbLink>
+  </BreadcrumbItem>
+</Breadcrumb>
+```
+
+### Using an icon as the separator
+
+```jsx
+<Breadcrumb spacing="8px" separator={<ChevronRightIcon color="gray.300" />}>
+  <BreadcrumbItem>
+    <BreadcrumbLink href="/">Home</BreadcrumbLink>
+  </BreadcrumbItem>
+
+  <BreadcrumbItem>
+    <BreadcrumbLink href="/about">About</BreadcrumbLink>
+  </BreadcrumbItem>
+
+  <BreadcrumbItem isCurrentPage>
+    <BreadcrumbLink href="/contact">Contact</BreadcrumbLink>
+  </BreadcrumbItem>
+</Breadcrumb>
+```
+
+## Composition
+
+`Breadcrumb` composes [Box](/box) so you can pass all `Box` props to change the
+style of the breadcrumbs. Let's say we need to increase the `fontSize` of the
+breadcrumbs.
+
+```jsx
+<Breadcrumb fontWeight="medium" fontSize="sm">
+  <BreadcrumbItem>
+    <BreadcrumbLink href="/google">Home</BreadcrumbLink>
+  </BreadcrumbItem>
+
+  <BreadcrumbItem>
+    <BreadcrumbLink href="/about">About</BreadcrumbLink>
+  </BreadcrumbItem>
+
+  <BreadcrumbItem isCurrentPage>
+    <BreadcrumbLink href="/current">Current</BreadcrumbLink>
+  </BreadcrumbItem>
+</Breadcrumb>
+```
+
+## Usage with Routing Library
+
+To use the Breadcrumb with a routing Library like Reach Router or React Router,
+all you need to do is to pass the `as` prop to the `BreadcrumbLink` component.
+
+It'll replace the rendered `a` tag with with Reach's Link.
+
+```jsx live=false
+// import { Link } from "@reach/router"
+<Breadcrumb>
+  <BreadcrumbItem>
+    <BreadcrumbLink as={Link} to="/">
+      Home
+    </BreadcrumbLink>
+  </BreadcrumbItem>
+  <BreadcrumbItem>
+    <BreadcrumbLink as={Link} to="/about">
+      About
+    </BreadcrumbLink>
+  </BreadcrumbItem>
+  <BreadcrumbItem isCurrentPage>
+    <BreadcrumbLink>Contact</BreadcrumbLink>
+  </BreadcrumbItem>
+</Breadcrumb>
+```
+
+## Accessibility
+
+- The Breadcrumbs are rendered in a `nav` to denote that it's a navigation
+  landmark.
+- The Breadcrumb `nav` has `aria-label` set to `breadcrumb`.
+- The BreadcrumbItem with `isCurrentPage` prop adds the `aria-current=page` to
+  the BreadcrumbLink.
+- The separator has `role` set to `presentation` to denote that its for
+  presentation purposes.
+
+---
+
+## Props
+
+### Breadcrumb Props
+
+| Name         | Type                        | Default  | Description                                                     |
+| ------------ | --------------------------- | -------- | --------------------------------------------------------------- |
+| separator    | `string`, `React.ReactNode` | `/`      | The visual separator between the breadcrumb item.               |
+| spacing      | `StyledSystem.MarginProps`  | `0.5rem` | The left and right margin applied to the separator.             |
+| addSeparator | `boolean`                   | `true`   | If `true`, the breadcrumb will add the separator automatically. |
+
+### BreadcrumbItem Props
+
+| Name          | Type      | Default | Description                                                                                                    |
+| ------------- | --------- | ------- | -------------------------------------------------------------------------------------------------------------- |
+| isCurrentPage | `boolean` |         | If `true`, it indicates that the breadcrumb link is active page, adds `aria-current=page` and renders a `span` |
+
+<br />
+
+### BreadcrumbLink Props
+
+The BreadcrumbLink composes the [Link](/link) component so you can all Link
+props.
+
+<br />
+
+### BreadcrumbSeparator Props
+
+The BreadcrumbSeparator composes the [Box](/box) component so you can all Box
+props.
