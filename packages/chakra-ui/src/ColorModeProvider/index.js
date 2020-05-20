@@ -22,13 +22,13 @@ const ColorModeProvider = ({ value, children }) => {
     }
   };
 
-  const { value: isDarkMode, toggle } = useDarkMode(false);
-  const colorMode = isDarkMode ? "dark" : "light";
+  let childContext = { colorMode: manualMode, toggleColorMode: manualToggle };
 
-  const childContext =
-    value != null
-      ? { colorMode: manualMode, toggleColorMode: manualToggle }
-      : { colorMode, toggleColorMode: toggle };
+  if (value == null) {
+    const { value: isDarkMode, toggle } = useDarkMode(false);
+    const colorMode = isDarkMode ? "dark" : "light";
+    childContext = { colorMode, toggleColorMode: toggle };
+  }
 
   return (
     <ColorModeContext.Provider value={childContext}>
