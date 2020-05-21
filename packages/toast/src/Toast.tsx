@@ -99,6 +99,7 @@ export function Toast(props: ToastProps) {
        */
       transition="all 0.3s cubic-bezier(0.23, 1, 0.32, 1)"
       in={show}
+      timeout={{ enter: 0, exit: 150 }}
       onExited={onExited}
     >
       {styles => (
