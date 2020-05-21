@@ -1,10 +1,13 @@
+const siteMetadata = {
+  title: "Chakra UI | Design System built with React",
+  description:
+    "Simple, Modular and Accessible UI Components for your React Applications. Built with Styled System",
+  author: "Chakra UI",
+  siteUrl: "https://chakra-ui.com",
+}
+
 module.exports = {
-  siteMetadata: {
-    title: "Chakra UI | Design System built with React",
-    description:
-      "Simple, Modular and Accessible UI Components for your React Applications. Built with Styled System",
-    author: "Chakra UI",
-  },
+  siteMetadata,
   plugins: [
     {
       resolve: `gatsby-plugin-layout`,
@@ -17,6 +20,14 @@ module.exports = {
     `gatsby-plugin-mdx`,
     "gatsby-plugin-catch-links",
     "gatsby-plugin-react-helmet",
+    {
+      resolve: `gatsby-plugin-react-helmet-canonical-urls`,
+      options: {
+        siteUrl: siteMetadata.siteUrl,
+        noTrailingSlash: true,
+      },
+    },
+    `gatsby-plugin-remove-trailing-slashes`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {

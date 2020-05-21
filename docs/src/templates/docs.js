@@ -4,12 +4,13 @@ import { MDXRenderer } from "gatsby-plugin-mdx"
 import SEO from "../components/seo"
 
 const Docs = ({ data }) => {
-  const { body, frontmatter } = data.mdx
+  const { body, frontmatter, fields } = data.mdx
   const { title, description } = frontmatter
+  const { slug } = fields
 
   return (
     <>
-      <SEO title={title} description={description} />
+      <SEO title={title} description={description} slug={slug} />
       <MDXRenderer>{body}</MDXRenderer>
     </>
   )
@@ -23,6 +24,9 @@ export const query = graphql`
       frontmatter {
         title
         description
+      }
+      fields {
+        slug
       }
     }
   }
