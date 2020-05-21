@@ -28,7 +28,7 @@
   },
   "overrides": [
     {
-      "files": ["docs/gatsby-*.js"],
+      "files": ["docs/*.js"],
       "rules": {
         "@typescript-eslint/no-var-requires": "off"
       }
