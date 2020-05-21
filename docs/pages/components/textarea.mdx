@@ -49,20 +49,15 @@ You can add `resize` prop to change the Textarea resize behavior.
 ```jsx
 function ResizeExample() {
   const [resize, setResize] = React.useState("horizontal")
-  const handleResizeChange = event => setResize(event.target.value)
 
   return (
     <>
-      <RadioGroup
-        isInline
-        spacing={5}
-        defaultValue={resize}
-        onChange={handleResizeChange}
-        mb={6}
-      >
-        <Radio value="horizontal">Horizontal</Radio>
-        <Radio value="vertical">Vertical</Radio>
-        <Radio value="none">None</Radio>
+      <RadioGroup defaultValue={resize} onChange={setResize} mb={6}>
+        <Stack direction="row" spacing={5}>
+          <Radio value="horizontal">Horizontal</Radio>
+          <Radio value="vertical">Vertical</Radio>
+          <Radio value="none">None</Radio>
+        </Stack>
       </RadioGroup>
 
       <Textarea

@@ -25,10 +25,12 @@ import { Radio, RadioGroup } from "@chakra-ui/core"
 function RadioExample() {
   const [value, setValue] = React.useState("1")
   return (
-    <RadioGroup onChange={e => setValue(e.target.value)} value={value}>
-      <Radio value="1">First</Radio>
-      <Radio value="2">Second</Radio>
-      <Radio value="3">Third</Radio>
+    <RadioGroup onChange={setValue} value={value}>
+      <Stack direction="row">
+        <Radio value="1">First</Radio>
+        <Radio value="2">Second</Radio>
+        <Radio value="3">Third</Radio>
+      </Stack>
     </RadioGroup>
   )
 }
@@ -40,13 +42,15 @@ You can override the color scheme of the Radio to any color key specified in
 `theme.colors`.
 
 ```jsx
-<RadioGroup defaultValue="2" spacing={5} isInline>
-  <Radio colorScheme="red" value="1">
-    Radio
-  </Radio>
-  <Radio colorScheme="green" value="2">
-    Radio
-  </Radio>
+<RadioGroup defaultValue="2">
+  <Stack spacing={5} direction="row">
+    <Radio colorScheme="red" value="1">
+      Radio
+    </Radio>
+    <Radio colorScheme="green" value="2">
+      Radio
+    </Radio>
+  </Stack>
 </RadioGroup>
 ```
 
@@ -72,23 +76,27 @@ The checkbox comes with 3 sizes
 
 ```jsx
 <RadioGroup defaultValue="1">
-  <Radio value="1" isDisabled>
-    Checked
-  </Radio>
-  <Radio value="2">Unchecked</Radio>
-  <Radio value="3">Unchecked</Radio>
+  <Stack>
+    <Radio value="1" isDisabled>
+      Checked
+    </Radio>
+    <Radio value="2">Unchecked</Radio>
+    <Radio value="3">Unchecked</Radio>
+  </Stack>
 </RadioGroup>
 ```
 
 ### Horizontal alignment
 
 ```jsx
-<RadioGroup isInline spacing={4} defaultValue="1">
-  <Radio value="1" isDisabled>
-    Radio 1
-  </Radio>
-  <Radio value="2">Radio 2</Radio>
-  <Radio value="3">Radio 3</Radio>
+<RadioGroup defaultValue="1">
+  <Stack spacing={4} direction="row">
+    <Radio value="1" isDisabled>
+      Radio 1
+    </Radio>
+    <Radio value="2">Radio 2</Radio>
+    <Radio value="3">Radio 3</Radio>
+  </Stack>
 </RadioGroup>
 ```
 
