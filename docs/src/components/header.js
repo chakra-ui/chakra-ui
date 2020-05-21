@@ -12,6 +12,7 @@ import {
 import { DiGithubBadge } from "react-icons/di"
 import { FaMoon, FaSun } from "react-icons/fa"
 import { Container } from "./container"
+import { Search } from "./search"
 import Logo from "./logo"
 
 const StorybookIcon = (props) => (
@@ -53,6 +54,9 @@ const HeaderContent = () => {
       >
         <Logo />
       </chakra.a>
+
+      <Search />
+
       <Flex align="center" color="gray.500">
         <Stack align="center" direction="row" spacing="3">
           <Link
