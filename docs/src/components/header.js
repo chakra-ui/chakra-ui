@@ -46,7 +46,6 @@ const HeaderContent = () => {
   return (
     <Flex boxSize="100%" px="6" align="center" justify="space-between">
       <chakra.a
-        as="a"
         display="block"
         href="/"
         aria-label="Chakra UI, Back to homepage"

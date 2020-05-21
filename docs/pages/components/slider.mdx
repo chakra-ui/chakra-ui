@@ -33,8 +33,9 @@ import {
 
 ```jsx
 <Slider defaultValue={30}>
-  <SliderTrack />
-  <SliderFilledTrack />
+  <SliderTrack>
+    <SliderFilledTrack />
+  </SliderTrack>
   <SliderThumb />
 </Slider>
 ```
@@ -43,8 +44,9 @@ import {
 
 ```jsx
 <Slider color="pink" defaultValue={30}>
-  <SliderTrack />
-  <SliderFilledTrack />
+  <SliderTrack>
+    <SliderFilledTrack />
+  </SliderTrack>
   <SliderThumb />
 </Slider>
 ```
@@ -56,9 +58,10 @@ customize its styles.
 
 ```jsx
 <Slider defaultValue={30}>
-  <SliderTrack bg="red.100" />
-  <SliderFilledTrack bg="tomato" />
-  <SliderThumb size={6}>
+  <SliderTrack bg="red.100">
+    <SliderFilledTrack bg="tomato" />
+  </SliderTrack>
+  <SliderThumb boxSize={6}>
     <Box color="tomato" as={MdGraphicEq} />
   </SliderThumb>
 </Slider>

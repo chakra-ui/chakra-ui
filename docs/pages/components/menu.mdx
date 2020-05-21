@@ -96,7 +96,7 @@ the letter you typed.
     _expanded={{ bg: "red.200" }}
     _focus={{ outline: 0, boxShadow: "outline" }}
   >
-    File <Icon name="chevron-down" />
+    File <ChevronDownIcon />
   </MenuButton>
   <MenuList>
     <MenuItem>New File</MenuItem>
@@ -147,7 +147,7 @@ for the group name.
 
 ```jsx
 <Menu>
-  <MenuButton as={Button} variantColor="pink">
+  <MenuButton as={Button} colorScheme="pink">
     Profile
   </MenuButton>
   <MenuList>
@@ -171,7 +171,7 @@ options. Use the `MenuOptionGroup` and `MenuItemOption` components.
 
 ```jsx
 <Menu closeOnSelect={false}>
-  <MenuButton as={Button} variantColor="blue">
+  <MenuButton as={Button} colorScheme="blue">
     MenuItem
   </MenuButton>
   <MenuList minWidth="240px">

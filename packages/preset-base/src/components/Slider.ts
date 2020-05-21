@@ -3,6 +3,7 @@ import { ComponentTheme, mode, getOrientationStyle } from "./utils"
 const Slider: ComponentTheme = {
   defaultProps: {
     size: "md",
+    colorScheme: "blue",
   },
   sizes: {
     lg: props => ({

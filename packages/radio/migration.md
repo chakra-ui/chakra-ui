@@ -4,14 +4,14 @@
 
 ### Radio
 
-- Support for the `variantColor` prop has been deprecated. Use `colorScheme`
-  prop instead.
+- Support for the `colorScheme` prop has been deprecated. Use `colorScheme` prop
+  instead.
 
 For example, `<Radio colorScheme="blue">Option</Radio>`
 
 ```jsx
 // before
-<Radio variantColor="blue">Option</Radio>
+<Radio colorScheme="blue">Option</Radio>
 
 // after
 <Radio colorScheme="blue">Option</Radio>

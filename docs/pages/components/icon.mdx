@@ -26,15 +26,15 @@ Use an icon by passing the `name` props. This name must match an icon key in
 parent.
 
 ```jsx
-<Stack isInline>
+<Stack direction="row">
   {/* Default size is 1em => 16px */}
-  <Icon name="phone" />
+  <PhoneIcon />
 
   {/* Use the `size` prop to change the icon size */}
-  <Icon name="check-circle" size="24px" />
+  <CheckCircleIcon size="24px" />
 
   {/* Use the `color` prop to change the icon color */}
-  <Icon name="warning" size="32px" color="red.500" />
+  <WarningIcon boxSize="32px" color="red.500" />
 </Stack>
 ```
 
@@ -53,7 +53,7 @@ Here's a list of the default icons Chakra UI comes with and their respective
       align="center"
       justify="center"
     >
-      <Icon color="gray.700" name={icon} size="1.25em" />
+      <Icon color="gray.700" name={icon} boxSize="1.25em" />
       <Text mt={2} fontSize="sm" textAlign="center">
         {icon}
       </Text>

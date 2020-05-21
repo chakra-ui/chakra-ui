@@ -29,7 +29,7 @@ import { Tag, TagIcon, TagLabel, TagCloseButton } from "@chakra-ui/core"
 ```jsx
 <Stack spacing={4} isInline>
   {["sm", "md", "lg"].map(size => (
-    <Tag size={size} key={size} variantColor="gray">
+    <Tag size={size} key={size} colorScheme="gray">
       Gray
     </Tag>
   ))}
@@ -41,7 +41,7 @@ import { Tag, TagIcon, TagLabel, TagCloseButton } from "@chakra-ui/core"
 ```jsx
 <Stack spacing={4} isInline>
   {["sm", "md", "lg"].map(size => (
-    <Tag size={size} key={size} variantColor="cyan">
+    <Tag size={size} key={size} colorScheme="cyan">
       <TagIcon icon="add" size="12px" />
       <TagLabel>Green</TagLabel>
     </Tag>
@@ -53,13 +53,13 @@ import { Tag, TagIcon, TagLabel, TagCloseButton } from "@chakra-ui/core"
 
 ```jsx
 <Stack spacing={4} isInline>
-  <Tag variantColor="cyan">
+  <Tag colorScheme="cyan">
     <TagLabel>Green</TagLabel>
     <TagIcon icon="check" size="12px" />
   </Tag>
 
   {/* You can also use custom svg icons */}
-  <Tag variantColor="teal">
+  <Tag colorScheme="teal">
     <TagLabel>Green</TagLabel>
     <TagIcon icon={MdSettings} />
   </Tag>
@@ -76,7 +76,7 @@ import { Tag, TagIcon, TagLabel, TagCloseButton } from "@chakra-ui/core"
       key={size}
       borderRadius="full"
       variant="solid"
-      variantColor="cyan"
+      colorScheme="cyan"
     >
       <TagLabel>Green</TagLabel>
       <TagCloseButton />
@@ -88,7 +88,7 @@ import { Tag, TagIcon, TagLabel, TagCloseButton } from "@chakra-ui/core"
 ## With custom element
 
 ```jsx
-<Tag variantColor="red" borderRadius="full">
+<Tag colorScheme="red" borderRadius="full">
   <Avatar
     src="https://bit.ly/sage-adebayo"
     size="xs"
@@ -102,8 +102,8 @@ import { Tag, TagIcon, TagLabel, TagCloseButton } from "@chakra-ui/core"
 
 ## Props
 
-| Name           | Type                         | Default | Description                             |
-| -------------- | ---------------------------- | ------- | --------------------------------------- |
-| `variant`      | `solid`, `subtle`, `outline` | `solid` | The variant style of the tag component. |
-| `size`         | `sm`, `md`, `lg`             | `md`    | The size of the tag component.          |
-| `variantColor` | `string`                     |         | The color scheme of the tag variant.    |
+| Name          | Type                         | Default | Description                             |
+| ------------- | ---------------------------- | ------- | --------------------------------------- |
+| `variant`     | `solid`, `subtle`, `outline` | `solid` | The variant style of the tag component. |
+| `size`        | `sm`, `md`, `lg`             | `md`    | The size of the tag component.          |
+| `colorScheme` | `string`                     |         | The color scheme of the tag variant.    |

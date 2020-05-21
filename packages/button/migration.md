@@ -15,7 +15,7 @@
   const After = () => <Button leftIcon={<PhoneIcon />}>Call</Button>
   ```
 
-- Change `variantColor` prop to `colorScheme` for better intuitiveness.
+- Change `colorScheme` prop to `colorScheme` for better intuitiveness.
 
 ## New Features
 

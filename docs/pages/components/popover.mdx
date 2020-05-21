@@ -76,7 +76,7 @@ portal, pass the `usePortal` prop.
     <PopoverHeader>Header</PopoverHeader>
     <PopoverCloseButton />
     <PopoverBody>
-      <Button variantColor="blue">Button</Button>
+      <Button colorScheme="blue">Button</Button>
     </PopoverBody>
     <PopoverFooter>This is the footer</PopoverFooter>
   </PopoverContent>
@@ -125,8 +125,8 @@ function WalkthroughPopover() {
         >
           <Box fontSize="sm">Step 2 of 4</Box>
           <ButtonGroup size="sm">
-            <Button variantColor="green">Setup Email</Button>
-            <Button variantColor="blue" ref={initialFocusRef}>
+            <Button colorScheme="green">Setup Email</Button>
+            <Button colorScheme="blue" ref={initialFocusRef}>
               Next
             </Button>
           </ButtonGroup>
@@ -174,7 +174,7 @@ const Form = ({ firstFieldRef, onCancel }) => {
         <Button variant="outline" onClick={onCancel}>
           Cancel
         </Button>
-        <Button isDisabled variantColor="teal">
+        <Button isDisabled colorScheme="teal">
           Save
         </Button>
       </ButtonGroup>
@@ -246,7 +246,7 @@ function ControlledUsage() {
         closeOnBlur={false}
       >
         <PopoverTrigger>
-          <Button variantColor="pink">Popover Target</Button>
+          <Button colorScheme="pink">Popover Target</Button>
         </PopoverTrigger>
         <PopoverContent zIndex={4}>
           <PopoverHeader fontWeight="semibold">Confirmation</PopoverHeader>
@@ -258,7 +258,7 @@ function ControlledUsage() {
           <PopoverFooter d="flex" justifyContent="flex-end">
             <ButtonGroup size="sm">
               <Button variant="outline">Cancel</Button>
-              <Button variantColor="red">Apply</Button>
+              <Button colorScheme="red">Apply</Button>
             </ButtonGroup>
           </PopoverFooter>
         </PopoverContent>
@@ -295,12 +295,7 @@ function InternalStateEx() {
               <Box>
                 Hello. Nice to meet you! This is the body of the popover
               </Box>
-              <Button
-                mt={4}
-                variantColor="blue"
-                onClick={onClose}
-                ref={initRef}
-              >
+              <Button mt={4} colorScheme="blue" onClick={onClose} ref={initRef}>
                 Close
               </Button>
             </PopoverBody>

@@ -22,7 +22,7 @@ import { Button } from "@chakra-ui/button"
 ## Usage
 
 ```jsx
-<Button variantColor="green">Button</Button>
+<Button colorScheme="green">Button</Button>
 ```
 
 ### Button Sizes

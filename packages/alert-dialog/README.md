@@ -45,7 +45,7 @@ function AlertDialogExample() {
 
   return (
     <>
-      <Button variantColor="red" onClick={() => setIsOpen(true)}>
+      <Button colorScheme="red" onClick={() => setIsOpen(true)}>
         Delete Customer
       </Button>
 
@@ -68,7 +68,7 @@ function AlertDialogExample() {
               <Button ref={cancelRef} onClick={onClose}>
                 Cancel
               </Button>
-              <Button variantColor="red" onClick={onClose} ml={3}>
+              <Button colorScheme="red" onClick={onClose} ml={3}>
                 Delete
               </Button>
             </AlertDialogFooter>

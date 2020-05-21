@@ -44,7 +44,7 @@ const sampleCode = `
 <Box>
   <Image borderRadius="md" src="https://bit.ly/2k1H1t6"/>
   <Flex align="baseline" mt={2}>
-    <Badge variantColor="pink">Plus</Badge>
+    <Badge colorScheme="pink">Plus</Badge>
     <Text
       ml={2}
       textTransform="uppercase"

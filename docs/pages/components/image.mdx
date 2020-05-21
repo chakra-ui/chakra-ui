@@ -18,30 +18,30 @@ import { Image } from "@chakra-ui/core"
 ## Usage
 
 ```jsx
-<Box size="sm">
+<Box boxSize="sm">
   <Image src="https://bit.ly/sage-adebayo" alt="Segun Adebayo" />
 </Box>
 ```
 
 ## Size
 
-The size of the image can be adjusted using the `size` prop.
+The size of the image can be adjusted using the `boxSize` prop.
 
 ```jsx
-<Stack isInline>
+<Stack direction="row">
   <Image
-    size="100px"
+    boxSize="100px"
     objectFit="cover"
     src="https://bit.ly/sage-adebayo"
     alt="Segun Adebayo"
   />
   <Image
-    size="150px"
+    boxSize="150px"
     objectFit="cover"
     src="https://bit.ly/dan-abramov"
     alt="Dan Abramov"
   />
-  <Image size="200px" src="https://bit.ly/dan-abramov" alt="Dan Abramov" />
+  <Image boxSize="200px" src="https://bit.ly/dan-abramov" alt="Dan Abramov" />
 </Stack>
 ```
 
@@ -50,7 +50,7 @@ The size of the image can be adjusted using the `size` prop.
 ```jsx
 <Image
   borderRadius="full"
-  size="150px"
+  boxSize="150px"
   src="https://bit.ly/sage-adebayo"
   alt="Segun Adebayo"
 />

@@ -24,20 +24,20 @@ import { Code } from "@chakra-ui/core"
 
 ### Colors
 
-You can change the color scheme of the component by passing the `variantColor`
+You can change the color scheme of the component by passing the `colorScheme`
 prop.
 
 ```jsx
 <Stack isInline>
   <Code children="console.log(welcome)" />
-  <Code variantColor="red" children="var chakra = 'awesome!'" />
-  <Code variantColor="yellow" children="npm install chakra" />
+  <Code colorScheme="red" children="var chakra = 'awesome!'" />
+  <Code colorScheme="yellow" children="npm install chakra" />
 </Stack>
 ```
 
 ## Props
 
-| Name           | Type              | Default | Description                           |
-| -------------- | ----------------- | ------- | ------------------------------------- |
-| `variantColor` | `string`          |         | The color scheme to use for the code. |
-| `children`     | `React.ReactNode` |         | The content of the code               |
+| Name          | Type              | Default | Description                           |
+| ------------- | ----------------- | ------- | ------------------------------------- |
+| `colorScheme` | `string`          |         | The color scheme to use for the code. |
+| `children`    | `React.ReactNode` |         | The content of the code               |

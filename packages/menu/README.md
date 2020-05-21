@@ -85,7 +85,7 @@ the letter you typed.
     _expanded={{ bg: "red.200" }}
     _focus={{ outline: 0, boxShadow: "outline" }}
   >
-    File <Icon name="chevron-down" />
+    File <ChevronDownIcon />
   </MenuButton>
   <MenuList>
     <MenuItem>New File</MenuItem>

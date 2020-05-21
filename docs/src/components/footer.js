@@ -6,7 +6,7 @@ import { DiGithubBadge } from "react-icons/di"
 
 const FooterLink = ({ icon, href }) => (
   <Link display="inline-block" href={href} isExternal>
-    <Box as={icon} size="6" color="gray.400" />
+    <Box as={icon} boxSize="6" color="gray.400" />
   </Link>
 )
 

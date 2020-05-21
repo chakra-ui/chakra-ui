@@ -2,12 +2,12 @@
 
 ## Changes
 
-- Support for the `variantColor` prop has been deprecated. Use `colorScheme`
-  prop instead.
+- Support for the `colorScheme` prop has been deprecated. Use `colorScheme` prop
+  instead.
 
 ```jsx
 // before
-<Checkbox variantColor="blue">Option</Checkbox>
+<Checkbox colorScheme="blue">Option</Checkbox>
 
 // after
 <Checkbox colorScheme="blue">Option</Checkbox>
