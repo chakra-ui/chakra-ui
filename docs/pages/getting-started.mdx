@@ -11,8 +11,8 @@ order: 1
 
 Install Chakra UI and its peer dependencies.
 
-```bash
-npm install @chakra-ui/core @emotion/core @emotion/styled emotion-theming
+```sh
+npm install @chakra-ui/core
 ```
 
 Create a theme object to include custom color, typography, and layout values.
@@ -69,7 +69,13 @@ import * as React from "react"
 import { ThemeProvider } from "@chakra-ui/core"
 
 // Use at the root of your app
-;<ThemeProvider theme={customTheme}>{props.children}</ThemeProvider>
+function AppRoot() {
+  return (
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
+  )
+}
 ```
 
 ## Using components

@@ -3,16 +3,16 @@ title: "Color Mode"
 order: 4
 ---
 
-# Color Mode (In progress)
+# Color Mode
 
-Most of Chakra's component are dark mode compatible. Use the `useColorMode` hook
-in your application to change the color mode. This value will be stored in
-`localStorage` and used whenever the page is loaded.
+By default, most of Chakra's component are dark mode compatible. To handle color
+mode manually in your application, use the `useColorMode` hook. This value will
+be stored in `localStorage` and used whenever the page is loaded.
 
 ## Enable Color Mode
 
 To enable this behavior within your apps, wrap your application in a
-`ColorModeProvider`
+`ColorModeProvider`.
 
 ```jsx live=false
 import * as React from "react"
@@ -32,7 +32,7 @@ Then you can use the hook `useColorMode` within your application.
 
 ```jsx
 function ColorModeExample() {
-  const { colorMode, toggleColorMode } = useColorMode()
+  const [colorMode, toggleColorMode] = useColorMode()
   return (
     <header>
       <Button onClick={toggleColorMode}>
@@ -45,20 +45,28 @@ function ColorModeExample() {
 
 ## Styling color modes
 
-To style dark mode in your components, use the `useColorMode` hook to change the
-styles of your component.
+To style dark mode in your components, use the `useColorModeValue` hook to
+change the styles of your component.
+
+`useColorModeValue` takes 2 arguments, the value in light mode, and the value in
+dark mode.
+
+```jsx live=false
+// here's the signature
+const bg = useColorModeValue(lightMode, darkMode)
+```
 
 > Click the **"Toggle Mode"** button to see it in action.
 
 ```jsx
 function StyleColorMode() {
-  const { colorMode, toggleColorMode } = useColorMode()
-  const bgColor = { light: "red.500", dark: "red.200" }
-  const color = { light: "white", dark: "gray.800" }
+  const [colorMode, toggleColorMode] = useColorMode()
+  const bg = useColorModeValue("red.500", "red.200")
+  const color = useColorModeValue("white", "gray.800")
 
   return (
     <>
-      <Box flex="1" mb={4} bg={bgColor[colorMode]} color={color[colorMode]}>
+      <Box flex="1" mb={4} bg={bg} color={color}>
         This box's style will change based on the color mode.
       </Box>
       <Button size="sm" onClick={toggleColorMode}>
@@ -79,7 +87,7 @@ light and dark modes. To achieve this, wrap the component in `LightMode` or
 
 ```jsx
 function Example() {
-  const { colorMode, toggleColorMode } = useColorMode()
+  const [colorMode, toggleColorMode] = useColorMode()
 
   return (
     <Stack shouldWrapChildren isInline>

@@ -8,10 +8,10 @@ import Header from "./header"
 import { Footer } from "./footer"
 
 const HomeLayout = ({ children }) => (
-  <div>
+  <Box>
     <Header isConstrained />
     {children}
-  </div>
+  </Box>
 )
 
 const SidebarLayout = ({ children }) => (

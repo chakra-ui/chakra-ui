@@ -55,9 +55,9 @@ const MainLinks = () => {
   const { main } = useLinksQuery()
   const nodes = sortByOrder(main.nodes)
 
-  return nodes.map(({ frontmatter: { title }, fields: { slug } }) => (
-    <TopNavLink key={title} href={slug}>
-      {title}
+  return nodes.map(({ frontmatter, fields }) => (
+    <TopNavLink key={frontmatter.title} href={fields.slug}>
+      {frontmatter.title}
     </TopNavLink>
   ))
 }
@@ -77,9 +77,9 @@ const UtilitiesLinks = () => {
   const { utilities } = useLinksQuery()
   const nodes = sortByTitle(utilities.nodes)
 
-  return nodes.map(({ frontmatter: { title }, fields: { slug } }) => (
-    <ComponentLink key={title} href={slug}>
-      {title}
+  return nodes.map(({ frontmatter, fields }) => (
+    <ComponentLink key={frontmatter.title} href={fields.slug}>
+      {frontmatter.title}
     </ComponentLink>
   ))
 }

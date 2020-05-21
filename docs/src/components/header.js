@@ -7,6 +7,7 @@ import {
   Link,
   Stack,
   chakra,
+  useColorModeValue,
 } from "@chakra-ui/core"
 import { DiGithubBadge } from "react-icons/di"
 import { FaMoon, FaSun } from "react-icons/fa"
@@ -81,14 +82,13 @@ const HeaderContent = () => {
 }
 
 const Header = ({ isConstrained, ...props }) => {
-  const [colorMode] = useColorMode()
-  const bg = { light: "white", dark: "gray.800" }
+  const bg = useColorModeValue("white", "gray.800")
   return (
     <chakra.header
       pos="fixed"
       top="0"
       zIndex="4"
-      bg={bg[colorMode]}
+      bg={bg}
       left="0"
       right="0"
       borderBottomWidth="1px"
