@@ -1,13 +1,6 @@
-import * as React from "react"
-import { Icon, IconProps } from "@chakra-ui/icon"
+import { createIcon } from "@chakra-ui/icon"
 
-export function ArrowDownIcon(props: IconProps) {
-  return (
-    <Icon viewBox="0 0 24 24" {...props}>
-      <path
-        fill="currentColor"
-        d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"
-      />
-    </Icon>
-  )
-}
+export const ArrowDownIcon = createIcon({
+  d: "M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z",
+  displayName: "ArrowDownIcon",
+})

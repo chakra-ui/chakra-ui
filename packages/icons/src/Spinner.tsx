@@ -1,9 +1,10 @@
+import { createIcon } from "@chakra-ui/icon"
 import * as React from "react"
-import { Icon, IconProps } from "@chakra-ui/icon"
 
-export function SpinnerIcon(props: IconProps) {
-  return (
-    <Icon viewBox="0 0 24 24" {...props}>
+export const SpinnerIcon = createIcon({
+  displayName: "SpinnerIcon",
+  path: (
+    <>
       <defs>
         <linearGradient
           x1="28.154%"
@@ -25,6 +26,6 @@ export function SpinnerIcon(props: IconProps) {
         />
         <rect fill="currentColor" x="8" width="4" height="4" rx="8" />
       </g>
-    </Icon>
-  )
-}
+    </>
+  ),
+})
