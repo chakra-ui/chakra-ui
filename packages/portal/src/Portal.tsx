@@ -120,7 +120,10 @@ export function Portal(props: PortalProps) {
   ])
 
   const finalChildren = manager?.zIndex ? (
-    <div className="chakra-portal-zIndex" style={{ zIndex: manager.zIndex }}>
+    <div
+      className="chakra-portal-zIndex"
+      style={{ position: "absolute", zIndex: manager.zIndex }}
+    >
       {children}
     </div>
   ) : (

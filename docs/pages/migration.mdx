@@ -1,0 +1,845 @@
+---
+title: "Upgrade to v1"
+---
+
+# Upgrading from v0.x to v1.0
+
+A simple guide to upgrade your existing Chakra UI projects to v1.0.
+
+Chakra UI v1.0 is focused on improving the ideas and concepts from 0.x to make
+even easier to create, theme and extend components.
+
+While there's quite a number of new exciting features we've added, we focused on
+making Chakra UI a stable base to build your own design systems on, so that you
+can feel more confident using Chakra UI in production.
+
+## ⚡️ Highlights
+
+**Theming API:** Chakra UI now provides a new theming API which makes it easy to
+style components and their modifiers (sizes, variants, and color scheme) from
+your theme or locally using a `chakra` factory function.
+
+**Color Mode improvement:** We've fixed the bugs related to Color mode and it's
+now easy to persist color mode, set initial color mode, and lock specific
+components to a certain color mode.
+
+**Better TypeScript support:** This means all components have very good
+TypeScript support and most low-level components like Box, Flex, etc. will
+support the `as` prop and types will be extracted properly.
+
+## Upgrade steps
+
+Here's a list of things you to do to migrate safely. Don't panic if your styles
+don't look the same. Relax and follow this guide till the end, and you should be
+back up!
+
+### 1. Update your dependencies
+
+Chakra no longer requires `@emotion/styled`, `@emotion/core` and
+`@emotion/theming`. If you're not using these libraries in your code, you can
+safely remove them and update Chakra UI to v1.
+
+> We use only `@emotion/core` internally
+
+```diff
+"dependencies": {
+  "@chakra-ui/core": "1.0.0-beta",
+-  "@emotion/styled": "10.X",
+-  "@emotion/theming": "10.x",
+-  "@emotion/core": "10.x"
+}
+```
+
+**Note on bundle size:** Chakra UI now exports all components as separate
+packages to make it easier to consume singular packages. For example, you use
+only button, you can now install `@chakra-ui/button` along side its peer
+dependency `@chakra-ui/system`, and you're good to go!
+
+### 2. Clone Chakra's default theme
+
+Chakra no longer comes with the default theme pre-installed, you need to
+manually add it, but hey!, we've made that a bit easier with our CLI tool.
+
+We believe that having the theme cloned to your project will help you learn
+about the theme tokens (colors, fonts, component styles) and make it even easier
+for you to customize them.
+
+1. Simply run `npx chakra init --theme`, and we'll clone the theme to your
+   project.
+
+```sh
+npx chakra init --theme
+```
+
+2. This will create new `chakra` folder with the default theme installed
+
+3. Update the `ThemeProvider` in your application's root by passing the `theme`
+   props
+
+```jsx live=false
+import { ThemeProvider, CSSReset } from "@chakra-ui/core"
+import theme from "./chakra"
+
+function AppRoot() {
+  return (
+    <ThemeProvider theme={theme}>
+      <CSSReset />
+      <App />
+    </ThemeProvider>
+  )
+}
+```
+
+### 3. Update the `ThemeProvider`
+
+Swap out the `ThemeProvider` with `ChakraProvider` to make the setup cleaner.
+`ChakraProvider` adds the following providers for you automatically:
+
+- **ThemeProvider:** To provide the theming context for all components
+- **ColorModeProvider:** To provide color mode (light or dark) context to all
+  components
+- **PortalManager:** To help manage portals and nested portals without using
+  zIndex in your application.
+- **GlobalStyle**: Provides the global styles defined in `theme.styles.global`
+  to your application. This makes it easier to add custom global styles.
+
+```diff
+-  <ThemeProvider theme={theme}>
++    <ChakraProvider theme={theme}>
+      <CSSReset />
+      <App />
++    </ChakraProvider>
+-  </ThemeProvider>
+```
+
+### 4. Rename `variantColor` to `colorScheme`
+
+Fire up your "Find and Replace" tool in VSCode or IntelliJ. Find `variantColor`
+and replace with `colorScheme`.
+
+> **Reason:** We named this prop to make it easier to understand that this prop
+> represents a visual color scheme, not a css color attribute.
+
+### 5. Update layout `size` prop
+
+Change `size` prop to `width` or `w` and `height`, or `h`. If you'd like to use
+only one prop to manage this, you can rename it to `boxSize`.
+
+```diff
+- <Box size="40px" />
++ <Box w="40px" h="40px" />
+# or
++ <Box boxSize="40px" />
+```
+
+**We strongly recommend to use the `width` and `height` prop**
+
+> **Reason:** We think the size prop should only be used for component size
+> modifiers. The `size` prop has caused a lot of confusion in the past because
+> in some components (e.g. Button) it means the visual size, and in some (e.g
+> Box), it means **width + height**.
+
+### 5. Update these style props
+
+| Current Prop         | New Prop                  |
+| -------------------- | ------------------------- |
+| `rounded`            | `borderRadius`            |
+| `roundedLeft`        | `borderLeftRadius`        |
+| `roundedRight`       | `borderRightRadius`       |
+| `roundedTop`         | `borderTopRadius`         |
+| `roundedTopLeft`     | `borderTopLeftRadius`     |
+| `roundedTopRight`    | `borderTopRightRadius`    |
+| `roundedBottomLeft`  | `borderBottomLeftRadius`  |
+| `roundedBottomRight` | `borderBottomRightRadius` |
+| `roundedBottom`      | `borderBottomRadius`      |
+| `size`               | `boxSize`                 |
+| `bgImg`              | `bgImage`                 |
+| `bgPos`              | `bgPosition`              |
+| `shadow`             | `boxShadow`               |
+| `listStyleImg`       | `listStyleImage`          |
+| `listStylePos`       | `listStylePosition`       |
+
+## Component Updates
+
+We've updated the API of some components to fix bug, improve usability, types
+and accessibility.
+
+- All components can now take the pseudo style props (`_hover`, `_active`, etc.)
+- Improved typescript support for the `as` prop.
+
+### Accordion
+
+You can install as stand-alone package: `@chakra-ui/accordion`
+
+#### Changes 🔧
+
+- Change all imports of `AccordionHeader` to `AccordionButton`. This is to
+  remove the notion that it's a header when it's actually a `button`.
+
+```diff
+- import { AccordionHeader } from "@chakra-ui/core"
++ import { AccordionButton } from "@chakra-ui/core"
+```
+
+> WAI-ARIA guidelines require that accordion buttons be wrapped in the
+> appropriate heading tag `h2-h6` based on the page heading flow.
+
+We think the name `AccordionHeader` might mislead users to think we handle this
+out of the box when we don't. Here's how to handle this:
+
+```jsx live=false
+<Accordion>
+  <AccordionItem>
+    <h3>
+      <AccordionButton>This is the button</AccordionButton>
+    </h3>
+    <AccordionPanel>This is the content</AccordionPanel>
+  </AccordionItem>
+</Accordion>
+```
+
+- You can no longer use `AccordionItem` in isolation, it must be used within
+  `Accordion`. We think most users don't do this by default but it's worth
+  noting.
+
+#### Features ⚡️
+
+- **Keyboard Navigation:** `Accordion` now support keyboard navigation between
+  accordion buttons. Pressing the `up` and `down` arrow keys will move focus
+  between each accordion buttons.
+
+### AspectRatioBox
+
+- Change all imports of `AspectRatioBox` to `AspectRatio`
+
+```diff
+- import { AspectRatioBox } from "@chakra-ui/core"
++ import  { AspectRatio } from "@chakra-ui/core"
+```
+
+### Avatar
+
+#### Features ⚡️
+
+- You can now use your custom fallback avatar icon. Simply pass `icon` prop
+
+```jsx live=false
+<Avatar src="john.png" name="John Doe" icon={<UserIcon />} />
+```
+
+- You can now change the `borderRadius` of the avatar
+
+- Theming Support: All design decisions for the Avatar are located in
+  `chakra/components/Avatar` in your cloned theme, this means you can customize
+  to suit your brand needs.
+
+- Added `getInitials` prop to allow users manage how initials are generated from
+  name. By default we merge the first characters from the `name` prop.
+
+### Breadcrumb
+
+- Remove support for `addSeparator` prop
+
+### Button
+
+#### Changes 🔧
+
+- We've unified the usage of all icon prop to only accept a react element.
+  Update all icon names used in `leftIcon` or `rightIcon` to it's equivalent
+  icon React element.
+
+  > Replacement logic: If `leftIcon` is `email`, then replace it with
+  > `<EmailIcon/>` from chakra.
+
+```diff
+import { PhoneIcon } from "@chakra-ui/core"
+
+- <Button leftIcon="phone">Call</Button>
++ <Button leftIcon={<PhoneIcon />}>Call</Button>
+```
+
+**This makes is easier to use custom icons, eliminates typescript errors, and
+reduces the issue where you have unused icons bloating your app**
+
+- Rename `variantColor` to `colorScheme`
+
+#### Features ⚡️
+
+- Added support for custom spinners using the `spinner`
+
+```jsx live=false
+import { BeatLoader } from "react-spinners"
+
+function Example() {
+  return (
+    <Button isLoading colorScheme="blue" spinner={<BeatLoader color="white" />}>
+      Click me
+    </Button>
+  )
+}
+```
+
+### Checkbox
+
+#### Changes 🔧
+
+- Change `variantColor` to `colorScheme`
+
+```diff
+- <Checkbox variantColor="blue">Option</Checkbox>
++ <Checkbox colorScheme="blue">Option</Checkbox>
+```
+
+- Support for the `isFullWidth` prop has been deprecated. The `Checkbox` takes
+  up the width of the parent by default.
+
+- To allow for better checkbox group layout, the `CheckboxGroup` component no
+  longer supports the any style prop. You can only pass `size`, `variant`, and
+  `colorScheme` in addition to `CheckboxGroup` props (value, defaultValue, and
+  onChange).
+
+```jsx live=false
+// before
+<CheckboxGroup isInline spacing="40px" defaultValue={["one", "two"]}>
+  <Checkbox value="one">One</Checkbox>
+  <Checkbox value="two">Two</Checkbox>
+  <Checkbox value="three">Three</Checkbox>
+</CheckboxGroup>
+
+// after
+<CheckboxGroup defaultValue={["one", "two"]}>
+  <Stack spacing="40px">
+    <Checkbox value="one">One</Checkbox>
+    <Checkbox value="two">Two</Checkbox>
+    <Checkbox value="three">Three</Checkbox>
+  </Stack>
+</CheckboxGroup>
+```
+
+> We believe a checkbox group's layout should be managed by your design
+> requirements. The checkboxes can be grouped using `Stack`, placed in a grid
+> using `SimpleGrid` or made to wrap automatically using `Wrap`.
+
+#### Features ⚡️
+
+- Support for `iconColor` and `iconSize` to customize the default check icon
+
+```jsx live=false
+<Checkbox iconColor="blue" iconSize="1rem">
+  Option
+</Checkbox>
+```
+
+- Support for `labelSpacing` prop to customize the spacing between the checkbox
+  and label text
+
+```jsx live=false
+<Checkbox labelSpacing="1rem">Option</Checkbox>
+```
+
+- The `useCheckbox` hook is exported with state and focus management logic for
+  use in creating tailor-made checkbox component for your application
+
+- The `useCheckboxGroup` hook is exported with state management logic for use in
+  creating tailor-made checkbox group component for your application
+
+### ColorMode
+
+- You can now set the initial color mode you want your application to start
+  with. Simply set `theme.config.initialColorMode` to **light** or **dark**
+
+  ```jsx live=false
+  const theme = {
+    config: {
+      initialColorMode: "dark",
+    },
+  }
+  ```
+
+- You can now update the color mode based on your user's device preference.
+  Simply set `theme.config.useSystemColorMode` to **true** or **false**.
+
+  ```jsx live=false
+  const theme = {
+    config: {
+      useSystemColorMode: true,
+    },
+  }
+  ```
+
+#### Bug Fix 🚑
+
+- Color mode now persists correctly when you refresh the page. All you need to
+  do is to add `InitialColorMode` script as the first child in of `body`.
+
+  Here's how to add it for Next.js:
+
+```jsx live=false
+// pages/_app.js
+import { InitialColorMode } from "@chakra-ui/core"
+
+export default class Document extends NextDocument {
+  static async getInitialProps(ctx) {
+    const initialProps = await NextDocument.getInitialProps(ctx)
+    return { ...initialProps }
+  }
+
+  render() {
+    return (
+      <Html>
+        <Head />
+        <body>
+          {/* 👇 Here's the script */}
+          <InitializeColorMode />
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    )
+  }
+}
+```
+
+Here's how to add it for Gatsby:
+
+```jsx live=false
+// gatsby-srr.js
+export const onRenderBody = ({ setPreBodyComponents }) => {
+  setPreBodyComponents([<InitializeColorMode />])
+}
+```
+
+### FormControl
+
+- We've improved the accessibility of the `FormControl` component. Here are the
+  changes:
+
+  - `id` passed to the form control will be passed to the form input directly
+  - `FormLabel` will have `htmlFor` that points to the `id` of the form input
+  - If you render `FormErrorMessage`, it'll add `aria-describedby` and
+    `aria-invalid` to the form input.
+  - If you render `FormHelperText`, it'll add/extend `aria-describedby` to the
+    form input.
+  - If you add the `isDisabled`, `isRequired`, `isReadOnly` prop to
+    `FormControl`, it'll cascade across all components
+
+- `FormLabel` are now aware of the `disabled`, `focused` and `error` state of
+  the form input, this helps you style the label accordingly using using
+  `_disabled`, `_focus`, and `_invalid` style props.
+
+- If you render `FormErrorMessage`, and `isInvalid` is false or undefined, the
+  `FormErrorMessage` won't be visible, the only way to make it visible is by
+  passing `isInvalid` and setting it to `true`
+
+### Image
+
+#### Bug Fixes 🚑
+
+- Resolved the common SSR issue with Next.js
+
+#### Features ⚡️
+
+- Support for `fit` prop to specify how to fit an image within it's dimension.
+  It uses the `object-fit` property
+
+- Support for `align` prop to specify how to align the image within it's
+  dimension. It uses the `object-position` property
+
+- Support for custom `fallback` component
+
+### Input
+
+- When using `InputAddon`, you no longer need to pass border radius properties
+  to the `Input`, `InputGroup` will smartly detect the addon and apply the
+  necessary border to the input.
+
+- Input now uses `paddingY` instead of `height` for it's block height
+
+### Link
+
+- Due to accessibility reasons, we've deprecated the `isDisabled` prop from link
+
+### Stack
+
+- To reduce the API surface, we've deprecated the `isInline` and `isReversed`
+  prop in favor of `direction` prop
+
+```diff
+- <Stack isInline>
++ <Stack direction="row">
+    <Box />
+    <Box />
+  </Stack>
+```
+
+- We've deprecated the `shouldWrapChildren` prop because we now use css to
+  manage the stack rather than `React.cloneElement`.
+
+- Support for responsive `direction` and `spacing` prop
+
+```jsx live=false
+<Stack direction={["column", "row"]}>
+  <Box />
+  <Box />
+</Stack>
+```
+
+- Support for `divider` prop between stacked element. Dividers also work with
+  responsive direction and spacing.
+
+```jsx live=false
+<Stack divider={<StackDivider />}>
+  <Box />
+  <Box />
+</Stack>
+```
+
+### Menu
+
+#### Features ⚡️
+
+- Added support for nested menus or submenus
+
+```jsx live=false
+const PreferencesMenu = forwardRef((props, ref) => {
+  return (
+    <Menu>
+      <MenuButton ref={ref} {...props}>
+        Preferences
+      </MenuButton>
+      <MenuList>
+        <MenuItem>Settings</MenuItem>
+        <MenuItem isDisabled>Extensions</MenuItem>
+        <MenuSeparator />
+        <MenuItem>Keyboard shortcuts</MenuItem>
+      </MenuList>
+    </Menu>
+  )
+})
+
+function Example() {
+  return (
+    <Menu>
+      <MenuButton>Code</MenuButton>
+      <MenuList>
+        <MenuItem>About Visual Studio Code</MenuItem>
+        <MenuItem>Check for Updates...</MenuItem>
+        <MenuSeparator />
+        <MenuItem as={PreferencesMenu} />
+      </MenuList>
+    </Menu>
+  )
+}
+```
+
+- Support for menu icons and commands (or hotkeys)
+
+```jsx live=false
+<Menu>
+  <MenuButton size="sm" colorScheme="teal">
+    Open menu
+  </MenuButton>
+  <MenuList>
+    <MenuItem command="⌘T">New Tab</MenuItem>
+    <MenuItem command="⌘N">New Window</MenuItem>
+    <MenuItem command="⌘⇧N">Open Closed Tab</MenuItem>
+    <MenuItem command="⌘O">Open File...</MenuItem>
+  </MenuList>
+</Menu>
+```
+
+- Support for menu transitions and animations
+
+  > It's important to use the `css` or `sx` prop for the transitions to work
+  > properly. For some reason, it doesn't work with the `style` native prop
+
+```jsx live=false
+<Menu>
+  <MenuButton size="sm" colorScheme="teal">
+    Open menu
+  </MenuButton>
+  <MenuTransition>
+    {styles => (
+      <MenuList css={styles}>
+        <MenuItem command="⌘T">New Tab</MenuItem>
+        <MenuItem command="⌘N">New Window</MenuItem>
+        <MenuItem command="⌘⇧N">Open Closed Tab</MenuItem>
+        <MenuItem command="⌘O">Open File...</MenuItem>
+      </MenuList>
+    )}
+  </MenuTransition>
+</Menu>
+```
+
+- Added support for Portals. Just wrap the `MenuList` in the `Portal` component
+  and you're good to go!
+
+```jsx live=false
+<Menu>
+  <MenuButton size="sm" colorScheme="teal">
+    Open menu
+  </MenuButton>
+  <Portal>
+    <MenuList>
+      <MenuItem>Menu 1</MenuItem>
+      <MenuItem>New Window</MenuItem>
+      <MenuItem>Open Closed Tab</MenuItem>
+      <MenuItem>Open File</MenuItem>
+    </MenuList>
+  </Portal>
+</Menu>
+```
+
+- Moved to Popper V2 🥳
+
+### Fixes 🚑
+
+- Fixed issue with `as` prop for `MenuItem`
+- Fixed issue with Link not navigating to the specified `href` value
+- Fixed issue where menu popper gets cut off when component is far right
+- Fixed issue where Menu throws if no `MenuItem` exist
+- Fixed issue where `closeOnSelect` doesn't work on navigation with when using
+  `MenuItem` as link
+
+### Modal
+
+#### Changes 🔧
+
+- Removed `addAriaLabels` and `formatIds` props in favor of passing a top-level
+  `id` prop to the modal, and we'll handle the rest.
+
+- Removed `preserveScrollBarGap` prop, we preserve scroll bar gap by default to
+  prevent any layout shift.
+
+- Wrap the `ModalContent` within the `ModalOverlay` component.
+
+```diff
+// before
+<Modal>
+-  <ModalOverlay />
+  <ModalContent>
+    <ModalHeader>Modal header</ModalHeader>
+    <ModalCloseButton />
+    <ModalBody>Modal body</ModalBody>
+    <ModalFooter>Modal footer</ModalFooter>
+  </ModalContent>
+</Modal>
+
+// after
+<Modal>
++  <ModalOverlay>
+    <ModalContent>
+      <ModalHeader>Modal header</ModalHeader>
+      <ModalCloseButton />
+      <ModalBody>Modal body</ModalBody>
+      <ModalFooter>Modal footer</ModalFooter>
+    </ModalContent>
++  </ModalOverlay>
+</Modal>
+```
+
+- You only pass `size` values defined in the components theme. Hard-coded
+  values, will be ignored. Simply update the styles in `theme.components.Modal`
+  to reflect your custom values
+
+- You can now disable focus trap by passing `shouldTrapFocus`
+
+#### Props Changes
+
+We updated the prop names for boolean props to match our naming convention. All
+boolean prop must start with `should`, `is`, or `has`
+
+| Old Prop              | New Prop                    |
+| --------------------- | --------------------------- |
+| `returnFocusOnClose`  | `shouldReturnFocus`         |
+| `closeOnOverlayClick` | `shouldCloseOnOverlayClick` |
+| `blockScrollOnMount`  | `shouldBlockScroll`         |
+| `closeOnEsc`          | `shouldCloseOnEsc`          |
+
+#### New Props
+
+- `shouldTrapFocus` : to help disable focus trap
+- `shouldAutoFocus` : to help disable auto focusing on the first interactive
+  element.
+- `onOverlayClick`: callback fired when the overlay is clicked
+- `onEsc`: callback fired when `esc` is pressed
+
+### NumberInput
+
+- Add example where consumers can format and parse number input values (
+  [#438](https://github.com/chakra-ui/chakra-ui/pull/438))
+
+- Fixed issue where an error if the input value is greater than the `max` prop
+  when focus is blurred (
+  [#584](https://github.com/chakra-ui/chakra-ui/pull/584))
+
+- Fixed issue where deleting sole digit sets value to 0 (which may be invalid) (
+  [#533](https://github.com/chakra-ui/chakra-ui/pull/533))
+
+- Fixed issue where input returns `NaN` value after multiple dots (
+  [#364](https://github.com/chakra-ui/chakra-ui/pull/364))
+
+- Fixed issue where passing `id` to the `NumberInput` and adding a `label` with
+  `htmlFor` that points to that `id` doesn't focus the input (
+  [#515](https://github.com/chakra-ui/chakra-ui/pull/515))
+
+### Progress
+
+- Change `color` prop to `colorScheme`.
+
+```diff
+- <Progress color="blue"/>
++ <Progress colorScheme="blue"/>
+```
+
+- Added Support for `isIndeterminate` prop in the `Progress` component
+
+### CircularProgress
+
+- `trackColor` prop now takes a specific color in theme or valid `css` color.
+- Change the `thickness` prop to point to an actual thickness value in `px`
+  (e.g. `thickness={4}`)
+
+### Radio
+
+- Change `variantColor` prop to `colorScheme`.
+
+```diff
+- <Radio variantColor="blue">Option</Radio>
++ <Radio colorScheme="blue">Option</Radio>
+```
+
+- Support for the `isFullWidth` prop has been deprecated. The Radio takes up the
+  width of the parent by default.
+
+- Deprecated `RadioButton` component. Use the `useRadio` hook to create custom
+  radio buttons.
+
+- The `useRadio` hook is exported with state and focus management logic for use
+  in creating tailor-made radio component for your application
+
+### RadioGroup
+
+- Support for the `isFullWidth` prop has been deprecated. The `Radio` takes up
+  the width of the parent by default.
+
+- To allow for better Radio group layout, the `RadioGroup` component no longer
+  supports the any style prop. You can only pass `size`, `variant`, and
+  `colorScheme` in addition to `RadioGroup` props (value, defaultValue, and
+  onChange).
+
+```jsx live=false
+// before
+<RadioGroup isInline defaultValue="one">
+  <Radio value="one">One</Radio>
+  <Radio value="two">Two</Radio>
+  <Radio value="three">Three</Radio>
+</RadioGroup>
+
+// after
+<RadioGroup defaultValue="one">
+  <Stack direction="row">
+    <Radio value="one">One</Radio>
+    <Radio value="two">Two</Radio>
+    <Radio value="three">Three</Radio>
+  </Stack>
+</RadioGroup>
+```
+
+## Slider
+
+- Update JSX structure: The `SliderFilledTrack` should be wrapped in
+  `SliderTrack` component.
+
+```diff
+// before
+<Slider defaultValue={30}>
+  <SliderTrack />
+-  <SliderFilledTrack />
+  <SliderThumb />
+</Slider>
+
+// after
+<Slider defaultValue={30}>
+  <SliderTrack>
++    <SliderFilledTrack />
+  </SliderTrack>
+  <SliderThumb />
+</Slider>
+```
+
+- Added support for `isReversed`, which allows users reverse the direction and
+  functionality of the slider. This is mostly useful for `rtl` purposes.
+
+- Added support for `onChangeEnd`, dragging the slider can trigger lots of
+  updates and user might only be interested in the final result after sliding is
+  complete.
+
+- Added `isReadOnly` prop to support cases where slider needs to be in read-only
+  state.
+
+- Export the `useSlider` hook to help users manage and build custom slider UIs
+
+### Popover
+
+- `returnFocusOnClose` has been changed to just `returnFocus` to keep it
+  concise.
+
+- `autoFocus` prop to allow users control whether the popover should
+  automatically receive focus when it opens.
+
+### Stat
+
+- We improved the semantic HTML structure of the Stat components to use `dl`,
+  `dd`, and `dt` tags.
+
+### Switch
+
+- Rename the `color` prop to `colorScheme`
+
+```diff
+-  <Switch color="blue"/>
++  <Switch colorScheme="blue"/>
+```
+
+### Tabs
+
+- Change `variantColor` prop to `colorScheme`
+
+### Tags
+
+- Change `variantColor` to `colorScheme`
+
+```diff
+- <Tag variantColor="blue"/>
++ <Tag colorScheme="blue"/>
+```
+
+- Added support for `isDisabled` prop for the `TagCloseButton`
+
+```jsx live=false
+<Tag variant="solid" size="sm" colorScheme="cyan">
+  <TagLabel>Tab Label</TagLabel>
+  <TagCloseButton isDisabled />
+</Tag>
+```
+
+### Toast
+
+- Removed `react-spring` as dependency in favor of `react-transition-group`
+- Add support for duplicate toast prevention using `toast.isActive` method
+- Add support to programmatically close one to all toasts using `toast.close` or
+  `toast.closeAll` methods
+- Add support to programmatically update a toast using `toast.update` method.
+- Add Support for `onCloseComplete` prop, a callback function to run side
+  effects after the toast component has closed.
+
+### Tooltip
+
+- Added support for `hideOnClick` prop
+- Added support for `hideOnMouseDown` prop
+
+**That's it! Welcome to Chakra UI v1.**
+
+> If you still experience any issues after migrating, feel free to create an
+> issue or join our Discord chat here: https://discord.gg/dQHfcWF

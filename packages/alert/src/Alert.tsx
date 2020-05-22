@@ -38,6 +38,7 @@ export type AlertProps = PropsOf<typeof StyledAlert> & AlertOptions
 const StyledAlert = chakra("div", {
   themeKey: "Alert.Root",
   baseStyle: {
+    width: "100%",
     display: "flex",
     alignItems: "center",
     position: "relative",
