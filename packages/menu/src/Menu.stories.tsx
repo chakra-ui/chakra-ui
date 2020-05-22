@@ -42,16 +42,18 @@ const words = [
 ]
 
 export const Basic = () => (
-  <Menu>
-    <MenuButton variant="solid" colorScheme="teal" size="sm">
-      Open Wakanda menu
-    </MenuButton>
-    <MenuList>
-      {words.map(word => (
-        <MenuItem key={word}>{word}</MenuItem>
-      ))}
-    </MenuList>
-  </Menu>
+  <div style={{ minHeight: 4000 }}>
+    <Menu>
+      <MenuButton variant="solid" colorScheme="teal" size="sm">
+        Open Wakanda menu
+      </MenuButton>
+      <MenuList>
+        {words.map(word => (
+          <MenuItem key={word}>{word}</MenuItem>
+        ))}
+      </MenuList>
+    </Menu>
+  </div>
 )
 
 export const WithDisabledItem = () => (

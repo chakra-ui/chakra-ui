@@ -65,8 +65,7 @@ export function usePopper(props: UsePopperProps) {
         strategy: fixed ? "fixed" : "absolute",
         modifiers: [
           {
-            name: "eventListener",
-            phase: "write",
+            name: "eventListeners",
             enabled: eventsEnabled,
           },
           {
@@ -121,11 +120,14 @@ export function usePopper(props: UsePopperProps) {
   }, [originalPlacement, fixed, forceUpdate, flip, offset, preventOverflow])
 
   useSafeLayoutEffect(() => {
-    requestAnimationFrame(() => {
+    const id = requestAnimationFrame(() => {
       if (forceUpdate) {
         popper.current?.forceUpdate()
       }
     })
+    return () => {
+      cancelAnimationFrame(id)
+    }
   }, [forceUpdate])
 
   const computedArrowStyles: React.CSSProperties = {
