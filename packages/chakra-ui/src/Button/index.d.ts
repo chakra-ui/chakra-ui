@@ -35,7 +35,7 @@ export interface IButton {
    * The label to show in the button when `isLoading` is true
    * If no text is passed, it only shows the spinner
    */
-  loadingText?: string;
+  loadingText?: React.ReactNode;
   /**
    * If `true`, the button will take up the full width of its container.
    */
