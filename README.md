@@ -1,6 +1,6 @@
 <br />
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-12-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-13-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <p align="center">
@@ -151,6 +151,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://alexluong.com"><img src="https://avatars1.githubusercontent.com/u/26750127?v=4" width="64px;" alt=""/><br /><sub><b>Alex Luong</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=alexluong" title="Code">💻</a></td>
     <td align="center"><a href="https://www.jescowuester.com"><img src="https://avatars3.githubusercontent.com/u/43379421?v=4" width="64px;" alt=""/><br /><sub><b>Jesco Wüster</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=jescowuester" title="Code">💻</a></td>
     <td align="center"><a href="https://www.linkedin.com/in/dusty"><img src="https://avatars2.githubusercontent.com/u/792?v=4" width="64px;" alt=""/><br /><sub><b>Dusty Doris</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=dusty" title="Code">💻</a></td>
+    <td align="center"><a href="https://twitter.com/alex_lobera"><img src="https://avatars2.githubusercontent.com/u/1273037?v=4" width="64px;" alt=""/><br /><sub><b>Alex Lobera</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=alexlbr" title="Code">💻</a></td>
   </tr>
 </table>
 
