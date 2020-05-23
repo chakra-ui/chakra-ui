@@ -1,6 +1,6 @@
 <br />
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-60-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-61-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <p align="center">
@@ -213,6 +213,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://shinework.netlify.com"><img src="https://avatars3.githubusercontent.com/u/1102595?v=4" width="64px;" alt=""/><br /><sub><b>Baptiste Adrien</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=shinework" title="Code">💻</a></td>
     <td align="center"><a href="http://robbevan.com"><img src="https://avatars1.githubusercontent.com/u/276?v=4" width="64px;" alt=""/><br /><sub><b>Rob Bevan</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=robbevan" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/pan-tom"><img src="https://avatars1.githubusercontent.com/u/27802923?v=4" width="64px;" alt=""/><br /><sub><b>Tomasz</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=pan-tom" title="Code">💻</a></td>
+    <td align="center"><a href="https://about.me/kkshyu"><img src="https://avatars1.githubusercontent.com/u/8722165?v=4" width="64px;" alt=""/><br /><sub><b>徐愷</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=kkshyu" title="Code">💻</a></td>
   </tr>
 </table>
 
