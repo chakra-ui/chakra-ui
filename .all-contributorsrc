@@ -343,6 +343,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "santialbo",
+      "name": "Santi Albo",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/1557563?v=4",
+      "profile": "http://santialbo.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7
