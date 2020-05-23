@@ -1,6 +1,6 @@
 <br />
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-32-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-33-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <p align="center">
@@ -177,6 +177,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://trevorblades.com"><img src="https://avatars0.githubusercontent.com/u/1216917?v=4" width="64px;" alt=""/><br /><sub><b>Trevor Blades</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=trevorblades" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/gordlea"><img src="https://avatars0.githubusercontent.com/u/782154?v=4" width="64px;" alt=""/><br /><sub><b>Gord Lea</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=gordlea" title="Code">💻</a></td>
     <td align="center"><a href="https://aggelos.dev"><img src="https://avatars1.githubusercontent.com/u/10436045?v=4" width="64px;" alt=""/><br /><sub><b>Aggelos Arvanitakis</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=3nvi" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/DouglasGabr"><img src="https://avatars2.githubusercontent.com/u/21958179?v=4" width="64px;" alt=""/><br /><sub><b>Douglas Gabriel</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=DouglasGabr" title="Code">💻</a></td>
   </tr>
 </table>
 
