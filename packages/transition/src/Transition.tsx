@@ -50,7 +50,7 @@ export function Transition(props: TransitionProps) {
 
   return (
     <CSSTransition appear unmountOnExit in={inProp} timeout={timeout} {...rest}>
-      {state => children(getStyle(state))}
+      {(state) => children(getStyle(state))}
     </CSSTransition>
   )
 }

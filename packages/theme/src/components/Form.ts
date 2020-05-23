@@ -1,7 +1,7 @@
 import { ComponentTheme, mode } from "./utils"
 
 const Form: ComponentTheme = {
-  baseStyle: props => ({
+  baseStyle: (props) => ({
     Label: {
       fontSize: "md",
       marginRight: 3,

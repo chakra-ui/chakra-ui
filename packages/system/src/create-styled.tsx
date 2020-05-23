@@ -24,7 +24,7 @@ function createStyled<T extends As, P = {}>(
   component: T,
   options?: Options<T, P>,
 ) {
-  return function(...interpolations: any[]) {
+  return function (...interpolations: any[]) {
     const Styled = forwardRef(({ as, ...props }: any, ref: Ref<any>) => {
       // Get the color mode and theme from context
       const { theme, colorMode } = useChakra()
@@ -70,7 +70,7 @@ function createStyled<T extends As, P = {}>(
       }
 
       // Resolve each interpolation and add result to final style
-      interpolations.forEach(interpolation => {
+      interpolations.forEach((interpolation) => {
         const style = runIfFn(interpolation, propsWithTheme)
         computedStyles = { ...computedStyles, ...style }
       })

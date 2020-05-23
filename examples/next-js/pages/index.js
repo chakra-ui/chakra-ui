@@ -32,7 +32,7 @@ const InputGrouper = () => {
         <Input placeholder="Enter amount" />
         {bool && <InputRightElement children={"C"} />}
       </InputGroup>
-      <button onClick={() => setBool(s => !s)}>Add Right Element</button>
+      <button onClick={() => setBool((s) => !s)}>Add Right Element</button>
       <br />
     </>
   )

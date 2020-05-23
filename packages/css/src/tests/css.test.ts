@@ -152,7 +152,7 @@ test("works with the css prop", () => {
 })
 
 test("works with functional arguments", () => {
-  const result = css(t => ({
+  const result = css((t) => ({
     color: t.colors.primary,
   }))(theme)
   expect(result).toEqual({

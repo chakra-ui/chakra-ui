@@ -29,7 +29,7 @@ import { Tag, TagIcon, TagLabel, TagCloseButton } from "@chakra-ui/core"
 
 ```jsx
 <Stack spacing={4} isInline>
-  {["sm", "md", "lg"].map(size => (
+  {["sm", "md", "lg"].map((size) => (
     <Tag size={size} key={size} colorScheme="gray">
       Gray
     </Tag>
@@ -41,7 +41,7 @@ import { Tag, TagIcon, TagLabel, TagCloseButton } from "@chakra-ui/core"
 
 ```jsx
 <Stack spacing={4} isInline>
-  {["sm", "md", "lg"].map(size => (
+  {["sm", "md", "lg"].map((size) => (
     <Tag size={size} key={size} colorScheme="cyan">
       <TagIcon icon="add" size="12px" />
       <TagLabel>Green</TagLabel>
@@ -71,7 +71,7 @@ import { Tag, TagIcon, TagLabel, TagCloseButton } from "@chakra-ui/core"
 
 ```jsx
 <Stack spacing={4} isInline>
-  {["sm", "md", "lg"].map(size => (
+  {["sm", "md", "lg"].map((size) => (
     <Tag
       size={size}
       key={size}

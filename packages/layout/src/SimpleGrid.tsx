@@ -73,13 +73,13 @@ const toPx = (n: string | number) => {
 }
 
 const widthToColumns = (width: any) => {
-  return mapResponsive(width, value =>
+  return mapResponsive(width, (value) =>
     isNull(value) ? null : `repeat(auto-fit, minmax(${toPx(value)}, 1fr))`,
   )
 }
 
 const countToColumns = (count: any) => {
-  return mapResponsive(count, value =>
+  return mapResponsive(count, (value) =>
     isNull(value) ? null : `repeat(${value}, 1fr)`,
   )
 }

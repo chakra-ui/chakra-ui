@@ -104,7 +104,7 @@ function Example() {
       onClick={() => {
         toast({
           position: "bottom-left",
-          render: props => (
+          render: (props) => (
             <Box m={3} color="white" p={3} bg="blue.500">
               Hello World
             </Box>

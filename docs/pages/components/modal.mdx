@@ -319,7 +319,7 @@ function TransitionExample() {
       </Button>
 
       <SlideIn in={isOpen}>
-        {styles => (
+        {(styles) => (
           <Modal finalFocusRef={btnRef} onClose={onClose} isOpen={true}>
             <ModalOverlay opacity={styles.opacity}>
               <ModalContent pb={5} {...styles}>
@@ -400,7 +400,7 @@ function SizeExample() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [size, setSize] = React.useState("md")
 
-  const handleSizeClick = newSize => {
+  const handleSizeClick = (newSize) => {
     setSize(newSize)
     onOpen()
   }
@@ -409,7 +409,7 @@ function SizeExample() {
 
   return (
     <>
-      {sizes.map(size => (
+      {sizes.map((size) => (
         <Button
           onClick={() => handleSizeClick(size)}
           key={size}

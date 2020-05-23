@@ -37,7 +37,7 @@ const LiveCodePreview = chakra(LivePreview, {
   },
 })
 
-const CopyButton = props => (
+const CopyButton = (props) => (
   <Button
     size="sm"
     position="absolute"
@@ -52,7 +52,7 @@ const CopyButton = props => (
   />
 )
 
-const EditableNotice = props => {
+const EditableNotice = (props) => {
   const bg = { light: "#fbfbfb", dark: "#011627" }
 
   return (
@@ -78,7 +78,7 @@ const EditableNotice = props => {
   )
 }
 
-const StarIcon = props => {
+const StarIcon = (props) => {
   return (
     <chakra.svg
       m="2px"
@@ -122,7 +122,7 @@ const CodeBlock = ({
     ...props,
   }
 
-  const onChange = newCode => setEditorCode(newCode.trim())
+  const onChange = (newCode) => setEditorCode(newCode.trim())
 
   if (language === "jsx" && live === true) {
     return (

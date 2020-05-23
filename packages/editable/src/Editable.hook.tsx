@@ -159,7 +159,7 @@ export function useEditable(props: UseEditableProps = {}) {
   const onKeyDown = createOnKeyDown({
     keyMap: {
       Escape: onCancel,
-      Enter: event => {
+      Enter: (event) => {
         if (!event.shiftKey && !event.metaKey) {
           onSubmit()
         }

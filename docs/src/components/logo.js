@@ -1,7 +1,7 @@
 import React from "react"
 import { useColorMode, chakra } from "@chakra-ui/core"
 
-const Logo = props => {
+const Logo = (props) => {
   const [colorMode] = useColorMode()
 
   return (

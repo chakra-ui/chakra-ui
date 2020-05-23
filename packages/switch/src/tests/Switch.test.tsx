@@ -34,7 +34,7 @@ test("Controlled - should check and uncheck", () => {
     return (
       <Switch
         isChecked={checked}
-        onChange={e => {
+        onChange={(e) => {
           onChange?.()
           setChecked(e.target.checked)
         }}

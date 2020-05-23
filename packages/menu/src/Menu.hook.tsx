@@ -291,7 +291,7 @@ export function useMenuList(props: UseMenuListProps) {
    * to printable keyboard character press
    */
   const onCharacterPress = useShortcut({
-    preventDefault: event => event.key !== " ",
+    preventDefault: (event) => event.key !== " ",
   })
 
   const onKeyDown = createOnKeyDown({
@@ -301,13 +301,13 @@ export function useMenuList(props: UseMenuListProps) {
      *
      * In any other case, don't allow propagation
      */
-    stopPropagation: event => {
+    stopPropagation: (event) => {
       if (event.key === "Escape" && hasParentMenu) {
         return false
       }
       return true
     },
-    onKeyDown: onCharacterPress(character => {
+    onKeyDown: onCharacterPress((character) => {
       /**
        * Typeahead: Based on current character pressed,
        * find the next item to be selected
@@ -315,7 +315,7 @@ export function useMenuList(props: UseMenuListProps) {
       const nextItem = getNextItemFromSearch(
         descendants,
         character,
-        node => node.element?.textContent || "",
+        (node) => node.element?.textContent || "",
         descendants[focusedIndex],
       )
 
@@ -765,7 +765,7 @@ export function useMenuOptionGroup(props: UseMenuOptionGroupProps) {
 
   const validChildren = getValidChildren(children)
 
-  const clones = validChildren.map(child => {
+  const clones = validChildren.map((child) => {
     const onClick = (event: React.MouseEvent) => {
       handleChange(child.props.value)
       child.props.onClick?.(event)

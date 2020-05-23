@@ -102,7 +102,7 @@ export function Toast(props: ToastProps) {
       timeout={{ enter: 0, exit: 150 }}
       onExited={onExited}
     >
-      {styles => (
+      {(styles) => (
         <div
           data-toast=""
           onMouseEnter={onMouseEnter}

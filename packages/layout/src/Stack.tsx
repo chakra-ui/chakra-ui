@@ -73,7 +73,7 @@ export const Stack = React.forwardRef(
 
     const styles = {
       flexDirection: direction,
-      [selector]: mapResponsive(direction, value => ({
+      [selector]: mapResponsive(direction, (value) => ({
         [value === "column" ? "marginTop" : "marginLeft"]: spacing,
         [value === "column" ? "marginLeft" : "marginTop"]: 0,
       })),
@@ -81,7 +81,7 @@ export const Stack = React.forwardRef(
 
     const validChildren = getValidChildren(children)
 
-    const dividerStyles = mapResponsive(direction, value => {
+    const dividerStyles = mapResponsive(direction, (value) => {
       if (value === "row") {
         return {
           marginX: spacing,

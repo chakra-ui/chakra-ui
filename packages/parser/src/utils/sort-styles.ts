@@ -9,7 +9,7 @@ export function sort(obj: Dict) {
         sensitivity: "base",
       }),
     )
-    .forEach(key => {
+    .forEach((key) => {
       next[key] = obj[key]
     })
   return next

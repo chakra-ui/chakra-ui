@@ -30,7 +30,7 @@ export interface ColorModeProviderProps {
  * Provides context for the color mode based on config in `theme`
  * Returns the color mode and function to toggle the color mode
  */
-export const ColorModeProvider: FC = props => {
+export const ColorModeProvider: FC = (props) => {
   const theme = useContext(ThemeContext) as Dict
 
   const fallbackConfig = {
@@ -55,7 +55,7 @@ if (__DEV__) {
 /**
  * Locks the color mode to `dark`, without any way to change it.
  */
-export const DarkMode: FC = props => (
+export const DarkMode: FC = (props) => (
   <ColorModeContext.Provider value={["dark", noop]} {...props} />
 )
 
@@ -66,7 +66,7 @@ if (__DEV__) {
 /**
  * Locks the color mode to `light` without any way to change it.
  */
-export const LightMode: FC = props => (
+export const LightMode: FC = (props) => (
   <ColorModeContext.Provider value={["light", noop]} {...props} />
 )
 

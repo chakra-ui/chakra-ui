@@ -20,7 +20,7 @@ const NumberInput: ComponentTheme = {
   defaultProps: {
     size: "md",
   },
-  baseStyle: props => ({
+  baseStyle: (props) => ({
     StepperGroup: {
       width: "24px",
       margin: "1px",

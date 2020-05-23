@@ -27,7 +27,7 @@ export function useBreakpoint(defaultBreakpoint?: string) {
   const [currentBreakpoint, setCurrentBreakpoint] = useState(() => {
     if (!defaultBreakpoint) return undefined
     const mediaQuery = mediaQueries.find(
-      query => query.breakpoint === defaultBreakpoint,
+      (query) => query.breakpoint === defaultBreakpoint,
     )
 
     if (mediaQuery) {

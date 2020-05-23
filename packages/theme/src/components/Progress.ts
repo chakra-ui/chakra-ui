@@ -3,7 +3,7 @@ import { ComponentTheme, mode } from "./utils"
 
 type ProgressTheme = ComponentTheme<{ isIndeterminate?: boolean }>
 
-const getProgressBg: ProgressTheme["baseStyle"] = props => {
+const getProgressBg: ProgressTheme["baseStyle"] = (props) => {
   const { colorScheme: c, theme: t } = props
   const bg = mode(`${c}.500`, `${c}.200`)(props)
 
@@ -40,7 +40,7 @@ const Progress: ProgressTheme = {
     size: "md",
     colorScheme: "blue",
   },
-  baseStyle: props => ({
+  baseStyle: (props) => ({
     Label: {
       lineHeight: "1",
       fontSize: "0.25em",

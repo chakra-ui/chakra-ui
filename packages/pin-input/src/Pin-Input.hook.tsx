@@ -54,7 +54,7 @@ export function usePinInput(props: UsePinInputProps = {}) {
   const [values, setValues] = useControllableState<string[]>({
     defaultValue: toArray(defaultValue) || [],
     value: toArray(value),
-    onChange: values => onChange?.(values.join("")),
+    onChange: (values) => onChange?.(values.join("")),
   })
 
   useEffect(() => {

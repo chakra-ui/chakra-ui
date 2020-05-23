@@ -35,7 +35,7 @@ function show(fn: (isHidePending: boolean) => void, delay: number) {
 
 function hide(fn: (flushed: boolean) => void, delay: number) {
   // setup the hide operation using flushable
-  hideOperation = flushable(flushed => fn(flushed), delay)
+  hideOperation = flushable((flushed) => fn(flushed), delay)
 
   // return a function to cancel hide() from executing
   return hideOperation.cancel

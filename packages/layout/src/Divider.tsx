@@ -23,7 +23,7 @@ export const Divider = chakra<"hr", DividerOptions>("hr", {
     opacity: 0.6,
     borderColor: "inherit",
   },
-  attrs: props => ({
+  attrs: (props) => ({
     role: "separator",
     "aria-orientation": props.orientation || "horizontal",
     className: cx("chakra-divider", props.className),

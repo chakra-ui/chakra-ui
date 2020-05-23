@@ -179,7 +179,7 @@ function Example() {
   const [tabIndex, setTabIndex] = React.useState(0)
   const bg = colors[tabIndex]
   return (
-    <Tabs onChange={index => setTabIndex(index)} color="white" bg={bg}>
+    <Tabs onChange={(index) => setTabIndex(index)} color="white" bg={bg}>
       <TabList>
         <Tab>Red</Tab>
         <Tab>Teal</Tab>
@@ -233,11 +233,11 @@ onChange as well, or else the tabs will not be interactive.
 function ControlledExample() {
   const [tabIndex, setTabIndex] = React.useState(0)
 
-  const handleSliderChange = event => {
+  const handleSliderChange = (event) => {
     setTabIndex(parseInt(event.target.value, 10))
   }
 
-  const handleTabsChange = index => {
+  const handleTabsChange = (index) => {
     setTabIndex(index)
   }
 

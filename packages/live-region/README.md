@@ -20,7 +20,7 @@ import { LiveRegion, useLiveRegion } from "@chakra-ui/live-region"
 ```jsx
 import { useLiveRegion } from "@chakra-ui/live-region"
 
-function Example () {
+function Example() {
   const region = useLiveRegion()
   return (
     <button

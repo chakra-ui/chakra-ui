@@ -14,7 +14,7 @@ import { FaMoon, FaSun } from "react-icons/fa"
 import { Container } from "./container"
 import Logo from "./logo"
 
-const StorybookIcon = props => (
+const StorybookIcon = (props) => (
   <svg
     aria-hidden="true"
     focusable="false"

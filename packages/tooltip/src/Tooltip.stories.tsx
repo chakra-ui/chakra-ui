@@ -92,7 +92,7 @@ const TransitionTooltip = ({ children }: any) => {
           },
         }}
       >
-        {styles => (
+        {(styles) => (
           <Portal>
             <div
               {...tooltip}

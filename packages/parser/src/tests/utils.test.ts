@@ -18,7 +18,7 @@ test("should assign array value", () => {
       "@media(min-width: 960px)",
     ],
     prop: "margin",
-    transform: val => val,
+    transform: (val) => val,
   })
 
   expect(result).toEqual({
@@ -40,7 +40,7 @@ test("should assign object value", () => {
       md: "@media(min-width: 768px)",
     },
     prop: "margin",
-    transform: val => val,
+    transform: (val) => val,
   })
 
   expect(result).toEqual({

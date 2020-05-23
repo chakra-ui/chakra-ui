@@ -19,7 +19,7 @@ export function useBoolean(initialState: InitialState = false) {
   }, [])
 
   const toggle = useCallback(() => {
-    setValue(prev => !prev)
+    setValue((prev) => !prev)
   }, [])
 
   return [value, { on, off, toggle }] as const

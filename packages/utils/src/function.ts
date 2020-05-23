@@ -12,8 +12,8 @@ export function runIfFn<T, U>(
 export function callAllHandlers<T extends (event: any) => void>(
   ...fns: (T | undefined)[]
 ) {
-  return function(event: FunctionArguments<T>[0]) {
-    fns.some(fn => {
+  return function (event: FunctionArguments<T>[0]) {
+    fns.some((fn) => {
       fn && fn(event)
       return event && event.defaultPrevented
     })
@@ -25,7 +25,7 @@ export { memoizeOne }
 export function once(fn?: Function | null) {
   let result: any
 
-  return function(this: any, ...args: any[]) {
+  return function (this: any, ...args: any[]) {
     if (fn) {
       result = fn.apply(this, args)
       fn = null

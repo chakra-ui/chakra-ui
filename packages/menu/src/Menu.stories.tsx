@@ -48,7 +48,7 @@ export const Basic = () => (
         Open Wakanda menu
       </MenuButton>
       <MenuList>
-        {words.map(word => (
+        {words.map((word) => (
           <MenuItem key={word}>{word}</MenuItem>
         ))}
       </MenuList>
@@ -213,7 +213,7 @@ export const WithTransition = () => (
       Open menu
     </MenuButton>
     <MenuTransition>
-      {styles => (
+      {(styles) => (
         <MenuList css={styles as any}>
           <MenuItem>Menu 1</MenuItem>
           <MenuItem>Menu 2</MenuItem>
@@ -376,7 +376,7 @@ export const SplitButton = () => (
         <FaChevronDown />
       </MenuButton>
       <MenuTransition transformOrigin="top right">
-        {styles => (
+        {(styles) => (
           <MenuList minW="160px" css={styles as any}>
             <MenuItem fontSize="14px">Menu 1</MenuItem>
             <MenuItem fontSize="14px">Menu 2</MenuItem>

@@ -36,9 +36,9 @@ export function DrawerTransition(props: DrawerTransitionProps) {
   const { in: inProp, children, placement } = props
   return (
     <Slide in={inProp} placement={placement}>
-      {contentStyle => (
+      {(contentStyle) => (
         <Fade in={inProp}>
-          {overlayStyle =>
+          {(overlayStyle) =>
             children({ content: contentStyle, overlay: overlayStyle })
           }
         </Fade>
@@ -51,7 +51,7 @@ export function Drawer(props: DrawerProps) {
   const { isOpen, onClose, placement = "right", children, ...rest } = props
   return (
     <DrawerTransition in={isOpen} placement={placement}>
-      {styles => (
+      {(styles) => (
         <TransitionContext.Provider value={styles}>
           <Modal isOpen={true} onClose={onClose} {...rest}>
             {children}

@@ -11,13 +11,13 @@ export interface GlobalProps {
 export function Global(props: GlobalProps) {
   const { styles } = props
   const [colorMode] = useColorMode()
-  return <EmotionGlobal styles={theme => styles({ theme, colorMode })} />
+  return <EmotionGlobal styles={(theme) => styles({ theme, colorMode })} />
 }
 
 export function GlobalStyle() {
   return (
     <Global
-      styles={props => {
+      styles={(props) => {
         const { theme, colorMode } = props
         const styleOrFn = get(theme, "styles.global")
         if (!styleOrFn) return

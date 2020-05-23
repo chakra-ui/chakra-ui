@@ -4,7 +4,7 @@ const CloseButton: ComponentTheme = {
   defaultProps: {
     size: "md",
   },
-  baseStyle: props => ({
+  baseStyle: (props) => ({
     borderRadius: "md",
     transition: "all 0.2s",
     _disabled: {

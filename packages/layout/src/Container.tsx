@@ -18,7 +18,7 @@ function transform(theme: Dict, props: Dict) {
 
   for (const prop in props) {
     const propValue = props[prop]
-    result[prop] = mapResponsive(propValue, value =>
+    result[prop] = mapResponsive(propValue, (value) =>
       get(theme, `sizes.container.${value}`, value),
     )
   }

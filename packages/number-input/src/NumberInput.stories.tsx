@@ -67,7 +67,7 @@ export const HookWithFormatAndParse = () => {
     min: 1,
     max: 6,
     precision: 2,
-    onChange: valueString => setValue(parse(valueString)),
+    onChange: (valueString) => setValue(parse(valueString)),
   })
 
   return (

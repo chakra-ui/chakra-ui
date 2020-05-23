@@ -57,7 +57,7 @@ if (__DEV__) {
  * The trigger for the popover. It must be an interactive element
  * such as `button` or `a`.
  */
-export const PopoverTrigger: React.FC = props => {
+export const PopoverTrigger: React.FC = (props) => {
   // enforce a single child
   const child = React.Children.only(props.children) as React.ReactElement<any>
   const { getTriggerProps } = usePopoverContext()

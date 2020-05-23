@@ -31,7 +31,7 @@ interface TextareaOptions {
  */
 const StyledTextarea = chakra<"textarea", TextareaOptions>("textarea", {
   themeKey: "Textarea",
-  shouldForwardProp: prop =>
+  shouldForwardProp: (prop) =>
     !["focusBorderColor", "errorBorderColor"].includes(prop),
 })
 

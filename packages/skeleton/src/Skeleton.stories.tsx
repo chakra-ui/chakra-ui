@@ -70,7 +70,7 @@ export const WithIsLoaded = () => {
   const [hasLoaded, setHasLoaded] = React.useState(false)
 
   React.useEffect(() => {
-    const intervalId = setInterval(() => setHasLoaded(x => !x), 1000)
+    const intervalId = setInterval(() => setHasLoaded((x) => !x), 1000)
     return () => clearInterval(intervalId)
   }, [])
 

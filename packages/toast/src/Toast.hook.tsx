@@ -147,7 +147,7 @@ export function useToast() {
 
     toast.update(id, {
       ...opts,
-      message: props => (
+      message: (props) => (
         <ThemeProvider theme={theme}>
           {isFunction(render) ? (
             render(props)

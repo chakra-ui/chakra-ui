@@ -24,7 +24,7 @@ export const WithSizes = () => {
 
   return (
     <>
-      {sizes.map(size => (
+      {sizes.map((size) => (
         <Radio
           key={size}
           size={size}
@@ -68,7 +68,7 @@ export const GroupWithWrap = () => {
   return (
     <RadioGroup onChange={console.log} defaultValue="Option 1">
       <Wrap spacing={[2, 4, 6]}>
-        {range.map(num => (
+        {range.map((num) => (
           <Radio key={num} value={`Option ${num}`}>{`Option ${num}`}</Radio>
         ))}
       </Wrap>
@@ -81,7 +81,7 @@ export const GroupWithSimpleGrid = () => {
   return (
     <RadioGroup onChange={console.log} defaultValue="Option 1">
       <SimpleGrid columns={2} spacing={[2, 4, 6]}>
-        {range.map(num => (
+        {range.map((num) => (
           <Radio key={num} value={`Option ${num}`}>{`Option ${num}`}</Radio>
         ))}
       </SimpleGrid>
@@ -100,7 +100,7 @@ export const WithHook = () => {
 
   return (
     <Stack spacing="20px" direction="row" {...getRootProps()}>
-      {options.map(value => (
+      {options.map((value) => (
         <Radio key={value} {...getRadioProps({ value })}>
           {value}
         </Radio>
@@ -144,7 +144,7 @@ export function CustomRadioCard() {
 
   return (
     <Stack direction="row" {...getRootProps()}>
-      {options.map(value => (
+      {options.map((value) => (
         <RadioCard key={value} {...getRadioProps({ value })}>
           {value}
         </RadioCard>

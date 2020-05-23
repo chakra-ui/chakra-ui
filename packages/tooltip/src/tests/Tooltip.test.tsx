@@ -36,7 +36,7 @@ test("should have no violations", async () => {
 
   const tooltip = screen.queryByRole("tooltip") as HTMLElement
 
-  axe(tooltip).then(res => {
+  axe(tooltip).then((res) => {
     expect(res).toHaveNoViolations()
   })
 })

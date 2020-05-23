@@ -69,7 +69,7 @@ export const AvatarBadge = chakra("div", {
     right: "0",
     bottom: "0",
   },
-  attrs: props => ({
+  attrs: (props) => ({
     className: cx("chakra-avatar__badge", props.className),
   }),
 })
@@ -154,7 +154,7 @@ export const baseStyle: SystemProps = {
 const StyledAvatar = chakra<"span", { name?: string }>("span", {
   themeKey: "Avatar.Root",
   baseStyle,
-  shouldForwardProp: prop => !["name"].includes(prop),
+  shouldForwardProp: (prop) => !["name"].includes(prop),
 })
 
 export type AvatarProps = PropsOf<typeof StyledAvatar> & AvatarOptions

@@ -28,7 +28,7 @@ For example, `<Radio colorScheme="blue">Option</Radio>`
 ```jsx
 // before
 const Before = () => {
-  const onChange = event => console.log(event.target.value)
+  const onChange = (event) => console.log(event.target.value)
   return (
     <RadioGroup name="test" onChange={onChange}>
       <Radio value="opt1" />
@@ -40,7 +40,7 @@ const Before = () => {
 
 // after
 const After = () => {
-  const onChange = val => console.log(val)
+  const onChange = (val) => console.log(val)
   return (
     <RadioGroup name="test" onChange={onChange}>
       <Radio value="opt1" />

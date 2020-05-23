@@ -30,11 +30,11 @@ export function assignRef<T = any>(ref: ReactRef<T>, value: T) {
  */
 export function useMergeRefs<T>(...refs: (ReactRef<T> | undefined)[]) {
   return React.useMemo(() => {
-    if (refs.every(ref => ref == null)) {
+    if (refs.every((ref) => ref == null)) {
       return null
     }
     return (node: T) => {
-      refs.forEach(ref => {
+      refs.forEach((ref) => {
         if (ref) assignRef(ref, node)
       })
     }

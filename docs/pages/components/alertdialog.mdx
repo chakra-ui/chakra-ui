@@ -112,7 +112,7 @@ function TransitionExample() {
       </Button>
       {/* You can swap the `Scale` with `SlideIn` to see a different transition */}
       <Scale in={isOpen}>
-        {styles => (
+        {(styles) => (
           <AlertDialog
             leastDestructiveRef={cancelRef}
             finalFocusRef={btnRef}

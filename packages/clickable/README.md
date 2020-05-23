@@ -15,7 +15,7 @@ import { useClickable } from "@chakra-ui/clickable"
 
 ```jsx
 // create a clickable primitive
-const Clickable = props => {
+const Clickable = (props) => {
   const clickable = useClickable(props)
   return <chakra.button display="inline-flex" {...clickable} />
 }
@@ -24,7 +24,7 @@ const Clickable = props => {
 const Example = () => (
   <Clickable
     as="div"
-    onClick={event => {
+    onClick={(event) => {
       alert("clicked")
     }}
     _active={{ bg: "blue", color: "white" }}

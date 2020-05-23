@@ -91,7 +91,7 @@ export const AlertTitle = chakra("div", {
     fontWeight: "bold",
     lineHeight: "normal",
   },
-  attrs: props => ({
+  attrs: (props) => ({
     className: cx("chakra-alert__title", props.className),
   }),
 })
@@ -107,7 +107,7 @@ export const AlertDescription = chakra("div", {
   baseStyle: {
     display: "inline-block",
   },
-  attrs: props => ({
+  attrs: (props) => ({
     className: cx("chakra-alert__description", props.className),
   }),
 })

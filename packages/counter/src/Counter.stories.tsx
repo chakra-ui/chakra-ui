@@ -15,7 +15,7 @@ export function Basic() {
     // step: 0.1,
     keepWithinRange: false,
     precision: 4,
-    onChange: next => setVal(next),
+    onChange: (next) => setVal(next),
   })
 
   return (
@@ -37,7 +37,7 @@ export function Basic() {
       <input
         value={counter.value}
         style={{ background: "transparent" }}
-        onChange={e => counter.update(e.target.value)}
+        onChange={(e) => counter.update(e.target.value)}
       />
     </div>
   )

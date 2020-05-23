@@ -36,12 +36,12 @@ export const ColorPalette = ({ color, name, ...props }) => {
 export const ColorPalettes = ({ color }) => {
   const theme = useTheme()
   const keys = Object.keys(theme.colors[color])
-  return keys.map(item => (
+  return keys.map((item) => (
     <ColorPalette color={`${color}.${item}`} name={`${color} ${item}`} />
   ))
 }
 
-export const ColorWrapper = props => (
+export const ColorWrapper = (props) => (
   <Grid
     mt={7}
     gap={6}

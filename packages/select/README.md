@@ -101,7 +101,7 @@ The following values are allowed: **sm, md, lg**
 
 ```jsx
 <Stack spacing={4}>
-  {["sm", "md", "lg"].map(size => (
+  {["sm", "md", "lg"].map((size) => (
     <Select key={size} placeholder="Select option" size={size}>
       <option value="Option 1">Option 1</option>
       <option value="Option 2">Option 2</option>

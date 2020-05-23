@@ -39,20 +39,20 @@ export const MenuTransition = (props: MenuTransitionProps) => {
 
   return (
     <Transition
-      onEnter={node => {
+      onEnter={(node) => {
         node.hidden = false
       }}
-      onExited={node => {
+      onExited={(node) => {
         node.hidden = true
         node.style.pointerEvents = "auto"
         if (menu.buttonRef.current) {
           ensureFocus(menu.buttonRef.current)
         }
       }}
-      onExit={node => {
+      onExit={(node) => {
         node.hidden = false
       }}
-      onExiting={node => {
+      onExiting={(node) => {
         node.style.pointerEvents = "none"
       }}
       timeout={{ enter: 0, exit: 200 }}

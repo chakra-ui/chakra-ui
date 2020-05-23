@@ -16,7 +16,7 @@ const Modal: ComponentTheme = {
   defaultProps: {
     size: "md",
   },
-  baseStyle: props => ({
+  baseStyle: (props) => ({
     Overlay: {
       bg: "rgba(0,0,0,0.4)",
     },

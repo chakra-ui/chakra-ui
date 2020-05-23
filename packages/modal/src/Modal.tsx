@@ -148,7 +148,7 @@ type ContentOptions = Pick<ModalProps, "scrollBehavior">
  */
 const StyledContent = chakra<"section", ContentOptions>("section", {
   themeKey: "Modal.Content",
-  baseStyle: props => {
+  baseStyle: (props) => {
     return {
       display: "flex",
       flexDirection: "column",
@@ -207,7 +207,7 @@ type OverlayOptions = Pick<ModalProps, "isCentered" | "scrollBehavior">
  */
 const StyledOverlay = chakra<"div", OverlayOptions>("div", {
   themeKey: "Modal.Overlay",
-  baseStyle: props => ({
+  baseStyle: (props) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: props.isCentered ? "center" : "flex-start",
@@ -324,7 +324,7 @@ export type ModalBodyProps = PropsOf<typeof StyledBody>
  */
 const StyledBody = chakra<"div", Pick<ModalProps, "scrollBehavior">>("div", {
   themeKey: "Modal.Body",
-  baseStyle: props => ({
+  baseStyle: (props) => ({
     flex: 1,
     overflow: props.scrollBehavior === "inside" ? "auto" : undefined,
   }),
@@ -384,7 +384,7 @@ export const ModalFooter = chakra("footer", {
     justifyContent: "flex-end",
     flex: 0,
   },
-  attrs: props => ({
+  attrs: (props) => ({
     className: cx("chakra-modal__footer", props.className),
   }),
 })

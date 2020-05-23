@@ -116,7 +116,7 @@ export const Collapse = forwardRef(
         transition={transition}
         unmountOnExit={false}
       >
-        {styles => (
+        {(styles) => (
           <chakra.div
             ref={forwardedRef}
             className={cx("chakra-collapse", className)}

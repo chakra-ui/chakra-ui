@@ -84,7 +84,7 @@ const UtilitiesLinks = () => {
   ))
 }
 
-const NavGroupHeading = props => (
+const NavGroupHeading = (props) => (
   <Heading
     size="xs"
     color="gray.400"
@@ -130,7 +130,7 @@ export const SideNavContent = ({
   </Box>
 )
 
-const SideNavContainer = props => (
+const SideNavContainer = (props) => (
   <Box
     position="fixed"
     left="0"
@@ -142,7 +142,7 @@ const SideNavContainer = props => (
   />
 )
 
-const SideNav = props => {
+const SideNav = (props) => {
   return (
     <SideNavContainer {...props}>
       <SideNavContent />

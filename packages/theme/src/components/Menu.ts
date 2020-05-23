@@ -41,7 +41,7 @@ const getMenuItemStyle = (props: Props): SystemProps => ({
 
 const Menu: ComponentTheme = {
   defaultProps: Button.defaultProps,
-  baseStyle: props => ({
+  baseStyle: (props) => ({
     MenuButton: Button.baseStyle as SystemProps,
     MenuList: getMenuListStyle(props),
     MenuItem: getMenuItemStyle(props),

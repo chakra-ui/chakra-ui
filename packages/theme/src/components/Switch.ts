@@ -47,7 +47,7 @@ const Switch: ComponentTheme = {
     size: "md",
     colorScheme: "blue",
   },
-  baseStyle: props => ({
+  baseStyle: (props) => ({
     Track: {
       borderRadius: "full",
       padding: "2px",

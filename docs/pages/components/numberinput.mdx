@@ -212,7 +212,7 @@ example of how to do that.
 ```jsx
 function SliderInput() {
   const [value, setValue] = React.useState(0)
-  const handleChange = value => setValue(value)
+  const handleChange = (value) => setValue(value)
 
   return (
     <Flex>
@@ -260,14 +260,7 @@ function SliderInput() {
 - Holding down <kbd>Ctrl</kbd> or <kbd>⌘</kbd>, and pressing <kbd>⬆</kbd> or
 
   <kbd>⬆</kbd>
-  will
-  update
-  the
-  value
-  by
-  `0.1
-  \\\\\\\\\\\\\\*
-  step`
+  will update the value by `0.1 \\\\\\\\\\\\\\* step`
 
 - Long press the Up and down stepper buttons will update the value at intervals.
 

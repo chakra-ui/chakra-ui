@@ -6,7 +6,7 @@ const Slider: ComponentTheme = {
     colorScheme: "blue",
   },
   sizes: {
-    lg: props => ({
+    lg: (props) => ({
       Thumb: { width: "16px", height: "16px" },
       Track: getOrientationStyle({
         orientation: props.orientation,
@@ -14,7 +14,7 @@ const Slider: ComponentTheme = {
         vertical: { width: "4px" },
       }),
     }),
-    md: props => ({
+    md: (props) => ({
       Thumb: { width: "14px", height: "14px" },
       Track: getOrientationStyle({
         orientation: props.orientation,
@@ -22,7 +22,7 @@ const Slider: ComponentTheme = {
         vertical: { width: "4px" },
       }),
     }),
-    sm: props => ({
+    sm: (props) => ({
       Thumb: { width: "10px", height: "10px" },
       Track: getOrientationStyle({
         orientation: props.orientation,
@@ -31,7 +31,7 @@ const Slider: ComponentTheme = {
       }),
     }),
   },
-  baseStyle: props => ({
+  baseStyle: (props) => ({
     Root: {
       _disabled: {
         opacity: 0.6,

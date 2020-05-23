@@ -24,7 +24,7 @@ export const color = () => <Spinner color="red.500" />
 
 export const size = () => (
   <div>
-    {["xl", "lg", "md", "sm", "xs"].map(size => (
+    {["xl", "lg", "md", "sm", "xs"].map((size) => (
       <Spinner key={size} margin={3} color="green.500" size={size} />
     ))}
   </div>
