@@ -84,15 +84,6 @@
       ]
     },
     {
-      "login": "estheragbaje",
-      "name": "Folasade Agbaje",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/53586167?v=4",
-      "profile": "https://estheragbaje.dev/",
-      "contributions": [
-        "code"
-      ]
-    },
-    {
       "login": "with-heart",
       "name": "Mark Chandler",
       "avatar_url": "https://avatars1.githubusercontent.com/u/1954752?v=4",
@@ -102,6 +93,25 @@
         "test",
         "doc",
         "maintenance"
+      ]
+    },
+    {
+      "login": "estheragbaje",
+      "name": "Folasade Agbaje",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/53586167?v=4",
+      "profile": "https://estheragbaje.dev/",
+      "contributions": [
+        "code",
+        "ideas"
+      ]
+    },
+    {
+      "login": "christiannwamba",
+      "name": "Christian Nwamba",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/8108337?v=4",
+      "profile": "https://github.com/christiannwamba",
+      "contributions": [
+        "doc"
       ]
     },
     {
@@ -577,15 +587,6 @@
       "name": "David Wippel",
       "avatar_url": "https://avatars1.githubusercontent.com/u/204445?v=4",
       "profile": "https://www.trigo.dev",
-      "contributions": [
-        "code"
-      ]
-    },
-    {
-      "login": "christiannwamba",
-      "name": "Christian Nwamba",
-      "avatar_url": "https://avatars2.githubusercontent.com/u/8108337?v=4",
-      "profile": "https://github.com/christiannwamba",
       "contributions": [
         "code"
       ]
