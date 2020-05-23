@@ -98,6 +98,18 @@
       "avatar_url": "https://avatars1.githubusercontent.com/u/1954752?v=4",
       "profile": "http://chanchan.io",
       "contributions": [
+        "code",
+        "doc",
+        "maintenance",
+        "test"
+      ]
+    },
+    {
+      "login": "alexluong",
+      "name": "Alex Luong",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/26750127?v=4",
+      "profile": "https://alexluong.com",
+      "contributions": [
         "code"
       ]
     }
