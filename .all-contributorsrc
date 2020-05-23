@@ -595,6 +595,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Vinnl",
+      "name": "Vincent",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/4251?v=4",
+      "profile": "https://vincenttunru.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7
