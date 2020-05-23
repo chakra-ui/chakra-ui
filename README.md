@@ -1,6 +1,6 @@
 <br />
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-24-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-25-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <p align="center">
@@ -167,6 +167,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://github.com/cjthompson"><img src="https://avatars3.githubusercontent.com/u/1958266?v=4" width="64px;" alt=""/><br /><sub><b>Chris Thompson</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=cjthompson" title="Code">💻</a></td>
     <td align="center"><a href="http://ipfsoftwares.com"><img src="https://avatars1.githubusercontent.com/u/8426172?v=4" width="64px;" alt=""/><br /><sub><b>WALTER KIMARO</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=jestrux" title="Code">💻</a></td>
     <td align="center"><a href="https://jackleslie.dev"><img src="https://avatars2.githubusercontent.com/u/22222776?v=4" width="64px;" alt=""/><br /><sub><b>Jack Leslie</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=jackleslie" title="Code">💻</a></td>
+    <td align="center"><a href="http://kendaganio.com"><img src="https://avatars2.githubusercontent.com/u/905891?v=4" width="64px;" alt=""/><br /><sub><b>Ken-Lauren Daganio</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=kendaganio" title="Code">💻</a></td>
   </tr>
 </table>
 
