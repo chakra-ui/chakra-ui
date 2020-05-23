@@ -1,6 +1,6 @@
 <br />
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-63-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-64-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <p align="center">
@@ -216,6 +216,9 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://about.me/kkshyu"><img src="https://avatars1.githubusercontent.com/u/8722165?v=4" width="64px;" alt=""/><br /><sub><b>徐愷</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=kkshyu" title="Code">💻</a></td>
     <td align="center"><a href="https://www.trigo.dev"><img src="https://avatars1.githubusercontent.com/u/204445?v=4" width="64px;" alt=""/><br /><sub><b>David Wippel</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=kelkes" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/christiannwamba"><img src="https://avatars2.githubusercontent.com/u/8108337?v=4" width="64px;" alt=""/><br /><sub><b>Christian Nwamba</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=christiannwamba" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/catchspider2002"><img src="https://avatars3.githubusercontent.com/u/13168827?v=4" width="64px;" alt=""/><br /><sub><b>Naveen</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=catchspider2002" title="Code">💻</a></td>
   </tr>
 </table>
 
