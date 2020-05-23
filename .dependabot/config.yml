@@ -1,0 +1,11 @@
+version: 1
+update_configs:
+  - package_manager: "javascript"
+    directory: "/"
+    update_schedule: "live"
+    default_labels:
+      - "Type: Dependency"
+    commit_message:
+      prefix: "chore"
+      include_scope: true
+    target_branch: "dev-ts"
