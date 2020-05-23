@@ -247,6 +247,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Rahmon",
+      "name": "Ramon",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/6010232?v=4",
+      "profile": "https://nomar.dev/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7
