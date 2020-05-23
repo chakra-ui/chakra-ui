@@ -274,6 +274,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "xtalx",
+      "name": "Tal Williams",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/76711?v=4",
+      "profile": "http://talwilliams.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7
