@@ -442,6 +442,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "goncy",
+      "name": "Gonzalo Pozzo",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/6494462?v=4",
+      "profile": "http://gonzalopozzo.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7
