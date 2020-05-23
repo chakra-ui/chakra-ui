@@ -568,6 +568,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "kelkes",
+      "name": "David Wippel",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/204445?v=4",
+      "profile": "https://www.trigo.dev",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7
