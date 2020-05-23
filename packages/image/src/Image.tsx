@@ -59,6 +59,7 @@ export const Image = React.forwardRef(
       align,
       fit,
       ignoreFallback,
+      crossOrigin,
       ...rest
     } = props
 
@@ -80,14 +81,21 @@ export const Image = React.forwardRef(
 
       return (
         <StyledImage
-          data-chakra-image-placeholder=""
+          className="chakra-image__placeholder"
           src={fallbackSrc}
           {...shared}
         />
       )
     }
 
-    return <StyledImage src={src} data-chakra-image="" {...shared} />
+    return (
+      <StyledImage
+        src={src}
+        crossOrigin={crossOrigin}
+        className="chakra-image"
+        {...shared}
+      />
+    )
   },
 )
 

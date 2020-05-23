@@ -23,12 +23,5 @@
     "allowJs": true,
     "outDir": "dist/esm"
   },
-  "exclude": [
-    "node_modules",
-    "**/*.test.js",
-    "**/*.test.ts",
-    "**/*.test.tsx",
-    "docs",
-    "dist"
-  ]
+  "exclude": ["node_modules", "**/*.test.js", "**/*.test.ts", "**/*.test.tsx"]
 }

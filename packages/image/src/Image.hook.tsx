@@ -26,6 +26,11 @@ export type UseImageProps = {
    * If `true`, opt out of the `fallbackSrc` logic and use as `img`
    */
   ignoreFallback?: boolean
+  /**
+   * The key used to set the crossOrigin on the HTMLImageElement into which the image will be loaded.
+   * This tells the browser to request cross-origin access when trying to download the image data.
+   */
+  crossOrigin?: string
 }
 
 type Status = "loading" | "failed" | "pending" | "loaded"
@@ -47,7 +52,15 @@ type Status = "loading" | "failed" | "pending" | "loaded"
  * ```
  */
 export function useImage(props: UseImageProps) {
-  const { src, srcSet, onLoad, onError, sizes, ignoreFallback } = props
+  const {
+    src,
+    srcSet,
+    onLoad,
+    onError,
+    crossOrigin,
+    sizes,
+    ignoreFallback,
+  } = props
 
   const [status, setStatus] = React.useState<Status>(() => {
     return src ? "loading" : "pending"
@@ -64,6 +77,10 @@ export function useImage(props: UseImageProps) {
 
     img.src = src
 
+    if (crossOrigin) {
+      img.crossOrigin = crossOrigin
+    }
+
     if (srcSet) {
       img.srcset = srcSet
     }
@@ -72,12 +89,12 @@ export function useImage(props: UseImageProps) {
       img.sizes = sizes
     }
 
-    img.onload = event => {
+    img.onload = (event) => {
       flush()
       setStatus("loaded")
       onLoad?.(event)
     }
-    img.onerror = error => {
+    img.onerror = (error) => {
       flush()
       setStatus("failed")
       onError?.(error)
