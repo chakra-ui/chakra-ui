@@ -47,7 +47,7 @@ In some cases, you might need to use custom controls to toggle the edit and read
 mode. We use the render prop pattern to provide access to the internal states of
 the component.
 
-> Ensure you set `isPreviewFocusable` and `submitOnBlur` to `false` for this to
+> Ensure you set `isPreviewFocusable` and `submitOnBlur` to `true` for this to
 > work.
 
 ```jsx
@@ -71,8 +71,8 @@ function CustomControlsExample() {
       textAlign="center"
       defaultValue="Rasengan ⚡️"
       fontSize="2xl"
-      isPreviewFocusable={false}
-      submitOnBlur={false}
+      isPreviewFocusable={true}
+      submitOnBlur={true}
     >
       {props => (
         <>
