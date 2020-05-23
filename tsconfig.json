@@ -3,14 +3,16 @@
     "target": "es5",
     "module": "esnext",
     "lib": ["dom", "esnext"],
-    "importHelpers": true,
     "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "importHelpers": true,
     "moduleResolution": "node",
     "skipLibCheck": true,
     "strict": true,
     "pretty": true,
-    "sourceMap": true,
     "noFallthroughCasesInSwitch": true,
+    "suppressImplicitAnyIndexErrors": true,
     "noImplicitAny": true,
     "strictFunctionTypes": true,
     "strictNullChecks": true,
@@ -22,5 +24,12 @@
     "allowJs": true,
     "outDir": "dist/esm"
   },
-  "exclude": ["node_modules", "**/*.test.js", "**/*.test.ts", "**/*.test.tsx"]
+  "exclude": [
+    "node_modules",
+    "**/*.test.js",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "docs",
+    "dist"
+  ]
 }

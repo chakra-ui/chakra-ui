@@ -38,7 +38,7 @@ const largeSizes = {
   "6xl": "72rem",
 }
 
-const containers = {
+const container = {
   sm: "640px",
   md: "768px",
   lg: "1024px",
@@ -48,10 +48,10 @@ const containers = {
 const sizes = {
   ...baseSizes,
   ...largeSizes,
-  containers,
+  container,
 }
 
 export type Sizes = typeof baseSizes &
-  typeof largeSizes & { containers: typeof containers }
+  typeof largeSizes & { container: typeof container }
 
 export default sizes
