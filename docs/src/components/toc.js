@@ -1,18 +1,45 @@
 import React from "react"
-import { Box, Link } from "@chakra-ui/core"
-import { Link as GatsbyLink } from "gatsby"
+import { Link, Heading, Stack } from "@chakra-ui/core"
 
-// export const Entry = ({ url, title, items }) => {
-//   return (
-//     <Box>
-//       <Link as={GatsbyLink} href={url}>
-//         {title}
-//       </Link>
-//     </Box>
-//   )
-// }
+export const Entry = ({ item, indent, slug }) => {
+  const { url, title, items = [] } = item
 
-export const TableOfContents = ({ tableOfContents }) => {
-  const { items } = tableOfContents
-  return <Box>{JSON.stringify(tableOfContents, null, 2)}</Box>
+  return (
+    <Stack spacing={1} pl={indent && 2}>
+      <Link color="gray.600" fontSize="sm" href={`${slug}${url}`}>
+        {title}
+      </Link>
+      <Stack spacing={1}>
+        {items.map(item => (
+          <Entry key={item.url} slug={slug} item={item} indent />
+        ))}
+      </Stack>
+    </Stack>
+  )
+}
+
+export const TableOfContents = ({ tableOfContents, slug }) => {
+  // skip the first depth which is just the current page's url and title
+  const {
+    items: [{ items = [] }],
+  } = tableOfContents
+
+  return (
+    <Stack spacing={3} position="sticky" top="0">
+      <Heading
+        size="xs"
+        fontWeight="semibold"
+        textTransform="uppercase"
+        letterSpacing="wide"
+        color="gray.600"
+      >
+        On this page
+      </Heading>
+      <Stack spacing={1}>
+        {items.map(item => (
+          <Entry key={item.url} item={item} slug={slug} />
+        ))}
+      </Stack>
+    </Stack>
+  )
 }

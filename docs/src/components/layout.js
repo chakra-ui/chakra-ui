@@ -1,4 +1,5 @@
 import React from "react"
+import { useLocation } from "@reach/router"
 import { Box } from "@chakra-ui/core"
 import PropTypes from "prop-types"
 import { MDXProvider } from "@mdx-js/react"
@@ -14,40 +15,40 @@ const HomeLayout = ({ children }) => (
   </Box>
 )
 
-const SidebarLayout = ({ children }) => (
-  <MDXProvider components={MDXComponents}>
-    <Header />
-    <Box>
-      <SideNav
-        display={["none", null, "block"]}
-        maxWidth="18rem"
-        width="full"
-      />
-      <Box pl={[0, null, "18rem"]} py={2} mb={20}>
-        <Box
-          as="main"
-          minH="90vh"
-          mx="auto"
-          maxWidth="46rem"
-          pt={8}
-          px={5}
-          mt="4rem"
-        >
-          {children}
+// memoized to prevent in-page anchor link navigation from re-rendering the
+// entire layout
+const SidebarLayout = React.memo(
+  ({ children }) => {
+    return (
+      <MDXProvider components={MDXComponents}>
+        <Header />
+        <Box>
+          <SideNav
+            display={["none", null, "block"]}
+            maxWidth="18rem"
+            width="full"
+          />
+          <Box pl={[0, null, "18rem"]} py={2} mb={20}>
+            <Box as="main" minH="90vh" pt={8} px={5} mt="4rem">
+              {children}
+            </Box>
+            <Footer />
+          </Box>
         </Box>
-        <Footer />
-      </Box>
-    </Box>
-  </MDXProvider>
+      </MDXProvider>
+    )
+  },
+  (prev, next) => prev.pathname === next.pathname,
 )
 
 const Layout = ({ children, pageContext }) => {
+  const location = useLocation()
   const Container =
     pageContext && pageContext.layout === "docs" ? SidebarLayout : HomeLayout
 
   return (
     <Box>
-      <Container>{children}</Container>
+      <Container pathname={location.pathname}>{children}</Container>
     </Box>
   )
 }

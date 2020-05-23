@@ -88,7 +88,9 @@ const DocsHeading = (props) => (
 )
 
 const MDXComponents = {
-  h1: (props) => <Heading as="h1" size="xl" my="1em" {...props}></Heading>,
+  h1: (props) => (
+    <Heading as="h1" size="xl" my="1em" _first={{ mt: 0 }} {...props}></Heading>
+  ),
   h2: (props) => (
     <DocsHeading as="h2" fontWeight="semibold" size="lg" {...props} />
   ),
