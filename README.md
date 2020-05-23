@@ -1,6 +1,6 @@
 <br />
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-15-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <p align="center">
@@ -153,6 +153,9 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://www.linkedin.com/in/dusty"><img src="https://avatars2.githubusercontent.com/u/792?v=4" width="64px;" alt=""/><br /><sub><b>Dusty Doris</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=dusty" title="Code">💻</a></td>
     <td align="center"><a href="https://twitter.com/alex_lobera"><img src="https://avatars2.githubusercontent.com/u/1273037?v=4" width="64px;" alt=""/><br /><sub><b>Alex Lobera</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=alexlbr" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/remorses"><img src="https://avatars3.githubusercontent.com/u/31321188?v=4" width="64px;" alt=""/><br /><sub><b>Tommaso De Rossi</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=remorses" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://mathdro.id/support"><img src="https://avatars2.githubusercontent.com/u/3748658?v=4" width="64px;" alt=""/><br /><sub><b>Odi</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=mathdroid" title="Code">💻</a></td>
   </tr>
 </table>
 

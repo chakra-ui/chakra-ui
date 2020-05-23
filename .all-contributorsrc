@@ -148,6 +148,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "mathdroid",
+      "name": "Odi",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/3748658?v=4",
+      "profile": "https://mathdro.id/support",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7
