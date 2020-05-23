@@ -1,6 +1,6 @@
 <br />
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-46-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-47-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <p align="center">
@@ -195,6 +195,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://github.com/sebqq"><img src="https://avatars1.githubusercontent.com/u/33039909?v=4" width="64px;" alt=""/><br /><sub><b>Sebastian Trebunak</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=sebqq" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/sarcastron"><img src="https://avatars0.githubusercontent.com/u/2415228?v=4" width="64px;" alt=""/><br /><sub><b>Adam Plante</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=sarcastron" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/luciorubeens"><img src="https://avatars0.githubusercontent.com/u/4539235?v=4" width="64px;" alt=""/><br /><sub><b>Lúcio Rubens</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=luciorubeens" title="Code">💻</a></td>
+    <td align="center"><a href="http://jasonmiazga.com"><img src="https://avatars2.githubusercontent.com/u/181441?v=4" width="64px;" alt=""/><br /><sub><b>Jason Miazga</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=jmiazga" title="Code">💻</a></td>
   </tr>
 </table>
 
