@@ -23,6 +23,7 @@
     "gatsby-plugin-react-helmet-canonical-urls": "^1.4.0",
     "gatsby-plugin-remove-trailing-slashes": "^2.3.3",
     "gatsby-plugin-sharp": "^2.2.9",
+    "gatsby-remark-autolink-headers": "^2.3.3",
     "gatsby-source-filesystem": "^2.1.8",
     "gatsby-transformer-sharp": "^2.2.5",
     "lodash": "^4.17.15",
