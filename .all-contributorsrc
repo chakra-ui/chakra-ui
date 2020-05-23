@@ -91,6 +91,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "with-heart",
+      "name": "Mark Chandler",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1954752?v=4",
+      "profile": "http://chanchan.io",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7
