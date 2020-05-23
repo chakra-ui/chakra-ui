@@ -532,6 +532,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "shinework",
+      "name": "Baptiste Adrien",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/1102595?v=4",
+      "profile": "https://shinework.netlify.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7
