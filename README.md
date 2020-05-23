@@ -1,6 +1,6 @@
 <br />
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-16-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-17-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <p align="center">
@@ -157,6 +157,7 @@ Thanks goes to these wonderful people
   <tr>
     <td align="center"><a href="https://mathdro.id/support"><img src="https://avatars2.githubusercontent.com/u/3748658?v=4" width="64px;" alt=""/><br /><sub><b>Odi</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=mathdroid" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/hendrikniemann"><img src="https://avatars0.githubusercontent.com/u/7373078?v=4" width="64px;" alt=""/><br /><sub><b>Hendrik Niemann</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=hendrikniemann" title="Code">💻</a></td>
+    <td align="center"><a href="http://mattrothenberg.com"><img src="https://avatars1.githubusercontent.com/u/5148596?v=4" width="64px;" alt=""/><br /><sub><b>Matt Rothenberg</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=mattrothenberg" title="Code">💻</a></td>
   </tr>
 </table>
 
