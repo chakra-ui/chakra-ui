@@ -550,6 +550,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "pan-tom",
+      "name": "Tomasz",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/27802923?v=4",
+      "profile": "https://github.com/pan-tom",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7
