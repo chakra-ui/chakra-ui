@@ -505,6 +505,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "franky47",
+      "name": "Francois Best",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/1174092?v=4",
+      "profile": "https://francoisbest.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7
