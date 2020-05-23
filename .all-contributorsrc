@@ -115,12 +115,23 @@
       ]
     },
     {
+      "login": "codebender828",
+      "name": "Jonathan Bakebwa",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/21237954?s=60&v=4",
+      "profile": "https://github.com/codebender828",
+      "contributions": [
+        "doc",
+        "ideas"
+      ]
+    },
+    {
       "login": "alexluong",
       "name": "Alex Luong",
       "avatar_url": "https://avatars1.githubusercontent.com/u/26750127?v=4",
       "profile": "https://alexluong.com",
       "contributions": [
-        "code"
+        "code",
+        "plugin"
       ]
     },
     {
@@ -210,7 +221,7 @@
       "avatar_url": "https://avatars2.githubusercontent.com/u/13835725?v=4",
       "profile": "https://www.linkedin.com/in/tayormi/",
       "contributions": [
-        "code"
+        "doc"
       ]
     },
     {
@@ -273,7 +284,8 @@
       "avatar_url": "https://avatars3.githubusercontent.com/u/7316730?v=4",
       "profile": "http://jessachandler.com",
       "contributions": [
-        "code"
+        "doc",
+        "fundingFinding"
       ]
     },
     {
@@ -471,7 +483,8 @@
       "avatar_url": "https://avatars3.githubusercontent.com/u/1846056?v=4",
       "profile": "https://cschroeter.net",
       "contributions": [
-        "code"
+        "code",
+        "infra"
       ]
     },
     {
@@ -577,7 +590,7 @@
       "login": "kkshyu",
       "name": "徐愷",
       "avatar_url": "https://avatars1.githubusercontent.com/u/8722165?v=4",
-      "profile": "https://about.me/kkshyu",
+      "profile": "https://about.kkshyu.tw",
       "contributions": [
         "code"
       ]
@@ -623,6 +636,15 @@
       "name": "Fred K. Schott",
       "avatar_url": "https://avatars1.githubusercontent.com/u/622227?v=4",
       "profile": "http://www.fredkschott.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "jaredpalmer",
+      "name": "Jared Palmer",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/4060187?s=60&v=4",
+      "profile": "https://github.com/jaredpalmer",
       "contributions": [
         "code"
       ]
