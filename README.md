@@ -1,6 +1,6 @@
 <br />
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-11-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <p align="center">
@@ -149,6 +149,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://estheragbaje.dev/"><img src="https://avatars3.githubusercontent.com/u/53586167?v=4" width="64px;" alt=""/><br /><sub><b>Folasade Agbaje</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=estheragbaje" title="Code">💻</a></td>
     <td align="center"><a href="http://chanchan.io"><img src="https://avatars1.githubusercontent.com/u/1954752?v=4" width="64px;" alt=""/><br /><sub><b>Mark Chandler</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=with-heart" title="Code">💻</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=with-heart" title="Documentation">📖</a> <a href="#maintenance-with-heart" title="Maintenance">🚧</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=with-heart" title="Tests">⚠️</a></td>
     <td align="center"><a href="https://alexluong.com"><img src="https://avatars1.githubusercontent.com/u/26750127?v=4" width="64px;" alt=""/><br /><sub><b>Alex Luong</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=alexluong" title="Code">💻</a></td>
+    <td align="center"><a href="https://www.jescowuester.com"><img src="https://avatars3.githubusercontent.com/u/43379421?v=4" width="64px;" alt=""/><br /><sub><b>Jesco Wüster</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=jescowuester" title="Code">💻</a></td>
   </tr>
 </table>
 
