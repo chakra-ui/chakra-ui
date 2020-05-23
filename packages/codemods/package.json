@@ -19,5 +19,8 @@
   "dependencies": {
     "@types/jscodeshift": "^0.7.1",
     "jscodeshift": "^0.9.0"
+  },
+  "devDependencies": {
+    "jscodeshift-helper": "^1.1.0"
   }
 }
