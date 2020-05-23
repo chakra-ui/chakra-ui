@@ -397,6 +397,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "mr-wildcard",
+      "name": "Julien Viala",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/6979207?v=4",
+      "profile": "https://github.com/mr-wildcard",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7
