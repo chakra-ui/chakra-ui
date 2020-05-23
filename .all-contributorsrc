@@ -229,6 +229,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "jackleslie",
+      "name": "Jack Leslie",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/22222776?v=4",
+      "profile": "https://jackleslie.dev",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7
