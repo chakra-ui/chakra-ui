@@ -15,7 +15,7 @@ class ModalManager {
   }
 
   remove(modal: any) {
-    this.modals = this.modals.filter(_modal => _modal !== modal)
+    this.modals = this.modals.filter((_modal) => _modal !== modal)
   }
 
   isTopModal(modal: any) {

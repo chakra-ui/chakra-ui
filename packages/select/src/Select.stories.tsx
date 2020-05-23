@@ -89,7 +89,7 @@ export const SelectVariants = () => (
 
 export const SelectSizes = () => (
   <Stack spacing={4}>
-    {["sm", "md", "lg"].map(size => (
+    {["sm", "md", "lg"].map((size) => (
       <Select key={size} placeholder="Placeholder" size={size}>
         <option value="Option 1">Option 1</option>
         <option value="Option 2">Option 2</option>

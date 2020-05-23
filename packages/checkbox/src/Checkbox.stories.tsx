@@ -39,7 +39,7 @@ export const Sizes = () => {
 
   return (
     <Stack>
-      {sizes.map(size => (
+      {sizes.map((size) => (
         <Checkbox size={size} marginLeft="1rem" />
       ))}
     </Stack>
@@ -57,18 +57,18 @@ export const Indeterminate = () => {
       <Checkbox
         isChecked={allChecked}
         isIndeterminate={isIndeterminate}
-        onChange={e => setCheckedItems([e.target.checked, e.target.checked])}
+        onChange={(e) => setCheckedItems([e.target.checked, e.target.checked])}
         children="Parent Checkbox"
       />
       <Stack ml="6" mt="2" align="start">
         <Checkbox
           isChecked={checkedItems[0]}
-          onChange={e => setCheckedItems([e.target.checked, checkedItems[1]])}
+          onChange={(e) => setCheckedItems([e.target.checked, checkedItems[1]])}
           children="Child Checkbox 1"
         />
         <Checkbox
           isChecked={checkedItems[1]}
-          onChange={e => setCheckedItems([checkedItems[0], e.target.checked])}
+          onChange={(e) => setCheckedItems([checkedItems[0], e.target.checked])}
           children="Child Checkbox 2"
         />
       </Stack>
@@ -90,7 +90,7 @@ export const CheckboxGroupExample = () => {
   return (
     <CheckboxGroup
       defaultValue={["one", "two"]}
-      onChange={value => console.log(value)}
+      onChange={(value) => console.log(value)}
     >
       <Stack align="start" direction={["column", "row"]} spacing={[2, 4, 6]}>
         <Checkbox value="one">One</Checkbox>
@@ -105,7 +105,7 @@ export const ResponsiveCheckboxGroup = () => {
   return (
     <CheckboxGroup
       defaultValue={["one", "two"]}
-      onChange={value => console.log(value)}
+      onChange={(value) => console.log(value)}
     >
       <Stack spacing={[2, 4, 6]} direction={["column", "row"]}>
         <Checkbox value="one">One</Checkbox>
@@ -124,7 +124,7 @@ export const ControlledCheckboxGroup = () => {
   return (
     <CheckboxGroup
       value={value}
-      onChange={value => {
+      onChange={(value) => {
         console.log(value)
         setValue(value)
       }}

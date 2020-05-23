@@ -105,7 +105,7 @@ test("indeterminate state", () => {
 
 test("Controlled - should check and uncheck", () => {
   let checked = false
-  const onChange = jest.fn(e => (checked = e.target.checked))
+  const onChange = jest.fn((e) => (checked = e.target.checked))
 
   const Component = (props: UseCheckboxProps) => {
     const { htmlProps, getInputProps, getCheckboxProps } = useCheckbox(props)
@@ -171,7 +171,7 @@ test("CheckboxGroup Uncontrolled - default values should be check", () => {
 
 test("Controlled CheckboxGroup", () => {
   let checked = ["one", "two"]
-  const onChange = jest.fn(value => (checked = value))
+  const onChange = jest.fn((value) => (checked = value))
 
   const Component = (props: CheckboxGroupProps) => {
     return (

@@ -41,7 +41,7 @@ export const button = () => (
     </Clickable>
 
     <button
-      onClick={event => {
+      onClick={(event) => {
         alert("clicked")
       }}
     >

@@ -21,8 +21,8 @@ import { Avatar, AvatarGroup } from "@chakra-ui/avatar"
 
 ## Basic Usage
 
-Simply import the `Avatar` component and pass it the image
-`src` and name of the user in the avatar.
+Simply import the `Avatar` component and pass it the image `src` and name of the
+user in the avatar.
 
 ```jsx
 <Avatar src="john-doe.png" name="John doe" />

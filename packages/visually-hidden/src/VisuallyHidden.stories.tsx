@@ -12,7 +12,7 @@ export const hiddenSpan = () => (
 export const hiddenInput = () => (
   <VisuallyHiddenInput
     defaultChecked
-    onChange={event => {
+    onChange={(event) => {
       console.log(event.target.checked)
     }}
   />

@@ -132,7 +132,7 @@ export function SkeletonText(props: SkeletonTextProps) {
 
   return (
     <chakra.div className={_className} {...rest}>
-      {numbers.map(number => (
+      {numbers.map((number) => (
         <Skeleton
           key={number}
           height={skeletonHeight}

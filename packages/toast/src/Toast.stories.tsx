@@ -148,7 +148,7 @@ export const AllSides = () => {
     <>
       <button
         onClick={() => {
-          positions.forEach(p => {
+          positions.forEach((p) => {
             toast({ position: p, title: p })
           })
         }}

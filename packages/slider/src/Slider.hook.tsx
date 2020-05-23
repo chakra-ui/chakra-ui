@@ -201,7 +201,7 @@ export function useSlider(props: UseSliderProps) {
    * how far you clicked within the track to determine the value
    */
   const getValueFromPointer = React.useCallback(
-    event => {
+    (event) => {
       if (!trackRef.current) return
 
       const trackRect = getBox(trackRef.current).borderBox
@@ -469,7 +469,7 @@ export function useSlider(props: UseSliderProps) {
    * Remove all event handlers
    */
   const detach = () => {
-    Object.values(cleanUpRef.current).forEach(cleanup => {
+    Object.values(cleanUpRef.current).forEach((cleanup) => {
       cleanup?.()
     })
     cleanUpRef.current = {}

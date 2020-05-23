@@ -48,7 +48,7 @@ const StyledSelect = chakra<"select", SelectOptions>("select", {
     paddingBottom: "1px",
     paddingRight: "2rem",
   },
-  shouldForwardProp: prop =>
+  shouldForwardProp: (prop) =>
     !["focusBorderColor", "errorBorderColor"].includes(prop),
 })
 

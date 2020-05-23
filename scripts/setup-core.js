@@ -19,14 +19,14 @@ const omittedPkgs = [
 const pkgs = shell.exec("lerna ls --toposort --json --loglevel silent")
 
 const pkgArray = JSON.parse(pkgs)
-  .map(pkg => pkg.name)
-  .filter(pkg => {
+  .map((pkg) => pkg.name)
+  .filter((pkg) => {
     const name = pkg.split("/")[1]
     return !omittedPkgs.includes(name)
   })
 
 let content = ""
-pkgArray.forEach(pkg => {
+pkgArray.forEach((pkg) => {
   content += `export * from "${pkg}"\n`
 })
 
@@ -43,8 +43,8 @@ try {
 const pkgJson = editJson("packages/core/package.json")
 pkgJson.unset("dependencies")
 
-pkgArray.forEach(pkg => {
-  const { version } = JSON.parse(pkgs).find(i => i.name == pkg)
+pkgArray.forEach((pkg) => {
+  const { version } = JSON.parse(pkgs).find((i) => i.name == pkg)
   pkgJson.set(`dependencies.${pkg}`, version)
 })
 

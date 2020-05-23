@@ -42,7 +42,7 @@ type CreateChakraComponent = {
 export const chakra = (styled as unknown) as CreateChakraComponent &
   ChakraJSXElements
 
-domElements.forEach(tag => {
+domElements.forEach((tag) => {
   //@ts-ignore
   chakra[tag] = chakra(tag)
 })

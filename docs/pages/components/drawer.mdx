@@ -210,7 +210,7 @@ function SizeExample() {
   const [size, setSize] = React.useState("md")
   const { isOpen, onOpen, onClose } = useDisclosure()
 
-  const handleClick = newSize => {
+  const handleClick = (newSize) => {
     setSize(newSize)
     onOpen()
   }
@@ -219,7 +219,7 @@ function SizeExample() {
 
   return (
     <>
-      {sizes.map(size => (
+      {sizes.map((size) => (
         <Button
           onClick={() => handleClick(size)}
           key={size}

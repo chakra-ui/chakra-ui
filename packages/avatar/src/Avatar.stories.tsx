@@ -58,7 +58,7 @@ export const WithCustomIcon = () => (
  */
 export const WithSizes = () => (
   <Stack direction="row" spacing="24px">
-    {["xs", "sm", "md", "lg", "xl", "2xl"].map(size => (
+    {["xs", "sm", "md", "lg", "xl", "2xl"].map((size) => (
       <Avatar
         size={size}
         name="Uchiha Itachi"

@@ -34,6 +34,6 @@ export function useId(idProp?: string, prefix?: string) {
  */
 export function useIds(idProp?: string, ...prefixes: string[]) {
   const id = useId(idProp)
-  const ids = prefixes.map(prefix => generatePrefix(prefix, id))
+  const ids = prefixes.map((prefix) => generatePrefix(prefix, id))
   return ids
 }

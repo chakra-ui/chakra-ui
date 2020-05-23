@@ -84,7 +84,7 @@ interface InputOptions {
 
 const StyledInput = chakra<"input", InputOptions>("input", {
   themeKey: "PinInput",
-  shouldForwardProp: prop =>
+  shouldForwardProp: (prop) =>
     !["focusBorderColor", "errorBorderColor"].includes(prop),
 })
 

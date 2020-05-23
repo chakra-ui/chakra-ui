@@ -63,7 +63,7 @@ Support for menu transitions and animations
     Open menu
   </MenuButton>
   <MenuTransition>
-    {styles => (
+    {(styles) => (
       <MenuList css={styles}>
         <MenuItem command="⌘T">New Tab</MenuItem>
         <MenuItem command="⌘N">New Window</MenuItem>

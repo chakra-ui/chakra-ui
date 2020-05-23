@@ -3,7 +3,7 @@ import { Box, useColorMode, chakra } from "@chakra-ui/core"
 import { Link } from "gatsby"
 import { useLocation } from "@reach/router"
 
-const useIsActiveLink = href => {
+const useIsActiveLink = (href) => {
   const location = useLocation()
   return location.pathname === href
 }

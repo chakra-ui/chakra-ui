@@ -85,7 +85,7 @@ test("controlled: handles callbacks correctly", () => {
     const [value, setValue] = React.useState("Hello ")
     return (
       <Editable
-        onChange={val => {
+        onChange={(val) => {
           setValue(val)
           onChange(val)
         }}

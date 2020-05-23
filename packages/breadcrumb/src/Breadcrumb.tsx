@@ -110,7 +110,7 @@ export const BreadcrumbItem = forwardRef(
 
     const validChildren = getValidChildren(children)
 
-    const clones = validChildren.map(child => {
+    const clones = validChildren.map((child) => {
       if (child.type === BreadcrumbLink) {
         return cloneElement(child as React.ReactElement<any>, {
           isCurrentPage,

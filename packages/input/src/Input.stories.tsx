@@ -55,7 +55,7 @@ export const Controlled = () => {
 export const WithSizes = () => {
   return (
     <Stack>
-      {["sm", "md", "lg"].map(size => (
+      {["sm", "md", "lg"].map((size) => (
         <Input size={size} placeholder="This is an input component" />
       ))}
     </Stack>
@@ -184,7 +184,7 @@ export const WithFormControl = () => {
         </InputGroup>
         <FormHelperText>Keep it very short and sweet!</FormHelperText>
       </FormControl>
-      <button onClick={() => setIsError(s => !s)}>Toggle Invalid</button>
+      <button onClick={() => setIsError((s) => !s)}>Toggle Invalid</button>
     </Stack>
   )
 }

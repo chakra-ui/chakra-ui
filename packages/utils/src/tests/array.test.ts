@@ -115,7 +115,7 @@ test("get next item based on search", () => {
   const result = getNextItemFromSearch(
     array,
     "vu",
-    item => item.value,
+    (item) => item.value,
     currentItem,
   )
   expect(result).toEqual({ value: "Vue" })

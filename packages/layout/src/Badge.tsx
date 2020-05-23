@@ -16,7 +16,7 @@ export const Badge = chakra("span", {
     whiteSpace: "nowrap",
     verticalAlign: "middle",
   },
-  attrs: props => ({
+  attrs: (props) => ({
     className: cx("chakra-badge", props.className),
   }),
 })

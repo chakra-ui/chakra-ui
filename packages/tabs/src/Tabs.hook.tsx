@@ -282,7 +282,7 @@ export function useTab<P extends UseTabProps>(props: P) {
   })
 
   const computedIndex = domContext.descendants.findIndex(
-    item => item.element === ref.current,
+    (item) => item.element === ref.current,
   )
 
   const isSelected = computedIndex === selectedIndex

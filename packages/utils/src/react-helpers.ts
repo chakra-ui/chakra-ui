@@ -53,7 +53,7 @@ export function createContext<ContextType>(options: CreateContextOptions = {}) {
  * @param children the children
  */
 export function getValidChildren(children: React.ReactNode) {
-  return React.Children.toArray(children).filter(child =>
+  return React.Children.toArray(children).filter((child) =>
     React.isValidElement(child),
   ) as React.ReactElement[]
 }
@@ -90,6 +90,6 @@ export function assignRef<T = any>(ref: ReactRef<T> | undefined, value: T) {
  */
 export function mergeRefs<T>(...refs: (ReactRef<T> | undefined)[]) {
   return (value: T) => {
-    refs.forEach(ref => assignRef(ref, value))
+    refs.forEach((ref) => assignRef(ref, value))
   }
 }

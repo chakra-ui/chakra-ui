@@ -35,13 +35,13 @@ To start using the components, please follow these steps:
 1. Wrap your application in a `ThemeProvider` provided by **@chakra-ui/core**
 
 ```jsx
-import { ThemeProvider, ColorModeProvider } from "@chakra-ui/core";
+import { ThemeProvider, ColorModeProvider } from "@chakra-ui/core"
 
 const App = ({ children }) => (
   <ThemeProvider>
     <ColorModeProvider>{children}</ColorModeProvider>
   </ThemeProvider>
-);
+)
 ```
 
 `ColorModeProvider` is a context that provides light mode and dark mode values
@@ -51,9 +51,9 @@ mode.
 2. Now you can start using components like so!:
 
 ```jsx
-import { Button } from "@chakra-ui/core";
+import { Button } from "@chakra-ui/core"
 
-const App = () => <Button>I just consumed some ⚡️Chakra!</Button>;
+const App = () => <Button>I just consumed some ⚡️Chakra!</Button>
 ```
 
 # Contributing

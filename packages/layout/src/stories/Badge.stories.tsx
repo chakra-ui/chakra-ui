@@ -18,7 +18,7 @@ export const Basic = () => <Badge>Success</Badge>
 export const SolidBadge = () => {
   return (
     <React.Fragment>
-      {["gray", "green", "red", "orange", "purple", "teal"].map(color => (
+      {["gray", "green", "red", "orange", "purple", "teal"].map((color) => (
         <Badge colorScheme={color} variant="solid" mr={2}>
           {color}
         </Badge>
@@ -29,7 +29,7 @@ export const SolidBadge = () => {
 
 export const SubtleBadges = () => (
   <React.Fragment>
-    {["gray", "green", "red", "orange", "purple", "teal"].map(color => (
+    {["gray", "green", "red", "orange", "purple", "teal"].map((color) => (
       <Badge colorScheme={color} mr={2}>
         {color}
       </Badge>
@@ -39,7 +39,7 @@ export const SubtleBadges = () => (
 
 export const OutlineBadges = () => (
   <React.Fragment>
-    {["gray", "green", "red", "orange", "purple", "teal"].map(color => (
+    {["gray", "green", "red", "orange", "purple", "teal"].map((color) => (
       <Badge colorScheme={color} variant="outline" mr={2}>
         {color}
       </Badge>

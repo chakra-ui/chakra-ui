@@ -61,7 +61,7 @@ export function useDescendant<T extends HTMLElement, P>(
 
   const index =
     indexProp ??
-    descendants.findIndex(descendant => descendant.element === element)
+    descendants.findIndex((descendant) => descendant.element === element)
 
   return index
 }
@@ -73,9 +73,9 @@ export function useDescendants<T extends HTMLElement, P>() {
     if (!element) return
 
     //@ts-ignore
-    setDescendants(prevDescendants => {
-      if (prevDescendants.find(item => item.element === element) == null) {
-        const index = prevDescendants.findIndex(item => {
+    setDescendants((prevDescendants) => {
+      if (prevDescendants.find((item) => item.element === element) == null) {
+        const index = prevDescendants.findIndex((item) => {
           if (!item.element || !element) return false
 
           return Boolean(
@@ -101,8 +101,8 @@ export function useDescendants<T extends HTMLElement, P>() {
 
   const unregister = useCallback((element: T) => {
     if (!element) return
-    setDescendants(descendants =>
-      descendants.filter(descendant => element !== descendant.element),
+    setDescendants((descendants) =>
+      descendants.filter((descendant) => element !== descendant.element),
     )
   }, [])
 

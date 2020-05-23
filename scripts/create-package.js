@@ -74,7 +74,7 @@ async function copyTemplateFiles(options) {
 }
 
 function createFile(filePath, fileContent = "") {
-  fs.writeFile(filePath, fileContent, error => {
+  fs.writeFile(filePath, fileContent, (error) => {
     if (error) {
       console.log(`Failed to create ${filePath}`, chalk.red.bold("ERROR"))
       throw error
@@ -83,7 +83,7 @@ function createFile(filePath, fileContent = "") {
   })
 }
 
-const hookContent = component => `
+const hookContent = (component) => `
 import * as React from "react"
 
 interface ${component}Props{
@@ -99,7 +99,7 @@ export function use${component}(props: ${component}Props){
 export default use${component}
 `
 
-const componentContent = component => `
+const componentContent = (component) => `
 import * as React from "react"
 import { use${component}, ${component}Props }from "./${component}.hook"
 
@@ -111,7 +111,7 @@ export function ${component}(props: ${component}Props){
 export default ${component}
 `
 
-const storiesContent = component => `
+const storiesContent = (component) => `
 import * as React from "react"
 
 export default {
@@ -175,7 +175,7 @@ function appendToSrc(options) {
 
   const path = getPath(component)
 
-  fs.appendFile(`${path}/src/index.ts`, content, "utf8", error => {
+  fs.appendFile(`${path}/src/index.ts`, content, "utf8", (error) => {
     if (error) throw error
     console.log("Data is appended to file successfully.")
   })

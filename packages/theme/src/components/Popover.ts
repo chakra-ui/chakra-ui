@@ -1,7 +1,7 @@
 import { ComponentTheme, mode } from "./utils"
 
 const Popover: ComponentTheme = {
-  baseStyle: props => ({
+  baseStyle: (props) => ({
     Content: {
       bg: mode("white", "gray.700")(props),
       border: "1px solid",

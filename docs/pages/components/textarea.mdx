@@ -25,7 +25,7 @@ import { Textarea } from "@chakra-ui/core"
 function Example() {
   let [value, setValue] = React.useState("")
 
-  let handleInputChange = e => {
+  let handleInputChange = (e) => {
     let inputValue = e.target.value
     setValue(inputValue)
   }

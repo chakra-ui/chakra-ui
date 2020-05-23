@@ -93,7 +93,7 @@ export function Slide(props: SlideProps) {
       timeout={{ enter: 0, exit: timeout }}
       {...rest}
     >
-      {styles => children({ ...positionStyles, ...styles })}
+      {(styles) => children({ ...positionStyles, ...styles })}
     </Transition>
   )
 }

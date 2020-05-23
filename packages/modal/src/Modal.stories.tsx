@@ -137,11 +137,11 @@ export function SlideAnimation() {
     <>
       <button onClick={modal.onOpen}>Open</button>
       <Fade timeout={300} in={modal.isOpen}>
-        {styles => (
+        {(styles) => (
           <Modal isOpen={true} onClose={modal.onClose}>
             <ModalOverlay style={styles}>
               <SlideFade timeout={150} in={modal.isOpen} unmountOnExit={false}>
-                {styles => (
+                {(styles) => (
                   <ModalContent padding={4} mx="auto" mt="40px" style={styles}>
                     Sit nulla est ex deserunt exercitation anim occaecat.
                     Nostrud ullamco deserunt aute id consequat veniam incididunt
@@ -165,11 +165,11 @@ export function ScaleAnimation() {
     <>
       <button onClick={modal.onOpen}>Open</button>
       <Fade timeout={300} in={modal.isOpen}>
-        {styles => (
+        {(styles) => (
           <Modal isOpen={true} onClose={modal.onClose}>
             <ModalOverlay style={styles}>
               <ScaleFade timeout={150} in={modal.isOpen} unmountOnExit={false}>
-                {styles => (
+                {(styles) => (
                   <ModalContent padding={4} mx="auto" mt="40px" style={styles}>
                     Sit nulla est ex deserunt exercitation anim occaecat.
                     Nostrud ullamco deserunt aute id consequat veniam incididunt

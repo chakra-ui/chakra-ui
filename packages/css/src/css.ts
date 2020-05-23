@@ -28,7 +28,7 @@ export const css = (styleObject: StyleObjectOrFn) => (props: PropsOrTheme) => {
       mediaQueries: queries.asArray,
       prop,
       values,
-      transform: function(value) {
+      transform: function (value) {
         return tx(theme, value, config)
       },
     })

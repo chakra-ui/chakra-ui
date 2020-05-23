@@ -37,12 +37,12 @@ export const Wrap = forwardRef((props: WrapProps, ref: Ref<any>) => {
 
   const theme = useTheme()
 
-  const liSpacing = mapResponsive(spacing, value => {
+  const liSpacing = mapResponsive(spacing, (value) => {
     const { margin } = css({ margin: value })(theme)
     return `calc(${margin} / 2)`
   })
 
-  const ulSpacing = mapResponsive(spacing, value => {
+  const ulSpacing = mapResponsive(spacing, (value) => {
     const { margin } = css({ margin: value })(theme)
     return `calc(${margin} / 2 * -1)`
   })

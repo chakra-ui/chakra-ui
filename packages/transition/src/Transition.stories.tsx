@@ -33,9 +33,9 @@ export function ScaleFadeExample() {
   const [isOpen, setIsOpen] = React.useState(true)
   return (
     <>
-      <button onClick={() => setIsOpen(p => !p)}>Click Me</button>
+      <button onClick={() => setIsOpen((p) => !p)}>Click Me</button>
       <ScaleFade in={isOpen}>
-        {styles => (
+        {(styles) => (
           <Modal
             style={{
               ...styles,
@@ -54,9 +54,9 @@ export function SlideFadeExample() {
   const [isOpen, setIsOpen] = React.useState(true)
   return (
     <>
-      <button onClick={() => setIsOpen(p => !p)}>Click Me</button>
+      <button onClick={() => setIsOpen((p) => !p)}>Click Me</button>
       <SlideFade in={isOpen}>
-        {styles => (
+        {(styles) => (
           <Modal
             style={{
               ...styles,
@@ -75,8 +75,8 @@ export function FadeExample() {
   const [isOpen, setIsOpen] = React.useState(true)
   return (
     <>
-      <button onClick={() => setIsOpen(p => !p)}>Click Me</button>
-      <Fade in={isOpen}>{styles => <Modal style={styles} />}</Fade>
+      <button onClick={() => setIsOpen((p) => !p)}>Click Me</button>
+      <Fade in={isOpen}>{(styles) => <Modal style={styles} />}</Fade>
     </>
   )
 }
@@ -93,9 +93,9 @@ export function SlideExample() {
   const [isOpen, setIsOpen] = React.useState(true)
   return (
     <>
-      <button onClick={() => setIsOpen(p => !p)}>Click Me</button>
+      <button onClick={() => setIsOpen((p) => !p)}>Click Me</button>
       <Slide placement="bottom" in={isOpen}>
-        {styles => <Drawer style={styles} />}
+        {(styles) => <Drawer style={styles} />}
       </Slide>
     </>
   )

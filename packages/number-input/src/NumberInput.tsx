@@ -147,7 +147,7 @@ const StyledInput = chakra<"input", InputOptions>("input", {
   baseStyle: {
     width: "100%",
   },
-  shouldForwardProp: prop =>
+  shouldForwardProp: (prop) =>
     !["focusBorderColor", "errorBorderColor"].includes(prop),
 })
 

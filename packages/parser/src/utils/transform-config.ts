@@ -40,7 +40,7 @@ export type Config = { [prop: string]: StyleConfig | null | true }
 export function transformConfig(config: Config, theme: Dict) {
   const result: Dict = {}
 
-  objectKeys(config).forEach(prop => {
+  objectKeys(config).forEach((prop) => {
     const propConfig = config[prop]
 
     /**
@@ -79,7 +79,7 @@ export function transformConfig(config: Config, theme: Dict) {
     }
 
     if (properties) {
-      result[prop] = properties.map(property => {
+      result[prop] = properties.map((property) => {
         const mapResult: Dict = { property }
 
         if (transform) {

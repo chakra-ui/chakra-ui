@@ -43,7 +43,7 @@ const Avatar: ComponentTheme<{ name?: string }> = {
   defaultProps: {
     size: "md",
   },
-  baseStyle: props => ({
+  baseStyle: (props) => ({
     Root: {
       verticalAlign: "top",
       ...getRootStyle(props),

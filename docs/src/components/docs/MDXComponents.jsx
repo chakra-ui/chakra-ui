@@ -11,20 +11,20 @@ import {
 } from "@chakra-ui/core"
 import CodeBlock from "./CodeBlock"
 
-const Pre = props => <chakra.div my="2em" borderRadius="sm" {...props} />
+const Pre = (props) => <chakra.div my="2em" borderRadius="sm" {...props} />
 
-const Table = props => (
+const Table = (props) => (
   <chakra.table textAlign="left" mt="32px" width="full" {...props} />
 )
 
-const THead = props => {
+const THead = (props) => {
   const bg = useColorModeValue("gray.50", "whiteAlpha.100")
   return (
     <chakra.th bg={bg} fontWeight="semibold" p={2} fontSize="sm" {...props} />
   )
 }
 
-const TData = props => (
+const TData = (props) => (
   <chakra.td
     p={2}
     borderTopWidth="1px"
@@ -48,7 +48,7 @@ const Link = React.forwardRef((props, ref) => (
   />
 ))
 
-const DocsHeading = props => (
+const DocsHeading = (props) => (
   <Heading
     mb="1em"
     mt="2em"
@@ -88,30 +88,30 @@ const DocsHeading = props => (
 )
 
 const MDXComponents = {
-  h1: props => <Heading as="h1" size="xl" my="1em" {...props}></Heading>,
-  h2: props => (
+  h1: (props) => <Heading as="h1" size="xl" my="1em" {...props}></Heading>,
+  h2: (props) => (
     <DocsHeading as="h2" fontWeight="semibold" size="lg" {...props} />
   ),
-  h3: props => (
+  h3: (props) => (
     <DocsHeading as="h3" size="md" fontWeight="medium" {...props}></DocsHeading>
   ),
-  inlineCode: props => (
+  inlineCode: (props) => (
     <Code colorScheme="yellow" fontSize="0.84em" {...props} />
   ),
   code: CodeBlock,
   pre: Pre,
   kbd: Kbd,
-  br: props => <Box height="24px" {...props} />,
-  hr: props => <chakra.hr borderTopWidth="1px" my={8} {...props} />,
+  br: (props) => <Box height="24px" {...props} />,
+  hr: (props) => <chakra.hr borderTopWidth="1px" my={8} {...props} />,
   table: Table,
   th: THead,
   td: TData,
   a: Link,
-  p: props => <Text mt={4} lineHeight="tall" {...props} />,
-  ul: props => <chakra.ul pt="8px" pl="16px" {...props} />,
-  ol: props => <chakra.ol pt="8px" pl="16px" {...props} />,
-  li: props => <chakra.li pb="4px" {...props} />,
-  blockquote: props => (
+  p: (props) => <Text mt={4} lineHeight="tall" {...props} />,
+  ul: (props) => <chakra.ul pt="8px" pl="16px" {...props} />,
+  ol: (props) => <chakra.ol pt="8px" pl="16px" {...props} />,
+  li: (props) => <chakra.li pb="4px" {...props} />,
+  blockquote: (props) => (
     <Alert
       role="presentation"
       mt={4}

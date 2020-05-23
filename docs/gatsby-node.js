@@ -54,7 +54,7 @@ exports.createPages = async ({ graphql, actions }) => {
     `,
   )
 
-  result.data.allMdx.nodes.forEach(node => {
+  result.data.allMdx.nodes.forEach((node) => {
     const slug = node.fields.slug
     createPage({
       // we use the generated slug for the path

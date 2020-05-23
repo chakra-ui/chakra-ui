@@ -13,7 +13,7 @@ export const Code = chakra("code", {
   baseStyle: {
     display: "inline-block",
   },
-  attrs: props => ({
+  attrs: (props) => ({
     className: cx("chakra-code", props.className),
   }),
 })

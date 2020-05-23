@@ -5,7 +5,7 @@ const baseStyle = Checkbox.baseStyle as any
 
 const Radio: ComponentTheme = {
   defaultProps: Checkbox.defaultProps,
-  baseStyle: props => ({
+  baseStyle: (props) => ({
     Control: {
       ...baseStyle(props).Control,
       borderRadius: "full",

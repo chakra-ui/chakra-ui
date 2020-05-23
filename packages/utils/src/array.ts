@@ -26,7 +26,7 @@ export function addItem<T>(array: T[], item: T) {
 }
 
 export function removeItem<T>(array: T[], item: T) {
-  return array.filter(eachItem => eachItem !== item)
+  return array.filter((eachItem) => eachItem !== item)
 }
 
 /**
@@ -111,19 +111,15 @@ export function getNextItemFromSearch<T>(
 
   // If current value doesn't exist, find the item that match the search string
   if (!currentItem) {
-    const foundItem = items.find(item =>
-      itemToString(item)
-        .toLowerCase()
-        .startsWith(searchString.toLowerCase()),
+    const foundItem = items.find((item) =>
+      itemToString(item).toLowerCase().startsWith(searchString.toLowerCase()),
     )
     return foundItem || currentItem
   }
 
   // Filter items for ones that match the search string (case insensitive)
-  const searchResults = items.filter(item =>
-    itemToString(item)
-      .toLowerCase()
-      .startsWith(searchString.toLowerCase()),
+  const searchResults = items.filter((item) =>
+    itemToString(item).toLowerCase().startsWith(searchString.toLowerCase()),
   )
 
   // If there's a match, let's get the next item to select

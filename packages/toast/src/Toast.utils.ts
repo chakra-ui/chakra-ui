@@ -6,7 +6,7 @@ import { objectKeys } from "@chakra-ui/utils"
  * It returns the toast that matches the `id` passed
  */
 export function findById(arr: ToastOptions[], id: ToastId) {
-  return arr.find(toast => toast.id === id)
+  return arr.find((toast) => toast.id === id)
 }
 
 /**
@@ -17,7 +17,7 @@ export function findToast(toasts: ToastState, id: ToastId) {
   const position = getToastPosition(toasts, id)
 
   const index = position
-    ? toasts[position].findIndex(toast => toast.id == id)
+    ? toasts[position].findIndex((toast) => toast.id == id)
     : -1
 
   return {
@@ -33,7 +33,7 @@ export function findToast(toasts: ToastState, id: ToastId) {
 export function getToastPosition(toasts: ToastState, id: ToastId) {
   let position: ToastPosition | undefined
 
-  objectKeys(toasts).forEach(pos => {
+  objectKeys(toasts).forEach((pos) => {
     const found = findById(toasts[pos], id)
     if (found) position = pos
   })
@@ -48,8 +48,8 @@ export function getToastPosition(toasts: ToastState, id: ToastId) {
 export function isVisible(toasts: ToastState, id: ToastId) {
   let found: any
 
-  Object.values(toasts).forEach(toasts => {
-    found = toasts.find(toast => toast.id === id)
+  Object.values(toasts).forEach((toasts) => {
+    found = toasts.find((toast) => toast.id === id)
   })
 
   return !!found

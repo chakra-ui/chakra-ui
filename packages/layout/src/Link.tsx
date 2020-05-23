@@ -33,7 +33,7 @@ export type LinkProps = PropsOf<typeof chakra.a> & LinkOptions
  */
 export const Link = chakra<"a", LinkOptions>("a", {
   themeKey: "Link",
-  attrs: props => ({
+  attrs: (props) => ({
     tabIndex: props.isDisabled ? -1 : undefined,
     "aria-disabled": props.isDisabled || undefined,
     ...(props.isExternal && {

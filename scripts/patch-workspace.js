@@ -82,7 +82,7 @@ function updateTSConfig(options) {
 function bootstrap(options) {
   shell.exec("yarn bootstrap")
   const commands = ["lint", "build", "test"]
-  commands.forEach(script => {
+  commands.forEach((script) => {
     shell.exec(`${options.cmd} ${script}`)
   })
 }

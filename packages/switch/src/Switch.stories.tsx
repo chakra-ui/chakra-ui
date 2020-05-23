@@ -69,7 +69,7 @@ export const Sizes = () => {
 
   return (
     <>
-      {sizes.map(size => (
+      {sizes.map((size) => (
         <Switch size={size} marginLeft="1rem" colorScheme="green" />
       ))}
     </>
@@ -87,7 +87,7 @@ export const Controlled = () => {
     <Switch
       isChecked={value}
       colorScheme="blue"
-      onChange={e => setValue(e.target.checked)}
+      onChange={(e) => setValue(e.target.checked)}
     />
   )
 }

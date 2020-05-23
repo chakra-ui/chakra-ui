@@ -43,9 +43,7 @@ export const isLight = (color: string) => (theme: Dict) =>
  */
 export const opacity = (color: string, opacity: number) => (theme: Dict) => {
   const raw = getColor(theme, color)
-  return tiny(raw)
-    .setAlpha(opacity)
-    .toRgbString()
+  return tiny(raw).setAlpha(opacity).toRgbString()
 }
 
 /**
@@ -75,15 +73,11 @@ export const shade = (color: string, amount: number) => (theme: Dict) => {
  */
 export const darken = (color: string, amount: number) => (theme: Dict) => {
   const raw = getColor(theme, color)
-  return tiny(raw)
-    .darken(amount)
-    .toHexString()
+  return tiny(raw).darken(amount).toHexString()
 }
 
 export const lighten = (color: string, amount: number) => (theme: Dict) =>
-  tiny(getColor(theme, color))
-    .lighten(amount)
-    .toHexString()
+  tiny(getColor(theme, color)).lighten(amount).toHexString()
 
 /**
  * Checks the contract ratio of between 2 colors,
@@ -110,9 +104,7 @@ export const isAccessible = (
   tiny.isReadable(getColor(theme, bg), getColor(theme, fg), options)
 
 export const complementary = (color: string) => (theme: Dict) =>
-  tiny(getColor(theme, color))
-    .complement()
-    .toHexString()
+  tiny(getColor(theme, color)).complement().toHexString()
 
 export function generateStripe(
   size = "1rem",
