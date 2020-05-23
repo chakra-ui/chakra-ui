@@ -1,0 +1,97 @@
+{
+  "projectName": "chakra-ui",
+  "projectOwner": "chakra-ui",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 64,
+  "commit": true,
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "segunadebayo",
+      "name": "Segun Adebayo",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/6916170?v=4",
+      "profile": "https://github.com/segunadebayo",
+      "contributions": [
+        "code",
+        "maintenance",
+        "doc",
+        "example",
+        "design"
+      ]
+    },
+    {
+      "login": "tioluwani94",
+      "name": "Tioluwani Kolawole",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/11310046?v=4",
+      "profile": "https://github.com/tioluwani94",
+      "contributions": [
+        "doc",
+        "example",
+        "maintenance"
+      ]
+    },
+    {
+      "login": "devanshj",
+      "name": "Devansh Jethmalani",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/30295578?v=4",
+      "profile": "https://github.com/devanshj",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Vynlar",
+      "name": "Adrian Aleixandre",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/920212?v=4",
+      "profile": "http://adrianaleixandre.com",
+      "contributions": [
+        "code",
+        "doc"
+      ]
+    },
+    {
+      "login": "lee-reinhardt",
+      "name": "Lee",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/980089?v=4",
+      "profile": "https://github.com/lee-reinhardt",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "kripod",
+      "name": "Kristóf Poduszló",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/14854048?v=4",
+      "profile": "https://github.com/kripod",
+      "contributions": [
+        "code",
+        "ideas",
+        "bug",
+        "doc"
+      ]
+    },
+    {
+      "login": "wKovacs64",
+      "name": "Justin Hall",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1288694?v=4",
+      "profile": "https://github.com/wKovacs64",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "estheragbaje",
+      "name": "Folasade Agbaje",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/53586167?v=4",
+      "profile": "https://estheragbaje.dev/",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}
