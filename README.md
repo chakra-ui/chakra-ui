@@ -1,6 +1,6 @@
 <br />
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-22-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-23-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <p align="center">
@@ -165,6 +165,7 @@ Thanks goes to these wonderful people
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/cjthompson"><img src="https://avatars3.githubusercontent.com/u/1958266?v=4" width="64px;" alt=""/><br /><sub><b>Chris Thompson</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=cjthompson" title="Code">💻</a></td>
+    <td align="center"><a href="http://ipfsoftwares.com"><img src="https://avatars1.githubusercontent.com/u/8426172?v=4" width="64px;" alt=""/><br /><sub><b>WALTER KIMARO</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=jestrux" title="Code">💻</a></td>
   </tr>
 </table>
 
