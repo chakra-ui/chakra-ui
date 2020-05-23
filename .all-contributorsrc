@@ -469,6 +469,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Doesntmeananything",
+      "name": "Andrey Krasnov",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/34657799?v=4",
+      "profile": "http://doesntmeananything.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7
