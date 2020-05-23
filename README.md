@@ -1,6 +1,6 @@
 <br />
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-19-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-20-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <p align="center">
@@ -160,6 +160,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="http://mattrothenberg.com"><img src="https://avatars1.githubusercontent.com/u/5148596?v=4" width="64px;" alt=""/><br /><sub><b>Matt Rothenberg</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=mattrothenberg" title="Code">💻</a></td>
     <td align="center"><a href="http://zaguini.me"><img src="https://avatars1.githubusercontent.com/u/26530524?v=4" width="64px;" alt=""/><br /><sub><b>Luis Felipe Zaguini</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=zaguiini" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/jeanbauer"><img src="https://avatars2.githubusercontent.com/u/4689228?v=4" width="64px;" alt=""/><br /><sub><b>Jean </b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=jeanbauer" title="Code">💻</a></td>
+    <td align="center"><a href="https://www.linkedin.com/in/tayormi/"><img src="https://avatars2.githubusercontent.com/u/13835725?v=4" width="64px;" alt=""/><br /><sub><b>Temitope Ajiboye</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=tayormi" title="Code">💻</a></td>
   </tr>
 </table>
 
