@@ -1,6 +1,6 @@
 <br />
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-37-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-38-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <p align="center">
@@ -184,6 +184,7 @@ Thanks goes to these wonderful people
   <tr>
     <td align="center"><a href="https://github.com/simoncollins"><img src="https://avatars2.githubusercontent.com/u/874670?v=4" width="64px;" alt=""/><br /><sub><b>Simon Collins</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=simoncollins" title="Code">💻</a></td>
     <td align="center"><a href="http://santialbo.com"><img src="https://avatars3.githubusercontent.com/u/1557563?v=4" width="64px;" alt=""/><br /><sub><b>Santi Albo</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=santialbo" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/PILO7980"><img src="https://avatars0.githubusercontent.com/u/3218536?v=4" width="64px;" alt=""/><br /><sub><b>PILO7980</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=PILO7980" title="Code">💻</a></td>
   </tr>
 </table>
 
