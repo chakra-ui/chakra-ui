@@ -1,0 +1,23 @@
+{
+  "name": "@chakra-ui/codemods",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
+  "dependencies": {
+    "@types/jscodeshift": "^0.7.1",
+    "jscodeshift": "^0.9.0"
+  }
+}
