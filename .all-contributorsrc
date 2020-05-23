@@ -301,6 +301,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "3nvi",
+      "name": "Aggelos Arvanitakis",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/10436045?v=4",
+      "profile": "https://aggelos.dev",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7
