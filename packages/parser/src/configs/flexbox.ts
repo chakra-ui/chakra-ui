@@ -1,6 +1,6 @@
 import * as CSS from "csstype"
 import { createParser } from "../create-parser"
-import { Config, Prop, Length } from "../utils"
+import { Config, ResponsiveValue, Length } from "../utils"
 
 const config: Config = {
   alignItems: true,
@@ -31,59 +31,59 @@ export interface FlexboxProps {
   /**
    * The CSS `align-items` property
    */
-  alignItems?: Prop<CSS.AlignItemsProperty>
+  alignItems?: ResponsiveValue<CSS.AlignItemsProperty>
   /**
    * The CSS `align-content` property
    */
-  alignContent?: Prop<CSS.AlignContentProperty>
+  alignContent?: ResponsiveValue<CSS.AlignContentProperty>
   /**
    * The CSS `justify-items` property
    */
-  justifyItems?: Prop<CSS.JustifyItemsProperty>
+  justifyItems?: ResponsiveValue<CSS.JustifyItemsProperty>
   /**
    * The CSS `justify-content` property
    */
-  justifyContent?: Prop<CSS.JustifyContentProperty>
+  justifyContent?: ResponsiveValue<CSS.JustifyContentProperty>
   /**
    * The CSS `flex-wrap` property
    */
-  flexWrap?: Prop<CSS.FlexWrapProperty>
+  flexWrap?: ResponsiveValue<CSS.FlexWrapProperty>
   /**
    * The CSS `flex-basis` property
    */
-  flexBasis?: Prop<CSS.FlexBasisProperty<Length>>
+  flexBasis?: ResponsiveValue<CSS.FlexBasisProperty<Length>>
   /**
    * The CSS `flex-direction` property
    */
-  flexDirection?: Prop<CSS.FlexDirectionProperty>
+  flexDirection?: ResponsiveValue<CSS.FlexDirectionProperty>
   /**
    * The CSS `flex-direction` property
    */
-  flexDir?: Prop<CSS.FlexDirectionProperty>
+  flexDir?: ResponsiveValue<CSS.FlexDirectionProperty>
   /**
    * The CSS `flex` property
    */
-  flex?: Prop<CSS.FlexProperty<Length>>
+  flex?: ResponsiveValue<CSS.FlexProperty<Length>>
   /**
    * The CSS `justify-self` property
    */
-  justifySelf?: Prop<CSS.JustifySelfProperty>
+  justifySelf?: ResponsiveValue<CSS.JustifySelfProperty>
   /**
    * The CSS `align-self` property
    */
-  alignSelf?: Prop<CSS.AlignSelfProperty>
+  alignSelf?: ResponsiveValue<CSS.AlignSelfProperty>
   /**
    * The CSS `order` property
    */
-  order?: Prop<CSS.GlobalsNumber>
+  order?: ResponsiveValue<CSS.GlobalsNumber>
   /**
    * The CSS `flex-grow` property
    */
-  flexGrow?: Prop<CSS.GlobalsNumber>
+  flexGrow?: ResponsiveValue<CSS.GlobalsNumber>
   /**
    * The CSS `flex-shrink` property
    */
-  flexShrink?: Prop<CSS.GlobalsNumber>
+  flexShrink?: ResponsiveValue<CSS.GlobalsNumber>
 }
 
 export const flexbox = createParser(config)

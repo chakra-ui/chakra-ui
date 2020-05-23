@@ -1,5 +1,5 @@
 import * as CSS from "csstype"
-import { Config, positiveOrNegative, Prop, Length } from "../utils"
+import { Config, positiveOrNegative, ResponsiveValue, Length } from "../utils"
 import { createParser } from "../create-parser"
 
 const config: Config = {
@@ -55,43 +55,43 @@ export interface PositionProps {
   /**
    * The CSS `z-index` property
    */
-  zIndex?: Prop<string | CSS.ZIndexProperty>
+  zIndex?: ResponsiveValue<string | CSS.ZIndexProperty>
   /**
    * The CSS `top` property
    */
-  top?: Prop<CSS.TopProperty<Length>>
+  top?: ResponsiveValue<CSS.TopProperty<Length>>
   /**
    * The CSS `right` property
    */
-  right?: Prop<CSS.RightProperty<Length>>
+  right?: ResponsiveValue<CSS.RightProperty<Length>>
   /**
    * The CSS `bottom` property
    */
-  bottom?: Prop<CSS.BottomProperty<Length>>
+  bottom?: ResponsiveValue<CSS.BottomProperty<Length>>
   /**
    * The CSS `left` property
    */
-  left?: Prop<CSS.LeftProperty<Length>>
+  left?: ResponsiveValue<CSS.LeftProperty<Length>>
   /**
    * The CSS `left`, `right`, `top`, `bottom` property
    */
-  inset?: Prop<CSS.LeftProperty<Length>>
+  inset?: ResponsiveValue<CSS.LeftProperty<Length>>
   /**
    * The CSS `left`, and `right` property
    */
-  insetX?: Prop<CSS.LeftProperty<Length>>
+  insetX?: ResponsiveValue<CSS.LeftProperty<Length>>
   /**
    * The CSS `top`, and `bottom` property
    */
-  insetY?: Prop<CSS.LeftProperty<Length>>
+  insetY?: ResponsiveValue<CSS.LeftProperty<Length>>
   /**
    * The CSS `position` property
    */
-  pos?: Prop<CSS.PositionProperty>
+  pos?: ResponsiveValue<CSS.PositionProperty>
   /**
    * The CSS `position` property
    */
-  position?: Prop<CSS.PositionProperty>
+  position?: ResponsiveValue<CSS.PositionProperty>
 }
 
 export const position = createParser(config)

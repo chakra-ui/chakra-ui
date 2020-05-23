@@ -1,6 +1,6 @@
 import * as CSS from "csstype"
 import { createParser } from "../create-parser"
-import { Config, Prop } from "../utils"
+import { Config, ResponsiveValue } from "../utils"
 
 /**
  * The parser configuration for common border properties
@@ -29,23 +29,23 @@ export interface ColorProps {
   /**
    * The CSS `color` property
    */
-  textColor?: Prop<CSS.ColorProperty>
+  textColor?: ResponsiveValue<CSS.ColorProperty>
   /**
    * The CSS `color` property
    */
-  color?: Prop<CSS.ColorProperty>
+  color?: ResponsiveValue<CSS.ColorProperty>
   /**
    * The CSS `fill` property for icon svgs and paths
    */
-  fill?: Prop<CSS.ColorProperty>
+  fill?: ResponsiveValue<CSS.ColorProperty>
   /**
    * The CSS `stroke` property for icon svgs and paths
    */
-  stroke?: Prop<CSS.ColorProperty>
+  stroke?: ResponsiveValue<CSS.ColorProperty>
   /**
    * The CSS `opacity` property
    */
-  opacity?: Prop<CSS.GlobalsNumber>
+  opacity?: ResponsiveValue<CSS.GlobalsNumber>
 }
 
 export const color = createParser(config)

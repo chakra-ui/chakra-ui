@@ -1,6 +1,6 @@
 import * as CSS from "csstype"
 import { createParser } from "../create-parser"
-import { Config, Length, Prop } from "../utils"
+import { Config, Length, ResponsiveValue } from "../utils"
 
 const config: Config = {
   animation: true,
@@ -29,83 +29,85 @@ export interface OtherProps {
   /**
    * The CSS `animation` property
    */
-  animation?: Prop<CSS.AnimationProperty>
+  animation?: ResponsiveValue<CSS.AnimationProperty>
   /**
    * The CSS `appearance` property
    */
-  appearance?: Prop<CSS.AppearanceProperty>
+  appearance?: ResponsiveValue<CSS.AppearanceProperty>
   /**
    * The CSS `transform` property
    */
-  transform?: Prop<CSS.TransformProperty>
+  transform?: ResponsiveValue<CSS.TransformProperty>
   /**
    * The CSS `transform-origin` property
    */
-  transformOrigin?: Prop<CSS.TransformOriginProperty<Length>>
+  transformOrigin?: ResponsiveValue<CSS.TransformOriginProperty<Length>>
   /**
    * The CSS `visibility` property
    */
-  visibility?: Prop<CSS.VisibilityProperty>
+  visibility?: ResponsiveValue<CSS.VisibilityProperty>
   /**
    * The CSS `user-select` property
    */
-  userSelect?: Prop<CSS.UserSelectProperty>
+  userSelect?: ResponsiveValue<CSS.UserSelectProperty>
   /**
    * The CSS `pointer-events` property
    */
-  pointerEvents?: Prop<CSS.PointerEventsProperty>
+  pointerEvents?: ResponsiveValue<CSS.PointerEventsProperty>
   /**
    * The CSS `cursor` property
    */
-  cursor?: Prop<CSS.CursorProperty>
+  cursor?: ResponsiveValue<CSS.CursorProperty>
   /**
    * The CSS `resize` property
    */
-  resize?: Prop<CSS.ResizeProperty>
+  resize?: ResponsiveValue<CSS.ResizeProperty>
   /**
    * The CSS `transition` property
    */
-  transition?: Prop<CSS.TransitionProperty>
+  transition?: ResponsiveValue<CSS.TransitionProperty>
   /**
    * The CSS `transition-property` property
    */
-  transitionProperty?: Prop<CSS.TransitionPropertyProperty>
+  transitionProperty?: ResponsiveValue<CSS.TransitionPropertyProperty>
   /**
    * The CSS `transition-timing-function` property
    */
-  transitionTimingFunction?: Prop<CSS.TransitionTimingFunctionProperty>
+  transitionTimingFunction?: ResponsiveValue<
+    CSS.TransitionTimingFunctionProperty
+  >
   /**
    * The CSS `transition-duration` property
    */
-  transitionDuration?: Prop<string>
+  transitionDuration?: ResponsiveValue<string>
   /**
    * The CSS `object-fit` property
    */
-  objectFit?: Prop<CSS.ObjectFitProperty>
+  objectFit?: ResponsiveValue<CSS.ObjectFitProperty>
   /**
    * The CSS `object-psition` property
    */
-  objectPosition?: Prop<CSS.ObjectPositionProperty<Length>>
+  objectPosition?: ResponsiveValue<CSS.ObjectPositionProperty<Length>>
   /**
    * The CSS `float` property
    */
-  float?: Prop<CSS.FloatProperty>
+  float?: ResponsiveValue<CSS.FloatProperty>
   /**
    * The CSS `will-change` property
    */
-  willChange?: Prop<CSS.WillChangeProperty>
+  willChange?: ResponsiveValue<CSS.WillChangeProperty>
   /**
    * The CSS `list-style-type` property
    */
-  listStyleType?: Prop<CSS.ListStyleTypeProperty>
+  listStyleType?: ResponsiveValue<CSS.ListStyleTypeProperty>
   /**
    * The CSS `list-style-position` property
    */
-  listStylePosition?: Prop<CSS.ListStylePositionProperty>
+  listStylePosition?: ResponsiveValue<CSS.ListStylePositionProperty>
   /**
    * The CSS `list-style-image` property
    */
-  listStyleImage?: Prop<CSS.ListStyleImageProperty>
+  listStyleImage?: ResponsiveValue<CSS.ListStyleImageProperty>
 }
 
 export const others = createParser(config)

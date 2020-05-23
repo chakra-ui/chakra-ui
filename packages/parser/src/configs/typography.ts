@@ -1,5 +1,5 @@
 import * as CSS from "csstype"
-import { Config, Prop, Length } from "../utils"
+import { Config, ResponsiveValue, Length } from "../utils"
 import { createParser } from "../create-parser"
 
 const config: Config = {
@@ -41,59 +41,61 @@ export interface TypographyProps {
   /**
    * The CSS `font-weight` property
    */
-  fontWeight?: Prop<CSS.FontWeightProperty | "medium" | "light" | "semibold">
+  fontWeight?: ResponsiveValue<
+    CSS.FontWeightProperty | "medium" | "light" | "semibold"
+  >
   /**
    * The CSS `line-height` property
    */
-  lineHeight?: Prop<CSS.LineHeightProperty<Length>>
+  lineHeight?: ResponsiveValue<CSS.LineHeightProperty<Length>>
   /**
    * The CSS `line-height` property
    */
-  letterSpacing?: Prop<CSS.LetterSpacingProperty<Length>>
+  letterSpacing?: ResponsiveValue<CSS.LetterSpacingProperty<Length>>
   /**
    * The CSS `font-size` property
    */
-  fontSize?: Prop<CSS.FontSizeProperty<Length>>
+  fontSize?: ResponsiveValue<CSS.FontSizeProperty<Length>>
   /**
    * The CSS `font-family` property
    */
-  fontFamily?: Prop<CSS.FontFamilyProperty>
+  fontFamily?: ResponsiveValue<CSS.FontFamilyProperty>
   /**
    * The CSS `text-align` property
    */
-  textAlign?: Prop<CSS.TextAlignProperty>
+  textAlign?: ResponsiveValue<CSS.TextAlignProperty>
   /**
    * The CSS `font-style` property
    */
-  fontStyle?: Prop<CSS.FontStyleProperty>
+  fontStyle?: ResponsiveValue<CSS.FontStyleProperty>
   /**
    * The CSS `word-break` property
    */
-  wordBreak?: Prop<CSS.WordBreakProperty>
+  wordBreak?: ResponsiveValue<CSS.WordBreakProperty>
   /**
    * The CSS `overflow-wrap` property
    */
-  overflowWrap?: Prop<CSS.OverflowWrapProperty>
+  overflowWrap?: ResponsiveValue<CSS.OverflowWrapProperty>
   /**
    * The CSS `text-overflow` property
    */
-  textOverflow?: Prop<CSS.TextOverflowProperty>
+  textOverflow?: ResponsiveValue<CSS.TextOverflowProperty>
   /**
    * The CSS `text-transform` property
    */
-  textTransform?: Prop<CSS.TextTransformProperty>
+  textTransform?: ResponsiveValue<CSS.TextTransformProperty>
   /**
    * The CSS `white-space` property
    */
-  whiteSpace?: Prop<CSS.WhiteSpaceProperty>
+  whiteSpace?: ResponsiveValue<CSS.WhiteSpaceProperty>
   /**
    * The CSS `text-decoration` property
    */
-  textDecoration?: Prop<CSS.TextDecorationProperty<Length>>
+  textDecoration?: ResponsiveValue<CSS.TextDecorationProperty<Length>>
   /**
    * The CSS `text-decoration` property
    */
-  textDecor?: Prop<CSS.TextDecorationProperty<Length>>
+  textDecor?: ResponsiveValue<CSS.TextDecorationProperty<Length>>
 }
 
 export const typography = createParser(config)

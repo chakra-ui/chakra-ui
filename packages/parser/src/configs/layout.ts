@@ -1,7 +1,7 @@
 import { get, isNumber } from "@chakra-ui/utils"
 import * as CSS from "csstype"
 import { createParser } from "../create-parser"
-import { Config, Length, Prop } from "../utils"
+import { Config, Length, ResponsiveValue } from "../utils"
 
 function transform(value: any, scale: any) {
   const defaultValue = !isNumber(value) || value > 1 ? value : value * 100 + "%"
@@ -81,79 +81,79 @@ export interface LayoutProps {
   /**
    * The CSS `display` property
    */
-  display?: Prop<CSS.DisplayProperty>
+  display?: ResponsiveValue<CSS.DisplayProperty>
   /**
    * The CSS `display` property
    */
-  d?: Prop<CSS.DisplayProperty>
+  d?: ResponsiveValue<CSS.DisplayProperty>
   /**
    * The CSS `width` property
    */
-  width?: Prop<CSS.WidthProperty<Length>>
+  width?: ResponsiveValue<CSS.WidthProperty<Length>>
   /**
    * The CSS `width` property
    */
-  w?: Prop<CSS.WidthProperty<Length>>
+  w?: ResponsiveValue<CSS.WidthProperty<Length>>
   /**
    * The CSS `width` and `height` property
    */
-  boxSize?: Prop<CSS.WidthProperty<Length>>
+  boxSize?: ResponsiveValue<CSS.WidthProperty<Length>>
   /**
    * The CSS `max-width` property
    */
-  maxWidth?: Prop<CSS.MaxWidthProperty<Length>>
+  maxWidth?: ResponsiveValue<CSS.MaxWidthProperty<Length>>
   /**
    * The CSS `max-width` property
    */
-  maxW?: Prop<CSS.MaxWidthProperty<Length>>
+  maxW?: ResponsiveValue<CSS.MaxWidthProperty<Length>>
   /**
    * The CSS `min-width` property
    */
-  minWidth?: Prop<CSS.MinWidthProperty<Length>>
+  minWidth?: ResponsiveValue<CSS.MinWidthProperty<Length>>
   /**
    * The CSS `min-width` property
    */
-  minW?: Prop<CSS.MinWidthProperty<Length>>
+  minW?: ResponsiveValue<CSS.MinWidthProperty<Length>>
   /**
    * The CSS `height` property
    */
-  height?: Prop<CSS.HeightProperty<Length>>
+  height?: ResponsiveValue<CSS.HeightProperty<Length>>
   /**
    * The CSS `height` property
    */
-  h?: Prop<CSS.HeightProperty<Length>>
+  h?: ResponsiveValue<CSS.HeightProperty<Length>>
   /**
    * The CSS `max-height` property
    */
-  maxHeight?: Prop<CSS.MaxHeightProperty<Length>>
+  maxHeight?: ResponsiveValue<CSS.MaxHeightProperty<Length>>
   /**
    * The CSS `max-height` property
    */
-  maxH?: Prop<CSS.MaxHeightProperty<Length>>
+  maxH?: ResponsiveValue<CSS.MaxHeightProperty<Length>>
   /**
    * The CSS `min-height` property
    */
-  minHeight?: Prop<CSS.MinHeightProperty<Length>>
+  minHeight?: ResponsiveValue<CSS.MinHeightProperty<Length>>
   /**
    * The CSS `min-height` property
    */
-  minH?: Prop<CSS.MinHeightProperty<Length>>
+  minH?: ResponsiveValue<CSS.MinHeightProperty<Length>>
   /**
    * The CSS `vertical-align` property
    */
-  verticalAlign?: Prop<CSS.VerticalAlignProperty<Length>>
+  verticalAlign?: ResponsiveValue<CSS.VerticalAlignProperty<Length>>
   /**
    * The CSS `overflow` property
    */
-  overflow?: Prop<CSS.OverflowProperty>
+  overflow?: ResponsiveValue<CSS.OverflowProperty>
   /**
    * The CSS `overflow-x` property
    */
-  overflowX?: Prop<CSS.OverflowXProperty>
+  overflowX?: ResponsiveValue<CSS.OverflowXProperty>
   /**
    * The CSS `overflow-y` property
    */
-  overflowY?: Prop<CSS.OverflowYProperty>
+  overflowY?: ResponsiveValue<CSS.OverflowYProperty>
   /**
    * The CSS `box-sizing` property
    */

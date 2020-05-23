@@ -1,6 +1,6 @@
 import * as CSS from "csstype"
 import { createParser } from "../create-parser"
-import { Config, Length, Prop } from "../utils"
+import { Config, Length, ResponsiveValue } from "../utils"
 
 /**
  * The parser configuration for common outline properties
@@ -18,15 +18,15 @@ export interface OutlineProps {
   /**
    * The CSS `outline` property
    */
-  outline?: Prop<CSS.OutlineProperty<Length>>
+  outline?: ResponsiveValue<CSS.OutlineProperty<Length>>
   /**
    * The CSS `outline-offset` property
    */
-  outlineOffset?: Prop<CSS.OutlineOffsetProperty<Length>>
+  outlineOffset?: ResponsiveValue<CSS.OutlineOffsetProperty<Length>>
   /**
    * The CSS `outline-color` property
    */
-  outlineColor?: Prop<CSS.OutlineColorProperty>
+  outlineColor?: ResponsiveValue<CSS.OutlineColorProperty>
 }
 
 export const outline = createParser(config)

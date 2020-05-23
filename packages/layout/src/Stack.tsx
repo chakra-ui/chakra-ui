@@ -1,4 +1,10 @@
-import { chakra, css, Prop, PropsOf, SystemProps } from "@chakra-ui/system"
+import {
+  chakra,
+  css,
+  ResponsiveValue,
+  PropsOf,
+  SystemProps,
+} from "@chakra-ui/system"
 import {
   Dict,
   getValidChildren,
@@ -9,7 +15,7 @@ import {
 import * as React from "react"
 import { FlexOptions } from "./Flex"
 
-export type StackDirection = Prop<"row" | "column">
+export type StackDirection = ResponsiveValue<"row" | "column">
 
 type StackOptions = Pick<FlexOptions, "align" | "justify" | "wrap"> & {
   /**

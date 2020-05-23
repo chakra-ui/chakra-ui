@@ -1,6 +1,6 @@
 import * as CSS from "csstype"
 import { createParser } from "../create-parser"
-import { Config, positiveOrNegative, Prop, Length } from "../utils"
+import { Config, positiveOrNegative, ResponsiveValue, Length } from "../utils"
 
 const configs: Config = {
   margin: {
@@ -138,115 +138,115 @@ export interface SpaceProps {
   /**
    * Margin on top, left, bottom and right
    */
-  m?: Prop<CSS.MarginProperty<Length>>
+  m?: ResponsiveValue<CSS.MarginProperty<Length>>
   /**
    * Margin on top, left, bottom and right
    */
-  margin?: Prop<CSS.MarginProperty<Length>>
+  margin?: ResponsiveValue<CSS.MarginProperty<Length>>
   /**
    * Margin on top
    */
-  mt?: Prop<CSS.MarginProperty<Length>>
+  mt?: ResponsiveValue<CSS.MarginProperty<Length>>
   /**
    * Margin on top
    */
-  marginTop?: Prop<CSS.MarginTopProperty<Length>>
+  marginTop?: ResponsiveValue<CSS.MarginTopProperty<Length>>
   /**
    * Margin on right
    */
-  mr?: Prop<CSS.MarginRightProperty<Length>>
+  mr?: ResponsiveValue<CSS.MarginRightProperty<Length>>
   /**
    * Margin on right
    */
-  marginRight?: Prop<CSS.MarginRightProperty<Length>>
+  marginRight?: ResponsiveValue<CSS.MarginRightProperty<Length>>
   /**
    * Margin on bottom
    */
-  mb?: Prop<CSS.MarginBottomProperty<Length>>
+  mb?: ResponsiveValue<CSS.MarginBottomProperty<Length>>
   /**
    * Margin on bottom
    */
-  marginBottom?: Prop<CSS.MarginBottomProperty<Length>>
+  marginBottom?: ResponsiveValue<CSS.MarginBottomProperty<Length>>
   /**
    * Margin on left
    */
-  ml?: Prop<CSS.MarginLeftProperty<Length>>
+  ml?: ResponsiveValue<CSS.MarginLeftProperty<Length>>
   /**
    * Margin on left
    */
-  marginLeft?: Prop<CSS.MarginLeftProperty<Length>>
+  marginLeft?: ResponsiveValue<CSS.MarginLeftProperty<Length>>
   /**
    * Margin on left and right
    */
-  mx?: Prop<CSS.MarginProperty<Length>>
+  mx?: ResponsiveValue<CSS.MarginProperty<Length>>
   /**
    * Margin on left and right
    */
-  marginX?: Prop<CSS.MarginProperty<Length>>
+  marginX?: ResponsiveValue<CSS.MarginProperty<Length>>
   /**
    * Margin on top and bottom
    */
-  my?: Prop<CSS.MarginProperty<Length>>
+  my?: ResponsiveValue<CSS.MarginProperty<Length>>
   /**
    * Margin on top and bottom
    */
-  marginY?: Prop<CSS.MarginProperty<Length>>
+  marginY?: ResponsiveValue<CSS.MarginProperty<Length>>
   /**
    * Padding on top, left, bottom and right
    */
-  p?: Prop<CSS.PaddingProperty<Length>>
+  p?: ResponsiveValue<CSS.PaddingProperty<Length>>
   /**
    * Padding on top, left, bottom and right
    */
-  padding?: Prop<CSS.PaddingProperty<Length>>
+  padding?: ResponsiveValue<CSS.PaddingProperty<Length>>
   /**
    * Padding on top
    */
-  pt?: Prop<CSS.PaddingTopProperty<Length>>
+  pt?: ResponsiveValue<CSS.PaddingTopProperty<Length>>
   /**
    * Padding on top
    */
-  paddingTop?: Prop<CSS.PaddingTopProperty<Length>>
+  paddingTop?: ResponsiveValue<CSS.PaddingTopProperty<Length>>
   /**
    * Padding on right
    */
-  pr?: Prop<CSS.PaddingRightProperty<Length>>
+  pr?: ResponsiveValue<CSS.PaddingRightProperty<Length>>
   /**
    * Padding on right
    */
-  paddingRight?: Prop<CSS.PaddingRightProperty<Length>>
+  paddingRight?: ResponsiveValue<CSS.PaddingRightProperty<Length>>
   /**
    * Padding on bottom
    */
-  pb?: Prop<CSS.PaddingBottomProperty<Length>>
+  pb?: ResponsiveValue<CSS.PaddingBottomProperty<Length>>
   /**
    * Padding on bottom
    */
-  paddingBottom?: Prop<CSS.PaddingBottomProperty<Length>>
+  paddingBottom?: ResponsiveValue<CSS.PaddingBottomProperty<Length>>
   /**
    * Padding on left
    */
-  pl?: Prop<CSS.PaddingLeftProperty<Length>>
+  pl?: ResponsiveValue<CSS.PaddingLeftProperty<Length>>
   /**
    * Padding on left
    */
-  paddingLeft?: Prop<CSS.PaddingLeftProperty<Length>>
+  paddingLeft?: ResponsiveValue<CSS.PaddingLeftProperty<Length>>
   /**
    * Padding on left and right
    */
-  px?: Prop<CSS.PaddingProperty<Length>>
+  px?: ResponsiveValue<CSS.PaddingProperty<Length>>
   /**
    * Padding on left and right
    */
-  paddingX?: Prop<CSS.PaddingProperty<Length>>
+  paddingX?: ResponsiveValue<CSS.PaddingProperty<Length>>
   /**
    * Padding on top and bottom
    */
-  py?: Prop<CSS.PaddingProperty<Length>>
+  py?: ResponsiveValue<CSS.PaddingProperty<Length>>
   /**
    * Padding on top and bottom
    */
-  paddingY?: Prop<CSS.PaddingProperty<Length>>
+  paddingY?: ResponsiveValue<CSS.PaddingProperty<Length>>
 }
 
 /**

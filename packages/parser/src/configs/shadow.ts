@@ -1,6 +1,6 @@
 import * as CSS from "csstype"
 import { createParser } from "../create-parser"
-import { Config, Prop } from "../utils"
+import { Config, ResponsiveValue } from "../utils"
 
 const config: Config = {
   boxShadow: {
@@ -20,11 +20,11 @@ export interface ShadowProps {
   /**
    * The `box-shadow` property
    */
-  boxShadow?: Prop<CSS.BoxShadowProperty | number>
+  boxShadow?: ResponsiveValue<CSS.BoxShadowProperty | number>
   /**
    * The `text-shadow` property
    */
-  textShadow?: Prop<CSS.BoxShadowProperty | number>
+  textShadow?: ResponsiveValue<CSS.BoxShadowProperty | number>
 }
 
 export const shadow = createParser(config)

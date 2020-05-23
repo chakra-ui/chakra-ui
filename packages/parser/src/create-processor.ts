@@ -7,7 +7,13 @@ import {
   merge,
   getWithDefault,
 } from "@chakra-ui/utils"
-import { sort, assignArray, assignObject, getMediaQuery, Prop } from "./utils"
+import {
+  sort,
+  assignArray,
+  assignObject,
+  getMediaQuery,
+  ResponsiveValue,
+} from "./utils"
 
 interface Options {
   /**
@@ -17,7 +23,7 @@ interface Options {
   /**
    * The responsive value
    */
-  value?: Prop<string | number>
+  value?: ResponsiveValue<string | number>
   /**
    * Function to transform the value
    *

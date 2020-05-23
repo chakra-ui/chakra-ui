@@ -1,6 +1,6 @@
 import * as CSS from "csstype"
 import { createParser } from "../create-parser"
-import { Config, Length, Prop } from "../utils"
+import { Config, Length, ResponsiveValue } from "../utils"
 
 /**
  * The parser configuration for common background properties
@@ -55,67 +55,67 @@ export interface BackgroundProps {
   /**
    * The CSS `background` property
    */
-  bg?: Prop<CSS.BackgroundProperty<Length>>
+  bg?: ResponsiveValue<CSS.BackgroundProperty<Length>>
   /**
    * The CSS `background` property
    */
-  background?: Prop<CSS.BackgroundProperty<Length>>
+  background?: ResponsiveValue<CSS.BackgroundProperty<Length>>
   /**
    * The CSS `background-color` property
    */
-  bgColor?: Prop<CSS.BackgroundColorProperty>
+  bgColor?: ResponsiveValue<CSS.BackgroundColorProperty>
   /**
    * The CSS `background-color` property
    */
-  backgroundColor?: Prop<CSS.BackgroundColorProperty>
+  backgroundColor?: ResponsiveValue<CSS.BackgroundColorProperty>
   /**
    * The CSS `background-image` property
    */
-  backgroundImage?: Prop<CSS.BackgroundImageProperty>
+  backgroundImage?: ResponsiveValue<CSS.BackgroundImageProperty>
   /**
    * The CSS `background-blend-mode` property
    */
-  backgroundBlendMode?: Prop<CSS.BackgroundBlendModeProperty>
+  backgroundBlendMode?: ResponsiveValue<CSS.BackgroundBlendModeProperty>
   /**
    * The CSS `background-blend-mode` property
    */
-  bgBlendMode?: Prop<CSS.BackgroundBlendModeProperty>
+  bgBlendMode?: ResponsiveValue<CSS.BackgroundBlendModeProperty>
   /**
    * The CSS `background-size` property
    */
-  backgroundSize?: Prop<CSS.BackgroundSizeProperty<Length>>
+  backgroundSize?: ResponsiveValue<CSS.BackgroundSizeProperty<Length>>
   /**
    * The CSS `background-position` property
    */
-  backgroundPosition?: Prop<CSS.BackgroundPositionProperty<Length>>
+  backgroundPosition?: ResponsiveValue<CSS.BackgroundPositionProperty<Length>>
   /**
    * The CSS `background-image` property
    */
-  bgImage?: Prop<CSS.BackgroundImageProperty>
+  bgImage?: ResponsiveValue<CSS.BackgroundImageProperty>
   /**
    * The CSS `background-repeat` property
    */
-  bgRepeat?: Prop<CSS.BackgroundRepeatProperty>
+  bgRepeat?: ResponsiveValue<CSS.BackgroundRepeatProperty>
   /**
    * The CSS `background-repeat` property
    */
-  backgroundRepeat?: Prop<CSS.BackgroundRepeatProperty>
+  backgroundRepeat?: ResponsiveValue<CSS.BackgroundRepeatProperty>
   /**
    * The CSS `background-size` property
    */
-  bgSize?: Prop<CSS.BackgroundSizeProperty<Length>>
+  bgSize?: ResponsiveValue<CSS.BackgroundSizeProperty<Length>>
   /**
    * The CSS `background-attachment` property
    */
-  bgAttachment?: Prop<CSS.BackgroundAttachmentProperty>
+  bgAttachment?: ResponsiveValue<CSS.BackgroundAttachmentProperty>
   /**
    * The CSS `background-attachment` property
    */
-  backgroundAttachment?: Prop<CSS.BackgroundAttachmentProperty>
+  backgroundAttachment?: ResponsiveValue<CSS.BackgroundAttachmentProperty>
   /**
    * The CSS `background-position` property
    */
-  bgPosition?: Prop<CSS.BackgroundPositionProperty<Length>>
+  bgPosition?: ResponsiveValue<CSS.BackgroundPositionProperty<Length>>
 }
 
 /**

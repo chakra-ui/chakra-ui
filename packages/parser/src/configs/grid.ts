@@ -1,6 +1,6 @@
 import * as CSS from "csstype"
 import { createParser } from "../create-parser"
-import { Config, Length, Prop } from "../utils"
+import { Config, Length, ResponsiveValue } from "../utils"
 
 const config: Config = {
   gridGap: {
@@ -34,55 +34,55 @@ export interface GridProps {
   /**
    * The CSS `grid-gap` property
    */
-  gridGap?: Prop<CSS.GridGapProperty<Length>>
+  gridGap?: ResponsiveValue<CSS.GridGapProperty<Length>>
   /**
    * The CSS `grid-column-gap` property
    */
-  gridColumnGap?: Prop<CSS.GridColumnGapProperty<Length>>
+  gridColumnGap?: ResponsiveValue<CSS.GridColumnGapProperty<Length>>
   /**
    * The CSS `grid-row-gap` property
    */
-  gridRowGap?: Prop<CSS.GridRowGapProperty<Length>>
+  gridRowGap?: ResponsiveValue<CSS.GridRowGapProperty<Length>>
   /**
    * The CSS `grid-column` property
    */
-  gridColumn?: Prop<CSS.GridColumnProperty>
+  gridColumn?: ResponsiveValue<CSS.GridColumnProperty>
   /**
    * The CSS `grid-row` property
    */
-  gridRow?: Prop<CSS.GridRowProperty>
+  gridRow?: ResponsiveValue<CSS.GridRowProperty>
   /**
    * The CSS `grid-auto-flow` property
    */
-  gridAutoFlow?: Prop<CSS.GridAutoFlowProperty>
+  gridAutoFlow?: ResponsiveValue<CSS.GridAutoFlowProperty>
   /**
    * The CSS `grid-auto-columns` property
    */
-  gridAutoColumns?: Prop<CSS.GridAutoColumnsProperty<Length>>
+  gridAutoColumns?: ResponsiveValue<CSS.GridAutoColumnsProperty<Length>>
   /**
    * The CSS `grid-auto-rows` property
    */
-  gridAutoRows?: Prop<CSS.GridAutoRowsProperty<Length>>
+  gridAutoRows?: ResponsiveValue<CSS.GridAutoRowsProperty<Length>>
   /**
    * The CSS `grid-template-columns` property
    */
-  gridTemplateColumns?: Prop<CSS.GridTemplateColumnsProperty<Length>>
+  gridTemplateColumns?: ResponsiveValue<CSS.GridTemplateColumnsProperty<Length>>
   /**
    * The CSS `grid-template-rows` property
    */
-  gridTemplateRows?: Prop<CSS.GridTemplateRowsProperty<Length>>
+  gridTemplateRows?: ResponsiveValue<CSS.GridTemplateRowsProperty<Length>>
   /**
    * The CSS `grid-template-areas` property
    */
-  gridTemplateAreas?: Prop<CSS.GridTemplateAreasProperty>
+  gridTemplateAreas?: ResponsiveValue<CSS.GridTemplateAreasProperty>
   /**
    * The CSS `grid-areas` property
    */
-  gridArea?: Prop<CSS.GridAreaProperty>
+  gridArea?: ResponsiveValue<CSS.GridAreaProperty>
   /**
    * The CSS `place-items` property
    */
-  placeItems?: Prop<CSS.PlaceItemsProperty>
+  placeItems?: ResponsiveValue<CSS.PlaceItemsProperty>
 }
 
 export const grid = createParser(config)
