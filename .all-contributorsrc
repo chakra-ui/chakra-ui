@@ -415,6 +415,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "sarcastron",
+      "name": "Adam Plante",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/2415228?v=4",
+      "profile": "https://github.com/sarcastron",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7
