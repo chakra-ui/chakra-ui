@@ -1,5 +1,5 @@
 {
-  "name": "@chakra-ui/preset-base",
+  "name": "@chakra-ui/theme",
   "version": "1.0.0",
   "description": "The default theme for chakra components",
   "keywords": [

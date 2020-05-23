@@ -1,5 +1,5 @@
 import CSSReset from "@chakra-ui/css-reset"
-import theme from "@chakra-ui/preset-base"
+import theme from "@chakra-ui/theme"
 import {
   ColorModeProvider,
   GlobalStyle,

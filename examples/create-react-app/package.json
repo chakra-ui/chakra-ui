@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@chakra-ui/core": "1.0.0",
-    "@chakra-ui/preset-base": "1.0.0",
+    "@chakra-ui/theme": "1.0.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0"
   },

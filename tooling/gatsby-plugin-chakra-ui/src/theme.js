@@ -1,3 +1,3 @@
-import theme from "@chakra-ui/preset-base"
+import theme from "@chakra-ui/theme"
 
 export default theme

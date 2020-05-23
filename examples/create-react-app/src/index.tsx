@@ -3,7 +3,7 @@ import ReactDOM from "react-dom"
 import App from "./App"
 import * as serviceWorker from "./serviceWorker"
 import { ChakraProvider, CSSReset } from "@chakra-ui/core"
-import theme from "@chakra-ui/preset-base"
+import theme from "@chakra-ui/theme"
 
 ReactDOM.render(
   <React.StrictMode>

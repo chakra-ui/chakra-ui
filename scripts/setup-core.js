@@ -5,7 +5,7 @@ import editJson from "edit-json-file"
 
 const omittedPkgs = [
   "core",
-  "preset-base",
+  "theme",
   "preset-stripe",
   "icons",
   "transition",

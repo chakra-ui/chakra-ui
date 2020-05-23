@@ -8,7 +8,7 @@ export default {
 /**
  * Badges will use the `subtle` variant and gray color scheme by default.
  *
- * @see `/preset-base/components/Badge.ts`
+ * @see `/theme/components/Badge.ts`
  */
 export const Basic = () => <Badge>Success</Badge>
 

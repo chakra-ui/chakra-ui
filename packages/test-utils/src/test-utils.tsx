@@ -1,4 +1,4 @@
-import theme from "@chakra-ui/preset-base"
+import theme from "@chakra-ui/theme"
 import { GlobalStyle, ThemeProvider } from "@chakra-ui/system"
 import CSSReset from "@chakra-ui/css-reset"
 import "@testing-library/jest-dom/extend-expect"

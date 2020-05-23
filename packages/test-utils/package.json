@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@chakra-ui/system": "1.0.0",
-    "@chakra-ui/preset-base": "1.0.0",
+    "@chakra-ui/theme": "1.0.0",
     "@testing-library/jest-dom": "5.1.1",
     "@testing-library/react": "9.4.0",
     "@testing-library/react-hooks": "3.2.1",

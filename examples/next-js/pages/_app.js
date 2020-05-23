@@ -5,7 +5,7 @@ import {
   GlobalStyle,
 } from "@chakra-ui/system"
 import CSSReset from "@chakra-ui/css-reset"
-import theme from "@chakra-ui/preset-base"
+import theme from "@chakra-ui/theme"
 
 export default ({ Component, pageProps }) => (
   <ThemeProvider theme={theme}>

@@ -32,7 +32,7 @@
     "hooks": "yarn workspace @chakra-ui/hooks",
     "utils": "yarn workspace @chakra-ui/utils",
     "layout": "yarn workspace @chakra-ui/layout",
-    "preset": "yarn workspace @chakra-ui/preset-base",
+    "theme": "yarn workspace @chakra-ui/theme",
     "color": "yarn workspace @chakra-ui/color",
     "menu": "yarn workspace @chakra-ui/menu",
     "accordion": "yarn workspace @chakra-ui/accordion",
