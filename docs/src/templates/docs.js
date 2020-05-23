@@ -36,9 +36,8 @@ const Body = React.memo(
 const Docs = ({ data, pageContext }) => {
   const location = useLocation()
   const { previous, next, slug } = pageContext
-  const { body, frontmatter, fields, tableOfContents } = data.mdx
+  const { body, frontmatter, tableOfContents } = data.mdx
   const { title, description } = frontmatter
-  const { slug } = fields
 
   return (
     <>
@@ -63,9 +62,6 @@ export const query = graphql`
       frontmatter {
         title
         description
-      }
-      fields {
-        slug
       }
       tableOfContents
     }
