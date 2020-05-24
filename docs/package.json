@@ -7,6 +7,7 @@
     "@mdx-js/mdx": "1.6.1",
     "@mdx-js/react": "1.6.1",
     "@reach/router": "^1.3.3",
+    "docsearch.js": "^2.6.3",
     "formik": "^2.1.4",
     "gatsby": "^2.13.50",
     "gatsby-image": "^2.2.8",
@@ -22,6 +23,7 @@
     "gatsby-plugin-react-helmet-canonical-urls": "^1.4.0",
     "gatsby-plugin-remove-trailing-slashes": "^2.3.3",
     "gatsby-plugin-sharp": "^2.2.9",
+    "gatsby-remark-autolink-headers": "^2.3.3",
     "gatsby-source-filesystem": "^2.1.8",
     "gatsby-transformer-sharp": "^2.2.5",
     "lodash": "^4.17.15",
@@ -38,7 +40,7 @@
     "clean": "gatsby clean",
     "cleandev": "rm -rf node_modules .cache && yarn && gatsby develop",
     "format": "prettier --write \"src/**/*.js\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "devDependencies": {
     "prettier": "2.0.5"
