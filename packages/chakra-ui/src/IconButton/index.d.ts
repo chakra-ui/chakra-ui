@@ -17,7 +17,7 @@ interface IIconButton {
   /**
    * The icon to be used in the button.
    */
-  icon?: Icons | React.ComponentType;
+  icon?: Icons | React.ComponentType | string;
   /**
    * If `true`, the button will be perfectly round. Else, it'll be slightly round
    */

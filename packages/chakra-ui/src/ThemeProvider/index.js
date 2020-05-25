@@ -14,7 +14,7 @@ ThemeProvider.defaultProps = {
 
 const useTheme = () => {
   const theme = useContext(ThemeContext);
-  if (theme === undefined) {
+  if (Object.keys(theme).length === 0 ) {
     throw new Error("useTheme must be used within a ThemeProvider");
   }
   return theme;

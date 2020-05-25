@@ -14,7 +14,7 @@ All notable changes to this project will be documented in this file. See
 
 ### Features
 
-- add iconColor prop to <Select />
+- add iconColor prop to `<Select/>`
   ([968ca80](https://github.com/chakra-ui/chakra-ui/commit/968ca80d916f691ed26515a6e80c43d01eb25d9f))
 
 # Change Log
