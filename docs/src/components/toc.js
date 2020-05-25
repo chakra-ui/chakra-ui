@@ -10,7 +10,7 @@ export const Entry = ({ item, indent, slug }) => {
         {title}
       </Link>
       <Stack spacing={1}>
-        {items.map(item => (
+        {items.map((item) => (
           <Entry key={item.url} slug={slug} item={item} indent />
         ))}
       </Stack>
@@ -28,7 +28,7 @@ export const TableOfContents = ({ tableOfContents, slug }) => {
     <Stack spacing={3} position="sticky" top="0">
       <Heading
         size="xs"
-        fontWeight="semibold"
+        fontWeight="bold"
         textTransform="uppercase"
         letterSpacing="wide"
         color="gray.600"
@@ -36,7 +36,7 @@ export const TableOfContents = ({ tableOfContents, slug }) => {
         On this page
       </Heading>
       <Stack spacing={1}>
-        {items.map(item => (
+        {items.map((item) => (
           <Entry key={item.url} item={item} slug={slug} />
         ))}
       </Stack>

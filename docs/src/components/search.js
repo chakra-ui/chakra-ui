@@ -30,9 +30,13 @@ export const Search = () => {
 
   const focus = (event) => {
     if (event.key === "/") {
-      event.preventDefault()
-      if (ref.current) {
-        ref.current.focus({ preventScroll: true })
+      const activeElement = document.activeElement
+      const focusWrapper = document.getElementById("gatsby-focus-wrapper")
+      if (activeElement === focusWrapper || activeElement === document.body) {
+        event.preventDefault()
+        if (ref.current) {
+          ref.current.focus({ preventScroll: true })
+        }
       }
     }
   }
