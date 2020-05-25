@@ -1,4 +1,10 @@
-# Component Theming
+---
+title: Component Themes
+description: Documentation for the component theming API.
+order: 7
+---
+
+# Component Themes
 
 Chakra provides a built-in component theming API that enables you to build fully
 customizable and highly reusable theme-aware components directly from your
@@ -16,7 +22,7 @@ We believe that most reusable, atomic components have the following modifiers:
 Our goal with the component theming API is to design a common interface to style
 any component given these characteristics. Here's how it works:
 
-```tsx
+```jsx live=false
 // 1. create a component schema in your theme
 const theme = {
 	colors: {
@@ -88,7 +94,7 @@ theme your components with your `theme`.
 
 As an example, we'll define a `small` size and `outline` variant for `Button`:
 
-```tsx
+```jsx live=false
 const theme = {
   components: {
     Button: {
@@ -128,7 +134,7 @@ render your components based on the `colorScheme` prop and current `colorMode`.
 Here's an example of `outline` and `solid` variants for `Button` that use the
 `colorScheme` prop passed to the component to determine which color to use:
 
-```tsx
+```jsx live=false
 const theme = {
   colors: {
     green: {
@@ -174,7 +180,7 @@ The `defaultProps` key of a component theming object allows you to specify the
 default props that are passed for your component. This is especially useful for
 setting defaults modifiers. Here's an example:
 
-```tsx
+```jsx live=false
 const theme = {
   colors: {
     green: "#34eb3d",
@@ -228,7 +234,7 @@ theme-aware style props that are used on all instances of the component. These
 are overriden by any modifiers or props, so they're great at setting sensible
 default styles. Here's an example:
 
-```tsx
+```jsx live=false
 const theme = {
   components: {
     Button: {
@@ -245,7 +251,7 @@ const theme = {
 
 `baseStyle` can also be defined as an option to `chakra`:
 
-```tsx
+```jsx live=false
 const MyButton = chakra('button', {
   baseStyle: {
     padding: 20
@@ -270,7 +276,7 @@ using `chakra` take a `themeKey` option. In this way, you can create custom
 components that hook into the modifiers, default props, and base styles you
 define in `theme`.
 
-```tsx
+```jsx live=false
 const MyButton = chakra('button', {themeKey: 'Button'})
 
 // the built-in Chakra Button and MyButton share the same definitions in your theme
@@ -292,7 +298,7 @@ parent using `themeKey`. `Accordion` uses a `themeKey` of `Accordion.Root`,
 
 Chakra will then look for a nested component theming object in `theme`:
 
-```tsx
+```jsx live=false
 const theme = {
   components: {
     Accordion: {
