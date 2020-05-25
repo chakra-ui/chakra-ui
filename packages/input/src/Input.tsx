@@ -56,8 +56,8 @@ export const Input = forwardRef(
     const inputProps = useFormControl<HTMLInputElement>(props)
     const group = useInputGroup()
 
-    const variant = group?.variant || props.variant
-    const size = group?.size || props.size
+    const variant = props.variant ?? group?.variant
+    const size = props.size ?? group?.size
 
     const theming = { variant, size } as any
 
