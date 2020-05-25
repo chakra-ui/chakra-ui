@@ -16,7 +16,7 @@ function getSubtleStyle(props: Props) {
   const darkBg = ink(`${c}.200`, "lowest")(t)
 
   return {
-    bg: mode(`${c}.200`, darkBg)(props),
+    bg: mode(`${c}.100`, darkBg)(props),
     color: mode(`${c}.800`, `${c}.200`)(props),
   }
 }

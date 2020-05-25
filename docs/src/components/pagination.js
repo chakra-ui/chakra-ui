@@ -1,22 +1,22 @@
-import React from "react"
-import { Box, Link, Text, Flex, Heading, Spacer } from "@chakra-ui/core"
+import { Flex, Heading, Link, Spacer, Text, SimpleGrid } from "@chakra-ui/core"
 import { Link as GatsbyLink } from "gatsby"
+import React from "react"
 
 export const PaginationLink = (props) => {
-  const { label, url, children } = props
+  const { label, url, children, ...rest } = props
   return (
     <Link
       flex="1"
       borderWidth="1px"
       padding="4"
       borderRadius="md"
+      bg="white"
       _hover={{
-        bg: "teal.50",
-        color: "teal.800",
-        borderColor: "teal.100",
+        boxShadow: "sm",
       }}
       as={GatsbyLink}
       to={url}
+      {...rest}
     >
       <Text fontSize="sm" fontWeight="semibold">
         {label}
@@ -30,14 +30,21 @@ export const PaginationLink = (props) => {
 
 export const Pagination = ({ previous, next }) => {
   return (
-    <Flex mt="12">
-      <PaginationLink label="Previous:" url={previous.fields.slug}>
-        {previous.frontmatter.title}
-      </PaginationLink>
-      <Spacer maxWidth="32px" />
-      <PaginationLink label="Next:" url={next.fields.slug}>
-        {next.frontmatter.title}
-      </PaginationLink>
-    </Flex>
+    <SimpleGrid mt="12" spacing="40px" columns={2}>
+      {previous ? (
+        <PaginationLink label="Previous:" url={previous.fields.slug} rel="prev">
+          {previous.frontmatter.title}
+        </PaginationLink>
+      ) : (
+        <div />
+      )}
+      {next ? (
+        <PaginationLink label="Next:" url={next.fields.slug} rel="next">
+          {next.frontmatter.title}
+        </PaginationLink>
+      ) : (
+        <div />
+      )}
+    </SimpleGrid>
   )
 }

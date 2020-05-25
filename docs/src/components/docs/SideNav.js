@@ -103,7 +103,7 @@ export const SideNavContent = ({
     top="4rem"
     position="relative"
     overflowY="auto"
-    borderRightWidth="1px"
+    // borderRightWidth="1px"
     {...props}
   >
     <Box

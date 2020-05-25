@@ -27,7 +27,7 @@ export const TableOfContents = ({ tableOfContents, slug }) => {
   return (
     <Stack spacing={3} position="sticky" top="0">
       <Heading
-        size="xs"
+        fontSize="sm"
         fontWeight="bold"
         textTransform="uppercase"
         letterSpacing="wide"

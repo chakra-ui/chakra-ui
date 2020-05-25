@@ -87,6 +87,9 @@ export const Search = () => {
       position="relative"
       width="100%"
       maxW="600px"
+      paddingX="4"
+      boxSizing="content-box"
+      display={["none", "none", "block"]}
       sx={{
         ".algolia-autocomplete": {
           width: "100%",
@@ -105,8 +108,7 @@ export const Search = () => {
         },
         ".ds-dropdown-menu": {
           "&:before": {
-            bg: "teal.400",
-            borderColor: "teal.400",
+            display: "none",
           },
         },
       }}
@@ -116,6 +118,7 @@ export const Search = () => {
           <SearchIcon color="gray.400" />
         </InputLeftElement>
         <Input
+          boxShadow="sm"
           placeholder={`Search the docs (Press "/" to focus)`}
           focusBorderColor="teal.400"
           ref={ref}
