@@ -9,7 +9,7 @@ import {
   Alert,
   useColorModeValue,
 } from "@chakra-ui/core"
-import CodeBlock from "./CodeBlock"
+import CodeBlock from "./code-block"
 
 const Pre = (props) => <chakra.div my="2em" borderRadius="sm" {...props} />
 

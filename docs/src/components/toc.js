@@ -1,12 +1,13 @@
 import React from "react"
-import { Link, Heading, Stack } from "@chakra-ui/core"
+import { Link, Heading, Stack, useColorModeValue } from "@chakra-ui/core"
 
 export const Entry = ({ item, indent, slug }) => {
   const { url, title, items = [] } = item
+  const color = useColorModeValue("gray.600", "whiteAlpha.600")
 
   return (
-    <Stack spacing={1} pl={indent && 2}>
-      <Link color="gray.600" fontSize="sm" href={`${slug}${url}`}>
+    <Stack spacing={1} pl={indent && 4} mt="1">
+      <Link color={color} fontSize="sm" href={`${slug}${url}`}>
         {title}
       </Link>
       <Stack spacing={1}>
@@ -24,6 +25,10 @@ export const TableOfContents = ({ tableOfContents, slug }) => {
     items: [{ items = [] }],
   } = tableOfContents
 
+  const color = useColorModeValue("gray.600", "whiteAlpha.700")
+
+  if (!items.length) return null
+
   return (
     <Stack spacing={3} position="sticky" top="0">
       <Heading
@@ -31,7 +36,7 @@ export const TableOfContents = ({ tableOfContents, slug }) => {
         fontWeight="bold"
         textTransform="uppercase"
         letterSpacing="wide"
-        color="gray.600"
+        color={color}
       >
         On this page
       </Heading>

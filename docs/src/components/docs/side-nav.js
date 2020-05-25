@@ -2,7 +2,7 @@ import * as React from "react"
 import { sortBy, upperFirst, camelCase } from "lodash/fp"
 import { graphql, useStaticQuery } from "gatsby"
 import { Box, Heading } from "@chakra-ui/core"
-import { ComponentLink, TopNavLink } from "./NavLink"
+import { ComponentLink, TopNavLink } from "./nav-link"
 
 const sortByOrder = sortBy(["frontmatter.order"])
 const sortByTitle = sortBy(["frontmatter.title"])
