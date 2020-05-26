@@ -10,7 +10,7 @@ import theme from "./src/theme"
 
 export const wrapRootElement = (
   { element },
-  { isResettingCSS = true, isUsingColorMode = true },
+  { isResettingCSS = true, isUsingColorMode = true, portalZIndex = 40 },
 ) => {
   const ModeProvider = isUsingColorMode ? ColorModeProvider : React.Fragment
   return (
@@ -18,7 +18,7 @@ export const wrapRootElement = (
       <ModeProvider>
         <GlobalStyle />
         {isResettingCSS && <CSSReset />}
-        <PortalManager zIndex={40}>{element}</PortalManager>
+        <PortalManager zIndex={portalZIndex}>{element}</PortalManager>
       </ModeProvider>
     </ThemeProvider>
   )

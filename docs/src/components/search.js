@@ -10,6 +10,7 @@ import {
 import { SearchIcon } from "@chakra-ui/icons"
 import "../styles/algolia.css"
 import { navigate } from "@reach/router"
+import docsearch from "docsearch.js"
 
 const getLvl1 = get("hierarchy.lvl1")
 const startsWithCss = startsWith("css-")
@@ -44,49 +45,48 @@ export const Search = () => {
   useEventListener("keydown", focus, window)
 
   React.useEffect(() => {
-    if (window) {
-      import("docsearch.js").then(({ default: docsearch }) => {
-        window.docsearch = docsearch
-        docsearch({
-          apiKey: "df1dcc41f7b8e5d68e73dd56d1e19701",
-          indexName: "chakra-ui",
-          inputSelector: "#algolia-search",
-          // debug: true,
-          handleSelected: (input, event, suggestion) => {
-            event.preventDefault()
-            input.setVal("")
-            input.close()
-            if (ref.current) {
-              ref.current.blur()
-            }
+    if (window.docsearch) return
 
-            const url = suggestion.url.replace("https://chakra-ui.com", "")
-            navigate(url)
-            var hash = window.decodeURI(getHash(url))
+    window.docsearch = docsearch
 
-            if (hash !== "#" && hash !== "") {
-              var link = document.querySelector(`.docSearch-content ${hash} a`)
-              if (link) {
-                link.click()
-              }
-            }
-          },
-          transformData(hits) {
-            return hits.filter((hit) => {
-              const lvl1 = getLvl1(hit)
-              return !startsWithCss(lvl1)
-            })
-          },
+    docsearch({
+      apiKey: "df1dcc41f7b8e5d68e73dd56d1e19701",
+      indexName: "chakra-ui",
+      inputSelector: "#algolia-search",
+      // debug: true,
+      handleSelected: (input, event, suggestion) => {
+        event.preventDefault()
+        input.setVal("")
+        input.close()
+        if (ref.current) {
+          ref.current.blur()
+        }
+
+        const url = suggestion.url.replace("https://chakra-ui.com", "")
+        navigate(url)
+        const hash = window.decodeURI(getHash(url))
+
+        if (hash !== "#" && hash !== "") {
+          const link = document.querySelector(`.docSearch-content ${hash} a`)
+          if (link) {
+            link.click()
+          }
+        }
+      },
+      transformData(hits) {
+        return hits.filter((hit) => {
+          const lvl1 = getLvl1(hit)
+          return !startsWithCss(lvl1)
         })
-      })
-    }
-  })
+      },
+    })
+  }, [])
 
   return (
     <Box
       position="relative"
       width="100%"
-      maxW="600px"
+      maxW="700px"
       paddingX="4"
       boxSizing="content-box"
       display={["none", "none", "block"]}

@@ -1,7 +1,6 @@
 import React from "react"
 import { useLocation } from "@reach/router"
-import { Box } from "@chakra-ui/core"
-import PropTypes from "prop-types"
+import { Box, Global } from "@chakra-ui/core"
 import { MDXProvider } from "@mdx-js/react"
 import MDXComponents from "./docs/mdx-components"
 import SideNav from "./docs/side-nav"
@@ -47,14 +46,15 @@ const Layout = ({ children, pageContext }) => {
     pageContext && pageContext.layout === "docs" ? SidebarLayout : HomeLayout
 
   return (
-    <Box>
+    <Box class="chakra-layout">
+      <Global
+        styles={{
+          html: { scrollBehavior: "smooth" },
+        }}
+      />
       <Container pathname={location.pathname}>{children}</Container>
     </Box>
   )
-}
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
 }
 
 export default Layout

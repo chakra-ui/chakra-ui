@@ -131,6 +131,7 @@
     "edit-json-file": "1.4.0",
     "emotion-theming": "10.0.27",
     "eslint": "7.1.0",
+    "eslint-plugin-react": "7.20.0",
     "eslint-config-react-app": "^5.2.1",
     "eslint-plugin-jest-dom": "2.1.0",
     "eslint-plugin-prettier": "3.1.3",

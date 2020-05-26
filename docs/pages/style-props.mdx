@@ -24,13 +24,13 @@ each group. To learn more about it, you can also check the
 import { Box } from "@chakra-ui/core"
 
 // m={2} refers to the value of `theme.space[2]`
-;<Box m={2}>Tomato</Box>
+<Box m={2}>Tomato</Box>
 
 // You can also use custom values
-;<Box maxW="960px" mx="auto" />
+<Box maxW="960px" mx="auto" />
 
 // sets margin `8px` on all viewports and `16px` from the first breakpoint and up
-;<Box m={[2, 3]} />
+<Box m={[2, 3]} />
 ```
 
 | Prop                  | CSS Property                       | Theme Key |
@@ -69,11 +69,12 @@ import { Box } from "@chakra-ui/core";
 <Box backgroundColor='tomato' />
 ```
 
-| Prop                    | CSS Property       | Theme Key |
-| ----------------------- | ------------------ | --------- |
-| `color`                 | `color`            | `colors`  |
-| `bg`, `backgroundColor` | `background-color` | `colors`  |
-| `opacity`               | `opacity`          | none      |
+| Prop               | CSS Property       | Theme Key |
+| ------------------ | ------------------ | --------- |
+| `color`            | `color`            | `colors`  |
+| `bg`, `background` | `background`       | `colors`  |
+| `bgColor`          | `background-color` | `colors`  |
+| `opacity`          | `opacity`          | none      |
 
 ### Typography
 
@@ -148,12 +149,12 @@ import { Box } from "@chakra-ui/core";
 import { Box, Flex } from "@chakra-ui/core"
 
 // verbose
-;<Box display="flex" alignItems="center" justifyContent="space-between">
+<Box display="flex" alignItems="center" justifyContent="space-between">
   Box with Flex props
 </Box>
 
 // shorthand using the `Flex` component
-;<Flex align="center" justify="center">
+<Flex align="center" justify="center">
   Flex Container
 </Flex>
 ```
@@ -182,12 +183,12 @@ import { Box, Flex } from "@chakra-ui/core"
 import { Box, Grid } from "@chakra-ui/core"
 
 // verbose
-;<Box display="grid" gridGap={2} gridAutoFlow="row dense">
+<Box display="grid" gridGap={2} gridAutoFlow="row dense">
   Grid
 </Box>
 
 // shorthand using the `Grid` component
-;<Grid gap={2} autoFlow="row dense">
+<Grid gap={2} autoFlow="row dense">
   Grid
 </Grid>
 ```
@@ -215,14 +216,14 @@ import { Box, Grid } from "@chakra-ui/core"
 import { Box } from "@chakra-ui/core"
 
 // verbose
-;<Box
+<Box
   backgroundImage="url('/images/kyuubi.png')"
   backgroundPosition="center"
   backgroundRepeat="no-repeat"
 />
 
 // shorthand
-;<Box bgImage="url('/images/gaara.png')" bgPos="center" bgRepeat="no-repeat" />
+<Box bgImage="url('/images/gaara.png')" bgPos="center" bgRepeat="no-repeat" />
 ```
 
 | Prop                                  | CSS Property            | Theme Key |
@@ -230,7 +231,7 @@ import { Box } from "@chakra-ui/core"
 | `background`                          | `background`            | none      |
 | `bgImage`, `backgroundImage`          | `background-image`      | none      |
 | `bgSize`, `backgroundSize`            | `background-size`       | none      |
-| `bgPos`,`backgroundPosition`          | `background-position`   | none      |
+| `bgPosition`,`backgroundPosition`     | `background-position`   | none      |
 | `bgRepeat`,`backgroundRepeat`         | `background-repeat`     | none      |
 | `bgAttachment`,`backgroundAttachment` | `background-attachment` | none      |
 
@@ -238,7 +239,7 @@ import { Box } from "@chakra-ui/core"
 
 ```jsx live=false
 import { Box } from "@chakra-ui/core"
-;<Box border="1px" borderRadius="md" borderColor="gray.200">
+<Box border="1px" borderRadius="md" borderColor="gray.200">
   Card
 </Box>
 ```
@@ -274,13 +275,13 @@ import { Box } from "@chakra-ui/core"
 import { Button } from "@chakra-ui/core"
 
 // This button will have no right borderRadius
-;<Button borderRightRadius="0">Button 1</Button>
+<Button borderRightRadius="0">Button 1</Button>
 
 // This button will have no left borderRadius*/
-;<Button borderLeftRadius="0">Button 2</Button>
+<Button borderLeftRadius="0">Button 2</Button>
 
 // top left and top right radius will be `theme.radii.md` => 4px
-;<Button borderTopRadius="md">Button 2</Button>
+<Button borderTopRadius="md">Button 2</Button>
 ```
 
 | Prop                      | CSS Property                                               | Theme Field |
@@ -301,14 +302,14 @@ import { Button } from "@chakra-ui/core"
 import { Box } from "@chakra-ui/core"
 
 // verbose
-;<Box position="absolute">Cover</Box>
+<Box position="absolute">Cover</Box>
 
 // shorthand
-;<Box pos="absolute">Cover</Box>
-;<Box pos="absolute" top="0" left="0">
+<Box pos="absolute">Cover</Box>
+<Box pos="absolute" top="0" left="0">
   Absolute with top and left
 </Box>
-;<Box pos="fixed" w="100%" zIndex={2}>
+<Box pos="fixed" w="100%" zIndex={2}>
   Fixed with zIndex
 </Box>
 ```
@@ -329,10 +330,10 @@ import { Box, Text } from "@chakra-ui/core"
 
 // text-shadow will be `theme.shadows.sm`
 // box-shadow will be `theme.shadows.md`
-;<Box textShadow="sm" boxShadow="md" />
+<Box textShadow="sm" boxShadow="md" />
 
 // raw CSS values
-;<Text textShadow="2px 2px #ff0000" boxShadow="5px 10px #888888">
+<Text textShadow="2px 2px #ff0000" boxShadow="5px 10px #888888">
   Text with shadows
 </Text>
 ```

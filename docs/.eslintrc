@@ -12,9 +12,16 @@
     "ecmaFeatures": {
       "jsx": true
     },
-    "ecmaVersion": 11,
+    "ecmaVersion": 2020,
     "sourceType": "module"
   },
-  "plugins": ["react"],
-  "rules": {}
+  "plugins": ["react", "react-hooks"],
+  "rules": {
+    "no-undef": "off",
+    "no-console": 0,
+    "no-empty": 0,
+    "no-eval": "error",
+    "react/display-name": "off",
+    "react/prop-types": "off"
+  }
 }
