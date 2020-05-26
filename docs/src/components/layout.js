@@ -6,6 +6,7 @@ import MDXComponents from "./docs/mdx-components"
 import SideNav from "./docs/side-nav"
 import Header from "./header"
 import { Footer } from "./footer"
+import { SkipNavContent, SkipNavLink } from "@chakra-ui/skip-nav"
 
 const HomeLayout = ({ children }) => (
   <Box>
@@ -46,14 +47,17 @@ const Layout = ({ children, pageContext }) => {
     pageContext && pageContext.layout === "docs" ? SidebarLayout : HomeLayout
 
   return (
-    <Box class="chakra-layout">
-      <Global
-        styles={{
-          html: { scrollBehavior: "smooth" },
-        }}
-      />
-      <Container pathname={location.pathname}>{children}</Container>
-    </Box>
+    <>
+      <SkipNavLink zIndex={20}>Skip to Content</SkipNavLink>
+      <SkipNavContent as="main">
+        <Global
+          styles={{
+            html: { scrollBehavior: "smooth" },
+          }}
+        />
+        <Container pathname={location.pathname}>{children}</Container>
+      </SkipNavContent>
+    </>
   )
 }
 

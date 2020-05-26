@@ -111,16 +111,19 @@ export const Search = () => {
             display: "none",
           },
         },
+        ".ds-cursor .algolia-docsearch-suggestion--wrapper": {
+          bg: "gray.100",
+          boxShadow: "none",
+        },
       }}
     >
-      <InputGroup variant="outline" size="md">
+      <InputGroup variant="filled" size="md">
         <InputLeftElement>
-          <SearchIcon color="gray.400" />
+          <SearchIcon color="gray.500" />
         </InputLeftElement>
         <Input
-          boxShadow="sm"
           placeholder={`Search the docs (Press "/" to focus)`}
-          focusBorderColor="teal.400"
+          focusBorderColor="teal.200"
           ref={ref}
           borderRadius="md"
           id="algolia-search"

@@ -1,4 +1,4 @@
-import { Link, SimpleGrid, Text, useColorModeValue } from "@chakra-ui/core"
+import { Link, SimpleGrid, Text } from "@chakra-ui/core"
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons"
 import { Link as GatsbyLink } from "gatsby"
 import React from "react"
@@ -6,19 +6,13 @@ import React from "react"
 export const PaginationLink = (props) => {
   const { label, url, children, ...rest } = props
 
-  const bg = useColorModeValue("white", "gray.800")
-  const hoverBg = useColorModeValue("gray.50", "whiteAlpha.50")
-
   return (
     <Link
-      flex="1"
-      borderWidth="1px"
-      padding="4"
-      bg={bg}
-      borderRadius="md"
       _hover={{
-        bg: hoverBg,
+        textDecor: "none",
       }}
+      flex="1"
+      borderRadius="md"
       as={GatsbyLink}
       to={url}
       {...rest}
@@ -35,7 +29,14 @@ export const PaginationLink = (props) => {
 
 export const Pagination = ({ previous, next }) => {
   return (
-    <SimpleGrid mt="12" spacing="40px" columns={2}>
+    <SimpleGrid
+      as="nav"
+      aria-label="pagination"
+      mt="3rem"
+      mb="80px"
+      spacing="40px"
+      columns={2}
+    >
       {previous ? (
         <PaginationLink
           textAlign="left"

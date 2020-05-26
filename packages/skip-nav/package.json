@@ -1,0 +1,55 @@
+{
+  "name": "@chakra-ui/skip-nav",
+  "version": "1.0.0",
+  "description": "Skip navigation links for screen reader and keyboard users",
+  "keywords": [
+    "skip link",
+    "skip",
+    "link",
+    "navigation",
+    "a11y",
+    "screen reader",
+    "accessbility",
+    "react",
+    "chakra ui"
+  ],
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
+  "license": "MIT",
+  "main": "dist/cjs",
+  "module": "dist/esm",
+  "types": "dist/types",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "start": "nodemon --exec yarn build --watch src",
+    "build:esm": "tsc --module esnext --outDir dist/esm --declaration false",
+    "build:cjs": "tsc --module commonjs --outDir dist/cjs --declaration false",
+    "build:types": "tsc --emitDeclarationOnly --declaration --declarationMap --declarationDir dist/types",
+    "build": "concurrently yarn:build:*",
+    "test": "jest --env=jsdom --passWithNoTests",
+    "test:cov": "yarn test --coverage",
+    "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
+    "lint:types": "tsc --noEmit",
+    "lint": "concurrently yarn:lint:*"
+  },
+  "devDependencies": {
+    "@chakra-ui/system": "1.0.0"
+  },
+  "peerDependencies": {
+    "@chakra-ui/system": "1.0.0",
+    "react": "16.x"
+  }
+}

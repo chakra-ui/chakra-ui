@@ -91,7 +91,8 @@
     "media-query": "yarn workspace @chakra-ui/media-query",
     "css": "yarn workspace @chakra-ui/css",
     "variant": "yarn workspace @chakra-ui/variant",
-    "skeleton": "yarn workspace @chakra-ui/skeleton"
+    "skeleton": "yarn workspace @chakra-ui/skeleton",
+    "skip-nav": "yarn workspace @chakra-ui/skip-nav"
   },
   "czConfig": {
     "path": "node_modules/cz-conventional-changelog"

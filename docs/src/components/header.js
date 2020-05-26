@@ -72,7 +72,7 @@ const Header = ({ isConstrained, ...props }) => {
       bg={bg}
       left="0"
       right="0"
-      // borderBottomWidth="1px"
+      borderBottomWidth="1px"
       width="full"
       height="4rem"
       {...props}
