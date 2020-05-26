@@ -1,0 +1,13 @@
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="400" height="400" fill="white"/>
+<rect x="44" y="115" width="312" height="3" fill="#E2E8F0"/>
+<rect x="56" y="132" width="152" height="17" fill="#A0AEC0"/>
+<rect x="56" y="180" width="204" height="17" fill="#A0AEC0"/>
+<rect x="56" y="228" width="88" height="17" fill="#A0AEC0"/>
+<rect x="44" y="163" width="312" height="3" fill="#E2E8F0"/>
+<rect x="44" y="211" width="312" height="3" fill="#E2E8F0"/>
+<rect x="44" y="259" width="312" height="3" fill="#E2E8F0"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M345.424 139.126L336.493 146.994L327.98 139.1L330.02 136.9L336.544 142.95L343.441 136.875L345.424 139.126Z" fill="#A0AEC0"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M345.424 187.126L336.493 194.994L327.98 187.1L330.02 184.9L336.544 190.95L343.441 184.875L345.424 187.126Z" fill="#A0AEC0"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M345.424 235.126L336.493 242.994L327.98 235.1L330.02 232.9L336.544 238.95L343.441 232.875L345.424 235.126Z" fill="#A0AEC0"/>
+</svg>

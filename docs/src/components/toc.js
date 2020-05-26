@@ -38,7 +38,7 @@ export const TableOfContents = ({ tableOfContents, slug }) => {
         letterSpacing="wide"
         color={color}
       >
-        On this page
+        Table of Contents
       </Heading>
       <Stack spacing={1}>
         {items.map((item) => (
