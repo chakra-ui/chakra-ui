@@ -1,6 +1,6 @@
 import React from "react"
 import { useLocation } from "@reach/router"
-import { Box, Global } from "@chakra-ui/core"
+import { Box } from "@chakra-ui/core"
 import { MDXProvider } from "@mdx-js/react"
 import MDXComponents from "./docs/mdx-components"
 import SideNav from "./docs/side-nav"
@@ -50,11 +50,6 @@ const Layout = ({ children, pageContext }) => {
     <>
       <SkipNavLink zIndex={20}>Skip to Content</SkipNavLink>
       <SkipNavContent as="main">
-        <Global
-          styles={{
-            html: { scrollBehavior: "smooth" },
-          }}
-        />
         <Container pathname={location.pathname}>{children}</Container>
       </SkipNavContent>
     </>
