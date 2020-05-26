@@ -1,5 +1,6 @@
 import * as React from "react"
 import { PropsOf, chakra, useColorModeValue } from "@chakra-ui/system"
+import { __DEV__ } from "@chakra-ui/utils"
 
 export type SkipNavLinkProps = PropsOf<typeof chakra.a>
 
@@ -45,6 +46,10 @@ export function SkipNavLink(props: SkipNavLinkProps) {
   )
 }
 
+if (__DEV__) {
+  SkipNavLink.displayName = "SkipNavLink"
+}
+
 export type SkipNavContentProps = PropsOf<"div">
 
 /**
@@ -53,4 +58,8 @@ export type SkipNavContentProps = PropsOf<"div">
 export function SkipNavContent(props: SkipNavContentProps) {
   const { id = fallbackId, ...rest } = props
   return <chakra.div id={id} {...rest} />
+}
+
+if (__DEV__) {
+  SkipNavContent.displayName = "SkipNavContent"
 }
