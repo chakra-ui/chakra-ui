@@ -1,5 +1,20 @@
 import * as React from "react";
 
+export interface PortalContainerProps {
+  container: React.RefObject<HTMLElement>;
+
+  /**
+   * The children rendered inside the `PortalContainer`.
+   */
+  children: React.ReactNode;
+}
+
+declare const PortalContainerProvider: React.FC<PortalContainerProps>;
+
+declare const usePortalContainer: () => React.RefObject<HTMLElement>;
+
+export { PortalContainerProvider, usePortalContainer };
+
 export interface PortalProps {
   /**
    * The children to render into the `container`.

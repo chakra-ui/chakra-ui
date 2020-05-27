@@ -10,7 +10,7 @@ import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import FocusLock from "react-focus-lock/dist/cjs";
 import { wrapEvent, useForkRef, getFocusables } from "../utils";
 import Box from "../Box";
-import Portal from "../Portal";
+import Portal, { usePortalContainer } from "../Portal";
 import CloseButton from "../CloseButton";
 import { hideOthers } from "aria-hidden";
 import { useId } from "@reach/auto-id";
@@ -31,6 +31,7 @@ function useAriaHider({
   enableInert,
   container = canUseDOM ? document.body : null,
 }) {
+  const portalContainer = usePortalContainer();
   const mountRef = useRef(
     canUseDOM
       ? document.getElementById(id) || document.createElement("div")
@@ -43,7 +44,7 @@ function useAriaHider({
 
     if (isOpen && canUseDOM) {
       mountRef.current.id = id;
-      container.appendChild(mountRef.current);
+      (portalContainer.current || container).appendChild(mountRef.current);
       if (enableInert) {
         undoAriaHidden = hideOthers(mountNode);
       }
@@ -57,7 +58,7 @@ function useAriaHider({
         mountNode.parentElement.removeChild(mountNode);
       }
     };
-  }, [isOpen, id, enableInert, container]);
+  }, [isOpen, id, enableInert, container, portalContainer]);
 
   return mountRef;
 }

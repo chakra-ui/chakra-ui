@@ -5,9 +5,26 @@
  * Original source: https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Portal/Portal.js
  */
 
-import React, { Children, cloneElement, useState, forwardRef } from "react";
+import React, {
+  Children,
+  cloneElement,
+  useState,
+  forwardRef,
+  createContext,
+  useContext,
+} from "react";
 import { findDOMNode, createPortal } from "react-dom";
 import { useForkRef, setRef, useEnhancedEffect } from "../utils";
+
+const PortalContainerContext = createContext();
+
+export const usePortalContainer = () => useContext(PortalContainerContext);
+
+export const PortalContainerProvider = ({ container, children }) => (
+  <PortalContainerContext.Provider value={container}>
+    {children}
+  </PortalContainerContext.Provider>
+);
 
 function getContainer(container) {
   container = typeof container === "function" ? container() : container;
