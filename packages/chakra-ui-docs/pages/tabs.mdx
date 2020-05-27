@@ -212,7 +212,7 @@ function Example() {
 }
 ```
 
-### Make a tab initally active
+### Make a tab initially active
 
 If you want a tab to be initially active, simply pass the `defaultIndex` prop
 and set it to the index of that tab.
@@ -277,7 +277,7 @@ arrow keys to change tabs, the tab is activated and focused.
 > keyboard and screen reader users.
 
 In this scenario, you should use a manually activated tab, it moves focus
-without activating the tabs. With focus on a specifc tab, users can activate a
+without activating the tabs. With focus on a specific tab, users can activate a
 tab by pressing <kbd>Space</kbd> or <kbd>Enter</kbd>.
 
 ```jsx
@@ -461,7 +461,7 @@ Tabs composes `Box` so you call pass all `Box` related props.
 | `onChange`     | `(index: number) => void`                                                         |              | The callback to update the active tab index.                                                                                    |
 | `index`        | `number`                                                                          |              | The controlled index of the tabs.                                                                                               |
 | `defaultIndex` | `number`                                                                          |              | The index of the initial active tab.                                                                                            |
-| `isManual`     | `boolean`                                                                         |              | If `true`, keyboard navigation changes focus between tabs but doens't activate it. User will have to press `Enter` to active it |
+| `isManual`     | `boolean`                                                                         |              | If `true`, keyboard navigation changes focus between tabs but doesn't activate it. User will have to press `Enter` to active it |
 | `children`     | `React.ReactNode`                                                                 |              | The children of the switch.                                                                                                     |
 | `variant`      | `line`,`enclosed`,`enclosed-colored`, `soft-rounded`, `solid-rounded`, `unstyled` | `line`       | The visual style of the tab.                                                                                                    |
 | `variantColor` | `string`                                                                          |              | The primary color to use for the selected variant. Use a color key in `theme.colors`                                            |
