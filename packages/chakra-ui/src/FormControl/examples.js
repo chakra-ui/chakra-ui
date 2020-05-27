@@ -36,7 +36,7 @@ stories.add("with helper text", () => (
     <FormLabel htmlFor="lname">Last name</FormLabel>
     <Input id="lname" aria-describedby="lname-help" placeholder="Last name" />
     <FormHelperText id="lname-help">
-      Ensure it's up to 7 charaters
+      Ensure it's up to 7 characters
     </FormHelperText>
   </FormControl>
 ));
