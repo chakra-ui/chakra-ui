@@ -1,0 +1,201 @@
+---
+title: Component Theming - Basic
+description: How to use the theming API in chakra
+---
+
+# Theming Tutorial
+
+## Design a button component
+
+Let's say you need to create a custom button that has 2 sizes, `small` and
+`large`.
+
+The first thing you need do is to call the `chakra` function on the `button`
+element. The result is a button component that takes both native button props
+and chakra's style props.
+
+```jsx live=false
+import { chakra } from "@chakra-ui/core"
+
+const Button = chakra("button")
+```
+
+The `chakra` function provides options you can use to theme this component.
+
+- **baseStyles**: Used to add base or default styles to the component.
+- **sizes**: Used to add the styles for the different sizes of the component. In
+  this scenario, it'll be `small` and `large`.
+- **variants**: Used to add style variants of the component. In this scenario,
+  it'll be `solid` and `outline`.
+
+For this button, we might want to apply some base styles it should have
+regardless of the variant or size. For example, applying `font-weight`,
+`text-transform`, etc.
+
+Here's how to apply base styles to the button.
+
+```jsx
+const Button = chakra("button", {
+  baseStyles: {
+    fontWeight: "semibold",
+    textTransform: "uppercase",
+  },
+})
+```
+
+Next, we'll define the styles for the button sizes. Here's how to do it:
+
+```jsx live=false
+const Button = chakra("button", {
+  sizes: {
+    small: {
+      padding: "12px",
+      fontSize: "14px",
+    },
+    large: {
+      padding: "24px",
+      fontSize: "18px",
+    },
+  },
+})
+```
+
+Looks simple, right? Now, let's add the variants or visual styles of the button.
+
+Let's add 2 variant styles to the button, say, `solid` and `outline`. Here's how
+to do it:
+
+```jsx live=false
+const Button = chakra("button", {
+  variants: {
+    solid: {
+      bg: "blue.600",
+      color: "white",
+    },
+    outline: {
+      border: "2px",
+      borderColor: "blue.600",
+    },
+  },
+})
+```
+
+Combining the sizes and variants, We now have a themable Button component.
+Here's what it looks like:
+
+```jsx
+const Button = chakra("button", {
+  baseStyles: {
+    fontWeight: "semibold",
+    textTransform: "uppercase",
+  },
+  sizes: {
+    small: {
+      padding: "12px",
+      fontSize: "14px",
+    },
+    large: {
+      padding: "24px",
+      fontSize: "18px",
+    },
+  },
+  variants: {
+    solid: {
+      bg: "blue.600",
+      color: "white",
+    },
+    outline: {
+      border: "2px",
+      borderColor: "blue.600",
+    },
+  },
+})
+```
+
+### Setting default values
+
+Most of the time, you want the button component to come with a default `size`
+and `variant` without having to pass props to it.
+
+To set the default values, you can use React's `defaultProps`.
+
+Here's how to set the button size to `small` and variant to `solid` by default.
+
+```jsx live=false
+Button.defaultProps = {
+  size: "small",
+  variant: "solid",
+}
+```
+
+### Using the `Button` component
+
+First, without passing any props to the Button component, it'll read from the
+`defaultProps` in the theme.
+
+```jsx live=false
+// this will render a small, solid button
+<Button>Chakra</Button>
+```
+
+Now, you can pass the `size` prop to modify the button's size
+
+```jsx live=false
+// this will render a large, solid button
+<Button size="large">Chakra</Button>
+```
+
+### Using the `themeKey`
+
+To provide this styles globally, you can move all these styles to the theme
+under `theme.components.Button` and use the `themeKey` option to automatically
+connect them. It works the same!
+
+> **💡Pro Tip:** You can also move the `defaultProps` to the theme as well.
+
+```jsx
+const Button = chakra("button", {
+  themeKey: "Button",
+})
+
+const theme = {
+  components: {
+    Button: {
+      defaultProps: {
+        size: "small",
+        variant: "solid",
+      },
+      baseStyles: {
+        fontWeight: "semibold",
+        textTransform: "uppercase",
+      },
+      sizes: {
+        small: {
+          padding: "12px",
+          fontSize: "14px",
+        },
+        large: {
+          padding: "24px",
+          fontSize: "18px",
+        },
+      },
+      variants: {
+        solid: {
+          bg: "blue.600",
+          color: "white",
+        },
+        outline: {
+          border: "2px",
+          borderColor: "blue.600",
+        },
+      },
+    },
+  },
+}
+```
+
+This API makes super easy to add or remove button sizes or variants in the
+future.
+
+> All Chakra's component follows this API and we've made call component styles
+> available to you in the `chakra/` folder of your project.

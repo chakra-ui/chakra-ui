@@ -1,23 +1,22 @@
 ---
-title: Component Themes
+title: Component Theming
 description: Documentation for the component theming API.
 order: 7
 ---
 
-# Component Themes
+# Component Theming
 
-Chakra provides a built-in component theming API that enables you to build fully
-customizable and highly reusable theme-aware components directly from your
-[`theme`](/theme).
+Chakra provides a built-in component theming API that makes it easy to build
+fully customizable, theme-aware components directly from your [`theme`](/theme).
 
-We believe that most reusable, atomic components have the following modifiers:
+We believe most reusable components have the following modifiers:
 
-- Size: A component has different sizes variations (small, medium, large)
-- Variant: A component has different visual styles (outline, solid, ghost)
-- Color Scheme (Optional): For a given component variant, it can have several
+- Size: A component can have different sizes (small, medium, large)
+- Variant: A component can different visual styles (outline, solid, ghost)
+- Color scheme (Optional): For a given component variant, it can have several
   color schemes. For example, an outline button with a red color scheme.
-- Color Mode (Optional): Components change their visual styles based on the
-  user's preferred color mode (light or dark).
+- Color mode (Optional): A component can change its visual styles based on the
+  user's preferred or system color mode (light or dark).
 
 Our goal with the component theming API is to design a common interface to style
 any component given these characteristics. Here's how it works:

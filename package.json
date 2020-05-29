@@ -30,7 +30,7 @@
     "patch": "node -r esm scripts/patch-workspace.js",
     "create-pkg": "node scripts/create-package.js",
     "release": "lerna publish",
-    "release:next": "lerna publish --canary --preid next",
+    "release:next": "lerna publish --canary --preid alpha",
     "release:ci": "lerna publish -y --loglevel verbose",
     "release:failed": "lerna publish from-package -y --loglevel verbose",
     "docs": "yarn workspace @chakra-ui/docs",
