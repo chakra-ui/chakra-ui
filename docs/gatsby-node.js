@@ -1,6 +1,9 @@
 const path = require("path")
 const { createFilePath } = require("gatsby-source-filesystem")
-const { sortPostNodes } = require("./utils")
+const {
+  sortPostNodes,
+  getRelativeDocsPath: getRelativeDocPath,
+} = require("./utils")
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
@@ -46,6 +49,7 @@ exports.createPages = async ({ graphql, actions }) => {
       {
         allMdx {
           nodes {
+            fileAbsolutePath
             frontmatter {
               title
               order
@@ -69,6 +73,7 @@ exports.createPages = async ({ graphql, actions }) => {
     const next =
       index === sortedNodes.length - 1 ? null : sortedNodes[index + 1]
     const slug = node.fields.slug
+    const relativePath = getRelativeDocPath(node.fileAbsolutePath)
     createPage({
       // we use the generated slug for the path
       path: slug,
@@ -89,6 +94,9 @@ exports.createPages = async ({ graphql, actions }) => {
         // previous and next pages
         previous,
         next,
+
+        // relative path to file ('/docs/pages/getting-started.mdx')
+        relativePath,
       },
     })
   })

@@ -21,11 +21,18 @@ const orderByOrderThenTitle = _.orderBy(
   ["asc", "asc"],
 )
 
-module.exports.sortPostNodes = nodes => {
+module.exports.sortPostNodes = (nodes) => {
   const collections = groupByCollection(nodes)
   const sortedCollectionNodes = _.values(collections).map(orderByOrderThenTitle)
   const flattened = _.flatten(_.values(sortedCollectionNodes))
   const allSorted = flattened.sort(compareCollections)
 
   return allSorted
+}
+
+const DOCS_REGEX = /\/docs\/pages\/.*/
+module.exports.getRelativeDocsPath = (fileAbsolutePath) => {
+  if (!fileAbsolutePath) return
+  const match = fileAbsolutePath.match(DOCS_REGEX)
+  return match ? match[0] : null
 }
