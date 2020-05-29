@@ -3,7 +3,7 @@ import { useCallback, useState } from "react"
 type InitialState = boolean | (() => boolean)
 
 /**
- * Reack hook to manage boolean (on - off) states
+ * React hook to manage boolean (on - off) states
  *
  * @param initialState the initial boolean state value
  */
