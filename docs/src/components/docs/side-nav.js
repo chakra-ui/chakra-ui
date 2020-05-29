@@ -1,7 +1,7 @@
 import * as React from "react"
 import { sortBy, upperFirst, camelCase } from "lodash/fp"
 import { graphql, useStaticQuery } from "gatsby"
-import { Box, Heading } from "@chakra-ui/core"
+import { Box, Heading, Badge } from "@chakra-ui/core"
 import { ComponentLink, TopNavLink } from "./nav-link"
 
 const sortByOrder = sortBy(["frontmatter.order"])
@@ -37,6 +37,16 @@ const useLinksQuery = () => {
         utilities: allMdx(
           filter: { fields: { collection: { eq: "utilities" } } }
         ) {
+          nodes {
+            frontmatter {
+              title
+            }
+            fields {
+              slug
+            }
+          }
+        }
+        theming: allMdx(filter: { fields: { collection: { eq: "theming" } } }) {
           nodes {
             frontmatter {
               title
@@ -84,6 +94,17 @@ const UtilitiesLinks = () => {
   ))
 }
 
+const ThemingLinks = () => {
+  const { theming } = useLinksQuery()
+  const nodes = sortByOrder(theming.nodes)
+
+  return nodes.map(({ frontmatter, fields }) => (
+    <ComponentLink key={frontmatter.title} href={fields.slug}>
+      {frontmatter.title}
+    </ComponentLink>
+  ))
+}
+
 const NavGroupHeading = (props) => (
   <Heading
     size="xs"
@@ -115,6 +136,21 @@ export const SideNavContent = ({
     >
       <Box mb="8">
         <MainLinks />
+      </Box>
+
+      <Box mb="10">
+        <NavGroupHeading>
+          <span>Theming</span>
+          <Badge
+            ml="3"
+            variant="solid"
+            colorScheme="purple"
+            verticalAlign="baseline"
+          >
+            New
+          </Badge>
+        </NavGroupHeading>
+        <ThemingLinks />
       </Box>
 
       <Box mb="10">

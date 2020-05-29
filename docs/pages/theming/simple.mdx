@@ -1,9 +1,10 @@
 ---
-title: Component Theming - Basic
+title: Basic
 description: How to use the theming API in chakra
+order: 2
 ---
 
-# Theming Tutorial
+# Learn Theming
 
 ## Design a button component
 
@@ -34,7 +35,7 @@ regardless of the variant or size. For example, applying `font-weight`,
 
 Here's how to apply base styles to the button.
 
-```jsx
+```jsx live=false
 const Button = chakra("button", {
   baseStyles: {
     fontWeight: "semibold",
@@ -83,7 +84,7 @@ const Button = chakra("button", {
 Combining the sizes and variants, We now have a themable Button component.
 Here's what it looks like:
 
-```jsx
+```jsx live=false
 const Button = chakra("button", {
   baseStyles: {
     fontWeight: "semibold",
@@ -153,7 +154,7 @@ connect them. It works the same!
 
 > **💡Pro Tip:** You can also move the `defaultProps` to the theme as well.
 
-```jsx
+```jsx live=false
 const Button = chakra("button", {
   themeKey: "Button",
 })
