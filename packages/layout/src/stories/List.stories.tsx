@@ -1,5 +1,13 @@
 import * as React from "react"
-import { List, ListItem, Box, Text, ListIcon } from ".."
+import {
+  List,
+  ListItem,
+  Box,
+  Text,
+  ListIcon,
+  OrderedList,
+  UnorderedList,
+} from ".."
 import { FaCheck, FaPhone, FaAccessibleIcon } from "react-icons/fa"
 
 export default {
@@ -11,7 +19,7 @@ export const Default = () => (
     <Text fontSize="sm" color="gray.600">
       .list-disc
     </Text>
-    <List styleType="disc" spacing="20px">
+    <UnorderedList spacing="2px">
       <ListItem>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit
       </ListItem>
@@ -21,12 +29,12 @@ export const Default = () => (
       <ListItem>
         Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
       </ListItem>
-    </List>
+    </UnorderedList>
   </Box>
 )
 
 export const Ordered = () => (
-  <List styleType="decimal">
+  <OrderedList>
     <ListItem>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit
     </ListItem>
@@ -36,7 +44,7 @@ export const Ordered = () => (
     <ListItem>
       Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
     </ListItem>
-  </List>
+  </OrderedList>
 )
 
 export const unstyledWithIcon = () => (

@@ -1,15 +1,4 @@
-import React from "react"
-
-interface ItemProps<T> {
-  /**
-   * The item from data being rendered.
-   */
-  item: T
-  /**
-   * The index corresponding to this item in the data array.
-   */
-  index: number
-}
+import * as React from "react"
 
 export interface DataListProps<T> {
   /**
@@ -29,9 +18,12 @@ export interface DataListProps<T> {
   /**
    * Function to render an item from data
    */
-  renderItem: (props: ItemProps<T>) => React.ReactNode
+  renderItem: (item: T, index: number) => React.ReactNode
 }
 
+/**
+ * Simple React component to handle array data rendering
+ */
 export function DataList<T>(props: DataListProps<T>) {
   const { data = [], getKey, empty, renderItem } = props
   return (
@@ -40,7 +32,7 @@ export function DataList<T>(props: DataListProps<T>) {
       {data.length > 0 &&
         data.map((item, index) => {
           const key = getKey?.(item, index) ?? index
-          const component = renderItem({ item, index })
+          const component = renderItem(item, index)
           return <React.Fragment key={key}>{component}</React.Fragment>
         })}
     </React.Fragment>

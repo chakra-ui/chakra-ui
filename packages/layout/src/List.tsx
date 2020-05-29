@@ -30,7 +30,7 @@ export const List = forwardRef((props: ListProps, ref: Ref<any>) => {
   const {
     children,
     styleType = "none",
-    stylePosition = "inside",
+    stylePosition,
     spacing,
     ...rest
   } = props
@@ -42,6 +42,11 @@ export const List = forwardRef((props: ListProps, ref: Ref<any>) => {
       ref={ref}
       listStyleType={styleType}
       listStylePosition={stylePosition}
+      /**
+       * We added this role to fix the Safari accessibility issue with list-style-type: none
+       * @see https://www.scottohara.me/blog/2019/01/12/lists-and-safari.html
+       */
+      role="list"
       {...rest}
     >
       {validChildren.map((child, index) => {
@@ -55,6 +60,33 @@ export const List = forwardRef((props: ListProps, ref: Ref<any>) => {
 
 if (__DEV__) {
   List.displayName = "List"
+}
+
+export const OrderedList = chakra(List, {
+  attrs: {
+    as: "ol",
+    styleType: "decimal",
+  },
+  baseStyle: {
+    marginLeft: "1em",
+  },
+})
+
+if (__DEV__) {
+  OrderedList.displayName = "OrderedList"
+}
+
+export const UnorderedList = chakra(List, {
+  attrs: {
+    styleType: "disc",
+  },
+  baseStyle: {
+    marginLeft: "1em",
+  },
+})
+
+if (__DEV__) {
+  UnorderedList.displayName = "UnorderedList"
 }
 
 export type ListItemProps = PropsOf<typeof ListItem>
@@ -80,6 +112,9 @@ export const ListIcon = chakra(Icon, {
     marginRight: 2,
     display: "inline",
     verticalAlign: "text-bottom",
+  },
+  attrs: {
+    role: "presentation",
   },
 })
 
