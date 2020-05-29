@@ -4,6 +4,7 @@ const siteMetadata = {
     "Simple, Modular and Accessible UI Components for your React Applications. Built with Styled System",
   author: "Chakra UI",
   siteUrl: "https://chakra-ui.com",
+  repository: "https://github.com/chakra-ui/chakra-ui",
 }
 
 module.exports = {
