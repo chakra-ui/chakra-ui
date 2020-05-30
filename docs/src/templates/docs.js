@@ -1,4 +1,4 @@
-import { Box, Flex, Stack } from "@chakra-ui/core"
+import { Box, Flex } from "@chakra-ui/core"
 import { useLocation } from "@reach/router"
 import { graphql } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
@@ -12,36 +12,23 @@ const Body = React.memo(
   (props) => {
     const { relativePath, body, previous, next, modifiedTime } = props
     return (
-      <Flex position="relative" justifyContent="center">
-        <Stack direction="row" spacing={12} mt="1em">
-          <Box maxW="46rem" w="full">
-            <MDXRenderer>{body}</MDXRenderer>
-            <Pagination previous={previous} next={next} />
-            {relativePath && (
-              <Flex
-                as="footer"
-                mt={12}
-                alignItems="center"
-                justifyContent="space-between"
-              >
-                <Box fontSize="sm" opacity={0.7}>
-                  Last Edited: {modifiedTime}
-                </Box>
-                <GithubLink path={relativePath} />
-              </Flex>
-            )}
-          </Box>
-          {/* <Box
-            display={{ base: "none", lg: "block" }}
-            position="sticky"
-            top="6rem"
-            as="aside"
-            w={48}
+      <Box mx="auto" maxW="46rem" mt="1em">
+        <MDXRenderer>{body}</MDXRenderer>
+        <Pagination previous={previous} next={next} />
+        {relativePath && (
+          <Flex
+            as="footer"
+            mt={12}
+            alignItems="center"
+            justifyContent="space-between"
           >
-            <TableOfContents slug={slug} tableOfContents={tableOfContents} />
-          </Box> */}
-        </Stack>
-      </Flex>
+            <Box fontSize="sm" opacity={0.7}>
+              Last Edited: {modifiedTime}
+            </Box>
+            <GithubLink path={relativePath} />
+          </Flex>
+        )}
+      </Box>
     )
   },
   (prev, next) => prev.pathname === next.pathname,

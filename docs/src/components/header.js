@@ -17,6 +17,7 @@ import Logo from "./logo"
 import StorybookIcon from "./storybook-icon"
 import { Link as GatsbyLink } from "gatsby"
 import SponsorButton from "./sponsor-button"
+import MobileNav from "./mobile-nav"
 
 const HeaderContent = () => {
   const [colorMode, toggleColorMode] = useColorMode()
@@ -57,6 +58,7 @@ const HeaderContent = () => {
           onClick={toggleColorMode}
           icon={colorMode === "light" ? <FaMoon /> : <FaSun />}
         />
+        <MobileNav />
       </Flex>
     </Flex>
   )
