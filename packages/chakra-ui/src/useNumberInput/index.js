@@ -86,9 +86,10 @@ function useNumberInput({
   const prevNextValue = useRef(null);
 
   const shouldConvertToNumber = value => {
-    const hasDot = value.indexOf(".") > -1;
-    const hasTrailingZero = value.substr(value.length - 1) === "0";
-    const hasTrailingDot = value.substr(value.length - 1) === ".";
+    const valueString = String(value);
+    const hasDot = valueString.indexOf(".") > -1;
+    const hasTrailingZero = valueString.substr(value.length - 1) === "0";
+    const hasTrailingDot = valueString.substr(value.length - 1) === ".";
     if (hasDot && hasTrailingZero) return false;
     if (hasDot && hasTrailingDot) return false;
     return true;
