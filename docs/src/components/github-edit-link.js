@@ -31,8 +31,10 @@ export const GithubLink = ({ path }) => {
       href={href}
       isExternal
       alignItems="center"
+      fontSize="sm"
+      opacity={0.7}
     >
-      <Box as={DiGithubBadge} boxSize="32px" />
+      <Box as={DiGithubBadge} fontSize="1.5em" />
       <chakra.span>Edit this page on GitHub</chakra.span>
     </Stack>
   )

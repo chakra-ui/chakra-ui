@@ -10,16 +10,27 @@ import { GithubLink } from "../components/github-edit-link"
 
 // memoized to prevent from re-rendering on in-page anchor link navigation
 const Body = React.memo(
-  ({ body, previous, next, slug, tableOfContents }) => {
+  (props) => {
+    const { relativePath, body, previous, next, slug, tableOfContents } = props
     return (
       <Flex position="relative" justifyContent="center">
         <Stack direction="row" spacing={12} mt="1em">
           <Box maxW="46rem" w="full">
             <MDXRenderer>{body}</MDXRenderer>
             <Pagination previous={previous} next={next} />
+            {relativePath && (
+              <Flex
+                as="footer"
+                mt={12}
+                alignItems="center"
+                justifyContent="center"
+              >
+                <GithubLink path={relativePath} />
+              </Flex>
+            )}
           </Box>
           <Box
-            display={{ xs: "none", lg: "block" }}
+            display={{ base: "none", lg: "block" }}
             position="sticky"
             top="6rem"
             as="aside"
@@ -50,12 +61,8 @@ const Docs = ({ data, pageContext }) => {
         next={next}
         slug={slug}
         tableOfContents={tableOfContents}
+        relativePath={relativePath}
       />
-      {relativePath && (
-        <Flex as="footer" mt={12} alignItems="center" justifyContent="center">
-          <GithubLink path={relativePath} />
-        </Flex>
-      )}
     </>
   )
 }
