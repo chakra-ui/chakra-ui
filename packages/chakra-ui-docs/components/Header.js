@@ -12,7 +12,11 @@ import Logo from "./Logo";
 import GitHubButton from "./GitHubButton";
 import { Container } from "../pages";
 import { StorybookIcon } from "./Storybook-icon";
-import { Header as HeaderContainer, GithubLink } from "./DocsHeader";
+import {
+  Header as HeaderContainer,
+  GithubLink,
+  StorybookLink,
+} from "./DocsHeader";
 import SponsorButton from "./SponsorButton";
 
 const Header = props => {
@@ -33,21 +37,17 @@ const Header = props => {
               <GitHubButton />
             </Box>
           </Box>
-          <Flex align="center" color="gray.500">
+          <Flex
+            flex={{ sm: "1", md: "none" }}
+            ml={5}
+            align="center"
+            color="gray.500"
+            justify="flex-end"
+          >
             <SponsorButton mr="4" />
             <Stack align="center" isInline spacing="3">
               <GithubLink />
-              <Link
-                size="32px"
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                borderRadius="md"
-                isExternal
-                href="https://chakra-ui.netlify.com"
-              >
-                <Box as={StorybookIcon} size="6" color="current" />
-              </Link>
+              <StorybookLink />
             </Stack>
             <IconButton
               aria-label={`Switch to ${
