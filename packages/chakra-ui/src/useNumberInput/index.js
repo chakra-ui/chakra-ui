@@ -2,7 +2,7 @@ import { canUseDOM } from "exenv";
 import { useRef, useState, useEffect, useCallback } from "react";
 import {
   calculatePrecision,
-  preventNonNumberKey,
+  preventNonNumberNonArrowKey,
   roundToPrecision,
 } from "./utils";
 
@@ -151,7 +151,7 @@ function useNumberInput({
   };
 
   const handleKeyDown = event => {
-    preventNonNumberKey(event);
+    preventNonNumberNonArrowKey(event);
     if (!isInteractive) return;
 
     if (event.key === "ArrowUp") {

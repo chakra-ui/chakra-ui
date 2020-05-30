@@ -11,8 +11,12 @@ export function isNumberKey(event) {
   return true;
 }
 
-export function preventNonNumberKey(event) {
-  if (!isNumberKey(event)) {
+export function isArrowKey(event) {
+  return ["ArrowLeft", "ArrowRight"].includes(event.key);
+}
+
+export function preventNonNumberNonArrowKey(event) {
+  if (!isNumberKey(event) && !isArrowKey(event)) {
     event.preventDefault();
   }
 }
