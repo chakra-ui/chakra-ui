@@ -8,7 +8,7 @@ import FocusLock from "react-focus-lock"
 import * as ReactIcons from "react-icons/md"
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from "react-live"
 import Lorem from "react-lorem-component"
-k
+
 export const liveEditorStyle = {
   fontSize: 14,
   marginBottom: 32,

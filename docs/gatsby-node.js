@@ -48,6 +48,15 @@ exports.createPages = async ({ graphql, actions }) => {
     `
       {
         allMdx {
+          edges {
+            node {
+              parent {
+                ... on File {
+                  modifiedTime(formatString: "MMMM DD, YYYY")
+                }
+              }
+            }
+          }
           nodes {
             fileAbsolutePath
             frontmatter {
@@ -65,7 +74,7 @@ exports.createPages = async ({ graphql, actions }) => {
     `,
   )
 
-  const { nodes } = result.data.allMdx
+  const { nodes, edges } = result.data.allMdx
   const sortedNodes = sortPostNodes(nodes)
 
   sortedNodes.forEach((node, index) => {
@@ -74,6 +83,9 @@ exports.createPages = async ({ graphql, actions }) => {
       index === sortedNodes.length - 1 ? null : sortedNodes[index + 1]
     const slug = node.fields.slug
     const relativePath = getRelativeDocPath(node.fileAbsolutePath)
+    const edge = edges[index]
+    const { modifiedTime } = edge.node.parent
+
     createPage({
       // we use the generated slug for the path
       path: slug,
@@ -94,6 +106,7 @@ exports.createPages = async ({ graphql, actions }) => {
         // previous and next pages
         previous,
         next,
+        modifiedTime,
 
         // relative path to file ('/docs/pages/getting-started.mdx')
         relativePath,

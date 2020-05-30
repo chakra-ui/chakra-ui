@@ -19,24 +19,27 @@ const Button = chakra("button", {
   variants: StyleObjectOrFunction,
 })
 
-type StyleObjectOrFunction = ((props: Options) => StyleObject) | StyleObject
+type StyleObjectOrFunction = StyleObject | ((props: Options) => StyleObject)
 
 type Options = {
   theme: Theme
   colorMode: "light" | "dark"
+  colorScheme: string
 }
 ```
 
 Here's an example of how to create a simple badge that changes it's background
 based on color mode.
 
+> Switch to dark mode and see how how the badge background changes
+
 ```jsx isManual=true
 const Badge = chakra("span", {
   baseStyle: ({ colorMode }) => ({
     bg: colorMode === "dark" ? "green.300" : "green.500",
+    color: colorMode === "dark" ? "gray.800" : "white",
     textTransform: "uppercase",
     fontWeight: "semibold",
-    color: "white",
     letterSpacing: "0.02em",
     padding: "4px",
     borderRadius: "2px",

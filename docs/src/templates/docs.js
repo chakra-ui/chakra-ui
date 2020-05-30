@@ -1,17 +1,16 @@
-import React from "react"
-import { useLocation } from "@reach/router"
 import { Box, Flex, Stack } from "@chakra-ui/core"
+import { useLocation } from "@reach/router"
 import { graphql } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
-import SEO from "../components/seo"
-import { TableOfContents } from "../components/toc"
-import { Pagination } from "../components/pagination"
+import React from "react"
 import { GithubLink } from "../components/github-edit-link"
+import { Pagination } from "../components/pagination"
+import SEO from "../components/seo"
 
 // memoized to prevent from re-rendering on in-page anchor link navigation
 const Body = React.memo(
   (props) => {
-    const { relativePath, body, previous, next, slug, tableOfContents } = props
+    const { relativePath, body, previous, next, modifiedTime } = props
     return (
       <Flex position="relative" justifyContent="center">
         <Stack direction="row" spacing={12} mt="1em">
@@ -23,13 +22,16 @@ const Body = React.memo(
                 as="footer"
                 mt={12}
                 alignItems="center"
-                justifyContent="center"
+                justifyContent="space-between"
               >
+                <Box fontSize="sm" opacity={0.7}>
+                  Last Edited: {modifiedTime}
+                </Box>
                 <GithubLink path={relativePath} />
               </Flex>
             )}
           </Box>
-          <Box
+          {/* <Box
             display={{ base: "none", lg: "block" }}
             position="sticky"
             top="6rem"
@@ -37,7 +39,7 @@ const Body = React.memo(
             w={48}
           >
             <TableOfContents slug={slug} tableOfContents={tableOfContents} />
-          </Box>
+          </Box> */}
         </Stack>
       </Flex>
     )
@@ -47,7 +49,7 @@ const Body = React.memo(
 
 const Docs = ({ data, pageContext }) => {
   const location = useLocation()
-  const { previous, next, slug, relativePath } = pageContext
+  const { previous, next, slug, relativePath, modifiedTime } = pageContext
   const { body, frontmatter, tableOfContents } = data.mdx
   const { title, description } = frontmatter
 
@@ -62,6 +64,7 @@ const Docs = ({ data, pageContext }) => {
         slug={slug}
         tableOfContents={tableOfContents}
         relativePath={relativePath}
+        modifiedTime={modifiedTime}
       />
     </>
   )
