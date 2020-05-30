@@ -23,7 +23,7 @@ const Button = chakra("button")
 
 The `chakra` function provides options you can use to theme this component.
 
-- **baseStyles**: Used to add base or default styles to the component.
+- **baseStyle**: Used to add base or default styles to the component.
 - **sizes**: Used to add the styles for the different sizes of the component. In
   this scenario, it'll be `small` and `large`.
 - **variants**: Used to add style variants of the component. In this scenario,
@@ -37,7 +37,7 @@ Here's how to apply base styles to the button.
 
 ```jsx live=false
 const Button = chakra("button", {
-  baseStyles: {
+  baseStyle: {
     fontWeight: "semibold",
     textTransform: "uppercase",
   },
@@ -84,33 +84,44 @@ const Button = chakra("button", {
 Combining the sizes and variants, We now have a themable Button component.
 Here's what it looks like:
 
-```jsx live=false
+```jsx isManual=true
 const Button = chakra("button", {
-  baseStyles: {
-    fontWeight: "semibold",
-    textTransform: "uppercase",
-  },
+  baseStyle: { fontWeight: "semibold", textTransform: "uppercase" },
   sizes: {
     small: {
-      padding: "12px",
-      fontSize: "14px",
+      padding: "8px",
+      fontSize: "12px",
     },
     large: {
-      padding: "24px",
-      fontSize: "18px",
+      padding: "16px",
+      fontSize: "16px",
     },
   },
   variants: {
     solid: {
       bg: "blue.600",
       color: "white",
+      _hover: {
+        bg: "blue.700",
+      },
     },
     outline: {
       border: "2px",
-      borderColor: "blue.600",
+      borderColor: "currentColor",
+      color: "blue.400",
+      _hover: {
+        color: "blue.600",
+      },
     },
   },
 })
+
+Button.defaultProps = {
+  size: "small",
+  variant: "solid",
+}
+
+render(<Button variant="outline">Welcome</Button>)
 ```
 
 ### Setting default values

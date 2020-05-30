@@ -28,7 +28,7 @@ import { useClipboard } from "@chakra-ui/core"
 ```jsx
 function Example() {
   const [value, setValue] = React.useState("Hello world")
-  const { onCopy, hasCopied } = useClipboard(value)
+  const [hasCopied, onCopy] = useClipboard(value)
 
   return (
     <>
@@ -39,7 +39,7 @@ function Example() {
         </Button>
       </Flex>
       <Editable placeholder="Paste here">
-        <EditablePreview w="100%" />
+        <EditablePreview width="100%" />
         <EditableInput />
       </Editable>
     </>

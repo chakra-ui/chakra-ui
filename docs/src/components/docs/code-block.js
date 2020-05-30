@@ -1,14 +1,14 @@
-import React, { useState } from "react"
-import theme from "prism-react-renderer/themes/nightOwl"
-import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live"
 import * as Chakra from "@chakra-ui/core"
+import { Box, Button, chakra, useClipboard } from "@chakra-ui/core"
 import * as Icons from "@chakra-ui/icons"
 import * as Formik from "formik"
-import * as ReactIcons from "react-icons/md"
+import theme from "prism-react-renderer/themes/nightOwl"
+import React, { useState } from "react"
 import FocusLock from "react-focus-lock"
+import * as ReactIcons from "react-icons/md"
+import { LiveEditor, LiveError, LivePreview, LiveProvider } from "react-live"
 import Lorem from "react-lorem-component"
-import { Box, Button, useClipboard, chakra } from "@chakra-ui/core"
-
+k
 export const liveEditorStyle = {
   fontSize: 14,
   marginBottom: 32,
@@ -53,15 +53,13 @@ const CopyButton = (props) => (
 )
 
 const EditableNotice = (props) => {
-  const bg = { light: "#fbfbfb", dark: "#011627" }
-
   return (
     <Box
       position="absolute"
       width="full"
       top="-1.25em"
       borderTopRadius="10px"
-      bg={bg["dark"]}
+      bg="#011627"
       py="2"
       zIndex="0"
       letterSpacing="wide"
@@ -103,7 +101,7 @@ const CodeBlock = ({
   const [editorCode, setEditorCode] = useState(children.trim())
 
   const language = className && className.replace(/language-/, "")
-  const { onCopy, hasCopied } = useClipboard(editorCode)
+  const [hasCopied, onCopy] = useClipboard(editorCode)
 
   const liveProviderProps = {
     theme,
