@@ -1,17 +1,17 @@
 import * as React from "react"
-import { sortBy, upperFirst, camelCase } from "lodash/fp"
+import { sortBy, upperFirst, camelCase, groupBy } from "lodash/fp"
 import { graphql, useStaticQuery } from "gatsby"
 import { Box, Heading, Badge, useColorModeValue } from "@chakra-ui/core"
 import { ComponentLink, TopNavLink } from "./nav-link"
 
-const sortByOrder = sortBy(["frontmatter.order"])
-const sortByTitle = sortBy(["frontmatter.title"])
+const sortNodes = sortBy(["frontmatter.order", "frontmatter.title"])
+const groupNodesByCollection = groupBy("fields.collection")
 
-const useLinksQuery = () => {
-  return useStaticQuery(
+const useSortedCollectionLinks = (collection) => {
+  const { allMdx } = useStaticQuery(
     graphql`
       query LinksQuery {
-        main: allMdx(filter: { fields: { collection: { eq: "main" } } }) {
+        allMdx {
           nodes {
             frontmatter {
               title
@@ -19,51 +19,20 @@ const useLinksQuery = () => {
             }
             fields {
               slug
-            }
-          }
-        }
-        components: allMdx(
-          filter: { fields: { collection: { eq: "components" } } }
-        ) {
-          nodes {
-            frontmatter {
-              title
-            }
-            fields {
-              slug
-            }
-          }
-        }
-        utilities: allMdx(
-          filter: { fields: { collection: { eq: "utilities" } } }
-        ) {
-          nodes {
-            frontmatter {
-              title
-            }
-            fields {
-              slug
-            }
-          }
-        }
-        theming: allMdx(filter: { fields: { collection: { eq: "theming" } } }) {
-          nodes {
-            frontmatter {
-              title
-            }
-            fields {
-              slug
+              collection
             }
           }
         }
       }
     `,
   )
+  const sorted = sortNodes(allMdx.nodes)
+  const grouped = groupNodesByCollection(sorted)
+  return grouped[collection]
 }
 
 const MainLinks = () => {
-  const { main } = useLinksQuery()
-  const nodes = sortByOrder(main.nodes)
+  const nodes = useSortedCollectionLinks("main")
 
   return nodes.map(({ frontmatter, fields }) => (
     <TopNavLink key={frontmatter.title} href={fields.slug}>
@@ -73,8 +42,7 @@ const MainLinks = () => {
 }
 
 const ComponentLinks = () => {
-  const { components } = useLinksQuery()
-  const nodes = sortByTitle(components.nodes)
+  const nodes = useSortedCollectionLinks("components")
 
   return nodes.map(({ frontmatter: { title }, fields: { slug } }) => (
     <ComponentLink key={title} href={slug}>
@@ -84,8 +52,7 @@ const ComponentLinks = () => {
 }
 
 const UtilitiesLinks = () => {
-  const { utilities } = useLinksQuery()
-  const nodes = sortByTitle(utilities.nodes)
+  const nodes = useSortedCollectionLinks("utilities")
 
   return nodes.map(({ frontmatter, fields }) => (
     <ComponentLink key={frontmatter.title} href={fields.slug}>
@@ -95,8 +62,7 @@ const UtilitiesLinks = () => {
 }
 
 const ThemingLinks = () => {
-  const { theming } = useLinksQuery()
-  const nodes = sortByOrder(theming.nodes)
+  const nodes = useSortedCollectionLinks("theming")
 
   return nodes.map(({ frontmatter, fields }) => (
     <ComponentLink key={frontmatter.title} href={fields.slug}>
