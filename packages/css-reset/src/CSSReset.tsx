@@ -308,6 +308,10 @@ export const CSSReset = () => (
         outline: none;
         box-shadow: none;
       }
+
+      select::-ms-expand {
+        display: none;
+      }
     `}
   />
 )
