@@ -15,6 +15,7 @@ import { DiGithubBadge } from "react-icons/di";
 import Logo from "./Logo";
 import MobileNav from "./MobileNav";
 import SponsorButton from "./SponsorButton";
+import { StorybookIcon } from "./Storybook-icon";
 
 const styles = css`
   .algolia-autocomplete {
@@ -86,6 +87,24 @@ const ThemeSwitch = props => (
   />
 );
 
+export const StorybookLink = props => (
+  <PseudoBox
+    as="a"
+    href="https://chakra-ui.netlify.com"
+    rel="noopener noreferrer"
+    target="_blank"
+    size="32px"
+    display="flex"
+    alignItems="center"
+    justifyContent="center"
+    borderRadius="md"
+    isExternal
+    {...props}
+  >
+    <Box as={StorybookIcon} size="6" color="current" />
+  </PseudoBox>
+);
+
 const DocsHeader = props => {
   const { colorMode, toggleColorMode } = useColorMode();
   const bg = { light: "white", dark: "gray.800" };
@@ -104,6 +123,7 @@ const DocsHeader = props => {
         >
           <SponsorButton />
           <GithubLink />
+          <StorybookLink ml="3" />
           <ThemeSwitch
             aria-label={`Switch to ${
               colorMode === "light" ? "dark" : "light"
