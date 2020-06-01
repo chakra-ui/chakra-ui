@@ -49,3 +49,42 @@ const Badge = chakra("span", {
 
 render(<Badge>This is a badge</Badge>)
 ```
+
+Now, let's try to add dark mode support for the Button we created earlier. To
+recap, here's what the button variants look like:
+
+```jsx
+const Button = chakra("button", {
+  baseStyle: {
+    fontWeight: "semibold",
+    textTransform: "uppercase",
+  },
+  sizes: {
+    small: {
+      padding: "8px",
+      fontSize: "12px",
+    },
+    large: {
+      padding: "16px",
+      fontSize: "16px",
+    },
+  },
+  variants: {
+    solid: {
+      bg: "blue.600",
+      color: "white",
+      _hover: {
+        bg: "blue.700",
+      },
+    },
+    outline: {
+      border: "2px",
+      borderColor: "currentColor",
+      color: "blue.400",
+      _hover: {
+        color: "blue.600",
+      },
+    },
+  },
+})
+```

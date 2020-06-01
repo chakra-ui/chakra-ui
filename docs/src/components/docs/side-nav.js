@@ -1,7 +1,7 @@
 import * as React from "react"
 import { sortBy, upperFirst, camelCase } from "lodash/fp"
 import { graphql, useStaticQuery } from "gatsby"
-import { Box, Heading, Badge } from "@chakra-ui/core"
+import { Box, Heading, Badge, useColorModeValue } from "@chakra-ui/core"
 import { ComponentLink, TopNavLink } from "./nav-link"
 
 const sortByOrder = sortBy(["frontmatter.order"])
@@ -108,7 +108,7 @@ const ThemingLinks = () => {
 const NavGroupHeading = (props) => (
   <Heading
     size="xs"
-    color="gray.400"
+    color={useColorModeValue("gray.500", "whiteAlpha.600")}
     letterSpacing="wide"
     mb={2}
     textTransform="uppercase"

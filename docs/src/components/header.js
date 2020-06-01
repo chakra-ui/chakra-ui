@@ -20,8 +20,9 @@ import SponsorButton from "./sponsor-button"
 import MobileNav from "./mobile-nav"
 
 const HeaderContent = () => {
-  const [colorMode, toggleColorMode] = useColorMode()
+  const [, toggleColorMode] = useColorMode()
   const text = useColorModeValue("dark", "light")
+  const Icon = useColorModeValue(FaMoon, FaSun)
 
   return (
     <Flex boxSize="100%" px="6" align="center" justify="space-between">
@@ -50,13 +51,14 @@ const HeaderContent = () => {
           </Link>
         </Stack>
         <IconButton
+          size="md"
           aria-label={`Switch to ${text} mode`}
           variant="ghost"
           color="current"
-          ml="2"
-          fontSize="20px"
+          marginLeft="2"
+          // fontSize="20px"
           onClick={toggleColorMode}
-          icon={colorMode === "light" ? <FaMoon /> : <FaSun />}
+          icon={<Icon />}
         />
         <MobileNav />
       </Flex>

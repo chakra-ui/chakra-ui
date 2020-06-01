@@ -15,13 +15,13 @@ const MobileNav = () => {
   return (
     <>
       <IconButton
+        padding="2"
         // display={{ sm: "inline-flex", md: "none" }}
         aria-label="Navigation Menu"
         fontSize="20px"
         variant="ghost"
         icon={<MdDehaze />}
         onClick={onToggle}
-        marginRight="-16px"
       />
       <Drawer size="xs" isOpen={isOpen} placement="left" onClose={onClose}>
         <DrawerOverlay>

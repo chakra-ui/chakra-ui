@@ -29,7 +29,7 @@ const SidebarLayout = React.memo(
             width="full"
           />
           <Box pl={[0, null, "18rem"]} py={2} mb={20}>
-            <Box as="main" minH="90vh" pt={8} px={5} mt="4rem">
+            <Box as="main" minH="72vh" pt={8} px={5} mt="4rem">
               {children}
             </Box>
             <Footer />
