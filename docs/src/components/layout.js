@@ -17,29 +17,26 @@ const HomeLayout = ({ children }) => (
 
 // memoized to prevent in-page anchor link navigation from re-rendering the
 // entire layout
-const SidebarLayout = React.memo(
-  ({ children }) => {
-    return (
-      <MDXProvider components={MDXComponents}>
-        <Header />
-        <Box>
-          <SideNav
-            display={["none", null, "block"]}
-            maxWidth="18rem"
-            width="full"
-          />
-          <Box pl={[0, null, "18rem"]} py={2} mb={20}>
-            <Box as="main" minH="72vh" pt={8} px={5} mt="4rem">
-              {children}
-            </Box>
-            <Footer />
+const SidebarLayout = ({ children }) => {
+  return (
+    <MDXProvider components={MDXComponents}>
+      <Header />
+      <Box>
+        <SideNav
+          display={["none", null, "block"]}
+          maxWidth="18rem"
+          width="full"
+        />
+        <Box pl={[0, null, "18rem"]} py={2} mb={20}>
+          <Box as="main" minH="72vh" pt={8} px={5} mt="4rem">
+            {children}
           </Box>
+          <Footer />
         </Box>
-      </MDXProvider>
-    )
-  },
-  (prev, next) => prev.pathname === next.pathname,
-)
+      </Box>
+    </MDXProvider>
+  )
+}
 
 const Layout = ({ children, pageContext }) => {
   const location = useLocation()

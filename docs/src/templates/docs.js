@@ -25,25 +25,22 @@ function LastEdited(props) {
 }
 
 // memoized to prevent from re-rendering on in-page anchor link navigation
-const Body = React.memo(
-  (props) => {
-    const { relativePath, body, previous, next, modifiedTime } = props
-    return (
-      <Box mx="auto" maxW="46rem" mt="1em">
-        <MDXRenderer>{body}</MDXRenderer>
-        {relativePath && (
-          <LastEdited
-            mt="3rem"
-            modifiedTime={modifiedTime}
-            editUrl={relativePath}
-          />
-        )}
-        <Pagination mt="4rem" mb="80px" previous={previous} next={next} />
-      </Box>
-    )
-  },
-  (prev, next) => prev.pathname === next.pathname,
-)
+const Body = (props) => {
+  const { relativePath, body, previous, next, modifiedTime } = props
+  return (
+    <Box mx="auto" maxW="46rem" mt="1em">
+      <MDXRenderer>{body}</MDXRenderer>
+      {relativePath && (
+        <LastEdited
+          mt="3rem"
+          modifiedTime={modifiedTime}
+          editUrl={relativePath}
+        />
+      )}
+      <Pagination mt="4rem" mb="80px" previous={previous} next={next} />
+    </Box>
+  )
+}
 
 const Docs = ({ data, pageContext }) => {
   const location = useLocation()
