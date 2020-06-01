@@ -34,7 +34,7 @@
     "release:ci": "lerna publish -y --loglevel verbose",
     "release:failed": "lerna publish from-package -y --loglevel verbose",
     "docs": "yarn workspace @chakra-ui/docs",
-    "docs:now": "cd docs && now",
+    "docs:start": "yarn docs start",
     "core": "yarn workspace @chakra-ui/core",
     "icon": "yarn workspace @chakra-ui/icon",
     "hooks": "yarn workspace @chakra-ui/hooks",
