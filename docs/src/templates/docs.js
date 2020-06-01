@@ -1,17 +1,19 @@
+import React from "react"
 import { Box, Flex } from "@chakra-ui/core"
-import { useLocation } from "@reach/router"
 import { graphql } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
-import React from "react"
 import { GithubLink } from "../components/github-edit-link"
 import { Pagination } from "../components/pagination"
 import SEO from "../components/seo"
 
-// memoized to prevent from re-rendering on in-page anchor link navigation
-const Body = React.memo(
-  (props) => {
-    const { relativePath, body, previous, next, modifiedTime } = props
-    return (
+const Docs = ({ data, pageContext }) => {
+  const { previous, next, slug, relativePath, modifiedTime } = pageContext
+  const { body, frontmatter } = data.mdx
+  const { title, description } = frontmatter
+
+  return (
+    <>
+      <SEO title={title} description={description} slug={slug} />
       <Box mx="auto" maxW="46rem" mt="1em">
         <MDXRenderer>{body}</MDXRenderer>
         <Pagination previous={previous} next={next} />
@@ -29,30 +31,6 @@ const Body = React.memo(
           </Flex>
         )}
       </Box>
-    )
-  },
-  (prev, next) => prev.pathname === next.pathname,
-)
-
-const Docs = ({ data, pageContext }) => {
-  const location = useLocation()
-  const { previous, next, slug, relativePath, modifiedTime } = pageContext
-  const { body, frontmatter, tableOfContents } = data.mdx
-  const { title, description } = frontmatter
-
-  return (
-    <>
-      <SEO title={title} description={description} slug={slug} />
-      <Body
-        pathname={location.pathname}
-        body={body}
-        previous={previous}
-        next={next}
-        slug={slug}
-        tableOfContents={tableOfContents}
-        relativePath={relativePath}
-        modifiedTime={modifiedTime}
-      />
     </>
   )
 }
