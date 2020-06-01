@@ -60,6 +60,36 @@ const Badge = chakra("span", {
 render(<Badge>This is a badge</Badge>)
 ```
 
+## Using color scheme
+
+Here's an example of how to create a button that changes its colors based on
+color scheme.
+
+```jsx isManual=true
+const colorMap = {
+  red: "red.500",
+  blue: "blue.500",
+}
+const Button = chakra("button", {
+  baseStyle: ({ colorScheme }) => ({
+    bg: colorMap[colorScheme] || "gray.500",
+    color: "white",
+    display: "block",
+    p: 2,
+  }),
+})
+Button.defaultProps = { colorScheme: "red" }
+
+render(
+  <Stack>
+    <Button>Red due to defaultProps</Button>
+    <Button colorScheme="red">Red due to colorScheme</Button>
+    <Button colorScheme="blue">Blue due to colorScheme</Button>
+    <Button colorScheme="orange">Gray due to unknown colorScheme value</Button>
+  </Stack>,
+)
+```
+
 ## TypeScript
 
 To ensure the props for `variant` and `size` is strongly typed, you can use
