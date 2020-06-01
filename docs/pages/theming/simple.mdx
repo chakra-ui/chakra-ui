@@ -79,7 +79,7 @@ const Button = chakra("button", {
 })
 ```
 
-Combining the sizes and variants, We now have a themable Button component.
+Combining the sizes and variants, we now have a themable Button component.
 Here's what it looks like:
 
 ```jsx isManual=true
@@ -160,7 +160,7 @@ Now, you can pass the `size` prop to modify the button's size
 
 ### Using the `themeKey`
 
-To provide this styles globally, you can move all these styles to the theme
+To provide these styles globally, you can move all these styles to the theme
 under `theme.components.Button` and use the `themeKey` option to automatically
 connect them. It works the same!
 
@@ -210,5 +210,5 @@ const theme = {
 This API makes super easy to add or remove button sizes or variants in the
 future.
 
-> All Chakra's component follows this API and we've made call component styles
+> All Chakra components use this API and we've made all component styles
 > available to you in the `chakra/` folder of your project.
