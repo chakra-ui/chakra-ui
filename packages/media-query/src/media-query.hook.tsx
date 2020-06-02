@@ -1,5 +1,6 @@
 import { useTheme } from "@chakra-ui/system"
 import { Dict, isNumber, objectKeys } from "@chakra-ui/utils"
+import { useMediaQuery } from "@chakra-ui/hooks"
 import { useCallback, useEffect, useMemo, useState } from "react"
 
 /**
@@ -171,4 +172,16 @@ export function useBreakpointValue<T = any>(values: BreakpointValues<T>) {
   const baseValue = values.base
 
   return values[breakpoint] || baseValue
+}
+
+/**
+ * React hook for getting the user's animation preference. Returns `false` if
+ * user prefers reduced motion.
+ *
+ * Inspired by @kripod:
+ * https://github.com/kripod/react-hooks/blob/10f1b489078a6c61bd2226258feef1d2ced915a2/packages/web-api-hooks/src/useMotionPreference.ts
+ */
+export function useAnimationPreference() {
+  const isReduce = useMediaQuery("(prefers-reduced-motion: reduce)")
+  return !isReduce
 }
