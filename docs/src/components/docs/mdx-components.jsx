@@ -107,7 +107,7 @@ const MDXComponents = {
   inlineCode: (props) => (
     <chakra.code
       fontFamily="mono"
-      color="teal.400"
+      color="purple.600"
       fontWeight="semibold"
       fontSize="0.9em"
       {...props}

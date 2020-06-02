@@ -4,7 +4,7 @@ description: Documentation for the component theming API.
 order: 3
 ---
 
-# Theming with Color mode
+# Theming API - Advanced
 
 Now that you understand how to use Chakra UI theming API. Let's take a step
 further and see if we can adapt the button to color mode.
@@ -19,14 +19,16 @@ const Button = chakra("button", {
   variants: StyleObjectOrFunction,
 })
 
-type StyleObjectOrFunction = StyleObject | ((props: Options) => StyleObject)
+type StyleObjectOrFunction = StyleObject | ((options: Options) => StyleObject)
 
-type Options = {
+interface Options {
   theme: Theme
   colorMode: "light" | "dark"
   colorScheme: string
 }
 ```
+
+## Using color mode
 
 Here's an example of how to create a simple badge that changes it's background
 based on color mode.
@@ -50,41 +52,58 @@ const Badge = chakra("span", {
 render(<Badge>This is a badge</Badge>)
 ```
 
-Now, let's try to add dark mode support for the Button we created earlier. To
-recap, here's what the button variants look like:
+## TypeScript
 
-```jsx
-const Button = chakra("button", {
-  baseStyle: {
-    fontWeight: "semibold",
-    textTransform: "uppercase",
-  },
-  sizes: {
-    small: {
-      padding: "8px",
-      fontSize: "12px",
-    },
-    large: {
-      padding: "16px",
-      fontSize: "16px",
-    },
-  },
-  variants: {
-    solid: {
-      bg: "blue.600",
-      color: "white",
-      _hover: {
-        bg: "blue.700",
-      },
-    },
-    outline: {
-      border: "2px",
-      borderColor: "currentColor",
-      color: "blue.400",
-      _hover: {
-        color: "blue.600",
-      },
-    },
-  },
+To ensure the props for `variant` and `size` is strongly typed, you can use
+typescript generics to improve it.
+
+```tsx live=false
+// 1. Create the type defs
+interface Props {
+  variant?: "solid" | "outline"
+  size?: "sm" | "md"
+}
+
+// 2. Use it as a generic
+const Badge = chakra<"div", Props>("div", {
+  /// options
 })
+
+// 3. now you'll get a strongly `variant` and `size` props
+<Badge variant="solid">Welcome</Badge>
+```
+
+## Theming Subcomponents
+
+Many complex components in Chakra are not a single component, but multiple
+components that are composed together.
+
+An example of this is Chakra's `Accordion`: `Accordion`, `AccordionItem`,
+`AccordionButton`, `AccordionPanel`, and `AccordionIcon`.
+
+In cases like this, component theming objects can be nested according to their
+parent using `themeKey`. `Accordion` uses a `themeKey` of `Accordion.Root`,
+`AccordionItem` uses `Accordion.Item`, etc.
+
+Chakra will then look for a nested component theming object in `theme`:
+
+```jsx live=false
+const theme = {
+  components: {
+    Accordion: {
+      Root: {
+        defaultProps: {},
+        baseStyle: {},
+        sizes: {},
+        variants: {},
+      },
+      Item: {
+        defaultProps: {},
+        baseStyle: {},
+        sizes: {},
+        variants: {},
+      },
+    },
+  },
+}
 ```
