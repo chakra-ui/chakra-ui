@@ -185,3 +185,18 @@ export function useAnimationPreference() {
   const isReduce = useMediaQuery("(prefers-reduced-motion: reduce)")
   return !isReduce
 }
+
+/**
+ * React hook for getting the user's color mode preference. Returns `"light"`,
+ * `"dark"`, or `undefined` if no preference exists.
+ *
+ * Inspired by @kripod:
+ * https://github.com/kripod/react-hooks/blob/10f1b489078a6c61bd2226258feef1d2ced915a2/packages/web-api-hooks/src/useColorSchemePreference.ts
+ */
+export function useColorModePreference() {
+  const isLight = useMediaQuery("(prefers-color-scheme: light)")
+  const isDark = useMediaQuery("(prefers-color-scheme: dark)")
+
+  if (isLight) return "light"
+  if (isDark) return "dark"
+}
