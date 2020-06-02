@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Button } from "@chakra-ui/button"
-import { useBreakpointValue } from "./media-query.hook"
+import { Box, Grid } from "@chakra-ui/layout"
+import { useBreakpointValue, useViewportSize } from "./media-query.hook"
 import { Hide, Show, useBreakpoint } from "."
 
 export default {
@@ -44,4 +45,16 @@ export const BreakpointHook = () => {
 export const BreakpointValueHook = () => {
   const width = useBreakpointValue({ base: "150px", md: "250px" })
   return <Button width={width}>I'm {width} wide</Button>
+}
+
+export const ViewportSizeHook = () => {
+  const ref = React.useRef()
+  const [width, height] = useViewportSize(ref)
+  return (
+    <Grid w="100vw" minH="100vh" placeItems="center">
+      <Box ref={ref} w="50%" h="50%" bg="purple.50">
+        {width}px x {height}px
+      </Box>
+    </Grid>
+  )
 }

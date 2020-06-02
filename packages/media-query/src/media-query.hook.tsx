@@ -2,6 +2,7 @@ import { useTheme } from "@chakra-ui/system"
 import { Dict, isNumber, objectKeys } from "@chakra-ui/utils"
 import { useMediaQuery } from "@chakra-ui/hooks"
 import { useCallback, useEffect, useMemo, useState } from "react"
+import { ResizeObserver } from "@juggle/resize-observer"
 
 /**
  * useBreakpoint
@@ -28,7 +29,7 @@ export function useBreakpoint(defaultBreakpoint?: string) {
   const [currentBreakpoint, setCurrentBreakpoint] = useState(() => {
     if (!defaultBreakpoint) return undefined
     const mediaQuery = mediaQueries.find(
-      (query) => query.breakpoint === defaultBreakpoint,
+      query => query.breakpoint === defaultBreakpoint,
     )
 
     if (mediaQuery) {
@@ -199,4 +200,32 @@ export function useColorModePreference() {
 
   if (isLight) return "light"
   if (isDark) return "dark"
+}
+
+/**
+ * React hook for getting the width and height of a component.
+ *
+ * Inspired by @kripod:
+ * https://github.com/kripod/react-hooks/blob/10f1b489078a6c61bd2226258feef1d2ced915a2/packages/web-api-hooks/src/useSize.ts
+ */
+export function useViewportSize(
+  ref: React.RefObject<HTMLElement>,
+): Readonly<[number, number]> {
+  const [size, setSize] = useState<Readonly<[number, number]>>([0, 0])
+
+  useEffect(() => {
+    if (!ref.current) return undefined
+
+    const observer = new ResizeObserver(([entry]) => {
+      const { inlineSize: width, blockSize: height } = entry.contentBoxSize[0]
+      setSize([width, height])
+    })
+    observer.observe(ref.current)
+
+    return (): void => {
+      observer.disconnect()
+    }
+  }, [ref])
+
+  return size
 }
