@@ -148,3 +148,27 @@ const createMediaQueries = (breakpoints: Dict) => {
     return mediaQuery
   })
 }
+
+type BreakpointValues<T> = { [breakpoint: string]: T }
+
+/**
+ * React hook for getting the value for the current breakpoint from the
+ * provided responsive values object.
+ *
+ * @example
+ *
+ * const width = useBreakpointValue({ base: '150px', md: '250px' })
+ * return <Button width={width}>I'm {width} wide!</Button>
+ */
+export function useBreakpointValue<T = any>(values: BreakpointValues<T>) {
+  const breakpoint = useBreakpoint()
+
+  // if breakpoint is undefined, we'll return undefined
+  if (!breakpoint) return
+
+  // if we have no value for the current breakpoint, return the `base`
+  // breakpoint value
+  const baseValue = values.base
+
+  return values[breakpoint] || baseValue
+}

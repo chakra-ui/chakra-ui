@@ -1,4 +1,6 @@
 import * as React from "react"
+import { Button } from "@chakra-ui/button"
+import { useBreakpointValue } from "./media-query.hook"
 import { Hide, Show, useBreakpoint } from "."
 
 export default {
@@ -37,4 +39,9 @@ export const BreakpointHook = () => {
       The current breakpoint is {JSON.stringify(breakpoint, null, 2)}!
     </code>
   )
+}
+
+export const BreakpointValueHook = () => {
+  const width = useBreakpointValue({ base: "150px", md: "250px" })
+  return <Button width={width}>I'm {width} wide</Button>
 }
