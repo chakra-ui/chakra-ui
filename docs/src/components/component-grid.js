@@ -28,7 +28,7 @@ function useQuery() {
 }
 
 function ComponentCard(props) {
-  const { title, description, image, url, ...rest } = props
+  const { title, image, url, ...rest } = props
 
   return (
     <Link
@@ -51,7 +51,6 @@ function ComponentCard(props) {
       />
       <Box padding="5">
         <Text fontWeight="semibold">{title}</Text>
-        <Text>{description}</Text>
       </Box>
     </Link>
   )
