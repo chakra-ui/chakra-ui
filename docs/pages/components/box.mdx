@@ -7,10 +7,19 @@ description:
   components are built. By default, it renders a `div` element
 ---
 
+import ComponentLinks from "../../src/components/component-links"
+
 # Box
 
 Box is the most abstract component on top of which all other Chakra UI
 components are built. By default, it renders a `div` element
+
+<ComponentLinks
+  github={{ url: "#" }}
+  storybook={{ url: "#" }}
+  npm={{ label: "@chakra-ui/layout", url: "#" }}
+/>
+<br />
 
 **The Box component is useful because it helps with 3 common use cases:**
 
@@ -22,7 +31,7 @@ components are built. By default, it renders a `div` element
 ## Import
 
 ```js
-import { Box, Square } from "@chakra-ui/core"
+import { Box } from "@chakra-ui/core"
 ```
 
 ## Usage

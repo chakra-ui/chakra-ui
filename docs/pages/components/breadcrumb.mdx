@@ -8,11 +8,19 @@ description:
   many pages or products.
 ---
 
+import ComponentLinks from "../../src/components/component-links"
+
 # Breadcrumb
 
 Breadcrumbs, or a breadcrumb navigation, can help to enhance how users navigate
 to previous page levels of a website, especially if that website has many pages
 or products.
+
+<ComponentLinks
+  github={{ url: "#" }}
+  storybook={{ url: "#" }}
+  npm={{ label: "@chakra-ui/breadcrumb", url: "#" }}
+/>
 
 ## Import
 
@@ -79,7 +87,7 @@ icon.
 ### Using an icon as the separator
 
 ```jsx
-<Breadcrumb spacing="8px" separator={<ChevronRightIcon color="gray.300" />}>
+<Breadcrumb spacing="8px" separator={<ChevronRightIcon color="gray.500" />}>
   <BreadcrumbItem>
     <BreadcrumbLink href="/">Home</BreadcrumbLink>
   </BreadcrumbItem>
@@ -96,9 +104,9 @@ icon.
 
 ## Composition
 
-`Breadcrumb` composes [Box](/box) so you can pass all `Box` props to change the
-style of the breadcrumbs. Let's say we need to increase the `fontSize` of the
-breadcrumbs.
+Breadcrumb composes [Box](/components/box) so you can pass all `Box` props to
+change the style of the breadcrumbs. Let's say we need to reduce the `fontSize`
+of the breadcrumbs.
 
 ```jsx
 <Breadcrumb fontWeight="medium" fontSize="sm">
@@ -125,6 +133,7 @@ It'll replace the rendered `a` tag with with Reach's Link.
 
 ```jsx live=false
 // import { Link } from "@reach/router"
+
 <Breadcrumb>
   <BreadcrumbItem>
     <BreadcrumbLink as={Link} to="/">
