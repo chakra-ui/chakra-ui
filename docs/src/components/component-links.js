@@ -26,6 +26,7 @@ function ComponentLink(props) {
       _hover={{
         color: useColorModeValue("gray.700", "whiteAlpha.900"),
         boxShadow: "sm",
+        transform: "translateY(-1px)",
       }}
       {...rest}
     >

@@ -43,9 +43,8 @@ function ComponentCard(props) {
     >
       <Image
         fit="cover"
-        height="240px"
+        h="160px"
         w="100%"
-        ignoreFallback
         alt={title}
         src={image && image.publicURL}
       />
@@ -80,7 +79,7 @@ export function ComponentList() {
   const images = query.allFile.nodes
 
   return (
-    <SimpleGrid mt="40px" spacing="6" columns={[1, 2]}>
+    <SimpleGrid mt="40px" spacing="6" columns={[1, 3]}>
       {components.map(({ frontmatter, fields }) => (
         <ComponentCard
           url={fields.slug}

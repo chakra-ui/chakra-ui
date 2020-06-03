@@ -4,9 +4,19 @@ package: "@chakra-ui/layout"
 image: "components/list.svg"
 ---
 
+import ComponentLinks from "../../src/components/component-links"
+
 # List
 
 List is used to display list items, it renders a `<ul>` by default.
+
+<ComponentLinks
+  github={{ url: "#" }}
+  storybook={{ url: "#" }}
+  npm={{ label: "@chakra-ui/layout", url: "#" }}
+/>
+
+<carbon-ad></carbon-ad>
 
 ## Import
 
@@ -17,23 +27,23 @@ import { List, ListItem, ListIcon } from "@chakra-ui/core"
 ## Unordered List
 
 ```jsx
-<List styleType="disc">
+<UnorderedList>
   <ListItem>Lorem ipsum dolor sit amet</ListItem>
   <ListItem>Consectetur adipiscing elit</ListItem>
   <ListItem>Integer molestie lorem at massa</ListItem>
   <ListItem>Facilisis in pretium nisl aliquet</ListItem>
-</List>
+</UnorderedList>
 ```
 
 ## Ordered List
 
 ```jsx
-<List as="ol" styleType="decimal">
+<OrderedList>
   <ListItem>Lorem ipsum dolor sit amet</ListItem>
   <ListItem>Consectetur adipiscing elit</ListItem>
   <ListItem>Integer molestie lorem at massa</ListItem>
   <ListItem>Facilisis in pretium nisl aliquet</ListItem>
-</List>
+</OrderedList>
 ```
 
 ## Unstyled List with icon
@@ -45,20 +55,20 @@ size of the list item.
 ```jsx
 <List spacing={3}>
   <ListItem>
-    <ListIcon icon="check-circle" color="green.500" />
+    <ListIcon as={CheckCircleIcon} color="green.500" />
     Lorem ipsum dolor sit amet, consectetur adipisicing elit
   </ListItem>
   <ListItem>
-    <ListIcon icon="check-circle" color="green.500" />
+    <ListIcon as={CheckCircleIcon} color="green.500" />
     Assumenda, quia temporibus eveniet a libero incidunt suscipit
   </ListItem>
   <ListItem>
-    <ListIcon icon="check-circle" color="green.500" />
+    <ListIcon as={CheckCircleIcon} color="green.500" />
     Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
   </ListItem>
   {/* You can also use custom icons from react-icons */}
   <ListItem>
-    <ListIcon icon={MdSettings} color="green.500" />
+    <ListIcon as={MdSettings} color="green.500" />
     Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
   </ListItem>
 </List>

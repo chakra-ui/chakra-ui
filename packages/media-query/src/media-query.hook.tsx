@@ -20,7 +20,7 @@ export function useBreakpoint(defaultBreakpoint?: string) {
   const { breakpoints } = theme
 
   const mediaQueries = useMemo(
-    () => createMediaQueries({ base: `0px`, ...breakpoints }),
+    () => createMediaQueries({ xs: `0px`, ...breakpoints }),
     [breakpoints],
   )
 

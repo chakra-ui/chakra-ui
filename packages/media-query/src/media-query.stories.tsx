@@ -31,7 +31,7 @@ export const ShowWithQuery = () => (
 
 export const BreakpointHook = () => {
   const breakpoint = useBreakpoint()
-  const isMobile = breakpoint === "sm" || breakpoint === "base"
+  const isMobile = breakpoint === "sm" || breakpoint === "xs"
   return (
     <code style={{ fontSize: isMobile ? 15 : 30 }}>
       The current breakpoint is {JSON.stringify(breakpoint, null, 2)}!

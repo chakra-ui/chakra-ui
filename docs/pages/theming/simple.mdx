@@ -4,41 +4,21 @@ description: How to use the theming API in chakra
 order: 2
 ---
 
-# Theming Basics
+# Theming API - Basics
 
 ## Design a button component
 
-Let's say you need to create a custom button that has 2 sizes, `small` and
-`large`.
+Let's take this further and try to create a custom button that has 2 sizes,
+`small` and `large`.
 
-The first thing you need do is to call the `chakra` function on the `button`
-element. The result is a button component that takes both native button props
-and chakra's style props.
-
-```jsx live=false
-import { chakra } from "@chakra-ui/core"
-
-const Button = chakra("button")
-```
-
-The `chakra` function provides options you can use to theme this component.
-
-- **baseStyle**: Used to add base or default styles to the component.
-- **sizes**: Used to add the styles for the different sizes of the component. In
-  this scenario, it'll be `small` and `large`.
-- **variants**: Used to add style variants of the component. In this scenario,
-  it'll be `solid` and `outline`.
-
-For this button, we might want to apply some base styles it should have
-regardless of the variant or size. For example, applying `font-weight`,
+First, let's add the `baseStyle` for common styles like `font-weight`,
 `text-transform`, etc.
-
-Here's how to apply base styles to the button.
 
 ```jsx live=false
 const Button = chakra("button", {
   baseStyle: {
     fontWeight: "semibold",
+    borderRadius: "4px",
     textTransform: "uppercase",
   },
 })
@@ -85,8 +65,10 @@ Here's what it looks like:
 ```jsx manual=true
 const Button = chakra("button", {
   baseStyle: {
+    borderRadius: "md",
     fontWeight: "semibold",
     textTransform: "uppercase",
+    transition: "all 0.2s",
   },
   sizes: {
     small: {
@@ -111,18 +93,18 @@ const Button = chakra("button", {
       borderColor: "currentColor",
       color: "blue.400",
       _hover: {
+        bg: "blue.50",
         color: "blue.600",
       },
     },
   },
 })
 
-Button.defaultProps = {
-  size: "small",
-  variant: "solid",
-}
-
-render(<Button variant="outline">Welcome</Button>)
+render(
+  <Button size="small" variant="solid">
+    Welcome
+  </Button>,
+)
 ```
 
 ### Setting default values
@@ -164,13 +146,15 @@ To provide this styles globally, you can move all these styles to the theme
 under `theme.components.Button` and use the `themeKey` option to automatically
 connect them. It works the same!
 
-> **💡Pro Tip:** You can also move the `defaultProps` to the theme as well.
+> **💡 Pro Tip:** You can also move the `defaultProps` to the theme as well.
 
 ```jsx live=false
+// 1. Use the `themeKey` option
 const Button = chakra("button", {
   themeKey: "Button",
 })
 
+// 2. Add styles to the theme
 const theme = {
   components: {
     Button: {
@@ -178,7 +162,7 @@ const theme = {
         size: "small",
         variant: "solid",
       },
-      baseStyles: {
+      baseStyle: {
         fontWeight: "semibold",
         textTransform: "uppercase",
       },

@@ -6,17 +6,21 @@ order: 1
 
 import { BadgeSpec } from "../../src/components/theming-guide-image"
 
-# Theming
+# Theming API
 
-Chakra provides a built-in component theming API that makes it easy to build
-fully customizable, theme-aware components directly from your theme.
+Chakra provides a theming API that makes it easy to build fully customizable,
+theme-aware components directly from the theme object.
+
+> 🚨 This API is **completely optional** and should be used only when you need
+> to customize or create custom components.
 
 ## Style modifiers
 
-> Modifiers are attributes that change the visual appearance of a component
+A reusable and themable component consists of the `baseStyle`, which refers to
+the default or common style, and modifier styles which alter the change the
+appearance of the component.
 
-After reviewing several components across the web, we noticed that most reusable
-components have the following style modifiers:
+The most common style modifiers are:
 
 - **Size:** a component can have different sizes (small, medium, large)
 - **Variant:** a component can different visual styles (outline, solid, ghost)
@@ -24,9 +28,6 @@ components have the following style modifiers:
   schemes. For example, an outline button with a red color scheme.
 - **Color mode:** a component can change its visual styles based on color mode
   (light or dark).
-
-In addition to these, most components have **base or default styles** regardless
-of the modifiers. We call that the `baseStyle`.
 
 We created a simple API to help you build reusable and themeable components.
 
@@ -64,8 +65,8 @@ Let's say you need to create a simple badge component with the following spec.
 
 <BadgeSpec />
 
-First thing we notice is that the badge as some common or default styles across
-all badge variants. Here's how we'll model that:
+First thing we notice is that the badge has **common styles** across all its
+variants. Here's how we'll model that:
 
 ```jsx live=false
 const Badge = chakra("span", {

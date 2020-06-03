@@ -1,7 +1,7 @@
-<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="400" height="400" fill="white"/>
-<rect x="17.5" y="19.5" width="168" height="168" stroke="#E2E8F0" stroke-width="3" stroke-dasharray="8 4"/>
-<rect x="17.5" y="208.5" width="168" height="168" stroke="#E2E8F0" stroke-width="3" stroke-dasharray="8 4"/>
-<rect x="211.5" y="19.5" width="168" height="168" stroke="#E2E8F0" stroke-width="3" stroke-dasharray="8 4"/>
-<rect x="211.5" y="208.5" width="168" height="168" stroke="#E2E8F0" stroke-width="3" stroke-dasharray="8 4"/>
+<svg width="354" height="240" viewBox="0 0 354 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="354" height="240" fill="white"/>
+<rect x="17.5" y="19.5" width="146" height="93" stroke="#E2E8F0" stroke-width="3" stroke-dasharray="8 4"/>
+<rect x="17.5" y="125.5" width="146" height="93" stroke="#E2E8F0" stroke-width="3" stroke-dasharray="8 4"/>
+<rect x="186.5" y="19.5" width="146" height="93" stroke="#E2E8F0" stroke-width="3" stroke-dasharray="8 4"/>
+<rect x="186.5" y="125.5" width="146" height="93" stroke="#E2E8F0" stroke-width="3" stroke-dasharray="8 4"/>
 </svg>

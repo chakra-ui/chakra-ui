@@ -7,11 +7,20 @@ description:
   form, opening a Dialog, canceling an action, or performing a delete operation.
 ---
 
+import ComponentLinks from "../../src/components/component-links"
+
 # Button
 
 Button component is used to trigger an action or event, such as submitting a
-form, opening a [Dialog](/modal), canceling an action, or performing a delete
-operation.
+form, opening a dialog, canceling an action, or performing a delete operation.
+
+<ComponentLinks
+  github={{ url: "#" }}
+  storybook={{ url: "#" }}
+  npm={{ label: "@chakra-ui/button", url: "#" }}
+/>
+
+<carbon-ad></carbon-ad>
 
 ## Import
 
@@ -195,7 +204,7 @@ are props related to the Button component.
 | Name          | Type                                              | Default | Description                                                                                               |
 | ------------- | ------------------------------------------------- | ------- | --------------------------------------------------------------------------------------------------------- |
 | `aria-label`  | `string`                                          |         | The label of the button                                                                                   |
-| `colorScheme` | `string`                                          |         | The color of the button. Use the colors passed in `theme.colors`.                                         |
+| `colorScheme` | `string`                                          | `blue`  | The color of the button. Use the colors in `theme.colors` that have `50` - `900` values.                  |
 | `variant`     | `outline`, `ghost`, `unstyled` , `link` , `solid` | `solid` | The variant of the button style to use.                                                                   |
 | `isDisabled`  | `boolean`                                         |         | If `true`, the button will be disabled.                                                                   |
 | `isLoading`   | `boolean`                                         |         | If `true`, the button will show a spinner.                                                                |

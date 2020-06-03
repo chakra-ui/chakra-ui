@@ -7,10 +7,20 @@ description:
   pattern. Menu uses roving tabIndex for focus management.
 ---
 
+import ComponentLinks from "../../src/components/component-links"
+
 # Menu
 
 An accessible dropdown menu for the common dropdown menu button design pattern.
 Menu uses roving tabIndex for focus management.
+
+<ComponentLinks
+  github={{ url: "#" }}
+  storybook={{ url: "#" }}
+  npm={{ label: "@chakra-ui/menu", url: "#" }}
+/>
+
+<carbon-ad></carbon-ad>
 
 ## Import
 
@@ -69,7 +79,7 @@ To access the internal state of the Menu, use a function as a `children`
 <Menu>
   {({ isOpen }) => (
     <React.Fragment>
-      <MenuButton isActive={isOpen} as={Button} rightIcon="chevron-down">
+      <MenuButton isActive={isOpen} as={Button} rightIcon={<ChevronDownIcon />}>
         {isOpen ? "Close" : "Open"}
       </MenuButton>
       <MenuList>
@@ -117,7 +127,7 @@ the letter you typed.
 
 ```jsx
 <Menu>
-  <MenuButton as={Button} rightIcon="chevron-down">
+  <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
     Your Cats
   </MenuButton>
   <MenuList>

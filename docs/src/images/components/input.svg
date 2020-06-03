@@ -1,10 +1,10 @@
-<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="400" height="400" fill="white"/>
-<rect opacity="0.5" x="56" y="167" width="288" height="48" fill="#E2E8F0"/>
-<rect width="288" height="1" transform="matrix(1 0 0 -1 56 215)" fill="#A0AEC0"/>
-<rect x="80" y="183.941" width="151.059" height="15.5294" fill="#A0AEC0"/>
-<path d="M268.625 180.875C270.017 180.875 271.353 181.428 272.337 182.413C273.322 183.397 273.875 184.733 273.875 186.125V201.875C273.875 203.267 273.322 204.603 272.337 205.587C271.353 206.572 270.017 207.125 268.625 207.125V207.125" stroke="#494949" stroke-width="1.4375" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M273.875 201.875C273.875 203.267 274.428 204.603 275.413 205.587C276.397 206.572 277.733 207.125 279.125 207.125V207.125" stroke="#494949" stroke-width="1.4375" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M279.125 180.875C277.733 180.875 276.397 181.428 275.413 182.413C274.428 183.397 273.875 184.733 273.875 186.125" stroke="#494949" stroke-width="1.4375" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M268.625 198.375H279.125" stroke="#494949" stroke-width="1.4375" stroke-linecap="round" stroke-linejoin="round"/>
+<svg width="354" height="240" viewBox="0 0 354 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="354" height="240" fill="white"/>
+<rect opacity="0.5" x="33" y="96" width="288" height="48" fill="#E2E8F0"/>
+<rect width="288" height="1" transform="matrix(1 0 0 -1 33 144)" fill="#A0AEC0"/>
+<rect x="57" y="112.941" width="151.059" height="15.5294" fill="#A0AEC0"/>
+<path d="M237.733 108.525C238.965 108.525 240.147 108.999 241.018 109.842C241.89 110.685 242.379 111.828 242.379 113.02V126.505C242.379 127.697 241.89 128.84 241.018 129.683C240.147 130.526 238.965 131 237.733 131V131" stroke="#494949" stroke-width="1.4375" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M242.379 126.505C242.379 127.697 242.869 128.84 243.74 129.683C244.612 130.526 245.793 131 247.026 131V131" stroke="#494949" stroke-width="1.4375" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M247.026 108.525C245.793 108.525 244.612 108.999 243.74 109.842C242.869 110.685 242.379 111.828 242.379 113.02" stroke="#494949" stroke-width="1.4375" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M237.733 123.508H247.025" stroke="#494949" stroke-width="1.4375" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

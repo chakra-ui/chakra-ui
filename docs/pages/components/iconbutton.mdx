@@ -1,14 +1,25 @@
 ---
 title: Icon Button
 package: "@chakra-ui/button"
+description: Icon button renders an icon within in a button
 ---
+
+import ComponentLinks from "../../src/components/component-links"
 
 # Icon Button
 
 IconButton composes the `Button` component, except that it renders only an icon.
 
-> Since it's only an icon that's rendered, it's required to pass the
-> `aria-label` prop, so screen readers can give meaning to the button.
+<ComponentLinks
+  github={{ url: "#" }}
+  storybook={{ url: "#" }}
+  npm={{ label: "@chakra-ui/button", url: "#" }}
+/>
+
+<carbon-ad></carbon-ad>
+
+Since `IconButton` only renders an icon, its required to pass the `aria-label`
+prop, so screen readers can give meaning to the button.
 
 ## Import
 
@@ -19,7 +30,7 @@ import { IconButton } from "@chakra-ui/core"
 ## Usage
 
 ```jsx
-<IconButton aria-label="Search database" icon="search" />
+<IconButton aria-label="Search database" icon={<SearchIcon />} />
 ```
 
 ### Button Colors
@@ -28,7 +39,11 @@ The IconButton component accepts most of the props from the `Button` component.
 so we can use `colorScheme` prop to change the color of the button.
 
 ```jsx
-<IconButton colorScheme="blue" aria-label="Search database" icon="search" />
+<IconButton
+  colorScheme="blue"
+  aria-label="Search database"
+  icon={<SearchIcon />}
+/>
 ```
 
 ### Button Sizes
@@ -37,7 +52,12 @@ Just like the Button component, pass the `size` prop to change the size of the
 button.
 
 ```jsx
-<IconButton colorScheme="teal" aria-label="Call Segun" size="lg" icon="phone" />
+<IconButton
+  colorScheme="teal"
+  aria-label="Call Segun"
+  size="lg"
+  icon={<PhoneIcon />}
+/>
 ```
 
 ### Button Variants
@@ -50,7 +70,7 @@ the button.
   variant="outline"
   colorScheme="teal"
   aria-label="Send email"
-  icon="email"
+  icon={<EmailIcon />}
 />
 ```
 
@@ -65,7 +85,7 @@ You can also use icons from popular libraries like
   colorScheme="teal"
   aria-label="Call Sage"
   fontSize="20px"
-  icon={MdPhone}
+  icon={<MdPhone />}
 />
 ```
 

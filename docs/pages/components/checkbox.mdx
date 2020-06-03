@@ -7,10 +7,20 @@ description:
   values from several options.
 ---
 
+import ComponentLinks from "../../src/components/component-links"
+
 # Checkbox
 
 Checkbox component is used in forms when a user needs to select multiple values
 from several options.
+
+<ComponentLinks
+  github={{ url: "#" }}
+  storybook={{ url: "#" }}
+  npm={{ label: "@chakra-ui/checkbox", url: "#" }}
+/>
+
+<carbon-ad></carbon-ad>
 
 Native HTML checkboxes are 100% accessible by default, so we used a
 [very common CSS technique](https://dev.to/lkopacz/create-custom-keyboard-accessible-checkboxes-2036)
@@ -36,7 +46,7 @@ Basic usage of checkbox.
 ### Disabled Checkbox
 
 ```jsx
-<Stack spacing={10} isInline>
+<Stack spacing={10} direction="row">
   <Checkbox isDisabled>Checkbox</Checkbox>
   <Checkbox isDisabled defaultIsChecked>
     Checkbox
@@ -50,7 +60,7 @@ You can override the color scheme of the checkbox to any color key specified in
 `theme.colors`.
 
 ```jsx
-<Stack spacing={10} isInline>
+<Stack spacing={10} direction="row">
   <Checkbox colorScheme="red" defaultIsChecked>
     Checkbox
   </Checkbox>
@@ -66,7 +76,7 @@ Pass the `size` prop to change the size of the Checkbox. Values can be either
 `sm`, `md` or `lg`.
 
 ```jsx
-<Stack spacing={10} isInline>
+<Stack spacing={10} direction="row">
   <Checkbox size="sm" colorScheme="red">
     Checkbox
   </Checkbox>
@@ -126,9 +136,11 @@ it's children.
 
 ```jsx
 <CheckboxGroup colorScheme="green" defaultValue={["naruto", "kakashi"]}>
-  <Checkbox value="naruto">Naruto</Checkbox>
-  <Checkbox value="sasuke">Sasuke</Checkbox>
-  <Checkbox value="kakashi">kakashi</Checkbox>
+  <HStack>
+    <Checkbox value="naruto">Naruto</Checkbox>
+    <Checkbox value="sasuke">Sasuke</Checkbox>
+    <Checkbox value="kakashi">kakashi</Checkbox>
+  </HStack>
 </CheckboxGroup>
 ```
 
@@ -136,15 +148,12 @@ You can also make checkbox group appear horizontally by passing the `isInline`
 prop.
 
 ```jsx
-<CheckboxGroup
-  isInline
-  spacing={8}
-  colorScheme="teal"
-  defaultValue={["itachi", "kisame"]}
->
-  <Checkbox value="itachi">Itachi</Checkbox>
-  <Checkbox value="madara">Madara</Checkbox>
-  <Checkbox value="kisame">Kisame</Checkbox>
+<CheckboxGroup colorScheme="teal" defaultValue={["itachi", "kisame"]}>
+  <HStack spacing={8}>
+    <Checkbox value="itachi">Itachi</Checkbox>
+    <Checkbox value="madara">Madara</Checkbox>
+    <Checkbox value="kisame">Kisame</Checkbox>
+  </HStack>
 </CheckboxGroup>
 ```
 
