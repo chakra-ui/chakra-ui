@@ -28,7 +28,7 @@ function LastEdited(props) {
 const Body = (props) => {
   const { relativePath, body, previous, next, modifiedTime } = props
   return (
-    <Box mx="auto" maxW="46rem" mt="1em">
+    <Box mx="auto" maxW="48rem" mt="1em">
       <MDXRenderer>{body}</MDXRenderer>
       {relativePath && (
         <LastEdited

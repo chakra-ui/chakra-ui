@@ -18,11 +18,10 @@ To enable this behavior within your apps, wrap your application in a
 ```jsx live=false
 import * as React from "react"
 import { ThemeProvider, ColorModeProvider } from "@chakra-ui/core"
-import customTheme from "./theme"
 
-function TurnOnColorMode({ children }) {
+function Example({ children }) {
   return (
-    <ThemeProvider theme={customTheme}>
+    <ThemeProvider>
       <ColorModeProvider>{children}</ColorModeProvider>
     </ThemeProvider>
   )
@@ -57,7 +56,7 @@ dark mode.
 const bg = useColorModeValue(lightMode, darkMode)
 ```
 
-> Click the **"Toggle Mode"** button to see it in action.
+> Click the **Toggle Mode** button to see it in action.
 
 ```jsx
 function StyleColorMode() {
@@ -91,7 +90,7 @@ function Example() {
   const [colorMode, toggleColorMode] = useColorMode()
 
   return (
-    <Stack shouldWrapChildren isInline>
+    <HStack>
       <LightMode>
         <Button size="sm" colorScheme="blue">
           Light Mode Always
@@ -107,7 +106,7 @@ function Example() {
       <Button size="sm" colorScheme="blue" onClick={toggleColorMode}>
         Toggle Mode
       </Button>
-    </Stack>
+    </HStack>
   )
 }
 ```

@@ -189,7 +189,7 @@ render prop. It provides 2 internal state `isExpanded`, and `isDisabled`.
   <AccordionItem>
     <AccordionButton>
       <Box flex="1" textAlign="left">
-        Section 2 title
+        Section 1 title
       </Box>
       <AccordionIcon />
     </AccordionButton>
@@ -208,7 +208,11 @@ render prop. It provides 2 internal state `isExpanded`, and `isDisabled`.
           <Box flex="1" textAlign="left">
             Section 2 title
           </Box>
-          <Icon size="12px" name={isExpanded ? "minus" : "add"} />
+          {isExpanded ? (
+            <MinusIcon fontSize="12px" />
+          ) : (
+            <AddIcon fontSize="12px" />
+          )}
         </AccordionButton>
         <AccordionPanel pb={4}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -255,9 +259,8 @@ toggle (expand or collapse) the accordion.
 
 ### AccordionButton Props
 
-AccordionButton renders a `button` and composes `PseudoBox`, this means you can
-style it by passing the pseudo style props `_expanded`, `_disabled`, `_hover`,
-etc.
+AccordionButton renders a `button` and composes `Box`, this means you can style
+it by passing the pseudo style props `_expanded`, `_disabled`, `_hover`, etc.
 
 <br />
 

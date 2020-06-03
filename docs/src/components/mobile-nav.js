@@ -1,23 +1,30 @@
 import {
   Drawer,
   DrawerBody,
+  DrawerContent,
+  DrawerOverlay,
   IconButton,
   useDisclosure,
-  DrawerOverlay,
-  DrawerContent,
 } from "@chakra-ui/core"
+import { globalHistory } from "@reach/router"
 import * as React from "react"
 import { MdDehaze } from "react-icons/md"
+import { SideNavContent } from "./docs/side-nav"
 
 const MobileNav = () => {
   const { isOpen, onToggle, onClose } = useDisclosure()
 
+  globalHistory.listen(({ action }) => {
+    if (action === "PUSH") {
+      onClose()
+    }
+  })
+
   return (
     <>
       <IconButton
-        padding="2"
-        // display={{ sm: "inline-flex", md: "none" }}
-        aria-label="Navigation Menu"
+        display={{ sm: "inline-flex", md: "none" }}
+        aria-label="Open menu"
         fontSize="20px"
         variant="ghost"
         icon={<MdDehaze />}
@@ -27,7 +34,7 @@ const MobileNav = () => {
         <DrawerOverlay>
           <DrawerContent>
             <DrawerBody p={0}>
-              <div>Welcome</div>
+              <SideNavContent contentHeight="100vh" top="0" />
             </DrawerBody>
           </DrawerContent>
         </DrawerOverlay>

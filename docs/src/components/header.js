@@ -35,9 +35,13 @@ const HeaderContent = () => {
         <Logo />
       </chakra.a>
 
-      <Search />
-
-      <Flex align="center" color="gray.500">
+      <Flex
+        width={["auto", "auto", "100%"]}
+        maxW="720px"
+        align="center"
+        color="gray.500"
+      >
+        <Search paddingX="4" />
         <SponsorButton mr="5" />
         <Stack align="center" direction="row" spacing="3">
           <Link
@@ -56,7 +60,6 @@ const HeaderContent = () => {
           variant="ghost"
           color="current"
           marginLeft="2"
-          // fontSize="20px"
           onClick={toggleColorMode}
           icon={<Icon />}
         />

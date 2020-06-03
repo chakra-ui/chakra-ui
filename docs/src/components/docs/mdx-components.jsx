@@ -48,7 +48,7 @@ const Link = React.forwardRef((props, ref) => (
   />
 ))
 
-const DocsHeading = (props) => (
+const LinkedHeading = (props) => (
   <Heading
     mb="1em"
     mt="2em"
@@ -87,34 +87,32 @@ const DocsHeading = (props) => (
   </Heading>
 )
 
+const InlineCode = (props) => (
+  <chakra.code
+    fontFamily="mono"
+    color={useColorModeValue("purple.600", "purple.300")}
+    fontWeight="semibold"
+    fontSize="0.9em"
+    {...props}
+  >
+    {`\`${props.children}\``}
+  </chakra.code>
+)
+
 const MDXComponents = {
-  h1: (props) => (
-    <Heading
-      as="h1"
-      size="xl"
-      fontWeight="medium"
-      my="1em"
-      _first={{ mt: 0 }}
-      {...props}
-    ></Heading>
-  ),
+  h1: (props) => <Heading as="h1" size="xl" my="1em" {...props}></Heading>,
   h2: (props) => (
-    <DocsHeading as="h2" fontWeight="medium" size="lg" {...props} />
+    <LinkedHeading as="h2" fontWeight="medium" size="lg" {...props} />
   ),
   h3: (props) => (
-    <DocsHeading as="h3" size="md" fontWeight="medium" {...props}></DocsHeading>
-  ),
-  inlineCode: (props) => (
-    <chakra.code
-      fontFamily="mono"
-      color="purple.600"
-      fontWeight="semibold"
-      fontSize="0.9em"
+    <LinkedHeading
+      as="h3"
+      size="md"
+      fontWeight="medium"
       {...props}
-    >
-      {`\`${props.children}\``}
-    </chakra.code>
+    ></LinkedHeading>
   ),
+  inlineCode: InlineCode,
   code: CodeBlock,
   pre: Pre,
   kbd: Kbd,

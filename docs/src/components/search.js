@@ -25,7 +25,7 @@ function getHash(url) {
   return link.hash
 }
 
-export const Search = () => {
+export const Search = (props) => {
   const ref = React.useRef()
 
   const focus = (event) => {
@@ -88,10 +88,9 @@ export const Search = () => {
     <Box
       position="relative"
       width="100%"
-      maxW="700px"
-      paddingX="4"
       boxSizing="content-box"
       display={["none", "none", "block"]}
+      {...props}
       sx={{
         ".algolia-autocomplete": {
           width: "100%",

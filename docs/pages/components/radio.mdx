@@ -124,7 +124,7 @@ scenario. Here's what you need to do:
 3. If you pass `isDisabled` to any of it's children, it'll be skipped in the
    keyboard navigation.
 
-```jsx isManual=true
+```jsx manual=true
 // Step 1: Create a component that accepts `isChecked` and `isDisabled` prop
 const CustomRadio = React.forwardRef((props, ref) => {
   const { isChecked, isDisabled, value, ...rest } = props

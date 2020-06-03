@@ -15,7 +15,7 @@ export const liveEditorStyle = {
   marginTop: 32,
   overflowX: "auto",
   fontFamily: "Menlo,monospace",
-  borderRadius: 10,
+  borderRadius: 5,
 }
 
 export const liveErrorStyle = {
@@ -58,7 +58,7 @@ const EditableNotice = (props) => {
       position="absolute"
       width="full"
       top="-1.25em"
-      borderTopRadius="10px"
+      borderTopRadius="5px"
       bg="#011627"
       py="2"
       zIndex="0"
@@ -93,7 +93,7 @@ const StarIcon = (props) => {
 const CodeBlock = ({
   className,
   live = true,
-  isManual,
+  manual,
   render,
   children,
   ...props
@@ -116,7 +116,7 @@ const CodeBlock = ({
       FocusLock,
       Lorem,
     },
-    noInline: isManual,
+    noInline: manual,
     ...props,
   }
 
