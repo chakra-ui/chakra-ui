@@ -7,13 +7,18 @@ description:
   or action.
 ---
 
+import ComponentLinks from "../../src/components/component-links"
+
 # Alert Dialog
 
 AlertDialog component is used interrupt the user with a mandatory confirmation
 or action.
 
-> 🚨 Version (v1.0.0) introduced a breaking change to this component's API.
-> Kindly update accordingly.
+<ComponentLinks
+  github={{ url: "#" }}
+  storybook={{ url: "#" }}
+  npm={{ label: "@chakra-ui/alert-dialog", url: "#" }}
+/>
 
 ## Import
 
@@ -93,53 +98,54 @@ function AlertDialogExample() {
 ### Adding transition
 
 The modal doesn't come with any transition by default so you can manage this
-yourself. Chakra exports two transition components `SlideIn` and `Scale` to
+yourself. Chakra exports two transition components `SlideFade` and `Fade` to
 provide simple transitions.
 
-> For some reason, focus doesn't return back to the trigger after the transition
-> ends. As a walkaround, you might need to set `finalFocusRef` to the trigger or
-> any other element, and set `isOpen` to `true`.
+> When adding transitions, kindly pay attention to the `timeout` for the overlay
+> and content transitions. In this example, `Fade` transitions slower than the
+> `SlideFade` for it to work correctly.
 
 ```jsx
 function TransitionExample() {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const btnRef = React.useRef()
   const cancelRef = React.useRef()
 
   return (
     <>
-      <Button ref={btnRef} onClick={onOpen}>
-        Discard
-      </Button>
-      {/* You can swap the `Scale` with `SlideIn` to see a different transition */}
-      <Scale in={isOpen}>
+      <Button onClick={onOpen}>Discard</Button>
+      <Fade timeout={300} in={isOpen}>
         {(styles) => (
           <AlertDialog
             leastDestructiveRef={cancelRef}
-            finalFocusRef={btnRef}
             onClose={onClose}
             isOpen={true}
+            isCentered
           >
-            <AlertDialogOverlay opacity={styles.opacity} />
-            <AlertDialogContent {...styles}>
-              <AlertDialogHeader>Discard Changes?</AlertDialogHeader>
-              <AlertDialogCloseButton />
-              <AlertDialogBody>
-                Are you sure you want to discard all of your notes? 44 words
-                will be deleted.
-              </AlertDialogBody>
-              <AlertDialogFooter>
-                <Button ref={cancelRef} onClick={onClose}>
-                  No
-                </Button>
-                <Button colorScheme="red" ml={3}>
-                  Yes
-                </Button>
-              </AlertDialogFooter>
-            </AlertDialogContent>
+            <AlertDialogOverlay style={styles}>
+              <SlideFade timeout={150} in={isOpen} unmountOnExit={false}>
+                {(styles) => (
+                  <AlertDialogContent style={styles}>
+                    <AlertDialogHeader>Discard Changes?</AlertDialogHeader>
+                    <AlertDialogCloseButton />
+                    <AlertDialogBody>
+                      Are you sure you want to discard all of your notes? 44
+                      words will be deleted.
+                    </AlertDialogBody>
+                    <AlertDialogFooter>
+                      <Button ref={cancelRef} onClick={onClose}>
+                        No
+                      </Button>
+                      <Button colorScheme="red" ml={3}>
+                        Yes
+                      </Button>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                )}
+              </SlideFade>
+            </AlertDialogOverlay>
           </AlertDialog>
         )}
-      </Scale>
+      </Fade>
     </>
   )
 }

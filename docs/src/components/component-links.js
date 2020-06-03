@@ -1,5 +1,12 @@
 import React from "react"
-import { Icon, Text, HStack, Wrap, Link } from "@chakra-ui/core"
+import {
+  Icon,
+  Text,
+  HStack,
+  Wrap,
+  Link,
+  useColorModeValue,
+} from "@chakra-ui/core"
 import { FaNpm, FaGithub } from "react-icons/fa"
 import StorybookIcon from "./storybook-icon"
 
@@ -15,8 +22,11 @@ function ComponentLink(props) {
       minH="32px"
       borderWidth="1px"
       borderRadius="md"
-      color="gray.600"
-      _hover={{ color: "gray.700", boxShadow: "sm" }}
+      color={useColorModeValue("gray.600", "whiteAlpha.700")}
+      _hover={{
+        color: useColorModeValue("gray.700", "whiteAlpha.900"),
+        boxShadow: "sm",
+      }}
       {...rest}
     >
       <HStack>
@@ -36,10 +46,10 @@ function ComponentLinks(props) {
       <ComponentLink
         url={github.url}
         icon={FaGithub}
-        iconColor="gray.600"
+        iconColor={useColorModeValue("gray.600", "inherit")}
         iconSize="1rem"
       >
-        View on Github
+        View source
       </ComponentLink>
       <ComponentLink
         url={npm.url}

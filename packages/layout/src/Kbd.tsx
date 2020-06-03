@@ -15,7 +15,12 @@ export type KbdProps = PropsOf<typeof Kbd>
  *
  * @see Docs https://chakra-ui.com/kbd
  */
-export const Kbd = chakra("kbd", { themeKey: "Kbd" })
+export const Kbd = chakra("kbd", {
+  themeKey: "Kbd",
+  baseStyle: {
+    fontFamily: "mono",
+  },
+})
 
 if (__DEV__) {
   Kbd.displayName = "Kbd"

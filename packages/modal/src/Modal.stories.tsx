@@ -90,7 +90,7 @@ export function BasicUsage() {
 
 export function ReturnFocus() {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const finalRef = React.useRef()
+  const finalRef = React.useRef<any>()
 
   return (
     <>
