@@ -63,7 +63,7 @@ function Guides() {
           parent {
             ... on File {
               birthTime
-              createdAt: birthTime(formatString: "YYYY MMMM DD")
+              createdAt: birthTime(formatString: "MMMM DD, YYYY")
             }
           }
         }
