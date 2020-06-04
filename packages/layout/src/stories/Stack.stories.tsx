@@ -23,13 +23,13 @@ export const Inline = () => (
 
 export const Responsive = () => (
   <Stack direction={["column", "row"]} spacing="40px" w="100%">
-    <Box w="100%" h="40px" bg="yellow.200">
+    <Box boxSize="40px" bg="yellow.200">
       1
     </Box>
-    <Box w="100%" h="40px" bg="tomato">
+    <Box boxSize="40px" bg="tomato">
       2
     </Box>
-    <Box w="100%" h="40px" bg="pink.100">
+    <Box boxSize="40px" bg="pink.100">
       3
     </Box>
   </Stack>
@@ -42,13 +42,13 @@ export const WithResponsiveDivider = () => (
     divider={<StackDivider borderColor="red.200" />}
     spacing={4}
   >
-    <Box w="100%" h="40px" bg="yellow.200">
+    <Box boxSize="40px" bg="yellow.200">
       1
     </Box>
-    <Box w="100%" h="40px" bg="tomato">
+    <Box boxSize="40px" bg="tomato">
       2
     </Box>
-    <Box w="100%" h="40px" bg="pink.100">
+    <Box boxSize="40px" bg="pink.100">
       3
     </Box>
   </Stack>
@@ -57,25 +57,25 @@ export const WithResponsiveDivider = () => (
 export const WithDivider = () => (
   <>
     <Stack divider={<StackDivider />} spacing={4}>
-      <Box w="100%" h="40px" bg="yellow.200">
+      <Box boxSize="40px" bg="yellow.200">
         1
       </Box>
-      <Box w="100%" h="40px" bg="tomato">
+      <Box boxSize="40px" bg="tomato">
         2
       </Box>
-      <Box w="100%" h="40px" bg="pink.100">
+      <Box boxSize="40px" bg="pink.100">
         3
       </Box>
     </Stack>
 
     <Stack mt={10} direction="row" divider={<StackDivider />} spacing={4}>
-      <Box w="100%" h="40px" bg="yellow.200">
+      <Box boxSize="40px" bg="yellow.200">
         1
       </Box>
-      <Box w="100%" h="40px" bg="tomato">
+      <Box boxSize="40px" bg="tomato">
         2
       </Box>
-      <Box w="100%" h="40px" bg="pink.100">
+      <Box boxSize="40px" bg="pink.100">
         3
       </Box>
     </Stack>

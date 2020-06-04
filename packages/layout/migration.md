@@ -37,10 +37,6 @@ const Box = chakra.div
 - [Stack] To reduce the API surface, we're deprecating the `isInline` and
   `isReversed` prop in favor of `direction` prop
 
-- [Stack] We're deprecating support for `shouldWrapChildren` prop because we now
-  use css to manage the stack rather than `React.cloneElement`. Thanks to
-  [https://github.com/chakra-ui/chakra-ui/pull/277]
-
 - [Stack] We're constrained Stack's direction to only `row` and `column`.
   Support for reversing the direction is no longer available.
 

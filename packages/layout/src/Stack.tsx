@@ -30,6 +30,11 @@ type StackOptions = Pick<FlexOptions, "align" | "justify" | "wrap"> & {
    * If `true`, each stack item will show a divider
    */
   divider?: React.ReactElement
+  /**
+   * If `true`, the children will be wrapped in a `Box` with
+   * `display: inline-block`, and the `Box` will take the spacing props
+   */
+  shouldWrapChildren?: boolean
 }
 
 export type StackProps = PropsOf<typeof chakra.div> & StackOptions
@@ -37,8 +42,23 @@ export type StackProps = PropsOf<typeof chakra.div> & StackOptions
 export type StackDividerProps = PropsOf<typeof StackDivider>
 
 export const StackDivider = chakra("hr", {
-  baseStyle: { border: 0, alignSelf: "stretch" },
+  baseStyle: {
+    borderWidth: 0,
+    alignSelf: "stretch",
+    borderColor: "inherit",
+    width: "auto",
+    height: "auto",
+  },
 })
+
+export const StackItem = (props: PropsOf<typeof chakra.div>) => (
+  <chakra.div
+    display="inline-block"
+    className="chakra-stack__item"
+    flex="0"
+    {...props}
+  />
+)
 
 /**
  * Stacks help you easily create flexible and automatically distributed layouts
@@ -62,6 +82,7 @@ export const Stack = React.forwardRef(
       children,
       divider,
       className,
+      shouldWrapChildren,
       ...rest
     } = props
 
@@ -86,39 +107,38 @@ export const Stack = React.forwardRef(
         return {
           marginX: spacing,
           marginY: 0,
-          borderLeft: "1px solid",
-          borderBottom: 0,
-          width: "auto",
+          borderLeftWidth: "1px",
+          borderBottomWidth: 0,
         }
       }
       return {
         marginX: 0,
         marginY: spacing,
-        borderLeft: 0,
-        borderBottom: "1px solid",
-        width: "100%",
+        borderLeftWidth: 0,
+        borderBottomWidth: "1px",
       }
     })
 
     const hasDivider = !!divider
 
     const clones = validChildren.map((child, index) => {
-      if (!hasDivider) return child
-
       const isLast = index + 1 === validChildren.length
+      const _child = shouldWrapChildren ? <StackItem>{child}</StackItem> : child
+
+      if (!hasDivider) return _child
 
       if (!isLast) {
         return (
           <React.Fragment key={index}>
-            {child}
-            {React.cloneElement(divider as React.ReactElement<any>, {
+            {_child}
+            {React.cloneElement(divider as any, {
               css: css({ "&": dividerStyles }),
             })}
           </React.Fragment>
         )
       }
 
-      return child
+      return _child
     })
 
     const sx = (theme: Dict) => {
