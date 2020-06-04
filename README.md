@@ -106,7 +106,7 @@ To start using the components, please follow these steps:
    to remove all browser styling.
 
 ```jsx
-import { ThemeProvider, CSSReset } from "@chakra-ui/core".
+import { ThemeProvider, CSSReset } from "@chakra-ui/core"
 
 // Do this at the root of your application
 const App = ({ children }) => (
