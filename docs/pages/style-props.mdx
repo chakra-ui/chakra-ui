@@ -1,5 +1,7 @@
 ---
 title: "Style Props"
+description: Learn how to use style props in Chakra UI.
+Style props are a way to alter the style of a component by simply passing props to it
 order: 3
 ---
 
@@ -128,20 +130,20 @@ import { Box } from "@chakra-ui/core";
 
 ```
 
-| Prop                | CSS Property     | Theme Key |
-| ------------------- | ---------------- | --------- |
-| `w`, `width`        | `width`          | `sizes`   |
-| `h`, `height`       | `height`         | `sizes`   |
-| `minW`, `minWidth`  | `min-width`      | `sizes`   |
-| `maxW`, `maxWidth`  | `max-width`      | `sizes`   |
-| `minH`, `minHeight` | `min-height`     | `sizes`   |
-| `maxH`, `maxHeight` | `max-height`     | `sizes`   |
-| `d`, `display`      | `display`        | none      |
-| `size`              | `width` `height` | `sizes`   |
-| `verticalAlign`     | `vertical-align` | none      |
-| `overflow`          | `overflow`       | none      |
-| `overflowX`         | `overflowX`      | none      |
-| `overflowY`         | `overflowY`      | none      |
+| Prop                | CSS Property      | Theme Key |
+| ------------------- | ----------------- | --------- |
+| `w`, `width`        | `width`           | `sizes`   |
+| `h`, `height`       | `height`          | `sizes`   |
+| `minW`, `minWidth`  | `min-width`       | `sizes`   |
+| `maxW`, `maxWidth`  | `max-width`       | `sizes`   |
+| `minH`, `minHeight` | `min-height`      | `sizes`   |
+| `maxH`, `maxHeight` | `max-height`      | `sizes`   |
+| `d`, `display`      | `display`         | none      |
+| `boxSize`           | `width`, `height` | `sizes`   |
+| `verticalAlign`     | `vertical-align`  | none      |
+| `overflow`          | `overflow`        | none      |
+| `overflowX`         | `overflowX`       | none      |
+| `overflowY`         | `overflowY`       | none      |
 
 ### Flexbox
 
@@ -161,21 +163,21 @@ import { Box, Flex } from "@chakra-ui/core"
 
 > Note: Props in `*` will only work if you use the `Flex` component.
 
-| Prop                                      | CSS Property       | Theme Key |
-| ----------------------------------------- | ------------------ | --------- |
-| `alignItems`, \*`align`                   | `align-items`      | none      |
-| `alignContent`                            | `align-content`    | none      |
-| `justifyItems`                            | `justify-items`    | none      |
-| `justifyContent`, \*`justify`             | `justify-content`  | none      |
-| `flexWrap`, \*`wrap`                      | `flex-wrap`        | none      |
-| `flexDirection`, `flexDir`, \*`direction` | `flex-direction`   | none      |
-| `flex`                                    | `flex` (shorthand) | none      |
-| `flexGrow`                                | `flex-grow`        | none      |
-| `flexShrink`                              | `flex-shrink`      | none      |
-| `flexBasis`                               | `flex-basis`       | none      |
-| `justifySelf`                             | `justify-self`     | none      |
-| `alignSelf`                               | `align-self`       | none      |
-| `order`                                   | `order`            | none      |
+| Prop                                      | CSS Property      | Theme Key |
+| ----------------------------------------- | ----------------- | --------- |
+| `alignItems`, \*`align`                   | `align-items`     | none      |
+| `alignContent`                            | `align-content`   | none      |
+| `justifyItems`                            | `justify-items`   | none      |
+| `justifyContent`, \*`justify`             | `justify-content` | none      |
+| `flexWrap`, \*`wrap`                      | `flex-wrap`       | none      |
+| `flexDirection`, `flexDir`, \*`direction` | `flex-direction`  | none      |
+| `flex`                                    | `flex`            | none      |
+| `flexGrow`                                | `flex-grow`       | none      |
+| `flexShrink`                              | `flex-shrink`     | none      |
+| `flexBasis`                               | `flex-basis`      | none      |
+| `justifySelf`                             | `justify-self`    | none      |
+| `alignSelf`                               | `align-self`      | none      |
+| `order`                                   | `order`           | none      |
 
 ### Grid Layout
 
@@ -239,7 +241,7 @@ import { Box } from "@chakra-ui/core"
 
 ```jsx live=false
 import { Box } from "@chakra-ui/core"
-<Box border="1px" borderRadius="md" borderColor="gray.200">
+;<Box border="1px" borderRadius="md" borderColor="gray.200">
   Card
 </Box>
 ```
@@ -266,8 +268,8 @@ import { Box } from "@chakra-ui/core"
 | `borderLeftWidth`   | `border-left-width`            | `borderWidths` |
 | `borderLeftStyle`   | `border-left-style`            | `borderStyles` |
 | `borderLeftColor`   | `border-left-color`            | `colors`       |
-| `borderX`           | `border-left` & `border-right` | `borders`      |
-| `borderY`           | `border-top` & `border-bottom` | `borders`      |
+| `borderX`           | `border-left` , `border-right` | `borders`      |
+| `borderY`           | `border-top` , `border-bottom` | `borders`      |
 
 ### Border Radius
 
@@ -374,10 +376,8 @@ following props:
 
 ## The `as` prop
 
-The `as` prop is a feature that all of our components get from
-`@emotion/styled`. It allows you to pass a HTML tag or another component to a
-Chakra component to be rendered as the base tag of that component along with all
-its styles and props.
+The `as` prop is a feature that all of our components that allows you to pass an
+HTML tag or component to be rendered.
 
 For example, say you are using a Button component, and you need to make it a
 link instead. You can compose `a` and Button like this:

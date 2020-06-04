@@ -38,9 +38,8 @@ const TData = (props) => (
 const Link = React.forwardRef((props, ref) => (
   <chakra.a
     ref={ref}
-    color="teal.500"
+    color="#068082"
     cursor="pointer"
-    textDecoration="underline"
     outline="none"
     _hover={{ opacity: "0.8" }}
     _focus={{ boxShadow: "outline" }}
@@ -100,17 +99,12 @@ const InlineCode = (props) => (
 )
 
 const MDXComponents = {
-  h1: (props) => <Heading as="h1" size="xl" my="1em" {...props}></Heading>,
+  h1: (props) => <Heading as="h1" size="xl" my="1em" {...props} />,
   h2: (props) => (
-    <LinkedHeading as="h2" fontWeight="medium" size="lg" {...props} />
+    <LinkedHeading as="h2" fontWeight="semibold" size="lg" {...props} />
   ),
   h3: (props) => (
-    <LinkedHeading
-      as="h3"
-      size="md"
-      fontWeight="medium"
-      {...props}
-    ></LinkedHeading>
+    <LinkedHeading as="h3" size="md" fontWeight="medium" {...props} />
   ),
   inlineCode: InlineCode,
   code: CodeBlock,

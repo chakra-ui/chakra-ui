@@ -1,8 +1,8 @@
-import * as React from "react"
-import { sortBy, upperFirst, camelCase, groupBy } from "lodash/fp"
+import { Box, Heading, useColorModeValue } from "@chakra-ui/core"
 import { graphql, useStaticQuery } from "gatsby"
-import { Box, Heading, Badge, useColorModeValue } from "@chakra-ui/core"
-import { ComponentLink, TopNavLink } from "./nav-link"
+import { groupBy, sortBy } from "lodash/fp"
+import * as React from "react"
+import { ComponentLink } from "./nav-link"
 
 const sortNodes = sortBy(["frontmatter.order", "frontmatter.title"])
 const groupNodesByCollection = groupBy("fields.collection")
@@ -31,50 +31,26 @@ const useSortedCollectionLinks = (collection) => {
   return grouped[collection]
 }
 
-const MainLinks = () => {
-  const nodes = useSortedCollectionLinks("main")
+function LinkGroup(props) {
+  const { title, collection, ...rest } = props
+  const nodes = useSortedCollectionLinks(collection)
 
-  return nodes.map(({ frontmatter, fields }) => (
-    <TopNavLink key={frontmatter.title} href={fields.slug}>
-      {frontmatter.title}
-    </TopNavLink>
-  ))
+  return (
+    <Box mb="10" {...rest}>
+      {title && <LinkGroupHeading>{title}</LinkGroupHeading>}
+      {nodes.map(({ frontmatter, fields }) => (
+        <ComponentLink key={frontmatter.title} href={fields.slug}>
+          {frontmatter.title}
+        </ComponentLink>
+      ))}
+    </Box>
+  )
 }
 
-const ComponentLinks = () => {
-  const nodes = useSortedCollectionLinks("components")
-
-  return nodes.map(({ frontmatter: { title }, fields: { slug } }) => (
-    <ComponentLink key={title} href={slug}>
-      {upperFirst(camelCase(title))}
-    </ComponentLink>
-  ))
-}
-
-const UtilitiesLinks = () => {
-  const nodes = useSortedCollectionLinks("utilities")
-
-  return nodes.map(({ frontmatter, fields }) => (
-    <ComponentLink key={frontmatter.title} href={fields.slug}>
-      {frontmatter.title}
-    </ComponentLink>
-  ))
-}
-
-const ThemingLinks = () => {
-  const nodes = useSortedCollectionLinks("theming")
-
-  return nodes.map(({ frontmatter, fields }) => (
-    <ComponentLink key={frontmatter.title} href={fields.slug}>
-      {frontmatter.title}
-    </ComponentLink>
-  ))
-}
-
-const NavGroupHeading = (props) => (
+const LinkGroupHeading = (props) => (
   <Heading
     size="xs"
-    color={useColorModeValue("gray.500", "whiteAlpha.600")}
+    color={useColorModeValue("gray.700", "whiteAlpha.600")}
     letterSpacing="wide"
     mb={2}
     textTransform="uppercase"
@@ -98,36 +74,14 @@ export const SideNavContent = ({
       height={contentHeight}
       aria-label="Main navigation"
       fontSize="sm"
-      p="6"
+      px="6"
+      pt="10"
+      pb="6"
     >
-      <Box mb="8">
-        <MainLinks />
-      </Box>
-
-      <Box mb="10">
-        <NavGroupHeading>
-          <span>Theming</span>
-          <Badge
-            ml="3"
-            variant="solid"
-            colorScheme="purple"
-            verticalAlign="baseline"
-          >
-            New
-          </Badge>
-        </NavGroupHeading>
-        <ThemingLinks />
-      </Box>
-
-      <Box mb="10">
-        <NavGroupHeading>Components</NavGroupHeading>
-        <ComponentLinks />
-      </Box>
-
-      <Box mb="10">
-        <NavGroupHeading>Utilities</NavGroupHeading>
-        <UtilitiesLinks />
-      </Box>
+      <LinkGroup collection="main" title="Getting Started" />
+      <LinkGroup collection="theming" title="Theming" />
+      <LinkGroup collection="components" title="Components" />
+      <LinkGroup collection="utilities" title="Utilities" />
     </Box>
   </Box>
 )
@@ -146,7 +100,7 @@ const SideNavContainer = (props) => (
 
 const SideNav = (props) => {
   return (
-    <SideNavContainer {...props}>
+    <SideNavContainer as="aside" {...props}>
       <SideNavContent />
     </SideNavContainer>
   )
