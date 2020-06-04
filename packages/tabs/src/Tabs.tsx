@@ -1,13 +1,14 @@
 import {
   chakra,
   PropsOf,
-  useThemeDefaultProps,
   ThemingProps,
+  useThemeDefaultProps,
 } from "@chakra-ui/system"
-import { createContext, __DEV__, cx } from "@chakra-ui/utils"
+import { createContext, cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { forwardRef, useMemo } from "react"
 import {
+  TabsContextProvider,
   useTab,
   useTabIndicator,
   useTabList,
@@ -17,15 +18,7 @@ import {
   UseTabProps,
   useTabs,
   UseTabsProps,
-  UseTabsReturn,
 } from "./Tabs.hook"
-
-const [TabsCtxProvider, useTabsContext] = createContext<UseTabsReturn>({
-  strict: true,
-  name: "TabsContext",
-  errorMessage:
-    "Chakra UI: Tabs components can only be used within <Tabs> component",
-})
 
 type ThemingContext = ThemingProps & {
   /**
@@ -45,7 +38,9 @@ export type TabsProps = UseTabsProps &
     isFitted?: boolean
   }
 
-const [ThemingCtxProvider, useThemingContext] = createContext<ThemingContext>()
+const [ThemingContextProvider, useThemingContext] = createContext<
+  ThemingContext
+>()
 
 /**
  * Tabs
@@ -75,13 +70,13 @@ export const Tabs = forwardRef((props: TabsProps, ref: React.Ref<any>) => {
   const _className = cx("chakra-tabs", className)
 
   return (
-    <TabsCtxProvider value={tabs}>
-      <ThemingCtxProvider value={{ variant, size, colorScheme, isFitted }}>
+    <TabsContextProvider value={tabs}>
+      <ThemingContextProvider value={{ variant, size, colorScheme, isFitted }}>
         <chakra.div className={_className} ref={ref} {...htmlProps}>
           {children}
         </chakra.div>
-      </ThemingCtxProvider>
-    </TabsCtxProvider>
+      </ThemingContextProvider>
+    </TabsContextProvider>
   )
 })
 
@@ -110,15 +105,13 @@ export type TabProps = Omit<UseTabProps, "context"> & PropsOf<typeof StyledTab>
 /**
  * Tabs
  *
- * The tab button uses to activate a specific tab panel. It renders a `button`,
+ * The tab button used to activate a specific tab panel. It renders a `button`,
  * and is responsible for automatic and manual selection modes.
  */
 export const Tab = forwardRef((props: TabProps, ref: React.Ref<any>) => {
   const { className, ...htmlProps } = props
   const { isFitted, ...theming } = useThemingContext()
-
-  const context = useTabsContext()
-  const tabProps = useTab({ ...htmlProps, ref, context })
+  const tabProps = useTab({ ...htmlProps, ref })
 
   const _className = cx("chakra-tabs__tab", className)
 
@@ -159,9 +152,7 @@ export const TabList = forwardRef(
   (props: TabListProps, ref: React.Ref<any>) => {
     const { className, ...htmlProps } = props
     const { isFitted, ...theming } = useThemingContext()
-
-    const context = useTabsContext()
-    const tablistProps = useTabList({ ...htmlProps, ref, context })
+    const tablistProps = useTabList({ ...htmlProps, ref })
 
     const _className = cx("chakra-tabs__tablist", className)
 
@@ -218,8 +209,7 @@ export type TabPanelsProps = PropsOf<typeof chakra.div>
 export const TabPanels = forwardRef(
   (props: TabPanelsProps, ref: React.Ref<any>) => {
     const { className, ...htmlProps } = props
-    const context = useTabsContext()
-    const panelsProp = useTabPanels({ ...htmlProps, context })
+    const panelsProp = useTabPanels(htmlProps)
 
     const _className = cx("chakra-tabs__tab-panels", className)
     return <chakra.div ref={ref} className={_className} {...panelsProp} />
@@ -242,8 +232,7 @@ export const TabIndicator = forwardRef(
   (props: TabIndicatorProps, ref: React.Ref<any>) => {
     const { className, style, ...htmlProps } = props
 
-    const context = useTabsContext()
-    const styles = useTabIndicator(context)
+    const styles = useTabIndicator()
 
     const _className = cx("chakra-tabs__tab-indicator", className)
     const _style = { ...style, ...styles }

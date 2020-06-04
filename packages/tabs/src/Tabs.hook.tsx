@@ -12,9 +12,9 @@ import {
   getValidChildren,
   isUndefined,
   mergeRefs,
+  createContext,
 } from "@chakra-ui/utils"
 import * as React from "react"
-import { cloneElement, useEffect, useRef, useState } from "react"
 
 export interface UseTabsProps {
   /**
@@ -78,7 +78,7 @@ export function useTabs(props: UseTabsProps) {
    *
    * This is why we need to keep track of the `focusedIndex` and `selectedIndex`
    */
-  const [focusedIndex, setFocusedIndex] = useState(defaultIndex ?? 0)
+  const [focusedIndex, setFocusedIndex] = React.useState(defaultIndex ?? 0)
 
   const [selectedIndex, setSelectedIndex] = useControllableState({
     defaultValue: defaultIndex ?? 0,
@@ -94,7 +94,7 @@ export function useTabs(props: UseTabsProps) {
   /**
    * Sync focused `index` with controlled `selectedIndex` (which is the `props.index`)
    */
-  useEffect(() => {
+  React.useEffect(() => {
     if (!isUndefined(index)) {
       setFocusedIndex(index)
     }
@@ -154,13 +154,21 @@ export function useTabs(props: UseTabsProps) {
 
 export type UseTabsReturn = Omit<ReturnType<typeof useTabs>, "htmlProps">
 
+const [TabsContextProvider, useTabsContext] = createContext<UseTabsReturn>({
+  strict: true,
+  name: "TabsContext",
+  errorMessage:
+    "Chakra UI: useTabsContext can only be used within TabsContextProvider",
+})
+
+export { TabsContextProvider }
+
 type Child = React.ReactElement<any>
 
 export interface UseTabListProps {
   children?: React.ReactNode
   onKeyDown?: React.KeyboardEventHandler
   ref?: React.Ref<any>
-  context: UseTabsReturn
 }
 
 /**
@@ -170,20 +178,17 @@ export interface UseTabListProps {
  * @param props props object for the tablist
  */
 export function useTabList<P extends UseTabListProps>(props: P) {
-  const { context, ...htmlProps } = props
-
   const {
     setFocusedIndex,
     focusedIndex,
     orientation,
     enabledDomContext,
-  } = context
+  } = useTabsContext()
 
   const count = enabledDomContext.descendants.length
 
   /**
    * Function to update the selected tab index
-   * @param index the next focused index
    */
   const setIndex = (index: number) => {
     const tab = enabledDomContext.descendants[index]
@@ -223,7 +228,7 @@ export function useTabList<P extends UseTabListProps>(props: P) {
   })
 
   return {
-    ...htmlProps,
+    ...props,
     role: "tablist",
     "aria-orientation": orientation,
     onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
@@ -236,29 +241,14 @@ export interface UseTabProps extends UseClickableProps {
   id?: string
   isSelected?: boolean
   panelId?: string
-  context: UseTabsReturn
   onFocus?: React.FocusEventHandler
 }
 
-/**
- * Tabs hook to manage each tab button.
- *
- * A tab can be disabled and focusable, or both,
- * hence the use of `useClickable` to handle this scenario
- */
-export function useTab<P extends UseTabProps>(props: P) {
-  const { isDisabled, isFocusable, context, ...htmlProps } = props
+export function useTabState(props: any) {
+  const { isDisabled, isFocusable } = props
+  const { enabledDomContext, domContext, selectedIndex } = useTabsContext()
 
-  const {
-    enabledDomContext,
-    domContext,
-    selectedIndex,
-    setSelectedIndex,
-    isManual,
-    id,
-  } = context
-
-  const ref = useRef<HTMLElement>(null)
+  const ref = React.useRef<HTMLElement>(null)
 
   /**
    * Think of `useDescendant` as the function that actually registers this tab
@@ -267,8 +257,8 @@ export function useTab<P extends UseTabProps>(props: P) {
    * In this case, it registers the tab only if it's enabled and focusable
    */
   useDescendant({
-    disabled: isDisabled,
-    focusable: isFocusable,
+    disabled: Boolean(isDisabled),
+    focusable: Boolean(isFocusable),
     context: enabledDomContext,
     element: ref.current,
   })
@@ -281,22 +271,51 @@ export function useTab<P extends UseTabProps>(props: P) {
     element: ref.current,
   })
 
-  const computedIndex = domContext.descendants.findIndex(
+  const index = domContext.descendants.findIndex(
     (item) => item.element === ref.current,
   )
 
-  const isSelected = computedIndex === selectedIndex
+  const enabledIndex = enabledDomContext.descendants.findIndex(
+    (item) => item.element === ref.current,
+  )
+
+  const isSelected = index === selectedIndex
+
+  return {
+    ref,
+    isSelected,
+    index,
+    enabledIndex,
+  }
+}
+
+/**
+ * Tabs hook to manage each tab button.
+ *
+ * A tab can be disabled and focusable, or both,
+ * hence the use of `useClickable` to handle this scenario
+ */
+export function useTab<P extends UseTabProps>(props: P) {
+  const { isDisabled, isFocusable, ...htmlProps } = props
+
+  const { setSelectedIndex, isManual, id, setFocusedIndex } = useTabsContext()
+
+  const { index, ref, isSelected, enabledIndex } = useTabState({
+    isDisabled,
+    isFocusable,
+  })
 
   const onClick = () => {
-    setSelectedIndex(computedIndex)
+    setFocusedIndex(enabledIndex)
+    setSelectedIndex(index)
   }
 
   const onFocus = () => {
     const isDisabledButFocusable = isDisabled && isFocusable
-    const selectionFollowsFocus = !isManual && !isDisabledButFocusable
+    const shouldSelect = !isManual && !isDisabledButFocusable
 
-    if (selectionFollowsFocus) {
-      setSelectedIndex(computedIndex)
+    if (shouldSelect) {
+      setSelectedIndex(index)
     }
   }
 
@@ -312,19 +331,18 @@ export function useTab<P extends UseTabProps>(props: P) {
 
   return {
     ...clickable,
-    id: makeTabId(id, computedIndex),
+    id: makeTabId(id, index),
     role: "tab",
     tabIndex: isSelected ? 0 : -1,
     type,
     "aria-selected": isSelected ? true : undefined,
-    "aria-controls": makeTabPanelId(id, computedIndex),
+    "aria-controls": makeTabPanelId(id, index),
     onFocus: callAllHandlers(props.onFocus, onFocus),
   }
 }
 
 export interface UseTabPanelsProps {
   children?: React.ReactNode
-  context: UseTabsReturn
 }
 
 /**
@@ -337,20 +355,20 @@ export interface UseTabPanelsProps {
  * all functionality included.
  */
 export function useTabPanels<P extends UseTabPanelsProps>(props: P) {
-  const { context, ...htmlProps } = props
+  const context = useTabsContext()
 
   const { id, selectedIndex } = context
 
   const validChildren = getValidChildren(props.children)
 
   const children = validChildren.map((child, index) =>
-    cloneElement(child as Child, {
+    React.cloneElement(child as Child, {
       isSelected: index === selectedIndex,
       id: makeTabPanelId(id, index),
     }),
   )
 
-  return { ...htmlProps, children }
+  return { ...props, children }
 }
 
 /**
@@ -377,19 +395,21 @@ export function useTabPanel(props: Dict) {
  * of the active tab, and return that as CSS style for
  * the indicator.
  */
-export function useTabIndicator(context: UseTabsReturn): React.CSSProperties {
+export function useTabIndicator(): React.CSSProperties {
+  const context = useTabsContext()
+
   const { selectedIndex, orientation, domContext } = context
 
   const isHorizontal = orientation === "horizontal"
   const isVertical = orientation === "vertical"
 
   // Get the clientRect of the selected tab
-  const [rect, setRect] = useState(() => {
+  const [rect, setRect] = React.useState(() => {
     if (isHorizontal) return { left: 0, width: 0 }
     if (isVertical) return { top: 0, height: 0 }
   })
 
-  const [hasMeasured, setHasMeasured] = useState(false)
+  const [hasMeasured, setHasMeasured] = React.useState(false)
 
   // Update the selected tab rect when the selectedIndex changes
   useSafeLayoutEffect(() => {

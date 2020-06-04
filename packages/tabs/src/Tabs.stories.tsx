@@ -14,22 +14,39 @@ export default {
 }
 
 export const automatic = () => (
-  <Tabs>
-    <TabList>
-      <Tab>Settings</Tab>
-      <Tab isDisabled isFocusable>
-        Billings
-      </Tab>
-      <Tab>Preferences</Tab>
-      <Tab>Shut Down</Tab>
-    </TabList>
-    <TabPanels>
-      <TabPanel>Settings</TabPanel>
-      <TabPanel>Billings</TabPanel>
-      <TabPanel>Preferences</TabPanel>
-      <TabPanel>Shut Down</TabPanel>
-    </TabPanels>
-  </Tabs>
+  <>
+    <p>manual</p>
+    <Tabs isManual>
+      <TabList>
+        <Tab>Settings</Tab>
+        <Tab isDisabled>Billings</Tab>
+        <Tab isDisabled>Preferences</Tab>
+        <Tab>Shut Down</Tab>
+      </TabList>
+      <TabPanels>
+        <TabPanel>Settings</TabPanel>
+        <TabPanel>Billings</TabPanel>
+        <TabPanel>Preferences</TabPanel>
+        <TabPanel>Shut Down</TabPanel>
+      </TabPanels>
+    </Tabs>
+    <br />
+    <p>auto</p>
+    <Tabs>
+      <TabList>
+        <Tab>Settings</Tab>
+        <Tab isDisabled>Billings</Tab>
+        <Tab isDisabled>Preferences</Tab>
+        <Tab>Shut Down</Tab>
+      </TabList>
+      <TabPanels>
+        <TabPanel>Settings</TabPanel>
+        <TabPanel>Billings</TabPanel>
+        <TabPanel>Preferences</TabPanel>
+        <TabPanel>Shut Down</TabPanel>
+      </TabPanels>
+    </Tabs>
+  </>
 )
 
 export const manual = () => (

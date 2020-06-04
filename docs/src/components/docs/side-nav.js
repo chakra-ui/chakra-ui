@@ -80,6 +80,7 @@ export const SideNavContent = ({
     >
       <LinkGroup collection="main" title="Getting Started" />
       <LinkGroup collection="theming" title="Theming" />
+      <LinkGroup collection="layout" title="Layout" />
       <LinkGroup collection="components" title="Components" />
       <LinkGroup collection="utilities" title="Utilities" />
     </Box>

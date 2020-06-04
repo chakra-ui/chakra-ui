@@ -25,10 +25,10 @@ function getHash(url) {
   return link.hash
 }
 
-export const Search = (props) => {
+function Search(props) {
   const ref = React.useRef()
 
-  const focus = (event) => {
+  const onKeyDown = (event) => {
     if (event.key === "/") {
       const activeElement = document.activeElement
       const focusWrapper = document.getElementById("gatsby-focus-wrapper")
@@ -41,7 +41,7 @@ export const Search = (props) => {
     }
   }
 
-  useEventListener("keydown", focus, window)
+  useEventListener("keydown", onKeyDown, window)
 
   React.useEffect(() => {
     if (window) {
@@ -134,3 +134,5 @@ export const Search = (props) => {
     </Box>
   )
 }
+
+export default Search

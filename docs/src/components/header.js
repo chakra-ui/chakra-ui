@@ -12,7 +12,7 @@ import {
 import { DiGithubBadge } from "react-icons/di"
 import { FaMoon, FaSun } from "react-icons/fa"
 import { Container } from "./container"
-import { Search } from "./search"
+import Search from "./algolia-search"
 import Logo from "./logo"
 import StorybookIcon from "./storybook-icon"
 import { Link as GatsbyLink } from "gatsby"

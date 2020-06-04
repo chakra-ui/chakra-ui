@@ -46,7 +46,7 @@ export function useDescendant<T extends HTMLElement, P>(
     /**
      * else, register the descendant
      */
-    register({ element, ...rest } as any)
+    register({ element, disabled, focusable, ...rest } as any)
 
     /**
      * when it unmounts, unregister the descendant
