@@ -244,51 +244,6 @@ export interface UseTabProps extends UseClickableProps {
   onFocus?: React.FocusEventHandler
 }
 
-export function useTabState(props: any) {
-  const { isDisabled, isFocusable } = props
-  const { enabledDomContext, domContext, selectedIndex } = useTabsContext()
-
-  const ref = React.useRef<HTMLElement>(null)
-
-  /**
-   * Think of `useDescendant` as the function that actually registers this tab
-   * to the corresponding `manager`, and returns it's index.
-   *
-   * In this case, it registers the tab only if it's enabled and focusable
-   */
-  useDescendant({
-    disabled: Boolean(isDisabled),
-    focusable: Boolean(isFocusable),
-    context: enabledDomContext,
-    element: ref.current,
-  })
-
-  /**
-   * In this case, it registers the tab (whether disabled or not)
-   */
-  useDescendant({
-    context: domContext,
-    element: ref.current,
-  })
-
-  const index = domContext.descendants.findIndex(
-    (item) => item.element === ref.current,
-  )
-
-  const enabledIndex = enabledDomContext.descendants.findIndex(
-    (item) => item.element === ref.current,
-  )
-
-  const isSelected = index === selectedIndex
-
-  return {
-    ref,
-    isSelected,
-    index,
-    enabledIndex,
-  }
-}
-
 /**
  * Tabs hook to manage each tab button.
  *
@@ -298,12 +253,40 @@ export function useTabState(props: any) {
 export function useTab<P extends UseTabProps>(props: P) {
   const { isDisabled, isFocusable, ...htmlProps } = props
 
-  const { setSelectedIndex, isManual, id, setFocusedIndex } = useTabsContext()
+  const {
+    setSelectedIndex,
+    isManual,
+    id,
+    setFocusedIndex,
+    enabledDomContext,
+    domContext,
+    selectedIndex,
+  } = useTabsContext()
 
-  const { index, ref, isSelected, enabledIndex } = useTabState({
-    isDisabled,
-    isFocusable,
+  const ref = React.useRef<HTMLElement>(null)
+
+  /**
+   * Think of `useDescendant` as the function that registers tab node
+   * to the `enabledDomContext`, and returns it's index.
+   *
+   * Tab is registered if it's enabled or focusable
+   */
+  const enabledIndex = useDescendant({
+    disabled: Boolean(isDisabled),
+    focusable: Boolean(isFocusable),
+    context: enabledDomContext,
+    element: ref.current,
   })
+
+  /**
+   * Registers all tabs (whether disabled or not)
+   */
+  const index = useDescendant({
+    context: domContext,
+    element: ref.current,
+  })
+
+  const isSelected = index === selectedIndex
 
   const onClick = () => {
     setFocusedIndex(enabledIndex)
