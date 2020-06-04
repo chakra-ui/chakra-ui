@@ -11,13 +11,12 @@ import { SkipNavContent, SkipNavLink } from "@chakra-ui/skip-nav"
 const HomeLayout = ({ children }) => (
   <Box>
     <Header isConstrained />
+    <SkipNavContent />
     {children}
   </Box>
 )
 
-// memoized to prevent in-page anchor link navigation from re-rendering the
-// entire layout
-const SidebarLayout = ({ children }) => {
+const DocsLayout = ({ children }) => {
   return (
     <MDXProvider components={MDXComponents}>
       <Header />
@@ -28,6 +27,7 @@ const SidebarLayout = ({ children }) => {
           width="full"
         />
         <Box pl={[0, null, "18rem"]} py={2} mb={20}>
+          <SkipNavContent />
           <Box as="main" minH="72vh" pt={8} px={5} mt="4rem">
             {children}
           </Box>
@@ -38,17 +38,40 @@ const SidebarLayout = ({ children }) => {
   )
 }
 
+const GuidesLayout = ({ children }) => {
+  return (
+    <MDXProvider components={MDXComponents}>
+      <Header />
+
+      <Box>
+        <Box as="main" minH="72vh" pt={8} px={5} mt="4rem">
+          {children}
+        </Box>
+        <Footer />
+      </Box>
+    </MDXProvider>
+  )
+}
+
+function getLayout(context) {
+  switch (context) {
+    case "docs":
+      return DocsLayout
+    case "guides":
+      return GuidesLayout
+    default:
+      return HomeLayout
+  }
+}
+
 const Layout = ({ children, pageContext }) => {
   const location = useLocation()
-  const Container =
-    pageContext && pageContext.layout === "docs" ? SidebarLayout : HomeLayout
+  const Container = getLayout(pageContext.layout)
 
   return (
     <>
       <SkipNavLink zIndex={20}>Skip to Content</SkipNavLink>
-      <SkipNavContent as="main">
-        <Container pathname={location.pathname}>{children}</Container>
-      </SkipNavContent>
+      <Container pathname={location.pathname}>{children}</Container>
     </>
   )
 }

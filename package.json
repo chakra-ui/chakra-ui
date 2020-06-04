@@ -19,7 +19,7 @@
     "test": "lerna run test --no-private --stream",
     "lint": "lerna run lint --no-private --stream",
     "storybook": "start-storybook -p 6006",
-    "clean": "lerna clean --yes && rimraf node_modules",
+    "clean": "lerna clean --yes && rm -rf node_modules",
     "bootstrap": "lerna bootstrap --use-workspaces",
     "bundlesize": "bundlesize -c bundlesize.config.json",
     "commit": "git-cz",

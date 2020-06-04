@@ -368,14 +368,24 @@ to pass state internally. Your custom `Tab` component must use
 
 ```jsx
 function CustomTabs() {
+  // 1. Reuse the styles for the Tab
+  const StyledTab = chakra("button", { themeKey: "Tabs.Tab" })
+
   const CustomTab = React.forwardRef((props, ref) => {
-    // `isSelected` is passed to all children of `TabList`.
-    const { isSelected, children, ...rest } = props
+    // 2. Reuse the `useTab` hook
+    const tabProps = useTab(props)
+    const isSelected = !!tabProps["aria-selected"]
+
+    // 3. Hook into the Tabs `size`, `variant`, props
+    const theming = useTabsThemingContext()
+
     return (
-      <Tab ref={ref} isSelected={isSelected} {...rest}>
-        {isSelected ? "😎" : "😐"}
-        {children}
-      </Tab>
+      <StyledTab {...theming} {...tabProps}>
+        <Box as="span" mr="2">
+          {isSelected ? "😎" : "😐"}
+        </Box>
+        {tabProps.children}
+      </StyledTab>
     )
   })
 

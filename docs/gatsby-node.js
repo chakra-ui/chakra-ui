@@ -1,11 +1,14 @@
 const path = require("path")
 const { createFilePath } = require("gatsby-source-filesystem")
+const getFileContributors = require("file-contributors").default
+require("isomorphic-fetch")
+
 const {
   sortPostNodes,
   getRelativeDocsPath: getRelativeDocPath,
 } = require("./utils")
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
+exports.onCreateNode = async ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
   // only adds fields to `Mdx` nodes
@@ -13,6 +16,8 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     // get the `collection` using the parent `File` node's `relativeDirectory`
     const { relativeDirectory } = getNode(node.parent)
     const collection = relativeDirectory.length ? relativeDirectory : "main"
+
+    console.log("collection", collection)
 
     // use `gatsby-source-filesystem` to create our slug
     const relativeFilePath = createFilePath({
@@ -36,12 +41,27 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       node,
       value: collection,
     })
+
+    if (collection === "guides") {
+      const contributors = await getFileContributors(
+        "chakra-ui",
+        "chakra-ui",
+        relativeFilePath,
+      )
+      console.log("contributors", contributors)
+      createNodeField({
+        name: "contributors",
+        node,
+        value: contributors,
+      })
+    }
   }
 }
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
   const docsTemplate = path.resolve("./src/templates/docs.js")
+  const guidesTemplate = path.resolve("./src/templates/guides.js")
 
   // get nodes by `slug`
   const result = await graphql(
@@ -84,14 +104,15 @@ exports.createPages = async ({ graphql, actions }) => {
     const slug = node.fields.slug
     const relativePath = getRelativeDocPath(node.fileAbsolutePath)
     const edge = edges[index]
-    const { modifiedTime } = edge.node.parent
+    const { modifiedTime, birthTime } = edge.node.parent
 
     createPage({
       // we use the generated slug for the path
       path: slug,
 
       // use the `docs` template for each of these pages
-      component: docsTemplate,
+      component:
+        node.fields.collection === "guides" ? guidesTemplate : docsTemplate,
 
       // otherwise known as `pageContext`
       context: {
@@ -101,12 +122,13 @@ exports.createPages = async ({ graphql, actions }) => {
 
         // this is attached so `layout.js` knows to use the sidebar layout for
         // these pages
-        layout: "docs",
+        layout: node.fields.collection === "guides" ? "guides" : "docs",
 
         // previous and next pages
         previous,
         next,
         modifiedTime,
+        createdAt: birthTime,
 
         // relative path to file ('/docs/pages/getting-started.mdx')
         relativePath,

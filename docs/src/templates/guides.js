@@ -4,7 +4,6 @@ import { graphql } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import React from "react"
 import { GithubLink } from "../components/github-edit-link"
-import { Pagination } from "../components/pagination"
 import SEO from "../components/seo"
 
 function LastEdited(props) {
@@ -24,8 +23,9 @@ function LastEdited(props) {
   )
 }
 
+// memoized to prevent from re-rendering on in-page anchor link navigation
 const Body = (props) => {
-  const { relativePath, body, previous, next, modifiedTime } = props
+  const { relativePath, body, modifiedTime } = props
   return (
     <Box mx="auto" maxW="48rem" mt="1em">
       <MDXRenderer>{body}</MDXRenderer>
@@ -36,12 +36,11 @@ const Body = (props) => {
           editUrl={relativePath}
         />
       )}
-      <Pagination mt="4rem" mb="80px" previous={previous} next={next} />
     </Box>
   )
 }
 
-const Docs = ({ data, pageContext }) => {
+const Guides = ({ data, pageContext }) => {
   const location = useLocation()
   const { previous, next, slug, relativePath, modifiedTime } = pageContext
   const { body, frontmatter, tableOfContents } = data.mdx
@@ -66,7 +65,7 @@ const Docs = ({ data, pageContext }) => {
 
 // query for page's `body`, `title`, and `description` using the page's `slug`
 export const query = graphql`
-  query docBySlug($slug: String!) {
+  query guideBySlug($slug: String!) {
     mdx(fields: { slug: { eq: $slug } }) {
       body
       frontmatter {
@@ -78,4 +77,4 @@ export const query = graphql`
   }
 `
 
-export default Docs
+export default Guides

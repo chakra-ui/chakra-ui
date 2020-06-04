@@ -42,6 +42,8 @@ const [ThemingContextProvider, useThemingContext] = createContext<
   ThemingContext
 >()
 
+export { useThemingContext as useTabsThemingContext }
+
 /**
  * Tabs
  *
