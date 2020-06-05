@@ -1,5 +1,5 @@
 import React from "react"
-import { Icon, IconProps } from "./_icon"
+import { Icon, IconProps } from "./icon"
 import { __DEV__ } from "@chakra-ui/utils"
 
 interface CreateIconOptions {
