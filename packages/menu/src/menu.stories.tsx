@@ -9,7 +9,6 @@ import {
   FaUndoAlt,
   FaUnlink,
 } from "react-icons/fa"
-import { MenuTransition } from "./"
 import {
   Menu,
   MenuButton,
@@ -19,7 +18,8 @@ import {
   MenuItemOption,
   MenuList,
   MenuOptionGroup,
-} from "./Menu"
+  MenuTransition,
+} from "."
 
 export default {
   title: "Menu",

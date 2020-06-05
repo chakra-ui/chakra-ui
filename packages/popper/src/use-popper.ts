@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Placement, Instance, createPopper, Modifier } from "@popperjs/core"
-import { getArrowStyles } from "./Popper.utils"
+import { getArrowStyles } from "./popper.utils"
 
 const isBrowser = typeof window !== "undefined"
 
@@ -21,7 +21,7 @@ export interface UsePopperProps {
   modifiers?: Modifier<any>[]
 }
 
-export function usePopper(props: UsePopperProps) {
+export function usePopper (props: UsePopperProps) {
   const {
     placement: initialPlacement = "bottom",
     offset: offsetProp,
@@ -101,7 +101,7 @@ export function usePopper(props: UsePopperProps) {
             name: "updateState",
             phase: "write",
             enabled: true,
-            fn({ state }) {
+            fn ({ state }) {
               setPlacement(state.placement)
               setPopoverStyles(state.styles.popper as React.CSSProperties)
               setArrowStyles(state.styles.arrow as React.CSSProperties)
