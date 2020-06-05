@@ -1,5 +1,5 @@
 import shell from "shelljs"
-import path from "path"
+import rename from "./utils/rename-file"
 // import editJson from "edit-json-file"
 // import fs from "fs-utils"
 // import getLernaPackages from "./utils/get-lerna-pkgs"
@@ -16,18 +16,5 @@ import path from "path"
 //   pkgJson.save()
 // })
 
-function kebab(str) {
-  return str.replace(/([a-zA-Z])(?=[A-Z])/g, "$1-").toLowerCase()
-}
-
-function rename(file) {
-  const ext = path.extname(file)
-  if (ext && ext !== ".md" && !file.includes("index")) {
-    const renamed = file.split(".").map(kebab).join(".")
-    if (file === renamed) return
-    shell.exec(`git mv --force ${file} ${renamed}`)
-  }
-}
-
-const pkg = "theme"
-shell.find(`packages/${pkg}/src`).forEach(rename)
+// const pkg = "theme"
+// shell.find(`packages/${pkg}/src`).forEach(rename)
