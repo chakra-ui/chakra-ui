@@ -1,4 +1,4 @@
-import Input, { InputTheme, InputTokens } from "./Input"
+import Input, { InputTheme, InputTokens } from "./_input"
 
 const Textarea: InputTheme = {
   ...Input,

@@ -1,6 +1,6 @@
 import { Props, mode, ComponentTheme, copy } from "./utils"
 import { SystemProps } from "@chakra-ui/system"
-import Button from "./Button"
+import Button from "./_button"
 
 const getMenuListStyle = (props: Props): SystemProps => {
   const darkShadow = `rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.2) 0px 5px 10px, rgba(0, 0, 0, 0.4) 0px 15px 40px`
