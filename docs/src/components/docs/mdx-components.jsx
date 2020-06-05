@@ -14,7 +14,9 @@ import CarbonAd from "./carbon-ad"
 const Pre = (props) => <chakra.div my="2em" borderRadius="sm" {...props} />
 
 const Table = (props) => (
-  <chakra.table textAlign="left" mt="32px" width="full" {...props} />
+  <chakra.div overflowX="auto">
+    <chakra.table textAlign="left" mt="32px" width="full" {...props} />
+  </chakra.div>
 )
 
 const THead = (props) => {
