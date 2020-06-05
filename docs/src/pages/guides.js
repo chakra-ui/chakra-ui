@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/core"
 
 function GuidePreview(props) {
-  const { title, children, createdAt, birthTime, contributor, ...rest } = props
+  const { title, children, createdAt, birthTime, contributors, ...rest } = props
   return (
     <Flex
       transition="all 0.3s"
@@ -39,7 +39,7 @@ function GuidePreview(props) {
       </Box>
       <Flex justify="space-between" mt="6" color="gray.500" width="100%">
         <Stack direction="row" flex="1">
-          <Avatar size="xs" src={contributor.image} name={contributor.name} />
+          <Avatar size="xs" />
           <Text fontSize="sm">dsfdfsdd</Text>
         </Stack>
         <Text fontSize="sm">
@@ -56,6 +56,12 @@ function Guides() {
     query AllGuides {
       allMdx(filter: { fields: { collection: { eq: "guides" } } }) {
         nodes {
+          fields {
+            contributors {
+              name
+              image
+            }
+          }
           frontmatter {
             title
             description
@@ -85,6 +91,7 @@ function Guides() {
         <SimpleGrid columns={[1, 1, 2]} spacing="24px">
           {allMdx.nodes.map(
             ({
+              fields: { contributors },
               frontmatter: { title, description },
               parent: { createdAt, birthTime },
             }) => (
@@ -93,7 +100,7 @@ function Guides() {
                 title={title}
                 birthTime={birthTime}
                 createdAt={createdAt}
-                contributor={{}}
+                contributors={contributors}
               >
                 {description}
               </GuidePreview>
