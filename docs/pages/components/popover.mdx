@@ -62,7 +62,7 @@ It's critical for accessiblity.
   <PopoverTrigger>
     <Button>Trigger</Button>
   </PopoverTrigger>
-  <PopoverContent zIndex={4}>
+  <PopoverContent>
     <PopoverArrow />
     <PopoverCloseButton />
     <PopoverHeader>Confirmation!</PopoverHeader>
@@ -84,7 +84,7 @@ portal, pass the `usePortal` prop.
   <PopoverTrigger>
     <Button>Trigger</Button>
   </PopoverTrigger>
-  <PopoverContent zIndex={4}>
+  <PopoverContent>
     <PopoverArrow />
     <PopoverHeader>Header</PopoverHeader>
     <PopoverCloseButton />
@@ -114,12 +114,7 @@ function WalkthroughPopover() {
       <PopoverTrigger>
         <Button>Trigger</Button>
       </PopoverTrigger>
-      <PopoverContent
-        zIndex={4}
-        color="white"
-        bg="blue.800"
-        borderColor="blue.800"
-      >
+      <PopoverContent color="white" bg="blue.800" borderColor="blue.800">
         <PopoverHeader pt={4} fontWeight="bold" border="0">
           Manage Your Channels
         </PopoverHeader>
@@ -216,9 +211,9 @@ const PopoverForm = () => {
         closeOnBlur={false}
       >
         <PopoverTrigger>
-          <IconButton size="sm" icon="edit" />
+          <IconButton size="sm" icon={<EditIcon />} />
         </PopoverTrigger>
-        <PopoverContent zIndex={4} p={5}>
+        <PopoverContent p={5}>
           <FocusLock returnFocus persistentFocus={false}>
             <PopoverArrow bg="white" />
             <PopoverCloseButton />
@@ -261,7 +256,7 @@ function ControlledUsage() {
         <PopoverTrigger>
           <Button colorScheme="pink">Popover Target</Button>
         </PopoverTrigger>
-        <PopoverContent zIndex={4}>
+        <PopoverContent>
           <PopoverHeader fontWeight="semibold">Confirmation</PopoverHeader>
           <PopoverArrow />
           <PopoverCloseButton />
@@ -290,30 +285,32 @@ render prop pattern to gain access to them.
 function InternalStateEx() {
   const initRef = React.useRef()
   return (
-    <Popover
-      closeOnBlur={false}
-      placement="left"
-      usePortal
-      initialFocusRef={initRef}
-    >
+    <Popover closeOnBlur={false} placement="left" initialFocusRef={initRef}>
       {({ isOpen, onClose }) => (
         <>
           <PopoverTrigger>
             <Button>Click to {isOpen ? "close" : "open"}</Button>
           </PopoverTrigger>
-          <PopoverContent>
-            <PopoverHeader>This is the header</PopoverHeader>
-            <PopoverCloseButton />
-            <PopoverBody>
-              <Box>
-                Hello. Nice to meet you! This is the body of the popover
-              </Box>
-              <Button mt={4} colorScheme="blue" onClick={onClose} ref={initRef}>
-                Close
-              </Button>
-            </PopoverBody>
-            <PopoverFooter>This is the footer</PopoverFooter>
-          </PopoverContent>
+          <Portal>
+            <PopoverContent>
+              <PopoverHeader>This is the header</PopoverHeader>
+              <PopoverCloseButton />
+              <PopoverBody>
+                <Box>
+                  Hello. Nice to meet you! This is the body of the popover
+                </Box>
+                <Button
+                  mt={4}
+                  colorScheme="blue"
+                  onClick={onClose}
+                  ref={initRef}
+                >
+                  Close
+                </Button>
+              </PopoverBody>
+              <PopoverFooter>This is the footer</PopoverFooter>
+            </PopoverContent>
+          </Portal>
         </>
       )}
     </Popover>
@@ -339,7 +336,7 @@ popover. You can change the background, arrow size, boxShadow and so on.
       children="Click"
     />
   </PopoverTrigger>
-  <PopoverContent zIndex={4} bg="tomato" color="white">
+  <PopoverContent bg="tomato" color="white">
     <PopoverHeader fontWeight="semibold">Customization</PopoverHeader>
     <PopoverArrow bg="pink.500" />
     <PopoverCloseButton bg="purple.500" />
@@ -365,7 +362,7 @@ possible placement values.
   <PopoverTrigger>
     <Button>Click me</Button>
   </PopoverTrigger>
-  <PopoverContent zIndex={4}>
+  <PopoverContent>
     <PopoverHeader fontWeight="semibold">Popover placement</PopoverHeader>
     <PopoverArrow />
     <PopoverCloseButton />
@@ -375,50 +372,6 @@ possible placement values.
     </PopoverBody>
   </PopoverContent>
 </Popover>
-```
-
-## Hover Trigger
-
-To show the popover when you mouse over or focus on the trigger, pass the prop
-`trigger` and set it to `hover`. When you focus on or mouse over the popover
-trigger, the popover will open.
-
-> If you quickly move your cursor to the popover content when it's open, it'll
-> remain open till you leave.
-
-```jsx
-function TwitterEx() {
-  return (
-    <Popover trigger="hover">
-      <PopoverTrigger>
-        <Link href="#" color="blue.500">
-          Hover to see @swyx profile
-        </Link>
-      </PopoverTrigger>
-
-      <DarkMode>
-        <PopoverContent border="0" zIndex={4} width="400px" color="white">
-          <Box p={5}>
-            <Avatar
-              name="swyx"
-              src="https://pbs.twimg.com/profile_images/990728399873232896/CMPn3IxT_reasonably_small.jpg"
-            />
-            <Text mt={4} fontWeight="bold">
-              swyx
-              <Badge ml={3} fontSize="xs">
-                Follows you
-              </Badge>
-            </Text>
-            <Text mt={3}>
-              Infinite Builder working on DX @Netlify. Helping people
-              #LearnInPublic
-            </Text>
-          </Box>
-        </PopoverContent>
-      </DarkMode>
-    </Popover>
-  )
-}
 ```
 
 ## Accessiblity

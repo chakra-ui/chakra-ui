@@ -125,8 +125,8 @@ const CodeBlock = ({
   if (language === "jsx" && live === true) {
     return (
       <LiveProvider {...liveProviderProps}>
-        <LiveCodePreview />
-        <Box position="relative">
+        <LiveCodePreview zIndex="1" />
+        <Box position="relative" zIndex="0">
           <LiveEditor
             onChange={onChange}
             padding={20}

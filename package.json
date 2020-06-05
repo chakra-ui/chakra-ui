@@ -119,6 +119,7 @@
     "@typescript-eslint/parser": "2.24.0",
     "all-contributors-cli": "6.14.2",
     "arg": "4.1.3",
+    "tslib": "1.11.1",
     "babel-eslint": "10.1.0",
     "babel-loader": "8.1.0",
     "bundlesize": "0.18.0",

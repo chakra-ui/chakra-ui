@@ -11,15 +11,11 @@ import {
 import * as React from "react"
 import { usePopover, UsePopoverProps, UsePopoverReturn } from "./use-popover"
 
-type PopoverContext = UsePopoverReturn & { usePortal?: boolean }
-
-const [PopoverCtxProvider, usePopoverContext] = createContext<PopoverContext>()
+const [PopoverCtxProvider, usePopoverContext] = createContext<
+  UsePopoverReturn
+>()
 
 export type PopoverProps = UsePopoverProps & {
-  /**
-   * If `true` the popover content will be displayed within a Portal.
-   */
-  usePortal?: boolean
   /**
    * The content of the popover. It's usually the `PopoverTrigger`,
    * and `PopoverContent`
@@ -35,11 +31,11 @@ export type PopoverProps = UsePopoverProps & {
  * action or to guide users through a new experience.
  */
 export const Popover = (props: PopoverProps) => {
-  const { children, usePortal, ...hookProps } = props
+  const { children, ...hookProps } = props
   const context = usePopover(hookProps)
 
   return (
-    <PopoverCtxProvider value={{ ...context, usePortal }}>
+    <PopoverCtxProvider value={context}>
       {isFunction(children)
         ? children({ isOpen: context.isOpen, onClose: context.onClose })
         : children}
@@ -78,7 +74,6 @@ if (__DEV__) {
 const StyledContent = chakra("section", {
   themeKey: "Popover.Content",
   baseStyle: {
-    width: "100%",
     position: "relative",
     display: "flex",
     flexDirection: "column",
@@ -95,17 +90,13 @@ export type PopoverContentProps = PropsOf<typeof StyledContent>
  */
 export const PopoverContent = React.forwardRef(
   (props: PopoverContentProps, ref: React.Ref<any>) => {
-    const { getPopoverProps, usePortal } = usePopoverContext()
-
-    const Wrapper = usePortal ? Portal : React.Fragment
+    const { getPopoverProps } = usePopoverContext()
 
     return (
-      <Wrapper>
-        <StyledContent
-          data-chakra-popover-content=""
-          {...getPopoverProps({ ...props, ref })}
-        />
-      </Wrapper>
+      <StyledContent
+        data-chakra-popover-content=""
+        {...getPopoverProps({ ...props, ref })}
+      />
     )
   },
 )

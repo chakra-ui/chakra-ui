@@ -75,7 +75,7 @@ const Header = ({ isConstrained, ...props }) => {
     <chakra.header
       pos="fixed"
       top="0"
-      zIndex="4"
+      zIndex="1"
       bg={bg}
       left="0"
       right="0"

@@ -8,7 +8,9 @@ const Popover: ComponentTheme = {
       borderColor: "inherit",
       borderRadius: "md",
       boxShadow: "sm",
+      width: "100%",
       maxWidth: "xs",
+      zIndex: "1",
       _focus: {
         outline: 0,
         boxShadow: "outline",

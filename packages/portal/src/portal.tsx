@@ -115,14 +115,18 @@ export function Portal(props: PortalProps) {
     parentPortal,
     onMount,
     onUnmount,
-    manager && manager.node,
+    manager?.node,
     append,
   ])
 
-  const finalChildren = manager?.zIndex ? (
+  const _children = manager?.zIndex ? (
     <div
       className="chakra-portal-zIndex"
-      style={{ position: "absolute", zIndex: manager.zIndex }}
+      style={{
+        position: "absolute",
+        zIndex: manager.zIndex,
+        width: "100%",
+      }}
     >
       {children}
     </div>
@@ -131,13 +135,11 @@ export function Portal(props: PortalProps) {
   )
 
   if (!portal) {
-    return <React.Fragment>{finalChildren}</React.Fragment>
+    return <React.Fragment>{_children}</React.Fragment>
   }
 
   return createPortal(
-    <PortalContextProvider value={portal}>
-      {finalChildren}
-    </PortalContextProvider>,
+    <PortalContextProvider value={portal}>{_children}</PortalContextProvider>,
     portal,
   )
 }
