@@ -13,7 +13,16 @@ import {
 } from "@chakra-ui/core"
 
 function GuidePreview(props) {
-  const { title, children, createdAt, birthTime, url, ...rest } = props
+  const {
+    title,
+    children,
+    createdAt,
+    birthTime,
+    url,
+    contributors,
+    ...rest
+  } = props
+  const creator = contributors[0]
   return (
     <chakra.a as={GatsbyLink} to={url}>
       <Flex
@@ -38,8 +47,8 @@ function GuidePreview(props) {
         </Box>
         <Flex justify="space-between" mt="6" color="gray.500" width="100%">
           <Stack align="center" direction="row" flex="1">
-            <Avatar size="sm" />
-            <Text fontSize="sm">Segun Adebayo</Text>
+            <Avatar size="sm" name={creator.name} src={creator.image} />
+            <Text fontSize="sm">{creator.name}</Text>
           </Stack>
           <Text fontSize="sm">
             <span>Created at: </span>
