@@ -1,5 +1,4 @@
 import * as React from "react"
-import { forwardRef, Ref } from "react"
 import { chakra, PropsOf, SystemProps } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 
@@ -44,22 +43,24 @@ export type FlexProps = PropsOf<typeof chakra.div> & FlexOptions
  *
  * @see Docs https://chakra-ui.com/flex
  */
-export const Flex = forwardRef((props: FlexProps, ref: Ref<any>) => {
-  const { direction, align, justify, wrap, basis, grow, ...rest } = props
-  return (
-    <chakra.div
-      ref={ref}
-      display="flex"
-      flexDirection={props.direction}
-      alignItems={props.align}
-      justifyContent={props.justify}
-      flexWrap={props.wrap}
-      flexBasis={props.basis}
-      flexGrow={props.grow}
-      {...rest}
-    />
-  )
-})
+export const Flex = React.forwardRef(
+  (props: FlexProps, ref: React.Ref<any>) => {
+    const { direction, align, justify, wrap, basis, grow, ...rest } = props
+    return (
+      <chakra.div
+        ref={ref}
+        display="flex"
+        flexDirection={props.direction}
+        alignItems={props.align}
+        justifyContent={props.justify}
+        flexWrap={props.wrap}
+        flexBasis={props.basis}
+        flexGrow={props.grow}
+        {...rest}
+      />
+    )
+  },
+)
 
 if (__DEV__) {
   Flex.displayName = "Flex"

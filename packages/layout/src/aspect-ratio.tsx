@@ -1,6 +1,6 @@
 import { __DEV__, cx } from "@chakra-ui/utils"
 import * as React from "react"
-import { Box, BoxProps } from "./Box"
+import { Box, BoxProps } from "./box"
 
 interface AspectRatioOptions {
   /**

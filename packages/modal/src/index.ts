@@ -1,2 +1,2 @@
 export * from "./Modal"
-export * from "./Modal.hook"
+export * from "./use-modal"

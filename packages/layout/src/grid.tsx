@@ -1,5 +1,4 @@
 import * as React from "react"
-import { forwardRef, Ref } from "react"
 import { chakra, PropsOf, ChakraProps } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 
@@ -13,42 +12,44 @@ export type GridProps = PropsOf<typeof chakra.div> & GridOptions
  *
  * @see Docs https://chakra-ui.com/grid
  */
-export const Grid = forwardRef((props: GridProps, ref: Ref<any>) => {
-  const {
-    area,
-    templateAreas,
-    gap,
-    rowGap,
-    columnGap,
-    column,
-    row,
-    autoFlow,
-    autoRows,
-    templateRows,
-    templateColumns,
-    ...rest
-  } = props
+export const Grid = React.forwardRef(
+  (props: GridProps, ref: React.Ref<any>) => {
+    const {
+      area,
+      templateAreas,
+      gap,
+      rowGap,
+      columnGap,
+      column,
+      row,
+      autoFlow,
+      autoRows,
+      templateRows,
+      templateColumns,
+      ...rest
+    } = props
 
-  return (
-    <chakra.div
-      ref={ref}
-      display="grid"
-      gridArea={props.area}
-      gridTemplateAreas={props.templateAreas}
-      gridGap={props.gap}
-      gridRowGap={props.rowGap}
-      gridColumnGap={props.columnGap}
-      gridAutoColumns={props.autoColumns}
-      gridColumn={props.column}
-      gridRow={props.row}
-      gridAutoFlow={props.autoFlow}
-      gridAutoRows={props.autoRows}
-      gridTemplateRows={props.templateRows}
-      gridTemplateColumns={props.templateColumns}
-      {...rest}
-    />
-  )
-})
+    return (
+      <chakra.div
+        ref={ref}
+        display="grid"
+        gridArea={props.area}
+        gridTemplateAreas={props.templateAreas}
+        gridGap={props.gap}
+        gridRowGap={props.rowGap}
+        gridColumnGap={props.columnGap}
+        gridAutoColumns={props.autoColumns}
+        gridColumn={props.column}
+        gridRow={props.row}
+        gridAutoFlow={props.autoFlow}
+        gridAutoRows={props.autoRows}
+        gridTemplateRows={props.templateRows}
+        gridTemplateColumns={props.templateColumns}
+        {...rest}
+      />
+    )
+  },
+)
 
 if (__DEV__) {
   Grid.displayName = "Grid"

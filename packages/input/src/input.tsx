@@ -3,7 +3,7 @@ import { chakra, PropsOf, useComponentStyle } from "@chakra-ui/system"
 import { __DEV__, cx } from "@chakra-ui/utils"
 import * as React from "react"
 import { forwardRef, Ref } from "react"
-import { useInputGroup } from "./Input.group"
+import { useInputGroup } from "./input-group"
 
 type OmittedTypes = "disabled" | "required" | "readOnly" | "size"
 

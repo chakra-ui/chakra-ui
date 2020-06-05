@@ -13,7 +13,7 @@ import {
   cx,
 } from "@chakra-ui/utils"
 import * as React from "react"
-import { FlexOptions } from "./Flex"
+import { FlexOptions } from "./flex"
 
 export type StackDirection = ResponsiveValue<"row" | "column">
 

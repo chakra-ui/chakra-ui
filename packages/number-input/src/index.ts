@@ -1,2 +1,2 @@
-export * from "./NumberInput"
-export * from "./NumberInput.hook"
+export * from "./number-input"
+export * from "./use-number-input"

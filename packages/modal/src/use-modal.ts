@@ -2,7 +2,7 @@ import { useIds, useLockBodyScroll } from "@chakra-ui/hooks"
 import { callAllHandlers, Dict, mergeRefs } from "@chakra-ui/utils"
 import { Undo, hideOthers } from "aria-hidden"
 import * as React from "react"
-import { manager, useModalManager } from "./Modal.manager"
+import { manager, useModalManager } from "./modal-manager"
 
 export interface UseModalProps {
   /**

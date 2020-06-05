@@ -101,7 +101,7 @@ export function useImage(props: UseImageProps) {
     }
 
     imageRef.current = img
-  }, [onError, onLoad, src, srcSet, sizes])
+  }, [src, crossOrigin, srcSet, sizes, onLoad, onError])
 
   const flush = () => {
     if (imageRef.current) {
@@ -124,7 +124,7 @@ export function useImage(props: UseImageProps) {
     return () => {
       flush()
     }
-  }, [status, load])
+  }, [status, load, ignoreFallback])
 
   /**
    * If user opts out of the fallback/placeholder

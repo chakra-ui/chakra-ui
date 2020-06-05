@@ -12,7 +12,6 @@ import {
   ReactNodeOrRenderProp,
 } from "@chakra-ui/utils"
 import * as React from "react"
-import { forwardRef, isValidElement, cloneElement, Children } from "react"
 import {
   useMenu,
   useMenuButton,
@@ -25,7 +24,7 @@ import {
   UseMenuOptionProps,
   UseMenuProps,
   UseMenuReturn,
-} from "./Menu.hook"
+} from "./use-menu"
 
 const [MenuContextProvider, useMenuContext] = createContext<UseMenuReturn>({
   strict: false,
@@ -110,7 +109,7 @@ const SubmenuSvg = (props: PropsOf<"svg">) => (
 /**
  * The trigger for the menu list. Must be a direct child of `Menu`.
  */
-export const MenuButton = forwardRef(
+export const MenuButton = React.forwardRef(
   (props: MenuButtonProps, ref: React.Ref<any>) => {
     const { children, submenuIcon = <SubmenuSvg />, ...rest } = props
 
@@ -155,7 +154,7 @@ const StyledMenuList = chakra("div", {
   pure: true,
 })
 
-export const MenuList = forwardRef(
+export const MenuList = React.forwardRef(
   (props: MenuListProps, ref: React.Ref<any>) => {
     const context = useMenuContext()
     const ownProps = useMenuList({ context, ...props })
@@ -201,7 +200,7 @@ interface MenuItemOptions extends Omit<UseMenuItemProps, "context"> {
 
 export type MenuItemProps = PropsOf<typeof StyledMenuItem> & MenuItemOptions
 
-export const MenuItem = forwardRef(
+export const MenuItem = React.forwardRef(
   (props: MenuItemProps, ref: React.Ref<any>) => {
     const {
       icon,
@@ -254,7 +253,7 @@ const CheckIcon = (props: PropsOf<"svg">) => (
   </svg>
 )
 
-export const MenuItemOption = forwardRef(
+export const MenuItemOption = React.forwardRef(
   (props: MenuItemOptionProps, ref: React.Ref<any>) => {
     const {
       icon = <CheckIcon />,
@@ -346,10 +345,10 @@ if (__DEV__) {
 export const MenuIcon = (props: PropsOf<typeof chakra.div>) => {
   const { className, children, ...rest } = props
 
-  const child = Children.only(children)
+  const child = React.Children.only(children)
 
-  const clone = isValidElement(child)
-    ? cloneElement(child, {
+  const clone = React.isValidElement(child)
+    ? React.cloneElement(child, {
         focusable: "false",
         "aria-hidden": true,
         className: cx("chakra-menu__icon", child.props.className),

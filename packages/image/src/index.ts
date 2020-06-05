@@ -1,2 +1,2 @@
-export * from "./Image"
-export * from "./Image.hook"
+export * from "./image"
+export * from "./use-image"

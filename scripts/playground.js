@@ -29,5 +29,5 @@ function rename(file) {
   }
 }
 
-const pkg = "hooks"
+const pkg = "number-input"
 shell.find(`packages/${pkg}/src`).forEach(rename)

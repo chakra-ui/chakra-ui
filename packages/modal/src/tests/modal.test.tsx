@@ -9,7 +9,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-} from "../Modal"
+} from ".."
 
 const renderWithPortal = (ui: React.ReactElement) =>
   render(<PortalManager>{ui}</PortalManager>)

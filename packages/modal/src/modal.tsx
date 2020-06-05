@@ -16,7 +16,7 @@ import {
   cx,
 } from "@chakra-ui/utils"
 import * as React from "react"
-import { useModal, UseModalProps, UseModalReturn } from "./Modal.hook"
+import { useModal, UseModalProps, UseModalReturn } from "./use-modal"
 
 type ModalContext = UseModalReturn &
   Pick<ModalProps, "isCentered" | "scrollBehavior"> &

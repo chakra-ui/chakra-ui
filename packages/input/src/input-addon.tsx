@@ -2,8 +2,7 @@ import { useSafeLayoutEffect } from "@chakra-ui/hooks"
 import { chakra, PropsOf } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { forwardRef, Ref } from "react"
-import { useInputGroup } from "./Input.group"
+import { useInputGroup } from "./input-group"
 
 type Placement = "left" | "right"
 
@@ -47,8 +46,8 @@ export type InputAddonProps = PropsOf<typeof StyledAddon> & {
  * Element to append or prepend to an input
  */
 
-export const InputAddon = forwardRef(
-  (props: InputAddonProps, ref: Ref<any>) => {
+export const InputAddon = React.forwardRef(
+  (props: InputAddonProps, ref: React.Ref<any>) => {
     const { placement = "left", ...rest } = props
 
     const placementStyles = placements[placement] ?? {}

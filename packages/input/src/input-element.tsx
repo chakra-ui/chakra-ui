@@ -2,8 +2,7 @@ import { useSafeLayoutEffect } from "@chakra-ui/hooks"
 import { chakra, PropsOf, useComponentStyle } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { forwardRef, Ref } from "react"
-import { useInputGroup } from "./Input.group"
+import { useInputGroup } from "./input-group"
 
 export type InputElementProps = PropsOf<typeof chakra.div> & {
   placement?: "left" | "right"
@@ -20,38 +19,40 @@ const StyledElement = chakra("div", {
   },
 })
 
-const InputElement = forwardRef((props: InputElementProps, ref: Ref<any>) => {
-  const { placement = "left", ...rest } = props
+const InputElement = React.forwardRef(
+  (props: InputElementProps, ref: React.Ref<any>) => {
+    const { placement = "left", ...rest } = props
 
-  const group = useInputGroup()
+    const group = useInputGroup()
 
-  const input = useComponentStyle({
-    themeKey: "Input",
-    variant: group?.variant,
-    size: group?.size,
-  }) as InputElementProps
+    const input = useComponentStyle({
+      themeKey: "Input",
+      variant: group?.variant,
+      size: group?.size,
+    }) as InputElementProps
 
-  const placementProp = { [placement]: "0" }
+    const placementProp = { [placement]: "0" }
 
-  return (
-    <StyledElement
-      width={input?.minHeight}
-      height={input?.minHeight}
-      fontSize={input?.fontSize}
-      paddingX={input?.paddingLeft}
-      ref={ref}
-      {...placementProp}
-      {...rest}
-    />
-  )
-})
+    return (
+      <StyledElement
+        width={input?.minHeight}
+        height={input?.minHeight}
+        fontSize={input?.fontSize}
+        paddingX={input?.paddingLeft}
+        ref={ref}
+        {...placementProp}
+        {...rest}
+      />
+    )
+  },
+)
 
 if (__DEV__) {
   InputElement.displayName = "InputElement"
 }
 
-export const InputLeftElement = forwardRef(
-  (props: PropsOf<typeof InputElement>, ref: Ref<any>) => {
+export const InputLeftElement = React.forwardRef(
+  (props: PropsOf<typeof InputElement>, ref: React.Ref<any>) => {
     const { leftElement } = useInputGroup()
 
     useSafeLayoutEffect(() => {
@@ -76,8 +77,8 @@ if (__DEV__) {
   InputLeftElement.displayName = "InputLeftElement"
 }
 
-export const InputRightElement = forwardRef(
-  (props: PropsOf<typeof InputElement>, ref: Ref<any>) => {
+export const InputRightElement = React.forwardRef(
+  (props: PropsOf<typeof InputElement>, ref: React.Ref<any>) => {
     const { rightElement } = useInputGroup()
 
     useSafeLayoutEffect(() => {
