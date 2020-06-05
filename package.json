@@ -25,14 +25,11 @@
     "commit": "git-cz",
     "build:storybook": "build-storybook",
     "version": "lerna version --no-push",
-    "playroom": "playroom start",
-    "playroom:build": "playroom build",
     "patch": "node -r esm scripts/patch-workspace.js",
     "create-pkg": "node scripts/create-package.js",
     "release": "lerna publish",
-    "release:next": "lerna publish --canary --preid alpha",
     "release:ci": "lerna publish -y --loglevel verbose",
-    "release:failed": "lerna publish from-package -y --loglevel verbose",
+    "release:next": "lerna publish --canary --preid alpha",
     "docs": "yarn workspace @chakra-ui/docs",
     "docs:start": "yarn docs start",
     "core": "yarn workspace @chakra-ui/core",
@@ -150,7 +147,6 @@
     "listr": "0.14.3",
     "ncp": "2.0.0",
     "nodemon": "2.0.2",
-    "playroom": "0.17.3",
     "prettier": "2.0.5",
     "react": "16.13.1",
     "react-dom": "16.13.1",
@@ -162,8 +158,6 @@
     "rimraf": "3.0.2",
     "shelljs": "0.8.3",
     "ts-jest": "25.3.1",
-    "typescript": "3.9.2",
-    "webpack-dev-server": "3.10.3",
-    "yalc": "1.0.0-pre.35"
+    "typescript": "3.9.5"
   }
 }

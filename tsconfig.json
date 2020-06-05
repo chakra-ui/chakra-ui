@@ -9,7 +9,6 @@
     "moduleResolution": "node",
     "skipLibCheck": true,
     "strict": true,
-    "pretty": true,
     "noFallthroughCasesInSwitch": true,
     "suppressImplicitAnyIndexErrors": true,
     "noImplicitAny": true,
@@ -18,7 +17,6 @@
     "strictPropertyInitialization": true,
     "jsx": "react",
     "esModuleInterop": true,
-    "preserveSymlinks": true,
     "allowSyntheticDefaultImports": true,
     "allowJs": true,
     "outDir": "dist/esm"

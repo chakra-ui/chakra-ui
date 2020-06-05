@@ -1,9 +1,10 @@
 import * as React from "react"
 import { mergeRefs, dataAttr } from "@chakra-ui/utils"
 
-type HTMLAttributes = React.HTMLAttributes<any> & React.RefAttributes<any>
+export type HTMLAttributes = React.HTMLAttributes<any> &
+  React.RefAttributes<any>
 
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>
+export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>
 
 export interface UseClickableProps extends HTMLAttributes {
   /**
@@ -34,7 +35,7 @@ export interface UseClickableProps extends HTMLAttributes {
  *
  * It can be used with both native button elements or other elements (like `div`).
  */
-export function useClickable(props: UseClickableProps = {}) {
+export function useClickable(props: any = {}) {
   const {
     ref: htmlRef,
     isDisabled,
