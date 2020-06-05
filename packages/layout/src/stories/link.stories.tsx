@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link } from "../Link"
+import { Link } from ".."
 import { BrowserRouter, Link as ReactRouterLink } from "react-router-dom"
 
 export default {
