@@ -1,6 +1,6 @@
 import { __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { Button, ButtonProps } from "./_button"
+import { Button, ButtonProps } from "./button"
 
 type Omitted = "leftIcon" | "isFullWidth" | "rightIcon" | "loadingText"
 
