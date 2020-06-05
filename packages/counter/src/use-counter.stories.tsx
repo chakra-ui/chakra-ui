@@ -1,5 +1,5 @@
 import * as React from "react"
-import { useCounter } from "./Counter.hook"
+import { useCounter } from "."
 
 export default {
   title: "Counter",

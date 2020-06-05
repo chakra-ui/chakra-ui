@@ -1,5 +1,5 @@
 import * as React from "react"
-import { useColorMode } from "./color-mode-provider"
+import { useColorMode } from "."
 
 export default {
   title: "Color Mode",
