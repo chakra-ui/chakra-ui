@@ -25,7 +25,7 @@ function LastEdited(props) {
 
 // memoized to prevent from re-rendering on in-page anchor link navigation
 const Body = (props) => {
-  const { relativePath, body, modifiedTime } = props
+  const { contributors, relativePath, body, modifiedTime } = props
   return (
     <Box mx="auto" maxW="48rem" mt="1em">
       <MDXRenderer>{body}</MDXRenderer>
@@ -43,8 +43,9 @@ const Body = (props) => {
 const Guides = ({ data, pageContext }) => {
   const location = useLocation()
   const { previous, next, slug, relativePath, modifiedTime } = pageContext
-  const { body, frontmatter, tableOfContents } = data.mdx
+  const { body, frontmatter, fields, tableOfContents } = data.mdx
   const { title, description } = frontmatter
+  const { contributors } = fields
 
   return (
     <>
@@ -56,6 +57,7 @@ const Guides = ({ data, pageContext }) => {
         next={next}
         slug={slug}
         tableOfContents={tableOfContents}
+        contributors={contributors}
         relativePath={relativePath}
         modifiedTime={modifiedTime}
       />
@@ -68,6 +70,12 @@ export const query = graphql`
   query guideBySlug($slug: String!) {
     mdx(fields: { slug: { eq: $slug } }) {
       body
+      fields {
+        contributors {
+          name
+          image
+        }
+      }
       frontmatter {
         title
         description
