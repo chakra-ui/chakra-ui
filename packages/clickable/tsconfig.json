@@ -1,9 +1,7 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["src"],
+  "include": ["src", "../../types"],
   "exclude": [
-    "node_modules",
-    "node_modules/@theme-ui",
     "**/*.spec.ts",
     "**/*.spec.tsx",
     "**/*.test.ts",

@@ -23,7 +23,7 @@ export type IconProps = PropsOf<typeof StyledSvg>
 export const Icon = React.forwardRef(
   (props: IconProps, ref: React.Ref<any>) => {
     const {
-      as,
+      as: type,
       size,
       boxSize = "1em",
       viewBox,
@@ -48,13 +48,13 @@ export const Icon = React.forwardRef(
       flexShrink: 0,
       boxSize,
       className: _className,
-    }
+    } as any
 
     /**
      * If you're using an icon library like `react-icons`
      */
-    if (as && typeof as !== "string") {
-      return <StyledSvg as={as} {...sharedProps} {...rest} />
+    if (type && typeof type !== "string") {
+      return <StyledSvg as={type} {...sharedProps} {...rest} />
     }
 
     const _path = children ?? fallbackIcon.path
