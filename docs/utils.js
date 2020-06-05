@@ -2,7 +2,7 @@ const _ = require("lodash/fp")
 const { Octokit } = require("@octokit/rest")
 
 const octokit = new Octokit({
-  auth: "b452f7c3d86fcffa6bd1fd82dd4614ec757437ea",
+  auth: process.env.GITHUB_API_TOKEN,
 })
 
 const compareCollections = (
@@ -42,8 +42,37 @@ const getRelativePagePath = (fileAbsolutePath) => {
   return match ? match[0] : null
 }
 
+const orderByCommitAuthorDate = _.orderBy(["commit.author.date"], ["asc"])
+const getCommitAuthorDetails = _.pick([
+  "commit.author.name",
+  "author.avatar_url",
+  "author.html_url",
+])
+
 const getNodeContributors = async (node) => {
-  return []
+  const relativePath = getRelativePagePath(node.fileAbsolutePath)
+  const { data: commits } = await octokit.repos.listCommits({
+    owner: "chakra-ui",
+    repo: "chakra-ui",
+    sha: "master",
+    path: relativePath,
+  })
+  const orderedCommits = orderByCommitAuthorDate(commits)
+  const contributors = orderedCommits
+    .map(getCommitAuthorDetails)
+    .map(
+      ({
+        commit: {
+          author: { name },
+        },
+        author: { avatar_url: image, html_url: url },
+      }) => ({
+        name,
+        image,
+        url,
+      }),
+    )
+  return contributors
 }
 
 module.exports = { sortPostNodes, getRelativePagePath, getNodeContributors }
