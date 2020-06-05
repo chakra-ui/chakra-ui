@@ -22,6 +22,7 @@
     "no-empty": 0,
     "no-eval": "error",
     "react/display-name": "off",
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "@typescript-eslint/no-var-requires": "off"
   }
 }

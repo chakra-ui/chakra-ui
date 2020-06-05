@@ -22,7 +22,7 @@ function GuidePreview(props) {
     contributors,
     ...rest
   } = props
-  const creator = contributors[0]
+  const creator = contributors[0] || {}
   return (
     <chakra.a as={GatsbyLink} to={url}>
       <Flex
