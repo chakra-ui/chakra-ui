@@ -7,6 +7,7 @@ image: "components/icon.svg"
 import ComponentLinks from "../../src/components/component-links"
 
 import { Grid, Flex, useTheme, Icon, Text } from "@chakra-ui/core"
+import  { AddIcon } from "@chakra-ui/icons"
 
 # Icon
 
@@ -55,7 +56,17 @@ Here's a list of the default icons Chakra UI comes with and their respective
 `name`. You add your own icons as well, [see the guide](#adding-custom-icons)
 
 <Grid mt={7} gap={5} templateColumns="repeat( auto-fit, minmax(120px, 1fr) )">
-  {Object.keys(useTheme().icons).map((icon) => (
+    <Flex
+      p={3}
+      borderRadius="md"
+      borderWidth="1px"
+      flexDir="column"
+      align="center"
+      justify="center"
+    >
+      <AddIcon/>
+    </Flex>
+  {/* {Object.keys(useTheme().icons).map((icon) => (
     <Flex
       borderRadius="md"
       borderWidth="1px"
@@ -69,7 +80,7 @@ Here's a list of the default icons Chakra UI comes with and their respective
         {icon}
       </Text>
     </Flex>
-  ))}
+  ))} */}
 </Grid>
 
 ## Using an icon library

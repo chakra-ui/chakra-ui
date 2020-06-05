@@ -3,5 +3,5 @@ import { InitializeColorMode } from "@chakra-ui/core"
 export { wrapRootElement } from "./gatsby-browser"
 
 export const onRenderBody = ({ setPreBodyComponents }) => {
-  setPreBodyComponents([<InitializeColorMode />])
+  setPreBodyComponents([<InitializeColorMode key="chakra-ui-no-flash" />])
 }

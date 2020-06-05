@@ -100,7 +100,7 @@ export function useFocusOnHide(
 
   /**
    * Setup mousedown and touchstart listeners
-   * @todo maybe just use pointerdown with pep.js polyfill?
+   * @todo maybe just use "pointerdown" with pep.js polyfill?
    */
   useEventListener("mousedown", onMouseDown)
   useEventListener("touchstart", onMouseDown)
@@ -117,7 +117,7 @@ export function useFocusOnHide(
     if (focusRef.current) {
       ensureFocus(focusRef.current)
     }
-  }, [autoFocus, focusRef, visible, popoverRef])
+  }, [autoFocus, focusRef, visible, popoverRef, shouldFocus, isTabbableTarget])
 }
 
 export interface UseFocusOnShowOptions {

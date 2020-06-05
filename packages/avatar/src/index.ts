@@ -1,2 +1,2 @@
-export * from "./avatar"
+export * from "./_avatar"
 export * from "./avatar-group"

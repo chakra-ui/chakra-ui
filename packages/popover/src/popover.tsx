@@ -11,9 +11,11 @@ import {
 import * as React from "react"
 import { usePopover, UsePopoverProps, UsePopoverReturn } from "./use-popover"
 
-const [PopoverCtxProvider, usePopoverContext] = createContext<
-  UsePopoverReturn
->()
+const [PopoverCtxProvider, usePopoverContext] = createContext<UsePopoverReturn>(
+  {
+    name: "PopoverContext",
+  },
+)
 
 export type PopoverProps = UsePopoverProps & {
   /**
