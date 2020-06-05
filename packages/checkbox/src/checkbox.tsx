@@ -2,9 +2,9 @@ import { IconProps } from "@chakra-ui/icon"
 import { chakra, PropsOf, SystemProps } from "@chakra-ui/system"
 import { cx, Omit, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { useCheckbox, UseCheckboxProps } from "./Checkbox.hook"
+import { useCheckbox, UseCheckboxProps } from "./use-checkbox"
 import { CheckboxIcon } from "./Checkbox.icon"
-import { useCheckboxGroupContext } from "./CheckboxGroup"
+import { useCheckboxGroupContext } from "./checkbox-group"
 
 /**
  * Checkbox - Theming

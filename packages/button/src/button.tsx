@@ -8,14 +8,7 @@ import {
 } from "@chakra-ui/system"
 import { dataAttr, __DEV__, merge, Dict, cx } from "@chakra-ui/utils"
 import * as React from "react"
-import {
-  forwardRef,
-  ReactElement,
-  Ref,
-  cloneElement,
-  isValidElement,
-} from "react"
-import { useButtonGroup } from "./ButtonGroup"
+import { useButtonGroup } from "./button-group"
 
 const StyledButton = chakra("button", {
   themeKey: "Button",
@@ -62,11 +55,11 @@ export interface ButtonOptions {
   /**
    * If added, the button will show an icon before the button's label.
    */
-  leftIcon?: ReactElement
+  leftIcon?: React.ReactElement
   /**
    * If added, the button will show an icon after the button's label.
    */
-  rightIcon?: ReactElement
+  rightIcon?: React.ReactElement
   /**
    * The space between the button icon and label.
    */
@@ -74,86 +67,88 @@ export interface ButtonOptions {
   /**
    * Replace the spinner component when `isLoading` is set to `true`
    */
-  spinner?: ReactElement
+  spinner?: React.ReactElement
 }
 
 export type ButtonProps = Omit<PropsOf<typeof StyledButton>, "disabled"> &
   ButtonOptions
 
-export const Button = forwardRef((props: ButtonProps, ref: Ref<any>) => {
-  const group = useButtonGroup()
+export const Button = React.forwardRef(
+  (props: ButtonProps, ref: React.Ref<any>) => {
+    const group = useButtonGroup()
 
-  const {
-    isDisabled,
-    isLoading,
-    isActive,
-    isFullWidth,
-    children,
-    leftIcon,
-    rightIcon,
-    loadingText,
-    iconSpacing = "0.5rem",
-    type = "button",
-    spinner,
-    variant = group?.variant,
-    colorScheme = group?.colorScheme,
-    size = group?.size,
-    className,
-    ...rest
-  } = props
+    const {
+      isDisabled,
+      isLoading,
+      isActive,
+      isFullWidth,
+      children,
+      leftIcon,
+      rightIcon,
+      loadingText,
+      iconSpacing = "0.5rem",
+      type = "button",
+      spinner,
+      variant = group?.variant,
+      colorScheme = group?.colorScheme,
+      size = group?.size,
+      className,
+      ...rest
+    } = props
 
-  const styles = useComponentStyle({
-    themeKey: "Button",
-    variant,
-    size,
-    colorScheme,
-  }) as Dict
+    const styles = useComponentStyle({
+      themeKey: "Button",
+      variant,
+      size,
+      colorScheme,
+    }) as Dict
 
-  /**
-   * When button is used within ButtonGroup (i.e flushed with sibling buttons),
-   * it's important to add a `zIndex` when it's focused to it doesn't look funky.
-   *
-   * So let's read the component styles and then add `zIndex` to it.
-   */
-  const focusSelector = pseudoSelectors["_focus"]
-  const _focus = merge(styles?.[focusSelector] ?? {}, { zIndex: 1 })
+    /**
+     * When button is used within ButtonGroup (i.e flushed with sibling buttons),
+     * it's important to add a `zIndex` when it's focused to it doesn't look funky.
+     *
+     * So let's read the component styles and then add `zIndex` to it.
+     */
+    const focusSelector = pseudoSelectors["_focus"]
+    const _focus = merge(styles?.[focusSelector] ?? {}, { zIndex: 1 })
 
-  const _className = cx("chakra-button", className)
+    const _className = cx("chakra-button", className)
 
-  return (
-    <StyledButton
-      disabled={isDisabled || isLoading}
-      ref={ref}
-      type={type}
-      width={isFullWidth ? "100%" : undefined}
-      data-active={dataAttr(isActive)}
-      data-loading={dataAttr(isLoading)}
-      variant={variant}
-      colorScheme={colorScheme}
-      size={size}
-      className={_className}
-      {...(!!group && { _focus })}
-      {...rest}
-    >
-      {leftIcon && !isLoading && (
-        <ButtonIcon ml={-1} mr={iconSpacing} children={leftIcon} />
-      )}
-      {isLoading && (
-        <ButtonSpinner
-          spacing={iconSpacing}
-          label={loadingText}
-          children={spinner}
-        />
-      )}
-      {isLoading
-        ? loadingText || <chakra.span opacity={0} children={children} />
-        : children}
-      {rightIcon && !isLoading && (
-        <ButtonIcon ml={iconSpacing} mr={-1} children={rightIcon} />
-      )}
-    </StyledButton>
-  )
-})
+    return (
+      <StyledButton
+        disabled={isDisabled || isLoading}
+        ref={ref}
+        type={type}
+        width={isFullWidth ? "100%" : undefined}
+        data-active={dataAttr(isActive)}
+        data-loading={dataAttr(isLoading)}
+        variant={variant}
+        colorScheme={colorScheme}
+        size={size}
+        className={_className}
+        {...(!!group && { _focus })}
+        {...rest}
+      >
+        {leftIcon && !isLoading && (
+          <ButtonIcon ml={-1} mr={iconSpacing} children={leftIcon} />
+        )}
+        {isLoading && (
+          <ButtonSpinner
+            spacing={iconSpacing}
+            label={loadingText}
+            children={spinner}
+          />
+        )}
+        {isLoading
+          ? loadingText || <chakra.span opacity={0} children={children} />
+          : children}
+        {rightIcon && !isLoading && (
+          <ButtonIcon ml={iconSpacing} mr={-1} children={rightIcon} />
+        )}
+      </StyledButton>
+    )
+  },
+)
 
 if (__DEV__) {
   Button.displayName = "Button"
@@ -165,8 +160,8 @@ const ButtonIcon = (props: PropsOf<typeof chakra.span>) => {
     focusable: false,
   }
 
-  const children = isValidElement(props.children)
-    ? cloneElement(props.children, a11yProps)
+  const children = React.isValidElement(props.children)
+    ? React.cloneElement(props.children, a11yProps)
     : props.children
 
   return (

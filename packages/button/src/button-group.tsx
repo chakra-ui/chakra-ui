@@ -1,19 +1,20 @@
 import { chakra, PropsOf, ThemingProps } from "@chakra-ui/system"
 import { createContext, __DEV__, cx } from "@chakra-ui/utils"
 import * as React from "react"
-import { forwardRef, Ref } from "react"
 
 export type ButtonGroupProps = PropsOf<typeof chakra.div>
 
-const [ButtonGroupCtxProvider, useButtonGroup] = createContext<ThemingProps>({
+const [ButtonGroupContextProvider, useButtonGroup] = createContext<
+  ThemingProps
+>({
   strict: false,
   name: "ButtonGroupContext",
 })
 
 export { useButtonGroup }
 
-export const ButtonGroup = forwardRef(
-  (props: ButtonGroupProps, ref: Ref<any>) => {
+export const ButtonGroup = React.forwardRef(
+  (props: ButtonGroupProps, ref: React.Ref<any>) => {
     const { size, colorScheme, variant, className, ...rest } = props
 
     const css = {
@@ -24,8 +25,14 @@ export const ButtonGroup = forwardRef(
 
     const _className = cx("chakra-button__group", className)
 
+    const context = React.useMemo(() => ({ size, colorScheme, variant }), [
+      size,
+      colorScheme,
+      variant,
+    ])
+
     return (
-      <ButtonGroupCtxProvider value={{ size, colorScheme, variant }}>
+      <ButtonGroupContextProvider value={context}>
         <chakra.div
           ref={ref}
           display="flex"
@@ -35,7 +42,7 @@ export const ButtonGroup = forwardRef(
           className={_className}
           {...rest}
         />
-      </ButtonGroupCtxProvider>
+      </ButtonGroupContextProvider>
     )
   },
 )
