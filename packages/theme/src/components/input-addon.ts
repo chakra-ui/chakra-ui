@@ -1,4 +1,4 @@
-import Input from "./_input"
+import Input from "./input"
 import { ComponentTheme, mode, Props, StyleProps } from "./utils"
 
 function getOutlineStyle(props: Props): StyleProps {

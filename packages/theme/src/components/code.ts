@@ -1,4 +1,4 @@
-import Badge, { BadgeTokens } from "./_badge"
+import Badge, { BadgeTokens } from "./badge"
 import { ComponentTheme } from "./utils"
 
 const Code: ComponentTheme = {
