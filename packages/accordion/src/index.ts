@@ -1,2 +1,2 @@
-export * from "./Accordion"
-export * from "./Accordion.hook"
+export * from "./accordion"
+export * from "./use-accordion"

@@ -12,6 +12,7 @@ import {
   mergeRefs,
   removeItem,
   __DEV__,
+  createContext,
 } from "@chakra-ui/utils"
 import * as React from "react"
 import { cloneElement, useState, useRef } from "react"
@@ -79,7 +80,7 @@ export function useAccordion(props: UseAccordionProps) {
    *
    * Every accordion item, registers their button refs in this context
    */
-  const descendantsContext = useDescendants()
+  const domContext = useDescendants()
 
   /**
    * This state is used to track the index focused accordion
@@ -147,15 +148,25 @@ export function useAccordion(props: UseAccordionProps) {
     htmlProps,
     focusedIndex,
     setFocusedIndex,
-    descendantsContext,
+    domContext,
   }
 }
 
 export type UseAccordionReturn = ReturnType<typeof useAccordion>
 
+type AccordionContext = Omit<UseAccordionReturn, "children" | "htmlProps">
+
+const [AccordionContextProvider, useAccordionContext] = createContext<
+  AccordionContext
+>({
+  name: "AccordionContext",
+})
+
+export { AccordionContextProvider }
+
 //////////////////////////////////////////////////////////////////////
 
-interface UseAccordionItemOptions {
+export interface UseAccordionItemProps {
   /**
    * If `true`, expands the accordion in the controlled mode.
    */
@@ -178,10 +189,6 @@ interface UseAccordionItemOptions {
   onChange?: (isOpen: boolean) => void
 }
 
-export type UseAccordionItemProps = UseAccordionItemOptions & {
-  context: Omit<UseAccordionReturn, "children" | "htmlProps">
-}
-
 /**
  * useAccordionItem
  *
@@ -189,17 +196,9 @@ export type UseAccordionItemProps = UseAccordionItemOptions & {
  * for an accordion item and it's children
  */
 export function useAccordionItem(props: UseAccordionItemProps) {
-  const {
-    isDisabled,
-    isFocusable,
-    onChange,
-    context,
-    isOpen,
-    id,
-    ...htmlProps
-  } = props
+  const { isDisabled, isFocusable, onChange, isOpen, id, ...htmlProps } = props
 
-  const { descendantsContext, focusedIndex, setFocusedIndex } = context
+  const { domContext, focusedIndex, setFocusedIndex } = useAccordionContext()
 
   const onOpen = () => onChange?.(true)
   const onClose = () => onChange?.(false)
@@ -219,12 +218,12 @@ export function useAccordionItem(props: UseAccordionItemProps) {
    */
   const index = useDescendant({
     element: buttonRef.current,
-    context: descendantsContext,
+    context: domContext,
     disabled: isDisabled,
     focusable: isFocusable,
   })
 
-  const { descendants } = descendantsContext
+  const { descendants } = domContext
 
   const shouldFocus = index === focusedIndex
 
@@ -232,6 +231,7 @@ export function useAccordionItem(props: UseAccordionItemProps) {
    * Autofocus the accordion button when
    * the active index matched the accordion item's index
    */
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useFocusEffect(buttonRef, { shouldFocus })
 
   /**

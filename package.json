@@ -140,7 +140,7 @@
     "fs-utils": "0.7.0",
     "husky": "4.2.5",
     "inquirer": "7.1.0",
-    "jest": "25.2.7",
+    "jest": "26.0.1",
     "jest-emotion": "10.0.32",
     "lerna": "3.21.0",
     "lint-staged": "10.2.6",
@@ -157,7 +157,7 @@
     "react-test-renderer": "16.13.1",
     "rimraf": "3.0.2",
     "shelljs": "0.8.3",
-    "ts-jest": "25.3.1",
+    "ts-jest": "26.1.0",
     "typescript": "3.9.5"
   }
 }

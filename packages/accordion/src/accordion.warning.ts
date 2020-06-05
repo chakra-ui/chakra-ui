@@ -1,5 +1,5 @@
 import { isArray, isUndefined, warn } from "@chakra-ui/utils"
-import { UseAccordionItemProps, UseAccordionProps } from "./Accordion.hook"
+import { UseAccordionItemProps, UseAccordionProps } from "./use-accordion"
 
 export function allowMultiple(props: UseAccordionProps) {
   const index = props.index || props.defaultIndex
