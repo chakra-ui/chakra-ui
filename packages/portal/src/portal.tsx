@@ -1,7 +1,7 @@
 import { createContext, isBrowser, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { createPortal } from "react-dom"
-import { usePortalManager } from "./Portal.manager"
+import { usePortalManager } from "./portal-manager"
 import { useSafeLayoutEffect } from "@chakra-ui/hooks"
 
 type PortalContext = HTMLDivElement | null
@@ -115,7 +115,7 @@ export function Portal(props: PortalProps) {
     parentPortal,
     onMount,
     onUnmount,
-    manager && manager.node,
+    manager?.node,
     append,
   ])
 

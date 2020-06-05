@@ -1,2 +1,2 @@
-export * from "./Popover"
-export * from "./Popover.hook"
+export * from "./popover"
+export * from "./use-popover"

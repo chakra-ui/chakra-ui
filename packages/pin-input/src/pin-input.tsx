@@ -6,7 +6,7 @@ import {
   UsePinInputReturn,
   usePinInput,
   usePinInputField,
-} from "./Pin-Input.hook"
+} from "./use-pin-input"
 
 export type PinInputContext = UsePinInputReturn &
   ThemingProps & {

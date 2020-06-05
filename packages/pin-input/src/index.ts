@@ -1,2 +1,2 @@
-export * from "./Pin-Input"
-export * from "./Pin-Input.hook"
+export * from "./pin-input"
+export * from "./use-pin-input"

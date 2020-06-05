@@ -9,7 +9,7 @@ import {
   __DEV__,
 } from "@chakra-ui/utils"
 import * as React from "react"
-import { usePopover, UsePopoverProps, UsePopoverReturn } from "./Popover.hook"
+import { usePopover, UsePopoverProps, UsePopoverReturn } from "./use-popover"
 
 type PopoverContext = UsePopoverReturn & { usePortal?: boolean }
 

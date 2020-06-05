@@ -29,5 +29,5 @@ function rename(file) {
   }
 }
 
-const pkg = "number-input"
+const pkg = "portal"
 shell.find(`packages/${pkg}/src`).forEach(rename)

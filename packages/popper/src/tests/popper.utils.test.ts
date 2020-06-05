@@ -1,4 +1,4 @@
-import { getOppositePosition, getArrowStyles } from "../Popper.utils"
+import { getOppositePosition, getArrowStyles } from "../popper.utils"
 
 describe("getOppositePosition", () => {
   test.each`
