@@ -12,11 +12,11 @@ import {
   maxSafeInteger,
 } from "@chakra-ui/utils"
 import * as React from "react"
-import { useSpinner } from "./NumberInput.spinner"
+import { useSpinner } from "./number-input.spinner"
 import {
   isFloatingPointNumericCharacter,
   isValidNumericKeyboardEvent,
-} from "./NumberInput.utils"
+} from "./number-input.utils"
 
 export interface UseNumberInputProps extends UseCounterProps {
   /**

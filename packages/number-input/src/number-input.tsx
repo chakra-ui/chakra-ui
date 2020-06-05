@@ -11,7 +11,7 @@ import {
   useNumberInput,
   UseNumberInputProps,
   UseNumberInputReturn,
-} from "./NumberInput.hook"
+} from "./use-number-input"
 
 type NumberInputContext = Omit<UseNumberInputReturn, "htmlProps">
 
