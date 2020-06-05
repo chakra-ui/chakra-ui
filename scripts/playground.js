@@ -29,5 +29,5 @@ function rename(file) {
   }
 }
 
-const pkg = "drawer"
+const pkg = "hooks"
 shell.find(`packages/${pkg}/src`).forEach(rename)

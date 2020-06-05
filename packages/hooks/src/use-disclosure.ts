@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react"
-import { useControllableProp } from "./useControllable"
-import { usePrevious } from "./usePrevious"
-import { useId } from "./useId"
+import { useControllableProp } from "./use-controllable"
+import { usePrevious } from "./use-previous"
+import { useId } from "./use-id"
 import { callAllHandlers } from "@chakra-ui/utils"
 
 export interface UseDisclosureProps {

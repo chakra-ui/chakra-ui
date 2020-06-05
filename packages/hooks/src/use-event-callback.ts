@@ -1,5 +1,5 @@
 import * as React from "react"
-import { useSafeLayoutEffect } from "./useSafeLayoutEffect"
+import { useSafeLayoutEffect } from "./use-safe-layout-effect"
 
 /**
  * React hook for performant `useCallbacks`

@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { useUpdateEffect } from "./useUpdateEffect"
+import { useUpdateEffect } from "./use-update-effect"
 
 /**
  * React hook to console-log a value when it mounts

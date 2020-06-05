@@ -1,6 +1,6 @@
 import * as React from "react"
 import { getBox, BoxModel } from "@chakra-ui/utils"
-import { useSafeLayoutEffect } from "./useSafeLayoutEffect"
+import { useSafeLayoutEffect } from "./use-safe-layout-effect"
 
 /**
  * Reack hook to measure a component's dimensions

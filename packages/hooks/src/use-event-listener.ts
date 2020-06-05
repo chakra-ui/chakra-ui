@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { isBrowser, FunctionArguments } from "@chakra-ui/utils"
-import { useLatestRef } from "./useLatestRef"
+import { useLatestRef } from "./use-latest-ref"
 
 type AddEventListener = FunctionArguments<typeof document.addEventListener>
 

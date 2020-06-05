@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { useLatestRef } from "./useLatestRef"
+import { useLatestRef } from "./use-latest-ref"
 
 /**
  * React Hook that provides a declarative `setInterval`

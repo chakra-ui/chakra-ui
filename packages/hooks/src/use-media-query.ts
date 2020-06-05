@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { isBrowser } from "@chakra-ui/utils"
-import { useSafeLayoutEffect } from "./useSafeLayoutEffect"
+import { useSafeLayoutEffect } from "./use-safe-layout-effect"
 
 const isSupported = (api: string) => isBrowser && api in window
 

@@ -1,6 +1,6 @@
 import { RefObject } from "react"
 import { hasFocusWithin, ensureFocus } from "@chakra-ui/utils"
-import { useUpdateEffect } from "./useUpdateEffect"
+import { useUpdateEffect } from "./use-update-effect"
 
 export type UseFocusEffectOptions = {
   shouldFocus: boolean
@@ -26,5 +26,5 @@ export function useFocusEffect<T extends HTMLElement>(
     if (!hasFocusWithin(node)) {
       ensureFocus(node, { preventScroll })
     }
-  }, [shouldFocus, ref])
+  }, [shouldFocus, ref, preventScroll])
 }
