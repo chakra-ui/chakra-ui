@@ -16,7 +16,7 @@ import {
 } from "@chakra-ui/utils"
 import * as React from "react"
 import { cloneElement, useState, useRef } from "react"
-import * as warn from "./Accordion.warning"
+import * as warn from "./accordion.warning"
 
 export type ExpandedIndex = number | number[]
 
