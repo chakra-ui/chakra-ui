@@ -1,5 +1,5 @@
 {
-  "installCommand": "codesandbox:ci",
+  "installCommand": "prestart",
   "buildCommand": "build",
   "sandboxes": ["tender-leakey-6ms6x"]
 }
