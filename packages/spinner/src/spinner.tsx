@@ -2,7 +2,6 @@ import { chakra, keyframes, PropsOf } from "@chakra-ui/system"
 import { __DEV__, cx } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 import * as React from "react"
-import { forwardRef } from "react"
 
 const spin = keyframes`
   0% {  transform: rotate(0deg) }
@@ -66,9 +65,9 @@ export type SpinnerProps = PropsOf<typeof StyledSpinner> & SpinnerOptions
  *
  * It renders a `div` by default
  *
- * @see Docs https://chakra-ui.com/spinner
+ * @see Docs https://chakra-ui.com/components/spinner
  */
-export const Spinner = forwardRef(
+export const Spinner = React.forwardRef(
   (props: SpinnerProps, ref: React.Ref<any>) => {
     const {
       label = "Loading...",

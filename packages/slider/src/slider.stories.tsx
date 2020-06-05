@@ -6,7 +6,7 @@ import {
   SliderThumb,
   SliderTrack,
   SliderFilledTrack,
-} from "./Slider"
+} from "."
 
 export default {
   title: "Slider",

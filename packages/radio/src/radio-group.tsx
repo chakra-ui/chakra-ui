@@ -5,7 +5,7 @@ import {
   useRadioGroup,
   UseRadioGroupProps,
   UseRadioGroupReturn,
-} from "./RadioGroup.hook"
+} from "./use-radio-group"
 
 export type RadioGroupContext = Pick<
   UseRadioGroupReturn,
@@ -30,7 +30,7 @@ export type RadioGroupProps = UseRadioGroupProps &
  * Used for multiple radios which are bound in one group,
  * and it indicates which option is selected.
  *
- * @see Docs https://chakra-ui.com/radio
+ * @see Docs https://chakra-ui.com/components/radio
  */
 export const RadioGroup = React.forwardRef(
   (props: RadioGroupProps, ref: React.Ref<any>) => {

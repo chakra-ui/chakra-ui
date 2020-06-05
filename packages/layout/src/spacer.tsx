@@ -8,7 +8,7 @@ export type SpacerProps = PropsOf<typeof Spacer>
  *
  * It renders a `div` by default, and takes up any available space.
  *
- * @see Docs https://chakra-ui.com/spacer
+ * @see Docs https://chakra-ui.com/components/spacer
  */
 export const Spacer = chakra("div", {
   baseStyle: {

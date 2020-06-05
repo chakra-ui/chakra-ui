@@ -1,2 +1,2 @@
-export * from "./Slider"
-export * from "./Slider.hook"
+export * from "./slider"
+export * from "./use-slider"

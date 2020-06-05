@@ -35,7 +35,7 @@ export type FocusLockProps = {
  * React component to trap focus within an element or component.
  * Mostly used in Modals, Popovers, etc.
  *
- * @see Docs https://chakra-ui.com/focuslock
+ * @see Docs https://chakra-ui.com/components/focuslock
  */
 export function FocusLock(props: FocusLockProps) {
   const {

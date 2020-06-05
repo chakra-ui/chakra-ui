@@ -6,7 +6,7 @@ export type CodeProps = PropsOf<typeof Code>
 /**
  * React component to render inline code snippets.
  *
- * @see Docs https://chakra-ui.com/code
+ * @see Docs https://chakra-ui.com/components/code
  */
 export const Code = chakra("code", {
   themeKey: "Code",

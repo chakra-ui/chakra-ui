@@ -10,7 +10,7 @@ export type TagProps = PropsOf<typeof Tag>
  *
  * To style the tag globally, change the styles in `theme.components.Tag`
  *
- * @see Docs https://chakra-ui/tag
+ * @see Docs https://chakra-ui.com/components/tag
  */
 export const Tag = chakra("span", {
   themeKey: "Tag",
@@ -113,7 +113,7 @@ const StyledButton = chakra("button", {
  *
  * The tag close button. This is used to close "remove" the tag
  *
- * @see Docs https://chakra-ui/tag
+ * @see Docs https://chakra-ui.com/components/tag
  */
 export const TagCloseButton = (props: TagCloseButtonProps) => {
   const { isDisabled, children = <TagCloseIcon />, ...rest } = props

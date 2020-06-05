@@ -29,7 +29,7 @@ export type LinkProps = PropsOf<typeof chakra.a> & LinkOptions
  * <Link as={ReactRouterLink} to="/home">Home</Link>
  * ```
  *
- * @see Docs https://chakra-ui.com/link
+ * @see Docs https://chakra-ui.com/components/link
  */
 export const Link = chakra<"a", LinkOptions>("a", {
   themeKey: "Link",

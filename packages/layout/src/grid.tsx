@@ -10,7 +10,7 @@ export type GridProps = PropsOf<typeof chakra.div> & GridOptions
  * It renders a `div` with `display: grid` and
  * comes with helpful style shorthand.
  *
- * @see Docs https://chakra-ui.com/grid
+ * @see Docs https://chakra-ui.com/components/grid
  */
 export const Grid = React.forwardRef(
   (props: GridProps, ref: React.Ref<any>) => {

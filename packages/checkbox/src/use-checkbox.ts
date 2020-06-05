@@ -74,7 +74,7 @@ export interface UseCheckboxProps {
  *
  * It is consumed by the `Checkbox` component
  *
- * @see Docs https://chakra-ui.com/useCheckbox
+ * @see Docs https://chakra-ui.com/components/useCheckbox
  */
 export function useCheckbox(props: UseCheckboxProps = {}) {
   const {

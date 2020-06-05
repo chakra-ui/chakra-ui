@@ -2,7 +2,7 @@ import * as React from "react"
 import { useRadio, Radio, useRadioGroup, RadioGroup } from "."
 import { chakra } from "@chakra-ui/system"
 import { Stack, Wrap, SimpleGrid, Container } from "@chakra-ui/layout"
-import { UseRadioProps } from "./Radio.hook"
+import { UseRadioProps } from "."
 
 export default {
   title: "Radio",

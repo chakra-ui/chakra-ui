@@ -41,7 +41,7 @@ export type FlexProps = PropsOf<typeof chakra.div> & FlexOptions
  * It renders a `div` with `display: flex` and
  * comes with helpful style shorthand.
  *
- * @see Docs https://chakra-ui.com/flex
+ * @see Docs https://chakra-ui.com/components/flex
  */
 export const Flex = React.forwardRef(
   (props: FlexProps, ref: React.Ref<any>) => {

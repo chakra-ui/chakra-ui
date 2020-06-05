@@ -45,7 +45,7 @@ export type TextareaProps = Omit<PropsOf<typeof StyledTextarea>, Omitted> &
  *
  * React component used to enter an amount of text that's longer than a single line
  *
- * @see Docs https://chakra-ui.com/textarea
+ * @see Docs https://chakra-ui.com/components/textarea
  */
 export const Textarea = forwardRef(
   (props: TextareaProps, ref: Ref<HTMLTextAreaElement>) => {

@@ -109,7 +109,7 @@ export type CircularProgressProps = PropsOf<typeof StyledProgress> &
  * It's built using `svg` and `circle` components with support for
  * theming and `indeterminate` state
  *
- * @see Docs https://chakra-ui.com/progress
+ * @see Docs https://chakra-ui.com/components/progress
  *
  * @todo add theming support for circular progress
  */

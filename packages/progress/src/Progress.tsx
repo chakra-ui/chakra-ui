@@ -22,7 +22,7 @@ import {
  * To style this component globally, change the styles in `theme.components.Progress`
  * under the `Label` key
  *
- * @see Docs https://chakra-ui.com/progress
+ * @see Docs https://chakra-ui.com/components/progress
  */
 export const ProgressLabel = chakra("div", {
   themeKey: "Progress.Label",
@@ -63,7 +63,7 @@ const StyledIndicator = chakra<"div", CustomProps>("div", {
  * The progress component that visually indicates the current level of the progress bar.
  * It applies `background-color` and changes it's width.
  *
- * @see Docs https://chakra-ui.com/progress
+ * @see Docs https://chakra-ui.com/components/progress
  */
 function ProgressIndicator(props: ProgressIndicatorProps) {
   const { min, max, value, ...rest } = props
@@ -131,7 +131,7 @@ export type ProgressProps = ProgressOptions & PropsOf<typeof chakra.div>
  * It includes accessible attributes to help assistive technologies understand
  * and speak the progress values.
  *
- * @see Docs https://chakra-ui.com/progress
+ * @see Docs https://chakra-ui.com/components/progress
  */
 export function Progress(props: ProgressProps) {
   const defaults = useThemeDefaultProps("Progress")

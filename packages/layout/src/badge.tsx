@@ -7,7 +7,7 @@ export type BadgeProps = PropsOf<typeof Badge>
  * React component used to display notifications, messages, or
  * statuses in different shapes and sizes.
  *
- * @see Docs https://chakra-ui.com/badge
+ * @see Docs https://chakra-ui.com/components/badge
  */
 export const Badge = chakra("span", {
   themeKey: "Badge",

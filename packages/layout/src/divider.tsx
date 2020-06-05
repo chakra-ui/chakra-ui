@@ -12,7 +12,7 @@ export type DividerProps = PropsOf<typeof Divider>
  *
  * It display a thin horizontal or vertical line, and renders a `hr` tag.
  *
- * @see Docs https://chakra-ui.com/code
+ * @see Docs https://chakra-ui.com/components/code
  */
 export const Divider = chakra<"hr", DividerOptions>("hr", {
   themeKey: "Divider",

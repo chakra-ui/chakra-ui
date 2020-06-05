@@ -13,7 +13,7 @@ export type KbdProps = PropsOf<typeof Kbd>
  * <Kbd>⌘ + T</Kbd>
  * ```
  *
- * @see Docs https://chakra-ui.com/kbd
+ * @see Docs https://chakra-ui.com/components/kbd
  */
 export const Kbd = chakra("kbd", {
   themeKey: "Kbd",

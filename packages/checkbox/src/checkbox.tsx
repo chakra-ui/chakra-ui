@@ -72,7 +72,7 @@ export type CheckboxProps = Omitted &
  * React component used in forms when a user needs to select
  * multiple values from several options.
  *
- * @see Docs https://chakra-ui.com/checkbox
+ * @see Docs https://chakra-ui.com/components/checkbox
  */
 export const Checkbox = React.forwardRef(
   (props: CheckboxProps, ref: React.Ref<HTMLInputElement>) => {

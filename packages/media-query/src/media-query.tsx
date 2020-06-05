@@ -15,7 +15,7 @@ interface VisibilityProps {
  * React component to control the visibility of it's
  * children based on the current breakpoint
  *
- * @see Docs https://chakra-ui.com/visibility
+ * @see Docs https://chakra-ui.com/components/visibility
  */
 function Visibility(props: VisibilityProps) {
   const { breakpoint, hide, children } = props

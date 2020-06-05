@@ -7,8 +7,8 @@ import {
 } from "@chakra-ui/system"
 import { cx, split, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { useRadio, UseRadioProps } from "./Radio.hook"
-import { useRadioGroupContext } from "./RadioGroup"
+import { useRadio, UseRadioProps } from "./use-radio"
+import { useRadioGroupContext } from "./radio-group"
 
 const StyledControl = chakra("div", {
   themeKey: "Radio.Control",
@@ -43,7 +43,7 @@ export type RadioProps = UseRadioProps &
  * Radio component is used in forms when a user needs to select a single value from
  * several options.
  *
- * @see Docs https://chakra-ui.com/radio
+ * @see Docs https://chakra-ui.com/components/radio
  */
 export const Radio = React.forwardRef(
   (props: RadioProps, ref: React.Ref<HTMLInputElement>) => {

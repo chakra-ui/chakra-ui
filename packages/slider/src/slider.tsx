@@ -8,15 +8,14 @@ import {
 } from "@chakra-ui/system"
 import { createContext, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { useSlider, UseSliderProps, UseSliderReturn } from "./Slider.hook"
+import { useSlider, UseSliderProps, UseSliderReturn } from "./use-slider"
 
 type SliderContext = Omit<UseSliderReturn, "getInputProps" | "getRootProps">
 
 const [SliderProvider, useSliderContext] = createContext<SliderContext>({
   strict: true,
   name: "SliderContext",
-  errorMessage:
-    "[Chakra UI]: useSliderContext can only be used within SliderProvider",
+  errorMessage: "useSliderContext can only be used within SliderProvider",
 })
 
 export { SliderProvider, useSliderContext }
@@ -44,7 +43,7 @@ const StyledSlider = chakra("div", {
  * The Slider is used to allow users to make selections from a range of values.
  * It provides context and functionality for all slider components
  *
- * @see Docs     https://chakra-ui/slider
+ * @see Docs     https://chakra-ui.com/components/slider
  * @see WAI-ARIA https://www.w3.org/TR/wai-aria-practices/#slider
  */
 export function Slider(props: SliderProps) {
@@ -110,7 +109,7 @@ export type SliderThumbProps = PropsOf<typeof StyledThumb>
  * Slider component that acts as the handle used to select predefined
  * values by dragging its handle along the track
  *
- * @see Docs https://chakra-ui.com/slider
+ * @see Docs https://chakra-ui.com/components/slider
  */
 export function SliderThumb(props: SliderThumbProps) {
   const { getThumbProps } = useSliderContext()
@@ -141,7 +140,7 @@ export type SliderTrackProps = PropsOf<typeof StyledTrack>
  * SliderTrack
  *
  * Slider component that indicates the slider track.
- * @see Docs https://chakra-ui.com/slider
+ * @see Docs https://chakra-ui.com/components/slider
  */
 export function SliderTrack(props: SliderTrackProps) {
   const { getTrackProps } = useSliderContext()
@@ -175,7 +174,7 @@ export type SliderInnerTrackProps = PropsOf<typeof StyledFilledTrack>
  * Slider component that indicates the slider value along the
  * track. It shows the filled part of the slider
  *
- * @see Docs https://chakra-ui.com/slider
+ * @see Docs https://chakra-ui.com/components/slider
  */
 export function SliderFilledTrack(props: SliderInnerTrackProps) {
   const { getInnerTrackProps } = useSliderContext()
@@ -197,7 +196,7 @@ const StyledMarker = chakra("div")
  * React component used to provide names for specific Slider
  * values by defining labels or markers along the track.
  *
- * @see Docs https://chakra-ui.com/slider
+ * @see Docs https://chakra-ui.com/components/slider
  */
 export function SliderMark(props: SliderMarkProps) {
   const { getMarkerProps } = useSliderContext()

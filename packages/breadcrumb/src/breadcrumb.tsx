@@ -69,7 +69,7 @@ function BreadcrumbLinkImpl(props: BreadcrumbLinkProps, ref: Ref<any>) {
  *   </BreadcrumbLink>
  * ```
  *
- * @see Docs https://chakra-ui.com/breadcrumbs
+ * @see Docs https://chakra-ui.com/components/breadcrumbs
  */
 export const BreadcrumbLink = forwardRef(BreadcrumbLinkImpl) as LinkComp
 
@@ -94,7 +94,7 @@ export type BreadcrumbItemProps = BreadcrumbItemOptions &
  *
  * It renders a `li` element to denote it belongs to an order list of links
  *
- * @see Docs https://chakra-ui.com/breadcrumbs
+ * @see Docs https://chakra-ui.com/components/breadcrumbs
  */
 export const BreadcrumbItem = forwardRef(
   (props: BreadcrumbItemProps, ref: Ref<any>) => {
@@ -169,7 +169,7 @@ export type BreadcrumbProps = PropsOf<typeof chakra.nav> & BreadcrumbOptions
  *
  * It renders a `nav` element with `aria-label` set to `Breadcrumb`
  *
- * @see Docs https://chakra-ui.com/breadcrumbs
+ * @see Docs https://chakra-ui.com/components/breadcrumbs
  */
 export const Breadcrumb = forwardRef(
   (props: BreadcrumbProps, ref: Ref<any>) => {

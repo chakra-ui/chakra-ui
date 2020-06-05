@@ -8,7 +8,6 @@ import {
 } from "@chakra-ui/system"
 import { split, __DEV__, cx } from "@chakra-ui/utils"
 import * as React from "react"
-import { cloneElement, forwardRef, Ref } from "react"
 
 type Omitted = "disabled" | "required" | "readOnly" | "size"
 
@@ -59,8 +58,8 @@ export type SelectFieldProps = Omit<PropsOf<typeof StyledSelect>, Omitted> & {
 /**
  * The native `select` element enhanced for accessibility and validation.
  */
-export const SelectField = forwardRef(
-  (props: SelectFieldProps, ref: Ref<HTMLSelectElement>) => {
+export const SelectField = React.forwardRef(
+  (props: SelectFieldProps, ref: React.Ref<HTMLSelectElement>) => {
     const { children, placeholder, ...rest } = props
     const fieldProps = useFormControl<HTMLSelectElement>(props)
 
@@ -106,8 +105,8 @@ export interface SelectProps extends SelectFieldProps {
 /**
  * React component used to select one item from a list of options.
  */
-export const Select = forwardRef(
-  (props: SelectProps, ref: Ref<HTMLSelectElement>) => {
+export const Select = React.forwardRef(
+  (props: SelectProps, ref: React.Ref<HTMLSelectElement>) => {
     const {
       rootProps,
       placeholder,
@@ -200,7 +199,7 @@ function SelectIcon(props: SelectIconProps) {
     fontSize: "1em",
   })
 
-  const clone = cloneElement(children as any, {
+  const clone = React.cloneElement(children as any, {
     role: "presentation",
     focusable: false,
     "aria-hidden": true,

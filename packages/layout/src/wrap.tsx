@@ -29,7 +29,7 @@ export type WrapProps = PropsOf<typeof chakra.div> & {
  * - Buttons that appear together at the end of forms
  * - Lists of tags and chips
  *
- * @see Docs https://chakra-ui.com/wrap
+ * @see Docs https://chakra-ui.com/components/wrap
  */
 export const Wrap = React.forwardRef(
   (props: WrapProps, ref: React.Ref<any>) => {

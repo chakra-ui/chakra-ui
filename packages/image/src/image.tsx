@@ -48,7 +48,7 @@ export type ImageProps = UseImageProps &
  * React component that renders an image with support
  * for fallbacks
  *
- * @see Docs https://chakra-ui.com/image
+ * @see Docs https://chakra-ui.com/components/image
  */
 export const Image = React.forwardRef(
   (props: ImageProps, ref: React.Ref<HTMLImageElement>) => {

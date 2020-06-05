@@ -68,7 +68,7 @@ export const StackItem = (props: PropsOf<typeof chakra.div>) => (
  *
  * It uses `display: flex` internally and renders a `div`.
  *
- * @see Docs https://chakra-ui.com/stack
+ * @see Docs https://chakra-ui.com/components/stack
  *
  */
 export const Stack = React.forwardRef(
