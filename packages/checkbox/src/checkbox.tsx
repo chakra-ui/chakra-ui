@@ -3,7 +3,7 @@ import { chakra, PropsOf, SystemProps } from "@chakra-ui/system"
 import { cx, Omit, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { useCheckbox, UseCheckboxProps } from "./use-checkbox"
-import { CheckboxIcon } from "./Checkbox.icon"
+import { CheckboxIcon } from "./checkbox.icon"
 import { useCheckboxGroupContext } from "./checkbox-group"
 
 /**

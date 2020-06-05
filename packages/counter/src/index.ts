@@ -1,1 +1,1 @@
-export * from "./Counter.hook"
+export * from "./use-counter"

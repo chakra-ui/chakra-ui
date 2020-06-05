@@ -1,1 +1,1 @@
-export * from "./CloseButton"
+export * from "./close-button"

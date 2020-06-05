@@ -1,1 +1,1 @@
-export * from "./Collapse"
+export * from "./collapse"

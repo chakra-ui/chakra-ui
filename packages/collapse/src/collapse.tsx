@@ -7,14 +7,6 @@ import {
 import { ariaAttr, cx, mergeRefs, __DEV__ } from "@chakra-ui/utils"
 import { useRect } from "@reach/rect"
 import * as React from "react"
-import {
-  cloneElement,
-  forwardRef,
-  useState,
-  Children,
-  useRef,
-  Ref,
-} from "react"
 
 export type CollapseProps = PropsOf<typeof chakra.div> & {
   /**
@@ -51,7 +43,7 @@ export type CollapseProps = PropsOf<typeof chakra.div> & {
   easing?: string
 }
 
-export const Collapse = forwardRef(
+export const Collapse = React.forwardRef(
   (props: CollapseProps, forwardedRef: React.Ref<any>) => {
     const {
       isOpen,
@@ -72,9 +64,9 @@ export const Collapse = forwardRef(
       "transform",
     )}`
 
-    const [hidden, setHidden] = useState(true)
+    const [hidden, setHidden] = React.useState(true)
 
-    type ChildElement = React.ReactElement<{ ref: Ref<any> }>
+    type ChildElement = React.ReactElement<{ ref: React.Ref<any> }>
 
     let child = children
 
@@ -82,9 +74,9 @@ export const Collapse = forwardRef(
       child = <div>{children}</div>
     }
 
-    const _child = Children.only(child) as ChildElement
+    const _child = React.Children.only(child) as ChildElement
 
-    const ref = useRef<HTMLDivElement>(null)
+    const ref = React.useRef<HTMLDivElement>(null)
 
     const rect = useRect(ref, true)
     const height = rect?.height ?? 0
@@ -130,7 +122,7 @@ export const Collapse = forwardRef(
               ...htmlStyle,
             }}
           >
-            {cloneElement(_child, {
+            {React.cloneElement(_child, {
               ref: mergeRefs(ref, _child.props.ref),
             })}
           </chakra.div>

@@ -6,7 +6,7 @@ import {
   useCheckboxGroup,
   UseCheckboxGroupProps,
   UseCheckboxGroupReturn,
-} from "./CheckboxGroup.hook"
+} from "./use-checkbox-group"
 
 export type CheckboxGroupProps = UseCheckboxGroupProps &
   Omit<ThemingProps, "orientation"> & { children?: React.ReactNode }

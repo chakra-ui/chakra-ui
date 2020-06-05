@@ -7,7 +7,6 @@ import {
   StringOrNumber,
   Dict,
 } from "@chakra-ui/utils"
-import { useState, useCallback } from "react"
 
 type EventOrValue = React.ChangeEvent<HTMLInputElement> | StringOrNumber
 
@@ -47,10 +46,10 @@ export function useCheckboxGroup(props: UseCheckboxGroupProps = {}) {
     isNative,
   } = props
 
-  const [valueState, setValue] = useState(defaultValue || [])
+  const [valueState, setValue] = React.useState(defaultValue || [])
   const [isControlled, value] = useControllableProp(valueProp, valueState)
 
-  const updateValue = useCallback(
+  const updateValue = React.useCallback(
     (nextState: StringOrNumber[]) => {
       if (!isControlled) {
         setValue(nextState)
@@ -61,7 +60,7 @@ export function useCheckboxGroup(props: UseCheckboxGroupProps = {}) {
     [isControlled, onChangeProp],
   )
 
-  const onChange = useCallback(
+  const onChange = React.useCallback(
     (eventOrValue: EventOrValue) => {
       if (!value) return
 
