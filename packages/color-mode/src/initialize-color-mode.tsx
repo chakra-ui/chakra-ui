@@ -13,8 +13,5 @@ const noFlash = `(function() { try {
  * This is particular useful for SSR in Gatsby or Next.js
  */
 export const InitializeColorMode = () => (
-  <script
-    key="chakra-ui-no-flash"
-    dangerouslySetInnerHTML={{ __html: noFlash }}
-  />
+  <script dangerouslySetInnerHTML={{ __html: noFlash }} />
 )

@@ -1,5 +1,5 @@
 import * as React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, Link as GatsbyLink } from "gatsby"
 import {
   Box,
   Heading,
@@ -9,45 +9,44 @@ import {
   Flex,
   Avatar,
   SimpleGrid,
+  Link,
 } from "@chakra-ui/core"
 
 function GuidePreview(props) {
   const { title, children, createdAt, birthTime, contributors, ...rest } = props
   return (
-    <Flex
-      transition="all 0.3s"
-      _hover={{ boxShadow: "md", cursor: "pointer" }}
-      direction="column"
-      justify-content="space-between"
-      as="article"
-      padding="24px"
-      borderWidth="1px"
-      borderRadius="lg"
-      {...rest}
-    >
-      <Box flex="1">
-        <Heading
-          mb="2"
-          lineHeight="1.4"
-          size="md"
-          as="h3"
-          fontWeight="semibold"
-        >
-          {title}
-        </Heading>
-        <Text>{children}</Text>
-      </Box>
-      <Flex justify="space-between" mt="6" color="gray.500" width="100%">
-        <Stack direction="row" flex="1">
-          <Avatar size="xs" />
-          <Text fontSize="sm">dsfdfsdd</Text>
-        </Stack>
-        <Text fontSize="sm">
-          <span>Created at: </span>
-          <time dateTime={birthTime}>{createdAt}</time>
-        </Text>
+    <Link as={GatsbyLink}>
+      <Flex
+        transition="all 0.3s"
+        direction="column"
+        height="100%"
+        justify-content="space-between"
+        as="article"
+        boxShadow="md"
+        _hover={{ boxShadow: "lg" }}
+        borderRadius="lg"
+        overflow="hidden"
+        padding="3rem"
+        {...rest}
+      >
+        <Box flex="1">
+          <Heading mb="24px" lineHeight="1.4" size="md" as="h2">
+            {title}
+          </Heading>
+          <Text>{children}</Text>
+        </Box>
+        <Flex justify="space-between" mt="6" color="gray.500" width="100%">
+          <Stack align="center" direction="row" flex="1">
+            <Avatar size="sm" />
+            <Text fontSize="sm">Segun Adebayo</Text>
+          </Stack>
+          <Text fontSize="sm">
+            <span>Created at: </span>
+            <time dateTime={birthTime}>{createdAt}</time>
+          </Text>
+        </Flex>
       </Flex>
-    </Flex>
+    </Link>
   )
 }
 

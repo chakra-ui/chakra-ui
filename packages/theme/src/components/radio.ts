@@ -1,4 +1,4 @@
-import Checkbox, { CheckboxTokens } from "./Checkbox"
+import Checkbox, { CheckboxTokens } from "./checkbox"
 import { ComponentTheme } from "./utils"
 
 const baseStyle = Checkbox.baseStyle as any

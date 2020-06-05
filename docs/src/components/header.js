@@ -6,6 +6,7 @@ import {
   useColorMode,
   Link,
   Stack,
+  HStack,
   chakra,
   useColorModeValue,
 } from "@chakra-ui/core"
@@ -18,6 +19,30 @@ import StorybookIcon from "./storybook-icon"
 import { Link as GatsbyLink } from "gatsby"
 import SponsorButton from "./sponsor-button"
 import MobileNav from "./mobile-nav"
+import { useLocation } from "@reach/router"
+
+const NavLink = (props) => {
+  const { to, ...rest } = props
+  const { pathname } = useLocation()
+  const isActive = pathname === to
+
+  return (
+    <chakra.a
+      aria-current={isActive ? "page" : undefined}
+      as={GatsbyLink}
+      to={to}
+      display="block"
+      color="gray.600"
+      fontWeight="normal"
+      _hover={{ color: "teal.500" }}
+      _activeLink={{
+        fontWeight: "semibold",
+        color: "teal.500",
+      }}
+      {...rest}
+    />
+  )
+}
 
 const HeaderContent = () => {
   const [, toggleColorMode] = useColorMode()
@@ -26,14 +51,20 @@ const HeaderContent = () => {
 
   return (
     <Flex boxSize="100%" px="6" align="center" justify="space-between">
-      <chakra.a
-        as={GatsbyLink}
-        display="block"
-        to="/"
-        aria-label="Chakra UI, Back to homepage"
-      >
-        <Logo />
-      </chakra.a>
+      <Flex align="center">
+        <chakra.a
+          as={GatsbyLink}
+          to="/"
+          display="block"
+          aria-label="Chakra UI, Back to homepage"
+        >
+          <Logo />
+        </chakra.a>
+        <HStack as="nav" spacing="8" ml="32px">
+          <NavLink to="/getting-started">Docs</NavLink>
+          <NavLink to="/guides">Guides</NavLink>
+        </HStack>
+      </Flex>
 
       <Flex
         width={["auto", "auto", "100%"]}
