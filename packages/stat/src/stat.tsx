@@ -1,5 +1,4 @@
 import * as React from "react"
-import { forwardRef } from "react"
 import {
   chakra,
   PropsOf,
@@ -30,7 +29,7 @@ export type StatLabelProps = PropsOf<typeof StyledLabel>
  * To style the StatLabel globally, change the styles in
  * `theme.components.Stat` under the `Label` key.
  */
-export const StatLabel = forwardRef(
+export const StatLabel = React.forwardRef(
   (props: StatLabelProps, ref: React.Ref<any>) => {
     const { className, ...rest } = props
     const theming = useThemingContext()
@@ -59,7 +58,7 @@ const StyledHelpText = chakra("p", {
 
 export type StatHelpTextProps = PropsOf<typeof StyledHelpText>
 
-export const StatHelpText = forwardRef(
+export const StatHelpText = React.forwardRef(
   (props: StatHelpTextProps, ref: React.Ref<any>) => {
     const { className, ...rest } = props
     const theming = useThemingContext()
@@ -89,7 +88,7 @@ export const StyledNumber = chakra("dd", {
 
 export type StatNumberProps = PropsOf<typeof StyledNumber>
 
-export const StatNumber = forwardRef(
+export const StatNumber = React.forwardRef(
   (props: StatNumberProps, ref: React.Ref<any>) => {
     const { className, ...rest } = props
     const theming = useThemingContext()
@@ -190,29 +189,31 @@ const StyledStat = chakra("div", {
 
 export type StatProps = PropsOf<typeof StyledStat>
 
-export const Stat = forwardRef((props: StatProps, ref: React.Ref<any>) => {
-  const defaults = useThemeDefaultProps("Stat")
-  const {
-    size = defaults?.size,
-    variant = defaults?.variant,
-    colorScheme = defaults?.colorScheme,
-    className,
-    children,
-    ...rest
-  } = props
+export const Stat = React.forwardRef(
+  (props: StatProps, ref: React.Ref<any>) => {
+    const defaults = useThemeDefaultProps("Stat")
+    const {
+      size = defaults?.size,
+      variant = defaults?.variant,
+      colorScheme = defaults?.colorScheme,
+      className,
+      children,
+      ...rest
+    } = props
 
-  const theming = { size, variant, colorScheme }
+    const theming = { size, variant, colorScheme }
 
-  const _className = cx("chakra-stat", className)
+    const _className = cx("chakra-stat", className)
 
-  return (
-    <ThemingProvider value={theming}>
-      <StyledStat className={_className} ref={ref} {...rest}>
-        <dl>{children}</dl>
-      </StyledStat>
-    </ThemingProvider>
-  )
-})
+    return (
+      <ThemingProvider value={theming}>
+        <StyledStat className={_className} ref={ref} {...rest}>
+          <dl>{children}</dl>
+        </StyledStat>
+      </ThemingProvider>
+    )
+  },
+)
 
 if (__DEV__) {
   Stat.displayName = "Stat"

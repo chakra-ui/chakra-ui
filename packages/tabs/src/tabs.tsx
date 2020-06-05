@@ -6,7 +6,6 @@ import {
 } from "@chakra-ui/system"
 import { createContext, cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { forwardRef, useMemo } from "react"
 import {
   TabsContextProvider,
   useTab,
@@ -18,7 +17,7 @@ import {
   UseTabProps,
   useTabs,
   UseTabsProps,
-} from "./Tabs.hook"
+} from "./use-tabs"
 
 type ThemingContext = ThemingProps & {
   /**
@@ -50,37 +49,41 @@ export { useThemingContext as useTabsThemingContext }
  * Provides context and logic for all tabs components. It doesn't render
  * any DOM node.
  */
-export const Tabs = forwardRef((props: TabsProps, ref: React.Ref<any>) => {
-  /**
-   * Gets the default props for `variant` and `size` from `theme.components.Tabs`
-   */
-  const defaults = useThemeDefaultProps("Tabs")
+export const Tabs = React.forwardRef(
+  (props: TabsProps, ref: React.Ref<any>) => {
+    /**
+     * Gets the default props for `variant` and `size` from `theme.components.Tabs`
+     */
+    const defaults = useThemeDefaultProps("Tabs")
 
-  const {
-    children,
-    variant = defaults?.variant,
-    size = defaults?.size,
-    colorScheme = defaults?.colorScheme,
-    isFitted,
-    className,
-    ...rest
-  } = props
+    const {
+      children,
+      variant = defaults?.variant,
+      size = defaults?.size,
+      colorScheme = defaults?.colorScheme,
+      isFitted,
+      className,
+      ...rest
+    } = props
 
-  const { htmlProps, ...context } = useTabs(rest)
-  const tabs = useMemo(() => context, [context])
+    const { htmlProps, ...context } = useTabs(rest)
+    const tabs = React.useMemo(() => context, [context])
 
-  const _className = cx("chakra-tabs", className)
+    const _className = cx("chakra-tabs", className)
 
-  return (
-    <TabsContextProvider value={tabs}>
-      <ThemingContextProvider value={{ variant, size, colorScheme, isFitted }}>
-        <chakra.div className={_className} ref={ref} {...htmlProps}>
-          {children}
-        </chakra.div>
-      </ThemingContextProvider>
-    </TabsContextProvider>
-  )
-})
+    return (
+      <TabsContextProvider value={tabs}>
+        <ThemingContextProvider
+          value={{ variant, size, colorScheme, isFitted }}
+        >
+          <chakra.div className={_className} ref={ref} {...htmlProps}>
+            {children}
+          </chakra.div>
+        </ThemingContextProvider>
+      </TabsContextProvider>
+    )
+  },
+)
 
 if (__DEV__) {
   Tabs.displayName = "Tabs"
@@ -110,7 +113,7 @@ export type TabProps = Omit<UseTabProps, "context"> & PropsOf<typeof StyledTab>
  * The tab button used to activate a specific tab panel. It renders a `button`,
  * and is responsible for automatic and manual selection modes.
  */
-export const Tab = forwardRef((props: TabProps, ref: React.Ref<any>) => {
+export const Tab = React.forwardRef((props: TabProps, ref: React.Ref<any>) => {
   const { className, ...htmlProps } = props
   const { isFitted, ...theming } = useThemingContext()
   const tabProps = useTab({ ...htmlProps, ref })
@@ -150,7 +153,7 @@ export type TabListProps = Omit<UseTabListProps, "context"> &
  * Used to manage a list of tab buttons. It renders a `div` by default,
  * and is responsible the keyboard interaction between tabs.
  */
-export const TabList = forwardRef(
+export const TabList = React.forwardRef(
   (props: TabListProps, ref: React.Ref<any>) => {
     const { className, ...htmlProps } = props
     const { isFitted, ...theming } = useThemingContext()
@@ -208,7 +211,7 @@ export type TabPanelsProps = PropsOf<typeof chakra.div>
  *
  * It renders a `div` by default.
  */
-export const TabPanels = forwardRef(
+export const TabPanels = React.forwardRef(
   (props: TabPanelsProps, ref: React.Ref<any>) => {
     const { className, ...htmlProps } = props
     const panelsProp = useTabPanels(htmlProps)
@@ -230,7 +233,7 @@ export type TabIndicatorProps = PropsOf<typeof chakra.div>
  * Used to render an active tab indicator that animates between
  * selected tabs.
  */
-export const TabIndicator = forwardRef(
+export const TabIndicator = React.forwardRef(
   (props: TabIndicatorProps, ref: React.Ref<any>) => {
     const { className, style, ...htmlProps } = props
 
