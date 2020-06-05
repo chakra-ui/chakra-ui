@@ -9,8 +9,8 @@ import { CloseButton } from "@chakra-ui/close-button"
 import { chakra, ThemeProvider, useTheme } from "@chakra-ui/system"
 import { isFunction, merge } from "@chakra-ui/utils"
 import * as React from "react"
-import { toast } from "./Toast.class"
-import { RenderProps, ToastOptions, ToastId } from "./Toast.types"
+import { toast } from "./toast.class"
+import { RenderProps, ToastOptions, ToastId } from "./toast.types"
 
 export interface UseToastOptions {
   /**

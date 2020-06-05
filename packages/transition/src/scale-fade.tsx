@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Transition, TransitionProps } from "./Transition"
+import { Transition, TransitionProps } from "./transition"
 
 function getTransitionStyles(initialScale: number) {
   return {

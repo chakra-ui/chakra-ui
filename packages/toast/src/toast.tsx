@@ -4,9 +4,8 @@ import { isFunction } from "@chakra-ui/utils"
 import ReachAlert from "@reach/alert"
 import { useRect } from "@reach/rect"
 import * as React from "react"
-import { useEffect, useMemo, useRef, useState } from "react"
-import { ToastOptions } from "./Toast.types"
-import { getToastStyle } from "./Toast.utils"
+import { ToastOptions } from "./toast.types"
+import { getToastStyle } from "./toast.utils"
 
 export interface ToastProps extends ToastOptions {
   requestClose?: boolean
@@ -23,11 +22,11 @@ export function Toast(props: ToastProps) {
     duration = 5000,
   } = props
 
-  const ref = useRef<HTMLDivElement>(null)
-  const [delay, setDelay] = useState(duration)
-  const [show, setShow] = useState(true)
+  const ref = React.useRef<HTMLDivElement>(null)
+  const [delay, setDelay] = React.useState(duration)
+  const [show, setShow] = React.useState(true)
 
-  useEffect(() => {
+  React.useEffect(() => {
     setDelay(duration)
   }, [duration])
 
@@ -50,7 +49,7 @@ export function Toast(props: ToastProps) {
     setShow(false)
   }
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (requestClose) {
       setShow(false)
     }
@@ -58,7 +57,7 @@ export function Toast(props: ToastProps) {
 
   useTimeout(close, delay)
 
-  const style = useMemo(() => getToastStyle(position), [position])
+  const style = React.useMemo(() => getToastStyle(position), [position])
 
   const rect = useRect(ref)
   const height = rect?.height ?? 0

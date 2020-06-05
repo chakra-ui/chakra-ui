@@ -1,4 +1,4 @@
-export * from "./Toast.hook"
-export { default } from "./Toast.hook"
-export { toast } from "./Toast.class"
-export * from "./Toast.types"
+export * from "./toast.hook"
+export { default } from "./toast.hook"
+export { toast } from "./toast.class"
+export * from "./toast.types"

@@ -1,7 +1,6 @@
 import { FormControlOptions, useFormControl } from "@chakra-ui/form-control"
 import { chakra, PropsOf } from "@chakra-ui/system"
 import * as React from "react"
-import { forwardRef, Ref } from "react"
 import { __DEV__, cx } from "@chakra-ui/utils"
 
 interface TextareaOptions {
@@ -47,8 +46,8 @@ export type TextareaProps = Omit<PropsOf<typeof StyledTextarea>, Omitted> &
  *
  * @see Docs https://chakra-ui.com/components/textarea
  */
-export const Textarea = forwardRef(
-  (props: TextareaProps, ref: Ref<HTMLTextAreaElement>) => {
+export const Textarea = React.forwardRef(
+  (props: TextareaProps, ref: React.Ref<HTMLTextAreaElement>) => {
     const { className, ...htmlProps } = props
     const fieldProps = useFormControl<HTMLTextAreaElement>(htmlProps)
     const _className = cx("chakra-textarea", className)

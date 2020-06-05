@@ -1,13 +1,13 @@
 import { objectKeys } from "@chakra-ui/utils"
 import * as React from "react"
-import { Toast } from "./Toast"
+import { Toast } from "./toast"
 import {
   ToastId,
   ToastMessage,
   ToastOptions,
   ToastPosition,
 } from "./Toast.types"
-import { findToast, getToastPosition } from "./Toast.utils"
+import { findToast, getToastPosition } from "./toast.utils"
 
 export interface Methods {
   notify: (message: ToastMessage, options: CreateToastOptions) => ToastId

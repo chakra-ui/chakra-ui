@@ -1,4 +1,4 @@
-import { ToastPosition, ToastOptions, ToastState, ToastId } from "./Toast.types"
+import { ToastPosition, ToastOptions, ToastState, ToastId } from "./toast.types"
 import { objectKeys } from "@chakra-ui/utils"
 
 /**

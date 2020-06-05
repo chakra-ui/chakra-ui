@@ -1,8 +1,8 @@
 import { isBrowser } from "@chakra-ui/utils"
 import * as React from "react"
 import { render } from "react-dom"
-import { Methods, ToastManager } from "./Toast.manager"
-import { ToastId, ToastMessage, ToastOptions } from "./Toast.types"
+import { Methods, ToastManager } from "./toast-manager"
+import { ToastId, ToastMessage, ToastOptions } from "./toast.types"
 
 // Toast's portal id
 const portalId = "chakra-toast-portal"

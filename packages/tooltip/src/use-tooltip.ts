@@ -8,7 +8,6 @@ import { Placement, usePopper, UsePopperProps } from "@chakra-ui/popper"
 import { callAllHandlers, mergeRefs, Dict } from "@chakra-ui/utils"
 import flushable from "flushable"
 import * as React from "react"
-import { useRef, useCallback, useEffect } from "react"
 
 let hideOperation: flushable.FlushableOperation
 let activeId: string | null = null
@@ -122,38 +121,38 @@ export function useTooltip(props: UseTooltipProps = {}) {
 
   const tooltipId = useId(id, "tooltip")
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (isOpen) {
       activeId = tooltipId
     }
   }, [isOpen, tooltipId])
 
-  const ref = useRef<any>(null)
+  const ref = React.useRef<any>(null)
   const triggerRef = useMergeRefs(ref, popper.reference.ref)
-  const flushRef = useRef<Function>()
+  const flushRef = React.useRef<Function>()
 
-  useEffect(() => {
+  React.useEffect(() => {
     return () => flushRef.current?.()
   }, [])
 
-  const hideImmediately = useCallback(() => {
+  const hideImmediately = React.useCallback(() => {
     flushRef.current?.()
     close()
   }, [close])
 
-  const onClick = useCallback(() => {
+  const onClick = React.useCallback(() => {
     if (hideOnClick) {
       hideImmediately()
     }
   }, [hideOnClick, hideImmediately])
 
-  const onMouseDown = useCallback(() => {
+  const onMouseDown = React.useCallback(() => {
     if (hideOnMouseDown) {
       hideImmediately()
     }
   }, [hideOnMouseDown, hideImmediately])
 
-  const showTooltip = useCallback(() => {
+  const showTooltip = React.useCallback(() => {
     flushRef.current?.()
 
     if (tooltipId !== activeId) {
@@ -169,7 +168,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
     }
   }, [isOpen, showDelay, open, tooltipId, hideImmediately])
 
-  const hideTooltip = useCallback(() => {
+  const hideTooltip = React.useCallback(() => {
     flushRef.current?.()
     activeId = null
 
@@ -180,7 +179,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
     }
   }, [isOpen, hideDelay, close])
 
-  const onMouseOver = useCallback(
+  const onMouseOver = React.useCallback(
     (event: React.MouseEvent) => {
       const isSelf = event.currentTarget === (ref.current as HTMLElement)
 
@@ -196,7 +195,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
   /**
    * Accessibility: Close the tooltip if user presses escape
    */
-  const onKeyDown = useCallback(
+  const onKeyDown = React.useCallback(
     (event: KeyboardEvent) => {
       if (isOpen && event.key === "Escape") {
         hideImmediately()

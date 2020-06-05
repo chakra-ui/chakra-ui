@@ -29,5 +29,5 @@ function rename(file) {
   }
 }
 
-const pkg = "tabs"
+const pkg = "theme"
 shell.find(`packages/${pkg}/src`).forEach(rename)

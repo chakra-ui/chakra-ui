@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Transition, TransitionProps, TransitionStyles } from "./Transition"
+import { Transition, TransitionProps, TransitionStyles } from "./transition"
 
 export type FadeProps = Omit<TransitionProps, "styles" | "timeout"> & {
   timeout?: number

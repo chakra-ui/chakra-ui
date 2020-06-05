@@ -3,7 +3,7 @@ import { chakra, PropsOf } from "@chakra-ui/system"
 import { isString, omit, pick, __DEV__ } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 import * as React from "react"
-import { useTooltip, UseTooltipProps } from "./Tooltip.hook"
+import { useTooltip, UseTooltipProps } from "./use-tooltip"
 
 const StyledTooltip = chakra("div", { themeKey: "Tooltip" })
 
