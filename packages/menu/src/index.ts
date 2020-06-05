@@ -1,3 +1,3 @@
-export * from "./_menu"
+export * from "./menu"
 export * from "./use-menu"
 export * from "./menu.transition"

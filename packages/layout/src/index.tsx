@@ -1,5 +1,5 @@
 export * from "./aspect-ratio"
-export * from "./badge"
+export * from "./_badge"
 export * from "./box"
 export * from "./center"
 export * from "./code"
