@@ -58,11 +58,11 @@ placed in a grid (`SimpleGrid`) or made to wrap automatically (`Wrap`).
 <Checkbox iconSize="1rem">Option</Checkbox>
 ```
 
-- Support for `labelSpacing` prop to customize the spacing between the checkbox
-  and label text
+- Support for `spacing` prop to customize the spacing between the checkbox and
+  label text
 
 ```jsx
-<Checkbox labelSpacing="1rem">Option</Checkbox>
+<Checkbox spacing="1rem">Option</Checkbox>
 ```
 
 - The `useCheckbox` hook is exported with state and focus management logic for

@@ -329,11 +329,11 @@ function Example() {
 </Checkbox>
 ```
 
-- Added the `labelSpacing` prop to customize the spacing between the checkbox
+- Added the `spacing` prop to customize the spacing between the checkbox
   and label text
 
 ```jsx live=false
-<Checkbox labelSpacing="1rem">Option</Checkbox>
+<Checkbox spacing="1rem">Option</Checkbox>
 ```
 
 - The `useCheckbox` hook is exported with state and focus management logic for
@@ -756,16 +756,16 @@ boolean prop must start with `should`, `is`, or `has`
 ```diff
 // before
 <Slider defaultValue={30}>
-  <SliderTrack />
+-  <SliderTrack />
 -  <SliderFilledTrack />
   <SliderThumb />
 </Slider>
 
 // after
 <Slider defaultValue={30}>
-  <SliderTrack>
++  <SliderTrack>
 +    <SliderFilledTrack />
-  </SliderTrack>
++  </SliderTrack>
   <SliderThumb />
 </Slider>
 ```

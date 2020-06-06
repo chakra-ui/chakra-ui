@@ -63,7 +63,7 @@ export type CheckboxProps = Omitted &
      * The spacing between the checkbox and it's label text
      * @default 0.5rem
      */
-    labelSpacing?: SystemProps["marginLeft"]
+    spacing?: SystemProps["marginLeft"]
   }
 
 /**
@@ -80,7 +80,7 @@ export const Checkbox = React.forwardRef(
 
     const {
       iconSize = "0.625rem",
-      labelSpacing = "0.5rem",
+      spacing = "0.5rem",
       iconColor,
       variant = group?.variant,
       colorScheme = group?.colorScheme,
@@ -139,7 +139,7 @@ export const Checkbox = React.forwardRef(
             className="chakra-checkbox__label"
             {...theming}
             {...getLabelProps()}
-            marginLeft={labelSpacing}
+            marginLeft={spacing}
             children={children}
           />
         )}
