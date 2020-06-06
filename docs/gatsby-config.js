@@ -55,6 +55,17 @@ module.exports = {
         path: `${__dirname}/pages`,
       },
     },
+    {
+      resolve: `gatsby-source-graphql`,
+      options: {
+        typeName: "GitHub",
+        fieldName: "github",
+        url: "https://api.github.com/graphql",
+        headers: {
+          Authorization: `Bearer ${process.env.GITHUB_API_TOKEN}`,
+        },
+      },
+    },
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
     {
