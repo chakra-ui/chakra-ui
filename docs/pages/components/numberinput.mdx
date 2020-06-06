@@ -11,8 +11,8 @@ import ComponentLinks from "../../src/components/component-links"
 
 # Number Input
 
-The NumberInput component is similar to the [Input](/input), but it has controls
-for incrementing or decrementing numeric values.
+The NumberInput component is similar to the [Input](/input) component, but it
+has controls for incrementing or decrementing numeric values.
 
 <ComponentLinks
   github={{ url: "#" }}
@@ -33,12 +33,11 @@ for the Spinbutton widget.
 
 Chakra UI exports 5 components for the NumberInput.
 
-- **NumberInput**: The wrapper that provides context and logic to the
-  components.
-- **NumberInputField**: The `input` field itself.
-- **NumberInputStepper**: The wrapper for the input's stepper buttons.
-- **NumberIncrementStepper**: The button to increment the value of the input.
-- **NumberDecrementStepper**: The button to decrement the value of the input.
+- `NumberInput`: The wrapper that provides context and logic to the components.
+- `NumberInputField`: The `input` field itself.
+- `NumberInputStepper`: The wrapper for the input's stepper buttons.
+- `NumberIncrementStepper`: The button to increment the value of the input.
+- `NumberDecrementStepper`: The button to decrement the value of the input.
 
 ```js
 import {
@@ -67,9 +66,9 @@ styling of each part.
 
 ### Setting a minimum and minimum value
 
-Simply pass the `min` prop or `max` prop to set an upper and lower limit for the
-input. By default, the input will restrict the value to stay within the
-specified range.
+Pass the `min` prop or `max` prop to set an upper and lower limit for the input.
+By default, the input will restrict the value to stay within the specified
+range.
 
 ```jsx
 <NumberInput defaultValue={15} min={10} max={20}>
@@ -83,9 +82,9 @@ specified range.
 
 ### Setting the step size
 
-Simply pass the `step` prop to change the step size when you increment or
-decrement the value. By default, the value is rounded to match the number of
-decimals in the `step`.
+Pass the `step` prop to change the step size when you increment or decrement the
+value. By default, the value is rounded to match the number of decimals in the
+`step`.
 
 ```jsx
 <NumberInput step={5} defaultValue={15} min={10} max={30}>
@@ -121,7 +120,7 @@ out of the input.
 
 To disable this behavior, pass `clampValueOnBlur` and set to `false`.
 
-> In this example, try to type a value greater than the max, it won't reset the
+> In this example, try to type a value greater than the max. It won't reset the
 > value on blur.
 
 ```jsx
@@ -136,9 +135,9 @@ To disable this behavior, pass `clampValueOnBlur` and set to `false`.
 
 ### Allowing out of range values
 
-In some scenarios, you might not want to block out of range values. Simple pass
-`keepWithinRange` and `clampValueOnBlur` and set them to `false` to support this
-use case.
+In some scenarios, you might not want to block out of range values. Pass the
+`keepWithinRange` and `clampValueOnBlur` props and set them to `false` to
+support this use case.
 
 > The NumberInput will be set `isInvalid` to `true` internally when the value is
 > out of range. Out of range means that the `value` is great than `max` or less
@@ -161,8 +160,8 @@ use case.
 
 ### Changing the size of the input
 
-Just like the `Input` component, you can pass the `size` prop to change the size
-of the input.
+Like the `Input` component, you can pass the `size` prop to change the size of
+the input.
 
 ```jsx
 <Stack shouldWrapChildren isInline>
@@ -195,7 +194,7 @@ of the input.
 ### Changing the styles
 
 You can change the style of any part of the components using style props. You
-can also change the icons used in the steppers
+can also change the icons used in the steppers.
 
 ```jsx
 <NumberInput size="sm" defaultValue={15} min={10}>
@@ -218,7 +217,7 @@ can also change the icons used in the steppers
 ### Combining it with a Slider
 
 A common use case is to combine the `NumberInput` with a `Slider`. Here's an
-example of how to do that.
+example of how to do that:
 
 ```jsx
 function SliderInput() {
@@ -254,12 +253,12 @@ function SliderInput() {
 
 - The input has `role` set to `spinbutton` to denote that users are to select
   from a range of discrete values using an up and down arrows on the keyboard.
-- The input as `aria-valuemin` set to the minimum value allowed for the
+- The input has `aria-valuemin` set to the minimum value allowed for the
   spinbutton.
-- The input as `aria-valuemax` set to the maximum value allowed for the
+- The input has `aria-valuemax` set to the maximum value allowed for the
   spinbutton. attribute should be applied to the spinbutton.
-- The input as `aria-valuenow` set to the current value of the `input`.
-- The custom spinner (up and down buttons) have`aria-hidden` set to `true` to
+- The input has `aria-valuenow` set to the current value of the `input`.
+- The custom spinner (up and down buttons) has `aria-hidden` set to `true` to
   make them invisible to screen readers.
 
 ### Keyboard Navigation
@@ -270,10 +269,10 @@ function SliderInput() {
   update the value by `10 * step`
 - Holding down <kbd>Ctrl</kbd> or <kbd>⌘</kbd>, and pressing <kbd>⬆</kbd> or
 
-  <kbd>⬆</kbd>
-  will update the value by `0.1 \\\\\\\\\\\\\\* step`
+  <kbd>⬆</kbd> will update the value by `0.1 * step`
 
-- Long press the Up and down stepper buttons will update the value at intervals.
+- Long pressing the up and down stepper buttons will update the value at
+  intervals.
 
 ## Props
 

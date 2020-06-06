@@ -8,7 +8,7 @@ import ComponentLinks from "../../src/components/component-links"
 
 # Icon Button
 
-IconButton composes the `Button` component, except that it renders only an icon.
+IconButton composes the `Button` component except that it renders only an icon.
 
 <ComponentLinks
   github={{ url: "#" }}
@@ -18,8 +18,8 @@ IconButton composes the `Button` component, except that it renders only an icon.
 
 <carbon-ad></carbon-ad>
 
-Since `IconButton` only renders an icon, its required to pass the `aria-label`
-prop, so screen readers can give meaning to the button.
+Since `IconButton` only renders an icon, you must pass the `aria-label` prop, so
+screen readers can give meaning to the button.
 
 ## Import
 
@@ -35,7 +35,7 @@ import { IconButton } from "@chakra-ui/core"
 
 ### Button Colors
 
-The IconButton component accepts most of the props from the `Button` component.
+The IconButton component accepts most of the props from the `Button` component,
 so we can use `colorScheme` prop to change the color of the button.
 
 ```jsx
@@ -48,7 +48,7 @@ so we can use `colorScheme` prop to change the color of the button.
 
 ### Button Sizes
 
-Just like the Button component, pass the `size` prop to change the size of the
+Like the Button component, pass the `size` prop to change the size of the
 button.
 
 ```jsx
@@ -62,8 +62,8 @@ button.
 
 ### Button Variants
 
-Just like the Button component, pass the `variant` prop to change the size of
-the button.
+Like the Button component, pass the `variant` prop to change the style of the
+button.
 
 ```jsx
 <IconButton

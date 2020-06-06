@@ -11,7 +11,7 @@ import ComponentLinks from "../../src/components/component-links"
 
 # Avatar
 
-The Avatar component is used to represent user, and displays the profile
+The Avatar component is used to represent a user, and displays the profile
 picture, initials or fallback icon.
 
 <ComponentLinks
@@ -24,11 +24,11 @@ picture, initials or fallback icon.
 
 ## Import
 
-Chakra UI exports 2 avatar related components:
+Chakra UI exports 3 avatar-related components:
 
 - `Avatar`: The image that represents the user.
-- `AvatarBadge`: A wrapper that displays it's content on the on the right corner
-  of the avatar.
+- `AvatarBadge`: A wrapper that displays its content on the right corner of the
+  avatar.
 - `AvatarGroup`: A wrapper to stack multiple Avatars together.
 
 ```js
@@ -51,7 +51,7 @@ import { Avatar, AvatarBadge } from "@chakra-ui/core"
 
 ## Avatar Sizes
 
-The Avatar component comes in 7 sizes
+The `Avatar` component comes in 7 sizes.
 
 ```jsx
 <Stack direction="row">
@@ -91,8 +91,9 @@ If there was an error loading the `src` of the avatar, there are 2 fallbacks:
 
 ## Avatar with badge
 
-In some products, you might need show a badge on the right corner of the avatar,
-what we call a **badge**. Here's an example that shows if the user is online:
+In some products, you might need to show a badge on the right corner of the
+avatar, which we call a **badge**. Here's an example that shows if the user is
+online:
 
 ```jsx
 <Stack direction="row" spacing={4}>
@@ -107,8 +108,8 @@ what we call a **badge**. Here's an example that shows if the user is online:
 </Stack>
 ```
 
-> Note the use of `em` for the size of the `AvatarBadge`. this is useful to size
-> the badge relative to the avatar font size
+> Note the use of `em` for the size of the `AvatarBadge`. This is useful to size
+> the badge relative to the avatar font size.
 
 ## AvatarGroup
 
@@ -117,7 +118,7 @@ component.
 
 - To limit the amount of avatars to show, use the `max` prop. It'll truncate the
   avatars and show a "+X" label (where X is the remaining avatars).
-- To size all the avatars equally, pass the size prop.
+- To size all the avatars equally, pass the `size` prop.
 - To adjust the spacing between the avatars, pass the `spacing` prop.
 
 ```jsx

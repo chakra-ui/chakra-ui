@@ -12,7 +12,7 @@ import ComponentLinks from "../../src/components/component-links"
 # Menu
 
 An accessible dropdown menu for the common dropdown menu button design pattern.
-Menu uses roving tabIndex for focus management.
+Menu uses roving `tabIndex` for focus management.
 
 <ComponentLinks
   github={{ url: "#" }}
@@ -26,8 +26,7 @@ Menu uses roving tabIndex for focus management.
 
 Chakra UI exports 8 components for rendering menus:
 
-- `Menu`: The wrapper component that provides context, state, and focus
-  management.
+- `Menu`: The wrapper component provides context, state, and focus management.
 - `MenuList`: The wrapper for the menu items. Must be a direct child of `Menu`.
 - `MenuButton`: The trigger for the menu list. Must be a direct child of `Menu`.
 - `MenuItem`: The trigger that handles menu selection. Must be a direct child of
@@ -71,9 +70,9 @@ import {
 
 ### Accessing the internal state
 
-To access the internal state of the Menu, use a function as a `children`
-(commonly known as a render prop). You'll get access to the internal state
-`isOpen` and method `onClose`.
+To access the internal state of the Menu, use a function as `children` (commonly
+known as a render prop). You'll get access to the internal state `isOpen` and
+method `onClose`.
 
 ```jsx
 <Menu>
@@ -97,7 +96,7 @@ When focus is on the `MenuButton` or within the `MenuList` and you type a letter
 key, a search begins. Focus will move to the first `MenuItem` that starts with
 the letter you typed.
 
-> Open the menu, try and type any letter, say "S" to see the focus movement.
+> Open the menu, try and type any letter, (say "S") to see the focus movement.
 
 ```jsx
 <Menu>
@@ -157,8 +156,8 @@ the letter you typed.
 
 ### MenuGroup
 
-To group related `MenuItems`, use the `MenuGroup` component and pass it a label
-for the group name.
+To group related `MenuItem`s, use the `MenuGroup` component and pass it a
+`title` for the group name.
 
 ```jsx
 <Menu>
@@ -223,14 +222,14 @@ options. Use the `MenuOptionGroup` and `MenuItemOption` components.
 
 **For `MenuButton`:**
 
-- It has `role` set to `button`.
-- It has aria-haspopup set to either `menu`.
+- `role` is set to `button`.
+- `aria-haspopup` is set to `menu`.
 - When the menu is displayed, `MenuButton` has `aria-expanded` set to `true`.
 - `MenuButton` has `aria-controls` set to the `id` of the `MenuList`.
 
 **For `MenuList`:**
 
-- It contains the `MenuItem` has role `menu`.
+- The `MenuItem` has role `menu`.
 
 ## Props
 

@@ -11,14 +11,10 @@ Style props are a way to alter the style of a component by simply passing props
 to it. It helps to save time by providing helpful shorthand ways to style
 components.
 
-Chakra UI uses [Styled System](https://styled-system.com/) to achieve this. We
-extend styled-system's utilities to provide other helpful shorthands.
-
 ## Style Props Reference
 
 The following table shows a list of every style prop and the properties within
-each group. To learn more about it, you can also check the
-[Styled System docs](https://styled-system.com/api):
+each group.
 
 ### Margin & padding
 
@@ -379,8 +375,8 @@ following props:
 The `as` prop is a feature that all of our components that allows you to pass an
 HTML tag or component to be rendered.
 
-For example, say you are using a Button component, and you need to make it a
-link instead. You can compose `a` and Button like this:
+For example, say you are using a `Button` component, and you need to make it a
+link instead. You can compose `a` and `Button` like this:
 
 ```jsx
 <Button as="a" target="_blank" variant="outline" href="https://chakra-ui.com">
@@ -388,5 +384,5 @@ link instead. You can compose `a` and Button like this:
 </Button>
 ```
 
-This allows you to use all of the `Button` props and all of the `<a>` props
+This allows you to use all of the `Button` props and all of the `a` props
 without having to wrap the Button in an `a` component.

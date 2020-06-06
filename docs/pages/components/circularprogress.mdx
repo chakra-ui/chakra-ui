@@ -50,7 +50,7 @@ You can add `size` prop to the progressbar to add a custom size.
 
 ### Changing the thickness
 
-You can add `thickness` prop to update the thicknessof the progress ring.
+You can add the `thickness` prop to update the thickness of the progress ring.
 
 > The thickness has to be a ratio of the size. Value should be between 0 and 1.
 
@@ -70,8 +70,8 @@ the theme.
 
 ### Adding label
 
-Chakra exports a `CircularProgressLabel` to help you add label. Pass this
-component as children and you'll be able to render the value
+Chakra exports a `CircularProgressLabel` to help you add a label. Pass this
+component as children and you'll be able to render the value.
 
 ```jsx
 <CircularProgress value={40} color="green">
@@ -82,7 +82,7 @@ component as children and you'll be able to render the value
 ### Indeterminate Progress
 
 Setting the progress to indeterminate means you're not able to determine the
-`value` upfront, so won't need to pass the `value` prop.
+`value` upfront, so you won't need to pass the `value` prop.
 
 ```jsx
 <CircularProgress isIndeterminate color="green"></CircularProgress>
@@ -90,7 +90,7 @@ Setting the progress to indeterminate means you're not able to determine the
 
 ### Accessibility
 
-- Progress has a `role` set to `progressbar` to denote that it's a progress bar
+- Progress has `role` set to `progressbar` to denote that it's a progress bar
 - Progress has `aria-valuenow` set to the percentage completion value passed to
   the component, to ensure the progress percent is visible to screen readers.
 
