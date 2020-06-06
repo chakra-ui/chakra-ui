@@ -13,7 +13,7 @@ import ComponentLinks from "../../src/components/component-links"
 # Editable Text
 
 EditableText is used for inline renaming of some text. It appears as normal UI
-text but transforms into a text input field when the user clicks or focuses on
+text but transforms into a text input field when the user clicks on or focuses
 it.
 
 <ComponentLinks
@@ -24,14 +24,14 @@ it.
 
 <carbon-ad></carbon-ad>
 
-The text input inherits all font styling from its parent, to make the edit and
-read view transition seamless.
+The text input inherits all font styling from its parent in order to make the
+edit and read view transition seamless.
 
 ## Import
 
 Chakra UI exports 3 components to handle this functionality.
 
-- `Editable`: The wrapper component that providers context value.
+- `Editable`: The wrapper component that provides context value.
 - `EditableInput`: The edit view of the component. It shows when you click or
   focus on the text.
 - `EditablePreview`: The read-only view of the component.
@@ -53,7 +53,7 @@ import { Editable, EditableInput, EditablePreview } from "@chakra-ui/core"
 ### With custom controls
 
 In some cases, you might need to use custom controls to toggle the edit and read
-mode. We use the render prop pattern to provide access to the internal states of
+mode. We use the render prop pattern to provide access to the internal state of
 the component.
 
 > Ensure you set `isPreviewFocusable` and `submitOnBlur` to `false` for this to
@@ -99,8 +99,8 @@ function CustomControlsExample() {
 
 ### Editable Props
 
-`Editable` component composes the [Box](/box) component so can pass all `Box`
-props. Here are the custom props:
+The `Editable` component composes the [Box](/box) component so you can pass all
+`Box` props. Here are the custom props:
 
 | Name               | Type              | Default              | Description                                                                                                                               |
 | ------------------ | ----------------- | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |

@@ -26,14 +26,14 @@ composes the `Popper` component.
 
 ## Import
 
-- `Popover`: The wrapper that provides props, state, and context to it's
+- `Popover`: The wrapper that provides props, state, and context to its
   children.
 - `PopoverTrigger`: Used to wrap the reference (or trigger) element.
 - `PopoverContent`: The popover itself.
 - `PopoverHeader`: The header of the popover.
 - `PopoverBody`: The body of the popover.
 - `PopoverArrow`: A visual arrow that points to the reference (or trigger).
-- `PopoverCloseButton`: Obviously, a button to close the popover.
+- `PopoverCloseButton`: A button to close the popover.
 
 ```js
 import {
@@ -51,11 +51,11 @@ import {
 ## Basic Usage
 
 When using this component, ensure the children passed to `PopoverTrigger` is
-focusable, user can tab to it using their keyboard, and it can take a `ref`.
+focusable. Users can tab to it using their keyboard, and it can take a `ref`.
 It's critical for accessiblity.
 
-> **A11y:** When the Popover opens, focus is sent to the `PopoverContent`. When
-> it closes, focus is returned to the trigger.
+> **A11y:** When Popover opens, focus is sent to `PopoverContent`. When it
+> closes, focus is returned to the trigger.
 
 ```jsx
 <Popover>
@@ -76,7 +76,7 @@ It's critical for accessiblity.
 By default, the Popover doesn't render in a Portal. To make them display in a
 portal, pass the `usePortal` prop.
 
-> You might need to **Inspect Element** to see this in action. Notice the
+> You might need to **Inspect Element** to see this in action. Notice that
 > `PopoverContent` is rendered as a child of `<body>`
 
 ```jsx
@@ -98,9 +98,8 @@ portal, pass the `usePortal` prop.
 
 ## Focus an element when Popover opens
 
-By default, focus is to sent to the `PopoverContent` when it opens, you might
-want to send focus to a specific element when it opens. Pass the
-`initialFocusRef` prop to do so.
+By default, focus is to sent to `PopoverContent` when it opens. Pass the
+`initialFocusRef` prop to send focus to a specific element instead.
 
 ```jsx
 function WalkthroughPopover() {
@@ -148,7 +147,7 @@ function WalkthroughPopover() {
 ## Trapping Focus within Popover
 
 If the popover contains a form, you might need to trap focus within the popover
-and close it when the users fills the form and hit "save".
+and close it when the user fills the form and hits "save".
 
 You can leverage
 [react-focus-lock](https://github.com/theKashey/react-focus-lock) to trap focus
@@ -230,11 +229,11 @@ render(<PopoverForm />)
 
 ## Controlled Usage
 
-You can completely controlled the opening and closing of the popover by passing
-the `isOpen`, and `onClose`.
+You can control the opening and closing of the popover by passing the `isOpen`,
+and `onClose` props.
 
-Sometime, you might need to set `returnFocusOnClose` to `false` to prevent
-popver from returning focus to `PopoverTrigger`'s children.
+Sometimes you might need to set the `returnFocusOnClose` prop to `false` to
+prevent popver from returning focus to `PopoverTrigger`'s children.
 
 ```jsx
 function ControlledUsage() {
@@ -278,7 +277,7 @@ function ControlledUsage() {
 
 ## Accessing Internal state
 
-Chakra provides access to two internal details, `isOpen` and `onClose`. Use the
+Chakra provides access to two internal details: `isOpen` and `onClose`. Use the
 render prop pattern to gain access to them.
 
 ```jsx
@@ -321,7 +320,7 @@ function InternalStateEx() {
 ## Customizing the Popover
 
 Chakra exports all the components you need to customize the look and feel of the
-popover. You can change the background, arrow size, boxShadow and so on.
+popover. You can change the background, arrow size, box shadow and so on.
 
 ```jsx
 <Popover>
@@ -355,7 +354,7 @@ popover by passing the `placement` prop. See the [props](#props) for the
 possible placement values.
 
 > Even though you specified the placement, Popover will try to reposition itself
-> in event the available space at the specified placment isn't enough.
+> in the event that available space at the specified placement isn't enough.
 
 ```jsx
 <Popover placement="top-start">

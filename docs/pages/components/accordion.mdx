@@ -24,10 +24,10 @@ reveal more information.
 
 ## Import
 
-Chakra UI exports 5 accordion related components.
+Chakra UI exports 5 accordion-related components.
 
-- `Accordion`: The wrapper that uses cloneElement to pass it's prop to the
-  `AccordionItem`.
+- `Accordion`: The wrapper that uses cloneElement to pass props to
+  `AccordionItem` children.
 - `AccordionItem`: A single accordion item.
 - `AccordionButton`: The button that toggles the expand/collapse state of the
   accordion item.
@@ -86,8 +86,8 @@ expanding another.
 
 ### Expand multiple items at once
 
-If you set `allowMultiple` to true then the accordion will permit multiple items
-to be expanded at once.
+If you set `allowMultiple` to `true` then the accordion will permit multiple
+items to be expanded at once.
 
 > If you pass this prop, ensure that the `index` or `defaultIndex` prop is an
 > array.
@@ -128,7 +128,7 @@ to be expanded at once.
 
 ### Toggle each accordion item
 
-If you set `allowToggle` to true, any expanded item may be collapsed again.
+If you set `allowToggle` to `true`, any expanded item may be collapsed again.
 
 ```jsx
 <Accordion allowToggle>
@@ -192,7 +192,7 @@ style this state.
 ### Accessing the internal state
 
 If you need access to the internal state of each accordion item, you can use a
-render prop. It provides 2 internal state `isExpanded`, and `isDisabled`.
+render prop. It provides 2 internal state props: `isExpanded` and `isDisabled`.
 
 ```jsx
 <Accordion allowMultiple>

@@ -10,7 +10,8 @@ import ComponentLinks from "../../src/components/component-links"
 
 # Input
 
-Input component is a component that is used to get user input in a text field.
+The Input component is a component that is used to get user input in a text
+field.
 
 <ComponentLinks
   github={{ url: "#" }}
@@ -28,7 +29,7 @@ import { Input } from "@chakra-ui/core"
 
 ## Usage
 
-Here's a basic usage of the Input component.
+Here's a basic usage example of the Input component:
 
 ```jsx
 <Input placeholder="Basic usage" />
@@ -36,8 +37,11 @@ Here's a basic usage of the Input component.
 
 ### Changing the size of the Input
 
-There are three sizes of an Input : large (40px), default (32px) and small
-(24px).
+There are three sizes of an Input:
+
+- `sm` (`24px`)
+- `md` (`32px`)
+- `lg` (`40px`)
 
 ```jsx
 <Stack spacing={3}>
@@ -49,8 +53,8 @@ There are three sizes of an Input : large (40px), default (32px) and small
 
 ### Changing the appearance of the input
 
-The input component comes in 3 variants, `outline`, `unstyled` , `flushed` , and
-`filled`. Pass the `variant` prop and set it to either of these values.
+The input component comes in 4 variants: `outline`, `unstyled`, `flushed`, and
+`filled`. Pass the `variant` prop and set it to onf of these values.
 
 ```jsx
 <Stack spacing={3}>
@@ -63,9 +67,9 @@ The input component comes in 3 variants, `outline`, `unstyled` , `flushed` , and
 
 ### Left and Right Addons
 
-Just like bootstrap, you can add addons to the left and right of the input
-component. Chakra UI exports `InputGroup`, `InputLeftAddon`, `InputRightAddon`
-to help with this use case.
+Like bootstrap, you can add addons to the left and right of the input component.
+Chakra UI exports `InputGroup`, `InputLeftAddon`, and `InputRightAddon` to help
+with this use case.
 
 ```jsx
 <Stack spacing={4}>
@@ -86,7 +90,7 @@ to help with this use case.
 ### Add elements inside input
 
 In some scenarios, you might need to add an icon or button inside the input
-component. Chakra UI exports `InputLeftElement`, and `InputRightElement` to help
+component. Chakra UI exports `InputLeftElement` and `InputRightElement` to help
 with this use case.
 
 ```jsx
@@ -107,7 +111,7 @@ with this use case.
 ### Password Input Example
 
 Let's use these components to create a password input with a show/hide password
-functionality.
+functionality:
 
 ```jsx
 function PasswordInput() {
@@ -156,7 +160,7 @@ function Example() {
 
 You can change the border color that shows when the input receives focus
 (`focusBorderColor`) and when `isInvalid` is set to `true` (`errorBorderColor`).
-The value can be set to a color in the theme object, like `teal.400` or a raw
+The value can be set to a color in the theme object, like `teal.400`, or a raw
 CSS value.
 
 ```jsx

@@ -10,7 +10,7 @@ import ComponentLinks from "../../src/components/component-links"
 
 Headings are used for rendering headlines.
 
-Heading composes `Box` so you can use all the style props and add responsive
+`Heading` composes `Box` so you can use all the style props and add responsive
 styles as well. It renders an `<h2>` tag by default.
 
 <ComponentLinks
@@ -35,7 +35,7 @@ import { Heading } from "@chakra-ui/core"
 
 ### Changing font size
 
-To increase the size of the heading, you can use the `fontSize` or `size` prop.
+To increase the size of the heading, you can use the `fontSize` or `size` props.
 If you use the `size` prop, the font size of the heading will automatically
 decrease in size for smaller screens.
 
@@ -64,7 +64,8 @@ decrease in size for smaller screens.
 
 ### Truncate heading
 
-Pass the `isTruncated` prop to render an ellipsis when the headings exceeds
+Pass the `isTruncated` prop to render an ellipsis when the heading exceeds the
+width of the viewport or `maxWidth` prop.
 
 ```jsx
 <Heading isTruncated>

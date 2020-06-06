@@ -8,7 +8,7 @@ import ComponentLinks from "../../src/components/component-links"
 
 # List
 
-List is used to display list items, it renders a `<ul>` by default.
+List is used to display list items. It renders a `<ul>` element by default.
 
 <ComponentLinks
   github={{ url: "#" }}
@@ -48,9 +48,9 @@ import { List, ListItem, ListIcon } from "@chakra-ui/core"
 
 ## Unstyled List with icon
 
-Add nice icons to the list item by using the `ListIcon` component. You can pass
-the name of the icon or custom icons. The icon is sized relative to the font
-size of the list item.
+Add icons to the list items by using the `ListIcon` component. You can pass the
+name of the icon or use custom icons. The size of the icon is relative to the
+font size of the list item.
 
 ```jsx
 <List spacing={3}>
@@ -86,5 +86,5 @@ size of the list item.
 
 ### List Item Props
 
-ListItem composes [PseudoBox](/pseudobox) so you pass all style props, and
-pseudo style props.
+ListItem composes [PseudoBox](/pseudobox) so you can pass all style and pseudo
+style props.

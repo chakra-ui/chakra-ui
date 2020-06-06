@@ -5,9 +5,9 @@ order: 5
 
 # Responsive Styles
 
-Chakra UI support responsive styles out of the box. Instead of manually adding
+Chakra UI supports responsive styles out of the box. Instead of manually adding
 `@media` queries and adding nested styles throughout your code, Chakra UI allows
-you provide array values to add mobile-first responsive styles.
+you provide object and array values to add mobile-first responsive styles.
 
 > We use the `@media(min-width)` media queries to ensure values are
 > mobile-first.
@@ -15,13 +15,17 @@ you provide array values to add mobile-first responsive styles.
 ```jsx live=false
 <>
   <Box
-    height="40px"
+    height={{
+      base: "100%", // 0-48em
+      md: "50%", // 48em-80em,
+      xl: "25%", // 80em+
+    }}
     bg="teal.400"
     width={[
-      "100%", // base
-      "50%", // 480px upwards
-      "25%", // 768px upwards
-      "15%", // 992px upwards
+      "100%", // 0-30em
+      "50%", // 30em-48em
+      "25%", // 48em-62em
+      "15%", // 62em+
     ]}
   />
   {/* responsive font size */}

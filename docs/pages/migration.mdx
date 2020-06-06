@@ -29,9 +29,8 @@ support the `as` prop and types will be extracted properly.
 
 ## Upgrade steps
 
-Here's a list of things you to do to migrate safely. Don't panic if your styles
-don't look the same. Relax and follow this guide till the end, and you should be
-back up!
+Here's a list of steps to take in order to migrate your project safely. Don't
+worry if your styles aren't exactly the same—this is to be expected.
 
 ### 1. Update your dependencies
 
@@ -39,7 +38,7 @@ Chakra no longer requires `@emotion/styled`, `@emotion/core` and
 `@emotion/theming`. If you're not using these libraries in your code, you can
 safely remove them and update Chakra UI to v1.
 
-> We use only `@emotion/core` internally
+> We use only `@emotion/core` internally.
 
 ```diff
 "dependencies": {
@@ -51,30 +50,29 @@ safely remove them and update Chakra UI to v1.
 ```
 
 **Note on bundle size:** Chakra UI now exports all components as separate
-packages to make it easier to consume singular packages. For example, you use
-only button, you can now install `@chakra-ui/button` along side its peer
+packages to make it easier to consume individual packages. For example, if you
+use only `Button`, you can now install `@chakra-ui/button` along side its peer
 dependency `@chakra-ui/system`, and you're good to go!
 
 ### 2. Clone Chakra's default theme
 
-Chakra no longer comes with the default theme pre-installed, you need to
-manually add it, but hey!, we've made that a bit easier with our CLI tool.
+Chakra no longer comes with the default theme pre-installed, so you'll need to
+add it manually. Luckily for you, we've added a CLI tool for generating the
+theme.
 
 We believe that having the theme cloned to your project will help you learn
-about the theme tokens (colors, fonts, component styles) and make it even easier
-for you to customize them.
+about the theme tokens (colors, fonts, component styles) and make it less
+stressful for you to customize them.
 
-1. Simply run `npx chakra init --theme`, and we'll clone the theme to your
-   project.
+1. Run `npx chakra init --theme`, and we'll clone the theme to your project.
+   This creates a `chakra` folder with the default theme inside.
 
 ```sh
 npx chakra init --theme
 ```
 
-2. This will create new `chakra` folder with the default theme installed
-
-3. Update the `ThemeProvider` in your application's root by passing the `theme`
-   props
+2. Update the `ThemeProvider` in your application's root by passing the `theme`
+   prop.
 
 ```jsx live=false
 import { ThemeProvider, CSSReset } from "@chakra-ui/core"
@@ -92,16 +90,16 @@ function AppRoot() {
 
 ### 3. Update the `ThemeProvider`
 
-Swap out the `ThemeProvider` with `ChakraProvider` to make the setup cleaner.
+Swap out `ThemeProvider` with `ChakraProvider` to make setup cleaner.
 `ChakraProvider` adds the following providers for you automatically:
 
-- **ThemeProvider:** To provide the theming context for all components
-- **ColorModeProvider:** To provide color mode (light or dark) context to all
+- **ThemeProvider:** Provides the theming context for all components
+- **ColorModeProvider:** Provides color mode (light or dark) context to all
   components
-- **PortalManager:** To help manage portals and nested portals without using
-  zIndex in your application.
+- **PortalManager:** Manages portals and nested portals without using `z-index`
+  in your application.
 - **GlobalStyle**: Provides the global styles defined in `theme.styles.global`
-  to your application. This makes it easier to add custom global styles.
+  to your application.
 
 ```diff
 -  <ThemeProvider theme={theme}>
@@ -132,14 +130,14 @@ only one prop to manage this, you can rename it to `boxSize`.
 + <Box boxSize="40px" />
 ```
 
-**We strongly recommend to use the `width` and `height` prop**
+**We strongly recommend using the `width` and `height` props**
 
-> **Reason:** We think the size prop should only be used for component size
+> **Reason:** We think the `size` prop should only be used for component size
 > modifiers. The `size` prop has caused a lot of confusion in the past because
 > in some components (e.g. Button) it means the visual size, and in some (e.g
 > Box), it means **width + height**.
 
-### 5. Update these style props
+### 5. Update these prop names
 
 | Current Prop         | New Prop                  |
 | -------------------- | ------------------------- |
@@ -161,15 +159,15 @@ only one prop to manage this, you can rename it to `boxSize`.
 
 ## Component Updates
 
-We've updated the API of some components to fix bug, improve usability, types
-and accessibility.
+We've updated the API of some components to fix bugs and improve usability,
+types and accessibility.
 
-- All components can now take the pseudo style props (`_hover`, `_active`, etc.)
-- Improved typescript support for the `as` prop.
+- All components now take the pseudo style props (`_hover`, `_active`, etc.)
+- Improved TypeScript support for the `as` prop
 
 ### Accordion
 
-You can install as stand-alone package: `@chakra-ui/accordion`
+Can install as a stand-alone package: `@chakra-ui/accordion`
 
 #### Changes 🔧
 
@@ -198,15 +196,15 @@ out of the box when we don't. Here's how to handle this:
 </Accordion>
 ```
 
-- You can no longer use `AccordionItem` in isolation, it must be used within
+- You can no longer use `AccordionItem` in isolation—it must be used within
   `Accordion`. We think most users don't do this by default but it's worth
   noting.
 
 #### Features ⚡️
 
-- **Keyboard Navigation:** `Accordion` now support keyboard navigation between
+- **Keyboard Navigation:** `Accordion` now supports keyboard navigation between
   accordion buttons. Pressing the `up` and `down` arrow keys will move focus
-  between each accordion buttons.
+  between accordion buttons.
 
 ### AspectRatioBox
 
@@ -221,7 +219,7 @@ out of the box when we don't. Here's how to handle this:
 
 #### Features ⚡️
 
-- You can now use your custom fallback avatar icon. Simply pass `icon` prop
+- You can now use a custom fallback avatar icon by passing the `icon` prop:
 
 ```jsx live=false
 <Avatar src="john.png" name="John Doe" icon={<UserIcon />} />
@@ -230,26 +228,27 @@ out of the box when we don't. Here's how to handle this:
 - You can now change the `borderRadius` of the avatar
 
 - Theming Support: All design decisions for the Avatar are located in
-  `chakra/components/Avatar` in your cloned theme, this means you can customize
-  to suit your brand needs.
+  `chakra/components/Avatar` in your cloned theme, which means you can customize
+  the styles to suit your brand needs.
 
-- Added `getInitials` prop to allow users manage how initials are generated from
-  name. By default we merge the first characters from the `name` prop.
+- Added `getInitials` prop to allow users to manage how initials are generated
+  from name. By default we merge the first characters of each word in the `name`
+  prop.
 
 ### Breadcrumb
 
-- Remove support for `addSeparator` prop
+- Removed support for the `addSeparator` prop
 
 ### Button
 
 #### Changes 🔧
 
-- We've unified the usage of all icon prop to only accept a react element.
-  Update all icon names used in `leftIcon` or `rightIcon` to it's equivalent
-  icon React element.
+- We've unified the usage of all icon props to only accept a React element.
+  Update all icon names used in `leftIcon` or `rightIcon` to the equivalent icon
+  React element.
 
   > Replacement logic: If `leftIcon` is `email`, then replace it with
-  > `<EmailIcon/>` from chakra.
+  > `<EmailIcon/>` from Chakra.
 
 ```diff
 import { PhoneIcon } from "@chakra-ui/core"
@@ -258,14 +257,14 @@ import { PhoneIcon } from "@chakra-ui/core"
 + <Button leftIcon={<PhoneIcon />}>Call</Button>
 ```
 
-**This makes is easier to use custom icons, eliminates typescript errors, and
-reduces the issue where you have unused icons bloating your app**
+**This reduces the effort needed to use custom icons, eliminates TypeScript
+errors, and reduces unused icons bloating your app.**
 
-- Rename `variantColor` to `colorScheme`
+- Renamed `variantColor` to `colorScheme`
 
 #### Features ⚡️
 
-- Added support for custom spinners using the `spinner`
+- Added support for custom spinners using the `spinner` prop
 
 ```jsx live=false
 import { BeatLoader } from "react-spinners"
@@ -290,13 +289,13 @@ function Example() {
 + <Checkbox colorScheme="blue">Option</Checkbox>
 ```
 
-- Support for the `isFullWidth` prop has been deprecated. The `Checkbox` takes
-  up the width of the parent by default.
+- Deprecated the `isFullWidth` prop. `Checkbox` now takes up the width of the
+  parent by default.
 
 - To allow for better checkbox group layout, the `CheckboxGroup` component no
-  longer supports the any style prop. You can only pass `size`, `variant`, and
-  `colorScheme` in addition to `CheckboxGroup` props (value, defaultValue, and
-  onChange).
+  longer supports every style prop. You can now only pass `size`, `variant`, and
+  `colorScheme` in addition to `CheckboxGroup`-specific props (`value`,
+  `defaultValue`, and `onChange`).
 
 ```jsx live=false
 // before
@@ -322,7 +321,7 @@ function Example() {
 
 #### Features ⚡️
 
-- Support for `iconColor` and `iconSize` to customize the default check icon
+- Added the `iconColor` and `iconSize` props to customize the default check icon
 
 ```jsx live=false
 <Checkbox iconColor="blue" iconSize="1rem">
@@ -330,7 +329,7 @@ function Example() {
 </Checkbox>
 ```
 
-- Support for `labelSpacing` prop to customize the spacing between the checkbox
+- Added the `labelSpacing` prop to customize the spacing between the checkbox
   and label text
 
 ```jsx live=false
@@ -346,7 +345,7 @@ function Example() {
 ### ColorMode
 
 - You can now set the initial color mode you want your application to start
-  with. Simply set `theme.config.initialColorMode` to **light** or **dark**
+  with. Set `theme.config.initialColorMode` to `light` or `dark`
 
   ```jsx live=false
   const theme = {
@@ -356,8 +355,8 @@ function Example() {
   }
   ```
 
-- You can now update the color mode based on your user's device preference.
-  Simply set `theme.config.useSystemColorMode` to **true** or **false**.
+- You can now update the color mode based on your user's device preference. Set
+  `theme.config.useSystemColorMode` to `true` or `false`
 
   ```jsx live=false
   const theme = {
@@ -370,7 +369,7 @@ function Example() {
 #### Bug Fix 🚑
 
 - Color mode now persists correctly when you refresh the page. All you need to
-  do is to add `InitialColorMode` script as the first child in of `body`.
+  do is add `InitialColorMode` script as the first child of `body`.
 
   Here's how to add it for Next.js:
 
@@ -403,11 +402,16 @@ export default class Document extends NextDocument {
 Here's how to add it for Gatsby:
 
 ```jsx live=false
-// gatsby-srr.js
+// gatsby-ssr.js
 export const onRenderBody = ({ setPreBodyComponents }) => {
-  setPreBodyComponents([<InitializeColorMode />])
+  setPreBodyComponents([<InitializeColorMode key="chakra-ui-no-flash" />])
 }
 ```
+
+We also publish the
+[`gatsby-plugin-chakra-ui`](https://www.npmjs.com/package/gatsby-plugin-chakra-ui)
+package which will automatically configure `InitializeColorMode` along with
+`ChakraProvider`.
 
 ### FormControl
 
@@ -416,20 +420,19 @@ export const onRenderBody = ({ setPreBodyComponents }) => {
 
   - `id` passed to the form control will be passed to the form input directly
   - `FormLabel` will have `htmlFor` that points to the `id` of the form input
-  - If you render `FormErrorMessage`, it'll add `aria-describedby` and
-    `aria-invalid` to the form input.
-  - If you render `FormHelperText`, it'll add/extend `aria-describedby` to the
-    form input.
-  - If you add the `isDisabled`, `isRequired`, `isReadOnly` prop to
-    `FormControl`, it'll cascade across all components
+  - `FormErrorMessage` adds `aria-describedby` and `aria-invalid` pointing to
+    the form input
+  - `FormHelperText` adds/extends `aria-describedby` pointing to the form input
+  - `isDisabled`, `isRequired`, `isReadOnly` props passed to `FormControl` will
+    cascade across all related components
 
-- `FormLabel` are now aware of the `disabled`, `focused` and `error` state of
-  the form input, this helps you style the label accordingly using using
-  `_disabled`, `_focus`, and `_invalid` style props.
+- `FormLabel` is now aware of the `disabled`, `focused` and `error` state of the
+  form input. This helps you style the label accordingly using the `_disabled`,
+  `_focus`, and `_invalid` style props.
 
-- If you render `FormErrorMessage`, and `isInvalid` is false or undefined, the
-  `FormErrorMessage` won't be visible, the only way to make it visible is by
-  passing `isInvalid` and setting it to `true`
+- If you render `FormErrorMessage` and `isInvalid` is `false` or `undefined`,
+  `FormErrorMessage` won't be visible. The only way to make it visible is by
+  passing `isInvalid` and setting it to `true`.
 
 ### Image
 
@@ -439,30 +442,31 @@ export const onRenderBody = ({ setPreBodyComponents }) => {
 
 #### Features ⚡️
 
-- Support for `fit` prop to specify how to fit an image within it's dimension.
-  It uses the `object-fit` property
+- Added support for the `fit` prop to specify how to fit an image within its
+  dimension. It uses the `object-fit` property
 
-- Support for `align` prop to specify how to align the image within it's
-  dimension. It uses the `object-position` property
+- Added support for the `align` prop to specify how to align the image within
+  its dimension. It uses the `object-position` property
 
-- Support for custom `fallback` component
+- Added support for custom `fallback` component
 
 ### Input
 
 - When using `InputAddon`, you no longer need to pass border radius properties
-  to the `Input`, `InputGroup` will smartly detect the addon and apply the
+  to the `Input`. `InputGroup` will intelligently detect the addon and apply the
   necessary border to the input.
 
-- Input now uses `paddingY` instead of `height` for it's block height
+- Input now uses `paddingY` instead of `height` for its block height.
 
 ### Link
 
-- Due to accessibility reasons, we've deprecated the `isDisabled` prop from link
+- Due to accessibility reasons, we've deprecated the `isDisabled` prop for
+  `Link`.
 
 ### Stack
 
-- To reduce the API surface, we've deprecated the `isInline` and `isReversed`
-  prop in favor of `direction` prop
+- To reduce the API surface area, we've deprecated the `isInline` and
+  `isReversed` props in favor of the `direction` prop
 
 ```diff
 - <Stack isInline>
@@ -473,9 +477,9 @@ export const onRenderBody = ({ setPreBodyComponents }) => {
 ```
 
 - We've deprecated the `shouldWrapChildren` prop because we now use css to
-  manage the stack rather than `React.cloneElement`.
+  manage the stack rather than `React.cloneElement`
 
-- Support for responsive `direction` and `spacing` prop
+- Added support for responsive `direction` and `spacing` props
 
 ```jsx live=false
 <Stack direction={["column", "row"]}>
@@ -484,8 +488,8 @@ export const onRenderBody = ({ setPreBodyComponents }) => {
 </Stack>
 ```
 
-- Support for `divider` prop between stacked element. Dividers also work with
-  responsive direction and spacing.
+- Added support for `divider` prop between stacked element. Dividers also work
+  with responsive direction and spacing.
 
 ```jsx live=false
 <Stack divider={<StackDivider />}>
@@ -532,7 +536,7 @@ function Example() {
 }
 ```
 
-- Support for menu icons and commands (or hotkeys)
+- Added support for menu icons and commands (or hotkeys)
 
 ```jsx live=false
 <Menu>
@@ -571,8 +575,8 @@ function Example() {
 </Menu>
 ```
 
-- Added support for Portals. Just wrap the `MenuList` in the `Portal` component
-  and you're good to go!
+- Added support for Portals. Wrap the `MenuList` in the `Portal` component and
+  you're good to go!
 
 ```jsx live=false
 <Menu>
@@ -595,10 +599,10 @@ function Example() {
 ### Fixes 🚑
 
 - Fixed issue with `as` prop for `MenuItem`
-- Fixed issue with Link not navigating to the specified `href` value
+- Fixed issue with `Link` not navigating to the specified `href` value
 - Fixed issue where menu popper gets cut off when component is far right
-- Fixed issue where Menu throws if no `MenuItem` exist
-- Fixed issue where `closeOnSelect` doesn't work on navigation with when using
+- Fixed issue where `Menu` throws if no `MenuItem` exist
+- Fixed issue where `closeOnSelect` doesn't work on navigation when using
   `MenuItem` as link
 
 ### Modal
@@ -608,10 +612,10 @@ function Example() {
 - Removed `addAriaLabels` and `formatIds` props in favor of passing a top-level
   `id` prop to the modal, and we'll handle the rest.
 
-- Removed `preserveScrollBarGap` prop, we preserve scroll bar gap by default to
+- Removed `preserveScrollBarGap` prop. We preserve scroll bar gap by default to
   prevent any layout shift.
 
-- Wrap the `ModalContent` within the `ModalOverlay` component.
+- Wrap `ModalContent` with the `ModalOverlay` component.
 
 ```diff
 // before
@@ -638,11 +642,11 @@ function Example() {
 </Modal>
 ```
 
-- You only pass `size` values defined in the components theme. Hard-coded
-  values, will be ignored. Simply update the styles in `theme.components.Modal`
-  to reflect your custom values
+- Only pass `size` values defined in the components theme. Hard-coded values
+  will be ignored. Update the styles in `theme.components.Modal` to reflect your
+  custom values
 
-- You can now disable focus trap by passing `shouldTrapFocus`
+- You can now disable focus trap by passing `shouldTrapFocus={false}`
 
 #### Props Changes
 
@@ -658,19 +662,18 @@ boolean prop must start with `should`, `is`, or `has`
 
 #### New Props
 
-- `shouldTrapFocus` : to help disable focus trap
-- `shouldAutoFocus` : to help disable auto focusing on the first interactive
-  element.
+- `shouldTrapFocus`: to disable focus trap
+- `shouldAutoFocus`: to disable autofocus on the first interactive element
 - `onOverlayClick`: callback fired when the overlay is clicked
 - `onEsc`: callback fired when `esc` is pressed
 
 ### NumberInput
 
-- Add example where consumers can format and parse number input values (
+- Added example where consumers can format and parse number input values (
   [#438](https://github.com/chakra-ui/chakra-ui/pull/438))
 
-- Fixed issue where an error if the input value is greater than the `max` prop
-  when focus is blurred (
+- Fixed issue where error is thrown if the input value is greater than the `max`
+  prop when focus is blurred (
   [#584](https://github.com/chakra-ui/chakra-ui/pull/584))
 
 - Fixed issue where deleting sole digit sets value to 0 (which may be invalid) (
@@ -679,7 +682,7 @@ boolean prop must start with `should`, `is`, or `has`
 - Fixed issue where input returns `NaN` value after multiple dots (
   [#364](https://github.com/chakra-ui/chakra-ui/pull/364))
 
-- Fixed issue where passing `id` to the `NumberInput` and adding a `label` with
+- Fixed issue where passing `id` to `NumberInput` and adding a `label` with
   `htmlFor` that points to that `id` doesn't focus the input (
   [#515](https://github.com/chakra-ui/chakra-ui/pull/515))
 
@@ -696,7 +699,7 @@ boolean prop must start with `should`, `is`, or `has`
 
 ### CircularProgress
 
-- `trackColor` prop now takes a specific color in theme or valid `css` color.
+- `trackColor` prop now takes a specific theme color or a valid `css` color.
 - Change the `thickness` prop to point to an actual thickness value in `px`
   (e.g. `thickness={4}`)
 
@@ -709,8 +712,8 @@ boolean prop must start with `should`, `is`, or `has`
 + <Radio colorScheme="blue">Option</Radio>
 ```
 
-- Support for the `isFullWidth` prop has been deprecated. The Radio takes up the
-  width of the parent by default.
+- Deprecated the `isFullWidth` prop. The `Radio` takes up the width of the
+  parent by default.
 
 - Deprecated `RadioButton` component. Use the `useRadio` hook to create custom
   radio buttons.
@@ -720,13 +723,13 @@ boolean prop must start with `should`, `is`, or `has`
 
 ### RadioGroup
 
-- Support for the `isFullWidth` prop has been deprecated. The `Radio` takes up
-  the width of the parent by default.
+- Deprecated the `isFullWidth` prop. The `RadioGroup` takes up the width of the
+  parent by default.
 
 - To allow for better Radio group layout, the `RadioGroup` component no longer
-  supports the any style prop. You can only pass `size`, `variant`, and
-  `colorScheme` in addition to `RadioGroup` props (value, defaultValue, and
-  onChange).
+  supports every style prop. You can only pass `size`, `variant`, and
+  `colorScheme` in addition to `RadioGroup` props (`value`, `defaultValue`, and
+  `onChange`).
 
 ```jsx live=false
 // before
@@ -748,8 +751,7 @@ boolean prop must start with `should`, `is`, or `has`
 
 ## Slider
 
-- Update JSX structure: The `SliderFilledTrack` should be wrapped in
-  `SliderTrack` component.
+- Update JSX structure: Wrap `SliderFilledTrack` with `SliderTrack`.
 
 ```diff
 // before
@@ -768,24 +770,24 @@ boolean prop must start with `should`, `is`, or `has`
 </Slider>
 ```
 
-- Added support for `isReversed`, which allows users reverse the direction and
-  functionality of the slider. This is mostly useful for `rtl` purposes.
+- Added support for the `isReversed` prop, which allows users to reverse the
+  direction and functionality of the slider. This is mostly useful for `rtl`
+  purposes.
 
-- Added support for `onChangeEnd`, dragging the slider can trigger lots of
-  updates and user might only be interested in the final result after sliding is
-  complete.
+- Added support for the `onChangeEnd` prop. Dragging the slider can trigger lots
+  of updates and user might only be interested in the final result after sliding
+  is complete.
 
 - Added `isReadOnly` prop to support cases where slider needs to be in read-only
   state.
 
-- Export the `useSlider` hook to help users manage and build custom slider UIs
+- Export the `useSlider` hook to help users manage and build custom slider UIs.
 
 ### Popover
 
-- `returnFocusOnClose` has been changed to just `returnFocus` to keep it
-  concise.
+- `returnFocusOnClose` has been changed to `returnFocus` for conciseness.
 
-- `autoFocus` prop to allow users control whether the popover should
+- `autoFocus` prop to allow users to control whether the popover should
   automatically receive focus when it opens.
 
 ### Stat
@@ -815,7 +817,7 @@ boolean prop must start with `should`, `is`, or `has`
 + <Tag colorScheme="blue"/>
 ```
 
-- Added support for `isDisabled` prop for the `TagCloseButton`
+- Added support for `isDisabled` prop on the `TagCloseButton` component
 
 ```jsx live=false
 <Tag variant="solid" size="sm" colorScheme="cyan">
@@ -826,12 +828,12 @@ boolean prop must start with `should`, `is`, or `has`
 
 ### Toast
 
-- Removed `react-spring` as dependency in favor of `react-transition-group`
-- Add support for duplicate toast prevention using `toast.isActive` method
-- Add support to programmatically close one to all toasts using `toast.close` or
-  `toast.closeAll` methods
-- Add support to programmatically update a toast using `toast.update` method.
-- Add Support for `onCloseComplete` prop, a callback function to run side
+- Removed `react-spring` dependency in favor of `react-transition-group`
+- Added support for duplicate toast prevention using `toast.isActive` method
+- Added support to programmatically close one or all toasts using `toast.close`
+  or `toast.closeAll` methods
+- Added support to programmatically update a toast using `toast.update` method.
+- Added support for `onCloseComplete` prop, a callback function to run side
   effects after the toast component has closed.
 
 ### Tooltip
@@ -841,5 +843,5 @@ boolean prop must start with `should`, `is`, or `has`
 
 **That's it! Welcome to Chakra UI v1.**
 
-> If you still experience any issues after migrating, feel free to create an
-> issue or join our Discord chat here: https://discord.gg/dQHfcWF
+> If you still experience issues after migrating, feel free to create an issue
+> or join our Discord chat here: https://discord.gg/dQHfcWF

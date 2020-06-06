@@ -11,8 +11,8 @@ import ComponentLinks from "../../src/components/component-links"
 
 # Alert Dialog
 
-AlertDialog component is used interrupt the user with a mandatory confirmation
-or action.
+AlertDialog component is used to interrupt the user with a mandatory
+confirmation or action.
 
 <ComponentLinks
   github={{ url: "#" }}
@@ -97,10 +97,10 @@ function AlertDialogExample() {
 }
 ```
 
-### Adding transition
+### Adding transitions
 
-The modal doesn't come with any transition by default so you can manage this
-yourself. Chakra exports two transition components `SlideFade` and `Fade` to
+The modal doesn't come with any transitions by default so you can manage this
+yourself. Chakra exports two transition components (`SlideFade` and `Fade`) to
 provide simple transitions.
 
 > When adding transitions, kindly pay attention to the `timeout` for the overlay
@@ -161,14 +161,14 @@ function TransitionExample() {
 - When the dialog opens, the content in the `AlertDialogHeader` and
   `AlertDialogBody` are announced by screen readers via `aria-labelledby` and
   `aria-describedby` attributes.
-- Clicking on the overlay closes the AlertDialog.
+- Clicking on the overlay closes the `AlertDialog`.
 - Pressing <kbd>esc</kbd> closes the dialog.
 
 ## Props
 
-AlertDialog and it's components composes the `Modal` component, the only
-exception is that it requires a `leastDestructiveRef` which is similar to the
-`initialFocusRef` in `Modal`
+AlertDialog and its components compose the `Modal` component. The only exception
+is that it requires a `leastDestructiveRef` which is similar to the
+`initialFocusRef` of `Modal`
 
 | Name                           | Type        | Default | Description                                                   |
 | ------------------------------ | ----------- | ------- | ------------------------------------------------------------- |
