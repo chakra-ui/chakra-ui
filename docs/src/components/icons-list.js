@@ -70,7 +70,7 @@ const IconsList = () => {
       templateColumns="repeat( auto-fit, minmax(150px, 1fr) )"
     >
       {Object.keys(icons).map((key, i) => {
-        const Component = icons[key]
+        const Icon = icons[key]
         return (
           <Flex
             p={3}
@@ -81,7 +81,7 @@ const IconsList = () => {
             flexDir="column"
             justify="center"
           >
-            <Component />
+            <Icon />
             <Text mt={2} fontSize="sm" textAlign="center">
               {`<${key}/>`}
             </Text>
