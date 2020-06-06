@@ -25,6 +25,7 @@ export const Grid = React.forwardRef(
       autoFlow,
       autoRows,
       templateRows,
+      autoColumns,
       templateColumns,
       ...rest
     } = props
@@ -33,18 +34,18 @@ export const Grid = React.forwardRef(
       <chakra.div
         ref={ref}
         display="grid"
-        gridArea={props.area}
-        gridTemplateAreas={props.templateAreas}
-        gridGap={props.gap}
-        gridRowGap={props.rowGap}
-        gridColumnGap={props.columnGap}
-        gridAutoColumns={props.autoColumns}
-        gridColumn={props.column}
-        gridRow={props.row}
-        gridAutoFlow={props.autoFlow}
-        gridAutoRows={props.autoRows}
-        gridTemplateRows={props.templateRows}
-        gridTemplateColumns={props.templateColumns}
+        gridArea={area}
+        gridTemplateAreas={templateAreas}
+        gridGap={gap}
+        gridRowGap={rowGap}
+        gridColumnGap={columnGap}
+        gridAutoColumns={autoColumns}
+        gridColumn={column}
+        gridRow={row}
+        gridAutoFlow={autoFlow}
+        gridAutoRows={autoRows}
+        gridTemplateRows={templateRows}
+        gridTemplateColumns={templateColumns}
         {...rest}
       />
     )

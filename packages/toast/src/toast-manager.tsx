@@ -6,7 +6,7 @@ import {
   ToastMessage,
   ToastOptions,
   ToastPosition,
-} from "./Toast.types"
+} from "./toast.types"
 import { findToast, getToastPosition } from "./toast.utils"
 
 export interface Methods {

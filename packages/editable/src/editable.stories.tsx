@@ -5,7 +5,7 @@ import {
   EditablePreview,
   useEditableControls,
 } from "./Editable"
-import { useEditable } from "./Editable.hook"
+import { useEditable } from "."
 import { chakra } from "@chakra-ui/system"
 
 export default {

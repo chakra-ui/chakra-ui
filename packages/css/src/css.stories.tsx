@@ -1,5 +1,5 @@
 import React from "react"
-import { css } from "./css"
+import { css } from "."
 
 export default {
   title: "css",

@@ -1,6 +1,5 @@
 import { CloseButton, CloseButtonProps } from "@chakra-ui/close-button"
 import { useSafeLayoutEffect } from "@chakra-ui/hooks"
-import { Portal } from "@chakra-ui/portal"
 import { chakra, PropsOf } from "@chakra-ui/system"
 import {
   createContext,

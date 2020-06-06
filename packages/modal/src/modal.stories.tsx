@@ -11,7 +11,7 @@ import {
   ModalHeader,
   ModalOverlay,
   ModalCloseButton,
-} from "./Modal"
+} from "."
 
 export default {
   title: "Modal",

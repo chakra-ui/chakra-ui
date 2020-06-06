@@ -9,20 +9,30 @@ import {
   Flex,
   Avatar,
   SimpleGrid,
-  Link,
+  chakra,
 } from "@chakra-ui/core"
 
 function GuidePreview(props) {
-  const { title, children, createdAt, birthTime, contributors, ...rest } = props
+  const {
+    title,
+    children,
+    createdAt,
+    birthTime,
+    url,
+    contributors,
+    ...rest
+  } = props
+  const creator = contributors[0] || {}
   return (
-    <Link as={GatsbyLink}>
+    <chakra.a as={GatsbyLink} to={url}>
       <Flex
         transition="all 0.3s"
         direction="column"
         height="100%"
+        borderWidth="1px"
         justify-content="space-between"
         as="article"
-        boxShadow="md"
+        boxShadow="sm"
         _hover={{ boxShadow: "lg" }}
         borderRadius="lg"
         overflow="hidden"
@@ -37,8 +47,8 @@ function GuidePreview(props) {
         </Box>
         <Flex justify="space-between" mt="6" color="gray.500" width="100%">
           <Stack align="center" direction="row" flex="1">
-            <Avatar size="sm" />
-            <Text fontSize="sm">Segun Adebayo</Text>
+            <Avatar size="sm" name={creator.name} src={creator.image} />
+            <Text fontSize="sm">{creator.name}</Text>
           </Stack>
           <Text fontSize="sm">
             <span>Created at: </span>
@@ -46,7 +56,7 @@ function GuidePreview(props) {
           </Text>
         </Flex>
       </Flex>
-    </Link>
+    </chakra.a>
   )
 }
 
@@ -56,6 +66,7 @@ function Guides() {
       allMdx(filter: { fields: { collection: { eq: "guides" } } }) {
         nodes {
           fields {
+            slug
             contributors {
               name
               image
@@ -80,7 +91,7 @@ function Guides() {
     <Box pt="56px">
       <Box py="80px">
         <Container maxWidth="lg">
-          <Heading as="h1" size="xl" mb="3">
+          <Heading as="h1" size="2xl" mb="3">
             Guides
           </Heading>
           <Text>A list of guides for using Chakra UI with any project.</Text>
@@ -90,12 +101,13 @@ function Guides() {
         <SimpleGrid columns={[1, 1, 2]} spacing="24px">
           {allMdx.nodes.map(
             ({
-              fields: { contributors },
+              fields: { contributors, slug },
               frontmatter: { title, description },
               parent: { createdAt, birthTime },
             }) => (
               <GuidePreview
                 key={title}
+                url={slug}
                 title={title}
                 birthTime={birthTime}
                 createdAt={createdAt}

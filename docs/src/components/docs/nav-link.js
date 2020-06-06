@@ -23,7 +23,7 @@ const StyledLink = chakra(Link, {
 
 export const SideNavLink = forwardRef((props, ref) => {
   const { children, icon, href, ...rest } = props
-  const color = useColorModeValue("gray.700", "whiteAlpha.700")
+  const color = useColorModeValue("gray.700", "whiteAlpha.900")
 
   return (
     <StyledLink to={href} ref={ref} mx={-2} color={color} {...rest}>

@@ -8,9 +8,13 @@ import Header from "./header"
 import { Footer } from "./footer"
 import { SkipNavContent, SkipNavLink } from "@chakra-ui/skip-nav"
 
+const Main = (props) => (
+  <Box as="main" minH="72vh" pt={8} px={5} mt="4rem" {...props} />
+)
+
 const HomeLayout = ({ children }) => (
   <Box>
-    <Header isConstrained />
+    <Header />
     <SkipNavContent />
     {children}
   </Box>
@@ -28,9 +32,7 @@ const DocsLayout = ({ children }) => {
         />
         <Box pl={[0, null, "18rem"]} py={2} mb={20}>
           <SkipNavContent />
-          <Box as="main" minH="72vh" pt={8} px={5} mt="4rem">
-            {children}
-          </Box>
+          <Main>{children}</Main>
           <Footer />
         </Box>
       </Box>
@@ -42,11 +44,9 @@ const GuidesLayout = ({ children }) => {
   return (
     <MDXProvider components={MDXComponents}>
       <Header />
-
-      <Box>
-        <Box as="main" minH="72vh" pt={8} px={5} mt="4rem">
-          {children}
-        </Box>
+      <Box mb="80px">
+        <SkipNavContent />
+        <Main>{children}</Main>
         <Footer />
       </Box>
     </MDXProvider>

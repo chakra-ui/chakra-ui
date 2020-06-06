@@ -1,7 +1,7 @@
 import { useDisclosure, useIds, useBoolean } from "@chakra-ui/hooks"
 import { Placement, usePopper } from "@chakra-ui/popper"
 import * as React from "react"
-import { useBlurOutside, useFocusOnHide, useFocusOnShow } from "./Popover.utils"
+import { useBlurOutside, useFocusOnHide, useFocusOnShow } from "./popover.utils"
 import { mergeRefs, Dict, callAllHandlers } from "@chakra-ui/utils"
 
 export interface UsePopoverProps {
@@ -67,7 +67,7 @@ export interface UsePopoverProps {
   arrowSize?: number
 }
 
-export function usePopover(props: UsePopoverProps = {}) {
+export function usePopover (props: UsePopoverProps = {}) {
   const {
     closeOnBlur = true,
     closeOnEsc = true,

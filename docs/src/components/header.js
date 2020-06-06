@@ -12,7 +12,6 @@ import {
 } from "@chakra-ui/core"
 import { DiGithubBadge } from "react-icons/di"
 import { FaMoon, FaSun } from "react-icons/fa"
-import { Container } from "./container"
 import Search from "./algolia-search"
 import Logo from "./logo"
 import StorybookIcon from "./storybook-icon"
@@ -32,7 +31,7 @@ const NavLink = (props) => {
       as={GatsbyLink}
       to={to}
       display="block"
-      color="gray.600"
+      color={useColorModeValue("gray.600", "whiteAlpha.800")}
       fontWeight="normal"
       _hover={{ color: "teal.500" }}
       _activeLink={{
@@ -45,7 +44,7 @@ const NavLink = (props) => {
 }
 
 const HeaderContent = () => {
-  const [, toggleColorMode] = useColorMode()
+  const [, toggleMode] = useColorMode()
   const text = useColorModeValue("dark", "light")
   const Icon = useColorModeValue(FaMoon, FaSun)
 
@@ -91,7 +90,7 @@ const HeaderContent = () => {
           variant="ghost"
           color="current"
           marginLeft="2"
-          onClick={toggleColorMode}
+          onClick={toggleMode}
           icon={<Icon />}
         />
         <MobileNav />
@@ -100,7 +99,7 @@ const HeaderContent = () => {
   )
 }
 
-const Header = ({ isConstrained, ...props }) => {
+const Header = (props) => {
   const bg = useColorModeValue("white", "gray.800")
   return (
     <chakra.header
@@ -115,13 +114,7 @@ const Header = ({ isConstrained, ...props }) => {
       height="4rem"
       {...props}
     >
-      {isConstrained ? (
-        <Container h="100%">
-          <HeaderContent />
-        </Container>
-      ) : (
-        <HeaderContent />
-      )}
+      <HeaderContent />
     </chakra.header>
   )
 }

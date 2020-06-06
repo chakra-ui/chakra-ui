@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Textarea } from "./Textarea"
+import { Textarea } from "."
 import { chakra } from "@chakra-ui/system"
 
 export default {
