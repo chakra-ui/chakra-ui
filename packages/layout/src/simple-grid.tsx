@@ -1,4 +1,4 @@
-import { ResponsiveValue } from "@chakra-ui/system"
+import { ResponsiveValue, forwardRef } from "@chakra-ui/system"
 import { mapResponsive, isNumber, isNull, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { Grid, GridProps } from "./grid"
@@ -36,8 +36,8 @@ export type SimpleGridProps = GridProps & SimpleGridOptions
  *
  * @see Docs https://chakra-ui.com/components/simplegrid
  */
-export const SimpleGrid = React.forwardRef(
-  (props: SimpleGridProps, ref: React.Ref<any>) => {
+export const SimpleGrid = forwardRef<SimpleGridProps, "div">(
+  function SimpleGrid(props, ref) {
     const {
       columns,
       spacingX,

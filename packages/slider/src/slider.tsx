@@ -1,6 +1,7 @@
 import {
   chakra,
   PropsOf,
+  forwardRef,
   ThemingProps,
   useThemeDefaultProps,
   ThemingProvider,
@@ -13,7 +14,6 @@ import { useSlider, UseSliderProps, UseSliderReturn } from "./use-slider"
 type SliderContext = Omit<UseSliderReturn, "getInputProps" | "getRootProps">
 
 const [SliderProvider, useSliderContext] = createContext<SliderContext>({
-  strict: true,
   name: "SliderContext",
   errorMessage: "useSliderContext can only be used within SliderProvider",
 })
@@ -46,7 +46,10 @@ const StyledSlider = chakra("div", {
  * @see Docs     https://chakra-ui.com/components/slider
  * @see WAI-ARIA https://www.w3.org/TR/wai-aria-practices/#slider
  */
-export function Slider(props: SliderProps) {
+export const Slider = forwardRef<SliderProps, "input">(function Slider(
+  props,
+  ref,
+) {
   const defaults = useThemeDefaultProps("Slider")
 
   const {
@@ -68,17 +71,17 @@ export function Slider(props: SliderProps) {
     <SliderProvider value={context}>
       <ThemingProvider value={themingProps}>
         <StyledSlider
-          data-chakra-slider=""
+          className="chakra-slider"
           {...themingProps}
           {...getRootProps()}
         >
           {props.children}
-          <input {...getInputProps()} />
+          <input {...getInputProps({ ref })} />
         </StyledSlider>
       </ThemingProvider>
     </SliderProvider>
   )
-}
+})
 
 if (__DEV__) {
   Slider.displayName = "Slider"
@@ -114,7 +117,13 @@ export type SliderThumbProps = PropsOf<typeof StyledThumb>
 export function SliderThumb(props: SliderThumbProps) {
   const { getThumbProps } = useSliderContext()
   const themingProps = useThemingContext()
-  return <StyledThumb {...themingProps} {...getThumbProps(props)} />
+  return (
+    <StyledThumb
+      className="chakra-slider__thumb"
+      {...themingProps}
+      {...getThumbProps(props)}
+    />
+  )
 }
 
 if (__DEV__) {
@@ -145,7 +154,13 @@ export type SliderTrackProps = PropsOf<typeof StyledTrack>
 export function SliderTrack(props: SliderTrackProps) {
   const { getTrackProps } = useSliderContext()
   const themingProps = useThemingContext()
-  return <StyledTrack {...themingProps} {...getTrackProps(props)} />
+  return (
+    <StyledTrack
+      className="chakra-slider__track"
+      {...themingProps}
+      {...getTrackProps(props)}
+    />
+  )
 }
 
 if (__DEV__) {
@@ -179,7 +194,13 @@ export type SliderInnerTrackProps = PropsOf<typeof StyledFilledTrack>
 export function SliderFilledTrack(props: SliderInnerTrackProps) {
   const { getInnerTrackProps } = useSliderContext()
   const themingProps = useThemingContext()
-  return <StyledFilledTrack {...themingProps} {...getInnerTrackProps(props)} />
+  return (
+    <StyledFilledTrack
+      className="chakra-slider__filled-track"
+      {...themingProps}
+      {...getInnerTrackProps(props)}
+    />
+  )
 }
 
 if (__DEV__) {
@@ -200,7 +221,12 @@ const StyledMarker = chakra("div")
  */
 export function SliderMark(props: SliderMarkProps) {
   const { getMarkerProps } = useSliderContext()
-  return <StyledMarker data-chakra-slider-mark="" {...getMarkerProps(props)} />
+  return (
+    <StyledMarker
+      className="chakra-slider__marker"
+      {...getMarkerProps(props)}
+    />
+  )
 }
 
 if (__DEV__) {

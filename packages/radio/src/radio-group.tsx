@@ -1,4 +1,4 @@
-import { ThemingProps, chakra, PropsOf } from "@chakra-ui/system"
+import { ThemingProps, chakra, PropsOf, forwardRef } from "@chakra-ui/system"
 import { createContext, __DEV__, cx } from "@chakra-ui/utils"
 import * as React from "react"
 import {
@@ -32,24 +32,20 @@ export type RadioGroupProps = UseRadioGroupProps &
  *
  * @see Docs https://chakra-ui.com/components/radio
  */
-export const RadioGroup = React.forwardRef(
-  (props: RadioGroupProps, ref: React.Ref<any>) => {
+export const RadioGroup = forwardRef<RadioGroupProps, "div">(
+  function RadioGroup(props, ref) {
     const {
       colorScheme,
       size,
       variant,
       children,
       className,
-      ...radioGroupProps
+      ...hookProps
     } = props
 
-    const {
-      value,
-      onChange,
-      getRootProps,
-      name,
-      htmlProps: rest,
-    } = useRadioGroup(radioGroupProps)
+    const { value, onChange, getRootProps, name, htmlProps } = useRadioGroup(
+      hookProps,
+    )
 
     const group = React.useMemo(
       () => ({
@@ -63,7 +59,7 @@ export const RadioGroup = React.forwardRef(
       [size, name, onChange, colorScheme, value, variant],
     )
 
-    const groupProps = getRootProps({ ref, ...rest })
+    const groupProps = getRootProps({ ref, ...htmlProps })
     const _className = cx("chakra-radio-group", className)
 
     return (

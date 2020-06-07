@@ -53,7 +53,8 @@
     "tslib": "1.11.1"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.0.0"
+    "@chakra-ui/system": "1.0.0",
+    "@chakra-ui/utils": "1.0.0"
   },
   "peerDependencies": {
     "@chakra-ui/system": "1.0.0",

@@ -20,9 +20,9 @@ if (__DEV__) {
  * As a constraint, you can't pass size related props
  * Only `size` would be allowed
  */
-type SizeProps = "size" | "boxSize" | "width" | "height" | "w" | "h"
+type Omitted = "size" | "boxSize" | "width" | "height" | "w" | "h"
 
-export type SquareProps = Omit<BoxProps, SizeProps> & {
+export type SquareProps = Omit<BoxProps, Omitted> & {
   /**
    * The size (width and height) of the square
    */
@@ -33,32 +33,37 @@ export type SquareProps = Omit<BoxProps, SizeProps> & {
   centerContent?: boolean
 }
 
-export const Square = forwardRef<SquareProps, "div">(function Square(props, ref) {
-    const { size, centerContent = true, ...rest } = props
-    const centerProps: BoxProps = centerContent
-      ? { display: "flex", alignItems: "center", justifyContent: "center" }
-      : {}
-    return (
-      <Box
-        flexShrink={0}
-        flexGrow={0}
-        boxSize={size}
-        ref={ref}
-        {...centerProps}
-        {...rest}
-      />
-    )
-  },
-)
+export const Square = forwardRef<SquareProps, "div">(function Square(
+  props,
+  ref,
+) {
+  const { size, centerContent = true, ...rest } = props
+  const centerProps: BoxProps = centerContent
+    ? { display: "flex", alignItems: "center", justifyContent: "center" }
+    : {}
+  return (
+    <Box
+      flexShrink={0}
+      flexGrow={0}
+      boxSize={size}
+      ref={ref}
+      {...centerProps}
+      {...rest}
+    />
+  )
+})
 
 if (__DEV__) {
   Square.displayName = "Square"
 }
 
-export const Circle = forwardRef<SquareProps, "div">(function Circle(props, ref) {
-    return <Square ref={ref} borderRadius="9999px" {...props} />
-  },
-)
+export const Circle = forwardRef<SquareProps, "div">(function Circle(
+  props,
+  ref,
+) {
+  const { size, ...rest } = props
+  return <Square size={size as any} ref={ref} borderRadius="9999px" {...rest} />
+})
 
 if (__DEV__) {
   Circle.displayName = "Circle"

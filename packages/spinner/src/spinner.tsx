@@ -1,4 +1,4 @@
-import { chakra, keyframes, PropsOf } from "@chakra-ui/system"
+import { chakra, keyframes, PropsOf, forwardRef } from "@chakra-ui/system"
 import { __DEV__, cx } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 import * as React from "react"
@@ -67,8 +67,8 @@ export type SpinnerProps = PropsOf<typeof StyledSpinner> & SpinnerOptions
  *
  * @see Docs https://chakra-ui.com/components/spinner
  */
-export const Spinner = React.forwardRef(
-  (props: SpinnerProps, ref: React.Ref<any>) => {
+export const Spinner = forwardRef<SpinnerProps, "div">(
+  function Spinner(props, ref) {
     const {
       label = "Loading...",
       thickness = "2px",

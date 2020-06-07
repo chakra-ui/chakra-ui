@@ -1,4 +1,5 @@
 import * as React from "react"
+import {__DEV__} from "@chakra-ui/utils";
 import CSSTransition, {
   EndHandler,
   EnterHandler,
@@ -53,4 +54,9 @@ export function Transition(props: TransitionProps) {
       {(state) => children(getStyle(state))}
     </CSSTransition>
   )
+}
+
+
+if(__DEV__) {
+  Transition.displayName = "Transition"
 }

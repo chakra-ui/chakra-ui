@@ -1,4 +1,4 @@
-import { chakra, PropsOf, useTheme } from "@chakra-ui/system"
+import { chakra, PropsOf, useTheme, forwardRef } from "@chakra-ui/system"
 import { cx, Dict, get, mapResponsive, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -34,42 +34,34 @@ function transform(theme: Dict, props: Dict) {
  *
  * It also sets a default max-width of `60ch` (60 characters).
  */
-export const Container = React.forwardRef(
-  (props: ContainerProps, ref: React.Ref<any>) => {
-    const {
-      maxWidth,
-      width,
-      minWidth,
-      w,
-      minW,
-      maxW,
-      className,
-      ...rest
-    } = props
+export const Container = forwardRef<ContainerProps, "div">(function Container(
+  props: ContainerProps,
+  ref: React.Ref<any>,
+) {
+  const { maxWidth, width, minWidth, w, minW, maxW, className, ...rest } = props
 
-    const theme = useTheme()
+  const theme = useTheme()
 
-    const widthProps = transform(theme, {
-      maxW,
-      maxWidth,
-      width,
-      w,
-      minWidth,
-      minW,
-    })
+  const widthProps = transform(theme, {
+    maxW,
+    maxWidth,
+    width,
+    w,
+    minWidth,
+    minW,
+  })
 
-    const _className = cx("chakra-container", className)
+  const _className = cx("chakra-container", className)
 
-    return (
-      <StyledContainer
-        className={_className}
-        ref={ref}
-        {...widthProps}
-        {...rest}
-      />
-    )
-  },
-)
+  return (
+    <StyledContainer
+      className={_className}
+      ref={ref}
+      {...widthProps}
+      {...rest}
+    />
+  )
+})
 
 if (__DEV__) {
   Container.displayName = "Container"

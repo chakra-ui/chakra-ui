@@ -1,4 +1,11 @@
-import { chakra, css, PropsOf, SystemProps, useTheme } from "@chakra-ui/system"
+import {
+  chakra,
+  css,
+  PropsOf,
+  SystemProps,
+  useTheme,
+  forwardRef,
+} from "@chakra-ui/system"
 import { getValidChildren, mapResponsive, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -31,55 +38,53 @@ export type WrapProps = PropsOf<typeof chakra.div> & {
  *
  * @see Docs https://chakra-ui.com/components/wrap
  */
-export const Wrap = React.forwardRef(
-  (props: WrapProps, ref: React.Ref<any>) => {
-    const {
-      spacing = "0.5rem",
-      children,
-      justify,
-      direction,
-      align,
-      ...rest
-    } = props
+export const Wrap = forwardRef<WrapProps, "div">(function Wrap(props, ref) {
+  const {
+    spacing = "0.5rem",
+    children,
+    justify,
+    direction,
+    align,
+    ...rest
+  } = props
 
-    const theme = useTheme()
+  const theme = useTheme()
 
-    const itemSpacing = mapResponsive(spacing, (value) => {
-      const { margin } = css({ margin: value })(theme)
-      return `calc(${margin} / 2)`
-    })
+  const itemSpacing = mapResponsive(spacing, (value) => {
+    const { margin } = css({ margin: value })(theme)
+    return `calc(${margin} / 2)`
+  })
 
-    const groupSpacing = mapResponsive(spacing, (value) => {
-      const { margin } = css({ margin: value })(theme)
-      return `calc(${margin} / 2 * -1)`
-    })
+  const groupSpacing = mapResponsive(spacing, (value) => {
+    const { margin } = css({ margin: value })(theme)
+    return `calc(${margin} / 2 * -1)`
+  })
 
-    const validChildren = getValidChildren(children)
+  const validChildren = getValidChildren(children)
 
-    const clones = validChildren.map((child, index) => (
-      <chakra.li key={index} margin={itemSpacing} display="inline-flex">
-        {child}
-      </chakra.li>
-    ))
+  const clones = validChildren.map((child, index) => (
+    <chakra.li key={index} margin={itemSpacing} display="inline-flex">
+      {child}
+    </chakra.li>
+  ))
 
-    return (
-      <chakra.div ref={ref} {...rest}>
-        <chakra.ul
-          display="flex"
-          flexWrap="wrap"
-          justifyContent={justify}
-          alignItems={align}
-          flexDirection={direction}
-          listStyleType="none"
-          padding="0"
-          margin={groupSpacing}
-        >
-          {clones}
-        </chakra.ul>
-      </chakra.div>
-    )
-  },
-)
+  return (
+    <chakra.div ref={ref} {...rest}>
+      <chakra.ul
+        display="flex"
+        flexWrap="wrap"
+        justifyContent={justify}
+        alignItems={align}
+        flexDirection={direction}
+        listStyleType="none"
+        padding="0"
+        margin={groupSpacing}
+      >
+        {clones}
+      </chakra.ul>
+    </chakra.div>
+  )
+})
 
 if (__DEV__) {
   Wrap.displayName = "Wrap"

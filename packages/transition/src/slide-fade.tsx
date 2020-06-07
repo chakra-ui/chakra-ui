@@ -1,4 +1,5 @@
 import * as React from "react"
+import {__DEV__} from "@chakra-ui/utils";
 import { Transition, TransitionProps } from "./transition"
 
 export interface SlideFadeProps
@@ -43,4 +44,9 @@ export const SlideFade = (props: SlideFadeProps) => {
       {...rest}
     />
   )
+}
+
+
+if(__DEV__) {
+  SlideFade.displayName = "SlideFade"
 }

@@ -1,4 +1,5 @@
 import * as React from "react"
+import {__DEV__} from "@chakra-ui/utils";
 import { Transition, TransitionProps, TransitionStyles } from "./transition"
 
 export type FadeProps = Omit<TransitionProps, "styles" | "timeout"> & {
@@ -23,4 +24,6 @@ export function Fade(props: FadeProps) {
   )
 }
 
-export default Fade
+if(__DEV__) {
+  Fade.displayName = "Fade"
+}

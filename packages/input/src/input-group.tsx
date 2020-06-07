@@ -18,8 +18,8 @@ export { useInputGroup }
 
 export type InputGroupProps = PropsOf<typeof chakra.div> & ThemingProps
 
-export const InputGroup = React.forwardRef(
-  (props: InputGroupProps, ref: React.Ref<any>) => {
+export const InputGroup = forwardRef<InputGroupProps, "div">(
+  function InputGroup(props, ref) {
     const { className, ...rest } = props
     const { htmlProps, ...context } = useProvider(rest)
 
@@ -46,8 +46,8 @@ if (__DEV__) {
 
 function useMounted() {
   const [isMounted, setMounted] = React.useState(false)
-  const mount = () => setMounted(true)
-  const unmount = () => setMounted(false)
+  const mount = React.useCallback(() => setMounted(true), [])
+  const unmount = React.useCallback(() => setMounted(false), [])
   return { isMounted, mount, unmount }
 }
 

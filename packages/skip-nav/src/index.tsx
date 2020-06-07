@@ -1,5 +1,5 @@
 import * as React from "react"
-import { PropsOf, chakra } from "@chakra-ui/system"
+import { PropsOf, chakra, forwardRef } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 
 export type SkipNavLinkProps = PropsOf<typeof chakra.a>
@@ -35,8 +35,8 @@ const StyledLink = chakra("a", {
 /**
  * Renders a link that remains hidden until focused to skip to the main content.
  */
-export const SkipNavLink = React.forwardRef(
-  (props: SkipNavLinkProps, ref: React.Ref<any>) => {
+export const SkipNavLink = forwardRef<SkipNavLinkProps, "a">(
+  function SkipNavLink(props, ref) {
     const { id = fallbackId, sx, ...rest } = props
     return (
       <StyledLink
@@ -63,8 +63,8 @@ export type SkipNavContentProps = PropsOf<"div">
 /**
  * Renders a div as the target for the link.
  */
-export const SkipNavContent = React.forwardRef(
-  (props: SkipNavContentProps, ref: React.Ref<any>) => {
+export const SkipNavContent = forwardRef<SkipNavContentProps, "div">(
+  function SkipNavContent(props, ref) {
     const { id = fallbackId, ...rest } = props
     return <chakra.div ref={ref} id={id} tabIndex={-1} outline="0" {...rest} />
   },

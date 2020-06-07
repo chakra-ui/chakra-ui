@@ -1,4 +1,5 @@
 import * as React from "react"
+import {__DEV__} from "@chakra-ui/utils";
 import { Transition, TransitionProps } from "./transition"
 
 function getTransitionStyles(initialScale: number) {
@@ -38,4 +39,8 @@ export const ScaleFade = (props: ScaleFadeProps) => {
       {...rest}
     />
   )
+}
+
+if(__DEV__) {
+  ScaleFade.displayName = "ScaleFade"
 }

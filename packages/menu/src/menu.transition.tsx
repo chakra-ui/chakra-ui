@@ -3,7 +3,7 @@ import {
   TransitionProps,
   TransitionStyles,
 } from "@chakra-ui/transition"
-import { ensureFocus } from "@chakra-ui/utils"
+import { ensureFocus, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { useMenuContext } from "./menu"
 
@@ -57,9 +57,13 @@ export const MenuTransition = (props: MenuTransitionProps) => {
       }}
       timeout={{ enter: 0, exit: 200 }}
       in={menu.isOpen}
-      styles={styles || defaultStyles}
+      styles={styles ?? defaultStyles}
       unmountOnExit={false}
       children={children}
     />
   )
+}
+
+if (__DEV__) {
+  MenuTransition.displayName = "MenuTransition"
 }

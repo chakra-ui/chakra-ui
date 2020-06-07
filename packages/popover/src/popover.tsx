@@ -1,6 +1,6 @@
 import { CloseButton, CloseButtonProps } from "@chakra-ui/close-button"
 import { useSafeLayoutEffect } from "@chakra-ui/hooks"
-import { chakra, PropsOf } from "@chakra-ui/system"
+import { chakra, PropsOf, forwardRef } from "@chakra-ui/system"
 import {
   createContext,
   isFunction,
@@ -89,8 +89,8 @@ export type PopoverContentProps = PropsOf<typeof StyledContent>
  * The popover's content wrapper that includes all
  * accessibility requirements for a popover
  */
-export const PopoverContent = React.forwardRef(
-  (props: PopoverContentProps, ref: React.Ref<any>) => {
+export const PopoverContent = forwardRef<PopoverContentProps, "section">(
+  function PopoverContent(props, ref) {
     const { getPopoverProps } = usePopoverContext()
 
     return (
@@ -125,8 +125,8 @@ export type PopoverHeaderProps = PropsOf<typeof StyledHeader>
  * for the popover's content and it's first announced by
  * screenreaders.
  */
-export const PopoverHeader = React.forwardRef(
-  (props: PopoverHeaderProps, ref: React.Ref<any>) => {
+export const PopoverHeader = forwardRef<PopoverHeaderProps, "header">(
+  function PopoverHeader(props, ref) {
     const { headerId, setHasHeader } = usePopoverContext()
 
     useSafeLayoutEffect(() => {
@@ -167,8 +167,8 @@ const StyledBody = chakra("div", {
  * Serves as the main content area for the popover. Should contain
  * at least one interactive element.
  */
-export const PopoverBody = React.forwardRef(
-  (props: PopoverBodyProps, ref: React.Ref<any>) => {
+export const PopoverBody = forwardRef<PopoverBodyProps, "div">(
+  function PopoverBody(props, ref) {
     const { bodyId, setHasBody } = usePopoverContext()
 
     useSafeLayoutEffect(() => {
@@ -185,6 +185,10 @@ if (__DEV__) {
 }
 
 export const PopoverFooter = chakra("footer", { themeKey: "Popover.Footer" })
+
+if (__DEV__) {
+  PopoverFooter.displayName = "PopoverFooter"
+}
 
 export type PopoverCloseButtonProps = CloseButtonProps
 

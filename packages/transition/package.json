@@ -45,6 +45,7 @@
   },
   "dependencies": {
     "tslib": "1.11.1",
+    "@chakra-ui/utils": "1.0.0",
     "react-transition-group": "4.3.0",
     "@types/react-transition-group": "4.2.4"
   },

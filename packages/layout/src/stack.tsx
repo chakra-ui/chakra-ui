@@ -1,6 +1,7 @@
 import {
   chakra,
   css,
+  forwardRef,
   ResponsiveValue,
   PropsOf,
   SystemProps,
@@ -71,8 +72,8 @@ export const StackItem = (props: PropsOf<typeof chakra.div>) => (
  * @see Docs https://chakra-ui.com/components/stack
  *
  */
-export const Stack = React.forwardRef(
-  (props: StackProps, ref: React.Ref<any>) => {
+export const Stack = forwardRef<StackProps, "div">(
+  function Stack(props, ref) {
     const {
       direction = "column",
       align = "flex-start",

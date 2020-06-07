@@ -110,7 +110,8 @@ const SubmenuSvg = (props: PropsOf<"svg">) => (
 /**
  * The trigger for the menu list. Must be a direct child of `Menu`.
  */
-export const MenuButton = forwardRef<MenuButtonProps, "button">(function MenuButton(props, ref) {
+export const MenuButton = forwardRef<MenuButtonProps, "button">(
+  function MenuButton(props, ref) {
     const { children, submenuIcon = <SubmenuSvg />, ...rest } = props
 
     const context = useMenuContext()
@@ -154,14 +155,16 @@ const StyledMenuList = chakra("div", {
   pure: true,
 })
 
-export const MenuList = forwardRef<MenuListProps, "div">(function MenuList(props, ref) {
-    const context = useMenuContext()
-    const ownProps = useMenuList({ context, ...props })
-    const ownRef = mergeRefs(ownProps.ref, ref)
+export const MenuList = forwardRef<MenuListProps, "div">(function MenuList(
+  props,
+  ref,
+) {
+  const context = useMenuContext()
+  const ownProps = useMenuList({ context, ...props })
+  const ownRef = mergeRefs(ownProps.ref, ref)
 
-    return <StyledMenuList {...ownProps} ref={ownRef} />
-  },
-)
+  return <StyledMenuList {...ownProps} ref={ownRef} />
+})
 
 if (__DEV__) {
   MenuList.displayName = "MenuList"
@@ -199,36 +202,38 @@ interface MenuItemOptions extends Omit<UseMenuItemProps, "context"> {
 
 export type MenuItemProps = PropsOf<typeof StyledMenuItem> & MenuItemOptions
 
-export const MenuItem = forwardRef<MenuItemProps, "button">(function MenuItem(props, ref) {
-    const {
-      icon,
-      iconSpacing = "0.75rem",
-      command,
-      children,
-      ...htmlProps
-    } = props
+export const MenuItem = forwardRef<MenuItemProps, "button">(function MenuItem(
+  props,
+  ref,
+) {
+  const {
+    icon,
+    iconSpacing = "0.75rem",
+    command,
+    children,
+    ...htmlProps
+  } = props
 
-    const context = useMenuContext()
+  const context = useMenuContext()
 
-    const ownProps = useMenuItem({ context, ...htmlProps })
-    const ownRef = mergeRefs(ownProps.ref, ref)
+  const ownProps = useMenuItem({ context, ...htmlProps })
+  const ownRef = mergeRefs(ownProps.ref, ref)
 
-    const shouldWrapInSpan = icon || command
-    const _children = shouldWrapInSpan ? (
-      <chakra.span flex="1">{children}</chakra.span>
-    ) : (
-      children
-    )
+  const shouldWrapInSpan = icon || command
+  const _children = shouldWrapInSpan ? (
+    <chakra.span flex="1">{children}</chakra.span>
+  ) : (
+    children
+  )
 
-    return (
-      <StyledMenuItem {...ownProps} ref={ownRef}>
-        {icon && <MenuIcon fontSize="0.8em" mr={iconSpacing} children={icon} />}
-        {_children}
-        {command && <MenuItemCommand children={command} />}
-      </StyledMenuItem>
-    )
-  },
-) as ChakraComponent<"button", MenuItemOptions>
+  return (
+    <StyledMenuItem {...ownProps} ref={ownRef}>
+      {icon && <MenuIcon fontSize="0.8em" mr={iconSpacing} children={icon} />}
+      {_children}
+      {command && <MenuItemCommand children={command} />}
+    </StyledMenuItem>
+  )
+}) as ChakraComponent<"button", MenuItemOptions>
 
 if (__DEV__) {
   MenuItem.displayName = "MenuItem"
@@ -251,12 +256,9 @@ const CheckIcon = (props: PropsOf<"svg">) => (
   </svg>
 )
 
-export const MenuItemOption = forwardRef<MenuItemOptionProps, "button">(function MenuItemOption(props, ref) {
-    const {
-      icon = <CheckIcon />,
-      iconSpacing = "0.75rem",
-      ...htmlProps
-    } = props
+export const MenuItemOption = forwardRef<MenuItemOptionProps, "button">(
+  function MenuItemOption(props, ref) {
+    const { icon, iconSpacing = "0.75rem", ...htmlProps } = props
 
     const context = useMenuContext()
     const ownProps = useMenuOption({ context, ...htmlProps })
@@ -267,7 +269,7 @@ export const MenuItemOption = forwardRef<MenuItemOptionProps, "button">(function
       <StyledMenuItem {...ownProps} ref={ownRef}>
         <MenuIcon
           fontSize="0.8em"
-          children={icon}
+          children={icon || <CheckIcon />}
           mr={iconSpacing}
           visibility={props.isChecked ? "visible" : "hidden"}
         />
@@ -339,7 +341,7 @@ if (__DEV__) {
 
 //////////////////////////////////////////////////////////////////////////
 
-export const MenuIcon = (props: PropsOf<typeof chakra.div>) => {
+export const MenuIcon = (props: PropsOf<typeof chakra.span>) => {
   const { className, children, ...rest } = props
 
   const child = React.Children.only(children)

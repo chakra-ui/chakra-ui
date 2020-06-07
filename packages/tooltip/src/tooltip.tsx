@@ -1,5 +1,5 @@
 import { Portal } from "@chakra-ui/portal"
-import { chakra, PropsOf } from "@chakra-ui/system"
+import { chakra, PropsOf, forwardRef } from "@chakra-ui/system"
 import { isString, omit, pick, __DEV__ } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 import * as React from "react"
@@ -43,8 +43,8 @@ export type TooltipProps = PropsOf<typeof StyledTooltip> &
  * @see Docs     https://chakra-ui.com/components/tooltip
  * @see WAI-ARIA https://www.w3.org/TR/wai-aria-practices/#tooltip
  */
-export const Tooltip = React.forwardRef(
-  (props: TooltipProps, ref: React.Ref<any>) => {
+export const Tooltip = forwardRef<TooltipProps, "div">(
+  function Tooltip(props, ref) {
     const {
       children,
       label,

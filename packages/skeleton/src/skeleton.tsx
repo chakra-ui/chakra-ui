@@ -146,6 +146,14 @@ export function SkeletonText(props: SkeletonTextProps) {
   )
 }
 
+if (__DEV__) {
+  SkeletonText.displayName = "SkeletonText"
+}
+
 export const SkeletonCircle = ({ size = "2rem", ...rest }: SkeletonProps) => (
   <Skeleton borderRadius="full" boxSize={size} {...rest} />
 )
+
+if (__DEV__) {
+  SkeletonCircle.displayName = "SkeletonCircle"
+}
