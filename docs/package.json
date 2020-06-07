@@ -46,6 +46,7 @@
   },
   "devDependencies": {
     "eslint": "7.1.0",
-    "prettier": "2.0.5"
+    "prettier": "2.0.5",
+    "dotenv": "8.2.0"
   }
 }

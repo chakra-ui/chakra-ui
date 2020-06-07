@@ -8,6 +8,8 @@ const {
   readAllContributorsRc,
 } = require("./utils")
 
+console.log(process.env.GITHUB_API_TOKEN)
+
 exports.onCreateNode = async ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
