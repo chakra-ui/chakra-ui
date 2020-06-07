@@ -16,14 +16,6 @@ interface IImage {
    */
   alt?: string;
   /**
-   * A callback for when the image `src` has been loaded
-   */
-  onLoad?: () => void;
-  /**
-   * A callback for when there was an error loading the image `src`
-   */
-  onError?: () => void;
-  /**
    * The native HTML `width` attribute to the passed to the `img`
    */
   htmlWidth?: string | number;
