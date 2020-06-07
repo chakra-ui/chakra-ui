@@ -1,14 +1,14 @@
-import * as React from "react"
-import { pseudoSelectors } from "@chakra-ui/parser"
 import { css } from "@chakra-ui/css"
+import { pseudoSelectors } from "@chakra-ui/parser"
 import {
+  get,
+  isNumber,
   isString,
   UnionStringArray,
   __DEV__,
-  isNumber,
-  get,
 } from "@chakra-ui/utils"
-import { ChakraComponent, As, WithAs } from "./system.types"
+import * as React from "react"
+import { As, ChakraComponent } from "./system.types"
 
 /**
  * Carefully selected html elements for chakra components.

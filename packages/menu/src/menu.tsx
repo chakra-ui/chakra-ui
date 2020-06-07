@@ -1,10 +1,4 @@
-import {
-  chakra,
-  PropsOf,
-  forwardRef,
-  SystemProps,
-  ChakraComponent,
-} from "@chakra-ui/system"
+import { chakra, PropsOf, forwardRef, SystemProps } from "@chakra-ui/system"
 import {
   createContext,
   cx,
@@ -112,7 +106,7 @@ const SubmenuSvg = (props: PropsOf<"svg">) => (
  */
 export const MenuButton = forwardRef<MenuButtonProps, "button">(
   function MenuButton(props, ref) {
-    const { children, submenuIcon = <SubmenuSvg />, ...rest } = props
+    const { children, submenuIcon, ...rest } = props
 
     const context = useMenuContext()
 
@@ -129,7 +123,7 @@ export const MenuButton = forwardRef<MenuButtonProps, "button">(
       return (
         <React.Fragment>
           <chakra.span flex="1">{props.children}</chakra.span>
-          <MenuIcon mr="-0.5rem" children={submenuIcon} />
+          <MenuIcon mr="-0.5rem" children={submenuIcon || <SubmenuSvg />} />
         </React.Fragment>
       )
     }
@@ -233,7 +227,7 @@ export const MenuItem = forwardRef<MenuItemProps, "button">(function MenuItem(
       {command && <MenuItemCommand children={command} />}
     </StyledMenuItem>
   )
-}) as ChakraComponent<"button", MenuItemOptions>
+})
 
 if (__DEV__) {
   MenuItem.displayName = "MenuItem"
