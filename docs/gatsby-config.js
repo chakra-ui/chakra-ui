@@ -1,7 +1,7 @@
 const siteMetadata = {
   title: "Chakra UI | Design System built with React",
   description:
-    "Simple, Modular and Accessible UI Components for your React Applications. Built with Styled System",
+    "Simple, Modular and Accessible UI Components for your React Applications.",
   author: "Chakra UI",
   siteUrl: "https://chakra-ui.com",
   repository: "https://github.com/chakra-ui/chakra-ui",
