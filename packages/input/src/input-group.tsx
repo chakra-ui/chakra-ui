@@ -3,6 +3,7 @@ import {
   PropsOf,
   ThemingProps,
   useThemeDefaultProps,
+  forwardRef,
 } from "@chakra-ui/system"
 import { createContext, cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"

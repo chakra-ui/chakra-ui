@@ -127,7 +127,9 @@ export type AlertIconProps = PropsOf<typeof StyledWrapper>
  */
 export const AlertIcon = (props: AlertIconProps) => {
   const { status, variant } = useAlertContext()
-  const { icon: Icon, color: colorScheme } = ALERT_STATUSES[status]
+  const { icon, color: colorScheme } = ALERT_STATUSES[status]
+
+  const Icon = (icon as unknown) as React.ElementType
 
   const _className = cx("chakra-alert__icon")
 

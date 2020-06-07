@@ -31,8 +31,8 @@ export function createIcon(options: CreateIconOptions) {
     displayName,
   } = options
 
-  const Component = forwardRef<IconProps, "svg">(
-    function Component(props, ref) {
+  const Component = React.forwardRef(
+    function Component(props: IconProps, ref: React.Ref<any>) {
       const { boxSize = "1em", ...rest } = props
       return (
         <Icon ref={ref} as="svg" boxSize={boxSize} viewBox={viewBox} {...rest}>
