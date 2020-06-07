@@ -34,9 +34,11 @@ const Body = (props) => {
   } = props
   const creator = contributors[0]
   return (
-    <Box mx="auto" maxW="48rem" mt="1em">
-      <Heading as="h1">{title}</Heading>
-      <Text>{description}</Text>
+    <Box mx="auto" maxW="48rem" py="3rem">
+      <Heading size="lg" as="h1">
+        {title}
+      </Heading>
+      <Text mt="6">{description}</Text>
       {creator && (
         <Text>
           by{" "}

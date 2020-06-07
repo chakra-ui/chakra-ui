@@ -9,7 +9,7 @@ import {
   Avatar,
   SimpleGrid,
   Link,
-  Flex,
+  Wrap,
   Tooltip,
 } from "@chakra-ui/core"
 import { IoLogoTwitter, IoLogoGithub, IoIosGlobe } from "react-icons/io"
@@ -17,7 +17,13 @@ import SEO from "../components/seo"
 
 const SocialLink = ({ icon, href }) => (
   <Link display="inline-block" href={href} isExternal>
-    <Box as={icon} fontSize="xl" color="gray.700" />
+    <Box
+      as={icon}
+      transition="all 0.2s"
+      _hover={{ color: "teal.600" }}
+      fontSize="xl"
+      color="teal.500"
+    />
   </Link>
 )
 
@@ -29,7 +35,7 @@ function Member({ member }) {
       <Stack direction="row" spacing={6}>
         <Avatar size="xl" src={avatarUrl} />
         <Stack spacing={3}>
-          <Text fontWeight="bold" fontSize="2xl">
+          <Text fontWeight="bold" fontSize="md">
             {name}
           </Text>
 
@@ -92,8 +98,8 @@ function Team({ data }) {
       />
       <Box py="56px">
         <Box py="80px">
-          <Container maxWidth="lg">
-            <Heading as="h1" size="2xl" mb="3">
+          <Container maxWidth="lg" paddingX="24px">
+            <Heading as="h1" size="xl" mb="5">
               Chakra UI Team &amp; Contributors
             </Heading>
             <Text maxW="60ch">
@@ -103,28 +109,26 @@ function Team({ data }) {
             </Text>
           </Container>
         </Box>
-        <Container maxWidth="lg">
-          <Stack spacing={12}>
-            <Stack spacing={8}>
-              <Heading as="h2">Core Team</Heading>
-              <SimpleGrid columns={[1, 1, 2]} spacing={6}>
-                {sortedMemberNodes.map((member) => (
-                  <Member key={member.login} member={member} />
-                ))}
-              </SimpleGrid>
-            </Stack>
+        <Container maxWidth="lg" paddingX="24px">
+          <Stack spacing={8}>
+            <Heading size="md">Core Team</Heading>
+            <SimpleGrid columns={[1, 1, 2]} spacing="40px">
+              {sortedMemberNodes.map((member) => (
+                <Member key={member.login} member={member} />
+              ))}
+            </SimpleGrid>
+          </Stack>
 
-            <Stack spacing={8}>
-              <Heading as="h2">Project Contributors</Heading>
-              <Flex wrap="wrap">
-                {contributorsWithoutTeam.map((contributor) => (
-                  <Contributor
-                    key={contributor.login}
-                    contributor={contributor}
-                  />
-                ))}
-              </Flex>
-            </Stack>
+          <Stack spacing={8} mt="100px">
+            <Heading size="md">Project Contributors</Heading>
+            <Wrap spacing="3">
+              {contributorsWithoutTeam.map((contributor) => (
+                <Contributor
+                  key={contributor.login}
+                  contributor={contributor}
+                />
+              ))}
+            </Wrap>
           </Stack>
         </Container>
       </Box>

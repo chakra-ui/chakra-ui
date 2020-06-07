@@ -8,7 +8,6 @@ import {
   Stack,
   Flex,
   Avatar,
-  SimpleGrid,
   chakra,
 } from "@chakra-ui/core"
 import SEO from "../components/seo"
@@ -25,23 +24,21 @@ function GuidePreview(props) {
   } = props
   const creator = contributors[0] || {}
   return (
-    <chakra.a as={GatsbyLink} to={url}>
+    <chakra.a as={GatsbyLink} to={url} width="100%">
       <Flex
         transition="all 0.3s"
         direction="column"
         height="100%"
-        borderWidth="1px"
         justify-content="space-between"
         as="article"
-        boxShadow="sm"
-        _hover={{ boxShadow: "lg" }}
+        padding="32px"
+        borderWidth="1px"
         borderRadius="lg"
-        overflow="hidden"
-        padding="3rem"
+        _hover={{ boxShadow: "md" }}
         {...rest}
       >
         <Box flex="1">
-          <Heading mb="24px" lineHeight="1.4" size="md" as="h2">
+          <Heading mb="4" lineHeight="1.4" size="md">
             {title}
           </Heading>
           <Text>{children}</Text>
@@ -52,7 +49,6 @@ function GuidePreview(props) {
             <Text fontSize="sm">{creator.name}</Text>
           </Stack>
           <Text fontSize="sm">
-            <span>Created at: </span>
             <time dateTime={birthTime}>{createdAt}</time>
           </Text>
         </Flex>
@@ -98,14 +94,14 @@ function Guides() {
       <Box pt="56px">
         <Box py="80px">
           <Container maxWidth="lg">
-            <Heading as="h1" size="2xl" mb="3">
+            <Heading as="h1" size="xl" mb="3">
               Guides
             </Heading>
             <Text>A list of guides for using Chakra UI with any project.</Text>
           </Container>
         </Box>
         <Container maxWidth="lg">
-          <SimpleGrid columns={[1, 1, 2]} spacing="24px">
+          <Stack spacing="40px">
             {allMdx.nodes.map(
               ({
                 fields: { contributors, slug },
@@ -124,7 +120,7 @@ function Guides() {
                 </GuidePreview>
               ),
             )}
-          </SimpleGrid>
+          </Stack>
         </Container>
       </Box>
     </>
