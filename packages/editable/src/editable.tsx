@@ -1,4 +1,4 @@
-import { chakra, PropsOf } from "@chakra-ui/system"
+import { chakra, PropsOf, forwardRef } from "@chakra-ui/system"
 import {
   createContext,
   cx,
@@ -37,8 +37,7 @@ export type EditableProps = UseEditableProps &
  * The wrapper that provides context and logic for all editable
  * components. It renders a `div`
  */
-export const Editable = React.forwardRef(
-  (props: EditableProps, ref: React.Ref<any>) => {
+export const Editable = forwardRef<EditableProps, "div">(function Editable(props, ref) {
     const { htmlProps, ...context } = useEditable(props)
 
     const { isEditing, onSubmit, onCancel, onEdit } = context
@@ -69,8 +68,7 @@ export type EditablePreviewProps = PropsOf<typeof StyledPreview>
  * The `span` used to display the final value, in the `preview` mode
  */
 
-export const EditablePreview = React.forwardRef(
-  (props: EditablePreviewProps, ref: React.Ref<any>) => {
+export const EditablePreview = forwardRef<EditablePreviewProps, "span">(function EditablePreview(props, ref) {
     const { getPreviewProps } = useEditableContext()
     const previewProps = getPreviewProps(props)
     previewProps.ref = mergeRefs(ref, previewProps.ref)
@@ -90,8 +88,7 @@ export type EditableInputProps = PropsOf<typeof StyledInput>
  *
  * The input used in the `edit` mode
  */
-export const EditableInput = React.forwardRef(
-  (props: EditableInputProps, ref: React.Ref<HTMLInputElement>) => {
+export const EditableInput = forwardRef<EditableInputProps, "input">(function EditableInput(props, ref) {
     const { getInputProps } = useEditableContext()
     const inputProps = getInputProps({ ...props, ref })
 

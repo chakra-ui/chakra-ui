@@ -1,7 +1,6 @@
 import { useImage } from "@chakra-ui/image"
-import { chakra, PropsOf, SystemProps } from "@chakra-ui/system"
+import { chakra, PropsOf, SystemProps, forwardRef } from "@chakra-ui/system"
 import * as React from "react"
-import { forwardRef, Ref, cloneElement } from "react"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 
 interface AvatarOptions {
@@ -165,7 +164,10 @@ export type AvatarProps = PropsOf<typeof StyledAvatar> & AvatarOptions
  * React component that renders an user avatar with
  * support for fallback avatar and name-only avatars
  */
-export const Avatar = forwardRef((props: AvatarProps, ref: Ref<any>) => {
+export const Avatar = forwardRef<AvatarProps, "span">(function Avatar(
+  props,
+  ref,
+) {
   const {
     src,
     name,
@@ -214,7 +216,7 @@ export const Avatar = forwardRef((props: AvatarProps, ref: Ref<any>) => {
       return name ? (
         <InitialsAvatar getInitials={getInitials} name={name} />
       ) : (
-        cloneElement(icon, {
+        React.cloneElement(icon, {
           role: "img",
           className: cx("chakra-avatar__icon", icon.props.className),
         })

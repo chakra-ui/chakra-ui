@@ -4,6 +4,7 @@ import {
   ModalContentProps,
   ModalProps,
 } from "@chakra-ui/modal"
+import { forwardRef } from "@chakra-ui/system"
 import * as React from "react"
 
 export type AlertDialogProps = Omit<ModalProps, "initialFocusRef"> & {
@@ -15,10 +16,10 @@ export function AlertDialog(props: AlertDialogProps) {
   return <Modal {...rest} initialFocusRef={leastDestructiveRef} />
 }
 
-export const AlertDialogContent = React.forwardRef(
-  (props: ModalContentProps, ref: React.Ref<any>) => (
-    <ModalContent ref={ref} role="alertdialog" {...props} />
-  ),
+export const AlertDialogContent = forwardRef<ModalContentProps, "section">(
+  function AlertDialogContent(props, ref) {
+    return <ModalContent ref={ref} role="alertdialog" {...props} />
+  },
 )
 
 export {

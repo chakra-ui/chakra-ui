@@ -1,6 +1,6 @@
 import { useBoolean, useId, useSafeLayoutEffect } from "@chakra-ui/hooks"
 import Icon from "@chakra-ui/icon"
-import { chakra, PropsOf, useComponentStyle } from "@chakra-ui/system"
+import { chakra, PropsOf, useComponentStyle, forwardRef } from "@chakra-ui/system"
 import {
   callAllHandlers,
   createContext,
@@ -146,8 +146,7 @@ export type FormControlProps = FormControlContext &
  * This is commonly used in form elements such as `input`,
  * `select`, `textarea`, etc.
  */
-export const FormControl = React.forwardRef(
-  (props: FormControlProps, ref: React.Ref<any>) => {
+export const FormControl = forwardRef<FormControlProps, "div">(function FormControl(props, ref) {
     const { htmlProps, ...context } = useProvider(props)
 
     const _className = cx("chakra-form-control", props.className)
@@ -187,8 +186,7 @@ export type FormLabelProps = PropsOf<typeof StyledLabel>
  *
  * ♿️ Accessibilty: Every form field should have a form label.
  */
-export const FormLabel = React.forwardRef(
-  (props: FormLabelProps, ref: React.Ref<any>) => {
+export const FormLabel = forwardRef<FormLabelProps, "label">(function FormLabel(props, ref) {
     const field = useFormControlContext()
 
     return (
@@ -232,8 +230,7 @@ export type RequiredIndicatorProps = PropsOf<typeof StyledIndicator>
  * Used to show a "required" text or an asterisks (*) to indicate that
  * a field is required.
  */
-export const RequiredIndicator = React.forwardRef(
-  (props: RequiredIndicatorProps, ref: React.Ref<any>) => {
+export const RequiredIndicator = forwardRef<RequiredIndicatorProps, "span">(function RequiredIndicator(props, ref) {
     const field = useFormControlContext()
 
     if (!field?.isRequired) return null
@@ -267,8 +264,7 @@ export type HelpTextProps = PropsOf<typeof StyledHelperText>
  * about the field, such as how it will be used and what
  * types in values should be provided
  */
-export const FormHelperText = React.forwardRef(
-  (props: HelpTextProps, ref: React.Ref<any>) => {
+export const FormHelperText = forwardRef<HelpTextProps, "div">(function FormHelperText(props, ref) {
     const field = useFormControlContext()
 
     /**
@@ -320,8 +316,7 @@ export type FormErrorMessageProps = PropsOf<typeof StyledErrorText>
  * Used to provide feedback about an invalid input,
  * and suggest clear instrctions on how to fix it.
  */
-export const FormErrorMessage = React.forwardRef(
-  (props: FormErrorMessageProps, ref: React.Ref<any>) => {
+export const FormErrorMessage = forwardRef<FormErrorMessageProps, "div">(function FormErrorMessage(props, ref) {
     const field = useFormControlContext()
 
     if (!field?.isInvalid) return null
@@ -396,8 +391,7 @@ export type FormErrorIconProps = PropsOf<typeof Icon>
  * Used as the visual indicator that a field is invalid or
  * a field has incorrect values.
  */
-export const FormErrorIcon = React.forwardRef(
-  (props: FormErrorIconProps, ref: React.Ref<any>) => {
+export const FormErrorIcon = forwardRef<FormErrorIconProps, "svg">(function FormErrorIcon(props, ref) {
     const styles = useComponentStyle({ themeKey: "Form.ErrorIcon" })
     const field = useFormControlContext()
 

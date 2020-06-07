@@ -1,8 +1,8 @@
 import { FormControlOptions, useFormControl } from "@chakra-ui/form-control"
-import { chakra, PropsOf, useComponentStyle } from "@chakra-ui/system"
+import { chakra, PropsOf, useComponentStyle, forwardRef } from "@chakra-ui/system"
 import { __DEV__, cx } from "@chakra-ui/utils"
 import * as React from "react"
-import { forwardRef, Ref } from "react"
+import { Ref } from "react"
 import { useInputGroup } from "./input-group"
 
 type OmittedTypes = "disabled" | "required" | "readOnly" | "size"
@@ -51,8 +51,7 @@ const StyledInput = chakra<"input", InputOptions>("input", {
  * Element that allows users enter single valued data.
  */
 
-export const Input = forwardRef(
-  (props: InputProps, ref: Ref<HTMLInputElement>) => {
+export const Input = forwardRef<InputProps, "input">(function Input(props, ref) {
     const inputProps = useFormControl<HTMLInputElement>(props)
     const group = useInputGroup()
 

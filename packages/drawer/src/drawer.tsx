@@ -8,6 +8,7 @@ import {
   ModalOverlayProps,
   ModalOverlay,
 } from "@chakra-ui/modal"
+import { forwardRef } from "@chakra-ui/system"
 
 interface TransitionStyles {
   content: React.CSSProperties
@@ -62,8 +63,7 @@ export function Drawer(props: DrawerProps) {
   )
 }
 
-export const DrawerContent = React.forwardRef(
-  (props: ModalContentProps, ref: React.Ref<any>) => {
+export const DrawerContent = forwardRef<ModalContentProps, "section">(function DrawerContent(props, ref) {
     const { content: styles } = useTransitionContext()
     return (
       <ModalContent
@@ -79,8 +79,7 @@ export const DrawerContent = React.forwardRef(
   },
 )
 
-export const DrawerOverlay = React.forwardRef(
-  (props: ModalOverlayProps, ref: React.Ref<any>) => {
+export const DrawerOverlay = forwardRef<ModalOverlayProps, "div">(function DrawerOverlay(props, ref) {
     const { overlay: styles } = useTransitionContext()
     return (
       <ModalOverlay

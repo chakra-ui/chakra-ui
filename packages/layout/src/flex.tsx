@@ -1,5 +1,5 @@
 import * as React from "react"
-import { chakra, PropsOf, SystemProps } from "@chakra-ui/system"
+import { chakra, PropsOf, SystemProps, forwardRef  } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 
 export interface FlexOptions {
@@ -43,8 +43,7 @@ export type FlexProps = PropsOf<typeof chakra.div> & FlexOptions
  *
  * @see Docs https://chakra-ui.com/components/flex
  */
-export const Flex = React.forwardRef(
-  (props: FlexProps, ref: React.Ref<any>) => {
+export const Flex = forwardRef<FlexProps, "div">(function Flex (props, ref) {
     const { direction, align, justify, wrap, basis, grow, ...rest } = props
     return (
       <chakra.div

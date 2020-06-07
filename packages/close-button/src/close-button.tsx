@@ -1,5 +1,5 @@
 import * as React from "react"
-import { chakra, PropsOf } from "@chakra-ui/system"
+import { chakra, PropsOf, forwardRef } from "@chakra-ui/system"
 import { Icon, IconProps } from "@chakra-ui/icon"
 import { __DEV__ } from "@chakra-ui/utils"
 
@@ -9,7 +9,6 @@ import { __DEV__ } from "@chakra-ui/utils"
  * To style the input globally, change the styles in
  * `theme.components.CloseButton`
  */
-
 const StyledButton = chakra("button", {
   themeKey: "CloseButton",
   baseStyle: {
@@ -55,19 +54,17 @@ export type CloseButtonProps = PropsOf<typeof StyledButton> & {
  * It is used to handle the close functionality in feedback and overlay components
  * like Alerts, Toasts, Drawers and Modals.
  */
+export const CloseButton = forwardRef<CloseButtonProps, "button">(
+  function CloseButton(props: CloseButtonProps, ref) {
+    const { children, isDisabled, ...rest } = props
 
-export const CloseButton = (props: CloseButtonProps) => {
-  const {
-    children = <CloseIcon width="1em" height="1em" />,
-    isDisabled,
-    ...rest
-  } = props
-  return (
-    <StyledButton disabled={isDisabled} {...rest}>
-      {children}
-    </StyledButton>
-  )
-}
+    return (
+      <StyledButton ref={ref} disabled={isDisabled} {...rest}>
+        {children || <CloseIcon width="1em" height="1em" />}
+      </StyledButton>
+    )
+  },
+)
 
 if (__DEV__) {
   CloseButton.displayName = "CloseButton"

@@ -1,4 +1,4 @@
-import { chakra, PropsOf } from "@chakra-ui/system"
+import { chakra, PropsOf, forwardRef } from "@chakra-ui/system"
 import {
   Transition,
   TransitionProps,
@@ -43,8 +43,7 @@ export type CollapseProps = PropsOf<typeof chakra.div> & {
   easing?: string
 }
 
-export const Collapse = React.forwardRef(
-  (props: CollapseProps, forwardedRef: React.Ref<any>) => {
+export const Collapse = forwardRef<CollapseProps, "div">(function Collapse(props, forwardedRef) {
     const {
       isOpen,
       children,

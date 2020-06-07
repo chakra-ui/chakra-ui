@@ -160,8 +160,8 @@ export type WithChakra<P> = P extends { transition?: any }
  * - Add the `as` prop. in this case, it doesn't do anything special.
  * - Return a JSX Element
  */
-type RegularComponent<T extends As, P> = (
-  props: WithChakra<PropsOf<T>> & P & { as?: As },
+type RegularComponent<T extends As, P, O extends string> = (
+  props: WithChakra<Omit<PropsOf<T>, keyof P | O>> & P & { as?: As },
 ) => JSX.Element
 
 /**
@@ -172,15 +172,21 @@ type RegularComponent<T extends As, P> = (
  * - Use the `WithAs` to merge the base component prop with `as` component prop
  * - Add Chakra props to the resulting types.
  */
-type ExtensibleComponent<T extends As, P> = <TT extends As = T>(
-  props: WithChakra<WithAs<PropsOf<T>, TT>> & P,
+type ExtensibleComponent<T extends As, P, O extends string> = <
+  TT extends As = T
+>(
+  props: WithChakra<WithAs<Omit<PropsOf<T>, O>, TT>> & P,
 ) => JSX.Element
 
-type Component<T extends As, P> =
-  | RegularComponent<T, P>
-  | ExtensibleComponent<T, P>
+type Component<T extends As, P, O extends string> =
+  | RegularComponent<T, P, O>
+  | ExtensibleComponent<T, P, O>
 
-export type ChakraComponent<T extends As, P = {}> = Component<T, P> & {
+export type ChakraComponent<
+  T extends As,
+  P = {},
+  O extends string = ""
+> = Component<T, P, O> & {
   displayName?: string
   propTypes?: React.WeakValidationMap<PropsOf<T> & P>
   defaultProps?: Partial<PropsOf<T> & P & ChakraProps>

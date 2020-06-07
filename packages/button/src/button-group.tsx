@@ -1,4 +1,4 @@
-import { chakra, PropsOf, ThemingProps } from "@chakra-ui/system"
+import { chakra, PropsOf, ThemingProps, forwardRef } from "@chakra-ui/system"
 import { createContext, __DEV__, cx } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -13,8 +13,8 @@ const [ButtonGroupContextProvider, useButtonGroup] = createContext<
 
 export { useButtonGroup }
 
-export const ButtonGroup = React.forwardRef(
-  (props: ButtonGroupProps, ref: React.Ref<any>) => {
+export const ButtonGroup = forwardRef<ButtonGroupProps, "div">(
+  function ButtonGroup(props, ref) {
     const { size, colorScheme, variant, className, ...rest } = props
 
     const css = {

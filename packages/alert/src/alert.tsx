@@ -4,7 +4,12 @@ import {
   WarningIcon,
   WarningTwoIcon,
 } from "@chakra-ui/icons"
-import { chakra, PropsOf, useThemeDefaultProps } from "@chakra-ui/system"
+import {
+  chakra,
+  PropsOf,
+  useThemeDefaultProps,
+  forwardRef,
+} from "@chakra-ui/system"
 import { createContext, cx } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -54,35 +59,33 @@ const StyledAlert = chakra("div", {
  * React component used to communicate the state or status of a
  * page, feature or action
  */
-export const Alert = React.forwardRef(
-  (props: AlertProps, ref: React.Ref<any>) => {
-    const defaults = useThemeDefaultProps("Alert")
+export const Alert = forwardRef<AlertProps, "div">(function Alert(props, ref) {
+  const defaults = useThemeDefaultProps("Alert")
 
-    const {
-      status = "info",
-      variant = defaults?.variant,
-      className,
-      ...rest
-    } = props
-    const colorScheme = ALERT_STATUSES[status]["color"]
+  const {
+    status = "info",
+    variant = defaults?.variant,
+    className,
+    ...rest
+  } = props
+  const colorScheme = ALERT_STATUSES[status]["color"]
 
-    const context = { status, variant }
+  const context = { status, variant }
 
-    const _className = cx("chakra-alert", className)
+  const _className = cx("chakra-alert", className)
 
-    return (
-      <AlertContextProvider value={context as AlertContext}>
-        <StyledAlert
-          ref={ref}
-          variant={variant}
-          colorScheme={colorScheme}
-          className={_className}
-          {...rest}
-        />
-      </AlertContextProvider>
-    )
-  },
-)
+  return (
+    <AlertContextProvider value={context as AlertContext}>
+      <StyledAlert
+        ref={ref}
+        variant={variant}
+        colorScheme={colorScheme}
+        className={_className}
+        {...rest}
+      />
+    </AlertContextProvider>
+  )
+})
 
 export type AlertTitleProps = PropsOf<typeof AlertTitle>
 

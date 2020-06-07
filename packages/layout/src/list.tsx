@@ -1,5 +1,5 @@
 import { Icon } from "@chakra-ui/icon"
-import { chakra, ChakraProps, PropsOf } from "@chakra-ui/system"
+import { chakra, ChakraProps, PropsOf, forwardRef } from "@chakra-ui/system"
 import { getValidChildren, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -25,8 +25,7 @@ export type ListProps = PropsOf<typeof chakra.ul> & ListOptions
  *
  * @see Docs https://chakra-ui.com/components/list
  */
-export const List = React.forwardRef(
-  (props: ListProps, ref: React.Ref<any>) => {
+export const List = forwardRef<ListProps, "ul">(function List(props, ref) {
     const {
       children,
       styleType = "none",

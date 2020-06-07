@@ -1,6 +1,6 @@
 import React from "react"
 import logo from "./logo.svg"
-import { Button, chakra, Badge } from "@chakra-ui/core"
+import { Button, chakra, Badge, Checkbox, Radio } from "@chakra-ui/core"
 
 function App() {
   return (
@@ -20,6 +20,8 @@ function App() {
         >
           Learn React
         </chakra.a>
+        <Checkbox>Welcome</Checkbox>
+        <Radio>Welcome</Radio>
         <Badge colorScheme="red" variant="outline">
           Welcome home
         </Badge>

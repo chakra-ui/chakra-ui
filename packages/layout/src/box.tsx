@@ -1,4 +1,4 @@
-import { chakra, PropsOf } from "@chakra-ui/system"
+import { chakra, PropsOf, forwardRef } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -33,8 +33,7 @@ export type SquareProps = Omit<BoxProps, SizeProps> & {
   centerContent?: boolean
 }
 
-export const Square = React.forwardRef(
-  (props: SquareProps, ref: React.Ref<any>) => {
+export const Square = forwardRef<SquareProps, "div">(function Square(props, ref) {
     const { size, centerContent = true, ...rest } = props
     const centerProps: BoxProps = centerContent
       ? { display: "flex", alignItems: "center", justifyContent: "center" }
@@ -56,8 +55,7 @@ if (__DEV__) {
   Square.displayName = "Square"
 }
 
-export const Circle = React.forwardRef(
-  (props: SquareProps, ref: React.Ref<any>) => {
+export const Circle = forwardRef<SquareProps, "div">(function Circle(props, ref) {
     return <Square ref={ref} borderRadius="9999px" {...props} />
   },
 )

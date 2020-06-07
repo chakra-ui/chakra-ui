@@ -1,6 +1,7 @@
 import {
   chakra,
   PropsOf,
+  forwardRef,
   SystemProps,
   ChakraComponent,
 } from "@chakra-ui/system"
@@ -109,8 +110,7 @@ const SubmenuSvg = (props: PropsOf<"svg">) => (
 /**
  * The trigger for the menu list. Must be a direct child of `Menu`.
  */
-export const MenuButton = React.forwardRef(
-  (props: MenuButtonProps, ref: React.Ref<any>) => {
+export const MenuButton = forwardRef<MenuButtonProps, "button">(function MenuButton(props, ref) {
     const { children, submenuIcon = <SubmenuSvg />, ...rest } = props
 
     const context = useMenuContext()
@@ -154,8 +154,7 @@ const StyledMenuList = chakra("div", {
   pure: true,
 })
 
-export const MenuList = React.forwardRef(
-  (props: MenuListProps, ref: React.Ref<any>) => {
+export const MenuList = forwardRef<MenuListProps, "div">(function MenuList(props, ref) {
     const context = useMenuContext()
     const ownProps = useMenuList({ context, ...props })
     const ownRef = mergeRefs(ownProps.ref, ref)
@@ -200,8 +199,7 @@ interface MenuItemOptions extends Omit<UseMenuItemProps, "context"> {
 
 export type MenuItemProps = PropsOf<typeof StyledMenuItem> & MenuItemOptions
 
-export const MenuItem = React.forwardRef(
-  (props: MenuItemProps, ref: React.Ref<any>) => {
+export const MenuItem = forwardRef<MenuItemProps, "button">(function MenuItem(props, ref) {
     const {
       icon,
       iconSpacing = "0.75rem",
@@ -253,8 +251,7 @@ const CheckIcon = (props: PropsOf<"svg">) => (
   </svg>
 )
 
-export const MenuItemOption = React.forwardRef(
-  (props: MenuItemOptionProps, ref: React.Ref<any>) => {
+export const MenuItemOption = forwardRef<MenuItemOptionProps, "button">(function MenuItemOption(props, ref) {
     const {
       icon = <CheckIcon />,
       iconSpacing = "0.75rem",
