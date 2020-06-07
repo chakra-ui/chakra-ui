@@ -74,25 +74,27 @@ It's critical for accessiblity.
 ## Rendering the Popover in a Portal
 
 By default, the Popover doesn't render in a Portal. To make them display in a
-portal, pass the `usePortal` prop.
+portal, wrap the `PopoverContent` in a `Portal`
 
 > You might need to **Inspect Element** to see this in action. Notice that
 > `PopoverContent` is rendered as a child of `<body>`
 
 ```jsx
-<Popover usePortal>
+<Popover>
   <PopoverTrigger>
     <Button>Trigger</Button>
   </PopoverTrigger>
-  <PopoverContent>
-    <PopoverArrow />
-    <PopoverHeader>Header</PopoverHeader>
-    <PopoverCloseButton />
-    <PopoverBody>
-      <Button colorScheme="blue">Button</Button>
-    </PopoverBody>
-    <PopoverFooter>This is the footer</PopoverFooter>
-  </PopoverContent>
+  <Portal>
+    <PopoverContent>
+      <PopoverArrow />
+      <PopoverHeader>Header</PopoverHeader>
+      <PopoverCloseButton />
+      <PopoverBody>
+        <Button colorScheme="blue">Button</Button>
+      </PopoverBody>
+      <PopoverFooter>This is the footer</PopoverFooter>
+    </PopoverContent>
+  </Portal>
 </Popover>
 ```
 

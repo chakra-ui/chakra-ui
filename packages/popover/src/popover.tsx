@@ -10,11 +10,11 @@ import {
 import * as React from "react"
 import { usePopover, UsePopoverProps, UsePopoverReturn } from "./use-popover"
 
-const [PopoverCtxProvider, usePopoverContext] = createContext<UsePopoverReturn>(
-  {
-    name: "PopoverContext",
-  },
-)
+const [PopoverContextProvider, usePopoverContext] = createContext<
+  UsePopoverReturn
+>({
+  name: "PopoverContext",
+})
 
 export type PopoverProps = UsePopoverProps & {
   /**
@@ -36,11 +36,11 @@ export const Popover = (props: PopoverProps) => {
   const context = usePopover(hookProps)
 
   return (
-    <PopoverCtxProvider value={context}>
+    <PopoverContextProvider value={context}>
       {isFunction(children)
         ? children({ isOpen: context.isOpen, onClose: context.onClose })
         : children}
-    </PopoverCtxProvider>
+    </PopoverContextProvider>
   )
 }
 
@@ -95,7 +95,7 @@ export const PopoverContent = forwardRef<PopoverContentProps, "section">(
 
     return (
       <StyledContent
-        data-chakra-popover-content=""
+        className="chakra-popover__content"
         {...getPopoverProps({ ...props, ref })}
       />
     )
@@ -136,7 +136,7 @@ export const PopoverHeader = forwardRef<PopoverHeaderProps, "header">(
 
     return (
       <StyledHeader
-        data-chakra-popover-header=""
+        className="chakra-popover__header"
         {...props}
         id={headerId}
         ref={ref}
@@ -176,7 +176,14 @@ export const PopoverBody = forwardRef<PopoverBodyProps, "div">(
       return () => setHasBody.off()
     }, [])
 
-    return <StyledBody {...props} id={bodyId} ref={ref} />
+    return (
+      <StyledBody
+        className="chakra-popover__body"
+        {...props}
+        id={bodyId}
+        ref={ref}
+      />
+    )
   },
 )
 
@@ -184,7 +191,12 @@ if (__DEV__) {
   PopoverBody.displayName = "PopoverBody"
 }
 
-export const PopoverFooter = chakra("footer", { themeKey: "Popover.Footer" })
+export const PopoverFooter = chakra("footer", {
+  themeKey: "Popover.Footer",
+  attrs: {
+    className: "chakra-popover__footer",
+  },
+})
 
 if (__DEV__) {
   PopoverFooter.displayName = "PopoverFooter"
@@ -225,7 +237,13 @@ export type PopoverArrowProps = PropsOf<typeof StyledArrow>
 
 export const PopoverArrow = (props: PopoverArrowProps) => {
   const { getArrowProps } = usePopoverContext()
-  return <StyledArrow bg="inherit" {...getArrowProps(props)} />
+  return (
+    <StyledArrow
+      className="chakra-popover__arrow"
+      bg="inherit"
+      {...getArrowProps(props)}
+    />
+  )
 }
 
 if (__DEV__) {

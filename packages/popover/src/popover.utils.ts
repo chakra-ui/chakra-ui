@@ -1,5 +1,5 @@
 import { useUpdateEffect, useEventListener } from "@chakra-ui/hooks"
-import { ensureFocus, getFirstTabbableIn, isTabbable } from "@chakra-ui/utils"
+import { ensureFocus, getFirstTabbableIn, isFocusable } from "@chakra-ui/utils"
 import * as React from "react"
 
 /**
@@ -44,15 +44,11 @@ export function useBlurOutside(
     }
   }
 
-  /**
-   * @todo consider using pointer events instead
-   */
   useEventListener("mousedown", onMouseDown)
   useEventListener("touchstart", onMouseDown)
 
   return (event: React.FocusEvent) => {
     const shouldClose = options.visible && !hasFocusWithin(popoverRef, event)
-
     if (shouldClose) {
       options.action()
     }
@@ -76,34 +72,27 @@ export function useFocusOnHide(
   popoverRef: React.RefObject<HTMLElement>,
   options: UseFocusOnHideOptions,
 ) {
+  const isFocusableRef = React.useRef(false)
   const { focusRef, autoFocus, visible } = options
 
   const shouldFocus = autoFocus && !visible
 
-  /**
-   * If the popover was closed by clicking on another
-   * element that's tabbable (like, another button),
-   * we want focus to proceed normally, not return
-   * focus to the trigger.
-   */
-  const [isTabbableTarget, setIsTabbableTarget] = React.useState(false)
-
   const onMouseDown = (event: MouseEvent) => {
     if (!options.visible) return
-
     const target = event.target as HTMLElement
-
-    if (target !== focusRef.current && !popoverRef.current?.contains(target)) {
-      setIsTabbableTarget(isTabbable(target))
+    const prevent = isFocusable(target) && target !== focusRef.current
+    if (prevent) {
+      isFocusableRef.current = true
     }
   }
 
-  /**
-   * Setup mousedown and touchstart listeners
-   * @todo maybe just use "pointerdown" with pep.js polyfill?
-   */
   useEventListener("mousedown", onMouseDown)
-  useEventListener("touchstart", onMouseDown)
+
+  React.useEffect(() => {
+    if (!visible) {
+      isFocusableRef.current = false
+    }
+  }, [visible])
 
   /**
    * Using updateEffect here to allow effect to run only when
@@ -112,12 +101,12 @@ export function useFocusOnHide(
   useUpdateEffect(() => {
     if (!shouldFocus || !popoverRef.current) return
 
-    if (isTabbableTarget) return
+    if (isFocusableRef.current) return
 
     if (focusRef.current) {
       ensureFocus(focusRef.current)
     }
-  }, [autoFocus, focusRef, visible, popoverRef, shouldFocus, isTabbableTarget])
+  }, [autoFocus, focusRef, visible, popoverRef, shouldFocus])
 }
 
 export interface UseFocusOnShowOptions {
@@ -144,6 +133,12 @@ export function useFocusOnShow(
    * `options.visible` changes, not on mount
    */
   useUpdateEffect(() => {
+    // if `autoFocus` is false, move focus to the `PopoverContent`
+    if (!autoFocus && popoverRef.current) {
+      ensureFocus(popoverRef.current)
+      return
+    }
+
     const shouldFocus = visible && autoFocus
 
     if (!shouldFocus) return

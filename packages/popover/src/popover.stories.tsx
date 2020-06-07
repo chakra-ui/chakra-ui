@@ -23,7 +23,10 @@ export default {
 }
 
 export function PopoverExample() {
-  const { getTriggerProps, getPopoverProps, onClose } = usePopover()
+  const { getTriggerProps, getPopoverProps, onClose } = usePopover({
+    returnFocus: false,
+    autoFocus: false,
+  })
 
   return (
     <>
@@ -51,8 +54,15 @@ const Button = chakra("button", {
   },
 })
 
+const Input = chakra("input", {
+  themeKey: "Input",
+  baseStyle: {
+    outline: 0,
+  },
+})
+
 export const simple = () => (
-  <Popover closeOnBlur={false}>
+  <Popover>
     <PopoverTrigger>
       <Button mt="180px">Trigger</Button>
     </PopoverTrigger>
@@ -67,11 +77,12 @@ export const simple = () => (
 
 export const basic = () => (
   <>
-    <Popover usePortal placement="top">
+    <Popover placement="top">
       <PopoverTrigger>
-        <button>Welcome home</button>
+        <Button>Welcome home</Button>
       </PopoverTrigger>
       <PopoverContent>
+        <PopoverArrow />
         <PopoverHeader>Submit now</PopoverHeader>
         <PopoverBody>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
@@ -82,9 +93,10 @@ export const basic = () => (
 
     <Popover placement="bottom">
       <PopoverTrigger>
-        <button>Welcome home</button>
+        <Button>Welcome home</Button>
       </PopoverTrigger>
       <PopoverContent>
+        <PopoverArrow />
         <PopoverCloseButton />
         <PopoverHeader>Submit now</PopoverHeader>
         <PopoverBody>
@@ -94,6 +106,6 @@ export const basic = () => (
       </PopoverContent>
     </Popover>
 
-    <input />
+    <Input />
   </>
 )

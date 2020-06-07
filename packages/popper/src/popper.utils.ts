@@ -18,6 +18,7 @@ const splitPlacement = (placement: Placement) =>
 export function getArrowStyles(
   placement: Placement,
   arrowSize: number,
+  arrowShadowColor?: string,
 ): React.CSSProperties {
   const [position] = splitPlacement(placement)
   const oppositePosition = getOppositePosition(position)
@@ -29,5 +30,26 @@ export function getArrowStyles(
     height: arrowSize,
     position: "absolute",
     transform: "rotate(45deg)",
+    boxShadow: arrowShadowColor
+      ? getBoxShadow(placement, arrowShadowColor)
+      : undefined,
+  }
+}
+
+export function getBoxShadow(placement: Placement, color: string) {
+  if (placement.includes("top")) {
+    return `2px 2px 2px 0 ${color}`
+  }
+
+  if (placement.includes("bottom")) {
+    return `-1px -1px 1px 0 ${color}`
+  }
+
+  if (placement.includes("right")) {
+    return `-1px 1px 1px 0 ${color}`
+  }
+
+  if (placement.includes("left")) {
+    return `1px -1px 1px 0 ${color}`
   }
 }
