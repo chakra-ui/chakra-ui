@@ -50,7 +50,7 @@ function LinkGroup(props) {
 const LinkGroupHeading = (props) => (
   <Heading
     size="xs"
-    color={useColorModeValue("gray.700", "whiteAlpha.600")}
+    color={useColorModeValue("gray.700", "inherit")}
     letterSpacing="wide"
     mb={2}
     textTransform="uppercase"

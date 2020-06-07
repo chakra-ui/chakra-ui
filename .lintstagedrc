@@ -1,8 +1,8 @@
 {
   "**/*.{ts,tsx,js,jsx}": [
-    "prettier --write && git add ."
+    "prettier --write"
   ],
   "**/*.{md,yml,json,babelrc,eslintrc,prettierrc}": [
-    "prettier --write && git add ."
+    "prettier --write"
   ]
 }
