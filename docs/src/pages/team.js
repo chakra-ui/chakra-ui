@@ -9,6 +9,8 @@ import {
   Avatar,
   SimpleGrid,
   Link,
+  Flex,
+  Tooltip,
 } from "@chakra-ui/core"
 import { IoLogoTwitter, IoLogoGithub, IoIosGlobe } from "react-icons/io"
 
@@ -24,7 +26,7 @@ function Member({ member }) {
   return (
     <Box>
       <Stack direction="row" spacing={6}>
-        <Avatar size="lg" src={avatarUrl} />
+        <Avatar size="xl" src={avatarUrl} />
         <Stack spacing={3}>
           <Text fontWeight="bold" fontSize="2xl">
             {name}
@@ -47,6 +49,20 @@ function Member({ member }) {
   )
 }
 
+function Contributor({ contributor }) {
+  const { login, avatarUrl } = contributor
+
+  return (
+    <Box>
+      <Tooltip hasArrow label={login} placement="top">
+        <Link href={`https://github.com/${login}`} isExternal>
+          <Avatar size="md" src={avatarUrl} />
+        </Link>
+      </Tooltip>
+    </Box>
+  )
+}
+
 const sortMembers = (a, b) => {
   // segun comes first!
   if (a.login === "segunadebayo") return -1
@@ -57,25 +73,52 @@ const sortMembers = (a, b) => {
 }
 
 function Team({ data }) {
-  const { nodes } = data.github.organization.membersWithRole
-  const sorted = nodes.sort(sortMembers)
+  const { github, contributors } = data
+  const { nodes: memberNodes } = github.organization.membersWithRole
+  const { nodes: contributorNodes } = contributors
+  const memberLogins = memberNodes.map(({ login }) => login)
+  const contributorsWithoutTeam = contributorNodes.filter(
+    ({ login }) => !memberLogins.includes(login),
+  )
+  const sortedMemberNodes = memberNodes.sort(sortMembers)
 
   return (
-    <Box pt="56px">
+    <Box py="56px">
       <Box py="80px">
         <Container maxWidth="lg">
           <Heading as="h1" size="2xl" mb="3">
-            Chakra UI Team
+            Chakra UI Team &amp; Contributors
           </Heading>
-          <Text>These are the members of the Chakra UI core team.</Text>
+          <Text maxW="60ch">
+            The people listed on this page have contributed time, effort, and
+            thought to Chakra UI. Without them, this project would not be
+            possible.
+          </Text>
         </Container>
       </Box>
       <Container maxWidth="lg">
-        <SimpleGrid columns={[1, 1, 2]} spacing={6}>
-          {sorted.map((member) => (
-            <Member key={member.login} member={member} />
-          ))}
-        </SimpleGrid>
+        <Stack spacing={12}>
+          <Stack spacing={8}>
+            <Heading as="h2">Core Team</Heading>
+            <SimpleGrid columns={[1, 1, 2]} spacing={6}>
+              {sortedMemberNodes.map((member) => (
+                <Member key={member.login} member={member} />
+              ))}
+            </SimpleGrid>
+          </Stack>
+
+          <Stack spacing={8}>
+            <Heading as="h2">Project Contributors</Heading>
+            <Flex wrap="wrap">
+              {contributorsWithoutTeam.map((contributor) => (
+                <Contributor
+                  key={contributor.login}
+                  contributor={contributor}
+                />
+              ))}
+            </Flex>
+          </Stack>
+        </Stack>
       </Container>
     </Box>
   )
@@ -98,6 +141,12 @@ export const query = graphql`
             websiteUrl
           }
         }
+      }
+    }
+    contributors: allChakraContributor {
+      nodes {
+        login
+        avatarUrl
       }
     }
   }
