@@ -72,7 +72,8 @@
     "@chakra-ui/switch": "1.0.0",
     "@chakra-ui/textarea": "1.0.0",
     "@chakra-ui/alert-dialog": "1.0.0",
-    "@chakra-ui/drawer": "1.0.0"
+    "@chakra-ui/drawer": "1.0.0",
+    "@chakra-ui/skeleton": "1.0.0"
   },
   "peerDependencies": {
     "react": "16.x",
