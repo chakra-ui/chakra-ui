@@ -80,7 +80,12 @@ export function useFocusOnHide(
   const onMouseDown = (event: MouseEvent) => {
     if (!options.visible) return
     const target = event.target as HTMLElement
-    const prevent = isFocusable(target) && target !== focusRef.current
+
+    const prevent =
+      isFocusable(target) &&
+      target !== focusRef.current &&
+      !(popoverRef.current as HTMLElement).contains(target)
+
     if (prevent) {
       isFocusableRef.current = true
     }
@@ -88,9 +93,11 @@ export function useFocusOnHide(
 
   useEventListener("mousedown", onMouseDown)
 
-  React.useEffect(() => {
-    if (!visible) {
-      isFocusableRef.current = false
+  useUpdateEffect(() => {
+    return () => {
+      if (!visible) {
+        isFocusableRef.current = false
+      }
     }
   }, [visible])
 
