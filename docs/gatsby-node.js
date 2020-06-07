@@ -5,6 +5,7 @@ const {
   sortPostNodes,
   getRelativePagePath,
   getNodeContributors,
+  readAllContributorsRc,
 } = require("./utils")
 
 exports.onCreateNode = async ({ node, actions, getNode }) => {
@@ -158,5 +159,30 @@ exports.createPages = async ({ graphql, actions }) => {
         relativePath,
       },
     })
+  })
+}
+
+exports.sourceNodes = async ({
+  createNodeId,
+  createContentDigest,
+  actions,
+}) => {
+  const { createNode } = actions
+
+  const contributors = await readAllContributorsRc()
+  contributors.forEach(({ login, avatar_url }) => {
+    const id = createNodeId(`contributors__${login}`)
+    const contributor = { login, avatarUrl: avatar_url }
+    const nodeContent = JSON.stringify(contributor)
+    const nodeMeta = {
+      id,
+      internal: {
+        type: "ChakraContributor",
+        content: nodeContent,
+        contentDigest: createContentDigest(contributor),
+      },
+    }
+    const node = { ...contributor, ...nodeMeta }
+    createNode(node)
   })
 }

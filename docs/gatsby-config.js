@@ -1,7 +1,7 @@
 const siteMetadata = {
-  title: "Chakra UI | Design System built with React",
+  title: "Chakra UI",
   description:
-    "Simple, Modular and Accessible UI Components for your React Applications. Built with Styled System",
+    "Simple, Modular and Accessible UI Components for your React Applications.",
   author: "Chakra UI",
   siteUrl: "https://chakra-ui.com",
   repository: "https://github.com/chakra-ui/chakra-ui",
@@ -53,6 +53,17 @@ module.exports = {
       options: {
         name: `pages`,
         path: `${__dirname}/pages`,
+      },
+    },
+    {
+      resolve: `gatsby-source-graphql`,
+      options: {
+        typeName: "GitHub",
+        fieldName: "github",
+        url: "https://api.github.com/graphql",
+        headers: {
+          Authorization: `Bearer ${process.env.GITHUB_API_TOKEN}`,
+        },
       },
     },
     "gatsby-transformer-sharp",

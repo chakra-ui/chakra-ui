@@ -62,6 +62,7 @@ const HeaderContent = () => {
         <HStack as="nav" spacing="8" ml="32px">
           <NavLink to="/getting-started">Docs</NavLink>
           <NavLink to="/guides">Guides</NavLink>
+          <NavLink to="/team">Team</NavLink>
         </HStack>
       </Flex>
 

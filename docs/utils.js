@@ -1,3 +1,5 @@
+const fs = require("fs").promises
+const path = require("path")
 const _ = require("lodash/fp")
 const { Octokit } = require("@octokit/rest")
 
@@ -75,4 +77,16 @@ const getNodeContributors = async (node) => {
   return contributors
 }
 
-module.exports = { sortPostNodes, getRelativePagePath, getNodeContributors }
+const readAllContributorsRc = async () => {
+  const rcPath = path.resolve("..", ".all-contributorsrc")
+  const contributorsRcData = await fs.readFile(rcPath, "utf-8")
+  const { contributors } = JSON.parse(contributorsRcData)
+  return contributors
+}
+
+module.exports = {
+  sortPostNodes,
+  getRelativePagePath,
+  getNodeContributors,
+  readAllContributorsRc,
+}
