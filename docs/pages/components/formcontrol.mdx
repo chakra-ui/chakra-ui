@@ -38,12 +38,10 @@ import {
 ## Usage
 
 ```jsx
-<FormControl>
-  <FormLabel htmlFor="email">Email address</FormLabel>
-  <Input type="email" id="email" aria-describedby="email-helper-text" />
-  <FormHelperText id="email-helper-text">
-    We'll never share your email.
-  </FormHelperText>
+<FormControl id="email">
+  <FormLabel>Email address</FormLabel>
+  <Input type="email" />
+  <FormHelperText>We'll never share your email.</FormHelperText>
 </FormControl>
 ```
 
@@ -53,14 +51,14 @@ import {
 <FormControl as="fieldset">
   <FormLabel as="legend">Favorite Naruto Character</FormLabel>
   <RadioGroup defaultValue="Itachi">
-    <Radio value="Sasuke">Sasuke</Radio>
-    <Radio value="Nagato">Nagato</Radio>
-    <Radio value="Itachi">Itachi</Radio>
-    <Radio value="Sage of the six Paths">Sage of the six Paths</Radio>
+    <HStack spacing="24px">
+      <Radio value="Sasuke">Sasuke</Radio>
+      <Radio value="Nagato">Nagato</Radio>
+      <Radio value="Itachi">Itachi</Radio>
+      <Radio value="Sage of the six Paths">Sage of the six Paths</Radio>
+    </HStack>
   </RadioGroup>
-  <FormHelperText id="email-helper-text">
-    Select only if you're a fan.
-  </FormHelperText>
+  <FormHelperText>Select only if you're a fan.</FormHelperText>
 </FormControl>
 ```
 
@@ -70,18 +68,23 @@ By passing the `isRequired` props, the `Input` field has `aria-required` set to
 `true`, and the `FormLabel` will show a red asterisk.
 
 ```jsx
-<FormControl isRequired>
-  <FormLabel htmlFor="fname">First name</FormLabel>
-  <Input id="fname" placeholder="First name" />
+<FormControl id="first-name" isRequired>
+  <FormLabel>
+    First name <RequiredIndicator />
+  </FormLabel>
+  <Input placeholder="First name" />
 </FormControl>
 ```
 
 ### Select Example
 
 ```jsx
-<FormControl>
-  <FormLabel htmlFor="country">Country</FormLabel>
-  <Select id="country" placeholder="Select country" />
+<FormControl id="country">
+  <FormLabel>Country</FormLabel>
+  <Select placeholder="Select country">
+    <option>United Arab Emirates</option>
+    <option>Nigeria</option>
+  </Select>
 </FormControl>
 ```
 

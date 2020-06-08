@@ -106,46 +106,47 @@ export interface SelectProps extends SelectFieldProps {
 /**
  * React component used to select one item from a list of options.
  */
-export const Select = forwardRef<SelectProps, "select", Omitted>(
-  function Select(props, ref) {
-    const {
-      rootProps,
-      placeholder,
-      icon,
-      iconSize = "1.25rem",
-      iconColor,
-      color,
-      isFullWidth,
-      ...rest
-    } = props
+export const Select = forwardRef<SelectProps, "select">(function Select(
+  props,
+  ref,
+) {
+  const {
+    rootProps,
+    placeholder,
+    icon,
+    iconSize = "1.25rem",
+    iconColor,
+    color,
+    isFullWidth,
+    ...rest
+  } = props
 
-    const opacity = props.isDisabled ? 0.5 : undefined
-    const [layoutProps, otherProps] = split(rest, layoutPropNames as any[])
-    const styles = useComponentStyle({ themeKey: "Select", ...props })
+  const opacity = props.isDisabled ? 0.5 : undefined
+  const [layoutProps, otherProps] = split(rest, layoutPropNames as any[])
+  const styles = useComponentStyle({ themeKey: "Select", ...props })
 
-    return (
-      <chakra.div
-        position="relative"
-        width={isFullWidth ? "100%" : "auto"}
-        color={color}
-        className="chakra-select__wrapper"
-        {...layoutProps}
-        {...rootProps}
-      >
-        <SelectField ref={ref} placeholder={placeholder} {...otherProps}>
-          {props.children}
-        </SelectField>
+  return (
+    <chakra.div
+      position="relative"
+      width={isFullWidth ? "100%" : "auto"}
+      color={color}
+      className="chakra-select__wrapper"
+      {...layoutProps}
+      {...rootProps}
+    >
+      <SelectField ref={ref} placeholder={placeholder} {...otherProps}>
+        {props.children}
+      </SelectField>
 
-        <SelectIcon
-          opacity={opacity}
-          iconSize={iconSize}
-          iconColor={iconColor || styles?.color}
-          children={icon}
-        />
-      </chakra.div>
-    )
-  },
-)
+      <SelectIcon
+        opacity={opacity}
+        iconSize={iconSize}
+        iconColor={iconColor || styles?.color}
+        children={icon}
+      />
+    </chakra.div>
+  )
+})
 
 if (__DEV__) {
   Select.displayName = "Select"

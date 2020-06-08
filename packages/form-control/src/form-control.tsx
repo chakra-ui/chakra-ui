@@ -108,12 +108,12 @@ function useProvider(props: FormControlContext) {
   const [isFocused, setFocus] = useBoolean()
 
   const context = {
-    isRequired,
-    isInvalid,
-    isLoading,
-    isReadOnly,
-    isDisabled,
-    isFocused,
+    isRequired: !!isRequired,
+    isInvalid: !!isInvalid,
+    isLoading: !!isLoading,
+    isReadOnly: !!isReadOnly,
+    isDisabled: !!isDisabled,
+    isFocused: !!isFocused,
     onFocus: setFocus.on,
     onBlur: setFocus.off,
     hasHelpText,
@@ -246,7 +246,14 @@ export const RequiredIndicator = forwardRef<RequiredIndicatorProps, "span">(
 
     const _className = cx("chakra-form__required-indicator", props.className)
 
-    return <StyledIndicator ref={ref} {...props} className={_className} />
+    return (
+      <StyledIndicator
+        ref={ref}
+        {...props}
+        className={_className}
+        children={props.children || "*"}
+      />
+    )
   },
 )
 
