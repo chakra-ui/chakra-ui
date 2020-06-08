@@ -9,9 +9,11 @@ import {
 import { getValidChildren, mapResponsive, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-export type WrapProps = PropsOf<typeof chakra.div> & {
+type DivProps = PropsOf<typeof chakra.div>
+
+export type WrapProps = DivProps & {
   /**
-   * The space between the clustered child elements
+   * The space between the each child (even if it wraps)
    */
   spacing?: SystemProps["margin"]
   /**

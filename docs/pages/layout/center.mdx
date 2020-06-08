@@ -1,0 +1,76 @@
+---
+title: Center
+package: "@chakra-ui/layout"
+image: "components/center.svg"
+description:
+  Box is the most abstract component on top of which all other Chakra UI
+  components are built. By default, it renders a `div` element
+---
+
+import ComponentLinks from "../../src/components/component-links"
+
+# Center
+
+Center is a layout component that centers its child within itself.
+
+<ComponentLinks
+  github={{ url: "#" }}
+  storybook={{ url: "#" }}
+  npm={{ label: "@chakra-ui/layout", url: "#" }}
+/>
+
+<carbon-ad></carbon-ad>
+
+## Import
+
+```js
+import { Center, Square, Circle } from "@chakra-ui/core"
+```
+
+- **Center:** centers it's child given `width` and `height`
+- **Square:** centers it's child given `size` (width and height)
+- **Circle:** a `Square` with round `border-radius`
+
+## Usage
+
+Put any child element inside it, give it any `width` or/and `height`, it'll
+ensure the child is centered.
+
+```jsx
+<Center bg="tomato" h="100px" color="white">
+  This is the Center
+</Center>
+```
+
+### With icons
+
+Center can be used to create frames around icons or numbers
+
+```jsx
+<HStack>
+  <Center w="40px" h="40px" bg="tomato" color="white">
+    <PhoneIcon />
+  </Center>
+  <Center w="40px" h="40px" bg="tomato" color="white">
+    <Box as="span" fontWeight="bold" fontSize="lg">
+      1
+    </Box>
+  </Center>
+</HStack>
+```
+
+### Square and Circle
+
+To reduce boilerplace, we've export `Square` and `Circle` components that
+automatically centers it's children given the `size`.
+
+```jsx
+<HStack>
+  <Circle size="40px" bg="tomato" color="white">
+    <PhoneIcon />
+  </Circle>
+  <Square size="40px" bg="purple.700" color="white">
+    <PhoneIcon />
+  </Square>
+</HStack>
+```

@@ -24,8 +24,12 @@ shorthand. It renders a `div` element.
 ## Import
 
 ```js
-import { Flex } from "@chakra-ui/core"
+import { Flex, Spacer } from "@chakra-ui/core"
 ```
+
+- Flex: a `Box` with `display: flex`
+- Spacer: creates an adjustable, empty space that can be used to tune the
+  spacing between child elements within `Flex`
 
 ## Usage
 
@@ -40,19 +44,32 @@ While you can pass the verbose props, using the shorthand can save you some
 time.
 
 ```jsx
-<Flex align="center">
-  <Flex bg="green.50" align="flex-end">
+<Flex color="white">
+  <Center w="100px" bg="green.500">
     <Text>Box 1</Text>
-  </Flex>
-  <Flex bg="blue.50" size="150px" align="center" justify="center">
-    <Text textAlign="center" bg="pink.50">
-      Box 2
-    </Text>
-  </Flex>
-  <Box>
-    <Text bg="tomato" color="white">
-      Box 3
-    </Text>
+  </Center>
+  <Square bg="blue.500" size="150px">
+    <Text>Box 2</Text>
+  </Square>
+  <Box flex="1" bg="tomato">
+    <Text>Box 3</Text>
+  </Box>
+</Flex>
+```
+
+### Using the Spacer
+
+As an alternative to `Stack`, you can combine `Flex` and `Spacer` to create
+stackable and responsive layouts.
+
+```jsx
+<Flex>
+  <Box p="4" bg="red.400">
+    Box 1
+  </Box>
+  <Spacer />
+  <Box p="4" bg="green.400">
+    Box 2
   </Box>
 </Flex>
 ```
