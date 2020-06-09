@@ -248,21 +248,18 @@ function SliderInput() {
 
   return (
     <Flex>
-      <NumberInput
-        maxW="100px"
-        mr="2rem"
-        value={value}
-        onChange={handleChange}
-      />
+      <NumberInput maxW="100px" mr="2rem" value={value} onChange={handleChange}>
+        <NumberInputField />
+        <NumberInputStepper>
+          <NumberIncrementStepper />
+          <NumberDecrementStepper />
+        </NumberInputStepper>
+      </NumberInput>
       <Slider flex="1" value={value} onChange={handleChange}>
-        <SliderTrack />
-        <SliderFilledTrack />
-        <SliderThumb
-          fontSize="sm"
-          width="32px"
-          height="20px"
-          children={value}
-        />
+        <SliderTrack>
+          <SliderFilledTrack />
+        </SliderTrack>
+        <SliderThumb fontSize="sm" boxSize="32px" children={value} />
       </Slider>
     </Flex>
   )
@@ -293,7 +290,7 @@ function HookUsage() {
   const input = getInputProps({ isReadOnly: true })
 
   return (
-    <HStack>
+    <HStack maxW="320px">
       <Button {...inc}>+</Button>
       <Input {...input} />
       <Button {...dec}>-</Button>
@@ -319,13 +316,11 @@ function HookUsage() {
 ### Keyboard Navigation
 
 - When you hit the <kbd>⬆</kbd> or <kbd>⬇</kbd> key, the input value will be
-  increased or decreased by `step`
+  increased or decreased by `step`.
 - Holding down <kbd>Shift</kbd> and pressing <kbd>⬆</kbd> or <kbd>⬇</kbd> will
-  update the value by `10 * step`
+  update the value by `10 * step`.
 - Holding down <kbd>Ctrl</kbd> or <kbd>⌘</kbd>, and pressing <kbd>⬆</kbd> or
-
-  <kbd>⬆</kbd> will update the value by `0.1 * step`
-
+  <kbd>⬆</kbd> will update the value by `0.1 * step`.
 - Long pressing the up and down stepper buttons will update the value at
   intervals.
 
@@ -362,5 +357,5 @@ NumberInputStepper composes `Flex` so you can pass all `Flex` props.
 
 ### NumberDecrementStepper and NumberIncrementStepper Props
 
-NumberDecrementStepper and NumberIncrementStepper composes the `PseudoBox` props
-so you can pass all `PseudoBox` props.
+NumberDecrementStepper and NumberIncrementStepper composes the `Box` props so
+you can pass all `Box` props.
