@@ -49,7 +49,7 @@
     "@chakra-ui/utils": "1.0.0",
     "@chakra-ui/alert": "1.0.0",
     "@chakra-ui/close-button": "1.0.0",
-    "@reach/alert": "0.8.6"
+    "@reach/alert": "0.10.3"
   },
   "devDependencies": {
     "@chakra-ui/system": "1.0.0"

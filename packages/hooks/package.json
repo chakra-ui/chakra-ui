@@ -13,6 +13,7 @@
   "license": "MIT",
   "main": "dist/cjs",
   "module": "dist/esm",
+  "types": "dist/types",
   "files": [
     "dist"
   ],
@@ -45,7 +46,7 @@
     "@chakra-ui/utils": "1.0.0",
     "body-scroll-lock": "^3.0.2",
     "compute-scroll-into-view": "1.0.11",
-    "@reach/auto-id": "0.9.0",
+    "@reach/auto-id": "0.10.3",
     "copy-to-clipboard": "3.3.1"
   },
   "peerDependencies": {
@@ -53,6 +54,5 @@
   },
   "devDependencies": {
     "@types/body-scroll-lock": "2.6.1"
-  },
-  "types": "dist/types"
+  }
 }
