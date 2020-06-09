@@ -26,9 +26,6 @@ It follows the
 [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices-1.1/#spinbutton)
 for the Spinbutton widget.
 
-> 🚨 Version (v0.4.0) introduced a change to this component's API. Kindly update
-> accordingly.
-
 ## Import
 
 Chakra UI exports 5 components for the NumberInput.
@@ -158,6 +155,31 @@ support this use case.
 </NumberInput>
 ```
 
+### Formatting and Parsing the value
+
+```jsx
+function Example() {
+  const format = (val) => `$` + val
+  const parse = (val) => val.replace(/^\$/, "")
+
+  const [value, setValue] = React.useState("1.53")
+
+  return (
+    <NumberInput
+      onChange={(valueString) => setValue(parse(valueString))}
+      value={format(value)}
+      max={50}
+    >
+      <NumberInputField />
+      <NumberInputStepper>
+        <NumberIncrementStepper />
+        <NumberDecrementStepper />
+      </NumberInputStepper>
+    </NumberInput>
+  )
+}
+```
+
 ### Changing the size of the input
 
 Like the `Input` component, you can pass the `size` prop to change the size of
@@ -243,6 +265,39 @@ function SliderInput() {
         />
       </Slider>
     </Flex>
+  )
+}
+```
+
+### Create a mobile spinner
+
+Sometimes, you might need to create a mobile version of the number input. Here's
+how you can leverage the `useNumberInput` hook to build one.
+
+```jsx
+function HookUsage() {
+  const {
+    getInputProps,
+    getIncrementButtonProps,
+    getDecrementButtonProps,
+  } = useNumberInput({
+    step: 0.01,
+    defaultValue: 1.53,
+    min: 1,
+    max: 6,
+    precision: 2,
+  })
+
+  const inc = getIncrementButtonProps()
+  const dec = getDecrementButtonProps()
+  const input = getInputProps({ isReadOnly: true })
+
+  return (
+    <HStack>
+      <Button {...inc}>+</Button>
+      <Input {...input} />
+      <Button {...dec}>-</Button>
+    </HStack>
   )
 }
 ```

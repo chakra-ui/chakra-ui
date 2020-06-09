@@ -7,8 +7,10 @@ import React, { useState } from "react"
 import * as IOIcons from "react-icons/ai"
 import FocusLock from "react-focus-lock"
 import * as MDIcons from "react-icons/md"
+import * as FaIcons from "react-icons/fa"
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from "react-live"
 import Lorem from "react-lorem-component"
+import * as Loaders from "react-spinners"
 
 export const liveEditorStyle = {
   fontSize: 14,
@@ -107,7 +109,9 @@ const CodeBlock = (props) => {
       ...Formik,
       ...MDIcons,
       ...IOIcons,
+      ...FaIcons,
       ...Icons,
+      ...Loaders,
       StarIcon,
       FocusLock,
       Lorem,

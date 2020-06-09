@@ -80,8 +80,11 @@ value to `solid`, `ghost`, `outline`, or `link`.
 
 ### Button with Icon
 
-You can add left and right icons to the Button component.
-[See how to add icons](/icon) to your project
+You can add left and right icons to the Button component using the `leftIcon`
+and `RightIcon` props respectively.
+
+> Note: The `leftIcon` and `rightIcon` prop values should be react elements NOT
+> strings.
 
 ```jsx
 <Stack direction="row" spacing={4}>
@@ -112,10 +115,10 @@ You can also use icons from popular libraries like
 
 ### Button loading state
 
-Pass the `isLoading` prop to the Button component to show its loading state. You
-can optionally pass the `loadingText` prop and if you do, the button will show a
-spinner and the loading text. Otherwise, the button will take the width of the
-text label and show only the spinner
+Pass the `isLoading` prop to show its loading state. By default, the button will
+show a spinner and leave the button's width unchanged.
+
+You can also pass the `loadingText` prop to show a spinner and the loading text.
 
 ```jsx
 <Stack direction="row" spacing={4}>
@@ -133,6 +136,35 @@ text label and show only the spinner
 </Stack>
 ```
 
+You can also change the spinner itself to use custom loaders as per your design
+requirements. Pass the `spinner` prop and set it to a custom react element.
+
+```jsx
+<Button
+  isLoading
+  colorScheme="blue"
+  spinner={<BeatLoader size={8} color="white" />}
+>
+  Click me
+</Button>
+```
+
+### Social Buttons
+
+We've included the colors for common social media platforms, and you can simply
+use their buttons via the `colorScheme` prop.
+
+```jsx
+<HStack>
+  <Button colorScheme="facebook" leftIcon={<FaFacebook />}>
+    Facebook
+  </Button>
+  <Button colorScheme="twitter" leftIcon={<FaTwitter />}>
+    Twitter
+  </Button>
+</HStack>
+```
+
 ## Accessibility
 
 - Button has `role` of `button`.
@@ -140,9 +172,8 @@ text label and show only the spinner
 
 ## Composition
 
-All props you pass (`variant`,
-`colorScheme`, etc.) are converted to style props. This means you can override
-any style of the Button via props.
+All props you pass (`variant`, `colorScheme`, etc.) are converted to style
+props. This means you can override any style of the Button via props.
 
 ```jsx
 // The size prop affects the height of the button
@@ -163,8 +194,8 @@ any style of the Button via props.
 ## Custom Button
 
 In the event that you need to make your own custom button, you can leverage the
-`Box` component. It provides the `hover`, `focus`, `active` and `disabled`
-style props to style the button.
+`Box` component. It provides the `hover`, `focus`, `active` and `disabled` style
+props to style the button.
 
 ```jsx
 // Button from facebook.com
