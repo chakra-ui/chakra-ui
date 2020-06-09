@@ -23,6 +23,7 @@
     "no-eval": "error",
     "react/display-name": "off",
     "react/prop-types": "off",
-    "@typescript-eslint/no-var-requires": "off"
+    "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off"
   }
 }
