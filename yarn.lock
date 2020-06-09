@@ -3479,12 +3479,12 @@
     "@reach/component-component" "^0.1.3"
     "@reach/visually-hidden" "^0.1.4"
 
-"@reach/auto-id@0.10.2":
-  version "0.10.2"
-  resolved "https://registry.yarnpkg.com/@reach/auto-id/-/auto-id-0.10.2.tgz#a447af67241123dcb701ecd61931a2c786ed111e"
-  integrity sha512-PWFZevkHshiJV/z0L/5WQkWhe9QRzdZqC7N/JHRCoYo+odvCz9izXVRsxJf7p4sCuOCvnc8zNzAokFk2E1ZzDg==
+"@reach/auto-id@0.10.3":
+  version "0.10.3"
+  resolved "https://registry.yarnpkg.com/@reach/auto-id/-/auto-id-0.10.3.tgz#d2b6fe3ccb81b0fb44dc8bd3aca567c94ac11f5e"
+  integrity sha512-LK3qIsurXnga+gUbjl6t6msrZ+F3aZMY+k2go5Xcns9b85bNRyF/LwlUtcGSqmhgqbVYvMcnLeEdSQLZRxCGnQ==
   dependencies:
-    "@reach/utils" "^0.10.2"
+    "@reach/utils" "^0.10.3"
     tslib "^1.11.2"
 
 "@reach/component-component@^0.1.3":
@@ -3503,10 +3503,10 @@
     react-lifecycles-compat "^3.0.4"
     warning "^3.0.0"
 
-"@reach/utils@^0.10.2":
-  version "0.10.2"
-  resolved "https://registry.yarnpkg.com/@reach/utils/-/utils-0.10.2.tgz#b835a7d02bd9fa73a009f7a8286d906745809a2f"
-  integrity sha512-zLYnmE5khVolwYd1wAqa+r6885KDILrZJfVXRa5yUEZ/8ygXhUleiwNpqrAifAD6fG/AUsLa2Azi6n3Nfxf08A==
+"@reach/utils@^0.10.3":
+  version "0.10.3"
+  resolved "https://registry.yarnpkg.com/@reach/utils/-/utils-0.10.3.tgz#e30f9b172d131161953df7dd01553c57ca4e78f8"
+  integrity sha512-LoIZSfVAJMA+DnzAMCMfc/wAM39iKT8BQQ9gI1FODpxd8nPFP4cKisMuRXImh2/iVtG2Z6NzzCNgceJSrywqFQ==
   dependencies:
     "@types/warning" "^3.0.0"
     tslib "^1.11.2"
