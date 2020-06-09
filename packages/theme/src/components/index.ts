@@ -6,6 +6,7 @@ import Button from "./button"
 import Checkbox from "./checkbox"
 import CloseButton from "./close-button"
 import Code from "./code"
+import Divider from "./divider"
 import Modal from "./modal"
 import Heading from "./heading"
 import Input from "./input"
@@ -39,6 +40,7 @@ export default {
   Avatar,
   Link,
   Code,
+  Divider,
   Spinner,
   Menu,
   Tabs,

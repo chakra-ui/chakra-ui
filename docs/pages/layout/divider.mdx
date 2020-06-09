@@ -1,0 +1,69 @@
+---
+title: Divider
+package: "@chakra-ui/layout"
+image: "components/divider.svg"
+description:
+  Dividers are used to visually separate content in a list or group.
+---
+
+import ComponentLinks from "../../src/components/component-links"
+
+# Divider
+
+Dividers are used to visually separate content in a list or group.
+
+
+<ComponentLinks
+  github={{ url: "#" }}
+  storybook={{ url: "#" }}
+  npm={{ label: "@chakra-ui/layout", url: "#" }}
+/>
+
+<carbon-ad></carbon-ad>
+
+## Import
+
+```js
+import { Divider } from "@chakra-ui/core"
+```
+
+## Usage
+
+The Divider displays a thin horizontal or vertical line, and renders a `hr` tag.
+
+```jsx
+<Divider />
+```
+
+
+### Divider Variants
+
+Pass the variant prop and set it to either `horizontal` or `vertical`.
+
+```jsx
+<Divider variant="horizontal" />
+```
+
+If the vertical variant is used, make sure that the parent element is assigned a height.
+
+```jsx
+<Center height="50px">
+  <Divider variant="vertical" />
+</Center>
+```
+
+## Composition
+
+```jsx
+  <Stack direction="row" height="100px" p={4}>
+    <Divider variant="vertical" />
+    <Text>Chakra UI</Text>
+  </Stack>
+```
+
+
+## Props
+
+| Name          | Type                         | Default     | Description                                                            |
+| ------------- | ---------------------------- | ----------- | ---------------------------------------------------------------------- |
+| `variant`     | `horizontal`, `vertical`     | `horizontal` | The style variant of the divider                                         |
