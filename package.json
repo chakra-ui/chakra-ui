@@ -139,7 +139,7 @@
     "jest": "26.0.1",
     "jest-emotion": "10.0.32",
     "lerna": "3.21.0",
-    "lint-staged": "10.2.6",
+    "lint-staged": "10.2.9",
     "listr": "0.14.3",
     "ncp": "2.0.0",
     "nodemon": "2.0.2",
