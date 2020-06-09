@@ -8,4 +8,4 @@ update_configs:
     commit_message:
       prefix: "chore"
       include_scope: true
-    target_branch: "master"
+    target_branch: "develop"
