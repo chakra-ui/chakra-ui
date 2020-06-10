@@ -46,7 +46,7 @@
     "lint:types": "tsc --noEmit"
   },
   "devDependencies": {
-    "framer-motion": "1.10.0"
+    "framer-motion": "1.11.0"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "0.8.8",
