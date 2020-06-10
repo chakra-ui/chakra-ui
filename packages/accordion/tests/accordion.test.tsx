@@ -1,6 +1,11 @@
 import * as React from "react"
 import { userEvent, render, fireEvent, wait } from "@chakra-ui/test-utils"
-import { Accordion, AccordionButton, AccordionItem, AccordionPanel } from ".."
+import {
+  Accordion,
+  AccordionButton,
+  AccordionItem,
+  AccordionPanel,
+} from "../src"
 
 jest.mock("@chakra-ui/collapse", () => {
   const Collapse = jest.fn(({ children, isOpen }) => (

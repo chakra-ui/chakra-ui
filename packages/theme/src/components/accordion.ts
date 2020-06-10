@@ -11,8 +11,12 @@ const Accordion: ComponentTheme = {
     },
     Button: {
       fontSize: "1rem",
-      _focus: { boxShadow: "outline" },
-      _hover: { bg: "blackAlpha.50" },
+      _focus: {
+        boxShadow: "outline",
+      },
+      _hover: {
+        bg: "blackAlpha.50",
+      },
       _disabled: {
         opacity: 0.4,
         cursor: "not-allowed",
