@@ -11070,10 +11070,10 @@ eslint-plugin-react@7.20.0, eslint-plugin-react@^7.20.0:
     string.prototype.matchall "^4.0.2"
     xregexp "^4.3.0"
 
-eslint-plugin-testing-library@3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-testing-library/-/eslint-plugin-testing-library-3.2.0.tgz#d4d6cb90888fce04523338ee293841d98fde740e"
-  integrity sha512-ScM0vdpnRt2Piziilfr93z0J0IxyUc6fz/vnqwLhra26/xXB62pAmLBwOjn7VORGcaV/2chKNPPdwhBiQNM6Lw==
+eslint-plugin-testing-library@3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-testing-library/-/eslint-plugin-testing-library-3.2.1.tgz#365b6564b1ab4770d3ed309cc1ca4b1a260ff921"
+  integrity sha512-UrJjnxiw8Od++Ub9uSn3eLckp8YZm7mnetKrDiw1h57yE0e3xD/OcO7gX3xnBqaUR5xavazT4qGO+ypLjJ4/VQ==
   dependencies:
     "@typescript-eslint/experimental-utils" "^2.29.0"
 
