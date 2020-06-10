@@ -20,7 +20,7 @@ import {
 import { ChakraComponent, Options } from "./system.types"
 import { getDisplayName } from "./system.utils"
 
-function createStyled<T extends As, P = {}>(
+function createStyled<T extends As, P extends Dict>(
   component: T,
   options?: Options<T, P>,
 ) {

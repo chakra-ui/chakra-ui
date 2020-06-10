@@ -154,6 +154,13 @@
     "rimraf": "3.0.2",
     "shelljs": "0.8.4",
     "ts-jest": "26.1.0",
-    "typescript": "3.9.5"
+    "typescript": "3.9.5",
+    "@babel/cli": "7.10.1",
+    "@babel/core": "7.10.2",
+    "@babel/preset-env": "7.10.2",
+    "@babel/preset-react": "7.10.1",
+    "@babel/preset-typescript": "7.10.1",
+    "@babel/runtime": "7.10.2",
+    "microbundle": "0.12.0"
   }
 }
