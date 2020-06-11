@@ -74,12 +74,10 @@ const Switch: ComponentTheme = {
   sizes,
 }
 
-export const SwitchTokens = {
-  sizes: {
-    sm: "sm",
-    md: "md",
-    lg: "lg",
-  },
+export const SwitchSizes = {
+  sm: "sm",
+  md: "md",
+  lg: "lg",
 }
 
 export default Switch

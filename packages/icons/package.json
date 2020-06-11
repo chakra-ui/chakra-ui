@@ -44,7 +44,6 @@
     "@chakra-ui/system": "1.0.0"
   },
   "dependencies": {
-    "tslib": "1.11.1",
     "@chakra-ui/icon": "1.0.0"
   }
 }

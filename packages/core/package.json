@@ -76,8 +76,7 @@
     "@chakra-ui/skeleton": "1.0.0"
   },
   "peerDependencies": {
-    "react": "16.x",
-    "react-dom": "16.x"
+    "react": "16.x"
   },
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "license": "MIT",

@@ -50,13 +50,11 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "tslib": "1.11.1",
     "@chakra-ui/utils": "1.0.0",
     "@chakra-ui/hooks": "1.0.0"
   },
   "peerDependencies": {
     "@emotion/core": "10.0.28",
-    "react": "16.x",
-    "react-dom": "16.x"
+    "react": "16.x"
   }
 }

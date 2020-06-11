@@ -46,7 +46,6 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "tslib": "1.11.1",
     "@chakra-ui/form-control": "1.0.0",
     "@chakra-ui/utils": "1.0.0"
   },

@@ -3,10 +3,9 @@ import { SystemProps } from "@chakra-ui/system"
 import Button from "./button"
 
 const getMenuListStyle = (props: Props): SystemProps => {
-  const darkShadow = `rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.2) 0px 5px 10px, rgba(0, 0, 0, 0.4) 0px 15px 40px`
   return {
     bg: mode(`#fff`, `gray.700`)(props),
-    boxShadow: mode(`sm`, darkShadow)(props),
+    boxShadow: mode(`sm`, `dark-lg`)(props),
     color: "inherit",
     outline: 0,
     minWidth: "3xs",
@@ -71,9 +70,6 @@ const Menu: ComponentTheme = {
      *      MenuButton: {...}
      *   }
      * }
-     *
-     * This is because, the menu uses the sub-components pattern
-     * @see Docs https://chakra-ui.com/component-theming
      */
     ...copy(Button.variants, "MenuButton"),
   },
@@ -81,9 +77,6 @@ const Menu: ComponentTheme = {
     /**
      * We're using `copy` function to copy all button sizes
      * under the key `MenuButton`.
-     *
-     * This is because, the menu uses the sub-components pattern
-     * @see Docs https://chakra-ui.com/component-theming
      */
     ...copy(Button.sizes, "MenuButton"),
   },

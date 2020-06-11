@@ -1,4 +1,4 @@
-import Badge, { BadgeTokens } from "./badge"
+import Badge, { BadgeVariants } from "./badge"
 import { ComponentTheme } from "./utils"
 
 const Code: ComponentTheme = {
@@ -12,8 +12,6 @@ const Code: ComponentTheme = {
   variants: Badge.variants,
 }
 
-export const CodeTokens = {
-  variants: BadgeTokens.variants,
-}
+export const CodeVariants = BadgeVariants
 
 export default Code

@@ -52,7 +52,6 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "tslib": "1.11.1",
     "aria-hidden": "^1.1.1",
     "@chakra-ui/hooks": "1.0.0",
     "@chakra-ui/portal": "1.0.0",
@@ -65,7 +64,6 @@
   },
   "peerDependencies": {
     "@chakra-ui/system": "1.0.0",
-    "react": "16.x",
-    "react-dom": "16.x"
+    "react": "16.x"
   }
 }

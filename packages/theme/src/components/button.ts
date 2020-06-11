@@ -107,8 +107,6 @@ const sizes = {
   },
 }
 
-////////////////////////////////////////////////////////////
-
 const unstyled = {
   bg: "none",
   border: 0,
@@ -120,7 +118,6 @@ const unstyled = {
   padding: 0,
 }
 
-////////////////////////////////////////////////////////////
 const Button: ComponentTheme = {
   defaultProps: {
     variant: "solid",
@@ -150,18 +147,17 @@ const Button: ComponentTheme = {
   },
 }
 
-export const ButtonTokens = {
-  sizes: {
-    lg: "lg",
-    sm: "sm",
-    md: "md",
-    xs: "xs",
-  },
-  variants: {
-    solid: "solid",
-    subtle: "subtle",
-    outline: "outline",
-  },
+export const ButtonSizes = {
+  lg: "lg",
+  sm: "sm",
+  md: "md",
+  xs: "xs",
+}
+
+export const ButtonVariants = {
+  solid: "solid",
+  subtle: "subtle",
+  outline: "outline",
 }
 
 export default Button

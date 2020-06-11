@@ -5,7 +5,9 @@ const Stat: ComponentTheme = {
     size: "md",
   },
   baseStyle: {
-    Label: { fontWeight: "medium" },
+    Label: {
+      fontWeight: "medium",
+    },
     HelpText: {
       opacity: 0.8,
       marginBottom: 2,
@@ -16,22 +18,26 @@ const Stat: ComponentTheme = {
     },
   },
   /**
-   * Only one size specifed but you can add more,
+   * Only one size specified but you can add more,
    * and style each part.
    */
   sizes: {
     md: {
-      Label: { fontSize: "sm" },
-      HelpText: { fontSize: "sm" },
-      Number: { fontSize: "2xl" },
+      Label: {
+        fontSize: "sm",
+      },
+      HelpText: {
+        fontSize: "sm",
+      },
+      Number: {
+        fontSize: "2xl",
+      },
     },
   },
 }
 
-export const StatTokens = {
-  sizes: {
-    md: "md",
-  },
+export const StatSizes = {
+  md: "md",
 }
 
 export default Stat

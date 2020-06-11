@@ -26,7 +26,7 @@ const Modal: ComponentTheme = {
       color: "inherit",
       boxShadow: mode(
         "0 7px 14px 0 rgba(0,0,0, 0.1), 0 3px 6px 0 rgba(0, 0, 0, .07)",
-        "rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.2) 0px 5px 10px, rgba(0, 0, 0, 0.4) 0px 15px 40px",
+        "dark-lg",
       )(props),
     },
     Header: {
@@ -59,20 +59,18 @@ const Modal: ComponentTheme = {
   },
 }
 
-export const ModalTokens = {
-  sizes: {
-    xs: "xs",
-    sm: "sm",
-    md: "md",
-    lg: "lg",
-    xl: "xl",
-    "2xl": "2xl",
-    "3xl": "3xl",
-    "4xl": "4xl",
-    "5xl": "5xl",
-    "6xl": "6xl",
-    full: "full",
-  },
+export const ModalSizes = {
+  xs: "xs",
+  sm: "sm",
+  md: "md",
+  lg: "lg",
+  xl: "xl",
+  "2xl": "2xl",
+  "3xl": "3xl",
+  "4xl": "4xl",
+  "5xl": "5xl",
+  "6xl": "6xl",
+  full: "full",
 }
 
 export default Modal

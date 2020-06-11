@@ -49,12 +49,10 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "tslib": "1.11.1",
     "@chakra-ui/utils": "1.0.0",
     "csstype": "2.6.9"
   },
   "peerDependencies": {
-    "react": "16.x",
-    "react-dom": "16.x"
+    "react": "16.x"
   }
 }

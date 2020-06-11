@@ -50,7 +50,6 @@
     "@chakra-ui/layout": "1.0.0"
   },
   "dependencies": {
-    "tslib": "1.11.1",
     "@chakra-ui/spinner": "1.0.0",
     "@chakra-ui/utils": "1.0.0"
   },

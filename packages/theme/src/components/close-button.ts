@@ -41,12 +41,10 @@ const CloseButton: ComponentTheme = {
   },
 }
 
-export const CloseButtonTokens = {
-  sizes: {
-    lg: "lg",
-    sm: "sm",
-    md: "md",
-  },
+export const CloseButtonSizes = {
+  lg: "lg",
+  sm: "sm",
+  md: "md",
 }
 
 export default CloseButton

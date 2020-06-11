@@ -43,7 +43,6 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "tslib": "1.11.1",
     "@chakra-ui/utils": "1.0.0",
     "body-scroll-lock": "^3.0.2",
     "compute-scroll-into-view": "1.0.11",

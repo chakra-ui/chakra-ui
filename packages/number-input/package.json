@@ -51,7 +51,6 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "tslib": "1.11.1",
     "@chakra-ui/utils": "1.0.0",
     "@chakra-ui/icons": "1.0.0",
     "@chakra-ui/counter": "1.0.0"
@@ -61,7 +60,6 @@
   },
   "peerDependencies": {
     "@chakra-ui/system": "1.0.0",
-    "react": "16.x",
-    "react-dom": "16.x"
+    "react": "16.x"
   }
 }
