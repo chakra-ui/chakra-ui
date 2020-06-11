@@ -141,9 +141,9 @@ export type WithAs<P, T extends As> = P &
  * To support `framer-motion`, we'll omit transition prop from chakra props
  * if you do this `chakra(motion.div)`
  */
-export type WithChakra<P> = P extends { transition?: any }
-  ? P & Omit<ChakraProps, "transition">
-  : P & ChakraProps
+export type WithChakra<Props> = Props extends { transition?: any }
+  ? Props & Omit<ChakraProps, "transition">
+  : Props & ChakraProps
 
 /**
  * This is most clunky part of the types :), bare with me.
@@ -186,6 +186,10 @@ export type ChakraComponent<T extends As, P extends Dict> = Component<T, P> & {
   propTypes?: React.WeakValidationMap<PropsOf<T> & P>
   defaultProps?: Partial<PropsOf<T> & P & ChakraProps>
 }
+
+export type ForwardRefComponent<T extends As, P> = <TT extends As = T>(
+  props: WithAs<P, TT>,
+) => JSX.Element
 
 /**
  * Extracts the component theming (variant, size) props that

@@ -20,8 +20,11 @@ module.exports = function (api) {
     "@babel/preset-react",
   ]
 
+  const plugins = ["babel-plugin-chakra-ui"]
+
   return {
     presets,
+    plugins,
     ignore: [
       "**/*.test.tsx",
       "**/*.test.ts",

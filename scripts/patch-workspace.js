@@ -15,7 +15,7 @@ async function setupJestConfig(options) {
   const jestConfig = {
     preset: "ts-jest",
     testEnvironment: "node",
-    collectCoverageFrom: ["src/**/*.{ts,tsx,js,jsx}"],
+    collectCoverageFrom: ["tests/**/*.{ts,tsx,js,jsx}"],
     transform: {
       ".(ts|tsx)$": "ts-jest/dist",
     },
@@ -43,8 +43,10 @@ function updateScripts(options) {
   const scripts = {
     prebuild: "rimraf dist",
     start: "nodemon --exec yarn build --watch src",
-    "build:esm": "tsc --module esnext --outDir dist/esm --declaration false",
-    "build:cjs": "tsc --module commonjs --outDir dist/cjs --declaration false",
+    "build:esm":
+      "BABEL_ENV=esm babel src --root-mode upward --extensions .ts,.tsx -d dist/esm --source-maps",
+    "build:cjs":
+      "BABEL_ENV=esm babel src --root-mode upward --extensions .ts,.tsx -d dist/cjs --source-maps",
     "build:types":
       "tsc --emitDeclarationOnly --declaration --declarationMap --declarationDir dist/types",
     build: "concurrently yarn:build:*",

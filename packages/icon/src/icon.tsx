@@ -21,56 +21,55 @@ const StyledSvg = chakra("svg", { themeKey: "Icon" })
 export type IconProps = PropsOf<typeof StyledSvg>
 
 export const Icon = forwardRef<IconProps, "svg">(function Icon(props, ref) {
-    const {
-      as: type,
-      size,
-      boxSize = "1em",
-      viewBox,
-      color = "currentColor",
-      role = "presentation",
-      focusable = false,
-      children,
-      className,
-      ...rest
-    } = props
+  const {
+    as: type,
+    size,
+    boxSize = "1em",
+    viewBox,
+    color = "currentColor",
+    role = "presentation",
+    focusable = false,
+    children,
+    className,
+    ...rest
+  } = props
 
-    const _className = cx("chakra-icon", className)
+  const _className = cx("chakra-icon", className)
 
-    const sharedProps = {
-      ref,
-      display: "inline-block",
-      lineHeight: "1em",
-      size,
-      color,
-      focusable,
-      role,
-      flexShrink: 0,
-      boxSize,
-      className: _className,
-    } as any
+  const sharedProps = {
+    ref,
+    display: "inline-block",
+    lineHeight: "1em",
+    size,
+    color,
+    focusable,
+    role,
+    flexShrink: 0,
+    boxSize,
+    className: _className,
+  } as any
 
-    /**
-     * If you're using an icon library like `react-icons`
-     */
-    if (type && typeof type !== "string") {
-      return <StyledSvg as={type} {...sharedProps} {...rest} />
-    }
+  /**
+   * If you're using an icon library like `react-icons`
+   */
+  if (type && typeof type !== "string") {
+    return <StyledSvg as={type} {...sharedProps} {...rest} />
+  }
 
-    const _path = children ?? fallbackIcon.path
-    const _viewBox = viewBox ?? fallbackIcon.viewBox
+  const _path = children ?? fallbackIcon.path
+  const _viewBox = viewBox ?? fallbackIcon.viewBox
 
-    return (
-      <StyledSvg
-        verticalAlign="middle"
-        viewBox={_viewBox}
-        {...sharedProps}
-        {...rest}
-      >
-        {_path}
-      </StyledSvg>
-    )
-  },
-)
+  return (
+    <StyledSvg
+      verticalAlign="middle"
+      viewBox={_viewBox}
+      {...sharedProps}
+      {...rest}
+    >
+      {_path}
+    </StyledSvg>
+  )
+})
 
 if (__DEV__) {
   Icon.displayName = "Icon"

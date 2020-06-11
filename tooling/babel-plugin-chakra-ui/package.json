@@ -1,0 +1,41 @@
+{
+  "name": "babel-plugin-chakra-ui",
+  "version": "1.0.0",
+  "description": "Mark custom forwardRef and memo as pure for tree shaking",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "dist/index.js",
+  "keywords": [
+    "babel-plugin"
+  ],
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prepublish": "yarn build",
+    "lint": "eslint src",
+    "test": "jest",
+    "build": "babel src --out-dir dist"
+  },
+  "dependencies": {
+    "@babel/helper-annotate-as-pure": "^7.8.3",
+    "@babel/helper-plugin-utils": "^7.8.3"
+  },
+  "peerDependencies": {
+    "@babel/core": "^7.0.0-0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/helper-plugin-test-runner": "^7.8.3"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testRegex": "/test/.*\\.test\\.js$",
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/log.js"
+    ]
+  }
+}

@@ -18,12 +18,13 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/cjs",
-  "module": "dist/esm",
-  "types": "dist/types",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index/js",
+  "types": "dist/types/index.d.ts",
   "files": [
-    "dist"
+    "dist-*"
   ],
+  "sideEffects": false,
   "publishConfig": {
     "access": "public"
   },
@@ -38,7 +39,6 @@
     "prebuild": "rimraf dist",
     "start": "nodemon --exec yarn build -e ts,tsx --ignore dist/ --ignore src/tests/ --ignore \"*.stories.tsx\"",
     "build": "concurrently yarn:build:*",
-    "copy:types": "cp -r dist/types/* dist/esm",
     "test": "jest --env=jsdom --passWithNoTests",
     "lint": "concurrently yarn:lint:*",
     "version": "yarn build",
@@ -50,7 +50,6 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "tslib": "1.11.1",
     "@chakra-ui/descendant": "1.0.0",
     "@chakra-ui/hooks": "1.0.0",
     "@chakra-ui/icons": "1.0.0",
@@ -62,7 +61,6 @@
   },
   "peerDependencies": {
     "@chakra-ui/system": "1.0.0",
-    "react": "16.x",
-    "react-dom": "16.x"
+    "react": "16.x"
   }
 }
