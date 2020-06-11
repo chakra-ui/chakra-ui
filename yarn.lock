@@ -12591,9 +12591,9 @@ gatsby-page-utils@^0.2.8:
     micromatch "^3.1.10"
 
 gatsby-plugin-catch-links@^2.3.1:
-  version "2.3.4"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-catch-links/-/gatsby-plugin-catch-links-2.3.4.tgz#e834c8ba59a77d5af372cc17b76fb5a44e1e8425"
-  integrity sha512-O0zPqfz8qmfn9/LgSMVpvPqgWrckTFha46hMH9grPQ4GVNKmaaDm7RzE9pI/qTxxD0b8EkKHDaF2JM2BeDkVcw==
+  version "2.3.5"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-catch-links/-/gatsby-plugin-catch-links-2.3.5.tgz#57c9bd69b04b0161b462796b9938aa86dc7fc97b"
+  integrity sha512-woBc5xin2plfz6Hgo9UO9xSwNR9WZA4h3Ac0XIQBfr+PBcXkPgPvj9njBbWSbufeeaI8Rke71FoNIZyXTadO+Q==
   dependencies:
     "@babel/runtime" "^7.10.2"
     escape-string-regexp "^1.0.5"
