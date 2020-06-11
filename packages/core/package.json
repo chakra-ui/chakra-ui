@@ -2,8 +2,8 @@
   "name": "@chakra-ui/core",
   "version": "1.0.0",
   "description": "Responsive and accessible React UI components built with React and Emotion",
-  "main": "dist/cjs",
-  "module": "dist/esm",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
   "typings": "dist/types",
   "files": [
     "dist"

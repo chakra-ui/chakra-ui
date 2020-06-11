@@ -187,9 +187,20 @@ export type ChakraComponent<T extends As, P extends Dict> = Component<T, P> & {
   defaultProps?: Partial<PropsOf<T> & P & ChakraProps>
 }
 
-export type ForwardRefComponent<T extends As, P> = <TT extends As = T>(
-  props: WithAs<P, TT>,
-) => JSX.Element
+type PlainComponent<T extends As, P> =
+  | ((props: Omit<PropsOf<T>, keyof P> & P & { as?: As }) => JSX.Element)
+  | (<TT extends As = T>(
+      props: WithChakra<WithAs<PropsOf<T>, TT>> & P,
+    ) => JSX.Element)
+
+export type ForwardRefComponent<T extends As, P extends Dict> = PlainComponent<
+  T,
+  P
+> & {
+  displayName?: string
+  propTypes?: React.WeakValidationMap<PropsOf<T> & P>
+  defaultProps?: Partial<PropsOf<T> & P>
+}
 
 /**
  * Extracts the component theming (variant, size) props that
@@ -223,7 +234,11 @@ type ModifierStyle<P> =
   | StyleProps
   | ((props: ModifierProps & Required<P>) => StyleProps)
 
-type StyleProps = SystemProps | { [component: string]: SystemProps }
+type StyleProps =
+  | SystemProps
+  | {
+      [component: string]: SystemProps
+    }
 
 interface ModifierProps {
   colorScheme: string

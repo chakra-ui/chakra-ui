@@ -1,12 +1,7 @@
 import React from "react"
 import { parser as systemProps } from "@chakra-ui/parser"
 import createStyled from "./create-styled"
-import {
-  As,
-  ChakraComponent,
-  Options,
-  ForwardRefComponent,
-} from "./system.types"
+import { As, ChakraComponent, Options } from "./system.types"
 import {
   applyProp,
   domElements,
@@ -53,24 +48,3 @@ domElements.forEach((tag) => {
   //@ts-ignore
   chakra[tag] = chakra(tag)
 })
-
-function create() {
-  const Comp = React.forwardRef((props, ref) => {
-    return <button />
-  })
-  return Comp as ForwardRefComponent<"button", { isDisabled?: boolean }>
-}
-
-const Button = create()
-const Test = () => (
-  <Button
-    as="a"
-    href="ddf.vom"
-    hrefLang="en"
-    isDisabled
-    onClick={(event) => {}}
-    onKeyDown={(event) => {}}
-  >
-    djfksbdf
-  </Button>
-)
