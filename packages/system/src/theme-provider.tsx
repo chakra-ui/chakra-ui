@@ -27,7 +27,7 @@ export function useTheme<T extends object = object>() {
     (ThemeContext as unknown) as React.Context<T | undefined>,
   )
   if (!theme) {
-    throw Error("useTheme must be within a ThemeProvider")
+    throw Error("useTheme must be used within a ThemeProvider")
   }
 
   return theme
@@ -49,7 +49,7 @@ export function ChakraProvider(props: ChakraProviderProps) {
 
 const [ThemingProvider, useThemingContext] = createContext<ThemingProps>({
   strict: false,
-  name: "ComponentTheme",
+  name: "ThemingContext",
 })
 
 export { ThemingProvider, useThemingContext }

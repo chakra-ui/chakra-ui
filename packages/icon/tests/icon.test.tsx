@@ -1,7 +1,7 @@
 import * as React from "react"
 import { render } from "@chakra-ui/test-utils"
 import { Md3DRotation } from "react-icons/md"
-import { Icon } from ".."
+import { Icon } from "../src"
 
 test("Icon renders correctly", () => {
   const { asFragment } = render(<Icon />)
