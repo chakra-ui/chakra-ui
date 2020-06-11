@@ -1,4 +1,4 @@
-import { css } from "../css"
+import { css } from "../src"
 
 const theme = {
   breakpoints: { sm: "40em", md: "52em", lg: "64em" },

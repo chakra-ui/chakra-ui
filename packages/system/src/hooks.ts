@@ -3,7 +3,6 @@ import { css, StyleObjectOrFn } from "@chakra-ui/css"
 import { Dict, get, StringOrNumber } from "@chakra-ui/utils"
 import { getComponentDefaults, getComponentStyles } from "./component"
 import { useTheme } from "./theme-provider"
-import React from "react"
 
 export function useChakra<T extends Dict = Dict>() {
   const [colorMode, setColorMode] = useColorMode()

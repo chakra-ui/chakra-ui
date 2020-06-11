@@ -1,8 +1,4 @@
-import {
-  getBaseStyle,
-  getModifierStyles,
-  getComponentStyles,
-} from "../component"
+import { getBaseStyle, getModifierStyles, getComponentStyles } from "../src"
 import theme from "./theme"
 
 test("should get the base styles", () => {

@@ -8,7 +8,7 @@ import {
   runIfFn,
 } from "@chakra-ui/utils"
 import hoist from "hoist-non-react-statics"
-import { ComponentType, forwardRef, memo, Ref } from "react"
+import * as React from "react"
 import { getComponentStyles } from "./component"
 import { useChakra } from "./hooks"
 import jsx from "./jsx"
@@ -25,14 +25,18 @@ function createStyled<T extends As, P extends Dict>(
   options?: Options<T, P>,
 ) {
   return function (...interpolations: any[]) {
-    const Styled = forwardRef(({ as, ...props }: any, ref: Ref<any>) => {
+    const Styled = React.forwardRef(function Styled(
+      props: any,
+      ref: React.Ref<any>,
+    ) {
+      const { as, ...rest } = props
       const { theme, colorMode } = useChakra()
       let computedStyles: CSSObject = {}
 
-      const propsWithTheme = { theme, colorMode, ...props }
+      const propsWithTheme = { theme, colorMode, ...rest }
 
       /**
-       * Users can pass a base style to the component options, let's resolve it
+       * Users can pass a base style to the component options.
        *
        * @example
        * const Button = chakra("button", {
@@ -44,12 +48,12 @@ function createStyled<T extends As, P extends Dict>(
        */
       if (options?.baseStyle) {
         const baseStyleObject = runIfFn(options.baseStyle, propsWithTheme)
-        const baseStyle = css(baseStyleObject)(theme)
+        const baseStyle = css(baseStyleObject as Dict)(theme)
         computedStyles = { ...computedStyles, ...baseStyle } as CSSObject
       }
 
       /**
-       * Users can pass a theme key to reference styles in the theme, let's resolve it.
+       * Users can pass a theme key to reference styles in the theme
        * Styles will be read from `theme.components.<themeKey>`
        *
        * @example
@@ -74,7 +78,7 @@ function createStyled<T extends As, P extends Dict>(
       let computedProps: Dict = isTag ? filterProps(props) : { ...props }
 
       /**
-       * Users can pass a html attributes to component options, let's resolve it.
+       * Users can pass a html attributes to component options.
        * Attributes will be passed to the underlying dom element
        *
        * @example
@@ -138,10 +142,10 @@ function createStyled<T extends As, P extends Dict>(
     Styled.defaultProps = (component as any).defaultProps
 
     // [Optimization] users can pass a pure option to memoize this component
-    const StyledComponent = options?.pure ? memo(Styled) : Styled
+    const StyledComponent = options?.pure ? React.memo(Styled) : Styled
 
     // hoist all non-react statics attached to the `component` prop
-    const Component = hoist(StyledComponent, component as ComponentType<any>)
+    const Component = hoist(StyledComponent, component as any)
 
     return Component as ChakraComponent<T, P>
   }

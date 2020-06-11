@@ -1,8 +1,8 @@
 /**@jsx jsx */
 import { render } from "@chakra-ui/test-utils"
 import * as React from "react"
-import { chakra, jsx, ThemeProvider } from ".."
-import theme from "../theme.sample"
+import { chakra, jsx, ThemeProvider } from "../src"
+import theme from "./theme.sample"
 
 test("as jsx element", () => {
   const Div = chakra("div")
