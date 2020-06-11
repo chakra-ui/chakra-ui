@@ -6,7 +6,7 @@ import {
   positiveOrNegative,
   sort,
   transformConfig,
-} from "../utils"
+} from "../src"
 import theme from "./theme"
 
 test("should assign array value", () => {
