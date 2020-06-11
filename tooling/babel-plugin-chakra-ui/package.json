@@ -17,7 +17,7 @@
     "prepublish": "yarn build",
     "lint": "eslint src",
     "test": "jest",
-    "build": "babel src --out-dir dist"
+    "build": "babel src -d dist"
   },
   "dependencies": {
     "@babel/helper-annotate-as-pure": "^7.8.3",
