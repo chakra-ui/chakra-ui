@@ -44,7 +44,7 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "react-focus-lock": "^2.1.0"
+    "react-focus-lock": "2.3.1"
   },
   "peerDependencies": {
     "react": "16.x"

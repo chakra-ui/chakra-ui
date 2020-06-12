@@ -7,7 +7,7 @@ import {
 import { forwardRef } from "@chakra-ui/system"
 import * as React from "react"
 
-export type AlertDialogProps = Omit<ModalProps, "initialFocusRef"> & {
+export interface AlertDialogProps extends Omit<ModalProps, "initialFocusRef"> {
   leastDestructiveRef: ModalProps["initialFocusRef"]
 }
 

@@ -1,6 +1,14 @@
-declare module "@theme-ui/css"
+declare module "@theme-ui/css" {
+  export interface SxProps {
+    sx?: any
+  }
+}
 
-declare module "strict-ui"
+declare module "strict-ui" {
+  export interface SxProps {
+    sx?: any
+  }
+}
 
 declare module "@theme-ui/core" {
   export interface SxProps {

@@ -1,12 +1,13 @@
 {
   "name": "@chakra-ui/css-reset",
   "version": "1.0.0",
-  "description": "description",
+  "description": "CSS reset component for Chakra UI",
   "keywords": [
     "theme",
     "theming",
     "ui mode",
-    "ui"
+    "chakra ui",
+    "css reset"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",

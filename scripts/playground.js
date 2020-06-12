@@ -2,9 +2,9 @@ import shell from "shelljs"
 import rename from "./utils/rename-file"
 // import editJson from "edit-json-file"
 // import fs from "fs-utils"
-// import getLernaPackages from "./utils/get-lerna-pkgs"
+import getLernaPackages from "./utils/get-lerna-pkgs"
 
-// const pkgs = getLernaPackages()
+const pkgs = getLernaPackages()
 
 // pkgs.forEach((pkg) => {
 //   const path = fs.resolve("packages", pkg.folder, "package.json")

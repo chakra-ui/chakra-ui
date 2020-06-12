@@ -8,11 +8,6 @@ export default {
 
 const Heading = chakra("h1", { themeKey: "Heading" })
 
-const Icon = chakra("svg")
-
-type IconProps = PropsOf<typeof Icon>
-const Test = (props: IconProps) => <Icon {...props} />
-
 const Btn = chakra("button", {
   themeKey: "Button",
   baseStyle: { outline: 0 },

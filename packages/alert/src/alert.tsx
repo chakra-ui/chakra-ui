@@ -14,10 +14,10 @@ import { createContext, cx } from "@chakra-ui/utils"
 import * as React from "react"
 
 export const ALERT_STATUSES = {
-  info: { icon: InfoIcon, color: "blue" },
-  warning: { icon: WarningTwoIcon, color: "orange" },
-  success: { icon: CheckCircleIcon, color: "green" },
-  error: { icon: WarningIcon, color: "red" },
+  info: { icon: InfoIcon, colorScheme: "blue" },
+  warning: { icon: WarningTwoIcon, colorScheme: "orange" },
+  success: { icon: CheckCircleIcon, colorScheme: "green" },
+  error: { icon: WarningIcon, colorScheme: "red" },
 }
 
 type AlertContext = Required<AlertOptions>
@@ -68,14 +68,14 @@ export const Alert = forwardRef<AlertProps, "div">(function Alert(props, ref) {
     className,
     ...rest
   } = props
-  const colorScheme = ALERT_STATUSES[status]["color"]
+  const { colorScheme } = ALERT_STATUSES[status]
 
-  const context = { status, variant }
+  const context = { status, variant: variant as string }
 
   const _className = cx("chakra-alert", className)
 
   return (
-    <AlertContextProvider value={context as AlertContext}>
+    <AlertContextProvider value={context}>
       <StyledAlert
         ref={ref}
         variant={variant}
@@ -127,7 +127,7 @@ export type AlertIconProps = PropsOf<typeof StyledWrapper>
  */
 export const AlertIcon = (props: AlertIconProps) => {
   const { status, variant } = useAlertContext()
-  const { icon, color: colorScheme } = ALERT_STATUSES[status]
+  const { icon, colorScheme } = ALERT_STATUSES[status]
 
   const Icon = (icon as unknown) as React.ElementType
 
