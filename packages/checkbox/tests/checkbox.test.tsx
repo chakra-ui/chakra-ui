@@ -6,7 +6,7 @@ import {
   CheckboxGroupProps,
   useCheckbox,
   UseCheckboxProps,
-} from ".."
+} from "../src"
 
 test("Checkbox renders correctly", () => {
   const tools = render(<Checkbox />)

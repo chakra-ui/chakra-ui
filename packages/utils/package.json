@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "memoize-one": "5.1.1",
-    "css-box-model": "1.2.0",
+    "css-box-model": "1.2.1",
     "deepmerge": "4.2.2"
   },
   "peerDependencies": {

@@ -2,6 +2,7 @@ import { SystemProps } from "@chakra-ui/parser"
 import { ValidHTMLProps } from "./should-forward-prop"
 import { ColorMode } from "@chakra-ui/color-mode"
 import { Dict } from "@chakra-ui/utils"
+import { Props } from "react"
 
 export interface Options<T extends As, P> {
   /**
@@ -162,7 +163,8 @@ export type WithChakra<Props> = Props extends { transition?: any }
  * - Return a JSX Element
  */
 type RegularComponent<T extends As, P> = (
-  props: WithChakra<Omit<PropsOf<T>, keyof P>> & P & { as?: As },
+  props: WithChakra<Omit<PropsOf<T>, "size" | "as" | keyof P>> &
+    P & { as?: As },
 ) => JSX.Element
 
 /**
@@ -181,16 +183,21 @@ type Component<T extends As, P> =
   | RegularComponent<T, P>
   | ExtensibleComponent<T, P>
 
-export type ChakraComponent<T extends As, P extends Dict> = Component<T, P> & {
+export type ChakraComponent<T extends As, P extends Dict = {}> = Component<
+  T,
+  P
+> & {
   displayName?: string
-  propTypes?: React.WeakValidationMap<PropsOf<T> & P>
-  defaultProps?: Partial<PropsOf<T> & P & ChakraProps>
+  propTypes?: React.WeakValidationMap<Omit<PropsOf<T>, "size"> & P>
+  defaultProps?: Partial<Omit<PropsOf<T>, "size"> & P & ChakraProps>
 }
 
 type PlainComponent<T extends As, P> =
-  | ((props: Omit<PropsOf<T>, keyof P> & P & { as?: As }) => JSX.Element)
-  | (<TT extends As = T>(
-      props: WithChakra<WithAs<PropsOf<T>, TT>> & P,
+  | ((
+      props: Omit<PropsOf<T>, "as" | "size" | keyof P> & P & { as?: As },
+    ) => JSX.Element)
+  | (<TT extends As>(
+      props: WithChakra<WithAs<Omit<PropsOf<T>, "size">, TT>> & P,
     ) => JSX.Element)
 
 export type ForwardRefComponent<T extends As, P extends Dict> = PlainComponent<

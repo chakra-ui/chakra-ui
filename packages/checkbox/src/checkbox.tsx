@@ -76,79 +76,80 @@ export type CheckboxProps = BaseControlProps &
  *
  * @see Docs https://chakra-ui.com/components/checkbox
  */
-export const Checkbox = forwardRef<CheckboxProps, "input", Omitted>(
-  function Checkbox(props, ref) {
-    const group = useCheckboxGroupContext()
+export const Checkbox = React.forwardRef(function Checkbox(
+  props: CheckboxProps,
+  ref: React.Ref<any>,
+) {
+  const group = useCheckboxGroupContext()
 
-    const {
-      iconSize = "0.625rem",
-      spacing = "0.5rem",
-      iconColor,
-      variant = group?.variant,
-      colorScheme = group?.colorScheme,
-      size = group?.size,
-      className,
-      children,
-      ...checkboxProps
-    } = props
+  const {
+    iconSize = "0.625rem",
+    spacing = "0.5rem",
+    iconColor,
+    variant = group?.variant,
+    colorScheme = group?.colorScheme,
+    size = group?.size,
+    className,
+    children,
+    ...rest
+  } = props
 
-    let isChecked = props.isChecked
-    if (group?.value && props.value) {
-      isChecked = group.value.includes(props.value)
-    }
+  let isChecked = props.isChecked
+  if (group?.value && props.value) {
+    isChecked = group.value.includes(props.value)
+  }
 
-    let onChange = props.onChange
-    if (group?.onChange && props.value) {
-      onChange = group.onChange
-    }
+  let onChange = props.onChange
+  if (group?.onChange && props.value) {
+    onChange = group.onChange
+  }
 
-    const {
-      state,
-      getInputProps,
-      getCheckboxProps,
-      getLabelProps,
-      htmlProps,
-    } = useCheckbox({
-      ...checkboxProps,
-      isChecked,
-      onChange,
-    })
+  const {
+    state,
+    getInputProps,
+    getCheckboxProps,
+    getLabelProps,
+    htmlProps,
+  } = useCheckbox({
+    ...rest,
+    isChecked,
+    onChange,
+  })
 
-    const _className = cx("chakra-checkbox", className)
+  const _className = cx("chakra-checkbox", className)
 
-    const theming = { variant, size, colorScheme }
+  const theming = { variant, size, colorScheme }
 
-    return (
-      <StyledWrapper {...htmlProps} className={_className}>
-        <input className="chakra-checkbox__input" {...getInputProps({ ref })} />
-        <StyledControl
-          className="chakra-checkbox__control"
+  return (
+    <StyledWrapper {...htmlProps} className={_className}>
+      <input className="chakra-checkbox__input" {...getInputProps({ ref })} />
+      <StyledControl
+        className="chakra-checkbox__control"
+        {...theming}
+        verticalAlign="top"
+        {...getCheckboxProps()}
+      >
+        <CheckboxIcon
+          className="chakra-checkbox__icon"
+          transition="transform 240ms, opacity 240ms"
+          isChecked={state.isChecked}
+          isIndeterminate={state.isIndeterminate}
+          boxSize={iconSize}
+          color={iconColor}
+        />
+      </StyledControl>
+      {children && (
+        <StyledLabel
+          className="chakra-checkbox__label"
           {...theming}
-          verticalAlign="top"
-          {...getCheckboxProps()}
-        >
-          <CheckboxIcon
-            className="chakra-checkbox__icon"
-            transition="transform 240ms, opacity 240ms"
-            isChecked={state.isChecked}
-            isIndeterminate={state.isIndeterminate}
-            boxSize={iconSize}
-            color={iconColor}
-          />
-        </StyledControl>
-        {children && (
-          <StyledLabel
-            className="chakra-checkbox__label"
-            {...theming}
-            {...getLabelProps()}
-            marginLeft={spacing}
-            children={children}
-          />
-        )}
-      </StyledWrapper>
-    )
-  },
-)
+          {...getLabelProps()}
+          marginLeft={spacing}
+          children={children}
+        />
+      )}
+    </StyledWrapper>
+  )
+})
 
 if (__DEV__) {
   Checkbox.displayName = "Checkbox"

@@ -1,7 +1,7 @@
 import * as React from "react"
 import { render } from "@chakra-ui/test-utils"
 import { EmailIcon, ArrowForwardIcon } from "@chakra-ui/icons"
-import { Button, ButtonGroup } from ".."
+import { Button, ButtonGroup } from "../src"
 
 test("Button renders correctly", () => {
   const { asFragment } = render(<Button />)

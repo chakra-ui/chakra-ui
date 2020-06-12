@@ -25,10 +25,7 @@ function createStyled<T extends As, P extends Dict>(
   options?: Options<T, P>,
 ) {
   return function (...interpolations: any[]) {
-    const Styled = React.forwardRef(function Styled(
-      props: any,
-      ref: React.Ref<any>,
-    ) {
+    const Styled = React.forwardRef((props: any, ref: React.Ref<any>) => {
       const { as, ...rest } = props
       const { theme, colorMode } = useChakra()
       let computedStyles: CSSObject = {}

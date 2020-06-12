@@ -24,7 +24,7 @@ exports[`Button renders with icons 1`] = `
       >
         <svg
           aria-hidden="true"
-          class="css-9na4ut"
+          class="chakra-icon css-9na4ut"
           focusable="false"
           role="presentation"
           viewBox="0 0 24 24"
@@ -53,7 +53,7 @@ exports[`Button renders with icons 1`] = `
       >
         <svg
           aria-hidden="true"
-          class="css-9na4ut"
+          class="chakra-icon css-9na4ut"
           focusable="false"
           role="presentation"
           viewBox="0 0 24 24"
@@ -81,7 +81,7 @@ exports[`shows spinner and loading text if isLoading and loadingText 1`] = `
       class="chakra-button__spinner css-1tdm926"
     >
       <div
-        class="css-1413of5"
+        class="chakra-spinner css-8k0wtn"
       >
         <span
           style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
@@ -107,7 +107,7 @@ exports[`shows spinner if isLoading 1`] = `
       class="chakra-button__spinner css-fwyoyo"
     >
       <div
-        class="css-1413of5"
+        class="chakra-spinner css-8k0wtn"
       >
         <span
           style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"

@@ -3,7 +3,6 @@ import { render, userEvent, fireEvent } from "@chakra-ui/test-utils"
 import { chakra } from "@chakra-ui/system"
 import { ClickableProps } from "../src/use-clickable.stories"
 import { useClickable } from "../src"
-import "../../../types"
 
 const Clickable = React.forwardRef(
   (props: ClickableProps, ref: React.Ref<any>) => {

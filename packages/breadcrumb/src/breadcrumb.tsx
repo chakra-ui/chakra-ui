@@ -1,11 +1,5 @@
-import {
-  chakra,
-  PropsOf,
-  SystemProps,
-  ChakraComponent,
-  forwardRef,
-} from "@chakra-ui/system"
-import { getValidChildren, __DEV__, cx } from "@chakra-ui/utils"
+import { chakra, forwardRef, PropsOf, SystemProps } from "@chakra-ui/system"
+import { cx, getValidChildren, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
 export type BreadcrumbSeparatorProps = PropsOf<typeof chakra.div> & {
@@ -30,8 +24,6 @@ interface LinkOptions {
   isCurrentPage?: boolean
 }
 
-type LinkComp = ChakraComponent<"a">
-
 export type BreadcrumbLinkProps = PropsOf<typeof chakra.a> & LinkOptions
 
 const StyledLink = chakra("a", {
@@ -39,7 +31,7 @@ const StyledLink = chakra("a", {
 })
 
 /**
- * Breadcrumb link implementation.
+ * Breadcrumb link.
  *
  * It renders a `span` when it's the current link. Otherwise,
  * it renders an anchor tag.
@@ -48,7 +40,13 @@ export const BreadcrumbLink = forwardRef<BreadcrumbLinkProps, "a">(
   function BreadcrumbLink(props, ref) {
     const { isCurrentPage, as, className, ...rest } = props
     const _className = cx("chakra-breadcrumb__link", className)
-    const sharedProps = { ref, as, ...rest, className: _className }
+
+    const sharedProps = {
+      ref,
+      as,
+      className: _className,
+      ...rest,
+    }
 
     if (isCurrentPage) {
       return <chakra.span aria-current="page" {...sharedProps} />

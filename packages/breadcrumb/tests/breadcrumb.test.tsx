@@ -1,6 +1,6 @@
 import * as React from "react"
 import { render } from "@chakra-ui/test-utils"
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from ".."
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "../src"
 
 test("Breadcrumb renders correctly", () => {
   const { asFragment } = render(

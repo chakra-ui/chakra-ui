@@ -1,6 +1,6 @@
 import * as React from "react"
 import { render } from "@chakra-ui/test-utils"
-import { Avatar, AvatarGroup } from ".."
+import { Avatar, AvatarGroup } from "../src"
 
 test("AvatarGroup renders correctly", () => {
   const tools = render(
