@@ -4,8 +4,8 @@ update_configs:
     directory: "/"
     update_schedule: "live"
     default_labels:
-      - "Type: Dependency"
+      - "Type: Dependency 🔗"
     commit_message:
       prefix: "chore"
       include_scope: true
-    target_branch: "develop"
+    target_branch: "master"
