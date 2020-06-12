@@ -19,7 +19,7 @@ export interface UsePopperProps {
   arrowSize?: number
   arrowShadowColor?: string
   eventsEnabled?: boolean
-  modifiers?: Modifier<any>[]
+  modifiers?: Modifier<any, any>[]
 }
 
 export function usePopper(props: UsePopperProps) {

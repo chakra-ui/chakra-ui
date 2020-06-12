@@ -1,12 +1,12 @@
-import { useRef, useEffect } from "react"
+import * as React from "react"
 
 /**
  * React effect hook that invokes only on update.
  * It doesn't invoke on mount
  */
-export const useUpdateEffect: typeof useEffect = (effect, deps) => {
-  const mounted = useRef(false)
-  useEffect(() => {
+export const useUpdateEffect: typeof React.useEffect = (effect, deps) => {
+  const mounted = React.useRef(false)
+  React.useEffect(() => {
     if (mounted.current) {
       return effect()
     }

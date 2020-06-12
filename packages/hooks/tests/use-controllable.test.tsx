@@ -1,5 +1,5 @@
 import { renderHook, invoke } from "@chakra-ui/test-utils"
-import { useControllableState } from ".."
+import { useControllableState } from "../src"
 
 test("should be uncontrolled when defaultValue is passed", () => {
   const { result } = renderHook(() =>

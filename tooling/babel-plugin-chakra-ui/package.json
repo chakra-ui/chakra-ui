@@ -8,6 +8,7 @@
   },
   "main": "dist/index.js",
   "keywords": [
+    "chakra-ui",
     "babel-plugin"
   ],
   "files": [

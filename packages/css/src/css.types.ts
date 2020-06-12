@@ -104,10 +104,13 @@ interface ApplyProperty {
 }
 
 type PseudoStyles = {
-  [K in keyof Pseudos]?: SystemStyleObject & { content?: string }
+  [K in keyof Pseudos]?: K extends "_before" | "_after"
+    ? SystemStyleObject & { content?: string }
+    : SystemStyleObject
 }
 
 export type SystemStyleObject =
+  | CSSObject
   | SystemCSSProperties
   | CSSPseudoSelectorProps
   | CSSSelectorObject

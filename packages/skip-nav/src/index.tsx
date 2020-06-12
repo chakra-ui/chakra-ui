@@ -43,7 +43,7 @@ export const SkipNavLink = forwardRef<SkipNavLinkProps, "a">(
         ref={ref}
         className="chakra-skip-link"
         href={`#${id}`}
-        sx={{
+        cx={{
           clip: "rect(0 0 0 0)",
           _focus: { clip: "auto" },
           ...sx,

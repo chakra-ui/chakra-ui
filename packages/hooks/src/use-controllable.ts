@@ -1,21 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { runIfFn, warn } from "@chakra-ui/utils"
-import {
-  useRef,
-  useState,
-  useEffect,
-  useCallback,
-  SetStateAction,
-  Dispatch,
-} from "react"
+import * as React from "react"
 
-export function useControllableProp<T>(
-  propValue: T | undefined,
-  stateValue: T,
-) {
-  const { current: isControlled } = useRef(propValue !== undefined)
-  const value =
-    isControlled && typeof propValue !== "undefined" ? propValue : stateValue
+export function useControllableProp<T>(prop: T | undefined, state: T) {
+  const { current: isControlled } = React.useRef(prop !== undefined)
+  const value = isControlled && typeof prop !== "undefined" ? prop : state
   return [isControlled, value] as const
 }
 
@@ -74,11 +63,11 @@ export function useControllableState<T>(props: UseControllableStateProps<T>) {
     propsMap = defaultPropsMap,
   } = props
 
-  const [valueState, setValue] = useState(defaultValue as T)
-  const { current: isControlled } = useRef(valueProp !== undefined)
+  const [valueState, setValue] = React.useState(defaultValue as T)
+  const { current: isControlled } = React.useRef(valueProp !== undefined)
 
   // don't switch from controlled to uncontrolled
-  useEffect(() => {
+  React.useEffect(() => {
     const nextIsControlled = valueProp !== undefined
 
     const nextMode = nextIsControlled ? "a controlled" : "an uncontrolled"
@@ -95,9 +84,9 @@ export function useControllableState<T>(props: UseControllableStateProps<T>) {
     })
   }, [valueProp, isControlled, name])
 
-  const { current: _defaultValue } = useRef(defaultValue)
+  const { current: _defaultValue } = React.useRef(defaultValue)
 
-  useEffect(() => {
+  React.useEffect(() => {
     warn({
       condition: _defaultValue !== defaultValue,
       message:
@@ -108,8 +97,8 @@ export function useControllableState<T>(props: UseControllableStateProps<T>) {
 
   const value = isControlled ? (valueProp as T) : valueState
 
-  const updateValue = useCallback(
-    (next: SetStateAction<T>) => {
+  const updateValue = React.useCallback(
+    (next: React.SetStateAction<T>) => {
       const nextValue = runIfFn(next, value)
       const shouldUpdateState = shouldUpdate(value, nextValue)
 
@@ -124,5 +113,5 @@ export function useControllableState<T>(props: UseControllableStateProps<T>) {
     [onChange, shouldUpdate, isControlled, value],
   )
 
-  return [value, updateValue] as [T, Dispatch<SetStateAction<T>>]
+  return [value, updateValue] as [T, React.Dispatch<React.SetStateAction<T>>]
 }

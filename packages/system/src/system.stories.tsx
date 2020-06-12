@@ -199,14 +199,14 @@ export const UseComponentStyle = () => {
 }
 
 /**
- * Just like theme-ui, you can use the `sx` prop to style
+ * Just like theme-ui, you can use the `cx` prop to style
  * regular jsx elements.
  *
  * PS: This requires the jsx pragma at the top of your file
  */
 export const SxProp = () => (
   <h1
-    sx={{
+    cx={{
       color: "red.100",
       transition: "all 0.3s",
       padding: "30px",

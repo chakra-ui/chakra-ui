@@ -1,4 +1,4 @@
-import { useState } from "react"
+import * as React from "react"
 
 type InitialValue<T> = T | (() => T)
 
@@ -10,6 +10,6 @@ type InitialValue<T> = T | (() => T)
  * @param initialValue the initial value
  */
 export function useConst<T>(initialValue: InitialValue<T>): T {
-  const [value] = useState(initialValue)
+  const [value] = React.useState(initialValue)
   return value
 }

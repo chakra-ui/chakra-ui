@@ -1,4 +1,4 @@
-import { useLayoutEffect, useEffect } from "react"
+import * as React from "react"
 import { isBrowser } from "@chakra-ui/utils"
 
 /**
@@ -11,4 +11,6 @@ import { isBrowser } from "@chakra-ui/utils"
  *
  * @see https://gist.github.com/gaearon/e7d97cdf38a2907924ea12e4ebdf3c85
  */
-export const useSafeLayoutEffect = isBrowser ? useLayoutEffect : useEffect
+export const useSafeLayoutEffect = isBrowser
+  ? React.useLayoutEffect
+  : React.useEffect

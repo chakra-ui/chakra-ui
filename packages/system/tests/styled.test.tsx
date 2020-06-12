@@ -155,7 +155,7 @@ test("it forwards ref to element correctly", () => {
 })
 
 test("sx prop works on jsx element", () => {
-  const tools = render(<button sx={{ margin: "40px" }}>Click</button>)
+  const tools = render(<button cx={{ margin: "40px" }}>Click</button>)
 
   expect(tools.asFragment()).toMatchSnapshot()
 
