@@ -15,7 +15,6 @@ import {
   createContext,
 } from "@chakra-ui/utils"
 import * as React from "react"
-import { cloneElement, useState, useRef } from "react"
 import * as warn from "./accordion.warning"
 
 export type ExpandedIndex = number | number[]
@@ -87,7 +86,7 @@ export function useAccordion(props: UseAccordionProps) {
    * button when click on the button, tab on the button, or
    * use the down/up arrow to navigate.
    */
-  const [focusedIndex, setFocusedIndex] = useState(-1)
+  const [focusedIndex, setFocusedIndex] = React.useState(-1)
 
   /**
    * Hook that manages the controlled and un-controlled state
@@ -124,7 +123,7 @@ export function useAccordion(props: UseAccordionProps) {
       ? index.includes(_index)
       : index === _index
 
-    return cloneElement(child as AccordionElement, {
+    return React.cloneElement(child as AccordionElement, {
       isOpen: isExpanded,
       onChange: (nextIsOpen: boolean) => {
         if (allowMultiple && isArray(index)) {
@@ -164,8 +163,6 @@ const [AccordionContextProvider, useAccordionContext] = createContext<
 
 export { AccordionContextProvider }
 
-//////////////////////////////////////////////////////////////////////
-
 export interface UseAccordionItemProps {
   /**
    * If `true`, expands the accordion in the controlled mode.
@@ -203,10 +200,10 @@ export function useAccordionItem(props: UseAccordionItemProps) {
   const onOpen = () => onChange?.(true)
   const onClose = () => onChange?.(false)
 
-  const buttonRef = useRef<HTMLButtonElement>(null)
+  const buttonRef = React.useRef<HTMLButtonElement>(null)
 
   /**
-   * generate unique ids for all accordion item components (button and panel)
+   * Generate unique ids for all accordion item components (button and panel)
    */
   const [buttonId, panelId] = useIds(id, `accordion-button`, `accordion-panel`)
 
@@ -282,15 +279,12 @@ export function useAccordionItem(props: UseAccordionItemProps) {
     isFocusable,
     onOpen,
     onClose,
-    /**
-     * Prop getters
-     */
     getButtonProps: (props: Dict = {}) => ({
       ...props,
       ref: mergeRefs(buttonRef, props.ref),
       id: buttonId,
-      disabled: isDisabled,
-      "aria-expanded": isOpen,
+      disabled: !!isDisabled,
+      "aria-expanded": !!isOpen,
       "aria-controls": panelId,
       onClick: callAllHandlers(props.onClick, onClick),
       onFocus: callAllHandlers(props.onFocus, onFocus),

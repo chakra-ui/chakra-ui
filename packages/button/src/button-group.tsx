@@ -38,7 +38,7 @@ export const ButtonGroup = forwardRef<ButtonGroupProps, "div">(
           display="flex"
           role="group"
           whiteSpace="nowrap"
-          cx={css}
+          __css={css}
           className={_className}
           {...rest}
         />

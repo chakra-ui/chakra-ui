@@ -154,8 +154,8 @@ test("it forwards ref to element correctly", () => {
   expect(tools.getByText("Click")).toHaveFocus()
 })
 
-test("sx prop works on jsx element", () => {
-  const tools = render(<button cx={{ margin: "40px" }}>Click</button>)
+test("__css prop works on jsx element", () => {
+  const tools = render(<button __css={{ margin: "40px" }}>Click</button>)
 
   expect(tools.asFragment()).toMatchSnapshot()
 

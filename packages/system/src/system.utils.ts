@@ -8,7 +8,7 @@ import {
   __DEV__,
 } from "@chakra-ui/utils"
 import * as React from "react"
-import { As, ForwardRefComponent } from "./system.types"
+import { ForwardRefComponent } from "./system.types"
 
 /**
  * Carefully selected html elements for chakra components.
@@ -183,8 +183,8 @@ function getComponentName(primitive: React.ComponentType | string) {
   )
 }
 
-export function forwardRef<P, T extends As>(
+export function forwardRef<P>(
   comp: (props: P, ref: React.Ref<any>) => React.ReactElement | null,
 ) {
-  return (React.forwardRef(comp as any) as unknown) as ForwardRefComponent<T, P>
+  return (React.forwardRef(comp as any) as unknown) as ForwardRefComponent<P>
 }

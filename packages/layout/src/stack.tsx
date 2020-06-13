@@ -157,7 +157,7 @@ export const Stack = forwardRef<StackProps, "div">(function Stack(props, ref) {
       flexDirection={styles.flexDirection}
       flexWrap={wrap}
       className={_className}
-      cx={sx as any}
+      __css={sx as any}
       {...rest}
     >
       {clones}

@@ -41,7 +41,10 @@ export type AccordionProps = UseAccordionProps &
  * It wraps all accordion items in a `div` for better grouping.
  * @see Docs https://chakra-ui.com/components/accordion
  */
-export const Accordion = forwardRef<AccordionProps, "div">((props, ref) => {
+export const Accordion = React.forwardRef(function Accordion(
+  props: AccordionProps,
+  ref: React.Ref<any>,
+) {
   const { children, htmlProps, ...context } = useAccordion(props)
 
   const _className = cx("chakra-accordion", props.className)
@@ -91,27 +94,28 @@ export type AccordionItemProps = Omit<PropsOf<typeof StyledItem>, "children"> &
  *
  * It also provides context for the accordion button and panel.
  */
-export const AccordionItem = forwardRef<AccordionItemProps, "div">(
-  function AccordionItem(props, ref) {
-    const { children, className } = props
-    const { getRootProps, ...context } = useAccordionItem(props)
+export const AccordionItem = React.forwardRef(function AccordionItem(
+  props: AccordionItemProps,
+  ref: React.Ref<any>,
+) {
+  const { children, className } = props
+  const { getRootProps, ...context } = useAccordionItem(props)
 
-    const _className = cx("chakra-accordion__item", className)
+  const _className = cx("chakra-accordion__item", className)
 
-    return (
-      <AccordionItemContextProvider value={context}>
-        <StyledItem {...getRootProps({ ref })} className={_className}>
-          {isFunction(children)
-            ? children({
-                isExpanded: !!context.isOpen,
-                isDisabled: !!context.isDisabled,
-              })
-            : children}
-        </StyledItem>
-      </AccordionItemContextProvider>
-    )
-  },
-)
+  return (
+    <AccordionItemContextProvider value={context}>
+      <StyledItem {...getRootProps({ ref })} className={_className}>
+        {isFunction(children)
+          ? children({
+              isExpanded: !!context.isOpen,
+              isDisabled: !!context.isDisabled,
+            })
+          : children}
+      </StyledItem>
+    </AccordionItemContextProvider>
+  )
+})
 
 if (__DEV__) {
   AccordionItem.displayName = "AccordionItem"
@@ -153,7 +157,7 @@ export type AccordionButtonProps = PropsOf<typeof StyledButton>
  * Note 🚨: Each accordion button must be wrapped in an heading tag,
  * that is appropriate for the information architecture of the page.
  */
-export const AccordionButton = forwardRef<AccordionButtonProps, "button">(
+export const AccordionButton = forwardRef<AccordionButtonProps>(
   function AccordionButton(props, ref) {
     const _className = cx("chakra-accordion__button", props.className)
     const { getButtonProps } = useAccordionItemContext()
@@ -186,27 +190,28 @@ export type AccordionPanelProps = PropsOf<typeof StyledPanel>
  *
  * It uses the `Collapse` component to animate it's height.
  */
-export const AccordionPanel = forwardRef<AccordionPanelProps, "div">(
-  function AccordionPanel(props, ref) {
-    const { getPanelProps, isOpen } = useAccordionItemContext()
-    /**
-     * remove `hidden` prop, 'coz we're using height animation
-     */
-    const { hidden, ...panelProps } = getPanelProps({ ...props, ref })
+export const AccordionPanel = React.forwardRef(function AccordionPanel(
+  props: AccordionPanelProps,
+  ref: React.Ref<any>,
+) {
+  const { getPanelProps, isOpen } = useAccordionItemContext()
+  /**
+   * remove `hidden` prop, 'coz we're using height animation
+   */
+  const { hidden, ...panelProps } = getPanelProps({ ...props, ref })
 
-    const _className = cx("chakra-accordion__panel", props.className)
+  const _className = cx("chakra-accordion__panel", props.className)
 
-    return (
-      <Collapse isOpen={isOpen}>
-        <StyledPanel
-          {...panelProps}
-          className={_className}
-          transition="height 150ms ease-in-out, opacity 150ms ease-in-out, transform 150ms ease-in-out"
-        />
-      </Collapse>
-    )
-  },
-)
+  return (
+    <Collapse isOpen={isOpen}>
+      <StyledPanel
+        {...panelProps}
+        className={_className}
+        transition="height 150ms ease-in-out, opacity 150ms ease-in-out, transform 150ms ease-in-out"
+      />
+    </Collapse>
+  )
+})
 
 if (__DEV__) {
   AccordionPanel.displayName = "AccordionPanel"

@@ -76,9 +76,9 @@ export type CheckboxProps = BaseControlProps &
  *
  * @see Docs https://chakra-ui.com/components/checkbox
  */
-export const Checkbox = React.forwardRef(function Checkbox(
-  props: CheckboxProps,
-  ref: React.Ref<any>,
+export const Checkbox = forwardRef<CheckboxProps, "div">(function Checkbox(
+  props,
+  ref,
 ) {
   const group = useCheckboxGroupContext()
 

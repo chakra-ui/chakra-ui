@@ -20,7 +20,7 @@ const StyledSvg = chakra("svg", { themeKey: "Icon" })
 
 export type IconProps = PropsOf<typeof StyledSvg>
 
-export const Icon = forwardRef<IconProps, "svg">(function Icon(props, ref) {
+export const Icon = forwardRef<IconProps>(function Icon(props, ref) {
   const {
     as: type,
     size,

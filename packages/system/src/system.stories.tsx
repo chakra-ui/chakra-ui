@@ -1,6 +1,6 @@
 /**@jsx jsx */
 import { motion } from "framer-motion"
-import { chakra, jsx, useComponentStyle, PropsOf } from "."
+import { chakra, jsx, useComponentStyle } from "."
 
 export default {
   title: "styled",
@@ -206,7 +206,7 @@ export const UseComponentStyle = () => {
  */
 export const SxProp = () => (
   <h1
-    cx={{
+    __css={{
       color: "red.100",
       transition: "all 0.3s",
       padding: "30px",
