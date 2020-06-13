@@ -1,7 +1,7 @@
 import { useImage } from "@chakra-ui/image"
-import { chakra, PropsOf, SystemProps, forwardRef } from "@chakra-ui/system"
-import * as React from "react"
+import { chakra, PropsOf, SystemProps } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
+import * as React from "react"
 
 interface AvatarOptions {
   /**
@@ -153,7 +153,6 @@ export const baseStyle: SystemProps = {
 const StyledAvatar = chakra<"span", { name?: string }>("span", {
   themeKey: "Avatar.Root",
   baseStyle,
-  shouldForwardProp: (prop) => !["name"].includes(prop),
 })
 
 export type AvatarProps = PropsOf<typeof StyledAvatar> & AvatarOptions
@@ -164,9 +163,9 @@ export type AvatarProps = PropsOf<typeof StyledAvatar> & AvatarOptions
  * React component that renders an user avatar with
  * support for fallback avatar and name-only avatars
  */
-export const Avatar = forwardRef<AvatarProps, "span">(function Avatar(
-  props,
-  ref,
+export const Avatar = React.forwardRef(function Avatar(
+  props: AvatarProps,
+  ref: React.Ref<any>,
 ) {
   const {
     src,

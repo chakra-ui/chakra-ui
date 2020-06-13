@@ -215,10 +215,19 @@ export type ExtractThemingProps<
     : T["components"][K] extends {
         variants: infer V
       }
-    ? T["components"][K] extends { sizes: infer S }
-      ? { variant?: keyof V; size?: keyof S }
-      : { variant?: keyof V }
-    : T["components"][K] extends { sizes: infer S }
+    ? T["components"][K] extends {
+        sizes: infer S
+      }
+      ? {
+          variant?: keyof V
+          size?: keyof S
+        }
+      : {
+          variant?: keyof V
+        }
+    : T["components"][K] extends {
+        sizes: infer S
+      }
     ? { size?: keyof S }
     : undefined
   : undefined
