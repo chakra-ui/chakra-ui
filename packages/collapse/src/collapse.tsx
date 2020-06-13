@@ -43,9 +43,9 @@ export type CollapseProps = PropsOf<typeof chakra.div> & {
   easing?: string
 }
 
-export const Collapse = forwardRef<CollapseProps, "div">(function Collapse(
-  props,
-  forwardedRef,
+export const Collapse = React.forwardRef(function Collapse(
+  props: CollapseProps,
+  forwardedRef: React.Ref<any>,
 ) {
   const {
     isOpen,

@@ -1,6 +1,6 @@
 import * as React from "react"
 import { render } from "@chakra-ui/test-utils"
-import { Collapse } from ".."
+import { Collapse } from "../src"
 
 jest.mock("react-transition-group/Transition", () => {
   const FakeTransition = jest.fn(({ children }) => children())

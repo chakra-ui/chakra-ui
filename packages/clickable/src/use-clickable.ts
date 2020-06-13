@@ -1,13 +1,21 @@
 import * as React from "react"
 import { mergeRefs, dataAttr } from "@chakra-ui/utils"
 
-interface HTMLAttributes
-  extends React.HTMLAttributes<any>,
-    React.RefAttributes<any> {}
+interface DOMAttrs {
+  onMouseDown?: React.MouseEventHandler
+  onMouseUp?: React.MouseEventHandler
+  onMouseOver?: React.MouseEventHandler
+  onMouseEnter?: React.MouseEventHandler
+  onMouseMove?: React.MouseEventHandler
+  onMouseLeave?: React.MouseEventHandler
+  onClick?: React.MouseEventHandler
+  ref?: React.Ref<any>
+  onKeyDown?: React.KeyboardEventHandler
+  onKeyUp?: React.KeyboardEventHandler
+  tabIndex?: number
+}
 
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>
-
-export interface UseClickableProps extends HTMLAttributes {
+export interface UseClickableProps extends DOMAttrs {
   /**
    * If `true`, the element will be disabled.
    * It will set the `disabled` HTML attribute
@@ -182,7 +190,7 @@ export function useClickable(props: UseClickableProps = {}) {
     return {
       ...htmlProps,
       ref,
-      type: "button" as ButtonProps["type"],
+      type: "button",
       "aria-disabled": trulyDisabled ? undefined : isDisabled,
       disabled: trulyDisabled,
       onClick: handleClick,
