@@ -51,7 +51,7 @@ export const colorSchemes = () => (
 
 export const withLeftIcon = () => (
   <Tag colorScheme="cyan">
-    <TagLeftIcon size="12px" as={AddIcon} />
+    <TagLeftIcon boxSize="12px" as={AddIcon} />
     <TagLabel>Green</TagLabel>
   </Tag>
 )

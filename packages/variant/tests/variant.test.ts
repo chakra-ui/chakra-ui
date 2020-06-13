@@ -1,4 +1,4 @@
-import { createVariant, textStyle, layerStyle, createComponent } from ".."
+import { createVariant, textStyle, layerStyle, createComponent } from "../src"
 import { combineParsers, parser } from "@chakra-ui/parser"
 
 interface Props {

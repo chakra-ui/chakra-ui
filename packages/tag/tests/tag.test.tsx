@@ -1,7 +1,7 @@
 import * as React from "react"
 import { render } from "@chakra-ui/test-utils"
 import { AddIcon } from "@chakra-ui/icons"
-import { Tag, TagLeftIcon, TagLabel, TagCloseButton } from ".."
+import { Tag, TagLeftIcon, TagLabel, TagCloseButton } from "../src"
 
 test("Tag renders correctly", () => {
   const { asFragment } = render(

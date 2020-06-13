@@ -20,7 +20,10 @@ module.exports = function (api) {
     "@babel/preset-react",
   ]
 
-  const plugins = ["babel-plugin-chakra-ui"]
+  const plugins = [
+    "babel-plugin-chakra-ui",
+    "@babel/plugin-proposal-class-properties",
+  ]
 
   return {
     presets,

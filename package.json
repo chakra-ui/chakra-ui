@@ -164,6 +164,7 @@
     "@babel/preset-env": "7.10.2",
     "@babel/preset-react": "7.10.1",
     "@babel/preset-typescript": "7.10.1",
+    "@babel/plugin-proposal-class-properties": "7.10.1",
     "@babel/runtime": "7.10.2"
   }
 }

@@ -46,8 +46,8 @@
   },
   "dependencies": {
     "@chakra-ui/utils": "1.0.0",
-    "react-transition-group": "4.3.0",
-    "@types/react-transition-group": "4.2.4"
+    "react-transition-group": "4.4.1",
+    "@types/react-transition-group": "4.4.0"
   },
   "peerDependencies": {
     "react": "16.x"

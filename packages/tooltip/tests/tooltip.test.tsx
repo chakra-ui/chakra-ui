@@ -1,6 +1,6 @@
 import { act, axe, fireEvent, render, screen } from "@chakra-ui/test-utils"
 import * as React from "react"
-import { Tooltip } from ".."
+import { Tooltip } from "../src"
 
 beforeAll(() => {
   jest.useFakeTimers()
