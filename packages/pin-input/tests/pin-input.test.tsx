@@ -1,6 +1,6 @@
 import * as React from "react"
 import { render, userEvent, fireEvent } from "@chakra-ui/test-utils"
-import { usePinInput, usePinInputField, UsePinInputProps } from ".."
+import { usePinInput, usePinInputField, UsePinInputProps } from "../src"
 
 const Component = (props: UsePinInputProps = {}) => {
   const context = usePinInput(props)

@@ -1,11 +1,11 @@
-import { chakra, PropsOf, ThemingProps, forwardRef } from "@chakra-ui/system"
-import { createContext, __DEV__, ariaAttr, cx } from "@chakra-ui/utils"
+import { chakra, PropsOf, ThemingProps } from "@chakra-ui/system"
+import { ariaAttr, createContext, cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import {
-  UsePinInputProps,
-  UsePinInputReturn,
   usePinInput,
   usePinInputField,
+  UsePinInputProps,
+  UsePinInputReturn,
 } from "./use-pin-input"
 
 export type PinInputContext = UsePinInputReturn &
@@ -88,29 +88,30 @@ const StyledInput = chakra<"input", InputOptions>("input", {
     !["focusBorderColor", "errorBorderColor"].includes(prop),
 })
 
-export const PinInputField = forwardRef<PinInputFieldProps, "input">(
-  function PinInputField(props, ref) {
-    const { className, ...rest } = props
-    const context = usePinInputContext()
-    const ownProps = usePinInputField({ context, ref, ...rest })
+export const PinInputField = React.forwardRef(function PinInputField(
+  props: PinInputFieldProps,
+  ref: React.Ref<any>,
+) {
+  const { className, ...rest } = props
+  const context = usePinInputContext()
+  const ownProps = usePinInputField({ context, ref, ...rest })
 
-    const { size, variant, colorScheme } = context
-    const theming = { size, variant, colorScheme } as any
+  const { size, variant, colorScheme } = context
+  const theming = { size, variant, colorScheme } as any
 
-    const _className = cx("chakra-pin-input", className)
+  const _className = cx("chakra-pin-input", className)
 
-    return (
-      <StyledInput
-        textAlign="center"
-        disabled={context.isDisabled}
-        aria-invalid={ariaAttr(context.isInvalid)}
-        className={_className}
-        {...theming}
-        {...ownProps}
-      />
-    )
-  },
-)
+  return (
+    <StyledInput
+      textAlign="center"
+      disabled={context.isDisabled}
+      aria-invalid={ariaAttr(context.isInvalid)}
+      className={_className}
+      {...theming}
+      {...ownProps}
+    />
+  )
+})
 
 if (__DEV__) {
   PinInputField.displayName = "PinInputField"

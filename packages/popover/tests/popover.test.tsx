@@ -1,6 +1,6 @@
 import * as React from "react"
 import { fireEvent, render, wait } from "@chakra-ui/test-utils"
-import { usePopover } from ".."
+import { usePopover } from "../src"
 
 const Component = () => {
   const { getTriggerProps, getPopoverProps, onClose } = usePopover()

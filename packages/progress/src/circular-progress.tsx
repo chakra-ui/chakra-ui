@@ -1,5 +1,5 @@
 import * as React from "react"
-import { getProgressProps, rotate, spin } from "./Progress.utils"
+import { getProgressProps, rotate, spin } from "./_progress.utils"
 import { chakra, PropsOf } from "@chakra-ui/system"
 import { isUndefined, __DEV__, StringOrNumber } from "@chakra-ui/utils"
 

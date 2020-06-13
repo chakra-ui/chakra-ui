@@ -1,6 +1,6 @@
 import { CloseButton, CloseButtonProps } from "@chakra-ui/close-button"
 import { useSafeLayoutEffect } from "@chakra-ui/hooks"
-import { chakra, PropsOf, forwardRef } from "@chakra-ui/system"
+import { chakra, PropsOf } from "@chakra-ui/system"
 import {
   createContext,
   isFunction,
@@ -31,7 +31,7 @@ export type PopoverProps = UsePopoverProps & {
  * to specific user interface elements, typically to suggest an
  * action or to guide users through a new experience.
  */
-export const Popover = (props: PopoverProps) => {
+export function Popover(props: PopoverProps) {
   const { children, ...hookProps } = props
   const context = usePopover(hookProps)
 
@@ -89,18 +89,19 @@ export type PopoverContentProps = PropsOf<typeof StyledContent>
  * The popover's content wrapper that includes all
  * accessibility requirements for a popover
  */
-export const PopoverContent = forwardRef<PopoverContentProps, "section">(
-  function PopoverContent(props, ref) {
-    const { getPopoverProps } = usePopoverContext()
+export const PopoverContent = React.forwardRef(function PopoverContent(
+  props: PopoverContentProps,
+  ref: React.Ref<any>,
+) {
+  const { getPopoverProps } = usePopoverContext()
 
-    return (
-      <StyledContent
-        className="chakra-popover__content"
-        {...getPopoverProps({ ...props, ref })}
-      />
-    )
-  },
-)
+  return (
+    <StyledContent
+      className="chakra-popover__content"
+      {...getPopoverProps({ ...props, ref })}
+    />
+  )
+})
 
 if (__DEV__) {
   PopoverContent.displayName = "PopoverContent"
@@ -125,25 +126,26 @@ export type PopoverHeaderProps = PropsOf<typeof StyledHeader>
  * for the popover's content and it's first announced by
  * screenreaders.
  */
-export const PopoverHeader = forwardRef<PopoverHeaderProps, "header">(
-  function PopoverHeader(props, ref) {
-    const { headerId, setHasHeader } = usePopoverContext()
+export const PopoverHeader = React.forwardRef(function PopoverHeader(
+  props: PopoverHeaderProps,
+  ref: React.Ref<any>,
+) {
+  const { headerId, setHasHeader } = usePopoverContext()
 
-    useSafeLayoutEffect(() => {
-      setHasHeader.on()
-      return () => setHasHeader.off()
-    }, [])
+  useSafeLayoutEffect(() => {
+    setHasHeader.on()
+    return () => setHasHeader.off()
+  }, [])
 
-    return (
-      <StyledHeader
-        className="chakra-popover__header"
-        {...props}
-        id={headerId}
-        ref={ref}
-      />
-    )
-  },
-)
+  return (
+    <StyledHeader
+      className="chakra-popover__header"
+      {...props}
+      id={headerId}
+      ref={ref}
+    />
+  )
+})
 
 if (__DEV__) {
   PopoverHeader.displayName = "PopoverHeader"
@@ -167,25 +169,26 @@ const StyledBody = chakra("div", {
  * Serves as the main content area for the popover. Should contain
  * at least one interactive element.
  */
-export const PopoverBody = forwardRef<PopoverBodyProps, "div">(
-  function PopoverBody(props, ref) {
-    const { bodyId, setHasBody } = usePopoverContext()
+export const PopoverBody = React.forwardRef(function PopoverBody(
+  props: PopoverBodyProps,
+  ref: React.Ref<any>,
+) {
+  const { bodyId, setHasBody } = usePopoverContext()
 
-    useSafeLayoutEffect(() => {
-      setHasBody.on()
-      return () => setHasBody.off()
-    }, [])
+  useSafeLayoutEffect(() => {
+    setHasBody.on()
+    return () => setHasBody.off()
+  }, [])
 
-    return (
-      <StyledBody
-        className="chakra-popover__body"
-        {...props}
-        id={bodyId}
-        ref={ref}
-      />
-    )
-  },
-)
+  return (
+    <StyledBody
+      className="chakra-popover__body"
+      {...props}
+      id={bodyId}
+      ref={ref}
+    />
+  )
+})
 
 if (__DEV__) {
   PopoverBody.displayName = "PopoverBody"
@@ -209,7 +212,7 @@ export type PopoverCloseButtonProps = CloseButtonProps
  *
  * The button to close the popover
  */
-export const PopoverCloseButton = (props: CloseButtonProps) => {
+export function PopoverCloseButton(props: CloseButtonProps) {
   const { onClose } = usePopoverContext()
   return (
     <CloseButton
@@ -235,7 +238,7 @@ const StyledArrow = chakra("div", {
 
 export type PopoverArrowProps = PropsOf<typeof StyledArrow>
 
-export const PopoverArrow = (props: PopoverArrowProps) => {
+export function PopoverArrow(props: PopoverArrowProps) {
   const { getArrowProps } = usePopoverContext()
   return (
     <StyledArrow

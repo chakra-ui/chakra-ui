@@ -1,2 +1,2 @@
-export * from "./CircularProgress"
-export * from "./Progress"
+export * from "./circular-progress"
+export * from "./_progress"

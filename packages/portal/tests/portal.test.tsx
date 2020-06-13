@@ -1,6 +1,6 @@
 import { render, screen } from "@chakra-ui/test-utils"
 import * as React from "react"
-import { PortalManager, Portal } from ".."
+import { PortalManager, Portal } from "../src"
 
 test("should render portal", () => {
   const tools = render(
