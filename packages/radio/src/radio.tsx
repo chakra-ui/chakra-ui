@@ -4,12 +4,11 @@ import {
   PropsOf,
   SystemProps,
   ThemingProps,
-  forwardRef,
 } from "@chakra-ui/system"
 import { cx, split, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { useRadio, UseRadioProps } from "./use-radio"
 import { useRadioGroupContext } from "./radio-group"
+import { useRadio, UseRadioProps } from "./use-radio"
 
 const StyledControl = chakra("div", {
   themeKey: "Radio.Control",
@@ -50,9 +49,9 @@ export type RadioProps = UseRadioProps &
  *
  * @see Docs https://chakra-ui.com/components/radio
  */
-export const Radio = forwardRef<RadioProps, "input", Omitted>(function Radio(
-  props,
-  ref,
+export const Radio = React.forwardRef(function Radio(
+  props: RadioProps,
+  ref: React.Ref<any>,
 ) {
   const group = useRadioGroupContext()
 

@@ -39,7 +39,7 @@ export const SkipNavLink = React.forwardRef(function SkipNavLink(
   props: SkipNavLinkProps,
   ref: React.Ref<any>,
 ) {
-  const { id = fallbackId, sx, ...rest } = props
+  const { id = fallbackId, ...rest } = props
   return (
     <StyledLink
       ref={ref}
@@ -47,8 +47,9 @@ export const SkipNavLink = React.forwardRef(function SkipNavLink(
       href={`#${id}`}
       __css={{
         clip: "rect(0 0 0 0)",
-        _focus: { clip: "auto" },
-        ...sx,
+        "&:focus": {
+          clip: "auto",
+        },
       }}
       {...rest}
     />

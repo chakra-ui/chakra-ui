@@ -1,6 +1,6 @@
 import { fireEvent, render } from "@chakra-ui/test-utils"
 import * as React from "react"
-import { Radio, useRadioGroup, UseRadioGroupProps } from ".."
+import { Radio, useRadioGroup, UseRadioGroupProps } from "../src"
 
 test("RadioGroup renders correctly", () => {
   const Component = () => {

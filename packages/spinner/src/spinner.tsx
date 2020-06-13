@@ -67,36 +67,37 @@ export type SpinnerProps = PropsOf<typeof StyledSpinner> & SpinnerOptions
  *
  * @see Docs https://chakra-ui.com/components/spinner
  */
-export const Spinner = forwardRef<SpinnerProps, "div">(
-  function Spinner(props, ref) {
-    const {
-      label = "Loading...",
-      thickness = "2px",
-      speed = "0.45s",
-      color,
-      emptyColor = "transparent",
-      className,
-      ...rest
-    } = props
+export const Spinner = React.forwardRef(function Spinner(
+  props: SpinnerProps,
+  ref: React.Ref<any>,
+) {
+  const {
+    label = "Loading...",
+    thickness = "2px",
+    speed = "0.45s",
+    color,
+    emptyColor = "transparent",
+    className,
+    ...rest
+  } = props
 
-    const _className = cx("chakra-spinner", className)
+  const _className = cx("chakra-spinner", className)
 
-    return (
-      <StyledSpinner
-        ref={ref}
-        borderWidth={thickness}
-        borderBottomColor={emptyColor}
-        borderLeftColor={emptyColor}
-        color={color}
-        animation={`${spin} ${speed} linear infinite`}
-        className={_className}
-        {...rest}
-      >
-        {label && <VisuallyHidden>{label}</VisuallyHidden>}
-      </StyledSpinner>
-    )
-  },
-)
+  return (
+    <StyledSpinner
+      ref={ref}
+      borderWidth={thickness}
+      borderBottomColor={emptyColor}
+      borderLeftColor={emptyColor}
+      color={color}
+      animation={`${spin} ${speed} linear infinite`}
+      className={_className}
+      {...rest}
+    >
+      {label && <VisuallyHidden>{label}</VisuallyHidden>}
+    </StyledSpinner>
+  )
+})
 
 if (__DEV__) {
   Spinner.displayName = "Spinner"

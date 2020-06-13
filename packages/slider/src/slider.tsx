@@ -1,28 +1,24 @@
 import {
   chakra,
   PropsOf,
-  forwardRef,
   ThemingProps,
-  useThemeDefaultProps,
   ThemingProvider,
+  useThemeDefaultProps,
   useThemingContext,
 } from "@chakra-ui/system"
 import { createContext, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { useSlider, UseSliderProps, UseSliderReturn } from "./use-slider"
 
-type SliderContext = Omit<UseSliderReturn, "getInputProps" | "getRootProps">
+interface SliderContextType
+  extends Omit<UseSliderReturn, "getInputProps" | "getRootProps"> {}
 
-const [SliderProvider, useSliderContext] = createContext<SliderContext>({
+const [SliderProvider, useSliderContext] = createContext<SliderContextType>({
   name: "SliderContext",
   errorMessage: "useSliderContext can only be used within SliderProvider",
 })
 
 export { SliderProvider, useSliderContext }
-
-export type SliderProps = UseSliderProps &
-  ThemingProps &
-  Omit<PropsOf<typeof StyledSlider>, "onChange" | "size">
 
 /**
  * Slider - Theming
@@ -39,6 +35,10 @@ const StyledSlider = chakra("div", {
   },
 })
 
+export type SliderProps = UseSliderProps &
+  ThemingProps &
+  Omit<PropsOf<typeof StyledSlider>, "onChange" | "size">
+
 /**
  * The Slider is used to allow users to make selections from a range of values.
  * It provides context and functionality for all slider components
@@ -46,9 +46,9 @@ const StyledSlider = chakra("div", {
  * @see Docs     https://chakra-ui.com/components/slider
  * @see WAI-ARIA https://www.w3.org/TR/wai-aria-practices/#slider
  */
-export const Slider = forwardRef<SliderProps, "input">(function Slider(
-  props,
-  ref,
+export const Slider = React.forwardRef(function Slider(
+  props: SliderProps,
+  ref: React.Ref<any>,
 ) {
   const defaults = useThemeDefaultProps("Slider")
 

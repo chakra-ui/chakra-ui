@@ -1,6 +1,6 @@
 import * as React from "react"
 import { render } from "@chakra-ui/test-utils"
-import { Select } from ".."
+import { Select } from "../src"
 
 test("Select renders correctly", () => {
   const { asFragment } = render(

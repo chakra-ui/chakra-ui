@@ -20,5 +20,11 @@
     "prefix": "rr",
     "body": "React.Ref<any>",
     "description": "Add ref type"
+  },
+  "Import react": {
+    "scope": "javascriptreact,typescriptreact",
+    "prefix": "imr",
+    "body": "import * as React from 'react'",
+    "description": "Import react"
   }
 }

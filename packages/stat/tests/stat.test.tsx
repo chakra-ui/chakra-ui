@@ -7,7 +7,7 @@ import {
   StatNumber,
   StatHelpText,
   StatArrow,
-} from ".."
+} from "../src"
 
 test("Stat renders correctly", () => {
   const { asFragment } = render(

@@ -7,13 +7,7 @@ import {
   mergeRefs,
 } from "@chakra-ui/utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
-import {
-  ChangeEvent,
-  KeyboardEvent,
-  useCallback,
-  useRef,
-  useState,
-} from "react"
+import * as React from "react"
 
 /**
  * @todo use the `useClickable` hook here
@@ -67,7 +61,7 @@ export interface UseRadioProps {
   /**
    * Function called when checked state of the `input` changes
    */
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export function useRadio(props: UseRadioProps = {}) {
@@ -90,16 +84,16 @@ export function useRadio(props: UseRadioProps = {}) {
   const [isHovered, setHovering] = useBoolean()
   const [isActive, setActive] = useBoolean()
 
-  const ref = useRef<HTMLInputElement>(null)
+  const ref = React.useRef<HTMLInputElement>(null)
 
-  const [isCheckedState, setChecked] = useState(Boolean(defaultIsChecked))
+  const [isCheckedState, setChecked] = React.useState(Boolean(defaultIsChecked))
 
   const [isControlled, isChecked] = useControllableProp(
     isCheckedProp,
     isCheckedState,
   )
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (isReadOnly || isDisabled) {
       event.preventDefault()
       return
@@ -114,7 +108,7 @@ export function useRadio(props: UseRadioProps = {}) {
 
   const trulyDisabled = isDisabled && !isFocusable
 
-  const onKeyDown = useCallback(
+  const onKeyDown = React.useCallback(
     (event: KeyboardEvent) => {
       if (event.key === " ") {
         setActive.on()
@@ -123,7 +117,7 @@ export function useRadio(props: UseRadioProps = {}) {
     [setActive],
   )
 
-  const onKeyUp = useCallback(
+  const onKeyUp = React.useCallback(
     (event: KeyboardEvent) => {
       if (event.key === " ") {
         setActive.off()

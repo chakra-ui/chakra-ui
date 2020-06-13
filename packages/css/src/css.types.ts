@@ -110,7 +110,6 @@ type PseudoStyles = {
 }
 
 export type SystemStyleObject =
-  | CSSObject
   | SystemCSSProperties
   | CSSPseudoSelectorProps
   | CSSSelectorObject
