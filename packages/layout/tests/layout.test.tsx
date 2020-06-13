@@ -1,6 +1,6 @@
 import { render } from "@chakra-ui/test-utils"
 import * as React from "react"
-import { Box, Badge } from ".."
+import { Box, Badge } from "../src"
 
 describe("Box", () => {
   test("should render box correctly", () => {

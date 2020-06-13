@@ -1,10 +1,5 @@
 import { useSafeLayoutEffect } from "@chakra-ui/hooks"
-import {
-  chakra,
-  PropsOf,
-  useComponentStyle,
-  forwardRef,
-} from "@chakra-ui/system"
+import { chakra, PropsOf, useComponentStyle } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { useInputGroup } from "./input-group"
@@ -24,9 +19,9 @@ const StyledElement = chakra("div", {
   },
 })
 
-const InputElement = forwardRef<InputElementProps, "div">(function InputElement(
-  props,
-  ref,
+const InputElement = React.forwardRef(function InputElement(
+  props: InputElementProps,
+  ref: React.Ref<any>,
 ) {
   const { placement = "left", ...rest } = props
 
@@ -57,53 +52,55 @@ if (__DEV__) {
   InputElement.displayName = "InputElement"
 }
 
-export const InputLeftElement = forwardRef<InputElementProps, "div">(
-  function InputLeftElement(props, ref) {
-    const { leftElement } = useInputGroup()
+export const InputLeftElement = React.forwardRef(function InputLeftElement(
+  props: InputElementProps,
+  ref: React.Ref<any>,
+) {
+  const { leftElement } = useInputGroup()
 
-    useSafeLayoutEffect(() => {
-      leftElement?.mount()
-      return () => leftElement?.unmount()
-    }, [])
+  useSafeLayoutEffect(() => {
+    leftElement?.mount()
+    return () => leftElement?.unmount()
+  }, [])
 
-    const _className = cx("chakra-input__left-element", props.className)
+  const _className = cx("chakra-input__left-element", props.className)
 
-    return (
-      <InputElement
-        ref={ref}
-        placement="left"
-        {...props}
-        className={_className}
-      />
-    )
-  },
-)
+  return (
+    <InputElement
+      ref={ref}
+      placement="left"
+      {...props}
+      className={_className}
+    />
+  )
+})
 
 if (__DEV__) {
   InputLeftElement.displayName = "InputLeftElement"
 }
 
-export const InputRightElement = forwardRef<InputElementProps, "div">(
-  function InputRightElement(props, ref) {
-    const { rightElement } = useInputGroup()
+export const InputRightElement = React.forwardRef(function InputRightElement(
+  props: InputElementProps,
+  ref: React.Ref<any>,
+) {
+  const { rightElement } = useInputGroup()
 
-    useSafeLayoutEffect(() => {
-      rightElement?.mount()
-      return () => rightElement?.unmount()
-    }, [])
+  useSafeLayoutEffect(() => {
+    rightElement?.mount()
+    return () => rightElement?.unmount()
+  }, [])
 
-    const _className = cx("chakra-input__right-element", props.className)
+  const _className = cx("chakra-input__right-element", props.className)
 
-    return (
-      <InputElement
-        ref={ref}
-        placement="right"
-        {...props}
-        className={_className}
-      />
-    )
-  },
-)
+  return (
+    <InputElement
+      ref={ref}
+      placement="right"
+      {...props}
+      className={_className}
+    />
+  )
+})
 
 if (__DEV__) {
   InputRightElement.displayName = "InputRightElement"

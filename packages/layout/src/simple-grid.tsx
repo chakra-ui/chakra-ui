@@ -36,49 +36,43 @@ export type SimpleGridProps = GridProps & SimpleGridOptions
  *
  * @see Docs https://chakra-ui.com/components/simplegrid
  */
-export const SimpleGrid = forwardRef<SimpleGridProps, "div">(
-  function SimpleGrid(props, ref) {
-    const {
-      columns,
-      spacingX,
-      spacingY,
-      spacing,
-      minChildWidth,
-      ...rest
-    } = props
+export const SimpleGrid = React.forwardRef(function SimpleGrid(
+  props: SimpleGridProps,
+  ref: React.Ref<any>,
+) {
+  const { columns, spacingX, spacingY, spacing, minChildWidth, ...rest } = props
 
-    const templateColumns = Boolean(minChildWidth)
-      ? widthToColumns(minChildWidth)
-      : countToColumns(columns)
+  const templateColumns = Boolean(minChildWidth)
+    ? widthToColumns(minChildWidth)
+    : countToColumns(columns)
 
-    return (
-      <Grid
-        ref={ref}
-        gap={spacing}
-        columnGap={spacingX}
-        rowGap={spacingY}
-        templateColumns={templateColumns}
-        {...rest}
-      />
-    )
-  },
-)
+  return (
+    <Grid
+      ref={ref}
+      gap={spacing}
+      columnGap={spacingX}
+      rowGap={spacingY}
+      templateColumns={templateColumns}
+      {...rest}
+    />
+  )
+})
 
 if (__DEV__) {
   SimpleGrid.displayName = "SimpleGrid"
 }
 
-const toPx = (n: string | number) => {
+function toPx(n: string | number) {
   return isNumber(n) ? n + "px" : n
 }
 
-const widthToColumns = (width: any) => {
+function widthToColumns(width: any) {
   return mapResponsive(width, (value) =>
     isNull(value) ? null : `repeat(auto-fit, minmax(${toPx(value)}, 1fr))`,
   )
 }
 
-const countToColumns = (count: any) => {
+function countToColumns(count: any) {
   return mapResponsive(count, (value) =>
     isNull(value) ? null : `repeat(${value}, 1fr)`,
   )

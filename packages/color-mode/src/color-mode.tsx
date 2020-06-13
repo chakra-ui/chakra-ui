@@ -1,15 +1,17 @@
 import { ThemeContext } from "@emotion/core"
 import { Dict, merge, noop, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { createContext, FC, ReactNode, useContext } from "react"
-import { useColorModeState } from "./color-mode.hook"
-import { ColorMode } from "./color-mode.utils"
+import useColorModeState from "./use-color-mode-state"
+import type { ColorMode } from "./color-mode.utils"
 
-export { ColorMode }
+export type { ColorMode }
 
 type ColorModeContext = [ColorMode, () => void]
 
-export const ColorModeContext = createContext<ColorModeContext>(["light", noop])
+export const ColorModeContext = React.createContext<ColorModeContext>([
+  "light",
+  noop,
+])
 
 if (__DEV__) {
   ColorModeContext.displayName = "ColorModeContext"
@@ -19,19 +21,19 @@ if (__DEV__) {
  * React hook that reads from `ColorModeProvider` context
  * Returns the color mode and function to toggle it
  */
-export const useColorMode = () => useContext(ColorModeContext)
+export const useColorMode = () => React.useContext(ColorModeContext)
 
 export interface ColorModeProviderProps {
   value?: ColorMode
-  children?: ReactNode
+  children?: React.ReactNode
 }
 
 /**
  * Provides context for the color mode based on config in `theme`
  * Returns the color mode and function to toggle the color mode
  */
-export const ColorModeProvider: FC = (props) => {
-  const theme = useContext(ThemeContext) as Dict
+export const ColorModeProvider: React.FC = (props) => {
+  const theme = React.useContext(ThemeContext) as Dict
 
   const fallbackConfig = {
     useSystemColorMode: false,
@@ -55,7 +57,7 @@ if (__DEV__) {
 /**
  * Locks the color mode to `dark`, without any way to change it.
  */
-export const DarkMode: FC = (props) => (
+export const DarkMode: React.FC = (props) => (
   <ColorModeContext.Provider value={["dark", noop]} {...props} />
 )
 
@@ -66,7 +68,7 @@ if (__DEV__) {
 /**
  * Locks the color mode to `light` without any way to change it.
  */
-export const LightMode: FC = (props) => (
+export const LightMode: React.FC = (props) => (
   <ColorModeContext.Provider value={["light", noop]} {...props} />
 )
 
@@ -80,7 +82,7 @@ if (__DEV__) {
  * @param light the light mode value
  * @param dark the dark mode value
  */
-export const getColorModeValue = (light: any, dark: any) => {
+export function getColorModeValue(light: any, dark: any) {
   return (colorMode: ColorMode) => (colorMode === "light" ? light : dark)
 }
 
@@ -96,7 +98,7 @@ export const getColorModeValue = (light: any, dark: any) => {
  * const Icon = useColorModeValue(MoonIcon, SunIcon)
  * ```
  */
-export const useColorModeValue = (light: any, dark: any) => {
+export function useColorModeValue(light: any, dark: any) {
   const [colorMode] = useColorMode()
   return getColorModeValue(light, dark)(colorMode)
 }

@@ -6,17 +6,17 @@ exports[`Elements inside input render correctly 1`] = `
     class="chakra-input__group css-3lf2mu"
   >
     <div
-      class="chakra-input__left-element css-glbml6"
+      class="chakra-input__left-element css-yh9dkk"
     >
       <span>
         Hello
       </span>
     </div>
     <input
-      class="chakra-input css-6pjrhx"
+      class="chakra-input css-1e8ybm1"
     />
     <div
-      class="chakra-input__right-element css-6f5ody"
+      class="chakra-input__right-element css-ypf6zb"
     >
       <span>
         World
@@ -37,7 +37,7 @@ exports[`Input addons render correctly 1`] = `
       https://
     </div>
     <input
-      class="chakra-input css-6pjrhx"
+      class="chakra-input css-18zqkiy"
     />
     <div
       class="chakra-input__right-addon css-qet1fj"
@@ -51,7 +51,7 @@ exports[`Input addons render correctly 1`] = `
 exports[`Input renders correctly 1`] = `
 <DocumentFragment>
   <input
-    class="chakra-input css-6pjrhx"
+    class="chakra-input css-k2kcme"
   />
 </DocumentFragment>
 `;

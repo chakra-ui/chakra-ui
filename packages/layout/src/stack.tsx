@@ -1,24 +1,23 @@
 import {
   chakra,
   css,
-  forwardRef,
-  ResponsiveValue,
   PropsOf,
+  ResponsiveValue,
   SystemProps,
 } from "@chakra-ui/system"
 import {
+  cx,
   Dict,
   getValidChildren,
   mapResponsive,
   __DEV__,
-  cx,
 } from "@chakra-ui/utils"
 import * as React from "react"
 import { FlexOptions } from "./flex"
 
 export type StackDirection = ResponsiveValue<"row" | "column">
 
-type StackOptions = Pick<FlexOptions, "align" | "justify" | "wrap"> & {
+interface StackOptions extends Pick<FlexOptions, "align" | "justify" | "wrap"> {
   /**
    * The space between each stack item
    */
@@ -72,7 +71,10 @@ export const StackItem = (props: PropsOf<typeof chakra.div>) => (
  * @see Docs https://chakra-ui.com/components/stack
  *
  */
-export const Stack = forwardRef<StackProps, "div">(function Stack(props, ref) {
+export const Stack = React.forwardRef(function Stack(
+  props: StackProps,
+  ref: React.Ref<any>,
+) {
   const {
     direction = "column",
     align = "flex-start",

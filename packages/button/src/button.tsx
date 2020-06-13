@@ -73,10 +73,7 @@ export interface ButtonOptions {
 
 export type ButtonProps = PropsOf<typeof StyledButton> & ButtonOptions
 
-export const Button = forwardRef<ButtonProps, "button">(function Button(
-  props,
-  ref,
-) {
+export const Button = forwardRef<ButtonProps>(function Button(props, ref) {
   const group = useButtonGroup()
 
   const {

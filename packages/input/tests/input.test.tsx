@@ -7,7 +7,7 @@ import {
   InputRightAddon,
   InputLeftElement,
   InputRightElement,
-} from ".."
+} from "../src"
 
 test("Input renders correctly", () => {
   const { asFragment } = render(<Input />)

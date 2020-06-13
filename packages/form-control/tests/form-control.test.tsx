@@ -10,7 +10,7 @@ import {
   FormLabel,
   RequiredIndicator,
   useFormControl,
-} from ".."
+} from "../src"
 
 type OmittedTypes = "disabled" | "required" | "readOnly"
 type InputProps = Omit<PropsOf<typeof StyledInput>, OmittedTypes> &

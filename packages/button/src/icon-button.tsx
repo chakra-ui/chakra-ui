@@ -13,35 +13,36 @@ export type IconButtonProps = BaseButtonProps & {
   "aria-label": string
 }
 
-export const IconButton = forwardRef<IconButtonProps, "button">(
-  function IconButton(props, ref) {
-    const { icon, children, isRound, "aria-label": ariaLabel, ...rest } = props
+export const IconButton = forwardRef<IconButtonProps>(function IconButton(
+  props,
+  ref,
+) {
+  const { icon, children, isRound, "aria-label": ariaLabel, ...rest } = props
 
-    /**
-     * Passing the icon as prop or children should work
-     */
-    const iconElement = icon || children
+  /**
+   * Passing the icon as prop or children should work
+   */
+  const iconElement = icon || children
 
-    const a11yProps = {
-      "aria-hidden": true,
-      focusable: false,
-    }
+  const a11yProps = {
+    "aria-hidden": true,
+    focusable: false,
+  }
 
-    return (
-      <Button
-        padding="0"
-        borderRadius={isRound ? "full" : "md"}
-        ref={ref}
-        aria-label={ariaLabel}
-        {...rest}
-      >
-        {React.isValidElement(iconElement)
-          ? React.cloneElement(iconElement, a11yProps)
-          : null}
-      </Button>
-    )
-  },
-)
+  return (
+    <Button
+      padding="0"
+      borderRadius={isRound ? "full" : "md"}
+      ref={ref}
+      aria-label={ariaLabel}
+      {...rest}
+    >
+      {React.isValidElement(iconElement)
+        ? React.cloneElement(iconElement, a11yProps)
+        : null}
+    </Button>
+  )
+})
 
 if (__DEV__) {
   IconButton.displayName = "IconButton"

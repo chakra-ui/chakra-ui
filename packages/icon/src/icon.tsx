@@ -1,4 +1,4 @@
-import { PropsOf, chakra, forwardRef } from "@chakra-ui/system"
+import { chakra, PropsOf } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -20,7 +20,10 @@ const StyledSvg = chakra("svg", { themeKey: "Icon" })
 
 export type IconProps = PropsOf<typeof StyledSvg>
 
-export const Icon = forwardRef<IconProps>(function Icon(props, ref) {
+export const Icon = React.forwardRef(function Icon(
+  props: IconProps,
+  ref: React.Ref<any>,
+) {
   const {
     as: type,
     size,

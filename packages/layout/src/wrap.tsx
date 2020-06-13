@@ -1,11 +1,4 @@
-import {
-  chakra,
-  css,
-  PropsOf,
-  SystemProps,
-  useTheme,
-  forwardRef,
-} from "@chakra-ui/system"
+import { chakra, css, PropsOf, SystemProps, useTheme } from "@chakra-ui/system"
 import { getValidChildren, mapResponsive, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -40,7 +33,10 @@ export type WrapProps = DivProps & {
  *
  * @see Docs https://chakra-ui.com/components/wrap
  */
-export const Wrap = forwardRef<WrapProps, "div">(function Wrap(props, ref) {
+export const Wrap = React.forwardRef(function Wrap(
+  props: WrapProps,
+  ref: React.Ref<any>,
+) {
   const {
     spacing = "0.5rem",
     children,

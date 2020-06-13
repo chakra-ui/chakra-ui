@@ -43,27 +43,28 @@ export type EditableProps = UseEditableProps &
  * The wrapper that provides context and logic for all editable
  * components. It renders a `div`
  */
-export const Editable = forwardRef<EditableProps, "div", Omitted>(
-  function Editable(props, ref) {
-    const { htmlProps, ...context } = useEditable(props)
+export const Editable = forwardRef<EditableProps>(function Editable(
+  props,
+  ref,
+) {
+  const { htmlProps, ...context } = useEditable(props)
 
-    const { isEditing, onSubmit, onCancel, onEdit } = context
+  const { isEditing, onSubmit, onCancel, onEdit } = context
 
-    const _className = cx("chakra-editable", props.className)
+  const _className = cx("chakra-editable", props.className)
 
-    const children = isFunction(props.children)
-      ? props.children({ isEditing, onSubmit, onCancel, onEdit })
-      : props.children
+  const children = isFunction(props.children)
+    ? props.children({ isEditing, onSubmit, onCancel, onEdit })
+    : props.children
 
-    return (
-      <EditableProvider value={context}>
-        <StyledEditable ref={ref} {...htmlProps} className={_className}>
-          {children}
-        </StyledEditable>
-      </EditableProvider>
-    )
-  },
-)
+  return (
+    <EditableProvider value={context}>
+      <StyledEditable ref={ref} {...htmlProps} className={_className}>
+        {children}
+      </StyledEditable>
+    </EditableProvider>
+  )
+})
 
 if (__DEV__) {
   Editable.displayName = "Editable"
@@ -79,7 +80,7 @@ export type EditablePreviewProps = PropsOf<typeof StyledPreview>
  * The `span` used to display the final value, in the `preview` mode
  */
 
-export const EditablePreview = forwardRef<EditablePreviewProps, "span">(
+export const EditablePreview = forwardRef<EditablePreviewProps>(
   function EditablePreview(props, ref) {
     const { getPreviewProps } = useEditableContext()
     const previewProps = getPreviewProps({ ...props, ref })
@@ -104,7 +105,7 @@ export type EditableInputProps = PropsOf<typeof StyledInput>
  *
  * The input used in the `edit` mode
  */
-export const EditableInput = forwardRef<EditableInputProps, "input">(
+export const EditableInput = forwardRef<EditableInputProps>(
   function EditableInput(props, ref) {
     const { getInputProps } = useEditableContext()
     const inputProps = getInputProps({ ...props, ref })

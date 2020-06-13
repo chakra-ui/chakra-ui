@@ -2,10 +2,9 @@ import {
   chakra,
   PropsOf,
   SystemProps,
-  forwardRef,
   useThemeDefaultProps,
 } from "@chakra-ui/system"
-import { getValidChildren, cx, __DEV__ } from "@chakra-ui/utils"
+import { cx, getValidChildren, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { baseStyle } from "./avatar"
 

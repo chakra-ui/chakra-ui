@@ -1,6 +1,7 @@
 /**@jsx jsx */
 import { motion } from "framer-motion"
-import { chakra, jsx, useComponentStyle } from "."
+import { chakra, jsx, useComponentStyle, PropsOf } from "."
+import { forwardRef } from "./system.utils"
 
 export default {
   title: "styled",

@@ -34,7 +34,7 @@ function transform(theme: Dict, props: Dict) {
  *
  * It also sets a default max-width of `60ch` (60 characters).
  */
-export const Container = forwardRef<ContainerProps, "div">(function Container(
+export const Container = React.forwardRef(function Container(
   props: ContainerProps,
   ref: React.Ref<any>,
 ) {
