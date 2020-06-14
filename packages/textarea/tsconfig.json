@@ -1,5 +1,4 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["src", "stories/textarea.stories.tsx"],
-  "exclude": ["**/*/*.stories.tsx"]
+  "include": ["src"]
 }

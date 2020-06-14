@@ -1,5 +1,4 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["src", "stories/menu.stories.tsx"],
-  "exclude": ["**/*/*.stories.tsx", "../../node_modules/@chakra-ui/css"]
+  "include": ["src"]
 }

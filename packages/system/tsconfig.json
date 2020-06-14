@@ -1,11 +1,4 @@
 {
   "extends": "../../tsconfig.json",
-  "include": [
-    "src",
-    "../../types",
-    "types",
-    "stories/system-advanced.stories.tsx",
-    "stories/system.stories.tsx"
-  ],
-  "exclude": ["node_modules", "**/*/*.stories.tsx"]
+  "include": ["src"]
 }

@@ -1,5 +1,5 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["src", "stories/alert-dialog.stories.tsx"],
+  "include": ["src"],
   "exclude": ["node_modules"]
 }
