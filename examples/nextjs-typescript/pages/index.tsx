@@ -5,6 +5,7 @@ import {
   AccordionItem,
   AccordionButton,
   AccordionPanel,
+  Button,
 } from "@chakra-ui/core"
 
 const IndexPage = () => (
@@ -20,6 +21,9 @@ const IndexPage = () => (
           <AccordionPanel>Welcome home</AccordionPanel>
         </AccordionItem>
       </Accordion>
+      <Button colorScheme="red" marginTop="40px">
+        Welcome
+      </Button>
     </p>
   </Layout>
 )

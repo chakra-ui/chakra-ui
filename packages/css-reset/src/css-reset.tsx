@@ -1,7 +1,7 @@
 import { Global } from "@emotion/core"
 import * as React from "react"
 
-const CSSReset = () => (
+export const CSSReset = () => (
   <Global
     styles={`
       html {

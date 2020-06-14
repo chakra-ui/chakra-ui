@@ -9,7 +9,7 @@ export default {
 export function SampleSpring() {
   const { isOpen, onToggle } = useDisclosure()
   return (
-    <>
+    <React.Fragment>
       <button onClick={onToggle}>Click</button>
       <Collapse isOpen={isOpen}>
         <div style={{ padding: 20, background: "tomato", color: "white" }}>
@@ -24,14 +24,14 @@ export function SampleSpring() {
           including versions of Lorem Ipsum.
         </div>
       </Collapse>
-    </>
+    </React.Fragment>
   )
 }
 
 export function WithStringAsChild() {
   const { isOpen, onToggle } = useDisclosure()
   return (
-    <>
+    <React.Fragment>
       <button style={{ marginBottom: 10 }} onClick={onToggle}>
         Click
       </button>
@@ -40,6 +40,6 @@ export function WithStringAsChild() {
         industry. Lorem Ipsum has been the industry's standard dummy text ever
         since the 1500s, when an unknown printer took a galley of type and
       </Collapse>
-    </>
+    </React.Fragment>
   )
 }

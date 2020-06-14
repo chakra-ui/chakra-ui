@@ -40,7 +40,7 @@
     "develop": "gatsby develop",
     "start": "npm run develop",
     "clean": "gatsby clean",
-    "cleandev": "rm -rf node_modules .cache && yarn && gatsby develop",
+    "clean:dev": "rm -rf node_modules .cache && yarn && gatsby develop",
     "format": "prettier --write \"src/**/*.js\"",
     "test": "jest"
   },

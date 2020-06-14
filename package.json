@@ -111,6 +111,7 @@
     "@storybook/addon-actions": "^6.0.0-beta.13",
     "@storybook/addon-knobs": "^6.0.0-beta.13",
     "@storybook/react": "^6.0.0-beta.13",
+    "@storybook/preset-typescript": "3.0.0",
     "@types/jest": "25.2.3",
     "@types/react-router-dom": "5.1.5",
     "@types/shelljs": "0.8.8",

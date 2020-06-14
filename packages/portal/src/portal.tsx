@@ -24,7 +24,7 @@ export interface PortalProps {
    * Function that will be called to get the parent element
    * that the portal will be attached to.
    */
-  getContainer?: () => HTMLElement
+  getContainer?: () => HTMLElement | null
   /**
    * The content or node you'll like to portal
    */

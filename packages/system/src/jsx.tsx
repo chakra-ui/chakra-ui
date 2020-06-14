@@ -57,10 +57,6 @@ interface CSSProp {
   __css?: SystemStyleObject
 }
 
-/**
- * Merge `__css` into the react module declaration,
- * so it can be accessible anywhere jc is imported
- */
 declare module "react" {
   interface Attributes extends CSSProp {}
 }
