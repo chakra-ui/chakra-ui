@@ -28,12 +28,5 @@ module.exports = function (api) {
   return {
     presets,
     plugins,
-    ignore: [
-      "**/*.test.tsx",
-      "**/*.test.ts",
-      "**/*.stories.tsx",
-      "**/*/tests/*",
-      "**/*/stories/*",
-    ],
   }
 }
