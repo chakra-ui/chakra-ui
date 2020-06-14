@@ -11,6 +11,7 @@ import {
   createContext,
   cx,
   dataAttr,
+  ariaAttr,
   __DEV__,
 } from "@chakra-ui/utils"
 import * as React from "react"
@@ -396,9 +397,9 @@ export function useFormControl<T extends HTMLElement>(
     id: props.id ?? field?.id,
     disabled: props.isDisabled || field?.isDisabled,
     readOnly: props.isReadOnly || field?.isReadOnly,
-    "aria-invalid": props.isInvalid || field?.isInvalid,
-    "aria-required": props.isRequired || field?.isRequired,
-    "aria-readonly": props.isReadOnly || field?.isReadOnly,
+    "aria-invalid": ariaAttr(props.isInvalid || field?.isInvalid),
+    "aria-required": ariaAttr(props.isRequired || field?.isRequired),
+    "aria-readonly": ariaAttr(props.isReadOnly || field?.isReadOnly),
     "aria-describedby": ariaDescribedBy || undefined,
     onFocus: callAllHandlers(field?.onFocus, props.onFocus),
     onBlur: callAllHandlers(field?.onBlur, props.onBlur),

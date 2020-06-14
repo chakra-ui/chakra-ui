@@ -1,14 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Tag renders correctly 1`] = `
+exports[`Tag (only) renders correctly 1`] = `
 <DocumentFragment>
   <span
-    class="css-1ms1p9r"
+    class="css-uemksw"
   >
     A
   </span>
+</DocumentFragment>
+`;
+
+exports[`Tag with close button renders correctly 1`] = `
+<DocumentFragment>
   <span
-    class="css-1ms1p9r"
+    class="css-uemksw"
   >
     <span
       class="css-1h8gyx6"
@@ -19,7 +24,7 @@ exports[`Tag renders correctly 1`] = `
       class="css-pi0mvu"
     >
       <svg
-        class="css-vp3v0l"
+        class="chakra-icon css-vp3v0l"
         focusable="false"
         role="presentation"
         viewBox="0 0 512 512"
@@ -31,20 +36,40 @@ exports[`Tag renders correctly 1`] = `
       </svg>
     </button>
   </span>
+</DocumentFragment>
+`;
+
+exports[`Tag with left icon renders correctly 1`] = `
+<DocumentFragment>
   <span
-    class="css-1ms1p9r"
+    class="css-uemksw"
   >
     <svg
-      class="css-ydks6r"
-      data-chakra-custom-icon=""
+      class="chakra-icon css-40jgb2"
       focusable="false"
       role="presentation"
       viewBox="0 0 24 24"
     >
-      <path
-        d="M0,12a1.5,1.5,0,0,0,1.5,1.5h8.75a.25.25,0,0,1,.25.25V22.5a1.5,1.5,0,0,0,3,0V13.75a.25.25,0,0,1,.25-.25H22.5a1.5,1.5,0,0,0,0-3H13.75a.25.25,0,0,1-.25-.25V1.5a1.5,1.5,0,0,0-3,0v8.75a.25.25,0,0,1-.25.25H1.5A1.5,1.5,0,0,0,0,12Z"
-        fill="currentColor"
-      />
+      <g
+        fill-rule="evenodd"
+      >
+        <circle
+          cx="12"
+          cy="12"
+          fill="currentColor"
+          r="10"
+        />
+        <circle
+          cx="12"
+          cy="18"
+          fill="inherit"
+          r="1"
+        />
+        <path
+          d="M15.89 9.05a3.975 3.975 0 0 0-2.957-2.942C10.321 5.514 8.017 7.446 8 9.95l.005.147a.992.992 0 0 0 .982.904c.552 0 1-.447 1.002-.998a2.004 2.004 0 0 1 4.007-.002c0 1.102-.898 2-2.003 2H12a1 1 0 0 0-1 .987v2.014a1.001 1.001 0 0 0 2.004 0v-.782c0-.217.145-.399.35-.472A3.99 3.99 0 0 0 15.89 9.05"
+          fill="inherit"
+        />
+      </g>
     </svg>
     <span
       class="css-1h8gyx6"
@@ -55,7 +80,7 @@ exports[`Tag renders correctly 1`] = `
       class="css-pi0mvu"
     >
       <svg
-        class="css-vp3v0l"
+        class="chakra-icon css-vp3v0l"
         focusable="false"
         role="presentation"
         viewBox="0 0 512 512"

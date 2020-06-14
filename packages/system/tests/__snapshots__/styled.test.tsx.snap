@@ -1,9 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`__css prop works on jsx element 1`] = `
+<DocumentFragment>
+  <button
+    class="css-1qapnz0"
+  >
+    Click
+  </button>
+</DocumentFragment>
+`;
+
 exports[`apply property in theme works correctly 1`] = `
 <DocumentFragment>
   <code
-    class="css-pc6dmb"
+    class="css-a9n9x0"
   >
     code
   </code>
@@ -67,15 +77,5 @@ exports[`it renders with base style 1`] = `
   >
     Hey!
   </div>
-</DocumentFragment>
-`;
-
-exports[`sx prop works on jsx element 1`] = `
-<DocumentFragment>
-  <button
-    class="css-1qapnz0"
-  >
-    Click
-  </button>
 </DocumentFragment>
 `;

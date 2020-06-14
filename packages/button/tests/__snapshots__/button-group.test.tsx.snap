@@ -5,7 +5,6 @@ exports[`ButtonGroup renders correctly 1`] = `
   <div
     class="chakra-button__group css-101kej7"
     role="group"
-    sx="[object Object]"
   >
     <button
       class="chakra-button css-1gkcy1z"

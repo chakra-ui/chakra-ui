@@ -1,22 +1,29 @@
-import * as React from "react"
 import { render } from "@chakra-ui/test-utils"
-import { AddIcon } from "@chakra-ui/icons"
-import { Tag, TagLeftIcon, TagLabel, TagCloseButton } from "../src"
+import * as React from "react"
+import { Tag, TagCloseButton, TagLabel, TagLeftIcon } from "../src"
 
-test("Tag renders correctly", () => {
+test("Tag (only) renders correctly", () => {
+  const { asFragment } = render(<Tag>A</Tag>)
+  expect(asFragment()).toMatchSnapshot()
+})
+
+test("Tag with close button renders correctly", () => {
   const { asFragment } = render(
-    <>
-      <Tag>A</Tag>
-      <Tag>
-        <TagLabel>B</TagLabel>
-        <TagCloseButton />
-      </Tag>
-      <Tag>
-        <TagLeftIcon as={AddIcon} />
-        <TagLabel>C</TagLabel>
-        <TagCloseButton />
-      </Tag>
-    </>,
+    <Tag>
+      <TagLabel>B</TagLabel>
+      <TagCloseButton />
+    </Tag>,
+  )
+  expect(asFragment()).toMatchSnapshot()
+})
+
+test("Tag with left icon renders correctly", () => {
+  const { asFragment } = render(
+    <Tag>
+      <TagLeftIcon />
+      <TagLabel>C</TagLabel>
+      <TagCloseButton />
+    </Tag>,
   )
   expect(asFragment()).toMatchSnapshot()
 })

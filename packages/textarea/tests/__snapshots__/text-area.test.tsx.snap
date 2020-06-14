@@ -3,7 +3,7 @@
 exports[`Textarea renders correctly 1`] = `
 <DocumentFragment>
   <textarea
-    class="chakra-textarea css-vi5xzx"
+    class="chakra-textarea css-4wn8bt"
   >
     hello
   </textarea>

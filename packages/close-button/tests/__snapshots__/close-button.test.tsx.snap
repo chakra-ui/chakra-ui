@@ -4,12 +4,12 @@ exports[`CloseButton renders correctly 1`] = `
 <DocumentFragment>
   <button
     aria-label="Close"
-    class="css-s7xxrf"
+    class="css-rgfuis"
     type="button"
   >
     <svg
       aria-hidden="true"
-      class="css-9na4ut"
+      class="chakra-icon css-9na4ut"
       focusable="false"
       role="presentation"
       viewBox="0 0 24 24"

@@ -12,7 +12,7 @@ exports[`Button renders correctly 1`] = `
 exports[`Button renders with icons 1`] = `
 <DocumentFragment>
   <div
-    class="chakra-button__group css-15xvw7i"
+    class="chakra-button__group css-101kej7"
     role="group"
   >
     <button

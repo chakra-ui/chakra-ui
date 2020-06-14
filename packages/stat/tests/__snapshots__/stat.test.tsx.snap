@@ -30,7 +30,7 @@ exports[`Stat renders correctly 1`] = `
           </span>
           <svg
             aria-hidden="true"
-            class="css-a8if2g"
+            class="chakra-icon css-a8if2g"
             focusable="false"
             role="presentation"
             viewBox="0 0 24 24"
@@ -68,7 +68,7 @@ exports[`Stat renders correctly 1`] = `
           </span>
           <svg
             aria-hidden="true"
-            class="css-4zj5ne"
+            class="chakra-icon css-4zj5ne"
             focusable="false"
             role="presentation"
             viewBox="0 0 24 24"

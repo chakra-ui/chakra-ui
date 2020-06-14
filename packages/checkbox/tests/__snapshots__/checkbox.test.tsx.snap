@@ -13,7 +13,7 @@ exports[`Checkbox renders correctly 1`] = `
     />
     <div
       aria-hidden="true"
-      class="chakra-checkbox__control css-r1uwzp"
+      class="chakra-checkbox__control css-1beopa5"
     />
   </label>
 </DocumentFragment>
@@ -32,10 +32,10 @@ exports[`Checkbox renders correctly 2`] = `
     />
     <div
       aria-hidden="true"
-      class="chakra-checkbox__control css-r1uwzp"
+      class="chakra-checkbox__control css-1beopa5"
     />
     <div
-      class="chakra-checkbox__label css-k4agny"
+      class="chakra-checkbox__label css-1csyywq"
     >
       This is custom checkbox
     </div>

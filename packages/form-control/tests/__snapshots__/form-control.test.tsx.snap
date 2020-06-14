@@ -15,7 +15,7 @@ exports[`FormControl renders correctly in default state 1`] = `
     </label>
     <input
       aria-describedby="name-helptext"
-      class="css-6pjrhx"
+      class="css-k2kcme"
       id="name"
       placeholder="Name"
     />
@@ -46,7 +46,7 @@ exports[`FormControl renders correctly when invalid 1`] = `
     <input
       aria-describedby="name-feedback name-helptext"
       aria-invalid="true"
-      class="css-6pjrhx"
+      class="css-k2kcme"
       id="name"
       placeholder="Name"
     />
@@ -58,7 +58,7 @@ exports[`FormControl renders correctly when invalid 1`] = `
     </div>
     <svg
       aria-hidden="true"
-      class="chakra-form__error-icon css-1gn1kov"
+      class="chakra-icon chakra-form__error-icon css-9na4ut"
       focusable="false"
       role="presentation"
       viewBox="0 0 24 24"
@@ -96,11 +96,13 @@ exports[`FormControl renders correctly when required 1`] = `
       aria-hidden="true"
       class="chakra-form__required-indicator css-i02c70"
       role="presentation"
-    />
+    >
+      *
+    </span>
     <input
       aria-describedby="name-helptext"
       aria-required="true"
-      class="css-6pjrhx"
+      class="css-k2kcme"
       id="name"
       placeholder="Name"
     />

@@ -13,7 +13,7 @@ exports[`Badge override the theming props 1`] = `
 exports[`Badge should render with default theming 1`] = `
 <DocumentFragment>
   <span
-    class="chakra-badge css-18s42hr"
+    class="chakra-badge css-2q4iwi"
   >
     Badge
   </span>

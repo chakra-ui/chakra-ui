@@ -3,10 +3,10 @@
 exports[`Select renders correctly 1`] = `
 <DocumentFragment>
   <div
-    class="chakra-select__wrapper css-1jke4yk"
+    class="chakra-select__wrapper css-1ew591x"
   >
     <select
-      class="chakra-select css-kw97ul"
+      class="chakra-select css-pyjrd1"
       placeholder="Select an option"
     >
       <option

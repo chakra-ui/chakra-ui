@@ -5,7 +5,7 @@ exports[`Collapse renders correctly 1`] = `
   <div
     aria-hidden="true"
     class="chakra-collapse"
-    style="height: 0px; opacity: 0; transition: height 200ms ease, opacity 200ms ease, transform 200ms ease; overflow: hidden; will-change: height, opacity;"
+    style="height: 0px; opacity: 0; transition: height 150ms ease, opacity 150ms ease, transform 150ms ease; overflow: hidden; will-change: height, opacity, transform;"
   >
     <div>
       sfsjdfkbfkjdfdjksf

@@ -15,6 +15,7 @@
     "contrib:add": "all-contributors add",
     "contrib:gen": "all-contributors generate",
     "prestart": "yarn && yarn bootstrap",
+    "boot": "yarn prestart && yarn build",
     "start": "yarn build && yarn storybook",
     "start:all": "yarn build && concurrently \"yarn docs develop\"  \"yarn storybook\" ",
     "build": "lerna run build --ignore @chakra-ui/test-utils --no-private --stream",

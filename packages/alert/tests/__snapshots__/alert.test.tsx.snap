@@ -3,14 +3,14 @@
 exports[`should render correctly 1`] = `
 <DocumentFragment>
   <div
-    class="chakra-alert css-crswnv"
+    class="chakra-alert css-x07ocs"
     role="alert"
   >
     <span
       class="chakra-alert__icon css-7fcm4b"
     >
       <svg
-        class="css-14thacp"
+        class="chakra-icon css-14thacp"
         focusable="false"
         role="presentation"
         viewBox="0 0 24 24"
