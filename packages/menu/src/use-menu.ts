@@ -686,6 +686,7 @@ export interface UseMenuOptionProps extends UseMenuItemProps {
   value?: string
   isChecked?: string
   type?: "radio" | "checkbox"
+  children?: React.ReactNode
 }
 
 export function useMenuOption(props: UseMenuOptionProps) {

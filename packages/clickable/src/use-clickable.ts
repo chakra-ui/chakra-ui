@@ -190,7 +190,7 @@ export function useClickable(props: UseClickableProps = {}) {
     return {
       ...htmlProps,
       ref,
-      type: "button",
+      type: "button" as React.ButtonHTMLAttributes<any>["type"],
       "aria-disabled": trulyDisabled ? undefined : isDisabled,
       disabled: trulyDisabled,
       onClick: handleClick,
