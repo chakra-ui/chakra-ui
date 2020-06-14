@@ -99,11 +99,17 @@ test("indeterminate state", () => {
 })
 
 test("Controlled - should check and uncheck", () => {
-  let checked = false
-  const onChange = jest.fn((e) => (checked = e.target.checked))
+  const onChange = jest.fn()
 
   const Component = (props: UseCheckboxProps) => {
-    const { htmlProps, getInputProps, getCheckboxProps } = useCheckbox(props)
+    const [isChecked, setIsChecked] = React.useState(false)
+    const { htmlProps, getInputProps, getCheckboxProps } = useCheckbox({
+      isChecked,
+      onChange: (event) => {
+        setIsChecked(event.target.checked)
+        props.onChange?.(event)
+      },
+    })
 
     return (
       <label {...htmlProps}>
@@ -113,29 +119,16 @@ test("Controlled - should check and uncheck", () => {
     )
   }
 
-  const tools = render(<Component isChecked={checked} onChange={onChange} />)
+  const tools = render(<Component onChange={onChange} />)
 
   const input = tools.getByTestId("input")
   const checkbox = tools.getByText("Checkbox")
 
-  expect(input).not.toHaveAttribute("data-checked")
-
-  fireEvent.click(checkbox)
-  expect(onChange).toHaveBeenCalled()
-
-  // change props
-  tools.rerender(<Component isChecked={checked} onChange={onChange} />)
-
-  expect(onChange).toHaveBeenCalled()
-  expect(checkbox).toHaveAttribute("data-checked")
-
-  fireEvent.click(checkbox)
-  expect(onChange).toHaveBeenCalled()
-
-  tools.rerender(<Component isChecked={checked} onChange={onChange} />)
-
-  expect(onChange).toHaveBeenCalled()
   expect(checkbox).not.toHaveAttribute("data-checked")
+
+  fireEvent.click(input)
+  expect(checkbox).toHaveAttribute("data-checked")
+  expect(onChange).toHaveBeenCalled()
 })
 
 test("CheckboxGroup Uncontrolled - default values should be check", () => {
