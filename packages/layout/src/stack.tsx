@@ -92,7 +92,7 @@ export const Stack = React.forwardRef(function Stack(
    * If we ever run into SSR issues with this, check this post to find a fix for it:
    * @see https://medium.com/@emmenko/patching-lobotomized-owl-selector-for-emotion-ssr-5a582a3c424c
    */
-  const selector = "> * + *"
+  const selector = "& > *:not(style) ~ *:not(style)"
 
   const styles = {
     flexDirection: direction,
@@ -143,7 +143,7 @@ export const Stack = React.forwardRef(function Stack(
     return _child
   })
 
-  const sx = (theme: Dict) => {
+  const __css = (theme: Dict) => {
     if (hasDivider) return undefined
     return css({ [selector]: styles[selector] })(theme)
   }
@@ -159,7 +159,7 @@ export const Stack = React.forwardRef(function Stack(
       flexDirection={styles.flexDirection}
       flexWrap={wrap}
       className={_className}
-      __css={sx as any}
+      __css={__css as any}
       {...rest}
     >
       {clones}

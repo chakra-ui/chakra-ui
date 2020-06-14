@@ -36,7 +36,7 @@ const isValidHTMLProp = (value: any): value is keyof ValidHTMLProps =>
 
 function isPropValid(prop: string) {
   const shouldPassThrough =
-    validHTMLProps.hasOwnProperty(prop) || prop === "sx" || prop === "css"
+    validHTMLProps.hasOwnProperty(prop) || prop === "__css" || prop === "css"
   return shouldPassThrough ? true : shouldForwardProp(prop)
 }
 

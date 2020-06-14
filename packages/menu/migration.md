@@ -54,7 +54,7 @@ Support for menu icons and commands (or hotkeys
 
 Support for menu transitions and animations
 
-> It's important to use the `css` or `sx` prop for the transitions to work
+> It's important to use the `css` or `__css` prop for the transitions to work
 > properly. For some reason, it doesn't work with the `style` native prop
 
 ```jsx
