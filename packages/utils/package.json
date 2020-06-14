@@ -28,7 +28,7 @@
     "build": "concurrently yarn:build:*",
     "test": "jest --env=jsdom --passWithNoTests",
     "test:cov": "yarn test --coverage",
-    "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
+    "lint:src": "eslint src --fix --ext .ts,.tsx --config ../../.eslintrc",
     "lint:types": "tsc --noEmit",
     "lint": "concurrently yarn:lint:*"
   },
