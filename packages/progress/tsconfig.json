@@ -1,5 +1,9 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["src"],
+  "include": [
+    "src",
+    "stories/progress.stories.tsx",
+    "stories/circular-progress.stories.tsx"
+  ],
   "exclude": ["**/*/*.stories.tsx"]
 }

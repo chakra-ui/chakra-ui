@@ -1,5 +1,5 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["src"],
+  "include": ["src", "stories/spinner.stories.tsx"],
   "exclude": ["**/*/*.stories.tsx"]
 }
