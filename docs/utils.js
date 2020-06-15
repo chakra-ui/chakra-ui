@@ -3,9 +3,7 @@ const path = require("path")
 const _ = require("lodash/fp")
 const { Octokit } = require("@octokit/rest")
 
-const octokit = new Octokit({
-  auth: process.env.GITHUB_API_TOKEN,
-})
+const octokit = new Octokit()
 
 const compareCollections = (
   { fields: { collection: a } },
@@ -77,6 +75,34 @@ const getNodeContributors = async (node) => {
   return contributors
 }
 
+const sortMembers = (a, b) => {
+  // segun comes first!
+  if (a.login === "segunadebayo") return -1
+  if (b.login === "segunadebayo") return 1
+
+  // everything else is alphabetical by login
+  return a.login.localeCompare(b.login, "en")
+}
+
+const getMemberData = async ({ login }) => {
+  const { data: user } = await octokit.users.getByUsername({ username: login })
+  const {
+    avatar_url: avatarUrl,
+    html_url: githubUrl,
+    blog: websiteUrl,
+    bio,
+    name,
+    twitter_username: twitterUsername,
+  } = user
+  return { login, avatarUrl, githubUrl, websiteUrl, bio, name, twitterUsername }
+}
+
+const getOrgMembers = async () => {
+  const { data: members } = await octokit.orgs.listMembers({ org: "chakra-ui" })
+  const sorted = members.sort(sortMembers)
+  return await Promise.all(sorted.map(getMemberData))
+}
+
 const readAllContributorsRc = async () => {
   const rcPath = path.resolve("..", ".all-contributorsrc")
   const contributorsRcData = await fs.readFile(rcPath, "utf-8")
@@ -88,5 +114,6 @@ module.exports = {
   sortPostNodes,
   getRelativePagePath,
   getNodeContributors,
+  getOrgMembers,
   readAllContributorsRc,
 }
