@@ -10,7 +10,7 @@ import {
   chakra,
   Badge,
 } from "@chakra-ui/core"
-import SEO from "../components/seo"
+import SEO from "components/seo"
 
 function GuidePreview(props) {
   const {

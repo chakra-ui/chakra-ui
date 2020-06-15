@@ -9,7 +9,7 @@ import {
 import { globalHistory } from "@reach/router"
 import * as React from "react"
 import { MdDehaze } from "react-icons/md"
-import { SideNavContent } from "./docs/side-nav"
+import { SideNavContent } from "./side-nav"
 
 const MobileNav = () => {
   const { isOpen, onToggle, onClose } = useDisclosure()

@@ -13,7 +13,7 @@ import {
   Tooltip,
 } from "@chakra-ui/core"
 import { IoLogoTwitter, IoLogoGithub, IoIosGlobe } from "react-icons/io"
-import SEO from "../components/seo"
+import SEO from "components/seo"
 
 const SocialLink = ({ icon, href }) => (
   <Link display="inline-block" href={href} isExternal>
