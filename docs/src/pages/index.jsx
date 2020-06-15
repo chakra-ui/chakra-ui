@@ -8,6 +8,7 @@ import {
   Grid,
   Divider,
   Flex,
+  Icon,
 } from "@chakra-ui/core"
 import { DiGithubBadge } from "react-icons/di"
 import { MdAccessibility, MdPalette, MdGrain } from "react-icons/md"
@@ -15,8 +16,8 @@ import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live"
 import theme from "prism-react-renderer/themes/nightOwl"
 import * as Chakra from "@chakra-ui/core"
 import * as ReactMdIcons from "react-icons/md"
-import { Container } from "components/container"
-import { Footer } from "components/footer"
+import { Container } from "../components/container"
+import { Footer } from "../components/footer"
 
 const Feature = ({ title, icon, children, ...props }) => {
   return (
@@ -28,7 +29,7 @@ const Feature = ({ title, icon, children, ...props }) => {
         align="center"
         justify="center"
       >
-        <Box boxSize={6} color="white" as={icon} />
+        <Icon boxSize={6} color="white" as={icon} />
       </Flex>
       <Heading as="h2" size="md" fontWeight="semibold" mt="1em" mb="0.5em">
         {title}
@@ -89,7 +90,7 @@ export default () => {
             <Box mt="6">
               <Button
                 as={GatsbyLink}
-                to="/getting-started"
+                to="/docs/getting-started"
                 size="lg"
                 colorScheme="teal"
               >

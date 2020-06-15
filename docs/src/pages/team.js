@@ -2,6 +2,7 @@ import * as React from "react"
 import { graphql } from "gatsby"
 import {
   Box,
+  Icon,
   Container,
   Heading,
   Text,
@@ -10,14 +11,14 @@ import {
   SimpleGrid,
   Link,
   Wrap,
-  Tooltip,
+  // Tooltip,
 } from "@chakra-ui/core"
 import { IoLogoTwitter, IoLogoGithub, IoIosGlobe } from "react-icons/io"
-import SEO from "components/seo"
+import SEO from "../components/seo"
 
 const SocialLink = ({ icon, href }) => (
   <Link display="inline-block" href={href} isExternal>
-    <Box
+    <Icon
       as={icon}
       transition="all 0.2s"
       _hover={{ color: "teal.600" }}
@@ -61,11 +62,11 @@ function Contributor({ contributor }) {
 
   return (
     <Box>
-      <Tooltip hasArrow label={login} placement="top">
-        <Link href={`https://github.com/${login}`} isExternal>
-          <Avatar size="md" src={avatarUrl} />
-        </Link>
-      </Tooltip>
+      <Link href={`https://github.com/${login}`} isExternal>
+        <Avatar size="md" src={avatarUrl} />
+      </Link>
+      {/* <Tooltip hasArrow label={login} placement="top">
+      </Tooltip> */}
     </Box>
   )
 }

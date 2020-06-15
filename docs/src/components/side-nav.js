@@ -34,6 +34,7 @@ const useSortedCollectionLinks = (collection) => {
 function LinkGroup(props) {
   const { title, collection, ...rest } = props
   const nodes = useSortedCollectionLinks(collection)
+  console.log(nodes)
 
   return (
     <Box mb="10" {...rest}>

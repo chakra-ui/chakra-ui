@@ -1,5 +1,5 @@
 import React from "react"
-import { Box } from "@chakra-ui/core"
+import { Box, Icon } from "@chakra-ui/core"
 import { FaHeart } from "react-icons/fa"
 
 function SponsorButton(props) {
@@ -37,7 +37,7 @@ function SponsorButton(props) {
       }}
       {...props}
     >
-      <Box as={FaHeart} boxSize="4" color="red.500" mr="2" />
+      <Icon as={FaHeart} boxSize="4" color="red.500" mr="2" />
       <Box as="strong" lineHeight="inherit">
         Sponsor
       </Box>

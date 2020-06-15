@@ -3,27 +3,20 @@ import * as React from "react"
 
 type ReactRef<T> = React.Ref<T> | React.MutableRefObject<T>
 
-const isRefFunction = (ref: any): ref is <T>(instance: T) => void =>
-  typeof ref === "function"
-
-const isRefObject = (ref: any): ref is React.MutableRefObject<any> =>
-  Boolean(ref.current)
-
-export function assignRef<T = any>(ref: ReactRef<T>, value: T) {
+export function assignRef<T = any>(ref: ReactRef<T> | undefined, value: T) {
   if (ref == null) return
 
-  if (isRefFunction(ref)) {
+  if (typeof ref === "function") {
     ref(value)
     return
   }
 
-  if (isRefObject(ref)) {
+  try {
     //@ts-ignore
     ref.current = value
-    return
+  } catch (error) {
+    throw new Error(`Cannot assign value '${value}' to ref '${ref}'`)
   }
-
-  throw new Error(`Cannot assign value "${value}" to ref "${ref}"`)
 }
 
 /**

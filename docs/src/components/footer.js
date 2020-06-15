@@ -1,12 +1,12 @@
 import React from "react"
-import { Box, Text, Stack, Link } from "@chakra-ui/core"
+import { Box, Icon, Text, Stack, Link } from "@chakra-ui/core"
 import { IoLogoTwitter, IoLogoLinkedin } from "react-icons/io"
 import { MdEmail } from "react-icons/md"
 import { DiGithubBadge } from "react-icons/di"
 
 const FooterLink = ({ icon, href }) => (
   <Link display="inline-block" href={href} isExternal>
-    <Box as={icon} fontSize="xl" color="gray.400" />
+    <Icon as={icon} fontSize="xl" color="gray.400" />
   </Link>
 )
 

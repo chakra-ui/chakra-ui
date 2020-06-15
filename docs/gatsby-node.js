@@ -24,6 +24,7 @@ exports.onCreateNode = async ({ node, actions, getNode }) => {
       basePath: "pages",
       trailingSlash: false,
     })
+
     const slug = relativeFilePath.toLowerCase()
 
     // create `slug` field (`node.fields.slug`)
@@ -129,6 +130,7 @@ exports.createPages = async ({ graphql, actions }) => {
       index === sortedNodes.length - 1 ? null : sortedNodes[index + 1]
     const slug = node.fields.slug
     const relativePath = getRelativePagePath(node.fileAbsolutePath)
+
     const edge = edges[index]
     const { modifiedTime, birthTime } = edge.node.parent
 
@@ -185,17 +187,5 @@ exports.sourceNodes = async ({
     }
     const node = { ...contributor, ...nodeMeta }
     createNode(node)
-  })
-}
-
-exports.onCreateWebpackConfig = ({ actions }) => {
-  actions.setWebpackConfig({
-    resolve: {
-      alias: {
-        components: path.resolve(__dirname, "src/components"),
-        templates: path.resolve(__dirname, "src/templates"),
-        pages: path.resolve(__dirname, "pages"),
-      },
-    },
   })
 }

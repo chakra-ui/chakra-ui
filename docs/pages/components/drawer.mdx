@@ -1,0 +1,278 @@
+---
+title: Drawer
+package: "@chakra-ui/drawer"
+image: "components/drawer.svg"
+description:
+  The Drawer component is a panel that slides out from the edge of the screen.
+  It can be useful when you need users to complete a task or view some details
+  without leaving the current page.
+---
+
+import ComponentLinks from "../../src/components/component-links"
+
+# Drawer
+
+The Drawer component is a panel that slides out from the edge of the screen. It
+can be useful when you need users to complete a task or view some details
+without leaving the current page.
+
+<ComponentLinks
+  github={{ url: "#" }}
+  storybook={{ url: "#" }}
+  npm={{ label: "@chakra-ui/drawer", url: "#" }}
+/>
+
+<carbon-ad></carbon-ad>
+
+## Installation
+
+```js
+import {
+  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+} from "@chakra-ui/core"
+```
+
+## Usage
+
+### Basic Drawer
+
+```jsx
+function DrawerExample() {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const btnRef = React.useRef()
+
+  return (
+    <>
+      <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
+        Open
+      </Button>
+      <Drawer
+        isOpen={isOpen}
+        placement="right"
+        onClose={onClose}
+        finalFocusRef={btnRef}
+      >
+        <DrawerOverlay>
+          <DrawerContent>
+            <DrawerCloseButton />
+            <DrawerHeader>Create your account</DrawerHeader>
+
+            <DrawerBody>
+              <Input placeholder="Type here..." />
+            </DrawerBody>
+
+            <DrawerFooter>
+              <Button variant="outline" mr={3} onClick={onClose}>
+                Cancel
+              </Button>
+              <Button color="blue">Save</Button>
+            </DrawerFooter>
+          </DrawerContent>
+        </DrawerOverlay>
+      </Drawer>
+    </>
+  )
+}
+```
+
+### Drawer placement
+
+The Drawer can appear from any edge of the screen. Pass the `placement` prop and
+set it to `top`, `right`, `bottom`, or `left`.
+
+```jsx
+function PlacementExample() {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const [placement, setPlacement] = React.useState("right")
+
+  return (
+    <>
+      <RadioGroup defaultValue={placement} onChange={setPlacement}>
+        <Stack direction="row" mb="4">
+          <Radio value="top">Top</Radio>
+          <Radio value="right">Right</Radio>
+          <Radio value="bottom">Bottom</Radio>
+          <Radio value="left">Left</Radio>
+        </Stack>
+      </RadioGroup>
+      <Button colorScheme="blue" onClick={onOpen}>
+        Open
+      </Button>
+      <Drawer placement={placement} onClose={onClose} isOpen={isOpen}>
+        <DrawerOverlay>
+          <DrawerContent>
+            <DrawerHeader borderBottomWidth="1px">Basic Drawer</DrawerHeader>
+            <DrawerBody>
+              <p>Some contents...</p>
+              <p>Some contents...</p>
+              <p>Some contents...</p>
+            </DrawerBody>
+          </DrawerContent>
+        </DrawerOverlay>
+      </Drawer>
+    </>
+  )
+}
+```
+
+### Focus on specific element
+
+When a form is in the drawer, you might need to set focus on a specific element
+when the drawer opens. Pass the `initialFocusRef` prop.
+
+> Without the `initialFocusRef` prop, the drawer will set focus on the **first
+> focusable element** when it opens.
+
+```jsx
+function DrawerExample() {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const firstField = React.useRef()
+  const btnRef = React.useRef()
+
+  return (
+    <>
+      <Button ref={btnRef} leftIcon="add" colorScheme="teal" onClick={onOpen}>
+        Create user
+      </Button>
+      <Drawer
+        isOpen={isOpen}
+        placement="right"
+        initialFocusRef={firstField}
+        finalFocusRef={btnRef}
+        onClose={onClose}
+      >
+        <DrawerOverlay>
+          <DrawerContent>
+            <DrawerCloseButton />
+            <DrawerHeader borderBottomWidth="1px">
+              Create a new account
+            </DrawerHeader>
+
+            <DrawerBody>
+              <Stack spacing="24px">
+                <Box>
+                  <FormLabel htmlFor="username">Name</FormLabel>
+                  <Input
+                    ref={firstField}
+                    id="username"
+                    placeholder="Please enter user name"
+                  />
+                </Box>
+
+                <Box>
+                  <FormLabel htmlFor="url">Url</FormLabel>
+                  <InputGroup>
+                    <InputLeftAddon>http://</InputLeftAddon>
+                    <Input
+                      type="url"
+                      id="url"
+                      placeholder="Please enter password"
+                      borderRadius="0"
+                    />
+                    <InputRightAddon>.com</InputRightAddon>
+                  </InputGroup>
+                </Box>
+
+                <Box>
+                  <FormLabel htmlFor="owner">Select Owner</FormLabel>
+                  <Select id="owner" defaultValue="segun">
+                    <option value="segun">Segun Adebayo</option>
+                    <option value="kola">Kola Tioluwani</option>
+                  </Select>
+                </Box>
+
+                <Box>
+                  <FormLabel htmlFor="desc">Description</FormLabel>
+                  <Textarea id="desc" />
+                </Box>
+              </Stack>
+            </DrawerBody>
+
+            <DrawerFooter borderTopWidth="1px">
+              <Button variant="outline" mr={3} onClick={onClose}>
+                Cancel
+              </Button>
+              <Button colorScheme="blue">Submit</Button>
+            </DrawerFooter>
+          </DrawerContent>
+        </DrawerOverlay>
+      </Drawer>
+    </>
+  )
+}
+```
+
+### Drawer Widths
+
+Pass the `size` prop if you need to adjust the size of the drawer. Values can be
+`xs`, `sm`, `md`, `lg`, `xl`, or `full`.
+
+```jsx
+function SizeExample() {
+  const [size, setSize] = React.useState("md")
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+  const handleClick = (newSize) => {
+    setSize(newSize)
+    onOpen()
+  }
+
+  const sizes = ["xs", "sm", "md", "lg", "xl", "full"]
+
+  return (
+    <>
+      {sizes.map((size) => (
+        <Button
+          onClick={() => handleClick(size)}
+          key={size}
+          m={4}
+        >{`Open ${size} Drawer`}</Button>
+      ))}
+
+      <Drawer onClose={onClose} isOpen={isOpen} size={size}>
+        <DrawerOverlay>
+          <DrawerContent>
+            <DrawerHeader>{`${size} drawer contents`}</DrawerHeader>
+            <DrawerBody>
+              {size === "full"
+                ? `You're trapped 😆, refresh the page to leave`
+                : null}
+            </DrawerBody>
+          </DrawerContent>
+        </DrawerOverlay>
+      </Drawer>
+    </>
+  )
+}
+```
+
+## Accessibility
+
+- When opening the Drawer, focus is trapped inside the Drawer.
+- By default, the drawer sets focus on the first focusable element. If the
+  `initialFocusRef` prop is passed, the drawer sets focus on the element with
+  the assigned `ref`.
+- After the drawer closes, it'll return focus to the element that triggered it.
+
+## Props
+
+### Drawer Props
+
+Drawer composes the `Modal` component with these extra props:
+
+| Name           | Type                             | Default | Description                                                                                         |
+| -------------- | -------------------------------- | ------- | --------------------------------------------------------------------------------------------------- |
+| `isFullHeight` | `boolean`                        | `false` | If `true` and `placement` is set to `top` or `bottom`, the drawer fills the height of the viewport. |
+| `placement`    | `left`, `right`, `top`, `bottom` | `right` | The ref to the initial element to receive focus when the drawer opens.                              |
+
+### Other components
+
+- `DrawerOverlay`, `DrawerFooter`, `DrawerHeader` and `DrawerBody` composes
+  `Box` component
+- `DrawerCloseButton` composes `CloseButton`
