@@ -15,10 +15,11 @@ happen.
 
 <!-- A clear and concise description of what you expected to happen. -->
 
-**To Reproduce**
+**Link to minimal reproduction** Please provide a codesandbox link or GitHub
+repo with a minimal reproduction of the issue.
 
-- Use this template:
-- List the steps to reproduce the behavior:
+**Steps to Reproduce** Clear and concise reproduction instructions are important
+for us to be able to triage your issue in a timely manner.
 
 1. Go to '...'
 2. Click on '....'
@@ -35,4 +36,5 @@ happen.
 - Browser [e.g. chrome, safari]
 - Version [e.g. 22]
 
-**Additional context** Add any other context about the problem here.
+**Additional context** Add any other context about the problem here, or some
+background information of how you ran into this bug.

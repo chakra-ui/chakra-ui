@@ -6,14 +6,14 @@ labels: ""
 assignees: ""
 ---
 
-**Is your feature request related to a problem? Please describe.** A clear and
-concise description of what the problem is. Ex. I'm always frustrated when [...]
+**What problem does this feature solve?** A clear and concise description of the
+feature, the problem it solves and solution you propose.
 
-**Describe the solution you'd like** A clear and concise description of what you
-want to happen.
+**What does the proposed API look like?** Describe how you propose to solve the
+problem and provide code samples of how the API would work once implemented.
 
-**Describe alternatives you've considered** A clear and concise description of
-any alternative solutions or features you've considered.
+**Describe alternatives you've considered** List any alternative solutions
+you've considered.
 
 **Additional context** Add any other context or screenshots about the feature
 request here.
