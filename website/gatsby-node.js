@@ -23,11 +23,13 @@ exports.onCreateNode = async ({ node, actions, getNode }) => {
     const relativeFilePath = createFilePath({
       node,
       getNode,
-      basePath: "docs",
+      basePath: sourceInstanceName,
       trailingSlash: false,
-    })
-
-    const slug = relativeFilePath.toLowerCase()
+    }).toLowerCase()
+    const slug =
+      sourceInstanceName === "guides"
+        ? `/guides${relativeFilePath}`
+        : relativeFilePath
 
     // create `slug` field (`node.fields.slug`)
     createNodeField({
