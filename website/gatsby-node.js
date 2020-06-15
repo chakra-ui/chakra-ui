@@ -12,21 +12,24 @@ const {
 exports.onCreateNode = async ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
-  // only adds fields to `Mdx` nodes
+  // process mdx files
   if (node.internal.type === `Mdx`) {
-    // get the `collection` using the parent `File` node's `relativeDirectory`
-    const { relativeDirectory } = getNode(node.parent)
-    const collection = relativeDirectory.length ? relativeDirectory : "main"
+    // `sourceInstanceName` is the name of the folder loaded by this file's
+    // `gatsby-source-filesystem` instance. it'll be either `docs` or `guides`,
+    // depending on the folder the file is in
+    const { sourceInstanceName, relativeDirectory } = getNode(node.parent)
 
     // use `gatsby-source-filesystem` to create our slug
     const relativeFilePath = createFilePath({
       node,
       getNode,
-      basePath: "pages",
+      basePath: sourceInstanceName,
       trailingSlash: false,
-    })
-
-    const slug = relativeFilePath.toLowerCase()
+    }).toLowerCase()
+    const slug =
+      sourceInstanceName === "guides"
+        ? `/guides${relativeFilePath}`
+        : relativeFilePath
 
     // create `slug` field (`node.fields.slug`)
     createNodeField({
@@ -35,14 +38,29 @@ exports.onCreateNode = async ({ node, actions, getNode }) => {
       value: slug,
     })
 
-    // create `collection` field (`node.fields.collection`)
+    // create `source` field that matches `sourceInstanceName`
+    // (`node.fields.source`)
     createNodeField({
-      name: "collection",
+      name: "source",
       node,
-      value: collection,
+      value: sourceInstanceName,
     })
 
-    if (collection === "guides") {
+    if (sourceInstanceName === "docs") {
+      // each docs page gets a "collection" which is used for dynamically
+      // generating links sections
+      const collection = relativeDirectory.length ? relativeDirectory : "main"
+
+      // create `collection` field (`node.fields.collection`)
+      createNodeField({
+        name: "collection",
+        node,
+        value: collection,
+      })
+    }
+
+    if (sourceInstanceName === "guides") {
+      // each guides page get a list of "contributors" attached to it
       const contributors = await getNodeContributors(node)
       createNodeField({
         name: "contributors",
@@ -86,84 +104,105 @@ exports.createSchemaCustomization = (props) => {
   createTypes(typeDefs)
 }
 
-exports.createPages = async ({ graphql, actions }) => {
+const createDocsPages = async (nodes, { actions }) => {
   const { createPage } = actions
   const docsTemplate = path.resolve("./src/templates/docs.js")
+  const sortedNodes = sortPostNodes(nodes)
+
+  sortedNodes.forEach((node, index) => {
+    const {
+      fileAbsolutePath,
+      fields: { slug },
+      parent: { createdAt, updatedAt },
+    } = node
+    const previous = index === 0 ? null : sortedNodes[index - 1]
+    const next =
+      index === sortedNodes.length - 1 ? null : sortedNodes[index + 1]
+    const relativePath = getRelativePagePath(fileAbsolutePath, "docs")
+
+    createPage({
+      path: slug,
+      component: docsTemplate,
+      context: {
+        slug,
+        layout: "docs",
+        previous,
+        next,
+        createdAt,
+        updatedAt,
+        relativePath,
+      },
+    })
+  })
+}
+
+const createGuidesPages = async (nodes, { actions }) => {
+  const { createPage } = actions
   const guidesTemplate = path.resolve("./src/templates/guides.js")
 
-  // get nodes by `slug`
+  nodes.forEach((node) => {
+    const {
+      fileAbsolutePath,
+      fields: { slug },
+      parent: { createdAt, updatedAt },
+    } = node
+    const relativePath = getRelativePagePath(fileAbsolutePath, "guides")
+
+    createPage({
+      path: slug,
+      component: guidesTemplate,
+      context: {
+        slug,
+        layout: "guides",
+        createdAt,
+        updatedAt,
+        relativePath,
+      },
+    })
+  })
+}
+
+exports.createPages = async ({ graphql, actions }) => {
   const result = await graphql(
     `
-      {
-        allMdx {
-          edges {
-            node {
-              parent {
-                ... on File {
-                  modifiedTime(formatString: "MMMM DD, YYYY")
-                }
-              }
-            }
+      fragment PageInformation on Mdx {
+        fileAbsolutePath
+        frontmatter {
+          title
+          order
+        }
+        fields {
+          collection
+          slug
+          source
+        }
+        parent {
+          ... on File {
+            createdAt: birthTime(formatString: "MMMM DD, YYYY")
+            updatedat: modifiedTime(formatString: "MMMM DD, YYYY")
           }
-          nodes {
-            fileAbsolutePath
-            frontmatter {
-              title
-              order
-            }
+        }
+      }
 
-            fields {
-              collection
-              slug
-            }
+      query AllMdxPages {
+        docs: allMdx(filter: { fields: { source: { eq: "docs" } } }) {
+          nodes {
+            ...PageInformation
+          }
+        }
+        guides: allMdx(filter: { fields: { source: { eq: "guides" } } }) {
+          nodes {
+            ...PageInformation
           }
         }
       }
     `,
   )
 
-  const { nodes, edges } = result.data.allMdx
-  const sortedNodes = sortPostNodes(nodes)
+  const { docs, guides } = result.data
 
-  sortedNodes.forEach((node, index) => {
-    const previous = index === 0 ? null : sortedNodes[index - 1]
-    const next =
-      index === sortedNodes.length - 1 ? null : sortedNodes[index + 1]
-    const slug = node.fields.slug
-    const relativePath = getRelativePagePath(node.fileAbsolutePath)
-
-    const edge = edges[index]
-    const { modifiedTime, birthTime } = edge.node.parent
-
-    createPage({
-      // we use the generated slug for the path
-      path: slug,
-
-      // use the `docs` template for each of these pages
-      component:
-        node.fields.collection === "guides" ? guidesTemplate : docsTemplate,
-
-      // otherwise known as `pageContext`
-      context: {
-        // attaching `slug` here allows `templates/docs.js` to access the value,
-        // which it uses for finding this post to render its data
-        slug,
-
-        // this is attached so `layout.js` knows to use the sidebar layout for
-        // these pages
-        layout: node.fields.collection === "guides" ? "guides" : "docs",
-
-        // previous and next pages
-        previous,
-        next,
-        modifiedTime,
-        createdAt: birthTime,
-
-        // relative path to file ('/docs/pages/getting-started.mdx')
-        relativePath,
-      },
-    })
-  })
+  await createDocsPages(docs.nodes, { actions })
+  await createGuidesPages(guides.nodes, { actions })
 }
 
 exports.sourceNodes = async ({

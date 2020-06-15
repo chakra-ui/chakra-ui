@@ -7,7 +7,7 @@ import { GithubLink } from "../components/github-edit-link"
 import SEO from "../components/seo"
 
 function LastEdited(props) {
-  const { modifiedTime, editUrl, ...rest } = props
+  const { updatedAt, editUrl, ...rest } = props
   return (
     <Flex
       as="footer"
@@ -16,7 +16,7 @@ function LastEdited(props) {
       {...rest}
     >
       <Box fontSize="sm" opacity={0.7}>
-        Last updated: {modifiedTime}
+        Last updated: {updatedAt}
       </Box>
       <GithubLink path={editUrl} />
     </Flex>
@@ -30,7 +30,7 @@ const Body = (props) => {
     contributors,
     relativePath,
     body,
-    modifiedTime,
+    updatedAt,
   } = props
   const creator = contributors[0]
   return (
@@ -49,11 +49,7 @@ const Body = (props) => {
       )}
       <MDXRenderer>{body}</MDXRenderer>
       {relativePath && (
-        <LastEdited
-          mt="3rem"
-          modifiedTime={modifiedTime}
-          editUrl={relativePath}
-        />
+        <LastEdited mt="3rem" updatedAt={updatedAt} editUrl={relativePath} />
       )}
     </Box>
   )
@@ -61,7 +57,7 @@ const Body = (props) => {
 
 const Guides = ({ data, pageContext }) => {
   const location = useLocation()
-  const { previous, next, slug, relativePath, modifiedTime } = pageContext
+  const { slug, relativePath, updatedAt } = pageContext
   const { body, frontmatter, fields, tableOfContents } = data.mdx
   const { title, description } = frontmatter
   const { contributors } = fields
@@ -74,13 +70,11 @@ const Guides = ({ data, pageContext }) => {
         body={body}
         title={title}
         description={description}
-        previous={previous}
-        next={next}
         slug={slug}
         tableOfContents={tableOfContents}
         contributors={contributors}
         relativePath={relativePath}
-        modifiedTime={modifiedTime}
+        updatedAt={updatedAt}
       />
     </>
   )

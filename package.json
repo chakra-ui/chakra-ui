@@ -6,7 +6,7 @@
       "packages/*",
       "examples/*",
       "tooling/*",
-      "docs"
+      "website"
     ]
   },
   "author": "Segun Adebayo <sage@adebayosegun.com>",
@@ -17,7 +17,7 @@
     "prestart": "yarn && yarn bootstrap",
     "boot": "yarn prestart && yarn build",
     "start": "yarn build && yarn storybook",
-    "start:all": "yarn build && concurrently \"yarn docs develop\"  \"yarn storybook\" ",
+    "start:all": "yarn build && concurrently \"yarn website develop\"  \"yarn storybook\" ",
     "build": "lerna run build --ignore @chakra-ui/test-utils --no-private --stream",
     "test": "lerna run test --no-private --stream",
     "lint": "lerna run lint --no-private --stream",
@@ -33,8 +33,8 @@
     "release": "lerna publish",
     "release:ci": "lerna publish -y --loglevel verbose",
     "release:next": "lerna publish --canary --preid alpha",
-    "docs": "yarn workspace @chakra-ui/docs",
-    "docs:start": "yarn docs start",
+    "website": "yarn workspace @chakra-ui/website",
+    "website:start": "yarn website start",
     "core": "yarn workspace @chakra-ui/core",
     "icon": "yarn workspace @chakra-ui/icon",
     "hooks": "yarn workspace @chakra-ui/hooks",

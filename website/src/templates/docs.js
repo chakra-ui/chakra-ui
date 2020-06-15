@@ -8,7 +8,7 @@ import { Pagination } from "../components/pagination"
 import SEO from "../components/seo"
 
 function LastEdited(props) {
-  const { modifiedTime, editUrl, ...rest } = props
+  const { updatedAt, editUrl, ...rest } = props
   return (
     <Flex
       as="footer"
@@ -17,7 +17,7 @@ function LastEdited(props) {
       {...rest}
     >
       <Box fontSize="sm" opacity={0.7}>
-        Last updated: {modifiedTime}
+        Last updated: {updatedAt}
       </Box>
       <GithubLink path={editUrl} />
     </Flex>
@@ -25,16 +25,12 @@ function LastEdited(props) {
 }
 
 const Body = (props) => {
-  const { relativePath, body, previous, next, modifiedTime } = props
+  const { relativePath, body, previous, next, updatedAt } = props
   return (
     <Box mx="auto" maxW="48rem" mt="1em">
       <MDXRenderer>{body}</MDXRenderer>
       {relativePath && (
-        <LastEdited
-          mt="3rem"
-          modifiedTime={modifiedTime}
-          editUrl={relativePath}
-        />
+        <LastEdited mt="3rem" updatedAt={updatedAt} editUrl={relativePath} />
       )}
       <Pagination mt="4rem" mb="80px" previous={previous} next={next} />
     </Box>
@@ -43,7 +39,7 @@ const Body = (props) => {
 
 const Docs = ({ data, pageContext }) => {
   const location = useLocation()
-  const { previous, next, slug, relativePath, modifiedTime } = pageContext
+  const { previous, next, slug, relativePath, updatedAt } = pageContext
   const { body, frontmatter, tableOfContents } = data.mdx
   const { title, description } = frontmatter
 
@@ -58,7 +54,7 @@ const Docs = ({ data, pageContext }) => {
         slug={slug}
         tableOfContents={tableOfContents}
         relativePath={relativePath}
-        modifiedTime={modifiedTime}
+        updatedAt={updatedAt}
       />
     </>
   )
