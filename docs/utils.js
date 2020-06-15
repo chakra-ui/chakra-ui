@@ -35,10 +35,11 @@ const sortPostNodes = (nodes) => {
   return allSorted
 }
 
-const DOCS_REGEX = /\/docs\/pages\/.*/
-const getRelativePagePath = (fileAbsolutePath) => {
+const getRelativePagePath = (fileAbsolutePath, source) => {
   if (!fileAbsolutePath) return
-  const match = fileAbsolutePath.match(DOCS_REGEX)
+
+  const regex = new RegExp(`/docs/${source}/.*`)
+  const match = fileAbsolutePath.match(regex)
   return match ? match[0] : null
 }
 

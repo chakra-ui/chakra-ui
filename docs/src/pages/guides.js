@@ -72,7 +72,7 @@ function GuidePreview(props) {
 function Guides() {
   const { allMdx } = useStaticQuery(graphql`
     query AllGuides {
-      allMdx(filter: { fields: { collection: { eq: "guides" } } }) {
+      allMdx(filter: { fields: { source: { eq: "guides" } } }) {
         nodes {
           fields {
             slug
