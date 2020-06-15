@@ -14,3 +14,16 @@ test("should run mapper on array or object and return mapped data", () => {
     md: "grid-template-columns(3, 1fr )",
   })
 })
+
+test("null values in array are replaced with previous value", () => {
+  expect(mapResponsive([2, null, 3], mapper)).toStrictEqual([
+    "grid-template-columns(2, 1fr )",
+    "grid-template-columns(2, 1fr )",
+    "grid-template-columns(3, 1fr )",
+  ])
+  expect(mapResponsive([2, null, null], mapper)).toStrictEqual([
+    "grid-template-columns(2, 1fr )",
+    "grid-template-columns(2, 1fr )",
+    "grid-template-columns(2, 1fr )",
+  ])
+})
