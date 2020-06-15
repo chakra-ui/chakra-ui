@@ -11,7 +11,7 @@ import {
   SimpleGrid,
   Link,
   Wrap,
-  // Tooltip,
+  Tooltip,
 } from "@chakra-ui/core"
 import { IoLogoTwitter, IoLogoGithub, IoIosGlobe } from "react-icons/io"
 import SEO from "../components/seo"
@@ -62,11 +62,11 @@ function Contributor({ contributor }) {
 
   return (
     <Box>
-      <Link href={`https://github.com/${login}`} isExternal>
-        <Avatar size="md" src={avatarUrl} />
-      </Link>
-      {/* <Tooltip hasArrow label={login} placement="top">
-      </Tooltip> */}
+      <Tooltip hasArrow label={login} placement="top">
+        <Link href={`https://github.com/${login}`} isExternal>
+          <Avatar size="md" src={avatarUrl} />
+        </Link>
+      </Tooltip>
     </Box>
   )
 }

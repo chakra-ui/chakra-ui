@@ -23,7 +23,9 @@ import { useLocation } from "@reach/router"
 const NavLink = (props) => {
   const { to, ...rest } = props
   const { pathname } = useLocation()
-  const isActive = pathname === to
+
+  const group = to.split("/")[1]
+  const isActive = pathname.includes(group)
 
   return (
     <chakra.a
@@ -60,7 +62,7 @@ const HeaderContent = () => {
           <Logo />
         </chakra.a>
         <HStack as="nav" spacing="8" ml="32px">
-          <NavLink to="/getting-started">Docs</NavLink>
+          <NavLink to="/docs/getting-started">Docs</NavLink>
           <NavLink to="/guides">Guides</NavLink>
           <NavLink to="/team">Team</NavLink>
         </HStack>
