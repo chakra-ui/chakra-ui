@@ -90,7 +90,7 @@ export default () => {
             <Box mt="6">
               <Button
                 as={GatsbyLink}
-                to="/docs/getting-started"
+                to="/getting-started"
                 size="lg"
                 colorScheme="teal"
               >
