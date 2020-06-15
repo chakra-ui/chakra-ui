@@ -5,19 +5,17 @@ const { Octokit } = require("@octokit/rest")
 
 const octokit = new Octokit()
 
+const collections = ["main", "theming", "layout", "components", "utilities"]
 const compareCollections = (
   { fields: { collection: a } },
   { fields: { collection: b } },
 ) => {
-  // comparison when one or both are "main"
-  if (a === "main" && b === "main") return 0
-  if (a === "main" && b !== "main") return -1
-  if (a !== "main" && b === "main") return 1
+  const aIndex = collections.indexOf(a)
+  const bIndex = collections.indexOf(b)
 
-  // comparisons when neither are "main"
-  if (a < b) return -1
-  if (a > b) return 1
-  return 0
+  if (aIndex === bIndex) return 0
+  if (aIndex > bIndex) return 1
+  if (aIndex < bIndex) return -1
 }
 
 const groupByCollection = _.groupBy("fields.collection")
