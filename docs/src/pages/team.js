@@ -71,24 +71,14 @@ function Contributor({ contributor }) {
   )
 }
 
-const sortMembers = (a, b) => {
-  // segun comes first!
-  if (a.login === "segunadebayo") return -1
-  if (b.login === "segunadebayo") return 1
-
-  // everything else is alphabetical by login
-  return a.login.localeCompare(b.login, "en")
-}
-
 function Team({ data }) {
-  const { github, contributors } = data
-  const { nodes: memberNodes } = github.organization.membersWithRole
+  const { members, contributors } = data
+  const { nodes: memberNodes } = members
   const { nodes: contributorNodes } = contributors
   const memberLogins = memberNodes.map(({ login }) => login)
   const contributorsWithoutTeam = contributorNodes.filter(
     ({ login }) => !memberLogins.includes(login),
   )
-  const sortedMemberNodes = memberNodes.sort(sortMembers)
 
   return (
     <>
@@ -114,7 +104,7 @@ function Team({ data }) {
           <Stack spacing={8}>
             <Heading size="md">Core Team</Heading>
             <SimpleGrid columns={[1, 1, 2]} spacing="40px">
-              {sortedMemberNodes.map((member) => (
+              {memberNodes.map((member) => (
                 <Member key={member.login} member={member} />
               ))}
             </SimpleGrid>
@@ -140,20 +130,17 @@ function Team({ data }) {
 export default Team
 
 export const query = graphql`
-  query TeamQuery {
-    github {
-      organization(login: "chakra-ui") {
-        membersWithRole(first: 50) {
-          nodes {
-            avatarUrl
-            bio
-            login
-            name
-            twitterUsername
-            url
-            websiteUrl
-          }
-        }
+  query TeamAndContributorsQuery {
+    members: allTeamMember {
+      nodes {
+        avatarUrl
+        bio
+        githubUrl
+        id
+        name
+        login
+        twitterUsername
+        websiteUrl
       }
     }
     contributors: allChakraContributor {

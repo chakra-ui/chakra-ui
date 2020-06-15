@@ -5,6 +5,7 @@ const {
   sortPostNodes,
   getRelativePagePath,
   getNodeContributors,
+  getOrgMembers,
   readAllContributorsRc,
 } = require("./utils")
 
@@ -186,6 +187,22 @@ exports.sourceNodes = async ({
       },
     }
     const node = { ...contributor, ...nodeMeta }
+    createNode(node)
+  })
+
+  const team = await getOrgMembers()
+  team.forEach((member) => {
+    const id = createNodeId(`team__${member.login}`)
+    const nodeContent = JSON.stringify(member)
+    const nodeMeta = {
+      id,
+      internal: {
+        type: "TeamMember",
+        content: nodeContent,
+        contentDigest: createContentDigest(member),
+      },
+    }
+    const node = { ...member, ...nodeMeta }
     createNode(node)
   })
 }
