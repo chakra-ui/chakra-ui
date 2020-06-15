@@ -41,7 +41,7 @@ function Search(props) {
     }
   }
 
-  useEventListener("keydown", onKeyDown, window)
+  useEventListener("keydown", onKeyDown)
 
   React.useEffect(() => {
     if (window) {

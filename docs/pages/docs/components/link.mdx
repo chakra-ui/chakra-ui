@@ -1,0 +1,79 @@
+---
+title: Link
+package: "@chakra-ui/layout"
+image: "components/link.svg"
+description:
+  Links are accessible elements used primarily for navigation. This component is
+  styled to resemble a hyperlink and semantically renders an anchor tag.
+---
+
+import ComponentLinks from "components/component-links"
+
+# Link
+
+Links are accessible elements used primarily for navigation. This component is
+styled to resemble a hyperlink and semantically renders an `<a>`.
+
+<ComponentLinks
+  github={{ url: "#" }}
+  storybook={{ url: "#" }}
+  npm={{ label: "@chakra-ui/layout", url: "#" }}
+/>
+
+<carbon-ad></carbon-ad>
+
+## Import
+
+```js
+import { Link } from "@chakra-ui/core"
+```
+
+## Usage
+
+```jsx
+<Link>Chakra UI</Link>
+```
+
+### External Link
+
+```jsx
+<Link href="https://chakra-ui.com" isExternal>
+  Chakra Design system <ExternalLinkIcon mx="2px" />
+</Link>
+```
+
+### Link inline with text
+
+```jsx
+<Text>
+  Did you know that{" "}
+  <Link color="teal.500" href="#">
+    links can live inline with text
+  </Link>
+</Text>
+```
+
+## Usage with Routing Library
+
+To use the `Link` with a routing library like Reach Router or React Router, all
+you need to do is pass the `as` prop. It'll replace the rendered `a` tag with
+Reach's `Link`.
+
+```jsx live=false
+// 1. import { Link as ReachLink } from "@reach/router"
+
+// 2. Then use it like this
+<Link as={ReachLink} to="/home">
+  Home
+</Link>
+```
+
+## Props
+
+The Link component composes the [PseudoBox](/pseudobox) component.
+
+| Name         | Type       | Default | Description                               |
+| ------------ | ---------- | ------- | ----------------------------------------- |
+| `isExternal` | `boolean`  |         | If `true`, the link will open in new tab. |
+| `isDisabled` | `boolean`  |         | If `true`, the link will be disabled.     |
+| `onClick`    | `function` |         | Function called when the link is clicked. |

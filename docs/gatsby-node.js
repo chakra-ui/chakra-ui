@@ -8,8 +8,6 @@ const {
   readAllContributorsRc,
 } = require("./utils")
 
-console.log(process.env.GITHUB_API_TOKEN)
-
 exports.onCreateNode = async ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
@@ -82,6 +80,7 @@ exports.createSchemaCustomization = (props) => {
       },
     }),
   ]
+
   createTypes(typeDefs)
 }
 
@@ -186,5 +185,17 @@ exports.sourceNodes = async ({
     }
     const node = { ...contributor, ...nodeMeta }
     createNode(node)
+  })
+}
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      alias: {
+        components: path.resolve(__dirname, "src/components"),
+        templates: path.resolve(__dirname, "src/templates"),
+        pages: path.resolve(__dirname, "pages"),
+      },
+    },
   })
 }

@@ -79,7 +79,7 @@ const EditableNotice = (props) => {
   )
 }
 
-const StarIcon = (props) => {
+function StarIcon(props) {
   return (
     <chakra.svg
       m="2px"
@@ -93,7 +93,7 @@ const StarIcon = (props) => {
   )
 }
 
-const CodeBlock = (props) => {
+function CodeBlock(props) {
   const { className, live = true, manual, render, children, ...rest } = props
   const [editorCode, setEditorCode] = useState(children.trim())
 

@@ -1,0 +1,506 @@
+---
+title: Modal
+package: "@chakra-ui/modal"
+image: "components/modal.svg"
+description:
+  A dialog is a window overlaid on either the primary window or another dialog
+  window
+---
+
+import ComponentLinks from "components/component-links"
+
+# Modal (Dialog)
+
+A dialog is a window overlaid on either the primary window or another dialog
+window. Content behind a modal dialog is **inert**, meaning that users cannot
+interact with it.
+
+<ComponentLinks
+  github={{ url: "#" }}
+  storybook={{ url: "#" }}
+  npm={{ label: "@chakra-ui/modal", url: "#" }}
+/>
+
+<carbon-ad></carbon-ad>
+
+> 🚨 Version (v1.0.0) introduced a breaking change to this component's API.
+> Kindly update accordingly.
+
+## Import
+
+Chakra exports 7 components to help you create any modal dialog.
+
+- `Modal`: The wrapper that provides context for its children
+- `ModalOverlay`: The dimmed overlay behind the modal dialog
+- `ModalContent`: The container for the modal dialog's content
+- `ModalHeader`: The header that labels the modal dialog
+- `ModalFooter`: The footer that houses the modal actions
+- `ModalBody`: The wrapper that houses the modal's main content
+- `ModalCloseButton`: The button that closes the modal.
+
+```js
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+} from "@chakra-ui/core"
+```
+
+## Usage
+
+When the modal opens, focus is sent into the modal and set to the first tabbable
+element. If there are no tabbled elements, focus is set on `ModalContent`.
+
+```jsx
+function BasicUsage() {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  return (
+    <>
+      <Button onClick={onOpen}>Open Modal</Button>
+
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay>
+          <ModalContent>
+            <ModalHeader>Modal Title</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <Lorem count={2} />
+            </ModalBody>
+
+            <ModalFooter>
+              <Button colorScheme="blue" mr={3} onClick={onClose}>
+                Close
+              </Button>
+              <Button variant="ghost">Secondary Action</Button>
+            </ModalFooter>
+          </ModalContent>
+        </ModalOverlay>
+      </Modal>
+    </>
+  )
+}
+```
+
+### Control Focus when Modal closes
+
+When the dialog closes, it returns focus to the element that triggered it. Set
+`finalFocusRef` to change the element that should receive focus when the modal
+closes.
+
+```jsx
+function ReturnFocus() {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const finalRef = React.useRef()
+
+  return (
+    <>
+      <Box ref={finalRef} tabIndex={-1} aria-label="Focus moved to this box">
+        Some other content that'll receive focus on close.
+      </Box>
+
+      <Button mt={4} onClick={onOpen}>
+        Open Modal
+      </Button>
+      <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay>
+          <ModalContent>
+            <ModalHeader>Modal Title</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <Lorem count={2} />
+            </ModalBody>
+
+            <ModalFooter>
+              <Button colorScheme="blue" mr={3} onClick={onClose}>
+                Close
+              </Button>
+              <Button variant="ghost">Secondary Action</Button>
+            </ModalFooter>
+          </ModalContent>
+        </ModalOverlay>
+      </Modal>
+    </>
+  )
+}
+```
+
+### Block Scrolling when Modal opens
+
+For accessibility, it's recommended to block scrolling on the main document
+behind the modal. Chakra does this by default but you can set
+`shouldBlockScroll` to `false` to allow scrolling behind the modal.
+
+```jsx
+function BasicUsage() {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+  return (
+    <>
+      <Button onClick={onOpen}>Open Modal</Button>
+
+      <Modal shouldBlockScroll={false} isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay>
+          <ModalContent>
+            <ModalHeader>Modal Title</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <Text fontWeight="bold" mb="1rem">
+                You can scroll the content behind the modal
+              </Text>
+              <Lorem count={2} />
+            </ModalBody>
+
+            <ModalFooter>
+              <Button colorScheme="blue" mr={3} onClick={onClose}>
+                Close
+              </Button>
+              <Button variant="ghost">Secondary Action</Button>
+            </ModalFooter>
+          </ModalContent>
+        </ModalOverlay>
+      </Modal>
+    </>
+  )
+}
+```
+
+### Focus on specific element
+
+Chakra automatically sets focus on the first tabbable element in the modal.
+However, there might be scenarios where you need to manually control where focus
+goes.
+
+Chakra provides 2 props for this use case:
+
+- `initialFocusRef`: The `ref` of the component that receives focus when the
+  modal opens.
+- `finalFocusRef`: The `ref` of the component that receives focus when the modal
+  closes.
+
+> If you set `finalFocusRef`, internally we set `shouldReturnFocusOnClose` to
+> `false` so it doesn't return focus to the element that triggered it.
+
+```jsx
+function InitialFocus() {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+  const initialRef = React.useRef()
+  const finalRef = React.useRef()
+
+  return (
+    <>
+      <Button onClick={onOpen}>Open Modal</Button>
+      <Button ml={4} ref={finalRef}>
+        I'll receive focus on close
+      </Button>
+
+      <Modal
+        initialFocusRef={initialRef}
+        finalFocusRef={finalRef}
+        isOpen={isOpen}
+        onClose={onClose}
+      >
+        <ModalOverlay>
+          <ModalContent>
+            <ModalHeader>Create your account</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody pb={6}>
+              <FormControl>
+                <FormLabel>First name</FormLabel>
+                <Input ref={initialRef} placeholder="First name" />
+              </FormControl>
+
+              <FormControl mt={4}>
+                <FormLabel>Last name</FormLabel>
+                <Input placeholder="Last name" />
+              </FormControl>
+            </ModalBody>
+
+            <ModalFooter>
+              <Button colorScheme="blue" mr={3}>
+                Save
+              </Button>
+              <Button onClick={onClose}>Cancel</Button>
+            </ModalFooter>
+          </ModalContent>
+        </ModalOverlay>
+      </Modal>
+    </>
+  )
+}
+```
+
+### Close Modal on Overlay Click
+
+By default, the modal closes when you click its overlay. You can set
+`shouldCloseOnOverlayClick` to `false` if you want the modal to stay visible.
+
+```jsx
+function ManualClose() {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+  return (
+    <>
+      <Button onClick={onOpen}>Open Modal</Button>
+
+      <Modal
+        shouldCloseOnOverlayClick={false}
+        isOpen={isOpen}
+        onClose={onClose}
+      >
+        <ModalOverlay>
+          <ModalContent>
+            <ModalHeader>Create your account</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody pb={6}>
+              <Lorem count={2} />
+            </ModalBody>
+
+            <ModalFooter>
+              <Button colorScheme="blue" mr={3}>
+                Save
+              </Button>
+              <Button onClick={onClose}>Cancel</Button>
+            </ModalFooter>
+          </ModalContent>
+        </ModalOverlay>
+      </Modal>
+    </>
+  )
+}
+```
+
+### Make modal vertically centered
+
+By default the modal has a vertical offset of `3.75rem` which you can change by
+passing `top` to the `ModalContent`. If you need to vertically center the modal,
+pass the `isCentered` prop.
+
+> If the content within the modal overflows beyond the viewport, don't use this
+> prop. Try setting the [overflow behavior](#modal-overflow-behavior) instead.
+
+```jsx
+function VerticallyCenter() {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+  return (
+    <>
+      <Button onClick={onOpen}>Trigger modal</Button>
+
+      <Modal onClose={onClose} isOpen={isOpen} isCentered>
+        <ModalOverlay>
+          <ModalContent>
+            <ModalHeader>Modal Title</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <Lorem count={2} />
+            </ModalBody>
+            <ModalFooter>
+              <Button>Close</Button>
+            </ModalFooter>
+          </ModalContent>
+        </ModalOverlay>
+      </Modal>
+    </>
+  )
+}
+```
+
+### Adding transition
+
+The modal doesn't come with any transitions by default so you can manage this
+yourself. Chakra exports two transition components (`SlideIn` and `Scale`) to
+provide simple transitions.
+
+> For some reason, focus doesn't return back to the trigger after the transition
+> ends. As a walkaround, you might need to set `finalFocusRef` to the trigger or
+> any other element, and set `isOpen` to `true`.
+
+```jsx live=false
+function TransitionExample() {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const btnRef = React.useRef()
+
+  return (
+    <>
+      <Button ref={btnRef} onClick={onOpen}>
+        Trigger modal
+      </Button>
+
+      <SlideIn in={isOpen}>
+        {(styles) => (
+          <Modal finalFocusRef={btnRef} onClose={onClose} isOpen={true}>
+            <ModalOverlay opacity={styles.opacity}>
+              <ModalContent pb={5} {...styles}>
+                <ModalHeader>Login now</ModalHeader>
+                <ModalCloseButton />
+                <ModalBody>
+                  <Lorem count={2} />
+                </ModalBody>
+              </ModalContent>
+            </ModalOverlay>
+          </Modal>
+        )}
+      </SlideIn>
+    </>
+  )
+}
+```
+
+### Modal overflow behavior
+
+If the content within the modal overflows beyond the viewport, you can use the
+`scrollBehavior` to control how scrolling should happen.
+
+- If set to `inside`, scroll only occurs within the `ModalBody`.
+- If set to `outside`, the entire `ModalContent` will scroll within the
+  viewport.
+
+```jsx
+function ScrollingExample() {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const [scrollBehavior, setScrollBehavior] = React.useState("inside")
+
+  const btnRef = React.useRef()
+  return (
+    <>
+      <RadioGroup value={scrollBehavior} onChange={setScrollBehavior}>
+        <Stack direction="row">
+          <Radio value="inside">inside</Radio>
+          <Radio value="outside">outside</Radio>
+        </Stack>
+      </RadioGroup>
+
+      <Button mt={3} ref={btnRef} onClick={onOpen}>
+        Trigger modal
+      </Button>
+
+      <Modal
+        onClose={onClose}
+        finalFocusRef={btnRef}
+        isOpen={isOpen}
+        scrollBehavior={scrollBehavior}
+      >
+        <ModalOverlay>
+          <ModalContent>
+            <ModalHeader>Modal Title</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <Lorem size={5} />
+            </ModalBody>
+            <ModalFooter>
+              <Button>Close</Button>
+            </ModalFooter>
+          </ModalContent>
+        </ModalOverlay>
+      </Modal>
+    </>
+  )
+}
+```
+
+### Modal Sizes
+
+Pass the `size` prop if you need to adjust the size of the modal. Values can be
+`xs`, `sm`, `md`, `lg`, `xl`, or `full`.
+
+```jsx
+function SizeExample() {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const [size, setSize] = React.useState("md")
+
+  const handleSizeClick = (newSize) => {
+    setSize(newSize)
+    onOpen()
+  }
+
+  const sizes = ["xs", "sm", "md", "lg", "xl", "full"]
+
+  return (
+    <>
+      {sizes.map((size) => (
+        <Button
+          onClick={() => handleSizeClick(size)}
+          key={size}
+          m={4}
+        >{`Open ${size} Modal`}</Button>
+      ))}
+
+      <Modal onClose={onClose} size={size} isOpen={isOpen}>
+        <ModalOverlay>
+          <ModalContent>
+            <ModalHeader>Modal Title</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <Lorem count={2} />
+            </ModalBody>
+            <ModalFooter>
+              <Button>Close</Button>
+            </ModalFooter>
+          </ModalContent>
+        </ModalOverlay>
+      </Modal>
+    </>
+  )
+}
+```
+
+### Making other elements Inert
+
+When the modal is open, it's rendered within a portal and all its siblings have
+`aria-hidden` set to `true` so the only thing screen readers see is the modal.
+To disable this behavior, set `useInert` to `false`.
+
+## Accessibility
+
+### Keyboard and Focus Management
+
+- When the modal opens, focus is trapped within it.
+- When the modal opens, focus is automatically set to the first enabled element,
+  or the element from `initialFocusRef`.
+- When the modal closes, focus returns to the element that was focused before
+  the modal activated, or the element from `finalFocusRef`.
+- Clicking on the overlay closes the Modal.
+- Pressing <kbd>Esc</kbd> closes the Modal.
+- Scrolling is blocked on the elements behind the modal.
+- The modal is rendered in a portal attached to the end of `document.body` to
+  break it out of the source order and make it easy to add `aria-hidden` to its
+  siblings.
+
+### ARIA
+
+- The `ModalContent` has `aria-modal` set to `true`.
+- The `ModalContent` has `aria-labelledby` set to the `id` of the `ModalHeader`
+- The `ModalContent` has `aria-describedby` set to the `id` of the `ModalBody`
+
+## Props
+
+### Modal Props
+
+| Name                      | Type                                          | Default   | Description                                                                                                                         |
+| ------------------------- | --------------------------------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| isOpen                    | `boolean`                                     |           | If `true`, the modal will open                                                                                                      |
+| onClose                   | `(event, reason) => void`                     |           | Callback invoked to close the modal.                                                                                                |
+| isCentered                | `boolean`                                     |           | If `true`, the `Modal` will be centered on screen                                                                                   |
+| initialFocusRef           | `React.Ref`                                   |           | The least destructive action to get focus when dialog is open                                                                       |
+| finalFocusRef             | `React.Ref`                                   |           | The least destructive action to get focus when dialog is open                                                                       |
+| shouldBlockScroll         | `boolean`                                     | `true`    | If `true`, scrolling will be disabled on the `body` when the modal opens.                                                           |
+| useInert                  | `boolean`                                     | `true`    | A11y: If `true`, the siblings of the `Modal` will have `aria-hidden` set to `true` so that screen readers can only see the `Modal`. |
+| children                  | `React.ReactNode`                             |           | The content of the modal.                                                                                                           |
+| size                      | `BoxProps["maxWidth"]`                        | `md`      | The size (maxWidth) of the modal.                                                                                                   |
+| scrollBehavior            | `inside`, `outside`                           | `outside` | Where scroll behaviour should originate.                                                                                            |
+| shouldCloseOnOverlayClick | `boolean`                                     | `true`    | If `true`, the modal will close when the overlay is clicked                                                                         |
+| shouldReturnFocusOnClose  | `boolean`                                     | `true`    | If `true`, the modal will return focus to the element that triggered it when it closes.                                             |
+| shouldCloseOnEsc          | `boolean`                                     | `true`    | If `true`, the modal will close when the `Esc` key is pressed                                                                       |
+| addAriaLabels             | `boolean`, `{header: boolean, body: boolean}` | `true`    | If `false`, no `aria-*` properties will be added by default.                                                                        |
+| id                        | `string`                                      |           | The `id` of the modal                                                                                                               |
+
+### Other components
+
+- `ModalOverlay`, `ModalHeader`, `ModalFooter` and `ModalBody` composes `Box`
+  component
+- `ModalCloseButton` composes `CloseButton`

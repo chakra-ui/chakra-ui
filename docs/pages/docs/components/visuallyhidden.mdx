@@ -1,0 +1,70 @@
+---
+title: VisuallyHidden
+package: "@chakra-ui/visually-hidden"
+---
+
+import ComponentLinks from "components/component-links"
+
+# VisuallyHidden
+
+VisuallyHidden is a common techinique used in web accessibility to hide content
+from the visual client, but keep it readable for screen readers.
+
+<ComponentLinks
+  github={{ url: "#" }}
+  storybook={{ url: "#" }}
+  npm={{ label: "@chakra-ui/visually-hidden", url: "#" }}
+/>
+
+<carbon-ad></carbon-ad>
+
+## Installation
+
+```bash
+npm install @chakra-ui/core
+```
+
+## Usage
+
+Example
+
+```jsx
+function Example() {
+  return (
+    <Button>
+      <VisuallyHidden>Checkmark</VisuallyHidden>
+      <CheckIcon />
+    </Button>
+  )
+}
+```
+
+Another Example
+
+```jsx
+function Example() {
+  return (
+    <Box>
+      <Heading>Title and description</Heading>
+      <VisuallyHidden>This will be hidden</VisuallyHidden>
+    </Box>
+  )
+}
+```
+
+---
+
+## Accessibility
+
+VisuallyHidden has all the styles necessary to hide it from visual clients, but
+keep it for screen readers.
+
+---
+
+## Props
+
+This component doesn't have any custom props.
+
+| Name       | Type              | Description                       |
+| ---------- | ----------------- | --------------------------------- |
+| `children` | `React.ReactNode` | The content to be hidden visually |

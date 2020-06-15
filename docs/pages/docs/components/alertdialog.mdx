@@ -1,0 +1,175 @@
+---
+title: Alert Dialog
+package: "@chakra-ui/alert-dialog"
+image: "components/alert-dialog.svg"
+description:
+  AlertDialog component is used interrupt the user with a mandatory confirmation
+  or action.
+---
+
+import ComponentLinks from "components/component-links"
+
+# Alert Dialog
+
+AlertDialog component is used to interrupt the user with a mandatory
+confirmation or action.
+
+<ComponentLinks
+  github={{ url: "#" }}
+  storybook={{ url: "#" }}
+  npm={{ label: "@chakra-ui/alert-dialog", url: "#" }}
+/>
+
+<carbon-ad></carbon-ad>
+
+## Import
+
+Chakra UI exports 7 alert dialog related components.
+
+- `AlertDialog`: provides context and state for the dialog.
+- `AlertDialogHeader`: should contain the title announced by screen readers.
+- `AlertDialogBody`: should contain the description announced by screen readers.
+- `AlertDialogFooter`: should contain the actions of the dialog.
+- `AlertDialogOverlay`: The dimmed overlay behind the dialog.
+- `AlertDialogContent`: The wrapper for the alert dialog's content.
+- `AlertDialogCloseButton`: The button that closes the dialog.
+
+```js
+import {
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
+} from "@chakra-ui/core"
+```
+
+## Usage
+
+AlertDialog requires that you provide the `leastDestructiveRef` prop.
+
+Based on
+[WAI-ARIA specifications](https://www.w3.org/TR/wai-aria-practices/#alertdialog),
+focus should be placed on the least destructive element when the dialog opens,
+to prevent users from accidentally confirming the destructive action.
+
+```jsx
+function AlertDialogExample() {
+  const [isOpen, setIsOpen] = React.useState()
+  const onClose = () => setIsOpen(false)
+  const cancelRef = React.useRef()
+
+  return (
+    <>
+      <Button colorScheme="red" onClick={() => setIsOpen(true)}>
+        Delete Customer
+      </Button>
+
+      <AlertDialog
+        isOpen={isOpen}
+        leastDestructiveRef={cancelRef}
+        onClose={onClose}
+      >
+        <AlertDialogOverlay>
+          <AlertDialogContent>
+            <AlertDialogHeader fontSize="lg" fontWeight="bold">
+              Delete Customer
+            </AlertDialogHeader>
+
+            <AlertDialogBody>
+              Are you sure? You can't undo this action afterwards.
+            </AlertDialogBody>
+
+            <AlertDialogFooter>
+              <Button ref={cancelRef} onClick={onClose}>
+                Cancel
+              </Button>
+              <Button colorScheme="red" onClick={onClose} ml={3}>
+                Delete
+              </Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialogOverlay>
+      </AlertDialog>
+    </>
+  )
+}
+```
+
+### Adding transitions
+
+The modal doesn't come with any transitions by default so you can manage this
+yourself. Chakra exports two transition components (`SlideFade` and `Fade`) to
+provide simple transitions.
+
+> When adding transitions, kindly pay attention to the `timeout` for the overlay
+> and content transitions. In this example, `Fade` transitions slower than the
+> `SlideFade` for it to work correctly.
+
+```jsx
+function TransitionExample() {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const cancelRef = React.useRef()
+
+  return (
+    <>
+      <Button onClick={onOpen}>Discard</Button>
+      <Fade timeout={300} in={isOpen}>
+        {(styles) => (
+          <AlertDialog
+            leastDestructiveRef={cancelRef}
+            onClose={onClose}
+            isOpen={true}
+            isCentered
+          >
+            <AlertDialogOverlay style={styles}>
+              <SlideFade timeout={150} in={isOpen} unmountOnExit={false}>
+                {(styles) => (
+                  <AlertDialogContent style={styles}>
+                    <AlertDialogHeader>Discard Changes?</AlertDialogHeader>
+                    <AlertDialogCloseButton />
+                    <AlertDialogBody>
+                      Are you sure you want to discard all of your notes? 44
+                      words will be deleted.
+                    </AlertDialogBody>
+                    <AlertDialogFooter>
+                      <Button ref={cancelRef} onClick={onClose}>
+                        No
+                      </Button>
+                      <Button colorScheme="red" ml={3}>
+                        Yes
+                      </Button>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                )}
+              </SlideFade>
+            </AlertDialogOverlay>
+          </AlertDialog>
+        )}
+      </Fade>
+    </>
+  )
+}
+```
+
+## Accessibility
+
+- AlertDialog has role `alertdialog`, and `aria-modal` set to true.
+- When the dialog opens, focus is automatically set to the least destructive
+  element.
+- When the dialog opens, the content in the `AlertDialogHeader` and
+  `AlertDialogBody` are announced by screen readers via `aria-labelledby` and
+  `aria-describedby` attributes.
+- Clicking on the overlay closes the `AlertDialog`.
+- Pressing <kbd>esc</kbd> closes the dialog.
+
+## Props
+
+AlertDialog and its components compose the `Modal` component. The only exception
+is that it requires a `leastDestructiveRef` which is similar to the
+`initialFocusRef` of `Modal`
+
+| Name                           | Type        | Default | Description                                                   |
+| ------------------------------ | ----------- | ------- | ------------------------------------------------------------- |
+| leastDestructiveRef (required) | `React.Ref` |         | The least destructive action to get focus when dialog is open |
