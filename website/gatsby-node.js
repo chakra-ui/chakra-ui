@@ -27,8 +27,6 @@ exports.onCreateNode = async ({ node, actions, getNode }) => {
       trailingSlash: false,
     }).toLowerCase()
 
-    console.log(sourceInstanceName)
-
     const slug = `/${sourceInstanceName}${relativeFilePath}`
 
     // create `slug` field (`node.fields.slug`)

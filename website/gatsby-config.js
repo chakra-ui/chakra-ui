@@ -1,10 +1,17 @@
 const siteMetadata = {
   title: "Chakra UI",
+  titleTemplate: "Chakra UI | %s",
   description:
     "Simple, Modular and Accessible UI Components for your React Applications.",
-  author: "Chakra UI",
   siteUrl: "https://chakra-ui.com",
   repository: "https://github.com/chakra-ui/chakra-ui",
+  image:
+    "https://res.cloudinary.com/adebayosegun/image/upload/v1567591645/Chakra%20UI/og-image.png",
+  twitter: {
+    username: "@chakra-ui",
+    image:
+      "https://res.cloudinary.com/adebayosegun/image/upload/v1567591645/Chakra%20UI/twitter-og-image.png",
+  },
 }
 
 module.exports = {
