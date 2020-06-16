@@ -75,13 +75,13 @@ method `onClose`.
 ```jsx
 <Menu>
   {({ isOpen }) => (
-    <React.Fragment>
+    <>
       <MenuButton isActive={isOpen}>{isOpen ? "Close" : "Open"}</MenuButton>
       <MenuList>
         <MenuItem>Download</MenuItem>
         <MenuItem onClick={() => alert("Kagebunshin")}>Create a Copy</MenuItem>
       </MenuList>
-    </React.Fragment>
+    </>
   )}
 </Menu>
 ```

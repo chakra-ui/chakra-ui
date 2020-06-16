@@ -11,12 +11,12 @@ Style props are a way to alter the style of a component by simply passing props
 to it. It helps to save time by providing helpful shorthand ways to style
 components.
 
-## Style Props Reference
+## Reference
 
 The following table shows a list of every style prop and the properties within
 each group.
 
-### Margin & padding
+### Margin and padding
 
 ```jsx live=false
 import { Box } from "@chakra-ui/core"
@@ -48,7 +48,7 @@ import { Box } from "@chakra-ui/core"
 | `px`                  | `padding-left` and `padding-right` | `space`   |
 | `py`                  | `padding-top` and `padding-bottom` | `space`   |
 
-### Color & background color
+### Color and background color
 
 ```jsx live=false
 import { Box } from "@chakra-ui/core";
@@ -221,7 +221,11 @@ import { Box } from "@chakra-ui/core"
 />
 
 // shorthand
-<Box bgImage="url('/images/gaara.png')" bgPos="center" bgRepeat="no-repeat" />
+<Box
+  bgImage="url('/images/gaara.png')"
+  bgPosition="center"
+  bgRepeat="no-repeat"
+/>
 ```
 
 | Prop                                  | CSS Property            | Theme Key |
@@ -236,8 +240,7 @@ import { Box } from "@chakra-ui/core"
 ### Borders
 
 ```jsx live=false
-import { Box } from "@chakra-ui/core"
-;<Box border="1px" borderRadius="md" borderColor="gray.200">
+<Box border="1px" borderRadius="md" borderColor="gray.200">
   Card
 </Box>
 ```
