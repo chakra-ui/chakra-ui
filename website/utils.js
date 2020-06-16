@@ -3,7 +3,7 @@ const path = require("path")
 const _ = require("lodash/fp")
 const { Octokit } = require("@octokit/rest")
 
-const octokit = new Octokit()
+const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN })
 
 const compareCollections = (
   { fields: { collection: a } },
