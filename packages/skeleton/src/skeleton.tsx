@@ -76,6 +76,7 @@ export const Skeleton = React.forwardRef(function Skeleton(
   if (hasLoaded) {
     return (
       <chakra.div
+        ref={ref}
         className={_className}
         css={{ animation: `${fadeIn} ${fadeDuration}s` }}
         {...rest}
@@ -85,6 +86,7 @@ export const Skeleton = React.forwardRef(function Skeleton(
 
   return (
     <StyledSkeleton
+      ref={ref}
       startColor={startColor}
       endColor={endColor}
       speed={speed}
