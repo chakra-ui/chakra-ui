@@ -4,7 +4,7 @@ import { objectKeys } from "./object"
 
 export function mapResponsive(prop: any, mapper: (val: any) => any) {
   if (isArray(prop)) {
-    return prop.map(mapper)
+    return removeNullValues(prop).map(mapper)
   }
 
   if (isObject(prop)) {
@@ -19,4 +19,15 @@ export function mapResponsive(prop: any, mapper: (val: any) => any) {
   }
 
   return null
+}
+
+// ["1px", null, "2px"] becomes ["1px", "1px", "2px"]
+function removeNullValues(prop: any[]): any[] {
+  return prop.reduce((acc: string[], x: string) => {
+    if (x == null) {
+      let last = acc.length !== 0 ? acc[acc.length - 1] : x
+      return [...acc.slice(0, -1), last, last]
+    }
+    return [...acc, x]
+  }, [])
 }
