@@ -914,7 +914,17 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "mrmckeb",
+      "name": "Brody McKee",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/5043083?v=4",
+      "profile": "https://github.com/mrmckeb",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
-  "contributorsPerLine": 7
+  "contributorsPerLine": 7,
+  "skipCi": true
 }
