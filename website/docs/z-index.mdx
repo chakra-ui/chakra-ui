@@ -1,18 +1,74 @@
 ---
-title: "Z-Index"
+title: "Stacking and z-index"
 description: "Fighting the z-index war with Chakra Portal"
 order: 7
 ---
 
-# Fighting the `zIndex` war
+# Fighting the z-index war
 
-Every UI has stackable layers and it's important to have control over how the
-layers play together.
+Every UI has stackable layers and it's important to have control over how these
+layers play together. Some examples of stackable layers are tooltips, modals,
+popovers, selects, dropdowns, and menus.
 
-Some examples of the stackable layers are tooltips, modals, popovers, select
-dropdowns or menus.
-
-The issues that come up along the layers usage are z-index and visibility
+The issues that come up across these layers usage are z-index and visibility
 handling, what layer goes on top.
 
-// TODO: Finish this
+## What's wrong with z-index?
+
+You might have encountered this if you've worked in codebases with
+`z-index: 9999`. This technique is an attempt to ensure than an element is
+always on top of all other elements.
+
+But this method isn't as safe as you might think:
+
+- It introduces scaling issues, which you can manage with global values
+(such as a [theme](theming/theme#z-index-values)).
+- Components are still constrained and impacted by stacking contexts.
+
+### Stacking contexts
+
+A stacking context can be created in many ways, and here are just a few
+examples:
+
+- Element with a `position: absolute` or `position: relative` and `z-index`
+value other than `auto`.
+- An element with an `opacity` value less than `1`.
+- An element with a `transform` or `filter` applied.
+- A child of a flexbox or grid container with a `z-index` other than `auto`.
+
+Once a stacking context is created, the `z-index` rules of the any child
+stacking context(s) now only have meaning in this parent.
+
+> We have some links at the end of this page to help you learn more about
+stacking contexts.
+
+## Chakra Portal to the rescue
+
+An alternative to `z-index` is to use the DOM's natural stacking order to our
+advantage. [React's Portals](https://reactjs.org/docs/portals.html) allow us to
+insert a child into a different location in the document, whilst not affecting
+other behaviours in React, such as event bubbling.
+
+Chakra Portal implementation allows for nesting, and defaults to inserting
+children at the end of `document.body`. 
+
+With this approach, you can create a stacking context for your application, and
+be certain that any children you render with Portal will always appear on top
+of everything else in your application, regardless of child stacking contexts.
+
+This is particularly useful for components like modals and toast notifications.
+
+### Can I still use z-index alongside Portals?
+
+Yes, there are many cases where this will make sense.
+
+As a general rule, we recommend not exceeding `z-index` values of more than `1`
+or `2`, and to use stacking contexts to combat more complex stacking issues.
+
+## Further reading
+
+If you're interested in learning more about `z-index` and stacking contexts, check
+out these great resources:
+
+- [Understanding z-index (MDN)](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index)
+- [The stacking context (MDN)](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context)

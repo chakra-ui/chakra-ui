@@ -280,10 +280,14 @@ export default {
 For a component like this: `<Box w={4} h={3} />` will generate an empty `div`
 with width set to `1rem` or `16px` and height set to `0.75rem` or `12px`
 
-## Z-Index
+## z-index values
 
-Chakra provides some zIndex values out of the box to control the stacking order
-of components.
+We recommend trying to solve stacking issues without `z-index`. You can read
+our recommendations and learn more about 
+[stacking contexts and z-index here](/z-index).
+
+Chakra provides a minimal set of z-indeces out of the box to help
+control the stacking order of components.
 
 ```js
 export default {
@@ -291,16 +295,6 @@ export default {
     hide: -1,
     auto: "auto",
     base: 0,
-    docked: 10,
-    dropdown: 1000,
-    sticky: 1100,
-    banner: 1200,
-    overlay: 1300,
-    modal: 1400,
-    popover: 1500,
-    skipLink: 1600,
-    toast: 1700,
-    tooltip: 1800,
   },
 }
 ```
