@@ -1,0 +1,106 @@
+---
+title: Text
+package: "@chakra-ui/layout"
+---
+
+import ComponentLinks from "../../src/components/component-links"
+
+# Text
+
+Text is the used to render text and paragraphs within an interface. It renders a
+`<p>` tag by default.
+
+<ComponentLinks
+  github={{ url: "#" }}
+  storybook={{ url: "#" }}
+  npm={{ label: "@chakra-ui/layout", url: "#" }}
+/>
+
+<carbon-ad></carbon-ad>
+
+## Import
+
+```js
+import { Text } from "@chakra-ui/core"
+```
+
+## Changing the font size
+
+To increase the font size of the text, you can pass the `fontSize` prop.
+
+```jsx
+<Stack spacing={3}>
+  <Text fontSize="6xl">In love with React & Next</Text>
+  <Text fontSize="5xl">In love with React & Next</Text>
+  <Text fontSize="4xl">In love with React & Next</Text>
+  <Text fontSize="3xl">In love with React & Next</Text>
+  <Text fontSize="2xl">In love with React & Next</Text>
+  <Text fontSize="xl">In love with React & Next</Text>
+  <Text fontSize="lg">In love with React & Next</Text>
+  <Text fontSize="md">In love with React & Next</Text>
+  <Text fontSize="sm">In love with React & Next</Text>
+  <Text fontSize="xs">In love with React & Next</Text>
+</Stack>
+```
+
+### Truncate text
+
+Pass the `isTruncated` prop to render an ellipsis when the text exceeds the
+width of the viewport or `maxWidth` set.
+
+```jsx
+<Text color="gray.500" isTruncated>
+  Lorem ipsum is placeholder text commonly used in the graphic, print, and
+  publishing industries for previewing layouts and visual mockups.
+</Text>
+```
+
+### Override style
+
+You can change the entire style of the text via props. For example, to change
+the font size, pass the `fontSize` prop. No need to write `css` or `styled()`
+
+```jsx
+<Text fontSize="50px" color="tomato">
+  I'm using a custom font-size value for this text
+</Text>
+```
+
+### Override the element
+
+To override the element that gets rendered, pass the `as` prop. Use **Inspect
+Element** to see the element that gets rendered in html.
+
+```jsx
+<>
+  <Text as="i">Italic</Text>
+  <br />
+  <Text as="u">Underline</Text>
+  <br />
+  <Text as="abbr">I18N</Text>
+  <br />
+  <Text as="cite">Citation</Text>
+  <br />
+  <Text as="del">Deleted</Text>
+  <br />
+  <Text as="em">Emphasis</Text>
+  <br />
+  <Text as="ins">Inserted</Text>
+  <br />
+  <Text as="kbd">Ctrl + C</Text>
+  <br />
+  <Text as="mark">Highlighted</Text>
+  <br />
+  <Text as="s">Strikethrough</Text>
+  <br />
+  <Text as="samp">Sample</Text>
+  <br />
+  <Text as="sub">sub</Text>
+  <br />
+  <Text as="sup">sup</Text>
+</>
+```
+
+## Props
+
+Text composes the [Box](/box) component, so you can pass all `Box` style props.

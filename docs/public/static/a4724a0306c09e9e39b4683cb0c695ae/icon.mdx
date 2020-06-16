@@ -1,0 +1,153 @@
+---
+title: "Icon"
+package: "@chakra-ui/icon"
+image: "components/icon.svg"
+---
+
+import ComponentLinks from "../../src/components/component-links"
+import IconsList from "../../src/components/icons-list"
+
+import { Grid, Flex, useTheme, Icon, Text } from "@chakra-ui/core"
+import { AddIcon } from "@chakra-ui/icons"
+
+# Icon
+
+The icon component to render `svg` icons. Chakra UI provides basic interface
+icons, to add your icons, [read the guide](#adding-custom-icons).
+
+> Avoid passing `onClick` handlers to the `Icon` component. If you need a
+> clickable icon, use [IconButton](/components/icon-button) instead.
+
+<ComponentLinks
+  github={{ url: "#" }}
+  storybook={{ url: "#" }}
+  npm={{ label: "@chakra-ui/icon", url: "#" }}
+/>
+
+<carbon-ad></carbon-ad>
+
+## Import
+
+```js
+import { Icon } from "@chakra-ui/core"
+```
+
+## Usage
+
+Use an icon by passing the `name` props. This name must match an icon key in
+`theme.icons`. By default, the icon inherits the fontSize and color of it's
+parent.
+
+```jsx
+<Stack direction="row">
+  {/* Default size is 1em => 16px */}
+  <PhoneIcon />
+
+  {/* Use the `size` prop to change the icon size */}
+  <CheckCircleIcon size="24px" />
+
+  {/* Use the `color` prop to change the icon color */}
+  <WarningIcon boxSize="32px" color="red.500" />
+</Stack>
+```
+
+### All Icons
+
+Here's a list of the default icons Chakra UI comes with and their respective
+`name`. You add your own icons as well, [see the guide](#adding-custom-icons)
+
+<IconsList />
+
+## Using an icon library
+
+Most times, you might need to use icons from a popular icon library like
+[react-icons](https://react-icons.netlify.com/). Here's how to go about it.
+
+```jsx live=false
+// 1. import the icon from "react-icons"
+import { MdSettings } from "react-icons/md"
+
+// 2. Use the `as` prop to render the icon
+<Box as={MdSettings} />
+
+// 3. Then you can pass all `Box` props to style the icon
+<Box as={MdSettings} size="32px" color="green.400" />
+```
+
+Here's a working example:
+
+```jsx
+<Box as={MdSettings} size="32px" color="green.400" />
+```
+
+## Adding custom icons
+
+All Chakra icons are stored in the theme object under the `icons` key. So you
+can extend this object to add your own icons. Here are the steps:
+
+- Export the icon's `svg` from Figma, Sketch, etc.
+- Use a tool like [SvgOmg](https://svgomg.firebaseapp.com) to reduce the size
+  and minify the markup.
+- Add the icon to the theme object.
+
+> Add the `fill=currentColor` attribute to the `path` or `g` so that when you
+> this `<Icon color="gray.200"/>`, it works correctly.
+
+```jsx live=false
+
+// Step 1: Each icon should be stored as an object of `path` and `viewBox`
+const customIcons = {
+  icon1: {
+    path: <path fill="currentColor" d="..." />,
+    // If the icon's viewBox is `0 0 24 24`, you can ignore `viewBox`
+    viewBox: "0 0 40 40",
+  },
+  icon2: {
+    path: (
+      <g fill="currentColor">
+        <path d="..."/>
+      </g>
+    )
+  }
+};
+
+
+// Step 2: Add the custom icon to the theme
+const customTheme = {
+  ...theme,
+  icons: {
+    ...theme.icons,
+    ...customIcons,
+  }
+}
+
+// Step 3: Pass the new theme to the ThemeProvider
+
+<ThemeProvider theme={customTheme}>
+  {/* app goes here */}
+</ThemeProvider>
+
+// Step 4: Now you can do this
+<Icon name="icon1" color="green.200"/>
+```
+
+### Icon Fallbacks
+
+If you pass an icon name that doesn't exist in `theme.icons` , you'll see the
+`question-outline` icon.
+
+```jsx
+<Icon name="naruto" />
+```
+
+## Props
+
+Icon component composes `Box` so you can pass all `Box` props.
+
+| Name        | Type                  | Default        | Description                                                                         |
+| ----------- | --------------------- | -------------- | ----------------------------------------------------------------------------------- |
+| `size`      | `string`              | `1em`          | The size of the icon.                                                               |
+| `name`      | `string`              |                | The name of the icon.                                                               |
+| `color`     | `string`              | `currentColor` | The color of the icon.                                                              |
+| `focusable` | `boolean`             | `false`        | Denotes that the icon is not an interative element, and only used for presentation. |
+| `role`      | `presentation`, `img` | `presentation` | The html role of the icon.                                                          |

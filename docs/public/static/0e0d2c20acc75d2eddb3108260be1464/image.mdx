@@ -1,0 +1,94 @@
+---
+title: Image
+package: "@chakra-ui/image"
+image: "components/image.svg"
+description:
+  The Image component is used to display images with support for fallback.
+---
+
+import ComponentLinks from "../../../src/components/component-links"
+
+# Image
+
+The Image component is used to display images.
+
+Image composes `Box` so you can use all the style props and add responsive
+styles as well.
+
+<ComponentLinks
+  github={{ url: "#" }}
+  storybook={{ url: "#" }}
+  npm={{ label: "@chakra-ui/image", url: "#" }}
+/>
+
+<carbon-ad></carbon-ad>
+
+## Import
+
+```js
+import { Image } from "@chakra-ui/core"
+```
+
+## Usage
+
+```jsx
+<Box boxSize="sm">
+  <Image src="https://bit.ly/sage-adebayo" alt="Segun Adebayo" />
+</Box>
+```
+
+## Size
+
+The size of the image can be adjusted using the `boxSize` prop.
+
+```jsx
+<Stack direction="row">
+  <Image
+    boxSize="100px"
+    objectFit="cover"
+    src="https://bit.ly/sage-adebayo"
+    alt="Segun Adebayo"
+  />
+  <Image
+    boxSize="150px"
+    objectFit="cover"
+    src="https://bit.ly/dan-abramov"
+    alt="Dan Abramov"
+  />
+  <Image boxSize="200px" src="https://bit.ly/dan-abramov" alt="Dan Abramov" />
+</Stack>
+```
+
+## Image with border radius
+
+```jsx
+<Image
+  borderRadius="full"
+  boxSize="150px"
+  src="https://bit.ly/sage-adebayo"
+  alt="Segun Adebayo"
+/>
+```
+
+## Fallback support
+
+You can provide a fallback image for when there is an error loading the `src` of
+the image. You can also opt out of this behavior by passing the `ignoreFallback`
+prop.
+
+```jsx
+<Image src="gibbresh.png" fallbackSrc="https://via.placeholder.com/150" />
+```
+
+## Props
+
+| Name             | Type               | Default | Description                                                                                                                  |
+| ---------------- | ------------------ | ------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `src`            | `string`           |         | The path to the image source                                                                                                 |
+| `fallbackSrc`    | `string`           |         | In event there was an error loading the `src`, specify a fallback. In most cases, this can be an avatar or image placeholder |
+| `alt`            | `string`           |         | The alt text that describes the image                                                                                        |
+| `onLoad`         | `function`         |         | A callback for when the image `src` has been loaded                                                                          |
+| `onError`        | `function`         |         | A callback for when there was an error loading the image `src`                                                               |
+| `htmlWidth`      | `string`, `number` |         | The native HTML width attribute of the `img` element                                                                         |
+| `htmlHeight`     | `string`, `number` |         | The native HTML height attribute of the `img` element                                                                        |
+| `ignoreFallback` | `boolean`          |         | Opt out of the `fallbackSrc` logic and use the `Image` directly                                                              |

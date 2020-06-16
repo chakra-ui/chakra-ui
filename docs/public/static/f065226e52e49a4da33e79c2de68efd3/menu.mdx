@@ -1,0 +1,300 @@
+---
+title: Menu
+package: "@chakra-ui/menu"
+image: "components/menu.svg"
+description:
+  An accessible dropdown menu for the common dropdown menu button design
+  pattern. Menu uses roving tabIndex for focus management.
+---
+
+import ComponentLinks from "../../src/components/component-links"
+
+# Menu
+
+An accessible dropdown menu for the common dropdown menu button design pattern.
+Menu uses roving tabIndex for focus management.
+
+<ComponentLinks
+  github={{ url: "#" }}
+  storybook={{ url: "#" }}
+  npm={{ label: "@chakra-ui/menu", url: "#" }}
+/>
+
+<carbon-ad></carbon-ad>
+
+## Import
+
+Chakra UI exports 8 components for rendering menus:
+
+- `Menu`: The wrapper component that provides context, state, and focus
+  management.
+- `MenuList`: The wrapper for the menu items. Must be a direct child of `Menu`.
+- `MenuButton`: The trigger for the menu list. Must be a direct child of `Menu`.
+- `MenuItem`: The trigger that handles menu selection. Must be a direct child of
+  a `MenuList`.
+- `MenuGroup`: A wrapper to group related menu items.
+- `MenuDivider`: A visual separator for menu items and groups.
+- `MenuOptionGroup`: A wrapper for checkable menu items (radio and checkbox)
+- `MenuItemOption`: The checkable menu item, to be used with `MenuOptionGroup`
+
+```js
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuGroup,
+  MenuDivider,
+  MenuOptionGroup,
+  MenuItemOption,
+} from "@chakra-ui/core"
+```
+
+## Usage
+
+```jsx
+<Menu>
+  <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+    Actions
+  </MenuButton>
+  <MenuList>
+    <MenuItem>Download</MenuItem>
+    <MenuItem>Create a Copy</MenuItem>
+    <MenuItem>Mark as Draft</MenuItem>
+    <MenuItem>Delete</MenuItem>
+    <MenuItem as="a" href="#">
+      Attend a Workshop
+    </MenuItem>
+  </MenuList>
+</Menu>
+```
+
+### Accessing the internal state
+
+To access the internal state of the Menu, use a function as a `children`
+(commonly known as a render prop). You'll get access to the internal state
+`isOpen` and method `onClose`.
+
+```jsx
+<Menu>
+  {({ isOpen }) => (
+    <React.Fragment>
+      <MenuButton isActive={isOpen} as={Button} rightIcon={<ChevronDownIcon />}>
+        {isOpen ? "Close" : "Open"}
+      </MenuButton>
+      <MenuList>
+        <MenuItem>Download</MenuItem>
+        <MenuItem onClick={() => alert("Kagebunshin")}>Create a Copy</MenuItem>
+      </MenuList>
+    </React.Fragment>
+  )}
+</Menu>
+```
+
+### Letter Navigation
+
+When focus is on the `MenuButton` or within the `MenuList` and you type a letter
+key, a search begins. Focus will move to the first `MenuItem` that starts with
+the letter you typed.
+
+> Open the menu, try and type any letter, say "S" to see the focus movement.
+
+```jsx
+<Menu>
+  <MenuButton
+    px={4}
+    py={2}
+    transition="all 0.2s"
+    borderRadius="md"
+    borderWidth="1px"
+    _hover={{ bg: "gray.100" }}
+    _expanded={{ bg: "red.200" }}
+    _focus={{ outline: 0, boxShadow: "outline" }}
+  >
+    File <ChevronDownIcon />
+  </MenuButton>
+  <MenuList>
+    <MenuItem>New File</MenuItem>
+    <MenuItem>New Window</MenuItem>
+    <MenuDivider />
+    <MenuItem>Open...</MenuItem>
+    <MenuItem>Save File</MenuItem>
+  </MenuList>
+</Menu>
+```
+
+### Just another example.
+
+```jsx
+<Menu>
+  <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+    Your Cats
+  </MenuButton>
+  <MenuList>
+    <MenuItem minH="48px">
+      <Image
+        boxSize="2rem"
+        borderRadius="full"
+        src="https://placekitten.com/100/100"
+        alt="Fluffybuns the destroyer"
+        mr="12px"
+      />
+      <span>Fluffybuns the Destroyer</span>
+    </MenuItem>
+    <MenuItem minH="40px">
+      <Image
+        boxSize="2rem"
+        borderRadius="full"
+        src="https://placekitten.com/120/120"
+        alt="Simon the pensive"
+        mr="12px"
+      />
+      <span>Simon the pensive</span>
+    </MenuItem>
+  </MenuList>
+</Menu>
+```
+
+### MenuGroup
+
+To group related `MenuItems`, use the `MenuGroup` component and pass it a label
+for the group name.
+
+```jsx
+<Menu>
+  <MenuButton as={Button} colorScheme="pink">
+    Profile
+  </MenuButton>
+  <MenuList>
+    <MenuGroup title="Profile">
+      <MenuItem>My Account</MenuItem>
+      <MenuItem>Payments </MenuItem>
+    </MenuGroup>
+    <MenuDivider />
+    <MenuGroup title="Help">
+      <MenuItem>Docs</MenuItem>
+      <MenuItem>FAQ</MenuItem>
+    </MenuGroup>
+  </MenuList>
+</Menu>
+```
+
+## Menu option groups
+
+You can compose a menu for table headers to help with sorting and filtering
+options. Use the `MenuOptionGroup` and `MenuItemOption` components.
+
+```jsx
+<Menu closeOnSelect={false}>
+  <MenuButton as={Button} colorScheme="blue">
+    MenuItem
+  </MenuButton>
+  <MenuList minWidth="240px">
+    <MenuOptionGroup defaultValue="asc" title="Order" type="radio">
+      <MenuItemOption value="asc">Ascending</MenuItemOption>
+      <MenuItemOption value="desc">Descending</MenuItemOption>
+    </MenuOptionGroup>
+    <MenuDivider />
+    <MenuOptionGroup title="Country" type="checkbox">
+      <MenuItemOption value="email">Email</MenuItemOption>
+      <MenuItemOption value="phone">Phone</MenuItemOption>
+      <MenuItemOption value="country">Country</MenuItemOption>
+    </MenuOptionGroup>
+  </MenuList>
+</Menu>
+```
+
+## Accessibility
+
+### Keyboard Interaction
+
+| Key                | Action                                                                                                                                  |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `Enter` or `Space` | When `MenuButton` receives focus, opens the menu and places focus on the first menu item                                                |
+| `ArrowDown`        | When `MenuButton` receives focus, opens the menu and moves focus to the first menu item                                                 |
+| `ArrowUp`          | When `MenuButton` receives focus, opens the menu and moves focus to the last menu item                                                  |
+| `Escape`           | When the menu is open, closes the menu and sets focus to the `MenuButton`                                                               |
+| `Tab`              | no effect                                                                                                                               |
+| `Home`             | When the menu is open, moves focus to the first item.                                                                                   |
+| `End`              | When the menu is open, moves focus to the last item.                                                                                    |
+| `A-Z` or `a-z`     | When the menu is open, moves focus to the next menu item with a label that starts with the typed character if such an menu item exists. |
+
+### ARIA roles
+
+**For `MenuButton`:**
+
+- It has `role` set to `button`.
+- It has aria-haspopup set to either `menu`.
+- When the menu is displayed, `MenuButton` has `aria-expanded` set to `true`.
+- `MenuButton` has `aria-controls` set to the `id` of the `MenuList`.
+
+**For `MenuList`:**
+
+- It contains the `MenuItem` has role `menu`.
+
+## Props
+
+### Menu Props
+
+| Name          | Type              | Default | Description                                                  |
+| ------------- | ----------------- | ------- | ------------------------------------------------------------ |
+| children      | `React.ReactNode` |         | The children of the menu must be `MenuButton` and `MenuList` |
+| isOpen        | `boolean`         |         | If `true`, the menu will be opened                           |
+| autoSelect    | `boolean`         | `true`  | The menu will select the first enabled item when it opens    |
+| closeOnBlur   | `boolean`         | `true`  | If `true`, the menu will close on outside click or blur      |
+| closeOnSelect | `boolean`         | `true`  | If `true`, the menu will close on menu item select           |
+
+### MenuButton Props
+
+| Name      | Type                         |
+| --------- | ---------------------------- |
+| children  | `React.ReactNode`            |
+| onClick   | `React.MouseEventHandler`    |
+| onKeyDown | `React.KeyboardEventHandler` |
+
+### MenuList Props
+
+| Name      | Type                      | Description                                                       |
+| --------- | ------------------------- | ----------------------------------------------------------------- |
+| children  | `React.ReactNode`         | The content of the `MenuList`, should be the `MenuItem` component |
+| onClick   | `React.MouseEventHandler` | Function to be called when you click on the menu item             |
+| onBlur    | `React.FocusEventHandler` | Function to be called when you blur out of the menu list          |
+| placement | `PopperJS.placement`      | The placement of the `MenuList`                                   |
+
+### MenuItem Props
+
+| Name       | Type                                            | Description                                               |
+| ---------- | ----------------------------------------------- | --------------------------------------------------------- |
+| isDisabled | `boolean`                                       | If `true`, the menu item will be disabled                 |
+| onClick    | `React.MouseEventHandler`                       | Function that is called on click and enter/space keypress |
+| onKeyDown  | `React.KeyboardEventHander`                     | Function that is called on keydown                        |
+| role       | `menuitem`, `menuitemradio`, `menuitemcheckbox` | The ARIA role of the menuitem                             |
+
+### MenuGroup Props
+
+| Name     | Type              | Description                   |
+| -------- | ----------------- | ----------------------------- |
+| children | `React.ReactNode` | The content of the menu group |
+| title    | `string`          | The title of the menu group   |
+
+### MenuOptionGroup Props
+
+| Name         | Type                                          | Description                                             |
+| ------------ | --------------------------------------------- | ------------------------------------------------------- |
+| children     | `React.ReactNode`                             | The content of the option group                         |
+| title        | `string`                                      | Title of the option group                               |
+| type         | `radio`, `checkbox`                           | Used to add roles `menuitemradio` or `menuitemcheckbox` |
+| defaultValue | `string`, `number`, `Array<string or number>` | The initial value of the option group                   |
+| value        | `string`, `number`, `Array<string or number>` | The value of the option group                           |
+| onChange     | `(value) => void`                             | Function called when selection changes                  |
+
+### MenuItemOption Props
+
+| Name         | Type                      | Description                                             |
+| ------------ | ------------------------- | ------------------------------------------------------- |
+| isDisabled   | `boolean`                 | If `true`, the menu item will be disabled               |
+| children     | `React.ReactNode`         | The content of the option item                          |
+| value        | `StringOrNumber`          | Used to add roles `menuitemradio` or `menuitemcheckbox` |
+| type         | `radio`, `checkbox`       | The initial value of the option item                    |
+| onMouseLeave | `React.MouseEventHandler` | The value of the option item                            |
+| onMouseEnter | `React.MouseEventHandler` | Function called when selection changes                  |

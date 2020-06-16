@@ -1,0 +1,75 @@
+---
+title: Flex
+package: "@chakra-ui/layout"
+description:
+  Flex is Box with display set to flex and comes with helpful style shorthand.
+  It renders a `div` element.
+---
+
+import ComponentLinks from "../../../src/components/component-links"
+
+# Flex
+
+Flex is [Box](/components/box) with `display: flex` and comes with helpful style
+shorthand. It renders a `div` element.
+
+<ComponentLinks
+  github={{ url: "#" }}
+  storybook={{ url: "#" }}
+  npm={{ label: "@chakra-ui/layout", url: "#" }}
+/>
+
+<carbon-ad></carbon-ad>
+
+## Import
+
+```js
+import { Flex, Spacer } from "@chakra-ui/core"
+```
+
+- Flex: a `Box` with `display: flex`
+- Spacer: creates an adjustable, empty space that can be used to tune the
+  spacing between child elements within `Flex`
+
+## Usage
+
+Using the Flex components, here are some helpful shorthand props:
+
+- `flexDirection` is `direction`
+- `flexWrap` is `wrap`
+- `alignItems` is `align`
+- `justifyContent` is `justify`
+
+While you can pass the verbose props, using the shorthand can save you some
+time.
+
+```jsx
+<Flex color="white">
+  <Center w="100px" bg="green.500">
+    <Text>Box 1</Text>
+  </Center>
+  <Square bg="blue.500" size="150px">
+    <Text>Box 2</Text>
+  </Square>
+  <Box flex="1" bg="tomato">
+    <Text>Box 3</Text>
+  </Box>
+</Flex>
+```
+
+### Using the Spacer
+
+As an alternative to `Stack`, you can combine `Flex` and `Spacer` to create
+stackable and responsive layouts.
+
+```jsx
+<Flex>
+  <Box p="4" bg="red.400">
+    Box 1
+  </Box>
+  <Spacer />
+  <Box p="4" bg="green.400">
+    Box 2
+  </Box>
+</Flex>
+```

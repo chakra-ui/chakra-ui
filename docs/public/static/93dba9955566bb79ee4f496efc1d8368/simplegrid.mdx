@@ -1,0 +1,110 @@
+---
+title: SimpleGrid
+package: "@chakra-ui/layout"
+description:
+  Grid is Box with display set to grid and comes with helpful style shorthand.
+  It renders a `div` element.
+---
+
+import ComponentLinks from "../../../src/components/component-links"
+
+# SimpleGrid
+
+If you're like me, I tend to always check the
+[MDN docs](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) for
+anything css grid.
+
+<ComponentLinks
+  github={{ url: "#" }}
+  storybook={{ url: "#" }}
+  npm={{ label: "@chakra-ui/layout", url: "#" }}
+/>
+
+<carbon-ad></carbon-ad>
+
+SimpleGrid provides a friendly interface to create responsive grid layouts with
+ease. It renders a `div` element with `display: grid`.
+
+## Import
+
+```js
+import { SimpleGrid } from "@chakra-ui/core"
+```
+
+## Usage
+
+Specifying the number of columns for the grid layout.
+
+```jsx
+<SimpleGrid columns={2} spacing={10}>
+  <Box bg="tomato" height="80px"></Box>
+  <Box bg="tomato" height="80px"></Box>
+  <Box bg="tomato" height="80px"></Box>
+  <Box bg="tomato" height="80px"></Box>
+  <Box bg="tomato" height="80px"></Box>
+</SimpleGrid>
+```
+
+You can also make it responsive by passing array or object values into the
+`columns` prop.
+
+```jsx
+// Passing `columns={[2, null, 3]}` and `columns={{sm: 2, md: 3}}`
+// will have the same effect.
+
+<SimpleGrid columns={[2, null, 3]} spacing="40px">
+  <Box bg="tomato" height="80px"></Box>
+  <Box bg="tomato" height="80px"></Box>
+  <Box bg="tomato" height="80px"></Box>
+  <Box bg="tomato" height="80px"></Box>
+  <Box bg="tomato" height="80px"></Box>
+</SimpleGrid>
+```
+
+### Auto-responsive grid
+
+To make the grid responsive adjust automatically without passing `columns`,
+simply pass the `minChildWidth` prop to specify the `min-width` a child should
+have before adjusting the layout.
+
+This uses css grid `auto-fit` and `minmax()` internally.
+
+```jsx
+<SimpleGrid minChildWidth="120px" spacing="40px">
+  <Box bg="tomato" height="80px"></Box>
+  <Box bg="tomato" height="80px"></Box>
+  <Box bg="tomato" height="80px"></Box>
+  <Box bg="tomato" height="80px"></Box>
+  <Box bg="tomato" height="80px"></Box>
+  <Box bg="tomato" height="80px"></Box>
+</SimpleGrid>
+```
+
+### Changing the spacing for columns and rows
+
+Simply pass the `spacing` prop to change the row and column spacing between the
+grid items. `SimpleGrid` also allows you pass `spacingX` and `spacingY` to
+define the space between columns and rows respectively.
+
+```jsx
+<SimpleGrid columns={2} spacingX="40px" spacingY="20px">
+  <Box bg="tomato" height="80px"></Box>
+  <Box bg="tomato" height="80px"></Box>
+  <Box bg="tomato" height="80px"></Box>
+  <Box bg="tomato" height="80px"></Box>
+  <Box bg="tomato" height="80px"></Box>
+</SimpleGrid>
+```
+
+## Props
+
+SimpleGrid composes `Box` so you can pass all the `Box` props and css grid props
+with addition of these:
+
+| Name            | Type                        | Default | Description                                                                                                                           |
+| --------------- | --------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `columns`       | `number`                    |         | The number of columns                                                                                                                 |
+| `spacing`       | `GridProps["gridGap"]`      |         | The gap between the grid items                                                                                                        |
+| `spacingX`      | `GridProps["gridGap"]`      |         | The column gap between the grid items                                                                                                 |
+| `spacingY`      | `GridProps["gridGap"]`      |         | The row gap between the grid items                                                                                                    |
+| `minChildWidth` | `CSSProperties["minWidth"]` |         | The width at which child elements will break into columns. Pass a number for pixel values or a string for any other valid CSS length. |

@@ -1,0 +1,78 @@
+---
+title: Switch
+package: "@chakra-ui/switch"
+image: "components/switch.svg"
+---
+
+import ComponentLinks from "../../src/components/component-links"
+
+# Switch
+
+The Switch component is used as an alternative for the [Checkbox](/checkbox)
+component, switch between enabled or disabled states.
+
+<ComponentLinks
+  github={{ url: "#" }}
+  storybook={{ url: "#" }}
+  npm={{ label: "@chakra-ui/switch", url: "#" }}
+/>
+
+<carbon-ad></carbon-ad>
+
+Switch must always be accompanied by a label, and follows the same keyboard
+workflow as a checkbox.
+
+## Import
+
+```js
+import { Switch } from "@chakra-ui/core"
+```
+
+## Usage
+
+```jsx
+<Flex justify="center" align="center">
+  <FormLabel htmlFor="email-alerts">Enable email alerts?</FormLabel>
+  <Switch id="email-alerts" />
+</Flex>
+```
+
+## Sizes
+
+Pass the `size` prop to change the size of the switch.
+
+```jsx
+<Stack align="center" isInline>
+  <Switch size="sm" />
+  <Switch size="md" />
+  <Switch size="lg" />
+</Stack>
+```
+
+## Switch background color
+
+You can change the checked background color of the switch by passing the `color`
+prop.
+
+```jsx
+<Stack isInline>
+  <Switch color="red" />
+  <Switch color="teal" size="lg" />
+</Stack>
+```
+
+## Props
+
+| Name               | Type                | Default | Description                                          |
+| ------------------ | ------------------- | ------- | ---------------------------------------------------- |
+| `size`             | `sm`, `md`, `lg`    |         | The size of the switch.                              |
+| `color`            | `string`            |         | The background color of the switch when checked.     |
+| `name`             | `string`            |         | The input name of the switch when used in a form.    |
+| `value`            | `string`, `boolean` |         | The value of the switch.                             |
+| `children`         | `React.ReactNode`   |         | The children of the switch.                          |
+| `aria-label`       | `string`            |         | The aria-label of the switch for accessibility.      |
+| `aria-labelledby`  | `string`            |         | The aria-labelledby of the switch for accessibility. |
+| `isChecked`        | `boolean`           |         | If `true`, set the switch to the checked state.      |
+| `defaultIsChecked` | `boolean`           |         | If `true`, the checkbox will be initially checked.   |
+| `isDisabled`       | `boolean`           |         | If `true`, set the disabled to the invalid state.    |
+| `isInvalid`        | `boolean`           |         | If `true`, set the switch to the invalid state.      |

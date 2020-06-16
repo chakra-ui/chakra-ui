@@ -1,0 +1,364 @@
+---
+title: Default Theme
+order: 4
+---
+
+import { Box, Flex, Grid, useTheme } from "@chakra-ui/core"
+import {
+  ColorPalette,
+  ColorPalettes,
+  ColorWrapper,
+} from "../../src/components/docs/color-palette"
+
+# Design Tokens
+
+The theme object is where you define your application's color palette, type
+scale, font stacks, breakpoints, border radius values, and more. Theming with
+Chakra UI is based on the
+[Styled System Theme Specification](https://system-ui.com/theme/)
+
+## Colors
+
+Add a `theme.colors` object to provide colors for your project. By default these
+colors can be referenced by the `color`, `borderColor`, and `backgroundColor`,
+`fill`, `stroke`, styles.
+
+We recommend adding palette that go from `50` - `900`. Use tools like
+[Coolors](https://coolors.co/app) or [Palx](https://palx.jxnblk.com) to generate
+these palette.
+
+```js
+// theme.js
+export default {
+  colors: {
+    transparent: "transparent",
+    black: "#000",
+    white: "#fff",
+    gray: {
+      50: "#f7fafc",
+      // ...
+      900: "#1a202c",
+    },
+    // ...
+  },
+}
+```
+
+Chakra provide a sensible
+[default theme](https://github.com/chakra-ui/chakra-ui/blob/master/packages/chakra-ui/src/theme)
+inspired by Tailwind CSS, but you can customize it to fit your design.
+
+### Black & White
+
+<ColorWrapper>
+  <ColorPalette color="black" name="Black" />
+  <ColorPalette color="white" name="White" />
+  <div />
+</ColorWrapper>
+
+### Gray
+
+<ColorWrapper>
+  <ColorPalettes color="gray" />
+</ColorWrapper>
+
+### Red
+
+<ColorWrapper>
+  <ColorPalettes color="red" />
+</ColorWrapper>
+
+### Orange
+
+<ColorWrapper>
+  <ColorPalettes color="orange" />
+</ColorWrapper>
+
+### Yellow
+
+<ColorWrapper>
+  <ColorPalettes color="yellow" />
+</ColorWrapper>
+
+### Green
+
+<ColorWrapper>
+  <ColorPalettes color="green" />
+</ColorWrapper>
+
+### Teal
+
+<ColorWrapper>
+  <ColorPalettes color="teal" />
+</ColorWrapper>
+
+### Blue
+
+<ColorWrapper>
+  <ColorPalettes color="blue" />
+</ColorWrapper>
+
+### Cyan
+
+<ColorWrapper>
+  <ColorPalettes color="cyan" />
+</ColorWrapper>
+
+### Purple
+
+<ColorWrapper>
+  <ColorPalettes color="purple" />
+</ColorWrapper>
+
+### Pink
+
+<ColorWrapper>
+  <ColorPalettes color="pink" />
+</ColorWrapper>
+
+## Typography
+
+To manage Typography options, the theme object supports the following keys:
+
+- `fonts` (font families)
+- `fontSizes`
+- `fontWeights`
+- `lineHeights`
+- `letterSpacings`
+
+```js
+// example theme object
+export default {
+  colors: {...},
+  fonts: {
+    body: "system-ui, sans-serif",
+    heading: "Georgia, serif",
+    mono: "Menlo, monospace",
+  },
+  fontSizes: {
+    xs: "12px",
+    sm: "14px",
+    md: "16px",
+    lg: "18px",
+    xl: "20px",
+    "2xl": "24px",
+    "3xl": "28px",
+    "4xl": "36px",
+    "5xl": "48px",
+    "6xl": "64px",
+  },
+  fontWeights: {
+    normal: 400,
+    medium: 500,
+    bold: 700,
+  },
+  lineHeights: {
+    normal: "normal",
+    base: "1",
+    shorter: "1.25",
+    short: "1.375",
+    base: "1.5",
+    tall: "1.625",
+    taller: "2",
+  },
+  letterSpacings: {
+    tighter: "-0.05em",
+    tight: "-0.025em",
+    normal: "0",
+    wide: "0.025em",
+    wider: "0.05em",
+    widest: "0.1em",
+  },
+};
+```
+
+## Breakpoints
+
+To configure the default breakpoints used in responsive array values, add a
+breakpoints array to your theme. These values will be used to generate
+mobile-first (i.e. min-width) media queries, which can then be used to apply
+responsive styles.
+
+> For example, you can write `<Box fontSize={["14px", "16px"]}/>` to make the
+> fontSize will be responsive.
+
+```js
+// theme.js
+export default {
+  breakpoints: ["30em", "48em", "62em", "80em"],
+}
+```
+
+## Spacing
+
+The `space` key allows you to customize the global spacing and sizing scale for
+your project. By default these spacing value can be referenced by the `padding`,
+`margin`, and `top`, `left`, `right`, `bottom` styles.
+
+```js
+export default {
+  space: {
+    px: "1px",
+    "0": "0",
+    "1": "0.25rem",
+    "2": "0.5rem",
+    "3": "0.75rem",
+    "4": "1rem",
+    "5": "1.25rem",
+    "6": "1.5rem",
+    "8": "2rem",
+    "10": "2.5rem",
+    "12": "3rem",
+    "16": "4rem",
+    "20": "5rem",
+    "24": "6rem",
+    "32": "8rem",
+    "40": "10rem",
+    "48": "12rem",
+    "56": "14rem",
+    "64": "16rem",
+  },
+}
+```
+
+By default, Chakra includes a comprehensive numeric spacing scale inspired by
+Tailwind CSS. The values are proportional, so 1 spacing unit is equal to
+`0.25rem`, which translates to `4px` by default in common browsers.
+
+> **Mental model:** If you need a spacing of `40px`, divide it by `4`. That'll
+> give you `10`. Then use it in your component.
+
+| Name | Space   | Pixels |                                   |
+| ---- | ------- | ------ | --------------------------------- |
+| 0    | 0       | 0px    | <Box bg="pink.200" h="4" w="0"/>  |
+| px   | 1px     | 1px    | <Box bg="pink.200" h="4" w="px"/> |
+| 1    | 0.25rem | 4px    | <Box bg="pink.200" h="4" w="1"/>  |
+| 2    | 0.5rem  | 8px    | <Box bg="pink.200" h="4" w="2"/>  |
+| 3    | 0.75rem | 12px   | <Box bg="pink.200" h="4" w="3"/>  |
+| 4    | 1rem    | 16px   | <Box bg="pink.200" h="4" w="4"/>  |
+| 5    | 1.25rem | 20px   | <Box bg="pink.200" h="4" w="5"/>  |
+| 6    | 1.5rem  | 24px   | <Box bg="pink.200" h="4" w="6"/>  |
+| 8    | 2rem    | 32px   | <Box bg="pink.200" h="4" w="8"/>  |
+| 10   | 2.5rem  | 40px   | <Box bg="pink.200" h="4" w="10"/> |
+| 12   | 3rem    | 48px   | <Box bg="pink.200" h="4" w="12"/> |
+| 16   | 4rem    | 64px   | <Box bg="pink.200" h="4" w="16"/> |
+| 20   | 5rem    | 80px   | <Box bg="pink.200" h="4" w="20"/> |
+| 24   | 6rem    | 96px   | <Box bg="pink.200" h="4" w="24"/> |
+| 32   | 8rem    | 128px  | <Box bg="pink.200" h="4" w="32"/> |
+| 40   | 10rem   | 160px  | <Box bg="pink.200" h="4" w="40"/> |
+| 48   | 12rem   | 192px  | <Box bg="pink.200" h="4" w="48"/> |
+| 56   | 14rem   | 224px  | <Box bg="pink.200" h="4" w="56"/> |
+| 64   | 16rem   | 256px  | <Box bg="pink.200" h="4" w="64"/> |
+
+## Sizes
+
+The `sizes` key allows you to customize the global sizeing of components you
+build for your project. By default these spacing value can be referenced by the
+`width`, `height`, and `maxWidth`, `minWidth`, `maxHeight`, `minHeight` styles.
+
+```js
+export default {
+  sizes: {
+    ...theme.space,
+    full: "100%",
+    "3xs": "14rem",
+    "2xs": "16rem",
+    xs: "20rem",
+    sm: "24rem",
+    md: "28rem",
+    lg: "32rem",
+    xl: "36rem",
+    "2xl": "42rem",
+    "3xl": "48rem",
+    "4xl": "56rem",
+    "5xl": "64rem",
+    "6xl": "72rem",
+  },
+}
+```
+
+For a component like this: `<Box w={4} h={3} />` will generate an empty `div`
+with width set to `1rem` or `16px` and height set to `0.75rem` or `12px`
+
+## Z-Index
+
+Chakra provides some zIndex values out of the box to control the stacking order
+of components.
+
+```js
+export default {
+  zIndices: {
+    hide: -1,
+    auto: "auto",
+    base: 0,
+    docked: 10,
+    dropdown: 1000,
+    sticky: 1100,
+    banner: 1200,
+    overlay: 1300,
+    modal: 1400,
+    popover: 1500,
+    skipLink: 1600,
+    toast: 1700,
+    tooltip: 1800,
+  },
+}
+```
+
+## Icons
+
+All Chakra icons are stored in the theme object under the `icons` key.
+[See the icons](/icon#all-icons).
+
+You can extend this object to add your own icons. Here are the steps:
+
+- Export the icon's `svg` from Figma, Sketch, etc.
+- Use a tool like [SvgOmg](https://svgomg.firebaseapp.com) to reduce the size
+  and minify the markup.
+- Add the icon to the theme object.
+
+> Add the `fill=currentColor` attribute to the `path` or `g` so that when you
+> this `<Icon color="gray.200"/>`, it works correctly.
+
+```jsx live=false
+
+// Step 1: Each icon should be stored as an object of `path` and `viewBox`
+const customIcons = {
+  icon1: {
+    path: <path fill="currentColor" d="..." />,
+    // If the icon's viewBox is `0 0 24 24`, you can ignore `viewBox`
+    viewBox: "0 0 40 40",
+  },
+  icon2: {
+    path: (
+      <g fill="currentColor">
+        <path d="..."/>
+      </g>
+    )
+  }
+};
+
+// Step 2: Add the custom icon to the theme
+const customTheme = {
+  ...theme,
+  icons: {
+    ...theme.icons,
+    ...customIcons,
+  }
+}
+
+// Step 3: Pass the new theme to the ThemeProvider
+
+<ThemeProvider theme={customTheme}>
+  {/* app goes here */}
+</ThemeProvider>
+
+// Step 4: Now you can do this
+<Icon name="icon1" color="green.200"/>
+```
+
+## Configuration reference
+
+Except for breakpoints, colors, and spacing, all of the keys in the theme object
+map to one of Chakra's core theme. All of these keys can be replaced or
+extended.

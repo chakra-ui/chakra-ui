@@ -1,0 +1,65 @@
+---
+title: Grid
+package: "@chakra-ui/layout"
+description:
+  Grid is Box with display set to grid and comes with helpful style shorthand.
+  It renders a `div` element.
+---
+
+import ComponentLinks from "../../src/components/component-links"
+
+# Grid
+
+A primitive useful for grid layouts. Grid is `Box` with `display: grid` and
+comes with helpful style shorthand. It renders a `div` element.
+
+<ComponentLinks
+  github={{ url: "#" }}
+  storybook={{ url: "#" }}
+  npm={{ label: "@chakra-ui/layout", url: "#" }}
+/>
+
+<carbon-ad></carbon-ad>
+
+## Import
+
+```js
+import { Grid } from "@chakra-ui/core"
+```
+
+## Usage
+
+Using the Grid components, here are some helpful shorthand props:
+
+| Verbose Prop          | Shorthand Prop    |
+| --------------------- | ----------------- |
+| `gridArea`            | `area`            |
+| `gridTemplateAreas`   | `templateAreas`   |
+| `gridGap`             | `gap`             |
+| `gridRowGap`          | `rowGap`          |
+| `gridColumnGap`       | `columnGap`       |
+| `gridAutoColumns`     | `autoColumns`     |
+| `gridColumn`          | `column`          |
+| `gridRow`             | `row`             |
+| `gridAutoFlow`        | `autoFlow`        |
+| `gridAutoRows`        | `autoRows`        |
+| `gridTemplateRows`    | `templateRows`    |
+| `gridTemplateColumns` | `templateColumns` |
+
+While you can pass the verbose props, using the shorthand can save you some
+time.
+
+```jsx
+<Grid templateColumns="repeat(5, 1fr)" gap={6}>
+  <Box w="100%" h="10" bg="blue.500" />
+  <Box w="100%" h="10" bg="blue.500" />
+  <Box w="100%" h="10" bg="blue.500" />
+  <Box w="100%" h="10" bg="blue.500" />
+  <Box w="100%" h="10" bg="blue.500" />
+</Grid>
+```
+
+## Props
+
+Grid composes `Box` so you can pass all the `Box` prop and related css grid
+props.

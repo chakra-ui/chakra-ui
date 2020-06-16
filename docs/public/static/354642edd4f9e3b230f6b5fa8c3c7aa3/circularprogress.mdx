@@ -1,0 +1,111 @@
+---
+title: Circular Progress
+package: "@chakra-ui/progress"
+image: "components/progress.svg"
+description:
+  Circular Progress is used to indicates the progress for determinate and
+  indeterminate processes.
+---
+
+import ComponentLinks from "../../../src/components/component-links"
+
+# Circular Progress
+
+Circular Progress is used to indicates the progress for determinate and
+indeterminate processes.
+
+<ComponentLinks
+  github={{ url: "#" }}
+  storybook={{ url: "#" }}
+  npm={{ label: "@chakra-ui/progress", url: "#" }}
+/>
+
+<carbon-ad></carbon-ad>
+
+- Determinate progress: fills the circular track with color, as the indicator
+  moves from 0 to 360 degrees.
+- Indeterminate progress: grows and shrinks the indicator while moving along the
+  circular track.
+
+## Import
+
+```js
+import { CircularProgress, CircularProgressLabel } from "@chakra-ui/core"
+```
+
+## Usage
+
+```jsx
+<CircularProgress value={80} />
+```
+
+### Changing the size
+
+You can add `size` prop to the progressbar to add a custom size.
+
+```jsx
+// Change the size to 120px
+<CircularProgress value={30} size="120px" />
+```
+
+### Changing the thickness
+
+You can add the `thickness` prop to update the thickness of the progress ring.
+
+> The thickness has to be a ratio of the size. Value should be between 0 and 1.
+
+```jsx
+// 10% of size (100px) => 10px
+<CircularProgress value={59} size="100px" thickness={0.1} />
+```
+
+### Changing the color
+
+You can add `color` prop to any progressbar to apply any color that exists in
+the theme.
+
+```jsx
+<CircularProgress value={30} color="orange" thickness={0.1} />
+```
+
+### Adding label
+
+Chakra exports a `CircularProgressLabel` to help you add a label. Pass this
+component as children and you'll be able to render the value.
+
+```jsx
+<CircularProgress value={40} color="green">
+  <CircularProgressLabel>40%</CircularProgressLabel>
+</CircularProgress>
+```
+
+### Indeterminate Progress
+
+Setting the progress to indeterminate means you're not able to determine the
+`value` upfront, so you won't need to pass the `value` prop.
+
+```jsx
+<CircularProgress isIndeterminate color="green"></CircularProgress>
+```
+
+### Accessibility
+
+- Progress has `role` set to `progressbar` to denote that it's a progress bar
+- Progress has `aria-valuenow` set to the percentage completion value passed to
+  the component, to ensure the progress percent is visible to screen readers.
+
+## Props
+
+| Name            | Type              | Default | Description                                                                                                      |
+| --------------- | ----------------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
+| size            | `string`          | `48px`  | The size of the circular progress in CSS units                                                                   |
+| max             | `number`          | `100`   | Maximum value defining 100% progress made (must be higher than 'min')                                            |
+| min             | `number`          | `0`     | Minimum value defining 'no progress' (must be lower than 'max')                                                  |
+| value           | `number`          |         | Current progress (must be between min/max)                                                                       |
+| isIndeterminate | `boolean`         |         | Puts the component into 'indeterminate' state; Ignores 'value' prop                                              |
+| thickness       | `number`          | `0.2`   | The thickness of progress indicator as a ratio of `size`. Must be between `0` and `1`                            |
+| angle           | `number`          | `0`     | Angle to rotate progress indicator by                                                                            |
+| capIsRound      | `boolean`         |         | If `true`, the cap of the progress indicator will be rounded                                                     |
+| children        | `React.ReactNode` |         | The content of the circular progress bar. If passed, the content will be inside and centered in the progress bar |
+| trackColor      | `string`          | `gray`  | The color name of the progress track. Use a color key in the theme object                                        |
+| color           | `string`          | `blue`  | The color of the progress indicator. Use a color key in the theme object                                         |

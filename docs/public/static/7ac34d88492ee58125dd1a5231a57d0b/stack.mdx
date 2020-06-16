@@ -1,0 +1,114 @@
+---
+title: Stack
+package: "@chakra-ui/layout"
+image: "components/stack.svg"
+---
+
+import ComponentLinks from "../../src/components/component-links"
+
+# Stack
+
+Stack is a layout utility component that makes it easy to stack elements
+together and apply a space between them. It composes the [Flex](/flex)
+component.
+
+<ComponentLinks
+  github={{ url: "#" }}
+  storybook={{ url: "#" }}
+  npm={{ label: "@chakra-ui/layout", url: "#" }}
+/>
+
+<carbon-ad></carbon-ad>
+
+## Import
+
+```js
+import { Stack } from "@chakra-ui/core"
+```
+
+By default, each item is stacked vertically. Stack clones it's children and
+passes the spacing to them using `margin-bottom` or `margin-right`.
+
+## Usage
+
+```jsx manual=true
+function Feature({ title, desc, ...rest }) {
+  return (
+    <Box p={5} shadow="md" borderWidth="1px" {...rest}>
+      <Heading fontSize="xl">{title}</Heading>
+      <Text mt={4}>{desc}</Text>
+    </Box>
+  )
+}
+
+function StackEx() {
+  return (
+    <Stack spacing={8}>
+      <Feature
+        title="Plan Money"
+        desc="The future can be even brighter but a goal without a plan is just a wish"
+      />
+      <Feature
+        title="Save Money"
+        desc="You deserve good things. With a whooping 10-15% interest rate per annum, grow your savings on your own terms with our completely automated process"
+      />
+    </Stack>
+  )
+}
+
+render(<StackEx />)
+```
+
+### Stack items horizontally
+
+Pass the `isInline` prop or `direction` and set it to `horizontal`.
+
+Optionally, you can use `align` and `justify` to adjust the alignment and
+distribution of the items.
+
+```jsx manual=true
+function Feature({ title, desc, ...rest }) {
+  return (
+    <Box
+      p={5}
+      shadow="md"
+      borderWidth="1px"
+      flex="1"
+      borderRadius="md"
+      {...rest}
+    >
+      <Heading fontSize="xl">{title}</Heading>
+      <Text mt={4}>{desc}</Text>
+    </Box>
+  )
+}
+
+function StackEx() {
+  return (
+    <Stack direction="row" spacing={8} align="center">
+      <Feature
+        title="Plan Money"
+        desc="The future can be even brighter but a goal without a plan is just a wish"
+      />
+      <Feature
+        title="Save Money"
+        desc="You deserve good things. With a whooping 10-15% interest rate per annum, grow your savings."
+      />
+    </Stack>
+  )
+}
+
+render(<StackEx />)
+```
+
+### Props
+
+| Name                 | Type                          | Default | Description                                                                                                              |
+| -------------------- | ----------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `isInline`           | `boolean`                     |         | If `true` the items will be stacked horizontally.                                                                        |
+| `direction`          | `FlexProps["flexDirection"]`  |         | The direction to stack the items.                                                                                        |
+| `children`           | `React.ReactNode`             |         | The content of the stack.                                                                                                |
+| `spacing`            | `StyledSystem.MarginProps`    |         | The space between each stack item                                                                                        |
+| `align`              | `FlexProps["alignItems"]`     |         | The alignment of the stack item. Similar to `align-items`                                                                |
+| `justify`            | `FlexProps["justifyContent"]` |         | The distribution of the stack item. Similar to `justify-content`                                                         |
+| `shouldWrapChildren` | `boolean`                     |         | If `true`, the children will be wrapped in a `Box` with `display: inline-block`, and the Box will take the spacing props |

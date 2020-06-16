@@ -1,0 +1,189 @@
+---
+title: Toast
+package: "@chakra-ui/toast"
+image: "components/toast.svg"
+---
+
+import ComponentLinks from "../../src/components/component-links"
+
+# Toast
+
+The toast is used to show alerts on top of an overlay. The toast will close
+itself when the close button is clicked, or after a timeout — the default is 5
+seconds. The toast component is used to give feeback to users after an action
+has taken place.
+
+<ComponentLinks
+  github={{ url: "#" }}
+  storybook={{ url: "#" }}
+  npm={{ label: "@chakra-ui/toast", url: "#" }}
+/>
+
+<carbon-ad></carbon-ad>
+
+Toasts can be configured to appear at either the top or the bottom of an
+application window, and it is possible to have more than one toast onscreen at a
+time.
+
+## Import
+
+```js
+import { useToast } from "@chakra-ui/core"
+```
+
+## Usage
+
+```jsx
+function ToastExample() {
+  const toast = useToast()
+  return (
+    <Button
+      onClick={() =>
+        toast({
+          title: "Account created.",
+          description: "We've created your account for you.",
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+        })
+      }
+    >
+      Show Toast
+    </Button>
+  )
+}
+```
+
+## Custom component
+
+Display a custom component instead of the default Toast UI.
+
+```jsx
+function Example() {
+  const toast = useToast()
+  return (
+    <Button
+      onClick={() =>
+        toast({
+          position: "bottom-left",
+          render: () => (
+            <Box m={3} color="white" p={3} bg="blue.500">
+              Hello World
+            </Box>
+          ),
+        })
+      }
+    >
+      Show Toast
+    </Button>
+  )
+}
+```
+
+## Success
+
+```jsx
+function Example() {
+  const toast = useToast()
+  return (
+    <Button
+      onClick={() =>
+        toast({
+          title: "Account created.",
+          description: "We've created your account for you.",
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+        })
+      }
+    >
+      Show Success Toast
+    </Button>
+  )
+}
+```
+
+## Warning
+
+```jsx
+function Example() {
+  const toast = useToast()
+  return (
+    <Button
+      onClick={() =>
+        toast({
+          title: "Warning.",
+          description: "This is a warning.",
+          status: "warning",
+          duration: 9000,
+          isClosable: true,
+        })
+      }
+    >
+      Show Warning Toast
+    </Button>
+  )
+}
+```
+
+## Error
+
+```jsx
+function ErrorToast() {
+  const toast = useToast()
+  return (
+    <Button
+      onClick={() =>
+        toast({
+          title: "An error occurred.",
+          description: "Unable to create user account.",
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+        })
+      }
+    >
+      Show Error Toast
+    </Button>
+  )
+}
+```
+
+## Position
+
+Using the `position` prop you can adjust where your toast will be popup from.
+
+```jsx
+function PositionExample() {
+  const toast = useToast()
+  return (
+    <Button
+      onClick={() =>
+        toast({
+          position: "bottom-left",
+          title: "Account created.",
+          description: "We've created your account for you.",
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+        })
+      }
+    >
+      Show Toast
+    </Button>
+  )
+}
+```
+
+## Props
+
+| Name          | Type                                                                    | Default  | Description                                                          |
+| ------------- | ----------------------------------------------------------------------- | -------- | -------------------------------------------------------------------- |
+| `title`       | `boolean`                                                               |          | The title of the toast.                                              |
+| `isClosable`  | `boolean`                                                               | `false`  | If `true` adds a close button to the toast.                          |
+| `onClose`     | `function`                                                              |          | Callback function to close the toast.                                |
+| `description` | `string`                                                                |          | The description of the toast.                                        |
+| `status`      | `success`, `danger`, `warning`, `info`                                  |          | The status of the toast.                                             |
+| `duration`    | `number`                                                                | `5000ms` | Duration before dismiss in milliseconds, or `null` to never dismiss. |
+| `position`    | `top`, `top-left`, `top-right`, `bottom`, `bottom-left`, `bottom-right` | `bottom` | Position the toast will popup out from.                              |
+| `render`      | `(props: {onClose:() => void, id: string}) => React.ReactNode`          |          | The description of the toast.                                        |
