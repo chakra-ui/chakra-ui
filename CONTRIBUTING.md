@@ -37,8 +37,8 @@ cd chakra-ui
 ```
 
 3. Setup all dependencies and build. Chakra UI uses `yarn`, so simply run
-   `yarn boot`. This command will install dependencies, bootstrap the repo using
-   `lerna` and build all packages.
+   `yarn bootstrap`. This command will install dependencies, bootstrap the repo
+   using `lerna` and build all packages.
 
 > If you run into any issues during this step, kindly reach out to the Chakra UI
 > React team here: https://discord.gg/dQHfcWF
@@ -67,7 +67,7 @@ dependencies for cross-component development
 **`yarn storybook`**: starts storybook server and loads stories in files that
 ends with `.stories.tsx`
 
-**`yarn docs`**: run the documentation site locally
+**`yarn docs:start`**: run the documentation site locally
 
 **`yarn build`**: run build for all component packages
 
@@ -145,7 +145,6 @@ the PR author is a collaborator, that counts as one.
 ### Steps to PR
 
 - Fork of the chakra-ui repository and clone your fork
-- Switch to the `dev-ts` branch and run `yarn boot`
 - Create a new branch out of the `dev-ts` branch. We follow the convention
   `[type/scope]`. For example `fix/accordion-hook`, `docs/menu-typo`
 
