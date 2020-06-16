@@ -53,9 +53,7 @@ import {
 
 ```jsx
 <Menu>
-  <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-    Actions
-  </MenuButton>
+  <MenuButton>Actions</MenuButton>
   <MenuList>
     <MenuItem>Download</MenuItem>
     <MenuItem>Create a Copy</MenuItem>
@@ -78,9 +76,7 @@ method `onClose`.
 <Menu>
   {({ isOpen }) => (
     <React.Fragment>
-      <MenuButton isActive={isOpen} as={Button} rightIcon={<ChevronDownIcon />}>
-        {isOpen ? "Close" : "Open"}
-      </MenuButton>
+      <MenuButton isActive={isOpen}>{isOpen ? "Close" : "Open"}</MenuButton>
       <MenuList>
         <MenuItem>Download</MenuItem>
         <MenuItem onClick={() => alert("Kagebunshin")}>Create a Copy</MenuItem>
@@ -126,9 +122,7 @@ the letter you typed.
 
 ```jsx
 <Menu>
-  <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-    Your Cats
-  </MenuButton>
+  <MenuButton>Your Cats</MenuButton>
   <MenuList>
     <MenuItem minH="48px">
       <Image
@@ -161,9 +155,7 @@ To group related `MenuItem`s, use the `MenuGroup` component and pass it a
 
 ```jsx
 <Menu>
-  <MenuButton as={Button} colorScheme="pink">
-    Profile
-  </MenuButton>
+  <MenuButton colorScheme="pink">Profile</MenuButton>
   <MenuList>
     <MenuGroup title="Profile">
       <MenuItem>My Account</MenuItem>
@@ -185,9 +177,7 @@ options. Use the `MenuOptionGroup` and `MenuItemOption` components.
 
 ```jsx
 <Menu closeOnSelect={false}>
-  <MenuButton as={Button} colorScheme="blue">
-    MenuItem
-  </MenuButton>
+  <MenuButton colorScheme="blue">MenuItem</MenuButton>
   <MenuList minWidth="240px">
     <MenuOptionGroup defaultValue="asc" title="Order" type="radio">
       <MenuItemOption value="asc">Ascending</MenuItemOption>
@@ -201,6 +191,43 @@ options. Use the `MenuOptionGroup` and `MenuItemOption` components.
     </MenuOptionGroup>
   </MenuList>
 </Menu>
+```
+
+### Nested menus
+
+```jsx manual=true
+const Submenu = React.forwardRef((props, ref) => (
+  <Menu>
+    <MenuButton ref={ref} {...props}>
+      Other
+    </MenuButton>
+    <Portal>
+      <MenuList>
+        <MenuItem>Twitter</MenuItem>
+        <MenuItem>Facebook</MenuItem>
+      </MenuList>
+    </Portal>
+  </Menu>
+))
+
+const WithNestedMenu = () => (
+  <Menu>
+    <MenuButton size="sm" colorScheme="teal">
+      Open menu
+    </MenuButton>
+    <Portal>
+      <MenuList>
+        <MenuItem command="⌘T">New Tab</MenuItem>
+        <MenuItem command="⌘N">New Window</MenuItem>
+        <MenuItem command="⌘⇧N">Open Closed Tab</MenuItem>
+        <MenuItem as={Submenu} />
+        <MenuItem command="⌘O">Open File...</MenuItem>
+      </MenuList>
+    </Portal>
+  </Menu>
+)
+
+render(<WithNestedMenu />)
 ```
 
 ## Accessibility

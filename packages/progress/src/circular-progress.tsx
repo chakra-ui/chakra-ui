@@ -159,7 +159,7 @@ export function CircularProgress(props: CircularProgressProps) {
 
   return (
     <StyledProgress
-      data-chakra-progress=""
+      className="chakra-progress"
       fontSize={size}
       {...progress.bind}
       {...rest}
@@ -168,12 +168,12 @@ export function CircularProgress(props: CircularProgressProps) {
         <Circle
           stroke={trackColor}
           strokeWidth={thickness}
-          data-chakra-progress-track=""
+          className="chakra-progress__track"
         />
         <Circle
           stroke={color}
           strokeWidth={thickness}
-          data-chakra-progress-indicator=""
+          className="chakra-progress__indicator"
           strokeLinecap={capIsRound ? "round" : undefined}
           {...indicatorProps}
         />

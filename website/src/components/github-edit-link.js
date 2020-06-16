@@ -3,26 +3,14 @@ import { chakra, Icon, Stack, Link } from "@chakra-ui/core"
 import { MdEdit } from "react-icons/md"
 import { graphql, useStaticQuery } from "gatsby"
 
-export const GithubLink = ({ path }) => {
-  const {
-    site: {
-      siteMetadata: { repository },
-    },
-  } = useStaticQuery(graphql`
-    query REPOSITORY_QUERY {
-      site {
-        siteMetadata {
-          repository
-        }
-      }
-    }
-  `)
+export function GithubLink({ path }) {
+  const data = useStaticQuery(query)
+  const { repository } = data.site.siteMetadata
 
-  if (!repository || !path) {
-    return null
-  }
+  if (!repository || !path) return null
 
   const href = `${repository}/blob/master${path}`
+
   return (
     <Link href={href} isExternal>
       <Stack
@@ -38,3 +26,13 @@ export const GithubLink = ({ path }) => {
     </Link>
   )
 }
+
+const query = graphql`
+  query Repo {
+    site {
+      siteMetadata {
+        repository
+      }
+    }
+  }
+`
