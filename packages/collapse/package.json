@@ -50,7 +50,7 @@
   "dependencies": {
     "@chakra-ui/transition": "1.0.0",
     "@chakra-ui/utils": "1.0.0",
-    "@reach/rect": "0.10.1"
+    "@reach/rect": "0.10.4"
   },
   "devDependencies": {
     "@chakra-ui/system": "1.0.0"
