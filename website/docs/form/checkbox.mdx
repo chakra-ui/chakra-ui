@@ -26,9 +26,6 @@ Native HTML checkboxes are 100% accessible by default, so we used a
 [very common CSS technique](https://dev.to/lkopacz/create-custom-keyboard-accessible-checkboxes-2036)
 to style the checkboxes.
 
-The Checkbox component composes [ControlBox](/controlbox), a component we
-created to make it easy to style an element based on sibling inputs.
-
 ## Import
 
 ```js
@@ -76,7 +73,7 @@ Pass the `size` prop to change the size of the Checkbox. Values can be either
 `sm`, `md` or `lg`.
 
 ```jsx
-<Stack spacing={10} direction="row">
+<HStack spacing={10} direction="row">
   <Checkbox size="sm" colorScheme="red">
     Checkbox
   </Checkbox>
@@ -86,7 +83,7 @@ Pass the `size` prop to change the size of the Checkbox. Values can be either
   <Checkbox size="lg" colorScheme="orange" defaultIsChecked>
     Checkbox
   </Checkbox>
-</Stack>
+</HStack>
 ```
 
 ### Invalid Checkbox
