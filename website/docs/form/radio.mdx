@@ -123,49 +123,69 @@ The checkbox comes with 3 sizes
 ### Custom Radio Buttons
 
 In some cases, you might need to create components that work like radios but
-don't look like radios. Chakra exports a `RadioButtonGroup` to help with this
-scenario. Here's what you need to do:
+don't look like radios. Chakra exports `useRadio`, and `useRadioGroup` hooks to
+help with this scenario. Here's what you need to do:
 
-1. Create a component that accepts the `isChecked` and `isDisabled` props. Be
-   sure to `forwardRef` to the component because it's used for keyboard
-   accessibility.
-2. Add the component as children of `RadioButtonGroup` and pass a `value` prop
-   to it.
-3. If you pass `isDisabled` to any of it's children, it'll be skipped in the
-   keyboard navigation.
+1. Create a component that consumes the `useRadio` hook
+2. Use the `useRadioGroup` hook to control a group of custom radios.
 
 ```jsx manual=true
-// Step 1: Create a component that accepts `isChecked` and `isDisabled` prop
-const CustomRadio = React.forwardRef((props, ref) => {
-  const { isChecked, isDisabled, value, ...rest } = props
-  return (
-    <Button
-      ref={ref}
-      colorScheme={isChecked ? "red" : "gray"}
-      aria-checked={isChecked}
-      role="radio"
-      isDisabled={isDisabled}
-      {...rest}
-    />
-  )
-})
+// 1. Create a component that consumes the `useRadio` hook
+function RadioCard(props) {
+  const { getInputProps, getCheckboxProps } = useRadio(props)
 
-// Step 2: Add `CustomRadio` as children of `RadioButtonGroup`
-function Example() {
+  const input = getInputProps()
+  const checkbox = getCheckboxProps()
+
   return (
-    <RadioButtonGroup
-      defaultValue="rad2"
-      onChange={(val) => console.log(val)}
-      isInline
-    >
-      <CustomRadio value="rad1">CustomRadio 1</CustomRadio>
-      <CustomRadio value="rad2">CustomRadio 2</CustomRadio>
-      <CustomRadio value="rad3">CustomRadio 3</CustomRadio>
-      {/* This child will be skipped in keyboard navigation */}
-      <CustomRadio isDisabled value="rad4">
-        CustomRadio 4
-      </CustomRadio>
-    </RadioButtonGroup>
+    <Box as="label">
+      <input {...input} />
+      <Box
+        {...checkbox}
+        cursor="pointer"
+        borderWidth="1px"
+        borderRadius="md"
+        boxShadow="md"
+        _checked={{
+          bg: "teal.600",
+          color: "white",
+          borderColor: "teal.600",
+        }}
+        _focus={{
+          boxShadow: "outline",
+        }}
+        px={5}
+        py={3}
+      >
+        {props.children}
+      </Box>
+    </Box>
+  )
+}
+
+// Step 2: Use the `useRadioGroup` hook to control a group of custom radios.
+function Example() {
+  const options = ["react", "vue", "svelte"]
+
+  const { getRootProps, getRadioProps } = useRadioGroup({
+    name: "framework",
+    defaultValue: "react",
+    onChange: console.log,
+  })
+
+  const group = getRootProps()
+
+  return (
+    <HStack {...group}>
+      {options.map((value) => {
+        const radio = getRadioProps({ value })
+        return (
+          <RadioCard key={value} {...radio}>
+            {value}
+          </RadioCard>
+        )
+      })}
+    </HStack>
   )
 }
 
