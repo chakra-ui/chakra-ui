@@ -129,25 +129,25 @@ function Team({ data }) {
 
 export default Team
 
-// export const query = graphql`
-//   query TeamAndContributorsQuery {
-//     members: allTeamMember {
-//       nodes {
-//         avatarUrl
-//         bio
-//         githubUrl
-//         id
-//         name
-//         login
-//         twitterUsername
-//         websiteUrl
-//       }
-//     }
-//     contributors: allChakraContributor {
-//       nodes {
-//         login
-//         avatarUrl
-//       }
-//     }
-//   }
-// `
+export const query = graphql`
+  query TeamAndContributorsQuery {
+    members: allTeamMember {
+      nodes {
+        avatarUrl
+        bio
+        githubUrl
+        id
+        name
+        login
+        twitterUsername
+        websiteUrl
+      }
+    }
+    contributors: allChakraContributor {
+      nodes {
+        login
+        avatarUrl
+      }
+    }
+  }
+`
