@@ -14,7 +14,7 @@ export function BottomNavItem(props) {
           alignItems="center"
           justifyContent="center"
         >
-          <Icon boxSize="1.5rem" as={icon} marginBottom="0.2rem" />
+          <Icon boxSize="1.4rem" as={icon} marginBottom="0.2rem" />
           <Text fontSize="0.875rem">{label}</Text>
         </Stack>
       </NavLink>
