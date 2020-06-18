@@ -5,7 +5,14 @@ const { Octokit } = require("@octokit/rest")
 
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN })
 
-const collections = ["main", "theming", "layout", "components", "utilities"]
+const collections = [
+  "main",
+  "theming",
+  "layout",
+  "form",
+  "components",
+  "utilities",
+]
 const compareCollections = (
   { fields: { collection: a } },
   { fields: { collection: b } },
