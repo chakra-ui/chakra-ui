@@ -1,0 +1,87 @@
+---
+title: How to Create a Guide
+description: A guide for creating a Chakra UI guide
+tags: ["meta"]
+creator: with-heart
+---
+
+Creating a new guide for Chakra UI takes four steps:
+
+1. Create your guide file
+2. Add frontmatter
+3. Write your guide content
+4. Open a pull request
+
+# Create your guide file
+
+Create a file in `website/guides` with a filename that briefly describes your
+guide in [kebab case][kebab-case]. For example, the path to this guide (the one
+you're reading) is `website/guides/how-to-create-a-guide.mdx`.
+
+# Add frontmatter
+
+In order for your guide to work correctly, you must create [a frontmatter
+block][frontmatter] at the top of the file. The frontmatter block provides data
+about your guide to our documentation system ([gatsby]) that is used to generate
+your guide's listing on the main guides page.
+
+Your frontmatter block should specify a `title`, a `description`, your GitHub
+username (as `creator`), and (optionally) a `tags` array. Here's the frontmatter
+block for this guide:
+
+```yaml
+---
+title: How to Create a Guide
+description: A guide for creating a Chakra UI guide
+tags: ["meta"]
+creator: with-heart
+---
+
+```
+
+> The frontmatter block **must** include the opening and closing `---` lines.
+
+# Write your guide content
+
+Our guides are written using MDX. MDX is JSX in Markdown.
+
+If you're new to Markdown or MDX, here are a few resources to help you get
+started:
+
+- [Markdown Cheatsheet][markdown-cheatsheet]
+- [MDX][mdx]
+
+You can also open the `.mdx` file for this guide or any other Chakra UI guide
+for inspiration.
+
+# Open a pull request
+
+Once you've created your guide, the final step is to open a pull request to the
+Chakra UI repository. You'll need to fork the Chakra repo, push your changes to
+a branch on your fork, and then open a pull request from your fork to the Chakra
+repo.
+
+In your pull request description, please provide a brief overview of your guide.
+
+If you're unfamiliar with how forks or pull requests work, check out [How To:
+Fork a GitHub Repository & Submit a Pull Request][how-to-fork-and-pr] by Jake
+Jarvis.
+
+Additionally, you can find more information relating to forks and PRs in the
+following documentation from the GitHub website:
+
+- [Working with forks][working-with-forks]
+- [Creating a pull request from a fork][creating-a-pull-request]
+
+[kebab-case]: https://wiktionary.org/wiki/kebab_case
+[frontmatter]:
+  https://www.gatsbyjs.org/docs/adding-markdown-pages/#frontmatter-for-metadata-in-markdown-files
+[gatsby]: https://www.gatsbyjs.org/
+[markdown-cheatsheet]:
+  https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
+[mdx]: https://mdxjs.com/getting-started
+[how-to-fork-and-pr]: https://jarv.is/notes/how-to-pull-request-fork-github/
+[working-with-forks]:
+  https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/working-with-forks
+[creating-a-pull-request]:
+  https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/working-with-forks
