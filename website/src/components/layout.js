@@ -7,6 +7,7 @@ import SideNav from "./side-nav"
 import Header from "./header"
 import { Footer } from "./footer"
 import { SkipNavContent, SkipNavLink } from "@chakra-ui/skip-nav"
+import BottomNav from "./bottom-nav"
 
 const Main = (props) => (
   <Box as="main" minH="72vh" pt={8} px={5} mt="4rem" {...props} />
@@ -72,6 +73,7 @@ const Layout = ({ children, pageContext }) => {
     <>
       <SkipNavLink zIndex={20}>Skip to Content</SkipNavLink>
       <Container pathname={location.pathname}>{children}</Container>
+      <BottomNav />
     </>
   )
 }

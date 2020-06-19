@@ -1,4 +1,4 @@
-import { Props, mode, ComponentTheme, copy } from "./utils"
+import { Props, mode, ComponentTheme, copy } from "@chakra-ui/theme-tools"
 import { SystemProps } from "@chakra-ui/system"
 import Button from "./button"
 

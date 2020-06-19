@@ -1,5 +1,5 @@
 import Input, { InputProps, InputVariants } from "./input"
-import { ComponentTheme } from "./utils"
+import { ComponentTheme } from "@chakra-ui/theme-tools"
 
 const PinInput: ComponentTheme<InputProps> = {
   defaultProps: Input.defaultProps,

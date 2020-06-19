@@ -1,5 +1,5 @@
-import tiny from "tinycolor2"
-import { get, Dict } from "@chakra-ui/utils"
+import Color from "tinycolor2"
+import { get, Dict, isEmptyObject } from "@chakra-ui/utils"
 
 /**
  * Get the color raw value from theme
@@ -8,9 +8,9 @@ import { get, Dict } from "@chakra-ui/utils"
  * @param fallback - the fallback color
  */
 export const getColor = (theme: Dict, color: string, fallback?: string) => {
-  const raw = get(theme, `colors.${color}`, color)
-  const isValid = tiny(raw).isValid()
-  return isValid ? raw : fallback
+  const hex = get(theme, `colors.${color}`, color)
+  const isValid = Color(hex).isValid()
+  return isValid ? hex : fallback
 }
 
 /**
@@ -18,7 +18,8 @@ export const getColor = (theme: Dict, color: string, fallback?: string) => {
  * @param color - the color in hex, rgb, or hsl
  */
 export const tone = (color: string) => (theme: Dict) => {
-  const isDark = tiny(getColor(theme, color)).isDark()
+  const hex = getColor(theme, color)
+  const isDark = Color(hex).isDark()
   return isDark ? "dark" : "light"
 }
 
@@ -41,9 +42,11 @@ export const isLight = (color: string) => (theme: Dict) =>
  * @param color - the color in hex, rgb, or hsl
  * @param amount - the amount white to add
  */
-export const opacity = (color: string, opacity: number) => (theme: Dict) => {
+export const transparentize = (color: string, opacity: number) => (
+  theme: Dict,
+) => {
   const raw = getColor(theme, color)
-  return tiny(raw).setAlpha(opacity).toRgbString()
+  return Color(raw).setAlpha(opacity).toRgbString()
 }
 
 /**
@@ -51,9 +54,9 @@ export const opacity = (color: string, opacity: number) => (theme: Dict) => {
  * @param color - the color in hex, rgb, or hsl
  * @param amount - the amount white to add (0-1)
  */
-export const tint = (color: string, amount: number) => (theme: Dict) => {
+export const whiten = (color: string, amount: number) => (theme: Dict) => {
   const raw = getColor(theme, color)
-  return tiny.mix(raw, "#fff", amount).toHexString()
+  return Color.mix(raw, "#fff", amount).toHexString()
 }
 
 /**
@@ -61,9 +64,9 @@ export const tint = (color: string, amount: number) => (theme: Dict) => {
  * @param color - the color in hex, rgb, or hsl
  * @param amount - the amount white to add (0-1)
  */
-export const shade = (color: string, amount: number) => (theme: Dict) => {
+export const blacken = (color: string, amount: number) => (theme: Dict) => {
   const raw = getColor(theme, color)
-  return tiny.mix(raw, "#000", amount).toHexString()
+  return Color.mix(raw, "#000", amount).toHexString()
 }
 
 /**
@@ -73,11 +76,11 @@ export const shade = (color: string, amount: number) => (theme: Dict) => {
  */
 export const darken = (color: string, amount: number) => (theme: Dict) => {
   const raw = getColor(theme, color)
-  return tiny(raw).darken(amount).toHexString()
+  return Color(raw).darken(amount).toHexString()
 }
 
 export const lighten = (color: string, amount: number) => (theme: Dict) =>
-  tiny(getColor(theme, color)).lighten(amount).toHexString()
+  Color(getColor(theme, color)).lighten(amount).toHexString()
 
 /**
  * Checks the contract ratio of between 2 colors,
@@ -87,7 +90,7 @@ export const lighten = (color: string, amount: number) => (theme: Dict) =>
  * @param bg - the background color
  */
 export const contrast = (fg: string, bg: string) => (theme: Dict) =>
-  tiny.readability(getColor(theme, bg), getColor(theme, fg))
+  Color.readability(getColor(theme, bg), getColor(theme, fg))
 
 /**
  * Checks if a color meets the Web Content Accessibility
@@ -97,14 +100,18 @@ export const contrast = (fg: string, bg: string) => (theme: Dict) =>
  * @param bg - the background color
  */
 export const isAccessible = (
-  fg: string,
-  bg: string,
-  options?: tiny.WCAG2Options,
+  textColor: string,
+  bgColor: string,
+  options?: Color.WCAG2Options,
 ) => (theme: Dict) =>
-  tiny.isReadable(getColor(theme, bg), getColor(theme, fg), options)
+  Color.isReadable(
+    getColor(theme, bgColor),
+    getColor(theme, textColor),
+    options,
+  )
 
 export const complementary = (color: string) => (theme: Dict) =>
-  tiny(getColor(theme, color)).complement().toHexString()
+  Color(getColor(theme, color)).complement().toHexString()
 
 export function generateStripe(
   size = "1rem",
@@ -127,20 +134,18 @@ export function generateStripe(
 
 /**
  * Returns an accessible ink color of any given fill color.
- *
- * @param color
  */
 export const toAlphas = (color: string) => ({
-  900: opacity(color, 0.92),
-  800: opacity(color, 0.8),
-  700: opacity(color, 0.6),
-  600: opacity(color, 0.48),
-  500: opacity(color, 0.38),
-  400: opacity(color, 0.24),
-  300: opacity(color, 0.16),
-  200: opacity(color, 0.12),
-  100: opacity(color, 0.08),
-  50: opacity(color, 0.04),
+  900: transparentize(color, 0.92),
+  800: transparentize(color, 0.8),
+  700: transparentize(color, 0.6),
+  600: transparentize(color, 0.48),
+  500: transparentize(color, 0.38),
+  400: transparentize(color, 0.24),
+  300: transparentize(color, 0.16),
+  200: transparentize(color, 0.12),
+  100: transparentize(color, 0.08),
+  50: transparentize(color, 0.04),
 })
 
 type Emphasis = "high" | "medium" | "low" | "lowest"
@@ -155,7 +160,41 @@ export const ink = (color: string, emphasis: Emphasis) => {
   return values[emphasis]
 }
 
-export function stringToColor(str: string) {
+interface RandomColorOptions {
+  /**
+   * If passed, string will be used to generate
+   * random color
+   */
+  string?: string
+  /**
+   * List of colors to pick from at random
+   */
+  colors?: string[]
+}
+
+export function randomColor(opts?: RandomColorOptions) {
+  const fallback = Color.random().toHexString()
+
+  if (!opts || isEmptyObject(opts)) {
+    return fallback
+  }
+
+  if (opts.string && opts.colors) {
+    return randomColorFromList(opts.string, opts.colors)
+  }
+
+  if (opts.string && !opts.colors) {
+    return randomColorFromString(opts.string)
+  }
+
+  if (opts.colors && !opts.string) {
+    return randomFromList(opts.colors)
+  }
+
+  return fallback
+}
+
+function randomColorFromString(str: string) {
   let hash = 0
   if (str.length === 0) return hash.toString()
   for (let i = 0; i < str.length; i++) {
@@ -170,14 +209,7 @@ export function stringToColor(str: string) {
   return color
 }
 
-export function randomColor() {
-  return tiny.random().toHexString()
-}
-
-randomColor.fromString = stringToColor
-randomColor.fromList = randomFromList
-
-function randomFromList(str: string, list: string[]) {
+function randomColorFromList(str: string, list: string[]) {
   let index = 0
   if (str.length === 0) return list[0]
   for (let i = 0; i < str.length; i++) {
@@ -186,4 +218,8 @@ function randomFromList(str: string, list: string[]) {
   }
   index = ((index % list.length) + list.length) % list.length
   return list[index]
+}
+
+function randomFromList(list: string[]) {
+  return list[Math.floor(Math.random() * list.length)]
 }

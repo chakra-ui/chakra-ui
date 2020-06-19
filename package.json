@@ -41,7 +41,6 @@
     "utils": "yarn workspace @chakra-ui/utils",
     "layout": "yarn workspace @chakra-ui/layout",
     "theme": "yarn workspace @chakra-ui/theme",
-    "color": "yarn workspace @chakra-ui/color",
     "menu": "yarn workspace @chakra-ui/menu",
     "accordion": "yarn workspace @chakra-ui/accordion",
     "alert": "yarn workspace @chakra-ui/alert",
@@ -93,7 +92,8 @@
     "variant": "yarn workspace @chakra-ui/variant",
     "skeleton": "yarn workspace @chakra-ui/skeleton",
     "skip-nav": "yarn workspace @chakra-ui/skip-nav",
-    "babel-plugin": "yarn workspace babel-plugin-chakra-ui"
+    "babel-plugin": "yarn workspace babel-plugin-chakra-ui",
+    "theme-tools": "yarn workspace @chakra-ui/theme-tools"
   },
   "czConfig": {
     "path": "node_modules/cz-conventional-changelog"
@@ -143,7 +143,7 @@
     "jest": "26.0.1",
     "jest-emotion": "10.0.32",
     "lerna": "3.22.1",
-    "lint-staged": "10.2.9",
+    "lint-staged": "10.2.11",
     "listr": "0.14.3",
     "ncp": "2.0.0",
     "nodemon": "2.0.4",

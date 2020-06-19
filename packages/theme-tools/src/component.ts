@@ -1,21 +1,40 @@
-import { Theme } from "../foundations"
-import { SystemProps, ThemingProps } from "@chakra-ui/system"
+import { SystemProps, ThemingProps, SystemStyleObject } from "@chakra-ui/system"
+import { Dict } from "@chakra-ui/utils"
 
-export type StyleProps = SystemProps | { [component: string]: SystemProps }
+type Style = SystemStyleObject | SystemProps
+
+export type StyleObject = Style | { [component: string]: Style }
+
+export type GlobalStyles = {
+  global?: SystemProps | ((props: Props) => SystemProps)
+}
+
+export type JSXElementStyles = {
+  [K in keyof JSX.IntrinsicElements]?: SystemProps
+}
+
+export type Styles = GlobalStyles & JSXElementStyles
+
+export interface Props<T = Dict> {
+  colorScheme: string
+  orientation: "horizontal" | "vertical"
+  colorMode: "light" | "dark"
+  theme: T
+}
 
 /**
  * The component style can either be a style object or  a function that returns a
  * style object.
  */
-export type ComponentStyle<CustomProps = {}> =
-  | StyleProps
-  | ((props: Props & Required<CustomProps>) => StyleProps)
+type ComponentStyle<P, T> =
+  | StyleObject
+  | ((props: Props<T> & Required<P>) => StyleObject)
 
-export interface ComponentTheme<CustomProps = {}> {
+export interface ComponentTheme<P = {}, T = Dict> {
   /**
    * The default props to apply to the component
    */
-  defaultProps?: CustomProps & {
+  defaultProps?: P & {
     /**
      * The default variant to use (in variants)
      */
@@ -32,29 +51,22 @@ export interface ComponentTheme<CustomProps = {}> {
   /**
    * The initial styles to be applied to the component
    */
-  baseStyle?: ComponentStyle<CustomProps & ThemingProps>
+  baseStyle?: ComponentStyle<P & ThemingProps, T>
   /**
    * The component's visual style variants
    */
   variants?: {
-    [variant: string]: ComponentStyle<CustomProps> | string
+    [variant: string]: ComponentStyle<P, T> | string
   }
   /**
    * The component's size variations
    */
   sizes?: {
-    [size: string]: ComponentStyle<CustomProps> | string
+    [size: string]: ComponentStyle<P, T> | string
   }
 }
 
-export interface Props {
-  colorScheme: string
-  orientation: "horizontal" | "vertical"
-  colorMode: "light" | "dark"
-  theme: Theme
-}
-
-export function mode<T = string>(light: T, dark: T) {
+export function mode<T>(light: T, dark: T) {
   return (props: Props) => (props.colorMode === "light" ? light : dark)
 }
 
@@ -63,15 +75,7 @@ export function orientation<T = string>(horizontal: T, vertical: T) {
     props.orientation === "horizontal" ? horizontal : vertical
 }
 
-type GlobalStyles = { global?: SystemProps | ((props: Props) => SystemProps) }
-
-type ElementStyles = {
-  [K in keyof JSX.IntrinsicElements]?: SystemProps
-}
-
-export type Styles = ElementStyles & GlobalStyles
-
-export function getOrientationStyle<T>(options: {
+export function orient<T>(options: {
   orientation?: "vertical" | "horizontal"
   vertical: T
   horizontal: T

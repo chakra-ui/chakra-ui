@@ -1,4 +1,4 @@
-import { ComponentTheme, mode, Props } from "./utils"
+import { ComponentTheme, mode, Props } from "@chakra-ui/theme-tools"
 
 function getCheckedStyle(props: Props) {
   const { colorScheme: c } = props

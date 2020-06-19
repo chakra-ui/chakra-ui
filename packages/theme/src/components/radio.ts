@@ -1,5 +1,5 @@
 import Checkbox, { CheckboxSizes } from "./checkbox"
-import { ComponentTheme } from "./utils"
+import { ComponentTheme } from "@chakra-ui/theme-tools"
 
 const baseStyle = Checkbox.baseStyle as any
 
