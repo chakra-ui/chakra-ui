@@ -125,6 +125,7 @@
     "chalk": "4.0.0",
     "commitizen": "4.1.2",
     "concurrently": "5.2.0",
+    "cross-env": "7.0.2",
     "cz-conventional-changelog": "3.2.0",
     "edit-json-file": "1.4.0",
     "emotion-theming": "10.0.27",
