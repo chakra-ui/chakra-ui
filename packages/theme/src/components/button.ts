@@ -1,5 +1,5 @@
 import { opacity } from "@chakra-ui/color"
-import { Props, mode, ComponentTheme } from "./utils"
+import { Props, mode, ComponentTheme } from "@chakra-ui/theme-tools"
 
 const grayGhostStyle = (props: Props) => ({
   color: mode(`inherit`, `whiteAlpha.900`)(props),

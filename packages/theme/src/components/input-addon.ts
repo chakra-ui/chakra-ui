@@ -1,7 +1,7 @@
-import Input from "./input"
-import { ComponentTheme, mode, Props, StyleProps } from "./utils"
+import { SystemProps } from "@chakra-ui/system"
+import { ComponentTheme, mode, Props } from "@chakra-ui/theme-tools"
 
-function getOutlineStyle(props: Props): StyleProps {
+function getOutlineStyle(props: Props): SystemProps {
   return {
     border: "1px solid",
     borderColor: mode("inherit", "whiteAlpha.50")(props),
@@ -9,7 +9,7 @@ function getOutlineStyle(props: Props): StyleProps {
   }
 }
 
-function getFilledStyle(props: Props): StyleProps {
+function getFilledStyle(props: Props): SystemProps {
   return {
     border: "2px solid",
     borderColor: "transparent",
@@ -17,7 +17,7 @@ function getFilledStyle(props: Props): StyleProps {
   }
 }
 
-function getFlushedStyle(props: Props): StyleProps {
+function getFlushedStyle(props: Props): SystemProps {
   return {
     borderBottom: "2px solid",
     borderColor: "inherit",
@@ -54,7 +54,7 @@ const sizes: ComponentTheme["sizes"] = {
   },
 }
 
-const InputAddon = {
+const InputAddon: ComponentTheme = {
   sizes,
   variants: {
     outline: getOutlineStyle,

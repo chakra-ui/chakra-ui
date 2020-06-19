@@ -1,5 +1,5 @@
 import { getColor, ink, opacity } from "@chakra-ui/color"
-import { ComponentTheme, mode, Props } from "./utils"
+import { ComponentTheme, mode, Props } from "@chakra-ui/theme-tools"
 
 function getSolidStyle(props: Props) {
   const { colorScheme: c, theme: t } = props

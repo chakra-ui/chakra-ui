@@ -1,7 +1,7 @@
 {
-  "name": "@chakra-ui/color",
+  "name": "@chakra-ui/theme-tools",
   "version": "1.0.0",
-  "description": "Helps with color manipulation",
+  "description": "Set of helpers that makes theming and styling easier",
   "keywords": [
     "theme",
     "theming",
@@ -30,7 +30,7 @@
   },
   "scripts": {
     "prebuild": "rimraf dist",
-    "start": "nodemon --exec yarn build -e ts,tsx --ignore dist --ignore tests --ignore \"*.stories.tsx\"",
+    "start": "nodemon --watch src --exec yarn build -e ts,tsx",
     "build": "concurrently yarn:build:*",
     "test": "jest --env=jsdom --passWithNoTests",
     "lint": "concurrently yarn:lint:*",
@@ -46,5 +46,11 @@
     "tinycolor2": "1.4.1",
     "@types/tinycolor2": "1.4.2",
     "@chakra-ui/utils": "1.0.0"
+  },
+  "peerDependencies": {
+    "@chakra-ui/system": "1.0.0"
+  },
+  "devDependencies": {
+    "@chakra-ui/system": "1.0.0"
   }
 }

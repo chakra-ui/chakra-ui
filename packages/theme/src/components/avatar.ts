@@ -1,6 +1,11 @@
 import sizes from "../foundations/sizes"
-import { ComponentTheme, mode, Props } from "./utils"
-import { stringToColor, isDark } from "@chakra-ui/color"
+import {
+  randomColor,
+  isDark,
+  ComponentTheme,
+  mode,
+  Props,
+} from "@chakra-ui/theme-tools"
 import { SystemProps } from "@chakra-ui/system"
 
 function getSize(size: string) {
@@ -25,7 +30,7 @@ function getSize(size: string) {
 function getRootStyle(props: Props & { name?: string }) {
   const { name, theme: t } = props
 
-  const bg = name ? stringToColor(name) : "gray.400"
+  const bg = name ? randomColor({ string: name }) : "gray.400"
   const isBgDark = isDark(bg)(t)
 
   const color = name ? (isBgDark ? "white" : "gray.800") : "white"
@@ -38,7 +43,9 @@ function getRootStyle(props: Props & { name?: string }) {
   }
 }
 
-const Avatar: ComponentTheme<{ name?: string }> = {
+type AvatarProps = { name?: string }
+
+const Avatar: ComponentTheme<AvatarProps> = {
   defaultProps: {
     size: "md",
   },

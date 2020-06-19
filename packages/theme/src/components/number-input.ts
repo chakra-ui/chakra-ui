@@ -1,4 +1,4 @@
-import { ComponentTheme, mode } from "./utils"
+import { ComponentTheme, mode } from "@chakra-ui/theme-tools"
 
 function getSizeStyle(size: "sm" | "md" | "lg") {
   return {

@@ -1,5 +1,5 @@
 import Badge, { BadgeVariants } from "./badge"
-import { ComponentTheme } from "./utils"
+import { ComponentTheme } from "@chakra-ui/theme-tools"
 
 const Code: ComponentTheme = {
   defaultProps: Badge.defaultProps,

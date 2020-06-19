@@ -14,7 +14,7 @@
   },
   "scripts": {
     "prebuild": "rimraf dist",
-    "start": "nodemon --exec yarn build -e ts,tsx --ignore dist --ignore tests --ignore \"*.stories.tsx\"",
+    "start": "nodemon --watch src --exec yarn build -e ts,tsx",
     "build": "concurrently yarn:build:*",
     "test": "jest --env=jsdom --passWithNoTests",
     "lint": "concurrently yarn:lint:*",
@@ -33,7 +33,6 @@
     "@chakra-ui/live-region": "1.0.0",
     "@chakra-ui/popper": "1.0.0",
     "@chakra-ui/clickable": "1.0.0",
-    "@chakra-ui/color": "1.0.0",
     "@chakra-ui/layout": "1.0.0",
     "@chakra-ui/counter": "1.0.0",
     "@chakra-ui/descendant": "1.0.0",

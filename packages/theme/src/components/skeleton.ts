@@ -1,5 +1,5 @@
 import { keyframes } from "@chakra-ui/system"
-import { ComponentTheme, mode, Props } from "./utils"
+import { ComponentTheme, mode, Props } from "@chakra-ui/theme-tools"
 import { getColor } from "@chakra-ui/color"
 
 export interface SkeletonProps {
