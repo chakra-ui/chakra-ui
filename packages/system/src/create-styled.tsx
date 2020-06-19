@@ -1,4 +1,4 @@
-import { css, CSSObject } from "@chakra-ui/css"
+import { CSSObject } from "@chakra-ui/css"
 import {
   As,
   Dict,
@@ -9,7 +9,6 @@ import {
 } from "@chakra-ui/utils"
 import hoist from "hoist-non-react-statics"
 import * as React from "react"
-import { getComponentStyles } from "./component"
 import { useChakra } from "./hooks"
 import jsx from "./jsx"
 import {
@@ -31,37 +30,6 @@ function createStyled<T extends As, P extends Dict>(
         let computedStyles: CSSObject = {}
 
         const propsWithTheme = { theme, colorMode, ...props }
-
-        /**
-         * Users can pass a base style to the component options.
-         *
-         * @example
-         * const Button = chakra("button", {
-         *  baseStyle: {
-         *    margin: 4,
-         *    color: "red.300"
-         *  }
-         * })
-         */
-        if (options?.baseStyle) {
-          const baseStyleObject = runIfFn(options.baseStyle, propsWithTheme)
-          const baseStyle = css(baseStyleObject as Dict)(theme)
-          computedStyles = { ...computedStyles, ...baseStyle } as CSSObject
-        }
-
-        /**
-         * Users can pass a theme key to reference styles in the theme
-         * Styles will be read from `theme.components.<themeKey>`
-         *
-         * @example
-         * const Button = chakra("button", {
-         *  themeKey: "Button"
-         * })
-         */
-        if (options) {
-          const styles = getComponentStyles(propsWithTheme, options)
-          computedStyles = { ...computedStyles, ...styles } as CSSObject
-        }
 
         // Resolve each interpolation and add result to final style
         interpolations.forEach((interpolation) => {
