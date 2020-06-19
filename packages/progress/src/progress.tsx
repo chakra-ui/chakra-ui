@@ -1,4 +1,4 @@
-import { generateStripe } from "@chakra-ui/color"
+import { generateStripe } from "@chakra-ui/theme-tools"
 import {
   chakra,
   PropsOf,

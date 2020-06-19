@@ -1,5 +1,4 @@
-import { getColor } from "@chakra-ui/color"
-import { ComponentTheme, mode } from "@chakra-ui/theme-tools"
+import { ComponentTheme, mode, getColor } from "@chakra-ui/theme-tools"
 
 type ProgressTheme = ComponentTheme<{ isIndeterminate?: boolean }>
 

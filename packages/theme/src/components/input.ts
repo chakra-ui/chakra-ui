@@ -1,8 +1,8 @@
-import { getColor } from "@chakra-ui/color"
 import {
   ComponentTheme,
   mode,
   Props,
+  getColor,
   StyleObject,
 } from "@chakra-ui/theme-tools"
 

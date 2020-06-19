@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "@chakra-ui/utils": "1.0.0",
-    "@chakra-ui/color": "1.0.0"
+    "@chakra-ui/theme-tools": "1.0.0"
   },
   "devDependencies": {
     "@chakra-ui/system": "1.0.0"
