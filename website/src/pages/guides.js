@@ -36,12 +36,12 @@ function GuidePreview(props) {
         </chakra.a>
       </Heading>
 
-      <Text as="time" color="gray.600" fontSize="sm" dateTime={birthTime}>
+      <Text as="time" opacity={0.7} fontSize="sm" dateTime={birthTime}>
         {createdAt}
       </Text>
 
       <Stack mt="5" align="center" direction="row">
-        <Avatar size="sm" name={creator.name} src={creator.image} />
+        {/* <Avatar size="sm" name={creator.name} src={creator.image} /> */}
         <Text fontSize="sm" fontWeight="semibold">
           <chakra.a
             href={creator.url}
@@ -105,7 +105,7 @@ function Guides() {
         description="Community-created guides for using Chakra UI"
         slug="/guides"
       />
-      <Box pt="56px">
+      <Box py="56px">
         <Box py="80px">
           <Container maxWidth="md">
             <Heading as="h1" size="xl" mb="3">

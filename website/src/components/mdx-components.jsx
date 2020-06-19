@@ -5,6 +5,7 @@ import {
   Kbd,
   Text,
   chakra,
+  Code,
   Alert,
   useColorModeValue,
 } from "@chakra-ui/core"
@@ -19,12 +20,15 @@ const Table = (props) => (
   </chakra.div>
 )
 
-const THead = (props) => {
-  const bg = useColorModeValue("gray.50", "whiteAlpha.100")
-  return (
-    <chakra.th bg={bg} fontWeight="semibold" p={2} fontSize="sm" {...props} />
-  )
-}
+const THead = (props) => (
+  <chakra.th
+    bg={useColorModeValue("gray.50", "whiteAlpha.100")}
+    fontWeight="semibold"
+    p={2}
+    fontSize="sm"
+    {...props}
+  />
+)
 
 const TData = (props) => (
   <chakra.td
@@ -89,15 +93,12 @@ const LinkedHeading = (props) => (
 )
 
 const InlineCode = (props) => (
-  <chakra.code
-    fontFamily="mono"
-    color={useColorModeValue("purple.600", "purple.300")}
-    fontWeight="semibold"
+  <Code
     fontSize="0.9em"
+    colorScheme="orange"
+    fontWeight="semibold"
     {...props}
-  >
-    {`\`${props.children}\``}
-  </chakra.code>
+  />
 )
 
 const MDXComponents = {
@@ -107,6 +108,17 @@ const MDXComponents = {
   ),
   h3: (props) => (
     <LinkedHeading as="h3" size="md" fontWeight="medium" {...props} />
+  ),
+  h4: (props) => (
+    <Heading
+      as="h4"
+      size="xs"
+      opacity={0.7}
+      fontWeight="bold"
+      textTransform="uppercase"
+      letterSpacing="wide"
+      {...props}
+    />
   ),
   inlineCode: InlineCode,
   code: CodeBlock,

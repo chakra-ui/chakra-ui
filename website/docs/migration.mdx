@@ -14,19 +14,22 @@ While there's quite a number of new exciting features we've added, we focused on
 making Chakra UI a stable base to build your own design systems on, so that you
 can feel more confident using Chakra UI in production.
 
-## ⚡️ Highlights
+## Highlights
 
 **Theming API:** Chakra UI now provides a new theming API which makes it easy to
 style components and their modifiers (sizes, variants, and color scheme) from
 your theme or locally using a `chakra` factory function.
 
-**Color Mode improvement:** We've fixed the bugs related to Color mode and it's
+**Color mode improvement:** We've fixed the bugs related to Color mode and it's
 now easy to persist color mode, set initial color mode, and lock specific
 components to a certain color mode.
 
 **Better TypeScript support:** This means all components have very good
 TypeScript support and most low-level components like Box, Flex, etc. will
 support the `as` prop and types will be extracted properly.
+
+**Theme-aware css prop:** Just like `theme-ui`, we've added a `__css` prop you
+can use to add theme-aware styles.
 
 ## Upgrade steps
 
@@ -63,17 +66,18 @@ theme.
 
 We believe that having the theme cloned to your project will help you learn
 about the theme tokens (colors, fonts, component styles) and make it less
-stressful for you to customize them.
+stressful for you to customize theme.
 
-1. Run `npx chakra init --theme`, and we'll clone the theme to your project.
-   This creates a `chakra` folder with the default theme inside.
+<br />
+
+1. Run `npx chakra init --theme` to clone the theme to your project. This
+   creates a `chakra` folder with the default theme inside.
 
 ```sh
 npx chakra init --theme
 ```
 
-2. Update the `ThemeProvider` in your application's root by passing the `theme`
-   prop.
+2. Update the `ThemeProvider` in your app's root by passing the `theme` prop.
 
 ```jsx live=false
 import { ThemeProvider, CSSReset } from "@chakra-ui/core"
@@ -89,7 +93,7 @@ function AppRoot() {
 }
 ```
 
-### 3. Update the `ThemeProvider`
+### 3. Update the ThemeProvider
 
 Swap out `ThemeProvider` with `ChakraProvider` to make setup cleaner.
 `ChakraProvider` adds the following providers for you automatically:
@@ -111,7 +115,7 @@ Swap out `ThemeProvider` with `ChakraProvider` to make setup cleaner.
 -  </ThemeProvider>
 ```
 
-### 4. Rename `variantColor` to `colorScheme`
+### 4. Rename variantColor to colorScheme
 
 Fire up your "Find and Replace" tool in VSCode or IntelliJ. Find `variantColor`
 and replace with `colorScheme`.
@@ -134,29 +138,29 @@ only one prop to manage this, you can rename it to `boxSize`.
 **We strongly recommend using the `width` and `height` props**
 
 > **Reason:** We think the `size` prop should only be used for component size
-> modifiers. The `size` prop has caused a lot of confusion in the past because
-> in some components (e.g. Button) it means the visual size, and in some (e.g
-> Box), it means **width + height**.
+> modifiers. The `size` prop has caused a lot of confusion in the past because,
+> in some components (e.g. Button), it means the visual size and in others (e.g
+> Box), it means **width and height**.
 
 ### 5. Update these prop names
 
-| Current Prop         | New Prop                  |
-| -------------------- | ------------------------- |
-| `rounded`            | `borderRadius`            |
-| `roundedLeft`        | `borderLeftRadius`        |
-| `roundedRight`       | `borderRightRadius`       |
-| `roundedTop`         | `borderTopRadius`         |
-| `roundedTopLeft`     | `borderTopLeftRadius`     |
-| `roundedTopRight`    | `borderTopRightRadius`    |
-| `roundedBottomLeft`  | `borderBottomLeftRadius`  |
-| `roundedBottomRight` | `borderBottomRightRadius` |
-| `roundedBottom`      | `borderBottomRadius`      |
-| `size`               | `boxSize`                 |
-| `bgImg`              | `bgImage`                 |
-| `bgPos`              | `bgPosition`              |
-| `shadow`             | `boxShadow`               |
-| `listStyleImg`       | `listStyleImage`          |
-| `listStylePos`       | `listStylePosition`       |
+| Current Prop       | New Prop                |
+| ------------------ | ----------------------- |
+| rounded            | borderRadius            |
+| roundedLeft        | borderLeftRadius        |
+| roundedRight       | borderRightRadius       |
+| roundedTop         | borderTopRadius         |
+| roundedTopLeft     | borderTopLeftRadius     |
+| roundedTopRight    | borderTopRightRadius    |
+| roundedBottomLeft  | borderBottomLeftRadius  |
+| roundedBottomRight | borderBottomRightRadius |
+| roundedBottom      | borderBottomRadius      |
+| size               | boxSize                 |
+| bgImg              | bgImage                 |
+| bgPos              | bgPosition              |
+| shadow             | boxShadow               |
+| listStyleImg       | listStyleImage          |
+| listStylePos       | listStylePosition       |
 
 ## Component Updates
 
@@ -170,9 +174,9 @@ types and accessibility.
 
 Can install as a stand-alone package: `@chakra-ui/accordion`
 
-#### Changes 🔧
+#### Changes
 
-- Change all imports of `AccordionHeader` to `AccordionButton`. This is to
+- Update all imports of `AccordionHeader` to `AccordionButton`. This is to
   remove the notion that it's a header when it's actually a `button`.
 
 ```diff
@@ -180,8 +184,8 @@ Can install as a stand-alone package: `@chakra-ui/accordion`
 + import { AccordionButton } from "@chakra-ui/core"
 ```
 
-> WAI-ARIA guidelines require that accordion buttons be wrapped in the
-> appropriate heading tag `h2-h6` based on the page heading flow.
+WAI-ARIA guidelines require that accordion buttons be wrapped in the appropriate
+heading tag `h2-h6` based on the page heading flow.
 
 We think the name `AccordionHeader` might mislead users to think we handle this
 out of the box when we don't. Here's how to handle this:
@@ -201,11 +205,11 @@ out of the box when we don't. Here's how to handle this:
   `Accordion`. We think most users don't do this by default but it's worth
   noting.
 
-#### Features ⚡️
+#### Features
 
-- **Keyboard Navigation:** `Accordion` now supports keyboard navigation between
-  accordion buttons. Pressing the `up` and `down` arrow keys will move focus
-  between accordion buttons.
+**Keyboard Navigation:** `Accordion` now supports keyboard navigation between
+accordion buttons. Pressing the `up` and `down` arrow keys will move focus
+between accordion buttons.
 
 ### AspectRatioBox
 
@@ -218,7 +222,7 @@ out of the box when we don't. Here's how to handle this:
 
 ### Avatar
 
-#### Features ⚡️
+#### Features
 
 - You can now use a custom fallback avatar icon by passing the `icon` prop:
 
@@ -242,7 +246,7 @@ out of the box when we don't. Here's how to handle this:
 
 ### Button
 
-#### Changes 🔧
+#### Changes
 
 - We've unified the usage of all icon props to only accept a React element.
   Update all icon names used in `leftIcon` or `rightIcon` to the equivalent icon
@@ -263,7 +267,7 @@ errors, and reduces unused icons bloating your app.**
 
 - Renamed `variantColor` to `colorScheme`
 
-#### Features ⚡️
+#### Features
 
 - Added support for custom spinners using the `spinner` prop
 
@@ -281,7 +285,7 @@ function Example() {
 
 ### Checkbox
 
-#### Changes 🔧
+#### Changes
 
 - Change `variantColor` to `colorScheme`
 
@@ -320,7 +324,7 @@ function Example() {
 > requirements. The checkboxes can be grouped using `Stack`, placed in a grid
 > using `SimpleGrid` or made to wrap automatically using `Wrap`.
 
-#### Features ⚡️
+#### Features
 
 - Added the `iconColor` and `iconSize` props to customize the default check icon
 
@@ -367,7 +371,7 @@ function Example() {
   }
   ```
 
-#### Bug Fix 🚑
+#### Bug Fix
 
 - Color mode now persists correctly when you refresh the page. All you need to
   do is add `InitialColorMode` script as the first child of `body`.
@@ -409,9 +413,9 @@ export const onRenderBody = ({ setPreBodyComponents }) => {
 }
 ```
 
-We also publish the
+You can also install the
 [`gatsby-plugin-chakra-ui`](https://www.npmjs.com/package/gatsby-plugin-chakra-ui)
-package which will automatically configure `InitializeColorMode` along with
+package which automatically configures `InitializeColorMode` along with
 `ChakraProvider`.
 
 ### FormControl
@@ -437,11 +441,11 @@ package which will automatically configure `InitializeColorMode` along with
 
 ### Image
 
-#### Bug Fixes 🚑
+#### Bug Fixes
 
 - Resolved the common SSR issue with Next.js
 
-#### Features ⚡️
+#### Features
 
 - Added support for the `fit` prop to specify how to fit an image within its
   dimension. It uses the `object-fit` property
@@ -499,9 +503,12 @@ package which will automatically configure `InitializeColorMode` along with
 </Stack>
 ```
 
+- You can also use the `HStack` and `VStack` components to conveniently stack
+  elements in the horizontal or vertical directions respectively.
+
 ### Menu
 
-#### Features ⚡️
+#### Features
 
 - Added support for nested menus or submenus
 
@@ -597,7 +604,7 @@ function Example() {
 
 - Moved to Popper V2 🥳
 
-### Fixes 🚑
+### Fixes
 
 - Fixed issue with `as` prop for `MenuItem`
 - Fixed issue with `Link` not navigating to the specified `href` value
@@ -608,7 +615,7 @@ function Example() {
 
 ### Modal
 
-#### Changes 🔧
+#### Changes
 
 - Removed `addAriaLabels` and `formatIds` props in favor of passing a top-level
   `id` prop to the modal, and we'll handle the rest.
