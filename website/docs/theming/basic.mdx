@@ -4,15 +4,21 @@ description: How to use the theming API in chakra
 order: 2
 ---
 
+import { ButtonSpec } from "../../src/components/theming-guide-image"
+
 # Theming API - Basics
 
-## Design a button component
+## Design a button
 
-Let's take this further and try to create a custom button that has 2 sizes,
-`small` and `large`.
+Let's take this further and try to create a custom button component. The button
+will have 2 sizes, `small` and `large`, and 2 variants `outline` and `solid`.
+
+<ButtonSpec />
 
 First, let's add the `baseStyle` for common styles like `font-weight`,
 `text-transform`, etc.
+
+<br />
 
 ```jsx live=false
 const Button = chakra("button", {
@@ -30,11 +36,13 @@ Next, we'll define the styles for the button sizes. Here's how to do it:
 const Button = chakra("button", {
   sizes: {
     small: {
-      padding: "12px",
+      paddingX: "18px",
+      paddingY: "12px",
       fontSize: "14px",
     },
     large: {
-      padding: "24px",
+      paddingX: "24px",
+      paddingY: "16px",
       fontSize: "18px",
     },
   },
@@ -48,12 +56,13 @@ to do it:
 const Button = chakra("button", {
   variants: {
     solid: {
-      bg: "blue.600",
+      bg: "#4053B8",
       color: "white",
     },
     outline: {
       border: "2px",
-      borderColor: "blue.600",
+      borderColor: "#4053B8",
+      color: "#4053B8",
     },
   },
 })
@@ -66,43 +75,38 @@ Here's what it looks like:
 const Button = chakra("button", {
   baseStyle: {
     borderRadius: "md",
-    fontWeight: "semibold",
+    fontWeight: "bold",
     textTransform: "uppercase",
     transition: "all 0.2s",
   },
   sizes: {
     small: {
-      padding: "8px",
-      fontSize: "12px",
+      paddingX: "18px",
+      paddingY: "12px",
+      fontSize: "14px",
     },
     large: {
-      padding: "16px",
-      fontSize: "16px",
+      paddingX: "24px",
+      paddingY: "16px",
+      fontSize: "18px",
     },
   },
   variants: {
     solid: {
-      bg: "blue.600",
+      bg: "#4053B8",
       color: "white",
-      _hover: {
-        bg: "blue.700",
-      },
     },
     outline: {
       border: "2px",
-      borderColor: "currentColor",
-      color: "blue.400",
-      _hover: {
-        bg: "blue.50",
-        color: "blue.600",
-      },
+      borderColor: "#4053B8",
+      color: "#4053B8",
     },
   },
 })
 
 render(
   <Button size="small" variant="solid">
-    Welcome
+    Submit
   </Button>,
 )
 ```
