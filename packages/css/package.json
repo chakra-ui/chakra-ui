@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/css",
-  "version": "1.0.0",
+  "version": "1.0.0-next.0",
   "description": "description",
   "keywords": [
     "theme",
@@ -43,8 +43,8 @@
   },
   "dependencies": {
     "csstype": "2.6.10",
-    "@chakra-ui/utils": "1.0.0",
-    "@chakra-ui/parser": "1.0.0"
+    "@chakra-ui/utils": "1.0.0-next.0",
+    "@chakra-ui/parser": "1.0.0-next.0"
   },
   "peerDependencies": {
     "react": "16.x"

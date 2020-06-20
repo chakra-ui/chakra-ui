@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/css-reset",
-  "version": "1.0.0",
+  "version": "1.0.0-next.0",
   "description": "CSS reset component for Chakra UI",
   "keywords": [
     "theme",

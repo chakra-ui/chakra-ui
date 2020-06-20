@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/spinner",
-  "version": "1.0.0",
+  "version": "1.0.0-next.0",
   "description": "A React component for displaying spinners and loaders",
   "keywords": [
     "spinner",
@@ -43,14 +43,14 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/utils": "1.0.0",
-    "@chakra-ui/visually-hidden": "1.0.0"
+    "@chakra-ui/utils": "1.0.0-next.0",
+    "@chakra-ui/visually-hidden": "1.0.0-next.0"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.0.0"
+    "@chakra-ui/system": "1.0.0-next.0"
   },
   "peerDependencies": {
-    "@chakra-ui/system": "1.0.0",
+    "@chakra-ui/system": "1.0.0-next.0",
     "react": "16.x"
   }
 }

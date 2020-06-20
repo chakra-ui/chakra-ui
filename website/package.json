@@ -3,7 +3,7 @@
   "version": "0.5.0",
   "private": true,
   "dependencies": {
-    "@chakra-ui/core": "1.0.0",
+    "@chakra-ui/core": "1.0.0-next.0",
     "@mdx-js/mdx": "1.6.6",
     "@mdx-js/react": "1.6.6",
     "@octokit/rest": "^18.0.0",
@@ -13,7 +13,7 @@
     "gatsby": "^2.13.50",
     "gatsby-image": "^2.2.8",
     "gatsby-plugin-catch-links": "^2.3.1",
-    "gatsby-plugin-chakra-ui": "1.0.0",
+    "gatsby-plugin-chakra-ui": "1.0.0-next.0",
     "gatsby-plugin-google-tagmanager": "^2.3.1",
     "gatsby-plugin-layout": "^1.3.1",
     "gatsby-plugin-lodash": "^3.3.1",
