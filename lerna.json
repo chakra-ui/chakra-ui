@@ -8,7 +8,7 @@
     "publish": {
       "conventionalCommits": true,
       "message": "chore(release): publish",
-      "ignoreChanges": ["**/stories/**", "**/__tests__/**"]
+      "ignoreChanges": ["**/stories/**", "**/tests/**"]
     }
   }
 }

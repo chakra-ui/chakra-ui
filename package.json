@@ -32,7 +32,7 @@
     "create-pkg": "node scripts/create-package.js",
     "release": "lerna publish",
     "release:ci": "lerna publish -y --loglevel verbose",
-    "release:next": "lerna publish --canary --preid next",
+    "release:next": "lerna publish from-package --canary --preid next",
     "docs": "yarn workspace @chakra-ui/docs",
     "docs:start": "yarn docs start",
     "core": "yarn workspace @chakra-ui/core",
