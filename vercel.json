@@ -1,17 +1,10 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "packages/docs/package.json",
-      "use": "@now/next@canary"
-    }
-  ],
-  "name": "chakra-ui",
   "alias": "chakra-ui.com",
   "routes": [
     {
       "src": "^(.*)$",
-      "dest": "packages/docs$1"
+      "dest": "website$1"
     },
     {
       "src": "www.chakra-ui.com/*",

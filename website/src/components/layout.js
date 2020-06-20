@@ -67,7 +67,7 @@ function getLayout(context) {
 
 const Layout = ({ children, pageContext }) => {
   const location = useLocation()
-  const Container = getLayout(pageContext.layout)
+  const Container = pageContext ? getLayout(pageContext.layout) : React.Fragment
 
   return (
     <>
