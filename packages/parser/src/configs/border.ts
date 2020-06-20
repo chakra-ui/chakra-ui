@@ -26,6 +26,12 @@ const config: Config = {
     property: "borderRadius",
     scale: "radii",
   },
+  rounded: {
+    property: "borderRadius",
+    scale: "radii",
+    deprecated: true,
+    replacement: "borderRadius",
+  },
   borderTop: {
     property: "borderTop",
     scale: "borders",
@@ -34,9 +40,21 @@ const config: Config = {
     property: "borderTopLeftRadius",
     scale: "radii",
   },
+  roundedTopLeft: {
+    property: "borderTopLeftRadius",
+    scale: "radii",
+    deprecated: true,
+    replacement: "borderTopLeftRadius",
+  },
   borderTopRightRadius: {
     property: "borderTopRightRadius",
     scale: "radii",
+  },
+  roundedTopRight: {
+    property: "borderTopRightRadius",
+    scale: "radii",
+    deprecated: true,
+    replacement: "borderTopRightRadius",
   },
   borderRight: {
     property: "borderRight",
@@ -50,9 +68,21 @@ const config: Config = {
     property: "borderBottomLeftRadius",
     scale: "radii",
   },
+  roundedBottomLeft: {
+    property: "borderBottomLeftRadius",
+    scale: "radii",
+    deprecated: true,
+    replacement: "borderBottomLeftRadius",
+  },
   borderBottomRightRadius: {
     property: "borderBottomRightRadius",
     scale: "radii",
+  },
+  roundedBottomRight: {
+    property: "borderBottomRightRadius",
+    scale: "radii",
+    deprecated: true,
+    replacement: "borderBottomRightRadius",
   },
   borderLeft: {
     property: "borderLeft",
@@ -118,17 +148,41 @@ const config: Config = {
     properties: ["borderTopLeftRadius", "borderTopRightRadius"],
     scale: "radii",
   },
+  roundedTop: {
+    properties: ["borderTopLeftRadius", "borderTopRightRadius"],
+    scale: "radii",
+    deprecated: true,
+    replacement: "borderTopRadius",
+  },
   borderBottomRadius: {
     properties: ["borderBottomLeftRadius", "borderBottomRightRadius"],
     scale: "radii",
+  },
+  roundedBottom: {
+    properties: ["borderBottomLeftRadius", "borderBottomRightRadius"],
+    scale: "radii",
+    deprecated: true,
+    replacement: "borderBottomRadius",
   },
   borderLeftRadius: {
     properties: ["borderTopLeftRadius", "borderBottomLeftRadius"],
     scale: "radii",
   },
+  roundedLeft: {
+    properties: ["borderTopLeftRadius", "borderBottomLeftRadius"],
+    scale: "radii",
+    deprecated: true,
+    replacement: "borderLeftRadius",
+  },
   borderRightRadius: {
     properties: ["borderTopRightRadius", "borderBottomRightRadius"],
     scale: "radii",
+  },
+  roundedRight: {
+    properties: ["borderTopRightRadius", "borderBottomRightRadius"],
+    scale: "radii",
+    deprecated: true,
+    replacement: "borderRightRadius",
   },
 }
 
@@ -156,6 +210,11 @@ export interface BorderProps {
    * The CSS `border-radius` property
    */
   borderRadius?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
+  /**
+   * The CSS `border-radius` property
+   * @deprecated
+   */
+  rounded?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
   /**
    * The CSS `border-top` property
    */
@@ -225,33 +284,73 @@ export interface BorderProps {
    */
   borderTopRadius?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
   /**
+   * The CSS `border-top-radius` property
+   * @deprecated
+   */
+  roundedTop?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
+  /**
    * The CSS `border-right-radius` property
    */
   borderRightRadius?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
+  /**
+   * The CSS `border-right-radius` property
+   * @deprecated
+   */
+  roundedRight?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
   /**
    * The CSS `border-bottom-radius` property
    */
   borderBottomRadius?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
   /**
+   * The CSS `border-bottom-radius` property
+   * @deprecated
+   */
+  roundedBottom?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
+  /**
    * The CSS `border-left-radius` property
    */
   borderLeftRadius?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
+  /**
+   * The CSS `border-left-radius` property
+   * @deprecated
+   */
+  roundedLeft?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
   /**
    * The CSS `border-top-left-radius` property
    */
   borderTopLeftRadius?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
   /**
+   * The CSS `border-top-left-radius` property
+   * @deprecated
+   */
+  roundedTopLeft?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
+  /**
    * The CSS `border-top-right-radius` property
    */
   borderTopRightRadius?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
+  /**
+   * The CSS `border-top-right-radius` property
+   * @deprecated
+   */
+  roundedTopRight?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
   /**
    * The CSS `border-bottom-left-radius` property
    */
   borderBottomLeftRadius?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
   /**
+   * The CSS `border-bottom-left-radius` property
+   * @deprecated
+   */
+  roundedBottomLeft?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
+  /**
    * The CSS `border-bottom-right-radius` property
    */
   borderBottomRightRadius?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
+  /**
+   * The CSS `border-bottom-right-radius` property
+   * @deprecated
+   */
+  roundedBottomRight?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
   /**
    * The CSS `border-right` and `border-left` property
    */

@@ -22,7 +22,17 @@ const config: Config = {
   willChange: true,
   listStyleType: true,
   listStylePosition: true,
+  listStylePos: {
+    property: "listStylePosition",
+    deprecated: true,
+    replacement: "listStylePosition",
+  },
   listStyleImage: true,
+  listStyleImg: {
+    property: "listStyleImage",
+    deprecated: true,
+    replacement: "listStyleImage",
+  },
 }
 
 export interface OtherProps {
@@ -105,9 +115,19 @@ export interface OtherProps {
    */
   listStylePosition?: ResponsiveValue<CSS.ListStylePositionProperty>
   /**
+   * The CSS `list-style-position` property
+   * @deprecated
+   */
+  listStylePos?: ResponsiveValue<CSS.ListStylePositionProperty>
+  /**
    * The CSS `list-style-image` property
    */
   listStyleImage?: ResponsiveValue<CSS.ListStyleImageProperty>
+  /**
+   * The CSS `list-style-image` property
+   * @deprecated
+   */
+  listStyleImg?: ResponsiveValue<CSS.ListStyleImageProperty>
 }
 
 export const others = createParser(config)

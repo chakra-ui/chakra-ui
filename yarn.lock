@@ -5623,6 +5623,13 @@
   dependencies:
     "@types/node" "*"
 
+"@types/wordpress__jest-console@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@types/wordpress__jest-console/-/wordpress__jest-console-3.0.2.tgz#6a8e52103c7ecb52f155a44d0d9458f400fd3b19"
+  integrity sha512-0b66gVcWAwxB48I4kXY62qunUXVA4/KcV8kV8JaZ0hRts6mVR60Jx6fqiTWohV9nyhcAkoYKN1vX2x0ev8bbZQ==
+  dependencies:
+    "@types/jest" "*"
+
 "@types/yargs-parser@*":
   version "15.0.0"
   resolved "https://registry.yarnpkg.com/@types/yargs-parser/-/yargs-parser-15.0.0.tgz#cb3f9f741869e20cce330ffbeb9271590483882d"
@@ -6043,6 +6050,15 @@
     strip-ansi "^4.0.0"
     text-table "^0.2.0"
     webpack-log "^1.1.2"
+
+"@wordpress/jest-console@^3.6.0":
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/@wordpress/jest-console/-/jest-console-3.6.0.tgz#434d802b0b3d11f976f348d02124150189682769"
+  integrity sha512-0XpvIvgjdmVYYAA0l2XUktq+Z18upDhvaMFDdK8JDxu+vsso0XyFee5VNyHd/PvjInPrTXHoqGj0tx48uUqxhQ==
+  dependencies:
+    "@babel/runtime" "^7.9.2"
+    jest-matcher-utils "^25.3.0"
+    lodash "^4.17.15"
 
 "@wry/equality@^0.1.2":
   version "0.1.11"
@@ -16443,7 +16459,7 @@ jest-matcher-utils@^24.9.0:
     jest-get-type "^24.9.0"
     pretty-format "^24.9.0"
 
-jest-matcher-utils@^25.1.0:
+jest-matcher-utils@^25.1.0, jest-matcher-utils@^25.3.0:
   version "25.5.0"
   resolved "https://registry.yarnpkg.com/jest-matcher-utils/-/jest-matcher-utils-25.5.0.tgz#fbc98a12d730e5d2453d7f1ed4a4d948e34b7867"
   integrity sha512-VWI269+9JS5cpndnpCwm7dy7JtGQT30UHfrnM3mXl22gHGt/b7NkjBqXfbhZ8V4B7ANUsjK18PlSBmG0YH7gjw==

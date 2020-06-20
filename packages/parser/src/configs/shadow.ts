@@ -14,6 +14,8 @@ const config: Config = {
   shadow: {
     property: "boxShadow",
     scale: "shadows",
+    deprecated: true,
+    replacement: "boxShadow",
   },
 }
 

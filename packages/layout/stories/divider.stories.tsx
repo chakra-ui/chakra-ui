@@ -1,13 +1,12 @@
 import React from "react"
-import { StoryFn } from "@storybook/addons"
 import { Container, Divider } from ".."
 
 export default {
   title: "Divider",
   decorators: [
-    (story: StoryFn) => (
+    (Story: Function) => (
       <Container p={4} height="300px">
-        {story()}
+        <Story />
       </Container>
     ),
   ],

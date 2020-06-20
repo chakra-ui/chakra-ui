@@ -1,7 +1,7 @@
 import { parser } from "../src"
 
 const theme = {
-  breakpoints: { mobile: 320, tablet: 768, desktop: 1000 },
+  breakpoints: { sm: 320, md: 768, lg: 1000 },
   space: [0, 4, 8, 16, 32],
   colors: {
     primary: "rebeccapurple",
@@ -28,7 +28,7 @@ test("should parse array and object styles", () => {
     theme,
     color: "green.200",
     marginX: [2, 4],
-    paddingY: { all: "12px", mobile: 4, desktop: "90px" },
+    paddingY: { base: "12px", sm: 4, lg: "90px" },
   })
 
   expect(styles).toBeDefined()
@@ -50,4 +50,14 @@ test("should parse array and object styles", () => {
       paddingBottom: "90px",
     },
   })
+})
+
+test("should warn for deprecated style props", () => {
+  parser({
+    theme,
+    bgPos: "center",
+    bgImg: "url()",
+  })
+
+  expect(console).toHaveWarned()
 })

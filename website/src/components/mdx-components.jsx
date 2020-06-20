@@ -113,10 +113,10 @@ const MDXComponents = {
     <Heading
       as="h4"
       size="xs"
-      opacity={0.7}
       fontWeight="bold"
       textTransform="uppercase"
       letterSpacing="wide"
+      mt="6"
       {...props}
     />
   ),

@@ -1,4 +1,4 @@
-import { Dict, isArray, runIfFn, get } from "@chakra-ui/utils"
+import { Dict, isArray, runIfFn, get, warn } from "@chakra-ui/utils"
 import { createProcessor } from "./create-processor"
 import { SystemProps } from "./parser.types"
 import { Config, transformConfig } from "./utils"
@@ -37,6 +37,11 @@ export function createParser(styleConfig: Config) {
        * Get the config for the style prop
        */
       const config = _config[prop]
+
+      warn({
+        condition: config.deprecated,
+        message: `${prop} is deprecated. Kindly use ${config.replacement} instead`,
+      })
 
       /**
        * Apply each prop's config to get the generate style object.

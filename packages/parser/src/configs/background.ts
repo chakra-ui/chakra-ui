@@ -33,6 +33,8 @@ const config: Config = {
   },
   bgImg: {
     property: "backgroundImage",
+    deprecated: true,
+    replacement: "bgImage",
   },
   bgBlendMode: {
     property: "backgroundBlendMode",
@@ -45,6 +47,8 @@ const config: Config = {
   },
   bgPos: {
     property: "backgroundPosition",
+    deprecated: true,
+    replacement: "bgPosition",
   },
   bgRepeat: {
     property: "backgroundRepeat",
