@@ -21,17 +21,17 @@ export interface UseModalProps {
    * If `true`, scrolling will be disabled on the `body` when the modal opens.
    *  @default true
    */
-  shouldBlockScroll?: boolean
+  blockScrollOnMount?: boolean
   /**
    * If `true`, the modal will close when the overlay is clicked
    * @default true
    */
-  shouldCloseOnOverlayClick?: boolean
+  closeOnOverlayClick?: boolean
   /**
    * If `true`, the modal will close when the `Esc` key is pressed
    * @default true
    */
-  shouldCloseOnEsc?: boolean
+  closeOnEsc?: boolean
   /**
    * Callback fired when the overlay is clicked.
    */
@@ -62,9 +62,9 @@ export function useModal(props: UseModalProps) {
     isOpen,
     onClose,
     id,
-    shouldCloseOnOverlayClick = true,
-    shouldCloseOnEsc = true,
-    shouldBlockScroll = true,
+    closeOnOverlayClick = true,
+    closeOnEsc = true,
+    blockScrollOnMount = true,
     useInert = true,
     onOverlayClick: onOverlayClickProp,
     onEsc,
@@ -83,7 +83,7 @@ export function useModal(props: UseModalProps) {
   /**
    * Hook used to block scrolling once the modal is open
    */
-  useLockBodyScroll(dialogRef, isOpen && shouldBlockScroll)
+  useLockBodyScroll(dialogRef, isOpen && blockScrollOnMount)
   /**
    * Hook used to polyfill `aria-modal` for older browsers.
    * It uses `aria-hidden` to all other nodes.
@@ -107,14 +107,14 @@ export function useModal(props: UseModalProps) {
       if (event.key === "Escape") {
         event.stopPropagation()
 
-        if (shouldCloseOnEsc) {
+        if (closeOnEsc) {
           onClose?.()
         }
 
         onEsc?.()
       }
     },
-    [shouldCloseOnEsc, onClose, onEsc],
+    [closeOnEsc, onClose, onEsc],
   )
 
   const onOverlayClick = React.useCallback(
@@ -135,13 +135,13 @@ export function useModal(props: UseModalProps) {
        * When you click on the overlay, we want to remove only the topmost modal
        */
       if (manager.isTopModal(dialogRef)) {
-        if (shouldCloseOnOverlayClick) {
+        if (closeOnOverlayClick) {
           onClose?.()
         }
         onOverlayClickProp?.()
       }
     },
-    [onClose, shouldCloseOnOverlayClick, onOverlayClickProp],
+    [onClose, closeOnOverlayClick, onOverlayClickProp],
   )
 
   const [headerMounted, setHeaderMounted] = React.useState(false)
@@ -154,6 +154,7 @@ export function useModal(props: UseModalProps) {
     bodyId,
     setBodyMounted,
     setHeaderMounted,
+    dialogRef,
     getContentProps: (props: Dict = {}) => ({
       ...props,
       ref: mergeRefs(props.ref, dialogRef),

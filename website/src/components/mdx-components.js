@@ -44,7 +44,9 @@ const TData = (props) => (
 const Link = React.forwardRef((props, ref) => (
   <chakra.a
     ref={ref}
-    color="#068082"
+    color={useColorModeValue("teal.600", "teal.300")}
+    textDecor="underline"
+    transition="all 0.2s"
     cursor="pointer"
     outline="none"
     _hover={{ opacity: "0.8" }}

@@ -9,13 +9,7 @@ import {
   forwardRef,
   useThemeDefaultProps,
 } from "@chakra-ui/system"
-import {
-  callAllHandlers,
-  createContext,
-  mergeRefs,
-  __DEV__,
-  cx,
-} from "@chakra-ui/utils"
+import { callAllHandlers, createContext, __DEV__, cx } from "@chakra-ui/utils"
 import * as React from "react"
 import { useModal, UseModalProps, UseModalReturn } from "./use-modal"
 
@@ -42,7 +36,7 @@ export interface ModalProps extends UseModalProps, ThemingProps {
    * If `true`, the modal will return focus to the element that triggered it when it closes.
    * @default true
    */
-  shouldReturnFocusOnClose?: boolean
+  returnFocusOnClose?: boolean
   /**
    *  If `true`, the modal will be centered on screen.
    * @default false
@@ -67,14 +61,14 @@ export interface ModalProps extends UseModalProps, ThemingProps {
    *
    * @default true
    */
-  shouldTrapFocus?: boolean
+  trapFocus?: boolean
   /**
    * If `true`, the modal will autofocus the first enabled and interative
    * element within the `ModalContent`
    *
    * @default true
    */
-  shouldAutoFocus?: boolean
+  autoFocus?: boolean
   /**
    * Function that will be called to get the parent element
    * that the modal will be attached to.
@@ -97,13 +91,13 @@ export function Modal(props: ModalProps) {
     children,
     initialFocusRef,
     finalFocusRef,
-    shouldReturnFocusOnClose = true,
+    returnFocusOnClose = true,
     isOpen,
     scrollBehavior = "outside",
     size = defaults?.size,
     variant = defaults?.variant,
-    shouldTrapFocus = true,
-    shouldAutoFocus = true,
+    trapFocus = true,
+    autoFocus = true,
     isCentered,
     getContainer,
   } = props
@@ -122,11 +116,12 @@ export function Modal(props: ModalProps) {
     <ModalContextProvider value={context}>
       <Portal getContainer={getContainer}>
         <FocusLock
-          autoFocus={shouldAutoFocus}
-          isDisabled={!shouldTrapFocus}
+          autoFocus={autoFocus}
+          isDisabled={!trapFocus}
           initialFocusRef={initialFocusRef}
           finalFocusRef={finalFocusRef}
-          restoreFocus={shouldReturnFocusOnClose}
+          restoreFocus={returnFocusOnClose}
+          contentRef={context.dialogRef}
         >
           {children}
         </FocusLock>
@@ -147,21 +142,16 @@ type ContentOptions = Pick<ModalProps, "scrollBehavior">
  * To style the modal content globally, change the styles in
  * `theme.components.Modal` under the `Content` key
  */
-const StyledContent = chakra<"section", ContentOptions>("section", {
+const StyledContent = chakra("section", {
   themeKey: "Modal.Content",
-  baseStyle: (props) => {
-    return {
-      display: "flex",
-      flexDirection: "column",
-      position: "relative",
-      width: "100%",
-      marginY: "3.75rem",
-      maxHeight:
-        props.scrollBehavior === "inside" ? "calc(100vh - 7.5rem)" : undefined,
-      _focus: {
-        outline: 0,
-      },
-    }
+  baseStyle: {
+    display: "flex",
+    flexDirection: "column",
+    position: "relative",
+    width: "100%",
+    _focus: {
+      outline: 0,
+    },
   },
 })
 
@@ -178,20 +168,13 @@ export const ModalContent = React.forwardRef(function ModalContent(
   ref: React.Ref<any>,
 ) {
   const { className, ...rest } = props
-  const { getContentProps, scrollBehavior, variant, size } = useModalContext()
+  const { getContentProps, variant, size } = useModalContext()
   const contentProps = getContentProps({ ...rest, ref })
 
   const _className = cx("chakra-modal__content", className)
   const theming = { variant, size }
 
-  return (
-    <StyledContent
-      className={_className}
-      scrollBehavior={scrollBehavior}
-      {...theming}
-      {...contentProps}
-    />
-  )
+  return <StyledContent className={_className} {...theming} {...contentProps} />
 })
 
 if (__DEV__) {

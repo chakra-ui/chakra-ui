@@ -42,22 +42,9 @@
 
 - Ability to disable focus trap
 
-## Props Changes
-
-We updated the prop names for boolean props to match our naming convention. All
-boolean prop must start with `should`, `is`, or `has`
-
-| Old Prop              | New Prop                    |
-| --------------------- | --------------------------- |
-| `returnFocusOnClose`  | `shouldReturnFocusOnClose`  |
-| `closeOnOverlayClick` | `shouldCloseOnOverlayClick` |
-| `blockScrollOnMount`  | `shouldBlockScroll`         |
-| `closeOnEsc`          | `shouldCloseOnEsc`          |
-
 ## New Props
 
-- `shouldTrapFocus` : to help disable focus trap
-- `shouldAutoFocus` : to help disable auto focusing on the first interactive
-  element.
+- `trapFocus` : to help disable focus trap
+- `autoFocus` : to help disable auto focusing on the first interactive element.
 - `onOverlayClick`: callback fired when the overlay is clicked
 - `onEsc`: callback fired when `esc` is pressed

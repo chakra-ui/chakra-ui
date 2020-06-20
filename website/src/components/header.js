@@ -33,9 +33,13 @@ export const NavLink = (props) => {
       as={GatsbyLink}
       to={to}
       display="block"
+      py="1"
+      px="3"
+      borderRadius="4px"
+      transition="all 0.2s"
       color={useColorModeValue("gray.600", "whiteAlpha.800")}
       fontWeight="normal"
-      _hover={{ color: "teal.500" }}
+      _hover={{ bg: useColorModeValue("gray.100", "whiteAlpha.100") }}
       _activeLink={{
         fontWeight: "semibold",
         color: "teal.500",
@@ -63,9 +67,9 @@ const HeaderContent = () => {
         </chakra.a>
         <HStack
           as="nav"
-          spacing="8"
-          ml="32px"
-          display={["none", "none", "flex", "flex"]}
+          spacing="4"
+          ml="24px"
+          display={{ base: "none", md: "flex" }}
         >
           <NavLink to="/docs/getting-started">Docs</NavLink>
           <NavLink to="/guides">Guides</NavLink>

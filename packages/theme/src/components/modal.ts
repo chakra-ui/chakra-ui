@@ -12,7 +12,11 @@ function getSize(value: string) {
   }
 }
 
-const Modal: ComponentTheme = {
+export interface Props {
+  scrollBehavior?: "inside" | "outside"
+}
+
+const Modal: ComponentTheme<Props> = {
   defaultProps: {
     size: "md",
   },
@@ -24,6 +28,9 @@ const Modal: ComponentTheme = {
       borderRadius: "md",
       bg: mode("white", "gray.700")(props),
       color: "inherit",
+      marginY: "3.75rem",
+      maxHeight:
+        props.scrollBehavior === "inside" ? "calc(100vh - 7.5rem)" : undefined,
       boxShadow: mode(
         "0 7px 14px 0 rgba(0,0,0, 0.1), 0 3px 6px 0 rgba(0, 0, 0, .07)",
         "dark-lg",

@@ -656,24 +656,12 @@ function Example() {
   will be ignored. Update the styles in `theme.components.Modal` to reflect your
   custom values
 
-- You can now disable focus trap by passing `shouldTrapFocus={false}`
-
-#### Props Changes
-
-We updated the prop names for boolean props to match our naming convention. All
-boolean prop must start with `should`, `is`, or `has`
-
-| Old Prop              | New Prop                    |
-| --------------------- | --------------------------- |
-| `returnFocusOnClose`  | `shouldReturnFocus`         |
-| `closeOnOverlayClick` | `shouldCloseOnOverlayClick` |
-| `blockScrollOnMount`  | `shouldBlockScroll`         |
-| `closeOnEsc`          | `shouldCloseOnEsc`          |
+- You can now disable focus trap by passing `trapFocus={false}`
 
 #### New Props
 
-- `shouldTrapFocus`: to disable focus trap
-- `shouldAutoFocus`: to disable autofocus on the first interactive element
+- `trapFocus`: to disable focus trap
+- `autoFocus`: to disable autofocus on the first interactive element
 - `onOverlayClick`: callback fired when the overlay is clicked
 - `onEsc`: callback fired when `esc` is pressed
 
