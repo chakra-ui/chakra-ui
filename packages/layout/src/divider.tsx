@@ -8,7 +8,7 @@ import { __DEV__, cx } from "@chakra-ui/utils"
  *
  * @see Docs https://chakra-ui.com/components/code
  */
-export const Divider = chakra<"hr">("hr", {
+export const Divider = chakra("hr", {
   themeKey: "Divider",
   baseStyle: {
     border: "0",
