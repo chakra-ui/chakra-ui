@@ -36,11 +36,12 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "memoize-one": "5.1.1",
     "css-box-model": "1.2.1",
-    "deepmerge": "4.2.2"
+    "deepmerge": "4.2.2",
+    "memoize-one": "5.1.1"
   },
   "peerDependencies": {
     "react": "16.x"
-  }
+  },
+  "gitHead": "ce6fe489afaddba502a2611f1fb1dcedb991325b"
 }

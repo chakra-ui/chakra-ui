@@ -43,14 +43,15 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "tinycolor2": "1.4.1",
+    "@chakra-ui/utils": "^1.0.0-next.0",
     "@types/tinycolor2": "1.4.2",
-    "@chakra-ui/utils": "1.0.0-next.0"
+    "tinycolor2": "1.4.1"
   },
   "peerDependencies": {
     "@chakra-ui/system": "1.0.0-next.0"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.0.0-next.0"
-  }
+    "@chakra-ui/system": "^1.0.0-next.0"
+  },
+  "gitHead": "ce6fe489afaddba502a2611f1fb1dcedb991325b"
 }

@@ -45,11 +45,12 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/utils": "1.0.0-next.0",
-    "react-transition-group": "4.4.1",
-    "@types/react-transition-group": "4.4.0"
+    "@chakra-ui/utils": "^1.0.0-next.0",
+    "@types/react-transition-group": "4.4.0",
+    "react-transition-group": "4.4.1"
   },
   "peerDependencies": {
     "react": "16.x"
-  }
+  },
+  "gitHead": "ce6fe489afaddba502a2611f1fb1dcedb991325b"
 }

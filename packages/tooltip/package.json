@@ -46,19 +46,20 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "flushable": "1.0.0",
+    "@chakra-ui/hooks": "^1.0.0-next.0",
+    "@chakra-ui/popper": "^1.0.0-next.0",
+    "@chakra-ui/portal": "^1.0.0-next.0",
+    "@chakra-ui/utils": "^1.0.0-next.0",
+    "@chakra-ui/visually-hidden": "^1.0.0-next.0",
     "@types/flushable": "1.0.1",
-    "@chakra-ui/popper": "1.0.0-next.0",
-    "@chakra-ui/portal": "1.0.0-next.0",
-    "@chakra-ui/hooks": "1.0.0-next.0",
-    "@chakra-ui/utils": "1.0.0-next.0",
-    "@chakra-ui/visually-hidden": "1.0.0-next.0"
+    "flushable": "1.0.0"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.0.0-next.0"
+    "@chakra-ui/system": "^1.0.0-next.0"
   },
   "peerDependencies": {
     "@chakra-ui/system": "1.0.0-next.0",
     "react": "16.x"
-  }
+  },
+  "gitHead": "ce6fe489afaddba502a2611f1fb1dcedb991325b"
 }

@@ -42,11 +42,12 @@
     "lint": "concurrently yarn:lint:*"
   },
   "dependencies": {
-    "csstype": "2.6.10",
-    "@chakra-ui/utils": "1.0.0-next.0",
-    "@chakra-ui/parser": "1.0.0-next.0"
+    "@chakra-ui/parser": "^1.0.0-next.0",
+    "@chakra-ui/utils": "^1.0.0-next.0",
+    "csstype": "2.6.10"
   },
   "peerDependencies": {
     "react": "16.x"
-  }
+  },
+  "gitHead": "ce6fe489afaddba502a2611f1fb1dcedb991325b"
 }
