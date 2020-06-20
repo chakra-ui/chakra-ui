@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render correctly 1`] = `
+<DocumentFragment>
+  <label
+    for="input"
+  >
+    Select number:
+  </label>
+  <div
+    class="css-gft7vj"
+    data-testid="root"
+  >
+    <input
+      aria-invalid="false"
+      aria-valuemax="9007199254740991"
+      aria-valuemin="-9007199254740991"
+      autocomplete="off"
+      autocorrect="off"
+      class="css-k2kcme"
+      data-testid="input"
+      id="input"
+      inputmode="numeric"
+      pattern="[0-9]*"
+      role="spinbutton"
+      type="text"
+      value=""
+    />
+    <div
+      aria-hidden="true"
+      class="css-19l1xk3"
+      data-testid="group"
+    >
+      <div
+        class="css-x1u2ru"
+        data-testid="up-btn"
+        role="button"
+        tabindex="-1"
+      >
+        +
+      </div>
+      <div
+        class="css-x1u2ru"
+        data-testid="down-btn"
+        role="button"
+        tabindex="-1"
+      >
+        -
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

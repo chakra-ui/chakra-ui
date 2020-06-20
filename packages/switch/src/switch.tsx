@@ -1,7 +1,7 @@
-import { UseCheckboxProps, useCheckbox } from "@chakra-ui/checkbox"
-import { chakra, PropsOf, forwardRef } from "@chakra-ui/system"
+import { useCheckbox, UseCheckboxProps } from "@chakra-ui/checkbox"
+import { chakra, PropsOf } from "@chakra-ui/system"
+import { cx, dataAttr, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { __DEV__, cx, dataAttr } from "@chakra-ui/utils"
 
 const StyledSwitch = chakra("label", {
   baseStyle: {
@@ -42,9 +42,9 @@ type Omitted = "onChange" | "defaultChecked" | "checked"
 export type SwitchProps = Omit<UseCheckboxProps, "isIndeterminate"> &
   Omit<PropsOf<typeof StyledSwitch>, Omitted>
 
-export const Switch = forwardRef<SwitchProps, "input", Omitted>(function Switch(
-  props,
-  ref,
+export const Switch = React.forwardRef(function Switch(
+  props: SwitchProps,
+  ref: React.Ref<any>,
 ) {
   const { colorScheme, size, variant, className, ...rest } = props
   const { state, getInputProps, getCheckboxProps, htmlProps } = useCheckbox(

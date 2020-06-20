@@ -43,6 +43,7 @@ export const chakra = (styled as unknown) as CreateChakraComponent &
   ChakraJSXElements
 
 domElements.forEach((tag) => {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-ignore
   chakra[tag] = chakra(tag)
 })

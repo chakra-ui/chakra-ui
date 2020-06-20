@@ -1,5 +1,10 @@
-import { ink, getColor } from "@chakra-ui/color"
-import { Props, ComponentTheme, mode } from "./utils"
+import {
+  Props,
+  ComponentTheme,
+  mode,
+  getColor,
+  ink,
+} from "@chakra-ui/theme-tools"
 
 function getSubtleStyle(props: Props) {
   const { theme: t, colorScheme: c } = props
@@ -19,12 +24,13 @@ function getSubtleStyle(props: Props) {
 
 function getLeftAccentStyle(props: Props) {
   const { colorScheme: c } = props
+  const subtleStyle = getSubtleStyle(props)
   return {
     Root: {
       paddingLeft: 3,
       borderLeft: "4px solid",
       borderColor: mode(`${c}.500`, `${c}.200`)(props),
-      ...getSubtleStyle(props)["Root"],
+      ...subtleStyle.Root,
     },
     Icon: {
       color: mode(`${c}.500`, `${c}.200`)(props),
@@ -34,12 +40,13 @@ function getLeftAccentStyle(props: Props) {
 
 function getTopAccentStyle(props: Props) {
   const { colorScheme: c } = props
+  const subtleStyle = getSubtleStyle(props)
   return {
     Root: {
       paddingTop: 2,
       borderTop: "4px solid",
       borderColor: mode(`${c}.500`, `${c}.200`)(props),
-      ...getSubtleStyle(props)["Root"],
+      ...subtleStyle.Root,
     },
     Icon: {
       color: mode(`${c}.500`, `${c}.200`)(props),
@@ -79,13 +86,11 @@ const Alert: ComponentTheme = {
   },
 }
 
-export const AlertTokens = {
-  variants: {
-    solid: "solid",
-    subtle: "subtle",
-    "left-accent": "left-accent",
-    "top-accent": "top-accent",
-  },
+export const AlertVariants = {
+  solid: "solid",
+  subtle: "subtle",
+  "left-accent": "left-accent",
+  "top-accent": "top-accent",
 }
 
 export default Alert

@@ -46,14 +46,15 @@ export type TextareaProps = Omit<PropsOf<typeof StyledTextarea>, Omitted> &
  *
  * @see Docs https://chakra-ui.com/components/textarea
  */
-export const Textarea = forwardRef<TextareaProps, "textarea", Omitted>(
-  function Textarea(props, ref) {
-    const { className, ...htmlProps } = props
-    const fieldProps = useFormControl<HTMLTextAreaElement>(htmlProps)
-    const _className = cx("chakra-textarea", className)
-    return <StyledTextarea className={_className} ref={ref} {...fieldProps} />
-  },
-)
+export const Textarea = forwardRef<TextareaProps>(function Textarea(
+  props,
+  ref,
+) {
+  const { className, ...htmlProps } = props
+  const fieldProps = useFormControl<HTMLTextAreaElement>(htmlProps)
+  const _className = cx("chakra-textarea", className)
+  return <StyledTextarea className={_className} ref={ref} {...fieldProps} />
+})
 
 if (__DEV__) {
   Textarea.displayName = "Textarea"

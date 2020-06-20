@@ -3,7 +3,6 @@ import {
   PropsOf,
   ThemingProps,
   useThemeDefaultProps,
-  forwardRef,
 } from "@chakra-ui/system"
 import { createContext, cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -19,27 +18,28 @@ export { useInputGroup }
 
 export type InputGroupProps = PropsOf<typeof chakra.div> & ThemingProps
 
-export const InputGroup = forwardRef<InputGroupProps, "div">(
-  function InputGroup(props, ref) {
-    const { className, ...rest } = props
-    const { htmlProps, ...context } = useProvider(rest)
+export const InputGroup = React.forwardRef(function InputGroup(
+  props: InputGroupProps,
+  ref: React.Ref<any>,
+) {
+  const { className, ...rest } = props
+  const { htmlProps, ...context } = useProvider(rest)
 
-    const _className = cx("chakra-input__group", className)
+  const _className = cx("chakra-input__group", className)
 
-    return (
-      <chakra.div
-        className={_className}
-        ref={ref}
-        width="100%"
-        display="flex"
-        position="relative"
-        {...htmlProps}
-      >
-        <InputGroupProvider value={context} children={props.children} />
-      </chakra.div>
-    )
-  },
-)
+  return (
+    <chakra.div
+      className={_className}
+      ref={ref}
+      width="100%"
+      display="flex"
+      position="relative"
+      {...htmlProps}
+    >
+      <InputGroupProvider value={context} children={props.children} />
+    </chakra.div>
+  )
+})
 
 if (__DEV__) {
   InputGroup.displayName = "InputGroup"

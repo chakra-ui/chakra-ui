@@ -33,7 +33,6 @@
     "@types/jest-axe": "3.2.1"
   },
   "peerDependencies": {
-    "react": "16.x",
-    "react-dom": "16.x"
+    "react": "16.x"
   }
 }

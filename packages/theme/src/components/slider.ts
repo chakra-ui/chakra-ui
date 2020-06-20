@@ -1,4 +1,4 @@
-import { ComponentTheme, mode, getOrientationStyle } from "./utils"
+import { ComponentTheme, mode, orient } from "@chakra-ui/theme-tools"
 
 const Slider: ComponentTheme = {
   defaultProps: {
@@ -7,24 +7,37 @@ const Slider: ComponentTheme = {
   },
   sizes: {
     lg: (props) => ({
-      Thumb: { width: "16px", height: "16px" },
-      Track: getOrientationStyle({
+      Thumb: {
+        width: "16px",
+        height: "16px",
+      },
+      Track: orient({
         orientation: props.orientation,
-        horizontal: { height: "4px" },
-        vertical: { width: "4px" },
+        horizontal: {
+          height: "4px",
+        },
+        vertical: {
+          width: "4px",
+        },
       }),
     }),
     md: (props) => ({
-      Thumb: { width: "14px", height: "14px" },
-      Track: getOrientationStyle({
+      Thumb: {
+        width: "14px",
+        height: "14px",
+      },
+      Track: orient({
         orientation: props.orientation,
         horizontal: { height: "4px" },
         vertical: { width: "4px" },
       }),
     }),
     sm: (props) => ({
-      Thumb: { width: "10px", height: "10px" },
-      Track: getOrientationStyle({
+      Thumb: {
+        width: "10px",
+        height: "10px",
+      },
+      Track: orient({
         orientation: props.orientation,
         horizontal: { height: "2px" },
         vertical: { width: "2px" },
@@ -38,10 +51,14 @@ const Slider: ComponentTheme = {
         cursor: "default",
         pointerEvents: "none",
       },
-      ...getOrientationStyle({
+      ...orient({
         orientation: props.orientation,
-        vertical: { height: "100%" },
-        horizontal: { width: "100%" },
+        vertical: {
+          height: "100%",
+        },
+        horizontal: {
+          width: "100%",
+        },
       }),
     },
     Track: {
@@ -65,7 +82,7 @@ const Slider: ComponentTheme = {
       _disabled: {
         bg: "gray.300",
       },
-      ...getOrientationStyle({
+      ...orient({
         orientation: props.orientation,
         vertical: {
           left: "50%",
@@ -89,12 +106,10 @@ const Slider: ComponentTheme = {
   }),
 }
 
-export const SliderTokens = {
-  sizes: {
-    lg: "lg",
-    sm: "sm",
-    md: "md",
-  },
+export const SliderSizes = {
+  lg: "lg",
+  sm: "sm",
+  md: "md",
 }
 
 export default Slider

@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checkbox renders correctly 1`] = `
+<DocumentFragment>
+  <label
+    class="chakra-checkbox css-1elxtiq"
+  >
+    <input
+      class="chakra-checkbox__input"
+      style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
+      type="checkbox"
+      value=""
+    />
+    <div
+      aria-hidden="true"
+      class="chakra-checkbox__control css-1beopa5"
+    />
+  </label>
+</DocumentFragment>
+`;
+
+exports[`Checkbox renders correctly 2`] = `
+<DocumentFragment>
+  <label
+    class="chakra-checkbox css-1elxtiq"
+  >
+    <input
+      class="chakra-checkbox__input"
+      style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
+      type="checkbox"
+      value=""
+    />
+    <div
+      aria-hidden="true"
+      class="chakra-checkbox__control css-1beopa5"
+    />
+    <div
+      class="chakra-checkbox__label css-1csyywq"
+    >
+      This is custom checkbox
+    </div>
+  </label>
+</DocumentFragment>
+`;

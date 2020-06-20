@@ -14,6 +14,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "scripts": {
+    "test": "jest --passWithNoTests"
+  },
   "peerDependencies": {
     "@chakra-ui/theme": "1.0.0",
     "@chakra-ui/core": "1.0.0",

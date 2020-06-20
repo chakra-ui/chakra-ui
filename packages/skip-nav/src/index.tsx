@@ -1,6 +1,6 @@
-import * as React from "react"
-import { PropsOf, chakra, forwardRef } from "@chakra-ui/system"
+import { chakra, PropsOf } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
+import * as React from "react"
 
 export type SkipNavLinkProps = PropsOf<typeof chakra.a>
 
@@ -35,24 +35,26 @@ const StyledLink = chakra("a", {
 /**
  * Renders a link that remains hidden until focused to skip to the main content.
  */
-export const SkipNavLink = forwardRef<SkipNavLinkProps, "a">(
-  function SkipNavLink(props, ref) {
-    const { id = fallbackId, sx, ...rest } = props
-    return (
-      <StyledLink
-        ref={ref}
-        className="chakra-skip-link"
-        href={`#${id}`}
-        sx={{
-          clip: "rect(0 0 0 0)",
-          _focus: { clip: "auto" },
-          ...sx,
-        }}
-        {...rest}
-      />
-    )
-  },
-)
+export const SkipNavLink = React.forwardRef(function SkipNavLink(
+  props: SkipNavLinkProps,
+  ref: React.Ref<any>,
+) {
+  const { id = fallbackId, ...rest } = props
+  return (
+    <StyledLink
+      ref={ref}
+      className="chakra-skip-link"
+      href={`#${id}`}
+      __css={{
+        clip: "rect(0 0 0 0)",
+        "&:focus": {
+          clip: "auto",
+        },
+      }}
+      {...rest}
+    />
+  )
+})
 
 if (__DEV__) {
   SkipNavLink.displayName = "SkipNavLink"
@@ -63,12 +65,13 @@ export type SkipNavContentProps = PropsOf<"div">
 /**
  * Renders a div as the target for the link.
  */
-export const SkipNavContent = forwardRef<SkipNavContentProps, "div">(
-  function SkipNavContent(props, ref) {
-    const { id = fallbackId, ...rest } = props
-    return <chakra.div ref={ref} id={id} tabIndex={-1} outline="0" {...rest} />
-  },
-)
+export const SkipNavContent = React.forwardRef(function SkipNavContent(
+  props: SkipNavContentProps,
+  ref: React.Ref<any>,
+) {
+  const { id = fallbackId, ...rest } = props
+  return <chakra.div ref={ref} id={id} tabIndex={-1} outline="0" {...rest} />
+})
 
 if (__DEV__) {
   SkipNavContent.displayName = "SkipNavContent"

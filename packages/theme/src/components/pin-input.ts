@@ -1,5 +1,5 @@
-import Input, { InputProps, InputTokens } from "./input"
-import { ComponentTheme } from "./utils"
+import Input, { InputProps, InputVariants } from "./input"
+import { ComponentTheme } from "@chakra-ui/theme-tools"
 
 const PinInput: ComponentTheme<InputProps> = {
   defaultProps: Input.defaultProps,
@@ -27,13 +27,12 @@ const PinInput: ComponentTheme<InputProps> = {
   },
 }
 
-export const PinInputTokens = {
-  sizes: {
-    lg: "lg",
-    md: "md",
-    sm: "sm",
-  },
-  variants: InputTokens.variants,
+export const PinInputSizes = {
+  lg: "lg",
+  md: "md",
+  sm: "sm",
 }
+
+export const PinInputVariants = InputVariants
 
 export default PinInput

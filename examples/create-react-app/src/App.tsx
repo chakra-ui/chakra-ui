@@ -1,6 +1,16 @@
-import React from "react"
+import * as React from "react"
 import logo from "./logo.svg"
-import { Button, chakra, Badge, Checkbox, Radio } from "@chakra-ui/core"
+import {
+  Button,
+  chakra,
+  Badge,
+  Checkbox,
+  Radio,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+} from "@chakra-ui/core"
 
 function App() {
   return (
@@ -10,6 +20,12 @@ function App() {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
+        <Accordion allowToggle>
+          <AccordionItem>
+            <AccordionButton>Accordion 1</AccordionButton>
+            <AccordionPanel>Welcome home</AccordionPanel>
+          </AccordionItem>
+        </Accordion>
         <Button colorScheme="blue" size="sm">
           Welcome
         </Button>

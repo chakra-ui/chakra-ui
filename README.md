@@ -13,8 +13,7 @@
   <img alt="Bundle Size" src="https://badgen.net/bundlephobia/minzip/@chakra-ui/core"/>
   <img alt="MIT License" src="https://img.shields.io/github/license/chakra-ui/chakra-ui"/>
   <img alt="NPM Downloads" src="https://img.shields.io/npm/dm/@chakra-ui/core.svg?style=flat"/>
-  <a href="https://spectrum.chat/chakra-ui"><img alt="Spectrum" src="https://img.shields.io/badge/community-spectrum-7A2DFB.svg?style=flat-square" /></a>
-  <img alt="Spectrum" src="https://badgen.net/github/stars/chakra-ui/chakra-ui" />
+  <img alt="Github Stars" src="https://badgen.net/github/stars/chakra-ui/chakra-ui" />
   <a href="https://lernajs.io/"><img alt="Lerna" src="https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg" /></a>
 </p>
 <br />
@@ -277,11 +276,14 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://twitter.com/dominus_kelvin"><img src="https://avatars3.githubusercontent.com/u/24433274?s=460&u=1c872d2e37185b3edf21c134b9149a5dcfd7c864&v=4" width="64px;" alt=""/><br /><sub><b>Kelvin Oghenerhoro</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=DominusKelvin" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/DavidJFelix"><img src="https://avatars2.githubusercontent.com/u/263432?s=460&u=262fb80ae1ee6c450f8fe705e646d72c8c3e1b0b&v=4" width="64px;" alt=""/><br /><sub><b>David J. Felix</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=DavidJFelix" title="Code">💻</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/mrmckeb"><img src="https://avatars3.githubusercontent.com/u/5043083?v=4" width="64px;" alt=""/><br /><sub><b>Brody McKee</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=mrmckeb" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/Psvensso"><img src="https://avatars1.githubusercontent.com/u/1482833?v=4" width="64px;" alt=""/><br /><sub><b>Per Svensson</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=Psvensso" title="Code">💻</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
-
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ([emoji key](https://allcontributors.org/docs/en/emoji-key)):

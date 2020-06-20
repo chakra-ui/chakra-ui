@@ -1,14 +1,9 @@
-import {
-  useDisclosure,
-  useIds,
-  useBoolean,
-  useEventListener,
-} from "@chakra-ui/hooks"
-import { useToken, useColorModeValue } from "@chakra-ui/system"
+import { useBoolean, useDisclosure, useIds } from "@chakra-ui/hooks"
 import { Placement, usePopper } from "@chakra-ui/popper"
+import { useColorModeValue, useToken } from "@chakra-ui/system"
+import { callAllHandlers, Dict, mergeRefs } from "@chakra-ui/utils"
 import * as React from "react"
 import { useBlurOutside, useFocusOnHide, useFocusOnShow } from "./popover.utils"
-import { mergeRefs, Dict, callAllHandlers } from "@chakra-ui/utils"
 
 export interface UsePopoverProps {
   /**

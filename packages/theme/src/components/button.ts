@@ -1,5 +1,9 @@
-import { opacity } from "@chakra-ui/color"
-import { Props, mode, ComponentTheme } from "./utils"
+import {
+  Props,
+  mode,
+  ComponentTheme,
+  transparentize,
+} from "@chakra-ui/theme-tools"
 
 const grayGhostStyle = (props: Props) => ({
   color: mode(`inherit`, `whiteAlpha.900`)(props),
@@ -15,8 +19,8 @@ function getGhostStyle(props: Props) {
   const { colorScheme: c, theme: t } = props
   if (c === "gray") return grayGhostStyle(props)
 
-  const darkHover = opacity(`${c}.200`, 0.12)(t)
-  const darkActive = opacity(`${c}.200`, 0.24)(t)
+  const darkHover = transparentize(`${c}.200`, 0.12)(t)
+  const darkActive = transparentize(`${c}.200`, 0.24)(t)
 
   return {
     color: mode(`${c}.500`, `${c}.200`)(props),
@@ -107,8 +111,6 @@ const sizes = {
   },
 }
 
-////////////////////////////////////////////////////////////
-
 const unstyled = {
   bg: "none",
   border: 0,
@@ -120,7 +122,6 @@ const unstyled = {
   padding: 0,
 }
 
-////////////////////////////////////////////////////////////
 const Button: ComponentTheme = {
   defaultProps: {
     variant: "solid",
@@ -150,18 +151,17 @@ const Button: ComponentTheme = {
   },
 }
 
-export const ButtonTokens = {
-  sizes: {
-    lg: "lg",
-    sm: "sm",
-    md: "md",
-    xs: "xs",
-  },
-  variants: {
-    solid: "solid",
-    subtle: "subtle",
-    outline: "outline",
-  },
+export const ButtonSizes = {
+  lg: "lg",
+  sm: "sm",
+  md: "md",
+  xs: "xs",
+}
+
+export const ButtonVariants = {
+  solid: "solid",
+  subtle: "subtle",
+  outline: "outline",
 }
 
 export default Button

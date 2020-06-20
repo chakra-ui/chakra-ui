@@ -1,24 +1,25 @@
+import { __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import {__DEV__} from "@chakra-ui/utils";
-import CSSTransition, {
-  EndHandler,
-  EnterHandler,
-  TransitionStatus,
-  ExitHandler,
+import CSSTransition from "react-transition-group/Transition"
+import type {
   TransitionProps as TProps,
+  TransitionStatus,
 } from "react-transition-group/Transition"
 
-export interface TransitionProps {
-  in?: boolean
-  addEndListener?: EndHandler
-  onEnter?: EnterHandler
-  onEntering?: EnterHandler
-  onEntered?: EnterHandler
-  onExit?: ExitHandler
-  onExiting?: ExitHandler
-  onExited?: ExitHandler
-  unmountOnExit?: boolean
-  timeout?: TProps["timeout"]
+export type BaseProps = Pick<
+  TProps,
+  | "in"
+  | "onEnter"
+  | "onEntering"
+  | "onEntered"
+  | "onExit"
+  | "onExiting"
+  | "onExited"
+  | "unmountOnExit"
+  | "timeout"
+>
+
+export interface TransitionProps extends BaseProps {
   transition?: string
   children: (styles: React.CSSProperties) => React.ReactNode
   styles: TransitionStyles
@@ -30,7 +31,7 @@ export type TransitionStyles = {
   [K in TransitionStyleState]?: React.CSSProperties
 }
 
-export { TransitionStatus }
+export type { TransitionStatus }
 
 export function Transition(props: TransitionProps) {
   const {
@@ -50,13 +51,18 @@ export function Transition(props: TransitionProps) {
   })
 
   return (
-    <CSSTransition appear unmountOnExit in={inProp} timeout={timeout} {...rest}>
+    <CSSTransition
+      appear
+      unmountOnExit
+      in={inProp}
+      timeout={timeout}
+      {...(rest as any)}
+    >
       {(state) => children(getStyle(state))}
     </CSSTransition>
   )
 }
 
-
-if(__DEV__) {
+if (__DEV__) {
   Transition.displayName = "Transition"
 }

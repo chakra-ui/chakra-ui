@@ -1,7 +1,7 @@
 import { useImage } from "@chakra-ui/image"
-import { chakra, PropsOf, SystemProps, forwardRef } from "@chakra-ui/system"
-import * as React from "react"
+import { chakra, PropsOf, SystemProps } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
+import * as React from "react"
 
 interface AvatarOptions {
   /**
@@ -93,15 +93,13 @@ function initials(name: string) {
   }
 }
 
-type DivProps = PropsOf<typeof chakra.div>
-
-type InitialsAvatarProps = DivProps &
+type InitialsAvatarProps = PropsOf<typeof chakra.div> &
   Pick<AvatarOptions, "name" | "getInitials">
 
 /**
  * The avatar name container
  */
-const InitialsAvatar = (props: InitialsAvatarProps) => {
+function InitialsAvatar(props: InitialsAvatarProps) {
   const { name, getInitials, className, ...rest } = props
   const _className = cx("chakra-avatar__name", className)
   return (
@@ -115,23 +113,25 @@ const InitialsAvatar = (props: InitialsAvatarProps) => {
  * Fallback avatar react component.
  * This should be a generic svg used to represent an avatar
  */
-const DefaultIcon = (props: PropsOf<"svg">) => (
-  <svg
-    viewBox="0 0 128 128"
-    color="#fff"
-    style={{ width: "100%", height: "100%" }}
-    {...props}
-  >
-    <path
-      fill="currentColor"
-      d="M103,102.1388 C93.094,111.92 79.3504,118 64.1638,118 C48.8056,118 34.9294,111.768 25,101.7892 L25,95.2 C25,86.8096 31.981,80 40.6,80 L87.4,80 C96.019,80 103,86.8096 103,95.2 L103,102.1388 Z"
-    />
-    <path
-      fill="currentColor"
-      d="M63.9961647,24 C51.2938136,24 41,34.2938136 41,46.9961647 C41,59.7061864 51.2938136,70 63.9961647,70 C76.6985159,70 87,59.7061864 87,46.9961647 C87,34.2938136 76.6985159,24 63.9961647,24"
-    />
-  </svg>
-)
+function DefaultIcon(props: PropsOf<"svg">) {
+  return (
+    <svg
+      viewBox="0 0 128 128"
+      color="#fff"
+      style={{ width: "100%", height: "100%" }}
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M103,102.1388 C93.094,111.92 79.3504,118 64.1638,118 C48.8056,118 34.9294,111.768 25,101.7892 L25,95.2 C25,86.8096 31.981,80 40.6,80 L87.4,80 C96.019,80 103,86.8096 103,95.2 L103,102.1388 Z"
+      />
+      <path
+        fill="currentColor"
+        d="M63.9961647,24 C51.2938136,24 41,34.2938136 41,46.9961647 C41,59.7061864 51.2938136,70 63.9961647,70 C76.6985159,70 87,59.7061864 87,46.9961647 C87,34.2938136 76.6985159,24 63.9961647,24"
+      />
+    </svg>
+  )
+}
 
 export const baseStyle: SystemProps = {
   display: "inline-flex",
@@ -153,7 +153,6 @@ export const baseStyle: SystemProps = {
 const StyledAvatar = chakra<"span", { name?: string }>("span", {
   themeKey: "Avatar.Root",
   baseStyle,
-  shouldForwardProp: (prop) => !["name"].includes(prop),
 })
 
 export type AvatarProps = PropsOf<typeof StyledAvatar> & AvatarOptions
@@ -164,9 +163,9 @@ export type AvatarProps = PropsOf<typeof StyledAvatar> & AvatarOptions
  * React component that renders an user avatar with
  * support for fallback avatar and name-only avatars
  */
-export const Avatar = forwardRef<AvatarProps, "span">(function Avatar(
-  props,
-  ref,
+export const Avatar = React.forwardRef(function Avatar(
+  props: AvatarProps,
+  ref: React.Ref<any>,
 ) {
   const {
     src,

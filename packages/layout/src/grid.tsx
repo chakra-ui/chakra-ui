@@ -12,44 +12,43 @@ export type GridProps = PropsOf<typeof chakra.div> & GridOptions
  *
  * @see Docs https://chakra-ui.com/components/grid
  */
-export const Grid = forwardRef<GridProps, "div">(function Grid(props, ref) {
-    const {
-      area,
-      templateAreas,
-      gap,
-      rowGap,
-      columnGap,
-      column,
-      row,
-      autoFlow,
-      autoRows,
-      templateRows,
-      autoColumns,
-      templateColumns,
-      ...rest
-    } = props
+export const Grid = forwardRef<GridProps>(function Grid(props, ref) {
+  const {
+    area,
+    templateAreas,
+    gap,
+    rowGap,
+    columnGap,
+    column,
+    row,
+    autoFlow,
+    autoRows,
+    templateRows,
+    autoColumns,
+    templateColumns,
+    ...rest
+  } = props
 
-    return (
-      <chakra.div
-        ref={ref}
-        display="grid"
-        gridArea={area}
-        gridTemplateAreas={templateAreas}
-        gridGap={gap}
-        gridRowGap={rowGap}
-        gridColumnGap={columnGap}
-        gridAutoColumns={autoColumns}
-        gridColumn={column}
-        gridRow={row}
-        gridAutoFlow={autoFlow}
-        gridAutoRows={autoRows}
-        gridTemplateRows={templateRows}
-        gridTemplateColumns={templateColumns}
-        {...rest}
-      />
-    )
-  },
-)
+  return (
+    <chakra.div
+      ref={ref}
+      display="grid"
+      gridArea={area}
+      gridTemplateAreas={templateAreas}
+      gridGap={gap}
+      gridRowGap={rowGap}
+      gridColumnGap={columnGap}
+      gridAutoColumns={autoColumns}
+      gridColumn={column}
+      gridRow={row}
+      gridAutoFlow={autoFlow}
+      gridAutoRows={autoRows}
+      gridTemplateRows={templateRows}
+      gridTemplateColumns={templateColumns}
+      {...rest}
+    />
+  )
+})
 
 if (__DEV__) {
   Grid.displayName = "Grid"

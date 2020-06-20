@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Badge override the theming props 1`] = `
+<DocumentFragment>
+  <span
+    class="chakra-badge css-x5nvee"
+  >
+    Badge
+  </span>
+</DocumentFragment>
+`;
+
+exports[`Badge should render with default theming 1`] = `
+<DocumentFragment>
+  <span
+    class="chakra-badge css-2q4iwi"
+  >
+    Badge
+  </span>
+</DocumentFragment>
+`;
+
+exports[`Box as - prop works correctly 1`] = `
+<DocumentFragment>
+  <a
+    href="www.google.com"
+  >
+    This is box
+  </a>
+</DocumentFragment>
+`;
+
+exports[`Box should render box correctly 1`] = `
+<DocumentFragment>
+  <div>
+    This is box
+  </div>
+</DocumentFragment>
+`;

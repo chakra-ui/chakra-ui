@@ -71,88 +71,82 @@ export interface ButtonOptions {
   spinner?: React.ReactElement
 }
 
-// TS: union of types to omit
-type Omitted = "disabled"
+export type ButtonProps = PropsOf<typeof StyledButton> & ButtonOptions
 
-export type ButtonProps = Omit<PropsOf<typeof StyledButton>, Omitted> &
-  ButtonOptions
+export const Button = forwardRef<ButtonProps>(function Button(props, ref) {
+  const group = useButtonGroup()
 
-export const Button = forwardRef<ButtonProps, "button", Omitted>(
-  function Button(props, ref) {
-    const group = useButtonGroup()
+  const {
+    isDisabled,
+    isLoading,
+    isActive,
+    isFullWidth,
+    children,
+    leftIcon,
+    rightIcon,
+    loadingText,
+    iconSpacing = "0.5rem",
+    type = "button",
+    spinner,
+    variant = group?.variant,
+    colorScheme = group?.colorScheme,
+    size = group?.size,
+    className,
+    ...rest
+  } = props
 
-    const {
-      isDisabled,
-      isLoading,
-      isActive,
-      isFullWidth,
-      children,
-      leftIcon,
-      rightIcon,
-      loadingText,
-      iconSpacing = "0.5rem",
-      type = "button",
-      spinner,
-      variant = group?.variant,
-      colorScheme = group?.colorScheme,
-      size = group?.size,
-      className,
-      ...rest
-    } = props
+  const styles = useComponentStyle({
+    themeKey: "Button",
+    variant,
+    size,
+    colorScheme,
+  }) as Dict
 
-    const styles = useComponentStyle({
-      themeKey: "Button",
-      variant,
-      size,
-      colorScheme,
-    }) as Dict
+  /**
+   * When button is used within ButtonGroup (i.e flushed with sibling buttons),
+   * it's important to add a `zIndex` when it's focused to it doesn't look funky.
+   *
+   * So let's read the component styles and then add `zIndex` to it.
+   */
+  const focusSelector = pseudoSelectors["_focus"]
+  const _focus = merge(styles?.[focusSelector] ?? {}, { zIndex: 1 })
 
-    /**
-     * When button is used within ButtonGroup (i.e flushed with sibling buttons),
-     * it's important to add a `zIndex` when it's focused to it doesn't look funky.
-     *
-     * So let's read the component styles and then add `zIndex` to it.
-     */
-    const focusSelector = pseudoSelectors["_focus"]
-    const _focus = merge(styles?.[focusSelector] ?? {}, { zIndex: 1 })
+  const _className = cx("chakra-button", className)
 
-    const _className = cx("chakra-button", className)
-
-    return (
-      <StyledButton
-        disabled={isDisabled || isLoading}
-        ref={ref}
-        type={type}
-        width={isFullWidth ? "100%" : undefined}
-        data-active={dataAttr(isActive)}
-        data-loading={dataAttr(isLoading)}
-        variant={variant}
-        colorScheme={colorScheme}
-        size={size}
-        className={_className}
-        {...(!!group && { _focus })}
-        {...rest}
-      >
-        {leftIcon && !isLoading && (
-          <ButtonIcon ml={-1} mr={iconSpacing} children={leftIcon} />
-        )}
-        {isLoading && (
-          <ButtonSpinner
-            spacing={iconSpacing}
-            label={loadingText}
-            children={spinner}
-          />
-        )}
-        {isLoading
-          ? loadingText || <chakra.span opacity={0} children={children} />
-          : children}
-        {rightIcon && !isLoading && (
-          <ButtonIcon ml={iconSpacing} mr={-1} children={rightIcon} />
-        )}
-      </StyledButton>
-    )
-  },
-)
+  return (
+    <StyledButton
+      disabled={isDisabled || isLoading}
+      ref={ref}
+      type={type}
+      width={isFullWidth ? "100%" : undefined}
+      data-active={dataAttr(isActive)}
+      data-loading={dataAttr(isLoading)}
+      variant={variant}
+      colorScheme={colorScheme}
+      size={size}
+      className={_className}
+      {...(!!group && { _focus })}
+      {...rest}
+    >
+      {leftIcon && !isLoading && (
+        <ButtonIcon ml={-1} mr={iconSpacing} children={leftIcon} />
+      )}
+      {isLoading && (
+        <ButtonSpinner
+          spacing={iconSpacing}
+          label={loadingText}
+          children={spinner}
+        />
+      )}
+      {isLoading
+        ? loadingText || <chakra.span opacity={0} children={children} />
+        : children}
+      {rightIcon && !isLoading && (
+        <ButtonIcon ml={iconSpacing} mr={-1} children={rightIcon} />
+      )}
+    </StyledButton>
+  )
+})
 
 if (__DEV__) {
   Button.displayName = "Button"

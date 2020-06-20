@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rendering should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="chakra-slider css-g86jye"
+    style="position: relative; user-select: none; outline: 0; padding-top: 0px; padding-bottom: 0px;"
+    tabindex="-1"
+  >
+    <div
+      class="chakra-slider__track css-1usnb2a"
+      id="slider-track-1"
+      style="position: absolute; top: 50%; transform: translateY(-50%); width: 100%;"
+    >
+      <div
+        class="chakra-slider__filled-track css-2w30ji"
+        style="position: absolute; top: 50%; transform: translateY(-50%); width: 50%; left: 0px;"
+      />
+    </div>
+    <div
+      aria-label="slider-1"
+      aria-orientation="horizontal"
+      aria-valuemax="100"
+      aria-valuemin="0"
+      aria-valuenow="50"
+      class="chakra-slider__thumb css-13rtom0"
+      id="slider-thumb-1"
+      role="slider"
+      style="position: absolute; user-select: none;"
+      tabindex="0"
+    />
+    <input
+      type="hidden"
+      value="50"
+    />
+  </div>
+</DocumentFragment>
+`;

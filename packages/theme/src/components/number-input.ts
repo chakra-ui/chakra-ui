@@ -1,4 +1,4 @@
-import { ComponentTheme, mode } from "./utils"
+import { ComponentTheme, mode } from "@chakra-ui/theme-tools"
 
 function getSizeStyle(size: "sm" | "md" | "lg") {
   return {
@@ -48,12 +48,10 @@ const NumberInput: ComponentTheme = {
   },
 }
 
-export const NumberInputTokens = {
-  sizes: {
-    sm: "sm",
-    md: "md",
-    lg: "lg",
-  },
+export const NumberInputSizes = {
+  sm: "sm",
+  md: "md",
+  lg: "lg",
 }
 
 export default NumberInput

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import * as React from "react"
 import { isBrowser } from "@chakra-ui/utils"
 import { useSafeLayoutEffect } from "./use-safe-layout-effect"
 
@@ -10,7 +10,7 @@ const isSupported = (api: string) => isBrowser && api in window
  * @param query the media query to match
  */
 export function useMediaQuery(query: string) {
-  const [matches, setMatches] = useState(() => {
+  const [matches, setMatches] = React.useState(() => {
     if (!isSupported("matchMedia")) return false
     return !!window.matchMedia(query).matches
   })

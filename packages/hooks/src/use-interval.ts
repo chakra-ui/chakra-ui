@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import * as React from "react"
 import { useLatestRef } from "./use-latest-ref"
 
 /**
@@ -10,7 +10,7 @@ import { useLatestRef } from "./use-latest-ref"
 export function useInterval(callback: () => void, delay: number | null) {
   const savedCallback = useLatestRef(callback)
 
-  useEffect(() => {
+  React.useEffect(() => {
     const tick = () => {
       savedCallback.current?.()
     }

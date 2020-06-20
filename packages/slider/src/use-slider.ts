@@ -112,7 +112,7 @@ export interface UseSliderProps {
 type EventSource = "mouse" | "touch" | "keyboard"
 
 /**
- * Reack hook that implements an accessible range slider.
+ * React hook that implements an accessible range slider.
  *
  * It's an alternative to `<input type="range" />`, and returns
  * prop getters for the component parts

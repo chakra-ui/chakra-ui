@@ -1,16 +1,24 @@
-import { Omit } from "@chakra-ui/utils"
-import * as CSS from "csstype"
 import { Pseudos } from "@chakra-ui/parser"
+import { Omit } from "@chakra-ui/utils"
+import {
+  BoxShadowProperty,
+  FontWeightProperty,
+  PropertiesFallback,
+  Pseudos as CSSPseudos,
+  StandardProperties,
+  SvgProperties,
+  ZIndexProperty,
+} from "csstype"
 
-type StandardCSSProperties = CSS.PropertiesFallback<number | string>
+type CSS = PropertiesFallback<number | string>
 
 type Responsive<T> = T | Array<T | null>
 
-type CSSProperties = CSS.StandardProperties<number | string> &
-  CSS.SvgProperties<number | string>
+type CSSProperties = StandardProperties<number | string> &
+  SvgProperties<number | string>
 
-type CSSPseudoSelectorProps = {
-  [K in CSS.Pseudos]?: SystemStyleObject
+type CSSPseudoStyles = {
+  [K in CSSPseudos]?: SystemStyleObject
 }
 
 export interface CSSObject
@@ -22,68 +30,68 @@ type CSSPropertiesWithMultiValues = {
   [K in keyof CSSProperties]: CSSProperties[K]
 }
 
-type CSSPseudosForCSSObject = { [K in CSS.Pseudos]?: CSSObject }
+type CSSPseudosForCSSObject = { [K in CSSPseudos]?: CSSObject }
 
 type CSSInterpolation = undefined | number | string | CSSObject
 
 interface CSSOthersObjectForCSSObject {
   [propertiesName: string]: CSSInterpolation
 }
-interface CSSSelectorObject {
+
+interface CSSSelectorStyles {
   [cssSelector: string]: SystemStyleObject
 }
-
 interface AliasesCSSProperties {
-  bg?: StandardCSSProperties["background"]
-  bgColor?: StandardCSSProperties["backgroundColor"]
-  bgImage?: StandardCSSProperties["backgroundImage"]
-  bgSize?: StandardCSSProperties["backgroundSize"]
-  bgPosition?: StandardCSSProperties["backgroundPosition"]
-  bgRepeat?: StandardCSSProperties["backgroundRepeat"]
-  bgAttachment?: StandardCSSProperties["backgroundAttachment"]
-  borderX?: StandardCSSProperties["border"]
-  borderY?: StandardCSSProperties["border"]
-  borderTopRadius?: StandardCSSProperties["borderRadius"]
-  borderBottomRadius?: StandardCSSProperties["borderRadius"]
-  borderLeftRadius?: StandardCSSProperties["borderRadius"]
-  borderRightRadius?: StandardCSSProperties["borderRadius"]
-  textColor?: StandardCSSProperties["color"]
-  flexDir?: StandardCSSProperties["flexDirection"]
-  w?: StandardCSSProperties["width"]
-  h?: StandardCSSProperties["height"]
-  minW?: StandardCSSProperties["minWidth"]
-  maxW?: StandardCSSProperties["maxWidth"]
-  minH?: StandardCSSProperties["minHeight"]
-  maxH?: StandardCSSProperties["maxHeight"]
-  m?: StandardCSSProperties["margin"]
-  mt?: StandardCSSProperties["marginTop"]
-  mr?: StandardCSSProperties["marginRight"]
-  mb?: StandardCSSProperties["marginBottom"]
-  ml?: StandardCSSProperties["marginLeft"]
-  mx?: StandardCSSProperties["marginLeft"]
-  pos?: StandardCSSProperties["position"]
-  inset?: StandardCSSProperties["left"]
-  insetX?: StandardCSSProperties["left"]
-  insetY?: StandardCSSProperties["top"]
-  marginX?: StandardCSSProperties["marginLeft"]
-  my?: StandardCSSProperties["marginTop"]
-  marginY?: StandardCSSProperties["marginTop"]
-  p?: StandardCSSProperties["padding"]
-  pt?: StandardCSSProperties["paddingTop"]
-  pr?: StandardCSSProperties["paddingRight"]
-  pb?: StandardCSSProperties["paddingBottom"]
-  pl?: StandardCSSProperties["paddingLeft"]
-  px?: StandardCSSProperties["paddingLeft"]
-  paddingX?: StandardCSSProperties["paddingLeft"]
-  py?: StandardCSSProperties["paddingTop"]
-  paddingY?: StandardCSSProperties["paddingTop"]
-  textDecor?: StandardCSSProperties["textDecoration"]
+  bg?: CSS["background"]
+  bgColor?: CSS["backgroundColor"]
+  bgImage?: CSS["backgroundImage"]
+  bgSize?: CSS["backgroundSize"]
+  bgPosition?: CSS["backgroundPosition"]
+  bgRepeat?: CSS["backgroundRepeat"]
+  bgAttachment?: CSS["backgroundAttachment"]
+  borderX?: CSS["border"]
+  borderY?: CSS["border"]
+  borderTopRadius?: CSS["borderRadius"]
+  borderBottomRadius?: CSS["borderRadius"]
+  borderLeftRadius?: CSS["borderRadius"]
+  borderRightRadius?: CSS["borderRadius"]
+  textColor?: CSS["color"]
+  flexDir?: CSS["flexDirection"]
+  w?: CSS["width"]
+  h?: CSS["height"]
+  minW?: CSS["minWidth"]
+  maxW?: CSS["maxWidth"]
+  minH?: CSS["minHeight"]
+  maxH?: CSS["maxHeight"]
+  m?: CSS["margin"]
+  mt?: CSS["marginTop"]
+  mr?: CSS["marginRight"]
+  mb?: CSS["marginBottom"]
+  ml?: CSS["marginLeft"]
+  mx?: CSS["marginLeft"]
+  pos?: CSS["position"]
+  inset?: CSS["left"]
+  insetX?: CSS["left"]
+  insetY?: CSS["top"]
+  marginX?: CSS["marginLeft"]
+  my?: CSS["marginTop"]
+  marginY?: CSS["marginTop"]
+  p?: CSS["padding"]
+  pt?: CSS["paddingTop"]
+  pr?: CSS["paddingRight"]
+  pb?: CSS["paddingBottom"]
+  pl?: CSS["paddingLeft"]
+  px?: CSS["paddingLeft"]
+  paddingX?: CSS["paddingLeft"]
+  py?: CSS["paddingTop"]
+  paddingY?: CSS["paddingTop"]
+  textDecor?: CSS["textDecoration"]
 }
 
 interface OverwriteCSSProperties {
-  boxShadow?: CSS.BoxShadowProperty | number
-  fontWeight?: CSS.FontWeightProperty | string
-  zIndex?: CSS.ZIndexProperty | string
+  boxShadow?: BoxShadowProperty | number
+  fontWeight?: FontWeightProperty | string
+  zIndex?: ZIndexProperty | string
 }
 
 interface AllSystemCSSProperties
@@ -99,22 +107,23 @@ type SystemCSSProperties = {
     | SystemStyleObject
 }
 
-interface ApplyProperty {
+interface ApplyPropStyles {
   apply: string
 }
 
 type PseudoStyles = {
-  [K in keyof Pseudos]?: SystemStyleObject & { content?: string }
+  [K in keyof Pseudos]?: K extends "_before" | "_after"
+    ? SystemStyleObject & { content?: string }
+    : SystemStyleObject
 }
 
 export type SystemStyleObject =
   | SystemCSSProperties
-  | CSSPseudoSelectorProps
-  | CSSSelectorObject
-  | ApplyProperty
+  | CSSPseudoStyles
+  | CSSSelectorStyles
+  | ApplyPropStyles
   | PseudoStyles
 
-// The core style object or function
 export type StyleObjectOrFn =
   | SystemStyleObject
   | ((theme: any) => SystemStyleObject)

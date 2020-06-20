@@ -1,6 +1,8 @@
-import { SystemProps } from "@chakra-ui/parser"
-import { ValidHTMLProps } from "./should-forward-prop"
 import { ColorMode } from "@chakra-ui/color-mode"
+import { SystemProps } from "@chakra-ui/parser"
+import { Dict } from "@chakra-ui/utils"
+import * as React from "react"
+import { ValidHTMLProps } from "./should-forward-prop"
 
 export interface Options<T extends As, P> {
   /**
@@ -140,9 +142,9 @@ export type WithAs<P, T extends As> = P &
  * To support `framer-motion`, we'll omit transition prop from chakra props
  * if you do this `chakra(motion.div)`
  */
-export type WithChakra<P> = P extends { transition?: any }
-  ? P & Omit<ChakraProps, "transition">
-  : P & ChakraProps
+export type WithChakra<Props> = Props extends { transition?: any }
+  ? Props & Omit<ChakraProps, "transition">
+  : Props & ChakraProps
 
 /**
  * This is most clunky part of the types :), bare with me.
@@ -160,8 +162,9 @@ export type WithChakra<P> = P extends { transition?: any }
  * - Add the `as` prop. in this case, it doesn't do anything special.
  * - Return a JSX Element
  */
-type RegularComponent<T extends As, P, O extends string> = (
-  props: WithChakra<Omit<PropsOf<T>, keyof P | O>> & P & { as?: As },
+type RegularComponent<T extends As, P> = (
+  props: WithChakra<Omit<PropsOf<T>, "size" | "as" | keyof P>> &
+    P & { as?: As },
 ) => JSX.Element
 
 /**
@@ -172,24 +175,28 @@ type RegularComponent<T extends As, P, O extends string> = (
  * - Use the `WithAs` to merge the base component prop with `as` component prop
  * - Add Chakra props to the resulting types.
  */
-type ExtensibleComponent<T extends As, P, O extends string> = <
-  TT extends As = T
->(
-  props: WithChakra<WithAs<Omit<PropsOf<T>, O>, TT>> & P,
+type ExtensibleComponent<T extends As, P> = <TT extends As = T>(
+  props: WithChakra<WithAs<PropsOf<T>, TT>> & P,
 ) => JSX.Element
 
-type Component<T extends As, P, O extends string> =
-  | RegularComponent<T, P, O>
-  | ExtensibleComponent<T, P, O>
+type Comp<T extends As, P> = RegularComponent<T, P> | ExtensibleComponent<T, P>
 
-export type ChakraComponent<
-  T extends As,
-  P = {},
-  O extends string = ""
-> = Component<T, P, O> & {
+export type ChakraComponent<T extends As, P extends Dict = {}> = Comp<T, P> & {
   displayName?: string
-  propTypes?: React.WeakValidationMap<PropsOf<T> & P>
-  defaultProps?: Partial<PropsOf<T> & P & ChakraProps>
+  propTypes?: React.WeakValidationMap<Omit<PropsOf<T>, "size"> & P>
+  defaultProps?: Partial<Omit<PropsOf<T>, "size"> & P & ChakraProps>
+}
+
+type Merge<T extends As, P> = P & Omit<PropsOf<T>, keyof P>
+
+type Exotic<P> =
+  | (<T>(props: { as?: T } & (T extends As ? Merge<T, P> : P)) => JSX.Element)
+  | ((props: P & { as?: As }) => JSX.Element)
+
+export type ForwardRefComponent<P> = Exotic<P> & {
+  displayName?: string
+  propTypes?: React.WeakValidationMap<P>
+  defaultProps?: Partial<P>
 }
 
 /**
@@ -208,10 +215,19 @@ export type ExtractThemingProps<
     : T["components"][K] extends {
         variants: infer V
       }
-    ? T["components"][K] extends { sizes: infer S }
-      ? { variant?: keyof V; size?: keyof S }
-      : { variant?: keyof V }
-    : T["components"][K] extends { sizes: infer S }
+    ? T["components"][K] extends {
+        sizes: infer S
+      }
+      ? {
+          variant?: keyof V
+          size?: keyof S
+        }
+      : {
+          variant?: keyof V
+        }
+    : T["components"][K] extends {
+        sizes: infer S
+      }
     ? { size?: keyof S }
     : undefined
   : undefined
@@ -224,7 +240,11 @@ type ModifierStyle<P> =
   | StyleProps
   | ((props: ModifierProps & Required<P>) => StyleProps)
 
-type StyleProps = SystemProps | { [component: string]: SystemProps }
+type StyleProps =
+  | SystemProps
+  | {
+      [component: string]: SystemProps
+    }
 
 interface ModifierProps {
   colorScheme: string

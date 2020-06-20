@@ -21,3 +21,5 @@ packages/*/.rts2_cache*
 .netlify
 .idea
 *.env
+draft*
+.yarn

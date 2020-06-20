@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react"
+import * as React from "react"
 import { useControllableProp } from "./use-controllable"
 import { usePrevious } from "./use-previous"
 import { useId } from "./use-id"
@@ -20,28 +20,28 @@ export function useDisclosure(props: UseDisclosureProps = {}) {
     id: idProp,
   } = props
 
-  const [isOpenState, setIsOpen] = useState(props.defaultIsOpen || false)
+  const [isOpenState, setIsOpen] = React.useState(props.defaultIsOpen || false)
   const [isControlled, isOpen] = useControllableProp(isOpenProp, isOpenState)
 
   const prevIsOpen = usePrevious(isOpen)
 
   const id = useId(idProp, "disclosure")
 
-  const onClose = useCallback(() => {
+  const onClose = React.useCallback(() => {
     if (!isControlled) {
       setIsOpen(false)
     }
     onCloseProp?.()
   }, [isControlled, onCloseProp])
 
-  const onOpen = useCallback(() => {
+  const onOpen = React.useCallback(() => {
     if (!isControlled) {
       setIsOpen(true)
     }
     onOpenProp?.()
   }, [isControlled, onOpenProp])
 
-  const onToggle = useCallback(() => {
+  const onToggle = React.useCallback(() => {
     const action = isOpen ? onClose : onOpen
     action()
   }, [isOpen, onOpen, onClose])

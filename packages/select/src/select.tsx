@@ -5,9 +5,8 @@ import {
   PropsOf,
   useComponentStyle,
   useCss,
-  forwardRef,
 } from "@chakra-ui/system"
-import { split, __DEV__, cx } from "@chakra-ui/utils"
+import { cx, split, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
 interface SelectOptions extends FormControlOptions {
@@ -59,24 +58,25 @@ export type SelectFieldProps = Omit<PropsOf<typeof StyledSelect>, Omitted> & {
 /**
  * The native `select` element enhanced for accessibility and validation.
  */
-export const SelectField = forwardRef<SelectFieldProps, "select", Omitted>(
-  function SelectField(props, ref) {
-    const { children, placeholder, ...rest } = props
-    const fieldProps = useFormControl<HTMLSelectElement>(props)
+export const SelectField = React.forwardRef(function SelectField(
+  props: SelectFieldProps,
+  ref: React.Ref<any>,
+) {
+  const { children, placeholder, ...rest } = props
+  const fieldProps = useFormControl<HTMLSelectElement>(props)
 
-    return (
-      <StyledSelect
-        ref={ref}
-        {...(rest as any)}
-        {...fieldProps}
-        className={cx("chakra-select", props.className)}
-      >
-        {placeholder && <option value="">{placeholder}</option>}
-        {children}
-      </StyledSelect>
-    )
-  },
-)
+  return (
+    <StyledSelect
+      ref={ref}
+      {...(rest as any)}
+      {...fieldProps}
+      className={cx("chakra-select", props.className)}
+    >
+      {placeholder && <option value="">{placeholder}</option>}
+      {children}
+    </StyledSelect>
+  )
+})
 
 if (__DEV__) {
   SelectField.displayName = "SelectField"
@@ -106,9 +106,9 @@ export interface SelectProps extends SelectFieldProps {
 /**
  * React component used to select one item from a list of options.
  */
-export const Select = forwardRef<SelectProps, "select">(function Select(
-  props,
-  ref,
+export const Select = React.forwardRef(function Select(
+  props: SelectProps,
+  ref: React.Ref<any>,
 ) {
   const {
     rootProps,

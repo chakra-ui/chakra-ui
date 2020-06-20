@@ -104,37 +104,38 @@ const SubmenuSvg = (props: PropsOf<"svg">) => (
 /**
  * The trigger for the menu list. Must be a direct child of `Menu`.
  */
-export const MenuButton = forwardRef<MenuButtonProps, "button">(
-  function MenuButton(props, ref) {
-    const { children, submenuIcon, ...rest } = props
+export const MenuButton = forwardRef<MenuButtonProps>(function MenuButton(
+  props,
+  ref,
+) {
+  const { children, submenuIcon, ...rest } = props
 
-    const context = useMenuContext()
+  const context = useMenuContext()
 
-    const ownProps = useMenuButton({ context, ...rest })
-    const ownRef = mergeRefs(ref, ownProps.ref)
+  const ownProps = useMenuButton({ context, ...rest })
+  const ownRef = mergeRefs(ref, ownProps.ref)
 
-    const isSubmenu = context.hasParentMenu
+  const isSubmenu = context.hasParentMenu
 
-    const Comp = isSubmenu ? StyledMenuItem : StyledMenuButton
+  const Comp = isSubmenu ? StyledMenuItem : StyledMenuButton
 
-    const getChildren = () => {
-      if (!isSubmenu) return props.children
-
-      return (
-        <React.Fragment>
-          <chakra.span flex="1">{props.children}</chakra.span>
-          <MenuIcon mr="-0.5rem" children={submenuIcon || <SubmenuSvg />} />
-        </React.Fragment>
-      )
-    }
+  const getChildren = () => {
+    if (!isSubmenu) return props.children
 
     return (
-      <Comp {...ownProps} ref={ownRef}>
-        {getChildren()}
-      </Comp>
+      <React.Fragment>
+        <chakra.span flex="1">{props.children}</chakra.span>
+        <MenuIcon mr="-0.5rem" children={submenuIcon || <SubmenuSvg />} />
+      </React.Fragment>
     )
-  },
-)
+  }
+
+  return (
+    <Comp {...ownProps} ref={ownRef}>
+      {getChildren()}
+    </Comp>
+  )
+})
 
 if (__DEV__) {
   MenuButton.displayName = "MenuButton"
@@ -149,9 +150,9 @@ const StyledMenuList = chakra("div", {
   pure: true,
 })
 
-export const MenuList = forwardRef<MenuListProps, "div">(function MenuList(
-  props,
-  ref,
+export const MenuList = React.forwardRef(function MenuList(
+  props: MenuListProps,
+  ref: React.Ref<any>,
 ) {
   const context = useMenuContext()
   const ownProps = useMenuList({ context, ...props })
@@ -196,7 +197,7 @@ interface MenuItemOptions extends Omit<UseMenuItemProps, "context"> {
 
 export type MenuItemProps = PropsOf<typeof StyledMenuItem> & MenuItemOptions
 
-export const MenuItem = forwardRef<MenuItemProps, "button">(function MenuItem(
+export const MenuItem = forwardRef<MenuItemProps>(function MenuItem(
   props,
   ref,
 ) {
@@ -250,7 +251,7 @@ const CheckIcon = (props: PropsOf<"svg">) => (
   </svg>
 )
 
-export const MenuItemOption = forwardRef<MenuItemOptionProps, "button">(
+export const MenuItemOption = forwardRef<MenuItemOptionProps>(
   function MenuItemOption(props, ref) {
     const { icon, iconSpacing = "0.75rem", ...htmlProps } = props
 

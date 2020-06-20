@@ -21,7 +21,10 @@ const TransitionContext = React.createContext<TransitionStyles>({
   overlay: {},
 })
 
-TransitionContext.displayName = "TransitionContext"
+if (__DEV__) {
+  TransitionContext.displayName = "TransitionContext"
+}
+
 const useTransitionContext = () => React.useContext(TransitionContext)
 
 interface DrawerTransitionProps {
@@ -73,7 +76,7 @@ if (__DEV__) {
   Drawer.displayName = "Drawer"
 }
 
-export const DrawerContent = forwardRef<ModalContentProps, "section">(
+export const DrawerContent = forwardRef<ModalContentProps>(
   function DrawerContent(props, ref) {
     const { content: styles } = useTransitionContext()
     return (
@@ -94,7 +97,7 @@ if (__DEV__) {
   DrawerContent.displayName = "DrawerContent"
 }
 
-export const DrawerOverlay = forwardRef<ModalOverlayProps, "div">(
+export const DrawerOverlay = forwardRef<ModalOverlayProps>(
   function DrawerOverlay(props, ref) {
     const { overlay: styles } = useTransitionContext()
     return (

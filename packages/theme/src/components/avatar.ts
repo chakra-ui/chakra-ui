@@ -1,18 +1,24 @@
 import sizes from "../foundations/sizes"
-import { ComponentTheme, mode, Props } from "./utils"
-import { stringToColor, isDark } from "@chakra-ui/color"
+import {
+  randomColor,
+  isDark,
+  ComponentTheme,
+  mode,
+  Props,
+} from "@chakra-ui/theme-tools"
 import { SystemProps } from "@chakra-ui/system"
 
 function getSize(size: string) {
-  const inferredSize = sizes[size as keyof typeof sizes]
+  const themeSize = sizes[size as keyof typeof sizes]
 
   const styles: SystemProps = {
     width: size,
     height: size,
-    fontSize: `calc(${inferredSize ?? size} / 2.5)`,
+    fontSize: `calc(${themeSize ?? size} / 2.5)`,
   }
+
   if (size !== "100%") {
-    styles["lineHeight"] = inferredSize ?? size
+    styles.lineHeight = themeSize ?? size
   }
 
   return {
@@ -22,14 +28,12 @@ function getSize(size: string) {
 }
 
 function getRootStyle(props: Props & { name?: string }) {
-  const bg = props.name ? stringToColor(props.name) : "gray.400"
+  const { name, theme: t } = props
 
-  const color = props.name
-    ? isDark(bg)(props.theme)
-      ? "white"
-      : "gray.800"
-    : "white"
+  const bg = name ? randomColor({ string: name }) : "gray.400"
+  const isBgDark = isDark(bg)(t)
 
+  const color = name ? (isBgDark ? "white" : "gray.800") : "white"
   const borderColor = mode("white", "gray.800")(props)
 
   return {
@@ -39,7 +43,9 @@ function getRootStyle(props: Props & { name?: string }) {
   }
 }
 
-const Avatar: ComponentTheme<{ name?: string }> = {
+type AvatarProps = { name?: string }
+
+const Avatar: ComponentTheme<AvatarProps> = {
   defaultProps: {
     size: "md",
   },
@@ -70,17 +76,15 @@ const Avatar: ComponentTheme<{ name?: string }> = {
   },
 }
 
-export const AvatarTokens = {
-  sizes: {
-    "2xs": "2xs",
-    xs: "xs",
-    sm: "sm",
-    md: "md",
-    lg: "lg",
-    xl: "xl",
-    "2xl": "2xl",
-    full: "full",
-  },
+export const AvatarSizes = {
+  "2xs": "2xs",
+  xs: "xs",
+  sm: "sm",
+  md: "md",
+  lg: "lg",
+  xl: "xl",
+  "2xl": "2xl",
+  full: "full",
 }
 
 export default Avatar

@@ -1,0 +1,26 @@
+{
+  "name": "with-typescript",
+  "version": "1.0.0",
+  "private": "true",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "type-check": "tsc"
+  },
+  "dependencies": {
+    "next": "latest",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "@chakra-ui/theme": "1.0.0",
+    "@chakra-ui/css-reset": "1.0.0",
+    "@chakra-ui/core": "1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.21",
+    "@types/react": "16.9.23",
+    "@types/react-dom": "16.9.8",
+    "typescript": "3.9.5"
+  },
+  "license": "ISC"
+}

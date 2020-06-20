@@ -1,7 +1,7 @@
-import * as React from "react"
-import { chakra, PropsOf, forwardRef } from "@chakra-ui/system"
 import { Icon, IconProps } from "@chakra-ui/icon"
+import { chakra, PropsOf } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
+import * as React from "react"
 
 /**
  * CloseButton - Theming
@@ -54,17 +54,18 @@ export type CloseButtonProps = PropsOf<typeof StyledButton> & {
  * It is used to handle the close functionality in feedback and overlay components
  * like Alerts, Toasts, Drawers and Modals.
  */
-export const CloseButton = forwardRef<CloseButtonProps, "button">(
-  function CloseButton(props: CloseButtonProps, ref) {
-    const { children, isDisabled, ...rest } = props
+export const CloseButton = React.forwardRef(function CloseButton(
+  props: CloseButtonProps,
+  ref: React.Ref<any>,
+) {
+  const { children, isDisabled, ...rest } = props
 
-    return (
-      <StyledButton ref={ref} disabled={isDisabled} {...rest}>
-        {children || <CloseIcon width="1em" height="1em" />}
-      </StyledButton>
-    )
-  },
-)
+  return (
+    <StyledButton ref={ref} disabled={isDisabled} {...rest}>
+      {children || <CloseIcon width="1em" height="1em" />}
+    </StyledButton>
+  )
+})
 
 if (__DEV__) {
   CloseButton.displayName = "CloseButton"

@@ -1,5 +1,5 @@
-import Badge, { BadgeTokens } from "./badge"
-import { ComponentTheme } from "./utils"
+import Badge, { BadgeVariants } from "./badge"
+import { ComponentTheme } from "@chakra-ui/theme-tools"
 
 const Code: ComponentTheme = {
   defaultProps: Badge.defaultProps,
@@ -12,8 +12,6 @@ const Code: ComponentTheme = {
   variants: Badge.variants,
 }
 
-export const CodeTokens = {
-  variants: BadgeTokens.variants,
-}
+export const CodeVariants = BadgeVariants
 
 export default Code

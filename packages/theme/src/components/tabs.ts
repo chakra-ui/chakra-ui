@@ -1,5 +1,10 @@
-import { Props, mode, ComponentTheme, StyleProps } from "./utils"
-import { getColor } from "@chakra-ui/color"
+import {
+  Props,
+  mode,
+  ComponentTheme,
+  StyleObject,
+  getColor,
+} from "@chakra-ui/theme-tools"
 
 function getLineStyle(props: Props) {
   const { colorScheme: c } = props
@@ -76,7 +81,7 @@ function getEnclosedColoredStyle(props: Props) {
   }
 }
 
-function getSoftRoundedStyle(props: any): StyleProps {
+function getSoftRoundedStyle(props: any): StyleObject {
   const { colorScheme: c, theme: t } = props
   return {
     Tab: {
@@ -92,7 +97,7 @@ function getSoftRoundedStyle(props: any): StyleProps {
   }
 }
 
-function getSolidRoundedStyle(props: Props): StyleProps {
+function getSolidRoundedStyle(props: Props): StyleObject {
   const { colorScheme: c } = props
   return {
     Tab: {
@@ -162,20 +167,19 @@ const Tabs: ComponentTheme = {
   },
 }
 
-export const TabTokens = {
-  sizes: {
-    sm: "sm",
-    md: "md",
-    lg: "lg",
-  },
-  variants: {
-    line: "line",
-    enclosed: "enclosed",
-    "soft-rounded": "soft-rounded",
-    "enclosed-colored": "enclosed-colored",
-    "solid-rounded": "solid-rounded",
-    unstyled: "unstyled",
-  },
+export const TabSizes = {
+  sm: "sm",
+  md: "md",
+  lg: "lg",
+}
+
+export const TabVariants = {
+  line: "line",
+  enclosed: "enclosed",
+  "soft-rounded": "soft-rounded",
+  "enclosed-colored": "enclosed-colored",
+  "solid-rounded": "solid-rounded",
+  unstyled: "unstyled",
 }
 
 export default Tabs

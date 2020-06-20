@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Elements inside input render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="chakra-input__group css-3lf2mu"
+  >
+    <div
+      class="chakra-input__left-element css-yh9dkk"
+    >
+      <span>
+        Hello
+      </span>
+    </div>
+    <input
+      class="chakra-input css-1e8ybm1"
+    />
+    <div
+      class="chakra-input__right-element css-ypf6zb"
+    >
+      <span>
+        World
+      </span>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Input addons render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="chakra-input__group css-3lf2mu"
+  >
+    <div
+      class="chakra-input__left-addon css-yxu4h4"
+    >
+      https://
+    </div>
+    <input
+      class="chakra-input css-18zqkiy"
+    />
+    <div
+      class="chakra-input__right-addon css-qet1fj"
+    >
+      .com
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Input renders correctly 1`] = `
+<DocumentFragment>
+  <input
+    class="chakra-input css-k2kcme"
+  />
+</DocumentFragment>
+`;

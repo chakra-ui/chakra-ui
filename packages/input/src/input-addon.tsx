@@ -46,23 +46,24 @@ export type InputAddonProps = PropsOf<typeof StyledAddon> & {
  * Element to append or prepend to an input
  */
 
-export const InputAddon = forwardRef<InputAddonProps, "div">(
-  function InputAddonProps(props, ref) {
-    const { placement = "left", ...rest } = props
-    const placementStyles = placements[placement] ?? {}
-    const group = useInputGroup()
+export const InputAddon = React.forwardRef(function InputAddonProps(
+  props: InputAddonProps,
+  ref: React.Ref<any>,
+) {
+  const { placement = "left", ...rest } = props
+  const placementStyles = placements[placement] ?? {}
+  const group = useInputGroup()
 
-    return (
-      <StyledAddon
-        ref={ref}
-        {...placementStyles}
-        {...rest}
-        variant={group?.variant || props.variant}
-        size={group?.size || props.size}
-      />
-    )
-  },
-)
+  return (
+    <StyledAddon
+      ref={ref}
+      {...placementStyles}
+      {...rest}
+      variant={group?.variant || props.variant}
+      size={group?.size || props.size}
+    />
+  )
+})
 
 if (__DEV__) {
   InputAddon.displayName = "InputAddon"
@@ -74,25 +75,26 @@ if (__DEV__) {
  * Element to append to the left of an input
  */
 
-export const InputLeftAddon = forwardRef<InputAddonProps, "div">(
-  function InputLeftAddon(props, ref) {
-    const { leftAddon } = useInputGroup()
+export const InputLeftAddon = React.forwardRef(function InputLeftAddon(
+  props: InputAddonProps,
+  ref: React.Ref<any>,
+) {
+  const { leftAddon } = useInputGroup()
 
-    useSafeLayoutEffect(() => {
-      leftAddon?.mount()
-      return () => leftAddon?.unmount()
-    }, [])
+  useSafeLayoutEffect(() => {
+    leftAddon?.mount()
+    return () => leftAddon?.unmount()
+  }, [])
 
-    return (
-      <InputAddon
-        ref={ref}
-        placement="left"
-        {...props}
-        className={cx("chakra-input__left-addon", props.className)}
-      />
-    )
-  },
-)
+  return (
+    <InputAddon
+      ref={ref}
+      placement="left"
+      {...props}
+      className={cx("chakra-input__left-addon", props.className)}
+    />
+  )
+})
 
 if (__DEV__) {
   InputLeftAddon.displayName = "InputLeftAddon"
@@ -104,25 +106,26 @@ if (__DEV__) {
  * Element to append to the right of an input
  */
 
-export const InputRightAddon = forwardRef<InputAddonProps, "div">(
-  function InputRightAddon(props, ref) {
-    const { rightAddon } = useInputGroup()
+export const InputRightAddon = React.forwardRef(function InputRightAddon(
+  props: InputAddonProps,
+  ref: React.Ref<any>,
+) {
+  const { rightAddon } = useInputGroup()
 
-    useSafeLayoutEffect(() => {
-      rightAddon?.mount()
-      return () => rightAddon?.unmount()
-    }, [])
+  useSafeLayoutEffect(() => {
+    rightAddon?.mount()
+    return () => rightAddon?.unmount()
+  }, [])
 
-    return (
-      <InputAddon
-        ref={ref}
-        placement="right"
-        {...props}
-        className={cx("chakra-input__right-addon", props.className)}
-      />
-    )
-  },
-)
+  return (
+    <InputAddon
+      ref={ref}
+      placement="right"
+      {...props}
+      className={cx("chakra-input__right-addon", props.className)}
+    />
+  )
+})
 
 if (__DEV__) {
   InputRightAddon.displayName = "InputRightAddon"

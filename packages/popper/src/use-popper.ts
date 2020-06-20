@@ -1,12 +1,13 @@
 import * as React from "react"
-import { Placement, Instance, createPopper, Modifier } from "@popperjs/core"
+import { Instance, createPopper, Modifier } from "@popperjs/core"
+import type { Placement } from "@popperjs/core"
 import { getArrowStyles } from "./popper.utils"
 
 const isBrowser = typeof window !== "undefined"
 
 const useSafeLayoutEffect = isBrowser ? React.useLayoutEffect : React.useEffect
 
-export { Placement }
+export type { Placement }
 
 export interface UsePopperProps {
   gutter?: number
@@ -19,7 +20,7 @@ export interface UsePopperProps {
   arrowSize?: number
   arrowShadowColor?: string
   eventsEnabled?: boolean
-  modifiers?: Modifier<any>[]
+  modifiers?: Modifier<any, any>[]
 }
 
 export function usePopper(props: UsePopperProps) {

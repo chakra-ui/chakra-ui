@@ -1,0 +1,125 @@
+---
+title: Introduction
+description: Documentation for the component theming API.
+order: 1
+---
+
+import { BadgeSpec } from "../../src/components/theming-guide-image"
+
+# Component Theming
+
+Writing component styles that are easy to maintain over the life of a growing
+and changing project is a challenging task. To solve this, we need to have a
+simple and consistent system.
+
+Chakra provides a unified component-driven CSS API that makes it easy to build
+customizable, theme-aware components.
+
+<br />
+
+> 🚨 This API is **completely optional** and should be used only when you need
+> to customize or create component styles.
+
+## Overview
+
+A reusable and themable component consists of the **base styles**, that acts as
+the default styles, and **modifier styles** that alter the appearance of the
+component.
+
+The most common style modifiers are:
+
+- **Size.** A component can have different sizes (small, medium, large)
+- **Variant.** A component can different visual styles (outline, solid, ghost)
+- **Color scheme.** For a given variant, a component can have different color
+  schemes. For example, an outline button with a red color scheme.
+- **Color mode.** A component can change its visual styles based on color mode
+  (light or dark).
+
+## Theming API
+
+In styled components, you usually do this:
+
+```js live=false
+const Button = styled("button")({
+  // any style you can imagine goes here
+})
+```
+
+With chakra's theming API, we've defined a set of constraints to keep your
+styles consistent and extensible. Here's what you'll do:
+
+```js live=false
+const Button = chakra("button", {
+  // base or default styles
+  baseStyle: {...},
+  // styles for the different sizes
+  sizes: {...}
+  // styles for the different visual styles
+  variants: {...}
+  // reference component styles in the theme
+  themeKey: ""
+  // attach props
+  attrs: {...}
+})
+```
+
+## Quick Example
+
+Let's say you need to create a simple badge component with the following spec.
+
+<BadgeSpec />
+
+First thing we notice is that the badge has **base or common styles** across all
+its variants. Here's how we'll model that:
+
+```jsx live=false
+const Badge = chakra("span", {
+  baseStyle: {
+    fontSize: "12px",
+    fontWeight: "bold",
+    textTransform: "uppercase",
+    color: "white",
+  },
+})
+```
+
+Next, the badge has 4 variants: `in-progress`, `removed`, `new`, `default`.
+Here's how we'll model that:
+
+```jsx live=false
+const Badge = chakra("span", {
+  variants: {
+    "in-progress": { bg: "blue.600" },
+    new: { bg: "purple.600" },
+    removed: { bg: "red.600" },
+    default: { bg: "gray.600" },
+  },
+})
+```
+
+Bringing it all together:
+
+```jsx live=false
+const Badge = chakra("span", {
+  baseStyle: {
+    fontSize: "12px",
+    fontWeight: "bold",
+    textTransform: "uppercase",
+    color: "white",
+  },
+  variants: {
+    inProgress: { bg: "blue.600" },
+    new: { bg: "purple.600" },
+    removed: { bg: "red.600" },
+    default: { bg: "gray.600" },
+  },
+})
+
+// Pro tip: Set the default variant with `defaultProps`
+Badge.defaultProps = {
+  variant: "default",
+}
+```
+
+That's it! Now you have a solid structure your team can use to create new
+variants or improve the base styles.

@@ -1,6 +1,6 @@
 import { createContext, isBrowser, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { createPortal } from "react-dom"
+import * as ReactDOM from "react-dom"
 import { usePortalManager } from "./portal-manager"
 import { useSafeLayoutEffect } from "@chakra-ui/hooks"
 
@@ -24,7 +24,7 @@ export interface PortalProps {
    * Function that will be called to get the parent element
    * that the portal will be attached to.
    */
-  getContainer?: () => HTMLElement
+  getContainer?: () => HTMLElement | null
   /**
    * The content or node you'll like to portal
    */
@@ -138,7 +138,7 @@ export function Portal(props: PortalProps) {
     return <React.Fragment>{_children}</React.Fragment>
   }
 
-  return createPortal(
+  return ReactDOM.createPortal(
     <PortalContextProvider value={portal}>{_children}</PortalContextProvider>,
     portal,
   )

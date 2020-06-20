@@ -12,7 +12,7 @@ import {
   maxSafeInteger,
 } from "@chakra-ui/utils"
 import * as React from "react"
-import { useSpinner } from "./number-input.spinner"
+import { useSpinner } from "./use-spinner"
 import {
   isFloatingPointNumericCharacter,
   isValidNumericKeyboardEvent,

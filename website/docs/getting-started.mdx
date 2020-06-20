@@ -1,0 +1,90 @@
+---
+title: "Installation"
+description:
+  "Install Chakra UI and its peer dependencies. Create a theme object to include
+  custom color, typography, and layout values. Chakra UI comes with a default
+  theme, so this step is optional."
+order: 1
+---
+
+# Getting Started
+
+1. Install Chakra UI
+
+```bash
+npm i @chakra-ui/core
+
+# or
+
+yarn add @chakra-ui/core
+```
+
+<carbon-ad></carbon-ad>
+
+2. **Clone the default theme**: Chakra has prepared a default theme for you that
+   you can modify or extends. The theme contains specifications for the fonts,
+   font-sizes, colors, etc.
+
+   To get the default theme, run this command:
+
+   ```bash
+   npx chakra init --theme
+   ```
+
+   This command will copy the chakra theme to your project in a `chakra/`
+   directory. There you can update all the tokens to match your brand or design
+   requirements.
+
+   <br />
+
+3. **Add the providers**: For Chakra to work correctly, you need to setup some
+   global providers and add broswer css-reset. At the root of your application ,
+   here's what you need do:
+
+```jsx live=false
+import * as React from "react"
+import { ChakraProvider, CSSReset } from "@chakra-ui/core"
+
+// Use at the root of your app
+function Example() {
+  return (
+    <ChakraProvider>
+      <CSSReset />
+      <App />
+    </ChakraProvider>
+  )
+}
+```
+
+> - If you use Next.js, you need to set this up in `pages/_app.js`
+> - If you use Gatsby, kindly install the `gatsby-plugin-chakra-ui`. It does it
+>   automatically for you.
+> - If you use Create React App, you need to set this up in `index.js`
+
+<br />
+
+4. **Consume the theme**: Assuming you have the default theme in your `chakra/`
+   directory. Add the `theme` to the `ChakraProvider`.
+
+```jsx live=false
+import * as React from "react"
+import { ChakraProvider, CSSReset } from "@chakra-ui/core"
+import theme from "./chakra"
+
+// Use at the root of your app
+function Example() {
+  return (
+    <ChakraProvider theme={theme}>
+      <CSSReset />
+      <App />
+    </ChakraProvider>
+  )
+}
+```
+
+That's it, you're good to go!
+
+## Contributing
+
+Please see our [contribution guidelines](/contributing) to learn how you can
+contribute to this project.

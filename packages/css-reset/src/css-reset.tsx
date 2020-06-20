@@ -233,10 +233,6 @@ export const CSSReset = () => (
         border-top-width: 1px;
       }
 
-      img {
-        border-style: solid;
-      }
-
       textarea {
         resize: vertical;
       }
@@ -304,7 +300,7 @@ export const CSSReset = () => (
         height: auto;
       }
 
-      .js-focus-visible :focus:not([data-focus-visible-added]) {
+      [data-js-focus-visible] :focus:not([data-focus-visible-added]) {
         outline: none;
         box-shadow: none;
       }

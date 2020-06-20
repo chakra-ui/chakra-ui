@@ -1,4 +1,4 @@
-import { ComponentTheme, mode } from "./utils"
+import { ComponentTheme, mode } from "@chakra-ui/theme-tools"
 
 const Form: ComponentTheme = {
   baseStyle: (props) => ({

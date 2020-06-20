@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Select renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="chakra-select__wrapper css-1ew591x"
+  >
+    <select
+      class="chakra-select css-pyjrd1"
+      placeholder="Select an option"
+    >
+      <option
+        value=""
+      >
+        Select an option
+      </option>
+      <option
+        value="a"
+      >
+        A
+      </option>
+      <option
+        value="b"
+      >
+        B
+      </option>
+      <option
+        value="c"
+      >
+        C
+      </option>
+    </select>
+    <div
+      class="chakra-select__icon-wrapper css-1al6egx"
+    >
+      <svg
+        aria-hidden="true"
+        class="chakra-select__icon"
+        focusable="false"
+        role="presentation"
+        style="width: 1.25rem; height: 1.25rem; font-size: 1em;"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </div>
+</DocumentFragment>
+`;
