@@ -11,6 +11,10 @@ const config: Config = {
     property: "textShadow",
     scale: "shadows",
   },
+  shadow: {
+    property: "boxShadow",
+    scale: "shadows",
+  },
 }
 
 /**
@@ -22,9 +26,13 @@ export interface ShadowProps {
    */
   boxShadow?: ResponsiveValue<CSS.BoxShadowProperty | number>
   /**
+   * The `box-shadow` property
+   */
+  shadow?: ResponsiveValue<CSS.BoxShadowProperty | number>
+  /**
    * The `text-shadow` property
    */
-  textShadow?: ResponsiveValue<CSS.BoxShadowProperty | number>
+  textShadow?: ResponsiveValue<CSS.TextShadowProperty | number>
 }
 
 export const shadow = createParser(config)
