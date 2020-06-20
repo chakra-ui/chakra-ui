@@ -145,7 +145,7 @@ the PR author is a collaborator, that counts as one.
 ### Steps to PR
 
 - Fork of the chakra-ui repository and clone your fork
-- Create a new branch out of the `dev-ts` branch. We follow the convention
+- Create a new branch out of the `develop` branch. We follow the convention
   `[type/scope]`. For example `fix/accordion-hook`, `docs/menu-typo`
 
   - `type` can be either `docs`, `fix`, `feat`, `build`, or any other
