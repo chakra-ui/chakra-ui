@@ -6,7 +6,7 @@ import { __DEV__, cx } from "@chakra-ui/utils"
  *
  * It display a thin horizontal or vertical line, and renders a `hr` tag.
  *
- * @see Docs https://chakra-ui.com/components/code
+ * @see Docs https://chakra-ui.com/components/divider
  */
 export const Divider = chakra("hr", {
   themeKey: "Divider",
