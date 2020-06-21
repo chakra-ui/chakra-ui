@@ -26,7 +26,7 @@ import {
 } from "@chakra-ui/accordion"
 ```
 
-## Component Parts:
+## Component:
 
 - `Accordion`: manages the global state of all opened accordionitems via
   context.
