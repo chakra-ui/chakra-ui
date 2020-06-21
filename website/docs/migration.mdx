@@ -38,6 +38,12 @@ worry if your styles aren't exactly the same—this is to be expected.
 
 ### 1. Update your dependencies
 
+Chakra UI now exports all components as separate packages to make it easier to
+consume individual packages. You can either install `@chakra-ui/core`, or
+install the component package you need.
+
+#### Continuing with `@chakra-ui/core`
+
 Chakra no longer requires `@emotion/styled`, `@emotion/core` and
 `@emotion/theming`. If you're not using these libraries in your code, you can
 safely remove them and update Chakra UI to v1.
@@ -46,17 +52,35 @@ safely remove them and update Chakra UI to v1.
 
 ```diff
 "dependencies": {
-  "@chakra-ui/core": "1.0.0-beta",
+  "@chakra-ui/core": "1.0.0-next.1",
 -  "@emotion/styled": "10.X",
 -  "@emotion/theming": "10.x",
 -  "@emotion/core": "10.x"
 }
 ```
 
-**Note on bundle size:** Chakra UI now exports all components as separate
-packages to make it easier to consume individual packages. For example, if you
-use only `Button`, you can now install `@chakra-ui/button` along side its peer
-dependency `@chakra-ui/system`, and you're good to go!
+#### Installing specific components
+
+Let's say you only use the button from Chakra UI, instead of installing
+`@chakra-ui/core`, which installs all components, you can simply install
+`@chakra-ui/button`.
+
+For this approach, you'll also need to to install `@chakra-ui/system` which is
+the backbone for all components.
+
+```bash
+npm i @chakra-ui/button @chakra-ui/system
+
+# or
+
+yarn add @chakra-ui/button @chakra-ui/system
+```
+
+#### Notes on Icons
+
+Chakra moved all icons to a separate package `@chakra-ui/icons`. We recommend
+using `react-icons` in your projects considering it has a robust set of icons.
+However, you can still install this package.
 
 ### 2. Clone Chakra's default theme
 

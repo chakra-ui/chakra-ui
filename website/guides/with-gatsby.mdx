@@ -20,7 +20,11 @@ Gastby plugins make external APIs plug-and-play into your website. Installing
 can be done with the following command:
 
 ```bash
-yarn add gatsby-plugin-chakra-ui @chakra-ui/core @emotion/core @emotion/styled emotion-theming
+npm i gatsby-plugin-chakra-ui @chakra-ui/core
+
+# or
+
+yarn add gatsby-plugin-chakra-ui @chakra-ui/core
 ```
 
 After installation, you'll need to add `gatsby-plugin-chakra-ui` to the
@@ -28,6 +32,7 @@ After installation, you'll need to add `gatsby-plugin-chakra-ui` to the
 
 ```jsx live=false
 // gatsby-config.js
+
 module.exports = {
   plugins: [
     {
@@ -61,8 +66,8 @@ export default theme
 
 ## Chakra providers
 
-Chakra providers are needed to give your whole website context of the theme, and
-colormode defined by Chakra.
+Chakra exposes some context providers to give your website context of the theme,
+and color mode.
 
 In Gatsby, the root of your project is `gatsby-browser.js` + `gatsby-ssr.js`.
 Further documentation about
@@ -77,12 +82,10 @@ import customTheme from "./theme/theme"
 
 export const wrapRootElement = ({ element }) => {
   return (
-    <>
-      <ChakraProvider theme={customTheme}>
-        <CSSReset />
-        {element}
-      </ChakraProvider>
-    </>
+    <ChakraProvider theme={customTheme}>
+      <CSSReset />
+      {element}
+    </ChakraProvider>
   )
 }
 ```
@@ -92,10 +95,10 @@ export const wrapRootElement = ({ element }) => {
 export { wrapRootElement } from "./gatsby-browser"
 ```
 
-### v 0.8.0 and below
+### v0.8 and below
 
-If you're still working on v 0.8.0, the providers will be a bit different as
-seen below.
+If you're still working on v0.8, the providers will be a bit different as seen
+below.
 
 ```jsx live=false
 import React from "react"
