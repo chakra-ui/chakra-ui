@@ -8,9 +8,9 @@
     "start": "next start"
   },
   "dependencies": {
-    "@chakra-ui/system": "1.0.0-next.0",
-    "@chakra-ui/image": "1.0.0-next.0",
-    "@chakra-ui/theme": "1.0.0-next.0",
+    "@chakra-ui/system": "1.0.0-next.1",
+    "@chakra-ui/image": "1.0.0-next.1",
+    "@chakra-ui/theme": "1.0.0-next.1",
     "next": "9.3.3",
     "react": "^16.13.0",
     "react-dom": "^16.13.0"

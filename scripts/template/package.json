@@ -1,6 +1,6 @@
 {
   "name": "name",
-  "version": "1.0.0-next.0",
+  "version": "1.0.0-next.1",
   "description": "description",
   "keywords": [
     "theme",
@@ -42,9 +42,9 @@
     "lint": "concurrently yarn:lint:*"
   },
   "dependencies": {
-    "@chakra-ui/utils": "1.0.0-next.0",
-    "@chakra-ui/hooks": "1.0.0-next.0",
-    "@chakra-ui/system": "1.0.0-next.0"
+    "@chakra-ui/utils": "1.0.0-next.1",
+    "@chakra-ui/hooks": "1.0.0-next.1",
+    "@chakra-ui/system": "1.0.0-next.1"
   },
   "peerDependencies": {
     "react": "16.x"
