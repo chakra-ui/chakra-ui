@@ -196,6 +196,16 @@ types and accessibility.
 - All components now take the pseudo style props (`_hover`, `_active`, etc.)
 - Improved TypeScript support for the `as` prop
 
+### Color mode
+
+We changed the signature of the `useColorMode` hook to use array destructuing
+instead of object destructuing.
+
+```diff
+- const { colorMode, toggleMode } = useColorMode()
++ const [ colorMode, toggleMode ] = useColorMode()
+```
+
 ### Accordion
 
 Can install as a stand-alone package: `@chakra-ui/accordion`
