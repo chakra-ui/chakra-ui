@@ -1,16 +1,5 @@
 {
   "version": 2,
   "alias": "chakra-ui.com",
-  "routes": [
-    {
-      "src": "^(.*)$",
-      "dest": "website$1"
-    },
-    {
-      "src": "www.chakra-ui.com/*",
-      "status": 301,
-      "headers": { "Location": "https://chakra-ui.com/$1" }
-    }
-  ],
   "scope": "chakra-ui"
 }
