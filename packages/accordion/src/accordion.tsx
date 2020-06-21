@@ -1,5 +1,5 @@
 import { Collapse } from "@chakra-ui/collapse"
-import { ChevronDownIcon, IconProps } from "@chakra-ui/icons"
+import { Icon, IconProps } from "@chakra-ui/icon"
 import { chakra, PropsOf, forwardRef } from "@chakra-ui/system"
 import {
   createContext,
@@ -226,7 +226,8 @@ if (__DEV__) {
 export function AccordionIcon(props: IconProps) {
   const { isOpen, isDisabled } = useAccordionItemContext()
   return (
-    <ChevronDownIcon
+    <Icon
+      viewBox="0 0 24 24"
       aria-hidden
       focusable="false"
       width="1.25em"
@@ -236,7 +237,12 @@ export function AccordionIcon(props: IconProps) {
       transition="transform 0.2s"
       transformOrigin="center"
       {...props}
-    />
+    >
+      <path
+        fill="currentColor"
+        d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+      />
+    </Icon>
   )
 }
 

@@ -1,17 +1,12 @@
-import {
-  CheckCircleIcon,
-  InfoIcon,
-  WarningIcon,
-  WarningTwoIcon,
-} from "@chakra-ui/icons"
+import { CheckIcon, InfoIcon, WarningIcon } from "./alert-icons"
 import { chakra, PropsOf, useThemeDefaultProps } from "@chakra-ui/system"
 import { createContext, cx } from "@chakra-ui/utils"
 import * as React from "react"
 
 export const ALERT_STATUSES = {
   info: { icon: InfoIcon, colorScheme: "blue" },
-  warning: { icon: WarningTwoIcon, colorScheme: "orange" },
-  success: { icon: CheckCircleIcon, colorScheme: "green" },
+  warning: { icon: WarningIcon, colorScheme: "orange" },
+  success: { icon: CheckIcon, colorScheme: "green" },
   error: { icon: WarningIcon, colorScheme: "red" },
 }
 

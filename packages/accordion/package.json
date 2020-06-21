@@ -53,7 +53,7 @@
     "@chakra-ui/collapse": "^1.0.0-next.0",
     "@chakra-ui/descendant": "^1.0.0-next.0",
     "@chakra-ui/hooks": "^1.0.0-next.0",
-    "@chakra-ui/icons": "^1.0.0-next.0",
+    "@chakra-ui/icon": "^1.0.0-next.0",
     "@chakra-ui/utils": "^1.0.0-next.0"
   },
   "devDependencies": {

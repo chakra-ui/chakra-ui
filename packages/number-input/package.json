@@ -52,7 +52,7 @@
   },
   "dependencies": {
     "@chakra-ui/counter": "^1.0.0-next.0",
-    "@chakra-ui/icons": "^1.0.0-next.0",
+    "@chakra-ui/icon": "^1.0.0-next.0",
     "@chakra-ui/utils": "^1.0.0-next.0"
   },
   "devDependencies": {
