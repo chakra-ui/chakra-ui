@@ -5,7 +5,12 @@ import { getLastItem } from "./array"
 
 export function mapResponsive(prop: any, mapper: (val: any) => any) {
   if (isArray(prop)) {
-    return prop.map(mapper)
+    return prop.map((item) => {
+      if (item === null) {
+        return null
+      }
+      return mapper(item)
+    })
   }
 
   if (isObject(prop)) {
