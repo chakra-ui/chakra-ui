@@ -1,14 +1,17 @@
-import { css } from "@chakra-ui/css"
+import { css, CSSObject } from "@chakra-ui/css"
 import { pseudoSelectors } from "@chakra-ui/parser"
 import {
+  Dict,
   get,
   isNumber,
   isString,
+  runIfFn,
   UnionStringArray,
   __DEV__,
 } from "@chakra-ui/utils"
 import * as React from "react"
-import { ForwardRefComponent } from "./system.types"
+import { getComponentStyles } from "./component"
+import { As, ForwardRefComponent, Options } from "./system.types"
 
 /**
  * Carefully selected html elements for chakra components.
@@ -187,4 +190,43 @@ export function forwardRef<P>(
   comp: (props: P, ref: React.Ref<any>) => React.ReactElement | null,
 ) {
   return (React.forwardRef(comp as any) as unknown) as ForwardRefComponent<P>
+}
+
+export function componentProps<T extends As, P = {}>(options?: Options<T, P>) {
+  return (propsWithTheme: any): CSSObject => {
+    let computedStyles: CSSObject = {}
+    const { theme } = propsWithTheme
+    /**
+     * Users can pass a base style to the component options.
+     *
+     * @example
+     * const Button = chakra("button", {
+     *  baseStyle: {
+     *    margin: 4,
+     *    color: "red.300"
+     *  }
+     * })
+     */
+    if (options?.baseStyle) {
+      const baseStyleObject = runIfFn(options.baseStyle, propsWithTheme)
+      const baseStyle = css(baseStyleObject as Dict)(theme)
+      computedStyles = { ...computedStyles, ...baseStyle } as CSSObject
+    }
+
+    /**
+     * Users can pass a theme key to reference styles in the theme
+     * Styles will be read from `theme.components.<themeKey>`
+     *
+     * @example
+     * const Button = chakra("button", {
+     *  themeKey: "Button"
+     * })
+     */
+    if (options) {
+      const styles = getComponentStyles(propsWithTheme, options)
+      computedStyles = { ...computedStyles, ...styles } as CSSObject
+    }
+
+    return computedStyles
+  }
 }
