@@ -12899,10 +12899,10 @@ gatsby-cli@^2.12.45:
     yargs "^15.3.1"
     yurnalist "^1.1.2"
 
-gatsby-core-utils@^1.3.5:
-  version "1.3.5"
-  resolved "https://registry.yarnpkg.com/gatsby-core-utils/-/gatsby-core-utils-1.3.5.tgz#3c8f2dc940cec6570d1317f02ba028f327d1e773"
-  integrity sha512-kbwJ5BeQ8OixJVuBb1AGRL6vdkFz9nFBa6gXqjQ6AAXHhYDrjOYrRMIENT1QLoabWo6tlh0Hyl1agfWaQwW8lg==
+gatsby-core-utils@^1.3.5, gatsby-core-utils@^1.3.7:
+  version "1.3.7"
+  resolved "https://registry.yarnpkg.com/gatsby-core-utils/-/gatsby-core-utils-1.3.7.tgz#235797092a8566454229fff0959f669089225c91"
+  integrity sha512-AF8cLRlVzH8xAGLGxa9YbY3Pkf1PaqqI/fGGBPsvsh4C4vx6yoOjNOMQ3KaG4pSc/0EYeVafV7De0H7IU+CfUQ==
   dependencies:
     ci-info "2.0.0"
     configstore "^5.0.1"
@@ -13009,12 +13009,12 @@ gatsby-plugin-lodash@^3.3.1:
     lodash-webpack-plugin "^0.11.5"
 
 gatsby-plugin-manifest@^2.2.4:
-  version "2.4.11"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-manifest/-/gatsby-plugin-manifest-2.4.11.tgz#f9d342f6f98a3af6bc6d24b470e48647bfbeddab"
-  integrity sha512-IpgLRPxomeKPtGUMxXKxcS3QOvr1MwHB+D17Z31IedCUZZhthA3MTM6Ry+imKXqxXDXVBbsU6O6L5wJRmdWo9Q==
+  version "2.4.13"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-manifest/-/gatsby-plugin-manifest-2.4.13.tgz#49e4ed03f46f0d9bbcdd4a9dc4be8d2fb68ecb30"
+  integrity sha512-GLp8E2DEzfNr1DFHTSPnoAGMGoSEe6zN99YgeelswxGwirncHcAGLiIiaHPfrrtxTy/3AVhNkSHH38c4SUjuZw==
   dependencies:
     "@babel/runtime" "^7.10.2"
-    gatsby-core-utils "^1.3.5"
+    gatsby-core-utils "^1.3.7"
     semver "^5.7.1"
     sharp "^0.25.1"
 
