@@ -46,7 +46,6 @@
     "lint:types": "tsc --noEmit"
   },
   "devDependencies": {
-    "@chakra-ui/layout": "^1.0.0-next.1",
     "@chakra-ui/system": "^1.0.0-next.1"
   },
   "dependencies": {
