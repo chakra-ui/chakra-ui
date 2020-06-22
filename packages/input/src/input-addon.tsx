@@ -1,5 +1,5 @@
 import { useSafeLayoutEffect } from "@chakra-ui/hooks"
-import { chakra, PropsOf, forwardRef } from "@chakra-ui/system"
+import { chakra, PropsOf } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { useInputGroup } from "./input-group"

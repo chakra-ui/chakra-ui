@@ -1,4 +1,4 @@
-import { chakra, keyframes, PropsOf, forwardRef } from "@chakra-ui/system"
+import { chakra, keyframes, PropsOf } from "@chakra-ui/system"
 import { __DEV__, cx } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 import * as React from "react"

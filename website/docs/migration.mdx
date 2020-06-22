@@ -94,11 +94,15 @@ stressful for you to customize theme.
 
 <br />
 
-1. Run `npx chakra init --theme` to clone the theme to your project. This
+1. Run `npx chakra-cli init --theme` to clone the theme to your project. This
    creates a `chakra` folder with the default theme inside.
 
-```sh
-npx chakra init --theme
+```bash
+   # clone the javascript theme
+   npx chakra-cli init --theme
+
+   # clone the typescript theme
+   npx chakra-cli init --theme --ts
 ```
 
 2. Update the `ThemeProvider` in your app's root by passing the `theme` prop.

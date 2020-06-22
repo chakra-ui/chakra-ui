@@ -1,10 +1,10 @@
-import { chakra, PropsOf, useTheme, forwardRef } from "@chakra-ui/system"
+import { chakra, PropsOf, useTheme } from "@chakra-ui/system"
 import { cx, Dict, get, mapResponsive, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
 export type ContainerProps = PropsOf<typeof chakra.div>
 
-export const StyledContainer = chakra("div", {
+const StyledContainer = chakra("div", {
   baseStyle: {
     width: "100%",
     marginX: "auto",

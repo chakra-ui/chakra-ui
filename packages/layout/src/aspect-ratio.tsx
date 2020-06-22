@@ -1,6 +1,6 @@
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { Box, BoxProps } from "./box"
+import { chakra, PropsOf } from "@chakra-ui/system"
 
 interface AspectRatioOptions {
   /**
@@ -11,7 +11,7 @@ interface AspectRatioOptions {
   ratio?: number
 }
 
-export type AspectRatioProps = BoxProps & AspectRatioOptions
+export type AspectRatioProps = PropsOf<typeof chakra.div> & AspectRatioOptions
 
 /**
  * React component used to cropping media (videos, images and maps)
@@ -31,7 +31,7 @@ export const AspectRatio = React.forwardRef(function AspectRatio(
   const _className = cx("chakra-aspect-ratio", className)
 
   return (
-    <Box
+    <chakra.div
       ref={ref}
       position="relative"
       className={_className}
@@ -62,7 +62,7 @@ export const AspectRatio = React.forwardRef(function AspectRatio(
       {...rest}
     >
       {child}
-    </Box>
+    </chakra.div>
   )
 })
 
