@@ -39,7 +39,10 @@ export function ChakraProvider(props: ChakraProviderProps) {
   const { theme, children } = props
   return (
     <ThemeProvider theme={theme}>
-      <ColorModeProvider>
+      <ColorModeProvider
+        defaultValue={theme.config?.initialColorMode}
+        useSystemColorMode={theme.config?.useInitialColorMode}
+      >
         <GlobalStyle />
         {children}
       </ColorModeProvider>
