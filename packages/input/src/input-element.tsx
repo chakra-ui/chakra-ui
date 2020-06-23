@@ -1,8 +1,6 @@
-import { useSafeLayoutEffect } from "@chakra-ui/hooks"
 import { chakra, PropsOf, useComponentStyle } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { useInputGroup } from "./input-group"
 
 export type InputElementProps = PropsOf<typeof chakra.div> & {
   placement?: "left" | "right"
@@ -23,14 +21,12 @@ const InputElement = React.forwardRef(function InputElement(
   props: InputElementProps,
   ref: React.Ref<any>,
 ) {
-  const { placement = "left", ...rest } = props
-
-  const group = useInputGroup()
+  const { placement = "left", variant, size, ...rest } = props
 
   const input = useComponentStyle({
     themeKey: "Input",
-    variant: group?.variant,
-    size: group?.size,
+    variant,
+    size,
   }) as InputElementProps
 
   const placementProp = { [placement]: "0" }
@@ -56,22 +52,11 @@ export const InputLeftElement = React.forwardRef(function InputLeftElement(
   props: InputElementProps,
   ref: React.Ref<any>,
 ) {
-  const { leftElement } = useInputGroup()
-
-  useSafeLayoutEffect(() => {
-    leftElement?.mount()
-    return () => leftElement?.unmount()
-  }, [])
-
-  const _className = cx("chakra-input__left-element", props.className)
+  const { className, ...rest } = props
+  const _className = cx("chakra-input__left-element", className)
 
   return (
-    <InputElement
-      ref={ref}
-      placement="left"
-      {...props}
-      className={_className}
-    />
+    <InputElement ref={ref} placement="left" className={_className} {...rest} />
   )
 })
 
@@ -83,21 +68,15 @@ export const InputRightElement = React.forwardRef(function InputRightElement(
   props: InputElementProps,
   ref: React.Ref<any>,
 ) {
-  const { rightElement } = useInputGroup()
-
-  useSafeLayoutEffect(() => {
-    rightElement?.mount()
-    return () => rightElement?.unmount()
-  }, [])
-
-  const _className = cx("chakra-input__right-element", props.className)
+  const { className, ...rest } = props
+  const _className = cx("chakra-input__right-element", className)
 
   return (
     <InputElement
       ref={ref}
       placement="right"
-      {...props}
       className={_className}
+      {...rest}
     />
   )
 })

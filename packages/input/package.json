@@ -49,7 +49,6 @@
   },
   "dependencies": {
     "@chakra-ui/form-control": "^1.0.0-next.2",
-    "@chakra-ui/hooks": "^1.0.0-next.2",
     "@chakra-ui/utils": "^1.0.0-next.2"
   },
   "devDependencies": {

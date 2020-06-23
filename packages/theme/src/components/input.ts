@@ -102,21 +102,24 @@ const unstyled = {
 const sizes: InputTheme["sizes"] = {
   lg: {
     fontSize: "lg",
-    paddingX: 4,
+    paddingLeft: 4,
+    paddingRight: 4,
     paddingY: 2,
     minHeight: 12,
     borderRadius: "md",
   },
   md: {
     fontSize: "md",
-    paddingX: 4,
+    paddingLeft: 4,
+    paddingRight: 4,
     paddingY: 2,
     minHeight: 10,
     borderRadius: "md",
   },
   sm: {
     fontSize: "sm",
-    paddingX: 3,
+    paddingLeft: 3,
+    paddingRight: 3,
     paddingY: 1,
     minHeight: 8,
     borderRadius: "sm",

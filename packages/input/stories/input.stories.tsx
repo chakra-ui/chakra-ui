@@ -99,10 +99,10 @@ export const WithInputElement = () => (
   <Stack>
     <InputGroup>
       <InputLeftElement children={<PhoneIcon color="gray.300" />} />
-      <Input type="phone" placeholder="Phone number" />
+      <Input pl="60px" type="phone" placeholder="Phone number" />
     </InputGroup>
 
-    <InputGroup>
+    <InputGroup size="sm">
       <InputLeftElement color="gray.300" fontSize="1.2em" children="$" />
       <Input placeholder="Enter amount" />
       <InputRightElement children={<CheckIcon color="green.500" />} />

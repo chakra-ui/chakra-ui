@@ -1,13 +1,7 @@
 import { FormControlOptions, useFormControl } from "@chakra-ui/form-control"
-import {
-  chakra,
-  PropsOf,
-  useComponentStyle,
-  forwardRef,
-} from "@chakra-ui/system"
-import { __DEV__, cx } from "@chakra-ui/utils"
+import { chakra, forwardRef, PropsOf } from "@chakra-ui/system"
+import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { useInputGroup } from "./input-group"
 
 interface InputOptions {
   /**
@@ -55,49 +49,11 @@ const StyledInput = chakra<"input", InputOptions>("input", {
  * Element that allows users enter single valued data.
  */
 export const Input = forwardRef<InputProps>(function Input(props, ref) {
+  console.log(props)
   const inputProps = useFormControl<HTMLInputElement>(props)
-  const group = useInputGroup()
-
-  const variant = props.variant ?? group?.variant
-  const size = props.size ?? group?.size
-
-  const theming = { variant, size } as any
-
-  const inputStyle = useComponentStyle({
-    themeKey: "Input",
-    variant,
-    size,
-  })
-
-  const groupProps = {} as InputProps
-
-  if (group?.leftElement?.isMounted) {
-    groupProps.paddingLeft = inputStyle?.minHeight
-  }
-
-  if (group?.rightElement?.isMounted) {
-    groupProps.paddingRight = inputStyle?.minHeight
-  }
-
-  if (group?.leftAddon?.isMounted) {
-    groupProps.borderLeftRadius = 0
-  }
-
-  if (group?.rightAddon?.isMounted) {
-    groupProps.borderRightRadius = 0
-  }
-
   const _className = cx("chakra-input", props.className)
 
-  return (
-    <StyledInput
-      ref={ref}
-      {...groupProps}
-      {...inputProps}
-      {...theming}
-      className={_className}
-    />
-  )
+  return <StyledInput ref={ref} {...inputProps} className={_className} />
 })
 
 if (__DEV__) {
