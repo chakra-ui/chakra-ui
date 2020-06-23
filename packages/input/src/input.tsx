@@ -49,7 +49,6 @@ const StyledInput = chakra<"input", InputOptions>("input", {
  * Element that allows users enter single valued data.
  */
 export const Input = forwardRef<InputProps>(function Input(props, ref) {
-  console.log(props)
   const inputProps = useFormControl<HTMLInputElement>(props)
   const _className = cx("chakra-input", props.className)
 
@@ -59,3 +58,6 @@ export const Input = forwardRef<InputProps>(function Input(props, ref) {
 if (__DEV__) {
   Input.displayName = "Input"
 }
+
+//@ts-ignore
+Input.__hidden = "Input"

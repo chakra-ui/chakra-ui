@@ -81,6 +81,9 @@ if (__DEV__) {
   InputLeftAddon.displayName = "InputLeftAddon"
 }
 
+//@ts-ignore
+InputLeftAddon.__hidden = "InputLeftAddon"
+
 /**
  * InputRightAddon
  *
@@ -104,3 +107,6 @@ export const InputRightAddon = React.forwardRef(function InputRightAddon(
 if (__DEV__) {
   InputRightAddon.displayName = "InputRightAddon"
 }
+
+//@ts-ignore
+InputRightAddon.__hidden = "InputRightAddon"

@@ -39,19 +39,19 @@ export const InputGroup = React.forwardRef(function InputGroup(
   validChildren.forEach((child: any) => {
     if (!styles) return
 
-    if (child.type.displayName === "InputLeftElement") {
+    if (child.type.__hidden === "InputLeftElement") {
       stylesRef.current.paddingLeft = styles["minHeight"]
     }
 
-    if (child.type.displayName === "InputRightElement") {
+    if (child.type.__hidden === "InputRightElement") {
       stylesRef.current.paddingRight = styles["minHeight"]
     }
 
-    if (child.type.displayName === "InputRightAddon") {
+    if (child.type.__hidden === "InputRightAddon") {
       stylesRef.current.borderRightRadius = 0
     }
 
-    if (child.type.displayName === "InputLeftAddon") {
+    if (child.type.__hidden === "InputLeftAddon") {
       stylesRef.current.borderLeftRadius = 0
     }
   })
@@ -60,7 +60,7 @@ export const InputGroup = React.forwardRef(function InputGroup(
     const theming = { size, variant }
     const { pl, paddingLeft, pr, paddingRight } = child.props
 
-    return child.type.displayName !== "Input"
+    return child.type.__hidden !== "Input"
       ? React.cloneElement(child, theming)
       : React.cloneElement(child, {
           ...theming,
