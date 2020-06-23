@@ -3,11 +3,12 @@
   "version": "1.0.0-next.1",
   "description": "description",
   "keywords": [
-    "theme",
-    "theming",
-    "ui mode",
-    "ui"
+    "variant",
+    "chakra ui",
+    "component",
+    "style function"
   ],
+  "sideEffects": false,
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
