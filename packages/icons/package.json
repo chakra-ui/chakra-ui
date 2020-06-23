@@ -11,7 +11,8 @@
   "module": "dist/esm/index.js",
   "sideEffects": false,
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"

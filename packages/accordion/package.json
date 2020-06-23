@@ -21,8 +21,10 @@
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index/js",
   "types": "dist/types/index.d.ts",
+  "typings": "dist/types/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "sideEffects": false,
   "publishConfig": {

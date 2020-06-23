@@ -18,7 +18,8 @@
   "types": "dist/types/index.d.ts",
   "typings": "dist/types/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"

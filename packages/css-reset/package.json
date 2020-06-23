@@ -18,7 +18,8 @@
   "types": "dist/types/index.d.ts",
   "typings": "dist/types/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"
@@ -44,7 +45,7 @@
     "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
     "lint:types": "tsc --noEmit"
   },
-  "dependencies": {
+  "devDependencies": {
     "@emotion/core": "10.0.28"
   },
   "peerDependencies": {

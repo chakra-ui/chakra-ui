@@ -12,7 +12,8 @@
     "babel-plugin"
   ],
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "scripts": {
     "prepublish": "yarn build",
