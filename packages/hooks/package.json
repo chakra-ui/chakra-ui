@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/hooks",
-  "version": "1.0.0-next.1",
+  "version": "1.0.0-next.2",
   "description": "React hooks for Chakra components",
   "keywords": [
     "hooks",
@@ -44,7 +44,7 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/utils": "^1.0.0-next.1",
+    "@chakra-ui/utils": "^1.0.0-next.2",
     "@reach/auto-id": "0.10.3",
     "body-scroll-lock": "^3.0.2",
     "@types/body-scroll-lock": "2.6.1",

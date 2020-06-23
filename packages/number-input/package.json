@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/number-input",
-  "version": "1.0.0-next.1",
+  "version": "1.0.0-next.2",
   "description": "An accessible numeric input alternative to <input type='number' />",
   "keywords": [
     "theme",
@@ -52,12 +52,12 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/counter": "^1.0.0-next.1",
-    "@chakra-ui/icon": "^1.0.0-next.1",
-    "@chakra-ui/utils": "^1.0.0-next.1"
+    "@chakra-ui/counter": "^1.0.0-next.2",
+    "@chakra-ui/icon": "^1.0.0-next.2",
+    "@chakra-ui/utils": "^1.0.0-next.2"
   },
   "devDependencies": {
-    "@chakra-ui/system": "^1.0.0-next.1"
+    "@chakra-ui/system": "^1.0.0-next.2"
   },
   "peerDependencies": {
     "@chakra-ui/system": "1.x",
