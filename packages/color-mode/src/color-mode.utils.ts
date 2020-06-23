@@ -1,11 +1,12 @@
 import { isBrowser, noop } from "@chakra-ui/utils"
 
 const isStorageSupported = typeof Storage !== "undefined"
-
 export const storageKey = "chakra-ui-color-mode"
 
-export const classNameLight = `chakra-ui-light`
-export const classNameDark = `chakra-ui-dark`
+const classNames = {
+  light: "chakra-ui-light",
+  dark: "chakra-ui-dark",
+}
 
 export type ColorMode = "light" | "dark"
 
@@ -14,10 +15,10 @@ export type ColorMode = "light" | "dark"
  */
 export const storage = {
   get(init?: ColorMode) {
-    const _isStorageSupported =
+    const shouldUseLocalStorage =
       isStorageSupported && !!window.localStorage.getItem(storageKey)
 
-    const value = _isStorageSupported
+    const value = shouldUseLocalStorage
       ? window.localStorage.getItem(storageKey)
       : init
 
@@ -41,11 +42,10 @@ export const body = isBrowser ? document.body : mockBody
 
 /**
  * Function to add/remove class from `body` based on color mode
- * @param isDark whether color mode is `dark`
  */
 export function syncBodyClassName(isDark: boolean) {
-  body.classList.add(isDark ? classNameDark : classNameLight)
-  body.classList.remove(isDark ? classNameLight : classNameDark)
+  body.classList.add(isDark ? classNames.dark : classNames.light)
+  body.classList.remove(isDark ? classNames.light : classNames.dark)
 }
 
 /**
@@ -57,34 +57,31 @@ function getMediaQuery(query: string) {
   return matches
 }
 
+export const queries = {
+  light: "(prefers-color-scheme: light)",
+  dark: "(prefers-color-scheme: dark)",
+}
 export const lightQuery = "(prefers-color-scheme: light)"
 export const darkQuery = "(prefers-color-scheme: dark)"
 
 export function getColorScheme() {
-  const isDark = getMediaQuery(darkQuery)
-  if (isDark) return "dark"
-
-  const isLight = getMediaQuery(lightQuery)
-  if (isLight) return "light"
-
-  return "light"
+  const isDark = getMediaQuery(queries.dark)
+  return isDark ? "dark" : "light"
 }
 
 /**
  * Adds system os color mode listener, and run the callback
  * once preference changes
- *
- * @param callback function to run
  */
-export function addListener(callback: Function) {
+export function addListener(fn: Function) {
   if (!window.hasOwnProperty("matchMedia")) {
     return undefined
   }
 
-  const mediaQueryList = window.matchMedia(darkQuery)
+  const mediaQueryList = window.matchMedia(queries.dark)
 
   const listener = () => {
-    callback(!!mediaQueryList.matches ? "dark" : "light")
+    fn(!!mediaQueryList.matches ? "dark" : "light")
   }
 
   listener()

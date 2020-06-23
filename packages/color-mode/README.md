@@ -36,7 +36,7 @@ Then you can use the hook `useColorMode` within your application.
 
 ```jsx
 function Example() {
-  const [colorMode, toggleColorMode] = useColorMode()
+  const { colorMode, toggleColorMode } = useColorMode()
   return (
     <header>
       <Button onClick={toggleColorMode}>

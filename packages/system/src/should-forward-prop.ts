@@ -19,7 +19,7 @@ function createShouldForwardProp(props: any) {
 
 const shouldForwardProp = createShouldForwardProp(stylePropNames)
 
-export type ValidHTMLProps = {
+export interface ValidHTMLProps {
   htmlWidth?: string | number
   htmlHeight?: string | number
   htmlSize?: string | number
