@@ -9,7 +9,15 @@ import { createContext, __DEV__, cx } from "@chakra-ui/utils"
 import * as React from "react"
 
 export type ButtonGroupProps = PropsOf<typeof chakra.div> & {
+  /**
+   * If `true`, the borderRadius of button that are direct children will be altered
+   * to look flushed together
+   */
   isAttached?: boolean
+  /**
+   * The spacing between the buttons
+   * @default '0.5rem'
+   */
   spacing?: SystemProps["marginRight"]
 }
 
