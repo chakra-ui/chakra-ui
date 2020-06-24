@@ -280,6 +280,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://github.com/mrmckeb"><img src="https://avatars3.githubusercontent.com/u/5043083?v=4" width="64px;" alt=""/><br /><sub><b>Brody McKee</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=mrmckeb" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/Psvensso"><img src="https://avatars1.githubusercontent.com/u/1482833?v=4" width="64px;" alt=""/><br /><sub><b>Per Svensson</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=Psvensso" title="Code">💻</a></td>
     <td align="center"><a href="https://www.patrickcason.com"><img src="https://avatars1.githubusercontent.com/u/1297930?v=4" width="64px;" alt=""/><br /><sub><b>Patrick Cason</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=cereallarceny" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://www.ivoilic.com"><img src="https://avatars1.githubusercontent.com/u/3476570?v=4" width="64px;" alt=""/><br /><sub><b>Ivo Ilić</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=ivoilic" title="Code">💻</a></td>
   </tr>
 </table>
 
