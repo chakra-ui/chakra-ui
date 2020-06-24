@@ -941,6 +941,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "ivoilic",
+      "name": "Ivo Ilić",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/3476570?v=4",
+      "profile": "http://www.ivoilic.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
