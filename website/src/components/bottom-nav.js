@@ -1,6 +1,6 @@
 import * as React from "react"
 import { NavLink } from "./header"
-import { Stack, Box, Text, Icon } from "@chakra-ui/core"
+import { Stack, Box, Text, Icon, useColorModeValue } from "@chakra-ui/core"
 import { FiUsers, FiBookOpen, FiFileText } from "react-icons/fi"
 
 export function BottomNavItem(props) {
@@ -23,8 +23,10 @@ export function BottomNavItem(props) {
 }
 
 const BottomNav = () => {
+  const bg = useColorModeValue("white", "gray.800")
   return (
     <Stack
+      bg={bg}
       bottom="0"
       width="100%"
       zIndex={1000}
@@ -34,7 +36,6 @@ const BottomNav = () => {
       position="fixed"
       paddingY="0.8rem"
       borderTopWidth="1px"
-      background="white"
       display={["flex", "flex", "none", "none"]}
     >
       <BottomNavItem
