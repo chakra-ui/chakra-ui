@@ -2,6 +2,9 @@
 title: Stack
 package: "@chakra-ui/layout"
 image: "components/stack.svg"
+description:
+  Stack is a layout utility component that makes it easy to stack elements
+  together and apply a space between them.
 ---
 
 import ComponentLinks from "../../src/components/component-links"
@@ -9,7 +12,7 @@ import ComponentLinks from "../../src/components/component-links"
 # Stack
 
 Stack is a layout component that makes it easy to stack elements together and
-apply a space between them. It composes the [Flex](/flex) component.
+apply a space between them.
 
 <ComponentLinks
   github={{ url: "#" }}
@@ -22,13 +25,87 @@ apply a space between them. It composes the [Flex](/flex) component.
 ## Import
 
 ```js
-import { Stack } from "@chakra-ui/core"
+import { Stack, HStack, VStack } from "@chakra-ui/core"
 ```
 
-By default, each item is stacked vertically. Stack clones it's children and
-passes the spacing to them using `margin-bottom` or `margin-right`.
+- **Stack:** Used to add spacing between elements in the horizontal or vertical
+  direction. It supports responsive values.
+- **HStack:** Used to add spacing between elements in horizontal direction, and
+  centers them.
+- **VStack:** Used to add spacing between elements in vertical direction only,
+  and centers them.
 
 ## Usage
+
+Stack components use a modified version of the
+[CSS lobotomized owl selector](https://alistapart.com/article/axiomatic-css-and-lobotomized-owls/)
+to add spacing between it's children.
+
+### Basic
+
+To stack elements in horizontal or vertical direction only, use the `VStack` and
+`HStack` components.
+
+You can also use the `Stack` component as well and pass the `direction` prop.
+
+```jsx
+<HStack spacing="24px">
+  <Box w="40px" h="40px" bg="yellow.200">
+    1
+  </Box>
+  <Box w="40px" h="40px" bg="tomato">
+    2
+  </Box>
+  <Box w="40px" h="40px" bg="pink.100">
+    3
+  </Box>
+</HStack>
+```
+
+### Responsive direction
+
+You can pass responsive values to the `Stack` component to change stack
+direction and/or spacing between elements.
+
+```jsx
+<Stack direction={["column", "row"]} spacing="24px">
+  <Box w="40px" h="40px" bg="yellow.200">
+    1
+  </Box>
+  <Box w="40px" h="40px" bg="tomato">
+    2
+  </Box>
+  <Box w="40px" h="40px" bg="pink.100">
+    3
+  </Box>
+</Stack>
+```
+
+### Adding dividers
+
+In some scenarios, you might want to add dividers between stacked elements. Pass
+the `divider` prop and set it's value to the `StackDivider` or any custom React
+element.
+
+```jsx
+<VStack
+  divider={<StackDivider borderColor="gray.200" />}
+  spacing={4}
+  align="stretch"
+>
+  <Box h="40px" bg="yellow.200">
+    1
+  </Box>
+  <Box h="40px" bg="tomato">
+    2
+  </Box>
+  <Box h="40px" bg="pink.100">
+    3
+  </Box>
+</VStack>
+```
+
+### Example
 
 ```jsx manual=true
 function Feature({ title, desc, ...rest }) {
@@ -60,10 +137,8 @@ render(<StackEx />)
 
 ### Stack items horizontally
 
-Pass the `isInline` prop or `direction` and set it to `horizontal`.
-
-Optionally, you can use `align` and `justify` to adjust the alignment and
-distribution of the items.
+Pass the `direction` and set it to `row`. Optionally, you can use `align` and
+`justify` to adjust the alignment and distribution of the items.
 
 ```jsx manual=true
 function Feature({ title, desc, ...rest }) {
@@ -84,7 +159,7 @@ function Feature({ title, desc, ...rest }) {
 
 function StackEx() {
   return (
-    <Stack direction="row" spacing={8} align="center">
+    <HStack spacing={8}>
       <Feature
         title="Plan Money"
         desc="The future can be even brighter but a goal without a plan is just a wish"
@@ -93,7 +168,7 @@ function StackEx() {
         title="Save Money"
         desc="You deserve good things. With a whooping 10-15% interest rate per annum, grow your savings."
       />
-    </Stack>
+    </HStack>
   )
 }
 
@@ -102,12 +177,12 @@ render(<StackEx />)
 
 ### Props
 
-| Name                 | Type                          | Default | Description                                                                                                              |
-| -------------------- | ----------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `isInline`           | `boolean`                     |         | If `true` the items will be stacked horizontally.                                                                        |
-| `direction`          | `FlexProps["flexDirection"]`  |         | The direction to stack the items.                                                                                        |
-| `children`           | `React.ReactNode`             |         | The content of the stack.                                                                                                |
-| `spacing`            | `StyledSystem.MarginProps`    |         | The space between each stack item                                                                                        |
-| `align`              | `FlexProps["alignItems"]`     |         | The alignment of the stack item. Similar to `align-items`                                                                |
-| `justify`            | `FlexProps["justifyContent"]` |         | The distribution of the stack item. Similar to `justify-content`                                                         |
-| `shouldWrapChildren` | `boolean`                     |         | If `true`, the children will be wrapped in a `Box` with `display: inline-block`, and the Box will take the spacing props |
+| Name                 | Type                          | Description                                                                                                              |
+| -------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `direction`          | `Responsive(row or column)`   | The direction to stack the elements                                                                                      |
+| `divider`            | `ReactElement`                | The divider element to use between elements                                                                              |
+| `children`           | `ReactNode`                   | The elements to be stackes                                                                                               |
+| `spacing`            | `MarginProps`                 | The space between each stack item. Defaults to `0.5rem`                                                                  |
+| `align`              | `FlexProps["alignItems"]`     | The alignment of the stack item. Similar to `align-items`                                                                |
+| `justify`            | `FlexProps["justifyContent"]` | The distribution of the stack item. Similar to `justify-content`                                                         |
+| `shouldWrapChildren` | `boolean`                     | If `true`, the children will be wrapped in a `Box` with `display: inline-block`, and the Box will take the spacing props |
