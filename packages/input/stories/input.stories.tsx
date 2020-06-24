@@ -179,7 +179,7 @@ export const WithFormControl = () => {
           <FormError>is invalid!</FormError>
         </chakra.div>
         <InputGroup>
-          <InputLeftElement children="USD" />
+          <InputLeftElement children="$" />
           <Input placeholder="Enter amount" />
         </InputGroup>
         <FormHelperText>Keep it very short and sweet!</FormHelperText>

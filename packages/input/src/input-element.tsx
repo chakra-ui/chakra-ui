@@ -33,8 +33,8 @@ const InputElement = React.forwardRef(function InputElement(
 
   return (
     <StyledElement
-      width={input?.minHeight}
-      height={input?.minHeight}
+      width={input?.height}
+      height={input?.height}
       fontSize={input?.fontSize}
       paddingX={input?.paddingLeft}
       ref={ref}

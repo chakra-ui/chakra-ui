@@ -40,11 +40,11 @@ export const InputGroup = React.forwardRef(function InputGroup(
     if (!styles) return
 
     if (child.type.__hidden === "InputLeftElement") {
-      stylesRef.current.paddingLeft = styles["minHeight"]
+      stylesRef.current.paddingLeft = styles["height"]
     }
 
     if (child.type.__hidden === "InputRightElement") {
-      stylesRef.current.paddingRight = styles["minHeight"]
+      stylesRef.current.paddingRight = styles["height"]
     }
 
     if (child.type.__hidden === "InputRightAddon") {
