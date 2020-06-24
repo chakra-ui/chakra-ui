@@ -117,7 +117,7 @@ export const Select = React.forwardRef(function Select(
     iconSize = "1.25rem",
     iconColor,
     color,
-    isFullWidth,
+    isFullWidth = true,
     ...rest
   } = props
 
