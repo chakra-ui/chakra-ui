@@ -262,13 +262,14 @@ render(<WithNestedMenu />)
 
 ### Menu Props
 
-| Name          | Type              | Default | Description                                                  |
-| ------------- | ----------------- | ------- | ------------------------------------------------------------ |
-| children      | `React.ReactNode` |         | The children of the menu must be `MenuButton` and `MenuList` |
-| isOpen        | `boolean`         |         | If `true`, the menu will be opened                           |
-| autoSelect    | `boolean`         | `true`  | The menu will select the first enabled item when it opens    |
-| closeOnBlur   | `boolean`         | `true`  | If `true`, the menu will close on outside click or blur      |
-| closeOnSelect | `boolean`         | `true`  | If `true`, the menu will close on menu item select           |
+| Name          | Type                 | Default | Description                                                  |
+| ------------- | -------------------- | ------- | ------------------------------------------------------------ |
+| children      | `React.ReactNode`    |         | The children of the menu must be `MenuButton` and `MenuList` |
+| isOpen        | `boolean`            |         | If `true`, the menu will be opened                           |
+| autoSelect    | `boolean`            | `true`  | The menu will select the first enabled item when it opens    |
+| closeOnBlur   | `boolean`            | `true`  | If `true`, the menu will close on outside click or blur      |
+| closeOnSelect | `boolean`            | `true`  | If `true`, the menu will close on menu item select           |
+| placement     | `PopperJS.placement` |         | The placement of the `MenuList`                              |
 
 ### MenuButton Props
 
@@ -280,12 +281,11 @@ render(<WithNestedMenu />)
 
 ### MenuList Props
 
-| Name      | Type                      | Description                                                       |
-| --------- | ------------------------- | ----------------------------------------------------------------- |
-| children  | `React.ReactNode`         | The content of the `MenuList`, should be the `MenuItem` component |
-| onClick   | `React.MouseEventHandler` | Function to be called when you click on the menu item             |
-| onBlur    | `React.FocusEventHandler` | Function to be called when you blur out of the menu list          |
-| placement | `PopperJS.placement`      | The placement of the `MenuList`                                   |
+| Name     | Type                      | Description                                                       |
+| -------- | ------------------------- | ----------------------------------------------------------------- |
+| children | `React.ReactNode`         | The content of the `MenuList`, should be the `MenuItem` component |
+| onClick  | `React.MouseEventHandler` | Function to be called when you click on the menu item             |
+| onBlur   | `React.FocusEventHandler` | Function to be called when you blur out of the menu list          |
 
 ### MenuItem Props
 
