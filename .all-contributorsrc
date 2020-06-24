@@ -932,6 +932,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "cereallarceny",
+      "name": "Patrick Cason",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1297930?v=4",
+      "profile": "https://www.patrickcason.com",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
