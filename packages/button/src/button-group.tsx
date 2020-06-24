@@ -1,8 +1,17 @@
-import { chakra, PropsOf, ThemingProps, forwardRef } from "@chakra-ui/system"
+import {
+  chakra,
+  PropsOf,
+  ThemingProps,
+  SystemProps,
+  CSSObject,
+} from "@chakra-ui/system"
 import { createContext, __DEV__, cx } from "@chakra-ui/utils"
 import * as React from "react"
 
-export type ButtonGroupProps = PropsOf<typeof chakra.div>
+export type ButtonGroupProps = PropsOf<typeof chakra.div> & {
+  isAttached?: boolean
+  spacing?: SystemProps["marginRight"]
+}
 
 const [ButtonGroupContextProvider, useButtonGroup] = createContext<
   ThemingProps
@@ -13,17 +22,29 @@ const [ButtonGroupContextProvider, useButtonGroup] = createContext<
 
 export { useButtonGroup }
 
-export const ButtonGroup = forwardRef<ButtonGroupProps>(function ButtonGroup(
-  props,
-  ref,
+export const ButtonGroup = React.forwardRef(function ButtonGroup(
+  props: ButtonGroupProps,
+  ref: React.Ref<any>,
 ) {
-  const { size, colorScheme, variant, className, ...rest } = props
+  const {
+    size,
+    colorScheme,
+    variant,
+    className,
+    spacing = "0.5rem",
+    isAttached,
+    ...rest
+  } = props
 
-  const css = {
-    "> *:first-of-type:not(:last-of-type)": { borderRightRadius: 0 },
-    "> *:not(:first-of-type):not(:last-of-type)": { borderRadius: 0 },
-    "> *:not(:first-of-type):last-of-type": { borderLeftRadius: 0 },
-  }
+  const css = isAttached
+    ? {
+        "> *:first-of-type:not(:last-of-type)": { borderRightRadius: 0 },
+        "> *:not(:first-of-type):not(:last-of-type)": { borderRadius: 0 },
+        "> *:not(:first-of-type):last-of-type": { borderLeftRadius: 0 },
+      }
+    : {
+        "& > *:not(style) ~ *:not(style)": { marginLeft: spacing },
+      }
 
   const _className = cx("chakra-button__group", className)
 
@@ -37,10 +58,9 @@ export const ButtonGroup = forwardRef<ButtonGroupProps>(function ButtonGroup(
     <ButtonGroupContextProvider value={context}>
       <chakra.div
         ref={ref}
-        display="flex"
         role="group"
-        whiteSpace="nowrap"
-        __css={css}
+        display="inline-flex"
+        __css={css as CSSObject}
         className={_className}
         {...rest}
       />
