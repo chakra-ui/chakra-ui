@@ -38,8 +38,8 @@ worry if your styles aren't exactly the same—this is to be expected.
 
 ### 1. Update your dependencies
 
-Chakra no longer requires `@emotion/styled`, `@emotion/core` and
-`@emotion/theming`. If you're not using these libraries in your code, you can
+Chakra no longer requires `@emotion/core`, `@emotion/styled` and
+`emotion-theming`. If you're not using these libraries in your code, you can
 safely remove them and update Chakra UI to v1.
 
 > We use only `@emotion/core` internally.
@@ -47,9 +47,9 @@ safely remove them and update Chakra UI to v1.
 ```diff
 "dependencies": {
   "@chakra-ui/core": "1.0.0-beta",
--  "@emotion/styled": "10.X",
--  "@emotion/theming": "10.x",
--  "@emotion/core": "10.x"
+-  "@emotion/core": "10.x",
+-  "@emotion/styled": "10.x",
+-  "emotion-theming": "10.x"
 }
 ```
 
