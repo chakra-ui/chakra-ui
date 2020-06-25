@@ -134,12 +134,11 @@ You can change the size of the tab by passing `size` prop. We support 3 sizes
 
 ### Changing the tabs alignment
 
-You can change the alignment of the `TabList` by passing `align` prop. We
-support 3 sizes `start`, `center`, `end`.
+You can change the alignment of the `TabList` by ajusting its `justifyContent` prop.
 
 ```jsx
-<Tabs align="end" variant="enclosed">
-  <TabList>
+<Tabs variant="enclosed">
+  <TabList justifyContent="flex-end">
     <Tab>One</Tab>
     <Tab>Two</Tab>
   </TabList>
