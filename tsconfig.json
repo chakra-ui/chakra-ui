@@ -18,8 +18,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "downlevelIteration": true,
-    "preserveSymlinks": true,
-    "types": []
+    "preserveSymlinks": true
   },
   "include": ["packages"],
   "exclude": ["node_modules"]
