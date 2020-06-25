@@ -143,7 +143,7 @@ export const Stack = React.forwardRef(function Stack(
     return _child
   })
 
-  const __css = (theme: Dict) => {
+  const sx = (theme: Dict) => {
     if (hasDivider) return undefined
     return css({ [selector]: styles[selector] })(theme)
   }
@@ -159,7 +159,7 @@ export const Stack = React.forwardRef(function Stack(
       flexDirection={styles.flexDirection}
       flexWrap={wrap}
       className={_className}
-      __css={__css as any}
+      sx={sx as any}
       {...rest}
     >
       {clones}

@@ -68,7 +68,7 @@ export const ButtonGroup = React.forwardRef(function ButtonGroup(
         ref={ref}
         role="group"
         display="inline-flex"
-        __css={css as CSSObject}
+        sx={css as CSSObject}
         className={_className}
         {...rest}
       />

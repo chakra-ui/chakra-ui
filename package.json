@@ -7,6 +7,11 @@
       "examples/*",
       "tooling/*",
       "website"
+    ],
+    "nohoist": [
+      "**/@types/theme-ui",
+      "**/@types/theme-ui/**",
+      "**/@types/theme-ui__components"
     ]
   },
   "author": "Segun Adebayo <sage@adebayosegun.com>",
@@ -125,7 +130,6 @@
     "@types/react-dom": "16.9.8",
     "@types/react-router-dom": "5.1.5",
     "@types/shelljs": "0.8.8",
-    "@types/theme-ui": "^0.3.4",
     "@types/wordpress__jest-console": "^3.0.2",
     "@typescript-eslint/eslint-plugin": "^3.4.0",
     "@typescript-eslint/parser": "^3.4.0",

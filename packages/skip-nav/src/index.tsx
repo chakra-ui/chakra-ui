@@ -45,7 +45,7 @@ export const SkipNavLink = React.forwardRef(function SkipNavLink(
       ref={ref}
       className="chakra-skip-link"
       href={`#${id}`}
-      __css={{
+      sx={{
         clip: "rect(0 0 0 0)",
         "&:focus": {
           clip: "auto",
