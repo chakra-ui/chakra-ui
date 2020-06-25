@@ -15,12 +15,10 @@ export type ColorMode = "light" | "dark"
  */
 export const storage = {
   get(init?: ColorMode) {
-    const shouldUseLocalStorage =
+    const exist =
       isStorageSupported && !!window.localStorage.getItem(storageKey)
 
-    const value = shouldUseLocalStorage
-      ? window.localStorage.getItem(storageKey)
-      : init
+    const value = exist ? window.localStorage.getItem(storageKey) : init
 
     return value as ColorMode | undefined
   },
