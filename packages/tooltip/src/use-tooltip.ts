@@ -1,39 +1,7 @@
 import { useDisclosure, useEventListener, useId } from "@chakra-ui/hooks"
 import { Placement, usePopper, UsePopperProps } from "@chakra-ui/popper"
 import { callAllHandlers, mergeRefs, Dict } from "@chakra-ui/utils"
-import flushable from "flushable"
 import * as React from "react"
-
-let hideOperation: flushable.FlushableOperation
-let activeId: string | null = null
-
-function show(fn: (isHidePending: boolean) => void, delay: number) {
-  // check if hide has not been executed
-  const isHidePending = hideOperation?.pending()
-
-  // immediately execute hide if it has not been executed
-  if (isHidePending) {
-    hideOperation.flush()
-  }
-
-  // setup the show operation using flushable
-  const showOperation = flushable(
-    () => fn(isHidePending),
-    isHidePending ? 0 : delay,
-  )
-
-  // return a function to cancel show() from executing
-  // in the case of multiple tooltips
-  return showOperation.cancel
-}
-
-function hide(fn: (flushed: boolean) => void, delay: number) {
-  // setup the hide operation using flushable
-  hideOperation = flushable((flushed) => fn(flushed), delay)
-
-  // return a function to cancel hide() from executing
-  return hideOperation.cancel
-}
 
 export interface UseTooltipProps {
   /**
@@ -49,12 +17,12 @@ export interface UseTooltipProps {
   /**
    * If `true`, the tooltip will hide on click
    */
-  hideOnClick?: boolean
+  closeOnClick?: boolean
   /**
    * If `true`, the tooltip will hide while the mouse
    * is down
    */
-  hideOnMouseDown?: boolean
+  closeOnMouseDown?: boolean
   /**
    * Callback to run when the tooltip shows
    */
@@ -88,12 +56,12 @@ export interface UseTooltipProps {
 
 export function useTooltip(props: UseTooltipProps = {}) {
   const {
-    showDelay = 200,
-    hideDelay = 200,
-    hideOnClick = true,
+    showDelay = 0,
+    hideDelay = 0,
+    closeOnClick = true,
+    closeOnMouseDown,
     onShow,
     onHide,
-    hideOnMouseDown,
     placement,
     id,
     isOpen: isOpenProp,
@@ -101,7 +69,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
     arrowSize = 10,
   } = props
 
-  const { isOpen, onOpen: open, onClose: close } = useDisclosure({
+  const { isOpen, onOpen, onClose } = useDisclosure({
     isOpen: isOpenProp,
     defaultIsOpen,
     onOpen: onShow,
@@ -116,88 +84,40 @@ export function useTooltip(props: UseTooltipProps = {}) {
 
   const tooltipId = useId(id, "tooltip")
 
-  React.useEffect(() => {
-    if (isOpen) {
-      activeId = tooltipId
-    }
-  }, [isOpen, tooltipId])
-
   const ref = React.useRef<any>(null)
   const triggerRef = mergeRefs(ref, popper.reference.ref)
-  const flushRef = React.useRef<Function>()
 
-  React.useEffect(() => {
-    return () => flushRef.current?.()
-  }, [])
+  const enterTimeoutRef = React.useRef<NodeJS.Timeout>()
+  const exitTimeoutRef = React.useRef<NodeJS.Timeout>()
 
-  const hideImmediately = React.useCallback(() => {
-    flushRef.current?.()
-    close()
-  }, [close])
+  const openWithDelay = () => {
+    enterTimeoutRef.current = setTimeout(onOpen, showDelay)
+  }
 
-  const onClick = React.useCallback(() => {
-    if (hideOnClick) {
-      hideImmediately()
+  const closeWithDelay = () => {
+    if (enterTimeoutRef.current) {
+      clearTimeout(enterTimeoutRef.current)
     }
-  }, [hideOnClick, hideImmediately])
+    exitTimeoutRef.current = setTimeout(onClose, hideDelay)
+  }
 
-  const onMouseDown = React.useCallback(() => {
-    if (hideOnMouseDown) {
-      hideImmediately()
+  const onClick = () => {
+    if (closeOnClick) {
+      onClose()
     }
-  }, [hideOnMouseDown, hideImmediately])
+  }
 
-  const showTooltip = React.useCallback(() => {
-    flushRef.current?.()
-
-    if (tooltipId !== activeId) {
-      hideImmediately()
+  const onMouseDown = () => {
+    if (closeOnMouseDown) {
+      onClose()
     }
+  }
 
-    activeId = tooltipId
-
-    if (!isOpen) {
-      flushRef.current = show(() => {
-        open()
-      }, showDelay)
+  const onKeyDown = (event: KeyboardEvent) => {
+    if (isOpen && event.key === "Escape") {
+      onClose()
     }
-  }, [isOpen, showDelay, open, tooltipId, hideImmediately])
-
-  const hideTooltip = React.useCallback(() => {
-    flushRef.current?.()
-    activeId = null
-
-    if (isOpen) {
-      flushRef.current = hide(() => {
-        close()
-      }, hideDelay)
-    }
-  }, [isOpen, hideDelay, close])
-
-  const onMouseOver = React.useCallback(
-    (event: React.MouseEvent) => {
-      const isSelf = event.currentTarget === (ref.current as HTMLElement)
-
-      if (isOpen && isSelf) {
-        return
-      }
-
-      showTooltip()
-    },
-    [isOpen, showTooltip],
-  )
-
-  /**
-   * Accessibility: Close the tooltip if user presses escape
-   */
-  const onKeyDown = React.useCallback(
-    (event: KeyboardEvent) => {
-      if (isOpen && event.key === "Escape") {
-        hideImmediately()
-      }
-    },
-    [isOpen, hideImmediately],
-  )
+  }
 
   useEventListener("keydown", onKeyDown)
 
@@ -209,12 +129,12 @@ export function useTooltip(props: UseTooltipProps = {}) {
     getTriggerProps: (props: Dict = {}) => ({
       ...props,
       ref: mergeRefs(props.ref, triggerRef),
-      onMouseOut: callAllHandlers(props.onMouseOut, hideTooltip),
-      onMouseOver: callAllHandlers(props.onMouseOver, onMouseOver),
+      onMouseLeave: callAllHandlers(props.onMouseLeave, closeWithDelay),
+      onMouseEnter: callAllHandlers(props.onMouseEnter, openWithDelay),
       onClick: callAllHandlers(props.onClick, onClick),
       onMouseDown: callAllHandlers(props.onMouseDown, onMouseDown),
-      onFocus: callAllHandlers(props.onFocus, showTooltip),
-      onBlur: callAllHandlers(props.onBlur, hideTooltip),
+      onFocus: callAllHandlers(props.onFocus, openWithDelay),
+      onBlur: callAllHandlers(props.onBlur, closeWithDelay),
       "aria-describedby": isOpen ? tooltipId : undefined,
     }),
     getTooltipProps: (props: Dict = {}) => ({
