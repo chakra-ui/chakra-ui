@@ -4966,10 +4966,12 @@
     "@testing-library/dom" "^6.11.0"
     "@types/testing-library__react" "^9.1.2"
 
-"@testing-library/user-event@10.0.0":
-  version "10.0.0"
-  resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-10.0.0.tgz#68dc84111c882cbf595d6bafa3691e4daa375fbd"
-  integrity sha512-ygQ1SaX3AzWDGPer5e2LF7FvWwLPG+XYViHvpW4ObseOkqmJI2ruawp9iLmEwxQW88jNCCExvonh0jBAwwiYZw==
+"@testing-library/user-event@12.0.11":
+  version "12.0.11"
+  resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-12.0.11.tgz#157594e6c6d73a1503003933177843648b8c7da4"
+  integrity sha512-r7QNfktLE2n8IODEl32orup/HNOMueJpoXRDeTMlvWR4nZIHJwx59+8SkLf6nqV4Ot5Xo6qNeaWrvC1KO4eOng==
+  dependencies:
+    "@babel/runtime" "^7.10.2"
 
 "@theme-ui/color-modes@^0.4.0-highlight.0":
   version "0.4.0-highlight.0"
