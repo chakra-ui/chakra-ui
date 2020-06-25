@@ -52,9 +52,10 @@ interface Options {
  * and reads from system preference
  */
 export function useColorModeState<T extends Options>(options?: T) {
-  const [mode, setMode] = React.useState<ColorMode>(
-    options?.initialColorMode || "light",
-  )
+  const [mode, setMode] = React.useState<ColorMode>(() => {
+    const fallback = options?.initialColorMode || "light"
+    return storage.get(fallback) as ColorMode
+  })
 
   useSyncBodyClass(mode)
   useSyncSystemColorMode(setMode, !!options?.useSystemColorMode)
