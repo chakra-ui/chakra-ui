@@ -441,6 +441,46 @@ package which automatically configures `InitializeColorMode` along with
   `FormErrorMessage` won't be visible. The only way to make it visible is by
   passing `isInvalid` and setting it to `true`.
 
+### Icons
+
+## Changes
+
+- Basic interface icons provided by Chakra have moved to the `icons` package.
+  Replace all `<Icon name="..." />` elements imported from `core` with
+  equivalent _named_ icon React elements imported from `icons`.
+
+  > Replacement logic: If `<Icon name="search" />` is used, then replace it with
+  > `<SearchIcon />` from Chakra icons package.
+
+```diff
+- import { Icon } from "@chakra-ui/core"
+- <Icon name="search" />
++ import { SearchIcon } from "@chakra-ui/icons"
++ <SearchIcon />
+```
+
+Existing icons will appear as a question mark until refactored.
+
+- We changed the way custom icons are created. Instead of adding custom icons to
+  `theme` create your own icons using the `createIcon` utility:
+
+```jsx live=false
+import { createIcon } from "@chakra-ui/icon"
+export const UpDownIcon = createIcon({
+  displayName: "UpDownIcon",
+  viewBox: "-1 -1 9 11",
+  d:
+    "M 3.5 0L 3.98809 -0.569442L 3.5 -0.987808L 3.01191 -0.569442L 3.5 0ZM 3.5 9L 3.01191 9.56944L 3.5 9.98781L 3.98809 9.56944L 3.5 9ZM 0.488094 3.56944L 3.98809 0.569442L 3.01191 -0.569442L -0.488094 2.43056L 0.488094 3.56944ZM 3.01191 0.569442L 6.51191 3.56944L 7.48809 2.43056L 3.98809 -0.569442L 3.01191 0.569442ZM -0.488094 6.56944L 3.01191 9.56944L 3.98809 8.43056L 0.488094 5.43056L -0.488094 6.56944ZM 3.98809 9.56944L 7.48809 6.56944L 6.51191 5.43056L 3.01191 8.43056L 3.98809 9.56944Z",
+})
+```
+
+As a convenience you can also import `createIcon` from the `icons` package along
+with other icons:
+
+```jsx live=false
+import { createIcon, MoonIcon, SunIcon } from "@chakra-ui/icons"
+```
+
 ### Image
 
 #### Bug Fixes
