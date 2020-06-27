@@ -150,7 +150,7 @@
     "execa": "4.0.2",
     "fs-utils": "0.7.0",
     "husky": "4.2.5",
-    "inquirer": "7.1.0",
+    "inquirer": "7.2.0",
     "jest": "26.0.1",
     "jest-emotion": "10.0.32",
     "lerna": "3.22.1",
