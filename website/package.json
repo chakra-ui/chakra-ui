@@ -44,7 +44,7 @@
     "test": "jest"
   },
   "devDependencies": {
-    "eslint": "7.1.0",
+    "eslint": "7.3.1",
     "prettier": "2.0.5"
   }
 }
