@@ -60,7 +60,7 @@ render(<StackEx />)
 
 ### Stack items horizontally
 
-Pass the `isInline` prop or `direction` and set it to `horizontal`.
+Pass the `direction` prop and set it to `column`.
 
 Optionally, you can use `align` and `justify` to adjust the alignment and
 distribution of the items.
@@ -104,7 +104,6 @@ render(<StackEx />)
 
 | Name                 | Type                          | Default | Description                                                                                                              |
 | -------------------- | ----------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `isInline`           | `boolean`                     |         | If `true` the items will be stacked horizontally.                                                                        |
 | `direction`          | `FlexProps["flexDirection"]`  |         | The direction to stack the items.                                                                                        |
 | `children`           | `React.ReactNode`             |         | The content of the stack.                                                                                                |
 | `spacing`            | `StyledSystem.MarginProps`    |         | The space between each stack item                                                                                        |
