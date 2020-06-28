@@ -99,9 +99,6 @@ function CustomControlsExample() {
 
 ### Editable Props
 
-The `Editable` component composes the [Box](/box) component so you can pass all
-`Box` props. Here are the custom props:
-
 | Name               | Type              | Default              | Description                                                                                                                               |
 | ------------------ | ----------------- | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
 | value              | `string`          |                      | Text value of the controlled input                                                                                                        |
@@ -117,15 +114,3 @@ The `Editable` component composes the [Box](/box) component so you can pass all
 | submitOnBlur       | `boolean`         | `true`               | If `true`, it'll update the value onBlur and turn off the edit mode.                                                                      |
 | selectAllOnFocus   | `boolean`         | `true`               | If `true`, the input's text will be highlighted on focus.                                                                                 |
 | children           | `React.ReactNode` |                      | The content of the EditableText. Ideally only `EditablePreview` and `EditableInput` should be the children but you add other elements too |
-
-<br />
-
-### EditableInput Props
-
-`EditableInput` composes `PseudoBox` so you can pass all `PseudoBox` props.
-
-<br />
-
-### EditablePreview Props
-
-`EditablePreview` composes `PseudoBox` so you can pass all `PseudoBox` props.
