@@ -177,6 +177,7 @@ render(<StackEx />)
 
 ### Props
 
+<<<<<<< HEAD
 | Name                 | Type                          | Description                                                                                                              |
 | -------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | `direction`          | `Responsive(row or column)`   | The direction to stack the elements                                                                                      |
@@ -186,3 +187,13 @@ render(<StackEx />)
 | `align`              | `FlexProps["alignItems"]`     | The alignment of the stack item. Similar to `align-items`                                                                |
 | `justify`            | `FlexProps["justifyContent"]` | The distribution of the stack item. Similar to `justify-content`                                                         |
 | `shouldWrapChildren` | `boolean`                     | If `true`, the children will be wrapped in a `Box` with `display: inline-block`, and the Box will take the spacing props |
+=======
+| Name                 | Type                          | Default | Description                                                                                                              |
+| -------------------- | ----------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `direction`          | `FlexProps["flexDirection"]`  |         | The direction to stack the items.                                                                                        |
+| `children`           | `React.ReactNode`             |         | The content of the stack.                                                                                                |
+| `spacing`            | `StyledSystem.MarginProps`    |         | The space between each stack item                                                                                        |
+| `align`              | `FlexProps["alignItems"]`     |         | The alignment of the stack item. Similar to `align-items`                                                                |
+| `justify`            | `FlexProps["justifyContent"]` |         | The distribution of the stack item. Similar to `justify-content`                                                         |
+| `shouldWrapChildren` | `boolean`                     |         | If `true`, the children will be wrapped in a `Box` with `display: inline-block`, and the Box will take the spacing props |
+>>>>>>> master

@@ -38,14 +38,8 @@ worry if your styles aren't exactly the same—this is to be expected.
 
 ### 1. Update your dependencies
 
-Chakra UI now exports all components as separate packages to make it easier to
-consume individual packages. You can either install `@chakra-ui/core`, or
-install the component package you need.
-
-#### Continuing with `@chakra-ui/core`
-
-Chakra no longer requires `@emotion/styled`, `@emotion/core` and
-`@emotion/theming`. If you're not using these libraries in your code, you can
+Chakra no longer requires `@emotion/core`, `@emotion/styled` and
+`emotion-theming`. If you're not using these libraries in your code, you can
 safely remove them and update Chakra UI to v1.
 
 > We use only `@emotion/core` internally.
@@ -469,6 +463,46 @@ package which automatically configures `InitializeColorMode` along with
   `FormErrorMessage` won't be visible. The only way to make it visible is by
   passing `isInvalid` and setting it to `true`.
 
+### Icons
+
+## Changes
+
+- Basic interface icons provided by Chakra have moved to the `icons` package.
+  Replace all `<Icon name="..." />` elements imported from `core` with
+  equivalent _named_ icon React elements imported from `icons`.
+
+  > Replacement logic: If `<Icon name="search" />` is used, then replace it with
+  > `<SearchIcon />` from Chakra icons package.
+
+```diff
+- import { Icon } from "@chakra-ui/core"
+- <Icon name="search" />
++ import { SearchIcon } from "@chakra-ui/icons"
++ <SearchIcon />
+```
+
+Existing icons will appear as a question mark until refactored.
+
+- We changed the way custom icons are created. Instead of adding custom icons to
+  `theme` create your own icons using the `createIcon` utility:
+
+```jsx live=false
+import { createIcon } from "@chakra-ui/icon"
+export const UpDownIcon = createIcon({
+  displayName: "UpDownIcon",
+  viewBox: "-1 -1 9 11",
+  d:
+    "M 3.5 0L 3.98809 -0.569442L 3.5 -0.987808L 3.01191 -0.569442L 3.5 0ZM 3.5 9L 3.01191 9.56944L 3.5 9.98781L 3.98809 9.56944L 3.5 9ZM 0.488094 3.56944L 3.98809 0.569442L 3.01191 -0.569442L -0.488094 2.43056L 0.488094 3.56944ZM 3.01191 0.569442L 6.51191 3.56944L 7.48809 2.43056L 3.98809 -0.569442L 3.01191 0.569442ZM -0.488094 6.56944L 3.01191 9.56944L 3.98809 8.43056L 0.488094 5.43056L -0.488094 6.56944ZM 3.98809 9.56944L 7.48809 6.56944L 6.51191 5.43056L 3.01191 8.43056L 3.98809 9.56944Z",
+})
+```
+
+As a convenience you can also import `createIcon` from the `icons` package along
+with other icons:
+
+```jsx live=false
+import { createIcon, MoonIcon, SunIcon } from "@chakra-ui/icons"
+```
+
 ### Image
 
 #### Bug Fixes
@@ -691,6 +725,9 @@ function Example() {
   custom values
 
 - You can now disable focus trap by passing `trapFocus={false}`
+
+- The `SlideIn` and `Scale` transition components have been replaced with the 
+  `Fade`, `ScaleFade`, `Slide`, and `SlideFade` components.
 
 #### New Props
 

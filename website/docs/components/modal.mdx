@@ -309,7 +309,7 @@ function VerticallyCenter() {
 ### Adding transition
 
 The modal doesn't come with any transitions by default so you can manage this
-yourself. Chakra exports two transition components (`SlideIn` and `Scale`) to
+yourself. Chakra exports four transition components (`Fade`, `ScaleFade`, `Slide`, and `SlideFade`) to
 provide simple transitions.
 
 > For some reason, focus doesn't return back to the trigger after the transition
@@ -327,7 +327,7 @@ function TransitionExample() {
         Trigger modal
       </Button>
 
-      <SlideIn in={isOpen}>
+      <Slide in={isOpen}>
         {(styles) => (
           <Modal finalFocusRef={btnRef} onClose={onClose} isOpen={true}>
             <ModalOverlay opacity={styles.opacity}>
@@ -341,7 +341,7 @@ function TransitionExample() {
             </ModalOverlay>
           </Modal>
         )}
-      </SlideIn>
+      </Slide>
     </>
   )
 }

@@ -82,63 +82,26 @@ Here's a working example:
 
 ## Adding custom icons
 
-All Chakra icons are stored in the theme object under the `icons` key. You can
-extend this object to add your own icons. Here are the steps:
-
-- Export the icon's `svg` from Figma, Sketch, etc.
-- Use a tool like [SvgOmg](https://svgomg.firebaseapp.com) to reduce the size
-  and minify the markup.
-- Add the icon to the theme object.
-
-> Add the `fill=currentColor` attribute to the `path` or `g` so that when you
-> use `<Icon color="gray.200"/>`, it works correctly.
+You can also create your own custom icons using the `generateIcon` utility:
 
 ```jsx live=false
-
-// Step 1: Each icon should be stored as an object of `path` and `viewBox`
-const customIcons = {
-  icon1: {
-    path: <path fill="currentColor" d="..." />,
-    // If the icon's viewBox is `0 0 24 24`, you can ignore `viewBox`
-    viewBox: "0 0 40 40",
-  },
-  icon2: {
-    path: (
-      <g fill="currentColor">
-        <path d="..."/>
-      </g>
-    )
-  }
-};
-
-
-// Step 2: Add the custom icon to the theme
-const customTheme = {
-  ...theme,
-  icons: {
-    ...theme.icons,
-    ...customIcons,
-  }
-}
-
-// Step 3: Pass the new theme to the ThemeProvider
-
-<ThemeProvider theme={customTheme}>
-  {/* app goes here */}
-</ThemeProvider>
-
-// Step 4: Now you can do this
-<Icon name="icon1" color="green.200"/>
+import { createIcon } from "@chakra-ui/icon"
+export const UpDownIcon = createIcon({
+  displayName: "UpDownIcon",
+  viewBox: "-1 -1 9 11",
+  d:
+    "M 3.5 0L 3.98809 -0.569442L 3.5 -0.987808L 3.01191 -0.569442L 3.5 0ZM 3.5 9L 3.01191 9.56944L 3.5 9.98781L 3.98809 9.56944L 3.5 9ZM 0.488094 3.56944L 3.98809 0.569442L 3.01191 -0.569442L -0.488094 2.43056L 0.488094 3.56944ZM 3.01191 0.569442L 6.51191 3.56944L 7.48809 2.43056L 3.98809 -0.569442L 3.01191 0.569442ZM -0.488094 6.56944L 3.01191 9.56944L 3.98809 8.43056L 0.488094 5.43056L -0.488094 6.56944ZM 3.98809 9.56944L 7.48809 6.56944L 6.51191 5.43056L 3.01191 8.43056L 3.98809 9.56944Z",
+})
 ```
 
-### Icon Fallbacks
+Before generating your custom icon do the following:
 
-If you pass an icon name that doesn't exist in `theme.icons` , you'll see the
-`question-outline` icon.
+- Export the icon's `svg` from Figma, Sketch, etc.
+- Use a tool like [SvgOmg](https://jakearchibald.github.io/svgomg/) to reduce
+  the size and minify the markup.
+- Use `generateIcon` to create an icon as shown above.
 
-```jsx
-<Icon name="naruto" />
-```
+Start using your icon right away. There is no need to update your theme files.
 
 ## Props
 
