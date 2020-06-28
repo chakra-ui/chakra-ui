@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/alert-dialog",
-  "version": "1.0.0-next.2",
+  "version": "1.0.0-next.3",
   "description": "React component for accessible alert or confirm dialog",
   "keywords": [
     "confirm",
@@ -49,10 +49,10 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/modal": "^1.0.0-next.2"
+    "@chakra-ui/modal": "^1.0.0-next.3"
   },
   "devDependencies": {
-    "@chakra-ui/system": "^1.0.0-next.2"
+    "@chakra-ui/system": "^1.0.0-next.3"
   },
   "peerDependencies": {
     "@chakra-ui/system": "1.x",

@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/parser",
-  "version": "1.0.0-next.2",
+  "version": "1.0.0-next.3",
   "description": "Style function for css-in-js building component libraries",
   "keywords": [
     "theme",
@@ -51,7 +51,7 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/utils": "^1.0.0-next.2",
+    "@chakra-ui/utils": "^1.0.0-next.3",
     "csstype": "2.6.9"
   },
   "peerDependencies": {
