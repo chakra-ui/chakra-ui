@@ -1,41 +1,38 @@
 import * as React from "react"
 
 const noFlash = `(function() {
-  var storageKey = 'chakra-ui-color-mode';
-  var classNameDark = 'chakra-ui-dark';
-  var classNameLight = 'chakra-ui-light';
+  const key = 'chakra-ui-color-mode';
+  const classNameDark = 'chakra-ui-dark';
+  const classNameLight = 'chakra-ui-light';
 
-  function setClassOnDocumentBody(darkMode) {
-    document.body.classList.add(darkMode ? classNameDark : classNameLight);
-    document.body.classList.remove(darkMode ? classNameLight : classNameDark);
+  function setClassOnDocumentBody(isDark) {
+    document.body.classList.add(isDark ? classNameDark : classNameLight);
+    document.body.classList.remove(isDark ? classNameLight : classNameDark);
   }
 
-  var preferDarkQuery = '(prefers-color-scheme: dark)';
-  var mql = window.matchMedia(preferDarkQuery);
-  var supportsColorSchemeQuery = mql.media === preferDarkQuery;
-  var localStorageValue = null;
+  const preferDarkQuery = '(prefers-color-scheme: dark)';
+  const mql = window.matchMedia(preferDarkQuery);
+  const supportsColorSchemeQuery = mql.media === preferDarkQuery;
+  let stored = null;
 
   try {
-    localStorageValue = localStorage.getItem(storageKey);
+    stored = localStorage.getItem(key);
   } catch (err) {}
 
-  var exist = localStorageValue !== null;
+  let exist = stored !== null;
   if (exist) {
-    localStorageValue = JSON.parse(localStorageValue);
+    stored = JSON.parse(stored);
   }
 
-  // Determine the source of truth
   if (exist) {
-    // source of truth from localStorage
-    setClassOnDocumentBody(localStorageValue);
+    const isDark = stored === "dark"
+    setClassOnDocumentBody(isDark);
   } else if (supportsColorSchemeQuery) {
-    // source of truth from system
     setClassOnDocumentBody(mql.matches);
-    localStorage.setItem(storageKey, mql.matches);
+    localStorage.setItem(key, mql.matches ? "dark" : "light");
   } else {
-    // source of truth from document.body
-    var isDarkMode = document.body.classList.contains(classNameDark);
-    localStorage.setItem(storageKey, JSON.stringify(isDarkMode));
+    let isDark = document.body.classList.contains(classNameDark);
+    localStorage.setItem(key, JSON.stringify(isDark ? "dark": "light"));
   }
 })();`
 
