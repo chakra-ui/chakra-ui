@@ -62,15 +62,15 @@ the component.
 ```jsx
 function CustomControlsExample() {
   /* Here's a custom control */
-  function EditableControls({ isEditing, onSubmit, onCancel, onRequestEdit }) {
+  function EditableControls({ isEditing, onSubmit, onCancel, onEdit }) {
     return isEditing ? (
       <ButtonGroup justifyContent="center" size="sm">
-        <IconButton icon="check" onClick={onSubmit} />
-        <IconButton icon="close" onClick={onCancel} />
+        <IconButton icon={<CheckIcon />} onClick={onSubmit} />
+        <IconButton icon={<CloseIcon />} onClick={onCancel} />
       </ButtonGroup>
     ) : (
       <Flex justifyContent="center">
-        <IconButton size="sm" icon="edit" onClick={onRequestEdit} />
+        <IconButton size="sm" icon={<EditIcon />} onClick={onEdit} />
       </Flex>
     )
   }
