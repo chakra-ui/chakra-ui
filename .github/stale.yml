@@ -4,6 +4,7 @@ daysUntilStale: 15
 daysUntilClose: 5
 # Issues with these labels will never be considered stale
 exemptLabels:
+  - "not stale"
   - "good first issue 👍"
   - "good for beginners 😃"
   - "help wanted 🆘"
