@@ -42,5 +42,9 @@ export const BreakpointHook = () => {
 
 export const BreakpointValueHook = () => {
   const width = useBreakpointValue({ base: "150px", md: "250px" })
-  return <chakra.div width={width}>I'm {width} wide</chakra.div>
+  return (
+    <chakra.div bg="red.300" mx="auto" width={width}>
+      I'm {width} wide
+    </chakra.div>
+  )
 }
