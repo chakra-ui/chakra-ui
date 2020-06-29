@@ -142,6 +142,29 @@ closed.
 Pull requests need only the :+1: of two or more collaborators to be merged; when
 the PR author is a collaborator, that counts as one.
 
+### Before you create a Pull Request
+
+Before you create a Pull Request we kindly ask you
+to check whether you have used our commit guide lines
+while you where commiting on your branch.
+
+When you create a commit we kindly ask you to follow the
+convention of `category(scope or module): message` while using one of the following categories:
+
+- `feat / feature`: all changes for creating a new feature
+- `fix`: fixing a bug (ideally you will reference the issue)
+- `refactor`: use this when you have refactored code without
+changing anything important
+- `docs`: when changing existing or creating new 
+documentation (i.e. README, docs for usage of lib or cli)
+- `build`: all changes regarding the build system (i.e.
+added or changed scripts)
+- `test`: all changes regarding tests
+- `ci`: all changes regarding the build system (i.e. github
+actions, ci systems)
+- `chore`: all changes on the repo that do not touch any
+of the above categories
+
 ### Steps to PR
 
 - Fork of the chakra-ui repository and clone your fork
