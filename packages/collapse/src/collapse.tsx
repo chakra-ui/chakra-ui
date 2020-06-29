@@ -1,9 +1,5 @@
 import { chakra, PropsOf, forwardRef } from "@chakra-ui/system"
-import {
-  Transition,
-  TransitionProps,
-  TransitionStyles,
-} from "@chakra-ui/transition"
+import { Transition, TransitionStyles } from "@chakra-ui/transition"
 import { ariaAttr, cx, mergeRefs, __DEV__ } from "@chakra-ui/utils"
 import { useRect } from "@reach/rect"
 import * as React from "react"
@@ -19,9 +15,9 @@ export type CollapseProps = PropsOf<typeof chakra.div> & {
    */
   startingHeight?: number
   /**
-   * Custom styles for the Transition component's appear, entered and exiting states
+   * Custom styles for the Transition component's initial, entered and exiting states
    */
-  config?: TransitionProps["styles"]
+  config?: TransitionStyles
   /**
    * If `true`, the opacity of the content will be animated
    * @default true

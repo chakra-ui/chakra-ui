@@ -72,16 +72,58 @@ function Example() {
 }
 ```
 
+### Customizing the transition state styles
+
+The `config` prop is used to style the Transition component's initial, entered, and 
+exiting states. This allows the height, opacity, transform, transition, or any 
+other valid CSS property to be configured for each state.
+
+```jsx
+function Example() {
+  const [show, setShow] = React.useState(false)
+
+  const handleToggle = () => setShow(!show)
+  const config = {
+    init: {
+      height: 0,
+      opacity: 0,
+    },
+    entered: {
+      height: 48,
+      opacity: 1,
+      transform: "translateY(0)",
+      transition: "height 500ms ease, opacity 500ms ease, transform 500ms ease"
+    },
+    exiting: {
+      height: 0,
+      opacity: 0,
+      transform: "translateY(-0.5rem)",
+      transition: "height 100ms ease, opacity 100ms ease, transform 100ms ease"
+    },
+  }
+
+  return (
+    <>
+      <Button colorScheme="blue" onClick={handleToggle}>
+        Toggle
+      </Button>
+      <Collapse mt={4} isOpen={show} config={config}>
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+        terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
+        labore wes anderson cred nesciunt sapiente ea proident.
+      </Collapse>
+    </>
+  )
+}
+```
+
 ## Props
 
-This component doesn't have any custom props.
-
-| Name             | Type      | Description                                                                                                  |
-| ---------------- | --------- | ------------------------------------------------------------------------------------------------------------ |
-| isOpen           | `boolean` | If `true`, the content will be visible                                                                       |
-| animateOpacity   | `boolean` | If `true`, the opacity of the content will be animated                                                       |
-| duration         | `number`  | The animation duration as it expands                                                                         |
-| startingHeight   | `number`  | The height you want the content in it's collapsed state. Set to `0` by default                               |
-| endingHeight     | `number`  | The height you want the content in it's expanded state. Set to `auto` by default                             |
-| onAnimationEnd   | `func`    | The function to be called when the collapse animation starts. It provides the `currentHeight` as an argument |
-| onAnimationStart | `func`    | The function to be called when the collapse animation ends. It provides the `currentHeight` as an argument   |
+| Name             | Type               | Description                                                                                                  |
+| ---------------- | ------------------ | ------------------------------------------------------------------------------------------------------------ |
+| isOpen           | `boolean`          | If `true`, the content will be visible                                                                       |
+| startingHeight   | `number`           | The height you want the content in it's collapsed state. Set to `0` by default                               |
+| config           | `TransitionStyles` | Custom styles for the Transition component's initial, entered and exiting states                             |
+| animateOpacity   | `boolean`          | If `true`, the opacity of the content will be animated. Set to `true` by default                             |
+| timeout          | `number`           | The CSS `transition-duration` (in ms) to apply for the collapse animation. Set to `150` by default           |
+| easing           | `string`           | The CSS `transition-timing-function` to apply for the collapse animation. Set to `ease` by default           |
