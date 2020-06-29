@@ -1,5 +1,6 @@
 import * as React from "react"
-import { Hide, Show, useBreakpoint } from "../src"
+import { chakra } from "@chakra-ui/system"
+import { Hide, Show, useBreakpoint, useBreakpointValue } from "../src"
 
 export default {
   title: "Breakpoints",
@@ -37,4 +38,9 @@ export const BreakpointHook = () => {
       The current breakpoint is {JSON.stringify(breakpoint, null, 2)}!
     </code>
   )
+}
+
+export const BreakpointValueHook = () => {
+  const width = useBreakpointValue({ base: "150px", md: "250px" })
+  return <chakra.div width={width}>I'm {width} wide</chakra.div>
 }

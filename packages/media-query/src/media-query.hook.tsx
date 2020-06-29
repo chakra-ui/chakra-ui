@@ -1,4 +1,5 @@
 import { useTheme } from "@chakra-ui/system"
+import { useMediaQuery } from "@chakra-ui/hooks"
 import { Dict, isNumber, objectKeys } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -147,4 +148,55 @@ const createMediaQueries = (breakpoints: Dict) => {
 
     return mediaQuery
   })
+}
+
+type BreakpointValues<T> = { [breakpoint: string]: T }
+
+/**
+ * React hook for getting the value for the current breakpoint from the
+ * provided responsive values object.
+ *
+ * @example
+ *
+ * const width = useBreakpointValue({ base: '150px', md: '250px' })
+ * return <Button width={width}>I'm {width} wide!</Button>
+ */
+export function useBreakpointValue<T = any>(values: BreakpointValues<T>) {
+  const breakpoint = useBreakpoint()
+
+  // if breakpoint is undefined, we'll return undefined
+  if (!breakpoint) return
+
+  // if we have no value for the current breakpoint, return the `base`
+  // breakpoint value
+  const baseValue = values.base
+
+  return values[breakpoint] || baseValue
+}
+
+/**
+ * React hook for getting the user's animation preference. Returns `false` if
+ * user prefers reduced motion.
+ *
+ * Inspired by @kripod:
+ * https://github.com/kripod/react-hooks/blob/10f1b489078a6c61bd2226258feef1d2ced915a2/packages/web-api-hooks/src/useMotionPreference.ts
+ */
+export function useAnimationPreference() {
+  const isReduce = useMediaQuery("(prefers-reduced-motion: reduce)")
+  return !isReduce
+}
+
+/**
+ * React hook for getting the user's color mode preference. Returns `"light"`,
+ * `"dark"`, or `undefined` if no preference exists.
+ *
+ * Inspired by @kripod:
+ * https://github.com/kripod/react-hooks/blob/10f1b489078a6c61bd2226258feef1d2ced915a2/packages/web-api-hooks/src/useColorSchemePreference.ts
+ */
+export function useColorModePreference() {
+  const isLight = useMediaQuery("(prefers-color-scheme: light)")
+  const isDark = useMediaQuery("(prefers-color-scheme: dark)")
+
+  if (isLight) return "light"
+  if (isDark) return "dark"
 }
