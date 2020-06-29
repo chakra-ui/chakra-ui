@@ -25,7 +25,7 @@ one by one. All you need to do is install the `@chakra-ui/core` package:
 ```sh
 $ yarn add @chakra-ui/core
 # or
-$ npm install --save @chakra-ui/core
+$ npm install --save @chakra-ui/core @emotion/core
 ```
 
 # Getting set up

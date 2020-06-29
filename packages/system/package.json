@@ -54,13 +54,16 @@
     "@chakra-ui/css-reset": "^1.0.0-next.3",
     "@chakra-ui/parser": "^1.0.0-next.3",
     "@chakra-ui/utils": "^1.0.0-next.3",
-    "@emotion/core": "10.0.28",
     "@emotion/is-prop-valid": "0.8.8",
     "@types/hoist-non-react-statics": "3.3.1",
     "hoist-non-react-statics": "3.3.2"
   },
+  "devDependencies": {
+    "@emotion/core": "10.0.28"
+  },
   "peerDependencies": {
-    "react": "16.x"
+    "react": "16.x",
+    "@emotion/core": "10.0.28"
   },
   "gitHead": "ce6fe489afaddba502a2611f1fb1dcedb991325b"
 }
