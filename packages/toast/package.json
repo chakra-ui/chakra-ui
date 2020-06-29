@@ -1,12 +1,15 @@
 {
   "name": "@chakra-ui/toast",
-  "version": "1.0.0-next.1",
+  "version": "1.0.0-next.3",
   "description": "description",
   "keywords": [
     "theme",
     "theming",
     "ui mode",
     "ui"
+  ],
+  "sideEffects": [
+    "./src/toast.manager.tsx"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
@@ -16,7 +19,8 @@
   "types": "dist/types/index.d.ts",
   "typings": "dist/types/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"
@@ -43,16 +47,16 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/alert": "^1.0.0-next.1",
-    "@chakra-ui/close-button": "^1.0.0-next.1",
-    "@chakra-ui/hooks": "^1.0.0-next.1",
-    "@chakra-ui/transition": "^1.0.0-next.1",
-    "@chakra-ui/utils": "^1.0.0-next.1",
+    "@chakra-ui/alert": "^1.0.0-next.3",
+    "@chakra-ui/close-button": "^1.0.0-next.3",
+    "@chakra-ui/hooks": "^1.0.0-next.3",
+    "@chakra-ui/transition": "^1.0.0-next.3",
+    "@chakra-ui/utils": "^1.0.0-next.3",
     "@reach/alert": "0.10.3",
     "@reach/rect": "0.10.4"
   },
   "devDependencies": {
-    "@chakra-ui/system": "^1.0.0-next.1"
+    "@chakra-ui/system": "^1.0.0-next.3"
   },
   "peerDependencies": {
     "@chakra-ui/system": "1.x",

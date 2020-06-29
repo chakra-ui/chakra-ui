@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`__css prop works on jsx element 1`] = `
+exports[`sx prop works on jsx element 1`] = `
 <DocumentFragment>
   <button
     class="css-1qapnz0"

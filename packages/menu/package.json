@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/menu",
-  "version": "1.0.0-next.1",
+  "version": "1.0.0-next.3",
   "description": "A React component to render accessible menus",
   "keywords": [
     "menu",
@@ -12,6 +12,7 @@
     "component",
     "chakra ui"
   ],
+  "sideEffects": false,
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
@@ -20,7 +21,8 @@
   "types": "dist/types/index.d.ts",
   "typings": "dist/types/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"
@@ -47,15 +49,15 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/clickable": "^1.0.0-next.1",
-    "@chakra-ui/descendant": "^1.0.0-next.1",
-    "@chakra-ui/hooks": "^1.0.0-next.1",
-    "@chakra-ui/popper": "^1.0.0-next.1",
-    "@chakra-ui/transition": "^1.0.0-next.1",
-    "@chakra-ui/utils": "^1.0.0-next.1"
+    "@chakra-ui/clickable": "^1.0.0-next.3",
+    "@chakra-ui/descendant": "^1.0.0-next.3",
+    "@chakra-ui/hooks": "^1.0.0-next.3",
+    "@chakra-ui/popper": "^1.0.0-next.3",
+    "@chakra-ui/transition": "^1.0.0-next.3",
+    "@chakra-ui/utils": "^1.0.0-next.3"
   },
   "devDependencies": {
-    "@chakra-ui/system": "^1.0.0-next.1"
+    "@chakra-ui/system": "^1.0.0-next.3"
   },
   "peerDependencies": {
     "@chakra-ui/system": "1.x",

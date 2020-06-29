@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/breadcrumb",
-  "version": "1.0.0-next.1",
+  "version": "1.0.0-next.3",
   "description": "A React component used for navigation, with each item acting as a link",
   "keywords": [
     "breadcrumbs",
@@ -10,6 +10,7 @@
     "router-breadcrumbs",
     "link"
   ],
+  "sideEffects": false,
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
@@ -18,7 +19,8 @@
   "types": "dist/types/index.d.ts",
   "typings": "dist/types/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"
@@ -45,10 +47,10 @@
     "lint:types": "tsc --noEmit"
   },
   "devDependencies": {
-    "@chakra-ui/system": "^1.0.0-next.1"
+    "@chakra-ui/system": "^1.0.0-next.3"
   },
   "dependencies": {
-    "@chakra-ui/utils": "^1.0.0-next.1"
+    "@chakra-ui/utils": "^1.0.0-next.3"
   },
   "peerDependencies": {
     "@chakra-ui/system": "1.x",

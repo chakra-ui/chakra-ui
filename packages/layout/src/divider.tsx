@@ -14,6 +14,7 @@ export const Divider = chakra("hr", {
     border: "0",
     opacity: 0.6,
     borderColor: "inherit",
+    borderStyle: "solid",
   },
   attrs: (props) => ({
     role: "separator",

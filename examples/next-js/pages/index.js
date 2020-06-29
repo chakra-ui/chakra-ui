@@ -1,24 +1,22 @@
+import { Button } from "@chakra-ui/button"
 import { Image } from "@chakra-ui/image"
+import {
+  Input,
+  InputGroup,
+  InputLeftElement,
+  InputRightElement,
+} from "@chakra-ui/input"
 import { Stack } from "@chakra-ui/layout"
 import {
   chakra,
+  DarkMode,
   useColorMode,
   useColorModeValue,
-  DarkMode,
 } from "@chakra-ui/system"
-import { Button } from "@chakra-ui/button"
 import Head from "next/head"
-import {
-  Input,
-  InputLeftAddon,
-  InputRightAddon,
-  InputLeftElement,
-  InputRightElement,
-  InputGroup,
-} from "@chakra-ui/input"
 
 function Switcher() {
-  const [, toggleMode] = useColorMode()
+  const { toggleColorMode: toggleMode } = useColorMode()
   const text = useColorModeValue("light-man", "dark-man")
   return <button onClick={toggleMode}>Current mode: {text}</button>
 }

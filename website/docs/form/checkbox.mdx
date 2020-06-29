@@ -141,19 +141,6 @@ its children.
 </CheckboxGroup>
 ```
 
-You can also make checkbox group appear horizontally by passing the `isInline`
-prop.
-
-```jsx
-<CheckboxGroup colorScheme="teal" defaultValue={["itachi", "kisame"]}>
-  <HStack spacing={8}>
-    <Checkbox value="itachi">Itachi</Checkbox>
-    <Checkbox value="madara">Madara</Checkbox>
-    <Checkbox value="kisame">Kisame</Checkbox>
-  </HStack>
-</CheckboxGroup>
-```
-
 ## Props
 
 ### Checkbox Props
@@ -193,4 +180,3 @@ CheckboxGroup composes `Box` so you can pass all `Box` props.
 | children     | `React.ReactNode`                          |         | The content of the checkbox group. Must be the `Checkbox` component                                                 |
 | spacing      | `StyledSystem.MarginProps`                 | `8px`   | The space between each checkbox                                                                                     |
 | size         | `sm`, `md`, `lg`                           | `md`    | The size of the checkbox, it's forwarded to all children checkbox.                                                  |
-| isInline     | `boolean`                                  |         | If `true`, the checkboxes will aligned horizontally.                                                                |

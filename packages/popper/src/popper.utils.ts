@@ -16,12 +16,15 @@ const splitPlacement = (placement: Placement) =>
   placement.split("-") as Direction[]
 
 export function getArrowStyles(
-  placement: Placement,
+  placement: Placement | undefined,
   arrowSize: number,
   arrowShadowColor?: string,
 ): React.CSSProperties {
+  if (typeof placement !== "string") return {}
+
   const [position] = splitPlacement(placement)
   const oppositePosition = getOppositePosition(position)
+
   if (!oppositePosition) return {}
 
   return {

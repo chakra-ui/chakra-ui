@@ -465,7 +465,8 @@
       "avatar_url": "https://avatars2.githubusercontent.com/u/181441?v=4",
       "profile": "http://jasonmiazga.com",
       "contributions": [
-        "code"
+        "code",
+        "doc"
       ]
     },
     {
@@ -664,7 +665,8 @@
       "avatar_url": "https://avatars0.githubusercontent.com/u/26336?s=460&v=4",
       "profile": "https://tony@git-pull.com",
       "contributions": [
-        "code"
+        "code",
+        "doc"
       ]
     },
     {
@@ -958,6 +960,15 @@
       "profile": "https://github.com/avaneeshtripathi",
       "contributions": [
         "code"
+      ]
+    },
+    {
+      "login": "balibebas",
+      "name": "balibebas",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/65664227?v=4",
+      "profile": "http://habd.as",
+      "contributions": [
+        "doc"
       ]
     }
   ],

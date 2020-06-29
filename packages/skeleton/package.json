@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/skeleton",
-  "version": "1.0.0-next.1",
+  "version": "1.0.0-next.3",
   "description": "React component to render a placeholders while you wait for content to load",
   "keywords": [
     "skeleton",
@@ -12,6 +12,7 @@
     "ui mode",
     "ui"
   ],
+  "sideEffects": false,
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
@@ -20,7 +21,8 @@
   "types": "dist/types/index.d.ts",
   "typings": "dist/types/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"
@@ -46,9 +48,9 @@
     "lint": "concurrently yarn:lint:*"
   },
   "dependencies": {
-    "@chakra-ui/hooks": "^1.0.0-next.1",
-    "@chakra-ui/system": "^1.0.0-next.1",
-    "@chakra-ui/utils": "^1.0.0-next.1"
+    "@chakra-ui/hooks": "^1.0.0-next.3",
+    "@chakra-ui/system": "^1.0.0-next.3",
+    "@chakra-ui/utils": "^1.0.0-next.3"
   },
   "peerDependencies": {
     "react": "16.x"

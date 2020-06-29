@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/accordion",
-  "version": "1.0.0-next.1",
+  "version": "1.0.0-next.3",
   "description": "A simple and accessible accordion component for React & Chakra UI",
   "keywords": [
     "react",
@@ -19,10 +19,12 @@
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
   "main": "dist/cjs/index.js",
-  "module": "dist/esm/index/js",
+  "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
+  "typings": "dist/types/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "sideEffects": false,
   "publishConfig": {
@@ -50,14 +52,14 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/collapse": "^1.0.0-next.1",
-    "@chakra-ui/descendant": "^1.0.0-next.1",
-    "@chakra-ui/hooks": "^1.0.0-next.1",
-    "@chakra-ui/icon": "^1.0.0-next.1",
-    "@chakra-ui/utils": "^1.0.0-next.1"
+    "@chakra-ui/collapse": "^1.0.0-next.3",
+    "@chakra-ui/descendant": "^1.0.0-next.3",
+    "@chakra-ui/hooks": "^1.0.0-next.3",
+    "@chakra-ui/icon": "^1.0.0-next.3",
+    "@chakra-ui/utils": "^1.0.0-next.3"
   },
   "devDependencies": {
-    "@chakra-ui/system": "^1.0.0-next.1"
+    "@chakra-ui/system": "^1.0.0-next.3"
   },
   "peerDependencies": {
     "@chakra-ui/system": "1.x",

@@ -106,6 +106,9 @@ const StyledButton = chakra("button", {
     _hover: { opacity: 0.8 },
     _active: { opacity: 1 },
   },
+  attrs: {
+    type: "button",
+  },
 })
 
 /**

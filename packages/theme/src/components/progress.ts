@@ -21,24 +21,16 @@ const getProgressBg: ProgressTheme["baseStyle"] = (props) => {
 
 const sizes: ProgressTheme["sizes"] = {
   xs: {
-    Track: {
-      height: "0.25rem",
-    },
+    Track: { height: "0.25rem" },
   },
   sm: {
-    Track: {
-      height: "0.5rem",
-    },
+    Track: { height: "0.5rem" },
   },
   md: {
-    Track: {
-      height: "0.75rem",
-    },
+    Track: { height: "0.75rem" },
   },
   lg: {
-    Track: {
-      height: "1rem",
-    },
+    Track: { height: "1rem" },
   },
 }
 

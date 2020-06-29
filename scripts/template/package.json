@@ -1,6 +1,6 @@
 {
   "name": "name",
-  "version": "1.0.0-next.1",
+  "version": "1.0.0-next.2",
   "description": "description",
   "keywords": [
     "theme",
@@ -16,7 +16,8 @@
   "types": "dist/types/index.d.ts",
   "typings": "dist/types/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"
@@ -42,9 +43,9 @@
     "lint": "concurrently yarn:lint:*"
   },
   "dependencies": {
-    "@chakra-ui/utils": "1.0.0-next.1",
-    "@chakra-ui/hooks": "1.0.0-next.1",
-    "@chakra-ui/system": "1.0.0-next.1"
+    "@chakra-ui/utils": "1.0.0-next.2",
+    "@chakra-ui/hooks": "1.0.0-next.2",
+    "@chakra-ui/system": "1.0.0-next.2"
   },
   "peerDependencies": {
     "react": "16.x"

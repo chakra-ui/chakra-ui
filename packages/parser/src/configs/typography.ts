@@ -41,9 +41,7 @@ export interface TypographyProps {
   /**
    * The CSS `font-weight` property
    */
-  fontWeight?: ResponsiveValue<
-    CSS.FontWeightProperty | "medium" | "light" | "semibold"
-  >
+  fontWeight?: ResponsiveValue<string | number>
   /**
    * The CSS `line-height` property
    */

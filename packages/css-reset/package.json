@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/css-reset",
-  "version": "1.0.0-next.1",
+  "version": "1.0.0-next.3",
   "description": "CSS reset component for Chakra UI",
   "keywords": [
     "theme",
@@ -9,6 +9,7 @@
     "chakra ui",
     "css reset"
   ],
+  "sideEffects": false,
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
@@ -17,7 +18,8 @@
   "types": "dist/types/index.d.ts",
   "typings": "dist/types/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"
@@ -43,7 +45,7 @@
     "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
     "lint:types": "tsc --noEmit"
   },
-  "dependencies": {
+  "devDependencies": {
     "@emotion/core": "10.0.28"
   },
   "peerDependencies": {

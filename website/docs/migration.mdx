@@ -28,7 +28,7 @@ components to a certain color mode.
 TypeScript support and most low-level components like Box, Flex, etc. will
 support the `as` prop and types will be extracted properly.
 
-**Theme-aware css prop:** Just like `theme-ui`, we've added a `__css` prop you
+**Theme-aware css prop:** Just like `theme-ui`, we've added a `sx` prop you
 can use to add theme-aware styles.
 
 ## Upgrade steps
@@ -46,17 +46,35 @@ safely remove them and update Chakra UI to v1.
 
 ```diff
 "dependencies": {
-  "@chakra-ui/core": "1.0.0-beta",
--  "@emotion/core": "10.x",
--  "@emotion/styled": "10.x",
--  "emotion-theming": "10.x"
+  "@chakra-ui/core": "1.0.0",
+-  "@emotion/styled": "10.X",
+-  "@emotion/theming": "10.x",
+-  "@emotion/core": "10.x"
 }
 ```
 
-**Note on bundle size:** Chakra UI now exports all components as separate
-packages to make it easier to consume individual packages. For example, if you
-use only `Button`, you can now install `@chakra-ui/button` along side its peer
-dependency `@chakra-ui/system`, and you're good to go!
+#### Installing specific components
+
+Let's say you only use the button from Chakra UI, instead of installing
+`@chakra-ui/core`, which installs all components, you can simply install
+`@chakra-ui/button`.
+
+For this approach, you'll also need to to install `@chakra-ui/system` which is
+the backbone for all components.
+
+```bash
+npm i @chakra-ui/button @chakra-ui/system
+
+# or
+
+yarn add @chakra-ui/button @chakra-ui/system
+```
+
+#### Notes on Icons
+
+Chakra moved all icons to a separate package `@chakra-ui/icons`. We recommend
+using `react-icons` in your projects considering it has a robust set of icons.
+However, you can still install this package.
 
 ### 2. Clone Chakra's default theme
 
@@ -70,11 +88,15 @@ stressful for you to customize theme.
 
 <br />
 
-1. Run `npx chakra init --theme` to clone the theme to your project. This
+1. Run `npx chakra-cli init --theme` to clone the theme to your project. This
    creates a `chakra` folder with the default theme inside.
 
-```sh
-npx chakra init --theme
+```bash
+   # clone the javascript theme
+   npx chakra-cli init --theme
+
+   # clone the typescript theme
+   npx chakra-cli init --theme --ts
 ```
 
 2. Update the `ThemeProvider` in your app's root by passing the `theme` prop.
@@ -441,6 +463,46 @@ package which automatically configures `InitializeColorMode` along with
   `FormErrorMessage` won't be visible. The only way to make it visible is by
   passing `isInvalid` and setting it to `true`.
 
+### Icons
+
+## Changes
+
+- Basic interface icons provided by Chakra have moved to the `icons` package.
+  Replace all `<Icon name="..." />` elements imported from `core` with
+  equivalent _named_ icon React elements imported from `icons`.
+
+  > Replacement logic: If `<Icon name="search" />` is used, then replace it with
+  > `<SearchIcon />` from Chakra icons package.
+
+```diff
+- import { Icon } from "@chakra-ui/core"
+- <Icon name="search" />
++ import { SearchIcon } from "@chakra-ui/icons"
++ <SearchIcon />
+```
+
+Existing icons will appear as a question mark until refactored.
+
+- We changed the way custom icons are created. Instead of adding custom icons to
+  `theme` create your own icons using the `createIcon` utility:
+
+```jsx live=false
+import { createIcon } from "@chakra-ui/icon"
+export const UpDownIcon = createIcon({
+  displayName: "UpDownIcon",
+  viewBox: "-1 -1 9 11",
+  d:
+    "M 3.5 0L 3.98809 -0.569442L 3.5 -0.987808L 3.01191 -0.569442L 3.5 0ZM 3.5 9L 3.01191 9.56944L 3.5 9.98781L 3.98809 9.56944L 3.5 9ZM 0.488094 3.56944L 3.98809 0.569442L 3.01191 -0.569442L -0.488094 2.43056L 0.488094 3.56944ZM 3.01191 0.569442L 6.51191 3.56944L 7.48809 2.43056L 3.98809 -0.569442L 3.01191 0.569442ZM -0.488094 6.56944L 3.01191 9.56944L 3.98809 8.43056L 0.488094 5.43056L -0.488094 6.56944ZM 3.98809 9.56944L 7.48809 6.56944L 6.51191 5.43056L 3.01191 8.43056L 3.98809 9.56944Z",
+})
+```
+
+As a convenience you can also import `createIcon` from the `icons` package along
+with other icons:
+
+```jsx live=false
+import { createIcon, MoonIcon, SunIcon } from "@chakra-ui/icons"
+```
+
 ### Image
 
 #### Bug Fixes
@@ -509,6 +571,12 @@ package which automatically configures `InitializeColorMode` along with
   elements in the horizontal or vertical directions respectively.
 
 ### Menu
+
+#### Changes
+
+- All popper related props that used to be passed to `MenuList` component,
+  should now be passed to `Menu`. Reason: To support nested menus
+- `placement` prop has moved from `MenuList` to `Menu`
 
 #### Features
 
@@ -657,6 +725,9 @@ function Example() {
   custom values
 
 - You can now disable focus trap by passing `trapFocus={false}`
+
+- The `SlideIn` and `Scale` transition components have been replaced with the 
+  `Fade`, `ScaleFade`, `Slide`, and `SlideFade` components.
 
 #### New Props
 
@@ -836,8 +907,7 @@ function Example() {
 
 ### Tooltip
 
-- Added support for `hideOnClick` prop
-- Added support for `hideOnMouseDown` prop
+- Added support for `closeOnMouseDown` prop
 
 **That's it! Welcome to Chakra UI v1.**
 

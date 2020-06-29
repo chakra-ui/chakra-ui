@@ -1,9 +1,0 @@
-.storybook
-src
-scripts
-tests
-*.tgz
-babel.config.js
-rollup.config.js
-tsconfig.json
-tslint.json

@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/popper",
-  "version": "1.0.0-next.1",
+  "version": "1.0.0-next.3",
   "description": "A React component and hooks wrapper for popper.js",
   "keywords": [
     "react",
@@ -14,6 +14,7 @@
     "chakra ui",
     "component"
   ],
+  "sideEffects": false,
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
@@ -22,7 +23,8 @@
   "types": "dist/types/index.d.ts",
   "typings": "dist/types/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"

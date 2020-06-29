@@ -1,7 +1,7 @@
-import { SystemProps } from "@chakra-ui/system"
-import { ComponentTheme, mode, Props } from "@chakra-ui/theme-tools"
+import { mode, Props, StyleObject } from "@chakra-ui/theme-tools"
+import Input, { InputTheme } from "./input"
 
-function getOutlineStyle(props: Props): SystemProps {
+function outline(props: Props): StyleObject {
   return {
     border: "1px solid",
     borderColor: mode("inherit", "whiteAlpha.50")(props),
@@ -9,7 +9,7 @@ function getOutlineStyle(props: Props): SystemProps {
   }
 }
 
-function getFilledStyle(props: Props): SystemProps {
+function filled(props: Props): StyleObject {
   return {
     border: "2px solid",
     borderColor: "transparent",
@@ -17,14 +17,12 @@ function getFilledStyle(props: Props): SystemProps {
   }
 }
 
-function getFlushedStyle(props: Props): SystemProps {
-  return {
-    borderBottom: "2px solid",
-    borderColor: "inherit",
-    borderRadius: 0,
-    paddingX: 0,
-    bg: "transparent",
-  }
+const flushed: StyleObject = {
+  borderBottom: "2px solid",
+  borderColor: "inherit",
+  borderRadius: 0,
+  paddingX: 0,
+  bg: "transparent",
 }
 
 const unstyled = {
@@ -33,33 +31,14 @@ const unstyled = {
   height: "auto",
 }
 
-const sizes: ComponentTheme["sizes"] = {
-  lg: {
-    fontSize: "lg",
-    paddingX: 4,
-    paddingY: 2,
-    borderRadius: "md",
-  },
-  md: {
-    fontSize: "md",
-    paddingX: 4,
-    paddingY: 2,
-    borderRadius: "md",
-  },
-  sm: {
-    fontSize: "sm",
-    paddingX: 3,
-    paddingY: 1,
-    borderRadius: "sm",
-  },
-}
+const sizes: InputTheme["sizes"] = Input.sizes
 
-const InputAddon: ComponentTheme = {
+const InputAddon: InputTheme = {
   sizes,
   variants: {
-    outline: getOutlineStyle,
-    filled: getFilledStyle,
-    flushed: getFlushedStyle,
+    outline,
+    filled,
+    flushed,
     unstyled,
   },
 }

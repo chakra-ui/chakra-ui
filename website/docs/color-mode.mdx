@@ -24,7 +24,7 @@ and a function to toggle the color mode.
 
 ```jsx
 function Example() {
-  const [colorMode, toggleColorMode] = useColorMode()
+  const { colorMode, toggleColorMode } = useColorMode()
   return (
     <header>
       <Button onClick={toggleColorMode}>
@@ -55,7 +55,7 @@ Here's an example that changes the `background-color` and `color` using the
 
 ```jsx
 function StyleColorMode() {
-  const [colorMode, toggleColorMode] = useColorMode()
+  const { colorMode, toggleColorMode } = useColorMode()
   const bg = useColorModeValue("red.500", "red.200")
   const color = useColorModeValue("white", "gray.800")
 
@@ -82,7 +82,7 @@ light and dark modes. To achieve this, wrap the component in a `LightMode` or
 
 ```jsx
 function Example() {
-  const [colorMode, toggleColorMode] = useColorMode()
+  const { colorMode, toggleColorMode } = useColorMode()
 
   return (
     <HStack>

@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/system",
-  "version": "1.0.0-next.1",
+  "version": "1.0.0-next.3",
   "description": "Chakra UI system primitives",
   "keywords": [
     "system",
@@ -12,6 +12,7 @@
     "style-props",
     "design-system"
   ],
+  "sideEffects": false,
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
@@ -20,7 +21,8 @@
   "types": "dist/types/index.d.ts",
   "typings": "dist/types/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"
@@ -46,15 +48,12 @@
     "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
     "lint:types": "tsc --noEmit"
   },
-  "devDependencies": {
-    "framer-motion": "1.11.1"
-  },
   "dependencies": {
-    "@chakra-ui/color-mode": "^1.0.0-next.1",
-    "@chakra-ui/css": "^1.0.0-next.1",
-    "@chakra-ui/css-reset": "^1.0.0-next.1",
-    "@chakra-ui/parser": "^1.0.0-next.1",
-    "@chakra-ui/utils": "^1.0.0-next.1",
+    "@chakra-ui/color-mode": "^1.0.0-next.3",
+    "@chakra-ui/css": "^1.0.0-next.3",
+    "@chakra-ui/css-reset": "^1.0.0-next.3",
+    "@chakra-ui/parser": "^1.0.0-next.3",
+    "@chakra-ui/utils": "^1.0.0-next.3",
     "@emotion/core": "10.0.28",
     "@emotion/is-prop-valid": "0.8.8",
     "@types/hoist-non-react-statics": "3.3.1",

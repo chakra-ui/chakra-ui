@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/alert-dialog",
-  "version": "1.0.0-next.1",
+  "version": "1.0.0-next.3",
   "description": "React component for accessible alert or confirm dialog",
   "keywords": [
     "confirm",
@@ -12,6 +12,7 @@
     "dialog",
     "modal"
   ],
+  "sideEffects": false,
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
@@ -20,7 +21,8 @@
   "types": "dist/types/index.d.ts",
   "typings": "dist/types/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"
@@ -47,10 +49,10 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/modal": "^1.0.0-next.1"
+    "@chakra-ui/modal": "^1.0.0-next.3"
   },
   "devDependencies": {
-    "@chakra-ui/system": "^1.0.0-next.1"
+    "@chakra-ui/system": "^1.0.0-next.3"
   },
   "peerDependencies": {
     "@chakra-ui/system": "1.x",

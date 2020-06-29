@@ -19,7 +19,7 @@ function createShouldForwardProp(props: any) {
 
 const shouldForwardProp = createShouldForwardProp(stylePropNames)
 
-export type ValidHTMLProps = {
+export interface ValidHTMLProps {
   htmlWidth?: string | number
   htmlHeight?: string | number
   htmlSize?: string | number
@@ -36,7 +36,7 @@ const isValidHTMLProp = (value: any): value is keyof ValidHTMLProps =>
 
 function isPropValid(prop: string) {
   const shouldPassThrough =
-    validHTMLProps.hasOwnProperty(prop) || prop === "__css" || prop === "css"
+    validHTMLProps.hasOwnProperty(prop) || prop === "sx" || prop === "css"
   return shouldPassThrough ? true : shouldForwardProp(prop)
 }
 

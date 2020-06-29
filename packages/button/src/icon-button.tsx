@@ -47,5 +47,3 @@ export const IconButton = forwardRef<IconButtonProps>(function IconButton(
 if (__DEV__) {
   IconButton.displayName = "IconButton"
 }
-
-IconButton.defaultProps = Button.defaultProps
