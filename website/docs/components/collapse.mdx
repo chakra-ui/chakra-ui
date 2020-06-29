@@ -30,16 +30,14 @@ immediately relevant to the user.
 
 ```jsx
 function Example() {
-  const [show, setShow] = React.useState(false)
-
-  const handleToggle = () => setShow(!show)
+  const { isOpen, onToggle } = useDisclosure()
 
   return (
     <>
-      <Button colorScheme="blue" onClick={handleToggle}>
+      <Button colorScheme="blue" onClick={onToggle}>
         Toggle
       </Button>
-      <Collapse mt={4} isOpen={show}>
+      <Collapse mt={4} isOpen={isOpen}>
         Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
         terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
         labore wes anderson cred nesciunt sapiente ea proident.
@@ -53,19 +51,17 @@ function Example() {
 
 ```jsx
 function Example() {
-  const [show, setShow] = React.useState(false)
-
-  const handleToggle = () => setShow(!show)
+  const { isOpen, onToggle } = useDisclosure()
 
   return (
     <>
-      <Collapse startingHeight={20} isOpen={show}>
+      <Collapse startingHeight={20} isOpen={isOpen}>
         Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
         terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
         labore wes anderson cred nesciunt sapiente ea proident.
       </Collapse>
-      <Button size="sm" onClick={handleToggle} mt="1rem">
-        Show {show ? "Less" : "More"}
+      <Button size="sm" onClick={onToggle} mt="1rem">
+        Show {isOpen ? "Less" : "More"}
       </Button>
     </>
   )
@@ -80,9 +76,8 @@ other valid CSS property to be configured for each state.
 
 ```jsx
 function Example() {
-  const [show, setShow] = React.useState(false)
+  const { isOpen, onToggle } = useDisclosure()
 
-  const handleToggle = () => setShow(!show)
   const config = {
     init: {
       height: 0,
@@ -104,10 +99,10 @@ function Example() {
 
   return (
     <>
-      <Button colorScheme="blue" onClick={handleToggle}>
+      <Button colorScheme="blue" onClick={onToggle}>
         Toggle
       </Button>
-      <Collapse mt={4} isOpen={show} config={config}>
+      <Collapse mt={4} isOpen={isOpen} config={config}>
         Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
         terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
         labore wes anderson cred nesciunt sapiente ea proident.
