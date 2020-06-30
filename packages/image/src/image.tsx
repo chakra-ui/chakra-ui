@@ -23,6 +23,10 @@ interface ImageOptions {
    */
   htmlHeight?: string | number
   /**
+   * Defines loading strategy
+   */
+  loading?: "eager" | "lazy"
+  /**
    * How the image to fit within it's bounds.
    * It maps to css `object-fit` property.
    */
