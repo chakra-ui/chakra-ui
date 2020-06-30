@@ -59,6 +59,10 @@ export interface UseMenuProps extends UsePopperProps {
    * @default true
    */
   autoSelect?: boolean
+  /**
+   * The Popper.js modifiers to use
+   */
+  modifiers?: UsePopperProps["modifiers"]
 }
 
 /**
@@ -77,6 +81,7 @@ export function useMenu(props: UseMenuProps) {
     gutter,
     fixed = true,
     preventOverflow,
+    modifiers,
   } = props
 
   /**
@@ -110,6 +115,7 @@ export function useMenu(props: UseMenuProps) {
     forceUpdate: isOpen,
     gutter: hasParentMenu ? 0 : gutter,
     preventOverflow,
+    modifiers: hasParentMenu ? undefined : modifiers,
   })
 
   const [focusedIndex, setFocusedIndex] = React.useState(-1)
