@@ -117,7 +117,7 @@
     "@babel/preset-react": "7.10.1",
     "@babel/preset-typescript": "7.10.1",
     "@babel/runtime": "7.10.2",
-    "@commitlint/cli": "8.3.5",
+    "@commitlint/cli": "9.0.1",
     "@commitlint/config-conventional": "9.0.1",
     "@emotion/core": "10.0.28",
     "@emotion/styled": "10.0.27",
