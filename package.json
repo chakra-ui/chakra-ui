@@ -110,7 +110,7 @@
   },
   "devDependencies": {
     "framer-motion": "1.11.1",
-    "@babel/cli": "7.10.1",
+    "@babel/cli": "7.10.3",
     "@babel/core": "7.10.2",
     "@babel/plugin-proposal-class-properties": "7.10.1",
     "@babel/preset-env": "7.10.2",
