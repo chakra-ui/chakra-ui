@@ -191,7 +191,7 @@ export const WithNestedMenu = () => (
 //         node.hidden = true
 //         node.style.pointerEvents = null
 //         // persist focus restoration
-//         ensureFocus(menu.buttonRef.current)
+//         focus(menu.buttonRef.current)
 //       }}
 //       onExit={node => {
 //         node.hidden = undefined

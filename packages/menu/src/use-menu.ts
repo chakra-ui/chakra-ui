@@ -23,7 +23,7 @@ import {
   cx,
   isString,
   dataAttr,
-  ensureFocus,
+  focus,
 } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -136,7 +136,7 @@ export function useMenu(props: UseMenuProps) {
   useUpdateEffect(() => {
     if (!isOpen && !hasParentMenu) {
       if (buttonRef.current) {
-        ensureFocus(buttonRef.current)
+        focus(buttonRef.current)
       }
     }
   }, [isOpen, hasParentMenu])
@@ -348,7 +348,7 @@ export function useMenuList(props: UseMenuListProps) {
         if (hasParentMenu) {
           onClose()
           if (buttonRef.current) {
-            ensureFocus(buttonRef.current)
+            focus(buttonRef.current)
           }
         }
       },
@@ -425,7 +425,7 @@ export function useMenuButton(props: UseMenuButtonProps) {
   const openAndFocusMenu = React.useCallback(() => {
     onOpen()
     if (menuRef.current) {
-      ensureFocus(menuRef.current)
+      focus(menuRef.current)
     }
   }, [onOpen, menuRef])
 
@@ -653,7 +653,7 @@ export function useMenuItem(props: UseMenuItemProps) {
   useUpdateEffect(() => {
     if (isFocused && !trulyDisabled) {
       if (ref.current) {
-        ensureFocus(ref.current)
+        focus(ref.current)
       }
     } else {
       if (document.activeElement !== menuRef.current) {

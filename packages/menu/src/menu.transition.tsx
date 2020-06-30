@@ -3,7 +3,7 @@ import {
   TransitionProps,
   TransitionStyles,
 } from "@chakra-ui/transition"
-import { ensureFocus, __DEV__ } from "@chakra-ui/utils"
+import { focus, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { useMenuContext } from "./menu"
 
@@ -46,7 +46,7 @@ export function MenuTransition(props: MenuTransitionProps) {
         node.hidden = true
         node.style.pointerEvents = "auto"
         if (menu.buttonRef.current) {
-          ensureFocus(menu.buttonRef.current)
+          focus(menu.buttonRef.current)
         }
       }}
       onExit={(node) => {
