@@ -9,6 +9,7 @@ import Code from "./code"
 import Divider from "./divider"
 import Modal from "./modal"
 import Heading from "./heading"
+import Icon from "./icon"
 import Input from "./input"
 import InputAddon from "./input-addon"
 import Link from "./link"
@@ -36,6 +37,7 @@ export default {
   Accordion,
   Button,
   Heading,
+  Icon,
   Alert,
   Badge,
   Avatar,
