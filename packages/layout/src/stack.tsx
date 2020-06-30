@@ -77,7 +77,7 @@ export const Stack = React.forwardRef(function Stack(
 ) {
   const {
     direction = "column",
-    align = "normal",
+    align,
     justify,
     spacing = "0.5rem",
     wrap,
