@@ -14,7 +14,7 @@ export interface SkeletonOptions {
   /**
    * If `true`, it'll render it's children with a nice fade transition
    */
-  hasLoaded?: boolean
+  isLoaded?: boolean
   /**
    * The animation speed in seconds
    * @default
@@ -34,8 +34,6 @@ const StyledSkeleton = chakra<"div", SkeletonOptions>("div", {
   themeKey: "Skeleton",
   baseStyle: {
     boxShadow: "none",
-    opacity: 0.7,
-    borderRadius: "2px",
     //@ts-ignore - Fix this later
     backgroundClip: "padding-box",
     cursor: "default",
@@ -64,7 +62,7 @@ export const Skeleton = React.forwardRef(function Skeleton(
   const {
     startColor,
     endColor,
-    hasLoaded,
+    isLoaded,
     fadeDuration = 0.4,
     speed = 0.8,
     className,
@@ -73,7 +71,7 @@ export const Skeleton = React.forwardRef(function Skeleton(
 
   const _className = cx("chakra-skeleton", className)
 
-  if (hasLoaded) {
+  if (isLoaded) {
     return (
       <chakra.div
         ref={ref}

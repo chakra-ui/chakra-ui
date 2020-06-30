@@ -10,8 +10,8 @@ Every UI has stackable layers and it's important to have control over how these
 layers play together. Some examples of stackable layers are tooltips, modals,
 popovers, selects, dropdowns, and menus.
 
-The issues that come up across these layers usage are z-index and visibility
-handling, what layer goes on top.
+The issues that come up across the usage of these these layers are related to
+z-index and visibility handling, in other words, "what layer goes on top?"
 
 ## What's wrong with z-index?
 
@@ -47,7 +47,7 @@ stacking context(s) now only have meaning in this parent.
 An alternative to `z-index` is to use the DOM's natural stacking order to our
 advantage. [React's Portals](https://reactjs.org/docs/portals.html) allow us to
 insert a child into a different location in the document, whilst not affecting
-other behaviours in React, such as event bubbling.
+other behaviours in React such as event bubbling.
 
 Chakra Portal implementation allows for nesting, and defaults to inserting
 children at the end of `document.body`.

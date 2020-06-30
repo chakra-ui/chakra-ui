@@ -123,8 +123,8 @@ export function useTooltip(props: UseTooltipProps = {}) {
 
   return {
     isOpen,
-    show: open,
-    hide: close,
+    show: openWithDelay,
+    hide: closeWithDelay,
     placement: popper.placement,
     getTriggerProps: (props: Dict = {}) => ({
       ...props,

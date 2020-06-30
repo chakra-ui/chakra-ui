@@ -1,8 +1,8 @@
 import * as React from "react"
 import { isBrowser } from "@chakra-ui/utils"
-import { useSafeLayoutEffect } from "./use-safe-layout-effect"
 
 const isSupported = (api: string) => isBrowser && api in window
+const useSafeLayoutEffect = isBrowser ? React.useLayoutEffect : React.useEffect
 
 /**
  * React hook that tracks state of a CSS media query
