@@ -49,7 +49,7 @@
     "@reach/auto-id": "0.10.3",
     "@types/body-scroll-lock": "2.6.1",
     "body-scroll-lock": "^3.0.2",
-    "compute-scroll-into-view": "1.0.11",
+    "compute-scroll-into-view": "1.0.14",
     "copy-to-clipboard": "3.3.1"
   },
   "peerDependencies": {
