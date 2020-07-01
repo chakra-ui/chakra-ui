@@ -1,28 +1,30 @@
 <script data-id="chakra-ui-no-flash">
   ;(function () {
-    var storageKey = "chakra-ui-color-mode"
-    var classNameDark = "chakra-ui-dark"
-    var classNameLight = "chakra-ui-light"
+    window.addEventListener("DOMContentLoaded", function (e) {
+      var storageKey = "chakra-ui-color-mode"
+      var classNameDark = "chakra-ui-dark"
+      var classNameLight = "chakra-ui-light"
 
-    function setClassOnDocumentBody(darkMode) {
-      document.body.classList.add(darkMode ? classNameDark : classNameLight)
-      document.body.classList.remove(darkMode ? classNameLight : classNameDark)
-    }
+      function setClassOnDocumentBody(darkMode) {
+        document.body.classList.add(darkMode ? classNameDark : classNameLight)
+        document.body.classList.remove(
+          darkMode ? classNameLight : classNameDark,
+        )
+      }
 
-    var preferDarkQuery = "(prefers-color-scheme: dark)"
-    var mql = window.matchMedia(preferDarkQuery)
-    var supportsColorSchemeQuery = mql.media === preferDarkQuery
-    var localStorageValue = null
+      var preferDarkQuery = "(prefers-color-scheme: dark)"
+      var mql = window.matchMedia(preferDarkQuery)
+      var supportsColorSchemeQuery = mql.media === preferDarkQuery
+      var localStorageValue = null
 
-    try {
-      localStorageValue = localStorage.getItem(storageKey)
-    } catch (err) {}
+      try {
+        localStorageValue = localStorage.getItem(storageKey)
+      } catch (err) {}
 
-    var exist = localStorageValue !== null
-    if (exist) {
-      localStorageValue = JSON.parse(localStorageValue)
-    }
-
+      var exist = localStorageValue !== null
+      if (exist) {
+        localStorageValue = JSON.parse(localStorageValue)
+      }
     // Determine the source of truth
     if (exist) {
       // source of truth from localStorage
