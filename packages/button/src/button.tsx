@@ -92,6 +92,7 @@ export const Button = forwardRef<ButtonProps>(function Button(props, ref) {
     colorScheme = group?.colorScheme,
     size = group?.size,
     className,
+    as,
     ...rest
   } = props
 
@@ -117,7 +118,8 @@ export const Button = forwardRef<ButtonProps>(function Button(props, ref) {
     <StyledButton
       disabled={isDisabled || isLoading}
       ref={ref}
-      type={type}
+      as={as}
+      type={as ? undefined : type}
       width={isFullWidth ? "100%" : undefined}
       data-active={dataAttr(isActive)}
       data-loading={dataAttr(isLoading)}
