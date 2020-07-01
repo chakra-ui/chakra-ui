@@ -1,5 +1,4 @@
 import { useTheme } from "@chakra-ui/system"
-import { Dict } from "@chakra-ui/utils"
 import createMediaQueries from "./create-media-query"
 import React from "react"
 
@@ -24,9 +23,7 @@ export interface Breakpoint {
  * to get the default breakpoint value from the user-agent
  */
 export function useBreakpoint(defaultBreakpoint?: string) {
-  const theme = useTheme() as Dict
-
-  const { breakpoints } = theme
+  const { breakpoints } = useTheme()
 
   const mediaQueries = React.useMemo(
     () => createMediaQueries({ base: "0px", ...breakpoints }),

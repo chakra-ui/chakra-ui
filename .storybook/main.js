@@ -1,3 +1,3 @@
 module.exports = {
-  stories: ["../packages/image/**/*.stories.tsx"],
+  stories: ["../packages/media-query/**/*.stories.tsx"],
 }

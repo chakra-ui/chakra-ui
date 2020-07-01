@@ -1,4 +1,5 @@
 import { objectKeys, Dict, isNumber } from "@chakra-ui/utils"
+import calculateMeasurement from "calculate-measurement"
 
 /**
  * Create a media query string from the breakpoints,
@@ -23,7 +24,7 @@ function createMediaQueries(breakpoints: Dict) {
       if (query) {
         query += " and "
       }
-      query += `(max-width: ${toMediaString(maxWidth)})`
+      query += `(max-width: ${toMediaString(subtract(maxWidth))})`
     }
 
     const mediaQuery: MediaQuery = {
@@ -44,11 +45,15 @@ interface MediaQuery {
   query: string
 }
 
+function subtract(value: any) {
+  return calculateMeasurement(value, -0.01)
+}
+
 /**
  * Convert media query value to string
  */
-function toMediaString(val: any) {
-  return isNumber(val) ? `${val}px` : val
+function toMediaString(value: any) {
+  return isNumber(value) ? `${value}px` : value
 }
 
 /**

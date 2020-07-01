@@ -7372,6 +7372,11 @@ cachedir@2.2.0:
   resolved "https://registry.yarnpkg.com/cachedir/-/cachedir-2.2.0.tgz#19afa4305e05d79e417566882e0c8f960f62ff0e"
   integrity sha512-VvxA0xhNqIIfg0V9AmJkDg91DaJwryutH5rVEZAhcNi4iJFj9f+QxmAjgK1LT9I8OgToX27fypX6/MeCXVbBjQ==
 
+calculate-measurement@0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/calculate-measurement/-/calculate-measurement-0.1.0.tgz#1be9652b989253ec7872525164a273709dbd5919"
+  integrity sha1-G+llK5iSU+x4clJRZKJzcJ29WRk=
+
 call-me-maybe@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/call-me-maybe/-/call-me-maybe-1.0.1.tgz#26d208ea89e37b5cbde60250a15f031c16a4d66b"
