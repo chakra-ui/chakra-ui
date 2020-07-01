@@ -129,7 +129,7 @@ export const Button = forwardRef<ButtonProps>(function Button(props, ref) {
       {...rest}
     >
       {leftIcon && !isLoading && (
-        <ButtonIcon ml={-1} mr={iconSpacing} children={leftIcon} />
+        <ButtonIcon mr={iconSpacing} children={leftIcon} />
       )}
       {isLoading && (
         <ButtonSpinner
@@ -142,7 +142,7 @@ export const Button = forwardRef<ButtonProps>(function Button(props, ref) {
         ? loadingText || <chakra.span opacity={0} children={children} />
         : children}
       {rightIcon && !isLoading && (
-        <ButtonIcon ml={iconSpacing} mr={-1} children={rightIcon} />
+        <ButtonIcon ml={iconSpacing} children={rightIcon} />
       )}
     </StyledButton>
   )
