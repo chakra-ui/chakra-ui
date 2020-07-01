@@ -11823,9 +11823,9 @@ gatsby-plugin-google-tagmanager@^2.3.1:
     "@babel/runtime" "^7.10.3"
 
 gatsby-plugin-layout@^1.3.1:
-  version "1.3.6"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-layout/-/gatsby-plugin-layout-1.3.6.tgz#1054422b152e54af49188bafd0b6c03fe6672394"
-  integrity sha512-52npuIbVaMvtErtcxBMq4+2L9Lw3Oj8OjmWdhhRX2C+pSXz6xf/hADSjoLOqJoEzltx1LP1u79HpWgOKyFl8OA==
+  version "1.3.8"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-layout/-/gatsby-plugin-layout-1.3.8.tgz#3c49d4b03106b3aa4169417dac43f7c1e1210092"
+  integrity sha512-sfPzVP5av1SFApwjlzZRz5gbfc4+NcmNEpDLAO6WHeUeT9BuJFyjF7qvR9KvuvMaIzGqAnRhz9d13LwrKx2llw==
   dependencies:
     "@babel/runtime" "^7.10.3"
 
