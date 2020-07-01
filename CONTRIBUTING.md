@@ -165,6 +165,8 @@ actions, ci systems)
 - `chore`: all changes on the repo that do not touch any
 of the above categories
 
+// todo: iodar provide link to https://www.conventionalcommits.org/ for detailed information
+
 ### Steps to PR
 
 - Fork of the chakra-ui repository and clone your fork
