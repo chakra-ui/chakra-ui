@@ -9,6 +9,7 @@ import {
   HStack,
   chakra,
   useColorModeValue,
+  Badge,
 } from "@chakra-ui/core"
 import { DiGithubBadge } from "react-icons/di"
 import { FaMoon, FaSun } from "react-icons/fa"
@@ -64,6 +65,16 @@ const HeaderContent = () => {
         >
           <Logo />
         </chakra.a>
+        <Badge
+          px="1"
+          ml="3"
+          fontFamily="mono"
+          borderRadius="md"
+          colorScheme="teal"
+          variant="solid"
+        >
+          v1
+        </Badge>
         <HStack
           as="nav"
           spacing="4"
