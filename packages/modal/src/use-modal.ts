@@ -161,6 +161,7 @@ export function useModal(props: UseModalProps) {
       id: dialogId,
       role: props.role || "dialog",
       tabIndex: -1,
+      zIndex: "modal",
       "aria-modal": true,
       "aria-labelledby": headerMounted ? headerId : undefined,
       "aria-describedby": bodyMounted ? bodyId : undefined,
@@ -170,6 +171,7 @@ export function useModal(props: UseModalProps) {
     }),
     getOverlayProps: (props: Dict = {}) => ({
       ...props,
+      zIndex: "overlay",
       ref: mergeRefs(props.ref, overlayRef),
       onClick: callAllHandlers(props.onClick, onOverlayClick),
       onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
