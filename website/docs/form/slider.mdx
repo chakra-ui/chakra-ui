@@ -55,7 +55,7 @@ import {
 ### Changing the slider color
 
 ```jsx
-<Slider color="pink" defaultValue={30}>
+<Slider colorScheme="pink" defaultValue={30}>
   <SliderTrack>
     <SliderFilledTrack />
   </SliderTrack>
@@ -103,7 +103,7 @@ you can pass all `Box` props to change it's style.
 | `orientation`      | `string`                                           |         | The orientation of the slider, only `horizontal` is supported for now.    |
 | `getAriaValueText` | `(value: number ): string`                         |         | The callback to format the `aria-valuetext`.                              |
 | `size`             | `sm`, `md`, `lg`                                   |         | The size of the slider.                                                   |
-| `color`            | `string`                                           |         | The color scheme to use for the slider. Use a color key in `theme.colors` |
+| `colorScheme`      | `string`                                           |         | The color scheme to use for the slider. Use a color key in `theme.colors` |
 | `name`             | `string`                                           |         | The name of the slider component when used in a form.                     |
 | `id`               | `string`                                           |         | The id of the slider component when used in a form.                       |
 | `children`         | `React.ReactNode`                                  |         | The children of the slider.                                               |
