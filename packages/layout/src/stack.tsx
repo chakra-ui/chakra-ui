@@ -15,7 +15,9 @@ import {
 import * as React from "react"
 import { FlexOptions } from "./flex"
 
-export type StackDirection = ResponsiveValue<"row" | "column">
+export type StackDirection = ResponsiveValue<
+  "row" | "column" | "row-reverse" | "column-reverse"
+>
 
 interface StackOptions extends Pick<FlexOptions, "align" | "justify" | "wrap"> {
   /**
@@ -93,13 +95,28 @@ export const Stack = React.forwardRef(function Stack(
    * @see https://medium.com/@emmenko/patching-lobotomized-owl-selector-for-emotion-ssr-5a582a3c424c
    */
   const selector = "& > *:not(style) ~ *:not(style)"
+  const directionStyles = {
+    column: {
+      marginTop: spacing,
+      marginLeft: 0,
+    },
+    row: {
+      marginLeft: spacing,
+      marginTop: 0,
+    },
+    "column-reverse": {
+      marginBottom: spacing,
+      marginLeft: 0,
+    },
+    "row-reverse": {
+      marginRight: spacing,
+      marginTop: 0,
+    },
+  }
 
   const styles = {
     flexDirection: direction,
-    [selector]: mapResponsive(direction, (value) => ({
-      [value === "column" ? "marginTop" : "marginLeft"]: spacing,
-      [value === "column" ? "marginLeft" : "marginTop"]: 0,
-    })),
+    [selector]: mapResponsive(direction, (value) => directionStyles[value]),
   }
 
   const validChildren = getValidChildren(children)
