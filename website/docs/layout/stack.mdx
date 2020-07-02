@@ -177,13 +177,13 @@ render(<StackEx />)
 
 ### Props
 
-| Name                 | Type                          | Description                                                                                                              |
-| -------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `direction`          | `Responsive(row or column)`   | The direction to stack the elements                                                                                      |
-| `divider`            | `ReactElement`                | The divider element to use between elements                                                                              |
-| `children`           | `ReactNode`                   | The elements to be stackes                                                                                               |
-| `spacing`            | `MarginProps`                 | The space between each stack item. Defaults to `0.5rem`                                                                  |
-| `align`              | `FlexProps["alignItems"]`     | The alignment of the stack item. Similar to `align-items`                                                                |
-| `justify`            | `FlexProps["justifyContent"]` | The distribution of the stack item. Similar to `justify-content`                                                         |
-| `shouldWrapChildren` | `boolean`                     | If `true`, the children will be wrapped in a `Box` with `display: inline-block`, and the Box will take the spacing props |
+| Name                 | Type                                                     | Description                                                                                                              |
+| -------------------- | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `direction`          | `Responsive(row, column, row-reverse, column-reverse)`   | The direction to stack the elements                                                                                      |
+| `divider`            | `ReactElement`                                           | The divider element to use between elements                                                                              |
+| `children`           | `ReactNode`                                              | The elements to be stackes                                                                                               |
+| `spacing`            | `MarginProps`                                            | The space between each stack item. Defaults to `0.5rem`                                                                  |
+| `align`              | `FlexProps["alignItems"]`                                | The alignment of the stack item. Similar to `align-items`                                                                |
+| `justify`            | `FlexProps["justifyContent"]`                            | The distribution of the stack item. Similar to `justify-content`                                                         |
+| `shouldWrapChildren` | `boolean`                                                | If `true`, the children will be wrapped in a `Box` with `display: inline-block`, and the Box will take the spacing props |
 
