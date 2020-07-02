@@ -106,11 +106,11 @@ export const Stack = React.forwardRef(function Stack(
     },
     "column-reverse": {
       marginBottom: spacing,
-      marginLeft: 0,
+      marginRight: 0,
     },
     "row-reverse": {
       marginRight: spacing,
-      marginTop: 0,
+      marginBottom: 0,
     },
   }
 
