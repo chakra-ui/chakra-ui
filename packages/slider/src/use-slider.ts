@@ -401,8 +401,7 @@ export function useSlider(props: UseSliderProps) {
 
     const run = (event: MouseEvent) => {
       const nextValue = getValueFromPointer(event)
-
-      if (nextValue && nextValue !== value) {
+      if (nextValue != null && nextValue !== value) {
         setEventSource("mouse")
         setValue(nextValue)
       }
@@ -438,7 +437,7 @@ export function useSlider(props: UseSliderProps) {
     const run = (event: TouchEvent) => {
       const nextValue = getValueFromPointer(event)
 
-      if (nextValue && nextValue !== value) {
+      if (nextValue != null && nextValue !== value) {
         setEventSource("touch")
         setValue(nextValue)
       }
