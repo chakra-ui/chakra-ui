@@ -122,7 +122,7 @@ export const Stack = React.forwardRef(function Stack(
   const validChildren = getValidChildren(children)
 
   const dividerStyles = mapResponsive(direction, (value) => {
-    if (value === "row") {
+    if (value.includes("row")) {
       return {
         marginX: spacing,
         marginY: 0,
