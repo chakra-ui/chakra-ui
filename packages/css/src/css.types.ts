@@ -1,4 +1,4 @@
-import { Pseudos } from "@chakra-ui/parser"
+import { Pseudos, ResponsiveValue } from "@chakra-ui/parser"
 import { Omit } from "@chakra-ui/utils"
 import {
   BoxShadowProperty,
@@ -11,8 +11,6 @@ import {
 } from "csstype"
 
 type CSS = PropertiesFallback<number | string>
-
-type Responsive<T> = T | Array<T | null>
 
 type CSSProperties = StandardProperties<number | string> &
   SvgProperties<number | string>
@@ -102,8 +100,8 @@ interface AllSystemCSSProperties
 type SystemCSSProperties = {
   [K in keyof AllSystemCSSProperties]:
     | string
-    | Responsive<AllSystemCSSProperties[K]>
-    | ((theme: any) => Responsive<AllSystemCSSProperties[K]>)
+    | ResponsiveValue<AllSystemCSSProperties[K]>
+    | ((theme: any) => ResponsiveValue<AllSystemCSSProperties[K]>)
     | SystemStyleObject
 }
 
@@ -113,8 +111,8 @@ interface ApplyPropStyles {
 
 type PseudoStyles = {
   [K in keyof Pseudos]?: K extends "_before" | "_after"
-    ? SystemStyleObject & { content?: string }
-    : SystemStyleObject
+    ? SystemCSSProperties & { content?: string }
+    : SystemCSSProperties
 }
 
 export type SystemStyleObject =
