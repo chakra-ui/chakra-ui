@@ -56,6 +56,10 @@ export interface UseTooltipProps {
    * The Popper.js modifiers to use
    */
   modifiers?: UsePopperProps["modifiers"]
+  /**
+   * If `true`, the tooltip will not be shown on any trigger
+   */
+  isDisabled?: boolean
 }
 
 export function useTooltip(props: UseTooltipProps = {}) {
@@ -72,6 +76,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
     defaultIsOpen,
     arrowSize = 10,
     modifiers,
+    isDisabled = false,
   } = props
 
   const { isOpen, onOpen, onClose } = useDisclosure({
@@ -97,7 +102,9 @@ export function useTooltip(props: UseTooltipProps = {}) {
   const exitTimeoutRef = React.useRef<NodeJS.Timeout>()
 
   const openWithDelay = () => {
-    enterTimeoutRef.current = setTimeout(onOpen, showDelay)
+    if (!isDisabled) {
+      enterTimeoutRef.current = setTimeout(onOpen, showDelay)
+    }
   }
 
   const closeWithDelay = () => {
