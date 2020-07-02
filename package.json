@@ -109,7 +109,6 @@
     }
   },
   "devDependencies": {
-    "framer-motion": "1.11.1",
     "@babel/cli": "7.10.4",
     "@babel/core": "7.10.4",
     "@babel/plugin-proposal-class-properties": "7.10.4",
@@ -146,7 +145,7 @@
     "cz-conventional-changelog": "3.2.0",
     "edit-json-file": "1.4.0",
     "emotion-theming": "10.0.27",
-    "eslint": "^7.3.1",
+    "eslint": "7.3.1",
     "eslint-plugin-jest-dom": "^3.0.1",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.3",
@@ -154,9 +153,10 @@
     "eslint-plugin-testing-library": "^3.3.1",
     "esm": "3.2.25",
     "execa": "4.0.2",
+    "framer-motion": "1.11.1",
     "fs-utils": "0.7.0",
     "husky": "4.2.5",
-    "inquirer": "7.2.0",
+    "inquirer": "7.3.0",
     "jest": "26.0.1",
     "jest-emotion": "10.0.32",
     "lerna": "3.22.1",
