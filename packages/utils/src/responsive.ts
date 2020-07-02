@@ -37,6 +37,16 @@ export function objectToArrayNotation(obj: Dict) {
   return result
 }
 
+export function arrayToObjectNotation(values: any[]) {
+  const result = {} as Dict
+  values.forEach((value, index) => {
+    const key = breakpoints[index]
+    if (value == null) return
+    result[key] = value
+  })
+  return result
+}
+
 export function isResponsiveObjectLike(obj: Dict) {
   const keys = Object.keys(obj)
   return keys.length > 0 && keys.every((key) => breakpoints.includes(key))

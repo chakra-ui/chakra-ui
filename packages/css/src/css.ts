@@ -43,7 +43,20 @@ export const css = (styleObject: StyleObjectOrFn) => (props: PropsOrTheme) => {
   }
 
   for (const key in styles) {
-    let value = runIfFn(styles[key], theme)
+    /**
+     * @see https://github.com/chakra-ui/chakra-ui/pull/884
+     *
+     * Given that the `css` function only accepts responsive arrays,
+     * to support reponsive objects in the css function, we do 2 things:
+     *
+     * - Check if the object is "responsive-like", e.g "{ base: "20px", sm: "50px" }"
+     * so it doesn't think it's a nested style object.
+     *
+     * - Convert the responsive-like value back to array format that the `css` function
+     * can handle.
+     */
+    const valueOrFn = styles[key]
+    let value = runIfFn(valueOrFn, theme)
     if (isResponsiveObjectLike(value)) {
       value = objectToArrayNotation(value)
     }
