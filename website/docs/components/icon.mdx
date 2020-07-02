@@ -68,21 +68,21 @@ You might need to use icons from a popular icon library like
 import { MdSettings } from "react-icons/md"
 
 // 2. Use the `as` prop to render the icon
-<Box as={MdSettings} />
+<Icon as={MdSettings} />
 
 // 3. Then you can pass all `Box` props to style the icon
-<Box as={MdSettings} size="32px" color="green.400" />
+<Icon as={MdSettings} size="32px" color="green.400" />
 ```
 
 Here's a working example:
 
 ```jsx
-<Box as={MdSettings} size="32px" color="green.400" />
+<Icon as={MdSettings} size="32px" color="green.400" />
 ```
 
 ## Adding custom icons
 
-You can also create your own custom icons using the `generateIcon` utility:
+You can also create your own custom icons using the `createIcon` utility:
 
 ```jsx live=false
 import { createIcon } from "@chakra-ui/icon"
@@ -93,6 +93,10 @@ export const UpDownIcon = createIcon({
     "M 3.5 0L 3.98809 -0.569442L 3.5 -0.987808L 3.01191 -0.569442L 3.5 0ZM 3.5 9L 3.01191 9.56944L 3.5 9.98781L 3.98809 9.56944L 3.5 9ZM 0.488094 3.56944L 3.98809 0.569442L 3.01191 -0.569442L -0.488094 2.43056L 0.488094 3.56944ZM 3.01191 0.569442L 6.51191 3.56944L 7.48809 2.43056L 3.98809 -0.569442L 3.01191 0.569442ZM -0.488094 6.56944L 3.01191 9.56944L 3.98809 8.43056L 0.488094 5.43056L -0.488094 6.56944ZM 3.98809 9.56944L 7.48809 6.56944L 6.51191 5.43056L 3.01191 8.43056L 3.98809 9.56944Z",
 })
 ```
+
+The major advantage of `createIcon` is that it forwards ref properly.
+
+If you use <Icon as={MdSettings}/> and `MdSettings` doesn't use `forwardRef`, the ref doesn't get forwarded automatically. This may report a React error in the console about passing ref to a function component. In short, you can use `<Icon as={MdSettings} />` if you know that `MdSettings` is forwarding the ref - otherwise, use the `createIcon` utility function and then call the icon directly: `<MdSettings />`.
 
 Before generating your custom icon do the following:
 
