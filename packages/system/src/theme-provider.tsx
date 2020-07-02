@@ -27,7 +27,9 @@ export function useTheme<T extends object = Dict>() {
     (ThemeContext as unknown) as React.Context<T | undefined>,
   )
   if (!theme) {
-    throw Error("useTheme must be used within a ThemeProvider")
+    throw Error(
+      "useTheme: `theme` is undefined. Seems you forgot to wrap your app in `<ThemeProvider />` or `<ChakraProvider />`",
+    )
   }
 
   return theme
@@ -37,11 +39,16 @@ export type ChakraProviderProps = ThemeProviderProps
 
 export function ChakraProvider(props: ChakraProviderProps) {
   const { theme, children } = props
+
+  if (!theme) {
+    throw Error("ChakraProvider: the `theme` prop is required")
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <ColorModeProvider
-        defaultValue={theme.config?.initialColorMode}
-        useSystemColorMode={theme.config?.useInitialColorMode}
+        defaultValue={theme?.config?.initialColorMode}
+        useSystemColorMode={theme?.config?.useInitialColorMode}
       >
         <GlobalStyle />
         {children}
