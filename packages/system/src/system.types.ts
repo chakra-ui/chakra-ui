@@ -3,6 +3,7 @@ import { SystemProps } from "@chakra-ui/parser"
 import { Dict } from "@chakra-ui/utils"
 import * as React from "react"
 import { ValidHTMLProps } from "./should-forward-prop"
+import { SystemStyleObject } from "@chakra-ui/css"
 
 export interface Options<T extends As, P> {
   /**
@@ -121,6 +122,7 @@ export interface ChakraProps
     ApplyProp,
     LayerStyles {
   children?: React.ReactNode
+  sx?: SystemStyleObject
 }
 
 export type As = React.ElementType<any>

@@ -51,13 +51,11 @@
   "dependencies": {
     "@chakra-ui/color-mode": "^1.0.0-next.4",
     "@chakra-ui/css": "^1.0.0-next.4",
-    "@chakra-ui/css-reset": "^1.0.0-next.4",
     "@chakra-ui/parser": "^1.0.0-next.4",
     "@chakra-ui/utils": "^1.0.0-next.4",
     "@emotion/core": "10.0.28",
-    "@emotion/is-prop-valid": "0.8.8",
-    "@types/hoist-non-react-statics": "3.3.1",
-    "hoist-non-react-statics": "3.3.2"
+    "@emotion/styled": "10.0.27",
+    "@emotion/is-prop-valid": "0.8.8"
   },
   "peerDependencies": {
     "react": "16.x"
