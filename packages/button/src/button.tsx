@@ -4,11 +4,9 @@ import {
   forwardRef,
   omitThemingProps,
   PropsOf,
-  StylesProvider,
   SystemProps,
   ThemingProps,
   useStyleConfig,
-  useStyles,
 } from "@chakra-ui/system"
 import { cx, dataAttr, merge, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -119,29 +117,28 @@ export const Button = forwardRef<ButtonProps>(function Button(props, ref) {
       width={isFullWidth ? "100%" : undefined}
       data-active={dataAttr(isActive)}
       data-loading={dataAttr(isLoading)}
-      __css={styles.Container}
+      __css={buttonStyles}
       className={_className}
       {...(!!group && { _focus })}
       {...rest}
     >
-      <StylesProvider value={styles}>
-        {leftIcon && !isLoading && (
-          <ButtonIcon mr={iconSpacing} children={leftIcon} />
-        )}
-        {isLoading && (
-          <ButtonSpinner
-            spacing={iconSpacing}
-            label={loadingText}
-            children={spinner}
-          />
-        )}
-        {isLoading
-          ? loadingText || <chakra.span opacity={0} children={children} />
-          : children}
-        {rightIcon && !isLoading && (
-          <ButtonIcon ml={iconSpacing} children={rightIcon} />
-        )}
-      </StylesProvider>
+      {leftIcon && !isLoading && (
+        <ButtonIcon __css={styles.Icon} mr={iconSpacing} children={leftIcon} />
+      )}
+      {isLoading && (
+        <ButtonSpinner
+          __css={styles.Spinner}
+          spacing={iconSpacing}
+          label={loadingText}
+          children={spinner}
+        />
+      )}
+      {isLoading
+        ? loadingText || <chakra.span opacity={0} children={children} />
+        : children}
+      {rightIcon && !isLoading && (
+        <ButtonIcon __css={styles.Icon} ml={iconSpacing} children={rightIcon} />
+      )}
     </StyledButton>
   )
 })
@@ -157,22 +154,13 @@ function ButtonIcon(props: PropsOf<typeof chakra.span>) {
     focusable: false,
   }
 
-  const styles = useStyles()
-
   const _children = React.isValidElement(children)
     ? React.cloneElement(children, a11yProps)
     : children
 
   const _className = cx("chakra-button__icon", className)
 
-  return (
-    <chakra.span
-      {...rest}
-      className={_className}
-      __css={styles.Icon}
-      children={_children}
-    />
-  )
+  return <chakra.span {...rest} className={_className} children={_children} />
 }
 
 if (__DEV__) {
@@ -193,7 +181,6 @@ function ButtonSpinner(props: ButtonSpinnerProps) {
     ...rest
   } = props
 
-  const styles = useStyles()
   const _className = cx("chakra-button__spinner", className)
 
   return (
@@ -201,7 +188,6 @@ function ButtonSpinner(props: ButtonSpinnerProps) {
       position={label ? "relative" : "absolute"}
       mr={label ? spacing : 0}
       className={_className}
-      __css={styles.Spinner}
       {...rest}
       children={children}
     />
