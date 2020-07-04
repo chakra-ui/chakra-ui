@@ -73,6 +73,10 @@ const Alert: ComponentTheme = {
       paddingX: 4,
       paddingY: 3,
     },
+    Title: {
+      fontWeight: "bold",
+      lineHeight: "normal",
+    },
     Icon: {
       marginRight: 3,
       boxSize: 5,
