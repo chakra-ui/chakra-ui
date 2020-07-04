@@ -3,7 +3,7 @@
 exports[`Button renders correctly 1`] = `
 <DocumentFragment>
   <button
-    class="chakra-button css-1ax3zce"
+    class="chakra-button css-u25x4p"
     type="button"
   />
 </DocumentFragment>
@@ -12,15 +12,15 @@ exports[`Button renders correctly 1`] = `
 exports[`Button renders with icons 1`] = `
 <DocumentFragment>
   <div
-    class="chakra-button__group css-101kej7"
+    class="chakra-button__group css-uqi6q3"
     role="group"
   >
     <button
-      class="chakra-button css-1gkcy1z"
+      class="chakra-button css-e1rli6"
       type="button"
     >
       <span
-        class="chakra-button__icon css-hurga0"
+        class="chakra-button__icon css-9u48bm"
       >
         <svg
           aria-hidden="true"
@@ -44,12 +44,12 @@ exports[`Button renders with icons 1`] = `
       Email
     </button>
     <button
-      class="chakra-button css-1gkcy1z"
+      class="chakra-button css-e1rli6"
       type="button"
     >
       Arrow Forward
       <span
-        class="chakra-button__icon css-xc68f7"
+        class="chakra-button__icon css-1f2k2gl"
       >
         <svg
           aria-hidden="true"
@@ -72,7 +72,7 @@ exports[`Button renders with icons 1`] = `
 exports[`shows spinner and loading text if isLoading and loadingText 1`] = `
 <DocumentFragment>
   <button
-    class="chakra-button css-1ax3zce"
+    class="chakra-button css-u25x4p"
     data-loading=""
     disabled=""
     type="button"
@@ -81,10 +81,10 @@ exports[`shows spinner and loading text if isLoading and loadingText 1`] = `
       class="chakra-button__spinner css-1tdm926"
     >
       <div
-        class="chakra-spinner css-8k0wtn"
+        class="chakra-spinner css-1x6zw2a"
       >
         <span
-          style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
+          class="css-0"
         >
           Loading...
         </span>
@@ -98,7 +98,7 @@ exports[`shows spinner and loading text if isLoading and loadingText 1`] = `
 exports[`shows spinner if isLoading 1`] = `
 <DocumentFragment>
   <button
-    class="chakra-button css-1ax3zce"
+    class="chakra-button css-u25x4p"
     data-loading=""
     disabled=""
     type="button"
@@ -107,10 +107,10 @@ exports[`shows spinner if isLoading 1`] = `
       class="chakra-button__spinner css-fwyoyo"
     >
       <div
-        class="chakra-spinner css-8k0wtn"
+        class="chakra-spinner css-1x6zw2a"
       >
         <span
-          style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
+          class="css-0"
         >
           Loading...
         </span>

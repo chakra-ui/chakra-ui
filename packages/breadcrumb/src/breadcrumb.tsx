@@ -1,4 +1,14 @@
-import { chakra, forwardRef, PropsOf, SystemProps } from "@chakra-ui/system"
+import {
+  chakra,
+  forwardRef,
+  PropsOf,
+  useStyleConfig,
+  StylesProvider,
+  useStyles,
+  SystemProps,
+  ThemingProps,
+  omitThemingProps,
+} from "@chakra-ui/system"
 import { cx, getValidChildren, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -15,7 +25,16 @@ export const BreadcrumbSeparator = React.forwardRef(
     ref: React.Ref<any>,
   ) {
     const { spacing, ...rest } = props
-    return <chakra.span ref={ref} role="presentation" mx={spacing} {...rest} />
+    const styles = useStyles()
+    return (
+      <chakra.span
+        ref={ref}
+        role="presentation"
+        mx={spacing}
+        {...rest}
+        __css={styles.Separator}
+      />
+    )
   },
 )
 
@@ -29,10 +48,6 @@ interface LinkOptions {
 
 export type BreadcrumbLinkProps = PropsOf<typeof chakra.a> & LinkOptions
 
-const StyledLink = chakra("a", {
-  themeKey: "Link",
-})
-
 /**
  * Breadcrumb link.
  *
@@ -42,12 +57,12 @@ const StyledLink = chakra("a", {
 export const BreadcrumbLink = forwardRef<BreadcrumbLinkProps>(
   function BreadcrumbLink(props, ref) {
     const { isCurrentPage, as, className, ...rest } = props
-    const _className = cx("chakra-breadcrumb__link", className)
+    const styles = useStyles()
 
     const sharedProps = {
       ref,
       as,
-      className: _className,
+      className: cx("chakra-breadcrumb__link", className),
       ...rest,
     }
 
@@ -55,7 +70,7 @@ export const BreadcrumbLink = forwardRef<BreadcrumbLinkProps>(
       return <chakra.span aria-current="page" {...sharedProps} />
     }
 
-    return <StyledLink {...sharedProps} />
+    return <chakra.a __css={styles.Link} {...sharedProps} />
   },
 )
 
@@ -148,7 +163,9 @@ export interface BreadcrumbOptions {
   spacing?: SystemProps["mx"]
 }
 
-export type BreadcrumbProps = PropsOf<typeof chakra.nav> & BreadcrumbOptions
+export type BreadcrumbProps = PropsOf<typeof chakra.nav> &
+  BreadcrumbOptions &
+  ThemingProps
 
 /**
  * React component used to render a breadcrumb navigation landmark
@@ -161,13 +178,16 @@ export const Breadcrumb = React.forwardRef(function Breadcrumb(
   props: BreadcrumbProps,
   ref: React.Ref<any>,
 ) {
+  const styles = useStyleConfig("Breadcrumb", props)
+  const realProps = omitThemingProps(props)
+
   const {
     children,
     spacing = "0.5rem",
     separator = "/",
     className,
     ...rest
-  } = props
+  } = realProps
 
   const validChildren = getValidChildren(children)
   const count = validChildren.length
@@ -188,8 +208,11 @@ export const Breadcrumb = React.forwardRef(function Breadcrumb(
       aria-label="breadcrumb"
       className={_className}
       {...rest}
+      __css={styles.Root}
     >
-      <chakra.ol className="chakra-breadcrumb__list">{clones}</chakra.ol>
+      <StylesProvider value={styles}>
+        <chakra.ol className="chakra-breadcrumb__list">{clones}</chakra.ol>
+      </StylesProvider>
     </chakra.nav>
   )
 })

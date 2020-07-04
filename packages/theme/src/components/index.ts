@@ -32,12 +32,14 @@ import Progress from "./progress"
 import Textarea from "./textarea"
 import Stat from "./stat"
 import Skeleton from "./skeleton"
+import Breadcrumb from "./breadcumb"
 
 export default {
   Accordion,
   Button,
   Heading,
   Icon,
+  Breadcrumb,
   Alert,
   Badge,
   Avatar,

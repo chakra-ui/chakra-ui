@@ -3,29 +3,29 @@
 exports[`ButtonGroup renders correctly 1`] = `
 <DocumentFragment>
   <div
-    class="chakra-button__group css-101kej7"
+    class="chakra-button__group css-uqi6q3"
     role="group"
   >
     <button
-      class="chakra-button css-1gkcy1z"
+      class="chakra-button css-e1rli6"
       type="button"
     >
       Button 1
     </button>
     <button
-      class="chakra-button css-1gkcy1z"
+      class="chakra-button css-e1rli6"
       type="button"
     >
       Button 2
     </button>
     <button
-      class="chakra-button css-1gkcy1z"
+      class="chakra-button css-e1rli6"
       type="button"
     >
       Button 3
     </button>
     <button
-      class="chakra-button css-1gkcy1z"
+      class="chakra-button css-e1rli6"
       type="button"
     >
       Button 4

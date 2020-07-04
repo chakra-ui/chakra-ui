@@ -2,14 +2,15 @@ import {
   chakra,
   PropsOf,
   SystemProps,
-  useThemeDefaultProps,
+  ThemingProps,
+  useStyleConfig,
+  omitThemingProps,
 } from "@chakra-ui/system"
 import { cx, getValidChildren, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { baseStyle } from "./avatar"
 
 const AvatarExcessLabel = chakra("span", {
-  themeKey: "Avatar.ExcessLabel",
   baseStyle: {
     ...baseStyle,
     borderRadius: "full",
@@ -46,7 +47,9 @@ const StyledGroup = chakra("div", {
   },
 })
 
-export type AvatarGroupProps = AvatarGroupOptions & PropsOf<typeof StyledGroup>
+export type AvatarGroupProps = AvatarGroupOptions &
+  PropsOf<typeof StyledGroup> &
+  ThemingProps
 
 /**
  * AvatarGroup
@@ -57,17 +60,17 @@ export const AvatarGroup = React.forwardRef(function AvatarGroup(
   props: AvatarGroupProps,
   ref: React.Ref<any>,
 ) {
-  const defaults = useThemeDefaultProps("Avatar")
+  const styles = useStyleConfig("Avatar", props)
+  const realProps = omitThemingProps(props)
 
   const {
     children,
     borderColor,
     max,
     spacing = -3,
-    size = defaults?.size,
     className,
     ...rest
-  } = props
+  } = realProps
 
   const validChildren = getValidChildren(children)
 
@@ -92,7 +95,7 @@ export const AvatarGroup = React.forwardRef(function AvatarGroup(
 
     return React.cloneElement(child as React.ReactElement<any>, {
       marginRight: isFirstAvatar ? 0 : spacing,
-      size,
+      size: props.size,
       borderColor: child.props.borderColor || borderColor,
       showBorder: true,
     })
@@ -105,8 +108,8 @@ export const AvatarGroup = React.forwardRef(function AvatarGroup(
       {excess && (
         <AvatarExcessLabel
           className="chakra-avatar-group__excess"
-          size={size}
           ml={spacing}
+          __css={styles.ExcessLabel}
           children={`+${excess}`}
         />
       )}

@@ -8,14 +8,7 @@ const spin = keyframes`
   100% { transform: rotate(360deg) }
 `
 
-/**
- * Spinner - Theming
- *
- * To style the spinner component globally, change the styles in
- * `theme.components.Spinner`
- */
 const StyledSpinner = chakra("div", {
-  themeKey: "Spinner",
   baseStyle: {
     display: "inline-block",
     borderColor: "currentColor",

@@ -12,20 +12,24 @@ export function useStyleConfig(themeKey: string, props: Dict) {
 
   return React.useMemo(() => {
     const result = {} as Dict
+
+    if (!styleConfig) return {}
+
     const baseStyles = runIfFn(styleConfig.baseStyle, realProps)
     const parts = styleConfig.parts || Object.keys(baseStyles)
 
     const variant = realProps.variant ?? styleConfig.defaultProps?.variant
-    const variants = styleConfig.variants?.[variant] ?? {}
+    const variants = runIfFn(styleConfig.variants?.[variant] ?? {}, realProps)
 
     const size = realProps.size ?? styleConfig.defaultProps?.size
-    const sizes = styleConfig.sizes?.[size] ?? {}
+    const sizes = runIfFn(styleConfig.sizes?.[size] ?? {}, realProps)
 
     for (const part of parts) {
-      const baseStyle = baseStyles[part] ?? {}
-      const sizeStyle = runIfFn(sizes, realProps)[part] ?? {}
-      const variantStyle = runIfFn(variants, realProps)[part] ?? {}
-      result[part] = merge(baseStyle, sizeStyle, variantStyle)
+      result[part] = merge(
+        baseStyles[part] ?? {},
+        sizes[part] ?? {},
+        variants[part] ?? {},
+      )
     }
 
     return result
