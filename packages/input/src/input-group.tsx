@@ -2,8 +2,9 @@ import {
   chakra,
   PropsOf,
   ThemingProps,
-  useThemeDefaultProps,
-  useComponentStyle,
+  useStyleConfig,
+  omitThemingProps,
+  StylesProvider,
 } from "@chakra-ui/system"
 import { cx, __DEV__, getValidChildren } from "@chakra-ui/utils"
 import * as React from "react"
@@ -14,37 +15,25 @@ export const InputGroup = React.forwardRef(function InputGroup(
   props: InputGroupProps,
   ref: React.Ref<any>,
 ) {
-  const defaults = useThemeDefaultProps("Input")
-
-  const {
-    children,
-    size = defaults?.size,
-    variant = defaults?.variant,
-    className,
-    ...rest
-  } = props
+  const styles = useStyleConfig("Input", props)
+  const { children, className, variant, size, ...rest } = omitThemingProps(
+    props,
+  )
 
   const _className = cx("chakra-input__group", className)
-
   const stylesRef = React.useRef<InputGroupProps>({})
 
   const validChildren = getValidChildren(children)
-
-  const styles = useComponentStyle({
-    themeKey: "Input",
-    size,
-    variant,
-  })
 
   validChildren.forEach((child: any) => {
     if (!styles) return
 
     if (child.type.__hidden === "InputLeftElement") {
-      stylesRef.current.paddingLeft = styles["height"]
+      stylesRef.current.paddingLeft = styles.Container["height"]
     }
 
     if (child.type.__hidden === "InputRightElement") {
-      stylesRef.current.paddingRight = styles["height"]
+      stylesRef.current.paddingRight = styles.Container["height"]
     }
 
     if (child.type.__hidden === "InputRightAddon") {
@@ -75,12 +64,14 @@ export const InputGroup = React.forwardRef(function InputGroup(
     <chakra.div
       className={_className}
       ref={ref}
-      width="100%"
-      display="flex"
-      position="relative"
+      __css={{
+        width: "100%",
+        display: "flex",
+        position: "relative",
+      }}
       {...rest}
     >
-      {clones}
+      <StylesProvider value={styles}>{clones}</StylesProvider>
     </chakra.div>
   )
 })

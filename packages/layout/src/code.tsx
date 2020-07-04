@@ -1,21 +1,38 @@
-import { chakra, PropsOf } from "@chakra-ui/system"
+import * as React from "react"
+import {
+  chakra,
+  PropsOf,
+  useStyleConfig,
+  omitThemingProps,
+  ThemingProps,
+} from "@chakra-ui/system"
 import { __DEV__, cx } from "@chakra-ui/utils"
 
-export type CodeProps = PropsOf<typeof Code>
+export type CodeProps = PropsOf<typeof chakra.code> & ThemingProps
 
 /**
  * React component to render inline code snippets.
  *
  * @see Docs https://chakra-ui.com/components/code
  */
-export const Code = chakra("code", {
-  themeKey: "Code",
-  baseStyle: {
-    display: "inline-block",
-  },
-  attrs: (props) => ({
-    className: cx("chakra-code", props.className),
-  }),
+export const Code = React.forwardRef(function Badge(
+  props: CodeProps,
+  ref: React.Ref<any>,
+) {
+  const styles = useStyleConfig("Code", props)
+  const { className, ...rest } = omitThemingProps(props)
+
+  return (
+    <chakra.code
+      ref={ref}
+      {...rest}
+      __css={{
+        display: "inline-block",
+        ...styles.Container,
+      }}
+      className={cx("chakra-code", props.className)}
+    />
+  )
 })
 
 if (__DEV__) {

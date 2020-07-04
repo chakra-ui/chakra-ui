@@ -176,7 +176,7 @@ export const Stack = React.forwardRef(function Stack(
       flexDirection={styles.flexDirection}
       flexWrap={wrap}
       className={_className}
-      sx={sx as any}
+      css={sx as any}
       {...rest}
     >
       {clones}

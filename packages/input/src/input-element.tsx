@@ -1,4 +1,4 @@
-import { chakra, PropsOf, useComponentStyle } from "@chakra-ui/system"
+import { chakra, PropsOf, useStyles } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -21,24 +21,23 @@ const InputElement = React.forwardRef(function InputElement(
   props: InputElementProps,
   ref: React.Ref<any>,
 ) {
-  const { placement = "left", variant, size, ...rest } = props
+  const { placement = "left", ...rest } = props
 
-  const input = useComponentStyle({
-    themeKey: "Input",
-    variant,
-    size,
-  }) as InputElementProps
+  const styles = useStyles()
+  const input = styles.Container as any
 
-  const placementProp = { [placement]: "0" }
+  const placementStyles = { [placement]: "0" }
 
   return (
     <StyledElement
-      width={input?.height}
-      height={input?.height}
-      fontSize={input?.fontSize}
-      paddingX={input?.paddingLeft}
       ref={ref}
-      {...placementProp}
+      __css={{
+        ...placementStyles,
+        width: input?.height,
+        height: input?.height,
+        fontSize: input?.fontSize,
+        paddingX: input?.paddingLeft,
+      }}
       {...rest}
     />
   )

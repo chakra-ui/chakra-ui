@@ -1,4 +1,9 @@
-import { chakra, PropsOf, forwardRef } from "@chakra-ui/system"
+import {
+  chakra,
+  PropsOf,
+  forwardRef,
+  SystemStyleObject,
+} from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -35,16 +40,19 @@ export type SquareProps = Omit<BoxProps, Omitted> & {
 
 export const Square = forwardRef<SquareProps>(function Square(props, ref) {
   const { size, centerContent = true, ...rest } = props
-  const centerProps: BoxProps = centerContent
+  const centerStyles: SystemStyleObject = centerContent
     ? { display: "flex", alignItems: "center", justifyContent: "center" }
     : {}
+
   return (
     <Box
-      flexShrink={0}
-      flexGrow={0}
-      boxSize={size}
       ref={ref}
-      {...centerProps}
+      boxSize={size}
+      __css={{
+        ...centerStyles,
+        flexShrink: 0,
+        flexGrow: 0,
+      }}
       {...rest}
     />
   )

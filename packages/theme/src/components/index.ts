@@ -11,7 +11,6 @@ import Modal from "./modal"
 import Heading from "./heading"
 import Icon from "./icon"
 import Input from "./input"
-import InputAddon from "./input-addon"
 import Link from "./link"
 import Menu from "./menu"
 import NumberInput from "./number-input"
@@ -52,7 +51,6 @@ export default {
   Checkbox,
   Radio,
   Input,
-  InputAddon,
   Tooltip,
   CloseButton,
   Slider,

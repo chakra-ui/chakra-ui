@@ -12,8 +12,10 @@ function solid(props: Props) {
   const dark = transparentize(`${c}.500`, 0.6)(theme)
 
   return {
-    bg: mode(`${c}.500`, dark)(props),
-    color: mode(`white`, `whiteAlpha.800`)(props),
+    Container: {
+      bg: mode(`${c}.500`, dark)(props),
+      color: mode(`white`, `whiteAlpha.800`)(props),
+    },
   }
 }
 
@@ -22,8 +24,10 @@ function subtle(props: Props) {
   const darkBg = ink(`${c}.200`, "lowest")(theme)
 
   return {
-    bg: mode(`${c}.100`, darkBg)(props),
-    color: mode(`${c}.800`, `${c}.200`)(props),
+    Container: {
+      bg: mode(`${c}.100`, darkBg)(props),
+      color: mode(`${c}.800`, `${c}.200`)(props),
+    },
   }
 }
 
@@ -36,8 +40,10 @@ function outline(props: Props) {
   const color = mode(light, dark)(props)
 
   return {
-    color,
-    boxShadow: `inset 0 0 0px 1px ` + color,
+    Container: {
+      color,
+      boxShadow: `inset 0 0 0px 1px ` + color,
+    },
   }
 }
 
@@ -47,11 +53,13 @@ const Badge: ComponentTheme = {
     colorScheme: "gray",
   },
   baseStyle: {
-    paddingX: 1,
-    textTransform: "uppercase",
-    fontSize: "xs",
-    borderRadius: "sm",
-    fontWeight: "bold",
+    Container: {
+      paddingX: 1,
+      textTransform: "uppercase",
+      fontSize: "xs",
+      borderRadius: "sm",
+      fontWeight: "bold",
+    },
   },
   variants: {
     solid,

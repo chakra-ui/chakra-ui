@@ -41,7 +41,7 @@ export const AspectRatio = React.forwardRef(function AspectRatio(
         display: "block",
         paddingBottom: mapResponsive(ratio, (r) => `${(1 / r) * 100}%`),
       }}
-      css={{
+      __css={{
         "& > *": {
           overflow: "hidden",
           position: "absolute",
