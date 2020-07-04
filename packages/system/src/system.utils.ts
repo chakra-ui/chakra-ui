@@ -8,6 +8,7 @@ import {
   __DEV__,
   merge,
   Dict,
+  omit,
 } from "@chakra-ui/utils"
 import * as React from "react"
 import { ForwardRefComponent } from "./system.types"
@@ -80,6 +81,9 @@ export type DOMElements = UnionStringArray<typeof domElements>
 
 export const cast = <P = { theme: object }>(arg: any) =>
   arg as FunctionInterpolation<P>
+
+export const omitThemingProps = (props: any) =>
+  omit(props, ["styleConfig", "size", "variant", "colorScheme"]) as any
 
 export function pseudoProps({ theme, ...props }: any) {
   let result = {}

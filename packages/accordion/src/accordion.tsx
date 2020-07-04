@@ -1,33 +1,40 @@
 import { Collapse } from "@chakra-ui/collapse"
 import { Icon, IconProps } from "@chakra-ui/icon"
-import { chakra, PropsOf, forwardRef, useStyleConfig } from "@chakra-ui/system"
+import {
+  chakra,
+  forwardRef,
+  omitThemingProps,
+  PropsOf,
+  StylesProvider,
+  ThemingProps,
+  useStyleConfig,
+  useStyles,
+} from "@chakra-ui/system"
 import {
   createContext,
-  isFunction,
-  ReactNodeOrRenderProp,
-  Omit,
-  __DEV__,
   cx,
-  omit,
+  isFunction,
+  Omit,
+  ReactNodeOrRenderProp,
+  __DEV__,
 } from "@chakra-ui/utils"
 import * as React from "react"
 import {
-  UseAccordionProps,
-  UseAccordionItemProps,
-  UseAccordionItemReturn,
+  AccordionContextProvider,
   useAccordion,
   useAccordionItem,
-  AccordionContextProvider,
+  UseAccordionItemProps,
+  UseAccordionItemReturn,
+  UseAccordionProps,
 } from "./use-accordion"
 
-const StyledRoot = chakra("div")
+type DivProps = PropsOf<typeof chakra.div>
 
 export type AccordionProps = UseAccordionProps &
-  Omit<PropsOf<typeof StyledRoot>, "onChange">
+  ThemingProps &
+  Omit<DivProps, "onChange">
 
 /**
- * Accordion
- *
  * The wrapper that provides context and focus management
  * for all accordion items.
  *
@@ -39,23 +46,23 @@ export const Accordion = React.forwardRef(function Accordion(
   ref: React.Ref<any>,
 ) {
   const styles = useStyleConfig("Accordion", props)
-  const { children, htmlProps, ...context } = useAccordion(props)
-
+  const realProps = omitThemingProps(props)
   const _className = cx("chakra-accordion", props.className)
 
-  const rootStyles = styles.Root
-  const rootProps = omit(htmlProps as any, ["size", "variant", "colorScheme"])
+  const { children, htmlProps, ...context } = useAccordion(realProps)
 
   return (
     <AccordionContextProvider value={context}>
-      <StyledRoot
-        ref={ref}
-        {...rootStyles}
-        {...rootProps}
-        className={_className}
-      >
-        {children}
-      </StyledRoot>
+      <StylesProvider value={styles}>
+        <chakra.div
+          {...htmlProps}
+          ref={ref}
+          __css={styles.Root}
+          className={_className}
+        >
+          {children}
+        </chakra.div>
+      </StylesProvider>
     </AccordionContextProvider>
   )
 })
@@ -68,19 +75,9 @@ type AccordionItemContext = Omit<UseAccordionItemReturn, "getRootProps">
 
 const [AccordionItemContextProvider, useAccordionItemContext] = createContext<
   AccordionItemContext
->()
+>({ name: "AccordionItemContext" })
 
-/**
- * Theming
- *
- * To style the wrapper `div` of the accordion item,change the styles in
- * `theme.components.Accordion` under the `Item` key
- */
-const StyledItem = chakra("div", {
-  themeKey: "Accordion.Item",
-})
-
-export type AccordionItemProps = Omit<PropsOf<typeof StyledItem>, "children"> &
+export type AccordionItemProps = Omit<DivProps, "children"> &
   Omit<UseAccordionItemProps, "context"> & {
     children?: ReactNodeOrRenderProp<{
       isExpanded: boolean
@@ -89,9 +86,7 @@ export type AccordionItemProps = Omit<PropsOf<typeof StyledItem>, "children"> &
   }
 
 /**
- * AccordionItem
- *
- * This represents a single accordion and provides the open-close
+ * AccordionItem is a single accordion that provides the open-close
  * behavior when the accordion button is clicked.
  *
  * It also provides context for the accordion button and panel.
@@ -104,17 +99,22 @@ export const AccordionItem = React.forwardRef(function AccordionItem(
   const { getRootProps, ...context } = useAccordionItem(props)
 
   const _className = cx("chakra-accordion__item", className)
+  const styles = useStyles()
 
   return (
     <AccordionItemContextProvider value={context}>
-      <StyledItem {...getRootProps({ ref })} className={_className}>
+      <chakra.div
+        {...getRootProps({ ref })}
+        className={_className}
+        __css={styles.Item}
+      >
         {isFunction(children)
           ? children({
               isExpanded: !!context.isOpen,
               isDisabled: !!context.isDisabled,
             })
           : children}
-      </StyledItem>
+      </chakra.div>
     </AccordionItemContextProvider>
   )
 })
@@ -131,14 +131,7 @@ export function useAccordionItemState() {
   return { isOpen, onClose, isDisabled, onOpen }
 }
 
-/**
- * Theming
- *
- * To style all accordion buttons, change the styles in
- * `theme.components.Accordion` under the `Button` key
- */
 const StyledButton = chakra("button", {
-  themeKey: "Accordion.Button",
   baseStyle: {
     display: "flex",
     alignItems: "center",
@@ -151,9 +144,7 @@ const StyledButton = chakra("button", {
 export type AccordionButtonProps = PropsOf<typeof StyledButton>
 
 /**
- * AccordionButton
- *
- * The button that expands and collapses an accordion item.
+ * AccordionButton is used expands and collapses an accordion item.
  * It must be a child of `AccordionItem`.
  *
  * Note 🚨: Each accordion button must be wrapped in an heading tag,
@@ -164,7 +155,14 @@ export const AccordionButton = forwardRef<AccordionButtonProps>(
     const _className = cx("chakra-accordion__button", props.className)
     const { getButtonProps } = useAccordionItemContext()
     const buttonProps = getButtonProps({ ...props, ref })
-    return <StyledButton {...buttonProps} className={_className} />
+    const styles = useStyles()
+    return (
+      <StyledButton
+        {...buttonProps}
+        className={_className}
+        __css={styles.Button}
+      />
+    )
   },
 )
 
@@ -172,17 +170,7 @@ if (__DEV__) {
   AccordionButton.displayName = "AccordionButton"
 }
 
-/**
- * Theming
- *
- * To style all accordion panels,change the styles in
- * `theme.components.Accordion` under the `Panel` key
- */
-const StyledPanel = chakra("div", {
-  themeKey: "Accordion.Panel",
-})
-
-export type AccordionPanelProps = PropsOf<typeof StyledPanel>
+export type AccordionPanelProps = DivProps
 
 /**
  * AccordionPanel
@@ -203,11 +191,13 @@ export const AccordionPanel = React.forwardRef(function AccordionPanel(
   const { hidden, ...panelProps } = getPanelProps({ ...props, ref })
 
   const _className = cx("chakra-accordion__panel", props.className)
+  const styles = useStyles()
 
   return (
     <Collapse isOpen={isOpen}>
-      <StyledPanel
+      <chakra.div
         {...panelProps}
+        __css={styles.Panel}
         className={_className}
         transition="height 150ms ease-in-out, opacity 150ms ease-in-out, transform 150ms ease-in-out"
       />

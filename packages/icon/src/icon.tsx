@@ -16,9 +16,7 @@ const fallbackIcon = {
   viewBox: "0 0 24 24",
 }
 
-const StyledSvg = chakra("svg", { themeKey: "Icon" })
-
-export type IconProps = PropsOf<typeof StyledSvg>
+export type IconProps = PropsOf<typeof chakra.svg>
 
 export const Icon = React.forwardRef(function Icon(
   props: IconProps,
@@ -26,7 +24,6 @@ export const Icon = React.forwardRef(function Icon(
 ) {
   const {
     as: type,
-    size,
     boxSize = "1em",
     viewBox,
     color = "currentColor",
@@ -43,7 +40,6 @@ export const Icon = React.forwardRef(function Icon(
     ref,
     display: "inline-block",
     lineHeight: "1em",
-    size,
     color,
     focusable,
     role,
@@ -56,21 +52,21 @@ export const Icon = React.forwardRef(function Icon(
    * If you're using an icon library like `react-icons`
    */
   if (type && typeof type !== "string") {
-    return <StyledSvg as={type} {...sharedProps} {...rest} />
+    return <chakra.svg as={type} {...sharedProps} {...rest} />
   }
 
   const _path = children ?? fallbackIcon.path
   const _viewBox = viewBox ?? fallbackIcon.viewBox
 
   return (
-    <StyledSvg
+    <chakra.svg
       verticalAlign="middle"
       viewBox={_viewBox}
       {...sharedProps}
       {...rest}
     >
       {_path}
-    </StyledSvg>
+    </chakra.svg>
   )
 })
 

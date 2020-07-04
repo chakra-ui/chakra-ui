@@ -1,4 +1,4 @@
-import { chakra, PropsOf, forwardRef } from "@chakra-ui/system"
+import { chakra, PropsOf } from "@chakra-ui/system"
 import {
   Transition,
   TransitionProps,
