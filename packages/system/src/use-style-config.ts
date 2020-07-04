@@ -2,7 +2,7 @@ import * as React from "react"
 import { Dict, get, runIfFn, merge } from "@chakra-ui/utils"
 import { useChakra } from "./hooks"
 
-function useStyleConfig(themeKey: string, props: Dict) {
+export function useStyleConfig(themeKey: string, props: Dict) {
   const { styleConfig: styleConfigProp, ...rest } = props
 
   const { theme, colorMode } = useChakra()
@@ -13,7 +13,7 @@ function useStyleConfig(themeKey: string, props: Dict) {
   return React.useMemo(() => {
     const result = {} as Dict
     const baseStyles = runIfFn(styleConfig.baseStyle, realProps)
-    const parts = Object.keys(baseStyles) as any[]
+    const parts = styleConfig.parts || Object.keys(baseStyles)
 
     const variant = realProps.variant ?? styleConfig.defaultProps?.variant
     const variants = styleConfig.variants?.[variant] ?? {}

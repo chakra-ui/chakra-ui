@@ -1,6 +1,6 @@
 import { Collapse } from "@chakra-ui/collapse"
 import { Icon, IconProps } from "@chakra-ui/icon"
-import { chakra, PropsOf, forwardRef } from "@chakra-ui/system"
+import { chakra, PropsOf, forwardRef, useStyleConfig } from "@chakra-ui/system"
 import {
   createContext,
   isFunction,
@@ -8,6 +8,7 @@ import {
   Omit,
   __DEV__,
   cx,
+  omit,
 } from "@chakra-ui/utils"
 import * as React from "react"
 import {
@@ -19,15 +20,7 @@ import {
   AccordionContextProvider,
 } from "./use-accordion"
 
-/**
- * Theming
- *
- * To style the wrapper `div` of the accordion,change the styles in
- * `theme.components.Accordion` under the `Root` key
- */
-const StyledRoot = chakra("div", {
-  themeKey: "Accordion.Root",
-})
+const StyledRoot = chakra("div")
 
 export type AccordionProps = UseAccordionProps &
   Omit<PropsOf<typeof StyledRoot>, "onChange">
@@ -45,13 +38,22 @@ export const Accordion = React.forwardRef(function Accordion(
   props: AccordionProps,
   ref: React.Ref<any>,
 ) {
+  const styles = useStyleConfig("Accordion", props)
   const { children, htmlProps, ...context } = useAccordion(props)
 
   const _className = cx("chakra-accordion", props.className)
 
+  const rootStyles = styles.Root
+  const rootProps = omit(htmlProps as any, ["size", "variant", "colorScheme"])
+
   return (
     <AccordionContextProvider value={context}>
-      <StyledRoot ref={ref} {...htmlProps} className={_className}>
+      <StyledRoot
+        ref={ref}
+        {...rootStyles}
+        {...rootProps}
+        className={_className}
+      >
         {children}
       </StyledRoot>
     </AccordionContextProvider>

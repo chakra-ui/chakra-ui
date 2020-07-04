@@ -54,9 +54,6 @@ export const jsx = (
 ) => emotion.apply(undefined, [type, parse(props), ...children])
 
 interface SxProp {
-  /**
-   * Chakra is here!
-   */
   sx?: SystemStyleObject
 }
 

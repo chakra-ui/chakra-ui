@@ -12,25 +12,11 @@ const stylePropNames = [
 
 function createShouldForwardProp(props: any) {
   const regex = new RegExp(`^(${props.join("|")})$`)
-  return memoizeOne((prop: string) => isValid(prop) && !regex.test(prop))
+  return memoizeOne((prop: string) => {
+    const cond1 = isValid(prop) && !regex.test(prop)
+    const cond2 = ["htmlWidth", "htmlHeight", "htmlSize"].includes(prop)
+    return cond1 || cond2
+  })
 }
 
-const shouldForwardProp = createShouldForwardProp(stylePropNames)
-
-export interface ValidHTMLProps {
-  htmlWidth?: string | number
-  htmlHeight?: string | number
-  htmlSize?: string | number
-}
-
-export const validHTMLProps = {
-  htmlWidth: "width",
-  htmlHeight: "height",
-  htmlSize: "size",
-}
-
-export function isPropValid(prop: string) {
-  const shouldPassThrough =
-    prop in validHTMLProps || ["sx", "css"].includes(prop)
-  return shouldPassThrough ? true : shouldForwardProp(prop)
-}
+export const shouldForwardProp = createShouldForwardProp(stylePropNames)

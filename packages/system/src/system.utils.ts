@@ -6,9 +6,12 @@ import {
   isString,
   UnionStringArray,
   __DEV__,
+  merge,
+  Dict,
 } from "@chakra-ui/utils"
 import * as React from "react"
 import { ForwardRefComponent } from "./system.types"
+import { FunctionInterpolation } from "@emotion/core"
 
 /**
  * Carefully selected html elements for chakra components.
@@ -16,11 +19,8 @@ import { ForwardRefComponent } from "./system.types"
  */
 export const domElements = [
   "a",
-  "abbr",
-  "address",
   "article",
   "aside",
-  "b",
   "blockquote",
   "button",
   "caption",
@@ -28,9 +28,6 @@ export const domElements = [
   "circle",
   "code",
   "dd",
-  "del",
-  "details",
-  "dfn",
   "div",
   "dl",
   "dt",
@@ -47,22 +44,16 @@ export const domElements = [
   "h6",
   "header",
   "hr",
-  "i",
   "img",
   "input",
-  "ins",
   "kbd",
   "label",
-  "legend",
   "li",
-  "main",
   "mark",
   "nav",
   "ol",
-  "output",
   "p",
   "path",
-  "picture",
   "pre",
   "q",
   "rect",
@@ -81,14 +72,14 @@ export const domElements = [
   "tfoot",
   "th",
   "thead",
-  "time",
   "tr",
-  "u",
   "ul",
-  "video",
 ] as const
 
 export type DOMElements = UnionStringArray<typeof domElements>
+
+export const cast = <P = { theme: object }>(arg: any) =>
+  arg as FunctionInterpolation<P>
 
 export function pseudoProps({ theme, ...props }: any) {
   let result = {}
@@ -121,17 +112,14 @@ export function truncateProp({ isTruncated, noOfLines }: any) {
   }
 }
 
-export function layerStyleProp({ layerStyle, textStyle, theme }: any) {
-  if (layerStyle) {
-    return get(theme, `layerStyles.${layerStyle}`)
-  }
-  if (textStyle) {
-    return get(theme, `textStyles.${textStyle}`)
-  }
-}
+export const extraProps = (props: any) => {
+  const { layerStyle, textStyle, apply, theme } = props
+  const styles = merge(
+    get(theme, `layerStyles.${layerStyle}`, {}),
+    get(theme, `textStyles.${textStyle}`, {}),
+  ) as Dict
 
-export function applyProp(props: any) {
-  return css({ apply: props.apply })(props.theme)
+  return css({ ...styles, apply })(theme)
 }
 
 export default function isTag(target: any) {
@@ -141,12 +129,6 @@ export default function isTag(target: any) {
   )
 }
 
-/**
- * Get the display name of a component.
- * It's really useful when debugging in Dev Tools.
- *
- * @param primitive the react element or component type
- */
 export function getDisplayName(primitive: any) {
   return isTag(primitive) ? `chakra.${primitive}` : getComponentName(primitive)
 }
