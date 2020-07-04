@@ -10,6 +10,7 @@ import {
   cast,
 } from "./system.utils"
 import css from "@chakra-ui/css"
+import { shouldForwardProp } from "./should-forward-prop"
 
 interface Options {
   shouldForwardProp?(prop: string): boolean
@@ -26,7 +27,10 @@ const base = cast((baseStyle: any) => (props: any) =>
 
 function styled<T extends As, P = {}>(component: T, options?: Options) {
   const { baseStyle, ...styledOptions } = options || {}
-  return createStyled(component as any, styledOptions)(
+  return createStyled(component as any, {
+    ...styledOptions,
+    shouldForwardProp,
+  })(
     __css,
     base(baseStyle),
     cast(systemProps),

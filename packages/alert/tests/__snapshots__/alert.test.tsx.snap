@@ -3,11 +3,11 @@
 exports[`should render correctly 1`] = `
 <DocumentFragment>
   <div
-    class="chakra-alert css-x07ocs"
+    class="chakra-alert css-8gyvld"
     role="alert"
   >
     <span
-      class="chakra-alert__icon css-7fcm4b"
+      class="chakra-alert__icon css-1o12h8x"
     >
       <svg
         class="chakra-icon css-14thacp"
@@ -22,12 +22,12 @@ exports[`should render correctly 1`] = `
       </svg>
     </span>
     <div
-      class="chakra-alert__title css-1q1sx94"
+      class="chakra-alert__title css-0"
     >
       Alert title
     </div>
     <div
-      class="chakra-alert__description css-i5e2tp"
+      class="chakra-alert__description css-1baulvz"
     >
       Alert description
     </div>
