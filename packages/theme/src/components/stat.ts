@@ -5,6 +5,10 @@ const Stat: ComponentTheme = {
     size: "md",
   },
   baseStyle: {
+    Container: {
+      flex: "1",
+      paddingRight: 4,
+    },
     Label: {
       fontWeight: "medium",
     },
@@ -16,11 +20,13 @@ const Stat: ComponentTheme = {
       verticalAlign: "baseline",
       fontWeight: "semibold",
     },
+    Icon: {
+      mr: 1,
+      width: "14px",
+      height: "14px",
+      verticalAlign: "middle",
+    },
   },
-  /**
-   * Only one size specified but you can add more,
-   * and style each part.
-   */
   sizes: {
     md: {
       Label: {

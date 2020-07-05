@@ -57,7 +57,7 @@ export const Accordion = React.forwardRef(function Accordion(
         <chakra.div
           {...htmlProps}
           ref={ref}
-          __css={styles.Root}
+          __css={styles.Container}
           className={_className}
         >
           {children}

@@ -161,12 +161,6 @@ export const baseStyle: SystemProps = {
   flexShrink: 0,
 }
 
-/**
- * Theming
- *
- * To style the avatar globally, change the styles in
- * `theme.components.Avatar` under the `Root` key
- */
 const StyledAvatar = chakra("span", {
   baseStyle,
 })
@@ -253,7 +247,7 @@ export const Avatar = React.forwardRef(function Avatar(
       borderWidth={showBorder ? "2px" : undefined}
       name={name}
       className={cx("chakra-avatar", className)}
-      __css={styles.Root}
+      __css={styles.Container}
       {...rest}
     >
       <StylesProvider value={styles}>

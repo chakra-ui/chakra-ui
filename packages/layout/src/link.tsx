@@ -1,19 +1,21 @@
-import { chakra, PropsOf } from "@chakra-ui/system"
+import {
+  chakra,
+  PropsOf,
+  useStyleConfig,
+  omitThemingProps,
+  ThemingProps,
+} from "@chakra-ui/system"
 import * as React from "react"
-import { __DEV__ } from "@chakra-ui/utils"
+import { __DEV__, cx } from "@chakra-ui/utils"
 
 interface LinkOptions {
   /**
    *  If `true`, the link will open in new tab
    */
   isExternal?: boolean
-  /**
-   * Function called when the link is clicked
-   */
-  onClick?: React.MouseEventHandler<HTMLAnchorElement>
 }
 
-export type LinkProps = PropsOf<typeof chakra.a> & LinkOptions
+export type LinkProps = PropsOf<typeof chakra.a> & LinkOptions & ThemingProps
 
 /**
  * Link
@@ -31,16 +33,26 @@ export type LinkProps = PropsOf<typeof chakra.a> & LinkOptions
  *
  * @see Docs https://chakra-ui.com/components/link
  */
-export const Link = chakra<"a", LinkOptions>("a", {
-  themeKey: "Link",
-  attrs: (props) => ({
-    tabIndex: props.isDisabled ? -1 : undefined,
-    "aria-disabled": props.isDisabled || undefined,
-    ...(props.isExternal && {
-      target: "_blank",
-      rel: "noopener noreferrer",
-    }),
-  }),
+
+export const Link = React.forwardRef(function Link(
+  props: LinkProps,
+  ref: React.Ref<any>,
+) {
+  const styles = useStyleConfig("Link", props)
+  const { className, isExternal, isDisabled, ...rest } = omitThemingProps(props)
+
+  return (
+    <chakra.a
+      tabIndex={isDisabled ? -1 : undefined}
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noopener noreferrer" : undefined}
+      aria-disabled={isDisabled || undefined}
+      ref={ref}
+      className={cx("chakra-link", className)}
+      {...rest}
+      __css={styles.Container}
+    />
+  )
 })
 
 if (__DEV__) {

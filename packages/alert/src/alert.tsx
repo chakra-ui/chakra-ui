@@ -68,7 +68,7 @@ export const Alert = React.forwardRef(function Alert(
           ref={ref}
           className={_className}
           {...rest}
-          __css={styles.Root}
+          __css={styles.Container}
         />
       </StylesProvider>
     </AlertContextProvider>

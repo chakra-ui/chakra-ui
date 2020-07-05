@@ -6,10 +6,11 @@ import {
 import { focus, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { useMenuContext } from "./use-menu"
+import { SystemStyleObject } from "@chakra-ui/system"
 
 export interface MenuTransitionProps {
   transformOrigin?: string
-  children: TransitionProps["children"]
+  children: (styles: SystemStyleObject) => React.ReactNode
   styles?: TransitionProps["styles"]
 }
 

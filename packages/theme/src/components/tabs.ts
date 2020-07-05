@@ -113,25 +113,36 @@ function solidRounded(props: Props): StyleObject {
   }
 }
 
-const Tabs: ComponentTheme = {
+const alignments = {
+  end: "flex-end",
+  center: "center",
+  start: "flex-start",
+}
+
+const Tabs: ComponentTheme<{ align?: string; isFitted?: boolean }> = {
   defaultProps: {
     size: "md",
     variant: "line",
     colorScheme: "blue",
+    align: "start",
   },
-  baseStyle: {
+  baseStyle: (props) => ({
+    Indicator: {},
     Tab: {
+      flex: props.isFitted ? 1 : undefined,
       transition: "all 0.2s",
       _focus: {
         zIndex: 1,
         boxShadow: "outline",
       },
     },
-    TabList: {},
+    TabList: {
+      ...alignments[props.align],
+    },
     TabPanel: {
       padding: 4,
     },
-  },
+  }),
   sizes: {
     sm: {
       Tab: {
