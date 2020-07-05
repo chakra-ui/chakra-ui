@@ -1,5 +1,5 @@
 import { SystemStyleObject } from "@chakra-ui/system"
-import { Dict } from "@chakra-ui/utils"
+import { Dict, UnionStringArray } from "@chakra-ui/utils"
 
 export type GlobalStyles = {
   global?: SystemStyleObject | ((props: Props) => SystemStyleObject)
@@ -20,62 +20,57 @@ export interface Props {
   theme: Dict
 }
 
-/**
- * The component style can either be a style object or  a function that returns a
- * style object.
- */
-export type PartsStyleObject<P = {}> =
-  | { [component: string]: SystemStyleObject }
-  | ((props: Props & Required<P>) => { [component: string]: SystemStyleObject })
+type Arr = Readonly<any[]>
 
-export type DefaultProps<P = {}> = P & {
-  /**
-   * The default variant to use (in variants)
-   */
-  variant?: string
-  /**
-   * The default color scheme to use (if variants are defined as functions)
-   */
+export type PartsStyle<P extends Arr> = {
+  [K in UnionStringArray<P>]?: SystemStyleObject
+}
+
+export type Interpolation<P extends Arr> =
+  | PartsStyle<P>
+  | ((props: any) => PartsStyle<P>)
+
+export type PartsModifierFn<P1 extends Arr, P2 extends Arr> = {
+  [K in UnionStringArray<P1>]?: (props: any) => PartsStyle<P2>
+}
+
+export type BaseStyle<E extends Readonly<Dict>> = Interpolation<E["parts"]>
+
+export type Sizes<E extends Readonly<Dict>> = {
+  [K in UnionStringArray<E["sizes"]>]?: Interpolation<E["parts"]>
+}
+
+export type Variants<E extends Readonly<Dict>> = {
+  [K in UnionStringArray<E["variants"]>]?: Interpolation<E["parts"]>
+}
+
+export type DefaultProps<E extends Readonly<Dict>> = {
+  size?: UnionStringArray<E["sizes"]>
+  variant?: UnionStringArray<E["variants"]>
   colorScheme?: string
-  /**
-   * The default size to use (in sizes)
-   */
-  size?: string
 }
-
-export type Variants<P = {}> = {
-  [variant: string]: PartsStyleObject<P>
-}
-
-export type Sizes<P = {}> = {
-  [size: string]: PartsStyleObject<P>
-}
-
-export type BaseStyle<P> = PartsStyleObject<P>
-
-export type Parts = string[]
 
 export interface ComponentTheme<P = {}> {
   /**
    * The default props to apply to the component
    */
-  defaultProps?: DefaultProps<P>
+  defaultProps?: any
   /**
    * The initial styles to be applied to the component
    */
-  baseStyle?: BaseStyle<P>
+  baseStyle?: any
   /**
    * The component's visual style variants
    */
-  variants?: Variants<P>
+  variants?: any
   /**
    * The component's size variations
    */
-  sizes?: Sizes<P>
+  sizes?: any
   /**
    * The parts the component has or can have
    */
-  parts?: Parts
+  parts?: any
 }
 
 export function mode(light: any, dark: any) {

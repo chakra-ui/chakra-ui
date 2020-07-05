@@ -32,7 +32,7 @@ export const BreadcrumbSeparator = React.forwardRef(
         role="presentation"
         mx={spacing}
         {...rest}
-        __css={styles.Separator}
+        __css={styles.separator}
       />
     )
   },
@@ -70,7 +70,7 @@ export const BreadcrumbLink = forwardRef<BreadcrumbLinkProps>(
       return <chakra.span aria-current="page" {...sharedProps} />
     }
 
-    return <chakra.a __css={styles.Link} {...sharedProps} />
+    return <chakra.a __css={styles.link} {...sharedProps} />
   },
 )
 
@@ -208,7 +208,7 @@ export const Breadcrumb = React.forwardRef(function Breadcrumb(
       aria-label="breadcrumb"
       className={_className}
       {...rest}
-      __css={styles.Root}
+      __css={styles.container}
     >
       <StylesProvider value={styles}>
         <chakra.ol className="chakra-breadcrumb__list">{clones}</chakra.ol>

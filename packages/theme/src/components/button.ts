@@ -1,28 +1,55 @@
 import {
-  Props,
+  BaseStyle,
+  DefaultProps,
   mode,
-  ComponentTheme,
+  Props,
+  Sizes,
   transparentize,
 } from "@chakra-ui/theme-tools"
 
-/**
- * Parts:
- * - Container
- * - Icon
- * - Spinner
- */
+const register = {
+  parts: ["container", "icon", "spinner"],
+  sizes: ["sm", "md", "lg", "xs"],
+  variants: ["solid", "outline", "ghost", "unstyled"],
+} as const
 
-const grayGhost = (props: Props) => ({
-  Container: {
-    color: mode(`inherit`, `whiteAlpha.900`)(props),
-    _hover: {
-      bg: mode(`gray.100`, `whiteAlpha.200`)(props),
+const baseStyle: BaseStyle<typeof register> = {
+  spinner: {
+    fontSize: "1em",
+    lineHeight: "normal",
+  },
+  container: {
+    lineHeight: "1.2",
+    borderRadius: "md",
+    fontWeight: "semibold",
+    _focus: {
+      boxShadow: "outline",
     },
-    _active: {
-      bg: mode(`gray.200`, `whiteAlpha.300`)(props),
+    _disabled: {
+      opacity: 0.4,
+      cursor: "not-allowed",
+      boxShadow: "none",
     },
   },
-})
+}
+
+/**
+ * Variants Style
+ */
+
+function grayGhost(props: Props) {
+  return {
+    container: {
+      color: mode(`inherit`, `whiteAlpha.900`)(props),
+      _hover: {
+        bg: mode(`gray.100`, `whiteAlpha.200`)(props),
+      },
+      _active: {
+        bg: mode(`gray.200`, `whiteAlpha.300`)(props),
+      },
+    },
+  }
+}
 
 function ghost(props: Props) {
   const { colorScheme: c, theme } = props
@@ -32,7 +59,7 @@ function ghost(props: Props) {
   const darkActive = transparentize(`${c}.200`, 0.24)(theme)
 
   return {
-    Container: {
+    container: {
       color: mode(`${c}.500`, `${c}.200`)(props),
       bg: "transparent",
       _hover: {
@@ -50,17 +77,17 @@ function outline(props: Props) {
   const borderColor = mode(`gray.200`, `whiteAlpha.300`)(props)
 
   return {
-    Container: {
+    container: {
       border: "1px solid",
       borderColor: c === "gray" ? borderColor : "currentColor",
-      ...ghost(props).Container,
+      ...ghost(props).container,
     },
   }
 }
 
 function graySolid(props: Props) {
   return {
-    Container: {
+    container: {
       bg: mode(`gray.100`, `whiteAlpha.200`)(props),
       _hover: {
         bg: mode(`gray.200`, `whiteAlpha.300`)(props),
@@ -78,7 +105,7 @@ function solid(props: Props) {
   if (c === "gray") return graySolid(props)
 
   return {
-    Container: {
+    container: {
       bg: mode(`${c}.500`, `${c}.200`)(props),
       color: mode(`white`, `gray.800`)(props),
       _hover: { bg: mode(`${c}.600`, `${c}.300`)(props) },
@@ -90,7 +117,7 @@ function solid(props: Props) {
 function link(props: Props) {
   const { colorScheme: c } = props
   return {
-    Container: {
+    container: {
       padding: 0,
       height: "auto",
       lineHeight: "normal",
@@ -105,43 +132,8 @@ function link(props: Props) {
   }
 }
 
-const sizes = {
-  lg: {
-    Container: {
-      height: 12,
-      minWidth: 12,
-      fontSize: "lg",
-      paddingX: 6,
-    },
-  },
-  md: {
-    Container: {
-      height: 10,
-      minWidth: 10,
-      fontSize: "md",
-      paddingX: 4,
-    },
-  },
-  sm: {
-    Container: {
-      height: 8,
-      minWidth: 8,
-      fontSize: "sm",
-      paddingX: 3,
-    },
-  },
-  xs: {
-    Container: {
-      height: 6,
-      minWidth: 6,
-      fontSize: "xs",
-      paddingX: 2,
-    },
-  },
-}
-
 const unstyled = {
-  Container: {
+  container: {
     bg: "none",
     border: 0,
     color: "inherit",
@@ -153,31 +145,50 @@ const unstyled = {
   },
 }
 
-const Button: ComponentTheme = {
-  defaultProps: {
-    variant: "solid",
-    size: "md",
-    colorScheme: "gray",
-  },
-  baseStyle: {
-    Spinner: {
-      fontSize: "1em",
-      lineHeight: "normal",
-    },
-    Container: {
-      lineHeight: "1.2",
-      borderRadius: "md",
-      fontWeight: "semibold",
-      _focus: {
-        boxShadow: "outline",
-      },
-      _disabled: {
-        opacity: 0.4,
-        cursor: "not-allowed",
-        boxShadow: "none",
-      },
+const sizes: Sizes<typeof register> = {
+  lg: {
+    container: {
+      height: 12,
+      minWidth: 12,
+      fontSize: "lg",
+      paddingX: 6,
     },
   },
+  md: {
+    container: {
+      height: 10,
+      minWidth: 10,
+      fontSize: "md",
+      paddingX: 4,
+    },
+  },
+  sm: {
+    container: {
+      height: 8,
+      minWidth: 8,
+      fontSize: "sm",
+      paddingX: 3,
+    },
+  },
+  xs: {
+    container: {
+      height: 6,
+      minWidth: 6,
+      fontSize: "xs",
+      paddingX: 2,
+    },
+  },
+}
+
+const defaultProps: DefaultProps<typeof register> = {
+  variant: "solid",
+  size: "md",
+  colorScheme: "gray",
+}
+
+const Button = {
+  defaultProps,
+  baseStyle,
   sizes,
   variants: {
     unstyled,
@@ -186,19 +197,6 @@ const Button: ComponentTheme = {
     link,
     outline,
   },
-}
-
-export const ButtonSizes = {
-  lg: "lg",
-  sm: "sm",
-  md: "md",
-  xs: "xs",
-}
-
-export const ButtonVariants = {
-  solid: "solid",
-  subtle: "subtle",
-  outline: "outline",
 }
 
 export default Button

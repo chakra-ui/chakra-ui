@@ -68,7 +68,7 @@ export const Alert = React.forwardRef(function Alert(
           ref={ref}
           className={_className}
           {...rest}
-          __css={styles.Container}
+          __css={styles.container}
         />
       </StylesProvider>
     </AlertContextProvider>
@@ -90,7 +90,7 @@ export const AlertTitle = React.forwardRef(function AlertTitle(
       ref={ref}
       className={_className}
       {...rest}
-      __css={styles.Title}
+      __css={styles.title}
     />
   )
 })
@@ -111,7 +111,7 @@ export const AlertDescription = React.forwardRef(function AlertDescription(
       ref={ref}
       className={_className}
       {...rest}
-      __css={styles.Description}
+      __css={styles.description}
     />
   )
 })
@@ -135,7 +135,7 @@ export const AlertIcon = (props: AlertIconProps) => {
       display="inherit"
       {...props}
       className={_className}
-      __css={styles.Icon}
+      __css={styles.icon}
     >
       <Comp w="100%" h="100%" />
     </chakra.span>

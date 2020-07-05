@@ -109,7 +109,7 @@ export const AvatarGroup = React.forwardRef(function AvatarGroup(
         <AvatarExcessLabel
           className="chakra-avatar-group__excess"
           ml={spacing}
-          __css={styles.ExcessLabel}
+          __css={styles.excessLabel}
           children={`+${excess}`}
         />
       )}

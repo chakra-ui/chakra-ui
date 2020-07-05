@@ -89,7 +89,7 @@ export const AvatarBadge = React.forwardRef(function AvatarBadge(
         justifyContent: "center",
         right: "0",
         bottom: "0",
-        ...styles.Badge,
+        ...styles.badge,
       }}
     />
   )
@@ -119,8 +119,15 @@ type InitialsAvatarProps = PropsOf<typeof chakra.div> &
 function InitialsAvatar(props: InitialsAvatarProps) {
   const { name, getInitials, className, ...rest } = props
   const _className = cx("chakra-avatar__name", className)
+  const styles = useStyles()
+
   return (
-    <chakra.div aria-label={name} className={_className} {...rest}>
+    <chakra.div
+      aria-label={name}
+      className={_className}
+      {...rest}
+      __css={styles.label}
+    >
       {name ? getInitials?.(name) : null}
     </chakra.div>
   )
@@ -247,7 +254,7 @@ export const Avatar = React.forwardRef(function Avatar(
       borderWidth={showBorder ? "2px" : undefined}
       name={name}
       className={cx("chakra-avatar", className)}
-      __css={styles.Container}
+      __css={styles.container}
       {...rest}
     >
       <StylesProvider value={styles}>

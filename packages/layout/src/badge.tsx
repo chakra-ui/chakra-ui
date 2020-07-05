@@ -26,14 +26,14 @@ export const Badge = React.forwardRef(function Badge(
   return (
     <chakra.span
       ref={ref}
+      className={cx("chakra-badge", props.className)}
       {...rest}
       __css={{
         display: "inline-block",
         whiteSpace: "nowrap",
         verticalAlign: "middle",
-        ...styles.Container,
+        ...styles.container,
       }}
-      className={cx("chakra-badge", props.className)}
     />
   )
 })

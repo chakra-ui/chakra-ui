@@ -57,7 +57,7 @@ export const Accordion = React.forwardRef(function Accordion(
         <chakra.div
           {...htmlProps}
           ref={ref}
-          __css={styles.Container}
+          __css={styles.container}
           className={_className}
         >
           {children}
@@ -106,7 +106,7 @@ export const AccordionItem = React.forwardRef(function AccordionItem(
       <chakra.div
         {...getRootProps({ ref })}
         className={_className}
-        __css={styles.Item}
+        __css={styles.item}
       >
         {isFunction(children)
           ? children({
@@ -160,7 +160,7 @@ export const AccordionButton = forwardRef<AccordionButtonProps>(
       <StyledButton
         {...buttonProps}
         className={_className}
-        __css={styles.Button}
+        __css={styles.button}
       />
     )
   },
@@ -197,7 +197,7 @@ export const AccordionPanel = React.forwardRef(function AccordionPanel(
     <Collapse isOpen={isOpen}>
       <chakra.div
         {...panelProps}
-        __css={styles.Panel}
+        __css={styles.panel}
         className={_className}
         transition="height 150ms ease-in-out, opacity 150ms ease-in-out, transform 150ms ease-in-out"
       />
