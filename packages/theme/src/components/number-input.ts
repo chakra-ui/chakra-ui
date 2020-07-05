@@ -1,7 +1,9 @@
-import { ComponentTheme, mode } from "@chakra-ui/theme-tools"
+import { mode, Props } from "@chakra-ui/theme-tools"
+import Input from "./input"
 
 function getSizeStyle(size: "sm" | "md" | "lg") {
   return {
+    Input: Input.sizes?.[size]["Input"],
     Stepper: {
       fontSize: size === "lg" ? "14px" : "10px",
       _first: {
@@ -16,11 +18,13 @@ function getSizeStyle(size: "sm" | "md" | "lg") {
   }
 }
 
-const NumberInput: ComponentTheme = {
+const NumberInput = {
   defaultProps: {
     size: "md",
   },
-  baseStyle: (props) => ({
+  baseStyle: (props: Props) => ({
+    Container: {},
+    Input: Input.baseStyle.Input,
     StepperGroup: {
       width: "24px",
       margin: "1px",
@@ -46,6 +50,20 @@ const NumberInput: ComponentTheme = {
     md: getSizeStyle("md"),
     lg: getSizeStyle("lg"),
   },
+  variants: (props: Props) => ({
+    outline: {
+      Input: Input.variants.outline(props)["Input"],
+    },
+    filled: {
+      Input: Input.variants.filled(props)["Input"],
+    },
+    flushed: {
+      Input: Input.variants.flushed(props)["Input"],
+    },
+    unstyled: {
+      Input: Input.variants.flushed(props)["Input"],
+    },
+  }),
 }
 
 export const NumberInputSizes = {

@@ -1,19 +1,18 @@
 import {
   ComponentTheme,
-  mode,
-  Props,
   getColor,
-  StyleObject,
+  mode,
+  ExtendProps,
 } from "@chakra-ui/theme-tools"
 
-export interface InputProps {
+export interface InputOptions {
   focusBorderColor?: string
   errorBorderColor?: string
 }
 
-type VariantProps = Props & Required<InputProps>
+type InputProps = ExtendProps<InputOptions>
 
-function getDefaults(props: VariantProps) {
+function getDefaults(props: InputProps) {
   const { focusBorderColor: fc, errorBorderColor: ec } = props
   return {
     focusBorderColor: fc || mode("blue.500", "blue.300")(props),
@@ -21,12 +20,12 @@ function getDefaults(props: VariantProps) {
   }
 }
 
-function outline(props: VariantProps): StyleObject {
+function outline(props: InputProps) {
   const { theme } = props
   const { focusBorderColor: fc, errorBorderColor: ec } = getDefaults(props)
 
   return {
-    Container: {
+    Input: {
       border: "1px solid",
       borderColor: mode("inherit", "whiteAlpha.50")(props),
       bg: mode("white", "whiteAlpha.100")(props),
@@ -59,12 +58,12 @@ function outline(props: VariantProps): StyleObject {
   }
 }
 
-function filled(props: VariantProps): StyleObject {
+function filled(props: InputProps) {
   const { theme } = props
   const { focusBorderColor: fc, errorBorderColor: ec } = getDefaults(props)
 
   return {
-    Container: {
+    Input: {
       border: "2px solid",
       borderColor: "transparent",
       bg: mode("gray.100", "whiteAlpha.50")(props),
@@ -96,12 +95,12 @@ function filled(props: VariantProps): StyleObject {
   }
 }
 
-function flushed(props: VariantProps): StyleObject {
+function flushed(props: InputProps) {
   const { theme } = props
   const { focusBorderColor: fc, errorBorderColor: ec } = getDefaults(props)
 
   return {
-    Container: {
+    Input: {
       borderBottom: "2px solid",
       borderColor: "inherit",
       borderRadius: 0,
@@ -130,7 +129,7 @@ function flushed(props: VariantProps): StyleObject {
 }
 
 const unstyled = {
-  Container: {
+  Input: {
     bg: "transparent",
     paddingX: 0,
     height: "auto",
@@ -142,9 +141,9 @@ const unstyled = {
   },
 }
 
-const sizes: InputTheme["sizes"] = {
+const sizes = {
   lg: {
-    Container: {
+    Input: {
       fontSize: "lg",
       paddingLeft: 4,
       paddingRight: 4,
@@ -153,7 +152,7 @@ const sizes: InputTheme["sizes"] = {
     },
   },
   md: {
-    Container: {
+    Input: {
       fontSize: "md",
       paddingLeft: 4,
       paddingRight: 4,
@@ -162,7 +161,7 @@ const sizes: InputTheme["sizes"] = {
     },
   },
   sm: {
-    Container: {
+    Input: {
       fontSize: "sm",
       paddingLeft: 3,
       paddingRight: 3,
@@ -174,13 +173,13 @@ const sizes: InputTheme["sizes"] = {
 
 export type InputTheme = ComponentTheme<InputProps>
 
-const Input: InputTheme = {
+const Input = {
   defaultProps: {
     size: "md",
     variant: "outline",
   },
   baseStyle: {
-    Container: {
+    Input: {
       width: "100%",
       outline: 0,
       position: "relative",

@@ -52,7 +52,7 @@ export const Input = forwardRef<InputProps>(function Input(props, ref) {
   return (
     <chakra.input
       {...inputProps}
-      __css={styles.Container}
+      __css={styles.Input}
       ref={ref}
       className={_className}
     />

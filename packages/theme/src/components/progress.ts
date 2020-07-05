@@ -1,9 +1,22 @@
-import { ComponentTheme, mode, getColor } from "@chakra-ui/theme-tools"
+import {
+  ComponentTheme,
+  mode,
+  getColor,
+  generateStripe,
+} from "@chakra-ui/theme-tools"
 
-type ProgressTheme = ComponentTheme<{ isIndeterminate?: boolean }>
+type ProgressTheme = ComponentTheme<{
+  isIndeterminate?: boolean
+  hasStripe?: boolean
+}>
 
-const getProgressBg: ProgressTheme["baseStyle"] = (props) => {
-  const { colorScheme: c, theme: t, isIndeterminate } = props
+const getIndicatorStyles: ProgressTheme["baseStyle"] = (props) => {
+  const { colorScheme: c, theme: t, isIndeterminate, hasStripe } = props
+
+  const stripeStyle = mode(
+    generateStripe(),
+    generateStripe("1rem", "rgba(0,0,0,0.1)"),
+  )(props)
 
   const bg = mode(`${c}.500`, `${c}.200`)(props)
 
@@ -14,7 +27,10 @@ const getProgressBg: ProgressTheme["baseStyle"] = (props) => {
     transparent 100%
   )`
 
+  const shouldAddStripe = !isIndeterminate && hasStripe
+
   return {
+    ...(shouldAddStripe && stripeStyle),
     bg: isIndeterminate ? gradient : bg,
   }
 }
@@ -50,7 +66,7 @@ const Progress: ProgressTheme = {
     Indicator: {
       height: "100%",
       transition: "all 0.3s",
-      ...getProgressBg(props),
+      ...getIndicatorStyles(props),
     },
   }),
   sizes,

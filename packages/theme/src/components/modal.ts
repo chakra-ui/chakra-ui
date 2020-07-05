@@ -10,6 +10,7 @@ const getSize = (value: string) => ({
 
 export interface Props {
   scrollBehavior?: "inside" | "outside"
+  isCentered?: boolean
 }
 
 const Modal: ComponentTheme<Props> = {
@@ -19,6 +20,10 @@ const Modal: ComponentTheme<Props> = {
   baseStyle: (props) => ({
     Overlay: {
       bg: "blackAlpha.600",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: props.isCentered ? "center" : "flex-start",
+      overflow: props.scrollBehavior === "inside" ? "hidden" : "auto",
     },
     Content: {
       borderRadius: "md",
@@ -38,6 +43,8 @@ const Modal: ComponentTheme<Props> = {
     Body: {
       paddingX: 6,
       paddingY: 2,
+      flex: 1,
+      overflow: props.scrollBehavior === "inside" ? "auto" : undefined,
     },
     Footer: {
       paddingX: 6,

@@ -4,6 +4,7 @@ import {
   PropsOf,
   omitThemingProps,
   useStyleConfig,
+  ThemingProps,
 } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -33,12 +34,13 @@ const CloseIcon = (props: IconProps) => (
   </Icon>
 )
 
-export type CloseButtonProps = PropsOf<typeof StyledButton> & {
-  /**
-   * If `true`, the close button will be disabled.
-   */
-  isDisabled?: boolean
-}
+export type CloseButtonProps = PropsOf<typeof StyledButton> &
+  ThemingProps & {
+    /**
+     * If `true`, the close button will be disabled.
+     */
+    isDisabled?: boolean
+  }
 
 /**
  * CloseButton

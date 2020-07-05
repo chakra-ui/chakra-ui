@@ -32,6 +32,7 @@ import Textarea from "./textarea"
 import Stat from "./stat"
 import Skeleton from "./skeleton"
 import Breadcrumb from "./breadcumb"
+import SkipLink from "./skip-link"
 
 export default {
   Accordion,
@@ -68,4 +69,5 @@ export default {
   Progress,
   Stat,
   Skeleton,
+  SkipLink,
 }
