@@ -33,11 +33,13 @@ export function baseStyle(props: CustomProps) {
   const end = getColor(theme, endColor)
 
   return {
-    opacity: 0.7,
-    borderRadius: "2px",
-    borderColor: start,
-    background: end,
-    animation: `${speed}s linear infinite alternate ${frame(start, end)}`,
+    Container: {
+      opacity: 0.7,
+      borderRadius: "2px",
+      borderColor: start,
+      background: end,
+      animation: `${speed}s linear infinite alternate ${frame(start, end)}`,
+    },
   }
 }
 

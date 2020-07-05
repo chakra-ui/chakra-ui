@@ -23,7 +23,7 @@ export const visuallyHiddenStyle: React.CSSProperties = {
  * elements on screen
  */
 export const VisuallyHidden = chakra("span", {
-  attrs: { style: visuallyHiddenStyle },
+  baseStyle: visuallyHiddenStyle,
 })
 
 if (__DEV__) {
@@ -36,7 +36,7 @@ if (__DEV__) {
  * as a proxy
  */
 export const VisuallyHiddenInput = chakra("input", {
-  attrs: { style: visuallyHiddenStyle },
+  baseStyle: visuallyHiddenStyle,
 })
 
 if (__DEV__) {

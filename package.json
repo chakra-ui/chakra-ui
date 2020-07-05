@@ -94,7 +94,6 @@
     "css-reset": "yarn workspace @chakra-ui/css-reset",
     "media-query": "yarn workspace @chakra-ui/media-query",
     "css": "yarn workspace @chakra-ui/css",
-    "variant": "yarn workspace @chakra-ui/variant",
     "skeleton": "yarn workspace @chakra-ui/skeleton",
     "skip-nav": "yarn workspace @chakra-ui/skip-nav",
     "babel-plugin": "yarn workspace babel-plugin-chakra-ui",
