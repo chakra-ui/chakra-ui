@@ -980,6 +980,15 @@
         "code",
         "doc"
       ]
+    },
+    {
+      "login": "timkindberg",
+      "name": "Tim Kindberg",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/168046?v=4",
+      "profile": "http://www.timkindberg.com",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
