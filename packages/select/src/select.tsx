@@ -124,7 +124,7 @@ export const Select = React.forwardRef(function Select(
         ref={ref}
         placeholder={placeholder}
         {...otherProps}
-        __css={styles.Field}
+        __css={styles.field}
       >
         {props.children}
       </SelectField>
@@ -133,7 +133,7 @@ export const Select = React.forwardRef(function Select(
         data-disabled={props.isDisabled}
         children={icon}
         color={color}
-        __css={styles.Icon}
+        __css={styles.icon}
       />
     </chakra.div>
   )

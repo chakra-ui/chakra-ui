@@ -30,7 +30,10 @@ export type PopoverProps = UsePopoverProps &
      * The content of the popover. It's usually the `PopoverTrigger`,
      * and `PopoverContent`
      */
-    children?: ReactNodeOrRenderProp<{ isOpen: boolean; onClose(): void }>
+    children?: ReactNodeOrRenderProp<{
+      isOpen: boolean
+      onClose(): void
+    }>
   }
 
 /**
@@ -100,7 +103,7 @@ export const PopoverContent = React.forwardRef(function PopoverContent(
         position: "relative",
         display: "flex",
         flexDirection: "column",
-        ...styles.Content,
+        ...styles.content,
       }}
     />
   )
@@ -137,7 +140,7 @@ export const PopoverHeader = React.forwardRef(function PopoverHeader(
       {...props}
       id={headerId}
       ref={ref}
-      __css={styles.Header}
+      __css={styles.header}
     />
   )
 })
@@ -173,7 +176,7 @@ export const PopoverBody = React.forwardRef(function PopoverBody(
       {...props}
       id={bodyId}
       ref={ref}
-      __css={styles.Body}
+      __css={styles.body}
     />
   )
 })
@@ -188,7 +191,7 @@ export function PopoverFooter(props: PropsOf<typeof chakra.footer>) {
     <chakra.footer
       className="chakra-popover__footer"
       {...props}
-      __css={styles.Footer}
+      __css={styles.footer}
     />
   )
 }
@@ -235,7 +238,7 @@ export function PopoverArrow(props: PopoverArrowProps) {
       {...getArrowProps(props)}
       __css={{
         bg: "inherit",
-        ...styles.Arrow,
+        ...styles.arrow,
       }}
     />
   )

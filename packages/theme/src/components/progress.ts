@@ -1,16 +1,34 @@
 import {
-  ComponentTheme,
-  mode,
-  getColor,
+  BaseStyle,
+  DefaultProps,
   generateStripe,
+  getColor,
+  mode,
+  Sizes,
 } from "@chakra-ui/theme-tools"
 
-type ProgressTheme = ComponentTheme<{
-  isIndeterminate?: boolean
-  hasStripe?: boolean
-}>
+const register = {
+  parts: ["track", "filledTrack", "label"],
+  sizes: ["xs", "sm", "md", "lg"],
+} as const
 
-const getIndicatorStyles: ProgressTheme["baseStyle"] = (props) => {
+const baseStyle: BaseStyle<typeof register> = (props) => {
+  return {
+    label: {
+      lineHeight: "1",
+      fontSize: "0.25em",
+    },
+    track: {
+      bg: mode(`gray.100`, `whiteAlpha.300`)(props),
+    },
+    filledTrack: {
+      transition: "all 0.3s",
+      ...getFilledTrackStyle(props),
+    },
+  }
+}
+
+function getFilledTrackStyle(props: any) {
   const { colorScheme: c, theme: t, isIndeterminate, hasStripe } = props
 
   const stripeStyle = mode(
@@ -35,48 +53,31 @@ const getIndicatorStyles: ProgressTheme["baseStyle"] = (props) => {
   }
 }
 
-const sizes: ProgressTheme["sizes"] = {
+const sizes: Sizes<typeof register> = {
   xs: {
-    Track: { height: "0.25rem" },
+    track: { height: "0.25rem" },
   },
   sm: {
-    Track: { height: "0.5rem" },
+    track: { height: "0.5rem" },
   },
   md: {
-    Track: { height: "0.75rem" },
+    track: { height: "0.75rem" },
   },
   lg: {
-    Track: { height: "1rem" },
+    track: { height: "1rem" },
   },
 }
 
-const Progress: ProgressTheme = {
-  defaultProps: {
-    size: "md",
-    colorScheme: "blue",
-  },
-  baseStyle: (props) => ({
-    Label: {
-      lineHeight: "1",
-      fontSize: "0.25em",
-    },
-    Track: {
-      bg: mode(`gray.100`, `whiteAlpha.300`)(props),
-    },
-    Indicator: {
-      height: "100%",
-      transition: "all 0.3s",
-      ...getIndicatorStyles(props),
-    },
-  }),
+const defaultProps: DefaultProps<typeof register> = {
+  size: "md",
+  colorScheme: "blue",
+}
+
+const progress = {
+  register,
+  defaultProps,
+  baseStyle,
   sizes,
 }
 
-export const ProgressSizes = {
-  lg: "lg",
-  sm: "sm",
-  md: "md",
-  xs: "xs",
-}
-
-export default Progress
+export default progress

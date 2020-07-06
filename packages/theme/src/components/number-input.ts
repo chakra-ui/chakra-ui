@@ -6,6 +6,8 @@ import {
   SizeType,
   Variants,
   VariantType,
+  runIfFn,
+  clone,
 } from "@chakra-ui/theme-tools"
 import input from "./input"
 
@@ -67,18 +69,14 @@ function getSizeStyle(size: "sm" | "md" | "lg") {
 }
 
 const variants: Variants<typeof register> = {
-  outline: (props) => ({ input: getInputVariant(props, "outline") }),
-  filled: (props) => ({ input: getInputVariant(props, "filled") }),
-  flushed: (props) => ({ input: getInputVariant(props, "flushed") }),
-  unstyled: (props) => ({ input: getInputVariant(props, "unstyled") }),
+  outline: (props) => ({ input: getVariantStyle("outline", props) }),
+  filled: (props) => ({ input: getVariantStyle("filled", props) }),
+  flushed: (props) => ({ input: getVariantStyle("flushed", props) }),
+  unstyled: (props) => ({ input: getVariantStyle("unstyled", props) }),
 }
 
-function getInputVariant(props: any, variant: Variant) {
-  const inputPartsStyle = input.variants[variant]
-  const partsStyle =
-    typeof inputPartsStyle === "function"
-      ? inputPartsStyle(props)
-      : inputPartsStyle
+function getVariantStyle(variant: Variant, props: any) {
+  const partsStyle = runIfFn(input.variants[variant], props)
   return partsStyle?.input ?? {}
 }
 

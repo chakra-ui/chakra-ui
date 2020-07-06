@@ -1,5 +1,5 @@
 import { SystemStyleObject } from "@chakra-ui/system"
-import { Dict, UnionStringArray } from "@chakra-ui/utils"
+import { Dict, UnionStringArray, runIfFn } from "@chakra-ui/utils"
 
 export type GlobalStyles = {
   global?: SystemStyleObject | ((props: Props) => SystemStyleObject)
@@ -8,6 +8,8 @@ export type GlobalStyles = {
 export type JSXElementStyles = {
   [K in keyof JSX.IntrinsicElements]?: SystemStyleObject
 }
+
+export { runIfFn }
 
 export type Styles = GlobalStyles & JSXElementStyles
 

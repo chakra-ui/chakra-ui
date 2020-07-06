@@ -1,52 +1,70 @@
-import Input, { InputVariants, InputSizes, InputOptions } from "./input"
-import { ExtendProps } from "@chakra-ui/theme-tools"
+import {
+  BaseStyle,
+  runIfFn,
+  Sizes,
+  SizeType,
+  Variants,
+  VariantType,
+} from "@chakra-ui/theme-tools"
+import input from "./input"
 
-const Select = {
-  defaultProps: Input.defaultProps,
-  baseStyle: {
-    Field: {
-      ...Input.baseStyle.Input,
-      appearance: "none",
-      paddingRight: "2rem",
-      paddingBottom: "1px",
-      lineHeight: "normal",
-    },
-    Icon: {
-      color: "currentColor",
-      fontSize: "1.25rem",
-      _disabled: {
-        opacity: 0.5,
-      },
-    },
+const register = {
+  parts: ["field", "icon"],
+  sizes: input.register.sizes,
+  variants: input.register.variants,
+} as const
+
+const baseStyle: BaseStyle<typeof register> = {
+  field: {
+    ...input.baseStyle.input,
+    appearance: "none",
+    paddingRight: "2rem",
+    paddingBottom: "1px",
+    lineHeight: "normal",
   },
-  sizes: {
-    sm: {
-      Fieid: Input.sizes.sm["Input"],
-    },
-    md: {
-      Fieid: Input.sizes.md["Input"],
-    },
-    lg: {
-      Fieid: Input.sizes.lg["Input"],
-    },
+  icon: {
+    color: "currentColor",
+    fontSize: "1.25rem",
+    _disabled: { opacity: 0.5 },
   },
-  variants: (props: ExtendProps<InputOptions>) => ({
-    outline: {
-      Field: Input.variants.outline(props)["Input"],
-    },
-    filled: {
-      Field: Input.variants.filled(props)["Input"],
-    },
-    flushed: {
-      Field: Input.variants.flushed(props)["Input"],
-    },
-    unstyled: {
-      Field: Input.variants.unstyled["Input"],
-    },
-  }),
 }
 
-export const SelectSizes = InputSizes
-export const SelectVariants = InputVariants
+const sizes: Sizes<typeof register> = {
+  sm: {
+    field: getSizeStyle("sm").input,
+  },
+  md: {
+    field: getSizeStyle("md").input,
+  },
+  lg: {
+    field: getSizeStyle("lg").input,
+  },
+}
 
-export default Select
+const variants: Variants<typeof register> = {
+  outline: (props) => ({ field: getVariantStyle("outline", props) }),
+  filled: (props) => ({ field: getVariantStyle("filled", props) }),
+  flushed: (props) => ({ field: getVariantStyle("flushed", props) }),
+  unstyled: (props) => ({ field: getVariantStyle("unstyled", props) }),
+}
+
+const defaultProps = input.defaultProps
+
+const select = {
+  register,
+  defaultProps,
+  baseStyle,
+  sizes,
+  variants,
+}
+
+export default select
+
+function getSizeStyle(size: SizeType<typeof register>) {
+  return runIfFn(input.sizes[size], undefined) ?? {}
+}
+
+function getVariantStyle(size: VariantType<typeof register>, props: any) {
+  const variantStyle = runIfFn(input.variants[size], props) ?? {}
+  return variantStyle.input
+}

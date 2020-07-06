@@ -33,7 +33,7 @@ export const ProgressLabel = (props: PropsOf<typeof chakra.div>) => {
         textAlign: "center",
         position: "absolute",
         transform: "translate(-50%, -50%)",
-        ...styles.Label,
+        ...styles.label,
       }}
     />
   )
@@ -45,18 +45,18 @@ if (__DEV__) {
 
 export type ProgressLabelProps = PropsOf<typeof ProgressLabel>
 
-export type ProgressIndicatorProps = PropsOf<typeof chakra.div> &
+export type ProgressFilledTrackProps = PropsOf<typeof chakra.div> &
   GetProgressPropsOptions
 
 /**
- * ProgressIndicator (Linear)
+ * ProgressFilledTrack (Linear)
  *
  * The progress component that visually indicates the current level of the progress bar.
  * It applies `background-color` and changes it's width.
  *
  * @see Docs https://chakra-ui.com/components/progress
  */
-function ProgressIndicator(props: ProgressIndicatorProps) {
+function ProgressFilledTrack(props: ProgressFilledTrackProps) {
   const { min, max, value, ...rest } = props
   const progress = getProgressProps({ value, min, max })
   const styles = useStyles()
@@ -68,7 +68,10 @@ function ProgressIndicator(props: ProgressIndicatorProps) {
       }}
       {...progress.bind}
       {...rest}
-      __css={styles.Indicator}
+      __css={{
+        height: "100%",
+        ...styles.filledTrack,
+      }}
     />
   )
 }
@@ -165,11 +168,11 @@ export function Progress(props: ProgressProps) {
       __css={{
         overflow: "hidden",
         position: "relative",
-        ...styles.Track,
+        ...styles.track,
       }}
       {...rest}
     >
-      <ProgressIndicator
+      <ProgressFilledTrack
         min={min}
         max={max}
         value={value}
