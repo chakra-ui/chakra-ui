@@ -116,7 +116,7 @@ export const Tooltip = React.forwardRef(function Tooltip(
           <chakra.div
             className="chakra-tooltip"
             {...tooltipProps}
-            __css={styles.Tooltip}
+            __css={styles.container}
           >
             {label}
             {hasAriaLabel && (
@@ -128,7 +128,7 @@ export const Tooltip = React.forwardRef(function Tooltip(
                 {...getArrowProps()}
                 __css={{
                   bg: "inherit",
-                  ...styles.Arrow,
+                  ...styles.arrow,
                 }}
               />
             )}

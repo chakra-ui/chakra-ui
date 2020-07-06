@@ -50,7 +50,7 @@ export const Slider = React.forwardRef(function Slider(
             display: "inline-block",
             position: "relative",
             cursor: "pointer",
-            ...styles.Container,
+            ...styles.container,
           }}
         >
           {props.children}
@@ -102,7 +102,7 @@ export function SliderThumb(props: SliderThumbProps) {
     <StyledThumb
       {...getThumbProps(props)}
       className="chakra-slider__thumb"
-      __css={styles.Thumb}
+      __css={styles.thumb}
     />
   )
 }
@@ -128,7 +128,7 @@ export function SliderTrack(props: SliderTrackProps) {
       className="chakra-slider__track"
       __css={{
         overflow: "hidden",
-        ...styles.Track,
+        ...styles.track,
       }}
     />
   )
@@ -158,7 +158,7 @@ export function SliderFilledTrack(props: SliderInnerTrackProps) {
       __css={{
         width: "inherit",
         height: "inherit",
-        ...styles.FilledTrack,
+        ...styles.filledTrack,
       }}
     />
   )

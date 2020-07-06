@@ -98,7 +98,7 @@ export const Tab = forwardRef<TabProps>(function Tab(props, ref) {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        ...styles.Tab,
+        ...styles.tab,
       }}
       {...tab}
     />
@@ -132,7 +132,7 @@ export const TabList = React.forwardRef(function TabList(
     <chakra.div
       __css={{
         display: "flex",
-        ...styles.TabList,
+        ...styles.tablist,
       }}
       className={_className}
       {...tablist}
@@ -159,7 +159,7 @@ export const TabPanel = React.forwardRef(function TabPanel(
   const _className = cx("chakra-tabs__tab-panel", className)
   const styles = useStyles()
   return (
-    <chakra.div className={_className} {...panel} __css={styles.TabPanel} />
+    <chakra.div className={_className} {...panel} __css={styles.tabpanel} />
   )
 })
 
@@ -215,7 +215,7 @@ export const TabIndicator = React.forwardRef(function TabIndicator(
       className={_className}
       style={_style}
       {...rest}
-      __css={styles.Indicator}
+      __css={styles.indicator}
     />
   )
 })

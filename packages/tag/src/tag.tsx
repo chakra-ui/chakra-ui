@@ -35,7 +35,7 @@ export const Tag = React.forwardRef(function Tag(props, ref) {
           maxWidth: "100%",
           fontWeight: "medium",
           lineHeight: "1.2",
-          ...styles.Tag,
+          ...styles.container,
         }}
       />
     </StylesProvider>
@@ -50,7 +50,7 @@ export type TagLabelProps = PropsOf<typeof chakra.span>
 
 export function TagLabel(props: TagLabelProps) {
   const styles = useStyles()
-  return <chakra.span isTruncated {...props} __css={styles.Label} />
+  return <chakra.span isTruncated {...props} __css={styles.label} />
 }
 
 if (__DEV__) {
@@ -121,7 +121,7 @@ export const TagCloseButton = (props: TagCloseButtonProps) => {
         alignItems: "center",
         outline: "0",
         transition: "all 0.2s",
-        ...styles.CloseButton,
+        ...styles.closeButton,
       }}
     />
   )

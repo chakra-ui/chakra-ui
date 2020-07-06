@@ -10,10 +10,14 @@ import { __DEV__, cx } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 import * as React from "react"
 
-const spin = keyframes`
-  0% {  transform: rotate(0deg) }
-  100% { transform: rotate(360deg) }
-`
+const spin = keyframes({
+  "0%": {
+    transform: "rotate(0deg)",
+  },
+  "100%": {
+    transform: "rotate(360deg)",
+  },
+})
 
 interface SpinnerOptions {
   /**
@@ -91,7 +95,7 @@ export const Spinner = React.forwardRef(function Spinner(
         borderLeftColor: emptyColor,
         color: color,
         animation: `${spin} ${speed} linear infinite`,
-        ...styles.Container,
+        ...styles.spinner,
       }}
       className={_className}
       {...rest}

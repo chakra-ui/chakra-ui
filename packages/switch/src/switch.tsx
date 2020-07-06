@@ -36,7 +36,6 @@ export const Switch = React.forwardRef(function Switch(
       __css={{
         display: "inline-block",
         verticalAlign: "middle",
-        ...styles.Container,
       }}
     >
       <input className="chakra-switch__input" {...input} />
@@ -49,11 +48,11 @@ export const Switch = React.forwardRef(function Switch(
           justifyContent: "flex-start",
           boxSizing: "content-box",
           cursor: "pointer",
-          ...styles.Track,
+          ...styles.track,
         }}
       >
         <chakra.div
-          __css={styles.Thumb}
+          __css={styles.thumb}
           className="chakra-switch__thumb"
           data-checked={dataAttr(state.isChecked)}
           data-hover={dataAttr(state.isHovered)}

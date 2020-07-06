@@ -1,117 +1,24 @@
 import {
-  Props,
-  mode,
-  ComponentTheme,
-  StyleObject,
+  BaseStyle,
+  DefaultProps,
   getColor,
+  mode,
+  Sizes,
+  Variants,
 } from "@chakra-ui/theme-tools"
 
-function line(props: Props) {
-  const { colorScheme: c } = props
-  return {
-    TabList: {
-      borderBottom: "2px solid",
-      borderColor: "inherit",
-    },
-    Tab: {
-      borderBottom: "2px solid",
-      borderColor: "transparent",
-      marginBottom: "-2px",
-      _selected: {
-        color: mode(`${c}.600`, `${c}.300`)(props),
-        borderColor: "currentColor",
-      },
-      _active: {
-        bg: mode("gray.200", "whiteAlpha.300")(props),
-      },
-      _disabled: {
-        opacity: 0.4,
-        cursor: "not-allowed",
-      },
-    },
-  }
-}
-
-function enclosed(props: Props) {
-  const { colorScheme: c } = props
-  return {
-    Tab: {
-      borderTopRadius: "md",
-      border: "1px solid",
-      borderColor: "transparent",
-      marginBottom: "-1px",
-      _selected: {
-        color: mode(`${c}.600`, `${c}.300`)(props),
-        borderColor: "inherit",
-        borderBottomColor: mode(`white`, `gray.800`)(props),
-      },
-    },
-    TabList: {
-      marginBottom: "-1px",
-      borderBottom: "1px solid",
-      borderColor: "inherit",
-    },
-  }
-}
-
-function enclosedColored(props: Props) {
-  const { colorScheme: c } = props
-  return {
-    Tab: {
-      border: "1px solid",
-      borderColor: "inherit",
-      bg: mode(`gray.50`, `whiteAlpha.50`)(props),
-      marginBottom: "-1px",
-      _notLast: {
-        mr: "-1px",
-      },
-      _selected: {
-        bg: mode(`#fff`, "gray.800")(props),
-        color: mode(`${c}.600`, `${c}.300`)(props),
-        borderColor: "inherit",
-        borderTopColor: "currentColor",
-        borderBottomColor: "transparent",
-      },
-    },
-    TabList: {
-      marginBottom: "-1px",
-      borderBottom: "1px solid",
-      borderColor: "inherit",
-    },
-  }
-}
-
-function softRounded(props: any): StyleObject {
-  const { colorScheme: c, theme } = props
-  return {
-    Tab: {
-      borderRadius: "full",
-      fontWeight: "semibold",
-      color: "gray.600",
-      _selected: {
-        color: getColor(theme, `${c}.700`),
-        bg: getColor(theme, `${c}.100`),
-      },
-    },
-    TabList: {},
-  }
-}
-
-function solidRounded(props: Props): StyleObject {
-  const { colorScheme: c } = props
-  return {
-    Tab: {
-      borderRadius: "full",
-      fontWeight: "semibold",
-      color: mode("gray.600", "inherit")(props),
-      _selected: {
-        color: mode(`#fff`, "gray.800")(props),
-        bg: mode(`${c}.600`, `${c}.300`)(props),
-      },
-    },
-    TabList: {},
-  }
-}
+const register = {
+  parts: ["tablist", "tab", "tabpanel", "indicator"],
+  size: ["sm", "md", "lg"],
+  variants: [
+    "line",
+    "enclosed",
+    "soft-rounded",
+    "enclosed-colored",
+    "solid-rounded",
+    "unstyled",
+  ],
+} as const
 
 const alignments = {
   end: "flex-end",
@@ -119,76 +26,171 @@ const alignments = {
   start: "flex-start",
 }
 
-const Tabs: ComponentTheme<{ align?: string; isFitted?: boolean }> = {
-  defaultProps: {
-    size: "md",
-    variant: "line",
-    colorScheme: "blue",
-    align: "start",
-  },
-  baseStyle: (props) => ({
-    Indicator: {},
-    Tab: {
-      flex: props.isFitted ? 1 : undefined,
+const baseStyle: BaseStyle<typeof register> = (props) => {
+  const { align = "start", isFitted } = props
+  return {
+    indicator: {},
+    tab: {
+      flex: isFitted ? 1 : undefined,
       transition: "all 0.2s",
       _focus: {
         zIndex: 1,
         boxShadow: "outline",
       },
     },
-    TabList: {
-      ...alignments[props.align],
-    },
-    TabPanel: {
+    tablist: alignments[align],
+    tabpanel: {
       padding: 4,
     },
-  }),
-  sizes: {
-    sm: {
-      Tab: {
-        paddingY: "0.25rem",
-        paddingX: "1rem",
-        fontSize: "0.85rem",
-      },
-    },
-    md: {
-      Tab: {
-        fontSize: "1rem",
-        paddingY: "0.5rem",
-        paddingX: "1rem",
-      },
-    },
-    lg: {
-      Tab: {
-        fontSize: "1.15rem",
-        paddingY: "0.75rem",
-        paddingX: "1rem",
-      },
+  }
+}
+
+const sizes: Sizes<typeof register> = {
+  sm: {
+    tab: {
+      paddingY: "0.25rem",
+      paddingX: "1rem",
+      fontSize: "0.85rem",
     },
   },
-  variants: {
-    line: line,
-    enclosed: enclosed,
-    "soft-rounded": softRounded,
-    "enclosed-colored": enclosedColored,
-    "solid-rounded": solidRounded,
-    unstyled: {},
+  md: {
+    tab: {
+      fontSize: "1rem",
+      paddingY: "0.5rem",
+      paddingX: "1rem",
+    },
+  },
+  lg: {
+    tab: {
+      fontSize: "1.15rem",
+      paddingY: "0.75rem",
+      paddingX: "1rem",
+    },
   },
 }
 
-export const TabSizes = {
-  sm: "sm",
-  md: "md",
-  lg: "lg",
+const variants: Variants<typeof register> = {
+  line: function (props) {
+    const { colorScheme: c } = props
+    return {
+      tablist: {
+        borderBottom: "2px solid",
+        borderColor: "inherit",
+      },
+      tab: {
+        borderBottom: "2px solid",
+        borderColor: "transparent",
+        marginBottom: "-2px",
+        _selected: {
+          color: mode(`${c}.600`, `${c}.300`)(props),
+          borderColor: "currentColor",
+        },
+        _active: {
+          bg: mode("gray.200", "whiteAlpha.300")(props),
+        },
+        _disabled: {
+          opacity: 0.4,
+          cursor: "not-allowed",
+        },
+      },
+    }
+  },
+
+  enclosed: function (props) {
+    const { colorScheme: c } = props
+    return {
+      tab: {
+        borderTopRadius: "md",
+        border: "1px solid",
+        borderColor: "transparent",
+        marginBottom: "-1px",
+        _selected: {
+          color: mode(`${c}.600`, `${c}.300`)(props),
+          borderColor: "inherit",
+          borderBottomColor: mode(`white`, `gray.800`)(props),
+        },
+      },
+      tablist: {
+        marginBottom: "-1px",
+        borderBottom: "1px solid",
+        borderColor: "inherit",
+      },
+    }
+  },
+
+  "enclosed-colored": function (props) {
+    const { colorScheme: c } = props
+    return {
+      tab: {
+        border: "1px solid",
+        borderColor: "inherit",
+        bg: mode(`gray.50`, `whiteAlpha.50`)(props),
+        marginBottom: "-1px",
+        _notLast: {
+          mr: "-1px",
+        },
+        _selected: {
+          bg: mode(`#fff`, "gray.800")(props),
+          color: mode(`${c}.600`, `${c}.300`)(props),
+          borderColor: "inherit",
+          borderTopColor: "currentColor",
+          borderBottomColor: "transparent",
+        },
+      },
+      tablist: {
+        marginBottom: "-1px",
+        borderBottom: "1px solid",
+        borderColor: "inherit",
+      },
+    }
+  },
+
+  "soft-rounded": function (props) {
+    const { colorScheme: c, theme } = props
+    return {
+      tab: {
+        borderRadius: "full",
+        fontWeight: "semibold",
+        color: "gray.600",
+        _selected: {
+          color: getColor(theme, `${c}.700`),
+          bg: getColor(theme, `${c}.100`),
+        },
+      },
+      tablist: {},
+    }
+  },
+
+  "solid-rounded": function (props) {
+    const { colorScheme: c } = props
+    return {
+      tab: {
+        borderRadius: "full",
+        fontWeight: "semibold",
+        color: mode("gray.600", "inherit")(props),
+        _selected: {
+          color: mode(`#fff`, "gray.800")(props),
+          bg: mode(`${c}.600`, `${c}.300`)(props),
+        },
+      },
+    }
+  },
+
+  unstyled: {},
 }
 
-export const TabVariants = {
-  line: "line",
-  enclosed: "enclosed",
-  "soft-rounded": "soft-rounded",
-  "enclosed-colored": "enclosed-colored",
-  "solid-rounded": "solid-rounded",
-  unstyled: "unstyled",
+const defaultProps: DefaultProps<typeof register> = {
+  size: "md",
+  variant: "line",
+  colorScheme: "blue",
 }
 
-export default Tabs
+const tabs = {
+  register,
+  defaultProps,
+  baseStyle,
+  sizes,
+  variants,
+}
+
+export default tabs

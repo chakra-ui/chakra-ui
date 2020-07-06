@@ -33,7 +33,7 @@ export const StatLabel = React.forwardRef(function StatLabel(
     <chakra.dt
       ref={ref}
       className={_className}
-      __css={styles.Label}
+      __css={styles.label}
       {...rest}
     />
   )
@@ -58,7 +58,7 @@ export const StatHelpText = React.forwardRef(function StatHelpText(
       ref={ref}
       className={_className}
       {...rest}
-      __css={styles.HelpText}
+      __css={styles.helpText}
     />
   )
 })
@@ -82,7 +82,7 @@ export const StatNumber = React.forwardRef(function StatNumber(
       ref={ref}
       className={_className}
       {...rest}
-      __css={styles.Number}
+      __css={styles.number}
     />
   )
 })
@@ -152,7 +152,7 @@ export function StatArrow(props: StatArrowProps) {
   return (
     <React.Fragment>
       <VisuallyHidden>{label}</VisuallyHidden>
-      <Icon aria-hidden {...rest} __css={styles.Icon} />
+      <Icon aria-hidden {...rest} __css={styles.icon} />
     </React.Fragment>
   )
 }

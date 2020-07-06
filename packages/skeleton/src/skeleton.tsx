@@ -101,7 +101,7 @@ export const Skeleton = React.forwardRef(function Skeleton(
       ref={ref}
       className={_className}
       {...rest}
-      __css={styles.Container}
+      __css={styles.skeleton}
     />
   )
 })
@@ -110,10 +110,11 @@ if (__DEV__) {
   Skeleton.displayName = "Skeleton"
 }
 
-const range = (count: number) =>
-  Array(count)
+function range(count: number) {
+  return Array(count)
     .fill(1)
-    .map((_, idx) => idx + 1)
+    .map((_, index) => index + 1)
+}
 
 export type SkeletonTextProps = SkeletonProps & {
   noOfLines?: number
