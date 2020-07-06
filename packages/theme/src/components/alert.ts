@@ -89,11 +89,11 @@ const defaultProps: DefaultProps<typeof register> = {
   variant: "subtle",
 }
 
-const Alert = {
+const alert = {
   register,
   defaultProps,
   baseStyle,
   variants,
 }
 
-export default Alert
+export default alert

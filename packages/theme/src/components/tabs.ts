@@ -9,7 +9,7 @@ import {
 
 const register = {
   parts: ["tablist", "tab", "tabpanel", "indicator"],
-  size: ["sm", "md", "lg"],
+  sizes: ["sm", "md", "lg"],
   variants: [
     "line",
     "enclosed",
@@ -29,7 +29,6 @@ const alignments = {
 const baseStyle: BaseStyle<typeof register> = (props) => {
   const { align = "start", isFitted } = props
   return {
-    indicator: {},
     tab: {
       flex: isFitted ? 1 : undefined,
       transition: "all 0.2s",

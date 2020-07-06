@@ -131,11 +131,11 @@ export function SlideAnimation() {
   return (
     <>
       <button onClick={modal.onOpen}>Open</button>
-      <Fade timeout={300} in={modal.isOpen}>
+      <Fade timeout={5000} in={modal.isOpen}>
         {(styles) => (
           <Modal isOpen={true} onClose={modal.onClose}>
             <ModalOverlay style={styles}>
-              <SlideFade timeout={150} in={modal.isOpen} unmountOnExit={false}>
+              <SlideFade timeout={3000} in={modal.isOpen} unmountOnExit={false}>
                 {(styles) => (
                   <ModalContent padding={4} mx="auto" mt="40px" style={styles}>
                     Sit nulla est ex deserunt exercitation anim occaecat.

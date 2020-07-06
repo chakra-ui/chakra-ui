@@ -1,6 +1,6 @@
 import * as React from "react"
 import ReactFocusLock from "react-focus-lock"
-import { __DEV__, getAllFocusable } from "@chakra-ui/utils"
+import { __DEV__, getAllFocusable, focus } from "@chakra-ui/utils"
 
 export interface FocusLockProps {
   /**
@@ -60,7 +60,7 @@ export function FocusLock(props: FocusLockProps) {
       if (contentRef?.current) {
         const focusables = getAllFocusable(contentRef.current)
         if (focusables.length === 0) {
-          contentRef.current.focus()
+          focus(contentRef.current)
         }
       }
     }
