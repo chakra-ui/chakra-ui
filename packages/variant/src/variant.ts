@@ -11,7 +11,7 @@ export interface CreateVariantOptions {
 export function createVariant(options: CreateVariantOptions) {
   const { values = {}, prop, themeKey } = options
 
-  const __css: StyleConfig = {
+  const sx: StyleConfig = {
     transform: (value: any, scale: any, props: any) => {
       const styleObjectOrFn =
         get(props.theme, `${scale}.${value}`) ?? get(values, value)
@@ -23,7 +23,7 @@ export function createVariant(options: CreateVariantOptions) {
   }
 
   const config = {
-    [prop]: __css,
+    [prop]: sx,
   }
 
   const parser = createParser(config)

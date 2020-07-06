@@ -1,35 +1,39 @@
 import * as React from "react"
 import { render, userEvent, fireEvent } from "@chakra-ui/test-utils"
-import { usePinInput, usePinInputField, UsePinInputProps } from "../src"
+import {
+  usePinInput,
+  usePinInputField,
+  UsePinInputProps,
+  PinInputContextProvider,
+} from "../src"
+
+function Input(props: any) {
+  const inputProps = usePinInputField(props)
+  return <input {...inputProps} />
+}
 
 const Component = (props: UsePinInputProps = {}) => {
   const context = usePinInput(props)
-  const input1 = usePinInputField({ context })
-  const input2 = usePinInputField({ context })
-  const input3 = usePinInputField({ context })
-
   return (
-    <div>
-      <input data-testid="1" {...input1} />
-      <input data-testid="2" {...input2} />
-      <input data-testid="3" {...input3} />
-    </div>
+    <PinInputContextProvider value={context}>
+      <Input data-testid="1" />
+      <Input data-testid="2" />
+      <Input data-testid="3" />
+    </PinInputContextProvider>
   )
 }
 
 test("PinInput renders correctly", () => {
   const Component = () => {
     const context = usePinInput()
-    const input1 = usePinInputField({ context })
-    const input2 = usePinInputField({ context })
-    const input3 = usePinInputField({ context })
 
     return (
-      <div>
-        <input {...input1} />
-        <input {...input2} />
-        <input {...input3} />
-      </div>
+      <PinInputContextProvider value={context}>
+        <Input />
+        <Input />
+        <Input />
+        <Input />
+      </PinInputContextProvider>
     )
   }
   const { asFragment } = render(<Component />)
@@ -92,17 +96,13 @@ test("filling out all inputs calls the complete callback", () => {
 test("can clear all input", () => {
   const Component = () => {
     const context = usePinInput()
-    const input1 = usePinInputField({ context })
-    const input2 = usePinInputField({ context })
-    const input3 = usePinInputField({ context })
-
     return (
-      <div>
-        <input data-testid="1" {...input1} />
-        <input data-testid="2" {...input2} />
-        <input data-testid="3" {...input3} />
+      <PinInputContextProvider value={context}>
+        <Input data-testid="1" />
+        <Input data-testid="2" />
+        <Input data-testid="3" />
         <button onClick={() => context.clear()}>Clear</button>
-      </div>
+      </PinInputContextProvider>
     )
   }
   const utils = render(<Component />)

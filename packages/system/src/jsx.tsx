@@ -3,12 +3,12 @@ import { jsx as emotion } from "@emotion/core"
 import { SystemStyleObject, css } from "@chakra-ui/css"
 
 interface GetCSS {
-  __css?: any
+  sx?: any
   css?: any
 }
 
 function getCSS(props: GetCSS) {
-  if (!props.__css && !props.css) return undefined
+  if (!props.sx && !props.css) return undefined
   /**
    * Leverage emotion's css function interpolation to access the theme
    */
@@ -16,7 +16,7 @@ function getCSS(props: GetCSS) {
     /**
      * process the theme-aware cx prop
      */
-    const sxStyles = css(props.__css)(theme)
+    const sxStyles = css(props.sx)(theme)
     /**
      * process the normal emotion's css prop
      * (NB: This is not theme-aware, and you can't use shorthand style props)
@@ -26,7 +26,7 @@ function getCSS(props: GetCSS) {
      * return an array value and allow emotion do the rest.
      * By default, emotion can handle array style values
      */
-    return [sxStyles, cssStyles]
+    return [cssStyles, sxStyles]
   }
 }
 
@@ -36,7 +36,7 @@ function parse(props: Dict | undefined) {
   const computedProps: Dict = {}
 
   for (const prop in props) {
-    if (prop === "__css") continue
+    if (prop === "sx") continue
     computedProps[prop] = props[prop]
   }
 
@@ -53,18 +53,21 @@ export const jsx = (
   ...children: React.ReactNode[]
 ) => emotion.apply(undefined, [type, parse(props), ...children])
 
-interface CSSProp {
-  __css?: SystemStyleObject
+interface SxProp {
+  /**
+   * Chakra is here!
+   */
+  sx?: SystemStyleObject
 }
 
 declare module "react" {
-  interface Attributes extends CSSProp {}
+  interface Attributes extends SxProp {}
 }
 
 declare global {
   // eslint-disable-next-line
   namespace JSX {
-    interface IntrinsicAttributes extends CSSProp {}
+    interface IntrinsicAttributes extends SxProp {}
   }
 }
 

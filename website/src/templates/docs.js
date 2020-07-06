@@ -41,7 +41,7 @@ const Docs = ({ data, pageContext }) => {
   const location = useLocation()
   const { previous, next, slug, relativePath, updatedAt } = pageContext
   const { body, frontmatter, tableOfContents } = data.mdx
-  const { title, description } = frontmatter
+  const { title, description = "" } = frontmatter
 
   return (
     <>

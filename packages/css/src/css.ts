@@ -5,7 +5,15 @@ import {
   parser,
   StyleConfig,
 } from "@chakra-ui/parser"
-import { get, isArray, isObject, merge, runIfFn } from "@chakra-ui/utils"
+import {
+  get,
+  isArray,
+  isObject,
+  isResponsiveObjectLike,
+  merge,
+  objectToArrayNotation,
+  runIfFn,
+} from "@chakra-ui/utils"
 import { CSSObject, StyleObjectOrFn } from "./css.types"
 import {
   determineTheme,
@@ -35,8 +43,23 @@ export const css = (styleObject: StyleObjectOrFn) => (props: PropsOrTheme) => {
   }
 
   for (const key in styles) {
+    /**
+     * @see https://github.com/chakra-ui/chakra-ui/pull/884
+     *
+     * Given that the `css` function only accepts responsive arrays,
+     * to support reponsive objects in the css function, we do 2 things:
+     *
+     * - Check if the object is "responsive-like", e.g "{ base: "20px", sm: "50px" }"
+     * so it doesn't think it's a nested style object.
+     *
+     * - Convert the responsive-like value back to array format that the `css` function
+     * can handle.
+     */
     const valueOrFn = styles[key]
-    const value = runIfFn(valueOrFn, theme)
+    let value = runIfFn(valueOrFn, theme)
+    if (isResponsiveObjectLike(value)) {
+      value = objectToArrayNotation(value)
+    }
 
     const config = parser.config[key] as StyleConfig | undefined
 

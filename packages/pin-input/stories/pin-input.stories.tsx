@@ -1,5 +1,11 @@
 import * as React from "react"
-import { PinInput, PinInputField, usePinInput, usePinInputField } from "../src"
+import {
+  PinInput,
+  PinInputField,
+  usePinInput,
+  usePinInputField,
+  PinInputContextProvider,
+} from "../src"
 
 export default {
   title: "PinInput",
@@ -13,32 +19,22 @@ const style: React.CSSProperties = {
   margin: 4,
 }
 
-/**
- * PinInput hook example
- *
- * use the `usePinInput` and `usePinInputField` to create a custom PinInput component
- */
+function Input(props: any) {
+  const inputProps = usePinInputField(props)
+  return <input {...inputProps} />
+}
 
 export function HookExample() {
   const context = usePinInput({ autoFocus: true })
-  const input1 = usePinInputField({ context })
-  const input2 = usePinInputField({ context })
-  const input3 = usePinInputField({ context })
-  const input4 = usePinInputField({ context })
-
   return (
-    <div>
-      <input style={style} {...input1} />
-      <input style={style} {...input2} />
-      <input style={style} {...input3} />
-      <input style={style} {...input4} />
-    </div>
+    <PinInputContextProvider value={context}>
+      <Input style={style} />
+      <Input style={style} />
+      <Input style={style} />
+      <Input style={style} />
+    </PinInputContextProvider>
   )
 }
-
-/**
- * Chakra UI PinInput component example
- */
 
 export function ComponentExample() {
   return (
@@ -49,13 +45,6 @@ export function ComponentExample() {
     </PinInput>
   )
 }
-
-/**
- * Sizes
- *
- * Pass the `size` prop to change the height of the input elements
- * of the PinInput component
- */
 
 export const Sizes = () => {
   return (
@@ -72,10 +61,6 @@ export const Sizes = () => {
     </>
   )
 }
-
-/**
- * Controlled PinInput component
- */
 
 export const Controlled = () => {
   const [value, setValue] = React.useState("")

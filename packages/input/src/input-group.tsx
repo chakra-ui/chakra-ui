@@ -3,18 +3,10 @@ import {
   PropsOf,
   ThemingProps,
   useThemeDefaultProps,
+  useComponentStyle,
 } from "@chakra-ui/system"
-import { createContext, cx, __DEV__ } from "@chakra-ui/utils"
+import { cx, __DEV__, getValidChildren } from "@chakra-ui/utils"
 import * as React from "react"
-
-type GroupContext = Omit<ReturnType<typeof useProvider>, "htmlProps">
-
-const [InputGroupProvider, useInputGroup] = createContext<GroupContext>({
-  strict: false,
-  name: "InputGroupContext",
-})
-
-export { useInputGroup }
 
 export type InputGroupProps = PropsOf<typeof chakra.div> & ThemingProps
 
@@ -22,10 +14,62 @@ export const InputGroup = React.forwardRef(function InputGroup(
   props: InputGroupProps,
   ref: React.Ref<any>,
 ) {
-  const { className, ...rest } = props
-  const { htmlProps, ...context } = useProvider(rest)
+  const defaults = useThemeDefaultProps("Input")
+
+  const {
+    children,
+    size = defaults?.size,
+    variant = defaults?.variant,
+    className,
+    ...rest
+  } = props
 
   const _className = cx("chakra-input__group", className)
+
+  const stylesRef = React.useRef<InputGroupProps>({})
+
+  const validChildren = getValidChildren(children)
+
+  const styles = useComponentStyle({
+    themeKey: "Input",
+    size,
+    variant,
+  })
+
+  validChildren.forEach((child: any) => {
+    if (!styles) return
+
+    if (child.type.__hidden === "InputLeftElement") {
+      stylesRef.current.paddingLeft = styles["height"]
+    }
+
+    if (child.type.__hidden === "InputRightElement") {
+      stylesRef.current.paddingRight = styles["height"]
+    }
+
+    if (child.type.__hidden === "InputRightAddon") {
+      stylesRef.current.borderRightRadius = 0
+    }
+
+    if (child.type.__hidden === "InputLeftAddon") {
+      stylesRef.current.borderLeftRadius = 0
+    }
+  })
+
+  const clones = validChildren.map((child: any) => {
+    const theming = { size, variant }
+    const { pl, paddingLeft, pr, paddingRight } = child.props
+
+    return child.type.__hidden !== "Input"
+      ? React.cloneElement(child, theming)
+      : React.cloneElement(child, {
+          ...theming,
+          paddingLeft: pl || paddingLeft || stylesRef.current?.paddingLeft,
+          paddingRight: pr || paddingRight || stylesRef.current?.paddingRight,
+          borderLeftRadius: stylesRef.current?.borderLeftRadius,
+          borderRightRadius: stylesRef.current?.borderRightRadius,
+        })
+  })
 
   return (
     <chakra.div
@@ -34,48 +78,13 @@ export const InputGroup = React.forwardRef(function InputGroup(
       width="100%"
       display="flex"
       position="relative"
-      {...htmlProps}
+      {...rest}
     >
-      <InputGroupProvider value={context} children={props.children} />
+      {clones}
     </chakra.div>
   )
 })
 
 if (__DEV__) {
   InputGroup.displayName = "InputGroup"
-}
-
-function useMounted() {
-  const [isMounted, setMounted] = React.useState(false)
-  const mount = React.useCallback(() => setMounted(true), [])
-  const unmount = React.useCallback(() => setMounted(false), [])
-  return { isMounted, mount, unmount }
-}
-
-type UseMountedReturn = ReturnType<typeof useMounted>
-
-function useProvider(props: any) {
-  const defaults = useThemeDefaultProps("Input")
-
-  const {
-    children,
-    size = defaults?.size,
-    variant = defaults?.variant,
-    ...htmlProps
-  } = props
-
-  const leftElement = useMounted() as UseMountedReturn | undefined
-  const rightElement = useMounted() as UseMountedReturn | undefined
-  const leftAddon = useMounted() as UseMountedReturn | undefined
-  const rightAddon = useMounted() as UseMountedReturn | undefined
-
-  return {
-    leftElement,
-    rightElement,
-    leftAddon,
-    rightAddon,
-    htmlProps,
-    size,
-    variant,
-  }
 }

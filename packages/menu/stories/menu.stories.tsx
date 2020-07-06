@@ -57,21 +57,39 @@ export const Basic = () => (
 )
 
 export const WithDisabledItem = () => (
-  <Menu>
-    <MenuButton variant="solid" colorScheme="green" size="sm">
-      Open menu
-    </MenuButton>
-    <MenuList>
-      <MenuItem color="gray.700" icon={<FaSearch />} command="⌥T">
-        Search
-      </MenuItem>
-      <MenuItem icon={<FaUndoAlt />}>Undo</MenuItem>
-      <MenuItem isDisabled icon={<FaTruck />}>
-        Delivery
-      </MenuItem>
-      <MenuItem icon={<FaUnlink />}>Unlink</MenuItem>
-    </MenuList>
-  </Menu>
+  <>
+    <Menu>
+      <MenuButton variant="solid" colorScheme="green" size="sm">
+        Open menu
+      </MenuButton>
+      <MenuList>
+        <MenuItem icon={<FaSearch />} command="⌥T">
+          Search
+        </MenuItem>
+        <MenuItem icon={<FaUndoAlt />}>Undo</MenuItem>
+        <MenuItem isDisabled icon={<FaTruck />}>
+          Delivery
+        </MenuItem>
+        <MenuItem icon={<FaUnlink />}>Unlink</MenuItem>
+      </MenuList>
+    </Menu>
+
+    <Menu>
+      <MenuButton variant="solid" colorScheme="green" size="sm">
+        Open menu
+      </MenuButton>
+      <MenuList>
+        <MenuItem icon={<FaSearch />} command="⌥T">
+          Search
+        </MenuItem>
+        <MenuItem icon={<FaUndoAlt />}>Undo</MenuItem>
+        <MenuItem isDisabled icon={<FaTruck />}>
+          Delivery
+        </MenuItem>
+        <MenuItem icon={<FaUnlink />}>Unlink</MenuItem>
+      </MenuList>
+    </Menu>
+  </>
 )
 
 export const WithDisabledButFocusableItem = () => (
@@ -151,61 +169,6 @@ export const WithNestedMenu = () => (
     </Portal>
   </Menu>
 )
-
-// const MenuTransition = (props: {
-//   children: (styles: any) => React.ReactNode
-// }) => {
-//   const menu = useMenuContext()
-
-//   const styles = {
-//     base: {
-//       opacity: 0,
-//       transformOrigin: "top left",
-//       transform: "scale(0.8)",
-//       transitionTimingFunction: "cubic-bezier(0.175, 0.885, 0.320, 1.175)",
-//       transitionProperty: "opacity, transform",
-//       transitionDuration: "150ms",
-//       willChange: "opacity, transform",
-//     },
-//     entered: {
-//       opacity: 1,
-//       transform: "scale(1)",
-//     },
-//     exiting: {
-//       opacity: 0,
-//       transform: "scale(0.8)",
-//     },
-//   } as any
-
-//   const getStyle = (state: TransitionStatus) => ({
-//     ...styles.base,
-//     ...styles[state],
-//   })
-
-//   return (
-//     <Transition
-//       onEnter={node => {
-//         node.hidden = false
-//       }}
-//       onExited={node => {
-//         node.hidden = true
-//         node.style.pointerEvents = null
-//         // persist focus restoration
-//         ensureFocus(menu.buttonRef.current)
-//       }}
-//       onExit={node => {
-//         node.hidden = undefined
-//       }}
-//       onExiting={node => {
-//         node.style.pointerEvents = "none"
-//       }}
-//       timeout={{ enter: 0, exit: 150 }}
-//       in={menu.isOpen}
-//     >
-//       {state => props.children(getStyle(state))}
-//     </Transition>
-//   )
-// }
 
 export const WithTransition = () => (
   <Menu>

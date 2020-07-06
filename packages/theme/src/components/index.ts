@@ -9,6 +9,7 @@ import Code from "./code"
 import Divider from "./divider"
 import Modal from "./modal"
 import Heading from "./heading"
+import Icon from "./icon"
 import Input from "./input"
 import InputAddon from "./input-addon"
 import Link from "./link"
@@ -16,6 +17,7 @@ import Menu from "./menu"
 import NumberInput from "./number-input"
 import Radio from "./radio"
 import Slider from "./slider"
+import Select from "./select"
 import Spinner from "./spinner"
 import Switch from "./switch"
 import Tabs from "./tabs"
@@ -35,6 +37,7 @@ export default {
   Accordion,
   Button,
   Heading,
+  Icon,
   Alert,
   Badge,
   Avatar,
@@ -56,7 +59,7 @@ export default {
   Tag,
   Modal,
   Kbd,
-  Select: Input,
+  Select,
   Textarea,
   PinInput,
   Popover,

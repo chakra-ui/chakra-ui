@@ -52,7 +52,7 @@ const LinkGroupHeading = (props) => (
     size="xs"
     color={useColorModeValue("gray.700", "inherit")}
     letterSpacing="wide"
-    mb={2}
+    mb={4}
     textTransform="uppercase"
     {...props}
   />
@@ -83,7 +83,7 @@ export const SideNavContent = ({
       <LinkGroup collection="layout" title="Layout" />
       <LinkGroup collection="form" title="Form" />
       <LinkGroup collection="components" title="Components" />
-      <LinkGroup collection="utilities" title="Utilities" />
+      <LinkGroup collection="hooks" title="Hooks" />
     </Box>
   </Box>
 )

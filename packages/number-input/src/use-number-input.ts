@@ -3,7 +3,7 @@ import { useBoolean } from "@chakra-ui/hooks"
 import {
   callAllHandlers,
   Dict,
-  ensureFocus,
+  focus,
   mergeRefs,
   normalizeEventKey,
   StringOrNumber,
@@ -234,7 +234,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
 
   const focusInput = () => {
     if (focusInputOnChange && inputRef.current) {
-      ensureFocus(inputRef.current)
+      focus(inputRef.current)
     }
   }
 

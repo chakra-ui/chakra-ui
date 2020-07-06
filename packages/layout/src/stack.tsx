@@ -15,7 +15,9 @@ import {
 import * as React from "react"
 import { FlexOptions } from "./flex"
 
-export type StackDirection = ResponsiveValue<"row" | "column">
+export type StackDirection = ResponsiveValue<
+  "row" | "column" | "row-reverse" | "column-reverse"
+>
 
 interface StackOptions extends Pick<FlexOptions, "align" | "justify" | "wrap"> {
   /**
@@ -77,7 +79,7 @@ export const Stack = React.forwardRef(function Stack(
 ) {
   const {
     direction = "column",
-    align = "flex-start",
+    align,
     justify,
     spacing = "0.5rem",
     wrap,
@@ -93,19 +95,34 @@ export const Stack = React.forwardRef(function Stack(
    * @see https://medium.com/@emmenko/patching-lobotomized-owl-selector-for-emotion-ssr-5a582a3c424c
    */
   const selector = "& > *:not(style) ~ *:not(style)"
+  const directionStyles = {
+    column: {
+      marginTop: spacing,
+      marginLeft: 0,
+    },
+    row: {
+      marginLeft: spacing,
+      marginTop: 0,
+    },
+    "column-reverse": {
+      marginBottom: spacing,
+      marginRight: 0,
+    },
+    "row-reverse": {
+      marginRight: spacing,
+      marginBottom: 0,
+    },
+  }
 
   const styles = {
     flexDirection: direction,
-    [selector]: mapResponsive(direction, (value) => ({
-      [value === "column" ? "marginTop" : "marginLeft"]: spacing,
-      [value === "column" ? "marginLeft" : "marginTop"]: 0,
-    })),
+    [selector]: mapResponsive(direction, (value) => directionStyles[value]),
   }
 
   const validChildren = getValidChildren(children)
 
   const dividerStyles = mapResponsive(direction, (value) => {
-    if (value === "row") {
+    if (value.includes("row")) {
       return {
         marginX: spacing,
         marginY: 0,
@@ -143,7 +160,7 @@ export const Stack = React.forwardRef(function Stack(
     return _child
   })
 
-  const __css = (theme: Dict) => {
+  const sx = (theme: Dict) => {
     if (hasDivider) return undefined
     return css({ [selector]: styles[selector] })(theme)
   }
@@ -159,7 +176,7 @@ export const Stack = React.forwardRef(function Stack(
       flexDirection={styles.flexDirection}
       flexWrap={wrap}
       className={_className}
-      __css={__css as any}
+      sx={sx as any}
       {...rest}
     >
       {clones}
@@ -174,9 +191,12 @@ if (__DEV__) {
 /**
  * A view that arranges its children in a horizontal line.
  */
-export const HStack = (props: StackProps) => (
-  <Stack align="center" {...props} direction="row" />
-)
+export const HStack = React.forwardRef(function HStack(
+  props: StackProps,
+  ref: React.Ref<any>,
+) {
+  return <Stack align="center" {...props} direction="row" ref={ref} />
+})
 
 if (__DEV__) {
   HStack.displayName = "HStack"
@@ -185,9 +205,12 @@ if (__DEV__) {
 /**
  * A view that arranges its children in a vertical line.
  */
-export const VStack = (props: StackProps) => (
-  <Stack align="center" {...props} direction="column" />
-)
+export const VStack = React.forwardRef(function VStack(
+  props: StackProps,
+  ref: React.Ref<any>,
+) {
+  return <Stack align="center" {...props} direction="column" ref={ref} />
+})
 
 if (__DEV__) {
   VStack.displayName = "VStack"

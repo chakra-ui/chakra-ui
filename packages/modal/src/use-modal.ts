@@ -1,4 +1,4 @@
-import { useIds, useLockBodyScroll } from "@chakra-ui/hooks"
+import { useIds } from "@chakra-ui/hooks"
 import { callAllHandlers, Dict, mergeRefs } from "@chakra-ui/utils"
 import { Undo, hideOthers } from "aria-hidden"
 import * as React from "react"
@@ -17,11 +17,6 @@ export interface UseModalProps {
    * Callback invoked to close the modal.
    */
   onClose(): void
-  /**
-   * If `true`, scrolling will be disabled on the `body` when the modal opens.
-   *  @default true
-   */
-  blockScrollOnMount?: boolean
   /**
    * If `true`, the modal will close when the overlay is clicked
    * @default true
@@ -64,7 +59,6 @@ export function useModal(props: UseModalProps) {
     id,
     closeOnOverlayClick = true,
     closeOnEsc = true,
-    blockScrollOnMount = true,
     useInert = true,
     onOverlayClick: onOverlayClickProp,
     onEsc,
@@ -73,17 +67,13 @@ export function useModal(props: UseModalProps) {
   const dialogRef = React.useRef<any>(null)
   const overlayRef = React.useRef<any>(null)
 
-  const [contentId, headerId, bodyId] = useIds(
+  const [dialogId, headerId, bodyId] = useIds(
     id,
     `chakra-modal`,
     `chakra-modal--header`,
     `chakra-modal--body`,
   )
 
-  /**
-   * Hook used to block scrolling once the modal is open
-   */
-  useLockBodyScroll(dialogRef, isOpen && blockScrollOnMount)
   /**
    * Hook used to polyfill `aria-modal` for older browsers.
    * It uses `aria-hidden` to all other nodes.
@@ -158,7 +148,7 @@ export function useModal(props: UseModalProps) {
     getContentProps: (props: Dict = {}) => ({
       ...props,
       ref: mergeRefs(props.ref, dialogRef),
-      id: contentId,
+      id: dialogId,
       role: props.role || "dialog",
       tabIndex: -1,
       "aria-modal": true,

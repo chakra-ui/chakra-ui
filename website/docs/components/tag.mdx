@@ -2,6 +2,7 @@
 title: Tag
 package: "@chakra-ui/tag"
 image: "components/tags.svg"
+description: Tag component is used for items that need to be labeled
 ---
 
 import ComponentLinks from "../../src/components/component-links"
@@ -21,15 +22,16 @@ organized using keywords that describe them.
 
 ## Import
 
-Chakra UI exports 4 Tag related components:
+Chakra UI exports 5 Tag related components:
 
 - **Tag**: The wrapper for all the tag elements
 - **TagLabel**: The label for tag's text content.
-- **TagIcon**: The icon for the tag
+- **TagLeftIcon**: The icon placed on the left side of the tag
+- **TagRightIcon**: The icon placed on the right side of the tag
 - **TagCloseButton**: The close button for the tag.
 
 ```js
-import { Tag, TagIcon, TagLabel, TagCloseButton } from "@chakra-ui/core"
+import { Tag, TagLabel, TagLeftIcon, TagRightIcon, TagCloseButton } from "@chakra-ui/core"
 ```
 
 ## Usage
@@ -39,7 +41,7 @@ import { Tag, TagIcon, TagLabel, TagCloseButton } from "@chakra-ui/core"
 ```
 
 ```jsx
-<Stack spacing={4} isInline>
+<Stack spacing={4} direction="row">
   {["sm", "md", "lg"].map((size) => (
     <Tag size={size} key={size} colorScheme="gray">
       Gray
@@ -51,10 +53,10 @@ import { Tag, TagIcon, TagLabel, TagCloseButton } from "@chakra-ui/core"
 ## With left icon
 
 ```jsx
-<Stack spacing={4} isInline>
+<Stack spacing={4} direction="row">
   {["sm", "md", "lg"].map((size) => (
     <Tag size={size} key={size} colorScheme="cyan">
-      <TagIcon icon="add" size="12px" />
+      <TagLeftIcon boxSize="12px" as={AddIcon} />
       <TagLabel>Green</TagLabel>
     </Tag>
   ))}
@@ -64,16 +66,16 @@ import { Tag, TagIcon, TagLabel, TagCloseButton } from "@chakra-ui/core"
 ## With right icon
 
 ```jsx
-<Stack spacing={4} isInline>
+<Stack spacing={4} direction="row">
   <Tag colorScheme="cyan">
     <TagLabel>Green</TagLabel>
-    <TagIcon icon="check" size="12px" />
+    <TagRightIcon boxSize="12px" as={CheckIcon} />
   </Tag>
 
   {/* You can also use custom svg icons */}
   <Tag colorScheme="teal">
     <TagLabel>Green</TagLabel>
-    <TagIcon icon={MdSettings} />
+    <TagRightIcon as={MdSettings} />
   </Tag>
 </Stack>
 ```
@@ -81,7 +83,7 @@ import { Tag, TagIcon, TagLabel, TagCloseButton } from "@chakra-ui/core"
 ## With close button
 
 ```jsx
-<Stack spacing={4} isInline>
+<Stack spacing={4} direction="row">
   {["sm", "md", "lg"].map((size) => (
     <Tag
       size={size}

@@ -22,7 +22,7 @@ const HookTooltip = ({ children }: any) => {
     getTooltipProps,
     getArrowProps,
     isOpen,
-  } = useTooltip()
+  } = useTooltip({ showDelay: 400 })
 
   const trigger = getTriggerProps()
   const tooltip = getTooltipProps()
@@ -65,7 +65,7 @@ const TransitionTooltip = ({ children }: any) => {
     getTooltipProps,
     getArrowProps,
     isOpen,
-  } = useTooltip()
+  } = useTooltip({ showDelay: 50 })
 
   const trigger = getTriggerProps()
   const tooltip = getTooltipProps()
@@ -226,7 +226,7 @@ export const withIsOpenProp = () => (
 
 export const withDefaultIsOpenProp = () => (
   <Tooltip label="Hello world" defaultIsOpen={true}>
-    <button style={{ fontSize: 25, pointerEvents: "all" }} disabled>
+    <button style={{ fontSize: 25, pointerEvents: "all" }}>
       Can't Touch This
     </button>
   </Tooltip>

@@ -42,7 +42,7 @@ import { Switch } from "@chakra-ui/core"
 Pass the `size` prop to change the size of the switch.
 
 ```jsx
-<Stack align="center" isInline>
+<Stack align="center" direction="row">
   <Switch size="sm" />
   <Switch size="md" />
   <Switch size="lg" />
@@ -55,9 +55,9 @@ You can change the checked background color of the switch by passing the `color`
 prop.
 
 ```jsx
-<Stack isInline>
-  <Switch color="red" />
-  <Switch color="teal" size="lg" />
+<Stack direction="row">
+  <Switch colorScheme="red" />
+  <Switch colorScheme="teal" size="lg" />
 </Stack>
 ```
 
@@ -66,7 +66,7 @@ prop.
 | Name               | Type                | Default | Description                                          |
 | ------------------ | ------------------- | ------- | ---------------------------------------------------- |
 | `size`             | `sm`, `md`, `lg`    |         | The size of the switch.                              |
-| `color`            | `string`            |         | The background color of the switch when checked.     |
+| `colorScheme`      | `string`            |         | The background color of the switch when checked.     |
 | `name`             | `string`            |         | The input name of the switch when used in a form.    |
 | `value`            | `string`, `boolean` |         | The value of the switch.                             |
 | `children`         | `React.ReactNode`   |         | The children of the switch.                          |

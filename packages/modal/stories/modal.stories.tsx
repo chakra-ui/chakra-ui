@@ -38,7 +38,7 @@ export function BasicUsage() {
     <>
       <Button onClick={onOpen}>Open</Button>
 
-      <Modal isOpen={isOpen} onClose={onClose} scrollBehavior="inside">
+      <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay>
           <ModalContent>
             <ModalCloseButton />

@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/progress",
-  "version": "1.0.0-next.2",
+  "version": "1.0.0-next.4",
   "description": "Progress bar component for Chakra UI",
   "keywords": [
     "theme",
@@ -46,14 +46,14 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/theme-tools": "^1.0.0-next.2",
-    "@chakra-ui/utils": "^1.0.0-next.2"
+    "@chakra-ui/theme-tools": "^1.0.0-next.4",
+    "@chakra-ui/utils": "^1.0.0-next.4"
   },
   "devDependencies": {
-    "@chakra-ui/system": "^1.0.0-next.2"
+    "@chakra-ui/system": "^1.0.0-next.4"
   },
   "peerDependencies": {
-    "@chakra-ui/system": "1.x",
+    "@chakra-ui/system": ">0.8",
     "react": "16.x"
   },
   "gitHead": "ce6fe489afaddba502a2611f1fb1dcedb991325b"

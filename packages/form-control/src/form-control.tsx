@@ -2,19 +2,13 @@ import { useBoolean, useId, useSafeLayoutEffect } from "@chakra-ui/hooks"
 import { Icon, IconProps } from "@chakra-ui/icon"
 import {
   chakra,
+  forwardRef,
   PropsOf,
   useComponentStyle,
-  forwardRef,
 } from "@chakra-ui/system"
-import {
-  callAllHandlers,
-  createContext,
-  cx,
-  dataAttr,
-  ariaAttr,
-  __DEV__,
-} from "@chakra-ui/utils"
+import { createContext, cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
+import { useFormControlLabel } from "./use-form-control"
 
 export interface FormControlOptions {
   /**
@@ -71,7 +65,7 @@ interface FormControlContext extends FormControlOptions {
 
 type FieldContext = Omit<ReturnType<typeof useProvider>, "htmlProps">
 
-const [FormControlCtxProvider, useFormControlContext] = createContext<
+const [FormControlContextProvider, useFormControlContext] = createContext<
   FieldContext
 >({
   strict: false,
@@ -161,9 +155,9 @@ export const FormControl = forwardRef<FormControlProps>(function FormControl(
   const _className = cx("chakra-form-control", props.className)
 
   return (
-    <FormControlCtxProvider value={context}>
+    <FormControlContextProvider value={context}>
       <StyledFormControl ref={ref} {...htmlProps} className={_className} />
-    </FormControlCtxProvider>
+    </FormControlContextProvider>
   )
 })
 
@@ -198,20 +192,14 @@ export const FormLabel = forwardRef<FormLabelProps>(function FormLabel(
   props,
   ref,
 ) {
-  const field = useFormControlContext()
+  const { className, ...rest } = props
+  const ownProps = useFormControlLabel(rest)
 
   return (
     <StyledLabel
-      {...props}
-      className={cx("chakra-form__label", props.className)}
       ref={ref}
-      data-focus={dataAttr(field?.isFocused)}
-      data-disabled={dataAttr(field?.isDisabled)}
-      data-invalid={dataAttr(field?.isInvalid)}
-      data-loading={dataAttr(field?.isLoading)}
-      data-readonly={dataAttr(field?.isReadOnly)}
-      id={props.id ?? field?.labelId}
-      htmlFor={props.htmlFor ?? field?.id}
+      className={cx("chakra-form__label", props.className)}
+      {...ownProps}
     />
   )
 })
@@ -359,53 +347,6 @@ if (__DEV__) {
   FormErrorMessage.displayName = "FormErrorMessage"
 }
 
-export type FormElementProps<T extends HTMLElement> = FormControlOptions & {
-  id?: string
-  onFocus?: React.FocusEventHandler<T>
-  onBlur?: React.FocusEventHandler<T>
-}
-
-/**
- * React hook that provides the props that should be spread on to
- * input fields (`input`, `select`, `textarea`, etc.).
- *
- * It provides a convenient way to control a form fields, validation
- * and helper text.
- */
-export function useFormControl<T extends HTMLElement>(
-  props: FormElementProps<T>,
-) {
-  const field = useFormControlContext()
-  const describedBy: string[] = []
-
-  if (field?.isInvalid) {
-    /**
-     * Error message must be described first
-     * in all scenarios
-     */
-    if (describedBy.length > 0) {
-      describedBy.unshift(field.feedbackId)
-    } else {
-      describedBy.push(field.feedbackId)
-    }
-  }
-  if (field?.hasHelpText) describedBy.push(field.helpTextId)
-  const ariaDescribedBy = describedBy.join(" ")
-
-  return {
-    ...props,
-    id: props.id ?? field?.id,
-    disabled: props.isDisabled || field?.isDisabled,
-    readOnly: props.isReadOnly || field?.isReadOnly,
-    "aria-invalid": ariaAttr(props.isInvalid || field?.isInvalid),
-    "aria-required": ariaAttr(props.isRequired || field?.isRequired),
-    "aria-readonly": ariaAttr(props.isReadOnly || field?.isReadOnly),
-    "aria-describedby": ariaDescribedBy || undefined,
-    onFocus: callAllHandlers(field?.onFocus, props.onFocus),
-    onBlur: callAllHandlers(field?.onBlur, props.onBlur),
-  }
-}
-
 /**
  * Used as the visual indicator that a field is invalid or
  * a field has incorrect values.
@@ -422,13 +363,7 @@ export const FormErrorIcon = forwardRef<IconProps>(function FormErrorIcon(
   const _className = cx("chakra-form__error-icon", props.className)
 
   return (
-    <Icon
-      ref={ref}
-      aria-hidden
-      __css={styles}
-      {...props}
-      className={_className}
-    >
+    <Icon ref={ref} aria-hidden sx={styles} {...props} className={_className}>
       <path
         fill="currentColor"
         d="M11.983,0a12.206,12.206,0,0,0-8.51,3.653A11.8,11.8,0,0,0,0,12.207,11.779,11.779,0,0,0,11.8,24h.214A12.111,12.111,0,0,0,24,11.791h0A11.766,11.766,0,0,0,11.983,0ZM10.5,16.542a1.476,1.476,0,0,1,1.449-1.53h.027a1.527,1.527,0,0,1,1.523,1.47,1.475,1.475,0,0,1-1.449,1.53h-.027A1.529,1.529,0,0,1,10.5,16.542ZM11,12.5v-6a1,1,0,0,1,2,0v6a1,1,0,1,1-2,0Z"

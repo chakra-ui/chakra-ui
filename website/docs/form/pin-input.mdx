@@ -1,0 +1,172 @@
+---
+title: Pin Input
+package: "@chakra-ui/pin-input"
+image: "components/pin-input.svg"
+description:
+  The PinInput component is similar to the Input component, but is optimized for
+  entering sequences of digits quickly.
+---
+
+import ComponentLinks from "../../src/components/component-links"
+
+# Pin Input
+
+The `PinInput` component is similar to the [Input](/docs/form/input) component,
+but it is optimized for entering sequences of digits.
+
+The most common application is for entering OTP or security codes.
+
+<ComponentLinks
+  github={{ url: "#" }}
+  storybook={{ url: "#" }}
+  npm={{ label: "@chakra-ui/pin-input", url: "#" }}
+/>
+
+<carbon-ad></carbon-ad>
+
+## Import
+
+```js
+import { PinInput, PinInputField } from "@chakra-ui/core"
+```
+
+- **PinInput:** The component that provides context to all the pin-input fields
+- **PinInputField:** The text field that user types in
+
+## Usage
+
+Each input collects one number at a time. When a number is entered, focus is
+moved automatically to the next input, until all fields are filled.
+
+```jsx
+<PinInput>
+  <HStack>
+    <PinInputField />
+    <PinInputField />
+    <PinInputField />
+    <PinInputField />
+  </HStack>
+</PinInput>
+```
+
+### Changing the size of the Input
+
+There are three sizes of an Input:
+
+- `sm` (`24px`)
+- `md` (`32px`)
+- `lg` (`40px`)
+
+```jsx
+<Stack>
+  <Box>
+    <PinInput size="lg">
+      <HStack>
+        <PinInputField />
+        <PinInputField />
+        <PinInputField />
+      </HStack>
+    </PinInput>
+  </Box>
+  <Box>
+    <PinInput size="md">
+      <HStack>
+        <PinInputField />
+        <PinInputField />
+        <PinInputField />
+      </HStack>
+    </PinInput>
+  </Box>
+  <Box>
+    <PinInput size="sm">
+      <HStack>
+        <PinInputField />
+        <PinInputField />
+        <PinInputField />
+      </HStack>
+    </PinInput>
+  </Box>
+</Stack>
+```
+
+### Adding a defaultValue
+
+You can set the defaultValue of the PinInput if you wish:
+
+```jsx
+<PinInput defaultValue="234">
+  <HStack>
+    <PinInputField />
+    <PinInputField />
+    <PinInputField />
+  </HStack>
+</PinInput>
+```
+
+Or even a partial defaultValue:
+
+```jsx
+<PinInput defaultValue="23">
+  <HStack>
+    <PinInputField />
+    <PinInputField />
+    <PinInputField />
+  </HStack>
+</PinInput>
+```
+
+### Changing the placeholder
+
+If you donʼt like the default placeholder (`○`), you can change that too.
+
+```jsx
+<PinInput placeholder="🥳">
+  <HStack>
+    <PinInputField />
+    <PinInputField />
+    <PinInputField />
+  </HStack>
+</PinInput>
+```
+
+### Disable focus management
+
+By default, `PinInput` moves focus automatically to the next input once a field
+is filled. It also transfers focus to a previous input when <kbd>Delete</kbd> is
+pressed with focus on an empty input.
+
+To disable this behavior, set `manageFocus` to `false`
+
+```jsx
+<PinInput manageFocus={false}>
+  <HStack>
+    <PinInputField />
+    <PinInputField />
+    <PinInputField />
+  </HStack>
+</PinInput>
+```
+
+### AutoFill and Copy + Paste
+
+Try copying & pasting `1234` into any of the inputs in the example above.
+
+By default, you can only change one input at a time, but if one of the input
+field receives a longer string by pasting into it, `PinInput` attempts to
+validate the string and fill the other inputs.
+
+```jsx
+<PinInput>
+  <HStack>
+    <PinInputField />
+    <PinInputField />
+    <PinInputField />
+  </HStack>
+</PinInput>
+```
+
+## Props
+
+### PinInputField
+
+PinInputField composes `Input` so you can pass all `Input` props.

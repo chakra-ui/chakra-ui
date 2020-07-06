@@ -436,3 +436,27 @@ test("returns correct media query order 2", () => {
     "paddingBottom",
   ])
 })
+
+test("pseudo selectors are transformed", () => {
+  const result = css({
+    _before: {
+      paddingBottom: 2,
+      paddingLeft: [2, 3, 4],
+      paddingRight: { base: 1, sm: 2 },
+    },
+  })(theme)
+  expect(result).toEqual({
+    "&::before": {
+      "@media screen and (min-width: 40em)": {
+        paddingLeft: 16,
+        paddingRight: 8,
+      },
+      "@media screen and (min-width: 52em)": {
+        paddingLeft: 32,
+      },
+      paddingBottom: 8,
+      paddingLeft: 8,
+      paddingRight: 4,
+    },
+  })
+})

@@ -6,7 +6,7 @@ import {
   getColor,
 } from "@chakra-ui/theme-tools"
 
-function getLineStyle(props: Props) {
+function line(props: Props) {
   const { colorScheme: c } = props
   return {
     TabList: {
@@ -32,7 +32,7 @@ function getLineStyle(props: Props) {
   }
 }
 
-function getEnclosedStyle(props: Props) {
+function enclosed(props: Props) {
   const { colorScheme: c } = props
   return {
     Tab: {
@@ -54,7 +54,7 @@ function getEnclosedStyle(props: Props) {
   }
 }
 
-function getEnclosedColoredStyle(props: Props) {
+function enclosedColored(props: Props) {
   const { colorScheme: c } = props
   return {
     Tab: {
@@ -81,23 +81,23 @@ function getEnclosedColoredStyle(props: Props) {
   }
 }
 
-function getSoftRoundedStyle(props: any): StyleObject {
-  const { colorScheme: c, theme: t } = props
+function softRounded(props: any): StyleObject {
+  const { colorScheme: c, theme } = props
   return {
     Tab: {
       borderRadius: "full",
       fontWeight: "semibold",
       color: "gray.600",
       _selected: {
-        color: getColor(t, `${c}.700`),
-        bg: getColor(t, `${c}.100`),
+        color: getColor(theme, `${c}.700`),
+        bg: getColor(theme, `${c}.100`),
       },
     },
     TabList: {},
   }
 }
 
-function getSolidRoundedStyle(props: Props): StyleObject {
+function solidRounded(props: Props): StyleObject {
   const { colorScheme: c } = props
   return {
     Tab: {
@@ -127,9 +127,7 @@ const Tabs: ComponentTheme = {
         boxShadow: "outline",
       },
     },
-    TabList: {
-      display: "flex",
-    },
+    TabList: {},
     TabPanel: {
       padding: 4,
     },
@@ -158,11 +156,11 @@ const Tabs: ComponentTheme = {
     },
   },
   variants: {
-    line: getLineStyle,
-    enclosed: getEnclosedStyle,
-    "soft-rounded": getSoftRoundedStyle,
-    "enclosed-colored": getEnclosedColoredStyle,
-    "solid-rounded": getSolidRoundedStyle,
+    line: line,
+    enclosed: enclosed,
+    "soft-rounded": softRounded,
+    "enclosed-colored": enclosedColored,
+    "solid-rounded": solidRounded,
     unstyled: {},
   },
 }

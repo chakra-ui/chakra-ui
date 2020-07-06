@@ -9,12 +9,12 @@ import {
   HStack,
   chakra,
   useColorModeValue,
+  Badge,
 } from "@chakra-ui/core"
 import { DiGithubBadge } from "react-icons/di"
 import { FaMoon, FaSun } from "react-icons/fa"
 import Search from "./algolia-search"
 import Logo from "./logo"
-import StorybookIcon from "./storybook-icon"
 import { Link as GatsbyLink } from "gatsby"
 import SponsorButton from "./sponsor-button"
 import MobileNav from "./mobile-nav"
@@ -65,6 +65,16 @@ const HeaderContent = () => {
         >
           <Logo />
         </chakra.a>
+        <Badge
+          px="1"
+          ml="3"
+          fontFamily="mono"
+          borderRadius="md"
+          colorScheme="teal"
+          variant="solid"
+        >
+          v1
+        </Badge>
         <HStack
           as="nav"
           spacing="4"
@@ -91,9 +101,6 @@ const HeaderContent = () => {
             href="https://github.com/chakra-ui/chakra-ui/tree/master/packages/chakra-ui"
           >
             <Icon as={DiGithubBadge} boxSize="8" color="current" />
-          </Link>
-          <Link isExternal href="https://chakra-ui.netlify.com">
-            <Icon as={StorybookIcon} boxSize="6" color="current" />
           </Link>
         </Stack>
         <IconButton

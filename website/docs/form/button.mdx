@@ -25,13 +25,17 @@ form, opening a dialog, canceling an action, or performing a delete operation.
 ## Import
 
 ```js
-import { Button } from "@chakra-ui/core"
+import { Button, ButtonGroup } from "@chakra-ui/core"
 ```
+
+- **Button:** The button component with support for custom icons, spinners, etc.
+- **ButtonGroup:** Used to group buttons whose actions are related, with an
+  option to flush them together.
 
 ## Usage
 
 ```jsx
-<Button colorScheme="green">Button</Button>
+<Button colorScheme="blue">Button</Button>
 ```
 
 ### Button Sizes
@@ -56,7 +60,7 @@ Use the `size` prop to change the size of the button. You can set the value to
 </Stack>
 ```
 
-### Button Variant
+### Button variants
 
 Use the `variant` prop to change the visual style of the Button. You can set the
 value to `solid`, `ghost`, `outline`, or `link`.
@@ -78,7 +82,7 @@ value to `solid`, `ghost`, `outline`, or `link`.
 </Stack>
 ```
 
-### Button with Icon
+### Button with icon
 
 You can add left and right icons to the Button component using the `leftIcon`
 and `RightIcon` props respectively.
@@ -101,7 +105,7 @@ You can also use icons from popular libraries like
 [react-icons](https://react-icons.netlify.com) and pass it into the button.
 
 ```jsx
-// -> import {MdBuild , MdCall} from "react-icons/md"
+// import { MdBuild , MdCall } from "react-icons/md"
 
 <Stack direction="row" spacing={4}>
   <Button leftIcon={<MdBuild />} colorScheme="pink" variant="solid">
@@ -163,6 +167,32 @@ use their buttons via the `colorScheme` prop.
     Twitter
   </Button>
 </HStack>
+```
+
+### Grouping Buttons
+
+You can use the `Stack` or `ButtonGroup` component to group buttons. When you
+use the `ButtonGroup` component, it allows you:
+
+- Set the `size` and `variant` of all buttons within it.
+- Add spacing between the buttons
+- Flush the buttons together by removing the border radius of the its children
+  as needed.
+
+```jsx
+<ButtonGroup variant="outline" spacing="6">
+  <Button colorScheme="blue">Save</Button>
+  <Button>Cancel</Button>
+</ButtonGroup>
+```
+
+To flush the buttons, pass the `isAttached` prop
+
+```jsx
+<ButtonGroup size="sm" isAttached variant="outline">
+  <Button mr="-px">Save</Button>
+  <IconButton aria-label="Add to friends" icon={<AddIcon />} />
+</ButtonGroup>
 ```
 
 ## Accessibility
@@ -234,8 +264,11 @@ are props specific to the Button component.
 
 | Name          | Type                                              | Default | Description                                                                                               |
 | ------------- | ------------------------------------------------- | ------- | --------------------------------------------------------------------------------------------------------- |
-| `aria-label`  | `string`                                          |         | The label of the button                                                                                   |
-| `colorScheme` | `string`                                          | `blue`  | The color of the button. Use the colors in `theme.colors` that have `50` - `900` values.                  |
+| `aria-label`  | `string`                                          |         | An accessible label for the button, useful when you render only an icon in the button                     |
+| `colorScheme` | `string`                                          | `blue`  | The color scheme of the button. Use the colors in `theme.colors` that have `50` - `900` values            |
+| `leftIcon`    | `ReactElement`                                    |         | The left icon element to use in the button                                                                |
+| `rightIcon`   | `ReactElement`                                    |         | The right icon element to use in the button                                                               |
+| `spinner`     | `ReactElement`                                    |         | The spinner element to use when `isLoading` is set to `true`                                              |
 | `variant`     | `outline`, `ghost`, `unstyled` , `link` , `solid` | `solid` | The variant of the button style to use.                                                                   |
 | `isDisabled`  | `boolean`                                         |         | If `true`, the button will be disabled.                                                                   |
 | `isLoading`   | `boolean`                                         |         | If `true`, the button will show a spinner.                                                                |

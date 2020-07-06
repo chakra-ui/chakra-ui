@@ -1,33 +1,13 @@
 import { chakra, PropsOf, ThemingProps } from "@chakra-ui/system"
-import { ariaAttr, createContext, cx, __DEV__ } from "@chakra-ui/utils"
+import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import {
+  PinInputContextProvider,
   usePinInput,
+  usePinInputContext,
   usePinInputField,
   UsePinInputProps,
-  UsePinInputReturn,
 } from "./use-pin-input"
-
-export type PinInputContext = UsePinInputReturn &
-  ThemingProps & {
-    /**
-     * Sets the pin input component to the disabled state
-     */
-    isDisabled?: boolean
-    /**
-     * Sets the pin input component to the invalid state
-     */
-    isInvalid?: boolean
-  }
-
-const [PinInputCtxProvider, usePinInputContext] = createContext<
-  PinInputContext
->({
-  strict: true,
-  name: "PinInputContext",
-  errorMessage:
-    "Chakra UI: PinInputField can only be used within PinInput component",
-})
 
 export type PinInputProps = UsePinInputProps &
   ThemingProps & {
@@ -56,7 +36,11 @@ export function PinInput(props: PinInputProps) {
     colorScheme,
   }
 
-  return <PinInputCtxProvider value={context}>{children}</PinInputCtxProvider>
+  return (
+    <PinInputContextProvider value={context}>
+      {children}
+    </PinInputContextProvider>
+  )
 }
 
 if (__DEV__) {
@@ -84,6 +68,9 @@ interface InputOptions {
 
 const StyledInput = chakra<"input", InputOptions>("input", {
   themeKey: "PinInput",
+  baseStyle: {
+    textAlign: "center",
+  },
   shouldForwardProp: (prop) =>
     !["focusBorderColor", "errorBorderColor"].includes(prop),
 })
@@ -93,24 +80,14 @@ export const PinInputField = React.forwardRef(function PinInputField(
   ref: React.Ref<any>,
 ) {
   const { className, ...rest } = props
-  const context = usePinInputContext()
-  const ownProps = usePinInputField({ context, ref, ...rest })
 
-  const { size, variant, colorScheme } = context
+  const { size, variant, colorScheme } = usePinInputContext()
+  const ownProps = usePinInputField({ ref, ...rest })
+
   const theming = { size, variant, colorScheme } as any
-
   const _className = cx("chakra-pin-input", className)
 
-  return (
-    <StyledInput
-      textAlign="center"
-      disabled={context.isDisabled}
-      aria-invalid={ariaAttr(context.isInvalid)}
-      className={_className}
-      {...theming}
-      {...ownProps}
-    />
-  )
+  return <StyledInput className={_className} {...theming} {...ownProps} />
 })
 
 if (__DEV__) {

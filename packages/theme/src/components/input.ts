@@ -13,14 +13,16 @@ export interface InputProps {
 
 type VariantProps = Props & Required<InputProps>
 
-const getDefaults = (props: VariantProps) => ({
-  focusBorderColor:
-    props.focusBorderColor || mode("blue.500", "blue.300")(props),
-  errorBorderColor: props.errorBorderColor || mode("red.500", "red.300")(props),
-})
+function getDefaults(props: VariantProps) {
+  const { focusBorderColor: fc, errorBorderColor: ec } = props
+  return {
+    focusBorderColor: fc || mode("blue.500", "blue.300")(props),
+    errorBorderColor: ec || mode("red.500", "red.300")(props),
+  }
+}
 
-function getOutlineStyle(props: VariantProps): StyleObject {
-  const { theme: t } = props
+function outline(props: VariantProps): StyleObject {
+  const { theme } = props
   const { focusBorderColor: fc, errorBorderColor: ec } = getDefaults(props)
 
   return {
@@ -30,24 +32,28 @@ function getOutlineStyle(props: VariantProps): StyleObject {
     _hover: {
       borderColor: mode("gray.300", "whiteAlpha.200")(props),
     },
+    _readOnly: {
+      boxShadow: "none !important",
+      userSelect: "all",
+    },
     _disabled: {
       opacity: 0.4,
       cursor: "not-allowed",
     },
     _focus: {
       zIndex: 1,
-      borderColor: getColor(t, fc),
-      boxShadow: `0 0 0 1px ${getColor(t, fc)}`,
+      borderColor: getColor(theme, fc),
+      boxShadow: `0 0 0 1px ${getColor(theme, fc)}`,
     },
     _invalid: {
-      borderColor: getColor(t, ec),
-      boxShadow: `0 0 0 1px ${getColor(t, ec)}`,
+      borderColor: getColor(theme, ec),
+      boxShadow: `0 0 0 1px ${getColor(theme, ec)}`,
     },
   }
 }
 
-function getFilledStyle(props: VariantProps): StyleObject {
-  const { theme: t } = props
+function filled(props: VariantProps): StyleObject {
+  const { theme } = props
   const { focusBorderColor: fc, errorBorderColor: ec } = getDefaults(props)
 
   return {
@@ -57,6 +63,10 @@ function getFilledStyle(props: VariantProps): StyleObject {
     _hover: {
       bg: mode("gray.200", "whiteAlpha.100")(props),
     },
+    _readOnly: {
+      boxShadow: "none !important",
+      userSelect: "all",
+    },
     _disabled: {
       opacity: 0.4,
       cursor: "not-allowed",
@@ -64,17 +74,16 @@ function getFilledStyle(props: VariantProps): StyleObject {
     _focus: {
       zIndex: 1,
       bg: "transparent",
-      borderColor: getColor(t, fc),
+      borderColor: getColor(theme, fc),
     },
     _invalid: {
-      borderColor: getColor(t, ec),
+      borderColor: getColor(theme, ec),
     },
   }
 }
 
-function getFlushedStyle(props: VariantProps): StyleObject {
-  const { theme: t } = props
-
+function flushed(props: VariantProps): StyleObject {
+  const { theme } = props
   const { focusBorderColor: fc, errorBorderColor: ec } = getDefaults(props)
 
   return {
@@ -83,12 +92,16 @@ function getFlushedStyle(props: VariantProps): StyleObject {
     borderRadius: 0,
     paddingX: 0,
     bg: "transparent",
+    _readOnly: {
+      boxShadow: "none !important",
+      userSelect: "all",
+    },
     _focus: {
       zIndex: 1,
-      borderColor: getColor(t, fc),
+      borderColor: getColor(theme, fc),
     },
     _invalid: {
-      borderColor: getColor(t, ec),
+      borderColor: getColor(theme, ec),
     },
   }
 }
@@ -102,23 +115,23 @@ const unstyled = {
 const sizes: InputTheme["sizes"] = {
   lg: {
     fontSize: "lg",
-    paddingX: 4,
-    paddingY: 2,
-    minHeight: 12,
+    paddingLeft: 4,
+    paddingRight: 4,
+    height: 12,
     borderRadius: "md",
   },
   md: {
     fontSize: "md",
-    paddingX: 4,
-    paddingY: 2,
-    minHeight: 10,
+    paddingLeft: 4,
+    paddingRight: 4,
+    height: 10,
     borderRadius: "md",
   },
   sm: {
     fontSize: "sm",
-    paddingX: 3,
-    paddingY: 1,
-    minHeight: 8,
+    paddingLeft: 3,
+    paddingRight: 3,
+    height: 8,
     borderRadius: "sm",
   },
 }
@@ -133,15 +146,15 @@ const Input: InputTheme = {
   baseStyle: {
     width: "100%",
     outline: 0,
-    lineHeight: 1,
-    transitionDuration: "0.2s",
-    transitionProperty: "box-shadow, border, color, background-color",
+    position: "relative",
+    appearance: "none",
+    transition: "all 0.2s",
   },
   sizes,
   variants: {
-    outline: getOutlineStyle,
-    filled: getFilledStyle,
-    flushed: getFlushedStyle,
+    outline,
+    filled,
+    flushed,
     unstyled,
   },
 }

@@ -1,6 +1,6 @@
 import { ComponentTheme, mode, Props } from "@chakra-ui/theme-tools"
 
-function getCheckedStyle(props: Props) {
+function checked(props: Props) {
   const { colorScheme: c } = props
   return {
     bg: mode(`${c}.500`, `${c}.200`)(props),
@@ -28,7 +28,7 @@ const baseStyle = (props: Props) => {
       borderRadius: "sm",
       borderColor: "inherit",
       color: "white",
-      _checked: getCheckedStyle(props),
+      _checked: checked(props),
       _indeterminate: {
         bg: mode(`${c}.500`, `${c}.200`)(props),
         borderColor: mode(`${c}.500`, `${c}.200`)(props),

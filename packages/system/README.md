@@ -26,7 +26,7 @@ required to create a fully customizable, theme-aware component.
 ### Chakra Elements
 
 Chakra provides enhanced JSX elements that can be styled directly via props, or
-can accept the common `__css` prop for custom styles.
+can accept the common `sx` prop for custom styles.
 
 We'll provide a chakra function, just like styled-component. Users can create
 any component using the `chakra.[element]`. The resulting component will be a

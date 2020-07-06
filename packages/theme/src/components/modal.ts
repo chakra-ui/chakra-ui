@@ -4,13 +4,9 @@ import { ComponentTheme, mode } from "@chakra-ui/theme-tools"
  * Since the `maxWidth` prop references theme.sizes internally,
  * we can leverage that to size our modals.
  */
-function getSize(value: string) {
-  return {
-    Content: {
-      maxWidth: value,
-    },
-  }
-}
+const getSize = (value: string) => ({
+  Content: { maxWidth: value },
+})
 
 export interface Props {
   scrollBehavior?: "inside" | "outside"
@@ -22,7 +18,7 @@ const Modal: ComponentTheme<Props> = {
   },
   baseStyle: (props) => ({
     Overlay: {
-      bg: "rgba(0,0,0,0.4)",
+      bg: "blackAlpha.600",
     },
     Content: {
       borderRadius: "md",
@@ -31,10 +27,7 @@ const Modal: ComponentTheme<Props> = {
       marginY: "3.75rem",
       maxHeight:
         props.scrollBehavior === "inside" ? "calc(100vh - 7.5rem)" : undefined,
-      boxShadow: mode(
-        "0 7px 14px 0 rgba(0,0,0, 0.1), 0 3px 6px 0 rgba(0, 0, 0, .07)",
-        "dark-lg",
-      )(props),
+      boxShadow: mode("lg", "dark-lg")(props),
     },
     Header: {
       paddingX: 6,
