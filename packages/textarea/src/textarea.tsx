@@ -54,7 +54,7 @@ export const Textarea = forwardRef<TextareaProps>(function Textarea(
       className={_className}
       ref={ref}
       {...textarea}
-      __css={styles.input}
+      __css={styles.field}
     />
   )
 })

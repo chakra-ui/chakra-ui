@@ -2,17 +2,16 @@ import {
   BaseStyle,
   DefaultProps,
   mode,
+  runIfFn,
   Sizes,
   SizeType,
   Variants,
   VariantType,
-  runIfFn,
-  clone,
 } from "@chakra-ui/theme-tools"
 import input from "./input"
 
 const register = {
-  parts: ["input", "stepper", "stepperGroup"],
+  parts: ["field", "stepper", "stepperGroup"],
   sizes: input.register.sizes,
   variants: input.register.variants,
 } as const
@@ -22,7 +21,7 @@ type Size = SizeType<typeof register>
 
 const baseStyle: BaseStyle<typeof register> = (props) => {
   return {
-    input: input.baseStyle.input,
+    input: input.baseStyle.field,
     stepperGroup: {
       width: "24px",
     },
@@ -50,7 +49,7 @@ const sizes: Sizes<typeof register> = {
 function getSizeStyle(size: "sm" | "md" | "lg") {
   const inputPartsStyle = input.sizes[size]
   const inputStyle =
-    typeof inputPartsStyle !== "function" ? inputPartsStyle?.input : {}
+    typeof inputPartsStyle !== "function" ? inputPartsStyle?.field : {}
 
   return {
     input: inputStyle,
@@ -69,15 +68,15 @@ function getSizeStyle(size: "sm" | "md" | "lg") {
 }
 
 const variants: Variants<typeof register> = {
-  outline: (props) => ({ input: getVariantStyle("outline", props) }),
-  filled: (props) => ({ input: getVariantStyle("filled", props) }),
-  flushed: (props) => ({ input: getVariantStyle("flushed", props) }),
-  unstyled: (props) => ({ input: getVariantStyle("unstyled", props) }),
+  outline: (props) => ({ field: getVariantStyle("outline", props) }),
+  filled: (props) => ({ field: getVariantStyle("filled", props) }),
+  flushed: (props) => ({ field: getVariantStyle("flushed", props) }),
+  unstyled: (props) => ({ field: getVariantStyle("unstyled", props) }),
 }
 
 function getVariantStyle(variant: Variant, props: any) {
   const partsStyle = runIfFn(input.variants[variant], props)
-  return partsStyle?.input ?? {}
+  return partsStyle?.field ?? {}
 }
 
 const defaultProps: DefaultProps<typeof register> = {

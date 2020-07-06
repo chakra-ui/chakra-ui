@@ -152,7 +152,7 @@ export const NumberInputField = forwardRef<NumberInputFieldProps>(
         {...input}
         __css={{
           width: "100%",
-          ...styles.input,
+          ...styles.field,
         }}
       />
     )
@@ -202,7 +202,7 @@ export const NumberDecrementStepper = React.forwardRef(
     const decrement = getDecrementButtonProps({ ...props, ref })
 
     return (
-      <StyledStepper {...decrement} __css={styles.Stepper}>
+      <StyledStepper {...decrement} __css={styles.stepper}>
         {props.children ?? <TriangleDownIcon />}
       </StyledStepper>
     )
@@ -232,7 +232,7 @@ export const NumberIncrementStepper = forwardRef(
     const styles = useStyles()
 
     return (
-      <StyledStepper {...increment} __css={styles.Stepper}>
+      <StyledStepper {...increment} __css={styles.stepper}>
         {props.children ?? <TriangleUpIcon />}
       </StyledStepper>
     )

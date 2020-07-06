@@ -8,13 +8,13 @@ import {
 } from "@chakra-ui/theme-tools"
 
 const register = {
-  parts: ["input", "addon"],
+  parts: ["field", "addon"],
   sizes: ["sm", "md", "lg"],
   variants: ["outline", "flushed", "filled", "unstyled"],
 } as const
 
 const baseStyle: BaseStyle<typeof register> = {
-  input: {
+  field: {
     width: "100%",
     outline: 0,
     position: "relative",
@@ -26,7 +26,7 @@ const baseStyle: BaseStyle<typeof register> = {
 
 const sizes: Sizes<typeof register> = {
   lg: {
-    input: {
+    field: {
       fontSize: "lg",
       paddingLeft: 4,
       paddingRight: 4,
@@ -35,7 +35,7 @@ const sizes: Sizes<typeof register> = {
     },
   },
   md: {
-    input: {
+    field: {
       fontSize: "md",
       paddingLeft: 4,
       paddingRight: 4,
@@ -44,7 +44,7 @@ const sizes: Sizes<typeof register> = {
     },
   },
   sm: {
-    input: {
+    field: {
       fontSize: "sm",
       paddingLeft: 3,
       paddingRight: 3,
@@ -60,7 +60,7 @@ const variants: Variants<typeof register> = {
     const { focusBorderColor: fc, errorBorderColor: ec } = getDefaults(props)
 
     return {
-      input: {
+      field: {
         border: "1px solid",
         borderColor: mode("inherit", "whiteAlpha.50")(props),
         bg: mode("white", "whiteAlpha.100")(props),
@@ -90,7 +90,7 @@ const variants: Variants<typeof register> = {
     const { focusBorderColor: fc, errorBorderColor: ec } = getDefaults(props)
 
     return {
-      input: {
+      field: {
         border: "2px solid",
         borderColor: "transparent",
         bg: mode("gray.100", "whiteAlpha.50")(props),
@@ -117,7 +117,7 @@ const variants: Variants<typeof register> = {
     const { focusBorderColor: fc, errorBorderColor: ec } = getDefaults(props)
 
     return {
-      input: {
+      field: {
         borderBottom: "2px solid",
         borderColor: "inherit",
         borderRadius: 0,
@@ -146,7 +146,7 @@ const variants: Variants<typeof register> = {
   },
 
   unstyled: {
-    input: {
+    field: {
       bg: "transparent",
       paddingX: 0,
       height: "auto",

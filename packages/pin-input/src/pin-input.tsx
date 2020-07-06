@@ -74,7 +74,7 @@ export const PinInputField = React.forwardRef(function PinInputField(
       {...input}
       __css={{
         textAlign: "center",
-        ...styles.input,
+        ...styles.field,
       }}
     />
   )
