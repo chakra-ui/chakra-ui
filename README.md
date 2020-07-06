@@ -285,6 +285,9 @@ Thanks goes to these wonderful people
     <td align="center"><a href="http://habd.as"><img src="https://avatars3.githubusercontent.com/u/65664227?v=4" width="64px;" alt=""/><br /><sub><b>balibebas</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=balibebas" title="Documentation">📖</a></td>
     <td align="center"><a href="https://navin-moorthy.github.io/"><img src="https://avatars0.githubusercontent.com/u/39694575?v=4" width="64px;" alt=""/><br /><sub><b>Navin Moorthy</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=navin-moorthy" title="Code">💻</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=navin-moorthy" title="Documentation">📖</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="http://www.timkindberg.com"><img src="https://avatars0.githubusercontent.com/u/168046?v=4" width="64px;" alt=""/><br /><sub><b>Tim Kindberg</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=timkindberg" title="Documentation">📖</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-enable -->
