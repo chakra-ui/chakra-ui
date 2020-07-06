@@ -1,12 +1,14 @@
-import { ComponentTheme, mode } from "@chakra-ui/theme-tools"
+import { BaseStyle, DefaultProps, mode, Sizes } from "@chakra-ui/theme-tools"
 
-const CloseButton: ComponentTheme = {
-  defaultProps: {
-    size: "md",
-  },
-  baseStyle: (props) => ({
-    Icon: {},
-    Container: {
+const register = {
+  parts: ["icon", "container"],
+  sizes: ["sm", "md", "lg"],
+} as const
+
+const baseStyle: BaseStyle<typeof register> = (props) => {
+  return {
+    icon: {},
+    container: {
       borderRadius: "md",
       transition: "all 0.2s",
       _disabled: {
@@ -24,42 +26,33 @@ const CloseButton: ComponentTheme = {
         boxShadow: "outline",
       },
     },
-  }),
-  sizes: {
-    lg: {
-      Container: {
-        width: "40px",
-        height: "40px",
-      },
-      Icon: {
-        fontSize: "16px",
-      },
-    },
-    md: {
-      Container: {
-        width: "32px",
-        height: "32px",
-      },
-      Icon: {
-        fontSize: "12px",
-      },
-    },
-    sm: {
-      Container: {
-        width: "24px",
-        height: "24px",
-      },
-      Icon: {
-        fontSize: "10px",
-      },
-    },
+  }
+}
+
+const sizes: Sizes<typeof register> = {
+  lg: {
+    container: { width: "40px", height: "40px" },
+    icon: { fontSize: "16px" },
+  },
+  md: {
+    container: { width: "32px", height: "32px" },
+    icon: { fontSize: "12px" },
+  },
+  sm: {
+    container: { width: "24px", height: "24px" },
+    icon: { fontSize: "10px" },
   },
 }
 
-export const CloseButtonSizes = {
-  lg: "lg",
-  sm: "sm",
-  md: "md",
+const defaultProps: DefaultProps<typeof register> = {
+  size: "md",
 }
 
-export default CloseButton
+const closeButton = {
+  register,
+  defaultProps,
+  baseStyle,
+  sizes,
+}
+
+export default closeButton

@@ -35,14 +35,11 @@ const StyledContainer = chakra("label", {
   },
 })
 
-type BaseControlProps = Omit<
-  PropsOf<typeof StyledControl>,
-  "onChange" | "defaultChecked"
->
+type Omitted = "size" | "checked" | "defaultChecked" | "onChange"
 
-type Omitted = "size" | "checked" | "defaultChecked"
+type StyledControlProps = Omit<PropsOf<typeof StyledControl>, Omitted>
 
-export type CheckboxProps = BaseControlProps &
+export type CheckboxProps = StyledControlProps &
   Omit<PropsOf<"input">, Omitted> &
   ThemingProps &
   UseCheckboxProps & {
@@ -97,18 +94,18 @@ export const Checkbox = forwardRef<CheckboxProps>(function Checkbox(
 
   return (
     <StyledContainer
-      __css={styles.Container}
+      __css={styles.container}
       className={_className}
       {...htmlProps}
     >
       <input className="chakra-checkbox__input" {...getInputProps({ ref })} />
       <StyledControl
-        __css={styles.Control}
+        __css={styles.control}
         className="chakra-checkbox__control"
         {...getCheckboxProps()}
       >
         <CheckboxIcon
-          __css={styles.Icon}
+          __css={styles.icon}
           className="chakra-checkbox__icon"
           isChecked={state.isChecked}
           isIndeterminate={state.isIndeterminate}
@@ -116,7 +113,7 @@ export const Checkbox = forwardRef<CheckboxProps>(function Checkbox(
       </StyledControl>
       {children && (
         <chakra.div
-          __css={styles.Label}
+          __css={styles.label}
           className="chakra-checkbox__label"
           ml={spacing}
           {...getLabelProps()}

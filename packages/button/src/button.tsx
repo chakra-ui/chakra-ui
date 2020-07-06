@@ -78,7 +78,6 @@ export type ButtonProps = PropsOf<typeof StyledButton> &
 export const Button = forwardRef<ButtonProps>(function Button(props, ref) {
   const group = useButtonGroup()
   const styles = useStyleConfig("Button", { ...group, ...props })
-  const realProps = omitThemingProps(props)
 
   const {
     isDisabled = group?.isDisabled,
@@ -95,7 +94,7 @@ export const Button = forwardRef<ButtonProps>(function Button(props, ref) {
     className,
     as,
     ...rest
-  } = realProps
+  } = omitThemingProps(props)
 
   /**
    * When button is used within ButtonGroup (i.e flushed with sibling buttons),

@@ -63,10 +63,10 @@ export const CloseButton = React.forwardRef(function CloseButton(
       aria-label="Close"
       ref={ref}
       disabled={isDisabled}
-      __css={styles.Container}
+      __css={styles.container}
       {...rest}
     >
-      {children || <CloseIcon __css={styles.Icon} width="1em" height="1em" />}
+      {children || <CloseIcon __css={styles.icon} width="1em" height="1em" />}
     </StyledButton>
   )
 })
