@@ -68,6 +68,7 @@ const defaultProps: DefaultProps<typeof register> = {
 
 // can't use the `switch` here since it's a reserved keyword
 const _switch = {
+  register,
   defaultProps,
   baseStyle,
   sizes,

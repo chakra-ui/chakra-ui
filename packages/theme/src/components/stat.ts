@@ -42,6 +42,7 @@ const defaultProps: DefaultProps<typeof register> = {
 }
 
 const stat = {
+  register,
   defaultProps,
   baseStyle,
   sizes,

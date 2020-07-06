@@ -71,6 +71,7 @@ const defaultProps: DefaultProps<typeof register> = {
 }
 
 const tag = {
+  register,
   defaultProps,
   baseStyle,
   sizes,

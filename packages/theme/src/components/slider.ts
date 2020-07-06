@@ -111,6 +111,7 @@ const defaultProps: DefaultProps<typeof register> = {
 }
 
 const slider = {
+  register,
   defaultProps,
   sizes,
   baseStyle,

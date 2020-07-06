@@ -8,7 +8,6 @@ import CloseButton from "./close-button"
 import Code from "./code"
 import Modal from "./modal"
 import Heading from "./heading"
-import Icon from "./icon"
 import Input from "./input"
 import Link from "./link"
 import Menu from "./menu"
@@ -37,7 +36,6 @@ export default {
   Accordion,
   Button,
   Heading,
-  Icon,
   Breadcrumb,
   Alert,
   Badge,
