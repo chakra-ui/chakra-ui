@@ -50,7 +50,7 @@ export const Link = React.forwardRef(function Link(
       ref={ref}
       className={cx("chakra-link", className)}
       {...rest}
-      __css={styles.Container}
+      __css={styles.link}
     />
   )
 })

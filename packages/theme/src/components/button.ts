@@ -187,6 +187,7 @@ const defaultProps: DefaultProps<typeof register> = {
 }
 
 const Button = {
+  register,
   defaultProps,
   baseStyle,
   sizes,

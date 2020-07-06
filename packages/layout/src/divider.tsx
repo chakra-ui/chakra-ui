@@ -9,7 +9,6 @@ import { __DEV__, cx } from "@chakra-ui/utils"
  *
  * @see Docs https://chakra-ui.com/components/divider
  */
-
 export const Divider = React.forwardRef(function Divider(
   props: DividerProps,
   ref: React.Ref<any>,

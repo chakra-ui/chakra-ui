@@ -75,7 +75,7 @@ const StyledMenuButton = React.forwardRef(function StyledMenuButton(
         alignItems: "center",
         outline: 0,
         transition: "all 250ms",
-        ...styles.MenuButton,
+        ...styles.menuButton,
       }}
     />
   )
@@ -140,13 +140,13 @@ export const MenuList = React.forwardRef(function MenuList(
   props: MenuListProps,
   ref: React.Ref<any>,
 ) {
-  const ownProps = useMenuList(props)
+  const menulist = useMenuList(props)
   const styles = useStyles()
   return (
     <chakra.div
-      {...ownProps}
-      ref={mergeRefs(ownProps.ref, ref)}
-      __css={styles.MenuList}
+      {...menulist}
+      ref={mergeRefs(menulist.ref, ref)}
+      __css={{ outline: 0, ...styles.menuList }}
     />
   )
 })
@@ -167,13 +167,16 @@ const StyledMenuItem = React.forwardRef(function StyledMenuItem(
       ref={ref}
       {...props}
       __css={{
+        textDecoration: "none",
         color: "inherit",
         userSelect: "none",
         display: "flex",
+        width: "100%",
         alignItems: "center",
         textAlign: "left",
         flex: "0 0 auto",
-        ...styles.MenuItem,
+        outline: 0,
+        ...styles.menuItem,
       }}
     />
   )
@@ -294,7 +297,7 @@ export const MenuGroup = (props: MenuGroupProps) => {
   return (
     <chakra.div className="chakra-menu__group" role="group">
       {title && (
-        <chakra.p className={_className} {...rest} __css={styles.GroupTitle}>
+        <chakra.p className={_className} {...rest} __css={styles.groupTitle}>
           {title}
         </chakra.p>
       )}
@@ -310,10 +313,11 @@ if (__DEV__) {
 //////////////////////////////////////////////////////////////////////////
 
 export const MenuCommand = (props: PropsOf<typeof chakra.span>) => {
+  const styles = useStyles()
   return (
     <chakra.span
       {...props}
-      __css={{ opacity: 0.6 }}
+      __css={styles.command}
       className="chakra-menu__command"
     />
   )
@@ -343,10 +347,12 @@ export function MenuIcon(props: PropsOf<typeof chakra.span>) {
 
   return (
     <chakra.span
-      flexShrink={0}
       className={_className}
       {...rest}
-      __css={styles.Icon}
+      __css={{
+        flexShrink: 0,
+        ...styles.icon,
+      }}
     >
       {clone}
     </chakra.span>
@@ -376,7 +382,7 @@ export const MenuDivider = (props: MenuDividerProps) => {
         mt: "0.5rem",
         mb: "1rem",
         opacity: 0.6,
-        ...styles.MenuDivider,
+        ...styles.menuDivider,
       }}
     />
   )

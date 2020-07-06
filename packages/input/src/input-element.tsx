@@ -44,7 +44,7 @@ const InputElement = React.forwardRef(function InputElement(
 })
 
 //@ts-ignore
-InputElement.__hidden = "InputElement"
+InputElement.groupId = "InputElement"
 
 if (__DEV__) {
   InputElement.displayName = "InputElement"
@@ -63,7 +63,7 @@ export const InputLeftElement = React.forwardRef(function InputLeftElement(
 })
 
 //@ts-ignore
-InputLeftElement.__hidden = "InputLeftElement"
+InputLeftElement.groupId = "InputLeftElement"
 
 if (__DEV__) {
   InputLeftElement.displayName = "InputLeftElement"
@@ -87,7 +87,7 @@ export const InputRightElement = React.forwardRef(function InputRightElement(
 })
 
 //@ts-ignore
-InputRightElement.__hidden = "InputRightElement"
+InputRightElement.groupId = "InputRightElement"
 
 if (__DEV__) {
   InputRightElement.displayName = "InputRightElement"

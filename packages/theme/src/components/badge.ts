@@ -1,13 +1,12 @@
 import {
-  ComponentTheme,
-  mode,
-  Props,
+  BaseStyle,
+  DefaultProps,
   getColor,
   ink,
+  mode,
+  Props,
   transparentize,
-  BaseStyle,
   Variants,
-  DefaultProps,
 } from "@chakra-ui/theme-tools"
 
 const register = {

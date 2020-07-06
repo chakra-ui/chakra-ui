@@ -25,12 +25,12 @@ export const Code = React.forwardRef(function Badge(
   return (
     <chakra.code
       ref={ref}
+      className={cx("chakra-code", props.className)}
       {...rest}
       __css={{
         display: "inline-block",
-        ...styles.Container,
+        ...styles.container,
       }}
-      className={cx("chakra-code", props.className)}
     />
   )
 })

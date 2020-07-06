@@ -50,9 +50,8 @@ export const InputAddon = React.forwardRef(function InputAddonProps(
       ref={ref}
       __css={{
         ...placementStyles,
-        ...styles.Addon,
+        ...styles.addon,
       }}
-      {...placementStyles}
       {...rest}
     />
   )
@@ -87,7 +86,7 @@ if (__DEV__) {
 }
 
 //@ts-ignore
-InputLeftAddon.__hidden = "InputLeftAddon"
+InputLeftAddon.groupId = "InputLeftAddon"
 
 /**
  * InputRightAddon
@@ -114,4 +113,4 @@ if (__DEV__) {
 }
 
 //@ts-ignore
-InputRightAddon.__hidden = "InputRightAddon"
+InputRightAddon.groupId = "InputRightAddon"

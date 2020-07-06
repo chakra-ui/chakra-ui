@@ -29,10 +29,10 @@ interface InputOptions {
   isFullWidth?: boolean
 }
 
-export type InputProps = Omit<
-  PropsOf<typeof chakra.input>,
-  "disabled" | "required" | "readOnly" | "size"
-> &
+type Omitted = "disabled" | "required" | "readOnly" | "size"
+
+export type InputProps = Omit<PropsOf<typeof chakra.input>, Omitted> &
+  InputOptions &
   ThemingProps &
   FormControlOptions & {
     size?: string
@@ -46,13 +46,13 @@ export type InputProps = Omit<
 export const Input = forwardRef<InputProps>(function Input(props, ref) {
   const styles = useStyleConfig("Input", props)
   const realProps = omitThemingProps(props)
-  const inputProps = useFormControl<HTMLInputElement>(realProps)
+  const input = useFormControl<HTMLInputElement>(realProps)
   const _className = cx("chakra-input", props.className)
 
   return (
     <chakra.input
-      {...inputProps}
-      __css={styles.Input}
+      {...input}
+      __css={styles.input}
       ref={ref}
       className={_className}
     />
@@ -64,4 +64,4 @@ if (__DEV__) {
 }
 
 //@ts-ignore
-Input.__hidden = "Input"
+Input.groupId = "Input"

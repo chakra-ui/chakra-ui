@@ -7,6 +7,7 @@ import {
   ThemingProps,
   StylesProvider,
   useStyles,
+  SystemStyleObject,
 } from "@chakra-ui/system"
 import {
   createContext,
@@ -72,7 +73,7 @@ export const Editable = forwardRef<EditableProps>(function Editable(
         <chakra.div
           ref={ref}
           {...htmlProps}
-          __css={styles.Container}
+          __css={styles.container}
           className={_className}
         >
           {children}
@@ -84,6 +85,13 @@ export const Editable = forwardRef<EditableProps>(function Editable(
 
 if (__DEV__) {
   Editable.displayName = "Editable"
+}
+
+const commonStyles: SystemStyleObject = {
+  fontSize: "inherit",
+  fontWeight: "inherit",
+  textAlign: "inherit",
+  bg: "transparent",
 }
 
 export type EditablePreviewProps = PropsOf<typeof chakra.div>
@@ -104,7 +112,12 @@ export const EditablePreview = forwardRef<EditablePreviewProps>(
     return (
       <chakra.span
         {...previewProps}
-        __css={styles.Preview}
+        __css={{
+          cursor: "text",
+          display: "inline-block",
+          ...commonStyles,
+          ...styles.preview,
+        }}
         className={_className}
       />
     )
@@ -133,7 +146,11 @@ export const EditableInput = forwardRef<EditableInputProps>(
     return (
       <chakra.input
         {...inputProps}
-        __css={styles.Input}
+        __css={{
+          outline: 0,
+          ...commonStyles,
+          ...styles.input,
+        }}
         className={_className}
       />
     )

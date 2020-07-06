@@ -1,10 +1,10 @@
 import {
+  BaseStyle,
+  DefaultProps,
   getColor,
   ink,
   mode,
   Variants,
-  BaseStyle,
-  DefaultProps,
 } from "@chakra-ui/theme-tools"
 
 const register = {

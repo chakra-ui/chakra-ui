@@ -158,7 +158,6 @@ export const FormControl = forwardRef<FormControlProps>(function FormControl(
           __css={{
             width: "100%",
             position: "relative",
-            ...styles.Container,
           }}
         />
       </StylesProvider>
@@ -199,7 +198,7 @@ export const FormLabel = forwardRef<FormLabelProps>(function FormLabel(
     <StyledLabel
       ref={ref}
       className={cx("chakra-form__label", props.className)}
-      __css={styles.Label}
+      __css={styles.label}
       {...ownProps}
     />
   )
@@ -230,7 +229,7 @@ export const RequiredIndicator = forwardRef<RequiredIndicatorProps>(
         aria-hidden
         ref={ref}
         {...props}
-        __css={styles.RequiredIndicator}
+        __css={styles.requiredIndicator}
         className={_className}
         children={props.children || "*"}
       />
@@ -272,7 +271,7 @@ export const FormHelperText = forwardRef<HelpTextProps>(function FormHelperText(
   return (
     <chakra.div
       ref={ref}
-      __css={styles.HelperText}
+      __css={styles.helperText}
       {...props}
       className={_className}
       id={props.id ?? field?.helpTextId}
@@ -311,7 +310,7 @@ export const FormErrorMessage = forwardRef<FormErrorMessageProps>(
         aria-live="polite"
         ref={ref}
         {...props}
-        __css={styles.ErrorText}
+        __css={styles.errorText}
         className={_className}
         id={props.id ?? field?.feedbackId}
       />
@@ -343,7 +342,7 @@ export const FormErrorIcon = forwardRef<IconProps>(function FormErrorIcon(
       ref={ref}
       aria-hidden
       {...props}
-      __css={styles.ErrorIcon}
+      __css={styles.errorIcon}
       className={_className}
     >
       <path

@@ -75,6 +75,7 @@ const defaultProps: DefaultProps<typeof register> = {
 }
 
 const checkbox = {
+  register,
   defaultProps,
   baseStyle,
   sizes,
