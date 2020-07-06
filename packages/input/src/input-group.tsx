@@ -16,9 +16,7 @@ export const InputGroup = React.forwardRef(function InputGroup(
   ref: React.Ref<any>,
 ) {
   const styles = useStyleConfig("Input", props)
-  const { children, className, variant, size, ...rest } = omitThemingProps(
-    props,
-  )
+  const { children, className, ...rest } = omitThemingProps(props)
 
   const _className = cx("chakra-input__group", className)
   const stylesRef = React.useRef<InputGroupProps>({})
@@ -29,11 +27,11 @@ export const InputGroup = React.forwardRef(function InputGroup(
     if (!styles) return
 
     if (child.type.groupId === "InputLeftElement") {
-      stylesRef.current.paddingLeft = styles.Container["height"]
+      stylesRef.current.paddingLeft = styles.field["height"]
     }
 
     if (child.type.groupId === "InputRightElement") {
-      stylesRef.current.paddingRight = styles.Container["height"]
+      stylesRef.current.paddingRight = styles.field["height"]
     }
 
     if (child.type.groupId === "InputRightAddon") {
@@ -46,7 +44,7 @@ export const InputGroup = React.forwardRef(function InputGroup(
   })
 
   const clones = validChildren.map((child: any) => {
-    const theming = { size, variant }
+    const theming = { size: props.size, variant: props.variant }
     const { pl, paddingLeft, pr, paddingRight } = child.props
 
     return child.type.groupId !== "Input"

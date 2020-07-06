@@ -24,7 +24,7 @@ const InputElement = React.forwardRef(function InputElement(
   const { placement = "left", ...rest } = props
 
   const styles = useStyles()
-  const input = styles.Container as any
+  const input = styles.field as any
 
   const placementStyles = { [placement]: "0" }
 

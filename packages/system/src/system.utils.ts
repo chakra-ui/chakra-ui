@@ -119,6 +119,7 @@ export function truncateProp({ isTruncated, noOfLines }: any) {
 export const extraProps = (props: any) => {
   const { layerStyle, textStyle, apply, theme } = props
   const styles = merge(
+    {},
     get(theme, `layerStyles.${layerStyle}`, {}),
     get(theme, `textStyles.${textStyle}`, {}),
   ) as Dict

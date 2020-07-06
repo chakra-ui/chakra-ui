@@ -77,7 +77,7 @@ export function createProcessor(breakpoints: Dict) {
           mediaQueries: queries.asArray,
         })
 
-        styles = merge(styles, style)
+        styles = merge({}, styles, style)
         return
       }
 
@@ -89,7 +89,7 @@ export function createProcessor(breakpoints: Dict) {
           mediaQueries: queries.asObject,
         })
 
-        styles = merge(styles, style)
+        styles = merge({}, styles, style)
         return
       }
 
@@ -98,7 +98,7 @@ export function createProcessor(breakpoints: Dict) {
         return
       }
 
-      styles = merge(styles, assign(value))
+      styles = merge({}, styles, assign(value))
     },
     value: () => sort(styles),
   }

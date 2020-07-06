@@ -9,7 +9,7 @@ import {
 import themeSizes from "../foundations/sizes"
 
 const register = {
-  parts: ["container", "excessLabel", "badge"],
+  parts: ["container", "excessLabel", "badge", "label"],
   sizes: ["2xs", "xs", "sm", "md", "lg", "xl", "2xl", "full"],
 } as const
 
@@ -53,7 +53,10 @@ function getSize(size: string) {
   const themeSize = themeSizes[size as keyof typeof sizes]
   const styles = { width: size, height: size }
   return {
-    container: styles,
+    container: {
+      fontSize: `calc(${themeSize ?? size} / 2.5)`,
+      ...styles,
+    },
     excessLabel: styles,
     label: {
       fontSize: `calc(${themeSize ?? size} / 2.5)`,

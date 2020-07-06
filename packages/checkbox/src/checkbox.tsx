@@ -21,7 +21,6 @@ const StyledControl = chakra("div", {
     verticalAlign: "top",
     userSelect: "none",
     flexShrink: 0,
-    transition: "transform 240ms, opacity 240ms",
   },
 })
 

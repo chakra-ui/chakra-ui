@@ -110,13 +110,13 @@ function initials(name: string) {
     : firstName.charAt(0)
 }
 
-type InitialsAvatarProps = PropsOf<typeof chakra.div> &
+type InitialsProps = PropsOf<typeof chakra.div> &
   Pick<AvatarOptions, "name" | "getInitials">
 
 /**
  * The avatar name container
  */
-function InitialsAvatar(props: InitialsAvatarProps) {
+function Initials(props: InitialsProps) {
   const { name, getInitials, className, ...rest } = props
   const _className = cx("chakra-avatar__name", className)
   const styles = useStyles()
@@ -237,7 +237,7 @@ export const Avatar = React.forwardRef(function Avatar(
 
     if (showFallback) {
       return name ? (
-        <InitialsAvatar getInitials={getInitials} name={name} />
+        <Initials getInitials={getInitials} name={name} />
       ) : (
         React.cloneElement(icon, {
           role: "img",

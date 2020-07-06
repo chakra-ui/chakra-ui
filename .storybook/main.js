@@ -1,3 +1,3 @@
 module.exports = {
-  stories: ["../packages/system/**/*.stories.tsx"],
+  stories: ["../packages/modal/**/*.stories.tsx"],
 }

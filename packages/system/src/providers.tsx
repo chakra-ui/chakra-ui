@@ -12,7 +12,7 @@ export interface ThemeProviderProps {
 export function ThemeProvider(props: ThemeProviderProps) {
   const { children, theme } = props
   const outerTheme = React.useContext(ThemeContext) as Dict
-  const mergedTheme = merge(outerTheme, theme)
+  const mergedTheme = merge({}, outerTheme, theme)
 
   return (
     <ThemeContext.Provider value={mergedTheme}>

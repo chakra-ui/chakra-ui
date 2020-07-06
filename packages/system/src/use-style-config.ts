@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Dict, get, runIfFn, merge } from "@chakra-ui/utils"
+import { Dict, get, runIfFn, merge, filterUndefined } from "@chakra-ui/utils"
 import { useChakra } from "./hooks"
 import { SystemStyleObject } from "@chakra-ui/css"
 
@@ -9,7 +9,11 @@ export function useStyleConfig(themeKey: string, props: Dict) {
   const { theme, colorMode } = useChakra()
   const styleConfig = styleConfigProp || get(theme, `components.${themeKey}`)
 
-  const propsWithDefault = merge(styleConfig.defaultProps ?? {}, rest)
+  const propsWithDefault = merge(
+    {},
+    styleConfig.defaultProps ?? {},
+    filterUndefined(rest),
+  )
 
   const allProps = {
     ...propsWithDefault,
@@ -17,30 +21,40 @@ export function useStyleConfig(themeKey: string, props: Dict) {
     colorMode,
   } as Dict
 
+  const partsStyleRef = React.useRef<Dict<SystemStyleObject>>({})
+
   return React.useMemo(() => {
-    const result = {} as Dict<SystemStyleObject>
+    if (styleConfig) {
+      const baseStyles = runIfFn(styleConfig.baseStyle, allProps)
+      const parts = styleConfig.register?.parts || Object.keys(baseStyles)
 
-    if (!styleConfig) return {}
+      const variants = runIfFn(
+        styleConfig.variants?.[allProps.variant] ?? {},
+        allProps,
+      )
 
-    const baseStyles = runIfFn(styleConfig.baseStyle, allProps)
-    const parts = styleConfig.register?.parts || Object.keys(baseStyles)
+      const sizes = runIfFn(styleConfig.sizes?.[allProps.size] ?? {}, allProps)
 
-    const variants = runIfFn(
-      styleConfig.variants?.[allProps.variant] ?? {},
-      allProps,
-    )
+      const partsStyle = {} as Dict<SystemStyleObject>
 
-    const sizes = runIfFn(styleConfig.sizes?.[allProps.size] ?? {}, allProps)
+      for (const part of parts) {
+        partsStyle[part] = merge(
+          {},
+          baseStyles?.[part] ?? {},
+          sizes?.[part] ?? {},
+          variants?.[part] ?? {},
+        )
+      }
 
-    for (const part of parts) {
-      result[part] = merge.all([
-        baseStyles[part] ?? {},
-        sizes[part] ?? {},
-        variants[part] ?? {},
-      ])
+      const prevStyleString = JSON.stringify(partsStyleRef.current)
+      const nextStyleString = JSON.stringify(partsStyle)
+
+      if (nextStyleString !== prevStyleString) {
+        partsStyleRef.current = partsStyle
+      }
     }
 
-    return result
+    return partsStyleRef.current
   }, [allProps, styleConfig])
 }
 

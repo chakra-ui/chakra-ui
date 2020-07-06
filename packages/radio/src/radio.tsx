@@ -7,7 +7,7 @@ import {
   useStyleConfig,
   omitThemingProps,
 } from "@chakra-ui/system"
-import { cx, split, __DEV__, merge } from "@chakra-ui/utils"
+import { cx, split, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { useRadioGroupContext } from "./radio-group"
 import { useRadio, UseRadioProps } from "./use-radio"
@@ -44,7 +44,7 @@ export const Radio = React.forwardRef(function Radio(
   ref: React.Ref<any>,
 ) {
   const group = useRadioGroupContext()
-  const styles = useStyleConfig("Radio", merge(group, props))
+  const styles = useStyleConfig("Radio", { ...group, ...props })
 
   const {
     spacing = "0.5rem",

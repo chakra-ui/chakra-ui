@@ -103,7 +103,7 @@ export const Button = forwardRef<ButtonProps>(function Button(props, ref) {
    * So let's read the component styles and then add `zIndex` to it.
    */
   const buttonStyles = styles.container
-  const _focus = merge(buttonStyles?.["_focus"] ?? {}, { zIndex: 1 })
+  const _focus = merge({}, buttonStyles?.["_focus"] ?? {}, { zIndex: 1 })
 
   const _className = cx("chakra-button", className)
 

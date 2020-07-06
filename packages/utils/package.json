@@ -39,8 +39,11 @@
   },
   "dependencies": {
     "css-box-model": "1.2.1",
-    "deepmerge": "4.2.2",
+    "lodash.merge": "4.6.2",
     "memoize-one": "5.1.1"
+  },
+  "devDependencies": {
+    "@types/lodash.merge": "4.6.6"
   },
   "peerDependencies": {
     "react": "16.x"

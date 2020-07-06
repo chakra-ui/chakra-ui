@@ -129,7 +129,7 @@ export function useToast() {
       </ThemeProvider>
     )
 
-    const opts = merge(defaults, options)
+    const opts = merge({}, defaults, options)
 
     return toast.notify(Message, opts)
   }
@@ -143,7 +143,7 @@ export function useToast() {
 
     if (!id) return
 
-    const opts = merge(defaults, rest) as any
+    const opts = merge({}, defaults, rest) as any
 
     toast.update(id, {
       ...opts,

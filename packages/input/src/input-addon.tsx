@@ -11,7 +11,7 @@ const placements = {
     borderRightColor: "transparent",
   },
   right: {
-    marginRight: "-1px",
+    marginLeft: "-1px",
     borderLeftRadius: 0,
     borderLeftColor: "transparent",
   },
@@ -48,11 +48,11 @@ export const InputAddon = React.forwardRef(function InputAddonProps(
   return (
     <StyledAddon
       ref={ref}
-      __css={{
-        ...placementStyles,
-        ...styles.addon,
-      }}
       {...rest}
+      __css={{
+        ...styles.addon,
+        ...placementStyles,
+      }}
     />
   )
 })

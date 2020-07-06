@@ -67,7 +67,7 @@ export const css = (styleObject: StyleObjectOrFn = {}) => (
 
     if (key === "apply") {
       const style = css(get(theme, value))(theme)
-      computedStyles = merge(computedStyles, style)
+      computedStyles = merge({}, computedStyles, style)
       continue
     }
 
@@ -81,20 +81,20 @@ export const css = (styleObject: StyleObjectOrFn = {}) => (
       if (config?.properties) {
         config.properties.forEach((prop: any) => {
           const style = responsive(prop, value, config)
-          computedStyles = merge(computedStyles, style)
+          computedStyles = merge({}, computedStyles, style)
         })
         continue
       }
 
       if (config?.property) {
         const style = responsive(config.property, value, config)
-        computedStyles = merge(computedStyles, style)
+        computedStyles = merge({}, computedStyles, style)
         continue
       }
 
       if (config === true) {
         const style = responsive(key, value, config)
-        computedStyles = merge(computedStyles, style)
+        computedStyles = merge({}, computedStyles, style)
         continue
       }
 
@@ -105,7 +105,7 @@ export const css = (styleObject: StyleObjectOrFn = {}) => (
       if (isArray(value)) {
         const val = value.map((v: any) => css(v)(theme))
         const style = responsive(key, val, config)
-        computedStyles = merge(computedStyles, style)
+        computedStyles = merge({}, computedStyles, style)
         continue
       }
     }

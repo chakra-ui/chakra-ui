@@ -10,7 +10,7 @@ const baseStyle: BaseStyle<typeof register> = (props) => {
   return {
     control: {
       width: "100%",
-      transition: "box-shadow 250ms",
+      transition: "box-shadow 250ms, background-color 250ms",
       border: "2px solid",
       borderRadius: "sm",
       borderColor: "inherit",
@@ -46,10 +46,7 @@ const baseStyle: BaseStyle<typeof register> = (props) => {
       _disabled: { opacity: 0.4 },
     },
     icon: {
-      width: "0.625rem",
-      height: "0.625rem",
-      color: "currentColor",
-      transition: "transform 240ms, opacity 240ms",
+      fontSize: "0.625rem",
     },
   }
 }

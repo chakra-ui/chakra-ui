@@ -110,7 +110,7 @@ export function Modal(props: ModalProps) {
     allowPinchZoom: false,
   }
 
-  const mergedProps = merge(defaultProps, props)
+  const mergedProps = merge({}, defaultProps, props)
 
   const styles = useStyleConfig("Modal", mergedProps)
   const modalProps = omitThemingProps(mergedProps)

@@ -21,36 +21,46 @@ const baseStyle: BaseStyle<typeof register> = {
     appearance: "none",
     transition: "all 0.2s",
   },
-  addon: {},
+}
+
+const commonSizeStyle = {
+  lg: {
+    fontSize: "lg",
+    paddingLeft: 4,
+    paddingRight: 4,
+    height: 12,
+    borderRadius: "md",
+  },
+
+  md: {
+    fontSize: "md",
+    paddingLeft: 4,
+    paddingRight: 4,
+    height: 10,
+    borderRadius: "md",
+  },
+
+  sm: {
+    fontSize: "sm",
+    paddingLeft: 3,
+    paddingRight: 3,
+    height: 8,
+    borderRadius: "sm",
+  },
 }
 
 const sizes: Sizes<typeof register> = {
   lg: {
-    field: {
-      fontSize: "lg",
-      paddingLeft: 4,
-      paddingRight: 4,
-      height: 12,
-      borderRadius: "md",
-    },
+    field: commonSizeStyle.lg,
+    addon: commonSizeStyle.lg,
   },
   md: {
-    field: {
-      fontSize: "md",
-      paddingLeft: 4,
-      paddingRight: 4,
-      height: 10,
-      borderRadius: "md",
-    },
+    field: commonSizeStyle.md,
+    addon: commonSizeStyle.md,
   },
   sm: {
-    field: {
-      fontSize: "sm",
-      paddingLeft: 3,
-      paddingRight: 3,
-      height: 8,
-      borderRadius: "sm",
-    },
+    field: commonSizeStyle.sm,
+    addon: commonSizeStyle.sm,
   },
 }
 
@@ -77,7 +87,7 @@ const variants: Variants<typeof register> = {
           boxShadow: `0 0 0 1px ${getColor(theme, ec)}`,
         },
       },
-      Addon: {
+      addon: {
         border: "1px solid",
         borderColor: mode("inherit", "whiteAlpha.50")(props),
         bg: mode("gray.100", "whiteAlpha.300")(props),
