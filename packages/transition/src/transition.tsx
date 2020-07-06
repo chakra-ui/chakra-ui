@@ -46,8 +46,7 @@ export function Transition(props: TransitionProps) {
   const getStyle = (state: TransitionStatus) => ({
     ...styles.init,
     transition,
-    //@ts-ignore
-    ...styles[state],
+    ...(styles as any)[state],
   })
 
   return (
