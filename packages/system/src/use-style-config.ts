@@ -9,8 +9,10 @@ export function useStyleConfig(themeKey: string, props: Dict) {
   const { theme, colorMode } = useChakra()
   const styleConfig = styleConfigProp || get(theme, `components.${themeKey}`)
 
+  const propsWithDefault = merge(styleConfig.defaultProps ?? {}, rest)
+
   const allProps = {
-    ...merge(rest, styleConfig.defaultProps ?? {}),
+    ...propsWithDefault,
     theme,
     colorMode,
   } as Dict
@@ -21,7 +23,7 @@ export function useStyleConfig(themeKey: string, props: Dict) {
     if (!styleConfig) return {}
 
     const baseStyles = runIfFn(styleConfig.baseStyle, allProps)
-    const parts = styleConfig.parts || Object.keys(baseStyles)
+    const parts = styleConfig.register?.parts || Object.keys(baseStyles)
 
     const variants = runIfFn(
       styleConfig.variants?.[allProps.variant] ?? {},
