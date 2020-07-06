@@ -20,6 +20,10 @@ export interface Props {
   theme: Dict
 }
 
+export type VariantType<E extends Readonly<Dict>> = E["variants"][number]
+
+export type SizeType<E extends Readonly<Dict>> = E["sizes"][number]
+
 type Arr = Readonly<any[]>
 
 export type PartsStyle<P extends Arr> = {

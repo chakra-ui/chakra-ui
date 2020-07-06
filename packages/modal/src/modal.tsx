@@ -190,7 +190,7 @@ export const ModalContent = React.forwardRef(function ModalContent(
         position: "relative",
         width: "100%",
         outline: 0,
-        ...styles.Content,
+        ...styles.content,
       }}
     />
   )
@@ -233,7 +233,7 @@ export const ModalOverlay = React.forwardRef(function ModalOverlay(
         right: 0,
         width: "100%",
         height: "100%",
-        ...styles.Overlay,
+        ...styles.overlay,
       }}
     />
   )
@@ -278,7 +278,10 @@ export const ModalHeader = React.forwardRef(function ModalHeader(
       className={_className}
       id={headerId}
       {...rest}
-      __css={{ flex: 0, ...styles.Header }}
+      __css={{
+        flex: 0,
+        ...styles.header,
+      }}
     />
   )
 })
@@ -321,7 +324,7 @@ export const ModalBody = forwardRef(function ModalBody(
       className={_className}
       id={bodyId}
       {...rest}
-      __css={styles.Body}
+      __css={styles.body}
     />
   )
 })
@@ -347,7 +350,7 @@ export const ModalFooter = (props: PropsOf<typeof chakra.footer>) => {
         alignItems: "center",
         justifyContent: "flex-end",
         flex: 0,
-        ...styles.Footer,
+        ...styles.footer,
       }}
       className={cx("chakra-modal__footer", props.className)}
     />

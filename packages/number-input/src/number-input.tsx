@@ -77,14 +77,7 @@ export const NumberInput = React.forwardRef(function NumberInput(
   return (
     <NumberInputContextProvider value={_context}>
       <StylesProvider value={styles}>
-        <chakra.div
-          ref={ref}
-          {...htmlProps}
-          __css={{
-            position: "relative",
-            ...styles.Container,
-          }}
-        />
+        <chakra.div ref={ref} {...htmlProps} __css={{ position: "relative" }} />
       </StylesProvider>
     </NumberInputContextProvider>
   )
@@ -119,9 +112,13 @@ export const NumberInputStepper = React.forwardRef(function NumberInputStepper(
       __css={{
         display: "flex",
         flexDirection: "column",
+        position: "absolute",
         top: "0",
+        right: "0px",
+        margin: "1px",
+        height: "calc(100% - 2px)",
         zIndex: 1,
-        ...styles.Stepper,
+        ...styles.stepperGroup,
       }}
     />
   )
@@ -155,7 +152,7 @@ export const NumberInputField = forwardRef<NumberInputFieldProps>(
         {...input}
         __css={{
           width: "100%",
-          ...styles.Input,
+          ...styles.input,
         }}
       />
     )
