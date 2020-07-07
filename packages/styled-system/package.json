@@ -1,12 +1,18 @@
 {
   "name": "@chakra-ui/styled-system",
   "version": "1.0.0-next.4",
-  "description": "description",
+  "description": "Style function for css-in-js building component libraries",
   "keywords": [
     "theme",
     "theming",
-    "ui mode",
-    "ui"
+    "style",
+    "system",
+    "styled",
+    "css-in-js",
+    "component",
+    "functions",
+    "parser",
+    "chakra ui"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
@@ -44,7 +50,6 @@
   },
   "dependencies": {
     "@styled-system/core": "5.1.2",
-    "@theme-ui/css": "0.4.0-rc.1",
     "@types/styled-system__core": "npm:@peduarte/styled-system__core",
     "csstype": "2.6.9",
     "@chakra-ui/utils": "1.0.0-next.4"
