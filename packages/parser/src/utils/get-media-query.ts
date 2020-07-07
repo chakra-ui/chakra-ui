@@ -21,7 +21,12 @@ export function getMediaQuery(breakpoints?: Dict, mapper = toMediaQuery) {
 
   const asArray = objectKeys(_breakpoints)
     .map((key) => _breakpoints[key])
-    .sort((a, b) => a - b)
+    .sort((a, b) => {
+      const regex = /^\d+/
+      const aMatch = a.match(regex)
+      const bMatch = b.match(regex)
+      return aMatch[0] - bMatch[0]
+    })
     .map(mapper)
 
   const asObject = objectKeys(_breakpoints).reduce((result, point) => {
