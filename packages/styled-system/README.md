@@ -5,5 +5,9 @@ A Quick description of the component
 ## Installation
 
 ```sh
-yarn add @chakra-ui/<component>
+npm i @chakra-ui/styled-system
+
+# or
+
+yarn add @chakra-ui/styled-system
 ```

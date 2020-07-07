@@ -1,6 +1,6 @@
 import { get, isNumber } from "@chakra-ui/utils"
 import * as CSS from "csstype"
-import { system, Config } from "@styled-system/core"
+import { createParser, Config } from "@styled-system/core"
 import { Length, ResponsiveValue } from "../utils"
 
 function transform(value: any, scale: any) {
@@ -160,4 +160,4 @@ export interface LayoutProps {
   boxSizing?: CSS.BoxSizingProperty
 }
 
-export const layout = system(config)
+export const layout = createParser(config)

@@ -1,5 +1,5 @@
 import * as CSS from "csstype"
-import { system, Config } from "@styled-system/core"
+import { createParser, Config } from "@styled-system/core"
 import { positiveOrNegative, ResponsiveValue, Length } from "../utils"
 
 const configs: Config = {
@@ -258,4 +258,4 @@ export interface SpaceProps {
  * - String values are passed as raw CSS values.
  * - Array values are converted into responsive values.
  */
-export const space = system(configs)
+export const space = createParser(configs)

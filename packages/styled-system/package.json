@@ -1,6 +1,6 @@
 {
-  "name": "name",
-  "version": "1.0.0-next.3",
+  "name": "@chakra-ui/styled-system",
+  "version": "1.0.0-next.4",
   "description": "description",
   "keywords": [
     "theme",
@@ -44,6 +44,7 @@
   },
   "dependencies": {
     "@styled-system/core": "5.1.2",
+    "@theme-ui/css": "0.4.0-rc.1",
     "@types/styled-system__core": "npm:@peduarte/styled-system__core",
     "csstype": "2.6.9",
     "@chakra-ui/utils": "1.0.0-next.4"

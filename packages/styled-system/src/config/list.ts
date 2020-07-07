@@ -1,4 +1,4 @@
-import { Config, system } from "@styled-system/core"
+import { Config, createParser } from "@styled-system/core"
 import * as CSS from "csstype"
 import { ResponsiveValue } from "../utils"
 
@@ -34,4 +34,4 @@ export interface ListProps {
   listStyleImg?: ResponsiveValue<CSS.ListStyleImageProperty>
 }
 
-export const list = system(config)
+export const list = createParser(config)

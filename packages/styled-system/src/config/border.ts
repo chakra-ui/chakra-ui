@@ -1,6 +1,6 @@
 import * as CSS from "csstype"
 import { ResponsiveValue, Length } from "../utils"
-import { system, Config } from "@styled-system/core"
+import { createParser, Config } from "@styled-system/core"
 
 /**
  * The parser configuration for common border properties
@@ -343,4 +343,4 @@ export interface BorderProps {
   borderY?: ResponsiveValue<CSS.BorderProperty<Length>>
 }
 
-export const border = system(config)
+export const border = createParser(config)

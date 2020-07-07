@@ -1,5 +1,5 @@
 import * as CSS from "csstype"
-import { system, Config } from "@styled-system/core"
+import { createParser, Config } from "@styled-system/core"
 import { Length, ResponsiveValue } from "../utils"
 
 const config: Config = {
@@ -18,4 +18,4 @@ export interface TransformProps {
   transformOrigin?: ResponsiveValue<CSS.TransformOriginProperty<Length>>
 }
 
-export const transform = system(config)
+export const transform = createParser(config)

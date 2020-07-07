@@ -1,5 +1,5 @@
 import * as CSS from "csstype"
-import { system, Config } from "@styled-system/core"
+import { createParser, Config } from "@styled-system/core"
 import { ResponsiveValue } from "../utils"
 
 const config: Config = {
@@ -35,4 +35,4 @@ export interface ShadowProps {
   textShadow?: ResponsiveValue<CSS.TextShadowProperty | number>
 }
 
-export const shadow = system(config)
+export const shadow = createParser(config)
