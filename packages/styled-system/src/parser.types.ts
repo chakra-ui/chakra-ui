@@ -14,6 +14,7 @@ import {
   OutlineProps,
   TransitionProps,
   TransformProps,
+  ListProps,
 } from "./config"
 import { PseudoProps } from "./pseudo"
 import { Length } from "./utils"
@@ -69,6 +70,7 @@ interface AllProps
     BorderProps,
     ShadowProps,
     BackgroundProps,
+    ListProps,
     PositionProps,
     OutlineProps,
     OtherProps {}

@@ -21,10 +21,7 @@ export const Heading = React.forwardRef(function Heading(
       ref={ref}
       className={cx("chakra-heading", props.className)}
       {...rest}
-      __css={{
-        display: "inline-block",
-        ...styles.heading,
-      }}
+      __css={styles.heading}
     />
   )
 })
