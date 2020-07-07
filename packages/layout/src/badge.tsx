@@ -1,5 +1,5 @@
-import { chakra, PropsOf } from "@chakra-ui/system"
-import { __DEV__, cx } from "@chakra-ui/utils"
+import { chakra, PropsOf } from "@chakra-ui/system/src"
+import { __DEV__, cx } from "@chakra-ui/utils/src"
 
 export type BadgeProps = PropsOf<typeof Badge>
 

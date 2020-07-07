@@ -1,6 +1,6 @@
 import { getClosestValue } from "./media-query.utils"
 import { useBreakpoint } from "./use-breakpoint"
-import { isArray, arrayToObjectNotation } from "@chakra-ui/utils"
+import { isArray, arrayToObjectNotation } from "@chakra-ui/utils/src"
 
 /**
  * React hook for getting the value for the current breakpoint from the

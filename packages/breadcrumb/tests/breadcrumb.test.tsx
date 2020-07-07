@@ -1,5 +1,5 @@
 import * as React from "react"
-import { render } from "@chakra-ui/test-utils"
+import { render } from "@chakra-ui/test-utils/src"
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "../src"
 
 test("Breadcrumb renders correctly", () => {

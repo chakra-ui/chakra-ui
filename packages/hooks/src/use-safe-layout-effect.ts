@@ -1,5 +1,5 @@
 import * as React from "react"
-import { isBrowser } from "@chakra-ui/utils"
+import { isBrowser } from "@chakra-ui/utils/src"
 
 /**
  * useSafeLayoutEffect enables us to safely call `useLayoutEffect` on the browser

@@ -1,4 +1,4 @@
-import { useSafeLayoutEffect } from "@chakra-ui/hooks"
+import { useSafeLayoutEffect } from "@chakra-ui/hooks/src"
 import * as React from "react"
 
 export type UseImageProps = {

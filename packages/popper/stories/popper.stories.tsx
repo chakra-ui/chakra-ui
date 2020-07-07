@@ -1,4 +1,4 @@
-import { useDisclosure } from "@chakra-ui/hooks"
+import { useDisclosure } from "@chakra-ui/hooks/src"
 import * as React from "react"
 import { usePopper } from "../src"
 

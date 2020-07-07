@@ -4,8 +4,8 @@ import {
   ThemingProps,
   SystemProps,
   CSSObject,
-} from "@chakra-ui/system"
-import { createContext, __DEV__, cx } from "@chakra-ui/utils"
+} from "@chakra-ui/system/src"
+import { createContext, __DEV__, cx } from "@chakra-ui/utils/src"
 import * as React from "react"
 
 export type ButtonGroupProps = PropsOf<typeof chakra.div> & {

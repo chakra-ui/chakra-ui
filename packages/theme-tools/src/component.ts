@@ -1,5 +1,9 @@
-import { SystemProps, ThemingProps, SystemStyleObject } from "@chakra-ui/system"
-import { Dict } from "@chakra-ui/utils"
+import {
+  SystemProps,
+  ThemingProps,
+  SystemStyleObject,
+} from "@chakra-ui/system/src"
+import { Dict } from "@chakra-ui/utils/src"
 
 type Style = SystemStyleObject | SystemProps
 

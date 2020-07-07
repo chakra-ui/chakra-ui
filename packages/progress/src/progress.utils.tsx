@@ -1,5 +1,5 @@
-import { isFunction, isUndefined, valueToPercent } from "@chakra-ui/utils"
-import { keyframes } from "@chakra-ui/system"
+import { isFunction, isUndefined, valueToPercent } from "@chakra-ui/utils/src"
+import { keyframes } from "@chakra-ui/system/src"
 
 /**
  * CSS Animation for progress spin effect

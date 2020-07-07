@@ -1,5 +1,5 @@
-import { chakra, PropsOf, ThemingProps } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { chakra, PropsOf, ThemingProps } from "@chakra-ui/system/src"
+import { cx, __DEV__ } from "@chakra-ui/utils/src"
 import * as React from "react"
 import {
   PinInputContextProvider,

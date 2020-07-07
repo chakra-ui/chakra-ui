@@ -1,5 +1,5 @@
-import { chakra, PropsOf } from "@chakra-ui/system"
-import { fireEvent, render } from "@chakra-ui/test-utils"
+import { chakra, PropsOf } from "@chakra-ui/system/src"
+import { fireEvent, render } from "@chakra-ui/test-utils/src"
 import * as React from "react"
 import {
   FormControlOptions,

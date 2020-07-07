@@ -1,4 +1,4 @@
-import defaultTheme from "@chakra-ui/theme"
+import defaultTheme from "@chakra-ui/theme/src"
 
 const theme = {
   ...defaultTheme,

@@ -1,4 +1,4 @@
-import { isArray, isUndefined, warn } from "@chakra-ui/utils"
+import { isArray, isUndefined, warn } from "@chakra-ui/utils/src"
 import { UseAccordionItemProps, UseAccordionProps } from "./use-accordion"
 
 export function allowMultiple(props: UseAccordionProps) {

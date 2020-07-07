@@ -1,5 +1,11 @@
-import { chakra, css, PropsOf, SystemProps, useTheme } from "@chakra-ui/system"
-import { getValidChildren, mapResponsive, __DEV__ } from "@chakra-ui/utils"
+import {
+  chakra,
+  css,
+  PropsOf,
+  SystemProps,
+  useTheme,
+} from "@chakra-ui/system/src"
+import { getValidChildren, mapResponsive, __DEV__ } from "@chakra-ui/utils/src"
 import * as React from "react"
 
 type DivProps = PropsOf<typeof chakra.div>

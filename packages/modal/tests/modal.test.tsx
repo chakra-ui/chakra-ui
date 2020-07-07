@@ -1,6 +1,6 @@
 import * as React from "react"
-import { render, fireEvent, axe, press } from "@chakra-ui/test-utils"
-import { PortalManager } from "@chakra-ui/portal"
+import { render, fireEvent, axe, press } from "@chakra-ui/test-utils/src"
+import { PortalManager } from "@chakra-ui/portal/src"
 import {
   Modal,
   ModalBody,

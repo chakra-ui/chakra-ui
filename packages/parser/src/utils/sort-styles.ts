@@ -1,4 +1,4 @@
-import { Dict, objectKeys } from "@chakra-ui/utils"
+import { Dict, objectKeys } from "@chakra-ui/utils/src"
 
 export function sort(obj: Dict) {
   const next: Dict = {}

@@ -1,5 +1,5 @@
-import { Props, mode, ComponentTheme, copy } from "@chakra-ui/theme-tools"
-import { SystemProps } from "@chakra-ui/system"
+import { Props, mode, ComponentTheme, copy } from "@chakra-ui/theme-tools/src"
+import { SystemProps } from "@chakra-ui/system/src"
 import Button from "./button"
 
 const menulist = (props: Props): SystemProps => ({

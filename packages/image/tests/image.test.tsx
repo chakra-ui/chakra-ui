@@ -1,4 +1,4 @@
-import { render, act } from "@chakra-ui/test-utils"
+import { render, act } from "@chakra-ui/test-utils/src"
 import * as React from "react"
 import { Image, ImageProps } from "../src"
 

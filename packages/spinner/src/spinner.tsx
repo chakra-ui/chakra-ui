@@ -1,6 +1,6 @@
-import { chakra, keyframes, PropsOf } from "@chakra-ui/system"
-import { __DEV__, cx } from "@chakra-ui/utils"
-import { VisuallyHidden } from "@chakra-ui/visually-hidden"
+import { chakra, keyframes, PropsOf } from "@chakra-ui/system/src"
+import { __DEV__, cx } from "@chakra-ui/utils/src"
+import { VisuallyHidden } from "@chakra-ui/visually-hidden/src"
 import * as React from "react"
 
 const spin = keyframes`

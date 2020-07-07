@@ -1,4 +1,4 @@
-import { isBrowser, noop } from "@chakra-ui/utils"
+import { isBrowser, noop } from "@chakra-ui/utils/src"
 
 const isStorageSupported = typeof Storage !== "undefined"
 export const storageKey = "chakra-ui-color-mode"

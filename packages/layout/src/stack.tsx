@@ -4,14 +4,14 @@ import {
   PropsOf,
   ResponsiveValue,
   SystemProps,
-} from "@chakra-ui/system"
+} from "@chakra-ui/system/src"
 import {
   cx,
   Dict,
   getValidChildren,
   mapResponsive,
   __DEV__,
-} from "@chakra-ui/utils"
+} from "@chakra-ui/utils/src"
 import * as React from "react"
 import { FlexOptions } from "./flex"
 

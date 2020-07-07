@@ -1,5 +1,5 @@
 import * as React from "react"
-import { render, axe } from "@chakra-ui/test-utils"
+import { render, axe } from "@chakra-ui/test-utils/src"
 import { Alert, AlertDescription, AlertIcon, AlertTitle } from "../src"
 
 test("should have no accessibility issue", async () => {

@@ -1,12 +1,12 @@
-import { CloseButton, CloseButtonProps } from "@chakra-ui/close-button"
-import { useSafeLayoutEffect } from "@chakra-ui/hooks"
-import { chakra, PropsOf } from "@chakra-ui/system"
+import { CloseButton, CloseButtonProps } from "@chakra-ui/close-button/src"
+import { useSafeLayoutEffect } from "@chakra-ui/hooks/src"
+import { chakra, PropsOf } from "@chakra-ui/system/src"
 import {
   createContext,
   isFunction,
   ReactNodeOrRenderProp,
   __DEV__,
-} from "@chakra-ui/utils"
+} from "@chakra-ui/utils/src"
 import * as React from "react"
 import { usePopover, UsePopoverProps, UsePopoverReturn } from "./use-popover"
 

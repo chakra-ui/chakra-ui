@@ -1,4 +1,4 @@
-import { axe, fireEvent, render } from "@chakra-ui/test-utils"
+import { axe, fireEvent, render } from "@chakra-ui/test-utils/src"
 import * as React from "react"
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from "../src"
 

@@ -1,4 +1,4 @@
-import { Dict, memoizeOne, isObject, isFunction } from "@chakra-ui/utils"
+import { Dict, memoizeOne, isObject, isFunction } from "@chakra-ui/utils/src"
 import { pseudoSelectors, Pseudos } from "./pseudo.selector"
 
 const isPseudoProp = (prop: string): prop is keyof Pseudos =>

@@ -1,5 +1,5 @@
 import * as React from "react"
-import { render } from "@chakra-ui/test-utils"
+import { render } from "@chakra-ui/test-utils/src"
 import { Md3DRotation } from "react-icons/md"
 import { Icon } from "../src"
 

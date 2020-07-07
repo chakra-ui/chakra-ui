@@ -5,7 +5,7 @@ import {
   getColor,
   ink,
   transparentize,
-} from "@chakra-ui/theme-tools"
+} from "@chakra-ui/theme-tools/src"
 
 function solid(props: Props) {
   const { colorScheme: c, theme } = props

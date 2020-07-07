@@ -1,6 +1,10 @@
-import { css, SystemStyleObject } from "@chakra-ui/css"
-import { Dict, get, runIfFn, merge } from "@chakra-ui/utils"
-import { createParser, StyleConfig, combineParsers } from "@chakra-ui/parser"
+import { css, SystemStyleObject } from "@chakra-ui/css/src"
+import { Dict, get, runIfFn, merge } from "@chakra-ui/utils/src"
+import {
+  createParser,
+  StyleConfig,
+  combineParsers,
+} from "@chakra-ui/parser/src"
 
 export interface CreateVariantOptions {
   prop: string

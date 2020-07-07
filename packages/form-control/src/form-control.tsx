@@ -1,12 +1,12 @@
-import { useBoolean, useId, useSafeLayoutEffect } from "@chakra-ui/hooks"
-import { Icon, IconProps } from "@chakra-ui/icon"
+import { useBoolean, useId, useSafeLayoutEffect } from "@chakra-ui/hooks/src"
+import { Icon, IconProps } from "@chakra-ui/icon/src"
 import {
   chakra,
   forwardRef,
   PropsOf,
   useComponentStyle,
-} from "@chakra-ui/system"
-import { createContext, cx, __DEV__ } from "@chakra-ui/utils"
+} from "@chakra-ui/system/src"
+import { createContext, cx, __DEV__ } from "@chakra-ui/utils/src"
 import * as React from "react"
 import { useFormControlLabel } from "./use-form-control"
 

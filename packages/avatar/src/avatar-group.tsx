@@ -3,8 +3,8 @@ import {
   PropsOf,
   SystemProps,
   useThemeDefaultProps,
-} from "@chakra-ui/system"
-import { cx, getValidChildren, __DEV__ } from "@chakra-ui/utils"
+} from "@chakra-ui/system/src"
+import { cx, getValidChildren, __DEV__ } from "@chakra-ui/utils/src"
 import * as React from "react"
 import { baseStyle } from "./avatar"
 

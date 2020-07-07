@@ -1,4 +1,4 @@
-import { createIcon } from "@chakra-ui/icon"
+import { createIcon } from "@chakra-ui/icon/src"
 
 export const StarIcon = createIcon({
   d:

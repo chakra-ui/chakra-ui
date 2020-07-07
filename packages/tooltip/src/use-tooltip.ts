@@ -1,6 +1,6 @@
-import { useDisclosure, useEventListener, useId } from "@chakra-ui/hooks"
-import { Placement, usePopper, UsePopperProps } from "@chakra-ui/popper"
-import { callAllHandlers, mergeRefs, Dict } from "@chakra-ui/utils"
+import { useDisclosure, useEventListener, useId } from "@chakra-ui/hooks/src"
+import { Placement, usePopper, UsePopperProps } from "@chakra-ui/popper/src"
+import { callAllHandlers, mergeRefs, Dict } from "@chakra-ui/utils/src"
 import * as React from "react"
 
 export interface UseTooltipProps {

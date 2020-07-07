@@ -4,7 +4,7 @@ import {
   render,
   renderHook,
   userEvent,
-} from "@chakra-ui/test-utils"
+} from "@chakra-ui/test-utils/src"
 import * as React from "react"
 import {
   NumberDecrementStepper,

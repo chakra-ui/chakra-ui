@@ -1,4 +1,4 @@
-import { act, axe, fireEvent, render, screen } from "@chakra-ui/test-utils"
+import { act, axe, fireEvent, render, screen } from "@chakra-ui/test-utils/src"
 import * as React from "react"
 import { Tooltip } from "../src"
 

@@ -1,7 +1,7 @@
-import { useDisclosure } from "@chakra-ui/hooks"
-import { PortalManager } from "@chakra-ui/portal"
-import { chakra } from "@chakra-ui/system"
-import { Fade, SlideFade, ScaleFade } from "@chakra-ui/transition"
+import { useDisclosure } from "@chakra-ui/hooks/src"
+import { PortalManager } from "@chakra-ui/portal/src"
+import { chakra } from "@chakra-ui/system/src"
+import { Fade, SlideFade, ScaleFade } from "@chakra-ui/transition/src"
 import * as React from "react"
 import {
   Modal,

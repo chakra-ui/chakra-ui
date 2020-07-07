@@ -1,4 +1,4 @@
-import { chakra, PropsOf } from "@chakra-ui/system"
+import { chakra, PropsOf } from "@chakra-ui/system/src"
 import * as React from "react"
 import {
   FormControlOptions,

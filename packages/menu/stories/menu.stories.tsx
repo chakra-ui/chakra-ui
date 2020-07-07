@@ -1,6 +1,6 @@
-import { Image } from "@chakra-ui/image"
-import { Portal } from "@chakra-ui/portal"
-import { chakra } from "@chakra-ui/system"
+import { Image } from "@chakra-ui/image/src"
+import { Portal } from "@chakra-ui/portal/src"
+import { chakra } from "@chakra-ui/system/src"
 import * as React from "react"
 import {
   FaChevronDown,

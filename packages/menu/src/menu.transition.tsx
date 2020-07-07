@@ -2,8 +2,8 @@ import {
   Transition,
   TransitionProps,
   TransitionStyles,
-} from "@chakra-ui/transition"
-import { focus, __DEV__ } from "@chakra-ui/utils"
+} from "@chakra-ui/transition/src"
+import { focus, __DEV__ } from "@chakra-ui/utils/src"
 import * as React from "react"
 import { useMenuContext } from "./use-menu"
 

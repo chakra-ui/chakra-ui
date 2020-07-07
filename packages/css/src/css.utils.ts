@@ -1,4 +1,4 @@
-import { Dict, get, getWithDefault, isObject } from "@chakra-ui/utils"
+import { Dict, get, getWithDefault, isObject } from "@chakra-ui/utils/src"
 
 export function hasTheme(props: PropsOrTheme): props is { theme: Dict } {
   return Boolean(isObject(props) && props.theme)

@@ -1,6 +1,6 @@
-import { Icon, IconProps } from "@chakra-ui/icon"
-import { chakra, ChakraProps, PropsOf, forwardRef } from "@chakra-ui/system"
-import { getValidChildren, __DEV__ } from "@chakra-ui/utils"
+import { Icon, IconProps } from "@chakra-ui/icon/src"
+import { chakra, ChakraProps, PropsOf, forwardRef } from "@chakra-ui/system/src"
+import { getValidChildren, __DEV__ } from "@chakra-ui/utils/src"
 import * as React from "react"
 
 interface ListOptions {

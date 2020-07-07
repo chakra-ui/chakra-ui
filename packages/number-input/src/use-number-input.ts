@@ -1,5 +1,5 @@
-import { useCounter, UseCounterProps } from "@chakra-ui/counter"
-import { useBoolean } from "@chakra-ui/hooks"
+import { useCounter, UseCounterProps } from "@chakra-ui/counter/src"
+import { useBoolean } from "@chakra-ui/hooks/src"
 import {
   callAllHandlers,
   Dict,
@@ -10,7 +10,7 @@ import {
   ariaAttr,
   minSafeInteger,
   maxSafeInteger,
-} from "@chakra-ui/utils"
+} from "@chakra-ui/utils/src"
 import * as React from "react"
 import { useSpinner } from "./use-spinner"
 import {

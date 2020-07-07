@@ -5,8 +5,8 @@ import {
   ThemingProvider,
   useThemeDefaultProps,
   useThemingContext,
-} from "@chakra-ui/system"
-import { createContext, __DEV__ } from "@chakra-ui/utils"
+} from "@chakra-ui/system/src"
+import { createContext, __DEV__ } from "@chakra-ui/utils/src"
 import * as React from "react"
 import { useSlider, UseSliderProps, UseSliderReturn } from "./use-slider"
 

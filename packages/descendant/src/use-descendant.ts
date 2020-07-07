@@ -1,5 +1,5 @@
 import * as React from "react"
-import { useSafeLayoutEffect, useForceUpdate } from "@chakra-ui/hooks"
+import { useSafeLayoutEffect, useForceUpdate } from "@chakra-ui/hooks/src"
 
 export type Descendant<T extends HTMLElement, P = {}> = P & {
   element: T | null

@@ -9,7 +9,7 @@ import {
   PopoverArrow,
   PopoverCloseButton,
 } from "../src"
-import { chakra } from "@chakra-ui/system"
+import { chakra } from "@chakra-ui/system/src"
 
 export default {
   title: "Popover",

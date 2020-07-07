@@ -1,4 +1,4 @@
-import { useLatestRef } from "@chakra-ui/hooks"
+import { useLatestRef } from "@chakra-ui/hooks/src"
 import * as React from "react"
 import {
   addListener,

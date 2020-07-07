@@ -1,6 +1,6 @@
 import * as React from "react"
 import { useCheckbox, CheckboxGroup, Checkbox } from "../src"
-import { Stack, Container } from "@chakra-ui/layout"
+import { Stack, Container } from "@chakra-ui/layout/src"
 
 export default {
   title: "Checkbox",

@@ -1,13 +1,13 @@
-import { Icon, IconProps } from "@chakra-ui/icon"
+import { Icon, IconProps } from "@chakra-ui/icon/src"
 import {
   chakra,
   PropsOf,
   ThemingProvider,
   useThemeDefaultProps,
   useThemingContext,
-} from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
-import { VisuallyHidden } from "@chakra-ui/visually-hidden"
+} from "@chakra-ui/system/src"
+import { cx, __DEV__ } from "@chakra-ui/utils/src"
+import { VisuallyHidden } from "@chakra-ui/visually-hidden/src"
 import * as React from "react"
 
 /**

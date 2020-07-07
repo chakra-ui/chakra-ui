@@ -1,8 +1,8 @@
-import { createContext, isBrowser, __DEV__ } from "@chakra-ui/utils"
+import { createContext, isBrowser, __DEV__ } from "@chakra-ui/utils/src"
 import * as React from "react"
 import * as ReactDOM from "react-dom"
 import { usePortalManager } from "./portal-manager"
-import { useSafeLayoutEffect } from "@chakra-ui/hooks"
+import { useSafeLayoutEffect } from "@chakra-ui/hooks/src"
 
 type PortalContext = HTMLDivElement | null
 

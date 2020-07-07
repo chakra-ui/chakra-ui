@@ -1,5 +1,5 @@
 import * as React from "react"
-import { userEvent, render, fireEvent, wait } from "@chakra-ui/test-utils"
+import { userEvent, render, fireEvent, wait } from "@chakra-ui/test-utils/src"
 import {
   Accordion,
   AccordionButton,

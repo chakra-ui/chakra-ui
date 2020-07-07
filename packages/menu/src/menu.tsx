@@ -1,5 +1,10 @@
-import { chakra, forwardRef, PropsOf, SystemProps } from "@chakra-ui/system"
-import { cx, mergeRefs, ReactNodeOrRenderProp, __DEV__ } from "@chakra-ui/utils"
+import { chakra, forwardRef, PropsOf, SystemProps } from "@chakra-ui/system/src"
+import {
+  cx,
+  mergeRefs,
+  ReactNodeOrRenderProp,
+  __DEV__,
+} from "@chakra-ui/utils/src"
 import * as React from "react"
 import {
   MenuContextProvider,

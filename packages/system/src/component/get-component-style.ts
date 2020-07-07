@@ -1,5 +1,5 @@
-import { merge, isNotEmptyObject } from "@chakra-ui/utils"
-import { css, CSSObject } from "@chakra-ui/css"
+import { merge, isNotEmptyObject } from "@chakra-ui/utils/src"
+import { css, CSSObject } from "@chakra-ui/css/src"
 import { getBaseStyle } from "./get-base-style"
 import { getModifierStyles } from "./get-modifier-style"
 import { ChakraOptions, ModifierStyleProps } from "./types"

@@ -1,4 +1,4 @@
-import { render, renderHook, fireEvent } from "@chakra-ui/test-utils"
+import { render, renderHook, fireEvent } from "@chakra-ui/test-utils/src"
 import * as React from "react"
 import {
   Checkbox,

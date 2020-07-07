@@ -1,6 +1,6 @@
-import { useColorMode } from "@chakra-ui/color-mode"
-import css from "@chakra-ui/css"
-import { get, runIfFn } from "@chakra-ui/utils"
+import { useColorMode } from "@chakra-ui/color-mode/src"
+import css from "@chakra-ui/css/src"
+import { get, runIfFn } from "@chakra-ui/utils/src"
 import { Global, Interpolation } from "@emotion/core"
 import * as React from "react"
 

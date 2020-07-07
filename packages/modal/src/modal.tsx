@@ -1,7 +1,7 @@
-import { CloseButton, CloseButtonProps } from "@chakra-ui/close-button"
-import { FocusLock } from "@chakra-ui/focus-lock"
-import { useSafeLayoutEffect } from "@chakra-ui/hooks"
-import { Portal, PortalProps } from "@chakra-ui/portal"
+import { CloseButton, CloseButtonProps } from "@chakra-ui/close-button/src"
+import { FocusLock } from "@chakra-ui/focus-lock/src"
+import { useSafeLayoutEffect } from "@chakra-ui/hooks/src"
+import { Portal, PortalProps } from "@chakra-ui/portal/src"
 import { RemoveScroll } from "react-remove-scroll"
 import {
   chakra,
@@ -9,8 +9,13 @@ import {
   ThemingProps,
   forwardRef,
   useThemeDefaultProps,
-} from "@chakra-ui/system"
-import { callAllHandlers, createContext, __DEV__, cx } from "@chakra-ui/utils"
+} from "@chakra-ui/system/src"
+import {
+  callAllHandlers,
+  createContext,
+  __DEV__,
+  cx,
+} from "@chakra-ui/utils/src"
 import * as React from "react"
 import { useModal, UseModalProps, UseModalReturn } from "./use-modal"
 

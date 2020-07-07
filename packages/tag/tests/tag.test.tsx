@@ -1,4 +1,4 @@
-import { render } from "@chakra-ui/test-utils"
+import { render } from "@chakra-ui/test-utils/src"
 import * as React from "react"
 import { Tag, TagCloseButton, TagLabel, TagLeftIcon } from "../src"
 

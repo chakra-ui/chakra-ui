@@ -1,5 +1,5 @@
-import { ResponsiveValue, forwardRef } from "@chakra-ui/system"
-import { mapResponsive, isNumber, isNull, __DEV__ } from "@chakra-ui/utils"
+import { ResponsiveValue, forwardRef } from "@chakra-ui/system/src"
+import { mapResponsive, isNumber, isNull, __DEV__ } from "@chakra-ui/utils/src"
 import * as React from "react"
 import { Grid, GridProps } from "./grid"
 

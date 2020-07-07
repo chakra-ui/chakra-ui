@@ -1,5 +1,5 @@
-import { Pseudos, ResponsiveValue } from "@chakra-ui/parser"
-import { Omit } from "@chakra-ui/utils"
+import { Pseudos, ResponsiveValue } from "@chakra-ui/parser/src"
+import { Omit } from "@chakra-ui/utils/src"
 import {
   BoxShadowProperty,
   FontWeightProperty,

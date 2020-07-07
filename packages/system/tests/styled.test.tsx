@@ -1,5 +1,5 @@
 /**@jsx jsx */
-import { render } from "@chakra-ui/test-utils"
+import { render } from "@chakra-ui/test-utils/src"
 import * as React from "react"
 import { chakra, jsx, ThemeProvider } from "../src"
 import theme from "./theme.sample"

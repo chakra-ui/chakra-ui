@@ -1,6 +1,6 @@
 import * as React from "react"
-import { createContext, __DEV__ } from "@chakra-ui/utils"
-import { useSafeLayoutEffect, useForceUpdate } from "@chakra-ui/hooks"
+import { createContext, __DEV__ } from "@chakra-ui/utils/src"
+import { useSafeLayoutEffect, useForceUpdate } from "@chakra-ui/hooks/src"
 
 interface PortalManagerContext {
   node: HTMLElement

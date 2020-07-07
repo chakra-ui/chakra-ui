@@ -1,4 +1,4 @@
-import { axe, press, render } from "@chakra-ui/test-utils"
+import { axe, press, render } from "@chakra-ui/test-utils/src"
 import * as React from "react"
 import { Slider, SliderFilledTrack, SliderThumb, SliderTrack } from "../src"
 

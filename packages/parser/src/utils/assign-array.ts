@@ -1,4 +1,4 @@
-import { Dict } from "@chakra-ui/utils"
+import { Dict } from "@chakra-ui/utils/src"
 
 interface Options {
   /**

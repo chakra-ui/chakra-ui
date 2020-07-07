@@ -4,7 +4,7 @@ import {
   parsePseudo,
   parser,
   StyleConfig,
-} from "@chakra-ui/parser"
+} from "@chakra-ui/parser/src"
 import {
   get,
   isArray,
@@ -13,7 +13,7 @@ import {
   merge,
   objectToArrayNotation,
   runIfFn,
-} from "@chakra-ui/utils"
+} from "@chakra-ui/utils/src"
 import { CSSObject, StyleObjectOrFn } from "./css.types"
 import {
   determineTheme,

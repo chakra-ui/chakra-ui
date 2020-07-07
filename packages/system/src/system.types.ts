@@ -1,6 +1,6 @@
-import { ColorMode } from "@chakra-ui/color-mode"
-import { SystemProps } from "@chakra-ui/parser"
-import { Dict } from "@chakra-ui/utils"
+import { ColorMode } from "@chakra-ui/color-mode/src"
+import { SystemProps } from "@chakra-ui/parser/src"
+import { Dict } from "@chakra-ui/utils/src"
 import * as React from "react"
 import { ValidHTMLProps } from "./should-forward-prop"
 

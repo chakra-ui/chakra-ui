@@ -1,4 +1,4 @@
-import { CSSObject } from "@chakra-ui/css"
+import { CSSObject } from "@chakra-ui/css/src"
 import {
   As,
   Dict,
@@ -6,7 +6,7 @@ import {
   isString,
   isUndefined,
   runIfFn,
-} from "@chakra-ui/utils"
+} from "@chakra-ui/utils/src"
 import hoist from "hoist-non-react-statics"
 import * as React from "react"
 import { useChakra } from "./hooks"

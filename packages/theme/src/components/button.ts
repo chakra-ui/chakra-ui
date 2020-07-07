@@ -3,7 +3,7 @@ import {
   mode,
   ComponentTheme,
   transparentize,
-} from "@chakra-ui/theme-tools"
+} from "@chakra-ui/theme-tools/src"
 
 const grayGhost = (props: Props) => ({
   color: mode(`inherit`, `whiteAlpha.900`)(props),

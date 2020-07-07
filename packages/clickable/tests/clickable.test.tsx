@@ -1,6 +1,6 @@
 import * as React from "react"
-import { render, userEvent, fireEvent } from "@chakra-ui/test-utils"
-import { chakra } from "@chakra-ui/system"
+import { render, userEvent, fireEvent } from "@chakra-ui/test-utils/src"
+import { chakra } from "@chakra-ui/system/src"
 import { ClickableProps } from "../src/use-clickable.stories"
 import { useClickable } from "../src"
 

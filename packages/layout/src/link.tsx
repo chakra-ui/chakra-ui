@@ -1,6 +1,6 @@
-import { chakra, PropsOf } from "@chakra-ui/system"
+import { chakra, PropsOf } from "@chakra-ui/system/src"
 import * as React from "react"
-import { __DEV__ } from "@chakra-ui/utils"
+import { __DEV__ } from "@chakra-ui/utils/src"
 
 interface LinkOptions {
   /**

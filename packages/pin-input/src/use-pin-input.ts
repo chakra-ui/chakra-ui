@@ -1,13 +1,13 @@
-import { useDescendants, useDescendant } from "@chakra-ui/descendant"
-import { useControllableState, useId } from "@chakra-ui/hooks"
+import { useDescendants, useDescendant } from "@chakra-ui/descendant/src"
+import { useControllableState, useId } from "@chakra-ui/hooks/src"
 import {
   mergeRefs,
   callAllHandlers,
   createContext,
   ariaAttr,
-} from "@chakra-ui/utils"
+} from "@chakra-ui/utils/src"
 import * as React from "react"
-import { ThemingProps } from "@chakra-ui/system"
+import { ThemingProps } from "@chakra-ui/system/src"
 
 export type PinInputContext = UsePinInputReturn &
   ThemingProps & {

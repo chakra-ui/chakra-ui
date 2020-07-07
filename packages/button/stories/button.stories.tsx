@@ -4,8 +4,8 @@ import {
   EmailIcon,
   PhoneIcon,
   SearchIcon,
-} from "@chakra-ui/icons"
-import { Container, Stack } from "@chakra-ui/layout"
+} from "@chakra-ui/icons/src"
+import { Container, Stack } from "@chakra-ui/layout/src"
 import * as React from "react"
 import { MdBuild, MdCall } from "react-icons/md"
 import { FaFacebook, FaTwitter } from "react-icons/fa"

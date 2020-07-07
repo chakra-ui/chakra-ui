@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Collapse } from "../src"
-import { useDisclosure } from "@chakra-ui/hooks"
+import { useDisclosure } from "@chakra-ui/hooks/src"
 
 export default {
   title: "Collapse",

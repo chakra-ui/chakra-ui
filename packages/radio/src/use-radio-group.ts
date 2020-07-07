@@ -1,5 +1,10 @@
-import { useControllableProp, useId } from "@chakra-ui/hooks"
-import { isInputEvent, StringOrNumber, Dict, mergeRefs } from "@chakra-ui/utils"
+import { useControllableProp, useId } from "@chakra-ui/hooks/src"
+import {
+  isInputEvent,
+  StringOrNumber,
+  Dict,
+  mergeRefs,
+} from "@chakra-ui/utils/src"
 import * as React from "react"
 import { useCallback, useRef, useState } from "react"
 

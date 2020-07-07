@@ -1,5 +1,5 @@
-import { chakra, PropsOf } from "@chakra-ui/system"
-import { SafeMerge } from "@chakra-ui/utils"
+import { chakra, PropsOf } from "@chakra-ui/system/src"
+import { SafeMerge } from "@chakra-ui/utils/src"
 import * as React from "react"
 import { UseClickableProps, useClickable } from "../src"
 

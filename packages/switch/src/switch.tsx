@@ -1,6 +1,6 @@
-import { useCheckbox, UseCheckboxProps } from "@chakra-ui/checkbox"
-import { chakra, PropsOf } from "@chakra-ui/system"
-import { cx, dataAttr, __DEV__ } from "@chakra-ui/utils"
+import { useCheckbox, UseCheckboxProps } from "@chakra-ui/checkbox/src"
+import { chakra, PropsOf } from "@chakra-ui/system/src"
+import { cx, dataAttr, __DEV__ } from "@chakra-ui/utils/src"
 import * as React from "react"
 
 const StyledSwitch = chakra("label", {

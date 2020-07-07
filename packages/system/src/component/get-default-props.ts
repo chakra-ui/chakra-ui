@@ -1,5 +1,5 @@
 import { ModifierStyleProps } from "./types"
-import { get } from "@chakra-ui/utils"
+import { get } from "@chakra-ui/utils/src"
 
 type DefaultModifiers = Omit<ModifierStyleProps, "theme">
 

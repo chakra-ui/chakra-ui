@@ -1,5 +1,5 @@
-import { chakra, forwardRef, PropsOf, SystemProps } from "@chakra-ui/system"
-import { cx, getValidChildren, __DEV__ } from "@chakra-ui/utils"
+import { chakra, forwardRef, PropsOf, SystemProps } from "@chakra-ui/system/src"
+import { cx, getValidChildren, __DEV__ } from "@chakra-ui/utils/src"
 import * as React from "react"
 
 export type BreadcrumbSeparatorProps = PropsOf<typeof chakra.div> & {

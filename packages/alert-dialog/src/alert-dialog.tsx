@@ -3,7 +3,7 @@ import {
   ModalContent,
   ModalContentProps,
   ModalProps,
-} from "@chakra-ui/modal"
+} from "@chakra-ui/modal/src"
 import * as React from "react"
 
 export interface AlertDialogProps extends Omit<ModalProps, "initialFocusRef"> {
@@ -28,4 +28,4 @@ export {
   ModalFooter as AlertDialogFooter,
   ModalHeader as AlertDialogHeader,
   ModalOverlay as AlertDialogOverlay,
-} from "@chakra-ui/modal"
+} from "@chakra-ui/modal/src"

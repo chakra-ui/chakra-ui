@@ -4,7 +4,7 @@ import {
   ComponentTheme,
   StyleObject,
   getColor,
-} from "@chakra-ui/theme-tools"
+} from "@chakra-ui/theme-tools/src"
 
 function line(props: Props) {
   const { colorScheme: c } = props

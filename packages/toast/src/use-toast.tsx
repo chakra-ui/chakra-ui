@@ -4,10 +4,10 @@ import {
   AlertIcon,
   AlertTitle,
   ALERT_STATUSES,
-} from "@chakra-ui/alert"
-import { CloseButton } from "@chakra-ui/close-button"
-import { chakra, ThemeProvider, useTheme } from "@chakra-ui/system"
-import { isFunction, merge } from "@chakra-ui/utils"
+} from "@chakra-ui/alert/src"
+import { CloseButton } from "@chakra-ui/close-button/src"
+import { chakra, ThemeProvider, useTheme } from "@chakra-ui/system/src"
+import { isFunction, merge } from "@chakra-ui/utils/src"
 import * as React from "react"
 import { toast } from "./toast.class"
 import { RenderProps, ToastOptions, ToastId } from "./toast.types"

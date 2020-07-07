@@ -1,7 +1,7 @@
-import { FormControlOptions, useFormControl } from "@chakra-ui/form-control"
-import { chakra, PropsOf, forwardRef } from "@chakra-ui/system"
+import { FormControlOptions, useFormControl } from "@chakra-ui/form-control/src"
+import { chakra, PropsOf, forwardRef } from "@chakra-ui/system/src"
 import * as React from "react"
-import { __DEV__, cx } from "@chakra-ui/utils"
+import { __DEV__, cx } from "@chakra-ui/utils/src"
 
 interface TextareaOptions {
   /**

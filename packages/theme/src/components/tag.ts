@@ -1,4 +1,4 @@
-import { ComponentTheme } from "@chakra-ui/theme-tools"
+import { ComponentTheme } from "@chakra-ui/theme-tools/src"
 import Badge, { BadgeVariants } from "./badge"
 
 const Tag: ComponentTheme = {

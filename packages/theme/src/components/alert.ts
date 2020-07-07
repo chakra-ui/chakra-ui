@@ -4,7 +4,7 @@ import {
   mode,
   getColor,
   ink,
-} from "@chakra-ui/theme-tools"
+} from "@chakra-ui/theme-tools/src"
 
 function subtle(props: Props) {
   const { theme: t, colorScheme: c } = props

@@ -1,6 +1,6 @@
 import * as React from "react"
 import ReactFocusLock from "react-focus-lock"
-import { __DEV__, getAllFocusable } from "@chakra-ui/utils"
+import { __DEV__, getAllFocusable } from "@chakra-ui/utils/src"
 
 export interface FocusLockProps {
   /**

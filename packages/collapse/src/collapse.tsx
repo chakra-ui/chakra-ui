@@ -1,10 +1,10 @@
-import { chakra, PropsOf, forwardRef } from "@chakra-ui/system"
+import { chakra, PropsOf, forwardRef } from "@chakra-ui/system/src"
 import {
   Transition,
   TransitionProps,
   TransitionStyles,
-} from "@chakra-ui/transition"
-import { ariaAttr, cx, mergeRefs, __DEV__ } from "@chakra-ui/utils"
+} from "@chakra-ui/transition/src"
+import { ariaAttr, cx, mergeRefs, __DEV__ } from "@chakra-ui/utils/src"
 import { useRect } from "@reach/rect"
 import * as React from "react"
 

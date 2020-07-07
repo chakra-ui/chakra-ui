@@ -1,7 +1,7 @@
-import { chakra } from "@chakra-ui/system"
+import { chakra } from "@chakra-ui/system/src"
 import * as React from "react"
 import { Alert, AlertDescription, AlertIcon, AlertTitle } from "../src"
-import { Container } from "@chakra-ui/layout"
+import { Container } from "@chakra-ui/layout/src"
 
 export default {
   title: "Alert",

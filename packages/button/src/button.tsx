@@ -1,4 +1,4 @@
-import { Spinner } from "@chakra-ui/spinner"
+import { Spinner } from "@chakra-ui/spinner/src"
 import {
   chakra,
   PropsOf,
@@ -6,8 +6,8 @@ import {
   forwardRef,
   useComponentStyle,
   pseudoSelectors,
-} from "@chakra-ui/system"
-import { dataAttr, __DEV__, merge, Dict, cx } from "@chakra-ui/utils"
+} from "@chakra-ui/system/src"
+import { dataAttr, __DEV__, merge, Dict, cx } from "@chakra-ui/utils/src"
 import * as React from "react"
 import { useButtonGroup } from "./button-group"
 

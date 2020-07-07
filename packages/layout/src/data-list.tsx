@@ -1,5 +1,5 @@
 import * as React from "react"
-import { __DEV__ } from "@chakra-ui/utils"
+import { __DEV__ } from "@chakra-ui/utils/src"
 
 export interface DataListProps<T> {
   /**

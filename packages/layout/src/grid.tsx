@@ -1,6 +1,6 @@
 import * as React from "react"
-import { chakra, PropsOf, ChakraProps, forwardRef } from "@chakra-ui/system"
-import { __DEV__ } from "@chakra-ui/utils"
+import { chakra, PropsOf, ChakraProps, forwardRef } from "@chakra-ui/system/src"
+import { __DEV__ } from "@chakra-ui/utils/src"
 
 export type GridProps = PropsOf<typeof chakra.div> & GridOptions
 

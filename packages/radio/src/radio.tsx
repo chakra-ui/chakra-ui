@@ -4,8 +4,8 @@ import {
   PropsOf,
   SystemProps,
   ThemingProps,
-} from "@chakra-ui/system"
-import { cx, split, __DEV__ } from "@chakra-ui/utils"
+} from "@chakra-ui/system/src"
+import { cx, split, __DEV__ } from "@chakra-ui/utils/src"
 import * as React from "react"
 import { useRadioGroupContext } from "./radio-group"
 import { useRadio, UseRadioProps } from "./use-radio"

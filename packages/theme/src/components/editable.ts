@@ -1,5 +1,5 @@
-import { ComponentTheme } from "@chakra-ui/theme-tools"
-import { SystemProps } from "@chakra-ui/system"
+import { ComponentTheme } from "@chakra-ui/theme-tools/src"
+import { SystemProps } from "@chakra-ui/system/src"
 
 const base: SystemProps = {
   fontSize: "inherit",

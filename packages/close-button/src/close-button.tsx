@@ -1,6 +1,6 @@
-import { Icon, IconProps } from "@chakra-ui/icon"
-import { chakra, PropsOf } from "@chakra-ui/system"
-import { __DEV__ } from "@chakra-ui/utils"
+import { Icon, IconProps } from "@chakra-ui/icon/src"
+import { chakra, PropsOf } from "@chakra-ui/system/src"
+import { __DEV__ } from "@chakra-ui/utils/src"
 import * as React from "react"
 
 /**

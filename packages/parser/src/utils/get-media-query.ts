@@ -1,4 +1,4 @@
-import { isString, Dict, objectKeys } from "@chakra-ui/utils"
+import { isString, Dict, objectKeys } from "@chakra-ui/utils/src"
 
 /**
  * Converts a breakpoint unit to css media query string

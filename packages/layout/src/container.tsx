@@ -1,5 +1,5 @@
-import { chakra, PropsOf, useTheme } from "@chakra-ui/system"
-import { cx, Dict, get, mapResponsive, __DEV__ } from "@chakra-ui/utils"
+import { chakra, PropsOf, useTheme } from "@chakra-ui/system/src"
+import { cx, Dict, get, mapResponsive, __DEV__ } from "@chakra-ui/utils/src"
 import * as React from "react"
 
 export type ContainerProps = PropsOf<typeof chakra.div>

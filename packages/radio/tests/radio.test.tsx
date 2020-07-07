@@ -1,5 +1,5 @@
 import * as React from "react"
-import { render, fireEvent } from "@chakra-ui/test-utils"
+import { render, fireEvent } from "@chakra-ui/test-utils/src"
 import { Radio, useRadio, UseRadioProps } from "../src"
 
 test("Radio renders correctly", () => {

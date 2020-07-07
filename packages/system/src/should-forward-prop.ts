@@ -1,5 +1,5 @@
-import { propNames } from "@chakra-ui/parser"
-import { Dict, memoizeOne, omit } from "@chakra-ui/utils"
+import { propNames } from "@chakra-ui/parser/src"
+import { Dict, memoizeOne, omit } from "@chakra-ui/utils/src"
 import isValidAttribute from "@emotion/is-prop-valid"
 
 const stylePropNames = [

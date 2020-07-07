@@ -1,5 +1,5 @@
 import * as React from "react"
-import {__DEV__} from "@chakra-ui/utils";
+import { __DEV__ } from "@chakra-ui/utils/src"
 import { Transition, TransitionProps } from "./transition"
 
 type Placement = "left" | "right" | "bottom" | "top"
@@ -99,6 +99,6 @@ export function Slide(props: SlideProps) {
   )
 }
 
-if(__DEV__) {
+if (__DEV__) {
   Slide.displayName = "Slide"
 }

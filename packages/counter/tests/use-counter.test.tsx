@@ -1,4 +1,4 @@
-import { invoke, renderHook } from "@chakra-ui/test-utils"
+import { invoke, renderHook } from "@chakra-ui/test-utils/src"
 import { useCounter } from "../src"
 
 test("should increment", () => {

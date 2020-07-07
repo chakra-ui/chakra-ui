@@ -1,5 +1,5 @@
-import { chakra } from "@chakra-ui/system"
-import { __DEV__, cx } from "@chakra-ui/utils"
+import { chakra } from "@chakra-ui/system/src"
+import { __DEV__, cx } from "@chakra-ui/utils/src"
 
 /**
  * Layout component used to visually separate content in a list or group.

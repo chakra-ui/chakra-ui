@@ -1,4 +1,4 @@
-import { createIcon } from "@chakra-ui/icon"
+import { createIcon } from "@chakra-ui/icon/src"
 
 export const ArrowUpDownIcon = createIcon({
   viewBox: "0 0 16 16",

@@ -1,5 +1,5 @@
 import Input, { InputVariants, InputSizes, InputProps } from "./input"
-import { ComponentTheme } from "@chakra-ui/theme-tools"
+import { ComponentTheme } from "@chakra-ui/theme-tools/src"
 
 const Select: ComponentTheme<InputProps> = {
   ...Input,

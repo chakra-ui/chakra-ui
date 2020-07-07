@@ -1,4 +1,4 @@
-import { Dict, get, merge, runIfFn, objectKeys } from "@chakra-ui/utils"
+import { Dict, get, merge, runIfFn, objectKeys } from "@chakra-ui/utils/src"
 import { filterUndefined, isSubcomponent } from "./utils"
 import { ChakraOptions, ModifierStyleProps } from "./types"
 import { getComponentDefaults } from "./get-default-props"

@@ -1,7 +1,7 @@
 import * as React from "react"
-import { chakra, PropsOf } from "@chakra-ui/system"
-import { Icon, IconProps } from "@chakra-ui/icon"
-import { __DEV__ } from "@chakra-ui/utils"
+import { chakra, PropsOf } from "@chakra-ui/system/src"
+import { Icon, IconProps } from "@chakra-ui/icon/src"
+import { __DEV__ } from "@chakra-ui/utils/src"
 
 export type TagProps = PropsOf<typeof Tag>
 

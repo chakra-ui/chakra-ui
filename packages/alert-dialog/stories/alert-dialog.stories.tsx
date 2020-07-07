@@ -1,5 +1,5 @@
 import * as React from "react"
-import { PortalManager } from "@chakra-ui/portal"
+import { PortalManager } from "@chakra-ui/portal/src"
 import {
   AlertDialog,
   AlertDialogBody,
@@ -8,7 +8,7 @@ import {
   AlertDialogContent,
   AlertDialogOverlay,
 } from "../src"
-import { chakra } from "@chakra-ui/system"
+import { chakra } from "@chakra-ui/system/src"
 
 export default {
   title: "AlertDialog",

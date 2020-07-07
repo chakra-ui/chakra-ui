@@ -1,4 +1,4 @@
-import { chakra } from "@chakra-ui/system"
+import { chakra } from "@chakra-ui/system/src"
 import * as React from "react"
 import {
   useNumberInput,
@@ -8,7 +8,7 @@ import {
   NumberInputField,
   NumberInputStepper,
 } from "../src"
-import { Stack } from "@chakra-ui/layout"
+import { Stack } from "@chakra-ui/layout/src"
 
 export default {
   title: "NumberInput",

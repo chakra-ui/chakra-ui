@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Slide, SlideProps, Fade } from "@chakra-ui/transition"
+import { Slide, SlideProps, Fade } from "@chakra-ui/transition/src"
 import {
   Modal,
   ModalProps,
@@ -7,9 +7,9 @@ import {
   ModalContent,
   ModalOverlayProps,
   ModalOverlay,
-} from "@chakra-ui/modal"
-import { forwardRef } from "@chakra-ui/system"
-import { __DEV__ } from "@chakra-ui/utils"
+} from "@chakra-ui/modal/src"
+import { forwardRef } from "@chakra-ui/system/src"
+import { __DEV__ } from "@chakra-ui/utils/src"
 
 interface TransitionStyles {
   content: React.CSSProperties
@@ -120,4 +120,4 @@ export {
   ModalHeader as DrawerHeader,
   ModalFooter as DrawerFooter,
   ModalCloseButton as DrawerCloseButton,
-} from "@chakra-ui/modal"
+} from "@chakra-ui/modal/src"

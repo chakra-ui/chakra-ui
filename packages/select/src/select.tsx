@@ -1,12 +1,12 @@
-import { FormControlOptions, useFormControl } from "@chakra-ui/form-control"
+import { FormControlOptions, useFormControl } from "@chakra-ui/form-control/src"
 import {
   chakra,
   layoutPropNames,
   PropsOf,
   useComponentStyle,
   useCss,
-} from "@chakra-ui/system"
-import { cx, split, __DEV__ } from "@chakra-ui/utils"
+} from "@chakra-ui/system/src"
+import { cx, split, __DEV__ } from "@chakra-ui/utils/src"
 import * as React from "react"
 
 interface SelectOptions extends FormControlOptions {

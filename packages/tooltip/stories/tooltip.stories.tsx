@@ -1,9 +1,9 @@
-import { chakra } from "@chakra-ui/system"
+import { chakra } from "@chakra-ui/system/src"
 import * as React from "react"
 import { Tooltip, useTooltip } from "../src"
-import { Transition } from "@chakra-ui/transition"
-import { Portal } from "@chakra-ui/portal"
-import { Modal, ModalContent, ModalOverlay } from "@chakra-ui/modal"
+import { Transition } from "@chakra-ui/transition/src"
+import { Portal } from "@chakra-ui/portal/src"
+import { Modal, ModalContent, ModalOverlay } from "@chakra-ui/modal/src"
 
 export default {
   title: "Tooltip",

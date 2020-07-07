@@ -1,12 +1,12 @@
 import * as React from "react"
-import { useControllableProp } from "@chakra-ui/hooks"
+import { useControllableProp } from "@chakra-ui/hooks/src"
 import {
   isInputEvent,
   addItem,
   removeItem,
   StringOrNumber,
   Dict,
-} from "@chakra-ui/utils"
+} from "@chakra-ui/utils/src"
 
 type EventOrValue = React.ChangeEvent<HTMLInputElement> | StringOrNumber
 

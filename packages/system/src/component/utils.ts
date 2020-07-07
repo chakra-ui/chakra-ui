@@ -1,4 +1,4 @@
-import { Dict, isEmptyObject } from "@chakra-ui/utils"
+import { Dict, isEmptyObject } from "@chakra-ui/utils/src"
 /**
  * Check if a theme key refers to a components
  * or sub-component

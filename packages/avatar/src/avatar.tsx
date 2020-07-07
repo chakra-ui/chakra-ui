@@ -1,6 +1,6 @@
-import { useImage } from "@chakra-ui/image"
-import { chakra, PropsOf, SystemProps } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
+import { useImage } from "@chakra-ui/image/src"
+import { chakra, PropsOf, SystemProps } from "@chakra-ui/system/src"
+import { cx, __DEV__ } from "@chakra-ui/utils/src"
 import * as React from "react"
 
 interface AvatarOptions {

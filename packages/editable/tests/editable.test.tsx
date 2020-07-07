@@ -1,5 +1,5 @@
 import * as React from "react"
-import { render, userEvent, fireEvent } from "@chakra-ui/test-utils"
+import { render, userEvent, fireEvent } from "@chakra-ui/test-utils/src"
 import { Editable, EditableInput, EditablePreview } from "../src"
 
 test("should match snapshot", () => {

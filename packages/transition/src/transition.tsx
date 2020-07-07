@@ -1,4 +1,4 @@
-import { __DEV__ } from "@chakra-ui/utils"
+import { __DEV__ } from "@chakra-ui/utils/src"
 import * as React from "react"
 import CSSTransition from "react-transition-group/Transition"
 import type {

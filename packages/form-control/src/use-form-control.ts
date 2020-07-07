@@ -1,5 +1,5 @@
 import { FormControlOptions, useFormControlContext } from "./form-control"
-import { ariaAttr, dataAttr, callAllHandlers, Dict } from "@chakra-ui/utils"
+import { ariaAttr, dataAttr, callAllHandlers, Dict } from "@chakra-ui/utils/src"
 
 export type UseFormControlProps<T extends HTMLElement> = FormControlOptions & {
   id?: string

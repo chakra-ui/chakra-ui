@@ -1,7 +1,7 @@
 import * as React from "react"
 import { getProgressProps, rotate, spin } from "./progress.utils"
-import { chakra, PropsOf } from "@chakra-ui/system"
-import { isUndefined, __DEV__, StringOrNumber } from "@chakra-ui/utils"
+import { chakra, PropsOf } from "@chakra-ui/system/src"
+import { isUndefined, __DEV__, StringOrNumber } from "@chakra-ui/utils/src"
 
 type CircleProps = PropsOf<typeof chakra.circle>
 

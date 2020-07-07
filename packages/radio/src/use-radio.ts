@@ -1,12 +1,12 @@
-import { useBoolean, useControllableProp } from "@chakra-ui/hooks"
+import { useBoolean, useControllableProp } from "@chakra-ui/hooks/src"
 import {
   dataAttr,
   ariaAttr,
   callAllHandlers,
   Dict,
   mergeRefs,
-} from "@chakra-ui/utils"
-import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
+} from "@chakra-ui/utils/src"
+import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden/src"
 import * as React from "react"
 
 /**

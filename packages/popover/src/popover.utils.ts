@@ -1,5 +1,5 @@
-import { useUpdateEffect, useEventListener } from "@chakra-ui/hooks"
-import { focus, getFirstTabbableIn, isFocusable } from "@chakra-ui/utils"
+import { useUpdateEffect, useEventListener } from "@chakra-ui/hooks/src"
+import { focus, getFirstTabbableIn, isFocusable } from "@chakra-ui/utils/src"
 import * as React from "react"
 
 /**

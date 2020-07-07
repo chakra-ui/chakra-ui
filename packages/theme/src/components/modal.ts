@@ -1,4 +1,4 @@
-import { ComponentTheme, mode } from "@chakra-ui/theme-tools"
+import { ComponentTheme, mode } from "@chakra-ui/theme-tools/src"
 
 /**
  * Since the `maxWidth` prop references theme.sizes internally,

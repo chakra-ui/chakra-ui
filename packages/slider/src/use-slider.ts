@@ -6,7 +6,7 @@ import {
   useEventListener,
   useIds,
   useUpdateEffect,
-} from "@chakra-ui/hooks"
+} from "@chakra-ui/hooks/src"
 import {
   ariaAttr,
   callAllHandlers,
@@ -22,7 +22,7 @@ import {
   percentToValue,
   roundValueToStep,
   valueToPercent,
-} from "@chakra-ui/utils"
+} from "@chakra-ui/utils/src"
 import * as React from "react"
 
 export interface UseSliderProps {

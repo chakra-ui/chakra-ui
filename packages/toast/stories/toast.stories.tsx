@@ -1,7 +1,7 @@
 import * as React from "react"
 import useToast from "../src"
-import { Button } from "@chakra-ui/button"
-import { chakra } from "@chakra-ui/system"
+import { Button } from "@chakra-ui/button/src"
+import { chakra } from "@chakra-ui/system/src"
 
 export default {
   title: "Toast",

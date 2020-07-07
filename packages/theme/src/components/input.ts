@@ -4,7 +4,7 @@ import {
   Props,
   getColor,
   StyleObject,
-} from "@chakra-ui/theme-tools"
+} from "@chakra-ui/theme-tools/src"
 
 export interface InputProps {
   focusBorderColor?: string

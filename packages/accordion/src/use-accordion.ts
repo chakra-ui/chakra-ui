@@ -1,5 +1,9 @@
-import { useDescendant, useDescendants } from "@chakra-ui/descendant"
-import { useControllableState, useFocusEffect, useIds } from "@chakra-ui/hooks"
+import { useDescendant, useDescendants } from "@chakra-ui/descendant/src"
+import {
+  useControllableState,
+  useFocusEffect,
+  useIds,
+} from "@chakra-ui/hooks/src"
 import {
   addItem,
   callAllHandlers,
@@ -13,7 +17,7 @@ import {
   removeItem,
   __DEV__,
   createContext,
-} from "@chakra-ui/utils"
+} from "@chakra-ui/utils/src"
 import * as React from "react"
 import * as warn from "./accordion.warning"
 

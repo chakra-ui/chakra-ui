@@ -1,7 +1,7 @@
-import { chakra, PropsOf, SystemProps } from "@chakra-ui/system"
+import { chakra, PropsOf, SystemProps } from "@chakra-ui/system/src"
 import * as React from "react"
 import { UseImageProps, useImage } from "./use-image"
-import { __DEV__, omit } from "@chakra-ui/utils"
+import { __DEV__, omit } from "@chakra-ui/utils/src"
 
 interface ImageOptions {
   /**

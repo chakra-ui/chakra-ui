@@ -1,5 +1,5 @@
-import { ColorModeProvider } from "@chakra-ui/color-mode"
-import { createContext, merge, Dict } from "@chakra-ui/utils"
+import { ColorModeProvider } from "@chakra-ui/color-mode/src"
+import { createContext, merge, Dict } from "@chakra-ui/utils/src"
 import { ThemeContext } from "@emotion/core"
 import * as React from "react"
 import { ThemingProps } from "./system.types"

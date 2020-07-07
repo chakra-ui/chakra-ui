@@ -1,5 +1,5 @@
 import * as React from "react"
-import { mergeRefs, dataAttr } from "@chakra-ui/utils"
+import { mergeRefs, dataAttr } from "@chakra-ui/utils/src"
 
 interface DOMAttrs {
   onMouseDown?: React.MouseEventHandler

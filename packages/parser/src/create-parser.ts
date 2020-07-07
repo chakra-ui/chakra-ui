@@ -1,4 +1,4 @@
-import { Dict, isArray, runIfFn, get, warn } from "@chakra-ui/utils"
+import { Dict, isArray, runIfFn, get, warn } from "@chakra-ui/utils/src"
 import { createProcessor } from "./create-processor"
 import { SystemProps } from "./parser.types"
 import { Config, transformConfig } from "./utils"

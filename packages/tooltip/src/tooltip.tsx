@@ -1,7 +1,7 @@
-import { Portal } from "@chakra-ui/portal"
-import { chakra, PropsOf } from "@chakra-ui/system"
-import { isString, omit, pick, __DEV__ } from "@chakra-ui/utils"
-import { VisuallyHidden } from "@chakra-ui/visually-hidden"
+import { Portal } from "@chakra-ui/portal/src"
+import { chakra, PropsOf } from "@chakra-ui/system/src"
+import { isString, omit, pick, __DEV__ } from "@chakra-ui/utils/src"
+import { VisuallyHidden } from "@chakra-ui/visually-hidden/src"
 import * as React from "react"
 import { useTooltip, UseTooltipProps } from "./use-tooltip"
 

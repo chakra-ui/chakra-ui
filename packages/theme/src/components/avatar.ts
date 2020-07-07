@@ -5,8 +5,8 @@ import {
   ComponentTheme,
   mode,
   Props,
-} from "@chakra-ui/theme-tools"
-import { SystemProps } from "@chakra-ui/system"
+} from "@chakra-ui/theme-tools/src"
+import { SystemProps } from "@chakra-ui/system/src"
 
 function getSize(size: string) {
   const themeSize = sizes[size as keyof typeof sizes]

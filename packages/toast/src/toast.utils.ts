@@ -1,5 +1,5 @@
 import { ToastPosition, ToastOptions, ToastState, ToastId } from "./toast.types"
-import { objectKeys } from "@chakra-ui/utils"
+import { objectKeys } from "@chakra-ui/utils/src"
 
 /**
  * Given an array of toasts for a specific position.

@@ -1,4 +1,4 @@
-import { Dict, get, objectKeys } from "@chakra-ui/utils"
+import { Dict, get, objectKeys } from "@chakra-ui/utils/src"
 import * as CSS from "csstype"
 
 type Scale = Dict<string | number> | Array<string | number>

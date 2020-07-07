@@ -1,5 +1,5 @@
 import * as React from "react"
-import { isBrowser, FunctionArguments } from "@chakra-ui/utils"
+import { isBrowser, FunctionArguments } from "@chakra-ui/utils/src"
 import { useLatestRef } from "./use-latest-ref"
 
 type AddEventListener = FunctionArguments<typeof document.addEventListener>

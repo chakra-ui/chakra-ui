@@ -1,7 +1,7 @@
-import { chakra } from "@chakra-ui/system"
+import { chakra } from "@chakra-ui/system/src"
 import * as React from "react"
 import { useDescendant, useDescendants, DescendantContext } from "../src"
-import { createContext } from "@chakra-ui/utils"
+import { createContext } from "@chakra-ui/utils/src"
 
 export default {
   title: "Descendants",

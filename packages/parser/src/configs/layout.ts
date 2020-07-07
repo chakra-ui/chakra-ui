@@ -1,4 +1,4 @@
-import { get, isNumber } from "@chakra-ui/utils"
+import { get, isNumber } from "@chakra-ui/utils/src"
 import * as CSS from "csstype"
 import { createParser } from "../create-parser"
 import { Config, Length, ResponsiveValue } from "../utils"

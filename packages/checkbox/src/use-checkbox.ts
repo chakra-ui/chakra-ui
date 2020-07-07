@@ -2,9 +2,14 @@ import {
   useBoolean,
   useControllableProp,
   useSafeLayoutEffect,
-} from "@chakra-ui/hooks"
-import { callAllHandlers, dataAttr, mergeRefs, Dict } from "@chakra-ui/utils"
-import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
+} from "@chakra-ui/hooks/src"
+import {
+  callAllHandlers,
+  dataAttr,
+  mergeRefs,
+  Dict,
+} from "@chakra-ui/utils/src"
+import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden/src"
 import * as React from "react"
 
 export interface UseCheckboxProps {

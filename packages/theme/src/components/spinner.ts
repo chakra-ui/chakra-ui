@@ -1,4 +1,4 @@
-import { ComponentTheme } from "@chakra-ui/theme-tools"
+import { ComponentTheme } from "@chakra-ui/theme-tools/src"
 
 const Spinner: ComponentTheme = {
   defaultProps: {

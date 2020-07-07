@@ -1,11 +1,11 @@
-import { generateStripe } from "@chakra-ui/theme-tools"
+import { generateStripe } from "@chakra-ui/theme-tools/src"
 import {
   chakra,
   PropsOf,
   useColorModeValue,
   useThemeDefaultProps,
-} from "@chakra-ui/system"
-import { isUndefined, __DEV__ } from "@chakra-ui/utils"
+} from "@chakra-ui/system/src"
+import { isUndefined, __DEV__ } from "@chakra-ui/utils/src"
 import * as React from "react"
 import {
   getProgressProps,

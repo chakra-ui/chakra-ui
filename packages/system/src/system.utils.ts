@@ -1,5 +1,5 @@
-import { css, CSSObject } from "@chakra-ui/css"
-import { pseudoSelectors } from "@chakra-ui/parser"
+import { css, CSSObject } from "@chakra-ui/css/src"
+import { pseudoSelectors } from "@chakra-ui/parser/src"
 import {
   Dict,
   get,
@@ -8,7 +8,7 @@ import {
   runIfFn,
   UnionStringArray,
   __DEV__,
-} from "@chakra-ui/utils"
+} from "@chakra-ui/utils/src"
 import * as React from "react"
 import { getComponentStyles } from "./component"
 import { As, ForwardRefComponent, Options } from "./system.types"

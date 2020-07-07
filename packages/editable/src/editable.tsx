@@ -1,11 +1,11 @@
-import { chakra, PropsOf, forwardRef } from "@chakra-ui/system"
+import { chakra, PropsOf, forwardRef } from "@chakra-ui/system/src"
 import {
   createContext,
   cx,
   isFunction,
   ReactNodeOrRenderProp,
   __DEV__,
-} from "@chakra-ui/utils"
+} from "@chakra-ui/utils/src"
 import * as React from "react"
 import {
   useEditable,

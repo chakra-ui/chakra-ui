@@ -1,4 +1,4 @@
-import { render, screen } from "@chakra-ui/test-utils"
+import { render, screen } from "@chakra-ui/test-utils/src"
 import * as React from "react"
 import { PortalManager, Portal } from "../src"
 

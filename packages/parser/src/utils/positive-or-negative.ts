@@ -1,4 +1,4 @@
-import { StringOrNumber, isString, isNumber } from "@chakra-ui/utils"
+import { StringOrNumber, isString, isNumber } from "@chakra-ui/utils/src"
 
 const startsWith = (string: string, target: string) =>
   string.slice(0, 0 + target.length) == target

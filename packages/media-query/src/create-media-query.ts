@@ -1,4 +1,4 @@
-import { objectKeys, Dict, isNumber } from "@chakra-ui/utils"
+import { objectKeys, Dict, isNumber } from "@chakra-ui/utils/src"
 import calculateMeasurement from "calculate-measurement"
 
 /**

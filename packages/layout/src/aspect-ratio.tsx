@@ -1,6 +1,6 @@
-import { cx, __DEV__, mapResponsive } from "@chakra-ui/utils"
+import { cx, __DEV__, mapResponsive } from "@chakra-ui/utils/src"
 import * as React from "react"
-import { chakra, PropsOf, ResponsiveValue } from "@chakra-ui/system"
+import { chakra, PropsOf, ResponsiveValue } from "@chakra-ui/system/src"
 
 interface AspectRatioOptions {
   /**

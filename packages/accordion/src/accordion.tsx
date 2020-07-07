@@ -1,6 +1,6 @@
-import { Collapse } from "@chakra-ui/collapse"
-import { Icon, IconProps } from "@chakra-ui/icon"
-import { chakra, PropsOf, forwardRef } from "@chakra-ui/system"
+import { Collapse } from "@chakra-ui/collapse/src"
+import { Icon, IconProps } from "@chakra-ui/icon/src"
+import { chakra, PropsOf, forwardRef } from "@chakra-ui/system/src"
 import {
   createContext,
   isFunction,
@@ -8,7 +8,7 @@ import {
   Omit,
   __DEV__,
   cx,
-} from "@chakra-ui/utils"
+} from "@chakra-ui/utils/src"
 import * as React from "react"
 import {
   UseAccordionProps,

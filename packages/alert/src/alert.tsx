@@ -1,6 +1,6 @@
 import { CheckIcon, InfoIcon, WarningIcon } from "./alert-icons"
-import { chakra, PropsOf, useThemeDefaultProps } from "@chakra-ui/system"
-import { createContext, cx } from "@chakra-ui/utils"
+import { chakra, PropsOf, useThemeDefaultProps } from "@chakra-ui/system/src"
+import { createContext, cx } from "@chakra-ui/utils/src"
 import * as React from "react"
 
 export const ALERT_STATUSES = {

@@ -4,8 +4,8 @@ import {
   ThemingProps,
   useThemeDefaultProps,
   useComponentStyle,
-} from "@chakra-ui/system"
-import { cx, __DEV__, getValidChildren } from "@chakra-ui/utils"
+} from "@chakra-ui/system/src"
+import { cx, __DEV__, getValidChildren } from "@chakra-ui/utils/src"
 import * as React from "react"
 
 export type InputGroupProps = PropsOf<typeof chakra.div> & ThemingProps

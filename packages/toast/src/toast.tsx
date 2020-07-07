@@ -1,6 +1,6 @@
-import { useTimeout } from "@chakra-ui/hooks"
-import { Transition } from "@chakra-ui/transition"
-import { isFunction, __DEV__ } from "@chakra-ui/utils"
+import { useTimeout } from "@chakra-ui/hooks/src"
+import { Transition } from "@chakra-ui/transition/src"
+import { isFunction, __DEV__ } from "@chakra-ui/utils/src"
 import ReachAlert from "@reach/alert"
 import { useRect } from "@reach/rect"
 import * as React from "react"
@@ -127,6 +127,6 @@ export function Toast(props: ToastProps) {
   )
 }
 
-if(__DEV__) {
+if (__DEV__) {
   Toast.displayName = "Toast"
 }

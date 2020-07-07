@@ -6,7 +6,7 @@ import {
   Dict,
   merge,
   getWithDefault,
-} from "@chakra-ui/utils"
+} from "@chakra-ui/utils/src"
 import {
   sort,
   assignArray,
