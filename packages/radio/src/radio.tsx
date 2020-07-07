@@ -94,7 +94,7 @@ export const Radio = React.forwardRef(function Radio(
           alignItems: "center",
           justifyContent: "center",
           flexShrink: 0,
-          ...styles.Control,
+          ...styles.control,
         }}
       />
       {children && (
@@ -104,7 +104,7 @@ export const Radio = React.forwardRef(function Radio(
           __css={{
             userSelect: "none",
             ml: spacing,
-            ...styles.Label,
+            ...styles.label,
           }}
           children={children}
         />
