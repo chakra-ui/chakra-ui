@@ -4052,6 +4052,13 @@
     rfdc "^1.1.4"
     store2 "^2.7.1"
 
+"@styled-system/core@5.1.2":
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/@styled-system/core/-/core-5.1.2.tgz#b8b7b86455d5a0514f071c4fa8e434b987f6a772"
+  integrity sha512-XclBDdNIy7OPOsN4HBsawG2eiWfCcuFt6gxKn1x4QfMIgeO6TOlA2pZZ5GWZtIhCUqEPTgIBta6JXsGyCkLBYw==
+  dependencies:
+    object-assign "^4.1.1"
+
 "@svgr/babel-plugin-add-jsx-attribute@^4.2.0":
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/@svgr/babel-plugin-add-jsx-attribute/-/babel-plugin-add-jsx-attribute-4.2.0.tgz#dadcb6218503532d6884b210e7f3c502caaa44b1"
@@ -4768,6 +4775,11 @@
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-1.0.1.tgz#0a851d3bd96498fa25c33ab7278ed3bd65f06c3e"
   integrity sha512-l42BggppR6zLmpfU6fq9HEa2oGPEI8yrSPL3GITjfRInppYFahObbIQOQK3UGxEnyQpltZLaPe75046NOZQikw==
+
+"@types/styled-system__core@npm:@peduarte/styled-system__core":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@peduarte/styled-system__core/-/styled-system__core-0.0.1.tgz#de78b6aa193c39d9029d3ed036bd481ad6a5b925"
+  integrity sha512-s3CtmKoSZCyOZfe03ftUrOqVhFTryWuQhs0koYOvyoNnsMtV+NDvMSFf/SHxl9uvy/jp20qkkFlIVu0x9WJOFA==
 
 "@types/tapable@*", "@types/tapable@^1.0.5":
   version "1.0.6"

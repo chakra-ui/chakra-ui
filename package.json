@@ -97,7 +97,8 @@
     "skeleton": "yarn workspace @chakra-ui/skeleton",
     "skip-nav": "yarn workspace @chakra-ui/skip-nav",
     "babel-plugin": "yarn workspace babel-plugin-chakra-ui",
-    "theme-tools": "yarn workspace @chakra-ui/theme-tools"
+    "theme-tools": "yarn workspace @chakra-ui/theme-tools",
+    "styled-system": "yarn workspace @chakra-ui/styled-system"
   },
   "czConfig": {
     "path": "node_modules/cz-conventional-changelog"
