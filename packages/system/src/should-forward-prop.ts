@@ -1,4 +1,4 @@
-import { propNames } from "@chakra-ui/parser"
+import { propNames } from "@chakra-ui/styled-system"
 import { memoizeOne } from "@chakra-ui/utils"
 import isValid from "@emotion/is-prop-valid"
 

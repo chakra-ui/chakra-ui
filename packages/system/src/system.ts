@@ -1,4 +1,4 @@
-import { parser as systemProps } from "@chakra-ui/parser"
+import { systemProps, css } from "@chakra-ui/styled-system"
 import createStyled from "@emotion/styled"
 import { As, ChakraComponent } from "./system.types"
 import {
@@ -9,7 +9,6 @@ import {
   DOMElements,
   cast,
 } from "./system.utils"
-import css from "@chakra-ui/css"
 import { shouldForwardProp } from "./should-forward-prop"
 
 interface Options {
@@ -25,7 +24,7 @@ const base = cast((baseStyle: any) => (props: any) =>
   css(baseStyle)(props.theme),
 )
 
-function styled<T extends As, P = {}>(component: T, options?: Options) {
+export function styled<T extends As, P = {}>(component: T, options?: Options) {
   const { baseStyle, ...styledOptions } = options || {}
   return createStyled(component as any, {
     ...styledOptions,

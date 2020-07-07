@@ -1,5 +1,5 @@
 import { useColorMode } from "@chakra-ui/color-mode"
-import { css, StyleObjectOrFn } from "@chakra-ui/css"
+import { css, StyleObjectOrFn } from "@chakra-ui/styled-system"
 import { Dict, get, StringOrNumber } from "@chakra-ui/utils"
 import { useTheme } from "./providers"
 

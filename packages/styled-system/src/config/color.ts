@@ -1,5 +1,5 @@
 import * as CSS from "csstype"
-import { createParser, Config } from "@styled-system/core"
+import { createParser, Config, system } from "@styled-system/core"
 import { ResponsiveValue } from "../utils"
 
 /**
@@ -48,4 +48,5 @@ export interface ColorProps {
   opacity?: ResponsiveValue<CSS.GlobalsNumber>
 }
 
-export const color = createParser(config)
+export const color = system(config)
+export const colorParser = createParser(config)

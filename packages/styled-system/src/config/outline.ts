@@ -1,5 +1,5 @@
 import * as CSS from "csstype"
-import { createParser, Config } from "@styled-system/core"
+import { createParser, Config, system } from "@styled-system/core"
 import { Length, ResponsiveValue } from "../utils"
 
 /**
@@ -29,4 +29,5 @@ export interface OutlineProps {
   outlineColor?: ResponsiveValue<CSS.OutlineColorProperty>
 }
 
-export const outline = createParser(config)
+export const outline = system(config)
+export const outlineParser = createParser(config)

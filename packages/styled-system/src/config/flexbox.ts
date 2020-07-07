@@ -1,5 +1,5 @@
 import * as CSS from "csstype"
-import { createParser, Config } from "@styled-system/core"
+import { createParser, Config, system } from "@styled-system/core"
 import { ResponsiveValue, Length } from "../utils"
 
 const config: Config = {
@@ -86,4 +86,5 @@ export interface FlexboxProps {
   flexShrink?: ResponsiveValue<CSS.GlobalsNumber>
 }
 
-export const flexbox = createParser(config)
+export const flexbox = system(config)
+export const flexboxParser = createParser(config)

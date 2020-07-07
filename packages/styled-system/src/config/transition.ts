@@ -1,4 +1,4 @@
-import { Config, createParser } from "@styled-system/core"
+import { Config, createParser, system } from "@styled-system/core"
 import * as CSS from "csstype"
 import { ResponsiveValue } from "../utils"
 
@@ -30,4 +30,5 @@ export interface TransitionProps {
   transitionDuration?: ResponsiveValue<string>
 }
 
-export const transition = createParser(config)
+export const transition = system(config)
+export const transitionParser = createParser(config)

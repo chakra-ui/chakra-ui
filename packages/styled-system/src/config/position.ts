@@ -1,6 +1,6 @@
 import * as CSS from "csstype"
 import { positiveOrNegative, ResponsiveValue, Length } from "../utils"
-import { createParser, Config } from "@styled-system/core"
+import { createParser, Config, system } from "@styled-system/core"
 
 const config: Config = {
   position: true,
@@ -94,4 +94,5 @@ export interface PositionProps {
   position?: ResponsiveValue<CSS.PositionProperty>
 }
 
-export const position = createParser(config)
+export const position = system(config)
+export const positionParser = createParser(config)

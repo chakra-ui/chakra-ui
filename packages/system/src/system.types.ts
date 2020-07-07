@@ -1,8 +1,7 @@
 import { ColorMode } from "@chakra-ui/color-mode"
-import { SystemProps } from "@chakra-ui/parser"
+import { SystemProps, SystemStyleObject } from "@chakra-ui/styled-system"
 import { Dict } from "@chakra-ui/utils"
 import * as React from "react"
-import { SystemStyleObject } from "@chakra-ui/css"
 
 export interface UseStyleConfigOptions<P = {}> {
   parts?: string[]

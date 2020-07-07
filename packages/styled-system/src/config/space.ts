@@ -1,8 +1,8 @@
 import * as CSS from "csstype"
-import { createParser, Config } from "@styled-system/core"
+import { createParser, Config, system } from "@styled-system/core"
 import { positiveOrNegative, ResponsiveValue, Length } from "../utils"
 
-const configs: Config = {
+const config: Config = {
   margin: {
     property: "margin",
     transform: positiveOrNegative,
@@ -258,4 +258,5 @@ export interface SpaceProps {
  * - String values are passed as raw CSS values.
  * - Array values are converted into responsive values.
  */
-export const space = createParser(configs)
+export const space = system(config)
+export const spaceParser = createParser(config)

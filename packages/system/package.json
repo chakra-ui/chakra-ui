@@ -50,8 +50,7 @@
   },
   "dependencies": {
     "@chakra-ui/color-mode": "^1.0.0-next.4",
-    "@chakra-ui/css": "^1.0.0-next.4",
-    "@chakra-ui/parser": "^1.0.0-next.4",
+    "@chakra-ui/styled-system": "^1.0.0-next.4",
     "@chakra-ui/utils": "^1.0.0-next.4",
     "@emotion/core": "10.0.28",
     "@emotion/styled": "10.0.27",

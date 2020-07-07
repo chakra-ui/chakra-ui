@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Dict, get, runIfFn, merge, filterUndefined } from "@chakra-ui/utils"
 import { useChakra } from "./hooks"
-import { SystemStyleObject } from "@chakra-ui/css"
+import { SystemStyleObject } from "@chakra-ui/styled-system"
 
 export function useStyleConfig(themeKey: string, props: Dict) {
   const { styleConfig: styleConfigProp, ...rest } = props

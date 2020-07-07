@@ -1,3 +1,3 @@
 module.exports = {
-  stories: ["../packages/popover/**/*.stories.tsx"],
+  stories: ["../packages/system/**/*.stories.tsx"],
 }

@@ -1489,6 +1489,23 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
+"@chakra-ui/css@^1.0.0-next.4":
+  version "1.0.0-next.4"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/css/-/css-1.0.0-next.4.tgz#602d2d8c353db352372dce40297333c948f4ac90"
+  integrity sha512-7yJzVetLWG502/8uGZQQdwm8Aay/JIrbXxXREwLGbIokwIyP0OHR9wWZNffYC2gOOH/zgUsMnZ3e5n2WbviU3A==
+  dependencies:
+    "@chakra-ui/parser" "^1.0.0-next.4"
+    "@chakra-ui/utils" "^1.0.0-next.4"
+    csstype "2.6.10"
+
+"@chakra-ui/parser@^1.0.0-next.4":
+  version "1.0.0-next.4"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/parser/-/parser-1.0.0-next.4.tgz#c7be078c478d068af1feb8d963ffbf279b5a71af"
+  integrity sha512-KvpruDU2GbwICw56fqCuuYds3AH5xn4eMZeaxINXSxWYy456QDFWOi64j2la/INE+nBHkJlsrvdW1xLmAXXQBg==
+  dependencies:
+    "@chakra-ui/utils" "^1.0.0-next.4"
+    csstype "2.6.9"
+
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@cnakazawa/watch/-/watch-1.0.4.tgz#f864ae85004d0fcab6f50be9141c4da368d1656a"

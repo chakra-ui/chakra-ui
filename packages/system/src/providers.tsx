@@ -1,5 +1,9 @@
 import { ColorModeProvider, useColorMode } from "@chakra-ui/color-mode"
-import css, { SystemStyleObject } from "@chakra-ui/css"
+import {
+  css,
+  SystemStyleObject,
+  normalizeBreakpoints,
+} from "@chakra-ui/styled-system"
 import { createContext, Dict, get, merge, runIfFn } from "@chakra-ui/utils"
 import { Global, Interpolation, ThemeContext } from "@emotion/core"
 import * as React from "react"
@@ -42,6 +46,8 @@ export function ChakraProvider(props: ChakraProviderProps) {
   if (!theme) {
     throw Error("ChakraProvider: the `theme` prop is required")
   }
+
+  theme.breakpoints = normalizeBreakpoints(theme.breakpoints)
 
   return (
     <ThemeProvider theme={theme}>

@@ -1,5 +1,4 @@
-import { css } from "@chakra-ui/css"
-import { pseudoSelectors } from "@chakra-ui/parser"
+import { css, pseudoSelectors } from "@chakra-ui/styled-system"
 import {
   get,
   isNumber,

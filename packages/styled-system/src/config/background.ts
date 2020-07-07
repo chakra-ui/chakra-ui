@@ -1,5 +1,5 @@
 import * as CSS from "csstype"
-import { createParser, Config } from "@styled-system/core"
+import { createParser, Config, system } from "@styled-system/core"
 import { ResponsiveValue, Length } from "../utils"
 
 const config: Config = {
@@ -126,4 +126,5 @@ export interface BackgroundProps {
   bgPosition?: ResponsiveValue<CSS.BackgroundPositionProperty<Length>>
 }
 
-export const background = createParser(config)
+export const background = system(config)
+export const backgroundParser = createParser(config)

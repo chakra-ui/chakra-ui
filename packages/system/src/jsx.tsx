@@ -1,6 +1,6 @@
 import { Dict, runIfFn } from "@chakra-ui/utils"
 import { jsx as emotion } from "@emotion/core"
-import { SystemStyleObject, css } from "@chakra-ui/css"
+import { SystemStyleObject, css } from "@chakra-ui/styled-system"
 
 interface GetCSS {
   sx?: any

@@ -1,5 +1,5 @@
 import * as CSS from "csstype"
-import { createParser, Config } from "@styled-system/core"
+import { createParser, Config, system } from "@styled-system/core"
 import { Length, ResponsiveValue } from "../utils"
 
 const config: Config = {
@@ -85,4 +85,5 @@ export interface GridProps {
   placeItems?: ResponsiveValue<CSS.PlaceItemsProperty>
 }
 
-export const grid = createParser(config)
+export const grid = system(config)
+export const gridParser = createParser(config)

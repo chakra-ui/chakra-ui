@@ -1,5 +1,5 @@
 import * as CSS from "csstype"
-import { createParser, Config } from "@styled-system/core"
+import { createParser, Config, system } from "@styled-system/core"
 import { Length, ResponsiveValue } from "../utils"
 
 const config: Config = {
@@ -63,4 +63,5 @@ export interface OtherProps {
   willChange?: ResponsiveValue<CSS.WillChangeProperty>
 }
 
-export const others = createParser(config)
+export const others = system(config)
+export const othersParser = createParser(config)

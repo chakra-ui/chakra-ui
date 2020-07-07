@@ -9,7 +9,7 @@ import {
   merge,
 } from "@chakra-ui/utils"
 import { pseudoSelectors } from "./pseudo"
-import { systemProps } from "./system"
+import { parser } from "./parser"
 import { normalizeBreakpoints } from "./utils"
 import { StyleObjectOrFn, CSSObject } from "./css.types"
 
@@ -74,7 +74,7 @@ export const css = (args: StyleObjectOrFn = {}) => (
 
     const val = runIfFn(x, theme)
 
-    const config = (systemProps.config as Dict)[key]
+    const config = (parser.config as Dict)[key]
 
     if (key === "apply") {
       const apply = css(get(theme, val))(theme)

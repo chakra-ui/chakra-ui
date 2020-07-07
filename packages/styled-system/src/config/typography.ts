@@ -1,5 +1,5 @@
 import * as CSS from "csstype"
-import { Config, createParser } from "@styled-system/core"
+import { Config, createParser, system } from "@styled-system/core"
 import { ResponsiveValue, Length } from "../utils"
 
 const config: Config = {
@@ -96,4 +96,5 @@ export interface TypographyProps {
   textDecor?: ResponsiveValue<CSS.TextDecorationProperty<Length>>
 }
 
-export const typography = createParser(config)
+export const typography = system(config)
+export const typographyParser = createParser(config)
