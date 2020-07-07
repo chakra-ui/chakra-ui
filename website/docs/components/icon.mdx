@@ -11,11 +11,12 @@ import { Grid, Flex, useTheme, Icon, Text } from "@chakra-ui/core"
 
 # Icon
 
-The icon component renders `svg` icons. Chakra UI provides basic interface
-icons. To add custom icons, [read the guide](#adding-custom-icons).
+By default, Chakra UI comes with a [set of basic interface icons](#all-icons).
+`Icon` component renders `svg` element and can be styled using `themeKey:`
+`"Icon"`. To add any custom icons, [follow this guide](#adding-custom-icons).
 
-> Avoid passing `onClick` handlers to the `Icon` component. If you need a
-> clickable icon, use [IconButton](/components/icon-button) instead.
+> 🚨 Avoid passing `onClick` handlers to the `Icon` component. Need a clickable
+> icon, use [IconButton](/components/icon-button) instead.
 
 <ComponentLinks
   github={{ url: "#" }}
@@ -33,35 +34,67 @@ import { Icon } from "@chakra-ui/core"
 
 ## Usage
 
-Use an icon by passing the `name` prop. This name must match an icon key in
-`theme.icons`. By default, the icon inherits the `fontSize` and `color` of its
-parent.
+Use an icon by directly importing it with its respective name as mentioned in
+[next section](#all-icons). By default, Icon component inherits `fontSize` and
+`color` of its parent.
 
 ```jsx
-<Stack direction="row">
+<HStack>
   {/* Default size is 1em => 16px */}
   <PhoneIcon />
 
-  {/* Use the `size` prop to change the icon size */}
-  <CheckCircleIcon size="24px" />
+  {/* Use the `boxSize` prop to change the icon size */}
+  <CheckCircleIcon boxSize="24px" />
 
   {/* Use the `color` prop to change the icon color */}
   <WarningIcon boxSize="32px" color="red.500" />
-</Stack>
+</HStack>
 ```
 
 ### All Icons
 
-Here's a list of the default icons Chakra UI comes with and their respective
-`name`. You can add your own icons as well;
-[see the guide](#adding-custom-icons).
+Here's the list of default icons that comes with Chakra UI with their respective
+`name`,
 
 <IconsList />
 
-## Using an icon library
+## Using an Icon library
 
-You might need to use icons from a popular icon library like
-[react-icons](https://react-icons.netlify.com/). Here's how to go about it:
+Using icons from a popular icon library like
+[react-icons](https://react-icons.github.io/react-icons/) just renders the
+`svg`,
+
+```jsx live=false
+import { MdSettings } from "react-icons/md"
+
+<MdSettings />
+
+<MdSettings fontSize="24px" color="teal" />
+```
+
+**Problem:**
+
+- Does not provide the logic to custom style them using `style props` with
+  `theme` value or `themeKey`.
+
+- Doesn't allow to use `ref`, since it doesn't get forwarded automatically. This
+  may report a React error in the console about passing ref to a function
+  component.
+
+```jsx
+<HStack>
+  {/* Works when passing general style props with CSS values  */}
+  <MdSettings size="24px" color="teal" />
+
+  {/* Fails when passing style props with theme key */}
+  <MdSettings boxSize="32px" color="teal.500" />
+</HStack>
+```
+
+**Solution:**
+
+Instead pass them to `Icon` component using `as` prop to utilize theming with
+proper ref forwarding and much more.
 
 ```jsx live=false
 // 1. import the icon from "react-icons"
@@ -70,51 +103,90 @@ import { MdSettings } from "react-icons/md"
 // 2. Use the `as` prop to render the icon
 <Icon as={MdSettings} />
 
-// 3. Then you can pass all `Box` props to style the icon
-<Icon as={MdSettings} size="32px" color="green.400" />
+// 3. Then pass all props to style the icon
+<Icon as={MdSettings} boxSize="32px" color="teal.500" />
 ```
 
-Here's a working example:
+**Working example:**
 
 ```jsx
-<Icon as={MdSettings} size="32px" color="green.400" />
+<Icon as={MdSettings} boxSize="32px" color="teal.500" />
 ```
 
 ## Adding custom icons
 
-You can also create your own custom icons using the `createIcon` utility:
+Instead of using `Icon` component to render custom icons like this everytime,
+
+```jsx
+<Icon viewBox="0 0 200 200">
+  <path
+    fill="currentColor"
+    d="M 100, 100 m -75, 0 a 75,75 0 1,0 150,0 a 75,75 0 1,0 -150,0"
+  />
+</Icon>
+```
+
+Create custom icons using the `createIcon` utility and use them everywhere,
 
 ```jsx live=false
 import { createIcon } from "@chakra-ui/icon"
+
+// Using `path`
 export const UpDownIcon = createIcon({
   displayName: "UpDownIcon",
-  viewBox: "-1 -1 9 11",
-  d:
-    "M 3.5 0L 3.98809 -0.569442L 3.5 -0.987808L 3.01191 -0.569442L 3.5 0ZM 3.5 9L 3.01191 9.56944L 3.5 9.98781L 3.98809 9.56944L 3.5 9ZM 0.488094 3.56944L 3.98809 0.569442L 3.01191 -0.569442L -0.488094 2.43056L 0.488094 3.56944ZM 3.01191 0.569442L 6.51191 3.56944L 7.48809 2.43056L 3.98809 -0.569442L 3.01191 0.569442ZM -0.488094 6.56944L 3.01191 9.56944L 3.98809 8.43056L 0.488094 5.43056L -0.488094 6.56944ZM 3.98809 9.56944L 7.48809 6.56944L 6.51191 5.43056L 3.01191 8.43056L 3.98809 9.56944Z",
+  viewBox: "0 0 200 200",
+  path: (
+    <path
+      fill="currentColor"
+      d="M 100, 100 m -75, 0 a 75,75 0 1,0 150,0 a 75,75 0 1,0 -150,0"
+    />
+  ),
+})
+
+// OR Using `pathDefinition` directly
+
+export const UpDownIcon = createIcon({
+  displayName: "UpDownIcon",
+  viewBox: "0 0 200 200",
+  d: "M 100, 100 m -75, 0 a 75,75 0 1,0 150,0 a 75,75 0 1,0 -150,0",
 })
 ```
 
-The major advantage of `createIcon` is that it forwards ref properly.
-
-If you use <Icon as={MdSettings}/> and `MdSettings` doesn't use `forwardRef`, the ref doesn't get forwarded automatically. This may report a React error in the console about passing ref to a function component. In short, you can use `<Icon as={MdSettings} />` if you know that `MdSettings` is forwarding the ref - otherwise, use the `createIcon` utility function and then call the icon directly: `<MdSettings />`.
-
-Before generating your custom icon do the following:
+Before generating custom icons do the following:
 
 - Export the icon's `svg` from Figma, Sketch, etc.
 - Use a tool like [SvgOmg](https://jakearchibald.github.io/svgomg/) to reduce
   the size and minify the markup.
-- Use `generateIcon` to create an icon as shown above.
+- Use `createIcon` to create an icon as shown above.
 
-Start using your icon right away. There is no need to update your theme files.
+Start using the icons right away. There is no need to update theme files.
+
+## Fallback Icon
+
+When path is not provided, `Icon` component renders the `fallbackIcon`
+
+```jsx
+<Icon boxSize="32px" color="white" />
+```
 
 ## Props
 
-Icon component composes `Box` so you can pass all `Box` props.
+### Icon Props
 
 | Name        | Type                  | Default        | Description                                                                         |
 | ----------- | --------------------- | -------------- | ----------------------------------------------------------------------------------- |
-| `size`      | `string`              | `1em`          | The size of the icon.                                                               |
-| `name`      | `string`              |                | The name of the icon.                                                               |
+| `viewBox`   | `string`              | `0 0 24 24`    | The viewBox of the icon.                                                            |
+| `boxSize`   | `string`              | `1em`          | The size of the icon.                                                               |
 | `color`     | `string`              | `currentColor` | The color of the icon.                                                              |
 | `focusable` | `boolean`             | `false`        | Denotes that the icon is not an interative element, and only used for presentation. |
 | `role`      | `presentation`, `img` | `presentation` | The html role of the icon.                                                          |
+| `children`  | `React.ReactNode`     |                | The Path or Group of the icon                                                       |
+
+## createIcon Options
+
+| Name          | Type              | Default     | Description                              |
+| ------------- | ----------------- | ----------- | ---------------------------------------- |
+| `viewBox`     | `string`          | `0 0 24 24` | The viewBox of the icon.                 |
+| `d`           | `string`          |             | The pathDefinition of the icon.          |
+| `path`        | `React.ReactNode` |             | The Path or Group of the icon            |
+| `displayName` | `string`          |             | The display name useful in the dev tools |

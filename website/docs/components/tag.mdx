@@ -22,15 +22,22 @@ organized using keywords that describe them.
 
 ## Import
 
-Chakra UI exports 4 Tag related components:
+Chakra UI exports 5 Tag related components:
 
 - **Tag**: The wrapper for all the tag elements
 - **TagLabel**: The label for tag's text content.
-- **TagIcon**: The icon for the tag
+- **TagLeftIcon**: The icon placed on the left side of the tag
+- **TagRightIcon**: The icon placed on the right side of the tag
 - **TagCloseButton**: The close button for the tag.
 
 ```js
-import { Tag, TagIcon, TagLabel, TagCloseButton } from "@chakra-ui/core"
+import {
+  Tag,
+  TagLabel,
+  TagLeftIcon,
+  TagRightIcon,
+  TagCloseButton,
+} from "@chakra-ui/core"
 ```
 
 ## Usage
@@ -40,62 +47,58 @@ import { Tag, TagIcon, TagLabel, TagCloseButton } from "@chakra-ui/core"
 ```
 
 ```jsx
-<Stack spacing={4} direction="row">
+<HStack spacing={4}>
   {["sm", "md", "lg"].map((size) => (
-    <Tag size={size} key={size} colorScheme="gray">
-      Gray
+    <Tag size={size} key={size} variant="solid" colorScheme="teal">
+      Teal
     </Tag>
   ))}
-</Stack>
+</HStack>
 ```
 
 ## With left icon
 
 ```jsx
-<Stack spacing={4} direction="row">
+<HStack spacing={4}>
   {["sm", "md", "lg"].map((size) => (
-    <Tag size={size} key={size} colorScheme="cyan">
-      <TagIcon icon="add" size="12px" />
-      <TagLabel>Green</TagLabel>
+    <Tag size={size} key={size} variant="subtle" colorScheme="cyan">
+      <TagLeftIcon boxSize="12px" as={AddIcon} />
+      <TagLabel>Cyan</TagLabel>
     </Tag>
   ))}
-</Stack>
+</HStack>
 ```
 
 ## With right icon
 
 ```jsx
-<Stack spacing={4} direction="row">
-  <Tag colorScheme="cyan">
-    <TagLabel>Green</TagLabel>
-    <TagIcon icon="check" size="12px" />
-  </Tag>
-
-  {/* You can also use custom svg icons */}
-  <Tag colorScheme="teal">
-    <TagLabel>Green</TagLabel>
-    <TagIcon icon={MdSettings} />
-  </Tag>
-</Stack>
+<HStack spacing={4}>
+  {["sm", "md", "lg"].map((size) => (
+    <Tag size={size} key={size} variant="outline" colorScheme="blue">
+      <TagLabel>Blue</TagLabel>
+      <TagRightIcon as={MdSettings} />
+    </Tag>
+  ))}
+</HStack>
 ```
 
 ## With close button
 
 ```jsx
-<Stack spacing={4} direction="row">
+<HStack spacing={4}>
   {["sm", "md", "lg"].map((size) => (
     <Tag
       size={size}
       key={size}
       borderRadius="full"
       variant="solid"
-      colorScheme="cyan"
+      colorScheme="green"
     >
       <TagLabel>Green</TagLabel>
       <TagCloseButton />
     </Tag>
   ))}
-</Stack>
+</HStack>
 ```
 
 ## With custom element
