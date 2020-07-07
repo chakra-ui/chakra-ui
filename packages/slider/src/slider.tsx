@@ -16,7 +16,8 @@ interface SliderContextType
 
 const [SliderProvider, useSliderContext] = createContext<SliderContextType>({
   name: "SliderContext",
-  errorMessage: "useSliderContext can only be used within SliderProvider",
+  errorMessage:
+    "useSliderContext: `context` is undefined. Seems you forgot to wrap all slider components within <Slider />",
 })
 
 export { SliderProvider, useSliderContext }

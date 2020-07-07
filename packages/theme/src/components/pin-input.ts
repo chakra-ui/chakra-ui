@@ -2,17 +2,18 @@ import { Sizes } from "@chakra-ui/theme-tools"
 import input from "./input"
 
 const register = {
-  parts: ["input"],
+  parts: ["field"],
   sizes: input.register.sizes,
   variants: input.register.variants,
 } as const
 
 const baseStyle = input.baseStyle
+
 const variants = input.variants
 
 const sizes: Sizes<typeof register> = {
   lg: {
-    input: {
+    field: {
       fontSize: "lg",
       width: 12,
       height: 12,
@@ -20,7 +21,7 @@ const sizes: Sizes<typeof register> = {
     },
   },
   md: {
-    input: {
+    field: {
       fontSize: "md",
       width: 10,
       height: 10,
@@ -28,7 +29,7 @@ const sizes: Sizes<typeof register> = {
     },
   },
   sm: {
-    input: {
+    field: {
       fontSize: "sm",
       width: 8,
       height: 8,

@@ -155,10 +155,9 @@ export function useTabs(props: UseTabsProps) {
 export type UseTabsReturn = Omit<ReturnType<typeof useTabs>, "htmlProps">
 
 const [TabsContextProvider, useTabsContext] = createContext<UseTabsReturn>({
-  strict: true,
   name: "TabsContext",
   errorMessage:
-    "Chakra UI: useTabsContext can only be used within TabsContextProvider",
+    "useTabsContext: `context` is undefined. Seems you forgot to wrap all tabs components within <Tabs />",
 })
 
 export { TabsContextProvider }

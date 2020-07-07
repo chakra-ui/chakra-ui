@@ -75,7 +75,11 @@ type AccordionItemContext = Omit<UseAccordionItemReturn, "getRootProps">
 
 const [AccordionItemContextProvider, useAccordionItemContext] = createContext<
   AccordionItemContext
->({ name: "AccordionItemContext" })
+>({
+  name: "AccordionItemContext",
+  errorMessage:
+    "useAccordionItemContext: `context` is undefined. Seems you forgot to wrap the accordion item parts in `<AccordionItem />` ",
+})
 
 export type AccordionItemProps = Omit<DivProps, "children"> &
   Omit<UseAccordionItemProps, "context"> & {

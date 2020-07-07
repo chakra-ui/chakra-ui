@@ -21,6 +21,8 @@ type AlertContext = { status: keyof typeof STATUSES }
 
 const [AlertContextProvider, useAlertContext] = createContext<AlertContext>({
   name: "AlertContext",
+  errorMessage:
+    "useAlertContext: `context` is undefined. Seems you forgot to wrap alert components in `<Alert />`",
 })
 
 interface AlertOptions {

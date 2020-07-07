@@ -27,6 +27,8 @@ type EditableContext = Omit<UseEditableReturn, "htmlProps">
 
 const [EditableProvider, useEditableContext] = createContext<EditableContext>({
   name: "EditableContext",
+  errorMessage:
+    "useEditableContext: context is undefined. Seems you forgot to wrap the editable components in `<Editable />`",
 })
 
 type RenderProps = Pick<

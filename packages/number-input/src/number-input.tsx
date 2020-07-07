@@ -27,7 +27,7 @@ const [NumberInputContextProvider, useNumberInputContext] = createContext<
 >({
   name: "NumberInputContext",
   errorMessage:
-    "NumberInput: Cannot find `NumberInputContext`, seems you forgot to wrap number input's components within <NumberInput/>",
+    "useNumberInputContext: `context` is undefined. Seems you forgot to wrap number-input's components within <NumberInput />",
 })
 
 interface InputOptions {

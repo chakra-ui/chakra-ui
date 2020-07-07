@@ -26,6 +26,8 @@ import { useModal, UseModalProps, UseModalReturn } from "./use-modal"
 const [ModalContextProvider, useModalContext] = createContext<UseModalReturn>({
   strict: true,
   name: "ModalContext",
+  errorMessage:
+    "useModalContext: `context` is undefined. Seems you forgot to wrap modal components in `<Modal />`",
 })
 
 export interface ModalProps extends UseModalProps, ThemingProps {

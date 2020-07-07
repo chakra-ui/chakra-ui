@@ -22,10 +22,9 @@ export type PinInputContext = UsePinInputReturn & {
 const [PinInputContextProvider, usePinInputContext] = createContext<
   PinInputContext
 >({
-  strict: true,
   name: "PinInputContext",
   errorMessage:
-    "Chakra UI: PinInputField can only be used within PinInput component",
+    "usePinInputContext: `context` is undefined. Seems you forgot to all pin input fields within `<PinInput />`",
 })
 
 export { PinInputContextProvider, usePinInputContext }
