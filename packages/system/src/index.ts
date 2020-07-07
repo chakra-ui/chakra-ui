@@ -1,6 +1,5 @@
 export * from "@chakra-ui/color-mode"
-export * from "@chakra-ui/css"
-export * from "@chakra-ui/parser"
+export * from "@chakra-ui/styled-system"
 export { keyframes, CacheProvider, ThemeContext, Global } from "@emotion/core"
 export type { InterpolationWithTheme, ObjectInterpolation } from "@emotion/core"
 export * from "./hooks"

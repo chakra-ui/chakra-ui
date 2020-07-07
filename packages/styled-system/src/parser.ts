@@ -11,6 +11,9 @@ import {
   typographyParser,
   layoutParser,
   outlineParser,
+  transformParser,
+  transitionParser,
+  listParser,
 } from "./config"
 import { compose } from "@styled-system/core"
 
@@ -27,4 +30,7 @@ export const parser = compose(
   shadowParser,
   spaceParser,
   typographyParser,
+  transformParser,
+  transitionParser,
+  listParser,
 )

@@ -11,6 +11,9 @@ import {
   typography,
   layout,
   outline,
+  transform,
+  list,
+  transition,
 } from "./config"
 import { pseudoPropNames } from "./pseudo"
 import { compose } from "@styled-system/core"
@@ -28,6 +31,9 @@ export const systemProps = compose(
   shadow,
   space,
   typography,
+  transform,
+  list,
+  transition,
 )
 
 const layoutSystem = compose(space, layout, flexbox, grid, position)

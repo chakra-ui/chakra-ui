@@ -49,9 +49,8 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/transition": "^1.0.0-next.4",
-    "@chakra-ui/utils": "^1.0.0-next.4",
-    "@reach/rect": "0.10.4"
+    "react-animate-height": "2.0.21",
+    "@chakra-ui/utils": "^1.0.0-next.4"
   },
   "devDependencies": {
     "@chakra-ui/system": "^1.0.0-next.4"
