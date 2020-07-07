@@ -1,7 +1,7 @@
 import * as React from "react"
 import { render, userEvent, fireEvent } from "@chakra-ui/test-utils/src"
 import { chakra } from "@chakra-ui/system/src"
-import { ClickableProps } from "../src/use-clickable.stories"
+import { ClickableProps } from "../stories/use-clickable.stories"
 import { useClickable } from "../src"
 
 const Clickable = React.forwardRef(
