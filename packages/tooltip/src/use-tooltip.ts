@@ -76,7 +76,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
     defaultIsOpen,
     arrowSize = 10,
     modifiers,
-    isDisabled = false,
+    isDisabled,
   } = props
 
   const { isOpen, onOpen, onClose } = useDisclosure({
