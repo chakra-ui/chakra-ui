@@ -4,6 +4,7 @@ import {
   PropsOf,
   ThemingProps,
   useStyleConfig,
+  StylesProvider,
   useStyles,
   ObjectInterpolation,
 } from "@chakra-ui/system"
@@ -158,11 +159,6 @@ export function Progress(props: ProgressProps) {
     }),
   }
 
-  const themingProps = {
-    isIndeterminate,
-    borderRadius,
-  }
-
   return (
     <chakra.div
       __css={{
@@ -172,14 +168,16 @@ export function Progress(props: ProgressProps) {
       }}
       {...rest}
     >
-      <ProgressFilledTrack
-        min={min}
-        max={max}
-        value={value}
-        css={css}
-        {...themingProps}
-      />
-      {children}
+      <StylesProvider value={styles}>
+        <ProgressFilledTrack
+          min={min}
+          max={max}
+          value={value}
+          css={css}
+          borderRadius={borderRadius}
+        />
+        {children}
+      </StylesProvider>
     </chakra.div>
   )
 }

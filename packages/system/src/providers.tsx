@@ -64,6 +64,8 @@ export function ChakraProvider(props: ChakraProviderProps) {
 
 const [StylesProvider, useStyles] = createContext<Dict<SystemStyleObject>>({
   name: "StylesContext",
+  errorMessage:
+    "useStyles: `styles` is undefined. Seems you forgot to wrap the components in `<StylesProvider />` ",
 })
 
 export { StylesProvider, useStyles }

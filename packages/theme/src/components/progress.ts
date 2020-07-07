@@ -17,6 +17,8 @@ const baseStyle: BaseStyle<typeof register> = (props) => {
     label: {
       lineHeight: "1",
       fontSize: "0.25em",
+      fontWeight: "bold",
+      color: "white",
     },
     track: {
       bg: mode(`gray.100`, `whiteAlpha.300`)(props),

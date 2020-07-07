@@ -1,10 +1,8 @@
 import {
   BaseStyle,
-  DefaultProps,
   mode,
   runIfFn,
   Sizes,
-  SizeType,
   Variants,
   VariantType,
 } from "@chakra-ui/theme-tools"
@@ -16,12 +14,9 @@ const register = {
   variants: input.register.variants,
 } as const
 
-type Variant = VariantType<typeof register>
-type Size = SizeType<typeof register>
-
 const baseStyle: BaseStyle<typeof register> = (props) => {
   return {
-    input: input.baseStyle.field,
+    field: input.baseStyle.field,
     stepperGroup: {
       width: "24px",
     },
@@ -52,7 +47,7 @@ function getSizeStyle(size: "sm" | "md" | "lg") {
     typeof inputPartsStyle !== "function" ? inputPartsStyle?.field : {}
 
   return {
-    input: inputStyle,
+    field: inputStyle,
     stepper: {
       fontSize: size === "lg" ? "14px" : "10px",
       _first: {
@@ -74,14 +69,12 @@ const variants: Variants<typeof register> = {
   unstyled: (props) => ({ field: getVariantStyle("unstyled", props) }),
 }
 
-function getVariantStyle(variant: Variant, props: any) {
+function getVariantStyle(variant: VariantType<typeof register>, props: any) {
   const partsStyle = runIfFn(input.variants[variant], props)
   return partsStyle?.field ?? {}
 }
 
-const defaultProps: DefaultProps<typeof register> = {
-  size: "md",
-}
+const defaultProps = input.defaultProps
 
 const numberInput = {
   register,
