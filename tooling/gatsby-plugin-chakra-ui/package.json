@@ -18,8 +18,8 @@
     "test": "jest --passWithNoTests"
   },
   "peerDependencies": {
-    "@chakra-ui/core": ">0.8",
-    "@chakra-ui/theme": ">0.8",
+    "@chakra-ui/core": "^1.0.0-next.4",
+    "@chakra-ui/theme": "^1.0.0-next.4",
     "gatsby": "^2.21.33"
   },
   "gitHead": "ce6fe489afaddba502a2611f1fb1dcedb991325b"
