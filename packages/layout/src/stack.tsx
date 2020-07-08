@@ -144,20 +144,22 @@ export const Stack = React.forwardRef(function Stack(
     const isLast = index + 1 === validChildren.length
     const _child = shouldWrapChildren ? <StackItem>{child}</StackItem> : child
 
-    if (!hasDivider) return _child
-
-    if (!isLast) {
-      return (
-        <React.Fragment key={index}>
-          {_child}
-          {React.cloneElement(divider as any, {
-            css: css({ "&": dividerStyles }),
-          })}
-        </React.Fragment>
-      )
+    if (!hasDivider) {
+      return <React.Fragment key={index}>{_child}</React.Fragment>
     }
 
-    return _child
+    const cloneDivider = isLast
+      ? null
+      : React.cloneElement(divider as any, {
+          css: css({ "&": dividerStyles }),
+        })
+
+    return (
+      <React.Fragment key={index}>
+        {_child}
+        {cloneDivider}
+      </React.Fragment>
+    )
   })
 
   const sx = (theme: Dict) => {
