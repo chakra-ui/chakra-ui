@@ -1,3 +1,3 @@
 module.exports = {
-  stories: ["../packages/icon/**/*.stories.tsx"],
+  stories: ["../packages/menu/**/*.stories.tsx"],
 }

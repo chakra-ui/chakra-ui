@@ -102,13 +102,15 @@ export const MenuButton = forwardRef<MenuButtonProps>(function MenuButton(
   props,
   ref,
 ) {
-  const { children, submenuIcon, ...rest } = props
+  const { children, submenuIcon, as: Comp, ...rest } = props
 
   const ownProps = useMenuButton(rest)
   const ownRef = mergeRefs(ref, ownProps.ref)
 
   const isSubmenu = useIsSubMenu()
-  const Comp = isSubmenu ? StyledMenuItem : StyledMenuButton
+  const MenuComp = isSubmenu ? StyledMenuItem : StyledMenuButton
+
+  const Element = Comp || MenuComp
 
   const getChildren = () => {
     if (!isSubmenu) return props.children
@@ -122,9 +124,9 @@ export const MenuButton = forwardRef<MenuButtonProps>(function MenuButton(
   }
 
   return (
-    <Comp {...ownProps} ref={ownRef}>
+    <Element {...ownProps} ref={ownRef}>
       {getChildren()}
-    </Comp>
+    </Element>
   )
 })
 
