@@ -58,6 +58,7 @@ interface AliasesCSSProperties {
   flexDir?: CSS["flexDirection"]
   w?: CSS["width"]
   h?: CSS["height"]
+  boxSize?: CSS["width"]
   minW?: CSS["minWidth"]
   maxW?: CSS["maxWidth"]
   minH?: CSS["minHeight"]

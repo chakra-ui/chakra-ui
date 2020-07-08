@@ -7,7 +7,7 @@ import {
 } from "@chakra-ui/system"
 import { __DEV__, cx } from "@chakra-ui/utils"
 
-export type TextProps = PropsOf<typeof chakra.p>
+export type TextProps = PropsOf<typeof chakra.p> & ThemingProps
 
 /**
  * Used to render texts or paragraphs.

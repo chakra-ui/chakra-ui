@@ -13,13 +13,24 @@ import {
   __DEV__,
 } from "@chakra-ui/utils"
 import * as React from "react"
-import { FlexOptions } from "./flex"
 
 export type StackDirection = ResponsiveValue<
   "row" | "column" | "row-reverse" | "column-reverse"
 >
 
-interface StackOptions extends Pick<FlexOptions, "align" | "justify" | "wrap"> {
+interface StackOptions {
+  /**
+   * Shorthand for `alignItems` style prop
+   */
+  align?: SystemProps["alignItems"]
+  /**
+   * Shorthand for `justifyContent` style prop
+   */
+  justify?: SystemProps["justifyContent"]
+  /**
+   * Shorthand for `flexWrap` style prop
+   */
+  wrap?: SystemProps["flexWrap"]
   /**
    * The space between each stack item
    */
@@ -41,23 +52,26 @@ interface StackOptions extends Pick<FlexOptions, "align" | "justify" | "wrap"> {
 
 export type StackProps = PropsOf<typeof chakra.div> & StackOptions
 
-export type StackDividerProps = PropsOf<typeof StackDivider>
+export type StackDividerProps = PropsOf<typeof chakra.div>
 
-export const StackDivider = chakra("hr", {
-  baseStyle: {
-    borderWidth: 0,
-    alignSelf: "stretch",
-    borderColor: "inherit",
-    width: "auto",
-    height: "auto",
-  },
-})
+export const StackDivider = (props: PropsOf<typeof chakra.div>) => (
+  <chakra.div
+    className="chakra-stack__item"
+    __css={{
+      borderWidth: 0,
+      alignSelf: "stretch",
+      borderColor: "inherit",
+      width: "auto",
+      height: "auto",
+    }}
+    {...props}
+  />
+)
 
 export const StackItem = (props: PropsOf<typeof chakra.div>) => (
   <chakra.div
-    display="inline-block"
     className="chakra-stack__item"
-    flex="0"
+    __css={{ display: "inline-block", flex: 0 }}
     {...props}
   />
 )

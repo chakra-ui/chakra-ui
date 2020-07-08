@@ -4,10 +4,11 @@ import {
   PropsOf,
   useStyleConfig,
   omitThemingProps,
+  ThemingProps,
 } from "@chakra-ui/system"
 import { __DEV__, cx } from "@chakra-ui/utils"
 
-export type KbdProps = PropsOf<typeof chakra.kbd>
+export type KbdProps = PropsOf<typeof chakra.kbd> & ThemingProps
 
 /**
  * Semantic component to render a keyboard shortcut
