@@ -11923,9 +11923,9 @@ gatsby-plugin-react-helmet-canonical-urls@^1.4.0:
     "@babel/runtime" "^7.3.1"
 
 gatsby-plugin-react-helmet@^3.1.3:
-  version "3.3.6"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-react-helmet/-/gatsby-plugin-react-helmet-3.3.6.tgz#824202bdb2e83f90956e4ca1c076fd4dbbf97e61"
-  integrity sha512-KEmgL5TxdMsMNm6p5jgz422p8qwogriDlm0WPgObFshR3fkAFtbqEX6FlZW0Vv8itt6tP3YbKHN4exxIA2Hc8g==
+  version "3.3.10"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-react-helmet/-/gatsby-plugin-react-helmet-3.3.10.tgz#ba2f84715cc2471606b90327c7c3ba11c5287bc7"
+  integrity sha512-AcXYwmS3r298JWs6iQ3OLNxIe8L8i5a2iSdLr/SDMpHqumYm7q/vB9kCX0et5wM7DIuZ7aPXDrdi5yDCAvU5lg==
   dependencies:
     "@babel/runtime" "^7.10.3"
 
