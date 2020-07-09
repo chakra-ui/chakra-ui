@@ -1,6 +1,5 @@
 import * as React from "react"
-import { Stack, StackDivider } from "../src"
-import { Box, Heading, Text } from "@chakra-ui/layout"
+import { Stack, StackDivider, Box, Heading, Text } from "../src"
 
 export default {
   title: "Stack",

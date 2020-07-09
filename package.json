@@ -97,7 +97,6 @@
     "babel-plugin": "yarn workspace babel-plugin-chakra-ui",
     "theme-tools": "yarn workspace @chakra-ui/theme-tools",
     "styled-system": "yarn workspace @chakra-ui/styled-system",
-    "stack": "yarn workspace @chakra-ui/stack",
     "control-box": "yarn workspace @chakra-ui/control-box"
   },
   "czConfig": {
