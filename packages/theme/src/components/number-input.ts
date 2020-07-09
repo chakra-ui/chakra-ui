@@ -46,15 +46,21 @@ function getSizeStyle(size: "sm" | "md" | "lg") {
   const inputStyle =
     typeof inputPartsStyle !== "function" ? inputPartsStyle?.field : {}
 
+  const radius = {
+    lg: "md",
+    md: "md",
+    sm: "sm",
+  }
+
   return {
     field: inputStyle,
     stepper: {
       fontSize: size === "lg" ? "14px" : "10px",
       _first: {
-        borderTopRightRadius: size === "lg" ? 3 : 1,
+        borderTopRightRadius: radius[size],
       },
       _last: {
-        borderBottomRightRadius: size === "lg" ? 3 : 1,
+        borderBottomRightRadius: radius[size],
         marginTop: "-1px",
         borderTopWidth: 1,
       },
