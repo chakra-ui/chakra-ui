@@ -4,6 +4,7 @@ import {
   PropsOf,
   useStyleConfig,
   omitThemingProps,
+  ThemingProps,
 } from "@chakra-ui/system"
 import { __DEV__, cx } from "@chakra-ui/utils"
 
@@ -22,7 +23,7 @@ export const Text = React.forwardRef(function Text(
   const { className, ...rest } = omitThemingProps(props)
 
   return (
-    <chakra.span
+    <chakra.p
       ref={ref}
       className={cx("chakra-text", props.className)}
       {...rest}

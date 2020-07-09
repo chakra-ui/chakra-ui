@@ -3,15 +3,19 @@ import { Dict, get, runIfFn, merge, filterUndefined } from "@chakra-ui/utils"
 import { useChakra } from "./hooks"
 import { SystemStyleObject } from "@chakra-ui/styled-system"
 
+type StyleConfig = Dict | undefined
+
 export function useStyleConfig(themeKey: string, props: Dict) {
   const { styleConfig: styleConfigProp, ...rest } = props
 
   const { theme, colorMode } = useChakra()
-  const styleConfig = styleConfigProp || get(theme, `components.${themeKey}`)
+
+  const themeStyleConfig = get(theme, `components.${themeKey}`)
+  const styleConfig = (styleConfigProp || themeStyleConfig) as StyleConfig
 
   const propsWithDefault = merge(
     {},
-    styleConfig.defaultProps ?? {},
+    styleConfig?.defaultProps ?? {},
     filterUndefined(rest),
   )
 
