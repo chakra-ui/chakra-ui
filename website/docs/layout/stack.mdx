@@ -41,6 +41,11 @@ Stack components use a modified version of the
 [CSS lobotomized owl selector](https://alistapart.com/article/axiomatic-css-and-lobotomized-owls/)
 to add spacing between it's children.
 
+Stack's primary use case is to layout items and control the spacing between each item.
+If you have a more complicated use case, such as changing the margin on the last child,
+you can combine Stack and Flex and use `justify-content: space-between` for more control of
+the layout.
+
 ### Basic
 
 To stack elements in horizontal or vertical direction only, use the `VStack` and
