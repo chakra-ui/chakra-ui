@@ -39,7 +39,10 @@ export function useBlurOutside(
   },
 ) {
   const onMouseDown = (event: MouseEvent) => {
-    if (options.visible && event.target === triggerRef.current) {
+    if (
+      options.visible &&
+      triggerRef.current?.contains(event.target as HTMLElement)
+    ) {
       event.preventDefault()
     }
   }
@@ -49,6 +52,7 @@ export function useBlurOutside(
 
   return (event: React.FocusEvent) => {
     const shouldClose = options.visible && !hasFocusWithin(popoverRef, event)
+
     if (shouldClose) {
       options.action()
     }

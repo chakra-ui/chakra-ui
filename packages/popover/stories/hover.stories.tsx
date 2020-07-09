@@ -1,6 +1,14 @@
 import * as React from "react"
-import { Popover, PopoverTrigger, PopoverContent } from "../src"
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverArrow,
+  PopoverBody,
+} from "../src"
 import { Box, Text, Link } from "@chakra-ui/layout"
+import { IconButton } from "@chakra-ui/button"
+import { MdCheck } from "react-icons/md"
 
 function Card() {
   return (
@@ -30,6 +38,22 @@ export function TwitterEx() {
         }}
       >
         <Card />
+      </PopoverContent>
+    </Popover>
+  )
+}
+
+export function Bug() {
+  return (
+    <Popover>
+      <PopoverTrigger>
+        <IconButton aria-label="Check" p={8}>
+          <MdCheck />
+        </IconButton>
+      </PopoverTrigger>
+      <PopoverContent>
+        <PopoverArrow />
+        <PopoverBody>Are you sure you want to have that milkshake?</PopoverBody>
       </PopoverContent>
     </Popover>
   )
