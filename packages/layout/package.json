@@ -54,7 +54,6 @@
   },
   "dependencies": {
     "@chakra-ui/icon": "^1.0.0-next.4",
-    "@chakra-ui/stack": "^1.0.0-next.4",
     "@chakra-ui/utils": "^1.0.0-next.4"
   },
   "devDependencies": {
