@@ -44,13 +44,13 @@
     "lint": "concurrently yarn:lint:*"
   },
   "dependencies": {
-    "@chakra-ui/utils": "1.0.0-next.4"
+    "@chakra-ui/utils": "^1.0.0-next.4"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.0.0-next.4"
+    "@chakra-ui/system": "^1.0.0-next.4"
   },
   "peerDependencies": {
     "react": "16.x",
-    "@chakra-ui/system": "1.0.0-next.4"
+    "@chakra-ui/system": "^1.0.0-next.4"
   }
 }
