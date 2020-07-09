@@ -309,6 +309,8 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     [clickEvent, counter.isAtMin, keepWithinRange, spinDown, spinner.stop],
   )
 
+  type InputMode = React.InputHTMLAttributes<any>["inputMode"]
+
   const getInputProps = React.useCallback(
     (props: Dict = {}) => ({
       ...props,
@@ -317,7 +319,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       value: counter.value,
       role: "spinbutton",
       type: "text",
-      inputMode: "numeric",
+      inputMode: "numeric" as InputMode,
       pattern: "[0-9]*",
       "aria-valuemin": min,
       "aria-valuemax": max,
