@@ -5,15 +5,15 @@ import * as React from "react"
 
 export interface UseTooltipProps {
   /**
-   * Delay (in ms) before hiding the tooltip
-   * @default 200ms
-   */
-  hideDelay?: number
-  /**
    * Delay (in ms) before showing the tooltip
-   * @default 200ms
+   * @default 0ms
    */
-  showDelay?: number
+  openDelay?: number
+  /**
+   * Delay (in ms) before hiding the tooltip
+   * @default 0ms
+   */
+  closeDelay?: number
   /**
    * If `true`, the tooltip will hide on click
    */
@@ -64,8 +64,8 @@ export interface UseTooltipProps {
 
 export function useTooltip(props: UseTooltipProps = {}) {
   const {
-    showDelay = 200,
-    hideDelay = 200,
+    openDelay = 0,
+    closeDelay = 0,
     closeOnClick = true,
     closeOnMouseDown,
     onOpen,
@@ -79,7 +79,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
     isDisabled,
   } = props
 
-  const { isOpen, onOpen: _onOpen, onClose: _onClose } = useDisclosure({
+  const { isOpen, onOpen: onOpenProp, onClose: onCloseProp } = useDisclosure({
     isOpen: isOpenProp,
     defaultIsOpen,
     onOpen: onOpen,
@@ -103,7 +103,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
 
   const openWithDelay = () => {
     if (!isDisabled) {
-      enterTimeoutRef.current = setTimeout(_onOpen, showDelay)
+      enterTimeoutRef.current = setTimeout(onOpenProp, openDelay)
     }
   }
 
@@ -111,7 +111,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
     if (enterTimeoutRef.current) {
       clearTimeout(enterTimeoutRef.current)
     }
-    exitTimeoutRef.current = setTimeout(_onClose, hideDelay)
+    exitTimeoutRef.current = setTimeout(onCloseProp, closeDelay)
   }
 
   const onClick = () => {
