@@ -989,6 +989,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "iodar",
+      "name": "iodar",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/47027105?v=4",
+      "profile": "https://github.com/iodar",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
