@@ -17,10 +17,12 @@ import {
   Omit,
   ReactNodeOrRenderProp,
   __DEV__,
+  Dict,
 } from "@chakra-ui/utils"
 import * as React from "react"
 import {
   AccordionContextProvider,
+  useAccordionContext,
   useAccordion,
   useAccordionItem,
   UseAccordionItemProps,
@@ -31,8 +33,7 @@ import {
 type DivProps = PropsOf<typeof chakra.div>
 
 export type AccordionProps = UseAccordionProps &
-  ThemingProps &
-  Omit<DivProps, "onChange">
+  ThemingProps & { animateHeight?: boolean } & Omit<DivProps, "onChange">
 
 /**
  * The wrapper that provides context and focus management
@@ -46,13 +47,15 @@ export const Accordion = React.forwardRef(function Accordion(
   ref: React.Ref<any>,
 ) {
   const styles = useStyleConfig("Accordion", props)
-  const realProps = omitThemingProps(props)
+  const rest = omitThemingProps(props)
   const _className = cx("chakra-accordion", props.className)
 
-  const { children, htmlProps, ...context } = useAccordion(realProps)
+  const { children, htmlProps, ...context } = useAccordion(rest)
+
+  const accordionCtx = React.useMemo(() => context, [context])
 
   return (
-    <AccordionContextProvider value={context}>
+    <AccordionContextProvider value={accordionCtx}>
       <StylesProvider value={styles}>
         <chakra.div
           {...htmlProps}
@@ -188,25 +191,34 @@ export const AccordionPanel = React.forwardRef(function AccordionPanel(
   props: AccordionPanelProps,
   ref: React.Ref<any>,
 ) {
+  const { reduceMotion } = useAccordionContext()
   const { getPanelProps, isOpen } = useAccordionItemContext()
   /**
    * remove `hidden` prop, 'coz we're using height animation
    */
-  const { hidden, ...panelProps } = getPanelProps({ ...props, ref })
+  const { hidden, ...panelProps } = getPanelProps({ ...props, ref }) as Dict
 
   const _className = cx("chakra-accordion__panel", props.className)
   const styles = useStyles()
 
-  return (
-    <Collapse isOpen={isOpen}>
-      <chakra.div
-        {...panelProps}
-        __css={styles.panel}
-        className={_className}
-        transition="height 150ms ease-in-out, opacity 150ms ease-in-out, transform 150ms ease-in-out"
-      />
-    </Collapse>
+  if (reduceMotion == true) {
+    panelProps.hidden = hidden
+  }
+
+  const child = (
+    <chakra.div
+      {...panelProps}
+      __css={styles.panel}
+      className={_className}
+      transition="height 150ms ease-in-out, opacity 150ms ease-in-out, transform 150ms ease-in-out"
+    />
   )
+
+  if (reduceMotion == false) {
+    return <Collapse isOpen={isOpen}>{child}</Collapse>
+  }
+
+  return child
 })
 
 if (__DEV__) {
@@ -221,17 +233,20 @@ if (__DEV__) {
  */
 export function AccordionIcon(props: IconProps) {
   const { isOpen, isDisabled } = useAccordionItemContext()
+  const { reduceMotion } = useAccordionContext()
+
   return (
     <Icon
       viewBox="0 0 24 24"
       aria-hidden
       focusable="false"
-      width="1.25em"
-      height="1.25em"
-      opacity={isDisabled ? 0.4 : 1}
-      transform={isOpen ? "rotate(-180deg)" : undefined}
-      transition="transform 0.2s"
-      transformOrigin="center"
+      __css={{
+        fontSize: "1.25em",
+        opacity: isDisabled ? 0.4 : 1,
+        transform: isOpen ? "rotate(-180deg)" : undefined,
+        transition: reduceMotion ? undefined : "transform 0.2s",
+        transformOrigin: "center",
+      }}
       {...props}
     >
       <path
