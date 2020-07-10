@@ -22,17 +22,6 @@ import {
 } from "../src"
 import { Button } from "@chakra-ui/button"
 
-export default {
-  title: "Menu",
-  decorators: [
-    (story: Function) => (
-      <chakra.div maxWidth="500px" mx="auto" mt="40px">
-        {story()}
-      </chakra.div>
-    ),
-  ],
-}
-
 const words = [
   "About Visual Studio Code",
   "Check for updates",
@@ -131,52 +120,6 @@ export const WithPortal = () => (
   </Menu>
 )
 
-const Submenu2 = React.forwardRef<HTMLButtonElement, {}>((props, ref) => (
-  <Menu>
-    <MenuButton ref={ref} {...props}>
-      Other
-    </MenuButton>
-    <Portal>
-      <MenuList>
-        <MenuItem>Twitch</MenuItem>
-        <MenuItem>Pinterest</MenuItem>
-      </MenuList>
-    </Portal>
-  </Menu>
-))
-
-const Submenu = React.forwardRef<HTMLButtonElement, {}>((props, ref) => (
-  <Menu>
-    <MenuButton ref={ref} {...props}>
-      Other
-    </MenuButton>
-    <Portal>
-      <MenuList>
-        <MenuItem>Twitter</MenuItem>
-        <MenuItem>Facebook</MenuItem>
-        <MenuItem as={Submenu2} />
-      </MenuList>
-    </Portal>
-  </Menu>
-))
-
-export const WithNestedMenu = () => (
-  <Menu>
-    <MenuButton as={Button} size="sm" colorScheme="teal">
-      Open menu
-    </MenuButton>
-    <Portal>
-      <MenuList>
-        <MenuItem command="⌘T">New Tab</MenuItem>
-        <MenuItem command="⌘N">New Window</MenuItem>
-        <MenuItem command="⌘⇧N">Open Closed Tab</MenuItem>
-        <MenuItem as={Submenu} />
-        <MenuItem command="⌘O">Open File...</MenuItem>
-      </MenuList>
-    </Portal>
-  </Menu>
-)
-
 export const WithTransition = () => (
   <Menu>
     <MenuButton as={Button} variant="solid" colorScheme="green" size="sm">
@@ -184,7 +127,7 @@ export const WithTransition = () => (
     </MenuButton>
     <MenuTransition>
       {(styles) => (
-        <MenuList css={styles as any}>
+        <MenuList sx={styles}>
           <MenuItem>Menu 1</MenuItem>
           <MenuItem>Menu 2</MenuItem>
           <MenuItem>Menu 3</MenuItem>
