@@ -1,13 +1,13 @@
-# @chakra-ui/stack
+# @chakra-ui/control-box
 
-Stack component for Chakra UI
+Control Box component for Chakra UI.
 
 ## Installation
 
 ```sh
-yarn add @chakra-ui/stack
+yarn add @chakra-ui/control-box
 
 # or
 
-npm i @chakra-ui/stack
+npm i @chakra-ui/control-box
 ```
