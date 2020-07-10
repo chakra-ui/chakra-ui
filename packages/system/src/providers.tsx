@@ -18,6 +18,8 @@ export function ThemeProvider(props: ThemeProviderProps) {
   const outerTheme = React.useContext(ThemeContext) as Dict
   const mergedTheme = merge({}, outerTheme, theme)
 
+  mergedTheme.breakpoints = normalizeBreakpoints(mergedTheme.breakpoints)
+
   return (
     <ThemeContext.Provider value={mergedTheme}>
       {children}
@@ -46,8 +48,6 @@ export function ChakraProvider(props: ChakraProviderProps) {
   if (!theme) {
     throw Error("ChakraProvider: the `theme` prop is required")
   }
-
-  theme.breakpoints = normalizeBreakpoints(theme.breakpoints)
 
   return (
     <ThemeProvider theme={theme}>
