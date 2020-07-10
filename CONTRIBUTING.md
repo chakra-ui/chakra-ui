@@ -145,8 +145,8 @@ the PR author is a collaborator, that counts as one.
 
 ### Commit Convention
 
-Before you create a Pull Request please check whether you comply to the commit
-conventions used in this repository.
+Before you create a Pull Request, please check whether your commits comply with
+the commit conventions used in this repository.
 
 When you create a commit we kindly ask you to follow the convention
 `category(scope or module): message` in your commit message while using one of
