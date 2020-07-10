@@ -82,8 +82,8 @@ export function useTooltip(props: UseTooltipProps = {}) {
   const { isOpen, onOpen: onOpenProp, onClose: onCloseProp } = useDisclosure({
     isOpen: isOpenProp,
     defaultIsOpen,
-    onOpen: onOpen,
-    onClose: onClose,
+    onOpen,
+    onClose,
   })
 
   const popper = usePopper({
