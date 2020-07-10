@@ -97,7 +97,8 @@
     "babel-plugin": "yarn workspace babel-plugin-chakra-ui",
     "theme-tools": "yarn workspace @chakra-ui/theme-tools",
     "styled-system": "yarn workspace @chakra-ui/styled-system",
-    "control-box": "yarn workspace @chakra-ui/control-box"
+    "control-box": "yarn workspace @chakra-ui/control-box",
+    "gatsby-plugin": "yarn workspace gatsby-plugin-chakra-ui"
   },
   "czConfig": {
     "path": "node_modules/cz-conventional-changelog"
