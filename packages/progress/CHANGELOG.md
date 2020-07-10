@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-next.4 (2020-07-01)
+
+### Bug Fixes
+
+- [#891](https://github.com/chakra-ui/chakra-ui/issues/891)
+  ([e107acc](https://github.com/chakra-ui/chakra-ui/commit/e107acc8487898a965b0d695c1da71f46fc56d5e))
+- add progress component preset styles
+  ([488a65e](https://github.com/chakra-ui/chakra-ui/commit/488a65e6bfda39eec73ef80e10af014ae875201a))
+- move migration file to root of progress package
+  ([bc49717](https://github.com/chakra-ui/chakra-ui/commit/bc49717005370ba9d3db447ba46e094756d5f033))
+- progress indicator style
+  ([d798d59](https://github.com/chakra-ui/chakra-ui/commit/d798d59fc9c9b016290ab96a2b2fb928b3d059e4))
+- style issue with progress bar
+  ([b0e430a](https://github.com/chakra-ui/chakra-ui/commit/b0e430a5adffd88a56cce10555bad89d61ad686b))
+- ts issue with sx prop
+  ([d3b1340](https://github.com/chakra-ui/chakra-ui/commit/d3b1340cb255937927b4d4c56ce218141570b951))
+- work on progress component readme and stories
+  ([02f498f](https://github.com/chakra-ui/chakra-ui/commit/02f498f6618387a0cda7ec5b9db1cfe5944fb294))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # 1.0.0-next.3 (2020-06-28)
 
 ### Bug Fixes

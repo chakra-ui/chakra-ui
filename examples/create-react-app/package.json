@@ -1,9 +1,9 @@
 {
-  "name": "create-react-app",
-  "version": "0.1.0",
+  "name": "chakra-cra",
+  "version": "0.1.1",
   "private": true,
   "dependencies": {
-    "@chakra-ui/core": "1.0.0-next.2",
+    "@chakra-ui/core": "^1.0.0-next.4",
     "react": "16.13.1",
     "react-dom": "16.13.1"
   },

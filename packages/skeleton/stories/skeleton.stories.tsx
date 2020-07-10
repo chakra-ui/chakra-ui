@@ -37,7 +37,7 @@ export const WithFade = () => {
   }, [])
 
   return (
-    <Skeleton hasLoaded={hasLoaded}>
+    <Skeleton isLoaded={hasLoaded}>
       <span>Chakra ui is cool</span>
     </Skeleton>
   )
@@ -51,7 +51,7 @@ export const WithNoFade = () => {
   }, [])
 
   return (
-    <Skeleton fadeDuration={0} hasLoaded={hasLoaded}>
+    <Skeleton fadeDuration={0} isLoaded={hasLoaded}>
       <span>Chakra ui is cool</span>
     </Skeleton>
   )
@@ -79,7 +79,7 @@ export const WithIsLoaded = () => {
       <chakra.div h="100px" borderWidth="1px">
         Content
       </chakra.div>
-      <Skeleton w="100px" hasLoaded={hasLoaded}>
+      <Skeleton w="100px" isLoaded={hasLoaded}>
         <span>Chakra ui is cool</span>
       </Skeleton>
       <chakra.div h="100px" borderWidth="1px">

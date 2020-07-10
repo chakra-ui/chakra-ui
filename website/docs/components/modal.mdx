@@ -309,8 +309,8 @@ function VerticallyCenter() {
 ### Adding transition
 
 The modal doesn't come with any transitions by default so you can manage this
-yourself. Chakra exports four transition components (`Fade`, `ScaleFade`, `Slide`, and `SlideFade`) to
-provide simple transitions.
+yourself. Chakra exports four transition components (`Fade`, `ScaleFade`,
+`Slide`, and `SlideFade`) to provide simple transitions.
 
 > For some reason, focus doesn't return back to the trigger after the transition
 > ends. As a walkaround, you might need to set `finalFocusRef` to the trigger or
@@ -450,6 +450,16 @@ function SizeExample() {
 When the modal is open, it's rendered within a portal and all its siblings have
 `aria-hidden` set to `true` so the only thing screen readers see is the modal.
 To disable this behavior, set `useInert` to `false`.
+
+### Prevent focus trapping
+
+By default the modal, alert dialog and drawer locks the focus inside them.
+Normally this is what you want to maintain accessibility standards.
+
+**While strongly discourage this use case** due to it's accessibility impacts,
+there are certain situations where you might not want the modal to trap focus.
+
+To prevent focus trapping, pass `trapFocus` and set it's value to `false`.
 
 ## Accessibility
 

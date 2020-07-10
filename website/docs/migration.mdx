@@ -28,8 +28,11 @@ components to a certain color mode.
 TypeScript support and most low-level components like Box, Flex, etc. will
 support the `as` prop and types will be extracted properly.
 
-**Theme-aware css prop:** Just like `theme-ui`, we've added a `sx` prop you
-can use to add theme-aware styles.
+**Theme-aware css prop:** Just like `theme-ui`, we've added a `sx` prop you can
+use to add theme-aware styles.
+
+**Deprecated PseudoBox:** We've removed PseudoBox and merged all it's props with
+`Box` so you can use pseudo style props in all components.
 
 ## Upgrade steps
 
@@ -291,6 +294,10 @@ errors, and reduces unused icons bloating your app.**
 
 - Renamed `variantColor` to `colorScheme`
 
+- Removed negative side margins on `leftIcon` and `rightIcon` elements. We
+  believe the user should handle these side margins.
+  [#1024](https://github.com/chakra-ui/chakra-ui/issues/1024)
+
 #### Features
 
 - Added support for custom spinners using the `spinner` prop
@@ -442,6 +449,13 @@ You can also install the
 package which automatically configures `InitializeColorMode` along with
 `ChakraProvider`.
 
+### Editable
+
+#### Changes
+
+- The `onRequestEdit` prop has been renamed to `onEdit`. This applies to both
+  the prop passed to `Editable` as well as the prop in its render props.
+
 ### FormControl
 
 - We've improved the accessibility of the `FormControl` component. Here are the
@@ -465,7 +479,7 @@ package which automatically configures `InitializeColorMode` along with
 
 ### Icons
 
-## Changes
+#### Changes
 
 - Basic interface icons provided by Chakra have moved to the `icons` package.
   Replace all `<Icon name="..." />` elements imported from `core` with
@@ -502,6 +516,18 @@ with other icons:
 ```jsx live=false
 import { createIcon, MoonIcon, SunIcon } from "@chakra-ui/icons"
 ```
+
+### Skeleton
+
+#### Features
+
+- Added `SkeletonText` component to add paragraph skeletons.
+- Added `SkeletonCircle` component to add avatar or circular skeletons.
+
+#### Changes
+
+We've renamed the props from `colorStart` and `colorEnd` to `startColor` and
+`endColor`.
 
 ### Image
 
@@ -726,7 +752,7 @@ function Example() {
 
 - You can now disable focus trap by passing `trapFocus={false}`
 
-- The `SlideIn` and `Scale` transition components have been replaced with the 
+- The `SlideIn` and `Scale` transition components have been replaced with the
   `Fade`, `ScaleFade`, `Slide`, and `SlideFade` components.
 
 #### New Props

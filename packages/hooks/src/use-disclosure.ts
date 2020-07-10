@@ -1,6 +1,5 @@
 import * as React from "react"
 import { useControllableProp } from "./use-controllable"
-import { usePrevious } from "./use-previous"
 import { useId } from "./use-id"
 import { callAllHandlers } from "@chakra-ui/utils"
 
@@ -22,8 +21,6 @@ export function useDisclosure(props: UseDisclosureProps = {}) {
 
   const [isOpenState, setIsOpen] = React.useState(props.defaultIsOpen || false)
   const [isControlled, isOpen] = useControllableProp(isOpenProp, isOpenState)
-
-  const prevIsOpen = usePrevious(isOpen)
 
   const id = useId(idProp, "disclosure")
 
@@ -48,7 +45,6 @@ export function useDisclosure(props: UseDisclosureProps = {}) {
 
   return {
     isOpen: !!isOpen,
-    prevIsOpen: !!prevIsOpen,
     onOpen,
     onClose,
     onToggle,
