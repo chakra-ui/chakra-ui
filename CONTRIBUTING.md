@@ -14,6 +14,7 @@ your contribution.
 - [Think you found a bug?](#think-you-found-a-bug)
 - [Proposing new or changed API?](#proposing-new-or-changed-api)
 - [Making a Pull Request?](#making-a-pull-request)
+  - [Commit Convention](#commit-convention)
   - [Steps to PR](#steps-to-pr)
   - [Tests](#tests)
 - [Want to write a blog post or tutorial](#want-to-write-a-blog-post-or-tutorial)
@@ -142,30 +143,33 @@ closed.
 Pull requests need only the :+1: of two or more collaborators to be merged; when
 the PR author is a collaborator, that counts as one.
 
-### Before you create a Pull Request
+### Commit Convention
 
-Before you create a Pull Request we kindly ask you
-to check whether you have used our commit guide lines
-while you where commiting on your branch.
+Before you create a Pull Request please check whether your comply to the commit
+conventions used for this repository.
 
-When you create a commit we kindly ask you to follow the
-convention of `category(scope or module): message` while using one of the following categories:
+When you create a commit we kindly ask you to follow the convention
+`category(scope or module): message` in your commit message while using one of
+the following categories:
 
-- `feat / feature`: all changes for creating a new feature
-- `fix`: fixing a bug (ideally you will reference the issue)
-- `refactor`: use this when you have refactored code without
-changing anything important
-- `docs`: when changing existing or creating new 
-documentation (i.e. README, docs for usage of lib or cli)
-- `build`: all changes regarding the build system (i.e.
-added or changed scripts)
-- `test`: all changes regarding tests
-- `ci`: all changes regarding the build system (i.e. github
-actions, ci systems)
-- `chore`: all changes on the repo that do not touch any
-of the above categories
+- `feat / feature`: all changes that introduce completly new code or new
+  features
+- `fix`: changes that fix a bug (ideally you will reference an issue if present)
+- `refactor`: any code related change that is not a fix nor a feature
+- `docs`: changing existing or creating new documentation (i.e. README, docs for
+  usage of a lib or cli usage)
+- `build`: all changes regarding the build of the software, changes to
+  dependencies or the addition of new dependencies
+- `test`: all changes regarding tests (adding new tests or changing existing
+  ones)
+- `ci`: all changes regarding the configuration of continous integration (i.e.
+  github actions, ci system)
+- `chore`: all changes to the repository that do not touch any of the above
+  categories
 
-// todo: iodar provide link to https://www.conventionalcommits.org/ for detailed information
+If you are interested in the detailed specification you can visit
+https://www.conventionalcommits.org/ or check out the
+[Angular Commit Message Guidelines](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
 ### Steps to PR
 
