@@ -33,7 +33,7 @@ const words = [
 
 export const Basic = () => (
   <div style={{ minHeight: 4000 }}>
-    <Menu>
+    <Menu isLazy>
       <MenuButton
         as={Button}
         variant="solid"

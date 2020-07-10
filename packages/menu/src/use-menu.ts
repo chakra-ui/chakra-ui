@@ -64,6 +64,12 @@ export interface UseMenuProps extends UsePopperProps {
    * The Popper.js modifiers to use
    */
   modifiers?: UsePopperProps["modifiers"]
+  /**
+   * Performance 🚀:
+   * If `true`, the MenuItem rendering will be deferred
+   * until the menu is open.
+   */
+  isLazy?: boolean
 }
 
 function useBlurOutside(
@@ -110,6 +116,7 @@ export function useMenu(props: UseMenuProps) {
     fixed = true,
     preventOverflow,
     modifiers,
+    isLazy,
   } = props
 
   /**
@@ -218,6 +225,7 @@ export function useMenu(props: UseMenuProps) {
     closeOnBlur,
     autoSelect,
     setFocusedIndex,
+    isLazy,
   }
 }
 
@@ -238,6 +246,7 @@ export interface UseMenuListProps {
   style?: React.CSSProperties
   className?: string
   hidden?: boolean
+  children?: React.ReactNode
 }
 
 export function useMenuList(props: UseMenuListProps) {
@@ -258,6 +267,7 @@ export function useMenuList(props: UseMenuListProps) {
     menuId,
     placement,
     domContext: { descendants },
+    isLazy,
   } = menu
 
   /**
@@ -399,6 +409,7 @@ export function useMenuList(props: UseMenuListProps) {
 
   return {
     ...props,
+    children: isLazy ? (isOpen ? props.children : null) : props.children,
     className: cx("chakra-menu__menu-list", props.className),
     ref: mergeRefs(menuRef, popper.ref),
     tabIndex: -1,

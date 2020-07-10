@@ -125,12 +125,19 @@ export const MenuButton = forwardRef<MenuButtonProps>(function MenuButton(
 
     return (
       <React.Fragment>
-        <chakra.span pointerEvents="none" flex="1">
+        <chakra.span
+          __css={{
+            pointerEvents: "none",
+            flex: "1",
+          }}
+        >
           {props.children}
         </chakra.span>
         <MenuIcon
-          pointerEvents="none"
-          mr="-0.5rem"
+          __css={{
+            pointerEvents: "none",
+            mr: "-0.5rem",
+          }}
           children={submenuIcon || <SubmenuSvg />}
         />
       </React.Fragment>
@@ -162,7 +169,10 @@ export const MenuList = React.forwardRef(function MenuList(
     <chakra.div
       {...menulist}
       ref={mergeRefs(menulist.ref, ref)}
-      __css={{ outline: 0, ...styles.menuList }}
+      __css={{
+        outline: 0,
+        ...styles.menuList,
+      }}
     />
   )
 })
