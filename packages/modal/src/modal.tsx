@@ -2,25 +2,32 @@ import { CloseButton, CloseButtonProps } from "@chakra-ui/close-button"
 import { FocusLock } from "@chakra-ui/focus-lock"
 import { useSafeLayoutEffect } from "@chakra-ui/hooks"
 import { Portal, PortalProps } from "@chakra-ui/portal"
-import { RemoveScroll } from "react-remove-scroll"
 import {
   chakra,
-  PropsOf,
-  ThemingProps,
   forwardRef,
-  useThemeDefaultProps,
+  omitThemingProps,
+  PropsOf,
+  StylesProvider,
+  ThemingProps,
+  useStyleConfig,
+  useStyles,
 } from "@chakra-ui/system"
-import { callAllHandlers, createContext, __DEV__, cx } from "@chakra-ui/utils"
+import {
+  callAllHandlers,
+  createContext,
+  cx,
+  merge,
+  __DEV__,
+} from "@chakra-ui/utils"
 import * as React from "react"
+import { RemoveScroll } from "react-remove-scroll"
 import { useModal, UseModalProps, UseModalReturn } from "./use-modal"
 
-type ModalContext = UseModalReturn &
-  Pick<ModalProps, "isCentered" | "scrollBehavior"> &
-  Pick<ThemingProps, "variant" | "size">
-
-const [ModalContextProvider, useModalContext] = createContext<ModalContext>({
+const [ModalContextProvider, useModalContext] = createContext<UseModalReturn>({
   strict: true,
   name: "ModalContext",
+  errorMessage:
+    "useModalContext: `context` is undefined. Seems you forgot to wrap modal components in `<Modal />`",
 })
 
 export interface ModalProps extends UseModalProps, ThemingProps {
@@ -96,54 +103,58 @@ export interface ModalProps extends UseModalProps, ThemingProps {
  * It doesn't render any DOM node.
  */
 export function Modal(props: ModalProps) {
-  const defaults = useThemeDefaultProps("Modal")
+  const defaultProps = {
+    returnFocusOnClose: true,
+    scrollBehavior: "outside",
+    trapFocus: true,
+    autoFocus: true,
+    blockScrollOnMount: true,
+    allowPinchZoom: false,
+  }
+
+  const mergedProps = merge({}, defaultProps, props)
+
+  const styles = useStyleConfig("Modal", mergedProps)
+  const modalProps = omitThemingProps(mergedProps)
 
   const {
     children,
     initialFocusRef,
     finalFocusRef,
-    returnFocusOnClose = true,
+    returnFocusOnClose,
     isOpen,
-    scrollBehavior = "outside",
-    size = defaults?.size,
-    variant = defaults?.variant,
-    trapFocus = true,
-    autoFocus = true,
-    blockScrollOnMount = true,
-    isCentered,
-    allowPinchZoom = false,
+    trapFocus,
+    autoFocus,
+    blockScrollOnMount,
+    allowPinchZoom,
     getContainer,
-  } = props
+  } = modalProps
 
-  const context = {
-    ...useModal(props),
-    scrollBehavior,
-    isCentered,
-    size,
-    variant,
-  }
+  const context = useModal(modalProps)
 
   if (!isOpen) return null
 
   return (
     <ModalContextProvider value={context}>
-      <Portal getContainer={getContainer}>
-        <FocusLock
-          autoFocus={autoFocus}
-          isDisabled={!trapFocus}
-          initialFocusRef={initialFocusRef}
-          finalFocusRef={finalFocusRef}
-          restoreFocus={returnFocusOnClose}
-          contentRef={context.dialogRef}
-        >
-          <RemoveScroll
-            allowPinchZoom={allowPinchZoom}
-            enabled={blockScrollOnMount}
+      <StylesProvider value={styles}>
+        <Portal getContainer={getContainer}>
+          <FocusLock
+            autoFocus={autoFocus}
+            isDisabled={!trapFocus}
+            initialFocusRef={initialFocusRef}
+            finalFocusRef={finalFocusRef}
+            restoreFocus={returnFocusOnClose}
+            contentRef={context.dialogRef}
           >
-            {children}
-          </RemoveScroll>
-        </FocusLock>
-      </Portal>
+            <RemoveScroll
+              allowPinchZoom={allowPinchZoom}
+              enabled={blockScrollOnMount}
+            >
+              {children}
+            </RemoveScroll>
+          </FocusLock>
+        </Portal>
+      </StylesProvider>
     </ModalContextProvider>
   )
 }
@@ -152,31 +163,7 @@ if (__DEV__) {
   Modal.displayName = "Modal"
 }
 
-type ContentOptions = Pick<ModalProps, "scrollBehavior">
-
-/**
- * ModalContent - Theming
- *
- * To style the modal content globally, change the styles in
- * `theme.components.Modal` under the `Content` key
- */
-const StyledContent = chakra<"section", ContentOptions>("section", {
-  themeKey: "Modal.Content",
-  baseStyle: {
-    display: "flex",
-    flexDirection: "column",
-    position: "relative",
-    width: "100%",
-    _focus: {
-      outline: 0,
-    },
-  },
-  shouldForwardProp(prop) {
-    return !["scrollBehavior"].includes(prop)
-  },
-})
-
-export type ModalContentProps = PropsOf<typeof StyledContent>
+export type ModalContentProps = PropsOf<typeof chakra.section>
 
 /**
  * ModalContent
@@ -189,18 +176,24 @@ export const ModalContent = React.forwardRef(function ModalContent(
   ref: React.Ref<any>,
 ) {
   const { className, ...rest } = props
-  const { getContentProps, variant, size, scrollBehavior } = useModalContext()
-  const contentProps = getContentProps({ ...rest, ref })
+  const { getContentProps } = useModalContext()
+  const content = getContentProps({ ...rest, ref })
 
   const _className = cx("chakra-modal__content", className)
-  const theming = { variant, size }
+  const styles = useStyles()
 
   return (
-    <StyledContent
-      scrollBehavior={scrollBehavior}
+    <chakra.section
       className={_className}
-      {...theming}
-      {...contentProps}
+      {...content}
+      __css={{
+        display: "flex",
+        flexDirection: "column",
+        position: "relative",
+        width: "100%",
+        outline: 0,
+        ...styles.content,
+      }}
     />
   )
 })
@@ -209,35 +202,7 @@ if (__DEV__) {
   ModalContent.displayName = "ModalContent"
 }
 
-type OverlayOptions = Pick<ModalProps, "isCentered" | "scrollBehavior">
-
-/**
- * ModalOverlay - Theming
- *
- * To style the modal overlay globally, change the styles in
- * `theme.components.Modal` under the `Overlay` key
- */
-const StyledOverlay = chakra<"div", OverlayOptions>("div", {
-  themeKey: "Modal.Overlay",
-  baseStyle: (props) => ({
-    display: "flex",
-    justifyContent: "center",
-    alignItems: props.isCentered ? "center" : "flex-start",
-    overflow: props.scrollBehavior === "inside" ? "hidden" : "auto",
-    position: "fixed",
-    left: 0,
-    top: 0,
-    bottom: 0,
-    right: 0,
-    width: "100%",
-    height: "100%",
-  }),
-  shouldForwardProp(prop) {
-    return !["scrollBehavior", "isCentered"].includes(prop)
-  },
-})
-
-export type ModalOverlayProps = PropsOf<typeof StyledOverlay>
+export type ModalOverlayProps = PropsOf<typeof chakra.div>
 
 /**
  * ModalOverlay
@@ -252,25 +217,26 @@ export const ModalOverlay = React.forwardRef(function ModalOverlay(
   ref: React.Ref<any>,
 ) {
   const { className, ...rest } = props
-  const {
-    getOverlayProps,
-    scrollBehavior,
-    isCentered,
-    variant,
-    size,
-  } = useModalContext()
+  const { getOverlayProps } = useModalContext()
 
-  const overlayProps = getOverlayProps({ ...rest, ref })
-  const theming = { variant, size }
+  const overlay = getOverlayProps({ ...rest, ref })
   const _className = cx("chakra-modal__overlay", className)
+  const styles = useStyles()
 
   return (
-    <StyledOverlay
+    <chakra.div
+      {...overlay}
       className={_className}
-      scrollBehavior={scrollBehavior}
-      isCentered={isCentered}
-      {...theming}
-      {...overlayProps}
+      __css={{
+        position: "fixed",
+        left: 0,
+        top: 0,
+        bottom: 0,
+        right: 0,
+        width: "100%",
+        height: "100%",
+        ...styles.overlay,
+      }}
     />
   )
 })
@@ -279,18 +245,7 @@ if (__DEV__) {
   ModalOverlay.displayName = "ModalOverlay"
 }
 
-export type ModalHeaderProps = PropsOf<typeof StyledHeader>
-
-/**
- * ModalHeader - Theming
- *
- * To style the modal header globally, change the styles in
- * `theme.components.Modal` under the `Header` key
- */
-const StyledHeader = chakra("header", {
-  themeKey: "Modal.Header",
-  baseStyle: { flex: 0 },
-})
+export type ModalHeaderProps = PropsOf<typeof chakra.header>
 
 /**
  * ModalHeader
@@ -317,9 +272,19 @@ export const ModalHeader = React.forwardRef(function ModalHeader(
   }, [])
 
   const _className = cx("chakra-modal__header", className)
+  const styles = useStyles()
 
   return (
-    <StyledHeader ref={ref} className={_className} id={headerId} {...rest} />
+    <chakra.header
+      ref={ref}
+      className={_className}
+      id={headerId}
+      {...rest}
+      __css={{
+        flex: 0,
+        ...styles.header,
+      }}
+    />
   )
 })
 
@@ -327,21 +292,7 @@ if (__DEV__) {
   ModalHeader.displayName = "ModalHeader"
 }
 
-export type ModalBodyProps = PropsOf<typeof StyledBody>
-
-/**
- * ModalBody - Theming
- *
- * To style the modal body globally, change the styles in
- * `theme.components.Modal` under the `Body` key
- */
-const StyledBody = chakra<"div", Pick<ModalProps, "scrollBehavior">>("div", {
-  themeKey: "Modal.Body",
-  baseStyle: (props) => ({
-    flex: 1,
-    overflow: props.scrollBehavior === "inside" ? "auto" : undefined,
-  }),
-})
+export type ModalBodyProps = PropsOf<typeof chakra.div>
 
 /**
  * ModalBody
@@ -355,7 +306,7 @@ export const ModalBody = forwardRef(function ModalBody(
   ref: React.Ref<any>,
 ) {
   const { className, ...rest } = props
-  const { bodyId, setBodyMounted, scrollBehavior } = useModalContext()
+  const { bodyId, setBodyMounted } = useModalContext()
 
   /**
    * Notify us if this component was rendered or used
@@ -367,14 +318,15 @@ export const ModalBody = forwardRef(function ModalBody(
   }, [])
 
   const _className = cx("chakra-modal__body", className)
+  const styles = useStyles()
 
   return (
-    <StyledBody
+    <chakra.div
       ref={ref}
-      scrollBehavior={scrollBehavior}
       className={_className}
       id={bodyId}
       {...rest}
+      __css={styles.body}
     />
   )
 })
@@ -390,18 +342,22 @@ if (__DEV__) {
  *
  * @see Docs https://chakra-ui.com/components/modal
  */
-export const ModalFooter = chakra("footer", {
-  themeKey: "Modal.Footer",
-  baseStyle: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "flex-end",
-    flex: 0,
-  },
-  attrs: (props) => ({
-    className: cx("chakra-modal__footer", props.className),
-  }),
-})
+export const ModalFooter = (props: PropsOf<typeof chakra.footer>) => {
+  const styles = useStyles()
+  return (
+    <chakra.footer
+      {...props}
+      __css={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "flex-end",
+        flex: 0,
+        ...styles.footer,
+      }}
+      className={cx("chakra-modal__footer", props.className)}
+    />
+  )
+}
 
 if (__DEV__) {
   ModalFooter.displayName = "ModalFooter"

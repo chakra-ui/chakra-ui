@@ -1,5 +1,5 @@
 import { Omit, Dict } from "./types"
-import merge from "deepmerge"
+import merge from "lodash.merge"
 
 export function omit<T extends Dict, K extends keyof T>(object: T, keys: K[]) {
   const result: Dict = {}

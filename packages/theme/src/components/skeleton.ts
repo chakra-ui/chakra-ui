@@ -1,27 +1,11 @@
 import { keyframes } from "@chakra-ui/system"
-import { ComponentTheme, mode, Props, getColor } from "@chakra-ui/theme-tools"
+import { BaseStyle, getColor, mode } from "@chakra-ui/theme-tools"
 
-export interface SkeletonProps {
-  startColor?: string
-  endColor?: string
-  speed?: number
-  duration?: number
-}
+const register = {
+  parts: ["skeleton"],
+} as const
 
-export const frame = (start: string, end: string) => keyframes`
-  from {
-    border-color: ${start};
-    background: ${start};
-  }
-  to {
-    border-color: ${end};
-    background: ${end};
-  }
-`
-
-type CustomProps = Props & SkeletonProps
-
-export function baseStyle(props: CustomProps) {
+const baseStyle: BaseStyle<typeof register> = (props) => {
   const {
     startColor = mode("gray.100", "gray.800")(props),
     endColor = mode("gray.400", "gray.600")(props),
@@ -33,16 +17,26 @@ export function baseStyle(props: CustomProps) {
   const end = getColor(theme, endColor)
 
   return {
-    opacity: 0.7,
-    borderRadius: "2px",
-    borderColor: start,
-    background: end,
-    animation: `${speed}s linear infinite alternate ${frame(start, end)}`,
+    skeleton: {
+      opacity: 0.7,
+      borderRadius: "2px",
+      borderColor: start,
+      background: end,
+      animation: `${speed}s linear infinite alternate ${frame(start, end)}`,
+    },
   }
 }
 
-const Skeleton: ComponentTheme<SkeletonProps> = {
-  baseStyle: baseStyle,
+const skeleton = {
+  register,
+  baseStyle,
 }
 
-export default Skeleton
+export default skeleton
+
+export function frame(startColor: string, endColor: string) {
+  return keyframes({
+    from: { borderColor: startColor, background: startColor },
+    to: { borderColor: endColor, background: endColor },
+  })
+}

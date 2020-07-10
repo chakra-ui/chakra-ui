@@ -1,7 +1,7 @@
 import { chakra, PropsOf, SystemProps } from "@chakra-ui/system"
+import { omit, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { UseImageProps, useImage } from "./use-image"
-import { __DEV__, omit } from "@chakra-ui/utils"
+import { useImage, UseImageProps } from "./use-image"
 
 interface ImageOptions {
   /**
@@ -42,10 +42,8 @@ interface ImageOptions {
   ignoreFallback?: boolean
 }
 
-const StyledImage = chakra("img")
-
 export type ImageProps = UseImageProps &
-  PropsOf<typeof StyledImage> &
+  PropsOf<typeof chakra.img> &
   ImageOptions
 
 /**
@@ -96,7 +94,7 @@ export const Image = React.forwardRef(function Image(
     if (fallback) return fallback
 
     return (
-      <StyledImage
+      <chakra.img
         className="chakra-image__placeholder"
         src={fallbackSrc}
         {...shared}
@@ -105,7 +103,7 @@ export const Image = React.forwardRef(function Image(
   }
 
   return (
-    <StyledImage
+    <chakra.img
       src={src}
       crossOrigin={crossOrigin}
       loading={loading}

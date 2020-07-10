@@ -1,26 +1,21 @@
 import { Icon, IconProps } from "@chakra-ui/icon"
-import { chakra, PropsOf } from "@chakra-ui/system"
+import {
+  chakra,
+  PropsOf,
+  omitThemingProps,
+  useStyleConfig,
+  ThemingProps,
+} from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-/**
- * CloseButton - Theming
- *
- * To style the input globally, change the styles in
- * `theme.components.CloseButton`
- */
 const StyledButton = chakra("button", {
-  themeKey: "CloseButton",
   baseStyle: {
     outline: 0,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     flexShrink: 0,
-  },
-  attrs: {
-    type: "button",
-    "aria-label": "Close",
   },
 })
 
@@ -39,12 +34,13 @@ const CloseIcon = (props: IconProps) => (
   </Icon>
 )
 
-export type CloseButtonProps = PropsOf<typeof StyledButton> & {
-  /**
-   * If `true`, the close button will be disabled.
-   */
-  isDisabled?: boolean
-}
+export type CloseButtonProps = PropsOf<typeof StyledButton> &
+  ThemingProps & {
+    /**
+     * If `true`, the close button will be disabled.
+     */
+    isDisabled?: boolean
+  }
 
 /**
  * CloseButton
@@ -58,11 +54,19 @@ export const CloseButton = React.forwardRef(function CloseButton(
   props: CloseButtonProps,
   ref: React.Ref<any>,
 ) {
-  const { children, isDisabled, ...rest } = props
+  const styles = useStyleConfig("CloseButton", props)
+  const { children, isDisabled, ...rest } = omitThemingProps(props)
 
   return (
-    <StyledButton ref={ref} disabled={isDisabled} {...rest}>
-      {children || <CloseIcon width="1em" height="1em" />}
+    <StyledButton
+      type="button"
+      aria-label="Close"
+      ref={ref}
+      disabled={isDisabled}
+      __css={styles.container}
+      {...rest}
+    >
+      {children || <CloseIcon __css={styles.icon} width="1em" height="1em" />}
     </StyledButton>
   )
 })

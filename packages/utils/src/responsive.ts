@@ -29,25 +29,25 @@ export function mapResponsive(prop: any, mapper: (val: any) => any) {
   return null
 }
 
-export function objectToArrayNotation(obj: Dict) {
-  const result = breakpoints.map((br) => obj[br] ?? null)
+export function objectToArrayNotation(obj: Dict, bps = breakpoints) {
+  const result = bps.map((br) => obj[br] ?? null)
   while (getLastItem(result) === null) {
     result.pop()
   }
   return result
 }
 
-export function arrayToObjectNotation(values: any[]) {
+export function arrayToObjectNotation(values: any[], bps = breakpoints) {
   const result = {} as Dict
   values.forEach((value, index) => {
-    const key = breakpoints[index]
+    const key = bps[index]
     if (value == null) return
     result[key] = value
   })
   return result
 }
 
-export function isResponsiveObjectLike(obj: Dict) {
+export function isResponsiveObjectLike(obj: Dict, bps = breakpoints) {
   const keys = Object.keys(obj)
-  return keys.length > 0 && keys.every((key) => breakpoints.includes(key))
+  return keys.length > 0 && keys.every((key) => bps.includes(key))
 }

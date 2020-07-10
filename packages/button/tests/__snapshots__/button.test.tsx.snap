@@ -2,8 +2,80 @@
 
 exports[`Button renders correctly 1`] = `
 <DocumentFragment>
-  <button
-    class="chakra-button css-1ax3zce"
+  .emotion-0 {
+  line-height: 1.2;
+  border-radius: 0.25rem;
+  font-weight: 600;
+  height: 2.5rem;
+  min-width: 2.5rem;
+  font-size: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background: #EDF2F7;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-transition: all 250ms;
+  transition: all 250ms;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: relative;
+  white-space: nowrap;
+  vertical-align: middle;
+  outline: none;
+}
+
+.emotion-0:focus,
+.emotion-0[data-focus],
+.emotion-0[data-state=focused] {
+  box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
+}
+
+.emotion-0[disabled],
+.emotion-0[disabled]:focus,
+.emotion-0[disabled]:hover,
+.emotion-0[aria-disabled=true],
+.emotion-0[aria-disabled=true]:focus,
+.emotion-0[aria-disabled=true]:hover,
+.emotion-0[data-disabled],
+.emotion-0[data-disabled]:focus,
+.emotion-0[data-disabled]:hover,
+.emotion-0[data-state=disabled],
+.emotion-0[data-state=disabled]:focus,
+.emotion-0[data-state=disabled]:hover {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.emotion-0:hover,
+.emotion-0[data-hover],
+.emotion-0[data-state=hover] {
+  background: #E2E8F0;
+}
+
+.emotion-0:active,
+.emotion-0[data-active],
+.emotion-0[data-state=active] {
+  background: #CBD5E0;
+}
+
+<button
+    class="chakra-button emotion-0"
     type="button"
   />
 </DocumentFragment>
@@ -11,20 +83,130 @@ exports[`Button renders correctly 1`] = `
 
 exports[`Button renders with icons 1`] = `
 <DocumentFragment>
-  <div
-    class="chakra-button__group css-101kej7"
+  .emotion-6 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.emotion-6 > *:not(style) ~ *:not(style) {
+  margin-left: 0.5rem;
+}
+
+.emotion-2 {
+  line-height: 1.2;
+  border-radius: 0.25rem;
+  font-weight: 600;
+  height: 2.5rem;
+  min-width: 2.5rem;
+  font-size: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background: #EDF2F7;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-transition: all 250ms;
+  transition: all 250ms;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: relative;
+  white-space: nowrap;
+  vertical-align: middle;
+  outline: none;
+}
+
+.emotion-2:focus,
+.emotion-2[data-focus],
+.emotion-2[data-state=focused] {
+  box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
+}
+
+.emotion-2[disabled],
+.emotion-2[disabled]:focus,
+.emotion-2[disabled]:hover,
+.emotion-2[aria-disabled=true],
+.emotion-2[aria-disabled=true]:focus,
+.emotion-2[aria-disabled=true]:hover,
+.emotion-2[data-disabled],
+.emotion-2[data-disabled]:focus,
+.emotion-2[data-disabled]:hover,
+.emotion-2[data-state=disabled],
+.emotion-2[data-state=disabled]:focus,
+.emotion-2[data-state=disabled]:hover {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.emotion-2:hover,
+.emotion-2[data-hover],
+.emotion-2[data-state=hover] {
+  background: #E2E8F0;
+}
+
+.emotion-2:active,
+.emotion-2[data-active],
+.emotion-2[data-state=active] {
+  background: #CBD5E0;
+}
+
+.emotion-2:focus,
+.emotion-2[data-focus],
+.emotion-2[data-state=focused] {
+  box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
+  z-index: 1;
+}
+
+.emotion-1 {
+  margin-right: 0.5rem;
+}
+
+.emotion-0 {
+  color: currentColor;
+  display: inline-block;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  height: 1em;
+  line-height: 1em;
+  vertical-align: middle;
+  width: 1em;
+}
+
+.emotion-4 {
+  margin-left: 0.5rem;
+}
+
+<div
+    class="chakra-button__group emotion-6"
     role="group"
   >
     <button
-      class="chakra-button css-1gkcy1z"
+      class="chakra-button emotion-2"
       type="button"
     >
       <span
-        class="chakra-button__icon css-hurga0"
+        class="chakra-button__icon emotion-1"
       >
         <svg
           aria-hidden="true"
-          class="chakra-icon css-9na4ut"
+          class="chakra-icon emotion-0"
           focusable="false"
           role="presentation"
           viewBox="0 0 24 24"
@@ -44,16 +226,16 @@ exports[`Button renders with icons 1`] = `
       Email
     </button>
     <button
-      class="chakra-button css-1gkcy1z"
+      class="chakra-button emotion-2"
       type="button"
     >
       Arrow Forward
       <span
-        class="chakra-button__icon css-xc68f7"
+        class="chakra-button__icon emotion-4"
       >
         <svg
           aria-hidden="true"
-          class="chakra-icon css-9na4ut"
+          class="chakra-icon emotion-0"
           focusable="false"
           role="presentation"
           viewBox="0 0 24 24"
@@ -71,20 +253,128 @@ exports[`Button renders with icons 1`] = `
 
 exports[`shows spinner and loading text if isLoading and loadingText 1`] = `
 <DocumentFragment>
-  <button
-    class="chakra-button css-1ax3zce"
+  @keyframes animation-0 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.emotion-3 {
+  line-height: 1.2;
+  border-radius: 0.25rem;
+  font-weight: 600;
+  height: 2.5rem;
+  min-width: 2.5rem;
+  font-size: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background: #EDF2F7;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-transition: all 250ms;
+  transition: all 250ms;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: relative;
+  white-space: nowrap;
+  vertical-align: middle;
+  outline: none;
+}
+
+.emotion-3:focus,
+.emotion-3[data-focus],
+.emotion-3[data-state=focused] {
+  box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
+}
+
+.emotion-3[disabled],
+.emotion-3[disabled]:focus,
+.emotion-3[disabled]:hover,
+.emotion-3[aria-disabled=true],
+.emotion-3[aria-disabled=true]:focus,
+.emotion-3[aria-disabled=true]:hover,
+.emotion-3[data-disabled],
+.emotion-3[data-disabled]:focus,
+.emotion-3[data-disabled]:hover,
+.emotion-3[data-state=disabled],
+.emotion-3[data-state=disabled]:focus,
+.emotion-3[data-state=disabled]:hover {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.emotion-3:hover,
+.emotion-3[data-hover],
+.emotion-3[data-state=hover] {
+  background: #E2E8F0;
+}
+
+.emotion-3:active,
+.emotion-3[data-active],
+.emotion-3[data-state=active] {
+  background: #CBD5E0;
+}
+
+.emotion-1 {
+  display: inline-block;
+  border-color: currentColor;
+  border-style: solid;
+  border-radius: 9999px;
+  -webkit-animation: animation-0 0.45s linear infinite;
+  animation: animation-0 0.45s linear infinite;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-width: 2px;
+  color: currentColor;
+  height: 1em;
+  width: 1em;
+}
+
+.emotion-2 {
+  font-size: 1em;
+  line-height: normal;
+  margin-right: 0.5rem;
+  position: relative;
+}
+
+<button
+    class="chakra-button emotion-3"
     data-loading=""
     disabled=""
     type="button"
   >
     <div
-      class="chakra-button__spinner css-1tdm926"
+      class="chakra-button__spinner emotion-2"
     >
       <div
-        class="chakra-spinner css-8k0wtn"
+        class="chakra-spinner emotion-1"
       >
         <span
-          style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
+          class="emotion-0"
         >
           Loading...
         </span>
@@ -97,27 +387,139 @@ exports[`shows spinner and loading text if isLoading and loadingText 1`] = `
 
 exports[`shows spinner if isLoading 1`] = `
 <DocumentFragment>
-  <button
-    class="chakra-button css-1ax3zce"
+  @keyframes animation-0 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.emotion-4 {
+  line-height: 1.2;
+  border-radius: 0.25rem;
+  font-weight: 600;
+  height: 2.5rem;
+  min-width: 2.5rem;
+  font-size: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background: #EDF2F7;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-transition: all 250ms;
+  transition: all 250ms;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: relative;
+  white-space: nowrap;
+  vertical-align: middle;
+  outline: none;
+}
+
+.emotion-4:focus,
+.emotion-4[data-focus],
+.emotion-4[data-state=focused] {
+  box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
+}
+
+.emotion-4[disabled],
+.emotion-4[disabled]:focus,
+.emotion-4[disabled]:hover,
+.emotion-4[aria-disabled=true],
+.emotion-4[aria-disabled=true]:focus,
+.emotion-4[aria-disabled=true]:hover,
+.emotion-4[data-disabled],
+.emotion-4[data-disabled]:focus,
+.emotion-4[data-disabled]:hover,
+.emotion-4[data-state=disabled],
+.emotion-4[data-state=disabled]:focus,
+.emotion-4[data-state=disabled]:hover {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.emotion-4:hover,
+.emotion-4[data-hover],
+.emotion-4[data-state=hover] {
+  background: #E2E8F0;
+}
+
+.emotion-4:active,
+.emotion-4[data-active],
+.emotion-4[data-state=active] {
+  background: #CBD5E0;
+}
+
+.emotion-2 {
+  font-size: 1em;
+  line-height: normal;
+  margin-right: 0;
+  position: absolute;
+}
+
+.emotion-1 {
+  display: inline-block;
+  border-color: currentColor;
+  border-style: solid;
+  border-radius: 9999px;
+  -webkit-animation: animation-0 0.45s linear infinite;
+  animation: animation-0 0.45s linear infinite;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-width: 2px;
+  color: currentColor;
+  height: 1em;
+  width: 1em;
+}
+
+.emotion-3 {
+  opacity: 0;
+}
+
+<button
+    class="chakra-button emotion-4"
     data-loading=""
     disabled=""
     type="button"
   >
     <div
-      class="chakra-button__spinner css-fwyoyo"
+      class="chakra-button__spinner emotion-2"
     >
       <div
-        class="chakra-spinner css-8k0wtn"
+        class="chakra-spinner emotion-1"
       >
         <span
-          style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
+          class="emotion-0"
         >
           Loading...
         </span>
       </div>
     </div>
     <span
-      class="css-q7lffx"
+      class="emotion-3"
     >
       Email
     </span>

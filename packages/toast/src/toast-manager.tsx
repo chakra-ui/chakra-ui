@@ -188,6 +188,7 @@ export class ToastManager extends React.Component<Props, State> {
   getStyle = (position: ToastPosition) => {
     const style: React.CSSProperties = {
       position: "fixed",
+      zIndex: 5500,
       pointerEvents: "none",
     }
 

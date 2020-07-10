@@ -36,7 +36,7 @@ git clone https://github.com/<your_github_username>/chakra-ui.git
 cd chakra-ui
 ```
 
-3. Setup all dependencies and build. Chakra UI uses `yarn`, so simply run
+3. Setup all dependencies and build. Chakra UI uses `yarn` and `lerna`, so run
    `yarn bootstrap`. This command will install dependencies, bootstrap the repo
    using `lerna` and build all packages.
 
@@ -109,7 +109,7 @@ yarn button test --watch
 yarn button lint
 ```
 
-This is alias is particularly useful when you're working on a specific component
+This alias is particularly useful when you're working on a specific component
 and want to avoid running the command for all components.
 
 ### Documentation

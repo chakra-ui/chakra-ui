@@ -1,3 +1,3 @@
 module.exports = {
-  stories: ["../packages/layout/**/*.stories.tsx"],
+  stories: ["../packages/number-input/**/*.stories.tsx"],
 }

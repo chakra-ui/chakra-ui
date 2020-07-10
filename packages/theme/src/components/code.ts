@@ -1,17 +1,29 @@
-import Badge, { BadgeVariants } from "./badge"
-import { ComponentTheme } from "@chakra-ui/theme-tools"
+import { BaseStyle } from "@chakra-ui/theme-tools"
+import badge from "./badge"
 
-const Code: ComponentTheme = {
-  defaultProps: Badge.defaultProps,
-  baseStyle: {
+const register = {
+  parts: ["container"],
+  variants: badge.register.variants,
+} as const
+
+const baseStyle: BaseStyle<typeof register> = {
+  container: {
     fontFamily: "mono",
     fontSize: "sm",
     paddingX: "0.2em",
     borderRadius: "sm",
   },
-  variants: Badge.variants,
 }
 
-export const CodeVariants = BadgeVariants
+const variants = badge.variants
 
-export default Code
+const defaultProps = badge.defaultProps
+
+const code = {
+  register,
+  defaultProps,
+  baseStyle,
+  variants,
+}
+
+export default code

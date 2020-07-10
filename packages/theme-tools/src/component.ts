@@ -1,108 +1,99 @@
-import { SystemProps, ThemingProps, SystemStyleObject } from "@chakra-ui/system"
-import { Dict } from "@chakra-ui/utils"
-
-type Style = SystemStyleObject | SystemProps
-
-export type StyleObject = Style | { [component: string]: Style }
+import { SystemStyleObject } from "@chakra-ui/system"
+import { Dict, UnionStringArray, runIfFn } from "@chakra-ui/utils"
 
 export type GlobalStyles = {
-  global?: SystemProps | ((props: Props) => SystemProps)
+  global?: SystemStyleObject | ((props: Props) => SystemStyleObject)
 }
 
 export type JSXElementStyles = {
-  [K in keyof JSX.IntrinsicElements]?: SystemProps
+  [K in keyof JSX.IntrinsicElements]?: SystemStyleObject
 }
+
+export { runIfFn }
 
 export type Styles = GlobalStyles & JSXElementStyles
 
-export interface Props<T = Dict> {
+export type ExtendProps<P> = P & Props
+
+export interface Props {
   colorScheme: string
   orientation: "horizontal" | "vertical"
   colorMode: "light" | "dark"
-  theme: T
+  theme: Dict
 }
 
-/**
- * The component style can either be a style object or  a function that returns a
- * style object.
- */
-type ComponentStyle<P, T> =
-  | StyleObject
-  | ((props: Props<T> & Required<P>) => StyleObject)
+export type VariantType<E extends Readonly<Dict>> = E["variants"][number]
 
-export interface ComponentTheme<P = {}, T = Dict> {
+export type SizeType<E extends Readonly<Dict>> = E["sizes"][number]
+
+type Arr = Readonly<any[]>
+
+export type PartsStyle<P extends Arr> = {
+  [K in UnionStringArray<P>]?: SystemStyleObject
+}
+
+export type Interpolation<P extends Arr> =
+  | PartsStyle<P>
+  | ((props: any) => PartsStyle<P>)
+
+export type PartsModifierFn<P1 extends Arr, P2 extends Arr> = {
+  [K in UnionStringArray<P1>]?: (props: any) => PartsStyle<P2>
+}
+
+export type BaseStyle<E extends Readonly<Dict>> = Interpolation<E["parts"]>
+
+export type Sizes<E extends Readonly<Dict>> = {
+  [K in UnionStringArray<E["sizes"]>]?: Interpolation<E["parts"]>
+}
+
+export type Variants<E extends Readonly<Dict>> = {
+  [K in UnionStringArray<E["variants"]>]?: Interpolation<E["parts"]>
+}
+
+export type DefaultProps<E extends Readonly<Dict>> = {
+  size?: UnionStringArray<E["sizes"]>
+  variant?: UnionStringArray<E["variants"]>
+  colorScheme?: string
+}
+
+export interface ComponentTheme<P = {}> {
   /**
    * The default props to apply to the component
    */
-  defaultProps?: P & {
-    /**
-     * The default variant to use (in variants)
-     */
-    variant?: string
-    /**
-     * The default color scheme to use (if variants are defined as functions)
-     */
-    colorScheme?: string
-    /**
-     * The default size to use (in sizes)
-     */
-    size?: string
-  }
+  defaultProps?: any
   /**
    * The initial styles to be applied to the component
    */
-  baseStyle?: ComponentStyle<P & ThemingProps, T>
+  baseStyle?: any
   /**
    * The component's visual style variants
    */
-  variants?: {
-    [variant: string]: ComponentStyle<P, T> | string
-  }
+  variants?: any
   /**
    * The component's size variations
    */
-  sizes?: {
-    [size: string]: ComponentStyle<P, T> | string
-  }
+  sizes?: any
+  /**
+   * The parts the component has or can have
+   */
+  parts?: any
 }
 
-export function mode<T>(light: T, dark: T) {
-  return (props: Props) => (props.colorMode === "light" ? light : dark)
+export function mode(light: any, dark: any) {
+  return (props: any) => (props.colorMode === "light" ? light : dark)
 }
 
-export function orientation<T = string>(horizontal: T, vertical: T) {
-  return (props: Props) =>
+export function orientation(horizontal: any, vertical: any) {
+  return (props: any) =>
     props.orientation === "horizontal" ? horizontal : vertical
 }
 
-export function orient<T>(options: {
+export function orient(options: {
   orientation?: "vertical" | "horizontal"
-  vertical: T
-  horizontal: T
+  vertical: any
+  horizontal: any
 }) {
   const { orientation, vertical, horizontal } = options
   if (!orientation) return {}
   return orientation === "vertical" ? vertical : horizontal
-}
-
-/**
- * Copies the styles from a component sizes or variants to another component
- * under a speicifed key.
- *
- * @param source The component theme object to copy
- * @param component The component string to copy to
- */
-export function copy(source: any, component: string) {
-  const result = {} as any
-
-  for (const k in source) {
-    const value = source[k]
-    if (typeof value === "function") {
-      result[k] = (props: any) => ({ [component]: value(props) })
-    } else {
-      result[k] = { [component]: value }
-    }
-  }
-
-  return result
 }

@@ -4,21 +4,24 @@ import * as React from "react"
 
 const fallbackIcon = {
   path: (
-    <g fillRule="evenodd">
-      <circle fill="currentColor" cx="12" cy="12" r="10" />
-      <circle fill="inherit" cx="12" cy="18" r="1" />
+    <g stroke="currentColor" strokeWidth="1.5">
       <path
-        d="M15.89 9.05a3.975 3.975 0 0 0-2.957-2.942C10.321 5.514 8.017 7.446 8 9.95l.005.147a.992.992 0 0 0 .982.904c.552 0 1-.447 1.002-.998a2.004 2.004 0 0 1 4.007-.002c0 1.102-.898 2-2.003 2H12a1 1 0 0 0-1 .987v2.014a1.001 1.001 0 0 0 2.004 0v-.782c0-.217.145-.399.35-.472A3.99 3.99 0 0 0 15.89 9.05"
-        fill="inherit"
+        strokeLinecap="round"
+        fill="none"
+        d="M9,9a3,3,0,1,1,4,2.829,1.5,1.5,0,0,0-1,1.415V14.25"
       />
+      <path
+        fill="currentColor"
+        strokeLinecap="round"
+        d="M12,17.25a.375.375,0,1,0,.375.375A.375.375,0,0,0,12,17.25h0"
+      />
+      <circle fill="none" strokeMiterlimit="10" cx="12" cy="12" r="11.25" />
     </g>
   ),
   viewBox: "0 0 24 24",
 }
 
-const StyledSvg = chakra("svg", { themeKey: "Icon" })
-
-export type IconProps = PropsOf<typeof StyledSvg>
+export type IconProps = PropsOf<typeof chakra.svg>
 
 export const Icon = React.forwardRef(function Icon(
   props: IconProps,
@@ -26,7 +29,6 @@ export const Icon = React.forwardRef(function Icon(
 ) {
   const {
     as: type,
-    size,
     boxSize = "1em",
     viewBox,
     color = "currentColor",
@@ -43,7 +45,6 @@ export const Icon = React.forwardRef(function Icon(
     ref,
     display: "inline-block",
     lineHeight: "1em",
-    size,
     color,
     focusable,
     role,
@@ -56,21 +57,21 @@ export const Icon = React.forwardRef(function Icon(
    * If you're using an icon library like `react-icons`
    */
   if (type && typeof type !== "string") {
-    return <StyledSvg as={type} {...sharedProps} {...rest} />
+    return <chakra.svg as={type} {...sharedProps} {...rest} />
   }
 
   const _path = children ?? fallbackIcon.path
   const _viewBox = viewBox ?? fallbackIcon.viewBox
 
   return (
-    <StyledSvg
+    <chakra.svg
       verticalAlign="middle"
       viewBox={_viewBox}
       {...sharedProps}
       {...rest}
     >
       {_path}
-    </StyledSvg>
+    </chakra.svg>
   )
 })
 

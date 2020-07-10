@@ -1,40 +1,44 @@
-import { generateStripe } from "@chakra-ui/theme-tools"
 import {
   chakra,
+  omitThemingProps,
   PropsOf,
-  useColorModeValue,
-  useThemeDefaultProps,
+  ThemingProps,
+  useStyleConfig,
+  StylesProvider,
+  useStyles,
+  ObjectInterpolation,
 } from "@chakra-ui/system"
 import { isUndefined, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import {
   getProgressProps,
-  progress,
   GetProgressPropsOptions,
+  progress,
   stripe,
 } from "./progress.utils"
 
 /**
  * ProgressLabel (Linear)
- *
  * Progress component used to show the numeric value of the progress.
- *
- * To style this component globally, change the styles in `theme.components.Progress`
- * under the `Label` key
- *
  * @see Docs https://chakra-ui.com/components/progress
  */
-export const ProgressLabel = chakra("div", {
-  themeKey: "Progress.Label",
-  baseStyle: {
-    top: "50%",
-    left: "50%",
-    width: "100%",
-    textAlign: "center",
-    position: "absolute",
-    transform: "translate(-50%, -50%)",
-  },
-})
+export const ProgressLabel = (props: PropsOf<typeof chakra.div>) => {
+  const styles = useStyles()
+  return (
+    <chakra.div
+      {...props}
+      __css={{
+        top: "50%",
+        left: "50%",
+        width: "100%",
+        textAlign: "center",
+        position: "absolute",
+        transform: "translate(-50%, -50%)",
+        ...styles.label,
+      }}
+    />
+  )
+}
 
 if (__DEV__) {
   ProgressLabel.displayName = "ProgressLabel"
@@ -42,59 +46,38 @@ if (__DEV__) {
 
 export type ProgressLabelProps = PropsOf<typeof ProgressLabel>
 
-export type ProgressIndicatorProps = PropsOf<typeof chakra.div> &
+export type ProgressFilledTrackProps = PropsOf<typeof chakra.div> &
   GetProgressPropsOptions
 
-type CustomProps = { isIndeterminate?: boolean }
-
 /**
- * ProgressIndicator - Theming
- *
- * To style the progress indicator global, change the styles in
- * `theme.components.Indicator`
- */
-const StyledIndicator = chakra<"div", CustomProps>("div", {
-  themeKey: "Progress.Indicator",
-})
-
-/**
- * ProgressIndicator (Linear)
+ * ProgressFilledTrack (Linear)
  *
  * The progress component that visually indicates the current level of the progress bar.
  * It applies `background-color` and changes it's width.
  *
  * @see Docs https://chakra-ui.com/components/progress
  */
-function ProgressIndicator(props: ProgressIndicatorProps) {
+function ProgressFilledTrack(props: ProgressFilledTrackProps) {
   const { min, max, value, ...rest } = props
   const progress = getProgressProps({ value, min, max })
-
+  const styles = useStyles()
   return (
-    <StyledIndicator
-      width={progress.percent ? `${progress.percent}%` : undefined}
+    <chakra.div
+      style={{
+        width: progress.percent ? `${progress.percent}%` : undefined,
+        ...rest.style,
+      }}
       {...progress.bind}
       {...rest}
+      __css={{
+        height: "100%",
+        ...styles.filledTrack,
+      }}
     />
   )
 }
 
 export type ProgressTrackProps = PropsOf<typeof chakra.div>
-
-/**
- * ProgressTrack
- *
- * Wrapper element which houses the progress indicator and progress label.
- *
- * To style the progress track globally, change the styles in `theme.components.Progress`
- * under the `Track` key
- */
-const ProgressTrack = chakra<"div", CustomProps>("div", {
-  themeKey: "Progress.Track",
-  baseStyle: {
-    overflow: "hidden",
-    position: "relative",
-  },
-})
 
 interface ProgressOptions {
   /**
@@ -120,7 +103,9 @@ interface ProgressOptions {
   isAnimated?: boolean
 }
 
-export type ProgressProps = ProgressOptions & PropsOf<typeof chakra.div>
+export type ProgressProps = ProgressOptions &
+  ThemingProps &
+  PropsOf<typeof chakra.div>
 
 /**
  * Progress (Linear)
@@ -134,11 +119,7 @@ export type ProgressProps = ProgressOptions & PropsOf<typeof chakra.div>
  * @see Docs https://chakra-ui.com/components/progress
  */
 export function Progress(props: ProgressProps) {
-  const defaults = useThemeDefaultProps("Progress")
   const {
-    size = defaults?.size,
-    colorScheme = defaults?.colorScheme,
-    variant = defaults?.variant,
     value,
     min = 0,
     max = 100,
@@ -147,15 +128,12 @@ export function Progress(props: ProgressProps) {
     children,
     borderRadius,
     ...rest
-  } = props
+  } = omitThemingProps(props)
 
-  /**
-   * Generate a strip style for the progress bar
-   */
-  const stripeStyle = useColorModeValue(
-    generateStripe(),
-    generateStripe("1rem", "rgba(0,0,0,0.1)"),
-  )
+  const styles = useStyleConfig("Progress", {
+    ...props,
+    isIndeterminate: isUndefined(value),
+  })
 
   const isIndeterminate = isUndefined(value)
 
@@ -171,8 +149,7 @@ export function Progress(props: ProgressProps) {
   /**
    * Generate styles for stripe and stripe animation
    */
-  const css = {
-    ...(shouldAddStripe && stripeStyle),
+  const css: ObjectInterpolation<any> = {
     ...(shouldAnimateStripe && stripAnimation),
     ...(isIndeterminate && {
       position: "absolute",
@@ -182,25 +159,26 @@ export function Progress(props: ProgressProps) {
     }),
   }
 
-  const themingProps = {
-    variant,
-    size,
-    colorScheme,
-    isIndeterminate,
-    borderRadius,
-  }
-
   return (
-    <ProgressTrack {...themingProps} {...rest}>
-      <ProgressIndicator
-        min={min}
-        max={max}
-        value={value}
-        css={css}
-        {...themingProps}
-      />
-      {children}
-    </ProgressTrack>
+    <chakra.div
+      __css={{
+        overflow: "hidden",
+        position: "relative",
+        ...styles.track,
+      }}
+      {...rest}
+    >
+      <StylesProvider value={styles}>
+        <ProgressFilledTrack
+          min={min}
+          max={max}
+          value={value}
+          css={css}
+          borderRadius={borderRadius}
+        />
+        {children}
+      </StylesProvider>
+    </chakra.div>
   )
 }
 

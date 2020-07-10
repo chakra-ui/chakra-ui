@@ -1,39 +1,36 @@
-import { ComponentTheme } from "@chakra-ui/theme-tools"
+import { DefaultProps, Sizes } from "@chakra-ui/theme-tools"
 
-const Spinner: ComponentTheme = {
-  defaultProps: {
-    size: "md",
+const register = {
+  parts: ["spinner"],
+  sizes: ["xs", "sm", "md", "lg", "xl"],
+} as const
+
+const sizes: Sizes<typeof register> = {
+  xs: {
+    spinner: { width: "0.75rem", height: "0.75rem" },
   },
-  sizes: {
-    xs: {
-      width: "0.75rem",
-      height: "0.75rem",
-    },
-    sm: {
-      width: "1rem",
-      height: "1rem",
-    },
-    md: {
-      width: "1.5rem",
-      height: "1.5rem",
-    },
-    lg: {
-      width: "2rem",
-      height: "2rem",
-    },
-    xl: {
-      width: "3rem",
-      height: "3rem",
-    },
+  sm: {
+    spinner: { width: "1rem", height: "1rem" },
+  },
+  md: {
+    spinner: { width: "1.5rem", height: "1.5rem" },
+  },
+  lg: {
+    spinner: { width: "2rem", height: "2rem" },
+  },
+  xl: {
+    spinner: { width: "3rem", height: "3rem" },
   },
 }
 
-export const SpinnerSizes = {
-  xs: "xs",
-  sm: "sm",
-  md: "md",
-  lg: "lg",
-  xl: "xl",
+const defaultProps: DefaultProps<typeof register> = {
+  size: "md",
 }
 
-export default Spinner
+const spinner = {
+  register,
+  defaultProps,
+  sizes,
+}
+
+export default spinner

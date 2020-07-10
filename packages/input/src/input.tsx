@@ -1,5 +1,12 @@
 import { FormControlOptions, useFormControl } from "@chakra-ui/form-control"
-import { chakra, forwardRef, PropsOf } from "@chakra-ui/system"
+import {
+  chakra,
+  forwardRef,
+  PropsOf,
+  useStyleConfig,
+  omitThemingProps,
+  ThemingProps,
+} from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -24,24 +31,12 @@ interface InputOptions {
 
 type Omitted = "disabled" | "required" | "readOnly" | "size"
 
-export interface InputProps
-  extends Omit<PropsOf<typeof StyledInput>, Omitted>,
-    FormControlOptions {
-  size?: string
-}
-
-/**
- * Input - Theming
- *
- * To style the input globally, change the styles in
- * `theme.components.Input`
- */
-
-const StyledInput = chakra<"input", InputOptions>("input", {
-  themeKey: "Input",
-  shouldForwardProp: (prop) =>
-    !["focusBorderColor", "errorBorderColor"].includes(prop),
-})
+export type InputProps = Omit<PropsOf<typeof chakra.input>, Omitted> &
+  InputOptions &
+  ThemingProps &
+  FormControlOptions & {
+    size?: string
+  }
 
 /**
  * Input
@@ -49,10 +44,19 @@ const StyledInput = chakra<"input", InputOptions>("input", {
  * Element that allows users enter single valued data.
  */
 export const Input = forwardRef<InputProps>(function Input(props, ref) {
-  const inputProps = useFormControl<HTMLInputElement>(props)
+  const styles = useStyleConfig("Input", props)
+  const realProps = omitThemingProps(props)
+  const input = useFormControl<HTMLInputElement>(realProps)
   const _className = cx("chakra-input", props.className)
 
-  return <StyledInput ref={ref} {...inputProps} className={_className} />
+  return (
+    <chakra.input
+      {...input}
+      __css={styles.field}
+      ref={ref}
+      className={_className}
+    />
+  )
 })
 
 if (__DEV__) {
@@ -60,4 +64,4 @@ if (__DEV__) {
 }
 
 //@ts-ignore
-Input.__hidden = "Input"
+Input.groupId = "Input"

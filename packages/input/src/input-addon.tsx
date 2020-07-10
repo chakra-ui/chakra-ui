@@ -1,4 +1,4 @@
-import { chakra, PropsOf } from "@chakra-ui/system"
+import { chakra, PropsOf, useStyles } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -11,20 +11,13 @@ const placements = {
     borderRightColor: "transparent",
   },
   right: {
-    marginRight: "-1px",
+    marginLeft: "-1px",
     borderLeftRadius: 0,
     borderLeftColor: "transparent",
   },
 }
 
-/**
- * StyledAddon
- *
- * Wrapper element around the InputAddon component
- */
-
 const StyledAddon = chakra("div", {
-  themeKey: "InputAddon",
   baseStyle: {
     flex: "0 0 auto",
     width: "auto",
@@ -50,7 +43,18 @@ export const InputAddon = React.forwardRef(function InputAddonProps(
 ) {
   const { placement = "left", ...rest } = props
   const placementStyles = placements[placement] ?? {}
-  return <StyledAddon ref={ref} {...placementStyles} {...rest} />
+  const styles = useStyles()
+
+  return (
+    <StyledAddon
+      ref={ref}
+      {...rest}
+      __css={{
+        ...styles.addon,
+        ...placementStyles,
+      }}
+    />
+  )
 })
 
 if (__DEV__) {
@@ -82,7 +86,7 @@ if (__DEV__) {
 }
 
 //@ts-ignore
-InputLeftAddon.__hidden = "InputLeftAddon"
+InputLeftAddon.groupId = "InputLeftAddon"
 
 /**
  * InputRightAddon
@@ -109,4 +113,4 @@ if (__DEV__) {
 }
 
 //@ts-ignore
-InputRightAddon.__hidden = "InputRightAddon"
+InputRightAddon.groupId = "InputRightAddon"

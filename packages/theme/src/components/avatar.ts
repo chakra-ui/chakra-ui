@@ -1,90 +1,79 @@
-import sizes from "../foundations/sizes"
 import {
-  randomColor,
+  BaseStyle,
+  DefaultProps,
   isDark,
-  ComponentTheme,
   mode,
-  Props,
+  randomColor,
+  Sizes,
 } from "@chakra-ui/theme-tools"
-import { SystemProps } from "@chakra-ui/system"
+import themeSizes from "../foundations/sizes"
 
-function getSize(size: string) {
-  const themeSize = sizes[size as keyof typeof sizes]
+const register = {
+  parts: ["container", "excessLabel", "badge", "label"],
+  sizes: ["2xs", "xs", "sm", "md", "lg", "xl", "2xl", "full"],
+} as const
 
-  const styles: SystemProps = {
-    width: size,
-    height: size,
-    fontSize: `calc(${themeSize ?? size} / 2.5)`,
-  }
-
-  if (size !== "100%") {
-    styles.lineHeight = themeSize ?? size
-  }
-
-  return {
-    Root: styles,
-    ExcessLabel: styles,
-  }
-}
-
-function getRootStyle(props: Props & { name?: string }) {
-  const { name, theme: t } = props
-
+const baseStyle: BaseStyle<typeof register> = function (props) {
+  const { name, theme } = props
   const bg = name ? randomColor({ string: name }) : "gray.400"
-  const isBgDark = isDark(bg)(t)
-
-  const color = name ? (isBgDark ? "white" : "gray.800") : "white"
+  const color = name ? (isDark(bg)(theme) ? "white" : "gray.800") : "white"
   const borderColor = mode("white", "gray.800")(props)
 
   return {
-    bg,
-    color,
-    borderColor,
-  }
-}
-
-type AvatarProps = { name?: string }
-
-const Avatar: ComponentTheme<AvatarProps> = {
-  defaultProps: {
-    size: "md",
-  },
-  baseStyle: (props) => ({
-    Root: {
-      verticalAlign: "top",
-      ...getRootStyle(props),
-    },
-    Badge: {
+    badge: {
       transform: "translate(25%, 25%)",
       borderRadius: "full",
       border: "0.2em solid",
       borderColor: mode("white", "gray.800")(props),
     },
-    ExcessLabel: {
+    excessLabel: {
       bg: mode("gray.200", "whiteAlpha.400")(props),
     },
-  }),
-  sizes: {
-    "2xs": getSize("4"),
-    xs: getSize("6"),
-    sm: getSize("8"),
-    md: getSize("12"),
-    lg: getSize("16"),
-    xl: getSize("24"),
-    "2xl": getSize("32"),
-    full: getSize("100%"),
-  },
+    container: {
+      bg,
+      color,
+      borderColor,
+      verticalAlign: "top",
+    },
+  }
 }
 
-export const AvatarSizes = {
-  "2xs": "2xs",
-  xs: "xs",
-  sm: "sm",
-  md: "md",
-  lg: "lg",
-  xl: "xl",
-  "2xl": "2xl",
-  full: "full",
+const sizes: Sizes<typeof register> = {
+  "2xs": getSize("4"),
+  xs: getSize("6"),
+  sm: getSize("8"),
+  md: getSize("12"),
+  lg: getSize("16"),
+  xl: getSize("24"),
+  "2xl": getSize("32"),
+  full: getSize("100%"),
 }
 
-export default Avatar
+function getSize(size: string) {
+  const themeSize = themeSizes[size as keyof typeof sizes]
+  const styles = { width: size, height: size }
+  return {
+    container: {
+      fontSize: `calc(${themeSize ?? size} / 2.5)`,
+      ...styles,
+    },
+    excessLabel: styles,
+    label: {
+      fontSize: `calc(${themeSize ?? size} / 2.5)`,
+      lineHeight: size !== "100%" ? themeSize ?? size : undefined,
+    },
+  }
+}
+
+const defaultProps: DefaultProps<typeof register> = {
+  size: "md",
+}
+
+const avatar = {
+  register,
+  defaultProps,
+  baseStyle,
+  sizes,
+}
+
+export default avatar

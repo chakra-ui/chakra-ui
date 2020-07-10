@@ -1,6 +1,6 @@
 import { Dict, runIfFn } from "@chakra-ui/utils"
 import { jsx as emotion } from "@emotion/core"
-import { SystemStyleObject, css } from "@chakra-ui/css"
+import { SystemStyleObject, css } from "@chakra-ui/styled-system"
 
 interface GetCSS {
   sx?: any
@@ -54,9 +54,6 @@ export const jsx = (
 ) => emotion.apply(undefined, [type, parse(props), ...children])
 
 interface SxProp {
-  /**
-   * Chakra is here!
-   */
   sx?: SystemStyleObject
 }
 

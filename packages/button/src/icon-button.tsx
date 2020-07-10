@@ -22,7 +22,7 @@ export const IconButton = forwardRef<IconButtonProps>(function IconButton(
   /**
    * Passing the icon as prop or children should work
    */
-  const iconElement = icon || children
+  const isValidElement = icon || children
 
   const a11yProps = {
     "aria-hidden": true,
@@ -37,8 +37,8 @@ export const IconButton = forwardRef<IconButtonProps>(function IconButton(
       aria-label={ariaLabel}
       {...rest}
     >
-      {React.isValidElement(iconElement)
-        ? React.cloneElement(iconElement, a11yProps)
+      {React.isValidElement(isValidElement)
+        ? React.cloneElement(isValidElement, a11yProps)
         : null}
     </Button>
   )

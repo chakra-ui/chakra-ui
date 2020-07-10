@@ -4,7 +4,6 @@ import { render } from "react-dom"
 import { Methods, ToastManager } from "./toast-manager"
 import { ToastId, ToastMessage, ToastOptions } from "./toast.types"
 
-// Toast's portal id
 const portalId = "chakra-toast-portal"
 
 class Toaster {
@@ -16,7 +15,12 @@ class Toaster {
 
   /**
    * Initialize the manager and mount it in the DOM
-   * inside the portal node
+   * inside the portal node.
+   *
+   * @todo
+   *
+   * Update toast constructor to use `PortalManager`'s node or document.body.
+   * Once done, we can remove the `zIndex` in `toast.manager.tsx`
    */
   constructor() {
     if (!isBrowser) return

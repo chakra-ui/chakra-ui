@@ -1,4 +1,5 @@
-import { chakra } from "@chakra-ui/system"
+import * as React from "react"
+import { chakra, PropsOf } from "@chakra-ui/system"
 import { __DEV__, cx } from "@chakra-ui/utils"
 
 /**
@@ -8,20 +9,44 @@ import { __DEV__, cx } from "@chakra-ui/utils"
  *
  * @see Docs https://chakra-ui.com/components/divider
  */
-export const Divider = chakra("hr", {
-  themeKey: "Divider",
-  baseStyle: {
-    border: "0",
-    opacity: 0.6,
-    borderColor: "inherit",
-    borderStyle: "solid",
-  },
-  attrs: (props) => ({
-    role: "separator",
-    "aria-orientation": props.variant ?? "horizontal",
-    className: cx("chakra-divider", props.className),
-  }),
+export const Divider = React.forwardRef(function Divider(
+  props: DividerProps,
+  ref: React.Ref<any>,
+) {
+  const { className, orientation = "horizontal", ...rest } = props
+
+  const styles = {
+    vertical: {
+      borderLeftWidth: "1px",
+      height: "100%",
+    },
+    horizontal: {
+      borderBottomWidth: "1px",
+      width: "100%",
+    },
+  }
+
+  return (
+    <chakra.hr
+      ref={ref}
+      role="separator"
+      aria-orientation={orientation}
+      {...rest}
+      __css={{
+        border: "0",
+        opacity: 0.6,
+        borderColor: "inherit",
+        borderStyle: "solid",
+        ...styles[orientation],
+      }}
+      className={cx("chakra-divider", props.className)}
+    />
+  )
 })
+
+export type DividerProps = PropsOf<typeof chakra.hr> & {
+  orientation?: "horizontal" | "vertical"
+}
 
 if (__DEV__) {
   Divider.displayName = "Divider"

@@ -1,138 +1,98 @@
-import { chakra, PropsOf, forwardRef } from "@chakra-ui/system"
-import {
-  Transition,
-  TransitionProps,
-  TransitionStyles,
-} from "@chakra-ui/transition"
-import { ariaAttr, cx, mergeRefs, __DEV__ } from "@chakra-ui/utils"
-import { useRect } from "@reach/rect"
+/** @jsx jsx */
 import * as React from "react"
+import AnimateHeight, {
+  AnimateHeightProps as AnimateProps,
+} from "react-animate-height"
+import { chakra, jsx, PropsOf } from "@chakra-ui/system"
+import { __DEV__ } from "@chakra-ui/utils"
 
-export type CollapseProps = PropsOf<typeof chakra.div> & {
+type AnimateHeightProps = Pick<
+  AnimateProps,
+  | "animationStateClasses"
+  | "applyInlineTransitions"
+  | "delay"
+  | "easing"
+  | "style"
+  | "children"
+>
+
+export interface CollapseOptions {
   /**
    * If `true`, the content will be visible
    */
   isOpen?: boolean
   /**
-   * The height you want the content in it's collapsed state.
-   * @default 0
-   */
-  startingHeight?: number
-  /**
-   * Custom styles for the Transition component's appear, entered and exiting states
-   */
-  config?: TransitionProps["styles"]
-  /**
    * If `true`, the opacity of the content will be animated
-   * @default true
    */
   animateOpacity?: boolean
   /**
-   * The CSS `transition-duration` (in ms) to apply for the collapse animation
-   *
-   * @default
-   * 150
+   * The duration of the animation in `ms`
    */
-  timeout?: number
+  duration?: number
   /**
-   * The CSS `transition-timing-function` to apply for the collapse animation
-   *
-   * @default
-   * "ease"
+   * The height you want the content in it's collapsed state. Set to `0` by default
    */
-  easing?: string
+  startingHeight?: number | string
+  /**
+   * The height you want the content in it's expanded state. Set to `auto` by default
+   */
+  endingHeight?: number | string
+  /**
+   * The function to be called when the collapse animation starts. It provides the `newHeight` as an argument
+   */
+  onAnimationEnd?(props: { newHeight: number }): void
+  /**
+   * The function to be called when the collapse animation ends. It provides the `newHeight` as an argument
+   */
+  onAnimationStart?(props: { newHeight: number }): void
 }
+
+export type ICollapse = CollapseProps
+
+export type CollapseProps = AnimateHeightProps &
+  CollapseOptions &
+  PropsOf<typeof chakra.div>
 
 export const Collapse = React.forwardRef(function Collapse(
   props: CollapseProps,
-  forwardedRef: React.Ref<any>,
+  ref: React.Ref<any>,
 ) {
   const {
     isOpen,
-    children,
-    config,
-    startingHeight = 0,
     animateOpacity = true,
-    className,
-    style: htmlStyle,
-    timeout = 150,
+    onAnimationStart,
+    onAnimationEnd,
+    duration,
     easing = "ease",
+    startingHeight = 0,
+    endingHeight = "auto",
     ...rest
   } = props
 
-  const getStr = (property: string) => `${property} ${timeout}ms ${easing}`
-
-  const transition = `${getStr("height")}, ${getStr("opacity")}, ${getStr(
-    "transform",
-  )}`
-
-  const [hidden, setHidden] = React.useState(true)
-
-  type ChildElement = React.ReactElement<{ ref: React.Ref<any> }>
-
-  let child = children
-
-  if (typeof children === "string") {
-    child = <div>{children}</div>
-  }
-
-  const _child = React.Children.only(child) as ChildElement
-
-  const ref = React.useRef<HTMLDivElement>(null)
-
-  const rect = useRect(ref, true)
-  const height = rect?.height ?? 0
-
-  const defaultConfig: TransitionStyles = {
-    init: {
-      height: startingHeight,
-      opacity: startingHeight ? 1 : 0,
-    },
-    entered: {
-      height,
-      opacity: 1,
-      transform: "translateY(0)",
-    },
-    exiting: {
-      height: startingHeight,
-      opacity: startingHeight ? 1 : 0,
-      transform: startingHeight > 0 ? "translateY(0)" : "translateY(-0.5rem)",
-    },
-  }
-
   return (
-    <Transition
-      in={isOpen}
-      styles={config || defaultConfig}
-      onEntered={() => setHidden(false)}
-      onExited={() => setHidden(true)}
-      timeout={{ enter: 0, exit: timeout }}
-      transition={transition}
-      unmountOnExit={false}
+    <AnimateHeight
+      duration={duration}
+      easing={easing}
+      animateOpacity={animateOpacity}
+      height={isOpen ? endingHeight : startingHeight}
+      applyInlineTransitions={false}
+      sx={{
+        transition:
+          "height .2s ease,opacity .2s ease-in-out,transform .2s ease-in-out",
+        "&.rah-animating--to-height-zero": {
+          opacity: 0,
+          transform: "translateY(-0.625rem)",
+        },
+      }}
+      {...{ onAnimationStart, onAnimationEnd }}
     >
-      {(styles) => (
-        <chakra.div
-          ref={forwardedRef}
-          className={cx("chakra-collapse", className)}
-          aria-hidden={ariaAttr(hidden)}
-          {...rest}
-          style={{
-            ...styles,
-            overflow: "hidden",
-            opacity: animateOpacity ? styles.opacity : 1,
-            willChange: "height, opacity, transform",
-            ...htmlStyle,
-          }}
-        >
-          {React.cloneElement(_child, {
-            ref: mergeRefs(ref, _child.props.ref),
-          })}
-        </chakra.div>
-      )}
-    </Transition>
+      <chakra.div ref={ref} {...rest} />
+    </AnimateHeight>
   )
 })
 
 if (__DEV__) {
   Collapse.displayName = "Collapse"
 }
+
+export default Collapse
