@@ -9,7 +9,7 @@ import {
   Code,
   Grid,
 } from '@chakra-ui/core';
-import theme from './theme';
+import theme from '@chakra-ui/theme';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 import { Logo } from './Logo';
 

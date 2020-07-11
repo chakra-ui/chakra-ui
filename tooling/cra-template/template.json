@@ -3,6 +3,7 @@
     "dependencies": {
       "@chakra-ui/core": "^1.0.0-next.4",
       "@chakra-ui/system": "^1.0.0-next.4",
+      "@chakra-ui/theme": "^1.0.0-next.4",
       "@chakra-ui/theme-tools": "^1.0.0-next.4",
       "react-icons": "^3.0.0",
       "@testing-library/jest-dom": "^5.9.0",
