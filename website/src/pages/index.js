@@ -63,7 +63,7 @@ const sampleCode = `
   <Text mt={2}>$119/night</Text>
   <Flex mt={2} align="center">
     <Box as={MdStar} color="orange.400" />
-    <Text ml={1} fontsize="sm"><b>4.84</b> (190)</Text>
+    <Text ml={1} fontSize="sm"><b>4.84</b> (190)</Text>
   </Flex>
 </Box>
 `
