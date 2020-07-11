@@ -4,16 +4,15 @@ description: Documentation for the component theming API.
 order: 1
 ---
 
-import { BadgeSpec } from "../../src/components/theming-guide-image"
-
 # Component Theming
 
 Writing component styles that are easy to maintain over the life of a growing
 and changing project is a challenging task. To solve this, we need to have a
 simple and consistent system.
 
-Chakra provides a unified component-driven CSS API that it builds its own components
-with and makes it easy to build your own customizable, theme-aware components.
+Chakra provides a unified component-driven CSS API that it builds its own
+components with and makes it easy to build your own customizable, theme-aware
+components.
 
 <br />
 
@@ -35,11 +34,12 @@ The most common style modifiers are:
   schemes (e.g. an outline button with a red color scheme)
 - **Color mode:** A component can change its visual styles based on color mode
   (e.g. light or dark).
-  
+
 ## Theming local and global
 
 - **Local.** Custom components can be themed locally using a `styled`-like API
-- **Global.** Both Chakra and Custom components can be themed via the central chakra theme using `themeKey`
+- **Global.** Both Chakra and Custom components can be themed via the central
+  chakra theme using `themeKey`
 
 ### Local Theming
 
@@ -109,10 +109,12 @@ const theme = {
 
 ### Theme out-of-the-box Chakra components from central theme
 
-Every out-of-the-box Chakra component has its own `themeKey` available for modification in the default theme.
-There you will find `defaultProps`, `baseStyle`, `sizes`, `variants`, etc that can be tweaked as needed.
+Every out-of-the-box Chakra component has its own `themeKey` available for
+modification in the default theme. There you will find `defaultProps`,
+`baseStyle`, `sizes`, `variants`, etc that can be tweaked as needed.
 
-For example, to customize `Button` globally, find the `components.Button` object and modify it.
+For example, to customize `Button` globally, find the `components.Button` object
+and modify it.
 
 ```jsx live=false
 const theme = {
