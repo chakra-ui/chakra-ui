@@ -1016,6 +1016,16 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Geeman201",
+      "name": "James Gee",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/1285296?v=4",
+      "profile": "https://github.com/Geeman201",
+      "contributions": [
+        "code",
+        "test"
+      ]
     }
   ],
   "contributorsPerLine": 7,
