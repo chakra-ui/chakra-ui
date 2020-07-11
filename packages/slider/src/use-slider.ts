@@ -220,7 +220,7 @@ export function useSlider(props: UseSliderProps) {
       let nextValue = percentToValue(percent, min, max)
 
       if (step) {
-        nextValue = parseFloat(roundValueToStep(nextValue, step))
+        nextValue = parseFloat(roundValueToStep(nextValue, min, step))
       }
 
       nextValue = clampValue(nextValue, min, max)
@@ -238,7 +238,7 @@ export function useSlider(props: UseSliderProps) {
       // bail out if slider isn't interactive
       if (!isInteractive) return
       prev.current = value
-      value = parseFloat(roundValueToStep(value, oneStep))
+      value = parseFloat(roundValueToStep(value, min, oneStep))
       value = clampValue(value, min, max)
       setValue(value)
     },
