@@ -71,10 +71,11 @@ export function percentToValue(percent: number, min: number, max: number) {
  * Rounds a specific value to the next or previous step
  *
  * @param value the value to round
+ * @param from the number that stepping started from
  * @param step the specified step
  */
-export function roundValueToStep(value: number, step: number) {
-  const nextValue = Math.round(value / step) * step
+export function roundValueToStep(value: number, from: number, step: number) {
+  const nextValue = Math.round((value - from) / step) * step + from
   const precision = countDecimalPlaces(step)
   return toPrecision(nextValue, precision)
 }
