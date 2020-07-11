@@ -379,10 +379,10 @@ function CustomTabs() {
     const isSelected = !!tabProps["aria-selected"]
 
     // 3. Hook into the Tabs `size`, `variant`, props
-    const theming = useTabsThemingContext()
+    const styles = useStyles()
 
     return (
-      <StyledTab {...theming} {...tabProps}>
+      <StyledTab __css={styles.tab} {...tabProps}>
         <Box as="span" mr="2">
           {isSelected ? "😎" : "😐"}
         </Box>
