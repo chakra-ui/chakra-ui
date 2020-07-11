@@ -64,7 +64,7 @@ function ProgressFilledTrack(props: ProgressFilledTrackProps) {
   return (
     <chakra.div
       style={{
-        width: progress.percent ? `${progress.percent}%` : undefined,
+        width: progress.percent != null ? `${progress.percent}%` : undefined,
         ...rest.style,
       }}
       {...progress.bind}

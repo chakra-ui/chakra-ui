@@ -61,9 +61,10 @@ export interface GetProgressPropsOptions {
  * progress components.
  */
 export function getProgressProps(options: GetProgressPropsOptions) {
-  const percent = options.value
-    ? valueToPercent(options.value, options.min, options.max)
-    : undefined
+  const percent =
+    options.value != null
+      ? valueToPercent(options.value, options.min, options.max)
+      : undefined
 
   // A progressbar is indeterminate when the `value` is undefined
   const isIndeterminate = isUndefined(options.value)
@@ -80,5 +81,6 @@ export function getProgressProps(options: GetProgressPropsOptions) {
       role: "progressbar",
     },
     percent,
+    isIndeterminate,
   }
 }

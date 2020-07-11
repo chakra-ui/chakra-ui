@@ -131,11 +131,11 @@ export function CircularProgress(props: CircularProgressProps) {
     getValueText,
   })
 
-  const isIndeterminate = isUndefined(progress.percent)
+  const isIndeterminate = progress.isIndeterminate
 
-  const determinant = isUndefined(progress.percent)
+  const determinant = progress.isIndeterminate
     ? undefined
-    : progress.percent * 2.64
+    : (progress.percent ?? 0) * 2.64
 
   const strokeDasharray = isUndefined(determinant)
     ? undefined
