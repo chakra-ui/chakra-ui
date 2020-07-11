@@ -36,6 +36,7 @@ export const Switch = React.forwardRef(function Switch(
       __css={{
         display: "inline-block",
         verticalAlign: "middle",
+        lineHeight: "normal",
       }}
     >
       <input className="chakra-switch__input" {...input} />

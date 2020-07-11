@@ -1,3 +1,3 @@
 module.exports = {
-  stories: ["../packages/accordion/**/*.stories.tsx"],
+  stories: ["../packages/switch/**/*.stories.tsx"],
 }

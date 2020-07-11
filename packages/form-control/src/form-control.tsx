@@ -142,8 +142,8 @@ export const FormControl = forwardRef<FormControlProps>(function FormControl(
   ref,
 ) {
   const styles = useStyleConfig("Form", props)
-  const realProps = omitThemingProps(props)
-  const { htmlProps, ...context } = useProvider(realProps)
+  const rest = omitThemingProps(props)
+  const { htmlProps, ...context } = useProvider(rest)
 
   const _className = cx("chakra-form-control", props.className)
 
