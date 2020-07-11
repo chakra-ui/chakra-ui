@@ -6470,6 +6470,11 @@ babel-plugin-remove-graphql-queries@^2.9.12:
   resolved "https://registry.yarnpkg.com/babel-plugin-remove-graphql-queries/-/babel-plugin-remove-graphql-queries-2.9.12.tgz#9d6b22b799ac11173fb91c8973f88846b391c130"
   integrity sha512-CJjsW331GuuU+h3SpKcrtMfzq3+Ypq6Oth8UQCBO3SP2gJw0EUGPVpmQwEXIT94sotUfVLWCasGQK7rRaeYb1A==
 
+babel-plugin-replace-import@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-replace-import/-/babel-plugin-replace-import-0.6.0.tgz#cc12ea89f0f0ddf5e3d71e60ee9bf922939132c2"
+  integrity sha512-r8CAAGwm1rQz1Q05pid410FHp8l8KNnMC94ri3LCB3Kc1QBXRhNMkMBjLhtwgfpzMQO3wCNivpG0SSwr1McmQg==
+
 babel-plugin-syntax-jsx@6.18.0, babel-plugin-syntax-jsx@^6.18.0:
   version "6.18.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-jsx/-/babel-plugin-syntax-jsx-6.18.0.tgz#0af32a9a6e13ca7a3fd5069e62d7b0f58d0d8946"
