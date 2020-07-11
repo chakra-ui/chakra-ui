@@ -20,10 +20,24 @@ module.exports = function (api) {
     "@babel/preset-react",
   ]
 
-  const plugins = [
+  let plugins = [
     "babel-plugin-chakra-ui",
     "@babel/plugin-proposal-class-properties",
   ]
+
+  // if babel is building replace the /src paths to use packages from node_modules
+  if (!process.env.IMPORT_FROM_SRC) {
+    plugins = [
+      ...plugins,
+      [
+        "replace-import",
+        {
+          src: /^@chakra-ui\/([\w-]+)\/src/,
+          dest: "@chakra-ui/$1",
+        },
+      ],
+    ]
+  }
 
   return {
     presets,
