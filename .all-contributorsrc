@@ -1007,6 +1007,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "neighborhood999",
+      "name": "Peng Jie",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/10325111?v=4",
+      "profile": "http://jiepeng.me",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

@@ -289,6 +289,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="http://www.timkindberg.com"><img src="https://avatars0.githubusercontent.com/u/168046?v=4" width="64px;" alt=""/><br /><sub><b>Tim Kindberg</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=timkindberg" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/iodar"><img src="https://avatars3.githubusercontent.com/u/47027105?v=4" width="64px;" alt=""/><br /><sub><b>iodar</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=iodar" title="Documentation">📖</a></td>
     <td align="center"><a href="http://lcdsmao.dev"><img src="https://avatars3.githubusercontent.com/u/13031690?v=4" width="64px;" alt=""/><br /><sub><b>MAO YUFENG</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=lcdsmao" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://jiepeng.me"><img src="https://avatars3.githubusercontent.com/u/10325111?v=4" width="64px;" alt=""/><br /><sub><b>Peng Jie</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=neighborhood999" title="Code">💻</a></td>
   </tr>
 </table>
 
