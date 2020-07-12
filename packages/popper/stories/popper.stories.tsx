@@ -1,9 +1,47 @@
 /**@jsx jsx */
-import { jsx } from "@chakra-ui/system"
 import { useDisclosure } from "@chakra-ui/hooks"
+import { jsx } from "@chakra-ui/system"
+import {
+  HiddenCSSTransition,
+  MotionConfig,
+  motionConfigToCSS,
+} from "@chakra-ui/transition"
 import * as React from "react"
-import { usePopper, toTransformOrigin } from "../src"
-import CSSTransition from "react-transition-group/CSSTransition"
+import { toTransformOrigin, usePopper } from "../src"
+
+const scale: MotionConfig = {
+  timeout: { enter: 100, exit: 75 },
+  enter: {
+    transition: {
+      easing: "ease-out",
+      duration: "100ms",
+      property: "transform, opacity",
+    },
+    from: {
+      opacity: 0,
+      transform: "scale(0.95)",
+    },
+    to: {
+      opacity: 1,
+      transform: "scale(1)",
+    },
+  },
+  exit: {
+    transition: {
+      easing: "ease-in",
+      duration: "75ms",
+      property: "transform, opacity",
+    },
+    from: {
+      opacity: 1,
+      transform: "scale(1)",
+    },
+    to: {
+      opacity: 0,
+      transform: "scale(0.95)",
+    },
+  },
+}
 
 export default {
   title: "Popper",
@@ -26,24 +64,11 @@ export const Basic = () => {
       >
         Reference Tooltip Trigger
       </button>
-      <CSSTransition
+      <HiddenCSSTransition
         nodeRef={popper.ref}
         in={disclosure.isOpen}
-        timeout={150}
+        timeout={scale.timeout}
         classNames="tooltip"
-        onEnter={() => {
-          popper.ref.current.hidden = false
-        }}
-        onExited={() => {
-          popper.ref.current.hidden = true
-          popper.ref.current.style.pointerEvents = "auto"
-        }}
-        onExit={() => {
-          popper.ref.current.hidden = false
-        }}
-        onExiting={() => {
-          popper.ref.current.style.pointerEvents = "none"
-        }}
       >
         <div
           hidden={!disclosure.isOpen}
@@ -52,51 +77,19 @@ export const Basic = () => {
           style={{
             ...popper.style,
             width: 250,
-            background: "red",
+            background: "white",
+            boxShadow:
+              "0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -2px rgba(0,0,0,.05)",
+            border: "1px solid #d2d6dc",
             padding: 15,
             borderRadius: 6,
             transformOrigin: toTransformOrigin(placement),
           }}
-          sx={{
-            "&.tooltip": {
-              opacity: 0,
-              transform: "scale(0.8)",
-              "&-enter": {
-                opacity: 0,
-                transform: "scale(0.8)",
-              },
-              "&-enter-active": {
-                opacity: 1,
-                transform: "scale(1)",
-                transitionTimingFunction: "cubic-bezier(0,0,0.2,1)",
-                transitionProperty: "transform, opacity",
-                transitionDuration: "150ms",
-              },
-              "&-enter-done": {
-                opacity: 1,
-                transform: "scale(1)",
-              },
-              "&-exit": {
-                opacity: 1,
-                transform: "scale(1)",
-              },
-              "&-exit-active": {
-                opacity: 0,
-                transform: "scale(0.8)",
-                transitionTimingFunction: "cubic-bezier(0.4,0,1,1)",
-                transitionProperty: "transform, opacity",
-                transitionDuration: "150ms",
-              },
-              "&-exit-done": {
-                opacity: 0,
-                transform: "scale(0.8)",
-              },
-            },
-          }}
+          sx={motionConfigToCSS(scale, "tooltip")}
         >
           Popper
         </div>
-      </CSSTransition>
+      </HiddenCSSTransition>
     </React.Fragment>
   )
 }
