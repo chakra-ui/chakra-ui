@@ -7,8 +7,6 @@ image: "components/icon.svg"
 import ComponentLinks from "../../src/components/component-links"
 import IconsList from "../../src/components/icons-list"
 
-import { Grid, Flex, useTheme, Icon, Text } from "@chakra-ui/core"
-
 # Icon
 
 By default, Chakra UI comes with a [set of basic interface icons](#all-icons).
@@ -74,12 +72,11 @@ import { MdSettings } from "react-icons/md"
 
 **Problem:**
 
-- Does not provide the logic to custom style them using `style props` with
-  `theme` value or `themeKey`.
+- Using `ref` doesn't get forwarded automatically. This may report a React error
+  in console about passing `ref` to a function component.
 
-- Doesn't allow to use `ref`, since it doesn't get forwarded automatically. This
-  may report a React error in the console about passing ref to a function
-  component.
+- Custom styling with `style props` using `theme` value or `themeKey` may not be
+  possible.
 
 ```jsx
 <HStack>
@@ -154,7 +151,8 @@ export const UpDownIcon = createIcon({
 
 Before generating custom icons do the following:
 
-- Export the icon's `svg` from Figma, Sketch, etc.
+- Export icons as `svg` from [Figma](https://www.figma.com/),
+  [Sketch](https://www.sketch.com/), etc.
 - Use a tool like [SvgOmg](https://jakearchibald.github.io/svgomg/) to reduce
   the size and minify the markup.
 - Use `createIcon` to create an icon as shown above.
@@ -166,7 +164,7 @@ Start using the icons right away. There is no need to update theme files.
 When path is not provided, `Icon` component renders the `fallbackIcon`
 
 ```jsx
-<Icon boxSize="32px" color="white" />
+<Icon />
 ```
 
 ## Props
