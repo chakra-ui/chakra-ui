@@ -4,14 +4,17 @@ import { ResponsiveValue } from "../utils"
 
 const config: Config = {
   transition: true,
-  transitionDuration: true,
+  transitionDuration: {
+    property: "transitionDuration",
+    scale: "transition.duration",
+  },
   transitionProperty: {
     property: "transitionProperty",
     scale: "transition.property",
   },
   transitionTimingFunction: {
     property: "transitionTimingFunction",
-    scale: "transition.easing",
+    scale: "transition.timingFunction",
   },
 }
 
