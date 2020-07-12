@@ -10,6 +10,7 @@ import {
   InputLeftElement,
   InputRightElement,
   Stack,
+  Container,
 } from "@chakra-ui/core"
 import Head from "next/head"
 
@@ -28,14 +29,14 @@ const InputGrouper = () => {
         <Input placeholder="Enter amount" />
         {bool && <InputRightElement children={"C"} />}
       </InputGroup>
-      <button onClick={() => setBool((s) => !s)}>Add Right Element</button>
+      <button onClick={() => setBool((s) => !s)}>Toggle Right Element</button>
       <br />
     </>
   )
 }
 
 const Home = () => (
-  <div className="container">
+  <Container>
     <Head>
       <title>Create Next App</title>
       <link rel="icon" href="/favicon.ico" />
@@ -72,7 +73,7 @@ const Home = () => (
         <div>Welcome home</div>
       </Stack>
     </main>
-  </div>
+  </Container>
 )
 
 export default Home
