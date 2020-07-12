@@ -1,18 +1,16 @@
-import { Button } from "@chakra-ui/button"
-import { Image } from "@chakra-ui/image"
-import {
-  Input,
-  InputGroup,
-  InputLeftElement,
-  InputRightElement,
-} from "@chakra-ui/input"
-import { Stack } from "@chakra-ui/layout"
 import {
   chakra,
   DarkMode,
   useColorMode,
   useColorModeValue,
-} from "@chakra-ui/system"
+  Button,
+  Image,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  InputRightElement,
+  Stack,
+} from "@chakra-ui/core"
 import Head from "next/head"
 
 function Switcher() {
