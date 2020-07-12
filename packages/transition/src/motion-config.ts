@@ -17,35 +17,42 @@ export interface MotionTransition {
 }
 
 export interface MotionTypeConfig {
-  transition: MotionTransition
+  transition?: MotionTransition
   from: SystemStyleObject
   to: SystemStyleObject
 }
 
 export interface MotionConfig {
+  transition?: MotionTransition
   timeout: CSSTransitionProps["timeout"]
   enter: MotionTypeConfig
   exit: MotionTypeConfig
 }
 
-export type MotionType = "enter" | "exit"
+export type MotionType = "enter" | "exit" | "appear"
 
 function getMotionStyles(config: MotionConfig, type: MotionType) {
-  const motion = config[type]
+  const motion = config[type] ?? config.enter
+
+  if (!motion) return {}
+
+  const _transition = motion.transition ?? config.transition ?? {}
+  const transition = _transition as MotionTransition
+
   return {
     ...(type === "enter" && motion.from),
     [`&-${type}`]: motion.from,
     [`&-${type}-active`]: {
       ...motion.to,
-      transitionTimingFunction: motion.transition.easing,
-      transitionProperty: motion.transition.property,
-      transitionDuration: motion.transition.duration,
+      transitionTimingFunction: transition.easing,
+      transitionProperty: transition.property,
+      transitionDuration: transition.duration,
     },
     [`&-${type}-done`]: motion.to,
   }
 }
 
-function motionConfigToCSS(
+export function motionConfigToCSS(
   config: MotionConfig,
   className: string,
 ): SystemStyleObject {
@@ -53,8 +60,7 @@ function motionConfigToCSS(
     [`&.${className}`]: {
       ...getMotionStyles(config, "enter"),
       ...getMotionStyles(config, "exit"),
+      ...getMotionStyles(config, "appear"),
     },
   }
 }
-
-export default motionConfigToCSS

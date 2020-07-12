@@ -1,10 +1,25 @@
+import { __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import CSSTransition, {
   CSSTransitionProps,
 } from "react-transition-group/CSSTransition"
-import { Omit, __DEV__ } from "@chakra-ui/utils"
 
-export type HiddenCSSTransitionProps = Omit<CSSTransitionProps, "nodeRef"> & {
+type Picked =
+  | "onEnter"
+  | "onEntered"
+  | "timeout"
+  | "onExited"
+  | "onExit"
+  | "classNames"
+  | "onExiting"
+  | "appear"
+  | "unmountOnExit"
+  | "mountOnEnter"
+
+export type HiddenCSSTransitionProps = Pick<
+  CSSTransitionProps<HTMLElement>,
+  Picked
+> & {
   nodeRef: React.RefObject<HTMLElement>
   children: React.ReactNode
 }
@@ -23,14 +38,15 @@ export function HiddenCSSTransition(props: HiddenCSSTransitionProps) {
   return (
     <CSSTransition
       {...rest}
-      addEndListener={(done: any) => {
+      nodeRef={nodeRef}
+      addEndListener={(done) => {
         nodeRef.current?.addEventListener("transitionend", done, false)
       }}
-      onEnter={() => {
+      onEnter={(isAppearing) => {
         if (nodeRef.current) {
           nodeRef.current.hidden = false
         }
-        onEnter?.()
+        onEnter?.(isAppearing)
       }}
       onExited={() => {
         if (nodeRef.current) {

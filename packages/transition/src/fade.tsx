@@ -1,6 +1,29 @@
 import * as React from "react"
-import {__DEV__} from "@chakra-ui/utils";
+import { __DEV__ } from "@chakra-ui/utils"
 import { Transition, TransitionProps, TransitionStyles } from "./transition"
+import { MotionConfig } from "./motion-config"
+
+export const fadeConfig: MotionConfig = {
+  timeout: 500,
+  enter: {
+    transition: {
+      easing: "ease-in-out",
+      duration: "500ms",
+      property: "opacity",
+    },
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+  },
+  exit: {
+    transition: {
+      easing: "ease-in-out",
+      duration: "500ms",
+      property: "opacity",
+    },
+    from: { opacity: 1 },
+    to: { opacity: 0 },
+  },
+}
 
 export type FadeProps = Omit<TransitionProps, "styles" | "timeout"> & {
   timeout?: number
@@ -24,6 +47,6 @@ export function Fade(props: FadeProps) {
   )
 }
 
-if(__DEV__) {
+if (__DEV__) {
   Fade.displayName = "Fade"
 }

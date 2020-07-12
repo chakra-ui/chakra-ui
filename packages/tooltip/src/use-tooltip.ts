@@ -1,5 +1,10 @@
 import { useDisclosure, useEventListener, useId } from "@chakra-ui/hooks"
-import { Placement, usePopper, UsePopperProps } from "@chakra-ui/popper"
+import {
+  Placement,
+  usePopper,
+  UsePopperProps,
+  toTransformOrigin,
+} from "@chakra-ui/popper"
 import { callAllHandlers, mergeRefs, Dict } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -155,7 +160,11 @@ export function useTooltip(props: UseTooltipProps = {}) {
       id: tooltipId,
       role: "tooltip",
       ref: mergeRefs(props.ref, popper.popper.ref),
-      style: { ...props.style, ...popper.popper.style },
+      style: {
+        transformOrigin: toTransformOrigin(popper.placement),
+        ...props.style,
+        ...popper.popper.style,
+      },
     }),
     getArrowProps: (props: Dict = {}) => ({
       ...props,
