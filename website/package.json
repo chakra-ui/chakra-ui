@@ -26,7 +26,7 @@
     "gatsby-plugin-sharp": "^2.2.9",
     "gatsby-remark-autolink-headers": "^2.3.3",
     "gatsby-source-filesystem": "^2.1.8",
-    "gatsby-transformer-sharp": "2.5.7",
+    "gatsby-transformer-sharp": "2.5.11",
     "lodash": "^4.17.15",
     "prism-react-renderer": "^1.1.0",
     "prop-types": "^15.7.2",
