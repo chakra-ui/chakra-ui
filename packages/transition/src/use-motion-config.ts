@@ -1,5 +1,5 @@
 import { SystemStyleObject, useTheme } from "@chakra-ui/system"
-import { Dict, get, runIfFn } from "@chakra-ui/utils"
+import { Dict, get, runIfFn, createContext } from "@chakra-ui/utils"
 import React from "react"
 import { MotionConfig, motionConfigToCSS } from "./motion-config"
 
@@ -23,7 +23,7 @@ export function useMotionConfig(
 
   const partsMotionRef = React.useRef<Dict<SystemStyleObject>>({})
 
-  return React.useMemo(() => {
+  const motionStyles = React.useMemo(() => {
     if (config) {
       const partsMotion: Record<string, SystemStyleObject> = {}
 
@@ -44,4 +44,19 @@ export function useMotionConfig(
 
     return partsMotionRef.current
   }, [className, config, themeKey])
+
+  return { styles: motionStyles, timeout: config?.timeout }
 }
+
+export type UseMotionConfigReturn = ReturnType<typeof useMotionConfig>
+
+export type MotionConfigProps = {
+  motionConfig?: Record<string, MotionConfig>
+}
+
+const [MotionProvider, usePartsMotion] = createContext<UseMotionConfigReturn>({
+  errorMessage:
+    "`context` is undefined or null. Seems you forgot to wrap the components within <MotionProvider />",
+})
+
+export { MotionProvider, usePartsMotion }

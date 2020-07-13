@@ -14,10 +14,17 @@ import {
   ReactNodeOrRenderProp,
   runIfFn,
   __DEV__,
+  merge,
+  mergeRefs,
 } from "@chakra-ui/utils"
 import * as React from "react"
 import { usePopover, UsePopoverProps, UsePopoverReturn } from "./use-popover"
-import CSSTransition from "react-transition-group/CSSTransition"
+import {
+  HiddenCSSTransition,
+  useMotionConfig,
+  MotionProvider,
+  usePartsMotion,
+} from "@chakra-ui/transition"
 
 const [PopoverContextProvider, usePopoverContext] = createContext<
   UsePopoverReturn
@@ -48,17 +55,21 @@ export type PopoverProps = UsePopoverProps &
  */
 export function Popover(props: PopoverProps) {
   const styles = useStyleConfig("Popover", props)
+  const motion = useMotionConfig("Popover", props, "chakra-popover__content")
+
   const { children, ...rest } = omitThemingProps(props)
   const context = usePopover(rest)
 
   return (
     <PopoverContextProvider value={context}>
-      <StylesProvider value={styles}>
-        {runIfFn(children, {
-          isOpen: context.isOpen,
-          onClose: context.onClose,
-        })}
-      </StylesProvider>
+      <MotionProvider value={motion}>
+        <StylesProvider value={styles}>
+          {runIfFn(children, {
+            isOpen: context.isOpen,
+            onClose: context.onClose,
+          })}
+        </StylesProvider>
+      </MotionProvider>
     </PopoverContextProvider>
   )
 }
@@ -96,21 +107,36 @@ export const PopoverContent = React.forwardRef(function PopoverContent(
   props: PopoverContentProps,
   ref: React.Ref<any>,
 ) {
-  const { getPopoverProps } = usePopoverContext()
+  const { isOpen, getPopoverProps } = usePopoverContext()
+
   const popoverProps = getPopoverProps({ ...props, ref })
+
+  const cssRef = React.useRef<any>()
+  popoverProps.ref = mergeRefs(popoverProps.ref, cssRef)
+
   const styles = useStyles()
+  const motion = usePartsMotion()
 
   return (
-    <chakra.section
-      className="chakra-popover__content"
-      {...popoverProps}
-      __css={{
-        position: "relative",
-        display: "flex",
-        flexDirection: "column",
-        ...styles.content,
-      }}
-    />
+    <HiddenCSSTransition
+      in={isOpen}
+      classNames="chakra-popover__content"
+      appear
+      timeout={motion.timeout}
+      nodeRef={cssRef}
+    >
+      <chakra.section
+        className="chakra-popover__content"
+        {...popoverProps}
+        __css={{
+          position: "relative",
+          display: "flex",
+          flexDirection: "column",
+          ...styles.content,
+          ...motion.styles.content,
+        }}
+      />
+    </HiddenCSSTransition>
   )
 })
 

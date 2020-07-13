@@ -54,7 +54,7 @@ export const Tooltip = React.forwardRef(function Tooltip(
   ref: React.Ref<any>,
 ) {
   const styles = useStyleConfig("Tooltip", props)
-  const motionStyles = useMotionConfig("Tooltip", props, "chakra-tooltip")
+  const motion = useMotionConfig("Tooltip", props, "chakra-tooltip")
 
   const realProps = omitThemingProps(props)
   const {
@@ -117,6 +117,7 @@ export const Tooltip = React.forwardRef(function Tooltip(
       {trigger}
       <HiddenCSSTransition
         classNames="chakra-tooltip"
+        timeout={motion.timeout}
         appear
         unmountOnExit
         in={isOpen}
@@ -128,7 +129,7 @@ export const Tooltip = React.forwardRef(function Tooltip(
             {...tooltipProps}
             __css={{
               ...styles.container,
-              ...motionStyles.container,
+              ...motion.styles.container,
             }}
           >
             {label}

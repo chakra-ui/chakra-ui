@@ -1,5 +1,10 @@
 import { useBoolean, useDisclosure, useIds } from "@chakra-ui/hooks"
-import { Placement, usePopper, UsePopperProps } from "@chakra-ui/popper"
+import {
+  Placement,
+  usePopper,
+  UsePopperProps,
+  toTransformOrigin,
+} from "@chakra-ui/popper"
 import { useColorModeValue, useToken } from "@chakra-ui/system"
 import { callAllHandlers, Dict, mergeRefs } from "@chakra-ui/utils"
 import * as React from "react"
@@ -98,7 +103,7 @@ export function usePopover(props: UsePopoverProps = {}) {
     closeOnBlur = true,
     closeOnEsc = true,
     initialFocusRef,
-    placement,
+    placement: placementProp,
     gutter,
     id,
     arrowSize,
@@ -133,8 +138,8 @@ export function usePopover(props: UsePopoverProps = {}) {
   const shadowColor = arrowShadowColor ?? fallbackShadowColor
   const arrowColor = useToken("colors", shadowColor, arrowShadowColor)
 
-  const { popper, reference, arrow } = usePopper({
-    placement,
+  const { popper, reference, arrow, placement } = usePopper({
+    placement: placementProp,
     gutter,
     forceUpdate: isOpen,
     arrowSize,
@@ -178,8 +183,11 @@ export function usePopover(props: UsePopoverProps = {}) {
           },
         ),
         ref: mergeRefs(popoverRef, popper.ref, props.ref),
-        style: { ...props.style, ...popper.style },
-        "aria-hidden": isOpen ? undefined : true,
+        style: {
+          transformOrigin: toTransformOrigin(placement),
+          ...props.style,
+          ...popper.style,
+        },
         "aria-labelledby": hasHeader ? headerId : undefined,
         "aria-describedby": hasBody ? bodyId : undefined,
       }
@@ -202,19 +210,20 @@ export function usePopover(props: UsePopoverProps = {}) {
       return popoverProps
     },
     [
-      closeDelay,
-      bodyId,
-      closeOnEsc,
-      hasBody,
+      popoverId,
+      isOpen,
+      popper.ref,
+      placement,
+      popper.style,
       hasHeader,
       headerId,
-      isOpen,
-      onBlur,
-      onClose,
-      popoverId,
-      popper.ref,
-      popper.style,
+      hasBody,
+      bodyId,
       trigger,
+      closeOnEsc,
+      onClose,
+      onBlur,
+      closeDelay,
     ],
   )
 
