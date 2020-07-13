@@ -20,7 +20,7 @@ import {
 import * as React from "react"
 import { usePopover, UsePopoverProps, UsePopoverReturn } from "./use-popover"
 import {
-  HiddenCSSTransition,
+  HiddenTransition,
   useMotionConfig,
   MotionProvider,
   usePartsMotion,
@@ -118,7 +118,7 @@ export const PopoverContent = React.forwardRef(function PopoverContent(
   const motion = usePartsMotion()
 
   return (
-    <HiddenCSSTransition
+    <HiddenTransition
       in={isOpen}
       classNames="chakra-popover__content"
       appear
@@ -136,7 +136,7 @@ export const PopoverContent = React.forwardRef(function PopoverContent(
           ...motion.styles.content,
         }}
       />
-    </HiddenCSSTransition>
+    </HiddenTransition>
   )
 })
 

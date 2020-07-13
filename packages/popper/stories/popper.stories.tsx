@@ -2,7 +2,7 @@
 import { useDisclosure } from "@chakra-ui/hooks"
 import { jsx } from "@chakra-ui/system"
 import {
-  HiddenCSSTransition,
+  HiddenTransition,
   MotionConfig,
   motionConfigToCSS,
 } from "@chakra-ui/transition"
@@ -64,7 +64,7 @@ export const Basic = () => {
       >
         Reference Tooltip Trigger
       </button>
-      <HiddenCSSTransition
+      <HiddenTransition
         nodeRef={popper.ref}
         in={disclosure.isOpen}
         timeout={scale.timeout}
@@ -89,7 +89,7 @@ export const Basic = () => {
         >
           Popper
         </div>
-      </HiddenCSSTransition>
+      </HiddenTransition>
     </React.Fragment>
   )
 }

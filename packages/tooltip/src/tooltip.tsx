@@ -10,7 +10,7 @@ import { isString, omit, pick, __DEV__, mergeRefs } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 import * as React from "react"
 import { useTooltip, UseTooltipProps } from "./use-tooltip"
-import { HiddenCSSTransition, useMotionConfig } from "@chakra-ui/transition"
+import { HiddenTransition, useMotionConfig } from "@chakra-ui/transition"
 
 export type TooltipProps = PropsOf<typeof chakra.div> &
   ThemingProps &
@@ -115,7 +115,7 @@ export const Tooltip = React.forwardRef(function Tooltip(
   return (
     <>
       {trigger}
-      <HiddenCSSTransition
+      <HiddenTransition
         classNames="chakra-tooltip"
         timeout={motion.timeout}
         appear
@@ -148,7 +148,7 @@ export const Tooltip = React.forwardRef(function Tooltip(
             )}
           </chakra.div>
         </Portal>
-      </HiddenCSSTransition>
+      </HiddenTransition>
     </>
   )
 })

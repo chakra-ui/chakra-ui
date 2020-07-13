@@ -17,7 +17,7 @@ type Picked =
   | "unmountOnExit"
   | "mountOnEnter"
 
-export type HiddenCSSTransitionProps = Pick<
+export type HiddenTransitionProps = Pick<
   CSSTransitionProps<HTMLElement>,
   Picked
 > & {
@@ -25,7 +25,7 @@ export type HiddenCSSTransitionProps = Pick<
   children: React.ReactNode
 }
 
-export function HiddenCSSTransition(props: HiddenCSSTransitionProps) {
+export function HiddenTransition(props: HiddenTransitionProps) {
   const {
     nodeRef,
     children,
@@ -75,5 +75,5 @@ export function HiddenCSSTransition(props: HiddenCSSTransitionProps) {
 }
 
 if (__DEV__) {
-  HiddenCSSTransition.displayName = "HiddenCSSTransition"
+  HiddenTransition.displayName = "HiddenTransition"
 }
