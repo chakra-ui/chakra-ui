@@ -1,5 +1,4 @@
-import { BaseStyle, mode } from "@chakra-ui/theme-tools"
-import { MotionConfig } from "@chakra-ui/transition"
+import { BaseStyle, mode, MotionStyle } from "@chakra-ui/theme-tools"
 
 const register = {
   parts: ["arrow", "container"],
@@ -10,8 +9,8 @@ const baseStyle: BaseStyle<typeof register> = (props) => {
     container: {
       paddingX: "8px",
       paddingY: "2px",
-      bg: mode(`gray.700`, `gray.300`)(props),
-      color: mode(`whiteAlpha.900`, `gray.900`)(props),
+      bg: mode("gray.700", "gray.300")(props),
+      color: mode("whiteAlpha.900", "gray.900")(props),
       borderRadius: "sm",
       fontWeight: "medium",
       pointerEvents: "none",
@@ -22,7 +21,7 @@ const baseStyle: BaseStyle<typeof register> = (props) => {
   }
 }
 
-const motion: Record<string, MotionConfig> = {
+const motion: MotionStyle<typeof register> = {
   container: {
     timeout: 120,
     transition: {
@@ -31,12 +30,12 @@ const motion: Record<string, MotionConfig> = {
       property: "common",
     },
     enter: {
-      from: { opacity: 0.01, transform: `scale(0.9)` },
-      to: { opacity: 1, transform: `scale(1)` },
+      from: { opacity: 0.01, transform: "scale(0.9)" },
+      to: { opacity: 1, transform: "scale(1)" },
     },
     exit: {
-      from: { opacity: 1, transform: `scale(1)` },
-      to: { opacity: 0.01, transform: `scale(0.9)` },
+      from: { opacity: 1, transform: "scale(1)" },
+      to: { opacity: 0.01, transform: "scale(0.9)" },
     },
   },
 }

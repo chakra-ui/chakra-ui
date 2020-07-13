@@ -1,5 +1,6 @@
 import { SystemStyleObject } from "@chakra-ui/system"
 import { Dict, UnionStringArray, runIfFn } from "@chakra-ui/utils"
+import { MotionConfig } from "@chakra-ui/transition"
 
 export type GlobalStyles = {
   global?: SystemStyleObject | ((props: Props) => SystemStyleObject)
@@ -28,55 +29,33 @@ export type SizeType<E extends Readonly<Dict>> = E["sizes"][number]
 
 type Arr = Readonly<any[]>
 
-export type PartsStyle<P extends Arr> = {
-  [K in UnionStringArray<P>]?: SystemStyleObject
+type PartsStyle<P extends Arr, V = SystemStyleObject> = {
+  [K in UnionStringArray<P>]?: V
 }
 
-export type Interpolation<P extends Arr> =
-  | PartsStyle<P>
-  | ((props: any) => PartsStyle<P>)
+type PartsInterpolation<E extends Readonly<Dict>, V = SystemStyleObject> =
+  | PartsStyle<E["parts"], V>
+  | ((props: any) => PartsStyle<E["parts"], V>)
 
-export type PartsModifierFn<P1 extends Arr, P2 extends Arr> = {
-  [K in UnionStringArray<P1>]?: (props: any) => PartsStyle<P2>
-}
+export type MotionStyle<E extends Readonly<Dict>> = PartsInterpolation<
+  E,
+  MotionConfig
+>
 
-export type BaseStyle<E extends Readonly<Dict>> = Interpolation<E["parts"]>
+export type BaseStyle<E extends Readonly<Dict>> = PartsInterpolation<E>
 
 export type Sizes<E extends Readonly<Dict>> = {
-  [K in UnionStringArray<E["sizes"]>]?: Interpolation<E["parts"]>
+  [K in UnionStringArray<E["sizes"]>]?: PartsInterpolation<E>
 }
 
 export type Variants<E extends Readonly<Dict>> = {
-  [K in UnionStringArray<E["variants"]>]?: Interpolation<E["parts"]>
+  [K in UnionStringArray<E["variants"]>]?: PartsInterpolation<E>
 }
 
 export type DefaultProps<E extends Readonly<Dict>> = {
   size?: UnionStringArray<E["sizes"]>
   variant?: UnionStringArray<E["variants"]>
   colorScheme?: string
-}
-
-export interface ComponentTheme<P = {}> {
-  /**
-   * The default props to apply to the component
-   */
-  defaultProps?: any
-  /**
-   * The initial styles to be applied to the component
-   */
-  baseStyle?: any
-  /**
-   * The component's visual style variants
-   */
-  variants?: any
-  /**
-   * The component's size variations
-   */
-  sizes?: any
-  /**
-   * The parts the component has or can have
-   */
-  parts?: any
 }
 
 export function mode(light: any, dark: any) {
