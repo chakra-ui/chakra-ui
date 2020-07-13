@@ -174,7 +174,7 @@
     "react-test-renderer": "16.13.1",
     "rimraf": "3.0.2",
     "shelljs": "0.8.4",
-    "ts-jest": "26.1.0",
+    "ts-jest": "26.1.2",
     "typescript": "3.9.5"
   }
 }
