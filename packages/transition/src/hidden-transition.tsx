@@ -12,6 +12,7 @@ type Picked =
   | "onExit"
   | "classNames"
   | "onExiting"
+  | "in"
   | "appear"
   | "unmountOnExit"
   | "mountOnEnter"
