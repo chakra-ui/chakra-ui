@@ -6,7 +6,7 @@ import type {
   TransitionStatus,
 } from "react-transition-group/Transition"
 
-export type BaseProps = Pick<
+type RTGProps = Pick<
   ReactTransitionProps,
   | "in"
   | "onEnter"
@@ -19,7 +19,7 @@ export type BaseProps = Pick<
   | "timeout"
 >
 
-export interface TransitionProps extends BaseProps {
+export interface TransitionProps extends RTGProps {
   transition?: string
   children: (styles: React.CSSProperties) => React.ReactNode
   styles: TransitionStyles

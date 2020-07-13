@@ -1,6 +1,6 @@
-import { MotionConfig } from "../motion-config"
+import { TransitionConfig } from "../transition-config"
 
-export const scaleFade: MotionConfig = {
+export const scaleFade: TransitionConfig = {
   timeout: { enter: 100, exit: 75 },
   enter: {
     transition: {

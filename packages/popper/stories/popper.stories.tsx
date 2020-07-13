@@ -3,13 +3,13 @@ import { useDisclosure } from "@chakra-ui/hooks"
 import { jsx } from "@chakra-ui/system"
 import {
   HiddenTransition,
-  MotionConfig,
-  motionConfigToCSS,
+  TransitionConfig,
+  TransitionConfigToCSS,
 } from "@chakra-ui/transition"
 import * as React from "react"
 import { toTransformOrigin, usePopper } from "../src"
 
-const scale: MotionConfig = {
+const scale: TransitionConfig = {
   timeout: { enter: 100, exit: 75 },
   enter: {
     transition: {
@@ -85,7 +85,7 @@ export const Basic = () => {
             borderRadius: 6,
             transformOrigin: toTransformOrigin(placement),
           }}
-          sx={motionConfigToCSS(scale, "tooltip")}
+          sx={TransitionConfigToCSS(scale, "tooltip")}
         >
           Popper
         </div>

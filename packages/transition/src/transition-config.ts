@@ -1,7 +1,7 @@
 import { SystemStyleObject } from "@chakra-ui/system"
 import { CSSTransitionProps } from "react-transition-group/CSSTransition"
 
-export interface MotionTransition {
+export interface TransitionOptions {
   /**
    * The CSS `transition-timing-function` to apply
    */
@@ -16,28 +16,28 @@ export interface MotionTransition {
   property: string
 }
 
-export interface MotionTypeConfig {
-  transition?: MotionTransition
+export interface TransitionStateConfig {
+  transition?: TransitionOptions
   from: SystemStyleObject
   to: SystemStyleObject
 }
 
-export interface MotionConfig {
-  transition?: MotionTransition
+export interface TransitionConfig {
+  transition?: TransitionOptions
   timeout: CSSTransitionProps["timeout"]
-  enter: MotionTypeConfig
-  exit: MotionTypeConfig
+  enter: TransitionStateConfig
+  exit: TransitionStateConfig
 }
 
-export type MotionType = "enter" | "exit" | "appear"
+export type TransitionStates = "enter" | "exit" | "appear"
 
-function getMotionStyles(config: MotionConfig, type: MotionType) {
+function getTransitionStyles(config: TransitionConfig, type: TransitionStates) {
   const motion = config[type] ?? config.enter
 
   if (!motion) return {}
 
   const _transition = motion.transition ?? config.transition ?? {}
-  const transition = _transition as MotionTransition
+  const transition = _transition as TransitionOptions
 
   return {
     ...(type === "enter" && motion.from),
@@ -52,15 +52,15 @@ function getMotionStyles(config: MotionConfig, type: MotionType) {
   }
 }
 
-export function motionConfigToCSS(
-  config: MotionConfig,
+export function transitionConfigToCSS(
+  config: TransitionConfig,
   className: string,
 ): SystemStyleObject {
   return {
     [`&.${className}`]: {
-      ...getMotionStyles(config, "enter"),
-      ...getMotionStyles(config, "exit"),
-      ...getMotionStyles(config, "appear"),
+      ...getTransitionStyles(config, "enter"),
+      ...getTransitionStyles(config, "exit"),
+      ...getTransitionStyles(config, "appear"),
     },
   }
 }

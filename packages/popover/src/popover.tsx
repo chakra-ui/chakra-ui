@@ -21,9 +21,9 @@ import * as React from "react"
 import { usePopover, UsePopoverProps, UsePopoverReturn } from "./use-popover"
 import {
   HiddenTransition,
-  useMotionConfig,
-  MotionProvider,
-  usePartsMotion,
+  useTransitionConfig,
+  TransitionsProvider,
+  useTransitions,
 } from "@chakra-ui/transition"
 
 const [PopoverContextProvider, usePopoverContext] = createContext<
@@ -55,21 +55,25 @@ export type PopoverProps = UsePopoverProps &
  */
 export function Popover(props: PopoverProps) {
   const styles = useStyleConfig("Popover", props)
-  const motion = useMotionConfig("Popover", props, "chakra-popover__content")
+  const motion = useTransitionConfig(
+    "Popover",
+    props,
+    "chakra-popover__content",
+  )
 
   const { children, ...rest } = omitThemingProps(props)
   const context = usePopover(rest)
 
   return (
     <PopoverContextProvider value={context}>
-      <MotionProvider value={motion}>
+      <TransitionsProvider value={motion}>
         <StylesProvider value={styles}>
           {runIfFn(children, {
             isOpen: context.isOpen,
             onClose: context.onClose,
           })}
         </StylesProvider>
-      </MotionProvider>
+      </TransitionsProvider>
     </PopoverContextProvider>
   )
 }
@@ -115,14 +119,14 @@ export const PopoverContent = React.forwardRef(function PopoverContent(
   popoverProps.ref = mergeRefs(popoverProps.ref, cssRef)
 
   const styles = useStyles()
-  const motion = usePartsMotion()
+  const transitions = useTransitions()
 
   return (
     <HiddenTransition
       in={isOpen}
       classNames="chakra-popover__content"
       appear
-      timeout={motion.timeout}
+      timeout={transitions.content.timeout}
       nodeRef={cssRef}
     >
       <chakra.section
@@ -133,7 +137,7 @@ export const PopoverContent = React.forwardRef(function PopoverContent(
           display: "flex",
           flexDirection: "column",
           ...styles.content,
-          ...motion.styles.content,
+          ...transitions.content.styles,
         }}
       />
     </HiddenTransition>

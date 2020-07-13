@@ -1,4 +1,4 @@
-import { BaseStyle, mode, MotionStyle } from "@chakra-ui/theme-tools"
+import { BaseStyle, mode, TransitionStyle } from "@chakra-ui/theme-tools"
 
 const register = {
   parts: ["arrow", "container"],
@@ -21,7 +21,7 @@ const baseStyle: BaseStyle<typeof register> = (props) => {
   }
 }
 
-const motion: MotionStyle<typeof register> = {
+const transition: TransitionStyle<typeof register> = {
   container: {
     timeout: 120,
     transition: {
@@ -43,7 +43,7 @@ const motion: MotionStyle<typeof register> = {
 const tooltip = {
   register,
   baseStyle,
-  motion,
+  transition,
 }
 
 export default tooltip

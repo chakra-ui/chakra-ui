@@ -1,6 +1,6 @@
-import { motionConfigToCSS, MotionConfig } from "../src"
+import { transitionConfigToCSS, TransitionConfig } from "../src"
 
-const input: MotionConfig = {
+const input: TransitionConfig = {
   timeout: 150,
   enter: {
     transition: {
@@ -72,6 +72,6 @@ const output = {
 }
 
 test("should transform motion config", () => {
-  const result = motionConfigToCSS(input, "tooltip")
+  const result = transitionConfigToCSS(input, "tooltip")
   expect(result).toEqual(output)
 })

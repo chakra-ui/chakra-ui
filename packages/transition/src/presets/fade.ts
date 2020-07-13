@@ -1,6 +1,6 @@
-import { MotionConfig } from "../motion-config"
+import { TransitionConfig } from "../transition-config"
 
-export const fade: MotionConfig = {
+export const fade: TransitionConfig = {
   timeout: 120,
   transition: {
     easing: "ease-in-out",

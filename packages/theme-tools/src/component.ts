@@ -1,6 +1,6 @@
 import { SystemStyleObject } from "@chakra-ui/system"
 import { Dict, UnionStringArray, runIfFn } from "@chakra-ui/utils"
-import { MotionConfig } from "@chakra-ui/transition"
+import { TransitionConfig } from "@chakra-ui/transition"
 
 export type GlobalStyles = {
   global?: SystemStyleObject | ((props: Props) => SystemStyleObject)
@@ -37,9 +37,9 @@ type PartsInterpolation<E extends Readonly<Dict>, V = SystemStyleObject> =
   | PartsStyle<E["parts"], V>
   | ((props: any) => PartsStyle<E["parts"], V>)
 
-export type MotionStyle<E extends Readonly<Dict>> = PartsInterpolation<
+export type TransitionStyle<E extends Readonly<Dict>> = PartsInterpolation<
   E,
-  MotionConfig
+  TransitionConfig
 >
 
 export type BaseStyle<E extends Readonly<Dict>> = PartsInterpolation<E>
