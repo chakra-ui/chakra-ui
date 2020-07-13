@@ -101,8 +101,8 @@ export const Tooltip = React.forwardRef(function Tooltip(
 
   const hiddenProps = pick(_tooltipProps, ["role", "id"])
 
-  const localRef = React.useRef<any>()
-  tooltipProps.ref = mergeRefs(tooltipProps.ref, localRef)
+  const cssRef = React.useRef<any>()
+  tooltipProps.ref = mergeRefs(tooltipProps.ref, cssRef)
 
   /**
    * If the `label` is empty, there's no
@@ -121,7 +121,7 @@ export const Tooltip = React.forwardRef(function Tooltip(
         appear
         unmountOnExit
         in={isOpen}
-        nodeRef={localRef}
+        nodeRef={cssRef}
       >
         <Portal>
           <chakra.div
