@@ -115,13 +115,14 @@ export const Tooltip = React.forwardRef(function Tooltip(
   return (
     <>
       {trigger}
-      <Portal>
-        <HiddenCSSTransition
-          classNames="chakra-tooltip"
-          appear
-          in={isOpen}
-          nodeRef={localRef}
-        >
+      <HiddenCSSTransition
+        classNames="chakra-tooltip"
+        appear
+        unmountOnExit
+        in={isOpen}
+        nodeRef={localRef}
+      >
+        <Portal>
           <chakra.div
             className="chakra-tooltip"
             {...tooltipProps}
@@ -145,8 +146,8 @@ export const Tooltip = React.forwardRef(function Tooltip(
               />
             )}
           </chakra.div>
-        </HiddenCSSTransition>
-      </Portal>
+        </Portal>
+      </HiddenCSSTransition>
     </>
   )
 })
