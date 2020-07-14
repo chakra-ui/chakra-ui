@@ -159,7 +159,6 @@ export function useModal(props: UseModalProps) {
   const onOverlayClick = React.useCallback(
     (event: React.MouseEvent) => {
       event.stopPropagation()
-
       /**
        * Make sure the event starts and ends on the same DOM element.
        *

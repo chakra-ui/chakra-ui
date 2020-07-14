@@ -57,7 +57,7 @@ export function useTransitionConfig(
 export type UseTransitionConfigReturn = ReturnType<typeof useTransitionConfig>
 
 export type TransitionConfigProps = {
-  TransitionConfig?: Record<string, TransitionConfig>
+  transitionConfig?: Record<string, TransitionConfig>
 }
 
 const [TransitionsProvider, useTransitions] = createContext<

@@ -15,39 +15,31 @@ import {
   TransitionsProvider,
   useTransitionConfig,
   useTransitions,
+  SlidePlacement,
+  createSlideConfig,
+  createSlideBaseStyle,
   TransitionConfigProps,
 } from "@chakra-ui/transition"
 import { createContext, cx, __DEV__, callAllHandlers } from "@chakra-ui/utils"
 import * as React from "react"
 import { RemoveScroll } from "react-remove-scroll"
-import { useModal, UseModalProps, UseModalReturn } from "./use-modal"
+import { useModal, UseModalProps, UseModalReturn } from "@chakra-ui/modal"
 
-const [ModalContextProvider, useModalContext] = createContext<UseModalReturn>({
+const [DrawerContextProvider, useDrawerContext] = createContext<
+  UseModalReturn & { placement: SlidePlacement }
+>({
   strict: true,
-  name: "ModalContext",
+  name: "DrawerContext",
   errorMessage:
-    "useModalContext: `context` is undefined. Seems you forgot to wrap modal components in `<Modal />`",
+    "useDrawerContext: `context` is undefined. Seems you forgot to wrap modal components in `<Modal />`",
 })
 
-export interface ModalProps
+export interface DrawerProps
   extends UseModalProps,
     ThemingProps,
     TransitionConfigProps {
   children?: React.ReactNode
-  /**
-   *  If `true`, the modal will be centered on screen.
-   * @default false
-   */
-  isCentered?: boolean
-  /**
-   * Where scroll behaviour should originate.
-   * - If set to `inside`, scroll only occurs within the `ModalBody`.
-   * - If set to `outside`, the entire `ModalContent` will scroll within the viewport.
-   *
-   * @default "outside"
-   */
-  scrollBehavior?: "inside" | "outside"
-
+  placement?: SlidePlacement
   /**
    * Function that will be called to get the parent element
    * that the modal will be attached to.
@@ -55,27 +47,49 @@ export interface ModalProps
   getContainer?: PortalProps["getContainer"]
 }
 
+const transitionConfig = (props: any) => ({
+  overlay: {
+    timeout: { enter: 200, exit: 200 },
+    transition: {
+      easing: "cubic-bezier(.05,.86,.47,1.02)",
+      duration: "200ms",
+      property: "opacity",
+    },
+    enter: {
+      from: { opacity: 0.01 },
+      to: { opacity: 1 },
+    },
+    exit: {
+      from: { opacity: 1 },
+      to: { opacity: 0.01 },
+    },
+  },
+  content: createSlideConfig(props.placement),
+})
+
 /**
- * Modal
+ * Drawer
  *
  * React component that provides context, theming, and accessbility properties
  * to all other modal components.
  *
  * It doesn't render any DOM node.
  */
-export function Modal(props: ModalProps) {
-  const styles = useStyleConfig("Modal", props)
-  const transitions = useTransitionConfig("Modal", props, {
-    content: "content",
-    overlay: "overlay",
-  })
+export function Drawer(props: DrawerProps) {
+  const { getContainer, children, placement = "right" } = props
 
-  const modal = useModal(props)
+  const styles = useStyleConfig("Drawer", props)
+  const transitions = useTransitionConfig(
+    "Drawer",
+    { transitionConfig, placement },
+    { content: "content", overlay: "overlay" },
+  )
 
-  const { getContainer, children } = props
+  const modalCtx = useModal(props)
+  const modal = React.useMemo(() => modalCtx, [modalCtx])
 
   return (
-    <ModalContextProvider value={modal}>
+    <DrawerContextProvider value={{ ...modal, placement }}>
       <Portal getContainer={getContainer}>
         <StylesProvider value={styles}>
           <TransitionsProvider value={transitions}>
@@ -83,13 +97,12 @@ export function Modal(props: ModalProps) {
           </TransitionsProvider>
         </StylesProvider>
       </Portal>
-    </ModalContextProvider>
+    </DrawerContextProvider>
   )
 }
 
-Modal.defaultProps = {
+Drawer.defaultProps = {
   returnFocusOnClose: true,
-  scrollBehavior: "outside",
   trapFocus: true,
   autoFocus: true,
   blockScrollOnMount: true,
@@ -97,27 +110,27 @@ Modal.defaultProps = {
 }
 
 if (__DEV__) {
-  Modal.displayName = "Modal"
+  Drawer.displayName = "Drawer"
 }
 
-export type ModalContentProps = PropsOf<typeof chakra.section>
+export type DrawerContentProps = PropsOf<typeof chakra.section>
 
 /**
- * ModalContent
+ * DrawerContent
  *
  * React component used to group modal's content. It has all the
  * necessary `aria-*` properties to indicate that it's a modal modal
  */
-export const ModalContent = React.forwardRef(function ModalContent(
-  props: ModalContentProps,
+export const DrawerContent = React.forwardRef(function DrawerContent(
+  props: DrawerContentProps,
   ref: React.Ref<any>,
 ) {
   const { className, children, ...rest } = props
 
-  const { isOpen, getContentProps } = useModalContext()
+  const { isOpen, placement, getContentProps } = useDrawerContext()
 
   const content = getContentProps({ ...rest, ref })
-  const _className = cx("chakra-modal__content", className)
+  const _className = cx("chakra-drawer__content", className)
 
   const styles = useStyles()
   const transitions = useTransitions()
@@ -138,11 +151,13 @@ export const ModalContent = React.forwardRef(function ModalContent(
         {...content}
         __css={{
           ...styles.content,
+          position: "fixed",
           display: "flex",
           flexDirection: "column",
-          position: "relative",
+          willChange: "transform,opacity",
           width: "100%",
           outline: 0,
+          ...createSlideBaseStyle(placement),
           ...transitions.content.styles,
         }}
       >
@@ -153,21 +168,21 @@ export const ModalContent = React.forwardRef(function ModalContent(
 })
 
 if (__DEV__) {
-  ModalContent.displayName = "ModalContent"
+  DrawerContent.displayName = "DrawerContent"
 }
 
-export type ModalOverlayProps = PropsOf<typeof chakra.div>
+export type DrawerOverlayProps = PropsOf<typeof chakra.div>
 
 /**
- * ModalOverlay
+ * DrawerOverlay
  *
  * React component that renders a backdrop behind the modal. It's
  * also used as a wrapper for the modal content for better positioning.
  *
  * @see Docs https://chakra-ui.com/components/modal
  */
-export const ModalOverlay = React.forwardRef(function ModalOverlay(
-  props: ModalOverlayProps,
+export const DrawerOverlay = React.forwardRef(function DrawerOverlay(
+  props: DrawerOverlayProps,
   ref: React.Ref<any>,
 ) {
   const { className, children, ...rest } = props
@@ -184,10 +199,10 @@ export const ModalOverlay = React.forwardRef(function ModalOverlay(
     allowPinchZoom,
     finalFocusRef,
     returnFocusOnClose,
-  } = useModalContext()
+  } = useDrawerContext()
 
   const overlay = getOverlayProps({ ...rest, ref })
-  const _className = cx("chakra-modal__overlay", className)
+  const _className = cx("chakra-drawer__overlay", className)
 
   const styles = useStyles()
   const transitions = useTransitions()
@@ -219,12 +234,16 @@ export const ModalOverlay = React.forwardRef(function ModalOverlay(
             {...overlay}
             className={_className}
             __css={{
-              ...styles.overlay,
-              width: "100vw",
-              height: "100vh",
               position: "fixed",
-              left: 0,
               top: 0,
+              left: 0,
+              display: "flex",
+              justifyContent: "center",
+              overflow: "hidden",
+              height: "100vh",
+              width: "100vw",
+              willChange: "opacity",
+              ...styles.overlay,
               ...transitions.overlay.styles,
             }}
           >
@@ -237,25 +256,25 @@ export const ModalOverlay = React.forwardRef(function ModalOverlay(
 })
 
 if (__DEV__) {
-  ModalOverlay.displayName = "ModalOverlay"
+  DrawerOverlay.displayName = "DrawerOverlay"
 }
 
-export type ModalHeaderProps = PropsOf<typeof chakra.header>
+export type DrawerHeaderProps = PropsOf<typeof chakra.header>
 
 /**
- * ModalHeader
+ * DrawerHeader
  *
  * React component that houses the title of the modal.
  *
  * @see Docs https://chakra-ui.com/components/modal
  */
-export const ModalHeader = React.forwardRef(function ModalHeader(
-  props: ModalHeaderProps,
+export const DrawerHeader = React.forwardRef(function DrawerHeader(
+  props: DrawerHeaderProps,
   ref: React.Ref<any>,
 ) {
   const { className, ...rest } = props
 
-  const { headerId, setHeaderMounted } = useModalContext()
+  const { headerId, setHeaderMounted } = useDrawerContext()
 
   /**
    * Notify us if this component was rendered or used
@@ -266,7 +285,7 @@ export const ModalHeader = React.forwardRef(function ModalHeader(
     return () => setHeaderMounted(false)
   }, [setHeaderMounted])
 
-  const _className = cx("chakra-modal__header", className)
+  const _className = cx("chakra-drawer__header", className)
   const styles = useStyles()
 
   return (
@@ -284,24 +303,24 @@ export const ModalHeader = React.forwardRef(function ModalHeader(
 })
 
 if (__DEV__) {
-  ModalHeader.displayName = "ModalHeader"
+  DrawerHeader.displayName = "DrawerHeader"
 }
 
-export type ModalBodyProps = PropsOf<typeof chakra.div>
+export type DrawerBodyProps = PropsOf<typeof chakra.div>
 
 /**
- * ModalBody
+ * DrawerBody
  *
  * React component that houses the main content of the modal.
  *
  * @see Docs https://chakra-ui.com/components/modal
  */
-export const ModalBody = forwardRef(function ModalBody(
-  props: ModalBodyProps,
+export const DrawerBody = forwardRef(function DrawerBody(
+  props: DrawerBodyProps,
   ref: React.Ref<any>,
 ) {
   const { className, ...rest } = props
-  const { bodyId, setBodyMounted } = useModalContext()
+  const { bodyId, setBodyMounted } = useDrawerContext()
 
   /**
    * Notify us if this component was rendered or used
@@ -312,7 +331,7 @@ export const ModalBody = forwardRef(function ModalBody(
     return () => setBodyMounted(false)
   }, [setBodyMounted])
 
-  const _className = cx("chakra-modal__body", className)
+  const _className = cx("chakra-drawer__body", className)
   const styles = useStyles()
 
   return (
@@ -327,17 +346,17 @@ export const ModalBody = forwardRef(function ModalBody(
 })
 
 if (__DEV__) {
-  ModalBody.displayName = "ModalBody"
+  DrawerBody.displayName = "DrawerBody"
 }
 
 /**
- * ModalFooter
+ * DrawerFooter
  *
  * React component that houses the action buttons of the modal.
  *
  * @see Docs https://chakra-ui.com/components/modal
  */
-export const ModalFooter = (props: PropsOf<typeof chakra.footer>) => {
+export const DrawerFooter = (props: PropsOf<typeof chakra.footer>) => {
   const styles = useStyles()
   return (
     <chakra.footer
@@ -349,13 +368,13 @@ export const ModalFooter = (props: PropsOf<typeof chakra.footer>) => {
         flex: 0,
         ...styles.footer,
       }}
-      className={cx("chakra-modal__footer", props.className)}
+      className={cx("chakra-drawer__footer", props.className)}
     />
   )
 }
 
 if (__DEV__) {
-  ModalFooter.displayName = "ModalFooter"
+  DrawerFooter.displayName = "DrawerFooter"
 }
 
 /**
@@ -365,14 +384,14 @@ if (__DEV__) {
  * to pass the `onClick` to it, it's reads the `onClose` action from the
  * modal context.
  */
-export const ModalCloseButton = React.forwardRef(function ModalCloseButton(
+export const DrawerCloseButton = React.forwardRef(function DrawerCloseButton(
   props: CloseButtonProps,
   ref: React.Ref<any>,
 ) {
   const { onClick, className, ...rest } = props
-  const { onClose } = useModalContext()
+  const { onClose } = useDrawerContext()
 
-  const _className = cx("chakra-modal__close-btn", className)
+  const _className = cx("chakra-drawer__close-btn", className)
 
   return (
     <CloseButton
@@ -391,5 +410,5 @@ export const ModalCloseButton = React.forwardRef(function ModalCloseButton(
 })
 
 if (__DEV__) {
-  ModalCloseButton.displayName = "ModalCloseButton"
+  DrawerCloseButton.displayName = "DrawerCloseButton"
 }

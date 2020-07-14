@@ -66,6 +66,16 @@ const baseStyle: BaseStyle<typeof register> = (props) => {
   }
 }
 
+/**
+ * Since the `maxWidth` prop references theme.sizes internally,
+ * we can leverage that to size our modals.
+ */
+function getSize(value: string) {
+  return {
+    content: { maxWidth: value },
+  }
+}
+
 const sizes: Sizes<typeof register> = {
   xs: getSize("xs"),
   sm: getSize("sm"),
@@ -139,13 +149,3 @@ const modal = {
 }
 
 export default modal
-
-/**
- * Since the `maxWidth` prop references theme.sizes internally,
- * we can leverage that to size our modals.
- */
-function getSize(value: string) {
-  return {
-    content: { maxWidth: value },
-  }
-}
