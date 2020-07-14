@@ -1,9 +1,11 @@
 import { PortalManager } from "@chakra-ui/portal"
-// import { Fade, SlideFade, ScaleFade } from "@chakra-ui/transition"
 import * as React from "react"
+
 export * from "./modal.stories"
 export * from "./modal.stories"
 export * from "./transition.stories"
+export * from "./focus-ref.stories"
+
 export default {
   title: "Modal",
   decorators: [
