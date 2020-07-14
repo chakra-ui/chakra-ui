@@ -57,6 +57,7 @@
     "@chakra-ui/close-button": "^1.0.0-next.4",
     "@chakra-ui/focus-lock": "^1.0.0-next.4",
     "@chakra-ui/hooks": "^1.0.0-next.4",
+    "@chakra-ui/transition": "^1.0.0-next.4",
     "@chakra-ui/portal": "^1.0.0-next.4",
     "@chakra-ui/utils": "^1.0.0-next.4",
     "aria-hidden": "^1.1.1",

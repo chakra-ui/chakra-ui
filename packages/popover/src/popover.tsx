@@ -55,11 +55,9 @@ export type PopoverProps = UsePopoverProps &
  */
 export function Popover(props: PopoverProps) {
   const styles = useStyleConfig("Popover", props)
-  const motion = useTransitionConfig(
-    "Popover",
-    props,
-    "chakra-popover__content",
-  )
+  const motion = useTransitionConfig("Popover", props, {
+    content: "chakra-popover__content",
+  })
 
   const { children, ...rest } = omitThemingProps(props)
   const context = usePopover(rest)
@@ -124,13 +122,13 @@ export const PopoverContent = React.forwardRef(function PopoverContent(
   return (
     <HiddenTransition
       in={isOpen}
-      classNames="chakra-popover__content"
+      classNames={transitions.content.className}
       appear
       timeout={transitions.content.timeout}
       nodeRef={cssRef}
     >
       <chakra.section
-        className="chakra-popover__content"
+        className={transitions.content.className}
         {...popoverProps}
         __css={{
           position: "relative",
