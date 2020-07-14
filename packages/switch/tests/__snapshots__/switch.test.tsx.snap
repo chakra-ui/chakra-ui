@@ -2,8 +2,80 @@
 
 exports[`Switch renders correctly 1`] = `
 <DocumentFragment>
-  <label
-    class="chakra-switch css-v7ibj3"
+  .emotion-2 {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
+
+.emotion-1 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  box-sizing: content-box;
+  cursor: pointer;
+  border-radius: 9999px;
+  padding: 2px;
+  -webkit-transition: all 120ms;
+  transition: all 120ms;
+  background: #CBD5E0;
+  width: 1.875rem;
+  height: 1rem;
+}
+
+.emotion-1:focus,
+.emotion-1[data-focus] {
+  box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
+}
+
+.emotion-1[disabled],
+.emotion-1[disabled]:focus,
+.emotion-1[disabled]:hover,
+.emotion-1[aria-disabled=true],
+.emotion-1[aria-disabled=true]:focus,
+.emotion-1[aria-disabled=true]:hover,
+.emotion-1[data-disabled],
+.emotion-1[data-disabled]:focus,
+.emotion-1[data-disabled]:hover {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.emotion-1[aria-checked=true],
+.emotion-1[data-checked] {
+  background: #3182CE;
+}
+
+.emotion-0 {
+  background: #FFFFFF;
+  -webkit-transition: -webkit-transform 250ms;
+  -webkit-transition: transform 250ms;
+  transition: transform 250ms;
+  border-radius: 9999px;
+  -webkit-transform: translateX(0);
+  -ms-transform: translateX(0);
+  transform: translateX(0);
+  width: 1rem;
+  height: 1rem;
+}
+
+.emotion-0[aria-checked=true],
+.emotion-0[data-checked] {
+  -webkit-transform: translateX(0.875rem);
+  -ms-transform: translateX(0.875rem);
+  transform: translateX(0.875rem);
+}
+
+<label
+    class="chakra-switch emotion-2"
   >
     <input
       class="chakra-switch__input"
@@ -13,10 +85,10 @@ exports[`Switch renders correctly 1`] = `
     />
     <div
       aria-hidden="true"
-      class="chakra-switch__track css-1qiw92k"
+      class="chakra-switch__track emotion-1"
     >
       <div
-        class="chakra-switch__thumb css-6y46ei"
+        class="chakra-switch__thumb emotion-0"
       />
     </div>
   </label>

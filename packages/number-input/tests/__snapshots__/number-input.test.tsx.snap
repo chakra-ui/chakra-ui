@@ -7,8 +7,147 @@ exports[`should render correctly 1`] = `
   >
     Select number:
   </label>
-  <div
-    class="css-gft7vj"
+  .emotion-4 {
+  position: relative;
+}
+
+.emotion-0 {
+  width: 100%;
+  outline: 0;
+  position: relative;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  font-size: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  height: 2.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid;
+  border-color: inherit;
+  background: #FFFFFF;
+}
+
+.emotion-0:hover,
+.emotion-0[data-hover] {
+  border-color: #CBD5E0;
+}
+
+.emotion-0[aria-readonly=true],
+.emotion-0[readonly],
+.emotion-0[data-readonly] {
+  box-shadow: none !important;
+  -webkit-user-select: all;
+  -moz-user-select: all;
+  -ms-user-select: all;
+  user-select: all;
+}
+
+.emotion-0[disabled],
+.emotion-0[disabled]:focus,
+.emotion-0[disabled]:hover,
+.emotion-0[aria-disabled=true],
+.emotion-0[aria-disabled=true]:focus,
+.emotion-0[aria-disabled=true]:hover,
+.emotion-0[data-disabled],
+.emotion-0[data-disabled]:focus,
+.emotion-0[data-disabled]:hover {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.emotion-0:focus,
+.emotion-0[data-focus] {
+  z-index: 1;
+  border-color: #3182CE;
+  box-shadow: 0 0 0 1px #3182CE;
+}
+
+.emotion-0[aria-invalid=true],
+.emotion-0[data-invalid] {
+  border-color: #E53E3E;
+  box-shadow: 0 0 0 1px #E53E3E;
+}
+
+.emotion-3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  right: 0px;
+  margin: 1px;
+  height: calc(100% - 2px);
+  z-index: 1;
+  width: 24px;
+}
+
+.emotion-1 {
+  border-left: 1px solid;
+  border-color: inherit;
+  color: inherit;
+  font-size: 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  line-height: normal;
+}
+
+.emotion-1:active,
+.emotion-1[data-active] {
+  background: #E2E8F0;
+}
+
+.emotion-1[disabled],
+.emotion-1[disabled]:focus,
+.emotion-1[disabled]:hover,
+.emotion-1[aria-disabled=true],
+.emotion-1[aria-disabled=true]:focus,
+.emotion-1[aria-disabled=true]:hover,
+.emotion-1[data-disabled],
+.emotion-1[data-disabled]:focus,
+.emotion-1[data-disabled]:hover {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.emotion-1:first-of-type {
+  border-top-right-radius: 0.25rem;
+}
+
+.emotion-1:last-of-type {
+  border-bottom-right-radius: 0.25rem;
+  margin-top: -1px;
+  border-top-width: 1px;
+}
+
+<div
+    class="emotion-4"
     data-testid="root"
   >
     <input
@@ -17,7 +156,7 @@ exports[`should render correctly 1`] = `
       aria-valuemin="-9007199254740991"
       autocomplete="off"
       autocorrect="off"
-      class="css-k2kcme"
+      class="emotion-0"
       data-testid="input"
       id="input"
       inputmode="numeric"
@@ -28,11 +167,11 @@ exports[`should render correctly 1`] = `
     />
     <div
       aria-hidden="true"
-      class="css-19l1xk3"
+      class="emotion-3"
       data-testid="group"
     >
       <div
-        class="css-x1u2ru"
+        class="emotion-1"
         data-testid="up-btn"
         role="button"
         tabindex="-1"
@@ -40,7 +179,7 @@ exports[`should render correctly 1`] = `
         +
       </div>
       <div
-        class="css-x1u2ru"
+        class="emotion-1"
         data-testid="down-btn"
         role="button"
         tabindex="-1"

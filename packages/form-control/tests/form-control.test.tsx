@@ -1,4 +1,4 @@
-import { chakra, PropsOf } from "@chakra-ui/system"
+import { chakra, PropsOf, useStyleConfig } from "@chakra-ui/system"
 import { fireEvent, render } from "@chakra-ui/test-utils"
 import * as React from "react"
 import {
@@ -13,18 +13,12 @@ import {
 } from "../src"
 
 type OmittedTypes = "disabled" | "required" | "readOnly"
-type InputProps = Omit<PropsOf<typeof StyledInput>, OmittedTypes> &
+type InputProps = Omit<PropsOf<typeof chakra.input>, OmittedTypes> &
   FormControlOptions
-
-// Create an input that consumes useFormControl
-type InputOptions = { focusBorderColor?: string; errorBorderColor?: string }
-const StyledInput = chakra<"input", InputOptions>("input", {
-  themeKey: "Input",
-})
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const inputProps = useFormControl<HTMLInputElement>(props)
-  return <StyledInput ref={ref} {...inputProps} />
+  return <chakra.input ref={ref} {...inputProps} />
 })
 
 test("FormControl renders correctly in default state", () => {

@@ -190,6 +190,7 @@ export function usePopover(props: UsePopoverProps = {}) {
         },
         "aria-labelledby": hasHeader ? headerId : undefined,
         "aria-describedby": hasBody ? bodyId : undefined,
+        "aria-hidden": !isOpen ? !isOpen : undefined,
       }
 
       if (trigger === TRIGGER_TYPE.click) {

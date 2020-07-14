@@ -2,35 +2,115 @@
 
 exports[`Stat renders correctly 1`] = `
 <DocumentFragment>
-  <div
-    class="css-1mpfoc5"
+  .emotion-12 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: space-around;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: space-around;
+  justify-content: space-around;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+}
+
+.emotion-0 {
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.emotion-1 {
+  vertical-align: baseline;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.emotion-4 {
+  opacity: 0.8;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.emotion-2 {
+  border: 0px;
+  -webkit-clip: rect(0px,0px,0px,0px);
+  clip: rect(0px,0px,0px,0px);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0px;
+  overflow: hidden;
+  white-space: nowrap;
+  position: absolute;
+}
+
+.emotion-3 {
+  margin-right: 0.25rem;
+  width: 14px;
+  height: 14px;
+  vertical-align: middle;
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 1em;
+  color: #48BB78;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+}
+
+.emotion-9 {
+  margin-right: 0.25rem;
+  width: 14px;
+  height: 14px;
+  vertical-align: middle;
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 1em;
+  color: #F56565;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+}
+
+<div
+    class="chakra-stat__group emotion-12"
     role="group"
   >
     <div
-      class="chakra-stat css-iab0ry"
+      class="chakra-stat emotion-5"
     >
       <dl>
         <dt
-          class="chakra-stat__label css-1at342u"
+          class="chakra-stat__label emotion-0"
         >
           Sent
         </dt>
         <dd
-          class="chakra-stat__number css-1qlzs16"
+          class="chakra-stat__number emotion-1"
         >
           345,670
         </dd>
         <p
-          class="chakra-stat__help-text css-1ftes02"
+          class="chakra-stat__help-text emotion-4"
         >
           <span
-            style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
+            class="emotion-2"
           >
             increased by
           </span>
           <svg
             aria-hidden="true"
-            class="chakra-icon css-a8if2g"
+            class="chakra-icon emotion-3"
             focusable="false"
             role="presentation"
             viewBox="0 0 24 24"
@@ -45,30 +125,30 @@ exports[`Stat renders correctly 1`] = `
       </dl>
     </div>
     <div
-      class="chakra-stat css-iab0ry"
+      class="chakra-stat emotion-5"
     >
       <dl>
         <dt
-          class="chakra-stat__label css-1at342u"
+          class="chakra-stat__label emotion-0"
         >
           Clicked
         </dt>
         <dd
-          class="chakra-stat__number css-1qlzs16"
+          class="chakra-stat__number emotion-1"
         >
           45
         </dd>
         <p
-          class="chakra-stat__help-text css-1ftes02"
+          class="chakra-stat__help-text emotion-4"
         >
           <span
-            style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
+            class="emotion-2"
           >
             decreased by
           </span>
           <svg
             aria-hidden="true"
-            class="chakra-icon css-4zj5ne"
+            class="chakra-icon emotion-9"
             focusable="false"
             role="presentation"
             viewBox="0 0 24 24"

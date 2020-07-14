@@ -32,14 +32,12 @@ exports[`Button renders correctly 1`] = `
 }
 
 .emotion-0:focus,
-.emotion-0[data-focus],
-.emotion-0[data-state=focused] {
+.emotion-0[data-focus] {
   box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
 }
 
 .emotion-0:hover,
-.emotion-0[data-hover],
-.emotion-0[data-state=hover] {
+.emotion-0[data-hover] {
   background: rgba(0,0,0,0.04);
 }
 
@@ -51,10 +49,7 @@ exports[`Button renders correctly 1`] = `
 .emotion-0[aria-disabled=true]:hover,
 .emotion-0[data-disabled],
 .emotion-0[data-disabled]:focus,
-.emotion-0[data-disabled]:hover,
-.emotion-0[data-state=disabled],
-.emotion-0[data-state=disabled]:focus,
-.emotion-0[data-state=disabled]:hover {
+.emotion-0[data-disabled]:hover {
   opacity: 0.4;
   cursor: not-allowed;
 }

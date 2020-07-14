@@ -2,21 +2,140 @@
 
 exports[`Elements inside input render correctly 1`] = `
 <DocumentFragment>
-  <div
-    class="chakra-input__group css-3lf2mu"
+  .emotion-3 {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+}
+
+.emotion-0 {
+  left: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  z-index: 2;
+}
+
+.emotion-1 {
+  width: 100%;
+  outline: 0;
+  position: relative;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  font-size: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  height: 2.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid;
+  border-color: inherit;
+  background: #FFFFFF;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+.emotion-1:hover,
+.emotion-1[data-hover] {
+  border-color: #CBD5E0;
+}
+
+.emotion-1[aria-readonly=true],
+.emotion-1[readonly],
+.emotion-1[data-readonly] {
+  box-shadow: none !important;
+  -webkit-user-select: all;
+  -moz-user-select: all;
+  -ms-user-select: all;
+  user-select: all;
+}
+
+.emotion-1[disabled],
+.emotion-1[disabled]:focus,
+.emotion-1[disabled]:hover,
+.emotion-1[aria-disabled=true],
+.emotion-1[aria-disabled=true]:focus,
+.emotion-1[aria-disabled=true]:hover,
+.emotion-1[data-disabled],
+.emotion-1[data-disabled]:focus,
+.emotion-1[data-disabled]:hover {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.emotion-1:focus,
+.emotion-1[data-focus] {
+  z-index: 1;
+  border-color: #3182CE;
+  box-shadow: 0 0 0 1px #3182CE;
+}
+
+.emotion-1[aria-invalid=true],
+.emotion-1[data-invalid] {
+  border-color: #E53E3E;
+  box-shadow: 0 0 0 1px #E53E3E;
+}
+
+.emotion-2 {
+  right: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  z-index: 2;
+}
+
+<div
+    class="chakra-input__group emotion-3"
   >
     <div
-      class="chakra-input__left-element css-yh9dkk"
+      class="chakra-input__left-element emotion-0"
     >
       <span>
         Hello
       </span>
     </div>
     <input
-      class="chakra-input css-1e8ybm1"
+      class="chakra-input emotion-1"
     />
     <div
-      class="chakra-input__right-element css-ypf6zb"
+      class="chakra-input__right-element emotion-2"
     >
       <span>
         World
@@ -28,19 +147,148 @@ exports[`Elements inside input render correctly 1`] = `
 
 exports[`Input addons render correctly 1`] = `
 <DocumentFragment>
-  <div
-    class="chakra-input__group css-3lf2mu"
+  .emotion-3 {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+}
+
+.emotion-0 {
+  font-size: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  height: 2.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid;
+  border-color: inherit;
+  background: #EDF2F7;
+  margin-right: -1px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right-color: transparent;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  width: auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.emotion-1 {
+  width: 100%;
+  outline: 0;
+  position: relative;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  font-size: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  height: 2.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid;
+  border-color: inherit;
+  background: #FFFFFF;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.emotion-1:hover,
+.emotion-1[data-hover] {
+  border-color: #CBD5E0;
+}
+
+.emotion-1[aria-readonly=true],
+.emotion-1[readonly],
+.emotion-1[data-readonly] {
+  box-shadow: none !important;
+  -webkit-user-select: all;
+  -moz-user-select: all;
+  -ms-user-select: all;
+  user-select: all;
+}
+
+.emotion-1[disabled],
+.emotion-1[disabled]:focus,
+.emotion-1[disabled]:hover,
+.emotion-1[aria-disabled=true],
+.emotion-1[aria-disabled=true]:focus,
+.emotion-1[aria-disabled=true]:hover,
+.emotion-1[data-disabled],
+.emotion-1[data-disabled]:focus,
+.emotion-1[data-disabled]:hover {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.emotion-1:focus,
+.emotion-1[data-focus] {
+  z-index: 1;
+  border-color: #3182CE;
+  box-shadow: 0 0 0 1px #3182CE;
+}
+
+.emotion-1[aria-invalid=true],
+.emotion-1[data-invalid] {
+  border-color: #E53E3E;
+  box-shadow: 0 0 0 1px #E53E3E;
+}
+
+.emotion-2 {
+  font-size: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  height: 2.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid;
+  border-color: inherit;
+  background: #EDF2F7;
+  margin-left: -1px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left-color: transparent;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  width: auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  white-space: nowrap;
+}
+
+<div
+    class="chakra-input__group emotion-3"
   >
     <div
-      class="chakra-input__left-addon css-yxu4h4"
+      class="chakra-input__left-addon emotion-0"
     >
       https://
     </div>
     <input
-      class="chakra-input css-18zqkiy"
+      class="chakra-input emotion-1"
     />
     <div
-      class="chakra-input__right-addon css-qet1fj"
+      class="chakra-input__right-addon emotion-2"
     >
       .com
     </div>
@@ -50,8 +298,68 @@ exports[`Input addons render correctly 1`] = `
 
 exports[`Input renders correctly 1`] = `
 <DocumentFragment>
-  <input
-    class="chakra-input css-k2kcme"
+  .emotion-0 {
+  width: 100%;
+  outline: 0;
+  position: relative;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  font-size: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  height: 2.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid;
+  border-color: inherit;
+  background: #FFFFFF;
+}
+
+.emotion-0:hover,
+.emotion-0[data-hover] {
+  border-color: #CBD5E0;
+}
+
+.emotion-0[aria-readonly=true],
+.emotion-0[readonly],
+.emotion-0[data-readonly] {
+  box-shadow: none !important;
+  -webkit-user-select: all;
+  -moz-user-select: all;
+  -ms-user-select: all;
+  user-select: all;
+}
+
+.emotion-0[disabled],
+.emotion-0[disabled]:focus,
+.emotion-0[disabled]:hover,
+.emotion-0[aria-disabled=true],
+.emotion-0[aria-disabled=true]:focus,
+.emotion-0[aria-disabled=true]:hover,
+.emotion-0[data-disabled],
+.emotion-0[data-disabled]:focus,
+.emotion-0[data-disabled]:hover {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.emotion-0:focus,
+.emotion-0[data-focus] {
+  z-index: 1;
+  border-color: #3182CE;
+  box-shadow: 0 0 0 1px #3182CE;
+}
+
+.emotion-0[aria-invalid=true],
+.emotion-0[data-invalid] {
+  border-color: #E53E3E;
+  box-shadow: 0 0 0 1px #E53E3E;
+}
+
+<input
+    class="chakra-input emotion-0"
   />
 </DocumentFragment>
 `;

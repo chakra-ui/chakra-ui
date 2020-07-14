@@ -8,7 +8,7 @@ import {
   AlertDialogContent,
   AlertDialogOverlay,
 } from "../src"
-import { chakra } from "@chakra-ui/system"
+import { chakra, useStyleConfig, PropsOf } from "@chakra-ui/system"
 
 export default {
   title: "AlertDialog",
@@ -21,7 +21,10 @@ export default {
   ],
 }
 
-const Button = chakra("button", { themeKey: "Button" })
+const Button = (props: PropsOf<"button">) => {
+  const styles = useStyleConfig("Button", props)
+  return <chakra.button __css={styles.container} />
+}
 
 export const BasicUsage = () => {
   const [isOpen, setIsOpen] = React.useState(false)
