@@ -14,6 +14,7 @@ your contribution.
 - [Think you found a bug?](#think-you-found-a-bug)
 - [Proposing new or changed API?](#proposing-new-or-changed-api)
 - [Making a Pull Request?](#making-a-pull-request)
+  - [Commit Convention](#commit-convention)
   - [Steps to PR](#steps-to-pr)
   - [Tests](#tests)
 - [Want to write a blog post or tutorial](#want-to-write-a-blog-post-or-tutorial)
@@ -57,9 +58,12 @@ use consumed independently.
   testing
 - [Testing Library](https://testing-library.com/) for testing components and
   hooks
-- [Next](https://nextjs.org/) for a blazing fast documentation website.
+- [Gatsby](https://www.gatsbyjs.org/) for a blazing fast documentation website.
 
 ### Commands
+
+**`yarn boot`**: bootstraps the entire project, symlinks all dependencies for
+cross-component development and builds all components.
 
 **`yarn bootstrap`**: bootstraps the entire project and symlinks all
 dependencies for cross-component development
@@ -114,12 +118,12 @@ and want to avoid running the command for all components.
 
 ### Documentation
 
-The documentation site is built with Next.js. If you'd like to contribute to the
-docs, simply run `yarn docs`
+The documentation site is built with Gatsby. If you'd like to contribute to the
+docs, simply run `yarn docs:start`.
 
 ### Storybook
 
-When you run `yarn storybook`,
+Build components in isolation with Storybook using `yarn storybook`.
 
 ## Think you found a bug?
 
@@ -141,6 +145,35 @@ closed.
 
 Pull requests need only the :+1: of two or more collaborators to be merged; when
 the PR author is a collaborator, that counts as one.
+
+### Commit Convention
+
+Before you create a Pull Request, please check whether your commits comply with
+the commit conventions used in this repository.
+
+When you create a commit we kindly ask you to follow the convention
+`category(scope or module): message` in your commit message while using one of
+the following categories:
+
+- `feat / feature`: all changes that introduce completely new code or new
+  features
+- `fix`: changes that fix a bug (ideally you will addtionally reference an issue
+  if present)
+- `refactor`: any code related change that is not a fix nor a feature
+- `docs`: changing existing or creating new documentation (i.e. README, docs for
+  usage of a lib or cli usage)
+- `build`: all changes regarding the build of the software, changes to
+  dependencies or the addition of new dependencies
+- `test`: all changes regarding tests (adding new tests or changing existing
+  ones)
+- `ci`: all changes regarding the configuration of continous integration (i.e.
+  github actions, ci system)
+- `chore`: all changes to the repository that do not fit into any of the above
+  categories
+
+If you are interested in the detailed specification you can visit
+https://www.conventionalcommits.org/ or check out the
+[Angular Commit Message Guidelines](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 
 ### Steps to PR
 

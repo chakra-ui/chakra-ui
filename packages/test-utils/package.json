@@ -26,9 +26,9 @@
     "@chakra-ui/system": "^1.0.0-next.4",
     "@chakra-ui/theme": "^1.0.0-next.4",
     "@testing-library/jest-dom": "5.1.1",
-    "@testing-library/react": "9.4.0",
+    "@testing-library/react": "10.4.5",
     "@testing-library/react-hooks": "3.2.1",
-    "@testing-library/user-event": "10.0.0",
+    "@testing-library/user-event": "12.0.11",
     "@types/jest-axe": "3.2.1",
     "jest-axe": "3.4.0",
     "react-test-renderer": "16.12.0"
