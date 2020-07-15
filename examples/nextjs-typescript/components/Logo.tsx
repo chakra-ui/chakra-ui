@@ -14,6 +14,7 @@ export const Logo = (props: ImageProps) => (
         animation: `${spin} infinite 20s linear`,
       },
     }}
+    alt=""
     src={logo}
     {...props}
   />

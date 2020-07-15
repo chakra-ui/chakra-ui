@@ -1,5 +1,4 @@
 import { Box, Text, Link, VStack, Code, Grid } from "@chakra-ui/core"
-import { ColorModeSwitcher } from "../components/ColorModeSwitcher"
 import { Layout } from "../components/Layout"
 import { Logo } from "../components/Logo"
 
@@ -13,7 +12,6 @@ const IndexPage = () => (
         align="center"
         justify="center"
       >
-        <ColorModeSwitcher justifySelf="flex-end" />
         <VStack spacing={8}>
           <Logo h="40vmin" pointerEvents="none" />
           <Text>
@@ -21,8 +19,8 @@ const IndexPage = () => (
           </Text>
           <Link
             color="teal.500"
-            href="https://chakra-ui.com"
             fontSize="2xl"
+            href="https://chakra-ui.com"
             target="_blank"
             rel="noopener noreferrer"
           >
