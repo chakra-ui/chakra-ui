@@ -276,17 +276,17 @@ export function useMenuList(props: UseMenuListProps) {
   const onDocumentClick = React.useCallback(
     (event: MouseEvent) => {
       const target = event.target as HTMLElement
+      const withinButton = buttonRef.current?.contains(target)
+
       /**
        * if the menu is not open, don't do anything
        */
-      if (!isOpen) return
+      if (!isOpen && !withinButton) return
 
       /**
        * if the click is within the menu container, don't do anything
        */
-      if (menuRef.current?.contains(target)) {
-        return
-      }
+      if (menuRef.current?.contains(target)) return
 
       /**
        * Nested menu: Don't trigger close if we're clicking on a menu item that doubles
@@ -295,20 +295,19 @@ export function useMenuList(props: UseMenuListProps) {
       const parentIsButton = target?.parentElement?.hasAttribute(
         "aria-controls",
       )
-      const isButton = target?.hasAttribute("aria-controls")
 
-      if (parentIsButton || isButton) {
-        return
-      }
+      const isMenuButton = target?.hasAttribute("aria-controls")
+
+      if (parentIsButton || isMenuButton) return
 
       /**
        * Otherwise, close the menu provided `closeOnBlur` is set to `true`
        */
-      if (closeOnBlur) {
+      if (closeOnBlur && !withinButton) {
         onClose()
       }
     },
-    [onClose, closeOnBlur, menuRef, isOpen],
+    [onClose, closeOnBlur, menuRef, isOpen, buttonRef],
   )
 
   useEventListener("click", onDocumentClick)
