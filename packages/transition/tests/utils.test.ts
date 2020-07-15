@@ -2,6 +2,7 @@ import { transitionConfigToCSS, TransitionConfig } from "../src"
 
 const input: TransitionConfig = {
   timeout: 150,
+  addAppearStyles: true,
   enter: {
     transition: {
       easing: "ease-out",
@@ -38,11 +39,11 @@ const output = {
   "&.tooltip": {
     opacity: 0,
     transform: "scale(0.8)",
-    "&-enter": {
+    "&-enter, &-appear": {
       opacity: 0,
       transform: "scale(0.8)",
     },
-    "&-enter-active": {
+    "&-enter-active, &-appear-active": {
       opacity: 1,
       transform: "scale(1)",
       transitionTimingFunction: "ease-out",
@@ -68,10 +69,33 @@ const output = {
       opacity: 0,
       transform: "scale(0.8)",
     },
+    "&-appear": {
+      opacity: 0,
+      transform: "scale(0.8)",
+    },
+    "&-appear-active": {
+      opacity: 1,
+      transform: "scale(1)",
+      transitionTimingFunction: "ease-out",
+      transitionProperty: "transform, opacity",
+      transitionDuration: "150ms",
+    },
+    "&-appear-done": {
+      opacity: 1,
+      transform: "scale(1)",
+    },
   },
 }
 
-test("should transform motion config", () => {
+test.skip("should transform motion config", () => {
   const result = transitionConfigToCSS(input, "tooltip")
   expect(result).toEqual(output)
+})
+
+test.skip("should transform motion config - without appear", () => {
+  const result = transitionConfigToCSS(
+    { ...input, addAppearStyles: false },
+    "tooltip",
+  )
+  expect(true).toEqual(true)
 })

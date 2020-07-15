@@ -1,4 +1,10 @@
-import { BaseStyle, DefaultProps, mode, Sizes } from "@chakra-ui/theme-tools"
+import {
+  BaseStyle,
+  DefaultProps,
+  mode,
+  Sizes,
+  TransitionStyle,
+} from "@chakra-ui/theme-tools"
 
 const register = {
   parts: ["overlay", "content", "header", "body", "footer"],
@@ -60,6 +66,16 @@ const baseStyle: BaseStyle<typeof register> = (props) => {
   }
 }
 
+/**
+ * Since the `maxWidth` prop references theme.sizes internally,
+ * we can leverage that to size our modals.
+ */
+function getSize(value: string) {
+  return {
+    content: { maxWidth: value },
+  }
+}
+
 const sizes: Sizes<typeof register> = {
   xs: getSize("xs"),
   sm: getSize("sm"),
@@ -78,21 +94,58 @@ const defaultProps: DefaultProps<typeof register> = {
   size: "md",
 }
 
+const transition: TransitionStyle<typeof register> = {
+  overlay: {
+    timeout: { enter: 150, exit: 100 },
+    enter: {
+      transition: {
+        easing: "cubic-bezier(0,0,.2,1)",
+        duration: "150ms",
+        property: "opacity",
+      },
+      from: { opacity: 0.01 },
+      to: { opacity: 1 },
+    },
+    exit: {
+      transition: {
+        easing: "cubic-bezier(.4,0,1,1)",
+        duration: "100ms",
+        property: "opacity",
+      },
+      from: { opacity: 1 },
+      to: { opacity: 0.01 },
+    },
+  },
+  content: {
+    addAppearStyles: true,
+    timeout: { enter: 150, exit: 100 },
+    enter: {
+      transition: {
+        easing: "cubic-bezier(0,0,.2,1)",
+        duration: "150ms",
+        property: "opacity, transform",
+      },
+      from: { opacity: 0.01, transform: "scale(0.97)" },
+      to: { opacity: 1, transform: "scale(1)" },
+    },
+    exit: {
+      transition: {
+        easing: "cubic-bezier(.4,0,1,1)",
+        duration: "100ms",
+        property: "opacity, transform",
+      },
+      from: { opacity: 1, transform: "scale(1)" },
+      to: { opacity: 0.01, transform: "scale(0.97)" },
+    },
+  },
+}
+
 const modal = {
   register,
   defaultProps,
   baseStyle,
   sizes,
+  transition,
 }
 
 export default modal
-
-/**
- * Since the `maxWidth` prop references theme.sizes internally,
- * we can leverage that to size our modals.
- */
-function getSize(value: string) {
-  return {
-    content: { maxWidth: value },
-  }
-}

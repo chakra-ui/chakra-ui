@@ -2,8 +2,38 @@
 
 exports[`Avatar renders correctly 1`] = `
 <DocumentFragment>
-  <span
-    class="chakra-avatar css-1mb0rsz"
+  .emotion-0 {
+  background: #A0AEC0;
+  color: #FFFFFF;
+  border-color: #FFFFFF;
+  vertical-align: top;
+  font-size: calc(3rem / 2.5);
+  width: 3rem;
+  height: 3rem;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 500;
+  position: relative;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  border-radius: 9999px;
+}
+
+<span
+    class="chakra-avatar emotion-0"
   >
     <svg
       class="chakra-avatar__icon"
@@ -27,8 +57,62 @@ exports[`Avatar renders correctly 1`] = `
 
 exports[`Avatar with AvatarBadge renders correctly 1`] = `
 <DocumentFragment>
-  <span
-    class="chakra-avatar css-1mb0rsz"
+  .emotion-1 {
+  background: #A0AEC0;
+  color: #FFFFFF;
+  border-color: #FFFFFF;
+  vertical-align: top;
+  font-size: calc(3rem / 2.5);
+  width: 3rem;
+  height: 3rem;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 500;
+  position: relative;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  border-radius: 9999px;
+}
+
+.emotion-0 {
+  position: absolute;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  right: 0;
+  bottom: 0;
+  -webkit-transform: translate(25%,25%);
+  -ms-transform: translate(25%,25%);
+  transform: translate(25%,25%);
+  border-radius: 9999px;
+  border: 0.2em solid;
+  border-color: #FFFFFF;
+}
+
+<span
+    class="chakra-avatar emotion-1"
   >
     <svg
       class="chakra-avatar__icon"
@@ -47,7 +131,7 @@ exports[`Avatar with AvatarBadge renders correctly 1`] = `
       />
     </svg>
     <div
-      class="chakra-avatar__badge css-lxreer"
+      class="chakra-avatar__badge emotion-0"
     />
   </span>
 </DocumentFragment>

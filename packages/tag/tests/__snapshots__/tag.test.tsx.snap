@@ -2,8 +2,37 @@
 
 exports[`Tag (only) renders correctly 1`] = `
 <DocumentFragment>
-  <span
-    class="css-uemksw"
+  .emotion-0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  vertical-align: top;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  max-width: 100%;
+  font-weight: 500;
+  line-height: 1.2;
+  outline: 0;
+  min-height: 2rem;
+  min-width: 2rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  background: #EDF2F7;
+  color: #1A202C;
+}
+
+.emotion-0:focus,
+.emotion-0[data-focus] {
+  box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
+}
+
+<span
+    class="emotion-0"
   >
     A
   </span>
@@ -12,19 +41,116 @@ exports[`Tag (only) renders correctly 1`] = `
 
 exports[`Tag with close button renders correctly 1`] = `
 <DocumentFragment>
-  <span
-    class="css-uemksw"
+  .emotion-3 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  vertical-align: top;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  max-width: 100%;
+  font-weight: 500;
+  line-height: 1.2;
+  outline: 0;
+  min-height: 2rem;
+  min-width: 2rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  background: #EDF2F7;
+  color: #1A202C;
+}
+
+.emotion-3:focus,
+.emotion-3[data-focus] {
+  box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
+}
+
+.emotion-0 {
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  outline: 0;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  font-size: 1em;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 0.125rem;
+  margin-left: 0.375rem;
+  opacity: 0.5;
+}
+
+.emotion-2[disabled],
+.emotion-2[disabled]:focus,
+.emotion-2[disabled]:hover,
+.emotion-2[aria-disabled=true],
+.emotion-2[aria-disabled=true]:focus,
+.emotion-2[aria-disabled=true]:hover,
+.emotion-2[data-disabled],
+.emotion-2[data-disabled]:focus,
+.emotion-2[data-disabled]:hover {
+  opacity: 0.4;
+}
+
+.emotion-2:focus,
+.emotion-2[data-focus] {
+  box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
+  background: rgba(0,0,0,0.14);
+}
+
+.emotion-2:hover,
+.emotion-2[data-hover] {
+  opacity: 0.8;
+}
+
+.emotion-2:active,
+.emotion-2[data-active] {
+  opacity: 1;
+}
+
+.emotion-1 {
+  vertical-align: inherit;
+  display: inline-block;
+  line-height: 1em;
+  color: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+}
+
+<span
+    class="emotion-3"
   >
     <span
-      class="css-1h8gyx6"
+      class="emotion-0"
     >
       B
     </span>
     <button
-      class="css-pi0mvu"
+      class="emotion-2"
+      type="button"
     >
       <svg
-        class="chakra-icon css-vp3v0l"
+        class="chakra-icon emotion-1"
         focusable="false"
         role="presentation"
         viewBox="0 0 512 512"
@@ -41,46 +167,158 @@ exports[`Tag with close button renders correctly 1`] = `
 
 exports[`Tag with left icon renders correctly 1`] = `
 <DocumentFragment>
-  <span
-    class="css-uemksw"
+  .emotion-4 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  vertical-align: top;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  max-width: 100%;
+  font-weight: 500;
+  line-height: 1.2;
+  outline: 0;
+  min-height: 2rem;
+  min-width: 2rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  background: #EDF2F7;
+  color: #1A202C;
+}
+
+.emotion-4:focus,
+.emotion-4[data-focus] {
+  box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
+}
+
+.emotion-1 {
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.emotion-3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  outline: 0;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  font-size: 1em;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 0.125rem;
+  margin-left: 0.375rem;
+  opacity: 0.5;
+}
+
+.emotion-3[disabled],
+.emotion-3[disabled]:focus,
+.emotion-3[disabled]:hover,
+.emotion-3[aria-disabled=true],
+.emotion-3[aria-disabled=true]:focus,
+.emotion-3[aria-disabled=true]:hover,
+.emotion-3[data-disabled],
+.emotion-3[data-disabled]:focus,
+.emotion-3[data-disabled]:hover {
+  opacity: 0.4;
+}
+
+.emotion-3:focus,
+.emotion-3[data-focus] {
+  box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
+  background: rgba(0,0,0,0.14);
+}
+
+.emotion-3:hover,
+.emotion-3[data-hover] {
+  opacity: 0.8;
+}
+
+.emotion-3:active,
+.emotion-3[data-active] {
+  opacity: 1;
+}
+
+.emotion-2 {
+  vertical-align: inherit;
+  display: inline-block;
+  line-height: 1em;
+  color: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.emotion-0 {
+  vertical-align: top;
+  display: inline-block;
+  line-height: 1em;
+  color: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.5rem;
+}
+
+<span
+    class="emotion-4"
   >
     <svg
-      class="chakra-icon css-40jgb2"
+      class="chakra-icon emotion-0"
       focusable="false"
       role="presentation"
       viewBox="0 0 24 24"
     >
       <g
-        fill-rule="evenodd"
+        stroke="currentColor"
+        stroke-width="1.5"
       >
+        <path
+          d="M9,9a3,3,0,1,1,4,2.829,1.5,1.5,0,0,0-1,1.415V14.25"
+          fill="none"
+          stroke-linecap="round"
+        />
+        <path
+          d="M12,17.25a.375.375,0,1,0,.375.375A.375.375,0,0,0,12,17.25h0"
+          fill="currentColor"
+          stroke-linecap="round"
+        />
         <circle
           cx="12"
           cy="12"
-          fill="currentColor"
-          r="10"
-        />
-        <circle
-          cx="12"
-          cy="18"
-          fill="inherit"
-          r="1"
-        />
-        <path
-          d="M15.89 9.05a3.975 3.975 0 0 0-2.957-2.942C10.321 5.514 8.017 7.446 8 9.95l.005.147a.992.992 0 0 0 .982.904c.552 0 1-.447 1.002-.998a2.004 2.004 0 0 1 4.007-.002c0 1.102-.898 2-2.003 2H12a1 1 0 0 0-1 .987v2.014a1.001 1.001 0 0 0 2.004 0v-.782c0-.217.145-.399.35-.472A3.99 3.99 0 0 0 15.89 9.05"
-          fill="inherit"
+          fill="none"
+          r="11.25"
+          stroke-miterlimit="10"
         />
       </g>
     </svg>
     <span
-      class="css-1h8gyx6"
+      class="emotion-1"
     >
       C
     </span>
     <button
-      class="css-pi0mvu"
+      class="emotion-3"
+      type="button"
     >
       <svg
-        class="chakra-icon css-vp3v0l"
+        class="chakra-icon emotion-2"
         focusable="false"
         role="presentation"
         viewBox="0 0 512 512"

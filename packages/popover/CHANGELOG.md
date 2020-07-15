@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-next.6](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/popover@1.0.0-next.5...@chakra-ui/popover@1.0.0-next.6) (2020-07-15)
+
+**Note:** Version bump only for package @chakra-ui/popover
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [1.0.0-next.5](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/popover@1.0.0-next.4...@chakra-ui/popover@1.0.0-next.5) (2020-07-15)
+
+### Bug Fixes
+
+- popover blur and event target issue
+  [#1124](https://github.com/chakra-ui/chakra-ui/issues/1124)
+  ([56f10fb](https://github.com/chakra-ui/chakra-ui/commit/56f10fb75646a18d6f8a18c6f0e4ca830957812e))
+
+### Features
+
+- add popover transition
+  ([73d8c4f](https://github.com/chakra-ui/chakra-ui/commit/73d8c4fc9c676c95232cd259f59cce7d38eff94b))
+- add transition for modal
+  ([dda931b](https://github.com/chakra-ui/chakra-ui/commit/dda931bea7444c3f83392eebf1c34dd571a0dbbc))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # 1.0.0-next.4 (2020-07-01)
 
 ### Bug Fixes

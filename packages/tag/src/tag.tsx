@@ -1,6 +1,7 @@
 import * as React from "react"
 import {
   chakra,
+  forwardRef,
   PropsOf,
   ThemingProps,
   useStyleConfig,
@@ -20,7 +21,7 @@ export type TagProps = PropsOf<typeof chakra.span> & ThemingProps
  *
  * @see Docs https://chakra-ui.com/components/tag
  */
-export const Tag = React.forwardRef(function Tag(props, ref) {
+export const Tag = forwardRef<TagProps>(function Tag(props, ref) {
   const styles = useStyleConfig("Tag", props)
   const tagProps = omitThemingProps(props)
   return (

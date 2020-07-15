@@ -1,29 +1,15 @@
 import { useDisclosure } from "@chakra-ui/hooks"
-import { PortalManager } from "@chakra-ui/portal"
 import { chakra } from "@chakra-ui/system"
-import { Fade, SlideFade, ScaleFade } from "@chakra-ui/transition"
 import * as React from "react"
 import {
   Modal,
   ModalBody,
+  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  ModalCloseButton,
 } from "../src"
-
-export default {
-  title: "Modal",
-  decorators: [
-    (StoryFn: Function) => (
-      <PortalManager>
-        <StoryFn />
-      </PortalManager>
-    ),
-  ],
-}
-
 const Button = chakra("button", {
   baseStyle: {
     outline: 0,
@@ -47,31 +33,7 @@ export function BasicUsage() {
             <ModalBody>
               Sit nulla est ex deserunt exercitation anim occaecat. Nostrud
               ullamco deserunt aute id consequat veniam incididunt duis in sint
-              irure nisi. Mollit officia cillum Lorem ullamco minim nostrud elit
-              officia tempor esse quis. Sit nulla est ex deserunt exercitation
-              anim occaecat. Nostrud ullamco deserunt aute id consequat veniam
-              incididunt duis in sint irure nisi. Mollit officia cillum Lorem
-              ullamco minim nostrud elit officia tempor esse quis. Sit nulla est
-              ex deserunt exercitation anim occaecat. Nostrud ullamco deserunt
-              aute id consequat veniam incididunt duis in sint irure nisi.
-              Mollit officia cillum Lorem ullamco minim nostrud elit officia
-              tempor esse quis. Sit nulla est ex deserunt exercitation anim
-              occaecat. Nostrud ullamco deserunt aute id consequat veniam
-              incididunt duis in sint irure nisi. Mollit officia cillum Lorem
-              ullamco minim nostrud elit officia tempor esse quis. Sit nulla est
-              ex deserunt exercitation anim occaecat. Nostrud ullamco deserunt
-              aute id consequat veniam incididunt duis in sint irure nisi.
-              Mollit officia cillum Lorem ullamco minim nostrud elit officia
-              tempor esse quis. Mollit officia cillum Lorem ullamco minim
-              nostrud elit officia tempor esse quis. Sit nulla est ex deserunt
-              exercitation anim occaecat. Nostrud ullamco deserunt aute id
-              consequat veniam incididunt duis in sint irure nisi. Mollit
-              officia cillum Lorem ullamco minim nostrud elit officia tempor
-              esse quis. Mollit officia cillum Lorem ullamco minim nostrud elit
-              officia tempor esse quis. Sit nulla est ex deserunt exercitation
-              anim occaecat. Nostrud ullamco deserunt aute id consequat veniam
-              incididunt duis in sint irure nisi. Mollit officia cillum Lorem
-              ullamco minim nostrud elit officia tempor esse quis.
+              irure nisi.
             </ModalBody>
 
             <ModalFooter>
@@ -126,61 +88,61 @@ export function ReturnFocus() {
   )
 }
 
-export function SlideAnimation() {
-  const modal = useDisclosure()
-  return (
-    <>
-      <button onClick={modal.onOpen}>Open</button>
-      <Fade timeout={5000} in={modal.isOpen}>
-        {(styles) => (
-          <Modal isOpen={true} onClose={modal.onClose}>
-            <ModalOverlay style={styles}>
-              <SlideFade timeout={3000} in={modal.isOpen} unmountOnExit={false}>
-                {(styles) => (
-                  <ModalContent padding={4} mx="auto" mt="40px" style={styles}>
-                    Sit nulla est ex deserunt exercitation anim occaecat.
-                    Nostrud ullamco deserunt aute id consequat veniam incididunt
-                    duis in sint irure nisi. Mollit officia cillum Lorem ullamco
-                    minim nostrud elit officia tempor esse quis.
-                    <Button>Save</Button>
-                  </ModalContent>
-                )}
-              </SlideFade>
-            </ModalOverlay>
-          </Modal>
-        )}
-      </Fade>
-    </>
-  )
-}
+// export function SlideAnimation() {
+//   const modal = useDisclosure()
+//   return (
+//     <>
+//       <button onClick={modal.onOpen}>Open</button>
+//       <Fade timeout={5000} in={modal.isOpen}>
+//         {(styles) => (
+//           <Modal isOpen={true} onClose={modal.onClose}>
+//             <ModalOverlay style={styles}>
+//               <SlideFade timeout={3000} in={modal.isOpen} unmountOnExit={false}>
+//                 {(styles) => (
+//                   <ModalContent padding={4} mx="auto" mt="40px" style={styles}>
+//                     Sit nulla est ex deserunt exercitation anim occaecat.
+//                     Nostrud ullamco deserunt aute id consequat veniam incididunt
+//                     duis in sint irure nisi. Mollit officia cillum Lorem ullamco
+//                     minim nostrud elit officia tempor esse quis.
+//                     <Button>Save</Button>
+//                   </ModalContent>
+//                 )}
+//               </SlideFade>
+//             </ModalOverlay>
+//           </Modal>
+//         )}
+//       </Fade>
+//     </>
+//   )
+// }
 
-export function ScaleAnimation() {
-  const modal = useDisclosure()
-  return (
-    <>
-      <button onClick={modal.onOpen}>Open</button>
-      <Fade timeout={300} in={modal.isOpen}>
-        {(styles) => (
-          <Modal isOpen={true} onClose={modal.onClose}>
-            <ModalOverlay style={styles}>
-              <ScaleFade timeout={150} in={modal.isOpen} unmountOnExit={false}>
-                {(styles) => (
-                  <ModalContent padding={4} mx="auto" mt="40px" style={styles}>
-                    Sit nulla est ex deserunt exercitation anim occaecat.
-                    Nostrud ullamco deserunt aute id consequat veniam incididunt
-                    duis in sint irure nisi. Mollit officia cillum Lorem ullamco
-                    minim nostrud elit officia tempor esse quis.
-                    <Button>Save</Button>
-                  </ModalContent>
-                )}
-              </ScaleFade>
-            </ModalOverlay>
-          </Modal>
-        )}
-      </Fade>
-    </>
-  )
-}
+// export function ScaleAnimation() {
+//   const modal = useDisclosure()
+//   return (
+//     <>
+//       <button onClick={modal.onOpen}>Open</button>
+//       <Fade timeout={300} in={modal.isOpen}>
+//         {(styles) => (
+//           <Modal isOpen={true} onClose={modal.onClose}>
+//             <ModalOverlay style={styles}>
+//               <ScaleFade timeout={150} in={modal.isOpen} unmountOnExit={false}>
+//                 {(styles) => (
+//                   <ModalContent padding={4} mx="auto" mt="40px" style={styles}>
+//                     Sit nulla est ex deserunt exercitation anim occaecat.
+//                     Nostrud ullamco deserunt aute id consequat veniam incididunt
+//                     duis in sint irure nisi. Mollit officia cillum Lorem ullamco
+//                     minim nostrud elit officia tempor esse quis.
+//                     <Button>Save</Button>
+//                   </ModalContent>
+//                 )}
+//               </ScaleFade>
+//             </ModalOverlay>
+//           </Modal>
+//         )}
+//       </Fade>
+//     </>
+//   )
+// }
 
 export function NestedModal() {
   const first = useDisclosure()

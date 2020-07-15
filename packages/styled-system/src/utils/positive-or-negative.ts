@@ -3,8 +3,11 @@ import { StringOrNumber, isString, isNumber } from "@chakra-ui/utils"
 const startsWith = (string: string, target: string) =>
   string.slice(0, 0 + target.length) == target
 
-export function positiveOrNegative(value: StringOrNumber, scale: any) {
-  if (!scale) return value
+export function positiveOrNegative(
+  value: StringOrNumber | undefined,
+  scale: any,
+) {
+  if (!scale || value == null) return value
 
   let result: any
 

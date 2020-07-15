@@ -2,8 +2,126 @@
 
 exports[`Radio renders correctly 1`] = `
 <DocumentFragment>
-  <label
-    class="chakra-radio css-h82fce"
+  .emotion-1 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  vertical-align: top;
+}
+
+.emotion-0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 1.25rem;
+  -webkit-transition: box-shadow 250ms,background-color 250ms;
+  transition: box-shadow 250ms,background-color 250ms;
+  border: 2px solid;
+  border-radius: 9999px;
+  border-color: inherit;
+  color: #FFFFFF;
+  height: 1.25rem;
+}
+
+.emotion-0[aria-checked=true],
+.emotion-0[data-checked] {
+  background: #3182CE;
+  border-color: #3182CE;
+  color: #FFFFFF;
+}
+
+.emotion-0[aria-checked=true]:hover,
+.emotion-0[data-checked]:hover,
+.emotion-0[aria-checked=true][data-hover],
+.emotion-0[data-checked][data-hover] {
+  background: #2A69AC;
+  border-color: #2A69AC;
+}
+
+.emotion-0[aria-checked=true][disabled],
+.emotion-0[data-checked][disabled],
+.emotion-0[aria-checked=true][disabled]:focus,
+.emotion-0[data-checked][disabled]:focus,
+.emotion-0[aria-checked=true][disabled]:hover,
+.emotion-0[data-checked][disabled]:hover,
+.emotion-0[aria-checked=true][aria-disabled=true],
+.emotion-0[data-checked][aria-disabled=true],
+.emotion-0[aria-checked=true][aria-disabled=true]:focus,
+.emotion-0[data-checked][aria-disabled=true]:focus,
+.emotion-0[aria-checked=true][aria-disabled=true]:hover,
+.emotion-0[data-checked][aria-disabled=true]:hover,
+.emotion-0[aria-checked=true][data-disabled],
+.emotion-0[data-checked][data-disabled],
+.emotion-0[aria-checked=true][data-disabled]:focus,
+.emotion-0[data-checked][data-disabled]:focus,
+.emotion-0[aria-checked=true][data-disabled]:hover,
+.emotion-0[data-checked][data-disabled]:hover {
+  border-color: #E2E8F0;
+  background: #E2E8F0;
+  color: #718096;
+}
+
+.emotion-0[aria-checked=true]::before,
+.emotion-0[data-checked]::before {
+  content: "";
+  display: inline-block;
+  position: relative;
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.emotion-0:indeterminate,
+.emotion-0[aria-checked=mixed],
+.emotion-0[data-indeterminate] {
+  background: #3182CE;
+  border-color: #3182CE;
+  color: #FFFFFF;
+}
+
+.emotion-0[disabled],
+.emotion-0[disabled]:focus,
+.emotion-0[disabled]:hover,
+.emotion-0[aria-disabled=true],
+.emotion-0[aria-disabled=true]:focus,
+.emotion-0[aria-disabled=true]:hover,
+.emotion-0[data-disabled],
+.emotion-0[data-disabled]:focus,
+.emotion-0[data-disabled]:hover {
+  background: #EDF2F7;
+  border-color: #EDF2F7;
+}
+
+.emotion-0:focus,
+.emotion-0[data-focus] {
+  box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
+}
+
+.emotion-0[aria-invalid=true],
+.emotion-0[data-invalid] {
+  border-color: #E53E3E;
+}
+
+<label
+    class="chakra-radio emotion-1"
   >
     <input
       class="chakra-radio__input"
@@ -13,7 +131,7 @@ exports[`Radio renders correctly 1`] = `
     />
     <div
       aria-hidden="true"
-      class="chakra-radio__control css-ga0kq6"
+      class="chakra-radio__control emotion-0"
     />
   </label>
 </DocumentFragment>

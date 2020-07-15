@@ -10,14 +10,13 @@ import {
 } from "@chakra-ui/utils"
 import { pseudoSelectors } from "./pseudo"
 import { parser } from "./parser"
-import { normalizeBreakpoints } from "./utils"
 import { StyleObjectOrFn, CSSObject } from "./css.types"
 
 const defaultBreakpoints = ["40em", "52em", "64em"]
 
 function getBreakpoints(theme: any) {
-  const breakpoints = (theme?.breakpoints ?? defaultBreakpoints) as string[]
-  return normalizeBreakpoints(breakpoints) as string[]
+  const breakpoints = theme?.breakpoints ?? defaultBreakpoints
+  return breakpoints as string[]
 }
 
 const responsive = (styles: any) => (theme?: any) => {

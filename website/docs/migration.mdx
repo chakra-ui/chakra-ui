@@ -425,13 +425,13 @@ function Example() {
 #### Bug Fix
 
 - Color mode now persists correctly when you refresh the page. All you need to
-  do is add `InitialColorMode` script as the first child of `body`.
+  do is add `InitializeColorMode` script as the first child of `body`.
 
   Here's how to add it for Next.js:
 
 ```jsx live=false
 // pages/_app.js
-import { InitialColorMode } from "@chakra-ui/core"
+import { InitializeColorMode } from "@chakra-ui/core"
 
 export default class Document extends NextDocument {
   static async getInitialProps(ctx) {

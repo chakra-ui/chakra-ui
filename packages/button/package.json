@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/button",
-  "version": "1.0.0-next.4",
+  "version": "1.0.0-next.6",
   "description": "A React component that is a base button.",
   "keywords": [
     "button",
@@ -20,8 +20,7 @@
   "types": "dist/types/index.d.ts",
   "typings": "dist/types/index.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"
@@ -42,21 +41,20 @@
     "version": "yarn build",
     "build:esm": "cross-env BABEL_ENV=esm babel src --root-mode upward --extensions .ts,.tsx -d dist/esm --source-maps",
     "build:cjs": "cross-env BABEL_ENV=cjs babel src --root-mode upward --extensions .ts,.tsx -d dist/cjs --source-maps",
-    "build:types": "tsc --emitDeclarationOnly --declaration --declarationMap --declarationDir dist/types",
+    "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist/types",
     "test:cov": "yarn test --coverage",
     "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
     "lint:types": "tsc --noEmit"
   },
   "devDependencies": {
-    "@chakra-ui/system": "^1.0.0-next.4"
+    "@chakra-ui/system": "^1.0.0-next.6"
   },
   "dependencies": {
-    "@chakra-ui/spinner": "^1.0.0-next.4",
-    "@chakra-ui/utils": "^1.0.0-next.4"
+    "@chakra-ui/spinner": "^1.0.0-next.6",
+    "@chakra-ui/utils": "^1.0.0-next.6"
   },
   "peerDependencies": {
-    "@chakra-ui/system": "^1.0.0-next.4",
+    "@chakra-ui/system": "^1.0.0-next.5",
     "react": "16.x"
-  },
-  "gitHead": "ce6fe489afaddba502a2611f1fb1dcedb991325b"
+  }
 }

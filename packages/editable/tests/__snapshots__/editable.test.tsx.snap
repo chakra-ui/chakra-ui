@@ -2,18 +2,67 @@
 
 exports[`should match snapshot 1`] = `
 <DocumentFragment>
-  <div
-    class="chakra-editable"
+  .emotion-0 {
+  cursor: text;
+  display: inline-block;
+  font-size: inherit;
+  font-weight: inherit;
+  text-align: inherit;
+  background: transparent;
+  border-radius: 0.25rem;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.emotion-1 {
+  outline: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  text-align: inherit;
+  background: transparent;
+  border-radius: 0.25rem;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  width: 100%;
+}
+
+.emotion-1:focus,
+.emotion-1[data-focus] {
+  box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
+}
+
+.emotion-1::-webkit-input-placeholder {
+  opacity: 0.6;
+}
+
+.emotion-1::-moz-placeholder {
+  opacity: 0.6;
+}
+
+.emotion-1:-ms-input-placeholder {
+  opacity: 0.6;
+}
+
+.emotion-1::placeholder {
+  opacity: 0.6;
+}
+
+<div
+    class="chakra-editable emotion-2"
   >
     <span
-      class="chakra-editable__preview css-gsjxgq"
+      class="chakra-editable__preview emotion-0"
       data-testid="preview"
       tabindex="0"
     >
       testing
     </span>
     <input
-      class="chakra-editable__input css-1qupasc"
+      class="chakra-editable__input emotion-1"
       data-testid="input"
       hidden=""
       value="testing"

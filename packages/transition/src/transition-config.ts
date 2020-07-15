@@ -23,32 +23,21 @@ export interface TransitionStateConfig {
 }
 
 export interface TransitionConfig {
+  addDoneStyles?: boolean
+  addAppearStyles?: boolean
   transition?: TransitionOptions
   timeout: CSSTransitionProps["timeout"]
   enter: TransitionStateConfig
   exit: TransitionStateConfig
 }
 
-export type TransitionStates = "enter" | "exit" | "appear"
+export type TransitionStates = "enter" | "exit"
 
-function getTransitionStyles(config: TransitionConfig, type: TransitionStates) {
-  const motion = config[type] ?? config.enter
-
-  if (!motion) return {}
-
-  const _transition = motion.transition ?? config.transition ?? {}
-  const transition = _transition as TransitionOptions
-
+function toCSSTransition(transition: TransitionOptions) {
   return {
-    ...(type === "enter" && motion.from),
-    [`&-${type}`]: motion.from,
-    [`&-${type}-active`]: {
-      ...motion.to,
-      transitionTimingFunction: transition.easing,
-      transitionProperty: transition.property,
-      transitionDuration: transition.duration,
-    },
-    [`&-${type}-done`]: motion.to,
+    transitionTimingFunction: transition.easing,
+    transitionProperty: transition.property,
+    transitionDuration: transition.duration,
   }
 }
 
@@ -56,11 +45,36 @@ export function transitionConfigToCSS(
   config: TransitionConfig,
   className: string,
 ): SystemStyleObject {
+  const { addDoneStyles, addAppearStyles, enter, exit, transition } = config
+
+  const enterClass = addAppearStyles ? `&-enter, &-appear` : `&-enter`
+  const enterDoneClass = addAppearStyles
+    ? `&-enter-done, &-appear-done`
+    : `&-enter-done`
+  const enterActiveClass = addAppearStyles
+    ? `&-enter-active, &-appear-active`
+    : `&-enter-active`
+
+  const enterTransition = enter.transition ?? transition
+  const exitTransition = exit.transition ?? transition
+
   return {
     [`&.${className}`]: {
-      ...getTransitionStyles(config, "enter"),
-      ...getTransitionStyles(config, "exit"),
-      ...getTransitionStyles(config, "appear"),
+      ...(addDoneStyles && enter.from),
+      [enterClass]: enter.from,
+      [enterActiveClass]: {
+        ...enter.to,
+        ...(enterTransition && toCSSTransition(enterTransition)),
+      },
+      ...(addDoneStyles && {
+        [enterDoneClass]: enter.to,
+      }),
+      "&-exit": exit.from,
+      "&-exit-active": {
+        ...exit.to,
+        ...(exitTransition && toCSSTransition(exitTransition)),
+      },
+      ...(addDoneStyles && { "&-exit-done": exit.to }),
     },
   }
 }

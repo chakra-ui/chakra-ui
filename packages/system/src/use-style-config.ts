@@ -3,7 +3,15 @@ import { Dict, get, runIfFn, merge, filterUndefined } from "@chakra-ui/utils"
 import { useChakra } from "./hooks"
 import { SystemStyleObject } from "@chakra-ui/styled-system"
 
-type StyleConfig = Dict | undefined
+interface BaseStyleConfig {
+  defaultProps?: Dict
+  baseStyle?: Dict
+  register?: { parts?: string[] }
+  variants?: Dict
+  sizes?: Dict
+}
+
+type StyleConfig = BaseStyleConfig | undefined
 
 export function useStyleConfig(themeKey: string, props: Dict) {
   const { styleConfig: styleConfigProp, ...rest } = props
@@ -29,7 +37,7 @@ export function useStyleConfig(themeKey: string, props: Dict) {
 
   return React.useMemo(() => {
     if (styleConfig) {
-      const baseStyles = runIfFn(styleConfig.baseStyle, allProps)
+      const baseStyles = runIfFn(styleConfig.baseStyle ?? {}, allProps)
       const parts = styleConfig.register?.parts || Object.keys(baseStyles)
 
       const variants = runIfFn(
