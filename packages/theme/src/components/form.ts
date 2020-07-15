@@ -1,8 +1,12 @@
-import { ComponentTheme, mode } from "@chakra-ui/theme-tools"
+import { BaseStyle, mode } from "@chakra-ui/theme-tools"
 
-const Form: ComponentTheme = {
-  baseStyle: (props) => ({
-    Label: {
+const register = {
+  parts: ["label", "errorText", "requiredIndicator", "helperText", "errorIcon"],
+} as const
+
+const baseStyle: BaseStyle<typeof register> = (props) => {
+  return {
+    label: {
       fontSize: "md",
       marginRight: 3,
       marginBottom: 2,
@@ -13,26 +17,31 @@ const Form: ComponentTheme = {
         opacity: 0.4,
       },
     },
-    ErrorText: {
+    errorText: {
       color: mode("red.500", "red.300")(props),
       marginTop: 2,
       fontSize: "sm",
     },
-    RequiredIndicator: {
+    requiredIndicator: {
       marginLeft: 1,
       color: mode("red.500", "red.300")(props),
     },
-    HelperText: {
+    helperText: {
       marginTop: 2,
       color: mode("gray.500", "whiteAlpha.600")(props),
       lineHeight: "normal",
       fontSize: "sm",
     },
-    ErrorIcon: {
+    errorIcon: {
       marginRight: "0.5em",
       color: mode("red.500", "red.300")(props),
     },
-  }),
+  }
 }
 
-export default Form
+const form = {
+  register,
+  baseStyle,
+}
+
+export default form

@@ -1,7 +1,14 @@
 import { FormControlOptions, useFormControl } from "@chakra-ui/form-control"
-import { chakra, PropsOf, forwardRef } from "@chakra-ui/system"
+import {
+  chakra,
+  PropsOf,
+  forwardRef,
+  useStyleConfig,
+  omitThemingProps,
+  ThemingProps,
+} from "@chakra-ui/system"
 import * as React from "react"
-import { __DEV__, cx } from "@chakra-ui/utils"
+import { __DEV__, cx, omit } from "@chakra-ui/utils"
 
 interface TextareaOptions {
   /**
@@ -22,22 +29,11 @@ interface TextareaOptions {
   isFullWidth?: boolean
 }
 
-/**
- * Textarea - Theming
- *
- * To style the textarea component globally, change the styles in
- * `theme.components.Textarea`
- */
-const StyledTextarea = chakra<"textarea", TextareaOptions>("textarea", {
-  themeKey: "Textarea",
-  shouldForwardProp: (prop) =>
-    !["focusBorderColor", "errorBorderColor"].includes(prop),
-})
-
 type Omitted = "disabled" | "required" | "readOnly"
 
-export type TextareaProps = Omit<PropsOf<typeof StyledTextarea>, Omitted> &
-  FormControlOptions
+export type TextareaProps = Omit<PropsOf<typeof chakra.textarea>, Omitted> &
+  FormControlOptions &
+  ThemingProps
 
 /**
  * Textarea
@@ -50,10 +46,23 @@ export const Textarea = forwardRef<TextareaProps>(function Textarea(
   props,
   ref,
 ) {
-  const { className, ...htmlProps } = props
-  const fieldProps = useFormControl<HTMLTextAreaElement>(htmlProps)
+  const styles = useStyleConfig("Textarea", props)
+  const { className, rows, ...rest } = omitThemingProps(props)
+  const textarea = useFormControl<HTMLTextAreaElement>(rest)
   const _className = cx("chakra-textarea", className)
-  return <StyledTextarea className={_className} ref={ref} {...fieldProps} />
+  const textareaStyles = rows
+    ? omit(styles.field as any, ["height", "minHeight"])
+    : styles.field
+
+  return (
+    <chakra.textarea
+      className={_className}
+      ref={ref}
+      rows={rows}
+      {...textarea}
+      __css={textareaStyles}
+    />
+  )
 })
 
 if (__DEV__) {

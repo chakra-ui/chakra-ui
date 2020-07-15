@@ -96,10 +96,7 @@ const HeaderContent = () => {
         <Search paddingX="4" />
         <SponsorButton mr="5" />
         <Stack align="center" direction="row" spacing="3">
-          <Link
-            isExternal
-            href="https://github.com/chakra-ui/chakra-ui/tree/master/packages/chakra-ui"
-          >
+          <Link isExternal href="https://github.com/chakra-ui/chakra-ui">
             <Icon as={DiGithubBadge} boxSize="8" color="current" />
           </Link>
         </Stack>

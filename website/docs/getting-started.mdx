@@ -21,36 +21,56 @@ yarn add @chakra-ui/core
 
 <carbon-ad></carbon-ad>
 
-2. **Clone the default theme**: Chakra has prepared a default theme for you that
-   you can modify or extends. The theme contains specifications for the fonts,
-   font-sizes, colors, etc.
+2. Install the default theme
 
-   To get the default theme, run this command:
+Chakra has prepared a default theme for you that you can modify or extends. The
+theme contains specifications for the fonts, font-sizes, colors, etc.
 
-   ```bash
-   # clone the javascript theme
-   npx chakra-cli init --theme
+There are two ways to get the theme:
 
-   # clone the typescript theme
-   npx chakra-cli init --theme --ts
-   ```
+**From NPM:** This is the recommended way to install the theme. Install the
+`@chakra-ui/theme` package.
 
-   This command will copy the chakra theme to your project in a `chakra/`
-   directory. There you can update all the tokens to match your brand or design
-   requirements.
+```sh
+npm i @chakra-ui/theme
 
-   <br />
+# or
 
-3. **Add the providers**: For Chakra to work correctly, you need to setup some
-   global providers and add browser css reset. At the root of your application,
-   here's what you need do:
+yarn add @chakra-ui/theme
+```
+
+**From Chakra CLI:** This is useful if you plan to completely "eject" from
+chakra's theme and you want to custom most component styles.
+
+```sh
+# clone the javascript theme
+npx chakra-cli init --theme
+
+# clone the typescript theme
+npx chakra-cli init --theme --ts
+
+# specify folder to clone theme to
+npx chakra-cli init --theme --ts -o src
+```
+
+This command will copy the default theme to your project in the specified
+directory, default is `chakra/`.
+
+This approach will help you learn about the theme tokens (colors, fonts,
+component styles) and make it easy to customize the theme to match your design
+requirements.
+
+3. Add the provider
+
+For Chakra to work correctly, you need to setup the global provider and add
+browser css reset. At the root of your application, here's what you need do:
 
 ```jsx live=false
 import * as React from "react"
 import { ChakraProvider, CSSReset } from "@chakra-ui/core"
 
 // Use at the root of your app
-function Example() {
+function App() {
   return (
     <ChakraProvider>
       <CSSReset />
@@ -67,16 +87,20 @@ function Example() {
 
 <br />
 
-4. **Consume the theme**: Assuming you have the default theme in your `chakra/`
-   directory. Add the `theme` to the `ChakraProvider`.
+4. Consume the theme
+
+Assuming you have the default theme installed or cloned. Add the `theme` to the
+`ChakraProvider`.
 
 ```jsx live=false
 import * as React from "react"
 import { ChakraProvider, CSSReset } from "@chakra-ui/core"
-import theme from "./chakra"
+import theme from "@chakra-ui/theme"
+// or
+// import theme from "./chakra"
 
 // Use at the root of your app
-function Example() {
+function App() {
   return (
     <ChakraProvider theme={theme}>
       <CSSReset />

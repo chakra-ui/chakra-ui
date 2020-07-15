@@ -3,7 +3,7 @@ import {
   AlertDescription,
   AlertIcon,
   AlertTitle,
-  ALERT_STATUSES,
+  STATUSES,
 } from "@chakra-ui/alert"
 import { CloseButton } from "@chakra-ui/close-button"
 import { chakra, ThemeProvider, useTheme } from "@chakra-ui/system"
@@ -50,7 +50,7 @@ export interface UseToastOptions {
   /**
    * The status of the toast.
    */
-  status?: keyof typeof ALERT_STATUSES
+  status?: keyof typeof STATUSES
   /**
    * The `id` of the toast.
    *
@@ -129,7 +129,7 @@ export function useToast() {
       </ThemeProvider>
     )
 
-    const opts = merge(defaults, options)
+    const opts = merge({}, defaults, options)
 
     return toast.notify(Message, opts)
   }
@@ -143,7 +143,7 @@ export function useToast() {
 
     if (!id) return
 
-    const opts = merge(defaults, rest) as any
+    const opts = merge({}, defaults, rest) as any
 
     toast.update(id, {
       ...opts,

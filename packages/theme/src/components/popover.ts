@@ -1,8 +1,17 @@
-import { ComponentTheme, mode } from "@chakra-ui/theme-tools"
+import {
+  BaseStyle,
+  mode,
+  TransitionStyle,
+  scaleFade,
+} from "@chakra-ui/theme-tools"
 
-const Popover: ComponentTheme = {
-  baseStyle: (props) => ({
-    Content: {
+const register = {
+  parts: ["content", "header", "body", "footer"],
+} as const
+
+const baseStyle: BaseStyle<typeof register> = (props) => {
+  return {
+    content: {
       bg: mode("white", "gray.700")(props),
       border: "1px solid",
       borderColor: "inherit",
@@ -16,21 +25,31 @@ const Popover: ComponentTheme = {
         boxShadow: "outline",
       },
     },
-    Header: {
+    header: {
       paddingX: 3,
       paddingY: 2,
       borderBottomWidth: "1px",
     },
-    Body: {
+    body: {
       paddingX: 3,
       paddingY: 2,
     },
-    Footer: {
+    footer: {
       paddingX: 3,
       paddingY: 2,
       borderTopWidth: "1px",
     },
-  }),
+  }
 }
 
-export default Popover
+const transition: TransitionStyle<typeof register> = {
+  content: scaleFade,
+}
+
+const popover = {
+  register,
+  baseStyle,
+  transition,
+}
+
+export default popover

@@ -1,31 +1,42 @@
-import { ComponentTheme } from "@chakra-ui/theme-tools"
+import { BaseStyle, DefaultProps, Sizes } from "@chakra-ui/theme-tools"
 
-const Heading: ComponentTheme = {
-  defaultProps: {
-    size: "xl",
-  },
-  baseStyle: {
+const register = {
+  parts: ["heading"],
+  sizes: ["2xl", "xl", "lg", "md", "sm", "xs"],
+} as const
+
+const baseStyle: BaseStyle<typeof register> = {
+  heading: {
     fontFamily: "heading",
     lineHeight: "shorter",
     fontWeight: "bold",
   },
-  sizes: {
-    "2xl": { fontSize: ["4xl", null, "5xl"] },
-    xl: { fontSize: ["3xl", null, "4xl"] },
-    lg: { fontSize: ["xl", null, "2xl"] },
-    md: { fontSize: "xl" },
-    sm: { fontSize: "md" },
-    xs: { fontSize: "sm" },
+}
+
+const sizes: Sizes<typeof register> = {
+  "2xl": {
+    heading: { fontSize: ["4xl", null, "5xl"] },
   },
+  xl: {
+    heading: { fontSize: ["3xl", null, "4xl"] },
+  },
+  lg: {
+    heading: { fontSize: ["xl", null, "2xl"] },
+  },
+  md: { heading: { fontSize: "xl" } },
+  sm: { heading: { fontSize: "md" } },
+  xs: { heading: { fontSize: "sm" } },
 }
 
-export const HeadingSizes = {
-  "2xl": "2xl",
-  xl: "xl",
-  lg: "lg",
-  md: "md",
-  sm: "sm",
-  xs: "xs",
+const defaultProps: DefaultProps<typeof register> = {
+  size: "xl",
 }
 
-export default Heading
+const heading = {
+  register,
+  defaultProps,
+  baseStyle,
+  sizes,
+}
+
+export default heading

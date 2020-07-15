@@ -38,13 +38,15 @@ If the `children` of Tooltip is a string, we wrap with in a `span` with
 `tabIndex` set to `0`, to ensure it meets the accessibility requirements.
 
 ```jsx
-<Tooltip label="Hey, I'm here!">Hover me</Tooltip>
+<Tooltip label="Hey, I'm here!" aria-label="A tooltip">
+  Hover me
+</Tooltip>
 ```
 
 ### With an icon
 
 ```jsx
-<Tooltip label="Welcome home" placement="bottom">
+<Tooltip label="Phone number" fontSize="md">
   <PhoneIcon />
 </Tooltip>
 ```
@@ -52,7 +54,7 @@ If the `children` of Tooltip is a string, we wrap with in a `span` with
 ### With arrow
 
 ```jsx
-<Tooltip hasArrow label="Search places" placement="top">
+<Tooltip hasArrow label="Search places" bg="gray.300" color="black">
   <SearchIcon />
 </Tooltip>
 ```
@@ -64,7 +66,27 @@ when you focus or hover on the element, and will hide when you blur or move
 cursor out of the element.
 
 ```jsx
-<Tooltip hasArrow label="Search places" placement="top" bg="red.600">
+<Tooltip hasArrow label="Search places" bg="red.600">
+  <Button>Button</Button>
+</Tooltip>
+```
+
+### Disabled Tooltip
+
+```jsx
+<Tooltip isDisabled>
+  <SearchIcon />
+</Tooltip>
+```
+
+### Tooltip with focusable content
+
+If the children of the tooltip is a focusable element, the tooltip will show
+when you focus or hover on the element, and will hide when you blur or move
+cursor out of the element.
+
+```jsx
+<Tooltip hasArrow label="Search places" bg="red.600">
   <Button>Button</Button>
 </Tooltip>
 ```
@@ -74,43 +96,128 @@ cursor out of the element.
 Using the `placement` prop you can adjust where your tooltip will be displayed.
 
 ```jsx
-<Stack shouldWrapChildren spacing={6}>
-  <Tooltip label="Right end" placement="right-end">
-    <Button variant="outline">Right-End</Button>
+<VStack spacing={6}>
+  <HStack shouldWrapChildren spacing={6}>
+    <Tooltip label="Auto start" placement="auto-start">
+      <Button>Auto-Start</Button>
+    </Tooltip>
+
+    <Tooltip label="Auto" placement="auto">
+      <Button>Auto</Button>
+    </Tooltip>
+
+    <Tooltip label="Auto end" placement="auto-end">
+      <Button>Auto-End</Button>
+    </Tooltip>
+  </HStack>
+
+  <HStack shouldWrapChildren spacing={6}>
+    <Tooltip label="Top start" placement="top-start">
+      <Button>Top-Start</Button>
+    </Tooltip>
+
+    <Tooltip label="Top" placement="top">
+      <Button>Top</Button>
+    </Tooltip>
+
+    <Tooltip label="Top end" placement="top-end">
+      <Button>Top-End</Button>
+    </Tooltip>
+  </HStack>
+
+  <HStack shouldWrapChildren spacing={6}>
+    <Tooltip label="Right start" placement="right-start">
+      <Button>Right-Start</Button>
+    </Tooltip>
+
+    <Tooltip label="Right" placement="right">
+      <Button>Right</Button>
+    </Tooltip>
+
+    <Tooltip label="Right end" placement="right-end">
+      <Button>Right-End</Button>
+    </Tooltip>
+  </HStack>
+
+  <HStack shouldWrapChildren spacing={6}>
+    <Tooltip label="Bottom start" placement="bottom-start">
+      <Button>Bottom Start</Button>
+    </Tooltip>
+
+    <Tooltip label="Bottom" placement="bottom">
+      <Button>Bottom</Button>
+    </Tooltip>
+
+    <Tooltip label="Bottom end" placement="bottom-end">
+      <Button>Bottom End</Button>
+    </Tooltip>
+  </HStack>
+
+  <HStack shouldWrapChildren spacing={6}>
+    <Tooltip label="Left start" placement="left-start">
+      <Button>Left-Start</Button>
+    </Tooltip>
+
+    <Tooltip label="Left" placement="left">
+      <Button>Left</Button>
+    </Tooltip>
+
+    <Tooltip label="Left end" placement="left-end">
+      <Button>Left-End</Button>
+    </Tooltip>
+  </HStack>
+</VStack>
+```
+
+## More examples
+
+```jsx
+<Wrap shouldWrapChildren spacing={6}>
+  <Tooltip label="I close on click">
+    <Button>Close on Click - true(default)</Button>
   </Tooltip>
 
-  <Tooltip label="Left" placement="left">
-    <Button variant="outline">Left</Button>
+  <Tooltip label="I don't close on click" closeOnClick={false}>
+    <Button>Close on Click - false</Button>
   </Tooltip>
 
-  <Tooltip label="Auto start" placement="auto-start">
-    <Button variant="outline">Auto-Start</Button>
+  <Tooltip label="I am always open" placement="top" isOpen>
+    <Button>Always Open</Button>
   </Tooltip>
 
-  <Tooltip label="Auto end" placement="auto-end">
-    <Button variant="outline">Auto-End</Button>
+  <Tooltip label="I am open by default" placement="left" defaultIsOpen>
+    <Button>Open on startup</Button>
   </Tooltip>
 
-  <Tooltip label="Left end" placement="left-end">
-    <Button variant="outline">Left-End</Button>
+  <Tooltip label="Opened after 500ms" openDelay={500}>
+    <Button>Delay Open - 500ms</Button>
   </Tooltip>
-</Stack>
+
+  <Tooltip label="Closed after 500ms" closeDelay={500}>
+    <Button>Delay Close - 500ms</Button>
+  </Tooltip>
+
+  <Tooltip label="I have 15px arrow" hasArrow arrowSize={15}>
+    <Button>Arrow size - 15px</Button>
+  </Tooltip>
+</Wrap>
 ```
 
 ## Props
 
 | Name                 | Type                 | Default  | Description                                                                           |
 | -------------------- | -------------------- | -------- | ------------------------------------------------------------------------------------- |
-| `isOpen`             | `boolean`            |          | If `true`, the tooltip is shown.                                                      |
-| `defaultIsOpen`      | `boolean`            |          | If `true`, the tooltip is initially shown.                                            |
 | `label`              | `string`             |          | The label of the tooltip.                                                             |
 | `aria-label`         | `string`             |          | An alternate label for screen readers.                                                |
 | `placement`          | `PopperJS.Placement` | `bottom` | Position the tooltip relative to the trigger element as well as surrounding elements. |
-| `children`           | `React.ReactNode`    |          | The `ReactNode` to be used as the trigger of the tooltip.                             |
 | `hasArrow`           | `boolean`            |          | If `true` display an arrow tip on the tooltip.                                        |
-| `showDelay`          | `number`             |          | The delay in `ms` for the tooltip to show                                             |
-| `hideDelay`          | `number`             |          | The delay in `ms` for the tooltip to hide                                             |
-| `closeOnClick`       | `boolean`            |          | If `true` hide the tooltip, when the trigger is clicked.                              |
+| `children`           | `React.ReactNode`    |          | The `ReactNode` to be used as the trigger of the tooltip.                             |
 | `shouldWrapChildren` | `boolean`            |          | If `true`, the tooltip will wrap the children in a `span` with `tabIndex=0`           |
+| `isOpen`             | `boolean`            |          | If `true`, the tooltip is shown.                                                      |
+| `defaultIsOpen`      | `boolean`            |          | If `true`, the tooltip is initially shown.                                            |
+| `openDelay`          | `number`             | `0`      | The delay in `ms` for the tooltip to show                                             |
+| `closeDelay`         | `number`             | `0`      | The delay in `ms` for the tooltip to hide                                             |
+| `closeOnClick`       | `boolean`            | `true`   | If `true` hide the tooltip, when the trigger is clicked.                              |
 | `onOpen`             | `function`           |          | Function called when the tooltip shows.                                               |
 | `onClose`            | `function`           |          | Function called when the tooltip hides.                                               |
+| `isDisabled`         | `boolean`            | `false`  | If `true`, the tooltip is not shown onHover, mouseOver, or other triggers.            |

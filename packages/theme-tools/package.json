@@ -46,11 +46,12 @@
   },
   "dependencies": {
     "@chakra-ui/utils": "^1.0.0-next.4",
+    "@chakra-ui/transition": "^1.0.0-next.4",
     "@types/tinycolor2": "1.4.2",
     "tinycolor2": "1.4.1"
   },
   "peerDependencies": {
-    "@chakra-ui/system": ">0.8"
+    "@chakra-ui/system": "^1.0.0-next.4"
   },
   "devDependencies": {
     "@chakra-ui/system": "^1.0.0-next.4"

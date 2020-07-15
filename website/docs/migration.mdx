@@ -34,6 +34,12 @@ use to add theme-aware styles.
 **Deprecated PseudoBox:** We've removed PseudoBox and merged all it's props with
 `Box` so you can use pseudo style props in all components.
 
+**Strict Breakpoints:** We've constrained the breakpoint specified in
+`theme.breakpoints` to be an object. The breakpoint keys must have one or more
+of the following keys: `base`, `sm`, `md`, `lg`, `xl`.
+
+> We've updated the default theme to include this changes.
+
 ## Upgrade steps
 
 Here's a list of steps to take in order to migrate your project safely. Don't
@@ -79,28 +85,42 @@ Chakra moved all icons to a separate package `@chakra-ui/icons`. We recommend
 using `react-icons` in your projects considering it has a robust set of icons.
 However, you can still install this package.
 
-### 2. Clone Chakra's default theme
+### 2. Adding the default theme
 
 Chakra no longer comes with the default theme pre-installed, so you'll need to
-add it manually. Luckily for you, we've added a CLI tool for generating the
-theme.
+add it manually. There are two ways to get the theme:
 
-We believe that having the theme cloned to your project will help you learn
-about the theme tokens (colors, fonts, component styles) and make it less
-stressful for you to customize theme.
+**From NPM:** This is the recommended way to install the theme. Install the
+`@chakra-ui/theme` package.
 
-<br />
+```sh
+npm i @chakra-ui/theme
 
-1. Run `npx chakra-cli init --theme` to clone the theme to your project. This
-   creates a `chakra` folder with the default theme inside.
+# or
 
-```bash
-   # clone the javascript theme
-   npx chakra-cli init --theme
-
-   # clone the typescript theme
-   npx chakra-cli init --theme --ts
+yarn add @chakra-ui/theme
 ```
+
+**From Chakra CLI:** This is useful if you plan to completely "eject" from
+chakra's theme and you want to custom most component styles.
+
+```sh
+# clone the javascript theme
+npx chakra-cli init --theme
+
+# clone the typescript theme
+npx chakra-cli init --theme --ts
+
+# specify folder to clone theme to
+npx chakra-cli init --theme --ts -o src
+```
+
+This command will copy the default theme to your project in the specified
+directory, default is `chakra/`.
+
+This approach will help you learn about the theme tokens (colors, fonts,
+component styles) and make it easy to customize the theme to match your design
+requirements.
 
 2. Update the `ThemeProvider` in your app's root by passing the `theme` prop.
 

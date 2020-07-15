@@ -1,43 +1,51 @@
-import { ComponentTheme } from "@chakra-ui/theme-tools"
+import { BaseStyle, DefaultProps, Sizes } from "@chakra-ui/theme-tools"
 
-const Stat: ComponentTheme = {
-  defaultProps: {
-    size: "md",
+const register = {
+  parts: ["label", "helpText", "number", "container", "icon"],
+  sizes: ["sm", "md", "lg"],
+} as const
+
+const baseStyle: BaseStyle<typeof register> = {
+  container: {
+    flex: "1",
+    paddingRight: 4,
   },
-  baseStyle: {
-    Label: {
-      fontWeight: "medium",
-    },
-    HelpText: {
-      opacity: 0.8,
-      marginBottom: 2,
-    },
-    Number: {
-      verticalAlign: "baseline",
-      fontWeight: "semibold",
-    },
+  label: {
+    fontWeight: "medium",
   },
-  /**
-   * Only one size specified but you can add more,
-   * and style each part.
-   */
-  sizes: {
-    md: {
-      Label: {
-        fontSize: "sm",
-      },
-      HelpText: {
-        fontSize: "sm",
-      },
-      Number: {
-        fontSize: "2xl",
-      },
-    },
+  helpText: {
+    opacity: 0.8,
+    marginBottom: 2,
+  },
+  number: {
+    verticalAlign: "baseline",
+    fontWeight: "semibold",
+  },
+  icon: {
+    marginRight: 1,
+    width: "14px",
+    height: "14px",
+    verticalAlign: "middle",
   },
 }
 
-export const StatSizes = {
-  md: "md",
+const sizes: Sizes<typeof register> = {
+  md: {
+    label: { fontSize: "sm" },
+    helpText: { fontSize: "sm" },
+    number: { fontSize: "2xl" },
+  },
 }
 
-export default Stat
+const defaultProps: DefaultProps<typeof register> = {
+  size: "md",
+}
+
+const stat = {
+  register,
+  defaultProps,
+  baseStyle,
+  sizes,
+}
+
+export default stat

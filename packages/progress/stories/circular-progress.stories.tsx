@@ -14,7 +14,7 @@ export default {
 }
 
 export const basic = () => (
-  <CircularProgress trackColor="whiteAlpha.200" size="120px" value={60} />
+  <CircularProgress trackColor="gray.200" size="120px" value={20} />
 )
 
 /**

@@ -19,7 +19,7 @@ export const AlertDialogContent = React.forwardRef(function AlertDialogContent(
   props: ModalContentProps,
   ref: React.Ref<any>,
 ) {
-  return <ModalContent ref={ref} role="alertdialog" {...props} />
+  return <ModalContent ref={ref} role="alertdialog" {...(props as any)} />
 })
 
 export {

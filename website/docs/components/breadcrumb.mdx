@@ -73,15 +73,15 @@ icon.
 ```jsx
 <Breadcrumb separator="-">
   <BreadcrumbItem>
-    <BreadcrumbLink href="/">Home</BreadcrumbLink>
+    <BreadcrumbLink href="#">Home</BreadcrumbLink>
   </BreadcrumbItem>
 
   <BreadcrumbItem>
-    <BreadcrumbLink href="/about">About</BreadcrumbLink>
+    <BreadcrumbLink href="#">About</BreadcrumbLink>
   </BreadcrumbItem>
 
   <BreadcrumbItem isCurrentPage>
-    <BreadcrumbLink href="/contact">Contact</BreadcrumbLink>
+    <BreadcrumbLink href="#">Contact</BreadcrumbLink>
   </BreadcrumbItem>
 </Breadcrumb>
 ```
@@ -91,15 +91,15 @@ icon.
 ```jsx
 <Breadcrumb spacing="8px" separator={<ChevronRightIcon color="gray.500" />}>
   <BreadcrumbItem>
-    <BreadcrumbLink href="/">Home</BreadcrumbLink>
+    <BreadcrumbLink href="#">Home</BreadcrumbLink>
   </BreadcrumbItem>
 
   <BreadcrumbItem>
-    <BreadcrumbLink href="/about">About</BreadcrumbLink>
+    <BreadcrumbLink href="#">About</BreadcrumbLink>
   </BreadcrumbItem>
 
   <BreadcrumbItem isCurrentPage>
-    <BreadcrumbLink href="/contact">Contact</BreadcrumbLink>
+    <BreadcrumbLink href="#">Contact</BreadcrumbLink>
   </BreadcrumbItem>
 </Breadcrumb>
 ```
@@ -113,15 +113,15 @@ of the breadcrumbs.
 ```jsx
 <Breadcrumb fontWeight="medium" fontSize="sm">
   <BreadcrumbItem>
-    <BreadcrumbLink href="/google">Home</BreadcrumbLink>
+    <BreadcrumbLink href="#">Home</BreadcrumbLink>
   </BreadcrumbItem>
 
   <BreadcrumbItem>
-    <BreadcrumbLink href="/about">About</BreadcrumbLink>
+    <BreadcrumbLink href="#">About</BreadcrumbLink>
   </BreadcrumbItem>
 
   <BreadcrumbItem isCurrentPage>
-    <BreadcrumbLink href="/current">Current</BreadcrumbLink>
+    <BreadcrumbLink href="#">Current</BreadcrumbLink>
   </BreadcrumbItem>
 </Breadcrumb>
 ```
@@ -138,12 +138,12 @@ It'll replace the rendered `a` tag with Reach's Link.
 
 <Breadcrumb>
   <BreadcrumbItem>
-    <BreadcrumbLink as={Link} to="/">
+    <BreadcrumbLink as={Link} to="#">
       Home
     </BreadcrumbLink>
   </BreadcrumbItem>
   <BreadcrumbItem>
-    <BreadcrumbLink as={Link} to="/about">
+    <BreadcrumbLink as={Link} to="#">
       About
     </BreadcrumbLink>
   </BreadcrumbItem>

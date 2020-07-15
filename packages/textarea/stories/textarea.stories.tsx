@@ -15,6 +15,10 @@ export default {
 
 export const basic = () => <Textarea defaultValue="This is a textarea" />
 
+export const rows = () => (
+  <Textarea defaultValue="This is a textarea" rows={12} />
+)
+
 export const disabled = () => (
   <Textarea isDisabled placeholder="A disabled textarea" />
 )

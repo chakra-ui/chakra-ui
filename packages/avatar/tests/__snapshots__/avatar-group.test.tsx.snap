@@ -7,7 +7,7 @@ exports[`AvatarGroup renders correctly 1`] = `
     role="group"
   >
     <span
-      class="chakra-avatar css-r609yb"
+      class="chakra-avatar css-1b5o8i6"
     >
       <svg
         class="chakra-avatar__icon"

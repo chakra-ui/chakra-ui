@@ -31,7 +31,7 @@ export function hasFocusWithin(
  * @param options popover options (visible and action)
  */
 export function useBlurOutside(
-  triggerRef: React.RefObject<HTMLButtonElement>,
+  triggerRef: React.RefObject<HTMLElement>,
   popoverRef: React.RefObject<HTMLElement>,
   options: {
     action: () => void
@@ -39,7 +39,10 @@ export function useBlurOutside(
   },
 ) {
   const onMouseDown = (event: MouseEvent) => {
-    if (options.visible && event.target === triggerRef.current) {
+    if (
+      options.visible &&
+      triggerRef.current?.contains(event.target as HTMLElement)
+    ) {
       event.preventDefault()
     }
   }
@@ -49,6 +52,7 @@ export function useBlurOutside(
 
   return (event: React.FocusEvent) => {
     const shouldClose = options.visible && !hasFocusWithin(popoverRef, event)
+
     if (shouldClose) {
       options.action()
     }
@@ -59,6 +63,7 @@ export interface UseFocusOnHideOptions {
   focusRef: React.RefObject<HTMLElement>
   autoFocus?: boolean
   visible?: boolean
+  trigger?: "hover" | "click"
 }
 
 /**
@@ -73,9 +78,9 @@ export function useFocusOnHide(
   options: UseFocusOnHideOptions,
 ) {
   const isFocusableRef = React.useRef(false)
-  const { focusRef, autoFocus, visible } = options
+  const { focusRef, autoFocus, visible, trigger } = options
 
-  const shouldFocus = autoFocus && !visible
+  const shouldFocus = autoFocus && !visible && trigger === "click"
 
   const onMouseDown = (event: MouseEvent) => {
     if (!options.visible) return
@@ -116,10 +121,11 @@ export function useFocusOnHide(
   }, [autoFocus, focusRef, visible, popoverRef, shouldFocus])
 }
 
-export interface UseFocusOnShowOptions {
+interface UseFocusOnShowOptions {
   autoFocus?: boolean
   visible?: boolean
   focusRef?: React.RefObject<HTMLElement>
+  trigger?: "hover" | "click"
 }
 
 /**
@@ -133,13 +139,15 @@ export function useFocusOnShow(
   popoverRef: React.RefObject<HTMLElement>,
   options: UseFocusOnShowOptions,
 ) {
-  const { visible, autoFocus, focusRef } = options
+  const { visible, autoFocus, focusRef, trigger } = options
 
   /**
    * Using updateEffect here to allow effect to run only when
    * `options.visible` changes, not on mount
    */
   useUpdateEffect(() => {
+    if (trigger === "hover") return
+
     // if `autoFocus` is false, move focus to the `PopoverContent`
     if (!autoFocus && popoverRef.current) {
       focus(popoverRef.current)

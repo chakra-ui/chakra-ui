@@ -1,12 +1,37 @@
-import { ComponentTheme, mode } from "@chakra-ui/theme-tools"
+import { BaseStyle, DefaultProps, mode, Sizes } from "@chakra-ui/theme-tools"
 
-const sizes: ComponentTheme["sizes"] = {
-  sm: {
-    Track: {
-      width: "1.375rem",
-      height: "0.75rem",
+const register = {
+  parts: ["track", "thumb"],
+  sizes: ["sm", "md", "lg"],
+} as const
+
+const baseStyle: BaseStyle<typeof register> = (props) => {
+  const { colorScheme: c } = props
+  return {
+    track: {
+      borderRadius: "full",
+      padding: "2px",
+      transition: "all 120ms",
+      bg: mode("gray.300", "whiteAlpha.400")(props),
+      _focus: { boxShadow: "outline" },
+      _disabled: { opacity: 0.4, cursor: "not-allowed" },
+      _checked: {
+        bg: mode(`${c}.500`, `${c}.200`)(props),
+      },
     },
-    Thumb: {
+    thumb: {
+      bg: "white",
+      transition: "transform 250ms",
+      borderRadius: "full",
+      transform: "translateX(0)",
+    },
+  }
+}
+
+const sizes: Sizes<typeof register> = {
+  sm: {
+    track: { width: "1.375rem", height: "0.75rem" },
+    thumb: {
       width: "0.75rem",
       height: "0.75rem",
       _checked: {
@@ -15,11 +40,8 @@ const sizes: ComponentTheme["sizes"] = {
     },
   },
   md: {
-    Track: {
-      width: "1.875rem",
-      height: "1rem",
-    },
-    Thumb: {
+    track: { width: "1.875rem", height: "1rem" },
+    thumb: {
       width: "1rem",
       height: "1rem",
       _checked: {
@@ -28,11 +50,8 @@ const sizes: ComponentTheme["sizes"] = {
     },
   },
   lg: {
-    Track: {
-      width: "2.875rem",
-      height: "1.5rem",
-    },
-    Thumb: {
+    track: { width: "2.875rem", height: "1.5rem" },
+    thumb: {
       width: "1.5rem",
       height: "1.5rem",
       _checked: {
@@ -42,42 +61,17 @@ const sizes: ComponentTheme["sizes"] = {
   },
 }
 
-const Switch: ComponentTheme = {
-  defaultProps: {
-    size: "md",
-    colorScheme: "blue",
-  },
-  baseStyle: (props) => ({
-    Track: {
-      borderRadius: "full",
-      padding: "2px",
-      transition: "all 120ms",
-      bg: mode("gray.300", "whiteAlpha.400")(props),
-      _focus: {
-        boxShadow: "outline",
-      },
-      _disabled: {
-        opacity: 0.4,
-        cursor: "not-allowed",
-      },
-      _checked: {
-        bg: mode(`${props.colorScheme}.500`, `${props.colorScheme}.200`)(props),
-      },
-    },
-    Thumb: {
-      bg: "white",
-      transition: "transform 250ms",
-      borderRadius: "full",
-      transform: "translateX(0)",
-    },
-  }),
+const defaultProps: DefaultProps<typeof register> = {
+  size: "md",
+  colorScheme: "blue",
+}
+
+// can't use the `switch` here since it's a reserved keyword
+const _switch = {
+  register,
+  defaultProps,
+  baseStyle,
   sizes,
 }
 
-export const SwitchSizes = {
-  sm: "sm",
-  md: "md",
-  lg: "lg",
-}
-
-export default Switch
+export default _switch

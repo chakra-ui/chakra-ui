@@ -1,5 +1,14 @@
 import { useImage } from "@chakra-ui/image"
-import { chakra, PropsOf, SystemProps } from "@chakra-ui/system"
+import {
+  chakra,
+  PropsOf,
+  SystemProps,
+  useStyles,
+  StylesProvider,
+  useStyleConfig,
+  ThemingProps,
+  omitThemingProps,
+} from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -52,32 +61,43 @@ interface AvatarOptions {
   getInitials?(name?: string): string
 }
 
+export type AvatarBadgeProps = PropsOf<typeof chakra.div>
+
 /**
  * AvatarBadge
  *
  * React component used to show extra badge to the top-right
  * or bottom-right corner of an avatar.
  */
-export const AvatarBadge = chakra("div", {
-  themeKey: "Avatar.Badge",
-  baseStyle: {
-    position: "absolute",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    right: "0",
-    bottom: "0",
-  },
-  attrs: (props) => ({
-    className: cx("chakra-avatar__badge", props.className),
-  }),
+export const AvatarBadge = React.forwardRef(function AvatarBadge(
+  props: AvatarBadgeProps,
+  ref: React.Ref<any>,
+) {
+  const { className, ...rest } = props
+  const _className = cx("chakra-avatar__badge", className)
+  const styles = useStyles()
+
+  return (
+    <chakra.div
+      {...rest}
+      ref={ref}
+      className={_className}
+      __css={{
+        position: "absolute",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        right: "0",
+        bottom: "0",
+        ...styles.badge,
+      }}
+    />
+  )
 })
 
 if (__DEV__) {
   AvatarBadge.displayName = "AvatarBadge"
 }
-
-export type AvatarBadgeProps = PropsOf<typeof AvatarBadge>
 
 /**
  * Gets the initials of a user based on the name
@@ -85,25 +105,29 @@ export type AvatarBadgeProps = PropsOf<typeof AvatarBadge>
  */
 function initials(name: string) {
   const [firstName, lastName] = name.split(" ")
-
-  if (firstName && lastName) {
-    return `${firstName.charAt(0)}${lastName.charAt(0)}`
-  } else {
-    return firstName.charAt(0)
-  }
+  return firstName && lastName
+    ? `${firstName.charAt(0)}${lastName.charAt(0)}`
+    : firstName.charAt(0)
 }
 
-type InitialsAvatarProps = PropsOf<typeof chakra.div> &
+type InitialsProps = PropsOf<typeof chakra.div> &
   Pick<AvatarOptions, "name" | "getInitials">
 
 /**
  * The avatar name container
  */
-function InitialsAvatar(props: InitialsAvatarProps) {
+function Initials(props: InitialsProps) {
   const { name, getInitials, className, ...rest } = props
   const _className = cx("chakra-avatar__name", className)
+  const styles = useStyles()
+
   return (
-    <chakra.div aria-label={name} className={_className} {...rest}>
+    <chakra.div
+      aria-label={name}
+      className={_className}
+      {...rest}
+      __css={styles.label}
+    >
       {name ? getInitials?.(name) : null}
     </chakra.div>
   )
@@ -144,18 +168,13 @@ export const baseStyle: SystemProps = {
   flexShrink: 0,
 }
 
-/**
- * Theming
- *
- * To style the avatar globally, change the styles in
- * `theme.components.Avatar` under the `Root` key
- */
-const StyledAvatar = chakra<"span", { name?: string }>("span", {
-  themeKey: "Avatar.Root",
+const StyledAvatar = chakra("span", {
   baseStyle,
 })
 
-export type AvatarProps = PropsOf<typeof StyledAvatar> & AvatarOptions
+export type AvatarProps = PropsOf<typeof StyledAvatar> &
+  AvatarOptions &
+  ThemingProps
 
 /**
  * Avatar
@@ -167,6 +186,9 @@ export const Avatar = React.forwardRef(function Avatar(
   props: AvatarProps,
   ref: React.Ref<any>,
 ) {
+  const styles = useStyleConfig("Avatar", props)
+  const realProps = omitThemingProps(props)
+
   const {
     src,
     name,
@@ -177,9 +199,11 @@ export const Avatar = React.forwardRef(function Avatar(
     icon = <DefaultIcon />,
     className,
     ...rest
-  } = props
+  } = realProps
 
-  // use the image hook to only show the image when it has loaded
+  /**
+   * use the image hook to only show the image when it has loaded
+   */
   const status = useImage({ src, onError })
 
   const hasLoaded = status === "loaded"
@@ -213,7 +237,7 @@ export const Avatar = React.forwardRef(function Avatar(
 
     if (showFallback) {
       return name ? (
-        <InitialsAvatar getInitials={getInitials} name={name} />
+        <Initials getInitials={getInitials} name={name} />
       ) : (
         React.cloneElement(icon, {
           role: "img",
@@ -230,10 +254,13 @@ export const Avatar = React.forwardRef(function Avatar(
       borderWidth={showBorder ? "2px" : undefined}
       name={name}
       className={cx("chakra-avatar", className)}
+      __css={styles.container}
       {...rest}
     >
-      {getAvatar()}
-      {props.children}
+      <StylesProvider value={styles}>
+        {getAvatar()}
+        {props.children}
+      </StylesProvider>
     </StyledAvatar>
   )
 })

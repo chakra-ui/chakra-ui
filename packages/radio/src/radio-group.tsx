@@ -21,7 +21,10 @@ const [RadioGroupContextProvider, useRadioGroupContext] = createContext<
 export { useRadioGroupContext }
 
 export type RadioGroupProps = UseRadioGroupProps &
-  Omit<PropsOf<typeof chakra.div>, "onChange" | "value" | "defaultValue"> &
+  Omit<
+    PropsOf<typeof chakra.div>,
+    "onChange" | "value" | "defaultValue" | "children"
+  > &
   Omit<ThemingProps, "orientation"> & { children: React.ReactNode }
 
 /**

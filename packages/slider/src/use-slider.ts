@@ -17,7 +17,6 @@ import {
   focus,
   getBox,
   getOwnerDocument,
-  merge,
   mergeRefs,
   percentToValue,
   roundValueToStep,
@@ -221,7 +220,7 @@ export function useSlider(props: UseSliderProps) {
       let nextValue = percentToValue(percent, min, max)
 
       if (step) {
-        nextValue = parseFloat(roundValueToStep(nextValue, step))
+        nextValue = parseFloat(roundValueToStep(nextValue, min, step))
       }
 
       nextValue = clampValue(nextValue, min, max)
@@ -239,7 +238,7 @@ export function useSlider(props: UseSliderProps) {
       // bail out if slider isn't interactive
       if (!isInteractive) return
       prev.current = value
-      value = parseFloat(roundValueToStep(value, oneStep))
+      value = parseFloat(roundValueToStep(value, min, oneStep))
       value = clampValue(value, min, max)
       setValue(value)
     },
@@ -401,8 +400,7 @@ export function useSlider(props: UseSliderProps) {
 
     const run = (event: MouseEvent) => {
       const nextValue = getValueFromPointer(event)
-
-      if (nextValue && nextValue !== value) {
+      if (nextValue != null && nextValue !== value) {
         setEventSource("mouse")
         setValue(nextValue)
       }
@@ -438,7 +436,7 @@ export function useSlider(props: UseSliderProps) {
     const run = (event: TouchEvent) => {
       const nextValue = getValueFromPointer(event)
 
-      if (nextValue && nextValue !== value) {
+      if (nextValue != null && nextValue !== value) {
         setEventSource("touch")
         setValue(nextValue)
       }
@@ -514,18 +512,18 @@ export function useSlider(props: UseSliderProps) {
       tabIndex: -1,
       "aria-disabled": ariaAttr(isDisabled),
       "data-focused": dataAttr(isFocused),
-      style: merge(props.style, rootStyle),
+      style: { ...props.style, ...rootStyle },
     }),
     getTrackProps: (props: Dict = {}) => ({
       ...props,
       ref: mergeRefs(props.ref, trackRef),
       id: trackId,
       "data-disabled": dataAttr(isDisabled),
-      style: merge(props.style, trackStyle),
+      style: { ...props.style, ...trackStyle },
     }),
     getInnerTrackProps: (props: Dict = {}) => ({
       ...props,
-      style: merge(props.style, innerTrackStyle),
+      style: { ...props.style, ...innerTrackStyle },
     }),
     getThumbProps: (props: Dict = {}) => ({
       ...props,
@@ -543,7 +541,7 @@ export function useSlider(props: UseSliderProps) {
       "aria-readonly": ariaAttr(isReadOnly),
       "aria-label": ariaLabel,
       "aria-labelledby": ariaLabel ? undefined : ariaLabelledBy,
-      style: merge(props.style, thumbStyle),
+      style: { ...props.style, ...thumbStyle },
       onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
       onFocus: callAllHandlers(props.onFocus, setFocused.on),
       onBlur: callAllHandlers(props.onBlur, setFocused.off),
@@ -576,7 +574,7 @@ export function useSlider(props: UseSliderProps) {
         "data-disabled": dataAttr(isDisabled),
         "data-invalid": dataAttr(!isInRange),
         "data-highlighted": dataAttr(isHighlighted),
-        style: merge(props.style, markerStyle),
+        style: { ...props.style, ...markerStyle },
       }
     },
     getInputProps: (props: Dict = {}) => ({

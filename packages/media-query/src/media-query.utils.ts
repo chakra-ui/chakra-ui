@@ -1,6 +1,4 @@
-import { Dict } from "@chakra-ui/utils"
-
-const breakpoints = ["base", "sm", "md", "lg", "xl"]
+import { breakpoints } from "@chakra-ui/utils"
 
 export function getClosestValue(values: any, breakpoint: string) {
   let index = Object.keys(values).indexOf(breakpoint)
@@ -25,14 +23,4 @@ export function getClosestValue(values: any, breakpoint: string) {
   }
 
   return undefined
-}
-
-export function arrayToObject(values: any[]) {
-  const result = {} as Dict
-  values.forEach((value, index) => {
-    const key = breakpoints[index]
-    if (value == null) return
-    result[key] = value
-  })
-  return result
 }

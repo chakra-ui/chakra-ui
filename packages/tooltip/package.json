@@ -51,6 +51,7 @@
     "@chakra-ui/hooks": "^1.0.0-next.4",
     "@chakra-ui/popper": "^1.0.0-next.4",
     "@chakra-ui/portal": "^1.0.0-next.4",
+    "@chakra-ui/transition": "^1.0.0-next.4",
     "@chakra-ui/utils": "^1.0.0-next.4",
     "@chakra-ui/visually-hidden": "^1.0.0-next.4"
   },
@@ -58,7 +59,7 @@
     "@chakra-ui/system": "^1.0.0-next.4"
   },
   "peerDependencies": {
-    "@chakra-ui/system": ">0.8",
+    "@chakra-ui/system": "^1.0.0-next.4",
     "react": "16.x"
   },
   "gitHead": "ce6fe489afaddba502a2611f1fb1dcedb991325b"

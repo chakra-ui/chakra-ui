@@ -6,12 +6,10 @@ import Button from "./button"
 import Checkbox from "./checkbox"
 import CloseButton from "./close-button"
 import Code from "./code"
-import Divider from "./divider"
 import Modal from "./modal"
+import Drawer from "./drawer"
 import Heading from "./heading"
-import Icon from "./icon"
 import Input from "./input"
-import InputAddon from "./input-addon"
 import Link from "./link"
 import Menu from "./menu"
 import NumberInput from "./number-input"
@@ -32,25 +30,26 @@ import Progress from "./progress"
 import Textarea from "./textarea"
 import Stat from "./stat"
 import Skeleton from "./skeleton"
+import Breadcrumb from "./breadcumb"
+import SkipLink from "./skip-link"
 
 export default {
   Accordion,
   Button,
   Heading,
-  Icon,
+  Breadcrumb,
   Alert,
   Badge,
   Avatar,
   Link,
   Code,
-  Divider,
   Spinner,
+  Drawer,
   Menu,
   Tabs,
   Checkbox,
   Radio,
   Input,
-  InputAddon,
   Tooltip,
   CloseButton,
   Slider,
@@ -68,4 +67,5 @@ export default {
   Progress,
   Stat,
   Skeleton,
+  SkipLink,
 }

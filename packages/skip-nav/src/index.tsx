@@ -1,4 +1,9 @@
-import { chakra, PropsOf } from "@chakra-ui/system"
+import {
+  chakra,
+  PropsOf,
+  useStyleConfig,
+  omitThemingProps,
+} from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -7,9 +12,7 @@ export type SkipNavLinkProps = PropsOf<typeof chakra.a>
 const fallbackId = "chakra-skip-nav"
 
 const StyledLink = chakra("a", {
-  baseStyle: ({ colorMode }) => ({
-    borderRadius: "md",
-    fontWeight: "semibold",
+  baseStyle: {
     userSelect: "none",
     border: "0",
     height: "1px",
@@ -19,17 +22,13 @@ const StyledLink = chakra("a", {
     outline: "0",
     overflow: "hidden",
     position: "absolute",
+    clip: "rect(0 0 0 0)",
     _focus: {
-      boxShadow: "outline",
-      padding: "1rem",
-      position: "fixed",
-      top: "1.5rem",
-      left: "1.5rem",
-      bg: colorMode === "light" ? "white" : "gray.700",
+      clip: "auto",
       width: "auto",
       height: "auto",
     },
-  }),
+  },
 })
 
 /**
@@ -39,19 +38,15 @@ export const SkipNavLink = React.forwardRef(function SkipNavLink(
   props: SkipNavLinkProps,
   ref: React.Ref<any>,
 ) {
-  const { id = fallbackId, ...rest } = props
+  const styles = useStyleConfig("SkipLink", props)
+  const { id = fallbackId, ...rest } = omitThemingProps(props)
   return (
     <StyledLink
-      ref={ref}
-      className="chakra-skip-link"
-      href={`#${id}`}
-      sx={{
-        clip: "rect(0 0 0 0)",
-        "&:focus": {
-          clip: "auto",
-        },
-      }}
       {...rest}
+      ref={ref}
+      className="chakra-skip-nav__link"
+      href={`#${id}`}
+      __css={styles.Container}
     />
   )
 })
@@ -70,7 +65,16 @@ export const SkipNavContent = React.forwardRef(function SkipNavContent(
   ref: React.Ref<any>,
 ) {
   const { id = fallbackId, ...rest } = props
-  return <chakra.div ref={ref} id={id} tabIndex={-1} outline="0" {...rest} />
+  return (
+    <div
+      className="chakra-skip-nav__content"
+      ref={ref}
+      id={id}
+      tabIndex={-1}
+      style={{ outline: 0 }}
+      {...rest}
+    />
+  )
 })
 
 if (__DEV__) {

@@ -45,9 +45,9 @@ export interface UseAccordionProps {
    */
   children: React.ReactNode
   /**
-   * If `true`, the accordion will add height transition
+   * If `true`, height animation and transitions will be disabled.
    */
-  disableTransition?: boolean
+  reduceMotion?: boolean
 }
 
 type AccordionElement = React.ReactElement<{
@@ -70,6 +70,7 @@ export function useAccordion(props: UseAccordionProps) {
     index: indexProp,
     allowMultiple,
     allowToggle,
+    reduceMotion,
     ...htmlProps
   } = props
 
@@ -152,6 +153,7 @@ export function useAccordion(props: UseAccordionProps) {
     focusedIndex,
     setFocusedIndex,
     domContext,
+    reduceMotion: !!reduceMotion,
   }
 }
 
@@ -163,9 +165,11 @@ const [AccordionContextProvider, useAccordionContext] = createContext<
   AccordionContext
 >({
   name: "AccordionContext",
+  errorMessage:
+    "useAccordionContext: `context` is undefined. Seems you forgot to wrap the accordion components in `<Accordion />`",
 })
 
-export { AccordionContextProvider }
+export { AccordionContextProvider, useAccordionContext }
 
 export interface UseAccordionItemProps {
   /**

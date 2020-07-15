@@ -7,6 +7,7 @@ import {
   useIds,
   useShortcut,
   useUpdateEffect,
+  useEventListener,
 } from "@chakra-ui/hooks"
 import { usePopper, UsePopperProps } from "@chakra-ui/popper"
 import {
@@ -63,6 +64,39 @@ export interface UseMenuProps extends UsePopperProps {
    * The Popper.js modifiers to use
    */
   modifiers?: UsePopperProps["modifiers"]
+  /**
+   * Performance 🚀:
+   * If `true`, the MenuItem rendering will be deferred
+   * until the menu is open.
+   */
+  isLazy?: boolean
+}
+
+function useBlurOutside(
+  buttonRef: React.RefObject<HTMLElement>,
+  menuRef: React.RefObject<HTMLElement>,
+  options: {
+    action: () => void
+    visible: boolean
+  },
+) {
+  const onDocumentMouseDown = (event: MouseEvent) => {
+    if (!options.visible) return
+
+    const target = event.target as HTMLElement
+
+    const condition =
+      buttonRef.current === target ||
+      menuRef.current?.contains(target) ||
+      buttonRef.current?.contains(target) ||
+      target.getAttribute("role") === "menuitem"
+
+    if (!condition) {
+      options.action()
+    }
+  }
+
+  useEventListener("mousedown", onDocumentMouseDown)
 }
 
 /**
@@ -82,6 +116,7 @@ export function useMenu(props: UseMenuProps) {
     fixed = true,
     preventOverflow,
     modifiers,
+    isLazy,
   } = props
 
   /**
@@ -105,6 +140,11 @@ export function useMenu(props: UseMenuProps) {
    */
   const menuRef = React.useRef<HTMLDivElement>(null)
   const buttonRef = React.useRef<HTMLButtonElement>(null)
+
+  useBlurOutside(buttonRef, menuRef, {
+    action: onClose,
+    visible: isOpen && !hasParentMenu,
+  })
 
   /**
    * Add some popper.js for dynamic positioning
@@ -145,7 +185,7 @@ export function useMenu(props: UseMenuProps) {
   useUpdateEffect(() => {
     if (!isOpen && !hasParentMenu) {
       if (buttonRef.current) {
-        buttonRef.current.focus()
+        focus(buttonRef.current)
       }
     }
   }, [isOpen, hasParentMenu])
@@ -185,6 +225,7 @@ export function useMenu(props: UseMenuProps) {
     closeOnBlur,
     autoSelect,
     setFocusedIndex,
+    isLazy,
   }
 }
 
@@ -205,6 +246,7 @@ export interface UseMenuListProps {
   style?: React.CSSProperties
   className?: string
   hidden?: boolean
+  children?: React.ReactNode
 }
 
 export function useMenuList(props: UseMenuListProps) {
@@ -225,13 +267,14 @@ export function useMenuList(props: UseMenuListProps) {
     menuId,
     placement,
     domContext: { descendants },
+    isLazy,
   } = menu
 
   /**
    * Effect to close this menu on outside click
    */
-  React.useEffect(() => {
-    const click = (event: MouseEvent) => {
+  const onDocumentClick = React.useCallback(
+    (event: MouseEvent) => {
       const target = event.target as HTMLElement
       /**
        * if the menu is not open, don't do anything
@@ -248,28 +291,14 @@ export function useMenuList(props: UseMenuListProps) {
       /**
        * Nested menu: Don't trigger close if we're clicking on a menu item that doubles
        * as a menu button.
-       *
-       * The reason for `cond1` and `cond2` is that the event target might be an element
-       * inside the `MenuItem` (e.g the span that wraps the label), so we need to check
-       * the target and the target's parent as well.
        */
       const parentIsButton = target?.parentElement?.hasAttribute(
         "aria-controls",
       )
       const isButton = target?.hasAttribute("aria-controls")
 
-      if (parentIsButton && isButton) {
+      if (parentIsButton || isButton) {
         return
-      }
-
-      /**
-       * Allow only one menu to be open at a time
-       */
-      const isRootButton = isButton && !hasParentMenu
-
-      if (isRootButton && closeOnBlur) {
-        onClose()
-        target.focus()
       }
 
       /**
@@ -278,18 +307,11 @@ export function useMenuList(props: UseMenuListProps) {
       if (closeOnBlur) {
         onClose()
       }
-    }
-    /**
-     * add the event listener for click
-     */
-    document.addEventListener("click", click)
-    return () => {
-      /**
-       * remove the event listener, to avoid memory leak
-       */
-      document.removeEventListener("click", click)
-    }
-  }, [onClose, hasParentMenu, closeOnBlur, buttonRef, menuRef, isOpen])
+    },
+    [onClose, closeOnBlur, menuRef, isOpen],
+  )
+
+  useEventListener("click", onDocumentClick)
 
   const onMouseEnter = () => {
     /**
@@ -387,6 +409,7 @@ export function useMenuList(props: UseMenuListProps) {
 
   return {
     ...props,
+    children: isLazy ? (isOpen ? props.children : null) : props.children,
     className: cx("chakra-menu__menu-list", props.className),
     ref: mergeRefs(menuRef, popper.ref),
     tabIndex: -1,
@@ -468,11 +491,8 @@ export function useMenuButton(props: UseMenuButtonProps) {
       }
 
       if (!isOpen) {
-        if (autoSelect) {
-          openAndFocusFirstItem()
-        } else {
-          openAndFocusMenu()
-        }
+        const fn = autoSelect ? openAndFocusFirstItem : openAndFocusMenu
+        fn()
       }
     },
     [

@@ -2,13 +2,32 @@
 
 exports[`Collapse renders correctly 1`] = `
 <DocumentFragment>
-  <div
+  .emotion-1 {
+  -webkit-transition: height .2s ease,opacity .2s ease-in-out,-webkit-transform .2s ease-in-out;
+  -webkit-transition: height .2s ease,opacity .2s ease-in-out,transform .2s ease-in-out;
+  transition: height .2s ease,opacity .2s ease-in-out,transform .2s ease-in-out;
+}
+
+.emotion-1.rah-animating--to-height-zero {
+  opacity: 0;
+  -webkit-transform: translateY(-0.625rem);
+  -ms-transform: translateY(-0.625rem);
+  transform: translateY(-0.625rem);
+}
+
+<div
     aria-hidden="true"
-    class="chakra-collapse"
-    style="height: 0px; opacity: 0; transition: height 150ms ease, opacity 150ms ease, transform 150ms ease; overflow: hidden; will-change: height, opacity, transform;"
+    class="rah-static rah-static--height-zero emotion-1"
+    style="height: 0px; overflow: hidden;"
   >
-    <div>
-      sfsjdfkbfkjdfdjksf
+    <div
+      style="transition: opacity 250ms ease 0ms; opacity: 0; display: none;"
+    >
+      <div
+        class="emotion-0"
+      >
+        sfsjdfkbfkjdfdjksf
+      </div>
     </div>
   </div>
 </DocumentFragment>
