@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-next.5](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/menu@1.0.0-next.4...@chakra-ui/menu@1.0.0-next.5) (2020-07-15)
+
+### Bug Fixes
+
+- issue where clicking submenu button closes menu due to mousedown
+  ([fcf772a](https://github.com/chakra-ui/chakra-ui/commit/fcf772a0bef57eff421aa45bb46589d5b80dc3e5))
+
+### Performance Improvements
+
+- improve menu performance by skipping menuitem render
+  ([cc58fa2](https://github.com/chakra-ui/chakra-ui/commit/cc58fa2030e38e30f860284891fead2a1cdcbf83))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # 1.0.0-next.4 (2020-07-01)
 
 ### Bug Fixes

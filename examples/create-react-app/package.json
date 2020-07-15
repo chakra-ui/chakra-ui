@@ -1,9 +1,9 @@
 {
   "name": "chakra-cra",
-  "version": "1.0.0-next.4",
+  "version": "1.0.0-next.5",
   "private": true,
   "dependencies": {
-    "@chakra-ui/core": "^1.0.0-next.4",
+    "@chakra-ui/core": "^1.0.0-next.5",
     "react": "16.13.1",
     "react-dom": "16.13.1"
   },
@@ -13,9 +13,9 @@
     "@types/jest": "^25.2.0",
     "@types/react": "16.9.23",
     "@types/react-dom": "16.9.8",
+    "eslint-config-react-app": "5.2.1",
     "react-scripts": "3.4.1",
-    "typescript": "3.9.5",
-    "eslint-config-react-app": "5.2.1"
+    "typescript": "3.9.5"
   },
   "scripts": {
     "start": "react-scripts start",

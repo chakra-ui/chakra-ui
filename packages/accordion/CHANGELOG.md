@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-next.5](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/accordion@1.0.0-next.4...@chakra-ui/accordion@1.0.0-next.5) (2020-07-15)
+
+### Features
+
+- add option to disable accordion height transition
+  ([7c3d95d](https://github.com/chakra-ui/chakra-ui/commit/7c3d95dffa5601dfd6f31e5a7e078dd63ea4b61e))
+
+### Performance Improvements
+
+- some more improvements
+  ([daf94a5](https://github.com/chakra-ui/chakra-ui/commit/daf94a50f6abc9773c9552ec08b5ebf5f1cb05b9))
+- some more improvements
+  ([3382bab](https://github.com/chakra-ui/chakra-ui/commit/3382bab224f29f082d2a9ba2b4b2721257fbdfac))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # 1.0.0-next.4 (2020-07-01)
 
 ### Bug Fixes

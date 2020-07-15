@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-next.5](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/number-input@1.0.0-next.4...@chakra-ui/number-input@1.0.0-next.5) (2020-07-15)
+
+### Bug Fixes
+
+- build issue
+  ([1be70b2](https://github.com/chakra-ui/chakra-ui/commit/1be70b268e63ea06f9d8f209f0ead8d70fce290c))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # 1.0.0-next.4 (2020-07-01)
 
 ### Bug Fixes
