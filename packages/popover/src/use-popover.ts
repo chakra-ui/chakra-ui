@@ -96,6 +96,12 @@ export interface UsePopoverProps {
   trigger?: keyof typeof TRIGGER_TYPE
   openDelay?: number
   closeDelay?: number
+  /**
+   * Performance 🚀:
+   * If `true`, the PopoverContent rendering will be deferred
+   * until the popover is open.
+   */
+  isLazy?: boolean
 }
 
 export function usePopover(props: UsePopoverProps = {}) {
@@ -114,6 +120,7 @@ export function usePopover(props: UsePopoverProps = {}) {
     trigger = TRIGGER_TYPE.click,
     openDelay = 200,
     closeDelay = 200,
+    isLazy,
   } = props
 
   const { isOpen, onClose, onOpen, onToggle } = useDisclosure(props)
@@ -170,6 +177,7 @@ export function usePopover(props: UsePopoverProps = {}) {
     (props: Dict = {}) => {
       const popoverProps: Dict = {
         ...props,
+        children: isLazy ? (isOpen ? props.children : null) : props.children,
         id: popoverId,
         tabIndex: -1,
         hidden: !isOpen,
@@ -213,6 +221,7 @@ export function usePopover(props: UsePopoverProps = {}) {
     [
       popoverId,
       isOpen,
+      isLazy,
       popper.ref,
       placement,
       popper.style,
