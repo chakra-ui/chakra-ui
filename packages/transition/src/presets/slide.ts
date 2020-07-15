@@ -52,14 +52,7 @@ const trans = (placement: SlidePlacement, value: string) => {
 
 export const createSlideConfig = (
   placement: SlidePlacement,
-): TransitionConfig => ({
-  timeout: 200,
-  addAppearStyles: true,
-  transition: {
-    easing: "ease-in-out",
-    property: "transform",
-    duration: "200ms",
-  },
+): Partial<TransitionConfig> => ({
   enter: {
     from: { transform: trans(placement, offset[placement]) },
     to: { transform: trans(placement, "0%") },

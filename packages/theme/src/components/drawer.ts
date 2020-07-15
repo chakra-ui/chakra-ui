@@ -24,6 +24,7 @@ const baseStyle: BaseStyle<typeof register> = (props) => {
     },
 
     content: {
+      ...(props.isFullHeight && { height: "100vh" }),
       bg: mode("white", "gray.700")(props),
       color: "inherit",
       boxShadow: mode("lg", "dark-lg")(props),
@@ -54,28 +55,21 @@ const baseStyle: BaseStyle<typeof register> = (props) => {
  * Since the `maxWidth` prop references theme.sizes internally,
  * we can leverage that to size our modals.
  */
-function getSize(value: string) {
-  return {
-    content: { maxWidth: value },
-  }
-}
+const getSize = (value: string) => ({
+  content: { maxWidth: value },
+})
 
 const sizes: Sizes<typeof register> = {
   xs: getSize("xs"),
-  sm: getSize("sm"),
-  md: getSize("md"),
-  lg: getSize("lg"),
-  xl: getSize("xl"),
-  "2xl": getSize("2xl"),
-  "3xl": getSize("3xl"),
-  "4xl": getSize("4xl"),
-  "5xl": getSize("5xl"),
-  "6xl": getSize("6xl"),
-  full: getSize("full"),
+  sm: getSize("md"),
+  md: getSize("lg"),
+  lg: getSize("2xl"),
+  xl: getSize("4xl"),
+  full: getSize("100vw"),
 }
 
 const defaultProps: DefaultProps<typeof register> = {
-  size: "md",
+  size: "xs",
 }
 
 const modal = {

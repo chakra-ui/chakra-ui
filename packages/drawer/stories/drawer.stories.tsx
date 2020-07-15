@@ -1,6 +1,6 @@
 import * as React from "react"
 import { PortalManager } from "@chakra-ui/portal"
-import { Drawer, DrawerContent, DrawerOverlay } from "../src/drawer-v1"
+import { Drawer, DrawerContent, DrawerOverlay } from "../src"
 
 export default {
   title: "Drawer",
