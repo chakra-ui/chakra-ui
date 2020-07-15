@@ -16,7 +16,7 @@ exports[`Popover renders correctly 1`] = `
       hidden=""
       id="popover-content-2"
       role="dialog"
-      style="position: absolute; top: 10px; left: 0px;"
+      style="transform-origin: top center; position: absolute; top: 10px; left: 0px;"
       tabindex="-1"
     >
       Popover content

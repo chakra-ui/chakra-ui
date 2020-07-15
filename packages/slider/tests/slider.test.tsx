@@ -1,9 +1,19 @@
-import { axe, press, render } from "@chakra-ui/test-utils"
+import { act, axe, press, render } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { Slider, SliderFilledTrack, SliderThumb, SliderTrack } from "../src"
 
+function waitForNextFrame() {
+  return act(() => {
+    return new Promise((resolve) => {
+      requestAnimationFrame(() => resolve())
+    })
+  })
+}
+
+afterEach(waitForNextFrame)
+
 describe("rendering", () => {
-  test("should render correctly", () => {
+  test("should render correctly", async () => {
     const { asFragment } = render(
       <Slider aria-label="slider-1" colorScheme="red">
         <SliderTrack>
@@ -12,13 +22,14 @@ describe("rendering", () => {
         <SliderThumb />
       </Slider>,
     )
+
     expect(asFragment()).toMatchSnapshot()
   })
 })
 
 describe("accessibility", () => {
   test("should not have basic a11y issues", async () => {
-    const { getByTestId } = render(
+    const { findByTestId } = render(
       <Slider aria-label="slider-1" data-testid="slider" colorScheme="red">
         <SliderTrack>
           <SliderFilledTrack />
@@ -26,7 +37,13 @@ describe("accessibility", () => {
         <SliderThumb />
       </Slider>,
     )
-    const results = await axe(getByTestId("slider"))
+
+    const slider = await findByTestId("slider")
+
+    // not sure why this is required here specifically
+    await waitForNextFrame()
+
+    const results = await axe(slider)
     expect(results).toHaveNoViolations()
   })
 })

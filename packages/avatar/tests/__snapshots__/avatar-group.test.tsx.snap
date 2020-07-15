@@ -2,12 +2,62 @@
 
 exports[`AvatarGroup renders correctly 1`] = `
 <DocumentFragment>
-  <div
-    class="chakra-avatar-group css-m1jxd9"
+  .emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  -webkit-flex-direction: row-reverse;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+}
+
+.emotion-0 {
+  background: #A0AEC0;
+  color: #FFFFFF;
+  border-color: #FFFFFF;
+  vertical-align: top;
+  font-size: calc(3rem / 2.5);
+  width: 3rem;
+  height: 3rem;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 500;
+  position: relative;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  border-width: 2px;
+  margin-right: 0;
+}
+
+<div
+    class="chakra-avatar-group emotion-1"
     role="group"
   >
     <span
-      class="chakra-avatar css-1b5o8i6"
+      class="chakra-avatar emotion-0"
     >
       <svg
         class="chakra-avatar__icon"

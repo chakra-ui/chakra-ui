@@ -2,12 +2,48 @@
 
 exports[`FormControl renders correctly in default state 1`] = `
 <DocumentFragment>
-  <div
-    class="chakra-form-control css-1kxonj9"
+  .emotion-3 {
+  width: 100%;
+  position: relative;
+}
+
+.emotion-0 {
+  font-size: 1rem;
+  margin-right: 0.75rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  opacity: 1;
+  display: block;
+  text-align: left;
+}
+
+.emotion-0[disabled],
+.emotion-0[disabled]:focus,
+.emotion-0[disabled]:hover,
+.emotion-0[aria-disabled=true],
+.emotion-0[aria-disabled=true]:focus,
+.emotion-0[aria-disabled=true]:hover,
+.emotion-0[data-disabled],
+.emotion-0[data-disabled]:focus,
+.emotion-0[data-disabled]:hover {
+  opacity: 0.4;
+}
+
+.emotion-2 {
+  margin-top: 0.5rem;
+  color: #718096;
+  line-height: normal;
+  font-size: 0.875rem;
+}
+
+<div
+    class="chakra-form-control emotion-3"
     role="group"
   >
     <label
-      class="chakra-form__label css-1q2bw9z"
+      class="chakra-form__label emotion-0"
       for="name"
       id="name-label"
     >
@@ -15,12 +51,12 @@ exports[`FormControl renders correctly in default state 1`] = `
     </label>
     <input
       aria-describedby="name-helptext"
-      class="css-k2kcme"
+      class="emotion-1"
       id="name"
       placeholder="Name"
     />
     <div
-      class="chakra-form__helper-text css-1qoocny"
+      class="chakra-form__helper-text emotion-2"
       id="name-helptext"
     >
       Enter your name please!
@@ -31,12 +67,76 @@ exports[`FormControl renders correctly in default state 1`] = `
 
 exports[`FormControl renders correctly when invalid 1`] = `
 <DocumentFragment>
-  <div
-    class="chakra-form-control css-1kxonj9"
+  .emotion-5 {
+  width: 100%;
+  position: relative;
+}
+
+.emotion-0 {
+  font-size: 1rem;
+  margin-right: 0.75rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  opacity: 1;
+  display: block;
+  text-align: left;
+}
+
+.emotion-0[disabled],
+.emotion-0[disabled]:focus,
+.emotion-0[disabled]:hover,
+.emotion-0[aria-disabled=true],
+.emotion-0[aria-disabled=true]:focus,
+.emotion-0[aria-disabled=true]:hover,
+.emotion-0[data-disabled],
+.emotion-0[data-disabled]:focus,
+.emotion-0[data-disabled]:hover {
+  opacity: 0.4;
+}
+
+.emotion-2 {
+  margin-top: 0.5rem;
+  color: #718096;
+  line-height: normal;
+  font-size: 0.875rem;
+}
+
+.emotion-3 {
+  margin-right: 0.5em;
+  color: #E53E3E;
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 1em;
+  color: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+}
+
+.emotion-4 {
+  color: #E53E3E;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+<div
+    class="chakra-form-control emotion-5"
     role="group"
   >
     <label
-      class="chakra-form__label css-1q2bw9z"
+      class="chakra-form__label emotion-0"
       data-invalid=""
       for="name"
       id="name-label"
@@ -46,19 +146,19 @@ exports[`FormControl renders correctly when invalid 1`] = `
     <input
       aria-describedby="name-feedback name-helptext"
       aria-invalid="true"
-      class="css-k2kcme"
+      class="emotion-1"
       id="name"
       placeholder="Name"
     />
     <div
-      class="chakra-form__helper-text css-1qoocny"
+      class="chakra-form__helper-text emotion-2"
       id="name-helptext"
     >
       Enter your name please!
     </div>
     <svg
       aria-hidden="true"
-      class="chakra-icon chakra-form__error-icon css-9na4ut"
+      class="chakra-icon chakra-form__error-icon emotion-3"
       focusable="false"
       role="presentation"
       viewBox="0 0 24 24"
@@ -70,7 +170,7 @@ exports[`FormControl renders correctly when invalid 1`] = `
     </svg>
     <div
       aria-live="polite"
-      class="chakra-form__error-message css-v1r939"
+      class="chakra-form__error-message emotion-4"
       id="name-feedback"
     >
       Your name is invalid
@@ -81,12 +181,53 @@ exports[`FormControl renders correctly when invalid 1`] = `
 
 exports[`FormControl renders correctly when required 1`] = `
 <DocumentFragment>
-  <div
-    class="chakra-form-control css-1kxonj9"
+  .emotion-4 {
+  width: 100%;
+  position: relative;
+}
+
+.emotion-0 {
+  font-size: 1rem;
+  margin-right: 0.75rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  opacity: 1;
+  display: block;
+  text-align: left;
+}
+
+.emotion-0[disabled],
+.emotion-0[disabled]:focus,
+.emotion-0[disabled]:hover,
+.emotion-0[aria-disabled=true],
+.emotion-0[aria-disabled=true]:focus,
+.emotion-0[aria-disabled=true]:hover,
+.emotion-0[data-disabled],
+.emotion-0[data-disabled]:focus,
+.emotion-0[data-disabled]:hover {
+  opacity: 0.4;
+}
+
+.emotion-3 {
+  margin-top: 0.5rem;
+  color: #718096;
+  line-height: normal;
+  font-size: 0.875rem;
+}
+
+.emotion-1 {
+  margin-left: 0.25rem;
+  color: #E53E3E;
+}
+
+<div
+    class="chakra-form-control emotion-4"
     role="group"
   >
     <label
-      class="chakra-form__label css-1q2bw9z"
+      class="chakra-form__label emotion-0"
       for="name"
       id="name-label"
     >
@@ -94,7 +235,7 @@ exports[`FormControl renders correctly when required 1`] = `
     </label>
     <span
       aria-hidden="true"
-      class="chakra-form__required-indicator css-i02c70"
+      class="chakra-form__required-indicator emotion-1"
       role="presentation"
     >
       *
@@ -102,12 +243,12 @@ exports[`FormControl renders correctly when required 1`] = `
     <input
       aria-describedby="name-helptext"
       aria-required="true"
-      class="css-k2kcme"
+      class="emotion-2"
       id="name"
       placeholder="Name"
     />
     <div
-      class="chakra-form__helper-text css-1qoocny"
+      class="chakra-form__helper-text emotion-3"
       id="name-helptext"
     >
       Enter your name please!

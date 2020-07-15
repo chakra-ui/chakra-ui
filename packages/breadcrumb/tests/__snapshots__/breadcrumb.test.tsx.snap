@@ -2,51 +2,88 @@
 
 exports[`Breadcrumb renders correctly 1`] = `
 <DocumentFragment>
-  <nav
+  .emotion-2 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-0 {
+  -webkit-transition: all 0.15s ease-out;
+  transition: all 0.15s ease-out;
+  cursor: pointer;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  outline: none;
+  color: inherit;
+}
+
+.emotion-0:hover,
+.emotion-0[data-hover] {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.emotion-0:focus,
+.emotion-0[data-focus] {
+  box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
+}
+
+.emotion-1 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+<nav
     aria-label="breadcrumb"
-    class="chakra-breadcrumb css-0"
+    class="chakra-breadcrumb emotion-6"
   >
     <ol
-      class="chakra-breadcrumb__list css-0"
+      class="chakra-breadcrumb__list emotion-6"
     >
       <li
-        class="chakra-breadcrumb__list-item css-uooi3e"
+        class="chakra-breadcrumb__list-item emotion-2"
       >
         <a
-          class="chakra-breadcrumb__link css-1s2z1a6"
+          class="chakra-breadcrumb__link emotion-0"
           href="#"
         >
           Link 1
         </a>
         <span
-          class="css-dp0f2t"
+          class="emotion-1"
           role="presentation"
         >
           /
         </span>
       </li>
       <li
-        class="chakra-breadcrumb__list-item css-uooi3e"
+        class="chakra-breadcrumb__list-item emotion-2"
       >
         <a
-          class="chakra-breadcrumb__link css-1s2z1a6"
+          class="chakra-breadcrumb__link emotion-0"
           href="#"
         >
           Link 2
         </a>
         <span
-          class="css-dp0f2t"
+          class="emotion-1"
           role="presentation"
         >
           /
         </span>
       </li>
       <li
-        class="chakra-breadcrumb__list-item css-uooi3e"
+        class="chakra-breadcrumb__list-item emotion-2"
       >
         <span
           aria-current="page"
-          class="chakra-breadcrumb__link css-0"
+          class="chakra-breadcrumb__link emotion-6"
         >
           Link 3
         </span>

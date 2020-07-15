@@ -2,11 +2,52 @@
 
 exports[`Spinner renders correctly 1`] = `
 <DocumentFragment>
-  <div
-    class="chakra-spinner css-1yyxytw"
+  @keyframes animation-0 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.emotion-1 {
+  display: inline-block;
+  border-color: currentColor;
+  border-style: solid;
+  border-radius: 9999px;
+  border-width: 2px;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  -webkit-animation: animation-0 0.45s linear infinite;
+  animation: animation-0 0.45s linear infinite;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.emotion-0 {
+  border: 0px;
+  -webkit-clip: rect(0px,0px,0px,0px);
+  clip: rect(0px,0px,0px,0px);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0px;
+  overflow: hidden;
+  white-space: nowrap;
+  position: absolute;
+}
+
+<div
+    class="chakra-spinner emotion-1"
   >
     <span
-      style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
+      class="emotion-0"
     >
       Loading...
     </span>
