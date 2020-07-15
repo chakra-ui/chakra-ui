@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/slider",
-  "version": "1.0.0-next.5",
+  "version": "1.0.0-next.6",
   "description": "Accessible slider component for React that implements <input type=range>",
   "keywords": [
     "react",
@@ -55,11 +55,11 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/hooks": "^1.0.0-next.5",
-    "@chakra-ui/utils": "^1.0.0-next.5"
+    "@chakra-ui/hooks": "^1.0.0-next.6",
+    "@chakra-ui/utils": "^1.0.0-next.6"
   },
   "devDependencies": {
-    "@chakra-ui/system": "^1.0.0-next.5"
+    "@chakra-ui/system": "^1.0.0-next.6"
   },
   "peerDependencies": {
     "@chakra-ui/system": "^1.0.0-next.5",
