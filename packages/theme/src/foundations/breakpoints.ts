@@ -4,7 +4,8 @@
 const breakpoints: any = ["30em", "48em", "62em", "80em"]
 
 /**
- * This is needed for object responsive breakpoints to work
+ * This is needed for object responsive breakpoints to work.
+ * At the moment, we require the keys to be `sm`, `md`, `lg` and `xl`
  */
 breakpoints.sm = breakpoints[0]
 breakpoints.md = breakpoints[1]
