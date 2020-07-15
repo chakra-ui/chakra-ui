@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/system",
-  "version": "1.0.0-next.4",
+  "version": "1.0.0-next.5",
   "description": "Chakra UI system primitives",
   "keywords": [
     "system",
@@ -49,12 +49,12 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/color-mode": "^1.0.0-next.4",
-    "@chakra-ui/styled-system": "^1.0.0-next.4",
-    "@chakra-ui/utils": "^1.0.0-next.4",
+    "@chakra-ui/color-mode": "^1.0.0-next.5",
+    "@chakra-ui/styled-system": "^1.0.0-next.5",
+    "@chakra-ui/utils": "^1.0.0-next.5",
     "@emotion/core": "10.0.28",
-    "@emotion/styled": "10.0.27",
-    "@emotion/is-prop-valid": "0.8.8"
+    "@emotion/is-prop-valid": "0.8.8",
+    "@emotion/styled": "10.0.27"
   },
   "peerDependencies": {
     "react": "16.x"

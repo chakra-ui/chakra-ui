@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-next.5](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/core@1.0.0-next.4...@chakra-ui/core@1.0.0-next.5) (2020-07-15)
+
+### Bug Fixes
+
+- revert icon fallback to correct svg path
+  ([afa4dbb](https://github.com/chakra-ui/chakra-ui/commit/afa4dbb49931391778f635784bddd3395d555df0))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.0.0-next.4](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/core@0.8.0...@chakra-ui/core@1.0.0-next.4) (2020-07-01)
 
 ### Bug Fixes
