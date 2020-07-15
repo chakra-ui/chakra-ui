@@ -10,6 +10,7 @@ import {
   cast,
 } from "./system.utils"
 import { shouldForwardProp } from "./should-forward-prop"
+import { Dict } from "@chakra-ui/utils"
 
 interface Options {
   shouldForwardProp?(prop: string): boolean
@@ -19,7 +20,17 @@ interface Options {
 
 const sxProp = cast((props: any) => css(props.sx)(props.theme))
 const cssProp = (props: any) => props.css
-const __css = cast((props: any) => css(props.__css)(props.theme))
+
+const __css = cast((props: Dict) => {
+  const result = {} as Dict
+  for (const key in props.__css) {
+    if (!(key in props)) {
+      result[key] = props.__css[key]
+    }
+  }
+  return css(result)(props.theme)
+})
+
 const base = cast((baseStyle: any) => (props: any) =>
   css(baseStyle)(props.theme),
 )
