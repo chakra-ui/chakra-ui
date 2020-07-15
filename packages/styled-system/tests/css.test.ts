@@ -278,7 +278,7 @@ test("ignores array values longer than breakpoints", () => {
   const result = css({
     width: [32, 64, 128, 256, 512],
   })({
-    breakpoints: { sm: "32em", md: "40em" },
+    breakpoints: ["32em", "40em"],
   })
   expect(result).toEqual({
     width: 32,
