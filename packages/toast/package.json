@@ -53,7 +53,7 @@
     "@chakra-ui/transition": "^1.0.0-next.5",
     "@chakra-ui/utils": "^1.0.0-next.5",
     "@reach/alert": "0.10.3",
-    "@reach/rect": "0.10.4"
+    "@reach/rect": "0.10.5"
   },
   "devDependencies": {
     "@chakra-ui/system": "^1.0.0-next.5"
