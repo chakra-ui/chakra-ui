@@ -73,12 +73,12 @@ function ghost(props: Props) {
 }
 
 function outline(props: Props) {
-  const { colorScheme: c } = props
+  const { colorScheme: c, theme } = props
   const borderColor = mode(`gray.200`, `whiteAlpha.300`)(props)
 
   return {
     container: {
-      border: "1px solid",
+      border: theme.borders['1px'],
       borderColor: c === "gray" ? borderColor : "currentColor",
       ...ghost(props).container,
     },
