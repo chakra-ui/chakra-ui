@@ -50,6 +50,7 @@ const generateProperty = () => {
     id: faker.random.uuid(),
     isNew: faker.random.boolean(),
     imageUrl: overrides.img,
+    //  empty - image adds no value for the user
     imageAlt: "",
     beds: faker.random.number({ min: 1, max: 6 }),
     baths: faker.random.number({ min: 1, max: 3 }),
