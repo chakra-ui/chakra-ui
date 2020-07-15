@@ -1,101 +1,56 @@
 import {
   Box,
   Flex,
-  SimpleGrid,
+  Button,
+  Grid,
   Heading,
-  Container,
   Badge,
   Image,
-  useColorModeValue,
-  HStack,
-  Wrap,
+  Text,
 } from "@chakra-ui/core"
-import { StarIcon } from "@chakra-ui/icons"
 import { Layout } from "../../components/Layout"
 import { properties } from "../../utils/sample-data"
 import { GetStaticProps, GetStaticPaths } from "next"
+import { Property } from "../../interfaces/Property"
 
-const PropertySummary = ({ property }: any) => {
-  const textColor = useColorModeValue("gray.600", "gray.400")
-  return (
-    <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
-      <Image src={property.imageUrl} alt={property.imageAlt} />
-
-      <Box p="6">
-        <Box d="flex" alignItems="baseline">
-          {property.isNew && (
+const PropertyPage = ({ item }: { item: Property }) => (
+  <Layout title={`Next.js + TypeScript | Viewing ${item.title}`}>
+    <Grid templateColumns={["1fr", "1fr", "2fr 1fr"]} gap={[0, 2, 10]}>
+      <Box>
+        <Heading mb={2}>{item.title}</Heading>
+        <Flex alignItems="baseline">
+          {item.isNew && (
             <Badge borderRadius="full" px="2" colorScheme="teal" mr="2">
               New
             </Badge>
           )}
           <Box
-            color={textColor}
+            mb={6}
             fontWeight="semibold"
             letterSpacing="wide"
             fontSize="xs"
             textTransform="uppercase"
           >
-            {property.beds} beds &bull; {property.baths} baths
+            {item.beds} beds &bull; {item.baths} baths
           </Box>
-        </Box>
-
-        <Box
-          mt="1"
-          fontWeight="semibold"
-          as="h4"
-          lineHeight="tight"
-          isTruncated
+        </Flex>
+        <Image src={item.imageUrl} alt={item.imageAlt} borderRadius="md" />
+      </Box>
+      <Box>
+        <Flex
+          pt={[2, 2, 4]}
+          pb={[4, 4, 12]}
+          justifyContent="space-between"
+          alignItems="center"
         >
-          {property.title}
-        </Box>
-
-        <Box>
-          {property.formattedPrice}
-          <Box as="span" color={textColor} fontSize="sm">
-            / wk
-          </Box>
-        </Box>
-
-        <Box d="flex" mt="2" alignItems="center">
-          <HStack spacing={1}>
-            {Array(5)
-              .fill("")
-              .map((_, i) => (
-                <StarIcon
-                  key={i}
-                  color={i < property.rating ? "teal.500" : "gray.300"}
-                />
-              ))}
-          </HStack>
-          <Box as="span" ml="2" color={textColor} fontSize="sm">
-            {property.reviewCount} reviews
-          </Box>
-        </Box>
+          <Heading>{item.formattedPrice}</Heading>
+          <Button size="lg" colorScheme="purple">
+            Book now
+          </Button>
+        </Flex>
+        <Text whiteSpace="pre-line">{item.description}</Text>
       </Box>
-    </Box>
-  )
-}
-
-const PropertyPage = ({ item }) => (
-  <Layout title="Next.js + TypeScript example">
-    <Heading mb={2}>{item.title}</Heading>
-    <Box d="flex" alignItems="baseline">
-      {item.isNew && (
-        <Badge borderRadius="full" px="2" colorScheme="teal" mr="2">
-          New
-        </Badge>
-      )}
-      <Box
-        mb={6}
-        fontWeight="semibold"
-        letterSpacing="wide"
-        fontSize="xs"
-        textTransform="uppercase"
-      >
-        {item.beds} beds &bull; {item.baths} baths
-      </Box>
-    </Box>
-    <Image src={item.imageUrl} alt={item.imageAlt} borderRadius="md" />
+    </Grid>
   </Layout>
 )
 

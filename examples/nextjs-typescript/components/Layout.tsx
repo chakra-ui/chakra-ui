@@ -1,15 +1,9 @@
 import React, { ReactNode } from "react"
 import Head from "next/head"
-import NextLink from "next/link"
-import {
-  Flex,
-  Link as ChakraLink,
-  HStack,
-  Container,
-  Heading,
-} from "@chakra-ui/core"
+import { Container, Flex, Heading, HStack } from "@chakra-ui/core"
 import { ColorModeSwitcher } from "./ColorModeSwitcher"
 import { Logo } from "./Logo"
+import { NextChakraLink } from "./NextChakraLink"
 
 type Props = {
   children?: ReactNode
@@ -32,19 +26,19 @@ export const Layout = ({
           <Flex justifyContent="space-between" alignItems="center">
             <nav>
               <HStack spacing={12}>
-                <NextLink href="/">
-                  <ChakraLink
-                    display="flex"
-                    alignItems="center"
-                    justifyContent=""
-                  >
-                    <Logo h="1.5rem" pointerEvents="none" mr={4} />
-                    <Heading fontSize="lg">Chakra ts</Heading>
-                  </ChakraLink>
-                </NextLink>
-                <NextLink href="/properties">
-                  <ChakraLink fontWeight="bold">View Properties</ChakraLink>
-                </NextLink>
+                <NextChakraLink
+                  href="/"
+                  passHref={true}
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  <Logo h="1.5rem" pointerEvents="none" mr={4} />
+                  <Heading size="lg">Chakra ts</Heading>
+                </NextChakraLink>
+                <NextChakraLink href="/properties" fontWeight="bold">
+                  View Properties
+                </NextChakraLink>
               </HStack>
             </nav>
           </Flex>

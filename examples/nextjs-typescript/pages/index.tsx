@@ -1,6 +1,7 @@
-import { Box, Text, Link, VStack, Code, Grid } from "@chakra-ui/core"
+import { Box, Code, Text, Link, VStack, Grid } from "@chakra-ui/core"
 import { Layout } from "../components/Layout"
 import { Logo } from "../components/Logo"
+import { NextChakraLink } from "../components/NextChakraLink"
 
 const IndexPage = () => (
   <Layout title="Next.js + TypeScript example">
@@ -16,6 +17,12 @@ const IndexPage = () => (
           <Logo h="40vmin" pointerEvents="none" />
           <Text>
             Edit <Code fontSize="xl">pages/index.tsx</Code> and save to reload.
+            <br />
+            <br />
+            <NextChakraLink href="/properties" color="teal.500">
+              View the properties
+            </NextChakraLink>{" "}
+            to see the Nextjs <Code fontSize="xl">&lt;Link&gt;</Code> in action
           </Text>
           <Link
             color="teal.500"
@@ -24,7 +31,7 @@ const IndexPage = () => (
             target="_blank"
             rel="noopener noreferrer"
           >
-            Learn Chakra
+            Learn more about Chakra
           </Link>
         </VStack>
       </Grid>
