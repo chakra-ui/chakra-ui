@@ -4,6 +4,7 @@ import {
   useStyleConfig,
   omitThemingProps,
   ThemingProps,
+  forwardRef,
 } from "@chakra-ui/system"
 import * as React from "react"
 import { __DEV__, cx } from "@chakra-ui/utils"
@@ -34,10 +35,7 @@ export type LinkProps = PropsOf<typeof chakra.a> & LinkOptions & ThemingProps
  * @see Docs https://chakra-ui.com/components/link
  */
 
-export const Link = React.forwardRef(function Link(
-  props: LinkProps,
-  ref: React.Ref<any>,
-) {
+export const Link = forwardRef<LinkProps>(function Link(props, ref) {
   const styles = useStyleConfig("Link", props)
   const { className, isExternal, isDisabled, ...rest } = omitThemingProps(props)
 
