@@ -8,18 +8,31 @@ order: 1
 
 Writing component styles that are easy to maintain over the life of a growing
 and changing project is a challenging task. To solve this, we need to have a
-simple and consistent system.
+consistent and extensible approach.
 
-Chakra provides a unified component-driven CSS API that it builds its own
-components with and makes it easy to build your own customizable, theme-aware
-components.
+Chakra provides a unified component-driven Styling API that makes it easy to
+build your own customizable, theme-aware components.
 
 <br />
 
-> 🚨 This API is **completely optional** and should be used only when you need
-> to customize or create component styles.
+> 🚨 Heads up: This API is **completely optional** and should be used only when
+> you need to customize or create component styles.
 
 ## Overview
+
+Most components we build today consists of multiple parts, we refer to these
+components as **"composite components"**.
+
+For example, if you want to style a button, you might need to style all its
+parts:
+
+- **Container:** the main button wrapper
+- **Icon:** the icon to the left or right of the button
+
+Due this common scenario, the theming API assumes that all components are
+composite. Meaning they have multiple parts.
+
+### Style modifiers
 
 A reusable and themable component consists of the **base styles**, that acts as
 the default styles, and **modifier styles** that alter the appearance of the
@@ -35,98 +48,215 @@ The most common style modifiers are:
 - **Color mode:** A component can change its visual styles based on color mode
   (e.g. light or dark).
 
-## Theming local and global
+## The Theming API
 
-- **Local.** Custom components can be themed locally using a `styled`-like API
-- **Global.** Both Chakra and Custom components can be themed via the central
-  chakra theme using `themeKey`
+To recap, we mentioned that most components have the following attributes:
 
-### Local Theming
+- Consist of multiple parts **(composite)**
+- Have base or default styles **(baseStyle)**
+- Might have size variations **(sizes)**
+- Might have style variations **(variants)**
 
-In styled components, you usually do this:
+### The register
 
-```js live=false
-const MyComponent = styled("div")({
-  // any style you can imagine goes here
-})
-```
-
-With chakra's theming API, we've defined a set of constraints to keep your
-styles consistent and extensible.
-
-```js live=false
-const MyComponent = chakra("div", {
-  // base or default styles
-  baseStyle: {...},
-  // styles for the different sizes
-  sizes: {...},
-  // styles for the different visual styles
-  variants: {...},
-  // attach props
-  attrs: {...}
-})
-```
-
-### Global Theming
-
-The above is convenient for quickly creating custom themed components, but...
-
-**What if you want to maintain your theme centrally?**
-
-**What if you want to theme one of the out-of-the-box Chakra components?**
-
-Let's answer both of these questions...
-
-### Theme custom components from central theme
+This is used as a way to document the parts of a composite component, it's
+possible sizes and variants.
 
 ```jsx live=false
-// 1. Use the `themeKey` option instead
-const MyComponent = chakra("div", {
-  themeKey: "MyComponent",
-})
+// To style a button
+const register = {
+  parts: ["container", "icon"],
+  sizes: ["sm", "lg"],
+  variants: ["solid", "outline"],
+}
+```
 
-// 2. Move your styles to the theme under the `components.MyComponent` key
-const theme = {
-  components: {
-    MyComponent: {
-      defaultProps: {
-        size: "small",
-        variant: "solid",
-      },
-      baseStyle: { ... },
-      sizes: {
-        small: { ... },
-        large: { ... },
-      },
-      variants: {
-        solid: { ... },
-        outline: { ... },
-      },
+### The base style
+
+This is used to specify the base or default styles for the component parts. The
+styles passed can be **theme-aware** styles, **responsive** styles or regular
+css style objects.
+
+```jsx live=false
+// To style a button
+const baseStyle = {
+  // base styles for the container
+  container: {...},
+  // base styles for the icon
+  icon: {...},
+}
+```
+
+### The sizes
+
+This is used to specify the styles for the component parts, for each size
+variation.
+
+```jsx live=false
+// To style a button
+const sizes = {
+  // styles for component parts when it's small
+  sm: {
+    container: {...},
+    icon: {...},
+  },
+  // styles for component parts when it's large
+  md: {
+    container: {...},
+    icon: {...},
+  },
+}
+```
+
+### The variants
+
+This is used to specify the styles for the component parts, for each style
+variation.
+
+```jsx live=false
+// To style a button
+const variants = {
+  // styles for component parts when it's solid
+  solid: {
+    container: {...},
+    icon: {...},
+  },
+  // styles for component parts when it's outline
+  outline: {
+    container: {...},
+    icon: {...},
+  },
+}
+```
+
+## Bringing it together
+
+The final style configuration for a button component might look like this:
+
+```js live=false
+const buttonConfig = {
+  register: {
+    parts: ["container", "icon"],
+    sizes: ["sm", "lg"],
+    variants: ["solid", "outline"],
+  },
+  baseStyle: {
+    container: {...},
+    icon: {...},
+  },
+  sizes: {
+    sm: {
+      container: {...},
+      icon: {...},
+    },
+    md: {
+      container: {...},
+      icon: {...},
+    },
+  },
+  variants: {
+    solid: {
+      container: {...},
+      icon: {...},
+    },
+    outline: {
+      container: {...},
+      icon: {...},
     },
   },
 }
 ```
 
-### Theme out-of-the-box Chakra components from central theme
+This API make styling components declarative, easy to maintain and update.
 
-Every out-of-the-box Chakra component has its own `themeKey` available for
-modification in the default theme. There you will find `defaultProps`,
-`baseStyle`, `sizes`, `variants`, etc that can be tweaked as needed.
+## Consuming the Style config
 
-For example, to customize `Button` globally, find the `components.Button` object
-and modify it.
+We created a custom hook that can consume this API and return the computed
+styles for each component style for any `size` or `variant` passed.
+
+This hook is called `useStyleConfig`, and here's how to use it.
+
+```js live=false
+const styles = useStyleConfig(themeKey, props)
+```
+
+**Arguments:**
+
+- `themeKey`: The reference to the style config key in `theme.components`. This
+  is used for global styling for components.
+- `props`: The props object that includes `size`, `variant` values
+
+**Returned value:** The computed styles for each component part is returned
+depending on the `size` or `variant` passed.
+
+You can consume the style configuration in two ways:
+
+- Move it to the theme object (Global styling)
+- Pass it directly to `useStyleConfig` (Local styling)
+
+### Local component styles
+
+**For this approach:**
+
+- Save the component style config in a seperate file. For example
+  `button.styles.js`
+- Import it into the button component and pass it as part of the props object
+  under the `styleConfig` key.
 
 ```jsx live=false
-const theme = {
-  components: {
-    Button: {
-      defaultProps: { ... },
-      baseStyle: { ... },
-      sizes: { ... },
-      variants: { ... },
-    },
-  },
+import buttonConfig from "./button.styles"
+
+function Button(props) {
+  const { size, variant, ...rest } = props
+
+  const styles = useStyleConfig("Button", {
+    styleConfig: buttonConfig,
+    size,
+    variant,
+  })
+
+  return (
+    <Box as="button" sx={styles.container}>
+      <PhoneIcon sx={styles.icon} />
+      <span>Submit</span>
+    </Box>
+  )
 }
 ```
 
-Continue on to the next section to see some real world examples in action!
+### Global component styles
+
+**For this approach:**
+
+- Move the component styles to `theme.components.[name]`. For the button
+  component, it'll be `theme.components.Button`.
+- Pass the props object for `size`, `variant`, and `colorScheme` (optional)
+
+```jsx live=false
+// 1. Import the style config
+import buttonConfig from "./button.styles"
+
+// 2. Add it to the theme
+const theme = {
+  components: {
+    Button: buttonConfig,
+  },
+}
+
+// 3. Consume it
+function Button(props) {
+  const { size, variant, ...rest } = props
+
+  // The themeKey "Button" gets the config from `theme.components.Button`
+  const styles = useStyleConfig("Button", { size, variant })
+
+  return (
+    <Box as="button" sx={styles.container}>
+      <PhoneIcon sx={styles.icon} />
+      <span>Submit</span>
+    </Box>
+  )
+}
+```
+
+In the next section, we'll show some real world examples!
