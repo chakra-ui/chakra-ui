@@ -157,7 +157,7 @@
     "framer-motion": "1.11.1",
     "fs-utils": "0.7.0",
     "husky": "4.2.5",
-    "inquirer": "7.3.0",
+    "inquirer": "7.3.2",
     "jest": "26.0.1",
     "jest-emotion": "10.0.32",
     "lerna": "3.22.1",
@@ -176,6 +176,6 @@
     "rimraf": "3.0.2",
     "shelljs": "0.8.4",
     "ts-jest": "26.1.2",
-    "typescript": "3.9.5"
+    "typescript": "3.9.6"
   }
 }
