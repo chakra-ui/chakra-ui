@@ -1,0 +1,30 @@
+{
+  "name": "@chakra-ui/cra-template",
+  "version": "1.0.0-next.6",
+  "main": "template.json",
+  "keywords": [
+    "chakra",
+    "chakra-ui",
+    "Chakra UI",
+    "react",
+    "create-react-app",
+    "template"
+  ],
+  "description": "The official Chakra+JavaScript template for Create React App",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "tooling/cra-template"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=10"
+  },
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "files": [
+    "template",
+    "template.json"
+  ]
+}
