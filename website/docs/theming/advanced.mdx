@@ -9,22 +9,24 @@ order: 3
 Now that you understand how to use Chakra UI theming API. Let's take a step
 further and see if we can adapt the button to color mode.
 
-Here's how it works, when defining the styles for the sizes or variants, you can
-either pass a style object or a function that returns a style object.
+When defining the styles for the `sizes` or `variants`, you can either pass a
+style object or a function that returns a style object.
 
 ```tsx live=false
-const Button = chakra("button", {
-  baseStyle: StyleObjectOrFunction,
-  sizes: StyleObjectOrFunction,
-  variants: StyleObjectOrFunction,
-})
-
-type StyleObjectOrFunction = StyleObject | ((options: Options) => StyleObject)
+type StyleInterpolation =
+  | { [part: string]: StyleObject }
+  | ((options: Options) => { [part: string]: StyleObject })
 
 interface Options {
   theme: Theme
   colorMode: "light" | "dark"
   colorScheme: string
+}
+
+const styleConfig = {
+  baseStyle: StyleInterpolation,
+  sizes: { small: StyleInterpolation },
+  variants: { outline: StyleInterpolation },
 }
 ```
 
@@ -36,60 +38,73 @@ based on color mode.
 > Switch to dark mode and see how how the badge background changes
 
 ```jsx manual=true
-const Badge = chakra("span", {
+const styleConfig = {
   baseStyle: ({ colorMode }) => ({
-    bg: colorMode === "dark" ? "green.300" : "green.500",
-    color: colorMode === "dark" ? "gray.800" : "white",
-    textTransform: "uppercase",
-    fontWeight: "semibold",
-    letterSpacing: "0.02em",
-    padding: "4px",
-    borderRadius: "2px",
-    fontSize: "12px",
+    container: {
+      bg: colorMode === "dark" ? "green.300" : "green.500",
+      color: colorMode === "dark" ? "gray.800" : "white",
+      textTransform: "uppercase",
+      fontWeight: "semibold",
+      letterSpacing: "0.02em",
+      padding: "4px",
+      borderRadius: "2px",
+      fontSize: "12px",
+    },
   }),
-})
-
-render(<Badge>This is a badge</Badge>)
-```
-
-## TypeScript
-
-To ensure the props for `variant` and `size` is strongly typed, you can use
-typescript generics.
-
-```tsx live=false
-// 1. Create the type defs
-interface Props {
-  variant?: "solid" | "outline"
-  size?: "sm" | "md"
 }
 
-// 2. Use it as a generic
-const Badge = chakra<"div", Props>("div", {
-  /// options
-})
+function Badge(props) {
+  const styles = useStyleConfig("Badge", { styleConfig })
+  return <Box as="span" sx={styles.container} {...props} />
+}
 
-// 3. now you'll get a strongly `variant` and `size` props
-<Badge variant="solid">Welcome</Badge>
+render(<Badge>Badge</Badge>)
 ```
 
-## Theming Subcomponents
+## Compound components
 
 Many complex components in Chakra are not a single component, but multiple
 components that are composed together. Theming these components can be a bit
 tedious.
 
-To solve this, we connected all components to a shared theming context so if you
-pass any theming props (`size`, `variant` or `colorScheme`) to the root or
-parent component, all sub-components can respond to that.
-
-Internally, all sub-components also receive the size, variant, and colorScheme
-prop.
+To solve this, we connect all component parts to a shared context via a
+`StylesProvider`, and read from the context using the `useStyles` hook.
 
 For example, the `Tabs` component looks like this:
 
 ```jsx live=false
-// the `size` prop here is propagated to all subcomponents
+function Tabs(props) {
+  const { size, variant, children ...rest } = props
+  const styles = useStyleConfig("Tabs", { styleConfig, size, variant })
+  return (
+    // 1. Mount the computed styles on styles provider
+    <StylesProvider value={styles}>
+      <Box sx={styles.container}>{children}</Box>
+    </StylesProvider>
+  )
+}
+
+function Tab(props){
+  // 2. Read computed styles from styles provider, and consume the `tab` styles
+  const styles = useStyles()
+  return (
+    <Box as="button" sx={styles.tab} {...props}/>
+  )
+}
+
+function TabList(props){
+  // 3. Read computed styles from styles provider, and consume the `tablist` styles
+  const styles = useStyles()
+  return (
+    <Box sx={styles.tablist} {...props}/>
+  )
+}
+```
+
+Now passing when you pass the `size` and `variant` prop, the components down the
+tree will receive their respective styles.
+
+```jsx live=false
 <Tabs size="sm">
   <TabList>
     <Tab>Tab 1</Tab>
@@ -98,93 +113,4 @@ For example, the `Tabs` component looks like this:
     <TabPanel>Tab 1</TabPanel>
   </TabPanels>
 </Tabs>
-```
-
-### Example
-
-An example of this is Chakra's `Tabs`: `TabList`, and `Tab` components.
-
-First thing we'll do is to use a nested `themeKey`.
-
-```jsx live=false
-// Notice the themeKey uses a dot notation
-const TabList = chakra("div", { themeKey: "Tabs.TabList" })
-
-const Tab = chakra("button", { themeKey: "Tabs.Tab" })
-```
-
-Next, we define the theme for `Tabs`
-
-```jsx live=false
-const theme = {
-  components: {
-    Tabs: {
-      baseStyle: {
-        // base style for tab list
-        TabList: {},
-        // base style for tab
-        Tab: {},
-      },
-      sizes: {
-        sm: {
-          // styles for the tablist when size is `small`
-          TabList: {},
-          // styles for the tab when size is `small`
-          Tab: {},
-        },
-        md: {},
-      },
-      variants: {
-        outline: {
-          // styles for the tablist when variant is `outline`
-          TabList: {},
-          // styles for the tab when variant is `outline`
-          Tab: {},
-        },
-      },
-    },
-  },
-}
-```
-
-All Chakra components use this approach and you can component styles in the
-`chakra/components` folder.
-
-#### Using color mode
-
-Just like single componetn styles, you can also specify the `baseStyle`,
-`sizes`, and `variants` as a function.
-
-In the tabs example, here's how to do it:
-
-```jsx live=false
-const theme = {
-  components: {
-    Tabs: {
-      baseStyle: (props) => ({
-        // base style for tab list
-        TabList: {},
-        // base style for tab
-        Tab: {},
-      }),
-      sizes: (props) => ({
-        sm: {
-          // styles for the tablist when size is `small`
-          TabList: {},
-          // styles for the tab when size is `small`
-          Tab: {},
-        },
-        md: {},
-      }),
-      variants: (props) => ({
-        outline: {
-          // styles for the tablist when variant is `outline`
-          TabList: {},
-          // styles for the tab when variant is `outline`
-          Tab: {},
-        },
-      }),
-    },
-  },
-}
 ```
