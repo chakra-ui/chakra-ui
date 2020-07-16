@@ -35,10 +35,12 @@ const Body = (props) => {
   const creator = contributors[0]
   return (
     <Box mx="auto" maxW="48rem" py="3rem">
-      <Heading size="lg" as="h1">
+      <Heading size="xl" as="h1" fontWeight="semibold">
         {title}
       </Heading>
-      <Text mt="6">{description}</Text>
+      <Text opacity={0.7} mt="4">
+        {description}
+      </Text>
       {creator && (
         <Text>
           by{" "}
@@ -47,6 +49,7 @@ const Body = (props) => {
           </Link>
         </Text>
       )}
+      <Box as="hr" my="8" borderStyle="dashed" />
       <MDXRenderer>{body}</MDXRenderer>
       {relativePath && (
         <LastEdited mt="3rem" updatedAt={updatedAt} editUrl={relativePath} />

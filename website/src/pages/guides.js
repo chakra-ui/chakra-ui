@@ -40,7 +40,7 @@ function GuidePreview(props) {
         {createdAt}
       </Text>
 
-      <Stack mt="5" align="center" direction="row">
+      <Stack align="center" direction="row">
         {/* <Avatar size="sm" name={creator.name} src={creator.image} /> */}
         <Text fontSize="sm" fontWeight="semibold">
           <chakra.a
@@ -60,7 +60,7 @@ function GuidePreview(props) {
           Tags:
         </Text>
         {tags.map((tag) => (
-          <Badge colorScheme="teal" key={tag}>
+          <Badge px="2" key={tag}>
             {tag}
           </Badge>
         ))}
