@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { ChakraProvider, CSSReset } from '@chakra-ui/core';
-import theme from './theme';
+import theme from '@chakra-ui/theme';
 
 const AllProviders = ({ children }) => (
   <ChakraProvider theme={theme}>
