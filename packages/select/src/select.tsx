@@ -5,42 +5,14 @@ import {
   omitThemingProps,
   PropsOf,
   useStyleConfig,
+  ThemingProps,
 } from "@chakra-ui/system"
 import { cx, split, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-interface SelectOptions extends FormControlOptions {
-  /**
-   * The border color when the select is focused. Use color keys in `theme.colors`
-   * @example
-   * focusBorderColor = "blue.500"
-   */
-  focusBorderColor?: string
-  /**
-   * The border color when the select is invalid. Use color keys in `theme.colors`
-   * @example
-   * errorBorderColor = "red.500"
-   */
-  errorBorderColor?: string
-  /**
-   * If `true`, the select element will span the full width of it's parent
-   */
-  isFullWidth?: boolean
-  /**
-   * The placeholder for the select. We render an `<option/>` element that has
-   * empty value.
-   *
-   * ```jsx
-   * <option value="">{placeholder}</option>
-   * ```
-   */
-  placeholder?: string
-}
+type Omitted = "disabled" | "required" | "readOnly" | "size"
 
-export type SelectFieldProps = Omit<
-  PropsOf<typeof chakra.select>,
-  "disabled" | "required" | "readOnly" | "size"
-> & {
+export type SelectFieldProps = Omit<PropsOf<typeof chakra.select>, Omitted> & {
   size?: string
   isDisabled?: boolean
 }
@@ -75,24 +47,46 @@ if (__DEV__) {
 
 type RootProps = Omit<PropsOf<typeof chakra.div>, "color">
 
-export interface SelectProps extends SelectFieldProps {
+interface SelectOptions extends FormControlOptions {
   /**
-   * Props to forward to the root `div` element
+   * The border color when the select is focused. Use color keys in `theme.colors`
+   * @example
+   * focusBorderColor = "blue.500"
    */
-  rootProps?: RootProps
+  focusBorderColor?: string
   /**
-   * The icon element to use in the select
+   * The border color when the select is invalid. Use color keys in `theme.colors`
+   * @example
+   * errorBorderColor = "red.500"
    */
-  icon?: React.ReactElement<any>
+  errorBorderColor?: string
   /**
-   * The size of the select dropdown icon
+   * If `true`, the select element will span the full width of it's parent
    */
-  iconSize?: any
+  isFullWidth?: boolean
   /**
-   * The color of the select dropdown icon
+   * The placeholder for the select. We render an `<option/>` element that has
+   * empty value.
+   *
+   * ```jsx
+   * <option value="">{placeholder}</option>
+   * ```
    */
-  iconColor?: string
+  placeholder?: string
 }
+
+export type SelectProps = SelectFieldProps &
+  ThemingProps &
+  SelectOptions & {
+    /**
+     * Props to forward to the root `div` element
+     */
+    rootProps?: RootProps
+    /**
+     * The icon element to use in the select
+     */
+    icon?: React.ReactElement<any>
+  }
 
 /**
  * React component used to select one item from a list of options.
@@ -168,10 +162,7 @@ const IconWrapper = chakra("div", {
   },
 })
 
-type SelectIconProps = PropsOf<typeof IconWrapper> & {
-  iconColor?: string
-  iconSize?: string | number
-}
+type SelectIconProps = PropsOf<typeof IconWrapper>
 
 function SelectIcon(props: SelectIconProps) {
   const { children = <DefaultIcon />, ...rest } = props
