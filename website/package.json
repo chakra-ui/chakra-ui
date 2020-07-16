@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@chakra-ui/core": "^1.0.0-next.6",
-    "@mdx-js/mdx": "1.6.6",
+    "@mdx-js/mdx": "1.6.7",
     "@mdx-js/react": "1.6.6",
     "@octokit/rest": "^18.0.0",
     "@reach/router": "^1.3.3",
