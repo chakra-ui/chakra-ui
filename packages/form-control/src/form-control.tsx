@@ -285,14 +285,7 @@ if (__DEV__) {
   FormHelperText.displayName = "FormHelperText"
 }
 
-const StyledErrorText = chakra("div", {
-  baseStyle: {
-    display: "flex",
-    alignItems: "center",
-  },
-})
-
-export type FormErrorMessageProps = PropsOf<typeof StyledErrorText>
+export type FormErrorMessageProps = PropsOf<typeof chakra.div>
 
 /**
  * Used to provide feedback about an invalid input,
@@ -308,11 +301,15 @@ export const FormErrorMessage = forwardRef<FormErrorMessageProps>(
     const _className = cx("chakra-form__error-message", props.className)
 
     return (
-      <StyledErrorText
+      <chakra.div
         aria-live="polite"
         ref={ref}
         {...props}
-        __css={styles.errorText}
+        __css={{
+          display: "flex",
+          alignItems: "center",
+          ...styles.errorText,
+        }}
         className={_className}
         id={props.id ?? field?.feedbackId}
       />
