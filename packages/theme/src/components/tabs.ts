@@ -5,9 +5,11 @@ import {
   mode,
   Sizes,
   Variants,
+  Props,
 } from "@chakra-ui/theme-tools"
 
 const register = {
+  orientation: ["horizontal", "vertical"],
   parts: ["tablist", "tab", "tabpanel", "indicator"],
   sizes: ["sm", "md", "lg"],
   variants: [
@@ -40,6 +42,18 @@ const baseStyle: BaseStyle<typeof register> = (props) => {
     tablist: { justifyContent: alignments[align] },
     tabpanel: {
       padding: 4,
+    },
+  }
+}
+
+const orientation = (props: Props) => {
+  const { orientation } = props
+  return {
+    tablist: {
+      [orientation === "vertical"
+        ? "borderRight"
+        : "borderBottom"]: "2px solid",
+      borderColor: "inherit",
     },
   }
 }
