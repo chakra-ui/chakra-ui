@@ -157,7 +157,6 @@ const IconWrapper = chakra("div", {
     justifyContent: "center",
     right: "0.5rem",
     pointerEvents: "none",
-    zIndex: 2,
     top: "50%",
     transform: "translateY(-50%)",
   },
