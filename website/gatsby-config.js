@@ -2,7 +2,7 @@ require("dotenv").config({ path: `.env.${process.env.NODE_ENV}` })
 
 const siteMetadata = {
   title: "Chakra UI",
-  titleTemplate: "Chakra UI | %s",
+  titleTemplate: "%s - Chakra UI",
   description:
     "Simple, Modular and Accessible UI Components for your React Applications.",
   siteUrl: "https://chakra-ui.com",
@@ -25,6 +25,7 @@ module.exports = {
         component: require.resolve("./src/components/layout"),
       },
     },
+    `gatsby-plugin-emotion`,
     `gatsby-plugin-chakra-ui`,
     `gatsby-plugin-lodash`,
     {
