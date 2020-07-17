@@ -1,4 +1,4 @@
-import { BaseStyle } from "@chakra-ui/theme-tools"
+import { BaseStyle, Sizes } from "@chakra-ui/theme-tools"
 import input from "./input"
 
 const register = {
@@ -11,7 +11,6 @@ const baseStyle: BaseStyle<typeof register> = {
   field: {
     ...input.baseStyle.field,
     appearance: "none",
-    paddingRight: "2rem",
     paddingBottom: "1px",
     lineHeight: "normal",
   },
@@ -22,7 +21,17 @@ const baseStyle: BaseStyle<typeof register> = {
   },
 }
 
-const sizes = input.sizes
+const sizes: Sizes<typeof register> = {
+  sm: {
+    field: { ...input.sizes.sm, paddingRight: "2rem" },
+  },
+  md: {
+    field: { ...input.sizes.md, paddingRight: "2rem" },
+  },
+  lg: {
+    field: { ...input.sizes.lg, paddingRight: "2rem" },
+  },
+}
 const variants = input.variants
 const defaultProps = input.defaultProps
 
