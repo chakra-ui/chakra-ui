@@ -108,6 +108,7 @@ export const Select = React.forwardRef(function Select(
       className="chakra-select__wrapper"
       __css={{
         width: "100%",
+        height: "fit-content",
         position: "relative",
         color,
       }}
