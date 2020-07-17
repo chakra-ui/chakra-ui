@@ -70,6 +70,22 @@ export interface UseMenuProps extends UsePopperProps {
    * until the menu is open.
    */
   isLazy?: boolean
+  /**
+   * If `true`, the top-level menu will be opened in controlled mode
+   */
+  isOpen?: boolean
+  /**
+   * If `true`, the top-level menu will be opened in un-controlled mode
+   */
+  defaultIsOpen?: boolean
+  /**
+   * Function to be called when menu is open
+   */
+  onOpen?: () => void
+  /**
+   * Function to be called when menu is closed
+   */
+  onClose?: () => void
 }
 
 function useBlurOutside(
@@ -117,6 +133,10 @@ export function useMenu(props: UseMenuProps) {
     preventOverflow,
     modifiers,
     isLazy,
+    defaultIsOpen,
+    isOpen: isOpenProp,
+    onOpen: onOpenProp,
+    onClose: onCloseProp,
   } = props
 
   /**
@@ -131,9 +151,20 @@ export function useMenu(props: UseMenuProps) {
   const hasParentMenu = Boolean(parentMenu)
 
   /**
-   * Regular open and close stuff
+   * Regular open and close stuff.
+   *
+   * For controlled props, you can only control the top-level menu button.
+   * Sub-menus are managed internally.
    */
-  const { isOpen, onOpen, onClose, onToggle } = useDisclosure()
+  const controlProps = !hasParentMenu
+    ? {
+        isOpen: isOpenProp,
+        onOpen: onOpenProp,
+        defaultIsOpen,
+        onClose: onCloseProp,
+      }
+    : undefined
+  const { isOpen, onOpen, onClose, onToggle } = useDisclosure(controlProps)
 
   /**
    * Prepare the reference to the menu and disclosure
