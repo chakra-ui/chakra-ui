@@ -11,7 +11,6 @@ const baseStyle: BaseStyle<typeof register> = {
   field: {
     ...input.baseStyle.field,
     appearance: "none",
-    paddingRight: "2rem",
     paddingBottom: "1px",
     lineHeight: "normal",
   },
@@ -22,9 +21,38 @@ const baseStyle: BaseStyle<typeof register> = {
   },
 }
 
-const sizes = input.sizes
 const variants = input.variants
 const defaultProps = input.defaultProps
+
+const sizes = {
+  sm: {
+    field: {
+      ...input.sizes.sm.field,
+      paddingRight: "2rem",
+    },
+    addon: {
+      ...input.sizes.sm.addon,
+    },
+  },
+  md: {
+    field: {
+      ...input.sizes.md.field,
+      paddingRight: "2rem",
+    },
+    addon: {
+      ...input.sizes.md.addon,
+    },
+  },
+  lg: {
+    field: {
+      ...input.sizes.lg.field,
+      paddingRight: "2rem",
+    },
+    addon: {
+      ...input.sizes.lg.addon,
+    },
+  },
+}
 
 const select = {
   register,
