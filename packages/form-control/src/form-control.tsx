@@ -7,6 +7,7 @@ import {
   useStyles,
   StylesProvider,
   useStyleConfig,
+  ThemingProps,
   omitThemingProps,
 } from "@chakra-ui/system"
 import { createContext, cx, __DEV__ } from "@chakra-ui/utils"
@@ -176,7 +177,7 @@ const StyledLabel = chakra("label", {
   },
 })
 
-export type FormLabelProps = PropsOf<typeof StyledLabel>
+export type FormLabelProps = PropsOf<typeof StyledLabel> & ThemingProps
 
 /**
  * Used to enhance the usability of form controls.
@@ -190,8 +191,9 @@ export const FormLabel = forwardRef<FormLabelProps>(function FormLabel(
   props,
   ref,
 ) {
-  const { className, ...rest } = props
-  const styles = useStyles()
+  const styles = useStyleConfig("FormLabel", props)
+
+  const { className, ...rest } = omitThemingProps(props)
   const ownProps = useFormControlLabel(rest)
 
   return (
