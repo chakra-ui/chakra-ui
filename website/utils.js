@@ -24,7 +24,7 @@ const orderByOrderThenTitle = _.orderBy(
   ["asc", "asc"],
 )
 
-const sortPostNodes = (nodes) => {
+const sortPostNodes = nodes => {
   const collections = groupByCollection(nodes)
   const sortedCollectionNodes = _.values(collections).map(orderByOrderThenTitle)
   const flattened = _.flatten(_.values(sortedCollectionNodes))
@@ -36,7 +36,7 @@ const sortPostNodes = (nodes) => {
 const getRelativePagePath = (fileAbsolutePath, source) => {
   if (!fileAbsolutePath) return
 
-  const regex = new RegExp(`/docs/${source}/.*`)
+  const regex = new RegExp(`/website/${source}/.*`)
   const match = fileAbsolutePath.match(regex)
   return match ? match[0] : null
 }
@@ -48,7 +48,7 @@ const getCommitAuthorDetails = _.pick([
   "author.html_url",
 ])
 
-const getNodeContributors = async (node) => {
+const getNodeContributors = async node => {
   const relativePath = getRelativePagePath(node.fileAbsolutePath)
   const { data: commits } = await octokit.repos.listCommits({
     owner: "chakra-ui",
