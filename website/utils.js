@@ -36,7 +36,7 @@ const sortPostNodes = nodes => {
 const getRelativePagePath = (fileAbsolutePath, source) => {
   if (!fileAbsolutePath) return
 
-  const regex = new RegExp(`/website/${source}/.*`)
+  const regex = new RegExp(`website/${source}/.*`)
   const match = fileAbsolutePath.match(regex)
   return match ? match[0] : null
 }
