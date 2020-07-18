@@ -122,7 +122,7 @@
     "@emotion/core": "10.0.28",
     "@emotion/styled": "10.0.27",
     "@storybook/addon-actions": "6.0.0-beta.38",
-    "@storybook/addon-knobs": "6.0.0-beta.38",
+    "@storybook/addon-knobs": "6.0.0-rc.10",
     "@storybook/preset-typescript": "3.0.0",
     "@storybook/react": "6.0.0-beta.38",
     "@types/jest": "25.2.3",
