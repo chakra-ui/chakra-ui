@@ -208,7 +208,6 @@ export const Breadcrumb = React.forwardRef(function Breadcrumb(
       aria-label="breadcrumb"
       className={_className}
       {...rest}
-      __css={styles.container}
     >
       <StylesProvider value={styles}>
         <chakra.ol className="chakra-breadcrumb__list">{clones}</chakra.ol>

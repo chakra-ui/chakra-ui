@@ -83,7 +83,7 @@ const StyledMenuButton = React.forwardRef(function StyledMenuButton(
         alignItems: "center",
         outline: 0,
         transition: "all 250ms",
-        ...styles.menuButton,
+        ...styles.button,
       }}
     />
   )
@@ -171,7 +171,7 @@ export const MenuList = React.forwardRef(function MenuList(
       ref={mergeRefs(menulist.ref, ref)}
       __css={{
         outline: 0,
-        ...styles.menuList,
+        ...styles.list,
       }}
     />
   )
@@ -202,7 +202,7 @@ const StyledMenuItem = React.forwardRef(function StyledMenuItem(
         textAlign: "left",
         flex: "0 0 auto",
         outline: 0,
-        ...styles.menuItem,
+        ...styles.item,
       }}
     />
   )
@@ -371,7 +371,6 @@ export function MenuIcon(props: PropsOf<typeof chakra.span>) {
     : null
 
   const _className = cx("chakra-menu__icon-wrapper", className)
-  const styles = useStyles()
 
   return (
     <chakra.span
@@ -379,7 +378,6 @@ export function MenuIcon(props: PropsOf<typeof chakra.span>) {
       {...rest}
       __css={{
         flexShrink: 0,
-        ...styles.icon,
       }}
     >
       {clone}
@@ -396,7 +394,6 @@ export type MenuDividerProps = PropsOf<typeof chakra.hr>
 export const MenuDivider = (props: MenuDividerProps) => {
   const { className, ...rest } = props
   const _className = cx("chakra-menu__divider", className)
-  const styles = useStyles()
   return (
     <chakra.hr
       role="separator"
@@ -410,7 +407,6 @@ export const MenuDivider = (props: MenuDividerProps) => {
         mt: "0.5rem",
         mb: "1rem",
         opacity: 0.6,
-        ...styles.menuDivider,
       }}
     />
   )

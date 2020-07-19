@@ -1,40 +1,38 @@
 import { keyframes } from "@chakra-ui/system"
-import { BaseStyle, getColor, mode } from "@chakra-ui/theme-tools"
+import { getColor, mode, styleConfig } from "@chakra-ui/theme-tools"
 
-const register = {
-  parts: ["skeleton"],
-} as const
+const skeleton = styleConfig({
+  parts: { skeleton: "the skeleton rect" },
 
-const baseStyle: BaseStyle<typeof register> = (props) => {
-  const {
-    startColor = mode("gray.100", "gray.800")(props),
-    endColor = mode("gray.400", "gray.600")(props),
-    speed,
-    theme,
-  } = props
+  baseStyle: function (props) {
+    const defaultStartColor = mode("gray.100", "gray.800")(props)
+    const defaultEndColor = mode("gray.400", "gray.600")(props)
 
-  const start = getColor(theme, startColor)
-  const end = getColor(theme, endColor)
+    const {
+      startColor = defaultStartColor,
+      endColor = defaultEndColor,
+      speed,
+      theme,
+    } = props
 
-  return {
-    skeleton: {
-      opacity: 0.7,
-      borderRadius: "2px",
-      borderColor: start,
-      background: end,
-      animation: `${speed}s linear infinite alternate ${frame(start, end)}`,
-    },
-  }
-}
+    const start = getColor(theme, startColor)
+    const end = getColor(theme, endColor)
 
-const skeleton = {
-  register,
-  baseStyle,
-}
+    return {
+      skeleton: {
+        opacity: 0.7,
+        borderRadius: "2px",
+        borderColor: start,
+        background: end,
+        animation: `${speed}s linear infinite alternate ${fade(start, end)}`,
+      },
+    }
+  },
+})
 
 export default skeleton
 
-export function frame(startColor: string, endColor: string) {
+export function fade(startColor: string, endColor: string) {
   return keyframes({
     from: { borderColor: startColor, background: startColor },
     to: { borderColor: endColor, background: endColor },

@@ -32,6 +32,7 @@ export const SelectField = React.forwardRef(function SelectField(
       {...select}
       {...(rest as any)}
       ref={ref}
+      paddingRight="2rem"
       className={cx("chakra-select", className)}
       disabled={isDisabled}
     >

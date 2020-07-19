@@ -1,58 +1,51 @@
-import { BaseStyle, DefaultProps, mode, Sizes } from "@chakra-ui/theme-tools"
+import { mode, styleConfig } from "@chakra-ui/theme-tools"
 
-const register = {
-  parts: ["icon", "container"],
-  sizes: ["sm", "md", "lg"],
-} as const
+const closeButton = styleConfig({
+  parts: {
+    icon: "the close icon",
+    container: "the button container",
+  },
 
-const baseStyle: BaseStyle<typeof register> = (props) => {
-  return {
-    icon: {},
-    container: {
-      borderRadius: "md",
-      transition: "all 0.2s",
-      _disabled: {
-        opacity: 0.4,
-        cursor: "not-allowed",
-        boxShadow: "none",
+  baseStyle: function (props) {
+    const hoverBg = mode(`blackAlpha.100`, `whiteAlpha.100`)(props)
+    const activeBg = mode(`blackAlpha.200`, `whiteAlpha.200`)(props)
+
+    return {
+      container: {
+        borderRadius: "md",
+        transition: "all 0.2s",
+        _disabled: {
+          opacity: 0.4,
+          cursor: "not-allowed",
+          boxShadow: "none",
+        },
+        _hover: { bg: hoverBg },
+        _active: { bg: activeBg },
+        _focus: {
+          boxShadow: "outline",
+        },
       },
-      _hover: {
-        bg: mode(`blackAlpha.100`, `whiteAlpha.100`)(props),
-      },
-      _active: {
-        bg: mode(`blackAlpha.200`, `whiteAlpha.200`)(props),
-      },
-      _focus: {
-        boxShadow: "outline",
-      },
+    }
+  },
+
+  sizes: {
+    lg: {
+      container: { w: "40px", h: "40px" },
+      icon: { fontSize: "16px" },
     },
-  }
-}
-
-const sizes: Sizes<typeof register> = {
-  lg: {
-    container: { width: "40px", height: "40px" },
-    icon: { fontSize: "16px" },
+    md: {
+      container: { w: "32px", h: "32px" },
+      icon: { fontSize: "12px" },
+    },
+    sm: {
+      container: { w: "24px", h: "24px" },
+      icon: { fontSize: "10px" },
+    },
   },
-  md: {
-    container: { width: "32px", height: "32px" },
-    icon: { fontSize: "12px" },
-  },
-  sm: {
-    container: { width: "24px", height: "24px" },
-    icon: { fontSize: "10px" },
-  },
-}
 
-const defaultProps: DefaultProps<typeof register> = {
-  size: "md",
-}
-
-const closeButton = {
-  register,
-  defaultProps,
-  baseStyle,
-  sizes,
-}
+  defaultProps: {
+    size: "md",
+  },
+})
 
 export default closeButton
