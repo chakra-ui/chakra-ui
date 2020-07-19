@@ -1,6 +1,6 @@
-import { mode, orient, styleConfig } from "@chakra-ui/theme-tools"
+import { mode, orient, multiStyleConfig } from "@chakra-ui/theme-tools"
 
-const slider = styleConfig({
+const slider = multiStyleConfig({
   parts: {
     container: "the slider wrapper",
     thumb: "the slider thumb or handle",

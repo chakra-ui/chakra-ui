@@ -1,6 +1,6 @@
-import { mode, styleConfig } from "@chakra-ui/theme-tools"
+import { mode, multiStyleConfig } from "@chakra-ui/theme-tools"
 
-const form = styleConfig({
+const form = multiStyleConfig({
   parts: {
     errorText: "the error message",
     errorIcon: "the error icon",

@@ -5,9 +5,9 @@ import {
   forwardRef,
   omitThemingProps,
   PropsOf,
-  StylesProvider,
   ThemingProps,
-  useStyleConfig,
+  useMultiStyleConfig,
+  StylesProvider,
   useStyles,
 } from "@chakra-ui/system"
 import {
@@ -46,7 +46,7 @@ export const Accordion = React.forwardRef(function Accordion(
   props: AccordionProps,
   ref: React.Ref<any>,
 ) {
-  const styles = useStyleConfig("Accordion", props)
+  const styles = useMultiStyleConfig("Accordion", props)
   const rest = omitThemingProps(props)
   const _className = cx("chakra-accordion", props.className)
 

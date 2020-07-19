@@ -1,6 +1,6 @@
-import { mode, styleConfig } from "@chakra-ui/theme-tools"
+import { mode, multiStyleConfig } from "@chakra-ui/theme-tools"
 
-const drawer = styleConfig({
+const drawer = multiStyleConfig({
   parts: {
     overlay: "the overlay or shim",
     content: "the main content wrapper",
@@ -8,37 +8,35 @@ const drawer = styleConfig({
     body: "the main content area",
     footer: "the action footer",
   },
-
   baseStyle: function (props) {
+    const { isFullHeight } = props
     return {
       overlay: {
         bg: "blackAlpha.600",
       },
-
       content: {
-        ...(props.isFullHeight && { height: "100vh" }),
+        ...(isFullHeight && { height: "100vh" }),
         bg: mode("white", "gray.700")(props),
         color: "inherit",
         boxShadow: mode("lg", "dark-lg")(props),
       },
-
       header: {
-        paddingX: 6,
-        paddingY: 4,
+        px: 6,
+        py: 4,
         fontSize: "xl",
         fontWeight: "semibold",
       },
 
       body: {
-        paddingX: 6,
-        paddingY: 2,
+        px: 6,
+        py: 2,
         flex: 1,
         overflow: "auto",
       },
 
       footer: {
-        paddingX: 6,
-        paddingY: 4,
+        px: 6,
+        py: 4,
       },
     }
   },

@@ -1,6 +1,6 @@
-import { mode, styleConfig } from "@chakra-ui/theme-tools"
+import { mode, multiStyleConfig } from "@chakra-ui/theme-tools"
 
-const menu = styleConfig({
+const menu = multiStyleConfig({
   parts: {
     item: "the menu item button",
     command: "the menu item command",

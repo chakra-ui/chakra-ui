@@ -1,6 +1,6 @@
-import { mode, styleConfig } from "@chakra-ui/theme-tools"
+import { mode, multiStyleConfig } from "@chakra-ui/theme-tools"
 
-const popover = styleConfig({
+const popover = multiStyleConfig({
   parts: {
     content: "the popover's content wrapper",
     header: "the popover heading",

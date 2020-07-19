@@ -1,6 +1,6 @@
-import { mode, styleConfig } from "@chakra-ui/theme-tools"
+import { mode, multiStyleConfig } from "@chakra-ui/theme-tools"
 
-const modal = styleConfig({
+const modal = multiStyleConfig({
   parts: {
     overlay: "the modal overlay",
     content: "the modal content wrapper",

@@ -1,27 +1,22 @@
 import { styleConfig } from "@chakra-ui/theme-tools"
 
 const link = styleConfig({
-  parts: {
-    link: "external link",
-  },
   baseStyle: {
-    link: {
-      transition: `all 0.15s ease-out`,
-      cursor: "pointer",
+    transition: `all 0.15s ease-out`,
+    cursor: "pointer",
+    textDecoration: "none",
+    outline: "none",
+    color: "inherit",
+    _hover: {
+      textDecoration: "underline",
+    },
+    _focus: {
+      boxShadow: "outline",
+    },
+    _disabled: {
+      opacity: 0.4,
+      cursor: "not-allowed",
       textDecoration: "none",
-      outline: "none",
-      color: "inherit",
-      _hover: {
-        textDecoration: "underline",
-      },
-      _focus: {
-        boxShadow: "outline",
-      },
-      _disabled: {
-        opacity: 0.4,
-        cursor: "not-allowed",
-        textDecoration: "none",
-      },
     },
   },
 })

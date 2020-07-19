@@ -1,6 +1,6 @@
-import { styleConfig } from "@chakra-ui/theme-tools"
+import { multiStyleConfig } from "@chakra-ui/theme-tools"
 
-const accordion = styleConfig({
+const accordion = multiStyleConfig({
   parts: {
     container: "the container for a single accordion",
     button: "the accordion trigger",
@@ -16,16 +16,23 @@ const accordion = styleConfig({
     },
     button: {
       fontSize: "1rem",
-      _focus: { boxShadow: "outline" },
-      _hover: { bg: "blackAlpha.50" },
-      _disabled: { opacity: 0.4, cursor: "not-allowed" },
-      paddingX: 4,
-      paddingY: 2,
+      _focus: {
+        boxShadow: "outline",
+      },
+      _hover: {
+        bg: "blackAlpha.50",
+      },
+      _disabled: {
+        opacity: 0.4,
+        cursor: "not-allowed",
+      },
+      px: 4,
+      py: 2,
     },
     panel: {
-      paddingTop: 2,
-      paddingX: 4,
-      paddingBottom: 5,
+      pt: 2,
+      px: 4,
+      pb: 5,
     },
   },
 })

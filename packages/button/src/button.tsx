@@ -102,8 +102,7 @@ export const Button = forwardRef<ButtonProps>(function Button(props, ref) {
    *
    * So let's read the component styles and then add `zIndex` to it.
    */
-  const buttonStyles = styles.container
-  const _focus = merge({}, buttonStyles?.["_focus"] ?? {}, { zIndex: 1 })
+  const _focus = merge({}, styles?.["_focus"] ?? {}, { zIndex: 1 })
 
   const _className = cx("chakra-button", className)
 
@@ -116,17 +115,17 @@ export const Button = forwardRef<ButtonProps>(function Button(props, ref) {
       width={isFullWidth ? "100%" : undefined}
       data-active={dataAttr(isActive)}
       data-loading={dataAttr(isLoading)}
-      __css={buttonStyles}
+      __css={styles}
       className={_className}
       {...(!!group && { _focus })}
       {...rest}
     >
       {leftIcon && !isLoading && (
-        <ButtonIcon __css={styles.icon} mr={iconSpacing} children={leftIcon} />
+        <ButtonIcon mr={iconSpacing} children={leftIcon} />
       )}
       {isLoading && (
         <ButtonSpinner
-          __css={styles.spinner}
+          __css={{ fontSize: "1em", lineHeight: "normal" }}
           spacing={iconSpacing}
           label={loadingText}
           children={spinner}
@@ -136,7 +135,7 @@ export const Button = forwardRef<ButtonProps>(function Button(props, ref) {
         ? loadingText || <chakra.span opacity={0} children={children} />
         : children}
       {rightIcon && !isLoading && (
-        <ButtonIcon __css={styles.icon} ml={iconSpacing} children={rightIcon} />
+        <ButtonIcon ml={iconSpacing} children={rightIcon} />
       )}
     </StyledButton>
   )

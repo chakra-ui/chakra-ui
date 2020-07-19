@@ -1,11 +1,11 @@
 import {
   getColor,
   mode,
-  styleConfig,
+  multiStyleConfig,
   transparentize,
 } from "@chakra-ui/theme-tools"
 
-const alert = styleConfig({
+const alert = multiStyleConfig({
   parts: {
     container: "the alert container",
     title: "the alert title",
@@ -13,17 +13,17 @@ const alert = styleConfig({
   },
   baseStyle: {
     container: {
-      paddingX: 4,
-      paddingY: 3,
+      px: 4,
+      py: 3,
     },
     title: {
       fontWeight: "bold",
       lineHeight: "normal",
     },
     icon: {
-      marginRight: 3,
-      width: 5,
-      height: 5,
+      mr: 3,
+      w: 5,
+      h: 5,
     },
   },
   variants: {
@@ -39,7 +39,7 @@ const alert = styleConfig({
       const { colorScheme: c } = props
       return {
         container: {
-          paddingLeft: 3,
+          pl: 3,
           borderLeft: "4px solid",
           borderColor: mode(`${c}.500`, `${c}.200`)(props),
           bg: getBg(props),
@@ -54,7 +54,7 @@ const alert = styleConfig({
       const { colorScheme: c } = props
       return {
         container: {
-          paddingTop: 2,
+          pt: 2,
           borderTop: "4px solid",
           borderColor: mode(`${c}.500`, `${c}.200`)(props),
           bg: getBg(props),

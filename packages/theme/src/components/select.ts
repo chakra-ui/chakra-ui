@@ -1,7 +1,7 @@
-import { styleConfig } from "@chakra-ui/theme-tools"
+import { multiStyleConfig } from "@chakra-ui/theme-tools"
 import input from "./input"
 
-const select = styleConfig({
+const select = multiStyleConfig({
   parts: {
     field: "the select field itself",
     icon: "the select field icon",

@@ -1,6 +1,6 @@
-import { mode, styleConfig } from "@chakra-ui/theme-tools"
+import { mode, multiStyleConfig } from "@chakra-ui/theme-tools"
 
-const checkbox = styleConfig({
+const checkbox = multiStyleConfig({
   parts: {
     control: "the main checkbox container",
     label: "the checkbox label",

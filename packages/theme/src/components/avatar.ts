@@ -1,7 +1,12 @@
-import { isDark, mode, randomColor, styleConfig } from "@chakra-ui/theme-tools"
+import {
+  isDark,
+  mode,
+  randomColor,
+  multiStyleConfig,
+} from "@chakra-ui/theme-tools"
 import themeSizes from "../foundations/sizes"
 
-const avatar = styleConfig({
+const avatar = multiStyleConfig({
   parts: {
     container: "the avatar wrapper",
     excessLabel: "for avatar group, the excess avatar label",

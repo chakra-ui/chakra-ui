@@ -1,6 +1,6 @@
-import { styleConfig } from "@chakra-ui/theme-tools"
+import { multiStyleConfig } from "@chakra-ui/theme-tools"
 
-const breadcrumb = styleConfig({
+const breadcrumb = multiStyleConfig({
   parts: {
     link: "the breadcrumb",
     separator: "the separator between each link",

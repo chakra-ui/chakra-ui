@@ -1,4 +1,4 @@
-import { getColor, mode, styleConfig } from "@chakra-ui/theme-tools"
+import { getColor, mode, multiStyleConfig } from "@chakra-ui/theme-tools"
 
 const size = {
   lg: {
@@ -26,7 +26,7 @@ const size = {
   },
 }
 
-const input = styleConfig({
+const input = multiStyleConfig({
   parts: {
     field: "the input field itself",
     addon: "the left and right input addon",
@@ -95,7 +95,7 @@ const input = styleConfig({
       }
     },
 
-    filled(props) {
+    filled: function (props) {
       const { theme } = props
       const { focusBorderColor: fc, errorBorderColor: ec } = getDefaults(props)
 

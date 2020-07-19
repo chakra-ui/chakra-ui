@@ -1,6 +1,6 @@
-import { mode, styleConfig } from "@chakra-ui/theme-tools"
+import { mode, multiStyleConfig } from "@chakra-ui/theme-tools"
 
-const _switch = styleConfig({
+const Switch = multiStyleConfig({
   parts: {
     track: "the switch outer track",
     thumb: "the switch inner circle",
@@ -43,9 +43,12 @@ const _switch = styleConfig({
       thumb: {
         width: "0.75rem",
         height: "0.75rem",
-        _checked: { transform: "translateX(0.625rem)" },
+        _checked: {
+          transform: "translateX(0.625rem)",
+        },
       },
     },
+
     md: {
       track: {
         width: "1.875rem",
@@ -54,9 +57,12 @@ const _switch = styleConfig({
       thumb: {
         width: "1rem",
         height: "1rem",
-        _checked: { transform: "translateX(0.875rem)" },
+        _checked: {
+          transform: "translateX(0.875rem)",
+        },
       },
     },
+
     lg: {
       track: {
         width: "2.875rem",
@@ -65,7 +71,9 @@ const _switch = styleConfig({
       thumb: {
         width: "1.5rem",
         height: "1.5rem",
-        _checked: { transform: "translateX(1.375rem)" },
+        _checked: {
+          transform: "translateX(1.375rem)",
+        },
       },
     },
   },
@@ -76,4 +84,4 @@ const _switch = styleConfig({
   },
 })
 
-export default _switch
+export default Switch

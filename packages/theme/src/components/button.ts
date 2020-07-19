@@ -1,43 +1,28 @@
 import { mode, styleConfig, transparentize } from "@chakra-ui/theme-tools"
 
 const button = styleConfig({
-  parts: {
-    container: "the button container",
-    icon: "the button left and right icon",
-    spinner: "button spinner when its button",
-  },
-
   baseStyle: {
-    container: {
-      lineHeight: "1.2",
-      borderRadius: "md",
-      fontWeight: "semibold",
-      _focus: {
-        boxShadow: "outline",
-      },
-      _disabled: {
-        opacity: 0.4,
-        cursor: "not-allowed",
-        boxShadow: "none",
-      },
+    lineHeight: "1.2",
+    borderRadius: "md",
+    fontWeight: "semibold",
+    _focus: {
+      boxShadow: "outline",
     },
-    spinner: {
-      fontSize: "1em",
-      lineHeight: "normal",
+    _disabled: {
+      opacity: 0.4,
+      cursor: "not-allowed",
+      boxShadow: "none",
     },
   },
-
   variants: {
     ghost: function (props) {
       const { colorScheme: c, theme } = props
 
       if (c === "gray") {
         return {
-          container: {
-            color: mode(`inherit`, `whiteAlpha.900`)(props),
-            _hover: { bg: mode(`gray.100`, `whiteAlpha.200`)(props) },
-            _active: { bg: mode(`gray.200`, `whiteAlpha.300`)(props) },
-          },
+          color: mode(`inherit`, `whiteAlpha.900`)(props),
+          _hover: { bg: mode(`gray.100`, `whiteAlpha.200`)(props) },
+          _active: { bg: mode(`gray.200`, `whiteAlpha.300`)(props) },
         }
       }
 
@@ -45,15 +30,13 @@ const button = styleConfig({
       const darkActiveBg = transparentize(`${c}.200`, 0.24)(theme)
 
       return {
-        container: {
-          color: mode(`${c}.500`, `${c}.200`)(props),
-          bg: "transparent",
-          _hover: {
-            bg: mode(`${c}.50`, darkHoverBg)(props),
-          },
-          _active: {
-            bg: mode(`${c}.100`, darkActiveBg)(props),
-          },
+        color: mode(`${c}.500`, `${c}.200`)(props),
+        bg: "transparent",
+        _hover: {
+          bg: mode(`${c}.50`, darkHoverBg)(props),
+        },
+        _active: {
+          bg: mode(`${c}.100`, darkActiveBg)(props),
         },
       }
     },
@@ -65,17 +48,15 @@ const button = styleConfig({
       const activeBg = transparentize(`${c}.200`, 0.24)(theme)
 
       return {
-        container: {
-          border: "1px solid",
-          borderColor: c === "gray" ? borderColor : "currentColor",
-          color: mode(`${c}.500`, `${c}.200`)(props),
-          bg: "transparent",
-          _hover: {
-            bg: mode(`${c}.50`, hoverBg)(props),
-          },
-          _active: {
-            bg: mode(`${c}.100`, activeBg)(props),
-          },
+        border: "1px solid",
+        borderColor: c === "gray" ? borderColor : "currentColor",
+        color: mode(`${c}.500`, `${c}.200`)(props),
+        bg: "transparent",
+        _hover: {
+          bg: mode(`${c}.50`, hoverBg)(props),
+        },
+        _active: {
+          bg: mode(`${c}.100`, activeBg)(props),
         },
       }
     },
@@ -85,85 +66,67 @@ const button = styleConfig({
 
       if (c === "gray")
         return {
-          container: {
-            bg: mode(`gray.100`, `whiteAlpha.200`)(props),
-            _hover: { bg: mode(`gray.200`, `whiteAlpha.300`)(props) },
-            _active: { bg: mode(`gray.300`, `whiteAlpha.400`)(props) },
-          },
+          bg: mode(`gray.100`, `whiteAlpha.200`)(props),
+          _hover: { bg: mode(`gray.200`, `whiteAlpha.300`)(props) },
+          _active: { bg: mode(`gray.300`, `whiteAlpha.400`)(props) },
         }
 
       return {
-        container: {
-          bg: mode(`${c}.500`, `${c}.200`)(props),
-          color: mode(`white`, `gray.800`)(props),
-          _hover: { bg: mode(`${c}.600`, `${c}.300`)(props) },
-          _active: { bg: mode(`${c}.700`, `${c}.400`)(props) },
-        },
+        bg: mode(`${c}.500`, `${c}.200`)(props),
+        color: mode(`white`, `gray.800`)(props),
+        _hover: { bg: mode(`${c}.600`, `${c}.300`)(props) },
+        _active: { bg: mode(`${c}.700`, `${c}.400`)(props) },
       }
     },
 
     link: function (props) {
       const { colorScheme: c } = props
       return {
-        container: {
-          padding: 0,
-          height: "auto",
-          lineHeight: "normal",
-          color: mode(`${c}.500`, `${c}.200`)(props),
-          _hover: { textDecoration: "underline" },
-          _active: {
-            color: mode(`${c}.700`, `${c}.500`)(props),
-          },
+        padding: 0,
+        height: "auto",
+        lineHeight: "normal",
+        color: mode(`${c}.500`, `${c}.200`)(props),
+        _hover: { textDecoration: "underline" },
+        _active: {
+          color: mode(`${c}.700`, `${c}.500`)(props),
         },
       }
     },
 
     unstyled: {
-      container: {
-        bg: "none",
-        border: 0,
-        color: "inherit",
-        display: "inline",
-        font: "inherit",
-        lineHeight: "inherit",
-        margin: 0,
-        padding: 0,
-      },
+      bg: "none",
+      color: "inherit",
+      display: "inline",
+      lineHeight: "inherit",
+      m: 0,
+      p: 0,
     },
   },
 
   sizes: {
     lg: {
-      container: {
-        height: 12,
-        minWidth: 12,
-        fontSize: "lg",
-        paddingX: 6,
-      },
+      h: 12,
+      minW: 12,
+      fontSize: "lg",
+      px: 6,
     },
     md: {
-      container: {
-        height: 10,
-        minWidth: 10,
-        fontSize: "md",
-        paddingX: 4,
-      },
+      h: 10,
+      minW: 10,
+      fontSize: "md",
+      px: 4,
     },
     sm: {
-      container: {
-        height: 8,
-        minWidth: 8,
-        fontSize: "sm",
-        paddingX: 3,
-      },
+      h: 8,
+      minW: 8,
+      fontSize: "sm",
+      px: 3,
     },
     xs: {
-      container: {
-        height: 6,
-        minWidth: 6,
-        fontSize: "xs",
-        paddingX: 2,
-      },
+      h: 6,
+      minW: 6,
+      fontSize: "xs",
+      px: 2,
     },
   },
 

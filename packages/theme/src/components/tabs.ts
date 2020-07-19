@@ -1,6 +1,6 @@
-import { getColor, mode, styleConfig } from "@chakra-ui/theme-tools"
+import { getColor, mode, multiStyleConfig } from "@chakra-ui/theme-tools"
 
-const tabs = styleConfig({
+const tabs = multiStyleConfig({
   parts: {
     tablist: "the tab list or button group",
     tab: "the tab button",
@@ -138,7 +138,6 @@ const tabs = styleConfig({
             bg: getColor(theme, `${c}.100`),
           },
         },
-        tablist: {},
       }
     },
 

@@ -1,7 +1,7 @@
-import { styleConfig } from "@chakra-ui/theme-tools"
+import { multiStyleConfig } from "@chakra-ui/theme-tools"
 import input from "./input"
 
-const pinInput = styleConfig({
+const pinInput = multiStyleConfig({
   parts: {
     field: "the pin-input field",
   },

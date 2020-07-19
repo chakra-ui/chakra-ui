@@ -1,6 +1,6 @@
-import { styleConfig } from "@chakra-ui/theme-tools"
+import { multiStyleConfig } from "@chakra-ui/theme-tools"
 
-const stat = styleConfig({
+const stat = multiStyleConfig({
   parts: {
     label: "the stat label",
     number: "the numeric value of the stat",

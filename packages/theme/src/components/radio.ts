@@ -1,7 +1,7 @@
-import { styleConfig } from "@chakra-ui/theme-tools"
+import { multiStyleConfig } from "@chakra-ui/theme-tools"
 import checkbox from "./checkbox"
 
-const radio = styleConfig({
+const radio = multiStyleConfig({
   parts: {
     control: "the radio input container",
     label: "the radio label",

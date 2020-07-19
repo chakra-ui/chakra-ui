@@ -2,10 +2,10 @@ import {
   generateStripe,
   getColor,
   mode,
-  styleConfig,
+  multiStyleConfig,
 } from "@chakra-ui/theme-tools"
 
-const progress = styleConfig({
+const progress = multiStyleConfig({
   parts: {
     track: "the linear progress track",
     filledTrack: "the inner filled track",

@@ -5,7 +5,7 @@ import {
   StylesProvider,
   useStyles,
   ThemingProps,
-  useStyleConfig,
+  useMultiStyleConfig,
 } from "@chakra-ui/system"
 import { createContext, cx } from "@chakra-ui/utils"
 import * as React from "react"
@@ -59,7 +59,7 @@ export const Alert = React.forwardRef(function Alert(
   const { status = "info", className, ...rest } = props
   const { colorScheme } = STATUSES[status]
 
-  const styles = useStyleConfig("Alert", { ...props, colorScheme })
+  const styles = useMultiStyleConfig("Alert", { ...props, colorScheme })
   const _className = cx("chakra-alert", className)
 
   return (

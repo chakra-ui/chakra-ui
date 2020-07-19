@@ -1,7 +1,7 @@
-import { mode, styleConfig } from "@chakra-ui/theme-tools"
+import { mode, multiStyleConfig } from "@chakra-ui/theme-tools"
 import input from "./input"
 
-const numberInput = styleConfig({
+const numberInput = multiStyleConfig({
   parts: {
     field: "the input field",
     stepper: "desktop - the increment and decrement button",

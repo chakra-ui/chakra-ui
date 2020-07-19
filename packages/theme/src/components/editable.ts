@@ -1,6 +1,6 @@
-import { styleConfig } from "@chakra-ui/theme-tools"
+import { multiStyleConfig } from "@chakra-ui/theme-tools"
 
-const editable = styleConfig({
+const editable = multiStyleConfig({
   parts: {
     preview: "the editable text preview",
     input: "the editable input field",

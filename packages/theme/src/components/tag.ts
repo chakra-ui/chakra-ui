@@ -1,7 +1,7 @@
-import { styleConfig } from "@chakra-ui/theme-tools"
+import { multiStyleConfig } from "@chakra-ui/theme-tools"
 import badge from "./badge"
 
-const tag = styleConfig({
+const tag = multiStyleConfig({
   parts: {
     container: "the tag container",
     label: "the tag inner text",
@@ -67,7 +67,17 @@ const tag = styleConfig({
     },
   },
 
-  variants: badge.variants,
+  variants: {
+    subtle: function (props) {
+      return { container: badge.variants?.subtle(props) }
+    },
+    solid: function (props) {
+      return { container: badge.variants?.solid(props) }
+    },
+    outline: function (props) {
+      return { container: badge.variants?.outline(props) }
+    },
+  },
 
   defaultProps: {
     size: "lg",
