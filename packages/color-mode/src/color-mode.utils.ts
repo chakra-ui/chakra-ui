@@ -10,11 +10,16 @@ const classNames = {
 
 export type ColorMode = "light" | "dark"
 
+export interface StorageManager {
+  get(init?: ColorMode): ColorMode | undefined
+  set(value: ColorMode): void
+}
+
 /**
  * Simple object for handle read-write for localStorage
  */
-export const storage = {
-  get(init?: ColorMode) {
+export const localStorageManager: StorageManager = {
+  get(init?) {
     const exist =
       isStorageSupported && !!window.localStorage.getItem(storageKey)
 
@@ -22,7 +27,7 @@ export const storage = {
 
     return value as ColorMode | undefined
   },
-  set(value: ColorMode) {
+  set(value) {
     if (isStorageSupported) {
       window.localStorage.setItem(storageKey, value)
     }
