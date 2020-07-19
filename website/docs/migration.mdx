@@ -85,6 +85,17 @@ Chakra moved all icons to a separate package `@chakra-ui/icons`. We recommend
 using `react-icons` in your projects considering it has a robust set of icons.
 However, you can still install this package.
 
+#### Usage with TypeScript
+
+Please note that when adding Chakra UI to a TypeScript project, a minimum
+TypeScript version of `3.8.0` is required.
+
+If you're adding Chakra UI to a `create-react-app` project, this means you'll
+need to manually upgrade `typescript` from `~3.7.2` to `~3.8.0`. See
+[the guide for our official `create-react-app`](../guides/cra-templates)
+templates if you'd like to generate a Chakra-enabled `create-react-app` project
+from scratch.
+
 ### 2. Adding the default theme
 
 Chakra no longer comes with the default theme pre-installed, so you'll need to
