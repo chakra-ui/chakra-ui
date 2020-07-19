@@ -2,7 +2,7 @@ const { sortPostNodes } = require("./utils")
 
 test("sortPostNodes", () => {
   const nodes = [
-    { frontmatter: { title: "B" }, fields: { collection: "utilities" } },
+    { frontmatter: { title: "B" }, fields: { collection: "hooks" } },
     {
       frontmatter: { title: "A", order: 1 },
       fields: { collection: "components" },
@@ -10,7 +10,7 @@ test("sortPostNodes", () => {
     { frontmatter: { title: "B" }, fields: { collection: "components" } },
     { frontmatter: { title: "C" }, fields: { collection: "components" } },
     { frontmatter: { title: "B", order: 2 }, fields: { collection: "main" } },
-    { frontmatter: { title: "A" }, fields: { collection: "utilities" } },
+    { frontmatter: { title: "A" }, fields: { collection: "hooks" } },
     { frontmatter: { title: "A" }, fields: { collection: "theming" } },
     { frontmatter: { title: "A" }, fields: { collection: "layout" } },
     { frontmatter: { title: "A", order: 1 }, fields: { collection: "main" } },
