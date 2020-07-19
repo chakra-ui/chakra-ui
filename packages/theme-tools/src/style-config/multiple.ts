@@ -1,7 +1,7 @@
 import { SystemStyleObject } from "@chakra-ui/system"
 import { Dict } from "@chakra-ui/utils"
 
-export interface StyleConfig<
+export interface MultiStyleConfig<
   P,
   B extends PartsFn<P>,
   S extends Base<P>,
@@ -28,13 +28,13 @@ type Base<P> = {
   [value: string]: PartsFn<P> | undefined
 }
 
-export function styleConfig<
+export function multiStyleConfig<
   P,
   B extends PartsFn<P>,
   S extends Base<P>,
   V extends Base<P>
->(config: StyleConfig<P, B, S, V>) {
-  return config as StyleConfig<P, B, S, V> & {
+>(config: MultiStyleConfig<P, B, S, V>) {
+  return config as MultiStyleConfig<P, B, S, V> & {
     propTypes: { variant?: keyof V; size?: keyof S; colorScheme?: string }
   }
 }
