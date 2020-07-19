@@ -14,9 +14,14 @@ const tabs = styleConfig({
       tab: {
         flex: isFitted ? 1 : undefined,
         transition: "all 0.2s",
-        _focus: { zIndex: 1, boxShadow: "outline" },
+        _focus: {
+          zIndex: 1,
+          boxShadow: "outline",
+        },
       },
-      tablist: { justifyContent: alignments[align] },
+      tablist: {
+        justifyContent: alignments[align],
+      },
       tabpanel: { padding: 4 },
     }
   },

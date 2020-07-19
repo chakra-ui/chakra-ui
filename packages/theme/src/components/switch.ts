@@ -14,8 +14,13 @@ const _switch = styleConfig({
         padding: "2px",
         transition: "all 120ms",
         bg: mode("gray.300", "whiteAlpha.400")(props),
-        _focus: { boxShadow: "outline" },
-        _disabled: { opacity: 0.4, cursor: "not-allowed" },
+        _focus: {
+          boxShadow: "outline",
+        },
+        _disabled: {
+          opacity: 0.4,
+          cursor: "not-allowed",
+        },
         _checked: {
           bg: mode(`${c}.500`, `${c}.200`)(props),
         },

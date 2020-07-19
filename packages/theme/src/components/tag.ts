@@ -15,7 +15,9 @@ const tag = styleConfig({
         boxShadow: "outline",
       },
     },
-    label: { lineHeight: 1.2 },
+    label: {
+      lineHeight: 1.2,
+    },
     closeButton: {
       fontSize: "1em",
       width: "1.25rem",
@@ -23,7 +25,9 @@ const tag = styleConfig({
       borderRadius: "sm",
       marginLeft: "0.375rem",
       opacity: 0.5,
-      _disabled: { opacity: 0.4 },
+      _disabled: {
+        opacity: 0.4,
+      },
       _focus: {
         boxShadow: "outline",
         bg: "rgba(0, 0, 0, 0.14)",
@@ -36,29 +40,29 @@ const tag = styleConfig({
   sizes: {
     sm: {
       container: {
-        minHeight: "1.25rem",
-        minWidth: "1.25rem",
+        minH: "1.25rem",
+        minW: "1.25rem",
         fontSize: "xs",
-        paddingX: 1,
+        px: 1,
         borderRadius: "sm",
       },
     },
     md: {
       container: {
-        minHeight: "1.5rem",
-        minWidth: "1.5rem",
+        minH: "1.5rem",
+        minW: "1.5rem",
         fontSize: "sm",
         borderRadius: "md",
-        paddingX: 2,
+        px: 2,
       },
     },
     lg: {
       container: {
-        minHeight: 8,
-        minWidth: 8,
+        minH: 8,
+        minW: 8,
         fontSize: "md",
         borderRadius: "md",
-        paddingX: 3,
+        px: 3,
       },
     },
   },
