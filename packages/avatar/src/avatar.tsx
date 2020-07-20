@@ -1,16 +1,23 @@
 import { useImage } from "@chakra-ui/image"
 import {
   chakra,
-  PropsOf,
-  SystemProps,
-  useStyles,
-  StylesProvider,
-  useStyleConfig,
-  ThemingProps,
   omitThemingProps,
+  PropsOf,
+  StylesProvider,
+  SystemProps,
+  ThemingProps,
+  useMultiStyleConfig,
+  useStyles,
+  SystemStyleObject,
 } from "@chakra-ui/system"
-import { cx, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import { __DEV__ } from "@chakra-ui/utils"
+import React, {
+  cloneElement,
+  forwardRef,
+  ReactElement,
+  ReactNode,
+  Ref,
+} from "react"
 
 interface AvatarOptions {
   /**
@@ -33,7 +40,7 @@ interface AvatarOptions {
   /**
    * The badge at the bottom right corner of the avatar.
    */
-  children?: React.ReactNode
+  children?: ReactNode
   /**
    * The image url of the `Avatar`
    */
@@ -54,7 +61,7 @@ interface AvatarOptions {
    * The default avatar used as fallback when `name`, and `src`
    * is not specified.
    */
-  icon?: React.ReactElement
+  icon?: ReactElement
   /**
    * Function to get the initials to display
    */
@@ -64,45 +71,31 @@ interface AvatarOptions {
 export type AvatarBadgeProps = PropsOf<typeof chakra.div>
 
 /**
- * AvatarBadge
- *
- * React component used to show extra badge to the top-right
+ * AvatarBadge used to show extra badge to the top-right
  * or bottom-right corner of an avatar.
  */
-export const AvatarBadge = React.forwardRef(function AvatarBadge(
+export const AvatarBadge = forwardRef(function AvatarBadge(
   props: AvatarBadgeProps,
-  ref: React.Ref<any>,
+  ref: Ref<any>,
 ) {
-  const { className, ...rest } = props
-  const _className = cx("chakra-avatar__badge", className)
   const styles = useStyles()
+  const badgeStyles = {
+    position: "absolute",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    right: "0",
+    bottom: "0",
+    ...styles.badge,
+  }
 
-  return (
-    <chakra.div
-      {...rest}
-      ref={ref}
-      className={_className}
-      __css={{
-        position: "absolute",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        right: "0",
-        bottom: "0",
-        ...styles.badge,
-      }}
-    />
-  )
+  return <chakra.div ref={ref} {...props} __css={badgeStyles} />
 })
 
 if (__DEV__) {
   AvatarBadge.displayName = "AvatarBadge"
 }
 
-/**
- * Gets the initials of a user based on the name
- * @param name the name passed
- */
 function initials(name: string) {
   const [firstName, lastName] = name.split(" ")
   return firstName && lastName
@@ -117,17 +110,11 @@ type InitialsProps = PropsOf<typeof chakra.div> &
  * The avatar name container
  */
 function Initials(props: InitialsProps) {
-  const { name, getInitials, className, ...rest } = props
-  const _className = cx("chakra-avatar__name", className)
+  const { name, getInitials, ...rest } = props
   const styles = useStyles()
 
   return (
-    <chakra.div
-      aria-label={name}
-      className={_className}
-      {...rest}
-      __css={styles.label}
-    >
+    <chakra.div aria-label={name} {...rest} __css={styles.label}>
       {name ? getInitials?.(name) : null}
     </chakra.div>
   )
@@ -157,7 +144,7 @@ function DefaultIcon(props: PropsOf<"svg">) {
   )
 }
 
-export const baseStyle: SystemProps = {
+export const baseStyle: SystemStyleObject = {
   display: "inline-flex",
   alignItems: "center",
   justifyContent: "center",
@@ -168,26 +155,19 @@ export const baseStyle: SystemProps = {
   flexShrink: 0,
 }
 
-const StyledAvatar = chakra("span", {
-  baseStyle,
-})
-
-export type AvatarProps = PropsOf<typeof StyledAvatar> &
+export type AvatarProps = PropsOf<typeof chakra.span> &
   AvatarOptions &
   ThemingProps
 
 /**
- * Avatar
- *
- * React component that renders an user avatar with
+ * Avatar component that renders an user avatar with
  * support for fallback avatar and name-only avatars
  */
-export const Avatar = React.forwardRef(function Avatar(
+export const Avatar = forwardRef(function Avatar(
   props: AvatarProps,
-  ref: React.Ref<any>,
+  ref: Ref<any>,
 ) {
-  const styles = useStyleConfig("Avatar", props)
-  const realProps = omitThemingProps(props)
+  const styles = useMultiStyleConfig("Avatar", props)
 
   const {
     src,
@@ -197,9 +177,9 @@ export const Avatar = React.forwardRef(function Avatar(
     onError,
     getInitials = initials,
     icon = <DefaultIcon />,
-    className,
+    children,
     ...rest
-  } = realProps
+  } = omitThemingProps(props)
 
   /**
    * use the image hook to only show the image when it has loaded
@@ -215,13 +195,14 @@ export const Avatar = React.forwardRef(function Avatar(
     if (src && hasLoaded) {
       return (
         <chakra.img
-          className="chakra-avatar__img"
-          width="100%"
-          height="100%"
-          objectFit="cover"
-          borderRadius={borderRadius}
           src={src}
           alt={name}
+          __css={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            borderRadius,
+          }}
         />
       )
     }
@@ -239,29 +220,25 @@ export const Avatar = React.forwardRef(function Avatar(
       return name ? (
         <Initials getInitials={getInitials} name={name} />
       ) : (
-        React.cloneElement(icon, {
-          role: "img",
-          className: cx("chakra-avatar__icon", icon.props.className),
-        })
+        cloneElement(icon, { role: "img" })
       )
     }
   }
 
+  const avatarStyles = {
+    borderRadius,
+    borderWidth: showBorder ? "2px" : undefined,
+    ...baseStyle,
+    ...styles.container,
+  }
+
   return (
-    <StyledAvatar
-      ref={ref}
-      borderRadius={borderRadius}
-      borderWidth={showBorder ? "2px" : undefined}
-      name={name}
-      className={cx("chakra-avatar", className)}
-      __css={styles.container}
-      {...rest}
-    >
+    <chakra.span ref={ref} name={name} {...rest} __css={avatarStyles}>
       <StylesProvider value={styles}>
         {getAvatar()}
-        {props.children}
+        {children}
       </StylesProvider>
-    </StyledAvatar>
+    </chakra.span>
   )
 })
 

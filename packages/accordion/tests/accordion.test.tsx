@@ -56,12 +56,10 @@ test("uncontrolled: toggles the accordion on click", async () => {
 
   userEvent.click(trigger)
   expect(trigger).toHaveAttribute("aria-expanded", "true")
-  await wait()
 
   // you can't toggle an accordion without passing `allowToggle`
   userEvent.click(trigger)
   expect(trigger).toHaveAttribute("aria-expanded", "true")
-  await wait()
 })
 
 // test that arrow up & down moves focus to next/previous accordion

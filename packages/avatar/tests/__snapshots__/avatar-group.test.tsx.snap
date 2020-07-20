@@ -21,13 +21,8 @@ exports[`AvatarGroup renders correctly 1`] = `
 }
 
 .emotion-0 {
-  background: #A0AEC0;
-  color: #FFFFFF;
-  border-color: #FFFFFF;
-  vertical-align: top;
-  font-size: calc(3rem / 2.5);
-  width: 3rem;
-  height: 3rem;
+  border-radius: 9999px;
+  border-width: 2px;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -47,20 +42,23 @@ exports[`AvatarGroup renders correctly 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  border-radius: 9999px;
-  border-width: 2px;
+  background: #A0AEC0;
+  color: #FFFFFF;
+  vertical-align: top;
+  width: 3rem;
+  height: 3rem;
+  font-size: calc(3rem / 2.5);
   margin-right: 0;
 }
 
 <div
-    class="chakra-avatar-group emotion-1"
+    class="emotion-1"
     role="group"
   >
     <span
-      class="chakra-avatar emotion-0"
+      class="emotion-0"
     >
       <svg
-        class="chakra-avatar__icon"
         color="#fff"
         role="img"
         style="width: 100%; height: 100%;"

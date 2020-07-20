@@ -3,11 +3,6 @@
 exports[`should render correctly 1`] = `
 <DocumentFragment>
   .emotion-4 {
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-  background: #CEEDFF;
   width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -19,6 +14,11 @@ exports[`should render correctly 1`] = `
   align-items: center;
   position: relative;
   overflow: hidden;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  background: #CEEDFF;
 }
 
 .emotion-1 {
@@ -51,11 +51,11 @@ exports[`should render correctly 1`] = `
 }
 
 <div
-    class="chakra-alert emotion-4"
+    class="emotion-4"
     role="alert"
   >
     <span
-      class="chakra-alert__icon emotion-1"
+      class="emotion-1"
     >
       <svg
         class="chakra-icon emotion-0"
@@ -70,12 +70,12 @@ exports[`should render correctly 1`] = `
       </svg>
     </span>
     <div
-      class="chakra-alert__title emotion-2"
+      class="emotion-2"
     >
       Alert title
     </div>
     <div
-      class="chakra-alert__description emotion-3"
+      class="emotion-3"
     >
       Alert description
     </div>
