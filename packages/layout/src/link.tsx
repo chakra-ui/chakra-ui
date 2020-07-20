@@ -48,7 +48,7 @@ export const Link = forwardRef<LinkProps>(function Link(props, ref) {
       ref={ref}
       className={cx("chakra-link", className)}
       {...rest}
-      __css={styles.link}
+      __css={styles}
     />
   )
 })
