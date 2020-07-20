@@ -54,11 +54,9 @@ export const Tooltip = React.forwardRef(function Tooltip(
   ref: React.Ref<any>,
 ) {
   const styles = useStyleConfig("Tooltip", props)
-  const transitions = useTransitionConfig("Tooltip", props, {
-    container: "chakra-tooltip",
-  })
 
   const realProps = omitThemingProps(props)
+
   const {
     children,
     label,
@@ -117,23 +115,9 @@ export const Tooltip = React.forwardRef(function Tooltip(
   return (
     <>
       {trigger}
-      <HiddenTransition
-        classNames={transitions.container.className}
-        timeout={transitions.container.timeout}
-        appear
-        unmountOnExit
-        in={isOpen}
-        nodeRef={cssRef}
-      >
+      {isOpen && (
         <Portal>
-          <chakra.div
-            className={transitions.container.className}
-            {...tooltipProps}
-            __css={{
-              ...styles.container,
-              ...transitions.container.styles,
-            }}
-          >
+          <chakra.div {...tooltipProps} __css={styles}>
             {label}
             {hasAriaLabel && (
               <VisuallyHidden {...hiddenProps}>{ariaLabel}</VisuallyHidden>
@@ -142,15 +126,12 @@ export const Tooltip = React.forwardRef(function Tooltip(
               <chakra.div
                 className="chakra-tooltip__arrow"
                 {...getArrowProps()}
-                __css={{
-                  bg: "inherit",
-                  ...styles.arrow,
-                }}
+                __css={{ bg: "inherit" }}
               />
             )}
           </chakra.div>
         </Portal>
-      </HiddenTransition>
+      )}
     </>
   )
 })

@@ -272,7 +272,7 @@ export function useAccordionItem(props: UseAccordionItemProps) {
   ])
 
   const getButtonProps = useCallback(
-    (props: Dict = {}, ref: Ref<any>) => ({
+    (props: Dict = {}, ref: Ref<any> = null) => ({
       ...props,
       ref: mergeRefs(buttonRef, ref),
       id: buttonId,
@@ -287,7 +287,7 @@ export function useAccordionItem(props: UseAccordionItemProps) {
   )
 
   const getPanelProps = useCallback(
-    (props: Dict = {}, ref: Ref<any>) => ({
+    (props: Dict = {}, ref: Ref<any> = null) => ({
       ...props,
       ref,
       role: "region",
