@@ -4,7 +4,7 @@ import {
   forwardRef,
   PropsOf,
   ThemingProps,
-  useStyleConfig,
+  useMultiStyleConfig,
   StylesProvider,
   omitThemingProps,
   useStyles,
@@ -16,29 +16,24 @@ export type TagProps = PropsOf<typeof chakra.span> & ThemingProps
 
 /**
  * The tag component is used to label or categorize UI elements.
- *
  * To style the tag globally, change the styles in `theme.components.Tag`
- *
  * @see Docs https://chakra-ui.com/components/tag
  */
 export const Tag = forwardRef<TagProps>(function Tag(props, ref) {
-  const styles = useStyleConfig("Tag", props)
-  const tagProps = omitThemingProps(props)
+  const styles = useMultiStyleConfig("Tag", props)
+  const _props = omitThemingProps(props)
+
+  const containerStyles = {
+    display: "inline-flex",
+    verticalAlign: "top",
+    alignItems: "center",
+    maxWidth: "100%",
+    ...styles.container,
+  }
+
   return (
     <StylesProvider value={styles}>
-      <chakra.span
-        ref={ref}
-        {...tagProps}
-        __css={{
-          display: "inline-flex",
-          verticalAlign: "top",
-          alignItems: "center",
-          maxWidth: "100%",
-          fontWeight: "medium",
-          lineHeight: "1.2",
-          ...styles.container,
-        }}
-      />
+      <chakra.span ref={ref} {..._props} __css={containerStyles} />
     </StylesProvider>
   )
 })
@@ -110,20 +105,23 @@ export type TagCloseButtonProps = Omit<
  */
 export const TagCloseButton = (props: TagCloseButtonProps) => {
   const { isDisabled, children = <TagCloseIcon />, ...rest } = props
+
   const styles = useStyles()
+  const btnStyles = {
+    display: "flex",
+    alignItems: "center",
+    outline: "0",
+    transition: "all 0.2s",
+    ...styles.closeButton,
+  }
+
   return (
     <chakra.button
       {...rest}
       type="button"
       disabled={isDisabled}
       children={children}
-      __css={{
-        display: "flex",
-        alignItems: "center",
-        outline: "0",
-        transition: "all 0.2s",
-        ...styles.closeButton,
-      }}
+      __css={btnStyles}
     />
   )
 }

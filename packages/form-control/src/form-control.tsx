@@ -6,7 +6,7 @@ import {
   PropsOf,
   useStyles,
   StylesProvider,
-  useStyleConfig,
+  useMultiStyleConfig,
   ThemingProps,
   omitThemingProps,
 } from "@chakra-ui/system"
@@ -130,9 +130,7 @@ function useProvider(props: FormControlContext) {
 export type FormControlProps = FormControlContext & PropsOf<typeof chakra.div>
 
 /**
- * FormControl
- *
- * React component that provides context such as
+ * FormControl provides context such as
  * `isInvalid`, `isDisabled`, and `isRequired` to form elements.
  *
  * This is commonly used in form elements such as `input`,
@@ -142,7 +140,7 @@ export const FormControl = forwardRef<FormControlProps>(function FormControl(
   props,
   ref,
 ) {
-  const styles = useStyleConfig("Form", props)
+  const styles = useMultiStyleConfig("Form", props)
   const rest = omitThemingProps(props)
   const { htmlProps, ...context } = useProvider(rest)
 
@@ -184,7 +182,7 @@ export const FormLabel = forwardRef<FormLabelProps>(function FormLabel(
   props,
   ref,
 ) {
-  const styles = useStyleConfig("FormLabel", props)
+  const styles = useMultiStyleConfig("FormLabel", props)
 
   const { className, ...rest } = omitThemingProps(props)
   const ownProps = useFormControlLabel(rest)

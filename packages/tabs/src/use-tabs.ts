@@ -14,7 +14,7 @@ import {
   mergeRefs,
   createContext,
 } from "@chakra-ui/utils"
-import * as React from "react"
+import { cloneElement, useState, useRef, useEffect } from "react"
 
 export interface UseTabsProps {
   /**
@@ -78,7 +78,7 @@ export function useTabs(props: UseTabsProps) {
    *
    * This is why we need to keep track of the `focusedIndex` and `selectedIndex`
    */
-  const [focusedIndex, setFocusedIndex] = React.useState(defaultIndex ?? 0)
+  const [focusedIndex, setFocusedIndex] = useState(defaultIndex ?? 0)
 
   const [selectedIndex, setSelectedIndex] = useControllableState({
     defaultValue: defaultIndex ?? 0,
@@ -94,7 +94,7 @@ export function useTabs(props: UseTabsProps) {
   /**
    * Sync focused `index` with controlled `selectedIndex` (which is the `props.index`)
    */
-  React.useEffect(() => {
+  useEffect(() => {
     if (!isUndefined(index)) {
       setFocusedIndex(index)
     }
@@ -154,13 +154,13 @@ export function useTabs(props: UseTabsProps) {
 
 export type UseTabsReturn = Omit<ReturnType<typeof useTabs>, "htmlProps">
 
-const [TabsContextProvider, useTabsContext] = createContext<UseTabsReturn>({
+const [TabsProvider, useTabsContext] = createContext<UseTabsReturn>({
   name: "TabsContext",
   errorMessage:
     "useTabsContext: `context` is undefined. Seems you forgot to wrap all tabs components within <Tabs />",
 })
 
-export { TabsContextProvider }
+export { TabsProvider }
 
 type Child = React.ReactElement<any>
 
@@ -264,7 +264,7 @@ export function useTab<P extends UseTabProps>(
     selectedIndex,
   } = useTabsContext()
 
-  const ref = React.useRef<HTMLElement>(null)
+  const ref = useRef<HTMLElement>(null)
 
   /**
    * Think of `useDescendant` as the function that registers tab node
@@ -346,7 +346,7 @@ export function useTabPanels<P extends UseTabPanelsProps>(props: P) {
   const validChildren = getValidChildren(props.children)
 
   const children = validChildren.map((child, index) =>
-    React.cloneElement(child as Child, {
+    cloneElement(child as Child, {
       isSelected: index === selectedIndex,
       id: makeTabPanelId(id, index),
     }),
@@ -388,12 +388,12 @@ export function useTabIndicator(): React.CSSProperties {
   const isVertical = orientation === "vertical"
 
   // Get the clientRect of the selected tab
-  const [rect, setRect] = React.useState(() => {
+  const [rect, setRect] = useState(() => {
     if (isHorizontal) return { left: 0, width: 0 }
     if (isVertical) return { top: 0, height: 0 }
   })
 
-  const [hasMeasured, setHasMeasured] = React.useState(false)
+  const [hasMeasured, setHasMeasured] = useState(false)
 
   // Update the selected tab rect when the selectedIndex changes
   useSafeLayoutEffect(() => {

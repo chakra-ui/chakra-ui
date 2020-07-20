@@ -2,7 +2,7 @@ import {
   chakra,
   PropsOf,
   ThemingProps,
-  useStyleConfig,
+  useMultiStyleConfig,
   omitThemingProps,
   StylesProvider,
 } from "@chakra-ui/system"
@@ -15,7 +15,7 @@ export const InputGroup = React.forwardRef(function InputGroup(
   props: InputGroupProps,
   ref: React.Ref<any>,
 ) {
-  const styles = useStyleConfig("Input", props)
+  const styles = useMultiStyleConfig("Input", props)
   const { children, className, ...rest } = omitThemingProps(props)
 
   const _className = cx("chakra-input__group", className)

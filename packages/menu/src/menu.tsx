@@ -3,10 +3,10 @@ import {
   forwardRef,
   omitThemingProps,
   PropsOf,
-  StylesProvider,
   SystemProps,
   ThemingProps,
-  useStyleConfig,
+  useMultiStyleConfig,
+  StylesProvider,
   useStyles,
 } from "@chakra-ui/system"
 import {
@@ -16,7 +16,7 @@ import {
   __DEV__,
   runIfFn,
 } from "@chakra-ui/utils"
-import * as React from "react"
+import React, { useMemo, Ref, ReactElement } from "react"
 import {
   MenuContextProvider,
   useIsSubMenu,
@@ -38,16 +38,16 @@ export type MenuProps = UseMenuProps &
   }
 
 /**
- * The wrapper component that provides context, state, and focus
- * management to its sub-components.
- *
- * It doesn't render any DOM node.
+ * Menu provides context, state, and focus management
+ * to its sub-components. It doesn't render any DOM node.
  */
 export function Menu(props: MenuProps) {
-  const styles = useStyleConfig("Menu", props)
+  const styles = useMultiStyleConfig("Menu", props)
   const realProps = omitThemingProps(props)
-  const menuCtx = useMenu(realProps)
-  const context = React.useMemo(() => menuCtx, [menuCtx])
+
+  const ctx = useMenu(realProps)
+  const context = useMemo(() => ctx, [ctx])
+
   return (
     <MenuContextProvider value={context}>
       <StylesProvider value={styles}>
@@ -65,12 +65,12 @@ if (__DEV__) {
 }
 
 export type MenuButtonProps = PropsOf<typeof chakra.button> & {
-  submenuIcon?: React.ReactElement
+  submenuIcon?: ReactElement
 }
 
 const StyledMenuButton = React.forwardRef(function StyledMenuButton(
   props: PropsOf<typeof chakra.button>,
-  ref: React.Ref<any>,
+  ref: Ref<any>,
 ) {
   const styles = useStyles()
   return (
@@ -110,15 +110,15 @@ export const MenuButton = forwardRef<MenuButtonProps>(function MenuButton(
   props,
   ref,
 ) {
-  const { children, submenuIcon, as: Comp, ...rest } = props
+  const { children, submenuIcon, as: Comp, ...otherProps } = props
 
-  const ownProps = useMenuButton(rest)
+  const ownProps = useMenuButton(otherProps)
   const ownRef = mergeRefs(ref, ownProps.ref)
 
   const isSubmenu = useIsSubMenu()
-  const MenuComp = isSubmenu ? StyledMenuItem : StyledMenuButton
+  const MenuComponent = isSubmenu ? StyledMenuItem : StyledMenuButton
 
-  const Element = Comp || MenuComp
+  const Element = Comp || MenuComponent
 
   const getChildren = () => {
     if (!isSubmenu) return props.children
@@ -161,7 +161,7 @@ export type MenuListProps = PropsOf<typeof chakra.div>
 
 export const MenuList = React.forwardRef(function MenuList(
   props: MenuListProps,
-  ref: React.Ref<any>,
+  ref: Ref<any>,
 ) {
   const menulist = useMenuList(props)
   const styles = useStyles()
@@ -185,7 +185,7 @@ if (__DEV__) {
 
 const StyledMenuItem = React.forwardRef(function StyledMenuItem(
   props: PropsOf<typeof chakra.button>,
-  ref: React.Ref<any>,
+  ref: Ref<any>,
 ) {
   const styles = useStyles()
   return (
@@ -212,7 +212,7 @@ interface MenuItemOptions extends Omit<UseMenuItemProps, "context"> {
   /**
    * The icon to render before the menu item's label.
    */
-  icon?: React.ReactElement
+  icon?: ReactElement
   /**
    * The spacing between the icon and menu item's label
    */
@@ -260,7 +260,7 @@ if (__DEV__) {
 
 export type MenuItemOptionProps = Omit<UseMenuOptionProps, "context"> &
   PropsOf<typeof StyledMenuItem> & {
-    icon?: React.ReactElement
+    icon?: ReactElement
     iconSpacing?: SystemProps["mr"]
   }
 

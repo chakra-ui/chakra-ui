@@ -10,6 +10,8 @@ const tag = multiStyleConfig({
 
   baseStyle: {
     container: {
+      fontWeight: "medium",
+      lineHeight: 1.2,
       outline: 0,
       _focus: {
         boxShadow: "outline",
