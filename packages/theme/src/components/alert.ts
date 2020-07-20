@@ -81,7 +81,7 @@ const alert = multiStyleConfig({
   },
 })
 
-function getBg(props: any) {
+function getBg(props: Record<string, any>) {
   const { theme, colorScheme: c } = props
   const lightBg = getColor(theme, `${c}.100`, c)
   const darkBg = transparentize(`${c}.200`, 0.16)(theme)

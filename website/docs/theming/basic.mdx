@@ -15,33 +15,14 @@ will have 2 sizes, `small` and `large`, and 2 variants `outline` and `solid`.
 
 <ButtonSpec />
 
-First, let's define this spec in the `register` object. The button has just a
-container, for now, so we're use register only this part.
-
-```jsx live=false
-const register = {
-  parts: ["container"],
-  sizes: ["small", "large"],
-  variants: ["outline", "solid"],
-}
-```
-
-> The inevitable fact is that the designer would made this, will most likely add
-> more component parts, like spinners, and icons later on. This API makes it
-> easy for us to update.
-
-<br />
-
-Next, we define the `baseStyle` for each part, adding common attributes like
+First, let's define the `baseStyle` for each part, adding common attributes like
 `font-weight`, `text-transform`, etc.
 
 ```jsx live=false
 const baseStyle = {
-  container: {
-    fontWeight: "semibold",
-    borderRadius: "4px",
-    textTransform: "uppercase",
-  },
+  fontWeight: "semibold",
+  borderRadius: "4px",
+  textTransform: "uppercase",
 }
 ```
 
@@ -50,18 +31,14 @@ Next, we'll define the styles for the button sizes
 ```jsx live=false
 const sizes = {
   small: {
-    container: {
-      paddingX: "18px",
-      paddingY: "12px",
-      fontSize: "14px",
-    },
+    paddingX: "18px",
+    paddingY: "12px",
+    fontSize: "14px",
   },
   large: {
-    container: {
-      paddingX: "24px",
-      paddingY: "16px",
-      fontSize: "18px",
-    },
+    paddingX: "24px",
+    paddingY: "16px",
+    fontSize: "18px",
   },
 }
 ```
@@ -72,17 +49,13 @@ to do it:
 ```jsx live=false
 const variants = {
   solid: {
-    container: {
-      bg: "#4053B8",
-      color: "white",
-    },
+    bg: "#4053B8",
+    color: "white",
   },
   outline: {
-    container: {
-      border: "2px",
-      borderColor: "#4053B8",
-      color: "#4053B8",
-    },
+    border: "2px",
+    borderColor: "#4053B8",
+    color: "#4053B8",
   },
 }
 ```
@@ -92,47 +65,32 @@ it looks like:
 
 ```jsx manual=true
 const styleConfig = {
-  register: {
-    parts: ["container"],
-    sizes: ["small", "large"],
-    variants: ["outline", "solid"],
-  },
   baseStyle: {
-    container: {
-      fontWeight: "semibold",
-      borderRadius: "4px",
-      textTransform: "uppercase",
-    },
+    fontWeight: "semibold",
+    borderRadius: "4px",
+    textTransform: "uppercase",
   },
   sizes: {
     small: {
-      container: {
-        paddingX: "18px",
-        paddingY: "12px",
-        fontSize: "14px",
-      },
+      paddingX: "18px",
+      paddingY: "12px",
+      fontSize: "14px",
     },
     large: {
-      container: {
-        paddingX: "24px",
-        paddingY: "16px",
-        fontSize: "18px",
-      },
+      paddingX: "24px",
+      paddingY: "16px",
+      fontSize: "18px",
     },
   },
   variants: {
     solid: {
-      container: {
-        bg: "#4053B8",
-        color: "white",
-      },
+      bg: "#4053B8",
+      color: "white",
     },
     outline: {
-      container: {
-        border: "2px",
-        borderColor: "#4053B8",
-        color: "#4053B8",
-      },
+      border: "2px",
+      borderColor: "#4053B8",
+      color: "#4053B8",
     },
   },
 }
@@ -146,7 +104,7 @@ function Button(props) {
     styleConfig,
   })
 
-  return <Box as="button" sx={styles.container} {...rest} />
+  return <Box as="button" sx={styles} {...rest} />
 }
 
 render(
@@ -188,25 +146,14 @@ Let's say you need to create a simple badge component with the following spec.
 First thing we notice is that the badge has **base or common styles** across all
 its variants. Here's how we'll model that:
 
-Define the spec in the `register`
-
-```jsx live=false
-const register = {
-  parts: ["container"],
-  variants: ["in-progress", "removed", "new", "default"],
-}
-```
-
 Define the base style
 
 ```jsx live=false
 const baseStyle = {
-  container: {
-    fontSize: "12px",
-    fontWeight: "bold",
-    textTransform: "uppercase",
-    color: "white",
-  },
+  fontSize: "12px",
+  fontWeight: "bold",
+  textTransform: "uppercase",
+  color: "white",
 }
 ```
 
@@ -215,16 +162,16 @@ Define the variants
 ```jsx live=false
 const variants = {
   "in-progress": {
-    container: { bg: "blue.600" },
+    bg: "blue.600",
   },
   new: {
-    container: { bg: "purple.600" },
+    bg: "purple.600",
   },
   removed: {
-    container: { bg: "red.600" },
+    bg: "red.600",
   },
   default: {
-    container: { bg: "gray.600" },
+    bg: "gray.600",
   },
 }
 ```
@@ -233,33 +180,27 @@ Bringing it all together:
 
 ```jsx manual=true
 const styleConfig = {
-  register: {
-    parts: ["container"],
-    variants: ["in-progress", "removed", "new", "default"],
-  },
   baseStyle: {
-    container: {
-      fontSize: "12px",
-      fontWeight: "bold",
-      textTransform: "uppercase",
-      color: "white",
-      px: "2",
-      py: "1",
-      borderRadius: "4px",
-    },
+    fontSize: "12px",
+    fontWeight: "bold",
+    textTransform: "uppercase",
+    color: "white",
+    px: "2",
+    py: "1",
+    borderRadius: "4px",
   },
   variants: {
     "in-progress": {
-      container: { bg: "blue.600" },
+      bg: "blue.600",
     },
     new: {
-      container: { bg: "purple.600" },
+      bg: "purple.600",
     },
     removed: {
-      container: { bg: "red.600" },
+      bg: "red.600",
     },
     default: {
-      container: { bg: "gray.600" },
+      bg: "gray.600",
     },
   },
 }
@@ -267,7 +208,7 @@ const styleConfig = {
 function Badge(props) {
   const { size, variant, ...rest } = props
   const styles = useStyleConfig("Badge", { size, variant, styleConfig })
-  return <Box as="span" sx={styles.container} {...rest} />
+  return <Box as="span" sx={styles} {...rest} />
 }
 
 // Pro tip: Set the default variant with `defaultProps`
