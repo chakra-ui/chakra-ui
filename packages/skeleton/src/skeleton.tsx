@@ -4,6 +4,7 @@ import {
   keyframes,
   useStyleConfig,
   ThemingProps,
+  omitThemingProps,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -56,22 +57,16 @@ export type SkeletonProps = PropsOf<typeof StyledSkeleton> &
   SkeletonOptions &
   ThemingProps
 
-const fadeIn = keyframes`
-  from { opacity: 0; }
-  to   { opacity: 1; }
-`
+const fade = keyframes({
+  from: { opacity: 0 },
+  to: { opacity: 1 },
+})
 
 export const Skeleton = React.forwardRef(function Skeleton(
   props: SkeletonProps,
   ref: React.Ref<any>,
 ) {
-  const defaultProps = {
-    fadeDuration: 0.4,
-    speed: 0.8,
-  }
-
-  const mergedProps = { ...defaultProps, ...props }
-  const styles = useStyleConfig("Skeleton", mergedProps)
+  const styles = useStyleConfig("Skeleton", props)
 
   const {
     startColor,
@@ -81,7 +76,7 @@ export const Skeleton = React.forwardRef(function Skeleton(
     speed,
     className,
     ...rest
-  } = mergedProps
+  } = omitThemingProps(props)
 
   const _className = cx("chakra-skeleton", className)
 
@@ -90,21 +85,21 @@ export const Skeleton = React.forwardRef(function Skeleton(
       <chakra.div
         ref={ref}
         className={_className}
-        __css={{ animation: `${fadeIn} ${fadeDuration}s` }}
+        __css={{ animation: `${fade} ${fadeDuration}s` }}
         {...rest}
       />
     )
   }
 
   return (
-    <StyledSkeleton
-      ref={ref}
-      className={_className}
-      {...rest}
-      __css={styles.skeleton}
-    />
+    <StyledSkeleton ref={ref} className={_className} {...rest} __css={styles} />
   )
 })
+
+Skeleton.defaultProps = {
+  fadeDuration: 0.4,
+  speed: 0.8,
+}
 
 if (__DEV__) {
   Skeleton.displayName = "Skeleton"

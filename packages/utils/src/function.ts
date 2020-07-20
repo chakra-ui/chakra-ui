@@ -1,6 +1,6 @@
-import { FunctionArguments } from "./types"
-import { isFunction } from "./assertion"
 import memoizeOne from "memoize-one"
+import { isFunction, __DEV__ } from "./assertion"
+import { FunctionArguments } from "./types"
 
 export function runIfFn<T, U>(
   valueOrFn: T | ((...args: U[]) => T),
@@ -36,3 +36,22 @@ export function once(fn?: Function | null) {
 }
 
 export const noop = () => {}
+
+type MessageOptions = {
+  condition: boolean
+  message: string
+}
+
+export const warn = once((options: MessageOptions) => {
+  const { condition, message } = options
+  if (condition && __DEV__) {
+    console.warn(message)
+  }
+})
+
+export const error = once((options: MessageOptions) => {
+  const { condition, message } = options
+  if (condition && __DEV__) {
+    console.error(message)
+  }
+})

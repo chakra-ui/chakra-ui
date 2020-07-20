@@ -9,6 +9,8 @@ import React, {
   Ref,
   useCallback,
   ChangeEvent,
+  KeyboardEvent,
+  useRef,
   useState,
   HTMLAttributes,
 } from "react"
@@ -98,7 +100,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
   const [isHovered, setHovered] = useBoolean()
   const [isActive, setActive] = useBoolean()
 
-  const ref = React.useRef<HTMLInputElement>(null)
+  const ref = useRef<HTMLInputElement>(null)
 
   const [checkedState, setCheckedState] = useState(!!defaultIsChecked)
 
@@ -143,7 +145,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
   const trulyDisabled = isDisabled && !isFocusable
 
   const onKeyDown = useCallback(
-    (event: React.KeyboardEvent) => {
+    (event: KeyboardEvent) => {
       if (event.key === " ") {
         setActive.on()
       }
@@ -152,7 +154,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
   )
 
   const onKeyUp = useCallback(
-    (event: React.KeyboardEvent) => {
+    (event: KeyboardEvent) => {
       if (event.key === " ") {
         setActive.off()
       }

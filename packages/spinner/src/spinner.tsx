@@ -56,11 +56,8 @@ export type SpinnerProps = PropsOf<typeof chakra.div> &
   ThemingProps
 
 /**
- * Spinner
- *
- * React component used to indicate the loading state of a page or a component,
- *
- * It renders a `div` by default
+ * Spinner is used to indicate the loading state of a page or a component,
+ * It renders a `div` by default.
  *
  * @see Docs https://chakra-ui.com/components/spinner
  */
@@ -82,21 +79,23 @@ export const Spinner = React.forwardRef(function Spinner(
 
   const _className = cx("chakra-spinner", className)
 
+  const spinnerStyles = {
+    display: "inline-block",
+    borderColor: "currentColor",
+    borderStyle: "solid",
+    borderRadius: "full",
+    borderWidth: thickness,
+    borderBottomColor: emptyColor,
+    borderLeftColor: emptyColor,
+    color: color,
+    animation: `${spin} ${speed} linear infinite`,
+    ...styles,
+  }
+
   return (
     <chakra.div
       ref={ref}
-      __css={{
-        display: "inline-block",
-        borderColor: "currentColor",
-        borderStyle: "solid",
-        borderRadius: "full",
-        borderWidth: thickness,
-        borderBottomColor: emptyColor,
-        borderLeftColor: emptyColor,
-        color: color,
-        animation: `${spin} ${speed} linear infinite`,
-        ...styles.spinner,
-      }}
+      __css={spinnerStyles}
       className={_className}
       {...rest}
     >

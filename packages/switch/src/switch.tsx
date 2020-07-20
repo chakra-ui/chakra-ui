@@ -20,36 +20,41 @@ export const Switch = React.forwardRef(function Switch(
   ref: React.Ref<any>,
 ) {
   const styles = useMultiStyleConfig("Switch", props)
-  const { className, ...rest } = omitThemingProps(props)
+
+  const realProps = omitThemingProps(props)
   const { state, getInputProps, getCheckboxProps, htmlProps } = useCheckbox(
-    rest,
+    realProps,
   )
 
-  const input = getInputProps({ ref })
-  const checkbox = getCheckboxProps() as any
+  const inputProps = getInputProps({}, ref)
+  const checkboxProps = getCheckboxProps()
+
+  const labelStyles = {
+    display: "inline-block",
+    verticalAlign: "middle",
+    lineHeight: "normal",
+  }
+
+  const trackStyles = {
+    display: "inline-flex",
+    flexShrink: 0,
+    justifyContent: "flex-start",
+    boxSizing: "content-box",
+    cursor: "pointer",
+    ...styles.track,
+  }
 
   return (
     <chakra.label
-      className={cx("chakra-switch", className)}
       {...htmlProps}
-      __css={{
-        display: "inline-block",
-        verticalAlign: "middle",
-        lineHeight: "normal",
-      }}
+      className={cx("chakra-switch", props.className)}
+      __css={labelStyles}
     >
-      <input className="chakra-switch__input" {...input} />
+      <input className="chakra-switch__input" {...inputProps} />
       <chakra.div
-        {...checkbox}
+        {...checkboxProps}
         className="chakra-switch__track"
-        __css={{
-          display: "inline-flex",
-          flexShrink: 0,
-          justifyContent: "flex-start",
-          boxSizing: "content-box",
-          cursor: "pointer",
-          ...styles.track,
-        }}
+        __css={trackStyles}
       >
         <chakra.div
           __css={styles.thumb}
