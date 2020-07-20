@@ -14,15 +14,9 @@ const textarea = styleConfig({
     lg: input.sizes?.lg.field,
   },
   variants: {
-    outline: function (props) {
-      return input.variants?.outline(props)?.field ?? {}
-    },
-    flushed: function (props) {
-      return input.variants?.flushed(props)?.field ?? {}
-    },
-    filled: function (props) {
-      return input.variants?.filled(props).field ?? {}
-    },
+    outline: (props) => input.variants?.outline(props)?.field ?? {},
+    flushed: (props) => input.variants?.flushed(props)?.field ?? {},
+    filled: (props) => input.variants?.filled(props).field ?? {},
     unstyled: input.variants?.unstyled.field,
   },
   defaultProps: {
