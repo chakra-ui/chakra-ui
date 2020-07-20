@@ -7,7 +7,7 @@ import {
 } from "@chakra-ui/core"
 
 export type NextChakraLinkProps = PropsWithChildren<
-  Omit<NextLinkProps, "passHref"> & Omit<ChakraLinkProps, "as">
+  NextLinkProps & Omit<ChakraLinkProps, "as">
 >
 
 //  Has to be a new component because both chakra and next share the `as` keyword

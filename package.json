@@ -139,7 +139,7 @@
     "babel-eslint": "10.1.0",
     "babel-loader": "8.1.0",
     "bundlesize": "0.18.0",
-    "chalk": "4.1.0",
+    "chalk": "4.0.0",
     "commitizen": "4.1.2",
     "concurrently": "5.2.0",
     "cross-env": "7.0.2",
@@ -154,10 +154,10 @@
     "eslint-plugin-testing-library": "^3.3.1",
     "esm": "3.2.25",
     "execa": "4.0.2",
-    "framer-motion": "2.1.0",
+    "framer-motion": "1.11.1",
     "fs-utils": "0.7.0",
     "husky": "4.2.5",
-    "inquirer": "7.3.2",
+    "inquirer": "7.3.0",
     "jest": "26.0.1",
     "jest-emotion": "10.0.32",
     "lerna": "3.22.1",
@@ -175,7 +175,7 @@
     "react-test-renderer": "16.13.1",
     "rimraf": "3.0.2",
     "shelljs": "0.8.4",
-    "ts-jest": "26.1.3",
-    "typescript": "3.9.7"
+    "ts-jest": "26.1.2",
+    "typescript": "3.9.5"
   }
 }

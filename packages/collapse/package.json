@@ -49,7 +49,7 @@
   },
   "dependencies": {
     "@chakra-ui/utils": "^1.0.0-next.6",
-    "react-animate-height": "2.0.22"
+    "react-animate-height": "2.0.21"
   },
   "devDependencies": {
     "@chakra-ui/system": "^1.0.0-next.6"

@@ -23,10 +23,10 @@
   },
   "devDependencies": {
     "@types/node": "^14.0.14",
-    "url-loader": "^4.1.0",
-    "@types/react": "16.9.23",
-    "@types/react-dom": "16.9.8",
-    "typescript": "3.9.7"
+    "@types/react": "^16.9.23",
+    "@types/react-dom": "^16.9.8",
+    "typescript": "3.9.5",
+    "url-loader": "^4.1.0"
   },
   "repository": {
     "type": "git",

@@ -50,7 +50,7 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@popperjs/core": "2.4.4"
+    "@popperjs/core": "2.4.3"
   },
   "peerDependencies": {
     "react": "16.x"

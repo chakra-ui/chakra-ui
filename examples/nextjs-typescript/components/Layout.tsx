@@ -28,6 +28,7 @@ export const Layout = ({
               <HStack spacing={12}>
                 <NextChakraLink
                   href="/"
+                  passHref={true}
                   display="flex"
                   alignItems="center"
                   justifyContent="center"
