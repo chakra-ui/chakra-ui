@@ -22,6 +22,9 @@ const baseStyle: BaseStyle<typeof register> = {
       cursor: "not-allowed",
       textDecoration: "none",
     },
+    "_disabled:active": {
+      pointerEvents: "none",
+    },
   },
 }
 
