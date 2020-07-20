@@ -2,9 +2,9 @@ import { multiStyleConfig } from "@chakra-ui/theme-tools"
 
 const accordion = multiStyleConfig({
   parts: {
-    container: "the container for a single accordion",
-    button: "the accordion trigger",
-    panel: "the accordion panel",
+    container: "the container for an accordion item",
+    button: "the trigger for an accordion item",
+    panel: "the panel for an accordion item",
   },
   baseStyle: {
     container: {
