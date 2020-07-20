@@ -7,7 +7,6 @@ const tabs = multiStyleConfig({
     tabpanel: "the tab content",
     indicator: "the active tab indicator",
   },
-
   baseStyle: function (props) {
     const { align = "start", isFitted } = props
     return {
@@ -22,30 +21,30 @@ const tabs = multiStyleConfig({
       tablist: {
         justifyContent: alignments[align],
       },
-      tabpanel: { padding: 4 },
+      tabpanel: { p: 4 },
     }
   },
 
   sizes: {
     sm: {
       tab: {
-        paddingY: "0.25rem",
-        paddingX: "1rem",
+        py: "0.25rem",
+        px: "1rem",
         fontSize: "0.85rem",
       },
     },
     md: {
       tab: {
         fontSize: "1rem",
-        paddingY: "0.5rem",
-        paddingX: "1rem",
+        py: "0.5rem",
+        px: "1rem",
       },
     },
     lg: {
       tab: {
         fontSize: "1.15rem",
-        paddingY: "0.75rem",
-        paddingX: "1rem",
+        py: "0.75rem",
+        px: "1rem",
       },
     },
   },
@@ -61,7 +60,7 @@ const tabs = multiStyleConfig({
         tab: {
           borderBottom: "2px solid",
           borderColor: "transparent",
-          marginBottom: "-2px",
+          mb: "-2px",
           _selected: {
             color: mode(`${c}.600`, `${c}.300`)(props),
             borderColor: "currentColor",
@@ -84,7 +83,7 @@ const tabs = multiStyleConfig({
           borderTopRadius: "md",
           border: "1px solid",
           borderColor: "transparent",
-          marginBottom: "-1px",
+          mb: "-1px",
           _selected: {
             color: mode(`${c}.600`, `${c}.300`)(props),
             borderColor: "inherit",
@@ -92,7 +91,7 @@ const tabs = multiStyleConfig({
           },
         },
         tablist: {
-          marginBottom: "-1px",
+          mb: "-1px",
           borderBottom: "1px solid",
           borderColor: "inherit",
         },
@@ -106,7 +105,7 @@ const tabs = multiStyleConfig({
           border: "1px solid",
           borderColor: "inherit",
           bg: mode(`gray.50`, `whiteAlpha.50`)(props),
-          marginBottom: "-1px",
+          mb: "-1px",
           _notLast: {
             mr: "-1px",
           },
@@ -119,7 +118,7 @@ const tabs = multiStyleConfig({
           },
         },
         tablist: {
-          marginBottom: "-1px",
+          mb: "-1px",
           borderBottom: "1px solid",
           borderColor: "inherit",
         },

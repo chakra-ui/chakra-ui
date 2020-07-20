@@ -6,6 +6,7 @@ import {
   useStyleConfig,
   omitThemingProps,
   ThemingProps,
+  SystemStyleObject,
 } from "@chakra-ui/system"
 import * as React from "react"
 import { __DEV__, cx, omit } from "@chakra-ui/utils"
@@ -32,14 +33,12 @@ interface TextareaOptions {
 type Omitted = "disabled" | "required" | "readOnly"
 
 export type TextareaProps = Omit<PropsOf<typeof chakra.textarea>, Omitted> &
+  TextareaOptions &
   FormControlOptions &
   ThemingProps
 
 /**
- * Textarea
- *
- * React component used to enter an amount of text that's longer than a single line
- *
+ * Textarea is used to enter an amount of text that's longer than a single line
  * @see Docs https://chakra-ui.com/components/textarea
  */
 export const Textarea = forwardRef<TextareaProps>(function Textarea(
@@ -47,19 +46,19 @@ export const Textarea = forwardRef<TextareaProps>(function Textarea(
   ref,
 ) {
   const styles = useStyleConfig("Textarea", props)
-  const { className, rows, ...rest } = omitThemingProps(props)
-  const textarea = useFormControl<HTMLTextAreaElement>(rest)
-  const _className = cx("chakra-textarea", className)
-  const textareaStyles = rows
-    ? omit(styles.field as any, ["height", "minHeight"])
-    : styles.field
+  const { className, rows, ...otherProps } = omitThemingProps(props)
+
+  const textareaProps = useFormControl<HTMLTextAreaElement>(otherProps)
+
+  const omitted = ["height", "minHeight"] as (keyof SystemStyleObject)[]
+  const textareaStyles = rows ? omit(styles, omitted) : styles
 
   return (
     <chakra.textarea
-      className={_className}
       ref={ref}
       rows={rows}
-      {...textarea}
+      {...textareaProps}
+      className={cx("chakra-textarea", className)}
       __css={textareaStyles}
     />
   )

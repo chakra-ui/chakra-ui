@@ -5,13 +5,12 @@ const Switch = multiStyleConfig({
     track: "the switch outer track",
     thumb: "the switch inner circle",
   },
-
   baseStyle: function (props) {
     const { colorScheme: c } = props
     return {
       track: {
         borderRadius: "full",
-        padding: "2px",
+        p: "2px",
         transition: "all 120ms",
         bg: mode("gray.300", "whiteAlpha.400")(props),
         _focus: {
@@ -37,12 +36,12 @@ const Switch = multiStyleConfig({
   sizes: {
     sm: {
       track: {
-        width: "1.375rem",
-        height: "0.75rem",
+        w: "1.375rem",
+        h: "0.75rem",
       },
       thumb: {
-        width: "0.75rem",
-        height: "0.75rem",
+        w: "0.75rem",
+        h: "0.75rem",
         _checked: {
           transform: "translateX(0.625rem)",
         },
@@ -51,12 +50,12 @@ const Switch = multiStyleConfig({
 
     md: {
       track: {
-        width: "1.875rem",
-        height: "1rem",
+        w: "1.875rem",
+        h: "1rem",
       },
       thumb: {
-        width: "1rem",
-        height: "1rem",
+        w: "1rem",
+        h: "1rem",
         _checked: {
           transform: "translateX(0.875rem)",
         },
@@ -65,12 +64,12 @@ const Switch = multiStyleConfig({
 
     lg: {
       track: {
-        width: "2.875rem",
-        height: "1.5rem",
+        w: "2.875rem",
+        h: "1.5rem",
       },
       thumb: {
-        width: "1.5rem",
-        height: "1.5rem",
+        w: "1.5rem",
+        h: "1.5rem",
         _checked: {
           transform: "translateX(1.375rem)",
         },

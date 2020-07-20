@@ -5,7 +5,13 @@ import {
 } from "@chakra-ui/hooks"
 import { callAllHandlers, dataAttr, mergeRefs, Dict } from "@chakra-ui/utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
-import * as React from "react"
+import React, {
+  Ref,
+  useCallback,
+  ChangeEvent,
+  useState,
+  HTMLAttributes,
+} from "react"
 
 export interface UseCheckboxProps {
   /**
@@ -49,7 +55,7 @@ export interface UseCheckboxProps {
   /**
    * The callback invoked when the checked state of the `Checkbox` changes..
    */
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void
   /**
    * The name of the input field in a checkbox
    * (Useful for form submission).
@@ -67,13 +73,8 @@ export interface UseCheckboxProps {
 }
 
 /**
- * useCheckbox
- *
- * React hook that provides all the state and focus management logic
- * for a checkbox.
- *
- * It is consumed by the `Checkbox` component
- *
+ * useCheckbox that provides all the state and focus management logic
+ * for a checkbox. It is consumed by the `Checkbox` component
  * @see Docs https://chakra-ui.com/components/useCheckbox
  */
 export function useCheckbox(props: UseCheckboxProps = {}) {
@@ -99,15 +100,15 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
 
   const ref = React.useRef<HTMLInputElement>(null)
 
-  const [checkedState, setCheckedState] = React.useState(!!defaultIsChecked)
+  const [checkedState, setCheckedState] = useState(!!defaultIsChecked)
 
   const [isControlled, isChecked] = useControllableProp(
     checkedProp,
     checkedState,
   )
 
-  const handleChange = React.useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
       if (isReadOnly || isDisabled) {
         event.preventDefault()
         return
@@ -141,7 +142,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
 
   const trulyDisabled = isDisabled && !isFocusable
 
-  const handleKeyDown = React.useCallback(
+  const onKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
       if (event.key === " ") {
         setActive.on()
@@ -149,7 +150,8 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     },
     [setActive],
   )
-  const handleKeyUp = React.useCallback(
+
+  const onKeyUp = useCallback(
     (event: React.KeyboardEvent) => {
       if (event.key === " ") {
         setActive.off()
@@ -170,8 +172,9 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       isReadOnly,
       isRequired,
     },
-    getCheckboxProps: (props: CustomCheckboxProps = {}) => ({
+    getCheckboxProps: (props: Attributes = {}, ref: Ref<any> = null) => ({
       ...props,
+      ref,
       "data-active": dataAttr(isActive),
       "data-hover": dataAttr(isHovered),
       "data-checked": dataAttr(isChecked),
@@ -187,9 +190,12 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       onMouseLeave: callAllHandlers(props.onMouseLeave, setHovered.off),
       style: { touchAction: "none", ...props.style },
     }),
-    getInputProps: (props: HiddenInputProps = {}) => ({
+    getInputProps: (
+      props: InputAttributes = {},
+      inputRef: Ref<any> = null,
+    ) => ({
       ...props,
-      ref: mergeRefs(ref, props.ref),
+      ref: mergeRefs(ref, inputRef),
       type: "checkbox",
       name,
       value,
@@ -197,8 +203,8 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       onChange: callAllHandlers(props.onChange, handleChange),
       onBlur: callAllHandlers(props.onBlur, setFocused.off),
       onFocus: callAllHandlers(props.onFocus, setFocused.on),
-      onKeyDown: callAllHandlers(props.onKeyDown, handleKeyDown),
-      onKeyUp: callAllHandlers(props.onKeyUp, handleKeyUp),
+      onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
+      onKeyUp: callAllHandlers(props.onKeyUp, onKeyUp),
       required: isRequired,
       checked: isChecked,
       disabled: trulyDisabled,
@@ -207,20 +213,14 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       "aria-disabled": isDisabled,
       style: visuallyHiddenStyle,
     }),
-    getLabelProps: (props: Dict = {}) => {
-      /**
-       * Prevent `onBlur` being fired when the checkbox label is touched
-       */
-      const stop = (event: React.SyntheticEvent) => {
-        event.preventDefault()
-        event.stopPropagation()
-      }
+    getLabelProps: (props: Dict = {}, ref: Ref<any> = null) => {
       return {
         ...props,
-        onMouseDown: callAllHandlers(props.onMouseDown, stop),
-        onTouchStart: callAllHandlers(props.onTouchState, stop),
+        ref,
+        onMouseDown: callAllHandlers(props.onMouseDown, stopEvent),
+        onTouchStart: callAllHandlers(props.onTouchState, stopEvent),
         "data-disabled": dataAttr(isDisabled),
-        " data-checked": dataAttr(isChecked),
+        "data-checked": dataAttr(isChecked),
         "data-invalid": dataAttr(isInvalid),
       }
     },
@@ -228,22 +228,15 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
   }
 }
 
+/**
+ * Prevent `onBlur` being fired when the checkbox label is touched
+ */
+function stopEvent(event: React.SyntheticEvent) {
+  event.preventDefault()
+  event.stopPropagation()
+}
+
 export type UseCheckboxReturn = ReturnType<typeof useCheckbox>
 
-interface CustomCheckboxProps {
-  onMouseDown?: React.MouseEventHandler
-  onMouseUp?: React.MouseEventHandler
-  onMouseEnter?: React.MouseEventHandler
-  onMouseLeave?: React.MouseEventHandler
-  style?: React.CSSProperties
-  children?: React.ReactNode
-}
-
-interface HiddenInputProps {
-  ref?: React.Ref<HTMLInputElement>
-  onBlur?: React.FocusEventHandler<HTMLInputElement>
-  onFocus?: React.FocusEventHandler<HTMLInputElement>
-  onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>
-  onKeyUp?: React.KeyboardEventHandler<HTMLInputElement>
-  onChange?: React.ChangeEventHandler<HTMLInputElement>
-}
+type Attributes = HTMLAttributes<HTMLElement>
+type InputAttributes = HTMLAttributes<HTMLInputElement>

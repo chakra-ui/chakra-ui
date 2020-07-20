@@ -176,13 +176,16 @@ function ButtonSpinner(props: ButtonSpinnerProps) {
   } = props
 
   const _className = cx("chakra-button__spinner", className)
+  const spinnerStyles = {
+    position: label ? "relative" : "absolute",
+    mr: label ? spacing : 0,
+  }
 
   return (
     <chakra.div
-      position={label ? "relative" : "absolute"}
-      mr={label ? spacing : 0}
       className={_className}
       {...rest}
+      __css={spinnerStyles}
       children={children}
     />
   )
