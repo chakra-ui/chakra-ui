@@ -52,11 +52,11 @@ exports[`AvatarGroup renders correctly 1`] = `
 }
 
 <div
-    class="emotion-1"
+    class="chakra-avatar__group emotion-1"
     role="group"
   >
     <span
-      class="emotion-0"
+      class="chakra-avatar emotion-0"
     >
       <svg
         color="#fff"

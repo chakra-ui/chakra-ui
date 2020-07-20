@@ -33,7 +33,7 @@ exports[`Avatar renders correctly 1`] = `
 }
 
 <span
-    class="emotion-0"
+    class="chakra-avatar emotion-0"
   >
     <svg
       color="#fff"
@@ -111,7 +111,7 @@ exports[`Avatar with AvatarBadge renders correctly 1`] = `
 }
 
 <span
-    class="emotion-1"
+    class="chakra-avatar emotion-1"
   >
     <svg
       color="#fff"
@@ -129,7 +129,7 @@ exports[`Avatar with AvatarBadge renders correctly 1`] = `
       />
     </svg>
     <div
-      class="emotion-0"
+      class="chakra-avatar__badge emotion-0"
     />
   </span>
 </DocumentFragment>

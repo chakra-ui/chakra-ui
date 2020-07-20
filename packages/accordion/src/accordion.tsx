@@ -11,6 +11,7 @@ import {
   useStyles,
 } from "@chakra-ui/system"
 import {
+  cx,
   createContext,
   Omit,
   ReactNodeOrRenderProp,
@@ -19,7 +20,7 @@ import {
 } from "@chakra-ui/utils"
 import React, { Ref, useMemo } from "react"
 import {
-  AccordionContextProvider,
+  AccordionProvider,
   useAccordion,
   useAccordionContext,
   useAccordionItem,
@@ -55,19 +56,23 @@ export const Accordion = React.forwardRef(function Accordion(
 
   const { children, htmlProps, ...context } = useAccordion(_props)
 
-  const ctx = useMemo(
+  const _context = useMemo(
     () => ({ ...context, reduceMotion: !!props.reduceMotion }),
     [context, props.reduceMotion],
   )
 
   return (
-    <AccordionContextProvider value={ctx}>
+    <AccordionProvider value={_context}>
       <StylesProvider value={styles}>
-        <chakra.div ref={ref} {...htmlProps}>
+        <chakra.div
+          ref={ref}
+          {...htmlProps}
+          className={cx("chakra-accordion", props.className)}
+        >
           {children}
         </chakra.div>
       </StylesProvider>
-    </AccordionContextProvider>
+    </AccordionProvider>
   )
 })
 
@@ -111,7 +116,12 @@ export const AccordionItem = React.forwardRef(function AccordionItem(
 
   return (
     <AccordionItemProvider value={_context}>
-      <chakra.div ref={ref} {...htmlProps} __css={styles.container}>
+      <chakra.div
+        ref={ref}
+        {...htmlProps}
+        className={cx("chakra-accordion__item", props.className)}
+        __css={styles.container}
+      >
         {runIfFn(children, {
           isExpanded: !!context.isOpen,
           isDisabled: !!context.isDisabled,
@@ -157,7 +167,13 @@ export const AccordionButton = forwardRef<AccordionButtonProps>(
       ...styles.button,
     }
 
-    return <chakra.button {...buttonProps} __css={buttonStyles} />
+    return (
+      <chakra.button
+        {...buttonProps}
+        className={cx("chakra-accordion__button", props.className)}
+        __css={buttonStyles}
+      />
+    )
   },
 )
 
@@ -188,7 +204,13 @@ export const AccordionPanel = React.forwardRef(function AccordionPanel(
 
   const styles = useStyles()
 
-  const child = <chakra.div {...panelProps} __css={styles.panel} />
+  const child = (
+    <chakra.div
+      {...panelProps}
+      className={cx("chakra-accordion__panel", props.className)}
+      __css={styles.panel}
+    />
+  )
 
   return reduceMotion ? child : <Collapse isOpen={isOpen}>{child}</Collapse>
 })

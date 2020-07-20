@@ -51,11 +51,11 @@ exports[`should render correctly 1`] = `
 }
 
 <div
-    class="emotion-4"
+    class="chakra-alert emotion-4"
     role="alert"
   >
     <span
-      class="emotion-1"
+      class="chakra-alert__icon emotion-1"
     >
       <svg
         class="chakra-icon emotion-0"
@@ -70,12 +70,12 @@ exports[`should render correctly 1`] = `
       </svg>
     </span>
     <div
-      class="emotion-2"
+      class="chakra-alert__title emotion-2"
     >
       Alert title
     </div>
     <div
-      class="emotion-3"
+      class="chakra-alert__desc emotion-3"
     >
       Alert description
     </div>

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Button renders correctly 1`] = `
+exports[`accordion renders correctly 1`] = `
 <DocumentFragment>
   .emotion-2 {
   border-top-width: 1px;
@@ -62,15 +62,15 @@ exports[`Button renders correctly 1`] = `
 }
 
 <div
-    class="emotion-3"
+    class="chakra-accordion emotion-3"
   >
     <div
-      class="emotion-2"
+      class="chakra-accordion__item emotion-2"
     >
       <button
         aria-controls="accordion-panel-1"
         aria-expanded="false"
-        class="emotion-0"
+        class="chakra-accordion__button emotion-0"
         id="accordion-button-1"
       >
         Section 1 title
@@ -81,7 +81,7 @@ exports[`Button renders correctly 1`] = `
       >
         <div
           aria-labelledby="accordion-button-1"
-          class="emotion-1"
+          class="chakra-accordion__panel emotion-1"
           hidden=""
           id="accordion-panel-1"
           role="region"

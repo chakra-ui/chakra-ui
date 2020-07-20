@@ -1,5 +1,5 @@
 import * as React from "react"
-import { userEvent, render, fireEvent, wait } from "@chakra-ui/test-utils"
+import { userEvent, render, fireEvent } from "@chakra-ui/test-utils"
 import {
   Accordion,
   AccordionButton,
@@ -16,7 +16,7 @@ jest.mock("@chakra-ui/collapse", () => {
   return { Collapse }
 })
 
-test("Button renders correctly", () => {
+test("accordion renders correctly", () => {
   const { asFragment } = render(
     <Accordion>
       <AccordionItem>

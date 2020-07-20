@@ -59,6 +59,7 @@ export function useAccordion(props: UseAccordionProps) {
     index: indexProp,
     allowMultiple,
     allowToggle,
+    children,
     ...htmlProps
   } = props
 
@@ -105,25 +106,25 @@ export function useAccordion(props: UseAccordionProps) {
    * Filter out invalid children (null, false), in the case
    * of conditional rendering
    */
-  const validChildren = getValidChildren(props.children)
+  const validChildren = getValidChildren(children)
 
   /**
    * Clone the accordion items and pass them the `onChange`
    * and `isOpen`
    */
-  const children = validChildren.map((child, idx) => {
+  const _children = validChildren.map((child, idx) => {
     const isExpanded = isArray(index) ? index.includes(idx) : index === idx
 
     return cloneElement(child, {
       isOpen: isExpanded,
-      onChange: (nextIsOpen: boolean) => {
+      onChange: (isOpen: boolean) => {
         if (allowMultiple && isArray(index)) {
-          const nextState = nextIsOpen
+          const nextState = isOpen
             ? addItem(index, idx)
             : removeItem(index, idx)
           setIndex(nextState)
         } else {
-          if (nextIsOpen) {
+          if (isOpen) {
             setIndex(idx)
           } else if (allowToggle) {
             setIndex(-1)
@@ -134,7 +135,7 @@ export function useAccordion(props: UseAccordionProps) {
   })
 
   return {
-    children,
+    children: _children,
     htmlProps,
     focusedIndex,
     setFocusedIndex,
@@ -148,7 +149,7 @@ type AccordionContext = Omit<UseAccordionReturn, "children" | "htmlProps"> & {
   reduceMotion: boolean
 }
 
-const [AccordionContextProvider, useAccordionContext] = createContext<
+const [AccordionProvider, useAccordionContext] = createContext<
   AccordionContext
 >({
   name: "AccordionContext",
@@ -156,7 +157,7 @@ const [AccordionContextProvider, useAccordionContext] = createContext<
     "useAccordionContext: `context` is undefined. Seems you forgot to wrap the accordion components in `<Accordion />`",
 })
 
-export { AccordionContextProvider, useAccordionContext }
+export { AccordionProvider, useAccordionContext }
 
 export interface UseAccordionItemProps {
   /**

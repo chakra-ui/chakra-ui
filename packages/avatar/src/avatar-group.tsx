@@ -6,7 +6,7 @@ import {
   useMultiStyleConfig,
   omitThemingProps,
 } from "@chakra-ui/system"
-import { getValidChildren, __DEV__ } from "@chakra-ui/utils"
+import { getValidChildren, __DEV__, cx } from "@chakra-ui/utils"
 import React, { Ref, ReactNode, forwardRef, cloneElement } from "react"
 import { baseStyle } from "./avatar"
 
@@ -92,8 +92,20 @@ export const AvatarGroup = forwardRef(function AvatarGroup(
   }
 
   return (
-    <chakra.div ref={ref} role="group" __css={groupStyles} {...rest}>
-      {excess && <chakra.span __css={excessStyles}>{`+${excess}`}</chakra.span>}
+    <chakra.div
+      ref={ref}
+      role="group"
+      __css={groupStyles}
+      {...rest}
+      className={cx("chakra-avatar__group", props.className)}
+    >
+      {excess && (
+        <chakra.span
+          className="chakra-avatar__excess"
+          __css={excessStyles}
+          children={`+${excess}`}
+        />
+      )}
       {clones}
     </chakra.div>
   )

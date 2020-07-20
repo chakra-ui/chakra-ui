@@ -10,7 +10,7 @@ import {
   useStyles,
   SystemStyleObject,
 } from "@chakra-ui/system"
-import { __DEV__ } from "@chakra-ui/utils"
+import { cx, __DEV__ } from "@chakra-ui/utils"
 import React, {
   cloneElement,
   forwardRef,
@@ -89,7 +89,14 @@ export const AvatarBadge = forwardRef(function AvatarBadge(
     ...styles.badge,
   }
 
-  return <chakra.div ref={ref} {...props} __css={badgeStyles} />
+  return (
+    <chakra.div
+      ref={ref}
+      {...props}
+      className={cx("chakra-avatar__badge", props.className)}
+      __css={badgeStyles}
+    />
+  )
 })
 
 if (__DEV__) {
@@ -197,6 +204,7 @@ export const Avatar = forwardRef(function Avatar(
         <chakra.img
           src={src}
           alt={name}
+          className="chakra-avatar__img"
           __css={{
             width: "100%",
             height: "100%",
@@ -218,7 +226,11 @@ export const Avatar = forwardRef(function Avatar(
 
     if (showFallback) {
       return name ? (
-        <Initials getInitials={getInitials} name={name} />
+        <Initials
+          className="chakra-avatar__initials"
+          getInitials={getInitials}
+          name={name}
+        />
       ) : (
         cloneElement(icon, { role: "img" })
       )
@@ -233,7 +245,12 @@ export const Avatar = forwardRef(function Avatar(
   }
 
   return (
-    <chakra.span ref={ref} name={name} {...rest} __css={avatarStyles}>
+    <chakra.span
+      ref={ref}
+      {...rest}
+      className={cx("chakra-avatar", props.className)}
+      __css={avatarStyles}
+    >
       <StylesProvider value={styles}>
         {getAvatar()}
         {children}
