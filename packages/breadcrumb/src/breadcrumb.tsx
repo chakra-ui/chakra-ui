@@ -82,10 +82,6 @@ if (__DEV__) {
 
 type BreadcrumbItemOptions = BreadcrumbProps & {
   isCurrentPage?: boolean
-  /**
-   * This is only used within the `cloneElement`
-   * @private
-   */
   isLastChild?: boolean
 }
 
@@ -93,10 +89,8 @@ export type BreadcrumbItemProps = BreadcrumbItemOptions &
   PropsOf<typeof chakra.li>
 
 /**
- * React component used to group a breadcrumb link
- *
- * It renders a `li` element to denote it belongs to an order list of links
- *
+ * BreadcrumbItem is used to group a breadcrumb link.
+ * It renders a `li` element to denote it belongs to an order list of links.
  * @see Docs https://chakra-ui.com/components/breadcrumbs
  */
 export const BreadcrumbItem = forwardRef<BreadcrumbItemProps>(
