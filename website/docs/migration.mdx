@@ -955,6 +955,21 @@ function Example() {
 
 - Added support for `closeOnMouseDown` prop
 
+### CSS Reset
+
+- Deprecated support for `config` prop, in favor of reading global styles from
+  `theme.styles.global`
+- Added global style for `focus-visible` in event you need to remove focus
+  styles for non-keyboard interactions.
+
+```sh
+# as a dependency
+yarn add focus-visible
+
+# at the root of your application
+import "focus-visible/dist/focus-visible"
+```
+
 **That's it! Welcome to Chakra UI v1.**
 
 > If you still experience issues after migrating, feel free to create an issue
