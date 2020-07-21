@@ -1,8 +1,11 @@
 const fs = require("fs").promises
 const path = require("path")
 const _ = require("lodash/fp")
+const { format, parseISO } = require("date-fns/fp")
+const simpleGit = require("simple-git")
 const { Octokit } = require("@octokit/rest")
 
+const git = simpleGit({ baseDir: path.join(process.cwd(), "..") })
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN })
 
 const collections = ["main", "theming", "layout", "form", "components", "hooks"]
@@ -36,7 +39,7 @@ const sortPostNodes = (nodes) => {
 const getRelativePagePath = (fileAbsolutePath, source) => {
   if (!fileAbsolutePath) return
 
-  const regex = new RegExp(`/docs/${source}/.*`)
+  const regex = new RegExp(`website/${source}/.*`)
   const match = fileAbsolutePath.match(regex)
   return match ? match[0] : null
 }
@@ -102,6 +105,35 @@ const getOrgMembers = async () => {
   return await Promise.all(sorted.map(getMemberData))
 }
 
+/**
+ * Get all commits made to a specific path.
+ */
+const getPathCommits = async (path) => {
+  // --follow allows git to follow a file's history across renames/moves
+  // -- makes sure log knows that path is for a file
+  const { all: commits } = await git.log(["--follow", "--", path])
+  return commits
+}
+
+/** Convert a date string to the "MMMM DD, YYYY" format.  */
+const formatDateString = _.compose(format("MMMM dd, yyyy"), parseISO)
+
+/**
+ * Get the creation and last updated dates for a file. Uses `git` commit
+ * history.
+ */
+const getRelativePathHistoryDates = async (path) => {
+  const commits = await getPathCommits(path)
+
+  const firstCommit = _.last(commits)
+  const latestCommit = _.first(commits)
+
+  return {
+    createdAt: formatDateString(firstCommit.date),
+    updatedAt: formatDateString(latestCommit.date),
+  }
+}
+
 const readAllContributorsRc = async () => {
   const rcPath = path.resolve("..", ".all-contributorsrc")
   const contributorsRcData = await fs.readFile(rcPath, "utf-8")
@@ -115,4 +147,5 @@ module.exports = {
   getNodeContributors,
   getOrgMembers,
   readAllContributorsRc,
+  getRelativePathHistoryDates,
 }
