@@ -9,11 +9,10 @@ const checkbox = multiStyleConfig({
   },
   baseStyle: function (props) {
     const { colorScheme: c } = props
-
     return {
       control: {
         w: "100%",
-        transition: "box-shadow 250ms, background-color 250ms",
+        transition: "box-shadow 250ms",
         border: "2px solid",
         borderRadius: "sm",
         borderColor: "inherit",

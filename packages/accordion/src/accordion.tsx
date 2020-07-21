@@ -17,6 +17,7 @@ import {
   ReactNodeOrRenderProp,
   runIfFn,
   __DEV__,
+  Dict,
 } from "@chakra-ui/utils"
 import React, { Ref, useMemo } from "react"
 import {
@@ -191,28 +192,35 @@ export type AccordionPanelProps = DivProps
  */
 export const AccordionPanel = React.forwardRef(function AccordionPanel(
   props: AccordionPanelProps,
-  ref: Ref<any>,
+  ref: React.Ref<any>,
 ) {
   const { reduceMotion } = useAccordionContext()
-
   const { getPanelProps, isOpen } = useAccordionItemContext()
-  const panelProps = getPanelProps(props, ref)
 
-  if (reduceMotion) {
-    delete panelProps.hidden
-  }
+  // remove `hidden` prop, 'coz we're using height animation
+  const { hidden, ...panelProps } = getPanelProps({ ...props, ref }) as Dict
 
+  const _className = cx("chakra-accordion__panel", props.className)
   const styles = useStyles()
+
+  if (reduceMotion == true) {
+    panelProps.hidden = hidden
+  }
 
   const child = (
     <chakra.div
       {...panelProps}
-      className={cx("chakra-accordion__panel", props.className)}
       __css={styles.panel}
+      className={_className}
+      transition="height 150ms ease-in-out, opacity 150ms ease-in-out, transform 150ms ease-in-out"
     />
   )
 
-  return reduceMotion ? child : <Collapse isOpen={isOpen}>{child}</Collapse>
+  if (reduceMotion == false) {
+    return <Collapse isOpen={isOpen}>{child}</Collapse>
+  }
+
+  return child
 })
 
 if (__DEV__) {
@@ -220,9 +228,7 @@ if (__DEV__) {
 }
 
 /**
- * AccordionIcon
- *
- * The icon that gives a visual cue of the open/close state of the accordion item.
+ * AccordionIcon that gives a visual cue of the open/close state of the accordion item.
  * It rotates `180deg` based on the open/close state.
  */
 export function AccordionIcon(props: IconProps) {

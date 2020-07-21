@@ -31,6 +31,9 @@ const StyledContainer = chakra("label", {
     alignItems: "center",
     verticalAlign: "top",
     position: "relative",
+    _disabled: {
+      cursor: "not-allowed",
+    },
   },
 })
 
@@ -100,6 +103,7 @@ export const Checkbox = forwardRef<CheckboxProps>(function Checkbox(
   return (
     <StyledContainer
       __css={styles.container}
+      data-disabled={state.isDisabled}
       className={_className}
       {...htmlProps}
     >
