@@ -21,9 +21,9 @@ export default {
   ],
 }
 
-const Button = (props: PropsOf<"button">) => {
+const Button = (props: PropsOf<typeof chakra.button>) => {
   const styles = useStyleConfig("Button", props)
-  return <chakra.button __css={styles.container} />
+  return <chakra.button __css={styles} {...props} />
 }
 
 export const BasicUsage = () => {
@@ -53,9 +53,7 @@ export const BasicUsage = () => {
               <Button ref={cancelRef} onClick={onClose}>
                 Nevermind
               </Button>
-              <Button colorScheme="red" ml={3}>
-                Yes, delete
-              </Button>
+              <Button ml={3}>Yes, delete</Button>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialogOverlay>

@@ -7,7 +7,6 @@ const tag = multiStyleConfig({
     label: "the tag inner text",
     closeButton: "the close button",
   },
-
   baseStyle: {
     container: {
       fontWeight: "medium",
@@ -21,11 +20,12 @@ const tag = multiStyleConfig({
       lineHeight: 1.2,
     },
     closeButton: {
-      fontSize: "1em",
-      width: "1.25rem",
-      height: "1.25rem",
+      fontSize: "18px",
+      w: "1.25rem",
+      h: "1.25rem",
       borderRadius: "sm",
-      marginLeft: "0.375rem",
+      ml: "0.375rem",
+      mr: "-1",
       opacity: 0.5,
       _disabled: {
         opacity: 0.4,
