@@ -37,14 +37,12 @@ export type LinkProps = PropsOf<typeof chakra.a> & LinkOptions & ThemingProps
 
 export const Link = forwardRef<LinkProps>(function Link(props, ref) {
   const styles = useStyleConfig("Link", props)
-  const { className, isExternal, isDisabled, ...rest } = omitThemingProps(props)
+  const { className, isExternal, ...rest } = omitThemingProps(props)
 
   return (
     <chakra.a
-      tabIndex={isDisabled ? -1 : undefined}
       target={isExternal ? "_blank" : undefined}
       rel={isExternal ? "noopener noreferrer" : undefined}
-      aria-disabled={isDisabled || undefined}
       ref={ref}
       className={cx("chakra-link", className)}
       {...rest}
