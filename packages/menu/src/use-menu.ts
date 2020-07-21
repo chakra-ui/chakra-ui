@@ -742,7 +742,7 @@ export function useMenuItem(props: UseMenuItemProps) {
 
 export interface UseMenuOptionProps extends UseMenuItemProps {
   value?: string
-  isChecked?: string
+  isChecked?: boolean
   type?: "radio" | "checkbox"
   children?: React.ReactNode
 }
