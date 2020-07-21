@@ -100,6 +100,14 @@ export const Checkbox = forwardRef<CheckboxProps>(function Checkbox(
   const labelProps = getLabelProps()
   const checkboxProps = getCheckboxProps()
 
+  const iconStyles = {
+    opacity: state.isChecked || state.isIndeterminate ? 1 : 0,
+    transform:
+      state.isChecked || state.isIndeterminate ? "scale(1)" : "scale(0.95)",
+    transition: "opacity 200ms, transform 250ms",
+    ...styles.icon,
+  }
+
   return (
     <StyledContainer
       __css={styles.container}
@@ -114,8 +122,7 @@ export const Checkbox = forwardRef<CheckboxProps>(function Checkbox(
         {...checkboxProps}
       >
         <CheckboxIcon
-          __css={styles.icon}
-          className="chakra-checkbox__icon"
+          __css={iconStyles}
           isChecked={state.isChecked}
           isIndeterminate={state.isIndeterminate}
         />

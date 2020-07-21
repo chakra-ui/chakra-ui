@@ -15,13 +15,7 @@ import {
   runIfFn,
   __DEV__,
 } from "@chakra-ui/utils"
-import React, {
-  Children,
-  cloneElement,
-  ReactElement,
-  Ref,
-  useEffect,
-} from "react"
+import React, { Children, cloneElement, Ref, useEffect } from "react"
 import { usePopover, UsePopoverProps, UsePopoverReturn } from "./use-popover"
 
 const [PopoverProvider, usePopoverContext] = createContext<UsePopoverReturn>({
@@ -29,6 +23,8 @@ const [PopoverProvider, usePopoverContext] = createContext<UsePopoverReturn>({
   errorMessage:
     "usePopoverContext: `context` is undefined. Seems you forgot to wrap all popover components within `<Popover />`",
 })
+
+export { usePopoverContext }
 
 export type PopoverProps = UsePopoverProps &
   ThemingProps & {

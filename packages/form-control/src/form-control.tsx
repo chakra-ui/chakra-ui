@@ -7,6 +7,7 @@ import {
   useStyles,
   StylesProvider,
   useMultiStyleConfig,
+  useStyleConfig,
   ThemingProps,
   omitThemingProps,
 } from "@chakra-ui/system"
@@ -67,10 +68,10 @@ interface FormControlContext extends FormControlOptions {
   id?: string
 }
 
-type FieldContext = Omit<ReturnType<typeof useProvider>, "htmlProps">
+type ControlContext = Omit<ReturnType<typeof useProvider>, "htmlProps">
 
-const [FormControlContextProvider, useFormControlContext] = createContext<
-  FieldContext
+const [FormControlProvider, useFormControlContext] = createContext<
+  ControlContext
 >({
   strict: false,
   name: "FormControlContext",
@@ -147,7 +148,7 @@ export const FormControl = forwardRef<FormControlProps>(function FormControl(
   const _className = cx("chakra-form-control", props.className)
 
   return (
-    <FormControlContextProvider value={context}>
+    <FormControlProvider value={context}>
       <StylesProvider value={styles}>
         <chakra.div
           role="group"
@@ -160,7 +161,7 @@ export const FormControl = forwardRef<FormControlProps>(function FormControl(
           }}
         />
       </StylesProvider>
-    </FormControlContextProvider>
+    </FormControlProvider>
   )
 })
 
@@ -182,10 +183,12 @@ export const FormLabel = forwardRef<FormLabelProps>(function FormLabel(
   props,
   ref,
 ) {
-  const styles = useMultiStyleConfig("FormLabel", props)
+  const styles = useStyleConfig("FormLabel", props)
 
-  const { className, ...rest } = omitThemingProps(props)
-  const ownProps = useFormControlLabel(rest)
+  const { className, children, ...otherProps } = omitThemingProps(props)
+
+  const ownProps = useFormControlLabel(otherProps)
+  const fc = useFormControlContext()
 
   return (
     <chakra.label
@@ -194,10 +197,13 @@ export const FormLabel = forwardRef<FormLabelProps>(function FormLabel(
       __css={{
         display: "block",
         textAlign: "left",
-        ...styles.label,
+        ...styles,
       }}
       {...ownProps}
-    />
+    >
+      {children}
+      {fc.isRequired && <RequiredIndicator />}
+    </chakra.label>
   )
 })
 
