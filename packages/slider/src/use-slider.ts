@@ -21,6 +21,7 @@ import {
   percentToValue,
   roundValueToStep,
   valueToPercent,
+  isRightClick,
 } from "@chakra-ui/utils"
 import {
   Ref,
@@ -394,7 +395,7 @@ export function useSlider(props: UseSliderProps) {
     /**
      * Prevent update if it's right-click
      */
-    if (event.button != 0) return
+    if (isRightClick(event)) return
 
     if (!isInteractive || !rootRef.current) return
 
