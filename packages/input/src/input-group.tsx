@@ -23,15 +23,17 @@ export const InputGroup = React.forwardRef(function InputGroup(
 
   const validChildren = getValidChildren(children)
 
+  const input: any = styles.field
+
   validChildren.forEach((child: any) => {
     if (!styles) return
 
     if (child.type.groupId === "InputLeftElement") {
-      stylesRef.current.paddingLeft = styles.field["height"]
+      stylesRef.current.paddingLeft = input.height ?? input.h
     }
 
     if (child.type.groupId === "InputRightElement") {
-      stylesRef.current.paddingRight = styles.field["height"]
+      stylesRef.current.paddingRight = input.height ?? input.h
     }
 
     if (child.type.groupId === "InputRightAddon") {
@@ -51,8 +53,8 @@ export const InputGroup = React.forwardRef(function InputGroup(
       ? React.cloneElement(child, theming)
       : React.cloneElement(child, {
           ...theming,
-          paddingLeft: pl || paddingLeft || stylesRef.current?.paddingLeft,
-          paddingRight: pr || paddingRight || stylesRef.current?.paddingRight,
+          paddingLeft: pl ?? paddingLeft ?? stylesRef.current?.paddingLeft,
+          paddingRight: pr ?? paddingRight ?? stylesRef.current?.paddingRight,
           borderLeftRadius: stylesRef.current?.borderLeftRadius,
           borderRightRadius: stylesRef.current?.borderRightRadius,
         })

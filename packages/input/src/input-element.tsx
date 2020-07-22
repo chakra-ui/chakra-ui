@@ -28,10 +28,10 @@ const InputElement = React.forwardRef(function InputElement(
 
   const elementStyles = {
     [placement]: "0",
-    width: input.height,
-    height: input.height,
-    fontSize: input.fontSize,
-    paddingX: input.paddingLeft,
+    width: input?.height ?? input?.h,
+    height: input?.height ?? input?.h,
+    fontSize: input?.fontSize,
+    paddingX: input?.paddingLeft ?? input?.pl,
   }
 
   return <StyledElement ref={ref} __css={elementStyles} {...rest} />

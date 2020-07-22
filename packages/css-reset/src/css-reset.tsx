@@ -7,11 +7,10 @@ export const CSSReset = () => (
       html {
         line-height: 1.5;
         -webkit-text-size-adjust: 100%;
-        box-sizing: border-box;
         font-family: system-ui, sans-serif;
         -webkit-font-smoothing: antialiased;
         -webkit-text-size-adjust: 100%;
-        text-rendering: optimizelegibility;
+        text-rendering: optimizelegibility;        
       }
 
       *,
@@ -19,7 +18,7 @@ export const CSSReset = () => (
       *::after {
         border-width: 0;
         border-style: solid;
-        box-sizing: inherit;
+        box-sizing: border-box;
       }
 
       main {
