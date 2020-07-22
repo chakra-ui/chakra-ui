@@ -123,7 +123,6 @@
     "@emotion/styled": "10.0.27",
     "@storybook/addon-actions": "6.0.0-rc.13",
     "@storybook/addon-knobs": "6.0.0-rc.13",
-    "@storybook/preset-typescript": "3.0.0",
     "@storybook/react": "6.0.0-rc.13",
     "@types/jest": "26.0.5",
     "@types/react": "16.9.43",
