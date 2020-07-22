@@ -23,10 +23,10 @@ interface Options {
   colorScheme: string
 }
 
-const styleConfig = {
-  baseStyle: StyleInterpolation,
-  sizes: { small: StyleInterpolation },
-  variants: { outline: StyleInterpolation },
+type styleConfig = {
+  baseStyle: StyleInterpolation
+  sizes: { [size: string]: StyleInterpolation }
+  variants: { [variant: string]: StyleInterpolation }
 }
 ```
 

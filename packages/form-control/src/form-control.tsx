@@ -188,7 +188,7 @@ export const FormLabel = forwardRef<FormLabelProps>(function FormLabel(
   const { className, children, ...otherProps } = omitThemingProps(props)
 
   const ownProps = useFormControlLabel(otherProps)
-  const fc = useFormControlContext()
+  const field = useFormControlContext()
 
   return (
     <chakra.label
@@ -202,7 +202,7 @@ export const FormLabel = forwardRef<FormLabelProps>(function FormLabel(
       {...ownProps}
     >
       {children}
-      {fc.isRequired && <RequiredIndicator />}
+      {field?.isRequired && <RequiredIndicator />}
     </chakra.label>
   )
 })

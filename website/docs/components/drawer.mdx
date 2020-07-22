@@ -133,18 +133,16 @@ when the drawer opens. Pass the `initialFocusRef` prop.
 function DrawerExample() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const firstField = React.useRef()
-  const btnRef = React.useRef()
 
   return (
     <>
-      <Button ref={btnRef} leftIcon="add" colorScheme="teal" onClick={onOpen}>
+      <Button leftIcon={<AddIcon />} colorScheme="teal" onClick={onOpen}>
         Create user
       </Button>
       <Drawer
         isOpen={isOpen}
         placement="right"
         initialFocusRef={firstField}
-        finalFocusRef={btnRef}
         onClose={onClose}
       >
         <DrawerOverlay>
@@ -241,7 +239,7 @@ function SizeExample() {
             <DrawerHeader>{`${size} drawer contents`}</DrawerHeader>
             <DrawerBody>
               {size === "full"
-                ? `You're trapped 😆, refresh the page to leave`
+                ? `You're trapped 😆 , refresh the page to leave`
                 : null}
             </DrawerBody>
           </DrawerContent>
