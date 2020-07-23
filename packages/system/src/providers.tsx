@@ -1,4 +1,8 @@
-import { ColorModeProvider, useColorMode } from "@chakra-ui/color-mode"
+import {
+  ColorModeProvider,
+  useColorMode,
+  StorageManager,
+} from "@chakra-ui/color-mode"
 import { css, SystemStyleObject } from "@chakra-ui/styled-system"
 import { createContext, Dict, get, merge, runIfFn } from "@chakra-ui/utils"
 import { Global, Interpolation, ThemeContext } from "@emotion/core"
@@ -34,10 +38,13 @@ export function useTheme<T extends object = Dict>() {
   return theme
 }
 
-export type ChakraProviderProps = ThemeProviderProps
+export type ChakraProviderProps = ThemeProviderProps & {
+  storageManager?: StorageManager
+}
 
+// how do we set storageManager in the gatsby and next plugins?
 export function ChakraProvider(props: ChakraProviderProps) {
-  const { theme, children } = props
+  const { theme, children, storageManager } = props
 
   if (!theme) {
     throw Error("ChakraProvider: the `theme` prop is required")
@@ -48,6 +55,7 @@ export function ChakraProvider(props: ChakraProviderProps) {
       <ColorModeProvider
         defaultValue={theme?.config?.initialColorMode}
         useSystemColorMode={theme?.config?.useInitialColorMode}
+        storageManager={storageManager}
       >
         <GlobalStyle />
         {children}

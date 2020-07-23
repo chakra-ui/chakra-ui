@@ -16,7 +16,7 @@ export interface StorageManager {
 }
 
 /**
- * Simple object for handle read-write for localStorage
+ * Simple object to handle read-write to localStorage
  */
 export const localStorageManager: StorageManager = {
   get(init?) {
@@ -31,6 +31,24 @@ export const localStorageManager: StorageManager = {
     if (isStorageSupported) {
       window.localStorage.setItem(storageKey, value)
     }
+  },
+}
+
+/**
+ * Simple object to handle read-write to cookies
+ */
+export const cookieStorageManager: StorageManager = {
+  get(init?) {
+    const match = document.cookie.match(
+      new RegExp("(^| )" + storageKey + "=([^;]+)"),
+    )
+
+    const value = match ? match[2] : init
+
+    return value as ColorMode | undefined
+  },
+  set(value) {
+    document.cookie = `${storageKey}=${value}` // need to set more cookie properties
   },
 }
 
