@@ -25,7 +25,9 @@ that make it super easy to create websites and apps.
 
 ## Looking for the documentation? 📝
 
-Head over here => https://chakra-ui.com
+For older versions, head over here => https://chakra-ui.com
+
+Latest version (pre-release) => https://next.chakra-ui.com
 
 ## Features 🚀
 
