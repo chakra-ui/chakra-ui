@@ -1028,6 +1028,15 @@
         "code",
         "test"
       ]
+    },
+    {
+      "login": "antonjb",
+      "name": "Anton",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/1066856?v=4",
+      "profile": "https://github.com/antonjb",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
