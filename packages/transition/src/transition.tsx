@@ -17,7 +17,7 @@ type RTGProps = Pick<
   | "onExited"
   | "unmountOnExit"
   | "timeout"
->
+> & { appear?: boolean }
 
 export interface TransitionProps extends RTGProps {
   transition?: string
@@ -25,7 +25,7 @@ export interface TransitionProps extends RTGProps {
   styles: TransitionStyles
 }
 
-export type TransitionStyleState = "init" | "entered" | "exiting"
+export type TransitionStyleState = "init" | TransitionStatus
 
 export type TransitionStyles = {
   [K in TransitionStyleState]?: React.CSSProperties
