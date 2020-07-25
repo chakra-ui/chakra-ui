@@ -5,11 +5,6 @@ import { isUndefined, __DEV__, StringOrNumber } from "@chakra-ui/utils"
 
 type CircleProps = PropsOf<typeof chakra.circle>
 
-/**
- * Circle
- *
- * SVG circle element visually indicating the shape of the component
- */
 const Circle = (props: CircleProps) => (
   <chakra.circle cx={50} cy={50} r={42} fill="transparent" {...props} />
 )
@@ -23,11 +18,6 @@ type ShapeProps = PropsOf<typeof chakra.svg> & {
   isIndeterminate?: boolean
 }
 
-/**
- * Shape
- *
- * SVG wrapper element for the component's circular shape
- */
 function Shape(props: ShapeProps) {
   const { size, isIndeterminate, ...rest } = props
   return (
@@ -91,20 +81,18 @@ interface CircularProgressOptions {
   /**
    * A function that returns the desired valueText to use in place of the value
    */
-  getValueText?(value?: number, percent?: number): string
+  getValueText?(value: number, percent: number): string
 }
 
 export type CircularProgressProps = PropsOf<typeof chakra.div> &
   CircularProgressOptions
 
 /**
- * React component used to indicate the progress of an activity.
- *
+ * CircularProgress is used to indicate the progress of an activity.
  * It's built using `svg` and `circle` components with support for
  * theming and `indeterminate` state
  *
  * @see Docs https://chakra-ui.com/components/progress
- *
  * @todo add theming support for circular progress
  */
 export function CircularProgress(props: CircularProgressProps) {
@@ -151,17 +139,19 @@ export function CircularProgress(props: CircularProgressProps) {
         transition: `stroke-dasharray 0.6s ease 0s, stroke 0.6s ease`,
       }
 
+  const rootStyles = {
+    display: "inline-block",
+    position: "relative",
+    verticalAlign: "middle",
+    fontSize: size,
+  }
+
   return (
     <chakra.div
       className="chakra-progress"
       {...progress.bind}
       {...rest}
-      __css={{
-        display: "inline-block",
-        position: "relative",
-        verticalAlign: "middle",
-        fontSize: size,
-      }}
+      __css={rootStyles}
     >
       <Shape size={size} isIndeterminate={isIndeterminate}>
         <Circle
@@ -187,8 +177,6 @@ if (__DEV__) {
 }
 
 /**
- * CircularProgressLabel
- *
  * CircularProgress component label. In most cases it's a numeric indicator
  * of the circular progress component's value
  */

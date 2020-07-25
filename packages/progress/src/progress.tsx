@@ -3,7 +3,7 @@ import {
   omitThemingProps,
   PropsOf,
   ThemingProps,
-  useStyleConfig,
+  useMultiStyleConfig,
   StylesProvider,
   useStyles,
   ObjectInterpolation,
@@ -18,26 +18,21 @@ import {
 } from "./progress.utils"
 
 /**
- * ProgressLabel (Linear)
- * Progress component used to show the numeric value of the progress.
+ * ProgressLabel is used to show the numeric value of the progress.
  * @see Docs https://chakra-ui.com/components/progress
  */
 export const ProgressLabel = (props: PropsOf<typeof chakra.div>) => {
   const styles = useStyles()
-  return (
-    <chakra.div
-      {...props}
-      __css={{
-        top: "50%",
-        left: "50%",
-        width: "100%",
-        textAlign: "center",
-        position: "absolute",
-        transform: "translate(-50%, -50%)",
-        ...styles.label,
-      }}
-    />
-  )
+  const labelStyles = {
+    top: "50%",
+    left: "50%",
+    width: "100%",
+    textAlign: "center",
+    position: "absolute",
+    transform: "translate(-50%, -50%)",
+    ...styles.label,
+  }
+  return <chakra.div {...props} __css={labelStyles} />
 }
 
 if (__DEV__) {
@@ -60,7 +55,13 @@ export type ProgressFilledTrackProps = PropsOf<typeof chakra.div> &
 function ProgressFilledTrack(props: ProgressFilledTrackProps) {
   const { min, max, value, ...rest } = props
   const progress = getProgressProps({ value, min, max })
+
   const styles = useStyles()
+  const trackStyles = {
+    height: "100%",
+    ...styles.filledTrack,
+  }
+
   return (
     <chakra.div
       style={{
@@ -69,10 +70,7 @@ function ProgressFilledTrack(props: ProgressFilledTrackProps) {
       }}
       {...progress.bind}
       {...rest}
-      __css={{
-        height: "100%",
-        ...styles.filledTrack,
-      }}
+      __css={trackStyles}
     />
   )
 }
@@ -130,7 +128,7 @@ export function Progress(props: ProgressProps) {
     ...rest
   } = omitThemingProps(props)
 
-  const styles = useStyleConfig("Progress", {
+  const styles = useMultiStyleConfig("Progress", {
     ...props,
     isIndeterminate: isUndefined(value),
   })
@@ -159,15 +157,14 @@ export function Progress(props: ProgressProps) {
     }),
   }
 
+  const trackStyles = {
+    overflow: "hidden",
+    position: "relative",
+    ...styles.track,
+  }
+
   return (
-    <chakra.div
-      __css={{
-        overflow: "hidden",
-        position: "relative",
-        ...styles.track,
-      }}
-      {...rest}
-    >
+    <chakra.div __css={trackStyles} {...rest}>
       <StylesProvider value={styles}>
         <ProgressFilledTrack
           min={min}

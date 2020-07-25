@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-next.6](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/docs@1.0.0-next.5...@chakra-ui/docs@1.0.0-next.6) (2020-07-15)
+
+**Note:** Version bump only for package @chakra-ui/docs
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [1.0.0-next.5](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/docs@0.6.0...@chakra-ui/docs@1.0.0-next.5) (2020-07-15)
+
+### Bug Fixes
+
+- **tooltip:** rename show and hide to open and close
+  ([b612144](https://github.com/chakra-ui/chakra-ui/commit/b612144c179f3076113dac495f8b4af982b16cd4))
+- change react icons url
+  ([722ecbd](https://github.com/chakra-ui/chakra-ui/commit/722ecbd648edf427dc42ef631ab7e4317cca6da7))
+- remove trailing slashes from links
+  ([d0ebdf3](https://github.com/chakra-ui/chakra-ui/commit/d0ebdf3183cc4c78c95ac0931133892b5bc499ef))
+- revert back to full url on links
+  ([13cf19b](https://github.com/chakra-ui/chakra-ui/commit/13cf19b40464a1d03b0b20a4973780c94fd617c3))
+- updated Stack to allow 'row-reverse' and 'column-reverse' for direction prop
+  ([1180b6b](https://github.com/chakra-ui/chakra-ui/commit/1180b6b7b97ba33c5b9506f65cec59ac4e37048f))
+
+### Features
+
+- **tooltip-disable:** add is-disabled prop to tooltip doc
+  ([baad3e4](https://github.com/chakra-ui/chakra-ui/commit/baad3e4cbbc129651089b1c368c7bb054e8c862f))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [0.6.0](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/docs@0.5.0...@chakra-ui/docs@0.6.0) (2020-07-01)
 
 ### Bug Fixes

@@ -27,7 +27,7 @@ export const Checkbox = (props: any) => {
         _disabled={{ opacity: 0.4 }}
         _checked={{ bg: "green.500", borderColor: "green.500" }}
       >
-        <CheckIcon w="16px" h="16px" />
+        <CheckIcon w="0.64em" h="0.64em" />
       </ControlBox>
       <Box as="span" ml={2} verticalAlign="center" userSelect="none">
         This is a Checkbox

@@ -1,36 +1,57 @@
 import {
-  BaseStyle,
-  DefaultProps,
   generateStripe,
   getColor,
   mode,
-  Sizes,
+  multiStyleConfig,
 } from "@chakra-ui/theme-tools"
 
-const register = {
-  parts: ["track", "filledTrack", "label"],
-  sizes: ["xs", "sm", "md", "lg"],
-} as const
+const progress = multiStyleConfig({
+  parts: {
+    track: "the linear progress track",
+    filledTrack: "the inner filled track",
+    label: "the value indicator or label",
+  },
 
-const baseStyle: BaseStyle<typeof register> = (props) => {
-  return {
-    label: {
-      lineHeight: "1",
-      fontSize: "0.25em",
-      fontWeight: "bold",
-      color: "white",
-    },
-    track: {
-      bg: mode(`gray.100`, `whiteAlpha.300`)(props),
-    },
-    filledTrack: {
-      transition: "all 0.3s",
-      ...getFilledTrackStyle(props),
-    },
-  }
-}
+  baseStyle: function (props) {
+    return {
+      label: {
+        lineHeight: "1",
+        fontSize: "0.25em",
+        fontWeight: "bold",
+        color: "white",
+      },
+      track: {
+        bg: mode(`gray.100`, `whiteAlpha.300`)(props),
+      },
+      filledTrack: {
+        transition: "all 0.3s",
+        ...filledStyle(props),
+      },
+    }
+  },
 
-function getFilledTrackStyle(props: any) {
+  sizes: {
+    xs: {
+      track: { h: "0.25rem" },
+    },
+    sm: {
+      track: { h: "0.5rem" },
+    },
+    md: {
+      track: { h: "0.75rem" },
+    },
+    lg: {
+      track: { h: "1rem" },
+    },
+  },
+
+  defaultProps: {
+    size: "md",
+    colorScheme: "blue",
+  },
+})
+
+function filledStyle(props: Record<string, any>) {
   const { colorScheme: c, theme: t, isIndeterminate, hasStripe } = props
 
   const stripeStyle = mode(
@@ -47,39 +68,12 @@ function getFilledTrackStyle(props: any) {
     transparent 100%
   )`
 
-  const shouldAddStripe = !isIndeterminate && hasStripe
+  const addStripe = !isIndeterminate && hasStripe
 
   return {
-    ...(shouldAddStripe && stripeStyle),
-    bg: isIndeterminate ? gradient : bg,
+    ...(addStripe && stripeStyle),
+    bgColor: isIndeterminate ? gradient : bg,
   }
-}
-
-const sizes: Sizes<typeof register> = {
-  xs: {
-    track: { height: "0.25rem" },
-  },
-  sm: {
-    track: { height: "0.5rem" },
-  },
-  md: {
-    track: { height: "0.75rem" },
-  },
-  lg: {
-    track: { height: "1rem" },
-  },
-}
-
-const defaultProps: DefaultProps<typeof register> = {
-  size: "md",
-  colorScheme: "blue",
-}
-
-const progress = {
-  register,
-  defaultProps,
-  baseStyle,
-  sizes,
 }
 
 export default progress

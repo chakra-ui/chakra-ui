@@ -14,15 +14,6 @@ exports[`ButtonGroup renders correctly 1`] = `
 }
 
 .emotion-0 {
-  line-height: 1.2;
-  border-radius: 0.25rem;
-  font-weight: 600;
-  height: 2.5rem;
-  min-width: 2.5rem;
-  font-size: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  background: #EDF2F7;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -48,12 +39,22 @@ exports[`ButtonGroup renders correctly 1`] = `
   white-space: nowrap;
   vertical-align: middle;
   outline: none;
+  width: auto;
+  line-height: 1.2;
+  border-radius: 0.25rem;
+  font-weight: 600;
+  height: 2.5rem;
+  min-width: 2.5rem;
+  font-size: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background: #EDF2F7;
 }
 
 .emotion-0:focus,
-.emotion-0[data-focus],
-.emotion-0[data-state=focused] {
+.emotion-0[data-focus] {
   box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
+  z-index: 1;
 }
 
 .emotion-0[disabled],
@@ -64,32 +65,20 @@ exports[`ButtonGroup renders correctly 1`] = `
 .emotion-0[aria-disabled=true]:hover,
 .emotion-0[data-disabled],
 .emotion-0[data-disabled]:focus,
-.emotion-0[data-disabled]:hover,
-.emotion-0[data-state=disabled],
-.emotion-0[data-state=disabled]:focus,
-.emotion-0[data-state=disabled]:hover {
+.emotion-0[data-disabled]:hover {
   opacity: 0.4;
   cursor: not-allowed;
   box-shadow: none;
 }
 
 .emotion-0:hover,
-.emotion-0[data-hover],
-.emotion-0[data-state=hover] {
+.emotion-0[data-hover] {
   background: #E2E8F0;
 }
 
 .emotion-0:active,
-.emotion-0[data-active],
-.emotion-0[data-state=active] {
+.emotion-0[data-active] {
   background: #CBD5E0;
-}
-
-.emotion-0:focus,
-.emotion-0[data-focus],
-.emotion-0[data-state=focused] {
-  box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
-  z-index: 1;
 }
 
 <div

@@ -4,7 +4,7 @@ import { jsx } from "@chakra-ui/system"
 import {
   HiddenTransition,
   TransitionConfig,
-  TransitionConfigToCSS,
+  transitionConfigToCSS,
 } from "@chakra-ui/transition"
 import * as React from "react"
 import { toTransformOrigin, usePopper } from "../src"
@@ -85,7 +85,7 @@ export const Basic = () => {
             borderRadius: 6,
             transformOrigin: toTransformOrigin(placement),
           }}
-          sx={TransitionConfigToCSS(scale, "tooltip")}
+          sx={transitionConfigToCSS(scale, "tooltip")}
         >
           Popper
         </div>

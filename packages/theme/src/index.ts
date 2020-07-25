@@ -1,11 +1,12 @@
 import foundations from "./foundations"
 import components from "./components"
 import styles from "./styles"
+import { ColorModeOptions } from "@chakra-ui/system"
 
 /**
  * Color mode config
  */
-const config = {
+const config: ColorModeOptions = {
   useSystemColorMode: false,
   initialColorMode: "light",
 }

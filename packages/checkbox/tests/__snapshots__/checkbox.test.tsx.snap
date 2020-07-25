@@ -17,13 +17,13 @@ exports[`Checkbox renders correctly 1`] = `
 }
 
 .emotion-0 {
-  -webkit-transition: box-shadow 250ms;
-  transition: box-shadow 250ms;
+  width: 1rem;
+  -webkit-transition: box-shadow 250ms,background-color 250ms;
+  transition: box-shadow 250ms,background-color 250ms;
   border: 2px solid;
   border-radius: 0.125rem;
   border-color: inherit;
-  color: #fff;
-  width: 1rem;
+  color: #FFFFFF;
   height: 1rem;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -45,68 +45,41 @@ exports[`Checkbox renders correctly 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  -webkit-transition: -webkit-transform 240ms,opacity 240ms;
-  -webkit-transition: transform 240ms,opacity 240ms;
-  transition: transform 240ms,opacity 240ms;
 }
 
 .emotion-0[aria-checked=true],
-.emotion-0[data-checked],
-.emotion-0[data-state=checked] {
-  background: #3182ce;
-  border-color: #3182ce;
-  color: #fff;
+.emotion-0[data-checked] {
+  background: #3182CE;
+  border-color: #3182CE;
+  color: #FFFFFF;
 }
 
 .emotion-0[aria-checked=true]:hover,
 .emotion-0[data-checked]:hover,
-.emotion-0[data-state=checked]:hover,
 .emotion-0[aria-checked=true][data-hover],
-.emotion-0[data-checked][data-hover],
-.emotion-0[data-state=checked][data-hover],
-.emotion-0[aria-checked=true][data-state=hover],
-.emotion-0[data-checked][data-state=hover],
-.emotion-0[data-state=checked][data-state=hover] {
-  background: #2a69ac;
-  border-color: #2a69ac;
+.emotion-0[data-checked][data-hover] {
+  background: #2A69AC;
+  border-color: #2A69AC;
 }
 
 .emotion-0[aria-checked=true][disabled],
 .emotion-0[data-checked][disabled],
-.emotion-0[data-state=checked][disabled],
 .emotion-0[aria-checked=true][disabled]:focus,
 .emotion-0[data-checked][disabled]:focus,
-.emotion-0[data-state=checked][disabled]:focus,
 .emotion-0[aria-checked=true][disabled]:hover,
 .emotion-0[data-checked][disabled]:hover,
-.emotion-0[data-state=checked][disabled]:hover,
 .emotion-0[aria-checked=true][aria-disabled=true],
 .emotion-0[data-checked][aria-disabled=true],
-.emotion-0[data-state=checked][aria-disabled=true],
 .emotion-0[aria-checked=true][aria-disabled=true]:focus,
 .emotion-0[data-checked][aria-disabled=true]:focus,
-.emotion-0[data-state=checked][aria-disabled=true]:focus,
 .emotion-0[aria-checked=true][aria-disabled=true]:hover,
 .emotion-0[data-checked][aria-disabled=true]:hover,
-.emotion-0[data-state=checked][aria-disabled=true]:hover,
 .emotion-0[aria-checked=true][data-disabled],
 .emotion-0[data-checked][data-disabled],
-.emotion-0[data-state=checked][data-disabled],
 .emotion-0[aria-checked=true][data-disabled]:focus,
 .emotion-0[data-checked][data-disabled]:focus,
-.emotion-0[data-state=checked][data-disabled]:focus,
 .emotion-0[aria-checked=true][data-disabled]:hover,
-.emotion-0[data-checked][data-disabled]:hover,
-.emotion-0[data-state=checked][data-disabled]:hover,
-.emotion-0[aria-checked=true][data-state=disabled],
-.emotion-0[data-checked][data-state=disabled],
-.emotion-0[data-state=checked][data-state=disabled],
-.emotion-0[aria-checked=true][data-state=disabled]:focus,
-.emotion-0[data-checked][data-state=disabled]:focus,
-.emotion-0[data-state=checked][data-state=disabled]:focus,
-.emotion-0[aria-checked=true][data-state=disabled]:hover,
-.emotion-0[data-checked][data-state=disabled]:hover,
-.emotion-0[data-state=checked][data-state=disabled]:hover {
+.emotion-0[data-checked][data-disabled]:hover {
   border-color: #E2E8F0;
   background: #E2E8F0;
   color: #718096;
@@ -114,11 +87,10 @@ exports[`Checkbox renders correctly 1`] = `
 
 .emotion-0:indeterminate,
 .emotion-0[aria-checked=mixed],
-.emotion-0[data-indeterminate],
-.emotion-0[data-state=mixed] {
-  background: #3182ce;
-  border-color: #3182ce;
-  color: #fff;
+.emotion-0[data-indeterminate] {
+  background: #3182CE;
+  border-color: #3182CE;
+  color: #FFFFFF;
 }
 
 .emotion-0[disabled],
@@ -129,24 +101,19 @@ exports[`Checkbox renders correctly 1`] = `
 .emotion-0[aria-disabled=true]:hover,
 .emotion-0[data-disabled],
 .emotion-0[data-disabled]:focus,
-.emotion-0[data-disabled]:hover,
-.emotion-0[data-state=disabled],
-.emotion-0[data-state=disabled]:focus,
-.emotion-0[data-state=disabled]:hover {
+.emotion-0[data-disabled]:hover {
   background: #EDF2F7;
   border-color: #EDF2F7;
 }
 
 .emotion-0:focus,
-.emotion-0[data-focus],
-.emotion-0[data-state=focused] {
+.emotion-0[data-focus] {
   box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
 }
 
 .emotion-0[aria-invalid=true],
-.emotion-0[data-invalid],
-.emotion-0[data-state=invalid] {
-  border-color: #e53e3e;
+.emotion-0[data-invalid] {
+  border-color: #E53E3E;
 }
 
 <label
@@ -183,13 +150,13 @@ exports[`Checkbox renders correctly 2`] = `
 }
 
 .emotion-0 {
-  -webkit-transition: box-shadow 250ms;
-  transition: box-shadow 250ms;
+  width: 1rem;
+  -webkit-transition: box-shadow 250ms,background-color 250ms;
+  transition: box-shadow 250ms,background-color 250ms;
   border: 2px solid;
   border-radius: 0.125rem;
   border-color: inherit;
-  color: #fff;
-  width: 1rem;
+  color: #FFFFFF;
   height: 1rem;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -211,68 +178,41 @@ exports[`Checkbox renders correctly 2`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  -webkit-transition: -webkit-transform 240ms,opacity 240ms;
-  -webkit-transition: transform 240ms,opacity 240ms;
-  transition: transform 240ms,opacity 240ms;
 }
 
 .emotion-0[aria-checked=true],
-.emotion-0[data-checked],
-.emotion-0[data-state=checked] {
-  background: #3182ce;
-  border-color: #3182ce;
-  color: #fff;
+.emotion-0[data-checked] {
+  background: #3182CE;
+  border-color: #3182CE;
+  color: #FFFFFF;
 }
 
 .emotion-0[aria-checked=true]:hover,
 .emotion-0[data-checked]:hover,
-.emotion-0[data-state=checked]:hover,
 .emotion-0[aria-checked=true][data-hover],
-.emotion-0[data-checked][data-hover],
-.emotion-0[data-state=checked][data-hover],
-.emotion-0[aria-checked=true][data-state=hover],
-.emotion-0[data-checked][data-state=hover],
-.emotion-0[data-state=checked][data-state=hover] {
-  background: #2a69ac;
-  border-color: #2a69ac;
+.emotion-0[data-checked][data-hover] {
+  background: #2A69AC;
+  border-color: #2A69AC;
 }
 
 .emotion-0[aria-checked=true][disabled],
 .emotion-0[data-checked][disabled],
-.emotion-0[data-state=checked][disabled],
 .emotion-0[aria-checked=true][disabled]:focus,
 .emotion-0[data-checked][disabled]:focus,
-.emotion-0[data-state=checked][disabled]:focus,
 .emotion-0[aria-checked=true][disabled]:hover,
 .emotion-0[data-checked][disabled]:hover,
-.emotion-0[data-state=checked][disabled]:hover,
 .emotion-0[aria-checked=true][aria-disabled=true],
 .emotion-0[data-checked][aria-disabled=true],
-.emotion-0[data-state=checked][aria-disabled=true],
 .emotion-0[aria-checked=true][aria-disabled=true]:focus,
 .emotion-0[data-checked][aria-disabled=true]:focus,
-.emotion-0[data-state=checked][aria-disabled=true]:focus,
 .emotion-0[aria-checked=true][aria-disabled=true]:hover,
 .emotion-0[data-checked][aria-disabled=true]:hover,
-.emotion-0[data-state=checked][aria-disabled=true]:hover,
 .emotion-0[aria-checked=true][data-disabled],
 .emotion-0[data-checked][data-disabled],
-.emotion-0[data-state=checked][data-disabled],
 .emotion-0[aria-checked=true][data-disabled]:focus,
 .emotion-0[data-checked][data-disabled]:focus,
-.emotion-0[data-state=checked][data-disabled]:focus,
 .emotion-0[aria-checked=true][data-disabled]:hover,
-.emotion-0[data-checked][data-disabled]:hover,
-.emotion-0[data-state=checked][data-disabled]:hover,
-.emotion-0[aria-checked=true][data-state=disabled],
-.emotion-0[data-checked][data-state=disabled],
-.emotion-0[data-state=checked][data-state=disabled],
-.emotion-0[aria-checked=true][data-state=disabled]:focus,
-.emotion-0[data-checked][data-state=disabled]:focus,
-.emotion-0[data-state=checked][data-state=disabled]:focus,
-.emotion-0[aria-checked=true][data-state=disabled]:hover,
-.emotion-0[data-checked][data-state=disabled]:hover,
-.emotion-0[data-state=checked][data-state=disabled]:hover {
+.emotion-0[data-checked][data-disabled]:hover {
   border-color: #E2E8F0;
   background: #E2E8F0;
   color: #718096;
@@ -280,11 +220,10 @@ exports[`Checkbox renders correctly 2`] = `
 
 .emotion-0:indeterminate,
 .emotion-0[aria-checked=mixed],
-.emotion-0[data-indeterminate],
-.emotion-0[data-state=mixed] {
-  background: #3182ce;
-  border-color: #3182ce;
-  color: #fff;
+.emotion-0[data-indeterminate] {
+  background: #3182CE;
+  border-color: #3182CE;
+  color: #FFFFFF;
 }
 
 .emotion-0[disabled],
@@ -295,29 +234,28 @@ exports[`Checkbox renders correctly 2`] = `
 .emotion-0[aria-disabled=true]:hover,
 .emotion-0[data-disabled],
 .emotion-0[data-disabled]:focus,
-.emotion-0[data-disabled]:hover,
-.emotion-0[data-state=disabled],
-.emotion-0[data-state=disabled]:focus,
-.emotion-0[data-state=disabled]:hover {
+.emotion-0[data-disabled]:hover {
   background: #EDF2F7;
   border-color: #EDF2F7;
 }
 
 .emotion-0:focus,
-.emotion-0[data-focus],
-.emotion-0[data-state=focused] {
+.emotion-0[data-focus] {
   box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
 }
 
 .emotion-0[aria-invalid=true],
-.emotion-0[data-invalid],
-.emotion-0[data-state=invalid] {
-  border-color: #e53e3e;
+.emotion-0[data-invalid] {
+  border-color: #E53E3E;
 }
 
 .emotion-1 {
-  font-size: 1rem;
   margin-left: 0.5rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 1rem;
 }
 
 .emotion-1[disabled],
@@ -328,10 +266,7 @@ exports[`Checkbox renders correctly 2`] = `
 .emotion-1[aria-disabled=true]:hover,
 .emotion-1[data-disabled],
 .emotion-1[data-disabled]:focus,
-.emotion-1[data-disabled]:hover,
-.emotion-1[data-state=disabled],
-.emotion-1[data-state=disabled]:focus,
-.emotion-1[data-state=disabled]:hover {
+.emotion-1[data-disabled]:hover {
   opacity: 0.4;
 }
 

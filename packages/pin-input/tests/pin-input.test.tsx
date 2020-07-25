@@ -4,7 +4,7 @@ import {
   usePinInput,
   usePinInputField,
   UsePinInputProps,
-  PinInputContextProvider,
+  PinInputProvider,
 } from "../src"
 
 function Input(props: any) {
@@ -15,11 +15,11 @@ function Input(props: any) {
 const Component = (props: UsePinInputProps = {}) => {
   const context = usePinInput(props)
   return (
-    <PinInputContextProvider value={context}>
+    <PinInputProvider value={context}>
       <Input data-testid="1" />
       <Input data-testid="2" />
       <Input data-testid="3" />
-    </PinInputContextProvider>
+    </PinInputProvider>
   )
 }
 
@@ -28,12 +28,12 @@ test("PinInput renders correctly", () => {
     const context = usePinInput()
 
     return (
-      <PinInputContextProvider value={context}>
+      <PinInputProvider value={context}>
         <Input />
         <Input />
         <Input />
         <Input />
-      </PinInputContextProvider>
+      </PinInputProvider>
     )
   }
   const { asFragment } = render(<Component />)
@@ -97,12 +97,12 @@ test("can clear all input", () => {
   const Component = () => {
     const context = usePinInput()
     return (
-      <PinInputContextProvider value={context}>
+      <PinInputProvider value={context}>
         <Input data-testid="1" />
         <Input data-testid="2" />
         <Input data-testid="3" />
         <button onClick={() => context.clear()}>Clear</button>
-      </PinInputContextProvider>
+      </PinInputProvider>
     )
   }
   const utils = render(<Component />)

@@ -5,7 +5,7 @@ import {
   PropsOf,
   StylesProvider,
   ThemingProps,
-  useStyleConfig,
+  useMultiStyleConfig,
   useStyles,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
@@ -14,27 +14,17 @@ import * as React from "react"
 
 export type StatLabelProps = PropsOf<typeof chakra.dt>
 
-/**
- * StatLabel - Theming
- *
- * The label for the stat card. This is usually the heading for the card.
- *
- * To style the StatLabel globally, change the styles in
- * `theme.components.Stat` under the `Label` key.
- */
 export const StatLabel = React.forwardRef(function StatLabel(
   props: StatLabelProps,
   ref: React.Ref<any>,
 ) {
-  const { className, ...rest } = props
-  const _className = cx("chakra-stat__label", className)
   const styles = useStyles()
   return (
     <chakra.dt
       ref={ref}
-      className={_className}
+      {...props}
+      className={cx("chakra-stat__label", props.className)}
       __css={styles.label}
-      {...rest}
     />
   )
 })
@@ -49,15 +39,13 @@ export const StatHelpText = React.forwardRef(function StatHelpText(
   props: StatHelpTextProps,
   ref: React.Ref<any>,
 ) {
-  const { className, ...rest } = props
   const styles = useStyles()
-  const _className = cx("chakra-stat__help-text", className)
 
   return (
     <chakra.p
       ref={ref}
-      className={_className}
-      {...rest}
+      {...props}
+      className={cx("chakra-stat__help-text", props.className)}
       __css={styles.helpText}
     />
   )
@@ -73,15 +61,12 @@ export const StatNumber = React.forwardRef(function StatNumber(
   props: StatNumberProps,
   ref: React.Ref<any>,
 ) {
-  const { className, ...rest } = props
-  const _className = cx("chakra-stat__number", className)
   const styles = useStyles()
-
   return (
     <chakra.dd
       ref={ref}
-      className={_className}
-      {...rest}
+      {...props}
+      className={cx("chakra-stat__number", props.className)}
       __css={styles.number}
     />
   )
@@ -90,12 +75,6 @@ export const StatNumber = React.forwardRef(function StatNumber(
 if (__DEV__) {
   StatNumber.displayName = "StatNumber"
 }
-
-/**
- * StatDownArrow
- *
- * Indicator arrow to show a decrease in the stat.
- */
 
 export function StatDownArrow(props: IconProps) {
   return (
@@ -111,12 +90,6 @@ export function StatDownArrow(props: IconProps) {
 if (__DEV__) {
   StatDownArrow.displayName = "StatDownArrow"
 }
-
-/**
- * StatUpArrow
- *
- * Indicator arrow to show an increase in the stat.
- */
 
 export const StatUpArrow = (props: IconProps) => (
   <Icon color="green.400" {...props}>
@@ -135,25 +108,19 @@ export type StatArrowProps = IconProps & {
   type?: "increase" | "decrease"
 }
 
-/**
- * StatArrow
- *
- * Indicator arrow to show an increase or a decrease in the stat.
- */
-
 export function StatArrow(props: StatArrowProps) {
   const { type, "aria-label": ariaLabel, ...rest } = props
   const styles = useStyles()
 
-  const Icon = type === "increase" ? StatUpArrow : StatDownArrow
+  const IconComponent = type === "increase" ? StatUpArrow : StatDownArrow
   const defaultAriaLabel = type === "increase" ? "increased by" : "decreased by"
   const label = ariaLabel || defaultAriaLabel
 
   return (
-    <React.Fragment>
+    <>
       <VisuallyHidden>{label}</VisuallyHidden>
-      <Icon aria-hidden {...rest} __css={styles.icon} />
-    </React.Fragment>
+      <IconComponent aria-hidden {...rest} __css={styles.icon} />
+    </>
   )
 }
 
@@ -167,14 +134,12 @@ export const Stat = React.forwardRef(function Stat(
   props: StatProps,
   ref: React.Ref<any>,
 ) {
-  const styles = useStyleConfig("Stat", props)
+  const styles = useMultiStyleConfig("Stat", props)
   const { className, children, ...rest } = omitThemingProps(props)
-
-  const _className = cx("chakra-stat", className)
 
   return (
     <StylesProvider value={styles}>
-      <chakra.div className={_className} ref={ref} {...rest}>
+      <chakra.div className={cx("chakra-stat", className)} ref={ref} {...rest}>
         <dl>{children}</dl>
       </chakra.div>
     </StylesProvider>
@@ -185,23 +150,16 @@ if (__DEV__) {
   Stat.displayName = "Stat"
 }
 
-/**
- * StatGroup
- *
- * The component to group multiple stats together
- */
-
 export const StatGroup = React.forwardRef(function StatGroup(
   props: PropsOf<typeof chakra.div>,
   ref: React.Ref<any>,
 ) {
-  const { className, ...rest } = props
   return (
     <chakra.div
+      {...props}
       ref={ref}
       role="group"
-      className={cx("chakra-stat__group", className)}
-      {...rest}
+      className={cx("chakra-stat__group", props.className)}
       __css={{
         display: "flex",
         flexWrap: "wrap",

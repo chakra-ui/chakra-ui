@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/test-utils",
-  "version": "1.0.0-next.4",
+  "version": "1.0.0-next.6",
   "private": true,
   "description": "Testing utilities for Chakra UI's components",
   "keywords": [
@@ -23,18 +23,17 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/system": "^1.0.0-next.4",
-    "@chakra-ui/theme": "^1.0.0-next.4",
-    "@testing-library/jest-dom": "5.1.1",
-    "@testing-library/react": "9.4.0",
-    "@testing-library/react-hooks": "3.2.1",
-    "@testing-library/user-event": "10.0.0",
-    "@types/jest-axe": "3.2.1",
-    "jest-axe": "3.4.0",
+    "@chakra-ui/system": "^1.0.0-next.6",
+    "@chakra-ui/theme": "^1.0.0-next.6",
+    "@testing-library/jest-dom": "5.11.1",
+    "@testing-library/react": "10.4.7",
+    "@testing-library/react-hooks": "3.3.0",
+    "@testing-library/user-event": "12.0.11",
+    "@types/jest-axe": "3.2.2",
+    "jest-axe": "3.5.0",
     "react-test-renderer": "16.12.0"
   },
   "peerDependencies": {
     "react": "16.x"
-  },
-  "gitHead": "ce6fe489afaddba502a2611f1fb1dcedb991325b"
+  }
 }

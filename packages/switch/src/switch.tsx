@@ -2,55 +2,59 @@ import { useCheckbox, UseCheckboxProps } from "@chakra-ui/checkbox"
 import {
   chakra,
   PropsOf,
-  useStyleConfig,
+  useMultiStyleConfig,
   omitThemingProps,
   ThemingProps,
 } from "@chakra-ui/system"
 import { cx, dataAttr, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
+type Omitted = "onChange" | "defaultChecked" | "checked"
+
 export type SwitchProps = Omit<UseCheckboxProps, "isIndeterminate"> &
-  Omit<
-    PropsOf<typeof chakra.label>,
-    "onChange" | "defaultChecked" | "checked"
-  > &
+  Omit<PropsOf<typeof chakra.label>, Omitted> &
   ThemingProps
 
 export const Switch = React.forwardRef(function Switch(
   props: SwitchProps,
   ref: React.Ref<any>,
 ) {
-  const styles = useStyleConfig("Switch", props)
-  const { className, ...rest } = omitThemingProps(props)
+  const styles = useMultiStyleConfig("Switch", props)
+
+  const realProps = omitThemingProps(props)
   const { state, getInputProps, getCheckboxProps, htmlProps } = useCheckbox(
-    rest,
+    realProps,
   )
 
-  const input = getInputProps({ ref })
-  const checkbox = getCheckboxProps() as any
+  const inputProps = getInputProps({}, ref)
+  const checkboxProps = getCheckboxProps()
+
+  const labelStyles = {
+    display: "inline-block",
+    verticalAlign: "middle",
+    lineHeight: "normal",
+  }
+
+  const trackStyles = {
+    display: "inline-flex",
+    flexShrink: 0,
+    justifyContent: "flex-start",
+    boxSizing: "content-box",
+    cursor: "pointer",
+    ...styles.track,
+  }
 
   return (
     <chakra.label
-      className={cx("chakra-switch", className)}
       {...htmlProps}
-      __css={{
-        display: "inline-block",
-        verticalAlign: "middle",
-        lineHeight: "normal",
-      }}
+      className={cx("chakra-switch", props.className)}
+      __css={labelStyles}
     >
-      <input className="chakra-switch__input" {...input} />
+      <input className="chakra-switch__input" {...inputProps} />
       <chakra.div
-        {...checkbox}
+        {...checkboxProps}
         className="chakra-switch__track"
-        __css={{
-          display: "inline-flex",
-          flexShrink: 0,
-          justifyContent: "flex-start",
-          boxSizing: "content-box",
-          cursor: "pointer",
-          ...styles.track,
-        }}
+        __css={trackStyles}
       >
         <chakra.div
           __css={styles.thumb}

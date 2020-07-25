@@ -22,7 +22,7 @@ export const Heading = React.forwardRef(function Heading(
       ref={ref}
       className={cx("chakra-heading", props.className)}
       {...rest}
-      __css={styles.heading}
+      __css={styles}
     />
   )
 })

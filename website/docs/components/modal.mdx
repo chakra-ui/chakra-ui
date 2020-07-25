@@ -306,46 +306,10 @@ function VerticallyCenter() {
 }
 ```
 
-### Adding transition
+### Using custom transitions
 
-The modal doesn't come with any transitions by default so you can manage this
-yourself. Chakra exports four transition components (`Fade`, `ScaleFade`,
-`Slide`, and `SlideFade`) to provide simple transitions.
-
-> For some reason, focus doesn't return back to the trigger after the transition
-> ends. As a walkaround, you might need to set `finalFocusRef` to the trigger or
-> any other element, and set `isOpen` to `true`.
-
-```jsx live=false
-function TransitionExample() {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const btnRef = React.useRef()
-
-  return (
-    <>
-      <Button ref={btnRef} onClick={onOpen}>
-        Trigger modal
-      </Button>
-
-      <Slide in={isOpen}>
-        {(styles) => (
-          <Modal finalFocusRef={btnRef} onClose={onClose} isOpen={true}>
-            <ModalOverlay opacity={styles.opacity}>
-              <ModalContent pb={5} {...styles}>
-                <ModalHeader>Login now</ModalHeader>
-                <ModalCloseButton />
-                <ModalBody>
-                  <Lorem count={2} />
-                </ModalBody>
-              </ModalContent>
-            </ModalOverlay>
-          </Modal>
-        )}
-      </Slide>
-    </>
-  )
-}
-```
+The `Modal` component comes with simple fade transition, but you can edit this
+by updating the modal transitions defined in the theme.
 
 ### Modal overflow behavior
 

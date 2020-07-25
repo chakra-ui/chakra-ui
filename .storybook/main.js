@@ -1,3 +1,6 @@
 module.exports = {
-  stories: ["../packages/popover/**/*.stories.tsx"],
+  stories: ["../packages/**/stories/*.stories.tsx"],
+  typescript: {
+    reactDocgen: false,
+  },
 }

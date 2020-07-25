@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-next.6](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/popper@1.0.0-next.5...@chakra-ui/popper@1.0.0-next.6) (2020-07-15)
+
+**Note:** Version bump only for package @chakra-ui/popper
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [1.0.0-next.5](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/popper@1.0.0-next.4...@chakra-ui/popper@1.0.0-next.5) (2020-07-15)
+
+### Features
+
+- add support for css transition
+  ([a41614c](https://github.com/chakra-ui/chakra-ui/commit/a41614c8e9757e5d38ddef6a356d2d8c718f406f))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # 1.0.0-next.4 (2020-07-01)
 
 ### Bug Fixes

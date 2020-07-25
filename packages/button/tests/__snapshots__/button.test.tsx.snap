@@ -3,15 +3,6 @@
 exports[`Button renders correctly 1`] = `
 <DocumentFragment>
   .emotion-0 {
-  line-height: 1.2;
-  border-radius: 0.25rem;
-  font-weight: 600;
-  height: 2.5rem;
-  min-width: 2.5rem;
-  font-size: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  background: #EDF2F7;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -37,11 +28,20 @@ exports[`Button renders correctly 1`] = `
   white-space: nowrap;
   vertical-align: middle;
   outline: none;
+  width: auto;
+  line-height: 1.2;
+  border-radius: 0.25rem;
+  font-weight: 600;
+  height: 2.5rem;
+  min-width: 2.5rem;
+  font-size: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background: #EDF2F7;
 }
 
 .emotion-0:focus,
-.emotion-0[data-focus],
-.emotion-0[data-state=focused] {
+.emotion-0[data-focus] {
   box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
 }
 
@@ -53,24 +53,19 @@ exports[`Button renders correctly 1`] = `
 .emotion-0[aria-disabled=true]:hover,
 .emotion-0[data-disabled],
 .emotion-0[data-disabled]:focus,
-.emotion-0[data-disabled]:hover,
-.emotion-0[data-state=disabled],
-.emotion-0[data-state=disabled]:focus,
-.emotion-0[data-state=disabled]:hover {
+.emotion-0[data-disabled]:hover {
   opacity: 0.4;
   cursor: not-allowed;
   box-shadow: none;
 }
 
 .emotion-0:hover,
-.emotion-0[data-hover],
-.emotion-0[data-state=hover] {
+.emotion-0[data-hover] {
   background: #E2E8F0;
 }
 
 .emotion-0:active,
-.emotion-0[data-active],
-.emotion-0[data-state=active] {
+.emotion-0[data-active] {
   background: #CBD5E0;
 }
 
@@ -95,15 +90,6 @@ exports[`Button renders with icons 1`] = `
 }
 
 .emotion-2 {
-  line-height: 1.2;
-  border-radius: 0.25rem;
-  font-weight: 600;
-  height: 2.5rem;
-  min-width: 2.5rem;
-  font-size: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  background: #EDF2F7;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -129,12 +115,22 @@ exports[`Button renders with icons 1`] = `
   white-space: nowrap;
   vertical-align: middle;
   outline: none;
+  width: auto;
+  line-height: 1.2;
+  border-radius: 0.25rem;
+  font-weight: 600;
+  height: 2.5rem;
+  min-width: 2.5rem;
+  font-size: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background: #EDF2F7;
 }
 
 .emotion-2:focus,
-.emotion-2[data-focus],
-.emotion-2[data-state=focused] {
+.emotion-2[data-focus] {
   box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
+  z-index: 1;
 }
 
 .emotion-2[disabled],
@@ -145,32 +141,20 @@ exports[`Button renders with icons 1`] = `
 .emotion-2[aria-disabled=true]:hover,
 .emotion-2[data-disabled],
 .emotion-2[data-disabled]:focus,
-.emotion-2[data-disabled]:hover,
-.emotion-2[data-state=disabled],
-.emotion-2[data-state=disabled]:focus,
-.emotion-2[data-state=disabled]:hover {
+.emotion-2[data-disabled]:hover {
   opacity: 0.4;
   cursor: not-allowed;
   box-shadow: none;
 }
 
 .emotion-2:hover,
-.emotion-2[data-hover],
-.emotion-2[data-state=hover] {
+.emotion-2[data-hover] {
   background: #E2E8F0;
 }
 
 .emotion-2:active,
-.emotion-2[data-active],
-.emotion-2[data-state=active] {
+.emotion-2[data-active] {
   background: #CBD5E0;
-}
-
-.emotion-2:focus,
-.emotion-2[data-focus],
-.emotion-2[data-state=focused] {
-  box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
-  z-index: 1;
 }
 
 .emotion-1 {
@@ -178,15 +162,15 @@ exports[`Button renders with icons 1`] = `
 }
 
 .emotion-0 {
-  color: currentColor;
+  vertical-align: middle;
   display: inline-block;
+  line-height: 1em;
+  color: currentColor;
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  height: 1em;
-  line-height: 1em;
-  vertical-align: middle;
   width: 1em;
+  height: 1em;
 }
 
 .emotion-4 {
@@ -268,15 +252,6 @@ exports[`shows spinner and loading text if isLoading and loadingText 1`] = `
 }
 
 .emotion-3 {
-  line-height: 1.2;
-  border-radius: 0.25rem;
-  font-weight: 600;
-  height: 2.5rem;
-  min-width: 2.5rem;
-  font-size: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  background: #EDF2F7;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -302,11 +277,20 @@ exports[`shows spinner and loading text if isLoading and loadingText 1`] = `
   white-space: nowrap;
   vertical-align: middle;
   outline: none;
+  width: auto;
+  line-height: 1.2;
+  border-radius: 0.25rem;
+  font-weight: 600;
+  height: 2.5rem;
+  min-width: 2.5rem;
+  font-size: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background: #EDF2F7;
 }
 
 .emotion-3:focus,
-.emotion-3[data-focus],
-.emotion-3[data-state=focused] {
+.emotion-3[data-focus] {
   box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
 }
 
@@ -318,24 +302,19 @@ exports[`shows spinner and loading text if isLoading and loadingText 1`] = `
 .emotion-3[aria-disabled=true]:hover,
 .emotion-3[data-disabled],
 .emotion-3[data-disabled]:focus,
-.emotion-3[data-disabled]:hover,
-.emotion-3[data-state=disabled],
-.emotion-3[data-state=disabled]:focus,
-.emotion-3[data-state=disabled]:hover {
+.emotion-3[data-disabled]:hover {
   opacity: 0.4;
   cursor: not-allowed;
   box-shadow: none;
 }
 
 .emotion-3:hover,
-.emotion-3[data-hover],
-.emotion-3[data-state=hover] {
+.emotion-3[data-hover] {
   background: #E2E8F0;
 }
 
 .emotion-3:active,
-.emotion-3[data-active],
-.emotion-3[data-state=active] {
+.emotion-3[data-active] {
   background: #CBD5E0;
 }
 
@@ -344,21 +323,34 @@ exports[`shows spinner and loading text if isLoading and loadingText 1`] = `
   border-color: currentColor;
   border-style: solid;
   border-radius: 9999px;
-  -webkit-animation: animation-0 0.45s linear infinite;
-  animation: animation-0 0.45s linear infinite;
+  border-width: 2px;
   border-bottom-color: transparent;
   border-left-color: transparent;
-  border-width: 2px;
   color: currentColor;
-  height: 1em;
+  -webkit-animation: animation-0 0.45s linear infinite;
+  animation: animation-0 0.45s linear infinite;
   width: 1em;
+  height: 1em;
+}
+
+.emotion-0 {
+  border: 0px;
+  -webkit-clip: rect(0px,0px,0px,0px);
+  clip: rect(0px,0px,0px,0px);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0px;
+  overflow: hidden;
+  white-space: nowrap;
+  position: absolute;
 }
 
 .emotion-2 {
   font-size: 1em;
   line-height: normal;
-  margin-right: 0.5rem;
   position: relative;
+  margin-right: 0.5rem;
 }
 
 <button
@@ -402,15 +394,6 @@ exports[`shows spinner if isLoading 1`] = `
 }
 
 .emotion-4 {
-  line-height: 1.2;
-  border-radius: 0.25rem;
-  font-weight: 600;
-  height: 2.5rem;
-  min-width: 2.5rem;
-  font-size: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  background: #EDF2F7;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -436,11 +419,20 @@ exports[`shows spinner if isLoading 1`] = `
   white-space: nowrap;
   vertical-align: middle;
   outline: none;
+  width: auto;
+  line-height: 1.2;
+  border-radius: 0.25rem;
+  font-weight: 600;
+  height: 2.5rem;
+  min-width: 2.5rem;
+  font-size: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background: #EDF2F7;
 }
 
 .emotion-4:focus,
-.emotion-4[data-focus],
-.emotion-4[data-state=focused] {
+.emotion-4[data-focus] {
   box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
 }
 
@@ -452,32 +444,27 @@ exports[`shows spinner if isLoading 1`] = `
 .emotion-4[aria-disabled=true]:hover,
 .emotion-4[data-disabled],
 .emotion-4[data-disabled]:focus,
-.emotion-4[data-disabled]:hover,
-.emotion-4[data-state=disabled],
-.emotion-4[data-state=disabled]:focus,
-.emotion-4[data-state=disabled]:hover {
+.emotion-4[data-disabled]:hover {
   opacity: 0.4;
   cursor: not-allowed;
   box-shadow: none;
 }
 
 .emotion-4:hover,
-.emotion-4[data-hover],
-.emotion-4[data-state=hover] {
+.emotion-4[data-hover] {
   background: #E2E8F0;
 }
 
 .emotion-4:active,
-.emotion-4[data-active],
-.emotion-4[data-state=active] {
+.emotion-4[data-active] {
   background: #CBD5E0;
 }
 
 .emotion-2 {
   font-size: 1em;
   line-height: normal;
-  margin-right: 0;
   position: absolute;
+  margin-right: 0;
 }
 
 .emotion-1 {
@@ -485,14 +472,27 @@ exports[`shows spinner if isLoading 1`] = `
   border-color: currentColor;
   border-style: solid;
   border-radius: 9999px;
-  -webkit-animation: animation-0 0.45s linear infinite;
-  animation: animation-0 0.45s linear infinite;
+  border-width: 2px;
   border-bottom-color: transparent;
   border-left-color: transparent;
-  border-width: 2px;
   color: currentColor;
-  height: 1em;
+  -webkit-animation: animation-0 0.45s linear infinite;
+  animation: animation-0 0.45s linear infinite;
   width: 1em;
+  height: 1em;
+}
+
+.emotion-0 {
+  border: 0px;
+  -webkit-clip: rect(0px,0px,0px,0px);
+  clip: rect(0px,0px,0px,0px);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0px;
+  overflow: hidden;
+  white-space: nowrap;
+  position: absolute;
 }
 
 .emotion-3 {

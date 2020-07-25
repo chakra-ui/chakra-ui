@@ -21,6 +21,7 @@ import {
   MenuTransition,
 } from "../src"
 import { Button } from "@chakra-ui/button"
+import { Avatar } from "@chakra-ui/avatar"
 
 const words = [
   "About Visual Studio Code",
@@ -292,4 +293,22 @@ export const SplitButton = () => (
       </MenuTransition>
     </Menu>
   </chakra.div>
+)
+
+export const Bug = () => (
+  <Menu placement="right-start">
+    <MenuButton _focus={{ outline: "2px solid red" }}>
+      <Avatar name="My Name" />
+    </MenuButton>
+    <MenuList>
+      <MenuItem>Profile</MenuItem>
+      <MenuItem
+        onClick={() => {
+          console.log("logout")
+        }}
+      >
+        Logout
+      </MenuItem>
+    </MenuList>
+  </Menu>
 )

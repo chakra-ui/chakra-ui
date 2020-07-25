@@ -6,6 +6,21 @@ exports[`rendering should render correctly 1`] = `
   display: inline-block;
   position: relative;
   cursor: pointer;
+  width: 100%;
+}
+
+.emotion-3[disabled],
+.emotion-3[disabled]:focus,
+.emotion-3[disabled]:hover,
+.emotion-3[aria-disabled=true],
+.emotion-3[aria-disabled=true]:focus,
+.emotion-3[aria-disabled=true]:hover,
+.emotion-3[data-disabled],
+.emotion-3[data-disabled]:focus,
+.emotion-3[data-disabled]:hover {
+  opacity: 0.6;
+  cursor: default;
+  pointer-events: none;
 }
 
 .emotion-1 {
@@ -23,23 +38,20 @@ exports[`rendering should render correctly 1`] = `
 .emotion-1[aria-disabled=true]:hover,
 .emotion-1[data-disabled],
 .emotion-1[data-disabled]:focus,
-.emotion-1[data-disabled]:hover,
-.emotion-1[data-state=disabled],
-.emotion-1[data-state=disabled]:focus,
-.emotion-1[data-state=disabled]:hover {
+.emotion-1[data-disabled]:hover {
   background: #CBD5E0;
 }
 
 .emotion-0 {
   width: inherit;
   height: inherit;
-  background: #3182ce;
+  background: #E53E3E;
 }
 
 .emotion-2 {
   z-index: 1;
   border-radius: 9999px;
-  background: #fff;
+  background: #FFFFFF;
   box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1),0 1px 2px 0 rgba(0,0,0,0.06);
   border: 1px solid;
   border-color: transparent;
@@ -69,8 +81,7 @@ exports[`rendering should render correctly 1`] = `
 }
 
 .emotion-2:focus,
-.emotion-2[data-focus],
-.emotion-2[data-state=focused] {
+.emotion-2[data-focus] {
   box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
 }
 
@@ -82,16 +93,12 @@ exports[`rendering should render correctly 1`] = `
 .emotion-2[aria-disabled=true]:hover,
 .emotion-2[data-disabled],
 .emotion-2[data-disabled]:focus,
-.emotion-2[data-disabled]:hover,
-.emotion-2[data-state=disabled],
-.emotion-2[data-state=disabled]:focus,
-.emotion-2[data-state=disabled]:hover {
+.emotion-2[data-disabled]:hover {
   background: #CBD5E0;
 }
 
 .emotion-2:active,
-.emotion-2[data-active],
-.emotion-2[data-state=active] {
+.emotion-2[data-active] {
   -webkit-transform: translateY(-50%) scale(1.15);
   -ms-transform: translateY(-50%) scale(1.15);
   transform: translateY(-50%) scale(1.15);

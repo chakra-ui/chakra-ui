@@ -32,7 +32,7 @@ export const Badge = React.forwardRef(function Badge(
         display: "inline-block",
         whiteSpace: "nowrap",
         verticalAlign: "middle",
-        ...styles.container,
+        ...styles,
       }}
     />
   )

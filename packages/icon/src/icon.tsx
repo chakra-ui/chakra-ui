@@ -28,11 +28,10 @@ export const Icon = React.forwardRef(function Icon(
   ref: React.Ref<any>,
 ) {
   const {
-    as: type,
+    as: element,
     boxSize = "1em",
     viewBox,
     color = "currentColor",
-    role = "presentation",
     focusable = false,
     children,
     className,
@@ -41,35 +40,29 @@ export const Icon = React.forwardRef(function Icon(
 
   const _className = cx("chakra-icon", className)
 
-  const sharedProps = {
+  const shared: IconProps = {
     ref,
     display: "inline-block",
     lineHeight: "1em",
     color,
     focusable,
-    role,
     flexShrink: 0,
     boxSize,
     className: _className,
-  } as any
+  }
 
   /**
    * If you're using an icon library like `react-icons`
    */
-  if (type && typeof type !== "string") {
-    return <chakra.svg as={type} {...sharedProps} {...rest} />
+  if (element && typeof element !== "string") {
+    return <chakra.svg as={element} {...shared} {...rest} />
   }
 
-  const _path = children ?? fallbackIcon.path
+  const _path = (children ?? fallbackIcon.path) as React.ReactNode
   const _viewBox = viewBox ?? fallbackIcon.viewBox
 
   return (
-    <chakra.svg
-      verticalAlign="middle"
-      viewBox={_viewBox}
-      {...sharedProps}
-      {...rest}
-    >
+    <chakra.svg verticalAlign="middle" viewBox={_viewBox} {...shared} {...rest}>
       {_path}
     </chakra.svg>
   )

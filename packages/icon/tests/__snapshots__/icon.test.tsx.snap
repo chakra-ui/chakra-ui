@@ -2,8 +2,19 @@
 
 exports[`Icon renders a third-party icon correctly 1`] = `
 <DocumentFragment>
-  <svg
-    class="chakra-icon css-1csx6cm"
+  .emotion-0 {
+  display: inline-block;
+  line-height: 1em;
+  color: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+}
+
+<svg
+    class="chakra-icon emotion-0"
     fill="currentColor"
     focusable="false"
     height="1em"
@@ -23,30 +34,44 @@ exports[`Icon renders a third-party icon correctly 1`] = `
 
 exports[`Icon renders correctly 1`] = `
 <DocumentFragment>
-  <svg
-    class="chakra-icon css-9na4ut"
+  .emotion-0 {
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 1em;
+  color: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+}
+
+<svg
+    class="chakra-icon emotion-0"
     focusable="false"
     role="presentation"
     viewBox="0 0 24 24"
   >
     <g
-      fill-rule="evenodd"
+      stroke="currentColor"
+      stroke-width="1.5"
     >
+      <path
+        d="M9,9a3,3,0,1,1,4,2.829,1.5,1.5,0,0,0-1,1.415V14.25"
+        fill="none"
+        stroke-linecap="round"
+      />
+      <path
+        d="M12,17.25a.375.375,0,1,0,.375.375A.375.375,0,0,0,12,17.25h0"
+        fill="currentColor"
+        stroke-linecap="round"
+      />
       <circle
         cx="12"
         cy="12"
-        fill="currentColor"
-        r="10"
-      />
-      <circle
-        cx="12"
-        cy="18"
-        fill="inherit"
-        r="1"
-      />
-      <path
-        d="M15.89 9.05a3.975 3.975 0 0 0-2.957-2.942C10.321 5.514 8.017 7.446 8 9.95l.005.147a.992.992 0 0 0 .982.904c.552 0 1-.447 1.002-.998a2.004 2.004 0 0 1 4.007-.002c0 1.102-.898 2-2.003 2H12a1 1 0 0 0-1 .987v2.014a1.001 1.001 0 0 0 2.004 0v-.782c0-.217.145-.399.35-.472A3.99 3.99 0 0 0 15.89 9.05"
-        fill="inherit"
+        fill="none"
+        r="11.25"
+        stroke-miterlimit="10"
       />
     </g>
   </svg>

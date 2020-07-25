@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-next.6](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/layout@1.0.0-next.5...@chakra-ui/layout@1.0.0-next.6) (2020-07-15)
+
+**Note:** Version bump only for package @chakra-ui/layout
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [1.0.0-next.5](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/layout@1.0.0-next.4...@chakra-ui/layout@1.0.0-next.5) (2020-07-15)
+
+### Bug Fixes
+
+- fixed margin bug for Stack column-reverse and row-reverse
+  ([3d1d872](https://github.com/chakra-ui/chakra-ui/commit/3d1d8728fabea1b3da9bf11c40e32ca0e348eef9))
+- stack key issue [#1129](https://github.com/chakra-ui/chakra-ui/issues/1129)
+  ([2f5361a](https://github.com/chakra-ui/chakra-ui/commit/2f5361a06ab4fd8347d106425252c3ed5dcba0b9))
+- updated Stack to allow 'row-reverse' and 'column-reverse' for direction prop
+  ([1180b6b](https://github.com/chakra-ui/chakra-ui/commit/1180b6b7b97ba33c5b9506f65cec59ac4e37048f))
+
+### Features
+
+- allow AspectRatio to take a responsive value for its ratio prop
+  ([941aa68](https://github.com/chakra-ui/chakra-ui/commit/941aa68ea5db6295698344f47274ef6ef9cf7b31))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # 1.0.0-next.4 (2020-07-01)
 
 ### Bug Fixes

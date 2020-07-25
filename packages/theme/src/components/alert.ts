@@ -1,99 +1,91 @@
 import {
-  BaseStyle,
-  DefaultProps,
   getColor,
-  ink,
   mode,
-  Variants,
+  multiStyleConfig,
+  transparentize,
 } from "@chakra-ui/theme-tools"
 
-const register = {
-  parts: ["container", "title", "icon"],
-  variants: ["subtle", "left-accent", "top-accent", "solid"],
-} as const
+const alert = multiStyleConfig({
+  parts: {
+    container: "the alert container",
+    title: "the alert title",
+    icon: "the alert icon",
+  },
+  baseStyle: {
+    container: {
+      px: 4,
+      py: 3,
+    },
+    title: {
+      fontWeight: "bold",
+      lineHeight: "normal",
+    },
+    icon: {
+      mr: 3,
+      w: 5,
+      h: 5,
+    },
+  },
+  variants: {
+    subtle: function (props) {
+      const { colorScheme: c } = props
+      return {
+        container: { bg: getBg(props) },
+        icon: { color: mode(`${c}.500`, `${c}.200`)(props) },
+      }
+    },
 
-const baseStyle: BaseStyle<typeof register> = {
-  container: {
-    paddingX: 4,
-    paddingY: 3,
-  },
-  title: {
-    fontWeight: "bold",
-    lineHeight: "normal",
-  },
-  icon: {
-    marginRight: 3,
-    width: 5,
-    height: 5,
-  },
-}
+    "left-accent": function (props) {
+      const { colorScheme: c } = props
+      return {
+        container: {
+          pl: 3,
+          borderLeft: "4px solid",
+          borderColor: mode(`${c}.500`, `${c}.200`)(props),
+          bg: getBg(props),
+        },
+        icon: {
+          color: mode(`${c}.500`, `${c}.200`)(props),
+        },
+      }
+    },
 
-function getBg(props: any) {
-  const { theme: t, colorScheme: c } = props
-  const lightBg = getColor(t, `${c}.100`, c)
-  const darkBg = ink(`${c}.200`, "lowest")(t)
+    "top-accent": function (props) {
+      const { colorScheme: c } = props
+      return {
+        container: {
+          pt: 2,
+          borderTop: "4px solid",
+          borderColor: mode(`${c}.500`, `${c}.200`)(props),
+          bg: getBg(props),
+        },
+        icon: {
+          color: mode(`${c}.500`, `${c}.200`)(props),
+        },
+      }
+    },
+
+    solid: function (props) {
+      const { colorScheme: c } = props
+      return {
+        container: {
+          bg: mode(`${c}.500`, `${c}.200`)(props),
+          color: mode(`white`, `gray.900`)(props),
+        },
+      }
+    },
+  },
+
+  defaultProps: {
+    variant: "subtle",
+  },
+})
+
+function getBg(props: Record<string, any>) {
+  const { theme, colorScheme: c } = props
+  const lightBg = getColor(theme, `${c}.100`, c)
+  const darkBg = transparentize(`${c}.200`, 0.16)(theme)
   return mode(lightBg, darkBg)(props)
-}
-
-const variants: Variants<typeof register> = {
-  subtle: function (props) {
-    const { colorScheme: c } = props
-    return {
-      container: { bg: getBg(props) },
-      icon: { color: mode(`${c}.500`, `${c}.200`)(props) },
-    }
-  },
-
-  "left-accent": function (props) {
-    const { colorScheme: c } = props
-    return {
-      container: {
-        paddingLeft: 3,
-        borderLeft: "4px solid",
-        borderColor: mode(`${c}.500`, `${c}.200`)(props),
-        bg: getBg(props),
-      },
-      icon: {
-        color: mode(`${c}.500`, `${c}.200`)(props),
-      },
-    }
-  },
-
-  "top-accent": function (props) {
-    const { colorScheme: c } = props
-    return {
-      container: {
-        paddingTop: 2,
-        borderTop: "4px solid",
-        borderColor: mode(`${c}.500`, `${c}.200`)(props),
-        bg: getBg(props),
-      },
-      icon: {
-        color: mode(`${c}.500`, `${c}.200`)(props),
-      },
-    }
-  },
-
-  solid: function (props) {
-    const { colorScheme: c } = props
-    return {
-      container: {
-        bg: mode(`${c}.500`, `${c}.200`)(props),
-        color: mode(`white`, `gray.900`)(props),
-      },
-    }
-  },
-}
-
-const defaultProps: DefaultProps<typeof register> = {
-  variant: "subtle",
-}
-
-const alert = {
-  register,
-  defaultProps,
-  baseStyle,
-  variants,
 }
 
 export default alert

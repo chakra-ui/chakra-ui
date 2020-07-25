@@ -11,8 +11,12 @@ import ComponentLinks from "../../src/components/component-links"
 
 # Container
 
-Containers are the most basic layout element in Chakra. It's used to constrain
-the maximum of the content it wraps.
+Containers are used to constrain a content's width to the current breakpoint,
+while keeping it fluid.
+
+By default, it sets the `max-width` of the content to 60 characters (`60ch`) but
+you can customize this by passing custom `maxWidth` values or change the
+container size tokens defined in `theme.sizes.container`
 
 <ComponentLinks
   github={{ url: "#" }}
@@ -22,17 +26,38 @@ the maximum of the content it wraps.
 
 <carbon-ad></carbon-ad>
 
-By default, the container constrains the width of it's content to 60 characters
-(`60ch`). You can customize the container sizes in `theme.sizes.container`
-
-While containers can be nested, most layouts do not require a nested container.
-
-TODO: Complete this doc
-
 ## Usage
 
-```jsx live=false
+To contain any piece of content, wrap in the `Container` component.
+
+```jsx
 <Container>
-  <!-- Content here -->
+  There are many benefits to a joint design and development system. Not only
+  does it bring benefits to the design team, but it also brings benefits to
+  engineering teams. It makes sure that our experiences have a consistent look
+  and feel, not just in our design specs, but in production
 </Container>
 ```
+
+## Centering the children
+
+In some cases, the width of the content can be smaller than the container's
+width, you can use the `centerContent` prop to center the content.
+
+```jsx live=false
+<Container maxW="xl" centerContent>
+  <Box padding="4" bg="gray.100" maxW="3xl">
+    There are many benefits to a joint design and development system. Not only
+    does it bring benefits to the design team.
+  </Box>
+</Container>
+```
+
+## Props
+
+Container composes `Box` so you can pass all `Box` related props in addition to
+this.
+
+| Props           | Type      | Description                                                         |
+| --------------- | --------- | ------------------------------------------------------------------- |
+| `centerContent` | `boolean` | If `true`, it'll center child elements based on their content width |
