@@ -589,8 +589,8 @@ export function useMenuButton(props: UseMenuButtonProps) {
    */
   const onClick = React.useCallback(() => {
     /**
-     * Prevent this action if it's not top-level button,
-     * or trigger mode is not click
+     * Toggle the menu if this is top-level button
+     * and trigger mode is click.
      */
     if (!hasParentMenu && trigger === TRIGGER_TYPE.click) {
       toggle()
@@ -602,7 +602,7 @@ export function useMenuButton(props: UseMenuButtonProps) {
   const onMouseEnter = React.useCallback(
     (event: React.MouseEvent) => {
       /**
-       * Open the menu if it's top-level button,
+       * Open the menu if this is top-level button,
        * trigger mode is hover, and it's not open already.
        */
       if (!hasParentMenu && trigger === TRIGGER_TYPE.hover && !isOpen) {
