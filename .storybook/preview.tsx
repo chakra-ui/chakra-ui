@@ -4,18 +4,15 @@ import { ChakraProvider } from "@chakra-ui/core"
 import { addDecorator } from "@storybook/react"
 import * as React from "react"
 import { withPerformance } from "storybook-addon-performance"
+import { withA11y } from "@storybook/addon-a11y"
 
-export const Chakra: React.FC = ({ children }) => (
+const withChakra = (StoryFn: Function) => (
   <ChakraProvider theme={theme}>
     <CSSReset />
-    {children}
+    <StoryFn />
   </ChakraProvider>
 )
 
-addDecorator((StoryFn: Function) => (
-  <Chakra>
-    <StoryFn />
-  </Chakra>
-))
-
+addDecorator(withChakra)
 addDecorator(withPerformance)
+addDecorator(withA11y)
