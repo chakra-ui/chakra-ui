@@ -4,6 +4,7 @@ import { chakra, PropsOf } from "@chakra-ui/system"
 import { Transition } from "@chakra-ui/transition"
 import { AnimatePresence } from "framer-motion"
 import * as React from "react"
+import Connector from "./connecter"
 
 // type WizardProps = {
 //   activeStep: number
@@ -44,15 +45,6 @@ const InnerCircle = chakra("div", {
     borderRadius: "18px",
     alignItems: "center",
     justifyContent: "center",
-  },
-})
-
-const SpacerLine = chakra("div", {
-  baseStyle: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    height: "2px",
   },
 })
 
@@ -152,13 +144,9 @@ export const Wizard = React.forwardRef(function Wizard(
                   justifyContent="center"
                   flex={1}
                 >
-                  <SpacerLine ref={spacerRef} bg="gray.100" />
+                  <Connector ref={spacerRef} />
                   <Transition styles={lineStyles}>
-                    {(style) =>
-                      isCompletedStep && (
-                        <SpacerLine bg="accent.500" style={style} />
-                      )
-                    }
+                    {(style) => isCompletedStep && <Connector style={style} />}
                   </Transition>
                 </Flex>
               )}
@@ -173,13 +161,5 @@ export const Wizard = React.forwardRef(function Wizard(
 
 Wizard.defaultProps = {
   orientation: "horizontal",
+  activeStep: 0,
 }
-
-// export type ConnectorProps = PropsOf<typeof chakra.div>
-
-// const Connector = React.forwardRef(function Connector(
-//   { children, activeStep }: ConnectorProps,
-//   ref,
-// ) {
-//   return
-// })
