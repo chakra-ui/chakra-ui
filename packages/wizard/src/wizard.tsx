@@ -1,10 +1,12 @@
 import { Flex } from "@chakra-ui/core"
-import { CheckIcon } from "@chakra-ui/icons"
+import { useSafeLayoutEffect } from "@chakra-ui/hooks"
 import { chakra, PropsOf } from "@chakra-ui/system"
 import { Transition } from "@chakra-ui/transition"
-import { AnimatePresence } from "framer-motion"
+import { BoxModel, getBox } from "@chakra-ui/utils"
+import throttle from "lodash.throttle"
 import * as React from "react"
 import Connector from "./connecter"
+import WizardStepLabel from "./wizard-step-label"
 
 // type WizardProps = {
 //   activeStep: number
@@ -15,38 +17,49 @@ export type WizardProps = PropsOf<typeof chakra.div> & {
   orientation?: "vertical" | "horizontal"
 }
 
-const Square = chakra("div", {
-  baseStyle: {
-    width: "40px",
-    height: "40px",
-    display: "flex",
-    position: "relative",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-})
+// function debounce(fn, ms) {
+//   let timer
+//   return (_) => {
+//     clearTimeout(timer)
+//     timer = setTimeout((_) => {
+//       timer = null
+//       fn.apply(this, arguments)
+//     }, ms)
+//   }
+// }
 
-const OuterCircle = chakra("div", {
-  baseStyle: {
-    width: "38px",
-    height: "38px",
-    display: "flex",
-    borderRadius: "19px",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-})
+function useThrottledResize(ref: React.RefObject<HTMLElement>, delay?: 500) {
+  const [dimensions, setDimensions] = React.useState<BoxModel | null>(null)
+  const rafId = React.useRef<number>()
 
-const InnerCircle = chakra("div", {
-  baseStyle: {
-    width: "36px",
-    height: "36px",
-    display: "flex",
-    borderRadius: "18px",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-})
+  useSafeLayoutEffect(() => {
+    if (!ref.current) return
+
+    const node = ref.current
+
+    function measure() {
+      rafId.current = requestAnimationFrame(() => {
+        const boxModel = getBox(node)
+        setDimensions(boxModel)
+      })
+    }
+
+    const throttledMeasure = throttle(measure, delay)
+
+    window.addEventListener("resize", throttledMeasure)
+    window.addEventListener("scroll", throttledMeasure)
+
+    return () => {
+      if (rafId.current) {
+        cancelAnimationFrame(rafId.current)
+      }
+      window.removeEventListener("resize", throttledMeasure)
+      window.removeEventListener("scroll", throttledMeasure)
+    }
+  }, [])
+
+  return dimensions
+}
 
 export const Wizard = React.forwardRef(function Wizard(
   { children, activeStep, orientation }: WizardProps,
@@ -58,19 +71,17 @@ export const Wizard = React.forwardRef(function Wizard(
 
   const spacerRef = React.useRef<HTMLDivElement>(null)
 
+  const dimensions = useThrottledResize(spacerRef)
+
   const [spacerWidth, setSpacerWidth] = React.useState(0)
 
-  React.useEffect(() => {
-    if (spacerRef && spacerRef.current) {
-      setSpacerWidth(spacerRef.current.offsetWidth)
-    }
-  }, [])
+  // const { spacerWidth } = useWizard({ activeStep, orientation })
 
-  React.useLayoutEffect(() => {
-    if (spacerRef && spacerRef.current) {
-      setSpacerWidth(spacerRef.current?.offsetWidth)
+  React.useEffect(() => {
+    if (dimensions) {
+      setSpacerWidth(dimensions.borderBox.width)
     }
-  }, [spacerRef.current?.offsetWidth])
+  }, [dimensions])
 
   const iconStyles = {
     init: {
@@ -112,41 +123,25 @@ export const Wizard = React.forwardRef(function Wizard(
           const isCurrentStep = i === activeStep
           return (
             <React.Fragment key={i}>
-              <AnimatePresence>
-                {isCompletedStep ? (
-                  <Flex>
-                    <OuterCircle bg="accent.500">
-                      <Transition styles={iconStyles}>
-                        {(style) => (
-                          <CheckIcon width="24px" height="24px" style={style} />
-                        )}
-                      </Transition>
-                    </OuterCircle>
-                  </Flex>
-                ) : (
-                  <Square>
-                    <OuterCircle bg={isCurrentStep ? "accent.500" : "gray.200"}>
-                      <InnerCircle bg={isCurrentStep ? "gray.200" : "gray.100"}>
-                        <chakra.span
-                          __css={{ color: isCompletedStep ? "white" : "black" }}
-                        >
-                          {i + 1}
-                        </chakra.span>
-                      </InnerCircle>
-                    </OuterCircle>
-                  </Square>
-                )}
-              </AnimatePresence>
+              <WizardStepLabel
+                index={i}
+                isCurrentStep={isCurrentStep}
+                isCompletedStep={isCompletedStep}
+              />
               {!isLastStep && (
                 <Flex
+                  flex={1}
                   pos="relative"
+                  ref={spacerRef}
                   flexDirection="column"
                   justifyContent="center"
-                  flex={1}
                 >
-                  <Connector ref={spacerRef} />
-                  <Transition styles={lineStyles}>
-                    {(style) => isCompletedStep && <Connector style={style} />}
+                  <Connector />
+                  <Transition
+                    styles={lineStyles}
+                    in={activeStep === i + 1 || isCompletedStep}
+                  >
+                    {(style) => <Connector bg="green.500" style={style} />}
                   </Transition>
                 </Flex>
               )}
