@@ -262,15 +262,17 @@ render(<WithNestedMenu />)
 
 ### Menu Props
 
-| Name          | Type                 | Default | Description                                                  |
-| ------------- | -------------------- | ------- | ------------------------------------------------------------ |
-| children      | `React.ReactNode`    |         | The children of the menu must be `MenuButton` and `MenuList` |
-| isOpen        | `boolean`            |         | If `true`, the menu will be opened                           |
-| autoSelect    | `boolean`            | `true`  | The menu will select the first enabled item when it opens    |
-| closeOnBlur   | `boolean`            | `true`  | If `true`, the menu will close on outside click or blur      |
-| closeOnSelect | `boolean`            | `true`  | If `true`, the menu will close on menu item select           |
-| placement     | `PopperJS.placement` |         | The placement of the `MenuList`                              |
-
+| Name          | Type                 | Default   | Description                                                                         |
+| ------------- | -------------------- | -------   | ------------------------------------------------------------                        |
+| children      | `React.ReactNode`    |           | The children of the menu must be `MenuButton` and `MenuList`                        |
+| isOpen        | `boolean`            |           | If `true`, the menu will be opened                                                  |
+| autoSelect    | `boolean`            | `true`    | The menu will select the first enabled item when it opens                           |
+| closeOnBlur   | `boolean`            | `true`    | If `true`, the menu will close on outside click or blur                             |
+| closeOnSelect | `boolean`            | `true`    | If `true`, the menu will close on menu item select                                  |
+| placement     | `PopperJS.placement` |           | The placement of the `MenuList`                                                     |
+| trigger       | `click`, `hover`     | `click`   | The interaction that triggers the menu                                              |
+| openDelay     | `number`             | `200`     | If trigger is "hover", opening the menu is delayed by specified amount of time (ms) |
+| closeDelay    | `number`             | `200`     | If trigger is "hover", closing the menu is delayed by specified amount of time (ms) |
 ### MenuButton Props
 
 | Name      | Type                         |
