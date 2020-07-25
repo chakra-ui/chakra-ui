@@ -53,6 +53,36 @@ export const Basic = () => (
   </div>
 )
 
+export const HoverTrigger = () => (
+  <div style={{ minHeight: 4000 }}>
+    <Menu trigger="hover" isLazy>
+      <MenuButton as={Button} variant="solid" colorScheme="teal" size="sm">
+        Hover me to open menu
+      </MenuButton>
+      <MenuList>
+        {words.map((word) => (
+          <MenuItem key={word}>{word}</MenuItem>
+        ))}
+      </MenuList>
+    </Menu>
+  </div>
+)
+
+export const HoverTriggerDelayed = () => (
+  <div style={{ minHeight: 4000 }}>
+    <Menu trigger="hover" openDelay={1000} isLazy>
+      <MenuButton as={Button} variant="solid" colorScheme="teal" size="sm">
+        Hover me for at least 1 sec
+      </MenuButton>
+      <MenuList>
+        {words.map((word) => (
+          <MenuItem key={word}>{word}</MenuItem>
+        ))}
+      </MenuList>
+    </Menu>
+  </div>
+)
+
 export const WithDisabledItem = () => (
   <>
     <Menu>

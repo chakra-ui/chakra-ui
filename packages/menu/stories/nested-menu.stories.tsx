@@ -60,3 +60,20 @@ export const WithNestedMenu = () => (
     </Portal>
   </Menu>
 )
+
+export const HoverTriggerWithNestedMenu = () => (
+  <Menu trigger="hover">
+    <MenuButton as={Button} size="sm" colorScheme="teal">
+      Hover me
+    </MenuButton>
+    <Portal>
+      <MenuList>
+        <MenuItem command="⌘T">New Tab</MenuItem>
+        <MenuItem command="⌘N">New Window</MenuItem>
+        <MenuItem command="⌘⇧N">Open Closed Tab</MenuItem>
+        <MenuItem as={Submenu} />
+        <MenuItem command="⌘O">Open File...</MenuItem>
+      </MenuList>
+    </Portal>
+  </Menu>
+)

@@ -26,9 +26,13 @@ import {
   dataAttr,
   focus,
   createContext,
-  isRightClick,
 } from "@chakra-ui/utils"
 import * as React from "react"
+
+const TRIGGER_TYPE = {
+  click: "click",
+  hover: "hover",
+} as const
 
 const [MenuContextProvider, useMenuContext] = createContext<UseMenuReturn>({
   strict: false,
@@ -65,6 +69,28 @@ export interface UseMenuProps extends UsePopperProps {
    * The Popper.js modifiers to use
    */
   modifiers?: UsePopperProps["modifiers"]
+  /**
+   * The interaction that triggers the popover.
+   *
+   * `hover` - means the popover will open when you hover with mouse or
+   * focus with keyboard on the popover trigger
+   *
+   * `click` - means the popover will open on click or
+   * press `Enter` to `Space` on keyboard
+   */
+  trigger?: keyof typeof TRIGGER_TYPE
+  /**
+   * In case trigger is set to "hover", opening of menu
+   * can be delayed by specified amount of time (ms)
+   * @default: 200
+   */
+  openDelay?: number
+  /**
+   * In case trigger is set to "hover", closing of menu
+   * can be delayed by specified amount of time (ms)
+   * @default: 200
+   */
+  closeDelay?: number
   /**
    * Performance 🚀:
    * If `true`, the MenuItem rendering will be deferred
@@ -133,6 +159,9 @@ export function useMenu(props: UseMenuProps) {
     fixed = true,
     preventOverflow,
     modifiers,
+    trigger = TRIGGER_TYPE.click,
+    openDelay = 200,
+    closeDelay = 200,
     isLazy,
     defaultIsOpen,
     isOpen: isOpenProp,
@@ -236,6 +265,22 @@ export function useMenu(props: UseMenuProps) {
    */
   const [buttonId, menuId] = useIds(id, `menu-button`, `menu-list`)
 
+  /**
+   * In case trigger is set to "hover", we need some timeouts
+   * to handle menu closing on mouseout.
+   */
+  const mouseoutTimeoutCallbackRef = React.useRef<number>()
+
+  const setMouseoutTimeout = React.useCallback((fn: () => void) => {
+    window.clearTimeout(mouseoutTimeoutCallbackRef.current)
+    mouseoutTimeoutCallbackRef.current = window.setTimeout(fn, closeDelay)
+  }, [])
+
+  const clearMouseoutTimeout = React.useCallback(() => {
+    window.clearTimeout(mouseoutTimeoutCallbackRef.current)
+    mouseoutTimeoutCallbackRef.current = undefined
+  }, [])
+
   return {
     domContext,
     popper,
@@ -246,6 +291,11 @@ export function useMenu(props: UseMenuProps) {
     parentMenu,
     hasParentMenu,
     orientation: "vertical",
+    setMouseoutTimeout,
+    clearMouseoutTimeout,
+    openDelay,
+    closeDelay,
+    trigger,
     isOpen,
     onToggle,
     onOpen,
@@ -292,6 +342,9 @@ export function useMenuList(props: UseMenuListProps) {
     closeOnBlur,
     buttonRef,
     menuRef,
+    trigger,
+    setMouseoutTimeout,
+    clearMouseoutTimeout,
     isOpen,
     onClose,
     onOpen,
@@ -344,14 +397,25 @@ export function useMenuList(props: UseMenuListProps) {
 
   useEventListener("click", onDocumentClick)
 
-  const onMouseEnter = () => {
+  const onMouseEnter = React.useCallback(() => {
+    /**
+     * Once we enter the menu, clear mouseout timeout
+     * that was set when leaving the menu button
+     */
+    clearMouseoutTimeout()
     /**
      * If we're in a nested menu, keep the menu open when we mouse into it
      */
     if (hasParentMenu) {
       onOpen()
     }
-  }
+  }, [clearMouseoutTimeout, hasParentMenu, onOpen])
+
+  const onMouseLeave = React.useCallback(() => {
+    if (trigger === "hover") {
+      setMouseoutTimeout(onClose)
+    }
+  }, [trigger, setMouseoutTimeout])
 
   /**
    * Hook that creates a keydown event handler that listens
@@ -451,6 +515,7 @@ export function useMenuList(props: UseMenuListProps) {
     "data-placement": placement,
     style: { ...props.style, ...popper.style },
     onMouseEnter: callAllHandlers(props.onMouseEnter, onMouseEnter),
+    onMouseLeave: onMouseLeave,
     onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
     onBlur: callAllHandlers(props.onBlur, onBlur),
   }
@@ -479,6 +544,9 @@ export function useMenuButton(props: UseMenuButtonProps) {
     setFocusedIndex,
     onOpen,
     hasParentMenu,
+    setMouseoutTimeout,
+    openDelay,
+    trigger,
     isOpen,
     onClose,
     parentMenu,
@@ -505,77 +573,106 @@ export function useMenuButton(props: UseMenuButtonProps) {
     setFocusedIndex(lastIndex)
   }, [onOpen, setFocusedIndex, descendants])
 
+  const toggle = React.useCallback(() => {
+    if (isOpen) {
+      onClose()
+    }
+
+    if (!isOpen) {
+      const fn = autoSelect ? openAndFocusFirstItem : openAndFocusMenu
+      fn()
+    }
+  }, [autoSelect, isOpen, onClose, openAndFocusFirstItem, openAndFocusMenu])
+
   /**
    * Click handler for the top-level menu button
    */
-  const onClick = React.useCallback(
+  const onClick = React.useCallback(() => {
+    /**
+     * Prevent this action if it's not top-level button,
+     * or trigger mode is not click
+     */
+    if (!hasParentMenu && trigger === "click") {
+      toggle()
+    }
+  }, [hasParentMenu, trigger, toggle])
+
+  const mouseEnterTimeoutRef = React.useRef<number>()
+
+  const onMouseEnter = React.useCallback(
     (event: React.MouseEvent) => {
       /**
-       * Prevent this action if it's not top-level button
+       * Open the menu if it's top-level button,
+       * trigger mode is hover, and it's not open already.
        */
-      if (hasParentMenu) {
-        return
-      }
-
-      if (isOpen) {
-        onClose()
-      }
-
-      if (!isOpen) {
+      if (!hasParentMenu && trigger === "hover" && !isOpen) {
         const fn = autoSelect ? openAndFocusFirstItem : openAndFocusMenu
-        fn()
+        mouseEnterTimeoutRef.current = window.setTimeout(fn, openDelay)
       }
+
+      /**
+       * Prevent this action if button it's a top-level menu button,
+       * since top-level menus don't open on mouse-over but on click.
+       *
+       * Only nested menus open on mouse over.
+       */
+      if (!hasParentMenu) return
+
+      const self = event.currentTarget as HTMLElement
+
+      /**
+       * Open the nested menu after a delay
+       */
+      window.setTimeout(() => {
+        if (self.contains(document.activeElement)) {
+          onOpen()
+          /**
+           * If this menu item hasn't received focus due to browser
+           * issues, force it to focus
+           */
+          if (document.activeElement !== self) {
+            self.focus()
+          }
+        }
+      }, 200)
     },
     [
-      autoSelect,
       hasParentMenu,
+      openDelay,
+      trigger,
       isOpen,
-      onClose,
+      autoSelect,
       openAndFocusFirstItem,
       openAndFocusMenu,
+      onOpen,
     ],
   )
 
-  const onMouseEnter = (event: React.MouseEvent) => {
-    /**
-     * Prevent this action if button it's a top-level menu button,
-     * since top-level menus don't open on mouse-over but on click.
-     *
-     * Only nested menus open on mouse over.
-     */
-    if (!hasParentMenu) return
+  const onMouseLeave = React.useCallback(
+    (event: React.MouseEvent) => {
+      window.clearTimeout(mouseEnterTimeoutRef.current)
 
-    const self = event.currentTarget as HTMLElement
-
-    /**
-     * Open the nested menu after a delay
-     */
-    setTimeout(() => {
-      if (self.contains(document.activeElement)) {
-        onOpen()
-        /**
-         * If this menu item hasn't received focus due to browser
-         * issues, force it to focus
-         */
-        if (document.activeElement !== self) {
-          self.focus()
-        }
+      /**
+       * Close menu if it's top-level button,
+       * trigger mode is hover, and it's open.
+       */
+      if (!hasParentMenu && trigger === "hover" && isOpen) {
+        setMouseoutTimeout(onClose)
       }
-    }, 200)
-  }
 
-  const onMouseLeave = (event: React.MouseEvent) => {
-    /**
-     * If we mouseout to any menu item within parent menu
-     * we'll close the nested menu
-     */
-    const parentMenuList = parentMenu?.menuRef.current
-    const target = event.currentTarget as HTMLElement
+      /**
+       * If we mouseout to any menu item within parent menu
+       * we'll close the nested menu
+       */
+      const parentMenuList = parentMenu?.menuRef.current
+      const target = event.currentTarget as HTMLElement
 
-    if (parentMenuList?.contains(target)) {
-      onClose()
-    }
-  }
+      if (parentMenuList?.contains(target)) {
+        onClose()
+      }
+    },
+    [isOpen, parentMenu?.menuRef, onClose],
+  )
 
   const onKeyDown = createOnKeyDown({
     preventDefault: !hasParentMenu,
