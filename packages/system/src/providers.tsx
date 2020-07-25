@@ -1,6 +1,8 @@
 import { ColorModeProvider, useColorMode } from "@chakra-ui/color-mode"
 import { css, SystemStyleObject } from "@chakra-ui/styled-system"
 import { createContext, Dict, get, merge, runIfFn } from "@chakra-ui/utils"
+import { PortalManager, PortalManagerProps } from "@chakra-ui/portal"
+import { CSSReset } from "@chakra-ui/css-reset"
 import { Global, Interpolation, ThemeContext } from "@emotion/core"
 import * as React from "react"
 
@@ -34,10 +36,13 @@ export function useTheme<T extends object = Dict>() {
   return theme
 }
 
-export type ChakraProviderProps = ThemeProviderProps
+export type ChakraProviderProps = ThemeProviderProps & {
+  portalConfig?: Omit<PortalManagerProps, "children">
+  resetCSS?: boolean
+}
 
 export function ChakraProvider(props: ChakraProviderProps) {
-  const { theme, children } = props
+  const { theme, children, resetCSS, portalConfig } = props
 
   if (!theme) {
     throw Error("ChakraProvider: the `theme` prop is required")
@@ -50,7 +55,14 @@ export function ChakraProvider(props: ChakraProviderProps) {
         useSystemColorMode={theme?.config?.useInitialColorMode}
       >
         <GlobalStyle />
-        {children}
+        {resetCSS && <CSSReset />}
+        {portalConfig ? (
+          <PortalManager zIndex={portalConfig?.zIndex}>
+            {children}
+          </PortalManager>
+        ) : (
+          children
+        )}
       </ColorModeProvider>
     </ThemeProvider>
   )
