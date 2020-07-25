@@ -412,7 +412,7 @@ export function useMenuList(props: UseMenuListProps) {
   }, [clearMouseoutTimeout, hasParentMenu, onOpen])
 
   const onMouseLeave = React.useCallback(() => {
-    if (trigger === "hover") {
+    if (trigger === TRIGGER_TYPE.hover) {
       setMouseoutTimeout(onClose)
     }
   }, [trigger, setMouseoutTimeout])
@@ -592,7 +592,7 @@ export function useMenuButton(props: UseMenuButtonProps) {
      * Prevent this action if it's not top-level button,
      * or trigger mode is not click
      */
-    if (!hasParentMenu && trigger === "click") {
+    if (!hasParentMenu && trigger === TRIGGER_TYPE.click) {
       toggle()
     }
   }, [hasParentMenu, trigger, toggle])
@@ -605,7 +605,7 @@ export function useMenuButton(props: UseMenuButtonProps) {
        * Open the menu if it's top-level button,
        * trigger mode is hover, and it's not open already.
        */
-      if (!hasParentMenu && trigger === "hover" && !isOpen) {
+      if (!hasParentMenu && trigger === TRIGGER_TYPE.hover && !isOpen) {
         const fn = autoSelect ? openAndFocusFirstItem : openAndFocusMenu
         mouseEnterTimeoutRef.current = window.setTimeout(fn, openDelay)
       }
@@ -656,7 +656,7 @@ export function useMenuButton(props: UseMenuButtonProps) {
        * Close menu if it's top-level button,
        * trigger mode is hover, and it's open.
        */
-      if (!hasParentMenu && trigger === "hover" && isOpen) {
+      if (!hasParentMenu && trigger === TRIGGER_TYPE.hover && isOpen) {
         setMouseoutTimeout(onClose)
       }
 
