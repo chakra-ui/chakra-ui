@@ -42,7 +42,6 @@ export type ChakraProviderProps = ThemeProviderProps & {
   storageManager?: StorageManager
 }
 
-// how do we set storageManager in the gatsby and next plugins?
 export function ChakraProvider(props: ChakraProviderProps) {
   const { theme, children, storageManager } = props
 

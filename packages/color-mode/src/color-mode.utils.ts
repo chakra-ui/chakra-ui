@@ -40,7 +40,7 @@ export const localStorageManager: StorageManager = {
 export const cookieStorageManager: StorageManager = {
   get(init?) {
     const match = document.cookie.match(
-      new RegExp("(^| )" + storageKey + "=([^;]+)"),
+      new RegExp(`(^| )${storageKey}=([^;]+)`),
     )
 
     const value = match ? match[2] : init
@@ -48,7 +48,7 @@ export const cookieStorageManager: StorageManager = {
     return value as ColorMode | undefined
   },
   set(value) {
-    document.cookie = `${storageKey}=${value}` // need to set more cookie properties
+    document.cookie = `${storageKey}=${value}; max-age=31536000;`
   },
 }
 

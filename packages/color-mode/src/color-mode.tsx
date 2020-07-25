@@ -1,10 +1,6 @@
 import { noop, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import {
-  ColorMode,
-  localStorageManager,
-  StorageManager,
-} from "./color-mode.utils"
+import { ColorMode, StorageManager } from "./color-mode.utils"
 import useColorModeState from "./use-color-mode-state"
 
 export type { ColorMode }
@@ -49,7 +45,7 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
     children,
     useSystemColorMode = false,
     defaultValue = "light",
-    storageManager = localStorageManager,
+    storageManager,
   } = props
 
   const config = {
