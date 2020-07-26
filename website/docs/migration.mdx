@@ -112,27 +112,6 @@ npm i @chakra-ui/theme
 yarn add @chakra-ui/theme
 ```
 
-**From Chakra CLI:** This is useful if you plan to completely "eject" from
-chakra's theme and you want to custom most component styles.
-
-```sh
-# clone the javascript theme
-npx chakra-cli init --theme
-
-# clone the typescript theme
-npx chakra-cli init --theme --ts
-
-# specify folder to clone theme to
-npx chakra-cli init --theme --ts -o src
-```
-
-This command will copy the default theme to your project in the specified
-directory, default is `chakra/`.
-
-This approach will help you learn about the theme tokens (colors, fonts,
-component styles) and make it easy to customize the theme to match your design
-requirements.
-
 2. Update the `ThemeProvider` in your app's root by passing the `theme` prop.
 
 ```jsx live=false
