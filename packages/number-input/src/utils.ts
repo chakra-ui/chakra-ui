@@ -1,11 +1,11 @@
-const FLOATING_POINT_NUMBER_CHARACTER_REGEX = /^[Ee0-9\+\-\.]$/
+const FLOATING_POINT_REGEX = /^[Ee0-9\+\-\.]$/
 
 /**
  * Determine if a character is a DOM floating point character
  * @see https://www.w3.org/TR/2012/WD-html-markup-20120329/datatypes.html#common.data.float
  */
 export function isFloatingPointNumericCharacter(character: string) {
-  return FLOATING_POINT_NUMBER_CHARACTER_REGEX.test(character)
+  return FLOATING_POINT_REGEX.test(character)
 }
 
 /**

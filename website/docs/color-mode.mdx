@@ -17,7 +17,7 @@ hooks.
 > **Tip:** Chakra stores the color mode in `localStorage` and uses a class name
 > strategy to ensure the color mode is persistent.
 
-## useColorMode hook
+## useColorMode
 
 `useColorMode` is a React hook that gives you access to the current color mode,
 and a function to toggle the color mode.
@@ -37,7 +37,7 @@ function Example() {
 
 Calling `toggleColorMode` anywhere in your app tree toggles the color mode.
 
-## useColorModeValue hook
+## useColorModeValue
 
 `useColorModeValue` is a React hook used to change any value or style based on
 the color mode. It takes 2 arguments: the value in light mode, and the value in
@@ -45,7 +45,7 @@ dark mode.
 
 ```jsx live=false
 // Here's the signature
-const bg = useColorModeValue(lightModeValue, darkModeValue)
+const value = useColorModeValue(lightModeValue, darkModeValue)
 ```
 
 Here's an example that changes the `background-color` and `color` using the
@@ -56,6 +56,7 @@ Here's an example that changes the `background-color` and `color` using the
 ```jsx
 function StyleColorMode() {
   const { colorMode, toggleColorMode } = useColorMode()
+
   const bg = useColorModeValue("red.500", "red.200")
   const color = useColorModeValue("white", "gray.800")
 

@@ -5,7 +5,7 @@ import {
   PropsOf,
   SystemProps,
   ThemingProps,
-  useStyleConfig,
+  useMultiStyleConfig,
 } from "@chakra-ui/system"
 import { cx, Omit, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -31,6 +31,9 @@ const StyledContainer = chakra("label", {
     alignItems: "center",
     verticalAlign: "top",
     position: "relative",
+    _disabled: {
+      cursor: "not-allowed",
+    },
   },
 })
 
@@ -62,10 +65,12 @@ export const Checkbox = forwardRef<CheckboxProps>(function Checkbox(
   ref,
 ) {
   const group = useCheckboxGroupContext()
-  const styles = useStyleConfig("Checkbox", { ...group, ...props })
-  const realProps = omitThemingProps({ ...group, ...props })
 
-  const { spacing = "0.5rem", className, children, ...rest } = realProps
+  const merged = { ...group, ...props }
+  const styles = useMultiStyleConfig("Checkbox", merged)
+  const realProps = omitThemingProps(merged)
+
+  const { spacing = "0.5rem", className, children, ...otherProps } = realProps
 
   let isChecked = realProps.isChecked
   if (group?.value && realProps.value) {
@@ -84,39 +89,53 @@ export const Checkbox = forwardRef<CheckboxProps>(function Checkbox(
     getLabelProps,
     htmlProps,
   } = useCheckbox({
-    ...rest,
+    ...otherProps,
     isChecked,
     onChange,
   })
 
   const _className = cx("chakra-checkbox", className)
 
+  const inputProps = getInputProps({}, ref)
+  const labelProps = getLabelProps()
+  const checkboxProps = getCheckboxProps()
+
+  const iconStyles = {
+    opacity: state.isChecked || state.isIndeterminate ? 1 : 0,
+    transform:
+      state.isChecked || state.isIndeterminate ? "scale(1)" : "scale(0.95)",
+    transition: "opacity 200ms, transform 250ms",
+    ...styles.icon,
+  }
+
   return (
     <StyledContainer
       __css={styles.container}
+      data-disabled={state.isDisabled}
       className={_className}
       {...htmlProps}
     >
-      <input className="chakra-checkbox__input" {...getInputProps({ ref })} />
+      <input className="chakra-checkbox__input" {...inputProps} />
       <StyledControl
         __css={styles.control}
         className="chakra-checkbox__control"
-        {...getCheckboxProps()}
+        {...checkboxProps}
       >
         <CheckboxIcon
-          __css={styles.icon}
-          className="chakra-checkbox__icon"
+          __css={iconStyles}
           isChecked={state.isChecked}
           isIndeterminate={state.isIndeterminate}
         />
       </StyledControl>
       {children && (
         <chakra.div
-          __css={styles.label}
           className="chakra-checkbox__label"
-          ml={spacing}
-          {...getLabelProps()}
+          {...labelProps}
           children={children}
+          __css={{
+            ml: spacing,
+            ...styles.label,
+          }}
         />
       )}
     </StyledContainer>

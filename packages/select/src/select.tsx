@@ -4,7 +4,7 @@ import {
   layoutPropNames,
   omitThemingProps,
   PropsOf,
-  useStyleConfig,
+  useMultiStyleConfig,
   ThemingProps,
 } from "@chakra-ui/system"
 import { cx, split, __DEV__ } from "@chakra-ui/utils"
@@ -17,9 +17,6 @@ export type SelectFieldProps = Omit<PropsOf<typeof chakra.select>, Omitted> & {
   isDisabled?: boolean
 }
 
-/**
- * The native `select` element enhanced for accessibility and validation.
- */
 export const SelectField = React.forwardRef(function SelectField(
   props: SelectFieldProps,
   ref: React.Ref<any>,
@@ -32,6 +29,7 @@ export const SelectField = React.forwardRef(function SelectField(
       {...select}
       {...(rest as any)}
       ref={ref}
+      paddingRight="2rem"
       className={cx("chakra-select", className)}
       disabled={isDisabled}
     >
@@ -95,23 +93,25 @@ export const Select = React.forwardRef(function Select(
   props: SelectProps,
   ref: React.Ref<any>,
 ) {
-  const styles = useStyleConfig("Select", props)
+  const styles = useMultiStyleConfig("Select", props)
 
   const { rootProps, placeholder, icon, color, ...rest } = omitThemingProps(
     props,
   )
 
-  const [layoutProps, otherProps] = split(rest, layoutPropNames as any[])
+  const [layoutProps, otherProps] = split(rest, layoutPropNames as string[])
+
+  const rootStyles = {
+    width: "100%",
+    height: "fit-content",
+    position: "relative",
+    color,
+  }
 
   return (
     <chakra.div
       className="chakra-select__wrapper"
-      __css={{
-        width: "100%",
-        height: "fit-content",
-        position: "relative",
-        color,
-      }}
+      __css={rootStyles}
       {...layoutProps}
       {...rootProps}
     >

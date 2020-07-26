@@ -60,10 +60,10 @@ const Body = (props) => {
 
 const Guides = ({ data, pageContext }) => {
   const location = useLocation()
-  const { slug, relativePath, updatedAt } = pageContext
+  const { slug, relativePath } = pageContext
   const { body, frontmatter, fields, tableOfContents } = data.mdx
   const { title, description } = frontmatter
-  const { contributors } = fields
+  const { contributors, updatedAt } = fields
 
   return (
     <>
@@ -89,6 +89,7 @@ export const query = graphql`
     mdx(fields: { slug: { eq: $slug } }) {
       body
       fields {
+        updatedAt
         contributors {
           name
           image

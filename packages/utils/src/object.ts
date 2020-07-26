@@ -72,9 +72,9 @@ export { merge }
 
 export function filterUndefined(object: Dict) {
   const result = { ...object }
-  for (const item in result) {
-    if (typeof result[item] === "undefined") {
-      delete result[item]
+  for (const key in result) {
+    if (result[key] == null) {
+      delete result[key]
     }
   }
   return result

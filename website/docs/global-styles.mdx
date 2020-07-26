@@ -60,7 +60,7 @@ const theme = {
 The default Chakra theme providers some sensible global styles. Here's what it
 looks like:
 
-> The `mode(...)` function is simply the same as
+> The `mode(...)` function is the same as
 > `props.colorMode === "dark" ? darkMode : lightMode`
 
 ```js
@@ -88,8 +88,8 @@ const styles = {
 When combining Chakra with other libraries, you might need a way to style some
 elements in those libraries using the theme defined tokens.
 
-Let's assume you have a blog, written in `mdx` and you'd like to style all the
-MDX related parts globally. Here's what you'll do.
+Let's say you have a blog written in `mdx` and you'd like to style all the MDX
+elements globally. Here's what you'll do.
 
 ```js
 // 1. Wrap the rendered mdx in a container

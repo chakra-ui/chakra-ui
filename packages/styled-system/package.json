@@ -50,7 +50,6 @@
   "dependencies": {
     "@chakra-ui/utils": "^1.0.0-next.6",
     "@styled-system/core": "5.1.2",
-    "@types/styled-system__core": "npm:@peduarte/styled-system__core",
     "csstype": "2.6.9"
   },
   "peerDependencies": {

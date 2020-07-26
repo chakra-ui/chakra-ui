@@ -36,7 +36,7 @@ export const Kbd = React.forwardRef(function Heading(
       {...rest}
       __css={{
         fontFamily: "mono",
-        ...styles.kbd,
+        ...styles,
       }}
     />
   )

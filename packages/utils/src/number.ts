@@ -1,5 +1,5 @@
 import { isNotNumber } from "./assertion"
-import { warn } from "./logger"
+import { warn } from "./function"
 
 export const minSafeInteger = Number.MIN_SAFE_INTEGER || -9007199254740991
 export const maxSafeInteger = Number.MAX_SAFE_INTEGER || 9007199254740991
