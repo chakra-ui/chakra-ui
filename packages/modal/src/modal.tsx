@@ -77,7 +77,9 @@ if (__DEV__) {
   Modal.displayName = "Modal"
 }
 
-export type ModalContentProps = PropsOf<typeof chakra.section>
+export type ModalContentProps = PropsOf<typeof chakra.section> & {
+  isAlert?: boolean
+}
 
 /**
  * ModalContent

@@ -199,7 +199,7 @@ export function useModal(props: UseModalProps) {
       ...props,
       ref: mergeRefs(ref, dialogRef),
       id: dialogId,
-      role: props.role || "dialog",
+      role: props.role || props.isAlert ? "alertdialog" : "dialog",
       tabIndex: -1,
       "aria-modal": true,
       "aria-labelledby": headerMounted ? headerId : undefined,
