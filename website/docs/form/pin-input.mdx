@@ -31,7 +31,8 @@ import { PinInput, PinInputField } from "@chakra-ui/core"
 ```
 
 - **PinInput:** The component that provides context to all the pin-input fields
-- **PinInputField:** The text field that user types in
+- **PinInputField:** The text field that user types in - must be a direct child
+  of `PinInput`
 
 ## Usage
 
@@ -39,14 +40,14 @@ Each input collects one number at a time. When a number is entered, focus is
 moved automatically to the next input, until all fields are filled.
 
 ```jsx
-<PinInput>
-  <HStack>
+<HStack>
+  <PinInput>
     <PinInputField />
     <PinInputField />
     <PinInputField />
     <PinInputField />
-  </HStack>
-</PinInput>
+  </PinInput>
+</HStack>
 ```
 
 ### Changing the size of the Input
@@ -60,31 +61,31 @@ There are three sizes of an Input:
 ```jsx
 <Stack>
   <Box>
-    <PinInput size="lg">
-      <HStack>
+    <HStack>
+      <PinInput size="lg">
         <PinInputField />
         <PinInputField />
         <PinInputField />
-      </HStack>
-    </PinInput>
+      </PinInput>
+    </HStack>
   </Box>
   <Box>
-    <PinInput size="md">
-      <HStack>
+    <HStack>
+      <PinInput size="md">
         <PinInputField />
         <PinInputField />
         <PinInputField />
-      </HStack>
-    </PinInput>
+      </PinInput>
+    </HStack>
   </Box>
   <Box>
-    <PinInput size="sm">
-      <HStack>
+    <HStack>
+      <PinInput size="sm">
         <PinInputField />
         <PinInputField />
         <PinInputField />
-      </HStack>
-    </PinInput>
+      </PinInput>
+    </HStack>
   </Box>
 </Stack>
 ```
@@ -94,25 +95,25 @@ There are three sizes of an Input:
 You can set the defaultValue of the PinInput if you wish:
 
 ```jsx
-<PinInput defaultValue="234">
-  <HStack>
+<HStack>
+  <PinInput defaultValue="234">
     <PinInputField />
     <PinInputField />
     <PinInputField />
-  </HStack>
-</PinInput>
+  </PinInput>
+</HStack>
 ```
 
 Or even a partial defaultValue:
 
 ```jsx
-<PinInput defaultValue="23">
-  <HStack>
+<HStack>
+  <PinInput defaultValue="23">
     <PinInputField />
     <PinInputField />
     <PinInputField />
-  </HStack>
-</PinInput>
+  </PinInput>
+</HStack>
 ```
 
 ### Changing the placeholder
@@ -120,13 +121,13 @@ Or even a partial defaultValue:
 If you donʼt like the default placeholder (`○`), you can change that too.
 
 ```jsx
-<PinInput placeholder="🥳">
-  <HStack>
+<HStack>
+  <PinInput placeholder="🥳">
     <PinInputField />
     <PinInputField />
     <PinInputField />
-  </HStack>
-</PinInput>
+  </PinInput>
+</HStack>
 ```
 
 ### Disable focus management
@@ -138,13 +139,13 @@ pressed with focus on an empty input.
 To disable this behavior, set `manageFocus` to `false`
 
 ```jsx
-<PinInput manageFocus={false}>
-  <HStack>
+<HStack>
+  <PinInput manageFocus={false}>
     <PinInputField />
     <PinInputField />
     <PinInputField />
-  </HStack>
-</PinInput>
+  </PinInput>
+</HStack>
 ```
 
 ### AutoFill and Copy + Paste
@@ -156,13 +157,13 @@ field receives a longer string by pasting into it, `PinInput` attempts to
 validate the string and fill the other inputs.
 
 ```jsx
-<PinInput>
-  <HStack>
+<HStack>
+  <PinInput>
     <PinInputField />
     <PinInputField />
     <PinInputField />
-  </HStack>
-</PinInput>
+  </PinInput>
+</HStack>
 ```
 
 ## Props
