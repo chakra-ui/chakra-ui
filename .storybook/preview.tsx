@@ -37,8 +37,10 @@ const ColorModeToggleBar = () => {
 const withChakra = (StoryFn: Function) => (
   <ChakraProvider theme={theme}>
     <CSSReset />
-    <ColorModeToggleBar />
-    <StoryFn />
+    <div id="story-wrapper" style={{ minHeight: "100vh" }}>
+      <ColorModeToggleBar />
+      <StoryFn />
+    </div>
   </ChakraProvider>
 )
 

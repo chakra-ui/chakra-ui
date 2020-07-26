@@ -18,7 +18,7 @@ import {
 } from "@chakra-ui/utils"
 import React, { ReactElement, Ref, useMemo } from "react"
 import {
-  MenuContextProvider,
+  MenuProvider,
   useMenu,
   useMenuButton,
   useMenuItem,
@@ -48,14 +48,14 @@ export function Menu(props: MenuProps) {
   const context = useMemo(() => ctx, [ctx])
 
   return (
-    <MenuContextProvider value={context}>
+    <MenuProvider value={context}>
       <StylesProvider value={styles}>
         {runIfFn(props.children, {
           isOpen: context.isOpen,
           onClose: context.onClose,
         })}
       </StylesProvider>
-    </MenuContextProvider>
+    </MenuProvider>
   )
 }
 

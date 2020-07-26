@@ -1,10 +1,5 @@
 import { useBoolean, useDisclosure, useIds } from "@chakra-ui/hooks"
-import {
-  Placement,
-  usePopper,
-  UsePopperProps,
-  toTransformOrigin,
-} from "@chakra-ui/popper"
+import { Placement, usePopper, UsePopperProps } from "@chakra-ui/popper"
 import { useColorModeValue, useToken } from "@chakra-ui/system"
 import { callAllHandlers, Dict, mergeRefs } from "@chakra-ui/utils"
 import React, {
@@ -14,7 +9,8 @@ import React, {
   Ref,
   KeyboardEvent,
 } from "react"
-import { useBlurOutside, useFocusOnHide, useFocusOnShow } from "./popover.utils"
+import { useFocusOnHide, useFocusOnShow } from "./popover.utils"
+import { useInteractOutside } from "@react-aria/interactions"
 
 const TRIGGER_TYPE = {
   click: "click",
@@ -174,9 +170,17 @@ export function usePopover(props: UsePopoverProps = {}) {
     trigger,
   })
 
-  const onBlur = useBlurOutside(triggerRef, popoverRef, {
-    visible: !!(closeOnBlur && isOpen),
-    action: onClose,
+  useInteractOutside({
+    ref: popoverRef,
+    onInteractOutside: (event) => {
+      if (
+        trigger === TRIGGER_TYPE.click &&
+        closeOnBlur &&
+        !triggerRef.current?.contains(event.target as HTMLElement)
+      ) {
+        onClose()
+      }
+    },
   })
 
   const getPopoverProps = useCallback(
@@ -194,17 +198,9 @@ export function usePopover(props: UsePopoverProps = {}) {
           }
         }),
         ref: mergeRefs(popoverRef, popper.ref, ref),
-        style: {
-          transformOrigin: toTransformOrigin(placement),
-          ...props.style,
-          ...popper.style,
-        },
+        style: { ...props.style, ...popper.style },
         "aria-labelledby": hasHeader ? headerId : undefined,
         "aria-describedby": hasBody ? bodyId : undefined,
-      }
-
-      if (trigger === TRIGGER_TYPE.click) {
-        popoverProps.onBlur = callAllHandlers(props.onBlur, onBlur)
       }
 
       if (trigger === TRIGGER_TYPE.hover) {
@@ -225,7 +221,6 @@ export function usePopover(props: UsePopoverProps = {}) {
       isOpen,
       isLazy,
       popper.ref,
-      placement,
       popper.style,
       hasHeader,
       headerId,
@@ -234,7 +229,6 @@ export function usePopover(props: UsePopoverProps = {}) {
       trigger,
       closeOnEsc,
       onClose,
-      onBlur,
       closeDelay,
     ],
   )

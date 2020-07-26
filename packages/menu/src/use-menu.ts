@@ -36,12 +36,12 @@ import React, {
   MouseEvent,
 } from "react"
 
-const [MenuContextProvider, useMenuContext] = createContext<UseMenuReturn>({
+const [MenuProvider, useMenuContext] = createContext<UseMenuReturn>({
   strict: false,
   name: "MenuContext",
 })
 
-export { MenuContextProvider, useMenuContext }
+export { MenuProvider, useMenuContext }
 
 export interface UseMenuProps extends UsePopperProps {
   /**
