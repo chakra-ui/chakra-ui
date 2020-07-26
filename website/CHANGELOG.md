@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.0](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/docs@1.0.0-next.7...@chakra-ui/docs@1.0.0-rc.0) (2020-07-26)
+
+**Note:** Version bump only for package @chakra-ui/docs
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [1.0.0-next.7](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/docs@1.0.0-next.6...@chakra-ui/docs@1.0.0-next.7) (2020-07-26)
+
+### Bug Fixes
+
+- **docs:** rename /docs to /website for relative page paths
+  ([3c723b5](https://github.com/chakra-ui/chakra-ui/commit/3c723b53427c2a7c5fdfd679bf1918e71fb6a241))
+- **toast:** status types
+  ([4b6e76d](https://github.com/chakra-ui/chakra-ui/commit/4b6e76d03e5024544855d52623d13d3d9579eaff))
+- typo in responsive-styles
+  ([8d3f4e1](https://github.com/chakra-ui/chakra-ui/commit/8d3f4e133bb382d8a2fc0ee7ab9dda457b8fc93d))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.0.0-next.6](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/docs@1.0.0-next.5...@chakra-ui/docs@1.0.0-next.6) (2020-07-15)
 
 **Note:** Version bump only for package @chakra-ui/docs

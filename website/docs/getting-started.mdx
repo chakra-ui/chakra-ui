@@ -9,11 +9,11 @@ order: 1
 **1. Install Chakra UI**
 
 ```bash
-npm i @chakra-ui/core
+npm i @chakra-ui/core@next
 
 # or
 
-yarn add @chakra-ui/core
+yarn add @chakra-ui/core@next
 ```
 
 **2. Install the default theme**
@@ -24,11 +24,11 @@ theme contains specifications for the fonts, font sizes, colors, etc.
 To get the default theme, install the `@chakra-ui/theme` package.
 
 ```bash
-npm i @chakra-ui/theme
+npm i @chakra-ui/theme@next
 
 # or
 
-yarn add @chakra-ui/theme
+yarn add @chakra-ui/theme@next
 ```
 
 **3. Add the provider**
@@ -65,6 +65,17 @@ function App() {
 <br />
 
 That's it, you're good to go!
+
+## TypeScript
+
+Please note that when adding Chakra UI to a TypeScript project, a minimum
+TypeScript version of `3.8.0` is required.
+
+If you're adding Chakra UI to a `create-react-app` project, this means you'll
+need to manually upgrade `typescript` from `~3.7.2` to `~3.8.0`. See
+[the guide for our official `create-react-app`](../guides/cra-templates)
+templates if you'd like to generate a Chakra-enabled `create-react-app` project
+from scratch.
 
 ## Contributing
 

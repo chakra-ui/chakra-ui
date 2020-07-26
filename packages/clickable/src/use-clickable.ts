@@ -1,4 +1,10 @@
-import React, { useCallback, useState, HTMLAttributes } from "react"
+import React, {
+  useCallback,
+  useState,
+  HTMLAttributes,
+  KeyboardEvent,
+  MouseEvent,
+} from "react"
 import { mergeRefs, dataAttr, isRightClick } from "@chakra-ui/utils"
 
 export interface UseClickableProps extends HTMLAttributes<Element> {
@@ -20,7 +26,7 @@ export interface UseClickableProps extends HTMLAttributes<Element> {
    * Whether or not trigger click on pressing `Space`.
    */
   clickOnSpace?: boolean
-  ref?: React.RefObject<HTMLElement>
+  ref?: React.Ref<HTMLElement>
 }
 
 /**
@@ -71,7 +77,7 @@ export function useClickable(props: UseClickableProps = {}) {
   const trulyDisabled = isDisabled && !isFocusable
 
   const handleClick = useCallback(
-    (event: React.MouseEvent) => {
+    (event: MouseEvent) => {
       if (isDisabled) {
         event.stopPropagation()
         event.preventDefault()
@@ -86,7 +92,7 @@ export function useClickable(props: UseClickableProps = {}) {
   )
 
   const handleKeyDown = useCallback(
-    (event: React.KeyboardEvent) => {
+    (event: KeyboardEvent) => {
       onKeyDown?.(event)
 
       if (isDisabled || event.defaultPrevented || event.metaKey) {
@@ -132,7 +138,11 @@ export function useClickable(props: UseClickableProps = {}) {
   )
 
   const handleMouseDown = useCallback(
-    (event: React.MouseEvent) => {
+    (event: MouseEvent) => {
+      /**
+       * Prevent right-click from triggering the
+       * active state.
+       */
       if (isRightClick(event)) return
 
       if (isDisabled) {
@@ -151,7 +161,7 @@ export function useClickable(props: UseClickableProps = {}) {
   )
 
   const handleMouseUp = useCallback(
-    (event: React.MouseEvent) => {
+    (event: MouseEvent) => {
       if (!isButton) {
         setIsActive(false)
       }
@@ -162,7 +172,7 @@ export function useClickable(props: UseClickableProps = {}) {
   )
 
   const handleMouseOver = useCallback(
-    (event: React.MouseEvent) => {
+    (event: MouseEvent) => {
       if (isDisabled) {
         event.preventDefault()
         return

@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.0](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/slider@1.0.0-next.7...@chakra-ui/slider@1.0.0-rc.0) (2020-07-26)
+
+**Note:** Version bump only for package @chakra-ui/slider
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [1.0.0-next.7](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/slider@1.0.0-next.6...@chakra-ui/slider@1.0.0-next.7) (2020-07-26)
+
+### Bug Fixes
+
+- prevent issue where right click triggers active css state
+  ([4ea9b88](https://github.com/chakra-ui/chakra-ui/commit/4ea9b8872599168f7a6ecb078b62f3473a25b4d8))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.0.0-next.6](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/slider@1.0.0-next.5...@chakra-ui/slider@1.0.0-next.6) (2020-07-15)
 
 **Note:** Version bump only for package @chakra-ui/slider

@@ -1,39 +1,40 @@
+import { SystemStyleObject } from "@chakra-ui/system"
 import {
   Transition,
   TransitionProps,
   TransitionStyles,
 } from "@chakra-ui/transition"
-import { focus, __DEV__ } from "@chakra-ui/utils"
+import { __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { useMenuContext } from "./use-menu"
-import { SystemStyleObject } from "@chakra-ui/system"
+import { usePopoverContext } from "./popover"
 
-export interface MenuTransitionProps {
+export interface PopoverTransitionProps {
   children: (styles: SystemStyleObject) => React.ReactNode
   styles?: TransitionProps["styles"]
 }
 
-export function MenuTransition(props: MenuTransitionProps) {
+export function PopoverTransition(props: PopoverTransitionProps) {
   const { children, styles } = props
-  const menu = useMenuContext()
+
+  const popover = usePopoverContext()
 
   const defaultStyles: TransitionStyles = {
     init: {
       opacity: 0.01,
-      transform: "scale(0.8)",
-      transitionTimingFunction: "cubic-bezier(0.175, 0.885, 0.320, 1.175)",
+      transform: "scale(0.9)",
+      transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
       transitionProperty: "opacity, transform",
       willChange: "opacity, transform",
     },
     entered: {
       opacity: 1,
-      transitionDuration: "200ms",
+      transitionDuration: "150ms",
       transform: "scale(1)",
     },
     exiting: {
       opacity: 0.01,
-      transitionDuration: "100ms",
-      transform: "scale(0.8)",
+      transitionDuration: "150ms",
+      transform: "scale(0.9)",
     },
   }
 
@@ -45,10 +46,6 @@ export function MenuTransition(props: MenuTransitionProps) {
       onExited={(node) => {
         node.hidden = true
         node.style.pointerEvents = "auto"
-        const menuEl = menu.buttonRef.current
-        if (menuEl && document.activeElement !== menuEl) {
-          focus(menuEl)
-        }
       }}
       onExit={(node) => {
         node.hidden = false
@@ -56,8 +53,8 @@ export function MenuTransition(props: MenuTransitionProps) {
       onExiting={(node) => {
         node.style.pointerEvents = "none"
       }}
-      timeout={{ enter: 0, exit: menu.isOpen ? 200 : 100 }}
-      in={menu.isOpen}
+      timeout={{ enter: 0, exit: 150 }}
+      in={popover.isOpen}
       styles={styles ?? defaultStyles}
       unmountOnExit={false}
       children={children}
@@ -66,5 +63,5 @@ export function MenuTransition(props: MenuTransitionProps) {
 }
 
 if (__DEV__) {
-  MenuTransition.displayName = "MenuTransition"
+  PopoverTransition.displayName = "PopoverTransition"
 }

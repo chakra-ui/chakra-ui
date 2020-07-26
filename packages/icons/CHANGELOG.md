@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.0](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/icons@1.0.0-next.7...@chakra-ui/icons@1.0.0-rc.0) (2020-07-26)
+
+**Note:** Version bump only for package @chakra-ui/icons
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [1.0.0-next.7](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/icons@1.0.0-next.6...@chakra-ui/icons@1.0.0-next.7) (2020-07-26)
+
+### Bug Fixes
+
+- **icons:** add displayName to hamburger icon
+  ([045091d](https://github.com/chakra-ui/chakra-ui/commit/045091d57768270b5a9e95d457ff3ceb67600a40))
+- **icons:** Fix viewBox on DragHandleIcon
+  ([3ed2b9f](https://github.com/chakra-ui/chakra-ui/commit/3ed2b9ff034b6c75f6bdd55fd4606db2e52d3b8b))
+
+### Features
+
+- **icons:** add hamburger(menu) icon
+  ([69e72fa](https://github.com/chakra-ui/chakra-ui/commit/69e72faa9b27e4f5451283feb88339fbcc0d3f46))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.0.0-next.6](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/icons@1.0.0-next.5...@chakra-ui/icons@1.0.0-next.6) (2020-07-15)
 
 **Note:** Version bump only for package @chakra-ui/icons

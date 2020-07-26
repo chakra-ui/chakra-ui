@@ -14,7 +14,19 @@ import {
   mergeRefs,
   createContext,
 } from "@chakra-ui/utils"
-import { cloneElement, useState, useRef, useEffect } from "react"
+import {
+  cloneElement,
+  useState,
+  useRef,
+  useEffect,
+  ReactNode,
+  ReactElement,
+  KeyboardEventHandler,
+  FocusEventHandler,
+  ButtonHTMLAttributes,
+  Ref,
+  CSSProperties,
+} from "react"
 
 export interface UseTabsProps {
   /**
@@ -162,12 +174,12 @@ const [TabsProvider, useTabsContext] = createContext<UseTabsReturn>({
 
 export { TabsProvider }
 
-type Child = React.ReactElement<any>
+type Child = ReactElement<any>
 
 export interface UseTabListProps {
-  children?: React.ReactNode
-  onKeyDown?: React.KeyboardEventHandler
-  ref?: React.Ref<any>
+  children?: ReactNode
+  onKeyDown?: KeyboardEventHandler
+  ref?: Ref<any>
 }
 
 /**
@@ -236,11 +248,12 @@ export function useTabList<P extends UseTabListProps>(props: P) {
 
 export type UseTabListReturn = ReturnType<typeof useTabList>
 
-export interface UseTabProps extends UseClickableProps {
+export interface UseTabProps extends Omit<UseClickableProps, "ref"> {
   id?: string
   isSelected?: boolean
   panelId?: string
-  onFocus?: React.FocusEventHandler
+  onFocus?: FocusEventHandler
+  ref?: Ref<any>
 }
 
 /**
@@ -251,7 +264,7 @@ export interface UseTabProps extends UseClickableProps {
  */
 export function useTab<P extends UseTabProps>(
   props: P,
-): React.ButtonHTMLAttributes<any> {
+): ButtonHTMLAttributes<any> {
   const { isDisabled, isFocusable, ...htmlProps } = props
 
   const {
@@ -326,13 +339,13 @@ export function useTab<P extends UseTabProps>(
 }
 
 export interface UseTabPanelsProps {
-  children?: React.ReactNode
+  children?: ReactNode
 }
 
 /**
  * Tabs hook for managing the visibility of multiple tab panels.
  *
- * Since only one panel can be show at a time, we use `React.cloneElement`
+ * Since only one panel can be show at a time, we use `cloneElement`
  * to inject `selected` panel to each TabPanel.
  *
  * It returns a cloned version of it's children with
@@ -379,7 +392,7 @@ export function useTabPanel(props: Dict) {
  * of the active tab, and return that as CSS style for
  * the indicator.
  */
-export function useTabIndicator(): React.CSSProperties {
+export function useTabIndicator(): CSSProperties {
   const context = useTabsContext()
 
   const { selectedIndex, orientation, domContext } = context

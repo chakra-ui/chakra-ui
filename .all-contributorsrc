@@ -312,7 +312,8 @@
       "avatar_url": "https://avatars0.githubusercontent.com/u/1216917?v=4",
       "profile": "https://trevorblades.com",
       "contributions": [
-        "code"
+        "code",
+        "doc"
       ]
     },
     {
@@ -375,7 +376,8 @@
       "avatar_url": "https://avatars3.githubusercontent.com/u/1557563?v=4",
       "profile": "http://santialbo.com",
       "contributions": [
-        "code"
+        "code",
+        "doc"
       ]
     },
     {
@@ -1014,7 +1016,8 @@
       "avatar_url": "https://avatars3.githubusercontent.com/u/10325111?v=4",
       "profile": "http://jiepeng.me",
       "contributions": [
-        "code"
+        "code",
+        "doc"
       ]
     },
     {
@@ -1025,6 +1028,24 @@
       "contributions": [
         "code",
         "test"
+      ]
+    },
+    {
+      "login": "antonjb",
+      "name": "Anton",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/1066856?v=4",
+      "profile": "https://github.com/antonjb",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "Andu033",
+      "name": "Stanila Andrei",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/15851201?v=4",
+      "profile": "https://github.com/Andu033",
+      "contributions": [
+        "code"
       ]
     }
   ],
