@@ -55,7 +55,7 @@ safely remove them and update Chakra UI to v1.
 
 ```diff
 "dependencies": {
-  "@chakra-ui/core": "1.0.0",
+  "@chakra-ui/core": "next",
 -  "@emotion/styled": "10.X",
 -  "@emotion/theming": "10.x",
 -  "@emotion/core": "10.x"
@@ -105,11 +105,11 @@ add it manually. There are two ways to get the theme:
 `@chakra-ui/theme` package.
 
 ```sh
-npm i @chakra-ui/theme
+npm i @chakra-ui/theme@next
 
 # or
 
-yarn add @chakra-ui/theme
+yarn add @chakra-ui/theme@next
 ```
 
 2. Update the `ThemeProvider` in your app's root by passing the `theme` prop.
