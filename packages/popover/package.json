@@ -50,6 +50,7 @@
     "@chakra-ui/hooks": "^1.0.0-next.6",
     "@react-aria/interactions": "3.0.2",
     "@chakra-ui/popper": "^1.0.0-next.6",
+    "@chakra-ui/transition": "^1.0.0-next.6",
     "@chakra-ui/portal": "^1.0.0-next.6",
     "@chakra-ui/utils": "^1.0.0-next.6"
   },
