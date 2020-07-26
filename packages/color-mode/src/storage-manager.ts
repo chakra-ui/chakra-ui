@@ -30,11 +30,9 @@ export const localStorageManager: StorageManager = {
 /**
  * Simple object to handle read-write to cookies
  */
-export const cookieStorageManager: StorageManager = {
+export const cookieStorageManager = (cookies: string): StorageManager => ({
   get(init?) {
-    const match = document.cookie.match(
-      new RegExp(`(^| )${storageKey}=([^;]+)`),
-    )
+    const match = cookies.match(new RegExp(`(^| )${storageKey}=([^;]+)`))
 
     const value = match ? match[2] : init
 
@@ -43,4 +41,4 @@ export const cookieStorageManager: StorageManager = {
   set(value) {
     document.cookie = `${storageKey}=${value}; max-age=31536000;`
   },
-}
+})

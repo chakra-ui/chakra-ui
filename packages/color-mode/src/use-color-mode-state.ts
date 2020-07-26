@@ -58,26 +58,22 @@ interface useColorModeStateOptions extends ColorModeOptions {
 export function useColorModeState<T extends useColorModeStateOptions>(
   options?: T,
 ) {
-  const [mode, setMode] = React.useState<ColorMode>(
-    options?.initialColorMode || "light",
-  )
   const storageManager = options?.storageManager || localStorageManager
+
+  const [mode, setMode] = React.useState<ColorMode>(() => {
+    const stored = storageManager.get()
+
+    if (stored) return stored
+
+    if (options?.useSystemColorMode) {
+      return getColorScheme()
+    }
+
+    return options?.initialColorMode || "light"
+  })
 
   useSyncBodyClass(mode)
   useSyncSystemColorMode(setMode, !!options?.useSystemColorMode)
-
-  React.useEffect(() => {
-    const stored = storageManager.get()
-
-    if (!stored && options?.useSystemColorMode) {
-      setMode(getColorScheme)
-      return
-    }
-
-    if (!stored || stored === mode) return
-    setMode(stored)
-    // eslint-disable-next-line
-  }, [])
 
   React.useEffect(() => {
     if (mode) {
