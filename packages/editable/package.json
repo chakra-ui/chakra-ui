@@ -56,7 +56,7 @@
     "@chakra-ui/system": "^1.0.0-next.7"
   },
   "peerDependencies": {
-    "@chakra-ui/system": "^1.0.0-next.5",
+    "@chakra-ui/system": "^1.0.0-next.7",
     "react": "16.x"
   }
 }
