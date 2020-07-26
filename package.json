@@ -21,8 +21,6 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "license": "MIT",
   "scripts": {
-    "ver": "lerna version --no-push --exact",
-    "changes": "dotenv lerna-changelog",
     "contrib:add": "all-contributors add",
     "contrib:gen": "all-contributors generate",
     "prestart": "yarn && yarn bootstrap",
@@ -40,9 +38,11 @@
     "build:storybook": "build-storybook",
     "patch": "node -r esm scripts/patch-workspace.js",
     "create-pkg": "node scripts/create-package.js",
+    "changes": "dotenv lerna-changelog",
     "release": "lerna publish",
     "release:ci": "lerna publish -y --loglevel verbose",
     "release:next": "lerna publish --force-publish=* --preid next --dist-tag next",
+    "version:next": "lerna version --exact --force-publish=* --preid rc",
     "publish:next": "lerna publish from-package --dist-tag next",
     "docs": "yarn workspace @chakra-ui/docs",
     "docs:start": "yarn docs start",
@@ -115,6 +115,7 @@
     }
   },
   "changelog": {
+    "repo": "https://github.com/chakra-ui/chakra-ui",
     "labels": {
       "Type: Breaking Change": "🔨 Breaking Changes",
       "Type: Bug": "🐛 Bugfixes",
