@@ -41,6 +41,7 @@ export function useFormControl<T extends HTMLElement>(
     ...props,
     id: props.id ?? field?.id,
     disabled: props.disabled || props.isDisabled || field?.isDisabled,
+    required: props.required || props.isRequired || field?.isRequired,
     readOnly: props.readOnly || props.isReadOnly || field?.isReadOnly,
     "aria-invalid": ariaAttr(props.isInvalid || field?.isInvalid),
     "aria-required": ariaAttr(props.isRequired || field?.isRequired),
