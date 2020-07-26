@@ -1,6 +1,6 @@
+import { ChakraProvider } from "@chakra-ui/core"
 import CSSReset from "@chakra-ui/css-reset"
 import theme from "@chakra-ui/theme"
-import { ChakraProvider } from "@chakra-ui/core"
 import { addDecorator } from "@storybook/react"
 import * as React from "react"
 import { withPerformance } from "storybook-addon-performance"
