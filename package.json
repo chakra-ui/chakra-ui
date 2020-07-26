@@ -30,6 +30,7 @@
     "clean": "lerna clean --yes && rm -rf node_modules",
     "bootstrap": "lerna bootstrap --use-workspaces",
     "bundlesize": "bundlesize -c bundlesize.config.json",
+    "changelog": "lerna-changelog",
     "commit": "git-cz",
     "build:storybook": "build-storybook",
     "patch": "node -r esm scripts/patch-workspace.js",
@@ -108,6 +109,13 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
+  "changelog": {
+    "labels": {
+      "feat": "New Feature",
+      "bug": "Bug Fix",
+      "ci": "CI Changes"
+    }
+  },
   "devDependencies": {
     "@babel/cli": "7.10.5",
     "@babel/core": "7.10.5",
@@ -121,6 +129,7 @@
     "@commitlint/config-conventional": "9.0.1",
     "@emotion/core": "10.0.28",
     "@emotion/styled": "10.0.27",
+    "lerna-changelog": "1.0.1",
     "@storybook/addon-actions": "6.0.0-rc.13",
     "@storybook/addon-knobs": "6.0.0-rc.13",
     "storybook-addon-performance": "0.11.0",
