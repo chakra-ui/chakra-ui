@@ -10306,6 +10306,16 @@ dot-prop@^5.2.0:
   dependencies:
     is-obj "^2.0.0"
 
+dotenv-cli@^3.1.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/dotenv-cli/-/dotenv-cli-3.2.0.tgz#002367c30992acb0b218b20fc01a8e18f13f85cf"
+  integrity sha512-zg/dfXISo7ntL3JKC+oj7eXEMg8LbOsARWTeypfVsmYtazDYOptmKLqA9u3LTee9x/sIPiLqmI6wskRP+89ohQ==
+  dependencies:
+    cross-spawn "^7.0.1"
+    dotenv "^8.1.0"
+    dotenv-expand "^5.1.0"
+    minimist "^1.1.3"
+
 dotenv-defaults@^1.0.2:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/dotenv-defaults/-/dotenv-defaults-1.1.1.tgz#032c024f4b5906d9990eb06d722dc74cc60ec1bd"
@@ -10325,7 +10335,7 @@ dotenv-webpack@^1.7.0:
   dependencies:
     dotenv-defaults "^1.0.2"
 
-dotenv@8.2.0, dotenv@^8.0.0, dotenv@^8.2.0:
+dotenv@8.2.0, dotenv@^8.0.0, dotenv@^8.1.0, dotenv@^8.2.0:
   version "8.2.0"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.2.0.tgz#97e619259ada750eea3e4ea3e26bceea5424b16a"
   integrity sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==

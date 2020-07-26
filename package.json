@@ -14,9 +14,15 @@
       "**/@types/theme-ui__components"
     ]
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git"
+  },
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "license": "MIT",
   "scripts": {
+    "ver": "lerna version --no-push --exact",
+    "changes": "dotenv lerna-changelog",
     "contrib:add": "all-contributors add",
     "contrib:gen": "all-contributors generate",
     "prestart": "yarn && yarn bootstrap",
@@ -30,7 +36,6 @@
     "clean": "lerna clean --yes && rm -rf node_modules",
     "bootstrap": "lerna bootstrap --use-workspaces",
     "bundlesize": "bundlesize -c bundlesize.config.json",
-    "changelog": "lerna-changelog",
     "commit": "git-cz",
     "build:storybook": "build-storybook",
     "patch": "node -r esm scripts/patch-workspace.js",
@@ -111,12 +116,16 @@
   },
   "changelog": {
     "labels": {
-      "feat": "New Feature",
-      "bug": "Bug Fix",
-      "ci": "CI Changes"
+      "Type: Breaking Change": "🔨 Breaking Changes",
+      "Type: Bug": "🐛 Bugfixes",
+      "Type: Documentation": "📝 Documentation",
+      "Type: Feature": "🚀 Features",
+      "Type: Enhancement": "✨ Enhancements",
+      "Type: Housekeeping": "🏡 Housekeeping"
     }
   },
   "devDependencies": {
+    "dotenv-cli": "^3.1.0",
     "@babel/cli": "7.10.5",
     "@babel/core": "7.10.5",
     "@babel/plugin-proposal-class-properties": "7.10.4",
