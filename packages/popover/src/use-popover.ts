@@ -2,10 +2,11 @@ import { useBoolean, useDisclosure, useIds } from "@chakra-ui/hooks"
 import { Placement, usePopper, UsePopperProps } from "@chakra-ui/popper"
 import { useColorModeValue, useToken } from "@chakra-ui/system"
 import { callAllHandlers, Dict, mergeRefs } from "@chakra-ui/utils"
-import React, {
+import {
   useRef,
   RefObject,
   useCallback,
+  useEffect,
   Ref,
   KeyboardEvent,
 } from "react"
@@ -147,7 +148,7 @@ export function usePopover(props: UsePopoverProps = {}) {
   const shadowColor = arrowShadowColor ?? fallbackShadowColor
   const arrowColor = useToken("colors", shadowColor, arrowShadowColor)
 
-  const { popper, reference, arrow, placement } = usePopper({
+  const { popper, reference, arrow } = usePopper({
     placement: placementProp,
     gutter,
     forceUpdate: isOpen,
@@ -233,11 +234,14 @@ export function usePopover(props: UsePopoverProps = {}) {
     ],
   )
 
-  const getArrowProps = React.useCallback(
+  const getArrowProps = useCallback(
     (props: Dict = {}, ref: Ref<any> = null) => ({
       ...props,
       ref: mergeRefs(arrow.ref, ref),
-      style: { ...props.style, ...arrow.style },
+      style: {
+        ...props.style,
+        ...arrow.style,
+      },
     }),
     [arrow.ref, arrow.style],
   )
@@ -245,7 +249,7 @@ export function usePopover(props: UsePopoverProps = {}) {
   const openTimeout = useRef<NodeJS.Timeout>()
   const closeTimeout = useRef<NodeJS.Timeout>()
 
-  const getTriggerProps = React.useCallback(
+  const getTriggerProps = useCallback(
     (props: Dict = {}, ref: Ref<any> = null) => {
       const triggerProps: Dict = {
         ...props,
@@ -276,7 +280,7 @@ export function usePopover(props: UsePopoverProps = {}) {
          */
         triggerProps.onKeyDown = callAllHandlers(
           props.onKeyDown,
-          (event: React.KeyboardEvent) => {
+          (event: KeyboardEvent) => {
             if (event.key === "Escape") {
               onClose()
             }
@@ -290,10 +294,12 @@ export function usePopover(props: UsePopoverProps = {}) {
 
         triggerProps.onMouseLeave = callAllHandlers(props.onMouseLeave, () => {
           isHoveringRef.current = false
+
           if (openTimeout.current) {
             clearTimeout(openTimeout.current)
             openTimeout.current = undefined
           }
+
           closeTimeout.current = setTimeout(() => {
             if (isHoveringRef.current === false) {
               onClose()
@@ -318,11 +324,12 @@ export function usePopover(props: UsePopoverProps = {}) {
     ],
   )
 
-  React.useEffect(() => {
+  useEffect(() => {
     return () => {
       if (openTimeout.current) {
         clearTimeout(openTimeout.current)
       }
+
       if (closeTimeout.current) {
         clearTimeout(closeTimeout.current)
       }

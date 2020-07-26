@@ -15,25 +15,26 @@ export interface PopoverTransitionProps {
 
 export function PopoverTransition(props: PopoverTransitionProps) {
   const { children, styles } = props
+
   const popover = usePopoverContext()
 
   const defaultStyles: TransitionStyles = {
     init: {
       opacity: 0.01,
-      transform: "scale(0.8)",
-      transitionTimingFunction: "cubic-bezier(0.175, 0.885, 0.320, 1.175)",
+      transform: "scale(0.9)",
+      transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
       transitionProperty: "opacity, transform",
       willChange: "opacity, transform",
     },
     entered: {
       opacity: 1,
-      transitionDuration: "200ms",
+      transitionDuration: "150ms",
       transform: "scale(1)",
     },
     exiting: {
       opacity: 0.01,
-      transitionDuration: "200ms",
-      transform: "scale(0.8)",
+      transitionDuration: "150ms",
+      transform: "scale(0.9)",
     },
   }
 
@@ -52,7 +53,7 @@ export function PopoverTransition(props: PopoverTransitionProps) {
       onExiting={(node) => {
         node.style.pointerEvents = "none"
       }}
-      timeout={{ enter: 0, exit: 200 }}
+      timeout={{ enter: 0, exit: 150 }}
       in={popover.isOpen}
       styles={styles ?? defaultStyles}
       unmountOnExit={false}
