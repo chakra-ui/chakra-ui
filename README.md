@@ -206,7 +206,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://github.com/Martinnord"><img src="https://avatars3.githubusercontent.com/u/17549362?v=4" width="64px;" alt=""/><br /><sub><b>Martin Nordström</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=Martinnord" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/dannytatom"><img src="https://avatars2.githubusercontent.com/u/60604?v=4" width="64px;" alt=""/><br /><sub><b>Danny Tatom</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=dannytatom" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/simoncollins"><img src="https://avatars2.githubusercontent.com/u/874670?v=4" width="64px;" alt=""/><br /><sub><b>Simon Collins</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=simoncollins" title="Code">💻</a></td>
-    <td align="center"><a href="http://santialbo.com"><img src="https://avatars3.githubusercontent.com/u/1557563?v=4" width="64px;" alt=""/><br /><sub><b>Santi Albo</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=santialbo" title="Code">💻</a></td>
+    <td align="center"><a href="http://santialbo.com"><img src="https://avatars3.githubusercontent.com/u/1557563?v=4" width="64px;" alt=""/><br /><sub><b>Santi Albo</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=santialbo" title="Code">💻</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=santialbo" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/PILO7980"><img src="https://avatars0.githubusercontent.com/u/3218536?v=4" width="64px;" alt=""/><br /><sub><b>PILO7980</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=PILO7980" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/dowdiness"><img src="https://avatars3.githubusercontent.com/u/1616717?v=4" width="64px;" alt=""/><br /><sub><b>Ishimoto Koji </b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=dowdiness" title="Code">💻</a></td>
     <td align="center"><a href="https://sinchang.me"><img src="https://avatars0.githubusercontent.com/u/3297859?v=4" width="64px;" alt=""/><br /><sub><b>Jeff Wen</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=sinchang" title="Code">💻</a></td>
@@ -303,7 +303,6 @@ Thanks goes to these wonderful people
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
-
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
