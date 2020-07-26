@@ -1,7 +1,8 @@
 import { noop, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { ColorMode, StorageManager } from "./color-mode.utils"
+import { ColorMode } from "./color-mode.utils"
 import useColorModeState from "./use-color-mode-state"
+import { StorageManager } from "./storage-manager"
 
 export type { ColorMode }
 

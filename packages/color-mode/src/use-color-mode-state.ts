@@ -4,10 +4,9 @@ import {
   addListener,
   ColorMode,
   getColorScheme,
-  localStorageManager,
   syncBodyClassName,
-  StorageManager,
 } from "./color-mode.utils"
+import { StorageManager, localStorageManager } from "./storage-manager"
 
 /**
  * Syncs the classname of the `<body />` based on the
