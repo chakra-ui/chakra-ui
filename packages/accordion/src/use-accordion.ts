@@ -14,7 +14,14 @@ import {
   __DEV__,
   createContext,
 } from "@chakra-ui/utils"
-import React, { Ref, ReactNode, useCallback, cloneElement, useRef } from "react"
+import {
+  Ref,
+  ReactNode,
+  useCallback,
+  cloneElement,
+  useRef,
+  useState,
+} from "react"
 import * as warn from "./warning"
 
 export type ExpandedIndex = number | number[]
@@ -80,7 +87,7 @@ export function useAccordion(props: UseAccordionProps) {
    * button when click on the button, tab on the button, or
    * use the down/up arrow to navigate.
    */
-  const [focusedIndex, setFocusedIndex] = React.useState(-1)
+  const [focusedIndex, setFocusedIndex] = useState(-1)
 
   /**
    * Hook that manages the controlled and un-controlled state
