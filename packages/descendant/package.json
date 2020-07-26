@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/descendant",
-  "version": "1.0.0-next.7",
+  "version": "1.0.0-rc.0",
   "description": "Register child nodes of a react element for better accessibility",
   "keywords": [
     "dom",
@@ -48,7 +48,7 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/hooks": "^1.0.0-next.7"
+    "@chakra-ui/hooks": "1.0.0-rc.0"
   },
   "peerDependencies": {
     "react": "16.x"

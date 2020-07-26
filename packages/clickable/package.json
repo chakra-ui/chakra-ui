@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/clickable",
-  "version": "1.0.0-next.7",
+  "version": "1.0.0-rc.0",
   "description": "React hook and component that implements native button interactions",
   "keywords": [
     "chakra ui",
@@ -45,7 +45,7 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/utils": "^1.0.0-next.7"
+    "@chakra-ui/utils": "1.0.0-rc.0"
   },
   "peerDependencies": {
     "react": "16.x"

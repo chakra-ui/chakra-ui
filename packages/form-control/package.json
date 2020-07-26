@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/form-control",
-  "version": "1.0.0-next.7",
+  "version": "1.0.0-rc.0",
   "description": "React component to provide validation states to form fields",
   "keywords": [
     "field",
@@ -49,12 +49,12 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/hooks": "^1.0.0-next.7",
-    "@chakra-ui/icon": "^1.0.0-next.7",
-    "@chakra-ui/utils": "^1.0.0-next.7"
+    "@chakra-ui/hooks": "1.0.0-rc.0",
+    "@chakra-ui/icon": "1.0.0-rc.0",
+    "@chakra-ui/utils": "1.0.0-rc.0"
   },
   "devDependencies": {
-    "@chakra-ui/system": "^1.0.0-next.7"
+    "@chakra-ui/system": "1.0.0-rc.0"
   },
   "peerDependencies": {
     "@chakra-ui/system": "^1.0.0-next.7",
