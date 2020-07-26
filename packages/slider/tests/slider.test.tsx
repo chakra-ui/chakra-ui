@@ -2,16 +2,6 @@ import { act, axe, press, render } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { Slider, SliderFilledTrack, SliderThumb, SliderTrack } from "../src"
 
-function waitForNextFrame() {
-  return act(() => {
-    return new Promise((resolve) => {
-      requestAnimationFrame(() => resolve())
-    })
-  })
-}
-
-afterEach(waitForNextFrame)
-
 describe("rendering", () => {
   test("should render correctly", async () => {
     const { asFragment } = render(
@@ -39,9 +29,6 @@ describe("accessibility", () => {
     )
 
     const slider = await findByTestId("slider")
-
-    // not sure why this is required here specifically
-    await waitForNextFrame()
 
     const results = await axe(slider)
     expect(results).toHaveNoViolations()

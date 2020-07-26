@@ -12,7 +12,6 @@ exports[`Popover renders correctly 1`] = `
       Open
     </button>
     <div
-      aria-hidden="true"
       hidden=""
       id="popover-content-2"
       role="dialog"

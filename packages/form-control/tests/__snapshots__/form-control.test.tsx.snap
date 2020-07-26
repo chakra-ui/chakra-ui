@@ -8,6 +8,8 @@ exports[`FormControl renders correctly in default state 1`] = `
 }
 
 .emotion-0 {
+  display: block;
+  text-align: left;
   font-size: 1rem;
   margin-right: 0.75rem;
   margin-bottom: 0.5rem;
@@ -15,8 +17,6 @@ exports[`FormControl renders correctly in default state 1`] = `
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
   opacity: 1;
-  display: block;
-  text-align: left;
 }
 
 .emotion-0[disabled],
@@ -73,6 +73,8 @@ exports[`FormControl renders correctly when invalid 1`] = `
 }
 
 .emotion-0 {
+  display: block;
+  text-align: left;
   font-size: 1rem;
   margin-right: 0.75rem;
   margin-bottom: 0.5rem;
@@ -80,8 +82,6 @@ exports[`FormControl renders correctly when invalid 1`] = `
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
   opacity: 1;
-  display: block;
-  text-align: left;
 }
 
 .emotion-0[disabled],
@@ -105,7 +105,6 @@ exports[`FormControl renders correctly when invalid 1`] = `
 
 .emotion-3 {
   margin-right: 0.5em;
-  color: #E53E3E;
   vertical-align: middle;
   display: inline-block;
   line-height: 1em;
@@ -118,9 +117,6 @@ exports[`FormControl renders correctly when invalid 1`] = `
 }
 
 .emotion-4 {
-  color: #E53E3E;
-  margin-top: 0.5rem;
-  font-size: 0.875rem;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -129,6 +125,9 @@ exports[`FormControl renders correctly when invalid 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  color: #E53E3E;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
 }
 
 <div
@@ -160,7 +159,6 @@ exports[`FormControl renders correctly when invalid 1`] = `
       aria-hidden="true"
       class="chakra-icon chakra-form__error-icon emotion-3"
       focusable="false"
-      role="presentation"
       viewBox="0 0 24 24"
     >
       <path
@@ -186,7 +184,9 @@ exports[`FormControl renders correctly when required 1`] = `
   position: relative;
 }
 
-.emotion-0 {
+.emotion-1 {
+  display: block;
+  text-align: left;
   font-size: 1rem;
   margin-right: 0.75rem;
   margin-bottom: 0.5rem;
@@ -194,19 +194,17 @@ exports[`FormControl renders correctly when required 1`] = `
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
   opacity: 1;
-  display: block;
-  text-align: left;
 }
 
-.emotion-0[disabled],
-.emotion-0[disabled]:focus,
-.emotion-0[disabled]:hover,
-.emotion-0[aria-disabled=true],
-.emotion-0[aria-disabled=true]:focus,
-.emotion-0[aria-disabled=true]:hover,
-.emotion-0[data-disabled],
-.emotion-0[data-disabled]:focus,
-.emotion-0[data-disabled]:hover {
+.emotion-1[disabled],
+.emotion-1[disabled]:focus,
+.emotion-1[disabled]:hover,
+.emotion-1[aria-disabled=true],
+.emotion-1[aria-disabled=true]:focus,
+.emotion-1[aria-disabled=true]:hover,
+.emotion-1[data-disabled],
+.emotion-1[data-disabled]:focus,
+.emotion-1[data-disabled]:hover {
   opacity: 0.4;
 }
 
@@ -217,7 +215,7 @@ exports[`FormControl renders correctly when required 1`] = `
   font-size: 0.875rem;
 }
 
-.emotion-1 {
+.emotion-0 {
   margin-left: 0.25rem;
   color: #E53E3E;
 }
@@ -227,19 +225,19 @@ exports[`FormControl renders correctly when required 1`] = `
     role="group"
   >
     <label
-      class="chakra-form__label emotion-0"
+      class="chakra-form__label emotion-1"
       for="name"
       id="name-label"
     >
       Name
+      <span
+        aria-hidden="true"
+        class="chakra-form__required-indicator emotion-0"
+        role="presentation"
+      >
+        *
+      </span>
     </label>
-    <span
-      aria-hidden="true"
-      class="chakra-form__required-indicator emotion-1"
-      role="presentation"
-    >
-      *
-    </span>
     <input
       aria-describedby="name-helptext"
       aria-required="true"
