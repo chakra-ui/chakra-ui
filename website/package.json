@@ -25,7 +25,7 @@
     "gatsby-plugin-remove-trailing-slashes": "2.3.10",
     "gatsby-plugin-sharp": "2.6.17",
     "gatsby-remark-autolink-headers": "2.3.10",
-    "gatsby-source-filesystem": "2.3.18",
+    "gatsby-source-filesystem": "2.3.23",
     "gatsby-transformer-sharp": "2.5.10",
     "lodash": "^4.17.15",
     "prism-react-renderer": "^1.1.0",
