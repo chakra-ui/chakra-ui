@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/textarea",
-  "version": "1.0.0-next.6",
+  "version": "1.0.0-next.7",
   "description": "Textarea React component for Chakra UI",
   "keywords": [
     "theme",
@@ -47,11 +47,11 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/form-control": "^1.0.0-next.6",
-    "@chakra-ui/utils": "^1.0.0-next.6"
+    "@chakra-ui/form-control": "^1.0.0-next.7",
+    "@chakra-ui/utils": "^1.0.0-next.7"
   },
   "devDependencies": {
-    "@chakra-ui/system": "^1.0.0-next.6"
+    "@chakra-ui/system": "^1.0.0-next.7"
   },
   "peerDependencies": {
     "@chakra-ui/system": "^1.0.0-next.5",

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-next.7](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/layout@1.0.0-next.6...@chakra-ui/layout@1.0.0-next.7) (2020-07-26)
+
+### Bug Fixes
+
+- link type inference with as prop
+  ([6fd3d52](https://github.com/chakra-ui/chakra-ui/commit/6fd3d52df8147e949ed2e1ae460977f290fd149d))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.0.0-next.6](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/layout@1.0.0-next.5...@chakra-ui/layout@1.0.0-next.6) (2020-07-15)
 
 **Note:** Version bump only for package @chakra-ui/layout

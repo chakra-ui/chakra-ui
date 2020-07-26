@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-next.7](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/color-mode@1.0.0-next.6...@chakra-ui/color-mode@1.0.0-next.7) (2020-07-26)
+
+### Bug Fixes
+
+- added ColorModeOptions type to theme config
+  ([648d41f](https://github.com/chakra-ui/chakra-ui/commit/648d41f56b9fd501d730c55f34058e61c6a9febb))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.0.0-next.6](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/color-mode@1.0.0-next.5...@chakra-ui/color-mode@1.0.0-next.6) (2020-07-15)
 
 **Note:** Version bump only for package @chakra-ui/color-mode

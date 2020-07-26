@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-next.7](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/theme-tools@1.0.0-next.6...@chakra-ui/theme-tools@1.0.0-next.7) (2020-07-26)
+
+### Features
+
+- add support for single and multipart config
+  ([a13d0f8](https://github.com/chakra-ui/chakra-ui/commit/a13d0f8a3d97405bde6acba1c4fc126677154a8b))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.0.0-next.6](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/theme-tools@1.0.0-next.5...@chakra-ui/theme-tools@1.0.0-next.6) (2020-07-15)
 
 **Note:** Version bump only for package @chakra-ui/theme-tools

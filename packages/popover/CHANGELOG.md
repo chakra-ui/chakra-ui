@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-next.7](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/popover@1.0.0-next.6...@chakra-ui/popover@1.0.0-next.7) (2020-07-26)
+
+### Features
+
+- add popover transition and merge props util
+  ([112ff7b](https://github.com/chakra-ui/chakra-ui/commit/112ff7b53d7618f9a1442efa2fb427491a5fc51c))
+- **popover:** add prop to defer rendering till popover is open
+  ([aac438c](https://github.com/chakra-ui/chakra-ui/commit/aac438cf21e5cd0a160048d8ae0c1a26b99fd1f4))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.0.0-next.6](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/popover@1.0.0-next.5...@chakra-ui/popover@1.0.0-next.6) (2020-07-15)
 
 **Note:** Version bump only for package @chakra-ui/popover

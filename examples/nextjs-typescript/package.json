@@ -1,6 +1,6 @@
 {
   "name": "chakra-nextjs-ts",
-  "version": "1.0.0-next.6",
+  "version": "1.0.0-next.7",
   "private": "true",
   "scripts": {
     "dev": "next",
@@ -9,8 +9,8 @@
     "type-check": "tsc"
   },
   "dependencies": {
-    "@chakra-ui/core": "^1.0.0-next.6",
-    "@chakra-ui/theme": "^1.0.0-next.6",
+    "@chakra-ui/core": "^1.0.0-next.7",
+    "@chakra-ui/theme": "^1.0.0-next.7",
     "next": "9.4.4",
     "react": "16.13.1",
     "react-dom": "16.13.1"

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-next.7](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/counter@1.0.0-next.6...@chakra-ui/counter@1.0.0-next.7) (2020-07-26)
+
+### Bug Fixes
+
+- types issue in use-tabs
+  ([c388927](https://github.com/chakra-ui/chakra-ui/commit/c38892760257b9bbf1b63c05f7f9ccf1684a90b0))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.0.0-next.6](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/counter@1.0.0-next.5...@chakra-ui/counter@1.0.0-next.6) (2020-07-15)
 
 **Note:** Version bump only for package @chakra-ui/counter
