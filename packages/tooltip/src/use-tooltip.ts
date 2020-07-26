@@ -169,12 +169,11 @@ export function useTooltip(props: UseTooltipProps = {}) {
       role: "tooltip",
       ref: mergeRefs(ref, popper.popper.ref),
       style: {
-        transformOrigin: toTransformOrigin(popper.placement),
         ...props.style,
         ...popper.popper.style,
       },
     }),
-    [popper.placement, popper.popper.ref, popper.popper.style, tooltipId],
+    [popper.popper.ref, popper.popper.style, tooltipId],
   )
 
   const getArrowProps = useCallback(
