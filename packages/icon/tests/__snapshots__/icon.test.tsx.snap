@@ -18,7 +18,6 @@ exports[`Icon renders a third-party icon correctly 1`] = `
     fill="currentColor"
     focusable="false"
     height="1em"
-    role="presentation"
     stroke="currentColor"
     stroke-width="0"
     viewBox="0 0 24 24"
@@ -49,7 +48,6 @@ exports[`Icon renders correctly 1`] = `
 <svg
     class="chakra-icon emotion-0"
     focusable="false"
-    role="presentation"
     viewBox="0 0 24 24"
   >
     <g
