@@ -376,8 +376,7 @@ export const MenuDivider = (props: MenuDividerProps) => {
         border: 0,
         borderBottom: "1px solid",
         borderColor: "inherit",
-        mt: "0.5rem",
-        mb: "1rem",
+        my: "0.5rem",
         opacity: 0.6,
       }}
     />
