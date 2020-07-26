@@ -294,21 +294,3 @@ export const SplitButton = () => (
     </Menu>
   </chakra.div>
 )
-
-export const Bug = () => (
-  <Menu placement="right-start">
-    <MenuButton _focus={{ outline: "2px solid red" }}>
-      <Avatar name="My Name" />
-    </MenuButton>
-    <MenuList>
-      <MenuItem>Profile</MenuItem>
-      <MenuItem
-        onClick={() => {
-          console.log("logout")
-        }}
-      >
-        Logout
-      </MenuItem>
-    </MenuList>
-  </Menu>
-)
