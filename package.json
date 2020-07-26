@@ -125,7 +125,7 @@
     "@storybook/addon-knobs": "6.0.0-beta.38",
     "@storybook/preset-typescript": "3.0.0",
     "@storybook/react": "6.0.0-rc.12",
-    "@types/jest": "25.2.3",
+    "@types/jest": "26.0.7",
     "@types/react": "16.9.23",
     "@types/react-dom": "16.9.8",
     "@types/react-router-dom": "5.1.5",
