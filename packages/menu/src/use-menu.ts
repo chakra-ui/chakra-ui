@@ -126,7 +126,10 @@ export function useMenu(props: UseMenuProps) {
   useInteractOutside({
     ref: menuRef,
     onInteractOutside: (event) => {
-      if (closeOnBlur && event.currentTarget !== buttonRef.current) {
+      if (
+        closeOnBlur &&
+        !buttonRef.current?.contains(event.target as HTMLElement)
+      ) {
         onClose()
       }
     },
