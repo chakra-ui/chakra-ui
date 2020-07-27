@@ -6,7 +6,7 @@ import {
   SearchIcon,
 } from "@chakra-ui/icons"
 import { Container, Stack, HStack } from "@chakra-ui/layout"
-import * as React from "react"
+import React from "react"
 import { MdBuild, MdCall } from "react-icons/md"
 import { FaFacebook, FaTwitter } from "react-icons/fa"
 import { BeatLoader } from "react-spinners"
@@ -147,7 +147,7 @@ export const WithButtonGroup = () => (
 
 export const attachedButtons = () => (
   <ButtonGroup size="sm" isAttached variant="outline">
-    <Button mr="-px">Save</Button>
+    <Button>Save</Button>
     <IconButton
       fontSize="2xl"
       aria-label="Add to friends"

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ButtonGroup renders correctly 1`] = `
+exports[`<ButtonGroup /> ButtonGroup renders correctly 1`] = `
 <DocumentFragment>
   .emotion-4 {
   display: -webkit-inline-box;

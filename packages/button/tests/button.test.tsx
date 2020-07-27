@@ -1,59 +1,65 @@
-import * as React from "react"
-import { render } from "@chakra-ui/test-utils"
+import React from "react"
+import { render, testA11Y } from "@chakra-ui/test-utils"
 import { EmailIcon, ArrowForwardIcon } from "@chakra-ui/icons"
 import { Button, ButtonGroup } from "../src"
 
-test("Button renders correctly", () => {
-  const { asFragment } = render(<Button />)
-  expect(asFragment()).toMatchSnapshot()
-})
+describe("<Button />", () => {
+  test("renders correctly", () => {
+    const { asFragment } = render(<Button>hi there</Button>)
+    expect(asFragment()).toMatchSnapshot()
+  })
 
-test("Button renders with icons", () => {
-  const { asFragment } = render(
-    <ButtonGroup>
-      <Button leftIcon={<EmailIcon />}>Email</Button>
-      <Button rightIcon={<ArrowForwardIcon />}>Arrow Forward</Button>
-    </ButtonGroup>,
-  )
-  expect(asFragment()).toMatchSnapshot()
-})
+  test("passes a11y test", async () => {
+    await testA11Y(<Button>hi there</Button>)
+  })
 
-test("shows spinner if isLoading", () => {
-  const { asFragment, getByText } = render(<Button isLoading>Email</Button>)
-  expect(asFragment()).toMatchSnapshot()
+  test("renders with icons", () => {
+    const { asFragment } = render(
+      <ButtonGroup>
+        <Button leftIcon={<EmailIcon />}>Email</Button>
+        <Button rightIcon={<ArrowForwardIcon />}>Arrow Forward</Button>
+      </ButtonGroup>,
+    )
+    expect(asFragment()).toMatchSnapshot()
+  })
 
-  // children text is hidden
-  expect(getByText("Email")).not.toBeVisible()
+  test("shows spinner if isLoading", () => {
+    const { asFragment, getByText } = render(<Button isLoading>Email</Button>)
+    expect(asFragment()).toMatchSnapshot()
 
-  // "Loading..." visually hidden label shown
-  getByText("Loading...")
-})
+    // children text is hidden
+    expect(getByText("Email")).not.toBeVisible()
 
-test("shows spinner and loading text if isLoading and loadingText", () => {
-  const { asFragment, queryByText, getByText } = render(
-    <Button isLoading loadingText="Submitting">
-      Submit
-    </Button>,
-  )
-  expect(asFragment()).toMatchSnapshot()
+    // "Loading..." visually hidden label shown
+    getByText("Loading...")
+  })
 
-  // children text is replaced by `loadingText`
-  getByText("Submitting")
-  expect(queryByText("Submit")).toBeNull()
-})
+  test("shows spinner and loading text if isLoading and loadingText", () => {
+    const { asFragment, queryByText, getByText } = render(
+      <Button isLoading loadingText="Submitting">
+        Submit
+      </Button>,
+    )
+    expect(asFragment()).toMatchSnapshot()
 
-test("has the proper aria attributes", () => {
-  const { rerender, getByRole } = render(<Button>Hello</Button>)
+    // children text is replaced by `loadingText`
+    getByText("Submitting")
+    expect(queryByText("Submit")).toBeNull()
+  })
 
-  // button has role="button"
-  const button = getByRole("button")
-  expect(button).not.toHaveAttribute("aria-disabled")
+  test("has the proper aria attributes", () => {
+    const { rerender, getByRole } = render(<Button>Hello</Button>)
 
-  // isLoading sets aria-disabled="true"
-  rerender(<Button isLoading>Hello</Button>)
-  expect(button).toHaveAttribute("data-loading", "")
+    // button has role="button"
+    const button = getByRole("button")
+    expect(button).not.toHaveAttribute("aria-disabled")
 
-  // isDisabled sets aria-disabled="true"
-  rerender(<Button isDisabled>Hello</Button>)
-  expect(button).toHaveAttribute("disabled", "")
+    // isLoading sets aria-disabled="true"
+    rerender(<Button isLoading>Hello</Button>)
+    expect(button).toHaveAttribute("data-loading", "")
+
+    // isDisabled sets aria-disabled="true"
+    rerender(<Button isDisabled>Hello</Button>)
+    expect(button).toHaveAttribute("disabled", "")
+  })
 })

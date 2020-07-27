@@ -4,11 +4,12 @@ import {
   SystemProps,
   SystemStyleObject,
   ThemingProps,
+  forwardRef,
 } from "@chakra-ui/system"
 import { createContext, cx, __DEV__ } from "@chakra-ui/utils"
-import React, { useMemo } from "react"
+import React, { useMemo, Ref, ReactNode } from "react"
 
-export type ButtonGroupProps = PropsOf<typeof chakra.div> &
+export type ButtonGroupProps = Omit<PropsOf<typeof chakra.div>, "children"> &
   ThemingProps & {
     /**
      * If `true`, the borderRadius of button that are direct children will be altered
@@ -24,6 +25,7 @@ export type ButtonGroupProps = PropsOf<typeof chakra.div> &
      * @default '0.5rem'
      */
     spacing?: SystemProps["marginRight"]
+    children: ReactNode
   }
 
 type ButtonGroupContext = ThemingProps & { isDisabled?: boolean }
@@ -37,9 +39,9 @@ const [ButtonGroupProvider, useButtonGroup] = createContext<ButtonGroupContext>(
 
 export { useButtonGroup }
 
-export const ButtonGroup = React.forwardRef(function ButtonGroup(
+export const ButtonGroup = forwardRef(function ButtonGroup(
   props: ButtonGroupProps,
-  ref: React.Ref<any>,
+  ref: Ref<HTMLDivElement>,
 ) {
   const {
     size,
