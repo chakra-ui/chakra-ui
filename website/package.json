@@ -24,7 +24,7 @@
     "gatsby-plugin-offline": "3.2.18",
     "gatsby-plugin-react-helmet": "3.3.10",
     "gatsby-plugin-react-helmet-canonical-urls": "1.4.0",
-    "gatsby-plugin-remove-trailing-slashes": "2.3.10",
+    "gatsby-plugin-remove-trailing-slashes": "2.3.11",
     "gatsby-plugin-sharp": "2.6.17",
     "gatsby-remark-autolink-headers": "2.3.10",
     "gatsby-source-filesystem": "2.3.23",
