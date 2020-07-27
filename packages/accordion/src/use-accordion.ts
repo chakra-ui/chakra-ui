@@ -4,7 +4,6 @@ import {
   addItem,
   callAllHandlers,
   createOnKeyDown,
-  Dict,
   getNextIndex,
   getPrevIndex,
   getValidChildren,
@@ -23,6 +22,8 @@ import {
   useState,
 } from "react"
 import * as warn from "./warning"
+import { AccordionButtonProps, AccordionPanelProps } from "."
+import { DivProps } from "./localTypes"
 
 export type ExpandedIndex = number | number[]
 
@@ -195,7 +196,9 @@ export interface UseAccordionItemProps {
  * React hook that provides the open/close functionality
  * for an accordion item and it's children
  */
-export function useAccordionItem(props: UseAccordionItemProps) {
+export function useAccordionItem(
+  props: UseAccordionItemProps,
+): UseAccordionItemReturn {
   const { isDisabled, isFocusable, onChange, isOpen, id, ...htmlProps } = props
 
   const { domContext, focusedIndex, setFocusedIndex } = useAccordionContext()
@@ -203,7 +206,7 @@ export function useAccordionItem(props: UseAccordionItemProps) {
   const onOpen = () => onChange?.(true)
   const onClose = () => onChange?.(false)
 
-  const buttonRef = useRef<HTMLElement>(null)
+  const buttonRef = useRef<HTMLButtonElement>(null)
 
   /**
    * Generate unique ids for all accordion item components (button and panel)
@@ -279,7 +282,7 @@ export function useAccordionItem(props: UseAccordionItemProps) {
   ])
 
   const getButtonProps = useCallback(
-    (props: Dict = {}, ref: Ref<any> = null) => ({
+    (props: AccordionButtonProps = {}, ref: Ref<HTMLButtonElement> = null) => ({
       ...props,
       ref: mergeRefs(buttonRef, ref),
       id: buttonId,
@@ -294,7 +297,7 @@ export function useAccordionItem(props: UseAccordionItemProps) {
   )
 
   const getPanelProps = useCallback(
-    (props: Dict = {}, ref: Ref<any> = null) => ({
+    (props: AccordionPanelProps = {}, ref: Ref<HTMLDivElement> = null) => ({
       ...props,
       ref,
       role: "region",
@@ -317,4 +320,19 @@ export function useAccordionItem(props: UseAccordionItemProps) {
   }
 }
 
-export type UseAccordionItemReturn = ReturnType<typeof useAccordionItem>
+export type UseAccordionItemReturn = Pick<
+  UseAccordionItemProps,
+  "isOpen" | "isDisabled" | "isFocusable"
+> & {
+  onOpen: () => void
+  onClose: () => void
+  getButtonProps: (
+    props?: AccordionButtonProps,
+    ref?: Ref<HTMLButtonElement>,
+  ) => AccordionButtonProps
+  getPanelProps: (
+    props?: AccordionPanelProps,
+    ref?: Ref<HTMLDivElement>,
+  ) => AccordionPanelProps
+  htmlProps: Omit<DivProps, "className" | "ref" | "_css">
+}

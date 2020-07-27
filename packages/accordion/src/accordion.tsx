@@ -29,8 +29,7 @@ import {
   UseAccordionItemReturn,
   UseAccordionProps,
 } from "./use-accordion"
-
-type DivProps = PropsOf<typeof chakra.div>
+import { DivProps } from "./localTypes"
 
 export type AccordionProps = UseAccordionProps &
   Omit<DivProps, "onChange"> &
@@ -200,7 +199,7 @@ export const AccordionPanel = forwardRef<AccordionPanelProps>(
     const _className = cx("chakra-accordion__panel", props.className)
     const styles = useStyles()
 
-    if (reduceMotion == true) {
+    if (reduceMotion) {
       panelProps.hidden = hidden
     }
 
@@ -213,7 +212,7 @@ export const AccordionPanel = forwardRef<AccordionPanelProps>(
       />
     )
 
-    if (reduceMotion == false) {
+    if (!reduceMotion) {
       return <Collapse isOpen={isOpen}>{child}</Collapse>
     }
 
