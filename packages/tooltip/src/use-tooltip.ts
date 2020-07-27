@@ -103,12 +103,12 @@ export function useTooltip(props: UseTooltipProps = {}) {
   const ref = useRef<any>(null)
   const triggerRef = mergeRefs(ref, popper.reference.ref)
 
-  const enterTimeout = useRef<NodeJS.Timeout>()
-  const exitTimeout = useRef<NodeJS.Timeout>()
+  const enterTimeout = useRef<number>()
+  const exitTimeout = useRef<number>()
 
   const openWithDelay = useCallback(() => {
     if (!isDisabled) {
-      enterTimeout.current = setTimeout(onOpenProp, openDelay)
+      enterTimeout.current = window.setTimeout(onOpenProp, openDelay)
     }
   }, [isDisabled, onOpenProp, openDelay])
 
@@ -116,7 +116,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
     if (enterTimeout.current) {
       clearTimeout(enterTimeout.current)
     }
-    exitTimeout.current = setTimeout(onCloseProp, closeDelay)
+    exitTimeout.current = window.setTimeout(onCloseProp, closeDelay)
   }, [closeDelay, onCloseProp])
 
   const onClick = useCallback(() => {

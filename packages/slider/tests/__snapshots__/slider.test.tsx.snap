@@ -49,6 +49,20 @@ exports[`rendering should render correctly 1`] = `
 }
 
 .emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  position: absolute;
+  outline: 0;
   z-index: 1;
   border-radius: 9999px;
   background: #FFFFFF;
@@ -64,20 +78,6 @@ exports[`rendering should render correctly 1`] = `
   transform: translateY(-50%);
   width: 14px;
   height: 14px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  position: absolute;
-  outline: 0;
 }
 
 .emotion-2:focus,
@@ -128,7 +128,7 @@ exports[`rendering should render correctly 1`] = `
       class="chakra-slider__thumb emotion-2"
       id="slider-thumb-1"
       role="slider"
-      style="position: absolute; user-select: none;"
+      style="position: absolute; user-select: none; left: calc(50% - 0px);"
       tabindex="0"
     />
     <input

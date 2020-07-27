@@ -282,7 +282,7 @@ export const SplitButton = () => (
       >
         <FaChevronDown />
       </MenuButton>
-      <MenuTransition transformOrigin="top right">
+      <MenuTransition>
         {(styles) => (
           <MenuList minW="160px" css={styles as any}>
             <MenuItem fontSize="14px">Menu 1</MenuItem>
