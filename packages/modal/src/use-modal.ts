@@ -1,5 +1,5 @@
 import { useIds } from "@chakra-ui/hooks"
-import { callAllHandlers, Dict, mergeRefs, noop } from "@chakra-ui/utils"
+import { callAllHandlers, mergeRefs, noop } from "@chakra-ui/utils"
 import { Undo, hideOthers } from "aria-hidden"
 import {
   KeyboardEvent,
