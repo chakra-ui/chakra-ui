@@ -1,4 +1,4 @@
-import * as React from "react"
+import React, { useRef, useState } from "react"
 import { PortalManager } from "@chakra-ui/portal"
 import {
   AlertDialog,
@@ -27,10 +27,10 @@ const Button = (props: PropsOf<typeof chakra.button>) => {
 }
 
 export const BasicUsage = () => {
-  const [isOpen, setIsOpen] = React.useState(false)
+  const [isOpen, setIsOpen] = useState(false)
   const onOpen = () => setIsOpen(true)
   const onClose = () => setIsOpen(false)
-  const cancelRef = React.useRef<any>()
+  const cancelRef = useRef<any>()
 
   return (
     <>
