@@ -1,60 +1,78 @@
-import * as React from "react"
-import { render } from "@chakra-ui/test-utils"
+import React from "react"
+import { render, testA11Y } from "@chakra-ui/test-utils"
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "../src"
 
-test("Breadcrumb renders correctly", () => {
-  const { asFragment } = render(
-    <Breadcrumb>
-      <BreadcrumbItem>
-        <BreadcrumbLink href="#">Link 1</BreadcrumbLink>
-      </BreadcrumbItem>
-      <BreadcrumbItem>
-        <BreadcrumbLink href="#">Link 2</BreadcrumbLink>
-      </BreadcrumbItem>
-      <BreadcrumbItem isCurrentPage>
-        <BreadcrumbLink>Link 3</BreadcrumbLink>
-      </BreadcrumbItem>
-    </Breadcrumb>,
-  )
-  expect(asFragment()).toMatchSnapshot()
-})
+describe("<Breadcrumb />", () => {
+  test("renders correctly", () => {
+    const { asFragment } = render(
+      <Breadcrumb>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="#">Link 1</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="#">Link 2</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbItem isCurrentPage>
+          <BreadcrumbLink>Link 3</BreadcrumbLink>
+        </BreadcrumbItem>
+      </Breadcrumb>,
+    )
+    expect(asFragment()).toMatchSnapshot()
+  })
 
-test("has the proper aria-attributes", () => {
-  const { getByText, getAllByRole, getByLabelText } = render(
-    <Breadcrumb>
-      <BreadcrumbItem>
-        <BreadcrumbLink href="#">Link 1</BreadcrumbLink>
-      </BreadcrumbItem>
-      <BreadcrumbItem>
-        <BreadcrumbLink href="#">Link 2</BreadcrumbLink>
-      </BreadcrumbItem>
-      <BreadcrumbItem isCurrentPage>
-        <BreadcrumbLink>Link 3</BreadcrumbLink>
-      </BreadcrumbItem>
-    </Breadcrumb>,
-  )
+  test("passes a11y test", async () => {
+    await testA11Y(
+      <Breadcrumb>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="#">Link 1</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="#">Link 2</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbItem isCurrentPage>
+          <BreadcrumbLink>Link 3</BreadcrumbLink>
+        </BreadcrumbItem>
+      </Breadcrumb>,
+    )
+  })
 
-  // surrounding `nav` has aria-label="breadcrumb"
-  getByLabelText("breadcrumb", { selector: "nav" })
+  test("has the proper aria-attributes", () => {
+    const { getByText, getAllByRole, getByLabelText } = render(
+      <Breadcrumb>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="#">Link 1</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="#">Link 2</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbItem isCurrentPage>
+          <BreadcrumbLink>Link 3</BreadcrumbLink>
+        </BreadcrumbItem>
+      </Breadcrumb>,
+    )
 
-  // `isCurrentPage` link has aria-current="page"
-  const currentPageLink = getByText("Link 3")
-  expect(currentPageLink).toHaveAttribute("aria-current", "page")
+    // surrounding `nav` has aria-label="breadcrumb"
+    getByLabelText("breadcrumb", { selector: "nav" })
 
-  // separator receives presentation="role"
-  expect(getAllByRole("presentation")).toHaveLength(2)
-})
+    // `isCurrentPage` link has aria-current="page"
+    const currentPageLink = getByText("Link 3")
+    expect(currentPageLink).toHaveAttribute("aria-current", "page")
 
-test("seperator can be changed", () => {
-  const { getAllByText } = render(
-    <Breadcrumb separator="-">
-      <BreadcrumbItem>
-        <BreadcrumbLink href="#">Link 1</BreadcrumbLink>
-      </BreadcrumbItem>
-      <BreadcrumbItem>
-        <BreadcrumbLink href="#">Link 2</BreadcrumbLink>
-      </BreadcrumbItem>
-    </Breadcrumb>,
-  )
-  expect(getAllByText("-")).toHaveLength(1)
+    // separator receives presentation="role"
+    expect(getAllByRole("presentation")).toHaveLength(2)
+  })
+
+  test("seperator can be changed", () => {
+    const { getAllByText } = render(
+      <Breadcrumb separator="-">
+        <BreadcrumbItem>
+          <BreadcrumbLink href="#">Link 1</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="#">Link 2</BreadcrumbLink>
+        </BreadcrumbItem>
+      </Breadcrumb>,
+    )
+    expect(getAllByText("-")).toHaveLength(1)
+  })
 })

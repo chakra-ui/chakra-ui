@@ -15,11 +15,9 @@ export const Default = () => (
           Breadcrumb 1
         </BreadcrumbLink>
       </BreadcrumbItem>
-
       <BreadcrumbItem>
         <BreadcrumbLink href="#">Breadcrumb 2</BreadcrumbLink>
       </BreadcrumbItem>
-
       <BreadcrumbItem isCurrentPage>
         <BreadcrumbLink href="#">Breadcrumb 3</BreadcrumbLink>
       </BreadcrumbItem>
