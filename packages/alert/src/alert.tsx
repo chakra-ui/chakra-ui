@@ -8,7 +8,8 @@ import {
   useMultiStyleConfig,
 } from "@chakra-ui/system"
 import { createContext, cx } from "@chakra-ui/utils"
-import React, { forwardRef, Ref } from "react"
+import React, { forwardRef, Ref, ReactNode } from "react"
+import { DivProps } from "./localTypes"
 
 export const STATUSES = {
   info: { icon: InfoIcon, colorScheme: "blue" },
@@ -32,9 +33,9 @@ interface AlertOptions {
   status?: keyof typeof STATUSES
 }
 
-export type AlertProps = PropsOf<typeof chakra.div> &
+export type AlertProps = Omit<DivProps, "children"> &
   AlertOptions &
-  ThemingProps
+  ThemingProps & { children: ReactNode }
 
 /**
  * Alert
@@ -44,7 +45,7 @@ export type AlertProps = PropsOf<typeof chakra.div> &
  */
 export const Alert = forwardRef(function Alert(
   props: AlertProps,
-  ref: Ref<any>,
+  ref: Ref<HTMLDivElement>,
 ) {
   const { status = "info", ...rest } = props
   const { colorScheme } = STATUSES[status]
@@ -74,11 +75,13 @@ export const Alert = forwardRef(function Alert(
   )
 })
 
-export type AlertTitleProps = PropsOf<typeof chakra.div>
+export type AlertTitleProps = Omit<DivProps, "children"> & {
+  children: ReactNode
+}
 
 export const AlertTitle = forwardRef(function AlertTitle(
   props: AlertTitleProps,
-  ref: Ref<any>,
+  ref: Ref<HTMLDivElement>,
 ) {
   const styles = useStyles()
   return (
@@ -91,11 +94,13 @@ export const AlertTitle = forwardRef(function AlertTitle(
   )
 })
 
-export type AlertDescriptionProps = PropsOf<typeof chakra.div>
+export type AlertDescriptionProps = Omit<DivProps, "children"> & {
+  children: ReactNode
+}
 
 export const AlertDescription = forwardRef(function AlertDescription(
   props: AlertDescriptionProps,
-  ref: Ref<any>,
+  ref: Ref<HTMLDivElement>,
 ) {
   const styles = useStyles()
   const descriptionStyles = {
@@ -113,7 +118,7 @@ export const AlertDescription = forwardRef(function AlertDescription(
   )
 })
 
-export type AlertIconProps = PropsOf<typeof chakra.span>
+export type AlertIconProps = Omit<PropsOf<typeof chakra.span>, "children">
 
 export const AlertIcon = (props: AlertIconProps) => {
   const { status } = useAlertContext()
