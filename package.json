@@ -172,7 +172,7 @@
     "eslint-plugin-react-hooks": "4.0.8",
     "eslint-plugin-testing-library": "3.3.2",
     "esm": "3.2.25",
-    "execa": "4.0.2",
+    "execa": "4.0.3",
     "framer-motion": "2.1.0",
     "fs-utils": "0.7.0",
     "husky": "4.2.5",
