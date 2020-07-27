@@ -21,7 +21,7 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "license": "MIT",
   "scripts": {
-    "lint:types": "lerna exec --parallel tsc --noEmit",
+    "lint:types": "lerna exec --parallel \"tsc --noEmit\"",
     "contrib:add": "all-contributors add",
     "contrib:gen": "all-contributors generate",
     "prestart": "yarn && yarn bootstrap",
