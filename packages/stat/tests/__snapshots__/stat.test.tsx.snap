@@ -110,7 +110,6 @@ exports[`Stat renders correctly 1`] = `
             aria-hidden="true"
             class="chakra-icon emotion-3"
             focusable="false"
-            role="presentation"
             viewBox="0 0 24 24"
           >
             <path
@@ -148,7 +147,6 @@ exports[`Stat renders correctly 1`] = `
             aria-hidden="true"
             class="chakra-icon emotion-9"
             focusable="false"
-            role="presentation"
             viewBox="0 0 24 24"
           >
             <path

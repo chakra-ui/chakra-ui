@@ -177,6 +177,7 @@
     "inquirer": "7.3.2",
     "jest": "26.1.0",
     "jest-emotion": "10.0.32",
+    "jest-environment-jsdom": "^26.1.0",
     "lerna": "3.22.1",
     "lerna-changelog": "1.0.1",
     "lint-staged": "10.2.11",

@@ -31,8 +31,8 @@ exports[`Radio renders correctly 1`] = `
   -ms-flex-negative: 0;
   flex-shrink: 0;
   width: 1.25rem;
-  -webkit-transition: box-shadow 250ms,background-color 250ms;
-  transition: box-shadow 250ms,background-color 250ms;
+  -webkit-transition: box-shadow 250ms;
+  transition: box-shadow 250ms;
   border: 2px solid;
   border-radius: 9999px;
   border-color: inherit;
