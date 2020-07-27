@@ -1,6 +1,5 @@
 import {
   chakra,
-  PropsOf,
   SystemProps,
   ThemingProps,
   useMultiStyleConfig,
@@ -9,6 +8,7 @@ import {
 import { getValidChildren, __DEV__, cx } from "@chakra-ui/utils"
 import React, { Ref, ReactNode, forwardRef, cloneElement } from "react"
 import { baseStyle } from "./avatar"
+import { DivProps } from "./localTypes"
 
 interface AvatarGroupOptions {
   /**
@@ -27,16 +27,14 @@ interface AvatarGroupOptions {
   max?: number
 }
 
-export type AvatarGroupProps = AvatarGroupOptions &
-  PropsOf<typeof chakra.div> &
-  ThemingProps
+export type AvatarGroupProps = AvatarGroupOptions & DivProps & ThemingProps
 
 /**
  * AvatarGroup displays a number of avatars grouped together in a stack.
  */
 export const AvatarGroup = forwardRef(function AvatarGroup(
   props: AvatarGroupProps,
-  ref: Ref<any>,
+  ref: Ref<HTMLDivElement>,
 ) {
   const styles = useMultiStyleConfig("Avatar", props)
 

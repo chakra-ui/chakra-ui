@@ -76,7 +76,7 @@ export type AvatarBadgeProps = PropsOf<typeof chakra.div>
  */
 export const AvatarBadge = forwardRef(function AvatarBadge(
   props: AvatarBadgeProps,
-  ref: Ref<any>,
+  ref: Ref<HTMLDivElement>,
 ) {
   const styles = useStyles()
   const badgeStyles = {
@@ -139,6 +139,7 @@ function DefaultIcon(props: PropsOf<"svg">) {
       style={{ width: "100%", height: "100%" }}
       {...props}
     >
+      <title>Avatar</title>
       <path
         fill="currentColor"
         d="M103,102.1388 C93.094,111.92 79.3504,118 64.1638,118 C48.8056,118 34.9294,111.768 25,101.7892 L25,95.2 C25,86.8096 31.981,80 40.6,80 L87.4,80 C96.019,80 103,86.8096 103,95.2 L103,102.1388 Z"
@@ -172,7 +173,7 @@ export type AvatarProps = PropsOf<typeof chakra.span> &
  */
 export const Avatar = forwardRef(function Avatar(
   props: AvatarProps,
-  ref: Ref<any>,
+  ref: Ref<HTMLSpanElement>,
 ) {
   const styles = useMultiStyleConfig("Avatar", props)
 
@@ -183,59 +184,10 @@ export const Avatar = forwardRef(function Avatar(
     borderRadius = "full",
     onError,
     getInitials = initials,
-    icon = <DefaultIcon />,
+    icon,
     children,
     ...rest
   } = omitThemingProps(props)
-
-  /**
-   * use the image hook to only show the image when it has loaded
-   */
-  const status = useImage({ src, onError })
-
-  const hasLoaded = status === "loaded"
-
-  const getAvatar = () => {
-    /**
-     * If `src` was passed and the image has loaded, we'll show it
-     */
-    if (src && hasLoaded) {
-      return (
-        <chakra.img
-          src={src}
-          alt={name}
-          className="chakra-avatar__img"
-          __css={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            borderRadius,
-          }}
-        />
-      )
-    }
-
-    /**
-     * Fallback avatar applies under 2 conditions:
-     * - If `src` was passed and the image has not loaded or failed to load
-     * - If `src` wasn't passed
-     *
-     * In this case, we'll show either the name avatar or default avatar
-     */
-    const showFallback = !src || (src && !hasLoaded)
-
-    if (showFallback) {
-      return name ? (
-        <Initials
-          className="chakra-avatar__initials"
-          getInitials={getInitials}
-          name={name}
-        />
-      ) : (
-        cloneElement(icon, { role: "img" })
-      )
-    }
-  }
 
   const avatarStyles = {
     borderRadius,
@@ -252,12 +204,78 @@ export const Avatar = forwardRef(function Avatar(
       __css={avatarStyles}
     >
       <StylesProvider value={styles}>
-        {getAvatar()}
+        <AvatarImage
+          src={src}
+          onError={onError}
+          getInitials={getInitials}
+          name={name}
+          borderRadius={borderRadius}
+          icon={icon}
+        />
         {children}
       </StylesProvider>
     </chakra.span>
   )
 })
+
+type AvatarImageProps = Pick<
+  AvatarProps,
+  "src" | "onError" | "name" | "getInitials" | "borderRadius" | "icon"
+>
+
+function AvatarImage({
+  src,
+  onError,
+  getInitials,
+  name,
+  borderRadius,
+  icon = <DefaultIcon />,
+}: AvatarImageProps) {
+  /**
+   * use the image hook to only show the image when it has loaded
+   */
+  const status = useImage({ src, onError })
+
+  const hasLoaded = status === "loaded"
+
+  /**
+   * Fallback avatar applies under 2 conditions:
+   * - If `src` was passed and the image has not loaded or failed to load
+   * - If `src` wasn't passed
+   *
+   * In this case, we'll show either the name avatar or default avatar
+   */
+  const showFallback = !src || (src && !hasLoaded)
+
+  if (showFallback) {
+    return name ? (
+      <Initials
+        className="chakra-avatar__initials"
+        getInitials={getInitials}
+        name={name}
+      />
+    ) : (
+      cloneElement(icon, { role: "img" })
+    )
+  }
+
+  /**
+   * If `src` was passed and the image has loaded, we'll show it
+   */
+  return (
+    <chakra.img
+      src={src}
+      alt={name}
+      className="chakra-avatar__img"
+      __css={{
+        width: "100%",
+        height: "100%",
+        objectFit: "cover",
+        borderRadius,
+      }}
+    />
+  )
+}
 
 if (__DEV__) {
   Avatar.displayName = "Avatar"
