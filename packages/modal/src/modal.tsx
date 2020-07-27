@@ -16,7 +16,10 @@ import { RemoveScroll } from "react-remove-scroll"
 import { ModalContextProvider, useModalContext } from "./context"
 import { useModal, UseModalProps } from "./use-modal"
 
-export interface ModalProps extends UseModalProps, ThemingProps {
+export interface ModalProps
+  extends UseModalProps,
+    ThemingProps,
+    Pick<PortalProps, "getContainer"> {
   children?: ReactNode
   /**
    *  If `true`, the modal will be centered on screen.
@@ -31,12 +34,6 @@ export interface ModalProps extends UseModalProps, ThemingProps {
    * @default "outside"
    */
   scrollBehavior?: "inside" | "outside"
-
-  /**
-   * Function that will be called to get the parent element
-   * that the modal will be attached to.
-   */
-  getContainer?: PortalProps["getContainer"]
 }
 
 /**
@@ -87,9 +84,9 @@ export type ModalContentProps = PropsOf<typeof chakra.section> & {
  * React component used to group modal's content. It has all the
  * necessary `aria-*` properties to indicate that it's a modal modal
  */
-export const ModalContent = React.forwardRef(function ModalContent(
+export const ModalContent = forwardRef(function ModalContent(
   props: ModalContentProps,
-  ref: Ref<any>,
+  ref: Ref<HTMLElement>,
 ) {
   const { className, children, ...otherProps } = props
 
@@ -132,9 +129,9 @@ export type ModalOverlayProps = PropsOf<typeof chakra.div>
  *
  * @see Docs https://chakra-ui.com/components/modal
  */
-export const ModalOverlay = React.forwardRef(function ModalOverlay(
+export const ModalOverlay = forwardRef(function ModalOverlay(
   props: ModalOverlayProps,
-  ref: Ref<any>,
+  ref: Ref<HTMLDivElement>,
 ) {
   const { className, children, ...otherProps } = props
 
@@ -200,9 +197,9 @@ export type ModalHeaderProps = PropsOf<typeof chakra.header>
  *
  * @see Docs https://chakra-ui.com/components/modal
  */
-export const ModalHeader = React.forwardRef(function ModalHeader(
+export const ModalHeader = forwardRef(function ModalHeader(
   props: ModalHeaderProps,
-  ref: Ref<any>,
+  ref: Ref<HTMLElement>,
 ) {
   const { className, ...rest } = props
 
@@ -249,7 +246,7 @@ export type ModalBodyProps = PropsOf<typeof chakra.div>
  */
 export const ModalBody = forwardRef(function ModalBody(
   props: ModalBodyProps,
-  ref: Ref<any>,
+  ref: Ref<HTMLDivElement>,
 ) {
   const { className, ...rest } = props
   const { bodyId, setBodyMounted } = useModalContext()
@@ -281,6 +278,8 @@ if (__DEV__) {
   ModalBody.displayName = "ModalBody"
 }
 
+export type ModalFooterProps = PropsOf<typeof chakra.footer>
+
 /**
  * ModalFooter
  *
@@ -288,7 +287,7 @@ if (__DEV__) {
  *
  * @see Docs https://chakra-ui.com/components/modal
  */
-export const ModalFooter = (props: PropsOf<typeof chakra.footer>) => {
+export const ModalFooter = (props: ModalFooterProps) => {
   const styles = useStyles()
   return (
     <chakra.footer
@@ -309,6 +308,8 @@ if (__DEV__) {
   ModalFooter.displayName = "ModalFooter"
 }
 
+export type ModalCloseButtonProps = CloseButtonProps
+
 /**
  * ModalCloseButton
  *
@@ -316,9 +317,9 @@ if (__DEV__) {
  * to pass the `onClick` to it, it's reads the `onClose` action from the
  * modal context.
  */
-export const ModalCloseButton = React.forwardRef(function ModalCloseButton(
-  props: CloseButtonProps,
-  ref: Ref<any>,
+export const ModalCloseButton = forwardRef(function ModalCloseButton(
+  props: ModalCloseButtonProps,
+  ref: Ref<HTMLElement>,
 ) {
   const { onClick, className, ...rest } = props
   const { onClose } = useModalContext()

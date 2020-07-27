@@ -1,5 +1,5 @@
 import { useIds } from "@chakra-ui/hooks"
-import { callAllHandlers, Dict, mergeRefs } from "@chakra-ui/utils"
+import { callAllHandlers, Dict, mergeRefs, noop } from "@chakra-ui/utils"
 import { Undo, hideOthers } from "aria-hidden"
 import {
   KeyboardEvent,
@@ -10,8 +10,11 @@ import {
   useRef,
   useEffect,
   useState,
+  Dispatch,
+  SetStateAction,
 } from "react"
 import { manager, useModalManager } from "./modal-manager"
+import { ModalContentProps, ModalOverlayProps } from "./modal"
 
 export interface UseModalProps {
   /**
@@ -92,9 +95,45 @@ export interface UseModalProps {
   blockScrollOnMount?: boolean
   /**
    * Handle zoom/pinch gestures on iOS devices when scroll locking is enabled.
-   * Defaults to `false`.
+   * @default false
    */
   allowPinchZoom?: boolean
+  /**
+   * Whether the modal is a `alertdialog`.
+   * @default false
+   *
+   * @see https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_alertdialog_role
+   */
+  isAlert?: boolean
+}
+
+export type UseModalReturn = Pick<
+  UseModalProps,
+  | "isOpen"
+  | "onClose"
+  | "autoFocus"
+  | "trapFocus"
+  | "initialFocusRef"
+  | "finalFocusRef"
+  | "returnFocusOnClose"
+  | "blockScrollOnMount"
+  | "allowPinchZoom"
+  | "isAlert"
+> & {
+  headerId: string
+  bodyId: string
+  setBodyMounted: Dispatch<SetStateAction<boolean>>
+  setHeaderMounted: Dispatch<SetStateAction<boolean>>
+  dialogRef: RefObject<HTMLElement>
+  overlayRef: RefObject<HTMLElement>
+  getContentProps: (
+    props: ModalContentProps,
+    ref: Ref<HTMLElement>,
+  ) => ModalContentProps
+  getOverlayProps: (
+    props: ModalOverlayProps,
+    ref: Ref<HTMLDivElement>,
+  ) => ModalOverlayProps
 }
 
 /**
@@ -103,7 +142,7 @@ export interface UseModalProps {
  *
  * @param props
  */
-export function useModal(props: UseModalProps) {
+export function useModal(props: UseModalProps): UseModalReturn {
   const {
     isOpen,
     onClose,
@@ -120,10 +159,11 @@ export function useModal(props: UseModalProps) {
     returnFocusOnClose,
     blockScrollOnMount,
     allowPinchZoom,
+    isAlert,
   } = props
 
   const dialogRef = useRef<HTMLElement>(null)
-  const overlayRef = useRef<HTMLElement>(null)
+  const overlayRef = useRef<HTMLDivElement>(null)
 
   const [dialogId, headerId, bodyId] = useIds(
     id,
@@ -195,11 +235,11 @@ export function useModal(props: UseModalProps) {
   const [bodyMounted, setBodyMounted] = useState(false)
 
   const getContentProps = useCallback(
-    (props: Dict = {}, ref: Ref<any>) => ({
+    (props: ModalContentProps = {}, ref: Ref<HTMLElement>) => ({
       ...props,
       ref: mergeRefs(ref, dialogRef),
       id: dialogId,
-      role: props.role || props.isAlert ? "alertdialog" : "dialog",
+      role: props.role || isAlert ? "alertdialog" : "dialog",
       tabIndex: -1,
       "aria-modal": true,
       "aria-labelledby": headerMounted ? headerId : undefined,
@@ -208,13 +248,13 @@ export function useModal(props: UseModalProps) {
         event.stopPropagation(),
       ),
     }),
-    [bodyId, bodyMounted, dialogId, headerId, headerMounted],
+    [bodyId, bodyMounted, dialogId, headerId, headerMounted, isAlert],
   )
 
   const getOverlayProps = useCallback(
-    (props: Dict = {}, ref: Ref<any>) => ({
+    (props: ModalOverlayProps = {}, ref: Ref<HTMLDivElement>) => ({
       ...props,
-      ref: mergeRefs(ref, overlayRef),
+      ref: mergeRefs<HTMLDivElement>(ref, overlayRef),
       onClick: callAllHandlers(props.onClick, onOverlayClick),
       onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
       onMouseDown: callAllHandlers(props.onMouseDown, onMouseDown),
@@ -243,8 +283,6 @@ export function useModal(props: UseModalProps) {
   }
 }
 
-export type UseModalReturn = ReturnType<typeof useModal>
-
 /**
  * Modal hook to polyfill `aria-modal`.
  *
@@ -261,15 +299,12 @@ export function useAriaHidden(
   useEffect(() => {
     if (!ref.current) return
 
-    let undo: Undo | null = null
-
-    if (shouldHide && ref.current) {
-      undo = hideOthers(ref.current)
-    }
+    const undo: Undo =
+      shouldHide && ref.current ? hideOthers(ref.current) : noop
 
     return () => {
       if (shouldHide) {
-        undo?.()
+        undo()
       }
     }
   }, [shouldHide, ref])

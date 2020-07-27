@@ -1,24 +1,23 @@
 import { useEffect, Ref } from "react"
 
+type HTMLElementRef = Ref<HTMLElement>
+
 /**
  * Proper state management for nested modals.
  * Simplified, but inspired by material-ui's ModalManager class.
  */
 class ModalManager {
-  modals: any[]
-  constructor() {
-    this.modals = []
-  }
+  modals: HTMLElementRef[] = []
 
-  add(modal: any) {
+  add(modal: HTMLElementRef) {
     this.modals.push(modal)
   }
 
-  remove(modal: any) {
+  remove(modal: HTMLElementRef) {
     this.modals = this.modals.filter((_modal) => _modal !== modal)
   }
 
-  isTopModal(modal: any) {
+  isTopModal(modal: HTMLElementRef) {
     const topmostModal = this.modals[this.modals.length - 1]
     return topmostModal === modal
   }
@@ -26,7 +25,7 @@ class ModalManager {
 
 export const manager = new ModalManager()
 
-export function useModalManager(ref: Ref<any>, isOpen?: boolean) {
+export function useModalManager(ref: HTMLElementRef, isOpen?: boolean) {
   useEffect(() => {
     isOpen && manager.add(ref)
     return () => {

@@ -50,6 +50,36 @@ export function BasicUsage() {
   )
 }
 
+export function AlertDialog() {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  return (
+    <>
+      <Button onClick={onOpen}>Open</Button>
+
+      <Modal isAlert isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay>
+          <ModalContent>
+            <ModalCloseButton />
+
+            <ModalHeader>Welcome Home</ModalHeader>
+
+            <ModalBody>
+              Sit nulla est ex deserunt exercitation anim occaecat. Nostrud
+              ullamco deserunt aute id consequat veniam incididunt duis in sint
+              irure nisi.
+            </ModalBody>
+
+            <ModalFooter>
+              <Button onClick={onClose}>Cancel</Button>
+              <Button>Save</Button>
+            </ModalFooter>
+          </ModalContent>
+        </ModalOverlay>
+      </Modal>
+    </>
+  )
+}
+
 export function ReturnFocus() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const finalRef = React.useRef<any>()
