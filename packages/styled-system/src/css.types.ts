@@ -121,12 +121,11 @@ type PseudoStyles = {
     : SystemCSSProperties
 }
 
-export type SystemStyleObject =
-  | SystemCSSProperties
-  | CSSPseudoStyles
-  | CSSSelectorStyles
-  | ApplyPropStyles
-  | PseudoStyles
+export type SystemStyleObject = SystemCSSProperties &
+  CSSPseudoStyles &
+  CSSSelectorStyles &
+  ApplyPropStyles &
+  PseudoStyles
 
 export type StyleObjectOrFn =
   | SystemStyleObject
