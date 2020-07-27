@@ -19,6 +19,7 @@ import React, {
   useRef,
   useState,
   HTMLAttributes,
+  MouseEvent,
 } from "react"
 
 export interface UseCheckboxProps {
@@ -180,8 +181,8 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       isReadOnly,
       isRequired,
     },
-    getCheckboxProps: function (props: Attributes = {}, _ref: Ref<any> = null) {
-      const onPressDown = (event: React.MouseEvent) => {
+    getCheckboxProps: (props: Attributes = {}, _ref: Ref<any> = null) => {
+      const onPressDown = (event: MouseEvent) => {
         // On mousedown, the input blurs and returns focus to the `body`,
         // we need to prevent this. Native checkboxes keeps focus on `input`
         event.preventDefault()
@@ -209,7 +210,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     },
     getInputProps: (
       props: InputAttributes = {},
-      inputRef: Ref<any> = null,
+      inputRef: Ref<HTMLInputElement> = null,
     ) => ({
       ...props,
       ref: mergeRefs(ref, inputRef),
@@ -230,7 +231,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       "aria-disabled": isDisabled,
       style: visuallyHiddenStyle,
     }),
-    getLabelProps: (props: Dict = {}, ref: Ref<any> = null) => {
+    getLabelProps: (props: Dict = {}, ref: Ref<HTMLDivElement> = null) => {
       return {
         ...props,
         ref,

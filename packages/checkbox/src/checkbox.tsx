@@ -8,7 +8,7 @@ import {
   useMultiStyleConfig,
 } from "@chakra-ui/system"
 import { cx, Omit, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import React, { Ref } from "react"
 import { useCheckboxGroupContext } from "./checkbox-group"
 import { CheckboxIcon } from "./checkbox.icon"
 import { useCheckbox, UseCheckboxProps } from "./use-checkbox"
@@ -60,9 +60,9 @@ export type CheckboxProps = StyledControlProps &
  *
  * @see Docs https://chakra-ui.com/components/checkbox
  */
-export const Checkbox = forwardRef<CheckboxProps>(function Checkbox(
-  props,
-  ref,
+export const Checkbox = forwardRef(function Checkbox(
+  props: CheckboxProps,
+  ref: Ref<HTMLInputElement>,
 ) {
   const group = useCheckboxGroupContext()
 
@@ -72,15 +72,13 @@ export const Checkbox = forwardRef<CheckboxProps>(function Checkbox(
 
   const { spacing = "0.5rem", className, children, ...otherProps } = realProps
 
-  let isChecked = realProps.isChecked
-  if (group?.value && realProps.value) {
-    isChecked = group.value.includes(realProps.value)
-  }
+  const isChecked =
+    group?.value && realProps.value
+      ? group.value.includes(realProps.value)
+      : realProps.isChecked
 
-  let onChange = realProps.onChange
-  if (group?.onChange && realProps.value) {
-    onChange = group.onChange
-  }
+  const onChange =
+    group?.onChange && realProps.value ? group.onChange : realProps.onChange
 
   const {
     state,
