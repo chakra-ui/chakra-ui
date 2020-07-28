@@ -1,5 +1,5 @@
 import { chakra } from "@chakra-ui/system"
-import * as React from "react"
+import React, { useRef, ReactNode } from "react"
 import { useDescendant, useDescendants, DescendantContext } from "../src"
 import { createContext } from "@chakra-ui/utils"
 
@@ -24,7 +24,7 @@ function Option({
 }) {
   const context = useDescendantCtx()
 
-  const ref = React.useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLDivElement>(null)
 
   const index = useDescendant({
     element: ref.current,
@@ -41,7 +41,7 @@ function Option({
   )
 }
 
-function Select({ children }: { children?: React.ReactNode }) {
+function Select({ children }: { children?: ReactNode }) {
   const context = useDescendants<HTMLDivElement, { value?: string }>()
   return <Provider value={context}>{children}</Provider>
 }

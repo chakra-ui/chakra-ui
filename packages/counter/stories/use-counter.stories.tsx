@@ -1,4 +1,4 @@
-import * as React from "react"
+import React, { useState } from "react"
 import { useCounter } from "../src"
 
 export default {
@@ -6,8 +6,15 @@ export default {
 }
 
 export function Basic() {
-  const [val, setVal] = React.useState<any>("8...4,.4")
-  const counter = useCounter({
+  const [val, setVal] = useState("8...4,.4")
+  const {
+    value,
+    valueAsNumber,
+    isOutOfRange,
+    increment,
+    update,
+    decrement,
+  } = useCounter({
     value: val,
     // defaultValue: "8...4,.4",
     max: 10,
@@ -23,21 +30,21 @@ export function Basic() {
       <pre>
         {JSON.stringify(
           {
-            value: counter.value,
-            valueAsNumber: counter.valueAsNumber,
-            outOfRange: counter.isOutOfRange,
+            value: value,
+            valueAsNumber: valueAsNumber,
+            outOfRange: isOutOfRange,
           },
           null,
           2,
         )}
       </pre>
       <br />
-      <button onClick={() => counter.increment()}>Increment</button>
-      <button onClick={() => counter.decrement()}>Decrement</button>
+      <button onClick={() => increment()}>Increment</button>
+      <button onClick={() => decrement()}>Decrement</button>
       <input
-        value={counter.value}
+        value={value}
         style={{ background: "transparent" }}
-        onChange={(e) => counter.update(e.target.value)}
+        onChange={(e) => update(e.target.value)}
       />
     </div>
   )

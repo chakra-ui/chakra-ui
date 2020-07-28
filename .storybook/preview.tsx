@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/core"
 import { FaMoon, FaSun } from "react-icons/fa"
 import { addDecorator } from "@storybook/react"
-import * as React from "react"
+import React from "react"
 import { withPerformance } from "storybook-addon-performance"
 import { withA11y } from "@storybook/addon-a11y"
 

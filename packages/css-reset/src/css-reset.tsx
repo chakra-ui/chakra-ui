@@ -1,9 +1,10 @@
 import { Global } from "@emotion/core"
-import * as React from "react"
+import React from "react"
 
-export const CSSReset = () => (
-  <Global
-    styles={`
+export function CSSReset() {
+  return (
+    <Global
+      styles={`
       html {
         line-height: 1.5;
         -webkit-text-size-adjust: 100%;
@@ -274,7 +275,8 @@ export const CSSReset = () => (
         display: none;
       }
     `}
-  />
-)
+    />
+  )
+}
 
 export default CSSReset

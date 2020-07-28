@@ -28,16 +28,19 @@ export interface UseCounterProps {
   value?: StringOrNumber
   /**
    * The step used to increment or decrement the value
+   *
    * @default 1
    */
   step?: number
   /**
    * The minimum value of the counter
+   *
    * @default -Infinity
    */
   min?: number
   /**
    * The maximum value of the counter
+   *
    * @default Infinity
    */
   max?: number
