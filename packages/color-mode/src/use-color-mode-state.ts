@@ -1,5 +1,5 @@
 import { useLatestRef } from "@chakra-ui/hooks"
-import * as React from "react"
+import { useEffect, useState } from "react"
 import {
   addListener,
   ColorMode,
@@ -16,8 +16,8 @@ import {
  *
  * If mode is 'dark', body will be `<body class="chakra-ui-light"/>`
  */
-function useSyncBodyClass(mode: string) {
-  React.useEffect(() => {
+function useSyncBodyClass(mode: ColorMode) {
+  useEffect(() => {
     requestAnimationFrame(() => {
       syncBodyClassName(mode === "dark")
     })
@@ -33,8 +33,10 @@ function useSyncBodyClass(mode: string) {
  */
 function useSyncSystemColorMode(fn: Function, enabled: boolean) {
   const callback = useLatestRef(fn)
-  React.useEffect(() => {
+
+  useEffect(() => {
     if (!enabled) return
+
     const removeListener = addListener(callback.current)
     return () => {
       removeListener?.()
@@ -52,14 +54,14 @@ export interface ColorModeOptions {
  * and reads from system preference
  */
 export function useColorModeState<T extends ColorModeOptions>(options?: T) {
-  const [mode, setMode] = React.useState<ColorMode>(
+  const [mode, setMode] = useState<ColorMode>(
     options?.initialColorMode || "light",
   )
 
   useSyncBodyClass(mode)
   useSyncSystemColorMode(setMode, !!options?.useSystemColorMode)
 
-  React.useEffect(() => {
+  useEffect(() => {
     const stored = storage.get()
 
     if (!stored && options?.useSystemColorMode) {
@@ -72,7 +74,7 @@ export function useColorModeState<T extends ColorModeOptions>(options?: T) {
     // eslint-disable-next-line
   }, [])
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (mode) {
       storage.set(mode)
     }
@@ -80,5 +82,3 @@ export function useColorModeState<T extends ColorModeOptions>(options?: T) {
 
   return [mode, setMode] as const
 }
-
-export default useColorModeState

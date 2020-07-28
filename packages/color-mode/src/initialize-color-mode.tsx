@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 
 const noFlash = `(function() { try {
   var mode = localStorage.getItem('chakra-ui-color-mode');
