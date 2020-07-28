@@ -1,9 +1,8 @@
-/** @jsx jsx */
-import * as React from "react"
+import React, { Ref } from "react"
 import AnimateHeight, {
   AnimateHeightProps as AnimateProps,
 } from "react-animate-height"
-import { chakra, jsx, PropsOf } from "@chakra-ui/system"
+import { chakra, forwardRef, PropsOf } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 
 type AnimateHeightProps = Pick<
@@ -16,46 +15,47 @@ type AnimateHeightProps = Pick<
   | "children"
 >
 
-export interface CollapseOptions {
-  /**
-   * If `true`, the content will be visible
-   */
-  isOpen?: boolean
-  /**
-   * If `true`, the opacity of the content will be animated
-   */
-  animateOpacity?: boolean
-  /**
-   * The duration of the animation in `ms`
-   */
-  duration?: number
-  /**
-   * The height you want the content in it's collapsed state. Set to `0` by default
-   */
-  startingHeight?: number | string
-  /**
-   * The height you want the content in it's expanded state. Set to `auto` by default
-   */
-  endingHeight?: number | string
-  /**
-   * The function to be called when the collapse animation starts. It provides the `newHeight` as an argument
-   */
-  onAnimationEnd?(props: { newHeight: number }): void
-  /**
-   * The function to be called when the collapse animation ends. It provides the `newHeight` as an argument
-   */
-  onAnimationStart?(props: { newHeight: number }): void
-}
-
-export type ICollapse = CollapseProps
-
 export type CollapseProps = AnimateHeightProps &
-  CollapseOptions &
-  PropsOf<typeof chakra.div>
+  PropsOf<typeof chakra.div> & {
+    /**
+     * If `true`, the content will be visible
+     */
+    isOpen?: boolean
+    /**
+     * If `true`, the opacity of the content will be animated
+     *
+     * @default true
+     */
+    animateOpacity?: boolean
+    /**
+     * The duration of the animation in `ms`
+     */
+    duration?: number
+    /**
+     * The height you want the content in it's collapsed state. Set to `0` by default
+     *
+     * @default 0
+     */
+    startingHeight?: number | string
+    /**
+     * The height you want the content in it's expanded state. Set to `auto` by default
+     *
+     * @default auto
+     */
+    endingHeight?: number | string
+    /**
+     * The function to be called when the collapse animation starts. It provides the `newHeight` as an argument
+     */
+    onAnimationEnd?(props: { newHeight: number }): void
+    /**
+     * The function to be called when the collapse animation ends. It provides the `newHeight` as an argument
+     */
+    onAnimationStart?(props: { newHeight: number }): void
+  }
 
-export const Collapse = React.forwardRef(function Collapse(
+export const Collapse = forwardRef(function Collapse(
   props: CollapseProps,
-  ref: React.Ref<any>,
+  ref: Ref<HTMLDivElement>,
 ) {
   const {
     isOpen,
@@ -95,5 +95,3 @@ export const Collapse = React.forwardRef(function Collapse(
 if (__DEV__) {
   Collapse.displayName = "Collapse"
 }
-
-export default Collapse

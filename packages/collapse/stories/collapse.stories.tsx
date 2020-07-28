@@ -1,4 +1,4 @@
-import * as React from "react"
+import React, { useState } from "react"
 import { Collapse } from "../src"
 import { useDisclosure } from "@chakra-ui/hooks"
 
@@ -45,7 +45,7 @@ export function WithStringAsChild() {
 }
 
 export function WithStartingHeight() {
-  const [show, setShow] = React.useState(false)
+  const [show, setShow] = useState(false)
 
   const handleToggle = () => setShow(!show)
 

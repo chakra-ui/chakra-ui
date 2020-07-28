@@ -1,8 +1,14 @@
-import * as React from "react"
-import { render } from "@chakra-ui/test-utils"
+import React from "react"
+import { render, testA11Y } from "@chakra-ui/test-utils"
 import { Collapse } from "../src"
 
-test("Collapse renders correctly", () => {
-  const utils = render(<Collapse>sfsjdfkbfkjdfdjksf</Collapse>)
-  expect(utils.asFragment()).toMatchSnapshot()
+describe("<Collapse />", () => {
+  test("renders correctly", () => {
+    const { asFragment } = render(<Collapse>sfsjdfkbfkjdfdjksf</Collapse>)
+    expect(asFragment()).toMatchSnapshot()
+  })
+
+  test("passes a11y test", async () => {
+    await testA11Y(<Collapse>sfsjdfkbfkjdfdjksf</Collapse>)
+  })
 })
