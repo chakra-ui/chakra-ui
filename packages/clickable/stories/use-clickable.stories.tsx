@@ -1,6 +1,6 @@
-import { chakra, PropsOf } from "@chakra-ui/system"
+import { chakra, PropsOf, forwardRef } from "@chakra-ui/system"
 import { SafeMerge } from "@chakra-ui/utils"
-import * as React from "react"
+import React, { Ref } from "react"
 import { UseClickableProps, useClickable } from "../src"
 
 export type ClickableProps = SafeMerge<
@@ -8,15 +8,13 @@ export type ClickableProps = SafeMerge<
   PropsOf<typeof chakra.button>
 >
 
-const Clickable = React.forwardRef(
-  (props: ClickableProps, ref: React.Ref<any>) => {
-    const clickable = useClickable({ ...props, ref })
-    return <chakra.button display="inline-flex" {...clickable} />
-  },
-)
+const Clickable = forwardRef((props: ClickableProps, ref: Ref<HTMLElement>) => {
+  const clickable = useClickable({ ...props, ref })
+  return <chakra.button display="inline-flex" {...clickable} />
+})
 
 export default {
-  title: "Tabbable",
+  title: "Clickable",
 }
 
 export const button = () => (
@@ -37,11 +35,11 @@ export const button = () => (
       isFocusable
       _disabled={{ opacity: 0.4, pointerEvents: "none" }}
     >
-      Clickable
+      disabled & focusable
     </Clickable>
 
     <button
-      onClick={(event) => {
+      onClick={() => {
         alert("clicked")
       }}
     >

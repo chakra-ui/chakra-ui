@@ -4,6 +4,8 @@ import React, {
   HTMLAttributes,
   KeyboardEvent,
   MouseEvent,
+  Ref,
+  ButtonHTMLAttributes,
 } from "react"
 import { mergeRefs, dataAttr, isRightClick } from "@chakra-ui/utils"
 
@@ -26,7 +28,7 @@ export interface UseClickableProps extends HTMLAttributes<Element> {
    * Whether or not trigger click on pressing `Space`.
    */
   clickOnSpace?: boolean
-  ref?: React.Ref<HTMLElement>
+  ref?: Ref<HTMLElement>
 }
 
 /**
@@ -77,14 +79,14 @@ export function useClickable(props: UseClickableProps = {}) {
   const trulyDisabled = isDisabled && !isFocusable
 
   const handleClick = useCallback(
-    (event: MouseEvent) => {
+    (event: MouseEvent<HTMLElement>) => {
       if (isDisabled) {
         event.stopPropagation()
         event.preventDefault()
         return
       }
 
-      const self = event.currentTarget as HTMLElement
+      const self = event.currentTarget
       self.focus()
       onClick?.(event)
     },
@@ -92,7 +94,7 @@ export function useClickable(props: UseClickableProps = {}) {
   )
 
   const handleKeyDown = useCallback(
-    (event: KeyboardEvent) => {
+    (event: KeyboardEvent<HTMLElement>) => {
       onKeyDown?.(event)
 
       if (isDisabled || event.defaultPrevented || event.metaKey) {
@@ -110,7 +112,7 @@ export function useClickable(props: UseClickableProps = {}) {
 
       if (!isButton && shouldClickOnEnter) {
         event.preventDefault()
-        const self = event.currentTarget as HTMLElement
+        const self = event.currentTarget
         self.click()
         return
       }
@@ -119,7 +121,7 @@ export function useClickable(props: UseClickableProps = {}) {
   )
 
   const handleKeyUp = useCallback(
-    (event: React.KeyboardEvent) => {
+    (event: KeyboardEvent<HTMLElement>) => {
       onKeyUp?.(event)
 
       if (isDisabled || event.defaultPrevented || event.metaKey) return
@@ -130,7 +132,7 @@ export function useClickable(props: UseClickableProps = {}) {
         event.preventDefault()
         setIsActive(false)
 
-        const self = event.currentTarget as HTMLElement
+        const self = event.currentTarget
         self.click()
       }
     },
@@ -183,13 +185,13 @@ export function useClickable(props: UseClickableProps = {}) {
     [isDisabled, onMouseOver],
   )
 
-  const ref = mergeRefs(htmlRef, refCallback)
+  const ref: Ref<HTMLElement> = mergeRefs(htmlRef, refCallback)
 
   if (isButton) {
     return {
       ...htmlProps,
       ref,
-      type: "button" as React.ButtonHTMLAttributes<any>["type"],
+      type: "button" as ButtonHTMLAttributes<HTMLButtonElement>["type"],
       "aria-disabled": trulyDisabled ? undefined : isDisabled,
       disabled: trulyDisabled,
       onClick: handleClick,
