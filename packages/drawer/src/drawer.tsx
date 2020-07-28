@@ -1,4 +1,10 @@
-import * as React from "react"
+import React, {
+  createContext,
+  useContext,
+  ReactNode,
+  CSSProperties,
+  Ref,
+} from "react"
 import { Slide, SlideProps, Fade } from "@chakra-ui/transition"
 import {
   Modal,
@@ -7,26 +13,40 @@ import {
   ModalContent,
   ModalOverlayProps,
   ModalOverlay,
+  ModalBody,
+  ModalHeader,
+  ModalFooter,
+  ModalCloseButton,
 } from "@chakra-ui/modal"
 import { forwardRef } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 
 interface TransitionStyles {
-  content: React.CSSProperties
-  overlay: React.CSSProperties
+  content: CSSProperties
+  overlay: CSSProperties
 }
 
-const TransitionContext = React.createContext<TransitionStyles>({
+const TransitionContext = createContext<TransitionStyles>({
   content: {},
   overlay: {},
 })
 
 TransitionContext.displayName = "TransitionContext"
-const useTransitionContext = () => React.useContext(TransitionContext)
+const useTransitionContext = () => {
+  const context = useContext(TransitionContext)
+
+  if (!context) {
+    throw new Error(
+      "useTransitionContext() was called outside of a TransitionContext.Provider in a Drawer component\nYou probably forgot to use `Drawer`.",
+    )
+  }
+
+  return context
+}
 
 interface DrawerTransitionProps {
   in: boolean
-  children: React.ReactNode
+  children: ReactNode
   placement: SlideProps["placement"]
 }
 
@@ -76,36 +96,31 @@ export function Drawer(props: DrawerProps) {
   )
 }
 
-export const DrawerContent = forwardRef<ModalContentProps>(
-  function DrawerContent(props, ref) {
-    const { content: styles } = useTransitionContext()
-    return (
-      <ModalContent
-        ref={ref}
-        position="fixed"
-        style={styles}
-        marginTop="0"
-        marginBottom="0"
-        borderRadius="0"
-        {...props}
-      />
-    )
-  },
-)
+export const DrawerContent = forwardRef(function DrawerContent(
+  props: ModalContentProps,
+  ref: Ref<HTMLDivElement>,
+) {
+  const { content: styles } = useTransitionContext()
+  return (
+    <ModalContent
+      ref={ref}
+      position="fixed"
+      style={styles}
+      marginTop="0"
+      marginBottom="0"
+      borderRadius="0"
+      {...props}
+    />
+  )
+})
 
-export const DrawerOverlay = forwardRef<ModalOverlayProps>(
-  function DrawerOverlay(props, ref) {
-    const { overlay: styles } = useTransitionContext()
-    return <ModalOverlay style={styles} ref={ref} {...props} />
-  },
-)
-
-import {
-  ModalBody,
-  ModalHeader,
-  ModalFooter,
-  ModalCloseButton,
-} from "@chakra-ui/modal"
+export const DrawerOverlay = forwardRef(function DrawerOverlay(
+  props: ModalOverlayProps,
+  ref: Ref<HTMLDivElement>,
+) {
+  const { overlay: styles } = useTransitionContext()
+  return <ModalOverlay style={styles} ref={ref} {...props} />
+})
 
 export const DrawerBody = ModalBody
 export const DrawerHeader = ModalHeader

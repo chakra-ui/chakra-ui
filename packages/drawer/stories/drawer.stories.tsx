@@ -1,4 +1,4 @@
-import * as React from "react"
+import React, { useState } from "react"
 import { PortalManager } from "@chakra-ui/portal"
 import { Drawer, DrawerContent, DrawerOverlay } from "../src"
 
@@ -14,7 +14,8 @@ export default {
 }
 
 export const Basic = () => {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = useState(false)
+
   return (
     <>
       <button onClick={() => setOpen(!open)}>Open</button>

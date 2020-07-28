@@ -1,13 +1,113 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Drawer renders correctly 1`] = `
+exports[`<Drawer /> renders correctly when closed 1`] = `
 <DocumentFragment>
   <div
+    class="chakra-portal-manager"
+  />
+</DocumentFragment>
+`;
+
+exports[`<Drawer /> renders correctly when opened 1`] = `
+<DocumentFragment>
+  .emotion-1 {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: rgba(0,0,0,0.48);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  overflow: auto;
+}
+
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  outline: 0;
+  background: #FFFFFF;
+  color: inherit;
+  margin-top: 3.75rem;
+  margin-bottom: 3.75rem;
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1),0 4px 6px -2px rgba(0,0,0,0.05);
+  max-width: 28rem;
+  position: fixed;
+  margin-top: 0;
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+<div
     class="chakra-portal-manager"
   >
     <div
       class="chakra-portal"
-    />
+    >
+      <div
+        aria-hidden="true"
+        data-aria-hidden="true"
+        data-focus-guard="true"
+        style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+        tabindex="0"
+      />
+      <div
+        aria-hidden="true"
+        data-aria-hidden="true"
+        data-focus-guard="true"
+        style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+        tabindex="1"
+      />
+      <div
+        data-focus-lock-disabled="false"
+      >
+        <div>
+          <div
+            class="chakra-modal__overlay emotion-1"
+            style="opacity: 0; transition: opacity 250ms cubic-bezier(0.16, 1, 0.3, 1);"
+          >
+            <section
+              aria-modal="true"
+              class="chakra-modal__content emotion-0"
+              id="chakra-modal-1"
+              role="dialog"
+              style="position: fixed; will-change: transform; width: 100%; right: 0px; top: 0px; height: 100vh; transform: translateX(100%); transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1);"
+              tabindex="-1"
+            >
+              <div>
+                This is the drawer content
+              </div>
+              <button>
+                This is a button
+              </button>
+            </section>
+          </div>
+        </div>
+      </div>
+      <div
+        aria-hidden="true"
+        data-aria-hidden="true"
+        data-focus-guard="true"
+        style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+        tabindex="0"
+      />
+    </div>
   </div>
 </DocumentFragment>
 `;
