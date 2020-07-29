@@ -101,4 +101,13 @@ const checkbox = multiStyleConfig({
   defaultProps,
 })
 
+export const checkboxStyles = {
+  parts,
+  baseStyleLabel,
+  baseStyleControl,
+  baseStyleIcon,
+  sizes,
+  defaultProps,
+}
+
 export default checkbox
