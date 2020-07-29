@@ -1,38 +1,58 @@
 import { styleConfig } from "@chakra-ui/theme-tools"
-import input from "./input"
+import { inputStyles } from "./input"
+
+const baseStyle = {
+  ...inputStyles.baseStyle?.field,
+  textAlign: "center",
+}
+
+const sizes = {
+  lg: {
+    fontSize: "lg",
+    w: 12,
+    h: 12,
+    borderRadius: "md",
+  },
+  md: {
+    fontSize: "md",
+    w: 10,
+    h: 10,
+    borderRadius: "md",
+  },
+  sm: {
+    fontSize: "sm",
+    w: 8,
+    h: 8,
+    borderRadius: "sm",
+  },
+}
+
+// @ts-ignore
+const variantOutline = (props) => inputStyles.variantOutline(props)?.field ?? {}
+
+// @ts-ignore
+const variantFlushed = (props) => inputStyles.variantFlushed(props)?.field ?? {}
+
+// @ts-ignore
+const variantFilled = (props) => inputStyles.variantFilled(props).field ?? {}
+
+const variantUnstyled = inputStyles.variantUnstyled.field
+
+const variants = {
+  outline: variantOutline,
+  flushed: variantFlushed,
+  filled: variantFilled,
+  unstyled: variantUnstyled,
+}
+
+const defaultProps = inputStyles.defaultProps
 
 const pinInput = styleConfig({
-  baseStyle: {
-    ...input.baseStyle?.field,
-    textAlign: "center",
-  },
-  sizes: {
-    lg: {
-      fontSize: "lg",
-      w: 12,
-      h: 12,
-      borderRadius: "md",
-    },
-    md: {
-      fontSize: "md",
-      w: 10,
-      h: 10,
-      borderRadius: "md",
-    },
-    sm: {
-      fontSize: "sm",
-      w: 8,
-      h: 8,
-      borderRadius: "sm",
-    },
-  },
-  variants: {
-    outline: (props) => input.variants?.outline(props)?.field ?? {},
-    flushed: (props) => input.variants?.flushed(props)?.field ?? {},
-    filled: (props) => input.variants?.filled(props).field ?? {},
-    unstyled: input.variants?.unstyled.field,
-  },
-  defaultProps: input.defaultProps,
+  baseStyle,
+  sizes,
+  variants,
+  // @ts-ignore
+  defaultProps,
 })
 
 export default pinInput
