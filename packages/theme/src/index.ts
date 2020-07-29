@@ -1,5 +1,5 @@
 import foundations from "./foundations"
-import components from "./components"
+import components, { accordionStyles } from "./components"
 import styles from "./styles"
 import { ColorModeOptions } from "@chakra-ui/system"
 
@@ -21,3 +21,5 @@ const theme = {
 export type Theme = typeof theme
 
 export default theme
+
+export { accordionStyles }
