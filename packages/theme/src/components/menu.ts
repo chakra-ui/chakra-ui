@@ -8,7 +8,8 @@ const parts = {
   groupTitle: "the menu group title",
 }
 
-const baseStyleList = function (props: any) {
+// @ts-ignore
+const baseStyleList = function (props) {
   return {
     bg: mode(`#fff`, `gray.700`)(props),
     boxShadow: mode(`sm`, `dark-lg`)(props),
@@ -21,7 +22,8 @@ const baseStyleList = function (props: any) {
   }
 }
 
-const baseStyleItem = function (props: any) {
+// @ts-ignore
+const baseStyleItem = function (props) {
   return {
     py: "0.4rem",
     px: "0.8rem",
@@ -53,7 +55,8 @@ const baseStyleCommand = {
   opacity: 0.6,
 }
 
-const baseStyle = function (props: any) {
+// @ts-ignore
+const baseStyle = function (props) {
   return {
     list: baseStyleList(props),
     item: baseStyleItem(props),

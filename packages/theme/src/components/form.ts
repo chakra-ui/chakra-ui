@@ -7,7 +7,8 @@ const parts = {
   helperText: "the helper text",
 }
 
-const baseStyleErrorText = function (props: any) {
+// @ts-ignore
+const baseStyleErrorText = function (props) {
   return {
     color: mode("red.500", "red.300")(props),
     mt: 2,
@@ -15,14 +16,16 @@ const baseStyleErrorText = function (props: any) {
   }
 }
 
-const baseStyleRequiredIndicator = function (props: any) {
+// @ts-ignore
+const baseStyleRequiredIndicator = function (props) {
   return {
     ml: 1,
     color: mode("red.500", "red.300")(props),
   }
 }
 
-const baseStyleHelperText = function (props: any) {
+// @ts-ignore
+const baseStyleHelperText = function (props) {
   return {
     mt: 2,
     color: mode("gray.500", "whiteAlpha.600")(props),
@@ -31,14 +34,16 @@ const baseStyleHelperText = function (props: any) {
   }
 }
 
-const baseStyleErrorIcon = function (props: any) {
+// @ts-ignore
+const baseStyleErrorIcon = function (props) {
   return {
     mr: "0.5em",
     color: mode("red.500", "red.300")(props),
   }
 }
 
-const baseStyle = (props: any) => ({
+// @ts-ignore
+const baseStyle = (props) => ({
   errorText: baseStyleErrorText(props),
   requiredIndicator: baseStyleRequiredIndicator(props),
   helperText: baseStyleHelperText(props),

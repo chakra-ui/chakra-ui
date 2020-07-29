@@ -26,7 +26,8 @@ const baseStyleOverlay = {
   bg: "blackAlpha.600",
 }
 
-const baseStyleContent = function (props: any) {
+// @ts-ignore
+const baseStyleContent = function (props) {
   const { isFullHeight } = props
 
   return {
@@ -56,7 +57,8 @@ const baseStyleFooter = {
   py: 4,
 }
 
-const baseStyle = (props: any) => ({
+// @ts-ignore
+const baseStyle = (props) => ({
   overlay: baseStyleOverlay,
   content: baseStyleContent(props),
   header: baseStyleHeader,

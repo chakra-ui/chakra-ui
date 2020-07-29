@@ -7,7 +7,8 @@ const parts = {
   icon: "the checkmark icon",
 }
 
-const baseStyleControl = function (props: any) {
+// @ts-ignore
+const baseStyleControl = function (props) {
   const { colorScheme: c } = props
 
   return {
@@ -65,7 +66,8 @@ const baseStyleIcon = {
   fontSize: "0.625rem",
 }
 
-const baseStyle = (props: any) => ({
+// @ts-ignore
+const baseStyle = (props) => ({
   control: baseStyleControl(props),
   label: baseStyleLabel,
   icon: baseStyleIcon,
