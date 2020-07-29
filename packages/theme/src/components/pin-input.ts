@@ -55,4 +55,14 @@ const pinInput = styleConfig({
   defaultProps,
 })
 
+export const pinInputStyles = {
+  baseStyle,
+  sizes,
+  variantFilled,
+  variantFlushed,
+  variantOutline,
+  variantUnstyled,
+  defaultProps,
+}
+
 export default pinInput
