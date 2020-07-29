@@ -1,5 +1,4 @@
 import { styleConfig } from "@chakra-ui/theme-tools"
-import { extraProps } from "@chakra-ui/system/dist/types/system.utils"
 
 const baseStyle = {
   fontFamily: "heading",

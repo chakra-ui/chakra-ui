@@ -34,7 +34,6 @@ const baseStyleTabpanel = { p: 4 }
 
 // @ts-ignore
 const baseStyle = function (props) {
-  const { align = "start" } = props
   return {
     tab: baseStyleTab(props),
     tablist: baseStyleTablist(props),
