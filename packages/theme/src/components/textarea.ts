@@ -1,28 +1,57 @@
 import { styleConfig } from "@chakra-ui/theme-tools"
-import input from "./input"
+import { inputStyles } from "./input"
+
+const baseStyle = {
+  ...inputStyles.baseStyle?.field,
+  paddingY: "8px",
+  minHeight: "80px",
+  lineHeight: "short",
+}
+
+// @ts-ignore
+const variantOutline = (props) => inputStyles.variantOutline(props)?.field ?? {}
+
+// @ts-ignore
+const variantFlushed = (props) => inputStyles.variantFlushed(props)?.field ?? {}
+
+// @ts-ignore
+const variantFilled = (props) => inputStyles.variantFilled(props).field ?? {}
+
+const variantUnstyled = inputStyles.variantUnstyled.field
+
+const variants = {
+  outline: variantOutline,
+  flushed: variantFlushed,
+  filled: variantFilled,
+  unstyled: variantUnstyled,
+}
+
+const sizes = {
+  sm: inputStyles.sizes?.sm.field,
+  md: inputStyles.sizes?.md.field,
+  lg: inputStyles.sizes?.lg.field,
+}
+
+const defaultProps = {
+  size: "md",
+  variant: "outline",
+}
 
 const textarea = styleConfig({
-  baseStyle: {
-    ...input.baseStyle?.field,
-    paddingY: "8px",
-    minHeight: "80px",
-    lineHeight: "short",
-  },
-  sizes: {
-    sm: input.sizes?.sm.field,
-    md: input.sizes?.md.field,
-    lg: input.sizes?.lg.field,
-  },
-  variants: {
-    outline: (props) => input.variants?.outline(props)?.field ?? {},
-    flushed: (props) => input.variants?.flushed(props)?.field ?? {},
-    filled: (props) => input.variants?.filled(props).field ?? {},
-    unstyled: input.variants?.unstyled.field,
-  },
-  defaultProps: {
-    size: "md",
-    variant: "outline",
-  },
+  baseStyle,
+  sizes,
+  variants,
+  // @ts-ignore
+  defaultProps,
 })
+
+export const textareaStyles = {
+  baseStyle,
+  sizes,
+  variantFilled,
+  variantFlushed,
+  variantOutline,
+  defaultProps,
+}
 
 export default textarea
