@@ -154,27 +154,29 @@ export const Stack = React.forwardRef(function Stack(
 
   const hasDivider = !!divider
 
-  const clones = validChildren.map((child, index) => {
-    const isLast = index + 1 === validChildren.length
-    const _child = shouldWrapChildren ? <StackItem>{child}</StackItem> : child
+  const clones = !shouldWrapChildren && !divider
+    ? validChildren
+    : validChildren.map((child, index) => {
+        const isLast = index + 1 === validChildren.length
+        const _child = shouldWrapChildren ? <StackItem>{child}</StackItem> : child
 
-    if (!hasDivider) {
-      return <React.Fragment key={index}>{_child}</React.Fragment>
-    }
+        if (!hasDivider) {
+          return <React.Fragment key={index}>{_child}</React.Fragment>
+        }
 
-    const cloneDivider = isLast
-      ? null
-      : React.cloneElement(divider as any, {
-          css: css({ "&": dividerStyles }),
-        })
+        const cloneDivider = isLast
+          ? null
+          : React.cloneElement(divider as any, {
+              css: css({ "&": dividerStyles }),
+            })
 
-    return (
-      <React.Fragment key={index}>
-        {_child}
-        {cloneDivider}
-      </React.Fragment>
-    )
-  })
+        return (
+          <React.Fragment key={index}>
+            {_child}
+            {cloneDivider}
+          </React.Fragment>
+        )
+      })
 
   const sx = (theme: Dict) => {
     if (hasDivider) return undefined
