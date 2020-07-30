@@ -1,12 +1,8 @@
-import { BaseStyle, mode } from "@chakra-ui/theme-tools"
+import { mode, styleConfig } from "@chakra-ui/theme-tools"
 
-const register = {
-  parts: ["kbd"],
-} as const
-
-const baseStyle: BaseStyle<typeof register> = (props) => {
-  return {
-    kbd: {
+const kbd = styleConfig({
+  baseStyle: function (props) {
+    return {
       bg: mode("gray.100", "whiteAlpha")(props),
       borderRadius: "md",
       borderWidth: "1px",
@@ -16,13 +12,8 @@ const baseStyle: BaseStyle<typeof register> = (props) => {
       lineHeight: "normal",
       px: "0.4em",
       whiteSpace: "nowrap",
-    },
-  }
-}
-
-const kbd = {
-  register,
-  baseStyle,
-}
+    }
+  },
+})
 
 export default kbd

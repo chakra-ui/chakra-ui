@@ -1,7 +1,12 @@
 import { css } from "../src/css"
 
+const breakpoints: any = ["40em", "52em", "64em"]
+breakpoints.sm = breakpoints[0]
+breakpoints.md = breakpoints[1]
+breakpoints.lg = breakpoints[2]
+
 const theme = {
-  breakpoints: { sm: "40em", md: "52em", lg: "64em" },
+  breakpoints,
   colors: {
     primary: "tomato",
     secondary: "cyan",
@@ -273,7 +278,7 @@ test("ignores array values longer than breakpoints", () => {
   const result = css({
     width: [32, 64, 128, 256, 512],
   })({
-    breakpoints: { sm: "32em", md: "40em" },
+    breakpoints: ["32em", "40em"],
   })
   expect(result).toEqual({
     width: 32,

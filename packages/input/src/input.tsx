@@ -3,7 +3,7 @@ import {
   chakra,
   forwardRef,
   PropsOf,
-  useStyleConfig,
+  useMultiStyleConfig,
   omitThemingProps,
   ThemingProps,
 } from "@chakra-ui/system"
@@ -44,7 +44,7 @@ export type InputProps = Omit<PropsOf<typeof chakra.input>, Omitted> &
  * Element that allows users enter single valued data.
  */
 export const Input = forwardRef<InputProps>(function Input(props, ref) {
-  const styles = useStyleConfig("Input", props)
+  const styles = useMultiStyleConfig("Input", props)
   const realProps = omitThemingProps(props)
   const input = useFormControl<HTMLInputElement>(realProps)
   const _className = cx("chakra-input", props.className)

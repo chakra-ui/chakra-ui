@@ -132,34 +132,6 @@ export function generateStripe(
   }
 }
 
-/**
- * Returns an accessible ink color of any given fill color.
- */
-export const toAlphas = (color: string) => ({
-  900: transparentize(color, 0.92),
-  800: transparentize(color, 0.8),
-  700: transparentize(color, 0.6),
-  600: transparentize(color, 0.48),
-  500: transparentize(color, 0.38),
-  400: transparentize(color, 0.24),
-  300: transparentize(color, 0.16),
-  200: transparentize(color, 0.12),
-  100: transparentize(color, 0.08),
-  50: transparentize(color, 0.04),
-})
-
-type Emphasis = "high" | "medium" | "low" | "lowest"
-
-export const ink = (color: string, emphasis: Emphasis) => {
-  const values = {
-    high: toAlphas(color)[900],
-    medium: toAlphas(color)[700],
-    low: toAlphas(color)[500],
-    lowest: toAlphas(color)[300],
-  }
-  return values[emphasis]
-}
-
 interface RandomColorOptions {
   /**
    * If passed, string will be used to generate

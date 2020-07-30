@@ -27,7 +27,7 @@ export const Text = React.forwardRef(function Text(
       ref={ref}
       className={cx("chakra-text", props.className)}
       {...rest}
-      __css={styles.text}
+      __css={styles}
     />
   )
 })

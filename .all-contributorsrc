@@ -376,7 +376,8 @@
       "avatar_url": "https://avatars3.githubusercontent.com/u/1557563?v=4",
       "profile": "http://santialbo.com",
       "contributions": [
-        "code"
+        "code",
+        "doc"
       ]
     },
     {
@@ -1045,6 +1046,15 @@
       "profile": "https://github.com/damnjan",
       "contributions": [
         "doc"
+       ]
+    },
+    {
+      "login": "Andu033",
+      "name": "Stanila Andrei",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/15851201?v=4",
+      "profile": "https://github.com/Andu033",
+      "contributions": [
+        "code"
       ]
     }
   ],

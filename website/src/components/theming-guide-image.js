@@ -40,7 +40,7 @@ export function ButtonSpec() {
   const data = useData()
   const badge = getImage(data, "button-spec.png")
   return (
-    <Box maxWidth="560px" paddingY="40px">
+    <Box maxWidth="400px" paddingY="40px">
       <Img fluid={{ ...badge.node.childImageSharp.fluid }} />
     </Box>
   )

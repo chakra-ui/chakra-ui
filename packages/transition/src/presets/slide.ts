@@ -29,13 +29,6 @@ const placements = {
   },
 }
 
-const axis = {
-  left: "X",
-  right: "X",
-  top: "Y",
-  bottom: "Y",
-}
-
 const offset = {
   bottom: "100%",
   top: "-100%",

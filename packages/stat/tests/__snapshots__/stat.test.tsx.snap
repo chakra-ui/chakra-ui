@@ -55,7 +55,6 @@ exports[`Stat renders correctly 1`] = `
   width: 14px;
   height: 14px;
   vertical-align: middle;
-  vertical-align: middle;
   display: inline-block;
   line-height: 1em;
   color: #48BB78;
@@ -70,7 +69,6 @@ exports[`Stat renders correctly 1`] = `
   margin-right: 0.25rem;
   width: 14px;
   height: 14px;
-  vertical-align: middle;
   vertical-align: middle;
   display: inline-block;
   line-height: 1em;

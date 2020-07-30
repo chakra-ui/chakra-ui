@@ -1,14 +1,11 @@
-import { BaseStyle, DefaultProps, mode, Sizes } from "@chakra-ui/theme-tools"
+import { mode, styleConfig } from "@chakra-ui/theme-tools"
 
-const register = {
-  parts: ["icon", "container"],
-  sizes: ["sm", "md", "lg"],
-} as const
+const closeButton = styleConfig({
+  baseStyle: function (props) {
+    const hoverBg = mode(`blackAlpha.100`, `whiteAlpha.100`)(props)
+    const activeBg = mode(`blackAlpha.200`, `whiteAlpha.200`)(props)
 
-const baseStyle: BaseStyle<typeof register> = (props) => {
-  return {
-    icon: {},
-    container: {
+    return {
       borderRadius: "md",
       transition: "all 0.2s",
       _disabled: {
@@ -16,43 +13,35 @@ const baseStyle: BaseStyle<typeof register> = (props) => {
         cursor: "not-allowed",
         boxShadow: "none",
       },
-      _hover: {
-        bg: mode(`blackAlpha.100`, `whiteAlpha.100`)(props),
-      },
-      _active: {
-        bg: mode(`blackAlpha.200`, `whiteAlpha.200`)(props),
-      },
+      _hover: { bg: hoverBg },
+      _active: { bg: activeBg },
       _focus: {
         boxShadow: "outline",
       },
+    }
+  },
+
+  sizes: {
+    lg: {
+      w: "40px",
+      h: "40px",
+      fontSize: "16px",
     },
-  }
-}
-
-const sizes: Sizes<typeof register> = {
-  lg: {
-    container: { width: "40px", height: "40px" },
-    icon: { fontSize: "16px" },
+    md: {
+      w: "32px",
+      h: "32px",
+      fontSize: "12px",
+    },
+    sm: {
+      w: "24px",
+      h: "24px",
+      fontSize: "10px",
+    },
   },
-  md: {
-    container: { width: "32px", height: "32px" },
-    icon: { fontSize: "12px" },
-  },
-  sm: {
-    container: { width: "24px", height: "24px" },
-    icon: { fontSize: "10px" },
-  },
-}
 
-const defaultProps: DefaultProps<typeof register> = {
-  size: "md",
-}
-
-const closeButton = {
-  register,
-  defaultProps,
-  baseStyle,
-  sizes,
-}
+  defaultProps: {
+    size: "md",
+  },
+})
 
 export default closeButton

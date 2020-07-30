@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.0](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/css-reset@1.0.0-next.7...@chakra-ui/css-reset@1.0.0-rc.0) (2020-07-26)
+
+**Note:** Version bump only for package @chakra-ui/css-reset
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [1.0.0-next.7](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/css-reset@1.0.0-next.6...@chakra-ui/css-reset@1.0.0-next.7) (2020-07-26)
+
+### Bug Fixes
+
+- issue with input element ui and css-reset
+  ([cc221de](https://github.com/chakra-ui/chakra-ui/commit/cc221de6878530d572c8f80032dad150d022c81c))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.0.0-next.6](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/css-reset@1.0.0-next.5...@chakra-ui/css-reset@1.0.0-next.6) (2020-07-15)
 
 **Note:** Version bump only for package @chakra-ui/css-reset

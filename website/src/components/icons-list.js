@@ -30,6 +30,7 @@ const icons = {
   EditIcon: chakraIcons.EditIcon,
   EmailIcon: chakraIcons.EmailIcon,
   ExternalLinkIcon: chakraIcons.ExternalLinkIcon,
+  HamburgerIcon: chakraIcons.HamburgerIcon,
   InfoIcon: chakraIcons.InfoIcon,
   InfoOutlineIcon: chakraIcons.InfoOutlineIcon,
   LinkIcon: chakraIcons.LinkIcon,

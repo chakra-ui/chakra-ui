@@ -1,9 +1,5 @@
 import { ColorModeProvider, useColorMode } from "@chakra-ui/color-mode"
-import {
-  css,
-  SystemStyleObject,
-  normalizeBreakpoints,
-} from "@chakra-ui/styled-system"
+import { css, SystemStyleObject } from "@chakra-ui/styled-system"
 import { createContext, Dict, get, merge, runIfFn } from "@chakra-ui/utils"
 import { Global, Interpolation, ThemeContext } from "@emotion/core"
 import * as React from "react"
@@ -17,8 +13,6 @@ export function ThemeProvider(props: ThemeProviderProps) {
   const { children, theme } = props
   const outerTheme = React.useContext(ThemeContext) as Dict
   const mergedTheme = merge({}, outerTheme, theme)
-
-  mergedTheme.breakpoints = normalizeBreakpoints(mergedTheme.breakpoints)
 
   return (
     <ThemeContext.Provider value={mergedTheme}>

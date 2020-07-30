@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Button renders correctly 1`] = `
+exports[`accordion renders correctly 1`] = `
 <DocumentFragment>
   .emotion-2 {
   border-top-width: 1px;
@@ -12,11 +12,6 @@ exports[`Button renders correctly 1`] = `
 }
 
 .emotion-0 {
-  font-size: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -29,6 +24,11 @@ exports[`Button renders correctly 1`] = `
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
   outline: 0;
+  font-size: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .emotion-0:focus,
@@ -59,9 +59,6 @@ exports[`Button renders correctly 1`] = `
   padding-left: 1rem;
   padding-right: 1rem;
   padding-bottom: 1.25rem;
-  -webkit-transition: height 150ms ease-in-out,opacity 150ms ease-in-out,-webkit-transform 150ms ease-in-out;
-  -webkit-transition: height 150ms ease-in-out,opacity 150ms ease-in-out,transform 150ms ease-in-out;
-  transition: height 150ms ease-in-out,opacity 150ms ease-in-out,transform 150ms ease-in-out;
 }
 
 <div
@@ -85,6 +82,7 @@ exports[`Button renders correctly 1`] = `
         <div
           aria-labelledby="accordion-button-1"
           class="chakra-accordion__panel emotion-1"
+          hidden=""
           id="accordion-panel-1"
           role="region"
         >

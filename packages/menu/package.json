@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/menu",
-  "version": "1.0.0-next.6",
+  "version": "1.0.0-rc.0",
   "description": "A React component to render accessible menus",
   "keywords": [
     "menu",
@@ -48,18 +48,19 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/clickable": "^1.0.0-next.6",
-    "@chakra-ui/descendant": "^1.0.0-next.6",
-    "@chakra-ui/hooks": "^1.0.0-next.6",
-    "@chakra-ui/popper": "^1.0.0-next.6",
-    "@chakra-ui/transition": "^1.0.0-next.6",
-    "@chakra-ui/utils": "^1.0.0-next.6"
+    "@chakra-ui/clickable": "1.0.0-rc.0",
+    "@chakra-ui/descendant": "1.0.0-rc.0",
+    "@chakra-ui/hooks": "1.0.0-rc.0",
+    "@chakra-ui/popper": "1.0.0-rc.0",
+    "@chakra-ui/transition": "1.0.0-rc.0",
+    "@chakra-ui/utils": "1.0.0-rc.0",
+    "@react-aria/interactions": "3.0.2"
   },
   "devDependencies": {
-    "@chakra-ui/system": "^1.0.0-next.6"
+    "@chakra-ui/system": "1.0.0-rc.0"
   },
   "peerDependencies": {
-    "@chakra-ui/system": "^1.0.0-next.5",
+    "@chakra-ui/system": "1.0.0-rc.0",
     "react": "16.x"
   }
 }

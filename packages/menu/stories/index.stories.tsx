@@ -2,7 +2,6 @@ import { chakra } from "@chakra-ui/system"
 import * as React from "react"
 
 export * from "./menu.stories"
-export * from "./nested-menu.stories"
 
 export default {
   title: "Menu",

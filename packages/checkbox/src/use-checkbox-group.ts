@@ -1,4 +1,4 @@
-import * as React from "react"
+import { useState, useCallback } from "react"
 import { useControllableProp } from "@chakra-ui/hooks"
 import {
   isInputEvent,
@@ -46,10 +46,10 @@ export function useCheckboxGroup(props: UseCheckboxGroupProps = {}) {
     isNative,
   } = props
 
-  const [valueState, setValue] = React.useState(defaultValue || [])
+  const [valueState, setValue] = useState(defaultValue || [])
   const [isControlled, value] = useControllableProp(valueProp, valueState)
 
-  const updateValue = React.useCallback(
+  const updateValue = useCallback(
     (nextState: StringOrNumber[]) => {
       if (!isControlled) {
         setValue(nextState)
@@ -60,7 +60,7 @@ export function useCheckboxGroup(props: UseCheckboxGroupProps = {}) {
     [isControlled, onChangeProp],
   )
 
-  const onChange = React.useCallback(
+  const onChange = useCallback(
     (eventOrValue: EventOrValue) => {
       if (!value) return
 

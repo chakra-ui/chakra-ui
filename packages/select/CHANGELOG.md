@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.0](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/select@1.0.0-next.7...@chakra-ui/select@1.0.0-rc.0) (2020-07-26)
+
+**Note:** Version bump only for package @chakra-ui/select
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [1.0.0-next.7](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/select@1.0.0-next.6...@chakra-ui/select@1.0.0-next.7) (2020-07-26)
+
+### Bug Fixes
+
+- **selet:** add fit-content prevent element overflow
+  ([39ed2d6](https://github.com/chakra-ui/chakra-ui/commit/39ed2d6ecc45f3f2c8e9ea1e327cdfbcb4def984))
+- theming prop types in select
+  ([8194041](https://github.com/chakra-ui/chakra-ui/commit/8194041501e0ac4c294ecfd379616969a40168b0))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.0.0-next.6](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/select@1.0.0-next.5...@chakra-ui/select@1.0.0-next.6) (2020-07-15)
 
 **Note:** Version bump only for package @chakra-ui/select

@@ -17,7 +17,7 @@ import { useSpinner } from "./use-spinner"
 import {
   isFloatingPointNumericCharacter,
   isValidNumericKeyboardEvent,
-} from "./number-input.utils"
+} from "./utils"
 
 export interface UseNumberInputProps extends UseCounterProps {
   /**
@@ -274,7 +274,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     [focusInput, spinner],
   )
 
-  const clickEvent =
+  const pointerDown =
     isBrowser && !!document.documentElement.ontouchstart
       ? "onTouchStart"
       : "onMouseDown"
@@ -284,14 +284,14 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       ...props,
       role: "button",
       tabIndex: -1,
-      [clickEvent]: callAllHandlers(props[clickEvent], spinUp),
+      [pointerDown]: callAllHandlers(props[pointerDown], spinUp),
       onMouseUp: callAllHandlers(props.onMouseUp, spinner.stop),
       onMouseLeave: callAllHandlers(props.onMouseUp, spinner.stop),
       onTouchEnd: callAllHandlers(props.onTouchEnd, spinner.stop),
       disabled: keepWithinRange && counter.isAtMax,
       "aria-disabled": ariaAttr(keepWithinRange && counter.isAtMax),
     }),
-    [clickEvent, counter.isAtMax, keepWithinRange, spinUp, spinner.stop],
+    [pointerDown, counter.isAtMax, keepWithinRange, spinUp, spinner.stop],
   )
 
   const getDecrementButtonProps = React.useCallback(
@@ -299,14 +299,14 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       ...props,
       role: "button",
       tabIndex: -1,
-      [clickEvent]: callAllHandlers(props[clickEvent], spinDown),
+      [pointerDown]: callAllHandlers(props[pointerDown], spinDown),
       onMouseLeave: callAllHandlers(props.onMouseUp, spinner.stop),
       onMouseUp: callAllHandlers(props.onMouseUp, spinner.stop),
       onTouchEnd: callAllHandlers(props.onTouchEnd, spinner.stop),
       disabled: keepWithinRange && counter.isAtMin,
       "aria-disabled": ariaAttr(keepWithinRange && counter.isAtMin),
     }),
-    [clickEvent, counter.isAtMin, keepWithinRange, spinDown, spinner.stop],
+    [pointerDown, counter.isAtMin, keepWithinRange, spinDown, spinner.stop],
   )
 
   type InputMode = React.InputHTMLAttributes<any>["inputMode"]

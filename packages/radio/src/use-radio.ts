@@ -137,8 +137,9 @@ export function useRadio(props: UseRadioProps = {}) {
       isReadOnly,
       isRequired,
     },
-    getCheckboxProps: (props: Dict = {}) => ({
+    getCheckboxProps: (props: Dict = {}, ref: React.Ref<any> = null) => ({
       ...props,
+      ref,
       "data-active": dataAttr(isActive),
       "data-hover": dataAttr(isHovered),
       "data-disabled": dataAttr(isDisabled),
@@ -152,9 +153,9 @@ export function useRadio(props: UseRadioProps = {}) {
       onMouseEnter: callAllHandlers(props.onMouseEnter, setHovering.on),
       onMouseLeave: callAllHandlers(props.onMouseLeave, setHovering.off),
     }),
-    getInputProps: (props: Dict = {}) => ({
+    getInputProps: (props: Dict = {}, _ref: React.Ref<any> = null) => ({
       ...props,
-      ref: mergeRefs(props.ref, ref),
+      ref: mergeRefs(_ref, ref),
       type: "radio",
       name,
       value,
@@ -172,26 +173,31 @@ export function useRadio(props: UseRadioProps = {}) {
       "aria-disabled": ariaAttr(isDisabled),
       style: visuallyHiddenStyle,
     }),
-    getLabelProps: (props: Dict = {}) => {
-      /**
-       * Prevent `onBlur` being fired when the checkbox label is touched
-       */
-      const stop = (event: React.SyntheticEvent) => {
-        event.preventDefault()
-        event.stopPropagation()
-      }
+    getLabelProps: (props: Dict = {}, ref: React.Ref<any> = null) => {
       return {
         ...props,
-        style: { ...props.style, touchAction: "none" },
+        ref,
+        style: {
+          ...props.style,
+          touchAction: "none",
+        },
         onMouseDown: callAllHandlers(props.onMouseDown, stop),
         onTouchStart: callAllHandlers(props.onTouchState, stop),
         "data-disabled": dataAttr(isDisabled),
-        " data-checked": dataAttr(isChecked),
+        "data-checked": dataAttr(isChecked),
         "data-invalid": dataAttr(isInvalid),
       }
     },
     htmlProps,
   }
+}
+
+/**
+ * Prevent `onBlur` being fired when the checkbox label is touched
+ */
+function stop(event: React.SyntheticEvent) {
+  event.preventDefault()
+  event.stopPropagation()
 }
 
 export type UseRadioReturn = ReturnType<typeof useRadio>

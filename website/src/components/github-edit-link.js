@@ -9,7 +9,7 @@ export function GithubLink({ path }) {
 
   if (!repository || !path) return null
 
-  const href = `${repository}/blob/master${path}`
+  const href = `${repository}/blob/master/${path}`
 
   return (
     <Link href={href} isExternal>

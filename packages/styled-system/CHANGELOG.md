@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.0](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/styled-system@1.0.0-next.7...@chakra-ui/styled-system@1.0.0-rc.0) (2020-07-26)
+
+**Note:** Version bump only for package @chakra-ui/styled-system
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [1.0.0-next.7](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/styled-system@1.0.0-next.6...@chakra-ui/styled-system@1.0.0-next.7) (2020-07-26)
+
+### Bug Fixes
+
+- types issue with styled system core
+  ([fc8b8d8](https://github.com/chakra-ui/chakra-ui/commit/fc8b8d8c0daba140da959303df59230304d34f8a))
+- undefined issue in styled utilies
+  ([42502d1](https://github.com/chakra-ui/chakra-ui/commit/42502d1f689f34fe672893104dc85d378e08a55a))
+
+### Reverts
+
+- breakpoint handling
+  ([f3ee5f1](https://github.com/chakra-ui/chakra-ui/commit/f3ee5f15c48da242c4d4d43de0dc67ff7664c81e))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.0.0-next.6](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/styled-system@1.0.0-next.5...@chakra-ui/styled-system@1.0.0-next.6) (2020-07-15)
 
 **Note:** Version bump only for package @chakra-ui/styled-system

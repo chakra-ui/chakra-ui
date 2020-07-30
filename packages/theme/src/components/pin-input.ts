@@ -1,51 +1,38 @@
-import { Sizes } from "@chakra-ui/theme-tools"
+import { styleConfig } from "@chakra-ui/theme-tools"
 import input from "./input"
 
-const register = {
-  parts: ["field"],
-  sizes: input.register.sizes,
-  variants: input.register.variants,
-} as const
-
-const baseStyle = input.baseStyle
-
-const variants = input.variants
-
-const sizes: Sizes<typeof register> = {
-  lg: {
-    field: {
+const pinInput = styleConfig({
+  baseStyle: {
+    ...input.baseStyle?.field,
+    textAlign: "center",
+  },
+  sizes: {
+    lg: {
       fontSize: "lg",
-      width: 12,
-      height: 12,
+      w: 12,
+      h: 12,
       borderRadius: "md",
     },
-  },
-  md: {
-    field: {
+    md: {
       fontSize: "md",
-      width: 10,
-      height: 10,
+      w: 10,
+      h: 10,
       borderRadius: "md",
     },
-  },
-  sm: {
-    field: {
+    sm: {
       fontSize: "sm",
-      width: 8,
-      height: 8,
+      w: 8,
+      h: 8,
       borderRadius: "sm",
     },
   },
-}
-
-const defaultProps = input.defaultProps
-
-const pinInput = {
-  register,
-  defaultProps,
-  baseStyle,
-  variants,
-  sizes,
-}
+  variants: {
+    outline: (props) => input.variants?.outline(props)?.field ?? {},
+    flushed: (props) => input.variants?.flushed(props)?.field ?? {},
+    filled: (props) => input.variants?.filled(props).field ?? {},
+    unstyled: input.variants?.unstyled.field,
+  },
+  defaultProps: input.defaultProps,
+})
 
 export default pinInput

@@ -15,79 +15,70 @@ will have 2 sizes, `small` and `large`, and 2 variants `outline` and `solid`.
 
 <ButtonSpec />
 
-First, let's add the `baseStyle` for common styles like `font-weight`,
-`text-transform`, etc.
-
-<br />
+First, let's define the `baseStyle` for each part, adding common attributes like
+`font-weight`, `text-transform`, etc.
 
 ```jsx live=false
-const Button = chakra("button", {
-  baseStyle: {
-    fontWeight: "semibold",
-    borderRadius: "4px",
-    textTransform: "uppercase",
-  },
-})
+const baseStyle = {
+  fontWeight: "semibold",
+  borderRadius: "4px",
+  textTransform: "uppercase",
+}
 ```
 
-Next, we'll define the styles for the button sizes. Here's how to do it:
+Next, we'll define the styles for the button sizes
 
 ```jsx live=false
-const Button = chakra("button", {
-  sizes: {
-    small: {
-      paddingX: "18px",
-      paddingY: "12px",
-      fontSize: "14px",
-    },
-    large: {
-      paddingX: "24px",
-      paddingY: "16px",
-      fontSize: "18px",
-    },
+const sizes = {
+  small: {
+    px: "18px",
+    py: "12px",
+    fontSize: "14px",
   },
-})
+  large: {
+    px: "24px",
+    py: "16px",
+    fontSize: "18px",
+  },
+}
 ```
 
 Now, let's add 2 variant styles to the button, `solid` and `outline`. Here's how
 to do it:
 
 ```jsx live=false
-const Button = chakra("button", {
-  variants: {
-    solid: {
-      bg: "#4053B8",
-      color: "white",
-    },
-    outline: {
-      border: "2px",
-      borderColor: "#4053B8",
-      color: "#4053B8",
-    },
+const variants = {
+  solid: {
+    bg: "#4053B8",
+    color: "white",
   },
-})
+  outline: {
+    border: "2px",
+    borderColor: "#4053B8",
+    color: "#4053B8",
+  },
+}
 ```
 
-Combining the sizes and variants, We now have a themable Button component.
-Here's what it looks like:
+Bringing it all together, We now have a themable Button component. Here's what
+it looks like:
 
 ```jsx manual=true
-const Button = chakra("button", {
+const styleConfig = {
   baseStyle: {
-    borderRadius: "md",
-    fontWeight: "bold",
+    fontWeight: "semibold",
+    borderRadius: "4px",
     textTransform: "uppercase",
-    transition: "all 0.2s",
   },
   sizes: {
     small: {
-      paddingX: "18px",
-      paddingY: "12px",
+      px: "18px",
+      py: "12px",
       fontSize: "14px",
     },
     large: {
-      paddingX: "24px",
-      paddingY: "16px",
+      px: "24px",
+      py: "16px",
       fontSize: "18px",
     },
   },
@@ -102,7 +93,23 @@ const Button = chakra("button", {
       color: "#4053B8",
     },
   },
-})
+  defaultProps: {
+    size: "small",
+    variant: "solid",
+  },
+}
+
+function Button(props) {
+  const { size, variant, ...rest } = props
+
+  const styles = useStyleConfig("Button", {
+    size,
+    variant,
+    styleConfig,
+  })
+
+  return <Box as="button" sx={styles} {...rest} />
+}
 
 render(
   <Button size="small" variant="solid">
@@ -111,95 +118,8 @@ render(
 )
 ```
 
-### Setting default values
-
-Most of the time, you want the button component to come with a default `size`
-and `variant` without having to pass props to it.
-
-To set the default values, you can use React's `defaultProps`.
-
-Here's how to set the button size to `small` and variant to `solid` by default.
-
-```jsx live=false
-Button.defaultProps = {
-  size: "small",
-  variant: "solid",
-}
-```
-
-### Using the `Button` component
-
-First, without passing any props to the Button component, it'll read from the
-`defaultProps` in the theme.
-
-```jsx live=false
-// this will render a small, solid button
-<Button>Chakra</Button>
-```
-
-Now, you can pass the `size` prop to modify the button's size
-
-```jsx live=false
-// this will render a large, solid button
-<Button size="large">Chakra</Button>
-```
-
-### Using the `themeKey`
-
-To provide this styles globally, you can move all these styles to the theme
-under `theme.components.Button` and use the `themeKey` option to automatically
-connect them. It works the same!
-
-> **💡 Pro Tip:** You can also move the `defaultProps` to the theme as well.
-
-```jsx live=false
-// 1. Use the `themeKey` option
-const Button = chakra("button", {
-  themeKey: "Button",
-})
-
-// 2. Add styles to the theme
-const theme = {
-  components: {
-    Button: {
-      defaultProps: {
-        size: "small",
-        variant: "solid",
-      },
-      baseStyle: {
-        fontWeight: "semibold",
-        textTransform: "uppercase",
-      },
-      sizes: {
-        small: {
-          padding: "12px",
-          fontSize: "14px",
-        },
-        large: {
-          padding: "24px",
-          fontSize: "18px",
-        },
-      },
-      variants: {
-        solid: {
-          bg: "blue.600",
-          color: "white",
-        },
-        outline: {
-          border: "2px",
-          borderColor: "blue.600",
-        },
-      },
-    },
-  },
-}
-```
-
-This API makes super easy to add or remove button sizes or variants in the
-future.
-
-> All Chakra's component follows this API and we've made call component styles
-> available to you in the `chakra/` folder of your project.
+That's it! We've created a button component style that makes it easier to manage
+current and future changes consistently.
 
 ## Design a badge
 
@@ -212,57 +132,79 @@ Let's say you need to create a simple badge component with the following spec.
 First thing we notice is that the badge has **base or common styles** across all
 its variants. Here's how we'll model that:
 
+Define the base style
+
 ```jsx live=false
-const Badge = chakra("span", {
-  baseStyle: {
-    fontSize: "12px",
-    fontWeight: "bold",
-    textTransform: "uppercase",
-    color: "white",
-  },
-})
+const baseStyle = {
+  fontSize: "12px",
+  fontWeight: "bold",
+  textTransform: "uppercase",
+  color: "white",
+}
 ```
 
-Next, the badge has 4 variants: `in-progress`, `removed`, `new`, `default`.
-Here's how we'll model that:
+Define the variants
 
 ```jsx live=false
-const Badge = chakra("span", {
-  variants: {
-    "in-progress": { bg: "blue.600" },
-    new: { bg: "purple.600" },
-    removed: { bg: "red.600" },
-    default: { bg: "gray.600" },
+const variants = {
+  "in-progress": {
+    bg: "blue.600",
   },
-})
+  new: {
+    bg: "purple.600",
+  },
+  removed: {
+    bg: "red.600",
+  },
+  default: {
+    bg: "gray.600",
+  },
+}
 ```
 
 Bringing it all together:
 
-```jsx live=false
-const Badge = chakra("span", {
+```jsx manual=true
+const styleConfig = {
   baseStyle: {
     fontSize: "12px",
     fontWeight: "bold",
     textTransform: "uppercase",
     color: "white",
+    px: "2",
+    py: "1",
+    borderRadius: "4px",
   },
   variants: {
-    inProgress: { bg: "blue.600" },
-    new: { bg: "purple.600" },
-    removed: { bg: "red.600" },
-    default: { bg: "gray.600" },
+    "in-progress": {
+      bg: "blue.600",
+    },
+    new: {
+      bg: "purple.600",
+    },
+    removed: {
+      bg: "red.600",
+    },
+    default: {
+      bg: "gray.600",
+    },
   },
-})
-
-// Pro tip: Set the default variant with `defaultProps`
-Badge.defaultProps = {
-  variant: "default",
+  defaultProps: {
+    variant: "default",
+  },
 }
+
+function Badge(props) {
+  const { size, variant, ...rest } = props
+  const styles = useStyleConfig("Badge", { size, variant, styleConfig })
+  return <Box as="span" sx={styles} {...rest} />
+}
+
+render(<Badge>Chakra</Badge>)
 ```
 
 That's it! Now you have a solid structure your team can use to create new
 variants or improve the base styles.
 
-And of course you could always move these styles into the central theme if you'd
-prefer to maintain it there.
+And of course you could always move these styles to the theme object if you
+prefer to apply the styles globally.

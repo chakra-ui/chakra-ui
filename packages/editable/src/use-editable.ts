@@ -7,7 +7,7 @@ import {
   mergeRefs,
   ariaAttr,
 } from "@chakra-ui/utils"
-import * as React from "react"
+import { useState, useCallback, ChangeEvent, useRef, Ref } from "react"
 import { PropsOf } from "@chakra-ui/system"
 
 export interface UseEditableProps {
@@ -90,7 +90,7 @@ export function useEditable(props: UseEditableProps = {}) {
 
   const defaultIsEditing = Boolean(startWithEditView && !isDisabled)
 
-  const [isEditing, setIsEditing] = React.useState(defaultIsEditing)
+  const [isEditing, setIsEditing] = useState(defaultIsEditing)
 
   const [value, setValue] = useControllableState({
     defaultValue: defaultValue || "",
@@ -103,15 +103,15 @@ export function useEditable(props: UseEditableProps = {}) {
    * Keep track of the previous value, so if users
    * presses `cancel`, we can revert to it.
    */
-  const [prevValue, setPrevValue] = React.useState(value)
+  const [prevValue, setPrevValue] = useState(value)
 
   /**
    * Ref to help focus the input in edit mode
    */
-  const inputRef = React.useRef<HTMLInputElement>(null)
-  const previewRef = React.useRef<any>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
+  const previewRef = useRef<any>(null)
 
-  const editButtonRef = React.useRef<HTMLButtonElement>(null)
+  const editButtonRef = useRef<HTMLButtonElement>(null)
 
   const isInteractive = !isEditing || !isDisabled
 
@@ -130,26 +130,26 @@ export function useEditable(props: UseEditableProps = {}) {
     onEditProp?.()
   }, [isEditing, onEditProp, selectAllOnFocus])
 
-  const onEdit = React.useCallback(() => {
+  const onEdit = useCallback(() => {
     if (isInteractive) {
       setIsEditing(true)
     }
   }, [isInteractive])
 
-  const onCancel = React.useCallback(() => {
+  const onCancel = useCallback(() => {
     setIsEditing(false)
     setValue(prevValue)
     onCancelProp?.(prevValue)
   }, [onCancelProp, setValue, prevValue])
 
-  const onSubmit = React.useCallback(() => {
+  const onSubmit = useCallback(() => {
     setIsEditing(false)
     setPrevValue(value)
     onSubmitProp?.(value)
   }, [value, onSubmitProp])
 
-  const onChange = React.useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
       setValue(event.target.value)
     },
     [setValue],
@@ -173,7 +173,7 @@ export function useEditable(props: UseEditableProps = {}) {
     return shouldHaveTabIndex ? 0 : undefined
   }
 
-  const onBlur = React.useCallback(() => {
+  const onBlur = useCallback(() => {
     if (submitOnBlur) {
       onSubmit()
     }
@@ -187,20 +187,20 @@ export function useEditable(props: UseEditableProps = {}) {
     onEdit,
     onCancel,
     onSubmit,
-    getPreviewProps: (props: Dict = {}) => ({
+    getPreviewProps: (props: Dict = {}, ref: Ref<any> = null) => ({
       ...props,
-      ref: mergeRefs(props.ref, previewRef),
+      ref: mergeRefs(ref, previewRef),
       children: isValueEmpty ? placeholder : value,
       hidden: isEditing,
       "aria-disabled": ariaAttr(isDisabled),
       tabIndex: getTabIndex(),
       onFocus: callAllHandlers(props.onFocus, onEdit),
     }),
-    getInputProps: (props: Dict = {}) => ({
+    getInputProps: (props: Dict = {}, ref: Ref<any> = null) => ({
       ...props,
       hidden: !isEditing,
       placeholder,
-      ref: mergeRefs(props.ref, inputRef),
+      ref: mergeRefs(ref, inputRef),
       disabled: isDisabled,
       "aria-disabled": ariaAttr(isDisabled),
       value,
@@ -208,22 +208,33 @@ export function useEditable(props: UseEditableProps = {}) {
       onChange: callAllHandlers(props.onChange, onChange),
       onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
     }),
-    getEditButtonProps: (props: Dict = {}): PropsOf<"button"> => ({
+    getEditButtonProps: (
+      props: Dict = {},
+      ref: Ref<any> = null,
+    ): PropsOf<"button"> => ({
       "aria-label": "Edit",
       ...props,
       type: "button",
       onClick: callAllHandlers(props.onClick, onEdit),
-      ref: mergeRefs(props.ref, editButtonRef),
+      ref: mergeRefs(ref, editButtonRef),
     }),
-    getSubmitButtonProps: (props: Dict = {}): PropsOf<"button"> => ({
+    getSubmitButtonProps: (
+      props: Dict = {},
+      ref: Ref<any> = null,
+    ): PropsOf<"button"> => ({
       "aria-label": "Submit",
       ...props,
+      ref,
       type: "button",
       onClick: callAllHandlers(props.onClick, onSubmit),
     }),
-    getCancelButtonProps: (props: Dict = {}): PropsOf<"button"> => ({
+    getCancelButtonProps: (
+      props: Dict = {},
+      ref: Ref<any> = null,
+    ): PropsOf<"button"> => ({
       "aria-label": "Cancel",
       ...props,
+      ref,
       type: "button",
       onClick: callAllHandlers(props.onClick, onCancel),
     }),

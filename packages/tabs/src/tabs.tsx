@@ -5,13 +5,13 @@ import {
   PropsOf,
   StylesProvider,
   ThemingProps,
-  useStyleConfig,
+  useMultiStyleConfig,
   useStyles,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import React, { Ref, ReactNode, useMemo } from "react"
 import {
-  TabsContextProvider,
+  TabsProvider,
   useTab,
   useTabIndicator,
   useTabList,
@@ -38,7 +38,7 @@ export type TabsProps = UseTabsProps &
   ThemingProps &
   Omit<PropsOf<typeof chakra.div>, "onChange" | "children"> &
   TabsOptions & {
-    children: React.ReactNode
+    children: ReactNode
   }
 
 /**
@@ -49,24 +49,26 @@ export type TabsProps = UseTabsProps &
  */
 export const Tabs = React.forwardRef(function Tabs(
   props: TabsProps,
-  ref: React.Ref<any>,
+  ref: Ref<any>,
 ) {
-  const styles = useStyleConfig("Tabs", props)
-  const { children, className, ...rest } = omitThemingProps(props)
+  const styles = useMultiStyleConfig("Tabs", props)
+  const { children, className, ...otherProps } = omitThemingProps(props)
 
-  const { htmlProps, ...tabsContext } = useTabs(rest)
-  const ctx = React.useMemo(() => tabsContext, [tabsContext])
-
-  const _className = cx("chakra-tabs", className)
+  const { htmlProps, ...ctx } = useTabs(otherProps)
+  const context = useMemo(() => ctx, [ctx])
 
   return (
-    <TabsContextProvider value={ctx}>
+    <TabsProvider value={context}>
       <StylesProvider value={styles}>
-        <chakra.div className={_className} ref={ref} {...htmlProps}>
+        <chakra.div
+          className={cx("chakra-tabs", className)}
+          ref={ref}
+          {...htmlProps}
+        >
           {children}
         </chakra.div>
       </StylesProvider>
-    </TabsContextProvider>
+    </TabsProvider>
   )
 })
 
@@ -77,28 +79,26 @@ if (__DEV__) {
 export type TabProps = UseTabProps & PropsOf<typeof chakra.button>
 
 /**
- * Tabs
- *
- * The tab button used to activate a specific tab panel. It renders a `button`,
+ * Tab button used to activate a specific tab panel. It renders a `button`,
  * and is responsible for automatic and manual selection modes.
  */
 export const Tab = forwardRef<TabProps>(function Tab(props, ref) {
-  const { className, ...rest } = props
   const styles = useStyles()
-  const tab = useTab({ ...rest, ref })
-  const _className = cx("chakra-tabs__tab", className)
+  const tabProps = useTab({ ...props, ref })
+
+  const tabStyles = {
+    outline: "0",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    ...styles.tab,
+  }
 
   return (
     <chakra.button
-      className={_className}
-      __css={{
-        outline: "0",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        ...styles.tab,
-      }}
-      {...tab}
+      {...tabProps}
+      className={cx("chakra-tabs__tab", props.className)}
+      __css={tabStyles}
     />
   )
 })
@@ -111,29 +111,26 @@ export type TabListProps = Omit<UseTabListProps, "context"> &
   PropsOf<typeof chakra.div>
 
 /**
- * TabList
- *
- * Used to manage a list of tab buttons. It renders a `div` by default,
+ * TabList is used to manage a list of tab buttons. It renders a `div` by default,
  * and is responsible the keyboard interaction between tabs.
  */
 export const TabList = React.forwardRef(function TabList(
   props: TabListProps,
-  ref: React.Ref<any>,
+  ref: Ref<any>,
 ) {
-  const { className, ...rest } = props
-  const tablist = useTabList({ ...rest, ref })
-  const styles = useStyles()
+  const tablistProps = useTabList({ ...props, ref })
 
-  const _className = cx("chakra-tabs__tablist", className)
+  const styles = useStyles()
+  const tablistStyles = {
+    display: "flex",
+    ...styles.tablist,
+  }
 
   return (
     <chakra.div
-      __css={{
-        display: "flex",
-        ...styles.tablist,
-      }}
-      className={_className}
-      {...tablist}
+      {...tablistProps}
+      className={cx("chakra-tabs__tablist", props.className)}
+      __css={tablistStyles}
     />
   )
 })
@@ -150,14 +147,17 @@ export type TabPanelProps = PropsOf<typeof chakra.div>
  */
 export const TabPanel = React.forwardRef(function TabPanel(
   props: TabPanelProps,
-  ref: React.Ref<any>,
+  ref: Ref<any>,
 ) {
-  const { className, ...rest } = props
-  const panel = useTabPanel({ ...rest, ref })
-  const _className = cx("chakra-tabs__tab-panel", className)
+  const panelProps = useTabPanel({ ...props, ref })
   const styles = useStyles()
+
   return (
-    <chakra.div className={_className} {...panel} __css={styles.tabpanel} />
+    <chakra.div
+      {...panelProps}
+      className={cx("chakra-tabs__tab-panel", props.className)}
+      __css={styles.tabpanel}
+    />
   )
 })
 
@@ -177,12 +177,16 @@ export type TabPanelsProps = PropsOf<typeof chakra.div>
  */
 export const TabPanels = React.forwardRef(function TabPanels(
   props: TabPanelsProps,
-  ref: React.Ref<any>,
+  ref: Ref<any>,
 ) {
-  const { className, ...rest } = props
-  const panelsProp = useTabPanels(rest)
-  const _className = cx("chakra-tabs__tab-panels", className)
-  return <chakra.div ref={ref} className={_className} {...panelsProp} />
+  const panelsProps = useTabPanels(props)
+  return (
+    <chakra.div
+      {...panelsProps}
+      ref={ref}
+      className={cx("chakra-tabs__tab-panels", props.className)}
+    />
+  )
 })
 
 if (__DEV__) {
@@ -199,20 +203,22 @@ export type TabIndicatorProps = PropsOf<typeof chakra.div>
  */
 export const TabIndicator = React.forwardRef(function TabIndicator(
   props: TabIndicatorProps,
-  ref: React.Ref<any>,
+  ref: Ref<any>,
 ) {
-  const { className, style, ...rest } = props
   const indicatorStyle = useTabIndicator()
-  const _className = cx("chakra-tabs__tab-indicator", className)
-  const _style = { ...style, ...indicatorStyle }
+  const style = {
+    ...props.style,
+    ...indicatorStyle,
+  }
+
   const styles = useStyles()
 
   return (
     <chakra.div
       ref={ref}
-      className={_className}
-      style={_style}
-      {...rest}
+      {...props}
+      className={cx("chakra-tabs__tab-indicator", props.className)}
+      style={style}
       __css={styles.indicator}
     />
   )

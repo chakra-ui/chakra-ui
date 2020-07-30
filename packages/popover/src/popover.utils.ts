@@ -2,63 +2,6 @@ import { useUpdateEffect, useEventListener } from "@chakra-ui/hooks"
 import { focus, getFirstTabbableIn, isFocusable } from "@chakra-ui/utils"
 import * as React from "react"
 
-/**
- * Check if the event target is within the popover ref.
- *
- * @param ref the popover ref
- * @param event the blur event
- */
-export function hasFocusWithin(
-  popoverRef: React.RefObject<HTMLElement>,
-  event: React.FocusEvent,
-) {
-  if (!document.activeElement || !popoverRef.current) {
-    return false
-  }
-
-  const target = (event.relatedTarget || document.activeElement) as HTMLElement
-
-  return popoverRef.current.contains(target)
-}
-
-/**
- * Popover hook to manage outside click or blur detection.
- * It listens for outside click and notifies us so we can
- * close the popover
- *
- * @param triggerRef - popover trigger ref
- * @param popoverRef - popover content ref
- * @param options popover options (visible and action)
- */
-export function useBlurOutside(
-  triggerRef: React.RefObject<HTMLElement>,
-  popoverRef: React.RefObject<HTMLElement>,
-  options: {
-    action: () => void
-    visible: boolean
-  },
-) {
-  const onMouseDown = (event: MouseEvent) => {
-    if (
-      options.visible &&
-      triggerRef.current?.contains(event.target as HTMLElement)
-    ) {
-      event.preventDefault()
-    }
-  }
-
-  useEventListener("mousedown", onMouseDown)
-  useEventListener("touchstart", onMouseDown)
-
-  return (event: React.FocusEvent) => {
-    const shouldClose = options.visible && !hasFocusWithin(popoverRef, event)
-
-    if (shouldClose) {
-      options.action()
-    }
-  }
-}
-
 export interface UseFocusOnHideOptions {
   focusRef: React.RefObject<HTMLElement>
   autoFocus?: boolean
@@ -82,7 +25,7 @@ export function useFocusOnHide(
 
   const shouldFocus = autoFocus && !visible && trigger === "click"
 
-  const onMouseDown = (event: MouseEvent) => {
+  const onPointerDown = (event: MouseEvent) => {
     if (!options.visible) return
     const target = event.target as HTMLElement
 
@@ -96,7 +39,8 @@ export function useFocusOnHide(
     }
   }
 
-  useEventListener("mousedown", onMouseDown)
+  useEventListener("mousedown", onPointerDown)
+  useEventListener("touchstart", onPointerDown)
 
   useUpdateEffect(() => {
     return () => {

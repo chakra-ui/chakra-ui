@@ -27,7 +27,7 @@ export const basic = () => <Tag>Gray</Tag>
 export const withSizes = () => (
   <>
     <Tag size="sm">Gray</Tag>
-    <Tag>Gray</Tag>
+    <Tag size="md">Gray</Tag>
     <Tag size="lg">Gray</Tag>
   </>
 )
@@ -42,7 +42,9 @@ export const colorSchemes = () => (
     <Tag size="sm" colorScheme="green">
       Gray
     </Tag>
-    <Tag colorScheme="pink">Gray</Tag>
+    <Tag size="md" colorScheme="pink">
+      Gray
+    </Tag>
     <Tag size="lg" colorScheme="blue">
       Gray
     </Tag>

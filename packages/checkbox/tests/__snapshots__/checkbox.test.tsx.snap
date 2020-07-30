@@ -250,12 +250,12 @@ exports[`Checkbox renders correctly 2`] = `
 }
 
 .emotion-1 {
+  margin-left: 0.5rem;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
   font-size: 1rem;
-  margin-left: 0.5rem;
 }
 
 .emotion-1[disabled],

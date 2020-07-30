@@ -29,7 +29,7 @@ export const Code = React.forwardRef(function Badge(
       {...rest}
       __css={{
         display: "inline-block",
-        ...styles.container,
+        ...styles,
       }}
     />
   )
