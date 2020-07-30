@@ -35,10 +35,5 @@
     "build": "next build",
     "start": "next start",
     "test": "jest"
-  },
-  "devDependencies": {
-    "eslint": "7.3.1",
-    "prettier": "2.0.5",
-    "remark-parse": "8.0.2"
   }
 }
