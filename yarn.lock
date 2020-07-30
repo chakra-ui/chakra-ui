@@ -15470,6 +15470,11 @@ jest-matcher-utils@^26.0.1, jest-matcher-utils@^26.1.0:
     jest-get-type "^26.0.0"
     pretty-format "^26.1.0"
 
+jest-matchmedia-mock@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/jest-matchmedia-mock/-/jest-matchmedia-mock-1.0.1.tgz#da1c75be82a3b3e46e6c8ae195aa54e4a6032eb4"
+  integrity sha512-IXk2AnldfsCRmhB4pFY0Eb9mk2NxFqOgOwA4DxKOJ22T5bn/j3DzM5s3cdKxuEowmpuXK1gPXAIlVGIC+kb/fA==
+
 jest-message-util@^24.9.0:
   version "24.9.0"
   resolved "https://registry.yarnpkg.com/jest-message-util/-/jest-message-util-24.9.0.tgz#527f54a1e380f5e202a8d1149b0ec872f43119e3"
@@ -25631,6 +25636,11 @@ widest-line@^3.1.0:
   integrity sha512-NsmoXalsWVDMGupxZ5R08ka9flZjjiLvHVAWYOKtiKM8ujtZWr9cRffak+uSE48+Ob8ObalXpwyeUiyDD6QFgg==
   dependencies:
     string-width "^4.0.0"
+
+window-resizeto@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/window-resizeto/-/window-resizeto-0.0.2.tgz#94db61ea93e0bfc4292fd82c3e98b24776637bc5"
+  integrity sha512-681jdLyc6p+Whk7lFxWISm+V49ymURtBN+Oz5j5c6UnYoBpqc2Q8e3pjZ5VtedC01TjJqr2Xt9XdJMid4KxZmQ==
 
 windows-release@^3.1.0:
   version "3.3.1"

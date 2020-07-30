@@ -1,4 +1,4 @@
-import { objectKeys, Dict, isNumber } from "@chakra-ui/utils"
+import { Dict, isNumber, breakpoints as bps } from "@chakra-ui/utils"
 import calculateMeasurement from "calculate-measurement"
 
 /**
@@ -6,7 +6,12 @@ import calculateMeasurement from "calculate-measurement"
  * using a combination of `min-width` and `max-width`.
  */
 function createMediaQueries(breakpoints: Dict) {
-  const sorted = getSortedKeys(breakpoints)
+  // get the non-number breakpoint keys from the provided breakpoints
+  const keys = Object.keys(breakpoints)
+
+  // use only the keys matching the official breakpoints names, and sort them in
+  // largest to smallest order
+  const sorted = bps.filter((bp) => keys.includes(bp)).reverse()
 
   // create a min-max media query string
   return sorted.map((breakpoint, index) => {
@@ -54,13 +59,6 @@ function subtract(value: any) {
  */
 function toMediaString(value: any) {
   return isNumber(value) ? `${value}px` : value
-}
-
-/**
- * Sort the breakpoints in descending order
- */
-function getSortedKeys(bps: Dict) {
-  return objectKeys(bps).sort((a, b) => parseInt(bps[b]) - parseInt(bps[a]))
 }
 
 export default createMediaQueries
