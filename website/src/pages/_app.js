@@ -1,24 +1,22 @@
-import React, { useEffect } from "react"
 import {
-  ThemeProvider,
   ColorModeProvider,
   CSSReset,
   GlobalStyle,
   PortalManager,
+  ThemeProvider,
 } from "@chakra-ui/core"
 import theme from "@chakra-ui/theme"
+import { trackPageview } from "analytics/track-event"
 import { DefaultSeo } from "next-seo"
+import React from "react"
 import seo from "seo.config"
-import { useRouter } from "next/router"
-import initClient from "analytics/on-init-client"
 import "../styles/algolia.css"
 
-const App = ({ Component, pageProps }) => {
-  const router = useRouter()
-  useEffect(() => {
-    initClient({ router })
-  }, [])
+Router.events.on("routeChangeComplete", (url) => {
+  trackPageview(url)
+})
 
+const App = ({ Component, pageProps }) => {
   return (
     <ThemeProvider theme={theme}>
       <ColorModeProvider>

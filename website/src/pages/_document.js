@@ -1,6 +1,6 @@
 import React from "react"
 import NextDocument, { Html, Head, Main, NextScript } from "next/document"
-import headTags from "src/analytics/document-head-tags-server"
+import GAScript from "analytics/ga-script"
 
 class Document extends NextDocument {
   static async getInitialProps(ctx) {
@@ -16,14 +16,15 @@ class Document extends NextDocument {
           <meta name="theme-color" content="#319795"></meta>
           <script async defer src="https://buttons.github.io/buttons.js" />
           <link
+            rel="preload"
+            as="font"
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-            rel="stylesheet"
           />
-          {/* {headTags()} */}
         </Head>
         <body>
           <Main />
           <NextScript />
+          <GAScript />
         </body>
       </Html>
     )

@@ -1,6 +1,6 @@
 import React from "react"
 
-export default async function headTags() {
+function GAScript() {
   return (
     <>
       <script
@@ -20,3 +20,5 @@ export default async function headTags() {
     </>
   )
 }
+
+export default GAScript
