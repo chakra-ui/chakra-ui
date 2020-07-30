@@ -23,6 +23,7 @@ export interface ThemingProps {
   size?: string
   colorScheme?: string
   orientation?: "vertical" | "horizontal"
+  styleConfig?: Dict
 }
 
 interface ValidHTMLProps {

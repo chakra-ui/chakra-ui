@@ -1,5 +1,5 @@
 module.exports = {
-  stories: ["../packages/popper/stories/*.stories.tsx"],
+  stories: ["../packages/drawer/stories/*.stories.tsx"],
   addons: [
     "storybook-addon-performance/register",
     "@storybook/addon-a11y/register",
