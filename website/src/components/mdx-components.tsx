@@ -49,7 +49,7 @@ const Link = React.forwardRef((props, ref) => (
     transition="all 0.2s"
     cursor="pointer"
     outline="none"
-    _hover={{ opacity: "0.8" }}
+    _hover={{ opacity: 0.8 }}
     _focus={{ boxShadow: "outline" }}
     {...props}
   />
@@ -83,7 +83,7 @@ const LinkedHeading = (props) => (
           fontWeight="normal"
           outline="none"
           _focus={{ opacity: 1, boxShadow: "outline" }}
-          opacity="0"
+          opacity={0}
           ml="0.375rem"
           href={`#${props.id}`}
         >

@@ -67,7 +67,9 @@ function getLayout(context) {
 
 const Layout = ({ children, pageContext }) => {
   const { pathname } = useRouter()
-  const Container = pageContext ? getLayout(pageContext.layout) : React.Fragment
+  const Container: any = pageContext
+    ? getLayout(pageContext.layout)
+    : React.Fragment
 
   return (
     <>

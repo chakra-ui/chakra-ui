@@ -8,7 +8,6 @@ module.exports = withMdxEnhanced({
     require("remark-autolink-headings"),
     require("remark-emoji"),
     require("remark-footnotes"),
-    require("remark-github"),
     require("remark-images"),
     require("remark-slug"),
     require("remark-toc"),
@@ -16,7 +15,8 @@ module.exports = withMdxEnhanced({
   ],
   rehypePlugins: [],
   extendFrontMatter: {
-    // process: (mdxContent, frontMatter) => {},
-    phase: "prebuild|loader|both",
+    process: (_, frontmatter) => ({
+      slug: frontmatter.__resourcePath.replace(".mdx", ""),
+    }),
   },
 })(/* your normal nextjs config */)

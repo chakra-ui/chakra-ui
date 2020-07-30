@@ -1,6 +1,5 @@
-const _window = window as typeof window & { gtag: any }
-
 export function trackPageview(url: string) {
+  const _window = window as typeof window & { gtag: any }
   try {
     _window.gtag("config", process.env.GA_TRACKING_ID, {
       page_location: url,
@@ -20,6 +19,7 @@ type TrackEventOptions = {
 
 export function trackEvent(options: TrackEventOptions) {
   const { action, category, label, value } = options
+  const _window = window as typeof window & { gtag: any }
   try {
     _window.gtag("event", action, {
       event_category: category,
