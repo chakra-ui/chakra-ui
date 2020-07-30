@@ -143,7 +143,7 @@ export const Stack = forwardRef<StackProps>(function Stack(props, ref) {
   const validChildren = getValidChildren(children)
 
   const clones = shouldUseChildren
-    ? children
+    ? validChildren
     : validChildren.map((child, index) => {
         const isLast = index + 1 === validChildren.length
         const _child = shouldWrapChildren ? (
