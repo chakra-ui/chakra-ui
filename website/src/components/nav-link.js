@@ -1,9 +1,9 @@
 import { chakra, useColorModeValue } from "@chakra-ui/core"
-import { useLocation } from "@reach/router"
-import { Link } from "gatsby"
+import { useRouter } from "next/router"
+import NextLink from "next/link"
 import React, { cloneElement, forwardRef } from "react"
 
-const StyledLink = chakra(Link, {
+const StyledLink = chakra(NextLink, {
   baseStyle: {
     display: "block",
     transition: "all 0.2s",
@@ -26,7 +26,7 @@ export const SideNavLink = forwardRef((props, ref) => {
   const color = useColorModeValue("gray.700", "whiteAlpha.900")
 
   return (
-    <StyledLink to={href} ref={ref} mx={-2} color={color} {...rest}>
+    <StyledLink href={href} ref={ref} mx={-2} color={color} {...rest}>
       {icon && cloneElement(icon, { mr: 3 })}
       <span>{children}</span>
     </StyledLink>
@@ -35,7 +35,7 @@ export const SideNavLink = forwardRef((props, ref) => {
 
 export const TopNavLink = forwardRef((props, ref) => {
   const { href, ...rest } = props
-  const { pathname } = useLocation()
+  const { pathname } = useRouter()
   const isActive = pathname === href
 
   return (

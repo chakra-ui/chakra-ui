@@ -1,5 +1,5 @@
 import React from "react"
-import { useLocation } from "@reach/router"
+import { useRouter } from "next/router"
 import { Box } from "@chakra-ui/core"
 import { MDXProvider } from "@mdx-js/react"
 import MDXComponents from "./mdx-components"
@@ -66,13 +66,13 @@ function getLayout(context) {
 }
 
 const Layout = ({ children, pageContext }) => {
-  const location = useLocation()
+  const { pathname } = useRouter()
   const Container = pageContext ? getLayout(pageContext.layout) : React.Fragment
 
   return (
     <>
       <SkipNavLink zIndex={20}>Skip to Content</SkipNavLink>
-      <Container pathname={location.pathname}>{children}</Container>
+      <Container pathname={pathname}>{children}</Container>
       <BottomNav />
     </>
   )

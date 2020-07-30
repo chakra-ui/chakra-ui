@@ -1,6 +1,6 @@
 import { Link, SimpleGrid, Text } from "@chakra-ui/core"
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons"
-import { Link as GatsbyLink } from "gatsby"
+import NextLink from "next/link"
 import React from "react"
 
 export const PaginationLink = (props) => {
@@ -13,8 +13,8 @@ export const PaginationLink = (props) => {
       }}
       flex="1"
       borderRadius="md"
-      as={GatsbyLink}
-      to={url}
+      as={NextLink}
+      href={url}
       {...rest}
     >
       <Text fontSize="sm" paddingX="2">

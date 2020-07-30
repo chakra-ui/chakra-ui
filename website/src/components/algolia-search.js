@@ -8,8 +8,7 @@ import {
   InputGroup,
 } from "@chakra-ui/core"
 import { SearchIcon } from "@chakra-ui/icons"
-import "../styles/algolia.css"
-import { navigate } from "@reach/router"
+import { useRouter } from "next/router"
 
 const getLvl1 = get("hierarchy.lvl1")
 const startsWithCss = startsWith("css-")
@@ -26,6 +25,7 @@ function getHash(url) {
 }
 
 function Search(props) {
+  const router = useRouter()
   const ref = React.useRef()
 
   const onKeyDown = (event) => {
@@ -61,7 +61,7 @@ function Search(props) {
             }
 
             const url = suggestion.url.replace("https://chakra-ui.com", "")
-            navigate(url)
+            router.push(url)
             const hash = window.decodeURI(getHash(url))
 
             if (hash !== "#" && hash !== "") {
