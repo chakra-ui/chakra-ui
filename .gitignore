@@ -24,7 +24,7 @@ tsconfig.tsbuildinfo
 # Local Netlify folder
 .netlify
 .idea
-*.env
+
 draft*
 .yarn
 .vercel
@@ -85,10 +85,6 @@ typings/
 # dotenv environment variables file
 .env
 .env.*
-
-# gatsby files
-.cache/
-public
 
 # Mac files
 .DS_Store

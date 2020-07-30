@@ -5,6 +5,7 @@ import {
   useStyleConfig,
   omitThemingProps,
   ThemingProps,
+  forwardRef,
 } from "@chakra-ui/system"
 import { __DEV__, cx } from "@chakra-ui/utils"
 
@@ -15,10 +16,7 @@ export type TextProps = PropsOf<typeof chakra.p> & ThemingProps
  *
  * @see Docs https://chakra-ui.com/components/text
  */
-export const Text = React.forwardRef(function Text(
-  props: TextProps,
-  ref: React.Ref<any>,
-) {
+export const Text = forwardRef<TextProps>(function Text(props, ref) {
   const styles = useStyleConfig("Text", props)
   const { className, ...rest } = omitThemingProps(props)
 

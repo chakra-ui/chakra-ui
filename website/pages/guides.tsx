@@ -1,5 +1,4 @@
 import * as React from "react"
-import { useStaticQuery, graphql, Link as GatsbyLink } from "gatsby"
 import {
   Box,
   Heading,
@@ -9,7 +8,8 @@ import {
   chakra,
   Badge,
 } from "@chakra-ui/core"
-import SEO from "../src/components/seo"
+import SEO from "components/seo"
+import NextLink from "next/link"
 
 function GuidePreview(props) {
   const {
@@ -23,16 +23,15 @@ function GuidePreview(props) {
     ...rest
   } = props
   const creator = contributors[0] || {}
+
   return (
     <Box as="article" {...rest}>
       <Heading mb="3" color="teal.500" lineHeight="1.4" size="md">
-        <chakra.a
-          as={GatsbyLink}
-          to={url}
-          _hover={{ color: "teal.600", textDecor: "underline" }}
-        >
-          {title}
-        </chakra.a>
+        <NextLink href={url}>
+          <chakra.a _hover={{ color: "teal.600", textDecor: "underline" }}>
+            {title}
+          </chakra.a>
+        </NextLink>
       </Heading>
 
       <Text as="time" opacity={0.7} fontSize="sm" dateTime={birthTime}>
@@ -68,41 +67,12 @@ function GuidePreview(props) {
   )
 }
 
-function Guides() {
-  const { allMdx } = useStaticQuery(graphql`
-    query AllGuides {
-      allMdx(filter: { fields: { source: { eq: "guides" } } }) {
-        nodes {
-          fields {
-            createdAt
-            slug
-            contributors {
-              name
-              image
-              url
-            }
-          }
-          excerpt
-          frontmatter {
-            title
-            tags
-          }
-          parent {
-            ... on File {
-              birthTime
-            }
-          }
-        }
-      }
-    }
-  `)
-
+function Guides({ data = [] }) {
   return (
     <>
       <SEO
         title="Chakra UI Guides"
         description="Community-created guides for using Chakra UI"
-        slug="/guides"
       />
       <Box py="56px">
         <Box py="80px">
@@ -115,7 +85,7 @@ function Guides() {
         </Box>
         <Container maxWidth="md">
           <Stack spacing="4rem">
-            {allMdx.nodes.map(
+            {data.map(
               ({
                 fields: { createdAt, contributors, slug },
                 frontmatter: { title, tags },
