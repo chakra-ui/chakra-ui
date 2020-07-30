@@ -22,7 +22,7 @@ export type KbdProps = PropsOf<typeof chakra.kbd> & ThemingProps
  *
  * @see Docs https://chakra-ui.com/components/kbd
  */
-export const Kbd = React.forwardRef(function Heading(
+export const Kbd = React.forwardRef(function Kbd(
   props: KbdProps,
   ref: React.Ref<any>,
 ) {
