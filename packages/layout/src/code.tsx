@@ -15,7 +15,7 @@ export type CodeProps = PropsOf<typeof chakra.code> & ThemingProps
  *
  * @see Docs https://chakra-ui.com/components/code
  */
-export const Code = React.forwardRef(function Badge(
+export const Code = React.forwardRef(function Code(
   props: CodeProps,
   ref: React.Ref<any>,
 ) {
