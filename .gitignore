@@ -19,6 +19,8 @@ packages/*/tsconfig.tsbuildinfo
 tsconfig.tsbuildinfo
 .next
 .idea
+# Ignore next-mdx-enhanced cache directory
+.mdx-data
 # Local Netlify folder
 .netlify
 .idea
