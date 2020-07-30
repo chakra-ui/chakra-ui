@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link as GatsbyLink } from "gatsby"
+import NextLink from "next/link"
 import {
   Box,
   Heading,
@@ -94,14 +94,11 @@ export default () => {
               </Text>
 
               <Box mt="6">
-                <Button
-                  as={GatsbyLink}
-                  to="/docs/getting-started"
-                  size="lg"
-                  colorScheme="teal"
-                >
-                  Get Started
-                </Button>
+                <NextLink href="/docs/getting-started" passHref>
+                  <Button as="a" size="lg" colorScheme="teal">
+                    Get Started
+                  </Button>
+                </NextLink>
                 <Button
                   as="a"
                   size="lg"

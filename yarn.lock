@@ -2861,6 +2861,11 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
+"@next/plugin-google-analytics@9.4.4":
+  version "9.4.4"
+  resolved "https://registry.yarnpkg.com/@next/plugin-google-analytics/-/plugin-google-analytics-9.4.4.tgz#0dc2aef2f9b10d3ad302cf07d88ca652c22e9f11"
+  integrity sha512-X+EFML99AnOkshiZYPZUrmTn6EY1+rc+9B8k9o23pMNqP6dDEzmMc+aG73uEX1+zZ6wiuZqnZYJPXd+qH0tzeQ==
+
 "@next/react-dev-overlay@9.4.4":
   version "9.4.4"
   resolved "https://registry.yarnpkg.com/@next/react-dev-overlay/-/react-dev-overlay-9.4.4.tgz#4ae03ac839ff022b3ce5c695bd24b179d4ef459d"

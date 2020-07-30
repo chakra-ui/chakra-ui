@@ -15,37 +15,37 @@ import { DiGithubBadge } from "react-icons/di"
 import { FaMoon, FaSun } from "react-icons/fa"
 import Search from "./algolia-search"
 import Logo from "./logo"
-import { Link as GatsbyLink } from "gatsby"
+import NextLink from "next/link"
 import SponsorButton from "./sponsor-button"
 import MobileNav from "./mobile-nav"
-import { useLocation } from "@reach/router"
+import { useRouter } from "next/router"
 
 export const NavLink = (props) => {
   const { to, ...rest } = props
-  const { pathname } = useLocation()
+  const { pathname } = useRouter()
 
   const group = to.split("/")[1]
   const isActive = pathname.includes(group)
 
   return (
-    <chakra.a
-      aria-current={isActive ? "page" : undefined}
-      as={GatsbyLink}
-      to={to}
-      display="block"
-      py="1"
-      px="3"
-      borderRadius="4px"
-      transition="all 0.2s"
-      color={useColorModeValue("gray.600", "whiteAlpha.800")}
-      fontWeight="normal"
-      _hover={{ bg: useColorModeValue("gray.100", "whiteAlpha.100") }}
-      _activeLink={{
-        fontWeight: "semibold",
-        color: "teal.500",
-      }}
-      {...rest}
-    />
+    <NextLink href={to} passHref>
+      <chakra.a
+        aria-current={isActive ? "page" : undefined}
+        display="block"
+        py="1"
+        px="3"
+        borderRadius="4px"
+        transition="all 0.2s"
+        color={useColorModeValue("gray.600", "whiteAlpha.800")}
+        fontWeight="normal"
+        _hover={{ bg: useColorModeValue("gray.100", "whiteAlpha.100") }}
+        _activeLink={{
+          fontWeight: "semibold",
+          color: "teal.500",
+        }}
+        {...rest}
+      />
+    </NextLink>
   )
 }
 
@@ -57,14 +57,11 @@ const HeaderContent = () => {
   return (
     <Flex boxSize="100%" px="6" align="center" justify="space-between">
       <Flex align="center">
-        <chakra.a
-          as={GatsbyLink}
-          to="/"
-          display="block"
-          aria-label="Chakra UI, Back to homepage"
-        >
-          <Logo />
-        </chakra.a>
+        <NextLink href="/" passHref>
+          <chakra.a display="block" aria-label="Chakra UI, Back to homepage">
+            <Logo />
+          </chakra.a>
+        </NextLink>
         <Badge
           px="1"
           ml="3"
