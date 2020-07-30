@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/core"
 import * as React from "react"
 import { MdDehaze } from "react-icons/md"
-import { SideNavContent } from "./side-nav"
+import { SideNavContent } from "./sidebar"
 import useRouteChanged from "hooks/use-route-changed"
 
 const MobileNav = () => {

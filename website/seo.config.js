@@ -10,7 +10,6 @@ const seo = {
     site: "@chakra-ui",
     cardType: "summary_large_image",
   },
-
   openGraph: {
     type: "website",
     locale: "en_US",

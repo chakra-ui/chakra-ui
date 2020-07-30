@@ -1,23 +1,22 @@
-// next.config.js
-const withMdxEnhanced = require('next-mdx-enhanced')
+const withMdxEnhanced = require("next-mdx-enhanced")
 
 module.exports = withMdxEnhanced({
-  layoutPath: 'layouts',
+  layoutPath: "layouts",
   defaultLayout: true,
-  fileExtensions: ['mdx'],
+  fileExtensions: ["mdx"],
   remarkPlugins: [
-      require('remark-autolink-headings'),
-      require('remark-emoji'),
-      require('remark-footnotes'),
-      require('remark-github'),
-      require('remark-images'),
-      require('remark-slug'),
-      require('remark-toc'),
-      require('remark-unwrap-images')
-    ],
+    require("remark-autolink-headings"),
+    require("remark-emoji"),
+    require("remark-footnotes"),
+    require("remark-github"),
+    require("remark-images"),
+    require("remark-slug"),
+    require("remark-toc"),
+    require("remark-unwrap-images"),
+  ],
   rehypePlugins: [],
   extendFrontMatter: {
-    process: (mdxContent, frontMatter) => {},
-    phase: 'prebuild|loader|both',
+    // process: (mdxContent, frontMatter) => {},
+    phase: "prebuild|loader|both",
   },
 })(/* your normal nextjs config */)
