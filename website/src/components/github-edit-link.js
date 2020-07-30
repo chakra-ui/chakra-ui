@@ -1,13 +1,12 @@
 import * as React from "react"
 import { chakra, Icon, Stack, Link } from "@chakra-ui/core"
 import { MdEdit } from "react-icons/md"
-import { graphql, useStaticQuery } from "gatsby"
+import seo from "seo.config"
 
 export function GithubLink({ path }) {
-  const data = useStaticQuery(query)
-  const { repository } = data.site.siteMetadata
+  const { repository } = seo
 
-  if (!repository || !path) return null
+  if (!path) return null
 
   const href = `${repository}/blob/master/${path}`
 
@@ -26,13 +25,3 @@ export function GithubLink({ path }) {
     </Link>
   )
 }
-
-const query = graphql`
-  query Repo {
-    site {
-      siteMetadata {
-        repository
-      }
-    }
-  }
-`
