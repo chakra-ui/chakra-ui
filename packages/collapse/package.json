@@ -1,14 +1,16 @@
 {
-  "name": "@chakra-ui/portal",
-  "version": "1.0.0-rc.5",
-  "description": "React component used to render children outside the DOM hierarchy of the parent component",
+  "name": "@chakra-ui/collapse",
+  "version": "1.0.0-rc.0",
+  "description": "An accessible auto-height and collapse component for elements with variable (and dynamic) height",
   "keywords": [
     "react",
-    "portal",
-    "nested portal",
-    "z-index",
-    "layer",
-    "chakra ui"
+    "accessible",
+    "react-component",
+    "collapse component",
+    "collapse",
+    "accordion",
+    "animate height",
+    "auto height"
   ],
   "sideEffects": false,
   "author": "Segun Adebayo <sage@adebayosegun.com>",
@@ -47,11 +49,14 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/hooks": "1.0.0-rc.5",
-    "@chakra-ui/utils": "1.0.0-rc.5"
+    "@chakra-ui/utils": "1.0.0-rc.0",
+    "react-animate-height": "2.0.22"
+  },
+  "devDependencies": {
+    "@chakra-ui/system": "1.0.0-rc.0"
   },
   "peerDependencies": {
-    "react": "16.x",
-    "react-dom": "16.x"
+    "@chakra-ui/system": "1.0.0-rc.0",
+    "react": "16.x"
   }
 }
