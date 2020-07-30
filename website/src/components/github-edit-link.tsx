@@ -3,7 +3,7 @@ import { chakra, Icon, Stack, Link } from "@chakra-ui/core"
 import { MdEdit } from "react-icons/md"
 import seo from "seo.config"
 
-export function GithubLink({ path }) {
+const GithubLink: React.FC<{ path?: string }> = ({ path }) => {
   const { repository } = seo
 
   if (!path) return null
@@ -25,3 +25,5 @@ export function GithubLink({ path }) {
     </Link>
   )
 }
+
+export default GithubLink

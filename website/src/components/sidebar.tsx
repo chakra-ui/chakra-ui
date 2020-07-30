@@ -4,7 +4,7 @@ import { ComponentLink } from "./nav-link"
 
 function LinkGroup(props) {
   const { title, collection, ...rest } = props
-  const nodes = useSortedCollectionLinks(collection)
+  const nodes = []
 
   return (
     <Box mb="10" {...rest}>

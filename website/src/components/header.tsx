@@ -1,53 +1,24 @@
-import React from "react"
 import {
-  Icon,
+  Badge,
+  chakra,
   Flex,
+  HStack,
+  Icon,
   IconButton,
-  useColorMode,
   Link,
   Stack,
-  HStack,
-  chakra,
+  useColorMode,
   useColorModeValue,
-  Badge,
 } from "@chakra-ui/core"
+import NextLink from "next/link"
+import React from "react"
 import { DiGithubBadge } from "react-icons/di"
 import { FaMoon, FaSun } from "react-icons/fa"
 import Search from "./algolia-search"
+import NavLink from "./header-nav-link"
 import Logo from "./logo"
-import NextLink from "next/link"
-import SponsorButton from "./sponsor-button"
 import MobileNav from "./mobile-nav"
-import { useRouter } from "next/router"
-
-export const NavLink = (props) => {
-  const { to, ...rest } = props
-  const { pathname } = useRouter()
-
-  const group = to.split("/")[1]
-  const isActive = pathname.includes(group)
-
-  return (
-    <NextLink href={to} passHref>
-      <chakra.a
-        aria-current={isActive ? "page" : undefined}
-        display="block"
-        py="1"
-        px="3"
-        borderRadius="4px"
-        transition="all 0.2s"
-        color={useColorModeValue("gray.600", "whiteAlpha.800")}
-        fontWeight="normal"
-        _hover={{ bg: useColorModeValue("gray.100", "whiteAlpha.100") }}
-        _activeLink={{
-          fontWeight: "semibold",
-          color: "teal.500",
-        }}
-        {...rest}
-      />
-    </NextLink>
-  )
-}
+import SponsorButton from "./sponsor-button"
 
 const HeaderContent = () => {
   const { toggleColorMode: toggleMode } = useColorMode()
@@ -78,9 +49,9 @@ const HeaderContent = () => {
           ml="24px"
           display={{ base: "none", md: "flex" }}
         >
-          <NavLink to="/docs/getting-started">Docs</NavLink>
-          <NavLink to="/guides">Guides</NavLink>
-          <NavLink to="/team">Team</NavLink>
+          <NavLink href="/docs/getting-started">Docs</NavLink>
+          <NavLink href="/guides">Guides</NavLink>
+          <NavLink href="/team">Team</NavLink>
         </HStack>
       </Flex>
 
@@ -90,7 +61,7 @@ const HeaderContent = () => {
         align="center"
         color="gray.500"
       >
-        <Search paddingX="4" />
+        <Search px="4" />
         <SponsorButton mr="5" />
         <Stack align="center" direction="row" spacing="3">
           <Link isExternal href="https://github.com/chakra-ui/chakra-ui">

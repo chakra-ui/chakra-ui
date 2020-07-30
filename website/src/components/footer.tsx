@@ -4,7 +4,12 @@ import { IoLogoTwitter, IoLogoLinkedin } from "react-icons/io"
 import { MdEmail } from "react-icons/md"
 import { DiGithubBadge } from "react-icons/di"
 
-const FooterLink = ({ icon, href }) => (
+type FooterLinkProps = {
+  icon?: React.ElementType
+  href?: string
+}
+
+const FooterLink: React.FC<FooterLinkProps> = ({ icon, href }) => (
   <Link display="inline-block" href={href} isExternal>
     <Icon as={icon} fontSize="xl" color="gray.400" />
   </Link>
@@ -44,3 +49,5 @@ export const Footer = () => (
     </Stack>
   </Box>
 )
+
+export default Footer

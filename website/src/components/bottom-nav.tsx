@@ -1,13 +1,13 @@
 import * as React from "react"
-import { NavLink } from "./header"
+import NavLink from "./header-nav-link"
 import { Stack, Box, Text, Icon, useColorModeValue } from "@chakra-ui/core"
 import { FiUsers, FiBookOpen, FiFileText } from "react-icons/fi"
 
 export function BottomNavItem(props) {
-  const { to, label, icon, ...rest } = props
+  const { href, label, icon, ...rest } = props
   return (
     <Box {...rest}>
-      <NavLink to={to}>
+      <NavLink href={href}>
         <Stack
           spacing="0"
           textAlign="center"
@@ -27,30 +27,30 @@ const BottomNav = () => {
   return (
     <Stack
       bottom="0"
-      width="100%"
+      w="100%"
       zIndex={1000}
       spacing="14px"
       direction="row"
-      paddingX="1rem"
-      position="fixed"
-      paddingY="0.8rem"
+      px="1rem"
+      pos="fixed"
+      py="0.8rem"
       borderTopWidth="1px"
-      background={bg}
+      bg={bg}
       display={["flex", "flex", "none", "none"]}
     >
       <BottomNavItem
         width="33%"
-        to="/docs/getting-started"
+        href="/docs/getting-started"
         label="Docs"
         icon={FiFileText}
       />
       <BottomNavItem
         width="33%"
-        to="/guides"
+        href="/guides"
         label="Guides"
         icon={FiBookOpen}
       />
-      <BottomNavItem width="33%" to="/team" label="Team" icon={FiUsers} />
+      <BottomNavItem width="33%" href="/team" label="Team" icon={FiUsers} />
     </Stack>
   )
 }

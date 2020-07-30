@@ -13,7 +13,6 @@ import useRouteChanged from "hooks/use-route-changed"
 
 const MobileNav = () => {
   const { isOpen, onToggle, onClose } = useDisclosure()
-
   useRouteChanged(onClose)
 
   return (

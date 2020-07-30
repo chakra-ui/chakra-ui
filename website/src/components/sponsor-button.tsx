@@ -2,7 +2,7 @@ import React from "react"
 import { Box, Icon } from "@chakra-ui/core"
 import { FaHeart } from "react-icons/fa"
 
-function SponsorButton(props) {
+const SponsorButton = (props) => {
   return (
     <Box
       display={{ base: "none", md: "flex" }}
