@@ -8,7 +8,6 @@ import {
   InputGroup,
 } from "@chakra-ui/core"
 import { SearchIcon } from "@chakra-ui/icons"
-import "../styles/algolia.css"
 import { useRouter } from "next/router"
 
 const getLvl1 = get("hierarchy.lvl1")

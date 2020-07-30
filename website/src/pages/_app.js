@@ -11,6 +11,7 @@ import { DefaultSeo } from "next-seo"
 import seo from "seo.config"
 import { useRouter } from "next/router"
 import initClient from "analytics/on-init-client"
+import "../styles/algolia.css"
 
 const App = ({ Component, pageProps }) => {
   const router = useRouter()
