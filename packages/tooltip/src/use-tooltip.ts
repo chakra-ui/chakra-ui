@@ -1,12 +1,7 @@
 import { useDisclosure, useEventListener, useId } from "@chakra-ui/hooks"
-import {
-  Placement,
-  usePopper,
-  UsePopperProps,
-  toTransformOrigin,
-} from "@chakra-ui/popper"
-import { callAllHandlers, mergeRefs, Dict } from "@chakra-ui/utils"
-import { useCallback, useRef, Ref } from "react"
+import { Placement, usePopper, UsePopperProps } from "@chakra-ui/popper"
+import { callAllHandlers, Dict, mergeRefs } from "@chakra-ui/utils"
+import { Ref, useCallback, useEffect, useRef } from "react"
 
 export interface UseTooltipProps {
   /**
@@ -138,6 +133,13 @@ export function useTooltip(props: UseTooltipProps = {}) {
   }
 
   useEventListener("keydown", onKeyDown)
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(enterTimeout.current)
+      clearTimeout(exitTimeout.current)
+    }
+  }, [])
 
   const getTriggerProps = useCallback(
     (props: Dict = {}, ref: Ref<any> = null) => ({
