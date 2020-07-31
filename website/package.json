@@ -7,7 +7,7 @@
     "@mdx-js/react": "1.6.16",
     "@octokit/rest": "18.0.3",
     "date-fns": "2.15.0",
-    "@docusaurus/utils": "2.0.0-alpha.37",
+    "@docusaurus/utils": "2.0.0-alpha.60",
     "docsearch.js": "2.6.3",
     "formik": "2.1.5",
     "next": "9.5.0",

@@ -7,7 +7,7 @@ import { DefaultSeo } from "next-seo"
 import Head from "next/head"
 import Router from "next/router"
 import React from "react"
-import seo from "seo.config"
+import siteConfig from "site.config"
 import "../src/styles/algolia.css"
 
 Router.events.on("routeChangeComplete", (url) => {
@@ -35,7 +35,7 @@ const App = ({ Component, pageProps }) => {
 
       <ChakraProvider theme={theme}>
         <CSSReset />
-        <DefaultSeo {...seo} />
+        <DefaultSeo {...siteConfig.seo} />
         <MDXProvider components={MDXComponents}>
           <PortalManager zIndex={40}>
             <Component {...pageProps} />

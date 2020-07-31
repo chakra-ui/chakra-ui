@@ -1,14 +1,14 @@
 import * as React from "react"
 import { chakra, Icon, Stack, Link } from "@chakra-ui/core"
 import { MdEdit } from "react-icons/md"
-import seo from "seo.config"
+import siteConfig from "site.config"
 
 const GithubLink: React.FC<{ path?: string }> = ({ path }) => {
-  const { repository } = seo
+  const { blobUrl } = siteConfig.repo
 
   if (!path) return null
 
-  const href = `${repository}/blob/master/${path}`
+  const href = `${blobUrl}/${path}`
 
   return (
     <Link href={href} isExternal>

@@ -3,6 +3,9 @@ const path = require("path")
 const execa = require("execa")
 const fromUnixTime = require("date-fns/fromUnixTime")
 const format = require("date-fns/format")
+const { getEditUrl } = require("@docusaurus/utils")
+
+const EDIT_URL = "https://github.com/chakra-ui/chakra-ui/edit/develop"
 
 /**
  * Gets the last edited timestamp and author from git
@@ -65,12 +68,22 @@ module.exports = withMdxEnhanced({
   extendFrontMatter: {
     process: async (_, frontmatter) => {
       const { __resourcePath: mdxPath } = frontmatter
+
+      // read the file path
       const filePath = path.join(process.cwd(), "pages", mdxPath)
+
+      // get the last edited author and date
       const lastEdited = await getLastEdited(filePath)
+
+      // get the edit url
+      const editUrl = getEditUrl(path.join("website", mdxPath), EDIT_URL)
+
+      console.log(editUrl)
 
       return {
         slug: mdxPath.replace(".mdx", ""),
         lastEdited,
+        editUrl,
       }
     },
   },
