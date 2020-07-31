@@ -5,6 +5,7 @@ import {
   ThemingProps,
   useStyleConfig,
   omitThemingProps,
+  forwardRef,
 } from "@chakra-ui/system"
 import { isString, omit, pick, __DEV__, mergeRefs } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
@@ -48,10 +49,7 @@ export type TooltipProps = PropsOf<typeof chakra.div> &
  * @see Docs     https://chakra-ui.com/components/tooltip
  * @see WAI-ARIA https://www.w3.org/TR/wai-aria-practices/#tooltip
  */
-export const Tooltip = React.forwardRef(function Tooltip(
-  props: TooltipProps,
-  ref: React.Ref<any>,
-) {
+export const Tooltip: React.FC<TooltipProps> = forwardRef((props, ref) => {
   const styles = useStyleConfig("Tooltip", props)
   const realProps = omitThemingProps(props)
 
