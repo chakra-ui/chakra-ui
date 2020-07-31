@@ -3,7 +3,33 @@ const path = require("path")
 const execa = require("execa")
 const fromUnixTime = require("date-fns/fromUnixTime")
 const format = require("date-fns/format")
-const { getEditUrl } = require("@docusaurus/utils")
+const { getEditUrl, addLeadingSlash } = require("@docusaurus/utils")
+const { Octokit } = require("@octokit/rest")
+
+const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN })
+
+async function getUserData(username) {
+  const { data } = await octokit.users.getByUsername({ username })
+
+  const {
+    avatar_url: avatarUrl,
+    html_url: githubUrl,
+    blog: websiteUrl,
+    bio,
+    name,
+    twitter_username: twitterUsername,
+  } = data
+
+  return {
+    login: username,
+    avatarUrl,
+    githubUrl,
+    websiteUrl,
+    bio,
+    name,
+    twitterUsername,
+  }
+}
 
 const EDIT_URL = "https://github.com/chakra-ui/chakra-ui/edit/develop"
 
@@ -51,6 +77,10 @@ function getTimestampAndAuthor(str) {
   }
 }
 
+function fileToPath(str) {
+  return addLeadingSlash(str.replace(".mdx", ""))
+}
+
 module.exports = withMdxEnhanced({
   layoutPath: "layouts",
   defaultLayout: true,
@@ -67,7 +97,7 @@ module.exports = withMdxEnhanced({
   rehypePlugins: [],
   extendFrontMatter: {
     process: async (_, frontmatter) => {
-      const { __resourcePath: mdxPath } = frontmatter
+      const { __resourcePath: mdxPath, author, tags } = frontmatter
 
       // read the file path
       const filePath = path.join(process.cwd(), "pages", mdxPath)
@@ -78,12 +108,18 @@ module.exports = withMdxEnhanced({
       // get the edit url
       const editUrl = getEditUrl(path.join("website", mdxPath), EDIT_URL)
 
-      console.log(editUrl)
+      // get the slug
+      const slug = fileToPath(mdxPath)
+
+      // if frontmatter inclues author, add the author's data
+      const authorData = author ? await getUserData(author) : undefined
 
       return {
-        slug: mdxPath.replace(".mdx", ""),
+        slug,
         lastEdited,
         editUrl,
+        author: authorData,
+        tags,
       }
     },
   },
