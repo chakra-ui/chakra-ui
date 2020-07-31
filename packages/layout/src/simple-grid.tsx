@@ -36,27 +36,33 @@ export type SimpleGridProps = GridProps & SimpleGridOptions
  *
  * @see Docs https://chakra-ui.com/components/simplegrid
  */
-export const SimpleGrid = React.forwardRef(function SimpleGrid(
-  props: SimpleGridProps,
-  ref: React.Ref<any>,
-) {
-  const { columns, spacingX, spacingY, spacing, minChildWidth, ...rest } = props
+export const SimpleGrid: React.FC<SimpleGridProps> = forwardRef(
+  (props, ref) => {
+    const {
+      columns,
+      spacingX,
+      spacingY,
+      spacing,
+      minChildWidth,
+      ...rest
+    } = props
 
-  const templateColumns = Boolean(minChildWidth)
-    ? widthToColumns(minChildWidth)
-    : countToColumns(columns)
+    const templateColumns = Boolean(minChildWidth)
+      ? widthToColumns(minChildWidth)
+      : countToColumns(columns)
 
-  return (
-    <Grid
-      ref={ref}
-      gap={spacing}
-      columnGap={spacingX}
-      rowGap={spacingY}
-      templateColumns={templateColumns}
-      {...rest}
-    />
-  )
-})
+    return (
+      <Grid
+        ref={ref}
+        gap={spacing}
+        columnGap={spacingX}
+        rowGap={spacingY}
+        templateColumns={templateColumns}
+        {...rest}
+      />
+    )
+  },
+)
 
 if (__DEV__) {
   SimpleGrid.displayName = "SimpleGrid"

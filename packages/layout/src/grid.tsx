@@ -12,7 +12,7 @@ export type GridProps = PropsOf<typeof chakra.div> & GridOptions
  *
  * @see Docs https://chakra-ui.com/components/grid
  */
-export const Grid = forwardRef<GridProps>(function Grid(props, ref) {
+export const Grid: React.FC<GridProps> = forwardRef((props, ref) => {
   const {
     area,
     templateAreas,

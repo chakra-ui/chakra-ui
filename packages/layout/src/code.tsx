@@ -5,6 +5,7 @@ import {
   useStyleConfig,
   omitThemingProps,
   ThemingProps,
+  forwardRef,
 } from "@chakra-ui/system"
 import { __DEV__, cx } from "@chakra-ui/utils"
 
@@ -15,10 +16,7 @@ export type CodeProps = PropsOf<typeof chakra.code> & ThemingProps
  *
  * @see Docs https://chakra-ui.com/components/code
  */
-export const Code = React.forwardRef(function Code(
-  props: CodeProps,
-  ref: React.Ref<any>,
-) {
+export const Code: React.FC<CodeProps> = forwardRef((props, ref) => {
   const styles = useStyleConfig("Code", props)
   const { className, ...rest } = omitThemingProps(props)
 
