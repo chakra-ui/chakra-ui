@@ -3,7 +3,7 @@ import * as React from "react"
 import AnimateHeight, {
   AnimateHeightProps as AnimateProps,
 } from "react-animate-height"
-import { chakra, jsx, PropsOf } from "@chakra-ui/system"
+import { chakra, jsx, PropsOf, forwardRef } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 
 type AnimateHeightProps = Pick<
@@ -53,10 +53,7 @@ export type CollapseProps = AnimateHeightProps &
   CollapseOptions &
   PropsOf<typeof chakra.div>
 
-export const Collapse = React.forwardRef(function Collapse(
-  props: CollapseProps,
-  ref: React.Ref<any>,
-) {
+export const Collapse: React.FC<CollapseProps> = forwardRef((props, ref) => {
   const {
     isOpen,
     animateOpacity = true,
