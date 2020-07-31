@@ -1,4 +1,4 @@
-import { chakra, PropsOf, SystemProps } from "@chakra-ui/system"
+import { chakra, PropsOf, SystemProps, forwardRef } from "@chakra-ui/system"
 import { omit, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { useImage, UseImageProps } from "./use-image"
@@ -52,10 +52,7 @@ export type ImageProps = UseImageProps &
  *
  * @see Docs https://chakra-ui.com/components/image
  */
-export const Image = React.forwardRef(function Image(
-  props: ImageProps,
-  ref: React.Ref<any>,
-) {
+export const Image: React.FC<ImageProps> = forwardRef((props, ref) => {
   const {
     fallbackSrc,
     fallback,
