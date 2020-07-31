@@ -41,10 +41,7 @@ export type TextareaProps = Omit<PropsOf<typeof chakra.textarea>, Omitted> &
  * Textarea is used to enter an amount of text that's longer than a single line
  * @see Docs https://chakra-ui.com/components/textarea
  */
-export const Textarea = forwardRef<TextareaProps>(function Textarea(
-  props,
-  ref,
-) {
+export const Textarea: React.FC<TextareaProps> = forwardRef((props, ref) => {
   const styles = useStyleConfig("Textarea", props)
   const { className, rows, ...otherProps } = omitThemingProps(props)
 
