@@ -3,32 +3,29 @@ import {
   ModalContent,
   ModalContentProps,
   ModalProps,
-} from "@chakra-ui/modal"
-import * as React from "react"
-
-export interface AlertDialogProps extends Omit<ModalProps, "initialFocusRef"> {
-  leastDestructiveRef: ModalProps["initialFocusRef"]
-}
-
-export function AlertDialog(props: AlertDialogProps) {
-  const { leastDestructiveRef, ...rest } = props
-  return <Modal {...rest} initialFocusRef={leastDestructiveRef} />
-}
-
-export const AlertDialogContent = React.forwardRef(function AlertDialogContent(
-  props: ModalContentProps,
-  ref: React.Ref<any>,
-) {
-  return <ModalContent ref={ref} role="alertdialog" {...(props as any)} />
-})
-
-import {
   ModalBody,
   ModalHeader,
   ModalFooter,
   ModalCloseButton,
   ModalOverlay,
 } from "@chakra-ui/modal"
+import * as React from "react"
+import { forwardRef } from "@chakra-ui/system"
+
+export interface AlertDialogProps extends Omit<ModalProps, "initialFocusRef"> {
+  leastDestructiveRef: ModalProps["initialFocusRef"]
+}
+
+export const AlertDialog: React.FC<AlertDialogProps> = (props) => {
+  const { leastDestructiveRef, ...rest } = props
+  return <Modal {...rest} initialFocusRef={leastDestructiveRef} />
+}
+
+export const AlertDialogContent: React.FC<ModalContentProps> = forwardRef(
+  (props, ref) => {
+    return <ModalContent ref={ref} role="alertdialog" {...(props as any)} />
+  },
+)
 
 export const AlertDialogBody = ModalBody
 export const AlertDialogHeader = ModalHeader
