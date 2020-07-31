@@ -4,12 +4,11 @@ const { Octokit } = require("@octokit/rest")
 
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN })
 
-const getNodeContributors = async (node) => {
-  const relativePath = getRelativePagePath(node.fileAbsolutePath)
+const getNodeContributors = async (relativePath) => {
   const { data: commits } = await octokit.repos.listCommits({
     owner: "chakra-ui",
     repo: "chakra-ui",
-    sha: "master",
+    sha: "develop",
     path: relativePath,
   })
   const orderedCommits = orderByCommitAuthorDate(commits)
@@ -66,7 +65,6 @@ const readAllContributorsRc = () => {
 }
 
 module.exports = {
-  getRelativePagePath,
   getNodeContributors,
   getOrgMembers,
   readAllContributorsRc,
