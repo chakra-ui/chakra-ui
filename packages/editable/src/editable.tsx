@@ -188,7 +188,13 @@ export function useEditableState() {
 /**
  * React hook use to create controls for the editable component
  */
-export function useEditableControls() {
+export function useEditableControls(): Pick<
+  EditableContext,
+  | "isEditing"
+  | "getEditButtonProps"
+  | "getCancelButtonProps"
+  | "getSubmitButtonProps"
+> {
   const {
     isEditing,
     getEditButtonProps,
