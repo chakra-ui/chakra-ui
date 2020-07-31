@@ -177,28 +177,6 @@ only one prop to manage this, you can rename it to `boxSize`.
 > in some components (e.g. Button), it means the visual size and in others (e.g
 > Box), it means **width and height**.
 
-### 5. Update these prop names
-
-These style props still work but **we recommend renaming them** to the new prop.
-We now show a console warning when you use any of these deprecated props.
-
-| Deprecated Prop    | New Prop                |
-| ------------------ | ----------------------- |
-| rounded            | borderRadius            |
-| roundedLeft        | borderLeftRadius        |
-| roundedRight       | borderRightRadius       |
-| roundedTop         | borderTopRadius         |
-| roundedTopLeft     | borderTopLeftRadius     |
-| roundedTopRight    | borderTopRightRadius    |
-| roundedBottomLeft  | borderBottomLeftRadius  |
-| roundedBottomRight | borderBottomRightRadius |
-| roundedBottom      | borderBottomRadius      |
-| bgImg              | bgImage                 |
-| bgPos              | bgPosition              |
-| shadow             | boxShadow               |
-| listStyleImg       | listStyleImage          |
-| listStylePos       | listStylePosition       |
-
 ## Component Updates
 
 We've updated the API of some components to fix bugs and improve usability,
@@ -613,43 +591,6 @@ We've renamed the props from `colorStart` and `colorEnd` to `startColor` and
 - All popper related props that used to be passed to `MenuList` component,
   should now be passed to `Menu`. Reason: To support nested menus
 - `placement` prop has moved from `MenuList` to `Menu`
-
-#### Features
-
-- Added support for nested menus or submenus
-
-```jsx live=false
-const PreferencesMenu = forwardRef((props, ref) => {
-  return (
-    <Menu>
-      <MenuButton ref={ref} {...props}>
-        Preferences
-      </MenuButton>
-      <MenuList>
-        <MenuItem>Settings</MenuItem>
-        <MenuItem isDisabled>Extensions</MenuItem>
-        <MenuSeparator />
-        <MenuItem>Keyboard shortcuts</MenuItem>
-      </MenuList>
-    </Menu>
-  )
-})
-
-function Example() {
-  return (
-    <Menu>
-      <MenuButton>Code</MenuButton>
-      <MenuList>
-        <MenuItem>About Visual Studio Code</MenuItem>
-        <MenuItem>Check for Updates...</MenuItem>
-        <MenuSeparator />
-        <MenuItem as={PreferencesMenu} />
-      </MenuList>
-    </Menu>
-  )
-}
-```
-
 - Added support for menu icons and commands (or hotkeys)
 
 ```jsx live=false
@@ -678,7 +619,7 @@ function Example() {
   </MenuButton>
   <MenuTransition>
     {(styles) => (
-      <MenuList css={styles}>
+      <MenuList sx={styles}>
         <MenuItem command="⌘T">New Tab</MenuItem>
         <MenuItem command="⌘N">New Window</MenuItem>
         <MenuItem command="⌘⇧N">Open Closed Tab</MenuItem>
@@ -708,7 +649,7 @@ function Example() {
 </Menu>
 ```
 
-- Moved to Popper V2 🥳
+- Menu now uses Popper.js V2 🥳
 
 ### Fixes
 
