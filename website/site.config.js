@@ -1,9 +1,22 @@
 const baseUrl = "https://github.com/chakra-ui/chakra-ui"
 
 const siteConfig = {
+  copyright: `Copyright © ${new Date().getFullYear()} Segun Adebayo. All Rights Reserved.`,
+  algolia: {
+    apiKey: "df1dcc41f7b8e5d68e73dd56d1e19701",
+    indexName: "chakra-ui",
+    inputSelector: "#algolia-search",
+  },
+  author: {
+    name: "Segun Adebayo",
+    github: "https://github.com/segunadebayo",
+    twitter: "https://twitter.com/thesegunadebayo",
+    linkedin: "https://linkedin.com/in/thesegunadebayo",
+    email: "sage@adebayosegun.com",
+  },
   repo: {
     url: baseUrl,
-    editUrl: `${baseUrl}/edit/develop`,
+    editUrl: `${baseUrl}/edit/develop/website`,
     blobUrl: `${baseUrl}/blob/develop`,
   },
   seo: {
