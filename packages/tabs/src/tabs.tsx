@@ -9,7 +9,7 @@ import {
   useStyles,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
-import React, { Ref, ReactNode, useMemo } from "react"
+import React, { ReactNode, useMemo } from "react"
 import {
   TabsProvider,
   useTab,

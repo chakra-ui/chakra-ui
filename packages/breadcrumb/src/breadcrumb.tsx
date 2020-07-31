@@ -10,7 +10,7 @@ import {
   omitThemingProps,
 } from "@chakra-ui/system"
 import { cx, getValidChildren, __DEV__ } from "@chakra-ui/utils"
-import React, { Ref, cloneElement } from "react"
+import React, { cloneElement } from "react"
 
 export type BreadcrumbSeparatorProps = PropsOf<typeof chakra.div> & {
   spacing?: SystemProps["mx"]

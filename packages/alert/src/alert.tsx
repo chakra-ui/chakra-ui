@@ -6,9 +6,10 @@ import {
   useStyles,
   ThemingProps,
   useMultiStyleConfig,
+  forwardRef,
 } from "@chakra-ui/system"
 import { createContext, cx } from "@chakra-ui/utils"
-import React, { forwardRef, Ref } from "react"
+import React from "react"
 
 const STATUSES = {
   info: { icon: InfoIcon, colorScheme: "blue" },

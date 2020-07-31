@@ -16,7 +16,7 @@ import {
   runIfFn,
   __DEV__,
 } from "@chakra-ui/utils"
-import React, { ReactElement, Ref, useMemo } from "react"
+import React, { ReactElement, useMemo } from "react"
 import {
   MenuProvider,
   useMenu,

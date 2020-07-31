@@ -3,13 +3,7 @@ import {
   useControllableProp,
   useSafeLayoutEffect,
 } from "@chakra-ui/hooks"
-import {
-  callAllHandlers,
-  dataAttr,
-  mergeRefs,
-  Dict,
-  focus,
-} from "@chakra-ui/utils"
+import { callAllHandlers, dataAttr, mergeRefs, Dict } from "@chakra-ui/utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
 import React, {
   Ref,

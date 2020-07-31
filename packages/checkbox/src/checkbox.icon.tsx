@@ -12,7 +12,7 @@ export type CheckboxIconProps = IconProps & {
  * @todo allow users pass their own icon svgs
  */
 export const CheckboxIcon: React.FC<CheckboxIconProps> = (props) => {
-  const { isChecked, isIndeterminate, ...rest } = props
+  const { isChecked, isIndeterminate } = props
   return (
     <Icon {...props}>
       {isIndeterminate ? (

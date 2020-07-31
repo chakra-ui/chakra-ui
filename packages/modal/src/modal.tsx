@@ -11,7 +11,7 @@ import {
   useStyles,
 } from "@chakra-ui/system"
 import { callAllHandlers, cx, __DEV__ } from "@chakra-ui/utils"
-import React, { ReactNode, Ref, useEffect } from "react"
+import React, { ReactNode, useEffect } from "react"
 import { RemoveScroll } from "react-remove-scroll"
 import { ModalContextProvider, useModalContext } from "./context"
 import { useModal, UseModalProps } from "./use-modal"

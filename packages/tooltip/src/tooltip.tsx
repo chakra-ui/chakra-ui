@@ -7,7 +7,7 @@ import {
   omitThemingProps,
   forwardRef,
 } from "@chakra-ui/system"
-import { isString, omit, pick, __DEV__, mergeRefs } from "@chakra-ui/utils"
+import { isString, omit, pick, __DEV__ } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 import * as React from "react"
 import { useTooltip, UseTooltipProps } from "./use-tooltip"

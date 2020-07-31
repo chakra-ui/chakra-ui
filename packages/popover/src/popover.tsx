@@ -16,7 +16,7 @@ import {
   runIfFn,
   __DEV__,
 } from "@chakra-ui/utils"
-import React, { Children, cloneElement, Ref, useEffect } from "react"
+import React, { Children, cloneElement, useEffect } from "react"
 import { usePopover, UsePopoverProps, UsePopoverReturn } from "./use-popover"
 
 const [PopoverProvider, usePopoverContext] = createContext<UsePopoverReturn>({
