@@ -1,6 +1,7 @@
 import React from "react"
 import { Icon, IconProps } from "./icon"
 import { __DEV__ } from "@chakra-ui/utils"
+import { forwardRef } from "@chakra-ui/system"
 
 interface CreateIconOptions {
   /**
@@ -30,7 +31,7 @@ export function createIcon(options: CreateIconOptions) {
     displayName,
   } = options
 
-  const Comp = React.forwardRef((props: IconProps, ref: React.Ref<any>) => {
+  const Comp: React.FC<IconProps> = forwardRef((props, ref) => {
     return (
       <Icon ref={ref} viewBox={viewBox} {...props}>
         {path ?? <path fill="currentColor" d={pathDefinition} />}
