@@ -3,12 +3,8 @@ import {
   ModalContent,
   ModalContentProps,
   ModalProps,
-  ModalBody,
-  ModalHeader,
-  ModalFooter,
-  ModalCloseButton,
-  ModalOverlay,
 } from "@chakra-ui/modal"
+
 import * as React from "react"
 import { forwardRef } from "@chakra-ui/system"
 
@@ -27,8 +23,10 @@ export const AlertDialogContent: React.FC<ModalContentProps> = forwardRef(
   },
 )
 
-export const AlertDialogBody = ModalBody
-export const AlertDialogHeader = ModalHeader
-export const AlertDialogFooter = ModalFooter
-export const AlertDialogCloseButton = ModalCloseButton
-export const AlertDialogOverlay = ModalOverlay
+export {
+  ModalBody as AlertDialogBody,
+  ModalHeader as AlertDialogHeader,
+  ModalFooter as AlertDialogFooter,
+  ModalCloseButton as AlertDialogCloseButton,
+  ModalOverlay as AlertDialogOverlay,
+} from "@chakra-ui/modal"

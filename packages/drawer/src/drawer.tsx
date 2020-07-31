@@ -7,10 +7,6 @@ import {
   ModalContent,
   ModalOverlayProps,
   ModalOverlay,
-  ModalBody,
-  ModalHeader,
-  ModalFooter,
-  ModalCloseButton,
 } from "@chakra-ui/modal"
 import { forwardRef, useTheme } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
@@ -115,7 +111,9 @@ export const DrawerOverlay: React.FC<ModalOverlayProps> = forwardRef(
   },
 )
 
-export const DrawerBody = ModalBody
-export const DrawerHeader = ModalHeader
-export const DrawerFooter = ModalFooter
-export const DrawerCloseButton = ModalCloseButton
+export {
+  ModalBody as DrawerBody,
+  ModalHeader as DrawerHeader,
+  ModalFooter as DrawerFooter,
+  ModalCloseButton as DrawerCloseButton,
+} from "@chakra-ui/modal"
