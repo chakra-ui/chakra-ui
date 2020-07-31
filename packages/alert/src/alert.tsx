@@ -10,14 +10,16 @@ import {
 import { createContext, cx } from "@chakra-ui/utils"
 import React, { forwardRef, Ref } from "react"
 
-export const STATUSES = {
+const STATUSES = {
   info: { icon: InfoIcon, colorScheme: "blue" },
   warning: { icon: WarningIcon, colorScheme: "orange" },
   success: { icon: CheckIcon, colorScheme: "green" },
   error: { icon: WarningIcon, colorScheme: "red" },
 }
 
-type AlertContext = { status: keyof typeof STATUSES }
+export type AlertStatus = "info" | "warning" | "success" | "error"
+
+type AlertContext = { status: AlertStatus }
 
 const [AlertProvider, useAlertContext] = createContext<AlertContext>({
   name: "AlertContext",
@@ -29,7 +31,7 @@ interface AlertOptions {
   /**
    * The status of the alert
    */
-  status?: keyof typeof STATUSES
+  status?: AlertStatus
 }
 
 export type AlertProps = PropsOf<typeof chakra.div> &
