@@ -1571,6 +1571,16 @@
   resolved "https://registry.yarnpkg.com/@csstools/normalize.css/-/normalize.css-10.1.0.tgz#f0950bba18819512d42f7197e56c518aa491cf18"
   integrity sha512-ij4wRiunFfaJxjB0BdrYHIH8FxBJpOwNPhhAcunlmPdXudL1WQV1qoP9un6JsEBAgQH+7UXyyjh0g7jTxXK6tg==
 
+"@docusaurus/utils@2.0.0-alpha.37":
+  version "2.0.0-alpha.37"
+  resolved "https://registry.yarnpkg.com/@docusaurus/utils/-/utils-2.0.0-alpha.37.tgz#d2b6fd67d449510f3c2e66b60d215864ed365df3"
+  integrity sha512-+gTzHu0iFnd1q7yY2nFhXkCtqHz3PyphjJ242SASJAYMJr9tH0y1OgwX+BUzabuIfQHblVdDm9xYygIztRk1aQ==
+  dependencies:
+    escape-string-regexp "^2.0.0"
+    fs-extra "^8.1.0"
+    gray-matter "^4.0.2"
+    lodash "^4.17.15"
+
 "@emotion/cache@^10.0.27", "@emotion/cache@^10.0.9":
   version "10.0.29"
   resolved "https://registry.yarnpkg.com/@emotion/cache/-/cache-10.0.29.tgz#87e7e64f412c060102d589fe7c6dc042e6f9d1e0"
@@ -2861,11 +2871,6 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@next/plugin-google-analytics@9.4.4":
-  version "9.4.4"
-  resolved "https://registry.yarnpkg.com/@next/plugin-google-analytics/-/plugin-google-analytics-9.4.4.tgz#0dc2aef2f9b10d3ad302cf07d88ca652c22e9f11"
-  integrity sha512-X+EFML99AnOkshiZYPZUrmTn6EY1+rc+9B8k9o23pMNqP6dDEzmMc+aG73uEX1+zZ6wiuZqnZYJPXd+qH0tzeQ==
-
 "@next/react-dev-overlay@9.4.4":
   version "9.4.4"
   resolved "https://registry.yarnpkg.com/@next/react-dev-overlay/-/react-dev-overlay-9.4.4.tgz#4ae03ac839ff022b3ce5c695bd24b179d4ef459d"
@@ -3136,7 +3141,7 @@
     prop-types "^15.7.2"
     tslib "^2.0.0"
 
-"@reach/router@1.3.4", "@reach/router@^1.2.1", "@reach/router@^1.3.3":
+"@reach/router@^1.2.1", "@reach/router@^1.3.3":
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/@reach/router/-/router-1.3.4.tgz#d2574b19370a70c80480ed91f3da840136d10f8c"
   integrity sha512-+mtn9wjlB9NN2CNnnC/BRYtwdKBfSyyasPYraNAyvaV1occr/5NnB4CVzjEZipNHwYebQwcndGUmpFzxAUoqSA==
@@ -13814,7 +13819,7 @@ lodash@4.17.15:
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
 
-lodash@4.17.19, "lodash@>=3.5 <5", lodash@^4.0.1, lodash@^4.11.2, lodash@^4.17.11, lodash@^4.17.12, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.16, lodash@^4.17.19, lodash@^4.17.5, lodash@^4.2.1:
+"lodash@>=3.5 <5", lodash@^4.0.1, lodash@^4.11.2, lodash@^4.17.11, lodash@^4.17.12, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.16, lodash@^4.17.19, lodash@^4.17.5, lodash@^4.2.1:
   version "4.17.19"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
   integrity sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==
@@ -18154,17 +18159,6 @@ remark-footnotes@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/remark-footnotes/-/remark-footnotes-1.0.0.tgz#9c7a97f9a89397858a50033373020b1ea2aad011"
   integrity sha512-X9Ncj4cj3/CIvLI2Z9IobHtVi8FVdUrdJkCNaL9kdX8ohfsi18DXHsCVd/A7ssARBdccdDb5ODnt62WuEWaM/g==
-
-remark-github@9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/remark-github/-/remark-github-9.0.0.tgz#1b769edde8b4286b754acce0374254be0d328e00"
-  integrity sha512-RquQVKfjP9MXK3+g8fO4NPJLjz+q5CaqLscq6ySWGh3GT5PzHyrN8dpTPT/SCQDTzdQYOdS1PDdt6ACa6FHU3w==
-  dependencies:
-    is-alphabetical "^1.0.0"
-    is-decimal "^1.0.0"
-    is-hexadecimal "^1.0.0"
-    mdast-util-to-string "^1.0.0"
-    unist-util-visit "^2.0.0"
 
 remark-images@2.0.0:
   version "2.0.0"
