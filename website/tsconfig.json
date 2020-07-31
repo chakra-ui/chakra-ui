@@ -21,6 +21,6 @@
       "analytics/*": ["src/analytics/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/utils/last-edit.js"],
   "exclude": ["node_modules"]
 }
