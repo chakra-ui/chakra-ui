@@ -9,7 +9,7 @@ interface ISlideIn {
   children: (styles: Object) => React.ReactNode;
 }
 
-type SlideInProps = ISlideIn & TransitionProps<boolean>;
+type SlideInProps = TransitionProps<boolean> & ISlideIn;
 export const SlideIn: React.FC<SlideInProps>;
 
 interface IScale {
@@ -19,7 +19,7 @@ interface IScale {
   children: (styles: Object) => React.ReactNode;
 }
 
-type ScaleProps = IScale & TransitionProps<boolean>;
+type ScaleProps = TransitionProps<boolean> & IScale;
 export const Scale: React.FC<ScaleProps>;
 
 interface ISlide {
