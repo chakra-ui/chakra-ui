@@ -5,6 +5,7 @@ import {
   useMultiStyleConfig,
   omitThemingProps,
   ThemingProps,
+  forwardRef,
 } from "@chakra-ui/system"
 import { cx, dataAttr, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -15,10 +16,7 @@ export type SwitchProps = Omit<UseCheckboxProps, "isIndeterminate"> &
   Omit<PropsOf<typeof chakra.label>, Omitted> &
   ThemingProps
 
-export const Switch = React.forwardRef(function Switch(
-  props: SwitchProps,
-  ref: React.Ref<any>,
-) {
+export const Switch: React.FC<SwitchProps> = forwardRef((props, ref) => {
   const styles = useMultiStyleConfig("Switch", props)
 
   const realProps = omitThemingProps(props)
