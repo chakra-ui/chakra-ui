@@ -52,16 +52,6 @@ const HeaderContent = () => {
             <Logo />
           </chakra.a>
         </NextLink>
-        <Badge
-          px="1"
-          ml="3"
-          fontFamily="mono"
-          borderRadius="md"
-          colorScheme="teal"
-          variant="solid"
-        >
-          v1
-        </Badge>
         <HStack
           as="nav"
           spacing="4"

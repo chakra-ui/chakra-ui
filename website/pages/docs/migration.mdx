@@ -14,6 +14,8 @@ While there's quite a number of new exciting features we've added, we focused on
 making Chakra UI a stable base to build your own design systems on, so that you
 can feel more confident using Chakra UI in production.
 
+---
+
 ## Highlights
 
 **Theming API:** Chakra UI now provides a new theming API which makes it easy to
@@ -34,11 +36,7 @@ use to add theme-aware styles.
 **Deprecated PseudoBox:** We've removed PseudoBox and merged all it's props with
 `Box` so you can use pseudo style props in all components.
 
-**Strict Breakpoints:** We've constrained the breakpoint specified in
-`theme.breakpoints` to be an object. The breakpoint keys must have one or more
-of the following keys: `base`, `sm`, `md`, `lg`, `xl`.
-
-> We've updated the default theme to include this changes.
+---
 
 ## Upgrade steps
 
@@ -48,10 +46,8 @@ worry if your styles aren't exactly the same—this is to be expected.
 ### 1. Update your dependencies
 
 Chakra no longer requires `@emotion/core`, `@emotion/styled` and
-`emotion-theming`. If you're not using these libraries in your code, you can
-safely remove them and update Chakra UI to v1.
-
-> We use only `@emotion/core` internally.
+`emotion-theming` peer dependencies. If you're not using these libraries in your
+code, you can safely remove them and update Chakra UI to v1.
 
 ```diff
 "dependencies": {
@@ -62,39 +58,14 @@ safely remove them and update Chakra UI to v1.
 }
 ```
 
-#### Installing specific components
-
-Let's say you only use the button from Chakra UI, instead of installing
-`@chakra-ui/core`, which installs all components, you can simply install
-`@chakra-ui/button`.
-
-For this approach, you'll also need to to install `@chakra-ui/system` which is
-the backbone for all components.
-
-```bash
-npm i @chakra-ui/button @chakra-ui/system
-
-# or
-
-yarn add @chakra-ui/button @chakra-ui/system
-```
+> Please note that when using Chakra UI in a TypeScript project, a minimum
+> TypeScript version of `3.8.0` is required.
 
 #### Notes on Icons
 
 Chakra moved all icons to a separate package `@chakra-ui/icons`. We recommend
 using `react-icons` in your projects considering it has a robust set of icons.
 However, you can still install this package.
-
-#### Usage with TypeScript
-
-Please note that when adding Chakra UI to a TypeScript project, a minimum
-TypeScript version of `3.8.0` is required.
-
-If you're adding Chakra UI to a `create-react-app` project, this means you'll
-need to manually upgrade `typescript` from `~3.7.2` to `~3.8.0`. See
-[the guide for our official `create-react-app`](../guides/cra-templates)
-templates if you'd like to generate a Chakra-enabled `create-react-app` project
-from scratch.
 
 ### 2. Adding the default theme
 
@@ -155,8 +126,8 @@ Swap out `ThemeProvider` with `ChakraProvider` to make setup cleaner.
 Fire up your "Find and Replace" tool in VSCode or IntelliJ. Find `variantColor`
 and replace with `colorScheme`.
 
-> **Reason:** We named this prop to make it easier to understand that this prop
-> represents a visual color scheme, not a css color attribute.
+> **Reason:** We renamed this prop to make it easier to understand that this
+> prop represents a visual color scheme, not a css color attribute.
 
 ### 5. Update layout `size` prop
 
@@ -176,6 +147,8 @@ only one prop to manage this, you can rename it to `boxSize`.
 > modifiers. The `size` prop has caused a lot of confusion in the past because,
 > in some components (e.g. Button), it means the visual size and in others (e.g
 > Box), it means **width and height**.
+
+---
 
 ## Component Updates
 

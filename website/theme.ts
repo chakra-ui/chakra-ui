@@ -49,7 +49,7 @@ const customTheme = {
     },
     h3: {
       mt: "3rem",
-      mb: "2rem",
+      mb: "1rem",
       lineHeight: 1.25,
       fontWeight: "semibold",
       fontSize: "1.25rem",
@@ -58,7 +58,7 @@ const customTheme = {
     h4: {
       mt: "3rem",
       lineHeight: 1.375,
-      fontWeight: "bold",
+      fontWeight: "semibold",
       fontSize: "1.125rem",
     },
     a: {
@@ -77,8 +77,7 @@ const customTheme = {
       },
     },
     hr: {
-      my: "8",
-      borderBottomWidth: "2px",
+      my: "4rem",
     },
   },
 }
