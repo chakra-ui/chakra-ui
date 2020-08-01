@@ -70,7 +70,7 @@ const HeaderContent = () => {
           mr="1rem"
           variant="unstyled"
           maxW="88px"
-          fontWeight="semibold"
+          fontWeight="bold"
           color="gray.400"
           defaultValue="1.0"
           onChange={(e) => {

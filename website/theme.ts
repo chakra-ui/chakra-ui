@@ -1,7 +1,8 @@
 import theme from "@chakra-ui/theme"
 import { mode } from "@chakra-ui/theme-tools"
 
-const font = `Inter, -apple-system, sans-serif`
+const font =
+  "Inter, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji"
 
 const customTheme = {
   ...theme,
@@ -91,6 +92,7 @@ const customTheme = {
     ul: {
       mt: "1.5rem",
       listStyleType: "none",
+      "blockquote &": { mt: 0 },
       li: {
         position: "relative",
         pl: "1.25rem",
@@ -105,6 +107,19 @@ const customTheme = {
       },
       "& > * + *": {
         mt: "1rem",
+      },
+    },
+    code: {
+      color: "purple.500",
+      rounded: "sm",
+      px: "1",
+      fontSize: "0.875em",
+      py: "2px",
+      whiteSpace: "nowrap",
+      lineHeight: "normal",
+      bg: "gray.50",
+      "blockquote &": {
+        bg: "transparent",
       },
     },
   },

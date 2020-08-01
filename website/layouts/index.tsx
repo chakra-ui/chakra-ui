@@ -28,7 +28,7 @@ const DefaultLayout = (frontmatter) => {
             <Sidebar />
             <div style={{ flex: 1 }}>
               <SkipNavContent />
-              <Box pt={3} px={5} mt="4.5rem" mx="auto" maxW="48rem">
+              <Box pt={3} px={5} mt="4.5rem" mx="auto" maxW="48rem" minH="80vh">
                 {children}
                 <Box mt="40px">
                   {editUrl && <EditPageLink href={editUrl} />}

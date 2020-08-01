@@ -69,23 +69,6 @@ const LinkedHeading = (props) => (
   </chakra.h2>
 )
 
-const InlineCode = (props) => (
-  <chakra.code
-    bg="teal.50"
-    rounded="md"
-    px="1"
-    border="1px"
-    fontSize="0.8em"
-    borderColor="teal.100"
-    color="gray.900"
-    mx="2px"
-    py="2px"
-    whiteSpace="nowrap"
-    lineHeight="normal"
-    {...props}
-  />
-)
-
 const MDXComponents = {
   h1: (props) => <chakra.h1 apply="mdx.h1" {...props} />,
   h2: (props) => <LinkedHeading apply="mdx.h2" {...props} />,
@@ -93,7 +76,7 @@ const MDXComponents = {
   h4: (props) => <LinkedHeading as="h4" apply="mdx.h4" {...props} />,
   hr: (props) => <chakra.hr apply="mdx.hr" {...props} />,
   strong: (props) => <Box as="strong" fontWeight="semibold" {...props} />,
-  inlineCode: InlineCode,
+  inlineCode: (props) => <chakra.code apply="mdx.code" {...props} />,
   code: CodeBlock,
   pre: Pre,
   kbd: Kbd,

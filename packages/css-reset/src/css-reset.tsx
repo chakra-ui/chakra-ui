@@ -62,7 +62,7 @@ export const CSSReset = () => (
 
       b,
       strong {
-        font-weight: bolder;
+        font-weight: bold;
       }
 
       small {
