@@ -1,19 +1,19 @@
-import * as React from "react"
 import {
+  Avatar,
   Box,
-  Icon,
   Container,
   Heading,
-  Text,
-  Stack,
-  Avatar,
-  SimpleGrid,
+  Icon,
   Link,
-  Wrap,
+  SimpleGrid,
+  Stack,
+  Text,
   Tooltip,
+  Wrap,
 } from "@chakra-ui/core"
-import { IoLogoTwitter, IoLogoGithub, IoIosGlobe } from "react-icons/io"
-import SEO from "../src/components/seo"
+import SEO from "components/seo"
+import * as React from "react"
+import { IoIosGlobe, IoLogoGithub, IoLogoTwitter } from "react-icons/io"
 
 const SocialLink = ({ icon, href }) => (
   <Link display="inline-block" href={href} isExternal>
@@ -28,7 +28,14 @@ const SocialLink = ({ icon, href }) => (
 )
 
 function Member({ member }) {
-  const { avatarUrl, bio, name, twitterUsername, url, websiteUrl } = member
+  const {
+    avatar_url: avatarUrl,
+    bio,
+    name,
+    twitter_username: twitterUsername,
+    blog: websiteUrl,
+    html_url: url,
+  } = member
 
   return (
     <Box>
@@ -57,7 +64,7 @@ function Member({ member }) {
 }
 
 function Contributor({ contributor }) {
-  const { login, avatarUrl } = contributor
+  const { login, avatar_url: avatarUrl } = contributor
 
   return (
     <Box>
@@ -70,12 +77,10 @@ function Contributor({ contributor }) {
   )
 }
 
-function Team({ data }) {
-  const { members, contributors } = data
-  const { nodes: memberNodes } = members
-  const { nodes: contributorNodes } = contributors
-  const memberLogins = memberNodes.map(({ login }) => login)
-  const contributorsWithoutTeam = contributorNodes.filter(
+function Team({ members, contributors }) {
+  console.log(members)
+  const memberLogins = members.map(({ login }) => login)
+  const contributorsWithoutTeam = contributors.filter(
     ({ login }) => !memberLogins.includes(login),
   )
 
@@ -102,7 +107,7 @@ function Team({ data }) {
           <Stack spacing={8}>
             <Heading size="md">Core Team</Heading>
             <SimpleGrid columns={[1, 1, 2]} spacing="40px">
-              {memberNodes.map((member) => (
+              {members.map((member) => (
                 <Member key={member.login} member={member} />
               ))}
             </SimpleGrid>
@@ -125,27 +130,31 @@ function Team({ data }) {
   )
 }
 
-export default Team
+export async function getServerSideProps() {
+  const { Octokit } = require("@octokit/rest")
+  const path = require("path")
+  const fs = require("fs")
 
-// export const query = graphql`
-//   query TeamAndContributorsQuery {
-//     members: allTeamMember {
-//       nodes {
-//         avatarUrl
-//         bio
-//         githubUrl
-//         id
-//         name
-//         login
-//         twitterUsername
-//         websiteUrl
-//       }
-//     }
-//     contributors: allChakraContributor {
-//       nodes {
-//         login
-//         avatarUrl
-//       }
-//     }
-//   }
-// `
+  const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN })
+
+  const { data: members } = await octokit.orgs.listMembers({ org: "chakra-ui" })
+  const membersData = (await Promise.all(
+    members.map(
+      async ({ login }) =>
+        await octokit.users.getByUsername({ username: login }),
+    ),
+  )) as any[]
+
+  const rcPath = path.resolve("..", ".all-contributorsrc")
+  const contributorsRcData = fs.readFileSync(rcPath, "utf-8")
+  const { contributors } = JSON.parse(contributorsRcData)
+
+  return {
+    props: {
+      members: membersData.map((m) => m.data),
+      contributors,
+    },
+  }
+}
+
+export default Team

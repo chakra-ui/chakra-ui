@@ -8,7 +8,7 @@ import Pagination from "components/pagination"
 import sidebar from "sidebar.config"
 import { findRouteByPath, removeFromLast } from "utils/find-route-by-path"
 import { getRouteContext } from "utils/get-route-context"
-import EditPageLink from "components/github-edit-link"
+import EditPageLink from "components/edit-page-button"
 import Header from "components/header"
 
 const DefaultLayout = (frontmatter) => {

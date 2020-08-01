@@ -1,6 +1,6 @@
-const fs = require("fs")
-const path = require("path")
-const { Octokit } = require("@octokit/rest")
+import fs from "fs"
+import path from "path"
+import { Octokit } from "@octokit/rest"
 
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN })
 
