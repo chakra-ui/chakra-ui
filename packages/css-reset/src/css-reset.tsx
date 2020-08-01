@@ -274,6 +274,16 @@ export const CSSReset = () => (
       select::-ms-expand {
         display: none;
       }
+
+      svg {
+        text-rendering: optimizeLegibility;
+        shape-rendering: crispEdges;
+      }
+
+      svg path,
+      svg circle {
+        shape-rendering: geometricprecision;
+      }
     `}
   />
 )
