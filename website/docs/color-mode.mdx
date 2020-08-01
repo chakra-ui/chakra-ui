@@ -141,3 +141,35 @@ const theme = {
   },
 }
 ```
+
+## Changing the storageManager for server side rendering (SSR) apps
+
+By default the current color mode is persisted in local storage. Unfortunately this can cause a flash between light and dark modes
+during initial page load for apps that server side render. This flash is caused because local storage isn't accessible on the server.
+The default storageManager can be swapped out to use cookies instead of local storage. Below is an example of using the 
+cookieStorageManager in a Next.js app.
+
+```jsx live=false
+import { ChakraProvider, CSSReset, cookieStorageManager } from "@chakra-ui/core"
+import theme from "@chakra-ui/theme"
+
+const App = ({ Component, pageProps, cookies }) => {
+  return (
+    <ChakraProvider
+      theme={theme}
+      storageManager={cookieStorageManager(cookies)}
+    >
+      <CSSReset />
+      <Component {...pageProps} />
+    </ChakraProvider>
+  )
+}
+
+App.getInitialProps = async ({ ctx }) => {
+  return {
+    cookies: ctx.req.headers.cookie,
+  }
+}
+
+export default App
+```
