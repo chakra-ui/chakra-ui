@@ -12,7 +12,8 @@ import { LiveEditor, LiveError, LivePreview, LiveProvider } from "react-live"
 import scope from "./react-live-scope"
 
 export const liveEditorStyle: React.CSSProperties = {
-  padding: 20,
+  paddingTop: 20,
+  paddingLeft: 20,
   fontSize: 14,
   marginBottom: 32,
   marginTop: 32,

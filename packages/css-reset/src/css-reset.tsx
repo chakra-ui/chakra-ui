@@ -9,8 +9,9 @@ export const CSSReset = () => (
         -webkit-text-size-adjust: 100%;
         font-family: system-ui, sans-serif;
         -webkit-font-smoothing: antialiased;
-        -webkit-text-size-adjust: 100%;
-        text-rendering: optimizelegibility;        
+        text-rendering: optimizeLegibility;      
+        -moz-osx-font-smoothing: grayscale; 
+        touch-action: manipulation; 
       }
 
       *,

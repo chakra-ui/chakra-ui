@@ -43,6 +43,8 @@ const TData = (props) => (
 
 const LinkedHeading = (props) => (
   <Heading
+    mt="6"
+    mb="2"
     fontWeight="semibold"
     css={{
       "&[id]": {
@@ -90,7 +92,7 @@ const InlineCode = (props) => (
     color="gray.900"
     mx="2px"
     py="2px"
-    wordBreak="keep-all"
+    whiteSpace="nowrap"
     lineHeight="normal"
     {...props}
   />
@@ -99,19 +101,9 @@ const InlineCode = (props) => (
 const MDXComponents = {
   h1: (props) => <Heading as="h1" size="2xl" my="6" {...props} />,
   h2: (props) => <LinkedHeading mt="12" mb="4" size="lg" {...props} />,
-  h3: (props) => (
-    <LinkedHeading as="h3" size="md" fontWeight="medium" {...props} />
-  ),
+  h3: (props) => <LinkedHeading as="h3" size="md" {...props} />,
   h4: (props) => (
-    <Heading
-      as="h4"
-      size="xs"
-      fontWeight="bold"
-      textTransform="uppercase"
-      letterSpacing="wide"
-      mt="6"
-      {...props}
-    />
+    <Heading as="h4" size="xs" textTransform="uppercase" mt="6" {...props} />
   ),
   inlineCode: InlineCode,
   code: CodeBlock,
