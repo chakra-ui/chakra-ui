@@ -23,7 +23,7 @@ const Sidebar = () => {
     >
       {routes.map((c1, idx) => {
         return (
-          <>
+          <React.Fragment key={idx}>
             {c1.heading && (
               <chakra.h4 fontSize="xl" fontWeight="semibold" my="1.25rem">
                 {c1.title}
@@ -38,8 +38,9 @@ const Sidebar = () => {
                   </SidebarLink>
                 )
               }
+
               return (
-                <SidebarCategory {...c2} key={idx}>
+                <SidebarCategory {...c2} key={c2.path}>
                   <Stack spacing="18px">
                     {c2.routes.map((c3) => (
                       <SidebarLink key={c3.path} href={`${c2.path}${c3.path}`}>
@@ -50,7 +51,7 @@ const Sidebar = () => {
                 </SidebarCategory>
               )
             })}
-          </>
+          </React.Fragment>
         )
       })}
     </Box>

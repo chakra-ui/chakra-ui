@@ -14,10 +14,6 @@ const sidebar = {
           opened: true,
           routes: [
             {
-              title: "Installation",
-              path: "/getting-started",
-            },
-            {
               title: "Design Principles",
               path: "/principles",
             },

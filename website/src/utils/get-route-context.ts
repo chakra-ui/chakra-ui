@@ -69,7 +69,7 @@ export function getRouteContext(
         parent && i === 0
           ? {
               ...route,
-              title: `${parent.title}: ${route.title}`,
+              path: `${parent.path}${route.path}`,
             }
           : route
 
@@ -92,7 +92,7 @@ export function getRouteContext(
       parent && !parent.heading && !routes[i + 1]?.path
         ? {
             ...route,
-            title: `${parent.title}: ${route.title}`,
+            path: `${parent.path}${route.path}`,
           }
         : route
   }
