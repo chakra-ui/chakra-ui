@@ -78,7 +78,6 @@ function Contributor({ contributor }) {
 }
 
 function Team({ members, contributors }) {
-  console.log(members)
   const memberLogins = members.map(({ login }) => login)
   const contributorsWithoutTeam = contributors.filter(
     ({ login }) => !memberLogins.includes(login),
@@ -130,6 +129,15 @@ function Team({ members, contributors }) {
   )
 }
 
+const sortMembers = (a, b) => {
+  // segun comes first!
+  if (a.login === "segunadebayo") return -1
+  if (b.login === "segunadebayo") return 1
+
+  // everything else is alphabetical by login
+  return a.login.localeCompare(b.login, "en")
+}
+
 export async function getServerSideProps() {
   const { Octokit } = require("@octokit/rest")
   const path = require("path")
@@ -144,6 +152,7 @@ export async function getServerSideProps() {
         await octokit.users.getByUsername({ username: login }),
     ),
   )) as any[]
+  const sortedMembers = membersData.map((m) => m.data).sort(sortMembers)
 
   const rcPath = path.resolve("..", ".all-contributorsrc")
   const contributorsRcData = fs.readFileSync(rcPath, "utf-8")
@@ -151,7 +160,7 @@ export async function getServerSideProps() {
 
   return {
     props: {
-      members: membersData.map((m) => m.data),
+      members: sortedMembers,
       contributors,
     },
   }
