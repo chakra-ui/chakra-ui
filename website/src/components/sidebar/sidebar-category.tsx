@@ -1,6 +1,5 @@
 import { Icon, chakra } from "@chakra-ui/core"
 import { useRef, useState, useEffect, ReactNode } from "react"
-import { FiChevronRight } from "react-icons/fi"
 
 type SidebarCategoryProps = {
   isMobile?: boolean
@@ -9,6 +8,16 @@ type SidebarCategoryProps = {
   selected?: boolean
   children: ReactNode
 }
+
+const Arrow = (props) => (
+  <svg viewBox="0 0 6 10" fill="none" {...props}>
+    <path
+      d="M1.4 8.56L4.67 5M1.4 1.23L4.66 4.7"
+      stroke="currentColor"
+      strokeLinecap="square"
+    />
+  </svg>
+)
 
 function SidebarCategory(props: SidebarCategoryProps) {
   const { isMobile, title, selected, opened, children } = props
@@ -57,20 +66,22 @@ function SidebarCategory(props: SidebarCategoryProps) {
         cursor="pointer"
         display="flex"
         alignItems="center"
+        userSelect="none"
         color="gray.700"
-        ml="-4px"
         onClick={onClick}
         _hover={{
           color: "gray.800",
         }}
       >
         <Icon
-          fontSize="sm"
+          w="auto"
+          h="1em"
+          fontSize="12px"
           mr="16px"
           transformOrigin="center"
           transform={!toggle ? "rotate(90deg)" : undefined}
-          transition="transform 0.15 ease"
-          as={FiChevronRight}
+          transition="transform 0.15s ease"
+          as={Arrow}
           color="gray.400"
         />
         {title}
@@ -79,10 +90,10 @@ function SidebarCategory(props: SidebarCategoryProps) {
         hidden={toggle}
         borderLeft="1px solid"
         borderColor="gray.200"
-        mt="3"
+        mt="18px"
         pl="5"
         overflow="hidden"
-        ml="2"
+        ml="1"
       >
         {children}
       </chakra.div>

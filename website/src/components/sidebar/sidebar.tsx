@@ -16,6 +16,7 @@ const Sidebar = () => {
       w="300px"
       pr="3"
       pb="8"
+      pl="1"
       overflowY="auto"
       className="sidebar-content"
       flexShrink={0}

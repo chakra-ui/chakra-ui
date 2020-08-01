@@ -21,6 +21,7 @@ const SidebarLink = forwardRef(
     return (
       <NextLink href={href} passHref>
         <chakra.a
+          userSelect="none"
           aria-current={isActive ? "page" : undefined}
           ref={ref}
           display="flex"

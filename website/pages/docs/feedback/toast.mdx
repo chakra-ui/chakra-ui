@@ -5,7 +5,7 @@ image: "components/toast.svg"
 description: VThe toast is used to show alerts on top of an overlay
 ---
 
-import ComponentLinks from "../../src/components/component-links"
+import ComponentLinks from "../../../src/components/component-links"
 
 # Toast
 
@@ -184,7 +184,7 @@ function PositionExample() {
 | `isClosable`  | `boolean`                                                               | `false`  | If `true` adds a close button to the toast.                          |
 | `onClose`     | `function`                                                              |          | Callback function to close the toast.                                |
 | `description` | `string`                                                                |          | The description of the toast.                                        |
-| `status`      | `default`, `success`, `error`, `warning`, `info`                                  |          | The status of the toast.                                             |
+| `status`      | `default`, `success`, `error`, `warning`, `info`                        |          | The status of the toast.                                             |
 | `duration`    | `number`                                                                | `5000ms` | Duration before dismiss in milliseconds, or `null` to never dismiss. |
 | `position`    | `top`, `top-left`, `top-right`, `bottom`, `bottom-left`, `bottom-right` | `bottom` | Position the toast will popup out from.                              |
-| `render`      | `(props: {onClose:() => void, id: string}) => React.ReactNode`          |          | Callback function to display a custom toast.                                        |
+| `render`      | `(props: {onClose:() => void, id: string}) => React.ReactNode`          |          | Callback function to display a custom toast.                         |
