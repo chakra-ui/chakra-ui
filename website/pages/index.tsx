@@ -68,7 +68,7 @@ const sampleCode = `
 </Box>
 `
 
-export default () => {
+const HomePage = () => {
   return (
     <>
       <SEO
@@ -195,3 +195,5 @@ export default () => {
     </>
   )
 }
+
+export default HomePage

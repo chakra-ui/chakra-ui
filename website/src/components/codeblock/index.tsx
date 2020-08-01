@@ -18,7 +18,7 @@ export const liveEditorStyle: React.CSSProperties = {
   marginTop: 32,
   overflowX: "auto",
   fontFamily: "Menlo,monospace",
-  borderRadius: 5,
+  borderRadius: 12,
 }
 
 export const liveErrorStyle: React.CSSProperties = {
@@ -36,7 +36,7 @@ const LiveCodePreview = chakra(LivePreview, {
     mt: 5,
     p: 3,
     borderWidth: 1,
-    borderRadius: "md",
+    borderRadius: "12px",
   },
 })
 

@@ -84,7 +84,6 @@ function Team({ data }) {
       <SEO
         title="Chakra UI Team &amp; Contributors"
         description="List of team members and contributors that make the Chakra UI project possible"
-        slug="/team"
       />
       <Box py="56px">
         <Box py="80px">

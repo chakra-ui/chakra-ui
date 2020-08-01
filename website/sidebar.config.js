@@ -2,7 +2,6 @@ const sidebar = {
   routes: [
     {
       title: "Getting Started",
-      heading: true,
       path: "/docs",
       routes: [
         {
@@ -22,132 +21,276 @@ const sidebar = {
           path: "/color-mode",
         },
         {
+          title: "Comparison",
+          path: "/comparison",
+        },
+        {
           title: "Responsive Styles",
           path: "/responsive-styles",
         },
         {
-          title: "Guides",
-          open: true,
-          routes: [
-            {
-              title: "Validation",
-              path: "/docs/guides/validation.md",
-            },
-            {
-              title: "Arrays",
-              path: "/docs/guides/arrays.md",
-            },
-            {
-              title: "TypeScript",
-              path: "/docs/guides/typescript.md",
-            },
-            {
-              title: "React Native",
-              path: "/docs/guides/react-native.md",
-            },
-            {
-              title: "Form Submission",
-              path: "/docs/guides/form-submission.md",
-            },
-          ],
+          title: "Global Styles",
+          path: "/global-styles",
         },
         {
-          title: "Examples",
-          open: true,
-          routes: [
-            {
-              title: "Basic",
-              path: "/docs/examples/basic.md",
-            },
-            {
-              title: "TypeScript",
-              path: "/docs/examples/typescript.md",
-            },
-            {
-              title: "Async Submission",
-              path: "/docs/examples/async-submission.md",
-            },
-
-            {
-              title: "Checkboxes",
-              path: "/docs/examples/checkboxes.md",
-            },
-            {
-              title: "Radio Group",
-              path: "/docs/examples/radio-group.md",
-            },
-            {
-              title: "Dependent Fields",
-              path: "/docs/examples/dependent-fields.md",
-            },
-            {
-              title: "Dependent Fields with Async API Request",
-              path: "/docs/examples/dependent-fields-async-api-request.md",
-            },
-            {
-              title: "Arrays and Lists",
-              path: "/docs/examples/field-arrays.md",
-            },
-            {
-              title: "Instant Feedback",
-              path: "/docs/examples/instant-feedback.md",
-            },
-            {
-              title: "More Examples",
-              path: "/docs/examples/more-examples.md",
-            },
-          ],
+          title: "Upgrade to v1",
+          path: "/migration",
         },
       ],
     },
-
     {
-      title: "API Reference",
-      heading: true,
+      title: "Theming",
+      path: "/docs/theming",
       routes: [
         {
-          title: "connect()",
-          path: "/docs/api/connect.md",
+          title: "Introduction",
+          path: "/introduction",
         },
         {
-          title: "<ErrorMessage />",
-          path: "/docs/api/errormessage.md",
+          title: "Basic",
+          path: "/basic",
         },
         {
-          title: "<FastField />",
-          path: "/docs/api/fastfield.md",
+          title: "Advanced",
+          path: "/advanced",
         },
         {
-          title: "<Field />",
-          path: "/docs/api/field.md",
+          title: "Default Theme",
+          path: "/theme",
+        },
+      ],
+    },
+    {
+      title: "Layout",
+      path: "/docs/layout",
+      routes: [
+        {
+          title: "Aspect Ratio",
+          path: "/aspect-ratio",
         },
         {
-          title: "<FieldArray />",
-          path: "/docs/api/fieldarray.md",
+          title: "Box",
+          path: "/box",
         },
         {
-          title: "<Form />",
-          path: "/docs/api/form.md",
+          title: "Center",
+          path: "/center",
         },
         {
-          title: "<Formik />",
-          path: "/docs/api/formik.md",
+          title: "Container",
+          path: "/container",
         },
         {
-          title: "useField()",
-          path: "/docs/api/useField.md",
+          title: "Flex",
+          path: "/flex",
         },
         {
-          title: "useFormik()",
-          path: "/docs/api/useFormik.md",
+          title: "Grid",
+          path: "/grid",
         },
         {
-          title: "useFormikContext()",
-          path: "/docs/api/useFormikContext.md",
+          title: "SimpleGrid",
+          path: "/simple-grid",
         },
         {
-          title: "withFormik()",
-          path: "/docs/api/withFormik.md",
+          title: "Stack",
+          path: "/stack",
+        },
+        {
+          title: "Wrap",
+          path: "/wrap",
+        },
+      ],
+    },
+    {
+      title: "Form Elements",
+      path: "/docs/form",
+      routes: [
+        {
+          title: "Button",
+          path: "/button",
+        },
+        {
+          title: "Checkbox",
+          path: "/checkbox",
+        },
+        {
+          title: "Form Control",
+          path: "/form-control",
+        },
+        {
+          title: "Input",
+          path: "/input",
+        },
+        {
+          title: "Number Input",
+          path: "/number-input",
+        },
+        {
+          title: "Pin Input	",
+          path: "/pin-input",
+        },
+        {
+          title: "Radio",
+          path: "/radio",
+        },
+        {
+          title: "Select",
+          path: "/select",
+        },
+        {
+          title: "Slider",
+          path: "/slider",
+        },
+        {
+          title: "Switch",
+          path: "/switch",
+        },
+        {
+          title: "Textarea",
+          path: "/textarea",
+        },
+      ],
+    },
+    {
+      title: "Hooks",
+      path: "/docs/hooks",
+      routes: [
+        {
+          title: "useBreakpointValue",
+          path: "/use-breakpoint-value",
+        },
+        {
+          title: "useClipboard",
+          path: "/use-clipboard",
+        },
+        {
+          title: "useControllable",
+          path: "/use-controllable",
+        },
+        {
+          title: "useDisclosure",
+          path: "/use-disclosure",
+        },
+        {
+          title: "useTheme",
+          path: "/use-theme",
+        },
+      ],
+    },
+    {
+      title: "Data Display",
+      path: "/docs/data-display",
+      routes: [
+        {
+          title: "Avatar",
+          path: "/avatar",
+        },
+        {
+          title: "Badge",
+          path: "/badge",
+        },
+        {
+          title: "Code",
+          path: "/code",
+        },
+        {
+          title: "Divider",
+          path: "/divider",
+        },
+        {
+          title: "Image",
+          path: "/image",
+        },
+        {
+          title: "Kbd",
+          path: "/kbd",
+        },
+        {
+          title: "List",
+          path: "/list",
+        },
+        {
+          title: "Stat",
+          path: "/stat",
+        },
+        {
+          title: "Tag",
+          path: "/tag",
+        },
+      ],
+    },
+    {
+      title: "Feedback",
+      path: "/docs/feedback",
+      routes: [
+        {
+          title: "Alert",
+          path: "/alert",
+        },
+        {
+          title: "Circular Progress",
+          path: "/circular-progress",
+        },
+        {
+          title: "Progress",
+          path: "/progress",
+        },
+        {
+          title: "Skeleton",
+          path: "/skeleton",
+        },
+        {
+          title: "Spinner",
+          path: "/spinner",
+        },
+        {
+          title: "Toast",
+          path: "/toast",
+        },
+      ],
+    },
+    {
+      title: "Typography",
+      path: "/docs/typography",
+      routes: [
+        {
+          title: "Text",
+          path: "/text",
+        },
+        {
+          title: "Heading",
+          path: "/heading",
+        },
+      ],
+    },
+    {
+      title: "Overlay Elements",
+      path: "/docs/overlay",
+      routes: [
+        {
+          title: "Alert Dialog",
+          path: "/alert-dialog",
+        },
+        {
+          title: "Drawer",
+          path: "/drawer",
+        },
+        {
+          title: "Menu",
+          path: "/menu",
+        },
+        {
+          title: "Modal",
+          path: "/modal",
+        },
+        {
+          title: "Popover",
+          path: "/popover",
+        },
+        {
+          title: "Tooltip",
+          path: "/tooltip",
         },
       ],
     },

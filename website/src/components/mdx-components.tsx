@@ -57,8 +57,8 @@ const Link = React.forwardRef((props, ref) => (
 
 const LinkedHeading = (props) => (
   <Heading
-    mb="1em"
-    mt="2em"
+    fontWeight="semibold"
+    letterSpacing="tight"
     css={{
       "&[id]": {
         pointerEvents: "none",
@@ -95,21 +95,34 @@ const LinkedHeading = (props) => (
 )
 
 const InlineCode = (props) => (
-  <Code
-    fontSize="0.85em"
+  <chakra.code
+    bg="gray.100"
+    rounded="md"
+    px="1"
+    border="1px"
+    fontSize="0.875em"
+    borderColor="gray.300"
+    color="gray.900"
+    mx="2px"
     py="2px"
-    px="4px"
+    wordBreak="keep-all"
     lineHeight="normal"
-    colorScheme="orange"
     {...props}
   />
 )
 
 const MDXComponents = {
-  h1: (props) => <Heading as="h1" size="xl" my="1em" {...props} />,
-  h2: (props) => (
-    <LinkedHeading as="h2" fontWeight="semibold" size="lg" {...props} />
+  h1: (props) => (
+    <Heading
+      as="h1"
+      size="2xl"
+      my="6"
+      fontWeight="semibold"
+      letterSpacing="tight"
+      {...props}
+    />
   ),
+  h2: (props) => <LinkedHeading mt="12" mb="4" size="lg" {...props} />,
   h3: (props) => (
     <LinkedHeading as="h3" size="md" fontWeight="medium" {...props} />
   ),
@@ -133,10 +146,21 @@ const MDXComponents = {
   table: Table,
   th: THead,
   td: TData,
-  a: Link,
+  a: (props) => (
+    <chakra.a
+      color="teal.500"
+      fontWeight="semibold"
+      transition="color 0.15s"
+      transitionTimingFunction="ease-out"
+      _hover={{
+        color: "teal.600",
+      }}
+      {...props}
+    />
+  ),
   p: (props) => <Text mt={4} lineHeight="tall" {...props} />,
-  ul: (props) => <chakra.ul pt="8px" pl="16px" {...props} />,
-  ol: (props) => <chakra.ol pt="8px" pl="16px" {...props} />,
+  ul: (props) => <chakra.ul ml="8" pt="8px" {...props} />,
+  ol: (props) => <chakra.ol ml="8" pt="8px" {...props} />,
   li: (props) => <chakra.li pb="4px" {...props} />,
   blockquote: (props) => (
     <Alert

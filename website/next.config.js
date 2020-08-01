@@ -108,8 +108,6 @@ module.exports = withMdxEnhanced({
       // get the edit url
       const editUrl = getEditUrl(path.join(mdxPath), EDIT_URL)
 
-      console.log(editUrl)
-
       // get the slug
       const slug = fileToPath(mdxPath)
 
