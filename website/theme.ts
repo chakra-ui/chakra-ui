@@ -80,13 +80,32 @@ const customTheme = {
       my: "4rem",
     },
     blockquote: {
-      bg: "orange.50",
+      bg: "orange.100",
       borderWidth: "1px",
-      borderColor: "orange.100",
+      borderColor: "orange.200",
       rounded: "lg",
       px: "1.25rem",
       py: "1rem",
       my: "1.5rem",
+    },
+    ul: {
+      mt: "1.5rem",
+      listStyleType: "none",
+      li: {
+        position: "relative",
+        pl: "1.25rem",
+        "&:before": {
+          position: "absolute",
+          left: 0,
+          color: "#cbd5e0",
+          display: "inline-block",
+          mr: ".75rem",
+          content: `"\\2022"`,
+        },
+      },
+      "& > * + *": {
+        mt: "1rem",
+      },
     },
   },
 }

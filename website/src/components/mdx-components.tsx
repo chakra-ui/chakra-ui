@@ -103,8 +103,8 @@ const MDXComponents = {
   td: TData,
   a: (props) => <chakra.a apply="mdx.a" {...props} />,
   p: (props) => <chakra.p apply="mdx.p" {...props} />,
-  ul: (props) => <chakra.ul ml="8" pt="8px" {...props} />,
-  ol: (props) => <chakra.ol ml="8" pt="8px" {...props} />,
+  ul: (props) => <chakra.ul apply="mdx.ul" {...props} />,
+  ol: (props) => <chakra.ol apply="mdx.ul" {...props} />,
   li: (props) => <chakra.li pb="4px" {...props} />,
   blockquote: (props) => (
     <chakra.div apply="mdx.blockquote" as="blockquote" {...props} />

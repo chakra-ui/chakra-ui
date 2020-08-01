@@ -64,14 +64,14 @@ const HeaderContent = () => {
         </HStack>
       </Flex>
 
-      <Flex maxW="720px" align="center" color="gray.500">
+      <Flex maxW="720px" align="center" color="gray.400">
         <SponsorButton mr="5" />
         <Select
           mr="1rem"
           variant="unstyled"
           maxW="88px"
           fontWeight="semibold"
-          color="gray.500"
+          color="gray.400"
           defaultValue="1.0"
           onChange={(e) => {
             window.location.href = e.target.value
@@ -87,7 +87,7 @@ const HeaderContent = () => {
               transition="color 0.2s"
               w="5"
               h="5"
-              _hover={{ color: "gray.700" }}
+              _hover={{ color: "gray.600" }}
             />
           </Link>
           <Link isExternal href={siteConfig.discord.url}>
@@ -96,7 +96,7 @@ const HeaderContent = () => {
               transition="color 0.2s"
               w="5"
               h="5"
-              _hover={{ color: "gray.700" }}
+              _hover={{ color: "gray.600" }}
             />
           </Link>
         </Stack>

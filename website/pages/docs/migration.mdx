@@ -10,9 +10,9 @@ A simple guide to upgrade your existing Chakra UI projects to v1.0.
 Chakra UI v1.0 is focused on improving the ideas and concepts from 0.x to make
 even easier to create, theme and extend components.
 
-While there's quite a number of new exciting features we've added, we focused on
-making Chakra UI a stable base to build your own design systems on, so that you
-can feel more confident using Chakra UI in production.
+While there's quite a number of new exciting Features 🚀 we've added, we focused
+on making Chakra UI a stable base to build your own design systems on, so that
+you can feel more confident using Chakra UI in production.
 
 ---
 
@@ -162,7 +162,7 @@ types and accessibility.
 
 Can install as a stand-alone package: `@chakra-ui/accordion`
 
-#### Changes
+#### Changes 🛠
 
 - Update all imports of `AccordionHeader` to `AccordionButton`. This is to
   remove the notion that it's a header when it's actually a `button`.
@@ -193,7 +193,7 @@ out of the box when we don't. Here's how to handle this:
   `Accordion`. We think most users don't do this by default but it's worth
   noting.
 
-#### Features
+#### Features 🚀
 
 **Keyboard Navigation:** `Accordion` now supports keyboard navigation between
 accordion buttons. Pressing the `up` and `down` arrow keys will move focus
@@ -210,7 +210,7 @@ between accordion buttons.
 
 ### Avatar
 
-#### Features
+#### Features 🚀
 
 - You can now use a custom fallback avatar icon by passing the `icon` prop:
 
@@ -230,11 +230,11 @@ between accordion buttons.
 
 ### Breadcrumb
 
-- Removed support for the `addSeparator` prop
+Removed support for the `addSeparator` prop
 
 ### Button
 
-#### Changes
+#### Changes 🛠
 
 - We've unified the usage of all icon props to only accept a React element.
   Update all icon names used in `leftIcon` or `rightIcon` to the equivalent icon
@@ -259,7 +259,7 @@ errors, and reduces unused icons bloating your app.**
   believe the user should handle these side margins.
   [#1024](https://github.com/chakra-ui/chakra-ui/issues/1024)
 
-#### Features
+#### Features 🚀
 
 - Added support for custom spinners using the `spinner` prop
 
@@ -277,7 +277,7 @@ function Example() {
 
 ### Checkbox
 
-#### Changes
+#### Changes 🛠
 
 - Change `variantColor` to `colorScheme`
 
@@ -316,7 +316,7 @@ function Example() {
 > requirements. The checkboxes can be grouped using `Stack`, placed in a grid
 > using `SimpleGrid` or made to wrap automatically using `Wrap`.
 
-#### Features
+#### Features 🚀
 
 - Added the `iconColor` and `iconSize` props to customize the default check icon
 
@@ -341,29 +341,29 @@ function Example() {
 
 ### ColorMode
 
-- You can now set the initial color mode you want your application to start
-  with. Set `theme.config.initialColorMode` to `light` or `dark`
+You can now set the initial color mode you want your application to start with.
+Set `theme.config.initialColorMode` to `light` or `dark`
 
-  ```jsx live=false
-  const theme = {
-    config: {
-      initialColorMode: "dark",
-    },
-  }
-  ```
+```jsx live=false
+const theme = {
+  config: {
+    initialColorMode: "dark",
+  },
+}
+```
 
-- You can now update the color mode based on your user's device preference. Set
-  `theme.config.useSystemColorMode` to `true` or `false`
+You can now update the color mode based on your user's device preference. Set
+`theme.config.useSystemColorMode` to `true` or `false`
 
-  ```jsx live=false
-  const theme = {
-    config: {
-      useSystemColorMode: true,
-    },
-  }
-  ```
+```jsx live=false
+const theme = {
+  config: {
+    useSystemColorMode: true,
+  },
+}
+```
 
-#### Bug Fix
+#### Bug Fixes 🐛
 
 - Color mode now persists correctly when you refresh the page. All you need to
   do is add `InitializeColorMode` script as the first child of `body`.
@@ -412,7 +412,7 @@ package which automatically configures `InitializeColorMode` along with
 
 ### Editable
 
-#### Changes
+#### Changes 🛠
 
 - The `onRequestEdit` prop has been renamed to `onEdit`. This applies to both
   the prop passed to `Editable` as well as the prop in its render props.
@@ -440,7 +440,7 @@ package which automatically configures `InitializeColorMode` along with
 
 ### Icons
 
-#### Changes
+#### Changes 🛠
 
 - Basic interface icons provided by Chakra have moved to the `icons` package.
   Replace all `<Icon name="..." />` elements imported from `core` with
@@ -480,23 +480,23 @@ import { createIcon, MoonIcon, SunIcon } from "@chakra-ui/icons"
 
 ### Skeleton
 
-#### Features
+#### Features 🚀
 
 - Added `SkeletonText` component to add paragraph skeletons.
 - Added `SkeletonCircle` component to add avatar or circular skeletons.
 
-#### Changes
+#### Changes 🛠
 
 We've renamed the props from `colorStart` and `colorEnd` to `startColor` and
 `endColor`.
 
 ### Image
 
-#### Bug Fixes
+#### Bug Fixes 🐛
 
 - Resolved the common SSR issue with Next.js
 
-#### Features
+#### Features 🚀
 
 - Added support for the `fit` prop to specify how to fit an image within its
   dimension. It uses the `object-fit` property
@@ -559,7 +559,7 @@ We've renamed the props from `colorStart` and `colorEnd` to `startColor` and
 
 ### Menu
 
-#### Changes
+#### Changes 🛠
 
 - All popper related props that used to be passed to `MenuList` component,
   should now be passed to `Menu`. Reason: To support nested menus
@@ -635,7 +635,7 @@ We've renamed the props from `colorStart` and `colorEnd` to `startColor` and
 
 ### Modal
 
-#### Changes
+#### Changes 🛠
 
 - Removed `addAriaLabels` and `formatIds` props in favor of passing a top-level
   `id` prop to the modal, and we'll handle the rest.
