@@ -107,17 +107,7 @@ const MDXComponents = {
   ol: (props) => <chakra.ol ml="8" pt="8px" {...props} />,
   li: (props) => <chakra.li pb="4px" {...props} />,
   blockquote: (props) => (
-    <Box
-      as="blockquote"
-      bg="orange.50"
-      borderWidth="1px"
-      borderColor="orange.100"
-      rounded="3px"
-      px="1.25rem"
-      py="1rem"
-      my="1.5rem"
-      {...props}
-    />
+    <chakra.div apply="mdx.blockquote" as="blockquote" {...props} />
   ),
   "carbon-ad": CarbonAd,
 }

@@ -79,6 +79,15 @@ const customTheme = {
     hr: {
       my: "4rem",
     },
+    blockquote: {
+      bg: "orange.50",
+      borderWidth: "1px",
+      borderColor: "orange.100",
+      rounded: "lg",
+      px: "1.25rem",
+      py: "1rem",
+      my: "1.5rem",
+    },
   },
 }
 
