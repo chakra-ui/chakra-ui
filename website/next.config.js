@@ -96,7 +96,7 @@ module.exports = withMdxEnhanced({
   ],
   rehypePlugins: [],
   extendFrontMatter: {
-    process: async (_, frontmatter) => {
+    process: async (mdxContent, frontmatter) => {
       const { __resourcePath: mdxPath, author, tags } = frontmatter
 
       // read the file path

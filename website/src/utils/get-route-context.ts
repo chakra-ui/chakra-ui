@@ -65,14 +65,8 @@ export function getRouteContext(
     if (!route.path) continue
 
     if (ctx.route) {
-      ctx.nextRoute =
-        parent && i === 0
-          ? {
-              ...route,
-              path: `${parent.path}${route.path}`,
-            }
-          : route
-
+      // const isNext = parent && i === 0
+      ctx.nextRoute = route
       return ctx
     }
 
@@ -88,13 +82,8 @@ export function getRouteContext(
       continue
     }
 
-    ctx.prevRoute =
-      parent && !parent.heading && !routes[i + 1]?.path
-        ? {
-            ...route,
-            path: `${parent.path}${route.path}`,
-          }
-        : route
+    // const isPrev = parent && !parent.heading && !routes[i + 1]?.path
+    ctx.prevRoute = route
   }
 
   // The loop ended and the previous route was found, or nothing

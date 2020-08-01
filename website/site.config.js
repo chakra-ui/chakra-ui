@@ -19,6 +19,12 @@ const siteConfig = {
     editUrl: `${baseUrl}/edit/develop/website`,
     blobUrl: `${baseUrl}/blob/develop`,
   },
+  openCollective: {
+    url: "https://opencollective.com/chakra-ui",
+  },
+  discord: {
+    url: "https://discord.gg/dQHfcWF",
+  },
   seo: {
     title: "Chakra UI",
     titleTemplate: "%s - Chakra UI",

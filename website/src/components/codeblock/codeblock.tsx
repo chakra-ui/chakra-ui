@@ -12,18 +12,13 @@ import { LiveEditor, LiveError, LivePreview, LiveProvider } from "react-live"
 import scope from "./react-live-scope"
 
 export const liveEditorStyle: React.CSSProperties = {
-  paddingTop: 20,
-  paddingLeft: 20,
   fontSize: 14,
-  marginBottom: 32,
-  marginTop: 32,
   overflowX: "auto",
-  fontFamily: "Menlo,monospace",
-  borderRadius: 12,
+  fontFamily: "SF Mono, Menlo, monospace",
 }
 
 export const liveErrorStyle: React.CSSProperties = {
-  fontFamily: "Menlo, monospace",
+  fontFamily: "SF Mono, Menlo, monospace",
   fontSize: 14,
   padding: "1em",
   overflowX: "auto",
@@ -62,7 +57,7 @@ const EditableNotice = (props: BoxProps) => {
       position="absolute"
       width="full"
       top="-1.25em"
-      borderTopRadius="5px"
+      roundedTop="8px"
       bg="#011627"
       py="2"
       zIndex="0"
@@ -79,6 +74,10 @@ const EditableNotice = (props: BoxProps) => {
     </Box>
   )
 }
+
+const CodeContainer = (props) => (
+  <Box padding="5" rounded="8px" my="8" bg="#011627" {...props} />
+)
 
 function CodeBlock(props) {
   const { className, live = true, manual, render, children, ...rest } = props
@@ -103,7 +102,9 @@ function CodeBlock(props) {
       <LiveProvider {...liveProviderProps}>
         <LiveCodePreview zIndex="1" />
         <Box position="relative" zIndex="0">
-          <LiveEditor onChange={onChange} style={liveEditorStyle} />
+          <CodeContainer>
+            <LiveEditor onChange={onChange} style={liveEditorStyle} />
+          </CodeContainer>
           <CopyButton onClick={onCopy}>
             {hasCopied ? "copied" : "copy"}
           </CopyButton>
@@ -116,7 +117,7 @@ function CodeBlock(props) {
 
   if (render) {
     return (
-      <div style={{ marginTop: 40 }}>
+      <div style={{ marginTop: 32 }}>
         <LiveProvider {...liveProviderProps}>
           <LiveCodePreview />
         </LiveProvider>
@@ -126,7 +127,9 @@ function CodeBlock(props) {
 
   return (
     <LiveProvider disabled {...liveProviderProps}>
-      <LiveEditor style={liveEditorStyle} />
+      <CodeContainer>
+        <LiveEditor style={liveEditorStyle} />
+      </CodeContainer>
     </LiveProvider>
   )
 }

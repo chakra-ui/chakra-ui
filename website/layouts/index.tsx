@@ -9,6 +9,7 @@ import sidebar from "sidebar.config"
 import { findRouteByPath, removeFromLast } from "utils/find-route-by-path"
 import { getRouteContext } from "utils/get-route-context"
 import EditPageLink from "components/github-edit-link"
+import Header from "components/header"
 
 const DefaultLayout = (frontmatter) => {
   const { title, description, slug, editUrl } = frontmatter
@@ -21,12 +22,13 @@ const DefaultLayout = (frontmatter) => {
     return (
       <>
         <SEO title={title} description={description} />
-        <Box w="full" px="1rem" pb="12" pt="6" mx="auto" maxW="1024px">
-          <Flex pos="relative">
+        <Header />
+        <Box w="full" px="1rem" pb="12" pt="3" mx="auto" maxW="1280px">
+          <Flex>
             <Sidebar />
-            <SkipNavContent />
-            <div>
-              <Box pt={8} px={5} mt="4rem">
+            <div style={{ flex: 1 }}>
+              <SkipNavContent />
+              <Box pt={3} px={5} mt="4.5rem" mx="auto" maxW="48rem">
                 {children}
                 <Box mt="40px">
                   {editUrl && <EditPageLink href={editUrl} />}

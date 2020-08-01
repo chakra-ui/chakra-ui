@@ -1,5 +1,5 @@
 import { ChakraProvider, CSSReset, PortalManager } from "@chakra-ui/core"
-import theme from "@chakra-ui/theme"
+import theme from "theme"
 import { MDXProvider } from "@mdx-js/react"
 import { trackPageview } from "analytics/track-event"
 import MDXComponents from "components/mdx-components"
@@ -14,14 +14,6 @@ Router.events.on("routeChangeComplete", (url) => {
   trackPageview(url)
 })
 
-const font = `Inter, -apple-system, sans-serif`
-
-theme.fonts = {
-  ...theme.fonts,
-  heading: font,
-  body: font,
-}
-
 const App = ({ Component, pageProps }) => {
   return (
     <>
@@ -32,7 +24,6 @@ const App = ({ Component, pageProps }) => {
         <meta name="theme-color" content="#319795" />
         <script async defer src="https://buttons.github.io/buttons.js" />
       </Head>
-
       <ChakraProvider theme={theme}>
         <CSSReset />
         <DefaultSeo {...siteConfig.seo} />

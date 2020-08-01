@@ -9,37 +9,37 @@ const sidebar = {
           path: "/docs/getting-started",
         },
         {
-          title: "Basic Features",
-          path: "/docs",
-          opened: true,
+          title: "Upgrade to v1",
+          path: "/docs/migration",
+        },
+        {
+          title: "Design Principles",
+          path: "/docs/principles",
+        },
+        {
+          title: "Comparison",
+          path: "/docs/comparison",
+        },
+        {
+          title: "Features",
+          path: "/docs/features",
+          open: true,
           routes: [
             {
-              title: "Design Principles",
-              path: "/principles",
-            },
-            {
               title: "Style Props",
-              path: "/style-props",
+              path: "/docs/features/style-props",
             },
             {
               title: "Color Mode",
-              path: "/color-mode",
-            },
-            {
-              title: "Comparison",
-              path: "/comparison",
+              path: "/docs/features/color-mode",
             },
             {
               title: "Responsive Styles",
-              path: "/responsive-styles",
+              path: "/docs/features/responsive-styles",
             },
             {
               title: "Global Styles",
-              path: "/global-styles",
-            },
-            {
-              title: "Upgrade to v1",
-              path: "/migration",
+              path: "/docs/features/global-styles",
             },
           ],
         },
@@ -47,264 +47,264 @@ const sidebar = {
         {
           title: "Theming",
           path: "/docs/theming",
-          opened: true,
+          open: true,
           routes: [
             {
               title: "Introduction",
-              path: "/introduction",
+              path: "/docs/theming/overview",
             },
             {
               title: "Basic",
-              path: "/basic",
+              path: "/docs/theming/basic",
             },
             {
               title: "Advanced",
-              path: "/advanced",
+              path: "/docs/theming/advanced",
             },
             {
               title: "Default Theme",
-              path: "/theme",
+              path: "/docs/theming/theme",
             },
           ],
         },
         {
           title: "Layout",
           path: "/docs/layout",
-          opened: true,
+          open: true,
           routes: [
             {
               title: "Aspect Ratio",
-              path: "/aspect-ratio",
+              path: "/docs/layout/aspect-ratio",
             },
             {
               title: "Box",
-              path: "/box",
+              path: "/docs/layout/box",
             },
             {
               title: "Center",
-              path: "/center",
+              path: "/docs/layout/center",
             },
             {
               title: "Container",
-              path: "/container",
+              path: "/docs/layout/container",
             },
             {
               title: "Flex",
-              path: "/flex",
+              path: "/docs/layout/flex",
             },
             {
               title: "Grid",
-              path: "/grid",
+              path: "/docs/layout/grid",
             },
             {
               title: "SimpleGrid",
-              path: "/simple-grid",
+              path: "/docs/layout/simple-grid",
             },
             {
               title: "Stack",
-              path: "/stack",
+              path: "/docs/layout/stack",
             },
             {
               title: "Wrap",
-              path: "/wrap",
+              path: "/docs/layout/wrap",
             },
           ],
         },
         {
           title: "Form Elements",
           path: "/docs/form",
-          opened: true,
+          open: true,
           routes: [
             {
               title: "Button",
-              path: "/button",
+              path: "/docs/form/button",
             },
             {
               title: "Checkbox",
-              path: "/checkbox",
+              path: "/docs/form/checkbox",
             },
             {
               title: "Form Control",
-              path: "/form-control",
+              path: "/docs/form/form-control",
             },
             {
               title: "Input",
-              path: "/input",
+              path: "/docs/form/input",
             },
             {
               title: "Number Input",
-              path: "/number-input",
+              path: "/docs/form/number-input",
             },
             {
               title: "Pin Input	",
-              path: "/pin-input",
+              path: "/docs/form/pin-input",
             },
             {
               title: "Radio",
-              path: "/radio",
+              path: "/docs/form/radio",
             },
             {
               title: "Select",
-              path: "/select",
+              path: "/docs/form/select",
             },
             {
               title: "Slider",
-              path: "/slider",
+              path: "/docs/form/slider",
             },
             {
               title: "Switch",
-              path: "/switch",
+              path: "/docs/form/switch",
             },
             {
               title: "Textarea",
-              path: "/textarea",
+              path: "/docs/form/textarea",
             },
           ],
         },
         {
           title: "Hooks",
           path: "/docs/hooks",
-          opened: true,
+          open: true,
           routes: [
             {
               title: "useBreakpointValue",
-              path: "/use-breakpoint-value",
+              path: "/docs/hooks/use-breakpoint-value",
             },
             {
               title: "useClipboard",
-              path: "/use-clipboard",
+              path: "/docs/hooks/use-clipboard",
             },
             {
               title: "useControllable",
-              path: "/use-controllable",
+              path: "/docs/hooks/use-controllable",
             },
             {
               title: "useDisclosure",
-              path: "/use-disclosure",
+              path: "/docs/hooks/use-disclosure",
             },
             {
               title: "useTheme",
-              path: "/use-theme",
+              path: "/docs/hooks/use-theme",
             },
           ],
         },
         {
           title: "Data Display",
           path: "/docs/data-display",
-          opened: true,
+          open: true,
           routes: [
             {
               title: "Avatar",
-              path: "/avatar",
+              path: "/docs/data-display/avatar",
             },
             {
               title: "Badge",
-              path: "/badge",
+              path: "/docs/data-display/badge",
             },
             {
               title: "Code",
-              path: "/code",
+              path: "/docs/data-display/code",
             },
             {
               title: "Divider",
-              path: "/divider",
+              path: "/docs/data-display/divider",
             },
             {
               title: "Image",
-              path: "/image",
+              path: "/docs/data-display/image",
             },
             {
               title: "Kbd",
-              path: "/kbd",
+              path: "/docs/data-display/kbd",
             },
             {
               title: "List",
-              path: "/list",
+              path: "/docs/data-display/list",
             },
             {
               title: "Stat",
-              path: "/stat",
+              path: "/docs/data-display/stat",
             },
             {
               title: "Tag",
-              path: "/tag",
+              path: "/docs/data-display/tag",
             },
           ],
         },
         {
           title: "Feedback",
           path: "/docs/feedback",
-          opened: true,
+          open: true,
           routes: [
             {
               title: "Alert",
-              path: "/alert",
+              path: "/docs/feedback/alert",
             },
             {
               title: "Circular Progress",
-              path: "/circular-progress",
+              path: "/docs/feedback/circular-progress",
             },
             {
               title: "Progress",
-              path: "/progress",
+              path: "/docs/feedback/progress",
             },
             {
               title: "Skeleton",
-              path: "/skeleton",
+              path: "/docs/feedback/skeleton",
             },
             {
               title: "Spinner",
-              path: "/spinner",
+              path: "/docs/feedback/spinner",
             },
             {
               title: "Toast",
-              path: "/toast",
+              path: "/docs/feedback/toast",
             },
           ],
         },
         {
           title: "Typography",
           path: "/docs/typography",
-          opened: true,
+          open: true,
           routes: [
             {
               title: "Text",
-              path: "/text",
+              path: "/docs/typography/text",
             },
             {
               title: "Heading",
-              path: "/heading",
+              path: "/docs/typography/heading",
             },
           ],
         },
         {
           title: "Overlay Elements",
           path: "/docs/overlay",
-          opened: true,
+          open: true,
           routes: [
             {
               title: "Alert Dialog",
-              path: "/alert-dialog",
+              path: "/docs/overlay/alert-dialog",
             },
             {
               title: "Drawer",
-              path: "/drawer",
+              path: "/docs/overlay/drawer",
             },
             {
               title: "Menu",
-              path: "/menu",
+              path: "/docs/overlay/menu",
             },
             {
               title: "Modal",
-              path: "/modal",
+              path: "/docs/overlay/modal",
             },
             {
               title: "Popover",
-              path: "/popover",
+              path: "/docs/overlay/popover",
             },
             {
               title: "Tooltip",
-              path: "/tooltip",
+              path: "/docs/overlay/tooltip",
             },
           ],
         },

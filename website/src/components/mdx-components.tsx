@@ -1,16 +1,7 @@
+import { Box, chakra, Kbd, useColorModeValue } from "@chakra-ui/core"
 import React from "react"
-import {
-  Box,
-  Heading,
-  Kbd,
-  Text,
-  chakra,
-  Code,
-  Alert,
-  useColorModeValue,
-} from "@chakra-ui/core"
-import CodeBlock from "./codeblock"
 import CarbonAd from "./carbon-ad"
+import CodeBlock from "./codeblock/codeblock"
 
 const Pre = (props) => <chakra.div my="2em" borderRadius="sm" {...props} />
 
@@ -42,10 +33,7 @@ const TData = (props) => (
 )
 
 const LinkedHeading = (props) => (
-  <Heading
-    mt="6"
-    mb="2"
-    fontWeight="semibold"
+  <chakra.h2
     css={{
       "&[id]": {
         pointerEvents: "none",
@@ -78,17 +66,17 @@ const LinkedHeading = (props) => (
         </chakra.a>
       )}
     </chakra.div>
-  </Heading>
+  </chakra.h2>
 )
 
 const InlineCode = (props) => (
   <chakra.code
-    bg="gray.100"
+    bg="teal.50"
     rounded="md"
     px="1"
     border="1px"
-    fontSize="0.875em"
-    borderColor="gray.300"
+    fontSize="0.8em"
+    borderColor="teal.100"
     color="gray.900"
     mx="2px"
     py="2px"
@@ -99,12 +87,10 @@ const InlineCode = (props) => (
 )
 
 const MDXComponents = {
-  h1: (props) => <Heading as="h1" size="2xl" my="6" {...props} />,
-  h2: (props) => <LinkedHeading mt="12" mb="4" size="lg" {...props} />,
-  h3: (props) => <LinkedHeading as="h3" size="md" {...props} />,
-  h4: (props) => (
-    <Heading as="h4" size="xs" textTransform="uppercase" mt="6" {...props} />
-  ),
+  h1: (props) => <chakra.h1 apply="mdx.h1" {...props} />,
+  h2: (props) => <LinkedHeading apply="mdx.h2" {...props} />,
+  h3: (props) => <LinkedHeading as="h3" apply="mdx.h3" {...props} />,
+  h4: (props) => <LinkedHeading as="h4" apply="mdx.h4" {...props} />,
   inlineCode: InlineCode,
   code: CodeBlock,
   pre: Pre,
@@ -114,29 +100,21 @@ const MDXComponents = {
   table: Table,
   th: THead,
   td: TData,
-  a: (props) => (
-    <chakra.a
-      color="teal.500"
-      fontWeight="semibold"
-      transition="color 0.15s"
-      transitionTimingFunction="ease-out"
-      _hover={{
-        color: "teal.600",
-      }}
-      {...props}
-    />
-  ),
-  p: (props) => <Text mt={4} lineHeight="tall" {...props} />,
+  a: (props) => <chakra.a apply="mdx.a" {...props} />,
+  p: (props) => <chakra.p apply="mdx.p" {...props} />,
   ul: (props) => <chakra.ul ml="8" pt="8px" {...props} />,
   ol: (props) => <chakra.ol ml="8" pt="8px" {...props} />,
   li: (props) => <chakra.li pb="4px" {...props} />,
   blockquote: (props) => (
-    <Alert
-      role="presentation"
-      mt={4}
-      variant="left-accent"
-      status="warning"
-      css={{ "> *:first-of-type": { marginTop: 0 } }}
+    <Box
+      as="blockquote"
+      bg="orange.50"
+      borderWidth="1px"
+      borderColor="orange.100"
+      rounded="3px"
+      px="1.25rem"
+      py="1rem"
+      my="1.5rem"
       {...props}
     />
   ),

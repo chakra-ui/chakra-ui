@@ -1,4 +1,5 @@
 import React from "react"
+
 import { get, startsWith } from "lodash/fp"
 import {
   Input,
@@ -89,6 +90,8 @@ function Search(props) {
     <Box
       position="relative"
       width="100%"
+      mt="3"
+      mb="32px"
       boxSizing="content-box"
       display={["none", "block", "block"]}
       {...props}
@@ -119,15 +122,16 @@ function Search(props) {
         },
       }}
     >
-      <InputGroup variant="filled" size="md">
+      <InputGroup size="md">
         <InputLeftElement>
           <SearchIcon color="gray.500" />
         </InputLeftElement>
         <Input
-          placeholder={`Search the docs (Press "/" to focus)`}
+          bg="gray.50"
+          placeholder={`Search docs`}
           focusBorderColor="teal.200"
           ref={ref}
-          borderRadius="md"
+          borderRadius="lg"
           id="algolia-search"
           aria-label="Search Chakra UI docs"
         />
