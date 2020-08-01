@@ -14,6 +14,12 @@ export const CSSReset = () => (
         touch-action: manipulation; 
       }
 
+      body {
+        position: relative;
+        min-height: 100%;
+        font-feature-settings: 'kern';
+      }
+
       *,
       *::before,
       *::after {
