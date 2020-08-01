@@ -1,13 +1,13 @@
 import { Icon, chakra } from "@chakra-ui/core"
 import { useRef, useState, useEffect, ReactNode } from "react"
-import { FiChevronDown } from "react-icons/fi"
+import { FiChevronRight } from "react-icons/fi"
 
 type SidebarCategoryProps = {
   isMobile?: boolean
   title: string
   opened?: boolean
   selected?: boolean
-  children?: ReactNode
+  children: ReactNode
 }
 
 function SidebarCategory(props: SidebarCategoryProps) {
@@ -23,7 +23,8 @@ function SidebarCategory(props: SidebarCategoryProps) {
     shouldScroll: false,
   })
 
-  const onClick = () => {
+  const onClick = (e) => {
+    e.preventDefault()
     setToggle({ toggle: !toggle, shouldScroll: true })
   }
 
@@ -51,38 +52,41 @@ function SidebarCategory(props: SidebarCategoryProps) {
   }, [toggle, shouldScroll, isMobile])
 
   return (
-    <div ref={ref}>
+    <chakra.div mt="18px" ref={ref}>
       <chakra.a
         cursor="pointer"
         display="flex"
         alignItems="center"
-        justifyContent="space-between"
         color="gray.700"
+        ml="-4px"
         onClick={onClick}
         _hover={{
           color: "gray.800",
         }}
       >
-        {title}
         <Icon
+          fontSize="sm"
           mr="16px"
           transformOrigin="center"
+          transform={!toggle ? "rotate(90deg)" : undefined}
           transition="transform 0.15 ease"
-          as={FiChevronDown}
-          color="gray.600"
+          as={FiChevronRight}
+          color="gray.400"
         />
+        {title}
       </chakra.a>
       <chakra.div
+        hidden={toggle}
         borderLeft="1px solid"
-        borderColor="gray.400"
-        mt="0"
-        pl="20px"
+        borderColor="gray.200"
+        mt="3"
+        pl="5"
         overflow="hidden"
-        ml="4px"
+        ml="2"
       >
         {children}
       </chakra.div>
-    </div>
+    </chakra.div>
   )
 }
 
