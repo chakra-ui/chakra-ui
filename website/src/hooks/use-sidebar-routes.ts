@@ -1,5 +1,5 @@
 import { useRouter } from "next/router"
-import sidebar from "sidebar.config"
+import sidebar from "configs/docs-sidebar"
 import { findRouteByPath, removeFromLast } from "utils/find-route-by-path"
 import { getRouteContext } from "utils/get-route-context"
 

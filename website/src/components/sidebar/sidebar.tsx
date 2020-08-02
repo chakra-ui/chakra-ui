@@ -1,13 +1,11 @@
 import { Box, chakra, Stack } from "@chakra-ui/core"
 import { useRouter } from "next/router"
 import * as React from "react"
-import sidebar from "sidebar.config"
 import SidebarCategory from "./sidebar-category"
 import SidebarLink from "./sidebar-link"
 import Search from "components/algolia-search"
 
-const Sidebar = () => {
-  const { routes } = sidebar
+const Sidebar = ({ routes }: any) => {
   const { pathname } = useRouter()
   const ref = React.useRef<HTMLDivElement>(null)
 

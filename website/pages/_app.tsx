@@ -7,7 +7,7 @@ import { DefaultSeo } from "next-seo"
 import Head from "next/head"
 import Router from "next/router"
 import React from "react"
-import siteConfig from "site.config"
+import siteConfig from "configs/site-config"
 import "../src/styles/algolia.css"
 
 Router.events.on("routeChangeComplete", (url) => {

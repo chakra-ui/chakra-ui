@@ -1,4 +1,4 @@
-const withMdxEnhanced = require("next-mdx-enhanced")
+const withMdx = require("next-mdx-enhanced")
 const path = require("path")
 const execa = require("execa")
 const fromUnixTime = require("date-fns/fromUnixTime")
@@ -81,7 +81,7 @@ function fileToPath(str) {
   return addLeadingSlash(str.replace(".mdx", ""))
 }
 
-module.exports = withMdxEnhanced({
+module.exports = withMdx({
   layoutPath: "layouts",
   defaultLayout: true,
   fileExtensions: ["mdx"],
@@ -96,7 +96,7 @@ module.exports = withMdxEnhanced({
   ],
   rehypePlugins: [],
   extendFrontMatter: {
-    process: async (mdxContent, frontmatter) => {
+    process: async (_, frontmatter) => {
       const { __resourcePath: mdxPath, author, tags } = frontmatter
 
       // read the file path
@@ -114,12 +114,16 @@ module.exports = withMdxEnhanced({
       // if frontmatter inclues author, add the author's data
       const authorData = author ? await getUserData(author) : undefined
 
+      // get the layout we should use based on path
+      const layout = mdxPath.startsWith("/guides") ? "guides" : "docs"
+
       return {
         slug,
         lastEdited,
         editUrl,
         author: authorData,
         tags,
+        layout: frontmatter.layout || layout,
       }
     },
   },

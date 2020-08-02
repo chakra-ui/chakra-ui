@@ -18,7 +18,7 @@ import NavLink from "./header-nav-link"
 import Logo from "./logo"
 // import MobileNav from "./mobile-nav"
 import SponsorButton from "./sponsor-button"
-import siteConfig from "site.config"
+import siteConfig from "configs/site-config"
 
 const DiscordIcon = (props) => (
   <svg viewBox="0 0 146 146" {...props}>

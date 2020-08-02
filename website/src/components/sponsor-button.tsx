@@ -1,7 +1,7 @@
 import React from "react"
 import { Box, Icon } from "@chakra-ui/core"
 import { FaHeart } from "react-icons/fa"
-import siteConfig from "site.config"
+import siteConfig from "configs/site-config"
 
 const SponsorButton = (props) => (
   <Box
