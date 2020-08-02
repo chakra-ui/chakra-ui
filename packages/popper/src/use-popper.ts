@@ -1,9 +1,27 @@
-import { useRef, useState, CSSProperties, useCallback, useEffect } from "react"
-import { Instance, createPopper, Modifier } from "@popperjs/core"
 import type { Placement } from "@popperjs/core"
-import { getArrowStyles, toTransformOrigin } from "./popper.utils"
-import { useConst, useSafeLayoutEffect } from "@chakra-ui/hooks"
+import { createPopper, Instance, Modifier } from "@popperjs/core"
+import {
+  CSSProperties,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react"
 import isEqual from "react-fast-compare"
+import { getArrowStyles, toTransformOrigin } from "./popper.utils"
+
+const isBrowser = typeof window !== "undefined"
+const useSafeLayoutEffect = isBrowser ? useLayoutEffect : useEffect
+
+function applyStyles(styles?: Partial<CSSStyleDeclaration>) {
+  return (prevStyles: CSSProperties) => {
+    if (styles && !isEqual(prevStyles, styles)) {
+      return styles as CSSProperties
+    }
+    return prevStyles
+  }
+}
 
 export type { Placement }
 
@@ -51,19 +69,9 @@ export interface UsePopperProps {
   modifiers?: Modifier<any, any>[]
 }
 
-function applyStyles(styles?: Partial<CSSStyleDeclaration>) {
-  return (prevStyles: CSSProperties) => {
-    if (styles && !isEqual(prevStyles, styles)) {
-      return styles as CSSProperties
-    }
-    return prevStyles
-  }
-}
-
 export function usePopper(props: UsePopperProps = {}) {
-  const { forceUpdate = true } = props
-
   const {
+    forceUpdate = true,
     placement: initialPlacement = "bottom",
     offset: offsetProp,
     preventOverflow = true,
@@ -71,9 +79,9 @@ export function usePopper(props: UsePopperProps = {}) {
     flip = true,
     arrowSize = 10,
     arrowShadowColor,
-    gutter = 10,
+    gutter = arrowSize,
     modifiers,
-  } = useConst(props)
+  } = props
 
   // This holds the popper.js instance
   const popper = useRef<Instance | null>(null)
@@ -82,26 +90,17 @@ export function usePopper(props: UsePopperProps = {}) {
   const referenceRef = useRef<HTMLButtonElement>(null)
   const popoverRef = useRef<HTMLDivElement>(null)
   const arrowRef = useRef<HTMLDivElement>(null)
-  const popperCreated = useRef(false)
 
   // Keep track of placements calculated by popper.js
-  const [originalPlacement, place] = useState(initialPlacement)
+  const [originalPlacement, setCustomPlacement] = useState(initialPlacement)
   const [placement, setPlacement] = useState(initialPlacement)
 
   // Keep track of the offsets between the reference and popper
-  const offset = useConst(offsetProp || [0, gutter])
+  const offset = offsetProp || [0, gutter]
 
   // Keeps track of the computed styles of the popper and arrow
-  const [popoverStyles, setPopoverStyles] = useState<React.CSSProperties>({})
-  const [arrowStyles, setArrowStyles] = useState<React.CSSProperties>({})
-
-  const update = useCallback(() => {
-    if (popper.current) {
-      popper.current.forceUpdate()
-      return true
-    }
-    return false
-  }, [])
+  const [popoverStyles, setPopoverStyles] = useState<CSSProperties>({})
+  const [arrowStyles, setArrowStyles] = useState<CSSProperties>({})
 
   const modifiersOverride = modifiers ?? []
 
@@ -155,8 +154,7 @@ export function usePopper(props: UsePopperProps = {}) {
             // https://popper.js.org/docs/v2/modifiers/#custom-modifiers
             name: "updateState",
             phase: "write",
-            requires: ["computeStyles"],
-            enabled: !popperCreated.current || forceUpdate,
+            enabled: true,
             fn({ state }) {
               setPlacement(state.placement)
               setPopoverStyles(applyStyles(state.styles.popper))
@@ -166,8 +164,6 @@ export function usePopper(props: UsePopperProps = {}) {
           ...modifiersOverride,
         ],
       })
-
-      popperCreated.current = true
     }
     return () => {
       if (popper.current) {
@@ -177,15 +173,29 @@ export function usePopper(props: UsePopperProps = {}) {
     }
   }, [originalPlacement, fixed, forceUpdate, flip, offset, preventOverflow])
 
-  useEffect(() => {
-    if (!forceUpdate) return undefined
+  useSafeLayoutEffect(() => {
     const id = requestAnimationFrame(() => {
-      popper.current?.forceUpdate()
+      if (forceUpdate) {
+        popper.current?.forceUpdate()
+      }
     })
     return () => {
       cancelAnimationFrame(id)
     }
   }, [forceUpdate])
+
+  const forcePopperUpdate = useCallback(() => {
+    if (popper.current) {
+      popper.current.forceUpdate()
+      return true
+    }
+    return false
+  }, [])
+
+  const _arrowStyles: CSSProperties = {
+    ...arrowStyles,
+    ...getArrowStyles(placement, arrowSize, arrowShadowColor),
+  }
 
   return {
     popperInstance: popper.current,
@@ -201,14 +211,11 @@ export function usePopper(props: UsePopperProps = {}) {
     },
     arrow: {
       ref: arrowRef,
-      style: {
-        ...arrowStyles,
-        ...getArrowStyles(placement, arrowSize, arrowShadowColor),
-      },
+      style: _arrowStyles,
     },
-    update,
+    update: forcePopperUpdate,
     placement,
-    place,
+    setPlacement: setCustomPlacement,
   }
 }
 

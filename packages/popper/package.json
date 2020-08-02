@@ -51,8 +51,7 @@
   },
   "dependencies": {
     "@popperjs/core": "2.4.4",
-    "react-fast-compare": "3.2.0",
-    "@chakra-ui/hooks": "1.0.0-rc.0"
+    "react-fast-compare": "3.2.0"
   },
   "peerDependencies": {
     "react": "16.x"
