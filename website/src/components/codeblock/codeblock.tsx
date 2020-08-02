@@ -84,7 +84,7 @@ function CodeBlock(props) {
   const [editorCode, setEditorCode] = useState(children.trim())
 
   const language = className && className.replace(/language-/, "")
-  const [hasCopied, onCopy] = useClipboard(editorCode)
+  const { hasCopied, onCopy } = useClipboard(editorCode)
 
   const liveProviderProps = {
     theme,
