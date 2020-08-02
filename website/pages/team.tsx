@@ -143,17 +143,26 @@ export async function getServerSideProps() {
   const path = require("path")
   const fs = require("fs")
 
+  /**
+   * Read the profile/bio of each member of the Chakra UI team.
+   * @todo consider writing this to a file for caching (e.g .all-membersrc)
+   */
   const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN })
-
   const { data: members } = await octokit.orgs.listMembers({ org: "chakra-ui" })
-  const membersData = (await Promise.all(
+
+  const membersData: any[] = await Promise.all(
     members.map(
       async ({ login }) =>
         await octokit.users.getByUsername({ username: login }),
     ),
-  )) as any[]
+  )
+
   const sortedMembers = membersData.map((m) => m.data).sort(sortMembers)
 
+  /**
+   * Read contributors from `.all-contributorsrc` file
+   * to avoid overfetching from Github
+   */
   const rcPath = path.resolve("..", ".all-contributorsrc")
   const contributorsRcData = fs.readFileSync(rcPath, "utf-8")
   const { contributors } = JSON.parse(contributorsRcData)
