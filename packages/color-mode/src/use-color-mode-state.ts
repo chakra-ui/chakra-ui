@@ -42,7 +42,7 @@ function useSyncSystemColorMode(fn: Function, enabled: boolean) {
   }, [callback, enabled])
 }
 
-interface Options {
+export interface ColorModeOptions {
   initialColorMode?: ColorMode
   useSystemColorMode?: boolean
 }
@@ -51,7 +51,7 @@ interface Options {
  * React hook that sets up the localStorage, body className,
  * and reads from system preference
  */
-export function useColorModeState<T extends Options>(options?: T) {
+export function useColorModeState<T extends ColorModeOptions>(options?: T) {
   const [mode, setMode] = React.useState<ColorMode>(
     options?.initialColorMode || "light",
   )

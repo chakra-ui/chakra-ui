@@ -6,6 +6,6 @@ export default {
 }
 
 export const BasicExample = () => {
-  const [mode] = useColorMode()
+  const { colorMode: mode } = useColorMode()
   return <code>Color mode is: {mode}</code>
 }

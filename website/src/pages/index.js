@@ -63,7 +63,7 @@ const sampleCode = `
   <Text mt={2}>$119/night</Text>
   <Flex mt={2} align="center">
     <Box as={MdStar} color="orange.400" />
-    <Text ml={1} fontsize="sm"><b>4.84</b> (190)</Text>
+    <Text ml={1} fontSize="sm"><b>4.84</b> (190)</Text>
   </Flex>
 </Box>
 `
@@ -71,7 +71,10 @@ const sampleCode = `
 export default () => {
   return (
     <>
-      <SEO title="Index" />
+      <SEO
+        title="Chakra UI - A simple, modular and accessible component library that gives you the building blocks you need to build your React applications."
+        description="Simple, Modular and Accessible UI Components for your React Applications. Built with Styled System"
+      />
       <Box mb={20}>
         <Box as="section" pt={40} pb={24}>
           <Container>
@@ -86,8 +89,8 @@ export default () => {
 
               <Text opacity="0.7" fontSize="xl" mt="6">
                 Chakra UI is a simple, modular and accessible component library
-                that gives you all the building blocks you need to build your
-                React applications.
+                that gives you the building blocks you need to build your React
+                applications.
               </Text>
 
               <Box mt="6">

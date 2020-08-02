@@ -1,4 +1,4 @@
-import * as React from "react"
+import { useCallback, useMemo, useState } from "react"
 import { useSafeLayoutEffect, useForceUpdate } from "@chakra-ui/hooks"
 
 export type Descendant<T extends HTMLElement, P = {}> = P & {
@@ -67,49 +67,46 @@ export function useDescendant<T extends HTMLElement, P>(
 }
 
 export function useDescendants<T extends HTMLElement, P>() {
-  const [descendants, setDescendants] = React.useState<Descendant<T, P>[]>([])
+  const [descendants, setDescendants] = useState<Descendant<T, P>[]>([])
 
-  const register = React.useCallback(
-    ({ element, ...rest }: Descendant<T, P>) => {
-      if (!element) return
+  const register = useCallback(({ element, ...rest }: Descendant<T, P>) => {
+    if (!element) return
 
-      //@ts-ignore
-      setDescendants((prevDescendants) => {
-        if (prevDescendants.find((item) => item.element === element) == null) {
-          const index = prevDescendants.findIndex((item) => {
-            if (!item.element || !element) return false
+    //@ts-ignore
+    setDescendants((prevDescendants) => {
+      if (prevDescendants.find((item) => item.element === element) == null) {
+        const index = prevDescendants.findIndex((item) => {
+          if (!item.element || !element) return false
 
-            return Boolean(
-              item.element.compareDocumentPosition(element) &
-                Node.DOCUMENT_POSITION_PRECEDING,
-            )
-          })
+          return Boolean(
+            item.element.compareDocumentPosition(element) &
+              Node.DOCUMENT_POSITION_PRECEDING,
+          )
+        })
 
-          const newItem = { element, ...rest }
+        const newItem = { element, ...rest }
 
-          if (index === -1) {
-            return [...prevDescendants, newItem]
-          }
-          return [
-            ...prevDescendants.slice(0, index),
-            newItem,
-            ...prevDescendants.slice(index),
-          ]
+        if (index === -1) {
+          return [...prevDescendants, newItem]
         }
-        return prevDescendants
-      })
-    },
-    [],
-  )
+        return [
+          ...prevDescendants.slice(0, index),
+          newItem,
+          ...prevDescendants.slice(index),
+        ]
+      }
+      return prevDescendants
+    })
+  }, [])
 
-  const unregister = React.useCallback((element: T) => {
+  const unregister = useCallback((element: T) => {
     if (!element) return
     setDescendants((descendants) =>
       descendants.filter((descendant) => element !== descendant.element),
     )
   }, [])
 
-  const context = React.useMemo(() => {
+  const context = useMemo(() => {
     return { descendants, register, unregister }
   }, [descendants, register, unregister])
 

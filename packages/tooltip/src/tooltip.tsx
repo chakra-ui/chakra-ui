@@ -1,13 +1,18 @@
 import { Portal } from "@chakra-ui/portal"
-import { chakra, PropsOf } from "@chakra-ui/system"
-import { isString, omit, pick, __DEV__ } from "@chakra-ui/utils"
+import {
+  chakra,
+  PropsOf,
+  ThemingProps,
+  useStyleConfig,
+  omitThemingProps,
+} from "@chakra-ui/system"
+import { isString, omit, pick, __DEV__, mergeRefs } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 import * as React from "react"
 import { useTooltip, UseTooltipProps } from "./use-tooltip"
 
-const StyledTooltip = chakra("div", { themeKey: "Tooltip" })
-
-export type TooltipProps = PropsOf<typeof StyledTooltip> &
+export type TooltipProps = PropsOf<typeof chakra.div> &
+  ThemingProps &
   UseTooltipProps & {
     /**
      * The react component to use as the
@@ -47,21 +52,24 @@ export const Tooltip = React.forwardRef(function Tooltip(
   props: TooltipProps,
   ref: React.Ref<any>,
 ) {
+  const styles = useStyleConfig("Tooltip", props)
+  const realProps = omitThemingProps(props)
+
   const {
     children,
     label,
     shouldWrapChildren,
     "aria-label": ariaLabel,
     hasArrow,
-    ...rest
-  } = props
+    ...otherProps
+  } = realProps
 
   const {
     isOpen,
     getTriggerProps,
     getTooltipProps,
     getArrowProps,
-  } = useTooltip(props)
+  } = useTooltip(realProps)
 
   const shouldWrap = isString(children) || shouldWrapChildren
 
@@ -83,7 +91,8 @@ export const Tooltip = React.forwardRef(function Tooltip(
 
   const hasAriaLabel = !!ariaLabel
 
-  const _tooltipProps = getTooltipProps({ ...rest, ref })
+  const _tooltipProps = getTooltipProps(otherProps, ref)
+  const arrowProps = getArrowProps()
 
   const tooltipProps = hasAriaLabel
     ? omit(_tooltipProps, ["role", "id"])
@@ -92,21 +101,19 @@ export const Tooltip = React.forwardRef(function Tooltip(
   const hiddenProps = pick(_tooltipProps, ["role", "id"])
 
   /**
-   * If the `label` or `aria-label` is empty, there's no
+   * If the `label` is empty, there's no
    * point showing the tooltip. Let's simply return back the children
-   *
-   * @see https://github.com/chakra-ui/chakra-ui/issues/601
    */
-  if (!(label || ariaLabel)) {
-    return <React.Fragment>{children}</React.Fragment>
+  if (!label) {
+    return <>{children}</>
   }
 
   return (
-    <React.Fragment>
+    <>
       {trigger}
       {isOpen && (
         <Portal>
-          <StyledTooltip className="chakra-tooltip" {...tooltipProps}>
+          <chakra.div {...tooltipProps} __css={styles}>
             {label}
             {hasAriaLabel && (
               <VisuallyHidden {...hiddenProps}>{ariaLabel}</VisuallyHidden>
@@ -114,14 +121,14 @@ export const Tooltip = React.forwardRef(function Tooltip(
             {hasArrow && (
               <chakra.div
                 className="chakra-tooltip__arrow"
-                bg="inherit"
-                {...getArrowProps()}
+                {...arrowProps}
+                __css={{ bg: "inherit" }}
               />
             )}
-          </StyledTooltip>
+          </chakra.div>
         </Portal>
       )}
-    </React.Fragment>
+    </>
   )
 })
 

@@ -1,96 +1,91 @@
 import {
-  Props,
-  ComponentTheme,
-  mode,
   getColor,
-  ink,
+  mode,
+  multiStyleConfig,
+  transparentize,
 } from "@chakra-ui/theme-tools"
 
-function getSubtleStyle(props: Props) {
-  const { theme: t, colorScheme: c } = props
-
-  const light = getColor(t, `${c}.100`, c)
-  const dark = ink(`${c}.200`, "lowest")(t)
-
-  const bg = mode(light, dark)(props)
-
-  return {
-    Root: { bg },
-    Icon: {
-      color: mode(`${c}.500`, `${c}.200`)(props),
-    },
-  }
-}
-
-function getLeftAccentStyle(props: Props) {
-  const { colorScheme: c } = props
-  const subtleStyle = getSubtleStyle(props)
-  return {
-    Root: {
-      paddingLeft: 3,
-      borderLeft: "4px solid",
-      borderColor: mode(`${c}.500`, `${c}.200`)(props),
-      ...subtleStyle.Root,
-    },
-    Icon: {
-      color: mode(`${c}.500`, `${c}.200`)(props),
-    },
-  }
-}
-
-function getTopAccentStyle(props: Props) {
-  const { colorScheme: c } = props
-  const subtleStyle = getSubtleStyle(props)
-  return {
-    Root: {
-      paddingTop: 2,
-      borderTop: "4px solid",
-      borderColor: mode(`${c}.500`, `${c}.200`)(props),
-      ...subtleStyle.Root,
-    },
-    Icon: {
-      color: mode(`${c}.500`, `${c}.200`)(props),
-    },
-  }
-}
-
-function getSolidStyle(props: Props) {
-  const { colorScheme: c } = props
-  return {
-    Root: {
-      bg: mode(`${c}.500`, `${c}.200`)(props),
-      color: mode(`white`, `gray.900`)(props),
-    },
-  }
-}
-
-const Alert: ComponentTheme = {
-  defaultProps: {
-    variant: "subtle",
+const alert = multiStyleConfig({
+  parts: {
+    container: "the alert container",
+    title: "the alert title",
+    icon: "the alert icon",
   },
   baseStyle: {
-    Root: {
-      paddingX: 4,
-      paddingY: 3,
+    container: {
+      px: 4,
+      py: 3,
     },
-    Icon: {
-      marginRight: 3,
-      boxSize: 5,
+    title: {
+      fontWeight: "bold",
+      lineHeight: "normal",
+    },
+    icon: {
+      mr: 3,
+      w: 5,
+      h: 5,
     },
   },
   variants: {
-    solid: getSolidStyle,
-    subtle: getSubtleStyle,
-    "left-accent": getLeftAccentStyle,
-    "top-accent": getTopAccentStyle,
+    subtle: function (props) {
+      const { colorScheme: c } = props
+      return {
+        container: { bg: getBg(props) },
+        icon: { color: mode(`${c}.500`, `${c}.200`)(props) },
+      }
+    },
+
+    "left-accent": function (props) {
+      const { colorScheme: c } = props
+      return {
+        container: {
+          pl: 3,
+          borderLeft: "4px solid",
+          borderColor: mode(`${c}.500`, `${c}.200`)(props),
+          bg: getBg(props),
+        },
+        icon: {
+          color: mode(`${c}.500`, `${c}.200`)(props),
+        },
+      }
+    },
+
+    "top-accent": function (props) {
+      const { colorScheme: c } = props
+      return {
+        container: {
+          pt: 2,
+          borderTop: "4px solid",
+          borderColor: mode(`${c}.500`, `${c}.200`)(props),
+          bg: getBg(props),
+        },
+        icon: {
+          color: mode(`${c}.500`, `${c}.200`)(props),
+        },
+      }
+    },
+
+    solid: function (props) {
+      const { colorScheme: c } = props
+      return {
+        container: {
+          bg: mode(`${c}.500`, `${c}.200`)(props),
+          color: mode(`white`, `gray.900`)(props),
+        },
+      }
+    },
   },
+
+  defaultProps: {
+    variant: "subtle",
+  },
+})
+
+function getBg(props: Record<string, any>) {
+  const { theme, colorScheme: c } = props
+  const lightBg = getColor(theme, `${c}.100`, c)
+  const darkBg = transparentize(`${c}.200`, 0.16)(theme)
+  return mode(lightBg, darkBg)(props)
 }
 
-export const AlertVariants = {
-  solid: "solid",
-  subtle: "subtle",
-  "left-accent": "left-accent",
-  "top-accent": "top-accent",
-}
-
-export default Alert
+export default alert

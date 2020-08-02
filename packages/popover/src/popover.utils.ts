@@ -1,64 +1,12 @@
 import { useUpdateEffect, useEventListener } from "@chakra-ui/hooks"
-import { ensureFocus, getFirstTabbableIn, isFocusable } from "@chakra-ui/utils"
+import { focus, getFirstTabbableIn, isFocusable } from "@chakra-ui/utils"
 import * as React from "react"
-
-/**
- * Check if the event target is within the popover ref.
- *
- * @param ref the popover ref
- * @param event the blur event
- */
-export function hasFocusWithin(
-  popoverRef: React.RefObject<HTMLElement>,
-  event: React.FocusEvent,
-) {
-  if (!document.activeElement || !popoverRef.current) {
-    return false
-  }
-
-  const target = (event.relatedTarget || document.activeElement) as HTMLElement
-
-  return popoverRef.current.contains(target)
-}
-
-/**
- * Popover hook to manage outside click or blur detection.
- * It listens for outside click and notifies us so we can
- * close the popover
- *
- * @param triggerRef - popover trigger ref
- * @param popoverRef - popover content ref
- * @param options popover options (visible and action)
- */
-export function useBlurOutside(
-  triggerRef: React.RefObject<HTMLButtonElement>,
-  popoverRef: React.RefObject<HTMLElement>,
-  options: {
-    action: () => void
-    visible: boolean
-  },
-) {
-  const onMouseDown = (event: MouseEvent) => {
-    if (options.visible && event.target === triggerRef.current) {
-      event.preventDefault()
-    }
-  }
-
-  useEventListener("mousedown", onMouseDown)
-  useEventListener("touchstart", onMouseDown)
-
-  return (event: React.FocusEvent) => {
-    const shouldClose = options.visible && !hasFocusWithin(popoverRef, event)
-    if (shouldClose) {
-      options.action()
-    }
-  }
-}
 
 export interface UseFocusOnHideOptions {
   focusRef: React.RefObject<HTMLElement>
   autoFocus?: boolean
   visible?: boolean
+  trigger?: "hover" | "click"
 }
 
 /**
@@ -73,11 +21,11 @@ export function useFocusOnHide(
   options: UseFocusOnHideOptions,
 ) {
   const isFocusableRef = React.useRef(false)
-  const { focusRef, autoFocus, visible } = options
+  const { focusRef, autoFocus, visible, trigger } = options
 
-  const shouldFocus = autoFocus && !visible
+  const shouldFocus = autoFocus && !visible && trigger === "click"
 
-  const onMouseDown = (event: MouseEvent) => {
+  const onPointerDown = (event: MouseEvent) => {
     if (!options.visible) return
     const target = event.target as HTMLElement
 
@@ -91,7 +39,8 @@ export function useFocusOnHide(
     }
   }
 
-  useEventListener("mousedown", onMouseDown)
+  useEventListener("mousedown", onPointerDown)
+  useEventListener("touchstart", onPointerDown)
 
   useUpdateEffect(() => {
     return () => {
@@ -111,15 +60,16 @@ export function useFocusOnHide(
     if (isFocusableRef.current) return
 
     if (focusRef.current) {
-      ensureFocus(focusRef.current)
+      focus(focusRef.current)
     }
   }, [autoFocus, focusRef, visible, popoverRef, shouldFocus])
 }
 
-export interface UseFocusOnShowOptions {
+interface UseFocusOnShowOptions {
   autoFocus?: boolean
   visible?: boolean
   focusRef?: React.RefObject<HTMLElement>
+  trigger?: "hover" | "click"
 }
 
 /**
@@ -133,16 +83,18 @@ export function useFocusOnShow(
   popoverRef: React.RefObject<HTMLElement>,
   options: UseFocusOnShowOptions,
 ) {
-  const { visible, autoFocus, focusRef } = options
+  const { visible, autoFocus, focusRef, trigger } = options
 
   /**
    * Using updateEffect here to allow effect to run only when
    * `options.visible` changes, not on mount
    */
   useUpdateEffect(() => {
+    if (trigger === "hover") return
+
     // if `autoFocus` is false, move focus to the `PopoverContent`
     if (!autoFocus && popoverRef.current) {
-      ensureFocus(popoverRef.current)
+      focus(popoverRef.current)
       return
     }
 
@@ -151,13 +103,13 @@ export function useFocusOnShow(
     if (!shouldFocus) return
 
     if (focusRef?.current) {
-      ensureFocus(focusRef.current)
+      focus(focusRef.current)
       return
     }
 
     if (popoverRef.current) {
       const firstTabbable = getFirstTabbableIn(popoverRef.current, true)
-      ensureFocus(firstTabbable ?? popoverRef.current)
+      focus(firstTabbable ?? popoverRef.current)
     }
   }, [visible, autoFocus, popoverRef, focusRef])
 }

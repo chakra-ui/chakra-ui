@@ -306,46 +306,10 @@ function VerticallyCenter() {
 }
 ```
 
-### Adding transition
+### Using custom transitions
 
-The modal doesn't come with any transitions by default so you can manage this
-yourself. Chakra exports two transition components (`SlideIn` and `Scale`) to
-provide simple transitions.
-
-> For some reason, focus doesn't return back to the trigger after the transition
-> ends. As a walkaround, you might need to set `finalFocusRef` to the trigger or
-> any other element, and set `isOpen` to `true`.
-
-```jsx live=false
-function TransitionExample() {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const btnRef = React.useRef()
-
-  return (
-    <>
-      <Button ref={btnRef} onClick={onOpen}>
-        Trigger modal
-      </Button>
-
-      <SlideIn in={isOpen}>
-        {(styles) => (
-          <Modal finalFocusRef={btnRef} onClose={onClose} isOpen={true}>
-            <ModalOverlay opacity={styles.opacity}>
-              <ModalContent pb={5} {...styles}>
-                <ModalHeader>Login now</ModalHeader>
-                <ModalCloseButton />
-                <ModalBody>
-                  <Lorem count={2} />
-                </ModalBody>
-              </ModalContent>
-            </ModalOverlay>
-          </Modal>
-        )}
-      </SlideIn>
-    </>
-  )
-}
-```
+The `Modal` component comes with simple fade transition, but you can edit this
+by updating the modal transitions defined in the theme.
 
 ### Modal overflow behavior
 
@@ -450,6 +414,16 @@ function SizeExample() {
 When the modal is open, it's rendered within a portal and all its siblings have
 `aria-hidden` set to `true` so the only thing screen readers see is the modal.
 To disable this behavior, set `useInert` to `false`.
+
+### Prevent focus trapping
+
+By default the modal, alert dialog and drawer locks the focus inside them.
+Normally this is what you want to maintain accessibility standards.
+
+**While strongly discourage this use case** due to it's accessibility impacts,
+there are certain situations where you might not want the modal to trap focus.
+
+To prevent focus trapping, pass `trapFocus` and set it's value to `false`.
 
 ## Accessibility
 

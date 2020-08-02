@@ -69,14 +69,16 @@ export const Wrap = React.forwardRef(function Wrap(
   return (
     <chakra.div ref={ref} {...rest}>
       <chakra.ul
-        display="flex"
-        flexWrap="wrap"
-        justifyContent={justify}
-        alignItems={align}
-        flexDirection={direction}
-        listStyleType="none"
-        padding="0"
-        margin={groupSpacing}
+        __css={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: justify,
+          alignItems: align,
+          flexDirection: direction,
+          listStyleType: "none",
+          padding: "0",
+          margin: groupSpacing,
+        }}
       >
         {clones}
       </chakra.ul>

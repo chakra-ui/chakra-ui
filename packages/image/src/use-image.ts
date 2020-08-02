@@ -66,6 +66,10 @@ export function useImage(props: UseImageProps) {
     return src ? "loading" : "pending"
   })
 
+  React.useEffect(() => {
+    setStatus(src ? "loading" : "pending")
+  }, [src])
+
   const imageRef = React.useRef<HTMLImageElement | null>()
 
   const load = React.useCallback(() => {

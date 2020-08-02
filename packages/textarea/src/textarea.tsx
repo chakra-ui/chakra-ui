@@ -1,7 +1,15 @@
 import { FormControlOptions, useFormControl } from "@chakra-ui/form-control"
-import { chakra, PropsOf, forwardRef } from "@chakra-ui/system"
+import {
+  chakra,
+  PropsOf,
+  forwardRef,
+  useStyleConfig,
+  omitThemingProps,
+  ThemingProps,
+  SystemStyleObject,
+} from "@chakra-ui/system"
 import * as React from "react"
-import { __DEV__, cx } from "@chakra-ui/utils"
+import { __DEV__, cx, omit } from "@chakra-ui/utils"
 
 interface TextareaOptions {
   /**
@@ -22,38 +30,38 @@ interface TextareaOptions {
   isFullWidth?: boolean
 }
 
-/**
- * Textarea - Theming
- *
- * To style the textarea component globally, change the styles in
- * `theme.components.Textarea`
- */
-const StyledTextarea = chakra<"textarea", TextareaOptions>("textarea", {
-  themeKey: "Textarea",
-  shouldForwardProp: (prop) =>
-    !["focusBorderColor", "errorBorderColor"].includes(prop),
-})
-
 type Omitted = "disabled" | "required" | "readOnly"
 
-export type TextareaProps = Omit<PropsOf<typeof StyledTextarea>, Omitted> &
-  FormControlOptions
+export type TextareaProps = Omit<PropsOf<typeof chakra.textarea>, Omitted> &
+  TextareaOptions &
+  FormControlOptions &
+  ThemingProps
 
 /**
- * Textarea
- *
- * React component used to enter an amount of text that's longer than a single line
- *
+ * Textarea is used to enter an amount of text that's longer than a single line
  * @see Docs https://chakra-ui.com/components/textarea
  */
 export const Textarea = forwardRef<TextareaProps>(function Textarea(
   props,
   ref,
 ) {
-  const { className, ...htmlProps } = props
-  const fieldProps = useFormControl<HTMLTextAreaElement>(htmlProps)
-  const _className = cx("chakra-textarea", className)
-  return <StyledTextarea className={_className} ref={ref} {...fieldProps} />
+  const styles = useStyleConfig("Textarea", props)
+  const { className, rows, ...otherProps } = omitThemingProps(props)
+
+  const textareaProps = useFormControl<HTMLTextAreaElement>(otherProps)
+
+  const omitted = ["height", "minHeight"] as (keyof SystemStyleObject)[]
+  const textareaStyles = rows ? omit(styles, omitted) : styles
+
+  return (
+    <chakra.textarea
+      ref={ref}
+      rows={rows}
+      {...textareaProps}
+      className={cx("chakra-textarea", className)}
+      __css={textareaStyles}
+    />
+  )
 })
 
 if (__DEV__) {

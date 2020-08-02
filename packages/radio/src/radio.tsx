@@ -4,32 +4,16 @@ import {
   PropsOf,
   SystemProps,
   ThemingProps,
+  useMultiStyleConfig,
+  omitThemingProps,
 } from "@chakra-ui/system"
 import { cx, split, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { useRadioGroupContext } from "./radio-group"
 import { useRadio, UseRadioProps } from "./use-radio"
 
-const StyledControl = chakra("div", {
-  themeKey: "Radio.Control",
-  baseStyle: {
-    display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "center",
-    flexShrink: 0,
-  },
-})
-
-const StyledLabel = chakra("div", {
-  themeKey: "Radio.Label",
-  baseStyle: {
-    userSelect: "none",
-  },
-})
-
 type Omitted = "onChange" | "defaultChecked" | "checked"
-
-type BaseControlProps = Omit<PropsOf<typeof StyledControl>, Omitted>
+type BaseControlProps = Omit<PropsOf<typeof chakra.div>, Omitted>
 
 export type RadioProps = UseRadioProps &
   ThemingProps &
@@ -39,14 +23,15 @@ export type RadioProps = UseRadioProps &
      * @default 0.5rem
      */
     spacing?: SystemProps["marginLeft"]
+    /**
+     * If `true`, the radio will occupy the full width of it's parent container
+     */
+    isFullWidth?: boolean
   }
 
 /**
- * Radio
- *
  * Radio component is used in forms when a user needs to select a single value from
  * several options.
- *
  * @see Docs https://chakra-ui.com/components/radio
  */
 export const Radio = React.forwardRef(function Radio(
@@ -54,15 +39,14 @@ export const Radio = React.forwardRef(function Radio(
   ref: React.Ref<any>,
 ) {
   const group = useRadioGroupContext()
+  const styles = useMultiStyleConfig("Radio", { ...group, ...props })
 
   const {
     spacing = "0.5rem",
-    colorScheme = group?.colorScheme,
-    variant = group?.variant,
-    size = group?.size,
     children,
+    isFullWidth,
     ...radioProps
-  } = props
+  } = omitThemingProps(props)
 
   let isChecked = props.isChecked
   if (group?.value && props.value) {
@@ -76,8 +60,6 @@ export const Radio = React.forwardRef(function Radio(
 
   const name = group?.name || props?.name
 
-  const theming = { variant, colorScheme, size }
-
   const {
     getInputProps,
     getCheckboxProps,
@@ -87,26 +69,44 @@ export const Radio = React.forwardRef(function Radio(
 
   const [layoutProps, otherProps] = split(rest, layoutPropNames as any)
 
+  const checkboxProps = getCheckboxProps(otherProps)
+  const inputProps = getInputProps({}, ref)
+  const labelProps = getLabelProps()
+
+  const rootStyles = {
+    width: isFullWidth ? "full" : undefined,
+    display: "inline-flex",
+    alignItems: "center",
+    verticalAlign: "top",
+  }
+
+  const checkboxStyles = {
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexShrink: 0,
+    ...styles.control,
+  }
+
+  const labelStyles = {
+    userSelect: "none",
+    ml: spacing,
+    ...styles.label,
+  }
+
   return (
-    <chakra.label
-      className="chakra-radio"
-      display="inline-flex"
-      alignItems="center"
-      verticalAlign="top"
-      {...layoutProps}
-    >
-      <input className="chakra-radio__input" {...getInputProps({ ref })} />
-      <StyledControl
-        {...theming}
-        {...getCheckboxProps(otherProps)}
-        className={cx("chakra-radio__control", props.className)}
+    <chakra.label className="chakra-radio" {...layoutProps} __css={rootStyles}>
+      <input className="chakra-radio__input" {...inputProps} />
+      <chakra.div
+        className="chakra-radio__control"
+        {...checkboxProps}
+        __css={checkboxStyles}
       />
       {children && (
-        <StyledLabel
+        <chakra.div
           className="chakra-radio__label"
-          {...theming}
-          {...getLabelProps()}
-          marginLeft={spacing}
+          {...labelProps}
+          __css={labelStyles}
           children={children}
         />
       )}

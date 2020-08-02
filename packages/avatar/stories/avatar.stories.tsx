@@ -46,7 +46,7 @@ const GenericAvatar = (props: PropsOf<"svg">) => (
  * will show a default svg avatar icon
  */
 export const WithCustomIcon = () => (
-  <AvatarGroup spacing="40px">
+  <AvatarGroup>
     <Avatar icon={<GenericAvatar />} />
     <Avatar />
   </AvatarGroup>

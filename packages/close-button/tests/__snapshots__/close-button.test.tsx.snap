@@ -2,14 +2,80 @@
 
 exports[`CloseButton renders correctly 1`] = `
 <DocumentFragment>
-  <button
+  .emotion-1 {
+  border-radius: 0.25rem;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  width: 32px;
+  height: 32px;
+  outline: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-1[disabled],
+.emotion-1[disabled]:focus,
+.emotion-1[disabled]:hover,
+.emotion-1[aria-disabled=true],
+.emotion-1[aria-disabled=true]:focus,
+.emotion-1[aria-disabled=true]:hover,
+.emotion-1[data-disabled],
+.emotion-1[data-disabled]:focus,
+.emotion-1[data-disabled]:hover {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.emotion-1:hover,
+.emotion-1[data-hover] {
+  background: rgba(0,0,0,0.06);
+}
+
+.emotion-1:active,
+.emotion-1[data-active] {
+  background: rgba(0,0,0,0.08);
+}
+
+.emotion-1:focus,
+.emotion-1[data-focus] {
+  box-shadow: 0 0 0 3px rgba(66,153,225,0.6);
+}
+
+.emotion-0 {
+  font-size: 12px;
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 1em;
+  color: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+}
+
+<button
     aria-label="Close"
-    class="css-rgfuis"
+    class="emotion-1"
     type="button"
   >
     <svg
       aria-hidden="true"
-      class="chakra-icon css-9na4ut"
+      class="chakra-icon emotion-0"
       focusable="false"
       role="presentation"
       viewBox="0 0 24 24"

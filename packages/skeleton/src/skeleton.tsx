@@ -1,4 +1,11 @@
-import { chakra, PropsOf, keyframes } from "@chakra-ui/system"
+import {
+  chakra,
+  PropsOf,
+  keyframes,
+  useStyleConfig,
+  ThemingProps,
+  omitThemingProps,
+} from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -14,7 +21,7 @@ export interface SkeletonOptions {
   /**
    * If `true`, it'll render it's children with a nice fade transition
    */
-  hasLoaded?: boolean
+  isLoaded?: boolean
   /**
    * The animation speed in seconds
    * @default
@@ -30,13 +37,9 @@ export interface SkeletonOptions {
   fadeDuration?: number
 }
 
-const StyledSkeleton = chakra<"div", SkeletonOptions>("div", {
-  themeKey: "Skeleton",
+const StyledSkeleton = chakra("div", {
   baseStyle: {
     boxShadow: "none",
-    opacity: 0.7,
-    borderRadius: "2px",
-    //@ts-ignore - Fix this later
     backgroundClip: "padding-box",
     cursor: "default",
     color: "transparent",
@@ -50,60 +53,63 @@ const StyledSkeleton = chakra<"div", SkeletonOptions>("div", {
 
 export type ISkeleton = SkeletonOptions
 
-export type SkeletonProps = PropsOf<typeof StyledSkeleton>
+export type SkeletonProps = PropsOf<typeof StyledSkeleton> &
+  SkeletonOptions &
+  ThemingProps
 
-const fadeIn = keyframes`
-  from { opacity: 0; }
-  to   { opacity: 1; }
-`
+const fade = keyframes({
+  from: { opacity: 0 },
+  to: { opacity: 1 },
+})
 
 export const Skeleton = React.forwardRef(function Skeleton(
   props: SkeletonProps,
   ref: React.Ref<any>,
 ) {
+  const styles = useStyleConfig("Skeleton", props)
+
   const {
     startColor,
     endColor,
-    hasLoaded,
-    fadeDuration = 0.4,
-    speed = 0.8,
+    isLoaded,
+    fadeDuration,
+    speed,
     className,
     ...rest
-  } = props
+  } = omitThemingProps(props)
 
   const _className = cx("chakra-skeleton", className)
 
-  if (hasLoaded) {
+  if (isLoaded) {
     return (
       <chakra.div
         ref={ref}
         className={_className}
-        css={{ animation: `${fadeIn} ${fadeDuration}s` }}
+        __css={{ animation: `${fade} ${fadeDuration}s` }}
         {...rest}
       />
     )
   }
 
   return (
-    <StyledSkeleton
-      ref={ref}
-      startColor={startColor}
-      endColor={endColor}
-      speed={speed}
-      className={_className}
-      {...rest}
-    />
+    <StyledSkeleton ref={ref} className={_className} {...rest} __css={styles} />
   )
 })
+
+Skeleton.defaultProps = {
+  fadeDuration: 0.4,
+  speed: 0.8,
+}
 
 if (__DEV__) {
   Skeleton.displayName = "Skeleton"
 }
 
-const range = (count: number) =>
-  Array(count)
+function range(count: number) {
+  return Array(count)
     .fill(1)
-    .map((_, idx) => idx + 1)
+    .map((_, index) => index + 1)
+}
 
 export type SkeletonTextProps = SkeletonProps & {
   noOfLines?: number

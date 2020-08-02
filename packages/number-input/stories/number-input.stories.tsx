@@ -1,4 +1,4 @@
-import { chakra } from "@chakra-ui/system"
+import { chakra, PropsOf, useStyleConfig } from "@chakra-ui/system"
 import * as React from "react"
 import {
   useNumberInput,
@@ -21,8 +21,14 @@ export default {
   ],
 }
 
-const Input = chakra("input", { themeKey: "Input" })
-const Button = chakra("button", { themeKey: "Button" })
+const Input = (props: PropsOf<"input">) => {
+  const styles = useStyleConfig("Input", props)
+  return <chakra.input __css={styles.field} {...props} />
+}
+const Button = (props: PropsOf<"button">) => {
+  const styles = useStyleConfig("Button", props)
+  return <chakra.button __css={styles.container} {...props} />
+}
 
 export const HookUsage = () => {
   const {

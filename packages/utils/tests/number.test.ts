@@ -23,8 +23,28 @@ test("should return value of percent in a specific range", () => {
   expect(percentToValue(50, 0, 10)).toStrictEqual(500)
 })
 
-test("should get next value of value after specified step", () => {
-  expect(roundValueToStep(5, 2)).toStrictEqual("6")
+describe("should get next value of value after specified step", () => {
+  test("with both even from & step", () => {
+    expect(roundValueToStep(4, 0, 2)).toStrictEqual("4")
+    expect(roundValueToStep(5, 0, 2)).toStrictEqual("6")
+    expect(roundValueToStep(6, 0, 2)).toStrictEqual("6")
+  })
+
+  test("with both odd from & step", () => {
+    expect(roundValueToStep(3, 3, 5)).toStrictEqual("3")
+    expect(roundValueToStep(4, 3, 5)).toStrictEqual("3")
+    expect(roundValueToStep(5, 3, 5)).toStrictEqual("3")
+    expect(roundValueToStep(6, 3, 5)).toStrictEqual("8")
+    expect(roundValueToStep(7, 3, 5)).toStrictEqual("8")
+    expect(roundValueToStep(8, 3, 5)).toStrictEqual("8")
+  })
+
+  test("with odd from and even step", () => {
+    expect(roundValueToStep(3, 1, 2)).toStrictEqual("3")
+    expect(roundValueToStep(4, 1, 2)).toStrictEqual("5")
+    expect(roundValueToStep(5, 1, 2)).toStrictEqual("5")
+    expect(roundValueToStep(6, 1, 2)).toStrictEqual("7")
+  })
 })
 
 test("should clamp value to specified minimum", () => {

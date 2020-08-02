@@ -1,6 +1,6 @@
 {
-  "name": "with-typescript",
-  "version": "1.0.0-next.1",
+  "name": "chakra-nextjs-ts",
+  "version": "1.0.0-rc.0",
   "private": "true",
   "scripts": {
     "dev": "next",
@@ -9,18 +9,17 @@
     "type-check": "tsc"
   },
   "dependencies": {
-    "next": "latest",
+    "@chakra-ui/core": "1.0.0-rc.0",
+    "@chakra-ui/theme": "1.0.0-rc.0",
+    "next": "9.4.4",
     "react": "16.13.1",
-    "react-dom": "16.13.1",
-    "@chakra-ui/theme": "1.0.0-next.1",
-    "@chakra-ui/css-reset": "1.0.0-next.1",
-    "@chakra-ui/core": "1.0.0-next.1"
+    "react-dom": "16.13.1"
   },
   "devDependencies": {
-    "@types/node": "^12.12.21",
+    "@types/node": "^14.0.14",
     "@types/react": "16.9.23",
     "@types/react-dom": "16.9.8",
-    "typescript": "3.9.5"
+    "typescript": "3.9.7"
   },
   "license": "ISC"
 }

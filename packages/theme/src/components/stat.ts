@@ -1,43 +1,44 @@
-import { ComponentTheme } from "@chakra-ui/theme-tools"
+import { multiStyleConfig } from "@chakra-ui/theme-tools"
 
-const Stat: ComponentTheme = {
-  defaultProps: {
-    size: "md",
+const stat = multiStyleConfig({
+  parts: {
+    label: "the stat label",
+    number: "the numeric value of the stat",
+    icon: "the stat icon, if used",
+    helpText: "the stat description text",
   },
+
   baseStyle: {
-    Label: {
+    label: {
       fontWeight: "medium",
     },
-    HelpText: {
+    helpText: {
       opacity: 0.8,
       marginBottom: 2,
     },
-    Number: {
+    number: {
       verticalAlign: "baseline",
       fontWeight: "semibold",
     },
-  },
-  /**
-   * Only one size specified but you can add more,
-   * and style each part.
-   */
-  sizes: {
-    md: {
-      Label: {
-        fontSize: "sm",
-      },
-      HelpText: {
-        fontSize: "sm",
-      },
-      Number: {
-        fontSize: "2xl",
-      },
+    icon: {
+      mr: 1,
+      w: "14px",
+      h: "14px",
+      verticalAlign: "middle",
     },
   },
-}
 
-export const StatSizes = {
-  md: "md",
-}
+  sizes: {
+    md: {
+      label: { fontSize: "sm" },
+      helpText: { fontSize: "sm" },
+      number: { fontSize: "2xl" },
+    },
+  },
 
-export default Stat
+  defaultProps: {
+    size: "md",
+  },
+})
+
+export default stat

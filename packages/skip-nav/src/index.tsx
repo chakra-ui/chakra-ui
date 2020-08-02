@@ -1,36 +1,34 @@
-import { chakra, PropsOf } from "@chakra-ui/system"
-import { __DEV__ } from "@chakra-ui/utils"
+import {
+  chakra,
+  PropsOf,
+  useStyleConfig,
+  omitThemingProps,
+  SystemStyleObject,
+} from "@chakra-ui/system"
+import { __DEV__, merge } from "@chakra-ui/utils"
 import * as React from "react"
 
 export type SkipNavLinkProps = PropsOf<typeof chakra.a>
 
 const fallbackId = "chakra-skip-nav"
 
-const StyledLink = chakra("a", {
-  baseStyle: ({ colorMode }) => ({
-    borderRadius: "md",
-    fontWeight: "semibold",
-    userSelect: "none",
-    border: "0",
-    height: "1px",
-    width: "1px",
-    margin: "-1px",
-    padding: "0",
-    outline: "0",
-    overflow: "hidden",
-    position: "absolute",
-    _focus: {
-      boxShadow: "outline",
-      padding: "1rem",
-      position: "fixed",
-      top: "1.5rem",
-      left: "1.5rem",
-      bg: colorMode === "light" ? "white" : "gray.700",
-      width: "auto",
-      height: "auto",
-    },
-  }),
-})
+const baseStyle: SystemStyleObject = {
+  userSelect: "none",
+  border: "0",
+  height: "1px",
+  width: "1px",
+  margin: "-1px",
+  padding: "0",
+  outline: "0",
+  overflow: "hidden",
+  position: "absolute",
+  clip: "rect(0 0 0 0)",
+  _focus: {
+    clip: "auto",
+    width: "auto",
+    height: "auto",
+  },
+}
 
 /**
  * Renders a link that remains hidden until focused to skip to the main content.
@@ -39,21 +37,12 @@ export const SkipNavLink = React.forwardRef(function SkipNavLink(
   props: SkipNavLinkProps,
   ref: React.Ref<any>,
 ) {
-  const { id = fallbackId, ...rest } = props
-  return (
-    <StyledLink
-      ref={ref}
-      className="chakra-skip-link"
-      href={`#${id}`}
-      __css={{
-        clip: "rect(0 0 0 0)",
-        "&:focus": {
-          clip: "auto",
-        },
-      }}
-      {...rest}
-    />
-  )
+  const styles = useStyleConfig("SkipLink", props)
+  const { id = fallbackId, ...rest } = omitThemingProps(props)
+
+  const linkStyles = merge({}, baseStyle, styles)
+
+  return <chakra.a {...rest} ref={ref} href={`#${id}`} __css={linkStyles} />
 })
 
 if (__DEV__) {
@@ -70,7 +59,9 @@ export const SkipNavContent = React.forwardRef(function SkipNavContent(
   ref: React.Ref<any>,
 ) {
   const { id = fallbackId, ...rest } = props
-  return <chakra.div ref={ref} id={id} tabIndex={-1} outline="0" {...rest} />
+  return (
+    <div ref={ref} id={id} tabIndex={-1} style={{ outline: 0 }} {...rest} />
+  )
 })
 
 if (__DEV__) {

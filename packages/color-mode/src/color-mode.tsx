@@ -1,17 +1,19 @@
-import { ThemeContext } from "@emotion/core"
-import { Dict, merge, noop, __DEV__ } from "@chakra-ui/utils"
+import { noop, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import useColorModeState from "./use-color-mode-state"
 import type { ColorMode } from "./color-mode.utils"
+import useColorModeState from "./use-color-mode-state"
 
 export type { ColorMode }
 
-type ColorModeContext = [ColorMode, () => void]
+interface ColorModeContextType {
+  colorMode: ColorMode
+  toggleColorMode: () => void
+}
 
-export const ColorModeContext = React.createContext<ColorModeContext>([
-  "light",
-  noop,
-])
+export const ColorModeContext = React.createContext<ColorModeContextType>({
+  colorMode: "light",
+  toggleColorMode: noop,
+})
 
 if (__DEV__) {
   ColorModeContext.displayName = "ColorModeContext"
@@ -21,33 +23,50 @@ if (__DEV__) {
  * React hook that reads from `ColorModeProvider` context
  * Returns the color mode and function to toggle it
  */
-export const useColorMode = () => React.useContext(ColorModeContext)
+export function useColorMode() {
+  return React.useContext(ColorModeContext)
+}
 
 export interface ColorModeProviderProps {
   value?: ColorMode
   children?: React.ReactNode
+  useSystemColorMode?: boolean
+  defaultValue?: ColorMode
 }
 
 /**
  * Provides context for the color mode based on config in `theme`
  * Returns the color mode and function to toggle the color mode
  */
-export const ColorModeProvider: React.FC = (props) => {
-  const theme = React.useContext(ThemeContext) as Dict
+export function ColorModeProvider(props: ColorModeProviderProps) {
+  const {
+    value,
+    children,
+    useSystemColorMode = false,
+    defaultValue = "light",
+  } = props
 
-  const fallbackConfig = {
-    useSystemColorMode: false,
-    initialColorMode: "light",
+  const config = {
+    useSystemColorMode,
+    initialColorMode: defaultValue,
   }
 
-  const config = merge(fallbackConfig, theme.config ?? {}) as any
-
   const [colorMode, setColorMode] = useColorModeState(config)
-  const toggle = () => setColorMode(colorMode === "light" ? "dark" : "light")
+  const toggleColorMode = () =>
+    setColorMode(colorMode === "light" ? "dark" : "light")
 
-  const context = [colorMode, toggle] as ColorModeContext
+  const context = { colorMode, toggleColorMode }
 
-  return <ColorModeContext.Provider value={context} {...props} />
+  const controlledContext = {
+    colorMode: value as ColorMode,
+    toggleColorMode: noop,
+  }
+
+  return (
+    <ColorModeContext.Provider value={value ? controlledContext : context}>
+      {children}
+    </ColorModeContext.Provider>
+  )
 }
 
 if (__DEV__) {
@@ -58,7 +77,10 @@ if (__DEV__) {
  * Locks the color mode to `dark`, without any way to change it.
  */
 export const DarkMode: React.FC = (props) => (
-  <ColorModeContext.Provider value={["dark", noop]} {...props} />
+  <ColorModeContext.Provider
+    value={{ colorMode: "dark", toggleColorMode: noop }}
+    {...props}
+  />
 )
 
 if (__DEV__) {
@@ -69,7 +91,10 @@ if (__DEV__) {
  * Locks the color mode to `light` without any way to change it.
  */
 export const LightMode: React.FC = (props) => (
-  <ColorModeContext.Provider value={["light", noop]} {...props} />
+  <ColorModeContext.Provider
+    value={{ colorMode: "light", toggleColorMode: noop }}
+    {...props}
+  />
 )
 
 if (__DEV__) {
@@ -99,6 +124,6 @@ export function getColorModeValue(light: any, dark: any) {
  * ```
  */
 export function useColorModeValue(light: any, dark: any) {
-  const [colorMode] = useColorMode()
+  const { colorMode } = useColorMode()
   return getColorModeValue(light, dark)(colorMode)
 }

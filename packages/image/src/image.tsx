@@ -1,7 +1,7 @@
 import { chakra, PropsOf, SystemProps } from "@chakra-ui/system"
+import { omit, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { UseImageProps, useImage } from "./use-image"
-import { __DEV__, omit } from "@chakra-ui/utils"
+import { useImage, UseImageProps } from "./use-image"
 
 interface ImageOptions {
   /**
@@ -23,6 +23,10 @@ interface ImageOptions {
    */
   htmlHeight?: string | number
   /**
+   * Defines loading strategy
+   */
+  loading?: "eager" | "lazy"
+  /**
    * How the image to fit within it's bounds.
    * It maps to css `object-fit` property.
    */
@@ -38,10 +42,8 @@ interface ImageOptions {
   ignoreFallback?: boolean
 }
 
-const StyledImage = chakra("img")
-
 export type ImageProps = UseImageProps &
-  PropsOf<typeof StyledImage> &
+  PropsOf<typeof chakra.img> &
   ImageOptions
 
 /**
@@ -60,18 +62,28 @@ export const Image = React.forwardRef(function Image(
     src,
     align,
     fit,
+    loading,
     ignoreFallback,
     crossOrigin,
     ...rest
   } = props
 
-  const status = useImage(props)
+  /**
+   * Defer to native `img` tag if `loading` prop is passed
+   * @see https://github.com/chakra-ui/chakra-ui/issues/1027
+   */
+  const shouldIgnore = loading != null || ignoreFallback
+
+  const status = useImage({
+    ...props,
+    ignoreFallback: shouldIgnore,
+  })
 
   const shared = {
     ref,
     objectFit: fit,
     objectPosition: align,
-    ...(ignoreFallback ? rest : omit(rest, ["onError", "onLoad"])),
+    ...(shouldIgnore ? rest : omit(rest, ["onError", "onLoad"])),
   }
 
   if (status !== "loaded") {
@@ -82,7 +94,7 @@ export const Image = React.forwardRef(function Image(
     if (fallback) return fallback
 
     return (
-      <StyledImage
+      <chakra.img
         className="chakra-image__placeholder"
         src={fallbackSrc}
         {...shared}
@@ -91,9 +103,10 @@ export const Image = React.forwardRef(function Image(
   }
 
   return (
-    <StyledImage
+    <chakra.img
       src={src}
       crossOrigin={crossOrigin}
+      loading={loading}
       className="chakra-image"
       {...shared}
     />

@@ -3,36 +3,36 @@ import {
   TransitionProps,
   TransitionStyles,
 } from "@chakra-ui/transition"
-import { ensureFocus, __DEV__ } from "@chakra-ui/utils"
+import { focus, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { useMenuContext } from "./menu"
+import { useMenuContext } from "./use-menu"
+import { SystemStyleObject } from "@chakra-ui/system"
 
 export interface MenuTransitionProps {
-  transformOrigin?: string
-  children: TransitionProps["children"]
+  children: (styles: SystemStyleObject) => React.ReactNode
   styles?: TransitionProps["styles"]
 }
 
 export function MenuTransition(props: MenuTransitionProps) {
-  const { transformOrigin = "top left", children, styles } = props
+  const { children, styles } = props
   const menu = useMenuContext()
 
   const defaultStyles: TransitionStyles = {
     init: {
-      opacity: 0,
-      transformOrigin: transformOrigin,
+      opacity: 0.01,
       transform: "scale(0.8)",
       transitionTimingFunction: "cubic-bezier(0.175, 0.885, 0.320, 1.175)",
       transitionProperty: "opacity, transform",
-      transitionDuration: "200ms",
       willChange: "opacity, transform",
     },
     entered: {
       opacity: 1,
+      transitionDuration: "200ms",
       transform: "scale(1)",
     },
     exiting: {
-      opacity: 0,
+      opacity: 0.01,
+      transitionDuration: "100ms",
       transform: "scale(0.8)",
     },
   }
@@ -45,8 +45,9 @@ export function MenuTransition(props: MenuTransitionProps) {
       onExited={(node) => {
         node.hidden = true
         node.style.pointerEvents = "auto"
-        if (menu.buttonRef.current) {
-          ensureFocus(menu.buttonRef.current)
+        const menuEl = menu.buttonRef.current
+        if (menuEl && document.activeElement !== menuEl) {
+          focus(menuEl)
         }
       }}
       onExit={(node) => {
@@ -55,7 +56,7 @@ export function MenuTransition(props: MenuTransitionProps) {
       onExiting={(node) => {
         node.style.pointerEvents = "none"
       }}
-      timeout={{ enter: 0, exit: 200 }}
+      timeout={{ enter: 0, exit: menu.isOpen ? 200 : 100 }}
       in={menu.isOpen}
       styles={styles ?? defaultStyles}
       unmountOnExit={false}

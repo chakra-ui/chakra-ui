@@ -1,68 +1,41 @@
 import { useDisclosure, useEventListener, useId } from "@chakra-ui/hooks"
-import { Placement, usePopper, UsePopperProps } from "@chakra-ui/popper"
+import {
+  Placement,
+  usePopper,
+  UsePopperProps,
+  toTransformOrigin,
+} from "@chakra-ui/popper"
 import { callAllHandlers, mergeRefs, Dict } from "@chakra-ui/utils"
-import flushable from "flushable"
-import * as React from "react"
-
-let hideOperation: flushable.FlushableOperation
-let activeId: string | null = null
-
-function show(fn: (isHidePending: boolean) => void, delay: number) {
-  // check if hide has not been executed
-  const isHidePending = hideOperation?.pending()
-
-  // immediately execute hide if it has not been executed
-  if (isHidePending) {
-    hideOperation.flush()
-  }
-
-  // setup the show operation using flushable
-  const showOperation = flushable(
-    () => fn(isHidePending),
-    isHidePending ? 0 : delay,
-  )
-
-  // return a function to cancel show() from executing
-  // in the case of multiple tooltips
-  return showOperation.cancel
-}
-
-function hide(fn: (flushed: boolean) => void, delay: number) {
-  // setup the hide operation using flushable
-  hideOperation = flushable((flushed) => fn(flushed), delay)
-
-  // return a function to cancel hide() from executing
-  return hideOperation.cancel
-}
+import { useCallback, useRef, Ref } from "react"
 
 export interface UseTooltipProps {
   /**
-   * Delay (in ms) before hiding the tooltip
-   * @default 200ms
-   */
-  hideDelay?: number
-  /**
    * Delay (in ms) before showing the tooltip
-   * @default 200ms
+   * @default 0ms
    */
-  showDelay?: number
+  openDelay?: number
+  /**
+   * Delay (in ms) before hiding the tooltip
+   * @default 0ms
+   */
+  closeDelay?: number
   /**
    * If `true`, the tooltip will hide on click
    */
-  hideOnClick?: boolean
+  closeOnClick?: boolean
   /**
    * If `true`, the tooltip will hide while the mouse
    * is down
    */
-  hideOnMouseDown?: boolean
+  closeOnMouseDown?: boolean
   /**
    * Callback to run when the tooltip shows
    */
-  onShow?(): void
+  onOpen?(): void
   /**
    * Callback to run when the tooltip hides
    */
-  onHide?(): void
+  onClose?(): void
   /**
    * The Popper.js placement of the tooltip
    */
@@ -84,151 +57,142 @@ export interface UseTooltipProps {
    * @default 10 ( = 10px )
    */
   arrowSize?: UsePopperProps["arrowSize"]
+  /**
+   * The Popper.js modifiers to use
+   */
+  modifiers?: UsePopperProps["modifiers"]
+  /**
+   * If `true`, the tooltip will not be shown on any trigger
+   */
+  isDisabled?: boolean
 }
 
 export function useTooltip(props: UseTooltipProps = {}) {
   const {
-    showDelay = 200,
-    hideDelay = 200,
-    hideOnClick = true,
-    onShow,
-    onHide,
-    hideOnMouseDown,
+    openDelay = 0,
+    closeDelay = 0,
+    closeOnClick = true,
+    closeOnMouseDown,
+    onOpen,
+    onClose,
     placement,
     id,
     isOpen: isOpenProp,
     defaultIsOpen,
     arrowSize = 10,
+    modifiers,
+    isDisabled,
   } = props
 
-  const { isOpen, onOpen: open, onClose: close } = useDisclosure({
+  const { isOpen, onOpen: onOpenProp, onClose: onCloseProp } = useDisclosure({
     isOpen: isOpenProp,
     defaultIsOpen,
-    onOpen: onShow,
-    onClose: onHide,
+    onOpen,
+    onClose,
   })
 
   const popper = usePopper({
     forceUpdate: isOpen,
     placement,
     arrowSize,
+    modifiers,
   })
 
   const tooltipId = useId(id, "tooltip")
 
-  React.useEffect(() => {
-    if (isOpen) {
-      activeId = tooltipId
-    }
-  }, [isOpen, tooltipId])
-
-  const ref = React.useRef<any>(null)
+  const ref = useRef<any>(null)
   const triggerRef = mergeRefs(ref, popper.reference.ref)
-  const flushRef = React.useRef<Function>()
 
-  React.useEffect(() => {
-    return () => flushRef.current?.()
-  }, [])
+  const enterTimeout = useRef<NodeJS.Timeout>()
+  const exitTimeout = useRef<NodeJS.Timeout>()
 
-  const hideImmediately = React.useCallback(() => {
-    flushRef.current?.()
-    close()
-  }, [close])
-
-  const onClick = React.useCallback(() => {
-    if (hideOnClick) {
-      hideImmediately()
+  const openWithDelay = useCallback(() => {
+    if (!isDisabled) {
+      enterTimeout.current = setTimeout(onOpenProp, openDelay)
     }
-  }, [hideOnClick, hideImmediately])
+  }, [isDisabled, onOpenProp, openDelay])
 
-  const onMouseDown = React.useCallback(() => {
-    if (hideOnMouseDown) {
-      hideImmediately()
+  const closeWithDelay = useCallback(() => {
+    if (enterTimeout.current) {
+      clearTimeout(enterTimeout.current)
     }
-  }, [hideOnMouseDown, hideImmediately])
+    exitTimeout.current = setTimeout(onCloseProp, closeDelay)
+  }, [closeDelay, onCloseProp])
 
-  const showTooltip = React.useCallback(() => {
-    flushRef.current?.()
-
-    if (tooltipId !== activeId) {
-      hideImmediately()
+  const onClick = useCallback(() => {
+    if (closeOnClick) {
+      closeWithDelay()
     }
+  }, [closeOnClick, closeWithDelay])
 
-    activeId = tooltipId
-
-    if (!isOpen) {
-      flushRef.current = show(() => {
-        open()
-      }, showDelay)
+  const onMouseDown = useCallback(() => {
+    if (closeOnMouseDown) {
+      closeWithDelay()
     }
-  }, [isOpen, showDelay, open, tooltipId, hideImmediately])
+  }, [closeOnMouseDown, closeWithDelay])
 
-  const hideTooltip = React.useCallback(() => {
-    flushRef.current?.()
-    activeId = null
-
-    if (isOpen) {
-      flushRef.current = hide(() => {
-        close()
-      }, hideDelay)
+  const onKeyDown = (event: KeyboardEvent) => {
+    if (isOpen && event.key === "Escape") {
+      closeWithDelay()
     }
-  }, [isOpen, hideDelay, close])
-
-  const onMouseOver = React.useCallback(
-    (event: React.MouseEvent) => {
-      const isSelf = event.currentTarget === (ref.current as HTMLElement)
-
-      if (isOpen && isSelf) {
-        return
-      }
-
-      showTooltip()
-    },
-    [isOpen, showTooltip],
-  )
-
-  /**
-   * Accessibility: Close the tooltip if user presses escape
-   */
-  const onKeyDown = React.useCallback(
-    (event: KeyboardEvent) => {
-      if (isOpen && event.key === "Escape") {
-        hideImmediately()
-      }
-    },
-    [isOpen, hideImmediately],
-  )
+  }
 
   useEventListener("keydown", onKeyDown)
 
-  return {
-    isOpen,
-    show: open,
-    hide: close,
-    placement: popper.placement,
-    getTriggerProps: (props: Dict = {}) => ({
+  const getTriggerProps = useCallback(
+    (props: Dict = {}, ref: Ref<any> = null) => ({
       ...props,
-      ref: mergeRefs(props.ref, triggerRef),
-      onMouseOut: callAllHandlers(props.onMouseOut, hideTooltip),
-      onMouseOver: callAllHandlers(props.onMouseOver, onMouseOver),
+      ref: mergeRefs(ref, triggerRef),
+      onMouseLeave: callAllHandlers(props.onMouseLeave, closeWithDelay),
+      onMouseEnter: callAllHandlers(props.onMouseEnter, openWithDelay),
       onClick: callAllHandlers(props.onClick, onClick),
       onMouseDown: callAllHandlers(props.onMouseDown, onMouseDown),
-      onFocus: callAllHandlers(props.onFocus, showTooltip),
-      onBlur: callAllHandlers(props.onBlur, hideTooltip),
+      onFocus: callAllHandlers(props.onFocus, openWithDelay),
+      onBlur: callAllHandlers(props.onBlur, closeWithDelay),
       "aria-describedby": isOpen ? tooltipId : undefined,
     }),
-    getTooltipProps: (props: Dict = {}) => ({
+    [
+      closeWithDelay,
+      isOpen,
+      onClick,
+      onMouseDown,
+      openWithDelay,
+      tooltipId,
+      triggerRef,
+    ],
+  )
+
+  const getTooltipProps = useCallback(
+    (props: Dict = {}, ref: Ref<any> = null) => ({
       ...props,
       id: tooltipId,
       role: "tooltip",
-      ref: mergeRefs(props.ref, popper.popper.ref),
-      style: { ...props.style, ...popper.popper.style },
+      ref: mergeRefs(ref, popper.popper.ref),
+      style: {
+        ...props.style,
+        ...popper.popper.style,
+      },
     }),
-    getArrowProps: (props: Dict = {}) => ({
+    [popper.popper.ref, popper.popper.style, tooltipId],
+  )
+
+  const getArrowProps = useCallback(
+    (props: Dict = {}, ref: Ref<any> = null) => ({
       ...props,
-      ref: mergeRefs(props.ref, popper.arrow.ref),
+      ref: mergeRefs(ref, popper.arrow.ref),
       style: { ...props.style, ...popper.arrow.style },
     }),
+    [popper.arrow.ref, popper.arrow.style],
+  )
+
+  return {
+    isOpen,
+    show: openWithDelay,
+    hide: closeWithDelay,
+    placement: popper.placement,
+    getTriggerProps,
+    getTooltipProps,
+    getArrowProps,
   }
 }
 

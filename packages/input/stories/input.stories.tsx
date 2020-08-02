@@ -17,11 +17,6 @@ import {
 } from "@chakra-ui/form-control"
 import { PhoneIcon, CheckIcon } from "@chakra-ui/icons"
 
-Stack.defaultProps = {
-  align: "start",
-  spacing: "24px",
-}
-
 export default {
   title: "Input",
   decorators: [
@@ -54,7 +49,7 @@ export const Controlled = () => {
 
 export const WithSizes = () => {
   return (
-    <Stack>
+    <Stack align="start">
       {["sm", "md", "lg"].map((size) => (
         <Input size={size} placeholder="This is an input component" />
       ))}
@@ -63,7 +58,7 @@ export const WithSizes = () => {
 }
 
 export const WithStates = () => (
-  <Stack>
+  <Stack align="start">
     <Input placeholder="Idle" />
     <Input isInvalid placeholder="isInvalid" />
     <Input isDisabled placeholder="isDisabled" />
@@ -72,7 +67,7 @@ export const WithStates = () => (
 )
 
 export const WithVariants = () => (
-  <Stack>
+  <Stack align="start">
     <Input variant="outline" placeholder="Outline" />
     <Input variant="filled" placeholder="Filled" />
     <Input variant="flushed" placeholder="Flushed" />
@@ -81,7 +76,7 @@ export const WithVariants = () => (
 )
 
 export const WithInputAddon = () => (
-  <Stack>
+  <Stack align="start">
     <InputGroup>
       <InputLeftAddon children="+234" />
       <Input placeholder="Phone number..." />
@@ -96,13 +91,13 @@ export const WithInputAddon = () => (
 )
 
 export const WithInputElement = () => (
-  <Stack>
+  <Stack align="start">
     <InputGroup>
       <InputLeftElement children={<PhoneIcon color="gray.300" />} />
-      <Input type="phone" placeholder="Phone number" />
+      <Input pl="60px" type="phone" placeholder="Phone number" />
     </InputGroup>
 
-    <InputGroup>
+    <InputGroup size="sm">
       <InputLeftElement color="gray.300" fontSize="1.2em" children="$" />
       <Input placeholder="Enter amount" />
       <InputRightElement children={<CheckIcon color="green.500" />} />
@@ -131,7 +126,7 @@ export function PasswordInput() {
 }
 
 export const WithFocusAndErrorColors = () => (
-  <Stack spacing="10">
+  <Stack align="start" spacing="10">
     <Input focusBorderColor="lime" placeholder="Here is a sample placeholder" />
 
     <Input
@@ -170,7 +165,7 @@ function FormError(props: any) {
 export const WithFormControl = () => {
   const [isError, setIsError] = React.useState(false)
   return (
-    <Stack>
+    <Stack align="start">
       <FormControl id="first-name" isInvalid={isError}>
         <chakra.div display="flex" mb="2">
           <FormLabel mb="0" lineHeight="1em">
@@ -178,9 +173,10 @@ export const WithFormControl = () => {
           </FormLabel>
           <FormError>is invalid!</FormError>
         </chakra.div>
-        <InputGroup>
-          <InputLeftElement children="USD" />
+        <InputGroup size="sm">
+          <InputLeftElement children="$" />
           <Input placeholder="Enter amount" />
+          <InputRightAddon children=".com" />
         </InputGroup>
         <FormHelperText>Keep it very short and sweet!</FormHelperText>
       </FormControl>

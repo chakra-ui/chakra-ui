@@ -1,19 +1,19 @@
-import { IconProps } from "@chakra-ui/icon"
-import { chakra, PropsOf, forwardRef, SystemProps } from "@chakra-ui/system"
+import {
+  chakra,
+  forwardRef,
+  omitThemingProps,
+  PropsOf,
+  SystemProps,
+  ThemingProps,
+  useMultiStyleConfig,
+} from "@chakra-ui/system"
 import { cx, Omit, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { useCheckbox, UseCheckboxProps } from "./use-checkbox"
-import { CheckboxIcon } from "./checkbox.icon"
 import { useCheckboxGroupContext } from "./checkbox-group"
+import { CheckboxIcon } from "./checkbox.icon"
+import { useCheckbox, UseCheckboxProps } from "./use-checkbox"
 
-/**
- * Checkbox - Theming
- *
- * To style the checkbox globally, change the styles in
- * `theme.components.Checkbox` under the `Control` key
- */
 const StyledControl = chakra("div", {
-  themeKey: "Checkbox.Control",
   baseStyle: {
     display: "inline-flex",
     alignItems: "center",
@@ -21,46 +21,30 @@ const StyledControl = chakra("div", {
     verticalAlign: "top",
     userSelect: "none",
     flexShrink: 0,
-    transition: "transform 240ms, opacity 240ms",
   },
 })
 
-const StyledLabel = chakra("div", {
-  themeKey: "Checkbox.Label",
-  baseStyle: {
-    userSelect: "none",
-  },
-})
-
-const StyledWrapper = chakra("label", {
+const StyledContainer = chakra("label", {
   baseStyle: {
     cursor: "pointer",
     display: "inline-flex",
     alignItems: "center",
     verticalAlign: "top",
     position: "relative",
+    _disabled: {
+      cursor: "not-allowed",
+    },
   },
 })
 
-type BaseControlProps = Omit<
-  PropsOf<typeof StyledControl>,
-  "onChange" | "defaultChecked"
->
+type Omitted = "size" | "checked" | "defaultChecked" | "onChange"
 
-type Omitted = "size" | "checked" | "defaultChecked"
+type StyledControlProps = Omit<PropsOf<typeof StyledControl>, Omitted>
 
-export type CheckboxProps = BaseControlProps &
+export type CheckboxProps = StyledControlProps &
   Omit<PropsOf<"input">, Omitted> &
+  ThemingProps &
   UseCheckboxProps & {
-    /**
-     * The color of the check icon
-     */
-    iconColor?: IconProps["color"]
-    /**
-     * The size of the check icon
-     * @default 0.75rem
-     */
-    iconSize?: IconProps["size"]
     /**
      * The spacing between the checkbox and it's label text
      * @default 0.5rem
@@ -82,25 +66,19 @@ export const Checkbox = forwardRef<CheckboxProps>(function Checkbox(
 ) {
   const group = useCheckboxGroupContext()
 
-  const {
-    iconSize = "0.625rem",
-    spacing = "0.5rem",
-    iconColor,
-    variant = group?.variant,
-    colorScheme = group?.colorScheme,
-    size = group?.size,
-    className,
-    children,
-    ...rest
-  } = props
+  const merged = { ...group, ...props }
+  const styles = useMultiStyleConfig("Checkbox", merged)
+  const realProps = omitThemingProps(merged)
 
-  let isChecked = props.isChecked
-  if (group?.value && props.value) {
-    isChecked = group.value.includes(props.value)
+  const { spacing = "0.5rem", className, children, ...otherProps } = realProps
+
+  let isChecked = realProps.isChecked
+  if (group?.value && realProps.value) {
+    isChecked = group.value.includes(realProps.value)
   }
 
-  let onChange = props.onChange
-  if (group?.onChange && props.value) {
+  let onChange = realProps.onChange
+  if (group?.onChange && realProps.value) {
     onChange = group.onChange
   }
 
@@ -111,43 +89,56 @@ export const Checkbox = forwardRef<CheckboxProps>(function Checkbox(
     getLabelProps,
     htmlProps,
   } = useCheckbox({
-    ...rest,
+    ...otherProps,
     isChecked,
     onChange,
   })
 
   const _className = cx("chakra-checkbox", className)
 
-  const theming = { variant, size, colorScheme }
+  const inputProps = getInputProps({}, ref)
+  const labelProps = getLabelProps()
+  const checkboxProps = getCheckboxProps()
+
+  const iconStyles = {
+    opacity: state.isChecked || state.isIndeterminate ? 1 : 0,
+    transform:
+      state.isChecked || state.isIndeterminate ? "scale(1)" : "scale(0.95)",
+    transition: "opacity 200ms, transform 250ms",
+    ...styles.icon,
+  }
 
   return (
-    <StyledWrapper {...htmlProps} className={_className}>
-      <input className="chakra-checkbox__input" {...getInputProps({ ref })} />
+    <StyledContainer
+      __css={styles.container}
+      data-disabled={state.isDisabled}
+      className={_className}
+      {...htmlProps}
+    >
+      <input className="chakra-checkbox__input" {...inputProps} />
       <StyledControl
+        __css={styles.control}
         className="chakra-checkbox__control"
-        {...theming}
-        verticalAlign="top"
-        {...getCheckboxProps()}
+        {...checkboxProps}
       >
         <CheckboxIcon
-          className="chakra-checkbox__icon"
-          transition="transform 240ms, opacity 240ms"
+          __css={iconStyles}
           isChecked={state.isChecked}
           isIndeterminate={state.isIndeterminate}
-          boxSize={iconSize}
-          color={iconColor}
         />
       </StyledControl>
       {children && (
-        <StyledLabel
+        <chakra.div
           className="chakra-checkbox__label"
-          {...theming}
-          {...getLabelProps()}
-          marginLeft={spacing}
+          {...labelProps}
           children={children}
+          __css={{
+            ml: spacing,
+            ...styles.label,
+          }}
         />
       )}
-    </StyledWrapper>
+    </StyledContainer>
   )
 })
 

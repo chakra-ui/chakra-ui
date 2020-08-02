@@ -1,56 +1,56 @@
-import { ComponentTheme, mode } from "@chakra-ui/theme-tools"
+import { mode, multiStyleConfig } from "@chakra-ui/theme-tools"
 
-/**
- * Since the `maxWidth` prop references theme.sizes internally,
- * we can leverage that to size our modals.
- */
-function getSize(value: string) {
-  return {
-    Content: {
-      maxWidth: value,
-    },
-  }
-}
-
-export interface Props {
-  scrollBehavior?: "inside" | "outside"
-}
-
-const Modal: ComponentTheme<Props> = {
-  defaultProps: {
-    size: "md",
+const modal = multiStyleConfig({
+  parts: {
+    overlay: "the modal overlay",
+    content: "the modal content wrapper",
+    header: "the modal content header",
+    body: "the modal main content area",
+    footer: "the modal footer action",
   },
-  baseStyle: (props) => ({
-    Overlay: {
-      bg: "rgba(0,0,0,0.4)",
-    },
-    Content: {
-      borderRadius: "md",
-      bg: mode("white", "gray.700")(props),
-      color: "inherit",
-      marginY: "3.75rem",
-      maxHeight:
-        props.scrollBehavior === "inside" ? "calc(100vh - 7.5rem)" : undefined,
-      boxShadow: mode(
-        "0 7px 14px 0 rgba(0,0,0, 0.1), 0 3px 6px 0 rgba(0, 0, 0, .07)",
-        "dark-lg",
-      )(props),
-    },
-    Header: {
-      paddingX: 6,
-      paddingY: 4,
-      fontSize: "xl",
-      fontWeight: "semibold",
-    },
-    Body: {
-      paddingX: 6,
-      paddingY: 2,
-    },
-    Footer: {
-      paddingX: 6,
-      paddingY: 4,
-    },
-  }),
+
+  baseStyle: function (props) {
+    const { isCentered, scrollBehavior } = props
+
+    return {
+      overlay: {
+        bg: "blackAlpha.600",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: isCentered ? "center" : "flex-start",
+        overflow: scrollBehavior === "inside" ? "hidden" : "auto",
+      },
+
+      content: {
+        borderRadius: "md",
+        bg: mode("white", "gray.700")(props),
+        color: "inherit",
+        my: "3.75rem",
+        maxH: scrollBehavior === "inside" ? "calc(100vh - 7.5rem)" : undefined,
+        boxShadow: mode("lg", "dark-lg")(props),
+      },
+
+      header: {
+        px: 6,
+        py: 4,
+        fontSize: "xl",
+        fontWeight: "semibold",
+      },
+
+      body: {
+        px: 6,
+        py: 2,
+        flex: 1,
+        overflow: scrollBehavior === "inside" ? "auto" : undefined,
+      },
+
+      footer: {
+        px: 6,
+        py: 4,
+      },
+    }
+  },
+
   sizes: {
     xs: getSize("xs"),
     sm: getSize("sm"),
@@ -64,20 +64,24 @@ const Modal: ComponentTheme<Props> = {
     "6xl": getSize("6xl"),
     full: getSize("full"),
   },
+
+  defaultProps: {
+    size: "md",
+  },
+})
+
+/**
+ * Since the `maxWidth` prop references theme.sizes internally,
+ * we can leverage that to size our modals.
+ */
+function getSize(value: string) {
+  if (value === "full") {
+    return { content: { maxW: "100vw", h: "100vh" } }
+  }
+
+  return {
+    content: { maxW: value },
+  }
 }
 
-export const ModalSizes = {
-  xs: "xs",
-  sm: "sm",
-  md: "md",
-  lg: "lg",
-  xl: "xl",
-  "2xl": "2xl",
-  "3xl": "3xl",
-  "4xl": "4xl",
-  "5xl": "5xl",
-  "6xl": "6xl",
-  full: "full",
-}
-
-export default Modal
+export default modal

@@ -1,24 +1,21 @@
-import { Image } from "@chakra-ui/image"
-import { Stack } from "@chakra-ui/layout"
 import {
   chakra,
+  DarkMode,
   useColorMode,
   useColorModeValue,
-  DarkMode,
-} from "@chakra-ui/system"
-import { Button } from "@chakra-ui/button"
-import Head from "next/head"
-import {
+  Button,
+  Image,
   Input,
-  InputLeftAddon,
-  InputRightAddon,
+  InputGroup,
   InputLeftElement,
   InputRightElement,
-  InputGroup,
-} from "@chakra-ui/input"
+  Stack,
+  Container,
+} from "@chakra-ui/core"
+import Head from "next/head"
 
 function Switcher() {
-  const [, toggleMode] = useColorMode()
+  const { toggleColorMode: toggleMode } = useColorMode()
   const text = useColorModeValue("light-man", "dark-man")
   return <button onClick={toggleMode}>Current mode: {text}</button>
 }
@@ -32,14 +29,14 @@ const InputGrouper = () => {
         <Input placeholder="Enter amount" />
         {bool && <InputRightElement children={"C"} />}
       </InputGroup>
-      <button onClick={() => setBool((s) => !s)}>Add Right Element</button>
+      <button onClick={() => setBool((s) => !s)}>Toggle Right Element</button>
       <br />
     </>
   )
 }
 
 const Home = () => (
-  <div className="container">
+  <Container>
     <Head>
       <title>Create Next App</title>
       <link rel="icon" href="/favicon.ico" />
@@ -76,7 +73,7 @@ const Home = () => (
         <div>Welcome home</div>
       </Stack>
     </main>
-  </div>
+  </Container>
 )
 
 export default Home

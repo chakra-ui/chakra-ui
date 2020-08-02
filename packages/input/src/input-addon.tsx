@@ -1,8 +1,6 @@
-import { useSafeLayoutEffect } from "@chakra-ui/hooks"
-import { chakra, PropsOf, forwardRef } from "@chakra-ui/system"
+import { chakra, PropsOf, useStyles } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-import { useInputGroup } from "./input-group"
 
 type Placement = "left" | "right"
 
@@ -13,20 +11,13 @@ const placements = {
     borderRightColor: "transparent",
   },
   right: {
-    marginRight: "-1px",
+    marginLeft: "-1px",
     borderLeftRadius: 0,
     borderLeftColor: "transparent",
   },
 }
 
-/**
- * StyledAddon
- *
- * Wrapper element around the InputAddon component
- */
-
 const StyledAddon = chakra("div", {
-  themeKey: "InputAddon",
   baseStyle: {
     flex: "0 0 auto",
     width: "auto",
@@ -52,15 +43,16 @@ export const InputAddon = React.forwardRef(function InputAddonProps(
 ) {
   const { placement = "left", ...rest } = props
   const placementStyles = placements[placement] ?? {}
-  const group = useInputGroup()
+  const styles = useStyles()
 
   return (
     <StyledAddon
       ref={ref}
-      {...placementStyles}
       {...rest}
-      variant={group?.variant || props.variant}
-      size={group?.size || props.size}
+      __css={{
+        ...styles.addon,
+        ...placementStyles,
+      }}
     />
   )
 })
@@ -79,13 +71,6 @@ export const InputLeftAddon = React.forwardRef(function InputLeftAddon(
   props: InputAddonProps,
   ref: React.Ref<any>,
 ) {
-  const { leftAddon } = useInputGroup()
-
-  useSafeLayoutEffect(() => {
-    leftAddon?.mount()
-    return () => leftAddon?.unmount()
-  }, [])
-
   return (
     <InputAddon
       ref={ref}
@@ -100,6 +85,9 @@ if (__DEV__) {
   InputLeftAddon.displayName = "InputLeftAddon"
 }
 
+//@ts-ignore
+InputLeftAddon.groupId = "InputLeftAddon"
+
 /**
  * InputRightAddon
  *
@@ -110,13 +98,6 @@ export const InputRightAddon = React.forwardRef(function InputRightAddon(
   props: InputAddonProps,
   ref: React.Ref<any>,
 ) {
-  const { rightAddon } = useInputGroup()
-
-  useSafeLayoutEffect(() => {
-    rightAddon?.mount()
-    return () => rightAddon?.unmount()
-  }, [])
-
   return (
     <InputAddon
       ref={ref}
@@ -130,3 +111,6 @@ export const InputRightAddon = React.forwardRef(function InputRightAddon(
 if (__DEV__) {
   InputRightAddon.displayName = "InputRightAddon"
 }
+
+//@ts-ignore
+InputRightAddon.groupId = "InputRightAddon"

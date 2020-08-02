@@ -20,7 +20,7 @@ Chakra UI exports 3 breadcrumb related components:
 - `Breadcrumb`: The parent container for breadcrumbs.
 - `BreadcrumbItem`: Individual breadcrumb element containing a link and a
   divider.
-- `BreadcrumbLink`: The breadcrumb link, obviously.
+- `BreadcrumbLink`: The breadcrumb link.
 
 ```js
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/core"

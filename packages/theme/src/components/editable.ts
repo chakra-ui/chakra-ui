@@ -1,36 +1,25 @@
-import { ComponentTheme } from "@chakra-ui/theme-tools"
-import { SystemProps } from "@chakra-ui/system"
+import { multiStyleConfig } from "@chakra-ui/theme-tools"
 
-const base: SystemProps = {
-  fontSize: "inherit",
-  fontWeight: "inherit",
-  textAlign: "inherit",
-  bg: "transparent",
-  transition: "all 0.2s",
-  borderRadius: "md",
-  paddingX: "3px",
-  marginX: "-3px",
-}
-
-const Editable: ComponentTheme = {
+const editable = multiStyleConfig({
+  parts: {
+    preview: "the editable text preview",
+    input: "the editable input field",
+  },
   baseStyle: {
-    Preview: {
-      ...base,
-      cursor: "text",
-      display: "inline-block",
+    preview: {
+      borderRadius: "md",
+      py: "3px",
+      transition: "all 0.2s",
     },
-    Input: {
-      ...base,
-      outline: 0,
+    input: {
+      borderRadius: "md",
+      py: "3px",
+      transition: "all 0.2s",
       width: "full",
-      _focus: {
-        boxShadow: "outline",
-      },
-      _placeholder: {
-        opacity: 0.6,
-      },
+      _focus: { boxShadow: "outline" },
+      _placeholder: { opacity: 0.6 },
     },
   },
-}
+})
 
-export default Editable
+export default editable

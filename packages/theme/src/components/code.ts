@@ -1,17 +1,16 @@
-import Badge, { BadgeVariants } from "./badge"
-import { ComponentTheme } from "@chakra-ui/theme-tools"
+import { styleConfig } from "@chakra-ui/theme-tools"
+import badge from "./badge"
 
-const Code: ComponentTheme = {
-  defaultProps: Badge.defaultProps,
+const code = styleConfig({
   baseStyle: {
     fontFamily: "mono",
     fontSize: "sm",
-    paddingX: "0.2em",
+    px: "0.2em",
     borderRadius: "sm",
   },
-  variants: Badge.variants,
-}
+  variants: badge.variants,
+  sizes: badge.sizes,
+  defaultProps: badge.defaultProps,
+})
 
-export const CodeVariants = BadgeVariants
-
-export default Code
+export default code

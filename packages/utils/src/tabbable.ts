@@ -60,26 +60,38 @@ export function isFocusable(element: Element) {
   return hasTabIndex(element)
 }
 
-const isActiveElement = (element: Element) => document.activeElement === element
-
-type EnsureFocusOptions = FocusOptions & {
-  isActive?: typeof isActiveElement
-}
-
-export function ensureFocus(
-  element: HTMLElement,
-  { isActive = isActiveElement, preventScroll }: EnsureFocusOptions = {},
-) {
-  if (isActive(element)) return -1
-  return requestAnimationFrame(() => {
-    element.focus({ preventScroll })
-  })
-}
-
 export function isTabbable(element: Element) {
   return (
     isHTMLElement(element) &&
     isFocusable(element) &&
     !hasNegativeTabIndex(element)
   )
+}
+
+const isActiveElement = (element: Element) => document.activeElement === element
+
+function isInputElement(element: HTMLElement): element is HTMLInputElement {
+  return (
+    isHTMLElement(element) &&
+    element.tagName.toLowerCase() === "input" &&
+    "select" in element
+  )
+}
+
+interface FocusProps extends FocusOptions {
+  isActive?: typeof isActiveElement
+}
+
+export function focus(element: HTMLElement, options: FocusProps = {}) {
+  const { isActive = isActiveElement, preventScroll } = options
+
+  if (isActive(element)) return -1
+
+  return requestAnimationFrame(() => {
+    element.focus({ preventScroll })
+
+    if (isInputElement(element)) {
+      element.select()
+    }
+  })
 }

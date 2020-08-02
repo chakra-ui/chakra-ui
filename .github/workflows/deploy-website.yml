@@ -1,0 +1,49 @@
+name: Deploy Chakra Website
+
+# we'll set up this workflow to run only when a commit containing changes to
+# the website/ directory is pushed to master (includes when a PR is merged)
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - website/**
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Yarn cache path
+        id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - uses: actions/checkout@722adc6
+
+      - name: Use node@12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - name: Load Yarn cache
+        uses: actions/cache@70655ec
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile && yarn bootstrap
+
+      - name: Build Chakra packages
+        run: yarn build
+
+      - name: Build website
+        run: yarn docs build
+
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@b0d780b
+        with:
+          vercel-args: "--prod"
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.ORG_ID }}
+          vercel-project-id: ${{ secrets.PROJECT_ID }}

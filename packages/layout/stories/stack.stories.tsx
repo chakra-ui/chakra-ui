@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Box, Stack, StackDivider, Heading, Text } from "../src"
+import { Stack, StackDivider, Box, Heading, Text } from "../src"
 
 export default {
   title: "Stack",

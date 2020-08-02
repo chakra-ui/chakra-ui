@@ -1,15 +1,20 @@
-import { ComponentTheme } from "@chakra-ui/theme-tools"
+import { multiStyleConfig } from "@chakra-ui/theme-tools"
 
-const Accordion: ComponentTheme = {
+const accordion = multiStyleConfig({
+  parts: {
+    container: "the container for an accordion item",
+    button: "the trigger for an accordion item",
+    panel: "the panel for an accordion item",
+  },
   baseStyle: {
-    Item: {
+    container: {
       borderTopWidth: "1px",
       borderColor: "inherit",
       _last: {
         borderBottomWidth: "1px",
       },
     },
-    Button: {
+    button: {
       fontSize: "1rem",
       _focus: {
         boxShadow: "outline",
@@ -21,15 +26,15 @@ const Accordion: ComponentTheme = {
         opacity: 0.4,
         cursor: "not-allowed",
       },
-      paddingX: 4,
-      paddingY: 2,
+      px: 4,
+      py: 2,
     },
-    Panel: {
-      paddingTop: 2,
-      paddingX: 4,
-      paddingBottom: 5,
+    panel: {
+      pt: 2,
+      px: 4,
+      pb: 5,
     },
   },
-}
+})
 
-export default Accordion
+export default accordion

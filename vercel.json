@@ -1,5 +1,11 @@
 {
   "version": 2,
-  "alias": "chakra-ui.com",
-  "scope": "chakra-ui"
+  "alias": "next.chakra-ui.com",
+  "scope": "chakra-ui",
+  "redirects": [
+    {
+      "source": "/discord",
+      "destination": "https://discord.com/invite/BEZ8VDy"
+    }
+  ]
 }

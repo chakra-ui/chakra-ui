@@ -1,72 +1,69 @@
 import { useCheckbox, UseCheckboxProps } from "@chakra-ui/checkbox"
-import { chakra, PropsOf } from "@chakra-ui/system"
+import {
+  chakra,
+  PropsOf,
+  useMultiStyleConfig,
+  omitThemingProps,
+  ThemingProps,
+} from "@chakra-ui/system"
 import { cx, dataAttr, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-
-const StyledSwitch = chakra("label", {
-  baseStyle: {
-    display: "inline-block",
-    verticalAlign: "middle",
-  },
-})
-
-/**
- * Switch Track - Theming
- *
- * To style the switch track globally, change the styles in
- * `theme.components.Switch` under the `Track` key
- */
-const StyledTrack = chakra("div", {
-  themeKey: "Switch.Track",
-  baseStyle: {
-    display: "inline-flex",
-    flexShrink: 0,
-    justifyContent: "flex-start",
-    boxSizing: "content-box",
-    cursor: "pointer",
-  },
-})
-
-/**
- * Switch Thumb - Theming
- *
- * To style the element, change the styles in
- * `theme.components.Switch` under the `Thumb` key
- */
-const StyledThumb = chakra("div", {
-  themeKey: "Switch.Thumb",
-})
 
 type Omitted = "onChange" | "defaultChecked" | "checked"
 
 export type SwitchProps = Omit<UseCheckboxProps, "isIndeterminate"> &
-  Omit<PropsOf<typeof StyledSwitch>, Omitted>
+  Omit<PropsOf<typeof chakra.label>, Omitted> &
+  ThemingProps
 
 export const Switch = React.forwardRef(function Switch(
   props: SwitchProps,
   ref: React.Ref<any>,
 ) {
-  const { colorScheme, size, variant, className, ...rest } = props
+  const styles = useMultiStyleConfig("Switch", props)
+
+  const realProps = omitThemingProps(props)
   const { state, getInputProps, getCheckboxProps, htmlProps } = useCheckbox(
-    rest,
+    realProps,
   )
 
-  const theming = { colorScheme, size, variant }
-  const input = getInputProps({ ref })
-  const checkbox = getCheckboxProps() as any
+  const inputProps = getInputProps({}, ref)
+  const checkboxProps = getCheckboxProps()
+
+  const labelStyles = {
+    display: "inline-block",
+    verticalAlign: "middle",
+    lineHeight: "normal",
+  }
+
+  const trackStyles = {
+    display: "inline-flex",
+    flexShrink: 0,
+    justifyContent: "flex-start",
+    boxSizing: "content-box",
+    cursor: "pointer",
+    ...styles.track,
+  }
 
   return (
-    <StyledSwitch className={cx("chakra-switch", className)} {...htmlProps}>
-      <input className="chakra-switch__input" {...input} />
-      <StyledTrack className="chakra-switch__track" {...theming} {...checkbox}>
-        <StyledThumb
-          {...theming}
+    <chakra.label
+      {...htmlProps}
+      className={cx("chakra-switch", props.className)}
+      __css={labelStyles}
+    >
+      <input className="chakra-switch__input" {...inputProps} />
+      <chakra.div
+        {...checkboxProps}
+        className="chakra-switch__track"
+        __css={trackStyles}
+      >
+        <chakra.div
+          __css={styles.thumb}
           className="chakra-switch__thumb"
           data-checked={dataAttr(state.isChecked)}
           data-hover={dataAttr(state.isHovered)}
         />
-      </StyledTrack>
-    </StyledSwitch>
+      </chakra.div>
+    </chakra.label>
   )
 })
 

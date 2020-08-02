@@ -9,12 +9,14 @@
 <br>
 
 <p align="center">
-  <img alt="All Contributors" src="https://img.shields.io/github/contributors/chakra-ui/chakra-ui"/>
   <img alt="Bundle Size" src="https://badgen.net/bundlephobia/minzip/@chakra-ui/core"/>
+  <img alt="Language grade: JavaScript" src="https://img.shields.io/lgtm/grade/javascript/g/chakra-ui/chakra-ui.svg?logo=lgtm&logoWidth=18"/>
   <img alt="MIT License" src="https://img.shields.io/github/license/chakra-ui/chakra-ui"/>
   <img alt="NPM Downloads" src="https://img.shields.io/npm/dm/@chakra-ui/core.svg?style=flat"/>
   <img alt="Github Stars" src="https://badgen.net/github/stars/chakra-ui/chakra-ui" />
-  <a href="https://lernajs.io/"><img alt="Lerna" src="https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg" /></a>
+  <a href="https://discord.gg/yxpPm4q">
+    <img alt="Discord" src="https://img.shields.io/discord/660863154703695893.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2" />
+  </a>
 </p>
 <br />
 
@@ -23,7 +25,9 @@ that make it super easy to create websites and apps.
 
 ## Looking for the documentation? 📝
 
-Here over here => https://chakra-ui.com
+For older versions, head over here => https://chakra-ui.com
+
+Latest version (pre-release) => https://next.chakra-ui.com
 
 ## Features 🚀
 
@@ -137,6 +141,11 @@ function Example() {
 - JavaScript Starter: https://codesandbox.io/s/chakra-ui-javascript-lzzg9
 - TypeScript Starter: https://codesandbox.io/s/chakra-ui-typescript-pomi8
 
+## `create-react-app` Templates
+
+[Check out our guide](https://next.chakra-ui.com/guides/cra-templates) for
+information on how to use our official `create-react-app` templates.
+
 ## Contributing
 
 Feel like contributing? That's awesome! We have a
@@ -190,7 +199,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="http://jessachandler.com"><img src="https://avatars3.githubusercontent.com/u/7316730?v=4" width="64px;" alt=""/><br /><sub><b>jess</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=monkeywithacupcake" title="Documentation">📖</a> <a href="#fundingFinding-monkeywithacupcake" title="Funding Finding">🔍</a></td>
     <td align="center"><a href="http://fiveninedeveloper.000webhostapp.com"><img src="https://avatars2.githubusercontent.com/u/24798364?v=4" width="64px;" alt=""/><br /><sub><b>Ayelegun Kayode Michael</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=Billmike" title="Code">💻</a></td>
     <td align="center"><a href="http://talwilliams.com"><img src="https://avatars3.githubusercontent.com/u/76711?v=4" width="64px;" alt=""/><br /><sub><b>Tal Williams</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=xtalx" title="Code">💻</a></td>
-    <td align="center"><a href="https://trevorblades.com"><img src="https://avatars0.githubusercontent.com/u/1216917?v=4" width="64px;" alt=""/><br /><sub><b>Trevor Blades</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=trevorblades" title="Code">💻</a></td>
+    <td align="center"><a href="https://trevorblades.com"><img src="https://avatars0.githubusercontent.com/u/1216917?v=4" width="64px;" alt=""/><br /><sub><b>Trevor Blades</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=trevorblades" title="Code">💻</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=trevorblades" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/gordlea"><img src="https://avatars0.githubusercontent.com/u/782154?v=4" width="64px;" alt=""/><br /><sub><b>Gord Lea</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=gordlea" title="Code">💻</a></td>
     <td align="center"><a href="https://aggelos.dev"><img src="https://avatars1.githubusercontent.com/u/10436045?v=4" width="64px;" alt=""/><br /><sub><b>Aggelos Arvanitakis</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=3nvi" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/DouglasGabr"><img src="https://avatars2.githubusercontent.com/u/21958179?v=4" width="64px;" alt=""/><br /><sub><b>Douglas Gabriel</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=DouglasGabr" title="Code">💻</a></td>
@@ -199,7 +208,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://github.com/Martinnord"><img src="https://avatars3.githubusercontent.com/u/17549362?v=4" width="64px;" alt=""/><br /><sub><b>Martin Nordström</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=Martinnord" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/dannytatom"><img src="https://avatars2.githubusercontent.com/u/60604?v=4" width="64px;" alt=""/><br /><sub><b>Danny Tatom</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=dannytatom" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/simoncollins"><img src="https://avatars2.githubusercontent.com/u/874670?v=4" width="64px;" alt=""/><br /><sub><b>Simon Collins</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=simoncollins" title="Code">💻</a></td>
-    <td align="center"><a href="http://santialbo.com"><img src="https://avatars3.githubusercontent.com/u/1557563?v=4" width="64px;" alt=""/><br /><sub><b>Santi Albo</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=santialbo" title="Code">💻</a></td>
+    <td align="center"><a href="http://santialbo.com"><img src="https://avatars3.githubusercontent.com/u/1557563?v=4" width="64px;" alt=""/><br /><sub><b>Santi Albo</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=santialbo" title="Code">💻</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=santialbo" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/PILO7980"><img src="https://avatars0.githubusercontent.com/u/3218536?v=4" width="64px;" alt=""/><br /><sub><b>PILO7980</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=PILO7980" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/dowdiness"><img src="https://avatars3.githubusercontent.com/u/1616717?v=4" width="64px;" alt=""/><br /><sub><b>Ishimoto Koji </b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=dowdiness" title="Code">💻</a></td>
     <td align="center"><a href="https://sinchang.me"><img src="https://avatars0.githubusercontent.com/u/3297859?v=4" width="64px;" alt=""/><br /><sub><b>Jeff Wen</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=sinchang" title="Code">💻</a></td>
@@ -211,7 +220,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://github.com/sebqq"><img src="https://avatars1.githubusercontent.com/u/33039909?v=4" width="64px;" alt=""/><br /><sub><b>Sebastian Trebunak</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=sebqq" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/sarcastron"><img src="https://avatars0.githubusercontent.com/u/2415228?v=4" width="64px;" alt=""/><br /><sub><b>Adam Plante</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=sarcastron" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/luciorubeens"><img src="https://avatars0.githubusercontent.com/u/4539235?v=4" width="64px;" alt=""/><br /><sub><b>Lúcio Rubens</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=luciorubeens" title="Code">💻</a></td>
-    <td align="center"><a href="http://jasonmiazga.com"><img src="https://avatars2.githubusercontent.com/u/181441?v=4" width="64px;" alt=""/><br /><sub><b>Jason Miazga</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=jmiazga" title="Code">💻</a></td>
+    <td align="center"><a href="http://jasonmiazga.com"><img src="https://avatars2.githubusercontent.com/u/181441?v=4" width="64px;" alt=""/><br /><sub><b>Jason Miazga</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=jmiazga" title="Code">💻</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=jmiazga" title="Documentation">📖</a></td>
   </tr>
   <tr>
     <td align="center"><a href="http://gonzalopozzo.com"><img src="https://avatars1.githubusercontent.com/u/6494462?v=4" width="64px;" alt=""/><br /><sub><b>Gonzalo Pozzo</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=goncy" title="Code">💻</a></td>
@@ -241,7 +250,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://walela.github.io"><img src="https://avatars3.githubusercontent.com/u/5380651?s=460&u=0e88e57ceb2a0f98d2ce737bb5a8f6f608a47697&v=4" width="64px;" alt=""/><br /><sub><b>Austin Walela</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=walela" title="Code">💻</a></td>
   </tr>
   <tr>
-    <td align="center"><a href="https://tony@git-pull.com"><img src="https://avatars0.githubusercontent.com/u/26336?s=460&v=4" width="64px;" alt=""/><br /><sub><b>Tony Narlock</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=tony" title="Code">💻</a></td>
+    <td align="center"><a href="https://tony@git-pull.com"><img src="https://avatars0.githubusercontent.com/u/26336?s=460&v=4" width="64px;" alt=""/><br /><sub><b>Tony Narlock</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=tony" title="Code">💻</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=tony" title="Documentation">📖</a></td>
     <td align="center"><a href="http://thomasmaximini.com"><img src="https://avatars2.githubusercontent.com/u/570544?s=460&u=0b020d3821581805b6ad6a187962b4e7081e9d77&v=4" width="64px;" alt=""/><br /><sub><b>Thomas Maximini</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=tmaximini" title="Code">💻</a></td>
     <td align="center"><a href="https://davidbaumgold.com"><img src="https://avatars2.githubusercontent.com/u/132355?s=460&u=5198ecc5955dd4e576ff06a1a1b91a2cf201ddb6&v=4" width="64px;" alt=""/><br /><sub><b>David Baumgold</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=singingwolfboy" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/ralphilius"><img src="https://avatars3.githubusercontent.com/u/4253551?s=460&u=f641622c52c7830c12c9a5ef3c433ba68a6eb192&v=4" width="64px;" alt=""/><br /><sub><b>ralphilius</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=ralphilius" title="Code">💻</a></td>
@@ -279,11 +288,27 @@ Thanks goes to these wonderful people
   <tr>
     <td align="center"><a href="https://github.com/mrmckeb"><img src="https://avatars3.githubusercontent.com/u/5043083?v=4" width="64px;" alt=""/><br /><sub><b>Brody McKee</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=mrmckeb" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/Psvensso"><img src="https://avatars1.githubusercontent.com/u/1482833?v=4" width="64px;" alt=""/><br /><sub><b>Per Svensson</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=Psvensso" title="Code">💻</a></td>
+    <td align="center"><a href="https://www.patrickcason.com"><img src="https://avatars1.githubusercontent.com/u/1297930?v=4" width="64px;" alt=""/><br /><sub><b>Patrick Cason</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=cereallarceny" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://www.ivoilic.com"><img src="https://avatars1.githubusercontent.com/u/3476570?v=4" width="64px;" alt=""/><br /><sub><b>Ivo Ilić</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=ivoilic" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/avaneeshtripathi"><img src="https://avatars3.githubusercontent.com/u/20407975?v=4" width="64px;" alt=""/><br /><sub><b>Avaneesh Tripathi</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=avaneeshtripathi" title="Code">💻</a></td>
+    <td align="center"><a href="http://habd.as"><img src="https://avatars3.githubusercontent.com/u/65664227?v=4" width="64px;" alt=""/><br /><sub><b>balibebas</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=balibebas" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://navin-moorthy.github.io/"><img src="https://avatars0.githubusercontent.com/u/39694575?v=4" width="64px;" alt=""/><br /><sub><b>Navin Moorthy</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=navin-moorthy" title="Code">💻</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=navin-moorthy" title="Documentation">📖</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="http://www.timkindberg.com"><img src="https://avatars0.githubusercontent.com/u/168046?v=4" width="64px;" alt=""/><br /><sub><b>Tim Kindberg</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=timkindberg" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/iodar"><img src="https://avatars3.githubusercontent.com/u/47027105?v=4" width="64px;" alt=""/><br /><sub><b>iodar</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=iodar" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://lcdsmao.dev"><img src="https://avatars3.githubusercontent.com/u/13031690?v=4" width="64px;" alt=""/><br /><sub><b>MAO YUFENG</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=lcdsmao" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://jiepeng.me"><img src="https://avatars3.githubusercontent.com/u/10325111?v=4" width="64px;" alt=""/><br /><sub><b>Peng Jie</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=neighborhood999" title="Code">💻</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=neighborhood999" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/Geeman201"><img src="https://avatars3.githubusercontent.com/u/1285296?v=4" width="64px;" alt=""/><br /><sub><b>James Gee</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=Geeman201" title="Code">💻</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=Geeman201" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://github.com/antonjb"><img src="https://avatars2.githubusercontent.com/u/1066856?v=4" width="64px;" alt=""/><br /><sub><b>Anton</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=antonjb" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/damnjan"><img src="https://avatars2.githubusercontent.com/u/2204518?v=4" width="64px;" alt=""/><br /><sub><b>Damnjan Lukovic</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=damnjan" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/Andu033"><img src="https://avatars1.githubusercontent.com/u/15851201?v=4" width="64px;" alt=""/><br /><sub><b>Stanila Andrei</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=Andu033" title="Code">💻</a></td>
   </tr>
 </table>
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ([emoji key](https://allcontributors.org/docs/en/emoji-key)):

@@ -1,4 +1,4 @@
-# Utilites
+# Utilities
 
 Shared utilities for various Chakra UI components
 

@@ -1,5 +1,5 @@
 import { isNotNumber } from "./assertion"
-import { warn } from "./logger"
+import { warn } from "./function"
 
 export const minSafeInteger = Number.MIN_SAFE_INTEGER || -9007199254740991
 export const maxSafeInteger = Number.MAX_SAFE_INTEGER || 9007199254740991
@@ -71,10 +71,11 @@ export function percentToValue(percent: number, min: number, max: number) {
  * Rounds a specific value to the next or previous step
  *
  * @param value the value to round
+ * @param from the number that stepping started from
  * @param step the specified step
  */
-export function roundValueToStep(value: number, step: number) {
-  const nextValue = Math.round(value / step) * step
+export function roundValueToStep(value: number, from: number, step: number) {
+  const nextValue = Math.round((value - from) / step) * step + from
   const precision = countDecimalPlaces(step)
   return toPrecision(nextValue, precision)
 }

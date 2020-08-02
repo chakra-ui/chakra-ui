@@ -8,10 +8,20 @@ exports[`should render without errors 1`] = `
 </DocumentFragment>
 `;
 
+exports[`should show on mouseover if isDisabled has a falsy value 1`] = `
+<DocumentFragment>
+  <button
+    aria-describedby="tooltip-32"
+  >
+    Hover me
+  </button>
+</DocumentFragment>
+`;
+
 exports[`shows on mouseover and closes on mouseout 1`] = `
 <DocumentFragment>
   <button
-    aria-describedby="tooltip-22"
+    aria-describedby="tooltip-20"
   >
     Hover me
   </button>

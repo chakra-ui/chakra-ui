@@ -1,6 +1,6 @@
-import { ComponentTheme } from "@chakra-ui/theme-tools"
+import { styleConfig } from "@chakra-ui/theme-tools"
 
-const Link: ComponentTheme = {
+const link = styleConfig({
   baseStyle: {
     transition: `all 0.15s ease-out`,
     cursor: "pointer",
@@ -19,6 +19,6 @@ const Link: ComponentTheme = {
       textDecoration: "none",
     },
   },
-}
+})
 
-export default Link
+export default link

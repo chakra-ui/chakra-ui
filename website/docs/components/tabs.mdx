@@ -2,8 +2,10 @@
 title: Tabs
 package: "@chakra-ui/tabs"
 image: "components/tabs.svg"
-decriptions: "A React component that helps you build accessible tabs, by providing
-keyboard interactions and ARIA attributes described in the WAI-ARIA Tab Panel Design Pattern."
+decription:
+  A React component that helps you build accessible tabs, by providing keyboard
+  interactions and ARIA attributes described in the WAI-ARIA Tab Panel Design
+  Pattern.
 ---
 
 import ComponentLinks from "../../src/components/component-links"
@@ -377,10 +379,10 @@ function CustomTabs() {
     const isSelected = !!tabProps["aria-selected"]
 
     // 3. Hook into the Tabs `size`, `variant`, props
-    const theming = useTabsThemingContext()
+    const styles = useStyles()
 
     return (
-      <StyledTab {...theming} {...tabProps}>
+      <StyledTab __css={styles.tab} {...tabProps}>
         <Box as="span" mr="2">
           {isSelected ? "😎" : "😐"}
         </Box>

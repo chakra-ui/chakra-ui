@@ -1,14 +1,17 @@
 import {
   chakra,
-  PropsOf,
   forwardRef,
+  omitThemingProps,
+  PropsOf,
+  StylesProvider,
   ThemingProps,
-  useThemeDefaultProps,
+  useMultiStyleConfig,
+  useStyles,
 } from "@chakra-ui/system"
-import { createContext, cx, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import { cx, __DEV__ } from "@chakra-ui/utils"
+import React, { Ref, ReactNode, useMemo } from "react"
 import {
-  TabsContextProvider,
+  TabsProvider,
   useTab,
   useTabIndicator,
   useTabList,
@@ -20,31 +23,23 @@ import {
   UseTabsProps,
 } from "./use-tabs"
 
-interface ThemingContext extends ThemingProps {
+interface TabsOptions {
   /**
    * If `true`, tabs will stretch to width of the tablist.
    */
   isFitted?: boolean
+  /**
+   * The alignment of the tabs
+   */
+  align?: "start" | "end" | "center"
 }
 
-type DivProps = Omit<PropsOf<typeof chakra.div>, "onChange">
-
 export type TabsProps = UseTabsProps &
-  DivProps & {
-    children: React.ReactNode
-    /**
-     * If `true`, tabs will stretch to width of the tablist.
-     */
-    isFitted?: boolean
+  ThemingProps &
+  Omit<PropsOf<typeof chakra.div>, "onChange" | "children"> &
+  TabsOptions & {
+    children: ReactNode
   }
-
-const [ThemingContextProvider, useThemingContext] = createContext<
-  ThemingContext
->({
-  name: "TabsThemingContext",
-})
-
-export { useThemingContext as useTabsThemingContext }
 
 /**
  * Tabs
@@ -54,36 +49,26 @@ export { useThemingContext as useTabsThemingContext }
  */
 export const Tabs = React.forwardRef(function Tabs(
   props: TabsProps,
-  ref: React.Ref<any>,
+  ref: Ref<any>,
 ) {
-  /**
-   * Gets the default props for `variant` and `size` from `theme.components.Tabs`
-   */
-  const defaults = useThemeDefaultProps("Tabs")
+  const styles = useMultiStyleConfig("Tabs", props)
+  const { children, className, ...otherProps } = omitThemingProps(props)
 
-  const {
-    children,
-    variant = defaults?.variant,
-    size = defaults?.size,
-    colorScheme = defaults?.colorScheme,
-    isFitted,
-    className,
-    ...rest
-  } = props
-
-  const { htmlProps, ...context } = useTabs(rest)
-  const tabs = React.useMemo(() => context, [context])
-
-  const _className = cx("chakra-tabs", className)
+  const { htmlProps, ...ctx } = useTabs(otherProps)
+  const context = useMemo(() => ctx, [ctx])
 
   return (
-    <TabsContextProvider value={tabs}>
-      <ThemingContextProvider value={{ variant, size, colorScheme, isFitted }}>
-        <chakra.div className={_className} ref={ref} {...htmlProps}>
+    <TabsProvider value={context}>
+      <StylesProvider value={styles}>
+        <chakra.div
+          className={cx("chakra-tabs", className)}
+          ref={ref}
+          {...htmlProps}
+        >
           {children}
         </chakra.div>
-      </ThemingContextProvider>
-    </TabsContextProvider>
+      </StylesProvider>
+    </TabsProvider>
   )
 })
 
@@ -91,43 +76,29 @@ if (__DEV__) {
   Tabs.displayName = "Tabs"
 }
 
+export type TabProps = UseTabProps & PropsOf<typeof chakra.button>
+
 /**
- * Tabs - Theming
- *
- * To change the styles of a tab buttons globally, update the styles in
- * `theme.components.Tabs` under the `Tab` key.
+ * Tab button used to activate a specific tab panel. It renders a `button`,
+ * and is responsible for automatic and manual selection modes.
  */
-const StyledTab = chakra("button", {
-  themeKey: "Tabs.Tab",
-  baseStyle: {
+export const Tab = forwardRef<TabProps>(function Tab(props, ref) {
+  const styles = useStyles()
+  const tabProps = useTab({ ...props, ref })
+
+  const tabStyles = {
     outline: "0",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-  },
-})
-
-export type TabProps = Omit<UseTabProps, "context"> & PropsOf<typeof StyledTab>
-
-/**
- * Tabs
- *
- * The tab button used to activate a specific tab panel. It renders a `button`,
- * and is responsible for automatic and manual selection modes.
- */
-export const Tab = forwardRef<TabProps>(function Tab(props, ref) {
-  const { className, ...htmlProps } = props
-  const { isFitted, ...theming } = useThemingContext()
-  const tabProps = useTab({ ...htmlProps, ref })
-
-  const _className = cx("chakra-tabs__tab", className)
+    ...styles.tab,
+  }
 
   return (
-    <StyledTab
-      className={_className}
-      flex={isFitted ? 1 : undefined}
-      {...theming}
+    <chakra.button
       {...tabProps}
+      className={cx("chakra-tabs__tab", props.className)}
+      __css={tabStyles}
     />
   )
 })
@@ -136,67 +107,58 @@ if (__DEV__) {
   Tab.displayName = "Tab"
 }
 
-/**
- * TabList - Theming
- *
- * To change the styles of a tablist globally, update the styles in
- * `theme.components.Tabs` under the `TabList` key
- */
-const StyledTabList = chakra("div", {
-  themeKey: "Tabs.TabList",
-})
-
 export type TabListProps = Omit<UseTabListProps, "context"> &
-  PropsOf<typeof StyledTabList>
+  PropsOf<typeof chakra.div>
 
 /**
- * TabList
- *
- * Used to manage a list of tab buttons. It renders a `div` by default,
+ * TabList is used to manage a list of tab buttons. It renders a `div` by default,
  * and is responsible the keyboard interaction between tabs.
  */
 export const TabList = React.forwardRef(function TabList(
   props: TabListProps,
-  ref: React.Ref<any>,
+  ref: Ref<any>,
 ) {
-  const { className, ...htmlProps } = props
-  const { isFitted, ...theming } = useThemingContext()
-  const tablistProps = useTabList({ ...htmlProps, ref })
+  const tablistProps = useTabList({ ...props, ref })
 
-  const _className = cx("chakra-tabs__tablist", className)
+  const styles = useStyles()
+  const tablistStyles = {
+    display: "flex",
+    ...styles.tablist,
+  }
 
-  return <StyledTabList className={_className} {...theming} {...tablistProps} />
+  return (
+    <chakra.div
+      {...tablistProps}
+      className={cx("chakra-tabs__tablist", props.className)}
+      __css={tablistStyles}
+    />
+  )
 })
 
 if (__DEV__) {
   TabList.displayName = "TabList"
 }
 
-/**
- * TabPanel - Theming
- *
- * To change the styles of tab panels globally, update the styles in
- * `theme.components.Tabs` under the `TabPanel` key
- */
-const StyledTabPanel = chakra("div", {
-  themeKey: "Tabs.TabPanel",
-})
-
-export type TabPanelProps = PropsOf<typeof StyledTabPanel>
+export type TabPanelProps = PropsOf<typeof chakra.div>
 
 /**
  * TabPanel
- *
  * Used to render the content for a specific tab.
  */
 export const TabPanel = React.forwardRef(function TabPanel(
   props: TabPanelProps,
-  ref: React.Ref<any>,
+  ref: Ref<any>,
 ) {
-  const { className, ...htmlProps } = props
-  const panelProps = useTabPanel({ ...htmlProps, ref })
-  const _className = cx("chakra-tabs__tab-panel", className)
-  return <StyledTabPanel className={_className} {...panelProps} />
+  const panelProps = useTabPanel({ ...props, ref })
+  const styles = useStyles()
+
+  return (
+    <chakra.div
+      {...panelProps}
+      className={cx("chakra-tabs__tab-panel", props.className)}
+      __css={styles.tabpanel}
+    />
+  )
 })
 
 if (__DEV__) {
@@ -215,28 +177,21 @@ export type TabPanelsProps = PropsOf<typeof chakra.div>
  */
 export const TabPanels = React.forwardRef(function TabPanels(
   props: TabPanelsProps,
-  ref: React.Ref<any>,
+  ref: Ref<any>,
 ) {
-  const { className, ...htmlProps } = props
-  const panelsProp = useTabPanels(htmlProps)
-
-  const _className = cx("chakra-tabs__tab-panels", className)
-  return <chakra.div ref={ref} className={_className} {...panelsProp} />
+  const panelsProps = useTabPanels(props)
+  return (
+    <chakra.div
+      {...panelsProps}
+      ref={ref}
+      className={cx("chakra-tabs__tab-panels", props.className)}
+    />
+  )
 })
 
 if (__DEV__) {
   TabPanels.displayName = "TabPanels"
 }
-
-/**
- * TabIndicator - Theming
- *
- * To change the styles of tab indicator globally, update the styles in
- * `theme.components.Tabs` under the `TabIndicator` key
- */
-const StyledTabIndicator = chakra("div", {
-  themeKey: "Tabs.TabIndicator",
-})
 
 export type TabIndicatorProps = PropsOf<typeof chakra.div>
 
@@ -248,21 +203,23 @@ export type TabIndicatorProps = PropsOf<typeof chakra.div>
  */
 export const TabIndicator = React.forwardRef(function TabIndicator(
   props: TabIndicatorProps,
-  ref: React.Ref<any>,
+  ref: Ref<any>,
 ) {
-  const { className, style, ...htmlProps } = props
+  const indicatorStyle = useTabIndicator()
+  const style = {
+    ...props.style,
+    ...indicatorStyle,
+  }
 
-  const styles = useTabIndicator()
-
-  const _className = cx("chakra-tabs__tab-indicator", className)
-  const _style = { ...style, ...styles }
+  const styles = useStyles()
 
   return (
-    <StyledTabIndicator
+    <chakra.div
       ref={ref}
-      className={_className}
-      style={_style}
-      {...htmlProps}
+      {...props}
+      className={cx("chakra-tabs__tab-indicator", props.className)}
+      style={style}
+      __css={styles.indicator}
     />
   )
 })

@@ -1,5 +1,6 @@
 import * as React from "react"
 import ReactFocusLock from "react-focus-lock"
+import { __DEV__, getAllFocusable, focus } from "@chakra-ui/utils"
 
 export interface FocusLockProps {
   /**
@@ -33,6 +34,11 @@ export interface FocusLockProps {
    * will ne auto-focused once `FocusLock` mounts
    */
   autoFocus?: boolean
+  /**
+   * If `true`, disables text selections inside, and outside focus lock.
+   * @default `false`
+   */
+  persistentFocus?: boolean
 }
 
 /**
@@ -49,14 +55,20 @@ export function FocusLock(props: FocusLockProps) {
     restoreFocus,
     children,
     isDisabled,
-    autoFocus = true,
+    autoFocus,
+    persistentFocus,
   } = props
 
   const onActivation = React.useCallback(() => {
     if (initialFocusRef?.current) {
       initialFocusRef.current.focus()
     } else {
-      contentRef?.current?.focus()
+      if (contentRef?.current) {
+        const focusables = getAllFocusable(contentRef.current)
+        if (focusables.length === 0) {
+          focus(contentRef.current)
+        }
+      }
     }
   }, [initialFocusRef, contentRef])
 
@@ -68,6 +80,7 @@ export function FocusLock(props: FocusLockProps) {
 
   return (
     <ReactFocusLock
+      persistentFocus={persistentFocus}
       autoFocus={autoFocus}
       disabled={isDisabled}
       onActivation={onActivation}
@@ -77,6 +90,10 @@ export function FocusLock(props: FocusLockProps) {
       {children}
     </ReactFocusLock>
   )
+}
+
+if (__DEV__) {
+  FocusLock.displayName = "FocusLock"
 }
 
 export default FocusLock

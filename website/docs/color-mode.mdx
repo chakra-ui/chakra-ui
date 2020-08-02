@@ -17,14 +17,14 @@ hooks.
 > **Tip:** Chakra stores the color mode in `localStorage` and uses a class name
 > strategy to ensure the color mode is persistent.
 
-## useColorMode hook
+## useColorMode
 
 `useColorMode` is a React hook that gives you access to the current color mode,
 and a function to toggle the color mode.
 
 ```jsx
 function Example() {
-  const [colorMode, toggleColorMode] = useColorMode()
+  const { colorMode, toggleColorMode } = useColorMode()
   return (
     <header>
       <Button onClick={toggleColorMode}>
@@ -37,7 +37,7 @@ function Example() {
 
 Calling `toggleColorMode` anywhere in your app tree toggles the color mode.
 
-## useColorModeValue hook
+## useColorModeValue
 
 `useColorModeValue` is a React hook used to change any value or style based on
 the color mode. It takes 2 arguments: the value in light mode, and the value in
@@ -45,7 +45,7 @@ dark mode.
 
 ```jsx live=false
 // Here's the signature
-const bg = useColorModeValue(lightModeValue, darkModeValue)
+const value = useColorModeValue(lightModeValue, darkModeValue)
 ```
 
 Here's an example that changes the `background-color` and `color` using the
@@ -55,7 +55,8 @@ Here's an example that changes the `background-color` and `color` using the
 
 ```jsx
 function StyleColorMode() {
-  const [colorMode, toggleColorMode] = useColorMode()
+  const { colorMode, toggleColorMode } = useColorMode()
+
   const bg = useColorModeValue("red.500", "red.200")
   const color = useColorModeValue("white", "gray.800")
 
@@ -75,14 +76,14 @@ function StyleColorMode() {
 ## Forcing a specific mode
 
 In some occasions, you might want Chakra components to look the same in both
-light and dark modes. To achieve this, wrap the component in `LightMode` or
+light and dark modes. To achieve this, wrap the component in a `LightMode` or
 `DarkMode` component. Doing this will override the global `colorMode`.
 
 > Click the **"Toggle Mode"** button to see it in action.
 
 ```jsx
 function Example() {
-  const [colorMode, toggleColorMode] = useColorMode()
+  const { colorMode, toggleColorMode } = useColorMode()
 
   return (
     <HStack>
@@ -108,7 +109,8 @@ function Example() {
 
 ## Change color mode behavior
 
-Starting from v1.0, you can now set default color mode or use default OS color mode.
+Starting from v1.0, you can now set default color mode or use default OS color
+mode.
 
 ### Setting initial mode
 

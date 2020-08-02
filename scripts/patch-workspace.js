@@ -48,7 +48,7 @@ function updateScripts(options) {
     "build:cjs":
       "cross-env BABEL_ENV=esm babel src --root-mode upward --extensions .ts,.tsx -d dist/cjs --source-maps",
     "build:types":
-      "tsc --emitDeclarationOnly --declaration --declarationMap --declarationDir dist/types",
+      "tsc --emitDeclarationOnly --declaration --declarationDir dist/types",
     build: "concurrently yarn:build:*",
     test: "jest --env=jsdom --passWithNoTests",
     "test:cov": "yarn test --coverage",

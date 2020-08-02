@@ -1,5 +1,5 @@
 import * as React from "react"
-import { render, fireEvent, axe, press } from "@chakra-ui/test-utils"
+import { render, fireEvent, axe, press, wait } from "@chakra-ui/test-utils"
 import { PortalManager } from "@chakra-ui/portal"
 import {
   Modal,
@@ -165,7 +165,7 @@ test("focuses the initial focus ref when opened", () => {
   expect(tools.getByTestId("input")).toHaveFocus()
 })
 
-test("should return focus to button when closed", () => {
+test("should return focus to button when closed", async () => {
   const Component = () => {
     const [isOpen, setIsOpen] = React.useState(false)
     const buttonRef = React.useRef(null)
@@ -204,5 +204,6 @@ test("should return focus to button when closed", () => {
   fireEvent.click(button)
   fireEvent.click(tools.getByTestId("close"))
 
-  expect(button).toHaveFocus()
+  // wait for button to be focused
+  await wait(() => expect(button).toHaveFocus())
 })

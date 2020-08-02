@@ -96,9 +96,11 @@ const LinkedHeading = (props) => (
 
 const InlineCode = (props) => (
   <Code
-    fontSize="0.9em"
+    fontSize="0.85em"
+    py="2px"
+    px="4px"
+    lineHeight="normal"
     colorScheme="orange"
-    fontWeight="semibold"
     {...props}
   />
 )

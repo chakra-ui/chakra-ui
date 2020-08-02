@@ -2,42 +2,28 @@ import {
   chakra,
   PropsOf,
   ThemingProps,
-  ThemingProvider,
-  useThemeDefaultProps,
-  useThemingContext,
+  useMultiStyleConfig,
+  omitThemingProps,
+  StylesProvider,
+  useStyles,
 } from "@chakra-ui/system"
-import { createContext, __DEV__ } from "@chakra-ui/utils"
+import { createContext, __DEV__, cx } from "@chakra-ui/utils"
 import * as React from "react"
 import { useSlider, UseSliderProps, UseSliderReturn } from "./use-slider"
 
-interface SliderContextType
-  extends Omit<UseSliderReturn, "getInputProps" | "getRootProps"> {}
+type SliderContext = Omit<UseSliderReturn, "getInputProps" | "getRootProps">
 
-const [SliderProvider, useSliderContext] = createContext<SliderContextType>({
+const [SliderProvider, useSliderContext] = createContext<SliderContext>({
   name: "SliderContext",
-  errorMessage: "useSliderContext can only be used within SliderProvider",
+  errorMessage:
+    "useSliderContext: `context` is undefined. Seems you forgot to wrap all slider components within <Slider />",
 })
 
 export { SliderProvider, useSliderContext }
 
-/**
- * Slider - Theming
- *
- * To style the slider filled track globally, change the
- * styles in `theme.components.Slider` under `Thumb` key.
- */
-const StyledSlider = chakra("div", {
-  themeKey: "Slider.Root",
-  baseStyle: {
-    display: "inline-block",
-    position: "relative",
-    cursor: "pointer",
-  },
-})
-
 export type SliderProps = UseSliderProps &
   ThemingProps &
-  Omit<PropsOf<typeof StyledSlider>, "onChange" | "size">
+  Omit<PropsOf<typeof chakra.div>, "onChange" | "size">
 
 /**
  * The Slider is used to allow users to make selections from a range of values.
@@ -50,78 +36,68 @@ export const Slider = React.forwardRef(function Slider(
   props: SliderProps,
   ref: React.Ref<any>,
 ) {
-  const defaults = useThemeDefaultProps("Slider")
+  const styles = useMultiStyleConfig("Slider", props)
+  const realProps = omitThemingProps(props)
 
-  const {
-    variant = defaults?.variant,
-    size = defaults?.size,
-    orientation = "horizontal",
-    colorScheme,
-    ...sliderProps
-  } = props
+  const { getInputProps, getRootProps, ...context } = useSlider(realProps)
+  const rootProps = getRootProps()
+  const inputProps = getInputProps({}, ref)
 
-  const themingProps = { variant, colorScheme, size, orientation }
-
-  const { getInputProps, getRootProps, ...context } = useSlider({
-    ...sliderProps,
-    orientation,
-  })
+  const rootStyles = {
+    display: "inline-block",
+    position: "relative",
+    cursor: "pointer",
+    ...styles.container,
+  }
 
   return (
     <SliderProvider value={context}>
-      <ThemingProvider value={themingProps}>
-        <StyledSlider
-          className="chakra-slider"
-          {...themingProps}
-          {...getRootProps()}
-        >
+      <StylesProvider value={styles}>
+        <chakra.div {...rootProps} className="chakra-slider" __css={rootStyles}>
           {props.children}
-          <input {...getInputProps({ ref })} />
-        </StyledSlider>
-      </ThemingProvider>
+          <input {...inputProps} />
+        </chakra.div>
+      </StylesProvider>
     </SliderProvider>
   )
 })
+
+Slider.defaultProps = {
+  orientation: "horizontal",
+}
 
 if (__DEV__) {
   Slider.displayName = "Slider"
 }
 
+///////////////////////////////////////////////////////////////////////////
+
+export type SliderThumbProps = PropsOf<typeof chakra.div>
+
 /**
- * SliderThumb - Theming
- *
- * To style the slider thumb globally, change the
- * styles in `theme.components.Slider` under `Thumb` key.
+ * Slider component that acts as the handle used to select predefined
+ * values by dragging its handle along the track
  */
-const StyledThumb = chakra("div", {
-  themeKey: "Slider.Thumb",
-  baseStyle: {
+export function SliderThumb(props: SliderThumbProps) {
+  const { getThumbProps } = useSliderContext()
+
+  const styles = useStyles()
+  const thumbStyles = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     position: "absolute",
     outline: 0,
-  },
-})
+    ...styles.thumb,
+  }
 
-export type SliderThumbProps = PropsOf<typeof StyledThumb>
+  const thumbProps = getThumbProps(props)
 
-/**
- * SliderThumb
- *
- * Slider component that acts as the handle used to select predefined
- * values by dragging its handle along the track
- *
- * @see Docs https://chakra-ui.com/components/slider
- */
-export function SliderThumb(props: SliderThumbProps) {
-  const { getThumbProps } = useSliderContext()
-  const themingProps = useThemingContext()
   return (
-    <StyledThumb
-      className="chakra-slider__thumb"
-      {...themingProps}
-      {...getThumbProps(props)}
+    <chakra.div
+      {...thumbProps}
+      className={cx("chakra-slider__thumb", props.className)}
+      __css={thumbStyles}
     />
   )
 }
@@ -130,35 +106,26 @@ if (__DEV__) {
   SliderThumb.displayName = "SliderThumb"
 }
 
-/**
- * SliderTrack - Theming
- *
- * To style the slider track globally, change the
- * styles in `theme.components.Slider` under `Track` key.
- */
-const StyledTrack = chakra("div", {
-  themeKey: "Slider.Track",
-  baseStyle: {
-    overflow: "hidden",
-  },
-})
+///////////////////////////////////////////////////////////////////////////
 
-export type SliderTrackProps = PropsOf<typeof StyledTrack>
+export type SliderTrackProps = PropsOf<typeof chakra.div>
 
-/**
- * SliderTrack
- *
- * Slider component that indicates the slider track.
- * @see Docs https://chakra-ui.com/components/slider
- */
 export function SliderTrack(props: SliderTrackProps) {
   const { getTrackProps } = useSliderContext()
-  const themingProps = useThemingContext()
+
+  const styles = useStyles()
+  const trackStyles = {
+    overflow: "hidden",
+    ...styles.track,
+  }
+
+  const trackProps = getTrackProps(props)
+
   return (
-    <StyledTrack
-      className="chakra-slider__track"
-      {...themingProps}
-      {...getTrackProps(props)}
+    <chakra.div
+      {...trackProps}
+      className={cx("chakra-slider__track", props.className)}
+      __css={trackStyles}
     />
   )
 }
@@ -167,38 +134,27 @@ if (__DEV__) {
   SliderTrack.displayName = "SliderTrack"
 }
 
-/**
- * SliderFilledTrack - Theming
- *
- * To style the slider filled track globally, change the
- * styles in `theme.components.Slider` under `FilledTrack` key.
- */
-const StyledFilledTrack = chakra("div", {
-  themeKey: "Slider.FilledTrack",
-  baseStyle: {
-    width: "inherit",
-    height: "inherit",
-  },
-})
+///////////////////////////////////////////////////////////////////////////
 
-export type SliderInnerTrackProps = PropsOf<typeof StyledFilledTrack>
+export type SliderInnerTrackProps = PropsOf<typeof chakra.div>
 
-/**
- * SliderFilledTrack
- *
- * Slider component that indicates the slider value along the
- * track. It shows the filled part of the slider
- *
- * @see Docs https://chakra-ui.com/components/slider
- */
 export function SliderFilledTrack(props: SliderInnerTrackProps) {
   const { getInnerTrackProps } = useSliderContext()
-  const themingProps = useThemingContext()
+
+  const styles = useStyles()
+  const trackStyles = {
+    width: "inherit",
+    height: "inherit",
+    ...styles.filledTrack,
+  }
+
+  const trackProps = getInnerTrackProps(props)
+
   return (
-    <StyledFilledTrack
+    <chakra.div
+      {...trackProps}
       className="chakra-slider__filled-track"
-      {...themingProps}
-      {...getInnerTrackProps(props)}
+      __css={trackStyles}
     />
   )
 }
@@ -207,24 +163,23 @@ if (__DEV__) {
   SliderFilledTrack.displayName = "SliderFilledTrack"
 }
 
-export type SliderMarkProps = PropsOf<typeof StyledMarker> & { value: number }
+///////////////////////////////////////////////////////////////////////////
 
-const StyledMarker = chakra("div")
+export type SliderMarkProps = PropsOf<typeof chakra.div> & { value: number }
 
 /**
- * SliderMark
- *
- * React component used to provide names for specific Slider
+ * SliderMark is used to provide names for specific Slider
  * values by defining labels or markers along the track.
  *
  * @see Docs https://chakra-ui.com/components/slider
  */
 export function SliderMark(props: SliderMarkProps) {
   const { getMarkerProps } = useSliderContext()
+  const markProps = getMarkerProps(props)
   return (
-    <StyledMarker
-      className="chakra-slider__marker"
-      {...getMarkerProps(props)}
+    <chakra.div
+      {...markProps}
+      className={cx("chakra-slider__marker", props.className)}
     />
   )
 }

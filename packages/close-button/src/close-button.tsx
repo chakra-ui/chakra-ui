@@ -1,34 +1,13 @@
 import { Icon, IconProps } from "@chakra-ui/icon"
-import { chakra, PropsOf } from "@chakra-ui/system"
+import {
+  chakra,
+  PropsOf,
+  omitThemingProps,
+  useStyleConfig,
+  ThemingProps,
+} from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
-
-/**
- * CloseButton - Theming
- *
- * To style the input globally, change the styles in
- * `theme.components.CloseButton`
- */
-const StyledButton = chakra("button", {
-  themeKey: "CloseButton",
-  baseStyle: {
-    outline: 0,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    flexShrink: 0,
-  },
-  attrs: {
-    type: "button",
-    "aria-label": "Close",
-  },
-})
-
-/**
- * CloseIcon
- *
- * The icon for the close button.
- */
 
 const CloseIcon = (props: IconProps) => (
   <Icon focusable="false" aria-hidden {...props}>
@@ -39,16 +18,15 @@ const CloseIcon = (props: IconProps) => (
   </Icon>
 )
 
-export type CloseButtonProps = PropsOf<typeof StyledButton> & {
-  /**
-   * If `true`, the close button will be disabled.
-   */
-  isDisabled?: boolean
-}
+export type CloseButtonProps = PropsOf<typeof chakra.button> &
+  ThemingProps & {
+    /**
+     * If `true`, the close button will be disabled.
+     */
+    isDisabled?: boolean
+  }
 
 /**
- * CloseButton
- *
  * A button with a close icon.
  *
  * It is used to handle the close functionality in feedback and overlay components
@@ -58,12 +36,31 @@ export const CloseButton = React.forwardRef(function CloseButton(
   props: CloseButtonProps,
   ref: React.Ref<any>,
 ) {
-  const { children, isDisabled, ...rest } = props
+  const styles = useStyleConfig("CloseButton", props)
+  const { children, isDisabled, ...rest } = omitThemingProps(props)
+
+  const baseStyle = {
+    outline: 0,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexShrink: 0,
+  }
 
   return (
-    <StyledButton ref={ref} disabled={isDisabled} {...rest}>
+    <chakra.button
+      type="button"
+      aria-label="Close"
+      ref={ref}
+      disabled={isDisabled}
+      __css={{
+        ...baseStyle,
+        ...styles,
+      }}
+      {...rest}
+    >
       {children || <CloseIcon width="1em" height="1em" />}
-    </StyledButton>
+    </chakra.button>
   )
 })
 

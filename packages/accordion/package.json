@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/accordion",
-  "version": "1.0.0-next.1",
+  "version": "1.0.0-rc.0",
   "description": "A simple and accessible accordion component for React & Chakra UI",
   "keywords": [
     "react",
@@ -19,8 +19,9 @@
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
   "main": "dist/cjs/index.js",
-  "module": "dist/esm/index/js",
+  "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
+  "typings": "dist/types/index.d.ts",
   "files": [
     "dist"
   ],
@@ -44,24 +45,23 @@
     "version": "yarn build",
     "build:esm": "cross-env BABEL_ENV=esm babel src --root-mode upward --extensions .ts,.tsx -d dist/esm --source-maps",
     "build:cjs": "cross-env BABEL_ENV=cjs babel src --root-mode upward --extensions .ts,.tsx -d dist/cjs --source-maps",
-    "build:types": "tsc --emitDeclarationOnly --declaration --declarationMap --declarationDir dist/types",
+    "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist/types",
     "test:cov": "yarn test --coverage",
     "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/collapse": "^1.0.0-next.1",
-    "@chakra-ui/descendant": "^1.0.0-next.1",
-    "@chakra-ui/hooks": "^1.0.0-next.1",
-    "@chakra-ui/icon": "^1.0.0-next.1",
-    "@chakra-ui/utils": "^1.0.0-next.1"
+    "@chakra-ui/collapse": "1.0.0-rc.0",
+    "@chakra-ui/descendant": "1.0.0-rc.0",
+    "@chakra-ui/hooks": "1.0.0-rc.0",
+    "@chakra-ui/icon": "1.0.0-rc.0",
+    "@chakra-ui/utils": "1.0.0-rc.0"
   },
   "devDependencies": {
-    "@chakra-ui/system": "^1.0.0-next.1"
+    "@chakra-ui/system": "1.0.0-rc.0"
   },
   "peerDependencies": {
-    "@chakra-ui/system": "1.x",
+    "@chakra-ui/system": "1.0.0-rc.0",
     "react": "16.x"
-  },
-  "gitHead": "ce6fe489afaddba502a2611f1fb1dcedb991325b"
+  }
 }

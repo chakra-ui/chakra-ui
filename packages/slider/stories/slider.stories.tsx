@@ -53,3 +53,15 @@ export function ChakraHorizontalSlider() {
     </Slider>
   )
 }
+
+export function SteppedHorizontalSlider() {
+  const [value, setValue] = React.useState<number>(1)
+  return (
+    <Slider value={value} onChange={setValue} min={1} max={7} step={2}>
+      <SliderTrack>
+        <SliderFilledTrack />
+      </SliderTrack>
+      <SliderThumb children={value} boxSize="30px" color="black" />
+    </Slider>
+  )
+}

@@ -6,16 +6,17 @@ import Button from "./button"
 import Checkbox from "./checkbox"
 import CloseButton from "./close-button"
 import Code from "./code"
-import Divider from "./divider"
 import Modal from "./modal"
+import Drawer from "./drawer"
 import Heading from "./heading"
 import Input from "./input"
-import InputAddon from "./input-addon"
 import Link from "./link"
+import FormLabel from "./form-label"
 import Menu from "./menu"
 import NumberInput from "./number-input"
 import Radio from "./radio"
 import Slider from "./slider"
+import Select from "./select"
 import Spinner from "./spinner"
 import Switch from "./switch"
 import Tabs from "./tabs"
@@ -30,24 +31,27 @@ import Progress from "./progress"
 import Textarea from "./textarea"
 import Stat from "./stat"
 import Skeleton from "./skeleton"
+import Breadcrumb from "./breadcumb"
+import SkipLink from "./skip-link"
 
 export default {
   Accordion,
   Button,
   Heading,
+  Breadcrumb,
   Alert,
   Badge,
   Avatar,
   Link,
   Code,
-  Divider,
+  FormLabel,
   Spinner,
+  Drawer,
   Menu,
   Tabs,
   Checkbox,
   Radio,
   Input,
-  InputAddon,
   Tooltip,
   CloseButton,
   Slider,
@@ -56,7 +60,7 @@ export default {
   Tag,
   Modal,
   Kbd,
-  Select: Input,
+  Select,
   Textarea,
   PinInput,
   Popover,
@@ -65,4 +69,5 @@ export default {
   Progress,
   Stat,
   Skeleton,
+  SkipLink,
 }

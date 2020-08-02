@@ -1,4 +1,9 @@
-import { mapResponsive, objectToArrayNotation } from "../src"
+import {
+  mapResponsive,
+  objectToArrayNotation,
+  arrayToObjectNotation,
+  isResponsiveObjectLike,
+} from "../src"
 
 const arr = [2, 3]
 const obj = { sm: 2, md: 3 }
@@ -37,4 +42,27 @@ test("should convert object to array notation", () => {
     400,
   ])
   expect(objectToArrayNotation({})).toEqual([])
+})
+
+test("should tell if object is responsive-like", () => {
+  expect(isResponsiveObjectLike({ lg: 400, sm: 100, base: 40 })).toBe(true)
+  expect(isResponsiveObjectLike({ base: 40 })).toBe(true)
+  expect(isResponsiveObjectLike({ sm: 100 })).toBe(true)
+  expect(isResponsiveObjectLike({})).toBe(false)
+  expect(isResponsiveObjectLike({ base: 40, paddingTop: 4 })).toBe(false)
+  expect(isResponsiveObjectLike({ md: 40, paddingTop: 4 })).toBe(false)
+  expect(isResponsiveObjectLike({ paddingTop: 4, paddingLeft: 4 })).toBe(false)
+})
+
+test("should convert array to object value", () => {
+  expect(arrayToObjectNotation(["20px", null, null, "60px"])).toEqual({
+    base: "20px",
+    lg: "60px",
+  })
+  expect(arrayToObjectNotation(["30px"])).toEqual({ base: "30px" })
+  expect(arrayToObjectNotation(["30px", "50px"])).toEqual({
+    base: "30px",
+    sm: "50px",
+  })
+  expect(arrayToObjectNotation([])).toEqual({})
 })

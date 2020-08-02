@@ -1,83 +1,86 @@
-import { ComponentTheme, mode } from "@chakra-ui/theme-tools"
+import { mode, multiStyleConfig } from "@chakra-ui/theme-tools"
 
-const sizes: ComponentTheme["sizes"] = {
-  sm: {
-    Track: {
-      width: "1.375rem",
-      height: "0.75rem",
-    },
-    Thumb: {
-      width: "0.75rem",
-      height: "0.75rem",
-      _checked: {
-        transform: "translateX(0.625rem)",
-      },
-    },
+const Switch = multiStyleConfig({
+  parts: {
+    track: "the switch outer track",
+    thumb: "the switch inner circle",
   },
-  md: {
-    Track: {
-      width: "1.875rem",
-      height: "1rem",
-    },
-    Thumb: {
-      width: "1rem",
-      height: "1rem",
-      _checked: {
-        transform: "translateX(0.875rem)",
+  baseStyle: function (props) {
+    const { colorScheme: c } = props
+    return {
+      track: {
+        borderRadius: "full",
+        p: "2px",
+        transition: "all 120ms",
+        bg: mode("gray.300", "whiteAlpha.400")(props),
+        _focus: {
+          boxShadow: "outline",
+        },
+        _disabled: {
+          opacity: 0.4,
+          cursor: "not-allowed",
+        },
+        _checked: {
+          bg: mode(`${c}.500`, `${c}.200`)(props),
+        },
       },
-    },
-  },
-  lg: {
-    Track: {
-      width: "2.875rem",
-      height: "1.5rem",
-    },
-    Thumb: {
-      width: "1.5rem",
-      height: "1.5rem",
-      _checked: {
-        transform: "translateX(1.375rem)",
+      thumb: {
+        bg: "white",
+        transition: "transform 250ms",
+        borderRadius: "full",
+        transform: "translateX(0)",
       },
-    },
+    }
   },
-}
 
-const Switch: ComponentTheme = {
+  sizes: {
+    sm: {
+      track: {
+        w: "1.375rem",
+        h: "0.75rem",
+      },
+      thumb: {
+        w: "0.75rem",
+        h: "0.75rem",
+        _checked: {
+          transform: "translateX(0.625rem)",
+        },
+      },
+    },
+
+    md: {
+      track: {
+        w: "1.875rem",
+        h: "1rem",
+      },
+      thumb: {
+        w: "1rem",
+        h: "1rem",
+        _checked: {
+          transform: "translateX(0.875rem)",
+        },
+      },
+    },
+
+    lg: {
+      track: {
+        w: "2.875rem",
+        h: "1.5rem",
+      },
+      thumb: {
+        w: "1.5rem",
+        h: "1.5rem",
+        _checked: {
+          transform: "translateX(1.375rem)",
+        },
+      },
+    },
+  },
+
   defaultProps: {
     size: "md",
     colorScheme: "blue",
   },
-  baseStyle: (props) => ({
-    Track: {
-      borderRadius: "full",
-      padding: "2px",
-      transition: "all 120ms",
-      bg: mode("gray.300", "whiteAlpha.400")(props),
-      _focus: {
-        boxShadow: "outline",
-      },
-      _disabled: {
-        opacity: 0.4,
-        cursor: "not-allowed",
-      },
-      _checked: {
-        bg: mode(`${props.colorScheme}.500`, `${props.colorScheme}.200`)(props),
-      },
-    },
-    Thumb: {
-      bg: "white",
-      transition: "transform 250ms",
-      borderRadius: "full",
-      transform: "translateX(0)",
-    },
-  }),
-  sizes,
-}
-
-export const SwitchSizes = {
-  sm: "sm",
-  md: "md",
-  lg: "lg",
-}
+})
 
 export default Switch

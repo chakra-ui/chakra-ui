@@ -55,24 +55,21 @@ test("uncontrolled: handles callbacks correctly", async () => {
 
   // calls `onChange` with input on change
   userEvent.type(input, "World")
-  expect(onChange).toHaveBeenCalledWith("Hello World")
+  expect(onChange).toHaveBeenCalledWith("World")
 
   // calls `onCancel` with previous value when "esc" pressed
   fireEvent.keyDown(input, { key: "Escape" })
   expect(onCancel).toHaveBeenCalledWith("Hello ")
 
+  fireEvent.focus(preview)
+
+  // calls `onChange` with input on change
+  userEvent.type(input, "World")
+  expect(onChange).toHaveBeenCalledWith("World")
+
   // calls `onSubmit` with previous value when "enter" pressed after cancelling
   fireEvent.keyDown(input, { key: "Enter" })
-  expect(onSubmit).toHaveBeenCalledWith("Hello ")
-
-  // returns new value when submitting without cancelling
-  userEvent.type(input, "World")
-  fireEvent.keyDown(input, { key: "Enter" })
-  expect(onSubmit).toHaveBeenCalledWith("Hello World")
-
-  // cancelling now returns new value
-  fireEvent.keyDown(input, { key: "Escape" })
-  expect(onCancel).toHaveBeenCalledWith("Hello World")
+  expect(onSubmit).toHaveBeenCalledWith("World")
 })
 
 test("controlled: handles callbacks correctly", () => {
@@ -109,12 +106,14 @@ test("controlled: handles callbacks correctly", () => {
   expect(onEdit).toHaveBeenCalled()
 
   // calls `onChange` with new input on change
+  // since we calld `focus(..)` first, editable will focus and select the text
+  // typing will clear the values in input and add the next text.
   userEvent.type(input, "World")
-  expect(onChange).toHaveBeenCalledWith("Hello World")
+  expect(onChange).toHaveBeenCalledWith("World")
 
   // calls `onSubmit` with `value`
   fireEvent.keyDown(input, { key: "Enter" })
-  expect(onSubmit).toHaveBeenCalledWith("Hello World")
+  expect(onSubmit).toHaveBeenCalledWith("World")
 
   expect(input).not.toBeVisible()
   fireEvent.focus(preview)
@@ -126,7 +125,7 @@ test("controlled: handles callbacks correctly", () => {
   fireEvent.keyDown(input, { key: "Escape" })
 
   // calls `onCancel` with previous `value`
-  expect(onSubmit).toHaveBeenCalledWith("Hello World")
+  expect(onSubmit).toHaveBeenCalledWith("World")
 })
 
 test("handles preview and input callbacks", () => {

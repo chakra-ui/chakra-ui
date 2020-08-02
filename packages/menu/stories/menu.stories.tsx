@@ -20,17 +20,8 @@ import {
   MenuOptionGroup,
   MenuTransition,
 } from "../src"
-
-export default {
-  title: "Menu",
-  decorators: [
-    (story: Function) => (
-      <chakra.div maxWidth="500px" mx="auto" mt="40px">
-        {story()}
-      </chakra.div>
-    ),
-  ],
-}
+import { Button } from "@chakra-ui/button"
+import { Avatar } from "@chakra-ui/avatar"
 
 const words = [
   "About Visual Studio Code",
@@ -43,8 +34,14 @@ const words = [
 
 export const Basic = () => (
   <div style={{ minHeight: 4000 }}>
-    <Menu>
-      <MenuButton variant="solid" colorScheme="teal" size="sm">
+    <Menu isLazy>
+      <MenuButton
+        as={Button}
+        variant="solid"
+        colorScheme="teal"
+        size="sm"
+        rightIcon={<FaUnlink />}
+      >
         Open Wakanda menu
       </MenuButton>
       <MenuList>
@@ -57,26 +54,44 @@ export const Basic = () => (
 )
 
 export const WithDisabledItem = () => (
-  <Menu>
-    <MenuButton variant="solid" colorScheme="green" size="sm">
-      Open menu
-    </MenuButton>
-    <MenuList>
-      <MenuItem color="gray.700" icon={<FaSearch />} command="⌥T">
-        Search
-      </MenuItem>
-      <MenuItem icon={<FaUndoAlt />}>Undo</MenuItem>
-      <MenuItem isDisabled icon={<FaTruck />}>
-        Delivery
-      </MenuItem>
-      <MenuItem icon={<FaUnlink />}>Unlink</MenuItem>
-    </MenuList>
-  </Menu>
+  <>
+    <Menu>
+      <MenuButton as={Button} variant="solid" colorScheme="green" size="sm">
+        Open menu
+      </MenuButton>
+      <MenuList>
+        <MenuItem icon={<FaSearch />} command="⌥T">
+          Search
+        </MenuItem>
+        <MenuItem icon={<FaUndoAlt />}>Undo</MenuItem>
+        <MenuItem isDisabled icon={<FaTruck />}>
+          Delivery
+        </MenuItem>
+        <MenuItem icon={<FaUnlink />}>Unlink</MenuItem>
+      </MenuList>
+    </Menu>
+
+    <Menu>
+      <MenuButton as={Button} variant="solid" colorScheme="red" size="sm">
+        Open menu
+      </MenuButton>
+      <MenuList>
+        <MenuItem icon={<FaSearch />} command="⌥T">
+          Search
+        </MenuItem>
+        <MenuItem icon={<FaUndoAlt />}>Undo</MenuItem>
+        <MenuItem isDisabled icon={<FaTruck />}>
+          Delivery
+        </MenuItem>
+        <MenuItem icon={<FaUnlink />}>Unlink</MenuItem>
+      </MenuList>
+    </Menu>
+  </>
 )
 
 export const WithDisabledButFocusableItem = () => (
   <Menu>
-    <MenuButton variant="solid" colorScheme="green" size="sm">
+    <MenuButton as={Button} variant="solid" colorScheme="green" size="sm">
       Open menu
     </MenuButton>
     <MenuList>
@@ -92,7 +107,7 @@ export const WithDisabledButFocusableItem = () => (
 
 export const WithPortal = () => (
   <Menu>
-    <MenuButton variant="solid" colorScheme="green" size="sm">
+    <MenuButton as={Button} variant="solid" colorScheme="green" size="sm">
       Open menu
     </MenuButton>
     <Portal>
@@ -106,115 +121,14 @@ export const WithPortal = () => (
   </Menu>
 )
 
-const Submenu2 = React.forwardRef<HTMLButtonElement, {}>((props, ref) => (
-  <Menu>
-    <MenuButton ref={ref} {...props}>
-      Other
-    </MenuButton>
-    <Portal>
-      <MenuList>
-        <MenuItem>Twitch</MenuItem>
-        <MenuItem>Pinterest</MenuItem>
-      </MenuList>
-    </Portal>
-  </Menu>
-))
-
-const Submenu = React.forwardRef<HTMLButtonElement, {}>((props, ref) => (
-  <Menu>
-    <MenuButton ref={ref} {...props}>
-      Other
-    </MenuButton>
-    <Portal>
-      <MenuList>
-        <MenuItem>Twitter</MenuItem>
-        <MenuItem>Facebook</MenuItem>
-        <MenuItem as={Submenu2} />
-      </MenuList>
-    </Portal>
-  </Menu>
-))
-
-export const WithNestedMenu = () => (
-  <Menu>
-    <MenuButton size="sm" colorScheme="teal">
-      Open menu
-    </MenuButton>
-    <Portal>
-      <MenuList>
-        <MenuItem command="⌘T">New Tab</MenuItem>
-        <MenuItem command="⌘N">New Window</MenuItem>
-        <MenuItem command="⌘⇧N">Open Closed Tab</MenuItem>
-        <MenuItem as={Submenu} />
-        <MenuItem command="⌘O">Open File...</MenuItem>
-      </MenuList>
-    </Portal>
-  </Menu>
-)
-
-// const MenuTransition = (props: {
-//   children: (styles: any) => React.ReactNode
-// }) => {
-//   const menu = useMenuContext()
-
-//   const styles = {
-//     base: {
-//       opacity: 0,
-//       transformOrigin: "top left",
-//       transform: "scale(0.8)",
-//       transitionTimingFunction: "cubic-bezier(0.175, 0.885, 0.320, 1.175)",
-//       transitionProperty: "opacity, transform",
-//       transitionDuration: "150ms",
-//       willChange: "opacity, transform",
-//     },
-//     entered: {
-//       opacity: 1,
-//       transform: "scale(1)",
-//     },
-//     exiting: {
-//       opacity: 0,
-//       transform: "scale(0.8)",
-//     },
-//   } as any
-
-//   const getStyle = (state: TransitionStatus) => ({
-//     ...styles.base,
-//     ...styles[state],
-//   })
-
-//   return (
-//     <Transition
-//       onEnter={node => {
-//         node.hidden = false
-//       }}
-//       onExited={node => {
-//         node.hidden = true
-//         node.style.pointerEvents = null
-//         // persist focus restoration
-//         ensureFocus(menu.buttonRef.current)
-//       }}
-//       onExit={node => {
-//         node.hidden = undefined
-//       }}
-//       onExiting={node => {
-//         node.style.pointerEvents = "none"
-//       }}
-//       timeout={{ enter: 0, exit: 150 }}
-//       in={menu.isOpen}
-//     >
-//       {state => props.children(getStyle(state))}
-//     </Transition>
-//   )
-// }
-
 export const WithTransition = () => (
   <Menu>
-    <MenuButton variant="solid" colorScheme="green" size="sm">
+    <MenuButton as={Button} variant="solid" colorScheme="green" size="sm">
       Open menu
     </MenuButton>
     <MenuTransition>
       {(styles) => (
-        <MenuList css={styles as any}>
+        <MenuList sx={styles}>
           <MenuItem>Menu 1</MenuItem>
           <MenuItem>Menu 2</MenuItem>
           <MenuItem>Menu 3</MenuItem>
@@ -227,7 +141,7 @@ export const WithTransition = () => (
 
 export const withGroupedItems = () => (
   <Menu>
-    <MenuButton variant="solid" colorScheme="green" size="sm">
+    <MenuButton as={Button} variant="solid" colorScheme="green" size="sm">
       Open menu
     </MenuButton>
     <MenuList minWidth="240px">
@@ -245,7 +159,7 @@ export const withGroupedItems = () => (
 
 export const withMenuRadio = () => (
   <Menu closeOnSelect={false}>
-    <MenuButton variant="solid" colorScheme="green" size="sm">
+    <MenuButton as={Button} variant="solid" colorScheme="green" size="sm">
       Open menu
     </MenuButton>
 
@@ -274,7 +188,7 @@ export const WithInternalState = () => (
   <Menu>
     {({ isOpen }) => (
       <React.Fragment>
-        <MenuButton>{isOpen ? "Close" : "Open"}</MenuButton>
+        <MenuButton as={Button}>{isOpen ? "Close" : "Open"}</MenuButton>
         <MenuList>
           <MenuItem>Download</MenuItem>
           <MenuItem onClick={() => alert("Kagebunshin")}>
@@ -312,7 +226,7 @@ export const WithLetterNavigation = () => (
 
 export const JustAnotherExample = () => (
   <Menu>
-    <MenuButton>Your Cats</MenuButton>
+    <MenuButton as={Button}>Your Cats</MenuButton>
     <MenuList>
       <MenuItem minH="48px">
         <Image
@@ -340,7 +254,7 @@ export const JustAnotherExample = () => (
 
 export const WithLink = () => (
   <Menu>
-    <MenuButton>Actions</MenuButton>
+    <MenuButton as={Button}>Actions</MenuButton>
     <MenuList>
       <MenuItem>Download</MenuItem>
       <MenuItem>Create a Copy</MenuItem>
@@ -353,14 +267,6 @@ export const WithLink = () => (
   </Menu>
 )
 
-const Button = chakra("button", {
-  themeKey: "Button",
-  baseStyle: {
-    outline: 0,
-    transition: "all 0.3s",
-  },
-})
-
 export const SplitButton = () => (
   <chakra.div display="flex">
     <Button variant="outline" size="sm" borderRightRadius="0" mr="-1px">
@@ -368,6 +274,7 @@ export const SplitButton = () => (
     </Button>
     <Menu placement="bottom-end" gutter={4}>
       <MenuButton
+        as={Button}
         variant="outline"
         size="sm"
         fontSize="xs"

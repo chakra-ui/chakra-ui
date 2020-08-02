@@ -1,69 +1,44 @@
-import sizes from "../foundations/sizes"
 import {
-  randomColor,
   isDark,
-  ComponentTheme,
   mode,
-  Props,
+  randomColor,
+  multiStyleConfig,
 } from "@chakra-ui/theme-tools"
-import { SystemProps } from "@chakra-ui/system"
+import themeSizes from "../foundations/sizes"
 
-function getSize(size: string) {
-  const themeSize = sizes[size as keyof typeof sizes]
-
-  const styles: SystemProps = {
-    width: size,
-    height: size,
-    fontSize: `calc(${themeSize ?? size} / 2.5)`,
-  }
-
-  if (size !== "100%") {
-    styles.lineHeight = themeSize ?? size
-  }
-
-  return {
-    Root: styles,
-    ExcessLabel: styles,
-  }
-}
-
-function getRootStyle(props: Props & { name?: string }) {
-  const { name, theme: t } = props
-
-  const bg = name ? randomColor({ string: name }) : "gray.400"
-  const isBgDark = isDark(bg)(t)
-
-  const color = name ? (isBgDark ? "white" : "gray.800") : "white"
-  const borderColor = mode("white", "gray.800")(props)
-
-  return {
-    bg,
-    color,
-    borderColor,
-  }
-}
-
-type AvatarProps = { name?: string }
-
-const Avatar: ComponentTheme<AvatarProps> = {
-  defaultProps: {
-    size: "md",
+const avatar = multiStyleConfig({
+  parts: {
+    container: "the avatar wrapper",
+    excessLabel: "for avatar group, the excess avatar label",
+    badge: "the top or bottom left badge",
+    label: "the avatar's name initials text",
   },
-  baseStyle: (props) => ({
-    Root: {
-      verticalAlign: "top",
-      ...getRootStyle(props),
-    },
-    Badge: {
-      transform: "translate(25%, 25%)",
-      borderRadius: "full",
-      border: "0.2em solid",
-      borderColor: mode("white", "gray.800")(props),
-    },
-    ExcessLabel: {
-      bg: mode("gray.200", "whiteAlpha.400")(props),
-    },
-  }),
+
+  baseStyle: function (props) {
+    const { name, theme } = props
+    const bg = name ? randomColor({ string: name }) : "gray.400"
+    const color = name ? (isDark(bg)(theme) ? "white" : "gray.800") : "white"
+    const borderColor = mode("white", "gray.800")(props)
+
+    return {
+      badge: {
+        transform: "translate(25%, 25%)",
+        borderRadius: "full",
+        border: "0.2em solid",
+        borderColor: mode("white", "gray.800")(props),
+      },
+      excessLabel: {
+        bg: mode("gray.200", "whiteAlpha.400")(props),
+      },
+      container: {
+        bg,
+        color,
+        borderColor,
+        verticalAlign: "top",
+      },
+    }
+  },
+
   sizes: {
     "2xs": getSize("4"),
     xs: getSize("6"),
@@ -74,17 +49,29 @@ const Avatar: ComponentTheme<AvatarProps> = {
     "2xl": getSize("32"),
     full: getSize("100%"),
   },
+
+  defaultProps: {
+    size: "md",
+  },
+})
+
+function getSize(size: string) {
+  const themeSize = themeSizes[size]
+  return {
+    container: {
+      width: size,
+      height: size,
+      fontSize: `calc(${themeSize ?? size} / 2.5)`,
+    },
+    excessLabel: {
+      width: size,
+      height: size,
+    },
+    label: {
+      fontSize: `calc(${themeSize ?? size} / 2.5)`,
+      lineHeight: size !== "100%" ? themeSize ?? size : undefined,
+    },
+  }
 }
 
-export const AvatarSizes = {
-  "2xs": "2xs",
-  xs: "xs",
-  sm: "sm",
-  md: "md",
-  lg: "lg",
-  xl: "xl",
-  "2xl": "2xl",
-  full: "full",
-}
-
-export default Avatar
+export default avatar

@@ -1,5 +1,5 @@
 import * as React from "react"
-import { userEvent, render, fireEvent, wait } from "@chakra-ui/test-utils"
+import { userEvent, render, fireEvent } from "@chakra-ui/test-utils"
 import {
   Accordion,
   AccordionButton,
@@ -16,7 +16,7 @@ jest.mock("@chakra-ui/collapse", () => {
   return { Collapse }
 })
 
-test("Button renders correctly", () => {
+test("accordion renders correctly", () => {
   const { asFragment } = render(
     <Accordion>
       <AccordionItem>
@@ -56,12 +56,10 @@ test("uncontrolled: toggles the accordion on click", async () => {
 
   userEvent.click(trigger)
   expect(trigger).toHaveAttribute("aria-expanded", "true")
-  await wait()
 
   // you can't toggle an accordion without passing `allowToggle`
   userEvent.click(trigger)
   expect(trigger).toHaveAttribute("aria-expanded", "true")
-  await wait()
 })
 
 // test that arrow up & down moves focus to next/previous accordion

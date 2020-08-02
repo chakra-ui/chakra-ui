@@ -8,25 +8,12 @@ import {
   PopoverBody,
   PopoverArrow,
   PopoverCloseButton,
+  PopoverTransition,
 } from "../src"
 import { chakra } from "@chakra-ui/system"
 
-export default {
-  title: "Popover",
-  decorators: [
-    (story: Function) => (
-      <chakra.div mx="auto" maxW="400px" mt="200px">
-        {story()}
-      </chakra.div>
-    ),
-  ],
-}
-
 export function PopoverExample() {
-  const { getTriggerProps, getPopoverProps, onClose } = usePopover({
-    returnFocus: false,
-    autoFocus: false,
-  })
+  const { getTriggerProps, getPopoverProps, onClose } = usePopover()
 
   return (
     <>
@@ -47,31 +34,23 @@ export function PopoverExample() {
   )
 }
 
-const Button = chakra("button", {
-  themeKey: "Button",
-  baseStyle: {
-    outline: 0,
-  },
-})
-
-const Input = chakra("input", {
-  themeKey: "Input",
-  baseStyle: {
-    outline: 0,
-  },
-})
-
 export const simple = () => (
-  <Popover>
+  <Popover placement="right-start">
     <PopoverTrigger>
-      <Button mt="180px">Trigger</Button>
+      <chakra.button mt="180px">Trigger</chakra.button>
     </PopoverTrigger>
-    <PopoverContent>
-      <PopoverArrow />
-      <PopoverCloseButton />
-      <PopoverHeader>Confirmation!</PopoverHeader>
-      <PopoverBody>Are you sure you want to have that milkshake?</PopoverBody>
-    </PopoverContent>
+    <PopoverTransition>
+      {(sx) => (
+        <PopoverContent sx={sx}>
+          <PopoverArrow />
+          <PopoverCloseButton />
+          <PopoverHeader>Confirmation!</PopoverHeader>
+          <PopoverBody>
+            Are you sure you want to have that milkshake?
+          </PopoverBody>
+        </PopoverContent>
+      )}
+    </PopoverTransition>
   </Popover>
 )
 
@@ -79,7 +58,7 @@ export const basic = () => (
   <>
     <Popover placement="top">
       <PopoverTrigger>
-        <Button>Welcome home</Button>
+        <chakra.button>Welcome home</chakra.button>
       </PopoverTrigger>
       <PopoverContent>
         <PopoverArrow />
@@ -93,7 +72,7 @@ export const basic = () => (
 
     <Popover placement="bottom">
       <PopoverTrigger>
-        <Button>Welcome home</Button>
+        <chakra.button>Welcome home</chakra.button>
       </PopoverTrigger>
       <PopoverContent>
         <PopoverArrow />
@@ -106,6 +85,6 @@ export const basic = () => (
       </PopoverContent>
     </Popover>
 
-    <Input />
+    <chakra.input />
   </>
 )

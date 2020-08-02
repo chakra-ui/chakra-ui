@@ -7,6 +7,7 @@ const {
   getNodeContributors,
   getOrgMembers,
   readAllContributorsRc,
+  getRelativePathHistoryDates,
 } = require("./utils")
 
 exports.onCreateNode = async ({ node, actions, getNode }) => {
@@ -42,6 +43,26 @@ exports.onCreateNode = async ({ node, actions, getNode }) => {
       name: "source",
       node,
       value: sourceInstanceName,
+    })
+
+    const relativePath = getRelativePagePath(
+      node.fileAbsolutePath,
+      sourceInstanceName,
+    )
+    const { createdAt, updatedAt } = await getRelativePathHistoryDates(
+      relativePath,
+    )
+
+    createNodeField({
+      name: "createdAt",
+      node,
+      value: createdAt,
+    })
+
+    createNodeField({
+      name: "updatedAt",
+      node,
+      value: updatedAt,
     })
 
     if (sourceInstanceName === "docs") {
@@ -107,57 +128,55 @@ const createDocsPages = async (nodes, { actions }) => {
   const docsTemplate = path.resolve("./src/templates/docs.js")
   const sortedNodes = sortPostNodes(nodes)
 
-  sortedNodes.forEach((node, index) => {
-    const {
-      fileAbsolutePath,
-      fields: { slug },
-      parent: { createdAt, updatedAt },
-    } = node
-    const previous = index === 0 ? null : sortedNodes[index - 1]
-    const next =
-      index === sortedNodes.length - 1 ? null : sortedNodes[index + 1]
-    const relativePath = getRelativePagePath(fileAbsolutePath, "docs")
+  return Promise.all(
+    sortedNodes.map(async (node, index) => {
+      const {
+        fileAbsolutePath,
+        fields: { slug },
+      } = node
+      const previous = index === 0 ? null : sortedNodes[index - 1]
+      const next =
+        index === sortedNodes.length - 1 ? null : sortedNodes[index + 1]
+      const relativePath = getRelativePagePath(fileAbsolutePath, "docs")
 
-    createPage({
-      path: slug,
-      component: docsTemplate,
-      context: {
-        slug,
-        layout: "docs",
-        previous,
-        next,
-        createdAt,
-        updatedAt,
-        relativePath,
-      },
-    })
-  })
+      createPage({
+        path: slug,
+        component: docsTemplate,
+        context: {
+          slug,
+          layout: "docs",
+          previous,
+          next,
+          relativePath,
+        },
+      })
+    }),
+  )
 }
 
 const createGuidesPages = async (nodes, { actions }) => {
   const { createPage } = actions
   const guidesTemplate = path.resolve("./src/templates/guides.js")
 
-  nodes.forEach((node) => {
-    const {
-      fileAbsolutePath,
-      fields: { slug },
-      parent: { createdAt, updatedAt },
-    } = node
-    const relativePath = getRelativePagePath(fileAbsolutePath, "guides")
+  return Promise.all(
+    nodes.map(async (node) => {
+      const {
+        fileAbsolutePath,
+        fields: { slug },
+      } = node
+      const relativePath = getRelativePagePath(fileAbsolutePath, "guides")
 
-    createPage({
-      path: slug,
-      component: guidesTemplate,
-      context: {
-        slug,
-        layout: "guides",
-        createdAt,
-        updatedAt,
-        relativePath,
-      },
-    })
-  })
+      createPage({
+        path: slug,
+        component: guidesTemplate,
+        context: {
+          slug,
+          layout: "guides",
+          relativePath,
+        },
+      })
+    }),
+  )
 }
 
 exports.createPages = async ({ graphql, actions }) => {
@@ -173,12 +192,6 @@ exports.createPages = async ({ graphql, actions }) => {
           collection
           slug
           source
-        }
-        parent {
-          ... on File {
-            createdAt: birthTime(formatString: "MMMM DD, YYYY")
-            updatedat: modifiedTime(formatString: "MMMM DD, YYYY")
-          }
         }
       }
 
@@ -199,8 +212,10 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const { docs, guides } = result.data
 
-  await createDocsPages(docs.nodes, { actions })
-  await createGuidesPages(guides.nodes, { actions })
+  await Promise.all([
+    createDocsPages(docs.nodes, { actions }),
+    createGuidesPages(guides.nodes, { actions }),
+  ])
 }
 
 exports.sourceNodes = async ({
