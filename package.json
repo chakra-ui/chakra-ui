@@ -140,7 +140,7 @@
     "@emotion/styled": "10.0.27",
     "lerna-changelog": "1.0.1",
     "@storybook/addon-actions": "6.0.0-rc.13",
-    "@storybook/addon-knobs": "6.0.0-rc.13",
+    "@storybook/addon-knobs": "6.0.0-rc.22",
     "storybook-addon-performance": "0.11.0",
     "@storybook/addon-a11y": "5.3.19",
     "@storybook/react": "6.0.0-rc.13",
