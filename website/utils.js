@@ -2,10 +2,8 @@ const fs = require("fs").promises
 const path = require("path")
 const _ = require("lodash/fp")
 const { format, parseISO } = require("date-fns/fp")
-const simpleGit = require("simple-git")
 const { Octokit } = require("@octokit/rest")
 
-const git = simpleGit({ baseDir: path.join(process.cwd(), "..") })
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN })
 
 const collections = ["main", "theming", "layout", "form", "components", "hooks"]
@@ -44,38 +42,53 @@ const getRelativePagePath = (fileAbsolutePath, source) => {
   return match ? match[0] : null
 }
 
+/**
+ * Gets the commit history for a given node, ordered by the commit's
+ * `author.date` field.
+ */
+const getOrderedCommitsForPath = async (path) => {
+  const { data: commits } = await octokit.repos.listCommits({
+    owner: "chakra-ui",
+    repo: "chakra-ui",
+    sha: "master",
+    path,
+  })
+  const orderedCommits = orderByCommitAuthorDate(commits)
+  return orderedCommits
+}
+
+/** Converts a commit to a flattened contributor object. */
+const commitToContributor = (commit) => {
+  const {
+    commit: {
+      author: { name },
+    },
+    author: { avatar_url: image, html_url: url },
+  } = getCommitAuthorDetails(commit)
+  return { name, image, url }
+}
+
+/** Gets `contributors`, `createdAt`, and `updatedAt` for the given node. */
+const getPathGitInfo = async (path) => {
+  const commits = await getOrderedCommitsForPath(path)
+
+  const contributors = commits.map(commitToContributor)
+  const firstCommit = _.first(commits)
+  const latestCommit = _.last(commits)
+
+  return {
+    contributors,
+    createdAt: formatCommitDate(firstCommit),
+    updatedAt: formatCommitDate(latestCommit),
+  }
+}
+
 const orderByCommitAuthorDate = _.orderBy(["commit.author.date"], ["asc"])
 const getCommitAuthorDetails = _.pick([
   "commit.author.name",
   "author.avatar_url",
   "author.html_url",
 ])
-
-const getNodeContributors = async (node) => {
-  const relativePath = getRelativePagePath(node.fileAbsolutePath)
-  const { data: commits } = await octokit.repos.listCommits({
-    owner: "chakra-ui",
-    repo: "chakra-ui",
-    sha: "master",
-    path: relativePath,
-  })
-  const orderedCommits = orderByCommitAuthorDate(commits)
-  const contributors = orderedCommits
-    .map(getCommitAuthorDetails)
-    .map(
-      ({
-        commit: {
-          author: { name },
-        },
-        author: { avatar_url: image, html_url: url },
-      }) => ({
-        name,
-        image,
-        url,
-      }),
-    )
-  return contributors
-}
 
 const sortMembers = (a, b) => {
   // segun comes first!
@@ -105,34 +118,12 @@ const getOrgMembers = async () => {
   return await Promise.all(sorted.map(getMemberData))
 }
 
-/**
- * Get all commits made to a specific path.
- */
-const getPathCommits = async (path) => {
-  // --follow allows git to follow a file's history across renames/moves
-  // -- makes sure log knows that path is for a file
-  const { all: commits } = await git.log(["--follow", "--", path])
-  return commits
-}
-
 /** Convert a date string to the "MMMM DD, YYYY" format.  */
-const formatDateString = _.compose(format("MMMM dd, yyyy"), parseISO)
-
-/**
- * Get the creation and last updated dates for a file. Uses `git` commit
- * history.
- */
-const getRelativePathHistoryDates = async (path) => {
-  const commits = await getPathCommits(path)
-
-  const firstCommit = _.last(commits)
-  const latestCommit = _.first(commits)
-
-  return {
-    createdAt: formatDateString(firstCommit.date),
-    updatedAt: formatDateString(latestCommit.date),
-  }
-}
+const formatCommitDate = _.compose(
+  format("MMMM dd, yyyy"),
+  parseISO,
+  _.get("commit.author.date"),
+)
 
 const readAllContributorsRc = async () => {
   const rcPath = path.resolve("..", ".all-contributorsrc")
@@ -144,8 +135,7 @@ const readAllContributorsRc = async () => {
 module.exports = {
   sortPostNodes,
   getRelativePagePath,
-  getNodeContributors,
   getOrgMembers,
   readAllContributorsRc,
-  getRelativePathHistoryDates,
+  getPathGitInfo,
 }

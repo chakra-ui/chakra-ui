@@ -4,10 +4,9 @@ const { createFilePath } = require("gatsby-source-filesystem")
 const {
   sortPostNodes,
   getRelativePagePath,
-  getNodeContributors,
   getOrgMembers,
   readAllContributorsRc,
-  getRelativePathHistoryDates,
+  getPathGitInfo,
 } = require("./utils")
 
 exports.onCreateNode = async ({ node, actions, getNode }) => {
@@ -19,6 +18,10 @@ exports.onCreateNode = async ({ node, actions, getNode }) => {
     // `gatsby-source-filesystem` instance. it'll be either `docs` or `guides`,
     // depending on the folder the file is in
     const { sourceInstanceName, relativeDirectory } = getNode(node.parent)
+
+    const { contributors, createdAt, updatedAt } = await getPathGitInfo(
+      getRelativePagePath(node.fileAbsolutePath, sourceInstanceName),
+    )
 
     // use `gatsby-source-filesystem` to create our slug
     const relativeFilePath = createFilePath({
@@ -44,14 +47,6 @@ exports.onCreateNode = async ({ node, actions, getNode }) => {
       node,
       value: sourceInstanceName,
     })
-
-    const relativePath = getRelativePagePath(
-      node.fileAbsolutePath,
-      sourceInstanceName,
-    )
-    const { createdAt, updatedAt } = await getRelativePathHistoryDates(
-      relativePath,
-    )
 
     createNodeField({
       name: "createdAt",
@@ -80,7 +75,6 @@ exports.onCreateNode = async ({ node, actions, getNode }) => {
 
     if (sourceInstanceName === "guides") {
       // each guides page get a list of "contributors" attached to it
-      const contributors = await getNodeContributors(node)
       createNodeField({
         name: "contributors",
         node,

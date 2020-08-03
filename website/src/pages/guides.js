@@ -6,7 +6,6 @@ import {
   Text,
   Container,
   Stack,
-  Avatar,
   chakra,
   Badge,
 } from "@chakra-ui/core"
