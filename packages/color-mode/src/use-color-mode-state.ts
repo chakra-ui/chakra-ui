@@ -4,9 +4,9 @@ import {
   addListener,
   ColorMode,
   getColorScheme,
-  storage,
   syncBodyClassName,
 } from "./color-mode.utils"
+import { StorageManager, localStorageManager } from "./storage-manager"
 
 /**
  * Syncs the classname of the `<body />` based on the
@@ -47,34 +47,37 @@ export interface ColorModeOptions {
   useSystemColorMode?: boolean
 }
 
+interface useColorModeStateOptions extends ColorModeOptions {
+  storageManager?: StorageManager
+}
+
 /**
  * React hook that sets up the localStorage, body className,
  * and reads from system preference
  */
-export function useColorModeState<T extends ColorModeOptions>(options?: T) {
-  const [mode, setMode] = React.useState<ColorMode>(
-    options?.initialColorMode || "light",
-  )
+export function useColorModeState<T extends useColorModeStateOptions>(
+  options?: T,
+) {
+  const storageManager = options?.storageManager || localStorageManager
+
+  const [mode, setMode] = React.useState<ColorMode>(() => {
+    const stored = storageManager.get()
+
+    if (stored) return stored
+
+    if (options?.useSystemColorMode) {
+      return getColorScheme()
+    }
+
+    return options?.initialColorMode || "light"
+  })
 
   useSyncBodyClass(mode)
   useSyncSystemColorMode(setMode, !!options?.useSystemColorMode)
 
   React.useEffect(() => {
-    const stored = storage.get()
-
-    if (!stored && options?.useSystemColorMode) {
-      setMode(getColorScheme)
-      return
-    }
-
-    if (!stored || stored === mode) return
-    setMode(stored)
-    // eslint-disable-next-line
-  }, [])
-
-  React.useEffect(() => {
     if (mode) {
-      storage.set(mode)
+      storageManager.set(mode)
     }
   }, [mode])
 
