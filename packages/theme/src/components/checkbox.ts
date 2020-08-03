@@ -100,9 +100,7 @@ const checkbox = multiStyleConfig({
 
 export const checkboxStyles = {
   parts,
-  baseStyleLabel,
-  baseStyleControl,
-  baseStyleIcon,
+  baseStyle,
   sizes,
   defaultProps,
 }

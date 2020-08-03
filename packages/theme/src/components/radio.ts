@@ -6,10 +6,8 @@ const parts = {
   label: "the radio label",
 }
 
-const { baseStyleLabel } = checkboxStyles
-
 const baseStyleControl = function (props: Record<string, any>) {
-  const control = checkboxStyles.baseStyleControl(props) ?? {}
+  const { control } = checkboxStyles.baseStyle?.(props) ?? {}
 
   return {
     ...control,
@@ -32,7 +30,7 @@ const baseStyleControl = function (props: Record<string, any>) {
 
 const baseStyle = function (props: Record<string, any>) {
   return {
-    label: baseStyleLabel,
+    label: checkboxStyles.baseStyle?.(props).label ?? {},
     control: baseStyleControl(props),
   }
 }

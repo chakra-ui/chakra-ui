@@ -134,10 +134,7 @@ const slider = multiStyleConfig({
 export const sliderStyles = {
   parts,
   sizes,
-  baseStyleContainer,
-  baseStyleFilledTrack,
-  baseStyleThumb,
-  baseStyleTrack,
+  baseStyle,
   defaultProps,
 }
 
