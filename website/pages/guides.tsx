@@ -1,28 +1,22 @@
-import * as React from "react"
 import {
-  Box,
-  Heading,
-  Text,
-  Container,
-  Stack,
-  chakra,
   Badge,
+  Box,
+  chakra,
+  Container,
+  Heading,
+  Stack,
+  Text,
 } from "@chakra-ui/core"
+import { createExcerpt, parseMarkdownFile } from "@docusaurus/utils"
 import SEO from "components/seo"
+import siteConfig from "configs/site-config"
 import NextLink from "next/link"
+import path from "path"
+import * as React from "react"
+import shell from "shelljs"
 
-function GuidePreview(props) {
-  const {
-    title,
-    children,
-    createdAt,
-    birthTime,
-    url,
-    contributors,
-    tags,
-    ...rest
-  } = props
-  const creator = contributors[0] || {}
+function GuidePreview({ guide }) {
+  const { title, children, createdAt, url, tags, ...rest } = guide
 
   return (
     <Box as="article" {...rest}>
@@ -34,20 +28,20 @@ function GuidePreview(props) {
         </NextLink>
       </Heading>
 
-      <Text as="time" opacity={0.7} fontSize="sm" dateTime={birthTime}>
+      <Text as="time" opacity={0.7} fontSize="sm">
         {createdAt}
       </Text>
 
       <Stack align="center" direction="row">
-        {/* <Avatar size="sm" name={creator.name} src={creator.image} /> */}
+        {/* <Avatar size="sm" name={creator?.name} src={creator?.image} /> */}
         <Text fontSize="sm" fontWeight="semibold">
-          <chakra.a
-            href={creator.url}
+          {/* <chakra.a
+            href={creator?.url}
             target="__blank"
             _hover={{ textDecor: "underline" }}
           >
-            {creator.name}
-          </chakra.a>
+            {creator?.name}
+          </chakra.a> */}
         </Text>
       </Stack>
 
@@ -68,6 +62,8 @@ function GuidePreview(props) {
 }
 
 function Guides({ data = [] }) {
+  console.log(data)
+
   return (
     <>
       <SEO
@@ -85,31 +81,51 @@ function Guides({ data = [] }) {
         </Box>
         <Container maxWidth="md">
           <Stack spacing="4rem">
-            {data.map(
-              ({
-                fields: { createdAt, contributors, slug },
-                frontmatter: { title, tags },
-                parent: { birthTime },
-                excerpt,
-              }) => (
-                <GuidePreview
-                  key={title}
-                  url={slug}
-                  title={title}
-                  birthTime={birthTime}
-                  createdAt={createdAt}
-                  contributors={contributors}
-                  tags={tags}
-                >
-                  {excerpt}
-                </GuidePreview>
-              ),
-            )}
+            {/* {data.map((guide, idx) => (
+              <GuidePreview key={idx} guide={guide} />
+            ))} */}
           </Stack>
         </Container>
       </Box>
     </>
   )
+}
+
+export async function getStaticProps() {
+  const { processFrontmatter } = require("utils/mdx-utils")
+
+  const dir = path.join(process.cwd(), "pages/guides")
+  const filenames = shell.ls("-R", `${dir}/**/*.mdx`)
+
+  const dataPromise = filenames.map(async (filename) => {
+    // get the `pages` directory
+    const pagesDir = path.join(process.cwd(), "pages")
+
+    // gets the relative mdx path
+    // pages/docs/guides.mdx => /docs/guides.mdx
+    const mdxPath = path.relative(pagesDir, filename)
+
+    // extract frontmatter and content from markdown string
+    const { frontMatter, content } = await parseMarkdownFile(filename)
+
+    // extends frontmatter with more useful information
+    const _frontmatter = await processFrontmatter({
+      ...frontMatter,
+      path: mdxPath,
+      baseEditUrl: siteConfig.repo.editUrl,
+      excerpt: createExcerpt(content),
+    })
+
+    return _frontmatter
+  })
+
+  const data = await Promise.all(dataPromise)
+
+  return {
+    props: {
+      data,
+    },
+  }
 }
 
 export default Guides

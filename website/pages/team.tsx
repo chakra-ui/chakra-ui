@@ -1,7 +1,6 @@
 import {
   Avatar,
   Box,
-  Container,
   Heading,
   Icon,
   Link,
@@ -14,6 +13,11 @@ import {
 import SEO from "components/seo"
 import * as React from "react"
 import { IoIosGlobe, IoLogoGithub, IoLogoTwitter } from "react-icons/io"
+import { SkipNavContent, SkipNavLink } from "@chakra-ui/skip-nav"
+import Header from "components/header"
+import { Octokit } from "@octokit/rest"
+import path from "path"
+import fs from "fs"
 
 const SocialLink = ({ icon, href }) => (
   <Link display="inline-block" href={href} isExternal>
@@ -41,7 +45,7 @@ function Member({ member }) {
     <Box>
       <Stack direction="row" spacing={6}>
         <Avatar size="xl" src={avatarUrl} />
-        <Stack spacing={3}>
+        <Stack spacing={3} maxW="320px">
           <Text fontWeight="bold" fontSize="md">
             {name}
           </Text>
@@ -86,23 +90,34 @@ function Team({ members, contributors }) {
   return (
     <>
       <SEO
-        title="Chakra UI Team &amp; Contributors"
+        title="Chakra UI Team and Contributors"
         description="List of team members and contributors that make the Chakra UI project possible"
       />
-      <Box py="56px">
-        <Box py="80px">
-          <Container maxWidth="lg" paddingX="24px">
-            <Heading as="h1" size="xl" mb="5">
-              Chakra UI Team &amp; Contributors
-            </Heading>
-            <Text maxW="60ch">
-              The people listed on this page have contributed time, effort, and
-              thought to Chakra UI. Without them, this project would not be
-              possible.
-            </Text>
-          </Container>
+      <SkipNavLink zIndex={20}>Skip to Content</SkipNavLink>
+      <Header />
+
+      <Box mt="120px" mb="60px">
+        <SkipNavContent />
+        <Box
+          w="full"
+          px="1rem"
+          py="80px"
+          pb="12"
+          pt="3"
+          mx="auto"
+          maxW="1280px"
+        >
+          <Heading as="h1" size="xl" mb="5">
+            Chakra UI Team &amp; Contributors
+          </Heading>
+          <Text maxW="60ch">
+            The people listed on this page have contributed time, effort, and
+            thought to Chakra UI. Without them, this project would not be
+            possible.
+          </Text>
         </Box>
-        <Container maxWidth="lg" paddingX="24px">
+
+        <Box w="full" px="1rem" pb="12" pt="3" mx="auto" maxW="1280px">
           <Stack spacing={8}>
             <Heading size="md">Core Team</Heading>
             <SimpleGrid columns={[1, 1, 2]} spacing="40px">
@@ -123,7 +138,7 @@ function Team({ members, contributors }) {
               ))}
             </Wrap>
           </Stack>
-        </Container>
+        </Box>
       </Box>
     </>
   )
@@ -138,17 +153,14 @@ const sortMembers = (a, b) => {
   return a.login.localeCompare(b.login, "en")
 }
 
-export async function getServerSideProps() {
-  const { Octokit } = require("@octokit/rest")
-  const path = require("path")
-  const fs = require("fs")
-
+export async function getStaticProps() {
   /**
    * Read the profile/bio of each member of the Chakra UI team.
    * @todo consider writing this to a file for caching (e.g .all-membersrc)
    */
   const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN })
   const { data: members } = await octokit.orgs.listMembers({ org: "chakra-ui" })
+  console.log(members)
 
   const membersData: any[] = await Promise.all(
     members.map(

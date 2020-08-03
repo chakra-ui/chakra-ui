@@ -115,7 +115,7 @@ module.exports = withMdx({
       const authorData = author ? await getUserData(author) : undefined
 
       // get the layout we should use based on path
-      const layout = mdxPath.startsWith("/guides") ? "guides" : "docs"
+      const layout = mdxPath.startsWith("/guides") ? "guides" : undefined
 
       return {
         slug,

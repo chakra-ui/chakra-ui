@@ -1,24 +1,21 @@
 import {
-  Badge,
   chakra,
   Flex,
   HStack,
   Icon,
   IconButton,
   Link,
-  Select,
-  Stack,
   useColorMode,
   useColorModeValue,
 } from "@chakra-ui/core"
+import siteConfig from "configs/site-config"
 import NextLink from "next/link"
 import React from "react"
 import { FaMoon, FaSun } from "react-icons/fa"
 import NavLink from "./header-nav-link"
 import Logo from "./logo"
-// import MobileNav from "./mobile-nav"
 import SponsorButton from "./sponsor-button"
-import siteConfig from "configs/site-config"
+import VersionSwitcher from "./version-switcher"
 
 const DiscordIcon = (props) => (
   <svg viewBox="0 0 146 146" {...props}>
@@ -66,21 +63,8 @@ const HeaderContent = () => {
 
       <Flex maxW="720px" align="center" color="gray.400">
         <SponsorButton mr="5" />
-        <Select
-          mr="1rem"
-          variant="unstyled"
-          maxW="88px"
-          fontWeight="bold"
-          color="gray.400"
-          defaultValue="1.0"
-          onChange={(e) => {
-            window.location.href = e.target.value
-          }}
-        >
-          <option value="chakra-ui.com">v1.0</option>
-          <option value="v0.chakra-ui.com">v0.8</option>
-        </Select>
-        <Stack align="center" direction="row" spacing="5">
+        <VersionSwitcher />
+        <HStack spacing="5">
           <Link isExternal href={siteConfig.repo.url}>
             <Icon
               as={GithubIcon}
@@ -99,7 +83,7 @@ const HeaderContent = () => {
               _hover={{ color: "gray.600" }}
             />
           </Link>
-        </Stack>
+        </HStack>
         <IconButton
           size="md"
           fontSize="lg"
@@ -110,7 +94,6 @@ const HeaderContent = () => {
           onClick={toggleMode}
           icon={<SwitchIcon />}
         />
-        {/* <MobileNav /> */}
       </Flex>
     </Flex>
   )

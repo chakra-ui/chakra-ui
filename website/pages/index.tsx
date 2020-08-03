@@ -9,6 +9,7 @@ import {
   Divider,
   Flex,
   Icon,
+  chakra,
 } from "@chakra-ui/core"
 import { DiGithubBadge } from "react-icons/di"
 import { MdAccessibility, MdPalette, MdGrain } from "react-icons/md"
@@ -16,9 +17,10 @@ import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live"
 import theme from "prism-react-renderer/themes/nightOwl"
 import * as Chakra from "@chakra-ui/core"
 import * as ReactMdIcons from "react-icons/md"
-import { Container } from "../src/components/container"
-import { Footer } from "../src/components/footer"
-import SEO from "../src/components/seo"
+import { Container } from "components/container"
+import { Footer } from "components/footer"
+import SEO from "components/seo"
+import { ArrowRightIcon } from "@chakra-ui/icons"
 
 const Feature = ({ title, icon, children, ...props }) => {
   return (
@@ -78,14 +80,29 @@ const HomePage = () => {
       <Box mb={20}>
         <Box as="section" pt={40} pb={24}>
           <Container>
-            <Box maxW="xl" mx="auto" textAlign="center">
-              <Heading as="h1" size="xl" fontWeight="semibold">
+            <Box maxW="800px" mx="auto" textAlign="center">
+              <chakra.h4
+                fontWeight="semibold"
+                textTransform="uppercase"
+                color="teal.500"
+                letterSpacing="widest"
+                mb="32px"
+              >
+                Welcome to Chakra UI
+              </chakra.h4>
+              <chakra.h1
+                fontSize="4rem"
+                letterSpacing="tight"
+                fontWeight="bold"
+                mb="16px"
+                lineHeight="1.2"
+              >
                 Build accessible React apps & websites
                 <Box as="span" color="teal.500">
                   {" "}
                   with speed
                 </Box>
-              </Heading>
+              </chakra.h1>
 
               <Text opacity={0.7} fontSize="xl" mt="6">
                 Chakra UI is a simple, modular and accessible component library
@@ -93,15 +110,27 @@ const HomePage = () => {
                 applications.
               </Text>
 
-              <Box mt="6">
+              <Box mt="10">
                 <NextLink href="/docs/getting-started" passHref>
-                  <Button as="a" size="lg" colorScheme="teal">
-                    Get Started
+                  <Button
+                    h="4rem"
+                    px="40px"
+                    rounded="12px"
+                    fontSize="1.2rem"
+                    as="a"
+                    size="lg"
+                    colorScheme="teal"
+                  >
+                    {`Get Started ->`}
                   </Button>
                 </NextLink>
                 <Button
                   as="a"
                   size="lg"
+                  h="4rem"
+                  px="40px"
+                  rounded="12px"
+                  fontSize="1.2rem"
                   ml={4}
                   href="https://github.com/chakra-ui/chakra-ui/"
                   target="__blank"
