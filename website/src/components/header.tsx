@@ -42,14 +42,7 @@ const HeaderContent = () => {
   const SwitchIcon = useColorModeValue(FaMoon, FaSun)
 
   return (
-    <Flex
-      w="100%"
-      h="100%"
-      px="6"
-      align="center"
-      justify="space-between"
-      style={{ backdropFilter: "blur(4px)" }}
-    >
+    <Flex w="100%" h="100%" px="6" align="center" justify="space-between">
       <Flex align="center">
         <NextLink href="/" passHref>
           <chakra.a display="block" aria-label="Chakra UI, Back to homepage">
@@ -69,7 +62,6 @@ const HeaderContent = () => {
       </Flex>
 
       <Flex maxW="720px" align="center" color="gray.400">
-        <SponsorButton mr="5" />
         <VersionSwitcher />
         <HStack spacing="5">
           <Link isExternal href={siteConfig.repo.url}>
@@ -101,13 +93,14 @@ const HeaderContent = () => {
           onClick={toggleMode}
           icon={<SwitchIcon />}
         />
+        <SponsorButton ml="5" />
       </Flex>
     </Flex>
   )
 }
 
 const Header = (props) => {
-  const bg = useColorModeValue("white", "gray.800")
+  const bg = useColorModeValue("whiteAlpha.800", "gray.800")
   return (
     <chakra.header
       pos="fixed"
@@ -118,6 +111,7 @@ const Header = (props) => {
       right="0"
       borderBottomWidth="1px"
       width="full"
+      style={{ backdropFilter: "blur(4px)" }}
       {...props}
     >
       <chakra.div height="4.5rem" mx="auto" maxW="1280px">

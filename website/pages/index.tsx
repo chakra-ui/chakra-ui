@@ -12,6 +12,7 @@ import {
   Icon,
   Stack,
   chakra,
+  Center,
 } from "@chakra-ui/core"
 import { DiGithubBadge } from "react-icons/di"
 import { MdAccessibility, MdPalette, MdGrain } from "react-icons/md"
@@ -29,10 +30,13 @@ import { FaDiscord } from "react-icons/fa"
 import TweetCard from "components/tweet-card"
 import tweets from "configs/tweets"
 import { chunk } from "@chakra-ui/utils"
+import LogoMark from "components/logo-mark"
+import Header from "components/header"
+import DiscordStrip from "components/discord-strip"
 
 const Feature = ({ title, icon, children, ...props }) => {
   return (
-    <Box bg="white" rounded="12px" shadow="base" px="56px" py="40px" {...props}>
+    <Box bg="white" rounded="12px" shadow="base" p="40px" {...props}>
       <Flex
         rounded="full"
         w="12"
@@ -52,6 +56,19 @@ const Feature = ({ title, icon, children, ...props }) => {
     </Box>
   )
 }
+
+const PageHeading = (props) => (
+  <chakra.h1
+    textAlign="center"
+    fontWeight="bold"
+    letterSpacing="tight"
+    lineHeight="1.24"
+    fontSize="2.75rem"
+    mt="6"
+    mb="6"
+    {...props}
+  />
+)
 
 const sampleCode = `
 // Sample component from airbnb.com
@@ -88,6 +105,7 @@ const HomePage = () => {
         title="Chakra UI - A simple, modular and accessible component library that gives you the building blocks you need to build your React applications."
         description="Simple, Modular and Accessible UI Components for your React Applications. Built with Styled System"
       />
+      <Header />
       <Box mb={20}>
         <Box as="section" pt={40} pb={24}>
           <Container>
@@ -102,7 +120,7 @@ const HomePage = () => {
                 Welcome to Chakra UI
               </chakra.h4>
               <chakra.h1
-                fontSize="4rem"
+                fontSize={{ base: "2.25rem", md: "3rem", lg: "4rem" }}
                 letterSpacing="tight"
                 fontWeight="bold"
                 mb="16px"
@@ -121,7 +139,12 @@ const HomePage = () => {
                 applications.
               </Text>
 
-              <Box mt="10">
+              <Stack
+                mt="10"
+                spacing="4"
+                justify="center"
+                direction={{ base: "column", sm: "row" }}
+              >
                 <NextLink href="/docs/getting-started" passHref>
                   <Button
                     h="4rem"
@@ -142,14 +165,13 @@ const HomePage = () => {
                   px="40px"
                   rounded="12px"
                   fontSize="1.2rem"
-                  ml={4}
                   href="https://github.com/chakra-ui/chakra-ui/"
                   target="__blank"
                   leftIcon={<DiGithubBadge size="1.5em" />}
                 >
                   GitHub
                 </Button>
-              </Box>
+              </Stack>
             </Box>
           </Container>
         </Box>
@@ -217,7 +239,7 @@ const HomePage = () => {
               </chakra.p>
             </Box>
             <Grid
-              templateColumns={{ sm: "repeat(1, 1fr)", md: "repeat(3, 1fr)" }}
+              templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(3, 1fr)" }}
               gap={10}
               px={{ md: 12 }}
             >
@@ -262,7 +284,10 @@ const HomePage = () => {
             >
               Loved by product people like you
             </chakra.h1>
-            <Grid gap="32px" templateColumns="repeat(3, 1fr)">
+            <Grid
+              gap="32px"
+              templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(3, 1fr)" }}
+            >
               {chunk(tweets, 3).map((tweetList, idx) => (
                 <Stack spacing="6" key={idx}>
                   {tweetList.map((tweet, idx) => (
@@ -274,9 +299,49 @@ const HomePage = () => {
           </Container>
         </Box>
 
-        <Container>
+        <Divider />
+
+        <Box bg="gray.50">
+          <Container py="120px" maxW="800px" mx="auto" textAlign="center">
+            <Flex direction="column" align="center">
+              <Center rounded="full" w="100px" h="100px" bg="teal.400">
+                <LogoMark w="80%" color="white" />
+              </Center>
+              <chakra.h1
+                textAlign="center"
+                fontWeight="bold"
+                letterSpacing="tight"
+                lineHeight="1.24"
+                fontSize="2.75rem"
+                mt="6"
+                mb="6"
+              >
+                Get started with Chakra today.
+              </chakra.h1>
+              <Text mb="40px" fontSize="lg" opacity={0.7}>
+                Chakra keeps everyone aligned and working without friction.
+                Engineers and designers using the same language.
+              </Text>
+              <Button
+                h="4rem"
+                px="40px"
+                rounded="12px"
+                fontSize="1.2rem"
+                as="a"
+                size="lg"
+                colorScheme="teal"
+              >
+                {`Get Started ->`}
+              </Button>
+            </Flex>
+          </Container>
+        </Box>
+
+        <Divider />
+
+        <Container py="80px">
           <Box maxW="xl" mx="auto">
-            <Heading fontWeight="semibold" textAlign="center" mb="2em">
+            <Heading letterSpacing="tight" textAlign="center" mb="2em">
               Code components for your React Apps with speed{" "}
               <Box as="span" color="teal.500">
                 using Chakra
@@ -323,7 +388,9 @@ const HomePage = () => {
           </Box>
         </Container>
 
-        <Divider my={16} />
+        <Divider />
+
+        <DiscordStrip />
 
         <Footer />
       </Box>
