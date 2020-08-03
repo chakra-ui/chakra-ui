@@ -42,7 +42,14 @@ const HeaderContent = () => {
   const SwitchIcon = useColorModeValue(FaMoon, FaSun)
 
   return (
-    <Flex w="100%" h="100%" px="6" align="center" justify="space-between">
+    <Flex
+      w="100%"
+      h="100%"
+      px="6"
+      align="center"
+      justify="space-between"
+      style={{ backdropFilter: "blur(4px)" }}
+    >
       <Flex align="center">
         <NextLink href="/" passHref>
           <chakra.a display="block" aria-label="Chakra UI, Back to homepage">

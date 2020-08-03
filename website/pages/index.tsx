@@ -8,11 +8,13 @@ import {
   Grid,
   Divider,
   Flex,
+  Wrap,
   Icon,
   chakra,
 } from "@chakra-ui/core"
 import { DiGithubBadge } from "react-icons/di"
 import { MdAccessibility, MdPalette, MdGrain } from "react-icons/md"
+import { IoMdMoon } from "react-icons/io"
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live"
 import theme from "prism-react-renderer/themes/nightOwl"
 import * as Chakra from "@chakra-ui/core"
@@ -20,24 +22,29 @@ import * as ReactMdIcons from "react-icons/md"
 import { Container } from "components/container"
 import { Footer } from "components/footer"
 import SEO from "components/seo"
-import { ArrowRightIcon } from "@chakra-ui/icons"
+import users from "chakra-users"
+import { AiFillThunderbolt } from "react-icons/ai"
+import { FaDiscord } from "react-icons/fa"
 
 const Feature = ({ title, icon, children, ...props }) => {
   return (
-    <Box {...props}>
+    <Box bg="white" rounded="12px" shadow="base" px="56px" py="40px" {...props}>
       <Flex
-        borderRadius="full"
-        boxSize={12}
+        rounded="full"
+        w="12"
+        h="12"
         bg="teal.500"
         align="center"
         justify="center"
       >
-        <Icon boxSize={6} color="white" as={icon} />
+        <Icon fontSize="24px" color="white" as={icon} />
       </Flex>
-      <Heading as="h2" size="md" fontWeight="semibold" mt="1em" mb="0.5em">
+      <Heading as="h5" size="md" fontWeight="semibold" mt="1em" mb="0.5em">
         {title}
       </Heading>
-      <Text>{children}</Text>
+      <Text fontSize="lg" opacity={0.7}>
+        {children}
+      </Text>
     </Box>
   )
 }
@@ -97,7 +104,7 @@ const HomePage = () => {
                 mb="16px"
                 lineHeight="1.2"
               >
-                Build accessible React apps & websites
+                Build accessible React apps
                 <Box as="span" color="teal.500">
                   {" "}
                   with speed
@@ -143,30 +150,115 @@ const HomePage = () => {
           </Container>
         </Box>
 
-        <Divider my={16} />
+        <Divider mt={16} />
 
-        <Container>
-          <Grid
-            templateColumns={{ sm: "repeat(1, 1fr)", md: "repeat(3, 1fr)" }}
-            gap={10}
-            px={{ md: 12 }}
-          >
-            <Feature icon={MdAccessibility} title="Accessible">
-              Chakra UI strictly follows WAI-ARIA standards. All components come
-              with proper attributes and keyboard interactions out of the box.
-            </Feature>
-            <Feature icon={MdPalette} title="Themeable">
-              Quickly and easily reference values from your theme throughout
-              your entire application, on any component.
-            </Feature>
-            <Feature icon={MdGrain} title="Composable">
-              Components were built with composition in mind. You can leverage
-              any component to create new things.
-            </Feature>
-          </Grid>
-        </Container>
+        <Box as="section" pt="48px" pb="72px">
+          <Container textAlign="center">
+            <chakra.p
+              textTransform="uppercase"
+              fontSize="sm"
+              letterSpacing="widest"
+              fontWeight="medium"
+              color="teal.500"
+              mb="48px"
+            >
+              Trusted in Production By
+            </chakra.p>
+            <Wrap
+              maxW="800px"
+              mx="auto"
+              justify="center"
+              align="center"
+              spacing="50px"
+            >
+              {users.map((user) => {
+                const hasLogo = user.image.includes(".")
+                if (hasLogo) {
+                  return <chakra.img h="24px" w="auto" src={user.image} />
+                }
+                return null
+              })}
+              <Box
+                p="4"
+                border="1px dashed"
+                borderColor="teal.200"
+                rounded="md"
+                bg="teal.50"
+              >
+                <Box as="span" mr="1" role="img">
+                  💖
+                </Box>{" "}
+                Your company
+              </Box>
+            </Wrap>
+          </Container>
+        </Box>
 
-        <Divider my={16} />
+        <Divider />
+
+        <Box as="section" bg="gray.50">
+          <Container py="120px">
+            <Box maxW="760px" mx="auto" textAlign="center" mb="56px">
+              <chakra.h1
+                fontWeight="bold"
+                letterSpacing="tight"
+                lineHeight="1.24"
+                fontSize="2.75rem"
+                mb="5"
+              >
+                An experience you'd expect from a design system.
+              </chakra.h1>
+              <chakra.p opacity={0.7} fontSize="lg">
+                Opinionated and designed for daily use.
+              </chakra.p>
+            </Box>
+            <Grid
+              templateColumns={{ sm: "repeat(1, 1fr)", md: "repeat(3, 1fr)" }}
+              gap={10}
+              px={{ md: 12 }}
+            >
+              <Feature icon={MdAccessibility} title="Accessible">
+                Chakra UI strictly follows WAI-ARIA standards for all
+                components.
+              </Feature>
+              <Feature icon={MdPalette} title="Themeable">
+                Customize any part of our components to match your design needs.
+              </Feature>
+              <Feature icon={MdGrain} title="Composable">
+                Designed with composition in mind. Compose new components with
+                ease.
+              </Feature>
+              <Feature icon={IoMdMoon} title="Light and Dark UI">
+                Optimized for multiple color modes. Use light or dark, your
+                choice.
+              </Feature>
+              <Feature icon={AiFillThunderbolt} title="Developer Experience">
+                Guaranteed to boost your productivity when building your app or
+                website.
+              </Feature>
+              <Feature icon={FaDiscord} title="Active Community">
+                We're a team of active maintainer ready to help you whenver you
+                need.
+              </Feature>
+            </Grid>
+          </Container>
+        </Box>
+
+        <Divider />
+
+        <Box>
+          <Container py="120px">
+            <chakra.h1
+              fontWeight="bold"
+              letterSpacing="tight"
+              lineHeight="1.24"
+              fontSize="2.75rem"
+              mb="5"
+            >
+              Loved by product people like you
+            </chakra.h1>
+          </Container>
+        </Box>
 
         <Container>
           <Box maxW="xl" mx="auto">
