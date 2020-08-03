@@ -10,6 +10,7 @@ import {
   Flex,
   Wrap,
   Icon,
+  Stack,
   chakra,
 } from "@chakra-ui/core"
 import { DiGithubBadge } from "react-icons/di"
@@ -25,6 +26,9 @@ import SEO from "components/seo"
 import users from "chakra-users"
 import { AiFillThunderbolt } from "react-icons/ai"
 import { FaDiscord } from "react-icons/fa"
+import TweetCard from "components/tweet-card"
+import tweets from "configs/tweets"
+import { chunk } from "@chakra-ui/utils"
 
 const Feature = ({ title, icon, children, ...props }) => {
   return (
@@ -249,14 +253,24 @@ const HomePage = () => {
         <Box>
           <Container py="120px">
             <chakra.h1
+              textAlign="center"
               fontWeight="bold"
               letterSpacing="tight"
               lineHeight="1.24"
               fontSize="2.75rem"
-              mb="5"
+              mb="48px"
             >
               Loved by product people like you
             </chakra.h1>
+            <Grid gap="32px" templateColumns="repeat(3, 1fr)">
+              {chunk(tweets, 3).map((tweetList, idx) => (
+                <Stack spacing="6" key={idx}>
+                  {tweetList.map((tweet, idx) => (
+                    <TweetCard key={idx} {...tweet} />
+                  ))}
+                </Stack>
+              ))}
+            </Grid>
           </Container>
         </Box>
 
