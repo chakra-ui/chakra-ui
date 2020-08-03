@@ -5,8 +5,7 @@ const parts = {
   thumb: "the switch inner circle",
 }
 
-// @ts-ignore
-const baseStyleTrack = function (props) {
+const baseStyleTrack = function (props: Record<string, any>) {
   const { colorScheme: c } = props
 
   return {
@@ -34,8 +33,7 @@ const baseStyleThumb = {
   transform: "translateX(0)",
 }
 
-// @ts-ignore
-const baseStyle = (props) => ({
+const baseStyle = (props: Record<string, any>) => ({
   track: baseStyleTrack(props),
   thumb: baseStyleThumb,
 })
@@ -87,20 +85,18 @@ const sizes = {
 const defaultProps = {
   size: "md",
   colorScheme: "blue",
-}
+} as const
 
 const Switch = multiStyleConfig({
   parts,
   baseStyle,
   sizes,
-  // @ts-ignore
   defaultProps,
 })
 
 export const switchStyles = {
   parts,
-  baseStyleThumb,
-  baseStyleTrack,
+  baseStyle,
   sizes,
   defaultProps,
 }

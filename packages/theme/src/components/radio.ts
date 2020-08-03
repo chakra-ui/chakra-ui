@@ -8,8 +8,7 @@ const parts = {
 
 const { baseStyleLabel } = checkboxStyles
 
-// @ts-ignore
-const baseStyleControl = function (props) {
+const baseStyleControl = function (props: Record<string, any>) {
   const control = checkboxStyles.baseStyleControl(props) ?? {}
 
   return {
@@ -31,8 +30,7 @@ const baseStyleControl = function (props) {
   }
 }
 
-// @ts-ignore
-const baseStyle = function (props) {
+const baseStyle = function (props: Record<string, any>) {
   return {
     label: baseStyleLabel,
     control: baseStyleControl(props),
@@ -57,20 +55,18 @@ const sizes = {
 const defaultProps = {
   size: "md",
   colorScheme: "blue",
-}
+} as const
 
 const radio = multiStyleConfig({
   parts,
   baseStyle,
   sizes,
-  // @ts-ignore
   defaultProps,
 })
 
 export const radioStyles = {
   parts,
-  baseStyleLabel,
-  baseStyleControl,
+  baseStyle,
   sizes,
   defaultProps,
 }

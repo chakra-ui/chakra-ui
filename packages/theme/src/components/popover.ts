@@ -7,8 +7,7 @@ const parts = {
   footer: "the action footers for popover",
 }
 
-// @ts-ignore
-const baseStyleContent = function (props) {
+const baseStyleContent = function (props: Record<string, any>) {
   return {
     bg: mode("white", "gray.700")(props),
     border: "1px solid",
@@ -42,8 +41,7 @@ const baseStyleFooter = {
   borderTopWidth: "1px",
 }
 
-// @ts-ignore
-const baseStyle = function (props) {
+const baseStyle = function (props: Record<string, any>) {
   return {
     content: baseStyleContent(props),
     header: baseStyleHeader,
@@ -59,10 +57,7 @@ const popover = multiStyleConfig({
 
 export const popoverStyles = {
   parts,
-  baseStyleContent,
-  baseStyleHeader,
-  baseStyleFooter,
-  baseStyleBody,
+  baseStyle,
 }
 
 export default popover

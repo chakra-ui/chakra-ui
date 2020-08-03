@@ -7,8 +7,7 @@ const parts = {
   icon: "the checkmark icon",
 }
 
-// @ts-ignore
-const baseStyleControl = function (props) {
+const baseStyleControl = function (props: Record<string, any>) {
   const { colorScheme: c } = props
 
   return {
@@ -66,8 +65,7 @@ const baseStyleIcon = {
   fontSize: "0.625rem",
 }
 
-// @ts-ignore
-const baseStyle = (props) => ({
+const baseStyle = (props: Record<string, any>) => ({
   control: baseStyleControl(props),
   label: baseStyleLabel,
   icon: baseStyleIcon,
@@ -91,13 +89,12 @@ const sizes = {
 const defaultProps = {
   size: "md",
   colorScheme: "blue",
-}
+} as const
 
 const checkbox = multiStyleConfig({
   parts,
   baseStyle,
   sizes,
-  // @ts-ignore
   defaultProps,
 })
 

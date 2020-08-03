@@ -23,12 +23,11 @@ const sizes = {
 
 const defaultProps = {
   size: "xl",
-}
+} as const
 
 const heading = styleConfig({
   baseStyle,
   sizes,
-  // @ts-ignore
   defaultProps,
 })
 

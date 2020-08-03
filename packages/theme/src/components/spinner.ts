@@ -25,11 +25,10 @@ const sizes = {
 
 const defaultProps = {
   size: "md",
-}
+} as const
 
 const spinner = styleConfig({
   sizes,
-  // @ts-ignore
   defaultProps,
 })
 

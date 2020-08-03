@@ -7,8 +7,7 @@ const parts = {
   indicator: "the active tab indicator",
 }
 
-// @ts-ignore
-const baseStyleTab = function (props) {
+const baseStyleTab = function (props: Record<string, any>) {
   const { isFitted } = props
 
   return {
@@ -21,8 +20,7 @@ const baseStyleTab = function (props) {
   }
 }
 
-// @ts-ignore
-const baseStyleTablist = function (props) {
+const baseStyleTablist = function (props: Record<string, any>) {
   const { align = "start" } = props
 
   return {
@@ -32,8 +30,7 @@ const baseStyleTablist = function (props) {
 
 const baseStyleTabpanel = { p: 4 }
 
-// @ts-ignore
-const baseStyle = function (props) {
+const baseStyle = function (props: Record<string, any>) {
   return {
     tab: baseStyleTab(props),
     tablist: baseStyleTablist(props),
@@ -65,8 +62,7 @@ const sizes = {
   },
 }
 
-// @ts-ignore
-const variantLine = function (props) {
+const variantLine = function (props: Record<string, any>) {
   const { colorScheme: c } = props
   return {
     tablist: {
@@ -92,8 +88,7 @@ const variantLine = function (props) {
   }
 }
 
-// @ts-ignore
-const variantEnclosed = function (props) {
+const variantEnclosed = function (props: Record<string, any>) {
   const { colorScheme: c } = props
   return {
     tab: {
@@ -115,8 +110,7 @@ const variantEnclosed = function (props) {
   }
 }
 
-// @ts-ignore
-const variantEnclosedColored = function (props) {
+const variantEnclosedColored = function (props: Record<string, any>) {
   const { colorScheme: c } = props
   return {
     tab: {
@@ -143,8 +137,7 @@ const variantEnclosedColored = function (props) {
   }
 }
 
-// @ts-ignore
-const variantSoftRounded = function (props) {
+const variantSoftRounded = function (props: Record<string, any>) {
   const { colorScheme: c, theme } = props
   return {
     tab: {
@@ -159,8 +152,7 @@ const variantSoftRounded = function (props) {
   }
 }
 
-// @ts-ignore
-const variantSolidRounded = function (props) {
+const variantSolidRounded = function (props: Record<string, any>) {
   const { colorScheme: c } = props
   return {
     tab: {
@@ -190,14 +182,13 @@ const defaultProps = {
   size: "md",
   variant: "line",
   colorScheme: "blue",
-}
+} as const
 
 const tabs = multiStyleConfig({
   parts,
   baseStyle,
   sizes,
   variants,
-  // @ts-ignore
   defaultProps,
 })
 
@@ -210,15 +201,8 @@ const alignments = {
 export const tabsStyles = {
   parts,
   sizes,
-  baseStyleTab,
-  baseStyleTablist,
-  baseStyleTabpanel,
-  variantEnclosed,
-  variantLine,
-  variantEnclosedColored,
-  variantSolidRounded,
-  variantSoftRounded,
-  variantUnstyled,
+  variants,
+  baseStyle,
   defaultProps,
 }
 

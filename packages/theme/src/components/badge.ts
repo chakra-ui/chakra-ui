@@ -52,20 +52,17 @@ const variants = {
 const defaultProps = {
   variant: "subtle",
   colorScheme: "gray",
-}
+} as const
 
 const badge = styleConfig({
   baseStyle,
   variants,
-  // @ts-ignore
   defaultProps,
 })
 
 export const badgeStyles = {
   baseStyle,
-  variantSolid,
-  variantSubtle,
-  variantOutline,
+  variants,
   defaultProps,
 }
 

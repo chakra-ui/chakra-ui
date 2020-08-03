@@ -27,22 +27,14 @@ const sizes = {
   },
 }
 
-// @ts-ignore
-const variantOutline = (props) => inputStyles.variantOutline(props)?.field ?? {}
-
-// @ts-ignore
-const variantFlushed = (props) => inputStyles.variantFlushed(props)?.field ?? {}
-
-// @ts-ignore
-const variantFilled = (props) => inputStyles.variantFilled(props).field ?? {}
-
-const variantUnstyled = inputStyles.variantUnstyled.field
-
 const variants = {
-  outline: variantOutline,
-  flushed: variantFlushed,
-  filled: variantFilled,
-  unstyled: variantUnstyled,
+  outline: (props: Record<string, any>) =>
+    inputStyles.variants?.outline(props)?.field ?? {},
+  flushed: (props: Record<string, any>) =>
+    inputStyles.variants?.flushed(props)?.field ?? {},
+  filled: (props: Record<string, any>) =>
+    inputStyles.variants?.filled(props).field ?? {},
+  unstyled: inputStyles.variants?.unstyled.field,
 }
 
 const defaultProps = inputStyles.defaultProps
@@ -51,17 +43,13 @@ const pinInput = styleConfig({
   baseStyle,
   sizes,
   variants,
-  // @ts-ignore
   defaultProps,
 })
 
 export const pinInputStyles = {
   baseStyle,
   sizes,
-  variantFilled,
-  variantFlushed,
-  variantOutline,
-  variantUnstyled,
+  variants,
   defaultProps,
 }
 

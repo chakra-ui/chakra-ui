@@ -130,22 +130,18 @@ const defaultProps = {
   variant: "solid",
   size: "md",
   colorScheme: "gray",
-}
+} as const
 
 const button = styleConfig({
   baseStyle,
   variants,
   sizes,
-  // @ts-ignore
   defaultProps,
 })
 
 export const buttonStyles = {
   baseStyle,
-  variantGhost,
-  variantLink,
-  variantOutline,
-  variantUnstyled,
+  variants,
   sizes,
   defaultProps,
 }

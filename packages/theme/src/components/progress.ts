@@ -43,25 +43,24 @@ const baseStyleLabel = {
   color: "white",
 }
 
-// @ts-ignore
-const baseStyleTrack = function (props) {
+const baseStyleTrack = function (props: Record<string, any>) {
   return {
     bg: mode(`gray.100`, `whiteAlpha.300`)(props),
   }
 }
 
-// @ts-ignore
-const baseStyleFilledTrack = function (props) {
+const baseStyleFilledTrack = function (props: Record<string, any>) {
   return {
     transition: "all 0.3s",
     ...filledStyle(props),
   }
 }
 
-// @ts-ignore
-const baseStyle = function (props) {
+const baseStyle = function (props: Record<string, any>) {
   return {
     label: baseStyleLabel,
+    filledTrack: baseStyleFilledTrack(props),
+    track: baseStyleTrack(props),
   }
 }
 
@@ -83,22 +82,19 @@ const sizes = {
 const defaultProps = {
   size: "md",
   colorScheme: "blue",
-}
+} as const
 
 const progress = multiStyleConfig({
   parts,
   baseStyle,
   sizes,
-  // @ts-ignore
   defaultProps,
 })
 
 export const progressStyles = {
   parts,
   sizes,
-  baseStyleLabel,
-  baseStyleTrack,
-  baseStyleFilledTrack,
+  baseStyle,
   defaultProps,
 }
 

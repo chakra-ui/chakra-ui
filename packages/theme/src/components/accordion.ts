@@ -49,9 +49,7 @@ const accordion = multiStyleConfig({
 
 export const accordionStyles = {
   parts,
-  baseStyleContainer,
-  baseStyleButton,
-  baseStylePanel,
+  baseStyle,
 }
 
 export default accordion

@@ -1,29 +1,14 @@
 import { multiStyleConfig, mode } from "@chakra-ui/theme-tools"
 import { inputStyles } from "./input"
 
-const {
-  sizes,
-  defaultProps,
-  variantFilled,
-  variantFlushed,
-  variantOutline,
-  variantUnstyled,
-} = inputStyles
+const { sizes, defaultProps, variants } = inputStyles
 
 const parts = {
   field: "the select field itself",
   icon: "the select field icon",
 }
 
-const variants = {
-  outline: variantOutline,
-  filled: variantFilled,
-  flushed: variantFlushed,
-  unstyled: variantUnstyled,
-}
-
-// @ts-ignore
-const baseStyleField = function (props) {
+const baseStyleField = function (props: Record<string, any>) {
   return {
     ...inputStyles.baseStyle?.field,
     appearance: "none",
@@ -41,8 +26,7 @@ const baseStyleInput = {
   _disabled: { opacity: 0.5 },
 }
 
-// @ts-ignore
-const baseStyle = (props) => ({
+const baseStyle = (props: Record<string, any>) => ({
   field: baseStyleField(props),
   icon: baseStyleInput,
 })
@@ -52,18 +36,13 @@ const select = multiStyleConfig({
   baseStyle,
   sizes,
   variants,
-  // @ts-ignore
   defaultProps,
 })
 
 export const selectStyles = {
   parts,
-  baseStyleField,
-  baseStyleInput,
-  variantFilled,
-  variantFlushed,
-  variantOutline,
-  variantUnstyled,
+  baseStyle,
+  variants,
   defaultProps,
 }
 

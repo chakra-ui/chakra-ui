@@ -192,14 +192,13 @@ const variants = {
 const defaultProps = {
   size: "md",
   variant: "outline",
-}
+} as const
 
 const input = multiStyleConfig({
   parts,
   baseStyle,
   sizes,
   variants,
-  // @ts-ignore
   defaultProps,
 })
 
@@ -207,10 +206,7 @@ export const inputStyles = {
   parts,
   baseStyle,
   sizes,
-  variantOutline,
-  variantFilled,
-  variantFlushed,
-  variantUnstyled,
+  variants,
   defaultProps,
 }
 

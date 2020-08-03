@@ -26,8 +26,7 @@ const baseStyleOverlay = {
   bg: "blackAlpha.600",
 }
 
-// @ts-ignore
-const baseStyleContent = function (props) {
+const baseStyleContent = function (props: Record<string, any>) {
   const { isFullHeight } = props
 
   return {
@@ -57,8 +56,7 @@ const baseStyleFooter = {
   py: 4,
 }
 
-// @ts-ignore
-const baseStyle = (props) => ({
+const baseStyle = (props: Record<string, any>) => ({
   overlay: baseStyleOverlay,
   content: baseStyleContent(props),
   header: baseStyleHeader,
@@ -77,23 +75,18 @@ const sizes = {
 
 const defaultProps = {
   size: "xs",
-}
+} as const
 
 const drawer = multiStyleConfig({
   parts,
   baseStyle,
   sizes,
-  // @ts-ignore
   defaultProps,
 })
 
 export const drawerStyles = {
   parts,
-  baseStyleOverlay,
-  baseStyleContent,
-  baseStyleHeader,
-  baseStyleBody,
-  baseStyleFooter,
+  baseStyle,
   sizes,
   defaultProps,
 }

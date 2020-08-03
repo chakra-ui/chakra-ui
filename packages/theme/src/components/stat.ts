@@ -45,22 +45,18 @@ const sizes = {
 
 const defaultProps = {
   size: "md",
-}
+} as const
 
 const stat = multiStyleConfig({
   parts,
   baseStyle,
   sizes,
-  // @ts-ignore
   defaultProps,
 })
 
 export const statStyles = {
   parts,
-  baseStyleHelpText,
-  baseStyleIcon,
-  baseStyleLabel,
-  baseStyleNumber,
+  baseStyle,
   sizes,
   defaultProps,
 }

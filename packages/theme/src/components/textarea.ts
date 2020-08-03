@@ -8,22 +8,14 @@ const baseStyle = {
   lineHeight: "short",
 }
 
-// @ts-ignore
-const variantOutline = (props) => inputStyles.variantOutline(props)?.field ?? {}
-
-// @ts-ignore
-const variantFlushed = (props) => inputStyles.variantFlushed(props)?.field ?? {}
-
-// @ts-ignore
-const variantFilled = (props) => inputStyles.variantFilled(props).field ?? {}
-
-const variantUnstyled = inputStyles.variantUnstyled.field
-
 const variants = {
-  outline: variantOutline,
-  flushed: variantFlushed,
-  filled: variantFilled,
-  unstyled: variantUnstyled,
+  outline: (props: Record<string, any>) =>
+    inputStyles.variants?.outline(props)?.field ?? {},
+  flushed: (props: Record<string, any>) =>
+    inputStyles.variants?.flushed(props)?.field ?? {},
+  filled: (props: Record<string, any>) =>
+    inputStyles.variants?.filled(props).field ?? {},
+  unstyled: inputStyles.variants?.unstyled.field,
 }
 
 const sizes = {
@@ -35,22 +27,19 @@ const sizes = {
 const defaultProps = {
   size: "md",
   variant: "outline",
-}
+} as const
 
 const textarea = styleConfig({
   baseStyle,
   sizes,
   variants,
-  // @ts-ignore
   defaultProps,
 })
 
 export const textareaStyles = {
   baseStyle,
   sizes,
-  variantFilled,
-  variantFlushed,
-  variantOutline,
+  variants,
   defaultProps,
 }
 

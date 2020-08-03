@@ -75,50 +75,36 @@ const sizes = {
   },
 }
 
-// @ts-ignore
-const variantSubtle = function (props) {
-  return { container: badgeStyles.variantSubtle(props) }
-}
-
-// @ts-ignore
-const variantSolid = function (props) {
-  return { container: badgeStyles.variantSolid(props) }
-}
-
-// @ts-ignore
-const variantOutline = function (props) {
-  return { container: badgeStyles.variantOutline(props) }
-}
-
 const variants = {
-  subtle: variantSubtle,
-  solid: variantSolid,
-  outline: variantOutline,
+  subtle: function (props: Record<string, any>) {
+    return { container: badgeStyles.variants?.subtle(props) }
+  },
+  solid: function (props: Record<string, any>) {
+    return { container: badgeStyles.variants?.solid(props) }
+  },
+  outline: function (props: Record<string, any>) {
+    return { container: badgeStyles.variants?.outline(props) }
+  },
 }
 
 const defaultProps = {
   size: "lg",
   variant: "subtle",
   colorScheme: "gray",
-}
+} as const
 
 const tag = multiStyleConfig({
   parts,
   baseStyle,
   sizes,
   variants,
-  // @ts-ignore
   defaultProps,
 })
 
 export const tagStyles = {
   parts,
-  baseStyleContainer,
-  baseStyleCloseButton,
-  baseStyleLabel,
-  variantOutline,
-  variantSolid,
-  variantSubtle,
+  variants,
+  baseStyle,
   sizes,
   defaultProps,
 }

@@ -30,7 +30,7 @@ const breadcrumb = multiStyleConfig({
 
 export const breadcrumbStyles = {
   parts,
-  baseStyleLink,
+  baseStyle,
 }
 
 export default breadcrumb

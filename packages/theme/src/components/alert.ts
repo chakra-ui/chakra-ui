@@ -42,7 +42,7 @@ const baseStyle = {
 
 const defaultProps = {
   variant: "subtle",
-}
+} as const
 
 const variantSubtle = function (props: Record<string, any>) {
   const { colorScheme: c } = props
@@ -103,19 +103,13 @@ const alert = multiStyleConfig({
   parts,
   baseStyle,
   variants,
-  // @ts-ignore
   defaultProps,
 })
 
 export const alertStyles = {
   parts,
-  baseStyleContainer,
-  baseStyleTitle,
-  baseStyleIcon,
-  variantSubtle,
-  variantLeftAccent,
-  variantTopAccent,
-  variantSolid,
+  baseStyle,
+  variants,
   defaultProps,
 }
 export default alert

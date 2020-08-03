@@ -1,7 +1,6 @@
 import { mode, styleConfig } from "@chakra-ui/theme-tools"
 
-// @ts-ignore
-const baseStyle = function (props) {
+const baseStyle = function (props: Record<string, any>) {
   return {
     bg: mode("gray.100", "whiteAlpha")(props),
     borderRadius: "md",

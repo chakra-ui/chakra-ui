@@ -7,8 +7,7 @@ const parts = {
   helperText: "the helper text",
 }
 
-// @ts-ignore
-const baseStyleErrorText = function (props) {
+const baseStyleErrorText = function (props: Record<string, any>) {
   return {
     color: mode("red.500", "red.300")(props),
     mt: 2,
@@ -16,16 +15,14 @@ const baseStyleErrorText = function (props) {
   }
 }
 
-// @ts-ignore
-const baseStyleRequiredIndicator = function (props) {
+const baseStyleRequiredIndicator = function (props: Record<string, any>) {
   return {
     ml: 1,
     color: mode("red.500", "red.300")(props),
   }
 }
 
-// @ts-ignore
-const baseStyleHelperText = function (props) {
+const baseStyleHelperText = function (props: Record<string, any>) {
   return {
     mt: 2,
     color: mode("gray.500", "whiteAlpha.600")(props),
@@ -34,16 +31,14 @@ const baseStyleHelperText = function (props) {
   }
 }
 
-// @ts-ignore
-const baseStyleErrorIcon = function (props) {
+const baseStyleErrorIcon = function (props: Record<string, any>) {
   return {
     mr: "0.5em",
     color: mode("red.500", "red.300")(props),
   }
 }
 
-// @ts-ignore
-const baseStyle = (props) => ({
+const baseStyle = (props: Record<string, any>) => ({
   errorText: baseStyleErrorText(props),
   requiredIndicator: baseStyleRequiredIndicator(props),
   helperText: baseStyleHelperText(props),
@@ -57,10 +52,7 @@ const form = multiStyleConfig({
 
 export const formStyles = {
   parts,
-  baseStyleErrorText,
-  baseStyleRequiredIndicator,
-  baseStyleHelperText,
-  baseStyleErrorIcon,
+  baseStyle,
 }
 
 export default form

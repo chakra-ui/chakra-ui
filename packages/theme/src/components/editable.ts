@@ -32,8 +32,7 @@ const editable = multiStyleConfig({
 
 export const editableStyles = {
   parts,
-  baseStylePreview,
-  baseStyleInput,
+  baseStyle,
 }
 
 export default editable

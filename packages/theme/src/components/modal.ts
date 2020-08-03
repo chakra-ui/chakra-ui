@@ -22,8 +22,7 @@ const parts = {
   footer: "the modal footer action",
 }
 
-// @ts-ignore
-const baseStyleOverlay = function (props) {
+const baseStyleOverlay = function (props: Record<string, any>) {
   const { isCentered, scrollBehavior } = props
 
   return {
@@ -35,8 +34,7 @@ const baseStyleOverlay = function (props) {
   }
 }
 
-// @ts-ignore
-const baseStyleContent = function (props) {
+const baseStyleContent = function (props: Record<string, any>) {
   const { scrollBehavior } = props
 
   return {
@@ -56,8 +54,7 @@ const baseStyleHeader = {
   fontWeight: "semibold",
 }
 
-// @ts-ignore
-const baseStyleBody = function (props) {
+const baseStyleBody = function (props: Record<string, any>) {
   const { scrollBehavior } = props
   return {
     px: 6,
@@ -72,8 +69,7 @@ const baseStyleFooter = {
   py: 4,
 }
 
-// @ts-ignore
-const baseStyle = (props) => ({
+const baseStyle = (props: Record<string, any>) => ({
   overlay: baseStyleOverlay(props),
   content: baseStyleContent(props),
   header: baseStyleHeader,
@@ -97,23 +93,18 @@ const sizes = {
 
 const defaultProps = {
   size: "md",
-}
+} as const
 
 const modal = multiStyleConfig({
   parts,
   baseStyle,
   sizes,
-  // @ts-ignore
   defaultProps,
 })
 
 export const modalStyles = {
   parts,
-  baseStyleOverlay,
-  baseStyleContent,
-  baseStyleHeader,
-  baseStyleBody,
-  baseStyleFooter,
+  baseStyle,
   sizes,
   defaultProps,
 }

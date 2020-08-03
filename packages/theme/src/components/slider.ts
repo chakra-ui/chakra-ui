@@ -27,8 +27,7 @@ const parts = {
   filledTrack: "the slider inner/filled track",
 }
 
-// @ts-ignore
-const baseStyleContainer = function (props) {
+const baseStyleContainer = function (props: Record<string, any>) {
   const { orientation } = props
 
   return {
@@ -45,8 +44,7 @@ const baseStyleContainer = function (props) {
   }
 }
 
-// @ts-ignore
-const baseStyleTrack = function (props) {
+const baseStyleTrack = function (props: Record<string, any>) {
   return {
     borderRadius: "sm",
     bg: mode("gray.200", "whiteAlpha.200")(props),
@@ -56,8 +54,7 @@ const baseStyleTrack = function (props) {
   }
 }
 
-// @ts-ignore
-const baseStyleThumb = function (props) {
+const baseStyleThumb = function (props: Record<string, any>) {
   return {
     zIndex: 1,
     borderRadius: "full",
@@ -72,8 +69,7 @@ const baseStyleThumb = function (props) {
   }
 }
 
-// @ts-ignore
-const baseStyleFilledTrack = function (props) {
+const baseStyleFilledTrack = function (props: Record<string, any>) {
   const { colorScheme: c } = props
 
   return {
@@ -81,8 +77,7 @@ const baseStyleFilledTrack = function (props) {
   }
 }
 
-// @ts-ignore
-const baseStyle = (props) => ({
+const baseStyle = (props: Record<string, any>) => ({
   container: baseStyleContainer(props),
   track: baseStyleTrack(props),
   thumb: baseStyleThumb(props),
@@ -90,8 +85,7 @@ const baseStyle = (props) => ({
 })
 
 const sizes = {
-  // @ts-ignore
-  lg: function (props) {
+  lg: function (props: Record<string, any>) {
     return {
       thumb: { w: "16px", h: "16px" },
       track: orient({
@@ -101,8 +95,8 @@ const sizes = {
       }),
     }
   },
-  // @ts-ignore
-  md: function (props) {
+
+  md: function (props: Record<string, any>) {
     return {
       thumb: { w: "14px", h: "14px" },
       track: orient({
@@ -112,8 +106,8 @@ const sizes = {
       }),
     }
   },
-  // @ts-ignore
-  sm: function (props) {
+
+  sm: function (props: Record<string, any>) {
     return {
       thumb: { w: "10px", h: "10px" },
       track: orient({
@@ -128,13 +122,12 @@ const sizes = {
 const defaultProps = {
   size: "md",
   colorScheme: "blue",
-}
+} as const
 
 const slider = multiStyleConfig({
   parts,
   baseStyle,
   sizes,
-  // @ts-ignore
   defaultProps,
 })
 

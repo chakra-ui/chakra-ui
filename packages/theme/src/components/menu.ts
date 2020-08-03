@@ -8,8 +8,7 @@ const parts = {
   groupTitle: "the menu group title",
 }
 
-// @ts-ignore
-const baseStyleList = function (props) {
+const baseStyleList = function (props: Record<string, any>) {
   return {
     bg: mode(`#fff`, `gray.700`)(props),
     boxShadow: mode(`sm`, `dark-lg`)(props),
@@ -22,8 +21,7 @@ const baseStyleList = function (props) {
   }
 }
 
-// @ts-ignore
-const baseStyleItem = function (props) {
+const baseStyleItem = function (props: Record<string, any>) {
   return {
     py: "0.4rem",
     px: "0.8rem",
@@ -55,8 +53,7 @@ const baseStyleCommand = {
   opacity: 0.6,
 }
 
-// @ts-ignore
-const baseStyle = function (props) {
+const baseStyle = function (props: Record<string, any>) {
   return {
     list: baseStyleList(props),
     item: baseStyleItem(props),
@@ -72,10 +69,7 @@ const menu = multiStyleConfig({
 
 export const menuStyles = {
   parts,
-  baseStyleList,
-  baseStyleItem,
-  baseStyleGroupTitle,
-  baseStyleCommand,
+  baseStyle,
 }
 
 export default menu

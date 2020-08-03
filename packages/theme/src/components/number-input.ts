@@ -1,13 +1,7 @@
 import { mode, multiStyleConfig } from "@chakra-ui/theme-tools"
 import { inputStyles } from "./input"
 
-const {
-  defaultProps,
-  variantFilled,
-  variantFlushed,
-  variantOutline,
-  variantUnstyled,
-} = inputStyles
+const { variants, defaultProps } = inputStyles
 
 function getSize(size: "sm" | "md" | "lg") {
   const sizeStyle = inputStyles.sizes?.[size]
@@ -46,8 +40,7 @@ const baseStyleStepperGroup = {
   width: "24px",
 }
 
-// @ts-ignore
-const baseStyleStepper = function (props) {
+const baseStyleStepper = function (props: Record<string, any>) {
   return {
     borderLeft: "1px solid",
     borderColor: mode("inherit", "whiteAlpha.300")(props),
@@ -62,8 +55,7 @@ const baseStyleStepper = function (props) {
   }
 }
 
-// @ts-ignore
-const baseStyle = function (props) {
+const baseStyle = function (props: Record<string, any>) {
   return {
     field: baseStyleField,
     stepperGroup: baseStyleStepperGroup,
@@ -77,32 +69,19 @@ const sizes = {
   lg: getSize("lg"),
 }
 
-const variants = {
-  outline: variantOutline,
-  filled: variantFilled,
-  flushed: variantFlushed,
-  unstyled: variantUnstyled,
-}
-
 const numberInput = multiStyleConfig({
   parts,
   baseStyle,
   sizes,
   variants,
-  // @ts-ignore
   defaultProps,
 })
 
 export const numberInputStyles = {
   parts,
   sizes,
-  baseStyleField,
-  baseStyleStepper,
-  baseStyleStepperGroup,
-  variantFilled,
-  variantFlushed,
-  variantOutline,
-  variantUnstyled,
+  baseStyle,
+  variants,
   defaultProps,
 }
 

@@ -80,21 +80,18 @@ const sizes = {
 
 const defaultProps = {
   size: "md",
-}
+} as const
 
 const avatar = multiStyleConfig({
   parts,
   baseStyle,
   sizes,
-  // @ts-ignore
   defaultProps,
 })
 
 export const avatarStyles = {
   parts,
-  baseStyleBadge,
-  baseStyleExcessLabel,
-  baseStyleContainer,
+  baseStyle,
   sizes,
   defaultProps,
 }
