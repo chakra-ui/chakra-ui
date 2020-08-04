@@ -69,14 +69,9 @@ function Member({ member }) {
 
 function Contributor({ contributor }) {
   const { login, avatar_url: avatarUrl } = contributor
-
   return (
     <Box>
-      <Tooltip hasArrow label={login} placement="top">
-        <Link href={`https://github.com/${login}`} isExternal>
-          <Avatar size="md" src={avatarUrl} />
-        </Link>
-      </Tooltip>
+      <Avatar size="md" src={avatarUrl} />
     </Box>
   )
 }
@@ -125,6 +120,35 @@ function Team({ members, contributors }) {
                 <Member key={member.login} member={member} />
               ))}
             </SimpleGrid>
+          </Stack>
+
+          <Stack py="48px" spacing={8}>
+            <Heading size="md">Our Sponsors</Heading>
+            <Box mt="8">
+              <Text fontWeight="bold" mb="4">
+                Individual Sponsors
+              </Text>
+              <a href="https://opencollective.com/chakra-ui">
+                <img src="https://opencollective.com/chakra-ui/individuals.svg?width=890" />
+              </a>
+            </Box>
+            <Box>
+              <Text fontWeight="bold" mb="4">
+                Organizations
+              </Text>
+              <Wrap>
+                {new Array(9).fill("").map((_, idx) => (
+                  <a
+                    key={idx}
+                    href={`https://opencollective.com/chakra-ui/organization/${idx}/website`}
+                  >
+                    <img
+                      src={`https://opencollective.com/chakra-ui/organization/${idx}/avatar.svg?avatarHeight=130`}
+                    />
+                  </a>
+                ))}
+              </Wrap>
+            </Box>
           </Stack>
 
           <Stack spacing={8} mt="100px">

@@ -200,7 +200,14 @@ const HomePage = () => {
               {users.map((user) => {
                 const hasLogo = user.image.includes(".")
                 if (hasLogo) {
-                  return <chakra.img h="24px" w="auto" src={user.image} />
+                  return (
+                    <chakra.img
+                      key={user.image}
+                      h="24px"
+                      w="auto"
+                      src={user.image}
+                    />
+                  )
                 }
                 return null
               })}
