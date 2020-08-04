@@ -1,4 +1,4 @@
-import { Box, Flex } from "@chakra-ui/core"
+import { Box, Flex, chakra } from "@chakra-ui/core"
 import { SkipNavContent, SkipNavLink } from "@chakra-ui/skip-nav"
 import EditPageLink from "components/edit-page-button"
 import Footer from "components/footer"
@@ -27,6 +27,13 @@ const DocsContainer = ({ frontmatter, sidebarRoutes: routes, children }) => {
           <div style={{ flex: 1 }}>
             <SkipNavContent />
             <Box pt={3} px={5} mt="4.5rem" mx="auto" maxW="48rem" minH="80vh">
+              <Box>
+                <chakra.h1 apply="mdx.h1">{title}</chakra.h1>
+                <chakra.p opacity={0.7} mt="2">
+                  {description}
+                </chakra.p>
+                <chakra.hr my="2rem" />
+              </Box>
               {children}
               <Box mt="40px">{editUrl && <EditPageLink href={editUrl} />}</Box>
               <Pagination next={nextRoute} previous={prevRoute} />

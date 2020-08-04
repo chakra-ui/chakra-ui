@@ -29,13 +29,10 @@ const customTheme = {
     h1: {
       mt: "3rem",
       mb: ".25rem",
-      lineHeight: 1,
+      lineHeight: 1.2,
       fontWeight: "bold",
       fontSize: "1.875rem",
       letterSpacing: "-.025em",
-      "& +p": {
-        mt: "2rem",
-      },
     },
     h2: {
       mt: "4rem",
@@ -91,22 +88,10 @@ const customTheme = {
     },
     ul: {
       mt: "1.5rem",
-      listStyleType: "none",
+      ml: "1.25rem",
       "blockquote &": { mt: 0 },
-      li: {
-        position: "relative",
-        pl: "1.25rem",
-        "&:before": {
-          position: "absolute",
-          left: 0,
-          color: "#cbd5e0",
-          display: "inline-block",
-          mr: ".75rem",
-          content: `"\\2022"`,
-        },
-      },
       "& > * + *": {
-        mt: "1rem",
+        mt: "0.75rem",
       },
     },
     code: {

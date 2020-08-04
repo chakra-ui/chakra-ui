@@ -1,16 +1,18 @@
 ---
 title: "useBreakpointValue"
 package: "@chakra-ui/media-query"
-description: "React hook for getting the value for the current breakpoint from the provided responsive values object."
+description:
+  "React hook for getting the value for the current breakpoint from the provided
+  responsive values object."
 ---
 
-# useBreakpointValue
+`useBreakpointValue` is a custom hook which returns the value for the current
+breakpoint from the provided responsive values object. This hook also responds
+to the window resizing, returning the appropriate value for the new window size.
 
-`useBreakpointValue` is a custom hook which returns the value for the current breakpoint from the provided responsive values object.
-This hook also responds to the window resizing, returning the appropriate value for the new window size.
-
-The new `variant` and `size` props don't currently accept responsive values (specified as objects or arrays), but `useBreakpointValue`
-is a good way to achieve the same behavior.
+The new `variant` and `size` props don't currently accept responsive values
+(specified as objects or arrays), but `useBreakpointValue` is a good way to
+achieve the same behavior.
 
 ## Import
 
@@ -26,8 +28,12 @@ The `useBreakpointValue` hook returns the value for the current breakpoint.
 
 ```jsx
 function Example() {
-  const variant = useBreakpointValue({ base: 'outline', md: 'solid' })
+  const variant = useBreakpointValue({ base: "outline", md: "solid" })
 
-  return <Button colorScheme="teal" variant={variant}>Resize your window to see the button variant change</Button>
+  return (
+    <Button colorScheme="teal" variant={variant}>
+      Resize your window to see the button variant change
+    </Button>
+  )
 }
 ```
