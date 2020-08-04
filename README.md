@@ -303,6 +303,9 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://github.com/antonjb"><img src="https://avatars2.githubusercontent.com/u/1066856?v=4" width="64px;" alt=""/><br /><sub><b>Anton</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=antonjb" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/Andu033"><img src="https://avatars1.githubusercontent.com/u/15851201?v=4" width="64px;" alt=""/><br /><sub><b>Stanila Andrei</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=Andu033" title="Code">💻</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://ezekielekunola.com"><img src="https://avatars0.githubusercontent.com/u/24660100?v=4" width="64px;" alt=""/><br /><sub><b>Ekunola Ezekiel</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=Easybuoy" title="Code">💻</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-enable -->
