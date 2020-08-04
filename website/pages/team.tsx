@@ -7,17 +7,16 @@ import {
   SimpleGrid,
   Stack,
   Text,
-  Tooltip,
   Wrap,
 } from "@chakra-ui/core"
+import { SkipNavContent, SkipNavLink } from "@chakra-ui/skip-nav"
+import { Octokit } from "@octokit/rest"
+import Header from "components/header"
 import SEO from "components/seo"
+import fs from "fs"
+import path from "path"
 import * as React from "react"
 import { IoIosGlobe, IoLogoGithub, IoLogoTwitter } from "react-icons/io"
-import { SkipNavContent, SkipNavLink } from "@chakra-ui/skip-nav"
-import Header from "components/header"
-import { Octokit } from "@octokit/rest"
-import path from "path"
-import fs from "fs"
 
 const SocialLink = ({ icon, href }) => (
   <Link display="inline-block" href={href} isExternal>
@@ -63,15 +62,6 @@ function Member({ member }) {
           <Text>{bio}</Text>
         </Stack>
       </Stack>
-    </Box>
-  )
-}
-
-function Contributor({ contributor }) {
-  const { login, avatar_url: avatarUrl } = contributor
-  return (
-    <Box>
-      <Avatar size="md" src={avatarUrl} />
     </Box>
   )
 }
@@ -155,10 +145,7 @@ function Team({ members, contributors }) {
             <Heading size="md">Project Contributors</Heading>
             <Wrap spacing="3">
               {contributorsWithoutTeam.map((contributor) => (
-                <Contributor
-                  key={contributor.login}
-                  contributor={contributor}
-                />
+                <Avatar key={contributor.login} src={contributor.avatar_url} />
               ))}
             </Wrap>
           </Stack>
