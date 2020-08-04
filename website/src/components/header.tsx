@@ -56,7 +56,7 @@ const HeaderContent = () => {
           display={{ base: "none", md: "flex" }}
         >
           <NavLink href="/docs/getting-started">Docs</NavLink>
-          <NavLink href="/guides">Guides</NavLink>
+          <NavLink href="/guides/integrations/with-cra">Guides</NavLink>
           <NavLink href="/team">Team</NavLink>
         </HStack>
       </Flex>

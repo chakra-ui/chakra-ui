@@ -114,16 +114,12 @@ module.exports = withMdx({
       // if frontmatter inclues author, add the author's data
       const authorData = author ? await getUserData(author) : undefined
 
-      // get the layout we should use based on path
-      const layout = mdxPath.startsWith("/guides") ? "guides" : undefined
-
       return {
         slug,
         lastEdited,
         editUrl,
         author: authorData,
         tags,
-        layout: frontmatter.layout || layout,
       }
     },
   },

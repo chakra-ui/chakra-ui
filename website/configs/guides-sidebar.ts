@@ -9,7 +9,7 @@ const sidebar = {
           path: "/guides/how-to-create-a-guide",
         },
         {
-          title: "Portals and ZIndex",
+          title: "Portals and z-Index",
           path: "/guides/z-index",
         },
         {
@@ -18,15 +18,15 @@ const sidebar = {
           open: true,
           routes: [
             {
-              title: "Chakra + Create React App",
+              title: "Create React App",
               path: "/guides/integrations/with-cra",
             },
             {
-              title: "Chakra + Framer Motion",
+              title: "Framer Motion",
               path: "/guides/integrations/with-framer",
             },
             {
-              title: "Chakra + React Hook Form",
+              title: "React Hook Form",
               path: "/guides/integrations/with-hook-form",
             },
           ],

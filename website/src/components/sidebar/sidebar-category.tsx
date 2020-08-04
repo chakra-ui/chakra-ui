@@ -49,7 +49,6 @@ function SidebarCategory(props: SidebarCategoryProps) {
   useEffect(() => {
     if (toggle && shouldScroll && ref.current != null) {
       const contentEl = contentRef.current
-      console.log(contentEl)
 
       if (toggle == true && contentEl) {
         // 10 is added for better margin

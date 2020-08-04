@@ -160,7 +160,6 @@ export async function getStaticProps() {
    */
   const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN })
   const { data: members } = await octokit.orgs.listMembers({ org: "chakra-ui" })
-  console.log(members)
 
   const membersData: any[] = await Promise.all(
     members.map(

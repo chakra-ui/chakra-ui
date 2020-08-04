@@ -62,8 +62,6 @@ function GuidePreview({ guide }) {
 }
 
 function Guides({ data = [] }) {
-  console.log(data)
-
   return (
     <>
       <SEO
