@@ -193,43 +193,6 @@ options. Use the `MenuOptionGroup` and `MenuItemOption` components.
 </Menu>
 ```
 
-### Nested menus
-
-```jsx manual=true
-const Submenu = React.forwardRef((props, ref) => (
-  <Menu>
-    <MenuButton ref={ref} {...props}>
-      Other
-    </MenuButton>
-    <Portal>
-      <MenuList>
-        <MenuItem>Twitter</MenuItem>
-        <MenuItem>Facebook</MenuItem>
-      </MenuList>
-    </Portal>
-  </Menu>
-))
-
-const WithNestedMenu = () => (
-  <Menu>
-    <MenuButton size="sm" colorScheme="teal">
-      Open menu
-    </MenuButton>
-    <Portal>
-      <MenuList>
-        <MenuItem command="⌘T">New Tab</MenuItem>
-        <MenuItem command="⌘N">New Window</MenuItem>
-        <MenuItem command="⌘⇧N">Open Closed Tab</MenuItem>
-        <MenuItem as={Submenu} />
-        <MenuItem command="⌘O">Open File...</MenuItem>
-      </MenuList>
-    </Portal>
-  </Menu>
-)
-
-render(<WithNestedMenu />)
-```
-
 ## Accessibility
 
 ### Keyboard Interaction
