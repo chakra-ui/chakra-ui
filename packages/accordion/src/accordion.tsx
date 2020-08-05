@@ -3,8 +3,8 @@ import { Icon, IconProps } from "@chakra-ui/icon"
 import {
   chakra,
   forwardRef,
+  GetProps,
   omitThemingProps,
-  PropsOf,
   StylesProvider,
   ThemingProps,
   useMultiStyleConfig,
@@ -30,8 +30,7 @@ import {
   UseAccordionProps,
 } from "./use-accordion"
 
-interface DivProps
-  extends Omit<PropsOf<typeof chakra.div>, "onChange" | "children" | "as"> {}
+interface DivProps extends GetProps<typeof chakra.div> {}
 
 export interface AccordionProps
   extends UseAccordionProps,
@@ -50,7 +49,10 @@ export interface AccordionProps
  * It wraps all accordion items in a `div` for better grouping.
  * @see Docs https://chakra-ui.com/components/accordion
  */
-export const Accordion = forwardRef<AccordionProps, "div">((props, ref) => {
+export const Accordion = forwardRef<AccordionProps, "div">(function Accordion(
+  props,
+  ref,
+) {
   const styles = useMultiStyleConfig("Accordion", props)
   const _props = omitThemingProps(props)
 
@@ -104,7 +106,7 @@ export interface AccordionItemProps extends DivProps, UseAccordionItemProps {
  * It also provides context for the accordion button and panel.
  */
 export const AccordionItem = forwardRef<AccordionItemProps, "div">(
-  (props, ref) => {
+  function AccordionItem(props, ref) {
     const { children, className } = props
     const { htmlProps, ...context } = useAccordionItem(props)
 
@@ -141,7 +143,7 @@ export function useAccordionItemState() {
   return { isOpen, onClose, isDisabled, onOpen }
 }
 
-export interface AccordionButtonProps extends PropsOf<typeof chakra.button> {}
+export interface AccordionButtonProps extends GetProps<typeof chakra.button> {}
 
 /**
  * AccordionButton is used expands and collapses an accordion item.
@@ -151,7 +153,7 @@ export interface AccordionButtonProps extends PropsOf<typeof chakra.button> {}
  * that is appropriate for the information architecture of the page.
  */
 export const AccordionButton = forwardRef<AccordionButtonProps, "button">(
-  (props, ref) => {
+  function AccordionButton(props, ref) {
     const { getButtonProps } = useAccordionItemContext()
     const buttonProps = getButtonProps(props, ref)
 
@@ -188,7 +190,7 @@ export type AccordionPanelProps = DivProps
  * It uses the `Collapse` component to animate it's height.
  */
 export const AccordionPanel = forwardRef<AccordionPanelProps, "div">(
-  (props, ref) => {
+  function AccordionPanel(props, ref) {
     const { reduceMotion } = useAccordionContext()
     const { getPanelProps, isOpen } = useAccordionItemContext()
 

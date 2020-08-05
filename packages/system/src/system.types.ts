@@ -101,3 +101,8 @@ interface ModifierProps {
   colorMode: "light" | "dark"
   theme: Dict
 }
+
+export type GetProps<
+  T extends React.ElementType,
+  TT extends string = "children" | "as" | "onChange"
+> = Omit<PropsOf<T>, TT>

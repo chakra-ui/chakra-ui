@@ -1,15 +1,15 @@
-import { CheckIcon, InfoIcon, WarningIcon } from "./icons"
 import {
   chakra,
-  PropsOf,
+  forwardRef,
+  GetProps,
   StylesProvider,
-  useStyles,
   ThemingProps,
   useMultiStyleConfig,
-  forwardRef,
+  useStyles,
 } from "@chakra-ui/system"
 import { createContext, cx } from "@chakra-ui/utils"
 import React from "react"
+import { CheckIcon, InfoIcon, WarningIcon } from "./icons"
 
 const STATUSES = {
   info: { icon: InfoIcon, colorScheme: "blue" },
@@ -20,7 +20,9 @@ const STATUSES = {
 
 export type AlertStatus = "info" | "warning" | "success" | "error"
 
-type AlertContext = { status: AlertStatus }
+interface AlertContext {
+  status: AlertStatus
+}
 
 const [AlertProvider, useAlertContext] = createContext<AlertContext>({
   name: "AlertContext",
@@ -35,9 +37,10 @@ interface AlertOptions {
   status?: AlertStatus
 }
 
-export type AlertProps = PropsOf<typeof chakra.div> &
-  AlertOptions &
-  ThemingProps
+export interface AlertProps
+  extends GetProps<typeof chakra.div>,
+    AlertOptions,
+    ThemingProps {}
 
 /**
  * Alert
@@ -45,7 +48,7 @@ export type AlertProps = PropsOf<typeof chakra.div> &
  * React component used to communicate the state or status of a
  * page, feature or action
  */
-export const Alert: React.FC<AlertProps> = forwardRef((props, ref) => {
+export const Alert = forwardRef<AlertProps, "div">(function Alert(props, ref) {
   const { status = "info", ...rest } = props
   const { colorScheme } = STATUSES[status]
 
@@ -74,10 +77,10 @@ export const Alert: React.FC<AlertProps> = forwardRef((props, ref) => {
   )
 })
 
-export type AlertTitleProps = PropsOf<typeof chakra.div>
+export interface AlertTitleProps extends GetProps<typeof chakra.div> {}
 
-export const AlertTitle: React.FC<AlertTitleProps> = forwardRef(
-  (props, ref) => {
+export const AlertTitle = forwardRef<AlertTitleProps, "div">(
+  function AlertTitle(props, ref) {
     const styles = useStyles()
     return (
       <chakra.div
@@ -90,10 +93,10 @@ export const AlertTitle: React.FC<AlertTitleProps> = forwardRef(
   },
 )
 
-export type AlertDescriptionProps = PropsOf<typeof chakra.div>
+export interface AlertDescriptionProps extends GetProps<typeof chakra.div> {}
 
-export const AlertDescription: React.FC<AlertDescriptionProps> = forwardRef(
-  (props, ref) => {
+export const AlertDescription = forwardRef<AlertDescriptionProps, "div">(
+  function AlertDescription(props, ref) {
     const styles = useStyles()
     const descriptionStyles = {
       display: "inline-block",
@@ -111,7 +114,7 @@ export const AlertDescription: React.FC<AlertDescriptionProps> = forwardRef(
   },
 )
 
-export type AlertIconProps = PropsOf<typeof chakra.span>
+export interface AlertIconProps extends GetProps<typeof chakra.span> {}
 
 export const AlertIcon: React.FC<AlertIconProps> = (props) => {
   const { status } = useAlertContext()
