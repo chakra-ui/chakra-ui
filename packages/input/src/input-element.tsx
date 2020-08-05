@@ -1,4 +1,4 @@
-import { chakra, PropsOf, useStyles } from "@chakra-ui/system"
+import { chakra, PropsOf, useStyles, forwardRef } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -16,10 +16,7 @@ const StyledElement = chakra("div", {
   },
 })
 
-const InputElement = React.forwardRef(function InputElement(
-  props: InputElementProps,
-  ref: React.Ref<any>,
-) {
+const InputElement: React.FC<InputElementProps> = forwardRef((props, ref) => {
   const { placement = "left", ...rest } = props
 
   const styles = useStyles()
@@ -43,17 +40,21 @@ if (__DEV__) {
   InputElement.displayName = "InputElement"
 }
 
-export const InputLeftElement = React.forwardRef(function InputLeftElement(
-  props: InputElementProps,
-  ref: React.Ref<any>,
-) {
-  const { className, ...rest } = props
-  const _className = cx("chakra-input__left-element", className)
+export const InputLeftElement: React.FC<InputElementProps> = forwardRef(
+  (props, ref) => {
+    const { className, ...rest } = props
+    const _className = cx("chakra-input__left-element", className)
 
-  return (
-    <InputElement ref={ref} placement="left" className={_className} {...rest} />
-  )
-})
+    return (
+      <InputElement
+        ref={ref}
+        placement="left"
+        className={_className}
+        {...rest}
+      />
+    )
+  },
+)
 
 //@ts-ignore
 InputLeftElement.groupId = "InputLeftElement"
@@ -62,22 +63,21 @@ if (__DEV__) {
   InputLeftElement.displayName = "InputLeftElement"
 }
 
-export const InputRightElement = React.forwardRef(function InputRightElement(
-  props: InputElementProps,
-  ref: React.Ref<any>,
-) {
-  const { className, ...rest } = props
-  const _className = cx("chakra-input__right-element", className)
+export const InputRightElement: React.FC<InputElementProps> = forwardRef(
+  (props, ref) => {
+    const { className, ...rest } = props
+    const _className = cx("chakra-input__right-element", className)
 
-  return (
-    <InputElement
-      ref={ref}
-      placement="right"
-      className={_className}
-      {...rest}
-    />
-  )
-})
+    return (
+      <InputElement
+        ref={ref}
+        placement="right"
+        className={_className}
+        {...rest}
+      />
+    )
+  },
+)
 
 //@ts-ignore
 InputRightElement.groupId = "InputRightElement"

@@ -43,7 +43,7 @@ export type FlexProps = PropsOf<typeof chakra.div> & FlexOptions
  *
  * @see Docs https://chakra-ui.com/components/flex
  */
-export const Flex = forwardRef<FlexProps>(function Flex(props, ref) {
+export const Flex: React.FC<FlexProps> = forwardRef((props, ref) => {
   const { direction, align, justify, wrap, basis, grow, ...rest } = props
   return (
     <chakra.div

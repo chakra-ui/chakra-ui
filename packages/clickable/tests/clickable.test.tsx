@@ -1,15 +1,13 @@
 import * as React from "react"
 import { render, userEvent, fireEvent } from "@chakra-ui/test-utils"
-import { chakra } from "@chakra-ui/system"
+import { chakra, forwardRef } from "@chakra-ui/system"
 import { ClickableProps } from "../stories/use-clickable.stories"
 import { useClickable } from "../src"
 
-const Clickable = React.forwardRef(
-  (props: ClickableProps, ref: React.Ref<any>) => {
-    const clickable = useClickable({ ...props, ref })
-    return <chakra.button display="inline-flex" {...clickable} />
-  },
-)
+const Clickable: React.FC<ClickableProps> = forwardRef((props, ref) => {
+  const clickable = useClickable({ ...props, ref })
+  return <chakra.button display="inline-flex" {...clickable} />
+})
 
 test("should render correctly", () => {
   const tools = render(<Clickable>clickable</Clickable>)

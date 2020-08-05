@@ -5,6 +5,7 @@ import {
   useStyleConfig,
   omitThemingProps,
   ThemingProps,
+  forwardRef,
 } from "@chakra-ui/system"
 import { __DEV__, cx } from "@chakra-ui/utils"
 
@@ -22,10 +23,7 @@ export type KbdProps = PropsOf<typeof chakra.kbd> & ThemingProps
  *
  * @see Docs https://chakra-ui.com/components/kbd
  */
-export const Kbd = React.forwardRef(function Kbd(
-  props: KbdProps,
-  ref: React.Ref<any>,
-) {
+export const Kbd: React.FC<KbdProps> = forwardRef((props, ref) => {
   const styles = useStyleConfig("Kbd", props)
   const { className, ...rest } = omitThemingProps(props)
 

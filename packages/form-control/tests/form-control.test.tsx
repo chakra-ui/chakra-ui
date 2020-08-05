@@ -1,4 +1,4 @@
-import { chakra, PropsOf, useStyleConfig } from "@chakra-ui/system"
+import { chakra, PropsOf, useStyleConfig, forwardRef } from "@chakra-ui/system"
 import { fireEvent, render } from "@chakra-ui/test-utils"
 import * as React from "react"
 import {
@@ -16,7 +16,7 @@ type OmittedTypes = "disabled" | "required" | "readOnly"
 type InputProps = Omit<PropsOf<typeof chakra.input>, OmittedTypes> &
   FormControlOptions
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+const Input: React.FC<InputProps> = forwardRef((props, ref) => {
   const inputProps = useFormControl<HTMLInputElement>(props)
   return <chakra.input ref={ref} {...inputProps} />
 })

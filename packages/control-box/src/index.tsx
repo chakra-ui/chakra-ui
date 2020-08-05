@@ -20,7 +20,7 @@ export type IControlBox = ControlBoxOptions
 
 export type ControlBoxProps = PropsOf<typeof chakra.div> & ControlBoxOptions
 
-export function ControlBox(props: ControlBoxProps) {
+export const ControlBox: React.FC<ControlBoxProps> = (props) => {
   const {
     type = "checkbox",
     _hover,
