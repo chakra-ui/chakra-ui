@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Badge override the theming props 1`] = `
+exports[`<Badge /> overrides the theming props 1`] = `
 <DocumentFragment>
   .emotion-0 {
   display: inline-block;
@@ -24,7 +24,7 @@ exports[`Badge override the theming props 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Badge should render with default theming 1`] = `
+exports[`<Badge /> renders with default theming 1`] = `
 <DocumentFragment>
   .emotion-0 {
   display: inline-block;
@@ -48,7 +48,7 @@ exports[`Badge should render with default theming 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Box as - prop works correctly 1`] = `
+exports[`<Box /> as - prop works correctly 1`] = `
 <DocumentFragment>
   <a
     class="css-0"
@@ -59,7 +59,7 @@ exports[`Box as - prop works correctly 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Box should render box correctly 1`] = `
+exports[`<Box /> renders box correctly 1`] = `
 <DocumentFragment>
   <div
     class="css-0"
