@@ -37,7 +37,7 @@ export type InputAddonProps = PropsOf<typeof StyledAddon> & {
  * Element to append or prepend to an input
  */
 
-export const InputAddon = React.forwardRef(function InputAddonProps(
+export const InputAddon = React.forwardRef(function InputAddon(
   props: InputAddonProps,
   ref: React.Ref<any>,
 ) {

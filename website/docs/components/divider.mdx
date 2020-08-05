@@ -33,34 +33,34 @@ The Divider displays a thin horizontal or vertical line, and renders a `hr` tag.
 <Divider />
 ```
 
-### Divider Variants
+### Divider Orientation
 
-Pass the variant prop and set it to either `horizontal` or `vertical`.
+Pass the `orientation` prop and set it to either `horizontal` or `vertical`.
 
 ```jsx
-<Divider variant="horizontal" />
+<Divider orientation="horizontal" />
 ```
 
-If the vertical variant is used, make sure that the parent element is assigned a
-height.
+If the vertical orientation is used, make sure that the parent element is
+assigned a height.
 
 ```jsx
 <Center height="50px">
-  <Divider variant="vertical" />
+  <Divider orientation="vertical" />
 </Center>
 ```
 
 ## Composition
 
 ```jsx
-<Stack direction="row" height="100px" p={4}>
-  <Divider variant="vertical" />
+<Stack direction="row" h="100px" p={4}>
+  <Divider orientation="vertical" />
   <Text>Chakra UI</Text>
 </Stack>
 ```
 
 ## Props
 
-| Name      | Type                     | Default      | Description                      |
-| --------- | ------------------------ | ------------ | -------------------------------- |
-| `variant` | `horizontal`, `vertical` | `horizontal` | The style variant of the divider |
+| Name          | Type                     | Default      | Description                    |
+| ------------- | ------------------------ | ------------ | ------------------------------ |
+| `orientation` | `horizontal`, `vertical` | `horizontal` | The orientation of the divider |

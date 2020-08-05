@@ -246,8 +246,8 @@ export function usePopover(props: UsePopoverProps = {}) {
     [arrow.ref, arrow.style],
   )
 
-  const openTimeout = useRef<NodeJS.Timeout>()
-  const closeTimeout = useRef<NodeJS.Timeout>()
+  const openTimeout = useRef<number>()
+  const closeTimeout = useRef<number>()
 
   const getTriggerProps = useCallback(
     (props: Dict = {}, ref: Ref<any> = null) => {
@@ -289,7 +289,7 @@ export function usePopover(props: UsePopoverProps = {}) {
 
         triggerProps.onMouseEnter = callAllHandlers(props.onMouseEnter, () => {
           isHoveringRef.current = true
-          openTimeout.current = setTimeout(onOpen, openDelay)
+          openTimeout.current = window.setTimeout(onOpen, openDelay)
         })
 
         triggerProps.onMouseLeave = callAllHandlers(props.onMouseLeave, () => {
@@ -300,7 +300,7 @@ export function usePopover(props: UsePopoverProps = {}) {
             openTimeout.current = undefined
           }
 
-          closeTimeout.current = setTimeout(() => {
+          closeTimeout.current = window.setTimeout(() => {
             if (isHoveringRef.current === false) {
               onClose()
             }

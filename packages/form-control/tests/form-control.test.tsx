@@ -37,7 +37,6 @@ test("FormControl renders correctly when required", () => {
   const tools = render(
     <FormControl id="name" isRequired>
       <FormLabel>Name</FormLabel>
-      <RequiredIndicator />
       <Input placeholder="Name" />
       <FormHelperText>Enter your name please!</FormHelperText>
       <FormErrorMessage>Your name is invalid</FormErrorMessage>
@@ -91,7 +90,7 @@ test("has the proper aria attributes", async () => {
       <FormHelperText>Enter your name please!</FormHelperText>
     </FormControl>,
   )
-  let input = utils.getByLabelText("Name")
+  let input = utils.getByLabelText(/Name/)
 
   expect(input).toHaveAttribute("aria-describedby", "name-helptext")
   expect(input).not.toHaveAttribute("aria-invalid")
@@ -101,7 +100,6 @@ test("has the proper aria attributes", async () => {
   utils.rerender(
     <FormControl id="name" isRequired isInvalid isReadOnly>
       <FormLabel>Name</FormLabel>
-      <RequiredIndicator data-testid="indicator" />
       <Input placeholder="Name" />
       <FormHelperText>Enter your name please!</FormHelperText>
       <FormErrorMessage data-testid="error">
@@ -109,8 +107,8 @@ test("has the proper aria attributes", async () => {
       </FormErrorMessage>
     </FormControl>,
   )
-  input = utils.getByLabelText("Name")
-  const indicator = utils.getByTestId("indicator")
+  input = utils.getByLabelText(/Name/)
+  const indicator = utils.getByRole("presentation", { hidden: true })
   const errorMessage = utils.getByTestId("error")
 
   expect(input).toHaveAttribute("aria-invalid", "true")
@@ -128,14 +126,12 @@ test("has the correct role attributes", () => {
   const utils = render(
     <FormControl data-testid="control" id="name" isRequired>
       <FormLabel>Name</FormLabel>
-      <RequiredIndicator data-testid="indicator" />
       <Input placeholder="Name" />
     </FormControl>,
   )
   const control = utils.getByTestId("control")
-  const indicator = utils.getByTestId("indicator")
 
-  expect(utils.getByRole("presentation", { hidden: true })).toEqual(indicator)
+  expect(utils.getByRole("presentation", { hidden: true })).toBeInTheDocument()
   expect(utils.getByRole("group")).toEqual(control)
 })
 
@@ -163,7 +159,7 @@ test("has the correct data attributes", () => {
   )
   const label = utils.getByTestId("label")
 
-  fireEvent.focus(utils.getByLabelText("Name"))
+  fireEvent.focus(utils.getByLabelText(/Name/))
 
   expect(label).toHaveAttribute("data-focus")
   expect(label).toHaveAttribute("data-invalid")

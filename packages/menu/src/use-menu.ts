@@ -155,13 +155,15 @@ export function useMenu(props: UseMenuProps) {
   const domContext = useDescendants<HTMLDivElement, {}>()
 
   /**
-   * Focus the top-level disclosure when we close the menu
+   * Focus the button when we close the menu
    */
   useUpdateEffect(() => {
     if (!isOpen) {
       setFocusedIndex(-1)
       if (buttonRef.current) {
-        focus(buttonRef.current)
+        focus(buttonRef.current, {
+          preventScroll: true,
+        })
       }
     }
   }, [isOpen])

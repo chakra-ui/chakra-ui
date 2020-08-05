@@ -56,8 +56,6 @@ export interface UseAccordionProps {
 /**
  * useAccordion hook provides all the state and focus management logic
  * for accordion items.
- *
- * It is consumed by the `Accordion` component
  */
 export function useAccordion(props: UseAccordionProps) {
   const {
@@ -199,9 +197,15 @@ export function useAccordionItem(props: UseAccordionItemProps) {
   const { isDisabled, isFocusable, onChange, isOpen, id, ...htmlProps } = props
 
   const { domContext, focusedIndex, setFocusedIndex } = useAccordionContext()
+  const { descendants } = domContext
 
-  const onOpen = () => onChange?.(true)
-  const onClose = () => onChange?.(false)
+  const onOpen = () => {
+    onChange?.(true)
+  }
+
+  const onClose = () => {
+    onChange?.(false)
+  }
 
   const buttonRef = useRef<HTMLElement>(null)
 
@@ -222,8 +226,6 @@ export function useAccordionItem(props: UseAccordionItemProps) {
     disabled: isDisabled,
     focusable: isFocusable,
   })
-
-  const { descendants } = domContext
 
   const shouldFocus = index === focusedIndex
 

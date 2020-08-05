@@ -1,33 +1,11 @@
 import { isBrowser, noop } from "@chakra-ui/utils"
 
-const isStorageSupported = typeof Storage !== "undefined"
-export const storageKey = "chakra-ui-color-mode"
-
 const classNames = {
   light: "chakra-ui-light",
   dark: "chakra-ui-dark",
 }
 
 export type ColorMode = "light" | "dark"
-
-/**
- * Simple object for handle read-write for localStorage
- */
-export const storage = {
-  get(init?: ColorMode) {
-    const exist =
-      isStorageSupported && !!window.localStorage.getItem(storageKey)
-
-    const value = exist ? window.localStorage.getItem(storageKey) : init
-
-    return value as ColorMode | undefined
-  },
-  set(value: ColorMode) {
-    if (isStorageSupported) {
-      window.localStorage.setItem(storageKey, value)
-    }
-  },
-}
 
 /**
  * SSR: Graceful fallback for the `body` element

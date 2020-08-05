@@ -8,7 +8,7 @@ import {
   ModalOverlayProps,
   ModalOverlay,
 } from "@chakra-ui/modal"
-import { forwardRef } from "@chakra-ui/system"
+import { forwardRef, useTheme } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 
 interface TransitionStyles {
@@ -46,7 +46,7 @@ function DrawerTransition(props: DrawerTransitionProps) {
           transition="opacity 250ms cubic-bezier(0.16, 1, 0.3, 1)"
         >
           {(overlay) => (
-            <TransitionContext.Provider value={{ content, overlay: overlay }}>
+            <TransitionContext.Provider value={{ content, overlay }}>
               {children}
             </TransitionContext.Provider>
           )}
@@ -61,15 +61,26 @@ if (__DEV__) {
 }
 
 export interface DrawerProps extends ModalProps {
+  /**
+   * The placement of the drawer
+   */
   placement?: SlideProps["placement"]
+  /**
+   * If `true` and drawer's placement is `top` or `bottom`,
+   * the drawer will occupy the viewport height (100vh)
+   */
   isFullHeight?: boolean
 }
 
 export function Drawer(props: DrawerProps) {
   const { isOpen, onClose, placement = "right", children, ...rest } = props
+
+  const theme = useTheme()
+  const drawerStyleConfig = theme.components?.Drawer
+
   return (
     <DrawerTransition in={isOpen} placement={placement}>
-      <Modal isOpen onClose={onClose} {...rest}>
+      <Modal isOpen onClose={onClose} styleConfig={drawerStyleConfig} {...rest}>
         {children}
       </Modal>
     </DrawerTransition>
