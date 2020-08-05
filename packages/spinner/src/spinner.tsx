@@ -83,7 +83,7 @@ export const Spinner = React.forwardRef(function Spinner(
     display: "inline-block",
     borderColor: "currentColor",
     borderStyle: "solid",
-    borderRadius: "full",
+    borderRadius: "99999px",
     borderWidth: thickness,
     borderBottomColor: emptyColor,
     borderLeftColor: emptyColor,
