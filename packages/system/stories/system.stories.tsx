@@ -1,5 +1,5 @@
 /**@jsx jsx */
-import { chakra, jsx, useStyleConfig } from "../src"
+import { chakra, jsx } from "../src"
 
 export default {
   title: "styled",

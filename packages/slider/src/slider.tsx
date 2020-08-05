@@ -6,6 +6,7 @@ import {
   omitThemingProps,
   StylesProvider,
   useStyles,
+  forwardRef,
 } from "@chakra-ui/system"
 import { createContext, __DEV__, cx } from "@chakra-ui/utils"
 import * as React from "react"
@@ -32,10 +33,7 @@ export type SliderProps = UseSliderProps &
  * @see Docs     https://chakra-ui.com/components/slider
  * @see WAI-ARIA https://www.w3.org/TR/wai-aria-practices/#slider
  */
-export const Slider = React.forwardRef(function Slider(
-  props: SliderProps,
-  ref: React.Ref<any>,
-) {
+export const Slider: React.FC<SliderProps> = forwardRef((props, ref) => {
   const styles = useMultiStyleConfig("Slider", props)
   const realProps = omitThemingProps(props)
 
@@ -78,7 +76,7 @@ export type SliderThumbProps = PropsOf<typeof chakra.div>
  * Slider component that acts as the handle used to select predefined
  * values by dragging its handle along the track
  */
-export function SliderThumb(props: SliderThumbProps) {
+export const SliderThumb: React.FC<SliderThumbProps> = (props) => {
   const { getThumbProps } = useSliderContext()
 
   const styles = useStyles()
@@ -110,7 +108,7 @@ if (__DEV__) {
 
 export type SliderTrackProps = PropsOf<typeof chakra.div>
 
-export function SliderTrack(props: SliderTrackProps) {
+export const SliderTrack: React.FC<SliderTrackProps> = (props) => {
   const { getTrackProps } = useSliderContext()
 
   const styles = useStyles()
@@ -138,7 +136,7 @@ if (__DEV__) {
 
 export type SliderInnerTrackProps = PropsOf<typeof chakra.div>
 
-export function SliderFilledTrack(props: SliderInnerTrackProps) {
+export const SliderFilledTrack: React.FC<SliderInnerTrackProps> = (props) => {
   const { getInnerTrackProps } = useSliderContext()
 
   const styles = useStyles()
@@ -173,7 +171,7 @@ export type SliderMarkProps = PropsOf<typeof chakra.div> & { value: number }
  *
  * @see Docs https://chakra-ui.com/components/slider
  */
-export function SliderMark(props: SliderMarkProps) {
+export const SliderMark: React.FC<SliderMarkProps> = (props) => {
   const { getMarkerProps } = useSliderContext()
   const markProps = getMarkerProps(props)
   return (

@@ -38,7 +38,7 @@ export type SquareProps = Omit<BoxProps, Omitted> & {
   centerContent?: boolean
 }
 
-export const Square = forwardRef<SquareProps>(function Square(props, ref) {
+export const Square: React.FC<SquareProps> = forwardRef((props, ref) => {
   const { size, centerContent = true, ...rest } = props
   const centerStyles: SystemStyleObject = centerContent
     ? { display: "flex", alignItems: "center", justifyContent: "center" }
@@ -62,7 +62,7 @@ if (__DEV__) {
   Square.displayName = "Square"
 }
 
-export const Circle = forwardRef<SquareProps>(function Circle(props, ref) {
+export const Circle: React.FC<SquareProps> = forwardRef((props, ref) => {
   const { size, ...rest } = props
   return <Square size={size as any} ref={ref} borderRadius="9999px" {...rest} />
 })

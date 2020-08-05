@@ -1,5 +1,5 @@
 import * as React from "react"
-import { chakra, PropsOf } from "@chakra-ui/system"
+import { chakra, PropsOf, forwardRef } from "@chakra-ui/system"
 import { __DEV__, cx } from "@chakra-ui/utils"
 
 /**
@@ -9,10 +9,7 @@ import { __DEV__, cx } from "@chakra-ui/utils"
  *
  * @see Docs https://chakra-ui.com/components/divider
  */
-export const Divider = React.forwardRef(function Divider(
-  props: DividerProps,
-  ref: React.Ref<any>,
-) {
+export const Divider: React.FC<DividerProps> = forwardRef((props, ref) => {
   const { className, orientation = "horizontal", ...rest } = props
 
   const styles = {

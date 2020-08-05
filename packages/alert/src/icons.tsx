@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Icon, IconProps } from "@chakra-ui/icon"
 
-export const CheckIcon = (props: IconProps) => (
+export const CheckIcon: React.FC<IconProps> = (props) => (
   <Icon viewBox="0 0 24 24" {...props}>
     <path
       fill="currentColor"
@@ -10,7 +10,7 @@ export const CheckIcon = (props: IconProps) => (
   </Icon>
 )
 
-export const InfoIcon = (props: IconProps) => (
+export const InfoIcon: React.FC<IconProps> = (props) => (
   <Icon viewBox="0 0 24 24" {...props}>
     <path
       fill="currentColor"
@@ -19,7 +19,7 @@ export const InfoIcon = (props: IconProps) => (
   </Icon>
 )
 
-export const WarningIcon = (props: IconProps) => (
+export const WarningIcon: React.FC<IconProps> = (props) => (
   <Icon viewBox="0 0 24 24" {...props}>
     <path
       fill="currentColor"

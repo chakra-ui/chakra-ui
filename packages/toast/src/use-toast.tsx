@@ -3,7 +3,7 @@ import {
   AlertDescription,
   AlertIcon,
   AlertTitle,
-  STATUSES,
+  AlertStatus,
 } from "@chakra-ui/alert"
 import { CloseButton } from "@chakra-ui/close-button"
 import { chakra, ThemeProvider, useTheme } from "@chakra-ui/system"
@@ -50,7 +50,7 @@ export interface UseToastOptions {
   /**
    * The status of the toast.
    */
-  status?: keyof typeof STATUSES
+  status?: AlertStatus
   /**
    * The `id` of the toast.
    *
@@ -66,7 +66,7 @@ export interface UseToastOptions {
 
 export type IToast = UseToastOptions
 
-const Toast = (props: any) => {
+const Toast: React.FC<any> = (props) => {
   const { status, variant, id, title, isClosable, onClose, description } = props
 
   return (
@@ -120,7 +120,7 @@ export function useToast() {
     const toastImpl = function (options: UseToastOptions) {
       const { render } = options
 
-      const Message = (props: RenderProps) => (
+      const Message: React.FC<RenderProps> = (props) => (
         <ThemeProvider theme={theme}>
           {isFunction(render) ? (
             render(props)

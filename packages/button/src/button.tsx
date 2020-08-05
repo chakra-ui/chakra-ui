@@ -60,7 +60,7 @@ export type ButtonProps = PropsOf<typeof chakra.button> &
   ButtonOptions &
   ThemingProps
 
-export const Button = forwardRef<ButtonProps>(function Button(props, ref) {
+export const Button: React.FC<ButtonProps> = forwardRef((props, ref) => {
   const group = useButtonGroup()
   const styles = useStyleConfig("Button", { ...group, ...props })
 
@@ -142,7 +142,7 @@ if (__DEV__) {
   Button.displayName = "Button"
 }
 
-function ButtonIcon(props: PropsOf<typeof chakra.span>) {
+const ButtonIcon: React.FC<PropsOf<typeof chakra.span>> = (props) => {
   const { children, className, ...rest } = props
 
   const _children = isValidElement(children)
@@ -166,7 +166,7 @@ type ButtonSpinnerProps = PropsOf<typeof chakra.div> & {
   spacing?: SystemProps["margin"]
 }
 
-function ButtonSpinner(props: ButtonSpinnerProps) {
+const ButtonSpinner: React.FC<ButtonSpinnerProps> = (props) => {
   const {
     label,
     spacing,

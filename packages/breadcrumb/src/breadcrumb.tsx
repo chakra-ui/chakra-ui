@@ -10,7 +10,7 @@ import {
   omitThemingProps,
 } from "@chakra-ui/system"
 import { cx, getValidChildren, __DEV__ } from "@chakra-ui/utils"
-import React, { Ref, cloneElement } from "react"
+import React, { cloneElement } from "react"
 
 export type BreadcrumbSeparatorProps = PropsOf<typeof chakra.div> & {
   spacing?: SystemProps["mx"]
@@ -19,8 +19,8 @@ export type BreadcrumbSeparatorProps = PropsOf<typeof chakra.div> & {
 /**
  * React component that separates each breadcrumb link
  */
-export const BreadcrumbSeparator = React.forwardRef(
-  function BreadcrumbSeparator(props: BreadcrumbSeparatorProps, ref: Ref<any>) {
+export const BreadcrumbSeparator: React.FC<BreadcrumbSeparatorProps> = forwardRef(
+  (props, ref) => {
     const { spacing, ...rest } = props
 
     const styles = useStyles()
@@ -56,8 +56,8 @@ export type BreadcrumbLinkProps = PropsOf<typeof chakra.a> & LinkOptions
  * It renders a `span` when it's the current link. Otherwise,
  * it renders an anchor tag.
  */
-export const BreadcrumbLink = forwardRef<BreadcrumbLinkProps>(
-  function BreadcrumbLink(props, ref) {
+export const BreadcrumbLink: React.FC<BreadcrumbLinkProps> = forwardRef(
+  (props, ref) => {
     const { isCurrentPage, as, className, ...rest } = props
     const styles = useStyles()
 
@@ -93,8 +93,8 @@ export type BreadcrumbItemProps = BreadcrumbItemOptions &
  * It renders a `li` element to denote it belongs to an order list of links.
  * @see Docs https://chakra-ui.com/components/breadcrumbs
  */
-export const BreadcrumbItem = forwardRef<BreadcrumbItemProps>(
-  function BreadcrumbItem(props, ref) {
+export const BreadcrumbItem: React.FC<BreadcrumbItemProps> = forwardRef(
+  (props, ref) => {
     const {
       isCurrentPage,
       separator,
@@ -171,47 +171,46 @@ export type BreadcrumbProps = PropsOf<typeof chakra.nav> &
  *
  * @see Docs https://chakra-ui.com/components/breadcrumbs
  */
-export const Breadcrumb = React.forwardRef(function Breadcrumb(
-  props: BreadcrumbProps,
-  ref: Ref<any>,
-) {
-  const styles = useMultiStyleConfig("Breadcrumb", props)
-  const realProps = omitThemingProps(props)
+export const Breadcrumb: React.FC<BreadcrumbProps> = forwardRef(
+  (props, ref) => {
+    const styles = useMultiStyleConfig("Breadcrumb", props)
+    const realProps = omitThemingProps(props)
 
-  const {
-    children,
-    spacing = "0.5rem",
-    separator = "/",
-    className,
-    ...rest
-  } = realProps
+    const {
+      children,
+      spacing = "0.5rem",
+      separator = "/",
+      className,
+      ...rest
+    } = realProps
 
-  const validChildren = getValidChildren(children)
-  const count = validChildren.length
+    const validChildren = getValidChildren(children)
+    const count = validChildren.length
 
-  const clones = validChildren.map((child, index) =>
-    cloneElement(child, {
-      separator,
-      spacing,
-      isLastChild: count === index + 1,
-    }),
-  )
+    const clones = validChildren.map((child, index) =>
+      cloneElement(child, {
+        separator,
+        spacing,
+        isLastChild: count === index + 1,
+      }),
+    )
 
-  const _className = cx("chakra-breadcrumb", className)
+    const _className = cx("chakra-breadcrumb", className)
 
-  return (
-    <chakra.nav
-      ref={ref}
-      aria-label="breadcrumb"
-      className={_className}
-      {...rest}
-    >
-      <StylesProvider value={styles}>
-        <chakra.ol className="chakra-breadcrumb__list">{clones}</chakra.ol>
-      </StylesProvider>
-    </chakra.nav>
-  )
-})
+    return (
+      <chakra.nav
+        ref={ref}
+        aria-label="breadcrumb"
+        className={_className}
+        {...rest}
+      >
+        <StylesProvider value={styles}>
+          <chakra.ol className="chakra-breadcrumb__list">{clones}</chakra.ol>
+        </StylesProvider>
+      </chakra.nav>
+    )
+  },
+)
 
 if (__DEV__) {
   Breadcrumb.displayName = "Breadcrumb"

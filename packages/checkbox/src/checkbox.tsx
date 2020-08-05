@@ -60,10 +60,7 @@ export type CheckboxProps = StyledControlProps &
  *
  * @see Docs https://chakra-ui.com/components/checkbox
  */
-export const Checkbox = forwardRef<CheckboxProps>(function Checkbox(
-  props,
-  ref,
-) {
+export const Checkbox: React.FC<CheckboxProps> = forwardRef((props, ref) => {
   const group = useCheckboxGroupContext()
 
   const merged = { ...group, ...props }

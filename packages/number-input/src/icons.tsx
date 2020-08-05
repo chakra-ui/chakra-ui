@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Icon, IconProps } from "@chakra-ui/icon"
 
-export const TriangleDownIcon = (props: IconProps) => (
+export const TriangleDownIcon: React.FC<IconProps> = (props) => (
   <Icon viewBox="0 0 24 24" {...props}>
     <path
       fill="currentColor"
@@ -10,7 +10,7 @@ export const TriangleDownIcon = (props: IconProps) => (
   </Icon>
 )
 
-export const TriangleUpIcon = (props: IconProps) => (
+export const TriangleUpIcon: React.FC<IconProps> = (props) => (
   <Icon viewBox="0 0 24 24" {...props}>
     <path
       fill="currentColor"

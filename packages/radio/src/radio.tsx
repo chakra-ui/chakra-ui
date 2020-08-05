@@ -5,9 +5,10 @@ import {
   SystemProps,
   ThemingProps,
   useMultiStyleConfig,
+  forwardRef,
   omitThemingProps,
 } from "@chakra-ui/system"
-import { cx, split, __DEV__ } from "@chakra-ui/utils"
+import { split, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { useRadioGroupContext } from "./radio-group"
 import { useRadio, UseRadioProps } from "./use-radio"
@@ -34,10 +35,7 @@ export type RadioProps = UseRadioProps &
  * several options.
  * @see Docs https://chakra-ui.com/components/radio
  */
-export const Radio = React.forwardRef(function Radio(
-  props: RadioProps,
-  ref: React.Ref<any>,
-) {
+export const Radio: React.FC<RadioProps> = forwardRef((props, ref) => {
   const group = useRadioGroupContext()
   const styles = useMultiStyleConfig("Radio", { ...group, ...props })
 

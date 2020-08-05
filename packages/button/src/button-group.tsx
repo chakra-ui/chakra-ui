@@ -4,6 +4,7 @@ import {
   SystemProps,
   SystemStyleObject,
   ThemingProps,
+  forwardRef,
 } from "@chakra-ui/system"
 import { createContext, cx, __DEV__ } from "@chakra-ui/utils"
 import React, { useMemo } from "react"
@@ -37,60 +38,57 @@ const [ButtonGroupProvider, useButtonGroup] = createContext<ButtonGroupContext>(
 
 export { useButtonGroup }
 
-export const ButtonGroup = React.forwardRef(function ButtonGroup(
-  props: ButtonGroupProps,
-  ref: React.Ref<any>,
-) {
-  const {
-    size,
-    colorScheme,
-    variant,
-    className,
-    spacing = "0.5rem",
-    isAttached,
-    isDisabled,
-    ...rest
-  } = props
+export const ButtonGroup: React.FC<ButtonGroupProps> = forwardRef(
+  (props, ref) => {
+    const {
+      size,
+      colorScheme,
+      variant,
+      className,
+      spacing = "0.5rem",
+      isAttached,
+      isDisabled,
+      ...rest
+    } = props
 
-  const _className = cx("chakra-button__group", className)
+    const _className = cx("chakra-button__group", className)
 
-  const context = useMemo(() => ({ size, colorScheme, variant, isDisabled }), [
-    size,
-    colorScheme,
-    variant,
-    isDisabled,
-  ])
+    const context = useMemo(
+      () => ({ size, colorScheme, variant, isDisabled }),
+      [size, colorScheme, variant, isDisabled],
+    )
 
-  let groupStyles: SystemStyleObject = {
-    display: "inline-flex",
-  }
-
-  if (isAttached) {
-    groupStyles = {
-      ...groupStyles,
-      "> *:first-of-type:not(:last-of-type)": { borderRightRadius: 0 },
-      "> *:not(:first-of-type):not(:last-of-type)": { borderRadius: 0 },
-      "> *:not(:first-of-type):last-of-type": { borderLeftRadius: 0 },
+    let groupStyles: SystemStyleObject = {
+      display: "inline-flex",
     }
-  } else {
-    groupStyles = {
-      ...groupStyles,
-      "& > *:not(style) ~ *:not(style)": { marginLeft: spacing },
-    }
-  }
 
-  return (
-    <ButtonGroupProvider value={context}>
-      <chakra.div
-        ref={ref}
-        role="group"
-        __css={groupStyles}
-        className={_className}
-        {...rest}
-      />
-    </ButtonGroupProvider>
-  )
-})
+    if (isAttached) {
+      groupStyles = {
+        ...groupStyles,
+        "> *:first-of-type:not(:last-of-type)": { borderRightRadius: 0 },
+        "> *:not(:first-of-type):not(:last-of-type)": { borderRadius: 0 },
+        "> *:not(:first-of-type):last-of-type": { borderLeftRadius: 0 },
+      }
+    } else {
+      groupStyles = {
+        ...groupStyles,
+        "& > *:not(style) ~ *:not(style)": { marginLeft: spacing },
+      }
+    }
+
+    return (
+      <ButtonGroupProvider value={context}>
+        <chakra.div
+          ref={ref}
+          role="group"
+          __css={groupStyles}
+          className={_className}
+          {...rest}
+        />
+      </ButtonGroupProvider>
+    )
+  },
+)
 
 if (__DEV__) {
   ButtonGroup.displayName = "ButtonGroup"

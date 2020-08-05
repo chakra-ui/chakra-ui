@@ -11,7 +11,7 @@ export interface ToastProps extends ToastOptions {
   requestClose?: boolean
 }
 
-export function Toast(props: ToastProps) {
+export const Toast: React.FC<ToastProps> = (props) => {
   const {
     id,
     message,
@@ -127,6 +127,6 @@ export function Toast(props: ToastProps) {
   )
 }
 
-if(__DEV__) {
+if (__DEV__) {
   Toast.displayName = "Toast"
 }
