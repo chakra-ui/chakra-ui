@@ -1,3 +1,6 @@
+/**
+ * All credit goes to Chance (Reach UI), and Haz (Reakit) for this
+ */
 import * as React from "react"
 
 export type AssignableRef<T> =
