@@ -27,7 +27,6 @@ interface ValidHTMLProps {
 }
 
 export interface ChakraProps extends SystemProps, ValidHTMLProps {
-  children?: React.ReactNode
   /**
    * apply styles defined in `theme.layerStyles`
    */
