@@ -21503,11 +21503,6 @@ widest-line@^3.1.0:
   dependencies:
     string-width "^4.0.0"
 
-window-resizeto@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/window-resizeto/-/window-resizeto-0.0.2.tgz#94db61ea93e0bfc4292fd82c3e98b24776637bc5"
-  integrity sha512-681jdLyc6p+Whk7lFxWISm+V49ymURtBN+Oz5j5c6UnYoBpqc2Q8e3pjZ5VtedC01TjJqr2Xt9XdJMid4KxZmQ==
-
 windows-release@^3.1.0:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/windows-release/-/windows-release-3.3.1.tgz#cb4e80385f8550f709727287bf71035e209c4ace"
