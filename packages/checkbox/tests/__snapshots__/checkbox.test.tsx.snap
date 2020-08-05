@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Checkbox renders correctly 1`] = `
+exports[`<Checkbox /> Checkbox renders correctly 1`] = `
 <DocumentFragment>
   .emotion-2 {
   cursor: pointer;
@@ -176,7 +176,7 @@ exports[`Checkbox renders correctly 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Checkbox renders correctly 2`] = `
+exports[`<Checkbox /> Checkbox renders correctly 2`] = `
 <DocumentFragment>
   .emotion-3 {
   cursor: pointer;
