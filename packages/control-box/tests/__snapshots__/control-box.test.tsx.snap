@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ControlBox /> matches snapshot 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-transition: all 120ms;
+  transition: all 120ms;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-0 > * {
+  opacity: 0;
+}
+
+input[type=checkbox]:checked + .emotion-0 > *,
+input[type=checkbox][aria-checked=mixed] + .emotion-0 > * {
+  opacity: 1;
+}
+
+<div
+    aria-hidden="true"
+    class="emotion-0"
+  />
+</DocumentFragment>
+`;
