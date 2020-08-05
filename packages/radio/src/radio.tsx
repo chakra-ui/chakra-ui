@@ -48,7 +48,7 @@ export const Radio = React.forwardRef(function Radio(
     ...radioProps
   } = omitThemingProps(props)
 
-  let isChecked = props.isChecked
+  let isChecked = props.isChecked || false
   if (group?.value && props.value) {
     isChecked = group.value === props.value
   }
