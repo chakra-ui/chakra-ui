@@ -1,11 +1,13 @@
-import React, {
-  useCallback,
-  useState,
+import { dataAttr, isRightClick, mergeRefs } from "@chakra-ui/utils"
+import {
+  ButtonHTMLAttributes,
   HTMLAttributes,
   KeyboardEvent,
   MouseEvent,
+  Ref,
+  useCallback,
+  useState,
 } from "react"
-import { mergeRefs, dataAttr, isRightClick } from "@chakra-ui/utils"
 
 export interface UseClickableProps extends HTMLAttributes<Element> {
   /**
@@ -26,7 +28,7 @@ export interface UseClickableProps extends HTMLAttributes<Element> {
    * Whether or not trigger click on pressing `Space`.
    */
   clickOnSpace?: boolean
-  ref?: React.Ref<HTMLElement>
+  ref?: Ref<HTMLElement>
 }
 
 /**
@@ -119,7 +121,7 @@ export function useClickable(props: UseClickableProps = {}) {
   )
 
   const handleKeyUp = useCallback(
-    (event: React.KeyboardEvent) => {
+    (event: KeyboardEvent) => {
       onKeyUp?.(event)
 
       if (isDisabled || event.defaultPrevented || event.metaKey) return
@@ -189,7 +191,7 @@ export function useClickable(props: UseClickableProps = {}) {
     return {
       ...htmlProps,
       ref,
-      type: "button" as React.ButtonHTMLAttributes<any>["type"],
+      type: "button" as ButtonHTMLAttributes<any>["type"],
       "aria-disabled": trulyDisabled ? undefined : isDisabled,
       disabled: trulyDisabled,
       onClick: handleClick,
