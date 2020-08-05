@@ -7,7 +7,7 @@ export type AssignableRef<T> =
   | React.MutableRefObject<T | null>
   | null
 
-export type As<P = any> = React.ElementType<P>
+type As<P = any> = React.ElementType<P>
 
 export type PropsWithAs<T extends As, P> = P &
   Omit<React.ComponentPropsWithRef<T>, "as" | keyof P> & {
@@ -33,7 +33,7 @@ export interface ComponentWithAs<T extends As, P> {
   defaultProps?: Partial<PropsWithAs<T, P>>
 }
 
-export function forwardRefWithAs<P, T extends As>(
+export function forwardRef<P, T extends As>(
   comp: (props: PropsFromAs<T, P>, ref: React.RefObject<any>) => JSX.Element,
 ) {
   return (React.forwardRef(comp as any) as unknown) as ComponentWithAs<T, P>
