@@ -1,13 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Drawer renders correctly 1`] = `
+exports[`<Drawer /> renders correctly 1`] = `
 <DocumentFragment>
   <div
     class="chakra-portal-manager"
   >
     <div
       class="chakra-portal"
-    />
+    >
+      I'm a drawer
+    </div>
   </div>
 </DocumentFragment>
 `;
