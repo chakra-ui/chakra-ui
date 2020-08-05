@@ -43,7 +43,10 @@ export type InputProps = Omit<PropsOf<typeof chakra.input>, Omitted> &
  *
  * Element that allows users enter single valued data.
  */
-export const Input: React.FC<InputProps> = forwardRef((props, ref) => {
+export const Input = forwardRef<InputProps, "input">(function Input(
+  props,
+  ref,
+) {
   const styles = useMultiStyleConfig("Input", props)
   const realProps = omitThemingProps(props)
   const input = useFormControl<HTMLInputElement>(realProps)
@@ -63,5 +66,5 @@ if (__DEV__) {
   Input.displayName = "Input"
 }
 
-//@ts-ignore
-Input.groupId = "Input"
+// This is used in `input-group.tsx`
+Input.id = "Input"

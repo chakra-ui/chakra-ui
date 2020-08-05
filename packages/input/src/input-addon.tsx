@@ -1,4 +1,4 @@
-import { chakra, PropsOf, useStyles, forwardRef } from "@chakra-ui/system"
+import { chakra, forwardRef, GetProps, useStyles } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -27,7 +27,7 @@ const StyledAddon = chakra("div", {
   },
 })
 
-export type InputAddonProps = PropsOf<typeof StyledAddon> & {
+export interface InputAddonProps extends GetProps<typeof StyledAddon> {
   placement?: Placement
 }
 
@@ -36,9 +36,8 @@ export type InputAddonProps = PropsOf<typeof StyledAddon> & {
  *
  * Element to append or prepend to an input
  */
-
-export const InputAddon: React.FC<InputAddonProps> = forwardRef(
-  (props, ref) => {
+export const InputAddon = forwardRef<InputAddonProps, "div">(
+  function InputAddon(props, ref) {
     const { placement = "left", ...rest } = props
     const placementStyles = placements[placement] ?? {}
     const styles = useStyles()
@@ -65,9 +64,8 @@ if (__DEV__) {
  *
  * Element to append to the left of an input
  */
-
-export const InputLeftAddon: React.FC<InputAddonProps> = forwardRef(
-  (props, ref) => {
+export const InputLeftAddon = forwardRef<InputAddonProps, "div">(
+  function InputLeftAddon(props, ref) {
     return (
       <InputAddon
         ref={ref}
@@ -83,17 +81,16 @@ if (__DEV__) {
   InputLeftAddon.displayName = "InputLeftAddon"
 }
 
-//@ts-ignore
-InputLeftAddon.groupId = "InputLeftAddon"
+// This is used in `input-group.tsx`
+InputLeftAddon.id = "InputLeftAddon"
 
 /**
  * InputRightAddon
  *
  * Element to append to the right of an input
  */
-
-export const InputRightAddon: React.FC<InputAddonProps> = forwardRef(
-  (props, ref) => {
+export const InputRightAddon = forwardRef<InputAddonProps, "div">(
+  function InputRightAddon(props, ref) {
     return (
       <InputAddon
         ref={ref}
@@ -109,5 +106,5 @@ if (__DEV__) {
   InputRightAddon.displayName = "InputRightAddon"
 }
 
-//@ts-ignore
-InputRightAddon.groupId = "InputRightAddon"
+// This is used in `input-group.tsx`
+InputRightAddon.id = "InputRightAddon"

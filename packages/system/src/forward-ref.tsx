@@ -34,6 +34,10 @@ export interface ComponentWithAs<T extends As, P> {
   propTypes?: React.WeakValidationMap<PropsWithAs<T, P>>
   contextTypes?: React.ValidationMap<any>
   defaultProps?: Partial<PropsWithAs<T, P>>
+  /**
+   * @private
+   */
+  id?: string
 }
 
 export function forwardRef<P, T extends As>(
