@@ -179,55 +179,6 @@ export const Avatar: React.FC<AvatarProps> = forwardRef((props, ref) => {
     ...rest
   } = omitThemingProps(props)
 
-  /**
-   * use the image hook to only show the image when it has loaded
-   */
-  const status = useImage({ src, onError })
-
-  const hasLoaded = status === "loaded"
-
-  const getAvatar = () => {
-    /**
-     * If `src` was passed and the image has loaded, we'll show it
-     */
-    if (src && hasLoaded) {
-      return (
-        <chakra.img
-          src={src}
-          alt={name}
-          className="chakra-avatar__img"
-          __css={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            borderRadius,
-          }}
-        />
-      )
-    }
-
-    /**
-     * Fallback avatar applies under 2 conditions:
-     * - If `src` was passed and the image has not loaded or failed to load
-     * - If `src` wasn't passed
-     *
-     * In this case, we'll show either the name avatar or default avatar
-     */
-    const showFallback = !src || (src && !hasLoaded)
-
-    if (showFallback) {
-      return name ? (
-        <Initials
-          className="chakra-avatar__initials"
-          getInitials={getInitials}
-          name={name}
-        />
-      ) : (
-        cloneElement(icon, { role: "img" })
-      )
-    }
-  }
-
   const avatarStyles = {
     borderRadius,
     borderWidth: showBorder ? "2px" : undefined,
@@ -243,7 +194,14 @@ export const Avatar: React.FC<AvatarProps> = forwardRef((props, ref) => {
       __css={avatarStyles}
     >
       <StylesProvider value={styles}>
-        {getAvatar()}
+        <AvatarImage
+          src={src}
+          onError={onError}
+          getInitials={getInitials}
+          name={name}
+          borderRadius={borderRadius}
+          icon={icon}
+        />
         {children}
       </StylesProvider>
     </chakra.span>
@@ -252,4 +210,67 @@ export const Avatar: React.FC<AvatarProps> = forwardRef((props, ref) => {
 
 if (__DEV__) {
   Avatar.displayName = "Avatar"
+}
+
+type AvatarImageProps = Pick<
+  AvatarProps,
+  "src" | "onError" | "name" | "getInitials" | "borderRadius" | "icon"
+>
+
+const AvatarImage: React.FC<AvatarImageProps> = ({
+  src,
+  onError,
+  getInitials,
+  name,
+  borderRadius,
+  icon = <DefaultIcon />,
+}) => {
+  /**
+   * use the image hook to only show the image when it has loaded
+   */
+  const status = useImage({ src, onError })
+
+  const hasLoaded = status === "loaded"
+
+  /**
+   * Fallback avatar applies under 2 conditions:
+   * - If `src` was passed and the image has not loaded or failed to load
+   * - If `src` wasn't passed
+   *
+   * In this case, we'll show either the name avatar or default avatar
+   */
+  const showFallback = !src || (src && !hasLoaded)
+
+  if (showFallback) {
+    return name ? (
+      <Initials
+        className="chakra-avatar__initials"
+        getInitials={getInitials}
+        name={name}
+      />
+    ) : (
+      cloneElement(icon, { role: "img" })
+    )
+  }
+
+  /**
+   * If `src` was passed and the image has loaded, we'll show it
+   */
+  return (
+    <chakra.img
+      src={src}
+      alt={name}
+      className="chakra-avatar__img"
+      __css={{
+        width: "100%",
+        height: "100%",
+        objectFit: "cover",
+        borderRadius,
+      }}
+    />
+  )
+}
+
+if (__DEV__) {
+  AvatarImage.displayName = "AvatarImage"
 }
