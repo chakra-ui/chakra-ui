@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Button renders correctly 1`] = `
+exports[`<Button /> Button renders correctly 1`] = `
 <DocumentFragment>
   .emotion-0 {
   display: -webkit-inline-box;
@@ -76,7 +76,7 @@ exports[`Button renders correctly 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Button renders with icons 1`] = `
+exports[`<Button /> Button renders with icons 1`] = `
 <DocumentFragment>
   .emotion-6 {
   display: -webkit-inline-box;
@@ -233,7 +233,7 @@ exports[`Button renders with icons 1`] = `
 </DocumentFragment>
 `;
 
-exports[`shows spinner and loading text if isLoading and loadingText 1`] = `
+exports[`<Button /> shows spinner and loading text if isLoading and loadingText 1`] = `
 <DocumentFragment>
   @keyframes animation-0 {
   0% {
@@ -385,7 +385,7 @@ exports[`shows spinner and loading text if isLoading and loadingText 1`] = `
 </DocumentFragment>
 `;
 
-exports[`shows spinner if isLoading 1`] = `
+exports[`<Button /> shows spinner if isLoading 1`] = `
 <DocumentFragment>
   @keyframes animation-0 {
   0% {
