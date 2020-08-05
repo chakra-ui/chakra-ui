@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`accordion renders correctly 1`] = `
+exports[`<Accordion /> accordion renders correctly 1`] = `
 <DocumentFragment>
   .emotion-2 {
   border-top-width: 1px;
