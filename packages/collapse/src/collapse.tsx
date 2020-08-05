@@ -1,5 +1,4 @@
 /** @jsx jsx */
-import * as React from "react"
 import AnimateHeight, {
   AnimateHeightProps as AnimateProps,
 } from "react-animate-height"
@@ -53,7 +52,10 @@ export type CollapseProps = AnimateHeightProps &
   CollapseOptions &
   PropsOf<typeof chakra.div>
 
-export const Collapse: React.FC<CollapseProps> = forwardRef((props, ref) => {
+export const Collapse = forwardRef<CollapseProps, "div">(function Collapse(
+  props,
+  ref,
+) {
   const {
     isOpen,
     animateOpacity = true,
@@ -75,7 +77,7 @@ export const Collapse: React.FC<CollapseProps> = forwardRef((props, ref) => {
       applyInlineTransitions={false}
       onAnimationStart={onAnimationStart}
       onAnimationEnd={onAnimationEnd}
-      sx={{
+      css={{
         transition:
           "height .2s ease,opacity .2s ease-in-out,transform .2s ease-in-out",
         "&.rah-animating--to-height-zero": {
