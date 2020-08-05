@@ -28,8 +28,8 @@ export type ComponentWithForwardedRef<
 >
 
 export interface ComponentWithAs<T extends As, P> {
-  <TT extends As>(props: PropsWithAs<TT, P>): JSX.Element
-  (props: PropsWithAs<T, P>): JSX.Element
+  <TT extends As>(props: PropsWithAs<TT, P>): React.ReactElement | null
+  (props: PropsWithAs<T, P>): React.ReactElement | null
   displayName?: string
   propTypes?: React.WeakValidationMap<PropsWithAs<T, P>>
   contextTypes?: React.ValidationMap<any>
@@ -37,7 +37,10 @@ export interface ComponentWithAs<T extends As, P> {
 }
 
 export function forwardRef<P, T extends As>(
-  comp: (props: PropsFromAs<T, P>, ref: React.RefObject<any>) => JSX.Element,
+  comp: (
+    props: PropsFromAs<T, P>,
+    ref: React.RefObject<any>,
+  ) => React.ReactElement | null,
 ) {
   return (React.forwardRef(comp as any) as unknown) as ComponentWithAs<T, P>
 }
