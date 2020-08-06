@@ -1,6 +1,6 @@
 import {
   chakra,
-  PropsOf,
+  GetProps,
   useStyleConfig,
   omitThemingProps,
   SystemStyleObject,
@@ -9,7 +9,7 @@ import {
 import { __DEV__, merge } from "@chakra-ui/utils"
 import * as React from "react"
 
-export type SkipNavLinkProps = PropsOf<typeof chakra.a>
+export interface SkipNavLinkProps extends GetProps<typeof chakra.a> {}
 
 const fallbackId = "chakra-skip-nav"
 
@@ -34,8 +34,8 @@ const baseStyle: SystemStyleObject = {
 /**
  * Renders a link that remains hidden until focused to skip to the main content.
  */
-export const SkipNavLink: React.FC<SkipNavLinkProps> = forwardRef(
-  (props, ref) => {
+export const SkipNavLink = forwardRef<SkipNavLinkProps, "a">(
+  function SkipNavLink(props, ref) {
     const styles = useStyleConfig("SkipLink", props)
     const { id = fallbackId, ...rest } = omitThemingProps(props)
 
@@ -49,13 +49,13 @@ if (__DEV__) {
   SkipNavLink.displayName = "SkipNavLink"
 }
 
-export type SkipNavContentProps = PropsOf<"div">
+export interface SkipNavContentProps extends GetProps<"div"> {}
 
 /**
  * Renders a div as the target for the link.
  */
-export const SkipNavContent: React.FC<SkipNavContentProps> = forwardRef(
-  (props, ref) => {
+export const SkipNavContent = forwardRef<SkipNavContentProps, "div">(
+  function SkipNavContent(props, ref) {
     const { id = fallbackId, ...rest } = props
     return (
       <div ref={ref} id={id} tabIndex={-1} style={{ outline: 0 }} {...rest} />

@@ -2,7 +2,7 @@ import {
   chakra,
   forwardRef,
   omitThemingProps,
-  PropsOf,
+  GetProps,
   SystemProps,
   ThemingProps,
   useMultiStyleConfig,
@@ -38,13 +38,13 @@ const StyledContainer = chakra("label", {
 })
 
 type StyledControlProps = Omit<
-  PropsOf<typeof StyledControl>,
+  GetProps<typeof StyledControl>,
   "size" | "checked" | "defaultChecked" | "onChange" | "onBlur" | "value" | "as"
 >
 
 type BaseCheckboxProps = Pick<
-  PropsOf<"input">,
-  "onChange" | "onBlur" | "checked" | "defaultChecked"
+  GetProps<"input">,
+  "onBlur" | "checked" | "defaultChecked"
 >
 
 export interface CheckboxProps

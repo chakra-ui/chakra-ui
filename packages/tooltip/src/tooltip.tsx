@@ -1,7 +1,7 @@
 import { Portal } from "@chakra-ui/portal"
 import {
   chakra,
-  PropsOf,
+  GetProps,
   ThemingProps,
   useStyleConfig,
   omitThemingProps,
@@ -12,36 +12,37 @@ import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 import * as React from "react"
 import { useTooltip, UseTooltipProps } from "./use-tooltip"
 
-export type TooltipProps = PropsOf<typeof chakra.div> &
-  ThemingProps &
-  UseTooltipProps & {
-    /**
-     * The react component to use as the
-     * trigger for the tooltip
-     */
-    children?: React.ReactNode
-    /**
-     * The label of the tooltip
-     */
-    label?: string
-    /**
-     * The accessible, human friendly label to use for
-     * screen readers.
-     *
-     * If passed, tooltip will show the content `label`
-     * but expose only `aria-label` to assistive technologies
-     */
-    "aria-label"?: string
-    /**
-     * If `true`, the tooltip will wrap it's children
-     * in a `<span/>` with `tabIndex=0`
-     */
-    shouldWrapChildren?: boolean
-    /**
-     * If `true`, the tooltip will show an arrow tip
-     */
-    hasArrow?: boolean
-  }
+export interface TooltipProps
+  extends GetProps<typeof chakra.div>,
+    ThemingProps,
+    UseTooltipProps {
+  /**
+   * The react component to use as the
+   * trigger for the tooltip
+   */
+  children: React.ReactNode
+  /**
+   * The label of the tooltip
+   */
+  label?: string
+  /**
+   * The accessible, human friendly label to use for
+   * screen readers.
+   *
+   * If passed, tooltip will show the content `label`
+   * but expose only `aria-label` to assistive technologies
+   */
+  "aria-label"?: string
+  /**
+   * If `true`, the tooltip will wrap it's children
+   * in a `<span/>` with `tabIndex=0`
+   */
+  shouldWrapChildren?: boolean
+  /**
+   * If `true`, the tooltip will show an arrow tip
+   */
+  hasArrow?: boolean
+}
 
 /**
  * Tooltips display informative text when users hover, focus on, or tap an element.
@@ -49,7 +50,10 @@ export type TooltipProps = PropsOf<typeof chakra.div> &
  * @see Docs     https://chakra-ui.com/components/tooltip
  * @see WAI-ARIA https://www.w3.org/TR/wai-aria-practices/#tooltip
  */
-export const Tooltip: React.FC<TooltipProps> = forwardRef((props, ref) => {
+export const Tooltip = forwardRef<TooltipProps, "div">(function Tooltip(
+  props,
+  ref,
+) {
   const styles = useStyleConfig("Tooltip", props)
   const realProps = omitThemingProps(props)
 

@@ -3,7 +3,6 @@ import {
   forwardRef,
   GetProps,
   omitThemingProps,
-  PropsOf,
   StylesProvider,
   ThemingProps,
   useMultiStyleConfig,
@@ -196,7 +195,7 @@ if (__DEV__) {
   TabPanels.displayName = "TabPanels"
 }
 
-export type TabIndicatorProps = PropsOf<typeof chakra.div>
+export interface TabIndicatorProps extends GetProps<typeof chakra.div> {}
 
 /**
  * TabIndicator

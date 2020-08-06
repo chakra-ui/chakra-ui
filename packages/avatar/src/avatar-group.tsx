@@ -1,6 +1,6 @@
 import {
   chakra,
-  PropsOf,
+  GetProps,
   SystemProps,
   ThemingProps,
   useMultiStyleConfig,
@@ -28,15 +28,16 @@ interface AvatarGroupOptions {
   max?: number
 }
 
-export type AvatarGroupProps = AvatarGroupOptions &
-  PropsOf<typeof chakra.div> &
-  ThemingProps
+export interface AvatarGroupProps
+  extends AvatarGroupOptions,
+    GetProps<typeof chakra.div>,
+    ThemingProps {}
 
 /**
  * AvatarGroup displays a number of avatars grouped together in a stack.
  */
-export const AvatarGroup: React.FC<AvatarGroupProps> = forwardRef(
-  (props, ref) => {
+export const AvatarGroup = forwardRef<AvatarGroupProps, "div">(
+  function AvatarGroup(props, ref) {
     const styles = useMultiStyleConfig("Avatar", props)
 
     const {

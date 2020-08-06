@@ -4,7 +4,6 @@ import {
   forwardRef,
   GetProps,
   omitThemingProps,
-  PropsOf,
   SystemProps,
   ThemingProps,
   useStyleConfig,
@@ -147,7 +146,7 @@ if (__DEV__) {
   Button.displayName = "Button"
 }
 
-const ButtonIcon: React.FC<PropsOf<typeof chakra.span>> = (props) => {
+const ButtonIcon: React.FC<GetProps<typeof chakra.span>> = (props) => {
   const { children, className, ...rest } = props
 
   const _children = isValidElement(children)
@@ -166,7 +165,7 @@ if (__DEV__) {
   ButtonIcon.displayName = "ButtonIcon"
 }
 
-type ButtonSpinnerProps = PropsOf<typeof chakra.div> & {
+type ButtonSpinnerProps = GetProps<typeof chakra.div> & {
   label?: string
   spacing?: SystemProps["margin"]
 }

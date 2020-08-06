@@ -2,7 +2,7 @@ import * as React from "react"
 import {
   chakra,
   forwardRef,
-  PropsOf,
+  GetProps,
   ThemingProps,
   useMultiStyleConfig,
   StylesProvider,
@@ -12,14 +12,14 @@ import {
 import { Icon, IconProps } from "@chakra-ui/icon"
 import { __DEV__ } from "@chakra-ui/utils"
 
-export type TagProps = PropsOf<typeof chakra.span> & ThemingProps
+export interface TagProps extends GetProps<typeof chakra.span>, ThemingProps {}
 
 /**
  * The tag component is used to label or categorize UI elements.
  * To style the tag globally, change the styles in `theme.components.Tag`
  * @see Docs https://chakra-ui.com/components/tag
  */
-export const Tag: React.FC<TagProps> = forwardRef((props, ref) => {
+export const Tag = forwardRef<TagProps, "span">(function Tag(props, ref) {
   const styles = useMultiStyleConfig("Tag", props)
   const _props = omitThemingProps(props)
 
@@ -42,7 +42,7 @@ if (__DEV__) {
   Tag.displayName = "Tag"
 }
 
-export type TagLabelProps = PropsOf<typeof chakra.span>
+export interface TagLabelProps extends GetProps<typeof chakra.span> {}
 
 export const TagLabel: React.FC<TagLabelProps> = (props) => {
   const styles = useStyles()
@@ -54,7 +54,7 @@ if (__DEV__) {
 }
 
 export const TagLeftIcon: React.FC<IconProps> = (props) => (
-  <Icon verticalAlign="top" marginRight="0.5rem" {...props} />
+  <Icon verticalAlign="top" mr="0.5rem" {...props} />
 )
 
 if (__DEV__) {
@@ -62,7 +62,7 @@ if (__DEV__) {
 }
 
 export const TagRightIcon: React.FC<IconProps> = (props) => (
-  <Icon verticalAlign="top" marginLeft="0.5rem" {...props} />
+  <Icon verticalAlign="top" ml="0.5rem" {...props} />
 )
 
 if (__DEV__) {
@@ -82,10 +82,8 @@ if (__DEV__) {
   TagCloseIcon.displayName = "TagCloseIcon"
 }
 
-export type TagCloseButtonProps = Omit<
-  PropsOf<typeof chakra.button>,
-  "disabled"
-> & {
+export interface TagCloseButtonProps
+  extends Omit<GetProps<typeof chakra.button>, "disabled"> {
   isDisabled?: boolean
 }
 

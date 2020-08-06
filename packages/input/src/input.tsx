@@ -2,7 +2,7 @@ import { FormControlOptions, useFormControl } from "@chakra-ui/form-control"
 import {
   chakra,
   forwardRef,
-  PropsOf,
+  GetProps,
   useMultiStyleConfig,
   omitThemingProps,
   ThemingProps,
@@ -31,12 +31,13 @@ interface InputOptions {
 
 type Omitted = "disabled" | "required" | "readOnly" | "size"
 
-export type InputProps = Omit<PropsOf<typeof chakra.input>, Omitted> &
-  InputOptions &
-  ThemingProps &
-  FormControlOptions & {
-    size?: string
-  }
+export interface InputProps
+  extends Omit<GetProps<typeof chakra.input>, Omitted>,
+    InputOptions,
+    ThemingProps,
+    FormControlOptions {
+  size?: string
+}
 
 /**
  * Input

@@ -2,7 +2,7 @@ import { useImage } from "@chakra-ui/image"
 import {
   chakra,
   omitThemingProps,
-  PropsOf,
+  GetProps,
   StylesProvider,
   SystemProps,
   ThemingProps,
@@ -63,14 +63,14 @@ interface AvatarOptions {
   getInitials?(name?: string): string
 }
 
-export type AvatarBadgeProps = PropsOf<typeof chakra.div>
+export interface AvatarBadgeProps extends GetProps<typeof chakra.div> {}
 
 /**
  * AvatarBadge used to show extra badge to the top-right
  * or bottom-right corner of an avatar.
  */
-export const AvatarBadge: React.FC<AvatarBadgeProps> = forwardRef(
-  (props, ref) => {
+export const AvatarBadge = forwardRef<AvatarBadgeProps, "div">(
+  function AvatarBadge(props, ref) {
     const styles = useStyles()
     const badgeStyles = {
       position: "absolute",
@@ -104,8 +104,9 @@ function initials(name: string) {
     : firstName.charAt(0)
 }
 
-type InitialsProps = PropsOf<typeof chakra.div> &
-  Pick<AvatarOptions, "name" | "getInitials">
+interface InitialsProps
+  extends GetProps<typeof chakra.div>,
+    Pick<AvatarOptions, "name" | "getInitials"> {}
 
 /**
  * The avatar name container
@@ -125,7 +126,7 @@ const Initials: React.FC<InitialsProps> = (props) => {
  * Fallback avatar react component.
  * This should be a generic svg used to represent an avatar
  */
-const DefaultIcon: React.FC<PropsOf<"svg">> = (props) => {
+const DefaultIcon: React.FC<GetProps<"svg">> = (props) => {
   return (
     <svg
       viewBox="0 0 128 128"
@@ -156,15 +157,19 @@ export const baseStyle: SystemStyleObject = {
   flexShrink: 0,
 }
 
-export type AvatarProps = PropsOf<typeof chakra.span> &
-  AvatarOptions &
-  ThemingProps
+export interface AvatarProps
+  extends Omit<GetProps<typeof chakra.span>, "onError">,
+    AvatarOptions,
+    ThemingProps {}
 
 /**
  * Avatar component that renders an user avatar with
  * support for fallback avatar and name-only avatars
  */
-export const Avatar: React.FC<AvatarProps> = forwardRef((props, ref) => {
+export const Avatar = forwardRef<AvatarProps, "span">(function Avatar(
+  props,
+  ref,
+) {
   const styles = useMultiStyleConfig("Avatar", props)
 
   const {

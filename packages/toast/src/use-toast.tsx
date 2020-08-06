@@ -3,8 +3,8 @@ import {
   AlertDescription,
   AlertIcon,
   AlertTitle,
-  AlertStatus,
 } from "@chakra-ui/alert"
+import type { AlertStatus } from "@chakra-ui/alert"
 import { CloseButton } from "@chakra-ui/close-button"
 import { chakra, ThemeProvider, useTheme } from "@chakra-ui/system"
 import { isFunction, merge } from "@chakra-ui/utils"

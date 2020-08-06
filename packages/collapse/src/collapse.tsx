@@ -2,7 +2,7 @@
 import AnimateHeight, {
   AnimateHeightProps as AnimateProps,
 } from "react-animate-height"
-import { chakra, jsx, PropsOf, forwardRef } from "@chakra-ui/system"
+import { chakra, jsx, GetProps, forwardRef } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 
 type AnimateHeightProps = Pick<
@@ -48,9 +48,10 @@ export interface CollapseOptions {
 
 export type ICollapse = CollapseProps
 
-export type CollapseProps = AnimateHeightProps &
-  CollapseOptions &
-  PropsOf<typeof chakra.div>
+export interface CollapseProps
+  extends AnimateHeightProps,
+    CollapseOptions,
+    Omit<GetProps<typeof chakra.div>, "onAnimationEnd" | "onAnimationStart"> {}
 
 export const Collapse = forwardRef<CollapseProps, "div">(function Collapse(
   props,

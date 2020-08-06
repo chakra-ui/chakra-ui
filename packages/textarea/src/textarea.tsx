@@ -1,7 +1,7 @@
 import { FormControlOptions, useFormControl } from "@chakra-ui/form-control"
 import {
   chakra,
-  PropsOf,
+  GetProps,
   forwardRef,
   useStyleConfig,
   omitThemingProps,
@@ -30,18 +30,23 @@ interface TextareaOptions {
   isFullWidth?: boolean
 }
 
-type Omitted = "disabled" | "required" | "readOnly"
-
-export type TextareaProps = Omit<PropsOf<typeof chakra.textarea>, Omitted> &
-  TextareaOptions &
-  FormControlOptions &
-  ThemingProps
+export interface TextareaProps
+  extends Omit<
+      GetProps<typeof chakra.textarea>,
+      "disabled" | "required" | "readOnly"
+    >,
+    TextareaOptions,
+    FormControlOptions,
+    ThemingProps {}
 
 /**
  * Textarea is used to enter an amount of text that's longer than a single line
  * @see Docs https://chakra-ui.com/components/textarea
  */
-export const Textarea: React.FC<TextareaProps> = forwardRef((props, ref) => {
+export const Textarea = forwardRef<TextareaProps, "textarea">(function Textarea(
+  props,
+  ref,
+) {
   const styles = useStyleConfig("Textarea", props)
   const { className, rows, ...otherProps } = omitThemingProps(props)
 

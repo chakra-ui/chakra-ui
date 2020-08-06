@@ -1,7 +1,7 @@
 import { TriangleDownIcon, TriangleUpIcon } from "./icons"
 import {
   chakra,
-  PropsOf,
+  GetProps,
   forwardRef,
   StylesProvider,
   useStyles,
@@ -184,7 +184,7 @@ export const StyledStepper = chakra("div", {
 })
 
 export interface NumberDecrementStepperProps
-  extends PropsOf<typeof StyledStepper> {}
+  extends GetProps<typeof StyledStepper> {}
 
 /**
  * NumberDecrementStepper

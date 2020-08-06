@@ -1,6 +1,6 @@
 import {
   chakra,
-  PropsOf,
+  GetProps,
   useStyleConfig,
   omitThemingProps,
   ThemingProps,
@@ -17,7 +17,7 @@ interface LinkOptions {
 }
 
 export interface LinkProps
-  extends PropsOf<typeof chakra.a>,
+  extends GetProps<typeof chakra.a>,
     LinkOptions,
     ThemingProps {}
 

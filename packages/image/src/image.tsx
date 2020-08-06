@@ -1,4 +1,4 @@
-import { chakra, PropsOf, SystemProps, forwardRef } from "@chakra-ui/system"
+import { chakra, GetProps, SystemProps, forwardRef } from "@chakra-ui/system"
 import { omit, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { useImage, UseImageProps } from "./use-image"
@@ -42,9 +42,10 @@ interface ImageOptions {
   ignoreFallback?: boolean
 }
 
-export type ImageProps = UseImageProps &
-  PropsOf<typeof chakra.img> &
-  ImageOptions
+export interface ImageProps
+  extends UseImageProps,
+    Omit<GetProps<typeof chakra.img>, keyof UseImageProps>,
+    ImageOptions {}
 
 /**
  * React component that renders an image with support
@@ -52,7 +53,7 @@ export type ImageProps = UseImageProps &
  *
  * @see Docs https://chakra-ui.com/components/image
  */
-export const Image: React.FC<ImageProps> = forwardRef((props, ref) => {
+export const Image = forwardRef<ImageProps, "img">(function Image(props, ref) {
   const {
     fallbackSrc,
     fallback,
