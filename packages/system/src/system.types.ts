@@ -68,9 +68,7 @@ export type As = React.ElementType<any>
  */
 export type PropsOf<T extends As> = React.ComponentProps<T>
 
-export type WithChakra<P> = P extends { transition?: any }
-  ? P & Omit<ChakraProps, "transition">
-  : P & ChakraProps
+export type WithChakra<P> = P & ChakraProps
 
 export interface ChakraComponent<T extends As, P>
   extends ComponentWithAs<T, WithChakra<P>> {}
