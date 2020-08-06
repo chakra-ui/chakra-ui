@@ -29,6 +29,7 @@ import {
   UseMenuOptionGroupProps,
   UseMenuOptionProps,
   UseMenuProps,
+  UseMenuOptionOptions,
 } from "./use-menu"
 
 export interface MenuProps extends UseMenuProps, ThemingProps {
@@ -189,7 +190,10 @@ export interface MenuItemProps
   extends GetProps<typeof chakra.button>,
     MenuItemOptions {}
 
-export const MenuItem: React.FC<MenuItemProps> = forwardRef((props, ref) => {
+export const MenuItem = forwardRef<MenuItemProps, "button">(function MenuItem(
+  props,
+  ref,
+) {
   const {
     icon,
     iconSpacing = "0.75rem",
@@ -226,11 +230,12 @@ if (__DEV__) {
 
 //////////////////////////////////////////////////////////////////////////
 
-export type MenuItemOptionProps = Omit<UseMenuOptionProps, "context"> &
-  GetProps<typeof StyledMenuItem> & {
-    icon?: ReactElement
-    iconSpacing?: SystemProps["mr"]
-  }
+export interface MenuItemOptionProps
+  extends UseMenuOptionOptions,
+    Omit<GetProps<typeof StyledMenuItem>, keyof UseMenuOptionOptions> {
+  icon?: ReactElement
+  iconSpacing?: SystemProps["mr"]
+}
 
 const CheckIcon: React.FC<GetProps<"svg">> = (props) => (
   <svg viewBox="0 0 14 14" width="1em" height="1em" {...props}>
@@ -241,8 +246,8 @@ const CheckIcon: React.FC<GetProps<"svg">> = (props) => (
   </svg>
 )
 
-export const MenuItemOption: React.FC<MenuItemOptionProps> = forwardRef(
-  (props, ref) => {
+export const MenuItemOption = forwardRef<MenuItemOptionProps, "button">(
+  function MenuItemOption(props, ref) {
     const { icon, iconSpacing = "0.75rem", ...htmlProps } = props
 
     const ownProps = useMenuOption(htmlProps)

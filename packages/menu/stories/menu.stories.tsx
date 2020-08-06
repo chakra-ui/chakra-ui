@@ -32,6 +32,14 @@ const words = [
   "Show All",
 ]
 
+function logEvents(e: React.MouseEvent | React.KeyboardEvent | undefined) {
+  if (e && e.persist) {
+    // Stop react from complaining about unpersisted events.
+    e.persist()
+  }
+  console.log(e)
+}
+
 export const Basic = () => (
   <div style={{ minHeight: 4000 }}>
     <Menu isLazy>
@@ -46,7 +54,9 @@ export const Basic = () => (
       </MenuButton>
       <MenuList>
         {words.map((word) => (
-          <MenuItem key={word}>{word}</MenuItem>
+          <MenuItem key={word} onClick={logEvents}>
+            {word}
+          </MenuItem>
         ))}
       </MenuList>
     </Menu>

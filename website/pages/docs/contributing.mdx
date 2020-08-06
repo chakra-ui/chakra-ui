@@ -11,10 +11,6 @@ We want contributing to Chakra UI to be enjoyable and educational for anyone and
 everyone. All contributions are welcome, including: issues, new docs, as well as
 updates and tweaks, blog posts, workshops, and more.
 
-When contributing to this repository, please first discuss the change you wish
-to make via issue, email, or any other method with the owners of this
-repository.
-
 Please note that we have a [code of conduct](#code-of-conduct). Please follow it
 in all of your interactions with the project and our community.
 
@@ -80,6 +76,14 @@ we want our documentation to cover frequently asked questions and common issues.
 Code snippets should be easily copied and pasted. We should also try to cover as
 many use cases as possible for each component, so that users can learn by code
 example as much as they can by reading through the docs.
+
+### Notes on Github Token
+
+By default, the GitHub REST API has an anonymous user rate limit. This can be
+hit during heavy local docs development if the server is frequently restarted.
+
+Creating a GitHub token and storing it as the `GITHUB_TOKEN` environment
+variable allows the user to avoid the limit.
 
 ## Code contribution
 
