@@ -51,7 +51,9 @@ import {
 
 ```jsx
 <Menu>
-  <MenuButton>Actions</MenuButton>
+  <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+    Actions
+  </MenuButton>
   <MenuList>
     <MenuItem>Download</MenuItem>
     <MenuItem>Create a Copy</MenuItem>
@@ -74,7 +76,9 @@ method `onClose`.
 <Menu>
   {({ isOpen }) => (
     <>
-      <MenuButton isActive={isOpen}>{isOpen ? "Close" : "Open"}</MenuButton>
+      <MenuButton isActive={isOpen} as={Button} rightIcon={<ChevronDownIcon />}>
+        {isOpen ? "Close" : "Open"}
+      </MenuButton>
       <MenuList>
         <MenuItem>Download</MenuItem>
         <MenuItem onClick={() => alert("Kagebunshin")}>Create a Copy</MenuItem>
@@ -120,7 +124,9 @@ the letter you typed.
 
 ```jsx
 <Menu>
-  <MenuButton>Your Cats</MenuButton>
+  <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+    Your Cats
+  </MenuButton>
   <MenuList>
     <MenuItem minH="48px">
       <Image
@@ -153,7 +159,9 @@ To group related `MenuItem`s, use the `MenuGroup` component and pass it a
 
 ```jsx
 <Menu>
-  <MenuButton colorScheme="pink">Profile</MenuButton>
+  <MenuButton as={Button} colorScheme="pink">
+    Profile
+  </MenuButton>
   <MenuList>
     <MenuGroup title="Profile">
       <MenuItem>My Account</MenuItem>
@@ -175,7 +183,9 @@ options. Use the `MenuOptionGroup` and `MenuItemOption` components.
 
 ```jsx
 <Menu closeOnSelect={false}>
-  <MenuButton colorScheme="blue">MenuItem</MenuButton>
+  <MenuButton as={Button} colorScheme="blue">
+    MenuItem
+  </MenuButton>
   <MenuList minWidth="240px">
     <MenuOptionGroup defaultValue="asc" title="Order" type="radio">
       <MenuItemOption value="asc">Ascending</MenuItemOption>

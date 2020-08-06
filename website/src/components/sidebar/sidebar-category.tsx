@@ -66,7 +66,8 @@ function SidebarCategory(props: SidebarCategoryProps) {
         width="full"
         cursor="pointer"
         style={{ outlineOffset: 4 }}
-        fontWeight={selected ? "semibold" : undefined}
+        fontSize="sm"
+        fontWeight="semibold"
         display="flex"
         alignItems="center"
         justifyContent="space-between"

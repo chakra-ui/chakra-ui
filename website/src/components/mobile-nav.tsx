@@ -4,11 +4,11 @@ import {
   DrawerContent,
   DrawerOverlay,
   IconButton,
+  Box,
   useDisclosure,
 } from "@chakra-ui/core"
 import * as React from "react"
 import { MdDehaze } from "react-icons/md"
-import { SideNavContent } from "./sidebar/sidebar"
 import useRouteChanged from "hooks/use-route-changed"
 
 const MobileNav = () => {
@@ -29,7 +29,7 @@ const MobileNav = () => {
         <DrawerOverlay>
           <DrawerContent>
             <DrawerBody p={0}>
-              <SideNavContent contentHeight="100vh" top="0" />
+              <Box h="100vh" top="0" />
             </DrawerBody>
           </DrawerContent>
         </DrawerOverlay>

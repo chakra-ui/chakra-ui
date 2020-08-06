@@ -6,12 +6,13 @@ import React from "react"
 const StyledLink = React.forwardRef(
   (props: PropsOf<typeof chakra.a>, ref: React.Ref<any>) => {
     const hoverColor = useColorModeValue("gray.900", "whiteAlpha.900")
-    const activeColor = useColorModeValue("gray.800", "teal.200")
+    const activeColor = useColorModeValue("teal.500", "teal.200")
     const color = useColorModeValue("gray.700", "whiteAlpha.900")
 
     return (
       <chakra.a
         ref={ref}
+        fontSize="sm"
         color={color}
         transition="all 0.2s"
         _hover={{
