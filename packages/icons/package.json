@@ -45,6 +45,7 @@
     "@chakra-ui/system": "1.0.0-rc.0"
   },
   "dependencies": {
+    "@types/react": "16.9.44",
     "@chakra-ui/icon": "1.0.0-rc.0"
   }
 }

@@ -1,0 +1,123 @@
+---
+title: "Global Styles"
+description: "How to manage and inject global styles in Chakra UI"
+---
+
+`GlobalStyle` is a new component in v1 that injects styles defined in
+`theme.styles.global` into the global styles of your app or website.
+
+This allows you define theme-aware styles for any elements.
+
+## How it works
+
+By using `ChakraProvider` at the root of your application, we automatically
+render a `GlobalStyle` component.
+
+- Reads the styles defined in `theme.styles.global`. This style can be a style
+  object or a function that returns a style object.
+- Process the styles and pass it to emotion's `Global` component which is used
+  to handle global style injection.
+
+```js
+// 1. Using a style object
+const theme = {
+  styles: {
+    global: {
+      "html, body": {
+        fontSize: "sm",
+        color: "gray.600",
+        lineHeight: "tall",
+      },
+      a: {
+        color: "teal.500",
+      },
+    },
+  },
+}
+
+// 2. Using a function
+// NB: Chakra gives you access to `colorMode` and `theme` in `props`
+const theme = {
+  styles: {
+    global: (props) => ({
+      "html, body": {
+        fontSize: "sm",
+        color: props.colorMode === "dark" ? "white" : "gray.600",
+        lineHeight: "tall",
+      },
+      a: {
+        color: props.colorMode === "dark" ? "teal.300" : "teal.500",
+      },
+    }),
+  },
+}
+```
+
+## Default styles
+
+The default Chakra theme providers some sensible global styles. Here's what it
+looks like:
+
+> The `mode(...)` function is the same as
+> `props.colorMode === "dark" ? darkMode : lightMode`
+
+```js
+const styles = {
+  global: (props) => ({
+    fontFamily: "body",
+    color: mode("gray.800", "whiteAlpha.900")(props),
+    bg: mode("white", "gray.800")(props),
+    lineHeight: "base",
+    "*::placeholder": {
+      color: mode("gray.400", "whiteAlpha.400")(props),
+    },
+    "*, *::before, &::after": {
+      borderColor: mode("gray.200", "whiteAlpha.300")(props),
+      wordWrap: "break-word",
+    },
+    fontFeatureSettings: `"pnum"`,
+    fontVariantNumeric: "proportional-nums",
+  }),
+}
+```
+
+## Styling non-Chakra elements globally
+
+When combining Chakra with other libraries, you might need a way to style some
+elements in those libraries using the theme defined tokens.
+
+Let's say you have a blog written in `mdx` and you'd like to style all the MDX
+elements globally. Here's what you'll do.
+
+```js
+// 1. Wrap the rendered mdx in a container
+const MDXWrapper = (props) => <div className="mdx-prose" {...props} />
+
+// 2. Define global styles
+// PRO TIP: Again, you can also use the function version here
+const theme = {
+  styles: {
+    global: {
+      ".mdx-prose": {
+        h1: {
+          fontSize: "xl",
+          mb: "4",
+        },
+        p: {
+          fontSize: "sm",
+          lineHeight: "1.4",
+        },
+      },
+    },
+  },
+}
+
+// 3. That's it! Your app will now read and use the global styles
+```
+
+## Custom global style examples
+
+To help you better understand this concept, here are links to projects with
+custom global styles.
+
+- [Gatsby Starter i18n](https://git.habd.as/comfusion/gatsby-starter-i18n-react-i18next/src/branch/master/src/utils/theme.tsx)

@@ -1,42 +1,48 @@
 import {
   chakra,
   layoutPropNames,
-  PropsOf,
+  GetProps,
   SystemProps,
   ThemingProps,
   useMultiStyleConfig,
+  forwardRef,
   omitThemingProps,
 } from "@chakra-ui/system"
-import { cx, split, __DEV__ } from "@chakra-ui/utils"
+import { split, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { useRadioGroupContext } from "./radio-group"
 import { useRadio, UseRadioProps } from "./use-radio"
 
-type Omitted = "onChange" | "defaultChecked" | "checked"
-type BaseControlProps = Omit<PropsOf<typeof chakra.div>, Omitted>
+interface BaseControlProps
+  extends Omit<
+    GetProps<typeof chakra.div>,
+    "onChange" | "defaultChecked" | "checked"
+  > {}
 
-export type RadioProps = UseRadioProps &
-  ThemingProps &
-  BaseControlProps & {
-    /**
-     * The spacing between the checkbox and it's label text
-     * @default 0.5rem
-     */
-    spacing?: SystemProps["marginLeft"]
-    /**
-     * If `true`, the radio will occupy the full width of it's parent container
-     */
-    isFullWidth?: boolean
-  }
+export interface RadioProps
+  extends UseRadioProps,
+    ThemingProps,
+    BaseControlProps {
+  /**
+   * The spacing between the checkbox and it's label text
+   * @default 0.5rem
+   */
+  spacing?: SystemProps["marginLeft"]
+  /**
+   * If `true`, the radio will occupy the full width of it's parent container
+   */
+  isFullWidth?: boolean
+}
 
 /**
  * Radio component is used in forms when a user needs to select a single value from
  * several options.
+ *
  * @see Docs https://chakra-ui.com/components/radio
  */
-export const Radio = React.forwardRef(function Radio(
-  props: RadioProps,
-  ref: React.Ref<any>,
+export const Radio = forwardRef<RadioProps, "input">(function Radio(
+  props,
+  ref,
 ) {
   const group = useRadioGroupContext()
   const styles = useMultiStyleConfig("Radio", { ...group, ...props })
@@ -45,10 +51,10 @@ export const Radio = React.forwardRef(function Radio(
     spacing = "0.5rem",
     children,
     isFullWidth,
-    ...radioProps
+    ...rest
   } = omitThemingProps(props)
 
-  let isChecked = props.isChecked
+  let isChecked = props.isChecked || false
   if (group?.value && props.value) {
     isChecked = group.value === props.value
   }
@@ -58,16 +64,21 @@ export const Radio = React.forwardRef(function Radio(
     onChange = group.onChange
   }
 
-  const name = group?.name || props?.name
+  const name = props?.name ?? group?.name
 
   const {
     getInputProps,
     getCheckboxProps,
     getLabelProps,
-    htmlProps: rest,
-  } = useRadio({ ...radioProps, isChecked, onChange, name })
+    htmlProps,
+  } = useRadio({
+    ...rest,
+    isChecked,
+    onChange,
+    name,
+  })
 
-  const [layoutProps, otherProps] = split(rest, layoutPropNames as any)
+  const [layoutProps, otherProps] = split(htmlProps, layoutPropNames as any)
 
   const checkboxProps = getCheckboxProps(otherProps)
   const inputProps = getInputProps({}, ref)

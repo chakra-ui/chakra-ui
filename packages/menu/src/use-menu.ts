@@ -155,13 +155,15 @@ export function useMenu(props: UseMenuProps) {
   const domContext = useDescendants<HTMLDivElement, {}>()
 
   /**
-   * Focus the top-level disclosure when we close the menu
+   * Focus the button when we close the menu
    */
   useUpdateEffect(() => {
     if (!isOpen) {
       setFocusedIndex(-1)
       if (buttonRef.current) {
-        focus(buttonRef.current)
+        focus(buttonRef.current, {
+          preventScroll: true,
+        })
       }
     }
   }, [isOpen])
@@ -204,7 +206,8 @@ export interface UseMenuReturn extends ReturnType<typeof useMenu> {}
  * is passed as `context` to this hook.
  */
 
-export interface UseMenuListProps extends HTMLAttributes<Element> {}
+export interface UseMenuListProps
+  extends Omit<HTMLAttributes<Element>, "color"> {}
 
 export function useMenuList(props: UseMenuListProps) {
   const menu = useMenuContext()
@@ -285,7 +288,8 @@ export function useMenuList(props: UseMenuListProps) {
  * is passed as `context` to this hook.
  */
 
-export interface UseMenuButtonProps extends HTMLAttributes<Element> {}
+export interface UseMenuButtonProps
+  extends Omit<HTMLAttributes<Element>, "color"> {}
 
 export function useMenuButton(props: UseMenuButtonProps) {
   const menu = useMenuContext()
@@ -349,7 +353,8 @@ export function useMenuButton(props: UseMenuButtonProps) {
   }
 }
 
-export interface UseMenuItemProps extends HTMLAttributes<Element> {
+export interface UseMenuItemProps
+  extends Omit<HTMLAttributes<Element>, "color"> {
   isDisabled?: boolean
   isFocusable?: boolean
 }
@@ -452,12 +457,16 @@ export function useMenuItem(props: UseMenuItemProps) {
   }
 }
 
-export interface UseMenuOptionProps extends UseMenuItemProps {
+export interface UseMenuOptionOptions {
   value?: string
   isChecked?: boolean
   type?: "radio" | "checkbox"
   children?: React.ReactNode
 }
+
+export interface UseMenuOptionProps
+  extends UseMenuItemProps,
+    UseMenuOptionOptions {}
 
 export function useMenuOption(props: UseMenuOptionProps) {
   const {

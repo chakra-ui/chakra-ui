@@ -3,6 +3,11 @@
 exports[`should render correctly 1`] = `
 <DocumentFragment>
   .emotion-6 {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
   background: rgba(0,0,0,0.48);
   display: -webkit-box;
   display: -webkit-flex;
@@ -17,49 +22,9 @@ exports[`should render correctly 1`] = `
   -ms-flex-align: flex-start;
   align-items: flex-start;
   overflow: auto;
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  left: 0;
-  top: 0;
-}
-
-.emotion-6.overlay-enter {
-  opacity: 0.01;
-}
-
-.emotion-6.overlay-enter-active {
-  opacity: 1;
-  -webkit-transition-timing-function: cubic-bezier(0,0,.2,1);
-  transition-timing-function: cubic-bezier(0,0,.2,1);
-  -webkit-transition-property: opacity;
-  transition-property: opacity;
-  -webkit-transition-duration: 150ms;
-  transition-duration: 150ms;
-}
-
-.emotion-6.overlay-exit {
-  opacity: 1;
-}
-
-.emotion-6.overlay-exit-active {
-  opacity: 0.01;
-  -webkit-transition-timing-function: cubic-bezier(.4,0,1,1);
-  transition-timing-function: cubic-bezier(.4,0,1,1);
-  -webkit-transition-property: opacity;
-  transition-property: opacity;
-  -webkit-transition-duration: 100ms;
-  transition-duration: 100ms;
 }
 
 .emotion-5 {
-  border-radius: 0.25rem;
-  background: #FFFFFF;
-  color: inherit;
-  margin-top: 3.75rem;
-  margin-bottom: 3.75rem;
-  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1),0 4px 6px -2px rgba(0,0,0,0.05);
-  max-width: 28rem;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -70,50 +35,13 @@ exports[`should render correctly 1`] = `
   position: relative;
   width: 100%;
   outline: 0;
-}
-
-.emotion-5.content-enter,
-.emotion-5.content-appear {
-  opacity: 0.01;
-  -webkit-transform: scale(0.97);
-  -ms-transform: scale(0.97);
-  transform: scale(0.97);
-}
-
-.emotion-5.content-enter-active,
-.emotion-5.content-appear-active {
-  opacity: 1;
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition-timing-function: cubic-bezier(0,0,.2,1);
-  transition-timing-function: cubic-bezier(0,0,.2,1);
-  -webkit-transition-property: opacity,-webkit-transform;
-  -webkit-transition-property: opacity,transform;
-  transition-property: opacity,transform;
-  -webkit-transition-duration: 150ms;
-  transition-duration: 150ms;
-}
-
-.emotion-5.content-exit {
-  opacity: 1;
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-}
-
-.emotion-5.content-exit-active {
-  opacity: 0.01;
-  -webkit-transform: scale(0.97);
-  -ms-transform: scale(0.97);
-  transform: scale(0.97);
-  -webkit-transition-timing-function: cubic-bezier(.4,0,1,1);
-  transition-timing-function: cubic-bezier(.4,0,1,1);
-  -webkit-transition-property: opacity,-webkit-transform;
-  -webkit-transition-property: opacity,transform;
-  transition-property: opacity,transform;
-  -webkit-transition-duration: 100ms;
-  transition-duration: 100ms;
+  border-radius: 0.25rem;
+  background: #FFFFFF;
+  color: inherit;
+  margin-top: 3.75rem;
+  margin-bottom: 3.75rem;
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1),0 4px 6px -2px rgba(0,0,0,0.05);
+  max-width: 28rem;
 }
 
 .emotion-0 {
@@ -129,11 +57,6 @@ exports[`should render correctly 1`] = `
 }
 
 .emotion-2 {
-  border-radius: 0.25rem;
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
-  width: 32px;
-  height: 32px;
   outline: 0;
   display: -webkit-box;
   display: -webkit-flex;
@@ -150,6 +73,12 @@ exports[`should render correctly 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
+  border-radius: 0.25rem;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  width: 32px;
+  height: 32px;
+  font-size: 12px;
   position: absolute;
   top: 8px;
   right: 12px;
@@ -185,7 +114,6 @@ exports[`should render correctly 1`] = `
 }
 
 .emotion-1 {
-  font-size: 12px;
   vertical-align: middle;
   display: inline-block;
   line-height: 1em;
@@ -260,7 +188,7 @@ exports[`should render correctly 1`] = `
               aria-describedby="chakra-modal--body-1"
               aria-labelledby="chakra-modal--header-1"
               aria-modal="true"
-              class="chakra-modal__content emotion-5 content-appear content-appear-active"
+              class="chakra-modal__content emotion-5"
               id="chakra-modal-1"
               role="dialog"
               tabindex="-1"
@@ -280,7 +208,6 @@ exports[`should render correctly 1`] = `
                   aria-hidden="true"
                   class="chakra-icon emotion-1"
                   focusable="false"
-                  role="presentation"
                   viewBox="0 0 24 24"
                 >
                   <path

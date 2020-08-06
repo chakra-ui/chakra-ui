@@ -1,12 +1,12 @@
 import { useLatestRef } from "@chakra-ui/hooks"
-import * as React from "react"
+import { useEffect, useState } from "react"
 import {
   addListener,
   ColorMode,
   getColorScheme,
-  storage,
   syncBodyClassName,
 } from "./color-mode.utils"
+import { StorageManager, localStorageManager } from "./storage-manager"
 
 /**
  * Syncs the classname of the `<body />` based on the
@@ -17,7 +17,7 @@ import {
  * If mode is 'dark', body will be `<body class="chakra-ui-light"/>`
  */
 function useSyncBodyClass(mode: string) {
-  React.useEffect(() => {
+  useEffect(() => {
     requestAnimationFrame(() => {
       syncBodyClassName(mode === "dark")
     })
@@ -33,7 +33,7 @@ function useSyncBodyClass(mode: string) {
  */
 function useSyncSystemColorMode(fn: Function, enabled: boolean) {
   const callback = useLatestRef(fn)
-  React.useEffect(() => {
+  useEffect(() => {
     if (!enabled) return
     const removeListener = addListener(callback.current)
     return () => {
@@ -47,36 +47,39 @@ export interface ColorModeOptions {
   useSystemColorMode?: boolean
 }
 
+interface useColorModeStateOptions extends ColorModeOptions {
+  storageManager?: StorageManager
+}
+
 /**
  * React hook that sets up the localStorage, body className,
  * and reads from system preference
  */
-export function useColorModeState<T extends ColorModeOptions>(options?: T) {
-  const [mode, setMode] = React.useState<ColorMode>(
-    options?.initialColorMode || "light",
-  )
+export function useColorModeState<T extends useColorModeStateOptions>(
+  options?: T,
+) {
+  const storageManager = options?.storageManager || localStorageManager
+
+  const [mode, setMode] = useState<ColorMode>(() => {
+    const stored = storageManager.get()
+
+    if (stored) return stored
+
+    if (options?.useSystemColorMode) {
+      return getColorScheme()
+    }
+
+    return options?.initialColorMode || "light"
+  })
 
   useSyncBodyClass(mode)
   useSyncSystemColorMode(setMode, !!options?.useSystemColorMode)
 
-  React.useEffect(() => {
-    const stored = storage.get()
-
-    if (!stored && options?.useSystemColorMode) {
-      setMode(getColorScheme)
-      return
-    }
-
-    if (!stored || stored === mode) return
-    setMode(stored)
-    // eslint-disable-next-line
-  }, [])
-
-  React.useEffect(() => {
+  useEffect(() => {
     if (mode) {
-      storage.set(mode)
+      storageManager.set(mode)
     }
-  }, [mode])
+  }, [storageManager, mode])
 
   return [mode, setMode] as const
 }

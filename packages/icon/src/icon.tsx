@@ -1,4 +1,4 @@
-import { chakra, PropsOf } from "@chakra-ui/system"
+import { chakra, forwardRef, GetProps } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -21,12 +21,9 @@ const fallbackIcon = {
   viewBox: "0 0 24 24",
 }
 
-export type IconProps = PropsOf<typeof chakra.svg>
+export interface IconProps extends GetProps<typeof chakra.svg> {}
 
-export const Icon = React.forwardRef(function Icon(
-  props: IconProps,
-  ref: React.Ref<any>,
-) {
+export const Icon = forwardRef<IconProps, "svg">(function Icon(props, ref) {
   const {
     as: element,
     boxSize = "1em",

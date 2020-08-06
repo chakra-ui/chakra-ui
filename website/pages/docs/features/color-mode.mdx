@@ -1,0 +1,173 @@
+---
+title: "Color Mode"
+package: "@chakra-ui/color-mode"
+description: Working with color mode (light and dark mode) in Chakra UI
+order: 4
+---
+
+When you use the `ChakraProvider` at the root of your app, you can automatically
+use color mode in your apps.
+
+By default, most of Chakra's component are dark mode compatible. To handle color
+mode manually in your application, use the `useColorMode` or `useColorModeValue`
+hooks.
+
+> **Tip:** Chakra stores the color mode in `localStorage` and uses a class name
+> strategy to ensure the color mode is persistent.
+
+## useColorMode
+
+`useColorMode` is a React hook that gives you access to the current color mode,
+and a function to toggle the color mode.
+
+```jsx
+function Example() {
+  const { colorMode, toggleColorMode } = useColorMode()
+  return (
+    <header>
+      <Button onClick={toggleColorMode}>
+        Toggle {colorMode === "light" ? "Dark" : "Light"}
+      </Button>
+    </header>
+  )
+}
+```
+
+Calling `toggleColorMode` anywhere in your app tree toggles the color mode.
+
+## useColorModeValue
+
+`useColorModeValue` is a React hook used to change any value or style based on
+the color mode. It takes 2 arguments: the value in light mode, and the value in
+dark mode.
+
+```jsx live=false
+// Here's the signature
+const value = useColorModeValue(lightModeValue, darkModeValue)
+```
+
+Here's an example that changes the `background-color` and `color` using the
+`useColorModeValue` hook.
+
+> Click the **Toggle Mode** button to see it in action.
+
+```jsx
+function StyleColorMode() {
+  const { colorMode, toggleColorMode } = useColorMode()
+
+  const bg = useColorModeValue("red.500", "red.200")
+  const color = useColorModeValue("white", "gray.800")
+
+  return (
+    <>
+      <Box mb={4} bg={bg} color={color}>
+        This box's style will change based on the color mode.
+      </Box>
+      <Button size="sm" onClick={toggleColorMode}>
+        Toggle Mode
+      </Button>
+    </>
+  )
+}
+```
+
+## Forcing a specific mode
+
+In some occasions, you might want Chakra components to look the same in both
+light and dark modes. To achieve this, wrap the component in a `LightMode` or
+`DarkMode` component. Doing this will override the global `colorMode`.
+
+> Click the **"Toggle Mode"** button to see it in action.
+
+```jsx
+function Example() {
+  const { colorMode, toggleColorMode } = useColorMode()
+
+  return (
+    <HStack>
+      <LightMode>
+        <Button size="sm" colorScheme="blue">
+          Light Mode Always
+        </Button>
+      </LightMode>
+
+      <DarkMode>
+        <Button size="sm" colorScheme="blue">
+          Dark Mode Always
+        </Button>
+      </DarkMode>
+
+      <Button size="sm" colorScheme="blue" onClick={toggleColorMode}>
+        Toggle Mode
+      </Button>
+    </HStack>
+  )
+}
+```
+
+## Change color mode behavior
+
+Starting from v1.0, you can now set default color mode or use default OS color
+mode.
+
+### Setting initial mode
+
+Sometimes, you want you app to start with light or dark mode by default. To
+support this, add `theme.config.initialColorMode` to the theme and set it's
+value to "light" or "dark".
+
+```jsx live=false
+const theme = {
+  config: {
+    initialColorMode: "dark", // "light" | "dark"
+  },
+}
+```
+
+### Using system color mode
+
+In some scenarios, you might want your app to adapt to the user's OS color mode
+preference. To support this, add `theme.config.useSystemColorMode`.
+
+This also updates the color mode whenever user changes this preference from
+their OS.
+
+```jsx live=false
+const theme = {
+  config: {
+    useSystemColorMode: true,
+  },
+}
+```
+
+## Changing the storageManager for server side rendering (SSR) apps
+
+By default the current color mode is persisted in local storage. Unfortunately this can cause a flash between light and dark modes
+during initial page load for apps that server side render. This flash is caused because local storage isn't accessible on the server.
+The default storageManager can be swapped out to use cookies instead of local storage. Below is an example of using the 
+cookieStorageManager in a Next.js app.
+
+```jsx live=false
+import { ChakraProvider, CSSReset, cookieStorageManager } from "@chakra-ui/core"
+import theme from "@chakra-ui/theme"
+
+const App = ({ Component, pageProps, cookies }) => {
+  return (
+    <ChakraProvider
+      theme={theme}
+      storageManager={cookieStorageManager(cookies)}
+    >
+      <CSSReset />
+      <Component {...pageProps} />
+    </ChakraProvider>
+  )
+}
+
+App.getInitialProps = async ({ ctx }) => {
+  return {
+    cookies: ctx.req.headers.cookie,
+  }
+}
+
+export default App
+```

@@ -1,0 +1,61 @@
+---
+title: Using Chakra UI's official create-react-app templates
+description:
+  A guide for creating create-react-app projects from the official Chakra UI
+  templates
+tags: ["create-react-app"]
+author: with-heart
+---
+
+**Create React App** allows users to create a project using a template, which
+determines the files and dependencies included with the generated project.
+
+We provide two official `create-react-app` templates for Chakra UI: one for
+JavaScript and the other for TypeScript.
+
+## Usage
+
+In order to generate a `create-react-app` project from a template, you pass the
+`--template` flag to the `create-react-app` command.
+
+```bash
+# using npm
+npx create-react-app my-app --template [template-name]
+
+# using yarn
+yarn create react-app my-app --template [template-name]
+```
+
+The template name for the JavaScript project is `@chakra-ui`. The template name
+for the TypeScript project is `@chakra-ui/typescript`.
+
+```bash
+# JavaScript using npm
+npx create-react-app my-app --template @chakra-ui
+# JavaScript using yarn
+yarn create react-app my-app --template @chakra-ui
+
+# TypeScript using npm
+npx create-react-app my-app --template @chakra-ui/typescript
+# TypeScript using yarn
+yarn create react-app my-app --template @chakra-ui/typescript
+```
+
+## What's included
+
+The official templates are similar to the base `create-react-app` template, but
+they come with Chakra UI dependencies pre-installed and include Chakra-specific
+functionality.
+
+### Pre-install dependencies
+
+- `@chakra-ui/core`
+- `@chakra-ui/theme`
+- `@chakra-ui/theme-tools`
+- `react-icons`
+
+### Chakra-specific functionality
+
+- `ChakraProvider` and `CSSReset` already connected to the default `theme`
+- `ColorModeSwitcher` component, using Chakra's color mode management
+- Animated Chakra UI logo instead of the React logo

@@ -1,12 +1,18 @@
 import React from "react"
 import { CSSTransition } from "react-transition-group"
-import { chakra } from "@chakra-ui/system"
+import { chakra, PropsOf } from "@chakra-ui/system"
 
 const context = React.createContext<{ isOpen: boolean; onClose: () => void }>(
   {} as any,
 )
 
-function Modal({ children, isOpen, onClose }) {
+interface ModalProps {
+  children: React.ReactNode
+  isOpen: boolean
+  onClose: () => void
+}
+
+function Modal({ children, isOpen, onClose }: ModalProps) {
   return (
     <context.Provider value={{ isOpen, onClose }}>
       <CSSTransition
@@ -21,7 +27,7 @@ function Modal({ children, isOpen, onClose }) {
   )
 }
 
-function ModalOverlay(props) {
+function ModalOverlay(props: PropsOf<typeof chakra.div>) {
   const { onClose } = React.useContext(context)
   return (
     <chakra.div
@@ -56,7 +62,7 @@ function ModalOverlay(props) {
   )
 }
 
-function ModalContent(props) {
+function ModalContent(props: PropsOf<typeof chakra.div>) {
   const { isOpen } = React.useContext(context)
   return (
     <CSSTransition

@@ -10,7 +10,6 @@ import {
   omit,
 } from "@chakra-ui/utils"
 import * as React from "react"
-import { ForwardRefComponent } from "./system.types"
 import { FunctionInterpolation } from "@emotion/core"
 
 /**
@@ -144,10 +143,4 @@ function getComponentName(primitive: React.ComponentType | string) {
     (!isString(primitive) && primitive.name) ||
     "ChakraComponent"
   )
-}
-
-export function forwardRef<P>(
-  comp: (props: P, ref: React.Ref<any>) => React.ReactElement | null,
-) {
-  return (React.forwardRef(comp as any) as unknown) as ForwardRefComponent<P>
 }

@@ -3,8 +3,8 @@ import { Icon, IconProps } from "@chakra-ui/icon"
 import {
   chakra,
   forwardRef,
+  GetProps,
   omitThemingProps,
-  PropsOf,
   StylesProvider,
   ThemingProps,
   useMultiStyleConfig,
@@ -19,7 +19,7 @@ import {
   __DEV__,
   Dict,
 } from "@chakra-ui/utils"
-import React, { Ref, useMemo } from "react"
+import React, { useMemo } from "react"
 import {
   AccordionProvider,
   useAccordion,
@@ -30,16 +30,17 @@ import {
   UseAccordionProps,
 } from "./use-accordion"
 
-type DivProps = PropsOf<typeof chakra.div>
+interface DivProps extends GetProps<typeof chakra.div> {}
 
-export type AccordionProps = UseAccordionProps &
-  Omit<DivProps, "onChange"> &
-  ThemingProps & {
-    /**
-     * If `true`, height animation and transitions will be disabled.
-     */
-    reduceMotion?: boolean
-  }
+export interface AccordionProps
+  extends UseAccordionProps,
+    DivProps,
+    ThemingProps {
+  /**
+   * If `true`, height animation and transitions will be disabled.
+   */
+  reduceMotion?: boolean
+}
 
 /**
  * The wrapper that provides context and focus management
@@ -48,9 +49,9 @@ export type AccordionProps = UseAccordionProps &
  * It wraps all accordion items in a `div` for better grouping.
  * @see Docs https://chakra-ui.com/components/accordion
  */
-export const Accordion = React.forwardRef(function Accordion(
-  props: AccordionProps,
-  ref: Ref<any>,
+export const Accordion = forwardRef<AccordionProps, "div">(function Accordion(
+  props,
+  ref,
 ) {
   const styles = useMultiStyleConfig("Accordion", props)
   const _props = omitThemingProps(props)
@@ -91,13 +92,12 @@ const [AccordionItemProvider, useAccordionItemContext] = createContext<
     "useAccordionItemContext: `context` is undefined. Seems you forgot to wrap the accordion item parts in `<AccordionItem />` ",
 })
 
-export type AccordionItemProps = Omit<DivProps, "children"> &
-  Omit<UseAccordionItemProps, "context"> & {
-    children?: ReactNodeOrRenderProp<{
-      isExpanded: boolean
-      isDisabled: boolean
-    }>
-  }
+export interface AccordionItemProps extends DivProps, UseAccordionItemProps {
+  children?: ReactNodeOrRenderProp<{
+    isExpanded: boolean
+    isDisabled: boolean
+  }>
+}
 
 /**
  * AccordionItem is a single accordion that provides the open-close
@@ -105,32 +105,31 @@ export type AccordionItemProps = Omit<DivProps, "children"> &
  *
  * It also provides context for the accordion button and panel.
  */
-export const AccordionItem = React.forwardRef(function AccordionItem(
-  props: AccordionItemProps,
-  ref: Ref<any>,
-) {
-  const { children } = props
-  const { htmlProps, ...context } = useAccordionItem(props)
+export const AccordionItem = forwardRef<AccordionItemProps, "div">(
+  function AccordionItem(props, ref) {
+    const { children, className } = props
+    const { htmlProps, ...context } = useAccordionItem(props)
 
-  const styles = useStyles()
-  const _context = useMemo(() => context, [context])
+    const styles = useStyles()
+    const _context = useMemo(() => context, [context])
 
-  return (
-    <AccordionItemProvider value={_context}>
-      <chakra.div
-        ref={ref}
-        {...htmlProps}
-        className={cx("chakra-accordion__item", props.className)}
-        __css={styles.container}
-      >
-        {runIfFn(children, {
-          isExpanded: !!context.isOpen,
-          isDisabled: !!context.isDisabled,
-        })}
-      </chakra.div>
-    </AccordionItemProvider>
-  )
-})
+    return (
+      <AccordionItemProvider value={_context}>
+        <chakra.div
+          ref={ref}
+          {...htmlProps}
+          className={cx("chakra-accordion__item", className)}
+          __css={styles.container}
+        >
+          {runIfFn(children, {
+            isExpanded: !!context.isOpen,
+            isDisabled: !!context.isDisabled,
+          })}
+        </chakra.div>
+      </AccordionItemProvider>
+    )
+  },
+)
 
 if (__DEV__) {
   AccordionItem.displayName = "AccordionItem"
@@ -144,7 +143,7 @@ export function useAccordionItemState() {
   return { isOpen, onClose, isDisabled, onOpen }
 }
 
-export type AccordionButtonProps = PropsOf<typeof chakra.button>
+export interface AccordionButtonProps extends GetProps<typeof chakra.button> {}
 
 /**
  * AccordionButton is used expands and collapses an accordion item.
@@ -153,7 +152,7 @@ export type AccordionButtonProps = PropsOf<typeof chakra.button>
  * Note 🚨: Each accordion button must be wrapped in an heading tag,
  * that is appropriate for the information architecture of the page.
  */
-export const AccordionButton = forwardRef<AccordionButtonProps>(
+export const AccordionButton = forwardRef<AccordionButtonProps, "button">(
   function AccordionButton(props, ref) {
     const { getButtonProps } = useAccordionItemContext()
     const buttonProps = getButtonProps(props, ref)
@@ -190,38 +189,37 @@ export type AccordionPanelProps = DivProps
  *
  * It uses the `Collapse` component to animate it's height.
  */
-export const AccordionPanel = React.forwardRef(function AccordionPanel(
-  props: AccordionPanelProps,
-  ref: React.Ref<any>,
-) {
-  const { reduceMotion } = useAccordionContext()
-  const { getPanelProps, isOpen } = useAccordionItemContext()
+export const AccordionPanel = forwardRef<AccordionPanelProps, "div">(
+  function AccordionPanel(props, ref) {
+    const { reduceMotion } = useAccordionContext()
+    const { getPanelProps, isOpen } = useAccordionItemContext()
 
-  // remove `hidden` prop, 'coz we're using height animation
-  const { hidden, ...panelProps } = getPanelProps({ ...props, ref }) as Dict
+    // remove `hidden` prop, 'coz we're using height animation
+    const { hidden, ...panelProps } = getPanelProps({ ...props, ref }) as Dict
 
-  const _className = cx("chakra-accordion__panel", props.className)
-  const styles = useStyles()
+    const _className = cx("chakra-accordion__panel", props.className)
+    const styles = useStyles()
 
-  if (reduceMotion == true) {
-    panelProps.hidden = hidden
-  }
+    if (reduceMotion == true) {
+      panelProps.hidden = hidden
+    }
 
-  const child = (
-    <chakra.div
-      {...panelProps}
-      __css={styles.panel}
-      className={_className}
-      transition="height 150ms ease-in-out, opacity 150ms ease-in-out, transform 150ms ease-in-out"
-    />
-  )
+    const child = (
+      <chakra.div
+        {...panelProps}
+        __css={styles.panel}
+        className={_className}
+        transition="height 150ms ease-in-out, opacity 150ms ease-in-out, transform 150ms ease-in-out"
+      />
+    )
 
-  if (reduceMotion == false) {
-    return <Collapse isOpen={isOpen}>{child}</Collapse>
-  }
+    if (reduceMotion == false) {
+      return <Collapse isOpen={isOpen}>{child}</Collapse>
+    }
 
-  return child
-})
+    return child
+  },
+)
 
 if (__DEV__) {
   AccordionPanel.displayName = "AccordionPanel"
@@ -231,7 +229,7 @@ if (__DEV__) {
  * AccordionIcon that gives a visual cue of the open/close state of the accordion item.
  * It rotates `180deg` based on the open/close state.
  */
-export function AccordionIcon(props: IconProps) {
+export const AccordionIcon: React.FC<IconProps> = (props) => {
   const { isOpen, isDisabled } = useAccordionItemContext()
   const { reduceMotion } = useAccordionContext()
 

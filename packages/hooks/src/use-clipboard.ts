@@ -1,4 +1,4 @@
-import * as React from "react"
+import { useState, useCallback, useEffect } from "react"
 import copy from "copy-to-clipboard"
 
 /**
@@ -8,14 +8,14 @@ import copy from "copy-to-clipboard"
  * @param timeout delay (in ms) to switch back to initial state once copied.
  */
 export function useClipboard(text: string, timeout = 1500) {
-  const [hasCopied, setHasCopied] = React.useState(false)
+  const [hasCopied, setHasCopied] = useState(false)
 
-  const onCopy = React.useCallback(() => {
+  const onCopy = useCallback(() => {
     const didCopy = copy(text)
     setHasCopied(didCopy)
   }, [text])
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (hasCopied) {
       const id = setTimeout(() => {
         setHasCopied(false)
@@ -25,5 +25,5 @@ export function useClipboard(text: string, timeout = 1500) {
     }
   }, [timeout, hasCopied])
 
-  return [hasCopied, onCopy] as const
+  return { value: text, onCopy, hasCopied }
 }

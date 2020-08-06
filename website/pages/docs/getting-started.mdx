@@ -1,0 +1,78 @@
+---
+title: Getting Started
+description: How to install and set up Chakra UI in your local project
+---
+
+**First, you need to install Chakra UI**
+
+```bash
+npm i @chakra-ui/core@next
+
+# or
+
+yarn add @chakra-ui/core@next
+```
+
+**Next, install the default theme**
+
+Chakra has prepared a default theme for you that you can modify or extends. The
+theme contains specifications for the fonts, font sizes, colors, etc.
+
+To get the default theme, install the `@chakra-ui/theme` package.
+
+```bash
+npm i @chakra-ui/theme@next
+
+# or
+
+yarn add @chakra-ui/theme@next
+```
+
+**Next, add the provider**
+
+For Chakra to work correctly, you need to setup the global provider and add
+browser css reset. At the root of your application, here's what you need do:
+
+```jsx live=false
+import * as React from "react"
+// 1. import these components
+import { ChakraProvider, CSSReset } from "@chakra-ui/core"
+
+// 2. import the theme
+import theme from "@chakra-ui/theme"
+
+// 3. Use at the root of your app
+function App() {
+  return (
+    <ChakraProvider theme={theme}>
+      <CSSReset />
+      <App />
+    </ChakraProvider>
+  )
+}
+```
+
+> - For Next.js, you need to set this up in `pages/_app.js`
+> - For Gatsby, install the `gatsby-plugin-chakra-ui`. It does it automatically
+>   for you.
+> - For Create React App, you need to set this up in `index.js`
+
+<br />
+
+That's it, you're good to go!
+
+## TypeScript
+
+Please note that when adding Chakra UI to a TypeScript project, a minimum
+TypeScript version of `3.8.0` is required.
+
+If you're adding Chakra UI to a `create-react-app` project, this means you'll
+need to manually upgrade `typescript` to `^3.8.0`.
+
+See [the guide for our create-react-app](../guides/cra-templates) templates if
+you'd like to generate a Chakra-enabled `create-react-app` project from scratch.
+
+## Contributing
+
+Please see our [contribution guidelines](/contributing) to learn how you can
+contribute to this project.

@@ -3,13 +3,7 @@ import {
   useControllableProp,
   useSafeLayoutEffect,
 } from "@chakra-ui/hooks"
-import {
-  callAllHandlers,
-  dataAttr,
-  mergeRefs,
-  Dict,
-  focus,
-} from "@chakra-ui/utils"
+import { callAllHandlers, dataAttr, mergeRefs, Dict } from "@chakra-ui/utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
 import React, {
   Ref,
@@ -83,6 +77,7 @@ export interface UseCheckboxProps {
 /**
  * useCheckbox that provides all the state and focus management logic
  * for a checkbox. It is consumed by the `Checkbox` component
+ *
  * @see Docs https://chakra-ui.com/components/useCheckbox
  */
 export function useCheckbox(props: UseCheckboxProps = {}) {

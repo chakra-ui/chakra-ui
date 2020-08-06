@@ -1056,6 +1056,24 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Easybuoy",
+      "name": "Ekunola Ezekiel",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/24660100?v=4",
+      "profile": "https://ezekielekunola.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "bmitchinson",
+      "name": "Ben Mitchinson",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/33632286?v=4",
+      "profile": "http://mitchinson.dev",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,

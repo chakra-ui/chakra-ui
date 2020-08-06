@@ -1,0 +1,109 @@
+---
+title: Heading
+package: "@chakra-ui/layout"
+description: Headings are used for rendering headlines.
+---
+
+import ComponentLinks from "../../../src/components/component-links"
+
+Headings are used for rendering headlines.
+
+`Heading` composes `Box` so you can use all the style props and add responsive
+styles as well. It renders an `<h2>` tag by default.
+
+<ComponentLinks
+  github={{ url: "#" }}
+  storybook={{ url: "#" }}
+  npm={{ label: "@chakra-ui/layout", url: "#" }}
+/>
+
+<carbon-ad></carbon-ad>
+
+## Import
+
+```js
+import { Heading } from "@chakra-ui/core"
+```
+
+## Usage
+
+```jsx
+<Heading>I'm a Heading</Heading>
+```
+
+### Changing font size
+
+To increase the size of the heading, you can use the `fontSize` or `size` props.
+If you use the `size` prop, the font size of the heading will automatically
+decrease in size for smaller screens.
+
+```jsx
+<Stack spacing={3}>
+  <Heading as="h1" size="2xl">
+    In love with React & Next
+  </Heading>
+  <Heading as="h2" size="xl">
+    In love with React & Next
+  </Heading>
+  <Heading as="h3" size="lg">
+    In love with React & Next
+  </Heading>
+  <Heading as="h4" size="md">
+    In love with React & Next
+  </Heading>
+  <Heading as="h5" size="sm">
+    In love with React & Next
+  </Heading>
+  <Heading as="h6" size="xs">
+    In love with React & Next
+  </Heading>
+</Stack>
+```
+
+### Truncate heading
+
+Pass the `isTruncated` prop to render an ellipsis when the heading exceeds the
+width of the viewport or `maxWidth` prop.
+
+```jsx
+<Heading isTruncated>
+  Basic text writing, including headings, body text, lists, and more.
+</Heading>
+```
+
+### Override style
+
+You can override the size of the Heading component by passing the `fontSize`
+prop. No need to write `css` or `styled()`
+
+```jsx
+<Heading size="lg" fontSize="50px">
+  I'm overriding this heading
+</Heading>
+```
+
+## Composition
+
+```jsx
+// Example from paystack.com
+
+<Box maxW="32rem">
+  <Heading mb={4}>Modern online and offline payments for Africa</Heading>
+  <Text fontSize="xl">
+    Paystack helps businesses in Africa get paid by anyone, anywhere in the
+    world
+  </Text>
+  <Button size="lg" colorScheme="green" mt="24px">
+    Create a free account
+  </Button>
+</Box>
+```
+
+## Props
+
+The Heading composes the [Box](/docs/layout/box) component, so you can pass all
+`Box` props.
+
+| Name   | Type                                 | Default | Description              |
+| ------ | ------------------------------------ | ------- | ------------------------ |
+| `size` | `2xl`, `xl` , `lg`, `md`, `sm`, `xs` | `xl`    | The size of the heading. |

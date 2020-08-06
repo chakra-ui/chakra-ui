@@ -1,0 +1,120 @@
+---
+title: Chakra UI + Gatsby
+description: Adding Chakra UI Components to Gatsby sites
+tags: ["gatsby", "websites", "ssr"]
+author: KenzoBenzo
+---
+
+Chakra UI is a great UI library to get your Gatsby website up and running fast
+and accessibly. The setup is slightly different than other projects, however the
+API usage seen in the rest of the docs is the same!
+
+**There are two ways to setup Chakra with Gatsby shown in this Guide:**
+
+- [`gatsby-plugin-chakra-ui`](#gatsby-plugin)
+- [From scratch](#chakra-providers)
+
+## Gatsby plugin
+
+Gastby plugins make external APIs plug-and-play into your website. Installing
+can be done with the following command:
+
+```bash
+npm i gatsby-plugin-chakra-ui @chakra-ui/core
+
+# or
+
+yarn add gatsby-plugin-chakra-ui @chakra-ui/core
+```
+
+After installation, you'll need to add `gatsby-plugin-chakra-ui` to the
+`gatsby-config.js` file.
+
+```jsx live=false
+// gatsby-config.js
+
+module.exports = {
+  plugins: [
+    {
+      resolve: "gatsby-plugin-chakra-ui",
+      options: {
+        /**
+         * @property {boolean} [isResettingCSS=true]
+         * if false, this plugin will not use `<CSSReset />
+         */
+        isResettingCSS: true,
+        /**
+         * @property {boolean} [isUsingColorMode=true]
+         * if false, this plugin will not use <ColorModeProvider />
+         */
+        isUsingColorMode: true,
+      },
+    },
+  ],
+}
+```
+
+To use custom theme, you can shadow this plugin’s theme.js directory and file
+with your own theme:
+
+```jsx live=false
+// src/gatsby-plugin-chakra-ui/theme.js
+const theme = {}
+
+export default theme
+```
+
+## Chakra providers
+
+Chakra exposes some context providers to give your website context of the theme,
+and color mode.
+
+In Gatsby, the root of your project is `gatsby-browser.js` + `gatsby-ssr.js`.
+Further documentation about
+[Gastby Browser](https://www.gatsbyjs.org/docs/browser-apis/#wrapRootElement)
+and [Gatsby SSR](https://www.gatsbyjs.org/docs/ssr-apis/#wrapRootElement). The
+two files should look like this:
+
+```js live=false
+import React from "react"
+import { ChakraProvider, CSSReset } from "@chakra-ui/core"
+import customTheme from "./theme/theme"
+
+export const wrapRootElement = ({ element }) => {
+  return (
+    <ChakraProvider theme={customTheme}>
+      <CSSReset />
+      {element}
+    </ChakraProvider>
+  )
+}
+```
+
+```js live=false
+// gatsby-ssr.js
+export { wrapRootElement } from "./gatsby-browser"
+```
+
+### v0.8 and below
+
+If you're still working on v0.8, the providers will be a bit different as seen
+below.
+
+```jsx live=false
+import React from "react"
+import { ChakraProvider, CSSReset } from "@chakra-ui/core"
+import customTheme from "./theme/theme"
+
+export const wrapRootElement = ({ element }) => {
+  return (
+    <>
+      <ThemeProvider theme={customTheme}>
+        <ColorModeProvider>
+          <CSSReset />
+          {element}
+        </ColorModeProvider>
+      </ThemeProvider>
+    </>
+  )
+}
+```

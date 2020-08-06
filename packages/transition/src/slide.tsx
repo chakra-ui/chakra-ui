@@ -76,7 +76,7 @@ export type SlideProps = Omit<TransitionProps, "styles" | "timeout"> & {
   timeout?: number
 }
 
-export function Slide(props: SlideProps) {
+export const Slide: React.FC<SlideProps> = (props) => {
   const { placement = "left", timeout = 150, children, ...rest } = props
 
   const styles = getTransitionStyles(placement)

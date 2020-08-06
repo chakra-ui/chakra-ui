@@ -2,8 +2,8 @@ import { Spinner } from "@chakra-ui/spinner"
 import {
   chakra,
   forwardRef,
+  GetProps,
   omitThemingProps,
-  PropsOf,
   SystemProps,
   ThemingProps,
   useStyleConfig,
@@ -56,11 +56,15 @@ export interface ButtonOptions {
   spinner?: ReactElement
 }
 
-export type ButtonProps = PropsOf<typeof chakra.button> &
-  ButtonOptions &
-  ThemingProps
+export interface ButtonProps
+  extends GetProps<typeof chakra.button>,
+    ButtonOptions,
+    ThemingProps {}
 
-export const Button = forwardRef<ButtonProps>(function Button(props, ref) {
+export const Button = forwardRef<ButtonProps, "button">(function Button(
+  props,
+  ref,
+) {
   const group = useButtonGroup()
   const styles = useStyleConfig("Button", { ...group, ...props })
 
@@ -142,7 +146,7 @@ if (__DEV__) {
   Button.displayName = "Button"
 }
 
-function ButtonIcon(props: PropsOf<typeof chakra.span>) {
+const ButtonIcon: React.FC<GetProps<typeof chakra.span>> = (props) => {
   const { children, className, ...rest } = props
 
   const _children = isValidElement(children)
@@ -161,24 +165,28 @@ if (__DEV__) {
   ButtonIcon.displayName = "ButtonIcon"
 }
 
-type ButtonSpinnerProps = PropsOf<typeof chakra.div> & {
+type ButtonSpinnerProps = GetProps<typeof chakra.div> & {
   label?: string
   spacing?: SystemProps["margin"]
 }
 
-function ButtonSpinner(props: ButtonSpinnerProps) {
+const ButtonSpinner: React.FC<ButtonSpinnerProps> = (props) => {
   const {
     label,
     spacing,
     children = <Spinner color="currentColor" width="1em" height="1em" />,
     className,
+    __css,
     ...rest
   } = props
 
   const _className = cx("chakra-button__spinner", className)
   const spinnerStyles = {
+    display: "flex",
+    alignItems: "center",
     position: label ? "relative" : "absolute",
     mr: label ? spacing : 0,
+    ...__css,
   }
 
   return (

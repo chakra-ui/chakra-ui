@@ -36,6 +36,7 @@
     "@chakra-ui/button": "1.0.0-rc.0",
     "@chakra-ui/checkbox": "1.0.0-rc.0",
     "@chakra-ui/close-button": "1.0.0-rc.0",
+    "@chakra-ui/transition": "1.0.0-rc.0",
     "@chakra-ui/collapse": "1.0.0-rc.0",
     "@chakra-ui/counter": "1.0.0-rc.0",
     "@chakra-ui/css-reset": "1.0.0-rc.0",
