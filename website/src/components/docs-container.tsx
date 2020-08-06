@@ -29,13 +29,7 @@ const DocsContainer = ({ frontmatter, sidebarRoutes: routes, children }) => {
             <SkipNavContent />
             <Box pt={3} px={5} mt="4.5rem" mx="auto" maxW="48rem" minH="80vh">
               <Box>
-                <chakra.h1 mt="1rem" apply="mdx.h1">
-                  {title}
-                </chakra.h1>
-                <chakra.p opacity={0.7} mt="2">
-                  {description}
-                </chakra.p>
-                <chakra.hr my="2rem" />
+                <chakra.h1 apply="mdx.h1">{title}</chakra.h1>
               </Box>
               {children}
               <Box mt="40px">{editUrl && <EditPageLink href={editUrl} />}</Box>

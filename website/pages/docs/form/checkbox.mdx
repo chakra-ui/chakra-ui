@@ -90,6 +90,26 @@ Pass the `size` prop to change the size of the Checkbox. Values can be either
 <Checkbox isInvalid>Checkbox</Checkbox>
 ```
 
+### Changing the spacing
+
+We added the `spacing` prop to customize the spacing between the checkbox and
+label text
+
+```jsx live=false
+<Checkbox spacing="1rem">Option</Checkbox>
+```
+
+### Changing the icon color and size
+
+You can customize the color and size of the check icon by passing the
+`iconColor` and `iconSize` prop.
+
+```jsx live=false
+<Checkbox iconColor="blue.400" iconSize="1rem">
+  Option
+</Checkbox>
+```
+
 ### Indeterminate
 
 ```jsx
@@ -138,6 +158,14 @@ its children.
   </HStack>
 </CheckboxGroup>
 ```
+
+### Hooks
+
+The `useCheckbox` hook is exported with state and focus management logic for use
+in creating tailor-made checkbox component for your application
+
+The `useCheckboxGroup` hook is exported with state management logic for use in
+creating tailor-made checkbox group component for your application
 
 ## Props
 

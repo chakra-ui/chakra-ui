@@ -78,6 +78,16 @@ prop.
 <Image src="gibbresh.png" fallbackSrc="https://via.placeholder.com/150" />
 ```
 
+### Improvements from v1
+
+- Added support for the `fit` prop to specify how to fit an image within its
+  dimension. It uses the `object-fit` property
+
+- Added support for the `align` prop to specify how to align the image within
+  its dimension. It uses the `object-position` property
+
+- Added support for custom `fallback` component
+
 ## Props
 
 | Name             | Type               | Default | Description                                                                                                                  |
@@ -90,3 +100,5 @@ prop.
 | `htmlWidth`      | `string`, `number` |         | The native HTML width attribute of the `img` element                                                                         |
 | `htmlHeight`     | `string`, `number` |         | The native HTML height attribute of the `img` element                                                                        |
 | `ignoreFallback` | `boolean`          |         | Opt out of the `fallbackSrc` logic and use the `Image` directly                                                              |
+| `fit`            | `string`           |         | The CSS `object-fit` property for the image                                                                                  |
+| `align`          | `string`           |         | The CSS `object-position` property for the image                                                                             |

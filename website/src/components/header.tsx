@@ -100,7 +100,7 @@ const HeaderContent = () => {
 }
 
 const Header = (props) => {
-  const bg = useColorModeValue("whiteAlpha.800", "gray.800")
+  const bg = useColorModeValue("white", "gray.800")
   return (
     <chakra.header
       pos="fixed"
@@ -111,7 +111,6 @@ const Header = (props) => {
       right="0"
       borderBottomWidth="1px"
       width="full"
-      style={{ backdropFilter: "blur(4px)" }}
       {...props}
     >
       <chakra.div height="4.5rem" mx="auto" maxW="1000px">

@@ -27,7 +27,7 @@ const customTheme = {
   },
   mdx: {
     h1: {
-      mt: "3rem",
+      mt: "2rem",
       mb: ".25rem",
       lineHeight: 1.2,
       fontWeight: "bold",
@@ -36,7 +36,7 @@ const customTheme = {
     },
     h2: {
       mt: "4rem",
-      mb: "1rem",
+      mb: "0.5rem",
       lineHeight: 1,
       fontWeight: "semibold",
       fontSize: "1.5rem",
@@ -47,7 +47,7 @@ const customTheme = {
     },
     h3: {
       mt: "3rem",
-      mb: "1rem",
+      // mb: "0.5rem",
       lineHeight: 1.25,
       fontWeight: "semibold",
       fontSize: "1.25rem",
@@ -69,7 +69,8 @@ const customTheme = {
       },
     },
     p: {
-      mt: "1.5rem",
+      mt: "1.25rem",
+      lineHeight: 1.7,
       "blockquote &": {
         mt: 0,
       },
@@ -91,7 +92,7 @@ const customTheme = {
       ml: "1.25rem",
       "blockquote &": { mt: 0 },
       "& > * + *": {
-        mt: "0.75rem",
+        mt: "0.25rem",
       },
     },
     code: {

@@ -464,7 +464,11 @@ To prevent focus trapping, pass `trapFocus` and set it's value to `false`.
 | closeOnOverlayClick | `boolean`                 | `true`    | If `true`, the modal will close when the overlay is clicked                                                                         |
 | returnFocusOnClose  | `boolean`                 | `true`    | If `true`, the modal will return focus to the element that triggered it when it closes.                                             |
 | closeOnEsc          | `boolean`                 | `true`    | If `true`, the modal will close when the `Esc` key is pressed                                                                       |
+| trapFocus           | `boolean`                 | `true`    | If `true`, focus trapping will be disabled                                                                                          |
+| autoFocus           | `boolean`                 | `true`    | If `true`, the modal moves focus to the first interactive element                                                                   |
 | id                  | `string`                  |           | The top-level `id` to use for the modal and it's sub-components                                                                     |
+| onOverlayClick      | `function`                |           | Function called when the overlay clicked                                                                                            |
+| onEsc               | `function`                |           | Function called when the `Esc` key is pressed                                                                                       |
 
 ### Other components
 

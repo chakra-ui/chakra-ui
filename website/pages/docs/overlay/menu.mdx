@@ -152,6 +152,72 @@ the letter you typed.
 </Menu>
 ```
 
+### Adding menu commands
+
+You can add custom menu icons and commands (or hotkeys) for each menu by passing
+the `command` prop.
+
+```jsx live=false
+<Menu>
+  <MenuButton size="sm" colorScheme="teal">
+    Open menu
+  </MenuButton>
+  <MenuList>
+    <MenuItem command="⌘T">New Tab</MenuItem>
+    <MenuItem command="⌘N">New Window</MenuItem>
+    <MenuItem command="⌘⇧N">Open Closed Tab</MenuItem>
+    <MenuItem command="⌘O">Open File...</MenuItem>
+  </MenuList>
+</Menu>
+```
+
+## Adding menu transition
+
+You can add transition support for the menu by importing the `MenuTransition`
+component.
+
+> It's important to use the `sx` prop for the transitions to work properly. For
+> some reason, it doesn't work with the `style` native prop
+
+```jsx live=false
+<Menu>
+  <MenuButton size="sm" colorScheme="teal">
+    Open menu
+  </MenuButton>
+  <MenuTransition>
+    {(styles) => (
+      <MenuList sx={styles}>
+        <MenuItem command="⌘T">New Tab</MenuItem>
+        <MenuItem command="⌘N">New Window</MenuItem>
+        <MenuItem command="⌘⇧N">Open Closed Tab</MenuItem>
+        <MenuItem command="⌘O">Open File...</MenuItem>
+      </MenuList>
+    )}
+  </MenuTransition>
+</Menu>
+```
+
+### Rendering menu in a portal
+
+To render menus in a portal, import the `Portal` component and wrap the
+`MenuList` within the `Portal`.
+
+```jsx live=false
+<Menu>
+  <MenuButton size="sm" colorScheme="teal">
+    Open menu
+  </MenuButton>
+  <Portal>
+    <MenuList>
+      <MenuItem>Menu 1</MenuItem>
+      <MenuItem>New Window</MenuItem>
+      <MenuItem>Open Closed Tab</MenuItem>
+      <MenuItem>Open File</MenuItem>
+    </MenuList>
+  </Portal>
+</Menu>
+```
+
 ### MenuGroup
 
 To group related `MenuItem`s, use the `MenuGroup` component and pass it a

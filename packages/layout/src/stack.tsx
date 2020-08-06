@@ -49,6 +49,10 @@ interface StackOptions {
    * `display: inline-block`, and the `Box` will take the spacing props
    */
   shouldWrapChildren?: boolean
+  /**
+   * If `true` the items will be stacked horizontally.
+   */
+  isInline?: boolean
 }
 
 export interface StackDividerProps extends GetProps<typeof chakra.div> {}
@@ -90,7 +94,8 @@ export interface StackProps extends GetProps<typeof chakra.div>, StackOptions {}
  */
 export const Stack = forwardRef<StackProps, "div">(function Stack(props, ref) {
   const {
-    direction = "column",
+    isInline,
+    direction = isInline ? "row" : "column",
     align,
     justify,
     spacing = "0.5rem",
