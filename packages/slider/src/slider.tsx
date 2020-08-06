@@ -1,6 +1,6 @@
 import {
   chakra,
-  PropsOf,
+  GetProps,
   ThemingProps,
   useMultiStyleConfig,
   omitThemingProps,
@@ -12,7 +12,8 @@ import { createContext, __DEV__, cx } from "@chakra-ui/utils"
 import * as React from "react"
 import { useSlider, UseSliderProps, UseSliderReturn } from "./use-slider"
 
-type SliderContext = Omit<UseSliderReturn, "getInputProps" | "getRootProps">
+interface SliderContext
+  extends Omit<UseSliderReturn, "getInputProps" | "getRootProps"> {}
 
 const [SliderProvider, useSliderContext] = createContext<SliderContext>({
   name: "SliderContext",
@@ -22,9 +23,10 @@ const [SliderProvider, useSliderContext] = createContext<SliderContext>({
 
 export { SliderProvider, useSliderContext }
 
-export type SliderProps = UseSliderProps &
-  ThemingProps &
-  Omit<PropsOf<typeof chakra.div>, "onChange" | "size">
+export interface SliderProps
+  extends UseSliderProps,
+    ThemingProps,
+    Omit<GetProps<typeof chakra.div>, "size" | "defaultValue"> {}
 
 /**
  * The Slider is used to allow users to make selections from a range of values.
@@ -33,11 +35,15 @@ export type SliderProps = UseSliderProps &
  * @see Docs     https://chakra-ui.com/components/slider
  * @see WAI-ARIA https://www.w3.org/TR/wai-aria-practices/#slider
  */
-export const Slider: React.FC<SliderProps> = forwardRef((props, ref) => {
+export const Slider = forwardRef<SliderProps, "div">(function Slider(
+  props,
+  ref,
+) {
   const styles = useMultiStyleConfig("Slider", props)
   const realProps = omitThemingProps(props)
 
   const { getInputProps, getRootProps, ...context } = useSlider(realProps)
+
   const rootProps = getRootProps()
   const inputProps = getInputProps({}, ref)
 
@@ -70,35 +76,37 @@ if (__DEV__) {
 
 ///////////////////////////////////////////////////////////////////////////
 
-export type SliderThumbProps = PropsOf<typeof chakra.div>
+export interface SliderThumbProps extends GetProps<typeof chakra.div> {}
 
 /**
  * Slider component that acts as the handle used to select predefined
  * values by dragging its handle along the track
  */
-export const SliderThumb: React.FC<SliderThumbProps> = (props) => {
-  const { getThumbProps } = useSliderContext()
+export const SliderThumb = forwardRef<SliderThumbProps, "div">(
+  function SliderThumb(props, ref) {
+    const { getThumbProps } = useSliderContext()
 
-  const styles = useStyles()
-  const thumbStyles = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    position: "absolute",
-    outline: 0,
-    ...styles.thumb,
-  }
+    const styles = useStyles()
+    const thumbStyles = {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      position: "absolute",
+      outline: 0,
+      ...styles.thumb,
+    }
 
-  const thumbProps = getThumbProps(props)
+    const thumbProps = getThumbProps(props)
 
-  return (
-    <chakra.div
-      {...thumbProps}
-      className={cx("chakra-slider__thumb", props.className)}
-      __css={thumbStyles}
-    />
-  )
-}
+    return (
+      <chakra.div
+        {...thumbProps}
+        className={cx("chakra-slider__thumb", props.className)}
+        __css={thumbStyles}
+      />
+    )
+  },
+)
 
 if (__DEV__) {
   SliderThumb.displayName = "SliderThumb"
@@ -106,27 +114,29 @@ if (__DEV__) {
 
 ///////////////////////////////////////////////////////////////////////////
 
-export type SliderTrackProps = PropsOf<typeof chakra.div>
+export interface SliderTrackProps extends GetProps<typeof chakra.div> {}
 
-export const SliderTrack: React.FC<SliderTrackProps> = (props) => {
-  const { getTrackProps } = useSliderContext()
+export const SliderTrack = forwardRef<SliderTrackProps, "div">(
+  function SliderTrack(props, ref) {
+    const { getTrackProps } = useSliderContext()
 
-  const styles = useStyles()
-  const trackStyles = {
-    overflow: "hidden",
-    ...styles.track,
-  }
+    const styles = useStyles()
+    const trackStyles = {
+      overflow: "hidden",
+      ...styles.track,
+    }
 
-  const trackProps = getTrackProps(props)
+    const trackProps = getTrackProps(props)
 
-  return (
-    <chakra.div
-      {...trackProps}
-      className={cx("chakra-slider__track", props.className)}
-      __css={trackStyles}
-    />
-  )
-}
+    return (
+      <chakra.div
+        {...trackProps}
+        className={cx("chakra-slider__track", props.className)}
+        __css={trackStyles}
+      />
+    )
+  },
+)
 
 if (__DEV__) {
   SliderTrack.displayName = "SliderTrack"
@@ -134,7 +144,7 @@ if (__DEV__) {
 
 ///////////////////////////////////////////////////////////////////////////
 
-export type SliderInnerTrackProps = PropsOf<typeof chakra.div>
+export type SliderInnerTrackProps = GetProps<typeof chakra.div>
 
 export const SliderFilledTrack: React.FC<SliderInnerTrackProps> = (props) => {
   const { getInnerTrackProps } = useSliderContext()
@@ -163,7 +173,9 @@ if (__DEV__) {
 
 ///////////////////////////////////////////////////////////////////////////
 
-export type SliderMarkProps = PropsOf<typeof chakra.div> & { value: number }
+export interface SliderMarkProps extends GetProps<typeof chakra.div> {
+  value: number
+}
 
 /**
  * SliderMark is used to provide names for specific Slider

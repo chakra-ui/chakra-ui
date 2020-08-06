@@ -2,7 +2,7 @@ import { Icon, IconProps } from "@chakra-ui/icon"
 import {
   chakra,
   omitThemingProps,
-  PropsOf,
+  GetProps,
   StylesProvider,
   ThemingProps,
   useMultiStyleConfig,
@@ -13,9 +13,12 @@ import { cx, __DEV__ } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 import * as React from "react"
 
-export type StatLabelProps = PropsOf<typeof chakra.dt>
+export interface StatLabelProps extends GetProps<typeof chakra.dt> {}
 
-export const StatLabel: React.FC<StatLabelProps> = forwardRef((props, ref) => {
+export const StatLabel = forwardRef<StatLabelProps, "dt">(function StatLabel(
+  props,
+  ref,
+) {
   const styles = useStyles()
   return (
     <chakra.dt
@@ -31,10 +34,10 @@ if (__DEV__) {
   StatLabel.displayName = "StatLabel"
 }
 
-export type StatHelpTextProps = PropsOf<typeof chakra.p>
+export interface StatHelpTextProps extends GetProps<typeof chakra.p> {}
 
-export const StatHelpText: React.FC<StatHelpTextProps> = forwardRef(
-  (props, ref) => {
+export const StatHelpText = forwardRef<StatHelpTextProps, "p">(
+  function StatHelpText(props, ref) {
     const styles = useStyles()
 
     return (
@@ -52,25 +55,26 @@ if (__DEV__) {
   StatHelpText.displayName = "StatHelpText"
 }
 
-export type StatNumberProps = PropsOf<typeof chakra.dd>
+export interface StatNumberProps extends GetProps<typeof chakra.dd> {}
 
-export const StatNumber: React.FC<StatNumberProps> = forwardRef(
-  (props, ref) => {
-    const styles = useStyles()
-    return (
-      <chakra.dd
-        ref={ref}
-        {...props}
-        className={cx("chakra-stat__number", props.className)}
-        __css={{
-          ...styles.number,
-          fontFeatureSettings: "pnum",
-          fontVariantNumeric: "proportional-nums",
-        }}
-      />
-    )
-  },
-)
+export const StatNumber = forwardRef<StatNumberProps, "dd">(function StatNumber(
+  props,
+  ref,
+) {
+  const styles = useStyles()
+  return (
+    <chakra.dd
+      ref={ref}
+      {...props}
+      className={cx("chakra-stat__number", props.className)}
+      __css={{
+        ...styles.number,
+        fontFeatureSettings: "pnum",
+        fontVariantNumeric: "proportional-nums",
+      }}
+    />
+  )
+})
 
 if (__DEV__) {
   StatNumber.displayName = "StatNumber"
@@ -104,7 +108,7 @@ if (__DEV__) {
   StatUpArrow.displayName = "StatUpArrow"
 }
 
-export type StatArrowProps = IconProps & {
+export interface StatArrowProps extends IconProps {
   type?: "increase" | "decrease"
 }
 
@@ -128,7 +132,7 @@ if (__DEV__) {
   StatArrow.displayName = "StatArrow"
 }
 
-export type StatProps = PropsOf<typeof chakra.div> & ThemingProps
+export interface StatProps extends GetProps<typeof chakra.div>, ThemingProps {}
 
 export const Stat: React.FC<StatProps> = forwardRef((props, ref) => {
   const styles = useMultiStyleConfig("Stat", props)
@@ -147,7 +151,7 @@ if (__DEV__) {
   Stat.displayName = "Stat"
 }
 
-export const StatGroup: React.FC<PropsOf<typeof chakra.div>> = forwardRef(
+export const StatGroup: React.FC<GetProps<typeof chakra.div>> = forwardRef(
   (props, ref) => {
     return (
       <chakra.div
