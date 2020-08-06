@@ -1,7 +1,7 @@
 import {
   chakra,
   omitThemingProps,
-  PropsOf,
+  GetProps,
   ThemingProps,
   useMultiStyleConfig,
   StylesProvider,
@@ -17,11 +17,13 @@ import {
   stripe,
 } from "./progress.utils"
 
+export interface ProgressLabelProps extends GetProps<typeof chakra.div> {}
+
 /**
  * ProgressLabel is used to show the numeric value of the progress.
  * @see Docs https://chakra-ui.com/components/progress
  */
-export const ProgressLabel: React.FC<PropsOf<typeof chakra.div>> = (props) => {
+export const ProgressLabel: React.FC<ProgressLabelProps> = (props) => {
   const styles = useStyles()
   const labelStyles = {
     top: "50%",
@@ -39,10 +41,9 @@ if (__DEV__) {
   ProgressLabel.displayName = "ProgressLabel"
 }
 
-export type ProgressLabelProps = PropsOf<typeof ProgressLabel>
-
-export type ProgressFilledTrackProps = PropsOf<typeof chakra.div> &
-  GetProgressPropsOptions
+export interface ProgressFilledTrackProps
+  extends GetProps<typeof chakra.div>,
+    GetProgressPropsOptions {}
 
 /**
  * ProgressFilledTrack (Linear)
@@ -75,7 +76,7 @@ const ProgressFilledTrack: React.FC<ProgressFilledTrackProps> = (props) => {
   )
 }
 
-export type ProgressTrackProps = PropsOf<typeof chakra.div>
+export interface ProgressTrackProps extends GetProps<typeof chakra.div> {}
 
 interface ProgressOptions {
   /**
@@ -101,9 +102,10 @@ interface ProgressOptions {
   isAnimated?: boolean
 }
 
-export type ProgressProps = ProgressOptions &
-  ThemingProps &
-  PropsOf<typeof chakra.div>
+export interface ProgressProps
+  extends ProgressOptions,
+    ThemingProps,
+    GetProps<typeof chakra.div> {}
 
 /**
  * Progress (Linear)

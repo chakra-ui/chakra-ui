@@ -2,7 +2,7 @@ import { CloseButton, CloseButtonProps } from "@chakra-ui/close-button"
 import {
   chakra,
   omitThemingProps,
-  PropsOf,
+  GetProps,
   StylesProvider,
   ThemingProps,
   useMultiStyleConfig,
@@ -27,17 +27,16 @@ const [PopoverProvider, usePopoverContext] = createContext<UsePopoverReturn>({
 
 export { usePopoverContext }
 
-export type PopoverProps = UsePopoverProps &
-  ThemingProps & {
-    /**
-     * The content of the popover. It's usually the `PopoverTrigger`,
-     * and `PopoverContent`
-     */
-    children?: ReactNodeOrRenderProp<{
-      isOpen: boolean
-      onClose(): void
-    }>
-  }
+export interface PopoverProps extends UsePopoverProps, ThemingProps {
+  /**
+   * The content of the popover. It's usually the `PopoverTrigger`,
+   * and `PopoverContent`
+   */
+  children?: ReactNodeOrRenderProp<{
+    isOpen: boolean
+    onClose(): void
+  }>
+}
 
 /**
  * Popover is used to bring attention to specific user interface elements,
@@ -46,8 +45,8 @@ export type PopoverProps = UsePopoverProps &
 export const Popover: React.FC<PopoverProps> = (props) => {
   const styles = useMultiStyleConfig("Popover", props)
 
-  const { children, ...otherProps } = omitThemingProps(props)
-  const context = usePopover(otherProps)
+  const { children, ...rest } = omitThemingProps(props)
+  const context = usePopover(rest)
 
   return (
     <PopoverProvider value={context}>
@@ -80,14 +79,14 @@ if (__DEV__) {
   PopoverTrigger.displayName = "PopoverTrigger"
 }
 
-export type PopoverContentProps = PropsOf<typeof chakra.section>
+export interface PopoverContentProps extends GetProps<typeof chakra.section> {}
 
 /**
  * PopoverContent includes all accessibility
  * requirements for a popover
  */
-export const PopoverContent: React.FC<PopoverContentProps> = forwardRef(
-  (props, ref) => {
+export const PopoverContent = forwardRef<PopoverContentProps, "section">(
+  function PopoverContent(props, ref) {
     const { getPopoverProps } = usePopoverContext()
     const popoverProps = getPopoverProps(props, ref)
 
@@ -113,14 +112,14 @@ if (__DEV__) {
   PopoverContent.displayName = "PopoverContent"
 }
 
-export type PopoverHeaderProps = PropsOf<typeof chakra.header>
+export interface PopoverHeaderProps extends GetProps<typeof chakra.header> {}
 
 /**
  * PopoverHeader is the accessible header or label
  * for the popover's content and it's first announced by screenreaders.
  */
-export const PopoverHeader: React.FC<PopoverHeaderProps> = forwardRef(
-  (props, ref) => {
+export const PopoverHeader = forwardRef<PopoverHeaderProps, "header">(
+  function PopoverHeader(props, ref) {
     const { headerId, setHasHeader } = usePopoverContext()
 
     useEffect(() => {
@@ -146,14 +145,14 @@ if (__DEV__) {
   PopoverHeader.displayName = "PopoverHeader"
 }
 
-export type PopoverBodyProps = PropsOf<typeof chakra.div>
+export interface PopoverBodyProps extends GetProps<typeof chakra.div> {}
 
 /**
  * PopoverBody is the main content area for the popover. Should contain
  * at least one interactive element.
  */
-export const PopoverBody: React.FC<PopoverBodyProps> = forwardRef(
-  (props, ref) => {
+export const PopoverBody = forwardRef<PopoverBodyProps, "div">(
+  function PopoverBody(props, ref) {
     const { bodyId, setHasBody } = usePopoverContext()
 
     useEffect(() => {
@@ -178,10 +177,9 @@ export const PopoverBody: React.FC<PopoverBodyProps> = forwardRef(
 if (__DEV__) {
   PopoverBody.displayName = "PopoverBody"
 }
+export interface PopoverFooterProps extends GetProps<typeof chakra.footer> {}
 
-export const PopoverFooter: React.FC<PropsOf<typeof chakra.footer>> = (
-  props,
-) => {
+export const PopoverFooter: React.FC<PopoverFooterProps> = (props) => {
   const styles = useStyles()
   return (
     <chakra.footer
@@ -218,7 +216,7 @@ if (__DEV__) {
   PopoverCloseButton.displayName = "PopoverCloseButton"
 }
 
-export type PopoverArrowProps = PropsOf<typeof chakra.div>
+export interface PopoverArrowProps extends GetProps<typeof chakra.div> {}
 
 export const PopoverArrow: React.FC<PopoverArrowProps> = (props) => {
   const { getArrowProps } = usePopoverContext()

@@ -13,7 +13,7 @@ export type AssignableRef<T> =
 type As<P = any> = React.ElementType<P>
 
 export type PropsWithAs<T extends As, P> = P &
-  Omit<React.ComponentPropsWithRef<T>, "as" | keyof P> & {
+  Omit<React.ComponentPropsWithRef<T>, "as" | "color" | keyof P> & {
     as?: T
   }
 
