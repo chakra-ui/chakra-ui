@@ -6,6 +6,7 @@ import Button from "./button"
 import Checkbox from "./checkbox"
 import CloseButton from "./close-button"
 import Code from "./code"
+import Combobox from "./combobox"
 import Modal from "./modal"
 import Drawer from "./drawer"
 import Heading from "./heading"
@@ -44,6 +45,7 @@ export default {
   Avatar,
   Link,
   Code,
+  Combobox,
   FormLabel,
   Spinner,
   Drawer,

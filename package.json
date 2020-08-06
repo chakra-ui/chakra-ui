@@ -70,6 +70,7 @@
     "tooltip": "yarn workspace @chakra-ui/tooltip",
     "descendant": "yarn workspace @chakra-ui/descendant",
     "clickable": "yarn workspace @chakra-ui/clickable",
+    "comboboz": "yarn workspace @chakra-ui/combobox",
     "pin-input": "yarn workspace @chakra-ui/pin-input",
     "avatar": "yarn workspace @chakra-ui/avatar",
     "spinner": "yarn workspace @chakra-ui/spinner",
