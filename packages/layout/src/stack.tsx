@@ -1,7 +1,7 @@
 import {
   chakra,
   css,
-  PropsOf,
+  GetProps,
   ResponsiveValue,
   SystemProps,
   forwardRef,
@@ -51,11 +51,9 @@ interface StackOptions {
   shouldWrapChildren?: boolean
 }
 
-export type StackProps = PropsOf<typeof chakra.div> & StackOptions
+export interface StackDividerProps extends GetProps<typeof chakra.div> {}
 
-export type StackDividerProps = PropsOf<typeof chakra.div>
-
-export const StackDivider: React.FC<PropsOf<typeof chakra.div>> = (props) => (
+export const StackDivider: React.FC<StackDividerProps> = (props) => (
   <chakra.div
     className="chakra-stack__item"
     __css={{
@@ -69,13 +67,15 @@ export const StackDivider: React.FC<PropsOf<typeof chakra.div>> = (props) => (
   />
 )
 
-export const StackItem: React.FC<PropsOf<typeof chakra.div>> = (props) => (
+export const StackItem: React.FC<GetProps<typeof chakra.div>> = (props) => (
   <chakra.div
     className="chakra-stack__item"
     __css={{ display: "inline-block", flex: 0 }}
     {...props}
   />
 )
+
+export interface StackProps extends GetProps<typeof chakra.div>, StackOptions {}
 
 /**
  * Stacks help you easily create flexible and automatically distributed layouts
@@ -88,7 +88,7 @@ export const StackItem: React.FC<PropsOf<typeof chakra.div>> = (props) => (
  * @see Docs https://chakra-ui.com/components/stack
  *
  */
-export const Stack: React.FC<StackProps> = forwardRef((props, ref) => {
+export const Stack = forwardRef<StackProps, "div">(function Stack(props, ref) {
   const {
     direction = "column",
     align,

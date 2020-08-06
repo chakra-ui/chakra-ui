@@ -1,7 +1,7 @@
 import * as React from "react"
 import {
   chakra,
-  PropsOf,
+  GetProps,
   useStyleConfig,
   omitThemingProps,
   ThemingProps,
@@ -9,9 +9,14 @@ import {
 } from "@chakra-ui/system"
 import { __DEV__, cx } from "@chakra-ui/utils"
 
-export type HeadingProps = PropsOf<typeof chakra.h2> & ThemingProps
+export interface HeadingProps
+  extends GetProps<typeof chakra.h2>,
+    ThemingProps {}
 
-export const Heading: React.FC<HeadingProps> = forwardRef((props, ref) => {
+export const Heading = forwardRef<HeadingProps, "h2">(function Heading(
+  props,
+  ref,
+) {
   const styles = useStyleConfig("Heading", props)
   const { className, ...rest } = omitThemingProps(props)
 

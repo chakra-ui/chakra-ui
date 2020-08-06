@@ -1,13 +1,13 @@
 import {
   chakra,
-  PropsOf,
+  GetProps,
   forwardRef,
   SystemStyleObject,
 } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-export type BoxProps = PropsOf<typeof Box>
+export interface BoxProps extends GetProps<typeof Box> {}
 
 /**
  * Box is the most abstract component on top of which other chakra
@@ -15,7 +15,7 @@ export type BoxProps = PropsOf<typeof Box>
  *
  * @see Docs https://chakra-ui.com/docs/layout/box
  */
-export const Box = chakra.div
+export const Box = chakra("div")
 
 if (__DEV__) {
   Box.displayName = "Box"
@@ -27,7 +27,7 @@ if (__DEV__) {
  */
 type Omitted = "size" | "boxSize" | "width" | "height" | "w" | "h"
 
-export type SquareProps = Omit<BoxProps, Omitted> & {
+export interface SquareProps extends Omit<BoxProps, Omitted> {
   /**
    * The size (width and height) of the square
    */
@@ -38,9 +38,13 @@ export type SquareProps = Omit<BoxProps, Omitted> & {
   centerContent?: boolean
 }
 
-export const Square: React.FC<SquareProps> = forwardRef((props, ref) => {
+export const Square = forwardRef<SquareProps, "div">(function Square(
+  props,
+  ref,
+) {
   const { size, centerContent = true, ...rest } = props
-  const centerStyles: SystemStyleObject = centerContent
+
+  const styles: SystemStyleObject = centerContent
     ? { display: "flex", alignItems: "center", justifyContent: "center" }
     : {}
 
@@ -49,7 +53,7 @@ export const Square: React.FC<SquareProps> = forwardRef((props, ref) => {
       ref={ref}
       boxSize={size}
       __css={{
-        ...centerStyles,
+        ...styles,
         flexShrink: 0,
         flexGrow: 0,
       }}
@@ -62,9 +66,12 @@ if (__DEV__) {
   Square.displayName = "Square"
 }
 
-export const Circle: React.FC<SquareProps> = forwardRef((props, ref) => {
+export const Circle = forwardRef<SquareProps, "div">(function Circle(
+  props,
+  ref,
+) {
   const { size, ...rest } = props
-  return <Square size={size as any} ref={ref} borderRadius="9999px" {...rest} />
+  return <Square size={size} ref={ref} borderRadius="9999px" {...rest} />
 })
 
 if (__DEV__) {

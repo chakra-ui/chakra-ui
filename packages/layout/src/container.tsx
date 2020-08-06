@@ -1,6 +1,6 @@
 import {
   chakra,
-  PropsOf,
+  GetProps,
   useTheme,
   SystemStyleObject,
   forwardRef,
@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/utils"
 import * as React from "react"
 
-export type ContainerProps = PropsOf<typeof chakra.div> & {
+export interface ContainerProps extends GetProps<typeof chakra.div> {
   /**
    * If `true`, container will center it's children
    * regardless of their width.
@@ -31,7 +31,10 @@ export type ContainerProps = PropsOf<typeof chakra.div> & {
  *
  * It also sets a default max-width of `60ch` (60 characters).
  */
-export const Container: React.FC<ContainerProps> = forwardRef((props, ref) => {
+export const Container = forwardRef<ContainerProps, "div">(function Container(
+  props,
+  ref,
+) {
   const {
     maxWidth,
     width,

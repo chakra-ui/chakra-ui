@@ -1,5 +1,5 @@
 import { Icon, IconProps } from "@chakra-ui/icon"
-import { chakra, ChakraProps, PropsOf, forwardRef } from "@chakra-ui/system"
+import { chakra, ChakraProps, forwardRef, GetProps } from "@chakra-ui/system"
 import { getValidChildren, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -18,14 +18,14 @@ interface ListOptions {
   spacing?: ChakraProps["margin"]
 }
 
-export type ListProps = PropsOf<typeof chakra.ul> & ListOptions
+export interface ListProps extends GetProps<typeof chakra.ul>, ListOptions {}
 
 /**
  * List is used to display list items, it renders a `<ul>` by default.
  *
  * @see Docs https://chakra-ui.com/components/list
  */
-export const List: React.FC<ListProps> = forwardRef((props, ref) => {
+export const List = forwardRef<ListProps, "ul">(function List(props, ref) {
   const {
     children,
     styleType = "none",
@@ -61,9 +61,13 @@ if (__DEV__) {
   List.displayName = "List"
 }
 
-export const OrderedList: React.FC<ListProps> = forwardRef((props, ref) => {
+export const OrderedList = forwardRef<ListProps, "ol">(function OrderedList(
+  props,
+  ref,
+) {
+  const { as, ...rest } = props
   return (
-    <List ref={ref} as="ol" styleType="decimal" marginLeft="1em" {...props} />
+    <List ref={ref} as="ol" styleType="decimal" marginLeft="1em" {...rest} />
   )
 })
 
@@ -71,9 +75,13 @@ if (__DEV__) {
   OrderedList.displayName = "OrderedList"
 }
 
-export const UnorderedList: React.FC<ListProps> = forwardRef((props, ref) => {
+export const UnorderedList = forwardRef<ListProps, "ul">(function UnorderedList(
+  props,
+  ref,
+) {
+  const { as, ...rest } = props
   return (
-    <List ref={ref} as="ul" styleType="bullet" marginLeft="1em" {...props} />
+    <List ref={ref} as="ul" styleType="bullet" marginLeft="1em" {...rest} />
   )
 })
 
@@ -81,16 +89,14 @@ if (__DEV__) {
   UnorderedList.displayName = "UnorderedList"
 }
 
-export type ListItemProps = PropsOf<typeof ListItem>
+export interface ListItemProps extends GetProps<typeof ListItem> {}
 
 /**
  * ListItem
  *
  * Used to render a list item
  */
-export const ListItem: React.FC<PropsOf<typeof chakra.li>> = (props) => (
-  <chakra.li {...props} />
-)
+export const ListItem = chakra("li")
 
 if (__DEV__) {
   ListItem.displayName = "ListItem"
@@ -101,7 +107,10 @@ if (__DEV__) {
  *
  * Used to render an icon beside the list item text
  */
-export const ListIcon: React.FC<IconProps> = forwardRef((props, ref) => {
+export const ListIcon = forwardRef<IconProps, "svg">(function ListIcon(
+  props,
+  ref,
+) {
   return (
     <Icon
       ref={ref}

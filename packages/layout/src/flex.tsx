@@ -1,5 +1,5 @@
 import * as React from "react"
-import { chakra, PropsOf, SystemProps, forwardRef } from "@chakra-ui/system"
+import { chakra, SystemProps, forwardRef, GetProps } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 
 export interface FlexOptions {
@@ -33,7 +33,7 @@ export interface FlexOptions {
   shrink?: SystemProps["flexShrink"]
 }
 
-export type FlexProps = PropsOf<typeof chakra.div> & FlexOptions
+export interface FlexProps extends GetProps<typeof chakra.div>, FlexOptions {}
 
 /**
  * React component used to create flexbox layouts.
@@ -43,7 +43,7 @@ export type FlexProps = PropsOf<typeof chakra.div> & FlexOptions
  *
  * @see Docs https://chakra-ui.com/components/flex
  */
-export const Flex: React.FC<FlexProps> = forwardRef((props, ref) => {
+export const Flex = forwardRef<FlexProps, "div">(function Flex(props, ref) {
   const { direction, align, justify, wrap, basis, grow, ...rest } = props
   return (
     <chakra.div
