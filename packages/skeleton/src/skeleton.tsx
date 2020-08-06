@@ -1,6 +1,6 @@
 import {
   chakra,
-  PropsOf,
+  GetProps,
   keyframes,
   useStyleConfig,
   ThemingProps,
@@ -54,16 +54,20 @@ const StyledSkeleton = chakra("div", {
 
 export type ISkeleton = SkeletonOptions
 
-export type SkeletonProps = PropsOf<typeof StyledSkeleton> &
-  SkeletonOptions &
-  ThemingProps
+export interface SkeletonProps
+  extends GetProps<typeof StyledSkeleton>,
+    SkeletonOptions,
+    ThemingProps {}
 
 const fade = keyframes({
   from: { opacity: 0 },
   to: { opacity: 1 },
 })
 
-export const Skeleton: React.FC<SkeletonProps> = forwardRef((props, ref) => {
+export const Skeleton = forwardRef<SkeletonProps, "div">(function Skeleton(
+  props,
+  ref,
+) {
   const styles = useStyleConfig("Skeleton", props)
 
   const {
@@ -109,7 +113,7 @@ function range(count: number) {
     .map((_, index) => index + 1)
 }
 
-export type SkeletonTextProps = SkeletonProps & {
+export interface SkeletonTextProps extends SkeletonProps {
   noOfLines?: number
   spacing?: SkeletonProps["margin"]
   skeletonHeight?: SkeletonProps["height"]

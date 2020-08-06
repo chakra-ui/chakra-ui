@@ -20,12 +20,15 @@ const [RadioGroupProvider, useRadioGroupContext] = createContext<
 
 export { useRadioGroupContext }
 
-export type RadioGroupProps = UseRadioGroupProps &
-  Omit<
-    PropsOf<typeof chakra.div>,
-    "onChange" | "value" | "defaultValue" | "children"
-  > &
-  Omit<ThemingProps, "orientation"> & { children: React.ReactNode }
+export interface RadioGroupProps
+  extends UseRadioGroupProps,
+    Omit<
+      PropsOf<typeof chakra.div>,
+      "onChange" | "value" | "defaultValue" | "children"
+    >,
+    Omit<ThemingProps, "orientation"> {
+  children: React.ReactNode
+}
 
 /**
  * Used for multiple radios which are bound in one group,
@@ -33,19 +36,12 @@ export type RadioGroupProps = UseRadioGroupProps &
  *
  * @see Docs https://chakra-ui.com/components/radio
  */
-export const RadioGroup: React.FC<RadioGroupProps> = forwardRef(
-  (props, ref) => {
-    const {
-      colorScheme,
-      size,
-      variant,
-      children,
-      className,
-      ...otherProps
-    } = props
+export const RadioGroup = forwardRef<RadioGroupProps, "div">(
+  function RadioGroup(props, ref) {
+    const { colorScheme, size, variant, children, className, ...rest } = props
 
     const { value, onChange, getRootProps, name, htmlProps } = useRadioGroup(
-      otherProps,
+      rest,
     )
 
     const group = React.useMemo(

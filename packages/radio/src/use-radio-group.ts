@@ -1,9 +1,8 @@
 import { useControllableProp, useId } from "@chakra-ui/hooks"
 import { isInputEvent, StringOrNumber, Dict, mergeRefs } from "@chakra-ui/utils"
-import * as React from "react"
-import { useCallback, useRef, useState } from "react"
+import { ChangeEvent, useCallback, useRef, useState } from "react"
 
-type EventOrValue = React.ChangeEvent<HTMLInputElement> | StringOrNumber
+type EventOrValue = ChangeEvent<HTMLInputElement> | StringOrNumber
 
 export interface UseRadioGroupProps {
   /**

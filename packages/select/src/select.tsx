@@ -3,7 +3,7 @@ import {
   chakra,
   layoutPropNames,
   omitThemingProps,
-  PropsOf,
+  GetProps,
   useMultiStyleConfig,
   ThemingProps,
   forwardRef,
@@ -13,13 +13,14 @@ import * as React from "react"
 
 type Omitted = "disabled" | "required" | "readOnly" | "size"
 
-export type SelectFieldProps = Omit<PropsOf<typeof chakra.select>, Omitted> & {
+export interface SelectFieldProps
+  extends Omit<GetProps<typeof chakra.select>, Omitted> {
   size?: string
   isDisabled?: boolean
 }
 
-export const SelectField: React.FC<SelectFieldProps> = forwardRef(
-  (props, ref) => {
+export const SelectField = forwardRef<SelectFieldProps, "select">(
+  function SelectField(props, ref) {
     const { children, placeholder, className, isDisabled, ...rest } = props
     const select = useFormControl<HTMLSelectElement>(rest)
 
@@ -43,7 +44,7 @@ if (__DEV__) {
   SelectField.displayName = "SelectField"
 }
 
-type RootProps = Omit<PropsOf<typeof chakra.div>, "color">
+type RootProps = Omit<GetProps<typeof chakra.div>, "color">
 
 interface SelectOptions extends FormControlOptions {
   /**
@@ -73,23 +74,24 @@ interface SelectOptions extends FormControlOptions {
   placeholder?: string
 }
 
-export type SelectProps = SelectFieldProps &
-  ThemingProps &
-  SelectOptions & {
-    /**
-     * Props to forward to the root `div` element
-     */
-    rootProps?: RootProps
-    /**
-     * The icon element to use in the select
-     */
-    icon?: React.ReactElement<any>
-  }
+export interface SelectProps
+  extends SelectFieldProps,
+    ThemingProps,
+    SelectOptions {
+  /**
+   * Props to forward to the root `div` element
+   */
+  rootProps?: RootProps
+  /**
+   * The icon element to use in the select
+   */
+  icon?: React.ReactElement<any>
+}
 
 /**
  * React component used to select one item from a list of options.
  */
-export const Select: React.FC<SelectProps> = forwardRef((props, ref) => {
+export const Select = forwardRef<SelectProps, "select">((props, ref) => {
   const styles = useMultiStyleConfig("Select", props)
 
   const { rootProps, placeholder, icon, color, ...rest } = omitThemingProps(
@@ -135,7 +137,7 @@ if (__DEV__) {
   Select.displayName = "Select"
 }
 
-export const DefaultIcon: React.FC<PropsOf<"svg">> = (props) => (
+export const DefaultIcon: React.FC<GetProps<"svg">> = (props) => (
   <svg viewBox="0 0 24 24" {...props}>
     <path
       fill="currentColor"
@@ -159,7 +161,7 @@ const IconWrapper = chakra("div", {
   },
 })
 
-type SelectIconProps = PropsOf<typeof IconWrapper>
+type SelectIconProps = GetProps<typeof IconWrapper>
 
 const SelectIcon: React.FC<SelectIconProps> = (props) => {
   const { children = <DefaultIcon />, ...rest } = props

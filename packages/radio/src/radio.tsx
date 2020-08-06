@@ -1,7 +1,7 @@
 import {
   chakra,
   layoutPropNames,
-  PropsOf,
+  GetProps,
   SystemProps,
   ThemingProps,
   useMultiStyleConfig,
@@ -13,29 +13,36 @@ import * as React from "react"
 import { useRadioGroupContext } from "./radio-group"
 import { useRadio, UseRadioProps } from "./use-radio"
 
-type Omitted = "onChange" | "defaultChecked" | "checked"
-type BaseControlProps = Omit<PropsOf<typeof chakra.div>, Omitted>
+interface BaseControlProps
+  extends Omit<
+    GetProps<typeof chakra.div>,
+    "onChange" | "defaultChecked" | "checked"
+  > {}
 
-export type RadioProps = UseRadioProps &
-  ThemingProps &
-  BaseControlProps & {
-    /**
-     * The spacing between the checkbox and it's label text
-     * @default 0.5rem
-     */
-    spacing?: SystemProps["marginLeft"]
-    /**
-     * If `true`, the radio will occupy the full width of it's parent container
-     */
-    isFullWidth?: boolean
-  }
+export interface RadioProps
+  extends UseRadioProps,
+    ThemingProps,
+    BaseControlProps {
+  /**
+   * The spacing between the checkbox and it's label text
+   * @default 0.5rem
+   */
+  spacing?: SystemProps["marginLeft"]
+  /**
+   * If `true`, the radio will occupy the full width of it's parent container
+   */
+  isFullWidth?: boolean
+}
 
 /**
  * Radio component is used in forms when a user needs to select a single value from
  * several options.
  * @see Docs https://chakra-ui.com/components/radio
  */
-export const Radio: React.FC<RadioProps> = forwardRef((props, ref) => {
+export const Radio = forwardRef<RadioProps, "input">(function Radio(
+  props,
+  ref,
+) {
   const group = useRadioGroupContext()
   const styles = useMultiStyleConfig("Radio", { ...group, ...props })
 
