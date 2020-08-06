@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.1](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/number-input@1.0.0-rc.0...@chakra-ui/number-input@1.0.0-rc.1) (2020-08-06)
+
+### Bug Fixes
+
+- stack key issue and yarn2 deps issue
+  ([d6cb6b8](https://github.com/chakra-ui/chakra-ui/commit/d6cb6b8fd964729efdf41b1e29c888a3c101316c))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.0.0-rc.0](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/number-input@1.0.0-next.7...@chakra-ui/number-input@1.0.0-rc.0) (2020-07-26)
 
 **Note:** Version bump only for package @chakra-ui/number-input

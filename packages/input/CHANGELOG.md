@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.1](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/input@1.0.0-rc.0...@chakra-ui/input@1.0.0-rc.1) (2020-08-06)
+
+### Bug Fixes
+
+- fix function name typos
+  ([8c50098](https://github.com/chakra-ui/chakra-ui/commit/8c5009801afb83428020efcfc1e93d5a92f40107))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.0.0-rc.0](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/input@1.0.0-next.7...@chakra-ui/input@1.0.0-rc.0) (2020-07-26)
 
 **Note:** Version bump only for package @chakra-ui/input

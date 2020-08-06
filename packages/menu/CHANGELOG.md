@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.1](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/menu@1.0.0-rc.0...@chakra-ui/menu@1.0.0-rc.1) (2020-08-06)
+
+### Bug Fixes
+
+- **variables:** drop unused imports
+  ([552b2e9](https://github.com/chakra-ui/chakra-ui/commit/552b2e9b7510963db509a5724af5361ef07c8ecb))
+- prevent scroll when menu returns focus
+  ([b7f0d20](https://github.com/chakra-ui/chakra-ui/commit/b7f0d2012fc7a111f12d456a0e3a565868b76e25))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.0.0-rc.0](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/menu@1.0.0-next.7...@chakra-ui/menu@1.0.0-rc.0) (2020-07-26)
 
 **Note:** Version bump only for package @chakra-ui/menu

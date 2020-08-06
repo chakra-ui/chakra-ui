@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.1](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/layout@1.0.0-rc.0...@chakra-ui/layout@1.0.0-rc.1) (2020-08-06)
+
+### Bug Fixes
+
+- fix function name typos
+  ([8c50098](https://github.com/chakra-ui/chakra-ui/commit/8c5009801afb83428020efcfc1e93d5a92f40107))
+- issue with radio and radio group name
+  ([4e09ebb](https://github.com/chakra-ui/chakra-ui/commit/4e09ebbf73d8f940a56703761914c2461e7a451f))
+- stack key issue and yarn2 deps issue
+  ([d6cb6b8](https://github.com/chakra-ui/chakra-ui/commit/d6cb6b8fd964729efdf41b1e29c888a3c101316c))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.0.0-rc.0](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/layout@1.0.0-next.7...@chakra-ui/layout@1.0.0-rc.0) (2020-07-26)
 
 **Note:** Version bump only for package @chakra-ui/layout

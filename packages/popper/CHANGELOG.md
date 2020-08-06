@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.1](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/popper@1.0.0-rc.0...@chakra-ui/popper@1.0.0-rc.1) (2020-08-06)
+
+### Bug Fixes
+
+- **variables:** drop unused imports
+  ([552b2e9](https://github.com/chakra-ui/chakra-ui/commit/552b2e9b7510963db509a5724af5361ef07c8ecb))
+
+### Features
+
+- update popper hook and use-clipboard
+  ([2659f60](https://github.com/chakra-ui/chakra-ui/commit/2659f60b7d44815c7638d2bc03eb6a97ad7bc581))
+
+### Performance Improvements
+
+- improve popper hook
+  ([d7ecb04](https://github.com/chakra-ui/chakra-ui/commit/d7ecb04baed8b6e6488321f7f2b28bed10a3a0d3))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.0.0-rc.0](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/popper@1.0.0-next.7...@chakra-ui/popper@1.0.0-rc.0) (2020-07-26)
 
 **Note:** Version bump only for package @chakra-ui/popper

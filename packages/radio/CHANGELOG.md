@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.1](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/radio@1.0.0-rc.0...@chakra-ui/radio@1.0.0-rc.1) (2020-08-06)
+
+### Bug Fixes
+
+- issue with radio and radio group name
+  ([4e09ebb](https://github.com/chakra-ui/chakra-ui/commit/4e09ebbf73d8f940a56703761914c2461e7a451f))
+- **radio:** set default isChecked prop value
+  ([7341c0e](https://github.com/chakra-ui/chakra-ui/commit/7341c0ebb7371b05f3d6f27e8682205ac2c6cc5f))
+- **variables:** drop unused imports
+  ([552b2e9](https://github.com/chakra-ui/chakra-ui/commit/552b2e9b7510963db509a5724af5361ef07c8ecb))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.0.0-rc.0](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/radio@1.0.0-next.7...@chakra-ui/radio@1.0.0-rc.0) (2020-07-26)
 
 **Note:** Version bump only for package @chakra-ui/radio
