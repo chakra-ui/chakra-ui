@@ -1,6 +1,12 @@
 import { useSafeLayoutEffect } from "@chakra-ui/hooks"
 import { isBrowser } from "@chakra-ui/utils"
-import { useState, useRef, useEffect, useCallback } from "react"
+import {
+  useState,
+  useRef,
+  useEffect,
+  useCallback,
+  ImgHTMLAttributes,
+} from "react"
 
 export type UseImageProps = {
   /**
@@ -31,7 +37,7 @@ export type UseImageProps = {
    * The key used to set the crossOrigin on the HTMLImageElement into which the image will be loaded.
    * This tells the browser to request cross-origin access when trying to download the image data.
    */
-  crossOrigin?: string
+  crossOrigin?: ImgHTMLAttributes<any>["crossOrigin"]
 }
 
 type Status = "loading" | "failed" | "pending" | "loaded"
