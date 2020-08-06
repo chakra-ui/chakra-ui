@@ -41,7 +41,7 @@ export const WithSizes = () => {
 
 export const radioGroup = () => {
   return (
-    <RadioGroup onChange={console.log}>
+    <RadioGroup name="type" onChange={console.log}>
       <Stack>
         <Radio value="Option 1">Option 1</Radio>
         <Radio value="Option 2">Option 2</Radio>

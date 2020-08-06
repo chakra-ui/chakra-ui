@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Box, Flex, Spacer, DataList, Stack, Kbd, Square, Circle } from "../src"
+import { Box, Flex, Spacer, Stack, Kbd, Square, Circle } from "../src"
 
 export default {
   title: "Box",
@@ -21,20 +21,6 @@ export const basic = () => (
       }}
     />
   </Box>
-)
-
-export const dataList = () => (
-  <Stack bg="teal.500">
-    <DataList
-      empty={<Box>Data is empty</Box>}
-      data={["Segun", "Chakra", "Sage"]}
-      renderItem={(item) => (
-        <Box width="100%" p="2" bg="tomato">
-          {item}
-        </Box>
-      )}
-    />
-  </Stack>
 )
 
 export const kbd = () => <Kbd>Ctrl + L</Kbd>

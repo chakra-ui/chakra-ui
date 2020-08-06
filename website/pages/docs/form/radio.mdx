@@ -187,6 +187,26 @@ function Example() {
 render(<Example />)
 ```
 
+### Note about `name` prop
+
+We recommend passing the `name` prop to the `RadioGroup` component, instead of
+passing it to each `Radio` components. By defauly, the `name` prop of the
+RadioGroup takes precedence.
+
+```jsx live=false
+// Do this ✅
+<RadioGroup name="form-name">
+  <Radio>Radio 1</Radio>
+  <Radio>Radio 2</Radio>
+</RadioGroup>
+
+// Don't do this ❌
+<RadioGroup >
+  <Radio name="form-name">Radio 1</Radio>
+  <Radio name="form-name">Radio 2</Radio>
+</RadioGroup>
+```
+
 ## Props
 
 | Name             | Type                 | Default | Description                                                                                                           |

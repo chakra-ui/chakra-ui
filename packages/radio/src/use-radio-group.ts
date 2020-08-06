@@ -76,7 +76,8 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
   /**
    * All radio options must use the same name
    */
-  const name = useId(nameProp, `radio`)
+  const fallbackName = useId(undefined, `radio`)
+  const name = nameProp || fallbackName
 
   const onChange = useCallback(
     (eventOrValue: EventOrValue) => {
