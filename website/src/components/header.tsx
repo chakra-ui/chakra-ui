@@ -114,7 +114,7 @@ const Header = (props) => {
       style={{ backdropFilter: "blur(4px)" }}
       {...props}
     >
-      <chakra.div height="4.5rem" mx="auto" maxW="1280px">
+      <chakra.div height="4.5rem" mx="auto" maxW="1000px">
         <HeaderContent />
       </chakra.div>
     </chakra.header>

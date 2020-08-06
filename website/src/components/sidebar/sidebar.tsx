@@ -29,7 +29,7 @@ const Sidebar = ({ routes }: any) => {
         return (
           <React.Fragment key={idx}>
             {c1.heading && (
-              <chakra.h4 fontSize="lg" fontWeight="semibold" my="1.25rem">
+              <chakra.h4 fontSize="md" fontWeight="bold" my="1.25rem">
                 {c1.title}
               </chakra.h4>
             )}

@@ -199,7 +199,7 @@ if (__DEV__) {
 /**
  * A view that arranges its children in a horizontal line.
  */
-export const HStack: React.FC<StackProps> = forwardRef((props, ref) => {
+export const HStack = forwardRef<StackProps, "div">((props, ref) => {
   return <Stack align="center" {...props} direction="row" ref={ref} />
 })
 
@@ -210,7 +210,7 @@ if (__DEV__) {
 /**
  * A view that arranges its children in a vertical line.
  */
-export const VStack: React.FC<StackProps> = forwardRef((props, ref) => {
+export const VStack = forwardRef<StackProps, "div">((props, ref) => {
   return <Stack align="center" {...props} direction="column" ref={ref} />
 })
 

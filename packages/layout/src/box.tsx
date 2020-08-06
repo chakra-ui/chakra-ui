@@ -1,13 +1,13 @@
 import {
   chakra,
-  GetProps,
   forwardRef,
   SystemStyleObject,
+  PropsOf,
 } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-export interface BoxProps extends GetProps<typeof Box> {}
+export interface BoxProps extends PropsOf<typeof Box> {}
 
 /**
  * Box is the most abstract component on top of which other chakra
@@ -25,7 +25,15 @@ if (__DEV__) {
  * As a constraint, you can't pass size related props
  * Only `size` would be allowed
  */
-type Omitted = "size" | "boxSize" | "width" | "height" | "w" | "h"
+type Omitted =
+  | "size"
+  | "boxSize"
+  | "width"
+  | "height"
+  | "w"
+  | "h"
+  | "children"
+  | "as"
 
 export interface SquareProps extends Omit<BoxProps, Omitted> {
   /**

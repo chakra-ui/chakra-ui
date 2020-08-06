@@ -2,7 +2,6 @@ import {
   Box,
   BoxProps,
   chakra,
-  Circle,
   Container,
   Flex,
   Heading,
@@ -14,21 +13,21 @@ import { FaDiscord } from "react-icons/fa"
 function DiscordStrip(props: BoxProps) {
   return (
     <Box bg="#7289DA" {...props}>
-      <Container maxW="1280px" py="40px">
+      <Container maxW="1000px" py="8">
         <Flex
           direction={{ base: "column", md: "row" }}
           align="center"
           justify="space-between"
         >
           <Flex color="white">
-            <Box fontSize="64px" mr={{ base: "24px", md: "40px" }}>
+            <Box fontSize="48px" mr="5">
               <FaDiscord />
             </Box>
             <Box>
-              <Heading size="lg" lineHeight="1.2" mb="1">
+              <Heading size="md" lineHeight="1.2" mb="1">
                 Connect with the community
               </Heading>
-              <Text fontSize="lg" opacity={0.7}>
+              <Text opacity={0.7}>
                 Feel free to ask questions, report issues, and meet new people.
               </Text>
             </Box>
@@ -48,7 +47,7 @@ function DiscordStrip(props: BoxProps) {
             px="24px"
             h="56px"
             rounded="lg"
-            fontSize="lg"
+            fontSize="md"
           >
             Join the #Chakra Discord!
           </chakra.button>

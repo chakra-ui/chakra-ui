@@ -21,7 +21,7 @@ import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live"
 import theme from "prism-react-renderer/themes/nightOwl"
 import * as Chakra from "@chakra-ui/core"
 import * as ReactMdIcons from "react-icons/md"
-import { Container } from "components/container"
+import Container from "components/container"
 import { Footer } from "components/footer"
 import SEO from "components/seo"
 import users from "chakra-users"
@@ -56,19 +56,6 @@ const Feature = ({ title, icon, children, ...props }) => {
     </Box>
   )
 }
-
-const PageHeading = (props) => (
-  <chakra.h1
-    textAlign="center"
-    fontWeight="bold"
-    letterSpacing="tight"
-    lineHeight="1.24"
-    fontSize="2.75rem"
-    mt="6"
-    mb="6"
-    {...props}
-  />
-)
 
 const sampleCode = `
 // Sample component from airbnb.com
@@ -109,16 +96,7 @@ const HomePage = () => {
       <Box mb={20}>
         <Box as="section" pt={40} pb={24}>
           <Container>
-            <Box maxW="800px" mx="auto" textAlign="center">
-              <chakra.h4
-                fontWeight="semibold"
-                textTransform="uppercase"
-                color="teal.500"
-                letterSpacing="widest"
-                mb="32px"
-              >
-                Welcome to Chakra UI
-              </chakra.h4>
+            <Box maxW="760px" mx="auto" textAlign="center">
               <chakra.h1
                 fontSize={{ base: "2.25rem", md: "3rem", lg: "4rem" }}
                 letterSpacing="tight"
@@ -133,7 +111,7 @@ const HomePage = () => {
                 </Box>
               </chakra.h1>
 
-              <Text opacity={0.7} fontSize="xl" mt="6">
+              <Text opacity={0.7} fontSize={{ base: "lg", lg: "xl" }} mt="6">
                 Chakra UI is a simple, modular and accessible component library
                 that gives you the building blocks you need to build your React
                 applications.
@@ -230,7 +208,7 @@ const HomePage = () => {
         <Divider />
 
         <Box as="section" bg="gray.50">
-          <Container py="120px">
+          <Container py="120px" maxW="1280px">
             <Box maxW="760px" mx="auto" textAlign="center" mb="56px">
               <chakra.h1
                 fontWeight="bold"
@@ -280,7 +258,7 @@ const HomePage = () => {
         <Divider />
 
         <Box>
-          <Container py="120px">
+          <Container py="120px" maxW="1200px" px="32px">
             <chakra.h1
               textAlign="center"
               fontWeight="bold"
