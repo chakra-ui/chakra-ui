@@ -1,0 +1,83 @@
+---
+title: Progress
+package: "@chakra-ui/progress"
+image: "components/progress.svg"
+description:
+  Progress is used to display the progress status for a task that takes a long
+  time or consists of several steps.
+---
+
+import ComponentLinks from "../../../src/components/component-links"
+
+Progress is used to display the progress status for a task that takes a long
+time or consists of several steps.
+
+<ComponentLinks
+  github={{ url: "#" }}
+  storybook={{ url: "#" }}
+  npm={{ label: "@chakra-ui/progress", url: "#" }}
+/>
+
+<carbon-ad></carbon-ad>
+
+## Import
+
+```js
+import { Progress } from "@chakra-ui/core"
+```
+
+## Usage
+
+```jsx
+<Progress value={80} />
+```
+
+### Progress with Stripe
+
+You can add `hasStripe` prop to any progressbar to apply a stripe via a CSS
+gradient over the progress bar’s background color.
+
+```jsx
+<Progress hasStripe value={64} />
+```
+
+### Progress sizes
+
+There are two ways you can increase the height of the progressbar:
+
+- You can add `size` prop to increase the height of the progressbar.
+- You can also use the `height` prop to manually set a height.
+
+```jsx
+<Stack spacing={5}>
+  <Progress color="green" size="sm" value={20} />
+  <Progress color="green" size="md" value={20} />
+  <Progress color="green" size="lg" value={20} />
+  <Progress color="green" height="32px" value={20} />
+</Stack>
+```
+
+### Progress color
+
+You can add `colorScheme` prop to any progressbar to apply any color that exists
+in the theme.
+
+```jsx
+<Progress colorScheme="pink" hasStripe />
+```
+
+### Animated Progress
+
+The striped gradient can also be animated. Just add `isAnimated` and `hasStripe`
+prop to the progressbar to animate the stripes right to left via CSS3
+animations.
+
+```jsx
+<Progress hasStripe isAnimated />
+```
+
+## Accessibility
+
+- Progress has a `role` set to `progressbar` to denote that it's a progress.
+- Progress has `aria-valuenow` set to the percentage completion value passed to
+  the component, to ensure the progress percent is visible to screen readers.

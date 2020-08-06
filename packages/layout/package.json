@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/layout",
-  "version": "1.0.0-next.6",
+  "version": "1.0.0-rc.0",
   "description": "Chakra UI layout components that give you massive speed",
   "keywords": [
     "layout",
@@ -52,14 +52,14 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/icon": "^1.0.0-next.6",
-    "@chakra-ui/utils": "^1.0.0-next.6"
+    "@chakra-ui/icon": "1.0.0-rc.0",
+    "@chakra-ui/utils": "1.0.0-rc.0"
   },
   "devDependencies": {
-    "@chakra-ui/system": "^1.0.0-next.6"
+    "@chakra-ui/system": "1.0.0-rc.0"
   },
   "peerDependencies": {
-    "@chakra-ui/system": "^1.0.0-next.5",
+    "@chakra-ui/system": "1.0.0-rc.0",
     "react": "16.x"
   }
 }

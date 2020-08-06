@@ -7,7 +7,7 @@ import {
   transitionConfigToCSS,
 } from "@chakra-ui/transition"
 import * as React from "react"
-import { toTransformOrigin, usePopper } from "../src"
+import { usePopper } from "../src"
 
 const scale: TransitionConfig = {
   timeout: { enter: 100, exit: 75 },
@@ -50,7 +50,7 @@ export default {
 export const Basic = () => {
   const disclosure = useDisclosure()
 
-  const { popper, reference, placement } = usePopper({
+  const { popper, reference } = usePopper({
     placement: "bottom-end",
     forceUpdate: disclosure.isOpen,
   })
@@ -83,7 +83,6 @@ export const Basic = () => {
             border: "1px solid #d2d6dc",
             padding: 15,
             borderRadius: 6,
-            transformOrigin: toTransformOrigin(placement),
           }}
           sx={transitionConfigToCSS(scale, "tooltip")}
         >

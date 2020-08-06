@@ -3,13 +3,13 @@ import { Icon, IconProps } from "@chakra-ui/icon"
 import {
   chakra,
   forwardRef,
-  PropsOf,
-  useStyles,
+  GetProps,
+  omitThemingProps,
   StylesProvider,
+  ThemingProps,
   useMultiStyleConfig,
   useStyleConfig,
-  ThemingProps,
-  omitThemingProps,
+  useStyles,
 } from "@chakra-ui/system"
 import { createContext, cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -128,7 +128,9 @@ function useProvider(props: FormControlContext) {
   return context
 }
 
-export type FormControlProps = FormControlContext & PropsOf<typeof chakra.div>
+export interface FormControlProps
+  extends GetProps<typeof chakra.div>,
+    FormControlContext {}
 
 /**
  * FormControl provides context such as
@@ -137,39 +139,40 @@ export type FormControlProps = FormControlContext & PropsOf<typeof chakra.div>
  * This is commonly used in form elements such as `input`,
  * `select`, `textarea`, etc.
  */
-export const FormControl = forwardRef<FormControlProps>(function FormControl(
-  props,
-  ref,
-) {
-  const styles = useMultiStyleConfig("Form", props)
-  const rest = omitThemingProps(props)
-  const { htmlProps, ...context } = useProvider(rest)
+export const FormControl = forwardRef<FormControlProps, "div">(
+  function FormControl(props, ref) {
+    const styles = useMultiStyleConfig("Form", props)
+    const rest = omitThemingProps(props)
+    const { htmlProps, ...context } = useProvider(rest)
 
-  const _className = cx("chakra-form-control", props.className)
+    const _className = cx("chakra-form-control", props.className)
 
-  return (
-    <FormControlProvider value={context}>
-      <StylesProvider value={styles}>
-        <chakra.div
-          role="group"
-          ref={ref}
-          {...htmlProps}
-          className={_className}
-          __css={{
-            width: "100%",
-            position: "relative",
-          }}
-        />
-      </StylesProvider>
-    </FormControlProvider>
-  )
-})
+    return (
+      <FormControlProvider value={context}>
+        <StylesProvider value={styles}>
+          <chakra.div
+            role="group"
+            ref={ref}
+            {...htmlProps}
+            className={_className}
+            __css={{
+              width: "100%",
+              position: "relative",
+            }}
+          />
+        </StylesProvider>
+      </FormControlProvider>
+    )
+  },
+)
 
 if (__DEV__) {
   FormControl.displayName = "FormControl"
 }
 
-export type FormLabelProps = PropsOf<typeof chakra.label> & ThemingProps
+export interface FormLabelProps
+  extends GetProps<typeof chakra.label>,
+    ThemingProps {}
 
 /**
  * Used to enhance the usability of form controls.
@@ -179,15 +182,14 @@ export type FormLabelProps = PropsOf<typeof chakra.label> & ThemingProps
  *
  * ♿️ Accessibility: Every form field should have a form label.
  */
-export const FormLabel = forwardRef<FormLabelProps>(function FormLabel(
+export const FormLabel = forwardRef<FormLabelProps, "label">(function FormLabel(
   props,
   ref,
 ) {
   const styles = useStyleConfig("FormLabel", props)
+  const { className, children, ...rest } = omitThemingProps(props)
 
-  const { className, children, ...otherProps } = omitThemingProps(props)
-
-  const ownProps = useFormControlLabel(otherProps)
+  const ownProps = useFormControlLabel(rest)
   const field = useFormControlContext()
 
   return (
@@ -211,13 +213,13 @@ if (__DEV__) {
   FormLabel.displayName = "FormLabel"
 }
 
-export type RequiredIndicatorProps = PropsOf<typeof chakra.span>
+export interface RequiredIndicatorProps extends GetProps<typeof chakra.span> {}
 
 /**
  * Used to show a "required" text or an asterisks (*) to indicate that
  * a field is required.
  */
-export const RequiredIndicator = forwardRef<RequiredIndicatorProps>(
+export const RequiredIndicator = forwardRef<RequiredIndicatorProps, "span">(
   function RequiredIndicator(props, ref) {
     const field = useFormControlContext()
     const styles = useStyles()
@@ -244,7 +246,7 @@ if (__DEV__) {
   RequiredIndicator.displayName = "RequiredIndicator"
 }
 
-export type HelpTextProps = PropsOf<typeof chakra.div>
+export interface HelpTextProps extends GetProps<typeof chakra.div> {}
 
 /**
  * FormHelperText
@@ -253,46 +255,45 @@ export type HelpTextProps = PropsOf<typeof chakra.div>
  * about the field, such as how it will be used and what
  * types in values should be provided
  */
-export const FormHelperText = forwardRef<HelpTextProps>(function FormHelperText(
-  props,
-  ref,
-) {
-  const field = useFormControlContext()
-  const styles = useStyles()
+export const FormHelperText = forwardRef<HelpTextProps, "div">(
+  function FormHelperText(props, ref) {
+    const field = useFormControlContext()
+    const styles = useStyles()
 
-  /**
-   * Notify the field context when the help text is rendered on
-   * screen, so we can apply the correct `aria-describedby` to the field (e.g. input, textarea)
-   */
-  useSafeLayoutEffect(() => {
-    field?.setHasHelpText.on()
-    return () => field?.setHasHelpText.off()
-  }, [])
+    /**
+     * Notify the field context when the help text is rendered on
+     * screen, so we can apply the correct `aria-describedby` to the field (e.g. input, textarea)
+     */
+    useSafeLayoutEffect(() => {
+      field?.setHasHelpText.on()
+      return () => field?.setHasHelpText.off()
+    }, [])
 
-  const _className = cx("chakra-form__helper-text", props.className)
+    const _className = cx("chakra-form__helper-text", props.className)
 
-  return (
-    <chakra.div
-      ref={ref}
-      __css={styles.helperText}
-      {...props}
-      className={_className}
-      id={props.id ?? field?.helpTextId}
-    />
-  )
-})
+    return (
+      <chakra.div
+        ref={ref}
+        __css={styles.helperText}
+        {...props}
+        className={_className}
+        id={props.id ?? field?.helpTextId}
+      />
+    )
+  },
+)
 
 if (__DEV__) {
   FormHelperText.displayName = "FormHelperText"
 }
 
-export type FormErrorMessageProps = PropsOf<typeof chakra.div>
+export interface FormErrorMessageProps extends GetProps<typeof chakra.div> {}
 
 /**
  * Used to provide feedback about an invalid input,
  * and suggest clear instrctions on how to fix it.
  */
-export const FormErrorMessage = forwardRef<FormErrorMessageProps>(
+export const FormErrorMessage = forwardRef<FormErrorMessageProps, "div">(
   function FormErrorMessage(props, ref) {
     const styles = useStyles()
     const field = useFormControlContext()
@@ -326,32 +327,31 @@ if (__DEV__) {
  * Used as the visual indicator that a field is invalid or
  * a field has incorrect values.
  */
-export const FormErrorIcon = forwardRef<IconProps>(function FormErrorIcon(
-  props,
-  ref,
-) {
-  const styles = useStyles()
-  const field = useFormControlContext()
+export const FormErrorIcon = forwardRef<IconProps, "svg">(
+  function FormErrorIcon(props, ref) {
+    const styles = useStyles()
+    const field = useFormControlContext()
 
-  if (!field?.isInvalid) return null
+    if (!field?.isInvalid) return null
 
-  const _className = cx("chakra-form__error-icon", props.className)
+    const _className = cx("chakra-form__error-icon", props.className)
 
-  return (
-    <Icon
-      ref={ref}
-      aria-hidden
-      {...props}
-      __css={styles.errorIcon}
-      className={_className}
-    >
-      <path
-        fill="currentColor"
-        d="M11.983,0a12.206,12.206,0,0,0-8.51,3.653A11.8,11.8,0,0,0,0,12.207,11.779,11.779,0,0,0,11.8,24h.214A12.111,12.111,0,0,0,24,11.791h0A11.766,11.766,0,0,0,11.983,0ZM10.5,16.542a1.476,1.476,0,0,1,1.449-1.53h.027a1.527,1.527,0,0,1,1.523,1.47,1.475,1.475,0,0,1-1.449,1.53h-.027A1.529,1.529,0,0,1,10.5,16.542ZM11,12.5v-6a1,1,0,0,1,2,0v6a1,1,0,1,1-2,0Z"
-      />
-    </Icon>
-  )
-})
+    return (
+      <Icon
+        ref={ref}
+        aria-hidden
+        {...props}
+        __css={styles.errorIcon}
+        className={_className}
+      >
+        <path
+          fill="currentColor"
+          d="M11.983,0a12.206,12.206,0,0,0-8.51,3.653A11.8,11.8,0,0,0,0,12.207,11.779,11.779,0,0,0,11.8,24h.214A12.111,12.111,0,0,0,24,11.791h0A11.766,11.766,0,0,0,11.983,0ZM10.5,16.542a1.476,1.476,0,0,1,1.449-1.53h.027a1.527,1.527,0,0,1,1.523,1.47,1.475,1.475,0,0,1-1.449,1.53h-.027A1.529,1.529,0,0,1,10.5,16.542ZM11,12.5v-6a1,1,0,0,1,2,0v6a1,1,0,1,1-2,0Z"
+        />
+      </Icon>
+    )
+  },
+)
 
 if (__DEV__) {
   FormErrorIcon.displayName = "FormErrorIcon"

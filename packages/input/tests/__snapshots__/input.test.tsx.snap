@@ -46,7 +46,6 @@ exports[`Elements inside input render correctly 1`] = `
   transition: all 0.2s;
   font-size: 1rem;
   padding-left: 1rem;
-  padding-right: 1rem;
   height: 2.5rem;
   border-radius: 0.25rem;
   border: 1px solid;
@@ -86,7 +85,6 @@ exports[`Elements inside input render correctly 1`] = `
 
 .emotion-1:focus,
 .emotion-1[data-focus] {
-  z-index: 1;
   border-color: #3182CE;
   box-shadow: 0 0 0 1px #3182CE;
 }
@@ -237,7 +235,6 @@ exports[`Input addons render correctly 1`] = `
 
 .emotion-1:focus,
 .emotion-1[data-focus] {
-  z-index: 1;
   border-color: #3182CE;
   box-shadow: 0 0 0 1px #3182CE;
 }
@@ -347,7 +344,6 @@ exports[`Input renders correctly 1`] = `
 
 .emotion-0:focus,
 .emotion-0[data-focus] {
-  z-index: 1;
   border-color: #3182CE;
   box-shadow: 0 0 0 1px #3182CE;
 }

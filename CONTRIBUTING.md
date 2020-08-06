@@ -16,7 +16,6 @@ your contribution.
 - [Making a Pull Request?](#making-a-pull-request)
   - [Commit Convention](#commit-convention)
   - [Steps to PR](#steps-to-pr)
-  - [Changesets](#changesets)
   - [Tests](#tests)
 - [Want to write a blog post or tutorial](#want-to-write-a-blog-post-or-tutorial)
 - [Want to help improve the docs?](#want-to-help-improve-the-docs)
@@ -60,7 +59,6 @@ use consumed independently.
 - [Testing Library](https://testing-library.com/) for testing components and
   hooks
 - [Gatsby](https://www.gatsbyjs.org/) for a blazing fast documentation website.
-- [Changesets](https://github.com/atlassian/changesets) A way to manage
   versioning and changelogs
 
 ### Commands
@@ -188,31 +186,6 @@ https://www.conventionalcommits.org/ or check out the
     conventional commit type
   - `scope` is just a short id that describes the scope of work.
 
-### Changesets
-
-The Chakra project uses [`changesets`](https://github.com/atlassian/changesets)
-to manage versioning and changelogs.
-
-A new changeset can be created using `yarn changeset`. This will begin a guided
-process that will ask you to select which packages you're changing, which type
-of version bump each package should receive (major, minor, or patch, defaulting
-to patch for all packages if no option is selected), and the change that you've
-made.
-
-Changesets are stored in `.changesets/` and don't do anything until we release a
-new version. At this time, the changesets are processed to determine which
-packages to bump, and the change messages are appended to the corresponding
-`CHANGELOG.md` files for each package.
-
-If you don't feel comfortable generating a changeset for changes you've made to
-the project, don't worry about it! We have a GitHub bot that will automatically
-reply to your PR letting us know that you haven't created a changeset, and a
-maintainer can add a changeset for you.
-
-See the
-[Detailed Explanation](https://github.com/atlassian/changesets/blob/master/docs/detailed-explanation.md)
-document for more information.
-
 ### Tests
 
 All commits that fix bugs or add features need a test.
@@ -227,6 +200,12 @@ https://discord.gg/dQHfcWF. We would love to support you anyway we can.
 ## Want to help improve the docs?
 
 TODO
+
+By default, the GitHub REST API has an anonymous user rate limit. This can be
+hit during heavy local docs development if the server is frequently restarted.
+
+Creating a GitHub token and storing it as the `GITHUB_TOKEN` environment
+variable allows the user to avoid the limit.
 
 ## License
 

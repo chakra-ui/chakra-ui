@@ -44,6 +44,7 @@ exports[`AvatarGroup renders correctly 1`] = `
   flex-shrink: 0;
   background: #A0AEC0;
   color: #FFFFFF;
+  border-color: #FFFFFF;
   vertical-align: top;
   width: 3rem;
   height: 3rem;

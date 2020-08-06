@@ -60,7 +60,6 @@ exports[`should render correctly 1`] = `
       <svg
         class="chakra-icon emotion-0"
         focusable="false"
-        role="presentation"
         viewBox="0 0 24 24"
       >
         <path

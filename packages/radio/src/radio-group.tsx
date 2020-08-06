@@ -1,4 +1,4 @@
-import { ThemingProps, chakra, PropsOf, forwardRef } from "@chakra-ui/system"
+import { ThemingProps, chakra, GetProps, forwardRef } from "@chakra-ui/system"
 import { createContext, __DEV__, cx } from "@chakra-ui/utils"
 import * as React from "react"
 import {
@@ -20,12 +20,15 @@ const [RadioGroupProvider, useRadioGroupContext] = createContext<
 
 export { useRadioGroupContext }
 
-export type RadioGroupProps = UseRadioGroupProps &
-  Omit<
-    PropsOf<typeof chakra.div>,
-    "onChange" | "value" | "defaultValue" | "children"
-  > &
-  Omit<ThemingProps, "orientation"> & { children: React.ReactNode }
+export interface RadioGroupProps
+  extends UseRadioGroupProps,
+    Omit<
+      GetProps<typeof chakra.div>,
+      "onChange" | "value" | "defaultValue" | "children"
+    >,
+    Omit<ThemingProps, "orientation"> {
+  children: React.ReactNode
+}
 
 /**
  * Used for multiple radios which are bound in one group,
@@ -33,46 +36,38 @@ export type RadioGroupProps = UseRadioGroupProps &
  *
  * @see Docs https://chakra-ui.com/components/radio
  */
-export const RadioGroup = forwardRef(function RadioGroup(
-  props: RadioGroupProps,
-  ref: React.Ref<any>,
-) {
-  const {
-    colorScheme,
-    size,
-    variant,
-    children,
-    className,
-    ...otherProps
-  } = props
+export const RadioGroup = forwardRef<RadioGroupProps, "div">(
+  function RadioGroup(props, ref) {
+    const { colorScheme, size, variant, children, className, ...rest } = props
 
-  const { value, onChange, getRootProps, name, htmlProps } = useRadioGroup(
-    otherProps,
-  )
+    const { value, onChange, getRootProps, name, htmlProps } = useRadioGroup(
+      rest,
+    )
 
-  const group = React.useMemo(
-    () => ({
-      name,
-      size,
-      onChange,
-      colorScheme,
-      value,
-      variant,
-    }),
-    [size, name, onChange, colorScheme, value, variant],
-  )
+    const group = React.useMemo(
+      () => ({
+        name,
+        size,
+        onChange,
+        colorScheme,
+        value,
+        variant,
+      }),
+      [size, name, onChange, colorScheme, value, variant],
+    )
 
-  const groupProps = getRootProps(htmlProps, ref)
-  const _className = cx("chakra-radio-group", className)
+    const groupProps = getRootProps(htmlProps, ref)
+    const _className = cx("chakra-radio-group", className)
 
-  return (
-    <RadioGroupProvider value={group}>
-      <chakra.div {...groupProps} className={_className}>
-        {children}
-      </chakra.div>
-    </RadioGroupProvider>
-  )
-})
+    return (
+      <RadioGroupProvider value={group}>
+        <chakra.div {...groupProps} className={_className}>
+          {children}
+        </chakra.div>
+      </RadioGroupProvider>
+    )
+  },
+)
 
 if (__DEV__) {
   RadioGroup.displayName = "RadioGroup"

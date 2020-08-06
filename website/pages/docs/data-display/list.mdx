@@ -1,0 +1,90 @@
+---
+title: List
+package: "@chakra-ui/layout"
+image: "components/list.svg"
+description:
+  "List is used to display list items. It renders a <ul> element by default"
+---
+
+import ComponentLinks from "../../../src/components/component-links"
+
+List is used to display list items. It renders a `<ul>` element by default.
+
+<ComponentLinks
+  github={{ url: "#" }}
+  storybook={{ url: "#" }}
+  npm={{ label: "@chakra-ui/layout", url: "#" }}
+/>
+
+<carbon-ad></carbon-ad>
+
+## Import
+
+```js
+import { List, ListItem, ListIcon } from "@chakra-ui/core"
+```
+
+## Unordered List
+
+```jsx
+<UnorderedList>
+  <ListItem>Lorem ipsum dolor sit amet</ListItem>
+  <ListItem>Consectetur adipiscing elit</ListItem>
+  <ListItem>Integer molestie lorem at massa</ListItem>
+  <ListItem>Facilisis in pretium nisl aliquet</ListItem>
+</UnorderedList>
+```
+
+## Ordered List
+
+```jsx
+<OrderedList>
+  <ListItem>Lorem ipsum dolor sit amet</ListItem>
+  <ListItem>Consectetur adipiscing elit</ListItem>
+  <ListItem>Integer molestie lorem at massa</ListItem>
+  <ListItem>Facilisis in pretium nisl aliquet</ListItem>
+</OrderedList>
+```
+
+## Unstyled List with icon
+
+Add icons to the list items by using the `ListIcon` component. You can pass the
+name of the icon or use custom icons. The size of the icon is relative to the
+font size of the list item.
+
+```jsx
+<List spacing={3}>
+  <ListItem>
+    <ListIcon as={FaCheckCircle} color="green.500" />
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit
+  </ListItem>
+  <ListItem>
+    <ListIcon as={FaCheckCircle} color="green.500" />
+    Assumenda, quia temporibus eveniet a libero incidunt suscipit
+  </ListItem>
+  <ListItem>
+    <ListIcon as={FaCheckCircle} color="green.500" />
+    Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
+  </ListItem>
+  {/* You can also use custom icons from react-icons */}
+  <ListItem>
+    <ListIcon as={MdSettings} color="green.500" />
+    Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
+  </ListItem>
+</List>
+```
+
+## Props
+
+### List Props
+
+| Name      | Type                             | Default  | Description                             |
+| --------- | -------------------------------- | -------- | --------------------------------------- |
+| styleType | `string`                         | `none`   | The CSS value for `list-style-type`     |
+| stylePos  | `string`                         | `inside` | The CSS value for `list-style-position` |
+| spacing   | `StyledSystem.MarginBottomProps` |          | The space between each list item        |
+
+### List Item Props
+
+ListItem composes [Box](/docs/layout/box) so you can pass all style and pseudo
+style props.

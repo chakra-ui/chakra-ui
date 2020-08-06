@@ -14,7 +14,14 @@ import {
   __DEV__,
   createContext,
 } from "@chakra-ui/utils"
-import React, { Ref, ReactNode, useCallback, cloneElement, useRef } from "react"
+import {
+  Ref,
+  ReactNode,
+  useCallback,
+  cloneElement,
+  useRef,
+  useState,
+} from "react"
 import * as warn from "./warning"
 
 export type ExpandedIndex = number | number[]
@@ -49,8 +56,6 @@ export interface UseAccordionProps {
 /**
  * useAccordion hook provides all the state and focus management logic
  * for accordion items.
- *
- * It is consumed by the `Accordion` component
  */
 export function useAccordion(props: UseAccordionProps) {
   const {
@@ -80,7 +85,7 @@ export function useAccordion(props: UseAccordionProps) {
    * button when click on the button, tab on the button, or
    * use the down/up arrow to navigate.
    */
-  const [focusedIndex, setFocusedIndex] = React.useState(-1)
+  const [focusedIndex, setFocusedIndex] = useState(-1)
 
   /**
    * Hook that manages the controlled and un-controlled state
@@ -192,9 +197,15 @@ export function useAccordionItem(props: UseAccordionItemProps) {
   const { isDisabled, isFocusable, onChange, isOpen, id, ...htmlProps } = props
 
   const { domContext, focusedIndex, setFocusedIndex } = useAccordionContext()
+  const { descendants } = domContext
 
-  const onOpen = () => onChange?.(true)
-  const onClose = () => onChange?.(false)
+  const onOpen = () => {
+    onChange?.(true)
+  }
+
+  const onClose = () => {
+    onChange?.(false)
+  }
 
   const buttonRef = useRef<HTMLElement>(null)
 
@@ -215,8 +226,6 @@ export function useAccordionItem(props: UseAccordionItemProps) {
     disabled: isDisabled,
     focusable: isFocusable,
   })
-
-  const { descendants } = domContext
 
   const shouldFocus = index === focusedIndex
 

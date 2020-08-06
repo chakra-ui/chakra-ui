@@ -1,14 +1,17 @@
 import * as React from "react"
 import {
   chakra,
-  PropsOf,
+  GetProps,
   useStyleConfig,
   omitThemingProps,
   ThemingProps,
+  forwardRef,
 } from "@chakra-ui/system"
 import { __DEV__, cx } from "@chakra-ui/utils"
 
-export type BadgeProps = PropsOf<typeof chakra.span> & ThemingProps
+export interface BadgeProps
+  extends GetProps<typeof chakra.span>,
+    ThemingProps {}
 
 /**
  * React component used to display notifications, messages, or
@@ -16,10 +19,7 @@ export type BadgeProps = PropsOf<typeof chakra.span> & ThemingProps
  *
  * @see Docs https://chakra-ui.com/components/badge
  */
-export const Badge = React.forwardRef(function Badge(
-  props: BadgeProps,
-  ref: React.Ref<any>,
-) {
+export const Badge = forwardRef<BadgeProps, "span">(function Badge(props, ref) {
   const styles = useStyleConfig("Badge", props)
   const { className, ...rest } = omitThemingProps(props)
 
