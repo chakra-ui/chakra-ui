@@ -1,5 +1,5 @@
 import { useInterval } from "@chakra-ui/hooks"
-import * as React from "react"
+import { useState, useRef, useEffect, useCallback } from "react"
 
 /**
  * When click and hold on a button - the speed of auto changing the value.
@@ -24,16 +24,16 @@ export function useSpinner(increment: Function, decrement: Function) {
   /**
    * To keep incrementing/decrementing on press, we call that `spinning`
    */
-  const [isSpinning, setIsSpinning] = React.useState(false)
+  const [isSpinning, setIsSpinning] = useState(false)
 
   // This state keeps track of the action ("increment" or "decrement")
-  const [action, setAction] = React.useState<Action | null>(null)
+  const [action, setAction] = useState<Action | null>(null)
 
   // To increment the value the first time you mousedown, we call that `runOnce`
-  const [runOnce, setRunOnce] = React.useState(true)
+  const [runOnce, setRunOnce] = useState(true)
 
   // Store the timeout instance id in a ref, so we can clear the timeout later
-  const timeoutRef = React.useRef<any>(null)
+  const timeoutRef = useRef<any>(null)
 
   // Clears the timeout from memory
   const removeTimeout = () => clearTimeout(timeoutRef.current)
@@ -55,7 +55,7 @@ export function useSpinner(increment: Function, decrement: Function) {
   )
 
   // Function to activate the spinning and increment the value
-  const up = React.useCallback(() => {
+  const up = useCallback(() => {
     // increment the first fime
     if (runOnce) {
       increment()
@@ -70,7 +70,7 @@ export function useSpinner(increment: Function, decrement: Function) {
   }, [increment, runOnce])
 
   // Function to activate the spinning and increment the value
-  const down = React.useCallback(() => {
+  const down = useCallback(() => {
     // decrement the first fime
     if (runOnce) {
       decrement()
@@ -85,7 +85,7 @@ export function useSpinner(increment: Function, decrement: Function) {
   }, [decrement, runOnce])
 
   // Function to stop spinng (useful for mouseup, keyup handlers)
-  const stop = React.useCallback(() => {
+  const stop = useCallback(() => {
     setRunOnce(true)
     setIsSpinning(false)
     removeTimeout()
@@ -95,7 +95,7 @@ export function useSpinner(increment: Function, decrement: Function) {
    * If the component unmounts while spinning,
    * let's clear the timeout as well
    */
-  React.useEffect(() => {
+  useEffect(() => {
     return () => {
       removeTimeout()
     }

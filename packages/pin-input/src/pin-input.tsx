@@ -1,6 +1,6 @@
 import {
   chakra,
-  PropsOf,
+  GetProps,
   ThemingProps,
   useStyleConfig,
   forwardRef,
@@ -30,14 +30,15 @@ interface InputOptions {
   errorBorderColor?: string
 }
 
-export type PinInputProps = UsePinInputProps &
-  ThemingProps &
-  InputOptions & {
-    /**
-     * The children of the pin input component
-     */
-    children: React.ReactNode
-  }
+export interface PinInputProps
+  extends UsePinInputProps,
+    ThemingProps,
+    InputOptions {
+  /**
+   * The children of the pin input component
+   */
+  children: React.ReactNode
+}
 
 export const PinInput: React.FC<PinInputProps> = (props) => {
   const styles = useStyleConfig("PinInput", props)
@@ -56,10 +57,10 @@ if (__DEV__) {
   PinInput.displayName = "PinInput"
 }
 
-export type PinInputFieldProps = PropsOf<typeof chakra.input>
+export interface PinInputFieldProps extends GetProps<typeof chakra.input> {}
 
-export const PinInputField: React.FC<PinInputFieldProps> = forwardRef(
-  (props, ref) => {
+export const PinInputField = forwardRef<PinInputFieldProps, "input">(
+  function PinInputField(props, ref) {
     const inputProps = usePinInputField({ ref, ...props })
     return (
       <chakra.input
