@@ -248,13 +248,15 @@ export function useTabList<P extends UseTabListProps>(props: P) {
 
 export type UseTabListReturn = ReturnType<typeof useTabList>
 
-export interface UseTabProps extends Omit<UseClickableProps, "ref"> {
+export interface UseTabOptions {
   id?: string
   isSelected?: boolean
   panelId?: string
-  onFocus?: FocusEventHandler
-  ref?: Ref<any>
 }
+
+export interface UseTabProps
+  extends Omit<UseClickableProps, "color">,
+    UseTabOptions {}
 
 /**
  * Tabs hook to manage each tab button.
