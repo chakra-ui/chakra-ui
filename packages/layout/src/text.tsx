@@ -1,7 +1,7 @@
 import * as React from "react"
 import {
   chakra,
-  GetProps,
+  PropsOf,
   useStyleConfig,
   omitThemingProps,
   ThemingProps,
@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/system"
 import { __DEV__, cx } from "@chakra-ui/utils"
 
-export interface TextProps extends GetProps<typeof chakra.p>, ThemingProps {}
+export interface TextProps extends PropsOf<typeof chakra.p>, ThemingProps {}
 
 /**
  * Used to render texts or paragraphs.

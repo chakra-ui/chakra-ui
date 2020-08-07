@@ -1,7 +1,7 @@
 import * as React from "react"
 import {
   chakra,
-  GetProps,
+  PropsOf,
   useStyleConfig,
   omitThemingProps,
   ThemingProps,
@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/system"
 import { __DEV__, cx } from "@chakra-ui/utils"
 
-export interface KbdProps extends GetProps<typeof chakra.kbd>, ThemingProps {}
+export interface KbdProps extends PropsOf<typeof chakra.kbd>, ThemingProps {}
 
 /**
  * Semantic component to render a keyboard shortcut

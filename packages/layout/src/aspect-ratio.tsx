@@ -1,11 +1,6 @@
 import { cx, __DEV__, mapResponsive } from "@chakra-ui/utils"
 import React, { Children } from "react"
-import {
-  chakra,
-  GetProps,
-  ResponsiveValue,
-  forwardRef,
-} from "@chakra-ui/system"
+import { chakra, PropsOf, ResponsiveValue, forwardRef } from "@chakra-ui/system"
 
 interface AspectRatioOptions {
   /**
@@ -17,7 +12,7 @@ interface AspectRatioOptions {
 }
 
 export interface AspectRatioProps
-  extends GetProps<typeof chakra.div>,
+  extends PropsOf<typeof chakra.div>,
     AspectRatioOptions {}
 
 /**

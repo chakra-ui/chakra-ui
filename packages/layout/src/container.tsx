@@ -1,6 +1,6 @@
 import {
   chakra,
-  GetProps,
+  PropsOf,
   useTheme,
   SystemStyleObject,
   forwardRef,
@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/utils"
 import * as React from "react"
 
-export interface ContainerProps extends GetProps<typeof chakra.div> {
+export interface ContainerProps extends PropsOf<typeof chakra.div> {
   /**
    * If `true`, container will center it's children
    * regardless of their width.

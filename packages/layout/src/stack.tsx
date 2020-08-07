@@ -1,7 +1,7 @@
 import {
   chakra,
   css,
-  GetProps,
+  PropsOf,
   ResponsiveValue,
   SystemProps,
   forwardRef,
@@ -55,7 +55,7 @@ interface StackOptions {
   isInline?: boolean
 }
 
-export interface StackDividerProps extends GetProps<typeof chakra.div> {}
+export interface StackDividerProps extends PropsOf<typeof chakra.div> {}
 
 export const StackDivider: React.FC<StackDividerProps> = (props) => (
   <chakra.div
@@ -71,7 +71,7 @@ export const StackDivider: React.FC<StackDividerProps> = (props) => (
   />
 )
 
-export const StackItem: React.FC<GetProps<typeof chakra.div>> = (props) => (
+export const StackItem: React.FC<PropsOf<typeof chakra.div>> = (props) => (
   <chakra.div
     className="chakra-stack__item"
     __css={{ display: "inline-block", flex: 0 }}
@@ -79,7 +79,7 @@ export const StackItem: React.FC<GetProps<typeof chakra.div>> = (props) => (
   />
 )
 
-export interface StackProps extends GetProps<typeof chakra.div>, StackOptions {}
+export interface StackProps extends PropsOf<typeof chakra.div>, StackOptions {}
 
 /**
  * Stacks help you easily create flexible and automatically distributed layouts

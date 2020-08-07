@@ -1,5 +1,5 @@
 import { Icon, IconProps } from "@chakra-ui/icon"
-import { chakra, ChakraProps, forwardRef, GetProps } from "@chakra-ui/system"
+import { chakra, SystemProps, forwardRef, PropsOf } from "@chakra-ui/system"
 import { getValidChildren, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -7,18 +7,18 @@ interface ListOptions {
   /**
    * Short hand prop for `listStyleType`
    */
-  styleType?: ChakraProps["listStyleType"]
+  styleType?: SystemProps["listStyleType"]
   /**
    * Short hand prop for `listStylePosition`
    */
-  stylePosition?: ChakraProps["listStylePosition"]
+  stylePosition?: SystemProps["listStylePosition"]
   /**
    * The space between each list item
    */
-  spacing?: ChakraProps["margin"]
+  spacing?: SystemProps["margin"]
 }
 
-export interface ListProps extends GetProps<typeof chakra.ul>, ListOptions {}
+export interface ListProps extends PropsOf<typeof chakra.ul>, ListOptions {}
 
 /**
  * List is used to display list items, it renders a `<ul>` by default.
@@ -89,7 +89,7 @@ if (__DEV__) {
   UnorderedList.displayName = "UnorderedList"
 }
 
-export interface ListItemProps extends GetProps<typeof ListItem> {}
+export interface ListItemProps extends PropsOf<typeof ListItem> {}
 
 /**
  * ListItem

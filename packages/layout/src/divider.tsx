@@ -1,5 +1,5 @@
 import * as React from "react"
-import { chakra, forwardRef, GetProps } from "@chakra-ui/system"
+import { chakra, forwardRef, PropsOf } from "@chakra-ui/system"
 import { __DEV__, cx } from "@chakra-ui/utils"
 
 /**
@@ -43,7 +43,7 @@ export const Divider = forwardRef<DividerProps, "hr">(function Divider(
   )
 })
 
-export interface DividerProps extends GetProps<typeof chakra.hr> {
+export interface DividerProps extends PropsOf<typeof chakra.hr> {
   orientation?: "horizontal" | "vertical"
 }
 
