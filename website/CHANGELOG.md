@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.1](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/docs@1.0.0-rc.0...@chakra-ui/docs@1.0.0-rc.1) (2020-08-06)
+
+### Bug Fixes
+
+- fix overlapping navbar
+  ([fd4b2f4](https://github.com/chakra-ui/chakra-ui/commit/fd4b2f4cd60698c8abd2aefc8333f77e3b12ddab))
+- issue with radio and radio group name
+  ([4e09ebb](https://github.com/chakra-ui/chakra-ui/commit/4e09ebbf73d8f940a56703761914c2461e7a451f))
+- **docs:** adapt to changes
+  ([d3cfe90](https://github.com/chakra-ui/chakra-ui/commit/d3cfe904676ae280205425a6cd846cdb149a4c1c))
+- **docs:** add note to PinInputField
+  ([34106f4](https://github.com/chakra-ui/chakra-ui/commit/34106f4f3f40c6741e196023c1a8e8608ce4801c))
+
+### Features
+
+- add discord strip to homepage
+  ([f3eb541](https://github.com/chakra-ui/chakra-ui/commit/f3eb541b01684a229c3b1a4e5907ae96df5b03ba))
+- **docs:** add testimonials to homepage
+  ([795927e](https://github.com/chakra-ui/chakra-ui/commit/795927e753ad003f4379a4ab62e6e982d9b6c5aa))
+- add edit link and pagination
+  ([7e0a23f](https://github.com/chakra-ui/chakra-ui/commit/7e0a23fe189a9bb25e02868f16846d7bd4f4571d))
+- added docs for cookieStorageManager
+  ([51de9cf](https://github.com/chakra-ui/chakra-ui/commit/51de9cf9ced7e54b8e98e69be083544418f3fac9))
+- get author details and add tags as well
+  ([77c82c7](https://github.com/chakra-ui/chakra-ui/commit/77c82c704b80a0a4e1a64dfbb134aceaa1f10b72))
+- improve home page ui
+  ([8cc9dde](https://github.com/chakra-ui/chakra-ui/commit/8cc9ddebba3f2bd6e31314be117fd0c00bf7a06c))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.0.0-rc.0](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/docs@1.0.0-next.7...@chakra-ui/docs@1.0.0-rc.0) (2020-07-26)
 
 **Note:** Version bump only for package @chakra-ui/docs

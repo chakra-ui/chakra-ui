@@ -1,6 +1,6 @@
 {
   "name": "chakra-nextjs",
-  "version": "1.0.0-rc.0",
+  "version": "1.0.0-rc.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -8,8 +8,8 @@
     "start": "next start"
   },
   "dependencies": {
-    "@chakra-ui/core": "1.0.0-rc.0",
-    "@chakra-ui/theme": "1.0.0-rc.0",
+    "@chakra-ui/core": "1.0.0-rc.1",
+    "@chakra-ui/theme": "1.0.0-rc.1",
     "next": "9.4.4",
     "react": "^16.13.0",
     "react-dom": "^16.13.0"

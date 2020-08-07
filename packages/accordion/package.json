@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/accordion",
-  "version": "1.0.0-rc.0",
+  "version": "1.0.0-rc.1",
   "description": "A simple and accessible accordion component for React & Chakra UI",
   "keywords": [
     "react",
@@ -51,14 +51,14 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/collapse": "1.0.0-rc.0",
-    "@chakra-ui/descendant": "1.0.0-rc.0",
-    "@chakra-ui/hooks": "1.0.0-rc.0",
-    "@chakra-ui/icon": "1.0.0-rc.0",
-    "@chakra-ui/utils": "1.0.0-rc.0"
+    "@chakra-ui/collapse": "1.0.0-rc.1",
+    "@chakra-ui/descendant": "1.0.0-rc.1",
+    "@chakra-ui/hooks": "1.0.0-rc.1",
+    "@chakra-ui/icon": "1.0.0-rc.1",
+    "@chakra-ui/utils": "1.0.0-rc.1"
   },
   "devDependencies": {
-    "@chakra-ui/system": "1.0.0-rc.0"
+    "@chakra-ui/system": "1.0.0-rc.1"
   },
   "peerDependencies": {
     "@chakra-ui/system": "1.0.0-rc.0",
