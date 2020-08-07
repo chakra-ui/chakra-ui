@@ -42,9 +42,12 @@ export interface ComponentWithAs<T extends As, P> {
 
 export function forwardRef<P, T extends As>(
   comp: (
-    props: PropsFromAs<T, P>,
+    props: PropsFromAs<T, Omit<P, "children" | "as">>,
     ref: React.RefObject<any>,
   ) => React.ReactElement | null,
 ) {
-  return (React.forwardRef(comp as any) as unknown) as ComponentWithAs<T, P>
+  return (React.forwardRef(comp as any) as unknown) as ComponentWithAs<
+    T,
+    Omit<P, "children" | "as">
+  >
 }

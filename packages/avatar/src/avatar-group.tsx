@@ -1,6 +1,6 @@
 import {
   chakra,
-  GetProps,
+  PropsOf,
   SystemProps,
   ThemingProps,
   useMultiStyleConfig,
@@ -30,7 +30,7 @@ interface AvatarGroupOptions {
 
 export interface AvatarGroupProps
   extends AvatarGroupOptions,
-    GetProps<typeof chakra.div>,
+    Omit<PropsOf<typeof chakra.div>, "children">,
     ThemingProps {}
 
 /**

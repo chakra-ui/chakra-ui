@@ -1,4 +1,4 @@
-import { chakra, GetProps, SystemProps, forwardRef } from "@chakra-ui/system"
+import { chakra, PropsOf, SystemProps, forwardRef } from "@chakra-ui/system"
 import { omit, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { useImage, UseImageProps } from "./use-image"
@@ -44,7 +44,7 @@ interface ImageOptions {
 
 export interface ImageProps
   extends UseImageProps,
-    Omit<GetProps<typeof chakra.img>, keyof UseImageProps>,
+    Omit<PropsOf<typeof chakra.img>, keyof UseImageProps>,
     ImageOptions {}
 
 /**

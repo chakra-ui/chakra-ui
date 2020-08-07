@@ -1,7 +1,7 @@
 import {
   chakra,
   forwardRef,
-  GetProps,
+  PropsOf,
   StylesProvider,
   ThemingProps,
   useMultiStyleConfig,
@@ -38,7 +38,7 @@ interface AlertOptions {
 }
 
 export interface AlertProps
-  extends GetProps<typeof chakra.div>,
+  extends PropsOf<typeof chakra.div>,
     AlertOptions,
     ThemingProps {}
 
@@ -77,7 +77,7 @@ export const Alert = forwardRef<AlertProps, "div">(function Alert(props, ref) {
   )
 })
 
-export interface AlertTitleProps extends GetProps<typeof chakra.div> {}
+export interface AlertTitleProps extends PropsOf<typeof chakra.div> {}
 
 export const AlertTitle = forwardRef<AlertTitleProps, "div">(
   function AlertTitle(props, ref) {
@@ -93,7 +93,7 @@ export const AlertTitle = forwardRef<AlertTitleProps, "div">(
   },
 )
 
-export interface AlertDescriptionProps extends GetProps<typeof chakra.div> {}
+export interface AlertDescriptionProps extends PropsOf<typeof chakra.div> {}
 
 export const AlertDescription = forwardRef<AlertDescriptionProps, "div">(
   function AlertDescription(props, ref) {
@@ -114,7 +114,7 @@ export const AlertDescription = forwardRef<AlertDescriptionProps, "div">(
   },
 )
 
-export interface AlertIconProps extends GetProps<typeof chakra.span> {}
+export interface AlertIconProps extends PropsOf<typeof chakra.span> {}
 
 export const AlertIcon: React.FC<AlertIconProps> = (props) => {
   const { status } = useAlertContext()

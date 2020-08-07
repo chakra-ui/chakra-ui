@@ -3,7 +3,7 @@ import { Icon, IconProps } from "@chakra-ui/icon"
 import {
   chakra,
   forwardRef,
-  GetProps,
+  PropsOf,
   omitThemingProps,
   StylesProvider,
   ThemingProps,
@@ -30,11 +30,11 @@ import {
   UseAccordionProps,
 } from "./use-accordion"
 
-interface DivProps extends GetProps<typeof chakra.div> {}
+interface DivProps extends PropsOf<typeof chakra.div> {}
 
 export interface AccordionProps
   extends UseAccordionProps,
-    DivProps,
+    Omit<DivProps, keyof UseAccordionProps>,
     ThemingProps {
   /**
    * If `true`, height animation and transitions will be disabled.
@@ -92,7 +92,9 @@ const [AccordionItemProvider, useAccordionItemContext] = createContext<
     "useAccordionItemContext: `context` is undefined. Seems you forgot to wrap the accordion item parts in `<AccordionItem />` ",
 })
 
-export interface AccordionItemProps extends DivProps, UseAccordionItemProps {
+export interface AccordionItemProps
+  extends Omit<DivProps, keyof UseAccordionItemProps>,
+    UseAccordionItemProps {
   children?: ReactNodeOrRenderProp<{
     isExpanded: boolean
     isDisabled: boolean
@@ -143,7 +145,7 @@ export function useAccordionItemState() {
   return { isOpen, onClose, isDisabled, onOpen }
 }
 
-export interface AccordionButtonProps extends GetProps<typeof chakra.button> {}
+export interface AccordionButtonProps extends PropsOf<typeof chakra.button> {}
 
 /**
  * AccordionButton is used expands and collapses an accordion item.

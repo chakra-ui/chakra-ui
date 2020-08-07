@@ -1,7 +1,7 @@
 import {
   chakra,
   forwardRef,
-  GetProps,
+  PropsOf,
   omitThemingProps,
   StylesProvider,
   SystemProps,
@@ -12,7 +12,7 @@ import {
 import { cx, getValidChildren, __DEV__ } from "@chakra-ui/utils"
 import React, { cloneElement } from "react"
 
-export interface BreadcrumbSeparatorProps extends GetProps<typeof chakra.div> {
+export interface BreadcrumbSeparatorProps extends PropsOf<typeof chakra.div> {
   spacing?: SystemProps["mx"]
 }
 
@@ -44,13 +44,9 @@ if (__DEV__) {
   BreadcrumbSeparator.displayName = "BreadcrumbSeparator"
 }
 
-interface LinkOptions {
+export interface BreadcrumbLinkProps extends PropsOf<typeof chakra.a> {
   isCurrentPage?: boolean
 }
-
-export interface BreadcrumbLinkProps
-  extends GetProps<typeof chakra.a>,
-    LinkOptions {}
 
 /**
  * Breadcrumb link.
@@ -89,7 +85,7 @@ interface BreadcrumbItemOptions extends BreadcrumbOptions {
 
 export interface BreadcrumbItemProps
   extends BreadcrumbItemOptions,
-    GetProps<typeof chakra.li> {}
+    PropsOf<typeof chakra.li> {}
 
 /**
  * BreadcrumbItem is used to group a breadcrumb link.
@@ -165,7 +161,7 @@ export interface BreadcrumbOptions {
 }
 
 export interface BreadcrumbProps
-  extends GetProps<typeof chakra.nav>,
+  extends PropsOf<typeof chakra.nav>,
     BreadcrumbOptions,
     ThemingProps {}
 

@@ -1,4 +1,4 @@
-import { chakra, forwardRef, GetProps, useStyles } from "@chakra-ui/system"
+import { chakra, forwardRef, PropsOf, useStyles } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -27,7 +27,7 @@ const StyledAddon = chakra("div", {
   },
 })
 
-export interface InputAddonProps extends GetProps<typeof StyledAddon> {
+export interface InputAddonProps extends PropsOf<typeof StyledAddon> {
   placement?: Placement
 }
 

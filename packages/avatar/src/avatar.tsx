@@ -2,7 +2,7 @@ import { useImage } from "@chakra-ui/image"
 import {
   chakra,
   omitThemingProps,
-  GetProps,
+  PropsOf,
   StylesProvider,
   SystemProps,
   ThemingProps,
@@ -63,7 +63,7 @@ interface AvatarOptions {
   getInitials?(name?: string): string
 }
 
-export interface AvatarBadgeProps extends GetProps<typeof chakra.div> {}
+export interface AvatarBadgeProps extends PropsOf<typeof chakra.div> {}
 
 /**
  * AvatarBadge used to show extra badge to the top-right
@@ -105,7 +105,7 @@ function initials(name: string) {
 }
 
 interface InitialsProps
-  extends GetProps<typeof chakra.div>,
+  extends PropsOf<typeof chakra.div>,
     Pick<AvatarOptions, "name" | "getInitials"> {}
 
 /**
@@ -126,7 +126,7 @@ const Initials: React.FC<InitialsProps> = (props) => {
  * Fallback avatar react component.
  * This should be a generic svg used to represent an avatar
  */
-const DefaultIcon: React.FC<GetProps<"svg">> = (props) => {
+const DefaultIcon: React.FC<PropsOf<"svg">> = (props) => {
   return (
     <svg
       viewBox="0 0 128 128"
@@ -158,7 +158,7 @@ export const baseStyle: SystemStyleObject = {
 }
 
 export interface AvatarProps
-  extends Omit<GetProps<typeof chakra.span>, "onError">,
+  extends Omit<PropsOf<typeof chakra.span>, "onError">,
     AvatarOptions,
     ThemingProps {}
 

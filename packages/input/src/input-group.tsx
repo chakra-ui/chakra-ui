@@ -1,6 +1,6 @@
 import {
   chakra,
-  GetProps,
+  PropsOf,
   ThemingProps,
   useMultiStyleConfig,
   omitThemingProps,
@@ -11,7 +11,7 @@ import { cx, __DEV__, getValidChildren } from "@chakra-ui/utils"
 import React, { cloneElement, useRef } from "react"
 
 export interface InputGroupProps
-  extends GetProps<typeof chakra.div>,
+  extends PropsOf<typeof chakra.div>,
     ThemingProps {}
 
 export const InputGroup = forwardRef<InputGroupProps, "div">(

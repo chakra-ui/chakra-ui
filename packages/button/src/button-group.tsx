@@ -4,13 +4,13 @@ import {
   SystemStyleObject,
   ThemingProps,
   forwardRef,
-  GetProps,
+  PropsOf,
 } from "@chakra-ui/system"
 import { createContext, cx, __DEV__ } from "@chakra-ui/utils"
 import React, { useMemo } from "react"
 
 export interface ButtonGroupProps
-  extends GetProps<typeof chakra.div>,
+  extends PropsOf<typeof chakra.div>,
     ThemingProps {
   /**
    * If `true`, the borderRadius of button that are direct children will be altered
