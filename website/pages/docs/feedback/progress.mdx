@@ -50,30 +50,28 @@ There are two ways you can increase the height of the progressbar:
 
 ```jsx
 <Stack spacing={5}>
-  <Progress color="green" size="sm" value={20} />
-  <Progress color="green" size="md" value={20} />
-  <Progress color="green" size="lg" value={20} />
-  <Progress color="green" height="32px" value={20} />
+  <Progress colorScheme="green" size="sm" value={20} />
+  <Progress colorScheme="green" size="md" value={20} />
+  <Progress colorScheme="green" size="lg" value={20} />
+  <Progress colorScheme="green" height="32px" value={20} />
 </Stack>
 ```
 
-### Progress color
+### Progress color scheme
 
 You can add `colorScheme` prop to any progressbar to apply any color that exists
 in the theme.
 
 ```jsx
-<Progress colorScheme="pink" hasStripe />
+<Progress size="sm" colorScheme="pink" hasStripe />
 ```
 
 ### Animated Progress
 
-The striped gradient can also be animated. Just add `isAnimated` and `hasStripe`
-prop to the progressbar to animate the stripes right to left via CSS3
-animations.
+To show an animated progress, set the `value` prop to `undefined`.
 
 ```jsx
-<Progress hasStripe isAnimated />
+<Progress size="sm" />
 ```
 
 ## Accessibility
