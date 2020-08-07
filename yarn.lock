@@ -3180,16 +3180,16 @@
   dependencies:
     tslib "^2.0.0"
 
-"@react-aria/interactions@3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@react-aria/interactions/-/interactions-3.0.2.tgz#3f1ef9ba2bec1148e98c79330a7efee342df8e10"
-  integrity sha512-TtLHlfz/2IWcRhTxuhVM/hxM2z3L7QZRDL6Cs+ZjHDHPyGAPEsEvxS0s0lQpx7KmIhNPV+nU5i+iFQ37exJ8kg==
+"@react-aria/interactions@3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@react-aria/interactions/-/interactions-3.1.0.tgz#2d9ea4d9751c0bb859f900c1a29aed74bc4b45a9"
+  integrity sha512-iu+O/qsRs7o7J0262eijbgyovNXXGHEZMtpWjJXz0NGKD870iAtuGu3irUewQJkf1t8w+qDGycATTkuV9FKhfw==
   dependencies:
     "@babel/runtime" "^7.6.2"
-    "@react-aria/utils" "^3.0.2"
-    "@react-types/shared" "^3.0.2"
+    "@react-aria/utils" "^3.1.0"
+    "@react-types/shared" "^3.1.0"
 
-"@react-aria/utils@^3.0.2":
+"@react-aria/utils@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@react-aria/utils/-/utils-3.1.0.tgz#157864d4c9123061cf7c55848340a318ff461d0d"
   integrity sha512-DKCT0egALcuoIWe6/U72RTBt21GgJjfIbNz6OX/4So2Y9lnIdWb2Aohvp2EAOu/vi9S0XHiZKtuZmiRzSAe6OA==
@@ -3198,7 +3198,7 @@
     "@react-types/shared" "^3.1.0"
     classnames "^2.2.5"
 
-"@react-types/shared@^3.0.2", "@react-types/shared@^3.1.0":
+"@react-types/shared@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@react-types/shared/-/shared-3.1.0.tgz#92b4b5e727d4595247a25f946a98bbcfde71a67e"
   integrity sha512-UwQBG3QLMx6i/gnQj19BjCvoEtZwsW9QB6lfLpaQb4K1jiEZouYjm+50SvgaJKXb2l0WsibHj9cEj9SABjw5Dg==
