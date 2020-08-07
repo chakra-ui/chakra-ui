@@ -3,7 +3,7 @@ import { useRouter } from "next/router"
 import * as React from "react"
 import SidebarCategory from "./sidebar-category"
 import SidebarLink from "./sidebar-link"
-import Search from "components/algolia-search"
+// import Search from "components/algolia-search"
 
 const Sidebar = ({ routes }: any) => {
   const { pathname } = useRouter()
@@ -15,7 +15,7 @@ const Sidebar = ({ routes }: any) => {
       as="aside"
       pos="sticky"
       top="6.5rem"
-      w="300px"
+      w="280px"
       pr="8"
       pb="8"
       pl="1"
@@ -24,7 +24,7 @@ const Sidebar = ({ routes }: any) => {
       flexShrink={0}
       h="calc(((100vh - 1.5rem) - 64px) - 42px);"
     >
-      <Search />
+      {/* <Search /> */}
       {routes.map((c1, idx) => {
         return (
           <React.Fragment key={idx}>

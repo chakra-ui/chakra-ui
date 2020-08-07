@@ -113,7 +113,7 @@ const Header = (props) => {
       width="full"
       {...props}
     >
-      <chakra.div height="4.5rem" mx="auto" maxW="1000px">
+      <chakra.div height="4.5rem" mx="auto" maxW="1024px">
         <HeaderContent />
       </chakra.div>
     </chakra.header>

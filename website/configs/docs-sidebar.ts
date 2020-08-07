@@ -41,6 +41,10 @@ const sidebar = {
               title: "Global Styles",
               path: "/docs/features/global-styles",
             },
+            {
+              title: "Text & Layer Styles",
+              path: "/docs/features/text-and-layer-styles",
+            },
           ],
         },
 
