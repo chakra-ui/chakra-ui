@@ -1,5 +1,6 @@
 /**@jsx jsx */
-import { chakra, jsx } from "../src"
+import { chakra, jsx, ThemeProvider } from "../src"
+import theme from "@chakra-ui/theme"
 
 export default {
   title: "styled",
@@ -51,4 +52,30 @@ export const withHeading = () => (
       Welcome
     </chakra.h1>
   </div>
+)
+
+export const withTextStyles = () => (
+  <ThemeProvider
+    theme={{
+      ...theme,
+      textStyles: {
+        h1: {
+          fontSize: ["48px", "72px"],
+          fontWeight: "bold",
+          lineHeight: "110%",
+          letterSpacing: "-0.01em",
+        },
+        h2: {
+          fontSize: ["36px", "48px"],
+          fontWeight: "light",
+          lineHeight: "110%",
+          letterSpacing: "-0.01em",
+        },
+      },
+    }}
+  >
+    <chakra.h1 textStyle="h2" color="red.300">
+      Welcome
+    </chakra.h1>
+  </ThemeProvider>
 )
