@@ -38,10 +38,10 @@ jobs:
       - run: yarn build
         name: Build all packages
 
-      - run: yarn version:next
+      - run: yarn version:next -y
         name: Version all packages
 
-      - run: yarn release:next
+      - run: yarn release:next -y
         name: Publish new version for all packages
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
