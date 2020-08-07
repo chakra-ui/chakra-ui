@@ -134,7 +134,7 @@
     "@babel/preset-typescript": "7.10.4",
     "@babel/runtime": "7.10.5",
     "@commitlint/cli": "9.0.1",
-    "@commitlint/config-conventional": "9.0.1",
+    "@commitlint/config-conventional": "9.1.1",
     "@emotion/core": "10.0.28",
     "@emotion/styled": "10.0.27",
     "@storybook/addon-a11y": "5.3.19",
