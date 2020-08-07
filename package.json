@@ -138,7 +138,7 @@
     "@emotion/core": "10.0.28",
     "@emotion/styled": "10.0.27",
     "@storybook/addon-a11y": "5.3.19",
-    "@storybook/addon-actions": "6.0.0-rc.27",
+    "@storybook/addon-actions": "6.0.0-rc.29",
     "@storybook/addon-knobs": "6.0.0-rc.27",
     "@storybook/react": "6.0.0-rc.27",
     "@types/jest": "26.0.8",
