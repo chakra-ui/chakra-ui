@@ -1,7 +1,7 @@
 import {
   chakra,
   forwardRef,
-  GetProps,
+  PropsOf,
   keyframes,
   omitThemingProps,
   ThemingProps,
@@ -53,7 +53,7 @@ interface SpinnerOptions {
 }
 
 export interface SpinnerProps
-  extends GetProps<typeof chakra.div, "children" | "color" | "as">,
+  extends Omit<PropsOf<typeof chakra.div>, keyof SpinnerOptions>,
     SpinnerOptions,
     ThemingProps {}
 

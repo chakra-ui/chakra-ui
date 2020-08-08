@@ -1,7 +1,7 @@
 import { Portal } from "@chakra-ui/portal"
 import {
   chakra,
-  GetProps,
+  PropsOf,
   ThemingProps,
   useStyleConfig,
   omitThemingProps,
@@ -13,7 +13,7 @@ import * as React from "react"
 import { useTooltip, UseTooltipProps } from "./use-tooltip"
 
 export interface TooltipProps
-  extends GetProps<typeof chakra.div>,
+  extends PropsOf<typeof chakra.div>,
     ThemingProps,
     UseTooltipProps {
   /**
@@ -55,7 +55,7 @@ export const Tooltip = forwardRef<TooltipProps, "div">(function Tooltip(
   ref,
 ) {
   const styles = useStyleConfig("Tooltip", props)
-  const realProps = omitThemingProps(props)
+  const ownProps = omitThemingProps(props)
 
   const {
     children,
@@ -63,15 +63,15 @@ export const Tooltip = forwardRef<TooltipProps, "div">(function Tooltip(
     shouldWrapChildren,
     "aria-label": ariaLabel,
     hasArrow,
-    ...otherProps
-  } = realProps
+    ...rest
+  } = ownProps
 
   const {
     isOpen,
     getTriggerProps,
     getTooltipProps,
     getArrowProps,
-  } = useTooltip(realProps)
+  } = useTooltip(ownProps)
 
   const shouldWrap = isString(children) || shouldWrapChildren
 
@@ -93,7 +93,7 @@ export const Tooltip = forwardRef<TooltipProps, "div">(function Tooltip(
 
   const hasAriaLabel = !!ariaLabel
 
-  const _tooltipProps = getTooltipProps(otherProps, ref)
+  const _tooltipProps = getTooltipProps(rest, ref)
   const arrowProps = getArrowProps()
 
   const tooltipProps = hasAriaLabel

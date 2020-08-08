@@ -1,7 +1,7 @@
 import {
   chakra,
   forwardRef,
-  GetProps,
+  PropsOf,
   omitThemingProps,
   StylesProvider,
   SystemStyleObject,
@@ -38,8 +38,8 @@ type RenderProps = Pick<
 
 interface BaseEditableProps
   extends Omit<
-    GetProps<typeof chakra.div>,
-    "onChange" | "as" | "value" | "children" | "defaultValue"
+    PropsOf<typeof chakra.div>,
+    "onChange" | "value" | "defaultValue"
   > {}
 
 export type EditableProps = UseEditableProps &
@@ -101,7 +101,7 @@ const commonStyles: SystemStyleObject = {
   bg: "transparent",
 }
 
-export interface EditablePreviewProps extends GetProps<typeof chakra.div> {}
+export interface EditablePreviewProps extends PropsOf<typeof chakra.div> {}
 
 /**
  * EditablePreview
@@ -135,7 +135,7 @@ if (__DEV__) {
   EditablePreview.displayName = "EditablePreview"
 }
 
-export interface EditableInputProps extends GetProps<typeof chakra.input> {}
+export interface EditableInputProps extends PropsOf<typeof chakra.input> {}
 
 /**
  * EditableInput

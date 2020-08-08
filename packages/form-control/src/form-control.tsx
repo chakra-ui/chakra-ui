@@ -3,7 +3,7 @@ import { Icon, IconProps } from "@chakra-ui/icon"
 import {
   chakra,
   forwardRef,
-  GetProps,
+  PropsOf,
   omitThemingProps,
   StylesProvider,
   ThemingProps,
@@ -129,7 +129,7 @@ function useProvider(props: FormControlContext) {
 }
 
 export interface FormControlProps
-  extends GetProps<typeof chakra.div>,
+  extends PropsOf<typeof chakra.div>,
     FormControlContext {}
 
 /**
@@ -171,7 +171,7 @@ if (__DEV__) {
 }
 
 export interface FormLabelProps
-  extends GetProps<typeof chakra.label>,
+  extends PropsOf<typeof chakra.label>,
     ThemingProps {}
 
 /**
@@ -213,7 +213,7 @@ if (__DEV__) {
   FormLabel.displayName = "FormLabel"
 }
 
-export interface RequiredIndicatorProps extends GetProps<typeof chakra.span> {}
+export interface RequiredIndicatorProps extends PropsOf<typeof chakra.span> {}
 
 /**
  * Used to show a "required" text or an asterisks (*) to indicate that
@@ -246,7 +246,7 @@ if (__DEV__) {
   RequiredIndicator.displayName = "RequiredIndicator"
 }
 
-export interface HelpTextProps extends GetProps<typeof chakra.div> {}
+export interface HelpTextProps extends PropsOf<typeof chakra.div> {}
 
 /**
  * FormHelperText
@@ -287,7 +287,7 @@ if (__DEV__) {
   FormHelperText.displayName = "FormHelperText"
 }
 
-export interface FormErrorMessageProps extends GetProps<typeof chakra.div> {}
+export interface FormErrorMessageProps extends PropsOf<typeof chakra.div> {}
 
 /**
  * Used to provide feedback about an invalid input,

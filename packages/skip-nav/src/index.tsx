@@ -1,6 +1,6 @@
 import {
   chakra,
-  GetProps,
+  PropsOf,
   useStyleConfig,
   omitThemingProps,
   SystemStyleObject,
@@ -9,7 +9,7 @@ import {
 import { __DEV__, merge } from "@chakra-ui/utils"
 import * as React from "react"
 
-export interface SkipNavLinkProps extends GetProps<typeof chakra.a> {}
+export interface SkipNavLinkProps extends PropsOf<typeof chakra.a> {}
 
 const fallbackId = "chakra-skip-nav"
 
@@ -49,7 +49,7 @@ if (__DEV__) {
   SkipNavLink.displayName = "SkipNavLink"
 }
 
-export interface SkipNavContentProps extends GetProps<"div"> {}
+export interface SkipNavContentProps extends PropsOf<"div"> {}
 
 /**
  * Renders a div as the target for the link.

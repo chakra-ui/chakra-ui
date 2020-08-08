@@ -1,6 +1,6 @@
 import {
   chakra,
-  GetProps,
+  PropsOf,
   ThemingProps,
   useStyleConfig,
   forwardRef,
@@ -57,7 +57,7 @@ if (__DEV__) {
   PinInput.displayName = "PinInput"
 }
 
-export interface PinInputFieldProps extends GetProps<typeof chakra.input> {}
+export interface PinInputFieldProps extends PropsOf<typeof chakra.input> {}
 
 export const PinInputField = forwardRef<PinInputFieldProps, "input">(
   function PinInputField(props, ref) {

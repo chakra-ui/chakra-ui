@@ -1,7 +1,7 @@
 import { FormControlOptions, useFormControl } from "@chakra-ui/form-control"
 import {
   chakra,
-  GetProps,
+  PropsOf,
   forwardRef,
   useStyleConfig,
   omitThemingProps,
@@ -32,7 +32,7 @@ interface TextareaOptions {
 
 export interface TextareaProps
   extends Omit<
-      GetProps<typeof chakra.textarea>,
+      PropsOf<typeof chakra.textarea>,
       "disabled" | "required" | "readOnly"
     >,
     TextareaOptions,

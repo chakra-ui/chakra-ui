@@ -4,7 +4,7 @@ import { Portal, PortalProps } from "@chakra-ui/portal"
 import {
   chakra,
   forwardRef,
-  GetProps,
+  PropsOf,
   ThemingProps,
   useMultiStyleConfig,
   StylesProvider,
@@ -77,7 +77,7 @@ if (__DEV__) {
   Modal.displayName = "Modal"
 }
 
-export interface ModalContentProps extends GetProps<typeof chakra.section> {}
+export interface ModalContentProps extends PropsOf<typeof chakra.section> {}
 
 /**
  * ModalContent
@@ -119,7 +119,7 @@ if (__DEV__) {
   ModalContent.displayName = "ModalContent"
 }
 
-export interface ModalOverlayProps extends GetProps<typeof chakra.div> {}
+export interface ModalOverlayProps extends PropsOf<typeof chakra.div> {}
 
 /**
  * ModalOverlay
@@ -187,7 +187,7 @@ if (__DEV__) {
   ModalOverlay.displayName = "ModalOverlay"
 }
 
-export interface ModalHeaderProps extends GetProps<typeof chakra.header> {}
+export interface ModalHeaderProps extends PropsOf<typeof chakra.header> {}
 
 /**
  * ModalHeader
@@ -233,7 +233,7 @@ if (__DEV__) {
   ModalHeader.displayName = "ModalHeader"
 }
 
-export interface ModalBodyProps extends GetProps<typeof chakra.div> {}
+export interface ModalBodyProps extends PropsOf<typeof chakra.div> {}
 
 /**
  * ModalBody
@@ -283,9 +283,7 @@ if (__DEV__) {
  *
  * @see Docs https://chakra-ui.com/components/modal
  */
-export const ModalFooter: React.FC<GetProps<typeof chakra.footer>> = (
-  props,
-) => {
+export const ModalFooter: React.FC<PropsOf<typeof chakra.footer>> = (props) => {
   const styles = useStyles()
   return (
     <chakra.footer

@@ -1,7 +1,7 @@
 import {
   chakra,
   layoutPropNames,
-  GetProps,
+  PropsOf,
   SystemProps,
   ThemingProps,
   useMultiStyleConfig,
@@ -15,7 +15,7 @@ import { useRadio, UseRadioProps } from "./use-radio"
 
 interface BaseControlProps
   extends Omit<
-    GetProps<typeof chakra.div>,
+    PropsOf<typeof chakra.div>,
     "onChange" | "defaultChecked" | "checked"
   > {}
 

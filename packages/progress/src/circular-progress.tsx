@@ -1,9 +1,9 @@
 import * as React from "react"
 import { getProgressProps, rotate, spin } from "./progress.utils"
-import { chakra, GetProps } from "@chakra-ui/system"
+import { chakra, PropsOf } from "@chakra-ui/system"
 import { isUndefined, __DEV__, StringOrNumber } from "@chakra-ui/utils"
 
-type CircleProps = GetProps<typeof chakra.circle>
+interface CircleProps extends PropsOf<typeof chakra.circle> {}
 
 const Circle: React.FC<CircleProps> = (props) => (
   <chakra.circle cx={50} cy={50} r={42} fill="transparent" {...props} />
@@ -13,7 +13,7 @@ if (__DEV__) {
   Circle.displayName = "Circle"
 }
 
-type ShapeProps = GetProps<typeof chakra.svg> & {
+interface ShapeProps extends PropsOf<typeof chakra.svg> {
   size?: StringOrNumber
   isIndeterminate?: boolean
 }
@@ -85,7 +85,7 @@ interface CircularProgressOptions {
 }
 
 export interface CircularProgressProps
-  extends Omit<GetProps<typeof chakra.div>, "color">,
+  extends Omit<PropsOf<typeof chakra.div>, "color">,
     CircularProgressOptions {}
 
 /**
@@ -198,4 +198,4 @@ if (__DEV__) {
 }
 
 export interface CircularProgressLabelProps
-  extends GetProps<typeof CircularProgressLabel> {}
+  extends PropsOf<typeof CircularProgressLabel> {}

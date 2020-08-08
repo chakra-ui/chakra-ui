@@ -2,7 +2,7 @@ import { Icon, IconProps } from "@chakra-ui/icon"
 import {
   chakra,
   omitThemingProps,
-  GetProps,
+  PropsOf,
   StylesProvider,
   ThemingProps,
   useMultiStyleConfig,
@@ -13,7 +13,7 @@ import { cx, __DEV__ } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 import * as React from "react"
 
-export interface StatLabelProps extends GetProps<typeof chakra.dt> {}
+export interface StatLabelProps extends PropsOf<typeof chakra.dt> {}
 
 export const StatLabel = forwardRef<StatLabelProps, "dt">(function StatLabel(
   props,
@@ -34,7 +34,7 @@ if (__DEV__) {
   StatLabel.displayName = "StatLabel"
 }
 
-export interface StatHelpTextProps extends GetProps<typeof chakra.p> {}
+export interface StatHelpTextProps extends PropsOf<typeof chakra.p> {}
 
 export const StatHelpText = forwardRef<StatHelpTextProps, "p">(
   function StatHelpText(props, ref) {
@@ -55,7 +55,7 @@ if (__DEV__) {
   StatHelpText.displayName = "StatHelpText"
 }
 
-export interface StatNumberProps extends GetProps<typeof chakra.dd> {}
+export interface StatNumberProps extends PropsOf<typeof chakra.dd> {}
 
 export const StatNumber = forwardRef<StatNumberProps, "dd">(function StatNumber(
   props,
@@ -132,7 +132,7 @@ if (__DEV__) {
   StatArrow.displayName = "StatArrow"
 }
 
-export interface StatProps extends GetProps<typeof chakra.div>, ThemingProps {}
+export interface StatProps extends PropsOf<typeof chakra.div>, ThemingProps {}
 
 export const Stat: React.FC<StatProps> = forwardRef((props, ref) => {
   const styles = useMultiStyleConfig("Stat", props)
@@ -151,7 +151,7 @@ if (__DEV__) {
   Stat.displayName = "Stat"
 }
 
-export const StatGroup: React.FC<GetProps<typeof chakra.div>> = forwardRef(
+export const StatGroup: React.FC<PropsOf<typeof chakra.div>> = forwardRef(
   (props, ref) => {
     return (
       <chakra.div
