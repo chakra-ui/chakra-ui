@@ -1,4 +1,4 @@
-import { ChakraProvider, CSSReset, PortalManager } from "@chakra-ui/core"
+import { ChakraProvider } from "@chakra-ui/core"
 import theme from "theme"
 import { MDXProvider } from "@mdx-js/react"
 import { trackPageview } from "analytics/track-event"
@@ -24,13 +24,10 @@ const App = ({ Component, pageProps }) => {
         <meta name="theme-color" content="#319795" />
         <script async defer src="https://buttons.github.io/buttons.js" />
       </Head>
-      <ChakraProvider theme={theme}>
-        <CSSReset />
+      <ChakraProvider resetCSS theme={theme} portalConfig={{ zIndex: 40 }}>
         <DefaultSeo {...siteConfig.seo} />
         <MDXProvider components={MDXComponents}>
-          <PortalManager zIndex={40}>
-            <Component {...pageProps} />
-          </PortalManager>
+          <Component {...pageProps} />
         </MDXProvider>
       </ChakraProvider>
     </>

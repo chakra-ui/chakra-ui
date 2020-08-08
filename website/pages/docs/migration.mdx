@@ -82,13 +82,12 @@ yarn add @chakra-ui/theme@next
 2. Update the `ThemeProvider` in your app's root by passing the `theme` prop.
 
 ```jsx live=false
-import { ThemeProvider, CSSReset } from "@chakra-ui/core"
+import { ThemeProvider } from "@chakra-ui/core"
 import theme from "@chakra-ui/theme"
 
 function AppRoot() {
   return (
-    <ThemeProvider theme={theme}>
-      <CSSReset />
+    <ThemeProvider resetCSS theme={theme}>
       <App />
     </ThemeProvider>
   )
@@ -103,15 +102,22 @@ Swap out `ThemeProvider` with `ChakraProvider` to make setup cleaner.
 - **ThemeProvider:** Provides the theming context for all components
 - **ColorModeProvider:** Provides color mode (light or dark) context to all
   components
-- **PortalManager:** Manages portals and nested portals without using `z-index`
-  in your application.
 - **GlobalStyle**: Provides the global styles defined in `theme.styles.global`
   to your application.
+- **StorageManager**: Manages color mode persistence. Chakra exports
+  `localStorageManager` (CSR) and `cookieStorageManager` (SSR) for this purpose.
+  By default, `localStorageManager` is used.
+  [Learn more about storage managers](/docs/features/color-mode#changing-the-storagemanager-for-server-side-rendering-ssr-apps).
+
+Optionally via prop:
+- **CSSReset**: Adds Chakras recommended CSSReset. Simply pass `resetCSS`.
+- **PortalManager:** Manages portals and nested portals without using `z-index`
+  in your application. Simply pass `portalConfig={{ zIndex: number }}`.
 
 ```diff
 -  <ThemeProvider theme={theme}>
-+    <ChakraProvider theme={theme}>
-      <CSSReset />
++    <ChakraProvider resetCSS theme={theme}>
+-     <CSSReset />
       <App />
 +    </ChakraProvider>
 -  </ThemeProvider>

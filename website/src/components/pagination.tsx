@@ -13,7 +13,6 @@ export const PaginationLink = (props) => {
           textDecor: "none",
         }}
         flex="1"
-        s
         borderRadius="md"
         {...rest}
       >
