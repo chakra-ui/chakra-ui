@@ -131,6 +131,7 @@
     "@babel/plugin-proposal-class-properties": "7.10.4",
     "@babel/preset-env": "7.10.4",
     "@babel/preset-react": "7.10.4",
+    "babel-plugin-emotion": "10.0.33",
     "@babel/preset-typescript": "7.10.4",
     "@babel/runtime": "7.10.5",
     "@commitlint/cli": "9.0.1",
