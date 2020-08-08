@@ -1,6 +1,5 @@
 import { propNames } from "@chakra-ui/styled-system"
 import { memoizeOne } from "@chakra-ui/utils"
-import isValid from "@emotion/is-prop-valid"
 
 const allPropNames = [
   ...propNames,
@@ -13,7 +12,7 @@ const allPropNames = [
 
 function createShouldForwardProp(props: any) {
   const regex = new RegExp(`^(${props.join("|")})$`)
-  return memoizeOne((prop: string) => isValid(prop) && !regex.test(prop))
+  return memoizeOne((prop: string) => !regex.test(prop))
 }
 
 export const shouldForwardProp = createShouldForwardProp(allPropNames)
