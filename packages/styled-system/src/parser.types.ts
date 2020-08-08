@@ -37,7 +37,7 @@ interface Component {
   }
 }
 
-export interface Theme {
+export interface BaseTheme {
   breakpoints?: Record<string, Length> | Length[]
   space?: ThemeValue<CSS.MarginProperty<Length>>
   fontSizes?: ThemeValue<CSS.FontSizeProperty<Length>>
