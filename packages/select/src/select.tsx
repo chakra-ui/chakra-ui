@@ -21,17 +21,15 @@ export interface SelectFieldProps
 
 export const SelectField = forwardRef<SelectFieldProps, "select">(
   function SelectField(props, ref) {
-    const { children, placeholder, className, isDisabled, ...rest } = props
+    const { children, placeholder, className, ...rest } = props
     const select = useFormControl<HTMLSelectElement>(rest)
 
     return (
       <chakra.select
         {...select}
-        {...(rest as any)}
         ref={ref}
         paddingRight="2rem"
         className={cx("chakra-select", className)}
-        disabled={isDisabled}
       >
         {placeholder && <option value="">{placeholder}</option>}
         {children}

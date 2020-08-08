@@ -116,7 +116,7 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
     opacity: state.isChecked || state.isIndeterminate ? 1 : 0,
     transform:
       state.isChecked || state.isIndeterminate ? "scale(1)" : "scale(0.95)",
-    transition: "opacity 200ms, transform 250ms",
+    transition: "transform 200ms",
     ...styles.icon,
   }
 

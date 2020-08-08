@@ -44,26 +44,35 @@ if (__DEV__) {
 
 export interface TagLabelProps extends PropsOf<typeof chakra.span> {}
 
-export const TagLabel: React.FC<TagLabelProps> = (props) => {
+export const TagLabel = forwardRef<TagLabelProps, "span">(function TagLabel(
+  props,
+  ref,
+) {
   const styles = useStyles()
-  return <chakra.span isTruncated {...props} __css={styles.label} />
-}
+  return <chakra.span ref={ref} isTruncated {...props} __css={styles.label} />
+})
 
 if (__DEV__) {
   TagLabel.displayName = "TagLabel"
 }
 
-export const TagLeftIcon: React.FC<IconProps> = (props) => (
-  <Icon verticalAlign="top" mr="0.5rem" {...props} />
-)
+export const TagLeftIcon = forwardRef<IconProps, "svg">(function TagLeftIcon(
+  props,
+  ref,
+) {
+  return <Icon ref={ref} verticalAlign="top" mr="0.5rem" {...props} />
+})
 
 if (__DEV__) {
   TagLeftIcon.displayName = "TagLeftIcon"
 }
 
-export const TagRightIcon: React.FC<IconProps> = (props) => (
-  <Icon verticalAlign="top" ml="0.5rem" {...props} />
-)
+export const TagRightIcon = forwardRef<IconProps, "svg">(function TagRightIcon(
+  props,
+  ref,
+) {
+  return <Icon ref={ref} verticalAlign="top" ml="0.5rem" {...props} />
+})
 
 if (__DEV__) {
   TagRightIcon.displayName = "TagRightIcon"

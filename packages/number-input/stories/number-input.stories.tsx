@@ -9,6 +9,8 @@ import {
   NumberInputStepper,
 } from "../src"
 import { Stack } from "@chakra-ui/layout"
+import { Input } from "@chakra-ui/input"
+import { Button } from "@chakra-ui/button"
 
 export default {
   title: "NumberInput",
@@ -19,15 +21,6 @@ export default {
       </chakra.div>
     ),
   ],
-}
-
-const Input = (props: PropsOf<"input">) => {
-  const styles = useMultiStyleConfig("Input", props)
-  return <chakra.input __css={styles.field} {...props} />
-}
-const Button = (props: PropsOf<"button">) => {
-  const styles = useMultiStyleConfig("Button", props)
-  return <chakra.button __css={styles.container} {...props} />
 }
 
 export const HookUsage = () => {
