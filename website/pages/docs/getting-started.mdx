@@ -36,7 +36,7 @@ browser css reset. At the root of your application, here's what you need do:
 ```jsx live=false
 import * as React from "react"
 // 1. import these components
-import { ChakraProvider, CSSReset } from "@chakra-ui/core"
+import { ChakraProvider } from "@chakra-ui/core"
 
 // 2. import the theme
 import theme from "@chakra-ui/theme"
@@ -44,8 +44,7 @@ import theme from "@chakra-ui/theme"
 // 3. Use at the root of your app
 function App() {
   return (
-    <ChakraProvider theme={theme}>
-      <CSSReset />
+    <ChakraProvider resetCSS theme={theme}>
       <App />
     </ChakraProvider>
   )
