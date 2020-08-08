@@ -9,10 +9,7 @@ import {
 import * as React from "react"
 import { __DEV__, cx } from "@chakra-ui/utils"
 
-export interface LinkProps
-  extends PropsOf<typeof chakra.a>,
-    LinkOptions,
-    ThemingProps {
+export interface LinkProps extends PropsOf<typeof chakra.a>, ThemingProps {
   /**
    *  If `true`, the link will open in new tab
    */
