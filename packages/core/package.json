@@ -67,6 +67,7 @@
     "@chakra-ui/system": "1.0.0-rc.1",
     "@chakra-ui/tabs": "1.0.0-rc.1",
     "@chakra-ui/tag": "1.0.0-rc.1",
+    "@chakra-ui/theme": "1.0.0-rc.1",
     "@chakra-ui/textarea": "1.0.0-rc.1",
     "@chakra-ui/toast": "1.0.0-rc.1",
     "@chakra-ui/tooltip": "1.0.0-rc.1",

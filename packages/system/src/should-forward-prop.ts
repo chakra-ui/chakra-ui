@@ -1,8 +1,8 @@
 import { propNames } from "@chakra-ui/styled-system"
-import { memoizeOne } from "@chakra-ui/utils"
+import { memoize } from "@chakra-ui/utils"
 
 /**
- * List of props to omit from DOM.
+ * List of props for emotion to omit from DOM.
  * It mostly consists of Chakra props
  */
 const allPropNames = [
@@ -25,7 +25,7 @@ const allPropNames = [
 
 function createShouldForwardProp(props: any) {
   const regex = new RegExp(`^(${props.join("|")})$`)
-  return memoizeOne((prop: string) => !regex.test(prop))
+  return memoize((prop: string) => !regex.test(prop))
 }
 
 export const shouldForwardProp = createShouldForwardProp(allPropNames)

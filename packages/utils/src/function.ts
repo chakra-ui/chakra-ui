@@ -1,4 +1,4 @@
-import memoizeOne from "memoize-one"
+import memoize from "memoize-one"
 import { isFunction, __DEV__ } from "./assertion"
 import { FunctionArguments } from "./types"
 
@@ -20,7 +20,7 @@ export function callAllHandlers<T extends (event: any) => void>(
   }
 }
 
-export { memoizeOne }
+export { memoize }
 
 export function once(fn?: Function | null) {
   let result: any
