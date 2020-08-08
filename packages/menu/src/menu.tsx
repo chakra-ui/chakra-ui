@@ -149,9 +149,16 @@ export interface StyledMenuItemProps extends PropsOf<typeof chakra.button> {}
 const StyledMenuItem = forwardRef<StyledMenuItemProps, "button">(
   function StyledMenuItem(props, ref) {
     const styles = useStyles()
+
+    // given another component, use its type if present
+    // else, use no type to avoid invalid html, e.g. <a type="button" />
+    // else, fall back to "button"
+    const type = props.as ? (props.type ? props.type : undefined) : "button"
+
     return (
       <chakra.button
         ref={ref}
+        type={type}
         {...props}
         __css={{
           textDecoration: "none",
