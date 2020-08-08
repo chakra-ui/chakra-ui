@@ -50,8 +50,7 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@popperjs/core": "2.4.4",
-    "react-fast-compare": "3.2.0"
+    "@popperjs/core": "2.4.4"
   },
   "peerDependencies": {
     "react": "16.x"
