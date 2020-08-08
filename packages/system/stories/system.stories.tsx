@@ -1,10 +1,28 @@
 /**@jsx jsx */
 import { chakra, jsx, ThemeProvider } from "../src"
 import theme from "@chakra-ui/theme"
+import { motion } from "framer-motion"
 
 export default {
   title: "styled",
 }
+
+const MotionBox = motion.custom(chakra.div)
+
+export const WithFramerMotion = () => (
+  <MotionBox
+    mt="40px"
+    w="40px"
+    h="40px"
+    bg="red.200"
+    ml="60px"
+    animate={{
+      scale: [1, 2, 2, 1, 1],
+      rotate: [0, 0, 270, 270, 0],
+      borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+    }}
+  />
+)
 
 /**
  * Just like theme-ui, you can use the `cx` prop to style
