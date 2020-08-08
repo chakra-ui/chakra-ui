@@ -68,8 +68,8 @@ export function useTooltip(props: UseTooltipProps = {}) {
     closeDelay = 0,
     closeOnClick = true,
     closeOnMouseDown,
-    onOpen,
-    onClose,
+    onOpen: onOpenProp,
+    onClose: onCloseProp,
     placement,
     id,
     isOpen: isOpenProp,
@@ -79,11 +79,11 @@ export function useTooltip(props: UseTooltipProps = {}) {
     isDisabled,
   } = props
 
-  const { isOpen, onOpen: onOpenProp, onClose: onCloseProp } = useDisclosure({
+  const { isOpen, onOpen, onClose } = useDisclosure({
     isOpen: isOpenProp,
     defaultIsOpen,
-    onOpen,
-    onClose,
+    onOpen: onOpenProp,
+    onClose: onCloseProp,
   })
 
   const popper = usePopper({
@@ -103,16 +103,16 @@ export function useTooltip(props: UseTooltipProps = {}) {
 
   const openWithDelay = useCallback(() => {
     if (!isDisabled) {
-      enterTimeout.current = window.setTimeout(onOpenProp, openDelay)
+      enterTimeout.current = window.setTimeout(onOpen, openDelay)
     }
-  }, [isDisabled, onOpenProp, openDelay])
+  }, [isDisabled, onOpen, openDelay])
 
   const closeWithDelay = useCallback(() => {
     if (enterTimeout.current) {
       clearTimeout(enterTimeout.current)
     }
-    exitTimeout.current = window.setTimeout(onCloseProp, closeDelay)
-  }, [closeDelay, onCloseProp])
+    exitTimeout.current = window.setTimeout(onClose, closeDelay)
+  }, [closeDelay, onClose])
 
   const onClick = useCallback(() => {
     if (closeOnClick) {
