@@ -13,21 +13,6 @@ npm i @chakra-ui/core@next
 yarn add @chakra-ui/core@next
 ```
 
-**Next, install the default theme**
-
-Chakra has prepared a default theme for you that you can modify or extends. The
-theme contains specifications for the fonts, font sizes, colors, etc.
-
-To get the default theme, install the `@chakra-ui/theme` package.
-
-```bash
-npm i @chakra-ui/theme@next
-
-# or
-
-yarn add @chakra-ui/theme@next
-```
-
 **Next, add the provider**
 
 For Chakra to work correctly, you need to setup the global provider and add
@@ -36,12 +21,9 @@ browser css reset. At the root of your application, here's what you need do:
 ```jsx live=false
 import * as React from "react"
 // 1. import these components
-import { ChakraProvider } from "@chakra-ui/core"
+import { ChakraProvider, theme } from "@chakra-ui/core"
 
-// 2. import the theme
-import theme from "@chakra-ui/theme"
-
-// 3. Use at the root of your app
+// 2. Use at the root of your app
 function App() {
   return (
     <ChakraProvider resetCSS theme={theme}>

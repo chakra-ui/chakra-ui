@@ -66,35 +66,7 @@ Chakra moved all icons to a separate package `@chakra-ui/icons`. We recommend
 using `react-icons` in your projects considering it has a robust set of icons.
 However, you can still install this package.
 
-### 2. Adding the default theme
-
-Chakra no longer comes with the default theme pre-installed, so you'll need to
-add it manually. Install the `@chakra-ui/theme` package.
-
-```bash
-npm i @chakra-ui/theme@next
-
-# or
-
-yarn add @chakra-ui/theme@next
-```
-
-2. Update the `ThemeProvider` in your app's root by passing the `theme` prop.
-
-```jsx live=false
-import { ThemeProvider } from "@chakra-ui/core"
-import theme from "@chakra-ui/theme"
-
-function AppRoot() {
-  return (
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
-  )
-}
-```
-
-### 3. Update the ThemeProvider
+### 2. Update the ThemeProvider
 
 Swap out `ThemeProvider` with `ChakraProvider` to make setup cleaner.
 `ChakraProvider` adds the following providers for you automatically:
@@ -110,7 +82,8 @@ Swap out `ThemeProvider` with `ChakraProvider` to make setup cleaner.
   [Learn more about storage managers](/docs/features/color-mode#changing-the-storagemanager-for-server-side-rendering-ssr-apps).
 
 Optionally via prop:
-- **CSSReset**: Adds Chakras recommended CSSReset. Simply pass `resetCSS`.
+
+- **CSSReset**: To add the recommended `CSSReset`, pass `resetCSS` prop.
 - **PortalManager:** Manages portals and nested portals without using `z-index`
   in your application. Simply pass `portalConfig={{ zIndex: number }}`.
 
