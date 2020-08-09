@@ -1046,7 +1046,7 @@
       "profile": "https://github.com/damnjan",
       "contributions": [
         "doc"
-       ]
+      ]
     },
     {
       "login": "Andu033",
@@ -1073,6 +1073,15 @@
       "profile": "http://mitchinson.dev",
       "contributions": [
         "doc"
+      ]
+    },
+    {
+      "login": "jesstelford",
+      "name": "Jess Telford",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/612020?v=4",
+      "profile": "http://jes.st/about",
+      "contributions": [
+        "code"
       ]
     }
   ],
