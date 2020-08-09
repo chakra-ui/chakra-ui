@@ -2,12 +2,11 @@ import React, { StrictMode } from "react"
 import { render } from "react-dom"
 import App from "./App"
 import * as serviceWorker from "./serviceWorker"
-import theme from "@chakra-ui/theme"
 import { ChakraProvider } from "@chakra-ui/core"
 
 render(
   <StrictMode>
-    <ChakraProvider resetCSS theme={theme}>
+    <ChakraProvider resetCSS>
       <App />
     </ChakraProvider>
   </StrictMode>,
