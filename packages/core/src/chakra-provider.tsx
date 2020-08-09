@@ -27,6 +27,10 @@ export interface ChakraProviderProps extends ThemeProviderProps {
   resetCSS?: boolean
 }
 
+/**
+ * The global provider that must be added to make all Chakra components
+ * work correctly
+ */
 export const ChakraProvider: React.FC<ChakraProviderProps> = (props) => {
   const { theme, children, storageManager, resetCSS, portalConfig } = props
 
