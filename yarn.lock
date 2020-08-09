@@ -9006,10 +9006,10 @@ ecc-jsbn@~0.1.1:
     jsbn "~0.1.0"
     safer-buffer "^2.1.0"
 
-edit-json-file@1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/edit-json-file/-/edit-json-file-1.4.0.tgz#bb244abf7fc47a23f3dfb7c106a80f2ef83c39c3"
-  integrity sha512-QS2UtS5sbGbufsZPAvL67kq1xUndVgEJv2cusf7sY+T1c0uqxaRTGD/PrUlkZWkeybiEhrRPSfuCyrj6jRMcag==
+edit-json-file@1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/edit-json-file/-/edit-json-file-1.4.1.tgz#a2f00f482c65922da61087d48bf91c90a63d0477"
+  integrity sha512-YqnKYc2+F+j4Y0qGVKY36Qzb7zusQnQU3JFyqDAZU+vVdtPPqrFtVytsTsCC2kMej5I0BkUCCfPMQq6w5j+cBg==
   dependencies:
     find-value "^1.0.3"
     iterate-object "^1.3.2"
