@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@chakra-ui/core": "1.0.0-rc.2",
-    "@chakra-ui/theme": "1.0.0-rc.2",
     "next": "9.5.1",
     "react": "16.13.1",
     "react-dom": "16.13.1"
