@@ -54,9 +54,9 @@ export const GlobalStyle = () => {
     <Global
       styles={(theme) => {
         const styleObjectOrFn = get(theme, "styles.global")
-        const bodyStyles = runIfFn(styleObjectOrFn, { theme, colorMode })
-        if (!bodyStyles) return
-        const styles = css({ body: bodyStyles })(theme)
+        const globalStyles = runIfFn(styleObjectOrFn, { theme, colorMode })
+        if (!globalStyles) return
+        const styles = css(globalStyles)(theme)
         return styles as Interpolation
       }}
     />
