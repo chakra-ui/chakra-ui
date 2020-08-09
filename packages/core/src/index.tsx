@@ -1,3 +1,4 @@
+export * from "./chakra-provider"
 export * from "@chakra-ui/accordion"
 export * from "@chakra-ui/alert"
 export * from "@chakra-ui/alert-dialog"

@@ -49,8 +49,6 @@
   },
   "dependencies": {
     "@chakra-ui/color-mode": "1.0.0-rc.1",
-    "@chakra-ui/css-reset": "1.0.0-rc.1",
-    "@chakra-ui/portal": "1.0.0-rc.1",
     "@chakra-ui/styled-system": "1.0.0-rc.1",
     "@chakra-ui/utils": "1.0.0-rc.1",
     "@emotion/core": "10.0.28",
