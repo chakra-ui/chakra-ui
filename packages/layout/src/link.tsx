@@ -17,8 +17,6 @@ export interface LinkProps extends PropsOf<typeof chakra.a>, ThemingProps {
 }
 
 /**
- * Link
- *
  * Links are accessible elements used primarily for navigation.
  *
  * It integrates well with other routing libraries like
