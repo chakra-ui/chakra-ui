@@ -27,7 +27,6 @@ interface AvatarGroupOptions {
    */
   max?: number
 }
-k
 
 export interface AvatarGroupProps
   extends AvatarGroupOptions,
