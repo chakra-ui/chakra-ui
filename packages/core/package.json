@@ -92,5 +92,9 @@
     "emotion",
     "library",
     "design-system"
-  ]
+  ],
+  "storybook": {
+    "title": "Chakra UI",
+    "url": "https://chakra-ui.netlify.app"
+  }
 }
