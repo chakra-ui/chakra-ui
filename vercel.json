@@ -2,6 +2,7 @@
   "version": 2,
   "alias": "next.chakra-ui.com",
   "scope": "chakra-ui",
+  "builds": [{ "src": "website/package.json", "use": "@now/next" }],
   "redirects": [
     {
       "source": "/discord",
