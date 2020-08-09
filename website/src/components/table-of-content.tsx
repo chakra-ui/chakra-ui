@@ -1,7 +1,13 @@
 import React from "react"
 import { Link, Heading, Stack, useColorModeValue } from "@chakra-ui/core"
 
-export const Entry = ({ item, indent, slug }) => {
+interface EntryProps {
+  item: any
+  indent?: boolean
+  slug?: string
+}
+
+export const Entry: React.FC<EntryProps> = ({ item, indent, slug }) => {
   const { url, title, items = [] } = item
   const color = useColorModeValue("gray.600", "whiteAlpha.600")
 

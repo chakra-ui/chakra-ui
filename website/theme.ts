@@ -1,4 +1,5 @@
 import { theme } from "@chakra-ui/core"
+import { runIfFn } from "@chakra-ui/utils"
 import { mode } from "@chakra-ui/theme-tools"
 
 const font =
@@ -13,7 +14,7 @@ const customTheme = {
   },
   styles: {
     global: (props) => ({
-      ...theme.styles.global(props),
+      ...runIfFn(theme.styles.global, props),
       color: mode("gray.700", "whiteAlpha.900")(props),
       ".deleted": {
         color: "#ff8383 !important",
