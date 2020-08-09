@@ -7,6 +7,7 @@ import {
   ThemeProvider,
   GlobalStyle,
 } from "@chakra-ui/system"
+import theme from "@chakra-ui/theme"
 import * as React from "react"
 
 export interface ChakraProviderProps extends ThemeProviderProps {
@@ -57,4 +58,8 @@ export const ChakraProvider: React.FC<ChakraProviderProps> = (props) => {
       </ColorModeProvider>
     </ThemeProvider>
   )
+}
+
+ChakraProvider.defaultProps = {
+  theme,
 }

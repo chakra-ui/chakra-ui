@@ -1,5 +1,5 @@
-import theme from "@chakra-ui/theme"
 import {
+  theme,
   ChakraProvider,
   useColorMode,
   useColorModeValue,

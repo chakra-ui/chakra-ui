@@ -11,7 +11,7 @@ const config: ColorModeOptions = {
   initialColorMode: "light",
 }
 
-const theme = {
+export const theme = {
   ...foundations,
   components,
   styles,
