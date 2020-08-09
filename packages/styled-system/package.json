@@ -50,7 +50,7 @@
   "dependencies": {
     "@chakra-ui/utils": "1.0.0-rc.1",
     "@styled-system/core": "5.1.2",
-    "csstype": "2.6.9"
+    "csstype": "3.0.2"
   },
   "peerDependencies": {
     "react": "16.x"

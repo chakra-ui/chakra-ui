@@ -20,47 +20,47 @@ export interface OtherProps {
   /**
    * The CSS `animation` property
    */
-  animation?: ResponsiveValue<CSS.AnimationProperty>
+  animation?: ResponsiveValue<CSS.Property.Animation>
   /**
    * The CSS `appearance` property
    */
-  appearance?: ResponsiveValue<CSS.AppearanceProperty>
+  appearance?: ResponsiveValue<CSS.Property.Appearance>
   /**
    * The CSS `visibility` property
    */
-  visibility?: ResponsiveValue<CSS.VisibilityProperty>
+  visibility?: ResponsiveValue<CSS.Property.Visibility>
   /**
    * The CSS `user-select` property
    */
-  userSelect?: ResponsiveValue<CSS.UserSelectProperty>
+  userSelect?: ResponsiveValue<CSS.Property.UserSelect>
   /**
    * The CSS `pointer-events` property
    */
-  pointerEvents?: ResponsiveValue<CSS.PointerEventsProperty>
+  pointerEvents?: ResponsiveValue<CSS.Property.PointerEvents>
   /**
    * The CSS `cursor` property
    */
-  cursor?: ResponsiveValue<CSS.CursorProperty>
+  cursor?: ResponsiveValue<CSS.Property.Cursor>
   /**
    * The CSS `resize` property
    */
-  resize?: ResponsiveValue<CSS.ResizeProperty>
+  resize?: ResponsiveValue<CSS.Property.Resize>
   /**
    * The CSS `object-fit` property
    */
-  objectFit?: ResponsiveValue<CSS.ObjectFitProperty>
+  objectFit?: ResponsiveValue<CSS.Property.ObjectFit>
   /**
    * The CSS `object-psition` property
    */
-  objectPosition?: ResponsiveValue<CSS.ObjectPositionProperty<Length>>
+  objectPosition?: ResponsiveValue<CSS.Property.ObjectPosition<Length>>
   /**
    * The CSS `float` property
    */
-  float?: ResponsiveValue<CSS.FloatProperty>
+  float?: ResponsiveValue<CSS.Property.Float>
   /**
    * The CSS `will-change` property
    */
-  willChange?: ResponsiveValue<CSS.WillChangeProperty>
+  willChange?: ResponsiveValue<CSS.Property.WillChange>
 }
 
 export const others = system(config)

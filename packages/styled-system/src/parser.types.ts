@@ -39,20 +39,20 @@ interface Component {
 
 export interface BaseTheme {
   breakpoints?: Record<string, Length> | Length[]
-  space?: ThemeValue<CSS.MarginProperty<Length>>
-  fontSizes?: ThemeValue<CSS.FontSizeProperty<Length>>
-  colors?: ThemeValue<CSS.ColorProperty>
-  fonts?: ThemeValue<CSS.FontFamilyProperty>
-  fontWeights?: ThemeValue<CSS.FontWeightProperty>
-  lineHeights?: ThemeValue<CSS.LineHeightProperty<Length>>
-  letterSpacings?: ThemeValue<CSS.LetterSpacingProperty<Length>>
-  sizes?: ThemeValue<CSS.HeightProperty<Length> | CSS.WidthProperty<Length>>
-  borders?: ThemeValue<CSS.BorderProperty<Length>>
-  borderStyles?: ThemeValue<CSS.BorderStyleProperty>
-  borderWidths?: ThemeValue<CSS.BorderWidthProperty<Length>>
-  radii?: ThemeValue<CSS.BorderRadiusProperty<Length>>
-  shadows?: ThemeValue<CSS.BoxShadowProperty>
-  zIndices?: ThemeValue<CSS.ZIndexProperty>
+  space?: ThemeValue<CSS.Property.Margin<Length>>
+  fontSizes?: ThemeValue<CSS.Property.FontSize<Length>>
+  colors?: ThemeValue<CSS.Property.Color>
+  fonts?: ThemeValue<CSS.Property.FontFamily>
+  fontWeights?: ThemeValue<CSS.Property.FontWeight>
+  lineHeights?: ThemeValue<CSS.Property.LineHeight<Length>>
+  letterSpacings?: ThemeValue<CSS.Property.LetterSpacing<Length>>
+  sizes?: ThemeValue<CSS.Property.Height<Length> | CSS.Property.Width<Length>>
+  borders?: ThemeValue<CSS.Property.Border<Length>>
+  borderStyles?: ThemeValue<CSS.Property.BorderStyle>
+  borderWidths?: ThemeValue<CSS.Property.BorderWidth<Length>>
+  radii?: ThemeValue<CSS.Property.BorderRadius<Length>>
+  shadows?: ThemeValue<CSS.Property.BoxShadow>
+  zIndices?: ThemeValue<CSS.Property.ZIndex>
   components?: {
     [component: string]: Component
   }
