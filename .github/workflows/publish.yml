@@ -38,6 +38,11 @@ jobs:
       - run: yarn build
         name: Build all packages
 
+      - name: Setup CI Git User
+        run: |
+          git config --global user.email "joseshegs@gmail.com"
+          git config --global user.name "Sage"
+
       - run: yarn version:next -y
         name: Version all packages
 
