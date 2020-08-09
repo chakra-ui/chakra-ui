@@ -11,7 +11,6 @@ import { Global, Interpolation, ThemeContext } from "@emotion/core"
 import * as React from "react"
 
 export interface ThemeProviderProps {
-  children?: React.ReactNode
   theme: Dict
 }
 
