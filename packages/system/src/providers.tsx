@@ -40,7 +40,7 @@ export function useTheme<T extends object = Dict>() {
   return theme
 }
 
-export type ChakraProviderProps = ThemeProviderProps & {
+export interface ChakraProviderProps extends ThemeProviderProps {
   storageManager?: StorageManager
   portalConfig?: Omit<PortalManagerProps, "children">
   resetCSS?: boolean
