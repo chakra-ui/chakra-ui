@@ -168,7 +168,7 @@
     "edit-json-file": "1.4.1",
     "emotion-theming": "10.0.27",
     "eslint": "7.6.0",
-    "eslint-plugin-jest-dom": "3.1.6",
+    "eslint-plugin-jest-dom": "3.1.7",
     "eslint-plugin-prettier": "3.1.4",
     "eslint-plugin-react": "7.20.5",
     "eslint-plugin-react-hooks": "4.0.8",
