@@ -43,9 +43,7 @@ export interface AlertProps
     ThemingProps {}
 
 /**
- * Alert
- *
- * React component used to communicate the state or status of a
+ * Alert is used to communicate the state or status of a
  * page, feature or action
  */
 export const Alert = forwardRef<AlertProps, "div">(function Alert(props, ref) {

@@ -104,14 +104,14 @@ function initials(name: string) {
     : firstName.charAt(0)
 }
 
-interface InitialsProps
+interface AvatarNameProps
   extends PropsOf<typeof chakra.div>,
     Pick<AvatarOptions, "name" | "getInitials"> {}
 
 /**
  * The avatar name container
  */
-const Initials: React.FC<InitialsProps> = (props) => {
+const AvatarName: React.FC<AvatarNameProps> = (props) => {
   const { name, getInitials, ...rest } = props
   const styles = useStyles()
 
@@ -248,7 +248,7 @@ const AvatarImage: React.FC<AvatarImageProps> = ({
 
   if (showFallback) {
     return name ? (
-      <Initials
+      <AvatarName
         className="chakra-avatar__initials"
         getInitials={getInitials}
         name={name}
