@@ -43,7 +43,7 @@ export const ChakraProvider: React.FC<ChakraProviderProps> = (props) => {
     <ThemeProvider theme={theme}>
       <ColorModeProvider
         defaultValue={theme?.config?.initialColorMode}
-        useSystemColorMode={theme?.config?.useInitialColorMode}
+        useSystemColorMode={theme?.config?.useSystemColorMode}
         storageManager={storageManager}
       >
         <GlobalStyle />
