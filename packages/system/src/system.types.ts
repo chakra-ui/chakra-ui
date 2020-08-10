@@ -2,7 +2,9 @@ import { ColorMode } from "@chakra-ui/color-mode"
 import { SystemProps, SystemStyleObject } from "@chakra-ui/styled-system"
 import { Dict } from "@chakra-ui/utils"
 import * as React from "react"
-import { ComponentWithAs } from "./forward-ref"
+import { ChakraComponent } from "./forward-ref"
+
+export { ChakraComponent }
 
 interface ColorModeProps {
   colorMode?: ColorMode
@@ -69,9 +71,6 @@ export type As = React.ElementType<any>
 export type PropsOf<T extends As> = React.ComponentProps<T>
 
 export type WithChakra<P> = P & ChakraProps
-
-export interface ChakraComponent<T extends As, P>
-  extends ComponentWithAs<T, WithChakra<P>> {}
 
 export interface UseStyleConfigOptions<P = {}> {
   parts?: string[]

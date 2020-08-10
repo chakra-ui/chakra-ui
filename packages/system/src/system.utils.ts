@@ -18,6 +18,7 @@ import { FunctionInterpolation } from "@emotion/core"
  */
 export const domElements = [
   "a",
+  "video",
   "article",
   "aside",
   "blockquote",

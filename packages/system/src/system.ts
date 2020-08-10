@@ -36,7 +36,10 @@ const base = cast((baseStyle: any) => (props: any) =>
   css(baseStyle)(props.theme),
 )
 
-export function styled<T extends As, P = {}>(component: T, options?: Options) {
+export function styled<T extends As, P = {}>(
+  component: T,
+  options?: Options,
+): ChakraComponent<T, P> {
   const { baseStyle, ...styledOptions } = options || {}
   return createStyled(component as any, {
     ...styledOptions,
