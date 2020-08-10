@@ -60,7 +60,7 @@ if (__DEV__) {
 export interface PinInputFieldProps extends PropsOf<typeof chakra.input> {}
 
 export const PinInputField = forwardRef<PinInputFieldProps, "input">(
-  function PinInputField(props, ref) {
+  function PinInputField(props, ref: any) {
     const inputProps = usePinInputField({ ref, ...props })
     return (
       <chakra.input
