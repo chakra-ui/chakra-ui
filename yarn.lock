@@ -5233,15 +5233,6 @@
     text-table "^0.2.0"
     webpack-log "^1.1.2"
 
-"@wordpress/jest-console@3.7.0":
-  version "3.7.0"
-  resolved "https://registry.yarnpkg.com/@wordpress/jest-console/-/jest-console-3.7.0.tgz#ad2ba0c498127c7cdf50e8e6b581e8dca12be70d"
-  integrity sha512-+PLH0jbY7xuKJckrkbtRk7zfyg4YDHFVulqydEBzSiU+LsZ2f/9hdRbb4/JDUneG7NpROO2smqxmaACxu5o9gw==
-  dependencies:
-    "@babel/runtime" "^7.9.2"
-    jest-matcher-utils "^25.3.0"
-    lodash "^4.17.15"
-
 "@xstate/react@1.0.0-rc.3":
   version "1.0.0-rc.3"
   resolved "https://registry.yarnpkg.com/@xstate/react/-/react-1.0.0-rc.3.tgz#a5974c651849604636fd9ed4a371f8fac538b8d6"
@@ -13154,7 +13145,7 @@ jest-matcher-utils@^24.9.0:
     jest-get-type "^24.9.0"
     pretty-format "^24.9.0"
 
-jest-matcher-utils@^25.1.0, jest-matcher-utils@^25.3.0:
+jest-matcher-utils@^25.1.0:
   version "25.5.0"
   resolved "https://registry.yarnpkg.com/jest-matcher-utils/-/jest-matcher-utils-25.5.0.tgz#fbc98a12d730e5d2453d7f1ed4a4d948e34b7867"
   integrity sha512-VWI269+9JS5cpndnpCwm7dy7JtGQT30UHfrnM3mXl22gHGt/b7NkjBqXfbhZ8V4B7ANUsjK18PlSBmG0YH7gjw==
