@@ -3,10 +3,15 @@
   "alias": "next.chakra-ui.com",
   "scope": "chakra-ui",
   "builds": [{ "src": "website/package.json", "use": "@now/next" }],
-  "redirects": [
+  "routes": [
     {
-      "source": "/discord",
-      "destination": "https://discord.com/invite/BEZ8VDy"
+      "src": "^(.*)$",
+      "dest": "website$1"
+    },
+    {
+      "src": "www.next.chakra-ui.com/*",
+      "status": 301,
+      "headers": { "Location": "https://next.chakra-ui.com/$1" }
     }
   ]
 }
