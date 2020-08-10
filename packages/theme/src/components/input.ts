@@ -79,6 +79,7 @@ const input = multiStyleConfig({
             cursor: "not-allowed",
           },
           _focus: {
+            zIndex: 1,
             borderColor: getColor(theme, fc),
             boxShadow: `0 0 0 1px ${getColor(theme, fc)}`,
           },
