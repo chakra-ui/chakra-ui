@@ -93,7 +93,7 @@ export const Tooltip = forwardRef<TooltipProps, "div">(function Tooltip(
 
   const hasAriaLabel = !!ariaLabel
 
-  const _tooltipProps = getTooltipProps()
+  const _tooltipProps = getTooltipProps({}, ref)
   const arrowProps = getArrowProps()
 
   const tooltipProps = hasAriaLabel
