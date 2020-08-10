@@ -52,8 +52,8 @@ export const ChakraProvider: React.FC<ChakraProviderProps> = (props) => {
         useSystemColorMode={theme?.config?.useSystemColorMode}
         storageManager={storageManager}
       >
-        <GlobalStyle />
         {resetCSS && <CSSReset />}
+        <GlobalStyle />
         {portalConfig ? (
           <PortalManager zIndex={portalConfig?.zIndex}>
             {children}
