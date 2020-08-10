@@ -3,32 +3,21 @@
  */
 import * as React from "react"
 
-export type AssignableRef<T> =
-  | {
-      bivarianceHack(instance: T | null): void
-    }["bivarianceHack"]
-  | React.MutableRefObject<T | null>
-  | null
-
-type As<P = any> = React.ElementType<P>
+type As = string | React.ComponentType<any>
 
 export type PropsWithAs<T extends As, P> = P &
-  Omit<React.ComponentPropsWithRef<T>, "as" | "color" | keyof P> & {
-    as?: T
+  Omit<ComponentPropsWithRef<T>, "as" | "color" | keyof P> & {
+    as?: T | As
   }
 
-export type PropsFromAs<T extends As, P> = (PropsWithAs<T, P> & { as: T }) &
-  PropsWithAs<T, P>
-
-export type ComponentWithForwardedRef<
-  T extends React.ElementType,
-  P
-> = React.ForwardRefExoticComponent<
-  P & React.HTMLProps<React.ElementType<T>> & React.ComponentPropsWithRef<T>
+type ComponentPropsWithRef<T extends As> = T extends React.ComponentClass<
+  infer P
 >
+  ? React.PropsWithoutRef<P> & React.RefAttributes<InstanceType<T>> // @ts-expect-error
+  : React.PropsWithRef<React.ComponentProps<T>>
 
 export interface ComponentWithAs<T extends As, P> {
-  <TT extends As>(props: PropsWithAs<TT, P>): React.ReactElement | null
+  <TT extends As = T>(props: PropsWithAs<TT, P>): React.ReactElement | null
   (props: PropsWithAs<T, P>): React.ReactElement | null
   displayName?: string
   propTypes?: React.WeakValidationMap<PropsWithAs<T, P>>
@@ -42,7 +31,7 @@ export interface ComponentWithAs<T extends As, P> {
 
 export function forwardRef<P, T extends As>(
   comp: (
-    props: PropsFromAs<T, Omit<P, "children" | "as">>,
+    props: PropsWithAs<T, Omit<P, "children" | "as">>,
     ref: React.RefObject<any>,
   ) => React.ReactElement | null,
 ) {
