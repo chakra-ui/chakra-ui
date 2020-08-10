@@ -4,7 +4,7 @@ import {
   PinInputField,
   usePinInput,
   usePinInputField,
-  PinInputContextProvider,
+  PinInputProvider,
 } from "../src"
 
 export default {
@@ -27,12 +27,12 @@ function Input(props: any) {
 export function HookExample() {
   const context = usePinInput({ autoFocus: true })
   return (
-    <PinInputContextProvider value={context}>
+    <PinInputProvider value={context}>
       <Input style={style} />
       <Input style={style} />
       <Input style={style} />
       <Input style={style} />
-    </PinInputContextProvider>
+    </PinInputProvider>
   )
 }
 

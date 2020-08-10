@@ -24,7 +24,8 @@ const cssProp = (props: any) => props.css
 const __css = cast((props: Dict) => {
   const result = {} as Dict
   for (const key in props.__css) {
-    if (!(key in props)) {
+    const exists = key in props
+    if (!exists || props[key] == null) {
       result[key] = props.__css[key]
     }
   }
@@ -43,10 +44,10 @@ export function styled<T extends As, P = {}>(component: T, options?: Options) {
   })(
     __css,
     base(baseStyle),
-    cast(systemProps),
-    cast(pseudoProps),
     cast(extraProps),
     cast(truncateProp),
+    cast(systemProps),
+    cast(pseudoProps),
     sxProp,
     cast(cssProp),
   ) as ChakraComponent<T, P>

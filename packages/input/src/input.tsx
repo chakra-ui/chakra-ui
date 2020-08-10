@@ -3,7 +3,7 @@ import {
   chakra,
   forwardRef,
   PropsOf,
-  useStyleConfig,
+  useMultiStyleConfig,
   omitThemingProps,
   ThemingProps,
 } from "@chakra-ui/system"
@@ -31,20 +31,24 @@ interface InputOptions {
 
 type Omitted = "disabled" | "required" | "readOnly" | "size"
 
-export type InputProps = Omit<PropsOf<typeof chakra.input>, Omitted> &
-  InputOptions &
-  ThemingProps &
-  FormControlOptions & {
-    size?: string
-  }
+export interface InputProps
+  extends Omit<PropsOf<typeof chakra.input>, Omitted>,
+    InputOptions,
+    ThemingProps,
+    FormControlOptions {
+  size?: string
+}
 
 /**
  * Input
  *
  * Element that allows users enter single valued data.
  */
-export const Input = forwardRef<InputProps>(function Input(props, ref) {
-  const styles = useStyleConfig("Input", props)
+export const Input = forwardRef<InputProps, "input">(function Input(
+  props,
+  ref,
+) {
+  const styles = useMultiStyleConfig("Input", props)
   const realProps = omitThemingProps(props)
   const input = useFormControl<HTMLInputElement>(realProps)
   const _className = cx("chakra-input", props.className)
@@ -63,5 +67,5 @@ if (__DEV__) {
   Input.displayName = "Input"
 }
 
-//@ts-ignore
-Input.groupId = "Input"
+// This is used in `input-group.tsx`
+Input.id = "Input"

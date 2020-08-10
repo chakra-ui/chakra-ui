@@ -1,12 +1,13 @@
 import {
   chakra,
-  keyframes,
+  forwardRef,
   PropsOf,
-  useStyleConfig,
+  keyframes,
   omitThemingProps,
   ThemingProps,
+  useStyleConfig,
 } from "@chakra-ui/system"
-import { __DEV__, cx } from "@chakra-ui/utils"
+import { cx, __DEV__ } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 import * as React from "react"
 
@@ -51,22 +52,20 @@ interface SpinnerOptions {
   label?: string
 }
 
-export type SpinnerProps = PropsOf<typeof chakra.div> &
-  SpinnerOptions &
-  ThemingProps
+export interface SpinnerProps
+  extends Omit<PropsOf<typeof chakra.div>, keyof SpinnerOptions>,
+    SpinnerOptions,
+    ThemingProps {}
 
 /**
- * Spinner
- *
- * React component used to indicate the loading state of a page or a component,
- *
- * It renders a `div` by default
+ * Spinner is used to indicate the loading state of a page or a component,
+ * It renders a `div` by default.
  *
  * @see Docs https://chakra-ui.com/components/spinner
  */
-export const Spinner = React.forwardRef(function Spinner(
-  props: SpinnerProps,
-  ref: React.Ref<any>,
+export const Spinner = forwardRef<SpinnerProps, "div">(function Spinner(
+  props,
+  ref,
 ) {
   const styles = useStyleConfig("Spinner", props)
 
@@ -82,21 +81,23 @@ export const Spinner = React.forwardRef(function Spinner(
 
   const _className = cx("chakra-spinner", className)
 
+  const spinnerStyles = {
+    display: "inline-block",
+    borderColor: "currentColor",
+    borderStyle: "solid",
+    borderRadius: "99999px",
+    borderWidth: thickness,
+    borderBottomColor: emptyColor,
+    borderLeftColor: emptyColor,
+    color: color,
+    animation: `${spin} ${speed} linear infinite`,
+    ...styles,
+  }
+
   return (
     <chakra.div
       ref={ref}
-      __css={{
-        display: "inline-block",
-        borderColor: "currentColor",
-        borderStyle: "solid",
-        borderRadius: "full",
-        borderWidth: thickness,
-        borderBottomColor: emptyColor,
-        borderLeftColor: emptyColor,
-        color: color,
-        animation: `${spin} ${speed} linear infinite`,
-        ...styles.spinner,
-      }}
+      __css={spinnerStyles}
       className={_className}
       {...rest}
     >

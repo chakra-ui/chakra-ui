@@ -1,0 +1,89 @@
+---
+title: Skeleton
+description: Skeleton is used to display the loading state of some component
+package: "@chakra-ui/skeleton"
+---
+
+import ComponentLinks from "../../../src/components/component-links"
+
+Skeleton is used to display the loading state of some component.
+
+<ComponentLinks
+  github={{ url: "#" }}
+  storybook={{ url: "#" }}
+  npm={{ label: "@chakra-ui/skeleton", url: "#" }}
+/>
+
+<carbon-ad></carbon-ad>
+
+## Import
+
+```js
+import { Skeleton, SkeletonCircle, SkeletonText } from "@chakra-ui/core"
+```
+
+## Usage
+
+You can use it as a standalone component
+
+```jsx
+<Stack>
+  <Skeleton height="20px" />
+  <Skeleton height="20px" />
+  <Skeleton height="20px" />
+</Stack>
+```
+
+Or to wrap another component to take the same height and width
+
+```jsx
+<Skeleton>
+  <div>contents wrapped</div>
+  <div>won't be visible</div>
+</Skeleton>
+```
+
+Useful when fetching remote data
+
+```js live=false
+import { Box } from "@chakra-ui/core"
+
+function Card() {
+  const { data, loading, error } = useRemoteData()
+  if (error) return <Box children="error" />
+  return (
+    <Box>
+      <Skeleton isLoaded={!loading}>
+        <Heading>{data.title}</Heading>
+      </Skeleton>
+    </Box>
+  )
+}
+```
+
+### Circle and Text Skeleton
+
+```jsx
+<Box padding="6" boxShadow="lg" bg="white">
+  <SkeletonCircle size="10" />
+  <SkeletonText mt="4" noOfLines={4} spacing="4" />
+</Box>
+```
+
+### Skeleton color
+
+You can change the animation color with `colorStart` and `colorEnd`.
+
+```jsx
+<Skeleton startColor="pink.500" endColor="orange.500" height="20px" />
+```
+
+### Skipping the skeleton when content is loaded
+
+You can prevent the skeleton from rendering using the `isLoaded` prop
+
+```jsx
+<Skeleton isLoaded>
+  <span>Chakra ui is cool</span>
+</Skeleton>
+```

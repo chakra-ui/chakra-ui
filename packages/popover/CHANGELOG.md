@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-rc.2 (2020-08-09)
+
+**Note:** Version bump only for package @chakra-ui/popover
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [1.0.0-rc.1](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/popover@1.0.0-rc.0...@chakra-ui/popover@1.0.0-rc.1) (2020-08-06)
+
+### Bug Fixes
+
+- **variables:** drop unused imports
+  ([552b2e9](https://github.com/chakra-ui/chakra-ui/commit/552b2e9b7510963db509a5724af5361ef07c8ecb))
+- stack key issue and yarn2 deps issue
+  ([d6cb6b8](https://github.com/chakra-ui/chakra-ui/commit/d6cb6b8fd964729efdf41b1e29c888a3c101316c))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [1.0.0-rc.0](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/popover@1.0.0-next.7...@chakra-ui/popover@1.0.0-rc.0) (2020-07-26)
+
+**Note:** Version bump only for package @chakra-ui/popover
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [1.0.0-next.7](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/popover@1.0.0-next.6...@chakra-ui/popover@1.0.0-next.7) (2020-07-26)
+
+### Features
+
+- add popover transition and merge props util
+  ([112ff7b](https://github.com/chakra-ui/chakra-ui/commit/112ff7b53d7618f9a1442efa2fb427491a5fc51c))
+- **popover:** add prop to defer rendering till popover is open
+  ([aac438c](https://github.com/chakra-ui/chakra-ui/commit/aac438cf21e5cd0a160048d8ae0c1a26b99fd1f4))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.0.0-next.6](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/popover@1.0.0-next.5...@chakra-ui/popover@1.0.0-next.6) (2020-07-15)
 
 **Note:** Version bump only for package @chakra-ui/popover

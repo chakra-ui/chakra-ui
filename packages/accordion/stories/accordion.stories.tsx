@@ -11,7 +11,7 @@ import { Container } from "@chakra-ui/layout"
 
 export default {
   title: "Accordion",
-  decorators: [(story: Function) => <Container mt={4}>{story()}</Container>],
+  decorators: [(story: Function) => <Container>{story()}</Container>],
 }
 
 /**

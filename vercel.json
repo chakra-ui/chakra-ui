@@ -1,5 +1,17 @@
 {
   "version": 2,
   "alias": "next.chakra-ui.com",
-  "scope": "chakra-ui"
+  "scope": "chakra-ui",
+  "builds": [{ "src": "website/package.json", "use": "@now/next" }],
+  "routes": [
+    {
+      "src": "^(.*)$",
+      "dest": "website$1"
+    },
+    {
+      "src": "www.next.chakra-ui.com/*",
+      "status": 301,
+      "headers": { "Location": "https://next.chakra-ui.com/$1" }
+    }
+  ]
 }

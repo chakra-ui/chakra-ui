@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Button renders correctly 1`] = `
+exports[`accordion renders correctly 1`] = `
 <DocumentFragment>
   .emotion-2 {
   border-top-width: 1px;
@@ -12,11 +12,6 @@ exports[`Button renders correctly 1`] = `
 }
 
 .emotion-0 {
-  font-size: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -29,6 +24,11 @@ exports[`Button renders correctly 1`] = `
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
   outline: 0;
+  font-size: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .emotion-0:focus,

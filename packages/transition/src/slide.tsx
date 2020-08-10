@@ -1,5 +1,5 @@
 import * as React from "react"
-import {__DEV__} from "@chakra-ui/utils";
+import { __DEV__ } from "@chakra-ui/utils"
 import { Transition, TransitionProps } from "./transition"
 
 type Placement = "left" | "right" | "bottom" | "top"
@@ -76,7 +76,7 @@ export type SlideProps = Omit<TransitionProps, "styles" | "timeout"> & {
   timeout?: number
 }
 
-export function Slide(props: SlideProps) {
+export const Slide: React.FC<SlideProps> = (props) => {
   const { placement = "left", timeout = 150, children, ...rest } = props
 
   const styles = getTransitionStyles(placement)
@@ -90,7 +90,7 @@ export function Slide(props: SlideProps) {
   return (
     <Transition
       styles={styles}
-      transition={`all ${timeout}ms cubic-bezier(0, 0, 0.2, 1)`}
+      transition={`opacity ${timeout}ms cubic-bezier(0, 0, 0.2, 1), transform ${timeout}ms cubic-bezier(0, 0, 0.2, 1)`}
       timeout={{ enter: 0, exit: timeout }}
       {...rest}
     >
@@ -99,6 +99,6 @@ export function Slide(props: SlideProps) {
   )
 }
 
-if(__DEV__) {
+if (__DEV__) {
   Slide.displayName = "Slide"
 }

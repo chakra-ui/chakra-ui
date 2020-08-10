@@ -27,7 +27,7 @@ export const basic = () => <Tag>Gray</Tag>
 export const withSizes = () => (
   <>
     <Tag size="sm">Gray</Tag>
-    <Tag>Gray</Tag>
+    <Tag size="md">Gray</Tag>
     <Tag size="lg">Gray</Tag>
   </>
 )
@@ -42,7 +42,9 @@ export const colorSchemes = () => (
     <Tag size="sm" colorScheme="green">
       Gray
     </Tag>
-    <Tag colorScheme="pink">Gray</Tag>
+    <Tag size="md" colorScheme="pink">
+      Gray
+    </Tag>
     <Tag size="lg" colorScheme="blue">
       Gray
     </Tag>
@@ -57,7 +59,7 @@ export const colorSchemes = () => (
 
 export const withLeftIcon = () => (
   <Tag colorScheme="cyan">
-    <TagLeftIcon boxSize="12px" as={AddIcon} />
+    <TagLeftIcon w="12px" h="12px" as={AddIcon} />
     <TagLabel>Green</TagLabel>
   </Tag>
 )
@@ -66,7 +68,7 @@ export const withRightIcon = () => (
   <>
     <Tag colorScheme="cyan">
       <TagLabel>Green</TagLabel>
-      <TagRightIcon boxSize="12px" as={AddIcon} />
+      <TagRightIcon w="12px" h="12px" as={AddIcon} />
     </Tag>
 
     <Tag variant="solid" colorScheme="teal">

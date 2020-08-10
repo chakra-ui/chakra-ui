@@ -1,5 +1,5 @@
 import { Icon, IconProps } from "@chakra-ui/icon"
-import { chakra, ChakraProps, PropsOf, forwardRef } from "@chakra-ui/system"
+import { chakra, SystemProps, forwardRef, PropsOf } from "@chakra-ui/system"
 import { getValidChildren, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
@@ -7,25 +7,25 @@ interface ListOptions {
   /**
    * Short hand prop for `listStyleType`
    */
-  styleType?: ChakraProps["listStyleType"]
+  styleType?: SystemProps["listStyleType"]
   /**
    * Short hand prop for `listStylePosition`
    */
-  stylePosition?: ChakraProps["listStylePosition"]
+  stylePosition?: SystemProps["listStylePosition"]
   /**
    * The space between each list item
    */
-  spacing?: ChakraProps["margin"]
+  spacing?: SystemProps["margin"]
 }
 
-export type ListProps = PropsOf<typeof chakra.ul> & ListOptions
+export interface ListProps extends PropsOf<typeof chakra.ul>, ListOptions {}
 
 /**
  * List is used to display list items, it renders a `<ul>` by default.
  *
  * @see Docs https://chakra-ui.com/components/list
  */
-export const List = forwardRef<ListProps>(function List(props, ref) {
+export const List = forwardRef<ListProps, "ul">(function List(props, ref) {
   const {
     children,
     styleType = "none",
@@ -61,12 +61,13 @@ if (__DEV__) {
   List.displayName = "List"
 }
 
-export const OrderedList = forwardRef<ListProps>(function OrderedList(
+export const OrderedList = forwardRef<ListProps, "ol">(function OrderedList(
   props,
   ref,
 ) {
+  const { as, ...rest } = props
   return (
-    <List ref={ref} as="ol" styleType="decimal" marginLeft="1em" {...props} />
+    <List ref={ref} as="ol" styleType="decimal" marginLeft="1em" {...rest} />
   )
 })
 
@@ -74,12 +75,13 @@ if (__DEV__) {
   OrderedList.displayName = "OrderedList"
 }
 
-export const UnorderedList = forwardRef<ListProps>(function UnorderedList(
+export const UnorderedList = forwardRef<ListProps, "ul">(function UnorderedList(
   props,
   ref,
 ) {
+  const { as, ...rest } = props
   return (
-    <List ref={ref} as="ul" styleType="bullet" marginLeft="1em" {...props} />
+    <List ref={ref} as="ul" styleType="bullet" marginLeft="1em" {...rest} />
   )
 })
 
@@ -87,16 +89,14 @@ if (__DEV__) {
   UnorderedList.displayName = "UnorderedList"
 }
 
-export type ListItemProps = PropsOf<typeof ListItem>
+export interface ListItemProps extends PropsOf<typeof ListItem> {}
 
 /**
  * ListItem
  *
  * Used to render a list item
  */
-export const ListItem = (props: PropsOf<typeof chakra.li>) => (
-  <chakra.li {...props} />
-)
+export const ListItem = chakra("li")
 
 if (__DEV__) {
   ListItem.displayName = "ListItem"
@@ -107,9 +107,9 @@ if (__DEV__) {
  *
  * Used to render an icon beside the list item text
  */
-export const ListIcon = React.forwardRef(function ListIcon(
-  props: IconProps,
-  ref: React.Ref<any>,
+export const ListIcon = forwardRef<IconProps, "svg">(function ListIcon(
+  props,
+  ref,
 ) {
   return (
     <Icon

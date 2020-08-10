@@ -1,12 +1,8 @@
-import { mode, BaseStyle } from "@chakra-ui/theme-tools"
+import { mode, styleConfig } from "@chakra-ui/theme-tools"
 
-const register = {
-  parts: ["link"],
-} as const
-
-const baseStyle: BaseStyle<typeof register> = (props) => {
-  return {
-    link: {
+const skipLink = styleConfig({
+  baseStyle: function (props) {
+    return {
       borderRadius: "md",
       fontWeight: "semibold",
       _focus: {
@@ -17,13 +13,8 @@ const baseStyle: BaseStyle<typeof register> = (props) => {
         left: "1.5rem",
         bg: mode("white", "gray.700")(props),
       },
-    },
-  }
-}
-
-const skipLink = {
-  register,
-  baseStyle,
-}
+    }
+  },
+})
 
 export default skipLink

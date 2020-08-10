@@ -6,20 +6,19 @@ import {
   StylesProvider,
   SystemProps,
   ThemingProps,
-  useStyleConfig,
+  useMultiStyleConfig,
   useStyles,
 } from "@chakra-ui/system"
 import {
   cx,
   mergeRefs,
   ReactNodeOrRenderProp,
-  __DEV__,
   runIfFn,
+  __DEV__,
 } from "@chakra-ui/utils"
-import * as React from "react"
+import React, { ReactElement, useMemo } from "react"
 import {
-  MenuContextProvider,
-  useIsSubMenu,
+  MenuProvider,
   useMenu,
   useMenuButton,
   useMenuItem,
@@ -30,33 +29,33 @@ import {
   UseMenuOptionGroupProps,
   UseMenuOptionProps,
   UseMenuProps,
+  UseMenuOptionOptions,
 } from "./use-menu"
 
-export type MenuProps = UseMenuProps &
-  ThemingProps & {
-    children: ReactNodeOrRenderProp<{ isOpen: boolean; onClose(): void }>
-  }
+export interface MenuProps extends UseMenuProps, ThemingProps {
+  children: ReactNodeOrRenderProp<{ isOpen: boolean; onClose(): void }>
+}
 
 /**
- * The wrapper component that provides context, state, and focus
- * management to its sub-components.
- *
- * It doesn't render any DOM node.
+ * Menu provides context, state, and focus management
+ * to its sub-components. It doesn't render any DOM node.
  */
-export function Menu(props: MenuProps) {
-  const styles = useStyleConfig("Menu", props)
+export const Menu: React.FC<MenuProps> = (props) => {
+  const styles = useMultiStyleConfig("Menu", props)
   const realProps = omitThemingProps(props)
-  const menuCtx = useMenu(realProps)
-  const context = React.useMemo(() => menuCtx, [menuCtx])
+
+  const ctx = useMenu(realProps)
+  const context = useMemo(() => ctx, [ctx])
+
   return (
-    <MenuContextProvider value={context}>
+    <MenuProvider value={context}>
       <StylesProvider value={styles}>
         {runIfFn(props.children, {
           isOpen: context.isOpen,
           onClose: context.onClose,
         })}
       </StylesProvider>
-    </MenuContextProvider>
+    </MenuProvider>
   )
 }
 
@@ -64,67 +63,42 @@ if (__DEV__) {
   Menu.displayName = "Menu"
 }
 
-export type MenuButtonProps = PropsOf<typeof chakra.button> & {
-  submenuIcon?: React.ReactElement
-}
+export interface MenuButtonProps extends PropsOf<typeof chakra.button> {}
 
-const StyledMenuButton = React.forwardRef(function StyledMenuButton(
-  props: PropsOf<typeof chakra.button>,
-  ref: React.Ref<any>,
-) {
-  const styles = useStyles()
-  return (
-    <chakra.button
-      ref={ref}
-      {...props}
-      __css={{
-        display: "inline-flex",
-        appearance: "none",
-        alignItems: "center",
-        outline: 0,
-        transition: "all 250ms",
-        ...styles.menuButton,
-      }}
-    />
-  )
-})
-
-const SubmenuSvg = (props: PropsOf<"svg">) => (
-  <svg
-    stroke="currentColor"
-    fill="currentColor"
-    strokeWidth="0"
-    viewBox="0 0 512 512"
-    height="1.2em"
-    width="1.2em"
-    {...props}
-  >
-    <path d="M192 128l128 128-128 128z" />
-  </svg>
+const StyledMenuButton = forwardRef<MenuButtonProps, "button">(
+  function StyledMenuButton(props, ref) {
+    const styles = useStyles()
+    return (
+      <chakra.button
+        ref={ref}
+        {...props}
+        __css={{
+          display: "inline-flex",
+          appearance: "none",
+          alignItems: "center",
+          outline: 0,
+          transition: "all 250ms",
+          ...styles.button,
+        }}
+      />
+    )
+  },
 )
 
 /**
  * The trigger for the menu list. Must be a direct child of `Menu`.
  */
-export const MenuButton = forwardRef<MenuButtonProps>(function MenuButton(
-  props,
-  ref,
-) {
-  const { children, submenuIcon, as: Comp, ...rest } = props
+export const MenuButton = forwardRef<MenuButtonProps, "button">(
+  function MenuButton(props, ref) {
+    const { children, as: Comp, ...otherProps } = props
 
-  const ownProps = useMenuButton(rest)
-  const ownRef = mergeRefs(ref, ownProps.ref)
+    const ownProps = useMenuButton(otherProps)
+    const ownRef = mergeRefs(ref, ownProps.ref)
 
-  const isSubmenu = useIsSubMenu()
-  const MenuComp = isSubmenu ? StyledMenuItem : StyledMenuButton
-
-  const Element = Comp || MenuComp
-
-  const getChildren = () => {
-    if (!isSubmenu) return props.children
+    const Wrapper = Comp || StyledMenuButton
 
     return (
-      <React.Fragment>
+      <Wrapper {...ownProps} ref={ownRef}>
         <chakra.span
           __css={{
             pointerEvents: "none",
@@ -133,23 +107,10 @@ export const MenuButton = forwardRef<MenuButtonProps>(function MenuButton(
         >
           {props.children}
         </chakra.span>
-        <MenuIcon
-          __css={{
-            pointerEvents: "none",
-            mr: "-0.5rem",
-          }}
-          children={submenuIcon || <SubmenuSvg />}
-        />
-      </React.Fragment>
+      </Wrapper>
     )
-  }
-
-  return (
-    <Element {...ownProps} ref={ownRef}>
-      {getChildren()}
-    </Element>
-  )
-})
+  },
+)
 
 if (__DEV__) {
   MenuButton.displayName = "MenuButton"
@@ -157,11 +118,11 @@ if (__DEV__) {
 
 //////////////////////////////////////////////////////////////////////////
 
-export type MenuListProps = PropsOf<typeof chakra.div>
+export interface MenuListProps extends PropsOf<typeof chakra.div> {}
 
-export const MenuList = React.forwardRef(function MenuList(
-  props: MenuListProps,
-  ref: React.Ref<any>,
+export const MenuList = forwardRef<MenuListProps, "div">(function MenuList(
+  props,
+  ref,
 ) {
   const menulist = useMenuList(props)
   const styles = useStyles()
@@ -171,7 +132,7 @@ export const MenuList = React.forwardRef(function MenuList(
       ref={mergeRefs(menulist.ref, ref)}
       __css={{
         outline: 0,
-        ...styles.menuList,
+        ...styles.list,
       }}
     />
   )
@@ -183,36 +144,45 @@ if (__DEV__) {
 
 //////////////////////////////////////////////////////////////////////////
 
-const StyledMenuItem = React.forwardRef(function StyledMenuItem(
-  props: PropsOf<typeof chakra.button>,
-  ref: React.Ref<any>,
-) {
-  const styles = useStyles()
-  return (
-    <chakra.button
-      ref={ref}
-      {...props}
-      __css={{
-        textDecoration: "none",
-        color: "inherit",
-        userSelect: "none",
-        display: "flex",
-        width: "100%",
-        alignItems: "center",
-        textAlign: "left",
-        flex: "0 0 auto",
-        outline: 0,
-        ...styles.menuItem,
-      }}
-    />
-  )
-})
+export interface StyledMenuItemProps extends PropsOf<typeof chakra.button> {}
 
-interface MenuItemOptions extends Omit<UseMenuItemProps, "context"> {
+const StyledMenuItem = forwardRef<StyledMenuItemProps, "button">(
+  function StyledMenuItem(props, ref) {
+    const styles = useStyles()
+
+    // given another component, use its type if present
+    // else, use no type to avoid invalid html, e.g. <a type="button" />
+    // else, fall back to "button"
+    const type = props.as ? props.type ?? undefined : "button"
+
+    return (
+      <chakra.button
+        ref={ref}
+        type={type}
+        {...props}
+        __css={{
+          textDecoration: "none",
+          color: "inherit",
+          userSelect: "none",
+          display: "flex",
+          width: "100%",
+          alignItems: "center",
+          textAlign: "left",
+          flex: "0 0 auto",
+          outline: 0,
+          ...styles.item,
+        }}
+      />
+    )
+  },
+)
+
+interface MenuItemOptions
+  extends Pick<UseMenuItemProps, "isDisabled" | "isFocusable"> {
   /**
    * The icon to render before the menu item's label.
    */
-  icon?: React.ReactElement
+  icon?: ReactElement
   /**
    * The spacing between the icon and menu item's label
    */
@@ -223,18 +193,27 @@ interface MenuItemOptions extends Omit<UseMenuItemProps, "context"> {
   command?: string
 }
 
-export type MenuItemProps = PropsOf<typeof StyledMenuItem> & MenuItemOptions
+export interface MenuItemProps
+  extends PropsOf<typeof chakra.button>,
+    MenuItemOptions {}
 
-export const MenuItem = forwardRef<MenuItemProps>(function MenuItem(
+export const MenuItem = forwardRef<MenuItemProps, "button">(function MenuItem(
   props,
   ref,
 ) {
-  const { icon, iconSpacing = "0.75rem", command, children, ...rest } = props
+  const {
+    icon,
+    iconSpacing = "0.75rem",
+    command,
+    children,
+    ...otherProps
+  } = props
 
-  const ownProps = useMenuItem(rest)
+  const ownProps = useMenuItem(otherProps)
   const ownRef = mergeRefs(ownProps.ref, ref)
 
   const shouldWrap = icon || command
+
   const _children = shouldWrap ? (
     <chakra.span pointerEvents="none" flex="1">
       {children}
@@ -258,13 +237,14 @@ if (__DEV__) {
 
 //////////////////////////////////////////////////////////////////////////
 
-export type MenuItemOptionProps = Omit<UseMenuOptionProps, "context"> &
-  PropsOf<typeof StyledMenuItem> & {
-    icon?: React.ReactElement
-    iconSpacing?: SystemProps["mr"]
-  }
+export interface MenuItemOptionProps
+  extends UseMenuOptionOptions,
+    Omit<PropsOf<typeof StyledMenuItem>, keyof UseMenuOptionOptions> {
+  icon?: ReactElement
+  iconSpacing?: SystemProps["mr"]
+}
 
-const CheckIcon = (props: PropsOf<"svg">) => (
+const CheckIcon: React.FC<PropsOf<"svg">> = (props) => (
   <svg viewBox="0 0 14 14" width="1em" height="1em" {...props}>
     <polygon
       fill="currentColor"
@@ -273,7 +253,7 @@ const CheckIcon = (props: PropsOf<"svg">) => (
   </svg>
 )
 
-export const MenuItemOption = forwardRef<MenuItemOptionProps>(
+export const MenuItemOption = forwardRef<MenuItemOptionProps, "button">(
   function MenuItemOption(props, ref) {
     const { icon, iconSpacing = "0.75rem", ...htmlProps } = props
 
@@ -300,10 +280,11 @@ if (__DEV__) {
 
 //////////////////////////////////////////////////////////////////////////
 
-export type MenuOptionGroupProps = UseMenuOptionGroupProps &
-  Omit<MenuGroupProps, "value" | "default" | "onChange">
+export interface MenuOptionGroupProps
+  extends UseMenuOptionGroupProps,
+    Omit<MenuGroupProps, "value" | "defaultValue" | "onChange"> {}
 
-export const MenuOptionGroup = (props: MenuOptionGroupProps) => {
+export const MenuOptionGroup: React.FC<MenuOptionGroupProps> = (props) => {
   const { children, ...rest } = useMenuOptionGroup(props)
   return <MenuGroup title={props.title} children={children} {...rest} />
 }
@@ -314,9 +295,9 @@ if (__DEV__) {
 
 //////////////////////////////////////////////////////////////////////////
 
-export type MenuGroupProps = PropsOf<typeof chakra.p>
+export interface MenuGroupProps extends PropsOf<typeof chakra.p> {}
 
-export const MenuGroup = (props: MenuGroupProps) => {
+export const MenuGroup: React.FC<MenuGroupProps> = (props) => {
   const { title, children, className, ...rest } = props
 
   const _className = cx("chakra-menu__group__title", className)
@@ -340,7 +321,7 @@ if (__DEV__) {
 
 //////////////////////////////////////////////////////////////////////////
 
-export const MenuCommand = (props: PropsOf<typeof chakra.span>) => {
+export const MenuCommand: React.FC<PropsOf<typeof chakra.span>> = (props) => {
   const styles = useStyles()
   return (
     <chakra.span
@@ -357,7 +338,7 @@ if (__DEV__) {
 
 //////////////////////////////////////////////////////////////////////////
 
-export function MenuIcon(props: PropsOf<typeof chakra.span>) {
+export const MenuIcon: React.FC<PropsOf<typeof chakra.span>> = (props) => {
   const { className, children, ...rest } = props
 
   const child = React.Children.only(children)
@@ -371,7 +352,6 @@ export function MenuIcon(props: PropsOf<typeof chakra.span>) {
     : null
 
   const _className = cx("chakra-menu__icon-wrapper", className)
-  const styles = useStyles()
 
   return (
     <chakra.span
@@ -379,7 +359,6 @@ export function MenuIcon(props: PropsOf<typeof chakra.span>) {
       {...rest}
       __css={{
         flexShrink: 0,
-        ...styles.icon,
       }}
     >
       {clone}
@@ -391,12 +370,11 @@ if (__DEV__) {
   MenuIcon.displayName = "MenuIcon"
 }
 
-export type MenuDividerProps = PropsOf<typeof chakra.hr>
+export interface MenuDividerProps extends PropsOf<typeof chakra.hr> {}
 
-export const MenuDivider = (props: MenuDividerProps) => {
+export const MenuDivider: React.FC<MenuDividerProps> = (props) => {
   const { className, ...rest } = props
   const _className = cx("chakra-menu__divider", className)
-  const styles = useStyles()
   return (
     <chakra.hr
       role="separator"
@@ -407,10 +385,8 @@ export const MenuDivider = (props: MenuDividerProps) => {
         border: 0,
         borderBottom: "1px solid",
         borderColor: "inherit",
-        mt: "0.5rem",
-        mb: "1rem",
+        my: "0.5rem",
         opacity: 0.6,
-        ...styles.menuDivider,
       }}
     />
   )

@@ -5,7 +5,7 @@ import {
   PropsOf,
   SystemProps,
   ThemingProps,
-  useStyleConfig,
+  useMultiStyleConfig,
 } from "@chakra-ui/system"
 import { cx, Omit, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -31,23 +31,38 @@ const StyledContainer = chakra("label", {
     alignItems: "center",
     verticalAlign: "top",
     position: "relative",
+    _disabled: {
+      cursor: "not-allowed",
+    },
   },
 })
 
-type Omitted = "size" | "checked" | "defaultChecked" | "onChange"
+type Omitted =
+  | "size"
+  | "checked"
+  | "defaultChecked"
+  | "onChange"
+  | "onBlur"
+  | "value"
 
 type StyledControlProps = Omit<PropsOf<typeof StyledControl>, Omitted>
 
-export type CheckboxProps = StyledControlProps &
-  Omit<PropsOf<"input">, Omitted> &
-  ThemingProps &
-  UseCheckboxProps & {
-    /**
-     * The spacing between the checkbox and it's label text
-     * @default 0.5rem
-     */
-    spacing?: SystemProps["marginLeft"]
-  }
+type BaseCheckboxProps = Pick<
+  PropsOf<"input">,
+  "onBlur" | "checked" | "defaultChecked"
+>
+
+export interface CheckboxProps
+  extends StyledControlProps,
+    BaseCheckboxProps,
+    ThemingProps,
+    UseCheckboxProps {
+  /**
+   * The spacing between the checkbox and it's label text
+   * @default 0.5rem
+   */
+  spacing?: SystemProps["marginLeft"]
+}
 
 /**
  * Checkbox
@@ -57,23 +72,25 @@ export type CheckboxProps = StyledControlProps &
  *
  * @see Docs https://chakra-ui.com/components/checkbox
  */
-export const Checkbox = forwardRef<CheckboxProps>(function Checkbox(
+export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
   props,
   ref,
 ) {
   const group = useCheckboxGroupContext()
-  const styles = useStyleConfig("Checkbox", { ...group, ...props })
-  const realProps = omitThemingProps({ ...group, ...props })
 
-  const { spacing = "0.5rem", className, children, ...rest } = realProps
+  const merged = { ...group, ...props }
+  const styles = useMultiStyleConfig("Checkbox", merged)
+  const ownProps = omitThemingProps(merged)
 
-  let isChecked = realProps.isChecked
-  if (group?.value && realProps.value) {
-    isChecked = group.value.includes(realProps.value)
+  const { spacing = "0.5rem", className, children, ...rest } = ownProps
+
+  let isChecked = ownProps.isChecked
+  if (group?.value && ownProps.value) {
+    isChecked = group.value.includes(ownProps.value)
   }
 
-  let onChange = realProps.onChange
-  if (group?.onChange && realProps.value) {
+  let onChange = ownProps.onChange
+  if (group?.onChange && ownProps.value) {
     onChange = group.onChange
   }
 
@@ -91,32 +108,46 @@ export const Checkbox = forwardRef<CheckboxProps>(function Checkbox(
 
   const _className = cx("chakra-checkbox", className)
 
+  const inputProps = getInputProps({}, ref)
+  const labelProps = getLabelProps()
+  const checkboxProps = getCheckboxProps()
+
+  const iconStyles = {
+    opacity: state.isChecked || state.isIndeterminate ? 1 : 0,
+    transform:
+      state.isChecked || state.isIndeterminate ? "scale(1)" : "scale(0.95)",
+    transition: "transform 200ms",
+    ...styles.icon,
+  }
+
   return (
     <StyledContainer
       __css={styles.container}
+      data-disabled={state.isDisabled}
       className={_className}
       {...htmlProps}
     >
-      <input className="chakra-checkbox__input" {...getInputProps({ ref })} />
+      <input className="chakra-checkbox__input" {...inputProps} />
       <StyledControl
         __css={styles.control}
         className="chakra-checkbox__control"
-        {...getCheckboxProps()}
+        {...checkboxProps}
       >
         <CheckboxIcon
-          __css={styles.icon}
-          className="chakra-checkbox__icon"
+          __css={iconStyles}
           isChecked={state.isChecked}
           isIndeterminate={state.isIndeterminate}
         />
       </StyledControl>
       {children && (
         <chakra.div
-          __css={styles.label}
           className="chakra-checkbox__label"
-          ml={spacing}
-          {...getLabelProps()}
+          {...labelProps}
           children={children}
+          __css={{
+            ml: spacing,
+            ...styles.label,
+          }}
         />
       )}
     </StyledContainer>

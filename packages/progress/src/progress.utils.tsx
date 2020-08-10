@@ -1,59 +1,46 @@
 import { isFunction, isUndefined, valueToPercent } from "@chakra-ui/utils"
 import { keyframes } from "@chakra-ui/system"
 
-/**
- * CSS Animation for progress spin effect
- */
+export const spin = keyframes({
+  "0%": {
+    strokeDasharray: "1, 400",
+    strokeDashoffset: "0",
+  },
+  "50%": {
+    strokeDasharray: "400, 400",
+    strokeDashoffset: "-100",
+  },
+  "100%": {
+    strokeDasharray: "400, 400",
+    strokeDashoffset: "-260",
+  },
+})
 
-export const spin = keyframes`
-  0% {
-    stroke-dasharray: 1, 400;
-    stroke-dashoffset: 0;
-  }
+export const rotate = keyframes({
+  "0%": {
+    transform: "rotate(0deg)",
+  },
+  "100%": {
+    transform: "rotate(360deg)",
+  },
+})
 
-  50% {
-    stroke-dasharray: 400, 400;
-    stroke-dashoffset: -100;
-  }
+export const progress = keyframes({
+  "0%": { left: "-40%" },
+  "100%": { left: "100%" },
+})
 
-  100% {
-    stroke-dasharray: 400, 400;
-    stroke-dashoffset: -260;
-  }
-`
-/**
- * CSS Animation for progress rotate effect
- */
-
-export const rotate = keyframes`
-  0% { transform: rotate(0deg) }
-  100% { transform: rotate(360deg) }
-`
-
-/**
- * CSS Animation for progress indeterminate effect
- */
-
-export const progress = keyframes`
-  0% { left: -40% }
-  100% { left: 100% }
-`
-
-/**
- * CSS Animation for progress stripe effect
- */
-
-export const stripe = keyframes`
-  from { background-position: 1rem 0}
-  to { background-position: 0 0 }
-`
+export const stripe = keyframes({
+  from: { backgroundPosition: "1rem 0" },
+  to: { backgroundPosition: "0 0" },
+})
 
 export interface GetProgressPropsOptions {
   value?: number
   min: number
   max: number
   valueText?: string
-  getValueText?(value?: number, percent?: number): string
+  getValueText?(value: number, percent: number): string
 }
 
 /**
@@ -61,23 +48,23 @@ export interface GetProgressPropsOptions {
  * progress components.
  */
 export function getProgressProps(options: GetProgressPropsOptions) {
-  const percent =
-    options.value != null
-      ? valueToPercent(options.value, options.min, options.max)
-      : undefined
+  const { value, min, max, valueText, getValueText } = options
 
-  // A progressbar is indeterminate when the `value` is undefined
-  const isIndeterminate = isUndefined(options.value)
+  const percent = value != null ? valueToPercent(value, min, max) : undefined
+  const isIndeterminate = isUndefined(value)
 
   return {
     bind: {
       "data-indeterminate": isIndeterminate ? "" : undefined,
-      "aria-valuemax": options.max,
-      "aria-valuemin": options.min,
-      "aria-valuenow": isIndeterminate ? undefined : options.value,
-      "aria-valuetext": isFunction(options.getValueText)
-        ? options.getValueText(options.value, percent)
-        : options.valueText,
+      "aria-valuemax": max,
+      "aria-valuemin": min,
+      "aria-valuenow": isIndeterminate ? undefined : value,
+      "aria-valuetext":
+        value == null || percent == null
+          ? undefined
+          : isFunction(getValueText)
+          ? getValueText(value, percent)
+          : valueText,
       role: "progressbar",
     },
     percent,

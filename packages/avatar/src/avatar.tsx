@@ -1,16 +1,18 @@
 import { useImage } from "@chakra-ui/image"
 import {
   chakra,
-  PropsOf,
-  SystemProps,
-  useStyles,
-  StylesProvider,
-  useStyleConfig,
-  ThemingProps,
   omitThemingProps,
+  PropsOf,
+  StylesProvider,
+  SystemProps,
+  ThemingProps,
+  useMultiStyleConfig,
+  useStyles,
+  SystemStyleObject,
+  forwardRef,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
-import * as React from "react"
+import React, { cloneElement, ReactElement, ReactNode } from "react"
 
 interface AvatarOptions {
   /**
@@ -33,7 +35,7 @@ interface AvatarOptions {
   /**
    * The badge at the bottom right corner of the avatar.
    */
-  children?: React.ReactNode
+  children?: ReactNode
   /**
    * The image url of the `Avatar`
    */
@@ -54,55 +56,47 @@ interface AvatarOptions {
    * The default avatar used as fallback when `name`, and `src`
    * is not specified.
    */
-  icon?: React.ReactElement
+  icon?: ReactElement
   /**
    * Function to get the initials to display
    */
   getInitials?(name?: string): string
 }
 
-export type AvatarBadgeProps = PropsOf<typeof chakra.div>
+export interface AvatarBadgeProps extends PropsOf<typeof chakra.div> {}
 
 /**
- * AvatarBadge
- *
- * React component used to show extra badge to the top-right
+ * AvatarBadge used to show extra badge to the top-right
  * or bottom-right corner of an avatar.
  */
-export const AvatarBadge = React.forwardRef(function AvatarBadge(
-  props: AvatarBadgeProps,
-  ref: React.Ref<any>,
-) {
-  const { className, ...rest } = props
-  const _className = cx("chakra-avatar__badge", className)
-  const styles = useStyles()
+export const AvatarBadge = forwardRef<AvatarBadgeProps, "div">(
+  function AvatarBadge(props, ref) {
+    const styles = useStyles()
+    const badgeStyles = {
+      position: "absolute",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      right: "0",
+      bottom: "0",
+      ...styles.badge,
+    }
 
-  return (
-    <chakra.div
-      {...rest}
-      ref={ref}
-      className={_className}
-      __css={{
-        position: "absolute",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        right: "0",
-        bottom: "0",
-        ...styles.badge,
-      }}
-    />
-  )
-})
+    return (
+      <chakra.div
+        ref={ref}
+        {...props}
+        className={cx("chakra-avatar__badge", props.className)}
+        __css={badgeStyles}
+      />
+    )
+  },
+)
 
 if (__DEV__) {
   AvatarBadge.displayName = "AvatarBadge"
 }
 
-/**
- * Gets the initials of a user based on the name
- * @param name the name passed
- */
 function initials(name: string) {
   const [firstName, lastName] = name.split(" ")
   return firstName && lastName
@@ -110,24 +104,19 @@ function initials(name: string) {
     : firstName.charAt(0)
 }
 
-type InitialsProps = PropsOf<typeof chakra.div> &
-  Pick<AvatarOptions, "name" | "getInitials">
+interface AvatarNameProps
+  extends PropsOf<typeof chakra.div>,
+    Pick<AvatarOptions, "name" | "getInitials"> {}
 
 /**
  * The avatar name container
  */
-function Initials(props: InitialsProps) {
-  const { name, getInitials, className, ...rest } = props
-  const _className = cx("chakra-avatar__name", className)
+const AvatarName: React.FC<AvatarNameProps> = (props) => {
+  const { name, getInitials, ...rest } = props
   const styles = useStyles()
 
   return (
-    <chakra.div
-      aria-label={name}
-      className={_className}
-      {...rest}
-      __css={styles.label}
-    >
+    <chakra.div aria-label={name} {...rest} __css={styles.label}>
       {name ? getInitials?.(name) : null}
     </chakra.div>
   )
@@ -137,7 +126,7 @@ function Initials(props: InitialsProps) {
  * Fallback avatar react component.
  * This should be a generic svg used to represent an avatar
  */
-function DefaultIcon(props: PropsOf<"svg">) {
+const DefaultIcon: React.FC<PropsOf<"svg">> = (props) => {
   return (
     <svg
       viewBox="0 0 128 128"
@@ -157,7 +146,7 @@ function DefaultIcon(props: PropsOf<"svg">) {
   )
 }
 
-export const baseStyle: SystemProps = {
+export const baseStyle: SystemStyleObject = {
   display: "inline-flex",
   alignItems: "center",
   justifyContent: "center",
@@ -168,26 +157,20 @@ export const baseStyle: SystemProps = {
   flexShrink: 0,
 }
 
-const StyledAvatar = chakra("span", {
-  baseStyle,
-})
-
-export type AvatarProps = PropsOf<typeof StyledAvatar> &
-  AvatarOptions &
-  ThemingProps
+export interface AvatarProps
+  extends Omit<PropsOf<typeof chakra.span>, "onError">,
+    AvatarOptions,
+    ThemingProps {}
 
 /**
- * Avatar
- *
- * React component that renders an user avatar with
+ * Avatar component that renders an user avatar with
  * support for fallback avatar and name-only avatars
  */
-export const Avatar = React.forwardRef(function Avatar(
-  props: AvatarProps,
-  ref: React.Ref<any>,
+export const Avatar = forwardRef<AvatarProps, "span">(function Avatar(
+  props,
+  ref,
 ) {
-  const styles = useStyleConfig("Avatar", props)
-  const realProps = omitThemingProps(props)
+  const styles = useMultiStyleConfig("Avatar", props)
 
   const {
     src,
@@ -197,10 +180,56 @@ export const Avatar = React.forwardRef(function Avatar(
     onError,
     getInitials = initials,
     icon = <DefaultIcon />,
-    className,
+    children,
     ...rest
-  } = realProps
+  } = omitThemingProps(props)
 
+  const avatarStyles = {
+    borderRadius,
+    borderWidth: showBorder ? "2px" : undefined,
+    ...baseStyle,
+    ...styles.container,
+  }
+
+  return (
+    <chakra.span
+      ref={ref}
+      {...rest}
+      className={cx("chakra-avatar", props.className)}
+      __css={avatarStyles}
+    >
+      <StylesProvider value={styles}>
+        <AvatarImage
+          src={src}
+          onError={onError}
+          getInitials={getInitials}
+          name={name}
+          borderRadius={borderRadius}
+          icon={icon}
+        />
+        {children}
+      </StylesProvider>
+    </chakra.span>
+  )
+})
+
+if (__DEV__) {
+  Avatar.displayName = "Avatar"
+}
+
+type AvatarImageProps = Pick<
+  AvatarProps,
+  "src" | "onError" | "name" | "getInitials" | "borderRadius" | "icon"
+>
+
+const AvatarImage: React.FC<AvatarImageProps> = ({
+  src,
+  onError,
+  getInitials,
+  name,
+  borderRadius,
+  icon = <DefaultIcon />,
+}) => {
   /**
    * use the image hook to only show the image when it has loaded
    */
@@ -208,63 +237,45 @@ export const Avatar = React.forwardRef(function Avatar(
 
   const hasLoaded = status === "loaded"
 
-  const getAvatar = () => {
-    /**
-     * If `src` was passed and the image has loaded, we'll show it
-     */
-    if (src && hasLoaded) {
-      return (
-        <chakra.img
-          className="chakra-avatar__img"
-          width="100%"
-          height="100%"
-          objectFit="cover"
-          borderRadius={borderRadius}
-          src={src}
-          alt={name}
-        />
-      )
-    }
+  /**
+   * Fallback avatar applies under 2 conditions:
+   * - If `src` was passed and the image has not loaded or failed to load
+   * - If `src` wasn't passed
+   *
+   * In this case, we'll show either the name avatar or default avatar
+   */
+  const showFallback = !src || (src && !hasLoaded)
 
-    /**
-     * Fallback avatar applies under 2 conditions:
-     * - If `src` was passed and the image has not loaded or failed to load
-     * - If `src` wasn't passed
-     *
-     * In this case, we'll show either the name avatar or default avatar
-     */
-    const showFallback = !src || (src && !hasLoaded)
-
-    if (showFallback) {
-      return name ? (
-        <Initials getInitials={getInitials} name={name} />
-      ) : (
-        React.cloneElement(icon, {
-          role: "img",
-          className: cx("chakra-avatar__icon", icon.props.className),
-        })
-      )
-    }
+  if (showFallback) {
+    return name ? (
+      <AvatarName
+        className="chakra-avatar__initials"
+        getInitials={getInitials}
+        name={name}
+      />
+    ) : (
+      cloneElement(icon, { role: "img" })
+    )
   }
 
+  /**
+   * If `src` was passed and the image has loaded, we'll show it
+   */
   return (
-    <StyledAvatar
-      ref={ref}
-      borderRadius={borderRadius}
-      borderWidth={showBorder ? "2px" : undefined}
-      name={name}
-      className={cx("chakra-avatar", className)}
-      __css={styles.container}
-      {...rest}
-    >
-      <StylesProvider value={styles}>
-        {getAvatar()}
-        {props.children}
-      </StylesProvider>
-    </StyledAvatar>
+    <chakra.img
+      src={src}
+      alt={name}
+      className="chakra-avatar__img"
+      __css={{
+        width: "100%",
+        height: "100%",
+        objectFit: "cover",
+        borderRadius,
+      }}
+    />
   )
-})
+}
 
 if (__DEV__) {
-  Avatar.displayName = "Avatar"
+  AvatarImage.displayName = "AvatarImage"
 }

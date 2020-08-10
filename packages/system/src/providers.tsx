@@ -1,15 +1,17 @@
-import { ColorModeProvider, useColorMode } from "@chakra-ui/color-mode"
+import { useColorMode } from "@chakra-ui/color-mode"
 import { css, SystemStyleObject } from "@chakra-ui/styled-system"
 import { createContext, Dict, get, merge, runIfFn } from "@chakra-ui/utils"
 import { Global, Interpolation, ThemeContext } from "@emotion/core"
 import * as React from "react"
 
 export interface ThemeProviderProps {
-  children?: React.ReactNode
+  /**
+   * The theme to use for your application
+   */
   theme: Dict
 }
 
-export function ThemeProvider(props: ThemeProviderProps) {
+export const ThemeProvider: React.FC<ThemeProviderProps> = (props) => {
   const { children, theme } = props
   const outerTheme = React.useContext(ThemeContext) as Dict
   const mergedTheme = merge({}, outerTheme, theme)
@@ -34,28 +36,6 @@ export function useTheme<T extends object = Dict>() {
   return theme
 }
 
-export type ChakraProviderProps = ThemeProviderProps
-
-export function ChakraProvider(props: ChakraProviderProps) {
-  const { theme, children } = props
-
-  if (!theme) {
-    throw Error("ChakraProvider: the `theme` prop is required")
-  }
-
-  return (
-    <ThemeProvider theme={theme}>
-      <ColorModeProvider
-        defaultValue={theme?.config?.initialColorMode}
-        useSystemColorMode={theme?.config?.useInitialColorMode}
-      >
-        <GlobalStyle />
-        {children}
-      </ColorModeProvider>
-    </ThemeProvider>
-  )
-}
-
 const [StylesProvider, useStyles] = createContext<Dict<SystemStyleObject>>({
   name: "StylesContext",
   errorMessage:
@@ -64,15 +44,19 @@ const [StylesProvider, useStyles] = createContext<Dict<SystemStyleObject>>({
 
 export { StylesProvider, useStyles }
 
-export function GlobalStyle() {
+/**
+ * Applies styles defined in `theme.styles.global` globally
+ * using emotion's `Global` component
+ */
+export const GlobalStyle = () => {
   const { colorMode } = useColorMode()
   return (
     <Global
       styles={(theme) => {
         const styleObjectOrFn = get(theme, "styles.global")
-        const bodyStyles = runIfFn(styleObjectOrFn, { theme, colorMode })
-        if (!bodyStyles) return
-        const styles = css({ body: bodyStyles })(theme)
+        const globalStyles = runIfFn(styleObjectOrFn, { theme, colorMode })
+        if (!globalStyles) return
+        const styles = css(globalStyles)(theme)
         return styles as Interpolation
       }}
     />

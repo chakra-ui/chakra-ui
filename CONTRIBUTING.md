@@ -59,6 +59,7 @@ use consumed independently.
 - [Testing Library](https://testing-library.com/) for testing components and
   hooks
 - [Gatsby](https://www.gatsbyjs.org/) for a blazing fast documentation website.
+  versioning and changelogs
 
 ### Commands
 
@@ -199,6 +200,12 @@ https://discord.gg/dQHfcWF. We would love to support you anyway we can.
 ## Want to help improve the docs?
 
 TODO
+
+By default, the GitHub REST API has an anonymous user rate limit. This can be
+hit during heavy local docs development if the server is frequently restarted.
+
+Creating a GitHub token and storing it as the `GITHUB_TOKEN` environment
+variable allows the user to avoid the limit.
 
 ## License
 

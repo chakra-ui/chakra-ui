@@ -3,8 +3,8 @@ import {
   AlertDescription,
   AlertIcon,
   AlertTitle,
-  STATUSES,
 } from "@chakra-ui/alert"
+import type { AlertStatus } from "@chakra-ui/alert"
 import { CloseButton } from "@chakra-ui/close-button"
 import { chakra, ThemeProvider, useTheme } from "@chakra-ui/system"
 import { isFunction, merge } from "@chakra-ui/utils"
@@ -50,7 +50,7 @@ export interface UseToastOptions {
   /**
    * The status of the toast.
    */
-  status?: keyof typeof STATUSES
+  status?: AlertStatus
   /**
    * The `id` of the toast.
    *
@@ -66,7 +66,7 @@ export interface UseToastOptions {
 
 export type IToast = UseToastOptions
 
-const Toast = (props: any) => {
+const Toast: React.FC<any> = (props) => {
   const { status, variant, id, title, isClosable, onClose, description } = props
 
   return (
@@ -116,38 +116,11 @@ const defaults = {
 export function useToast() {
   const theme = useTheme()
 
-  function toastImpl(options: UseToastOptions) {
-    const { render } = options
+  return React.useMemo(() => {
+    const toastImpl = function (options: UseToastOptions) {
+      const { render } = options
 
-    const Message = (props: RenderProps) => (
-      <ThemeProvider theme={theme}>
-        {isFunction(render) ? (
-          render(props)
-        ) : (
-          <Toast {...{ ...props, ...opts }} />
-        )}
-      </ThemeProvider>
-    )
-
-    const opts = merge({}, defaults, options)
-
-    return toast.notify(Message, opts)
-  }
-
-  toastImpl.close = toast.close
-  toastImpl.closeAll = toast.closeAll
-
-  // toasts can only be updated if they have a valid id
-  toastImpl.update = (id: ToastId, options: Omit<UseToastOptions, "id">) => {
-    const { render, ...rest } = options
-
-    if (!id) return
-
-    const opts = merge({}, defaults, rest) as any
-
-    toast.update(id, {
-      ...opts,
-      message: (props) => (
+      const Message: React.FC<RenderProps> = (props) => (
         <ThemeProvider theme={theme}>
           {isFunction(render) ? (
             render(props)
@@ -155,12 +128,42 @@ export function useToast() {
             <Toast {...{ ...props, ...opts }} />
           )}
         </ThemeProvider>
-      ),
-    })
-  }
-  toastImpl.isActive = toast.isActive
+      )
 
-  return toastImpl
+      const opts = merge({}, defaults, options)
+
+      return toast.notify(Message, opts)
+    }
+
+    toastImpl.close = toast.close
+    toastImpl.closeAll = toast.closeAll
+
+    // toasts can only be updated if they have a valid id
+    toastImpl.update = (id: ToastId, options: Omit<UseToastOptions, "id">) => {
+      const { render, ...rest } = options
+
+      if (!id) return
+
+      const opts = merge({}, defaults, rest) as any
+
+      toast.update(id, {
+        ...opts,
+        message: (props) => (
+          <ThemeProvider theme={theme}>
+            {isFunction(render) ? (
+              render(props)
+            ) : (
+              <Toast {...{ ...props, ...opts }} />
+            )}
+          </ThemeProvider>
+        ),
+      })
+    }
+
+    toastImpl.isActive = toast.isActive
+
+    return toastImpl
+  }, [theme])
 }
 
 export default useToast

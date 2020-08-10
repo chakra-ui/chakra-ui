@@ -25,7 +25,7 @@ export type HiddenTransitionProps = Pick<
   appear?: boolean
 }
 
-export function HiddenTransition(props: HiddenTransitionProps) {
+export const HiddenTransition: React.FC<HiddenTransitionProps> = (props) => {
   const {
     nodeRef,
     children,

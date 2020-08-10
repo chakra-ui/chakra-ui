@@ -32,6 +32,14 @@ const words = [
   "Show All",
 ]
 
+function logEvents(e: React.MouseEvent | React.KeyboardEvent | undefined) {
+  if (e && e.persist) {
+    // Stop react from complaining about unpersisted events.
+    e.persist()
+  }
+  console.log(e)
+}
+
 export const Basic = () => (
   <div style={{ minHeight: 4000 }}>
     <Menu isLazy>
@@ -46,7 +54,9 @@ export const Basic = () => (
       </MenuButton>
       <MenuList>
         {words.map((word) => (
-          <MenuItem key={word}>{word}</MenuItem>
+          <MenuItem key={word} onClick={logEvents}>
+            {word}
+          </MenuItem>
         ))}
       </MenuList>
     </Menu>
@@ -282,7 +292,7 @@ export const SplitButton = () => (
       >
         <FaChevronDown />
       </MenuButton>
-      <MenuTransition transformOrigin="top right">
+      <MenuTransition>
         {(styles) => (
           <MenuList minW="160px" css={styles as any}>
             <MenuItem fontSize="14px">Menu 1</MenuItem>
@@ -295,20 +305,24 @@ export const SplitButton = () => (
   </chakra.div>
 )
 
-export const Bug = () => (
-  <Menu placement="right-start">
-    <MenuButton _focus={{ outline: "2px solid red" }}>
-      <Avatar name="My Name" />
-    </MenuButton>
-    <MenuList>
-      <MenuItem>Profile</MenuItem>
-      <MenuItem
-        onClick={() => {
-          console.log("logout")
-        }}
-      >
-        Logout
-      </MenuItem>
-    </MenuList>
-  </Menu>
-)
+export const WithinForm = () => {
+  return (
+    <form>
+      <fieldset>
+        <legend>regular MenuList with MenuItems</legend>
+        <Menu>
+          <MenuButton as={Button}>do something</MenuButton>
+          <MenuList>
+            <MenuItem>Download</MenuItem>
+            <MenuItem>Create a Copy</MenuItem>
+            <MenuItem>Mark as Draft</MenuItem>
+            <MenuItem>Delete</MenuItem>
+            <MenuItem as="a" href="#">
+              Attend a Workshop
+            </MenuItem>
+          </MenuList>
+        </Menu>
+      </fieldset>
+    </form>
+  )
+}

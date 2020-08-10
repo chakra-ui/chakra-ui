@@ -4,6 +4,8 @@ import {
   keyframes,
   useStyleConfig,
   ThemingProps,
+  forwardRef,
+  omitThemingProps,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
@@ -52,26 +54,21 @@ const StyledSkeleton = chakra("div", {
 
 export type ISkeleton = SkeletonOptions
 
-export type SkeletonProps = PropsOf<typeof StyledSkeleton> &
-  SkeletonOptions &
-  ThemingProps
+export interface SkeletonProps
+  extends PropsOf<typeof StyledSkeleton>,
+    SkeletonOptions,
+    ThemingProps {}
 
-const fadeIn = keyframes`
-  from { opacity: 0; }
-  to   { opacity: 1; }
-`
+const fade = keyframes({
+  from: { opacity: 0 },
+  to: { opacity: 1 },
+})
 
-export const Skeleton = React.forwardRef(function Skeleton(
-  props: SkeletonProps,
-  ref: React.Ref<any>,
+export const Skeleton = forwardRef<SkeletonProps, "div">(function Skeleton(
+  props,
+  ref,
 ) {
-  const defaultProps = {
-    fadeDuration: 0.4,
-    speed: 0.8,
-  }
-
-  const mergedProps = { ...defaultProps, ...props }
-  const styles = useStyleConfig("Skeleton", mergedProps)
+  const styles = useStyleConfig("Skeleton", props)
 
   const {
     startColor,
@@ -81,7 +78,7 @@ export const Skeleton = React.forwardRef(function Skeleton(
     speed,
     className,
     ...rest
-  } = mergedProps
+  } = omitThemingProps(props)
 
   const _className = cx("chakra-skeleton", className)
 
@@ -90,21 +87,21 @@ export const Skeleton = React.forwardRef(function Skeleton(
       <chakra.div
         ref={ref}
         className={_className}
-        __css={{ animation: `${fadeIn} ${fadeDuration}s` }}
+        __css={{ animation: `${fade} ${fadeDuration}s` }}
         {...rest}
       />
     )
   }
 
   return (
-    <StyledSkeleton
-      ref={ref}
-      className={_className}
-      {...rest}
-      __css={styles.skeleton}
-    />
+    <StyledSkeleton ref={ref} className={_className} {...rest} __css={styles} />
   )
 })
+
+Skeleton.defaultProps = {
+  fadeDuration: 0.4,
+  speed: 0.8,
+}
 
 if (__DEV__) {
   Skeleton.displayName = "Skeleton"
@@ -116,7 +113,7 @@ function range(count: number) {
     .map((_, index) => index + 1)
 }
 
-export type SkeletonTextProps = SkeletonProps & {
+export interface SkeletonTextProps extends SkeletonProps {
   noOfLines?: number
   spacing?: SkeletonProps["margin"]
   skeletonHeight?: SkeletonProps["height"]
@@ -124,7 +121,7 @@ export type SkeletonTextProps = SkeletonProps & {
   endColor?: SkeletonProps["endColor"]
 }
 
-export function SkeletonText(props: SkeletonTextProps) {
+export const SkeletonText: React.FC<SkeletonTextProps> = (props) => {
   const {
     noOfLines = 3,
     spacing = "0.5rem",
@@ -166,9 +163,10 @@ if (__DEV__) {
   SkeletonText.displayName = "SkeletonText"
 }
 
-export const SkeletonCircle = ({ size = "2rem", ...rest }: SkeletonProps) => (
-  <Skeleton borderRadius="full" boxSize={size} {...rest} />
-)
+export const SkeletonCircle: React.FC<SkeletonProps> = ({
+  size = "2rem",
+  ...rest
+}) => <Skeleton borderRadius="full" boxSize={size} {...rest} />
 
 if (__DEV__) {
   SkeletonCircle.displayName = "SkeletonCircle"

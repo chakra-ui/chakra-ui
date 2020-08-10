@@ -83,14 +83,14 @@ exports[`Switch renders correctly 1`] = `
       type="checkbox"
       value=""
     />
-    <div
+    <span
       aria-hidden="true"
       class="chakra-switch__track emotion-1"
     >
-      <div
+      <span
         class="chakra-switch__thumb emotion-0"
       />
-    </div>
+    </span>
   </label>
 </DocumentFragment>
 `;

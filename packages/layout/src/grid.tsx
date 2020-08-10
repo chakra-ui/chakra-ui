@@ -1,8 +1,8 @@
 import * as React from "react"
-import { chakra, PropsOf, ChakraProps, forwardRef } from "@chakra-ui/system"
+import { chakra, PropsOf, SystemProps, forwardRef } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 
-export type GridProps = PropsOf<typeof chakra.div> & GridOptions
+export interface GridProps extends PropsOf<typeof chakra.div>, GridOptions {}
 
 /**
  * React component used to create grid layouts.
@@ -12,7 +12,7 @@ export type GridProps = PropsOf<typeof chakra.div> & GridOptions
  *
  * @see Docs https://chakra-ui.com/components/grid
  */
-export const Grid = forwardRef<GridProps>(function Grid(props, ref) {
+export const Grid = forwardRef<GridProps, "div">(function Grid(props, ref) {
   const {
     area,
     templateAreas,
@@ -58,49 +58,49 @@ export interface GridOptions {
   /**
    * Short hand prop for `gridTemplateColumns`
    */
-  templateColumns?: ChakraProps["gridTemplateColumns"]
+  templateColumns?: SystemProps["gridTemplateColumns"]
   /**
    * Short hand prop for `gridGap`
    */
-  gap?: ChakraProps["gridGap"]
+  gap?: SystemProps["gridGap"]
   /**
    * Short hand prop for `gridRowGap`
    */
-  rowGap?: ChakraProps["gridRowGap"]
+  rowGap?: SystemProps["gridRowGap"]
   /**
    * Short hand prop for `gridColumnGap`
    */
-  columnGap?: ChakraProps["gridColumnGap"]
+  columnGap?: SystemProps["gridColumnGap"]
   /**
    * Short hand prop for `gridAutoFlow`
    */
-  autoFlow?: ChakraProps["gridAutoFlow"]
+  autoFlow?: SystemProps["gridAutoFlow"]
   /**
    * Short hand prop for `gridAutoRows`
    */
-  autoRows?: ChakraProps["gridAutoRows"]
+  autoRows?: SystemProps["gridAutoRows"]
   /**
    * Short hand prop for `gridAutoColumns`
    */
-  autoColumns?: ChakraProps["gridAutoColumns"]
+  autoColumns?: SystemProps["gridAutoColumns"]
   /**
    * Short hand prop for `gridTemplateRows`
    */
-  templateRows?: ChakraProps["gridTemplateRows"]
+  templateRows?: SystemProps["gridTemplateRows"]
   /**
    * Short hand prop for `gridTemplateAreas`
    */
-  templateAreas?: ChakraProps["gridTemplateAreas"]
+  templateAreas?: SystemProps["gridTemplateAreas"]
   /**
    * Short hand prop for `gridArea`
    */
-  area?: ChakraProps["gridArea"]
+  area?: SystemProps["gridArea"]
   /**
    * Short hand prop for `gridColumn`
    */
-  column?: ChakraProps["gridColumn"]
+  column?: SystemProps["gridColumn"]
   /**
    * Short hand prop for `gridRow`
    */
-  row?: ChakraProps["gridRow"]
+  row?: SystemProps["gridRow"]
 }

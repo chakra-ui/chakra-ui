@@ -1,56 +1,31 @@
-import { BaseStyle, Sizes, runIfFn } from "@chakra-ui/theme-tools"
+import { multiStyleConfig, mode } from "@chakra-ui/theme-tools"
 import input from "./input"
 
-const register = {
-  parts: ["field", "icon"],
-  sizes: input.register.sizes,
-  variants: input.register.variants,
-} as const
-
-const baseStyle: BaseStyle<typeof register> = {
-  field: {
-    ...input.baseStyle.field,
-    appearance: "none",
-    paddingBottom: "1px",
-    lineHeight: "normal",
+const select = multiStyleConfig({
+  parts: {
+    field: "the select field itself",
+    icon: "the select field icon",
   },
-  icon: {
-    color: "currentColor",
-    fontSize: "1.25rem",
-    _disabled: { opacity: 0.5 },
-  },
-}
-
-const sizes: Sizes<typeof register> = {
-  sm: (props) => ({
+  baseStyle: (props) => ({
     field: {
-      ...runIfFn(input.sizes.sm, props)?.field,
-      paddingRight: "2rem",
+      ...input.baseStyle?.field,
+      appearance: "none",
+      paddingBottom: "1px",
+      lineHeight: "normal",
+      "> option": {
+        bg: mode("white", "gray.700")(props),
+      },
+    },
+    icon: {
+      color: "currentColor",
+      fontSize: "1.25rem",
+      _disabled: { opacity: 0.5 },
     },
   }),
-  md: (props) => ({
-    field: {
-      ...runIfFn(input.sizes.md, props)?.field,
-      paddingRight: "2rem",
-    },
-  }),
-  lg: (props) => ({
-    field: {
-      ...runIfFn(input.sizes.lg, props)?.field,
-      paddingRight: "2rem",
-    },
-  }),
-}
 
-const variants = input.variants
-const defaultProps = input.defaultProps
-
-const select = {
-  register,
-  defaultProps,
-  baseStyle,
-  sizes,
-  variants,
-}
+  sizes: input.sizes,
+  variants: input.variants,
+  defaultProps: input.defaultProps,
+})
 
 export default select

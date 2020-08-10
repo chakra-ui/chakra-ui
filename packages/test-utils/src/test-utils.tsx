@@ -11,7 +11,7 @@ expect.addSnapshotSerializer(serializer)
 
 expect.extend(toHaveNoViolations)
 
-const AllProviders = ({ children }: { children?: React.ReactNode }) => (
+const AllProviders: React.FC = ({ children }) => (
   <ThemeProvider theme={theme}>
     <CSSReset />
     <GlobalStyle />

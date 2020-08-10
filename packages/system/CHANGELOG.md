@@ -3,6 +3,72 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-rc.2 (2020-08-09)
+
+**Note:** Version bump only for package @chakra-ui/system
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [1.0.0-rc.1](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/system@1.0.0-rc.0...@chakra-ui/system@1.0.0-rc.1) (2020-08-06)
+
+### Bug Fixes
+
+- **variables:** drop unused imports
+  ([552b2e9](https://github.com/chakra-ui/chakra-ui/commit/552b2e9b7510963db509a5724af5361ef07c8ecb))
+- connect drawer its correct theming
+  ([9ed9d3a](https://github.com/chakra-ui/chakra-ui/commit/9ed9d3aea959f38198b1ba0d48c24686630aee90))
+
+### Features
+
+- **system:** extend props
+  ([645c683](https://github.com/chakra-ui/chakra-ui/commit/645c683ef71ad5ef5b3aa60e7e2880853df1683f))
+- added cookieStorageManager. still WIP
+  ([9a9c305](https://github.com/chakra-ui/chakra-ui/commit/9a9c305d9c4ae7b5b44271e633c8a3bad81df066))
+- cleaned up some storageManager code. set color mode cookie to expire after a
+  year
+  ([d7ca15e](https://github.com/chakra-ui/chakra-ui/commit/d7ca15e6be9b393ed42cfc1a394d2872d7a8e5df))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [1.0.0-rc.0](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/system@1.0.0-next.7...@chakra-ui/system@1.0.0-rc.0) (2020-07-26)
+
+**Note:** Version bump only for package @chakra-ui/system
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [1.0.0-next.7](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/system@1.0.0-next.6...@chakra-ui/system@1.0.0-next.7) (2020-07-26)
+
+### Bug Fixes
+
+- give priority to props overrides
+  ([f2fe955](https://github.com/chakra-ui/chakra-ui/commit/f2fe9553373da4734712a90fec284eea7a951dfb))
+- null exception for style config
+  ([c28ba5a](https://github.com/chakra-ui/chakra-ui/commit/c28ba5ac075cc5c8f30806e269ed36632c01d6ea))
+
+### Features
+
+- add support for single and multipart config
+  ([a13d0f8](https://github.com/chakra-ui/chakra-ui/commit/a13d0f8a3d97405bde6acba1c4fc126677154a8b))
+
+### Reverts
+
+- breakpoint handling
+  ([f3ee5f1](https://github.com/chakra-ui/chakra-ui/commit/f3ee5f15c48da242c4d4d43de0dc67ff7664c81e))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.0.0-next.6](https://github.com/chakra-ui/chakra-ui/compare/@chakra-ui/system@1.0.0-next.5...@chakra-ui/system@1.0.0-next.6) (2020-07-15)
 
 **Note:** Version bump only for package @chakra-ui/system

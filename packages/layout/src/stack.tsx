@@ -4,6 +4,7 @@ import {
   PropsOf,
   ResponsiveValue,
   SystemProps,
+  forwardRef,
 } from "@chakra-ui/system"
 import {
   cx,
@@ -48,13 +49,15 @@ interface StackOptions {
    * `display: inline-block`, and the `Box` will take the spacing props
    */
   shouldWrapChildren?: boolean
+  /**
+   * If `true` the items will be stacked horizontally.
+   */
+  isInline?: boolean
 }
 
-export type StackProps = PropsOf<typeof chakra.div> & StackOptions
+export interface StackDividerProps extends PropsOf<typeof chakra.div> {}
 
-export type StackDividerProps = PropsOf<typeof chakra.div>
-
-export const StackDivider = (props: PropsOf<typeof chakra.div>) => (
+export const StackDivider: React.FC<StackDividerProps> = (props) => (
   <chakra.div
     className="chakra-stack__item"
     __css={{
@@ -68,13 +71,15 @@ export const StackDivider = (props: PropsOf<typeof chakra.div>) => (
   />
 )
 
-export const StackItem = (props: PropsOf<typeof chakra.div>) => (
+export const StackItem: React.FC<PropsOf<typeof chakra.div>> = (props) => (
   <chakra.div
     className="chakra-stack__item"
     __css={{ display: "inline-block", flex: 0 }}
     {...props}
   />
 )
+
+export interface StackProps extends PropsOf<typeof chakra.div>, StackOptions {}
 
 /**
  * Stacks help you easily create flexible and automatically distributed layouts
@@ -87,12 +92,10 @@ export const StackItem = (props: PropsOf<typeof chakra.div>) => (
  * @see Docs https://chakra-ui.com/components/stack
  *
  */
-export const Stack = React.forwardRef(function Stack(
-  props: StackProps,
-  ref: React.Ref<any>,
-) {
+export const Stack = forwardRef<StackProps, "div">(function Stack(props, ref) {
   const {
-    direction = "column",
+    isInline,
+    direction = isInline ? "row" : "column",
     align,
     justify,
     spacing = "0.5rem",
@@ -109,23 +112,12 @@ export const Stack = React.forwardRef(function Stack(
    * @see https://medium.com/@emmenko/patching-lobotomized-owl-selector-for-emotion-ssr-5a582a3c424c
    */
   const selector = "& > *:not(style) ~ *:not(style)"
+
   const directionStyles = {
-    column: {
-      marginTop: spacing,
-      marginLeft: 0,
-    },
-    row: {
-      marginLeft: spacing,
-      marginTop: 0,
-    },
-    "column-reverse": {
-      marginBottom: spacing,
-      marginRight: 0,
-    },
-    "row-reverse": {
-      marginRight: spacing,
-      marginBottom: 0,
-    },
+    column: { mt: spacing, ml: 0 },
+    row: { ml: spacing, mt: 0 },
+    "column-reverse": { mb: spacing, mr: 0 },
+    "row-reverse": { mr: spacing, mb: 0 },
   }
 
   const styles = {
@@ -133,48 +125,53 @@ export const Stack = React.forwardRef(function Stack(
     [selector]: mapResponsive(direction, (value) => directionStyles[value]),
   }
 
-  const validChildren = getValidChildren(children)
-
   const dividerStyles = mapResponsive(direction, (value) => {
     if (value.includes("row")) {
       return {
-        marginX: spacing,
-        marginY: 0,
+        mx: spacing,
+        my: 0,
         borderLeftWidth: "1px",
         borderBottomWidth: 0,
       }
     }
     return {
-      marginX: 0,
-      marginY: spacing,
+      mx: 0,
+      my: spacing,
       borderLeftWidth: 0,
       borderBottomWidth: "1px",
     }
   })
 
   const hasDivider = !!divider
+  const shouldUseChildren = !shouldWrapChildren && !hasDivider
 
-  const clones = validChildren.map((child, index) => {
-    const isLast = index + 1 === validChildren.length
-    const _child = shouldWrapChildren ? <StackItem>{child}</StackItem> : child
+  const validChildren = getValidChildren(children)
 
-    if (!hasDivider) {
-      return <React.Fragment key={index}>{_child}</React.Fragment>
-    }
+  const clones = shouldUseChildren
+    ? validChildren
+    : validChildren.map((child, index) => {
+        const isLast = index + 1 === validChildren.length
+        const _child = shouldWrapChildren ? (
+          <StackItem children={child} />
+        ) : (
+          child
+        )
 
-    const cloneDivider = isLast
-      ? null
-      : React.cloneElement(divider as any, {
-          css: css({ "&": dividerStyles }),
-        })
+        if (!hasDivider) return _child
 
-    return (
-      <React.Fragment key={index}>
-        {_child}
-        {cloneDivider}
-      </React.Fragment>
-    )
-  })
+        const cloneDivider = isLast
+          ? null
+          : React.cloneElement(divider as any, {
+              css: css({ "&": dividerStyles }),
+            })
+
+        return (
+          <React.Fragment key={index}>
+            {_child}
+            {cloneDivider}
+          </React.Fragment>
+        )
+      })
 
   const sx = (theme: Dict) => {
     if (hasDivider) return undefined
@@ -207,10 +204,7 @@ if (__DEV__) {
 /**
  * A view that arranges its children in a horizontal line.
  */
-export const HStack = React.forwardRef(function HStack(
-  props: StackProps,
-  ref: React.Ref<any>,
-) {
+export const HStack = forwardRef<StackProps, "div">((props, ref) => {
   return <Stack align="center" {...props} direction="row" ref={ref} />
 })
 
@@ -221,10 +215,7 @@ if (__DEV__) {
 /**
  * A view that arranges its children in a vertical line.
  */
-export const VStack = React.forwardRef(function VStack(
-  props: StackProps,
-  ref: React.Ref<any>,
-) {
+export const VStack = forwardRef<StackProps, "div">((props, ref) => {
   return <Stack align="center" {...props} direction="column" ref={ref} />
 })
 

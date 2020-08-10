@@ -7,7 +7,14 @@ import {
   mergeRefs,
 } from "@chakra-ui/utils"
 import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
-import * as React from "react"
+import {
+  useRef,
+  useState,
+  ChangeEvent,
+  useCallback,
+  Ref,
+  SyntheticEvent,
+} from "react"
 
 /**
  * @todo use the `useClickable` hook here
@@ -61,7 +68,7 @@ export interface UseRadioProps {
   /**
    * Function called when checked state of the `input` changes
    */
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
 export function useRadio(props: UseRadioProps = {}) {
@@ -84,16 +91,16 @@ export function useRadio(props: UseRadioProps = {}) {
   const [isHovered, setHovering] = useBoolean()
   const [isActive, setActive] = useBoolean()
 
-  const ref = React.useRef<HTMLInputElement>(null)
+  const ref = useRef<HTMLInputElement>(null)
 
-  const [isCheckedState, setChecked] = React.useState(Boolean(defaultIsChecked))
+  const [isCheckedState, setChecked] = useState(Boolean(defaultIsChecked))
 
   const [isControlled, isChecked] = useControllableProp(
     isCheckedProp,
     isCheckedState,
   )
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (isReadOnly || isDisabled) {
       event.preventDefault()
       return
@@ -108,7 +115,7 @@ export function useRadio(props: UseRadioProps = {}) {
 
   const trulyDisabled = isDisabled && !isFocusable
 
-  const onKeyDown = React.useCallback(
+  const onKeyDown = useCallback(
     (event: KeyboardEvent) => {
       if (event.key === " ") {
         setActive.on()
@@ -117,7 +124,7 @@ export function useRadio(props: UseRadioProps = {}) {
     [setActive],
   )
 
-  const onKeyUp = React.useCallback(
+  const onKeyUp = useCallback(
     (event: KeyboardEvent) => {
       if (event.key === " ") {
         setActive.off()
@@ -137,8 +144,9 @@ export function useRadio(props: UseRadioProps = {}) {
       isReadOnly,
       isRequired,
     },
-    getCheckboxProps: (props: Dict = {}) => ({
+    getCheckboxProps: (props: Dict = {}, ref: Ref<any> = null) => ({
       ...props,
+      ref,
       "data-active": dataAttr(isActive),
       "data-hover": dataAttr(isHovered),
       "data-disabled": dataAttr(isDisabled),
@@ -152,9 +160,9 @@ export function useRadio(props: UseRadioProps = {}) {
       onMouseEnter: callAllHandlers(props.onMouseEnter, setHovering.on),
       onMouseLeave: callAllHandlers(props.onMouseLeave, setHovering.off),
     }),
-    getInputProps: (props: Dict = {}) => ({
+    getInputProps: (props: Dict = {}, _ref: Ref<any> = null) => ({
       ...props,
-      ref: mergeRefs(props.ref, ref),
+      ref: mergeRefs(_ref, ref),
       type: "radio",
       name,
       value,
@@ -172,26 +180,31 @@ export function useRadio(props: UseRadioProps = {}) {
       "aria-disabled": ariaAttr(isDisabled),
       style: visuallyHiddenStyle,
     }),
-    getLabelProps: (props: Dict = {}) => {
-      /**
-       * Prevent `onBlur` being fired when the checkbox label is touched
-       */
-      const stop = (event: React.SyntheticEvent) => {
-        event.preventDefault()
-        event.stopPropagation()
-      }
+    getLabelProps: (props: Dict = {}, ref: Ref<any> = null) => {
       return {
         ...props,
-        style: { ...props.style, touchAction: "none" },
+        ref,
+        style: {
+          ...props.style,
+          touchAction: "none",
+        },
         onMouseDown: callAllHandlers(props.onMouseDown, stop),
         onTouchStart: callAllHandlers(props.onTouchState, stop),
         "data-disabled": dataAttr(isDisabled),
-        " data-checked": dataAttr(isChecked),
+        "data-checked": dataAttr(isChecked),
         "data-invalid": dataAttr(isInvalid),
       }
     },
     htmlProps,
   }
+}
+
+/**
+ * Prevent `onBlur` being fired when the checkbox label is touched
+ */
+function stop(event: SyntheticEvent) {
+  event.preventDefault()
+  event.stopPropagation()
 }
 
 export type UseRadioReturn = ReturnType<typeof useRadio>

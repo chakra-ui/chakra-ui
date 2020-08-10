@@ -1,7 +1,6 @@
 import * as React from "react"
 import {
   ChakraProvider,
-  CSSReset,
   Box,
   Text,
   Link,
@@ -14,8 +13,7 @@ import { ColorModeSwitcher } from "./ColorModeSwitcher"
 import { Logo } from "./Logo"
 
 export const App = () => (
-  <ChakraProvider theme={theme}>
-    <CSSReset />
+  <ChakraProvider resetCSS theme={theme}>
     <Box textAlign="center" fontSize="xl">
       <Grid
         minH="100vh"
@@ -32,7 +30,7 @@ export const App = () => (
           </Text>
           <Link
             color="teal.500"
-            href="https://chakra-ui.com"
+            href="https://next.chakra-ui.com"
             fontSize="2xl"
             target="_blank"
             rel="noopener noreferrer"

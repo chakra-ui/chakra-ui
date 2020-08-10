@@ -1,9 +1,8 @@
 import { useControllableProp, useId } from "@chakra-ui/hooks"
 import { isInputEvent, StringOrNumber, Dict, mergeRefs } from "@chakra-ui/utils"
-import * as React from "react"
-import { useCallback, useRef, useState } from "react"
+import { ChangeEvent, useCallback, useRef, useState } from "react"
 
-type EventOrValue = React.ChangeEvent<HTMLInputElement> | StringOrNumber
+type EventOrValue = ChangeEvent<HTMLInputElement> | StringOrNumber
 
 export interface UseRadioGroupProps {
   /**
@@ -77,7 +76,8 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
   /**
    * All radio options must use the same name
    */
-  const name = useId(nameProp, `radio`)
+  const fallbackName = useId(undefined, `radio`)
+  const name = nameProp || fallbackName
 
   const onChange = useCallback(
     (eventOrValue: EventOrValue) => {
@@ -95,15 +95,16 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
   )
 
   return {
-    getRootProps: (props: Dict = {}) => ({
+    getRootProps: (props: Dict = {}, _ref: React.Ref<any> = null) => ({
       ...props,
-      ref: mergeRefs(props.ref, ref),
+      ref: mergeRefs(_ref, ref),
       role: "radiogroup",
     }),
-    getRadioProps: (props: Dict = {}) => {
+    getRadioProps: (props: Dict = {}, ref: React.Ref<any> = null) => {
       const checkedKey = isNative ? "checked" : "isChecked"
       return {
         ...props,
+        ref,
         name,
         [checkedKey]: props.value === value,
         onChange,

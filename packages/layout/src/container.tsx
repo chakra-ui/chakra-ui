@@ -1,26 +1,26 @@
-import { chakra, PropsOf, useTheme, SystemStyleObject } from "@chakra-ui/system"
-import { cx, Dict, get, mapResponsive, __DEV__ } from "@chakra-ui/utils"
+import {
+  chakra,
+  PropsOf,
+  useTheme,
+  SystemStyleObject,
+  forwardRef,
+} from "@chakra-ui/system"
+import {
+  cx,
+  Dict,
+  get,
+  mapResponsive,
+  __DEV__,
+  filterUndefined,
+} from "@chakra-ui/utils"
 import * as React from "react"
 
-export type ContainerProps = PropsOf<typeof chakra.div> & {
+export interface ContainerProps extends PropsOf<typeof chakra.div> {
   /**
    * If `true`, container will center it's children
    * regardless of their width.
    */
   centerContent?: boolean
-}
-
-function transform(theme: Dict, props: Dict) {
-  const result = {} as Dict
-
-  for (const prop in props) {
-    const propValue = props[prop]
-    result[prop] = mapResponsive(propValue, (value) =>
-      get(theme, `sizes.container.${value}`, value),
-    )
-  }
-
-  return result
 }
 
 /**
@@ -31,9 +31,9 @@ function transform(theme: Dict, props: Dict) {
  *
  * It also sets a default max-width of `60ch` (60 characters).
  */
-export const Container = React.forwardRef(function Container(
-  props: ContainerProps,
-  ref: React.Ref<any>,
+export const Container = forwardRef<ContainerProps, "div">(function Container(
+  props,
+  ref,
 ) {
   const {
     maxWidth,
@@ -58,25 +58,23 @@ export const Container = React.forwardRef(function Container(
     minW,
   })
 
-  const _className = cx("chakra-container", className)
-
   const styles: SystemStyleObject = {
-    width: "100%",
-    marginX: "auto",
-    maxWidth: "60ch",
-    paddingX: "1rem",
+    w: "100%",
+    mx: "auto",
+    maxW: "60ch",
+    px: "1rem",
     ...(centerContent && {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
     }),
+    ...widthProps,
   }
 
   return (
     <chakra.div
-      className={_className}
       ref={ref}
-      {...widthProps}
+      className={cx("chakra-container", className)}
       {...rest}
       __css={styles}
     />
@@ -85,4 +83,17 @@ export const Container = React.forwardRef(function Container(
 
 if (__DEV__) {
   Container.displayName = "Container"
+}
+
+function transform(theme: Dict, props: Dict) {
+  const result: SystemStyleObject = {}
+
+  for (const prop in props) {
+    const propValue = props[prop]
+    result[prop] = mapResponsive(propValue, (value) =>
+      get(theme, `sizes.container.${value}`, value),
+    )
+  }
+
+  return filterUndefined(result)
 }

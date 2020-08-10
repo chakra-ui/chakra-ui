@@ -4,6 +4,9 @@ exports[`Select renders correctly 1`] = `
 <DocumentFragment>
   .emotion-2 {
   width: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   position: relative;
 }
 
@@ -16,7 +19,6 @@ exports[`Select renders correctly 1`] = `
   appearance: none;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
-  padding-right: 1rem;
   padding-bottom: 1px;
   line-height: normal;
   font-size: 1rem;
@@ -25,6 +27,11 @@ exports[`Select renders correctly 1`] = `
   border-radius: 0.25rem;
   border: 1px solid;
   border-color: inherit;
+  background: #FFFFFF;
+  padding-right: 2rem;
+}
+
+.emotion-0 > option {
   background: #FFFFFF;
 }
 
@@ -58,7 +65,6 @@ exports[`Select renders correctly 1`] = `
 
 .emotion-0:focus,
 .emotion-0[data-focus] {
-  z-index: 1;
   border-color: #3182CE;
   box-shadow: 0 0 0 1px #3182CE;
 }
@@ -89,7 +95,6 @@ exports[`Select renders correctly 1`] = `
   justify-content: center;
   right: 0.5rem;
   pointer-events: none;
-  z-index: 2;
   top: 50%;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);

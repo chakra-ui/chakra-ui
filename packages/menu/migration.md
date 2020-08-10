@@ -2,40 +2,6 @@
 
 ## New Features ⚡️
 
-Added support for nested menus or submenus
-
-```jsx
-const PreferencesMenu = forwardRef((props, ref) => {
-  return (
-    <Menu>
-      <MenuButton ref={ref} {...props}>
-        Preferences
-      </MenuButton>
-      <MenuList>
-        <MenuItem>Settings</MenuItem>
-        <MenuItem isDisabled>Extensions</MenuItem>
-        <MenuSeparator />
-        <MenuItem>Keyboard shortcuts</MenuItem>
-      </MenuList>
-    </Menu>
-  )
-})
-
-function Example() {
-  return (
-    <Menu>
-      <MenuButton>Code</MenuButton>
-      <MenuList>
-        <MenuItem>About Visual Studio Code</MenuItem>
-        <MenuItem>Check for Updates...</MenuItem>
-        <MenuSeparator />
-        <MenuItem as={PreferencesMenu} />
-      </MenuList>
-    </Menu>
-  )
-}
-```
-
 Support for menu icons and commands (or hotkeys
 
 ```jsx

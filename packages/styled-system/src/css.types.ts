@@ -2,13 +2,11 @@ import { ResponsiveValue } from "./utils"
 import { Omit, Dict } from "@chakra-ui/utils"
 import { Pseudos } from "./pseudo"
 import {
-  BoxShadowProperty,
-  FontWeightProperty,
+  Property,
   PropertiesFallback,
   Pseudos as CSSPseudos,
   StandardProperties,
   SvgProperties,
-  ZIndexProperty,
 } from "csstype"
 
 type CSS = PropertiesFallback<number | string>
@@ -90,9 +88,9 @@ interface AliasesCSSProperties {
 }
 
 interface OverwriteCSSProperties {
-  boxShadow?: BoxShadowProperty | number
-  fontWeight?: FontWeightProperty | string
-  zIndex?: ZIndexProperty | string
+  boxShadow?: Property.BoxShadow | number
+  fontWeight?: Property.FontWeight | string
+  zIndex?: Property.ZIndex | string
 }
 
 interface AllSystemCSSProperties
