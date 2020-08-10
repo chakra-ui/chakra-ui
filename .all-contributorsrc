@@ -1083,6 +1083,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "fr3fou",
+      "name": "Simo Aleksandrov",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1344906?v=4",
+      "profile": "https://simo.sh",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
