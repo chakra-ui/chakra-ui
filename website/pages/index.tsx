@@ -26,7 +26,7 @@ import { Footer } from "components/footer"
 import SEO from "components/seo"
 import users from "chakra-users"
 import { AiFillThunderbolt } from "react-icons/ai"
-import { FaDiscord } from "react-icons/fa"
+import { FaArrowRight, FaDiscord } from "react-icons/fa"
 import TweetCard from "components/tweet-card"
 import tweets from "configs/tweets"
 import { chunk } from "@chakra-ui/utils"
@@ -127,13 +127,13 @@ const HomePage = () => {
                   <Button
                     h="4rem"
                     px="40px"
-                    rounded="12px"
                     fontSize="1.2rem"
                     as="a"
                     size="lg"
                     colorScheme="teal"
+                    rightIcon={<FaArrowRight fontSize="0.8em" />}
                   >
-                    {`Get Started ->`}
+                    Get Started
                   </Button>
                 </NextLink>
                 <Button
@@ -141,7 +141,6 @@ const HomePage = () => {
                   size="lg"
                   h="4rem"
                   px="40px"
-                  rounded="12px"
                   fontSize="1.2rem"
                   href="https://github.com/chakra-ui/chakra-ui/"
                   target="__blank"
@@ -310,13 +309,13 @@ const HomePage = () => {
               <Button
                 h="4rem"
                 px="40px"
-                rounded="12px"
                 fontSize="1.2rem"
                 as="a"
                 size="lg"
                 colorScheme="teal"
+                rightIcon={<FaArrowRight fontSize="0.8em" />}
               >
-                {`Get Started ->`}
+                Get Started
               </Button>
             </Flex>
           </Container>
