@@ -39,7 +39,8 @@ export function useMultiStyleConfig(themeKey: string, props: Dict) {
   return React.useMemo(() => {
     if (styleConfig) {
       const baseStyles = runIfFn(styleConfig.baseStyle ?? {}, allProps)
-      const parts = Object.keys(styleConfig.parts) || Object.keys(baseStyles)
+      const parts =
+        Object.keys(styleConfig.parts ?? {}) || Object.keys(baseStyles)
 
       const variants = runIfFn(
         styleConfig.variants?.[allProps.variant] ?? {},

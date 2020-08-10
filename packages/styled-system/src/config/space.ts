@@ -138,115 +138,115 @@ export interface SpaceProps {
   /**
    * Margin on top, left, bottom and right
    */
-  m?: ResponsiveValue<CSS.MarginProperty<Length>>
+  m?: ResponsiveValue<CSS.Property.Margin<Length>>
   /**
    * Margin on top, left, bottom and right
    */
-  margin?: ResponsiveValue<CSS.MarginProperty<Length>>
+  margin?: ResponsiveValue<CSS.Property.Margin<Length>>
   /**
    * Margin on top
    */
-  mt?: ResponsiveValue<CSS.MarginProperty<Length>>
+  mt?: ResponsiveValue<CSS.Property.Margin<Length>>
   /**
    * Margin on top
    */
-  marginTop?: ResponsiveValue<CSS.MarginTopProperty<Length>>
+  marginTop?: ResponsiveValue<CSS.Property.MarginTop<Length>>
   /**
    * Margin on right
    */
-  mr?: ResponsiveValue<CSS.MarginRightProperty<Length>>
+  mr?: ResponsiveValue<CSS.Property.MarginRight<Length>>
   /**
    * Margin on right
    */
-  marginRight?: ResponsiveValue<CSS.MarginRightProperty<Length>>
+  marginRight?: ResponsiveValue<CSS.Property.MarginRight<Length>>
   /**
    * Margin on bottom
    */
-  mb?: ResponsiveValue<CSS.MarginBottomProperty<Length>>
+  mb?: ResponsiveValue<CSS.Property.MarginBottom<Length>>
   /**
    * Margin on bottom
    */
-  marginBottom?: ResponsiveValue<CSS.MarginBottomProperty<Length>>
+  marginBottom?: ResponsiveValue<CSS.Property.MarginBottom<Length>>
   /**
    * Margin on left
    */
-  ml?: ResponsiveValue<CSS.MarginLeftProperty<Length>>
+  ml?: ResponsiveValue<CSS.Property.MarginLeft<Length>>
   /**
    * Margin on left
    */
-  marginLeft?: ResponsiveValue<CSS.MarginLeftProperty<Length>>
+  marginLeft?: ResponsiveValue<CSS.Property.MarginLeft<Length>>
   /**
    * Margin on left and right
    */
-  mx?: ResponsiveValue<CSS.MarginProperty<Length>>
+  mx?: ResponsiveValue<CSS.Property.Margin<Length>>
   /**
    * Margin on left and right
    */
-  marginX?: ResponsiveValue<CSS.MarginProperty<Length>>
+  marginX?: ResponsiveValue<CSS.Property.Margin<Length>>
   /**
    * Margin on top and bottom
    */
-  my?: ResponsiveValue<CSS.MarginProperty<Length>>
+  my?: ResponsiveValue<CSS.Property.Margin<Length>>
   /**
    * Margin on top and bottom
    */
-  marginY?: ResponsiveValue<CSS.MarginProperty<Length>>
+  marginY?: ResponsiveValue<CSS.Property.Margin<Length>>
   /**
    * Padding on top, left, bottom and right
    */
-  p?: ResponsiveValue<CSS.PaddingProperty<Length>>
+  p?: ResponsiveValue<CSS.Property.Padding<Length>>
   /**
    * Padding on top, left, bottom and right
    */
-  padding?: ResponsiveValue<CSS.PaddingProperty<Length>>
+  padding?: ResponsiveValue<CSS.Property.Padding<Length>>
   /**
    * Padding on top
    */
-  pt?: ResponsiveValue<CSS.PaddingTopProperty<Length>>
+  pt?: ResponsiveValue<CSS.Property.PaddingTop<Length>>
   /**
    * Padding on top
    */
-  paddingTop?: ResponsiveValue<CSS.PaddingTopProperty<Length>>
+  paddingTop?: ResponsiveValue<CSS.Property.PaddingTop<Length>>
   /**
    * Padding on right
    */
-  pr?: ResponsiveValue<CSS.PaddingRightProperty<Length>>
+  pr?: ResponsiveValue<CSS.Property.PaddingRight<Length>>
   /**
    * Padding on right
    */
-  paddingRight?: ResponsiveValue<CSS.PaddingRightProperty<Length>>
+  paddingRight?: ResponsiveValue<CSS.Property.PaddingRight<Length>>
   /**
    * Padding on bottom
    */
-  pb?: ResponsiveValue<CSS.PaddingBottomProperty<Length>>
+  pb?: ResponsiveValue<CSS.Property.PaddingBottom<Length>>
   /**
    * Padding on bottom
    */
-  paddingBottom?: ResponsiveValue<CSS.PaddingBottomProperty<Length>>
+  paddingBottom?: ResponsiveValue<CSS.Property.PaddingBottom<Length>>
   /**
    * Padding on left
    */
-  pl?: ResponsiveValue<CSS.PaddingLeftProperty<Length>>
+  pl?: ResponsiveValue<CSS.Property.PaddingLeft<Length>>
   /**
    * Padding on left
    */
-  paddingLeft?: ResponsiveValue<CSS.PaddingLeftProperty<Length>>
+  paddingLeft?: ResponsiveValue<CSS.Property.PaddingLeft<Length>>
   /**
    * Padding on left and right
    */
-  px?: ResponsiveValue<CSS.PaddingProperty<Length>>
+  px?: ResponsiveValue<CSS.Property.Padding<Length>>
   /**
    * Padding on left and right
    */
-  paddingX?: ResponsiveValue<CSS.PaddingProperty<Length>>
+  paddingX?: ResponsiveValue<CSS.Property.Padding<Length>>
   /**
    * Padding on top and bottom
    */
-  py?: ResponsiveValue<CSS.PaddingProperty<Length>>
+  py?: ResponsiveValue<CSS.Property.Padding<Length>>
   /**
    * Padding on top and bottom
    */
-  paddingY?: ResponsiveValue<CSS.PaddingProperty<Length>>
+  paddingY?: ResponsiveValue<CSS.Property.Padding<Length>>
 }
 
 /**

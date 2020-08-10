@@ -6,44 +6,43 @@ import {
   PropsOf,
   useMultiStyleConfig,
   ThemingProps,
+  forwardRef,
 } from "@chakra-ui/system"
 import { cx, split, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
 type Omitted = "disabled" | "required" | "readOnly" | "size"
 
-export type SelectFieldProps = Omit<PropsOf<typeof chakra.select>, Omitted> & {
+export interface SelectFieldProps
+  extends Omit<PropsOf<typeof chakra.select>, Omitted> {
   size?: string
   isDisabled?: boolean
 }
 
-export const SelectField = React.forwardRef(function SelectField(
-  props: SelectFieldProps,
-  ref: React.Ref<any>,
-) {
-  const { children, placeholder, className, isDisabled, ...rest } = props
-  const select = useFormControl<HTMLSelectElement>(rest)
+export const SelectField = forwardRef<SelectFieldProps, "select">(
+  function SelectField(props, ref) {
+    const { children, placeholder, className, ...rest } = props
+    const select = useFormControl<HTMLSelectElement>(rest)
 
-  return (
-    <chakra.select
-      {...select}
-      {...(rest as any)}
-      ref={ref}
-      paddingRight="2rem"
-      className={cx("chakra-select", className)}
-      disabled={isDisabled}
-    >
-      {placeholder && <option value="">{placeholder}</option>}
-      {children}
-    </chakra.select>
-  )
-})
+    return (
+      <chakra.select
+        {...select}
+        ref={ref}
+        paddingRight="2rem"
+        className={cx("chakra-select", className)}
+      >
+        {placeholder && <option value="">{placeholder}</option>}
+        {children}
+      </chakra.select>
+    )
+  },
+)
 
 if (__DEV__) {
   SelectField.displayName = "SelectField"
 }
 
-type RootProps = Omit<PropsOf<typeof chakra.div>, "color">
+interface RootProps extends Omit<PropsOf<typeof chakra.div>, "color"> {}
 
 interface SelectOptions extends FormControlOptions {
   /**
@@ -73,26 +72,24 @@ interface SelectOptions extends FormControlOptions {
   placeholder?: string
 }
 
-export type SelectProps = SelectFieldProps &
-  ThemingProps &
-  SelectOptions & {
-    /**
-     * Props to forward to the root `div` element
-     */
-    rootProps?: RootProps
-    /**
-     * The icon element to use in the select
-     */
-    icon?: React.ReactElement<any>
-  }
+export interface SelectProps
+  extends SelectFieldProps,
+    ThemingProps,
+    SelectOptions {
+  /**
+   * Props to forward to the root `div` element
+   */
+  rootProps?: RootProps
+  /**
+   * The icon element to use in the select
+   */
+  icon?: React.ReactElement<any>
+}
 
 /**
  * React component used to select one item from a list of options.
  */
-export const Select = React.forwardRef(function Select(
-  props: SelectProps,
-  ref: React.Ref<any>,
-) {
+export const Select = forwardRef<SelectProps, "select">((props, ref) => {
   const styles = useMultiStyleConfig("Select", props)
 
   const { rootProps, placeholder, icon, color, ...rest } = omitThemingProps(
@@ -138,7 +135,7 @@ if (__DEV__) {
   Select.displayName = "Select"
 }
 
-export const DefaultIcon = (props: PropsOf<"svg">) => (
+export const DefaultIcon: React.FC<PropsOf<"svg">> = (props) => (
   <svg viewBox="0 0 24 24" {...props}>
     <path
       fill="currentColor"
@@ -164,7 +161,7 @@ const IconWrapper = chakra("div", {
 
 type SelectIconProps = PropsOf<typeof IconWrapper>
 
-function SelectIcon(props: SelectIconProps) {
+const SelectIcon: React.FC<SelectIconProps> = (props) => {
   const { children = <DefaultIcon />, ...rest } = props
 
   const clone = React.cloneElement(children as any, {

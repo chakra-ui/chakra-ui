@@ -37,20 +37,32 @@ const StyledContainer = chakra("label", {
   },
 })
 
-type Omitted = "size" | "checked" | "defaultChecked" | "onChange"
+type Omitted =
+  | "size"
+  | "checked"
+  | "defaultChecked"
+  | "onChange"
+  | "onBlur"
+  | "value"
 
 type StyledControlProps = Omit<PropsOf<typeof StyledControl>, Omitted>
 
-export type CheckboxProps = StyledControlProps &
-  Omit<PropsOf<"input">, Omitted> &
-  ThemingProps &
-  UseCheckboxProps & {
-    /**
-     * The spacing between the checkbox and it's label text
-     * @default 0.5rem
-     */
-    spacing?: SystemProps["marginLeft"]
-  }
+type BaseCheckboxProps = Pick<
+  PropsOf<"input">,
+  "onBlur" | "checked" | "defaultChecked"
+>
+
+export interface CheckboxProps
+  extends StyledControlProps,
+    BaseCheckboxProps,
+    ThemingProps,
+    UseCheckboxProps {
+  /**
+   * The spacing between the checkbox and it's label text
+   * @default 0.5rem
+   */
+  spacing?: SystemProps["marginLeft"]
+}
 
 /**
  * Checkbox
@@ -60,7 +72,7 @@ export type CheckboxProps = StyledControlProps &
  *
  * @see Docs https://chakra-ui.com/components/checkbox
  */
-export const Checkbox = forwardRef<CheckboxProps>(function Checkbox(
+export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
   props,
   ref,
 ) {
@@ -68,17 +80,17 @@ export const Checkbox = forwardRef<CheckboxProps>(function Checkbox(
 
   const merged = { ...group, ...props }
   const styles = useMultiStyleConfig("Checkbox", merged)
-  const realProps = omitThemingProps(merged)
+  const ownProps = omitThemingProps(merged)
 
-  const { spacing = "0.5rem", className, children, ...otherProps } = realProps
+  const { spacing = "0.5rem", className, children, ...rest } = ownProps
 
-  let isChecked = realProps.isChecked
-  if (group?.value && realProps.value) {
-    isChecked = group.value.includes(realProps.value)
+  let isChecked = ownProps.isChecked
+  if (group?.value && ownProps.value) {
+    isChecked = group.value.includes(ownProps.value)
   }
 
-  let onChange = realProps.onChange
-  if (group?.onChange && realProps.value) {
+  let onChange = ownProps.onChange
+  if (group?.onChange && ownProps.value) {
     onChange = group.onChange
   }
 
@@ -89,7 +101,7 @@ export const Checkbox = forwardRef<CheckboxProps>(function Checkbox(
     getLabelProps,
     htmlProps,
   } = useCheckbox({
-    ...otherProps,
+    ...rest,
     isChecked,
     onChange,
   })
@@ -104,7 +116,7 @@ export const Checkbox = forwardRef<CheckboxProps>(function Checkbox(
     opacity: state.isChecked || state.isIndeterminate ? 1 : 0,
     transform:
       state.isChecked || state.isIndeterminate ? "scale(1)" : "scale(0.95)",
-    transition: "opacity 200ms, transform 250ms",
+    transition: "transform 200ms",
     ...styles.icon,
   }
 

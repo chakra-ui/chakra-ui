@@ -175,172 +175,172 @@ export interface BorderProps {
   /**
    * The CSS `border` property
    */
-  border?: ResponsiveValue<CSS.BorderProperty<Length>>
+  border?: ResponsiveValue<CSS.Property.Border<Length>>
   /**
    * The CSS `border-width` property
    */
-  borderWidth?: ResponsiveValue<CSS.BorderWidthProperty<Length>>
+  borderWidth?: ResponsiveValue<CSS.Property.BorderWidth<Length>>
   /**
    * The CSS `border-style` property
    */
-  borderStyle?: ResponsiveValue<CSS.BorderStyleProperty>
+  borderStyle?: ResponsiveValue<CSS.Property.BorderStyle>
   /**
    * The CSS `border-color` property
    */
-  borderColor?: ResponsiveValue<CSS.BorderTopColorProperty>
+  borderColor?: ResponsiveValue<CSS.Property.BorderTopColor>
   /**
    * The CSS `border-radius` property
    */
-  borderRadius?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
+  borderRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-radius` property
    * @deprecated
    */
-  rounded?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
+  rounded?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-top` property
    */
-  borderTop?: ResponsiveValue<CSS.BorderTopProperty<Length>>
+  borderTop?: ResponsiveValue<CSS.Property.BorderTop<Length>>
   /**
    * The CSS `border-top-width` property
    */
-  borderTopWidth?: ResponsiveValue<CSS.BorderWidthProperty<Length>>
+  borderTopWidth?: ResponsiveValue<CSS.Property.BorderWidth<Length>>
   /**
    * The CSS `border-bottom-width` property
    */
-  borderBottomWidth?: ResponsiveValue<CSS.BorderWidthProperty<Length>>
+  borderBottomWidth?: ResponsiveValue<CSS.Property.BorderWidth<Length>>
   /**
    * The CSS `border-left-width` property
    */
-  borderLeftWidth?: ResponsiveValue<CSS.BorderWidthProperty<Length>>
+  borderLeftWidth?: ResponsiveValue<CSS.Property.BorderWidth<Length>>
   /**
    * The CSS `border-right-width` property
    */
-  borderRightWidth?: ResponsiveValue<CSS.BorderWidthProperty<Length>>
+  borderRightWidth?: ResponsiveValue<CSS.Property.BorderWidth<Length>>
   /**
    * The CSS `border-top-style` property
    */
-  borderTopStyle?: ResponsiveValue<CSS.BorderTopStyleProperty>
+  borderTopStyle?: ResponsiveValue<CSS.Property.BorderTopStyle>
   /**
    * The CSS `border-bottom-style` property
    */
-  borderBottomStyle?: ResponsiveValue<CSS.BorderBottomStyleProperty>
+  borderBottomStyle?: ResponsiveValue<CSS.Property.BorderBottomStyle>
   /**
    * The CSS `border-left-style` property
    */
-  borderLeftStyle?: ResponsiveValue<CSS.BorderLeftStyleProperty>
+  borderLeftStyle?: ResponsiveValue<CSS.Property.BorderLeftStyle>
   /**
    * The CSS `border-right-styles` property
    */
-  borderRightStyle?: ResponsiveValue<CSS.BorderRightStyleProperty>
+  borderRightStyle?: ResponsiveValue<CSS.Property.BorderRightStyle>
   /**
    * The CSS `border-top-color` property
    */
-  borderTopColor?: ResponsiveValue<CSS.BorderTopColorProperty>
+  borderTopColor?: ResponsiveValue<CSS.Property.BorderTopColor>
   /**
    * The CSS `border-bottom-color` property
    */
-  borderBottomColor?: ResponsiveValue<CSS.BorderBottomColorProperty>
+  borderBottomColor?: ResponsiveValue<CSS.Property.BorderBottomColor>
   /**
    * The CSS `border-left-color` property
    */
-  borderLeftColor?: ResponsiveValue<CSS.BorderLeftColorProperty>
+  borderLeftColor?: ResponsiveValue<CSS.Property.BorderLeftColor>
   /**
    * The CSS `border-right-color` property
    */
-  borderRightColor?: ResponsiveValue<CSS.BorderRightColorProperty>
+  borderRightColor?: ResponsiveValue<CSS.Property.BorderRightColor>
   /**
    * The CSS `border-right` property
    */
-  borderRight?: ResponsiveValue<CSS.BorderRightProperty<Length>>
+  borderRight?: ResponsiveValue<CSS.Property.BorderRight<Length>>
   /**
    * The CSS `border-bottom` property
    */
-  borderBottom?: ResponsiveValue<CSS.BorderBottomProperty<Length>>
+  borderBottom?: ResponsiveValue<CSS.Property.BorderBottom<Length>>
   /**
    * The CSS `border-left` property
    */
-  borderLeft?: ResponsiveValue<CSS.BorderLeftProperty<Length>>
+  borderLeft?: ResponsiveValue<CSS.Property.BorderLeft<Length>>
   /**
    * The CSS `border-top-radius` property
    */
-  borderTopRadius?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
+  borderTopRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-top-radius` property
    * @deprecated
    */
-  roundedTop?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
+  roundedTop?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-right-radius` property
    */
-  borderRightRadius?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
+  borderRightRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-right-radius` property
    * @deprecated
    */
-  roundedRight?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
+  roundedRight?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-bottom-radius` property
    */
-  borderBottomRadius?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
+  borderBottomRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-bottom-radius` property
    * @deprecated
    */
-  roundedBottom?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
+  roundedBottom?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-left-radius` property
    */
-  borderLeftRadius?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
+  borderLeftRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-left-radius` property
    * @deprecated
    */
-  roundedLeft?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
+  roundedLeft?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-top-left-radius` property
    */
-  borderTopLeftRadius?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
+  borderTopLeftRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-top-left-radius` property
    * @deprecated
    */
-  roundedTopLeft?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
+  roundedTopLeft?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-top-right-radius` property
    */
-  borderTopRightRadius?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
+  borderTopRightRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-top-right-radius` property
    * @deprecated
    */
-  roundedTopRight?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
+  roundedTopRight?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-bottom-left-radius` property
    */
-  borderBottomLeftRadius?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
+  borderBottomLeftRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-bottom-left-radius` property
    * @deprecated
    */
-  roundedBottomLeft?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
+  roundedBottomLeft?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-bottom-right-radius` property
    */
-  borderBottomRightRadius?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
+  borderBottomRightRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-bottom-right-radius` property
    * @deprecated
    */
-  roundedBottomRight?: ResponsiveValue<CSS.BorderRadiusProperty<Length>>
+  roundedBottomRight?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-right` and `border-left` property
    */
-  borderX?: ResponsiveValue<CSS.BorderProperty<Length>>
+  borderX?: ResponsiveValue<CSS.Property.Border<Length>>
   /**
    * The CSS `border-top` and `border-bottom` property
    */
-  borderY?: ResponsiveValue<CSS.BorderProperty<Length>>
+  borderY?: ResponsiveValue<CSS.Property.Border<Length>>
 }
 
 export const border = system(config)

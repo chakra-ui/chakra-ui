@@ -201,6 +201,12 @@ https://discord.gg/dQHfcWF. We would love to support you anyway we can.
 
 TODO
 
+By default, the GitHub REST API has an anonymous user rate limit. This can be
+hit during heavy local docs development if the server is frequently restarted.
+
+Creating a GitHub token and storing it as the `GITHUB_TOKEN` environment
+variable allows the user to avoid the limit.
+
 ## License
 
 By contributing your code to the chakra-ui GitHub repository, you agree to

@@ -5,33 +5,32 @@ export default {
   title: "Badge",
 }
 
-/**
- * Badges will use the `subtle` variant and gray color scheme by default.
- *
- * @see `/theme/components/Badge.ts`
- */
 export const Basic = () => <Badge>Success</Badge>
 
-/**
- * Badge comes in several color schemes for a give variant
- */
 export const SolidBadge = () => {
   return (
     <React.Fragment>
-      {["gray", "green", "red", "orange", "purple", "teal"].map((color) => (
-        <Badge colorScheme={color} variant="solid" mr={2}>
-          {color}
-        </Badge>
-      ))}
+      {["gray", "green", "red", "orange", "purple", "teal"].map(
+        (colorScheme) => (
+          <Badge
+            key={colorScheme}
+            colorScheme={colorScheme}
+            variant="solid"
+            mr={2}
+          >
+            {colorScheme}
+          </Badge>
+        ),
+      )}
     </React.Fragment>
   )
 }
 
 export const SubtleBadges = () => (
   <React.Fragment>
-    {["gray", "green", "red", "orange", "purple", "teal"].map((color) => (
-      <Badge colorScheme={color} mr={2}>
-        {color}
+    {["gray", "green", "red", "orange", "purple", "teal"].map((colorScheme) => (
+      <Badge key={colorScheme} colorScheme={colorScheme} mr={2}>
+        {colorScheme}
       </Badge>
     ))}
   </React.Fragment>
@@ -39,9 +38,14 @@ export const SubtleBadges = () => (
 
 export const OutlineBadges = () => (
   <React.Fragment>
-    {["gray", "green", "red", "orange", "purple", "teal"].map((color) => (
-      <Badge colorScheme={color} variant="outline" mr={2}>
-        {color}
+    {["gray", "green", "red", "orange", "purple", "teal"].map((colorScheme) => (
+      <Badge
+        key={colorScheme}
+        colorScheme={colorScheme}
+        variant="outline"
+        mr={2}
+      >
+        {colorScheme}
       </Badge>
     ))}
   </React.Fragment>

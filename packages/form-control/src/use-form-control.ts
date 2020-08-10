@@ -1,12 +1,21 @@
+import { FocusEventHandler } from "react"
 import { FormControlOptions, useFormControlContext } from "./form-control"
-import { ariaAttr, dataAttr, callAllHandlers, Dict } from "@chakra-ui/utils"
+import {
+  ariaAttr,
+  dataAttr,
+  callAllHandlers,
+  Dict,
+  omit,
+} from "@chakra-ui/utils"
 
-export type UseFormControlProps<T extends HTMLElement> = FormControlOptions & {
+export interface UseFormControlProps<T extends HTMLElement>
+  extends FormControlOptions {
   id?: string
-  onFocus?: React.FocusEventHandler<T>
-  onBlur?: React.FocusEventHandler<T>
+  onFocus?: FocusEventHandler<T>
+  onBlur?: FocusEventHandler<T>
   disabled?: boolean
   readOnly?: boolean
+  required?: boolean
 }
 
 /**
@@ -37,11 +46,19 @@ export function useFormControl<T extends HTMLElement>(
   if (field?.hasHelpText) describedBy.push(field.helpTextId)
   const ariaDescribedBy = describedBy.join(" ")
 
+  const cleanProps = omit(props, [
+    "isInvalid",
+    "isDisabled",
+    "isReadOnly",
+    "isRequired",
+  ])
+
   return {
-    ...props,
+    ...cleanProps,
     id: props.id ?? field?.id,
     disabled: props.disabled || props.isDisabled || field?.isDisabled,
     readOnly: props.readOnly || props.isReadOnly || field?.isReadOnly,
+    required: props.required || props.isRequired || field?.isRequired,
     "aria-invalid": ariaAttr(props.isInvalid || field?.isInvalid),
     "aria-required": ariaAttr(props.isRequired || field?.isRequired),
     "aria-readonly": ariaAttr(props.isReadOnly || field?.isReadOnly),

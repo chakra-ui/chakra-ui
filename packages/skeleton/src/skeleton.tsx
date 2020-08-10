@@ -4,6 +4,7 @@ import {
   keyframes,
   useStyleConfig,
   ThemingProps,
+  forwardRef,
   omitThemingProps,
 } from "@chakra-ui/system"
 import { cx, __DEV__ } from "@chakra-ui/utils"
@@ -53,18 +54,19 @@ const StyledSkeleton = chakra("div", {
 
 export type ISkeleton = SkeletonOptions
 
-export type SkeletonProps = PropsOf<typeof StyledSkeleton> &
-  SkeletonOptions &
-  ThemingProps
+export interface SkeletonProps
+  extends PropsOf<typeof StyledSkeleton>,
+    SkeletonOptions,
+    ThemingProps {}
 
 const fade = keyframes({
   from: { opacity: 0 },
   to: { opacity: 1 },
 })
 
-export const Skeleton = React.forwardRef(function Skeleton(
-  props: SkeletonProps,
-  ref: React.Ref<any>,
+export const Skeleton = forwardRef<SkeletonProps, "div">(function Skeleton(
+  props,
+  ref,
 ) {
   const styles = useStyleConfig("Skeleton", props)
 
@@ -111,7 +113,7 @@ function range(count: number) {
     .map((_, index) => index + 1)
 }
 
-export type SkeletonTextProps = SkeletonProps & {
+export interface SkeletonTextProps extends SkeletonProps {
   noOfLines?: number
   spacing?: SkeletonProps["margin"]
   skeletonHeight?: SkeletonProps["height"]
@@ -119,7 +121,7 @@ export type SkeletonTextProps = SkeletonProps & {
   endColor?: SkeletonProps["endColor"]
 }
 
-export function SkeletonText(props: SkeletonTextProps) {
+export const SkeletonText: React.FC<SkeletonTextProps> = (props) => {
   const {
     noOfLines = 3,
     spacing = "0.5rem",
@@ -161,9 +163,10 @@ if (__DEV__) {
   SkeletonText.displayName = "SkeletonText"
 }
 
-export const SkeletonCircle = ({ size = "2rem", ...rest }: SkeletonProps) => (
-  <Skeleton borderRadius="full" boxSize={size} {...rest} />
-)
+export const SkeletonCircle: React.FC<SkeletonProps> = ({
+  size = "2rem",
+  ...rest
+}) => <Skeleton borderRadius="full" boxSize={size} {...rest} />
 
 if (__DEV__) {
   SkeletonCircle.displayName = "SkeletonCircle"

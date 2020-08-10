@@ -1,9 +1,8 @@
 /** @jsx jsx */
-import * as React from "react"
 import AnimateHeight, {
   AnimateHeightProps as AnimateProps,
 } from "react-animate-height"
-import { chakra, jsx, PropsOf } from "@chakra-ui/system"
+import { chakra, jsx, PropsOf, forwardRef } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 
 type AnimateHeightProps = Pick<
@@ -49,13 +48,17 @@ export interface CollapseOptions {
 
 export type ICollapse = CollapseProps
 
-export type CollapseProps = AnimateHeightProps &
-  CollapseOptions &
-  PropsOf<typeof chakra.div>
+export interface CollapseProps
+  extends AnimateHeightProps,
+    CollapseOptions,
+    Omit<
+      PropsOf<typeof chakra.div>,
+      "onAnimationEnd" | "onAnimationStart" | "children"
+    > {}
 
-export const Collapse = React.forwardRef(function Collapse(
-  props: CollapseProps,
-  ref: React.Ref<any>,
+export const Collapse = forwardRef<CollapseProps, "div">(function Collapse(
+  props,
+  ref,
 ) {
   const {
     isOpen,
@@ -78,9 +81,9 @@ export const Collapse = React.forwardRef(function Collapse(
       applyInlineTransitions={false}
       onAnimationStart={onAnimationStart}
       onAnimationEnd={onAnimationEnd}
-      sx={{
+      css={{
         transition:
-          "height .2s ease,opacity .2s ease-in-out,transform .2s ease-in-out",
+          "height 0.2s ease,opacity 0.2s ease-in-out,transform 0.2s ease-in-out",
         "&.rah-animating--to-height-zero": {
           opacity: 0,
           transform: "translateY(-0.625rem)",

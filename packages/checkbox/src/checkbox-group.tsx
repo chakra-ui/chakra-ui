@@ -13,11 +13,9 @@ export interface CheckboxGroupProps
   children?: ReactNode
 }
 
-export type CheckboxGroupContext = Pick<
-  UseCheckboxGroupReturn,
-  "onChange" | "value"
-> &
-  Omit<ThemingProps, "orientation">
+export interface CheckboxGroupContext
+  extends Pick<UseCheckboxGroupReturn, "onChange" | "value">,
+    Omit<ThemingProps, "orientation"> {}
 
 const [CheckboxGroupProvider, useCheckboxGroupContext] = createContext<
   CheckboxGroupContext
@@ -34,7 +32,7 @@ export { useCheckboxGroupContext }
  *
  * @see Docs https://chakra-ui.com/components/checkbox
  */
-export function CheckboxGroup(props: CheckboxGroupProps) {
+export const CheckboxGroup: React.FC<CheckboxGroupProps> = (props) => {
   const { colorScheme, size, variant, children } = props
   const { value, onChange } = useCheckboxGroup(props)
 
@@ -49,7 +47,7 @@ export function CheckboxGroup(props: CheckboxGroupProps) {
     [size, onChange, colorScheme, value, variant],
   )
 
-  return <CheckboxGroupProvider value={group}>{children}</CheckboxGroupProvider>
+  return <CheckboxGroupProvider value={group} children={children} />
 }
 
 if (__DEV__) {

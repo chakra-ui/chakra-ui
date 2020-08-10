@@ -1,0 +1,33 @@
+---
+title: Chakra UI + Framer Motion
+description: Adding Animation to Chakra UI Components with Framer Motion
+tags: ["framer", "animation"]
+author: segunadebayo
+---
+
+If you'd like to add some interesting motion interaction or animation to your
+Chakra UI websites or apps, here's a quick tip:
+
+```jsx live=false
+import { Box } from "@chakra-ui/core"
+import { motion } from "framer-motion"
+
+// 1. Create a custom motion component from Box
+const MotionBox = motion.custom(Box)
+
+// 2. You'll get access to `motion` and `chakra` props in `MotionBox`
+function Example() {
+  return (
+    <MotionBox
+      boxSize="40px"
+      bg="red.300"
+      drag="x"
+      dragConstraints={{ left: -100, right: 100 }}
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
+    />
+  )
+}
+```
+
+[![Edit with CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/chakra-ui-framer-motion-example-q5o40?file=/src/Example.js)

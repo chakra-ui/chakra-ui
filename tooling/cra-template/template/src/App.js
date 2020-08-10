@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   ChakraProvider,
-  CSSReset,
   Box,
   Text,
   Link,
@@ -15,8 +14,7 @@ import { Logo } from './Logo';
 
 function App() {
   return (
-    <ChakraProvider theme={theme}>
-      <CSSReset />
+    <ChakraProvider resetCSS theme={theme}>
       <Box textAlign="center" fontSize="xl">
         <Grid
           minH="100vh"

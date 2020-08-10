@@ -88,7 +88,7 @@ const variants = {
 }
 
 const defaultProps = {
-  size: "lg",
+  size: "md",
   variant: "subtle",
   colorScheme: "gray",
 } as const

@@ -4,7 +4,6 @@ import type { Placement } from "@popperjs/core"
 import { getArrowStyles, toTransformOrigin } from "./popper.utils"
 
 const isBrowser = typeof window !== "undefined"
-
 const useSafeLayoutEffect = isBrowser ? React.useLayoutEffect : React.useEffect
 
 export type { Placement }

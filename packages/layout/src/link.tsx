@@ -9,18 +9,14 @@ import {
 import * as React from "react"
 import { __DEV__, cx } from "@chakra-ui/utils"
 
-interface LinkOptions {
+export interface LinkProps extends PropsOf<typeof chakra.a>, ThemingProps {
   /**
    *  If `true`, the link will open in new tab
    */
   isExternal?: boolean
 }
 
-export type LinkProps = PropsOf<typeof chakra.a> & LinkOptions & ThemingProps
-
 /**
- * Link
- *
  * Links are accessible elements used primarily for navigation.
  *
  * It integrates well with other routing libraries like
@@ -34,8 +30,7 @@ export type LinkProps = PropsOf<typeof chakra.a> & LinkOptions & ThemingProps
  *
  * @see Docs https://chakra-ui.com/components/link
  */
-
-export const Link = forwardRef<LinkProps>(function Link(props, ref) {
+export const Link = forwardRef<LinkProps, "a">((props, ref) => {
   const styles = useStyleConfig("Link", props)
   const { className, isExternal, ...rest } = omitThemingProps(props)
 

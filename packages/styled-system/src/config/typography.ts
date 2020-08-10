@@ -45,55 +45,55 @@ export interface TypographyProps {
   /**
    * The CSS `line-height` property
    */
-  lineHeight?: ResponsiveValue<CSS.LineHeightProperty<Length>>
+  lineHeight?: ResponsiveValue<CSS.Property.LineHeight<Length>>
   /**
    * The CSS `line-height` property
    */
-  letterSpacing?: ResponsiveValue<CSS.LetterSpacingProperty<Length>>
+  letterSpacing?: ResponsiveValue<CSS.Property.LetterSpacing<Length>>
   /**
    * The CSS `font-size` property
    */
-  fontSize?: ResponsiveValue<CSS.FontSizeProperty<Length>>
+  fontSize?: ResponsiveValue<CSS.Property.FontSize<Length>>
   /**
    * The CSS `font-family` property
    */
-  fontFamily?: ResponsiveValue<CSS.FontFamilyProperty>
+  fontFamily?: ResponsiveValue<CSS.Property.FontFamily>
   /**
    * The CSS `text-align` property
    */
-  textAlign?: ResponsiveValue<CSS.TextAlignProperty>
+  textAlign?: ResponsiveValue<CSS.Property.TextAlign>
   /**
    * The CSS `font-style` property
    */
-  fontStyle?: ResponsiveValue<CSS.FontStyleProperty>
+  fontStyle?: ResponsiveValue<CSS.Property.FontStyle>
   /**
    * The CSS `word-break` property
    */
-  wordBreak?: ResponsiveValue<CSS.WordBreakProperty>
+  wordBreak?: ResponsiveValue<CSS.Property.WordBreak>
   /**
    * The CSS `overflow-wrap` property
    */
-  overflowWrap?: ResponsiveValue<CSS.OverflowWrapProperty>
+  overflowWrap?: ResponsiveValue<CSS.Property.OverflowWrap>
   /**
    * The CSS `text-overflow` property
    */
-  textOverflow?: ResponsiveValue<CSS.TextOverflowProperty>
+  textOverflow?: ResponsiveValue<CSS.Property.TextOverflow>
   /**
    * The CSS `text-transform` property
    */
-  textTransform?: ResponsiveValue<CSS.TextTransformProperty>
+  textTransform?: ResponsiveValue<CSS.Property.TextTransform>
   /**
    * The CSS `white-space` property
    */
-  whiteSpace?: ResponsiveValue<CSS.WhiteSpaceProperty>
+  whiteSpace?: ResponsiveValue<CSS.Property.WhiteSpace>
   /**
    * The CSS `text-decoration` property
    */
-  textDecoration?: ResponsiveValue<CSS.TextDecorationProperty<Length>>
+  textDecoration?: ResponsiveValue<CSS.Property.TextDecoration<Length>>
   /**
    * The CSS `text-decoration` property
    */
-  textDecor?: ResponsiveValue<CSS.TextDecorationProperty<Length>>
+  textDecor?: ResponsiveValue<CSS.Property.TextDecoration<Length>>
 }
 
 export const typography = system(config)

@@ -24,15 +24,15 @@ export interface ShadowProps {
   /**
    * The `box-shadow` property
    */
-  boxShadow?: ResponsiveValue<CSS.BoxShadowProperty | number>
+  boxShadow?: ResponsiveValue<CSS.Property.BoxShadow | number>
   /**
    * The `box-shadow` property
    */
-  shadow?: ResponsiveValue<CSS.BoxShadowProperty | number>
+  shadow?: ResponsiveValue<CSS.Property.BoxShadow | number>
   /**
    * The `text-shadow` property
    */
-  textShadow?: ResponsiveValue<CSS.TextShadowProperty | number>
+  textShadow?: ResponsiveValue<CSS.Property.TextShadow | number>
 }
 
 export const shadow = system(config)

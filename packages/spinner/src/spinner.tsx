@@ -1,12 +1,13 @@
 import {
   chakra,
-  keyframes,
+  forwardRef,
   PropsOf,
-  useStyleConfig,
+  keyframes,
   omitThemingProps,
   ThemingProps,
+  useStyleConfig,
 } from "@chakra-ui/system"
-import { __DEV__, cx } from "@chakra-ui/utils"
+import { cx, __DEV__ } from "@chakra-ui/utils"
 import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 import * as React from "react"
 
@@ -51,9 +52,10 @@ interface SpinnerOptions {
   label?: string
 }
 
-export type SpinnerProps = PropsOf<typeof chakra.div> &
-  SpinnerOptions &
-  ThemingProps
+export interface SpinnerProps
+  extends Omit<PropsOf<typeof chakra.div>, keyof SpinnerOptions>,
+    SpinnerOptions,
+    ThemingProps {}
 
 /**
  * Spinner is used to indicate the loading state of a page or a component,
@@ -61,9 +63,9 @@ export type SpinnerProps = PropsOf<typeof chakra.div> &
  *
  * @see Docs https://chakra-ui.com/components/spinner
  */
-export const Spinner = React.forwardRef(function Spinner(
-  props: SpinnerProps,
-  ref: React.Ref<any>,
+export const Spinner = forwardRef<SpinnerProps, "div">(function Spinner(
+  props,
+  ref,
 ) {
   const styles = useStyleConfig("Spinner", props)
 
@@ -83,7 +85,7 @@ export const Spinner = React.forwardRef(function Spinner(
     display: "inline-block",
     borderColor: "currentColor",
     borderStyle: "solid",
-    borderRadius: "full",
+    borderRadius: "99999px",
     borderWidth: thickness,
     borderBottomColor: emptyColor,
     borderLeftColor: emptyColor,

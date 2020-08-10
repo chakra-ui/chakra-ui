@@ -5,20 +5,19 @@ import {
   useMultiStyleConfig,
   omitThemingProps,
   ThemingProps,
+  forwardRef,
 } from "@chakra-ui/system"
 import { cx, dataAttr, __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 
-type Omitted = "onChange" | "defaultChecked" | "checked"
+type Omitted = "defaultChecked" | "checked" | "onChange"
 
-export type SwitchProps = Omit<UseCheckboxProps, "isIndeterminate"> &
-  Omit<PropsOf<typeof chakra.label>, Omitted> &
-  ThemingProps
+export interface SwitchProps
+  extends Omit<UseCheckboxProps, "isIndeterminate">,
+    Omit<PropsOf<typeof chakra.label>, Omitted>,
+    ThemingProps {}
 
-export const Switch = React.forwardRef(function Switch(
-  props: SwitchProps,
-  ref: React.Ref<any>,
-) {
+export const Switch = forwardRef<SwitchProps, "input">((props, ref) => {
   const styles = useMultiStyleConfig("Switch", props)
 
   const realProps = omitThemingProps(props)
@@ -51,18 +50,18 @@ export const Switch = React.forwardRef(function Switch(
       __css={labelStyles}
     >
       <input className="chakra-switch__input" {...inputProps} />
-      <chakra.div
+      <chakra.span
         {...checkboxProps}
         className="chakra-switch__track"
         __css={trackStyles}
       >
-        <chakra.div
+        <chakra.span
           __css={styles.thumb}
           className="chakra-switch__thumb"
           data-checked={dataAttr(state.isChecked)}
           data-hover={dataAttr(state.isHovered)}
         />
-      </chakra.div>
+      </chakra.span>
     </chakra.label>
   )
 })

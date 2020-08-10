@@ -17,11 +17,13 @@ import {
   stripe,
 } from "./progress.utils"
 
+export interface ProgressLabelProps extends PropsOf<typeof chakra.div> {}
+
 /**
  * ProgressLabel is used to show the numeric value of the progress.
  * @see Docs https://chakra-ui.com/components/progress
  */
-export const ProgressLabel = (props: PropsOf<typeof chakra.div>) => {
+export const ProgressLabel: React.FC<ProgressLabelProps> = (props) => {
   const styles = useStyles()
   const labelStyles = {
     top: "50%",
@@ -39,10 +41,9 @@ if (__DEV__) {
   ProgressLabel.displayName = "ProgressLabel"
 }
 
-export type ProgressLabelProps = PropsOf<typeof ProgressLabel>
-
-export type ProgressFilledTrackProps = PropsOf<typeof chakra.div> &
-  GetProgressPropsOptions
+export interface ProgressFilledTrackProps
+  extends PropsOf<typeof chakra.div>,
+    GetProgressPropsOptions {}
 
 /**
  * ProgressFilledTrack (Linear)
@@ -52,7 +53,7 @@ export type ProgressFilledTrackProps = PropsOf<typeof chakra.div> &
  *
  * @see Docs https://chakra-ui.com/components/progress
  */
-function ProgressFilledTrack(props: ProgressFilledTrackProps) {
+const ProgressFilledTrack: React.FC<ProgressFilledTrackProps> = (props) => {
   const { min, max, value, ...rest } = props
   const progress = getProgressProps({ value, min, max })
 
@@ -75,7 +76,7 @@ function ProgressFilledTrack(props: ProgressFilledTrackProps) {
   )
 }
 
-export type ProgressTrackProps = PropsOf<typeof chakra.div>
+export interface ProgressTrackProps extends PropsOf<typeof chakra.div> {}
 
 interface ProgressOptions {
   /**
@@ -101,9 +102,10 @@ interface ProgressOptions {
   isAnimated?: boolean
 }
 
-export type ProgressProps = ProgressOptions &
-  ThemingProps &
-  PropsOf<typeof chakra.div>
+export interface ProgressProps
+  extends ProgressOptions,
+    ThemingProps,
+    PropsOf<typeof chakra.div> {}
 
 /**
  * Progress (Linear)
@@ -116,7 +118,7 @@ export type ProgressProps = ProgressOptions &
  *
  * @see Docs https://chakra-ui.com/components/progress
  */
-export function Progress(props: ProgressProps) {
+export const Progress: React.FC<ProgressProps> = (props) => {
   const {
     value,
     min = 0,

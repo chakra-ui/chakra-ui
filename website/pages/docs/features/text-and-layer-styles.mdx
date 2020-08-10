@@ -1,0 +1,119 @@
+---
+title: Text and Layer Styles
+description:
+  Learn how to use style props in Chakra UI. Style props are a way to alter the
+  style of a component by simply passing props to it
+---
+
+In most projects you might find yourself repeating specific text properties
+(font size, font weight, line height) or layer properties (bg, color, shadow).
+This can be painful as your project grows in size.
+
+Using `textStyle` and `layerStyle` props can help you keep things organized and
+consistent.
+
+## Layer Style
+
+Layer Styles allow you to save a combination of styling attributes to re-use in
+other components. Once created, pass the `layerStyle` prop to any component and
+chakra will resolve the styles accordingly.
+
+Properties defined in a layer style
+
+- Color or text color
+- Background color
+- Border width and border color
+- Box shadow
+- Opacity
+
+```jsx live=false
+import defaultTheme from "@chakra-ui/theme"
+
+// 1. Define the layer styles in the theme
+const theme = {
+  ...defaultTheme,
+  layerStyles: {
+    base: {
+      bg: "gray.50",
+      border: "2px solid",
+      borderColor: "gray.500",
+    },
+    selected: {
+      bg: "teal.500",
+      color: "teal.700",
+      borderColor: "orange.500",
+    },
+  },
+}
+
+// 2. Consume the text styles in your components
+function Example() {
+  return <Box layerStyle="selected">This is a box</Box>
+}
+
+// 3. You can also switch layer styles
+function Example({ isSelected }) {
+  const layerStyle = isSelected ? "selected" : "base"
+  return <Box layerStyle={layerStyle}>This is a box</Box>
+}
+```
+
+## Text Styles
+
+Typography forms the core of any product just as much as colors and components
+do. As a result, you'll need to establish styles for consistent, legible
+typography early in the process of creating your product or design system.
+
+The text styles functionality in Chakra makes it easy to repeatably apply a
+collection of text properties (like line height and size) to any component.
+
+You can put these styles in the theme under the `textStyles` key to make easy to
+re-use in the future.
+
+Properties defined in a text style
+
+- Font family, weight, and size
+- Line height
+- Letter spacing
+- Text decoration (strikethrough and underline)
+- Text transform (uppercase, lowercase, and capitalization)
+
+```jsx live=false
+import defaultTheme from "@chakra-ui/theme"
+
+// 1. Define the text styles in the theme
+const theme = {
+  ...defaultTheme,
+  textStyles: {
+    h1: {
+      // you can also use responsive styles
+      fontSize: ["48px", "72px"],
+      fontWeight: "bold",
+      lineHeight: "110%",
+      letterSpacing: "-2%",
+    },
+    h2: {
+      fontSize: ["36px", "48px"],
+      fontWeight: "semibold",
+      lineHeight: "110%",
+      letterSpacing: "-1%",
+    },
+  },
+}
+
+// 2. Consume the text styles in your components
+function Example() {
+  return <Box textStyle={`h1`}>This is a box</Box>
+}
+```
+
+### Naming text styles
+
+In practice, we recommend using the same text style names used by designers on
+your team. Here are common ideas on how to name text styles:
+
+- Sized-based naming system (`xs`, `sm`, `md`, `lg`, `xl`)
+- Semantic naming system that corresponds to respective html tags in production
+  (`caption`, `paragraph`, `h1`, `h2`)
+- Descriptive or functional naming system that explains the styles' intended use
+  (`alert`, `modal-header`, `button-label`)

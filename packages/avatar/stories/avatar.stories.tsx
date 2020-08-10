@@ -60,6 +60,7 @@ export const WithSizes = () => (
   <Stack direction="row" spacing="24px">
     {["xs", "sm", "md", "lg", "xl", "2xl"].map((size) => (
       <Avatar
+        key={size}
         size={size}
         name="Uchiha Itachi"
         src="https://uinames.com/api/photos/female/18.jpg"

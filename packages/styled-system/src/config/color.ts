@@ -29,23 +29,23 @@ export interface ColorProps {
   /**
    * The CSS `color` property
    */
-  textColor?: ResponsiveValue<CSS.ColorProperty>
+  textColor?: ResponsiveValue<CSS.Property.Color>
   /**
    * The CSS `color` property
    */
-  color?: ResponsiveValue<CSS.ColorProperty>
+  color?: ResponsiveValue<CSS.Property.Color>
   /**
    * The CSS `fill` property for icon svgs and paths
    */
-  fill?: ResponsiveValue<CSS.ColorProperty>
+  fill?: ResponsiveValue<CSS.Property.Color>
   /**
    * The CSS `stroke` property for icon svgs and paths
    */
-  stroke?: ResponsiveValue<CSS.ColorProperty>
+  stroke?: ResponsiveValue<CSS.Property.Color>
   /**
    * The CSS `opacity` property
    */
-  opacity?: ResponsiveValue<CSS.GlobalsNumber>
+  opacity?: ResponsiveValue<CSS.Property.Opacity>
 }
 
 export const color = system(config)

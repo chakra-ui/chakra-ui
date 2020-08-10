@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react"
+import { useState, useCallback, ChangeEvent } from "react"
 import { useControllableProp } from "@chakra-ui/hooks"
 import {
   isInputEvent,
@@ -8,7 +8,7 @@ import {
   Dict,
 } from "@chakra-ui/utils"
 
-type EventOrValue = React.ChangeEvent<HTMLInputElement> | StringOrNumber
+type EventOrValue = ChangeEvent<HTMLInputElement> | StringOrNumber
 
 export interface UseCheckboxGroupProps {
   /**

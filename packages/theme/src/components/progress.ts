@@ -26,7 +26,7 @@ function filledStyle(props: Record<string, any>) {
 
   return {
     ...(addStripe && stripeStyle),
-    bgColor: isIndeterminate ? gradient : bg,
+    ...(isIndeterminate ? { bgImage: gradient } : { bg }),
   }
 }
 

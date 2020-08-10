@@ -3,9 +3,9 @@ import { getProgressProps, rotate, spin } from "./progress.utils"
 import { chakra, PropsOf } from "@chakra-ui/system"
 import { isUndefined, __DEV__, StringOrNumber } from "@chakra-ui/utils"
 
-type CircleProps = PropsOf<typeof chakra.circle>
+interface CircleProps extends PropsOf<typeof chakra.circle> {}
 
-const Circle = (props: CircleProps) => (
+const Circle: React.FC<CircleProps> = (props) => (
   <chakra.circle cx={50} cy={50} r={42} fill="transparent" {...props} />
 )
 
@@ -13,12 +13,12 @@ if (__DEV__) {
   Circle.displayName = "Circle"
 }
 
-type ShapeProps = PropsOf<typeof chakra.svg> & {
+interface ShapeProps extends PropsOf<typeof chakra.svg> {
   size?: StringOrNumber
   isIndeterminate?: boolean
 }
 
-function Shape(props: ShapeProps) {
+const Shape: React.FC<ShapeProps> = (props) => {
   const { size, isIndeterminate, ...rest } = props
   return (
     <chakra.svg
@@ -84,8 +84,9 @@ interface CircularProgressOptions {
   getValueText?(value: number, percent: number): string
 }
 
-export type CircularProgressProps = PropsOf<typeof chakra.div> &
-  CircularProgressOptions
+export interface CircularProgressProps
+  extends Omit<PropsOf<typeof chakra.div>, "color">,
+    CircularProgressOptions {}
 
 /**
  * CircularProgress is used to indicate the progress of an activity.
@@ -95,7 +96,7 @@ export type CircularProgressProps = PropsOf<typeof chakra.div> &
  * @see Docs https://chakra-ui.com/components/progress
  * @todo add theming support for circular progress
  */
-export function CircularProgress(props: CircularProgressProps) {
+export const CircularProgress: React.FC<CircularProgressProps> = (props) => {
   const {
     size = "48px",
     max = 100,
@@ -196,4 +197,5 @@ if (__DEV__) {
   CircularProgressLabel.displayName = "CircularProgressLabel"
 }
 
-export type CircularProgressLabelProps = PropsOf<typeof CircularProgressLabel>
+export interface CircularProgressLabelProps
+  extends PropsOf<typeof CircularProgressLabel> {}
