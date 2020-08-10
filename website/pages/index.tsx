@@ -98,7 +98,7 @@ const HomePage = () => {
           <Container>
             <Box maxW="760px" mx="auto" textAlign="center">
               <chakra.h1
-                fontSize={{ base: "2.25rem", md: "3rem", lg: "4rem" }}
+                fontSize={{ base: "2.25rem", md: "3rem", lg: "3.75rem" }}
                 letterSpacing="tight"
                 fontWeight="bold"
                 mb="16px"

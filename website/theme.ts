@@ -2,16 +2,8 @@ import { theme } from "@chakra-ui/core"
 import { runIfFn } from "@chakra-ui/utils"
 import { mode } from "@chakra-ui/theme-tools"
 
-const font =
-  "Inter, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji"
-
 const customTheme = {
   ...theme,
-  fonts: {
-    ...theme.fonts,
-    heading: font,
-    body: font,
-  },
   styles: {
     global: (props) => ({
       ...runIfFn(theme.styles.global, props),
