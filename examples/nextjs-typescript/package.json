@@ -9,16 +9,36 @@
     "type-check": "tsc"
   },
   "dependencies": {
-    "@chakra-ui/core": "1.0.0-rc.2",
+    "@chakra-ui/core": "^1.0.0-next.6",
+    "@chakra-ui/icons": "^1.0.0-next.6",
+    "@chakra-ui/system": "^1.0.0-next.6",
+    "@chakra-ui/theme": "^1.0.0-next.6",
+    "@chakra-ui/theme-tools": "^1.0.0-next.6",
+    "@types/faker": "^4.1.12",
+    "faker": "^4.1.0",
+    "next": "^9.4.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-icons": "^3.10.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.0.27",
+    "@types/react": "^16.9.23",
+    "@types/react-dom": "^16.9.8",
+    "typescript": "3.9.7",
+    "url-loader": "^4.1.0",
+    "@chakra-ui/core": "1.0.0-next.6",
     "next": "9.5.1",
     "react": "16.13.1",
     "react-dom": "16.13.1"
   },
-  "devDependencies": {
-    "@types/node": "14.0.27",
-    "@types/react": "16.9.23",
-    "@types/react-dom": "16.9.8",
-    "typescript": "3.9.7"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "examples/nextjs-typescript"
   },
-  "license": "ISC"
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "license": "MIT"
 }
