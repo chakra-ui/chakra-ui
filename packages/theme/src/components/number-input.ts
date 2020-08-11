@@ -1,10 +1,10 @@
-import { mode, multiStyleConfig } from "@chakra-ui/theme-tools"
-import { inputStyles } from "./input"
+import { mode } from "@chakra-ui/theme-tools"
+import Input from "./input"
 
-const { variants, defaultProps } = inputStyles
+const { variants, defaultProps } = Input
 
 function getSize(size: "sm" | "md" | "lg") {
-  const sizeStyle = inputStyles.sizes?.[size]
+  const sizeStyle = Input.sizes?.[size]
 
   const radius = {
     lg: "md",
@@ -34,7 +34,7 @@ const parts = {
   stepperGroup: "desktop - the increment and decrement button group",
 }
 
-const baseStyleField = inputStyles.baseStyle?.field
+const baseStyleField = Input.baseStyle?.field
 
 const baseStyleStepperGroup = {
   width: "24px",
@@ -69,20 +69,10 @@ const sizes = {
   lg: getSize("lg"),
 }
 
-const numberInput = multiStyleConfig({
+export default {
   parts,
   baseStyle,
   sizes,
-  variants,
-  defaultProps,
-})
-
-export const numberInputStyles = {
-  parts,
-  sizes,
-  baseStyle,
   variants,
   defaultProps,
 }
-
-export default numberInput

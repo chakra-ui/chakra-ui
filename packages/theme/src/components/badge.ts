@@ -1,9 +1,4 @@
-import {
-  getColor,
-  mode,
-  styleConfig,
-  transparentize,
-} from "@chakra-ui/theme-tools"
+import { getColor, mode, transparentize } from "@chakra-ui/theme-tools"
 
 const baseStyle = {
   paddingX: 1,
@@ -52,18 +47,10 @@ const variants = {
 const defaultProps = {
   variant: "subtle",
   colorScheme: "gray",
-} as const
+}
 
-const badge = styleConfig({
-  baseStyle,
-  variants,
-  defaultProps,
-})
-
-export const badgeStyles = {
+export default {
   baseStyle,
   variants,
   defaultProps,
 }
-
-export default badge

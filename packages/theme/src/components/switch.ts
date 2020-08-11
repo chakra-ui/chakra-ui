@@ -1,4 +1,4 @@
-import { mode, multiStyleConfig } from "@chakra-ui/theme-tools"
+import { mode } from "@chakra-ui/theme-tools"
 
 const parts = {
   track: "the switch outer track",
@@ -85,20 +85,11 @@ const sizes = {
 const defaultProps = {
   size: "md",
   colorScheme: "blue",
-} as const
+}
 
-const Switch = multiStyleConfig({
-  parts,
-  baseStyle,
-  sizes,
-  defaultProps,
-})
-
-export const switchStyles = {
+export default {
   parts,
   baseStyle,
   sizes,
   defaultProps,
 }
-
-export default Switch

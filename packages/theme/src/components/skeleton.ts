@@ -1,5 +1,5 @@
 import { keyframes } from "@chakra-ui/system"
-import { getColor, mode, styleConfig } from "@chakra-ui/theme-tools"
+import { getColor, mode } from "@chakra-ui/theme-tools"
 
 export function fade(startColor: string, endColor: string) {
   return keyframes({
@@ -31,12 +31,6 @@ const baseStyle = function (props: Record<string, any>) {
   }
 }
 
-const skeleton = styleConfig({
-  baseStyle,
-})
-
-export const skeletonStyles = {
+export default {
   baseStyle,
 }
-
-export default skeleton

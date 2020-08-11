@@ -1,4 +1,4 @@
-import { mode, multiStyleConfig } from "@chakra-ui/theme-tools"
+import { mode } from "@chakra-ui/theme-tools"
 
 const parts = {
   control: "the main checkbox container",
@@ -89,20 +89,11 @@ const sizes = {
 const defaultProps = {
   size: "md",
   colorScheme: "blue",
-} as const
+}
 
-const checkbox = multiStyleConfig({
-  parts,
-  baseStyle,
-  sizes,
-  defaultProps,
-})
-
-export const checkboxStyles = {
+export default {
   parts,
   baseStyle,
   sizes,
   defaultProps,
 }
-
-export default checkbox

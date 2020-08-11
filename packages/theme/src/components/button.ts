@@ -1,4 +1,4 @@
-import { mode, styleConfig, transparentize } from "@chakra-ui/theme-tools"
+import { mode, transparentize } from "@chakra-ui/theme-tools"
 
 const variantGhost = function (props: Record<string, any>) {
   const { colorScheme: c, theme } = props
@@ -130,20 +130,11 @@ const defaultProps = {
   variant: "solid",
   size: "md",
   colorScheme: "gray",
-} as const
+}
 
-const button = styleConfig({
-  baseStyle,
-  variants,
-  sizes,
-  defaultProps,
-})
-
-export const buttonStyles = {
+export default {
   baseStyle,
   variants,
   sizes,
   defaultProps,
 }
-
-export default button

@@ -1,5 +1,4 @@
-import { multiStyleConfig } from "@chakra-ui/theme-tools"
-import { badgeStyles } from "./badge"
+import Badge from "./badge"
 
 const parts = {
   container: "the tag container",
@@ -77,13 +76,13 @@ const sizes = {
 
 const variants = {
   subtle: function (props: Record<string, any>) {
-    return { container: badgeStyles.variants?.subtle(props) }
+    return { container: Badge.variants?.subtle(props) }
   },
   solid: function (props: Record<string, any>) {
-    return { container: badgeStyles.variants?.solid(props) }
+    return { container: Badge.variants?.solid(props) }
   },
   outline: function (props: Record<string, any>) {
-    return { container: badgeStyles.variants?.outline(props) }
+    return { container: Badge.variants?.outline(props) }
   },
 }
 
@@ -91,22 +90,12 @@ const defaultProps = {
   size: "md",
   variant: "subtle",
   colorScheme: "gray",
-} as const
+}
 
-const tag = multiStyleConfig({
-  parts,
-  baseStyle,
-  sizes,
-  variants,
-  defaultProps,
-})
-
-export const tagStyles = {
+export default {
   parts,
   variants,
   baseStyle,
   sizes,
   defaultProps,
 }
-
-export default tag

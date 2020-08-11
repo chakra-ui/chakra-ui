@@ -1,4 +1,4 @@
-import { mode, multiStyleConfig } from "@chakra-ui/theme-tools"
+import { mode } from "@chakra-ui/theme-tools"
 
 /**
  * Since the `maxWidth` prop references theme.sizes internally,
@@ -75,20 +75,11 @@ const sizes = {
 
 const defaultProps = {
   size: "xs",
-} as const
+}
 
-const drawer = multiStyleConfig({
-  parts,
-  baseStyle,
-  sizes,
-  defaultProps,
-})
-
-export const drawerStyles = {
+export default {
   parts,
   baseStyle,
   sizes,
   defaultProps,
 }
-
-export default drawer

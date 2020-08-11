@@ -1,38 +1,38 @@
-import Accordion, { accordionStyles } from "./accordion"
-import Alert, { alertStyles } from "./alert"
-import Avatar, { avatarStyles } from "./avatar"
-import Badge, { badgeStyles } from "./badge"
-import Button, { buttonStyles } from "./button"
-import Checkbox, { checkboxStyles } from "./checkbox"
-import CloseButton, { closeButtonStyles } from "./close-button"
-import Code, { codeStyles } from "./code"
-import Modal, { modalStyles } from "./modal"
-import Drawer, { drawerStyles } from "./drawer"
-import Heading, { headingStyles } from "./heading"
-import Input, { inputStyles } from "./input"
-import Link, { linkStyles } from "./link"
-import FormLabel, { formLabelStyles } from "./form-label"
-import Menu, { menuStyles } from "./menu"
-import NumberInput, { numberInputStyles } from "./number-input"
-import Radio, { radioStyles } from "./radio"
-import Slider, { sliderStyles } from "./slider"
-import Select, { selectStyles } from "./select"
-import Spinner, { spinnerStyles } from "./spinner"
-import Switch, { switchStyles } from "./switch"
-import Tabs, { tabsStyles } from "./tabs"
-import Tag, { tagStyles } from "./tag"
-import Tooltip, { tooltipStyles } from "./tooltip"
-import Kbd, { kbdStyles } from "./kbd"
-import PinInput, { pinInputStyles } from "./pin-input"
-import Popover, { popoverStyles } from "./popover"
-import Form, { formStyles } from "./form"
-import Editable, { editableStyles } from "./editable"
-import Progress, { progressStyles } from "./progress"
-import Textarea, { textareaStyles } from "./textarea"
-import Stat, { statStyles } from "./stat"
-import Skeleton, { skeletonStyles } from "./skeleton"
-import Breadcrumb, { breadcrumbStyles } from "./breadcumb"
-import SkipLink, { skipLinkStyles } from "./skip-link"
+import { default as Accordion } from "./accordion"
+import { default as Alert } from "./alert"
+import { default as Avatar } from "./avatar"
+import { default as Badge } from "./badge"
+import { default as Button } from "./button"
+import { default as Checkbox } from "./checkbox"
+import { default as CloseButton } from "./close-button"
+import { default as Code } from "./code"
+import { default as Modal } from "./modal"
+import { default as Drawer } from "./drawer"
+import { default as Heading } from "./heading"
+import { default as Input } from "./input"
+import { default as Link } from "./link"
+import { default as FormLabel } from "./form-label"
+import { default as Menu } from "./menu"
+import { default as NumberInput } from "./number-input"
+import { default as Radio } from "./radio"
+import { default as Slider } from "./slider"
+import { default as Select } from "./select"
+import { default as Spinner } from "./spinner"
+import { default as Switch } from "./switch"
+import { default as Tabs } from "./tabs"
+import { default as Tag } from "./tag"
+import { default as Tooltip } from "./tooltip"
+import { default as Kbd } from "./kbd"
+import { default as PinInput } from "./pin-input"
+import { default as Popover } from "./popover"
+import { default as Form } from "./form"
+import { default as Editable } from "./editable"
+import { default as Progress } from "./progress"
+import { default as Textarea } from "./textarea"
+import { default as Stat } from "./stat"
+import { default as Skeleton } from "./skeleton"
+import { default as Breadcrumb } from "./breadcumb"
+import { default as SkipLink } from "./skip-link"
 
 export default {
   Accordion,
@@ -70,42 +70,4 @@ export default {
   Stat,
   Skeleton,
   SkipLink,
-}
-
-export {
-  accordionStyles,
-  buttonStyles,
-  headingStyles,
-  breadcrumbStyles,
-  alertStyles,
-  badgeStyles,
-  avatarStyles,
-  linkStyles,
-  codeStyles,
-  formLabelStyles,
-  spinnerStyles,
-  drawerStyles,
-  menuStyles,
-  tabsStyles,
-  checkboxStyles,
-  radioStyles,
-  inputStyles,
-  tooltipStyles,
-  closeButtonStyles,
-  sliderStyles,
-  numberInputStyles,
-  switchStyles,
-  tagStyles,
-  modalStyles,
-  kbdStyles,
-  selectStyles,
-  textareaStyles,
-  pinInputStyles,
-  popoverStyles,
-  formStyles,
-  editableStyles,
-  progressStyles,
-  statStyles,
-  skeletonStyles,
-  skipLinkStyles,
 }

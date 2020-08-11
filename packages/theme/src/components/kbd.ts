@@ -1,4 +1,4 @@
-import { mode, styleConfig } from "@chakra-ui/theme-tools"
+import { mode } from "@chakra-ui/theme-tools"
 
 const baseStyle = function (props: Record<string, any>) {
   return {
@@ -14,12 +14,6 @@ const baseStyle = function (props: Record<string, any>) {
   }
 }
 
-const kbd = styleConfig({
-  baseStyle,
-})
-
-export const kbdStyles = {
+export default {
   baseStyle,
 }
-
-export default kbd

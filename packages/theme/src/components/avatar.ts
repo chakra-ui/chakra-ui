@@ -1,9 +1,4 @@
-import {
-  isDark,
-  mode,
-  randomColor,
-  multiStyleConfig,
-} from "@chakra-ui/theme-tools"
+import { isDark, mode, randomColor } from "@chakra-ui/theme-tools"
 import themeSizes from "../foundations/sizes"
 
 function getSize(size: string) {
@@ -80,20 +75,11 @@ const sizes = {
 
 const defaultProps = {
   size: "md",
-} as const
+}
 
-const avatar = multiStyleConfig({
-  parts,
-  baseStyle,
-  sizes,
-  defaultProps,
-})
-
-export const avatarStyles = {
+export default {
   parts,
   baseStyle,
   sizes,
   defaultProps,
 }
-
-export default avatar
