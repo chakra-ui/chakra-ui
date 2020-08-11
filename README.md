@@ -299,7 +299,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://github.com/iodar"><img src="https://avatars3.githubusercontent.com/u/47027105?v=4" width="64px;" alt=""/><br /><sub><b>iodar</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=iodar" title="Documentation">📖</a></td>
     <td align="center"><a href="http://lcdsmao.dev"><img src="https://avatars3.githubusercontent.com/u/13031690?v=4" width="64px;" alt=""/><br /><sub><b>MAO YUFENG</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=lcdsmao" title="Documentation">📖</a></td>
     <td align="center"><a href="http://jiepeng.me"><img src="https://avatars3.githubusercontent.com/u/10325111?v=4" width="64px;" alt=""/><br /><sub><b>Peng Jie</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=neighborhood999" title="Code">💻</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=neighborhood999" title="Documentation">📖</a></td>
-    <td align="center"><a href="https://github.com/Geeman201"><img src="https://avatars3.githubusercontent.com/u/1285296?v=4" width="64px;" alt=""/><br /><sub><b>James Gee</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=Geeman201" title="Code">💻</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=Geeman201" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://github.com/Geeman201"><img src="https://avatars3.githubusercontent.com/u/1285296?v=4" width="64px;" alt=""/><br /><sub><b>James Gee</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=Geeman201" title="Code">💻</a> <a href="https://github.com/chakra-ui/chakra-ui/commits?author=Geeman201" title="Tests">⚠️</a> <a href="#example-Geeman201" title="Examples">💡</a></td>
     <td align="center"><a href="https://github.com/antonjb"><img src="https://avatars2.githubusercontent.com/u/1066856?v=4" width="64px;" alt=""/><br /><sub><b>Anton</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=antonjb" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/damnjan"><img src="https://avatars2.githubusercontent.com/u/2204518?v=4" width="64px;" alt=""/><br /><sub><b>Damnjan Lukovic</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=damnjan" title="Documentation">📖</a></td>
   </tr>
@@ -314,7 +314,6 @@ Thanks goes to these wonderful people
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
-
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
