@@ -1,35 +1,58 @@
 import { mode, multiStyleConfig } from "@chakra-ui/theme-tools"
 
-const form = multiStyleConfig({
-  parts: {
-    errorText: "the error message",
-    errorIcon: "the error icon",
-    requiredIndicator: "the requied asterisks",
-    helperText: "the helper text",
-  },
-  baseStyle: function (props) {
-    return {
-      errorText: {
-        color: mode("red.500", "red.300")(props),
-        mt: 2,
-        fontSize: "sm",
-      },
-      requiredIndicator: {
-        ml: 1,
-        color: mode("red.500", "red.300")(props),
-      },
-      helperText: {
-        mt: 2,
-        color: mode("gray.500", "whiteAlpha.600")(props),
-        lineHeight: "normal",
-        fontSize: "sm",
-      },
-      errorIcon: {
-        mr: "0.5em",
-        color: mode("red.500", "red.300")(props),
-      },
-    }
-  },
+const parts = {
+  errorText: "the error message",
+  errorIcon: "the error icon",
+  requiredIndicator: "the requied asterisks",
+  helperText: "the helper text",
+}
+
+const baseStyleErrorText = function (props: Record<string, any>) {
+  return {
+    color: mode("red.500", "red.300")(props),
+    mt: 2,
+    fontSize: "sm",
+  }
+}
+
+const baseStyleRequiredIndicator = function (props: Record<string, any>) {
+  return {
+    ml: 1,
+    color: mode("red.500", "red.300")(props),
+  }
+}
+
+const baseStyleHelperText = function (props: Record<string, any>) {
+  return {
+    mt: 2,
+    color: mode("gray.500", "whiteAlpha.600")(props),
+    lineHeight: "normal",
+    fontSize: "sm",
+  }
+}
+
+const baseStyleErrorIcon = function (props: Record<string, any>) {
+  return {
+    mr: "0.5em",
+    color: mode("red.500", "red.300")(props),
+  }
+}
+
+const baseStyle = (props: Record<string, any>) => ({
+  errorText: baseStyleErrorText(props),
+  requiredIndicator: baseStyleRequiredIndicator(props),
+  helperText: baseStyleHelperText(props),
+  errorIcon: baseStyleErrorIcon(props),
 })
+
+const form = multiStyleConfig({
+  parts,
+  baseStyle,
+})
+
+export const formStyles = {
+  parts,
+  baseStyle,
+}
 
 export default form
