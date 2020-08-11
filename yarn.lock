@@ -1810,10 +1810,10 @@
   resolved "https://registry.yarnpkg.com/@csstools/normalize.css/-/normalize.css-10.1.0.tgz#f0950bba18819512d42f7197e56c518aa491cf18"
   integrity sha512-ij4wRiunFfaJxjB0BdrYHIH8FxBJpOwNPhhAcunlmPdXudL1WQV1qoP9un6JsEBAgQH+7UXyyjh0g7jTxXK6tg==
 
-"@docusaurus/utils@2.0.0-alpha.60":
-  version "2.0.0-alpha.60"
-  resolved "https://registry.yarnpkg.com/@docusaurus/utils/-/utils-2.0.0-alpha.60.tgz#b71549ba2d64f49998919fff030f5d3b1377ea99"
-  integrity sha512-I5rLvYBPW01giNkjWk2OGJiWtCxp8+u/VciH7mDmcczaYs+bj0TNmQ/LfmM7s4G2VhMr2BqFAXwczHzkLdc9Xw==
+"@docusaurus/utils@2.0.0-alpha.61":
+  version "2.0.0-alpha.61"
+  resolved "https://registry.yarnpkg.com/@docusaurus/utils/-/utils-2.0.0-alpha.61.tgz#bf7c7bd5a07419cafe9b67658f7f910b7fe71937"
+  integrity sha512-MHvR3Rq8Kk9W6skBR3x7mLsDaNrnp6Mmobyc0ZVql+eiLrjiN7SPunvrVJDE90bQ50HZFLLoAkfgfrvbX5mecg==
   dependencies:
     escape-string-regexp "^2.0.0"
     fs-extra "^8.1.0"

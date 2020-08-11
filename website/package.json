@@ -6,7 +6,7 @@
     "@chakra-ui/core": "1.0.0-rc.2",
     "@chakra-ui/utils": "1.0.0-rc.2",
     "@chakra-ui/theme-tools": "1.0.0-rc.2",
-    "@docusaurus/utils": "2.0.0-alpha.60",
+    "@docusaurus/utils": "2.0.0-alpha.61",
     "@mdx-js/react": "1.6.16",
     "@octokit/rest": "18.0.3",
     "date-fns": "2.15.0",
