@@ -39,6 +39,6 @@ export const cookieStorageManager = (cookies = ""): StorageManager => ({
     return value as ColorMode | undefined
   },
   set(value) {
-    document.cookie = `${storageKey}=${value}; max-age=31536000;`
+    document.cookie = `${storageKey}=${value}; max-age=31536000; path=/`
   },
 })
