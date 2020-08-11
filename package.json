@@ -141,7 +141,7 @@
     "@storybook/addon-a11y": "5.3.19",
     "@storybook/addon-actions": "6.0.0-rc.29",
     "@storybook/addon-knobs": "6.0.0-rc.29",
-    "@storybook/cli": "6.0.0-rc.29",
+    "@storybook/cli": "6.0.2",
     "@storybook/react": "6.0.0-rc.29",
     "@types/jest": "26.0.9",
     "@types/node": "14.0.27",
