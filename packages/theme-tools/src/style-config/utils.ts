@@ -2,7 +2,7 @@ import { styleConfig } from "./single"
 import { multiStyleConfig } from "./multiple"
 import { Dict } from "@chakra-ui/utils"
 
-const applyStyleConfigs = (theme: Dict) => {
+export const applyStyleConfigs = (theme: Dict) => {
   Object.keys(theme.components).forEach((component) => {
     const config = theme.components[component]
 
@@ -15,5 +15,3 @@ const applyStyleConfigs = (theme: Dict) => {
 
   return theme
 }
-
-export { applyStyleConfigs }
