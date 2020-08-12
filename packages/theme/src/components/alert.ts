@@ -94,7 +94,7 @@ const variants = {
   solid: variantSolid,
 }
 
-export default {
+export const Alert = {
   parts,
   baseStyle,
   variants,

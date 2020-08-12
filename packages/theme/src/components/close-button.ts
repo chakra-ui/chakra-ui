@@ -42,7 +42,7 @@ const defaultProps = {
   size: "md",
 }
 
-export default {
+export const CloseButton = {
   baseStyle,
   sizes,
   defaultProps,

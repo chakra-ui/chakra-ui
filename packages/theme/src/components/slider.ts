@@ -124,7 +124,7 @@ const defaultProps = {
   colorScheme: "blue",
 }
 
-export default {
+export const Slider = {
   parts,
   sizes,
   baseStyle,

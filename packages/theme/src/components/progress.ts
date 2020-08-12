@@ -79,7 +79,7 @@ const defaultProps = {
   colorScheme: "blue",
 }
 
-export default {
+export const Progress = {
   parts,
   sizes,
   baseStyle,

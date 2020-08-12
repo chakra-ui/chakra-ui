@@ -49,7 +49,7 @@ const defaultProps = {
   colorScheme: "gray",
 }
 
-export default {
+export const Badge = {
   baseStyle,
   variants,
   defaultProps,

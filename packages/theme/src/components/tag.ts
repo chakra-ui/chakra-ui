@@ -1,4 +1,4 @@
-import Badge from "./badge"
+import { Badge } from "./badge"
 
 const parts = {
   container: "the tag container",
@@ -92,7 +92,7 @@ const defaultProps = {
   colorScheme: "gray",
 }
 
-export default {
+export const Tag = {
   parts,
   variants,
   baseStyle,

@@ -1,4 +1,4 @@
-import Input from "./input"
+import { Input } from "./input"
 
 const baseStyle = {
   ...Input.baseStyle?.field,
@@ -38,7 +38,7 @@ const variants = {
 
 const defaultProps = Input.defaultProps
 
-export default {
+export const PinInput = {
   baseStyle,
   sizes,
   variants,

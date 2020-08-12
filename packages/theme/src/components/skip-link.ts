@@ -15,6 +15,6 @@ const baseStyle = function (props: Record<string, any>) {
   }
 }
 
-export default {
+export const SkipLink = {
   baseStyle,
 }

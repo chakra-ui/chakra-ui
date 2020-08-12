@@ -1,5 +1,5 @@
 import { mode } from "@chakra-ui/theme-tools"
-import Input from "./input"
+import { Input } from "./input"
 
 const { sizes, defaultProps, variants } = Input
 
@@ -31,7 +31,7 @@ const baseStyle = (props: Record<string, any>) => ({
   icon: baseStyleInput,
 })
 
-export default {
+export const Select = {
   parts,
   baseStyle,
   sizes,

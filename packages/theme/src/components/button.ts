@@ -132,7 +132,7 @@ const defaultProps = {
   colorScheme: "gray",
 }
 
-export default {
+export const Button = {
   baseStyle,
   variants,
   sizes,

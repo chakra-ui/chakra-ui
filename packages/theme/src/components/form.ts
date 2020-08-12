@@ -45,7 +45,7 @@ const baseStyle = (props: Record<string, any>) => ({
   errorIcon: baseStyleErrorIcon(props),
 })
 
-export default {
+export const Form = {
   parts,
   baseStyle,
 }

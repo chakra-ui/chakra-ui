@@ -14,6 +14,6 @@ const baseStyle = function (props: Record<string, any>) {
   }
 }
 
-export default {
+export const Kbd = {
   baseStyle,
 }

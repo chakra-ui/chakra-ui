@@ -45,7 +45,7 @@ const defaultProps = {
   size: "md",
 }
 
-export default {
+export const Stat = {
   parts,
   baseStyle,
   sizes,

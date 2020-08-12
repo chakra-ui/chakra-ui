@@ -195,7 +195,7 @@ const defaultProps = {
   variant: "outline",
 }
 
-export default {
+export const Input = {
   parts,
   baseStyle,
   sizes,

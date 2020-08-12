@@ -1,4 +1,4 @@
-import Checkbox from "./checkbox"
+import { Checkbox } from "./checkbox"
 
 const parts = {
   control: "the radio input container",
@@ -54,7 +54,7 @@ const defaultProps = {
   colorScheme: "blue",
 }
 
-export default {
+export const Radio = {
   parts,
   baseStyle,
   sizes,

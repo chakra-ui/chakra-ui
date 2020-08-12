@@ -1,5 +1,5 @@
 import { mode } from "@chakra-ui/theme-tools"
-import Input from "./input"
+import { Input } from "./input"
 
 const { variants, defaultProps } = Input
 
@@ -69,7 +69,7 @@ const sizes = {
   lg: getSize("lg"),
 }
 
-export default {
+export const NumberInput = {
   parts,
   baseStyle,
   sizes,

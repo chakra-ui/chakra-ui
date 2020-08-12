@@ -91,7 +91,7 @@ const defaultProps = {
   colorScheme: "blue",
 }
 
-export default {
+export const Checkbox = {
   parts,
   baseStyle,
   sizes,

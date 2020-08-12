@@ -1,4 +1,4 @@
-import Badge from "./badge"
+import { Badge } from "./badge"
 
 const { variants, defaultProps } = Badge
 
@@ -9,7 +9,7 @@ const baseStyle = {
   borderRadius: "sm",
 }
 
-export default {
+export const Code = {
   baseStyle,
   variants,
   defaultProps,

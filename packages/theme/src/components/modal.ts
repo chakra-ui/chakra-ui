@@ -95,7 +95,7 @@ const defaultProps = {
   size: "md",
 }
 
-export default {
+export const Modal = {
   parts,
   baseStyle,
   sizes,
