@@ -6,26 +6,25 @@ import * as React from "react"
 type As = string | React.ComponentType<any>
 
 export type PropsWithAs<T extends As, P> = P &
-  Omit<ComponentPropsWithRef<T>, "as" | "color" | keyof P> & {
+  Omit<PropsOf<T>, "as" | "color" | keyof P> & {
     as?: T | As
   }
 
-type ComponentPropsWithRef<T extends As> = T extends React.ComponentClass<
-  infer P
->
+type PropsOf<T extends As> = T extends React.ComponentClass<infer P>
   ? React.PropsWithoutRef<P> & React.RefAttributes<InstanceType<T>> // @ts-expect-error
   : React.PropsWithRef<React.ComponentProps<T>>
 
+type Merge<T, P> = P extends object ? P & Omit<T, keyof P> : T
+
 export interface ComponentWithAs<T extends As, P> {
-  <TT extends As = T>(props: PropsWithAs<TT, P>): React.ReactElement | null
-  (props: PropsWithAs<T, P>): React.ReactElement | null
+  <TT extends As = T>(
+    props: Merge<PropsWithAs<T, P>, PropsWithAs<TT, P>>,
+  ): React.ReactElement | null
+  (props: Merge<PropsOf<T>, P>): React.ReactElement | null
   displayName?: string
-  propTypes?: React.WeakValidationMap<PropsWithAs<T, P>>
+  propTypes?: React.WeakValidationMap<Merge<PropsOf<T>, P>>
   contextTypes?: React.ValidationMap<any>
-  defaultProps?: Partial<PropsWithAs<T, P>>
-  /**
-   * @private
-   */
+  defaultProps?: Partial<Merge<PropsOf<T>, P>>
   id?: string
 }
 
