@@ -140,7 +140,7 @@
     "@jest/types": "26.3.0",
     "@storybook/addon-a11y": "5.3.19",
     "@storybook/addon-actions": "6.0.2",
-    "@storybook/addon-knobs": "6.0.2",
+    "@storybook/addon-knobs": "6.0.5",
     "@storybook/cli": "6.0.2",
     "@storybook/react": "6.0.2",
     "@types/jest": "26.0.9",
