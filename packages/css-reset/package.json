@@ -45,7 +45,7 @@
     "lint:types": "tsc --noEmit"
   },
   "devDependencies": {
-    "@emotion/core": "10.0.28"
+    "@emotion/core": "10.0.34"
   },
   "peerDependencies": {
     "react": "16.x"

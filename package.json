@@ -135,7 +135,7 @@
     "@babel/runtime": "7.11.2",
     "@commitlint/cli": "9.1.1",
     "@commitlint/config-conventional": "9.1.1",
-    "@emotion/core": "10.0.28",
+    "@emotion/core": "10.0.34",
     "@emotion/styled": "10.0.27",
     "@jest/types": "26.3.0",
     "@storybook/addon-a11y": "5.3.19",
