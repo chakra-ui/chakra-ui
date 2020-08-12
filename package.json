@@ -197,7 +197,7 @@
     "react-test-renderer": "16.13.1",
     "rimraf": "3.0.2",
     "shelljs": "0.8.4",
-    "storybook-addon-performance": "0.11.0",
+    "storybook-addon-performance": "0.12.0",
     "ts-jest": "26.2.0",
     "typescript": "3.9.7"
   }
