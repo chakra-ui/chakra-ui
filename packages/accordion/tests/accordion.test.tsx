@@ -23,7 +23,7 @@ jest.mock("@chakra-ui/collapse", () => {
 })
 
 describe("<Accordion />", () => {
-  test("accordion renders correctly", () => {
+  test("matches snapshot", () => {
     const { asFragment } = render(
       <Accordion>
         <AccordionItem>

@@ -3,7 +3,7 @@ import { render, testA11y, screen } from "@chakra-ui/test-utils"
 import { CloseButton } from "../src"
 
 describe("<CloseButton />", () => {
-  test("renders without crashing", () => {
+  test("matches snapshot", () => {
     const { asFragment } = render(<CloseButton />)
     expect(asFragment()).toMatchSnapshot()
   })

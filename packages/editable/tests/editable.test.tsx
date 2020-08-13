@@ -18,15 +18,6 @@ describe("<Editable />", () => {
     )
 
     expect(asFragment()).toMatchSnapshot()
-  })
-
-  test("renders without crashing", () => {
-    render(
-      <Editable defaultValue="testing">
-        <EditablePreview data-testid="preview" />
-        <EditableInput data-testid="input" />
-      </Editable>,
-    )
 
     const preview = screen.getByTestId("preview")
     const input = screen.getByTestId("input")

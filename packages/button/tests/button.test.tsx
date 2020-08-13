@@ -4,7 +4,7 @@ import { EmailIcon, ArrowForwardIcon } from "@chakra-ui/icons"
 import { Button, ButtonGroup } from "../src"
 
 describe("<Button />", () => {
-  test("Button renders correctly", () => {
+  test("matches snapshot", () => {
     const { asFragment } = render(<Button />)
     expect(asFragment()).toMatchSnapshot()
   })
@@ -13,7 +13,7 @@ describe("<Button />", () => {
     await testA11y(<Button />)
   })
 
-  test("Button renders with icons", () => {
+  test("matches snapshot with icons", () => {
     const { asFragment } = render(
       <ButtonGroup>
         <Button leftIcon={<EmailIcon />}>Email</Button>

@@ -3,7 +3,7 @@ import { render, testA11y, screen } from "@chakra-ui/test-utils"
 import { Alert, AlertDescription, AlertIcon, AlertTitle } from "../src"
 
 describe("<Alert />", () => {
-  test("should render correctly", () => {
+  test("matches snapshot", () => {
     const tools = render(
       <Alert>
         <AlertIcon />

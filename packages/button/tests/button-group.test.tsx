@@ -3,7 +3,7 @@ import { render, testA11y } from "@chakra-ui/test-utils"
 import { ButtonGroup, Button } from "../src"
 
 describe("<ButtonGroup />", () => {
-  test("ButtonGroup renders correctly", () => {
+  test("matches snapshot", () => {
     const { asFragment } = render(
       <ButtonGroup>
         <Button>Button 1</Button>

@@ -3,7 +3,7 @@ import { render, testA11y } from "@chakra-ui/test-utils"
 import { Avatar, AvatarBadge } from "../src"
 
 describe("<Avatar />", () => {
-  test("Avatar renders correctly", () => {
+  test("matches snapshot", () => {
     const { asFragment } = render(<Avatar />)
     expect(asFragment()).toMatchSnapshot()
   })
@@ -12,7 +12,7 @@ describe("<Avatar />", () => {
     await testA11y(<Avatar />)
   })
 
-  test("Avatar with AvatarBadge renders correctly", () => {
+  test("matches snapshot with AvatarBadge", () => {
     const { asFragment } = render(
       <Avatar>
         <AvatarBadge />

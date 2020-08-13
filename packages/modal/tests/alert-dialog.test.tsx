@@ -61,10 +61,6 @@ const BasicUsage = (props: BasicUsageProps) => {
 }
 
 describe("<AlertDialog />", () => {
-  it("renders without crashing", () => {
-    render(<BasicUsage />)
-  })
-
   it("renders no ui when closed", () => {
     render(<BasicUsage />)
 

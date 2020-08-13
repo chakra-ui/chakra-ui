@@ -3,7 +3,7 @@ import { render, screen, testA11y } from "@chakra-ui/test-utils"
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "../src"
 
 describe("<Breadcrumb />", () => {
-  test("Breadcrumb renders correctly", () => {
+  test("matches snapshot", () => {
     const { asFragment } = render(
       <Breadcrumb>
         <BreadcrumbItem>

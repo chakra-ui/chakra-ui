@@ -3,7 +3,7 @@ import { render, testA11y, screen } from "@chakra-ui/test-utils"
 import { Avatar, AvatarGroup } from "../src"
 
 describe("<AvatarGroup />", () => {
-  test("AvatarGroup renders correctly", () => {
+  test("matches snapshot", () => {
     const tools = render(
       <AvatarGroup>
         <Avatar />

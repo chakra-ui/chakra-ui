@@ -15,9 +15,10 @@ import {
 } from "../src"
 
 describe("<Checkbox />", () => {
-  test("Checkbox renders correctly", () => {
-    const tools = render(<Checkbox />)
-    expect(tools.asFragment()).toMatchSnapshot()
+  test("matches snapshot ", () => {
+    const { asFragment } = render(<Checkbox />)
+
+    expect(asFragment()).toMatchSnapshot()
   })
 
   it("passes a11y test", async () => {

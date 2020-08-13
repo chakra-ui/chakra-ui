@@ -12,6 +12,7 @@ const Clickable: React.FC<ClickableProps> = forwardRef((props, ref) => {
 describe("<Clickable />", () => {
   test("should render correctly", () => {
     render(<Clickable>clickable</Clickable>)
+
     expect(screen.getByText("clickable")).toMatchInlineSnapshot(`
     .emotion-0 {
       display: -webkit-inline-box;
