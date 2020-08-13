@@ -1093,6 +1093,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "hericlesme",
+      "name": "Héricles Emanuel",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/30700596?v=4",
+      "profile": "https://hericl.es",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
