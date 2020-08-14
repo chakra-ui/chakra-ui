@@ -1,4 +1,4 @@
-import { axe, fireEvent, render } from "@chakra-ui/test-utils"
+import { axe, fireEvent, render, screen } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from "../src"
 
@@ -138,4 +138,31 @@ test("focuses the correct tab with manual keyboard navigation", async () => {
   expect(tab2).toHaveFocus()
   expect(tab2).not.toHaveAttribute("aria-selected")
   expect(panel2).not.toBeVisible()
+})
+
+test("renders only the currently active tab panel if isLazy", () => {
+  render(
+    <Tabs isLazy>
+      <TabList>
+        <Tab>Tab 1</Tab>
+        <Tab>Tab 2</Tab>
+      </TabList>
+      <TabPanels>
+        <TabPanel>
+          <p>Panel 1</p>
+        </TabPanel>
+        <TabPanel>
+          <p>Panel 2</p>
+        </TabPanel>
+      </TabPanels>
+    </Tabs>,
+  )
+
+  expect(screen.getByText("Panel 1")).toBeInTheDocument()
+  expect(screen.queryByText("Panel 2")).not.toBeInTheDocument()
+
+  fireEvent.click(screen.getByText("Tab 2"))
+
+  expect(screen.queryByText("Panel 1")).not.toBeInTheDocument()
+  expect(screen.getByText("Panel 2")).toBeInTheDocument()
 })
