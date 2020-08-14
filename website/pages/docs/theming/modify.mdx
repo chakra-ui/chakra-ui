@@ -5,7 +5,168 @@ order: 1
 ---
 
 Chakra's theming system is quite simple for modifying styles of existing Chakra
-components (`Box`, `Tabs`, `Accordion`, etc.).
+components (`Box`, `Tabs`, `Accordion`, etc). However, you're not limited to the
+components that Chakra supplies - we have documentation on how to build your own
+components, and allow them to be theme-aware,
+[in later documentation](/docs/theming/create).
 
-In the next section, we'll show some examples of how to create your own
-components and integrate them into the Chakra system!
+## Modifying a single component
+
+If we want to modify the styles of components that come with Chakra, we must
+first start by creating a main `theme.js` (or `theme.ts`) file:
+
+```jsx live=false
+// theme.js
+import theme from "@chakra-ui/theme"
+
+export default theme
+```
+
+You can then later import this theme inside of your main `ChakraProvider`
+component at the root of your project:
+
+```jsx live=false
+// App.js
+import React from "react"
+import { ChakraProvider } from "@chakra-ui/core"
+
+import theme from "./theme"
+
+function App() {
+  return (
+    <ChakraProvider resetCSS theme={theme}>
+      <App />
+    </ChakraProvider>
+  )
+}
+```
+
+Fantastic! But we're not doing anything with this theme. First, make sure you
+have `@chakra-ui/utils` installed:
+
+```bash
+npm i @chakra-ui/utils@next
+
+# or
+
+yarn add @chakra-ui/utils@next
+```
+
+Then, let's override the default `fontSize` of the Chakra `<Button>` component:
+
+```jsx live=false
+// theme.js
+import theme from "@chakra-ui/theme"
+
+// 1. Import the merge function from @chakra-ui/utils
+import { merge } from "@chakra-ui/utils"
+
+// 2. Define the changes you want to make for the button
+const Button = {
+  baseStyle: {
+    fontWeight: "bold", // Normally, it's "semibold"
+  },
+}
+
+// 3. Import the Button styles into the theme.components object
+const overrides = {
+  components: {
+    Button,
+  },
+}
+
+// 4. Export the merge between the default theme at @chakra-ui/theme, combined with your overrides
+export default merge(theme, overrides)
+```
+
+And that's it!
+
+## Modifying the theme
+
+Not only does this apply to components, but you can also override the core theme
+settings themselves.
+
+Let's say that I want to modify what borders are available to me in my project.
+Following the same logic as before, I could add another border to the existing
+set of borders like such:
+
+```jsx live=false
+// theme.js
+import theme from "@chakra-ui/theme"
+import { merge } from "@chakra-ui/utils"
+
+/*
+  Remember, borders already contains the following keys:
+
+  const borders = {
+    none: 0,
+    "1px": "1px solid",
+    "2px": "2px solid",
+    "4px": "4px solid",
+  }
+*/
+
+const overrides = {
+  borders: {
+    "8px": "8px solid",
+  },
+}
+
+/*
+  This will produce:
+
+  const borders = {
+    none: 0,
+    "1px": "1px solid",
+    "2px": "2px solid",
+    "4px": "4px solid",
+    "8px": "8px solid",
+  }
+*/
+export default merge(theme, overrides)
+```
+
+And now, we can use that `border` definition in any component we'd like:
+
+```jsx live=false
+<Box border="8px" borderColor="red.500">
+  Thick red border
+</Box>
+```
+
+## Scaling out your project
+
+As your project grows in size, it's best to keep things organized. We highly
+suggest that instead of a single `theme.js` (or `theme.ts`) file, that you
+create a `/theme` folder in its place. Inside of this folder, you could have a
+directory structure that looks like such:
+
+```bash
+/theme
+  - index.js # my main theme entrypoint
+  - button.js # all my button overrides
+```
+
+This way, you can structure your main theme entrypoint file to be much cleaner,
+like this:
+
+```jsx live=false
+// theme.js
+import theme from "@chakra-ui/theme"
+import { merge } from "@chakra-ui/utils"
+import Button from "./button"
+
+const overrides = {
+  components: {
+    Button,
+    // Other components go here...
+  },
+}
+
+export default merge(theme, overrides)
+```
+
+---
+
+[In the next section](/docs/theming/create), we'll show some examples of how to
+create your own components and integrate them into the Chakra system!
