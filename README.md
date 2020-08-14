@@ -310,6 +310,7 @@ Thanks goes to these wonderful people
     <td align="center"><a href="http://jes.st/about"><img src="https://avatars1.githubusercontent.com/u/612020?v=4" width="64px;" alt=""/><br /><sub><b>Jess Telford</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=jesstelford" title="Code">💻</a></td>
     <td align="center"><a href="https://simo.sh"><img src="https://avatars1.githubusercontent.com/u/1344906?v=4" width="64px;" alt=""/><br /><sub><b>Simo Aleksandrov</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=fr3fou" title="Documentation">📖</a></td>
     <td align="center"><a href="https://hericl.es"><img src="https://avatars2.githubusercontent.com/u/30700596?v=4" width="64px;" alt=""/><br /><sub><b>Héricles Emanuel</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=hericlesme" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/CodinCat"><img src="https://avatars3.githubusercontent.com/u/3193344?v=4" width="64px;" alt=""/><br /><sub><b>CodinCat</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=CodinCat" title="Documentation">📖</a></td>
   </tr>
 </table>
 
