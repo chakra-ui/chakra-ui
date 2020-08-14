@@ -101,7 +101,7 @@ export const Toast: React.FC<ToastProps> = (props) => {
       timeout={{ enter: 0, exit: 150 }}
       onExited={onExited}
     >
-      {(styles) => (
+      {(transitionProps) => (
         <div
           data-toast=""
           onMouseEnter={onMouseEnter}
@@ -109,8 +109,9 @@ export const Toast: React.FC<ToastProps> = (props) => {
           style={{
             willChange: "transform, height, opacity",
             ...style,
-            ...styles,
+            ...transitionProps.style,
           }}
+          ref={transitionProps.ref}
         >
           <div
             ref={ref}

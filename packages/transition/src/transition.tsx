@@ -19,10 +19,18 @@ type RTGProps = Pick<
   | "timeout"
 >
 
+export type TransitionChildrenProps = {
+  ref: React.RefObject<any>
+  style: React.CSSProperties
+}
+
 export interface TransitionProps extends RTGProps {
   transition?: string
-  children: (styles: React.CSSProperties) => React.ReactNode
+  children: (
+    transitionChildrenProps: TransitionChildrenProps,
+  ) => React.ReactNode
   styles: TransitionStyles
+  nodeRef?: React.RefObject<any>
 }
 
 export type TransitionStyleState = "init" | "entered" | "exiting"
@@ -40,6 +48,7 @@ export const Transition: React.FC<TransitionProps> = (props) => {
     timeout = 150,
     transition = `all ${timeout}ms ease-in-out`,
     children,
+    nodeRef,
     ...rest
   } = props
 
@@ -49,15 +58,23 @@ export const Transition: React.FC<TransitionProps> = (props) => {
     ...(styles as any)[state],
   })
 
+  const internalNodeRef = React.useRef<any>()
+
   return (
     <ReactTransition
       appear
       unmountOnExit
       in={inProp}
       timeout={timeout}
+      nodeRef={nodeRef || internalNodeRef}
       {...(rest as any)}
     >
-      {(state) => children(getStyle(state))}
+      {(state: TransitionStatus) =>
+        children({
+          style: getStyle(state),
+          ref: nodeRef || internalNodeRef,
+        })
+      }
     </ReactTransition>
   )
 }

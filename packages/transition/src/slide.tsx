@@ -94,7 +94,12 @@ export const Slide: React.FC<SlideProps> = (props) => {
       timeout={{ enter: 0, exit: timeout }}
       {...rest}
     >
-      {(styles) => children({ ...positionStyles, ...styles })}
+      {(transitionProps) =>
+        children({
+          ref: transitionProps.ref,
+          style: { ...positionStyles, ...transitionProps.style },
+        })
+      }
     </Transition>
   )
 }

@@ -123,8 +123,8 @@ function TransitionExample() {
           >
             <AlertDialogOverlay style={styles}>
               <SlideFade timeout={150} in={isOpen} unmountOnExit={false}>
-                {(styles) => (
-                  <AlertDialogContent style={styles}>
+                {(transitionProps) => (
+                  <AlertDialogContent {...transitionProps}>
                     <AlertDialogHeader>Discard Changes?</AlertDialogHeader>
                     <AlertDialogCloseButton />
                     <AlertDialogBody>

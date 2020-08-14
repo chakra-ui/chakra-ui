@@ -92,7 +92,7 @@ const TransitionTooltip = ({ children }: any) => {
           },
         }}
       >
-        {(styles) => (
+        {(transitionProps) => (
           <Portal>
             <div
               {...tooltip}
@@ -103,8 +103,9 @@ const TransitionTooltip = ({ children }: any) => {
                 border: "none",
                 borderRadius: "4px",
                 padding: "0.5em 1em",
-                ...styles,
+                ...transitionProps.style,
               }}
+              ref={transitionProps.ref}
             >
               {children}
               <div {...arrow} />

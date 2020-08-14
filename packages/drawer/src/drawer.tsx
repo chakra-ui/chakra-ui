@@ -1,5 +1,10 @@
 import * as React from "react"
-import { Slide, SlideProps, Fade } from "@chakra-ui/transition"
+import {
+  Slide,
+  SlideProps,
+  Fade,
+  TransitionChildrenProps,
+} from "@chakra-ui/transition"
 import {
   Modal,
   ModalProps,
@@ -12,13 +17,19 @@ import { forwardRef, useTheme } from "@chakra-ui/system"
 import { __DEV__ } from "@chakra-ui/utils"
 
 interface TransitionStyles {
-  content: React.CSSProperties
-  overlay: React.CSSProperties
+  content: TransitionChildrenProps
+  overlay: TransitionChildrenProps
 }
 
 const TransitionContext = React.createContext<TransitionStyles>({
-  content: {},
-  overlay: {},
+  content: {
+    style: {},
+    ref: { current: null },
+  },
+  overlay: {
+    style: {},
+    ref: { current: null },
+  },
 })
 
 TransitionContext.displayName = "TransitionContext"
@@ -89,15 +100,15 @@ export const Drawer: React.FC<DrawerProps> = (props) => {
 
 export const DrawerContent: React.FC<ModalContentProps> = forwardRef(
   (props, ref) => {
-    const { content: styles } = useTransitionContext()
+    const { content: transitionProps } = useTransitionContext()
     return (
       <ModalContent
-        ref={ref}
+        ref={ref || transitionProps.ref}
         position="fixed"
-        style={styles}
         marginTop="0"
         marginBottom="0"
         borderRadius="0"
+        style={transitionProps.style}
         {...props}
       />
     )
@@ -106,8 +117,14 @@ export const DrawerContent: React.FC<ModalContentProps> = forwardRef(
 
 export const DrawerOverlay: React.FC<ModalOverlayProps> = forwardRef(
   (props, ref) => {
-    const { overlay: styles } = useTransitionContext()
-    return <ModalOverlay style={styles} ref={ref} {...props} />
+    const { overlay: transitionProps } = useTransitionContext()
+    return (
+      <ModalOverlay
+        ref={ref || transitionProps.ref}
+        style={transitionProps.style}
+        {...props}
+      />
+    )
   },
 )
 

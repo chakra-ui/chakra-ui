@@ -35,14 +35,15 @@ export function ScaleFadeExample() {
     <>
       <button onClick={() => setIsOpen((p) => !p)}>Click Me</button>
       <ScaleFade in={isOpen}>
-        {(styles) => (
+        {(transitionProps) => (
           <Modal
             style={{
-              ...styles,
+              ...transitionProps.style,
               transform: styles.transform
                 ? `${modalStyles.transform} ${styles.transform}`
                 : `${modalStyles.transform}`,
             }}
+            ref={transitionProps.ref}
           />
         )}
       </ScaleFade>
@@ -56,14 +57,15 @@ export function SlideFadeExample() {
     <>
       <button onClick={() => setIsOpen((p) => !p)}>Click Me</button>
       <SlideFade in={isOpen}>
-        {(styles) => (
+        {(transitionProps) => (
           <Modal
             style={{
-              ...styles,
+              ...transitionProps.style,
               transform: styles.transform
                 ? `${modalStyles.transform} ${styles.transform}`
                 : `${modalStyles.transform}`,
             }}
+            ref={transitionProps.ref}
           />
         )}
       </SlideFade>
@@ -76,7 +78,9 @@ export function FadeExample() {
   return (
     <>
       <button onClick={() => setIsOpen((p) => !p)}>Click Me</button>
-      <Fade in={isOpen}>{(styles) => <Modal style={styles} />}</Fade>
+      <Fade in={isOpen}>
+        {(transitionProps) => <Modal {...transitionProps} />}
+      </Fade>
     </>
   )
 }
@@ -95,7 +99,7 @@ export function SlideExample() {
     <>
       <button onClick={() => setIsOpen((p) => !p)}>Click Me</button>
       <Slide placement="bottom" in={isOpen}>
-        {(styles) => <Drawer style={styles} />}
+        {(transitionProps) => <Drawer {...transitionProps} />}
       </Slide>
     </>
   )

@@ -1,15 +1,15 @@
-import { SystemStyleObject } from "@chakra-ui/system"
 import {
   Transition,
   TransitionProps,
   TransitionStyles,
+  TransitionChildrenProps,
 } from "@chakra-ui/transition"
 import { __DEV__ } from "@chakra-ui/utils"
 import * as React from "react"
 import { usePopoverContext } from "./popover"
 
 export interface PopoverTransitionProps {
-  children: (styles: SystemStyleObject) => React.ReactNode
+  children: (transitionProps: TransitionChildrenProps) => React.ReactNode
   styles?: TransitionProps["styles"]
 }
 
@@ -38,26 +38,29 @@ export const PopoverTransition: React.FC<PopoverTransitionProps> = (props) => {
     },
   }
 
+  const ref = React.useRef<HTMLElement>()
+
   return (
     <Transition
-      onEnter={(node) => {
-        node.hidden = false
+      onEnter={() => {
+        ref.current!.hidden = false
       }}
-      onExited={(node) => {
-        node.hidden = true
-        node.style.pointerEvents = "auto"
+      onExited={() => {
+        ref.current!.hidden = true
+        ref.current!.style.pointerEvents = "auto"
       }}
-      onExit={(node) => {
-        node.hidden = false
+      onExit={() => {
+        ref.current!.hidden = false
       }}
-      onExiting={(node) => {
-        node.style.pointerEvents = "none"
+      onExiting={() => {
+        ref.current!.style.pointerEvents = "none"
       }}
       timeout={{ enter: 0, exit: 150 }}
       in={popover.isOpen}
       styles={styles ?? defaultStyles}
       unmountOnExit={false}
       children={children}
+      nodeRef={ref}
     />
   )
 }
