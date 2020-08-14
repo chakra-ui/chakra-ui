@@ -59,8 +59,8 @@ export interface UseTabsProps {
   id?: string
   /**
    * Performance 🚀:
-   * If `true`, the MenuItem rendering will be deferred
-   * until the menu is open.
+   * If `true`, the TabPanel rendering will be deferred
+   * until it is open.
    */
   isLazy?: boolean
 }
