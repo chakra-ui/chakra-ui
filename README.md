@@ -314,6 +314,7 @@ Thanks goes to these wonderful people
   </tr>
   <tr>
     <td align="center"><a href="http://samdawson.dev"><img src="https://avatars0.githubusercontent.com/u/13163834?v=4" width="64px;" alt=""/><br /><sub><b>Sam Dawson</b></sub></a><br /><a href="#ideas-Samic8" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/hy2k"><img src="https://avatars3.githubusercontent.com/u/17329720?v=4" width="64px;" alt=""/><br /><sub><b>hy2k</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=hy2k" title="Code">💻</a></td>
   </tr>
 </table>
 
