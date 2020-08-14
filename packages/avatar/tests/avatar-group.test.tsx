@@ -27,7 +27,7 @@ test("renders a number avatar showing count of truncated avatars", () => {
 
 test("does not render a number avatar showing count of truncated avatars if max is equal to avatars given", async () => {
   const tools = render(
-    <AvatarGroup max={5}>
+    <AvatarGroup max={4}>
       <Avatar />
       <Avatar />
       <Avatar />
