@@ -1102,6 +1102,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "CodinCat",
+      "name": "CodinCat",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/3193344?v=4",
+      "profile": "https://github.com/CodinCat",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
