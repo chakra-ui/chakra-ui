@@ -312,6 +312,9 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://hericl.es"><img src="https://avatars2.githubusercontent.com/u/30700596?v=4" width="64px;" alt=""/><br /><sub><b>Héricles Emanuel</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=hericlesme" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/CodinCat"><img src="https://avatars3.githubusercontent.com/u/3193344?v=4" width="64px;" alt=""/><br /><sub><b>CodinCat</b></sub></a><br /><a href="https://github.com/chakra-ui/chakra-ui/commits?author=CodinCat" title="Documentation">📖</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="http://samdawson.dev"><img src="https://avatars0.githubusercontent.com/u/13163834?v=4" width="64px;" alt=""/><br /><sub><b>Sam Dawson</b></sub></a><br /><a href="#ideas-Samic8" title="Ideas, Planning, & Feedback">🤔</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-enable -->

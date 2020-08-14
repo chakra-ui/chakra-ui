@@ -1111,6 +1111,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "Samic8",
+      "name": "Sam Dawson",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/13163834?v=4",
+      "profile": "http://samdawson.dev",
+      "contributions": [
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
