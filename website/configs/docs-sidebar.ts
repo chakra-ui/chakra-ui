@@ -54,12 +54,12 @@ const sidebar = {
           open: true,
           routes: [
             {
-              title: "Introduction",
-              path: "/docs/theming/overview",
+              title: "Modify Components",
+              path: "/docs/theming/modify",
             },
             {
-              title: "Basic",
-              path: "/docs/theming/basic",
+              title: "Create New Components",
+              path: "/docs/theming/create",
             },
             {
               title: "Advanced",

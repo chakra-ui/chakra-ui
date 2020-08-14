@@ -45,6 +45,7 @@
     "version:next": "lerna version --exact --force-publish=* --preid rc",
     "release:next": "lerna publish from-package --dist-tag next",
     "docs": "yarn workspace @chakra-ui/docs",
+    "docs:build": "yarn docs build",
     "docs:start": "yarn docs start",
     "core": "yarn workspace @chakra-ui/core",
     "icon": "yarn workspace @chakra-ui/icon",

@@ -33,28 +33,38 @@ type styleConfig = {
 Here's an example of how to create a simple badge that changes its background
 based on color mode.
 
-> Switch to dark mode and see how how the badge background changes
+```jsx live=false
+// theme.js
+import theme from "@chakra-ui/theme"
+import { merge } from "@chakra-ui/utils"
 
-```jsx manual=true
-const styleConfig = {
-  baseStyle: ({ colorMode }) => ({
-    bg: colorMode === "dark" ? "green.300" : "green.500",
-    color: colorMode === "dark" ? "gray.800" : "white",
-    textTransform: "uppercase",
-    fontWeight: "semibold",
-    letterSpacing: "0.02em",
-    padding: "4px",
-    borderRadius: "2px",
-    fontSize: "12px",
-  }),
+const overrides = {
+  components: {
+    MyBadge: {
+      baseStyle: ({ colorMode }) => ({
+        bg: colorMode === "dark" ? "green.300" : "green.500",
+        color: colorMode === "dark" ? "gray.800" : "white",
+        textTransform: "uppercase",
+        fontWeight: "semibold",
+        letterSpacing: "0.02em",
+        padding: "4px",
+        borderRadius: "2px",
+        fontSize: "12px",
+      }),
+    },
+  },
 }
 
-function Badge(props) {
-  const styles = useStyleConfig("Badge", { styleConfig })
+export default merge(theme, overrides)
+
+// MyBadge.js
+function MyBadge(props) {
+  const styles = useStyleConfig("MyBadge")
   return <Box as="span" sx={styles} {...props} />
 }
 
-render(<Badge>Badge</Badge>)
+// somewhere-else.js
+render(<MyBadge>I am a custom badge</MyBadge>)
 ```
 
 ## Compound components
@@ -71,7 +81,8 @@ For example, the `Tabs` component looks like this:
 ```jsx live=false
 function Tabs(props) {
   const { size, variant, children ...rest } = props
-  const styles = useStyleConfig("Tabs", { styleConfig, size, variant })
+  const styles = useStyleConfig("Tabs", { size, variant })
+
   return (
     // 1. Mount the computed styles on styles provider
     <StylesProvider value={styles}>

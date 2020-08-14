@@ -120,7 +120,7 @@ and want to avoid running the command for all components.
 ### Documentation
 
 The documentation site is built with Gatsby. If you'd like to contribute to the
-docs, simply run `yarn docs:start`.
+docs, simply run `yarn docs:build` and then `yarn docs:start`.
 
 ### Storybook
 
