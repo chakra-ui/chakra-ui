@@ -102,7 +102,6 @@ export const AvatarGroup = forwardRef<AvatarGroupProps, "div">(
         {excess > 0 && (
           <chakra.span
             className="chakra-avatar__excess"
-            data-testid="avatar-excess"
             __css={excessStyles}
             children={`+${excess}`}
           />

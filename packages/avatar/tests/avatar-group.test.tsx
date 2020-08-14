@@ -34,8 +34,8 @@ test("does not render a number avatar showing count of truncated avatars if max 
       <Avatar />
     </AvatarGroup>,
   )
-  const moreLabel = tools.queryByTestId("avatar-excess")
-  expect(moreLabel).toBeFalsy()
+  const moreLabel = tools.container.querySelector(".chakra-avatar--excess")
+  expect(moreLabel).not.toBeInTheDocument()
 })
 
 test("does not render a number avatar showing count of truncated avatars if max is more than avatars given", async () => {
@@ -47,6 +47,6 @@ test("does not render a number avatar showing count of truncated avatars if max 
       <Avatar />
     </AvatarGroup>,
   )
-  const moreLabel = tools.queryByTestId("avatar-excess")
-  expect(moreLabel).toBeFalsy()
+  const moreLabel = tools.container.querySelector(".chakra-avatar--excess")
+  expect(moreLabel).not.toBeInTheDocument()
 })
