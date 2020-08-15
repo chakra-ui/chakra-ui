@@ -312,9 +312,9 @@ tab by pressing <kbd>Space</kbd> or <kbd>Enter</kbd>.
 
 ### Lazily mounting tab panels
 
-By default, the Tabs component renders all tabs to the DOM If you'd like to only mount the contents of a `TabPanel` to the DOM at once.
-If you want to defer rendering of content until the tab is activated/clicked/selected, you can use the `isLazy` property.
-In this way, the tab content will not be mounted to the DOM until it is open.
+By default, the `Tabs` component renders all tabs content to the DOM, meaning that invisible tabs are still rendered but are hidden by styles.
+
+If you want to defer rendering of each tab until that tab is selected, you can use the `isLazy` prop. This is useful if your tabs require heavy performance, or make network calls on mount that should only happen when the component is displayed.
 
 ```jsx
 <Tabs isLazy>
