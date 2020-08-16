@@ -23,8 +23,7 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/system": "1.0.0-rc.2",
-    "@chakra-ui/theme": "1.0.0-rc.2",
+    "@chakra-ui/core": "1.0.0-rc.2",
     "@testing-library/jest-dom": "5.11.3",
     "@testing-library/react": "10.4.8",
     "@testing-library/react-hooks": "3.4.1",

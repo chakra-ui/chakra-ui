@@ -1,6 +1,4 @@
-import theme from "@chakra-ui/theme"
-import { GlobalStyle, ThemeProvider } from "@chakra-ui/system"
-import CSSReset from "@chakra-ui/css-reset"
+import { ChakraProvider } from "@chakra-ui/core"
 import "@testing-library/jest-dom/extend-expect"
 import { render, RenderOptions, fireEvent } from "@testing-library/react"
 import * as React from "react"
@@ -8,15 +6,10 @@ import { toHaveNoViolations } from "jest-axe"
 import serializer from "jest-emotion"
 
 expect.addSnapshotSerializer(serializer)
-
 expect.extend(toHaveNoViolations)
 
 const AllProviders: React.FC = ({ children }) => (
-  <ThemeProvider theme={theme}>
-    <CSSReset />
-    <GlobalStyle />
-    {children}
-  </ThemeProvider>
+  <ChakraProvider resetCSS>{children}</ChakraProvider>
 )
 
 const customRender = (ui: React.ReactElement, options?: RenderOptions) =>
