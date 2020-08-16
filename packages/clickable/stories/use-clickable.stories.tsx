@@ -1,11 +1,11 @@
-import { chakra, PropsOf, forwardRef } from "@chakra-ui/system"
+import { chakra, PropsOf, forwardRef, PropsWithAs } from "@chakra-ui/system"
 import { SafeMerge } from "@chakra-ui/utils"
 import * as React from "react"
 import { UseClickableProps, useClickable } from "../src"
 
 export type ClickableProps = SafeMerge<
   UseClickableProps,
-  PropsOf<typeof chakra.button>
+  PropsWithAs<typeof chakra.button, {}>
 >
 
 const Clickable: React.FC<ClickableProps> = forwardRef((props, ref) => {
@@ -14,7 +14,7 @@ const Clickable: React.FC<ClickableProps> = forwardRef((props, ref) => {
 })
 
 export default {
-  title: "Tabbable",
+  title: "Clickable",
 }
 
 export const button = () => (

@@ -16,10 +16,12 @@ type OmittedTypes = "disabled" | "required" | "readOnly"
 type InputProps = Omit<PropsOf<typeof chakra.input>, OmittedTypes> &
   FormControlOptions
 
-const Input: React.FC<InputProps> = forwardRef((props, ref) => {
-  const inputProps = useFormControl<HTMLInputElement>(props)
-  return <chakra.input ref={ref} {...inputProps} />
-})
+const Input: React.FC<InputProps> = forwardRef<InputProps, "input">(
+  (props, ref) => {
+    const inputProps = useFormControl<HTMLInputElement>(props)
+    return <chakra.input ref={ref} {...inputProps} />
+  },
+)
 
 test("FormControl renders correctly in default state", () => {
   const tools = render(

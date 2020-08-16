@@ -20,7 +20,7 @@ exports[`Spinner renders correctly 1`] = `
   display: inline-block;
   border-color: currentColor;
   border-style: solid;
-  border-radius: 9999px;
+  border-radius: 99999px;
   border-width: 2px;
   border-bottom-color: transparent;
   border-left-color: transparent;

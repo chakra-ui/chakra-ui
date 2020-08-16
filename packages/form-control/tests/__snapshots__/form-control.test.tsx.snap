@@ -244,6 +244,7 @@ exports[`FormControl renders correctly when required 1`] = `
       class="emotion-2"
       id="name"
       placeholder="Name"
+      required=""
     />
     <div
       class="chakra-form__helper-text emotion-3"
