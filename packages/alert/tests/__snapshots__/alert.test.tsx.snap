@@ -14,18 +14,18 @@ exports[`should render correctly 1`] = `
   align-items: center;
   position: relative;
   overflow: hidden;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-top: 3px;
+  padding-bottom: 3px;
   background: #CEEDFF;
 }
 
 .emotion-1 {
-  margin-right: 0.75rem;
-  width: 1.25rem;
-  height: 1.25rem;
-  color: #3182CE;
+  margin-right: 3px;
+  width: 5px;
+  height: 5px;
+  color: blue.500;
   display: inherit;
 }
 
@@ -42,7 +42,7 @@ exports[`should render correctly 1`] = `
 }
 
 .emotion-2 {
-  font-weight: 700;
+  font-weight: bold;
   line-height: normal;
 }
 
