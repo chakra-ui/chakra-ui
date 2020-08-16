@@ -50,13 +50,13 @@ export interface AccordionProps
  * @see Docs https://chakra-ui.com/components/accordion
  */
 export const Accordion = forwardRef<AccordionProps, "div">(function Accordion(
-  props,
+  { children, ...props },
   ref,
 ) {
   const styles = useMultiStyleConfig("Accordion", props)
   const _props = omitThemingProps(props)
 
-  const { children, htmlProps, ...context } = useAccordion(_props)
+  const { htmlProps, ...context } = useAccordion(_props)
 
   const _context = useMemo(
     () => ({ ...context, reduceMotion: !!props.reduceMotion }),
