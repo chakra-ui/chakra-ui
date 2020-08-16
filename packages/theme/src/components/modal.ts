@@ -1,18 +1,4 @@
-import { mode, multiStyleConfig } from "@chakra-ui/theme-tools"
-
-/**
- * Since the `maxWidth` prop references theme.sizes internally,
- * we can leverage that to size our modals.
- */
-function getSize(value: string) {
-  if (value === "full") {
-    return { content: { maxW: "100vw", h: "100vh" } }
-  }
-
-  return {
-    content: { maxW: value },
-  }
-}
+import { mode } from "@chakra-ui/theme-tools"
 
 const parts = {
   overlay: "the modal overlay",
@@ -22,7 +8,9 @@ const parts = {
   footer: "the modal footer action",
 }
 
-const baseStyleOverlay = function (props: Record<string, any>) {
+type Dict = Record<string, any>
+
+function baseStyleOverlay(props: Dict) {
   const { isCentered, scrollBehavior } = props
 
   return {
@@ -34,7 +22,7 @@ const baseStyleOverlay = function (props: Record<string, any>) {
   }
 }
 
-const baseStyleContent = function (props: Record<string, any>) {
+function baseStyleContent(props: Dict) {
   const { scrollBehavior } = props
 
   return {
@@ -54,7 +42,7 @@ const baseStyleHeader = {
   fontWeight: "semibold",
 }
 
-const baseStyleBody = function (props: Record<string, any>) {
+function baseStyleBody(props: Dict) {
   const { scrollBehavior } = props
   return {
     px: 6,
@@ -69,13 +57,27 @@ const baseStyleFooter = {
   py: 4,
 }
 
-const baseStyle = (props: Record<string, any>) => ({
+const baseStyle = (props: Dict) => ({
   overlay: baseStyleOverlay(props),
   content: baseStyleContent(props),
   header: baseStyleHeader,
   body: baseStyleBody(props),
   footer: baseStyleFooter,
 })
+
+/**
+ * Since the `maxWidth` prop references theme.sizes internally,
+ * we can leverage that to size our modals.
+ */
+function getSize(value: string) {
+  if (value === "full") {
+    return { content: { maxW: "100vw", h: "100vh" } }
+  }
+
+  return {
+    content: { maxW: value },
+  }
+}
 
 const sizes = {
   xs: getSize("xs"),
@@ -93,16 +95,9 @@ const sizes = {
 
 const defaultProps = {
   size: "md",
-} as const
+}
 
-const modal = multiStyleConfig({
-  parts,
-  baseStyle,
-  sizes,
-  defaultProps,
-})
-
-export const modalStyles = {
+const modal = {
   parts,
   baseStyle,
   sizes,

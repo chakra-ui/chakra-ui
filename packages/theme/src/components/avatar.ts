@@ -1,10 +1,47 @@
-import {
-  isDark,
-  mode,
-  randomColor,
-  multiStyleConfig,
-} from "@chakra-ui/theme-tools"
+import { isDark, mode, randomColor } from "@chakra-ui/theme-tools"
 import themeSizes from "../foundations/sizes"
+
+const parts = {
+  container: "the avatar wrapper",
+  excessLabel: "for avatar group, the excess avatar label",
+  badge: "the top or bottom left badge",
+  label: "the avatar's name initials text",
+}
+
+function baseStyleBadge(props: Record<string, any>) {
+  return {
+    transform: "translate(25%, 25%)",
+    borderRadius: "full",
+    border: "0.2em solid",
+    borderColor: mode("white", "gray.800")(props),
+  }
+}
+
+function baseStyleExcessLabel(props: Record<string, any>) {
+  return {
+    bg: mode("gray.200", "whiteAlpha.400")(props),
+  }
+}
+
+function baseStyleContainer(props: Record<string, any>) {
+  const { name, theme } = props
+  const bg = name ? randomColor({ string: name }) : "gray.400"
+  const color = name ? (isDark(bg)(theme) ? "white" : "gray.800") : "white"
+  const borderColor = mode("white", "gray.800")(props)
+
+  return {
+    bg,
+    color,
+    borderColor,
+    verticalAlign: "top",
+  }
+}
+
+const baseStyle = (props: Record<string, any>) => ({
+  badge: baseStyleBadge(props),
+  excessLabel: baseStyleExcessLabel(props),
+  container: baseStyleContainer(props),
+})
 
 function getSize(size: string) {
   const themeSize = themeSizes[size]
@@ -25,48 +62,6 @@ function getSize(size: string) {
   }
 }
 
-const parts = {
-  container: "the avatar wrapper",
-  excessLabel: "for avatar group, the excess avatar label",
-  badge: "the top or bottom left badge",
-  label: "the avatar's name initials text",
-}
-
-const baseStyleBadge = function (props: Record<string, any>) {
-  return {
-    transform: "translate(25%, 25%)",
-    borderRadius: "full",
-    border: "0.2em solid",
-    borderColor: mode("white", "gray.800")(props),
-  }
-}
-
-const baseStyleExcessLabel = function (props: Record<string, any>) {
-  return {
-    bg: mode("gray.200", "whiteAlpha.400")(props),
-  }
-}
-
-const baseStyleContainer = function (props: Record<string, any>) {
-  const { name, theme } = props
-  const bg = name ? randomColor({ string: name }) : "gray.400"
-  const color = name ? (isDark(bg)(theme) ? "white" : "gray.800") : "white"
-  const borderColor = mode("white", "gray.800")(props)
-
-  return {
-    bg,
-    color,
-    borderColor,
-    verticalAlign: "top",
-  }
-}
-
-const baseStyle = (props: Record<string, any>) => ({
-  badge: baseStyleBadge(props),
-  excessLabel: baseStyleExcessLabel(props),
-  container: baseStyleContainer(props),
-})
-
 const sizes = {
   "2xs": getSize("4"),
   xs: getSize("6"),
@@ -80,16 +75,9 @@ const sizes = {
 
 const defaultProps = {
   size: "md",
-} as const
+}
 
-const avatar = multiStyleConfig({
-  parts,
-  baseStyle,
-  sizes,
-  defaultProps,
-})
-
-export const avatarStyles = {
+const avatar = {
   parts,
   baseStyle,
   sizes,

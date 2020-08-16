@@ -1,6 +1,15 @@
-import { mode, orient, multiStyleConfig } from "@chakra-ui/theme-tools"
+import { mode, orient } from "@chakra-ui/theme-tools"
 
-function thumbOrientation(props: Record<string, any>) {
+const parts = {
+  container: "the slider wrapper",
+  thumb: "the slider thumb or handle",
+  track: "the slider outer track",
+  filledTrack: "the slider inner/filled track",
+}
+
+type Dict = Record<string, any>
+
+function thumbOrientation(props: Dict) {
   return orient({
     orientation: props.orientation,
     vertical: {
@@ -20,14 +29,7 @@ function thumbOrientation(props: Record<string, any>) {
   })
 }
 
-const parts = {
-  container: "the slider wrapper",
-  thumb: "the slider thumb or handle",
-  track: "the slider outer track",
-  filledTrack: "the slider inner/filled track",
-}
-
-const baseStyleContainer = function (props: Record<string, any>) {
+const baseStyleContainer = function (props: Dict) {
   const { orientation } = props
 
   return {
@@ -44,7 +46,7 @@ const baseStyleContainer = function (props: Record<string, any>) {
   }
 }
 
-const baseStyleTrack = function (props: Record<string, any>) {
+function baseStyleTrack(props: Dict) {
   return {
     borderRadius: "sm",
     bg: mode("gray.200", "whiteAlpha.200")(props),
@@ -54,7 +56,7 @@ const baseStyleTrack = function (props: Record<string, any>) {
   }
 }
 
-const baseStyleThumb = function (props: Record<string, any>) {
+function baseStyleThumb(props: Dict) {
   return {
     zIndex: 1,
     borderRadius: "full",
@@ -69,7 +71,7 @@ const baseStyleThumb = function (props: Record<string, any>) {
   }
 }
 
-const baseStyleFilledTrack = function (props: Record<string, any>) {
+function baseStyleFilledTrack(props: Dict) {
   const { colorScheme: c } = props
 
   return {
@@ -77,64 +79,61 @@ const baseStyleFilledTrack = function (props: Record<string, any>) {
   }
 }
 
-const baseStyle = (props: Record<string, any>) => ({
+const baseStyle = (props: Dict) => ({
   container: baseStyleContainer(props),
   track: baseStyleTrack(props),
   thumb: baseStyleThumb(props),
   filledTrack: baseStyleFilledTrack(props),
 })
 
+function sizeLg(props: Dict) {
+  return {
+    thumb: { w: "16px", h: "16px" },
+    track: orient({
+      orientation: props.orientation,
+      horizontal: { h: "4px" },
+      vertical: { w: "4px" },
+    }),
+  }
+}
+
+function sizeMd(props: Dict) {
+  return {
+    thumb: { w: "14px", h: "14px" },
+    track: orient({
+      orientation: props.orientation,
+      horizontal: { h: "4px" },
+      vertical: { w: "4px" },
+    }),
+  }
+}
+
+function sizeSm(props: Dict) {
+  return {
+    thumb: { w: "10px", h: "10px" },
+    track: orient({
+      orientation: props.orientation,
+      horizontal: { h: "2px" },
+      vertical: { w: "2px" },
+    }),
+  }
+}
+
 const sizes = {
-  lg: function (props: Record<string, any>) {
-    return {
-      thumb: { w: "16px", h: "16px" },
-      track: orient({
-        orientation: props.orientation,
-        horizontal: { h: "4px" },
-        vertical: { w: "4px" },
-      }),
-    }
-  },
-
-  md: function (props: Record<string, any>) {
-    return {
-      thumb: { w: "14px", h: "14px" },
-      track: orient({
-        orientation: props.orientation,
-        horizontal: { h: "4px" },
-        vertical: { w: "4px" },
-      }),
-    }
-  },
-
-  sm: function (props: Record<string, any>) {
-    return {
-      thumb: { w: "10px", h: "10px" },
-      track: orient({
-        orientation: props.orientation,
-        horizontal: { h: "2px" },
-        vertical: { w: "2px" },
-      }),
-    }
-  },
+  lg: sizeLg,
+  md: sizeMd,
+  sm: sizeSm,
 }
 
 const defaultProps = {
   size: "md",
   colorScheme: "blue",
-} as const
+}
 
-const slider = multiStyleConfig({
+const slider = {
   parts,
   baseStyle,
   sizes,
-  defaultProps,
-})
-
-export const sliderStyles = {
-  parts,
-  sizes,
-  baseStyle,
   defaultProps,
 }
 

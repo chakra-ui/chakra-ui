@@ -1,4 +1,12 @@
-import { mode, multiStyleConfig } from "@chakra-ui/theme-tools"
+import { mode } from "@chakra-ui/theme-tools"
+
+const parts = {
+  overlay: "the overlay or shim",
+  content: "the main content wrapper",
+  header: "the content heading",
+  body: "the main content area",
+  footer: "the action footer",
+}
 
 /**
  * Since the `maxWidth` prop references theme.sizes internally,
@@ -14,19 +22,11 @@ function getSize(value: string) {
   }
 }
 
-const parts = {
-  overlay: "the overlay or shim",
-  content: "the main content wrapper",
-  header: "the content heading",
-  body: "the main content area",
-  footer: "the action footer",
-}
-
 const baseStyleOverlay = {
   bg: "blackAlpha.600",
 }
 
-const baseStyleContent = function (props: Record<string, any>) {
+function baseStyleContent(props: Record<string, any>) {
   const { isFullHeight } = props
 
   return {
@@ -75,16 +75,9 @@ const sizes = {
 
 const defaultProps = {
   size: "xs",
-} as const
+}
 
-const drawer = multiStyleConfig({
-  parts,
-  baseStyle,
-  sizes,
-  defaultProps,
-})
-
-export const drawerStyles = {
+const drawer = {
   parts,
   baseStyle,
   sizes,

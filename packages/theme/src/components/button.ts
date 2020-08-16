@@ -1,6 +1,22 @@
-import { mode, styleConfig, transparentize } from "@chakra-ui/theme-tools"
+import { mode, transparentize } from "@chakra-ui/theme-tools"
 
-const variantGhost = function (props: Record<string, any>) {
+type Dict = Record<string, any>
+
+const baseStyle = {
+  lineHeight: "1.2",
+  borderRadius: "md",
+  fontWeight: "semibold",
+  _focus: {
+    boxShadow: "outline",
+  },
+  _disabled: {
+    opacity: 0.4,
+    cursor: "not-allowed",
+    boxShadow: "none",
+  },
+}
+
+function variantGhost(props: Dict) {
   const { colorScheme: c, theme } = props
 
   if (c === "gray") {
@@ -26,7 +42,7 @@ const variantGhost = function (props: Record<string, any>) {
   }
 }
 
-const variantOutline = function (props: Record<string, any>) {
+function variantOutline(props: Dict) {
   const { colorScheme: c } = props
   const borderColor = mode(`gray.200`, `whiteAlpha.300`)(props)
   return {
@@ -36,7 +52,7 @@ const variantOutline = function (props: Record<string, any>) {
   }
 }
 
-const variantSolid = function (props: Record<string, any>) {
+function variantSolid(props: Dict) {
   const { colorScheme: c } = props
 
   if (c === "gray")
@@ -54,7 +70,7 @@ const variantSolid = function (props: Record<string, any>) {
   }
 }
 
-const variantLink = function (props: Record<string, any>) {
+function variantLink(props: Dict) {
   const { colorScheme: c } = props
   return {
     padding: 0,
@@ -83,20 +99,6 @@ const variants = {
   solid: variantSolid,
   link: variantLink,
   unstyled: variantUnstyled,
-}
-
-const baseStyle = {
-  lineHeight: "1.2",
-  borderRadius: "md",
-  fontWeight: "semibold",
-  _focus: {
-    boxShadow: "outline",
-  },
-  _disabled: {
-    opacity: 0.4,
-    cursor: "not-allowed",
-    boxShadow: "none",
-  },
 }
 
 const sizes = {
@@ -130,16 +132,9 @@ const defaultProps = {
   variant: "solid",
   size: "md",
   colorScheme: "gray",
-} as const
+}
 
-const button = styleConfig({
-  baseStyle,
-  variants,
-  sizes,
-  defaultProps,
-})
-
-export const buttonStyles = {
+const button = {
   baseStyle,
   variants,
   sizes,

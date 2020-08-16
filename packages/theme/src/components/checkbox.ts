@@ -1,4 +1,4 @@
-import { mode, multiStyleConfig } from "@chakra-ui/theme-tools"
+import { mode } from "@chakra-ui/theme-tools"
 
 const parts = {
   control: "the main checkbox container",
@@ -7,7 +7,7 @@ const parts = {
   icon: "the checkmark icon",
 }
 
-const baseStyleControl = function (props: Record<string, any>) {
+function baseStyleControl(props: Record<string, any>) {
   const { colorScheme: c } = props
 
   return {
@@ -89,16 +89,9 @@ const sizes = {
 const defaultProps = {
   size: "md",
   colorScheme: "blue",
-} as const
+}
 
-const checkbox = multiStyleConfig({
-  parts,
-  baseStyle,
-  sizes,
-  defaultProps,
-})
-
-export const checkboxStyles = {
+const checkbox = {
   parts,
   baseStyle,
   sizes,

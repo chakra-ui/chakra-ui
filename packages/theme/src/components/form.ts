@@ -1,4 +1,6 @@
-import { mode, multiStyleConfig } from "@chakra-ui/theme-tools"
+import { mode } from "@chakra-ui/theme-tools"
+
+type Dict = Record<string, any>
 
 const parts = {
   errorText: "the error message",
@@ -7,7 +9,7 @@ const parts = {
   helperText: "the helper text",
 }
 
-const baseStyleErrorText = function (props: Record<string, any>) {
+function baseStyleErrorText(props: Dict) {
   return {
     color: mode("red.500", "red.300")(props),
     mt: 2,
@@ -15,14 +17,14 @@ const baseStyleErrorText = function (props: Record<string, any>) {
   }
 }
 
-const baseStyleRequiredIndicator = function (props: Record<string, any>) {
+function baseStyleRequiredIndicator(props: Dict) {
   return {
     ml: 1,
     color: mode("red.500", "red.300")(props),
   }
 }
 
-const baseStyleHelperText = function (props: Record<string, any>) {
+function baseStyleHelperText(props: Dict) {
   return {
     mt: 2,
     color: mode("gray.500", "whiteAlpha.600")(props),
@@ -31,26 +33,21 @@ const baseStyleHelperText = function (props: Record<string, any>) {
   }
 }
 
-const baseStyleErrorIcon = function (props: Record<string, any>) {
+function baseStyleErrorIcon(props: Dict) {
   return {
     mr: "0.5em",
     color: mode("red.500", "red.300")(props),
   }
 }
 
-const baseStyle = (props: Record<string, any>) => ({
+const baseStyle = (props: Dict) => ({
   errorText: baseStyleErrorText(props),
   requiredIndicator: baseStyleRequiredIndicator(props),
   helperText: baseStyleHelperText(props),
   errorIcon: baseStyleErrorIcon(props),
 })
 
-const form = multiStyleConfig({
-  parts,
-  baseStyle,
-})
-
-export const formStyles = {
+const form = {
   parts,
   baseStyle,
 }

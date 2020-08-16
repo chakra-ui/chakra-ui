@@ -1,4 +1,4 @@
-import { mode, styleConfig } from "@chakra-ui/theme-tools"
+import { mode } from "@chakra-ui/theme-tools"
 
 const baseStyle = function (props: Record<string, any>) {
   return {
@@ -15,11 +15,7 @@ const baseStyle = function (props: Record<string, any>) {
   }
 }
 
-const skipLink = styleConfig({
-  baseStyle,
-})
-
-export const skipLinkStyles = {
+const skipLink = {
   baseStyle,
 }
 

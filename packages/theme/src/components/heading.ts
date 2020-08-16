@@ -1,5 +1,3 @@
-import { styleConfig } from "@chakra-ui/theme-tools"
-
 const baseStyle = {
   fontFamily: "heading",
   lineHeight: "shorter",
@@ -23,17 +21,12 @@ const sizes = {
 
 const defaultProps = {
   size: "xl",
-} as const
+}
 
-const heading = styleConfig({
+const heading = {
   baseStyle,
   sizes,
   defaultProps,
-})
-
-export const headingStyles = {
-  baseStyle,
-  sizes,
 }
 
 export default heading

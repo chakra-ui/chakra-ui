@@ -1,5 +1,3 @@
-import { multiStyleConfig } from "@chakra-ui/theme-tools"
-
 const parts = {
   label: "the stat label",
   number: "the numeric value of the stat",
@@ -45,16 +43,9 @@ const sizes = {
 
 const defaultProps = {
   size: "md",
-} as const
+}
 
-const stat = multiStyleConfig({
-  parts,
-  baseStyle,
-  sizes,
-  defaultProps,
-})
-
-export const statStyles = {
+const stat = {
   parts,
   baseStyle,
   sizes,
