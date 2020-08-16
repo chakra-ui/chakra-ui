@@ -1,6 +1,12 @@
 import { ChakraProvider } from "@chakra-ui/core"
 import "@testing-library/jest-dom/extend-expect"
-import { render, RenderOptions, fireEvent } from "@testing-library/react"
+import {
+  render as RTLRender,
+  RenderOptions,
+  fireEvent,
+  RenderResult,
+  Queries,
+} from "@testing-library/react"
 import * as React from "react"
 import { toHaveNoViolations } from "jest-axe"
 import serializer from "jest-emotion"
@@ -12,8 +18,14 @@ const AllProviders: React.FC = ({ children }) => (
   <ChakraProvider resetCSS>{children}</ChakraProvider>
 )
 
-const customRender = (ui: React.ReactElement, options?: RenderOptions) =>
-  render(ui, { wrapper: AllProviders, ...options })
+export function render(
+  ui: React.ReactElement,
+  options?: Omit<RenderOptions, "queries">,
+): RenderResult
+
+export function render(ui: React.ReactElement, options?: RenderOptions) {
+  return RTLRender(ui, { wrapper: AllProviders, ...options })
+}
 
 export * from "@testing-library/react"
 
@@ -25,8 +37,6 @@ export {
 } from "@testing-library/react-hooks"
 
 export { default as userEvent } from "@testing-library/user-event"
-
-export { customRender as render }
 
 export * from "jest-axe"
 
