@@ -5,7 +5,6 @@ import {
   RenderOptions,
   fireEvent,
   RenderResult,
-  Queries,
 } from "@testing-library/react"
 import * as React from "react"
 import { toHaveNoViolations } from "jest-axe"
