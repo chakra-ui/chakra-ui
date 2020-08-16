@@ -14,7 +14,7 @@ const Clickable: React.FC<ClickableProps> = forwardRef((props, ref) => {
 })
 
 export default {
-  title: "Tabbable",
+  title: "Clickable",
 }
 
 export const button = () => (
