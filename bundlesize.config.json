@@ -5,11 +5,11 @@
       "maxSize": "10 kB"
     },
     {
-      "path": "packages/Accordion/dist/esm/*.js",
+      "path": "packages/accordion/dist/esm/*.js",
       "maxSize": "10 kB"
     },
     {
-      "path": "packages/Collapse/dist/esm/*.js",
+      "path": "packages/collapse/dist/esm/*.js",
       "maxSize": "10 kB"
     },
     {
@@ -23,10 +23,6 @@
     {
       "path": "packages/popper/dist/esm/*.js",
       "maxSize": "5 kB"
-    },
-    {
-      "path": "packages/parser/dist/esm/*.js",
-      "maxSize": "10 kB"
     }
   ]
 }
