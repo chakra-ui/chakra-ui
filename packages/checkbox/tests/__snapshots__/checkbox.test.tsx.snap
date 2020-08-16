@@ -133,9 +133,9 @@ exports[`Checkbox renders correctly 1`] = `
   -webkit-transform: scale(0.95);
   -ms-transform: scale(0.95);
   transform: scale(0.95);
-  -webkit-transition: opacity 200ms,-webkit-transform 250ms;
-  -webkit-transition: opacity 200ms,transform 250ms;
-  transition: opacity 200ms,transform 250ms;
+  -webkit-transition: -webkit-transform 200ms;
+  -webkit-transition: transform 200ms;
+  transition: transform 200ms;
   font-size: 0.625rem;
   vertical-align: middle;
   display: inline-block;
@@ -309,9 +309,9 @@ exports[`Checkbox renders correctly 2`] = `
   -webkit-transform: scale(0.95);
   -ms-transform: scale(0.95);
   transform: scale(0.95);
-  -webkit-transition: opacity 200ms,-webkit-transform 250ms;
-  -webkit-transition: opacity 200ms,transform 250ms;
-  transition: opacity 200ms,transform 250ms;
+  -webkit-transition: -webkit-transform 200ms;
+  -webkit-transition: transform 200ms;
+  transition: transform 200ms;
   font-size: 0.625rem;
   vertical-align: middle;
   display: inline-block;
