@@ -33,11 +33,11 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile && yarn bootstrap
 
+      - name: Build packages
+        run: yarn build
+
       - name: Lint types and code
         run: yarn lint
 
       - name: Run tests
         run: yarn test
-
-      - name: Build packages
-        run: yarn build
