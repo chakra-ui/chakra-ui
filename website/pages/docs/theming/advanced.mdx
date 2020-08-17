@@ -1,6 +1,6 @@
 ---
-title: Theming API - Advanced
-description: Documentation for the component theming API.
+title: Advanced Theming
+description: Documentation for making advanced modifications to themes.
 order: 3
 ---
 
@@ -65,59 +65,4 @@ function MyBadge(props) {
 
 // somewhere-else.js
 render(<MyBadge>I am a custom badge</MyBadge>)
-```
-
-## Compound components
-
-Many complex components in Chakra are not a single component, but multiple
-components that are composed together. Theming these components can be a bit
-tedious.
-
-To solve this, we connect all component parts to a shared context via a
-`StylesProvider`, and read from the context using the `useStyles` hook.
-
-For example, the `Tabs` component looks like this:
-
-```jsx live=false
-function Tabs(props) {
-  const { size, variant, children ...rest } = props
-  const styles = useStyleConfig("Tabs", { size, variant })
-
-  return (
-    // 1. Mount the computed styles on styles provider
-    <StylesProvider value={styles}>
-      <Box sx={styles.container}>{children}</Box>
-    </StylesProvider>
-  )
-}
-
-function Tab(props){
-  // 2. Read computed styles from styles provider, and consume the `tab` styles
-  const styles = useStyles()
-  return (
-    <Box as="button" sx={styles.tab} {...props}/>
-  )
-}
-
-function TabList(props){
-  // 3. Read computed styles from styles provider, and consume the `tablist` styles
-  const styles = useStyles()
-  return (
-    <Box sx={styles.tablist} {...props}/>
-  )
-}
-```
-
-Now passing when you pass the `size` and `variant` prop, the components down the
-tree will receive their respective styles.
-
-```jsx live=false
-<Tabs size="sm">
-  <TabList>
-    <Tab>Tab 1</Tab>
-  </TabList>
-  <TabPanels>
-    <TabPanel>Tab 1</TabPanel>
-  </TabPanels>
-</Tabs>
 ```

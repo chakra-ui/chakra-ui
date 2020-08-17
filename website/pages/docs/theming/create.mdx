@@ -1,32 +1,36 @@
 ---
-title: Theming API - Basics
-description: How to use the theming API in chakra
+title: Create Components
+description: Documentation on how to create and them new Chakra components.
 order: 2
 ---
 
-import {
-  ButtonSpec,
-  BadgeSpec,
-} from "../../../src/components/theming-guide-image"
+In this document, we'll explain how to create your own custom components
+separate from the ones that ship with Chakra.
 
-Writing component styles that are easy to maintain over the life of a growing
-and changing project is a challenging task. Chakra provides a object based
-theming API that makes it easy to style and customize components.
+## Introduction
 
-<br />
+Before diving into creating custom components, we need to explain a few key
+concepts.
 
-> 🚨 Heads up: This API is **completely optional** and should be used only when
-> you need to customize or create component styles.
+### Base styles vs. modifier styles
 
-## Overview
+Components typically have **base styles** which represent the component in its
+default state and **modifier styles** that alter its size or visual style based
+on some properties or state.
 
-Most components we build today are either single part components (e.g. Button,
-Badge) or multi-parts components (e.g. Tabs, Menu, Modal).
+Base styles are simplest, and contain just the CSS-in-JS properties themselves:
 
-These component typically have **base or default styles**, and **modifier
-styles** that alter its size or visual style based on some properties or state.
+```js
+{
+  baseStyle: {
+    fontFamily: 'body',
+    fontSize: [3, null, 4],
+    // ...
+  }
+}
+```
 
-Common style modifiers are:
+Some common modifier styles are:
 
 - **Size:** A component can have different sizes (e.g. small, medium, large)
 - **Variant:** A component can different visual styles (e.g. outline, solid,
@@ -36,52 +40,75 @@ Common style modifiers are:
 - **Color mode:** A component can change its visual styles based on color mode
   (e.g. light or dark).
 
-## Single part component
+We'll go over how to implement modifier styles later.
 
-This is a component that has a single part or container. For example, a button
-or badge component.
+### Single-part vs. multi-part components
+
+Most components we build today are either single-part components (e.g. Button,
+Badge) or multi-parts components (e.g. Tabs, Menu, Modal).
+
+A single-part component is a component that is just a container around a single
+child. For example, the `<Button>` component produces a single parent HTML
+element around itself:
 
 ```jsx live=false
-// a simple button is usually just it's container
-<button className="button">Button</button>
-
-// same as a badge
-<span className="badge">Badge</span>
+// This component exposes only itself (<Button>)
+<Button>My button</Button>
 ```
 
-### The Theming API
-
-To style single part components, we provide a `styleConfig` function that takes
-an object that describes the style configuration for that component.
+A multi-part component is a component that has nested children. For example, the
+`<Tabs>` component exposes itself, but also various child components:
 
 ```jsx live=false
-import { styleConfig } from "@chakra-ui/theme-tools"
+// This component exposes itself (<Tabs>) and multiple child components:
+// <TabList>, <Tab>, <TabPanels>, and <TabPabel>
+<Tabs>
+  <TabList>
+    <Tab>Tab 1</Tab>
+  </TabList>
+  <TabPanels>
+    <TabPanel>Tab 1</TabPanel>
+  </TabPanels>
+</Tabs>
+```
 
-const button = styleConfig({
-  // styles for the base style
+## Creating a custom single-part component
+
+The first step in creating a custom component is to create a file to export the
+style object. This object, as stated earlier, will contain all the base styles
+and modifier styles for the component. We will then import that style object
+into the global theme. If you haven't set up a global `theme.js` (or `theme.ts`)
+file yet, we suggest you read the documentation for
+[modifying existing components](/docs/theming/modify) first.
+
+To style single-part components, you'll need to define your style object. It
+will always have the exact same structure:
+
+```jsx live=false
+export default {
+  // Styles for the base style
   baseStyle: {},
-  // styles for the size variations
+  // Styles for the size variations
   sizes: {},
-  // styles for the visual style variations
+  // Styles for the visual style variations
   variants: {},
-  // the default `size` or `variant`
+  // The default `size` or `variant` values
   defaultProps: {},
-})
+}
 ```
 
-Let's say we need to style a button. Here's a contrived example of how to define
-its style configuration:
+Let's say we want to create a custom button component. The follow is a contrived
+example of how this might be done:
 
 ```jsx live=false
-// button.styles.js
-
-const button = styleConfig({
-  // styles for the base style
+// theme/components/my-custom-button.js
+export default {
+  // The absolute bare minimum base styles that all sizes and variants have in common
   baseStyle: {
     fontWeight: "bold",
     textTransform: "uppercase",
   },
-  // styles for the size variations
+  // Two sizes: sm and md
   sizes: {
     sm: {
       fontSize: "12px",
@@ -92,7 +119,7 @@ const button = styleConfig({
       padding: "24px",
     },
   },
-  // styles for the visual style variations
+  // Two variants: outline and solid
   variants: {
     outline: {
       border: "2px solid",
@@ -103,463 +130,173 @@ const button = styleConfig({
       color: "white",
     },
   },
-  // the default `size` or `variant`
+  // The default size and variant values
   defaultProps: {
     size: "md",
     variant: "outline",
   },
-})
+}
 ```
 
-You get it? Now let's see how to consume this style configuration within your
-React application.
+Make sense?
 
-### useStyleConfig
-
-To consume the style configuration, chakra exports a `useStyleConfig` hook that
-returns the final styles of the component based on the `size` and `variant` prop
-passed.
-
-```js live=false
-const styles = useStyleConfig(themeKey, options)
-```
-
-**Arguments:**
-
-- `themeKey`: This is used to read the style configuration from
-  `theme.components` in event you want to use these styles globally.
-- `options`: The configuration options
-  - `styleConfig`: used to provide a local style configuration
-  - `size`: the size value to use. Defaults to `defaultProps.size`
-  - `variant`: the variant value to use. Defaults to `defaultProps.variant`
-
-**Return value:**
-
-- The computed styles you can pass directly to the component using the `sx`
-  prop.
-
-Back to the button example, here's how the style configuration would be used.
+Now we'll want to wire this style object into the global theme just like we did
+when we [modified existing Chakra components](/docs/theming/modify).
 
 ```jsx live=false
-// button.js
+// theme/index.js
+import theme from "@chakra-ui/theme"
+import { merge } from "@chakra-ui/utils"
 
-// 1. import the style config
-import styleConfig from "./button.style"
+import MyCustomButton from "./components/my-custom-button"
 
-// 2. consume it using `useStyleConfig`
-const Button = (props) => {
+const overrides = {
+  components: {
+    MyCustomButton,
+  },
+}
+
+export default merge(theme, overrides)
+```
+
+At this point, the style object is hooked into the theme and we can associate it
+with a React component.
+
+```jsx live=false
+// components/MyCustomButton.js
+import React from "react"
+import { useStyleConfig } from "@chakra-ui/system"
+
+export default (props) => {
   const { size, variant, ...rest } = props
-  const styles = useStyleConfig("Button", { styleConfig, size, variant })
+  const styles = useStyleConfig("MyCustomButton", { size, variant })
 
   return <Box as="button" sx={styles} {...rest} />
 }
+```
 
-// 3. use the button component
+And lastly - the fun part - let's use our newly created custom component
+somewhere in our app:
+
+```jsx live=false
 const Example = () => {
-  return <Button>Click me</Button>
+  return <MyCustomButton>Click me</MyCustomButton>
 }
 ```
 
-## Multipart component
+## Creating a custom multi-part component
 
-These are components that have multiple parts, and are commonly referred to as
-composite components.
+Following up on what we learned by creating a single-part component, we can
+apply the same logic to creating a mulit-part component. There's only a few
+differences that you need to be aware of.
 
-A Modal component is a good example of this. It has the following parts or
-anatomy:
-
-- **Backdrop:** the modal overlay or background
-- **Content:** the main modal content area
-
-The theming API for composite components follow the same pattern as that of
-single part, except that it accounts of these parts.
-
-### The Theming API
-
-To style single part components, we provide a `multiStyleConfig` function that
-takes an object that describes the style configuration for composite component.
+Firstly, you'll need to add a special `parts` key to your style object, like
+such:
 
 ```jsx live=false
-import { multiStyleConfig } from "@chakra-ui/theme-tools"
-
-const modal = multiStyleConfig({
-  // REQUIRED: the anatomy or parts of this component
+export default {
+  // Defining what the "parts" of the multi-part component are
   parts: {},
-  // styles for the base style (per part)
+  // Styles for the base style
   baseStyle: {},
-  // styles for the size variations (per part)
+  // Styles for the size variations
   sizes: {},
-  // styles for the visual style variations (per part)
+  // Styles for the visual style variations
   variants: {},
-  // the default `size` or `variant`
+  // The default `size` or `variant` values
   defaultProps: {},
-})
+}
 ```
 
-Let's say we need to style a modal and it's parts. Here's a contrived example of
-how to define its style configuration:
+You'll also now be able to nest another level of keys in your style object,
+here's the theoretical example of a custom menu component:
 
 ```jsx live=false
-// modal.style.js
-
-const modal = multiStyleConfig({
-  // REQUIRED: the anatomy or parts of the modal
+// theme/components/my-custom-menu.js
+export default {
   parts: {
-    backdrop: "the modal backdrop or overlay",
-    content: "the main content area",
+    menu: "the menu container",
+    item: "each individual menu item",
   },
-  // styles for the base style (per part)
   baseStyle: {
-    // base styles for the modal backdrop
-    backdrop: {
-      bg: "rgba(0,0,0,0.2)",
+    menu: {
+      flexDirection: "column",
     },
-    // base styles for the modal content
-    content: {
-      width: "100%",
-      bg: "white",
-      borderRadius: "8px",
+    item: {
+      fontWeight: "bold",
+      textTransform: "uppercase",
     },
   },
-  // styles for the size variations (per part)
-  // here we can ignore, the overlay styles since its not affect by size
   sizes: {
-    md: {
-      content: { maxW: "560px" },
+    sm: {
+      item: {
+        fontSize: [1, null, 2],
+      },
     },
-    lg: {
-      content: { maxW: "960px" },
+    md: {
+      item: {
+        fontSize: 2,
+      },
     },
   },
-  // the default `size` or `variant`
   defaultProps: {
     size: "md",
   },
-})
+}
 ```
 
-You get it? Now let's see how to consume this multi-part style configuration
-within your React application.
-
-## useMultiStyleConfig
-
-`useMultiStyleConfig` is a react hook used to consume the style configuration
-for composite components. It returns the computed styles for each component
-style based on the `size` or `variant` passed.
-
-```js live=false
-const styles = useMultiStyleConfig(themeKey, options)
-```
-
-**Arguments:**
-
-- `themeKey`: The reference to the style config key in `theme.components`. This
-  is used for global styling for components.
-- `options`: The configuration object
-  - `styleConfig`: used to provide a local style configuration
-  - `size`: the size value to use. Defaults to `defaultProps.size`
-  - `variant`: the variant value to use. Defaults to `defaultProps.variant`
-
-**Return value:**
-
-- The computed styles for each component part you can pass directly to each
-  component using the `sx` prop.
-
-Back to the modal example, here's how the style configuration would be used.
+Assuming we associate this style object with the global theme like we did for
+the single-part component, we can now bring it into our React component:
 
 ```jsx live=false
-// modal.js
+// components/MyCustomMenu.js
+import React from "react"
+import Flex from "@chakra-ui/flex"
+import Box from "@chakra-ui/box"
+import { StylesProvider, useStyleConfig, useStyles } from "@chakra-ui/system"
 
-// 1. import the style config
-import styleConfig from "./modal.style"
-
-// 2. consume it using `useStyleConfig`
-const Modal = (props) => {
+export const MyCustomMenu = (props) => {
   const { size, variant, children, ...rest } = props
-
-  // the returned styles is for the `content` and `overlay`
-  const styles = useMultiStyleConfig("Modal", { styleConfig, size, variant })
+  const styles = useStyleConfig("MyCustomMenu", { size, variant })
 
   return (
-    <Box className="overlay" sx={styles.overlay} {...rest}>
-      <Box className="content" sx={styles.content}>
-        {children}
-      </Box>
-    </Box>
+    // Mount the computed styles on styles provider
+    <StylesProvider value={styles}>
+      <Flex sx={styles.menu}>{children}</Flex>
+    </StylesProvider>
   )
 }
 
-// 3. use the modal component
+export const MyCustomMenuItem = (props) => {
+  // Read computed styles from styles provider, and consume the `item` styles
+  const styles = useStyles()
+
+  return <Box sx={styles.item} {...props} />
+}
+```
+
+There's a few things going on here, let's break all that down:
+
+1. We declare our parent and child components (`<Menu>` and `<MenuItem>`).
+2. In the parent component (`<Menu>`), we use the `useStyleConfig` function just
+   as we did before.
+3. We wrap our parent component in a `<StylesProvider>` component and pass the
+   result of `useStyleConfig`.
+4. The previous step then allows us to use dot-notation to inject the styles
+   into the parent component using the `sx` prop.
+5. In the child component we get the styles from the parent component using the
+   `useStyles` function, and again use dot-notation on the `sx` props.
+
+After all of this is done, we can use our newly created multi-part component in
+our application:
+
+```jsx live=false
 const Example = () => {
   return (
-    <Modal>
-      <Heading>Sign up now</Heading>
-      <SignupForm />
-    </Modal>
+    <MyCustomMenu>
+      <MyCustomMenuItem>Awesome</MyCustomMenuItem>
+      <MyCustomMenuItem>Sauce</MyCustomMenuItem>
+    </MyCustomMenu>
   )
 }
 ```
-
-## Where to put the style config
-
-The style configurations for both single and multiple parts components can be
-stored locally, or globally in the theme object.
-
-- Move it to the theme object (Global styling)
-- Pass it directly to `useStyleConfig` (Local styling)
-
-### Adding it locally
-
-For this approach, you'll create the style config and pass it directly to the
-`useStyleConfig` or `useMultiStyleConfig` hook.
-
-```jsx live=false
-// 1. import the config
-import styleConfig from "./button.style"
-
-const Button = (props) => {
-  const { size, variant, ...rest } = props
-
-  // 2. Consume it directly by passing it here 👇🏼
-  const styles = useStyleConfig("Button", { styleConfig, size, variant })
-
-  return <Box as="button" sx={styles} {...rest} />
-}
-```
-
-### Adding it globally
-
-For this approach, you'll create the style config and add it to the theme object
-under `theme.components`.
-
-```jsx live=false
-// src/theme.js
-
-// 1. import the style config
-import styleConfig from "./button.styles"
-
-// 2. add it to the theme
-const theme = {
-  components: {
-    Button: styleConfig,
-  },
-}
-
-// src/components/button.js
-
-// 3. consume it
-function Button(props) {
-  const { size, variant, ...rest } = props
-
-  // Note that we're no longer passing the styleConfig here
-  // The themeKey "Button" gets the config from `theme.components.Button`
-  const styles = useStyleConfig("Button", { size, variant })
-
-  return <Box as="button" sx={styles} {...rest} />
-}
-```
-
-In the next section, we'll show some real world examples!
-
-<!-- TODO: NOW WE HAVE THE BASIC PAGE -->
-
-## Design a button
-
-Let's take this further and try to create a custom button component. The button
-will have 2 sizes, `small` and `large`, and 2 variants `outline` and `solid`.
-
-<ButtonSpec />
-
-First, let's define the `baseStyle` for each part, adding common attributes like
-`font-weight`, `text-transform`, etc.
-
-```jsx live=false
-const baseStyle = {
-  fontWeight: "semibold",
-  borderRadius: "4px",
-  textTransform: "uppercase",
-}
-```
-
-Next, we'll define the styles for the button sizes
-
-```jsx live=false
-const sizes = {
-  small: {
-    px: "18px",
-    py: "12px",
-    fontSize: "14px",
-  },
-  large: {
-    px: "24px",
-    py: "16px",
-    fontSize: "18px",
-  },
-}
-```
-
-Now, let's add 2 variant styles to the button, `solid` and `outline`. Here's how
-to do it:
-
-```jsx live=false
-const variants = {
-  solid: {
-    bg: "#4053B8",
-    color: "white",
-  },
-  outline: {
-    border: "2px",
-    borderColor: "#4053B8",
-    color: "#4053B8",
-  },
-}
-```
-
-Bringing it all together, We now have a themable Button component. Here's what
-it looks like:
-
-```jsx manual=true
-const styleConfig = {
-  baseStyle: {
-    fontWeight: "semibold",
-    borderRadius: "4px",
-    textTransform: "uppercase",
-  },
-  sizes: {
-    small: {
-      px: "18px",
-      py: "12px",
-      fontSize: "14px",
-    },
-    large: {
-      px: "24px",
-      py: "16px",
-      fontSize: "18px",
-    },
-  },
-  variants: {
-    solid: {
-      bg: "#4053B8",
-      color: "white",
-    },
-    outline: {
-      border: "2px",
-      borderColor: "#4053B8",
-      color: "#4053B8",
-    },
-  },
-  defaultProps: {
-    size: "small",
-    variant: "solid",
-  },
-}
-
-function Button(props) {
-  const { size, variant, ...rest } = props
-
-  const styles = useStyleConfig("Button", {
-    size,
-    variant,
-    styleConfig,
-  })
-
-  return <Box as="button" sx={styles} {...rest} />
-}
-
-render(
-  <Button size="small" variant="solid">
-    Submit
-  </Button>,
-)
-```
-
-That's it! We've created a button component style that makes it easier to manage
-current and future changes consistently.
-
-## Design a badge
-
-One more example!
-
-Let's say you need to create a simple badge component with the following spec.
-
-<BadgeSpec />
-
-First thing we notice is that the badge has **base or common styles** across all
-its variants. Here's how we'll model that:
-
-Define the base style
-
-```jsx live=false
-const baseStyle = {
-  fontSize: "12px",
-  fontWeight: "bold",
-  textTransform: "uppercase",
-  color: "white",
-}
-```
-
-Define the variants
-
-```jsx live=false
-const variants = {
-  "in-progress": {
-    bg: "blue.600",
-  },
-  new: {
-    bg: "purple.600",
-  },
-  removed: {
-    bg: "red.600",
-  },
-  default: {
-    bg: "gray.600",
-  },
-}
-```
-
-Bringing it all together:
-
-```jsx manual=true
-const styleConfig = {
-  baseStyle: {
-    fontSize: "12px",
-    fontWeight: "bold",
-    textTransform: "uppercase",
-    color: "white",
-    px: "2",
-    py: "1",
-    borderRadius: "4px",
-  },
-  variants: {
-    "in-progress": {
-      bg: "blue.600",
-    },
-    new: {
-      bg: "purple.600",
-    },
-    removed: {
-      bg: "red.600",
-    },
-    default: {
-      bg: "gray.600",
-    },
-  },
-  defaultProps: {
-    variant: "default",
-  },
-}
-
-function Badge(props) {
-  const { size, variant, ...rest } = props
-  const styles = useStyleConfig("Badge", { size, variant, styleConfig })
-  return <Box as="span" sx={styles} {...rest} />
-}
-
-render(<Badge>Chakra</Badge>)
-```
-
-That's it! Now you have a solid structure your team can use to create new
-variants or improve the base styles.
-
-And of course you could always move these styles to the theme object if you
-prefer to apply the styles globally.
