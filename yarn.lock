@@ -18579,10 +18579,10 @@ relative@^3.0.2:
   dependencies:
     isobject "^2.0.0"
 
-remark-autolink-headings@6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/remark-autolink-headings/-/remark-autolink-headings-6.0.0.tgz#86ec9c79f88fb911c96f8af9e0351d19453062f7"
-  integrity sha512-IlwzsSgw14EZ9ZNd+Ct/0Kn/DrFaAg2NvSvqSKnoRFTXO5Bmb7tL2Fk/Yw93OD7kban9tqpMRnNcpQB9O2aWvQ==
+remark-autolink-headings@6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/remark-autolink-headings/-/remark-autolink-headings-6.0.1.tgz#074470b8ec7714a0f06fa151e293152bf9723df9"
+  integrity sha512-LTV5G5NMjypHEr14tMNJ36yrP+xwT7mejJelZOPXKiF5WvRH9o36zXnr2QGqfms2yVASNpDaC9NBOwKlJJKuQw==
   dependencies:
     extend "^3.0.0"
     unist-util-visit "^2.0.0"
