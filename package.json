@@ -170,7 +170,7 @@
     "eslint-plugin-jest-dom": "3.1.7",
     "eslint-plugin-prettier": "3.1.4",
     "eslint-plugin-react": "7.20.6",
-    "eslint-plugin-react-hooks": "4.0.8",
+    "eslint-plugin-react-hooks": "4.1.0",
     "eslint-plugin-testing-library": "3.6.0",
     "esm": "3.2.25",
     "execa": "4.0.3",
