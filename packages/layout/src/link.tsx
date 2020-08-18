@@ -11,6 +11,11 @@ import { __DEV__, cx } from "@chakra-ui/utils"
 
 export interface LinkProps extends PropsOf<typeof chakra.a>, ThemingProps {
   /**
+   * If `true`, the link will stretch to the full width and height of its
+   * nearest parent whose `position` is `relative`.
+   */
+  breakout?: boolean
+  /**
    *  If `true`, the link will open in new tab
    */
   isExternal?: boolean
@@ -32,7 +37,7 @@ export interface LinkProps extends PropsOf<typeof chakra.a>, ThemingProps {
  */
 export const Link = forwardRef<LinkProps, "a">((props, ref) => {
   const styles = useStyleConfig("Link", props)
-  const { className, isExternal, ...rest } = omitThemingProps(props)
+  const { breakout, className, isExternal, ...rest } = omitThemingProps(props)
 
   return (
     <chakra.a
@@ -41,7 +46,22 @@ export const Link = forwardRef<LinkProps, "a">((props, ref) => {
       ref={ref}
       className={cx("chakra-link", className)}
       {...rest}
-      __css={styles}
+      __css={{
+        ...(breakout && {
+          position: "static",
+          "&::before": {
+            content: "''",
+            cursor: "inherit",
+            display: "block",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+          },
+        }),
+        ...styles,
+      }}
     />
   )
 })

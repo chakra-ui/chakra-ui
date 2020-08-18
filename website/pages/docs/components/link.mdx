@@ -49,6 +49,98 @@ import { Link } from "@chakra-ui/core"
 </Text>
 ```
 
+### Breakout Link
+
+When treating a group of content as clickable,
+[**avoid**](https://www.sarasoueidan.com/blog/nested-links/#native-markup-limitations)
+wrapping with a link.
+
+Instead, choose a single key line of text–such as a title–and use a `breakout`
+link to "stretch" the interaction, while maintaining semantic HTML.
+
+> **Note**: for a `breakout` link to stretch full size, the parent's `position`
+> must be set to `relative`.
+
+```jsx
+// Sample card from Airbnb
+
+function AirbnbExample() {
+  const property = {
+    imageUrl: "https://bit.ly/2Z4KKcF",
+    imageAlt: "Rear view of modern home with pool",
+    beds: 3,
+    baths: 2,
+    title: "Modern home in city center in the heart of historic Los Angeles",
+    formattedPrice: "$1,900.00",
+    reviewCount: 34,
+    rating: 4,
+  }
+
+  return (
+    <Box
+      position="relative"
+      maxW="sm"
+      borderWidth="1px"
+      borderRadius="lg"
+      overflow="hidden"
+    >
+      <Image src={property.imageUrl} alt={property.imageAlt} />
+
+      <Box p="6">
+        <Box d="flex" alignItems="baseline">
+          <Badge borderRadius="full" px="2" colorScheme="teal">
+            New
+          </Badge>
+          <Box
+            color="gray.500"
+            fontWeight="semibold"
+            letterSpacing="wide"
+            fontSize="xs"
+            textTransform="uppercase"
+            ml="2"
+          >
+            {property.beds} beds &bull; {property.baths} baths
+          </Box>
+        </Box>
+
+        <Box
+          mt="1"
+          fontWeight="semibold"
+          as="h4"
+          lineHeight="tight"
+          isTruncated
+        >
+          <Link href="#breakout-link" breakout>
+            {property.title}
+          </Link>
+        </Box>
+
+        <Box>
+          {property.formattedPrice}
+          <Box as="span" color="gray.600" fontSize="sm">
+            / wk
+          </Box>
+        </Box>
+
+        <Box d="flex" mt="2" alignItems="center">
+          {Array(5)
+            .fill("")
+            .map((_, i) => (
+              <StarIcon
+                key={i}
+                color={i < property.rating ? "teal.500" : "gray.300"}
+              />
+            ))}
+          <Box as="span" ml="2" color="gray.600" fontSize="sm">
+            {property.reviewCount} reviews
+          </Box>
+        </Box>
+      </Box>
+    </Box>
+  )
+}
+```
+
 ## Usage with Routing Library
 
 To use the `Link` with a routing library like Reach Router or React Router, all
@@ -68,7 +160,8 @@ Reach's `Link`.
 
 The Link component composes the `Box` component.
 
-| Name         | Type       | Default | Description                               |
-| ------------ | ---------- | ------- | ----------------------------------------- |
-| `isExternal` | `boolean`  |         | If `true`, the link will open in new tab. |
-| `onClick`    | `function` |         | Function called when the link is clicked. |
+| Name         | Type       | Default | Description                                                                                                         |
+| ------------ | ---------- | ------- | ------------------------------------------------------------------------------------------------------------------- |
+| `breakout`   | `boolean`  |         | If `true`, the link will stretch to the full width and height of its nearest parent whose `position` is `relative`. |
+| `isExternal` | `boolean`  |         | If `true`, the link will open in new tab.                                                                           |
+| `onClick`    | `function` |         | Function called when the link is clicked.                                                                           |
