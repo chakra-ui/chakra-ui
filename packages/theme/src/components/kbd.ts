@@ -1,6 +1,6 @@
 import { mode } from "@chakra-ui/theme-tools"
 
-const baseStyle = function (props: Record<string, any>) {
+function baseStyle(props: Record<string, any>) {
   return {
     bg: mode("gray.100", "whiteAlpha")(props),
     borderRadius: "md",
@@ -14,6 +14,6 @@ const baseStyle = function (props: Record<string, any>) {
   }
 }
 
-export const Kbd = {
+export default {
   baseStyle,
 }

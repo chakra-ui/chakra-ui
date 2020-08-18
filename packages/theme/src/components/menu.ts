@@ -8,7 +8,7 @@ const parts = {
   groupTitle: "the menu group title",
 }
 
-const baseStyleList = function (props: Record<string, any>) {
+function baseStyleList(props: Record<string, any>) {
   return {
     bg: mode(`#fff`, `gray.700`)(props),
     boxShadow: mode(`sm`, `dark-lg`)(props),
@@ -21,7 +21,7 @@ const baseStyleList = function (props: Record<string, any>) {
   }
 }
 
-const baseStyleItem = function (props: Record<string, any>) {
+function baseStyleItem(props: Record<string, any>) {
   return {
     py: "0.4rem",
     px: "0.8rem",
@@ -62,7 +62,7 @@ const baseStyle = function (props: Record<string, any>) {
   }
 }
 
-export const Menu = {
+export default {
   parts,
   baseStyle,
 }

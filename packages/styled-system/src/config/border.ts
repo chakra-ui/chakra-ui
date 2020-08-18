@@ -194,7 +194,6 @@ export interface BorderProps {
   borderRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-radius` property
-   * @deprecated
    */
   rounded?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
@@ -267,7 +266,6 @@ export interface BorderProps {
   borderTopRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-top-radius` property
-   * @deprecated
    */
   roundedTop?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
@@ -276,7 +274,6 @@ export interface BorderProps {
   borderRightRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-right-radius` property
-   * @deprecated
    */
   roundedRight?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
@@ -285,7 +282,6 @@ export interface BorderProps {
   borderBottomRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-bottom-radius` property
-   * @deprecated
    */
   roundedBottom?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
@@ -294,7 +290,6 @@ export interface BorderProps {
   borderLeftRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-left-radius` property
-   * @deprecated
    */
   roundedLeft?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
@@ -303,7 +298,6 @@ export interface BorderProps {
   borderTopLeftRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-top-left-radius` property
-   * @deprecated
    */
   roundedTopLeft?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
@@ -312,7 +306,6 @@ export interface BorderProps {
   borderTopRightRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-top-right-radius` property
-   * @deprecated
    */
   roundedTopRight?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
@@ -321,7 +314,6 @@ export interface BorderProps {
   borderBottomLeftRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-bottom-left-radius` property
-   * @deprecated
    */
   roundedBottomLeft?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
@@ -330,7 +322,6 @@ export interface BorderProps {
   borderBottomRightRadius?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**
    * The CSS `border-bottom-right-radius` property
-   * @deprecated
    */
   roundedBottomRight?: ResponsiveValue<CSS.Property.BorderRadius<Length>>
   /**

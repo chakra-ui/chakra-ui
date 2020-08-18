@@ -32,7 +32,7 @@ exports[`Elements inside input render correctly 1`] = `
   justify-content: center;
   position: absolute;
   top: 0;
-  z-index: 2;
+  z-index: 1;
 }
 
 .emotion-1 {
@@ -85,6 +85,7 @@ exports[`Elements inside input render correctly 1`] = `
 
 .emotion-1:focus,
 .emotion-1[data-focus] {
+  z-index: 1;
   border-color: #3182CE;
   box-shadow: 0 0 0 1px #3182CE;
 }
@@ -116,7 +117,7 @@ exports[`Elements inside input render correctly 1`] = `
   justify-content: center;
   position: absolute;
   top: 0;
-  z-index: 2;
+  z-index: 1;
 }
 
 <div
@@ -235,6 +236,7 @@ exports[`Input addons render correctly 1`] = `
 
 .emotion-1:focus,
 .emotion-1[data-focus] {
+  z-index: 1;
   border-color: #3182CE;
   box-shadow: 0 0 0 1px #3182CE;
 }
@@ -344,6 +346,7 @@ exports[`Input renders correctly 1`] = `
 
 .emotion-0:focus,
 .emotion-0[data-focus] {
+  z-index: 1;
   border-color: #3182CE;
   box-shadow: 0 0 0 1px #3182CE;
 }

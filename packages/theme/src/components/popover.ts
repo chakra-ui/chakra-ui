@@ -7,7 +7,7 @@ const parts = {
   footer: "the action footers for popover",
 }
 
-const baseStyleContent = function (props: Record<string, any>) {
+function baseStyleContent(props: Record<string, any>) {
   return {
     bg: mode("white", "gray.700")(props),
     border: "1px solid",
@@ -50,7 +50,7 @@ const baseStyle = function (props: Record<string, any>) {
   }
 }
 
-export const Popover = {
+export default {
   parts,
   baseStyle,
 }

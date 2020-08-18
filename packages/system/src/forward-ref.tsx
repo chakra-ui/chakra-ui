@@ -3,46 +3,34 @@
  */
 import * as React from "react"
 
-export type AssignableRef<T> =
-  | {
-      bivarianceHack(instance: T | null): void
-    }["bivarianceHack"]
-  | React.MutableRefObject<T | null>
-  | null
-
-type As<P = any> = React.ElementType<P>
+type As = string | React.ComponentType<any>
 
 export type PropsWithAs<T extends As, P> = P &
-  Omit<React.ComponentPropsWithRef<T>, "as" | "color" | keyof P> & {
-    as?: T
+  Omit<PropsOf<T>, "as" | "color" | keyof P> & {
+    as?: T | As
   }
 
-export type PropsFromAs<T extends As, P> = (PropsWithAs<T, P> & { as: T }) &
-  PropsWithAs<T, P>
+type PropsOf<T extends As> = T extends React.ComponentClass<infer P>
+  ? React.PropsWithoutRef<P> & React.RefAttributes<InstanceType<T>> // @ts-expect-error
+  : React.PropsWithRef<React.ComponentProps<T>>
 
-export type ComponentWithForwardedRef<
-  T extends React.ElementType,
-  P
-> = React.ForwardRefExoticComponent<
-  P & React.HTMLProps<React.ElementType<T>> & React.ComponentPropsWithRef<T>
->
+type Merge<T, P> = P extends object ? P & Omit<T, keyof P> : T
 
 export interface ComponentWithAs<T extends As, P> {
-  <TT extends As>(props: PropsWithAs<TT, P>): React.ReactElement | null
-  (props: PropsWithAs<T, P>): React.ReactElement | null
+  <TT extends As = T>(
+    props: Merge<PropsWithAs<T, P>, PropsWithAs<TT, P>>,
+  ): React.ReactElement | null
+  (props: Merge<PropsOf<T>, P>): React.ReactElement | null
   displayName?: string
-  propTypes?: React.WeakValidationMap<PropsWithAs<T, P>>
+  propTypes?: React.WeakValidationMap<Merge<PropsOf<T>, P>>
   contextTypes?: React.ValidationMap<any>
-  defaultProps?: Partial<PropsWithAs<T, P>>
-  /**
-   * @private
-   */
+  defaultProps?: Partial<Merge<PropsOf<T>, P>>
   id?: string
 }
 
 export function forwardRef<P, T extends As>(
   comp: (
-    props: PropsFromAs<T, Omit<P, "children" | "as">>,
+    props: PropsWithAs<T, Omit<P, "children" | "as">>,
     ref: React.RefObject<any>,
   ) => React.ReactElement | null,
 ) {

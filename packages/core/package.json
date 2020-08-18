@@ -72,6 +72,7 @@
     "@chakra-ui/toast": "1.0.0-rc.2",
     "@chakra-ui/tooltip": "1.0.0-rc.2",
     "@chakra-ui/transition": "1.0.0-rc.2",
+    "@chakra-ui/control-box": "1.0.0-rc.2",
     "@chakra-ui/visually-hidden": "1.0.0-rc.2"
   },
   "peerDependencies": {

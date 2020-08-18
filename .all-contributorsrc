@@ -194,7 +194,8 @@
       "avatar_url": "https://avatars1.githubusercontent.com/u/5148596?v=4",
       "profile": "http://mattrothenberg.com",
       "contributions": [
-        "code"
+        "code",
+        "example"
       ]
     },
     {
@@ -1027,7 +1028,8 @@
       "profile": "https://github.com/Geeman201",
       "contributions": [
         "code",
-        "test"
+        "test",
+        "example"
       ]
     },
     {
@@ -1091,6 +1093,51 @@
       "profile": "https://simo.sh",
       "contributions": [
         "doc"
+      ]
+    },
+    {
+      "login": "hericlesme",
+      "name": "Héricles Emanuel",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/30700596?v=4",
+      "profile": "https://hericl.es",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "CodinCat",
+      "name": "CodinCat",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/3193344?v=4",
+      "profile": "https://github.com/CodinCat",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "Samic8",
+      "name": "Sam Dawson",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/13163834?v=4",
+      "profile": "http://samdawson.dev",
+      "contributions": [
+        "ideas"
+      ]
+    },
+    {
+      "login": "hy2k",
+      "name": "hy2k",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/17329720?v=4",
+      "profile": "https://github.com/hy2k",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "PierreAndreis",
+      "name": "Pierre Ortega",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/5843816?v=4",
+      "profile": "https://loud.gg",
+      "contributions": [
+        "code"
       ]
     }
   ],

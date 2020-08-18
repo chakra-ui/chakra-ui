@@ -25,15 +25,7 @@ if (__DEV__) {
  * As a constraint, you can't pass size related props
  * Only `size` would be allowed
  */
-type Omitted =
-  | "size"
-  | "boxSize"
-  | "width"
-  | "height"
-  | "w"
-  | "h"
-  | "children"
-  | "as"
+type Omitted = "size" | "boxSize" | "width" | "height" | "w" | "h"
 
 export interface SquareProps extends Omit<BoxProps, Omitted> {
   /**

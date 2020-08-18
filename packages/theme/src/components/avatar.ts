@@ -1,25 +1,6 @@
 import { isDark, mode, randomColor } from "@chakra-ui/theme-tools"
 import themeSizes from "../foundations/sizes"
 
-function getSize(size: string) {
-  const themeSize = themeSizes[size]
-  return {
-    container: {
-      width: size,
-      height: size,
-      fontSize: `calc(${themeSize ?? size} / 2.5)`,
-    },
-    excessLabel: {
-      width: size,
-      height: size,
-    },
-    label: {
-      fontSize: `calc(${themeSize ?? size} / 2.5)`,
-      lineHeight: size !== "100%" ? themeSize ?? size : undefined,
-    },
-  }
-}
-
 const parts = {
   container: "the avatar wrapper",
   excessLabel: "for avatar group, the excess avatar label",
@@ -27,7 +8,7 @@ const parts = {
   label: "the avatar's name initials text",
 }
 
-const baseStyleBadge = function (props: Record<string, any>) {
+function baseStyleBadge(props: Record<string, any>) {
   return {
     transform: "translate(25%, 25%)",
     borderRadius: "full",
@@ -36,13 +17,13 @@ const baseStyleBadge = function (props: Record<string, any>) {
   }
 }
 
-const baseStyleExcessLabel = function (props: Record<string, any>) {
+function baseStyleExcessLabel(props: Record<string, any>) {
   return {
     bg: mode("gray.200", "whiteAlpha.400")(props),
   }
 }
 
-const baseStyleContainer = function (props: Record<string, any>) {
+function baseStyleContainer(props: Record<string, any>) {
   const { name, theme } = props
   const bg = name ? randomColor({ string: name }) : "gray.400"
   const color = name ? (isDark(bg)(theme) ? "white" : "gray.800") : "white"
@@ -62,6 +43,25 @@ const baseStyle = (props: Record<string, any>) => ({
   container: baseStyleContainer(props),
 })
 
+function getSize(size: string) {
+  const themeSize = themeSizes[size]
+  return {
+    container: {
+      width: size,
+      height: size,
+      fontSize: `calc(${themeSize ?? size} / 2.5)`,
+    },
+    excessLabel: {
+      width: size,
+      height: size,
+    },
+    label: {
+      fontSize: `calc(${themeSize ?? size} / 2.5)`,
+      lineHeight: size !== "100%" ? themeSize ?? size : undefined,
+    },
+  }
+}
+
 const sizes = {
   "2xs": getSize("4"),
   xs: getSize("6"),
@@ -77,7 +77,7 @@ const defaultProps = {
   size: "md",
 }
 
-export const Avatar = {
+export default {
   parts,
   baseStyle,
   sizes,

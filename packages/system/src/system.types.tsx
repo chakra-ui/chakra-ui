@@ -1,16 +1,7 @@
-import { ColorMode } from "@chakra-ui/color-mode"
 import { SystemProps, SystemStyleObject } from "@chakra-ui/styled-system"
 import { Dict } from "@chakra-ui/utils"
 import * as React from "react"
 import { ComponentWithAs } from "./forward-ref"
-
-interface ColorModeProps {
-  colorMode?: ColorMode
-}
-
-type BaseStyle<P> =
-  | SystemProps
-  | ((props: P & ThemingProps & ColorModeProps) => SystemProps)
 
 export interface ThemingProps {
   variant?: string
@@ -28,11 +19,11 @@ interface ValidHTMLProps {
 
 export interface ChakraProps extends SystemProps, ValidHTMLProps {
   /**
-   * apply styles defined in `theme.layerStyles`
+   * apply layer styles defined in `theme.layerStyles`
    */
   layerStyle?: string
   /**
-   * apply styles defined in `theme.textStyles`
+   * apply typography styles defined in `theme.textStyles`
    */
   textStyle?: string
   /**
@@ -72,30 +63,3 @@ export type WithChakra<P> = P & ChakraProps
 
 export interface ChakraComponent<T extends As, P>
   extends ComponentWithAs<T, WithChakra<P>> {}
-
-export interface UseStyleConfigOptions<P = {}> {
-  parts?: string[]
-  baseStyle?: BaseStyle<P>
-  variants?: ModifierStyle<P>
-  sizes?: ModifierStyle<P>
-}
-/**
- * The component style can either be a style object or  a function that returns a
- * style object.
- */
-type ModifierStyle<P> =
-  | StyleProps
-  | ((props: ModifierProps & Required<P>) => StyleProps)
-
-type StyleProps =
-  | SystemProps
-  | {
-      [component: string]: SystemProps
-    }
-
-interface ModifierProps {
-  colorScheme: string
-  orientation: "horizontal" | "vertical"
-  colorMode: "light" | "dark"
-  theme: Dict
-}

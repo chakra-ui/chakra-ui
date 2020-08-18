@@ -1,11 +1,5 @@
 import { getColor, mode } from "@chakra-ui/theme-tools"
 
-const alignments = {
-  end: "flex-end",
-  center: "center",
-  start: "flex-start",
-}
-
 const parts = {
   tablist: "the tab list or button group",
   tab: "the tab button",
@@ -13,7 +7,9 @@ const parts = {
   indicator: "the active tab indicator",
 }
 
-const baseStyleTab = function (props: Record<string, any>) {
+type Dict = Record<string, any>
+
+function baseStyleTab(props: Dict) {
   const { isFitted } = props
 
   return {
@@ -26,7 +22,13 @@ const baseStyleTab = function (props: Record<string, any>) {
   }
 }
 
-const baseStyleTablist = function (props: Record<string, any>) {
+function baseStyleTablist(props: Dict) {
+  const alignments = {
+    end: "flex-end",
+    center: "center",
+    start: "flex-start",
+  }
+
   const { align = "start" } = props
 
   return {
@@ -36,7 +38,7 @@ const baseStyleTablist = function (props: Record<string, any>) {
 
 const baseStyleTabpanel = { p: 4 }
 
-const baseStyle = function (props: Record<string, any>) {
+const baseStyle = (props: Dict) => {
   return {
     tab: baseStyleTab(props),
     tablist: baseStyleTablist(props),
@@ -68,7 +70,7 @@ const sizes = {
   },
 }
 
-const variantLine = function (props: Record<string, any>) {
+function variantLine(props: Dict) {
   const { colorScheme: c } = props
   return {
     tablist: {
@@ -94,7 +96,7 @@ const variantLine = function (props: Record<string, any>) {
   }
 }
 
-const variantEnclosed = function (props: Record<string, any>) {
+function variantEnclosed(props: Dict) {
   const { colorScheme: c } = props
   return {
     tab: {
@@ -116,7 +118,7 @@ const variantEnclosed = function (props: Record<string, any>) {
   }
 }
 
-const variantEnclosedColored = function (props: Record<string, any>) {
+function variantEnclosedColored(props: Dict) {
   const { colorScheme: c } = props
   return {
     tab: {
@@ -143,7 +145,7 @@ const variantEnclosedColored = function (props: Record<string, any>) {
   }
 }
 
-const variantSoftRounded = function (props: Record<string, any>) {
+function variantSoftRounded(props: Dict) {
   const { colorScheme: c, theme } = props
   return {
     tab: {
@@ -158,7 +160,7 @@ const variantSoftRounded = function (props: Record<string, any>) {
   }
 }
 
-const variantSolidRounded = function (props: Record<string, any>) {
+function variantSolidRounded(props: Dict) {
   const { colorScheme: c } = props
   return {
     tab: {
@@ -190,10 +192,10 @@ const defaultProps = {
   colorScheme: "blue",
 }
 
-export const Tabs = {
+export default {
   parts,
+  baseStyle,
   sizes,
   variants,
-  baseStyle,
   defaultProps,
 }

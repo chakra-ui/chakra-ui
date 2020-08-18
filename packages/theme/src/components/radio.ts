@@ -1,25 +1,24 @@
-import { Checkbox } from "./checkbox"
+import Checkbox from "./checkbox"
 
 const parts = {
   control: "the radio input container",
   label: "the radio label",
 }
 
-const baseStyleControl = function (props: Record<string, any>) {
-  const { control } = Checkbox.baseStyle?.(props) ?? {}
+function baseStyleControl(props: Record<string, any>) {
+  const { control } = Checkbox.baseStyle(props)
 
   return {
     ...control,
     borderRadius: "full",
-
     _checked: {
-      ...control?.["_checked"],
+      ...control["_checked"],
       _before: {
         content: `""`,
         display: "inline-block",
-        position: "relative",
-        width: "50%",
-        height: "50%",
+        pos: "relative",
+        w: "50%",
+        h: "50%",
         borderRadius: "50%",
         bg: "currentColor",
       },
@@ -29,7 +28,7 @@ const baseStyleControl = function (props: Record<string, any>) {
 
 const baseStyle = function (props: Record<string, any>) {
   return {
-    label: Checkbox.baseStyle?.(props).label ?? {},
+    label: Checkbox.baseStyle(props).label,
     control: baseStyleControl(props),
   }
 }
@@ -54,7 +53,7 @@ const defaultProps = {
   colorScheme: "blue",
 }
 
-export const Radio = {
+export default {
   parts,
   baseStyle,
   sizes,

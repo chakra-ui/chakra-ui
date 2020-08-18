@@ -44,10 +44,8 @@
     "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
     "lint:types": "tsc --noEmit"
   },
-  "devDependencies": {
-    "@emotion/core": "10.0.28"
-  },
   "peerDependencies": {
+    "@emotion/core": "10.0.34",
     "react": "16.x"
   }
 }

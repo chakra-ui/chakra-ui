@@ -5,7 +5,7 @@ const parts = {
   thumb: "the switch inner circle",
 }
 
-const baseStyleTrack = function (props: Record<string, any>) {
+function baseStyleTrack(props: Record<string, any>) {
   const { colorScheme: c } = props
 
   return {
@@ -40,10 +40,7 @@ const baseStyle = (props: Record<string, any>) => ({
 
 const sizes = {
   sm: {
-    track: {
-      w: "1.375rem",
-      h: "0.75rem",
-    },
+    track: { w: "1.375rem", h: "0.75rem" },
     thumb: {
       w: "0.75rem",
       h: "0.75rem",
@@ -54,10 +51,7 @@ const sizes = {
   },
 
   md: {
-    track: {
-      w: "1.875rem",
-      h: "1rem",
-    },
+    track: { w: "1.875rem", h: "1rem" },
     thumb: {
       w: "1rem",
       h: "1rem",
@@ -68,10 +62,7 @@ const sizes = {
   },
 
   lg: {
-    track: {
-      w: "2.875rem",
-      h: "1.5rem",
-    },
+    track: { w: "2.875rem", h: "1.5rem" },
     thumb: {
       w: "1.5rem",
       h: "1.5rem",
@@ -87,7 +78,7 @@ const defaultProps = {
   colorScheme: "blue",
 }
 
-export const Switch = {
+export default {
   parts,
   baseStyle,
   sizes,

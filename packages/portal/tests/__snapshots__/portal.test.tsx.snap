@@ -1,7 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render in a different node 1`] = `
-<body>
+<body
+  class="chakra-ui-light"
+>
+  <div
+    id="chakra-toast-portal"
+  >
+    <span
+      id="chakra-toast-manager-top"
+      style="position: fixed; z-index: 5500; pointer-events: none; margin: 0px auto; text-align: center; top: 0px; right: 0px; left: 0px;"
+    />
+    <span
+      id="chakra-toast-manager-top-left"
+      style="position: fixed; z-index: 5500; pointer-events: none; top: 0px; left: 0px;"
+    />
+    <span
+      id="chakra-toast-manager-top-right"
+      style="position: fixed; z-index: 5500; pointer-events: none; top: 0px; right: 0px;"
+    />
+    <span
+      id="chakra-toast-manager-bottom-left"
+      style="position: fixed; z-index: 5500; pointer-events: none; bottom: 0px; left: 0px;"
+    />
+    <span
+      id="chakra-toast-manager-bottom"
+      style="position: fixed; z-index: 5500; pointer-events: none; margin: 0px auto; text-align: center; bottom: 0px; right: 0px; left: 0px;"
+    />
+    <span
+      id="chakra-toast-manager-bottom-right"
+      style="position: fixed; z-index: 5500; pointer-events: none; bottom: 0px; right: 0px;"
+    />
+  </div>
   <div>
     <div
       data-testid="parent"
@@ -30,7 +60,37 @@ exports[`should render in a different node 1`] = `
 `;
 
 exports[`should render into a custom container 1`] = `
-<body>
+<body
+  class="chakra-ui-light"
+>
+  <div
+    id="chakra-toast-portal"
+  >
+    <span
+      id="chakra-toast-manager-top"
+      style="position: fixed; z-index: 5500; pointer-events: none; margin: 0px auto; text-align: center; top: 0px; right: 0px; left: 0px;"
+    />
+    <span
+      id="chakra-toast-manager-top-left"
+      style="position: fixed; z-index: 5500; pointer-events: none; top: 0px; left: 0px;"
+    />
+    <span
+      id="chakra-toast-manager-top-right"
+      style="position: fixed; z-index: 5500; pointer-events: none; top: 0px; right: 0px;"
+    />
+    <span
+      id="chakra-toast-manager-bottom-left"
+      style="position: fixed; z-index: 5500; pointer-events: none; bottom: 0px; left: 0px;"
+    />
+    <span
+      id="chakra-toast-manager-bottom"
+      style="position: fixed; z-index: 5500; pointer-events: none; margin: 0px auto; text-align: center; bottom: 0px; right: 0px; left: 0px;"
+    />
+    <span
+      id="chakra-toast-manager-bottom-right"
+      style="position: fixed; z-index: 5500; pointer-events: none; bottom: 0px; right: 0px;"
+    />
+  </div>
   <div>
     <div
       data-testid="container"
@@ -53,7 +113,37 @@ exports[`should render into a custom container 1`] = `
 `;
 
 exports[`should render nested portal 1`] = `
-<body>
+<body
+  class="chakra-ui-light"
+>
+  <div
+    id="chakra-toast-portal"
+  >
+    <span
+      id="chakra-toast-manager-top"
+      style="position: fixed; z-index: 5500; pointer-events: none; margin: 0px auto; text-align: center; top: 0px; right: 0px; left: 0px;"
+    />
+    <span
+      id="chakra-toast-manager-top-left"
+      style="position: fixed; z-index: 5500; pointer-events: none; top: 0px; left: 0px;"
+    />
+    <span
+      id="chakra-toast-manager-top-right"
+      style="position: fixed; z-index: 5500; pointer-events: none; top: 0px; right: 0px;"
+    />
+    <span
+      id="chakra-toast-manager-bottom-left"
+      style="position: fixed; z-index: 5500; pointer-events: none; bottom: 0px; left: 0px;"
+    />
+    <span
+      id="chakra-toast-manager-bottom"
+      style="position: fixed; z-index: 5500; pointer-events: none; margin: 0px auto; text-align: center; bottom: 0px; right: 0px; left: 0px;"
+    />
+    <span
+      id="chakra-toast-manager-bottom-right"
+      style="position: fixed; z-index: 5500; pointer-events: none; bottom: 0px; right: 0px;"
+    />
+  </div>
   <div>
     <div
       class="chakra-portal-manager"
@@ -75,6 +165,34 @@ exports[`should render nested portal 1`] = `
 
 exports[`should render portal 1`] = `
 <body>
+  <div
+    id="chakra-toast-portal"
+  >
+    <span
+      id="chakra-toast-manager-top"
+      style="position: fixed; z-index: 5500; pointer-events: none; margin: 0px auto; text-align: center; top: 0px; right: 0px; left: 0px;"
+    />
+    <span
+      id="chakra-toast-manager-top-left"
+      style="position: fixed; z-index: 5500; pointer-events: none; top: 0px; left: 0px;"
+    />
+    <span
+      id="chakra-toast-manager-top-right"
+      style="position: fixed; z-index: 5500; pointer-events: none; top: 0px; right: 0px;"
+    />
+    <span
+      id="chakra-toast-manager-bottom-left"
+      style="position: fixed; z-index: 5500; pointer-events: none; bottom: 0px; left: 0px;"
+    />
+    <span
+      id="chakra-toast-manager-bottom"
+      style="position: fixed; z-index: 5500; pointer-events: none; margin: 0px auto; text-align: center; bottom: 0px; right: 0px; left: 0px;"
+    />
+    <span
+      id="chakra-toast-manager-bottom-right"
+      style="position: fixed; z-index: 5500; pointer-events: none; bottom: 0px; right: 0px;"
+    />
+  </div>
   <div>
     <div
       class="chakra-portal-manager"

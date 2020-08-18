@@ -40,7 +40,7 @@ const baseStyle = {
   panel: baseStylePanel,
 }
 
-export const Accordion = {
+export default {
   parts,
   baseStyle,
 }

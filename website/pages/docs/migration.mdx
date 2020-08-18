@@ -51,9 +51,9 @@ code, you can safely remove them and update Chakra UI to v1.
 ```diff
 "dependencies": {
   "@chakra-ui/core": "next",
+-  "@emotion/core": "10.x",
 -  "@emotion/styled": "10.X",
--  "@emotion/theming": "10.x",
--  "@emotion/core": "10.x"
+-  "emotion-theming": "10.x"
 }
 ```
 
@@ -270,7 +270,7 @@ const theme = {
   Here's how to add it for Next.js:
 
 ```jsx live=false
-// pages/_app.js
+// pages/_document.js
 import { InitializeColorMode } from "@chakra-ui/core"
 
 export default class Document extends NextDocument {
@@ -474,8 +474,9 @@ Due to accessibility reasons, we've deprecated the `isDisabled` prop for `Link`.
 - Deprecated the `isFullWidth` prop. The `Radio` takes up the width of the
   parent by default.
 
-- Deprecated `RadioButton` component. Use the `useRadio` hook to create custom
+- Deprecated the `RadioButton` component. Use the `useRadio` hook to create custom
   radio buttons.
+  Learn more about [creating custom radio buttons](/docs/form/radio#custom-radio-buttons).
 
 - The `useRadio` hook is exported with state and focus management logic for use
   in creating tailor-made radio component for your application
@@ -484,6 +485,9 @@ Due to accessibility reasons, we've deprecated the `isDisabled` prop for `Link`.
 
 - Deprecated the `isFullWidth` prop. The `RadioGroup` takes up the width of the
   parent by default.
+
+- Deprecated the `RadioButtonGroup` component. Use the `useRadioGroup` hook to control a group of custom radio buttons.
+  Learn more about [creating custom radio buttons](/docs/form/radio#custom-radio-buttons).
 
 - To allow for better Radio group layout, the `RadioGroup` component no longer
   supports every style prop. You can only pass `size`, `variant`, and

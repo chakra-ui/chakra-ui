@@ -10,6 +10,6 @@ const baseStyle = {
   },
 }
 
-export const FormLabel = {
+export default {
   baseStyle,
 }

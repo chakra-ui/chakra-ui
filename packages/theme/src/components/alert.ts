@@ -1,11 +1,5 @@
 import { getColor, mode, transparentize } from "@chakra-ui/theme-tools"
-
-function getBg(props: Record<string, any>) {
-  const { theme, colorScheme: c } = props
-  const lightBg = getColor(theme, `${c}.100`, c)
-  const darkBg = transparentize(`${c}.200`, 0.16)(theme)
-  return mode(lightBg, darkBg)(props)
-}
+type Dict = Record<string, any>
 
 const parts = {
   container: "the alert container",
@@ -13,33 +7,30 @@ const parts = {
   icon: "the alert icon",
 }
 
-const baseStyleContainer = {
-  px: 4,
-  py: 3,
-}
-
-const baseStyleTitle = {
-  fontWeight: "bold",
-  lineHeight: "normal",
-}
-
-const baseStyleIcon = {
-  mr: 3,
-  w: 5,
-  h: 5,
-}
-
 const baseStyle = {
-  container: baseStyleContainer,
-  title: baseStyleTitle,
-  icon: baseStyleIcon,
+  container: {
+    px: 4,
+    py: 3,
+  },
+  title: {
+    fontWeight: "bold",
+    lineHeight: "normal",
+  },
+  icon: {
+    mr: 3,
+    w: 5,
+    h: 5,
+  },
 }
 
-const defaultProps = {
-  variant: "subtle",
+function getBg(props: Dict) {
+  const { theme, colorScheme: c } = props
+  const lightBg = getColor(theme, `${c}.100`, c)
+  const darkBg = transparentize(`${c}.200`, 0.16)(theme)
+  return mode(lightBg, darkBg)(props)
 }
 
-const variantSubtle = function (props: Record<string, any>) {
+function variantSubtle(props: Dict) {
   const { colorScheme: c } = props
   return {
     container: { bg: getBg(props) },
@@ -47,7 +38,7 @@ const variantSubtle = function (props: Record<string, any>) {
   }
 }
 
-const variantLeftAccent = function (props: Record<string, any>) {
+function variantLeftAccent(props: Dict) {
   const { colorScheme: c } = props
   return {
     container: {
@@ -62,7 +53,7 @@ const variantLeftAccent = function (props: Record<string, any>) {
   }
 }
 
-const variantTopAccent = function (props: Record<string, any>) {
+function variantTopAccent(props: Dict) {
   const { colorScheme: c } = props
   return {
     container: {
@@ -77,7 +68,7 @@ const variantTopAccent = function (props: Record<string, any>) {
   }
 }
 
-const variantSolid = function (props: Record<string, any>) {
+function variantSolid(props: Dict) {
   const { colorScheme: c } = props
   return {
     container: {
@@ -94,7 +85,11 @@ const variants = {
   solid: variantSolid,
 }
 
-export const Alert = {
+const defaultProps = {
+  variant: "subtle",
+}
+
+export default {
   parts,
   baseStyle,
   variants,

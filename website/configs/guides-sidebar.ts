@@ -13,6 +13,10 @@ const sidebar = {
           path: "/guides/z-index",
         },
         {
+          title: "Nextjs Optimization",
+          path: "/guides/nextjs-optimization",
+        },
+        {
           title: "Integrations",
           path: "/guides/integrations",
           open: true,
