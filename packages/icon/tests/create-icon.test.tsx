@@ -98,6 +98,10 @@ it("forwards default props", () => {
   const { asFragment } = render(<Icon />)
 
   expect(asFragment()).toMatchSnapshot()
+
+  // cant check for the svg element to have some attribute as its hidden
+  // away in emotion internals creating a stylesheet and .getComputedStyle
+  // is not supported in jest-dom
 })
 
 it("forwards displayName", () => {
