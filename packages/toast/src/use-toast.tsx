@@ -12,7 +12,7 @@ import {
   ThemeProvider,
   useChakra,
 } from "@chakra-ui/system"
-import { isFunction } from "@chakra-ui/utils"
+import { Dict, isFunction } from "@chakra-ui/utils"
 import * as React from "react"
 import { toast } from "./toast.class"
 import { RenderProps, ToastId, ToastOptions } from "./toast.types"
@@ -114,62 +114,66 @@ const defaults = {
 } as const
 
 /**
- * React hook used to create a function that can be used
- * to show toasts in an application.
+ * Create a toast from outside of React Components
  */
-export function useToast() {
-  const { theme, ...colorMode } = useChakra()
-
+export function createStandaloneToast<T extends object = Dict>(theme: T) {
   return React.useMemo(() => {
     const toastImpl = function (options: UseToastOptions) {
       const { render } = options
 
-      const Message: React.FC<RenderProps> = (props) => (
+    const Message: React.FC<RenderProps> = (props) => (
+      <ThemeProvider theme={theme}>
+        <ColorModeContext.Provider value={{ colorMode, toggleColorMode }}>{isFunction(render) ? (
+          render(props)
+        ) : (
+          <Toast {...{ ...props, ...opts }} />
+        )}</ColorModeContext.Provider>
+      </ThemeProvider>
+    )
+
+    const opts = { ...defaults, ...options }
+
+    return toast.notify(Message, opts)
+  }
+
+  toastImpl.close = toast.close
+  toastImpl.closeAll = toast.closeAll
+
+  // toasts can only be updated if they have a valid id
+  toastImpl.update = (id: ToastId, options: Omit<UseToastOptions, "id">) => {
+    const { render, ...rest } = options
+
+    if (!id) return
+
+    const opts = { ...defaults, ...rest }
+
+    toast.update(id, {
+      ...opts,
+      message: (props) => (
         <ThemeProvider theme={theme}>
-          <ColorModeContext.Provider value={colorMode}>
-            {isFunction(render) ? (
-              render(props)
-            ) : (
-              <Toast {...{ ...props, ...opts }} />
-            )}
-          </ColorModeContext.Provider>
+          {isFunction(render) ? (
+            render(props)
+          ) : (
+            <Toast {...{ ...props, ...opts }} />
+          )}
         </ThemeProvider>
-      )
+      ),
+    })
+  }
 
-      const opts = { ...defaults, ...options }
+  toastImpl.isActive = toast.isActive
 
-      return toast.notify(Message, opts)
-    }
+  return toastImpl
+}
 
-    toastImpl.close = toast.close
-    toastImpl.closeAll = toast.closeAll
+/**
+ * React hook used to create a function that can be used
+ * to show toasts in an application.
+ */
+export function useToast() {
+  const { theme, colorMode, toggleColorMode } = useChakra()
 
-    // toasts can only be updated if they have a valid id
-    toastImpl.update = (id: ToastId, options: Omit<UseToastOptions, "id">) => {
-      const { render, ...rest } = options
-
-      if (!id) return
-
-      const opts = { ...defaults, ...rest }
-
-      toast.update(id, {
-        ...opts,
-        message: (props) => (
-          <ThemeProvider theme={theme}>
-            {isFunction(render) ? (
-              render(props)
-            ) : (
-              <Toast {...{ ...props, ...opts }} />
-            )}
-          </ThemeProvider>
-        ),
-      })
-    }
-
-    toastImpl.isActive = toast.isActive
-
-    return toastImpl
-  }, [colorMode, theme])
+  return React.useMemo(() => createStandaloneToast(theme), [colorMode, theme, toggleColorMode])
 }
 
 export default useToast
