@@ -130,11 +130,9 @@ const defaultProps = {
   colorScheme: "blue",
 }
 
-const slider = {
+export default {
   parts,
-  baseStyle,
   sizes,
+  baseStyle,
   defaultProps,
 }
-
-export default slider

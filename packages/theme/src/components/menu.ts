@@ -62,9 +62,7 @@ const baseStyle = function (props: Record<string, any>) {
   }
 }
 
-const menu = {
+export default {
   parts,
   baseStyle,
 }
-
-export default menu

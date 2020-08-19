@@ -1,4 +1,4 @@
-import badge from "./badge"
+import Badge from "./badge"
 
 const parts = {
   container: "the tag container",
@@ -78,13 +78,13 @@ const sizes = {
 
 const variants = {
   subtle: (props: Dict) => ({
-    container: badge.variants.subtle(props),
+    container: Badge.variants.subtle(props),
   }),
   solid: (props: Dict) => ({
-    container: badge.variants.solid(props),
+    container: Badge.variants.solid(props),
   }),
   outline: (props: Dict) => ({
-    container: badge.variants.outline(props),
+    container: Badge.variants.outline(props),
   }),
 }
 
@@ -94,12 +94,10 @@ const defaultProps = {
   colorScheme: "gray",
 }
 
-const tag = {
+export default {
   parts,
+  variants,
   baseStyle,
   sizes,
-  variants,
   defaultProps,
 }
-
-export default tag

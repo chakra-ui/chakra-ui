@@ -195,12 +195,10 @@ const defaultProps = {
   variant: "outline",
 }
 
-const input = {
+export default {
   parts,
   baseStyle,
   sizes,
   variants,
   defaultProps,
 }
-
-export default input

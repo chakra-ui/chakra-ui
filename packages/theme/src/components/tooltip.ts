@@ -15,8 +15,6 @@ function baseStyle(props: Record<string, any>) {
   }
 }
 
-const tooltip = {
+export default {
   baseStyle,
 }
-
-export default tooltip

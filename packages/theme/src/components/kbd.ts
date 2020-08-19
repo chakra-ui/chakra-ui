@@ -14,8 +14,6 @@ function baseStyle(props: Record<string, any>) {
   }
 }
 
-const kbd = {
+export default {
   baseStyle,
 }
-
-export default kbd

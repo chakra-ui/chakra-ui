@@ -8,6 +8,7 @@ import {
   GlobalStyle,
 } from "@chakra-ui/system"
 import defaultTheme from "@chakra-ui/theme"
+import { applyStyleConfigs } from "@chakra-ui/theme-tools"
 import * as React from "react"
 
 export interface ChakraProviderProps extends Partial<ThemeProviderProps> {
@@ -32,18 +33,17 @@ export interface ChakraProviderProps extends Partial<ThemeProviderProps> {
  * The global provider that must be added to make all Chakra components
  * work correctly
  */
-export const ChakraProvider: React.FC<ChakraProviderProps> = (props) => {
-  const {
-    theme = defaultTheme,
-    children,
-    storageManager,
-    resetCSS,
-    portalConfig,
-  } = props
+export const ChakraProvider: React.FC<ChakraProviderProps> = ({
+  theme = defaultTheme,
+  ...props
+}) => {
+  const { children, storageManager, resetCSS, portalConfig } = props
 
   if (!theme) {
     throw Error("ChakraProvider: the `theme` prop is required")
   }
+
+  theme = applyStyleConfigs(theme)
 
   return (
     <ThemeProvider theme={theme}>

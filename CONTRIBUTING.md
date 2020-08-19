@@ -38,8 +38,8 @@ cd chakra-ui
 ```
 
 3. Setup all dependencies and build. Chakra UI uses `yarn` and `lerna`, so run
-   `yarn bootstrap`. This command will install dependencies, bootstrap the repo
-   using `lerna` and build all packages.
+   `yarn prestart`. This command will install dependencies, and then bootstrap
+   the repo using `lerna` to build all packages.
 
 > If you run into any issues during this step, kindly reach out to the Chakra UI
 > React team here: https://discord.gg/dQHfcWF
@@ -120,7 +120,8 @@ and want to avoid running the command for all components.
 ### Documentation
 
 The documentation site is built with Gatsby. If you'd like to contribute to the
-docs, simply run `yarn docs:start`.
+docs, simply run `yarn build`, then `yarn docs:build`, and then
+`yarn docs:start`.
 
 ### Storybook
 

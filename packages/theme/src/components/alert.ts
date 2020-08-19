@@ -89,11 +89,9 @@ const defaultProps = {
   variant: "subtle",
 }
 
-const alert = {
+export default {
   parts,
   baseStyle,
   variants,
   defaultProps,
 }
-
-export default alert

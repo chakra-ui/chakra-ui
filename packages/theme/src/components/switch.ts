@@ -78,11 +78,9 @@ const defaultProps = {
   colorScheme: "blue",
 }
 
-const Switch = {
+export default {
   parts,
   baseStyle,
   sizes,
   defaultProps,
 }
-
-export default Switch

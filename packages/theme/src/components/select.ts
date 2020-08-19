@@ -1,7 +1,7 @@
 import { mode } from "@chakra-ui/theme-tools"
-import input from "./input"
+import Input from "./input"
 
-const { sizes, defaultProps, variants } = input
+const { sizes, defaultProps, variants } = Input
 
 const parts = {
   field: "the select field itself",
@@ -10,7 +10,7 @@ const parts = {
 
 function baseStyleField(props: Record<string, any>) {
   return {
-    ...input.baseStyle.field,
+    ...Input.baseStyle.field,
     appearance: "none",
     paddingBottom: "1px",
     lineHeight: "normal",
@@ -31,12 +31,10 @@ const baseStyle = (props: Record<string, any>) => ({
   icon: baseStyleInput,
 })
 
-const select = {
+export default {
   parts,
   baseStyle,
   sizes,
   variants,
   defaultProps,
 }
-
-export default select

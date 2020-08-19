@@ -1,0 +1,248 @@
+---
+title: Modify Components
+description: Documentation on how to modify the theme of Chakra components.
+order: 1
+---
+
+Chakra's theming system is quite simple for modifying styles of existing Chakra
+components (`Box`, `Tabs`, `Accordion`, etc). The basic methodology is such that
+you inherit the styles from the existing Chakra theme, and then provide a series
+of overrides. This means that whenever you upgrade to a new version of Chakra,
+you won't need to migrate all your existing styles to the new theme file.
+
+> You're not limited to the components that Chakra supplies - we have
+> documentation on how to build your own components, and allow them to be
+> theme-aware, [in later documentation](/docs/theming/create).
+
+## Modifying a single component
+
+If we want to modify the styles of components that come with Chakra, we must
+first install the default Chakra theme and then create a main `theme.js` (or
+`theme.ts`) entrypoint file:
+
+```bash
+npm i @chakra-ui/theme@next
+
+# or
+
+yarn add @chakra-ui/theme@next
+```
+
+```jsx live=false
+// theme.js
+import theme from "@chakra-ui/theme"
+
+export default theme
+```
+
+You can then later import this theme inside of your main `ChakraProvider`
+component at the root of your project:
+
+```jsx live=false
+// App.js
+import React from "react"
+import { ChakraProvider } from "@chakra-ui/core"
+
+import theme from "./theme"
+
+function App() {
+  return (
+    <ChakraProvider resetCSS theme={theme}>
+      <App />
+    </ChakraProvider>
+  )
+}
+```
+
+Fantastic! But we're not doing anything with this theme. First, make sure you
+have `@chakra-ui/utils` installed:
+
+```bash
+npm i @chakra-ui/utils@next
+
+# or
+
+yarn add @chakra-ui/utils@next
+```
+
+Then, let's override the default `fontSize` of the Chakra `<Button>` component:
+
+```jsx live=false
+// theme.js
+import theme from "@chakra-ui/theme"
+
+// 1. Import the merge function from @chakra-ui/utils
+import { merge } from "@chakra-ui/utils"
+
+// 2. Define the changes you want to make for the button
+const Button = {
+  baseStyle: {
+    fontWeight: "bold", // Normally, it's "semibold"
+  },
+}
+
+// 3. Import the Button styles into the theme.components object
+const overrides = {
+  components: {
+    Button,
+  },
+}
+
+// 4. Export the merge between the default theme at @chakra-ui/theme, combined with your overrides
+export default merge(theme, overrides)
+```
+
+And that's it!
+
+> If you're curious what component styles you can override, please reference the
+> [default component style files](https://github.com/chakra-ui/chakra-ui/tree/master/packages/theme/src/components).
+
+## Modifying the theme
+
+Not only does this apply to components, but you can also override the core theme
+settings themselves. For future reference, Chakra calls these settings the
+theme's "foundations". In short, they define the borders, colors, type styles,
+drop shadows, and other styles that you can reference from Chakra components.
+
+For instance, let's say that I want to modify what borders are available to me
+in my project. Following the same logic as before, I could add another border to
+the existing set of borders like such:
+
+```jsx live=false
+// theme.js
+import theme from "@chakra-ui/theme"
+import { merge } from "@chakra-ui/utils"
+
+/*
+  Remember, borders already contains the following keys:
+
+  const borders = {
+    none: 0,
+    "1px": "1px solid",
+    "2px": "2px solid",
+    "4px": "4px solid",
+  }
+*/
+
+const overrides = {
+  borders: {
+    "8px": "8px solid",
+  },
+}
+
+/*
+  This will produce:
+
+  const borders = {
+    none: 0,
+    "1px": "1px solid",
+    "2px": "2px solid",
+    "4px": "4px solid",
+    "8px": "8px solid",
+  }
+*/
+export default merge(theme, overrides)
+```
+
+And now, we can use that `border` definition in any component we'd like:
+
+```jsx live=false
+<Box border="8px" borderColor="red.500">
+  Thick red border
+</Box>
+```
+
+> If you're curious what theme styles you can override, please reference the
+> [default theme foundation style files](https://github.com/chakra-ui/chakra-ui/tree/master/packages/theme/src/foundations).
+
+### Modifying global styles
+
+Global styles are changed in much the same way as components or foundational
+styles. You can find them in the `theme.styles.global` object of the theme, like
+such:
+
+```jsx live=false
+// theme.js
+import theme from "@chakra-ui/theme"
+import { merge } from "@chakra-ui/utils"
+
+// You'll need the @chakra-ui/theme-tools to have access to the mode function
+import { mode } from "@chakra-ui/theme-tools"
+
+// Remember, you can access special theme variables if you
+// declare a style as a function, rather than an object.
+const overrides = {
+  styles: {
+    global: (props) => ({
+      body: {
+        fontFamily: "body",
+        color: mode("gray.800", "whiteAlpha.900")(props),
+        bg: mode("white", "gray.800")(props),
+        lineHeight: "base",
+      },
+    }),
+  },
+}
+
+// WARNING: If you do use a function in a style override, you will NOT
+// inherit the existing styles like you will with an object.
+// merge() will only merge objects, not functions
+export default merge(theme, overrides)
+```
+
+## Scaling out your project
+
+As your project grows in size, it's best to keep things organized. We highly
+suggest that instead of a single `theme.js` (or `theme.ts`) file, that you
+create a `/theme` folder in its place. Inside of this folder, you could have a
+directory structure that looks like such:
+
+```bash
+/theme
+  - index.js  # my main theme entrypoint
+  - styles.js  # all my global style overrides
+  /foundations
+    - borders.js  # all my button overrides
+  /components
+    - button.js  # all my button overrides
+```
+
+This way, you can structure your main theme entrypoint file to be much cleaner,
+like this:
+
+```jsx live=false
+// theme.js
+import theme from "@chakra-ui/theme"
+import { merge } from "@chakra-ui/utils"
+
+// Global style overrides
+import styles from "./styles.js"
+
+// Foundational style overrides...
+import border from "./foundations/borders"
+
+// Component style overrides...
+import Button from "./components/button"
+
+const overrides = {
+  styles,
+  borders,
+  // Other foundational style overrides go here...
+  components: {
+    Button,
+    // Other components go here...
+  },
+}
+
+export default merge(theme, overrides)
+```
+
+> None of this is strictly required to use Chakra - but we've learned some hard
+> lessons on the "right" way and the "wrong" way to write styles. The above is
+> our best suggestion on how to write style overrides and organize your custom
+> theme.
+
+---
+
+[In the next section](/docs/theming/create), we'll show some examples of how to
+create your own components and integrate them into the Chakra system!

@@ -97,11 +97,9 @@ const defaultProps = {
   size: "md",
 }
 
-const modal = {
+export default {
   parts,
   baseStyle,
   sizes,
   defaultProps,
 }
-
-export default modal

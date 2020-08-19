@@ -49,10 +49,8 @@ const defaultProps = {
   colorScheme: "gray",
 }
 
-const badge = {
+export default {
   baseStyle,
   variants,
   defaultProps,
 }
-
-export default badge

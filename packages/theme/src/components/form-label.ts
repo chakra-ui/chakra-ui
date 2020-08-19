@@ -10,8 +10,6 @@ const baseStyle = {
   },
 }
 
-const label = {
+export default {
   baseStyle,
 }
-
-export default label

@@ -77,11 +77,9 @@ const defaultProps = {
   size: "xs",
 }
 
-const drawer = {
+export default {
   parts,
   baseStyle,
   sizes,
   defaultProps,
 }
-
-export default drawer

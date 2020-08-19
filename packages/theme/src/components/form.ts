@@ -47,9 +47,7 @@ const baseStyle = (props: Dict) => ({
   errorIcon: baseStyleErrorIcon(props),
 })
 
-const form = {
+export default {
   parts,
   baseStyle,
 }
-
-export default form

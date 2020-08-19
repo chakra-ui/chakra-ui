@@ -192,12 +192,10 @@ const defaultProps = {
   colorScheme: "blue",
 }
 
-const tabs = {
+export default {
   parts,
   baseStyle,
   sizes,
   variants,
   defaultProps,
 }
-
-export default tabs

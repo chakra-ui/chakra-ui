@@ -17,8 +17,6 @@ const baseStyle = {
   },
 }
 
-const link = {
+export default {
   baseStyle,
 }
-
-export default link

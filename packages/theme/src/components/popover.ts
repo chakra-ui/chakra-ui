@@ -50,9 +50,7 @@ const baseStyle = function (props: Record<string, any>) {
   }
 }
 
-const popover = {
+export default {
   parts,
   baseStyle,
 }
-
-export default popover

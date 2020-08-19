@@ -77,11 +77,9 @@ const defaultProps = {
   size: "md",
 }
 
-const avatar = {
+export default {
   parts,
   baseStyle,
   sizes,
   defaultProps,
 }
-
-export default avatar

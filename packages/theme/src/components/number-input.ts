@@ -1,5 +1,5 @@
 import { mode } from "@chakra-ui/theme-tools"
-import input from "./input"
+import Input from "./input"
 
 const parts = {
   field: "the input field",
@@ -7,9 +7,9 @@ const parts = {
   stepperGroup: "desktop - the increment and decrement button group",
 }
 
-const { variants, defaultProps } = input
+const { variants, defaultProps } = Input
 
-const baseStyleField = input.baseStyle?.field
+const baseStyleField = Input.baseStyle?.field
 
 const baseStyleStepperGroup = {
   width: "24px",
@@ -39,7 +39,7 @@ const baseStyle = function (props: Record<string, any>) {
 }
 
 function getSize(size: "sm" | "md" | "lg") {
-  const sizeStyle = input.sizes?.[size]
+  const sizeStyle = Input.sizes?.[size]
 
   const radius = {
     lg: "md",
@@ -69,12 +69,10 @@ const sizes = {
   lg: getSize("lg"),
 }
 
-const numberInput = {
+export default {
   parts,
   baseStyle,
   sizes,
   variants,
   defaultProps,
 }
-
-export default numberInput
