@@ -21,10 +21,10 @@ test("Standalone toast renders correctly", async () => {
     return null
   }
 
-  const { findAllByText } = render(<ToastContainer />)
+  const screen = render(<ToastContainer />)
 
-  const allByTitle = await findAllByText(title)
-  const allByDescription = await findAllByText(description)
+  const allByTitle = await screen.findAllByText(title)
+  const allByDescription = await screen.findAllByText(description)
 
   expect(allByTitle).toHaveLength(1)
   expect(allByDescription).toHaveLength(1)
