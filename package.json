@@ -141,7 +141,7 @@
     "@jest/types": "26.3.0",
     "@storybook/addon-a11y": "6.0.12",
     "@storybook/addon-actions": "6.0.12",
-    "@storybook/addon-knobs": "6.0.12",
+    "@storybook/addon-knobs": "6.0.13",
     "@storybook/cli": "6.0.12",
     "@storybook/react": "6.0.12",
     "@types/jest": "26.0.10",
