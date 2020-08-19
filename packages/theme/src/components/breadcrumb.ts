@@ -1,7 +1,4 @@
-const parts = {
-  link: "the breadcrumb",
-  separator: "the separator between each link",
-}
+const parts = ["link", "separator"]
 
 const baseStyleLink = {
   transition: "all 0.15s ease-out",

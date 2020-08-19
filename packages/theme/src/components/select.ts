@@ -3,10 +3,7 @@ import Input from "./input"
 
 const { sizes, defaultProps, variants } = Input
 
-const parts = {
-  field: "the select field itself",
-  icon: "the select field icon",
-}
+const parts = ["field", "icon"]
 
 function baseStyleField(props: Record<string, any>) {
   return {

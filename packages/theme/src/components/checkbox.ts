@@ -1,11 +1,6 @@
 import { mode } from "@chakra-ui/theme-tools"
 
-const parts = {
-  control: "the main checkbox container",
-  label: "the checkbox label",
-  description: "the checkbox assistive text",
-  icon: "the checkmark icon",
-}
+const parts = ["control", "label", "description", "icon"]
 
 function baseStyleControl(props: Record<string, any>) {
   const { colorScheme: c } = props

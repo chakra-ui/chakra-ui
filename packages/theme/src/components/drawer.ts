@@ -1,12 +1,6 @@
 import { mode } from "@chakra-ui/theme-tools"
 
-const parts = {
-  overlay: "the overlay or shim",
-  content: "the main content wrapper",
-  header: "the content heading",
-  body: "the main content area",
-  footer: "the action footer",
-}
+const parts = ["overlay", "content", "header", "body", "footer"]
 
 /**
  * Since the `maxWidth` prop references theme.sizes internally,

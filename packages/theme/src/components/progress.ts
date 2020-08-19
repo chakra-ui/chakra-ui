@@ -1,11 +1,7 @@
 import { generateStripe, getColor, mode } from "@chakra-ui/theme-tools"
 type Dict = Record<string, any>
 
-const parts = {
-  track: "the linear progress track",
-  filledTrack: "the inner filled track",
-  label: "the value indicator or label",
-}
+const parts = ["track", "filledTrack", "panel"]
 
 function filledStyle(props: Dict) {
   const { colorScheme: c, theme: t, isIndeterminate, hasStripe } = props

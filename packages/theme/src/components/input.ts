@@ -1,9 +1,6 @@
 import { getColor, mode } from "@chakra-ui/theme-tools"
 
-const parts = {
-  field: "the input field itself",
-  addon: "the left and right input addon",
-}
+const parts = ["field", "addon"]
 
 const baseStyle = {
   field: {

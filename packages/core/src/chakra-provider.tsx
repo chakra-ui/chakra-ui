@@ -8,7 +8,6 @@ import {
   GlobalStyle,
 } from "@chakra-ui/system"
 import defaultTheme from "@chakra-ui/theme"
-import { applyStyleConfigs } from "@chakra-ui/theme-tools"
 import * as React from "react"
 
 export interface ChakraProviderProps extends Partial<ThemeProviderProps> {
@@ -42,8 +41,6 @@ export const ChakraProvider: React.FC<ChakraProviderProps> = ({
   if (!theme) {
     throw Error("ChakraProvider: the `theme` prop is required")
   }
-
-  theme = applyStyleConfigs(theme)
 
   return (
     <ThemeProvider theme={theme}>

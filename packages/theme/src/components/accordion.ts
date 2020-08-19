@@ -1,8 +1,4 @@
-const parts = {
-  container: "the container for an accordion item",
-  button: "the trigger for an accordion item",
-  panel: "the panel for an accordion item",
-}
+const parts = ["container", "button", "panel"]
 
 const baseStyleContainer = {
   borderTopWidth: "1px",

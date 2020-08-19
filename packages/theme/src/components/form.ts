@@ -2,12 +2,7 @@ import { mode } from "@chakra-ui/theme-tools"
 
 type Dict = Record<string, any>
 
-const parts = {
-  errorText: "the error message",
-  errorIcon: "the error icon",
-  requiredIndicator: "the requied asterisks",
-  helperText: "the helper text",
-}
+const parts = ["errorText", "errorIcon", "requiredIndicator", "helperText"]
 
 function baseStyleErrorText(props: Dict) {
   return {

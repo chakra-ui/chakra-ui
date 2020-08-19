@@ -1,12 +1,7 @@
 import { isDark, mode, randomColor } from "@chakra-ui/theme-tools"
 import themeSizes from "../foundations/sizes"
 
-const parts = {
-  container: "the avatar wrapper",
-  excessLabel: "for avatar group, the excess avatar label",
-  badge: "the top or bottom left badge",
-  label: "the avatar's name initials text",
-}
+const parts = ["container", "excessLabel", "badge", "label"]
 
 function baseStyleBadge(props: Record<string, any>) {
   return {

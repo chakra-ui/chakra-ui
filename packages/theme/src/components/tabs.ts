@@ -1,11 +1,6 @@
 import { getColor, mode } from "@chakra-ui/theme-tools"
 
-const parts = {
-  tablist: "the tab list or button group",
-  tab: "the tab button",
-  tabpanel: "the tab content",
-  indicator: "the active tab indicator",
-}
+const parts = ["tablist", "tab", "tabpanel", "indicator"]
 
 type Dict = Record<string, any>
 

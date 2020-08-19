@@ -1,9 +1,4 @@
-const parts = {
-  label: "the stat label",
-  number: "the numeric value of the stat",
-  icon: "the stat icon, if used",
-  helpText: "the stat description text",
-}
+const parts = ["label", "number", "icon", "helpText"]
 
 const baseStyleLabel = {
   fontWeight: "medium",

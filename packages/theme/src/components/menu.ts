@@ -1,12 +1,6 @@
 import { mode } from "@chakra-ui/theme-tools"
 
-const parts = {
-  item: "the menu item button",
-  command: "the menu item command",
-  list: "the menu items wrapper",
-  button: "the menu list trigger",
-  groupTitle: "the menu group title",
-}
+const parts = ["item", "command", "list", "button", "groupTitle"]
 
 function baseStyleList(props: Record<string, any>) {
   return {

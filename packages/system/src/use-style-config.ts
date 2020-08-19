@@ -3,24 +3,22 @@ import { filterUndefined, get, merge, runIfFn } from "@chakra-ui/utils"
 import { useMemo, useRef } from "react"
 import isEqual from "react-fast-compare"
 import { useChakra } from "./hooks"
-
-interface ThemingProps {
-  variant?: string
-  size?: string
-}
+import { ThemingProps } from "./system.types"
 
 export function useStyleConfig(
   themeKey: string,
-  options: { isMultiPart: true } & ThemingProps,
+  props: ThemingProps,
+  opts: { isMultiPart: true },
 ): Record<string, SystemStyleObject>
 
 export function useStyleConfig(
   themeKey: string,
-  options?: { isMultiPart?: boolean } & ThemingProps,
+  props?: ThemingProps,
+  opts?: { isMultiPart?: boolean },
 ): SystemStyleObject
 
-export function useStyleConfig(themeKey: any, options: any) {
-  const { styleConfig: styleConfigProp, ...rest } = options
+export function useStyleConfig(themeKey: any, props: any, opts: any) {
+  const { styleConfig: styleConfigProp, ...rest } = props
 
   const { theme, colorMode } = useChakra()
   const themeStyleConfig = get(theme, `components.${themeKey}`)
@@ -54,6 +52,12 @@ export function useStyleConfig(themeKey: any, options: any) {
 
       const styles = merge({}, baseStyles, sizes, variants)
 
+      if (opts?.isMultiPart && styleConfig.parts) {
+        for (const part of styleConfig.parts) {
+          styles[part] = styles[part] ?? {}
+        }
+      }
+
       const isStyleEqual = isEqual(stylesRef.current, styles)
 
       if (!isStyleEqual) {
@@ -62,5 +66,9 @@ export function useStyleConfig(themeKey: any, options: any) {
     }
 
     return stylesRef.current
-  }, [styleConfig, mergedProps])
+  }, [styleConfig, mergedProps, opts?.isMultiPart])
+}
+
+export function useMultiStyleConfig(themeKey: string, props: any) {
+  return useStyleConfig(themeKey, props, { isMultiPart: true })
 }

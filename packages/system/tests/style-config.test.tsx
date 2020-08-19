@@ -46,11 +46,11 @@ test("should resolve styles in theme", async () => {
 
 test("should resolve multipart styles in theme", async () => {
   const Component = () => {
-    const styles = useStyleConfig("Tabs", {
+    const props = {
       size: "sm",
       variant: "outline",
-      isMultiPart: true,
-    })
+    }
+    const styles = useStyleConfig("Tabs", props, { isMultiPart: true })
     return <>{JSON.stringify(styles, null, 2)}</>
   }
 
@@ -110,7 +110,8 @@ test("should resolve multipart styles in theme", async () => {
       "tablist": {
         "p": 4,
         "border": "1px solid"
-      }
+      },
+      "tabpanel": {}
     }
     </DocumentFragment>
   `)

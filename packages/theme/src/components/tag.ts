@@ -1,10 +1,6 @@
 import Badge from "./badge"
 
-const parts = {
-  container: "the tag container",
-  label: "the tag inner text",
-  closeButton: "the close button",
-}
+const parts = ["container", "label", "closeButton"]
 
 type Dict = Record<string, any>
 

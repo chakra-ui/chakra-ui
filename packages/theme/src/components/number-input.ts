@@ -1,11 +1,7 @@
 import { mode } from "@chakra-ui/theme-tools"
 import Input from "./input"
 
-const parts = {
-  field: "the input field",
-  stepper: "desktop - the increment and decrement button",
-  stepperGroup: "desktop - the increment and decrement button group",
-}
+const parts = ["field", "stepper", "stepperGroup"]
 
 const { variants, defaultProps } = Input
 
