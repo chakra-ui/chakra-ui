@@ -1,0 +1,164 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`accepts a single path 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 1em;
+  color: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+}
+
+<svg
+    class="chakra-icon emotion-0"
+    focusable="false"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M69.56 133.99l87.59-87c1.64-1.62 4.27.36 3.17 2.38l-32.6 59.76a2 2 0 001.75 2.95h56.34a2 2 0 011.36 3.47l-98.72 92.14c-1.78 1.65-4.41-.68-2.99-2.64l46.74-64.47a2 2 0 00-1.62-3.18H70.97a2 2 0 01-1.41-3.41z"
+      fill="#fff"
+    />
+  </svg>
+</DocumentFragment>
+`;
+
+exports[`accepts multiple paths 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 1em;
+  color: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+}
+
+<svg
+    class="chakra-icon emotion-0"
+    focusable="false"
+    viewBox="0 0 24 24"
+  >
+    <title>
+      Chakra Logo
+    </title>
+    <rect
+      fill="url(#paint0_linear)"
+      height="257"
+      rx="128.5"
+      width="257"
+    />
+    <path
+      d="M69.56 133.99l87.59-87c1.64-1.62 4.27.36 3.17 2.38l-32.6 59.76a2 2 0 001.75 2.95h56.34a2 2 0 011.36 3.47l-98.72 92.14c-1.78 1.65-4.41-.68-2.99-2.64l46.74-64.47a2 2 0 00-1.62-3.18H70.97a2 2 0 01-1.41-3.41z"
+      fill="#fff"
+    />
+    <defs>
+      <lineargradient
+        gradientUnits="userSpaceOnUse"
+        id="paint0_linear"
+        x1="128.5"
+        x2="128.5"
+        y2="257"
+      >
+        <stop
+          offset="0"
+          stop-color="#7BCBD4"
+        />
+        <stop
+          offset="1"
+          stop-color="#29C6B7"
+        />
+      </lineargradient>
+    </defs>
+  </svg>
+</DocumentFragment>
+`;
+
+exports[`forwards d attribute onto a path element 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 1em;
+  color: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+}
+
+<svg
+    class="chakra-icon emotion-0"
+    focusable="false"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M69.56 133.99l87.59-87c1.64-1.62 4.27.36 3.17 2.38l-32.6 59.76a2 2 0 001.75 2.95h56.34a2 2 0 011.36 3.47l-98.72 92.14c-1.78 1.65-4.41-.68-2.99-2.64l46.74-64.47a2 2 0 00-1.62-3.18H70.97a2 2 0 01-1.41-3.41z"
+      fill="currentColor"
+    />
+  </svg>
+</DocumentFragment>
+`;
+
+exports[`forwards default props 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 1em;
+  color: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+  fill: none;
+}
+
+<svg
+    class="chakra-icon emotion-0"
+    focusable="false"
+    viewBox="0 0 24 24"
+  >
+    <title>
+      Chakra Logo
+    </title>
+    <rect
+      fill="url(#paint0_linear)"
+      height="257"
+      rx="128.5"
+      width="257"
+    />
+    <path
+      d="M69.56 133.99l87.59-87c1.64-1.62 4.27.36 3.17 2.38l-32.6 59.76a2 2 0 001.75 2.95h56.34a2 2 0 011.36 3.47l-98.72 92.14c-1.78 1.65-4.41-.68-2.99-2.64l46.74-64.47a2 2 0 00-1.62-3.18H70.97a2 2 0 01-1.41-3.41z"
+      fill="#fff"
+    />
+    <defs>
+      <lineargradient
+        gradientUnits="userSpaceOnUse"
+        id="paint0_linear"
+        x1="128.5"
+        x2="128.5"
+        y2="257"
+      >
+        <stop
+          offset="0"
+          stop-color="#7BCBD4"
+        />
+        <stop
+          offset="1"
+          stop-color="#29C6B7"
+        />
+      </lineargradient>
+    </defs>
+  </svg>
+</DocumentFragment>
+`;
