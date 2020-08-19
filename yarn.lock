@@ -10,14 +10,6 @@
     cross-fetch "3.0.5"
     lru-cache "5.1.1"
 
-"@ampproject/toolbox-core@^2.6.0":
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/@ampproject/toolbox-core/-/toolbox-core-2.6.0.tgz#9824d5f133d82106a9bf0774920843c69fa5c869"
-  integrity sha512-sDMnHj8WaX3tqJS5VsIHkeW98nq5WQ0C9RoFc1PPS3rmYIlS0vhAfHbrjJw6wtuxBTQFxccje+Ew+2OJ2D15kA==
-  dependencies:
-    cross-fetch "3.0.5"
-    lru-cache "6.0.0"
-
 "@ampproject/toolbox-optimizer@2.5.14":
   version "2.5.14"
   resolved "https://registry.yarnpkg.com/@ampproject/toolbox-optimizer/-/toolbox-optimizer-2.5.14.tgz#3235919e730e017ec4e54718e76ca5db8bd003e9"
@@ -41,43 +33,12 @@
     postcss-safe-parser "4.0.2"
     terser "4.8.0"
 
-"@ampproject/toolbox-optimizer@2.6.0":
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/@ampproject/toolbox-optimizer/-/toolbox-optimizer-2.6.0.tgz#e1bde0697d0fb25ab888bc0d0422998abaf6bad1"
-  integrity sha512-saToXVopb15a6zKK6kW4B1N/sYZZddkECcqmfTotRxJ2DaLE+wFB6jgWLbaPkgHwvLPQyA2IjV9BHJ/KUFuGzg==
-  dependencies:
-    "@ampproject/toolbox-core" "^2.6.0"
-    "@ampproject/toolbox-runtime-version" "^2.6.0"
-    "@ampproject/toolbox-script-csp" "^2.5.4"
-    "@ampproject/toolbox-validator-rules" "^2.5.4"
-    abort-controller "3.0.0"
-    cross-fetch "3.0.5"
-    cssnano-simple "1.0.5"
-    dom-serializer "1.0.1"
-    domhandler "3.0.0"
-    domutils "2.1.0"
-    htmlparser2 "4.1.0"
-    https-proxy-agent "5.0.0"
-    lru-cache "6.0.0"
-    node-fetch "2.6.0"
-    normalize-html-whitespace "1.0.0"
-    postcss "7.0.32"
-    postcss-safe-parser "4.0.2"
-    terser "4.8.0"
-
 "@ampproject/toolbox-runtime-version@^2.5.4":
   version "2.5.4"
   resolved "https://registry.yarnpkg.com/@ampproject/toolbox-runtime-version/-/toolbox-runtime-version-2.5.4.tgz#ed6e77df3832f551337bca3706b5a4e2f36d66f9"
   integrity sha512-7vi/F91Zb+h1CwR8/on/JxZhp3Hhz6xJOOHxRA025aUFEFHV5c35B4QbTdt2MObWZrysogXFOT8M95dgU/hsKw==
   dependencies:
     "@ampproject/toolbox-core" "^2.5.4"
-
-"@ampproject/toolbox-runtime-version@^2.6.0":
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/@ampproject/toolbox-runtime-version/-/toolbox-runtime-version-2.6.0.tgz#c2a310840a6c60a7f5046d2ccaf45646a761bd4f"
-  integrity sha512-wT+Ehsoq2PRXqpgjebygHD01BpSlaAE4HfDEVxgPVT8oAsLzE4ywZgzI2VQZfaCdb8qLyO5+WXrLSoJXxDBo2Q==
-  dependencies:
-    "@ampproject/toolbox-core" "^2.6.0"
 
 "@ampproject/toolbox-script-csp@^2.5.4":
   version "2.5.4"
@@ -563,7 +524,7 @@
     "@babel/helper-plugin-utils" "^7.10.4"
     "@babel/plugin-syntax-export-default-from" "^7.10.4"
 
-"@babel/plugin-proposal-export-namespace-from@7.10.4", "@babel/plugin-proposal-export-namespace-from@^7.10.4":
+"@babel/plugin-proposal-export-namespace-from@^7.10.4":
   version "7.10.4"
   resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-export-namespace-from/-/plugin-proposal-export-namespace-from-7.10.4.tgz#570d883b91031637b3e2958eea3c438e62c05f54"
   integrity sha512-aNdf0LY6/3WXkhh0Fdb6Zk9j1NMD8ovj3F6r0+3j837Pn1S1PdNtcwJ5EG9WkVPNHPxyJDaxMaAOVq4eki0qbg==
@@ -3162,31 +3123,10 @@
     stacktrace-parser "0.1.10"
     strip-ansi "6.0.0"
 
-"@next/react-dev-overlay@9.5.2":
-  version "9.5.2"
-  resolved "https://registry.yarnpkg.com/@next/react-dev-overlay/-/react-dev-overlay-9.5.2.tgz#5d7878782e2819926b0dcd0f880c26ed527e9880"
-  integrity sha512-L0MbB8tX94lGwLOICCncuyYIrStkUXRG1SNgGFG/J5X5peJpDac8UOUJCtnFnE+ptJTBfQ76jWG2rqatE+Fu0A==
-  dependencies:
-    "@babel/code-frame" "7.8.3"
-    ally.js "1.4.1"
-    anser "1.4.9"
-    chalk "4.0.0"
-    classnames "2.2.6"
-    data-uri-to-buffer "3.0.0"
-    shell-quote "1.7.2"
-    source-map "0.8.0-beta.0"
-    stacktrace-parser "0.1.10"
-    strip-ansi "6.0.0"
-
 "@next/react-refresh-utils@9.5.1":
   version "9.5.1"
   resolved "https://registry.yarnpkg.com/@next/react-refresh-utils/-/react-refresh-utils-9.5.1.tgz#fe257fafe1a7f1c0c6e818017fa65b5ee45c5eca"
   integrity sha512-A19z/E6f08RXfBRc2STQ+5qo7iSPif7mNcww9dZAVli3Idu4umGP5dbpL71Hz1vyRs1eMUEylXTpXsY2WzY07g==
-
-"@next/react-refresh-utils@9.5.2":
-  version "9.5.2"
-  resolved "https://registry.yarnpkg.com/@next/react-refresh-utils/-/react-refresh-utils-9.5.2.tgz#5d92d8ad0f2bd79de2290614e74e5a12a0cda02b"
-  integrity sha512-ch/16u3OVy/aIXJROwqXZjGw/tFMyG7qy2IGDA2RFjvQMtPyJJrklmwX2EcfH4+4spRI2MZKes2soI+0w2/MDQ==
 
 "@nodelib/fs.scandir@2.1.3":
   version "2.1.3"
@@ -5406,13 +5346,6 @@ agent-base@5:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/agent-base/-/agent-base-5.1.1.tgz#e8fb3f242959db44d63be665db7a8e739537a32c"
   integrity sha512-TMeqbNl2fMW0nMjTEPOwe3J/PRFP4vqeoNuQMG0HlMrtm5QxKqdvAkZ1pRBQ/ulIyDD5Yq0nJ7YbdD8ey0TO3g==
-
-agent-base@6:
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/agent-base/-/agent-base-6.0.1.tgz#808007e4e5867decb0ab6ab2f928fbdb5a596db4"
-  integrity sha512-01q25QQDwLSsyfhrKbn8yuur+JNw0H+0Y4JiGIKd3z9aYk/w/2kxD/Upc+t2ZBBSUNff50VjPsSW2YxM8QYKVg==
-  dependencies:
-    debug "4"
 
 agent-base@~4.2.1:
   version "4.2.1"
@@ -8115,7 +8048,7 @@ cross-spawn@^7.0.0, cross-spawn@^7.0.1, cross-spawn@^7.0.2:
     shebang-command "^2.0.0"
     which "^2.0.1"
 
-crypto-browserify@3.12.0, crypto-browserify@^3.11.0:
+crypto-browserify@^3.11.0:
   version "3.12.0"
   resolved "https://registry.yarnpkg.com/crypto-browserify/-/crypto-browserify-3.12.0.tgz#396cf9f3137f03e4b8e532c58f698254e00f80ec"
   integrity sha512-fz4spIh+znjO2VjL+IdhEpRJ3YN6sMzITSBijk6FK2UvTqruSQW+/cCZTSNsMiZNvUeq0CqurF+dAbyiGOY6Wg==
@@ -8382,28 +8315,12 @@ cssnano-preset-simple@1.1.4:
   dependencies:
     postcss "^7.0.32"
 
-cssnano-preset-simple@1.1.7:
-  version "1.1.7"
-  resolved "https://registry.yarnpkg.com/cssnano-preset-simple/-/cssnano-preset-simple-1.1.7.tgz#38378118f156b3f4bf85c38a0b2fd06a1bdc7228"
-  integrity sha512-GVOJVQ1l5KI5sRaM9HOXCwYn78dmsLYoyJTYJcORhl9Tz44xDlP8Al6EvBdFIOvH6+wZlHcsMftlh1pwswuLeA==
-  dependencies:
-    caniuse-lite "^1.0.30001093"
-    postcss "^7.0.32"
-
 cssnano-simple@1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/cssnano-simple/-/cssnano-simple-1.0.5.tgz#66ee528f3a4e60754e2625ea9f51ac315f5f0a92"
   integrity sha512-NJjx2Er1C3pa75v1GwMKm0w6xAp1GsW2Ql1As4CWPNFxTgYFN5e8wblYeHfna13sANAhyIdSIPqKJjBO4CU5Eg==
   dependencies:
     cssnano-preset-simple "1.1.4"
-    postcss "^7.0.32"
-
-cssnano-simple@1.0.7:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/cssnano-simple/-/cssnano-simple-1.0.7.tgz#a812571ee6ae25817434d4b926d5e83ea4b0e7dd"
-  integrity sha512-jjmSazE36Bl77zBcNQ9efcUdxQevKkrqkE5FqgHbcb3GQASnWrOU3PLF+DR3c7lDZxi1vtLvuJMtfL5QLkCGdw==
-  dependencies:
-    cssnano-preset-simple "1.1.7"
     postcss "^7.0.32"
 
 cssnano-util-get-arguments@^4.0.0:
@@ -11732,14 +11649,6 @@ https-browserify@^1.0.0:
   resolved "https://registry.yarnpkg.com/https-browserify/-/https-browserify-1.0.0.tgz#ec06c10e0a34c0f2faf199f7fd7fc78fffd03c73"
   integrity sha1-7AbBDgo0wPL68Zn3/X/Hj//QPHM=
 
-https-proxy-agent@5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/https-proxy-agent/-/https-proxy-agent-5.0.0.tgz#e2a90542abb68a762e0a0850f6c9edadfd8506b2"
-  integrity sha512-EkYm5BcKUGiduxzSt3Eppko+PiNWNEpa4ySk9vTC6wDsQJW9rHSa+UhGNJoRYp7bz6Ht1eaRIa6QaJqO5rCFbA==
-  dependencies:
-    agent-base "6"
-    debug "4"
-
 https-proxy-agent@^2.2.3:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/https-proxy-agent/-/https-proxy-agent-2.2.4.tgz#4ee7a737abd92678a293d9b34a1af4d0d08c787b"
@@ -11961,7 +11870,7 @@ inflight@^1.0.4:
     once "^1.3.0"
     wrappy "1"
 
-inherits@2, inherits@2.0.4, inherits@^2.0.0, inherits@^2.0.1, inherits@^2.0.3, inherits@^2.0.4, inherits@~2.0.1, inherits@~2.0.3, inherits@~2.0.4:
+inherits@2, inherits@2.0.4, inherits@^2.0.0, inherits@^2.0.1, inherits@^2.0.3, inherits@^2.0.4, inherits@~2.0.1, inherits@~2.0.3:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.4.tgz#0fa2c64f932917c3433a0ded55363aae37416b7c"
   integrity sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==
@@ -14546,7 +14455,7 @@ lru-cache@5.1.1, lru-cache@^5.1.1:
   dependencies:
     yallist "^3.0.2"
 
-lru-cache@6.0.0, lru-cache@^6.0.0:
+lru-cache@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-6.0.0.tgz#6d6fe6570ebd96aaf90fcad1dafa3b2566db3a94"
   integrity sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==
@@ -15422,72 +15331,6 @@ next@9.5.1, next@^9.4.4:
     watchpack "2.0.0-beta.13"
     web-vitals "0.2.1"
     webpack "4.44.0"
-    webpack-sources "1.4.3"
-
-next@9.5.2:
-  version "9.5.2"
-  resolved "https://registry.yarnpkg.com/next/-/next-9.5.2.tgz#ef9b77455b32dca0e917c763529de25c11b5c442"
-  integrity sha512-wasNxEE4tXXalPoUc7B5Ph3tpByIo7IqodE9iHhp61B/3/vG2zi2BGnCJjZQwFeuotUEQl93krz/0Tp4vd0DsQ==
-  dependencies:
-    "@ampproject/toolbox-optimizer" "2.6.0"
-    "@babel/code-frame" "7.8.3"
-    "@babel/core" "7.7.7"
-    "@babel/plugin-proposal-class-properties" "7.8.3"
-    "@babel/plugin-proposal-export-namespace-from" "7.10.4"
-    "@babel/plugin-proposal-nullish-coalescing-operator" "7.8.3"
-    "@babel/plugin-proposal-numeric-separator" "7.8.3"
-    "@babel/plugin-proposal-object-rest-spread" "7.9.6"
-    "@babel/plugin-proposal-optional-chaining" "7.9.0"
-    "@babel/plugin-syntax-bigint" "7.8.3"
-    "@babel/plugin-syntax-dynamic-import" "7.8.3"
-    "@babel/plugin-transform-modules-commonjs" "7.9.6"
-    "@babel/plugin-transform-runtime" "7.9.6"
-    "@babel/preset-env" "7.9.6"
-    "@babel/preset-modules" "0.1.3"
-    "@babel/preset-react" "7.9.4"
-    "@babel/preset-typescript" "7.9.0"
-    "@babel/runtime" "7.9.6"
-    "@babel/types" "7.9.6"
-    "@next/react-dev-overlay" "9.5.2"
-    "@next/react-refresh-utils" "9.5.2"
-    ast-types "0.13.2"
-    babel-plugin-syntax-jsx "6.18.0"
-    babel-plugin-transform-define "2.0.0"
-    babel-plugin-transform-react-remove-prop-types "0.4.24"
-    browserslist "4.13.0"
-    buffer "5.6.0"
-    cacache "13.0.1"
-    chokidar "2.1.8"
-    crypto-browserify "3.12.0"
-    css-loader "3.5.3"
-    cssnano-simple "1.0.7"
-    find-cache-dir "3.3.1"
-    jest-worker "24.9.0"
-    loader-utils "2.0.0"
-    mini-css-extract-plugin "0.8.0"
-    mkdirp "0.5.3"
-    native-url "0.3.4"
-    neo-async "2.6.1"
-    node-html-parser "^1.2.19"
-    path-browserify "1.0.1"
-    pnp-webpack-plugin "1.6.4"
-    postcss "7.0.32"
-    process "0.11.10"
-    prop-types "15.7.2"
-    prop-types-exact "1.2.0"
-    react-is "16.13.1"
-    react-refresh "0.8.3"
-    resolve-url-loader "3.1.1"
-    sass-loader "8.0.2"
-    schema-utils "2.6.6"
-    stream-browserify "3.0.0"
-    style-loader "1.2.1"
-    styled-jsx "3.3.0"
-    use-subscription "1.4.1"
-    vm-browserify "1.1.2"
-    watchpack "2.0.0-beta.13"
-    web-vitals "0.2.1"
-    webpack "4.44.1"
     webpack-sources "1.4.3"
 
 nice-try@^1.0.4:
@@ -16394,11 +16237,6 @@ path-browserify@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/path-browserify/-/path-browserify-0.0.1.tgz#e6c4ddd7ed3aa27c68a20cc4e50e1a4ee83bbc4a"
   integrity sha512-BapA40NHICOS+USX9SN4tyhq+A2RrN/Ws5F0Z5aMHDp98Fl86lX8Oti8B7uN93L4Ifv4fHOEA+pQw87gmMO/lQ==
-
-path-browserify@1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/path-browserify/-/path-browserify-1.0.1.tgz#d98454a9c3753d5790860f16f68867b9e46be1fd"
-  integrity sha512-b7uo2UCUOYZcnF/3ID0lulOJi/bafxa1xPe7ZPsammBSpjSWQkjNxlt635YGS2MiR9GjvuXCtz2emr3jbsz98g==
 
 path-dirname@^1.0.0:
   version "1.0.2"
@@ -18473,7 +18311,7 @@ read@1, read@~1.0.1:
     string_decoder "~1.1.1"
     util-deprecate "~1.0.1"
 
-"readable-stream@2 || 3", readable-stream@^3.0.2, readable-stream@^3.0.6, readable-stream@^3.1.1, readable-stream@^3.4.0, readable-stream@^3.5.0, readable-stream@^3.6.0:
+"readable-stream@2 || 3", readable-stream@^3.0.2, readable-stream@^3.0.6, readable-stream@^3.1.1, readable-stream@^3.4.0, readable-stream@^3.6.0:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-3.6.0.tgz#337bbda3adc0706bd3e024426a286d4b4b2c9198"
   integrity sha512-BViHy7LKeTz4oNnkcLJ+lVSL6vpiFeX6/d3oSH8zCW7UxP2onchk+vTGB143xuFjHS3deTgkKoXXymXqymiIdA==
@@ -19999,14 +19837,6 @@ storybook-addon-performance@0.12.0:
     styled-components "^5.1.1"
     tiny-invariant "^1.1.0"
     xstate "^4.11.0"
-
-stream-browserify@3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/stream-browserify/-/stream-browserify-3.0.0.tgz#22b0a2850cdf6503e73085da1fc7b7d0c2122f2f"
-  integrity sha512-H73RAHsVBapbim0tU2JwwOiXUj+fikfiaoYAKHF3VJfA0pe2BCzkhAHBlLG6REzE+2WNZcxOXjK7lkso+9euLA==
-  dependencies:
-    inherits "~2.0.4"
-    readable-stream "^3.5.0"
 
 stream-browserify@^2.0.1:
   version "2.0.2"
@@ -21598,7 +21428,7 @@ vlq@^1.0.0:
   resolved "https://registry.yarnpkg.com/vlq/-/vlq-1.0.1.tgz#c003f6e7c0b4c1edd623fd6ee50bbc0d6a1de468"
   integrity sha512-gQpnTgkubC6hQgdIcRdYGDSDc+SaujOdyesZQMv6JlfQee/9Mp0Qhnys6WxDWvQnL5WZdT7o2Ul187aSt0Rq+w==
 
-vm-browserify@1.1.2, vm-browserify@^1.0.1:
+vm-browserify@^1.0.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
@@ -21857,35 +21687,6 @@ webpack@4.44.0:
   version "4.44.0"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.44.0.tgz#3b08f88a89470175f036f4a9496b8a0428668802"
   integrity sha512-wAuJxK123sqAw31SpkPiPW3iKHgFUiKvO7E7UZjtdExcsRe3fgav4mvoMM7vvpjLHVoJ6a0Mtp2fzkoA13e0Zw==
-  dependencies:
-    "@webassemblyjs/ast" "1.9.0"
-    "@webassemblyjs/helper-module-context" "1.9.0"
-    "@webassemblyjs/wasm-edit" "1.9.0"
-    "@webassemblyjs/wasm-parser" "1.9.0"
-    acorn "^6.4.1"
-    ajv "^6.10.2"
-    ajv-keywords "^3.4.1"
-    chrome-trace-event "^1.0.2"
-    enhanced-resolve "^4.3.0"
-    eslint-scope "^4.0.3"
-    json-parse-better-errors "^1.0.2"
-    loader-runner "^2.4.0"
-    loader-utils "^1.2.3"
-    memory-fs "^0.4.1"
-    micromatch "^3.1.10"
-    mkdirp "^0.5.3"
-    neo-async "^2.6.1"
-    node-libs-browser "^2.2.1"
-    schema-utils "^1.0.0"
-    tapable "^1.1.3"
-    terser-webpack-plugin "^1.4.3"
-    watchpack "^1.7.4"
-    webpack-sources "^1.4.1"
-
-webpack@4.44.1:
-  version "4.44.1"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.44.1.tgz#17e69fff9f321b8f117d1fda714edfc0b939cc21"
-  integrity sha512-4UOGAohv/VGUNQJstzEywwNxqX417FnjZgZJpJQegddzPmTvph37eBIRbRTfdySXzVtJXLJfbMN3mMYhM6GdmQ==
   dependencies:
     "@webassemblyjs/ast" "1.9.0"
     "@webassemblyjs/helper-module-context" "1.9.0"
