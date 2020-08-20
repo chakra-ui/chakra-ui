@@ -30,7 +30,6 @@
   "dependencies": {
     "@chakra-ui/accordion": "1.0.0-rc.2",
     "@chakra-ui/alert": "1.0.0-rc.2",
-    "@chakra-ui/alert-dialog": "1.0.0-rc.2",
     "@chakra-ui/avatar": "1.0.0-rc.2",
     "@chakra-ui/breadcrumb": "1.0.0-rc.2",
     "@chakra-ui/button": "1.0.0-rc.2",

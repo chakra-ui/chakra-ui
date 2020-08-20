@@ -1,7 +1,6 @@
 export * from "./chakra-provider"
 export * from "@chakra-ui/accordion"
 export * from "@chakra-ui/alert"
-export * from "@chakra-ui/alert-dialog"
 export * from "@chakra-ui/avatar"
 export * from "@chakra-ui/breadcrumb"
 export * from "@chakra-ui/button"
