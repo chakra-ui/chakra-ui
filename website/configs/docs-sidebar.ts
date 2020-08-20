@@ -310,6 +310,10 @@ const sidebar = {
               title: "Tooltip",
               path: "/docs/overlay/tooltip",
             },
+            {
+              title: "Transitions",
+              path: "/docs/overlay/transitions",
+            },
           ],
         },
         {
