@@ -96,7 +96,6 @@
     "textarea": "yarn workspace @chakra-ui/textarea",
     "image": "yarn workspace @chakra-ui/image",
     "select": "yarn workspace @chakra-ui/select",
-    "alert-dialog": "yarn workspace @chakra-ui/alert-dialog",
     "css-reset": "yarn workspace @chakra-ui/css-reset",
     "media-query": "yarn workspace @chakra-ui/media-query",
     "skeleton": "yarn workspace @chakra-ui/skeleton",
