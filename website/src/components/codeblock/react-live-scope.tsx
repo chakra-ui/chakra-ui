@@ -8,6 +8,7 @@ import * as FaIcons from "react-icons/fa"
 import * as MDIcons from "react-icons/md"
 import Lorem from "react-lorem-component"
 import * as Loaders from "react-spinners"
+import CircleIcon from "../docs/icon"
 
 import { chakra } from "@chakra-ui/core"
 
@@ -30,6 +31,7 @@ const ReactLiveScope = {
   StarIcon,
   FocusLock,
   Lorem,
+  CircleIcon,
 }
 
 export default ReactLiveScope
