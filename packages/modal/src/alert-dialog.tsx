@@ -6,14 +6,14 @@ export interface AlertDialogProps extends Omit<ModalProps, "initialFocusRef"> {
   leastDestructiveRef: ModalProps["initialFocusRef"]
 }
 
-export const AlertDialog: React.FC<AlertDialogProps> = (props) => {
+export function AlertDialog(props: AlertDialogProps) {
   const { leastDestructiveRef, ...rest } = props
   return <Modal {...rest} initialFocusRef={leastDestructiveRef} />
 }
 
-export const AlertDialogContent: React.FC<ModalContentProps> = forwardRef(
-  (props, ref) => {
-    return <ModalContent ref={ref} role="alertdialog" {...(props as any)} />
+export const AlertDialogContent = forwardRef<ModalContentProps, "section">(
+  function AlertDialogContent(props, ref) {
+    return <ModalContent ref={ref} role="alertdialog" {...props} />
   },
 )
 
