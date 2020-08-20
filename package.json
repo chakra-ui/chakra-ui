@@ -139,7 +139,7 @@
     "@emotion/core": "10.0.35",
     "@emotion/styled": "10.0.27",
     "@jest/types": "26.3.0",
-    "@storybook/addon-a11y": "6.0.10",
+    "@storybook/addon-a11y": "6.0.16",
     "@storybook/addon-actions": "6.0.10",
     "@storybook/addon-knobs": "6.0.10",
     "@storybook/cli": "6.0.10",
