@@ -32,7 +32,8 @@ async function getUserData(username) {
   }
 }
 
-const EDIT_URL = "https://github.com/chakra-ui/chakra-ui/edit/develop/website"
+const EDIT_URL =
+  "https://github.com/chakra-ui/chakra-ui/edit/develop/website/pages"
 
 /**
  * Gets the last edited timestamp and author from git
@@ -109,7 +110,7 @@ module.exports = withMdx({
       const lastEdited = await getLastEdited(filePath)
 
       // get the edit url
-      const editUrl = getEditUrl(path.join(mdxPath), EDIT_URL)
+      const editUrl = getEditUrl(mdxPath, EDIT_URL)
 
       // get the slug
       const slug = fileToPath(mdxPath)
