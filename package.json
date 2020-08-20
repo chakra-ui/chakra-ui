@@ -190,7 +190,7 @@
     "prettier": "2.0.5",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-icons": "3.10.0",
+    "react-icons": "3.11.0",
     "react-lorem-component": "^0.13.0",
     "react-router-dom": "5.2.0",
     "react-spinners": "0.9.0",
