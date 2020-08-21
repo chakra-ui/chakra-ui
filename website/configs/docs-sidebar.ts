@@ -310,10 +310,6 @@ const sidebar = {
               title: "Tooltip",
               path: "/docs/overlay/tooltip",
             },
-            {
-              title: "Transitions",
-              path: "/docs/overlay/transitions",
-            },
           ],
         },
         {
@@ -348,6 +344,10 @@ const sidebar = {
             {
               title: "Tabs",
               path: "/docs/components/tabs",
+            },
+            {
+              title: "Transitions",
+              path: "/docs/components/transitions",
             },
             {
               title: "Visually Hidden",
