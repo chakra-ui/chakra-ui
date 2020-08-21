@@ -16,7 +16,7 @@ import {
   runIfFn,
   __DEV__,
 } from "@chakra-ui/utils"
-import React, { Children, cloneElement, useEffect } from "react"
+import * as React from "react"
 import { usePopover, UsePopoverProps, UsePopoverReturn } from "./use-popover"
 
 const [PopoverProvider, usePopoverContext] = createContext<UsePopoverReturn>({
@@ -70,9 +70,9 @@ if (__DEV__) {
  */
 export const PopoverTrigger: React.FC = (props) => {
   // enforce a single child
-  const child: any = Children.only(props.children)
+  const child: any = React.Children.only(props.children)
   const { getTriggerProps } = usePopoverContext()
-  return cloneElement(child, getTriggerProps(child.props, child.ref))
+  return React.cloneElement(child, getTriggerProps(child.props, child.ref))
 }
 
 if (__DEV__) {
@@ -122,7 +122,7 @@ export const PopoverHeader = forwardRef<PopoverHeaderProps, "header">(
   function PopoverHeader(props, ref) {
     const { headerId, setHasHeader } = usePopoverContext()
 
-    useEffect(() => {
+    React.useEffect(() => {
       setHasHeader.on()
       return () => setHasHeader.off()
     }, [setHasHeader])
@@ -155,7 +155,7 @@ export const PopoverBody = forwardRef<PopoverBodyProps, "div">(
   function PopoverBody(props, ref) {
     const { bodyId, setHasBody } = usePopoverContext()
 
-    useEffect(() => {
+    React.useEffect(() => {
       setHasBody.on()
       return () => setHasBody.off()
     }, [setHasBody])

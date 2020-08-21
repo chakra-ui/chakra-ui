@@ -8,7 +8,7 @@ import {
   useStyles,
 } from "@chakra-ui/system"
 import { createContext, cx } from "@chakra-ui/utils"
-import React from "react"
+import * as React from "react"
 import { CheckIcon, InfoIcon, WarningIcon } from "./icons"
 
 const STATUSES = {

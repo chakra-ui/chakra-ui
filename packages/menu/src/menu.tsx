@@ -16,7 +16,7 @@ import {
   runIfFn,
   __DEV__,
 } from "@chakra-ui/utils"
-import React, { ReactElement, useMemo } from "react"
+import * as React from "react"
 import {
   MenuProvider,
   useMenu,
@@ -45,7 +45,7 @@ export const Menu: React.FC<MenuProps> = (props) => {
   const realProps = omitThemingProps(props)
 
   const ctx = useMenu(realProps)
-  const context = useMemo(() => ctx, [ctx])
+  const context = React.useMemo(() => ctx, [ctx])
 
   return (
     <MenuProvider value={context}>
@@ -182,7 +182,7 @@ interface MenuItemOptions
   /**
    * The icon to render before the menu item's label.
    */
-  icon?: ReactElement
+  icon?: React.ReactElement
   /**
    * The spacing between the icon and menu item's label
    */
@@ -240,7 +240,7 @@ if (__DEV__) {
 export interface MenuItemOptionProps
   extends UseMenuOptionOptions,
     Omit<PropsOf<typeof StyledMenuItem>, keyof UseMenuOptionOptions> {
-  icon?: ReactElement
+  icon?: React.ReactElement
   iconSpacing?: SystemProps["mr"]
 }
 

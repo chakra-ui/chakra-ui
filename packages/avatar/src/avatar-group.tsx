@@ -8,7 +8,7 @@ import {
   forwardRef,
 } from "@chakra-ui/system"
 import { getValidChildren, __DEV__, cx } from "@chakra-ui/utils"
-import React, { ReactNode, cloneElement } from "react"
+import * as React from "react"
 import { baseStyle } from "./avatar"
 
 interface AvatarGroupOptions {
@@ -17,7 +17,7 @@ interface AvatarGroupOptions {
    *
    * Ideally should be `Avatar` and `MoreIndicator` components
    */
-  children: ReactNode
+  children: React.ReactNode
   /**
    * The space between the avatars in the group.
    */
@@ -69,7 +69,7 @@ export const AvatarGroup = forwardRef<AvatarGroupProps, "div">(
     const clones = reversedChildren.map((child, index) => {
       const isFirstAvatar = index === 0
 
-      return cloneElement(child, {
+      return React.cloneElement(child, {
         mr: isFirstAvatar ? 0 : spacing,
         size: props.size,
         borderColor: child.props.borderColor || borderColor,
