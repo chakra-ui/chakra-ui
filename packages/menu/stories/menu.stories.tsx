@@ -21,7 +21,6 @@ import {
   MenuTransition,
 } from "../src"
 import { Button } from "@chakra-ui/button"
-import { Avatar } from "@chakra-ui/avatar"
 
 const words = [
   "About Visual Studio Code",
@@ -114,6 +113,73 @@ export const WithDisabledButFocusableItem = () => (
     </MenuList>
   </Menu>
 )
+
+export const WithTogglableMenuItems = () => {
+  const [items, setItems] = React.useState<
+    {
+      content: React.ReactNode
+      icon: React.ReactElement
+      isDisabled?: boolean
+      command?: string
+    }[]
+  >([
+    {
+      content: "Search",
+      icon: <FaSearch />,
+      isDisabled: true,
+      command: "⌥T",
+    },
+    {
+      content: "Delivery",
+      icon: <FaUndoAlt />,
+    },
+    {
+      content: "Unlink",
+      icon: <FaUnlink />,
+      isDisabled: true,
+    },
+  ])
+
+  return (
+    <>
+      <Button
+        onClick={() => {
+          return setItems([
+            {
+              content: "Search",
+              icon: <FaSearch />,
+              isDisabled: false,
+              command: "⌥T",
+            },
+            {
+              content: "Delivery",
+              icon: <FaUndoAlt />,
+            },
+            {
+              content: "Unlink",
+              icon: <FaUnlink />,
+              isDisabled: true,
+            },
+          ])
+        }}
+      >
+        Enable Search
+      </Button>
+      <Menu>
+        <MenuButton as={Button} variant="solid" colorScheme="green" size="sm">
+          Open menu
+        </MenuButton>
+        <MenuList>
+          {items.map(({ content, icon, isDisabled, command }, index) => (
+            <MenuItem isDisabled={isDisabled} icon={icon} command={command}>
+              {content}
+            </MenuItem>
+          ))}
+        </MenuList>
+      </Menu>
+    </>
+  )
+}
 
 export const WithPortal = () => (
   <Menu>
