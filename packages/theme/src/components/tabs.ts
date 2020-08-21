@@ -18,16 +18,17 @@ function baseStyleTab(props: Dict) {
 }
 
 function baseStyleTablist(props: Dict) {
+  const { align = "start", orientation } = props
+
   const alignments = {
     end: "flex-end",
     center: "center",
     start: "flex-start",
   }
 
-  const { align = "start" } = props
-
   return {
     justifyContent: alignments[align],
+    flexDirection: orientation === "vertical" ? "column" : "row",
   }
 }
 
@@ -66,14 +67,16 @@ const sizes = {
 }
 
 function variantLine(props: Dict) {
-  const { colorScheme: c } = props
+  const { colorScheme: c, orientation } = props
+  const borderProp = orientation === "vertical" ? "borderLeft" : "borderBottom"
+
   return {
     tablist: {
-      borderBottom: "2px solid",
+      [borderProp]: "2px solid",
       borderColor: "inherit",
     },
     tab: {
-      borderBottom: "2px solid",
+      [borderProp]: "2px solid",
       borderColor: "transparent",
       mb: "-2px",
       _selected: {
