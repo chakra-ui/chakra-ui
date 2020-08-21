@@ -22,7 +22,6 @@ import {
   ReactNode,
   ReactElement,
   KeyboardEventHandler,
-  FocusEventHandler,
   ButtonHTMLAttributes,
   Ref,
   CSSProperties,
@@ -260,6 +259,10 @@ export interface UseTabOptions {
   id?: string
   isSelected?: boolean
   panelId?: string
+  /**
+   * If `true`, the `Tab` won't be toggleable
+   */
+  isDisabled?: boolean
 }
 
 export interface UseTabProps
@@ -344,7 +347,7 @@ export function useTab<P extends UseTabProps>(
     type,
     "aria-selected": isSelected ? true : undefined,
     "aria-controls": makeTabPanelId(id, index),
-    onFocus: callAllHandlers(props.onFocus, onFocus),
+    onFocus: isDisabled ? undefined : callAllHandlers(props.onFocus, onFocus),
   }
 }
 
