@@ -347,7 +347,13 @@ import { Box, Text } from "@chakra-ui/core"
 ```jsx live=false
 import { Button } from '@chakra-ui/core'
 
-
+// :hover style
+<Button colorScheme="teal" _hover={{
+  background: "white",
+  color: "teal.500"
+}}>
+  Hover me
+</Button>
 ```
 
 | Prop            | CSS Property                                                            | Theme Field |
