@@ -5,7 +5,6 @@ const fromUnixTime = require("date-fns/fromUnixTime")
 const format = require("date-fns/format")
 const { getEditUrl, addLeadingSlash } = require("@docusaurus/utils")
 const { Octokit } = require("@octokit/rest")
-const fs = require("fs")
 
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN })
 
