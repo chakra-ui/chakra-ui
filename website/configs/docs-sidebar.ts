@@ -346,6 +346,10 @@ const sidebar = {
               path: "/docs/components/tabs",
             },
             {
+              title: "Transitions",
+              path: "/docs/components/transitions",
+            },
+            {
               title: "Visually Hidden",
               path: "/docs/components/visually-hidden",
             },
