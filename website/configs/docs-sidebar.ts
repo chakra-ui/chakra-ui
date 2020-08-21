@@ -312,6 +312,45 @@ const sidebar = {
             },
           ],
         },
+        {
+          title: "Other Components",
+          path: "/docs/components",
+          open: true,
+          routes: [
+            {
+              title: "Accordion",
+              path: "/docs/components/accordion",
+            },
+            {
+              title: "Breadcrumb",
+              path: "/docs/components/breadcrumb",
+            },
+            {
+              title: "Close Button",
+              path: "/docs/components/close-button",
+            },
+            {
+              title: "Collapse",
+              path: "/docs/components/collapse",
+            },
+            {
+              title: "Icon",
+              path: "/docs/components/icon",
+            },
+            {
+              title: "Link",
+              path: "/docs/components/link",
+            },
+            {
+              title: "Tabs",
+              path: "/docs/components/tabs",
+            },
+            {
+              title: "Visually Hidden",
+              path: "/docs/components/visually-hidden",
+            },
+          ],
+        },
       ],
     },
   ],
