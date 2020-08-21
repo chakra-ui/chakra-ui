@@ -9,7 +9,7 @@ import {
   useStyleConfig,
 } from "@chakra-ui/system"
 import { cx, dataAttr, merge, __DEV__ } from "@chakra-ui/utils"
-import React, { ReactElement, isValidElement, cloneElement } from "react"
+import * as React from "react"
 import { useButtonGroup } from "./button-group"
 
 export interface ButtonOptions {
@@ -41,11 +41,11 @@ export interface ButtonOptions {
   /**
    * If added, the button will show an icon before the button's label.
    */
-  leftIcon?: ReactElement
+  leftIcon?: React.ReactElement
   /**
    * If added, the button will show an icon after the button's label.
    */
-  rightIcon?: ReactElement
+  rightIcon?: React.ReactElement
   /**
    * The space between the button icon and label.
    */
@@ -53,7 +53,7 @@ export interface ButtonOptions {
   /**
    * Replace the spinner component when `isLoading` is set to `true`
    */
-  spinner?: ReactElement
+  spinner?: React.ReactElement
 }
 
 export interface ButtonProps
@@ -149,8 +149,8 @@ if (__DEV__) {
 const ButtonIcon: React.FC<PropsOf<typeof chakra.span>> = (props) => {
   const { children, className, ...rest } = props
 
-  const _children = isValidElement(children)
-    ? cloneElement(children, {
+  const _children = React.isValidElement(children)
+    ? React.cloneElement(children, {
         "aria-hidden": true,
         focusable: false,
       })

@@ -11,13 +11,13 @@ import {
   useStyles,
 } from "@chakra-ui/system"
 import { callAllHandlers, cx, __DEV__ } from "@chakra-ui/utils"
-import React, { ReactNode, useEffect } from "react"
+import * as React from "react"
 import { RemoveScroll } from "react-remove-scroll"
 import { ModalContextProvider, useModalContext } from "./context"
 import { useModal, UseModalProps } from "./use-modal"
 
 export interface ModalProps extends UseModalProps, ThemingProps {
-  children?: ReactNode
+  children?: React.ReactNode
   /**
    *  If `true`, the modal will be centered on screen.
    * @default false
@@ -206,7 +206,7 @@ export const ModalHeader = forwardRef<ModalHeaderProps, "header">(
      * Notify us if this component was rendered or used
      * so we can append `aria-labelledby` automatically
      */
-    useEffect(() => {
+    React.useEffect(() => {
       setHeaderMounted(true)
       return () => setHeaderMounted(false)
     }, [setHeaderMounted])
@@ -253,7 +253,7 @@ export const ModalBody = forwardRef<ModalBodyProps, "div">(function ModalBody(
    * Notify us if this component was rendered or used
    * so we can append `aria-describedby` automatically
    */
-  useEffect(() => {
+  React.useEffect(() => {
     setBodyMounted(true)
     return () => setBodyMounted(false)
   }, [setBodyMounted])

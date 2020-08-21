@@ -1,4 +1,4 @@
-import React from "react"
+import * as React from "react"
 import { Icon, IconProps } from "./icon"
 import { __DEV__ } from "@chakra-ui/utils"
 import { forwardRef, PropsOf } from "@chakra-ui/system"

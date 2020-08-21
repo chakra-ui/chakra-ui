@@ -1,5 +1,5 @@
 import { __DEV__ } from "@chakra-ui/utils"
-import React, { ReactElement, isValidElement, cloneElement } from "react"
+import * as React from "react"
 import { Button, ButtonProps } from "./button"
 import { forwardRef } from "@chakra-ui/system"
 
@@ -16,7 +16,7 @@ export interface IconButtonProps extends BaseButtonProps {
   /**
    * The icon to be used in the button.
    */
-  icon?: ReactElement
+  icon?: React.ReactElement
   /**
    * If `true`, the button will be perfectly round. Else, it'll be slightly round
    */
@@ -35,8 +35,8 @@ export const IconButton = forwardRef<IconButtonProps, "button">(
      * Passing the icon as prop or children should work
      */
     const element = icon || children
-    const _children = isValidElement(element)
-      ? cloneElement(element as any, {
+    const _children = React.isValidElement(element)
+      ? React.cloneElement(element as any, {
           "aria-hidden": true,
           focusable: false,
         })
